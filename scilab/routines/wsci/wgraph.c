@@ -102,6 +102,7 @@ int C2F (deletewin) (integer * number)
   /* destroying recorded graphic commands */
   scig_erase (*number);
   /* delete the windows and resources */
+  if (version_flag()==0) DeleteObjs(*number);
   scig_deletegwin_handler (*number);
   DeleteSGWin (*number);
   return (0);
