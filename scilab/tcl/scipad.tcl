@@ -99,6 +99,10 @@ exec `which wish` "$0" "$@"
 # * glitch corrected: gotoline didn't scroll to make the target line visible
 # * begun proc whichfun
 
+#ES 9/10/2003
+# * corrected bad continued line "Annuler"
+# * progress in whichfun, execselection, etc. 
+
 # default global values
 #global .
 
@@ -467,7 +471,7 @@ proc execfile {} {
 }
 
 proc execselection {} {
-    global sciprompt lang
+    global sciprompt lang textareacur
     if [ expr [string compare $sciprompt -1] == 0 ] {
 	if {$lang == "eng"} {
 	   tk_messageBox -message "Scilab is working, wait for the prompt to execute the selection" \
@@ -489,16 +493,43 @@ proc execselection {} {
 #    "...//bla\n rest" ) (NOTE: this way strings like "...//..." are truncated 
 #    -- FIXIT -- has to use tag textquoted information)
             regsub -all -line "//.*(\\n|\\Z)" $f "\n" f1
+            unset f
+# remove trailing white space
+            regsub -all -line "^\\s*" $f1 " " f2
+            unset f1
 #join continued lines
-            regsub -all -line "\\.{2,} *\\n" $f1 "" f2
+            regsub -all -line "\\.{2,} *\\n" $f2 "" f3
+            unset f2
 #join multilines with ","
-            regsub -all -line "\\n" $f2 "," comm
+            regsub -all -line "\\n" $f3 "," comm
+            unset f3
 # last hack - add a final endfunction if there is an unterminated
 # function in the selection: TODO (try to involve proc whichfun)
-#
+# Things are complicated because the selection may either include
+#  the originating "function" or not
+            set i1 [$textareacur index sel.first]
+            set i2 [$textareacur index sel.last]
+#TODO ES 9/10/03
+#             if { $i2>$i1 } {
+#                 set funselstart [lindex [whichfun $i1] 0]
+#                 set funselend [lindex [whichfun $i2] 0]
+#             } else {
+#                 set funselstart [lindex [whichfun $i2] 0]
+# 		set funselend [lindex [whichfun $i1] 0]
+# 	     }
+#             tk_messageBox -message $funselstart"--"$funselend
+# 	      if { $funselend !={} && $funselstart == {}} {
+# 		  append comm ",endfunction"}
+# 	      if { $funselend !={} && $funselstart != $funselend} {
+# 		  tk_messageBox -message \
+# 		      "How do you pretend Scilab to evaluate the bottom of a function definition without its header?"
+# 		  return
+# 	    }
+
 # Besides, I'd like to see screen output too.
             regsub -all -line "\"" $comm "\"\"" dispcomm
             regsub -all -line "'" $dispcomm "''" dispcomm1
+            unset dispcomm
             ScilabEval "disp(\"$dispcomm1\")"
 	    ScilabEval $comm
           }
@@ -1925,7 +1956,7 @@ bind Text <Button-3> {showpopup2}
 #ES 30/9/03
 bind Text <Shift-Button-3> {showpopup3}
 bind Text <Control-Button-3> {showpopupfont}
-bind $pad <Control-b> {whichfun}
+bind $pad <Control-B> {showwhichfun}
 
 
 ###################################################################
@@ -2556,9 +2587,9 @@ proc modifiedtitle {textarea} {
      }
 }
 
-proc whichfun {} {
+proc whichfun {indexin} {
+#it is implicitely meant that indexin refers to a position in textareacur
     set textarea [gettextareacur]
-    set indexin [$textarea index insert]
     scan $indexin "%d.%d" ypos xpos
 # search for the previous "function" which is not in a comment nor
 # in a string
@@ -2602,13 +2633,40 @@ proc whichfun {} {
       if {$funname==""} {set insidefun 0}
     }
     if {$insidefun == 0} {
-      tk_messageBox -message \
-	  "The cursor is not currently inside a function body"
+#      tk_messageBox -message \
+#	  "The cursor is not currently inside a function body"
+	return {}
+    } else {
+# check how many continued (...) lines between $indexin and $precfun,
+#  and derive the current line within the function definition
+        set last $precfun
+        set contlines 0
+        while {[set ind [$textarea search -regexp "\\.{2,} *(//.*)?\\Z"\
+			     $last $indexin]] != {}} {
+            	if {[$textarea compare $ind >= $last]} {
+		    set last $ind+1l
+		    set contlines [expr $contlines+1]
+		} else break
+	}
+        
+        scan $precfun "%d." beginfunline 
+	set lineinfun [expr $ypos-$beginfunline-$contlines+1]
+        tk_messageBox -message \
+	   "Being at line $ypos, function $funname begins at $precfun, and there are $contlines continued lines, i.e. we are at line $lineinfun of $funname"
+        return [list $funname $lineinfun] 
+    }
+}
+
+proc showwhichfun {} {
+    set textarea [gettextareacur]
+    set infun [whichfun [$textarea index insert]]
+    if {$infun !={} } {
+	set funname [lindex $infun 0]
+	set lineinfun [lindex $infun 1]
+      tk_messageBox -message "function $funname line $lineinfun"
     } else {
       tk_messageBox -message \
-	   "Being at line $ypos, function $funname begins at $precfun"
-#TODO here check how many continued (...) lines between $indexin and $precfun,
-#  and derive the current line within the function definition
+	  "The cursor is not currently inside a function body"
     }
 }
 
