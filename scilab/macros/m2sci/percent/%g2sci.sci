@@ -28,7 +28,7 @@ if (typeof(B)=="variable" & B.name=="%shortcircuit") then
     tree=list()
   end
   insert(Equal(list(tmp),Cste(%F)))
-  insert(tlist(["ifthenelse","expression","then","elseifs","else"],convert2double(A),list(Equal(list(tmp),Cste(%T))),list(),list()))
+  insert(tlist(["ifthenelse","expression","then","elseifs","else"],A.operands(1),list(Equal(list(tmp),A.operands(2))),list(),list()))
   return
 end
 

@@ -190,27 +190,23 @@ for k=1:n
     tkbeg=part(tk,1:kc-1)
     
     // Short circuiting operators
-    tkbeg=strsubst(tkbeg,"  ","")
-    tkbeg=strsubst(tkbeg," |","|")
-    tkbeg=strsubst(tkbeg,"| ","|")
-    tkbeg=strsubst(tkbeg," &","&")
-    tkbeg=strsubst(tkbeg,"& ","&")
-    symbs=[" ",",",";","=",")","]"]
-    ksymbs=gsort(strindex(tkbeg,symbs),"r","i")
-    ksymbs=[ksymbs length(tkbeg)+1]
-    tmptkbeg=part(tkbeg,1:ksymbs(1)-1)
-    for kk=1:size(ksymbs,"*")-1
-      kop1=strindex(part(tkbeg,ksymbs(kk):ksymbs(kk+1)-1),"||")
-      kop2=strindex(part(tkbeg,ksymbs(kk):ksymbs(kk+1)-1),"&&")
-      tmptkbeg=tmptkbeg+strsubst(strsubst(part(tkbeg,ksymbs(kk):ksymbs(kk+1)-1),"&&","&"),"||","|")
-      if kop1<>[] then
-	tmptkbeg=tmptkbeg+"|%shortcircuit"
-      elseif kop2<>[] then
-	tmptkbeg=tmptkbeg+"&%shortcircuit"
+    if ~isempty(strindex(tkbeg,"||")) then
+      orexpr=tokens(tkbeg,"|")
+      
+      for kk=2:2:size(orexpr,"*")
+	orexpr=[orexpr(1:kk);"%shortcircuit";orexpr(kk+1:size(orexpr,"*"))]
       end
+      tkbeg=strcat(orexpr,"|")
     end
-    tkbeg=tmptkbeg
-
+    if ~isempty(strindex(tkbeg,"&&")) then
+      andexpr=tokens(tkbeg,"&")
+      
+      for kk=2:2:size(andexpr,"*")
+	andexpr=[andexpr(1:kk);"%shortcircuit";andexpr(kk+1:size(andexpr,"*"))]
+      end
+      tkbeg=strcat(andexpr,"&")
+    end
+    
     txt(k)=tkbeg+com
   
   else // Current line has not and is not a comment line
@@ -234,27 +230,23 @@ for k=1:n
     end
     
     // Short circuiting operators
-    tk=strsubst(tk,"  ","")
-    tk=strsubst(tk," |","|")
-    tk=strsubst(tk,"| ","|")
-    tk=strsubst(tk," &","&")
-    tk=strsubst(tk,"& ","&")
-    symbs=[" ",",",";","=",")","]"]
-    ksymbs=gsort(strindex(tk,symbs),"r","i")
-    ksymbs=[ksymbs length(tk)+1]
-    tmptk=part(tk,1:ksymbs(1)-1)
-    for kk=1:size(ksymbs,"*")-1
-      kop1=strindex(part(tk,ksymbs(kk):ksymbs(kk+1)-1),"||")
-      kop2=strindex(part(tk,ksymbs(kk):ksymbs(kk+1)-1),"&&")
-      tmptk=tmptk+strsubst(strsubst(part(tk,ksymbs(kk):ksymbs(kk+1)-1),"&&","&"),"||","|")
-      if kop1<>[] then
-	tmptk=tmptk+"|%shortcircuit"
-      elseif kop2<>[] then
-	tmptk=tmptk+"&%shortcircuit"
+    if ~isempty(strindex(tk,"||")) then
+      orexpr=tokens(tk,"|")
+      
+      for kk=2:2:size(orexpr,"*")
+	orexpr=[orexpr(1:kk);"%shortcircuit";orexpr(kk+1:size(orexpr,"*"))]
       end
+      tk=strcat(orexpr,"|")
     end
-    tk=tmptk
-
+    if ~isempty(strindex(tk,"&&")) then
+      andexpr=tokens(tk,"&")
+      
+      for kk=2:2:size(andexpr,"*")
+	andexpr=[andexpr(1:kk);"%shortcircuit";andexpr(kk+1:size(andexpr,"*"))]
+      end
+      tk=strcat(andexpr,"&")
+    end
+    
     txt(k)=tk
   
   end
