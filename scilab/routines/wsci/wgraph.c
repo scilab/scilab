@@ -633,8 +633,17 @@ void reset_scig_click_handler ()
 int PushClickQueue (win, x, y, ibut, motion, release)
      int win, x, y, ibut, motion, release;
 {
-  if (scig_click_handler (win, x, y, ibut, motion, release) == 1)
-    return 0;
+  struct BCG *SciGc;
+  EVTHANDLER h;
+  /* first let a click_handler do the job  */
+  /* is it a specific handler for this window ?*/
+  SciGc = GetWindowXgcNumber(win);
+  h = SciGc->EventHandler;
+  if (h == (EVTHANDLER)NULL) { /* no, use global one */
+    if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;}
+  else { /* yes, call it */
+    (*(h))(win,x,y,ibut); return 0;
+  }
   if (motion == 1 || release == 1)
     return 0;
   if (lastc == MaxCB)
@@ -840,7 +849,7 @@ static void ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
  ****************************************************/
 
 EXPORT LRESULT CALLBACK
-  WndGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+  WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
   RECT rect;
   struct BCG *ScilabGC;
@@ -1265,3 +1274,30 @@ EXPORT LRESULT CALLBACK
     }
   return DefWindowProc (hwnd, message, wParam, lParam);
 }
+int SciEventHandler(win,x,y,ibut)
+     int win,x,y,ibut;
+{
+  static char buf[256];
+  sprintf(buf,"clickhandler_%d(%d,%d,%d)",win,x,y,ibut);
+  StoreCommand(buf);
+  return(0);
+}
+
+
+void C2F(seteventhandler)(win_num,job,ierr)
+     int *win_num;
+     int *ierr;
+     int *job;
+{  
+  struct BCG *SciGc;
+
+  /*ButtonPressMask|PointerMotionMask|ButtonReleaseMask|KeyPressMask */
+  *ierr = 0;
+  SciGc = GetWindowXgcNumber(*win_num);
+  if ( SciGc ==  NULL ) {*ierr=1;return;}
+  if (*job>0) 
+    SciGc->EventHandler=(EVTHANDLER)SciEventHandler;
+  else
+    SciGc->EventHandler=(EVTHANDLER) NULL;
+}
+

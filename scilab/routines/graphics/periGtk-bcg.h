@@ -17,6 +17,7 @@ typedef struct _menu_entry {
   struct _menu_entry *next; /* next one .... */
 } menu_entry;
 
+typedef int (*EVTHANDLER) __PARAMS((int win,int x,int y,int ibut));
 
 typedef struct BCG 
 { 
@@ -46,6 +47,7 @@ typedef struct BCG
   int NumBackground;  /* number of Background in the color table */
   int NumForeground; /* number of Foreground in the color table */
   int NumHidden3d;  /* color for hidden 3d facets **/
+  EVTHANDLER EventHandler; /* pointer to an event handler */
   /* new for Gtk */
   guchar *Red;   /* vector of red value: between 0 and 255 */
   guchar *Green; /* vector of green value: between 0 and 255 */

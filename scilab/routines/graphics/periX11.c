@@ -3003,6 +3003,7 @@ static struct BCG *AddNewWindow(WindowList **listptr)
 	  (*listptr)->winxgc.Colors = (Pixel *) 0;
 	  (*listptr)->winxgc.Cmap = (Colormap) 0 ;
 	  (*listptr)->winxgc.CmapFlag  = 1;
+	  (*listptr)->winxgc.EventHandler = (EVTHANDLER) NULL;
 	  (*listptr)->next = (struct WindowList *) NULL ;
 	  return(&((*listptr)->winxgc));
 	}

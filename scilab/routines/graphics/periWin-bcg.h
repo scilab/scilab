@@ -6,6 +6,7 @@
 
 #include <winuser.h>
 #define Window HWND
+typedef int (*EVTHANDLER) __PARAMS((int win,int x,int y,int ibut));
 
 struct BCG 
 { 
@@ -48,6 +49,7 @@ struct BCG
   int NumBackground;  /* number of Background */
   int NumForeground; /* number of Foreground in the color table */
   int NumHidden3d;  /* color for hidden 3d facets **/
+  EVTHANDLER EventHandler; /* pointer to an event handler */
   /** win95 specific objects **/
   HPEN hPen ;  /** the current pen for graphic window **/
   HBRUSH hBrush; /** the current brush **/

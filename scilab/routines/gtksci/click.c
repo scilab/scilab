@@ -69,8 +69,18 @@ void reset_scig_click_handler()
 int PushClickQueue(int win,int x,int y,int ibut,
 		   int motion,int release) 
 {
+  struct BCG *SciGc;
+  EVTHANDLER h;
   /* first let a click_handler do the job  */
-  if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;
+  /* is it a specific handler for this window ?*/
+  SciGc = GetWindowXgcNumber(win);
+  h = SciGc->EventHandler;
+  if (h == (EVTHANDLER)NULL) { /* no, use global one */
+    if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;}
+  else { /* yes, call it */
+    (*(h))(win,x,y,ibut); return 0;
+  }
+  
   /* do not record motion events and release button 
    * this is left for a futur release 
    */
@@ -159,6 +169,32 @@ int ClearClickQueue(win)
     }
   lastc=0;
   return(0);
+}
+int SciEventHandler(win,x,y,ibut)
+     int win,x,y,ibut;
+{
+  static char buf[256];
+  sprintf(buf,"clickhandler_%d(%d,%d,%d)",win,x,y,ibut);
+  StoreCommand(buf);
+  return(0);
+}
+
+
+void C2F(seteventhandler)(win_num,job,ierr)
+     int *win_num;
+     int *ierr;
+     int *job;
+{  
+  struct BCG *SciGc;
+
+  /*ButtonPressMask|PointerMotionMask|ButtonReleaseMask|KeyPressMask */
+  *ierr = 0;
+  SciGc = GetWindowXgcNumber(*win_num);
+  if ( SciGc ==  NULL ) {*ierr=1;return;}
+  if (*job>0) 
+    SciGc->EventHandler=(EVTHANDLER)SciEventHandler;
+  else
+    SciGc->EventHandler=(EVTHANDLER) NULL;
 }
 
 

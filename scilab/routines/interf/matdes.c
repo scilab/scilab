@@ -3747,6 +3747,29 @@ int scixg2fig(fname,fname_len)
   return scixg2psofig_G(fname,"Fig",fname_len,3);
 }
 
+int sciseteventhandler(fname, fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  integer m1,n1,l1,job,ierr;
+  integer verb=0,win,na,v;
+  double dv;
+  C2F(sciwin)();
+  CheckRhs(-1,1);
+  CheckLhs(0,1);
+  C2F(dr1)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
+  if (Rhs == 1) 
+    {
+      GetRhsVar(1,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);		
+      job = *stk(l1);
+    }
+  else
+    job = 0;
+  C2F(seteventhandler) (&win,&job,&ierr);
+  LhsVar(1)=0;
+  return 0;
+} 
+
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct {
@@ -3823,6 +3846,8 @@ static MatdesTable Tab[]={
   {scixgraduate,"xgraduate"},
   {scixname,"xname"},
   {scixaxis,"xaxis"},
+  {sciseteventhandler,"seteventhandler"},
+
 #ifdef WITH_GTK
   {int_gtkhelp,"help_gtk"},
 #endif 
@@ -3865,3 +3890,4 @@ int sci_demo (fname,code, flagx)
   LhsVar(1) = 0; 
   return 0;
 }
+

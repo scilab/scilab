@@ -3505,6 +3505,7 @@ struct BCG *AddNewWindow(listptr)
 	 (*listptr)->winxgc.Blue = (float *) 0;
 	 (*listptr)->winxgc.Colors = (COLORREF *) 0;
 	 (*listptr)->winxgc.CmapFlag  = 1;
+	 (*listptr)->winxgc.EventHandler = (EVTHANDLER) NULL;
          (*listptr)->winxgc.lpgw = &graphwin;
          (*listptr)->winxgc.hPen  = (HPEN) 0;
          (*listptr)->winxgc.hBrush  = (HBRUSH) 0;

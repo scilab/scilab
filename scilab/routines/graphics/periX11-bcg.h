@@ -1,5 +1,4 @@
-
-
+typedef int (*EVTHANDLER) __PARAMS((int win,int x,int y,int ibut));
 
 /** Structure to keep the graphic state  **/
 struct BCG 
@@ -47,6 +46,7 @@ struct BCG
   int NumBackground;  /* number of Background in the color table */
   int NumForeground; /* number of Foreground in the color table */
   int NumHidden3d;  /* color for hidden 3d facets **/
+  EVTHANDLER EventHandler; /* pointer to an event handler */
 };
 
 /** jpc_SGraph.c **/

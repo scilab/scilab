@@ -1762,4 +1762,106 @@ static int GetChilds(win_num,nc,wL,outer,name,name_pos)
     }
   return TRUE;
 }
+static XtEventHandler
+SciEventProc(widget, number, event)
+     Widget widget;
+     XtPointer number;
+     XEvent *event;
+{
+  static char buf[256];
+  int ibut;
+  int cent=100,n=1;
+  KeySym keysym;
+  static XComposeStatus compose_status = {NULL, 0};
+  XEvent event2;
+
+  switch (event->type) 
+    {
+    case  MotionNotify:
+      while (XCheckWindowEvent(XtDisplay(widget),XtWindow(widget),
+			       ExposureMask,&event2)==True) {}
+      ibut=-1;
+      break;
+    case ButtonRelease :
+      ibut=event->xbutton.button-6;
+      break;
+    case ButtonPress :
+      ibut=event->xbutton.button-1;
+      break;
+    case KeyPress :
+      XLookupString((XKeyEvent *)&(event->xkey), buf, 
+			  cent, &keysym,&compose_status);
+      ibut=(int)keysym;
+      break;
+    default:
+      return(0);
+    }
+  sprintf(buf,"clickhandler_%d(%d,%d,%d)",(int)number,event->xbutton.x,event->xbutton.y,ibut);
+  StoreCommand(buf);
+  return(0);
+}
+
+
+void C2F(seteventhandler)(win_num,job,ierr)
+     int *win_num;
+     int *ierr;
+     int *job;
+{  
+  struct BCG *SciGc;
+  EventMask mask;
+  int j,q;
+
+  /*ButtonPressMask|PointerMotionMask|ButtonReleaseMask|KeyPressMask */
+  *ierr = 0;
+  SciGc = GetWindowXgcNumber(*win_num);
+  if ( SciGc ==  NULL ) {*ierr=1;return;}
+  XtRemoveEventHandler(SciGc->drawbox, 
+		       ButtonPressMask|PointerMotionMask|ButtonReleaseMask|
+		       KeyPressMask,False,
+		       (XtEventHandler) SciEventProc, (XtPointer) (*win_num));
+  if (*job>0) {
+    mask=(EventMask)0;
+    j=*job;
+    q= (int)(j/1000);j=j-q*1000;
+    if ( q) mask=mask|PointerMotionMask;
+    q= (int)(j/100);j=j-q*100;
+    if ( q) mask=mask|KeyPressMask;
+    q= (int)(j/10);j=j-q*10;
+    if ( q) mask=mask|ButtonReleaseMask;
+    if ( j) mask=mask|ButtonPressMask;
+
+
+
+    XtInsertEventHandler(SciGc->drawbox, mask,False,
+			 (XtEventHandler) SciEventProc, (XtPointer)(*win_num),XtListHead);
+  }
+}
+/* Functions to add a eventhandler to a graphic window */ 
+int SciEventHandler(win,x,y,ibut)
+     int win,x,y,ibut;
+{
+  static char buf[256];
+  sprintf(buf,"clickhandler_%d(%d,%d,%d)",win,x,y,ibut);
+  StoreCommand(buf);
+  return(0);
+}
+
+
+void C2F(seteventhandler)(win_num,job,ierr)
+     int *win_num;
+     int *ierr;
+     int *job;
+{  
+  struct BCG *SciGc;
+
+  /*ButtonPressMask|PointerMotionMask|ButtonReleaseMask|KeyPressMask */
+  *ierr = 0;
+  SciGc = GetWindowXgcNumber(*win_num);
+  if ( SciGc ==  NULL ) {*ierr=1;return;}
+  if (*job>0) 
+    SciGc->EventHandler=(EVTHANDLER)SciEventHandler;
+  else
+    SciGc->EventHandler=(EVTHANDLER) NULL;
+}
+
 

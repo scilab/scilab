@@ -144,8 +144,9 @@
 {"xgraduate",		IN_matdes,	65,	2},	
 {"xname",             	IN_matdes,      66,     2},
 {"xaxis",             	IN_matdes,      67,     2},
+{"seteventhandler",    	IN_matdes,      68,     2},
 #ifdef WITH_GTK
-{"help_gtk",           	IN_matdes,      68,     2},
+{"help_gtk",           	IN_matdes,      69,     2},
 #endif 
 #define  IN_matqz  8  
 {"ereduc",		IN_matqz,	3,	2},	
@@ -343,7 +344,8 @@
 {"x_message",		IN_xawelm,	2,	1},	
 {"x_message_modeless",	IN_xawelm,	13,	1},	
 {"xchoicesi",		IN_xawelm,	7,	2},	
-{"xgetfile",		IN_xawelm,	12,	2},	
+{"xgetfile",		IN_xawelm,	12,	2},
+	
 #define  IN_matimp  26  
 {"dasrt",		IN_matimp,	3,	2},	
 {"dassl",		IN_matimp,	2,	2},	
