@@ -34,7 +34,7 @@ Xsed="sed -e s/^X//"
 if test "${CDPATH+set}" = set; then CDPATH=; export CDPATH; fi
 
 ### BEGIN LIBTOOL CONFIG
-# Libtool was configured as follows, on host scicos.inria.fr:
+# Libtool was configured as follows, on host sci:
 #
 # CC="cc" CFLAGS="-g -Dlinux -fwritable-strings -DNARROWPROTO" CPPFLAGS="" \
 # LD="ld" LDFLAGS="" LIBS="-lm " \

@@ -1,1 +1,2 @@
-SCIDIR=/usr/src/local/scilab
+SCIDIR=/usr/local/lib/scilab
+
