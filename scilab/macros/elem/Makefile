@@ -17,7 +17,7 @@ MACROS = acos.sci acosm.sci acosh.sci acoshm.sci asin.sci asinm.sci \
 	logm.sci  atanm.sci cosm.sci signm.sci sinm.sci sqrtm.sci\
 	null.sci fix.sci smooth.sci squarewave.sci\
 	toeplitz.sci pertrans.sci \
-	modulo.sci pmodulo.sci interpln.sci and.sci or.sci \
+	modulo.sci pmodulo.sci interpln.sci \
 	intl.sci intc.sci integrate.sci \
 	erf.sci erfc.sci erfcx.sci binomial.sci \
 	speye.sci spzeros.sci sprand.sci spones.sci \
