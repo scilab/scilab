@@ -1,6 +1,6 @@
 function  CodeGeneration_()
-  Cmenu='Open/Set'
-  xinfo('Click on a Superblock (without activation output)'+..
+Cmenu='Open/Set'
+xinfo('Click on a Superblock (without activation output)'+..
 	' to obtain a coded block ! ')
   k=[]
   while %t 
@@ -34,7 +34,7 @@ function  CodeGeneration_()
     end     
   else
     message('Generation Code only work for a Superblock ! ')
-  end
+  end    
 endfunction
 
 function [ok,Makename]=buildnewblock() 
@@ -82,7 +82,6 @@ function [ok,Makename]=buildstandalone()
 endfunction
 
 
-
 function Code=c_make_doit1(cpr)
 // produces the code for ddoit1 and edoit1
 //Copyright INRIA
@@ -95,35 +94,27 @@ endfunction
 
 function Code=make_ddoit1()
 //les pointeurs de cpr :
-  z=cpr.state.z;tevts=cpr.state.tevts;evtspt=cpr.state.evtspt;
+  z=cpr.state.z;
   pointi=cpr.state.pointi;
   funs=cpr.sim.funs;
-  zptr=cpr.sim.zptr;inpptr=cpr.sim.inpptr;
-  outptr=cpr.sim.outptr;
-  funtyp=cpr.sim.funtyp;
-  ordptr=cpr.sim.ordptr;ordclk=cpr.sim.ordclk;
-  clkptr=cpr.sim.clkptr;evtspt=cpr.state.evtspt;
+  inpptr=cpr.sim.inpptr;
+  clkptr=cpr.sim.clkptr;
   sztvec=max(clkptr(2:$)-clkptr(1:$-1))+1;
-  nZ=size(z,'*')+size(outtb,'*')+nblk 
+  nZ=size(z,'*')+size(outtb,'*')+clkptr($)
+
   Code=['';
 	 '/*'+part('-',ones(1,40))+' ddoit1.c */ ';
 	 'int '
-	 cformatline(rdnom+'ddoit1( z, zptr, told, tevts, evtspt, nevts, '+..
-		     'pointi, outptr, clkptr, ordptr, ordclk, nordcl, rpar, '+..
-		     'ipar, funptr, funtyp, outtb, iwa)',70); 
+	 cformatline(rdnom+'ddoit1(z, told, outtb, iwa)',70); 
 	 '';
 	 '     double  *z; ';
-	 '     integer *zptr; ';
-	 '     double  *told,  *tevts; ';
+	 '     double  *told; ';
 	 ''
-	 '     integer *evtspt, *nevts, *pointi, *outptr; ';
-	 '     integer *clkptr, *ordptr, *ordclk, *nordcl; ';
-	 '     double  *rpar, *outtb; '; 
-	 '     integer *ipar, *funptr, *funtyp; '; 
+	 '     double  *outtb; '; 
 	 '     integer *iwa; '; 
 	 '{'; 
 	 '  /* System generated locals */ '; 
-	 '  integer ordclk_dim1, ordclk_offset, i2; '; 
+	 '  integer i2; '; 
 	 ' '; 
 	 '  /* Local variables */ '; 
 	 '  integer flag, keve, kiwa, nport; ';
@@ -135,56 +126,29 @@ function Code=make_ddoit1()
 	 '  integer nevprt; '; 
 	 '  integer urg; '; 
 	 ' '; 
-	 '  /* Parameter adjustments */ '; 
-	 '  --z; '; 
-	 '  --zptr; '; 
-	 '  --tevts; '; 
-	 '  --evtspt; '; 
-	 '  --outptr; '; 
-	 '  --clkptr; '; 
-	 '  --ordptr; '; 
-	 ''
-	 '  ordclk_dim1 = *nordcl; '; 
-	 '  ordclk_offset = ordclk_dim1 + 1; '; 
-	 '  ordclk -= ordclk_offset; '; 
-	 '  --rpar; '; 
-	 '  --ipar; '; 
-	 '  --funptr; '; 
-	 '  --funtyp; ';  
-	 '  --iwa; '; 
-	 '  --outtb; ';
-	 ' '; 
 	 '  /* Function Body */ '; 
 	 '  kiwa = 0; ';
 	 '  urg = 1; '];
  //////////////////////////////////////////////////
   if  szclkIN>=1 then
     pointi=clkptr(howclk)-1;
-    Code($+1)='  *pointi='+string(pointi)+'+ totalnevprt;';
+    Code($+1)='  pointi='+string(pointi)+'+ totalnevprt;';
   else
     pointi=clkptr(howclk)
-    Code($+1)='  *pointi='+string(pointi)+';';
+    Code($+1)='  pointi='+string(pointi)+';';
   end
   Code=[Code;
-	'  tevts[*pointi]=*told;'];
+	'  tevts[pointi]=*told;'];
 
 
-  Code=[Code;	
-	 '  if (urg > 0) {';
-	 ' L43:';
-	cformatline('    '+rdnom+'edoit1(&z[1], &zptr[1], '+..
-		    'told, &tevts[1], &evtspt[1], nevts, pointi, '+..
-		    '&outptr[1], &clkptr[1], &ordptr[1],  '+..
-		    '&ordclk[ordclk_offset], nordcl, &rpar[1], '+..
-		    '&ipar[1], &funptr[1], &funtyp[1], '+..
-		    '&(z['+string(size(z,1)+1)+']), &urg, '+..
-		    '(int *)(z+'+string(size(z,1)+size(outtb,1)+1)+..
-		    '),&kiwa);',70);
-	'    if (urg > 0) {';
-	'      goto L43;';
-	'    }';
+  Code=[Code;
+	 '  while (urg > 0) {';		 
+	 cformatline('    '+rdnom+'edoit1(told, '+..
+		    '&(z['+string(size(z,1))+']), &urg, '+..
+		    '(int *)(z+'+string(size(z,1)+size(outtb,1))+..
+		    '),&kiwa);',70);	
 	'  }';
-	'  iwa['+string(clkptr($))+']=kiwa;';
+	'  iwa['+string(clkptr($)-1)+']=kiwa;';
 	'  return 0;'
 	' ';
 	'} /* ddoit1 */';
@@ -192,38 +156,29 @@ function Code=make_ddoit1()
 endfunction
 
 function Code=make_edoit1()
-    ///////////////////
   //les pointeurs de cpr :
-  z=cpr.state.z;tevts=cpr.state.tevts;evtspt=cpr.state.evtspt;
-  pointi=cpr.state.pointi;
-
+  z=cpr.state.z;  
   funs=cpr.sim.funs;
-  zptr=cpr.sim.zptr;inpptr=cpr.sim.inpptr;
+  inpptr=cpr.sim.inpptr;
   outptr=cpr.sim.outptr;
   funtyp=cpr.sim.funtyp;
   ordptr=cpr.sim.ordptr;ordclk=cpr.sim.ordclk;
-  clkptr=cpr.sim.clkptr;;evtspt=cpr.state.evtspt;
+  clkptr=cpr.sim.clkptr;evtspt=cpr.state.evtspt;
   sztvec=max(clkptr(2:$)-clkptr(1:$-1))+1;
-  nZ=size(z,'*')+size(outtb,'*')+nblk 
+  nZ=size(z,'*')+size(outtb,'*')+clkptr($)
   //////////////////////////////////////////////////
   maxkeve=size(evtspt,1);
   
   Code=[ '/*'+part('-',ones(1,40))+' edoit1.c */ ';
 	 'int '
-	 cformatline(rdnom+'edoit1( z, zptr, told,tevts, evtspt, nevts, '+..
-		    'pointi,  outptr, clkptr, ordptr, ordclk, nordcl, '+..
-		    'rpar, ipar, funptr, funtyp, outtb, urg, iwa, kiwa)',70)
-	'     double  *z; ';
-	'     integer *zptr; ';
-	'     double  *told,  *tevts; ';
-	'     integer *evtspt, *nevts, *pointi, *outptr; ';
-	'     integer *clkptr, *ordptr, *ordclk, *nordcl; ';
-	'     double  *rpar, *outtb; ';
-	'     integer *ipar,  *funptr, *funtyp; ';
+	 cformatline(rdnom+'edoit1(told, '+..
+		    'outtb, urg, iwa, kiwa)',70)
+	'     double  *told; ';
+	'     double  *outtb; ';
 	'     integer *urg,  *iwa, *kiwa; ';
 	'{ ';
 	'  /* System generated locals */ ';
-	'  integer ordclk_dim1, ordclk_offset, i2; ';
+	'  integer i2; ';
 	' ';
 	'  /* Local variables */ ';
 	'  integer flag, keve, nport; ';
@@ -235,28 +190,10 @@ function Code=make_edoit1()
 	'  integer ierr1, i, nx=0; ';
 	'  integer ntvec, ntvecm, nevprt; ';
 	' ';
-	'  /* Parameter adjustments */ ';
-	'  --z; ';
-	'  --zptr; ';
-	'  --tevts; ';
-	'  --evtspt; ';
-	'  --outptr; ';
-	'  --clkptr; ';
-	'  --ordptr; ';
-	'  ordclk_dim1 = *nordcl; ';
-	'  ordclk_offset = ordclk_dim1 + 1; ';
-	'  ordclk -= ordclk_offset; ';
-	'  --rpar; ';
-	'  --ipar; ';
-	'  --funptr; ';
-	'  --funtyp; ';
-	'  --iwa; ';
-	'  --outtb; ';
-	' ';
 	'  /* Function Body */ ';
 	'  --(*urg); '
-	'  keve = *pointi; ';
-	'  *pointi = evtspt[keve]; ';
+	'  keve = pointi; ';
+	'  pointi = evtspt[keve]; ';
 	'  evtspt[keve] = -1; ';
 	' ';
 	'  nord = ordptr[keve + 1] - ordptr[keve]; ';
@@ -264,7 +201,7 @@ function Code=make_edoit1()
 	'    return 0; ';
 	'  } ';
 	'  ++(*kiwa);   ';
-	'  iwa[*kiwa] = keve;   ';
+	'  iwa[*kiwa-1] = keve;   ';
 	'  switch(keve) {'];
 
   for keve=1:maxkeve
@@ -302,7 +239,7 @@ function Code=make_edoit1()
 	nxx=lnkptr(inplnk(inpptr(fun)));
 	if funtyp(fun)==-1 then
 	  Code=[Code;
-		'    if (outtb['+string(nxx)+']>0) {';
+		'    if (outtb['+string(nxx-1)+']>0) {';
 		'      ntvecm=1;';
 		'    }';
 		'    else {';
@@ -310,7 +247,7 @@ function Code=make_edoit1()
 		'    }']
 	elseif funtyp(fun)==-2 then
 	  Code=[Code;
-		'    ntvecm=(integer)outtb['+string(nxx)+'];';
+		'    ntvecm=(integer)outtb['+string(nxx-1)+'];';
 		'    if(ntvecm>'+string(ntvec)+'){ntvecm='+string(ntvec)+';}';
 		'    if(ntvecm<1){ntvecm=1;}']
 	else
@@ -319,8 +256,8 @@ function Code=make_edoit1()
 	
 	Code=[Code;
 	      '     ++(*urg);';
-	      '     i2 = ntvecm + clkptr['+string(fun)+'] - 1;';
-	      '    '+rdnom+'_putevs(&tevts[1], &evtspt[1],nevts,pointi, told, &i2, &ierr1); ';
+	      '     i2 = ntvecm + clkptr['+string(fun-1)+'] - 1;';
+	      '    '+rdnom+'_putevs(told, &i2, &ierr1); ';
 	      '     if (ierr1 != 0) return 3;']
       end
     end
@@ -331,6 +268,7 @@ function Code=make_edoit1()
 	'  return 0;'
 	'} /* edoit1 */      '];
 endfunction
+
 function Code=c_make_doit2(cpr);
 //procuces the code for ddoit2 
 //Copyright INRIA
@@ -338,30 +276,21 @@ function Code=c_make_doit2(cpr);
 
 ///////////////////
 //les pointeurs de cpr :
-  z=cpr.state.z;tevts=cpr.state.tevts;evtspt=cpr.state.evtspt;
-  pointi=cpr.state.pointi;
+  z=cpr.state.z;
   funs=cpr.sim.funs;
   zptr=cpr.sim.zptr;inpptr=cpr.sim.inpptr;
-  outptr=cpr.sim.outptr;
-  funtyp=cpr.sim.funtyp;
   ordptr=cpr.sim.ordptr;ordclk=cpr.sim.ordclk;
   clkptr=cpr.sim.clkptr;evtspt=cpr.state.evtspt;
   sztvec=max(clkptr(2:$)-clkptr(1:$-1))+1;
-  nZ=size(z,'*')+size(outtb,'*')+nblk 
+  nZ=size(z,'*')+size(outtb,'*')+clkptr($)
   Code=['';
 	'/*'+part('-',ones(1,40))+' ddoit2 */ ';
 	'int '
-	cformatline(rdnom+'ddoit2( z, zptr, told, tevts, evtspt, nevts, '+..
-		    'pointi, outptr, clkptr, ordptr, ordclk, nordcl, rpar,  '+..
-		    'ipar, funptr, funtyp, outtb, iwa)',70);  
+	cformatline(rdnom+'ddoit2(z, told, outtb, iwa)',70);  
 	''; 
 	'     double  *z; '; 
-	'     integer *zptr; '; 
-	'     double  *told,  *tevts; '; 
-	'     integer *evtspt, *nevts, *pointi, *outptr; '; 
-	'     integer *clkptr, *ordptr, *ordclk, *nordcl; '; 
-	'     double  *rpar, *outtb; '; 
-	'     integer *ipar, *funptr, *funtyp; '; 
+	'     double  *told; '; 
+	'     double  *outtb; '; 
 	'     integer *iwa; '; 
 	'{ '; 
 	'  /* System generated locals */ '; 
@@ -376,31 +305,16 @@ function Code=c_make_doit2(cpr);
 	'  integer ntvec; '; 
 	'  integer nevprt; '; 
 	' '; 
-	'    /* Parameter adjustments */ '; 
-	'  --z; '; 
-	'  --zptr; '; 
-	'  --tevts; '; 
-	'  --evtspt; '; 
-	'  --outptr; '; 
-	'  --clkptr; '; 
-	'  --ordptr; '; 
-	'  --rpar; '; 
-	'  --ipar; '; 
-	'  --funptr; '; 
-	'  --funtyp; '; 
-	'  --iwa; '; 
-	'  --outtb; ';
-	' '; 
 	'  /* Function Body */ '; 
 	' '
 	'  /*update continuous and discrete states on event */';
-	'  kiwa = iwa['+string(clkptr($))+'];';
+	'  kiwa = iwa['+string(clkptr($)-1)+'];';
 	'  if (kiwa == 0) {';
 	'    return 0 ;';
 	'  }';
 	'  i1 = kiwa;';
 	'  for (i = 1; i <= i1; ++i) {';
-	'    keve = iwa[i];';
+	'    keve = iwa[i-1];';
 	'    switch(keve) {'];
   maxkeve=size(evtspt,1);
   for keve=1:maxkeve
@@ -412,12 +326,22 @@ function Code=c_make_doit2(cpr);
       //Actuator blocks have to be called even if they have no discrete
       //state
       is_act=or(i==act)
-      if (zptr(i+1)-zptr(i))>0|is_act  then
-	//  Code($+1)='/*     .     If continuous state jumps, do cold restart */';
+      is_cap=or(i==cap);
+      if (zptr(i+1)-zptr(i)+xptr(i+1)-xptr(i))>0|is_act  then
+      //if is_act  then
+         Code($+1)='/*     .     If continuous state jumps, do cold restart */';
+	 Code=[Code
+	       '    flag = 2;';
+	       '    nevprt='+string(ordclk(ii,2))+';';
+	       '   '+wfunclist(i);];
+      elseif ~is_cap then
 	Code=[Code
+	      '    if (block_'+rdnom+'['+string(i-1)+'].nx+block_'+rdnom+'['+string(i-1)+'].nz > 0||'
+	      '        *block_'+rdnom+'['+string(i-1)+'].work !=NULL) {'
 	      '    flag = 2;';
 	      '    nevprt='+string(ordclk(ii,2))+';';
-	      '   '+wfunclist(i);];
+	      '   '+wfunclist(i);
+              '   }'];
 
       end  
     end   
@@ -436,33 +360,18 @@ function Code=c_make_endi(cpr)
 
 ///////////////////
 //les pointeurs de cpr :
-z=cpr.state.z;tevts=cpr.state.tevts;evtspt=cpr.state.evtspt;
-pointi=cpr.state.pointi;
-
-
+z=cpr.state.z;
 funs=cpr.sim.funs;
-zptr=cpr.sim.zptr;inpptr=cpr.sim.inpptr;
-outptr=cpr.sim.outptr;
-funtyp=cpr.sim.funtyp;
-ordptr=cpr.sim.ordptr;ordclk=cpr.sim.ordclk;
-clkptr=cpr.sim.clkptr;evtspt=cpr.state.evtspt;
+inpptr=cpr.sim.inpptr;
+clkptr=cpr.sim.clkptr;
 sztvec=max(clkptr(2:$)-clkptr(1:$-1))+1;
 
 Code=[	'/*'+part('-',ones(1,40))+' endi */ '; 
 	'/* file_end.c */ ';
 	'/* Subroutine */ int ';
-	rdnom+'_endi( z, zptr, told, ';
-	'    tevts, evtspt, nevts, pointi, outptr, '; 
-	'    clkptr, ordptr, ordclk, nordcl,  '; 
-	'    rpar, ipar, funptr, funtyp, outtb, iwa) ';  
+	rdnom+'_endi(told, outtb, iwa) ';  
 	''; 
-	'     double  *z; '; 
-	'     integer *zptr; '; 
-	'     double  *told,  *tevts; '; 
-	'     integer *evtspt, *nevts, *pointi, *outptr; '; 
-	'     integer *clkptr, *ordptr, *ordclk, *nordcl; '; 
-	'     double  *rpar, *outtb; '; 
-	'     integer *ipar, *funptr, *funtyp; '; 
+	'     double  *told, *outtb; '; 
 	'     integer *iwa; '; 
 	'{ '; 
 	'  /* Local variables */ '; 
@@ -474,21 +383,6 @@ Code=[	'/*'+part('-',ones(1,40))+' endi */ ';
 	'  integer nport; '; 
 	'  integer ntvec; '; 
 	'  integer nevprt=0; '; 
-	' '; 
-	'  /* Parameter adjustments */ '; 
-	'  --z; '; 
-	'  --zptr; '; 
-	'  --tevts; '; 
-	'  --evtspt; '; 
-	'  --outptr; '; 
-	'  --clkptr; '; 
-	'  --ordptr; '; 
-	'  --rpar; '; 
-	'  --ipar; '; 
-	'  --funptr; '; 
-	'  --funtyp; '; 
-	'  --iwa; '; 
-	'  --outtb; ';
 	' '; 
 	'  /* Function Body */ ';  
 	''
@@ -513,30 +407,18 @@ function Code=c_make_initi(cpr)
 
 ///////////////////
 //les pointeurs de cpr :
-  z=cpr.state.z;tevts=cpr.state.tevts;evtspt=cpr.state.evtspt;
-  pointi=cpr.state.pointi;
+  z=cpr.state.z;
   funs=cpr.sim.funs;
-  zptr=cpr.sim.zptr;inpptr=cpr.sim.inpptr;
-  outptr=cpr.sim.outptr;
-  funtyp=cpr.sim.funtyp;
-  ordptr=cpr.sim.ordptr;ordclk=cpr.sim.ordclk;
-  clkptr=cpr.sim.clkptr;evtspt=cpr.state.evtspt;
+  inpptr=cpr.sim.inpptr;
+  clkptr=cpr.sim.clkptr;
   sztvec=max(clkptr(2:$)-clkptr(1:$-1))+1;
 
   Code=['/*'+part('-',ones(1,40))+' initi */ ';
 	'int '
-	rdnom+'_initi( z, zptr, told, tevts, evtspt, nevts, pointi, outptr,'; 
-	'	clkptr, ordptr, ordclk, nordcl, rpar, ipar, funptr, funtyp, '
-	'    outtb, iwa) ';  
+	rdnom+'_initi(told,outtb, iwa) ';  
 	''; 
 	'     /*Block initialization (flag=4)*/'
-	'     double  *z; '; 
-	'     integer *zptr; '; 
-	'     double  *told,  *tevts; '; 
-	'     integer *evtspt, *nevts, *pointi, *outptr; '; 
-	'     integer *clkptr, *ordptr, *ordclk, *nordcl; '; 
-	'     double  *rpar, *outtb; '; 
-	'     integer *ipar, *funptr, *funtyp; '; 
+	'     double  *told, *outtb; '; 
 	'     integer *iwa; '; 
 	'{ '; 
 	' '; 
@@ -549,21 +431,6 @@ function Code=c_make_initi(cpr)
 	'  integer nport; '; 
 	'  integer ntvec; '; 
 	'  integer nevprt=0; '; 
-	' '; 
-	'  /* Parameter adjustments */ '; 
-	'  --z; '; 
-	'  --zptr; '; 
-	'  --tevts; '; 
-	'  --evtspt; '; 
-	'  --outptr; '; 
-	'  --clkptr; '; 
-	'  --ordptr; '; 
-	'  --rpar; '; 
-	'  --ipar; '; 
-	'  --funptr; '; 
-	'  --funtyp; '; 
-	'  --iwa; '; 
-	'  --outtb; ';
 	' '; 
 	'  /* Function Body */ ';  
 	'  ';
@@ -584,31 +451,20 @@ function Code=c_make_outtb()
 
 ///////////////////
 //les pointeurs de cpr :
-  z=cpr.state.z;tevts=cpr.state.tevts;evtspt=cpr.state.evtspt;
-  pointi=cpr.state.pointi;
+  z=cpr.state.z;
   funs=cpr.sim.funs;
-  zptr=cpr.sim.zptr;inpptr=cpr.sim.inpptr;
+  inpptr=cpr.sim.inpptr;
   outptr=cpr.sim.outptr;
-  funtyp=cpr.sim.funtyp;
-  ordptr=cpr.sim.ordptr;ordclk=cpr.sim.ordclk;
-  clkptr=cpr.sim.clkptr;evtspt=cpr.state.evtspt;
+  clkptr=cpr.sim.clkptr;
   iord=cpr.sim.iord;niord=size(iord,1);
   sztvec=max(clkptr(2:$)-clkptr(1:$-1))+1;
 
   Code=['/*'+part('-',ones(1,40))+' outtbini */ ';
 	'int '
-	rdnom+'_outtb( z, zptr, told, tevts, evtspt, nevts, pointi, outptr,'; 
-	'	clkptr, ordptr, ordclk, nordcl, rpar, ipar, funptr, funtyp, '
-	'    outtb, iwa) ';  
+	rdnom+'_outtb(told, outtb, iwa) ';  
 	''; 
 	'     /*Constants propagation*/'
-	'     double  *z; '; 
-	'     integer *zptr; '; 
-	'     double  *told,  *tevts; '; 
-	'     integer *evtspt, *nevts, *pointi, *outptr; '; 
-	'     integer *clkptr, *ordptr, *ordclk, *nordcl; '; 
-	'     double  *rpar, *outtb; '; 
-	'     integer *ipar, *funptr, *funtyp; '; 
+	'     double  *told, *outtb; '; 
 	'     integer *iwa; '; 
 	'{ '; 
 	' '; 
@@ -621,21 +477,6 @@ function Code=c_make_outtb()
 	'  integer nport; '; 
 	'  integer ntvec; '; 
 	'  integer nevprt=0; '; 
-	' '; 
-	'  /* Parameter adjustments */ '; 
-	'  --z; '; 
-	'  --zptr; '; 
-	'  --tevts; '; 
-	'  --evtspt; '; 
-	'  --outptr; '; 
-	'  --clkptr; '; 
-	'  --ordptr; '; 
-	'  --rpar; '; 
-	'  --ipar; '; 
-	'  --funptr; '; 
-	'  --funtyp; '; 
-	'  --iwa; '; 
-	'  --outtb; ';
 	' '; 
 	'  /* Function Body */ ';  
 	'  ';
@@ -661,12 +502,12 @@ function [Code,actt,proto]=call_actuator(i)
     if nin==0 then
       uk=0;
       nuk=0;
-      Code=+'args[0]=&(outtb[1]);';
+      Code=+'args[0]=&(outtb[0]);';
     else
       lprt=inplnk(inpptr(i));
       uk=lnkptr(lprt);
       nuk=(lnkptr(lprt+1))-uk;
-      Code='args[0]=&(outtb['+string(uk)+']);';
+      Code='args[0]=&(outtb['+string(uk-1)+']);';
     end
   end
   
@@ -704,11 +545,11 @@ function [Code,proto]=call_block(i)
   //l'adresse du pointeur de rpar
   if nrpar<>0 then rpar=rpptr(i);else rpar=1; end
 
-  //l'adresse du pointeur de z 
-  if nz<>0 then z=zptr(i);else z=1;end
+  //l'adresse du pointeur de z attention -1 pas sur
+  if nz<>0 then z=zptr(i)-1;else z=0;end
 
   //l'adresse du pointeur de x
-  if nx<>0 then x=xptr(i);else x=1;end
+  if nx<>0 then x=xptr(i)-1;else x=0;end
   //
   [Code,proto]=callf(i);
 endfunction
@@ -735,19 +576,19 @@ function [Code,proto]=callf(i)
 	lprt=inplnk(inpptr(i)-1+k);
 	uk=lnkptr(lprt);
 	nuk=(lnkptr(lprt+1))-uk;
-	Code($+1)='rdouttb['+string(k-1)+']=outtb['+string(uk)+'];';
+	Code($+1)='rdouttb['+string(k-1)+']=outtb['+string(uk-1)+'];';
       end
       Code($+1)='args[0]=&(rdouttb[0]);';
     elseif nin==0
       uk=0;
       nuk=0;
-      Code($+1)=+'args[0]=&(outtb[1]);';
+      Code($+1)=+'args[0]=&(outtb[0]);';
     else
 
       lprt=inplnk(inpptr(i));
       uk=lnkptr(lprt);
       nuk=(lnkptr(lprt+1))-uk;
-      Code($+1)='args[0]=&(outtb['+string(uk)+']);';
+      Code($+1)='args[0]=&(outtb['+string(uk-1)+']);';
     end
     if nout>1 then
       for k=1:nout
@@ -755,18 +596,18 @@ function [Code,proto]=callf(i)
 	yk=lnkptr(lprt);
 	nyk=(lnkptr(lprt+1))-yk;
 	Code($+1)='rdouttb['+string(k+nin-1)+']=outtb['+..
-	    string(yk)+'];';
+	    string(yk-1)+'];';
       end
       Code($+1)='args[1]=&(rdouttb['+string(nin)+']);';
     elseif nout==0
       yk=0;
       nyk=0;
-      Code($+1)=+'args[1]=&(outtb[1]);';
+      Code($+1)=+'args[1]=&(outtb[0]);';
     else
       lprt=outlnk(outptr(i));
       yk=lnkptr(lprt);
       nyk=(lnkptr(lprt+1))-yk;
-      Code($+1)='args[1]=&(outtb['+string(yk)+']);';
+      Code($+1)='args[1]=&(outtb['+string(yk-1)+']);';
     end
   elseif ftyp==1
     if nin>=1 then
@@ -790,7 +631,7 @@ function [Code,proto]=callf(i)
       uk=lnkptr(lprt)-1;
       nuk=(lnkptr(lprt+1))-uk;
       Code=[Code
-	    'args['+string(k-1)+'] = &(outtb['+string(uk+1)+']);';
+	    'args['+string(k-1)+'] = &(outtb['+string(uk)+']);';
 	    'sz['+string(k-1)+'] = '+string(nuk-1)+';'];
     end
     for k=1:nout
@@ -798,7 +639,7 @@ function [Code,proto]=callf(i)
       yk=lnkptr(lprt)-1;
       nyk=(lnkptr(lprt+1))-yk;
       Code=[Code
-	    'args['+string(k+nin-1)+'] = &(outtb['+string(yk+1)+']);';
+	    'args['+string(k+nin-1)+'] = &(outtb['+string(yk)+']);';
 	    'sz['+string(k+nin-1)+'] = '+string(nyk-1)+';'];
     end
   end
@@ -806,26 +647,25 @@ function [Code,proto]=callf(i)
   //generate the call itself
   //************************
   if ftyp==0 | ftyp==1 then
-    CodeC='C2F(' +fun+')(&flag, &nevprt,told, &(w['+..
-	  string(x)+']), &(x['+string(x)+']), &nrd_'+string(nx)+..
-	  ', &(z['+string(z)+']), &nrd_'+string(nz)+', '+..
-	  'tvec, &ntvec, &(rpar['+string(rpar)+']), &nrd_'+..
-	  string(nrpar)+', &(ipar['+..
-	  string(ipar)+']), &nrd_'+string(nipar);
+    CodeC='C2F(' +fun+')(&flag,&nevprt,told,&(w['+..
+           string(x)+']),&(x['+string(x)+']),&nrd_'+string(nx)+',..
+           block_'+rdnom+'['+string(i-1)+'].z,&block_'+rdnom+'['+string(i-1)+'].nz,tvec,..
+           &ntvec,block_'+rdnom+'['+string(i-1)+'].rpar,&block_'+rdnom+'['+string(i-1)+'].nrpar,.. 
+           block_'+rdnom+'['+string(i-1)+'].ipar,&block_'+rdnom+'['+string(i-1)+'].nipar';
     proto='void '+"C2F(" +string(fun)+")(int *, int *, double *,"+...
 	  " double *, double *, int *, double *, int *, double *,"+...
 	  " int *, double *, int *,int *,int *"
 
     if ftyp==0 then
-      CodeC=CodeC+', (double *)args[0], &nrd_'+string(nuk)+..
-	    ', (double *)args[1], &nrd_'+string(nyk)+');';
+      CodeC=CodeC+',(double *)args[0],&nrd_'+string(nuk)+..
+	    ',(double *)args[1],&nrd_'+string(nyk)+');';
        proto=proto+", double *, int *, double *, int *);"
     elseif ftyp==1 
       if nin>=1 then
 	for k=1:nin
 	  lprt=inplnk(inpptr(i)-1+k);
 	  uk=lnkptr(lprt);
-	  CodeC=CodeC+', &(outtb['+string(uk)+']), &nrd_'+string(nuk);
+	  CodeC=CodeC+',&(outtb['+string(uk-1)+']),&nrd_'+string(nuk);
 	  proto=proto+", double *, int *"
 	end
       end
@@ -833,7 +673,7 @@ function [Code,proto]=callf(i)
 	for k=1:nout
 	  lprt=outlnk(outptr(i)-1+k);
 	  yk=lnkptr(lprt);
-	  CodeC=CodeC+', &(outtb['+string(yk)+']), &nrd_'+string(nyk);
+	  CodeC=CodeC+',&(outtb['+string(yk-1)+']),&nrd_'+string(nyk);
 	  proto=proto+", double *, int *"
 	end
       end
@@ -847,35 +687,36 @@ function [Code,proto]=callf(i)
       end
     end
   elseif ftyp==2 
-    if ztyp(i) then
-      CodeC=fun+'(&flag, &nevprt, told,&(w['+string(x)+..
-	    ']), &(x['+string(x)+']), &nrd_'+string(nx);
-      CodeC=CodeC+', &(z['+string(z)+']),&nrd_'+string(nz)+..
-	    ', tvec, &ntvec, &(rpar['+string(rpar)+']), &nrd_'+..
-	    string(nrpar)+',&(ipar['+string(ipar)+'])';
-      CodeC=CodeC+', &nrd_'+string(nipar)+', &(args[0]), &(sz[0]), &nrd_'+..
-	    string(nin)+',&(args['+string(nin)+']),&(sz['+string(nin)+..
-	    ']),&nrd_'+string(nout)+');';
+    if ~ztyp(i) then
+      CodeC=fun+'(&flag,&nevprt,told,&(w['+string(x)+..
+	    ']),&(x['+string(x)+']),&nrd_'+string(nx);
+      CodeC=CodeC+',block_'+rdnom+'['+string(i-1)+'].z,&block_'+rdnom+'['+string(i-1)+'].nz,tvec,&ntvec,..
+            block_'+rdnom+'['+string(i-1)+'].rpar,&block_'+rdnom+'['+string(i-1)+'].nrpar,block_'+rdnom+'['+string(i-1)+'].ipar';
+      CodeC=CodeC+',&block_'+rdnom+'['+string(i-1)+'].nipar,block_'+rdnom+'['+string(i-1)+'].inptr,block_'+rdnom+'['+string(i-1)+'].insz';
+      CodeC=CodeC+',&block_'+rdnom+'['+string(i-1)+'].nin,block_'+rdnom+'['+string(i-1)+'].outptr,block_'+rdnom+'['+string(i-1)+'].outsz';
+      CodeC=CodeC+',&block_'+rdnom+'['+string(i-1)+'].nout);';
       proto='void '+fun+"(int *, int *,double *,"+...
 	  " double *, double *, int *, double *, int *, double *, "+...
 	  " int *, double *, int *, int *, int *, "+...
 	  " double **, int *, int *, double **,int"+...
 	  " *, int *);" 
     else
-	CodeC=fun+'(&flag, &nevprt, told,&(w['+string(x)+..
-	      ']), &(x['+string(x)+']), &nrd_'+string(nx);
-	CodeC=CodeC+', &(z['+string(z)+']),&nrd_'+string(nz)+..
-	      ', tvec, &ntvec, &(rpar['+string(rpar)+']), &nrd_'+..
-	      string(nrpar)+',&(ipar['+string(ipar)+'])';
-	CodeC=CodeC+', &nrd_'+string(nipar)+', &(args[0]), &(sz[0]), &nrd_'+..
-	      string(nin)+',&(args['+string(nin)+']),&(sz['+string(nin)+..
-	      ']),&nrd_'+string(nout)+',w,&nrd_0);';
+	CodeC=fun+'(&flag,&nevprt,told,&(w['+string(x)+..
+	      ']),&(x['+string(x)+']),&nrd_'+string(nx);
+	CodeC=CodeC+',block_'+rdnom+'['+string(i-1)+'].z,&block_'+rdnom+'['+string(i-1)+'].nz,tvec,&ntvec,..
+              block_'+rdnom+'['+string(i-1)+'].rpar,&block_'+rdnom+'['+string(i-1)+'].nrpar,block_'+rdnom+'['+string(i-1)+'].ipar';
+	CodeC=CodeC+',&block_'+rdnom+'['+string(i-1)+'].nipar,block_'+rdnom+'['+string(i-1)+'].inptr,block_'+rdnom+'['+string(i-1)+'].insz,..
+	    &block_'+rdnom+'['+string(i-1)+'].nin,block_'+rdnom+'['+string(i-1)+'].outptr,block_'+rdnom+'['+string(i-1)+'].outsz,..
+            &block_'+rdnom+'['+string(i-1)+'].nout,block_'+rdnom+'['+string(i-1)+'].g,&block_'+rdnom+'['+string(i-1)+'].ng);';
 	proto='void '+fun+"(int *, int *,double *,"+...
 	  " double *, double *, int *, double *, int *, double *, "+...
 	  " int *, double *, int *, int *, int *, "+...
 	  " double **, int *, int *, double **,int"+...
 	  " *, int *,double *,int * );" 
     end
+  elseif ftyp==4
+     CodeC=fun+'(&block_'+rdnom+'['+string(i-1)+'], flag);'
+     proto='void '+fun+"(scicos_block *, int );" 
   end
   //
   Code=[Code;cformatline(CodeC,70);' ']
@@ -891,12 +732,12 @@ function [Code,capt,proto]=call_sensor(i)
     if nout==0 then
       yk=0;
       nyk=0;
-      Code=+'args[1]=&(outtb[1]);';
+      Code=+'args[1]=&(outtb[0]);';
     else
       lprt=outlnk(outptr(i));
       yk=lnkptr(lprt);
       nyk=(lnkptr(lprt+1))-yk;
-      Code='args[1]=&(outtb['+string(yk)+']);';
+      Code='args[1]=&(outtb['+string(yk-1)+']);';
     end
 
   end
@@ -949,9 +790,36 @@ function t1=cformatline(t ,l)
   end
 endfunction
 function  [ok,XX]=do_compile_superblock(XX,all_scs_m,numk)
-// Transforms a given Scicos discrete SuperBlock into a C defined Block
+// Transforms a given Scicos discrete and continuous SuperBlock into a C defined Block
 // Copyright INRIA
 //Author : Rachid Djenidi
+  numsup=0;
+
+  for i=1:numk-1
+    if (typeof(all_scs_m.objs(i)) == 'Block' ) then
+      if (all_scs_m.objs(i).gui == 'SUPER_f' ) then
+	for j=1:length(all_scs_m.objs(i).model.rpar.objs)
+	  if (typeof(all_scs_m.objs(i).model.rpar.objs(j)) == 'Block' ) then
+	    if ((all_scs_m.objs(i).model.rpar.objs(j).gui ~=..
+                'SPLIT_f') & (all_scs_m.objs(i).model.rpar.objs(j).gui ~=..
+                'CLKSPLIT_f') & (all_scs_m.objs(i).model.rpar.objs(j).gui ~=..
+                'IN_f') & (all_scs_m.objs(i).model.rpar.objs(j).gui ~=..
+                'OUT_f') & (all_scs_m.objs(i).model.rpar.objs(j).gui ~=..
+                'CLKINV_f') & (all_scs_m.objs(i).model.rpar.objs(j).gui ~=..
+                'CLKOUTV_f') & (all_scs_m.objs(i).model.rpar.objs(j).gui ~=..
+                'CLKOUT_f') & (all_scs_m.objs(i).model.rpar.objs(j).gui ~=..
+	        'CLKIN_f')& (all_scs_m.objs(i).model.rpar.objs(j).gui ~=..
+	        'CLKSOM_f')) then
+	       numsup=numsup+1;
+	    end
+          end
+        end       
+      elseif ((all_scs_m.objs(i).gui ~= 'SPLIT_f') & (all_scs_m.objs(i).gui ~=..
+               'CLKSPLIT_f') & (all_scs_m.objs(i).gui ~= 'CLKSOM_f')) then
+        numsup=numsup+1;
+      end
+    end
+  end
 
   scs_m=XX.model.rpar
   par=scs_m.props;
@@ -1132,10 +1000,9 @@ cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv);
 
   ///////////////////
   //les pointeurs de cpr :
-  x=cpr.state.x;z=cpr.state.z;tevts=cpr.state.tevts;
-  evtspt=cpr.state.evtspt;
-  pointi=cpr.state.pointi;outtb=cpr.state.outtb;
-  
+  x=cpr.state.x;z=cpr.state.z;
+  outtb=cpr.state.outtb;
+ 
   
 //RN
 zcptr=cpr.sim.zcptr;
@@ -1145,13 +1012,12 @@ zcptr=cpr.sim.zcptr;
   zptr=cpr.sim.zptr;inpptr=cpr.sim.inpptr;inplnk=cpr.sim.inplnk;
   outptr=cpr.sim.outptr;outlnk=cpr.sim.outlnk;
   lnkptr=cpr.sim.lnkptr;
-  ordclk=cpr.sim.ordclk;nordcl=size(ordclk,1);
+  ordclk=cpr.sim.ordclk;
   funtyp=cpr.sim.funtyp;cord=cpr.sim.cord;ncord=size(cord,1);
   nblk=cpr.sim.nblk;ztyp=cpr.sim.ztyp;
   clkptr=cpr.sim.clkptr
   //taille totale de z : nztotal
   nztotal=size(z,1);
-
   
   //*******************************
   //Checking if superblock is valid
@@ -1254,15 +1120,15 @@ zcptr=cpr.sim.zcptr;
     elseif funs(i)=='bidon'
       wfunclist($+1)=' '
     else
-      ki=find(funs(i)==dfuns)
+      ki=find(funs(i)==dfuns)           
+      dfuns=[dfuns;funs(i)]
       [Code,protoi]=call_block(i)
       if Code<>[] then
 	wfunclist($+1)=[Code;'   if(flag < 0 ) return(5 - flag); ']
       else
 	wfunclist($+1)=' ';
       end
-      if ki==[] then Protos=[Protos;'';protoi],end      
-      dfuns=[dfuns;funs(i)]
+      if ki==[] then Protos=[Protos;'';protoi],end 
     end
 
   end
@@ -1375,7 +1241,7 @@ function ok=gen_ccode();
   Code=[make_decl();
 	Protos;
 	make_static()
-	make_computational() 
+	make_computational()         
 	make_main1();
 	make_main2();
 	make_init();
@@ -1450,8 +1316,6 @@ function ok=gen_ccode();
 endfunction
 
 
-
-  
   
 function ok=gen_gui();
 //creates the Scicos GUI function associated with the new block
@@ -1477,16 +1341,19 @@ function ok=gen_gui();
 	'case ''define'' then'
 	'  '+sci2exp(capt(:,3),'in',70); //input ports sizes
 	'  '+sci2exp(actt(:,3),'out',70); //output ports sizes
-	'  '+sci2exp(z,'z',70); //initial state
+	'  '+sci2exp(x,'x',70); //initial continuous state
+	'  '+sci2exp(z,'z',70); //initial discrete state
 	'  '+sci2exp(outtb,'outtb',70); //initial link values
 	'  iwa=zeros('+string(clkptr($))+',1)';
-	'  Z=[z;outtb;iwa]';
+	'  work=zeros('+string(nblk)+',1)';
+	'  Z=[z;outtb;iwa;work]';
         '  '+sci2exp(cpr.sim.rpar,'rpar',70); //real parameters
         '  '+sci2exp(cpr.sim.ipar,'ipar',70);//integer parameters
 	'  '+sci2exp(clkinput,'clkinput',70);
-	'  model=scicos_model(sim=list('''+rdnom+''',1),in=in,out=out,..'
-	'          evtin=clkinput,dstate=Z,rpar=rpar,ipar=ipar,..'
-	'          blocktype=''c'',dep_ut=[%t %f])'
+        '  nzcross='+string(sum(cpr.sim.zcptr(2:$)-cpr.sim.zcptr(1:$-1)))';
+	'  model=scicos_model(sim=list('''+rdnom+''',4),in=in,out=out,..'
+	'          evtin=clkinput,state=x,dstate=Z,rpar=rpar,ipar=ipar,..'
+	'          blocktype=''c'',dep_ut=[%t %f],'' '',nzcross=nzcross)'
 	'  label=string(in)';
 	'  gr_i=''xstringb(orig(1),orig(2),'''''+rdnom+''''',sz(1),..'
 	'         sz(2),''''fill'''')''';
@@ -1500,6 +1367,9 @@ function ok=gen_gui();
     ok=%f
   end
 endfunction
+  
+  
+
 function ok=gen_loader()
 //generates the Scilab script for defining the newly created block
 //into Scilab.
@@ -1716,65 +1586,209 @@ endfunction
 function Code=make_computational()
 //generates the scicos computational function associated with the block
 //Copyright INRIA
-//Author : Rachid Djenidi
-
-
-nin=size(capt,1);
-if nin>0 then In='u'+string(1:nin);else In=[];end
-
-nout= size(actt,1);
-if nout then Out='y'+string(1:nout);else Out=[];end
-
-//function arg list
-Args=['flag','nevprt','t','xd','x','nx','z','nz','tvec','ntvec','rpar',..
-      'nrpar','ipar','nipar']
-if In<>[]  then Args=[Args matrix([In ;'n'+In ],1,-1)],end
-if Out<>[] then Args=[Args matrix([Out;'n'+Out],1,-1)],end
-
-//integer arguments
-Iargs='*'+[Args([1 2 6 8 10 12:14])];
-if In<>[]  then Iargs=[Iargs '*n'+In] ,end
-if Out<>[] then Iargs=[Iargs '*n'+Out],end
-
-//double precision arguments
-Dargs='*'+[Args([3 4 5 7 9 11]),In,Out];
-
-Code=['/*'+part('-',ones(1,40))+' Block Computational function */ ';
-      'int ';
-      cformatline(rdnom+'('+strcat(Args,' ,')+')',70)
-      ''
-      cformatline('  integer '+strcat(Iargs,' ,')+';',70)
-      cformatline('  double  '+strcat(Dargs,' ,')+';' ,70)
-      ''
-      '{'
-      '  /*  block_outtb is catenated at the end of z*/'
-      '  double* block_outtb = z+'+string(nztotal)+';'
-      ''];
-     
+  z=cpr.state.z;
+  outtb=cpr.state.outtb;
+  tevts=cpr.state.tevts;evtspt=cpr.state.evtspt;
+  // n'est pas utilise
+  //nevts=size(evtspt,1);
+  zptr=cpr.sim.zptr;
+  outptr=cpr.sim.outptr;
+  funtyp=cpr.sim.funtyp;
+  clkptr=cpr.sim.clkptr;ordptr=cpr.sim.ordptr;
+  ordclk=cpr.sim.ordclk;nordcl=size(ordclk,1);
+  pointi=cpr.state.pointi;ztyp=cpr.sim.ztyp;
+  zcptr=cpr.sim.zcptr;zptr=cpr.sim.zptr;
+  rpptr=cpr.sim.rpptr;ipptr=cpr.sim.ipptr;
+  inpptr=cpr.sim.inpptr;
+  funs=cpr.sim.funs;xptr=cpr.sim.xptr;
+  modptr=cpr.sim.modptr;inplnk=cpr.sim.inplnk;
+  nblk=cpr.sim.nblk;outlnk=cpr.sim.outlnk;
+  nZ=size(z,'*')+size(outtb,'*')+clkptr($)
 //copy inputs
 Code=[Code;
       '  /*Copy inputs in the block outtb */'];
 for i=1:size(capt,1)
    ni=capt(i,3) // dimension of ith input
   Code=[Code;
-        '  block_outtb['+string(capt(i,2)-1+(0:ni-1)')+'] = u'+..
-	              string(capt(i,4))+'['+string(0:ni-1)'+'];';]
+        '  block_outtb['+string(capt(i,2)-1+(0:ni-1)')+'] = ..
+         u['+string(capt(i,4)-1)+']['+string(0:ni-1)'+'];']
 end
 
+Code=['/*'+part('-',ones(1,40))+' Block Computational function */ ';
+      'int  '+rdnom+'(scicos_block *block, int flag)'     
+      '{'
+      '  //block=&(Blocks['+string(numsup)+']);'
+      '  double* z = block->z;' 
+      '  double* x = block->x;'
+      '  double* xd = block->xd;'
+      '  double** u = block->inptr;'
+      '  double** y = block->outptr;'
+      '  int nevprt  = block->nevprt;'
+      '  double* rpar = block->rpar;' 
+      '  int nrpar = block->nrpar;'
+      '  int* ipar = block->ipar;'
+      '  int nipar = block->nipar;'
+      '  void **work = block->work;'
+      '  double t;'
+      '  /*  block_outtb is catenated at the end of z*/'
+      '  double* block_outtb = z+'+string(nztotal)+';'
+      '  (double* )work = z+'+string(nZ)+'; '
+      '  int kf,phase=get_phase_simulation();' 
+      '  int* reentryflag;'
+      '  t=get_scicos_time();' 
+      ' '];
 Code=[Code;
-      '   set_nevprt(*nevprt);';
-      ' '
-      '  if (*flag == 1) { /* update outputs */';
-      '    '+rdnom+'main1(z,t,rpar,nrpar,ipar,nipar);';
+      '  /*Copy inputs in the block outtb */'];
+for i=1:size(capt,1)
+   ni=capt(i,3) // dimension of ith input
+  Code=[Code;
+        '  block_outtb['+string(capt(i,2)-1+(0:ni-1)')+'] = u['+..
+	              string(capt(i,4)-1)+']['+string(0:ni-1)'+'];';]
+end
+nblk1=nblk;
+ for kf=1:nblk
+   if (part(funs(kf),1:7) == 'capteur' | part(funs(kf),1:10) == 'actionneur' | funs(kf) == 'bidon') then 
+      nblk1=nblk1-1;
+   end
+ end
+
+Code=[Code;
+      '  set_nevprt(nevprt);';
+      ' '  
+      '  if (flag != 4 && flag != 6 && flag != 5){'
+      '    reentryflag=(int*) (*block->work+'+string(nblk1)+');'
+      '    if ( *reentryflag ==0){'      
+      '      *reentryflag =1;'
+      '      block_Untitled=*block->work;']
+      for kf=1:nblk1        
+        nin=inpptr(kf+1)-inpptr(kf); ///* number of input ports */
+        nout=outptr(kf+1)-outptr(kf); ///* number of output ports */
+        for k=1:nin
+          lprt=inplnk(inpptr(kf)-1+k);
+          Code=[Code;
+	        '      block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);']
+        end
+        for k=1:nout
+          lprt=outlnk(outptr(kf)-1+k);
+          Code=[Code
+	        '      block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);']
+        end
+        Code=[Code
+	      '      block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);'
+	      '      block_'+rdnom+'['+string(kf-1)+'].rpar=&(rpar['+string(rpptr(kf)-1)+']);';
+              '      block_'+rdnom+'['+string(kf-1)+'].ipar=&(ipar['+string(ipptr(kf)-1)+']);';
+	      '      block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *)work)+'+string(kf-1)+');']
+      end 
+      Code=[Code
+      '    }'
+      '  }'
+      '  if (flag == 1) { /* update outputs */';
+      '    '+rdnom+'main1(z,&t);'; 
+      '  }else if (flag == 2) { /* update discrete states */']
+
+      if (outptr(2)-outptr(1) ~=0) then                    
+        Code=[Code;
+	'    '+rdnom+'main2(z,&t);']
+      else
+        Code=[Code;
+	'    /* exception block */';
+        '    '+rdnom+'main1(z,&t);';
+	'    '+rdnom+'main2(z,&t);']
+      end
+      Code=[Code;
+      '  }else if (flag == 4) { /* initialisation */'];
+ for kf=1:nblk1        
+      nin=inpptr(kf+1)-inpptr(kf); ///* number of input ports */
+      nout=outptr(kf+1)-outptr(kf); ///* number of output ports */
+      Code=[Code;
+	    '    if ((*block->work=scicos_malloc(sizeof(scicos_block)*'+string(nblk1)+'+sizeof(int)))== NULL ) return 0;';
+	    '    reentryflag=(int*) (*block->work+'+string(nblk1)+');'
+            '    *reentryflag=0;'
+	    '    block_'+rdnom+'=*block->work;';
+	    '    block_'+rdnom+'['+string(kf-1)+'].type = '+string(funtyp(kf))+';';
+            '    block_'+rdnom+'['+string(kf-1)+'].ztyp = '+string(ztyp(kf))+';';
+            '    block_'+rdnom+'['+string(kf-1)+'].ng = '+string(zcptr(kf+1)-zcptr(kf))+';';
+            '    block_'+rdnom+'['+string(kf-1)+'].nz = '+string(zptr(kf+1)-zptr(kf))+';';
+            '    block_'+rdnom+'['+string(kf-1)+'].nrpar = '+string(rpptr(kf+1)-rpptr(kf))+';';
+            '    block_'+rdnom+'['+string(kf-1)+'].nipar = '+string(ipptr(kf+1)-ipptr(kf))+';'
+            '    block_'+rdnom+'['+string(kf-1)+'].nin = '+string(inpptr(kf+1)-inpptr(kf))+';';
+            '    block_'+rdnom+'['+string(kf-1)+'].nout = '+string(outptr(kf+1)-outptr(kf))+';';
+            '    block_'+rdnom+'['+string(kf-1)+'].nevout = '+string(clkptr(kf+1)-clkptr(kf))+';';
+            '    block_'+rdnom+'['+string(kf-1)+'].nmode = '+string(modptr(kf+1)-modptr(kf))+';';
+	    '    if ((block_'+rdnom+'['+string(kf-1)+'].insz=malloc(sizeof(int)*block_'+rdnom+'['+string(kf-1)+'].nin))== NULL ) return 0;';
+	    '    if ((block_'+rdnom+'['+string(kf-1)+'].inptr=malloc(sizeof(double*)*block_'+rdnom+'['+string(kf-1)+'].nin))== NULL ) return 0;';
+	    '    if ((block_'+rdnom+'['+string(kf-1)+'].evout=calloc(block_'+rdnom+'['+string(kf-1)+'].nevout,sizeof(double)))== NULL )return 0;'];
+    
+      for k=1:nin
+         lprt=inplnk(inpptr(kf)-1+k);
+         Code=[Code
+               '    block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);'
+	       '    block_'+rdnom+'['+string(kf-1)+'].insz['+string(k-1)+'] = '+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
+      end 
+      Code=[Code
+            '    if ((block_'+rdnom+'['+string(kf-1)+'].outsz=malloc(sizeof(int)*block_'+rdnom+'['+string(kf-1)+'].nout))== NULL ) return 0;';
+            '    if ((block_'+rdnom+'['+string(kf-1)+'].outptr=malloc(sizeof(double*)*block_'+rdnom+'['+string(kf-1)+'].nout))== NULL ) return 0;'];
+          
+      for k=1:nout
+        lprt=outlnk(outptr(kf)-1+k);
+        Code=[Code
+	      '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);'
+	      '    block_'+rdnom+'['+string(kf-1)+'].outsz['+string(k-1)+']='+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
+      end
+      Code=[Code
+	    '    block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);';
+	    '    block_'+rdnom+'['+string(kf-1)+'].rpar=&(rpar['+string(rpptr(kf)-1)+']);';
+            '    block_'+rdnom+'['+string(kf-1)+'].ipar=&(ipar['+string(ipptr(kf)-1)+']);';
+	    '    block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *)work)+'+string(kf-1)+');']
+    //end
+end
+    
+      Code=[Code;
+      ' ';
+      '    '+rdnom+'_init(z,&t);';
       '  } ';
-      '  else if (*flag == 2) { /* update discrete states */';
-      '    '+rdnom+'main2(z,t,rpar,nrpar,ipar,nipar);';
-      '  } ';
-      '  else if (*flag == 4) { /* initialisation */';
-      '    '+rdnom+'_init(z,t,rpar,nrpar,ipar,nipar);';
-      '  } ';
-      '  else if (*flag == 5) { /* ending */';
-      '    '+rdnom+'_end(z,t,rpar,nrpar,ipar,nipar);';
+      '  else if (flag == 5) { /* ending */';
+      '      block_Untitled=*block->work;']
+      for kf=1:nblk1        
+        nin=inpptr(kf+1)-inpptr(kf); ///* number of input ports */
+        nout=outptr(kf+1)-outptr(kf); ///* number of output ports */
+        for k=1:nin
+          lprt=inplnk(inpptr(kf)-1+k);
+          Code=[Code;
+	        '    block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);']
+        end
+        for k=1:nout
+          lprt=outlnk(outptr(kf)-1+k);
+          Code=[Code
+	        '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);']
+        end
+        Code=[Code
+	      '    block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);'
+	      '    block_'+rdnom+'['+string(kf-1)+'].rpar=&(rpar['+string(rpptr(kf)-1)+']);';
+              '    block_'+rdnom+'['+string(kf-1)+'].ipar=&(ipar['+string(ipptr(kf)-1)+']);';
+	      '    block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *)work)+'+string(kf-1)+');']
+      end 
+      Code=[Code
+	    '    '+rdnom+'_end(z,&t);';]
+      Code=[Code;
+      '  for (kf = 0; kf < '+string(nblk1)+'; ++kf) {'
+      '    if (block_'+rdnom+'[kf].insz!=NULL) {'
+      '      free(block_'+rdnom+'[kf].insz);'
+      '    }else {'
+      '       break;'
+      '    } '   
+      '    if (block_'+rdnom+'[kf].outsz!=NULL){'
+      '      free(block_'+rdnom+'[kf].outsz);'
+      '    }else {'
+      '      break;'
+      '    }'    
+      '    if (block_'+rdnom+'[kf].evout!=NULL){'
+      '      free(block_'+rdnom+'[kf].evout);'
+      '    }else {'
+      '      break;'
+      '    }'
+      '  }' 
+      '  scicos_free(block_'+rdnom+');'    
       '  } '];
 
 	                    
@@ -1782,11 +1796,12 @@ Code=[Code;
 for i=1:size(actt,1)
   ni=actt(i,3) // dimension of ith output
   Code=[Code;
-	'  y'+string(actt(i,4))+'['+string(0:ni-1)'+'] =  block_outtb['+..
-                            string(actt(i,2)-1+(0:ni-1)')+'];']
+	'  y['+string(actt(i,4)-1)+']['+string(0:ni-1)'+'] =  block_outtb['+..
+                             string(actt(i,2)-1+(0:ni-1)')+'];']
 end
 
 //Assemble the code
+
 Code=[Code;
       '  return 0;'
       ''
@@ -1805,61 +1820,40 @@ function Code=make_decl()
 	'/*     date : '+date(getdate())+' */';
 	''
 	'#include <stdio.h>';
+	'#include <memory.h>';
 	'#include <string.h>';
 	'#include '"'+SCI+'/routines/machine.h'"';
 	'#include '"'+SCI+'/routines/sun/link.h'"';
-	'#include '"'+SCI+'/routines/scicos/scicos.h'"';
+	'#include '"'+SCI+'/routines/scicos/scicos.h'"';	
 	' ';
-	cformatline('void '+rdnom+'main1(double *, double *, '+..
-		    'double *, int *, int *, int *);',70);
+        cformatline('void '+rdnom+'main1(double *, double * );',70);
 	' ';
-	cformatline('void '+rdnom+'main2(double *, double *, '+..
-		    'double *, int *, int *, int *) ;',70);
+	cformatline('void '+rdnom+'main2(double *, double * );',70);
 	' ';
-	cformatline('void '+rdnom+'_init(double *, double *, '+..
-		    'double *, int *, int *, int *) ;',70);
+	cformatline('void '+rdnom+'_init(double *, double * );',70);
 	' ';
-	cformatline('void '+rdnom+'_end(double *, double *, '+..
-		    'double *, int *, int *, int *) ;',70);
+	cformatline('void '+rdnom+'_end(double *, double * );',70);
 	' ';
 	'int '+rdnom+'()  ;';
 	' ';
-	cformatline('int '+rdnom+'ddoit1(double *, int *, double *, double"+...
-		    " *, int *, int *, int *, int *,"+...
-		    " int *, int *, int *, int *, double *"+...
-		    " , int *, int *, int *, double *, int *)  ;',70);
+	cformatline('int '+rdnom+'ddoit1(double *, double *,'+...
+		     'double *, int *);',70);
 	' ';
-	cformatline('int '+rdnom+'ddoit2(double *, int *, double *, double"+...
-		    " *, int *, int *, int *, int *,"+...
-		    " int *, int *, int *, int *, double *"+...
-		    " , int *, int *, int *, double *, int *)  ;',70);
+        cformatline('int '+rdnom+'ddoit2(double *, double *,'+...
+		     'double *, int *);',70);
 	' ';
-	cformatline('int '+rdnom+'edoit1(double *, int *, double *, double"+...
-		    " *, int *, int *, int *, int *,"+...
-		    " int *, int *, int *, int *, double *"+...
-		    " , int *, int *, int *, double"+...
-		    " *, int *, int *, int *)  ;',70);	
+	cformatline('int '+rdnom+'edoit1(double *, double *,'+...
+		     'int *, int *, int *);',70);	
 	' ';
-	cformatline('int '+rdnom+'_initi(double *, int *, double *, double"+...
-		    " *, int *, int *, int *, int *,"+...
-		    " int *, int *, int *, int *, double *"+...
-		    " , int *, int *, int *, double *, int *)  ;',70);
+        cformatline('int '+rdnom+'_initi(double *, double *, int *);',70);
 	' ';
-	cformatline('int '+rdnom+'_endi(double *, int *, double *, double"+...
-		    " *, int *, int *, int *, int *,"+...
-		    " int *, int *, int *, int *, double *"+...
-		    " , int *, int *, int *, double *, int *)  ;',70);
+	cformatline('int '+rdnom+'_endi(double *, double *, int *);',70);
 	' ';
-	cformatline('int '+rdnom+'_outtb(double *, int * , double *, double"+...
-		    " *, int *, int * , int *, int * ,"+...
-		    " int *, int *, int *, int *, double *"+...
-		    " , int *, int *, int *, double *, int *iwa)  ;',70);
+	cformatline('int '+rdnom+'_outtb(double *, double *, int *);',70);
 	' ';
-	cformatline('int '+rdnom+'_putevs(double *, int *, int * , int"+...
-		    " *, double *, int *, int *);',70);
+	cformatline('int '+rdnom+'_putevs(double *, int *, int *);',70);
 	'/* ---- block simulation functions -------*/'
 	' '];
-
 endfunction
 function Code=make_decl_standalone()
 //generates  procedure declarations
@@ -1874,49 +1868,32 @@ function Code=make_decl_standalone()
 	'#include <stdio.h>';
 	'#include <string.h>';
 	'';
-	cformatline('void '+rdnom+'main1(double *z, double *t, '+..
-		    'double * rpar, integer *nrpar,integer *ipar,integer *nipar);',70);
+	cformatline('void '+rdnom+'main1(double *z, double *t);',70);
 	'';
-	cformatline('void '+rdnom+'main2(double *z, double *t, '+..
-		    'double * rpar, integer *nrpar,integer *ipar,integer *nipar) ;',70);
+	cformatline('void '+rdnom+'main2(double *z, double *t) ;',70);
 	'';
-	cformatline('void '+rdnom+'_init(double *z, double *t, '+..
-		    'double * rpar, integer *nrpar,integer *ipar,integer *nipar) ;',70);
+	cformatline('void '+rdnom+'_init(double *z, double *t) ;',70);
 	'';
-	cformatline('void '+rdnom+'_end(double *z, double *t, '+..
-		    'double * rpar, integer *nrpar,integer *ipar,integer *"+...
-		    " nipar) ;',70);
+	cformatline('void '+rdnom+'_end(double *z, double *t) ;',70);
 	''
 	cformatline('void '+rdnom+'_sim(double tf)"+...
 		    " ;',70);
 	''
-	cformatline('void '+rdnom+'_events(int *nevprt, "+...
-		    "double *t);',70)
+	cformatline('void '+rdnom+'_events(int *nevprt, double *t);',70)
 	''
 	'void set_nevprt(int nevprt);']
 endfunction
 function Code=make_end()
 //Copyright INRIA
 //Author : Rachid Djenidi
-  nordcl=size(ordclk,1);
   Code=['/*'+part('-',ones(1,40))+' end */ ';
 	'void '
-	cformatline(rdnom+'_end(double *z, double *t, double * rpar, '+..
-		    'integer *nrpar,integer *ipar,integer *nipar)',70);
+	cformatline(rdnom+'_end(double *z, double *t)',70);
 	'{'];
   
-  if size(pointi,1) <> 0 then
-    Code($+1)='  integer pointi[ ]={'+strcat(string(pointi),",")+'};'; 
-  else
-    Code($+1)='  integer pointi[1];';
-  end
-
   Code=[Code
-	'integer nordcl = '+string(nordcl)+';';
-	''
-	cformatline('  '+rdnom+'_endi(z, zptr, t, tevts, evtspt, nevts, pointi, '+..
-		    'outptr, clkptr, ordptr, ordclk, &nordcl, rpar, ipar, '+..
-		    'rdfunptr, funtyp, &(z['+string(size(z,1))+']), '+..
+	cformatline('  '+rdnom+'_endi(t, '+..
+		    '&(z['+string(size(z,1))+']), '+..
 		    '(int *)(z+'+string(size(z,1)+size(outtb,1))+'));',70);	
 	'} '];
   
@@ -1924,81 +1901,51 @@ endfunction
 function Code=make_init()
 //Copyright INRIA
 //Author : Rachid Djenidi
-  nordcl=size(ordclk,1);
+  
   Code=['/*'+part('-',ones(1,40))+' init */ ';
 	'void '
-	cformatline(rdnom+'_init(double *z, double *t, double * rpar, '+..
-		    'integer *nrpar,integer *ipar,integer *nipar)',70);
+	cformatline(rdnom+'_init(double *z, double *t)',70);
 	'{'];
-  if size(pointi,1) <> 0 then
-    Code($+1)='  integer pointi[ ]={'+strcat(string(pointi),",")+'};'; 
-  else
-    Code($+1)='  integer pointi[1];';
-  end
-
+  
   Code=[Code;
-	'integer nordcl = '+string(nordcl)+';';
 	'  /*Block initializations*/'
-	cformatline('  '+rdnom+'_initi(z, zptr, t, tevts, evtspt, nevts, '+..
-		    'pointi, outptr, clkptr, ordptr, ordclk, &nordcl, rpar, ipar, '+..
-		    'rdfunptr,funtyp, &(z['+string(size(z,1))+']), '+..
+	cformatline('  '+rdnom+'_initi(t, '+..
+		    '&(z['+string(size(z,1))+']), '+..
 		    '(int *)(z+'+string(size(z,1)+size(outtb,1))+'));',70);
 	'  /*Constants propagation*/'
-	cformatline('  '+rdnom+'_outtb(z, zptr, t, tevts, evtspt, nevts, '+..
-		    'pointi, outptr, clkptr, ordptr, ordclk, &nordcl, rpar, ipar, '+..
-		    'rdfunptr,funtyp, &(z['+string(size(z,1))+']), '+..
+	cformatline('  '+rdnom+'_outtb(t, '+..
+		    '&(z['+string(size(z,1))+']), '+..
 		    '(int *)(z+'+string(size(z,1)+size(outtb,1))+'));',70);
        '} '];
   
 endfunction
+
 function Code=make_main1()
 //generate code for flag=1 case  
 //Copyright INRIA
 //Author : Rachid Djenidi
-  nordcl=size(ordclk,1);
   Code=['/*'+part('-',ones(1,40))+' main1 */ ';
 	'void '
-	cformatline(rdnom+'main1(double *z, double *t, double * rpar, '+..
-		    'integer *nrpar,integer *ipar,integer *nipar)',70);
+	cformatline(rdnom+'main1(double *z, double *t)',70);
 	'{'];
+  Code($+1)=cformatline('    '+rdnom+'ddoit1(z, t, '+..
+		    '&(z['+string(size(z,1))+']), '+..
+		    '(int *)(z+'+string(size(z,1)+size(outtb,1))+'));',70);  
   
-  if size(pointi,1) <> 0 then
-    Code($+1)='  integer pointi[ ]={'+strcat(string(pointi),",")+'};'; 
-  else
-    Code($+1)='  integer pointi[1];';
-  end
-  
-  Code=[Code;
-	'integer nordcl = '+string(nordcl)+';';
-	''
-	cformatline('  '+rdnom+'ddoit1(z, zptr, t, tevts, evtspt, nevts, '+..
-		    'pointi, outptr, clkptr, ordptr, ordclk, &nordcl, rpar, ipar, '+..
-		    'rdfunptr, funtyp, &(z['+string(size(z,1))+']), '+..
-		    '(int *)(z+'+string(size(z,1)+size(outtb,1))+'));',70);
-	'} '];
+  Code($+1)='} '
 endfunction
 function Code=make_main2()
 //generate code for flag=2 case
 //Copyright INRIA
 //Author : Rachid Djenidi
-  nordcl=size(ordclk,1);
   Code=['/*'+part('-',ones(1,40))+' main2 */ ';
 	'void '
-	cformatline(rdnom+'main2(double *z, double *t, double * rpar, '+..
-		    'integer *nrpar,integer *ipar,integer *nipar)',70);
+	cformatline(rdnom+'main2(double *z, double *t)',70);
 	'{'];
-  
-  if size(pointi,1) <> 0 then
-    Code($+1)='  integer pointi[ ]={'+strcat(string(pointi),",")+'};'; 
-  else
-    Code($+1)='  integer pointi[1];';
-  end
+ 
   Code=[Code;
-	'integer nordcl = '+string(nordcl)+';';
-	''
-	cformatline('  '+rdnom+'ddoit2(z, zptr, t, tevts, evtspt, nevts, '+..
-		    'pointi, outptr, clkptr, ordptr, ordclk, &nordcl, rpar, '+..
-		    'ipar, rdfunptr, funtyp, &(z['+string(size(z,1))+']), '+..
+	cformatline('  '+rdnom+'ddoit2(z, t, '+..
+		    '&(z['+string(size(z,1))+']), '+..
 		    '(int *)(z+'+string(size(z,1)+size(outtb,1))+'));',70);	
 	'} ']; 
 endfunction
@@ -2185,14 +2132,14 @@ function Code=make_standalone()
     end
   end
   Code=[Code;'  t=0.0;'
-	'  '+rdnom+'_init(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
+	'  '+rdnom+'_init(z,&t);'
 	'  while (t<=tf) {   ';
 	'    '+rdnom+'_events(&nevprt,&t);'
 	'    set_nevprt(nevprt);'
-	'    '+rdnom+'main1(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
-	'    '+rdnom+'main2(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
+	'    '+rdnom+'main1(z,&t);'
+	'    '+rdnom+'main2(z,&t);'
 	'  }'
-	'  '+rdnom+'_end(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
+	'  '+rdnom+'_end(z,&t);'
 	'  return ;'
 	'}'  
 	'/*'+part('-',ones(1,40))+'  Lapack messag function */ ';
@@ -2212,15 +2159,18 @@ function Code=make_static()
   
   z=cpr.state.z;
   tevts=cpr.state.tevts;evtspt=cpr.state.evtspt;
-  nevts=size(evtspt,1);
   zptr=cpr.sim.zptr;
   outptr=cpr.sim.outptr;
   funtyp=cpr.sim.funtyp;
   clkptr=cpr.sim.clkptr;ordptr=cpr.sim.ordptr;
   ordclk=cpr.sim.ordclk;nordcl=size(ordclk,1);
-
-  funs=cpr.sim.funs;
-  
+  pointi=cpr.state.pointi;ztyp=cpr.sim.ztyp;
+  zcptr=cpr.sim.zcptr;zptr=cpr.sim.zptr;
+  rpptr=cpr.sim.rpptr;ipptr=cpr.sim.ipptr;
+  inpptr=cpr.sim.inpptr;outptr=cpr.sim.outptr;
+  funs=cpr.sim.funs;xptr=cpr.sim.xptr;
+  modptr=cpr.sim.modptr;
+  nblk=cpr.sim.nblk;
   Code= ['/* Table of constant values */ ';
 	 'static  integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';';
 	 ' ';
@@ -2233,15 +2183,8 @@ function Code=make_static()
     Code($+1)='static integer evtspt[1];';
   end
   
-  if size(nevts,1) <> 0 then
-    Code=[Code;cformatline('static integer nevts[ ]={'+..
-			   strcat(string(nevts),",")+'};',70)] 
-  else
-    Code($+1)='static integer nevts[1];';
-  end
   Code($+1)='static double x[1];';
-  
-  
+    
   if size(zptr,1) <> 0 then
     Code=[Code;cformatline('static integer zptr[ ]={'+..
 			   strcat(string(zptr),",")+'};',70)] 
@@ -2299,12 +2242,23 @@ function Code=make_static()
   else
     Code($+1)='static integer funtyp[1];';
   end
+  
+  if size(pointi,1) <> 0 then
+    Code($+1)='static integer pointi={'+strcat(string(pointi),",")+'};'; 
+  else
+    Code($+1)='static integer pointi=1;';
+  end
+  
+  Code($+1)='static integer nordcl = '+string(nordcl)+';'
   Code($+1)='static double w[1];'
+  Code($+1)='//extern scicos_block *Blocks;'  
+  Code($+1)='scicos_block *block_'+rdnom+';'   
+  
   Code=[Code;
 	'void set_nevprt(int nevprt)'
 	'{'
 	'  totalnevprt=nevprt;'
-	'}']
+	'}']  
 endfunction
 function Code=make_static_standalone()
 //generates  static table definitions
@@ -2437,10 +2391,10 @@ endfunction
 
 function Code=make_putevs()
   //RN
-  Code=['int '+rdnom+'_putevs(tevts, evtspt, nevts, pointi, t, evtnb, ierr)';
-	'double *tevts,*t;'
-	'integer *evtspt, *nevts, *pointi,*evtnb, *ierr;'
-	'{    --evtspt; --tevts;'
+  Code=['int '+rdnom+'_putevs(t, evtnb, ierr)';
+	'double *t;'
+	'integer *evtnb, *ierr;'
+	'{'
 	'*ierr = 0;'
 	'if (evtspt[*evtnb] != -1) {'
 	'*ierr = 1;'
@@ -2449,12 +2403,12 @@ function Code=make_putevs()
 	'evtspt[*evtnb] = 0;'
 	'tevts[*evtnb] = *t;'
 	'}'
-	'if (*pointi == 0) {'
-	'*pointi = *evtnb;'
+	'if (pointi == 0) {'
+	'pointi = *evtnb;'
 	'return 0;'
 	'}'
-	'evtspt[*evtnb] = *pointi;'
-	'*pointi = *evtnb;'
+	'evtspt[*evtnb] = pointi;'
+	'pointi = *evtnb;'
 	'return 0;'
 	'} ']
 endfunction

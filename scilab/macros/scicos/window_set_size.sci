@@ -27,5 +27,7 @@ function window_set_size()
   r=xget('wpdim');
   %XSHIFT=max((width-r(1))/2,0)
   %YSHIFT=max((height-r(2))/2,0)
+  if ~MSDOS then %YSHIFT=%YSHIFT+30,end
+  xselect()
   xset('viewport',%XSHIFT,%YSHIFT)
 endfunction

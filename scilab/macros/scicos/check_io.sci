@@ -97,8 +97,9 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
   I='E';
 
-  in_impl=I(ones(ip1)); in_impl(in_implicit)='I';
+
   if ip1<>[] then
+    in_impl=I(ones(ip1)); in_impl(in_implicit)='I';
     kk=size(graphics.in_implicit,'*')
     k=find(ip1<>0) //connected links
     k=k(find(k<=kk));
@@ -107,10 +108,13 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
       ok=%f
       return
     end
+  else
+    in_impl=[]
   end
 
-  out_impl=I(ones(op1));  out_impl(out_implicit)='I';
+
   if op1<>[] then
+    out_impl=I(ones(op1));  out_impl(out_implicit)='I';
     kk=size(graphics.out_implicit,'*')
     k=find(op1<>0) //connected links
     k=k(find(k<=kk));
@@ -119,6 +123,8 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
       ok=%f
       return
     end
+  else
+    out_impl=[]
   end
   
   ok=%t

@@ -69,6 +69,7 @@ and expression =
   | Equals of typed_expression * typed_expression
   | Exp of typed_expression
   | ExternalFunctionCall of string list * typed_expression list
+  | Floor of typed_expression
   | GreaterEqualThan of typed_expression * typed_expression
   | GreaterThan of typed_expression * typed_expression
   | If of (typed_expression * typed_expression) list * typed_expression
@@ -76,6 +77,7 @@ and expression =
   | Log of typed_expression
   | Max of typed_expression * typed_expression
   | Min of typed_expression * typed_expression
+  | Mod of typed_expression * typed_expression
   | Minus of typed_expression
   | Multiplication of typed_expression * typed_expression
   | NoEvent of typed_expression
@@ -771,6 +773,21 @@ and instantiate_expression ctx = function
             }
         | _ -> failwith "instantiate_expression: type error on exp"
       end
+  | Compilation.Floor cexpr ->
+      let iexpr = instantiate_expression ctx cexpr in
+      begin match iexpr.tex_type with
+        | IntegerType dims ->
+            {
+              tex_type = IntegerType dims;
+              tex_expression = Floor iexpr
+            }
+        | RealType dims ->
+            {
+              tex_type = RealType dims;
+              tex_expression = Floor iexpr
+            }
+        | _ -> failwith "instantiate_expression: type error on floor"
+      end
   | Compilation.GreaterEqualThan (cexpr, cexpr') ->
       let iexpr = instantiate_expression ctx cexpr
       and iexpr' = instantiate_expression ctx cexpr' in
@@ -858,6 +875,23 @@ and instantiate_expression ctx = function
               tex_expression = Min (iexpr, iexpr')
             }
         | _ -> failwith "instantiate_expression: type error on min"
+      end
+  | Compilation.Mod (cexpr, cexpr') ->
+      let iexpr = instantiate_expression ctx cexpr
+      and iexpr' = instantiate_expression ctx cexpr' in
+      begin match iexpr.tex_type, iexpr'.tex_type with
+        | IntegerType [||], IntegerType [||] ->
+            {
+              tex_type = IntegerType [||];
+              tex_expression = Mod (iexpr, iexpr')
+            }
+        | (IntegerType [||] | RealType [||]), RealType [||] |
+          RealType [||], IntegerType [||] ->
+            {
+              tex_type = RealType [||];
+              tex_expression = Mod (iexpr, iexpr')
+            }
+        | _ -> failwith "instantiate_expression: type error on mod"
       end
   | Compilation.Minus cexpr ->
       let iexpr = instantiate_expression ctx cexpr in
@@ -1565,6 +1599,7 @@ and update_expression path = function
   | ExternalFunctionCall (name, iexprs) ->
       let iexprs = List.map (update_typed_expression path) iexprs in
       ExternalFunctionCall (name, iexprs)
+  | Floor iexpr -> Floor (update_typed_expression path iexpr)
   | GreaterEqualThan (iexpr, iexpr') ->
       let iexpr = update_typed_expression path iexpr
       and iexpr' = update_typed_expression path iexpr' in
@@ -1592,6 +1627,10 @@ and update_expression path = function
       let iexpr = update_typed_expression path iexpr
       and iexpr' = update_typed_expression path iexpr' in
       Min (iexpr, iexpr')
+  | Mod (iexpr, iexpr') ->
+      let iexpr = update_typed_expression path iexpr
+      and iexpr' = update_typed_expression path iexpr' in
+      Mod (iexpr, iexpr')
   | Minus iexpr -> Minus (update_typed_expression path iexpr)
   | Multiplication (iexpr, iexpr') ->
       let iexpr = update_typed_expression path iexpr
@@ -1752,6 +1791,9 @@ and flatten_typed_expression iexpr'' = match iexpr''.tex_expression with
   | ExternalFunctionCall (name, iexprs) ->
       let iexprs = List.map flatten_typed_expression iexprs in
       { iexpr'' with tex_expression = ExternalFunctionCall (name, iexprs) }
+  | Floor iexpr ->
+      let iexpr = flatten_typed_expression iexpr in
+      array_map (fun iexpr -> Floor iexpr) iexpr
   | GreaterEqualThan (iexpr, iexpr') ->
       let iexpr = flatten_typed_expression iexpr
       and iexpr' = flatten_typed_expression iexpr' in
@@ -1781,6 +1823,10 @@ and flatten_typed_expression iexpr'' = match iexpr''.tex_expression with
       let iexpr = flatten_typed_expression iexpr
       and iexpr' = flatten_typed_expression iexpr' in
       { iexpr'' with tex_expression = Min (iexpr, iexpr') }
+  | Mod (iexpr, iexpr') ->
+      let iexpr = flatten_typed_expression iexpr
+      and iexpr' = flatten_typed_expression iexpr' in
+      { iexpr'' with tex_expression = Mod (iexpr, iexpr') }
   | Minus iexpr ->
       let iexpr = flatten_typed_expression iexpr in
       array_map (fun iexpr -> Minus iexpr) iexpr
@@ -2098,6 +2144,13 @@ and evaluate_cardinalities ss iequs =
           tex_type = RealType [||];
           tex_expression = Min (iexpr, iexpr')
         }
+    | Mod (iexpr, iexpr') ->
+        let iexpr = evaluate_cardinalities_in_expression iexpr
+        and iexpr' = evaluate_cardinalities_in_expression iexpr' in
+        {
+          tex_type = RealType [||];
+          tex_expression = Mod (iexpr, iexpr')
+        }
     | Multiplication (iexpr, iexpr') ->
         let iexpr = evaluate_cardinalities_in_expression iexpr
         and iexpr' = evaluate_cardinalities_in_expression iexpr' in
@@ -2171,6 +2224,12 @@ and evaluate_cardinalities ss iequs =
         {
           tex_type = RealType [||];
           tex_expression = Exp iexpr
+        }
+    | Floor iexpr ->
+        let iexpr = evaluate_cardinalities_in_expression iexpr in
+        {
+          tex_type = RealType [||];
+          tex_expression = Floor iexpr
         }
     | Log iexpr ->
         let iexpr = evaluate_cardinalities_in_expression iexpr in

@@ -195,6 +195,8 @@ let rec symbolic_expression_of_expression maps iexpr =
           symbolic_blackBox
             (function_name_of path)
             (List.map symbolic_expression_of_expression' iexprs)
+      | Instantiation.Floor iexpr ->
+          symbolic_floor (symbolic_expression_of_expression' iexpr)
       | Instantiation.GreaterEqualThan (iexpr, iexpr') ->
           symbolic_ge
             (symbolic_expression_of_expression' iexpr)
@@ -232,6 +234,13 @@ let rec symbolic_expression_of_expression maps iexpr =
             (symbolic_expression_of_expression' iexpr')
       | Instantiation.Minus iexpr ->
           symbolic_minus (symbolic_expression_of_expression' iexpr)
+      | Instantiation.Mod (iexpr, iexpr') ->
+          let expr = symbolic_expression_of_expression' iexpr
+          and expr' = symbolic_expression_of_expression' iexpr'
+          in
+          symbolic_sub
+            expr
+            (symbolic_mult (symbolic_floor (symbolic_div expr expr')) expr')
       | Instantiation.Multiplication (iexpr, iexpr') ->
           symbolic_mult
             (symbolic_expression_of_expression' iexpr)
@@ -360,6 +369,7 @@ let collect_external_function_names iequs =
         Instantiation.GreaterEqualThan (iexpr, iexpr') |
         Instantiation.GreaterThan (iexpr, iexpr') |
         Instantiation.Max (iexpr, iexpr') | Instantiation.Min (iexpr, iexpr') |
+        Instantiation.Mod (iexpr, iexpr') |
         Instantiation.Multiplication (iexpr, iexpr') |
         Instantiation.NotEquals (iexpr, iexpr') |
         Instantiation.Or (iexpr, iexpr') | Instantiation.Power (iexpr, iexpr') |
@@ -381,9 +391,9 @@ let collect_external_function_names iequs =
       | Instantiation.Minus iexpr | Instantiation.NoEvent iexpr |
         Instantiation.Not iexpr | Instantiation.Abs iexpr |
         Instantiation.Cos iexpr | Instantiation.Exp iexpr |
-        Instantiation.Log iexpr | Instantiation.Sin iexpr |
-        Instantiation.Sqrt iexpr | Instantiation.Tan iexpr |
-        Instantiation.Tanh iexpr ->
+        Instantiation.Floor iexpr | Instantiation.Log iexpr |
+        Instantiation.Sin iexpr | Instantiation.Sqrt iexpr |
+        Instantiation.Tan iexpr | Instantiation.Tanh iexpr ->
           collect_in_expressions funcalls iexpr
       | Instantiation.ParameterValue _ | Instantiation.Real _ |
         Instantiation.String _ | Instantiation.Time |
@@ -968,7 +978,7 @@ let rec eliminate_explicit_variables model =
       (false, false)
       assocs
   in if bad_variable_choice || success then eliminate_explicit_variables model
-          
+
 let perform_simplifications model =
   Array.iter
     (fun equation ->

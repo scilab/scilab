@@ -118,6 +118,7 @@ and compiled_expression =
   | Exp of compiled_expression
   | ExternalFunctionCall of string list * compiled_class Lazy.t *
     compiled_expression list
+  | Floor of compiled_expression
   | GreaterEqualThan of compiled_expression * compiled_expression
   | GreaterThan of compiled_expression * compiled_expression
   | If of (compiled_expression * compiled_expression) list * compiled_expression
@@ -126,6 +127,7 @@ and compiled_expression =
   | Max of compiled_expression * compiled_expression
   | Min of compiled_expression * compiled_expression
   | Minus of compiled_expression
+  | Mod of compiled_expression * compiled_expression
   | Multiplication of compiled_expression * compiled_expression
   | NoEvent of compiled_expression
   | Not of compiled_expression
@@ -392,6 +394,10 @@ and compile_expression ctx expr =
         let cexpr = compile_expression' expr in
         Der cexpr
     | ParseTree.FunctionCall
+      ([("floor", [||])], Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Floor cexpr
+    | ParseTree.FunctionCall
       ([("max", [||])],
       Some (ParseTree.ArgList ([expr; expr'] , None))) ->
         let cexpr = compile_expression' expr
@@ -403,6 +409,12 @@ and compile_expression ctx expr =
         let cexpr = compile_expression' expr
         and cexpr' = compile_expression' expr' in
         Min (cexpr, cexpr')
+    | ParseTree.FunctionCall
+      ([("mod", [||])],
+      Some (ParseTree.ArgList ([expr; expr'] , None))) ->
+        let cexpr = compile_expression' expr
+        and cexpr' = compile_expression' expr' in
+        Mod (cexpr, cexpr')
     | ParseTree.FunctionCall
       ([("cardinality", [||])],
       Some (ParseTree.ArgList ([expr] , None))) ->

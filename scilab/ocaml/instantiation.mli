@@ -67,6 +67,7 @@ and expression =
   | Equals of typed_expression * typed_expression
   | Exp of typed_expression
   | ExternalFunctionCall of string list * typed_expression list
+  | Floor of typed_expression
   | GreaterEqualThan of typed_expression * typed_expression
   | GreaterThan of typed_expression * typed_expression
   | If of (typed_expression * typed_expression) list * typed_expression
@@ -74,6 +75,7 @@ and expression =
   | Log of typed_expression
   | Max of typed_expression * typed_expression
   | Min of typed_expression * typed_expression
+  | Mod of typed_expression * typed_expression
   | Minus of typed_expression
   | Multiplication of typed_expression * typed_expression
   | NoEvent of typed_expression

@@ -76,7 +76,7 @@ and compiled_when_expression =
   | Assign of compiled_reference * compiled_expression
 
 and compiled_expression =
-    Abs of compiled_expression
+  | Abs of compiled_expression
   | Addition of compiled_expression * compiled_expression
   | And of compiled_expression * compiled_expression
   | Boolean of bool
@@ -87,16 +87,17 @@ and compiled_expression =
   | Equals of compiled_expression * compiled_expression
   | Exp of compiled_expression
   | ExternalFunctionCall of string list * compiled_class Lazy.t *
-      compiled_expression list
+    compiled_expression list
+  | Floor of compiled_expression
   | GreaterEqualThan of compiled_expression * compiled_expression
   | GreaterThan of compiled_expression * compiled_expression
-  | If of (compiled_expression * compiled_expression) list *
-      compiled_expression
+  | If of (compiled_expression * compiled_expression) list * compiled_expression
   | Integer of int32
   | Log of compiled_expression
   | Max of compiled_expression * compiled_expression
   | Min of compiled_expression * compiled_expression
   | Minus of compiled_expression
+  | Mod of compiled_expression * compiled_expression
   | Multiplication of compiled_expression * compiled_expression
   | NoEvent of compiled_expression
   | Not of compiled_expression

@@ -12,7 +12,7 @@ path=stripblanks(path)
 [txt,rpar,ipar]=create_modelica1(blklstm,cmmat,name);
 mputl(txt,path+name+'.mo');
 mprintf('   Modelica code generated at '+path+name+'.mo\n')
-[ok,name1,nx,nin,nout,ng,nm]=compile_modelica(path+name+'.mo');
+[ok,name1,nx,nin,nout,ng,nm,nz]=compile_modelica(path+name+'.mo');
 
 if ~ok then return,end
 
@@ -23,6 +23,7 @@ if ~ok then return,end
 model=scicos_model(sim=list(name,10004),.. 
 	           in=ones(nin,1),out=ones(nout,1),..
 		   state=zeros(nx*2,1),..
+		   dstate=nz,..
 		   rpar=rpar,..
 		   ipar=ipar,..
 		   dep_ut=[%f %t],nzcross=ng,nmode=nm)

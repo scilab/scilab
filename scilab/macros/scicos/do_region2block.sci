@@ -12,7 +12,7 @@ function [%pt,scs_m]=do_region2block(%pt,scs_m)
     end
   end
   xc=%pt(1);yc=%pt(2);
-
+  %pt=[]
   scs_m_save=scs_m,nc_save=needcompile
   [scs_mb,rect,prt]=get_region2(xc,yc,win)
 

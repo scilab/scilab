@@ -682,27 +682,58 @@ let bufferize_outputs model_info =
   bufferize_outputs' true;
   Printf.bprintf model_info.code_buffer "\t\t}\n"
 
+let bufferize_surface_expression model_info cond = match nature cond with
+  | Greater (expr, expr') ->
+      add_to_occurrence_table
+        false
+        (symbolic_sub expr expr')
+        model_info.occurrence_table
+  | Or [expr; expr'] ->
+      assert (is_greater_equal cond);
+      begin match nature expr, nature expr' with
+        | Greater (expr, expr'), _ | _, Greater (expr, expr') ->
+            add_to_occurrence_table
+              false
+              (symbolic_sub expr expr')
+              model_info.occurrence_table
+        | _ -> assert false
+      end
+  | _ -> ()
+
+let bufferize_surface_equation model_info i cond =
+  let bufferize_surface_equation' expr expr' =
+    let lhs = "g[" ^ (string_of_int i) ^ "] = " in
+    bufferize_rhs model_info 2 false lhs (symbolic_sub expr expr');
+    Printf.bprintf model_info.code_buffer ";\n";
+  in match nature cond with
+    | Greater (expr, expr') -> bufferize_surface_equation' expr expr'
+    | Or [expr; expr'] ->
+        assert (is_greater_equal cond);
+        begin match nature expr, nature expr' with
+          | Greater (expr, expr'), _ | _, Greater (expr, expr') ->
+              bufferize_surface_equation' expr expr'
+          | _ -> assert false
+        end
+    | _ -> ()
+
 let bufferize_when_equations model_info =
-  ExpressionTable.clear model_info.occurrence_table;
-  List.iter
-    (fun (_, when_exprs) ->
-      List.iter
-        (fun (Assign (_, expr) | Reinit (_, expr)) ->
-          add_to_occurrence_table false expr model_info.occurrence_table)
-        when_exprs)
-    model_info.model.when_clauses;
-  model_info.current_index <- -1;
   let _ =
     List.fold_left
       (fun i (_, when_exprs) ->
-        Printf.bprintf model_info.code_buffer "\t\tif (g[%d] > 0.0) {\n" i;
+        Printf.bprintf model_info.code_buffer "\t\tif (jroot[%d] == 1) {\n" i;
+        ExpressionTable.clear model_info.occurrence_table;
+        List.iter
+          (fun (Assign (_, expr) | Reinit (_, expr)) ->
+            add_to_occurrence_table false expr model_info.occurrence_table)
+          when_exprs;
+        model_info.current_index <- -1;
         List.iter
           (function
             | Assign (expr, expr') ->
                 begin match nature expr with
                   | DiscreteVariable j ->
                       let lhs = "z[" ^ (string_of_int j) ^ "] = " in
-                      bufferize_rhs model_info 3 true lhs expr';
+                      bufferize_rhs model_info 3 false lhs expr';
                       Printf.bprintf model_info.code_buffer ";\n"
                   | _ -> failwith "Invalid discrete variable assignment"
                 end
@@ -711,7 +742,7 @@ let bufferize_when_equations model_info =
                   | Variable j ->
                       let k = model_info.final_index_of_variables.(j) in
                       let lhs = "x[" ^ (string_of_int k) ^ "] = " in
-                      bufferize_rhs model_info 3 true lhs expr';
+                      bufferize_rhs model_info 3 false lhs expr';
                       Printf.bprintf model_info.code_buffer ";\n"
                   | _ -> failwith "Invalid variable reinitialization"
                 end)
@@ -723,58 +754,25 @@ let bufferize_when_equations model_info =
   in ()
 
 let bufferize_surfaces model_info =
-  let bufferize_surface_expression cond = match nature cond with
-    | Greater (expr, expr') ->
-        add_to_occurrence_table
-          false
-          (symbolic_sub expr expr')
-          model_info.occurrence_table
-    | Or [expr; expr'] ->
-        assert (is_greater_equal cond);
-        begin match nature expr, nature expr' with
-          | Greater (expr, expr'), _ | _, Greater (expr, expr') ->
-              add_to_occurrence_table
-                false
-                (symbolic_sub expr expr')
-                model_info.occurrence_table
-          | _ -> assert false
-        end
-    | _ -> ()
-  and bufferize_surface_equation i cond =
-    let bufferize_surface_equation' expr expr' =
-      let lhs = "g[" ^ (string_of_int i) ^ "] = " in
-      bufferize_rhs model_info 2 false lhs (symbolic_sub expr expr');
-      Printf.bprintf model_info.code_buffer ";\n";
-    in match nature cond with
-      | Greater (expr, expr') -> bufferize_surface_equation' expr expr'
-      | Or [expr; expr'] ->
-          assert (is_greater_equal cond);
-          begin match nature expr, nature expr' with
-            | Greater (expr, expr'), _ | _, Greater (expr, expr') ->
-                bufferize_surface_equation' expr expr'
-            | _ -> assert false
-          end
-      | _ -> ()
-  in
   ExpressionTable.clear model_info.occurrence_table;
   List.iter
     (fun cond ->
       add_to_occurrence_table false cond model_info.occurrence_table;
-      bufferize_surface_expression cond)
+      bufferize_surface_expression model_info cond)
     model_info.surfaces;
   List.iter
-    (fun (expr, _) -> bufferize_surface_expression expr)
+    (fun (expr, _) -> bufferize_surface_expression model_info expr)
     model_info.model.when_clauses;
   model_info.current_index <- -1;
   let i =
     List.fold_left
-      (fun i cond -> bufferize_surface_equation i cond; i + 1)
+      (fun i cond -> bufferize_surface_equation model_info i cond; i + 1)
       0
       model_info.surfaces
   in
   let _ =
     List.fold_left
-      (fun i (expr, _) -> bufferize_surface_equation i expr; i + 1)
+      (fun i (expr, _) -> bufferize_surface_equation model_info i expr; i + 1)
       i
       model_info.model.when_clauses
   in ();
@@ -814,7 +812,7 @@ let bufferize_initializations model_info =
   Array.iteri
     (fun i discrete_variable ->
       let lhs = "z[" ^ (string_of_int i) ^ "] = " in
-      bufferize_rhs model_info 2 true lhs discrete_variable.d_start_value;
+      bufferize_rhs model_info 2 false lhs discrete_variable.d_start_value;
       Printf.bprintf
         model_info.code_buffer
         "; /* %s"

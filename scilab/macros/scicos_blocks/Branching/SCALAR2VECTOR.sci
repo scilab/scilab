@@ -20,7 +20,7 @@ function [x,y,typ]=SCALAR2VECTOR(job,arg1,arg2)
 	  list('vec',1),exprs)
       if ~ok then break,end
       nout=int(nout)
-      if(nout<>-1|~(nout>0)) then
+      if(nout<>-1 & (nout<=0)) then
 	message('size of output must be -1 or >0')
 	ok=%f
       end

@@ -1,9 +1,9 @@
-function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
+function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
 // Serge Steer 2003, Copyright INRIA
   
   if ~with_modelica_compiler() then
     message('Modelica compiler unavailable')
-    ok=%f,name='',nx=0,nin=0,nout=0,ng=0,nm=0
+    ok=%f,name='',nx=0,nin=0,nout=0,ng=0,nm=0,nz=0
     return
   end
   
@@ -45,7 +45,7 @@ function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
   if MSDOS then Ofile=path+name+'.obj', else Ofile=path+name+'.o', end
   
   //get the Genetrated block properties
-  [nx,nin,nout,ng,nm]=analyze_c_code(mgetl(Cfile)) 
+  [nx,nin,nout,ng,nm,nz]=analyze_c_code(mgetl(Cfile)) 
 
   //below newest(Cfile,Ofile) is used instead of  updateC in case where
   //Cfile has been manually modified (debug,...)
@@ -70,7 +70,7 @@ function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
   end
 endfunction
 
-function [nx,nin,nout,ng,nm]=analyze_c_code(txt)
+function [nx,nin,nout,ng,nm,nz]=analyze_c_code(txt)
 // Serge Steer 2003, Copyright INRIA
   match=  'number of variables = '
   T=txt(grep(txt(1:10),match))//look for match in the first 10 lines
@@ -91,6 +91,10 @@ function [nx,nin,nout,ng,nm]=analyze_c_code(txt)
   match=  'number of modes = '
   T=txt(grep(txt(1:10),match))//look for match in the first 10 lines
   nm=evstr(strsubst(T,match,''))
+
+  match=  'number of discrete variables = '
+  T=txt(grep(txt(1:10),match))//look for match in the first 10 lines
+  nz=evstr(strsubst(T,match,''))
 
 endfunction
 

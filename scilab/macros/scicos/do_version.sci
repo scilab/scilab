@@ -80,14 +80,16 @@ function scs_m_new=do_version272(scs_m)
     if typeof(scs_m.objs(i))=='Block' then
       grphic=scs_m.objs(i).graphics
       chmps=size(getfield(1,grphic))
-      if or(getfield(1,grphic)=='in_implicit') then 
+      if or(getfield(1,grphic)=='in_implicit')&..
+	    size(grphic.in_implicit,'*')==size(grphic.pin,'*') then 
 	in_implicit=grphic.in_implicit
       else    
 	I='E';
 	in_implicit=I(ones(grphic.pin(:)));
       end
       
-      if or(getfield(1,grphic)=='out_implicit') then
+      if or(getfield(1,grphic)=='out_implicit')&..
+	    size(grphic.out_implicit,'*')==size(grphic.pout,'*') then
 	out_implicit=grphic.out_implicit
       else
 	I='E';

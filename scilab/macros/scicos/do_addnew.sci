@@ -79,22 +79,29 @@ function [scs_m,fct]=do_addnew(scs_m)
   // draw block shape
   dr=driver()
   if dr=='Rec' then driver('X11'),end
-%xc=%pt(1);%yc=%pt(2);
+  %xc=%pt(1);%yc=%pt(2);
   xrect(%xc+0,%yc+sz(2),sz(1),sz(2))
   if pixmap then xset('wshow'),end
   while rep(3)==-1 , //move loop
+    // get new position
+    rep=xgetmouse(0)
     
     // clear block shape
     xrect(%xc+0,%yc+sz(2),sz(1),sz(2))
     if pixmap then xset('wshow'),end
-    // get new position
-    rep=xgetmouse(0)
     %xc=rep(1);%yc=rep(2)
     xy=[%xc,%yc];
     // draw block shape
     xrect(%xc,%yc+sz(2),sz(1),sz(2))
     if pixmap then xset('wshow'),end
   end
+  if xget('window')<>curwin then
+    xrect(%xc,%yc+sz(2),sz(1),sz(2))
+    if pixmap then xset('wshow'),end
+    //active window has been closed
+    [%win,Cmenu]=resume(curwin,'Quit')
+  end
+  
   xinfo(' ')
   // clear  block shape
   xrect(%xc,%yc+sz(2),sz(1),sz(2))

@@ -212,3 +212,16 @@ scs_m.objs(14)=mlist(["Block","graphics","model","gui","doc"],..
                "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
                "equations"],list("plusblk",2),[-1;-1;-1],-1,[],[],[],[],[],[],..
                "c",[],[%t,%f],"",0,0,list()),"SUM_f",list())
+scs_m.objs(15)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[186.66667,160],[40,40],..
+               %t,[],0,0,[],[],..
+               list(..
+               "xstringb(orig(1),orig(2),''  du/dt  '',sz(1),sz(2),''fill'');",8),..
+               "s","E","E"),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],list("deriv",4),-1,-1,[],[],[],[],[],[],"x",[],..
+               [%t,%f],"",0,0,list()),"DERIV",list())

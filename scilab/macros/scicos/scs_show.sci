@@ -2,7 +2,9 @@ function scs_show(scs_m,win)
 // Copyright INRIA
   oldwin=xget('window')
   xset('window',win);xbasc()
- 
+  if ~set_cmap(scs_m.props.options('Cmap')) then // add colors if required
+    scs_m.props.options('3D')(1)=%f //disable 3D block shape
+  end
   wsiz=scs_m.props.wpar
   options=scs_m.props.options
   set_background()
