@@ -147,6 +147,8 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define CreateRef(num, point) if(! C2F(createreference)(num,point)){return 0;}
 
+#define ChangeToRef(num, point) C2F(changetoref)(num,point)
+
 #define FreePtr(lx) C2F(freeptr)((double **) lx)
 
 #define FreeRhsSVar(S) { c_local =0; while ( S[c_local] != 0) { FREE(S[c_local]);c_local++;}; FREE(S)} 
@@ -188,6 +190,8 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 #define ReadMatrix(ct,mx,nx,w)  if (! C2F(creadmat)(ct,mx,nx,w,strlen(ct) )) {	return 0; }
 
 #define WriteMatrix(ct,mx,nx,w)  if (! C2F(cwritemat)(ct,mx,nx,w,strlen(ct) )) {	return 0; }
+
+#define PutVar(num, nam)  if (! C2F(putvar)( (c_local=num, &c_local), nam, strlen(nam) )) {	return 0; }
 
 #define ReadString(ct,mx,w)  if (! C2F(creadchain)(ct,mx,w,strlen(ct),strlen(w) )) {	return 0; }
 
