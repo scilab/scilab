@@ -173,7 +173,7 @@
 
 <xsl:template match="DESCRIPTION">
 	<ul>
-		<xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|TABLE|A|text()"/>
+		<xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|VERB|TABLE|A|text()"/>
 	</ul>
 </xsl:template>
 
