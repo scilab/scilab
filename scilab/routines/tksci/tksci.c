@@ -139,7 +139,7 @@ int OpenTksci()
       XTKdisplay=Tk_Display(TKmainWindow);
       XTKsocket = ConnectionNumber(XTKdisplay);
       
-      Tk_GeometryRequest(TKmainWindow,200,200);
+      Tk_GeometryRequest(TKmainWindow,2,2);
       Tcl_EvalFile(TKinterp,TkScriptpath);
       flushTKEvents();
     }

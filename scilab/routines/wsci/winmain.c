@@ -1191,20 +1191,10 @@ void set_sci_env(char *p)
 		if ( GetVersion() < 0x80000000 ) /* Windows NT */
 		{
 			char ShortPath[MAX_PATH+1];
-			if ( ( GetOSVersion() == OS_WIN32_WINDOWS_XP ) || ( GetOSVersion() == OS_WIN32_WINDOWS_SERVER_2003_FAMILY ) )
-			{
-				/* to be sure that it's unix format */
-				/* c:/progra~1/scilab-3.1 */
-				ConvertPathWindowsToUnixFormat(p,CopyOfp);
-				GetShortPathName(CopyOfp ,ShortPath,MAX_PATH);
-			}
-			else /* Windows 2000 */
-			{
-				/* to be sure that it's windows format */
-				/* c:\progra~1\scilab-3.1 */
-				ConvertPathUnixToWindowsFormat(p,CopyOfp);
-				GetShortPathName(CopyOfp ,ShortPath,MAX_PATH);
-			}
+			/* to be sure that it's unix format */
+			/* c:/progra~1/scilab-3.1 */
+			ConvertPathWindowsToUnixFormat(p,CopyOfp);
+			GetShortPathName(CopyOfp ,ShortPath,MAX_PATH);
 			sprintf (env, "SCI=%s",ShortPath);
 		}
 		else
