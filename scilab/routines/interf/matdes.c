@@ -4863,21 +4863,28 @@ int gset(fname,fname_len)
       GetRhsVar(1,"c",&m2,&n2,&l2);
       if (strncmp(cstk(l2),"default_figure",14) !=0 && strncmp(cstk(l2),"default_axes",12) !=0 )
 	{
-	  if ((strncmp(cstk(l2),"old_style",9) !=0) && 
-	      (strncmp(cstk(l2),"current_figure",14) !=0)) C2F(sciwin)();
-	  if (version_flag() == 0 && (strncmp(cstk(l2),"old_style",9) !=0)) /* Change here : F.Leray 11.06.04 */
-	    if ((strncmp(cstk(l2),"zoom_",5) !=0) && 
-		(strncmp(cstk(l2),"auto_",5) !=0) && 
-		(strncmp(cstk(l2),"clip_box",8) !=0) )   
-	      hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ()) ; 
-	    else  
-	      hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));
-	  else
+	  if ((strncmp(cstk(l2),"old_style",9) ==0) || 
+	      (strncmp(cstk(l2),"current_figure",14) ==0)) {
 	    hdl = (unsigned long)0;
-	  if (hdl == (unsigned long)0 )
 	    pobj = (sciPointObj *) NULL;
+	  }
 	  else
-	    pobj = sciGetPointerFromHandle(hdl);
+	    {
+	      C2F(sciwin)();
+	      if (version_flag() == 0 )
+		if ((strncmp(cstk(l2),"zoom_",5) !=0) && 
+		    (strncmp(cstk(l2),"auto_",5) !=0) && 
+		    (strncmp(cstk(l2),"clip_box",8) !=0) )   
+		  hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ()) ; 
+		else  
+		  hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));
+	      else
+		hdl = (unsigned long)0;
+	      if (hdl == (unsigned long)0 )
+		pobj = (sciPointObj *) NULL;
+	      else
+		pobj = sciGetPointerFromHandle(hdl);
+	    }
 	}
       else
 	{
