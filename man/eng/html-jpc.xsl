@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-<xsl:output method="html" encoding="ISO-8859-1" />
+<xsl:output method="html" indent="no" encoding="ISO-8859-1" />
 <xsl:template match="MAN">
 <html>
 <head>
@@ -44,8 +44,7 @@
 
 <xsl:if test="./SEE_ALSO/SEE_ALSO_ITEM">
 	<H3><font color="blue">See Also</font></H3>
-	<p><ul><xsl:for-each select="./SEE_ALSO/SEE_ALSO_ITEM"><xsl:apply-templates select="A"/>
-	</xsl:for-each>	</ul></p>
+	<p><ul><xsl:for-each  select="./SEE_ALSO/SEE_ALSO_ITEM"><xsl:apply-templates select="A"/>&#160;&#160;&#160;</xsl:for-each></ul></p>
 </xsl:if>
 
 <xsl:if test="./AUTHOR">
@@ -138,10 +137,7 @@
 </xsl:template>
 
 <xsl:template match="A">
-	<a>
-	<xsl:attribute name="href"><xsl:value-of select='@href'/></xsl:attribute>
-	<xsl:apply-templates select="VERB|text()"/>
-	</a>
+	<a><xsl:attribute name="href"><xsl:value-of select='@href'/></xsl:attribute><xsl:apply-templates select="VERB|text()"/></a>
 </xsl:template>
 
 <xsl:template match="DESCRIPTION">
