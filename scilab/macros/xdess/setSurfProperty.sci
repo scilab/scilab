@@ -16,7 +16,9 @@ str = convstr(PropertyName);
 
 [PName] = getSurfPropertyName(str)
 
-
+if (PName==[])
+  return;
+end
 
 select PName
 
@@ -40,7 +42,7 @@ case 'colordata'
   /////////////////////////
 case 'colordatamapping'
   /////////////////////////
-  
+
   if (type(PropertyValue)<>10)
     disp("Color data mapping must be a string with value ''scaled'' or ''direct''.");
   end
@@ -85,7 +87,7 @@ case 'foreground'         // <=> EdgeColor
       Surface.mark_foreground = color(ColorVal(index));
     elseif index == 10  // 'none' selected
       Surface.surface_mode='on';
-      Surface.foreground = -1; // <=> - colormap(1) and not black at all!!
+      Surface.color_mode = 0; // <=> - colormap(1) and not black at all!!
       Surface.mark_foreground = -1; // <=> black
     else
       disp("Color value must be a 3 element vector or an index in the colormap.")
