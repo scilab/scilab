@@ -93,6 +93,7 @@ extern void C2F(tmpdirc)();
 extern char *strindex ();
 extern void do_hangup();
 extern void do_kill();
+extern void sci_usr1_signal(int n) ;
 
 static void Syntax  __PARAMS((char *badOption));  
 static void Help  __PARAMS((void));  
@@ -160,7 +161,7 @@ void C2F(realmain)()
   signal(SIGSEGV,sci_clear_and_exit);
   signal(SIGQUIT,sci_clear_and_exit);
   signal(SIGHUP,sci_clear_and_exit);
-
+  signal(SIGUSR1,sci_usr1_signal);
   /*  prepare startup script  */
 
   if ( no_startup_flag == 0) 
@@ -672,6 +673,7 @@ int sci_exit(int n)
 
 void sci_usr1_signal(int n) 
 {
+  /* fprintf(stderr," usr1 signal "); */
   controlC_handler(n);
 }
 
