@@ -420,6 +420,8 @@ C     seed options
          else
             if (itype.eq.1) then
                ran(1) = max(int(stk(lr2)),0)
+*              the following line added by bruno (19 nov 2004) to solve bug 1084
+               phase = .true.   
                call objvide(fname,top)
                return
             else
