@@ -5,8 +5,8 @@ function mtlb_save(mtlb_thefile,varargin)
 mtlb_opts=[]
 if rhs==1 then
   mtlb_names=who('get')
-  mtlb_names(1:3)=[] // clear functions variables
-  mtlb_names($-37:$)=[] // clear predefined variables
+  mtlb_names(1:6)=[] // clear functions variables
+  mtlb_names($-predef()+1:$)=[] // clear predefined variables
   funcprot(0)
   for k=size(mtlb_names,'*'):-1:1
     execstr('x='+mtlb_names(k))
