@@ -24,5 +24,5 @@ if rhs==1 then
   varname=varname+"$"+string(n)
 end
 
-var=Variable(varname,Infer())
+var=Variable(varname,Infer(list(0,0),Type()))
 endfunction
