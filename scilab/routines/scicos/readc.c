@@ -169,6 +169,7 @@ double *inptr[],*outptr[],*t;
     z[2] = kmax;
   }
   else if (*flag==5) {
+    if(z[3]==0) return;
     fclose(fd);
     z[3] = 0.0;
   }
