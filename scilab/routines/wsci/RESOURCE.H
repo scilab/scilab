@@ -33,6 +33,7 @@
 #define IDI_ICON1                       141
 #define IDI_OPEN                        141
 #define IDD_CHOOSEASCILAB               142
+#define IDD_MDIALOG                     144
 #define IDC_VERSION_SPLASH              1000
 #define IDC_COPYRIGHT_SPLASH            1001
 #define IDC_STATIC_ABOUT_HTTP           1002
@@ -44,15 +45,52 @@
 #define IDC_BUTTON1                     1008
 #define IDC_OK                          1008
 #define IDC_COMPILMODE                  1009
+#define IDC_EDITX0Y1                    1010
+#define IDC_EDITX1Y0                    1011
+#define IDC_EDITX2Y0                    1012
+#define IDC_EDITX3Y0                    1013
+#define IDC_EDITX4Y0                    1014
+#define IDC_EDITX0Y0                    1015
+#define IDC_EDITX1Y1                    1016
+#define IDC_EDITX2Y1                    1017
+#define IDC_EDITX3Y1                    1018
+#define IDC_EDITX4Y1                    1019
+#define IDC_EDITX0Y3                    1020
+#define IDC_EDITX1Y2                    1021
+#define IDC_EDITX2Y2                    1022
+#define IDC_EDITX3Y2                    1023
+#define IDC_EDITX4Y2                    1024
+#define IDC_EDITX0Y2                    1025
+#define IDC_EDITX1Y3                    1026
+#define IDC_EDITX2Y3                    1027
+#define IDC_EDITX3Y3                    1028
+#define IDC_EDITX4Y3                    1029
+#define IDC_SCROLLBARV                  1030
+#define IDC_SCROLLBARH                  1031
+#define IDC_STATIC_COL0                 1032
+#define IDC_STATIC_COL1                 1033
+#define IDC_STATIC_COL2                 1034
+#define IDC_EDITX0Y4                    1035
+#define IDC_EDITX1Y4                    1036
+#define IDC_EDITX2Y4                    1037
+#define IDC_EDITX3Y4                    1038
+#define IDC_EDITX4Y4                    1039
+#define IDC_STATIC_COL3                 1040
+#define IDC_STATIC_COL4                 1041
+#define IDC_STATIC_LIN0                 1042
+#define IDC_STATIC_LIN1                 1043
+#define IDC_STATIC_LIN2                 1044
+#define IDC_STATIC_LIN3                 1045
+#define IDC_STATIC_LIN4                 1046
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        143
+#define _APS_NEXT_RESOURCE_VALUE        145
 #define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1010
+#define _APS_NEXT_CONTROL_VALUE         1047
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
