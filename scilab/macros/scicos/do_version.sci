@@ -35,6 +35,12 @@ function scs_m_new=do_version273(scs_m)
     o=scs_m.objs(i); 
     if typeof(o)=='Block' then
       omod=o.model;
+      T=getfield(1,omod)
+      if T($)<>'equations' then
+	T($+1)='equations'
+	setfield(1,T,omod)
+	setfield($+1,list(),omod)
+      end
       if omod.sim=='super'|omod.sim=='csuper' then
 	rpar=do_version273(omod.rpar)
 	setfield($+1,getfield($,omod),omod)
@@ -53,6 +59,10 @@ function scs_m_new=do_version273(scs_m)
       xx($+1)=yy;
       setfield(1,xx,omod)
       o.model= omod
+      scs_m_new.objs(i)=o
+    elseif typeof(o)=='Link' then
+      if size(o.from,'*')==2 then o.from(3)=0;end
+      if size(o.to,'*')==2 then o.to(3)=1;end
       scs_m_new.objs(i)=o
     end
   end
@@ -1111,16 +1121,19 @@ endfunction
 
 function scs_m_new=do_version27(scs_m)
   if typeof(scs_m)=='diagram' then 
-    scs_m_new=scs_m,
-    nlstsize=lstsize(scs_m_new.objs)
-    for k=1:nlstsize
-      if typeof(scs_m_new.objs(k))=='Link' then
-	o=scs_m_new.objs(k)
-	if size(o.from,'*')==2 then o.from(3)=0,end
-	if size(o.to,'*')==2 then o.to(3)=1,end
-	scs_m_new.objs(k)=o
-      end
-    end
+    //following code reported into do_version273
+    //     scs_m_new=scs_m,
+    //     nlstsize=lstsize(scs_m_new.objs)
+    //     for k=1:nlstsize
+    //       if typeof(scs_m_new.objs(k))=='Link' then
+    // 	o=scs_m_new.objs(k)
+    // 	if size(o.from,'*')==2 then o.from(3)=0,end
+    // 	if size(o.to,'*')==2 then o.to(3)=1,end
+    // 	scs_m_new.objs(k)=o
+    //       elseif typeof(scs_m_new.objs(k))=='Block' then
+	
+    //       end
+    //     end
 
     return,
   end
