@@ -186,7 +186,7 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
   else
     sciprint("User options overiding channels read in .wav header\r\n");
   Wi->wSamplesPerSecond = rllong(ft);
-  if (ft->info.rate == 0 || ft->info.rate == Wi->wSamplesPerSecond)
+  if (ft->info.rate == (unsigned int)0 || ft->info.rate == Wi->wSamplesPerSecond)
     ft->info.rate = Wi->wSamplesPerSecond;
   else
     sciprint("User options overiding rate read in .wav header\r\n");
@@ -277,7 +277,7 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
  * Place in buf[].
  * Return number of samples read.
  */
-#if defined(__alpha)
+#if defined(__alpha)|defined(__ia64__)
 int wavread(ft_t ft,int *buf, long int len)
 #else 
 int wavread(ft_t ft, long int *buf, long int len)

@@ -48,7 +48,7 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,
 		  integer flag,WavInfo *Wi, integer *ierr)
 {
   long i,size_max;
-#if defined(__alpha)
+#if defined(__alpha)|defined(__ia64__)
   int buf[BUFSIZ];
 #else
   long buf[BUFSIZ];
