@@ -150,6 +150,18 @@ case "while"
   // Convert all do instructions
   for k=1:size(mtlb_clause.statements)
     [instr,nblines]=instruction2sci(mtlb_clause.statements(k),nblines)
+    // If inserted instruction is an initialisation, it has to be done just one time and before loop
+    if m2sci_to_insert_b<>list() then
+      for l=1:lstsize(m2sci_to_insert_b)
+	if typeof(m2sci_to_insert_b(l))=="equal" & ..
+	  (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
+	  and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
+	  and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) ) then
+	  to_insert($+1)=m2sci_to_insert_b(l)
+	  m2sci_to_insert_b(l)=null()
+	end
+      end
+    end
     sci_do=update_instr_list(sci_do,instr)
   end
 
@@ -161,6 +173,12 @@ case "for"
   level(2)=1  
   // Convert expression
   [sci_expr,nblines]=instruction2sci(mtlb_clause.expression,nblines)
+  if typeof(sci_expr)=="equal" then
+    [bval,pos]=isdefinedvar(sci_expr.lhs(1))
+    if bval then
+      varslist(pos).infer.dims=list(varslist(pos).infer.dims(1),1)
+    end
+  end
   // Get instructions to insert if there are
   if m2sci_to_insert_b<>list() then
     to_insert=m2sci_to_insert_b
@@ -171,6 +189,18 @@ case "for"
   // Convert all do instructions
   for k=1:size(mtlb_clause.statements)
     [instr,nblines]=instruction2sci(mtlb_clause.statements(k),nblines)
+    // If inserted instruction is an initialisation, it has to be done just one time and before loop
+    if m2sci_to_insert_b<>list() then
+      for l=1:lstsize(m2sci_to_insert_b)
+	if typeof(m2sci_to_insert_b(l))=="equal" & ..
+	  (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
+	  and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
+	  and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) ) then
+	  to_insert($+1)=m2sci_to_insert_b(l)
+	  m2sci_to_insert_b(l)=null()
+	end
+      end
+    end
     sci_instr=update_instr_list(sci_instr,instr)
   end
 
@@ -182,4 +212,7 @@ else
 end
 
 m2sci_to_insert_b=to_insert
+if m2sci_to_insert_b<>list() then
+  m2sci_to_insert_b($+1)=list("EOL");
+end
 endfunction
