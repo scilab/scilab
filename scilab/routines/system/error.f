@@ -66,7 +66,6 @@ c
       pt0=0
       if(pt.le.pt0) goto 50
       if(erecmode) then
-
 c     error recovery mode
          p=pt+1
 c        . looking if error has occured in execstr deff getf or comp
@@ -78,6 +77,7 @@ c        . looking if error has occured in execstr deff getf or comp
          if(rstk(p).eq.502) then 
             if(rstk(p-1).eq.903) then
 c     .     error has occured in execstr
+
                errtyp=0
                pt0=p
             elseif(rstk(p-1).eq.904.or.rstk(p-1).eq.901) then
@@ -803,6 +803,8 @@ c
       goto 999
  200  continue
       goto 999
+c     messages from 201 to 203 and 205 to 214 are no more used by error 
+c     (see Scierror  in stack1.c)
  201  continue
       write(buf(1:3),'(i3)') err
       call cvname(ids(1,pt+1),buf(4:4+nlgh),1)
@@ -830,15 +832,14 @@ c
      +        ' : wrong type argument,')
       call msgout(io,lunit,' expecting a real vector')
       goto 999
+
  204  continue
       write(buf(1:3),'(i3)') err
-      call cvname(ids(1,pt+1),buf(4:4+nlgh),1)
-      nl=lnblnk(buf(4:3+nlgh))
       call msgout(io,lunit,
-     +     'Argument '//buf(1:3)//' of '//buf(4:3+nl)//
-     +        ' : wrong type argument,')
-      call msgout(io,lunit,' expecting a scalar')
+     +     'Argument '//buf(1:3)//', wrong type argument:'//
+     +     ' expecting a scalar')
       goto 999
+
  205  continue
       write(buf(1:3),'(i3)') err
       call cvname(ids(1,pt+1),buf(4:4+nlgh),1)
@@ -1152,17 +1153,35 @@ C     errors from semidef
       goto 999
  263  continue
       call msgout(io,lunit,'Error while writing in file,'//
-     &     '(disk full or delete file)')
+     &     '(disk full or deleted file)')
       goto 999
  264  continue
+      if(err.ne.1) then
+         write(buf(1:3),'(i3)') err
+         call msgout(io,lunit,buf(1:3)//
+     +        'th argument must not contain NaN or Inf')
+      else
+         call msgout(io,lunit,
+     +        'argument must not  contain NaN or Inf')
+      endif
       goto 999
  265  continue
+          call msgout(io,lunit,
+     +        'A and B must have equal number of rows')
       goto 999
  266  continue
+          call msgout(io,lunit,
+     +        'A and B must have equal number of columns')
       goto 999
  267  continue
+          call msgout(io,lunit,
+     +        'A and B must have equal dimensions')
       goto 999
  268  continue
+      write(buf(1:3),'(i3)') err
+      call msgout(io,lunit,
+     +     'invalid return value for function passed in argument '//
+     +     buf(1:3))
       goto 999
  269  continue
       goto 999
