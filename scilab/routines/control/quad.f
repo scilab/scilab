@@ -1,7 +1,4 @@
-      subroutine myquad(a, b1, c, sr, si, lr, li)
-C     this function initially named quad has been renamed because of
-C     name conflict under HP
-
+      subroutine quad(a, b1, c, sr, si, lr, li)
 c calculate the zeros of the quadratic a*z**2+b1*z+c.
 c the quadratic formula, modified to avoid
 c overflow, is used to find the larger zero if the

@@ -88,7 +88,6 @@ extern int C2F(polmc) _PARAMS((int *nm, int *ng, int *n, int *m, double *a, doub
 extern int C2F(proj2) _PARAMS((double *f, int *nn, double *am, int *n, int *np1, int *np2, double *pf, double *w));
 extern int C2F(qhesz) _PARAMS((int *nm, int *n, double *a, double *b, int *matq, double *q, int *matz, double *z__));
 extern int C2F(qitz) _PARAMS((int *nm, int *n, double *a, double *b, double *eps1, int *matq, double *q, int *matz, double *z__, int *ierr));
-extern int C2F(myquad) _PARAMS((double *a, double *b1, double *c__, double *sr, double *si, double *lr, double *li));
 extern int C2F(quadit) _PARAMS((double *uu, double *vv, int *nz));
 extern int C2F(quadsd) _PARAMS((int *nn, double *u, double *v, double *p, double *q, double *a, double *b));
 extern int C2F(qvalz) _PARAMS((int *nm, int *n, double *a, double *b, double *epsb, double *alfr, double *alfi, double *beta, int *matq, double *q, int *matz, double *z__));
