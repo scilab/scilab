@@ -342,7 +342,8 @@ C     compilation abort:<14>
         if (rstk(pt) .le. 502) then
 c     . abort dans une macro  ou execstr
           if(pt.gt.1) then
-             if(rstk(pt-1).ne.903.and.rstk(pt-1).ne.909) then
+             if(rstk(pt-1).ne.903.and.rstk(pt-1).ne.909.and.
+     $            rstk(pt-1).ne.706) then
 c     .      abort dans une macro
                 bot = lin(k+5)
              endif
