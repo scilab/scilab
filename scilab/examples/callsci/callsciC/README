@@ -12,7 +12,7 @@ and change the SCIDIR variable to fit your local Scilab installation
 Then type 
 	make distclean 
 	make all 
-	./myprog 
+	./myprog -nw 
 
 That's all 
 

@@ -22,7 +22,6 @@ extern int C2F (sciquit) (void);
 extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
 
-
 static void Initialize() 
 {
   static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";

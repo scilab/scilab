@@ -8,7 +8,7 @@ fi
 #                                                                           #
 #############################################################################
 if test "$SCI" = ""; then
-  SCI="../../../"
+  SCI="/usr/local/scilab"
 fi
 export SCI
 if test "$DISPLAY" = ""; then

@@ -2,7 +2,9 @@
 # To be customized 
 #--------------------------------------------------------
 
-SCIDIR=../../..
+# SCIDIR must be defined here with absolute path 
+# SCIDIR=../../..
+include ../../../Path.incl 
 
 PROG=myprog 
 OBJS=myprog.o my_ode.o
@@ -14,8 +16,6 @@ OBJS=myprog.o my_ode.o
 all	: .init 
 	$(MAKE) $(MAKEFLAGS) -f config/Makefile.all PROG=$(PROG) OBJS="$(OBJS)" SCIDIR=$(SCIDIR)
 
-
-
 .init 	: Makefile 
 	config/Init $(PROG) $(SCIDIR) 
 	touch .init 
@@ -26,3 +26,5 @@ clean	:
 distclean : 
 	rm -f $(PROG) $(OBJS) $(PROG).sh .init config/Makefile *.so *.a *.la *.lo
 	rm -f config/Makefile.Top 
+	rm -f -r .libs 
+
