@@ -16,14 +16,30 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
     %cpr=list()
     scs_m=[]
     [path,name,ext]=splitfilepath(fname)
-
+    
     select ext
-    case 'cosf'
-      ierr=execstr('exec(fname,-1)','errcatch')
-      ok=%t
-    case 'cos' then
-      ierr=execstr('load(fname)','errcatch')
-      ok=%t
+     case 'cosf'
+      [x,ierr]=fileinfo(fname)
+      if ierr==0 then
+	ww=stacksize()
+	if ww(1)<x(1) then 
+	  disp('stacksize increased to '+string(x(1)))
+	  stacksize(x(1)),
+	end
+	ierr=execstr('exec(fname,-1)','errcatch')
+	ok=%t
+      end
+     case 'cos' then
+      [x,ierr]=fileinfo(fname)
+      if ierr==0 then
+	ww=stacksize()
+	if ww(1)<x(1) then 
+	  disp('stacksize increased to '+string(x(1)))
+	  stacksize(x(1)),
+	end
+	ierr=execstr('load(fname)','errcatch')
+	ok=%t
+      end
     else
       message(['Only *.cos (binary) and *.cosf (formatted) files';
 	       'allowed'])
