@@ -16330,11 +16330,23 @@ void  sci_update_frame_bounds(int cflag, integer *aaint)
    ppsubwin->axes.ylim[1]=inint(ymax);
    ppsubwin->axes.ylim[2]=0;
 
-
    /* default values in the case where graduate is no called */
    Xdec[0]=inint(xmin);Xdec[1]=inint(xmax);Xdec[2]=0;
    Ydec[0]=inint(ymin);Ydec[1]=inint(ymax);Ydec[2]=0;
 
+   
+   /* I need to know the good power value axes.x/ylim[2] to draw correctly in draw_axis */
+   /* This value is correctly computed above: pb. there is a if instruction but I still */
+   /* need to know the axes.x/ylim[2] even if I am not in tight_limits == FALSE && 
+      isoview == FALSE*/
+   /* I DO IT NOW :*/
+   C2F(graduate)(&xmin,&xmax,&xmin_tmp,&xmax_tmp,&(aaint[0]),&(aaint[1]),Xdec,Xdec+1,Xdec+2);
+   ppsubwin->axes.xlim[2]=Xdec[2];
+   
+   C2F(graduate)(&ymin,&ymax,&ymin_tmp,&ymax_tmp,&(aaint[2]),&(aaint[3]),Ydec,Ydec+1,Ydec+2);
+   ppsubwin->axes.ylim[2]=Ydec[2];
+   
+   
    /* if ( ppsubwin->tight_limits == FALSE||ppsubwin->isoview == TRUE) {*/
    if ( ppsubwin->tight_limits == FALSE && ppsubwin->isoview == FALSE ) { /* F.Leray 11.05.04 : for me, this is the good condition */
      if ( ppsubwin->logflags[0]=='n') { /* x-axis */
@@ -16342,14 +16354,14 @@ void  sci_update_frame_bounds(int cflag, integer *aaint)
        for (i=0; i < 3 ; i++ ) ppsubwin->axes.xlim[i]=Xdec[i];
        xmin=xmin_tmp;xmax=xmax_tmp;
      }
-   
+     
      if ( ppsubwin->logflags[1]=='n') { /* y-axis */
        C2F(graduate)(&ymin,&ymax,&ymin_tmp,&ymax_tmp,&(aaint[2]),&(aaint[3]),Ydec,Ydec+1,Ydec+2);
        for (i=0; i < 3 ; i++ ) ppsubwin->axes.ylim[i]=Ydec[i];
        ymin=ymin_tmp;ymax=ymax_tmp;
      }
    }
-  
+   
 
    /*****************************************************************
    * set the actual bounds in subwindow data structure
