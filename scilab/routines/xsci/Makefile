@@ -17,7 +17,8 @@ OBJSC = wf_w_dir.o wf_w_file.o wf_w_util.o wf_w_cursor.o \
 	x_main.o x_menu.o x_misc.o x_screen.o \
 	x_scrollbar.o x_tabs.o \
 	x_util.o x_VTPrsTbl.o x_zzledt.o \
-	h_help.o 
+	h_help.o zzledt.o
+
 
 OBJSF  = 
 
