@@ -7,8 +7,7 @@ function tree=sci_axis(tree)
 // V.C.
 
 // Insert %v0=gca()
-a=gettempvar()
-insert(Equal(list(a),Funcall("gca",1,list(),list())))
+a=Funcall("gca",1,list(),list())
 
 if rhs>0 then
   for krhs=1:rhs
@@ -18,13 +17,11 @@ if rhs>0 then
       // axis([xmin xmax ymin ymax zmin zmax])
       if or(tree.rhs(krhs).dims(2)==[4,6]) then
 	mat=Funcall("matrix",1,list(tree.rhs(krhs),Cste(2),Cste(-1)),list())
-	LHS=Operation("ins",list(a,Cste("data_bounds")),list())
-	insert(Equal(list(LHS),mat))
+	tree=Funcall("set",1,Rhs(a,"data_bounds",mat),tree.lhs)
 	
       // axis([xmin xmax ymin ymax zmin zmax cmin cmax]) 
       elseif tree.rhs(krhs).dims(2)==8 then
 	no_equiv(expression2code(tree))
-	return
 	
       // Unknown column number for tree.rhs(krhs)
       else
@@ -37,105 +34,86 @@ if rhs>0 then
 	
 	// axis auto
 	if tree.rhs(krhs).value=="auto" then
-	  LHS=Operation("ins",list(a,Cste("auto_scale")),list())
-	  insert(Equal(list(LHS),Cste("on")))
+	  tree=Funcall("set",1,Rhs(a,"auto_scale","on"),tree.lhs)
 	  
 	  // axis manual
 	elseif tree.rhs(krhs).value=="manual" then
-	  LHS=Operation("ins",list(a,Cste("auto_scale")),list())
-	  insert(Equal(list(LHS),Cste("off")))
+	  tree=Funcall("set",1,Rhs(a,"auto_scale","off"),tree.lhs)
 	  
 	  // axis tight
 	elseif tree.rhs(krhs).value=="tight" then
-	  LHS=Operation("ins",list(a,Cste("tight_limits")),list())
-	  insert(Equal(list(LHS),Cste("on")))
+	  tree=Funcall("set",1,Rhs(a,"tight_limits","on"),tree.lhs)
 	  
 	  // axis fill
 	elseif tree.rhs(krhs).value=="fill" then
 	  no_equiv(expression2code(tree))
-	  return
 	  
 	  // axis ij
 	elseif tree.rhs(krhs).value=="ij" then
-	  LHS=Operation("ins",list(a,Cste("rotation_angles")),list())
 	  mat=Operation("cc",list(Cste(180),Cste(270)),list())
-	  insert(Equal(list(LHS),mat))
+	  tree=Funcall("set",1,Rhs(a,"rotation_angles",mat),tree.lhs)
 	  
 	  // axis xy
 	elseif tree.rhs(krhs).value=="xy" then
-	  LHS=Operation("ins",list(a,Cste("rotation_angles")),list())
 	  mat=Operation("cc",list(Cste(0),Cste(270)),list())
-	  insert(Equal(list(LHS),mat))
+	  tree=Funcall("set",1,Rhs(a,"rotation_angles",mat),tree.lhs)
 	  
 	  // axis equal
 	elseif tree.rhs(krhs).value=="equal" then
-	  LHS=Operation("ins",list(a,Cste("isoview")),list())
-	  insert(Equal(list(LHS),Cste("on")))
+	  tree=Funcall("set",1,Rhs(a,"isoview","on"),tree.lhs)
 	  
 	  // axis image
 	elseif tree.rhs(krhs).value=="image" then
 	  no_equiv(expression2code(tree))
-	  return
 	  
 	  // axis square
 	elseif tree.rhs(krhs).value=="square" then
 	  set_infos("cube_scaling only used in 3d mode",2);
-	  LHS=Operation("ins",list(a,Cste("cube_scaling")),list())
-	  insert(Equal(list(LHS),Cste("on")))
+	  tree=Funcall("set",1,Rhs(a,"cube_scaling","on"),tree.lhs)
 	  
 	  // axis vis3d
 	elseif tree.rhs(krhs).value=="vis3d" then
-	  LHS=Operation("ins",list(a,Cste("view")),list())
-	  insert(Equal(list(LHS),Cste("3d")))
+	  tree=Funcall("set",1,Rhs(a,"view","3d"),tree.lhs)
 	  
 	  // axis normal
 	elseif tree.rhs(krhs).value=="normal" then
 	  no_equiv(expression2code(tree))
-	  return
 	  
 	  // axis on
 	elseif tree.rhs(krhs).value=="on" then
-	  LHS=Operation("ins",list(a,Cste("axes_visible")),list())
-	  insert(Equal(list(LHS),Cste("on")))
+	  tree=Funcall("set",1,Rhs(a,"axes_visible","on"),tree.lhs)
 	  
 	  // axis off
 	elseif tree.rhs(krhs).value=="off" then
-	  LHS=Operation("ins",list(a,Cste("visible")),list())
-	  insert(Equal(list(LHS),Cste("off")))
+	  tree=Funcall("set",1,Rhs(a,"axes_visible","off"),tree.lhs)
 	  
 	// [mode,visibility,direction] = axis('state')
         elseif tree.rhs(krhs).value=="state" then
 	  tree.name="mtlb_axis"
-	  return
 	  
 	// Unknown character string
 	else
 	  tree.name="mtlb_axis"
-	  return
 	end
 	
 	// Option is a variable
       else
 	tree.name="mtlb_axis"
-	return
       end
       
     // axis(axes_handles,...)
     elseif tree.rhs(krhs).vtype==Handle then
       no_equiv(expression2code(tree))
-      return
       
     // Unknown type for tree.rhs(krhs)
     else
       tree.name="mtlb_axis"
-      return
     end
   end
-  tree=list()
 // v = axis
 else
-  tree=Operation("ins",list(a,Cste("data_bounds")),tree.lhs)
-  tree.out(1).dims=list(2,Unknown)
-  tree.out(1).type=Type(Double,Real)
+  tree=Funcall("set",1,Rhs(a,"data_bounds"),tree.lhs)
+  tree.lhs(1).dims=list(2,Unknown)
+  tree.lhs(1).type=Type(Double,Real)
 end
 endfunction
