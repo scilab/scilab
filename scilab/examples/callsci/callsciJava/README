@@ -36,6 +36,8 @@ Then type
 
 	and run the test files 
 
+	setenv CLASSPATH .:classes
+
 	java TestMatrix1 
 	java TestMatrix2
 	java TestMatrix3

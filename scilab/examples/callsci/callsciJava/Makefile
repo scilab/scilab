@@ -2,7 +2,7 @@
 # To be customized 
 #--------------------------------------------------------
 
-SCIDIR=/usr/local/scilab
+SCIDIR=/usr/local/scilab-X11
 
 JAVAID=/usr/java/j2sdk1.4.2_03/include
 JAVAINC=-I$(JAVAID) -I$(JAVAID)/linux
@@ -18,6 +18,7 @@ all	:: .init
 	make -f config/Makefile.all  FC="g77 -Wl,-shared" PROG=$(PROG) OBJS="$(OBJS)" SCIDIR=$(SCIDIR) \
 		JAVAINC="$(JAVAINC)"
 	cd javasci; make all SCIDIR=$(SCIDIR)
+	cd example; make all SCIDIR=$(SCIDIR)
 
 .init 	: Makefile 
 	config/Init $(PROG) $(SCIDIR) 
