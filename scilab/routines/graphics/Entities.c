@@ -1,7 +1,9 @@
 /*------------------------------------------------------------------------
- *    Graphic library 2001-2002
- *    New Graphics Fonctions 
- *    INRIA / Djalel ABDEMOUCHE
+ *    Graphic library 
+ *    Copyright INRIA
+ *    newGraph Library fonctions
+ *    Matthieu PHILIPPE, INRIA 1999-2001
+ *    Djalel ABDEMOUCHE, INRIA 2001-2004
  --------------------------------------------------------------------------*/
 
 #include <stdio.h> 
