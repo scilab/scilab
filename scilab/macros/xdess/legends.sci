@@ -147,6 +147,6 @@ function legends(leg, style, opt, with_box)
       y=y-bbx(k,2)-dh
     end
     glue(R)
-    a.clip_state=stripblanks(clip);
+    if (opt==5) then a.clip_state=stripblanks(clip); end;
   end
 endfunction
