@@ -1044,7 +1044,7 @@ void LoadMacros (LPTW lptw)
   GetTextMetrics (hdc, &tm);
   ButtonX = 10 * tm.tmAveCharWidth;
   //ButtonY = 6 * (tm.tmHeight + tm.tmExternalLeading) / 4;
-  ButtonY = 32;
+  ButtonY = 24;
   ReleaseDC (lptw->hWndParent, hdc);
 
   /* move top of client text window down to allow space for buttons */
@@ -1110,7 +1110,7 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
         if (strcmp(ButtonText[index],"--")==0)
         {
         	lpmw->IsAIcon[index]=TRUE;
-        	GetXPosButton(lptw,index, 32,ButtonSizeY);
+        	GetXPosButton(lptw,index, 24,ButtonSizeY);
         	
         }
         else
@@ -1143,62 +1143,82 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
                      ( strcmp(PathIconButton,"EXIT_ICON")==0)        ||
                      ( strcmp(PathIconButton,"FONT_ICON")==0)        ||
                      ( strcmp(PathIconButton,"HELP_ICON")==0)        ||
+					 ( strcmp(PathIconButton,"NEW_ICON")==0)        ||
+					 ( strcmp(PathIconButton,"COPY_ICON")==0)        ||
+					 ( strcmp(PathIconButton,"PASTE_ICON")==0)        ||
                      ( strcmp(PathIconButton,"SCILAB_ICON")==0)  )
                 {
                         
                         if ( IsAFile(PathIconButton) == TRUE )
                         {
-                          IconButton=(HICON)LoadImage(  GetModuleHandle(NULL), PathIconButton,IMAGE_ICON,32,32, LR_DEFAULTCOLOR|LR_LOADFROMFILE);
+                          IconButton=(HICON)LoadImage(  GetModuleHandle(NULL), PathIconButton,IMAGE_ICON,24,24, LR_DEFAULTCOLOR|LR_LOADFROMFILE);
                         }
                         else                      
                         if ( strcmp(PathIconButton,"SCICOS_ICON")==0 )
                         {
-                          IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_SCICOS);
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_SCICOS24,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
+                          
                         }
                         else
                         if ( strcmp(PathIconButton,"METANET_ICON")==0 )
                         {
-                          IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_METANET);
+						  IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_METANET24,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
+                          
                         }
                         if ( strcmp(PathIconButton,"PRINT_ICON")==0 )
                         {
-                        	IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPPRINT);
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_PRINT,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
                         }
                         else
                      	if ( strcmp(PathIconButton,"CONSOLE_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPCONSOLE);
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_CONSOLE,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
                      	}
                      	else
                      	if ( strcmp(PathIconButton,"DIRECTORY_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPDIR);
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_CHDIR,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
                      	}
                      	else
                      	if ( strcmp(PathIconButton,"EXIT_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPEXIT);
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_EXIT24,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
                      	}
                      	else
                      	if ( strcmp(PathIconButton,"FONT_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPFONT);
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_FONTS,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
                      	}
                      	else
                      	if ( strcmp(PathIconButton,"HELP_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPHELP);
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_HELP,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
                      	}
                      	else
                      	if ( strcmp(PathIconButton,"SCILAB_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_SCILAB);
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_SCILAB24,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
                      	}
-                        
+						else
+						if ( strcmp(PathIconButton,"NEW_ICON")==0 )
+                     	{
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_NEWFILE,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
+                     	}
+						else
+						if ( strcmp(PathIconButton,"COPY_ICON")==0 )
+                     	{
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_COPY,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
+                     	}
+						else
+						if ( strcmp(PathIconButton,"PASTE_ICON")==0 )
+                     	{
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_PASTE,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
+                     	}
+
 						lpmw->IsAIcon[index]=TRUE;
                         lpmw->hButton[index] = CreateWindow("button",NameButton,WS_CHILD|WS_VISIBLE|BS_ICON ,
-                                       GetXPosButton(lptw,index, 32,ButtonSizeY), 0,
-                                       32, ButtonSizeY,
+                                       GetXPosButton(lptw,index, 24,ButtonSizeY), 0,
+                                       24, ButtonSizeY,
                                        lptw->hWndParent, (HMENU) index,
                                        lptw->hInstance, lptw);
 
@@ -1256,7 +1276,7 @@ int GetXPosButton(LPTW lptw,int index,int SizeXButtonText,int SizeXButtonIcon)
 		{
 		 if (lpmw->IsAIcon[index-1]==TRUE)
 		 {
-		 	lpmw->PositionX[index]=lpmw->PositionX[index-1]+32;
+		 	lpmw->PositionX[index]=lpmw->PositionX[index-1]+24;
 		 }
 		 else
 		 {
