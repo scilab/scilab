@@ -54,6 +54,7 @@ extern char *get_sci_data_strings(int n);
 
 static char ** create_argv(int *argc);
 static void strip_blank(char *source);
+extern void settexmacs();
 
 /* global var */
 
@@ -94,6 +95,7 @@ void C2F(realmain)()
 	  p2 = atoi(argv[++i]); 
 	  C2F(initcom)(&p1, &p2); */
 	}
+      else if ( strcmp(argv[i],"--texmacs") == 0)  { no_window = 1;settexmacs();}
     }
   
   /* provide a default SCI  */

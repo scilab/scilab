@@ -119,6 +119,7 @@ extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
      /** return from longjmp **/
      *eof = -1;
      use_prompt=0;
+     buffer[0]=0;
      return;
    } else {
      line = readline((use_prompt) ? Sci_Prompt : "" );
