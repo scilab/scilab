@@ -316,166 +316,177 @@ c     Interface for rand function
       data    phase /.true./
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
+c      sadr(l)=(l/2)+1
 c
+      tops=top
+c
+      randtype='uniform'//char(0)
+      irt=0
+      icont=0
+      m=-99
       rhs=max(0,rhs)
-      if (.not.checklhs(fname,1,1)) return
-
       if(rhs.gt.3) then
-c     .  more than 3 argument rand(n1,n2,n3,...) assumed
          call setfunnam(ids(1,pt+1),'%hm_rand',8)
          fun=-1
          return
       endif
 
-      randtype='uniform'//char(0)
+      if (.not.checkrhs(fname,0,3)) return
+      if (.not.checklhs(fname,1,1)) return
       topk=top
-      tops=top
 
-
-      if(rhs.eq.0) then
-c     .  rand()         
-         top=top+1
-         if (.not.cremat(fname,top,0,1,1,lr,lc)) return
-         stk(lr) = urand(ran(1))
-         return
-      endif
-
-c     checking first argument type
-      itype=gettype(top-rhs+1) 
-      if(itype.eq.10) then 
-         if(.not.getsmat(fname,top,top-rhs+1,mt,nt,1,1,lrt,nlrt))return
-         call cvstr(nlrt,istk(lrt),randtype,1)
-         randtype(nlrt+1:nlrt+1)=char(0)
-
-         if ( randtype(1:nlrt).eq.'seed') then 
-c     .     handling seed
-            if (.not.checkrhs(fname,1,2)) return
-            if(rhs.eq.1) then
-C     .        get seed
-               if (.not.cremat(fname,top,0,1,1,lr,lc)) return
-               stk(lr) = ran(1)            
-            else
-C     .        set seed
-               if (.not.checkrhs(fname,2,2)) return
-               if(.not.getscalar(fname,top,top-rhs+2,lr2))return
-               ran(1) = max(int(stk(lr2)),0)
-c              the following line added by bruno (19 nov 2004) to solve bug 1084
-               phase = .true.   
-               top=top-1
-               call objvide(fname,top)
-            endif
-         elseif ( randtype(1:nlrt).eq.'info') then 
-C     .     getting info 
-            if (.not.checkrhs(fname,1,1)) return
-            call randinfo(randtype,ilen) 
-            if (.not.cresmat2(fname,top,ilen,lr)) return
-            call cvstr(ilen,istk(lr),randtype,0) 
-            return
-         else
-C     .     switching to an other law 
-            if (.not.checkrhs(fname,1,1)) return
-            call randswitch(randtype)
-            call objvide(fname,top)
-         endif
-         return
-      endif
-
-c     checking last argument  for law option
-      itype=gettype(top) 
-      if(itype.eq.10) then 
-c     .  a law is given
-         if(rhs.gt.3) then
-c     .     rand(n1,n2,n3,..,law) -> overloading
+      if ( rhs.eq.3 ) then 
+         if(abs(istk(iadr(lstk(top)))).eq.1) then
             call setfunnam(ids(1,pt+1),'%hm_rand',8)
             fun=-1
             return
          endif
-         if(.not.getsmat(fname,top,top,mt,nt,1,1,lrt,nlrt))return
+c     third argument is a string giving the rand type
+c     ( 'uniform','gaussian',...)
+         if(.not.getsmat(fname,topk,top,mt,nt,1,1,lrt,nlrt))return
          call cvstr(nlrt,istk(lrt),randtype,1)
          randtype(nlrt+1:nlrt+1)=char(0)
+         irt=2
          top=top-1
-c     .  memorize that the law has been changed
-         irt=1
-         iran1kp=ran(2)
-c     .  change the law temporarily
-         call randswitch(randtype)
-      else
-         irt=0
-      endif
-
-      if ( rhs-irt.ge.3 ) then 
-c     .  rand(n1,n2,n3,...) -> overloading
-         call setfunnam(ids(1,pt+1),'%hm_rand',8)
-         fun=-1
-         return
       endif
 C     
-      itres=0
-      if( rhs-irt.eq.2) then
-c     . rand(n1,n2)
-         call getdimfromvar(top,rhs-irt,n)
-         if(err.gt.0.or.err1.gt.0) return
-         top=top-1
-         call getdimfromvar(top,rhs-irt-1,m)
-         if(err.gt.0.or.err1.gt.0) return
-      else
-c     . rand(A)
-         if(gettype(top).le.10) then
-            il=iadr(lstk(top))
-            if(istk(il).lt.0) il=iadr(istk(il+1))
-            m=istk(il+1)
-            n=istk(il+2)
-            if(gettype(top).le.2.or.gettype(top).eq.5) then
-c     .        ask for result of the same real/complex type
-               itres=istk(il+3)
+      if( rhs.ge.2) then
+         itype=gettype(top) 
+         if ( itype.eq.1) then 
+            if(.not.getscalar(fname,topk,top,lr2))return
+            n=int(stk(lr2))
+            if(n.lt.0) then
+               err=2
+               call error(116)
+               return
             endif
+         elseif ( itype.eq.10 ) then 
+            if(.not.getsmat(fname,topk,top,mt,nt,1,1,lrt,nlrt))return
+            call cvstr(nlrt,istk(lrt),randtype,1)
+            randtype(nlrt+1:nlrt+1)=char(0)
+            irt=2
          else
-            top=tops
-            call funnam(ids(1,pt+1),'rand',iadr(lstk(top-rhs+1)))
+            buf=fname//' : second argument has wrong type'
+            call error(999)
+            return
+         endif
+         top=top-1
+      endif
+C     
+      it1=-1
+      if( rhs.ge.1) then
+         itype1=gettype(top) 
+         if ( itype1.eq.1.and.rhs.eq.1) then 
+            if(.not.getmat(fname,topk,top,it1,m,n,lr1,lc1))return
+         elseif ( itype1.eq.1.and.rhs.ge.1.and.itype.eq.1) then 
+            if(.not.getscalar(fname,topk,top,lr1))return
+            m=int(stk(lr1))
+            if(m.lt.0) then
+               err=1
+               call error(116)
+               return
+            endif
+         elseif ( itype1.eq.1.and.rhs.ge.1.and.itype.ne.1) then 
+            if(.not.getmat(fname,topk,top,it1,m,n,lr1,lc1))return
+         elseif ( itype1.eq.10 ) then 
+            if(.not.getsmat(fname,topk,top,mt,nt,1,1,lrt,nlrt))return
+            call cvstr(nlrt,istk(lrt),randtype,1)
+            randtype(nlrt+1:nlrt+1)=char(0)
+            irt=1
+         elseif ( rhs.eq.1.and.itype1.gt.10 ) then 
+            top=topk
             fun=-1
+            call funnam(ids(1,pt+1),'rand',iadr(lstk(top-rhs+1)))
+            return
+         else
+            buf=fname//' : first argument has wrong type'
+            call error(999)
             return
          endif
       endif
-
-      if (m.eq.0.or.n.eq.0) then
-         if (.not.cremat(fname,top,0,0,0,lr,lc)) return
+      if (rhs.eq.0) then 
+         top=top+1
+         il=iadr(lstk(top))
+         istk(il)=1
+         m=1
+         n=1
+      endif
+C     seed options 
+      if ( randtype(1:nlrt).eq.'seed') then 
+         if ( rhs.eq.1 ) then 
+            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+            stk(lr) = ran(1)            
+            return
+         else
+            if (itype.eq.1) then
+               ran(1) = max(int(stk(lr2)),0)
+               call objvide(fname,top)
+               return
+            else
+               buf=fname//' : second argument has wrong type'
+               call error(999)
+               return
+            endif
+         endif
+      endif
+C     getting info 
+      if ( randtype(1:nlrt).eq.'info') then 
+         call randinfo(randtype,ilen) 
+         if (.not.cresmat2(fname,top,ilen,lr)) return
+         call cvstr(ilen,istk(lr),randtype,0) 
          return
       endif
-
-C     random generation 
-      if (.not.cremat(fname,top,itres,m,n,lr,lc)) return
-      if ( ran(2).eq.0 ) then 
-c     .  U(0,1) random numbers
-         do j = 0, (itres+1)*m*n-1
-            stk(lr+j) = urand(ran(1))
-         enddo
-      elseif (ran(2).eq.1) then 
-c     .  N(0,1) random numbers (modified by Bruno 11/10/2001
-c     .  to use si*r and to correct the bug in the complex case)
-         do j = 0, (itres+1)*m*n-1
-            if (phase) then
- 75            sr=2.d0*urand(ran(1)) - 1.d0
-               si=2.d0*urand(ran(1)) - 1.d0
-               t = sr*sr + si*si
-               if (t .gt. 1.d0) go to 75
-               r = sqrt(-2.d0*log(t)/t)
-               stk(lr+j) = sr*r
-            else
-               stk(lr+j) = si*r
-            endif
-            phase = .not. phase
-         enddo
+C     switching to an other law 
+      if ( irt.ge.1 ) then 
+         iran1kp=ran(2)
+         call randswitch(randtype)
       endif
-
+C     no need for random generation 
+      if(m.eq.-99) then 
+         call objvide(fname,top)
+         return
+      endif
+C     random generation 
+      if(m.eq.0) n=0
+      if(n.eq.0) m=0
+      if(it1.ne.-1) then 
+         itres= it1
+      else
+         itres= 0
+      endif
+      if (.not.cremat(fname,top,itres,m,n,lr,lc)) return
+      if ( m*n .ne. 0 ) then 
+         if ( ran(2).eq.0 ) then 
+*           U(0,1) random numbers
+            do j = 0, (itres+1)*m*n-1
+               stk(lr+j) = urand(ran(1))
+            enddo
+         elseif (ran(2).eq.1) then 
+*           N(0,1) random numbers (modified by Bruno 11/10/2001
+*                  to use si*r and to correct the bug in the
+*                  complex case)
+            do j = 0, (itres+1)*m*n-1
+               if (phase) then
+ 75               sr=2.d0*urand(ran(1)) - 1.d0
+                  si=2.d0*urand(ran(1)) - 1.d0
+                  t = sr*sr + si*si
+                  if (t .gt. 1.d0) go to 75
+                  r = sqrt(-2.d0*log(t)/t)
+                  stk(lr+j) = sr*r
+               else
+                  stk(lr+j) = si*r
+               endif
+               phase = .not. phase
+            enddo
+         endif
+      endif
 C     switching back to the default randvalue
-      if ( irt.ge.1) then 
+      if ( irt.ge.2) then 
          ran(2)=iran1kp
       endif
       return
       end
       
-
       subroutine randswitch(randtype)
       character*(20) randtype
       INCLUDE '../stack.h'
@@ -960,6 +971,7 @@ c
          endif
          istk(ilr+3)=0
          lstk(top+1)=lr+mn
+
       elseif(istk(il).eq.2) then
          l=sadr(il+9+m*n)
          lr=sadr(ilr+9+m*n)
@@ -978,6 +990,68 @@ c
          call dmpcle(stk(lr),istk(id1),m,n,istk(ilw),0.0d0,0.0d0)
          istk(ilr+3)=0
          lstk(top+1)=lr+istk(id1+m*n)
+
+      elseif (istk(il) .eq. 5) then  ! sparse case added by Bruno
+         nel = istk(il+4)
+         l = sadr(il+5+nel+m)
+         if (it .eq. 1) then  ! compute the exact nel (for real part)
+            nelr = 0
+            do i=0,nel-1
+               if (stk(l+i) .ne. 0.d0) nelr = nelr+1
+            enddo
+         else
+            nelr = nel
+         endif
+         lr = sadr(ilr+5+nelr+m)
+         if (ref) then
+            err=lr+nelr-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+         endif
+*     form the resulting sparse matrix
+         if (nelr .eq. nel) then
+            if (ref) then
+               call icopy(5+m+nel,istk(il),1,istk(ilr),1)
+               call unsfdcopy(nel,stk(l),1,stk(lr),1)
+            endif
+         else
+            if (.not.ref .and. nelr .lt. nel) then
+               lrs = lr
+               lr = l  ! else there will be a problem due to overlapping arrays
+                       ! (the value result array will erase the end of the icol
+                       ! array of the input)
+            endif
+            icol = il + 5 + m
+            icolr = ilr + 5 + m
+            k = l
+            kr = lr
+            do i = 0,m-1
+               mnelir = 0
+               do j = 1, istk(il+5+i)  ! loop on non nul coef of row i+1
+                  if (stk(k) .ne. 0.d0) then
+                     mnelir = mnelir + 1
+                     istk(icolr) = istk(icol)
+                     stk(kr) = stk(k)
+                     icolr = icolr + 1
+                     kr = kr + 1
+                  endif
+                  k = k + 1
+                  icol = icol + 1
+                enddo
+                istk(ilr+5+i) = mnelir
+            enddo
+            istk(ilr) = 5
+            istk(ilr+1) = m
+            istk(ilr+2) = n
+            istk(ilr+4) = nelr
+            if (.not.ref .and. nelr .lt. nel) then
+               call unsfdcopy(nelr,stk(lr),1,stk(lrs),1)
+            endif
+         endif
+         istk(ilr+3) = 0 ! it = 0
+         lstk(top+1)=lr+nelr
       else
          call funnam(ids(1,pt+1),'real',iadr(lstk(top)))
          fun=-1
@@ -1017,7 +1091,6 @@ c
       m=istk(il+1)
       n=istk(il+2)
       it=istk(il+3)
-
 
       if(istk(il).eq.1) then
          mn=m*n
@@ -1063,6 +1136,72 @@ c
          endif
          istk(ilr+3)=0
          lstk(top+1)=lr+istk(id1+m*n)
+
+      elseif (istk(il) .eq. 5) then  ! sparse case added by Bruno
+         nel = istk(il+4)
+         l = sadr(il+5+nel+m) + nel
+         if (it .eq. 1) then  ! compute nelr (for imag part)
+            nelr = 0
+            do i=0,nel-1
+               if (stk(l+i) .ne. 0.d0) nelr = nelr+1
+            enddo
+         else
+            nelr = 0
+         endif
+         lr = sadr(ilr+5+nelr+m)
+         if (ref) then
+            err=lr+nelr-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+         endif
+*     form the resulting sparse matrix
+         if (nelr .eq. nel) then
+            if (ref) then
+               call icopy(5+m+nel,istk(il),1,istk(ilr),1)
+            endif
+            call unsfdcopy(nel,stk(l),1,stk(lr),1)
+         else
+            istk(ilr) = 5
+            istk(ilr+1) = m
+            istk(ilr+2) = n
+            istk(ilr+4) = nelr
+            if (nelr .eq. 0) then
+               call iset(m, 0, istk(ilr+5),1) ! mnel(i)=0 i=1..m 
+            else
+               if (.not.ref .and. nelr .lt. nel) then
+                  lrs = lr
+                  lr = l        ! else there will be a problem due to overlapping arrays
+                                ! (the value result array will erase the end of the icol
+                                ! array of the input)
+               endif
+               icol = il + 5 + m
+               icolr = ilr + 5 + m
+               k = l
+               kr = lr
+               do i = 0,m-1
+                  mnelir = 0
+                  do j = 1, istk(il+5+i) ! loop on non nul coef of row i+1
+                     if (stk(k) .ne. 0.d0) then 
+                        mnelir = mnelir + 1
+                        istk(icolr) = istk(icol)
+                        stk(kr) = stk(k)
+                        icolr = icolr + 1
+                        kr = kr + 1
+                     endif
+                     k = k + 1
+                     icol = icol + 1
+                  enddo
+                  istk(ilr+5+i) = mnelir
+               enddo
+               if (.not.ref .and. nelr .lt. nel) then
+                  call unsfdcopy(nelr,stk(lr),1,stk(lrs),1)
+               endif
+            endif
+         endif
+         istk(ilr+3) = 0 ! it = 0
+         lstk(top+1)=lr+nelr
       else
          call funnam(ids(1,pt+1),'imag',iadr(lstk(top)))
          fun=-1
@@ -2502,11 +2641,44 @@ c     eye sans argument
 c     eye(matrice)
       elseif(rhs.eq.2) then
 c     eye(m,n)
-         call getdimfromvar(top,2,n)
-         if(err.gt.0.or.err1.gt.0) return
+         il=iadr(lstk(top))
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+         if(istk(il).ne.1) then
+            err=1
+            call  error(53)
+            return
+         endif
+         if(istk(il+3).ne.0) then
+            err=1
+            call  error(52)
+            return
+         endif
+         if(istk(il+1)*istk(il+2).ne.1) then
+            err=1
+            call error(89)
+            return
+         endif
+         n=max(int(stk(sadr(il+4))),0)
+c
          top=top-1
-         call getdimfromvar(top,1,m)
-         if(err.gt.0.or.err1.gt.0) return
+         il=iadr(lstk(top))
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+         if(istk(il).ne.1) then
+            err=1
+            call  error(53)
+            return
+         endif
+         if(istk(il+3).ne.0) then
+            err=1
+            call  error(52)
+            return
+         endif
+         if(istk(il+1)*istk(il+2).ne.1) then
+            err=1
+            call error(89)
+            return
+         endif
+         m=max(int(stk(sadr(il+4))),0)
       endif
 c
       mn=m*n
@@ -2580,11 +2752,44 @@ c     ones sans argument
 c     ones(matrice)
       elseif(rhs.eq.2) then
 c     ones(m,n)
-         call getdimfromvar(top,2,n)
-         if(err.gt.0.or.err1.gt.0) return
+         il=iadr(lstk(top))
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+         if(istk(il).ne.1) then
+            err=1
+            call  error(53)
+            return
+         endif
+         if(istk(il+3).ne.0) then
+            err=1
+            call  error(52)
+            return
+         endif
+         if(istk(il+1)*istk(il+2).ne.1) then
+            err=1
+            call error(89)
+            return
+         endif
+         n=max(int(stk(sadr(il+4))),0)
+c
          top=top-1
-         call getdimfromvar(top,1,m)
-         if(err.gt.0.or.err1.gt.0) return
+         il=iadr(lstk(top))
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+         if(istk(il).ne.1) then
+            err=1
+            call  error(53)
+            return
+         endif
+         if(istk(il+3).ne.0) then
+            err=1
+            call  error(52)
+            return
+         endif
+         if(istk(il+1)*istk(il+2).ne.1) then
+            err=1
+            call error(89)
+            return
+         endif
+         m=max(int(stk(sadr(il+4))),0)
       endif
 c
       mn=m*n
@@ -2654,11 +2859,44 @@ c     ones sans argument
 c     ones(matrice)
       elseif(rhs.eq.2) then
 c     ones(m,n)
-         call getdimfromvar(top,2,n)
-         if(err.gt.0.or.err1.gt.0) return
+         il=iadr(lstk(top))
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+         if(istk(il).ne.1) then
+            err=1
+            call  error(53)
+            return
+         endif
+         if(istk(il+3).ne.0) then
+            err=1
+            call  error(52)
+            return
+         endif
+         if(istk(il+1)*istk(il+2).ne.1) then
+            err=1
+            call error(89)
+            return
+         endif
+         n=max(int(stk(sadr(il+4))),0)
+c
          top=top-1
-         call getdimfromvar(top,1,m)
-         if(err.gt.0.or.err1.gt.0) return
+         il=iadr(lstk(top))
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+         if(istk(il).ne.1) then
+            err=1
+            call  error(53)
+            return
+         endif
+         if(istk(il+3).ne.0) then
+            err=1
+            call  error(52)
+            return
+         endif
+         if(istk(il+1)*istk(il+2).ne.1) then
+            err=1
+            call error(89)
+            return
+         endif
+         m=max(int(stk(sadr(il+4))),0)
       endif
 c
       mn=m*n
@@ -3061,17 +3299,21 @@ c
 
 c changement de dimension d'une matrice
       il=iadr(lstk(top+1-rhs))
-      if(abs(istk(il)).eq.5.or.abs(istk(il)).eq.6) then
-         top=tops
-         call ref2val
-         fin=12
-         fun=27
-c        *call* spelm
-         return
-      endif
+ 
+***** part of code commented by bruno (see some explanations after)
+c$$$      if(abs(istk(il)).eq.5.or.abs(istk(il)).eq.6) then
+c$$$         top=tops
+c$$$         call ref2val
+c$$$         fin=12
+c$$$         fun=27
+c$$$c        *call* spelm
+c$$$         return
+c$$$      endif
 
       ityp=abs(istk(il))
-      if(ityp.ne.1.and.ityp.ne.2
+
+* next line modified by bruno (added  sparse and sparse boolean)
+      if(ityp.ne.1.and.ityp.ne.2.and.ityp.ne.5.and.ityp.ne.6
      $     .and.ityp.ne.4.and.ityp.ne.9.and.ityp.ne.10) then
          top=tops
          call ref2val
@@ -3156,6 +3398,109 @@ c
       top=top-1
       il=iadr(lstk(top))
       ilr=il
+
+****** sparse case (added here by bruno dec 2004) **************************
+      if (ityp.eq.5 .or. ityp.eq.6) then
+
+*   NOTE: 
+*     This part of the code duplicate some lines which are used
+*     after for the others cases...  But if this added part
+*     should bring some problems it will be enought to delete
+*     it and to uncomment the "commented" lines at the beginning
+*     of this subroutine. If no problems occurs I will clean
+*     the code.
+*
+         ref = istk(il) .lt. 0
+         if (ref) then
+            il = iadr(lstk(istk(il+2)))
+         endif
+         mA = istk(il+1)
+         nA = istk(il+2)
+*        take care of the fact that mA x nA may be too big for 
+*        integer arithmetic (mA x nA > 2^31-1)
+         if ( dble(mA)*dble(nA) .gt. 2147483647.d0 ) then
+            buf='integer overflow'
+            call error(9999)
+            return
+         endif
+         mn = mA*nA                   
+         if(m.eq.-1.and.n.eq.-1) then 
+            call error(42)            
+            return                    
+         endif                        
+         if(m.eq.-1) m=mn/n           
+         if(n.eq.-1) n=mn/m           
+         if(mA*nA.ne.m*n) then
+            call error(60)
+            return
+         endif
+         it = istk(il+3)
+         nel = istk(il+4)
+         iAmnel = il+5
+         iAcol = iAmnel + mA
+         iAR = sadr(iAcol+nel)
+         iAI = iAR + nel
+         if (ref) then
+            ilB = ilr
+         else
+            ilB = iadr(lstk(top+1))
+         endif
+         iBmnel = ilB + 5
+         iBcol = iBmnel + m
+         iBR = sadr(iBcol+nel)
+         iBI = iBR + nel
+         if (ityp .eq. 6) then  ! boolean sparse
+            ifin = iBR
+         else ! real or cmplx sparse
+            if (it .eq. 0) then
+               ifin = iBI
+            else
+               ifin = iBI + nel
+            endif
+         endif
+*        memory for work arrays
+         ij = iadr(ifin)
+         ip = ij + 2*nel
+         iptr = ip + nel
+         ilast = sadr( iptr + max(nA,m) + 1 )
+         err = ilast - lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+ 
+         if (ityp .eq. 6) then
+            ite = -1
+         else
+            ite = it
+         endif
+
+         call spreshape(mA,nA,istk(iAmnel),istk(iAcol),stk(iAR),stk(iAI)
+     $                  ,m, n,istk(iBmnel),istk(iBcol),stk(iBR),stk(iBI)
+     $                  ,nel, ite, istk(ij),istk(iptr),istk(ip))
+
+         istk(ilr) = ityp  ! a voir
+         istk(ilr+1) = m
+         istk(ilr+2) = n
+         istk(ilr+3) = it
+         istk(ilr+4) = nel
+         if (ref) then
+            lstk(top+1) = ifin
+         else
+            call icopy(m+nel,istk(iBmnel),1,istk(ilr+5),1)
+            lr = sadr(ilr+5+m+nel)
+            if (ityp .eq. 6) then
+               lstk(top+1) = lr
+            else
+               call unsfdcopy(nel*(it+1),stk(iBR),1,stk(lr),1)
+               lstk(top+1) = lr+nel*(it+1)
+            endif
+         endif
+         return
+      endif 
+*** end of the sparse case ***********************************************
+
+
       if(istk(il).lt.0) then
          k=istk(il+2)
          err=lstk(top)+lstk(k+1)-lstk(k)-lstk(bot)
@@ -4048,10 +4393,6 @@ c
 
       if (lhs .ne. 1) then
          call error(41)
-         return
-      endif
-      if (rhs .ne. 2) then
-         call error(42)
          return
       endif
 
@@ -5107,43 +5448,4 @@ c variables are different
       return
 
 
-      end
-      subroutine getdimfromvar(k,num,n)
-      integer k,num,n
-c     Copyright INRIA
-      INCLUDE '../stack.h'
-      integer iadr,sadr
-
-      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
-
-      il=iadr(lstk(k))
-      if(istk(il).lt.0) il=iadr(istk(il+1))
-      
-      if(istk(il).eq.1) then
-         if(istk(il+3).ne.0) then
-            err=num
-            call  error(52)
-            return
-         endif
-         if(istk(il+1)*istk(il+2).ne.1) then
-            err=num
-            call error(89)
-            return
-         endif
-         n=max(int(stk(sadr(il+4))),0)
-      elseif(istk(il).eq.8) then
-         if(istk(il+1)*istk(il+2).ne.1) then
-            err=num
-            call error(89)
-            return
-         endif
-         call tpconv(istk(il+3),4,1,istk(il+4),1,n,1)
-         n=max(n,0)
-      else
-         err=num
-         call  error(53)
-         return
-      endif
-c     
       end
