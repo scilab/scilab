@@ -33,7 +33,7 @@ case 'set' then
       model.out=nout
       model.ipar=flag
       model.rpar=[a(:);b(:)]
-//      model.dstate=[rand();0*a(:)]
+      model.dstate=[model.dstate(1);0*a(:)]
       x.graphics=graphics;x.model=model
       break
     end
