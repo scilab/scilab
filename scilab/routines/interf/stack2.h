@@ -101,7 +101,8 @@ int IsRef __PARAMS((int lw));
 int Ref2val __PARAMS((int from , int to )) ; 
 
 extern void ConvertData __PARAMS(( char *type, int size,int l));
-extern int C2F(createreffromname) ___PARAMS((int number, char *name ));
+extern int C2F(createreffromname) __PARAMS((int number, char *name ));
+extern int C2F(createref) __PARAMS(( int number, int pointed ));
 
 int check_square __PARAMS((int pos,int m,int n));
 int check_vector __PARAMS((int pos,int m,int n));

@@ -3125,6 +3125,28 @@ void *GetRawData(lw)
   return loci;
 }
 
+int C2F(createref)(number, pointed)
+     int number; int pointed;
+/* variable number is created as a reference to variable pointed */
+{
+  int offset; int point_ed; int *header;
+  if (pointed > number) 
+    {
+      Scierror(999,"Invalid pointed variable number  %i \r\n",pointed);
+      return 0;   /* The variable created (number) should point to an existing variable */
+    }
+  CreateData( number, 4*sizeof(int) );
+  header =  GetRawData(number);
+  offset = Top -Rhs;
+  point_ed = offset + pointed;
+  header[0]= - *istk( iadr(*lstk( point_ed )) );  /* reference : 1st entry (type) is opposite */
+  header[1]= *lstk(point_ed);  /* pointed adress */
+  header[2]= point_ed; /* pointed variable */
+  header[3]= *lstk(point_ed + 1)- *lstk(point_ed);  /* size of pointed variable */
+  C2F(intersci).ntypes[number-1]= '-';
+  return 1;
+}
+
 int C2F(createreffromname)(number, name)
      int number; char *name;
      /* variable number is created as a reference pointing to variable "name" */
