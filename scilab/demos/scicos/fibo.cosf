@@ -1,11 +1,11 @@
-scicos_ver = 'scicos2.7'
+scicos_ver = 'scicos2.7.1'
 scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ['params','wpar','title','tol','tf','context','void1','options','void2','void3',..
 'doc'],[853.44,601.44,0,0,540,405],..
 ['fibo','/usr/local/src/scilab/demos/scicos/'],..
 [0.0001;0.000001;1.000E-10;100001;0;0],30,' ',[],..
-tlist(['scsopt','3D','Background','Link','ID','Cmap'],list(%f,4),9,[3,5],..
+tlist(['scsopt','3D','Background','Link','ID','Cmap'],list(%t,1),[18,9],[3,5],..
 list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],[])
 scs_m.objs(1)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
@@ -15,8 +15,8 @@ scs_m.objs(1)=mlist(['Block','graphics','model','gui','doc'],..
               emptystr()),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-              'ipar','blocktype','firing','dep_ut','label'],'dollar',1,1,1,[],[],..
-              1,[],[],'d',[],[%f,%f],' '),'DOLLAR_f',list())
+              'ipar','blocktype','firing','dep_ut','label','nzcross'],'dollar',1,..
+              1,1,[],[],1,[],[],'d',[],[%f,%f],' ',0),'DOLLAR_f',list())
 scs_m.objs(2)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
@@ -25,8 +25,8 @@ scs_m.objs(2)=mlist(['Block','graphics','model','gui','doc'],..
               emptystr()),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-              'ipar','blocktype','firing','dep_ut','label'],'dollar',1,1,1,[],[],..
-              2,[],[],'d',[],[%f,%f],' '),'DOLLAR_f',list())
+              'ipar','blocktype','firing','dep_ut','label','nzcross'],'dollar',1,..
+              1,1,[],[],2,[],[],'d',[],[%f,%f],' ',0),'DOLLAR_f',list())
 scs_m.objs(3)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
@@ -34,8 +34,9 @@ scs_m.objs(3)=mlist(['Block','graphics','model','gui','doc'],..
               '[1;1;1]',[0;23;15],8,[],[],[],emptystr()),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-              'ipar','blocktype','firing','dep_ut','label'],list('plusblk',2),..
-              [1;1;1],1,[],[],[],[],[],[],'c',[],[%t,%f],' '),'SUM_f',list())
+              'ipar','blocktype','firing','dep_ut','label','nzcross'],..
+              list('plusblk',2),[1;1;1],1,[],[],[],[],[],[],'c',[],[%t,%f],' ',0),..
+              'SUM_f',list())
 scs_m.objs(4)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
@@ -43,8 +44,9 @@ scs_m.objs(4)=mlist(['Block','graphics','model','gui','doc'],..
               [],[],emptystr()),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-              'ipar','blocktype','firing','dep_ut','label'],list('prod',2),[1;1],..
-              1,[],[],[],[],[],[],'c',[],[%t,%f],' '),'PROD_f',list())
+              'ipar','blocktype','firing','dep_ut','label','nzcross'],..
+              list('prod',2),[1;1],1,[],[],[],[],[],[],'c',[],[%t,%f],' ',0),..
+              'PROD_f',list())
 scs_m.objs(5)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
@@ -53,8 +55,8 @@ scs_m.objs(5)=mlist(['Block','graphics','model','gui','doc'],..
               emptystr()),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-              'ipar','blocktype','firing','dep_ut','label'],'invblk',-1,-1,[],[],..
-              [],[],[],[],'c',[],[%t,%f],' '),'INVBLK_f',list())
+              'ipar','blocktype','firing','dep_ut','label','nzcross'],'invblk',..
+              -1,-1,[],[],[],[],[],[],'c',[],[%t,%f],' ',0),'INVBLK_f',list())
 scs_m.objs(6)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
               [141.97244;155.54145],[287.80627;287.80627],' ',[0,0],[3,1],..
               [1,1,0],[13,1,1])
@@ -79,8 +81,9 @@ scs_m_1.objs(2)=mlist(['Block','graphics','model','gui','doc'],..
                 emptystr()),..
                 mlist(..
                 ['model','sim','in','out','evtin','evtout','state','dstate',..
-                'rpar','ipar','blocktype','firing','dep_ut','label'],'output',[],..
-                [],1,[],[],[],[],1,'d',[],[%f,%f],' '),'CLKOUT_f',list())
+                'rpar','ipar','blocktype','firing','dep_ut','label','nzcross'],..
+                'output',[],[],1,[],[],[],[],1,'d',[],[%f,%f],' ',0),'CLKOUT_f',..
+                list())
 scs_m_1.objs(3)=mlist(['Block','graphics','model','gui','doc'],..
                 mlist(..
                 ['graphics','orig','sz','flip','exprs','pin','pout','pein',..
@@ -91,8 +94,9 @@ scs_m_1.objs(3)=mlist(['Block','graphics','model','gui','doc'],..
                 emptystr()),..
                 mlist(..
                 ['model','sim','in','out','evtin','evtout','state','dstate',..
-                'rpar','ipar','blocktype','firing','dep_ut','label'],'evtdly',[],..
-                [],1,1,[],[],1,[],'d',1,[%f,%f],' '),'EVTDLY_f',list())
+                'rpar','ipar','blocktype','firing','dep_ut','label','nzcross'],..
+                'evtdly',[],[],1,1,[],[],1,[],'d',1,[%f,%f],' ',0),'EVTDLY_f',..
+                list())
 scs_m_1.objs(4)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
                 [340;340;380.71066],[226.28571;172;172],' ',[0,0],[5,-1],[3,1],..
                 [5,1])
@@ -103,9 +107,9 @@ scs_m_1.objs(5)=mlist(['Block','graphics','model','gui','doc'],..
                 [],emptystr()),..
                 mlist(..
                 ['model','sim','in','out','evtin','evtout','state','dstate',..
-                'rpar','ipar','blocktype','firing','dep_ut','label'],'lsplit',[],..
-                [],1,[1;1],[],[],[],[],'d',[%f,%f],[%t,%f],' '),'CLKSPLIT_f',..
-                list())
+                'rpar','ipar','blocktype','firing','dep_ut','label','nzcross'],..
+                'lsplit',[],[],1,[1;1],[],[],[],[],'d',[%f,%f],[%t,%f],' ',0),..
+                'CLKSPLIT_f',list())
 scs_m_1.objs(6)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
                 [380.71066;399],[172;172],' ',[0,0],[5,-1],[5,1],[2,1])
 scs_m_1.objs(7)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
@@ -135,8 +139,8 @@ scs_m.objs(9)=mlist(..
               'xsegs(xx,yy,scs_color(10));';
               'xset(''thickness'',thick);'],32),emptystr()),mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar','ipar',..
-              'blocktype','firing','dep_ut','label'],'csuper',[],[],[],1,[],' ',..
-scs_m_1,[],'h',%f,[%f,%f],emptystr()),'CLOCK_f',[])
+              'blocktype','firing','dep_ut','label','nzcross'],'csuper',[],[],[],..
+              1,[],' ',scs_m_1,[],'h',%f,[%f,%f],emptystr(),0),'CLOCK_f',[])
 scs_m.objs(10)=mlist(['Block','graphics','model','gui','doc'],..
                mlist(..
                ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
@@ -165,10 +169,11 @@ scs_m.objs(10)=mlist(['Block','graphics','model','gui','doc'],..
                'xset(''thickness'',thick)'],7),emptystr()),..
                mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-               'ipar','blocktype','firing','dep_ut','label'],list('scope',1),-1,..
-               [],[],[],[],[-1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0],..
-               [0;0.4;0.7;30],[1;1;2;-1;3;5;7;9;11;13;15;-1;-1;600;400;1],'c',[],..
-               [%t,%f],' '),'SCOPE_f',list())
+               'ipar','blocktype','firing','dep_ut','label','nzcross'],..
+               list('scope',1),-1,[],[],[],[],..
+               [-1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0],[0;0.4;0.7;30],..
+               [1;1;2;-1;3;5;7;9;11;13;15;-1;-1;600;400;1],'c',[],[%t,%f],' ',0),..
+               'SCOPE_f',list())
 scs_m.objs(11)=mlist(['Link','xx','yy','id','thick','ct','from','to'],[221;221],..
                [346.28571;326.96203],' ',[0,0],[5,-1],[9,1,0],[16,1,1])
 scs_m.objs(12)=mlist(['Block','graphics','model','gui','doc'],..
@@ -184,9 +189,9 @@ scs_m.objs(12)=mlist(['Block','graphics','model','gui','doc'],..
                5),emptystr()),..
                mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-               'ipar','blocktype','firing','dep_ut','label'],'affich',-1,[],[],..
-               [],[],[0;-1;0;0;1;1],[0;0;1;1],[1;1;1;1000;9;2],'d',[],[%t,%f],..
-               ' '),'AFFICH_f',list())
+               'ipar','blocktype','firing','dep_ut','label','nzcross'],'affich',..
+               -1,[],[],[],[],[0;-1;0;0;1;1],[0;0;1;1],[1;1;1;1000;9;2],'d',[],..
+               [%t,%f],' ',0),'AFFICH_f',list())
 scs_m.objs(13)=mlist(['Block','graphics','model','gui','doc'],..
                mlist(..
                ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
@@ -194,8 +199,9 @@ scs_m.objs(13)=mlist(['Block','graphics','model','gui','doc'],..
                [14;15],[],[],[],emptystr()),..
                mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-               'ipar','blocktype','firing','dep_ut','label'],'lsplit',-1,..
-               [-1;-1;-1],[],[],[],[],[],[],'c',[],[%t,%f],' '),'SPLIT_f',list())
+               'ipar','blocktype','firing','dep_ut','label','nzcross'],'lsplit',..
+               -1,[-1;-1;-1],[],[],[],[],[],[],'c',[],[%t,%f],' ',0),'SPLIT_f',..
+               list())
 scs_m.objs(14)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
                [155.54145;259.89848;259.89848;307],..
                [287.80627;287.80627;207.33333;207.33333],' ',[0,0],[3,1],..
@@ -210,8 +216,9 @@ scs_m.objs(16)=mlist(['Block','graphics','model','gui','doc'],..
                [17;18],[],emptystr()),..
                mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-               'ipar','blocktype','firing','dep_ut','label'],'split',[],[],1,..
-               [1;1],[],[],[],[],'d',[%f,%f,%f],[%f,%f],' '),'CLKSPLIT_f',list())
+               'ipar','blocktype','firing','dep_ut','label','nzcross'],'split',..
+               [],[],1,[1;1],[],[],[],[],'d',[%f,%f,%f],[%f,%f],' ',0),..
+               'CLKSPLIT_f',list())
 scs_m.objs(17)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
                [221;221;236;236],[326.96203;120.79772;120.79772;102.71429],' ',..
                [0,0],[5,-1],[16,1,0],[2,1,1])
@@ -225,8 +232,9 @@ scs_m.objs(19)=mlist(['Block','graphics','model','gui','doc'],..
                [20;21],[],[],[],emptystr()),..
                mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-               'ipar','blocktype','firing','dep_ut','label'],'lsplit',-1,..
-               [-1;-1;-1],[],[],[],[],[],[],'c',[],[%t,%f],' '),'SPLIT_f',list())
+               'ipar','blocktype','firing','dep_ut','label','nzcross'],'lsplit',..
+               -1,[-1;-1;-1],[],[],[],[],[],[],'c',[],[%t,%f],' ',0),'SPLIT_f',..
+               list())
 scs_m.objs(20)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
                [12.182741;12.182741;84.829587],[215.74074;287.80627;287.80627],..
                ' ',[0,0],[3,1],[19,1,0],[1,1,1])
@@ -240,8 +248,9 @@ scs_m.objs(22)=mlist(['Block','graphics','model','gui','doc'],..
                [23;24],[],[],[],emptystr()),..
                mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-               'ipar','blocktype','firing','dep_ut','label'],'lsplit',-1,..
-               [-1;-1;-1],[],[],[],[],[],[],'c',[],[%t,%f],' '),'SPLIT_f',list())
+               'ipar','blocktype','firing','dep_ut','label','nzcross'],'lsplit',..
+               -1,[-1;-1;-1],[],[],[],[],[],[],'c',[],[%t,%f],' ',0),'SPLIT_f',..
+               list())
 scs_m.objs(23)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
                [59.898477;147.20812],[215.74074;215.74074],' ',[0,0],[3,1],..
                [22,1,0],[3,2,1])
@@ -261,8 +270,9 @@ scs_m.objs(27)=mlist(['Block','graphics','model','gui','doc'],..
                [28;29],[],[],[],emptystr()),..
                mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-               'ipar','blocktype','firing','dep_ut','label'],'lsplit',-1,..
-               [-1;-1;-1],[],[],[],[],[],[],'c',[],[%t,%f],' '),'SPLIT_f',list())
+               'ipar','blocktype','firing','dep_ut','label','nzcross'],'lsplit',..
+               -1,[-1;-1;-1],[],[],[],[],[],[],'c',[],[%t,%f],' ',0),'SPLIT_f',..
+               list())
 scs_m.objs(28)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
                [350.856;369.14229;369.14229;436.40319],..
                [206.79444;206.79444;205.58228;205.58228],' ',[0,0],[3,1],..
