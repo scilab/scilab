@@ -95,7 +95,7 @@ struct OLE_object {
 
 	FILE *f;
 	unsigned char *FAT;
-	unsigned char *FAT_limit; // Added to prevent segment violations
+	unsigned char *FAT_limit; /* Added to prevent segment violations */
 	unsigned char *miniFAT;
 	unsigned char header_block[OLE_HEADER_BLOCK_SIZE];
 	unsigned char *ministream;
@@ -103,7 +103,7 @@ struct OLE_object {
 
 	struct OLE_header header;
 	
-	// End user configurable parameters:
+	/* End user configurable parameters: */
 	int debug;
 	int verbose;
 	int quiet;
@@ -123,7 +123,7 @@ struct OLE_object {
 
 
 
-// Prototypes
+/* Prototypes */
 
 int OLE_version( void );
 
@@ -153,7 +153,7 @@ int OLE_decode_file( struct OLE_object *ole, char *fname, char *decode_path );
 int OLE_decode_file_done( struct OLE_object *ole );
 
 
-// Our callbacks.
+/* Our callbacks. */
 int OLE_set_filename_report_fn( struct OLE_object *ole, int (*ptr_to_fn)(char *) );
 
 #endif
