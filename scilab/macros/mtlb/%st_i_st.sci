@@ -65,7 +65,9 @@ function M=%st_i_st(varargin)
       for k=1:nFM
 	v2=v1;
 	kf=find(FR==FM(k));
-	w=getfield(k+2,M);if type(w)<>15 then w=list(w),end
+	w=getfield(k+2,M);
+	if type(w)<>15 then w=list(w),end
+	if type(v2)<>15 then v2=list(v2);end
 	for i=1:size(I1,'*'), 
 	  if w<>list() then
 	    v2(I1(i)+1)=w(i);
@@ -94,6 +96,7 @@ function M=%st_i_st(varargin)
       v2=getfield(kf+2,R);
       w=getfield(k+2,N);
       if type(w)<>15 then w=list(w),end
+      if type(v2)<>15 then v2=list(v2);end
       for i=1:size(I,'*'), 
 	if w<>list() then
 	  v2(I(i))=w(i);
