@@ -1,12 +1,20 @@
 function [x]=input(msg,flag)
 // Copyright INRIA
+  fmt='%['+ascii(32)+'-'+ascii(255)+']'// a tricky way to get all ascii codes  sequences
   n=size(msg,'*')
   for k=1:n-1
     mprintf(msg(k)+'\n')
   end
-  mprintf(msg(n))
-  x=mscanf("%s")
-  if argn(2)==1 then
-    x=evstr(x)
+  if argn(2)==2 then
+    mprintf(msg(n))
+     x=mscanf(fmt) 
+  else
+    while %t
+      mprintf(msg(n))
+      x=mscanf(fmt) 
+      ierr=execstr('x='+x,'errcatch')
+      if ierr==0 then break,end
+      mprintf(strcat(lasterror(),'\n'))
+    end
   end
 endfunction
