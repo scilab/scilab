@@ -186,7 +186,8 @@ static int get_style(fname,pos,n1,opts)
 
 #define GetRect(pos,opts) if ( get_rect(fname,pos,opts) == 0) return 0;
 
-static double def_rect[4]  = {0.,0.,10.0,10.0}; 
+/* static double def_rect[4]  = {0.,0.,10.0,10.0};  */  /* F.Leray 29.04.04 */
+static double def_rect[4]  = {0.,0.,0.0,0.0}; 
 static double *Rect ; 
 
 static int get_rect(fname,pos,opts) 
@@ -209,7 +210,8 @@ static int get_rect(fname,pos,opts)
       else 
 	{
 	  /** global value can be modified  **/
-	  def_rect[0] = def_rect[1] = 0.0; def_rect[2]=def_rect[3]=10.0;
+	/*   def_rect[0] = def_rect[1] = 0.0; def_rect[2]=def_rect[3]=10.0; */  /* F.Leray 29.04.04 */
+	  def_rect[0] = def_rect[1] = 0.0; def_rect[2]=def_rect[3]=0.0;
 	  Rect = def_rect ;
 	}
     }
@@ -224,7 +226,8 @@ static int get_rect(fname,pos,opts)
   else
     {
       /** global value can be modified  **/
-      def_rect[0] = def_rect[1] = 0.0; def_rect[2]=def_rect[3]=10.0;
+      /*   def_rect[0] = def_rect[1] = 0.0; def_rect[2]=def_rect[3]=10.0; */ /* F.Leray 29.04.04 */
+      def_rect[0] = def_rect[1] = 0.0; def_rect[2]=def_rect[3]=0.0;
       Rect = def_rect ;
     }
   /*if ((Rect != def_rect)&&(Strf !=def_strf)) {
