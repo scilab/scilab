@@ -40,17 +40,36 @@ function legends(leg, style, opt, with_box)
   end
   if ~exists("with_box","local") then, with_box=%t, end
 
-  //preserve current graphic context
 
+  fs=get('figure_style')=='old' 
   
-  [r1,r2,logflag,arect]=xgetech()
+  [r1,r2,logflag,arect]=xgetech()  //preserve current graphic context
+  if ~fs then 
+    old_ax=gca(),
+    r2=old_ax.data_bounds;
+    arect=old_ax.margins;
+    r1=old_ax.axes_bounds;
+  else
+    [r1,r2,logflag,arect]=xgetech() 
+  end  
+  
+  
+  
+  //create small axes on the top left corner (the axes is choosen very
+  //small to avoid it can be selected for rotation in new graphic mode
+  //case (a little tricky)
+  xsetech(wrect=[r1(1),r1(2),r1(3)/1000,r1(4)/1000],frect=[0 0 1,1]/1000,arect=[0,0,0,0])
+  xmin=arect(1);xmax=1-arect(2);ymin=-1+arect(4);ymax=-arect(3);
 
-  ymin=r2(2)
-  ymax=r2(4)
-  xmin=r2(1)
-  xmax=r2(3)
+  if fs then 
+    xclip()//no clipping
+  else
+    cur_ax=gca(),
+    cur_ax.clip_state='off';
+
+  end  
+
   dy=ymax-ymin
-
   drx=(xmax-xmin)/20 //length of the line
 
   e=drx/2  // horizontal space between two columns
@@ -76,38 +95,27 @@ function legends(leg, style, opt, with_box)
      error('opt can take value in 1 2 3 4 5')
   end
   select opt
-   case 1 then
+  case 1 then
     pos=[xmax-width-drx/5,ymax-dy/60]
-   case 2 then
+  case 2 then
     pos=[xmin+drx/5,ymax-dy/60]
-   case 3 then
+  case 3 then
     pos=[xmin+drx/5,ymin+height+dy/60]
-   case 4 then 
+  case 4 then 
     pos=[xmax-width-drx/5,ymin+height+dy/60]
-   case 5 then
-    if get('figure_style')=='old' then
-      rect=dragrect([xmax-width-drx/5,ymax-dy/60,width,height])
-    else
-      a=gca()
-      clip=a.clip_state;
-      a.clip_state='off';
-      rect=dragrect([xmax-width-drx/5,ymax-dy/60,width,height])
-      a.clip_state=stripblanks(clip);
-    end
-    
+  case 5 then
+    rect=dragrect([xmax-width-drx/5,ymax-dy/60,width,height])
     pos=rect(1:2)
   end
-  
-  if with_box then
-     xrect(pos(1),pos(2),width,height)
-  end
-  
+  disp(pos)
+ 
   x=pos(1)+drx/5
   y=pos(2)-dy/60
-  if get('figure_style')=='old' then
+  
+  if fs then
+    if with_box then xrect(pos(1),pos(2),width,height),end
     ls=xget('line style')
     clr=xget('color')
- 
     for k=1:nleg
       if style(1,k)<= 0 then
 	if size(style,1)==2 then  xset("color",style(2,k));end
@@ -123,8 +131,12 @@ function legends(leg, style, opt, with_box)
     //reset saved graphic context
     xset('line style',ls)
     xset('color',clr)
+    xsetech(wrect=r1,frect=r2,arect=arect,logflag=logflag)
   else
+    drawlater()
     R=[]
+    if with_box then xrect(pos(1),pos(2),width,height),R=gce();end
+
     a.clip_state='off';
     for k=1:nleg
       if style(1,k)<= 0 then
@@ -147,6 +159,10 @@ function legends(leg, style, opt, with_box)
       y=y-bbx(k,2)-dh
     end
     glue(R)
-    if (opt==5) then a.clip_state=stripblanks(clip); end;
+    R=gce()
+    draw(R)
+ 
+    set('current_axes',old_ax),
+    drawnow()
   end
 endfunction
