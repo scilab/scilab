@@ -211,7 +211,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 {
 	int i=0;
 	LPSTR tail;
-	
+	BOOL ShortCircuitExec=FALSE;
 	
 	char FileName[MAX_PATH];
 	int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
@@ -402,18 +402,43 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			Commande=(char*)malloc(MAX_PATH*sizeof(char));
 			strcpy(Commande,"empty");
 			CommandByFileExtension(FileName,CodeAction,Commande);
-			
-			
-			my_argc=-1;
-			my_argv[++my_argc] = strtok (Commande, " ");
-			while (my_argv[my_argc] != NULL)
+
+			if (
+				( ( IsAScicosFile(FileName)== TRUE ) && (CodeAction==1) ) ||
+				( ( IsAGraphFile(FileName)== TRUE  ) && (CodeAction==1) )
+			    )
 			{
-				my_argv[++my_argc] = strtok(NULL, " ");
+				my_argc=-1;
+				my_argv[++my_argc]=Commande;
+				argcount = my_argc;
+				ShortCircuitExec=TRUE;
 			}
-			argcount = my_argc;
+			else
+			{
+				my_argc=-1;
+				my_argv[++my_argc] = strtok (Commande, " ");
+				while (my_argv[my_argc] != NULL)
+				{
+					my_argv[++my_argc] = strtok(NULL, " ");
+				}
+				argcount = my_argc;
+			}
 		}
 	}	
 	
+	if ( ShortCircuitExec == TRUE)
+	{
+		char PathWScilex[MAX_PATH];
+		int lenPathWScilex=0;
+		GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), PathWScilex, MAX_PATH);
+		lenPathWScilex=strlen(PathWScilex);
+		path = my_argv[argcount]+lenPathWScilex+3;
+		lpath = strlen (my_argv[argcount]+lenPathWScilex+3);
+		pathtype=1;
+		
+
+	}
+	else
 	while (argcount > 0)
 	{
         char ArgTmp[MAX_PATH];
@@ -1372,6 +1397,15 @@ BOOL IsABinOrSavFile(char *chainefichier)
 
 }
 /*-----------------------------------------------------------------------------------*/
+BOOL IsAGraphFile(char *chainefichier)
+{
+	BOOL retour=FALSE;
+	
+	if ( IsAGraphFilegraphb(chainefichier) || IsAGraphFilegraph(chainefichier) ) retour=TRUE;
+	
+	return retour;
+}
+/*-----------------------------------------------------------------------------------*/
 BOOL IsAGraphFilegraph(char *chainefichier)
 {
 	char ChaineTemp[MAX_PATH];
@@ -1387,25 +1421,18 @@ BOOL IsAGraphFilegraph(char *chainefichier)
 	{
 		lastdot=buffer;
 	}
+
 	/* Mise en majuscule de l'extension du fichier*/
 	for (i=0;i<strlen(lastdot);i++)
 	{
 		lastdot[i]=toupper(lastdot[i]);
 	}
+
 	/* Comparaison avec l'extension Graph */
-		if ( strcmp(lastdot,"GRAPH")==0) retour=TRUE;
+	if ( strcmp(lastdot,"GRAPH")==0) retour=TRUE;
 
 	return retour;
 
-}
-/*-----------------------------------------------------------------------------------*/
-BOOL IsAGraphFile(char *chainefichier)
-{
-	BOOL retour=FALSE;
-	
-	if ( IsAGraphFilegraphb(chainefichier) || IsAGraphFilegraph(chainefichier) ) retour=TRUE;
-	
-	return retour;
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL IsAGraphFilegraphb(char *chainefichier)
@@ -1428,6 +1455,7 @@ BOOL IsAGraphFilegraphb(char *chainefichier)
 	{
 		lastdot[i]=toupper(lastdot[i]);
 	}
+	
 	/* Comparaison avec l'extension Graph */
 	if ( strcmp(lastdot,"GRAPHB")==0) retour=TRUE;
 
@@ -1542,16 +1570,20 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 						wsprintf(Cmd,"%s -e load('%s');disp('\"\"%s\"\"loaded'); ",PathWScilex,FinalFileName,FinalFileName);
 					}
 					else
-					if  ( IsAScicosFile(FinalFileName)== TRUE )
+					if  ( IsAScicosFile(fichier)== TRUE )
 					{
+						ReplaceSlash(FinalFileName,fichier);
 						ExtensionFileIntoLowerCase(FinalFileName);	
-						wsprintf(Cmd,"%s -e scicos('%s');disp('\"\"%s\"\"loaded'); ",PathWScilex,FinalFileName,FinalFileName);
+						/*wsprintf(Cmd,"%s -e scicos('%s');disp('\"\"%s\"\"loaded'); ",PathWScilex,FinalFileName,FinalFileName);*/
+						wsprintf(Cmd,"%s -e scicos('%s'); ",PathWScilex,FinalFileName,FinalFileName);
 					}
 					else
-					if ( IsAGraphFile(FinalFileName)== TRUE )
+					if ( IsAGraphFile(fichier)== TRUE )
 					{
+						ReplaceSlash(FinalFileName,fichier);
 						ExtensionFileIntoLowerCase(FinalFileName);	
-						wsprintf(Cmd,"%s -e edit_graph('%s');disp('\"\"%s\"\"loaded'); ",PathWScilex,FinalFileName,fichier);
+						/*wsprintf(Cmd,"%s -e edit_graph('%s');disp('\"\"%s\"\"loaded'); ",PathWScilex,FinalFileName,fichier);*/
+						wsprintf(Cmd,"%s -e edit_graph('%s'); ",PathWScilex,FinalFileName,fichier);
 					}
 					else wsprintf(Cmd,"%s -e exec('%s'); ",PathWScilex,FinalFileName);
 				}
