@@ -848,17 +848,6 @@ if execstr('spec([%inf 1;2 3],[1 2;3 4])','errcatch')==0 then bugmes();quit;end
 if execstr('spec([1 2;3 4],[1 %nan;2 3])','errcatch')==0 then bugmes();quit;end
  
  
-function A=testmat1(a,n)
-//eigen values are given by a dilation of nth roots of 1
-A=diag(a*ones(1,n-1),1)+diag((1/a)*ones(1,n-1),-1)
-A(1,n)=1/a;A(n,1)=a
-endfunction
-Warning :redefining function: testmat1                
- 
- 
-function r=Err(x),r=norm(x,1),endfunction
- 
- 
 //Small dimension
  
 //---------------
@@ -1999,9 +1988,6 @@ if U<>[]|S<>[]|V<>[]|rk<>0  then bugmes();quit;end
 if errcatch('[U,S,V,rk]=svd([],'"e'")') == 0 then bugmes();quit;end
  
  
-function r=Err(x),r=norm(x,1),endfunction
- 
- 
 //Small dimension
  
 //Real Case Fat
@@ -2798,8 +2784,6 @@ if Err(U'*U-A)>1000*%eps then bugmes();quit;end
  
 function x=rdiv(A,B),x=A/B,endfunction
  
-function r=Err(x),r=norm(x,1),endfunction
- 
 //scalar division
  
  
@@ -3038,8 +3022,6 @@ if Err(x*A*A'-b*A')>1000*%eps then bugmes();quit;end
 function x=ldiv(A,B),x=A\B,endfunction
 Warning :redefining function: ldiv                    
  
- 
-function r=Err(x),r=norm(x,1),endfunction
  
 //scalar division
  
@@ -3332,8 +3314,6 @@ A=diag(a*ones(1,n-1),1)+diag((1/a)*ones(1,n-1),-1)
 A(1,n)=1/a;
 endfunction
  
-function r=Err(x),r=norm(x,1),endfunction
- 
 A=[];[Ab,X]=balanc(A);
  
 if Ab<>[]|X<>[] then bugmes();quit;end
@@ -3460,8 +3440,6 @@ if Err(Ab-inv(X)*A*Y)>1000*%eps then bugmes();quit;end
 //==============================   bdiag      ==============================
  
 //==========================================================================
- 
-function r=Err(x),r=norm(x,1),endfunction
  
 if bdiag([])<>[] then bugmes();quit;end
  

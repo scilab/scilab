@@ -475,13 +475,6 @@ if al<>[]|be<>[]|Z<>[]|Q<>[] then pause,end
 if execstr('spec([%inf 1;2 3],[1 2;3 4])','errcatch')==0 then pause,end
 if execstr('spec([1 2;3 4],[1 %nan;2 3])','errcatch')==0 then pause,end
 
-function A=testmat1(a,n)
-//eigen values are given by a dilation of nth roots of 1
-A=diag(a*ones(1,n-1),1)+diag((1/a)*ones(1,n-1),-1)
-A(1,n)=1/a;A(n,1)=a
-endfunction
-function r=Err(x),r=norm(x,1),endfunction
-
 //Small dimension
 //---------------
 //Real Case
@@ -1096,8 +1089,6 @@ if U<>[]|S<>[]|V<>[]|rk<>0  then pause,end
 
 if errcatch('[U,S,V,rk]=svd([],'"e'")') == 0 then pause,end
 
-function r=Err(x),r=norm(x,1),endfunction
-
 //Small dimension
 //Real Case Fat
 A=rand(3,5);
@@ -1535,7 +1526,6 @@ if Err(U'*U-A)>1000*%eps then pause,end
 //==========================================================================
 //function x=rdiv(A,B),x=slash(A,B),endfunction
 function x=rdiv(A,B),x=A/B,endfunction
-function r=Err(x),r=norm(x,1),endfunction
 //scalar division
   
 //-----Square matrix-----
@@ -1664,7 +1654,6 @@ if Err(x*A*A'-b*A')>1000*%eps then pause,end
 //==============================    \         ============================== 
 //==========================================================================
 function x=ldiv(A,B),x=A\B,endfunction
-function r=Err(x),r=norm(x,1),endfunction
 //scalar division
   
 //-----Square matrix-----
@@ -1825,7 +1814,6 @@ function A=testmat3(a,n)
 A=diag(a*ones(1,n-1),1)+diag((1/a)*ones(1,n-1),-1)
 A(1,n)=1/a;
 endfunction
-function r=Err(x),r=norm(x,1),endfunction
 A=[];[Ab,X]=balanc(A);
 if Ab<>[]|X<>[] then pause,end
 // MATRIX
@@ -1888,7 +1876,6 @@ if Err(Ab-inv(X)*A*Y)>1000*%eps then pause,end
 //==========================================================================
 //==============================   bdiag      ============================== 
 //==========================================================================
-function r=Err(x),r=norm(x,1),endfunction
 if bdiag([])<>[] then pause,end
 [ab,x]=bdiag([]);
 if ab<>[]|x<>[] then pause,end
