@@ -31,6 +31,11 @@ version.h: version.g $(SCIDIR)/Version.incl
 	@chmod g+w version.h
 	@echo version.h created
 
+helpbrowser:  helpbrowser.c queue.o
+	$(CC) -DALONE $(CC_OPTIONS) `gnome-config --cflags gnome` \
+		-o helpbrowser helpbrowser.c queue.o \
+		`gnome-config --cflags gnome` $(XLIBS)
+
 OBJTEST = x_test_loop.o
 
 # test 

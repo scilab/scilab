@@ -40,11 +40,6 @@
 
 /*  defines  */
 
-#ifdef __EMX__
-#define chdir _chdir2
-#endif
-
-
 enum {
   CONTENTS,
   INDEX,
@@ -147,6 +142,7 @@ static GtkWidget *back_button;
 static GtkWidget *forward_button;
 static GtkWidget *notebook;
 static GtkWidget *combo;
+static GtkWidget *window = NULL;
 
 static GtkTargetEntry help_dnd_target_table[] =
 {
@@ -171,10 +167,8 @@ static void
 close_callback (GtkWidget *widget,
 		gpointer   user_data)
 {
-  /* XXXXXXX */
-#ifdef ALONE 
-  gtk_main_quit ();
-#endif
+  gtk_widget_destroy(window); 
+  window=NULL;
 }
 
 static void
@@ -407,93 +401,62 @@ load_page (HelpPage *source_page,
   GString  *file_contents;
   FILE     *afile = NULL;
   char      aline[1024];
-  gchar    *old_dir;
-  gchar    *new_dir, *new_base;
-  gchar    *new_ref;
+  gchar    *old_dir, *new_dir, *new_name, *new_ref;
   gboolean  page_valid  = FALSE;
-  gboolean  filters_dir = FALSE;
 
-  g_return_val_if_fail (ref != NULL && source_page != NULL && dest_page != NULL, FALSE);
-
+  g_return_val_if_fail (ref != NULL && source_page != NULL 
+			&& dest_page != NULL, FALSE);
+  
   old_dir  = g_dirname (source_page->current_ref);
-  new_dir  = g_dirname (ref);
-  new_base = g_basename (ref);
-
-  /* return value is intentionally ignored */
-  chdir (old_dir);
 
   file_contents = g_string_new (NULL);
+  
+  if (g_path_is_absolute (ref))
+    new_ref = g_strdup (ref);
+  else
+    new_ref = g_strconcat (old_dir, G_DIR_SEPARATOR_S, ref, NULL);
 
-  if (chdir (new_dir) == -1)
-    {
-      if (g_path_is_absolute (ref))
-	new_ref = g_strdup (ref);
-      else
-	new_ref = g_strconcat (old_dir, G_DIR_SEPARATOR_S, ref, NULL);
-
-      g_string_sprintf (file_contents, gettext (dir_not_found_format_string),
-			eek_png_tag, new_dir, new_ref);
-      html_source (dest_page, new_ref, 0, file_contents->str, add_to_queue, FALSE);
-
-      goto FINISH;
-    }
-
-  if (strcmp (g_basename (new_dir), "filters") == 0)
-    filters_dir = TRUE;
-
-  g_free (new_dir);
-  new_dir = g_get_current_dir ();
-
-  new_ref = g_strconcat (new_dir, G_DIR_SEPARATOR_S, new_base, NULL);
-
-  if (strcmp (dest_page->current_ref, new_ref) == 0)
-    {
-      gtk_xmhtml_set_topline (GTK_XMHTML (dest_page->html), pos);
-
-      if (add_to_queue)
-	queue_add (dest_page->queue, new_ref, pos);
-
-      goto FINISH;
-    }
+  new_dir  = g_dirname (new_ref);
 
   /*
    *  handle basename like: filename.html#11111 -> filename.html
    */ 
-  g_strdelimit (new_base,"#",'\0');
 
-  afile = fopen (new_base, "rt");
+  new_name = g_strdup(new_ref);
+  g_strdelimit (new_name,"#",'\0');
 
+  /* try to open file containing ref */ 
+
+  if (access (new_name, R_OK) != 0){
+      g_string_sprintf (file_contents, gettext (doc_not_found_format_string),
+			eek_png_tag, new_dir, new_ref);
+      html_source (dest_page,new_ref,0,file_contents->str,add_to_queue,FALSE);
+      goto FINISH;
+  }
+
+  /* ??? */
+
+  if (strcmp (dest_page->current_ref, new_ref) == 0)
+    {
+      gtk_xmhtml_set_topline (GTK_XMHTML (dest_page->html), pos);
+      if (add_to_queue)
+	queue_add (dest_page->queue, new_ref, pos);
+      goto FINISH;
+    }
+
+
+  afile = fopen (new_name, "rt");
   if (afile != NULL)
     {
       while (fgets (aline, sizeof (aline), afile))
 	file_contents = g_string_append (file_contents, aline);
       fclose (afile);
     }
-  else if (filters_dir)
-    {
-      gchar *undocumented_filter;
-
-      undocumented_filter = g_strconcat (new_dir, G_DIR_SEPARATOR_S,
-					 "undocumented_filter.html", NULL);
-
-
-      afile = fopen (undocumented_filter, "rt");
-
-      if (afile != NULL)
-	{
-	  while (fgets (aline, sizeof (aline), afile))
-	    file_contents = g_string_append (file_contents, aline);
-	  fclose (afile);
-	}
-
-      g_free (undocumented_filter);
-    }
 
   if (strlen (file_contents->str) <= 0)
     {
-      chdir (old_dir);
       g_string_sprintf (file_contents, gettext (doc_not_found_format_string),
-			eek_png_tag, ref);
+			eek_png_tag, new_dir, new_ref);
     }
   else
     page_valid = TRUE;
@@ -509,6 +472,7 @@ load_page (HelpPage *source_page,
   g_string_free (file_contents, TRUE);
   g_free (old_dir);
   g_free (new_dir);
+  g_free (new_name);
 
   gtk_notebook_set_page (GTK_NOTEBOOK (notebook), dest_page->index);
 
@@ -716,7 +680,8 @@ set_initial_history (gpointer data)
   return FALSE;
 }
 
-gboolean
+
+int
 open_browser_dialog (gchar *help_path,
 		     gchar *locale,
 		     gchar *help_file)
@@ -727,42 +692,23 @@ open_browser_dialog (gchar *help_path,
   GtkWidget *title;
   GtkWidget *drag_source;
   GtkWidget *label;
-
-  gchar   *initial_dir;
+  gchar   *index;
   gchar   *initial_ref;
-  gchar   *root_dir;
-  gchar   *eek_png_path;
   gint     success;
   guint    i;
 
+  /*
+   * check for index 
+   */
 
-  root_dir = g_strdup (sci_help_root);
+  index= g_strconcat (help_path, G_DIR_SEPARATOR_S,
+		      locale,G_DIR_SEPARATOR_S,
+		      "index.html",NULL);
+  if (access (index, R_OK) != 0)
+    return 1; 
+  
+  g_free (index);
 
-  if (chdir (root_dir) == -1)
-    {
-      g_message ("GIMP Help Browser Error.\n\n\
-		   Couldn't find my root html directory.\n\
-		   (%s)", root_dir);
-      return FALSE;
-    }
-
-  eek_png_path = g_strconcat (root_dir, G_DIR_SEPARATOR_S,
-			      "images", G_DIR_SEPARATOR_S,
-			      "eek.png", NULL);
-  if (access (eek_png_path, R_OK) == 0)
-    eek_png_tag = g_strdup_printf ("<img src=\"%s\">", eek_png_path);
-
-  g_free (eek_png_path);
-
-  if (chdir (help_path) == -1)
-    {
-      g_message ("GIMP Help Browser Error.\n\n\
-		   Couldn't find my root html directory.\n\
-		   (%s)", help_path);
-      return FALSE;
-    }
-
-  initial_dir = g_get_current_dir ();
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_signal_connect (GTK_OBJECT (window), "delete_event",
@@ -841,7 +787,7 @@ open_browser_dialog (gchar *help_path,
 	{
 	case CONTENTS:
 	case INDEX:
-	  pages[i].current_ref = g_strconcat (root_dir, G_DIR_SEPARATOR_S,
+	  pages[i].current_ref = g_strconcat (help_path, G_DIR_SEPARATOR_S,
 					      locale, G_DIR_SEPARATOR_S,
 					      ".", NULL);
 
@@ -851,7 +797,7 @@ open_browser_dialog (gchar *help_path,
 	  gtk_widget_show (label);
 	  break;
 	case HELP:
-	  pages[i].current_ref = g_strconcat (initial_dir, G_DIR_SEPARATOR_S,
+	  pages[i].current_ref = g_strconcat (help_path, G_DIR_SEPARATOR_S,
 					      locale, G_DIR_SEPARATOR_S,
 					      ".", NULL);
 
@@ -900,13 +846,11 @@ open_browser_dialog (gchar *help_path,
 
       if (i == HELP && help_file)
 	{
-	  initial_ref = g_strconcat (initial_dir, G_DIR_SEPARATOR_S,
-				     locale, G_DIR_SEPARATOR_S,
-				     help_file, NULL);
+	  initial_ref = g_strdup(help_file);
 	}
       else
 	{
-	  initial_ref = g_strconcat (root_dir, G_DIR_SEPARATOR_S,
+	  initial_ref = g_strconcat (help_path, G_DIR_SEPARATOR_S,
 				     locale, G_DIR_SEPARATOR_S,
 				     pages[i].home, NULL);
 	}
@@ -951,7 +895,6 @@ open_browser_dialog (gchar *help_path,
 			  pages[i].html);
     }
 
-  g_free (root_dir);
 
   gtk_signal_connect (GTK_OBJECT (notebook), "switch-page",
 		      GTK_SIGNAL_FUNC (notebook_switch_callback),
@@ -968,144 +911,69 @@ open_browser_dialog (gchar *help_path,
 
   gtk_idle_add ((GtkFunction) set_initial_history, GINT_TO_POINTER (success));
 
-  g_free (initial_dir);
-
-  return TRUE;
-}
-
-
-static gboolean
-open_url (gchar *help_path,
-	  gchar *locale,
-	  gchar *help_file)
-{
-  if (! open_browser_dialog (help_path, locale, help_file))
-    return FALSE;
-#ifdef ALONE 
-  gtk_main ();
-#endif
-  return TRUE;
-}
-
-#ifdef ALONE
-int main(int argc,char *argv[]) 
-{
-  gchar *sci_root_dir = NULL;
-  gchar *man_root_dir = NULL;
-  gchar *help_path    = NULL;
-  gchar *locale       = NULL;
-  gchar *help_file    = NULL;
-
-  gtk_init(&argc,&argv);
-
-  sci_root_dir = g_getenv ("SCI");
-  if (sci_root_dir)
-    {
-      man_root_dir = g_strconcat (sci_root_dir, G_DIR_SEPARATOR_S,"man",NULL);
-      if (man_root_dir)
-	{
-	  if (chdir (man_root_dir) == -1)
-	    {
-	      g_message(("Scilab Help Browser Error.\nCouldn't find SCI/man directory.\n(%s)"),
-			man_root_dir);  
-	      return 1;
-	    }
-	  sci_help_root = g_strdup (man_root_dir);
-	}
-    }
-  else
-    {
-      sci_help_root = g_strdup("/home/jpc/Scilab/scilab-cvs/man/");
-    }
-
-  help_path = g_strdup (sci_help_root);
-  locale    = g_strdup ("eng");
-  help_file = g_strdup ("index.html");
-	  
-  /*  Make sure all the arguments are there!  */
-  open_url (help_path, locale, help_file);
-  g_free (help_path);
-  g_free (locale);
-  g_free (help_file);
-  if (man_root_dir)  g_free (man_root_dir);
-
-  sciprintf("back");
   return 0;
 }
-#endif 
 
+/*------------------------------------------------------
+ * mandir = SCI+'man'  
+ * locale = "eng" or "fr" 
+ * help_file = null or absolute file name 
+ * returns 0 on success and 1 if index.html not found 
+ *------------------------------------------------------*/
 
-
-#ifndef ALONE
-int Sci_Help(char *msg) 
+int Sci_Help(char *mandir,char *locale,char *help_file) 
 {
-  gchar *sci_root_dir = NULL;
-  gchar *man_root_dir = NULL;
-  gchar *help_path    = NULL;
-  gchar *locale       = NULL;
-  gchar *help_file    = NULL;
-  
-  sci_root_dir = g_getenv ("SCI");
-  if (sci_root_dir)
-    {
-      man_root_dir = g_strconcat (sci_root_dir, G_DIR_SEPARATOR_S,"man",NULL);
-      if (man_root_dir)
-	{
-	  if (chdir (man_root_dir) == -1)
-	    {
-	      g_message(("Scilab Help Browser Error.\nCouldn't find SCI/man directory.\n(%s)"),
-			man_root_dir);  
-	      return 1;
-	    }
-	  sci_help_root = g_strdup (man_root_dir);
-	}
-    }
-  else
-    {
-      sci_help_root = g_strdup("/home/jpc/Scilab/scilab-cvs/man/");
-    }
-
-  help_path = g_strdup (sci_help_root);
-  locale    = g_strdup ("eng");
-  help_file = g_strdup ("index.html");
-	  
-  /*  Make sure all the arguments are there!  */
-  open_url (help_path, locale, help_file);
-  g_free (help_path);
-  g_free (locale);
-  g_free (help_file);
-  if (man_root_dir)  g_free (man_root_dir);
-  return 0;
+  return open_browser_dialog (mandir,locale,help_file);
 }
-#endif 
 
-#define maxb 1024
 
 static void write_scilab_example(char *example)
 {
-  int count = 0;
-  char *pos = example, *dest;
-  static char buffer[maxb];
-  dest = buffer;
+  char *pos = example, *tmpdir;
+  FILE *fd;
+  gchar *fname,*instr; 
+
+  if (( tmpdir=getenv("TMPDIR")) == NULL) 
+    {
+      sciprint("TMPDIR not set \r\n");
+      return;
+    }
+  
+  fname = g_strconcat (tmpdir, G_DIR_SEPARATOR_S, "example.sce",NULL);
+  if ( fname == NULL) return ;
+
+  if ((fd = fopen(fname,"w"))==NULL) return ;
+
   while ( 1 ) 
     {
-      while ( *pos != '&' && *pos != '\0' && count < maxb )
+      while ( *pos != '&' && *pos != '\0' ) 
 	{
-	  *dest++= *pos++;
-	  count++;
+	  putc(*pos++,fd);
 	}
-      /* buffer too small */
-      if ( count == maxb ) *(dest-1) = '\0';
-      if ( *pos == '&' && strncmp(pos,"&#10;",5) ==0) 
+      if ( *pos == '&') 
 	{
-	  pos = pos +5;
-	  *dest++ = ';';count++;
+	  if ( strncmp(pos,"&#10",4) ==0) 
+	    {
+	      putc('\n',fd);
+	      pos = pos +4;
+	    }
+	  else 
+	    {
+	      putc(*pos++,fd);
+	    }
 	}
       else if ( *pos == '\0') 
 	{
 	  break;
 	}
     }
-  write_scilab(buffer);
+
+  fclose(fd);
+  
+  instr = g_strconcat("exec('",fname,"',7);",NULL);
+  write_scilab(instr);
+  g_free(instr);
+  g_free(fname);
+
 }
   
