@@ -26,7 +26,7 @@ case "eng"
 	   "Scicos: Bloc diagram editor and simulator";"Sound file handling";
 	   "Language or data translations";"PVM parallel toolbox";"TdCs";
 	   "TCL/Tk interface";
-	   "Statistics";
+	   "Statistic basics";
 	   "Cumulative Distribution Functions; Inverses, grand";
            "Identification"]];
   case "fr"
