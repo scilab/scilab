@@ -19,15 +19,18 @@ static void CNAME(LexiCol,int)( int * a, int *ind, int flag, int  n, int p,char 
  * with int == double or type = int 
  ******************************************************/
 
-static int CNAME(swapcode,int)(char * parmi,char * parmj,int n) 
+static int CNAME(swapcode,int)(char * parmi,char * parmj,int n,int incr) 
 { 		
   int i = n;
   register int *pi = (int *) (parmi); 		
   register int *pj = (int *) (parmj); 
+  register int inc1 = incr/sizeof(int);
   do { 						
     register int t = *pi;		
-    *pi++ = *pj;				
-    *pj++ = t;				
+    *pi = *pj;				
+    *pj = t;				
+    pi += inc1;
+    pj += inc1;
   } while (--i > 0);				
   return(0);
 }
@@ -164,11 +167,12 @@ static  int CNAME(LexiRowcompareD,int)(int * i,int * j)
   return (0);
 }
 
-static int CNAME(LexiRowswapcode,int)(char * parmi,char * parmj,int n) 
+static int CNAME(LexiRowswapcode,int)(char * parmi,char * parmj,int n,int inc) 
 { 		
   int i = n,j;
   register int *pi = (int *) (parmi); 		
   register int *pj = (int *) (parmj); 
+  register int inc1 = inc/sizeof(double);
   if ( n!= 1) printf(" swapcode avec n != 1\n");
   do { 
     for ( j = 0 ; j < CNAME(lexicols,int) ; j++) 
@@ -177,8 +181,8 @@ static int CNAME(LexiRowswapcode,int)(char * parmi,char * parmj,int n)
 	*(pi + CNAME(lexirows,int)*j) = *(pj+CNAME(lexirows,int)*j);				
 	*(pj + CNAME(lexirows,int)*j) = t;	
       }
-    pi++;
-    pj++;
+    pi += inc1;
+    pj += inc1;
   } while (--i > 0);				
   return(0);
 }
@@ -235,7 +239,7 @@ static  int CNAME(LexiColcompareD,int)(int * i,int * j)
   return (0);
 }
 
-static int CNAME(LexiColswapcode,int)(char * parmi,char * parmj,int n) 
+static int CNAME(LexiColswapcode,int)(char * parmi,char * parmj,int n,int incr) 
 { 		
   int i = n,ir;
   register int *pi = (int *) (parmi); 		

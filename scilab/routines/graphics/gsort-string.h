@@ -15,15 +15,18 @@ static void CNAME(LexiCol,char)(char ** a, int * ind, int flag, int n, int p,cha
  * code for Sorting Matrices a[i+n*j] of strings 
  ******************************************************/
 
-static int CNAME(swapcode,char)( char ** parmi, char ** parmj, int n) 
+static int CNAME(swapcode,char)( char ** parmi, char ** parmj, int n,int incr) 
 { 		
   int i = n;
   register char **pi = (char **) (parmi); 		
   register char **pj = (char **) (parmj); 
+  register int inc1 = incr/sizeof(char *);
   do { 		
     register char *t = *pi;
-    *pi++ = *pj;				
-    *pj++ = t;				
+    *pi = *pj;				
+    *pj = t;				
+    pi += inc1;
+    pj += inc1;
   } while (--i > 0);				
   return(0);
 }
@@ -147,7 +150,7 @@ static  int CNAME(LexiRowcompareD,char)( char ** i, char ** j)
   return (0);
 }
 
-static int CNAME(LexiRowswapcode,char)( char ** parmi, char ** parmj,int n) 
+static int CNAME(LexiRowswapcode,char)( char ** parmi, char ** parmj,int n,int incr) 
 { 		
   int i = n,j;
   register char **pi = (char **) (parmi); 		
@@ -215,7 +218,7 @@ static  int CNAME(LexiColcompareD,char)( char ** i, char ** j)
 }
 
 
-static int CNAME(LexiColswapcode,char)( char ** parmi, char ** parmj,int n) 
+static int CNAME(LexiColswapcode,char)( char ** parmi, char ** parmj,int n,int incr) 
 { 		
   int i = n,ir;
   register char **pi = (char **) (parmi); 		
