@@ -13,7 +13,7 @@
 #ifdef WITH_GTK
 #ifdef WITH_READLINE 
 /* this file is unused */ 
-#define WITHOUT_STD_ZZLEDT 
+#define WITHOUT_STD_ZZLEDT
 #endif 
 #endif 
 
