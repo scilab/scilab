@@ -16,7 +16,7 @@ I=0
 for k=rhs-1:-1:1
   ik=varargin(k)
   if type(ik)==2 |type(ik)==129 then // size implicit subscript $...
-    ik=horner(ik,dims(k)) // explicit subscript
+    ik=round(horner(ik,dims(k))) // explicit subscript
   elseif type(ik)==4 then // boolean subscript
     ik=find(ik)
   elseif mini(size(ik))<0 then // :
@@ -30,6 +30,8 @@ for k=rhs-1:-1:1
 	ik=1:prod(dims(k:$))
       end
     end
+  else
+    ik=round(ik)
   end
   dims1=[size(ik,'*'),dims1]
   if size(ik,'*')>1 then

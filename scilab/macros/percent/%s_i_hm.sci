@@ -22,7 +22,7 @@ I=0;I1=0
 for k=ndims:-1:1
   ik=varargin(k)//the kth subscript
   if type(ik)==2 |type(ik)==129 then // size implicit subscript $...
-    ik=horner(ik,dims(k)) // explicit subscript
+    ik=round(horner(ik,dims(k))) // explicit subscript
     dims1(k,1)=max(max(ik),dims(k))
   elseif type(ik)==4 then // boolean subscript
     ik=find(ik)
@@ -37,6 +37,7 @@ for k=ndims:-1:1
       end
     end
   else
+    ik=round(ik)
     dims1(k,1)=max(max(ik),dims(k))
   end
   if size(ik,'*')>1 then
