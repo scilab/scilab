@@ -1097,24 +1097,22 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
         else
         if ( ButtonText[index][0]=='|')
         {
-                char *LineTmp=NULL;
-                char *NameButton=NULL;
-                char *PathIconButton=NULL;
+                char LineTmp[MAX_PATH];
+                char NameButton[MAX_PATH];
+                char PathIconButton[MAX_PATH];
                 char *Token=NULL;
                 HICON IconButton;
                 
                 int i=0;
         
                 
-                LineTmp=(char*)malloc(strlen(ButtonText[index])+1* sizeof(char));
+                
                 strcpy(LineTmp,ButtonText[index]);
         
                 Token=strtok(LineTmp,"|");
-                NameButton=(char*)malloc(strlen(Token)+1* sizeof(char));
-		strcpy(NameButton,Token);
+                strcpy(NameButton,Token);
                 
                 Token=strtok(NULL,"|");
-                PathIconButton=(char*)malloc(strlen(Token)+1* sizeof(char));
                 strcpy(PathIconButton,Token);
 		
                 if ( ( IsAFile(PathIconButton)==TRUE)                ||
@@ -1178,7 +1176,7 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
                      		IconButton=LoadIcon(hdllInstance, IDI_SCILAB);
                      	}
                         
-			lpmw->IsAIcon[index]=TRUE;
+						lpmw->IsAIcon[index]=TRUE;
                         lpmw->hButton[index] = CreateWindow("button",NameButton,WS_CHILD|WS_VISIBLE|BS_ICON ,
                                        GetXPosButton(lptw,index, 32,ButtonSizeY), 0,
                                        32, ButtonSizeY,
@@ -1201,15 +1199,10 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
                         char MsgErr[MAX_PATH];
                         wsprintf(MsgErr,"Error in .mnu file: %s",ButtonText[index]);
                         MessageBox(NULL,MsgErr,"Error in .mnu file",MB_ICONEXCLAMATION);
-                        free(PathIconButton);
-              		free(NameButton);
-              		free(LineTmp);
                         exit(1);
                 }     
         
-              free(PathIconButton);
-              free(NameButton);
-              free(LineTmp);
+
         
         }
         else
@@ -1915,15 +1908,15 @@ void UpdateFileNameMenu(LPTW lptw,int LangCode)
 	#define FILEMENUENGLISH "wscilabE.mnu"
 	
 	LPMW lpmw= lptw->lpmw;
-	LPSTR szModuleName;
+	char szModuleName[MAX_PATH];
 	LPSTR tail;
 	
 	HINSTANCE hInstance=NULL;
 
 	hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
-	szModuleName = (LPSTR) malloc (MAXSTR + 1);
 	
-	GetModuleFileName (hInstance, (LPSTR) szModuleName, MAXSTR);
+	
+	GetModuleFileName (hInstance,szModuleName, MAX_PATH);
 	
 	if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
 	{
@@ -1932,7 +1925,7 @@ void UpdateFileNameMenu(LPTW lptw,int LangCode)
 	}
 	
 	strcpy (lpmw->szMenuName, szModuleName);
-	free(szModuleName);
+
 	
 	switch (LangCode)
 	{
