@@ -1,20 +1,20 @@
-function [y]=toolboxes(dir,flag,force) 
+function [y]=toolboxes(path,flag,force) 
 // toolboxes loding or compiling 
 // if flag == %t then contribs are recompiled 
 //    if a loader.sce is not found or if force == %t 
-// dir is a directory to explore for contribs
+// path is a directory to explore for contribs
   global %toolboxes
   global %toolboxes_dir
   [lhs,rhs]=argn(0) 
   y=[];
-  if rhs == 1 & typeof(dir)=="constant" then 
+  if rhs == 1 & typeof(path)=="constant" then 
     // execute the toolbox loader
-    y='exec("""+%toolboxes_dir+%toolboxes(dir)+"/"+"loader.sce"+""")";
+    y='exec("""+%toolboxes_dir+%toolboxes(path)+"/"+"loader.sce"+""")";
     return 
   end
     
   if rhs == 0 then 
-    dir = SCI+'/contrib' 
+    path = SCI+'/contrib' 
   end
   if rhs <= 1 then 
     flag = %f 
@@ -23,7 +23,7 @@ function [y]=toolboxes(dir,flag,force)
     force = %f 
   end
   cur_wd= getcwd();
-  chdir(dir);
+  chdir(path);
   files= listfiles('.');
   contribs=[]
   for k=1:size(files,'*') 
@@ -51,7 +51,7 @@ function [y]=toolboxes(dir,flag,force)
     //addmenu('build',contribs);
   end
   %toolboxes= contribs;
-  %toolboxes_dir= pathconvert(dir);
+  %toolboxes_dir= pathconvert(path);
   chdir(cur_wd);
 endfunction
 

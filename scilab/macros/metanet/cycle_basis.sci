@@ -28,27 +28,27 @@ ta1(t)=[];he1(t)=[];
 if (ta1 == []) then
   error('No cycle in the graph')
 end 
-bac=[];dir=[];
+bac=[];Dir=[];
 spc=sparse([],[],[nu m]);
 t=[0 t];
 for i=1:nu,
   cycle=[];
   i1=ta1(i);i2=he1(i);
-  bac=[];dir=full(spt(i1,i2));
+  bac=[];Dir=full(spt(i1,i2));
   while ((i1)<>1)
     iedge=t(i1);
     bac=[iedge bac];i1=ta(iedge)+he(iedge)-i1;
   end
   while ((i2)<>1)
     iedge=t(i2);
-    dir=[iedge dir];i2=ta(iedge)+he(iedge)-i2;
+    Dir=[iedge Dir];i2=ta(iedge)+he(iedge)-i2;
   end
-  itron=[];jmax=min(size(bac,2),size(dir,2));
+  itron=[];jmax=min(size(bac,2),size(Dir,2));
   for j=1:jmax,
-    if(bac(j)==dir(j)), itron=[itron j];end;
+    if(bac(j)==Dir(j)), itron=[itron j];end;
   end;
-  bac(itron)=[];dir(itron)=[];
-  cycle=[dir bac($:-1:1)];
+  bac(itron)=[];Dir(itron)=[];
+  cycle=[Dir bac($:-1:1)];
   ncy=size(cycle,2);
   spc(i,1:ncy)=cycle;
 end

@@ -1,25 +1,25 @@
-function dir = get_absolute_file_path(name)
+function path = get_absolute_file_path(name)
 //-------------------------------
 // returns loader full path
-dir ="";
+path ="";
 if ~MSDOS then	sep = '/'; else sep = '\' ;end
 [units,typs,nams]=file();
 clear units typs
 for k=size(nams,'*'):-1:1
   l=strindex(nams(k),name);
   if l<>[] then
-    dir= part(nams(k),1:l($)-1);
+    path= part(nams(k),1:l($)-1);
     break
   end
 end
 
 if ~MSDOS then
-  if part(dir,1)<>'/' then 
-    dir=getcwd()+sep+dir
+  if part(path,1)<>'/' then 
+    path=getcwd()+sep+path
   end
 else 
-  if part(dir,2)<>':' then 
-    dir=getcwd()+sep+dir
+  if part(path,2)<>':' then 
+    path=getcwd()+sep+path
   end
 end
 endfunction

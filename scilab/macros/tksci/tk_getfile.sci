@@ -1,14 +1,14 @@
-function p=tk_getfile(file_mask,dir,title,foo)
+function p=tk_getfile(file_mask,path,title,foo)
   if ~with_tk() then error('Tcl/Tk interface not defined'),end
   arg=''
   if exists('file_mask','local')==1 then 
     TK_SetVar("ftypes",'{""Requested Extensions"" {'+file_mask+'} }')
     arg=arg+' -filetypes $ftypes',
   end
-  if exists('dir','local')==1 then 
-    dir=pathconvert(dir,%f,%t)
-    if strindex(dir,' ')<>[] then dir='""'+dir+'""',end
-    arg=arg+' -initialdir  ""'+dir+'""',
+  if exists('path','local')==1 then 
+    path=pathconvert(path,%f,%t)
+    if strindex(path,' ')<>[] then path='""'+path+'""',end
+    arg=arg+' -initialdir  ""'+path +'""',
   end
   if exists('title','local')==1 then 
     arg=arg+' -title ""'+title+'""',

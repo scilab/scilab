@@ -8,13 +8,13 @@ function ge_do_settings()
   default_edge_width=EGdata.GraphList.default_edge_width
   default_edge_hi_width=EGdata.GraphList.default_edge_hi_width
   default_font_size=EGdata.GraphList.default_font_size
-  if EGdata.GraphList.directed==0 then dir='no',else dir='yes',end
+  if EGdata.GraphList.directed==0 then directed='no',else directed='yes',end
   while %t 
-    [ok,default_node_diam,default_node_border,default_edge_width,default_font_size,dir]=getvalue('Default parameters',..
+    [ok,default_node_diam,default_node_border,default_edge_width,default_font_size,directed]=getvalue('Default parameters',..
 						  ['Default Node diameter','Default Border node width',..
 		    'Default Edge width','Default font size','Is graph directed (yes/no)'],..
 		    list('vec',1,'vec',1,'vec',1,'vec',1,'str',-1),..
-		    [string([default_node_diam,default_node_border,default_edge_width,default_font_size]),dir])
+		    [string([default_node_diam,default_node_border,default_edge_width,default_font_size]),directed])
     if ~ok then return,end
     mess=[]
     if default_node_diam <0 then 
@@ -29,8 +29,8 @@ function ge_do_settings()
     if default_font_size <0 then 
       mess=[mess;'Default font size must be positive']
     end
-    dir=convstr(stripblanks(dir))
-    if and(dir<>['yes','no']) then
+    directed=convstr(stripblanks(directed))
+    if and(directed<>['yes','no']) then
        mess=[mess;'The answer for ""Is graph directed"" must be ""yes"" or ""no""']
     end
     if mess<>[] then
@@ -43,7 +43,7 @@ function ge_do_settings()
   EGdata.GraphList.default_node_border = default_node_border
   EGdata.GraphList.default_edge_width =default_edge_width 
   EGdata.GraphList.default_font_size = default_font_size 
-  EGdata.GraphList.directed=find(dir==['no','yes'])-1
+  EGdata.GraphList.directed=find(directed==['no','yes'])-1
   execstr('EGdata_'+w+'=EGdata')
   GraphList=EGdata.GraphList
   xbasc()
