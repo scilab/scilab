@@ -14,7 +14,7 @@ HTMLFLAGS=@HTMLFLAGS@
 # are only usefull for gtk version < 2.3.5 
 # to correct a gtk bug (see configure.in) 
 
-OBJSC =	click.o  io.o \
+OBJSC =	io.o \
 	menus.o  x_main.o \
 	about.o queue.o helpbrowser.o  @ZZLEDT@  @GTKPLUGBUG@
 
@@ -56,11 +56,6 @@ distclean::
 
 # generated with gcc -MMD 
 about.o: about.c 
-
-click.o: click.c ../sun/men_Sutils.h ../machine.h ../menusX/men_scilab.h \
-  ../graphics/Math.h ../graphics/Graphics.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h All-extern.h
 
 command.o: command.c ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h All-extern.h ../sun/Sun.h
