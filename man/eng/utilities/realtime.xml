@@ -9,9 +9,8 @@
   <SHORT_DESCRIPTION name="realtime(t)">set  dates origin or waits until date   </SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>realtimeinit(time_unit)
-  <CALLING_SEQUENCE_ITEM>realtime(t)
-  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>realtimeinit(time_unit)</CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>realtime(t)  </CALLING_SEQUENCE_ITEM>
 
   </CALLING_SEQUENCE>
 

@@ -287,7 +287,7 @@ ode("stiff",[0;1],0,1,f,Jacobian)
 
  <AUTHORS>
 <AUTHORS_ITEM label='Alan C. Hindmarsh'>,  mathematics and statistics division, l-316
-                      livermore, ca 94550.19
+                      livermore, ca 94550.19</AUTHORS_ITEM>
 </AUTHORS>
 <BIBLIO>
 Alan C. Hindmarsh,  lsode and lsodi, two new initial value
