@@ -1,4 +1,4 @@
-function xmltohtml(dirs,titles,xsl)
+function xmltohtml(dirs,titles,xsl,step)
 //-------------------------------------
 // dirs is a set of directories 
 // for which html manuals are to be generated 
@@ -23,7 +23,8 @@ function xmltohtml(dirs,titles,xsl)
   
   [lhs,rhs]=argn(0) 
   
-  if rhs > 3 then error(39),return; end
+  if rhs > 4 then error(39),return; end
+  if rhs <= 3 then step='all';end 
   if rhs <= 2 then xsl= 'html-jpc.xsl'; end 
   if rhs <= 1 then titles= H + emptystr(dirs);end 
   if rhs <= 0 then dirs = man_dirs ;end 
@@ -35,68 +36,79 @@ function xmltohtml(dirs,titles,xsl)
   
   // first build all the whatis 
   // ---------------------------
-  for k=1:size(dirs,'*');
-    mprintf('Creating whatis.htm in %s\n",dirs(k));
-    chdir(dirs(k));
-    if titles(k) == H then 
-      titles(k) = titles(k)+' ('+dirs(k)+')';
+  if step=='all' | step == 'whatis' then 
+    for k=1:size(dirs,'*');
+      mprintf('Creating whatis.htm in %s\n",dirs(k));
+      chdir(dirs(k));
+      if titles(k) == H then 
+	titles(k) = titles(k)+' ('+dirs(k)+')';
+      end
+      gener_whatis(titles(k))
+      chdir('../')
     end
-    gener_whatis(titles(k))
-    chdir('../')
   end
   
-  
-  // then perform the make-links 
-  // and html generation
- 	 
-  // sabcmd does not like c:/.. path 
-  xslprefix="";
-  if MSDOS then  xslprefix= "file://" ; end
+  // the perform the make-links 
+  // and html generation 
+  if step=='all' | step == 'html' then 
 
-  for k=1:size(dirs,'*');
-    mprintf('Processing chapter %s\n",dirs(k));
-    chdir(dirs(k));
-    rep=gener_links();
-    if rep then 
-      // if rep is %t then new xml2 files have been 
-      // generated
-      xml2 = listfiles('*.xml2');
-      if xml2 <> "" then 
-	for k1=1:size(xml2,'*')  // loop on .xml2 files 
-	  fb=basename(xml2(k1))
-	  mprintf('Processing file %s.xml\n",fb);
-	  xslpath=xslprefix+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
-	  //write(%io(2),'sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
-	  unix_s('sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
+    // sabcmd does not like c:/.. path 
+    xslprefix="";
+    if MSDOS then  xslprefix= "file://" ; end
+    
+    for k=1:size(dirs,'*');
+      mprintf('Processing chapter %s\n",dirs(k));
+      chdir(dirs(k));
+      rep=gener_links();
+      if rep then 
+	// if rep is %t then new xml2 files have been 
+	// generated
+	xml2 = listfiles('*.xml2');
+	if xml2 <> "" then 
+	  for k1=1:size(xml2,'*')  // loop on .xml2 files 
+	    fb=basename(xml2(k1))
+	    mprintf('  Processing file %s.xml\n",fb);
+	    xslpath=xslprefix+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
+	    //write(%io(2),'sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
+	    unix_s('sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
+	  end
+	end
+	if MSDOS then 
+	  unix_s('del *.xml2')
+	else
+	   unix_s('rm -f *.xml2')
 	end
       end
-      if MSDOS then 
-	unix_s('del *.xml2')
-      else
-	 unix_s('rm -f *.xml2')
-      end
+      chdir('../')
     end
-    chdir('../')
   end
     
   // now the index 
-  mprintf('Creating index.htm \n");
-  if rhs <= 0 then 
-    gener_index() 
-  else
-     gener_index(dirs,titles)
+  if step=='all' | step == 'index' then 
+    mprintf('Creating index.htm \n");
+    if rhs <= 0 then 
+      gener_index() 
+    else
+       gener_index(dirs,titles)
+    end
   end
+  
   // now the contents 
-  mprintf('Creating contents.htm  \n");
-  if rhs <= 0 then 
-    gener_contents() 
-  else
-     gener_contents(dirs)
+  if step=='all' | step == 'contents' then 
+    mprintf('Creating contents.htm  \n");
+    if rhs <= 0 then 
+      gener_contents() 
+    else
+       gener_contents(dirs)
+    end
   end
+  
 
   // now help workshop 
-  mprintf('Creating sciman.hh* \n");
-  gener_hh(dirs,titles)
+  if step=='all' | step == 'hw' then 
+    mprintf('Creating sciman.hh* \n");
+    gener_hh(dirs,titles)
+  end
 
 endfunction
 
@@ -201,7 +213,7 @@ function flag = gener_links()
   xml = listfiles('*.xml');
   for k1=1:size(xml,'*')  // loop on .xml files
     path=xml(k1)
-    write(%io(2),path)
+    //write(%io(2),path)
     if newest(path,strsubst(path,".xml",".htm"))==1 then
       flag1= find_links(path,path+"2")
       flag = flag1 | flag
