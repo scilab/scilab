@@ -30,9 +30,10 @@ function cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv)
 // define some constants
 // Copyright INRIA
  show_trace=%f
-[state,sim,funs]=scicos_cpass2(bllst,connectmat,clkconnect,corinv);
+if exists('%scicos_solver')==0 then %scicos_solver=0,end
+[state,sim,funs,%scicos_solver]=scicos_cpass2(bllst,connectmat,clkconnect,corinv,%scicos_solver);
 if show_trace then disp('c_pass2:'+string(timer())),end
- 
+
 sim.funs=funs;
 
 for i=1:sim.nb

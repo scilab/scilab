@@ -102,7 +102,8 @@ for hh=1:length(bllst)
   end
   if ok then return, end
 end
-message('Not enough information to determine port sizes');  
+message(['Not enough information to determine port sizes';
+	 'Compile the diagram before running.']);  
 ok=%f
 
 endfunction

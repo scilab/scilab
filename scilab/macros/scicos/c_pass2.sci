@@ -826,7 +826,11 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   for j=unco
     m=maxi(find(outptr<=j))
     n=j-outptr(m)+1
-    siz_unco=maxi(siz_unco,bllst(m).out(n))
+    nm=bllst(m).out(n)
+    if nm<1 then 
+      pause
+      under_connection(corinv(m),n,nm,-1,0,0),ok=%f,return,end
+    siz_unco=maxi(siz_unco,nm)
   end
   lnkptr=[lnkptr;lnkptr($)+siz_unco]
   outlnk(unco)=maxi(outlnk)+1
@@ -1024,8 +1028,26 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 				 corinv(connectmat(jj,3)),connectmat(jj,4),nin)
 	if ninnout==[] then ok=%f;return;end
 	if ninnout<=0  then ok=%f;return;end
-	bllst(connectmat(jj,1)).out(connectmat(jj,2))=ninnout
-	bllst(connectmat(jj,3)).in(connectmat(jj,4))=ninnout
+	ww=find(bllst(connectmat(jj,1)).out==nout)
+	bllst(connectmat(jj,1)).out(ww)=ninnout
+	
+	ww=find(bllst(connectmat(jj,1)).in==nout)
+	bllst(connectmat(jj,1)).in(ww)=ninnout
+	
+	ww=find(bllst(connectmat(jj,1)).in==0)
+	if (ww<>[]&mini(bllst(connectmat(jj,1)).out(:))>0) then 
+	  bllst(connectmat(jj,1)).in(ww)=sum(bllst(connectmat(jj,1)).out)
+	end
+	ww=find(bllst(connectmat(jj,3)).in==nin)
+	bllst(connectmat(jj,3)).in(ww)=ninnout
+	ww=find(bllst(connectmat(jj,3)).out==nin)
+	bllst(connectmat(jj,3)).out(ww)=ninnout
+	ww=find(bllst(connectmat(jj,3)).out==0)
+	if (ww<>[]&mini(bllst(connectmat(jj,3)).in(:))>0) then
+	  bllst(connectmat(jj,3)).out(ww)=sum(bllst(connectmat(jj,3)).in(:))
+	end
+	//bllst(connectmat(jj,1)).out(connectmat(jj,2))=ninnout
+	//bllst(connectmat(jj,3)).in(connectmat(jj,4))=ninnout
       end
     end
     if ~findflag then 
@@ -1042,6 +1064,15 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
 // path_out : Path of the "from block" in scs_m
 // path_in  : Path of the "to block" in scs_m
 //!
+  if path_in==-1 then
+    hilite_obj(scs_m.objs(path_out));
+    message(['One of this block''s outputs has negative size';
+		    'Please check.'])
+    hilite_obj(scs_m.objs(path_out));
+    ninnout=0
+    return
+  end
+    
   lp=mini(size(path_out,'*'),size(path_in,'*'))
   k=find(path_out(1:lp)<>path_in(1:lp))
   path=path_out(1:k(1)-1) // common superbloc path

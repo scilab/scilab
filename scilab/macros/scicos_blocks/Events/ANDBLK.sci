@@ -33,7 +33,7 @@ case 'define' then
     output_port.graphics.sz=[20,20]
     output_port.graphics.flip=%t
     output_port.graphics.exprs='1'
-    output_port.graphics.pein=5
+    output_port.graphics.pein=8
     output_port.model.ipar=1
     
   input_port2=CLKIN_f('define')
@@ -41,7 +41,7 @@ case 'define' then
     input_port2.graphics.sz=[20,20]
     input_port2.graphics.flip=%t
     input_port2.graphics.exprs='2'
-    input_port2.graphics.peout=4 
+    input_port2.graphics.peout=6 
     input_port2.model.ipar=2
     
   ifthel=IFTHEL_f('define')
