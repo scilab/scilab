@@ -671,7 +671,7 @@ int C2F(intehm)()
       ier = create_index_vector(i, dec+i, &mn, H.dims[i-1], &ind_max);
       if ( ier == 0  ||  ind_max > H.dims[i-1] )
 	{
-	  Scierror(999,"bad (%d th) index in hypermat extraction "); return 0;
+	  Scierror(999,"bad (%d th) index in hypermat extraction ",i); return 0;
 	}
       if ( mn == 0 )   /* the vector index is [] => we return an empty matrix */
 	{
