@@ -365,6 +365,7 @@ function ged_axes(h)
   TK_SetVar("boxToggle",h.box)
   TK_SetVar("xToggle",part(h.log_flags,1))
   TK_SetVar("yToggle",part(h.log_flags,2))
+  TK_SetVar("zToggle",part(h.log_flags,3))
   TK_SetVar("xGrid",string(h.grid(1)))
   TK_SetVar("yGrid",string(h.grid(2)))
 
@@ -1252,20 +1253,42 @@ endfunction
 function LogtoggleX( tog)
  global ged_handle; h=ged_handle
 
-tst=execstr("global h;h.log_flags=tog+part(h.log_flags,2)",'errcatch','n');
+ h.log_flags=tog+part(h.log_flags,2);
 
-if tst<>0 then
-   disp 'Warning: X bounds must be strictly positive'
-end
+
+//tst=execstr("global h;h.log_flags=tog+part(h.log_flags,2)",'errcatch','n');
+
+//if tst<>0 then
+//   disp 'Warning: X bounds must be strictly positive'
+//end
 endfunction
 
 function LogtoggleY( tog)
  global ged_handle; h=ged_handle
-tst=execstr("global h;h.log_flags=part(h.log_flags,1)+tog",'errcatch','n');
 
-if tst<>0 then
-   disp 'Warning: Y bounds must be strictly positive'
-end
+ h.log_flags=part(h.log_flags,1)+tog;
+
+
+//tst=execstr("global h;h.log_flags=part(h.log_flags,1)+tog",'errcatch','n');
+
+//if tst<>0 then
+//   disp 'Warning: Y bounds must be strictly positive'
+//end
+
+endfunction
+
+
+function LogtoggleZ( tog)
+ global ged_handle; h=ged_handle
+
+ h.log_flags=part(h.log_flags,1)+part(h.log_flags,2)+tog;
+
+
+//tst=execstr("global h;h.log_flags=part(h.log_flags,1)+tog",'errcatch','n');
+
+//if tst<>0 then
+//   disp 'Warning: Z bounds must be strictly positive'
+//end
 
 endfunction
 
