@@ -64,11 +64,11 @@ void scig_replay(integer win_num)
   C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","pixmap",&verb,&pix,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 
-  #if defined(WIN32) || defined(WITH_GTK)
-	backing = 0;
-  #else
-	backing = WithBackingStore();
-  #endif
+#if defined(WIN32) || defined(WITH_GTK)
+  backing = 0;
+#else
+  backing = WithBackingStore();
+#endif
   if (backing) 
     {
       C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
@@ -76,20 +76,20 @@ void scig_replay(integer win_num)
   else 
     {
       if (pix == 0) 
-		{
-			if ( (GetDriver()) != 'R') C2F(SetDriver)("Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-			C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-			if (version_flag() == 0) /* NG */
-			{
-				sciRedrawF(&win_num); /* NG */
-				C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
-			}
-			else C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		}
+	{
+	  if ( (GetDriver()) != 'R') C2F(SetDriver)("Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+	  C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+	  if (version_flag() == 0)
+	    {
+	      sciRedrawFigure();
+	      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+	    }
+	  else C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	}
       else
-		{
-			C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
-		}
+	{
+	  C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+	}
     }
 
   C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -134,13 +134,12 @@ void scig_expose(integer win_num)
 	  if ( (GetDriver()) != 'R') 
 	    C2F(SetDriver)("Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 	  C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-	  if (version_flag() == 0) /* NG */
+	  if (version_flag() == 0)
 	    {
-	      sciRedrawF(&win_num); /* NG */
+	      sciRedrawFigure();
 	      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
 	    }
-	  else /* NG */  
-	    /* XXXX scig_handler(win_num); */
+	  else 
 	    C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
       else
@@ -176,15 +175,14 @@ void scig_resize(integer win_num)
 #else
   backing = WithBackingStore();
 #endif
-  /* XXXX scig_handler(win_num); */
-  if (version_flag() == 0) /* NG */
-    {
-      sciRedrawF(&win_num); /* NG */
+  if (version_flag() == 0) {
+      sciRedrawFigure();
       if (pix==1) C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
       if (backing && pix!=1 ) C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
     }
-  else /* NG */  
+  else 
     C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
   C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   scig_buzy = 0;
