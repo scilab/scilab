@@ -27,7 +27,7 @@
   <PARAM_ITEM>
   <PARAM_NAME>winsize  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : row vector defining the size of Editgraph window
+    : row vector defining the size of edit_graph window
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
@@ -46,21 +46,21 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    <VERB>show_graph</VERB> displays the graph <VERB>g</VERB> in the current Editgraph window. 
-    If there is no current Editgraph window, a Editgraph window is created.
-    The return value <VERB>nw</VERB> is the number of the Editgraph window where
+    <VERB>show_graph</VERB> displays the graph <VERB>g</VERB> in the current edit_graph window. 
+    If there is no current edit_graph window, a edit_graph window is created.
+    The return value <VERB>nw</VERB> is the number of the edit_graph window where
     the graph is displayed.
   </P>
   <P>
     If the optional argument <VERB>smode</VERB> is equal to the string &apos;rep&apos; or is not
-    given and if there is already a graph displayed in the current Editgraph window,
+    given and if there is already a graph displayed in the current edit_graph window,
     the new graph is displayed instead.
   </P>
   <P>
     If the optional argument <VERB>smode</VERB> is equal to the string &apos;new&apos;, a new 
-    Editgraph window is created. In this case, if the optional argument 
+    edit_graph window is created. In this case, if the optional argument 
     <VERB>winsize</VERB> is given as a row vector <VERB>[width height]</VERB>, it is 
-    the size in pixels of Editgraph window. The default is <VERB>[600,400]</VERB>.
+    the size in pixels of edit_graph window. The default is <VERB>[600,400]</VERB>.
   </P>
   <P>
     The optional argument <VERB>scale</VERB> is the value of the scale factor when 
@@ -79,7 +79,7 @@ show_graph(g,0.5);
 show_graph(g,1);
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>editgraph</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>edit_graph</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>netwindow</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>netwindows</LINK> </SEE_ALSO_ITEM>
 

@@ -2,15 +2,15 @@
 <!DOCTYPE MAN SYSTEM "../../man.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>editgraph</TITLE>
+  <TITLE>edit_graph_menus</TITLE>
   <TYPE>Description  </TYPE>
   <DATE>2002  </DATE>
-  <SHORT_DESCRIPTION name="editgraph_menus"> editgraph menus description </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="edit_graph_menus"> edit_graph menus description </SHORT_DESCRIPTION>
  
 
   <DESCRIPTION>
   
-  The editgraph editor  supports the following menus: <P></P>
+  The edit_graph editor  supports the following menus: <P></P>
   <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM label='Graph/New: '><P></P>
     This menu erases the currently edited network. 
@@ -58,7 +58,7 @@
     add a node just click on its desired position. This edition mode
     can also be entered pressing the "n" key while locator is in the
     edition window (Under windows, the edition window should also have
-    the focus). It is the current editing mode when editgraph is
+    the focus). It is the current editing mode when edit_graph is
     started. This mode remains active until an other edition mode
     is selected.
     <P></P>
@@ -103,19 +103,19 @@
 
     <DESCRIPTION_ITEM label='Edit/Copy Region To ClipBoard: '><P></P>
     This menu set the current edition mode to "copy region to
-    clipboard mode". To copy a rectangular region into the editgraph
+    clipboard mode". To copy a rectangular region into the edit_graph
     clipboard just click left on a rectangle corner, drag rectangle to
     the desired area, click left to validate the area (click on right
     button cancels copy) .
     <P></P>
-    The editgraph clipboard is shared by all editgraph editors.
+    The edit_graph clipboard is shared by all edit_graph editors.
      <P></P>
     This mode remains active until an other edition mode is selected.
     </DESCRIPTION_ITEM>
 
     <DESCRIPTION_ITEM label='Edit/Paste: '><P></P>
     This menu set the current edition mode to "paste from clipboard mode" to
-    clipboard mode". To paste clipboard into the editgraph editor
+    clipboard mode". To paste clipboard into the edit_graph editor
      click left to select the editor window, drag rectangle to
     the desired area, click left to validate the position (click on right
     button cancels copy) .
@@ -173,7 +173,7 @@
   </DESCRIPTION>
 
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>editgraph</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>edit_graph</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
 
