@@ -23,6 +23,7 @@ package require combobox 2.3
 catch {namespace import combobox::*}
 
 global  curvis red green blue color filToggle curlinestyle curmarkstyle curmarkmode
+global curmarkmode curlinemode curmarksize curmarksizeunit curmarkforeground curmarkbackground
 
 global SELOBJECT
 global ged_handle_list_size
@@ -144,19 +145,32 @@ pack $w.frame.linemode   -in $w.frame.linelinemode   -side left  -fill x -pady 2
 frame $w.frame.rectst  -borderwidth 0
 pack $w.frame.rectst  -in $w.frame  -side top  -fill x
 
-label $w.frame.stylelabel  -height 0 -text " Line style:   " -width 0 
+label $w.frame.stylelabel  -height 0 -text "          Line:    " -width 0 
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 3 \
+    -width 20 \
     -textvariable curlinestyle \
     -editable false \
     -command [list SelectLineStyle ]
 eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]
-pack $w.frame.stylelabel -in $w.frame.rectst   -side left
-pack $w.frame.style   -in $w.frame.rectst   -expand 1 -fill x -pady 2m -padx 2m
 
+#Add thickness here
+combobox $w.frame.thickness \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curthick \
+    -editable true \
+    -command [list SelectThickness ]
+eval $w.frame.thickness list insert end [list "0.5" "1.0" "2.0" "3.0" "4.0" "6.0" "8.0" "10.0" "15.0" "20.0" "25.0" "30.0"]
+
+
+pack $w.frame.stylelabel -in $w.frame.rectst   -side left
+pack $w.frame.style   -in $w.frame.rectst   -side left
+pack $w.frame.thickness  -in $w.frame.rectst  -expand 1 -fill x -pady 2m -padx 2m
 
 #Color scale
 frame $w.frame.clrf  -borderwidth 0
@@ -170,17 +184,6 @@ scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
 pack $w.frame.colorlabel -in $w.frame.clrf -side left
 pack $w.frame.color -in  $w.frame.clrf -side left  -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.color set $curcolor
-
-
-#Thickness scale
-frame $w.frame.thk  -borderwidth 0
-pack $w.frame.thk  -side top -fill x
-label $w.frame.scalelabel -height 0 -text "  Thickness: " -width 0 
-scale $w.frame.thickness -orient horizontal -from 1 -to 20 \
-	 -resolution 1.0 -command "setThickness $w.frame.thickness" -tickinterval 0
-pack $w.frame.scalelabel -in $w.frame.thk -side left 
-pack $w.frame.thickness  -in $w.frame.thk  -side left -expand 1 -fill x -pady 2m -padx 2m
-$w.frame.thickness set $curthick
 
 
 #filled
@@ -232,12 +235,32 @@ pack $w.frame.markstyle   -in $w.frame.rectmarkst  -expand 1 -fill x -pady 2m -p
 frame $w.frame.mksize  -borderwidth 0
 pack $w.frame.mksize  -side top -fill x
 
-label $w.frame.marksizelabel -height 0 -text "   Mark size:  " -width 0 
-scale $w.frame.marksize -orient horizontal -length 284 -from 0 -to 20 \
-	 -resolution 1.0 -command "setMarkSize $w.frame.marksize" -tickinterval 0
-pack $w.frame.marksizelabel -in $w.frame.mksize -side left 
-pack $w.frame.marksize  -in $w.frame.mksize  -expand 1 -fill x -pady 2m -padx 2m
-$w.frame.marksize set $curmarksize
+combobox $w.frame.marksize \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curmarksize \
+    -editable true \
+    -command [list SelectMarkSize ]
+eval $w.frame.marksize list insert end [list "0.5" "1.0" "2.0" "3.0" "4.0" "6.0" "8.0" "10.0" "15.0" "20.0" "25.0" "30.0"]
+
+
+#Add Mark size unit
+label $w.frame.marksizeunitlabel  -height 0 -text "   Mark size:   " -width 0
+combobox $w.frame.marksizeunit \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 20 \
+    -textvariable curmarksizeunit \
+    -editable false \
+    -command [list SelectMarkSizeUnit ]
+eval $w.frame.marksizeunit list insert end [list "point" "tabulated"]
+
+pack  $w.frame.marksizeunitlabel -in $w.frame.mksize -side left
+pack  $w.frame.marksizeunit -in $w.frame.mksize -side left
+pack  $w.frame.marksize -in $w.frame.mksize -side left  -fill x  -expand 1 -pady 2m -padx 2m
 
 
 #Mark foreground
@@ -718,4 +741,23 @@ ScilabEval "global ged_handle;ged_handle.mark_mode='$curmarkmode'"
 proc toggleLinemode {} {
 global curlinemode
 ScilabEval "global ged_handle;ged_handle.line_mode='$curlinemode'"
+}
+
+
+proc SelectMarkSizeUnit {w args} {
+    global curmarksizeunit
+    ScilabEval "global ged_handle;ged_handle.mark_size_unit='$curmarksizeunit'"
+}
+
+
+
+proc SelectMarkSize {w args} {
+    global curmarksize
+    ScilabEval "global ged_handle;ged_handle.mark_size=$curmarksize"
+}
+
+
+proc SelectThickness {w args} {
+    global curthick
+    ScilabEval "global ged_handle;ged_handle.thickness=$curthick;"
 }
