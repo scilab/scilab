@@ -67,6 +67,7 @@ case 'set' then
       arg1.model=model
       graphics.exprs=label
       arg1.graphics=graphics
+      x=arg1
       break
     end
   end
