@@ -77,7 +77,7 @@ else
       if not_empty(A) then
 	tree=Operation("<>",list(A,Cste(0)),tree.lhs)
 	tree.out(1).dims=A.dims
-	tree.lhs(1).type=Type(Boolean,Real)
+	tree.out(1).type=Type(Boolean,Real)
       else
 	tree.name="mtlb_any"
 	tree.lhs(1).dims=A.dims
