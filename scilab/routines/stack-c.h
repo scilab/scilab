@@ -145,6 +145,8 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 					     { return 0;} 
 #define CreateRefFromName(n,nx) if(! C2F(createreffromname)(n,nx)){return 0;}
 
+#define CreateRef(num, point) if(! C2F(createref)(num,point)){return 0;}
+
 #define FreePtr(lx) C2F(freeptr)((double **) lx)
 
 #define FreeRhsSVar(S) { c_local =0; while ( S[c_local] != 0) { FREE(S[c_local]);c_local++;}; FREE(S)} 
@@ -336,6 +338,8 @@ extern void C2F(freeptr) __PARAMS((double *ip[]));
 extern void *GetData __PARAMS((int lw));
 
 extern void *GetRawData __PARAMS((int lw));
+
+extern void *GetDataFromName __PARAMS(( char *name));
 
 #endif /*  STACK_SCI  */
 

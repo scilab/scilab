@@ -3125,6 +3125,21 @@ void *GetRawData(lw)
   return loci;
 }
 
+void *GetDataFromName( char *name )
+     /* usage:  header = (int *) GetDataFromName("pipo"); header[0] = type of variable pipo etc... */
+{
+  void *header; int lw; int fin;
+ if (C2F(objptr)(name,&lw,&fin,strlen(name))) {
+    header = istk( iadr(*lstk(fin)));  
+    return (void *) header;
+  }
+ else
+    {  
+      Scierror(999,"GetDataFromName: variable %s not found\r\n",name);
+      return (void *) 0;
+    }
+}
+
 int C2F(createref)(number, pointed)
      int number; int pointed;
 /* variable number is created as a reference to variable pointed */
