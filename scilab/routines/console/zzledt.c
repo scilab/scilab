@@ -1029,12 +1029,13 @@ static void disable_keypad_mode(){}
 
 void HomeFunction(void)
 {
-  sciprint("\nNot yet implemented. \n");
+  XHomeFunction(); /* In SCI/routines/xsci/x_util.c */
+  return;
 }
 
 int ClearScreenConsole(char *fname)
 {
-  sciprint("\nNot yet implemented. \n");
+  return XClearScreenConsole(fname); /* In SCI/routines/xsci/x_util.c */
 }
 
 int ShowWindowFunction _PARAMS((char *fname))
