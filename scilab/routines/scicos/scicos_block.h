@@ -29,6 +29,7 @@ typedef struct {
   int ztyp;
   int *jroot;
   char *label;
+  int mode;
   void **work;
 } scicos_block;
 

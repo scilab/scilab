@@ -6,7 +6,6 @@
 #include "scicos.h"
 #include "import.h"
 #include "blocks.h"
-/*#include "scicos_block.h"*/
 
 
 #ifdef FORDLL 
@@ -1362,16 +1361,14 @@ int C2F(scicos)
 	/*     .     update outputs of 'c' type blocks with no continuous state */
 	if (*told >= *tf) {
 	  /*     .     we are at the end, update continuous part before leaving */
-	  if (ncord > 0) {
-	    cdoit(told);
-	    free(rhot);
-	    free(ihot);
-	    free(jroot);
-	    free(mask);
-	    free(zcros);
-	    free(W);
-	    return;
-	  }
+	  cdoit(told);
+	  free(rhot);
+	  free(ihot);
+	  free(jroot);
+	  free(mask);
+	  free(zcros);
+	  free(W);
+	  return;
 	}
       } else {
 
@@ -1437,45 +1434,46 @@ int C2F(scicos)
 	      }else{
 		mask[ib] = 1;
 	      }
-	      info[0] = hot;
-
-	      d__1 = *told + ttol/2;
-	      if (C2F(cosdebug).cosd >= 1) {
-		sciprint("****daskr from: %f to %f hot= %d\r\n", *told, d__1,hot);
-	      }
-	      phase=2;
-
-	      /*     initial t,y,yprime are not assumed to be consistent */
-	      info[10] = 1;
-
-	      C2F(ddaskr)(C2F(simblkdassl), neq, told, x, xd
-			  , &d__1, info, &rtol, &Atol, &
-			  istate, &rhot[1], &nrwp, &ihot[1], &
-			  niwp, rpardummy, ipardummy, &jdum, rpardummy
-			  , C2F(grblkdassl), &ng, jroot);
-	      phase=1;
-	      if (*ierr > 5) {
-		/*     !           singularity in block */
-		free(rhot);
-		free(ihot);
-		free(jroot);
-		free(mask);
-		free(zcros);
-		free(W);
-		return;
-	      }
-	      if (istate <= 0) {
-		/*     !           integration problem */
-		*ierr = 100 - istate;
-		free(rhot);
-		free(ihot);
-		free(jroot);
-		free(mask);
-		free(zcros);
-		free(W);
-		return;
-	      }
 	    }
+	    info[0] = hot;
+	    
+	    d__1 = *told + ttol/2;
+	    if (C2F(cosdebug).cosd >= 1) {
+	      sciprint("****daskr from: %f to %f hot= %d\r\n", *told, d__1,hot);
+	      }
+	    phase=2;
+	    
+	    /*     initial t,y,yprime are not assumed to be consistent */
+	    info[10] = 1;
+	    
+	    C2F(ddaskr)(C2F(simblkdassl), neq, told, x, xd
+			, &d__1, info, &rtol, &Atol, &
+			istate, &rhot[1], &nrwp, &ihot[1], &
+			niwp, rpardummy, ipardummy, &jdum, rpardummy
+			, C2F(grblkdassl), &ng, jroot);
+	    phase=1;
+	    if (*ierr > 5) {
+	      /*     !           singularity in block */
+	      free(rhot);
+	      free(ihot);
+	      free(jroot);
+	      free(mask);
+	      free(zcros);
+	      free(W);
+	      return;
+	    }
+	    if (istate <= 0) {
+	      /*     !           integration problem */
+	      *ierr = 100 - istate;
+	      free(rhot);
+	      free(ihot);
+	      free(jroot);
+	      free(mask);
+	      free(zcros);
+	      free(W);
+	      return;
+	    }
+	    
 	    if(istate == 5) {
 	      goto L50;
 	    }
@@ -1559,16 +1557,14 @@ int C2F(scicos)
 	
 	/*     .     update outputs of 'c' type  blocks if we are at the end*/
 	if (*told >= *tf) {
-	  if (ncord > 0) {
-	    cdoit(told);
-	    free(rhot);
-	    free(ihot);
-	    free(jroot);
-	    free(mask);
-	    free(zcros);
-	    free(W);
-	    return;
-	  }
+	  cdoit(told);
+	  free(rhot);
+	  free(ihot);
+	  free(jroot);
+	  free(mask);
+	  free(zcros);
+	  free(W);
+	  return;
 	}
 	if (istate == 5) {
 	L50:
@@ -2070,18 +2066,28 @@ int C2F(scicos)
 
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
-
 	if (funtyp[C2F(curblk).kfun] == -1) {
-	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
-	  } else {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
-	  }
+	  /*if (phase==1){
+	    if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
+	      Blocks[C2F(curblk).kfun - 1].mode = 2;
+	    } else {
+	      Blocks[C2F(curblk).kfun - 1].mode = 1;
+	    }
+	    }*/
+	  Blocks[C2F(curblk).kfun - 1].nevout=
+	    Blocks[C2F(curblk).kfun - 1].mode;
+	  
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  Blocks[C2F(curblk).kfun - 1].nevout= 
-	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-		    Blocks[C2F(curblk).kfun - 1].nevout),1);
+	  /*if (phase==1){
+	    Blocks[C2F(curblk).kfun - 1].mode= 
+	      max(min((integer) 
+		      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		      Blocks[C2F(curblk).kfun - 1].nevout),1);
+		      }*/
+	  Blocks[C2F(curblk).kfun - 1].nevout=
+	    Blocks[C2F(curblk).kfun - 1].mode;
 	}
+	
 	++urg;
 	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
@@ -2171,18 +2177,30 @@ int C2F(scicos)
     /*     .     Initialize tvec */
     
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
+
       if (funtyp[C2F(curblk).kfun] < 0) {
 
 	if (funtyp[C2F(curblk).kfun] == -1) {
-	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
-	  } else {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
+	  if (phase==1){
+	    if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
+	      Blocks[C2F(curblk).kfun - 1].nevout = 2;
+	    } else {
+	      Blocks[C2F(curblk).kfun - 1].nevout = 1;
+	    }
+	  }else{
+	    Blocks[C2F(curblk).kfun - 1].nevout=
+	      Blocks[C2F(curblk).kfun - 1].mode;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  Blocks[C2F(curblk).kfun - 1].nevout= 
-	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-		    Blocks[C2F(curblk).kfun - 1].nevout),1);
+	  if (phase==1){
+	    Blocks[C2F(curblk).kfun - 1].nevout= 
+	      max(min((integer) 
+		      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		      Blocks[C2F(curblk).kfun - 1].nevout),1);
+	  }else{
+	    Blocks[C2F(curblk).kfun - 1].nevout=
+	      Blocks[C2F(curblk).kfun - 1].mode;
+	  }
 	}
 	++(*urg);
 	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
@@ -2232,15 +2250,26 @@ int C2F(scicos)
       if (funtyp[C2F(curblk).kfun] < 0) {
 
 	if (funtyp[C2F(curblk).kfun] == -1) {
-	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
-	  } else {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
+	  if (phase==1){
+	    if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
+	      Blocks[C2F(curblk).kfun - 1].nevout = 2;
+	    } else {
+	      Blocks[C2F(curblk).kfun - 1].nevout = 1;
+	    }
+	  }else{
+	    Blocks[C2F(curblk).kfun - 1].nevout=
+	      Blocks[C2F(curblk).kfun - 1].mode;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  Blocks[C2F(curblk).kfun - 1].nevout= 
-	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-		    Blocks[C2F(curblk).kfun - 1].nevout),1);
+	  if (phase==1){
+	    Blocks[C2F(curblk).kfun - 1].nevout= 
+	      max(min((integer) 
+		      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		      Blocks[C2F(curblk).kfun - 1].nevout),1);
+	  }else{
+	    Blocks[C2F(curblk).kfun - 1].nevout=
+	      Blocks[C2F(curblk).kfun - 1].mode;
+	  }
 	}
 	++urg;
 	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
@@ -2262,34 +2291,99 @@ int C2F(scicos)
   for (ii = 1; ii <= nzord; ++ii) {
     C2F(curblk).kfun = zord[ii];
     if (Blocks[C2F(curblk).kfun-1].ng > 0) {
-      flag__ = 9;
-      nclock = oord[ii +nzord];
-      callf(told, xtd, xt, xtd,g,&flag__);
-      if (flag__ < 0) {
-	*ierr = 5 - flag__;
-	return;
+      if (funtyp[C2F(curblk).kfun] > 0) {
+	flag__ = 9;
+	nclock = oord[ii +nzord];
+	callf(told, xtd, xt, xtd,g,&flag__);
+	if (flag__ < 0) {
+	  *ierr = 5 - flag__;
+	  return;
+	}
+      }else{
+	if (funtyp[C2F(curblk).kfun] == -1) {
+	  g[zcptr[C2F(curblk).kfun]-1]=outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]];
+	  if(phase==1){
+	    if (g[zcptr[C2F(curblk).kfun]-1] <= 0.) {
+	      if(Blocks[C2F(curblk).kfun - 1].mode != 2){
+		hot=0;
+		Blocks[C2F(curblk).kfun - 1].mode = 2;
+	      }
+	    } else {
+	      if(Blocks[C2F(curblk).kfun - 1].mode != 1){
+		hot=0;
+		Blocks[C2F(curblk).kfun - 1].mode = 1;
+	      }
+	    }
+	  }
+	} else if (funtyp[C2F(curblk).kfun] == -2) {
+	  for (ii=0;ii<Blocks[C2F(curblk).kfun - 1].nevout-1;++i) {
+	    g[zcptr[C2F(curblk).kfun]-1+ii]=
+	      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]+ii];
+	  }
+	  if(phase==1){
+	    i=max(min((integer) 
+		      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		      Blocks[C2F(curblk).kfun - 1].nevout),1);
+	    if(Blocks[C2F(curblk).kfun - 1].mode != i){
+	      hot=0;
+	      Blocks[C2F(curblk).kfun - 1].mode= i;
+	    }
+	  }
+	}
       }
     }
   }
-  
   for (i = 0; i < kiwa; ++i) {
     keve = iwa[i];
     for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
       C2F(curblk).kfun = ordclk[ii ];
       if (Blocks[C2F(curblk).kfun-1].ng > 0) {
-	flag__ = 9;
-	nclock = abs(ordclk[ii + nordclk]);
-	callf(told, xtd, xt, xtd,g,&flag__);
-	
-	if (flag__ < 0) {
-	  *ierr = 5 - flag__;
-	  return;
+	if (funtyp[C2F(curblk).kfun] > 0) {
+	  flag__ = 9;
+	  nclock = abs(ordclk[ii + nordclk]);
+	  callf(told, xtd, xt, xtd,g,&flag__);
+	  
+	  if (flag__ < 0) {
+	    *ierr = 5 - flag__;
+	    return;
+	  }
+	}else{
+	  if (funtyp[C2F(curblk).kfun] == -1) {
+	    g[zcptr[C2F(curblk).kfun]-1]=outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]];
+	    if(phase==1){
+	      if (g[zcptr[C2F(curblk).kfun]-1] <= 0.) {
+		if(Blocks[C2F(curblk).kfun - 1].mode != 2){
+		  hot=0;
+		  Blocks[C2F(curblk).kfun - 1].mode = 2;
+		}
+	      } else {
+		if(Blocks[C2F(curblk).kfun - 1].mode != 1){
+		  hot=0;
+		  Blocks[C2F(curblk).kfun - 1].mode = 1;
+		}
+	      }
+	    }
+	  } else if (funtyp[C2F(curblk).kfun] == -2) {
+	    for (ii=0;ii<Blocks[C2F(curblk).kfun - 1].nevout-1;++i) {
+	      g[zcptr[C2F(curblk).kfun]-1-ii]=
+		outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]]
+		-(double)(ii+1);
+	    }
+	    if(phase==1){
+	      i=max(min((integer) 
+			outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+			Blocks[C2F(curblk).kfun - 1].nevout),1);
+	      if(Blocks[C2F(curblk).kfun - 1].mode != i){
+		hot=0;
+		Blocks[C2F(curblk).kfun - 1].mode= i;
+	      }
+	    }
+	  }
 	}
       }
     }
-  }
-} /* zdoit_ */
-
+  } /* zdoit_ */
+}
 
 
 
