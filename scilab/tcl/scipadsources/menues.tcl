@@ -88,7 +88,7 @@ menu $pad.filemenu.search -tearoff 0 -font $menuFont
 
 # exec menu
 menu $pad.filemenu.exec -tearoff 1 -font $menuFont
-    eval "$pad.filemenu add cascade [me "&Execute"] \
+    eval "$pad.filemenu add cascade [me "E&xecute"] \
               -menu $pad.filemenu.exec "
     eval "$pad.filemenu.exec add command [me "&Load into Scilab"] \
               -command \"execfile\" -accelerator Ctrl+l"
