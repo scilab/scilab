@@ -28,7 +28,7 @@ INSER = %ce_i_variable.sci %ce_i_operatio.sci \
 
 KERNEL = allunknown.sci clause2sci.sci convert2double.sci \
 	 default_trad.sci equal2sci.sci expression2sci.sci first_non_singleton.sci funcall2sci.sci getvar2sci.sci \
-	 getoperands.sci getrhs.sci gettempvar.sci get_unknown.sci infer2txt.sci insert.sci instruction2sci.sci \
+	 getoperands.sci getrhs.sci gettempvar.sci get_unknown.sci i_notation.sci infer2txt.sci insert.sci instruction2sci.sci \
 	 isacomment.sci isanmfile.sci is_a_scalar.sci is_a_vector.sci is_complex.sci \
 	 isdefinedvar.sci is_empty.sci isinstring.sci is_real.sci m2sci_info.sci \
 	 m2sci.sci m2sci_syntax.sci mtlbtree2sci.sci multi_fun_file.sci no_equiv.sci \
