@@ -795,7 +795,7 @@ static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC)
       return ; 
     }
   hbmSave = SelectObject ( hdc_compat, hbmTemp);
-  if ( hbmSave != NULL) DeleteObject ( hbmSave );
+  if ( hbmSave != NULL) DeleteObject ( hbmSave ); hbmSave = NULL;
 
   SelectClipRgn(hdc_compat,NULL);
   sci_pixmapclear(hdc_compat,ScilabGC); 
