@@ -602,6 +602,7 @@ int mxIsDouble(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
   if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  printf("loci   %d\n",loci[0]);
   if ((loci[0] == DOUBLEMATRIX) | (loci[0] == SPARSEMATRIX) | ( (loci[0] == MLIST) && (loci[6+2*(loci[4]-1)] == DOUBLEMATRIX)))
     return 1;
   else 
@@ -838,6 +839,12 @@ Matrix *mxCreateCellArray(int ndim, int *dims)
   return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
 }
 
+Matrix *mxCreateCellMatrix(int nrows, int ncols)
+{
+  int two=2;int dims[]={nrows, ncols};
+  return mxCreateCellArray(two, dims);
+}
+
 Matrix *mxGetCell(Matrix *ptr, int index)
 {
   int kk,lw,isize;
@@ -870,7 +877,7 @@ int mxGetFieldNumber(mxArray *ptr, char *string)
   retval=-1;
   for (k=0; k<nf; k++) {
     longueur=Min(locistr[7+k]-locistr[6+k],24);  /* size of kth fieldname */
-    istart=9+locistr[3+nf+k];            /* start of kth fieldname code */
+    istart=8+locistr[4+nf+k];            /* start of kth fieldname code */
     C2F(cvstr)(&longueur, &locistr[istart], str, (ilocal=1, &ilocal),longueur);
     str[longueur]='\0';
     if (strcmp(string, str) == 0) {
@@ -901,6 +908,26 @@ Matrix *mxGetField(mxArray *ptr, int index, char *string)
   return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
+mxArray *mxGetFieldByNumber(mxArray *ptr, int index, int field_number)
+{
+  int kk,lw,isize,fieldnum;
+  int *locilist, *lociobj, *lociobjcopy;
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  fieldnum = field_number;
+  locilist = listentry(loci,3+fieldnum);
+  lociobj = listentry(locilist,index+1);
+  isize=2*(locilist[index+3]-locilist[index+2]);
+  Nbvars++;
+  lw=Nbvars;
+  CreateData(lw,4*isize);
+  lociobjcopy=GetData(lw);
+  for (kk = 0; kk < isize; ++kk) lociobjcopy[kk]=lociobj[kk];
+  C2F(intersci).ntypes[lw-1]=AsIs;
+  C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
+  /* TO BE REDONE! */
+  return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
+}
 int mxGetNumberOfFields(mxArray *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
@@ -1483,6 +1510,13 @@ const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
   /* TO BE DONE */
 }
 
+int mxGetNzmax(mxArray *ptr)
+{
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  /* ... N=loci[2],  nzmax=loci[4]; then Jc,  then Ir   */
+  return loci[4];
+}
 
 int C2F(initmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
 {
@@ -1573,15 +1607,16 @@ int C2F(createptr)(char *type, int *m, int *n, int *it, int *lr, int *ptr, long 
 
 int C2F(endmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
 {
-  int nv=Nbvars ,kk,k; 
+  int nv=Nbvars ,kk,k,plhsk;
   for (k = 1; k <= *nlhs; k++)
     {
+      plhsk=(int) plhs[k-1];
       LhsVar(k) = 0;
       for (kk = 1; kk <= nv; kk++)
 	{
-	  if ((int) plhs[k-1] == C2F(vstk).Lstk[kk+ Top - Rhs -1]) 
+	  if (plhsk == C2F(vstk).Lstk[kk+ Top - Rhs -1]) 
 	    {
-	      LhsVar(k) = kk; 
+	      LhsVar(k) = kk;
 	      break;
 	    }
 	}
