@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.100 $)dnl
+AC_REVISION($Revision: 1.101 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1365,28 +1365,33 @@ if test "$PERIFILE" = periX11.o; then
   if test -n "$x_libraries"; then
     LDFLAGS="$LDFLAGS -L$x_libraries -R$x_libraries"
   fi
-##test Xmu (Required)
-  AC_CHECK_LIB(Xmu,main,[XMu=yes],[XMu=no],-lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
-  if test "$XMu" = no; then
-        AC_MSG_ERROR([Required Xmu library is missing.])
-  fi
 
-  XMULIB=-lXmu
 ##test Xaw3d (can be build locally)
   if test "$with_local_xaw" = yes; then
     XAWLIB='$(SCIDIR)/libs/libXaw3d.a'
-    XAW_LOCAL_LIB='$(SCIDIR)/libs/libXaw3d.a'
+    XMULIB='$(SCIDIR)/libs/libXmu.a'
+    XAW_LOCAL_LIB='$(SCIDIR)/libs/libXaw3d.a $(SCIDIR)/libs/libXmu.a'
     XAW_LOCAL_INCLUDES='-I$(SCIDIR)/routines'
     XAW_LOCAL_SUBDIR=X11
     XAW=Xaw3d
+    X_CFLAGS=
   else
+##test Xmu (Required)
+    AC_CHECK_LIB(Xmu,main,[XMu=yes],[XMu=no],-lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
+    if test "$XMu" = no; then
+        AC_MSG_ERROR([Required Xmu library is missing.])
+    fi
+
+    XMULIB=-lXmu
     AC_CHECK_LIB(Xaw3d,main,[XAthena3d=yes],[XAthena3d=no],-lXmu -lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
     if test "$XAthena3d" = no; then
       XAWLIB='$(SCIDIR)/libs/libXaw3d.a'
-      XAW_LOCAL_LIB='$(SCIDIR)/libs/libXaw3d.a'
+      XMULIB='$(SCIDIR)/libs/libXmu.a'
+      XAW_LOCAL_LIB='$(SCIDIR)/libs/libXaw3d.a $(SCIDIR)/libs/libXmu.a'
       XAW_LOCAL_INCLUDES='-I$(SCIDIR)/routines'
       XAW_LOCAL_SUBDIR=X11
       XAW=Xaw3d
+      X_CFLAGS=
     else
       XAWLIB=-lXaw3d
       XAW=Xaw3d
