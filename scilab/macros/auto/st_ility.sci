@@ -14,7 +14,7 @@ if rhs==1 then
   //[a,b,u,n]=contr(a,b,reltol);
 	[n,U,ind,V,a,b]=contr(a,b,reltol);
          //else [a,b,u,n]=contr(a,b,tol);
-	else [n,U,ind,V,a,b]=contr(a,b,reltol);
+	else [n,U,ind,V,a,b]=contr(a,b,tol);
 end;
 n=sum(n);nc=n;
 if lhs==4 then c=c*u;x0=u'*x0;end
