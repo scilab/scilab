@@ -27,7 +27,6 @@
 #include <X11/IntrinsicP.h>
 #include <X11/@XAW@/ViewportP.h>
 
-
 #include <string.h>
 
 #include "../graphics/GetProperty.h"
@@ -102,7 +101,7 @@ static char popupname[sizeof("ScilabGraphic")+32];
 static Arg args[10] ;
 static int iargs=0;
 static int EventWindow=-1;
-static int MultiClickTime=200;
+static int MultiClickTime=20;/* to be changed after 3.1rc1, uncomment  also in  CreatePopupWindow below*/
 /*
  * Fixes hints for the graphic windows (min sizes and wm delete window flag)
  */
@@ -439,7 +438,7 @@ static int AddNewWin( int popupc,   struct BCG *ScilabXgc)
 		    (XtEventHandler) EventProc, (XtPointer) popupc);
 
   XtOverrideTranslations(ScilabXgc->drawbox,
-			 XtParseTranslationTable(event_translations));
+		 XtParseTranslationTable(event_translations));
   XtAppAddActions(app_con, event_actions, XtNumber(event_actions));
 
   /** Communication between panner and viewport **/
@@ -1032,7 +1031,7 @@ Delete(w, number, client_data)
       /* the client message is only used while waiting for 
        * a mouse click 
        */
-      SendSGDeleteMessage(win_num);
+      PushClickQueue(win_num,0,0,-100,0,0);
     }
   /** Delete the graphic window **/
   Efface((Widget) 0,(XtPointer) number, (XtPointer) 0);
@@ -1339,7 +1338,7 @@ void CreatePopupWindow(WinNum, button, ScilabXgc, fg, bg)
   XtSetArg(args[iargs],XtNtitle,popupname);iargs++;
   
   DisplayInit("",&dpy,&toplevel);
-  MultiClickTime=XtGetMultiClickTime(dpy);
+  /*  MultiClickTime=XtGetMultiClickTime(dpy);*/
 
   /* 
   ScilabXgc->popup = XtCreatePopupShell(popupname,
