@@ -69,29 +69,19 @@ proc cuttext {} {
 }
 
 #copy text procedure
+#ES 16/11/04
 proc copytext {} {
-    global textareacur
-    tk_textCopy  $textareacur
-#ES: why? just copying does not alter the buffer
-#    inccount $textareacur
-#ES: isn't it nicer if it stays selected?
-#    selection clear
+      set selowner [selection own]
+      tk_textCopy  $selowner
 }
 
 #paste text procedure
 proc pastetext {} {
 # FV 07/06/04, removed superfluous funny test and globals
     global textareacur
-#    global tcl_platform
-#    if {"$tcl_platform(platform)" == "unix"} {
     catch {
         $textareacur delete sel.first sel.last
     }
-#    } else {
-#	catch {
-#	    $textareacur delete sel.first sel.last
-#	}
-#    }
     set i1  [$textareacur index insert]
     tk_textPaste $textareacur 
 # FV 14/06/04, added test to avoid setting the modified flag if paste nothing
@@ -106,4 +96,21 @@ proc pastetext {} {
 #    $textareacur tag add sel $i1 $i2
 # FV 13/05/04
     reshape_bp
+}
+
+proc button2copypaste {w x y} {
+##ES 16/11/04 -- strange I have to write a full proc for this!
+## am I missing something?
+  global textareacur
+  clipboard clear;
+  set ct ""
+  catch {set ct [selection get]}; 
+  clipboard append $ct; 
+  selection clear; 
+  $w mark set insert @$x,$y;
+  pastetext; 
+#there is still one glitch - the cursor returns at the beginning
+# of the insertion point (why?)
+#also in windows this works as a sort of "drop selection here", but
+# with glitches
 }

@@ -55,9 +55,7 @@ bind $pad <Control-r> {findtext replace}
 bind Text <Control-v> {}
 bind Text <Control-v> {pastetext}
 event delete <<Paste>> <Button-2>
-bind Text <Button-2> {copytext; selection clear; 
-                      %W mark set insert "@%x,%y";
-                      pastetext }
+bind Text <Button-2> {button2copypaste %W %x %y}
 
 #Francois VOGEL, 17/10/04 - Added catch {} to avoid error popup message in case
 #listoffile("$textarea",language) has already been unset in proc byebye which

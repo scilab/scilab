@@ -590,3 +590,8 @@ ES 15/11/04:
  * outside of Scipad: removed %scipad_fontsize from SCI/scilab.star and 
    SCI/macros/util/scipad.sci: overridden by the user preferences file
  * version --> 3.13
+
+ES 16/11/04
+ * button-2 bound to the new proc button2copypaste - [almost] fixes
+   the issue of importing external X selections into scipad
+ * version --> 3.14 (and I resist from calling it pi)
