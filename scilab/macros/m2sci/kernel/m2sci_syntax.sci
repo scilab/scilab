@@ -85,26 +85,29 @@ for k=1:n
     kop=kop(kop<kcom)
   end
   offset=0
-  for l=1:size(kop,"*")
+  l=1
+  while l<=size(kop,"*")
     if ~isinstring(tk,kop(l)) then
-      ksym=kop(l)+offset+1
+	  ksym=kop(l)+offset+1
       while part(tk,ksym)==" "
-	ksym=ksym+1
-	if ksym>length(tk) then
-	  break
-	end
+	    ksym=ksym+1
+	    if ksym>length(tk) then
+	      break
+	    end
       end
       if part(tk,ksym)=="-" then
-        endoftk=part(tk,ksym+1+offset:length(tk))
-        m=min(strindex(endoftk,[ops(:,1)',",",";"]))
-	if m<>[] then
-	  tk=part(tk,1:ksym-1)+"("+part(tk,ksym+offset:ksym+m-1)+")"+part(tk,ksym+m:length(tk))
-	else
-	  tk=part(tk,1:ksym-1)+"("+part(tk,ksym:length(tk))+")"
-	end
-	offset=offset+2
+        l=l+1
+        endoftk=part(tk,ksym+1:length(tk))
+        m=min(strindex(endoftk,[ops(:,1)',")",";"]))
+	    if m<>[] then
+	      tk=part(tk,1:ksym-1)+"("+part(tk,ksym:ksym+m-1)+")"+part(tk,ksym+m:length(tk))
+	    else
+	      tk=part(tk,1:ksym-1)+"("+part(tk,ksym:length(tk))+")"
+	    end
+	    offset=offset+2
       end
     end
+    l=l+1
   end
 
   // Modify expressions like 1++2, 1*+2... which become 1+2, 1*2...
