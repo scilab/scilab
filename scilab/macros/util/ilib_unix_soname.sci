@@ -6,7 +6,8 @@ function rep=ilib_unix_soname()
   //check if shared libraries are built
   k=grep(libtoolconf,'build_libtool_libs')
   if strindex(libtoolconf(k),'yes')<>[] then //yes
-     k=grep(libtoolconf,'soname_spec')
+     //k=grep(libtoolconf,'soname_spec')
+     k=grep(libtoolconf,'shrext=')
      if strindex(libtoolconf(k),".sl")<>[] 
        rep="sl" ;
      else 
