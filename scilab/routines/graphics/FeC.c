@@ -35,6 +35,7 @@ extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *
 extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 extern int re_index_brect(double * brect, double * drect);
 extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
+extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 
 void get_frame_in_pixel(integer WIRect[]);
 
@@ -61,9 +62,9 @@ void get_frame_in_pixel(integer WIRect[]);
  *  first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr)
 ---------------------------------------------------------------*/
 
-int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, integer *colminmax, integer lstr1, integer lstr2)
+int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, integer *colminmax, BOOL flagNax, integer lstr1, integer lstr2)
 {
-  integer *xm,*ym,n1=1,i;
+  integer *xm,*ym,n1=1/*,i*/;
 
   /* Fec code */
 
@@ -99,7 +100,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
      pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
           
      /* Force psubwin->axes.aaint to those given by argument aaint*/
-     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i];
+     /*****TO CHANGE F.Leray 10.09.04     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
  
      /* Force "cligrf" clipping */
      sciSetIsClipping (psubwin,0); 
@@ -135,6 +136,23 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
      } 
      strflag2axes_properties(psubwin, strflag);
  
+     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
+	u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
+     
+     pSUBWIN_FEATURE(psubwin)->flagNax = flagNax; /* store new value for flagNax */
+     
+     if(pSUBWIN_FEATURE(psubwin)->flagNax == TRUE){
+       if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
+	 {
+	   pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
+	   pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[1] = FALSE;
+	   
+	   CreatePrettyGradsFromNax(psubwin,aaint);
+	 }
+       else{
+	 sciprint("Warning : Nax does not work with logarithmic scaling\n");}
+     }
+     
      sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* ???? */
      
      sciSetCurrentObj (ConstructFec 
