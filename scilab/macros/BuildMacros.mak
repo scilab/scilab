@@ -128,18 +128,17 @@ xdess	:
 	@makemacros > nul
 	@cd..
 
+sparse:
+	@cd sparse
+	@echo Creation of sparse (Macros)
+	@makemacros > nul
+	@cd..
+
 scicos_blocks	:
 	@cd scicos_blocks
 	@echo Creation of scicos_blocks (Macros)
 	@buildmacros.bat > nul
 	@cd..
-
-sparse:
-	@cd sparse
-	@echo Creation of sparse (Macros)
-	@buildmacros.bat > nul
-	@cd..
-
 
 m2sci	:	
 	@cd m2sci
