@@ -27,7 +27,13 @@
       <PARAM_ITEM>
         <PARAM_NAME>dim</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: integer or character string with values &quot;r&quot;,&quot;c&quot; and &quot;*&quot; y : scalar or vector</SP>
+          <SP>: integer or character string with values &quot;r&quot;,&quot;c&quot; and &quot;*&quot;</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar or vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
