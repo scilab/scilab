@@ -1,3 +1,7 @@
+/* 
+ * Copyright Cermics/Enpc : jean-philippe Chancelier 
+ */
+
 #include "javasci_Matrix.h"
 
 #include <math.h>
@@ -16,6 +20,7 @@ extern int C2F (sciquit) (void);
 extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
 extern void C2F(storeversion)(char *str,int n);
+extern  int C2F(sxevents)();
 
 static int init = 0;
 
@@ -87,7 +92,7 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_testFill
   
   for ( i = 0 ; i < jm ; i++) 
     for ( j = 0 ; j < jn ; j++) 
-      cx[i+ (jm)*j]= i+j;
+      cx[i + (jm)*j]= i+j;
 
   (*env)->ReleaseDoubleArrayElements(env,jx,cx,0);
 }
@@ -126,6 +131,46 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_scilabSend
   (*env)->ReleaseStringUTFChars(env, jname , cname);
   (*env)->ReleaseDoubleArrayElements(env,jx,cx,0);
 }
+
+
+/*----------------------------------
+ * check events 
+ *----------------------------------*/ 
+
+JNIEXPORT void JNICALL Java_javasci_Matrix_scilabEvents
+  (JNIEnv *env , jobject obj_this)
+  
+{
+  #if WIN32
+	TextMessage1 (1);
+  #else 
+	C2F(sxevents)();
+  #endif
+}
+
+extern int version_flag();
+extern int sciGetIdFigure(int *, int *,int *);
+
+JNIEXPORT jint JNICALL Java_javasci_Matrix_scilabHaveAGraph
+  (JNIEnv *env , jobject obj_this)
+{
+  integer iflag =0,ids,num;
+  jint vInt=0;
+  
+  if (version_flag() == 0)
+    {
+      sciGetIdFigure (&ids,&num,&iflag);
+      if (num > 0) vInt=1;
+      
+    }/* NG end*/
+  else
+    {
+      C2F(getwins)(&num,&ids ,&iflag);
+      if (num > 0) vInt=1;
+    } 
+  return vInt;
+}
+
 /*----------------------------------
  * Get a Scilab Matrix from Scilab 
  *----------------------------------*/ 
@@ -233,7 +278,7 @@ static int send_scilab_job(char *job)
 void C2F(banier)(int *x) 
 {
   fprintf(stdout,"Et Hop ....\n");
-  C2F(storeversion)("scilab-2.5.1",12L);
+  /* C2F(storeversion)("scilab-2.5.1",12L); */
 }
 
 /* sert a rien sinon a satisfaire le linker */

@@ -1,0 +1,82 @@
+
+from http://www.nasoftware.co.uk/fortran-plus/readme.html
+
+Linker Problems?
+
+With some recent Linux distributions (e.g. RedHat 9) the following 
+error may occur:
+
+ Linking a.out ...
+ /usr/local/bin/gcc -Wl,-T,a.out.ld -o a.out a.out.o
+ /usr/local/src/Fplus/lib/libf90.a -Wl,-( -lf90io
++/usr/local/src/Fplus/lib/sysf9
+ 0.a /usr/local/src/Fplus/lib/lxhost.o -Wl,-)
+ /usr/lib/libc_nonshared.a(elf-init.oS)(.text+0xb): In function
+ `__libc_csu_init':
+ : undefined reference to `__init_array_end'
+ /usr/lib/libc_nonshared.a(elf-init.oS)(.text+0x10): In function
+ `__libc_csu_init':
+ : undefined reference to `__init_array_start'
+ /usr/lib/libc_nonshared.a(elf-init.oS)(.text+0x23): In function
+ `__libc_csu_init':
+ : undefined reference to `__init_array_start'
+ /usr/lib/libc_nonshared.a(elf-init.oS)(.text+0x36): In function
+ `__libc_csu_fini':
+ : undefined reference to `__fini_array_end'
+ /usr/lib/libc_nonshared.a(elf-init.oS)(.text+0x3b): In function
+ `__libc_csu_fini':
+ : undefined reference to `__fini_array_start'
+ /usr/lib/libc_nonshared.a(elf-init.oS)(.text+0x57): In function
+ `__libc_csu_fini':
+ : undefined reference to `__fini_array_start'
+ collect2: ld returned 1 exit status
+ *** Failed to link a.out
+ Successfully compiled: aaa
+ Failed to build: a.out
+
+This is caused by an incompatibility in the distribution's version of glibc. 
+Specifically, as can be seen from the error messages, in the file 
+'libc_nonshared.a', there are undefined references to several functions. 
+These are the cause of the linker's failure. There is a fairly 
+straight-forward workaround for this.
+
+Create a file, called 'fix.c'. Add these 7 lines to it:
+
+static void init(){}
+static void fini(){}
+typedef void (*fp)();
+fp __init_array_start[]={init};
+fp __init_array_end[]={(init)+1};
+fp __fini_array_start[]={fini};
+fp __fini_array_end[]={fini+1};
+
+Compile it with 'gcc -c -o fix.o fix.c'
+
+The file 'fix.o' can now be passed to the f95 compiler. This will be 
+used at the linking stage and will prevent the error occurring. For 
+example, 'f95 fix.o test.f95'.
+
+To avoid having to manually add fix.o each time f95 is invoked, a 
+script can be created to wrap f95. 
+
+(In the instructions below, the installation directory is assumed to be 
+the default of /usr/local/FortranPlus - if this is not the case, modify 
+the instructions accordingly)
+
+Move fix.o to /usr/local/FortranPlus/lib
+- mv fix.o /usr/local/FortranPlus/lib/
+Rename f95 to f95-com
+- mv /usr/local/FortranPlus/bin/f95 /usr/local/FortranPlus/f95-com
+
+Create a file called f95 with the following two lines:
+
+#!/bin/sh
+/usr/local/FortranPlus/bin/f95-com /usr/local/FortranPlus/lib/fix.o $*
+
+Make the script executable
+- chmod 755 f95
+Copy it to /usr/local/FortranPlus/bin
+- cp f95 /usr/local/FortranPlus/bin
+
+Calling f95 will then call the script which will transparently call 
+f95-com with the fix.o file and the additional arguments.

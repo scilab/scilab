@@ -2,19 +2,18 @@
 # To be customized 
 #--------------------------------------------------------
 
-SCIDIR=../../../
-#SCIDIR=/home/jpc/scilab-2.6
-
-PROG= libjavasci.so 
-OBJS= javasci_Matrix.o
+SCIDIR=/usr/local/scilab 
 
 #--------------------------------------------------------
 # do not modify below 
 #--------------------------------------------------------
 
+PROG= libjavasci.so 
+OBJS= javasci_Matrix.o fix.o
+
 all	:: .init 
 	make -f config/Makefile.all  FC="g77 -Wl,-shared" PROG=$(PROG) OBJS="$(OBJS)" SCIDIR=$(SCIDIR)
-	cd javasci; make all
+	cd javasci; make all SCIDIR=$(SCIDIR)
 
 .init 	: Makefile 
 	config/Init $(PROG) $(SCIDIR) 
