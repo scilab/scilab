@@ -5247,13 +5247,14 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       strcpy(error_message,"tics_style property does not exist for this handle");return -1;
     }
   }
+  /*Dj.A 17/12/2003*/
   else if (strncmp(marker,"sub_tics", 8) == 0) {
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->subint= *stk(*value);
     else if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-      if (*numcol != 2 ) {
-	strcpy(error_message,"Value must have two elements");return -1;}
-      for (i = 0; i < 2;i++)
+      if ((*numcol != 3 )&& (*numcol != 2)) {
+	strcpy(error_message,"Value must have two elements (three if 3D universe) ");return -1;}
+      for (i = 0; i < *numcol;i++)
 	pSUBWIN_FEATURE (pobj)->axes.subint[i]=*stk(*value+i); 
     }
     else
@@ -6302,6 +6303,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
       strncpy(cstk(outindex), &pAXES_FEATURE (pobj)->tics , numrow*numcol);
     }
+   /*Dj.A 17/12/2003*/
   else if (strncmp(marker,"sub_tics", 8) == 0)
     {
       numrow   = 1;
@@ -6310,8 +6312,12 @@ int sciGet(sciPointObj *pobj,char *marker)
       if (sciGetEntityType (pobj) == SCI_AXES)
 	*stk(outindex) = pAXES_FEATURE (pobj)->subint;
       else  if (sciGetEntityType (pobj) == SCI_SUBWIN)
-	for (i=0;i<numcol;i++)
-	  stk(outindex)[i] = pSUBWIN_FEATURE (psubwin)->axes.subint[i];
+	{
+	  numcol=(pSUBWIN_FEATURE (pobj)->is3d)? 3 : 2;
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	  for (i=0;i<numcol;i++)
+	    stk(outindex)[i] = pSUBWIN_FEATURE (psubwin)->axes.subint[i];
+	}
       else
 	{strcpy(error_message,"sub_tics property does not exist for this handle");return -1;}
     }
