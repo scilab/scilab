@@ -303,6 +303,9 @@ cd .. &gt;nul
 				RelativePath=".\sci_tools.c">
 			</File>
 			<File
+				RelativePath=".\someinterp.c">
+			</File>
+			<File
 				RelativePath=".\vceil.c">
 			</File>
 			<File
