@@ -1,5 +1,6 @@
       subroutine iread(it)
 c     Copyright INRIA
+c
       INCLUDE '../stack.h'
 c     
       integer top2,tops,id(nlgh),h(nsiz)
