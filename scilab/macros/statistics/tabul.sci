@@ -58,7 +58,7 @@ function [m] = tabul(X, order)
    if order~="i" &  order~="d" then
       error(" tabul : 2d input argument (order) must be ""i"" or ""d""")
    end
-   if ( X = [] ) then
+   if ( X == [] ) then
       m = %nan
       return
    end
