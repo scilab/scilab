@@ -38,17 +38,34 @@ export PATH
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SCI/bin:$SCI/libs
 export LD_LIBRARY_PATH
 
+do_scilex()
+{
+    PATH=$PATH:$SCI:$SCI/util
+    export PATH
+    XAPPLRESDIR=$SCI/X11_defaults
+    export XAPPLRESDIR
+    tty -s && stty  kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
+    $SCI/bin/zterm -e $SCI/bin/scilex $*
+}
+
+do_scilex_now()
+{
+    PATH=$PATH:$SCI:$SCI/util
+    export PATH
+    XAPPLRESDIR=$SCI/X11_defaults
+    export XAPPLRESDIR
+    $SCI/bin/scilex $*
+}
+
 do_help()
 {
 echo "Usage:"
 echo     "	scilab [-ns -nw -nb -display display -f file  -l lang -args arguments]"
 echo     "	scilab [-ns -nw -nb -display display -e expression -l lang -args arguments]"
 echo     "	scilab -link <objects>"
+echo     "	scilab -debug"
 exit
 }
-
-
-
 
 do_compile()
 {
@@ -272,14 +289,18 @@ if test "$rest" = "yes"; then
   fi
 
   if test -n "$now"; then
-      sci_exe="$SCI/bin/scilex"
+     sci_exe="do_scilex_now"
+     if test -n "$debug"; then
+       gdb $SCI/bin/scilex $sci_args
+     else
+       $sci_exe $sci_args
+     fi
   else
-      sci_exe="$SCI/bin/zterm -e $SCI/bin/scilex"
+     sci_exe="do_scilex"
+     if test -n "$debug"; then
+       $SCI/bin/zterm -e gdb $SCI/bin/scilex $sci_args
+     else
+       $sci_exe $sci_args &
+     fi
   fi
-
-  if test -n "$debug"; then 
-     $SCI/bin/zterm -e gdb $SCI/bin/scilex
-  else
-      $sci_exe $sci_args 
-  fi 
 fi
