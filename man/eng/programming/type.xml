@@ -46,9 +46,17 @@
      5
     :  sparse matrix.
   </P>
+ <P>
+     6
+    :  sparse boolean matrix.
+  </P>
   <P>
      8
     :  matrix of integers stored on 1 2 or 4 bytes
+  </P>
+  <P>
+     9
+    :  matrix of graphic handles
   </P>
   <P>
      10 

@@ -47,8 +47,16 @@
     :  matrice creuse
   </P>
   <P>
+     6
+    :  matrice creuse booléene
+  </P>
+  <P>
      8
     :  matrice d&apos;entiers codés sur 1, 2 ou 4 octets
+  </P>
+  <P>
+     9
+    :  matrice de "handle" sur les objets graphiques
   </P>
   <P>
      10 
