@@ -193,8 +193,8 @@ if txt~=[] then
 
   // Output summary information
   infos=[]
-  if m2sci_infos(1) //&~m2sci_infos(2) then
-    infos=["Translation may be improved: for all mtlb_<funname> function call"
+  if m2sci_infos(1) then
+    infos=["Translation may be improved: see the //! comments and for all mtlb_<funname> function call"
 	"  Type help mtlb_<funname> in Scilab command window to get information about improvements"]
   end
 if m2sci_infos(2) then
