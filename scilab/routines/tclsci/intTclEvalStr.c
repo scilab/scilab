@@ -11,7 +11,7 @@ int C2F(intTclEvalStr) _PARAMS((char *fname))
 
 	if (GetType(1) == sci_strings)
 	{
-		char **Str;
+		char **Str=NULL;
 		int m1,n1,i,RET;
 
 		GetRhsVar(1,"S",&m1,&n1,&Str);

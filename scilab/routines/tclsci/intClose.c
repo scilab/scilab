@@ -20,16 +20,16 @@ int C2F(intClose) _PARAMS((char *fname))
 		if ( GetType(1) == sci_matrix )
 		{
 			static int l1,n1,m1;
-			int *param=NULL;
+			int param=0;
 
 			GetRhsVar(1,"i",&m1,&n1,&l1);
 
 			if ( (m1 == 1) && (n1 == 1) )
 			{
-				param=istk(l1);
-				if (*param >= 0)
+				param=*istk(l1);
+				if (param >= 0)
 				{
-					sprintf(MyTclCommand, "DestroyFigure %d;",*param); 
+					sprintf(MyTclCommand, "DestroyFigure %d;",param); 
 				}
 				else
 				{
@@ -51,7 +51,6 @@ int C2F(intClose) _PARAMS((char *fname))
 		}
 	}
 	
-	Tcl_Eval(TCLinterp,MyTclCommand);
     if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
     {
 		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);

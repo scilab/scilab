@@ -19,6 +19,11 @@
 /*-----------------------------------------------------------------------------------*/ 
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
 /*-----------------------------------------------------------------------------------*/ 
+int TK_Started=0;
+#ifndef WIN32
+  int XTKsocket=0;
+#endif
+/*-----------------------------------------------------------------------------------*/ 
 void initTCLTK(void)
 {
   if ( OpenTCLsci()==0 ) TK_Started=1;
@@ -34,11 +39,13 @@ int OpenTCLsci(void)
 
 #ifndef WIN32
   DIR *tmpdir=NULL;
+  Display *XTKdisplay;
 #endif
 
   FILE *tmpfile=NULL;
 
-  Display *XTKdisplay;
+
+
 
 #ifdef TCL_MAJOR_VERSION
   #ifdef TCL_MINOR_VERSION
@@ -125,8 +132,10 @@ int OpenTCLsci(void)
   if (TKmainWindow == NULL)
     {
       TKmainWindow = Tk_MainWindow(TCLinterp);
-      XTKdisplay=Tk_Display(TKmainWindow);
-      XTKsocket = ConnectionNumber(XTKdisplay);
+	  #ifndef WIN32
+        XTKdisplay=Tk_Display(TKmainWindow);
+        XTKsocket = ConnectionNumber(XTKdisplay);
+	  #endif
       
       Tk_GeometryRequest(TKmainWindow,2,2);
 

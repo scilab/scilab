@@ -9,8 +9,6 @@
 #define arbitrary_max_queued_callbacks 20
 /*-----------------------------------------------------------------------------------*/
 static int c_n1 = -1;     
-int TK_Started=0;
-int XTKsocket=0;
 /*-----------------------------------------------------------------------------------*/
 extern void SetCommandflag(int flag) ;
 extern void C2F(syncexec)(char * str, int *ns, int *ierr, int *seq);
