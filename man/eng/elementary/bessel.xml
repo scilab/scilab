@@ -124,6 +124,14 @@
          x  y" + x y' - (x  + alpha ) y = 0 ,  alpha >= 0
      ]]>
     </VERBATIM>
+    <P> H^1_alpha and  H^2_alpha, the Hankel functions of first and second kind,
+        are linear linear combinations of Bessel functions of the first and second kinds:</P>
+    <VERBATIM>
+<![CDATA[        H^1_alpha(z) = J_alpha(z) + i Y_alpha(z)
+
+        H^2_alpha(z) = J_alpha(z) - i Y_alpha(z)
+     ]]>
+    </VERBATIM>
  </SECTION>
  
  <EXAMPLE>
