@@ -5,8 +5,9 @@ SCIDIR1=.
 include Makefile.incl.mak 
 
 minimum :: routines-pvm bin\scilex.exe macros bin\Wscilex.exe imp intersci
-standard:: routines-pvm bin\scilex.exe macros bin\Wscilex.exe imp intersci xmlint
-all ::  modelicac routines-pvm bin\scilex.exe macros bin\Wscilex.exe MakeMexLib imp intersci Javasci xmlint check man
+standard:: routines-pvm bin\scilex.exe macros bin\Wscilex.exe imp intersci 
+all ::  modelicac routines-pvm bin\scilex.exe macros bin\Wscilex.exe MakeMexLib imp intersci Javasci man
+allVC7 ::  modelicac routines-pvm bin\scilex.exe macros bin\Wscilex.exe MakeMexLib imp intersci Javasci xmlint check man
 
 !IF "$(DLPVM)" == "YES"
 routines-pvm :: routines pvm 
