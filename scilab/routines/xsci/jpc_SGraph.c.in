@@ -28,7 +28,6 @@
 #include <X11/@XAW@/ViewportP.h>
 
 
-
 #include <string.h>
 /** getpid **/
 #ifdef __STDC__
@@ -238,7 +237,7 @@ static int AddNewWin( popupc, ScilabXgc)
 
   XtAddEventHandler(ScilabXgc->drawbox, 
 		    ButtonPressMask|PointerMotionMask|ButtonReleaseMask|
-		    KeyPressMask,False,
+		    KeyPressMask|KeyReleaseMask,False,
 		    (XtEventHandler) EventProc, (XtPointer) popupc);
 
   /** Communication between panner and viewport **/
@@ -677,6 +676,13 @@ EventProc(widget, number, event)
 		     event->xkey.y,(int)keysym,0,0);
 
       break;
+    case  KeyRelease :
+      XLookupString((XKeyEvent *)&(event->xkey), buf, 
+		    cent, &keysym,&compose_status);
+      PushClickQueue((int) number,event->xkey.x,
+		     event->xkey.y,-(int)keysym,0,0);
+
+      break;
     default:
       /* printf("XXXJe suis ds EventProc defaut, fenetre %d\r\n",(integer) number);*/
       return(0);
@@ -957,7 +963,20 @@ static void SendSGDeleteMessage(int win_num)
 
 void scig_deletegwin_handler_none (win)int win; {};
 
-static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_none;
+void scig_deletegwin_handler_sci (int win)
+
+{
+  static char buf[256];
+  struct BCG *SciGc;
+
+  SciGc = GetWindowXgcNumber(win);
+  if (strlen(SciGc->EventHandler)!=0) {
+    sprintf(buf,"%s(%d,0,0,-1000)",SciGc->EventHandler,win);
+    StoreCommand(buf);
+    }
+};
+static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_sci;
+/*static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_none;*/
 
 Scig_deletegwin_handler set_scig_deletegwin_handler(f) 
      Scig_deletegwin_handler f;
@@ -969,7 +988,8 @@ Scig_deletegwin_handler set_scig_deletegwin_handler(f)
 
 void reset_scig_deletegwin_handler() 
 {
-  scig_deletegwin_handler = scig_deletegwin_handler_none;
+/*  scig_deletegwin_handler = scig_deletegwin_handler_none;*/
+  scig_deletegwin_handler = scig_deletegwin_handler_sci;
 }
 
 
@@ -1007,8 +1027,9 @@ Delete(w, number, client_data)
     }
   /** Delete the graphic window **/
   Efface((Widget) 0,(XtPointer) number, (XtPointer) 0);
-  DeleteSGWin(win_num);
   scig_deletegwin_handler(win_num);
+  DeleteSGWin(win_num);
+
 }
 
 /* for Fortran call */

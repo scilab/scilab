@@ -65,8 +65,20 @@ static int scig_buzy = 0;
 void scig_deletegwin_handler_none (int win)
 {
 };
+void scig_deletegwin_handler_sci (int win)
 
-static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_none;
+{
+  static char buf[256];
+  struct BCG *SciGc;
+
+  SciGc = GetWindowXgcNumber(win);
+  if (strlen(SciGc->EventHandler)!=0) {
+    sprintf(buf,"%s(%d,0,0,-1000)",SciGc->EventHandler,win);
+    StoreCommand(buf);
+    }
+};
+static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_sci;
+/*static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_none;*/
 
 Scig_deletegwin_handler set_scig_deletegwin_handler (f)
      Scig_deletegwin_handler f;
@@ -78,7 +90,7 @@ Scig_deletegwin_handler set_scig_deletegwin_handler (f)
 
 void reset_scig_deletegwin_handler ()
 {
-  scig_deletegwin_handler = scig_deletegwin_handler_none;
+  scig_deletegwin_handler = scig_deletegwin_handler_sci;
 }
 
 static int sci_graphic_protect = 0;
@@ -91,8 +103,8 @@ int C2F (deletewin) (integer * number)
   /* destroying recorded graphic commands */
   scig_erase (*number);
   /* delete the windows and resources */
-  DeleteSGWin (*number);
   scig_deletegwin_handler (*number);
+  DeleteSGWin (*number);
   return (0);
 }
 
@@ -1289,10 +1301,9 @@ EXPORT LRESULT CALLBACK
 }
 
 
-void C2F(seteventhandler)(win_num,name,ierr)
-     int *win_num;
-     int *ierr;
-     char *name;
+
+void C2F(seteventhandler)(int *win_num,char *name,int *ierr)
+
 {  
   struct BCG *SciGc;
 

@@ -808,7 +808,20 @@ static void scig_menu_select(int winid)
 
 void scig_deletegwin_handler_none (win)int win; {};
 
-static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_none;
+void scig_deletegwin_handler_sci (int win)
+
+{
+  static char buf[256];
+  struct BCG *SciGc;
+
+  SciGc = GetWindowXgcNumber(win);
+  if (strlen(SciGc->EventHandler)!=0) {
+    sprintf(buf,"%s(%d,0,0,-1000)",SciGc->EventHandler,win);
+    StoreCommand(buf);
+    }
+};
+static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_sci;
+/*static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_none;*/
 
 Scig_deletegwin_handler set_scig_deletegwin_handler(f) 
      Scig_deletegwin_handler f;
@@ -820,7 +833,7 @@ Scig_deletegwin_handler set_scig_deletegwin_handler(f)
 
 void reset_scig_deletegwin_handler() 
 {
-  scig_deletegwin_handler = scig_deletegwin_handler_none;
+  scig_deletegwin_handler = scig_deletegwin_handler_sci;
 }
 
 /* delete action */
@@ -828,8 +841,9 @@ void reset_scig_deletegwin_handler()
 static void scig_menu_delete(int winid) 
 {
   scig_erase(winid);
-  DeleteSGWin(winid);
   scig_deletegwin_handler(winid);
+  DeleteSGWin(winid);
+
 }
 
 /* for Fortran call */
