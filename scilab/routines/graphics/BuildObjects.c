@@ -990,6 +990,15 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       pLEGEND_FEATURE (pobj)->isselected = TRUE;
       pLEGEND_FEATURE (pobj)->issurround = FALSE;
 
+      if (sciInitGraphicContext (pobj) == -1) /* NEW :  /* used to draw the line and marks of the curve F.Leray 21.01.05 */
+	{
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pobj->pfeatures);
+	  FREE(pobj);          
+	  return (sciPointObj *) NULL;
+	} 
+      
       if (sciInitFontContext (pobj) == -1)
 	{
 	  sciprint("Problem with sciInitFontContext\n");
