@@ -8,7 +8,7 @@ end
 dirs=["programming";"graphics";"elementary";"fileio";"functions";"strings";
       "gui";"utilities";"linear";"polynomials";"dcd";"control";"robust";
       "nonlinear";"signal";"arma";"metanet";"scicos";"sound";"translation";
-      "pvm";"tdcs";"tksci"];
+      "pvm";"tdcs";"tksci";"statistics"];
 sep="/";if MSDOS then sep="\",end
 %helps=sep+"man"+sep+language+sep+dirs; 
 select language
@@ -26,7 +26,7 @@ case "eng"
 	  "Metanet: graph and network toolbox";
 	  "Scicos: Bloc diagram editor and simulator";"Sound file handling";
 	  "Language or data translations";"PVM parallel toolbox";"TdCs";
-	  "TCL/Tk interface"]];
+	  "TCL/Tk interface";"Statistics"]];
   case "fr"
   %helps=[%helps,..
       ["Programmation";"Librairie graphique";"Fonctions élémentaires";
@@ -42,6 +42,6 @@ case "eng"
 	  "Manipulation de fichiers sons";
 	  "Génération de code, traduction de données";
 	  "Calcul parallèle avec PVM";"TdCs";
-	  "Interface TCL/Tk"]];
+	  "Interface TCL/Tk";"Statistiques"]];
 end
 %helps=[SCI+%helps(:,1),%helps(:,2)];
