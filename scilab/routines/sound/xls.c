@@ -506,8 +506,8 @@ static void getString(int *fd, int flag,char **str,int *err)
 
   }
   else if(rich!=0 && fareast==0)  {
-    /*number of rich Text formatting runs*/
-    short rt;
+    short rt;/*number of rich Text formatting runs*/
+    int listlength=4*rt;/*list of rt formatting runs*/
     C2F(mgetnc) (fd, (void*)&rt, &one, typ_short, err);
     if (*err > 0) goto ErrL;
     /*Enregistrement du character array*/
@@ -515,8 +515,6 @@ static void getString(int *fd, int flag,char **str,int *err)
     C2F(mgetnc) (fd, (void*)*str, &longueur, typ_char, err);
     if (*err > 0) goto ErrL;
     (*str)[longueur]='\0';
-    /*list of rt formatting runs*/
-    int listlength=4*rt;
     if ((list= (int *) malloc(listlength*sizeof(int)))==NULL)  goto ErrL;
     C2F(mgetnc) (fd, (void*)list, &listlength, typ_int, err);
     if (*err > 0) goto ErrL;
@@ -542,6 +540,7 @@ static void getString(int *fd, int flag,char **str,int *err)
     short rt;
     int sz; /* fareast data size */
     char *asian;
+    int listlength=4*rt;/*list of rt formatting runs*/
     C2F(mgetnc) (fd, (void*)&rt, &one, typ_short, err);
     if (*err > 0) goto ErrL;
     C2F(mgetnc) (fd, (void*)&sz, &one, typ_int, err);
@@ -550,8 +549,6 @@ static void getString(int *fd, int flag,char **str,int *err)
     C2F(mgetnc) (fd, (void*)*str, &longueur, typ_char, err);
     if (*err > 0) goto ErrL;
     (*str)[longueur]='\0';
-    /*list of rt formatting runs*/
-    int listlength=4*rt;
     if ((list= (int *) malloc(listlength*sizeof(int)))==NULL)  goto ErrL;
     C2F(mgetnc) (fd, (void*)list, &listlength, typ_int, err);
     if (*err > 0) goto ErrL;
