@@ -20,7 +20,7 @@ void wininfo();
 extern double C2F(dsort)();
 extern char GetDriver(void);
 extern int Check3DPlots(char *, integer *);
-
+extern int version_flag();
 /** like GEOX or GEOY in PloEch.h but we keep values in xx1 and yy1 for finite check **/
 
 static double xx1,yy1;
@@ -114,7 +114,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
   static double zmin,zmax;
   integer i,j;
   /** If Record is on **/
-  if (GetDriver()=='R') 
+  if (GetDriver()=='R' && version_flag() == 0) 
     StorePlot3D(name,x,y,z,p,q,teta,alpha,legend,flag,bbox);
 
   C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -256,7 +256,7 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
   static double zmin,zmax;
   integer i;
   /** If Record is on **/
-  if (GetDriver()=='R') 
+  if (GetDriver()=='R' && version_flag() != 0) 
     StoreFac3D(name,x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox);
 
   if (flag[1]!=1 && flag[1] != 0 && flag[1]!=3 && flag[1]!=5)
@@ -518,7 +518,7 @@ int C2F(param3d)(double *x, double *y, double *z, integer *n, double *teta, doub
   static integer *xm,*ym;
   integer verbose=0,xz[10],narg,fg1;
   /** If Record is on **/
-  if (GetDriver()=='R') 
+  if (GetDriver()=='R' && version_flag() == 0) 
     StoreParam3D("param3d",x,y,z,n,teta,alpha,legend,flag,bbox);
   C2F(dr)("xget","dashes",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   style[0]= xz[0];
@@ -606,7 +606,7 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
   static integer *xm,*ym;
   integer verbose=0,xz[10],narg,fg1,cur;
   /** If Record is on **/
-  if (GetDriver()=='R') 
+  if (GetDriver()=='R' && version_flag() == 0) 
     StoreParam3D1("param3d1",x,y,z,m,n,iflag,colors,teta,alpha,legend,flag,bbox);
   C2F(dr)("xget","dashes",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   style[0]= xz[0];
