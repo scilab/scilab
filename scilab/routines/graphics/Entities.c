@@ -14010,19 +14010,20 @@ sciUnAgregation (sciPointObj * pobj)
 
 /************************************ End of Agregation *******************************************/
 
-
-void sciInitObj(pointXGC)
-     double *pointXGC; 
-{ 
+/* Apparently, what is following is USELESS; F.Leray 25.03.04 */
+/*
+  void sciInitObj(pointXGC)
+  double *pointXGC; 
+  { 
   struct BCG *InitScilabXgc; 
   static sciPointObj *mafigure;
   static sciPointObj *masousfen;
-
-  InitScilabXgc=(struct BCG *)pointXGC;
+   
+  InitScilabXgc=(struct BCG *)pointXGC; */
   /*  si le ScilabXgc a été initialisé et s'il est different de celui pocedé par la figure courante
    *  construire une nouvelle fenetre et une sous fenetre 
    * une autre facon de comparer c'est de voir est ce que InitScilabXgc->mafigure n'est pas vide (!=NULL */
-  if (tmpScilabXgc != InitScilabXgc)
+/*  if (tmpScilabXgc != InitScilabXgc)
     if ((mafigure = ConstructFigure (InitScilabXgc)) != NULL)
       {
 	sciprint("\r\n une nouvelle figure");
@@ -14033,7 +14034,7 @@ void sciInitObj(pointXGC)
 	  sciSetOriginalSubWin (mafigure, masousfen);
       }
 }
-
+*/
 sciPointObj *sciIsExistingFigure(value)
      int *value;
 {
@@ -14112,7 +14113,7 @@ void sciRedrawF(value)
   figure= (sciPointObj *) sciIsExistingFigure(value); 
   C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
   C2F (dr) ("xset", "window",value,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
-  /*sciSetCurrentObj(figure); F.Leray 25.03.04*/
+  /* sciSetCurrentObj(figure); */ /*F.Leray 25.03.04*/
   sciSetReplay (TRUE);
   sciDrawObj (figure);
   sciSetReplay (FALSE);
@@ -14129,8 +14130,9 @@ void sciXbasc()
   DestroyAllGraphicsSons((sciPointObj *)mafigure);
   
    
-  if ((masousfen = ConstructSubWin (mafigure, 'o')) != NULL)
-    sciSetOriginalSubWin (mafigure, masousfen);
+  if ((masousfen = ConstructSubWin (mafigure, 'o')) != NULL){
+    sciSetCurrentObj(masousfen);
+    sciSetOriginalSubWin (mafigure, masousfen);}
   sciDrawObj(sciGetCurrentFigure ());      
 } 	
 
