@@ -48,7 +48,7 @@ MenuSelect(w, junk, garbage)
      XtPointer junk;
      XtPointer garbage;
 {
-  static firstentry=0;
+  static int firstentry=0;
   integer i;
   if (firstentry==0) 
     {

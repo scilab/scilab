@@ -222,7 +222,6 @@ int C2F(delbtn)(win_num,button_name)
      integer *win_num;
      char *button_name;
 {
-  char buf[56];
   BCG *dd = GetWindowXgcNumber(*win_num);
   if ( dd == NULL) return;
   if ( dd->menu_entries != NULL) 
@@ -401,7 +400,6 @@ static void submenu_entry_set_menu(menu_entry *subs,menu_entry *father);
 
 int is_menu_name(char *name,char *name1) 
 {
-  int rep =0;
   while ( *name != 0) 
     {
       if ( *name == '_' ) 

@@ -59,7 +59,7 @@ int help_popped_status()
  *------------------------------------------------------------*/
 
 static  GtkWidget *help_list,*help_list1;
-static  const gchar * item_data_key ="position";
+/* static  const gchar * item_data_key ="position"; */
 
 static void help_done(GtkWidget *widget, GtkWidget *window)
 {

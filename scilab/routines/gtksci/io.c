@@ -210,7 +210,7 @@ int Xorgetchar()
       max_plus1 = Max(fd_err,max_plus1) + 1;
       SELECT_DEBUG(f = fopen("/tmp/foo","w");)
     }
-
+  return getchar();
   for( ; ; ) {
     SELECT_DEBUG(fprintf(f,"encore une fois %d\n",lcount++);)
     /* always flush writes before waiting */
