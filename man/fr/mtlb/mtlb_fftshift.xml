@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_fftshift</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Juillet 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_fftshift">Fonction d'émulation de la fonction Matlab fftshift</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Dans plusieurs cas particuliers, la fonction <VERB>fftshift</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Avec les chaînes de caractère : étant donné que les chaînes de caractères sont vues différemment par Matlab et Scilab, le résulat peut être différent pour ce type d'entrée.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Avec deux paramètres d'entrée : Matlab autorise <VERB>dim</VERB> a être supérieur au nombre de dimension de <VERB>A</VERB> mais pas Scilab (message d'erreur).
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_fftshift(A,[dim])</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>fftshift(A,[dim])</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_fftshift</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> n'est pas une matrice de chaînes de caractères,
+        <VERB>mtlb_fftshift(A)</VERB> peut être remplacé par <VERB>fftshift(A)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> n'est pas une matrice de chaînes de caractères et <VERB>dim</VERB> est inférieur ou égal au nombre de dimension de <VERB>A</VERB>,
+        <VERB>mtlb_fftshift(A,dim)</VERB> peut être remplacé par <VERB>fftshift(A,dim)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_fftshift</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_fliplr</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>July 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_fliplr">Matlab fliplr emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>fliplr</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With character string matrices: due to te fact that Scilab and Matlab do not consider character string matrices in the same way, result can be different for input of this type.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_fliplr(A)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>fliplr(A)</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_fliplr</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is not a character string matrix,
+        <VERB>mtlb_fliplr(A)</VERB> may be replaced by <VERB>A(:,$:-1:1)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_fliplr</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

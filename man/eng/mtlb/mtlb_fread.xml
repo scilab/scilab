@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_fread</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>July 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_fread">Matlab fread emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>There is no Scilab equivalent for Matlab <VERB>fread</VERB>. Scilab <VERB>mget</VERB>
+    and Matlab <VERB>fread</VERB> behave differently in many cases, but they are equivalents in some cases.</P>
+
+    <P>
+    The function <VERB>mtlb_fread(varargin)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>fread</VERB>. This function will
+    determine the correct semantic at run time. It is sometimes possible to replace
+    calls to <VERB>mtlb_fread</VERB> by calls to <LINK>mget</LINK>.
+    </P>
+
+    <P>Caution: <VERB>mtlb_fread</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mget</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_write</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Juillet 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_write">Fonction d'émulation de la fonction Matlab write</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Il n'y a pas d'équivalent Scilab pour la fonction Matlab <VERB>write</VERB>. La fonction Scilab <VERB>mput</VERB>
+    et la fonction Matlab <VERB>write</VERB> se comportent différemment dans beaucoup de cas mais sont équivalentes dans plusieurs cas.</P>
+
+    <P>
+    La fonction <VERB>mtlb_write(varargin)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>write</VERB>. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Il est quelquefois possible de remplacer les appels à
+    <VERB>mtlb_write</VERB> par des appels à <LINK>mput</LINK>.
+    </P>
+
+    <P>Attention : <VERB>mtlb_write</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+ 
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mput</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_fftshift</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>July 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_fftshift">Matlab fftshift emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>fftshift</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With character string input: due to the fact that character strings are not considered in the same way in Matlab and Scilab, results can be different for this kind of input.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With two inputs: Matlab <VERB>fftshift</VERB> can work even if <VERB>dim</VERB> parameter is greater than number of dimensions of first input.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_fftshift(A[,dim])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>fftshift(A[,dim])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_fftshift</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is not a character string matrix,
+        <VERB>mtlb_fftshift(A)</VERB> may be replaced by <VERB>fftshift(A)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+         If <VERB>A</VERB> is not a character string matrix and <VERB>dim</VERB> is not greater than <VERB>size(size(a),"*")</VERB>,
+        <VERB>mtlb_fftshift(A,dim)</VERB> may be replaced by <VERB>fftshift(A,dim)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_fftshift</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

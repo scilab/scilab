@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_fprintf</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>July 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_fprintf">Matlab fprintf emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>There is no Scilab exact equivalent for Matlab <VERB>fprintf</VERB>. Scilab <VERB>mfprintf</VERB>
+    and Matlab <VERB>fprintf</VERB> behave differently in many cases, but they are equivalents in some cases.</P>
+
+    <P>
+    The function <VERB>mtlb_fprintf(varargin)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>fprintf</VERB>. This function will
+    determine the correct semantic at run time. It is sometimes possible to replace
+    calls to <VERB>mtlb_fprintf</VERB> by calls to <LINK>mfprintf</LINK>.
+    </P>
+
+    <P>Caution: <VERB>mtlb_fprintf</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mfprintf</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

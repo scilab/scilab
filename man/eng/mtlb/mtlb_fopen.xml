@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_fopen</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>July 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_fopen">Matlab fopen emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab <VERB>fopen</VERB> and Scilab <VERB>mopen</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Scilab function returns no usable error message
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Scilab file identified does not exist in case of error but Matlab one is set to <VERB>-1</VERB>.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Matlab function can work with inputs which do not exist in Scilab such as permission options...
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_fopen(filename,permission)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>mopen(filename,permission)</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_fopen</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If error message is not used and no error can occurs,
+        <VERB>mtlb_fopen(filename,permission)</VERB> may be replaced by <VERB>mopen(filename,permission,0)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_fopen</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

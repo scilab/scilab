@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_fwrite</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>July 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_fwrite">Matlab fwrite emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>There is no Scilab equivalent for Matlab <VERB>fwrite</VERB>. Scilab <VERB>mput</VERB>
+    and Matlab <VERB>fwrite</VERB> behave differently in many cases, but they are equivalents in some cases.</P>
+
+    <P>
+    The function <VERB>mtlb_fwrite(varargin)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>fwrite</VERB>. This function will
+    determine the correct semantic at run time. It is sometimes possible to replace
+    calls to <VERB>mtlb_fwrite</VERB> by calls to <LINK>mput</LINK>.
+    </P>
+
+    <P>Caution: <VERB>mtlb_fwrite</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mput</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

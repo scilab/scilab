@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_fliplr</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Juillet 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_fliplr">Fonction d'émulation de la fonction Matlab fliplr</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Dans plusieurs cas particuliers, la fonction <VERB>fliplr</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Avec un paramètre d'entrée de type chaîne de caractère : étant donné que Scilab et Matlab ne considèrent pas les chaînes de caractère de la même façon, le résultat pout être différent pour une entrée de ce type.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_fliplr(A)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>fliplr(A)</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_fliplr</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> n'est pas une matrice de chaînes de caractères,
+        <VERB>mtlb_fliplr(A)</VERB> peut être remplacé par <VERB>fliplr(A)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_fliplr</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

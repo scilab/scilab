@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_fopen</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Juillet 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_fopen">Fonction d'émulation de la fonction Matlab fopen</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Dans plusieurs cas particuliers, la fonction Matlab <VERB>fopen</VERB> et la fonction Scilab <VERB>mopen</VERB> se comportent différemment :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        La fonction Scilab ne renvoie pas de pessage d'erreur utilisable
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        L'indentifieur de fichier n'est pas initialisé dans Scilab en cas d'erreur alors que Matlab lui fixe la valeur <VERB>-1</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        La fonction Matlab peut fonctionner avec des arguments qui n'existent pas en Scilab : options de permission...
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_fopen(filename,permission)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>fopen(filename,permission)</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_fopen</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si le message d'erreur n'est pas utilisé et si aucune erreur ne peut avoir lieu,
+        <VERB>mtlb_fopen(filename,permission)</VERB> peut être remplacé par <VERB>mopen(filename,permission,0)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_fopen</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

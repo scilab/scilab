@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_format</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_format">Matlab format emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>format</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Some Matlab formats do not exist in Scilab
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Calling sequence for <VERB>format</VERB> is different in Scilab and Matlab
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_format(type,prec)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>format([type prec])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_format</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>type=""</VERB> and <VERB>prec=""</VERB>
+        <VERB>mtlb_format("","")</VERB> may be replaced by <VERB>format("v",6)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>type="+"</VERB> and <VERB>prec=""</VERB>
+        <VERB>mtlb_format("+","")</VERB> may be replaced by <VERB>format(6)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>type="long"</VERB> and <VERB>prec=""</VERB>
+        <VERB>mtlb_format("long","")</VERB> may be replaced by <VERB>format(16)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>type="long"</VERB> and <VERB>prec="e"</VERB>
+        <VERB>mtlb_format("long","e")</VERB> may be replaced by <VERB>format("e"16)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>type="long"</VERB> and <VERB>prec="g"</VERB>
+        <VERB>mtlb_format("long","g")</VERB> may be replaced by <VERB>format("e"16)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>type="short"</VERB> and <VERB>prec=""</VERB>
+        <VERB>mtlb_format("short","")</VERB> may be replaced by <VERB>format(6)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>type="short"</VERB> and <VERB>prec="e"</VERB>
+        <VERB>mtlb_format("short","e")</VERB> may be replaced by <VERB>format("e"6)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>type="short"</VERB> and <VERB>prec="g"</VERB>
+        <VERB>mtlb_format("short","g")</VERB> may be replaced by <VERB>format("e"6)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_format</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_grid</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>June 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_grid">Matlab grid emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>There is no Scilab equivalent function for Matlab <VERB>grid</VERB> but there are equivalent instructions.</P>
+
+    <P>
+    The function <VERB>mtlb_grid(flag_or_handle[,flag])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>grid(flag_or_handle[,flag])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_grid</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With one input, if <VERB>flag</VERB> is equal to "on"
+        <VERB>mtlb_grid(flag)</VERB> may be replaced by <VERB>set(gca(),"grid",[1 1])</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With one input, if <VERB>flag</VERB> is equal to "off"
+        <VERB>mtlb_grid(flag)</VERB> may be replaced by <VERB>set(gca(),"grid",[-1 -1])</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With two inputs, if <VERB>flag</VERB> is equal to "on"
+        <VERB>mtlb_grid(axes_handle,flag)</VERB> may be replaced by <VERB>axes_handle.grid=[1 1]</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With two inputs, if <VERB>arg2</VERB> is equal to "off"
+        <VERB>mtlb_grid(axes_handle,flag)</VERB> may be replaced by <VERB>axes_handle.grid=[-1 -1]</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_grid</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>axes_properties</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
