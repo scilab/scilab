@@ -3523,6 +3523,7 @@ int check_xy(fname,dir,mn,xpos,xm,xn,xl,ypos,ym,yn,yl,ntics)
 /*-----------------------------------------------------------
  * metanet with Scilab graphics 
  *-----------------------------------------------------------*/
+
 int intmeta(fname, fname_len)
      char *fname;
      unsigned long fname_len;
@@ -3580,9 +3581,31 @@ int intmeta(fname, fname_len)
 }
 
 
+/*---------------------------------------------------
+ * interface for calling the helpbrowser 
+ * when scilab is compiled with gtk 
+ * not the perfect place to insert this interface ...
+ *---------------------------------------------------*/
 
+extern void Sci_Help(char *,char *,char *);
 
-
+static int int_gtkhelp(fname)
+     char *fname;
+{
+  char *path;
+  char *locale;
+  char *file;
+  int m1,n1,l1,m2,n2,l2,m3,n3,l3;
+  CheckRhs(3,3);
+  CheckLhs(0,1);
+  GetRhsVar(1,"c",&m1,&n1,&l1);
+  GetRhsVar(2,"c",&m2,&n2,&l2);
+  GetRhsVar(3,"c",&m3,&n3,&l3);
+#ifdef WITH_GTK 
+  Sci_Help(cstk(l1),cstk(l2),cstk(l3));
+#endif 
+  LhsVar(1)=0;
+}
 
 /*-----------------------------------------------------------
  * utilities 
@@ -3802,7 +3825,9 @@ static MatdesTable Tab[]={
   {scixgraduate,"xgraduate"},
   {scixname,"xname"},
   {scixaxis,"xaxis"},
-  {intmeta,"xmeta"},
+#ifdef WITH_GTK
+  {int_gtkhelp,"help_gtk"},
+#endif 
 };
 
 /* interface for the previous function Table */ 
