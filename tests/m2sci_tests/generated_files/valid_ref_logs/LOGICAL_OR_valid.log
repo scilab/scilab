@@ -1,0 +1,1655 @@
+****** Beginning of validation of LOGICAL_OR.dia.ref ******
+TEST 1: Scilab returns Double and Matlab returns Boolean for res1
+*** TEST 1 PASSED ***
+
+TEST 2: Scilab returns Double and Matlab returns Boolean for res2
+*** TEST 2 PASSED ***
+
+TEST 3: Scilab returns Double and Matlab returns Boolean for res3
+*** TEST 3 PASSED ***
+
+*** TEST 4 PASSED ***
+
+*** TEST 5 PASSED ***
+
+*** TEST 6 PASSED ***
+
+*** TEST 7 PASSED ***
+
+*** TEST 8 PASSED ***
+
+*** TEST 9 PASSED ***
+
+*** TEST 10 PASSED ***
+
+*** TEST 11 PASSED ***
+
+*** TEST 12 PASSED ***
+
+*** TEST 13 PASSED ***
+
+*** TEST 14 PASSED ***
+
+*** TEST 15 PASSED ***
+
+*** TEST 16 PASSED ***
+
+*** TEST 17 PASSED ***
+
+*** TEST 18 PASSED ***
+
+*** TEST 19 PASSED ***
+
+*** TEST 20 PASSED ***
+
+*** TEST 21 PASSED ***
+
+*** TEST 22 PASSED ***
+
+*** TEST 23 PASSED ***
+
+*** TEST 24 PASSED ***
+
+*** TEST 25 PASSED ***
+
+*** TEST 26 PASSED ***
+
+*** TEST 27 PASSED ***
+
+*** TEST 28 PASSED ***
+
+*** TEST 29 PASSED ***
+
+*** TEST 30 PASSED ***
+
+*** TEST 31 PASSED ***
+
+*** TEST 32 PASSED ***
+
+*** TEST 33 PASSED ***
+
+*** TEST 34 PASSED ***
+
+*** TEST 35 PASSED ***
+
+*** TEST 36 PASSED ***
+
+*** TEST 37 PASSED ***
+
+*** TEST 38 PASSED ***
+
+*** TEST 39 PASSED ***
+
+*** TEST 40 PASSED ***
+
+*** TEST 41 PASSED ***
+
+*** TEST 42 PASSED ***
+
+TEST 43: Scilab returns Double and Matlab returns Boolean for res43
+*** TEST 43 PASSED ***
+
+TEST 44: Scilab returns Double and Matlab returns Boolean for res44
+*** TEST 44 PASSED ***
+
+TEST 45: Scilab returns Double and Matlab returns Boolean for res45
+*** TEST 45 PASSED ***
+
+*** TEST 46 PASSED ***
+
+*** TEST 47 PASSED ***
+
+*** TEST 48 PASSED ***
+
+*** TEST 49 PASSED ***
+
+*** TEST 50 PASSED ***
+
+*** TEST 51 PASSED ***
+
+*** TEST 52 PASSED ***
+
+*** TEST 53 PASSED ***
+
+*** TEST 54 PASSED ***
+
+*** TEST 55 PASSED ***
+
+*** TEST 56 PASSED ***
+
+*** TEST 57 PASSED ***
+
+*** TEST 58 PASSED ***
+
+*** TEST 59 PASSED ***
+
+*** TEST 60 PASSED ***
+
+*** TEST 61 PASSED ***
+
+*** TEST 62 PASSED ***
+
+*** TEST 63 PASSED ***
+
+*** TEST 64 PASSED ***
+
+*** TEST 65 PASSED ***
+
+*** TEST 66 PASSED ***
+
+*** TEST 67 PASSED ***
+
+*** TEST 68 PASSED ***
+
+*** TEST 69 PASSED ***
+
+*** TEST 70 PASSED ***
+
+*** TEST 71 PASSED ***
+
+*** TEST 72 PASSED ***
+
+*** TEST 73 PASSED ***
+
+*** TEST 74 PASSED ***
+
+*** TEST 75 PASSED ***
+
+*** TEST 76 PASSED ***
+
+*** TEST 77 PASSED ***
+
+*** TEST 78 PASSED ***
+
+*** TEST 79 PASSED ***
+
+*** TEST 80 PASSED ***
+
+*** TEST 81 PASSED ***
+
+*** TEST 82 PASSED ***
+
+*** TEST 83 PASSED ***
+
+*** TEST 84 PASSED ***
+
+TEST 85: Scilab returns Double and Matlab returns Boolean for res85
+*** TEST 85 PASSED ***
+
+TEST 86: Scilab returns Double and Matlab returns Boolean for res86
+*** TEST 86 PASSED ***
+
+TEST 87: Scilab returns Double and Matlab returns Boolean for res87
+*** TEST 87 PASSED ***
+
+*** TEST 88 PASSED ***
+
+*** TEST 89 PASSED ***
+
+*** TEST 90 PASSED ***
+
+*** TEST 91 PASSED ***
+
+*** TEST 92 PASSED ***
+
+*** TEST 93 PASSED ***
+
+*** TEST 94 PASSED ***
+
+*** TEST 95 PASSED ***
+
+*** TEST 96 PASSED ***
+
+*** TEST 97 PASSED ***
+
+*** TEST 98 PASSED ***
+
+*** TEST 99 PASSED ***
+
+*** TEST 100 PASSED ***
+
+*** TEST 101 PASSED ***
+
+*** TEST 102 PASSED ***
+
+*** TEST 103 PASSED ***
+
+*** TEST 104 PASSED ***
+
+*** TEST 105 PASSED ***
+
+*** TEST 106 PASSED ***
+
+*** TEST 107 PASSED ***
+
+*** TEST 108 PASSED ***
+
+*** TEST 109 PASSED ***
+
+*** TEST 110 PASSED ***
+
+*** TEST 111 PASSED ***
+
+*** TEST 112 PASSED ***
+
+*** TEST 113 PASSED ***
+
+*** TEST 114 PASSED ***
+
+*** TEST 115 PASSED ***
+
+*** TEST 116 PASSED ***
+
+*** TEST 117 PASSED ***
+
+*** TEST 118 PASSED ***
+
+*** TEST 119 PASSED ***
+
+*** TEST 120 PASSED ***
+
+*** TEST 121 PASSED ***
+
+*** TEST 122 PASSED ***
+
+*** TEST 123 PASSED ***
+
+*** TEST 124 PASSED ***
+
+*** TEST 125 PASSED ***
+
+*** TEST 126 PASSED ***
+
+TEST 127: Scilab returns Double and Matlab returns Boolean for res127
+*** TEST 127 PASSED ***
+
+TEST 128: Scilab returns Double and Matlab returns Boolean for res128
+*** TEST 128 PASSED ***
+
+TEST 129: Scilab returns Double and Matlab returns Boolean for res129
+*** TEST 129 PASSED ***
+
+*** TEST 130 PASSED ***
+
+*** TEST 131 PASSED ***
+
+*** TEST 132 PASSED ***
+
+*** TEST 133 PASSED ***
+
+*** TEST 134 PASSED ***
+
+*** TEST 135 PASSED ***
+
+*** TEST 136 PASSED ***
+
+*** TEST 137 PASSED ***
+
+*** TEST 138 PASSED ***
+
+*** TEST 139 PASSED ***
+
+*** TEST 140 PASSED ***
+
+*** TEST 141 PASSED ***
+
+*** TEST 142 PASSED ***
+
+*** TEST 143 PASSED ***
+
+*** TEST 144 PASSED ***
+
+*** TEST 145 PASSED ***
+
+*** TEST 146 PASSED ***
+
+*** TEST 147 PASSED ***
+
+*** TEST 148 PASSED ***
+
+*** TEST 149 PASSED ***
+
+*** TEST 150 PASSED ***
+
+*** TEST 151 PASSED ***
+
+*** TEST 152 PASSED ***
+
+*** TEST 153 PASSED ***
+
+*** TEST 154 PASSED ***
+
+*** TEST 155 PASSED ***
+
+*** TEST 156 PASSED ***
+
+*** TEST 157 PASSED ***
+
+*** TEST 158 PASSED ***
+
+*** TEST 159 PASSED ***
+
+*** TEST 160 PASSED ***
+
+*** TEST 161 PASSED ***
+
+*** TEST 162 PASSED ***
+
+*** TEST 163 PASSED ***
+
+*** TEST 164 PASSED ***
+
+*** TEST 165 PASSED ***
+
+*** TEST 166 PASSED ***
+
+*** TEST 167 PASSED ***
+
+*** TEST 168 PASSED ***
+
+TEST 169: Scilab returns Double and Matlab returns Boolean for res169
+*** TEST 169 PASSED ***
+
+TEST 170: Scilab returns Double and Matlab returns Boolean for res170
+*** TEST 170 PASSED ***
+
+TEST 171: Scilab returns Double and Matlab returns Boolean for res171
+*** TEST 171 PASSED ***
+
+*** TEST 172 PASSED ***
+
+*** TEST 173 PASSED ***
+
+*** TEST 174 PASSED ***
+
+*** TEST 175 PASSED ***
+
+*** TEST 176 PASSED ***
+
+*** TEST 177 PASSED ***
+
+*** TEST 178 PASSED ***
+
+*** TEST 179 PASSED ***
+
+*** TEST 180 PASSED ***
+
+*** TEST 181 PASSED ***
+
+*** TEST 182 PASSED ***
+
+*** TEST 183 PASSED ***
+
+*** TEST 184 PASSED ***
+
+*** TEST 185 PASSED ***
+
+*** TEST 186 PASSED ***
+
+*** TEST 187 PASSED ***
+
+*** TEST 188 PASSED ***
+
+*** TEST 189 PASSED ***
+
+*** TEST 190 PASSED ***
+
+*** TEST 191 PASSED ***
+
+*** TEST 192 PASSED ***
+
+*** TEST 193 PASSED ***
+
+*** TEST 194 PASSED ***
+
+*** TEST 195 PASSED ***
+
+*** TEST 196 PASSED ***
+
+*** TEST 197 PASSED ***
+
+*** TEST 198 PASSED ***
+
+*** TEST 199 PASSED ***
+
+*** TEST 200 PASSED ***
+
+*** TEST 201 PASSED ***
+
+*** TEST 202 PASSED ***
+
+*** TEST 203 PASSED ***
+
+*** TEST 204 PASSED ***
+
+*** TEST 205 PASSED ***
+
+*** TEST 206 PASSED ***
+
+*** TEST 207 PASSED ***
+
+*** TEST 208 PASSED ***
+
+*** TEST 209 PASSED ***
+
+*** TEST 210 PASSED ***
+
+TEST 211: Scilab returns Double and Matlab returns Boolean for res211
+*** TEST 211 PASSED ***
+
+TEST 212: Scilab returns Double and Matlab returns Boolean for res212
+*** TEST 212 PASSED ***
+
+TEST 213: Scilab returns Double and Matlab returns Boolean for res213
+*** TEST 213 PASSED ***
+
+*** TEST 214 PASSED ***
+
+*** TEST 215 PASSED ***
+
+*** TEST 216 PASSED ***
+
+*** TEST 217 PASSED ***
+
+*** TEST 218 PASSED ***
+
+*** TEST 219 PASSED ***
+
+*** TEST 220 PASSED ***
+
+*** TEST 221 PASSED ***
+
+*** TEST 222 PASSED ***
+
+*** TEST 223 PASSED ***
+
+*** TEST 224 PASSED ***
+
+*** TEST 225 PASSED ***
+
+*** TEST 226 PASSED ***
+
+*** TEST 227 PASSED ***
+
+*** TEST 228 PASSED ***
+
+*** TEST 229 PASSED ***
+
+*** TEST 230 PASSED ***
+
+*** TEST 231 PASSED ***
+
+*** TEST 232 PASSED ***
+
+*** TEST 233 PASSED ***
+
+*** TEST 234 PASSED ***
+
+*** TEST 235 PASSED ***
+
+*** TEST 236 PASSED ***
+
+*** TEST 237 PASSED ***
+
+*** TEST 238 PASSED ***
+
+*** TEST 239 PASSED ***
+
+*** TEST 240 PASSED ***
+
+*** TEST 241 PASSED ***
+
+*** TEST 242 PASSED ***
+
+*** TEST 243 PASSED ***
+
+*** TEST 244 PASSED ***
+
+*** TEST 245 PASSED ***
+
+*** TEST 246 PASSED ***
+
+*** TEST 247 PASSED ***
+
+*** TEST 248 PASSED ***
+
+*** TEST 249 PASSED ***
+
+*** TEST 250 PASSED ***
+
+*** TEST 251 PASSED ***
+
+*** TEST 252 PASSED ***
+
+TEST 253: Scilab returns Double and Matlab returns Boolean for res253
+*** TEST 253 PASSED ***
+
+TEST 254: Scilab returns Double and Matlab returns Boolean for res254
+*** TEST 254 PASSED ***
+
+TEST 255: Scilab returns Double and Matlab returns Boolean for res255
+*** TEST 255 PASSED ***
+
+*** TEST 256 PASSED ***
+
+*** TEST 257 PASSED ***
+
+*** TEST 258 PASSED ***
+
+*** TEST 259 PASSED ***
+
+*** TEST 260 PASSED ***
+
+*** TEST 261 PASSED ***
+
+*** TEST 262 PASSED ***
+
+*** TEST 263 PASSED ***
+
+*** TEST 264 PASSED ***
+
+*** TEST 265 PASSED ***
+
+*** TEST 266 PASSED ***
+
+*** TEST 267 PASSED ***
+
+*** TEST 268 PASSED ***
+
+*** TEST 269 PASSED ***
+
+*** TEST 270 PASSED ***
+
+*** TEST 271 PASSED ***
+
+*** TEST 272 PASSED ***
+
+*** TEST 273 PASSED ***
+
+*** TEST 274 PASSED ***
+
+*** TEST 275 PASSED ***
+
+*** TEST 276 PASSED ***
+
+*** TEST 277 PASSED ***
+
+*** TEST 278 PASSED ***
+
+*** TEST 279 PASSED ***
+
+*** TEST 280 PASSED ***
+
+*** TEST 281 PASSED ***
+
+*** TEST 282 PASSED ***
+
+*** TEST 283 PASSED ***
+
+*** TEST 284 PASSED ***
+
+*** TEST 285 PASSED ***
+
+*** TEST 286 PASSED ***
+
+*** TEST 287 PASSED ***
+
+*** TEST 288 PASSED ***
+
+*** TEST 289 PASSED ***
+
+*** TEST 290 PASSED ***
+
+*** TEST 291 PASSED ***
+
+*** TEST 292 PASSED ***
+
+*** TEST 293 PASSED ***
+
+*** TEST 294 PASSED ***
+
+TEST 295: Scilab returns Double and Matlab returns Boolean for res295
+*** TEST 295 PASSED ***
+
+TEST 296: Scilab returns Double and Matlab returns Boolean for res296
+*** TEST 296 PASSED ***
+
+TEST 297: Scilab returns Double and Matlab returns Boolean for res297
+*** TEST 297 PASSED ***
+
+*** TEST 298 PASSED ***
+
+*** TEST 299 PASSED ***
+
+*** TEST 300 PASSED ***
+
+*** TEST 301 PASSED ***
+
+*** TEST 302 PASSED ***
+
+*** TEST 303 PASSED ***
+
+*** TEST 304 PASSED ***
+
+*** TEST 305 PASSED ***
+
+*** TEST 306 PASSED ***
+
+*** TEST 307 PASSED ***
+
+*** TEST 308 PASSED ***
+
+*** TEST 309 PASSED ***
+
+*** TEST 310 PASSED ***
+
+*** TEST 311 PASSED ***
+
+*** TEST 312 PASSED ***
+
+*** TEST 313 PASSED ***
+
+*** TEST 314 PASSED ***
+
+*** TEST 315 PASSED ***
+
+*** TEST 316 PASSED ***
+
+*** TEST 317 PASSED ***
+
+*** TEST 318 PASSED ***
+
+*** TEST 319 PASSED ***
+
+*** TEST 320 PASSED ***
+
+*** TEST 321 PASSED ***
+
+*** TEST 322 PASSED ***
+
+*** TEST 323 PASSED ***
+
+*** TEST 324 PASSED ***
+
+*** TEST 325 PASSED ***
+
+*** TEST 326 PASSED ***
+
+*** TEST 327 PASSED ***
+
+*** TEST 328 PASSED ***
+
+*** TEST 329 PASSED ***
+
+*** TEST 330 PASSED ***
+
+*** TEST 331 PASSED ***
+
+*** TEST 332 PASSED ***
+
+*** TEST 333 PASSED ***
+
+*** TEST 334 PASSED ***
+
+*** TEST 335 PASSED ***
+
+*** TEST 336 PASSED ***
+
+TEST 337: Scilab returns Double and Matlab returns Boolean for res337
+*** TEST 337 PASSED ***
+
+TEST 338: Scilab returns Double and Matlab returns Boolean for res338
+*** TEST 338 PASSED ***
+
+TEST 339: Scilab returns Double and Matlab returns Boolean for res339
+*** TEST 339 PASSED ***
+
+*** TEST 340 PASSED ***
+
+*** TEST 341 PASSED ***
+
+*** TEST 342 PASSED ***
+
+*** TEST 343 PASSED ***
+
+*** TEST 344 PASSED ***
+
+*** TEST 345 PASSED ***
+
+*** TEST 346 PASSED ***
+
+*** TEST 347 PASSED ***
+
+*** TEST 348 PASSED ***
+
+*** TEST 349 PASSED ***
+
+*** TEST 350 PASSED ***
+
+*** TEST 351 PASSED ***
+
+*** TEST 352 PASSED ***
+
+*** TEST 353 PASSED ***
+
+*** TEST 354 PASSED ***
+
+*** TEST 355 PASSED ***
+
+*** TEST 356 PASSED ***
+
+*** TEST 357 PASSED ***
+
+*** TEST 358 PASSED ***
+
+*** TEST 359 PASSED ***
+
+*** TEST 360 PASSED ***
+
+*** TEST 361 PASSED ***
+
+*** TEST 362 PASSED ***
+
+*** TEST 363 PASSED ***
+
+*** TEST 364 PASSED ***
+
+*** TEST 365 PASSED ***
+
+*** TEST 366 PASSED ***
+
+*** TEST 367 PASSED ***
+
+*** TEST 368 PASSED ***
+
+*** TEST 369 PASSED ***
+
+*** TEST 370 PASSED ***
+
+*** TEST 371 PASSED ***
+
+*** TEST 372 PASSED ***
+
+*** TEST 373 PASSED ***
+
+*** TEST 374 PASSED ***
+
+*** TEST 375 PASSED ***
+
+*** TEST 376 PASSED ***
+
+*** TEST 377 PASSED ***
+
+*** TEST 378 PASSED ***
+
+TEST 379: Scilab returns Double and Matlab returns Boolean for res379
+*** TEST 379 PASSED ***
+
+TEST 380: Scilab returns Double and Matlab returns Boolean for res380
+*** TEST 380 PASSED ***
+
+TEST 381: Scilab returns Double and Matlab returns Boolean for res381
+*** TEST 381 PASSED ***
+
+*** TEST 382 PASSED ***
+
+*** TEST 383 PASSED ***
+
+*** TEST 384 PASSED ***
+
+*** TEST 385 PASSED ***
+
+*** TEST 386 PASSED ***
+
+*** TEST 387 PASSED ***
+
+*** TEST 388 PASSED ***
+
+*** TEST 389 PASSED ***
+
+*** TEST 390 PASSED ***
+
+*** TEST 391 PASSED ***
+
+*** TEST 392 PASSED ***
+
+*** TEST 393 PASSED ***
+
+*** TEST 394 PASSED ***
+
+*** TEST 395 PASSED ***
+
+*** TEST 396 PASSED ***
+
+*** TEST 397 PASSED ***
+
+*** TEST 398 PASSED ***
+
+*** TEST 399 PASSED ***
+
+*** TEST 400 PASSED ***
+
+*** TEST 401 PASSED ***
+
+*** TEST 402 PASSED ***
+
+*** TEST 403 PASSED ***
+
+*** TEST 404 PASSED ***
+
+*** TEST 405 PASSED ***
+
+*** TEST 406 PASSED ***
+
+*** TEST 407 PASSED ***
+
+*** TEST 408 PASSED ***
+
+*** TEST 409 PASSED ***
+
+*** TEST 410 PASSED ***
+
+*** TEST 411 PASSED ***
+
+*** TEST 412 PASSED ***
+
+*** TEST 413 PASSED ***
+
+*** TEST 414 PASSED ***
+
+*** TEST 415 PASSED ***
+
+*** TEST 416 PASSED ***
+
+*** TEST 417 PASSED ***
+
+*** TEST 418 PASSED ***
+
+*** TEST 419 PASSED ***
+
+*** TEST 420 PASSED ***
+
+TEST 421: Scilab returns Double and Matlab returns Boolean for res421
+*** TEST 421 PASSED ***
+
+TEST 422: Scilab returns Double and Matlab returns Boolean for res422
+*** TEST 422 PASSED ***
+
+TEST 423: Scilab returns Double and Matlab returns Boolean for res423
+*** TEST 423 PASSED ***
+
+*** TEST 424 PASSED ***
+
+*** TEST 425 PASSED ***
+
+*** TEST 426 PASSED ***
+
+*** TEST 427 PASSED ***
+
+*** TEST 428 PASSED ***
+
+*** TEST 429 PASSED ***
+
+*** TEST 430 PASSED ***
+
+*** TEST 431 PASSED ***
+
+*** TEST 432 PASSED ***
+
+*** TEST 433 PASSED ***
+
+*** TEST 434 PASSED ***
+
+*** TEST 435 PASSED ***
+
+*** TEST 436 PASSED ***
+
+*** TEST 437 PASSED ***
+
+*** TEST 438 PASSED ***
+
+*** TEST 439 PASSED ***
+
+*** TEST 440 PASSED ***
+
+*** TEST 441 PASSED ***
+
+*** TEST 442 PASSED ***
+
+*** TEST 443 PASSED ***
+
+*** TEST 444 PASSED ***
+
+*** TEST 445 PASSED ***
+
+*** TEST 446 PASSED ***
+
+*** TEST 447 PASSED ***
+
+*** TEST 448 PASSED ***
+
+*** TEST 449 PASSED ***
+
+*** TEST 450 PASSED ***
+
+*** TEST 451 PASSED ***
+
+*** TEST 452 PASSED ***
+
+*** TEST 453 PASSED ***
+
+*** TEST 454 PASSED ***
+
+*** TEST 455 PASSED ***
+
+*** TEST 456 PASSED ***
+
+*** TEST 457 PASSED ***
+
+*** TEST 458 PASSED ***
+
+*** TEST 459 PASSED ***
+
+*** TEST 460 PASSED ***
+
+*** TEST 461 PASSED ***
+
+*** TEST 462 PASSED ***
+
+TEST 463: Scilab returns Double and Matlab returns Boolean for res463
+*** TEST 463 PASSED ***
+
+TEST 464: Scilab returns Double and Matlab returns Boolean for res464
+*** TEST 464 PASSED ***
+
+TEST 465: Scilab returns Double and Matlab returns Boolean for res465
+*** TEST 465 PASSED ***
+
+*** TEST 466 PASSED ***
+
+*** TEST 467 PASSED ***
+
+*** TEST 468 PASSED ***
+
+*** TEST 469 PASSED ***
+
+*** TEST 470 PASSED ***
+
+*** TEST 471 PASSED ***
+
+*** TEST 472 PASSED ***
+
+*** TEST 473 PASSED ***
+
+*** TEST 474 PASSED ***
+
+*** TEST 475 PASSED ***
+
+*** TEST 476 PASSED ***
+
+*** TEST 477 PASSED ***
+
+*** TEST 478 PASSED ***
+
+*** TEST 479 PASSED ***
+
+*** TEST 480 PASSED ***
+
+*** TEST 481 PASSED ***
+
+*** TEST 482 PASSED ***
+
+*** TEST 483 PASSED ***
+
+*** TEST 484 PASSED ***
+
+*** TEST 485 PASSED ***
+
+*** TEST 486 PASSED ***
+
+*** TEST 487 PASSED ***
+
+*** TEST 488 PASSED ***
+
+*** TEST 489 PASSED ***
+
+*** TEST 490 PASSED ***
+
+*** TEST 491 PASSED ***
+
+*** TEST 492 PASSED ***
+
+*** TEST 493 PASSED ***
+
+*** TEST 494 PASSED ***
+
+*** TEST 495 PASSED ***
+
+*** TEST 496 PASSED ***
+
+*** TEST 497 PASSED ***
+
+*** TEST 498 PASSED ***
+
+*** TEST 499 PASSED ***
+
+*** TEST 500 PASSED ***
+
+*** TEST 501 PASSED ***
+
+*** TEST 502 PASSED ***
+
+*** TEST 503 PASSED ***
+
+*** TEST 504 PASSED ***
+
+TEST 505: Scilab returns Double and Matlab returns Boolean for res505
+*** TEST 505 PASSED ***
+
+TEST 506: Scilab returns Double and Matlab returns Boolean for res506
+*** TEST 506 PASSED ***
+
+TEST 507: Scilab returns Double and Matlab returns Boolean for res507
+*** TEST 507 PASSED ***
+
+*** TEST 508 PASSED ***
+
+*** TEST 509 PASSED ***
+
+*** TEST 510 PASSED ***
+
+*** TEST 511 PASSED ***
+
+*** TEST 512 PASSED ***
+
+*** TEST 513 PASSED ***
+
+*** TEST 514 PASSED ***
+
+*** TEST 515 PASSED ***
+
+*** TEST 516 PASSED ***
+
+*** TEST 517 PASSED ***
+
+*** TEST 518 PASSED ***
+
+*** TEST 519 PASSED ***
+
+*** TEST 520 PASSED ***
+
+*** TEST 521 PASSED ***
+
+*** TEST 522 PASSED ***
+
+*** TEST 523 PASSED ***
+
+*** TEST 524 PASSED ***
+
+*** TEST 525 PASSED ***
+
+*** TEST 526 PASSED ***
+
+*** TEST 527 PASSED ***
+
+*** TEST 528 PASSED ***
+
+*** TEST 529 PASSED ***
+
+*** TEST 530 PASSED ***
+
+*** TEST 531 PASSED ***
+
+*** TEST 532 PASSED ***
+
+*** TEST 533 PASSED ***
+
+*** TEST 534 PASSED ***
+
+*** TEST 535 PASSED ***
+
+*** TEST 536 PASSED ***
+
+*** TEST 537 PASSED ***
+
+*** TEST 538 PASSED ***
+
+*** TEST 539 PASSED ***
+
+*** TEST 540 PASSED ***
+
+*** TEST 541 PASSED ***
+
+*** TEST 542 PASSED ***
+
+*** TEST 543 PASSED ***
+
+*** TEST 544 PASSED ***
+
+*** TEST 545 PASSED ***
+
+*** TEST 546 PASSED ***
+
+TEST 547: Scilab returns Double and Matlab returns Boolean for res547
+*** TEST 547 PASSED ***
+
+TEST 548: Scilab returns Double and Matlab returns Boolean for res548
+*** TEST 548 PASSED ***
+
+TEST 549: Scilab returns Double and Matlab returns Boolean for res549
+*** TEST 549 PASSED ***
+
+*** TEST 550 PASSED ***
+
+*** TEST 551 PASSED ***
+
+*** TEST 552 PASSED ***
+
+*** TEST 553 PASSED ***
+
+*** TEST 554 PASSED ***
+
+*** TEST 555 PASSED ***
+
+*** TEST 556 PASSED ***
+
+*** TEST 557 PASSED ***
+
+*** TEST 558 PASSED ***
+
+*** TEST 559 PASSED ***
+
+*** TEST 560 PASSED ***
+
+*** TEST 561 PASSED ***
+
+*** TEST 562 PASSED ***
+
+*** TEST 563 PASSED ***
+
+*** TEST 564 PASSED ***
+
+*** TEST 565 PASSED ***
+
+*** TEST 566 PASSED ***
+
+*** TEST 567 PASSED ***
+
+*** TEST 568 PASSED ***
+
+*** TEST 569 PASSED ***
+
+*** TEST 570 PASSED ***
+
+*** TEST 571 PASSED ***
+
+*** TEST 572 PASSED ***
+
+*** TEST 573 PASSED ***
+
+*** TEST 574 PASSED ***
+
+*** TEST 575 PASSED ***
+
+*** TEST 576 PASSED ***
+
+*** TEST 577 PASSED ***
+
+*** TEST 578 PASSED ***
+
+*** TEST 579 PASSED ***
+
+*** TEST 580 PASSED ***
+
+*** TEST 581 PASSED ***
+
+*** TEST 582 PASSED ***
+
+*** TEST 583 PASSED ***
+
+*** TEST 584 PASSED ***
+
+*** TEST 585 PASSED ***
+
+*** TEST 586 PASSED ***
+
+*** TEST 587 PASSED ***
+
+*** TEST 588 PASSED ***
+
+TEST 589: Scilab returns Double and Matlab returns Boolean for res589
+*** TEST 589 PASSED ***
+
+TEST 590: Scilab returns Double and Matlab returns Boolean for res590
+*** TEST 590 PASSED ***
+
+TEST 591: Scilab returns Double and Matlab returns Boolean for res591
+*** TEST 591 PASSED ***
+
+*** TEST 592 PASSED ***
+
+*** TEST 593 PASSED ***
+
+*** TEST 594 PASSED ***
+
+*** TEST 595 PASSED ***
+
+*** TEST 596 PASSED ***
+
+*** TEST 597 PASSED ***
+
+*** TEST 598 PASSED ***
+
+*** TEST 599 PASSED ***
+
+*** TEST 600 PASSED ***
+
+*** TEST 601 PASSED ***
+
+*** TEST 602 PASSED ***
+
+*** TEST 603 PASSED ***
+
+*** TEST 604 PASSED ***
+
+*** TEST 605 PASSED ***
+
+*** TEST 606 PASSED ***
+
+*** TEST 607 PASSED ***
+
+*** TEST 608 PASSED ***
+
+*** TEST 609 PASSED ***
+
+*** TEST 610 PASSED ***
+
+*** TEST 611 PASSED ***
+
+*** TEST 612 PASSED ***
+
+*** TEST 613 PASSED ***
+
+*** TEST 614 PASSED ***
+
+*** TEST 615 PASSED ***
+
+*** TEST 616 PASSED ***
+
+*** TEST 617 PASSED ***
+
+*** TEST 618 PASSED ***
+
+*** TEST 619 PASSED ***
+
+*** TEST 620 PASSED ***
+
+*** TEST 621 PASSED ***
+
+*** TEST 622 PASSED ***
+
+*** TEST 623 PASSED ***
+
+*** TEST 624 PASSED ***
+
+*** TEST 625 PASSED ***
+
+*** TEST 626 PASSED ***
+
+*** TEST 627 PASSED ***
+
+*** TEST 628 PASSED ***
+
+*** TEST 629 PASSED ***
+
+*** TEST 630 PASSED ***
+
+TEST 631: Scilab returns Double and Matlab returns Boolean for res631
+*** TEST 631 PASSED ***
+
+TEST 632: Scilab returns Double and Matlab returns Boolean for res632
+*** TEST 632 PASSED ***
+
+TEST 633: Scilab returns Double and Matlab returns Boolean for res633
+*** TEST 633 PASSED ***
+
+*** TEST 634 PASSED ***
+
+*** TEST 635 PASSED ***
+
+*** TEST 636 PASSED ***
+
+*** TEST 637 PASSED ***
+
+*** TEST 638 PASSED ***
+
+*** TEST 639 PASSED ***
+
+*** TEST 640 PASSED ***
+
+*** TEST 641 PASSED ***
+
+*** TEST 642 PASSED ***
+
+*** TEST 643 PASSED ***
+
+*** TEST 644 PASSED ***
+
+*** TEST 645 PASSED ***
+
+*** TEST 646 PASSED ***
+
+*** TEST 647 PASSED ***
+
+*** TEST 648 PASSED ***
+
+*** TEST 649 PASSED ***
+
+*** TEST 650 PASSED ***
+
+*** TEST 651 PASSED ***
+
+*** TEST 652 PASSED ***
+
+*** TEST 653 PASSED ***
+
+*** TEST 654 PASSED ***
+
+*** TEST 655 PASSED ***
+
+*** TEST 656 PASSED ***
+
+*** TEST 657 PASSED ***
+
+*** TEST 658 PASSED ***
+
+*** TEST 659 PASSED ***
+
+*** TEST 660 PASSED ***
+
+*** TEST 661 PASSED ***
+
+*** TEST 662 PASSED ***
+
+*** TEST 663 PASSED ***
+
+*** TEST 664 PASSED ***
+
+*** TEST 665 PASSED ***
+
+*** TEST 666 PASSED ***
+
+*** TEST 667 PASSED ***
+
+*** TEST 668 PASSED ***
+
+*** TEST 669 PASSED ***
+
+*** TEST 670 PASSED ***
+
+*** TEST 671 PASSED ***
+
+*** TEST 672 PASSED ***
+
+TEST 673: Scilab returns Double and Matlab returns Boolean for res673
+*** TEST 673 PASSED ***
+
+TEST 674: Scilab returns Double and Matlab returns Boolean for res674
+*** TEST 674 PASSED ***
+
+TEST 675: Scilab returns Double and Matlab returns Boolean for res675
+*** TEST 675 PASSED ***
+
+*** TEST 676 PASSED ***
+
+*** TEST 677 PASSED ***
+
+*** TEST 678 PASSED ***
+
+*** TEST 679 PASSED ***
+
+*** TEST 680 PASSED ***
+
+*** TEST 681 PASSED ***
+
+*** TEST 682 PASSED ***
+
+*** TEST 683 PASSED ***
+
+*** TEST 684 PASSED ***
+
+*** TEST 685 PASSED ***
+
+*** TEST 686 PASSED ***
+
+*** TEST 687 PASSED ***
+
+*** TEST 688 PASSED ***
+
+*** TEST 689 PASSED ***
+
+*** TEST 690 PASSED ***
+
+*** TEST 691 PASSED ***
+
+*** TEST 692 PASSED ***
+
+*** TEST 693 PASSED ***
+
+*** TEST 694 PASSED ***
+
+*** TEST 695 PASSED ***
+
+*** TEST 696 PASSED ***
+
+*** TEST 697 PASSED ***
+
+*** TEST 698 PASSED ***
+
+*** TEST 699 PASSED ***
+
+*** TEST 700 PASSED ***
+
+*** TEST 701 PASSED ***
+
+*** TEST 702 PASSED ***
+
+*** TEST 703 PASSED ***
+
+*** TEST 704 PASSED ***
+
+*** TEST 705 PASSED ***
+
+*** TEST 706 PASSED ***
+
+*** TEST 707 PASSED ***
+
+*** TEST 708 PASSED ***
+
+*** TEST 709 PASSED ***
+
+*** TEST 710 PASSED ***
+
+*** TEST 711 PASSED ***
+
+*** TEST 712 PASSED ***
+
+*** TEST 713 PASSED ***
+
+*** TEST 714 PASSED ***
+
+TEST 715: Scilab returns Double and Matlab returns Boolean for res715
+*** TEST 715 PASSED ***
+
+TEST 716: Scilab returns Double and Matlab returns Boolean for res716
+*** TEST 716 PASSED ***
+
+TEST 717: Scilab returns Double and Matlab returns Boolean for res717
+*** TEST 717 PASSED ***
+
+*** TEST 718 PASSED ***
+
+*** TEST 719 PASSED ***
+
+*** TEST 720 PASSED ***
+
+*** TEST 721 PASSED ***
+
+*** TEST 722 PASSED ***
+
+*** TEST 723 PASSED ***
+
+*** TEST 724 PASSED ***
+
+*** TEST 725 PASSED ***
+
+*** TEST 726 PASSED ***
+
+*** TEST 727 PASSED ***
+
+*** TEST 728 PASSED ***
+
+*** TEST 729 PASSED ***
+
+*** TEST 730 PASSED ***
+
+*** TEST 731 PASSED ***
+
+*** TEST 732 PASSED ***
+
+*** TEST 733 PASSED ***
+
+*** TEST 734 PASSED ***
+
+*** TEST 735 PASSED ***
+
+*** TEST 736 PASSED ***
+
+*** TEST 737 PASSED ***
+
+*** TEST 738 PASSED ***
+
+*** TEST 739 PASSED ***
+
+*** TEST 740 PASSED ***
+
+*** TEST 741 PASSED ***
+
+*** TEST 742 PASSED ***
+
+*** TEST 743 PASSED ***
+
+*** TEST 744 PASSED ***
+
+*** TEST 745 PASSED ***
+
+*** TEST 746 PASSED ***
+
+*** TEST 747 PASSED ***
+
+*** TEST 748 PASSED ***
+
+*** TEST 749 PASSED ***
+
+*** TEST 750 PASSED ***
+
+*** TEST 751 PASSED ***
+
+*** TEST 752 PASSED ***
+
+*** TEST 753 PASSED ***
+
+*** TEST 754 PASSED ***
+
+*** TEST 755 PASSED ***
+
+*** TEST 756 PASSED ***
+
+TEST 757: Scilab returns Double and Matlab returns Boolean for res757
+*** TEST 757 PASSED ***
+
+TEST 758: Scilab returns Double and Matlab returns Boolean for res758
+*** TEST 758 PASSED ***
+
+TEST 759: Scilab returns Double and Matlab returns Boolean for res759
+*** TEST 759 PASSED ***
+
+*** TEST 760 PASSED ***
+
+*** TEST 761 PASSED ***
+
+*** TEST 762 PASSED ***
+
+*** TEST 763 PASSED ***
+
+*** TEST 764 PASSED ***
+
+*** TEST 765 PASSED ***
+
+*** TEST 766 PASSED ***
+
+*** TEST 767 PASSED ***
+
+*** TEST 768 PASSED ***
+
+*** TEST 769 PASSED ***
+
+*** TEST 770 PASSED ***
+
+*** TEST 771 PASSED ***
+
+*** TEST 772 PASSED ***
+
+*** TEST 773 PASSED ***
+
+*** TEST 774 PASSED ***
+
+*** TEST 775 PASSED ***
+
+*** TEST 776 PASSED ***
+
+*** TEST 777 PASSED ***
+
+*** TEST 778 PASSED ***
+
+*** TEST 779 PASSED ***
+
+*** TEST 780 PASSED ***
+
+*** TEST 781 PASSED ***
+
+*** TEST 782 PASSED ***
+
+*** TEST 783 PASSED ***
+
+*** TEST 784 PASSED ***
+
+*** TEST 785 PASSED ***
+
+*** TEST 786 PASSED ***
+
+*** TEST 787 PASSED ***
+
+*** TEST 788 PASSED ***
+
+*** TEST 789 PASSED ***
+
+*** TEST 790 PASSED ***
+
+*** TEST 791 PASSED ***
+
+*** TEST 792 PASSED ***
+
+*** TEST 793 PASSED ***
+
+*** TEST 794 PASSED ***
+
+*** TEST 795 PASSED ***
+
+*** TEST 796 PASSED ***
+
+*** TEST 797 PASSED ***
+
+*** TEST 798 PASSED ***
+
+****** End of validation of LOGICAL_OR.dia.ref ******

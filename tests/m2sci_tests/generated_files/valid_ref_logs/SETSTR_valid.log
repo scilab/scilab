@@ -1,0 +1,86 @@
+****** Beginning of validation of SETSTR.dia.ref ******
+TEST 1: Scilab and Matlab size do not match but result is OK because is a String for res1
+TEST 1: Scilab and Matlab size do not match but result is OK because is a String for res1
+*** TEST 1 PASSED ***
+
+TEST 2: Scilab and Matlab size do not match but result is OK because is a String for res2
+TEST 2: Scilab and Matlab size do not match but result is OK because is a String for res2
+*** TEST 2 PASSED ***
+
+TEST 3: Scilab and Matlab size do not match but result is OK because is a String for res3
+TEST 3: Scilab and Matlab size do not match but result is OK because is a String for res3
+*** TEST 3 PASSED ***
+
+*** TEST 4 PASSED ***
+
+TEST 5: Scilab and Matlab size do not match but result is OK because is a String for res5
+*** TEST 5 PASSED ***
+
+*** TEST 6 PASSED ***
+
+TEST 7: Scilab and Matlab size do not match but result is OK because is a String for res7
+*** TEST 7 PASSED ***
+
+*** TEST 8 PASSED ***
+
+TEST 9: Scilab and Matlab size do not match but result is OK because is a String for res9
+*** TEST 9 PASSED ***
+
+*** TEST 10 PASSED ***
+
+TEST 11: Scilab and Matlab size do not match but result is OK because is a String for res11
+*** TEST 11 PASSED ***
+
+*** TEST 12 PASSED ***
+
+TEST 13: Scilab and Matlab size do not match but result is OK because is a String for res13
+*** TEST 13 PASSED ***
+
+*** TEST 14 PASSED ***
+
+TEST 15: Scilab and Matlab size do not match but result is OK because is a String for res15
+*** TEST 15 PASSED ***
+
+*** TEST 16 PASSED ***
+
+TEST 17: Scilab and Matlab size do not match but result is OK because is a String for res17
+*** TEST 17 PASSED ***
+
+TEST 18: Scilab and Matlab size do not match but result is OK because is a String for res18
+*** TEST 18 PASSED ***
+
+TEST 19: Scilab and Matlab size do not match but result is OK because is a String for res19
+*** TEST 19 PASSED ***
+
+TEST 20: Scilab and Matlab size do not match but result is OK because is a String for res20
+*** TEST 20 PASSED ***
+
+*** TEST 21 PASSED ***
+
+TEST 22: Scilab and Matlab size do not match but result is OK because is a String for res22
+*** TEST 22 PASSED ***
+
+TEST 23: Scilab and Matlab size do not match but result is OK because is a String for res23
+*** TEST 23 PASSED ***
+
+TEST 24: Scilab and Matlab size do not match but result is OK because is a String for res24
+*** TEST 24 PASSED ***
+
+TEST 25: Scilab and Matlab size do not match but result is OK because is a String for res25
+*** TEST 25 PASSED ***
+
+*** TEST 26 PASSED ***
+
+TEST 27: Scilab and Matlab size do not match but result is OK because is a String for res27
+*** TEST 27 PASSED ***
+
+TEST 28: Scilab and Matlab size do not match but result is OK because is a String for res28
+*** TEST 28 PASSED ***
+
+TEST 29: Scilab and Matlab size do not match but result is OK because is a String for res29
+*** TEST 29 PASSED ***
+
+TEST 30: Scilab and Matlab size do not match but result is OK because is a String for res30
+*** TEST 30 PASSED ***
+
+****** End of validation of SETSTR.dia.ref ******
