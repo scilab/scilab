@@ -30,13 +30,14 @@ case 'set' then
     end
   end
 case 'define' then
+  out=2
   model=scicos_model()
   model.sim=list('eselect',-2)
   model.in=1
   model.evtin=1
-  model.evtout=[1;1]
+  model.evtout=ones(out,1);
   model.blocktype='l'
-  model.firing=[-1 -1]
+  model.firing=-ones(out,1);
   model.dep_ut=[%f %f]
   
   gr_i=['txt=[''event select''];';

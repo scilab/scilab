@@ -50,7 +50,7 @@ case 'define' then
   model.sim='rndblk'
   model.out=out
   model.evtin=1
-  model.dstate=[int(rand()*(2**31-1));0*a(:)]
+  model.dstate=[int(rand()*(10^7-1));0*a(:)]
   model.rpar=[a(:);b(:)]
   model.ipar=flag
   model.blocktype='d'

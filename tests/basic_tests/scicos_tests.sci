@@ -118,7 +118,7 @@ function r=checkset()
   %scicos_prob=%f
   for i=1:nb
     if and(Blocs(i)~=["SUPER_f" "func_block" "scifunc_block" "GENERAL_f" ...
-		      "SOM_f" "CURV_f" "LOOKUP_f" "AFFICH_f"]) then 
+		      "SOM_f" "CURV_f" "LOOKUP_f" "AFFICH_f" "TEXT_f"]) then 
       if Blocs(i)=='fortran_block'|Blocs(i)=='c_block' then
 	getf('SCI/macros/scicos/'+Blocs(i)+'.sci')
       else

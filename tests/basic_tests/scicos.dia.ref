@@ -24,7 +24,7 @@ if checkoutputs() then bugmes();quit;end
  
 if checkorigin() then bugmes();quit;end
  
-//if checkset() then bugmes();quit;end a revoir avec Ramine
+if checkset() then bugmes();quit;end
  
 if checkdeput() then bugmes();quit;end
  
