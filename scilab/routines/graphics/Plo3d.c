@@ -1367,6 +1367,7 @@ int I3dRotation(void)
   static integer modes[]={1,0};/* for xgemouse only get mouse mouvement*/ 
   sciSons *psonstmp;
   sciPointObj *psubwin, *tmpsubwin;
+  sciPointObj *pold = NULL;
   /*  sciPointObj *psurface; */
   integer xr, yr;
 
@@ -1522,15 +1523,23 @@ int I3dRotation(void)
 	Tape_ReplayNewAngle("v",&ww,PI0,PI0,iflag,flag,PI0,&theta,&alpha,bbox,PD0);
       else
 	{  
-          if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0)         
+          if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0){
+	    pold = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+	    sciSetSelectedSubWin(psubwin);
 	    Obj_RedrawNewAngle(psubwin,theta,alpha);
+	    sciSetSelectedSubWin(pold);
+	  }
 	  else
             { 
 	      psonstmp = sciGetSons (sciGetCurrentFigure());  
 	      while (psonstmp != (sciSons *) NULL)	
 		{  
-		  if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
+		  if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN){
+		    pold = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+		    sciSetSelectedSubWin(psonstmp->pointobj);
 		    Obj_RedrawNewAngle(psonstmp->pointobj,theta,alpha);
+		    sciSetSelectedSubWin(pold);
+		  }
 		  psonstmp = psonstmp->pnext;
 		} 
             }
