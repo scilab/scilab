@@ -160,25 +160,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "f2c", "routines\f2c\src\f2c
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Forwin", "macros\Forwin\Forwin.vcproj", "{500443BC-F67D-442B-8713-8E2A03BB3C8D}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gd", "routines\gd\gd.vcproj", "{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gengatsce", "macros\Gengatsce\Gengatsce.vcproj", "{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gensomex", "macros\Gensomex\Gensomex.vcproj", "{495C9E8A-439A-426E-AA2C-0B22653875F9}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gensosce", "macros\Gensosce\Gensosce.vcproj", "{B50F726C-8536-4DAC-8CEF-D97706ACACCC}"
-	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphics", "routines\graphics\graphics.vcproj", "{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}"
@@ -234,10 +218,6 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "lapack_f", "routines\lapack
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lib", "macros\Lib\Lib.vcproj", "{798D5602-CF39-4B2F-B780-0EF282E7CEA0}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libf2c", "routines\f2c\libf2c\libf2c.vcproj", "{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
@@ -260,10 +240,6 @@ EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "metanet_f", "routines\metanet\metanet_f\metanet_f.vfproj", "{1D5E735D-176E-4C6D-B980-3C2EC7051F90}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Name", "macros\Name\Name.vcproj", "{6F1E57AB-01D9-488D-9E7A-A5065848D693}"
-	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optim", "routines\optim\optim.vcproj", "{425B887B-9FC5-4CD2-B632-DBFC000E3E25}"
@@ -366,10 +342,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tksci", "routines\tksci\tks
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tomake", "macros\Tomake\Tomake.vcproj", "{B5945471-7E91-43B1-8728-37E37ADB7EE2}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wsci", "routines\wsci\wsci.vcproj", "{2652D55A-391C-4341-A299-6B7BDCE45F0C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
@@ -396,6 +368,34 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CScilex", "routines\wsci\CScilex\CScilex.vcproj", "{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}"
 	ProjectSection(ProjectDependencies) = postProject
 		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Forwin", "macros\Proj_Forwin\Forwin.vcproj", "{500443BC-F67D-442B-8713-8E2A03BB3C8D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gengatsce", "macros\Proj_Gengatsce\Gengatsce.vcproj", "{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gensomex", "macros\Proj_Gensomex\Gensomex.vcproj", "{495C9E8A-439A-426E-AA2C-0B22653875F9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gensosce", "macros\Proj_Gensosce\Gensosce.vcproj", "{B50F726C-8536-4DAC-8CEF-D97706ACACCC}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lib", "macros\Proj_Lib\Lib.vcproj", "{798D5602-CF39-4B2F-B780-0EF282E7CEA0}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Name", "macros\Proj_Name\Name.vcproj", "{6F1E57AB-01D9-488D-9E7A-A5065848D693}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tomake", "macros\Proj_Tomake\Tomake.vcproj", "{B5945471-7E91-43B1-8728-37E37ADB7EE2}"
+	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
 Global
@@ -574,14 +574,6 @@ Global
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.PIV_Release.Build.0 = PIV_Release|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Release.ActiveCfg = Release|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Release.Build.0 = Release|Win32
-		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug.ActiveCfg = Debug|Win32
-		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug.Build.0 = Debug|Win32
-		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
-		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Pentium_Release.Build.0 = Pentium_Release|Win32
-		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.PIV_Release.ActiveCfg = PIV_Release|Win32
-		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.PIV_Release.Build.0 = PIV_Release|Win32
-		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release.ActiveCfg = Release|Win32
-		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release.Build.0 = Release|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Debug.ActiveCfg = Debug|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Debug.Build.0 = Debug|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
@@ -590,30 +582,6 @@ Global
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.PIV_Release.Build.0 = PIV_Release|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Release.ActiveCfg = Release|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Release.Build.0 = Release|Win32
-		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug.ActiveCfg = Debug|Win32
-		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug.Build.0 = Debug|Win32
-		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
-		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Pentium_Release.Build.0 = Pentium_Release|Win32
-		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.PIV_Release.ActiveCfg = PIV_Release|Win32
-		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.PIV_Release.Build.0 = PIV_Release|Win32
-		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release.ActiveCfg = Release|Win32
-		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release.Build.0 = Release|Win32
-		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug.ActiveCfg = Debug|Win32
-		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug.Build.0 = Debug|Win32
-		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
-		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Pentium_Release.Build.0 = Pentium_Release|Win32
-		{495C9E8A-439A-426E-AA2C-0B22653875F9}.PIV_Release.ActiveCfg = PIV_Release|Win32
-		{495C9E8A-439A-426E-AA2C-0B22653875F9}.PIV_Release.Build.0 = PIV_Release|Win32
-		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release.ActiveCfg = Release|Win32
-		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release.Build.0 = Release|Win32
-		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug.ActiveCfg = Debug|Win32
-		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug.Build.0 = Debug|Win32
-		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
-		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Pentium_Release.Build.0 = Pentium_Release|Win32
-		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.PIV_Release.ActiveCfg = PIV_Release|Win32
-		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.PIV_Release.Build.0 = PIV_Release|Win32
-		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release.ActiveCfg = Release|Win32
-		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release.Build.0 = Release|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Debug.ActiveCfg = Debug|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Debug.Build.0 = Debug|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
@@ -702,14 +670,6 @@ Global
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.PIV_Release.Build.0 = PIV_Release|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Release.ActiveCfg = Release|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Release.Build.0 = Release|Win32
-		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug.ActiveCfg = Debug|Win32
-		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug.Build.0 = Debug|Win32
-		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
-		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Pentium_Release.Build.0 = Pentium_Release|Win32
-		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.PIV_Release.ActiveCfg = PIV_Release|Win32
-		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.PIV_Release.Build.0 = PIV_Release|Win32
-		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release.ActiveCfg = Release|Win32
-		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release.Build.0 = Release|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Debug.ActiveCfg = Debug|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Debug.Build.0 = Debug|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
@@ -750,14 +710,6 @@ Global
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.PIV_Release.Build.0 = PIV_Release|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Release.ActiveCfg = Release|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Release.Build.0 = Release|Win32
-		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug.ActiveCfg = Debug|Win32
-		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug.Build.0 = Debug|Win32
-		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
-		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Pentium_Release.Build.0 = Pentium_Release|Win32
-		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.PIV_Release.ActiveCfg = PIV_Release|Win32
-		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.PIV_Release.Build.0 = PIV_Release|Win32
-		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release.ActiveCfg = Release|Win32
-		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release.Build.0 = Release|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Debug.ActiveCfg = Debug|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Debug.Build.0 = Debug|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
@@ -918,14 +870,6 @@ Global
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.PIV_Release.Build.0 = PIV_Release|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Release.ActiveCfg = Release|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Release.Build.0 = Release|Win32
-		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug.ActiveCfg = Debug|Win32
-		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug.Build.0 = Debug|Win32
-		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
-		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Pentium_Release.Build.0 = Pentium_Release|Win32
-		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.PIV_Release.ActiveCfg = PIV_Release|Win32
-		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.PIV_Release.Build.0 = PIV_Release|Win32
-		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release.ActiveCfg = Release|Win32
-		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release.Build.0 = Release|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Debug.ActiveCfg = Debug|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Debug.Build.0 = Debug|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
@@ -970,6 +914,62 @@ Global
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.PIV_Release.Build.0 = PIV_Release|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Release.ActiveCfg = Release|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Release.Build.0 = Release|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug.ActiveCfg = Debug|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug.Build.0 = Debug|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Pentium_Release.Build.0 = Pentium_Release|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.PIV_Release.ActiveCfg = PIV_Release|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.PIV_Release.Build.0 = PIV_Release|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release.ActiveCfg = Release|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release.Build.0 = Release|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug.ActiveCfg = Debug|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug.Build.0 = Debug|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Pentium_Release.Build.0 = Pentium_Release|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.PIV_Release.ActiveCfg = PIV_Release|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.PIV_Release.Build.0 = PIV_Release|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release.ActiveCfg = Release|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release.Build.0 = Release|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug.ActiveCfg = Debug|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug.Build.0 = Debug|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Pentium_Release.Build.0 = Pentium_Release|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.PIV_Release.ActiveCfg = PIV_Release|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.PIV_Release.Build.0 = PIV_Release|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release.ActiveCfg = Release|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release.Build.0 = Release|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug.ActiveCfg = Debug|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug.Build.0 = Debug|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Pentium_Release.Build.0 = Pentium_Release|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.PIV_Release.ActiveCfg = PIV_Release|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.PIV_Release.Build.0 = PIV_Release|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release.ActiveCfg = Release|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release.Build.0 = Release|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug.ActiveCfg = Debug|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug.Build.0 = Debug|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Pentium_Release.Build.0 = Pentium_Release|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.PIV_Release.ActiveCfg = PIV_Release|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.PIV_Release.Build.0 = PIV_Release|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release.ActiveCfg = Release|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release.Build.0 = Release|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug.ActiveCfg = Debug|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug.Build.0 = Debug|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Pentium_Release.Build.0 = Pentium_Release|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.PIV_Release.ActiveCfg = PIV_Release|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.PIV_Release.Build.0 = PIV_Release|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release.ActiveCfg = Release|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release.Build.0 = Release|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug.ActiveCfg = Debug|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug.Build.0 = Debug|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Pentium_Release.Build.0 = Pentium_Release|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.PIV_Release.ActiveCfg = PIV_Release|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.PIV_Release.Build.0 = PIV_Release|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release.ActiveCfg = Release|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
