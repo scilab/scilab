@@ -156,7 +156,7 @@ void FillInPropertyPage( PROPSHEETPAGE* psp, int idDlg, LPSTR pszProc, DLGPROC p
   psp->dwSize = sizeof(PROPSHEETPAGE);
   psp->dwFlags = 0;
   psp->hInstance =  hdllInstance;
-#ifdef __GNUC__
+#ifdef __GNUC__XXX
   psp->u1.pszTemplate = MAKEINTRESOURCE(idDlg);
   psp->u2.pszIcon = "texticon";
 #else 
@@ -206,7 +206,7 @@ int mDialogWindow(void)
   psh.hwndParent = hwndOwner;
   psh.pszCaption = (LPSTR) TEXT("Scilab mdialog Wizard");
   psh.nPages = SciMDialog.NPages;
-#ifdef  __GNUC__
+#ifdef  __GNUC__XXX
   psh.u2.nStartPage = SciMDialog.CPage;
   psh.u3.ppsp = (LPCPROPSHEETPAGE) &psp;
 #else 

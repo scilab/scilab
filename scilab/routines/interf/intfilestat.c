@@ -7,13 +7,15 @@
 
 #include "../sun/Sun.h" 
 
-
 int C2F(intfilestat)(fname)
 char * fname;
 {
-
 #ifdef WIN32
+#ifndef __GNUC__
    struct _stat buf;
+#else 
+   struct stat buf;
+#endif 
 #else
    struct stat buf;
 #endif

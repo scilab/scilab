@@ -21,7 +21,7 @@
 
 extern int gp_printfile(HINSTANCE hInstance,HWND hwnd,char *filename, char *port);
 
-#ifdef __GNUC__
+#ifdef __GNUC__XXX
 /** XXXXXX Missing declarations for gcwin32 **/
 typedef PRINTER_DEFAULTS *LPPRINTER_DEFAULTS;
 

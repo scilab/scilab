@@ -30,10 +30,7 @@
 #endif
 #include <windows.h>
 #include <windowsx.h>
-
-#ifndef __GNUC__
 #include <commdlg.h>
-#endif
 
 #ifndef __ABSC__
 #include <memory.h>

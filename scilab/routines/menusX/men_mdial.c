@@ -1,12 +1,14 @@
 /* Copyright ENPC */
 #ifdef WIN32 
 #include "wmen_scilab.h"
+MDialog SciMDialog = {{0},0,0,NULL,NULL,NULL,-1,0};  /** used to stored the mdialog data **/
 #else
 #include "men_scilab.h"
+MDialog SciMDialog = {NULL,NULL,NULL,-1,0};  /** used to stored the mdialog data **/
 #endif
 
 
-MDialog SciMDialog = {NULL,NULL,NULL,-1,0};  /** used to stored the mdialog data **/
+
 /*************************************************     
  * a test function used in command.c
  **********************************************************/
@@ -55,7 +57,7 @@ void C2F(xmdial)(int *label, int *ptrlab, int *nlab, int *value, int *ptrv, int 
   if (SciMDialog.nv >= 0) 
     {
       sciprint("Only one mdialog at a time please \r\n");
-      return(-1);
+      return ;
     }
   /* conversion of scilab characters into strings */
   ScilabMStr2C(label,nlab,ptrlab,&(SciMDialog.labels),ierr);

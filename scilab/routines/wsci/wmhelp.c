@@ -11,10 +11,8 @@
 #define STRICT
 #endif
 #include <windows.h>
-#ifndef __GNUC__
 #include <commdlg.h>
 #include <winnls.h>
-#endif
 
 #include <string.h>
 #include <stdlib.h>

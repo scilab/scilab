@@ -30,10 +30,7 @@
 #endif
 #include <windows.h>
 #include <windowsx.h>
-
-#ifndef __GNUC__
 #include <commctrl.h>
-#endif
 
 #ifdef __STDC__
 #include <stdlib.h>
@@ -857,13 +854,8 @@ ReadKey (void)
       if (irBuffer.EventType == KEY_EVENT &&
 	  irBuffer.Event.KeyEvent.bKeyDown)
 	{
-#ifdef __GNUC__
-	  if (irBuffer.Event.KeyEvent.AsciiChar != '\0')
-	    {
-#else
 	  if (irBuffer.Event.KeyEvent.uChar.AsciiChar != '\0')
 	    {
-#endif
 	      ReadConsole (hIn, &ch, 1, &n, NULL);
 	      return ch & 0xff;
 	    }

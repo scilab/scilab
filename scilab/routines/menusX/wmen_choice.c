@@ -290,7 +290,7 @@ static void FillInPropertyPage( PROPSHEETPAGE* psp, int idDlg, LPSTR pszProc, DL
   psp->dwSize = sizeof(PROPSHEETPAGE);
   psp->dwFlags = 0;
   psp->hInstance =  hdllInstance;
-#ifdef __GNUC__
+#ifdef __GNUC__XXX
   psp->u1.pszTemplate = MAKEINTRESOURCE(idDlg);
   psp->u2.pszIcon = NULL;
 #else 
@@ -339,7 +339,7 @@ int mChoiceWindow(void)
   psh.hwndParent = hwndOwner;
   psh.pszCaption = (LPSTR) TEXT("Review Wizard");
   psh.nPages = SciMChoice.NPages;
-#ifdef __GNUC__
+#ifdef __GNUC__XXX
   psh.u2.nStartPage = SciMChoice.CPage;
   psh.u3.ppsp = (LPCPROPSHEETPAGE) &psp;
 #else 

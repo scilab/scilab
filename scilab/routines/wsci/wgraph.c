@@ -30,11 +30,8 @@
 #endif
 #include <windows.h>
 #include <windowsx.h>
-
-#ifndef __GNUC__
 #include <commdlg.h>
 #include <shellapi.h>
-#endif
 
 #include <string.h>
 #include <stdlib.h>
@@ -847,7 +844,6 @@ static void ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
 EXPORT LRESULT CALLBACK
   WndGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-  static paint = 0;
   RECT rect;
   struct BCG *ScilabGC;
   int deltax = 0;
@@ -1004,7 +1000,7 @@ EXPORT LRESULT CALLBACK
 	sciGetScrollInfo (ScilabGC, SB_HORZ, &horzsi);
 	switch (LOWORD (wParam))
 	  {
-	    deltax = 0;
+	    /* deltax = 0;*/
 	  case SB_PAGEUP:
 	    deltax = horzsi.nPos;
 	    horzsi.nPos = max (horzsi.nMin, horzsi.nPos - 50);
@@ -1031,6 +1027,7 @@ EXPORT LRESULT CALLBACK
 	    deltax = deltax - horzsi.nPos;
 	    break;
 	  default:
+	    deltax=0;
 	    break;
 	  }
 	sciSetScrollInfo (ScilabGC, SB_HORZ, &horzsi, TRUE);
@@ -1044,7 +1041,7 @@ EXPORT LRESULT CALLBACK
 	sciGetScrollInfo (ScilabGC, SB_VERT, &vertsi);
 	switch (LOWORD (wParam))
 	  {
-	    deltay = 0;
+	    /* deltay = 0; */
 	  case SB_PAGEUP:
 	    deltay = vertsi.nPos;
 	    vertsi.nPos = max (vertsi.nMin, vertsi.nPos - 50);

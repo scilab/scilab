@@ -18,10 +18,7 @@
 #include "../sun/men_Sutils.h"
 
 #include "../stack-def.h" /* for IMPORT */
-
-#ifndef __GNUC__
 #include <prsht.h>      /* includes the property sheet functionality*/
-#endif
 
 extern TW textwin;
 
@@ -211,7 +208,7 @@ int mDialogWindow __PARAMS((void));
 EXPORT BOOL CALLBACK SciMessageDlgProc  __PARAMS((HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam));
   
 extern int ExposeMessageWindow  __PARAMS((void));  
-
+extern int ExposeMessageWindow1  __PARAMS((void));  
 /*  "wmen_print-n.c.X1" */
 
 extern int ExposePrintdialogWindow  __PARAMS((int flag, int *colored, int *orientation));  

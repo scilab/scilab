@@ -2,13 +2,13 @@
  *@description: Sets the dimension of the scroll bars
  * Do not call SetScrollInfo windows function,
  * sciSetScrollInfo do that and more things !
- *@input: struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si, boolean bRedraw
+ *@input: struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si, BOOLEAN bRedraw
  *@output: int
  *@author: Matthieu PHILIPPE 
  *@date: Dec 1999
  **/
 extern int sciSetScrollInfo(struct BCG *Scilabgc, int sb_ctl, 
-				SCROLLINFO *si, boolean bRedraw);
+				SCROLLINFO *si, BOOLEAN bRedraw);
 
 /**sciGetScrollInfo
  *@description: Returns the dimension of the scroll bars

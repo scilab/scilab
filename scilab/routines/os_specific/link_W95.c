@@ -3,7 +3,6 @@
  * Link version for SYSV machine 
  *********************************/
 
-
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -17,7 +16,7 @@ extern char *strchr();
 
 
 static void Sci_Delsym __PARAMS((int ));
-static int Sci_dlopen __PARAMS((char *loaded_files[]),int global);
+static int Sci_dlopen __PARAMS((char *loaded_files[],int global));
 static int Sci_dlsym __PARAMS((char *ename,int  ishared,char * strf));
 
 /*************************************

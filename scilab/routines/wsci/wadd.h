@@ -3,7 +3,7 @@
 #ifndef GNUC_MISS
 #define GNUC_MISS
 
-#ifdef __GNUC__
+#ifdef __GNUC__XXX
 /**** XXXX  was necessary with b17 
 typedef  METAFILEPICT *LPMETAFILEPICT;
 ***/ 

@@ -30,9 +30,7 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <commdlg.h>
-#ifndef __GNUC__
 #include <shellapi.h>
-#endif
 
 #include <string.h>		/* use only far items */
 #include <stdlib.h>

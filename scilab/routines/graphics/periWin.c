@@ -13,7 +13,7 @@
 #endif 
 #include <windows.h>
 #include <windowsx.h>
-#ifndef __GNUC__
+#ifndef __GNUC__XXX
 #include <commctrl.h>
 #endif
 #include <stdio.h>
@@ -217,8 +217,7 @@ int sciGetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si)
 	return 0;
 }
 
-
-int sciSetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si, boolean bRedraw)
+int sciSetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si, BOOLEAN bRedraw)
 {
 	int inttmp = si->nMax;
 	SCROLLINFO totosi;

@@ -15,9 +15,7 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <commdlg.h>
-#ifndef __GNUC__
 #include <commctrl.h>
-#endif
 
 typedef struct tagPOPUPSTRING
   {

@@ -20,7 +20,7 @@ OBJSF = lstelm.obj lstelmi.obj  matdsr.obj matelm.obj matold.obj\
 	intgetenv.obj intmgetl.obj intfilestat.obj intgetio.obj\
 	matimp.obj  matnew.obj matode.obj matops.obj matopt.obj\
 	 matqz.obj matric.obj  matsys.obj \
-	polaut.obj polelm.obj polops.obj strelm.obj strops.obj fmlelm.obj\
+	polaut.obj polelm.obj polops.obj strelm.obj strelm-c.obj strops.obj fmlelm.obj\
 	logic.obj logelm.obj xawelm.obj misops.obj stack0.obj \
 	where.obj indxg.obj defint.obj\
 	matodc.obj dasrti.obj\
