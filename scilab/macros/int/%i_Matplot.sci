@@ -1,23 +1,38 @@
-function %i_Matplot(z,varargin)
-//xsetech([0 0 1 1])
-strf='011'
+function %i_Matplot(z,strf,rect,nax,frameflag,axesflag)
+
 [N,M]=size(z)
-rect=[1 1 N M] // je fixe le cadre de l'image complete
-nax=[2 10 2 10]
-nv=size(varargin)
-if nv>=1 then strf=varargin(1),end
-if nv>=2 then rect=varargin(1),end
-if nv>=3 then nax=varargin(1),end
-if part(strf,2)<>'0' then //je dessine le cadre et les echelles
-  plot2d(0,0,1,strf,' ',rect,nax)
+opts=[];
+isframeflag=%f
+isaxesflag=%f
+narg=0
+if exists('strf','local')==1 then 
+  opts=[opts,'frameflag='+part(strf,2),'axesflag='+part(strf,3)],
+  isframeflag=%t
+  isaxesflag=%t
+  narg=narg+1
+end
+if exists('rect','local')==1 then 
+  opts=[opts,'rect=rect'],
+end
+if exists('nax' ,'local')==1 then 
+  opts=[opts,'nax=nax'] 
+end
+if exists('frameflag' ,'local')==1 then 
+  if isframeflag then error('frameflag already defined by the strf argument'),end
+  opts=[opts,'frameflag=frameflag']  ,
+end
+if exists('axesflag' ,'local')==1 then 
+  if isaxesflag then error('axesflag already defined by the strf argument'),end
+  opts=[opts,'axesflag=axesflag']  ,
+end
+if size(opts,2)+1-narg <argn(2) then  
+  error('invalid named arguments'),
 end
 
-l=1
+
+
 Max=stacksize();Max=int((Max(1)-Max(2))/3)
-step=max(1,int(Max/N))
-while l<M
-  l1=min(l+step-1,M);
-  Matplot(double(z(:,l:l1)),"010",[-(l-1),0,M-l+1,N]+0.5)
-  l=l1
-end
+if Max<M*N+100 then stacksize(Max+M*N*1.5),end
+execstr('Matplot(double(z),'+strcat(opts,',')+')')
+
 endfunction
