@@ -95,7 +95,7 @@ scs_m_1.objs(1)=mlist(['Block','graphics','model','gui','doc'],..
                 mlist(..
                 ['model','sim','in','out','evtin','evtout','state','dstate',..
                 'rpar','ipar','blocktype','firing','dep_ut','label'],'mfclck',[],..
-                [],1,[1;1],[],0,0.1,5,'d',[-1,0],[%f,%f],emptystr()),'MFCLCK_f',..
+                [],1,[1;1],[],0,0.1,2,'d',[-1,0],[%f,%f],emptystr()),'MFCLCK_f',..
                 list())
 scs_m_1.objs(2)=mlist(['Block','graphics','model','gui','doc'],..
                 mlist(..

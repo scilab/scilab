@@ -11,10 +11,6 @@ c
 
 c
       common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''constraint     t='',e10.3,'' flag='',i1)') t,flag
-      endif
 c     
       if (flag.eq.0) then
          do 12 i=1,nu

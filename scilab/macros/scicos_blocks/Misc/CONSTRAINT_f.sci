@@ -24,10 +24,10 @@ case 'set' then
       [model,graphics,ok]=check_io(model,graphics,num,num,[],[])
       if ok then
 	graphics.exprs=exprs
-	model.state=zeros(2*num,1)
+	model.state=zeros(4*num,1)
 	model.out=num
 	model.in=num
-	model.rpar=[num]
+//	model.rpar=[num]
 	x.graphics=graphics;x.model=model
 	break
       end

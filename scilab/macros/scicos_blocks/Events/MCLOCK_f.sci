@@ -42,7 +42,7 @@ case 'set' then
       mfclck.graphics.pein=12
       mfclck.graphics.peout=[4;3]
       mfclck.model.rpar=0.1
-      mfclck.model.ipar=5
+      mfclck.model.ipar=nn
       mfclck.model.firing=[-1 0]
     
     clksom=CLKSOM_f('define')

@@ -131,7 +131,7 @@ function r=checkset()
       if or(o_n<>o) then 
 	mprintf('set failed for block '+Blocs(i)); 
 	r=%t
-	return;      
+	pause;      
       end
       clear gui
     end
