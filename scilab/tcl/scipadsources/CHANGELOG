@@ -643,4 +643,5 @@ ES 26/1/05
    opens the source file (via get_function_path()) of that libfun
    (undocumented yet, nor reported in a menu)
  * a nicer color for libfun
+ * filename printed in the message "file is alread opened" 
  * version 3.20

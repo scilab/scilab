@@ -170,7 +170,7 @@ proc openfile {file} {
 #
             newfilebind
         } else {
-            fileisopen
+            fileisopen $file
             $pad.filemenu.wind invoke $res
         }
         selection clear
@@ -245,16 +245,16 @@ proc newfilebind {} {
    set radiobuttonvalue $winopened
 }
 
-proc fileisopen {} {
+proc fileisopen {file} {
    global lang
  # file is already opened
    if {$lang == "eng"} {
-       tk_messageBox -type ok -title "Open file" -message \
-          "This file is already opened! Save the current opened\
+       tk_messageBox -type ok -title "Open file $file" -message \
+          "Thie file $file is already opened! Save the current opened\
             file to an another name and reopen it from disk!"
    } else {
-       tk_messageBox -type ok -title "Ouvrir fichier" -message \
-          "Ce fichier est déjà ouvert! Sauvez-le sous un\
+       tk_messageBox -type ok -title "Ouvrir fichier $file" -message \
+          "Le fichier $file est déjà ouvert! Sauvez-le sous un\
             autre nom et rouvrez-le à partir du disque !"
   }
 }
@@ -448,7 +448,7 @@ proc showopenwin {textarea} {
             showinfo " "
             newfilebind
         } else {
-            fileisopen
+            fileisopen $file
             $pad.filemenu.wind invoke $res
         }
         selection clear
