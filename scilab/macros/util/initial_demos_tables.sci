@@ -1,6 +1,6 @@
 function demolist=initial_demos_tables()
   demolist=[
-      'Introduction to SCILAB',                'intro/dem01.dem';
+      'Introduction to SCILAB',                'basic/intro/dem01.dem';
       'Graphics'                               'graphics/graphics.dem';
       'Simulation',                            'simulation/simulation.dem'
       'Control'   ,                            'control/control.dem'
