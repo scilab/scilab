@@ -126,6 +126,7 @@ c     insertion
          if(istk(ilk).lt.0.and.local) then
 c     .  insertion in a local indirect variable
 c     .     replace indirect variable by its value
+
             k1=istk(ilk+2)
             if (k .ne. bot) then
 c     .     shift storage down
@@ -142,9 +143,18 @@ c     .     shift storage down
 c     .     destroy old variable
             bot = bot+1
 c     .     copy the value
+            ilk1=iadr(lstk(k1))
+ 
             vol=lstk(k1+1)-lstk(k1)
             k=bot-1
+
+            if (lstk(k+1)-vol.lt.lstk(1)) then
+               err=-(lstk(k+1)-vol-lstk(1))
+               call error(17)
+               return
+            endif
             lstk(k)=lstk(k+1)-vol
+
             call unsfdcopy(vol,stk(lstk(k1)),1,stk(lstk(k)),1)
             call putid(idstk(1,k), id)
             infstk(k)=0
