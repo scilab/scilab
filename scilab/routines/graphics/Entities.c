@@ -8461,7 +8461,7 @@ ClonePolyline (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   }
   else {
-    sciSetCurrenObj(pobj);}; /* F.Leray Adding 26.03.04*/
+    sciSetCurrentObj(pobj);}; /* F.Leray Adding 26.03.04*/
 
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;
@@ -9171,7 +9171,7 @@ ClonePatch (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   }
   else {
-    sciSetCurrenObj(pobj);}; /* F.Leray Adding 26.03.04*/
+    sciSetCurrentObj(pobj);}; /* F.Leray Adding 26.03.04*/
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
@@ -9306,7 +9306,7 @@ CloneArc (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   }
   else {
-    sciSetCurrenObj(pobj);}; /* F.Leray Adding 26.03.04*/
+    sciSetCurrentObj(pobj);}; /* F.Leray Adding 26.03.04*/
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
@@ -9451,7 +9451,7 @@ CloneRectangle (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   }
   else {
-    sciSetCurrenObj(pobj);}; /* F.Leray Adding 26.03.04*/
+    sciSetCurrentObj(pobj);}; /* F.Leray Adding 26.03.04*/
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
