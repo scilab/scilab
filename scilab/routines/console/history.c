@@ -188,6 +188,7 @@ int C2F(savehistory) _PARAMS((char *fname))
   char *Path;
   int l1, m1, n1, out_n, lout;
   sci_hist *Parcours = history;
+  BOOL SaveLine=TRUE;
 
   Rhs=Max(Rhs,0);
   CheckRhs(0,1) ;
@@ -210,8 +211,30 @@ int C2F(savehistory) _PARAMS((char *fname))
 	Parcours=GoFirstKnot(Parcours);
 	while(Parcours->next)
 	  {
-	    fputs(Parcours->line,pFile );
-	    fputs("\n",pFile );
+		{
+			if (strncmp(Parcours->line,"// Begin Session :",strlen("// Begin Session :"))==0)
+			{
+				sci_hist *ParcoursNextforTest = GoNextKnot(Parcours);
+				if (ParcoursNextforTest)
+				{
+					if (strncmp(ParcoursNextforTest->line,"// End Session :",strlen("// End Session :"))==0)
+					{
+						SaveLine=FALSE;
+					}
+				}
+			}
+		}
+		if (SaveLine)
+		{
+			fputs(Parcours->line,pFile );
+			fputs("\n",pFile );
+		}
+		else 
+		{ 
+			SaveLine=TRUE;
+			Parcours=GoNextKnot(Parcours);
+		}
+
 	    Parcours=GoNextKnot(Parcours);  
 	  }
 
