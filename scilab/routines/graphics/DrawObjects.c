@@ -6219,7 +6219,10 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 		
 		for(ik=0;ik<(pSURFACE_FEATURE (pobj)->m3n)*(pSURFACE_FEATURE (pobj)->n3n);ik++) 
 		  cvect[ik] = (int) pSURFACE_FEATURE (pobj)->color[ik];
-		
+
+		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
+		C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
+			
 		shade(polyx,polyy,&(cvect[p*index]),p,pSURFACE_FEATURE (pobj)->flag[0]);
 		FREE(cvect); cvect = NULL;
 		if (sciGetIsMark (pobj))
