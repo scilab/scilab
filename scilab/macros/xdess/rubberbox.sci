@@ -52,6 +52,7 @@ else
     first=%f
   end 
   delete(r)
+  show_pixmap()
 end
 rect=[ox,oy,w,h]
 btn=rep(3)
