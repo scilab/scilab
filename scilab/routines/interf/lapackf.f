@@ -46,7 +46,7 @@ c
       endif
       LWORK=maxvol(k+1,'d')
       if(LWORK.le.LWORKMIN) then
-         buf='dgeqpf'//': not enough memory (use stacksize)'
+         buf='qr'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -64,7 +64,7 @@ c     SUBROUTINE DGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c     SUBROUTINE DGEQPF( M, N, A, LDA, JPVT, TAU, WORK, INFO )
       endif
       if(info.ne.0) then
-         call errorinfo("dgeqpf",info)
+         call errorinfo("qr: dgeqpf",info)
          return
       endif
       call DLACPY( 'U', M, N, stk(lA), M, stk(lR), M )
@@ -186,7 +186,7 @@ c
       LWORKMIN = N
       LWORK=maxvol(k+2,'z')
       if(LWORK.le.LWORKMIN) then
-         buf='zgeqpf'//': not enough memory (use stacksize)'
+         buf='qr'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -205,7 +205,7 @@ c     SUBROUTINE ZGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c     SUBROUTINE ZGEQPF( M, N, A, LDA, JPVT, TAU, WORK, RWORK, INFO )
       endif
       if(info.ne.0) then
-         call errorinfo("zgeqpf",info)
+         call errorinfo("qr: zgeqpf",info)
          return
       endif
 
@@ -328,7 +328,7 @@ c
        endif
        LWORK=maxvol(k+1,'d')
        if(LWORK.le.LWORKMIN) then
-         buf='dgeqpf'//': not enough memory (use stacksize)'
+         buf='qr'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -345,7 +345,7 @@ c        SUBROUTINE DGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c        SUBROUTINE DGEQPF( M, N, A, LDA, JPVT, TAU, WORK, INFO )
       endif
       if(info.ne.0) then
-         call errorinfo("dgeqpf",info)
+         call errorinfo("qr: dgeqpf",info)
          return
       endif
       call DLACPY( 'U', M, N, stk(lA), M, stk(lR), M )
@@ -459,7 +459,7 @@ c
        endif
        LWORK=maxvol(k+1,'d')
        if(LWORK.le.LWORKMIN) then
-         buf='dgeqpf'//': not enough memory (use stacksize)'
+         buf='qr'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -476,7 +476,7 @@ c        SUBROUTINE DGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c        SUBROUTINE DGEQPF( M, N, A, LDA, JPVT, TAU, WORK, INFO )
       endif
       if(info.ne.0) then
-         call errorinfo("dgeqpf",info)
+         call errorinfo("qr: dgeqpf",info)
          return
       endif
       call DLACPY( 'U', min(M,N), N, stk(lA), M, stk(lR), min(M,N) )
@@ -572,7 +572,7 @@ c
        LWORKMIN = N
        LWORK=maxvol(k+2,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='zgeqpf'//': not enough memory (use stacksize)'
+         buf='qr'//': not enough memory (use stacksize)'
          call error(998)
          return
        endif
@@ -590,7 +590,7 @@ c       SUBROUTINE ZGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c       SUBROUTINE ZGEQPF( M, N, A, LDA, JPVT, TAU, WORK, RWORK, INFO )
       endif
       if(info.ne.0) then
-        call errorinfo("zgeqpf",info)
+        call errorinfo("qr: zgeqpf",info)
         return
        endif
 
@@ -703,7 +703,7 @@ c
        LWORKMIN = N
        LWORK=maxvol(k+2,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='zgeqpf'//': not enough memory (use stacksize)'
+         buf='qr'//': not enough memory (use stacksize)'
          call error(998)
          return
        endif
@@ -722,7 +722,7 @@ c       SUBROUTINE ZGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c       SUBROUTINE ZGEQPF( M, N, A, LDA, JPVT, TAU, WORK, RWORK, INFO )
       endif
       if(info.ne.0) then
-        call errorinfo("zgeqpf",info)
+        call errorinfo("qr: zgeqpf",info)
         return
       endif
  
@@ -819,7 +819,7 @@ c
        LWORKMIN = max(3*min(M,N)+max(M,N),5*min(M,N)-4)
        LWORK=maxvol(k,'d')
        if(LWORK.le.LWORKMIN) then
-         buf='dgesvd'//': not enough memory (use stacksize)'
+         buf='svd'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -843,7 +843,7 @@ c        SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, INFO )
       endif  
        if(info.ne.0) then
-         call errorinfo("dgesvd",info)
+         call errorinfo("svd: dgesvd",info)
          return
        endif
 
@@ -928,7 +928,7 @@ c
        LWORKMIN = max(3*min(M,N)+max(M,N),5*min(M,N)-4)
        LWORK=maxvol(k,'d')
        if(LWORK.le.LWORKMIN) then
-         buf='dgesvd'//': not enough memory (use stacksize)'
+         buf='svd'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -952,7 +952,7 @@ c        SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, INFO )
       endif  
        if(info.ne.0) then
-         call errorinfo("dgesvd",info)
+         call errorinfo("svd: dgesvd",info)
          return
        endif
 
@@ -1040,7 +1040,7 @@ c
        LWORKMIN = 2*min(M,N)+max(M,N)
        LWORK=maxvol(k+1,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='zgesvd'//': not enough memory (use stacksize)'
+         buf='svd'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -1064,7 +1064,7 @@ c        SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, RWORK, INFO )
       endif  
        if(info.ne.0) then
-         call errorinfo("zgesvd",info)
+         call errorinfo("svd: zgesvd",info)
          return
        endif
 
@@ -1152,7 +1152,7 @@ c
        LWORKMIN = 2*min(M,N)+max(M,N)
        LWORK=maxvol(k+1,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='zgesvd'//': not enough memory (use stacksize)'
+         buf='svd'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -1177,7 +1177,7 @@ c        SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, RWORK, INFO )
       endif  
        if(info.ne.0) then
-         call errorinfo("zgesvd",info)
+         call errorinfo("svd: zgesvd",info)
          return
        endif
 
@@ -1233,7 +1233,7 @@ c
        if(.not.getrhsvar(1,'d', MA, N, lA)) return
        if(.not.getrhsvar(2,'d', MB, NRHS, lB)) return
        if(MA .ne. MB) then
-         buf='dgelsy'//': A and B must have equal number of rows'
+         buf='lsq'//': A and B must have equal number of rows'
          call error(998)
          return
        endif
@@ -1256,7 +1256,7 @@ c
          if(.not.getrhsvar(3,'d', MR, NR, lRCOND)) return
        endif
        if(MR.ne.1 .or. NR.ne.1 ) then
-         buf='dgelsy'//': RCOND must be a scalar'
+         buf='lsq'//': RCOND must be a scalar'
          call error(998)
          return
        endif
@@ -1268,7 +1268,7 @@ c
        LWORKMIN = max( min(M,N)+3*N+1, 2*min(M,N)+NRHS )
        LWORK=maxvol(8,'d')
        if(LWORK.le.LWORKMIN) then
-         buf='dgelsy'//': not enough memory (use stacksize)'
+         buf='lsq'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -1284,7 +1284,7 @@ c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
 c      SUBROUTINE DGELSY( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND,
 c     $     RANK, WORK, LWORK, INFO )
        if(info.ne.0) then
-         call errorinfo("dgelsy",info)
+         call errorinfo("lsq: dgelsy",info)
          return
        endif
 
@@ -1325,7 +1325,7 @@ c
        if(.not.getrhsvar(2,'z', MB, NRHS, lB)) return
 
        if(MA .ne. MB) then
-         buf='zgelsy'//': A and B must have equal number of rows'
+         buf='lsq'//': A and B must have equal number of rows'
          call error(998)
          return
        endif
@@ -1348,7 +1348,7 @@ c
          if(.not.getrhsvar(3,'d', MR, NR, lRCOND)) return
        endif
        if(MR.ne.1 .or. NR.ne.1 ) then
-          buf='zgelsy'//': RCOND must be a scalar'
+          buf='lsq'//': RCOND must be a scalar'
           call error(998)
           return
        endif
@@ -1360,7 +1360,7 @@ c
        LWORKMIN = min(M,N) +  max( 2*min(M,N), N+1, min(M,N)+NRHS )
        LWORK=maxvol(9,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='zgelsy'//': not enough memory (use stacksize)'
+         buf='lsq'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -1376,7 +1376,7 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )
 c      SUBROUTINE ZGELSY( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND,
 c     $     RANK, WORK, LWORK, RWORK, INFO )
        if(info.ne.0) then
-         call errorinfo("zgelsy",info)
+         call errorinfo("lsq: zgelsy",info)
          return
        endif
       call ZLACPY( 'F', N, NRHS, zstk(lXB), max(M,N), zstk(lX), N )
@@ -1395,6 +1395,7 @@ c     d = spec(A)
       include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
+      integer vfinite
 
       character fname*(*)
       character JOBVL, JOBVR
@@ -1413,9 +1414,9 @@ c
 
        if(.not.getrhsvar(1,'d', M, N, lA)) return
        if(M.ne.N) then
-         buf='dgeev'//': the matrix must be square'
-         call error(998)
-         return
+          buf='spec'//': the matrix must be square'
+          call error(998)
+          return
        endif
        if(N.eq.0) then
          if(lhs.eq.1) then
@@ -1429,7 +1430,13 @@ c
            lhsvar(2) = 3
            return
          endif
+       endif 
+       if(vfinite(M*N,stk(lA))==0) then
+          buf='spec'//': the matrix contains NaN of Inf'
+          call error(997)
+          return
        endif  
+ 
        if(lhs.eq.1) then
          if(.not.createvar(2,'z', N, 1, lD)) return
          k = 3              
@@ -1445,7 +1452,7 @@ c
        if(lhs.gt.1) LWORKMIN = 4*N
        LWORK=maxvol(k+2,'d')
        if(LWORK.le.LWORKMIN) then
-         buf='dgeev'//': not enough memory (use stacksize)'
+         buf='spec'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -1461,7 +1468,7 @@ c
 c      SUBROUTINE DGEEV( JOBVL, JOBVR, N, A, LDA, WR, WI, VL, LDVL, VR, LDVR, 
 c     $     WORK, INFO )
        if(info.ne.0) then
-         call errorinfo("dgeev",info)
+         call errorinfo("spec: dgeev",info)
          return
        endif
 
@@ -1516,6 +1523,7 @@ c     [V,D]=spec(A)
       include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
+      integer vfinite
   
       character fname*(*)
       character JOBVL, JOBVR
@@ -1532,7 +1540,7 @@ c
 
        if(.not.getrhsvar(1,'z', M, N, lA)) return
        if(M.ne.N) then
-         buf='zgeev'//': the matrix must be square'
+          buf='spec'//': the matrix must be square'
          call error(998)
          return
        endif
@@ -1549,6 +1557,11 @@ c
            return
          endif
        endif  
+       if(vfinite(2*M*N,zstk(lA))==0) then
+          buf='spec'//': the matrix contains NaN of Inf'
+          call error(997)
+          return
+       endif 
        if(lhs.eq.1) then
          if(.not.createvar(2,'z', N, 1, lD)) return
          k = 3              
@@ -1562,7 +1575,7 @@ c
        LWORKMIN = 2*N
        LWORK=maxvol(k+2,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='zgeev'//': not enough memory (use stacksize)'
+         buf='spec'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -1580,7 +1593,7 @@ c
 c      SUBROUTINE ZGEEV( JOBVL, JOBVR, N, A, LDA, W, VL, LDVL,
 c    $     VR, LDVR, WORK, LWORK, RWORK, INFO )
        if(info.ne.0) then
-         call errorinfo("zgeev",info)
+         call errorinfo("spec: zgeev",info)
          return
        endif
 
@@ -1626,7 +1639,7 @@ c
 
       if(.not.getrhsvar(1,'d', M, N, lA)) return
       if(m.ne.n) then
-         buf='dgetri'//': the matrix must be square'
+         buf='inv'//': the matrix must be square'
          call error(998)
          return
       endif
@@ -1638,7 +1651,7 @@ c
       LWORKMIN = MAX(1,N)
       LWORK=maxvol(3,'d')
       if(LWORK.le.LWORKMIN) then
-         buf='dgetri'//': not enough memory (use stacksize)'
+         buf='inv'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -1647,7 +1660,7 @@ c
       call DGETRF( N, N, stk(lA), N, istk(lIWORK), INFO )
 c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
       if(info.ne.0) then
-         call errorinfo("dgetrf",info)
+         call errorinfo("inv: dgetrf",info)
          return
       endif
       call DGETRI( N, stk(lA), N, istk(lIWORK), stk(lDWORK),
@@ -1678,7 +1691,7 @@ c
 
       if(.not.getrhsvar(1,'z', M, N, lA)) return
       if(m.ne.n) then
-         buf='zgetri'//': the matrix must be square'
+         buf='inv'//': the matrix must be square'
          call error(998)
          return
       endif
@@ -1690,7 +1703,7 @@ c
       LWORKMIN = MAX(1,N)
       LWORK=maxvol(3,'z')
       if(LWORK.le.LWORKMIN) then
-         buf='zgetri'//': not enough memory (use stacksize)'
+         buf='inv'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -1699,7 +1712,7 @@ c
       call ZGETRF( N, N, zstk(lA), N, istk(lIWORK), INFO )
 c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
       if(info.ne.0) then
-         call errorinfo("zgetrf",info)
+         call errorinfo("inv: zgetrf",info)
          return
       endif
       call ZGETRI( N, zstk(lA), N, istk(lIWORK), zstk(lDWORK),
@@ -1734,7 +1747,7 @@ c
         
        if(.not.getrhsvar(1,'d', MA, NA, lA)) return
        if(MA .ne. NA) then
-         buf='dgecon'//': matrix must be square'
+         buf='rcond'//': matrix must be square'
          call error(998)
          return
        endif
@@ -1752,7 +1765,7 @@ c
        LWORKMIN =  4*N
        LWORK=maxvol(5,'d')
        if(LWORK.le.LWORKMIN) then
-         buf='dgecon'//': not enough memory (use stacksize)'
+         buf='rcond'//': not enough memory (use stacksize)'
          call error(998)
          return
        endif
@@ -1796,7 +1809,7 @@ c
         
        if(.not.getrhsvar(1,'z', MA, NA, lA)) return
        if(MA .ne. NA) then
-         buf='zgecon'//': matrix must be square'
+         buf='rcond'//': matrix must be square'
          call error(998)
          return
        endif
@@ -1815,7 +1828,7 @@ c
        LWORKMIN =  2*N
        LWORK=maxvol(6,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='zgecon'//': not enough memory (use stacksize)'
+         buf='rcond'//': not enough memory (use stacksize)'
          call error(998)
          return
        endif
@@ -1856,7 +1869,7 @@ c
 
       if(.not.getrhsvar(1,'d', M, N, lA)) return
       if(m.ne.n) then
-         buf='dgetri'//': the matrix must be square'
+         buf='chol'//': the matrix must be square'
          call error(998)
          return
       endif
@@ -1864,7 +1877,7 @@ c
       call DPOTRF( 'U', N, stk(lA), N, INFO )
 c     SUBROUTINE DPOTRF( 'U', N, A, LDA, INFO )
       if(info.ne.0) then
-         call errorinfo("dpotrf",info)
+         call errorinfo("chol: dpotrf",info)
          return
       endif
 
@@ -1904,7 +1917,7 @@ c
 
       if(.not.getrhsvar(1,'z', M, N, lA)) return
       if(m.ne.n) then
-         buf='zpotrf'//': the matrix must be square'
+         buf='chol'//': the matrix must be square'
          call error(998)
          return
       endif
@@ -1912,7 +1925,7 @@ c
       call ZPOTRF( 'U', N, zstk(lA), N, INFO )
 c     SUBROUTINE ZPOTRF( 'U', N, A, LDA, INFO )
       if(info.ne.0) then
-         call errorinfo("zpotrf",info)
+         call errorinfo("chol: zpotrf",info)
          return
       endif
 
@@ -1963,7 +1976,7 @@ c
       call DGETRF( M, N, stk(lA), M, istk(lIPIV), INFO )
 c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
       if(info.ne.0) then
-         call errorinfo("dgetrf",info)
+         call errorinfo("lu: dgetrf",info)
          return
       endif
  
@@ -2041,7 +2054,7 @@ c
       call ZGETRF( M, N, zstk(lA), M, istk(lIPIV), INFO )
 c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
       if(info.ne.0) then
-         call errorinfo("zgetrf",info)
+         call errorinfo("lu: zgetrf",info)
          return
       endif
  
@@ -2664,7 +2677,7 @@ c
 
        if(.not.getrhsvar(1,'d', M, N, lA)) return
        if(M.ne.N) then
-         buf='dgees'//': the matrix must be square'
+         buf='schur'//': the matrix must be square'
          call error(998)
          return
        endif
@@ -2691,7 +2704,7 @@ c
          LWORKMIN = 3*N
          LWORK=maxvol(k+1,'d')
          if(LWORK.le.LWORKMIN) then
-           buf='dgees'//': not enough memory (use stacksize)'
+           buf='schur'//': not enough memory (use stacksize)'
            call error(998)
            return
          endif
@@ -2711,7 +2724,7 @@ c
 c        SUBROUTINE DGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, WR, WI,
 c     $    VS, LDVS, WORK, LWORK, INFO )
          if(info.ne.0) then
-           call errorinfo("dgees",info)
+           call errorinfo("schur: dgees",info)
            return
          endif
 
@@ -2754,7 +2767,7 @@ c
 
        if(.not.getrhsvar(1,'d', M, N, lA)) return
        if(M.ne.N) then
-         buf='dgees'//': the matrix must be square'
+         buf='schur'//': the matrix must be square'
          call error(998)
          return
        endif
@@ -2775,7 +2788,7 @@ c
        WANTZ = (TYPE.eq.'c' .or. TYPE.eq.'C')
 
        if(.not.WANTD .and. .not.WANTZ) then
-         buf='dgees'//': type must be real or complex'
+         buf='schur'//': type must be real or complex'
          call error(998)
          return
        endif
@@ -2791,7 +2804,7 @@ c
          LWORKMIN = 3*N
          LWORK=maxvol(k+1,'d')
          if(LWORK.le.LWORKMIN) then
-           buf='dgees'//': not enough memory (use stacksize)'
+           buf='schur'//': not enough memory (use stacksize)'
            call error(998)
            return
          endif
@@ -2809,7 +2822,7 @@ c
          LWORKMIN = 2*N
          LWORK=maxvol(k+2,'z')
          if(LWORK.le.LWORKMIN) then
-           buf='zgees'//': not enough memory (use stacksize)'
+           buf='schur'//': not enough memory (use stacksize)'
            call error(998)
            return
          endif
@@ -2831,7 +2844,7 @@ c
 c        SUBROUTINE DGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, WR, WI,
 c     $    VS, LDVS, WORK, LWORK, INFO )
          if(info.ne.0) then
-           call errorinfo("dgees",info)
+           call errorinfo("schur: dgees",info)
            return
          endif
       else
@@ -2847,7 +2860,7 @@ c     $    VS, LDVS, WORK, LWORK, INFO )
 c        SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W,
 c     $    VS, LDVS, WORK, LWORK, RWORK, BWORK, INFO )
          if(info.ne.0) then
-           call errorinfo("zgees",info)
+           call errorinfo("schur: zgees",info)
            return
          endif
       endif
@@ -2896,7 +2909,7 @@ c
 
       if(.not.getrhsvar(1,'d', M, N, lA)) return
       if(M.ne.N) then
-         buf='dgees'//': the matrix must be square'
+         buf='schur'//': the matrix must be square'
          call error(998)
          return
       endif
@@ -2951,7 +2964,7 @@ c
      $     istk(lBWORK), INFO )
 
       if(info.ne.0) then
-         call errorinfo("dgees",info)
+         call errorinfo("schur: dgees",info)
          return
       endif
       
@@ -3050,7 +3063,7 @@ c
 
        if(.not.getrhsvar(1,'z', M, N, lA)) return
        if(M.ne.N) then
-         buf='zgees'//': the matrix must be square'
+         buf='schur'//': the matrix must be square'
          call error(998)
          return
        endif
@@ -3076,7 +3089,7 @@ c
        LWORKMIN = 2*N
        LWORK=maxvol(k+2,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='zgees'//': not enough memory (use stacksize)'
+         buf='schur'//': not enough memory (use stacksize)'
          call error(998)
          return
        endif
@@ -3094,7 +3107,7 @@ c
 c      SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W,
 c     $  VS, LDVS, WORK, LWORK, RWORK, BWORK, INFO )
       if(info.ne.0) then
-        call errorinfo("zgees",info)
+        call errorinfo("schur: zgees",info)
         return
       endif
     
@@ -3133,7 +3146,7 @@ c
 
        if(.not.getrhsvar(1,'z', M, N, lA)) return
        if(M.ne.N) then
-         buf='zgees'//': the matrix must be square'
+         buf='schur'//': the matrix must be square'
          call error(998)
          return
        endif
@@ -3153,7 +3166,7 @@ c
        TYPE = cstk(lTYPE:lTYPE)
        WANTZ = (TYPE.eq.'c' .or. TYPE.eq.'C')
        if(.not.WANTZ) then
-         buf='zgees'//': type must be complex'
+         buf='schur'//': type must be complex'
          call error(998)
          return
        endif
@@ -3169,7 +3182,7 @@ c
        LWORKMIN = 2*N
        LWORK=maxvol(k+2,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='zgees'//': not enough memory (use stacksize)'
+         buf='schur'//': not enough memory (use stacksize)'
          call error(998)
          return
        endif
@@ -3187,7 +3200,7 @@ c
 c      SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W,
 c     $  VS, LDVS, WORK, LWORK, RWORK, BWORK, INFO )
       if(info.ne.0) then
-        call errorinfo("zgees",info)
+        call errorinfo("schur: zgees",info)
         return
       endif
     
@@ -3351,7 +3364,7 @@ c
 
       if(.not.getrhsvar(1,'z', M, N, lA)) return
       if(M.ne.N) then
-         buf='zgees'//': the matrix must be square'
+         buf='schur'//': the matrix must be square'
          call error(998)
          return
       endif
@@ -3407,7 +3420,7 @@ c
      $     zstk(lW), zstk(lVS), N, zstk(lDWORK), LWORK, stk(lRWORK),
      $     istk(lBWORK), INFO )
       if(info.ne.0) then
-         call errorinfo("zgees",info)
+         call errorinfo("schur: zgees",info)
          return
       endif
       
@@ -3513,19 +3526,19 @@ c
 
       if(.not.getrhsvar(1,'d', MA, NA, lA)) return
       if(MA.ne.NA) then
-         buf='dgges'//': the matrix A must be square'
+         buf='gschur'//': the matrix A must be square'
          call error(998)
          return
       endif
 
       if(.not.getrhsvar(2,'d', MB, NB, lB)) return
        if(MB.ne.NB) then
-         buf='dgges'//': the matrix B must be square'
+         buf='gschur'//': the matrix B must be square'
          call error(998)
          return
        endif
        if(MA.ne.MB) then
-         buf='dgges'//':
+         buf='gschur'//':
      $        the matrices A and B must be of the same order'
          call error(998)
          return
@@ -3561,7 +3574,7 @@ c
        LWORKMIN = 8*N+16
        LWORK=maxvol(11,'d')
        if(LWORK.le.LWORKMIN) then
-         buf='dgges'//': not enough memory (use stacksize)'
+         buf='gschur'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -3579,7 +3592,7 @@ c      SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
 c     $     SDIM, ALPHAR, ALPHAI, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
 c     $     LWORK, BWORK, INFO )
        if(info.ne.0) then
-         call errorinfo("dgges",info)
+         call errorinfo("gschur: dgges",info)
          return
        endif
 
@@ -3622,18 +3635,18 @@ c
 
        if(.not.getrhsvar(1,'z', MA, NA, lA)) return
        if(MA.ne.NA) then
-         buf='zgges'//': the matrix must be square'
+         buf='gschur'//': the matrix must be square'
          call error(998)
          return
        endif
        if(.not.getrhsvar(2,'z', MB, NB, lB)) return
        if(MB.ne.NB) then
-         buf='zgges'//': the matrix must be square'
+         buf='gschur'//': the matrix must be square'
          call error(998)
          return
        endif
        if(MA.ne.NB) then
-         buf='zgges'//':
+         buf='gschur'//':
      $        the matrices A and B must be of the same order'
          call error(998)
          return
@@ -3667,7 +3680,7 @@ c
        LWORKMIN = 2*N
        LWORK=maxvol(11,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='zgges'//': not enough memory (use stacksize)'
+         buf='gschur'//': not enough memory (use stacksize)'
          call error(998)
          return
       endif
@@ -3685,7 +3698,7 @@ c      SUBROUTINE ZGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
 c     $    SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK, LWORK, RWORK,
 c     $    BWORK, INFO )
        if(info.ne.0) then
-         call errorinfo("zgges",info)
+         call errorinfo("gschur: zgges",info)
          return
        endif
 
