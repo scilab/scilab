@@ -1,4 +1,5 @@
 function X=pinv(A,tol)
+// Copyright INRIA
 //Pseudo inverse
 if type(A)==1 then
   if A==[] then X=[],return,end

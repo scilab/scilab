@@ -1,4 +1,5 @@
 function c=cond(A)
+// Copyright INRIA
 // c=cond(A) condition number for 2-norm
   if type(A)==1 then
     if A==[] then c=1,return,end

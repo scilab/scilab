@@ -1,4 +1,5 @@
 function [A,jb]=rref(A,tol)
+// Copyright INRIA
 //R = rref(A) produces the reduced row echelon form of A.  
   if argn(2)<2 then
     tol=2*%eps*norm(A,'inf')*max(size(A))
