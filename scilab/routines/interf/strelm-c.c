@@ -384,9 +384,19 @@ static int intlength(char* fname)
     LhsVar(1) = 2  ;
     break; 
   case 15 :
-  case 16:
-  case 17 :
     GetRhsVar(1,"l",&m1,&n1,&l1);
+    CreateVar(2,"d",&un,&un,&l2);
+    *stk(l2)=m1;
+    LhsVar(1) = 2  ;
+    break;
+  case 16:
+    GetRhsVar(1,"t",&m1,&n1,&l1);
+    CreateVar(2,"d",&un,&un,&l2);
+    *stk(l2)=m1;
+    LhsVar(1) = 2  ;
+    break;
+  case 17 :
+    GetRhsVar(1,"m",&m1,&n1,&l1);
     CreateVar(2,"d",&un,&un,&l2);
     *stk(l2)=m1;
     LhsVar(1) = 2  ;
@@ -559,9 +569,15 @@ static int intemptystr(char* fname)
       m = header[1]; n = header[2];
       break;
     case 15 :
-    case 16:
-    case 17 :
       GetRhsVar(1,"l",&m1,&n1,&l1);
+      m = m1;n = 1; 
+      break;
+    case 16:
+      GetRhsVar(1,"t",&m1,&n1,&l1);
+      m = m1;n = 1; 
+      break;
+    case 17 :
+      GetRhsVar(1,"m",&m1,&n1,&l1);
       m = m1;n = 1; 
       break;
     default : 
