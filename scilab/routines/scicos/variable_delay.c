@@ -41,7 +41,7 @@ void variable_delay(scicos_block *block,int flag)
     td=t-del;
     if(td<pw[*iw]){
       sciprint("delayed time=%f but last stored time=%f \r\n", td, pw[*iw]);
-      sciprint("Conisder increasing the length of buffer in variable delay block\r\n");
+      sciprint("Consider increasing the length of buffer in variable delay block\r\n");
     }
     if (t>pw[(block->ipar[0]+*iw-1)%block->ipar[0]]){
       for(j=1;j< block->insz[0]+1;j++){

@@ -191,7 +191,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   free(*outlnk);
   extract_info(*bllst2,*bllst3,*bllst5,*bllst10,*bllst11,*bllst12,*bllst2ptr,*bllst3ptr,*bllst4ptr,*bllst5ptr,
                *bllst11ptr,*connectmat,*clkconnect,lnkptr,inplnk,outlnk,*nzcross,*nmode,
-	       &typ_s,&typ_m,&initexe,&bexe,&boptr,&blnk,&blptr,ok,*corinvec,*corinvptr);
+	       &typ_s,typ_x,&typ_m,&initexe,&bexe,&boptr,&blnk,&blptr,ok,*corinvec,*corinvptr);
   free(typ_m);
   typ_m=NULL;
   if(!(*ok)) 
@@ -1963,8 +1963,9 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 /* *************************************** function extract_info ******************************************** */
 int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,int* bllst2ptr,
 		 int* bllst3ptr,int* bllst4ptr,int* bllst5ptr,int* bllst11ptr,int* connectmat,int* clkconnect,
-		 int** lnkptr,int** inplnk,int** outlnk,int* nzcross,int* nmode,int** typ_s,int** typ_m,double** initexe,
-		 int** bexe,int** boptr,int** blnk,int** blptr,int* ok,int* corinvec,int* corinvptr)
+		 int** lnkptr,int** inplnk,int** outlnk,int* nzcross,int* nmode,int** typ_s,int** typ_x,
+		 int** typ_m,double** initexe,int** bexe,int** boptr,int** blnk,int** blptr,int* ok,
+		 int* corinvec,int* corinvptr)
 {
   int j,l,ko,ki,nlnk,ptlnk,siz_unco,m1,n,jj,a,nbl=((int*)bllst10)[0];
   int *prt,*clkconnecttmp,*fff,*clkconnectind;
@@ -1998,6 +1999,7 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
       }
       if (*(bllst10[j]) == 's' ) (*typ_s)[j]=1;
       else (*typ_s)[j]=0;
+      if (*(bllst10[j]) == 'x' ) (*typ_x)[j]=1;
       if (*(bllst10[j])=='m') (*typ_m)[j]=1;
       else (*typ_m)[j]=0;
       fff=GetPartVect(bllst5,bllst5ptr[j],bllst5ptr[j+1]-bllst5ptr[j]);
@@ -4382,5 +4384,4 @@ void Incr1(int* vect,int j)
     }
   vect[0]--;
 }
-
 

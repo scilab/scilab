@@ -39,7 +39,9 @@ BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
 	satur.o step_func.o integral_func.o absolute_value.o bounce_ball.o \
 	bouncexy.o extractor.o scalar2vector.o minmax.o signum.o product.o \
 	summation.o multiplex.o gainblk.o relationalop.o modulo_count.o \
-	hystheresis.o ratelimiter.o backlash.o deadband.o ramp.o
+	hystheresis.o ratelimiter.o backlash.o deadband.o ramp.o evaluate_expr.o \
+	deriv.o sin_blk.o cos_blk.o tan_blk.o asin_blk.o acos_blk.o atan_blk.o \
+        sinh_blk.o cosh_blk.o tanh_blk.o asinh_blk.o acosh_blk.o atanh_blk.o evtvardly.o
 
 OBJSF=intcos.o coselm.o sciblk.o  \
 	sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
@@ -106,8 +108,10 @@ cmscope.o: cmscope.c scicos_block.h ../machine.h
 cpass2.o: cpass2.c ../machine.h cc_pass2.h
 cscope.o: cscope.c scicos_block.h ../machine.h
 deadband.o: deadband.c scicos_block.h
+deriv.o: deriv.c scicos_block.h
 extractor.o: extractor.c scicos_block.h
 gainblk.o: gainblk.c scicos_block.h ../machine.h
+evaluate_expr.o:  scicos_block.h
 hystheresis.o: hystheresis.c scicos_block.h
 import.o: import.c ../machine.h import.h
 intconnection.o: intconnection.c ../stack-c.h ../graphics/Math.h \
@@ -164,3 +168,16 @@ variable_delay.o: variable_delay.c scicos_block.h ../machine.h
 writeau.o: writeau.c ../machine.h
 writec.o: writec.c ../machine.h
 zcross2.o: zcross2.c ../machine.h
+sin_block.o: sin_block.c scicos_block.h      
+cos_block.o: cos_block.c scicos_block.h      
+tan_block.o: tan_block.c scicos_block.h      
+asin_block.o: asin_block.c scicos_block.h    
+acos_block.o: acos_block.c scicos_block.h    
+atan_block.o: atan_block.c scicos_block.h    
+sinh_block.o: sinh_block.c scicos_block.h    
+cosh_block.o: cosh_block.c scicos_block.h    
+tanh_block.o: tanh_block.c scicos_block.h    
+asinh_block.o: asinh_block.c scicos_block.h  
+acosh_block.o: acosh_block.c scicos_block.h  
+atanh_block.o: atanh_block.c scicos_block.h  
+evtvardly.o: evtvardly.c  scicos_block.h  

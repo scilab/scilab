@@ -26,6 +26,7 @@ void  switch2(scicos_block *block,int flag)
       block->outptr[0][j]=block->inptr[i][j];
     }
   }else if(flag == 9){
+    phase=get_phase_simulation();
     block->g[0]=*block->inptr[1]-(*block->rpar);
     if (phase==1){
       i=2;

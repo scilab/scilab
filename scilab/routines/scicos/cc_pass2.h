@@ -78,7 +78,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int**bllst
 	    int** prime_act);
 int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,int* bllst2ptr,
 		 int* bllst3ptr,int* bllst4ptr,int* bllst5ptr,int* bllst11ptr,int* connectmat,
-                 int* clkconnect,int** lnkptr,int** inplnk,int** outlnk,int* nzcross,int* nmode,int** typ_s,int** typ_m,
+                 int* clkconnect,int** lnkptr,int** inplnk,int** outlnk,int* nzcross,int* nmode,int** typ_s,int** typ_x,int** typ_m,
 		 double** initexe,int** bexe,int** boptr,int** blnk,int** blptr,int* ok,int* corinvec,int* corinvptr);
 int conn_mat(int* inplnk,int* outlnk,int* bllst2ptr,int* bllst3ptr,int** outoin,int** outoinptr,int* nblk);
 int synch_clkconnect(int* typ_s,int* clkconnect,int** evoutoin,int** evoutoinptr);

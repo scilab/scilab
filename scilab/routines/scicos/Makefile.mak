@@ -42,7 +42,9 @@ BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj
 	satur.obj step_func.obj integral_func.obj absolute_value.obj bounce_ball.obj \
 	bouncexy.obj extractor.obj scalar2vector.obj minmax.obj signum.obj product.obj \
 	summation.obj multiplex.obj gainblk.obj relationalop.obj modulo_count.obj \
-	hystheresis.obj ratelimiter.obj backlash.obj deadband.obj ramp.obj
+	hystheresis.obj ratelimiter.obj backlash.obj deadband.obj ramp.obj evaluate_expr.obj \
+	deriv.obj sin_blk.obj cos_blk.obj tan_blk.obj asin_blk.obj acos_blk.obj atan_blk.obj \
+        sinh_blk.obj cosh_blk.obj tanh_blk.obj asinh_blk.obj acosh_blk.obj atanh_blk.obj evtvardly.obj
 
 OBJSF=intcos.obj coselm.obj sciblk.obj  \
 	sctree.obj ftree2.obj ftree3.obj ftree4.obj skipvars.obj scierr.obj scifunc.obj \
@@ -109,8 +111,10 @@ cmscope.obj: cmscope.c scicos_block.h ../machine.h
 cpass2.obj: cpass2.c ../machine.h cc_pass2.h
 cscope.obj: cscope.c scicos_block.h ../machine.h
 deadband.obj: deadband.c scicos_block.h
+deriv.obj: deriv.c scicos_block.h
 extractor.obj: extractor.c scicos_block.h
 gainblk.obj: gainblk.c scicos_block.h ../machine.h
+evaluate_expr.obj:  scicos_block.h
 hystheresis.obj: hystheresis.c scicos_block.h
 import.obj: import.c ../machine.h import.h
 intconnection.obj: intconnection.c ../stack-c.h ../graphics/Math.h \
@@ -167,3 +171,16 @@ variable_delay.obj: variable_delay.c scicos_block.h ../machine.h
 writeau.obj: writeau.c ../machine.h
 writec.obj: writec.c ../machine.h
 zcross2.obj: zcross2.c ../machine.h
+sin_block.obj: sin_block.c scicos_block.h      
+cos_block.obj: cos_block.c scicos_block.h      
+tan_block.obj: tan_block.c scicos_block.h      
+asin_block.obj: asin_block.c scicos_block.h    
+acos_block.obj: acos_block.c scicos_block.h    
+atan_block.obj: atan_block.c scicos_block.h    
+sinh_block.obj: sinh_block.c scicos_block.h    
+cosh_block.obj: cosh_block.c scicos_block.h    
+tanh_block.obj: tanh_block.c scicos_block.h    
+asinh_block.obj: asinh_block.c scicos_block.h  
+acosh_block.obj: acosh_block.c scicos_block.h  
+atanh_block.obj: atanh_block.c scicos_block.h  
+evtvardly.obj: evtvardly.c  scicos_block.h  

@@ -263,6 +263,24 @@ cd .. &gt;nul
 				RelativePath=".\absolute_value.c">
 			</File>
 			<File
+				RelativePath=".\acos_blk.c">
+			</File>
+			<File
+				RelativePath=".\acosh_blk.c">
+			</File>
+			<File
+				RelativePath=".\asin_blk.c">
+			</File>
+			<File
+				RelativePath=".\asinh_blk.c">
+			</File>
+			<File
+				RelativePath=".\atan_blk.c">
+			</File>
+			<File
+				RelativePath=".\atanh_blk.c">
+			</File>
+			<File
 				RelativePath=".\backlash.c">
 			</File>
 			<File
@@ -278,6 +296,12 @@ cd .. &gt;nul
 				RelativePath=".\cmscope.c">
 			</File>
 			<File
+				RelativePath=".\cos_blk.c">
+			</File>
+			<File
+				RelativePath=".\cosh_blk.c">
+			</File>
+			<File
 				RelativePath=".\cpass2.c">
 			</File>
 			<File
@@ -285,6 +309,15 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\deadband.c">
+			</File>
+			<File
+				RelativePath=".\deriv.c">
+			</File>
+			<File
+				RelativePath=".\evaluate_expr.c">
+			</File>
+			<File
+				RelativePath=".\evtvardly.c">
 			</File>
 			<File
 				RelativePath=".\extractor.c">
@@ -389,6 +422,12 @@ cd .. &gt;nul
 				RelativePath=".\signum.c">
 			</File>
 			<File
+				RelativePath=".\sin_blk.c">
+			</File>
+			<File
+				RelativePath=".\sinh_blk.c">
+			</File>
+			<File
 				RelativePath=".\slider.c">
 			</File>
 			<File
@@ -408,6 +447,12 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\switchn.c">
+			</File>
+			<File
+				RelativePath=".\tan_blk.c">
+			</File>
+			<File
+				RelativePath=".\tanh_blk.c">
 			</File>
 			<File
 				RelativePath=".\time_delay.c">

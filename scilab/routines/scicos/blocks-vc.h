@@ -113,12 +113,33 @@ extern void ratelimiter __PARAMS((ARGS_scicos));
 extern void backlash __PARAMS((ARGS_scicos));
 extern void deadband __PARAMS((ARGS_scicos));
 extern void ramp __PARAMS((ARGS_scicos));
+extern void evaluate_expr __PARAMS((ARGS_scicos));
+extern void deriv __PARAMS((ARGS_scicos));
+extern void sin_blk __PARAMS((ARGS_scicos));
+extern void cos_blk __PARAMS((ARGS_scicos));
+extern void tan_blk __PARAMS((ARGS_scicos));
+extern void asin_blk __PARAMS((ARGS_scicos));
+extern void acos_blk __PARAMS((ARGS_scicos));
+extern void atan_blk __PARAMS((ARGS_scicos));
+extern void sinh_blk __PARAMS((ARGS_scicos));
+extern void cosh_blk __PARAMS((ARGS_scicos));
+extern void tanh_blk __PARAMS((ARGS_scicos));
+extern void asinh_blk __PARAMS((ARGS_scicos));
+extern void acosh_blk __PARAMS((ARGS_scicos));
+extern void atanh_blk __PARAMS((ARGS_scicos));
+extern void evtvardly __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
 {"absolute_value",(ScicosF) absolute_value},
+{"acos_blk",(ScicosF) acos_blk},
+{"acosh_blk",(ScicosF) acosh_blk},
 {"affich",(ScicosF) F2C(affich)},
 {"andlog",(ScicosF) F2C(andlog)},
+{"asin_blk",(ScicosF) asin_blk},
+{"asinh_blk",(ScicosF) asinh_blk},
+{"atan_blk",(ScicosF) atan_blk},
+{"atanh_blk",(ScicosF) atanh_blk},
 {"backlash",(ScicosF) backlash},
 {"bidon",(ScicosF) F2C(bidon)},
 {"bounce_ball",(ScicosF) bounce_ball},
@@ -126,7 +147,9 @@ OpTab tabsim[] ={
 {"cdummy",(ScicosF) F2C(cdummy)},
 {"cmscope",(ScicosF) cmscope},
 {"constraint",(ScicosF) F2C(constraint)},
+{"cos_blk",(ScicosF) cos_blk},
 {"cosblk",(ScicosF) F2C(cosblk)},
+{"cosh_blk",(ScicosF) cosh_blk},
 {"cscope",(ScicosF) cscope},
 {"csslti",(ScicosF) F2C(csslti)},
 {"cstblk",(ScicosF) F2C(cstblk)},
@@ -135,13 +158,16 @@ OpTab tabsim[] ={
 {"delay",(ScicosF) F2C(delay)},
 {"delayv",(ScicosF) F2C(delayv)},
 {"demux",(ScicosF) F2C(demux)},
+{"deriv",(ScicosF) deriv},
 {"diffblk",(ScicosF) F2C(diffblk)},
 {"dlradp",(ScicosF) F2C(dlradp)},
 {"dollar",(ScicosF) F2C(dollar)},
 {"dsslti",(ScicosF) F2C(dsslti)},
 {"eselect",(ScicosF) F2C(eselect)},
+{"evaluate_expr",(ScicosF) evaluate_expr},
 {"evscpe",(ScicosF) F2C(evscpe)},
 {"evtdly",(ScicosF) F2C(evtdly)},
+{"evtvardly",(ScicosF) evtvardly},
 {"expblk",(ScicosF) F2C(expblk)},
 {"extractor",(ScicosF) extractor},
 {"forblk",(ScicosF) F2C(forblk)},
@@ -204,7 +230,9 @@ OpTab tabsim[] ={
 {"selblk",(ScicosF) F2C(selblk)},
 {"selector",(ScicosF) selector},
 {"signum",(ScicosF) signum},
+{"sin_blk",(ScicosF) sin_blk},
 {"sinblk",(ScicosF) F2C(sinblk)},
+{"sinh_blk",(ScicosF) sinh_blk},
 {"slider",(ScicosF) slider},
 {"sqrblk",(ScicosF) F2C(sqrblk)},
 {"step_func",(ScicosF) step_func},
@@ -214,7 +242,9 @@ OpTab tabsim[] ={
 {"summation",(ScicosF) summation},
 {"switch2",(ScicosF) switch2},
 {"switchn",(ScicosF) switchn},
+{"tan_blk",(ScicosF) tan_blk},
 {"tanblk",(ScicosF) F2C(tanblk)},
+{"tanh_blk",(ScicosF) tanh_blk},
 {"tcslti",(ScicosF) F2C(tcslti)},
 {"tcsltj",(ScicosF) F2C(tcsltj)},
 {"timblk",(ScicosF) F2C(timblk)},
@@ -228,6 +258,6 @@ OpTab tabsim[] ={
 {"zcross2",(ScicosF) zcross2},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 111 ;
+int ntabsim= 126 ;
 #endif 
 /***********************************/
