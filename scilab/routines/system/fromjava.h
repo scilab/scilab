@@ -13,6 +13,7 @@
 
 int C2F(intfromjava) _PARAMS((char *fname));
 void SetFromJavaToON(void);
+int IsFromJava(void);
 
 #endif /*FROMJAVA*/
 /*-----------------------------------------------------------------------------------*/ 
