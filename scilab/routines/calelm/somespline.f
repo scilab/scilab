@@ -36,6 +36,9 @@
 *     AUTHOR
 *        Bruno Pincon
 *
+*     July 22 2004 : correction of the case not_a_knot which worked only
+*                    for equidistant abscissae
+*
       implicit none
 
       integer n, type         
@@ -44,7 +47,7 @@
 
       include 'constinterp.h'
       integer i
-      double precision r, c
+      double precision r
 
       if (n .eq. 2) then
          if (type .ne. CLAMPED) then
@@ -81,15 +84,13 @@
 
       else if (type .eq. NOT_A_KNOT) then
          !  s'''(x(2)-) = s'''(x(2)+)
-         r = A_sd(1) / A_sd(2)
-         c = 1.d0 / ((2.d0 + r)*r + 1.d0)
-         d(1) = ((3.d0 + 2.d0*r)*qdy(1) + qdy(2)) * c
-         A_d(1) = (1.d0 + r) * A_sd(1) * c
+         r = A_sd(2)/A_sd(1)
+         A_d(1) = A_sd(1)/(1.d0 + r)
+         d(1) = ((3.d0*r+2.d0)*qdy(1)+r*qdy(2))/(1.d0+r)**2
          !  s'''(x(n-1)-) = s'''(x(n-1)+)
-         r = A_sd(n-2) / A_sd(n-1)
-         c = 1.d0 / ((2.d0 + r)*r + 1.d0)
-         d(n) = ( (3.d0 + 2.d0*r)*qdy(n-1) + qdy(n-2)) * c
-         A_d(n) = (1.d0 + r) * A_sd(n-1) * c
+         r = A_sd(n-2)/A_sd(n-1)
+         A_d(n) = A_sd(n-1)/(1.d0 + r)
+         d(n) = ((3.d0*r+2.d0)*qdy(n-1)+r*qdy(n-2))/(1.d0+r)**2
          call TriDiagLDLtSolve(A_d, A_sd, d, n)
 
       else if (type .eq. CLAMPED) then
