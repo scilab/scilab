@@ -212,6 +212,11 @@ for k=1:n
       end
       tkbeg=strcat(andexpr,"&")
     end
+     
+    // varargout replaced by %varargout so that code can be compiled with varargout considered as a Cell
+    if isempty(strindex(tkbeg,"function")) then
+      tkbeg=strsubst(tkbeg,"varargout","%varargout")
+    end
     
     txt(k)=tkbeg+com
   
@@ -253,6 +258,11 @@ for k=1:n
       tk=strcat(andexpr,"&")
     end
     
+    // varargout replaced by %varargout so that code can be compiled with varargout considered as a Cell
+    if isempty(strindex(tkbeg,"function")) then
+      tkbeg=strsubst(tkbeg,"varargout","%varargout")
+    end
+
     txt(k)=tk
   
   end
