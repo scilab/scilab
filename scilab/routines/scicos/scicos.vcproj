@@ -308,6 +308,9 @@ cd .. &gt;nul
 				RelativePath=".\minmax.c">
 			</File>
 			<File
+				RelativePath=".\modulo_count.c">
+			</File>
+			<File
 				RelativePath=".\mswitch.c">
 			</File>
 			<File
@@ -330,6 +333,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\realtime.c">
+			</File>
+			<File
+				RelativePath=".\relationalop.c">
 			</File>
 			<File
 				RelativePath=".\relay.c">
