@@ -13,15 +13,11 @@ MACROS= Capacitor.sci Ground.sci NPN.sci VVsourceAC.sci \
 	CurrentSensor.sci Resistor.sci VoltageSensor.sci \
 	Diode.sci  VsourceAC.sci 
 
-MODELICAC=$(SCIDIR)/bin/modelicac
-
 MODELS=Capacitor.mo Ground.mo OutPutPort.mo VariableResistor.mo \
 	ConstantVoltage.mo InPutPort.mo Pin.mo VoltageSensor.mo \
 	CurrentSensor.mo Inductor.mo PotentialSensor.mo VsourceAC.mo \
 	Diode.mo NPN.mo Resistor.mo VsourceDC.mo \
 	OutPort.mo VVsourceAC.mo 
-
-BINMODELS = $(MODELS:.mo=.moc)
 
 #for Modelica extern functions
 OBJECTS  =
@@ -39,10 +35,6 @@ all  ::
 all  ::
 	@ls $(MODELS) >models
 	@$(SCIDIR)/bin/scilab -ns -nb -nw -f $(SCIDIR)/util/genmoc.sce
-
-# must recompile the models if modelicac changed 
-
-$(BINMODELS) : $(MODELICAC) 
 
 clean::
 
