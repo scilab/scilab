@@ -35,7 +35,7 @@
     <P>
     La fonction <VERB>mtlb_uint32(A)</VERB> est utilisée par
     <VERB>mfile2sci</VERB> pour remplacer <VERB>uint32(A)</VERB> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    possible de savoir ce qu'était le paramètre d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
     déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
     on peut remplacer les appels à <VERB>mtlb_uint32</VERB> :
     </P>
