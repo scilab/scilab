@@ -762,6 +762,7 @@ function txt=%xcall1_string(rec)
     case 'xrect' then
     txt='xrect('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
 	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
+	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
     case 'xpolys' then
     draw=sci2exp(rec.x3)
     m=rec.ndx1
@@ -798,6 +799,15 @@ function txt=%xcall1_string(rec)
     case 'xlines' then
         txt=['xpoly('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+..
 	     ',''lines'','+sci2exp(rec.x4)+')']
+    case 'xarea' then
+        txt=['xfpoly('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+..
+	     ','+sci2exp(rec.x4)+')']
+	    
+
+    case 'xliness' then
+    txt=['xpoly('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+..
+	     ',''lines'','+sci2exp(rec.x4)+')']
+	
     case 'xmarks' then
         txt=['xpoly('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+..
 	     ',''marks'','+sci2exp(rec.x4)+')']
