@@ -8,7 +8,7 @@ SHELL = /bin/sh
 SCIDIR=../..
 SCIDIR1=..\..
 
-include  $(SCIDIR)/Makefile.incl.mak
+include  ../../Makefile.incl.mak
 
 .SUFFIXES: .sci .bin $(SUFFIXES)
 # NAME is the name of the created library
@@ -17,12 +17,12 @@ include  $(SCIDIR)/Makefile.incl.mak
 NAME = mylibrary
 
 # NAM is the pathname of the directory containing the .sci files. 
-NAM = `pwd`
+NAM = $(SCIDIR)/examples/macros-examples
 
 # Put here the list of the functions to be inserted in the library
 MACROS = f.sci g.sci 
 
-include  $(SCIDIR)/macros/Make.lib.mak
+include  ../../macros/Make.lib.mak
 
 tests	:: all
 
