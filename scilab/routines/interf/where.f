@@ -2,7 +2,8 @@
 c     extrait l'arbre d'appel de l'instruction courante
 c     cette routine est issue de la fin du sous programme error
 c     Copyright INRIA
-c     Revised and corrected by Francois VOGEL, July 2004 (bug 908)
+c     Revised and corrected by Francois VOGEL, July/August 2004
+c     (bugs 908, 922 and 911 are fixed by this version)
       include '../stack.h'
       integer iadr,sadr
       integer p,lpts(6),lcts,r,vol,rios
@@ -91,6 +92,8 @@ c
          istk(il+1)=7
          call cvstr(7,istk(il+2),'execstr',0)
          ll=ll+7
+         il=il+9
+         nn=nn+1
       endif
       lct(8)=lin(k+12+nsiz)
 c
@@ -104,10 +107,6 @@ c     exec
          lpt(2)=lin(k+4)
          lpt(6)=k
 c
-         write(buf(1:4),'(i4)') nlc
-c         call basout(io,wte,'in exec : nlc : '//buf(1:4))
-         write(buf(1:4),'(i4)') lct(8)
-c         call basout(io,wte,'in exec : lct(8) : '//buf(1:4))
          if(first) then
             first=.false.
             nlc=0
