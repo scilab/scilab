@@ -120,6 +120,8 @@ case "operation" then
 	  operands(k)=":"
 	elseif operands(k)=="""$""" then
 	  operands(k)="$"
+	elseif operands(k)=="""*""" then // Only used for M2SCI
+	  operands(k)="*"
 	end
       end
       val = part(operands(2),1)=="""" & part(operands(2),length(operands(2)))==""""
@@ -153,6 +155,8 @@ case "operation" then
 	  operands(k)=":"
 	elseif operands(k)=="""$""" then
 	  operands(k)="$"
+	elseif operands(k)=="""*""" then // Only used in M2SCI
+	  operands(k)="*"
 	end
       end
       val = part(operands(2),1)=="""" & part(operands(2),length(operands(2)))==""""
@@ -237,6 +241,8 @@ case "cste" then
     C=":"
   elseif C=="""$""" then
     C="$"
+  elseif C=="""*""" then // Only used in M2SCI
+    C="*"
   end
   // --------
   // VARIABLE
@@ -281,6 +287,8 @@ case "list"
       ind=":"
     elseif ind=="""$""" then
       ind="$"
+    elseif ind=="""*""" then // Only used in M2SCI
+      ind="*"
     end
     val = part(ind,1)=="""" & part(ind,length(ind))==""""
     if val then
