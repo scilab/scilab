@@ -44,7 +44,8 @@ ops     =['+',   'a';
          '.'+quote '0';
          '[]',   'c']         
      
-same=['error','input','clc','home','fprintf','sprintf','emptystr']
+same=['error','input','clc','home','fprintf','sprintf','emptystr',..
+	'double','int8','int16','int32','uint8','uint16','uint32']
 
 [logics,same,ops,%else,%end,%elseif,%if,%for,%select,%while,%case,%then]=...
 resume(logics,same,ops,%else,%end,%elseif,%if,%for,%select,%while,%case,%then)
