@@ -6803,14 +6803,14 @@ sciDrawObj (sciPointObj * pobj)
 	    
 	    if(sciGetIsLine(pobj)){
 	      
+	      x[0] = sciGetForeground(pobj);
+	      
 	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
 			&dv, &dv, &dv, 5L, 4096);
 	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 			PD0, PD0, PD0, 0L, 0L);    
 	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 			PD0, PD0, PD0, 0L, 0L);
-	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			PD0, PD0, 0L, 0L);
 	      C2F(dr)("xsegs","v",xm,ym,&n,pstyle,&pSEGS_FEATURE (pobj)->iflag,
 		      PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
@@ -6840,14 +6840,16 @@ sciDrawObj (sciPointObj * pobj)
 		  }
 		
 		if(sciGetIsLine(pobj)){
+
+		  x[0] = sciGetForeground(pobj);
+		  
 		  C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
 			    &dv, &dv, &dv, 5L, 4096);
 		  C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 			    PD0, PD0, PD0, 0L, 0L);    
 		  C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 			    PD0, PD0, PD0, 0L, 0L);
-		  C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			    PD0, PD0, 0L, 0L);
+	
 		  C2F(dr)("xarrow","v",xm,ym,&n,&ias,pstyle,&pSEGS_FEATURE (pobj)->iflag,PD0,PD0,PD0,PD0,0L,0L);
 		}
 	      }
@@ -6870,14 +6872,15 @@ sciDrawObj (sciPointObj * pobj)
 		  }
 		
 		if(sciGetIsLine(pobj)){
+
+		  x[0] = sciGetForeground(pobj);
+		  
 		  C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
 			    &dv, &dv, &dv, 5L, 4096);
 		  C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 			    PD0, PD0, PD0, 0L, 0L);    
 		  C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 			    PD0, PD0, PD0, 0L, 0L);
-		  C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			    PD0, PD0, 0L, 0L);
 		  C2F(dr1)("xarrow","v",pstyle,&pSEGS_FEATURE (pobj)->iflag
 			   ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,&pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
 		}
@@ -7020,14 +7023,15 @@ sciDrawObj (sciPointObj * pobj)
 	      }
 
 	    if(sciGetIsLine(pobj)){
+
+	      x[0] = sciGetForeground(pobj);
+
 	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
 			&dv, &dv, &dv, 5L, 4096);
 	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 			PD0, PD0, PD0, 0L, 0L);    
 	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 			PD0, PD0, PD0, 0L, 0L);
-	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			PD0, PD0, 0L, 0L);
 	      C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,(sflag=0,&sflag),&dv,&dv,&dv,&dv,0L,0L);
 	    }
 	  }
@@ -7049,14 +7053,15 @@ sciDrawObj (sciPointObj * pobj)
 	      }
 	    
 	    if(sciGetIsLine(pobj)){
+	      
+	      x[0] = sciGetForeground(pobj);
+	      
 	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
 			&dv, &dv, &dv, 5L, 4096);
 	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 			PD0, PD0, PD0, 0L, 0L);    
 	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 			PD0, PD0, PD0, 0L, 0L);
-	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			PD0, PD0, 0L, 0L);
 	      C2F(dr)("xarrow","v",xm,ym,&na,&arssize,zm,(sflag=1,&sflag),&dv,&dv,&dv,&dv,0L,0L);
 	    }
 	  }
@@ -7654,6 +7659,8 @@ sciDrawObj (sciPointObj * pobj)
 	      
 	      if (sciGetIsLine(pobj) == TRUE){
 		
+		x[0] = sciGetForeground(pobj);
+		
 		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
 			  &dv, &dv, &dv, 5L, 4096);
 		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
@@ -7931,6 +7938,8 @@ sciDrawObj (sciPointObj * pobj)
 
 	  if (sciGetIsLine(pobj))
 	    {
+	      x[0] = sciGetForeground(pobj);
+
 	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
 			&dv, &dv, &dv, 5L, 4096);
 	      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
@@ -8000,6 +8009,7 @@ sciDrawObj (sciPointObj * pobj)
 
 	  if (sciGetIsLine(pobj)) 
 	    {
+	      x[0] = sciGetForeground(pobj);
 	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
 			&dv, &dv, &dv, 5L, 4096);
 	      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
@@ -8251,7 +8261,10 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
   /* My default for marks drawing */
   C2F (dr) ("xset", "line style", linestyle, PI0, PI0, PI0, PI0, PI0, PD0,
 	    PD0, PD0, PD0, 0L, 0L);
-  
+  	
+  C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /* end of default*/
+
 
   switch(style){
   case 0:
@@ -8281,7 +8294,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	int xmasterix[2];
 	int ymasterix[2];
 	
-	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8307,7 +8320,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	int xmasterix[2];
 	int ymasterix[2];
 	
-	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8355,7 +8368,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	
 	C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
 	
-	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8394,7 +8407,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	ymdiamond[2] = ym[i];
 	ymdiamond[3] = ym[i] - size;
 	
- 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/*  	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8422,7 +8435,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	ymdiamond[2] = ym[i];
 	ymdiamond[3] = ym[i] - size;
 	
- 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+ /* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8452,7 +8465,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	ymdiamond[1] = ym[i] + size;
 	ymdiamond[2] = ym[i] - 2*size;
 	
- 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/*  	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8482,7 +8495,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	ymdiamond[1] = ym[i] - size;
 	ymdiamond[2] = ym[i] + 2*size;
 	
- 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+ /* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8517,7 +8530,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	ymdiamond[2] = ym[i];
 	ymdiamond[3] = ym[i] - size;
 	
- 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+ /* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8574,7 +8587,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	int xmasterix[2];
 	int ymasterix[2];
 
- 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/*  	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8619,7 +8632,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	int h1 = 2*size;
 	char str[2] = "xv";
 
-	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8650,7 +8663,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	ymdiamond[1] = ym[i] + sprime;
 	ymdiamond[2] = ym[i] ;
 	
- 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/*  	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8680,7 +8693,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	ymdiamond[1] = ym[i] + sprime;
 	ymdiamond[2] = ym[i] ;
 	
- 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+ /* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8768,7 +8781,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 
 
 	
- 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/*  	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
