@@ -7,12 +7,12 @@ function %dir_p(L)
   while %t
     l2=l1;
     n=ceil(size(l1,'*')/nc)
-    l2(n*nc)=0
+    if n*nc>size(name,'*') then l2(n*nc)=0;l1(n*nc)=0;end
     l=max(matrix(l2,-1,nc),'r');
     if sum(l)<ll|nc==1 then break,end
-    nc=nc-1
+    nc=nc-1;
   end
-  name(n*nc)='';
+  if n*nc>size(name,'*') then name(n*nc)='';end
   name=matrix(name,-1,nc)
   txt=emptystr(n,1)
   for k=1:nc
