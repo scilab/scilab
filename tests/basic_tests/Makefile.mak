@@ -17,6 +17,9 @@ all :: externals.dll tests
 tests: 
 	$(SCIDIR1)\bin\scilex -nw -f maketests.sce
 
+tests-clean:
+	$(SCIDIR1)\bin\scilex -nw -f makecleantests.sce
+
 clean ::
 	@del externals.obj 
 	@del externals.dll
