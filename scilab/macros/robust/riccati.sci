@@ -22,8 +22,7 @@ function [x1,x2]=riccati(a,b,c,dom,typ)
            case 'schur' then
                 [s,d]=schur(ham,'c'),
 		if d<>n then 
-                error('riccati: wrong dimension ('+string(d)+..
-		      ') of stable subspace -expecting '+string(n)')
+                error('riccati: wrong dimension ('+string(d)+') of stable subspace -expecting '+string(n)')
                 end
                 s=s(:,1:n),
            case 'eigen' then
@@ -31,8 +30,7 @@ function [x1,x2]=riccati(a,b,c,dom,typ)
                 [u2,d]=schur(hb,'c'),
                 u=u1*u2,
 		if d<>n then 
-                error('riccati: wrong dimension ('+string(d)+..
-		      ') of stable subspace -expecting '+string(n)')
+                error('riccati: wrong dimension ('+string(d)+') of stable subspace -expecting '+string(n)')
                 end
                 s=u(:,1:n),
          end,
@@ -40,8 +38,7 @@ function [x1,x2]=riccati(a,b,c,dom,typ)
          aa=[eye(n,n) b;0*ones(n,n) a'],bb=[a  0*ones(n,n);-c eye(n,n)],
          [bs,as,s,n1]=schur(bb,aa,'d');
          if n1<>n then 
-         error('riccati: wrong dimension ('+string(n1)+..
-	       ') of stable subspace  -expecting '+string(n)')
+         error('riccati: wrong dimension ('+string(n1)+') of stable subspace -expecting '+string(n)')
          end
          s=s(:,1:n1);
       end,
