@@ -281,6 +281,12 @@ cd .. &gt;nul
 				RelativePath=".\Intersci.c">
 			</File>
 			<File
+				RelativePath="..\system2\intmacr2tree.c">
+			</File>
+			<File
+				RelativePath="..\system2\intmacr2tree.h">
+			</File>
+			<File
 				RelativePath=".\Lapack.c">
 			</File>
 			<File
