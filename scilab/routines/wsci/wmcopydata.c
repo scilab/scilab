@@ -1,9 +1,6 @@
 /* Allan CORNET 2004 INRIA */
 #include "wmcopydata.h"
 
-#include <strsafe.h>
-#pragma comment(lib, "strsafe.lib")
-
 static char LineFromAnotherScilab[MAX_PATH];
 static BOOL ReceiveDatafromAnotherScilab=FALSE;
 static char TitleScilabSend[MAX_PATH];
@@ -15,11 +12,8 @@ BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine)
 
 	if (ReceiveDatafromAnotherScilab)
 	{
-		HRESULT hr1,hr2;
-
-		hr1 = StringCbPrintf(CommandLine, (strlen(LineFromAnotherScilab)+1)*sizeof(char),"%s",LineFromAnotherScilab);
-		hr2 = StringCbPrintf(TitleWindowSend, (strlen(TitleScilabSend)+1)*sizeof(char),"%s",TitleScilabSend);
-		if ( (hr1!= S_OK) || (hr2!= S_OK) ) return FALSE,
+		if (wsprintf(CommandLine,"%s",LineFromAnotherScilab) <= 0) return FALSE;
+		wsprintf(TitleWindowSend,"%s",TitleScilabSend);
 
 		ReceiveDatafromAnotherScilab=FALSE;
 		Retour=TRUE;
@@ -38,10 +32,10 @@ BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowN
    MYREC MyRec;
    HWND hWndSource=NULL;
    HWND hWndDestination=NULL;
-   HRESULT hResult;
+ 
 
-   hResult = StringCbCopy( MyRec.CommandFromAnotherScilab, sizeof(MyRec.CommandFromAnotherScilab),CommandLine);
-   if (hResult != S_OK)	return FALSE;
+   if (wsprintf(MyRec.CommandFromAnotherScilab,"%s",CommandLine) <= 0) return FALSE;
+  
 
    MyCDS.dwData = 0; 
    MyCDS.cbData = sizeof( MyRec );
@@ -69,14 +63,12 @@ BOOL ReceiveFromAnotherScilab(WPARAM wParam, LPARAM lParam)
    PCOPYDATASTRUCT pMyCopyDataStructure;
    HWND hWndSend=NULL;
 
-   HRESULT hr;
+  
 
    pMyCopyDataStructure = (PCOPYDATASTRUCT) lParam;
 
-   hr = StringCbPrintf(LineFromAnotherScilab,
-					(strlen((LPSTR) ((MYREC *)(pMyCopyDataStructure->lpData))->CommandFromAnotherScilab)+1)*sizeof(char),"%s",
-					(LPSTR) ((MYREC *)(pMyCopyDataStructure->lpData))->CommandFromAnotherScilab);
-    
+   if (wsprintf(LineFromAnotherScilab,"%s",(LPSTR) ((MYREC *)(pMyCopyDataStructure->lpData))->CommandFromAnotherScilab)  <= 0) return FALSE;
+
    hWndSend=(HWND) wParam;
    
    if ( GetWindowText(hWndSend,TitleScilabSend,MAX_PATH) )
