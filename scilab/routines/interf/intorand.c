@@ -17,6 +17,11 @@ int C2F(intor)(fname,l)
  int opt=0,errn=44;
  CheckRhs(1,2);
  CheckLhs(1,1);
+ if (VarType(1)!=4) {
+   lw = 1 + Top - Rhs;
+   C2F(overload)(&lw,"or",2L);
+   return 0;}
+
  if (Rhs==2) {
    nopt=1;
    if (VarType(2)==10) {
@@ -44,13 +49,7 @@ int C2F(intor)(fname,l)
  }  /*(Rhs==2) */
 
  /*  checking variable a */
- typ=VarType(1);
- if (typ==4) {
-   GetRhsVar(1,"b",&m1,&n1,&l1);}
- else {
-   lw = 1 + Top - Rhs;
-   C2F(overload)(&lw,"or",2L);
-   return 0;}
+ GetRhsVar(1,"b",&m1,&n1,&l1);
 
  /* cross variable size checking */
  mm2=1;
@@ -81,6 +80,11 @@ int C2F(intand)(fname,l)
 
  CheckRhs(1,2);
  CheckLhs(1,1);
+ if (VarType(1)!=4) {
+   lw = 1 + Top - Rhs;
+   C2F(overload)(&lw,"and",3L);
+   return 0;}
+
  if (Rhs==2) {
    nopt=1;
    if (VarType(2)==10) {
@@ -108,13 +112,7 @@ int C2F(intand)(fname,l)
  }  /*(Rhs==2) */
 
  /*  checking variable a */
- typ=VarType(1);
- if (typ==4) {
-   GetRhsVar(1,"b",&m1,&n1,&l1);}
- else {
-   lw = 1 + Top - Rhs;
-   C2F(overload)(&lw,"and",3L);
-   return 0;}
+ GetRhsVar(1,"b",&m1,&n1,&l1);
 
  /* cross variable size checking */
  mm2=1;
