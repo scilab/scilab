@@ -23418,7 +23418,7 @@ rm -f conftest.err conftest.$ac_objext \
      FC=g77
      FC_OPTIONS='-O2'
      FC_OPTIONS_O0=
-     FC_LDFLAGS='-L/sw/lib -ldl'
+     FC_LDFLAGS='-L/sw/lib -ldl -lcc_dynamic'
      FC_PICFLAGS='-fPIC'
      LD=ld
      LD_LDFLAGS=

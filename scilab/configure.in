@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.113 $)dnl
+AC_REVISION($Revision: 1.114 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1225,7 +1225,7 @@ case "$host" in
      FC=g77
      FC_OPTIONS='-O2'
      FC_OPTIONS_O0=
-     FC_LDFLAGS='-L/sw/lib -ldl'
+     FC_LDFLAGS='-L/sw/lib -ldl -lcc_dynamic'
      FC_PICFLAGS='-fPIC'
      LD=ld
      LD_LDFLAGS=
