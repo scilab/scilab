@@ -7,7 +7,7 @@ LIBRARY = $(SCIDIR)/libs/signal.a
 
 OBJSC =
 
-OBJSF = sigelm.o datatf.o chebc.o cmpse3.o dfftbi.o fft842.o freque.o kaiser.o r2tx.o rpem.o \
+OBJSF = sigelm.o chebc.o cmpse3.o dfftbi.o fft842.o freque.o kaiser.o r2tx.o rpem.o \
 	cheby.o coeft.o dfftmx.o filbut.o hammin.o nstabl.o r4tx.o \
 	cmpse2.o dfft2.o ino.o poles.o r8tx.o tscccf.o  \
 	dpspln.o dspln.o tg02ad.o  amell.o belan.o bldenz.o blnumz.o bounn.o  \
