@@ -582,6 +582,9 @@ c     continue
       if(rstk(p).eq.612) then
 c     continue in a  for
          l0=ids(1,p)
+c     .  nc is required for the end of loop
+         lc=l0-1-nsiz
+         nc=istk(lc)
          pt=p
          goto 47
       elseif(rstk(p).eq.616.and.istk(pstk(p)).eq.9) then
