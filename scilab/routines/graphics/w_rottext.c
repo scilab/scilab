@@ -130,8 +130,9 @@ static struct style_template {
 
 
 static char            *my_strtok();
-static char            *my_strdup();
-
+/* HUYNH Olivier 03/09/2004 10:04 
+  static char            *my_strdup();
+*/
 float                   XRotVersion();
 void                    XRotSetMagnification();
 void                    XRotSetBoundingBoxPad();
