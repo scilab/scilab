@@ -5,8 +5,9 @@ and unix
 Directories "helpdir1" and "helpdir2" contain old 
 Scilab ".man" files for each new section.
 
-By running the builder.sce script xml files are first created. 
-Note that this first step can be removed if helpp files are 
+By running the builder.sce script xml files are first created 
+using the .man files. 
+Note that this first step can be removed if help files are 
 directly writen in xml syntax (see man-examples-xml) 
 
 Then a set of html files are generated. 
