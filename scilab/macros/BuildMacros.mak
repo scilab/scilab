@@ -149,7 +149,7 @@ m2sci	:
 HighLevelPlotting:	
 	cd HighLevelPlotting
 	@echo Creation of HighLevelPlotting (Macros)
-	@buildmacros.bat > nul
+	@makemacros > nul
 	@cd..
 	
 clean::
