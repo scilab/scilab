@@ -6,7 +6,7 @@ c     -------------------------------
       character*(4) type
       INCLUDE '../stack.h'
       logical checkrhs,checklhs,getsmat,getscalar,cremat,getmat
-      logical inf,fro 
+      logical inf,fro,byref 
       integer gettype,itype,topk,isanan
       double precision infinity
       double precision p,wnrm2
@@ -16,6 +16,7 @@ c     -------------------------------
       fro = .false.
       p=2.0d+0
       topk=top
+      lw=lstk(top)
       if (.not.checklhs(fname,1,1)) return
       if (.not.checkrhs(fname,1,2)) return
 c     second argument : optional 'inf','fro' or p ( p: double 
@@ -55,7 +56,8 @@ c     ---------------------------------
          fun=-1
          return
       endif
-      if(.not.getmat(fname,topk,top,it1,m,n,lr1,lc1)) return      
+      if(.not.getmat(fname,topk,top,it1,m,n,lr1,lc1)) return 
+      byref=lr1.ge.lstk(bot)
       mn = m*n
       if (mn.eq.0.or. m.eq.1.or.n.eq.1) then 
 c     ==============================vector case 
@@ -64,11 +66,25 @@ c     ==============================vector case
          else if ( isanan(p).eq.1) then 
 	    dres = p
          else if (p.gt.dlamch('o').or.inf) then 
-            if (it1.eq.1) call vpythag(mn,stk(lr1),stk(lc1))
+            if (it1.eq.1) then
+               if (byref) then
+                  if (.not.cremat(fname,topk+1,0,1,mn,lw,lwi)) return  
+                  call dcopy(mn,stk(lr1),1,stk(lw),1)
+                  lr1=lw
+               endif
+               call vpythag(mn,stk(lr1),stk(lc1))
+            endif
             i = idamax(mn,stk(lr1),1)
             dres= abs(stk(lr1+i-1))
          else if ( p.eq.1.0d+0) then
-            if (it1.eq.1) call vpythag(mn,stk(lr1),stk(lc1))
+            if (it1.eq.1) then
+               if (byref) then
+                  if (.not.cremat(fname,topk+1,0,1,mn,lw,lwi)) return  
+                  call dcopy(mn,stk(lr1),1,stk(lw),1)
+                  lr1=lw
+               endif
+               call vpythag(mn,stk(lr1),stk(lc1))
+            endif
             dres = dasum(mn,stk(lr1),1)
          else if (fro.or. p.eq.2.0d+0) then 
             if (it1.eq.1) then 
@@ -77,7 +93,14 @@ c     ==============================vector case
                dres=  dnrm2(mn,stk(lr1),1)
             endif
          else
-            if (it1.eq.1) call vpythag(mn,stk(lr1),stk(lc1))
+            if (it1.eq.1) then
+               if (byref) then
+                  if (.not.cremat(fname,topk+1,0,1,mn,lw,lwi)) return  
+                  call dcopy(mn,stk(lr1),1,stk(lw),1)
+                  lr1=lw
+               endif
+               call vpythag(mn,stk(lr1),stk(lc1))
+            endif
             i=idamax(mn,stk(lr1),1)+lr1-1
             dres =abs(stk(i))
             if ( dres .ne.0.0d+0) then 
@@ -100,7 +123,14 @@ c     ==============================Matrix case
          if ( isanan(p).eq.1) then 
             dres = p
          else if (p.gt.dlamch('o').or.inf) then 
-            if (it1.eq.1) call vpythag(mn,stk(lr1),stk(lc1))
+            if (it1.eq.1) then
+               if (byref) then
+                  if (.not.cremat(fname,topk+1,0,1,mn,lw,lwi)) return  
+                  call dcopy(mn,stk(lr1),1,stk(lw),1)
+                  lr1=lw
+               endif
+               call vpythag(mn,stk(lr1),stk(lc1))
+            endif
             dres = 0.0d+0
             do 45 i = 1, m
                li = lr1+i-1
@@ -114,7 +144,15 @@ c     ==============================Matrix case
                dres=  dnrm2(mn,stk(lr1),1)
             endif
          else if ( p.eq.1.0d+0) then
-            if (it1.eq.1) call vpythag(mn,stk(lr1),stk(lc1))
+            if (it1.eq.1) then
+               if (byref) then
+                  if (.not.cremat(fname,topk+1,0,1,mn,lw,lwi)) return  
+                  call dcopy(mn,stk(lr1),1,stk(lw),1)
+                  lr1=lw
+               endif
+               lr1=lw
+               call vpythag(mn,stk(lr1),stk(lc1))
+            endif
             dres=0.0d+0
             do 48 j = 1, n
                lj = lr1+(j-1)*m
@@ -125,7 +163,14 @@ c     ==============================Matrix case
             m1=min(m+1,n)
             if (.not.cremat(fname,topk+1,it1,1,m1,ld,lcd)) return            
             if (.not.cremat(fname,topk+2,it1,1,n,l1,l1c)) return            
-            if (.not.cremat(fname,topk+3,it1,1,m,l2,l2c)) return            
+            if (.not.cremat(fname,topk+3,it1,1,m,l2,l2c)) return   
+            if (byref) then
+               if (.not.cremat(fname,topk+4,it1,m,n,lw,lwi)) return  
+               call dcopy(mn,stk(lr1),1,stk(lw),1)
+               if(it1.eq.1) call dcopy(mn,stk(lc1),1,stk(lwi),1)
+               lr1=lw
+               lc1=lwi
+            endif
             ierr=1
             if(it1.eq.0) then 
                call dsvdc(stk(lr1),m,m,n,stk(ld),stk(l1),
