@@ -10,22 +10,21 @@ OBJSC = vfloor.o vceil.o  finite.o vfrexp.o sci_tools.o vfinite.o cmp.o \
 SLATECEXT= dbesig.o zbesig.o dbeskg.o zbeskg.o dbesjg.o zbesjg.o dbesyg.o zbesyg.o
 
 SLATEC= d9knus.o d9lgmc.o dasyik.o dbdiff.o dbesi.o dbesi0.o dbesi1.o		\
-	dbesk.o dbesk0.o dbesk1.o dbesks.o					\
-	dbkias.o dbkisr.o dbsi0e.o dbsi1e.o dbsk0e.o dbsk1e.o dbskes.o		\
-	dbskin.o dbsknu.o dcsevl.o dexint.o dgamma.o dgamrn.o dhkseq.o		\
-	dlngam.o dgamlm.o								\
-	dpsixn.o fdump.o  initds.o j4save.o xercnt.o xerhlt.o xermsg.o		\
-	xerprn.o xersve.o xgetua.o zbesi.o zbinu.o zbesk.o zacon.o zbknu.o	\
-	zbunk.o zuoik.o zunhj.o zunk1.o zunk2.o zwrsk.o zuchk.o zs1s2.o		\
-	zmlri.o zrati.o zasyi.o dgamln.o zshch.o zseri.o zkscl.o zairy.o	\
-	zacai.o zbuni.o zuni2.o zuni1.o zunik.o zmlt.o zdiv.o zabs.o zsqrt.o	\
-	zlog.o zexp.o dbesj.o dbesy.o dbesj1.o dbesy1.o dbesy0.o zbesj.o	\
-	zbesy.o zbesh.o d9b0mp.o d9b1mp.o djairy.o dyairy.o dasyjy.o dbsynu.o	\
-	dxlegf.o i1mach.o d1mach.o
+	dbesk.o dbesk0.o dbesk1.o dbesks.o dbkias.o dbkisr.o dbsi0e.o dbsi1e.o	\
+	dbsk0e.o dbsk1e.o dbskes.o dbskin.o dbsknu.o dcsevl.o dexint.o		\
+	dgamma.o dgamrn.o dhkseq.o dlngam.o dgamlm.o dpsixn.o fdump.o initds.o	\
+	j4save.o xercnt.o xerhlt.o xermsg.o xerprn.o xersve.o xgetua.o zbesi.o	\
+	zbinu.o zbesk.o zacon.o zbknu.o zbunk.o zuoik.o zunhj.o zunk1.o		\
+	zunk2.o zwrsk.o zuchk.o zs1s2.o zmlri.o zrati.o zasyi.o dgamln.o	\
+	zshch.o zseri.o zkscl.o zairy.o zacai.o zbuni.o zuni2.o zuni1.o		\
+	zunik.o zmlt.o zdiv.o zabs.o zsqrt.o zlog.o zexp.o dbesj.o dbesy.o	\
+	dbesj0.o dbesj1.o dbesy1.o dbesy0.o zbesj.o zbesy.o zbesh.o d9b0mp.o	\
+	d9b1mp.o djairy.o dyairy.o dasyjy.o dbsynu.o dxlegf.o i1mach.o		\
+	d1mach.o
 
 
 OTHERS = coshin.o arcosh.o dad.o dadd.o ccopy.o rcopy.o ddif.o			\
-	 dmcopy.o dmmul.o dset.o dsort.o					\
+	dmcopy.o dmmul.o dset.o dsort.o						\
 	dsum.o  dtild.o dvmul.o entier.o franck.o gdcp2i.o hilber.o		\
 	icopy.o  iset.o isort.o iwamax.o kronc.o kronr.o magic.o		\
 	mtran.o pythag.o  round.o simple.o urand.o wasum.o watan.o		\
@@ -37,7 +36,7 @@ OTHERS = coshin.o arcosh.o dad.o dadd.o ccopy.o rcopy.o ddif.o			\
 	ddpow1.o dwpow1.o wdpow1.o wwpow1.o					\
 	wwdiv.o wddiv.o dwdiv.o ddrdiv.o wwrdiv.o dwrdiv.o wdrdiv.o		\
 	ivimp.o intp.o cusum.o cupro.o cuproi.o rcsort.o wsort.o vpythag.o	\
-	calerf.o ribesl.o rkbesl.o rjbesl.o rybesl.o psi.o dlgama.o	\
+	calerf.o ribesl.o rkbesl.o rjbesl.o rybesl.o psi.o dlgama.o		\
 	dmsum.o wmsum.o dmprod.o wmprod.o drdiv.o dcabs1.o infinity.o		\
 	unsfdcopy.o idmax.o idmin.o wacos.o wasin.o  wtan.o nearfloat.o		\
 	dsearch.o  somespline.o cshep2d.o dtensbs.o				\
