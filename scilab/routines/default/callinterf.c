@@ -56,6 +56,7 @@ typedef  struct  {
  * iflagint is no more used here ....
  ***********************************************************/
 
+
 static int sig_ok = 0;
 
 int C2F(callinterf) ( int *k, int * iflagint)
