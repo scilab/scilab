@@ -73,7 +73,7 @@ if type(rest(5))<>10 then bugmes();quit;end
  
 if size(rest(5),'*')<>n then bugmes();quit;end
  
-if rest(5)(n)<>'scilex' then bugmes();quit;end
+if rest(5)(n)<>'scilab' then bugmes();quit;end
  
 if or(rest(5)(1:n-1)<>"") then bugmes();quit;end
  

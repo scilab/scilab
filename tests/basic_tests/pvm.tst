@@ -39,7 +39,7 @@ if size(rest(4),'*')<>n then pause,end
 
 if type(rest(5))<>10 then pause,end
 if size(rest(5),'*')<>n then pause,end
-if rest(5)(n)<>'scilex' then pause,end
+if rest(5)(n)<>'scilab' then pause,end
 if or(rest(5)(1:n-1)<>"") then pause,end
 
 if rest(6)<>n then pause,end
