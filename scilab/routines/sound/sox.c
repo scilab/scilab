@@ -45,11 +45,8 @@ static int filetype __PARAMS((int fd));
  ************************************************************/
 
 
-int C2F(loadwave)(filename,res,size_res,flag,Wi,ierr)
-     char *filename;
-     double *res;
-     integer *ierr,*size_res,flag;
-     WavInfo *Wi;
+int C2F(loadwave)(char * filename,double *res, integer * size_res,
+		  integer flag,WavInfo *Wi, integer *ierr)
 {
   double maxi,sum;
   long i,size_max;
@@ -150,10 +147,8 @@ int C2F(loadwave)(filename,res,size_res,flag,Wi,ierr)
  * savewave 
  ************************************************************/
 
-int C2F(savewave)(filename,res,rate,size_res,ierr)
-     char *filename;
-     double *res;
-     integer *ierr,*size_res,*rate ;
+int C2F(savewave)(char * filename,double *res,integer * rate,
+		  integer *size_res,integer *ierr)
 {
   long buf[BUFSIZ];
   long i,size_max;
@@ -238,7 +233,7 @@ int C2F(savewave)(filename,res,rate,size_res,ierr)
 }
 
 
-void init() {
+void init(void) {
   /* init files */
   informat.info.rate      = 0;
   informat.info.size      = -1;
@@ -256,8 +251,7 @@ void init() {
  *	one buffer at a time
  */
 #if defined(netbsd) || defined(freebsd) || defined(unix) || defined(AMIGA) || defined(ARM) || defined(aix)
-int filetype(fd)
-     int fd;
+int filetype(int fd)
 {
   struct stat st;
   fstat(fd, &st);
@@ -267,7 +261,7 @@ int filetype(fd)
 
 /* called from util.c:fail */
 
-void cleanup() 
+void cleanup(void)
 {
   if (informat.fp)
     fclose(informat.fp);
@@ -275,8 +269,7 @@ void cleanup()
 
 /* check that all settings have been given */
 
-static void checkformat(ft) 
-     ft_t ft;
+static void checkformat(ft_t ft)
 {
   if (ft->info.rate == 0)
     {
