@@ -651,6 +651,7 @@ extern int  sciPeekMessage(MSG *msg);
 ****************************************************************/
 
 static int check_mouse(MSG *msg,integer *ibutton,integer *x1,integer *yy1,
+		       int xofset,int yofset,
 		       int getmouse,int getrelease);
 
 int check_pointer_win(int *x1,int *yy1,int *win)
@@ -770,7 +771,9 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
 		      *x1  = 0;*yy1 = 0; *ibutton = -100;  buttons++;
 		      return;
 		    }
-		  else if ( check_mouse(&msg,ibutton,x1,yy1,0,0)==1) 
+		  else if ( check_mouse(&msg,ibutton,x1,yy1, 
+					listptr->winxgc.horzsi.nPos,
+					listptr->winxgc.vertsi.nPos0,0)==1) 
 		    {
 		      buttons++;
 		    }
@@ -878,48 +881,49 @@ void SciMouseRelease()
 
 
 static int check_mouse(MSG *msg,integer *ibutton,integer *x1,integer *yy1,
+		       int xofset,int yofset,
 		       int getmouse,int getrelease)
 {
   if (  msg->message == WM_LBUTTONDOWN )
     {
-      *x1=LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
-      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *x1=LOWORD(msg->lParam) + xofset;
+      *yy1= HIWORD(msg->lParam) + yofset;
       *ibutton=0; 
     }
   else if (  msg->message == WM_MBUTTONDOWN )
     {
-      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
-      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *x1 = LOWORD(msg->lParam) + xofset;
+      *yy1= HIWORD(msg->lParam) + yofset;
       *ibutton=1; 
     }
   else if (  msg->message == WM_RBUTTONDOWN )
     {
-      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
-      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *x1 = LOWORD(msg->lParam) + xofset;
+      *yy1= HIWORD(msg->lParam) + yofset;
       *ibutton=2; 
     }
   else if ( getmouse == 1 && msg->message == WM_MOUSEMOVE )
     {
-      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
-      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *x1 = LOWORD(msg->lParam) + xofset;
+      *yy1= HIWORD(msg->lParam) + yofset;
       *ibutton=-1; /** 0 for left button **/
     }
   else if ( getrelease == 1 &&  msg->message == WM_LBUTTONUP )
     {
-      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
-      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *x1 = LOWORD(msg->lParam) + xofset;
+      *yy1= HIWORD(msg->lParam) + yofset;
       *ibutton= -5 ; 
     }
   else if (getrelease == 1 &&  msg->message == WM_MBUTTONUP )
     {
-      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
-      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *x1 = LOWORD(msg->lParam) + xofset;
+      *yy1= HIWORD(msg->lParam) + yofset;
       *ibutton= -4 ;
     }
   else if ( getrelease == 1 && msg->message == WM_RBUTTONUP )
     {
-      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
-      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *x1 = LOWORD(msg->lParam) + xofset;
+      *yy1= HIWORD(msg->lParam) + yofset;
       *ibutton= -3;
     }
   else 
@@ -978,7 +982,7 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
       if ( msg.hwnd == ScilabXgc->CWindow ) 
 	{
 	  PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
-	  if ( check_mouse(&msg,ibutton,x1,yy1,getmouse,getrelease)==1)
+	  if ( check_mouse(&msg,ibutton,x1,yy1,ScilabXgc->horzsi.nPos,ScilabXgc->vertsi.nPos,getmouse,getrelease)==1)
 	    buttons++;
 	}
       else if ( msg.hwnd == ScilabXgc->hWndParent ) 
