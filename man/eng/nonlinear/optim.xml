@@ -220,8 +220,7 @@ min costf(x) w.r.t x.
     Then, the output variables must be: <VERB>[f,[x,[g],[to]]],[ti],[td]]</VERB>.
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='EXAMPLES'>
-  <VERBATIM><![CDATA[
+  <EXAMPLE><![CDATA[
 xref=[1;2;3];x0=[1;-1;1]
 deff('[f,g,ind]=cost(x,ind)','f=0.5*norm(x-xref)^2,g=x-xref');
 [f,xopt]=optim(cost,x0)      //Simplest call
@@ -234,9 +233,15 @@ deff('[f,g,ind]=cost(x,ind)','f=0.5*norm(x-xref)^2,g=x-xref');
 // Now calling the Fortran subroutine "genros" in SCIDIR/default/Ex-optim.f
 // See also the link function for dynamically linking an objective function
 [f,xopt,gopt]=optim('genros',[1;2;3])    //Rosenbrock's function
-   ]]></VERBATIM>
-  </ITEMIZE>
+   ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>external</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>quapro</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>linpro</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>datafit</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>leastsq</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>numdiff</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>external</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>quapro</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>linpro</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>datafit</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>leastsq</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>numdiff</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>derivative</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>NDcost</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
