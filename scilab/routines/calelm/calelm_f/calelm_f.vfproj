@@ -6,148 +6,148 @@
 		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="PIV_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="Pentium_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="Debug with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="Release with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="PIV_Release with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Debug without Java|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="Debug with Atlas without Java|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release with Atlas without Java|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\arcosh.f">
@@ -198,6 +198,11 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\d1mach.f"/>
+		<File RelativePath="..\d9b0mp.f"/>
+		<File RelativePath="..\d9b1mp.f"/>
+		<File RelativePath="..\d9knus.f"/>
+		<File RelativePath="..\d9lgmc.f"/>
 		<File RelativePath="..\dad.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
@@ -208,11 +213,42 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dasyik.f"/>
+		<File RelativePath="..\dasyjy.f"/>
+		<File RelativePath="..\dbdiff.f"/>
+		<File RelativePath="..\dbesi.f"/>
+		<File RelativePath="..\dbesi0.f"/>
+		<File RelativePath="..\dbesi1.f"/>
+		<File RelativePath="..\dbesig.f"/>
+		<File RelativePath="..\dbesj.f"/>
+		<File RelativePath="..\dbesj0.f"/>
+		<File RelativePath="..\dbesj1.f"/>
+		<File RelativePath="..\dbesjg.f"/>
+		<File RelativePath="..\dbesk.f"/>
+		<File RelativePath="..\dbesk0.f"/>
+		<File RelativePath="..\dbesk1.f"/>
+		<File RelativePath="..\dbeskg.f"/>
+		<File RelativePath="..\dbesks.f"/>
+		<File RelativePath="..\dbesy.f"/>
+		<File RelativePath="..\dbesy0.f"/>
+		<File RelativePath="..\dbesy1.f"/>
+		<File RelativePath="..\dbesyg.f"/>
+		<File RelativePath="..\dbkias.f"/>
+		<File RelativePath="..\dbkisr.f"/>
+		<File RelativePath="..\dbsi0e.f"/>
+		<File RelativePath="..\dbsi1e.f"/>
+		<File RelativePath="..\dbsk0e.f"/>
+		<File RelativePath="..\dbsk1e.f"/>
+		<File RelativePath="..\dbskes.f"/>
+		<File RelativePath="..\dbskin.f"/>
+		<File RelativePath="..\dbsknu.f"/>
+		<File RelativePath="..\dbsynu.f"/>
 		<File RelativePath="..\dcabs1.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dcsevl.f"/>
 		<File RelativePath="..\ddif.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
@@ -238,6 +274,12 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dexint.f"/>
+		<File RelativePath="..\dgamlm.f"/>
+		<File RelativePath="..\dgamln.f"/>
+		<File RelativePath="..\dgamma.f"/>
+		<File RelativePath="..\dgamrn.f"/>
+		<File RelativePath="..\dhkseq.f"/>
 		<File RelativePath="..\dipow.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
@@ -248,6 +290,7 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\djairy.f"/>
 		<File RelativePath="..\dlblks.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
@@ -258,6 +301,7 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dlngam.f"/>
 		<File RelativePath="..\dmcopy.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
@@ -283,6 +327,7 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dpsixn.f"/>
 		<File RelativePath="..\drdiv.f">
 			<FileConfiguration Name="Debug without Java|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
@@ -358,11 +403,13 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dyairy.f"/>
 		<File RelativePath="..\entier.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\fdump.f"/>
 		<File RelativePath="..\franck.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
@@ -391,6 +438,7 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\i1mach.f"/>
 		<File RelativePath="..\icopy.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended"/></FileConfiguration>
@@ -416,6 +464,7 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\initds.f"/>
 		<File RelativePath="..\int2db.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
@@ -456,6 +505,7 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\j4save.f"/>
 		<File RelativePath="..\kronc.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
@@ -725,7 +775,51 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
-		<File RelativePath="..\wwrdiv.f"/></Filter>
+		<File RelativePath="..\wwrdiv.f"/>
+		<File RelativePath="..\xercnt.f"/>
+		<File RelativePath="..\xerhlt.f"/>
+		<File RelativePath="..\xermsg.f"/>
+		<File RelativePath="..\xerprn.f"/>
+		<File RelativePath="..\xersve.f"/>
+		<File RelativePath="..\xgetua.f"/>
+		<File RelativePath="..\zabs.f"/>
+		<File RelativePath="..\zacai.f"/>
+		<File RelativePath="..\zacon.f"/>
+		<File RelativePath="..\zairy.f"/>
+		<File RelativePath="..\zasyi.f"/>
+		<File RelativePath="..\zbesh.f"/>
+		<File RelativePath="..\zbesi.f"/>
+		<File RelativePath="..\zbesig.f"/>
+		<File RelativePath="..\zbesj.f"/>
+		<File RelativePath="..\zbesjg.f"/>
+		<File RelativePath="..\zbesk.f"/>
+		<File RelativePath="..\zbeskg.f"/>
+		<File RelativePath="..\zbesy.f"/>
+		<File RelativePath="..\zbesyg.f"/>
+		<File RelativePath="..\zbinu.f"/>
+		<File RelativePath="..\zbknu.f"/>
+		<File RelativePath="..\zbuni.f"/>
+		<File RelativePath="..\zbunk.f"/>
+		<File RelativePath="..\zdiv.f"/>
+		<File RelativePath="..\zexp.f"/>
+		<File RelativePath="..\zkscl.f"/>
+		<File RelativePath="..\zlog.f"/>
+		<File RelativePath="..\zmlri.f"/>
+		<File RelativePath="..\zmlt.f"/>
+		<File RelativePath="..\zrati.f"/>
+		<File RelativePath="..\zs1s2.f"/>
+		<File RelativePath="..\zseri.f"/>
+		<File RelativePath="..\zshch.f"/>
+		<File RelativePath="..\zsqrt.f"/>
+		<File RelativePath="..\zuchk.f"/>
+		<File RelativePath="..\zunhj.f"/>
+		<File RelativePath="..\zuni1.f"/>
+		<File RelativePath="..\zuni2.f"/>
+		<File RelativePath="..\zunik.f"/>
+		<File RelativePath="..\zunk1.f"/>
+		<File RelativePath="..\zunk2.f"/>
+		<File RelativePath="..\zuoik.f"/>
+		<File RelativePath="..\zwrsk.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/></Files>
 	<Globals/></VisualStudioProject>
