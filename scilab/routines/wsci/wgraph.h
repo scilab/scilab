@@ -165,5 +165,6 @@ BOOL HwndToBmpFile(HWND hwnd, char *pszflname);
 void ExportBMP(struct BCG *ScilabGC,char *pszflname);
 void ExportEMF(struct BCG *ScilabGC,char *pszflname);
 int GetScreenProperty(char *prop, char *value);
+int GetEventKeyboardAndMouse (UINT message, WPARAM wParam, LPARAM lParam);
 #endif /* __WGRAPH__ */
 /*-----------------------------------------------------------------------------------*/

@@ -974,56 +974,54 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
   SCROLLINFO horzsi;
 
   ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+  GetEventKeyboardAndMouse(message,wParam,lParam );
   switch (message)
     {
+   
+
     case WM_SYSCOMMAND:
       switch (LOWORD (wParam))
-	{
-	case M_GRAPH_TO_TOP:
-	case M_COLOR:
-	case M_COPY_CLIP:
-	case M_PRINT:
-	case M_WRITEINI:
-	case M_REBUILDTOOLS:
-	  SendMessage (hwnd, WM_COMMAND, wParam, lParam);
-	  break;
-	case M_ABOUT:
-	  if (ScilabGC != (struct BCG *) 0 && ScilabGC->lpgw->lptw)
-	    AboutBox (hwnd, ScilabGC->lpgw->lptw->AboutText);
-	  return 0;
-	}
-      break;
-    case WM_COMMAND:
-      if (LOWORD (wParam) < NUMMENU)
-	SendGraphMacro (ScilabGC, LOWORD (wParam));
+		{
+			case M_GRAPH_TO_TOP: case M_COLOR:  case M_COPY_CLIP: case M_PRINT:
+			case M_WRITEINI: case M_REBUILDTOOLS:
+				SendMessage (hwnd, WM_COMMAND, wParam, lParam);
+			break;
+
+			case M_ABOUT:
+				if (ScilabGC != (struct BCG *) 0 && ScilabGC->lpgw->lptw) AboutBox (hwnd, ScilabGC->lpgw->lptw->AboutText);
+			return 0;
+		}
+     break;
+	 case WM_COMMAND:
+
+      if (LOWORD (wParam) < NUMMENU) SendGraphMacro (ScilabGC, LOWORD (wParam));
       else
-	switch (LOWORD (wParam))
-	  {
-	  case M_GRAPH_TO_TOP:
-	    ScilabGC->lpgw->graphtotop = !ScilabGC->lpgw->graphtotop;
-	    SendMessage (hwnd, WM_COMMAND, M_REBUILDTOOLS, 0L);
-	    return (0);
-	  case M_COPY_CLIP:
-	    CopyClip (ScilabGC);
-	    return 0;
-	  case M_PRINT:
-	    CopyPrint (ScilabGC);
-	    return 0;
-	  case M_WRITEINI:
-	    WriteGraphIni (ScilabGC);
-	    if (ScilabGC->lpgw->lptw)
-	      WriteTextIni (ScilabGC->lpgw->lptw);
-	    return 0;
-	  case M_REBUILDTOOLS:
-	    DebugGW ("rebuild tools \r\n");
-	    /** wininfo("rebuild tools \r\n"); **/
-	    GetClientRect (hwnd, &rect);
-	    InvalidateRect (hwnd, (LPRECT) & rect, FALSE);
-	    /* UpdateWindow (hwnd); */
-	    return 0;
-	  }
-      return 0;
-      case WM_KEYDOWN:
+		switch (LOWORD (wParam))
+		{
+			case M_GRAPH_TO_TOP:
+				ScilabGC->lpgw->graphtotop = !ScilabGC->lpgw->graphtotop;
+				SendMessage (hwnd, WM_COMMAND, M_REBUILDTOOLS, 0L);
+			return (0);
+			case M_COPY_CLIP:
+				CopyClip (ScilabGC);
+			return 0;
+			case M_PRINT:
+				CopyPrint (ScilabGC);
+			return 0;
+			case M_WRITEINI:
+				WriteGraphIni (ScilabGC);
+				if (ScilabGC->lpgw->lptw) WriteTextIni (ScilabGC->lpgw->lptw);
+			return 0;
+			case M_REBUILDTOOLS:
+				DebugGW ("rebuild tools \r\n");
+				/** wininfo("rebuild tools \r\n"); **/
+				GetClientRect (hwnd, &rect);
+				InvalidateRect (hwnd, (LPRECT) & rect, FALSE);
+				/* UpdateWindow (hwnd); */
+			return 0;
+	   }
+     return 0;
+     case WM_KEYDOWN:
 		{
 			switch (wParam)
 			{
@@ -1039,212 +1037,201 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
 				break;
 				default:
 				break;
-				
-	      		
-	      	
+	
 			}
 		}
-	return 0;
-    case WM_CHAR:
-      check_pointer_win(&x,&y,&iwin);
-      PushClickQueue (ScilabGC->CurWindow, x,y,wParam,0,0);
-      return (0);
-    case WM_MOUSEMOVE:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		      ScilabGC->horzsi.nPos,
-		      HIWORD (lParam) + ScilabGC->vertsi.nPos, -1, 1, 0);
-      return 0;
-    case WM_LBUTTONDOWN:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		      ScilabGC->horzsi.nPos,
-		      HIWORD (lParam) + ScilabGC->vertsi.nPos, 0, 0, 0);
+	 return 0;
+     case WM_CHAR:
+		check_pointer_win(&x,&y,&iwin);
+		PushClickQueue (ScilabGC->CurWindow, x,y,wParam,0,0);
+     return (0);
+	 case WM_MOUSEMOVE:
+		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+		ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, -1, 1, 0);
+     return 0;
+     case WM_LBUTTONDOWN:
+		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+		ScilabGC->horzsi.nPos,
+		HIWORD (lParam) + ScilabGC->vertsi.nPos, 0, 0, 0);
       /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-      return (0);
-    case WM_MBUTTONDOWN:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		      ScilabGC->horzsi.nPos,
-		      HIWORD (lParam) + ScilabGC->vertsi.nPos, 1, 0, 0);
-      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-      return (0);
-    case WM_RBUTTONDOWN:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		      ScilabGC->horzsi.nPos,
-		      HIWORD (lParam) + ScilabGC->vertsi.nPos, 2, 0, 0);
-      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-      return (0);
-    case WM_LBUTTONUP:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		      ScilabGC->horzsi.nPos
-		      ,HIWORD (lParam) + ScilabGC->vertsi.nPos, -5, 0, 1);
-      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-      return (0);
-    case WM_MBUTTONUP:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		      ScilabGC->horzsi.nPos,
-		      HIWORD (lParam) + ScilabGC->vertsi.nPos, -4, 0, 1);
-      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-      return (0);
-    case WM_RBUTTONUP:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		      ScilabGC->horzsi.nPos,
-		      HIWORD (lParam) + ScilabGC->vertsi.nPos, -3, 0, 1);
-      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-      return (0);
-    case WM_CREATE:
-      ScilabGC = ((CREATESTRUCT *) lParam)->lpCreateParams;
-      SetWindowLong (hwnd, 0, (LONG) ScilabGC);
-      ScilabGC->CWindow = hwnd;
-      if (ScilabGC->lpgw->lptw
-	  && (ScilabGC->lpgw->lptw->DragPre != (LPSTR) NULL)
-	  && (ScilabGC->lpgw->lptw->DragPost != (LPSTR) NULL))
-	DragAcceptFiles (hwnd, TRUE);
-      return (0);
-    case WM_PAINT:
-      /* MAJ D.ABDEMOUCHE*/
-      ScilabPaint (hwnd, ScilabGC);
-      return 0;
-      break;
-    case WM_SIZE:
-      /* initialisation de SCROLLINFs */
-      sciGetScrollInfo (ScilabGC, SB_HORZ, &horzsi);
-      sciGetScrollInfo (ScilabGC, SB_VERT, &vertsi);
-      /* MAJ D.ABDEMOUCHE*/
-      if (ScilabGC->CurResizeStatus == 0)
-	{
-	  horzsi.nPage = LOWORD (lParam);
-	  vertsi.nPage = HIWORD (lParam);
-	  /* on recupere la veritable position des scroll bar
-	   * on a ainsi la possibilite de tirer le graphe
-	   * quand on agrandi la fenetre 
-	   */
-	  horzsi.nPos = GetScrollPos (ScilabGC->CWindow, SB_HORZ);
-	  vertsi.nPos = GetScrollPos (ScilabGC->CWindow, SB_VERT);
-	}
-      else
-	{
-	  /* eventually resize the pixmap size */
-	  if (  ScilabGC->CurPixmapStatus  == 1 )
-	    {
-	      ScilabGResize (hwnd, ScilabGC, wParam); 
-	    }
-	  horzsi.nMax = LOWORD (lParam);
-	  vertsi.nMax = HIWORD (lParam);
-	  horzsi.nPage = horzsi.nMax;
-	  vertsi.nPage = vertsi.nMax;
-	}
-      sciSetScrollInfo (ScilabGC, SB_HORZ, &(horzsi), TRUE);
-      sciSetScrollInfo (ScilabGC, SB_VERT, &(vertsi), TRUE);
-      /* on force le reclacule les positions des scrollbars
+     return (0);
+     case WM_MBUTTONDOWN:
+		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+		ScilabGC->horzsi.nPos,
+		HIWORD (lParam) + ScilabGC->vertsi.nPos, 1, 0, 0);
+		/*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
+     return (0);
+	 case WM_RBUTTONDOWN:
+		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+		ScilabGC->horzsi.nPos,
+		HIWORD (lParam) + ScilabGC->vertsi.nPos, 2, 0, 0);
+		/*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
+     return (0);
+     case WM_LBUTTONUP:
+		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+		ScilabGC->horzsi.nPos
+		,HIWORD (lParam) + ScilabGC->vertsi.nPos, -5, 0, 1);
+		/*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
+		return (0);
+     case WM_MBUTTONUP:
+		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+		ScilabGC->horzsi.nPos,
+		HIWORD (lParam) + ScilabGC->vertsi.nPos, -4, 0, 1);
+		/*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
+     return (0);
+     case WM_RBUTTONUP:
+		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+		ScilabGC->horzsi.nPos,
+		HIWORD (lParam) + ScilabGC->vertsi.nPos, -3, 0, 1);
+		/*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
+     return (0);
+     case WM_CREATE:
+		ScilabGC = ((CREATESTRUCT *) lParam)->lpCreateParams;
+		SetWindowLong (hwnd, 0, (LONG) ScilabGC);
+		ScilabGC->CWindow = hwnd;
+		if (ScilabGC->lpgw->lptw && (ScilabGC->lpgw->lptw->DragPre != (LPSTR) NULL) 
+	        && (ScilabGC->lpgw->lptw->DragPost != (LPSTR) NULL)) DragAcceptFiles (hwnd, TRUE);
+     return (0);
+     case WM_PAINT:
+		/* MAJ D.ABDEMOUCHE*/
+		ScilabPaint (hwnd, ScilabGC);
+     return 0;
+    
+     case WM_SIZE:
+		/* initialisation de SCROLLINFs */
+		sciGetScrollInfo (ScilabGC, SB_HORZ, &horzsi);
+		sciGetScrollInfo (ScilabGC, SB_VERT, &vertsi);
+		/* MAJ D.ABDEMOUCHE*/
+		if (ScilabGC->CurResizeStatus == 0)
+		{
+			horzsi.nPage = LOWORD (lParam);
+			vertsi.nPage = HIWORD (lParam);
+			/* on recupere la veritable position des scroll bar
+			* on a ainsi la possibilite de tirer le graphe
+			* quand on agrandi la fenetre 
+			*/
+			horzsi.nPos = GetScrollPos (ScilabGC->CWindow, SB_HORZ);
+			vertsi.nPos = GetScrollPos (ScilabGC->CWindow, SB_VERT);
+		}
+		else
+		{
+			/* eventually resize the pixmap size */
+			if (  ScilabGC->CurPixmapStatus  == 1 )
+			{
+				ScilabGResize (hwnd, ScilabGC, wParam); 
+			}
+			horzsi.nMax = LOWORD (lParam);
+			vertsi.nMax = HIWORD (lParam);
+			horzsi.nPage = horzsi.nMax;
+			vertsi.nPage = vertsi.nMax;
+		}
+		sciSetScrollInfo (ScilabGC, SB_HORZ, &(horzsi), TRUE);
+		sciSetScrollInfo (ScilabGC, SB_VERT, &(vertsi), TRUE);
+		/* on force le reclacule les positions des scrollbars
          et leur validation */
-      sciGetScrollInfo (ScilabGC, SB_HORZ, &horzsi);
-      sciGetScrollInfo (ScilabGC, SB_VERT, &vertsi);
-      InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL,FALSE);
-      return 0;
-      break;
-    case WM_HSCROLL:
-      {
-	/* initialisation de SCROLLINFOs */
-	sciGetScrollInfo (ScilabGC, SB_HORZ, &horzsi);
-	switch (LOWORD (wParam))
-	  {
-	    /* deltax = 0;*/
-	  case SB_PAGEUP:
-	    deltax = horzsi.nPos;
-	    horzsi.nPos = max (horzsi.nMin, horzsi.nPos - 50);
-	    deltax = deltax - horzsi.nPos;
-	    break;
-	  case SB_PAGEDOWN:
-	    deltax = horzsi.nPos;
-	    horzsi.nPos = min (horzsi.nMax - (int)horzsi.nPage, horzsi.nPos + 50);
-	    deltax = deltax - horzsi.nPos;
-	    break;
-	  case SB_LINEUP:
-	    deltax = horzsi.nPos;
-	    horzsi.nPos = max (horzsi.nMin, horzsi.nPos - 5);
-	    deltax = deltax - horzsi.nPos;
-	    break;
-	  case SB_LINEDOWN:
-	    deltax = horzsi.nPos;
-	    horzsi.nPos = min (horzsi.nMax - (int) horzsi.nPage, horzsi.nPos + 5);
-	    deltax = deltax - horzsi.nPos;
-	    break;
-	  case SB_THUMBTRACK:
-	    deltax = horzsi.nPos;
-	    horzsi.nPos = max (horzsi.nMin, min (horzsi.nMax, HIWORD (wParam)));
-	    deltax = deltax - horzsi.nPos;
-	    break;
-	  default:
-	    deltax=0;
-	    break;
-	  }
-	sciSetScrollInfo (ScilabGC, SB_HORZ, &horzsi, TRUE);
-	InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL, FALSE);
-	/* UpdateWindow (ScilabGC->CWindow); */ 
+		sciGetScrollInfo (ScilabGC, SB_HORZ, &horzsi);
+		sciGetScrollInfo (ScilabGC, SB_VERT, &vertsi);
+		InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL,FALSE);
+     return 0;
+     case WM_HSCROLL:
+	 {
+			/* initialisation de SCROLLINFOs */
+			sciGetScrollInfo (ScilabGC, SB_HORZ, &horzsi);
+			switch (LOWORD (wParam))
+			{
+				/* deltax = 0;*/
+				case SB_PAGEUP:
+					deltax = horzsi.nPos;
+					horzsi.nPos = max (horzsi.nMin, horzsi.nPos - 50);
+					deltax = deltax - horzsi.nPos;
+				break;
+				case SB_PAGEDOWN:
+					deltax = horzsi.nPos;
+					horzsi.nPos = min (horzsi.nMax - (int)horzsi.nPage, horzsi.nPos + 50);
+					deltax = deltax - horzsi.nPos;
+				break;
+				case SB_LINEUP:
+					deltax = horzsi.nPos;
+					horzsi.nPos = max (horzsi.nMin, horzsi.nPos - 5);
+					deltax = deltax - horzsi.nPos;
+				break;
+				case SB_LINEDOWN:
+					deltax = horzsi.nPos;
+					horzsi.nPos = min (horzsi.nMax - (int) horzsi.nPage, horzsi.nPos + 5);
+					deltax = deltax - horzsi.nPos;
+				break;
+				case SB_THUMBTRACK:
+					deltax = horzsi.nPos;
+					horzsi.nPos = max (horzsi.nMin, min (horzsi.nMax, HIWORD (wParam)));
+					deltax = deltax - horzsi.nPos;
+				break;
+				default:
+					deltax=0;
+				break;
+			}
+		sciSetScrollInfo (ScilabGC, SB_HORZ, &horzsi, TRUE);
+		InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL, FALSE);
+		/* UpdateWindow (ScilabGC->CWindow); */ 
       }
-      return 0;
-      break;
-    case WM_VSCROLL:
-      {
-	/* initialisation de SCROLLINFs */
-	sciGetScrollInfo (ScilabGC, SB_VERT, &vertsi);
-	switch (LOWORD (wParam))
-	  {
-	    /* deltay = 0; */
-	  case SB_PAGEUP:
-	    deltay = vertsi.nPos;
-	    vertsi.nPos = max (vertsi.nMin, vertsi.nPos - 50);
-	    deltay = deltay - vertsi.nPos;
-	    break;
-	  case SB_PAGEDOWN:
-	    deltay = vertsi.nPos;
-	    vertsi.nPos = min (vertsi.nMax - (int) vertsi.nPage, vertsi.nPos +50);
-	    deltay = deltay - vertsi.nPos;
-	    break;
-	  case SB_LINEUP:
-	    deltay = vertsi.nPos;
-	    vertsi.nPos = max (vertsi.nMin, vertsi.nPos - 5);
-	    deltay = deltay - vertsi.nPos;
-	    break;
-	  case SB_LINEDOWN:
-	    deltay = vertsi.nPos;
-	    vertsi.nPos = min (vertsi.nMax - (int) vertsi.nPage, vertsi.nPos +5);
-	    deltay = deltay - vertsi.nPos;
-	    break;
-	  case SB_THUMBTRACK:
-	    deltay = vertsi.nPos;
-	    vertsi.nPos = min (vertsi.nMax, max (vertsi.nMin, HIWORD (wParam)));
-	    deltay = deltay - vertsi.nPos;
-	    break; 
-	  default:
-	    deltay = 0;
-	    break;
-	  }
-	sciSetScrollInfo (ScilabGC, SB_VERT, &vertsi, TRUE);
-	InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL, FALSE);
-	/* UpdateWindow (ScilabGC->CWindow); */ 
-      }
-      return 0;
-      break;
-    case WM_DROPFILES:
-      if (ScilabGC->lpgw->lptw)
-	DragFunc (ScilabGC->lpgw->lptw, (HDROP) wParam);
-      return 0;
-      break;
-    case WM_DESTROY:
-      PostQuitMessage (0);
-      DragAcceptFiles (hwnd, FALSE);
-	  
-
-      return 0;
-    case WM_CLOSE:
+     return 0;
       
-      PostQuitMessage (0);
-      C2F (deletewin) (&(ScilabGC->CurWindow));
-      SetWindowLong (hwnd, 0, (LONG) 0L);
-
-	  /* Ajout pour probleme fermeture fenetre scicos
-	  si une boite de dialogue TK est presente */
-	  TextMessage1 (0);
+    case WM_VSCROLL:
+    {
+		/* initialisation de SCROLLINFs */
+		sciGetScrollInfo (ScilabGC, SB_VERT, &vertsi);
+		switch (LOWORD (wParam))
+		{
+			/* deltay = 0; */
+			case SB_PAGEUP:
+				deltay = vertsi.nPos;
+				vertsi.nPos = max (vertsi.nMin, vertsi.nPos - 50);
+				deltay = deltay - vertsi.nPos;
+			break;
+			case SB_PAGEDOWN:
+				deltay = vertsi.nPos;
+				vertsi.nPos = min (vertsi.nMax - (int) vertsi.nPage, vertsi.nPos +50);
+				deltay = deltay - vertsi.nPos;
+			break;
+			case SB_LINEUP:
+				deltay = vertsi.nPos;
+				vertsi.nPos = max (vertsi.nMin, vertsi.nPos - 5);
+				deltay = deltay - vertsi.nPos;
+			break;
+			case SB_LINEDOWN:
+				deltay = vertsi.nPos;
+				vertsi.nPos = min (vertsi.nMax - (int) vertsi.nPage, vertsi.nPos +5);
+				deltay = deltay - vertsi.nPos;
+			break;
+			case SB_THUMBTRACK:
+				deltay = vertsi.nPos;
+				vertsi.nPos = min (vertsi.nMax, max (vertsi.nMin, HIWORD (wParam)));
+				deltay = deltay - vertsi.nPos;
+			break; 
+			default:
+				deltay = 0;
+			break;
+		}
+		sciSetScrollInfo (ScilabGC, SB_VERT, &vertsi, TRUE);
+		InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL, FALSE);
+		/* UpdateWindow (ScilabGC->CWindow); */ 
+      }
+      return 0;
+    
+	  case WM_DROPFILES:
+		if (ScilabGC->lpgw->lptw) DragFunc (ScilabGC->lpgw->lptw, (HDROP) wParam);
+      return 0;
+      
+	  case WM_DESTROY:
+		PostQuitMessage (0);
+		DragAcceptFiles (hwnd, FALSE);
+      return 0;
+      case WM_CLOSE:
+		PostQuitMessage (0);
+		C2F (deletewin) (&(ScilabGC->CurWindow));
+		SetWindowLong (hwnd, 0, (LONG) 0L);
+		/* Ajout pour probleme fermeture fenetre scicos
+		si une boite de dialogue TK est presente */
+		TextMessage1 (0);
       return 0;
     }
   return DefWindowProc (hwnd, message, wParam, lParam);
@@ -1921,5 +1908,181 @@ int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 	LhsVar(1)=0;
 	return 0;
 
+}
+/*-----------------------------------------------------------------------------------*/
+int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam)
+{
+	int CodeKey=0;
+
+	switch (message)
+	{
+		case WM_LBUTTONUP:
+			{
+				switch(wParam)
+				{
+					case MK_CONTROL:
+						sciprint("WM_LBUTTONUP & ctrl\n");
+						break;
+
+					case MK_MBUTTON:
+						sciprint("WM_LBUTTONUP & bouton milieu\n");
+						break;
+
+					case MK_RBUTTON:
+						sciprint("WM_LBUTTONUP & bouton droit\n");
+						break;
+
+					case MK_SHIFT:
+						sciprint("WM_LBUTTONUP & touche shift\n");
+						break;
+					default:
+						sciprint("WM_LBUTTONUP \n");
+						break;
+				}
+			}
+		break;
+
+		case WM_RBUTTONUP:
+			{
+				switch(wParam)
+				{
+					case MK_CONTROL:
+						sciprint("WM_RBUTTONUP & ctrl\n");
+						break;
+
+					case MK_MBUTTON:
+						sciprint("WM_RBUTTONUP & mmiddle buton\n");
+						break;
+
+					case MK_LBUTTON:
+						sciprint("WM_RBUTTONUP & left button\n");
+						break;
+
+					case MK_SHIFT:
+						sciprint("WM_RBUTTONUP & shift\n");
+						break;
+					default:
+						sciprint("WM_RBUTTONUP\n");
+						break;
+				}
+			}
+		break;
+
+		case WM_MBUTTONUP:
+			{
+				switch(wParam)
+				{
+					case MK_CONTROL:
+						sciprint("WM_MBUTTONUP & ctrl\n");
+						break;
+
+					case MK_LBUTTON:
+						sciprint("WM_MBUTTONUP & left button\n");
+						break;
+
+					case MK_RBUTTON:
+						sciprint("WM_MBUTTONUP & right button\n");
+						break;
+
+					case MK_SHIFT:
+						sciprint("WM_MBUTTONUP & shift\n");
+						break;
+					default:
+						sciprint("WM_MBUTTONUP\n");
+						break;
+				}
+			}
+		break;
+
+		case WM_KEYDOWN:
+			{
+				
+				sciprint("a key %d\n",wParam);
+
+			
+			}
+		break;
+
+		case WM_LBUTTONDBLCLK:
+			{
+				switch(wParam)
+				{
+					case MK_CONTROL:
+						sciprint("WM_LBUTTONDBLCLK & contrl\n");
+						break;
+
+					case MK_MBUTTON:
+						sciprint("WM_LBUTTONDBLCLK & middle button\n");
+						break;
+
+					case MK_RBUTTON:
+						sciprint("WM_LBUTTONDBLCLK & right button\n");
+						break;
+
+					case MK_SHIFT:
+						sciprint("WM_LBUTTONDBLCLK & shift\n");
+						break;
+					default:
+						sciprint("WM_LBUTTONDBLCLK\n");
+						break;
+
+				}
+			}
+		break;
+
+		case WM_MBUTTONDBLCLK:
+			{
+				switch(wParam)
+				{
+					case MK_CONTROL:
+						sciprint("WM_MBUTTONDBLCLK & contrl\n");
+						break;
+
+					case MK_LBUTTON:
+						sciprint("WM_MBUTTONDBLCLK & left button\n");
+						break;
+
+					case MK_RBUTTON:
+						sciprint("WM_MBUTTONDBLCLK & right button\n");
+						break;
+
+					case MK_SHIFT:
+						sciprint("WM_MBUTTONDBLCLK & shift\n");
+						break;
+					default:
+						sciprint("WM_MBUTTONDBLCLK\n");
+						break;
+				}
+			}
+		break;
+
+		case WM_RBUTTONDBLCLK:
+			{
+				switch(wParam)
+				{
+					case MK_CONTROL:
+						sciprint("WM_RBUTTONDBLCLK & control\n");
+						break;
+
+					case MK_MBUTTON:
+						sciprint("WM_RBUTTONDBLCLK & middle button\n");
+						break;
+
+					case MK_LBUTTON:
+						sciprint("WM_RBUTTONDBLCLK & left button\n");
+						break;
+
+					case MK_SHIFT:
+						sciprint("WM_RBUTTONDBLCLK & shift button\n");
+						break;
+					default:
+						sciprint("WM_RBUTTONDBLCLK\n");
+						break;
+				}
+			}
+		break;
+
+	}
+	return CodeKey;
 }
 /*-----------------------------------------------------------------------------------*/
