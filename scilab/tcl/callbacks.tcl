@@ -3,7 +3,7 @@
 # Bertrand Guiheneuf - 1998 
 ############################################
 #
-# 	$Id: callbacks.tcl,v 1.1 2001/04/26 07:49:14 scilab Exp $	
+# 	$Id: callbacks.tcl,v 1.2 2004/05/25 16:41:09 steer Exp $	
 
 
 ######################################################################################
@@ -58,8 +58,10 @@ proc popupsel { name itemnb } {
 
     # call the popupmenu callback command
     if [ info exists "$name\(callback)"] { 
-	SciCallback $name $callback
+	set callback [ set "$name\(callback)"]
+        SciCallback $name $callback
     }
+
 }
 
 
