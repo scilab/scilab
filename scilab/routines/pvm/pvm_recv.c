@@ -9,7 +9,7 @@
      
    HISTORY
      fleury - Nov 19, 1997: Created.
-     $Id: pvm_recv.c,v 1.1 2001/04/26 07:49:01 scilab Exp $
+     $Id: pvm_recv.c,v 1.2 2002/07/25 08:42:44 chanceli Exp $
 ***/
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,27 +18,16 @@
 #include "../machine.h"
 #include "../stack-c.h"
 #include "../calelm/sci_tools.h"
+#include "sci_pvm.h"
 
 
-#ifdef __STDC__
-void
-C2F(scipvmrecv)(double *beginvar, int *maxsize, int *size,
-		int *tid,  int *tag, int *res)
-#else
-void
-C2F(scipvmrecv)(beginvar, maxsize, size, tid, tag, res)
-  double *beginvar;
-  int *maxsize;
-  int *size;
-  int *tid;
-  int *tag;
-  int *res;
-#endif 
+void C2F(scipvmrecv)(double *beginvar, int *maxsize, int *size,
+		     int *tid,  int *tag, int *res)
 {
   int bufid;
   int info;
   int msgbyte, msgtag, msgtid, buffsize;
-  int i, type;
+  int i;
   int n;
   int *pack;
   int *ptr_int;
@@ -169,8 +158,8 @@ C2F(scipvmrecvvar)(tid, tag, buff, res)
 {
   int bufid;
   int info;
-  int msgbyte, msgtag, msgtid, buffsize;
-  int i, type;
+  int msgbyte, msgtag, msgtid;
+  int type;
   int mx, nx, type_x, ptr_x, size_x;
   int m, n;
 

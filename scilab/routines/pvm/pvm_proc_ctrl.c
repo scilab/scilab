@@ -1,3 +1,4 @@
+  
 /* Copyright (c) 1997 by LIP ENS-LYON.  All Rights Reserved */
 
 /***
@@ -10,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.4  2002/07/25 08:42:44  chanceli
+     updates
+
      Revision 1.3  2002/03/18 12:15:17  steer
      modif Jean-Sebastien Roy pour FreeBSD
 
@@ -79,6 +83,8 @@
 #include <string.h>
 #include "pvm3.h"
 #include "../machine.h"
+#include "sci_pvm.h"
+
 #ifndef WIN32 
 #include <unistd.h>
 #endif 
@@ -96,8 +102,7 @@
 #ifdef __ABSC__ /* For the definition of _stricmp */
 #include <ctype.h>
 
-int
-_stricmp(const char *s1, const char *s2)
+int _stricmp(const char *s1, const char *s2)
 {
   while (tolower(*s1) == tolower(*s2))
   {
@@ -111,139 +116,92 @@ _stricmp(const char *s1, const char *s2)
 #endif
 
 
-static struct timeval t1;
+typedef char *strings;
 
-#ifdef __STDC__
-void 
-C2F(scipvmerror)(int *err, char ***res)
-#else
-void 
-C2F(scipvmerror)(err, res)
-  int *err;
-  char ***res;
-#endif 
+static strings Scipvm_error[]= { 
+      "OK",
+      "bad parameter",
+      "Barrier count mismatch",
+      "read past end of buffer",
+      "no such host",
+      "No such executable",
+      "can not get memory",
+      "can not decode received msg",
+      "daemond pvmd is not responding",
+      "no current buffer",
+      "bad message id",
+      "null group name is illegal",
+      "already in group",
+      "no group with that name",
+      "not in group",
+      "no such instance in group",
+      "host failed",
+      "no parent task",
+      "function not implemented",
+      "pvmd system error",
+      "pvmd-pvmd protocol mismatch",
+      "out of ressources",
+      "host already configured",
+      "failed to exec new slave pvmd",
+      "already oing operation",
+      "no such task",
+      "no such (group,instance)",
+      "(group,instance) already exists",
+      "Unknow error",
+};
+
+/*--------------------------------------------------
+ * get error message 
+ *--------------------------------------------------*/
+
+char *scipvm_error_msg(int err)
 {
-  if (((*res) = (char**) malloc(sizeof(char**))) == NULL) {
-    (void) fprintf(stderr, "Error malloc in pvm_error\n");
-    return;
-  }
-  if ((**res = (char *) malloc(255 * sizeof(char))) == NULL) {
-    (void) fprintf(stderr, "Error malloc in pvm_error\n");
-    return;
-  }
-  switch (*err)
+  switch (err)
     {
-    case PvmOk:
-      (void) sprintf(**res, "%s", "OK");
-      break;
-    case PvmBadParam:
-      (void) sprintf(**res, "%s", "bad parameter");
-      break;
-    case PvmMismatch:
-      (void) sprintf(**res, "%s", "Barrier count mismatch");
-      break;
-    case PvmNoData:
-      (void) sprintf(**res, "%s", "read past end of buffer");
-      break;
-    case PvmNoHost:
-      (void) sprintf(**res, "%s", "no such host");
-      break;
-    case PvmNoFile:
-      (void) sprintf(**res, "%s", "No such executable");
-      break;
-    case PvmNoMem:
-      (void) sprintf(**res, "%s", "can not get memory");
-      break;
-    case PvmBadMsg:
-      (void) sprintf(**res, "%s", "can not decode received msg");
-      break;
-    case PvmSysErr:
-      (void) sprintf(**res, "%s", "daemond pvmd is not responding");
-      break;
-    case PvmNoBuf:
-      (void) sprintf(**res, "%s", "no current buffer");
-      break;
-    case PvmNoSuchBuf:
-      (void) sprintf(**res, "%s", "bad message id");
-      break;
-    case PvmNullGroup:
-      (void) sprintf(**res, "%s", "null group name is illegal");
-      break;
-    case PvmDupGroup:
-      (void) sprintf(**res, "%s", "already in group");
-      break;
-    case PvmNoGroup:
-      (void) sprintf(**res, "%s", "no group with that name");
-      break;
-    case PvmNotInGroup:
-      (void) sprintf(**res, "%s", "not in group");
-      break;
-    case PvmNoInst:
-      (void) sprintf(**res, "%s", "no such instance in group");
-      break;
-    case PvmHostFail:
-      (void) sprintf(**res, "%s", "host failed");
-      break;
-    case PvmNoParent:
-      (void) sprintf(**res, "%s", "no parent task");
-      break;
-    case PvmNotImpl:
-      (void) sprintf(**res, "%s", "function not implemented");
-      break;
-    case PvmDSysErr:
-      (void) sprintf(**res, "%s", "pvmd system error");
-      break;
-    case PvmBadVersion:
-      (void) sprintf(**res, "%s", "pvmd-pvmd protocol mismatch");
-      break;
-      case PvmOutOfRes:
-      (void) sprintf(**res, "%s", "out of ressources");
-      break;
-    case PvmDupHost:
-      (void) sprintf(**res, "%s", "host already configured");
-      break;
-    case PvmCantStart:
-      (void) sprintf(**res, "%s", "failed to exec new slave pvmd");
-      break;
-    case PvmAlready:
-      (void) sprintf(**res, "%s", "already oing operation");
-      break;
-    case PvmNoTask:
-      (void) sprintf(**res, "%s", "no such task");
-      break;
+    case PvmOk:          return Scipvm_error[0];     break;
+    case PvmBadParam:    return Scipvm_error[1];     break;
+    case PvmMismatch:    return Scipvm_error[2];     break;
+    case PvmNoData:      return Scipvm_error[3];     break;
+    case PvmNoHost:      return Scipvm_error[4];     break;
+    case PvmNoFile:      return Scipvm_error[5];     break;
+    case PvmNoMem:       return Scipvm_error[6];     break;
+    case PvmBadMsg:      return Scipvm_error[7];     break;
+    case PvmSysErr:      return Scipvm_error[8];     break;
+    case PvmNoBuf:       return Scipvm_error[9];     break;
+    case PvmNoSuchBuf:   return Scipvm_error[10];     break;
+    case PvmNullGroup:   return Scipvm_error[11];     break;
+    case PvmDupGroup:    return Scipvm_error[12];     break;
+    case PvmNoGroup:     return Scipvm_error[13];     break;
+    case PvmNotInGroup:  return Scipvm_error[14];     break;
+    case PvmNoInst:      return Scipvm_error[15];     break;
+    case PvmHostFail:    return Scipvm_error[16];     break;
+    case PvmNoParent:    return Scipvm_error[17];     break;
+    case PvmNotImpl:     return Scipvm_error[18];     break;
+    case PvmDSysErr:     return Scipvm_error[19];     break;
+    case PvmBadVersion:  return Scipvm_error[20];     break;
+    case PvmOutOfRes:    return Scipvm_error[21];     break;
+    case PvmDupHost:     return Scipvm_error[22];     break;
+    case PvmCantStart:   return Scipvm_error[23];     break;
+    case PvmAlready:     return Scipvm_error[24];     break;
+    case PvmNoTask:      return Scipvm_error[25];     break;
 #ifdef PVM_MAJOR_VERSION 
-    case PvmNotFound:
-      (void) sprintf(**res, "%s", "no such (group,instance)");
-      break;
-    case PvmExists:
-      (void) sprintf(**res, "%s", "(group,instance) already exists");
-      break;
+    case PvmNotFound:    return Scipvm_error[26];     break;
+    case PvmExists:      return Scipvm_error[27];     break;
 #else
-    case PvmNoEntry:
-      (void) sprintf(**res, "%s", "no such (group,instance)");
-      break;
-    case PvmDupEntry:
-      (void) sprintf(**res, "%s", "(group,instance) already exists");
-      break;
+    case PvmNoEntry:     return Scipvm_error[26];     break;
+    case PvmDupEntry:    return Scipvm_error[27];     break;
 #endif
-    default:
-      (void) sprintf(**res, "%s", "Unknow error");
-      break;
+    default:             return Scipvm_error[28]; break;
     }
-} /* scipvmerror */
+}
 
 
 
-#ifdef __STDC__
-void 
-C2F(scipvmstart)(int *res, char *hostfile, int *l)
-#else
-void 
-C2F(scipvmstart)(res, hostfile, l)
-  int *res;
-  char *hostfile;
-  int *l;
-#endif 
+/*------------------------------------------------------------------------
+ * start pvm 
+ *------------------------------------------------------------------------*/
+
+void C2F(scipvmstart)(int *res, char *hostfile, int *l)
 {
   struct stat buf;
   char *rd = 0;
@@ -253,66 +211,65 @@ C2F(scipvmstart)(res, hostfile, l)
 
   argv[0] = "";
   argv[1] = (char*)0;
-  if (!strcmp(hostfile, "null")) {/* on ne spécifie pas de hostfile */
-				 /* on essaye de prendre
-				    $HOME/.pvmd.conf, puis
-				    $SCI/.pvmd.conf sinon on laisse
-				    faire pvmd... */ 
-    if (!argc && (rd = getenv("PVM_ROOT")) && (rd = getenv("HOME"))){
-      if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
-	(void) fprintf(stderr, "Error malloc in pvm_error\n");
-	*res = PvmNoMem;
-	return;
-      }
-      strcpy(path, rd);
-      strcat(path, "/.pvmd.conf"); 
-      if (stat(path, &buf) == 0){
-	argc = 1;
-	argv[0] = path;
-	(void) fprintf(stderr, "The configuration file\n %s\nis used.\n", path);
-      } else {
-	(void) fprintf(stderr, "Warning: PVM_ROOT is set, but there exists no\n %s\n", path);
-	free(path);
-      }
-    } /* PVM_ROOT + HOME */
-    if (!argc && (rd = getenv("SCI"))){
-      if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
-	(void) fprintf(stderr, "Error malloc in pvm_error\n");
-	*res = PvmNoMem;
-	return;
-      }
-      strcpy(path, rd);
-      strcat(path, "/.pvmd.conf"); 
-      if (stat(path, &buf) == 0){
-	
-	(void) fprintf(stderr, "The standard configuration file\n %s\nis used.\n", path);
-	argc = 1;
-	argv[0] = path;
-      } else {
-	free(path);
-	(void) fprintf(stderr, "Warning: The standard configuration file $SCI/.pvmd.conf was not found.\n We supposed that PVM and scilab are in standard place on your net. (Cf. man pvmd3)\n", path);
-      }
-    } /* SCI */
-  } else {
-    if (stat(hostfile, &buf) == -1){
-      (void) fprintf(stderr, "%s: No such file or directory\n", hostfile);
+  if (!strcmp(hostfile, "null")) 
+    {/* on ne spécifie pas de hostfile */
+      /* on essaye de prendre
+	 $HOME/.pvmd.conf, puis
+	 $SCI/.pvmd.conf sinon on laisse
+	 faire pvmd... */ 
+      if (!argc && (rd = getenv("PVM_ROOT")) && (rd = getenv("HOME"))){
+	if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
+	  (void) fprintf(stderr, "Error malloc in pvm_error\n");
+	  *res = PvmNoMem;
+	  return;
+	}
+	strcpy(path, rd);
+	strcat(path, "/.pvmd.conf"); 
+	if (stat(path, &buf) == 0){
+	  argc = 1;
+	  argv[0] = path;
+	  (void) fprintf(stderr, "The configuration file\n %s\nis used.\n", path);
+	} else {
+	  (void) fprintf(stderr, "Warning: PVM_ROOT is set, but there exists no\n %s\n", path);
+	  free(path);
+	}
+      } /* PVM_ROOT + HOME */
+      if (!argc && (rd = getenv("SCI"))){
+	if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
+	  (void) fprintf(stderr, "Error malloc in pvm_error\n");
+	  *res = PvmNoMem;
+	  return;
+	}
+	strcpy(path, rd);
+	strcat(path, "/.pvmd.conf"); 
+	if (stat(path, &buf) == 0){
+	  
+	  (void) fprintf(stderr, "The standard configuration file\n %s\nis used.\n", path);
+	  argc = 1;
+	  argv[0] = path;
+	} else {
+	  free(path);
+	  (void) fprintf(stderr, "Warning: The standard configuration file $SCI/.pvmd.conf was not found.\n We supposed that PVM and scilab are in standard place on your net. (Cf. man pvmd3)\n");
+	}
+      } /* SCI */
     } else {
-      argv[0] = hostfile;
-      argc = 1;
+      if (stat(hostfile, &buf) == -1){
+	(void) fprintf(stderr, "%s: No such file or directory\n", hostfile);
+      } else {
+	argv[0] = hostfile;
+	argc = 1;
+      }
     }
-  }
   *res = pvm_start_pvmd(argc, argv, 1);
-} /* scipvmstart */
+} 
 
 
-#ifdef __STDC__
-void 
-C2F(scipvmhalt)(int *res)
-#else
-void 
-C2F(scipvmhalt)(res)
-  int *res;
-#endif 
+
+/*------------------------------------------------------------------------
+ * halt pvm 
+ *------------------------------------------------------------------------*/
+
+void C2F(scipvmhalt)(int *res)
 {
   /* Catch the SIGTERM */
   if (SIG_ERR == signal(SIGTERM,SIG_IGN)){
@@ -337,128 +294,52 @@ C2F(scipvmhalt)(res)
     *res = -1;
     return;
   }         
-} /* scipvmhalt */
+} 
 
 
-#ifdef __STDC__
-void 
-C2F(scipvmsettimer)(int *res)
-#else
-void 
-C2F(scipvmsettimer)(res)
-  int *res;
-#endif 
+/*------------------------------------------------------------------------
+ * timer 
+ *------------------------------------------------------------------------*/
+
+static struct timeval t1;
+
+void C2F(scipvmsettimer)(int *res)
 {
   *res = gettimeofday(&t1, NULL);
-} /* scipvmsettimer */
+} 
 
-
-#ifdef __STDC__
-void 
-C2F(scipvmgettimer)(double *res)
-#else
-void 
-C2F(scipvmgettimer)(res)
-  double *res;
-#endif 
+void C2F(scipvmgettimer)(double *res)
 {
   struct timeval t2;
-
   *res = gettimeofday(&t2, NULL);
   if (*res != -1){
     *res = (double)(t2.tv_sec-t1.tv_sec)*1000000.+(double)(t2.tv_usec-t1.tv_usec);
     t1 = t2;
   }
-} /* scipvmsettimer */
+} 
 
 
-#ifdef __STDC__
-void 
-C2F(scipvmmytid)(int *res)
-#else
-void 
-C2F(scipvmmytid)(res)
-  int *res;
-#endif 
-{
-  *res = pvm_mytid();
-} /* scipvmmytid */
+/*------------------------------------------------------------------------
+ * spawn a scilab 
+ *------------------------------------------------------------------------*/
 
-
-#ifdef __STDC__
-void 
-C2F(scipvmexit)(int *res)
-#else
-void 
-C2F(scipvmexit)(res)
-  int *res;
-#endif 
-{
-  *res = pvm_exit();
-} /* scipvmexit */
-
-
-#ifdef __STDC__
-void 
-C2F(scipvmkill)(int *tids, int *n, int *res)
-#else
-void 
-C2F(scipvmkill)(tids, n, res)
-  int *tids;
-  int *n; 
-  int *res;
-#endif 
-{
-  int i;
-  for (i = 0; i < *n; ++i) {
-    /*    (void) printf("%d:%d:%d\n", *n, i, tids[i]);*/
-    res[i] = pvm_kill(tids[i]);
-  }
-} /* scipvmkill */
-
-
-#ifdef __STDC__
-void 
-C2F(scipvmspawn)(char *task,  int *l1, 
-		   char *win,   int *l2,
-		   char *where, int *l3, 
-		   int *ntask,  int *tids, int *res)
-#else
-void 
-C2F(scipvmspawn)(task, l1, win, l2, where, l3, ntask, tids, res)
-  char *task;
-  int *l1;
-  char *win;
-  int *l2;
-  char *where;
-  int *l3;
-  int *ntask;
-  int *tids;
-  int *res;
-#endif 
-/* [a, b] = pvm_spawn("my_task", 2) or 
-   [a, b] = pvm_spawn("my_task", 1, "my_station") */
+void C2F(scipvmspawn)(char *task,  int *l1, 
+		      char *win,   int *l2,
+		      char *where, int *l3, 
+		      int *ntask,  int *tids, int *res)
 {
   int flag = PvmTaskDefault;
-  char *path, cmd[256];
+  char cmd[256];
   char *arg[4];
   
   arg[0] = "";
   arg[1] = "";
   arg[2] = "";
   arg[3] = (char*)0;
-  
-  /* 
-   *res = fprintf(stderr, "%s[%d]:%d:%s[%d]:%d:\n", 
-   task, *l1, flag, where, *l3, *ntask); 
-  */
-
-  /*
-    sciprint( "%s[%d]:%d:%s[%d]:%d:\n",task, *l1, flag, where, *l3, *ntask);
-  */
+   
   cmd[0] = 0;
 
-  if (!strcmp(where, "null"))
+  if ( !strcmp(where, "null") )
     where = NULL;
   else
     flag = PvmTaskHost;
@@ -481,49 +362,30 @@ C2F(scipvmspawn)(task, l1, win, l2, where, l3, ntask, tids, res)
   strcpy(cmd, "scilex");
 #endif 
 #if (defined __MSC__) || (defined __ABSC__)
-  if ( _stricmp(task,"null") != 0) {
+  if ( _stricmp(task,"null") != 0) 
 #else 
-  if (strcasecmp(task, "null")) {
+  if (strcasecmp(task, "null")) 
 #endif
-    arg[0] = "-f";
-    arg[1] = task;
-  }
-  if (!strcmp(win, "nw"))
-    arg[2] = "-nw";
+    {
+      arg[0] = "-f";
+      arg[1] = task;
+    }
   
-  /*(void) fprintf(stderr, "%s:%s:%s:%s\n", cmd, arg[0],arg[1],arg[2]);*/
-
-  /* sciprint( "%s:%s:%s:%s\n", cmd, arg[0], arg[1],arg[2]); */
-  /* *res = pvm_spawn(cmd, arg, flag, where, *ntask, tids); */
+  if ( strcmp(win, "nw") == 0 )  arg[2] = "-nw";
   *res = pvm_spawn(cmd, arg, flag, where, *ntask, tids);
+
+}
+
+/*------------------------------------------------------------------------
+ * spawn 
+ *------------------------------------------------------------------------*/
   
-} /* scipvmspawn */
-
-
-#ifdef __STDC__
-void 
-C2F(scipvmspawnindependent)(char *task,  int *l1, 
-			       int *ntask,
-			       char *where, int *l3, 
-			       int *tids, int *res)
-#else
-void 
-C2F(scipvmspawnindependent)(task, l1, ntask, where, l3, tids, res)
-  char *task;
-  int *l1;
-  int *ntask;
-  char *where;
-  int *l3;
-  int *tids;
-  int *res;
-#endif 
+void C2F(scipvmspawnindependent)(char *task,  int *l1, 
+				 int *ntask,
+				 char *where, int *l3, 
+				 int *tids, int *res)
 {
-/*[a,b] = pvm_spawn_independent("/usr/openwin/bin/xclock", 1,"radagast") */
-/*[a,b] = pvm_spawn_independent("/home/ubeda/SCILAB/scilab-2.3/bin/scilab",1)*/
   int flag = PvmTaskDefault;
-
-  /*  *res = fprintf(stderr, "%s[%d]:%d:%s[%d]:%d:\n", 
-      task, *l1, flag, where, *l3, *ntask);*/
 
   if (!strcmp(where,"null"))
     where = NULL;
@@ -531,34 +393,8 @@ C2F(scipvmspawnindependent)(task, l1, ntask, where, l3, tids, res)
     flag = PvmTaskHost;
 
   *res = pvm_spawn(task, NULL, flag, where, *ntask, tids);
-} /* scipvmspawnindependent */
+} 
 
 
-#ifdef __STDC__
-void 
-C2F(scipvmaddhosts)(char ***hosts, int *n, int *infos)
-#else
-void 
-C2F(scipvmaddhosts)(hosts, n, infos)
-  char ***hosts;
-  int *n;
-  int *infos;
-#endif 
-{
-  pvm_addhosts(*hosts, *n, infos);
-} /* scipvmaddhosts */
 
 
-#ifdef __STDC__
-void
-C2F(scipvmdelhosts)(char ***hosts, int *n, int *infos)
-#else
-void
-C2F(scipvmdelhosts)(hosts, n, infos)
-  char ***hosts;
-  int *n;
-  int *infos;
-#endif 
-{
-  pvm_delhosts(*hosts, *n, infos);
-} /* scipvmdelhosts */

@@ -12,35 +12,23 @@
         - v: the variable.
    HISTORY
      fleury - Nov 19, 1997: Created.
-     $Id: pvm_send.c,v 1.1 2001/04/26 07:49:01 scilab Exp $
+     $Id: pvm_send.c,v 1.2 2002/07/25 08:42:44 chanceli Exp $
 ***/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "pvm3.h"
 #include "../machine.h"
 #include "../stack-c.h"
-
 #include "../calelm/sci_tools.h"
+#include "sci_pvm.h"
 
-#ifdef __STDC__
-void 
-C2F(scipvmsend)(int *tids, int *p, 
-		int *pack, int *n, 
-		double *buff,
-		int *msgtag, int *res)
-#else
-void 
-C2F(scipvmsend)(tids, p, pack, n, buff, msgtag, res)
-  int *tids;
-  int *p;
-  int *pack;
-  int *n;
-  double *buff;
-  int *msgtag;
-  int *res;
-#endif 
 
+void C2F(scipvmsend)(int *tids, int *p, 
+		     int *pack, int *n, 
+		     double *buff,
+		     int *msgtag, int *res)
 {
   int info, bufid;
   double *ptr_double;

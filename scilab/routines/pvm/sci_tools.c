@@ -10,6 +10,9 @@
    HISTORY
      fleury - Dec 17, 1997: Created.
      $Log: sci_tools.c,v $
+     Revision 1.3  2002/07/25 08:42:45  chanceli
+     updates
+
      Revision 1.2  2001/10/16 08:32:55  chanceli
      includes
 
@@ -54,18 +57,10 @@
 #include <string.h>
 
 #include "sci_tools.h"
+#include "sci_pvm.h"
 
 
-#ifdef __STDC__
-void 
-C2F(ccomplexf)(int *n, double **ip, double *op)
-#else
-void 
-C2F(ccomplexf)(n, ip, op)
-  int *n;
-  double **ip;
-  double *op;
-#endif 
+void C2F(ccomplexf)(int *n, double **ip, double *op)
 {
   memcpy(op, *ip, *n * sizeof(double));
 
@@ -78,18 +73,11 @@ C2F(ccomplexf)(n, ip, op)
   SET_NB_ROW(op,  NB_ROW(op) / 2);	/* nb  row is halfed */
 
   free((char*) (*ip));
-} /* ccomplexf */
+}
 
-#ifdef __STDC__
-void 
-(SciToF77)(double *ptr, int size, int lda)
-#else
-void 
-SciToF77(ptr, size, lda)
-  double *ptr;
-  int size;
-  int lda;
-#endif 
+
+
+void SciToF77(double *ptr, int size, int lda)
 {
   int i;
   double *tab;
@@ -102,7 +90,7 @@ SciToF77(ptr, size, lda)
   /* for (i = size; --i >= 0; ) { */
   /*     tab[i] = ptr[i]; */
   /*   } */
-
+  
   memcpy(tab, ptr, size * sizeof(double));
 
   for (i = 0; i < size; ++i) {
@@ -111,19 +99,9 @@ SciToF77(ptr, size, lda)
   }
 
   free(tab);
-} /* SciToF77 */
+} 
 
-
-#ifdef __STDC__
-void 
-(F77ToSci)(double *ptr, int size, int lda)
-#else
-void 
-F77ToSci(ptr, size, lda)
-  double *ptr;
-  int size;
-  int lda;
-#endif 
+void F77ToSci(double *ptr, int size, int lda)
 {
   int i;
   double *tab;
@@ -145,4 +123,5 @@ F77ToSci(ptr, size, lda)
   /*   } */
 
   free(tab);
-} /* F77ToSci */
+}
+

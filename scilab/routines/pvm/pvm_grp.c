@@ -9,126 +9,21 @@
      
    HISTORY
      fleury - Nov 25, 1997: Created.
-     $Id: pvm_grp.c,v 1.1 2001/04/26 07:49:01 scilab Exp $
+     $Id: pvm_grp.c,v 1.2 2002/07/25 08:42:43 chanceli Exp $
 ***/
+
 #include <stdio.h>
 #include <string.h>
 #include "pvm3.h"
 #include "../machine.h"
-
 #include "../calelm/sci_tools.h"
-
-#ifdef __STDC__ 
-void 
-C2F(scipvmjoingroup)(char *group, int *l, int *inum)
-#else
-void 
-C2F(scipvmjoingroup)(group, l, inum)
-  char *group;
-  int *l; 
-  int *inum;
-#endif
-{
-  *inum = pvm_joingroup(group);
-} /* scipvmjoingroup */
+#include "sci_pvm.h"
 
 
-
-#ifdef __STDC__ 
-void 
-C2F(scipvmlvgroup)(char *group, int *l, int *res)
-#else
-void 
-C2F(scipvmlvgroup)(group, l, res)
-  char *group;
-  int *l;
-  int *res;
-#endif
-{
-  *res = pvm_lvgroup(group);
-} /* scipvmlvgroup */
-
-
-#ifdef __STDC__ 
-void 
-C2F(scipvmgsize)(char *group, int *l, int *size)
-#else
-void 
-C2F(scipvmgsize)(group, l, size)
-  char *group;
-  int *l;
-  int *size;
-#endif
-{
-  *size = pvm_gsize(group);
-} /* scipvmgsize */
-
-
-#ifdef __STDC__ 
-void 
-C2F(scipvmgettid)(char *group, int *l, int *inum, int *tid)
-#else
-C2F(scipvmgettid)(group, l, inum, tid)
-  char *group;
-  int *l; 
-  int *inum;
-  int *tid;
-#endif
-{
-  *tid = pvm_gettid(group, *inum);
-} /* scipvmgettid */
-
-
-#ifdef __STDC__
-void 
-C2F(scipvmgetinst)(char *group, int *l, int *tid, int *inum)
-#else
-void 
-C2F(scipvmgetinst)(group, l, tid, inum)
-  char *group;
-  int *l;
-  int *tid; 
-  int *inum;
-#endif 
-{
-  *inum = pvm_getinst(group, *tid);
-} /* scipvmgetinst */
-
-
-#ifdef __STDC__
-void 
-C2F(scipvmbarrier)(char *group, int *l, int *count, int *res)
-#else
-void 
-C2F(scipvmbarrier)(group, l, count, res)
-  char *group;
-  int *l;
-  int *count; 
-   int *res;
-#endif 
-
-{
-  *res = pvm_barrier(group, *count);
-} /* scipvmbarrier */
-
-
-#ifdef __STDC__
-void 
-C2F(scipvmbcast)(char *group, int *l, 
-		   int *pack, int *n, 
-		   double *buff,
-		   int *msgtag, int *res)
-#else
-void 
-C2F(scipvmbcast)(group, l, pack, n, buff, msgtag, res)
-  char *group;
-  int *l;
-  int *pack;
-  int *n;
-  double *buff;
-  int *msgtag;
-  int *res;
-#endif 
+void C2F(scipvmbcast)(char *group, int *l, 
+		      int *pack, int *n, 
+		      double *buff,
+		      int *msgtag, int *res)
 {
   int info, bufid;
   double *ptr_double;
@@ -188,38 +83,17 @@ C2F(scipvmbcast)(group, l, pack, n, buff, msgtag, res)
       ptr_double += pack[i+1];
     }
   }
-  
   *res = pvm_bcast(group, *msgtag);
 } /* scipvmbcast */
 
 
-#ifdef __STDC__
-void 
-C2F(scipvmreduce)(char *func, int *l1,
-		  double *buff, int *m, int *n, int *msgtag, 
-		  char *group, int *l2, int *rootginst, int *res)
-#else
-void 
-C2F(scipvmreduce)(func, l1, buff, m, n, msgtag, group, l2, rootginst, res)
-  char *func;
-  int *l1;
-  double *buff;
-  int *m;
-  int *n;
-  int *msgtag; 
-  char *group;
-  int *l2;
-  int *rootginst;
-  int *res;
-#endif 
+void C2F(scipvmreduce)(char *func, int *l1,
+		       double *buff, int *m, int *n, int *msgtag, 
+		       char *group, int *l2, int *rootginst, int *res)
 {
   int type, datatype;
   int size;
-#ifdef __STDC__
   void (*op)(int *, void *, void *, int *, int *);
-#else
-  void (*op)();
-#endif
   /* Check the type of the buff */
   type = TYPE(buff);
   size = *m * *n;
@@ -241,25 +115,23 @@ C2F(scipvmreduce)(func, l1, buff, m, n, msgtag, group, l2, rootginst, res)
   if (!strcmp(func, "Max")) {
     op = PvmMax;
   }
-  else 
-    if (!strcmp(func, "Min")) {
-      op = PvmMin;
-    } 
-    else 
-      if (!strcmp(func, "Sum")) {
-	op = PvmSum;
-      } 
-      else 
-	if (!strcmp(func, "Pro")) {
-	  op = PvmProduct;
-	} 
-	else {
-	  (void) fprintf(stderr, "Error pvm_reduce: Unknow reduction operation %s\n", func);
-	  *res = PvmBadMsg;
-	  return;
-	}
+  else if (!strcmp(func, "Min")) {
+    op = PvmMin;
+  } 
+  else if (!strcmp(func, "Sum")) {
+    op = PvmSum;
+  } 
+  else if (!strcmp(func, "Pro")) {
+    op = PvmProduct;
+  } 
+  else {
+    (void) fprintf(stderr, "Error pvm_reduce: Unknow reduction operation %s\n", func);
+    *res = PvmBadMsg;
+    return;
+  }
   *res = pvm_reduce(op, buff, size, datatype, *msgtag, group, *rootginst);
   if (type == TYPE_COMPLEX)
     F77ToSci(buff, size, size);
   return;
-} /* scipvmreduce */
+} 
+
