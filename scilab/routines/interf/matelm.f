@@ -3169,7 +3169,6 @@ c
 
 c changement de dimension d'une matrice
       il=iadr(lstk(top+1-rhs))
-
       if(abs(istk(il)).eq.5.or.abs(istk(il)).eq.6) then
          top=tops
          call ref2val
@@ -3181,7 +3180,7 @@ c        *call* spelm
 
       ityp=abs(istk(il))
       if(ityp.ne.1.and.ityp.ne.2
-     $     .and.ityp.ne.4.and.ityp.ne.10) then
+     $     .and.ityp.ne.4.and.ityp.ne.9.and.ityp.ne.10) then
          top=tops
          call ref2val
          call funnam(ids(1,pt+1),'matrix',iadr(lstk(top-rhs+1)))
