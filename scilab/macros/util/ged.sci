@@ -230,7 +230,10 @@ function List_handles(h)
 global ged_handle_out;
 i = 1;
 
-psonstmp = h.children(1);
+psonstmp = h.children;
+if psonstmp <> [] then
+ psonstmp = h.children(1);
+end
 //pause
 while((psonstmp <>[]) & ((i) <=size(psonstmp.parent.children,1)))
   i = i+1;
