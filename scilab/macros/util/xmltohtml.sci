@@ -8,6 +8,7 @@ function xmltohtml(dirs,titles,xsl,step)
 // if dirs is not specified or [] then 
 // standard scilab man are assumed and titles 
 // are searched in %helps 
+// updated by HUYNH Olivier on the 9/03/2004
   help=utillib.help; //to load the subfunction change_old_man
   change_old_man() //this is required to produce the whatis.htm files
                    //associated with old style manuals
@@ -88,15 +89,24 @@ function xmltohtml(dirs,titles,xsl,step)
 	    mprintf('  Processing file %s.xml\n",fb);
 	    xslpath=xslprefix+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
 	    //write(%io(2),'sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
-	    //ierr=execstr('unix_s(''sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
+	    
+	    if  MSDOS then 
+	    // added by HUYNH Olivier on the 09/03/2004, run the xml parser under Windows OS.
+	    disp('--'+'sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
+	    ierr=execstr('unix_s(WSCI+''\Win95-util\sablotron\sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
+	    else
+	    
 	    ierr=execstr('unix_s(''xsltproc -o ''+fb+''.htm ''+xslpath+'' ''+fb+''.xml2 '');','errcatch')
+	    end
+	    
 	    if ierr<>0 then 
 	      write(%io(2),'     Warning '+fb+'.xml does not follow dtd','(a)')
 	    end
-	  end
+	  end 
 	end
 	if MSDOS then 
-	  unix_s('del *.xml2')
+	// updated by HUYNH Olivier on the 09/03/2004 
+	  unix_s('del /s *.xml2')
 	else
 	   unix_s('rm -f *.xml2')
 	end
