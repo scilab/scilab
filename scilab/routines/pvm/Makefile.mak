@@ -13,7 +13,7 @@ OBJSF = intpvm.obj mycmatptr.obj varpack.obj scipvmf77tosci.obj scipvmscitof77.o
 
 include ../../Makefile.incl.mak
 
-CFLAGS = $(CC_OPTIONS)  -I${PVMROOT}/include
+CFLAGS = $(CC_OPTIONS)  -I${PVMINCLUDE}
 
 FFLAGS = $(FC_OPTIONS)
 
