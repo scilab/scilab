@@ -169,8 +169,8 @@ C  Machine-dependent parameters
 C---------------------------------------------------------------------
 CS    DATA ENTEN, ENSIG, RTNSIG /1.0E38,1.0E8,1.0E-2/
 CS    DATA ENMTEN, XLARGE /1.2E-37,1.0E4/
-      DATA ENTEN, ENSIG, RTNSIG /1.0D38,1.0D17,1.0D-4/
-      DATA ENMTEN, XLARGE /1.2D-37,1.0D4/
+      DATA ENTEN, ENSIG, RTNSIG /1.0D308,1.0D16,1.0D-4/
+      DATA ENMTEN, XLARGE /8.9D-308,1.0D4/
 C---------------------------------------------------------------------
 C     Factorial(N)
 C---------------------------------------------------------------------
