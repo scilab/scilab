@@ -525,6 +525,15 @@ function ged_plot3d(h)
   TK_SetVar("curhiddencolor",string(h.hiddencolor))
   TK_SetVar("curthick",string(h.thickness))
 
+  winId=waitbar('Loading Plot3d data...');
+  waitbar(0,winId);
+
+  tmp = 0;
+  totaldatasize = size(h.data.x,2) + size(h.data.y,2) + size(h.data.z,1) * size(h.data.z,2);
+  if(h.data(1)==["3d" "x" "y" "z" "color"])
+   totaldatasize = totaldatasize + size(h.data.color,1) * size(h.data.color,2)
+  end
+
 // pass the 2 vectors and the z matrix
 // X vector
   TK_SetVar("nbrowX",string(size(h.data.x,2)))
@@ -532,32 +541,49 @@ function ged_plot3d(h)
       val= "plot3dXVAL("+string(i)+")";
       TK_EvalStr('set '+val+" "+string(h.data.x(i)));
   end
+  tmp = tmp + (size(h.data.x,2)) / totaldatasize;
+  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  waitbar(tmp,winId);
 // Y vector
   TK_SetVar("nbrowY",string(size(h.data.y,2)))
   for i=1:size(h.data.y,2)
       val= "plot3dYVAL("+string(i)+")";
       TK_EvalStr('set '+val+" "+string(h.data.y(i)));
   end
+ tmp = tmp + (size(h.data.y,2)) / totaldatasize;
+  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  waitbar(tmp,winId);
 // Z matrix
-  for i=1:size(h.data.z,1) // X axis
-   for j=1:size(h.data.z,2) // Y axis
+ TK_SetVar("nbrowZ",string(size(h.data.z,1)))
+ TK_SetVar("nbcolZ",string(size(h.data.z,2)))
+  for i=1:size(h.data.z,1) 
+   for j=1:size(h.data.z,2) 
       val= "plot3dZVAL("+string(i)+","+string(j)+")";
       TK_EvalStr('set '+val+" "+string(h.data.z(i,j)));
    end
   end
+  tmp = tmp + (size(h.data.z,1) * size(h.data.z,2)) / totaldatasize;
+  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  waitbar(tmp,winId);
 // COLOR matrix
    TK_EvalStr('set flagCOLOR 0')
    if(h.data(1)==["3d" "x" "y" "z" "color"])
     TK_EvalStr('set flagCOLOR 1')
-    for i=1:size(h.data.color,1) // X axis
-     for j=1:size(h.data.color,2) // Y axis
+    TK_SetVar("nbrowCOLOR",string(size(h.data.color,1)))
+    TK_SetVar("nbcolCOLOR",string(size(h.data.color,2)))
+    for i=1:size(h.data.color,1) 
+     for j=1:size(h.data.color,2) 
         val= "plot3dCOLORVAL("+string(i)+","+string(j)+")";
         TK_EvalStr('set '+val+" "+string(h.data.color(i,j)));
      end
     end
+   tmp = tmp + (size(h.data.color,1) * size(h.data.color,2)) / totaldatasize;
+   tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+   waitbar(tmp,winId);
    end
-
+   
   TK_EvalFile(SCI+'/tcl/ged/Plot3d.tcl')
+  winclose(winId);
 endfunction
 
 
@@ -594,7 +620,16 @@ function ged_fac3d(h)
   TK_SetVar("curhiddencolor",string(h.hiddencolor))
   TK_SetVar("curthick",string(h.thickness))
 
-// pass the 2 vectors and the z matrix
+  tmp = 0;
+  totaldatasize = size(h.data.x,1) * size(h.data.x,2) + size(h.data.y,1) * size(h.data.y,2) + size(h.data.z,1) * size(h.data.z,2);
+  if(h.data(1)==["3d" "x" "y" "z" "color"])
+   totaldatasize = totaldatasize + size(h.data.color,1) * size(h.data.color,2)
+  end
+
+  winId=waitbar('Loading Fac3d data...');
+  waitbar(0,winId);
+
+ // pass the 2 vectors and the z matrix
 // X matrix
   TK_SetVar("nbrowX",string(size(h.data.x,1)))
   TK_SetVar("nbcolX",string(size(h.data.x,2)))
@@ -604,6 +639,9 @@ function ged_fac3d(h)
       TK_EvalStr('set '+val+" "+string(h.data.x(i,j)));
    end
   end
+  tmp = tmp + (size(h.data.x,1) * size(h.data.x,2)) / totaldatasize;
+  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  waitbar(tmp,winId);
 // Y matrix
   TK_SetVar("nbrowY",string(size(h.data.y,1)))
   TK_SetVar("nbcolY",string(size(h.data.y,2)))
@@ -613,26 +651,40 @@ function ged_fac3d(h)
     TK_EvalStr('set '+val+" "+string(h.data.y(i,j)));
    end
   end
+  tmp = tmp + (size(h.data.y,1) * size(h.data.y,2)) / totaldatasize;
+  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  waitbar(tmp,winId);
 // Z matrix
-  for i=1:size(h.data.z,1) // X axis
-   for j=1:size(h.data.z,2) // Y axis
+  TK_SetVar("nbrowZ",string(size(h.data.z,1)))
+  TK_SetVar("nbcolZ",string(size(h.data.z,2)))
+  for i=1:size(h.data.z,1)
+   for j=1:size(h.data.z,2)
       val= "fac3dZVAL("+string(i)+","+string(j)+")";
       TK_EvalStr('set '+val+" "+string(h.data.z(i,j)));
    end
   end
+  tmp = tmp + (size(h.data.z,1) * size(h.data.z,2)) / totaldatasize;
+  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  waitbar(tmp,winId);
 // COLOR matrix
    TK_EvalStr('set flagCOLOR 0')
    if(h.data(1)==["3d" "x" "y" "z" "color"])
     TK_EvalStr('set flagCOLOR 1')
-    for i=1:size(h.data.color,1) // X axis
-     for j=1:size(h.data.color,2) // Y axis
+    TK_SetVar("nbrowCOLOR",string(size(h.data.color,1)))
+    TK_SetVar("nbcolCOLOR",string(size(h.data.color,2)))
+    for i=1:size(h.data.color,1)
+     for j=1:size(h.data.color,2) 
         val= "fac3dCOLORVAL("+string(i)+","+string(j)+")";
         TK_EvalStr('set '+val+" "+string(h.data.color(i,j)));
      end
     end
+   tmp = tmp + (size(h.data.color,1) * size(h.data.color,2)) / totaldatasize;
+   tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+   waitbar(tmp,winId);
    end
-
+ 
   TK_EvalFile(SCI+'/tcl/ged/Fac3d.tcl')
+  winclose(winId);
 endfunction
 
 

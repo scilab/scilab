@@ -12,6 +12,7 @@ global curgedobject
 global curvis
 global curcolormode curthick colorflagToggle curforeground curhiddencolor
 global nbrowX nbrowY plot3dXVAL plot3dYVAL plot3dZVAL plot3dCOLORVAL flagCOLOR
+global nbrowZ nbcolZ nbrowCOLOR nbcolCOLOR
 
 set ww .axes
 catch {destroy $ww}
@@ -275,11 +276,11 @@ scrollbar $w3.frame2.xsbar -orient horizontal -command   {$w3.frame2.c1 xview}
 #scrollbar $w3.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
 #pack configure $w3.frame2.ysbar.scrollh -side bottom -fill x -expand 1 
    
-for {set i 1} {$i<=$nbrowX} {incr i} {
+for {set i 1} {$i<=$nbrowZ} {incr i} {
 #    puts $i
     set bb [expr 10+(25*$i)]
     $w3.frame2.c1 create text 10 $bb -anchor c -text $i
-    for {set j 1} {$j<=$nbrowY} {incr j} {
+    for {set j 1} {$j<=$nbcolZ} {incr j} {
 #	puts $j
 	set aa [expr 10+($j*150)]
 	$w3.frame2.c1 create text $aa 10 -anchor c -text $j
@@ -328,11 +329,11 @@ scrollbar $w4.frame2.xsbar -orient horizontal -command   {$w4.frame2.c1 xview}
 #scrollbar $w4.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
 #pack configure $w4.frame2.ysbar.scrollh -side bottom -fill x -expand 1 
    
-for {set i 1} {$i<=$nbrowX} {incr i} {
+for {set i 1} {$i<=$nbrowCOLOR} {incr i} {
 #    puts $i
     set bb [expr 10+(25*$i)]
     $w4.frame2.c1 create text 10 $bb -anchor c -text $i
-    for {set j 1} {$j<=$nbrowY} {incr j} {
+    for {set j 1} {$j<=$nbcolCOLOR} {incr j} {
 #	puts $j
 	set aa [expr 10+($j*150)]
 	$w4.frame2.c1 create text $aa 10 -anchor c -text $j
