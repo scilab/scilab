@@ -1,6 +1,6 @@
                              Licence SCILAB
                              **************
-
+   
 1- Préambule
 ************
 
