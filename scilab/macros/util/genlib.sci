@@ -2,8 +2,16 @@ function genlib(nam,path)
 // get all .sci files in the specified directory
 // Copyright INRIA
 [lhs,rhs]=argn(0)
+unix_sep='/';dos_sep='\'
+
+if MSDOS then 
+  sep=dos_sep
+else
+  sep=unix_sep
+end
+
 if rhs<=1 then 
-  path='./',
+  path='.'+sep,
   // try to get the path from the library if it already exists
   if exists(nam)==1 then
     if evstr('type('+nam+')')==14 then
@@ -12,26 +20,31 @@ if rhs<=1 then
   end
 end
 path=stripblanks(path)
-if MSDOS then
-  if part(path,length(path))<>'\' then
-     path=path+'\';
-  end
+
+if part(path,length(path))<>unix_sep&part(path,length(path))<>dos_sep then
+  path=path+sep;
+end
+
+if MSDOS then 
+  path=strsubst(path,unix_sep,dos_sep),
 else
-  if part(path,length(path))<>'/' then
-     path=path+'/';
-  end
+  path=strsubst(path,dos_sep,unix_sep),
 end
 
 path1=path
-if part(path,1:4)=='SCI/' then path=SCI+part(path,4:length(path)),end
-if part(path,1:2)=='~/' then path=getenv('HOME')+part(path,2:length(path)),end
+if part(path,1:4)=='SCI/'|part(path,1:4)=='SCI\' then 
+  path=SCI+part(path,4:length(path)),
+end
+if part(path,1:2)=='~/'|part(path,1:2)=='~\' then 
+  path=getenv('HOME')+part(path,2:length(path)),
+end
 
 if MSDOS then
-  if part(path,1:4)=='SCI\' then path=SCI+part(path,4:length(path)),end
-  path=strsubst(path,'/','\')
+  path=strsubst(path,unix_sep,dos_sep),
   lst=unix_g('dir /B /OD '""+path+'* ""')
   lst=lst($:-1:1)
 else
+  path=strsubst(path,dos_sep,unix_sep),
   lst=unix_g('ls  -t1 '+path+'*.*') 
 end
 // lookfor .sci files
@@ -54,7 +67,7 @@ for k1=1:size(sci,'*')  // loop on .sci files
     fnam=lst(k)
   else
     fl=lst(k)
-    ks=strindex(fl,'/')
+    ks=strindex(fl,unix_sep)
     if ks==[] then fnam=fl;else fnam=part(fl,ks($)+1:length(fl));end
   end
   names=[names;strsubst(fnam,'.sci','')] // add file name to file name vector
