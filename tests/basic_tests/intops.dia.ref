@@ -727,6 +727,8 @@ if or(tril(x,-2)<>tril(X,-2)) then bugmes();quit;end
 // save load
  
 deff('y=INT(x)','y=uint8(x)')
+Warning :redefining function: INT                     
+ 
  
 X=round(10*rand(1,30));
  
