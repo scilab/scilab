@@ -8,9 +8,9 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/interf.lib
 
-OBJSC = Interf.obj ctest.obj  cs2st.obj getdate.obj stack1.obj stack2.obj stack3.obj intlapack.obj intslicot.obj
+OBJSC = Interf.obj ctest.obj  cs2st.obj getdate.obj stack1.obj stack2.obj stack3.obj intlapack.obj intslicot.obj matdes.obj
 
-OBJSF = lstelm.obj lstelmi.obj  matdes.obj matdsc.obj matdsr.obj matelm.obj\
+OBJSF = lstelm.obj lstelmi.obj matdsc.obj matdsr.obj matelm.obj\
 	lstops.obj intl_e.obj intl_i.obj \
 	matio.obj intdeff.obj intdiary.obj intdisp.obj intexec.obj intexecstr.obj intgetf.obj \
 	intgetpid.obj inthost.obj intlib.obj intprint.obj intrat.obj intread.obj intread4b.obj \
@@ -25,7 +25,7 @@ OBJSF = lstelm.obj lstelmi.obj  matdes.obj matdsc.obj matdsr.obj matelm.obj\
 	intg.obj int2d.obj int3d.obj feval.obj bva.obj comm.obj specfun.obj\
 	isany.obj \
 	followpath.obj newsave.obj insertfield.obj v2unit.obj v2cunit.obj \
-	hmcreate.obj
+	hmcreate.obj lapackf.obj
 
 
 include ../../Makefile.incl.amk
@@ -114,6 +114,8 @@ intgetenv.obj : ../stack.h
 intmgetl.obj: ../stack.h
 stack0.obj stack1.obj stack2.obj: ../stack.h
 getdate.obj: ../machine.h
+intlapack.obj: ../machine.h ../stack-c.h
+intslicot.obj: ../machine.h ../stack-c.h ../mex.h
 
 all:: Makefile.mak Makefile.amk
 

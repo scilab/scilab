@@ -49,7 +49,6 @@ int intqr()
   }
 }
 
-
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct {
