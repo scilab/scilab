@@ -33,6 +33,10 @@ real or complex vector or matrix
     <VERB>x</VERB>  and  in the  second  column  of  this matrix  the
     frequences of the corresponding values.
   </P>
+ <P>
+Note that the  <LINK>tabul</LINK> function is more efficient, applies
+also to vector of strings and returns a sorted <VERB>m</VERB>.
+ </P>
   </DESCRIPTION>
   <ITEMIZE label='REFERENCES'>
   <P>
@@ -43,5 +47,11 @@ real or complex vector or matrix
 x=[2 8 0 3 7 6 8 7 9 1]
 m=nfreq(x)
  ]]></EXAMPLE>
+   <SEE_ALSO>
+       <SEE_ALSO_ITEM> <LINK>tabul</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>dsearch</LINK> </SEE_ALSO_ITEM>
+       <SEE_ALSO_ITEM> <LINK>histplot</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+
   <AUTHOR> Carlos Klimann  </AUTHOR>
 </MAN>
