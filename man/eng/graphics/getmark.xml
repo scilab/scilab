@@ -41,7 +41,8 @@
     (symbol).</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[x=0:0.1:10;
+  <EXAMPLE><![CDATA[
+x=0:0.1:10;
 set("figure_style","new")
 [mark,mrkSize]=getmark();
 plot2d(x,sin(x),style=-mark);
