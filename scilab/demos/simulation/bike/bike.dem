@@ -2,7 +2,7 @@
 // Copyright INRIA
 mode(0);
 xbasc();
-path=get_absolute_file_path('bike.dem')
+path=get_absolute_file_path('bike.dem');
 
 
 
