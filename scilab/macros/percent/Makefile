@@ -190,10 +190,12 @@ HFUNS = %h_delete.sci %h_draw.sci %h_get.sci %h_set.sci %h_matrix.sci
 
 FUNS =   %cblock_p.sci %choose.sci %l_isequal.sci
 
+XLSFUNS = %xls_p.sci %xlssheet_p.sci %xls_e.sci %xlssheet_e.sci 
+
 MACROS =$(O0) $(O1) $(O2) $(O3) $(O4) $(O5) $(A) $(B) $(C) $(D) \
 	$(E) $(F) $(G) $(H) $(I) $(J) $(K) $(L) $(M) $(N) \
 	$(O) $(P) $(Q) $(R) $(S) $(T) $(U) $(V) $(W) $(X) $(Y) $(Z)\
 	$(HMFUNS) $(BFUNS) $(CFUNS) $(LSSFUNS) $(PFUNS) $(RFUNS) \
-	$(SFUNS) $(SPFUNS) $(IFUNS) $(FUNS) $(HFUNS) 
+	$(SFUNS) $(SPFUNS) $(IFUNS) $(FUNS) $(HFUNS) $(XLSFUNS)
 
 include ../Make.lib
