@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scicos_params  </TITLE>
+  <TYPE>Scicos data structure  </TYPE>
+  <DATE>Janvier 2003  </DATE>
+  <SHORT_DESCRIPTION name="scicos_params"> Scicos diagram parameters data structure  </SHORT_DESCRIPTION>
+  <ITEMIZE label='DEFINITION'>
+  <VERBATIM><![CDATA[
+params=tlist(['params','wpar','title','tol','tf','context','void1',..
+ 'options','void2','void3','doc'],wpar,title,tol,tf,context,..
+ void1,options,void2,void3,doc)
+
+   ]]></VERBATIM>
+  <ITEM label='params: Scilab tlist, Scicos diagram parameters data structure defined'>
+by the formal name &apos;params&apos; and containing the following fields:
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='FIELDS'>
+  <ITEM label='wpar'>
+: viewing parameters:<VERB> [w,h,Xshift,Yshift]</VERB>
+
+  </ITEM>
+  <ITEM label='w'>
+: real scalar,Scicos editor window width
+
+  </ITEM>
+  <ITEM label='h'>
+: real scalar,Scicos editor window height
+
+  </ITEM>
+  <ITEM label='Xshift'>
+: real scalar, diagram drawing x offset within Scicos editor window
+
+  </ITEM>
+  <ITEM label='Yshift'>
+: real scalar, diagram drawing y offset within Scicos editor window
+
+  </ITEM>
+  <ITEM label='title'>
+: character string, diagram title and default name of save file name
+
+  </ITEM>
+  <ITEM label='tol'>
+: 1 x 4 vector <VERB>[atol,rtol,ttol,maxt]</VERB>, where <VERB>atol</VERB>, <VERB>rtol</VERB> are respectively absolute and relative tolerances for the ode solver, <VERB>ttol</VERB> is the minimal distance between to different events time and <VERB>maxt</VERB> is maximum integration time interval for a single call to the ode solver.
+
+  </ITEM>
+  <ITEM label='tf'>
+: real scalar, final time for simulation.
+
+  </ITEM>
+  <ITEM label='context'>
+: vector of character strings, Scilab instructions used to define Scilab variables used in block definitions as symbolic parameters.
+
+  </ITEM>
+  <ITEM label='void'>
+: unused fields
+
+  </ITEM>
+  <ITEM label='options'>
+: <VERB> list(With3D,Color3D)</VERB>
+
+  </ITEM>
+  <ITEM label='With3D'>
+: boolean, true for 3D shape blocks
+
+  </ITEM>
+  <ITEM label='Color3D'>
+: vector with three entries <VERB> [R,G,B]</VERB>. defines the color of 3D shape
+
+  </ITEM>
+  <ITEM label='doc'>
+: user defined diagram documentation structure, default value is <VERB> list()</VERB> 
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos_diagram</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

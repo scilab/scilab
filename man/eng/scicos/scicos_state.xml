@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scicos_state  </TITLE>
+  <TYPE>Scicos data structure  </TYPE>
+  <DATE>Janvier 2003  </DATE>
+  <SHORT_DESCRIPTION name="scicos_state"> Initial state data structure of Scicos diagram  </SHORT_DESCRIPTION>
+  <ITEMIZE label='DEFINITION'>
+  <VERBATIM><![CDATA[
+state=tlist(['xcs','x','z','iz','tevts','evtspt','pointi','outtb'],..
+     x,z,iz,tevts,evtspt,pointi,outtb)
+
+   ]]></VERBATIM>
+  <ITEM label='state: Scilab tlist, Initial state of Scicos diagram defined by the'>
+formal name &apos;xcs&apos; and containing the following fields:
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='FIELDS'>
+  <ITEM label='x'>
+: continuous  state vector. 
+
+  </ITEM>
+  <ITEM label='z'>
+: discrete  state vector. 
+
+  </ITEM>
+  <ITEM label='iz'>
+: unused
+
+  </ITEM>
+  <ITEM label='tevts'>
+: vector of  event dates
+
+  </ITEM>
+  <ITEM label='evtspt'>
+: vector of event pointers
+
+  </ITEM>
+  <ITEM label='pointi'>
+: pointer to next event
+
+  </ITEM>
+  <ITEM label='outtb'>
+: vector of inputs/outputs initial values.  
+
+  </ITEM>
+  </ITEMIZE>
+  <DESCRIPTION>
+  <P>
+    Initial state data structure of Scicos compiled diagram data structure
+    needed to simulate the system (see <VERB>scicos_cpr</VERB>).
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_diagram</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

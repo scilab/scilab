@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scicos_sim  </TITLE>
+  <TYPE>Scicos data structure  </TYPE>
+  <DATE>Decembre 2002  </DATE>
+  <SHORT_DESCRIPTION name="scicos_sim"> Scicos simulation data structure  </SHORT_DESCRIPTION>
+  <ITEMIZE label='DEFINITION'>
+  <VERBATIM><![CDATA[
+sim=tlist(['scs','funs','xptr','zptr','izptr','inpptr','outptr',..
+ 'inplnk','outlnk','lnkptr','rpar','rpptr','ipar','ipptr',..
+ 'clkptr','ordptr','execlk','ordclk','cord','oord','zord',..      
+ 'critev','nb','ztyp','nblk','ndcblk','subscr','funtyp',..
+ 'iord','labels'],funs,xptr,zptr,izptr,inpptr,outptr,inplnk,..
+ outlnk,lnkptr,rpar,rpptr,ipar,ipptr,clkptr,ordptr,execlk,..
+ ordclk,cord,oord,zord,critev,nb,ztyp,nblk,ndcblk,subscr,..
+ funtyp,iord,labels)
+
+   ]]></VERBATIM>
+  <ITEM label='sim: Scilab tlist, Scicos simulation data structure defined by the'>
+formal name &apos;scs&apos; and containing the following fields:
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='FIELDS'>
+  <ITEM label='funs'>
+: list of character strings containing the names of each block simulation function (a linked C or Fortran procedure or a Scilab function).
+
+  </ITEM>
+  <ITEM label='xptr'>
+: (nblk+1) x 1 vector of integers,    <VERB>cpr.state.x(cpr.sim.xptr(i):cpr.sim.xptr(i+1)-1)</VERB> is the continuous state vector of the <VERB>i</VERB>th block (see <VERB>scicos_cpr</VERB> and <VERB>scicos_state</VERB>).
+
+  </ITEM>
+  <ITEM label='zptr'>
+: (nblk+1) x 1 vector of integers,   <VERB>cpr.state.z(cpr.sim.zptr(i):cpr.sim.zptr(i+1)-1)</VERB> is the discrete state vector of the <VERB>i</VERB>th block.
+
+  </ITEM>
+  <ITEM label='izptr'>
+: unused
+
+  </ITEM>
+  <ITEM label='inpptr'>
+: (nblk+1) x 1 vector of integers,   <VERB>(cpr.sim.inpptr(i+1)-cpr.sim.inpptr(i))</VERB> gives the number of input ports. <VERB>inpptr(i)</VERB>th points to the beginning of <VERB>i</VERB>th block inputs within the indirection table <VERB>inplnk</VERB>.
+
+  </ITEM>
+  <ITEM label='outptr'>
+: (nblk+1) x 1 vector of integers,   <VERB>(cpr.sim.outptr(i+1)-cpr.sim.outptr(i))</VERB> gives the number of output ports. <VERB>outptr(i)</VERB>th points to the beginning of <VERB>i</VERB>th block outputs within the indirection table <VERB>outlnk</VERB>.
+
+  </ITEM>
+  <ITEM label='inplnk'>
+: nblink x 1 vector of integers,   <VERB>(cpr.sim.inplnk(cpr.sim.inpptr(i)-1+j))</VERB> is the index of the link connected to the <VERB>j</VERB>th input port of the <VERB>i</VERB>th block.  where <VERB>j</VERB> goes from <VERB>1</VERB> to <VERB>(cpr.sim.inpptr(i+1)-cpr.sim.inpptr(i))</VERB>.
+
+  </ITEM>
+  <ITEM label='outlnk'>
+: nblink x 1 vector of integers,   <VERB>(cpr.sim.outlnk(cpr.sim.outptr(i)-1+j))</VERB> is the index of the link connected to the <VERB>j</VERB>th output port of the <VERB>i</VERB>th block. where <VERB>j</VERB> goes from <VERB>1</VERB> to <VERB>(cpr.sim.outptr(i+1)-cpr.sim.outptr(i))</VERB>.
+
+  </ITEM>
+  <ITEM label='lnkptr'>
+: (nblink+1) x 1 vector of integers,   <VERB>k</VERB>th entry points to the beginning of region within <VERB>outtb</VERB> dedicated to link indexed <VERB>k</VERB>.
+
+  </ITEM>
+  <ITEM label='rpar'>
+: vector of blocks&apos; floating point parameters
+
+  </ITEM>
+  <ITEM label='rpptr'>
+: (nblk+1) x 1 vector of integers,    <VERB>cpr.sim.rpar(cpr.sim.rpptr(i):cpr.sim.rpptr(i+1)-1)</VERB> is the vector of floating point parameters of the <VERB>i</VERB>th block.
+
+  </ITEM>
+  <ITEM label='ipar'>
+: vector of blocks&apos; integer parameters
+
+  </ITEM>
+  <ITEM label='ipptr'>
+: (nblk+1) x 1 vector of integers,    <VERB>cpr.sim.ipar(cpr.sim.ipptr(i):cpr.sim.ipptr(i+1)-1)</VERB> is the vector of integer parameters of the <VERB>i</VERB>th block.
+
+  </ITEM>
+  <ITEM label='clkptr'>
+: (nblk+1) x 1 vector of integers,    <VERB>(cpr.sim.clkptr(i):cpr.sim.clkptr(i+1)-1)</VERB> gives the number of output event ports.
+
+  </ITEM>
+  <ITEM label='ordptr'>
+: 1 vector of integers,  <VERB>(cpr.sim.ordptr(i):cpr.sim.ordptr(i+1)-1)</VERB> points to the region within <VERB>ordclk</VERB> indicates the number of blocks activated by the output event ports numbered <VERB>i</VERB>.
+
+  </ITEM>
+  <ITEM label='execlk'>
+: unused 
+
+  </ITEM>
+  <ITEM label='ordclk'>
+: two-column matrix of integers, the first indicates the number of activated blocks and the second indicates the number of the corresponding input event port.
+
+  </ITEM>
+  <ITEM label='cord'>
+: two-column matrix of integers, the first indicates the number of permanently (continuous time) activated blocks and the second indicates the number of the corresponding input event port.
+
+  </ITEM>
+  <ITEM label='oord'>
+: two-column matrix of integers,   subset of cord whose outputs affect computation of continuous state derivatives. 
+
+  </ITEM>
+  <ITEM label='zord'>
+: two-column matrix of integers,   subset of cord whose outputs affect computation of zero-crossing surfaces.
+
+  </ITEM>
+  <ITEM label='critev'>
+: 1 vector of integers,  ?????????????????
+
+  </ITEM>
+  <ITEM label='nb'>
+: unused 
+
+  </ITEM>
+  <ITEM label='ztyp'>
+: (nblk+1) x 1 vector of integers,   <VERB>(cpr.sim.ztyp(i)</VERB> is coded 1 if the block numbered <VERB>i</VERB> is from Zcross type (0 if else).
+
+  </ITEM>
+  <ITEM label='nblk'>
+: number of blocks (unused)
+
+  </ITEM>
+  <ITEM label='ndcblk'>
+: unused 
+
+  </ITEM>
+  <ITEM label='subscr'>
+: ?????????????????
+
+  </ITEM>
+  <ITEM label='funtyp'>
+: (nblk+1) x 1 vector of integers, indicates the routine type of blocks
+
+  </ITEM>
+  <ITEM label='iord'>
+: two-column matrix of integers, the first contains all the numbers of blocks to be updated in the initialization of the simulation among which the continuous blocks. The second column indicates the number of the corresponding input event port.
+
+  </ITEM>
+  <ITEM label='labels'>
+: (nblk+1) x 1 vector of character strings, contains the label (if any) associated to each block. 
+
+  </ITEM>
+  </ITEMIZE>
+  <DESCRIPTION>
+  <P>
+    Scicos simulation data structure is usually generated by Scicos
+    <VERB>Compile</VERB> menu and needed to simulate
+    the system (see <VERB>scicos_cpr</VERB>). 
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_diagram</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

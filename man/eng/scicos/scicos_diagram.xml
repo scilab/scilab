@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scicos_diagram  </TITLE>
+  <TYPE>Scicos data structure  </TYPE>
+  <DATE>Decembre 2002  </DATE>
+  <SHORT_DESCRIPTION name="scicos_diagram"> Scicos diagram data structure  </SHORT_DESCRIPTION>
+  <ITEMIZE label='DEFINITION'>
+  <VERBATIM><![CDATA[
+scs_m=mlist(['diagram','props','objs'],props,objs)
+
+   ]]></VERBATIM>
+  <ITEM label='scs_m: Scilab mlist, Scicos diagram data structure defined by the'>
+formal name &apos;diagram&apos; and containing the following fields:
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='FIELDS'>
+  <ITEM label='props'>
+: Scilab mlist, parameters data structure (See <VERB>scicos_params</VERB>).
+
+  </ITEM>
+  <ITEM label='objs'>
+: block or link  or deleted object data structure.  Deleted object data structure is marked <VERB>list(&apos;Deleted&apos;)</VERB>. 
+
+  </ITEM>
+  </ITEMIZE>
+  <DESCRIPTION>
+  <P>
+    Scicos editor uses and modifies the  Scicos editor main  data
+    structure to keep all information relative to the edited
+    diagram. Scicos compiler uses it as a input.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos_block</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_link</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
