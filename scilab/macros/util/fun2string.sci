@@ -508,16 +508,16 @@ ops     =['+',   'a';
          '-',    's';
          '*',    'm';
          '.*',   'x';
-         '*.',   'u';
          '.*.',  'k';
+         '*.',   'u';
          '/',    'r';
          './',   'd';
-         '/.',   'v';
          './.',  'y';
+	  '/.',   'v';
          '\',    'l';
          '.\',   'q';
-         '\.',   'w';
          '.\.',  'z';
+         '\.',   'w';
          '^',   'p';
          '==', 'log';
          '<', 'log';
@@ -973,5 +973,72 @@ if te2=='1'|te2=='2'|te2=='3' then e2='('+e2+')',end
 if te1=='2'|te1=='3' then e1='('+e1+')',end
 
 stk=list(e1+' *. '+e2,'1')
+top=top-1
+endfunction
+
+function [stk,txt,top]=_k2sci()
+  txt=[]
+s1=stk(top-1)
+s2=stk(top)
+[e1,te1]=s1(1:2);
+[e2,te2]=s2(1:2);
+//
+if te2=='1'|te2=='2'|te2=='3' then e2='('+e2+')',end
+if te1=='2'|te1=='3' then e1='('+e1+')',end
+
+stk=list(e1+' .*. '+e2,'1')
+top=top-1
+endfunction
+
+function [stk,txt,top]=_v2sci()
+  txt=[]
+s1=stk(top-1)
+s2=stk(top)
+[e1,te1]=s1(1:2);
+[e2,te2]=s2(1:2);
+//
+if te2=='1'|te2=='2'|te2=='3' then e2='('+e2+')',end
+if te1=='2'|te1=='3' then e1='('+e1+')',end
+
+stk=list(e1+' /. '+e2,'1')
+top=top-1
+endfunction
+function [stk,txt,top]=_y2sci()
+  txt=[]
+s1=stk(top-1)
+s2=stk(top)
+[e1,te1]=s1(1:2);
+[e2,te2]=s2(1:2);
+//
+if te2=='1'|te2=='2'|te2=='3' then e2='('+e2+')',end
+if te1=='2'|te1=='3' then e1='('+e1+')',end
+
+stk=list(e1+' ./. '+e2,'1')
+top=top-1
+endfunction
+function [stk,txt,top]=_z2sci()
+  txt=[]
+s1=stk(top-1)
+s2=stk(top)
+[e1,te1]=s1(1:2);
+[e2,te2]=s2(1:2);
+//
+if te2=='1'|te2=='2'|te2=='3' then e2='('+e2+')',end
+if te1=='2'|te1=='3' then e1='('+e1+')',end
+
+stk=list(e1+' .\. '+e2,'1')
+top=top-1
+endfunction
+function [stk,txt,top]=_w2sci()
+  txt=[]
+s1=stk(top-1)
+s2=stk(top)
+[e1,te1]=s1(1:2);
+[e2,te2]=s2(1:2);
+//
+if te2=='1'|te2=='2'|te2=='3' then e2='('+e2+')',end
+if te1=='2'|te1=='3' then e1='('+e1+')',end
+
+stk=list(e1+' \. '+e2,'1')
 top=top-1
 endfunction
