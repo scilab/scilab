@@ -40,7 +40,7 @@ else
   funcdecl=[]
   for kk=kf
     ind=strindex(txt(kk),"function")
-    if isacomment(txt(kk))==0 & ~isinstring(txt(kk),ind) & part(stripblanks(txt(kk)),1:8)=="function" then // function prototype
+    if isacomment(txt(kk))==0 & ~isinstring(txt(kk),ind) & part(stripblanks(txt(kk),%T),1:8)=="function" then // function prototype
       funcdecl=[funcdecl kk]
     end
   end
