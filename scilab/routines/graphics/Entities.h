@@ -658,6 +658,12 @@ typedef struct
   int hiddencolor;
   int hiddenstate;
   BOOL facetmerge; /* DJ.A 30/12 */
+
+  /* I think I have to add the field :
+     double value_xmax, value_ymax, value_zmax;
+     double value_xmin, value_ymin, value_zmin;
+  */
+
 }/** */
 sciSubWindow;  
 
@@ -1522,4 +1528,3 @@ extern sciPointObj *sciGetMerge(sciPointObj *psubwin);
 extern int C2F(CreateModels) ();
 extern int InitFigureModel();
 extern int InitAxesModel();
-
