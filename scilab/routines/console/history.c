@@ -302,7 +302,7 @@ int C2F(loadhistory) _PARAMS((char *fname))
       cur_entry=history;
       fclose(pFile);
     }
-  // Ajout date & heure debut session
+  /* Ajout date & heure debut session */
 
   GetCommentDateSession(line,TRUE);		
   AddHistory (line);  
