@@ -21,6 +21,6 @@ MACROS = %k.sci %asn.sci %sn.sci analpf.sci bilt.sci \
 	remezb.sci  sincd.sci srfaur.sci sskf.sci convol.sci \
 	srkf.sci system.sci trans.sci wfir.sci wiener.sci \
 	wigner.sci window.sci zpbutt.sci zpch1.sci zpch2.sci zpell.sci \
-	fftshift.sci
+	fftshift.sci ifft.sci
 W=fwiir.sci
 include ../Make.lib
