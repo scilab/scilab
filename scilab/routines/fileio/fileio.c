@@ -92,10 +92,9 @@ int NumTokens __PARAMS((char *str));
  * Scilab printf function OK 
  *********************************************************************/
 
-int int_objprintf(fname)
-     char *fname;
+int int_objprintf(char *fname)
 {
-  static int l1, m1, n1, lcount, rval, k, typ, mx, mk, nk;
+  static int l1, m1, n1, lcount, rval, k, mx, mk, nk;
   Nbvars = 0;
   CheckRhs(1,1000);
   CheckLhs(0,1);
@@ -134,8 +133,7 @@ int int_objprintf(fname)
  * Scilab fprintf function OK 
  *********************************************************************/
 
-int int_objfprintf(fname)
-     char *fname;
+int int_objfprintf(char *fname)
 {
   FILE *f;
   static int l1, m1, n1,l2,m2,n2,lcount,rval, mx, mk, nk, k;
@@ -182,8 +180,7 @@ int int_objfprintf(fname)
  * Scilab sprintf function OK 
  *********************************************************************/
 
-int int_objsprintf(fname)
-     char *fname;
+int int_objsprintf(char *fname)
 {
   unsigned long lstr;
   static int l1, m1, n1,n2,lcount,rval,blk=200;
@@ -284,8 +281,7 @@ int int_objsprintf(fname)
 #define MAXSTR 512
 
 
-int int_objscanf(fname)
-     char *fname;
+int int_objscanf(char *fname)
 {
   static char String[MAXSTR];
   static int l1, m1, n1, len= MAXSTR-1,iarg,maxrow,nrow,rowcount,ncol;
@@ -369,8 +365,7 @@ int int_objscanf(fname)
  * Scilab sscanf function
  *********************************************************************/
 
-int int_objsscanf(fname)
-     char *fname;
+int int_objsscanf(char *fname)
 {
   static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
   int args,retval,retval_s,err,n_count,lw,il1,ild1,skip;
@@ -451,8 +446,7 @@ int int_objsscanf(fname)
  * Scilab fscanf function
  *********************************************************************/
 
-int int_objfscanf(fname)
-     char *fname;
+int int_objfscanf(char *fname)
 {
   static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
   FILE  *f;
@@ -530,8 +524,7 @@ int int_objfscanf(fname)
  * Scilab numtokens
  *********************************************************************/
 
-int int_objnumTokens(fname)
-     char *fname;
+int int_objnumTokens(char *fname)
 {
   static int l1,m1,n1,l2,un=1;
   Nbvars = 0;
@@ -550,8 +543,7 @@ int int_objnumTokens(fname)
  * Scilab fprintfMat function
  *********************************************************************/
 
-int int_objfprintfMat(fname)
-     char *fname;
+int int_objfprintfMat(char *fname)
 {
   int l1, m1, n1,l2,m2,n2,m3,n3,l3,i,j;
   FILE  *f;
@@ -598,8 +590,7 @@ int int_objfprintfMat(fname)
 #define INFOSIZE 1024
 static char Info[INFOSIZE];
 
-int int_objfscanfMat(fname)
-     char *fname;
+int int_objfscanfMat(char *fname)
 {
   double x;
   static int l1, m1, n1,l2,m2,n2;
@@ -667,6 +658,7 @@ int int_objfscanfMat(fname)
   return 0;
 }  
 
+/* 
 static int ReadLine_Old(fd)
      FILE *fd;
 {
@@ -675,9 +667,9 @@ static int ReadLine_Old(fd)
   if ( n==0) n=fscanf(fd,"%*c");
   return(n);
 }
+*/
 
-static int ReadLine(fd)
-     FILE *fd;
+static int ReadLine(FILE *fd)
 {
   int n=0;
   while (1)
@@ -701,7 +693,7 @@ static int ReadLine(fd)
  * Test de TestNumTokens 
  ***************************************/
 #ifdef TEST 
-static void TestNumTokens()
+static void TestNumTokens(void)
 {
   char buf[30], format[20];
   strcpy(format,"%d Tokens in <%s>\n");
@@ -716,8 +708,7 @@ static void TestNumTokens()
 }
 #endif 
 
-int NumTokens(string)
-     char string[];
+int NumTokens(char *string)
 {
   char buf[128];
   int n=1;
@@ -758,21 +749,12 @@ int NumTokens(string)
 typedef int (*PRINTER) __PARAMS((FILE *, char *,...));
 typedef int (*FLUSH) __PARAMS((FILE *));
 
-int voidflush(fp) 
-     FILE *fp ;
+int voidflush(FILE *fp)
 {
   return 0;
 };
 
-static int do_scanf (fname,fp,format,nargs,strv,retval,buf,type)
-     char *fname;
-     FILE *fp;
-     char *format;
-     int  *nargs;
-     char *strv;
-     int *retval;
-     rec_entry buf[];
-     sfdir  type[];
+static int do_scanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type)
 {
   int i;
   char sformat[MAX_STR];
@@ -1141,12 +1123,7 @@ static int do_scanf (fname,fp,format,nargs,strv,retval,buf,type)
 static char sprintf_buff[MAX_SPRINTF_SIZE];
 static char *sprintf_limit = sprintf_buff + MAX_SPRINTF_SIZE;
 
-static int do_printf (fname,fp,format,nargs,argcnt,lcount,strv)
-     char *fname;
-     FILE *fp;
-     char *format;
-     int nargs,argcnt,lcount;
-     char **strv;
+static int do_printf (char *fname, FILE *fp, char *format, int nargs, int argcnt, int lcount, char **strv)
 {
   int previous_t=0; 
   int m1;
@@ -1551,9 +1528,7 @@ static int do_printf (fname,fp,format,nargs,argcnt,lcount,strv)
  * Utility functions 
  ****************************************************/
 
-static int  GetString(fname,previous_t,arg,narg,ic,ir,sval) 
-     char *fname,**sval;
-     int *previous_t,*arg,narg,*ic,ir;
+static int  GetString(char *fname, int *previous_t, int *arg, int narg, int *ic, int ir, char **sval)
 {
   int mx,nx,il,ild,lw,k,one=1;
   char *p;
@@ -1584,8 +1559,7 @@ static int  GetString(fname,previous_t,arg,narg,ic,ir,sval)
 
 /** changes `\``n` --> `\n` idem for \t and \r  **/
 
-static int StringConvert(str)
-     char *str;
+static int StringConvert(char *str)
 {
   char *str1;
   int count=0;
@@ -1611,9 +1585,7 @@ static int StringConvert(str)
   *str1 = '\0';
   return count;
 }
-static int GetScalarInt(fname,previous_t,arg,narg,ic,ir,ival) 
-     char *fname;
-     int *previous_t,*arg,narg,*ic,ir,*ival;
+static int GetScalarInt(char *fname, int *previous_t, int *arg, int narg, int *ic, int ir, int *ival)
 {
   int mx,nx,lx;
 
@@ -1639,10 +1611,7 @@ static int GetScalarInt(fname,previous_t,arg,narg,ic,ir,ival)
   return OK;
 }
 
-static int GetScalarDouble(fname,previous_t,arg,narg,ic,ir,dval)
-     char *fname;
-     int *previous_t,*arg,narg,*ic,ir;
-     double *dval;
+static int GetScalarDouble(char *fname, int *previous_t, int *arg, int narg, int *ic, int ir, double *dval)
 {
   int mx,nx,lx;
 
@@ -1669,10 +1638,7 @@ static int GetScalarDouble(fname,previous_t,arg,narg,ic,ir,dval)
   return OK;
 }
 
-static int Sci_Store(nrow,ncol,data,type,retval_s)
-     int nrow,ncol,retval_s;
-     entry *data;
-     sfdir  *type;
+static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 {
   int cur_i,i,j,i1,one=1,zero=0,k,l,iarg,colcount;
   sfdir cur_type;
@@ -1806,13 +1772,7 @@ static int Sci_Store(nrow,ncol,data,type,retval_s)
  *   table 
  ************************************************************************/
 
-static int Store_Scan(nrow,ncol,type_s,type,retval,retval_s,buf,data,rowcount,n)
-     int rowcount,n;
-     int *ncol, *nrow, *retval, *retval_s;
-     entry **data;
-     sfdir  *type_s,*type;
-     rec_entry *buf;
-     
+static int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, int *retval_s, rec_entry *buf, entry **data, int rowcount, int n)
 { 
   int i,j,nr,nc,err;
   entry * Data;
@@ -1907,10 +1867,7 @@ static int Store_Scan(nrow,ncol,type_s,type,retval,retval_s,buf,data,rowcount,n)
 
 
 
-static void Free_Scan(nrow,ncol,type_s,data)
-     int ncol, nrow;
-     entry **data;
-     sfdir  *type_s;
+static void Free_Scan(int nrow, int ncol, sfdir *type_s, entry **data)
 {
   int i,j;
   entry * Data;
@@ -1935,9 +1892,7 @@ static void Free_Scan(nrow,ncol,type_s,data)
  * '\n'   char
  ********************************************************/
 
-int SciStrtoStr(Scistring,nstring,ptrstrings,strh)
-     int *Scistring,*nstring,*ptrstrings;
-     char **strh;
+int SciStrtoStr(int *Scistring, int *nstring, int *ptrstrings, char **strh)
 {
   char *s,*p;
   int li,ni,*SciS,i,job=1;

@@ -32,9 +32,8 @@
 #define ACLIP 31744
 
 unsigned char
-st_linear_to_ulaw( sample )
-int sample;
-    {
+st_linear_to_ulaw(int  sample )
+{
     static int exp_lut[256] = {0,0,1,1,2,2,2,2,3,3,3,3,3,3,3,3,
                                4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,
                                5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
@@ -88,13 +87,12 @@ int sample;
 */
 
 int
-st_ulaw_to_linear( ulawbyte )
-unsigned char ulawbyte;
-    {
-    static int exp_lut[8] = { 0, 132, 396, 924, 1980, 4092, 8316, 16764 };
-    int sign, exponent, mantissa, sample;
+st_ulaw_to_linear(unsigned char ulawbyte )
+{
+  static int exp_lut[8] = { 0, 132, 396, 924, 1980, 4092, 8316, 16764 };
+  int sign, exponent, mantissa, sample;
 
-    ulawbyte = ~ ulawbyte;
+  ulawbyte = ~ ulawbyte;
     sign = ( ulawbyte & 0x80 );
     exponent = ( ulawbyte >> 4 ) & 0x07;
     mantissa = ulawbyte & 0x0F;
@@ -102,7 +100,7 @@ unsigned char ulawbyte;
     if ( sign != 0 ) sample = -sample;
 
     return sample;
-    }
+}
 
 #else
 
@@ -2207,10 +2205,9 @@ int ulaw_exp_table[256] = {
 #define ACLIP 31744
 
 unsigned char
-st_linear_to_Alaw( sample )
-int sample;
-    {
-    static int exp_lut[128] = {1,1,2,2,3,3,3,3,
+st_linear_to_Alaw(int sample )
+{
+  static int exp_lut[128] = {1,1,2,2,3,3,3,3,
                                4,4,4,4,4,4,4,4,
                                5,5,5,5,5,5,5,5,
                                5,5,5,5,5,5,5,5,
@@ -2247,12 +2244,11 @@ int sample;
     Alawbyte ^= (sign ^ 0x55);
 
     return Alawbyte;
-    }
+}
 
 int
-st_Alaw_to_linear( Alawbyte )
-unsigned char Alawbyte;
-    {
+st_Alaw_to_linear(unsigned char Alawbyte )
+{
     static int exp_lut[8] = { 0, 264, 528, 1056, 2112, 4224, 8448, 16896 };
     int sign, exponent, mantissa, sample;
 

@@ -48,8 +48,7 @@ static char * ftname[MAXF]={0};/** name for each file **/
  * if no more position is available
  **************************************/
 
-void C2F(getfiledesc)(fd) 
-     integer *fd;
+void C2F(getfiledesc)( integer *fd) 
 {
   int i ;
   for ( i = 1 ; i < MAXF ; i++) {
@@ -65,14 +64,7 @@ void C2F(getfiledesc)(fd)
  * add a file in the files table
  **************************************/
 
-void C2F(addfile)(fd,fa,swap,type,mode,filename,ierr)
-     integer *fd;
-     FILE * fa;
-     integer *swap;
-     integer *type;
-     integer *mode;
-     integer *ierr;
-     char* filename;
+void C2F(addfile)(integer *fd, FILE *fa, integer *swap, integer *type, integer *mode, char *filename, integer *ierr)
 {
   char* name;
   name= (char *) malloc((strlen(filename)+1)*sizeof(char));
@@ -102,15 +94,7 @@ void C2F(addfile)(fd,fa,swap,type,mode,filename,ierr)
  * get file info in the files table
  **************************************/
 
-void C2F(getfileinfo)(fd,fa,swap,type,mode,filename,lf,ierr)
-     integer *fd;
-     FILE * fa;
-     integer *swap;
-     integer *type;
-     integer *mode;
-     integer *ierr;
-     integer *lf;
-     char* filename;
+void C2F(getfileinfo)(integer *fd, FILE *fa, integer *swap, integer *type, integer *mode, char *filename, integer *lf, integer *ierr)
 {
   if (*fd<0 || *fd>=MAXF ) {
     *ierr=1;
@@ -132,11 +116,7 @@ void C2F(getfileinfo)(fd,fa,swap,type,mode,filename,lf,ierr)
  * get file type (C or Fortran)
  **************************************/
 
-void C2F(getfiletype)(fd,type,ierr)
-     integer *fd;
-     integer *type;
-     integer *ierr;
- 
+void C2F(getfiletype)(integer *fd, integer *type, integer *ierr)
 {
   if (*fd<0 || *fd>=MAXF ) {
     *ierr=1;
@@ -155,8 +135,7 @@ void C2F(getfiletype)(fd,type,ierr)
  * delete a file in the files table
  **************************************/
 
-void C2F(delfile)(fd)
-     integer *fd;
+void C2F(delfile)(integer *fd)
 {
   if (*fd>=0 && *fd<MAXF ) 
     {
@@ -172,8 +151,7 @@ void C2F(delfile)(fd)
  * convert mopen status to an integer 
  **************************************/
 
-int Status2Mode(status)
-     char *status;
+int Status2Mode(char *status)
 {
   int bin, plus, md, n, k;
   /* default values */
@@ -197,8 +175,7 @@ int Status2Mode(status)
  * or NULL if no such file. 
  **************************************/
 
-FILE *GetFile(fd)
-     integer *fd;
+FILE *GetFile(integer *fd)
 {
   int fd1;
   fd1 = (*fd != -1) ?  Min(Max(*fd,0),MAXF-1) : CurFile ;
@@ -212,8 +189,7 @@ FILE *GetFile(fd)
  * returns the swap status of file fd 
  **************************************/
 
-int GetSwap(fd)
-     integer *fd;
+int GetSwap(integer *fd)
 {
   int fd1;
   fd1 = (*fd != -1) ?  Min(Max(*fd,0),MAXF-1) : CurFile ;
@@ -228,7 +204,7 @@ int GetSwap(fd)
  * check machine status (little or big endian)
  *********************************************/
 
-int islittle_endian()
+int islittle_endian(void)
 {
   int	littlendian = 1;
   char	*endptr;
@@ -236,7 +212,7 @@ int islittle_endian()
   return (int) *endptr;
 }
 
-int C2F(getendian)()
+int C2F(getendian)(void)
 {
   return islittle_endian();
 }
@@ -247,11 +223,7 @@ int C2F(getendian)()
  * status can be "r","w","a" or "rb","wb","ab"
  *********************************************/
 
-void C2F(mopen)(fd,file,status,f_swap,res,error)
-     int *error,*f_swap;
-     char *file,*status;
-     double *res;
-     int *fd;
+void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error)
 {   
   int	littlendian = 1,type = 2,ierr,mode;
   char	*endptr;
@@ -298,9 +270,7 @@ void C2F(mopen)(fd,file,status,f_swap,res,error)
  * all opened file if *id = -2 
  **************************************/
 
-void C2F(mclose) (fd,res)
-     double *res;
-     integer *fd;
+void C2F(mclose) (integer *fd, double *res)
 {     
   int fd1;
   int res1 = 1;
@@ -349,9 +319,7 @@ void C2F(mclose) (fd,res)
  *********************************************/
 
 
-void C2F(meof) (fd,res)
-     double *res;
-     integer *fd;
+void C2F(meof) (integer *fd, double *res)
 {       
   FILE *fa= GetFile(fd);
   *res = fa ? feof(fa) : 1;
@@ -362,8 +330,7 @@ void C2F(meof) (fd,res)
  *********************************************/
 
 
-void C2F(mclearerr) (fd)
-     integer *fd;
+void C2F(mclearerr) (integer *fd)
 {       
   FILE *fa= GetFile(fd);
   clearerr(fa);
@@ -379,9 +346,7 @@ void C2F(mclearerr) (fd)
 #define SEEK_END 2
 #endif 
 
-void C2F(mseek) (fd,offset,flag,err)
-     integer *fd,*offset,*err;
-     char *flag;
+void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 {     
   int iflag;
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)
@@ -431,9 +396,7 @@ void C2F(mseek) (fd,offset,flag,err)
  * tell function 
  *********************************************/
 
-void C2F(mtell) (fd,offset,err)
-     integer *fd,*err;
-     double *offset;
+void C2F(mtell) (integer *fd, double *offset, integer *err)
 {     
   FILE *fa= GetFile(fd);
   if ( fa == (FILE *) 0 ) 
@@ -489,10 +452,7 @@ void C2F(mtell) (fd,offset,err)
 		  sciprint("mput : %s format not recognized \r\n",type); \
 		  *ierr=1;return; \
 				    }
-void C2F(mputnc) (fd,res,n1,type,ierr)
-     void *res;
-     integer *n1,*ierr,*fd;
-     char type[];
+void C2F(mputnc) (integer *fd, __builtin_va_list res, integer *n1, char *type, integer *ierr)
 {  
   char c1,c2;
   int i,swap,n;
@@ -569,11 +529,7 @@ void C2F(mputnc) (fd,res,n1,type,ierr)
 		  *ierr=1;return; \
 				    }
 
-void mput2 (fa,swap,res,n,type,ierr)
-     double *res;
-     integer n,*ierr,swap;
-     char type[];
-     FILE *fa;
+void mput2 (FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr)
 {  
   char c1,c2;
   int i;
@@ -605,10 +561,7 @@ void mput2 (fa,swap,res,n,type,ierr)
     }
 }
 
-void C2F(mput) (fd,res,n,type,ierr)
-     double *res;
-     integer *n,*ierr,*fd;
-     char type[];
+void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 {
   int nc,swap;
   FILE *fa;
@@ -673,10 +626,7 @@ void C2F(mput) (fd,res,n,type,ierr)
 	     *ierr=1; return; \
                 } \
 }
-void C2F(mgetnc)(fd,res,n1,type,ierr)
-     void *res;
-     integer *n1,*ierr,*fd;
-     char type[];
+void C2F(mgetnc)(integer *fd, __builtin_va_list res, integer *n1, char *type, integer *ierr)
 {  
   char c1,c2;
   int i,items=*n1,n=*n1;
@@ -739,11 +689,7 @@ void C2F(mgetnc)(fd,res,n1,type,ierr)
 #define MGET_CHAR(NumType)  MGET_CHAR_NC(NumType); CONVGD(NumType); 
 
 /* reads data and store them in double  */
-void mget2(fa,swap,res,n,type,ierr)
-     double *res;
-     integer n,*ierr,swap;
-     char type[];
-     FILE *fa;
+void mget2(FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr)
 {  
   char c1,c2;
   int i,items=n;
@@ -783,10 +729,7 @@ void mget2(fa,swap,res,n,type,ierr)
   return;
 }
 
-void C2F(mget) (fd,res,n,type,ierr)
-     double *res;
-     integer *n,*ierr,*fd;
-     char type[];
+void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 {  
 
   int nc,swap;
@@ -819,10 +762,7 @@ void C2F(mget) (fd,res,n,type,ierr)
  * read a string 
  *********************************************/
 
-void C2F(mgetstr) (fd,start,n,ierr)
-
-     char **start;
-     integer *ierr,*n,*fd;
+void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
 { 
   int count;
   FILE *fa;
@@ -849,9 +789,7 @@ void C2F(mgetstr) (fd,start,n,ierr)
   *ierr=1;
 }
 
-void C2F(mgetstr1) (fd,start,n,ierr)
-     char *start;
-     integer *ierr,*n,*fd;
+void C2F(mgetstr1) (integer *fd, char *start, integer *n, integer *ierr)
 { 
   int count;
   FILE *fa;
@@ -875,10 +813,7 @@ void C2F(mgetstr1) (fd,start,n,ierr)
  * write a string 
  *********************************************/
 
-void C2F(mputstr) (fd,str,res,ierr)
-     char *str;
-     double *res;
-     int *ierr,*fd;
+void C2F(mputstr) (int *fd, char *str, double *res, int *ierr)
 {   
   FILE *fa;
   fa = GetFile(fd);

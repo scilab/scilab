@@ -32,15 +32,12 @@ extern void sciprint __PARAMS((char *fmt, ...));
  *  *buf++ = LEFT(datum,XXX) into 
  *  *buf++ = datum =  LEFT(datum,XXX) to force the result we want
  ****************************************************************/
-   
-int rawread(ft, buf, nsamp) 
-     ft_t ft;
-     long nsamp;
 #if defined(__alpha)
-     int *buf;
-#else
-     long *buf;
-#endif
+int rawread(ft_t ft, int *buf, long int nsamp)
+#else 
+int rawread(ft_t ft, long int *buf, long int nsamp)
+#endif 
+
 {
   int count;
 #if defined(__alpha)
@@ -170,9 +167,7 @@ int rawread(ft, buf, nsamp)
  * to the raw file data, and write it.
  ****************************************************************/
 
-void rawwrite(ft, buf, nsamp) 
-     ft_t ft;
-     long *buf, nsamp;
+void rawwrite(ft_t ft, long int *buf, long int nsamp)
 {
   register int datum;
   int done = 0;

@@ -22,8 +22,7 @@ char filename[FILENAME_MAX];
 int out_n;
 long int lin,lout;
 
-int intssavewave(fname)
-   char *fname;
+int intssavewave(char *fname)
 {
   int m1,n1,l1,m2,n2,mn2,l2,m3,n3,l3,l4,err,rate=22050;
   int un=1;
@@ -60,8 +59,7 @@ int intssavewave(fname)
  * SCILAB function : loadwave, 
  ******************************************/
 
-int intsloadwave(fname)
-   char *fname;
+int intsloadwave(char *fname)
 {
   WavInfo Wi;
   int m1,n1,l1,m2=1,n2,l2,err=0,un=1,eight=8,l3,m4,n4,l4;
@@ -111,8 +109,7 @@ int intsloadwave(fname)
  * SCILAB function : mopen, 
  ******************************************/
 
-int intsmopen(fname)
-   char *fname;
+int intsmopen(char *fname)
 {
   int m1,n1,l1,m2,n2,l2,m3,n3,l3,l4,l5,err;
   int swap = 1,un=1;
@@ -174,8 +171,7 @@ int intsmopen(fname)
  * SCILAB function : mputstr, 
  ******************************************/
 
-int intsmputstr(fname)
-   char *fname;
+int intsmputstr(char *fname)
 {
   int m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3,err;
   int fd = -1;
@@ -205,8 +201,7 @@ int intsmputstr(fname)
  * SCILAB function : mclose, 
  ******************************************/
 
-int intsmclose(fname)
-   char *fname;
+int intsmclose(char *fname)
 {
   int m1,n1,l1,un=1,l2;
   int fd = -1;
@@ -229,8 +224,7 @@ int intsmclose(fname)
  * SCILAB function : mput, 
  ******************************************/
 
-int intsmput(fname)
-   char *fname;
+int intsmput(char *fname)
 {
   int m1,n1,l1,m2,n2,l2,m3,n3,l3,err;
   char *type;
@@ -270,8 +264,7 @@ int intsmput(fname)
  * SCILAB function : mget, 
  ******************************************/
 
-int intsmget(fname)
-   char *fname;
+int intsmget(char *fname)
 {
   int m1,n1,l1,m2,n2,l2,m3,n3,l3,l4,err;
   char *type;
@@ -329,8 +322,7 @@ int intsmget(fname)
  * SCILAB function : mgetstr, 
  ******************************************/
 
-int intsmgetstr(fname)
-     char *fname;
+int intsmgetstr(char *fname)
 {
   int m1,n1,l1,m2,n2,l2,l3,err;
   int fd=-1;
@@ -377,8 +369,7 @@ int intsmgetstr(fname)
  * SCILAB function : meof, 
  ******************************************/
 
-int intsmeof(fname)
-   char *fname;
+int intsmeof(char *fname)
 {
   int m1,n1,l1,un=1,lr;
   int fd=-1;
@@ -401,8 +392,7 @@ int intsmeof(fname)
  * SCILAB function : mseek, 
  ******************************************/
 
-int intsmseek(fname)
-   char *fname;
+int intsmseek(char *fname)
 {
   int m1,n1,l1,m2,n2,l2,m3,n3,l3,err;
   int fd=-1;
@@ -440,8 +430,7 @@ int intsmseek(fname)
  * SCILAB function : mtell, 
  ******************************************/
 
-int intsmtell(fname)
-   char *fname;
+int intsmtell(char *fname)
 {
   int m1,n1,l1,un=1,l2,err;
   int fd = -1;
@@ -470,8 +459,7 @@ int intsmtell(fname)
  * SCILAB function : mclearerr, 
  ******************************************/
 
-int intsmclearerr(fname)
-   char *fname;
+int intsmclearerr(char *fname)
 {
   int m1,n1,l1;
   int fd = -1;
@@ -530,7 +518,7 @@ static TabF Tab[]={
  {int_objnumTokens,"NumTokens"},
 };
 
-int C2F(soundi)()
+int C2F(soundi)(void)
 {
  Rhs=Max(0,Rhs);
  (*(Tab[Fin-1].f))(Tab[Fin-1].name);

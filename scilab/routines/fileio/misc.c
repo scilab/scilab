@@ -41,8 +41,7 @@ char writerr[] = "Error writing sample file.  You are probably out of disk space
 /* Utilities */
 /* Read short, little-endian: little end first. VAX/386 style. */
 
-unsigned short rlshort(ft)
-     ft_t ft;
+unsigned short rlshort(ft_t ft)
 {
   unsigned char uc, uc2;
   uc  = getc(ft->fp);
@@ -52,8 +51,7 @@ unsigned short rlshort(ft)
 
 /* Read short, bigendian: big first. 68000/SPARC style. */
 
-unsigned short rbshort(ft)
-     ft_t ft;
+unsigned short rbshort(ft_t ft)
 {
   unsigned char uc, uc2;
   uc2 = getc(ft->fp);
@@ -63,9 +61,7 @@ unsigned short rbshort(ft)
 
 /* Write short, little-endian: little end first. VAX/386 style. */
 
-void wlshort(ft, us)
-     ft_t ft;
-     unsigned short us;
+void wlshort(ft_t ft, short unsigned int us)
 {
   putc(us, ft->fp);
   putc(us >> 8, ft->fp);
@@ -78,9 +74,7 @@ void wlshort(ft, us)
 
 /* Write short, big-endian: big end first. 68000/SPARC style. */
 
-void wbshort(ft, us)
-     ft_t ft;
-     unsigned short us;
+void wbshort(ft_t ft, short unsigned int us)
 {
   putc(us >> 8, ft->fp);
   putc(us, ft->fp);
@@ -94,8 +88,7 @@ void wbshort(ft, us)
 /* Read long, little-endian: little end first. VAX/386 style. */
 
 unsigned long
-rllong(ft)
-     ft_t ft;
+rllong(ft_t ft)
 {
   unsigned char uc, uc2, uc3, uc4;
   uc  = getc(ft->fp);
@@ -108,8 +101,7 @@ rllong(ft)
 
 /* Read long, bigendian: big first. 68000/SPARC style. */
 unsigned long
-rblong(ft)
-     ft_t ft;
+rblong(ft_t ft)
 {
   unsigned char uc, uc2, uc3, uc4;
   uc  = getc(ft->fp);
@@ -120,9 +112,7 @@ rblong(ft)
 }
 
 /* Write long, little-endian: little end first. VAX/386 style. */
-void wllong(ft, ul)
-     ft_t ft;
-     unsigned long ul;
+void wllong(ft_t ft, long unsigned int ul)
 {
   int datum;
   datum = (ul) & 0xff;
@@ -141,9 +131,7 @@ void wllong(ft, ul)
 }
 
 /* Write long, big-endian: big end first. 68000/SPARC style. */
-void wblong(ft, ul)
-     ft_t ft;
-     unsigned long ul;
+void wblong(ft_t ft, long unsigned int ul)
 {
   int datum;
 
@@ -166,8 +154,7 @@ void wblong(ft, ul)
 
 /* Read short. */
 unsigned short
-rshort(ft)
-     ft_t ft;
+rshort(ft_t ft)
 {
   unsigned short us;
   fread(&us, 2, 1, ft->fp);
@@ -177,9 +164,7 @@ rshort(ft)
 }
 
 /* Write short. */
-void wshort(ft, us)
-     ft_t ft;
-     unsigned short us;
+void wshort(ft_t ft, short unsigned int us)
 {
   if (ft->swap)
     us = swapw(us);
@@ -192,8 +177,7 @@ void wshort(ft, us)
 
 /* Read a long. : note that long size is machine dependant  */
 unsigned long
-rlong(ft)
-     ft_t ft;
+rlong(ft_t ft)
 {
   unsigned long ul;
   fread(&ul, sizeof(long), 1, ft->fp);
@@ -203,9 +187,7 @@ rlong(ft)
 }
 
 /* Write long. */
-void wlong(ft, ul)
-     ft_t ft;
-     unsigned long ul;
+void wlong(ft_t ft, long unsigned int ul)
 {
   if (ft->swap)
     ul = swapl(ul);
@@ -218,8 +200,7 @@ void wlong(ft, ul)
 
 /* Read float. */
 float
-rfloat(ft)
-     ft_t ft;
+rfloat(ft_t ft)
 {
   float f;
   fread(&f, sizeof(float), 1, ft->fp);
@@ -229,9 +210,7 @@ rfloat(ft)
 }
 
 void
-wfloat(ft, f)
-     ft_t ft;
-     float f;
+wfloat(ft_t ft, float f)
 {
   float t = f;
   if (ft->swap)
@@ -245,8 +224,7 @@ wfloat(ft, f)
 
 /* Read double. */
 double
-rdouble(ft)
-     ft_t ft;
+rdouble(ft_t ft)
 {
   double d;
   fread(&d, sizeof(double), 1, ft->fp);
@@ -257,9 +235,7 @@ rdouble(ft)
 
 /* Write double. */
 void
-wdouble(ft, d)
-     ft_t ft;
-     double d;
+wdouble(ft_t ft, double d)
 {
   if (ft->swap)
     d = swapd(d);
@@ -272,13 +248,10 @@ wdouble(ft, d)
 
 /* generic swap routine */
 static void
-swapb(l, f, n)
-     char *l, *f;
-     int n;
-{    register int i;
-
-  for (i= 0; i< n; i++)
-    f[i]= l[n-i-1];
+swapb(char *l, char *f, int n)
+{    
+  int i;
+  for (i= 0; i< n; i++) f[i]= l[n-i-1];
 }
 
 
@@ -298,19 +271,17 @@ swapw(unsigned short us)
 /** swapl : swap a long : note that a long size is machine dependant **/
 
 unsigned long
-swapl(ul)
-     unsigned long ul;
+swapl(long unsigned int ul)
 {
   unsigned long  sdf;
-  swapb(&ul, &sdf, sizeof(unsigned long));
+  swapb((char *) &ul,(char *) &sdf, sizeof(unsigned long));
   return (sdf);
 }
 
 /** swap an int assumed to be on 4 bytes **/
 
 unsigned int 
-swapi(ul)
-     unsigned int ul;
+swapi(unsigned int ul)
 {
   return (ul >> 24) | ((ul >> 8) & 0xff00) | ((ul << 8) & 0xff0000) | (ul << 24);
 }
@@ -335,11 +306,10 @@ swapf(float uf)
 }
 
 double
-swapd(df)
-     double df;
+swapd(double df)
 {
   double sdf;
-  swapb(&df, &sdf, sizeof(double));
+  swapb((char *) &df,(char *) &sdf, sizeof(double));
   return (sdf);
 }
 
@@ -351,8 +321,7 @@ swapd(df)
 
 
 /* here for linear interp.  might be useful for other things */
-long gcd(a, b) 
-     long a, b;
+long gcd(long int a, long int b)
 {
   if (b == 0)
     return a;
@@ -360,8 +329,7 @@ long gcd(a, b)
     return gcd(b, a % b);
 }
 
-long lcm(a, b) 
-     long a, b;
+long lcm(long int a, long int b)
 {
   return (a * b) / gcd(a, b);
 }
@@ -374,9 +342,10 @@ long lcm(a, b)
 
 
 #ifndef HAVE_STRERROR
+
 /* strerror function */
-char *strerror(errcode)
-     int errcode;
+
+char *strerror(int errcode)
 {
   static char  nomesg[30];
   extern int sys_nerr;
