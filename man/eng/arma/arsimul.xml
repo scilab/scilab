@@ -67,13 +67,14 @@
   <DESCRIPTION>
     <P>
     simulation of an n-dimensional armax process 
-    <VERB>A(z^-1) z(k)= B(z^-1)u(k) + D(z^-1)*sig*e(k)</VERB></P>
-    <P>
+    <VERB>A(z^-1) z(k)= B(z^-1)u(k) + D(z^-1)*sig*e(k)</VERB>
+    </P>
     <VERBATIM>
        A(z)= Id+a1*z+...+a_r*z^r;  ( r=0  =&gt; A(z)=Id)
        B(z)= b0+b1*z+...+b_s z^s;  ( s=-1 =&gt; B(z)=[])
        D(z)= Id+d1*z+...+d_t z^t;  ( t=0  =&gt; D(z)=Id)
     </VERBATIM>
+    <P>
     z et e are in  <VERB>R^n</VERB> et u in <VERB>R^m</VERB></P>
   </DESCRIPTION>
   <SECTION label="Method">

@@ -84,17 +84,19 @@
     </VERBATIM>
     <P>
     for the method, see Eykhoff in trends and progress in system identification) page 96.
-    with 
+    with
+    </P> 
     <VERBATIM>
             z(t)=[y(t-1),..,y(t-r),u(t),...,
                   u(t-s),e(t-1),...,e(t-q)] 
     </VERBATIM>
+    <P>
     and
+    </P>
     <VERBATIM>
             coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
             y(t)= coef'* z(t) + sig*e(t).
     </VERBATIM>
-    </P>
     <P>
     a sequential version of the AR estimation where e(t-i) is replaced 
     by an estimated value is used (RLLS). With q=0 this method is exactly
