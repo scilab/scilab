@@ -5038,26 +5038,31 @@ int gget(fname,fname_len)
     CheckRhs(1,1);
     GetRhsVar(1,"c",&numrow2,&numcol2,&l2);
     if (strncmp(cstk(l2),"default_figure",14) !=0 && strncmp(cstk(l2),"default_axes",12) !=0 )
-
       {
-	if (strncmp(cstk(l2),"old_style",9) !=0&&strncmp(cstk(l2),"current_figure",14) !=0) C2F(sciwin)();
-	if (version_flag() == 0)
-	  {
-	    /* Test debug F.Leray 13.04.04 */
-	    sciPointObj * ppobj;
-	    if ((strncmp(cstk(l2),"children",8) != 0) &&  
-		(strncmp(cstk(l2),"zoom_",5) !=0) && 
-		(strncmp(cstk(l2),"clip_box",8) !=0) && 
-		(strncmp(cstk(l2),"auto_",5) !=0)) 
-	      {
-	      ppobj = sciGetCurrentObj();
-	      hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ());}
-	    else  
-	      hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* on recupere le pointeur d'objet par le handle */
-	  }
-	else
+	if (strncmp(cstk(l2),"old_style",9) == 0 || strncmp(cstk(l2),"current_figure",14) ==0) {
 	  hdl = (unsigned long)0;
-      }/* DJ.A 08/01/04 */
+	}
+	else
+	  {
+	    C2F(sciwin)();
+	    if (version_flag() == 0)
+	      {
+		/* Test debug F.Leray 13.04.04 */
+		sciPointObj * ppobj;
+		if ((strncmp(cstk(l2),"children",8) != 0) &&  
+		    (strncmp(cstk(l2),"zoom_",5) !=0) && 
+		    (strncmp(cstk(l2),"clip_box",8) !=0) && 
+		    (strncmp(cstk(l2),"auto_",5) !=0)) 
+		  {
+		    ppobj = sciGetCurrentObj();
+		    hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ());}
+		else  
+		  hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* on recupere le pointeur d'objet par le handle */
+	      }
+	    else
+	      hdl = (unsigned long)0;
+	  }/* DJ.A 08/01/04 */
+      }
     else
       hdl = (unsigned long)0;
     
