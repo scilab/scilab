@@ -218,6 +218,7 @@ void Callback_FRENCH(void)
 	
 	lptw->lpmw->CodeLanguage=1;
 	SwitchLanguage(lptw);
+	ConfigureScilabStar(lptw->lpmw->CodeLanguage);
 	    		
 }
 /*-----------------------------------------------------------------------------------*/
@@ -229,6 +230,7 @@ void Callback_ENGLISH(void)
 
 	lptw->lpmw->CodeLanguage=0;
 	SwitchLanguage(lptw);
+	ConfigureScilabStar(lptw->lpmw->CodeLanguage);
 
 }
 /*-----------------------------------------------------------------------------------*/
@@ -2007,4 +2009,96 @@ void ResetMenu(void)
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 	ReLoadMenus(lptw);
 }   
+/*-----------------------------------------------------------------------------------*/
+void ConfigureScilabStar(int LangCode)
+{
+	#define SCILABSTAR		"scilab.star"
+
+	char scilabstarfullpath[MAX_PATH];
+	char scilabstartmpfullpath[MAX_PATH];
+	char *WSCIPath=NULL;
+
+	int CodeRetour=-2;
+
+	WSCIPath=getenv("WSCI");
+	
+	if (WSCIPath)
+	{
+		strcpy(scilabstarfullpath,WSCIPath);
+		strcat(scilabstarfullpath,"\\");
+		strcat(scilabstarfullpath,SCILABSTAR);
+
+		strcpy(scilabstartmpfullpath,scilabstarfullpath);
+		strcat(scilabstartmpfullpath,".tmp");
+
+		switch (LangCode)
+		{
+			case 1:
+				CodeRetour=ModifyFile(scilabstarfullpath,"LANGUAGE=","LANGUAGE=\"fr\"\n");
+			break;
+
+			default : case 0:
+				CodeRetour=ModifyFile(scilabstarfullpath,"LANGUAGE=","LANGUAGE=\"eng\"\n");
+			break;
+		}
+
+		if (CodeRetour == 0 )
+		{
+			DeleteFile(scilabstarfullpath);
+			MoveFile(scilabstartmpfullpath,scilabstarfullpath);
+		}
+		else
+		{
+		//	MessageBox(NULL,"Couldn't Modify Scilab.star","Error",MB_ICONWARNING);
+		}
+	
+	}
+	
+	
+}
+/*-----------------------------------------------------------------------------------*/
+int ModifyFile(char *fichier,char *motclef,char *chaine)
+{
+		int Retour=1;
+		FILE *fileR,*fileW;
+		char Ligne[MAX_PATH];
+		char cmpchaine[MAX_PATH];
+		
+		fileR=NULL;
+		fileW=NULL;
+
+		fileR= fopen(fichier, "rt");
+		strcpy(cmpchaine,fichier);
+		strcat(cmpchaine,".tmp");
+
+		fileW= fopen(cmpchaine, "wt");
+		strcpy(cmpchaine,"");
+
+		if ( (fileR) && (fileW) )
+		{
+			while( fgets(Ligne, MAX_PATH, fileR) != NULL)
+			{ 
+				strncpy(cmpchaine,Ligne,strlen(motclef));
+				cmpchaine[strlen(motclef)]='\0';
+				if (strcmp(cmpchaine,motclef)==0)
+				{
+					fputs(chaine,fileW);
+					Retour=0;
+				}
+				else
+				{
+					fputs(Ligne,fileW);
+				}
+      			strcpy(Ligne,"\0");
+      		}
+			
+    		fclose(fileR);
+			fclose(fileW);
+		}
+		else
+		{
+			Retour=-1;
+		}
+		return Retour;
+}
 /*-----------------------------------------------------------------------------------*/

@@ -256,3 +256,6 @@ void SwitchLanguage(LPTW lptw);
 void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSizeX, int ButtonSizeY);
 int GetXPosButton(LPTW lptw,int index,int SizeXButtonText,int SizeXButtonIcon);
 /*--------------------------------*/
+void ConfigureScilabStar(int LangCode);
+int ModifyFile(char *fichier,char *motclef,char *chaine);
+/*--------------------------------*/
