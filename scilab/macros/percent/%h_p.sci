@@ -24,12 +24,12 @@ function %h_p(h)
 	 "line_style = "+string(h.line_style)
 	 "thickness = "+string(h.thickness)
 	 "polyline_style = "+string(h.polyline_style)
+	 "foreground = "+string(h.foreground)
 	 "mark_mode = "+sci2exp(h.mark_mode)
 	 "mark_style = "+sci2exp(h.mark_style)
 	 "mark_size = "+string(h.mark_size)
 	 "mark_foreground = "+string(h.mark_foreground)
 	 "mark_background = "+string(h.mark_background)
-	 "foreground = "+string(h.foreground)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box)]
       case "Patch"
@@ -138,7 +138,6 @@ function %h_p(h)
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
-	 "thickness = "+string(h.thickness)
 	 "mark_mode = "+sci2exp(h.mark_mode)
 	 "mark_style = "+string(h.mark_style)
 	 "mark_size = "+string(h.mark_size)
@@ -146,6 +145,7 @@ function %h_p(h)
 	 "mark_background = "+string(h.mark_background)
          "line_mode = "+sci2exp(h.line_mode)
 	 "line_style = "+string(h.line_style)
+	 "thickness = "+string(h.thickness)
 	 "fill_mode = "+sci2exp(h.fill_mode)
 	 "foreground = "+string(h.foreground)
 	 "data = "+sci2exp(h.data,0)
@@ -230,10 +230,16 @@ function %h_p(h)
 	 "children: "+fmtchildren(h.children)
 	 "visible = "+sci2exp(h.visible) 
 	 "data = "+d
+	 "line_mode = "+sci2exp(h.line_mode)
 	 "line_style = "+string(h.line_style)
 	 "thickness = "+string(h.thickness)
 	 "arrow_size = "+string(h.arrow_size)
 	 "segs_color = "+c
+	 "mark_mode = "+sci2exp(h.mark_mode)
+	 "mark_style = "+sci2exp(h.mark_style)
+	 "mark_size = "+string(h.mark_size)
+	 "mark_foreground = "+string(h.mark_foreground)
+	 "mark_background = "+string(h.mark_background)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box,0)]
       case "Champ"
@@ -307,9 +313,15 @@ function %h_p(h)
 	t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
+	 "visible = "+sci2exp(h.visible) 
+	 "surface_mode = "+sci2exp(h.surface_mode)
 	 "foreground = "+string(h.foreground)
 	 "thickness = "+string(h.thickness)
-	 "visible = "+sci2exp(h.visible) 
+	 "mark_mode = "+sci2exp(h.mark_mode)
+	 "mark_style = "+sci2exp(h.mark_style)
+	 "mark_size = "+string(h.mark_size)
+	 "mark_foreground = "+string(h.mark_foreground)
+	 "mark_background = "+string(h.mark_background)
 	 "data.x = "+dx
 	 "data.y = "+dy
 	 "data.z "+dz  
@@ -322,9 +334,15 @@ function %h_p(h)
 	  t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
+	 "visible = "+sci2exp(h.visible) 
+	 "surface_mode = "+sci2exp(h.surface_mode)
 	 "foreground = "+string(h.foreground)
 	 "thickness = "+string(h.thickness)
-	 "visible = "+sci2exp(h.visible) 
+	 "mark_mode = "+sci2exp(h.mark_mode)
+	 "mark_style = "+sci2exp(h.mark_style)
+	 "mark_size = "+string(h.mark_size)
+	 "mark_foreground = "+string(h.mark_foreground)
+	 "mark_background = "+string(h.mark_background)
 	 "data.x = "+dx
 	 "data.y = "+dy
 	 "data.z = "+dz
@@ -352,9 +370,15 @@ function %h_p(h)
 	t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
+	 "visible = "+sci2exp(h.visible) 
+	 "surface_mode = "+sci2exp(h.surface_mode)
 	 "foreground = "+string(h.foreground)
 	 "thickness = "+string(h.thickness)
-	 "visible = "+sci2exp(h.visible) 
+	 "mark_mode = "+sci2exp(h.mark_mode)
+	 "mark_style = "+sci2exp(h.mark_style)
+	 "mark_size = "+string(h.mark_size)
+	 "mark_foreground = "+string(h.mark_foreground)
+	 "mark_background = "+string(h.mark_background)
 	 "data.x = "+dx
 	 "data.y = "+dy
 	 "data.z = "+dz  
@@ -367,9 +391,15 @@ function %h_p(h)
 	  t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
+	 "visible = "+sci2exp(h.visible) 
+	 "surface_mode = "+sci2exp(h.surface_mode)
 	 "foreground = "+string(h.foreground)
 	 "thickness = "+string(h.thickness)
-	 "visible = "+sci2exp(h.visible) 
+	 "mark_mode = "+sci2exp(h.mark_mode)
+	 "mark_style = "+sci2exp(h.mark_style)
+	 "mark_size = "+string(h.mark_size)
+	 "mark_foreground = "+string(h.mark_foreground)
+	 "mark_background = "+string(h.mark_background)
 	 "data.x = "+dx
 	 "data.y = "+dy
 	 "data.z = "+dz
@@ -388,9 +418,15 @@ function %h_p(h)
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
+	 "visible = "+sci2exp(h.visible) 
+         "line_mode = "+sci2exp(h.line_mode)
 	 "foreground = "+string(h.foreground)
 	 "thickness = "+string(h.thickness)
-	 "visible = "+sci2exp(h.visible) 
+	 "mark_mode = "+sci2exp(h.mark_mode)
+	 "mark_style = "+sci2exp(h.mark_style)
+	 "mark_size = "+string(h.mark_size)
+	 "mark_foreground = "+string(h.mark_foreground)
+	 "mark_background = "+string(h.mark_background)
 	 "data = "+d
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box,0)

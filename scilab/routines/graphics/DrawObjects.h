@@ -143,5 +143,9 @@ extern void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *
 extern int Merge3dDimension(sciPointObj *pparent);
 extern void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge);  /* DRAWINGS */
 
+extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym);
+extern void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym);
+
+
 
 #endif /* __SCI_DRAWINGS__ */
