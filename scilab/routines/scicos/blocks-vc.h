@@ -2,132 +2,132 @@
 #define __SCICOS_BLOCKS__ 
 /******* Copyright INRIA *************/
 /******* Please do not edit *************/
-extern void F2C(evtdly) (ARGS_scicos);
-extern void F2C(cstblk) (ARGS_scicos);
-extern void F2C(lusat) (ARGS_scicos);
-extern void F2C(pload) (ARGS_scicos);
-extern void F2C(qzcel) (ARGS_scicos);
-extern void F2C(qzflr) (ARGS_scicos);
-extern void F2C(qzrnd) (ARGS_scicos);
-extern void F2C(qztrn) (ARGS_scicos);
-extern void F2C(scope) (ARGS_scicos);
-extern void F2C(lsplit) (ARGS_scicos);
-extern void F2C(csslti) (ARGS_scicos);
-extern void F2C(dsslti) (ARGS_scicos);
-extern void F2C(trash) (ARGS_scicos);
-extern void F2C(zcross) (ARGS_scicos);
-extern void F2C(expblk) (ARGS_scicos);
-extern void F2C(logblk) (ARGS_scicos);
-extern void F2C(sinblk) (ARGS_scicos);
-extern void F2C(tanblk) (ARGS_scicos);
-extern void F2C(powblk) (ARGS_scicos);
-extern void F2C(sqrblk) (ARGS_scicos);
-extern void F2C(delay) (ARGS_scicos);
-extern void F2C(selblk) (ARGS_scicos);
-extern void F2C(forblk) (ARGS_scicos);
-extern void F2C(writef) (ARGS_scicos);
-extern void F2C(invblk) (ARGS_scicos);
-extern void F2C(hltblk) (ARGS_scicos);
-extern void F2C(gensin) (ARGS_scicos);
-extern void F2C(rndblk) (ARGS_scicos);
-extern void F2C(lookup) (ARGS_scicos);
-extern void F2C(timblk) (ARGS_scicos);
-extern void F2C(gensqr) (ARGS_scicos);
-extern void F2C(mfclck) (ARGS_scicos);
-extern void F2C(sawtth) (ARGS_scicos);
-extern void F2C(tcslti) (ARGS_scicos);
-extern void F2C(tcsltj) (ARGS_scicos);
-extern void F2C(scopxy) (ARGS_scicos);
-extern void F2C(evscpe) (ARGS_scicos);
-extern void F2C(integr) (ARGS_scicos);
-extern void F2C(readf) (ARGS_scicos);
-extern void F2C(affich) (ARGS_scicos);
-extern void F2C(intpol) (ARGS_scicos);
-extern void F2C(intplt) (ARGS_scicos);
-extern void F2C(minblk) (ARGS_scicos);
-extern void F2C(maxblk) (ARGS_scicos);
-extern void F2C(dlradp) (ARGS_scicos);
-extern void F2C(iocopy) (ARGS_scicos);
-extern void F2C(sum2) (ARGS_scicos);
-extern void F2C(sum3) (ARGS_scicos);
-extern void F2C(delayv) (ARGS_scicos);
-extern void F2C(mux) (ARGS_scicos);
-extern void F2C(demux) (ARGS_scicos);
-extern void F2C(samphold) (ARGS_scicos);
-extern void F2C(dollar) (ARGS_scicos);
-extern void F2C(mscope) (ARGS_scicos);
-extern void F2C(intrp2) (ARGS_scicos);
-extern void F2C(intrpl) (ARGS_scicos);
-extern void F2C(fsv) (ARGS_scicos);
-extern void F2C(memo) (ARGS_scicos);
-extern void F2C(fscope) (ARGS_scicos);
-extern void F2C(scoxy) (ARGS_scicos);
-extern void F2C(diffblk) (ARGS_scicos);
-extern void F2C(constraint) (ARGS_scicos);
-extern void F2C(absblk) (ARGS_scicos);
-extern void F2C(andlog) (ARGS_scicos);
-extern void F2C(bidon) (ARGS_scicos);
-extern void F2C(gain) (ARGS_scicos);
-extern void F2C(cdummy) (ARGS_scicos);
-extern void F2C(dband) (ARGS_scicos);
-extern void F2C(cosblk) (ARGS_scicos);
-extern void F2C(ifthel) (ARGS_scicos);
-extern void F2C(eselect) (ARGS_scicos);
-extern void selector (ARGS_scicos);
-extern void sum (ARGS_scicos);
-extern void prod (ARGS_scicos);
-extern void switchn (ARGS_scicos);
-extern void relay (ARGS_scicos);
-extern void readc (ARGS_scicos);
-extern void writec (ARGS_scicos);
-extern void writeau (ARGS_scicos);
-extern void readau (ARGS_scicos);
-extern void plusblk (ARGS_scicos);
-extern void slider (ARGS_scicos);
-extern void zcross2 (ARGS_scicos);
-extern void mswitch (ARGS_scicos);
-extern void logicalop (ARGS_scicos);
-extern void switch2 (ARGS_scicos);
-extern void variable_delay (ARGS_scicos);
-extern void time_delay (ARGS_scicos);
-extern void cscope (ARGS_scicos);
-extern void cmscope (ARGS_scicos);
-extern void satur (ARGS_scicos);
-extern void step_func (ARGS_scicos);
-extern void integral_func (ARGS_scicos);
-extern void absolute_value (ARGS_scicos);
-extern void bounce_ball (ARGS_scicos);
-extern void bouncexy (ARGS_scicos);
-extern void extractor (ARGS_scicos);
-extern void scalar2vector (ARGS_scicos);
-extern void minmax (ARGS_scicos);
-extern void signum (ARGS_scicos);
-extern void product (ARGS_scicos);
-extern void summation (ARGS_scicos);
-extern void multiplex (ARGS_scicos);
-extern void gainblk (ARGS_scicos);
-extern void relationalop (ARGS_scicos);
-extern void modulo_count (ARGS_scicos);
-extern void hystheresis (ARGS_scicos);
-extern void ratelimiter (ARGS_scicos);
-extern void backlash (ARGS_scicos);
-extern void deadband (ARGS_scicos);
-extern void ramp (ARGS_scicos);
-extern void evaluate_expr (ARGS_scicos);
-extern void deriv (ARGS_scicos);
-extern void sin_blk (ARGS_scicos);
-extern void cos_blk (ARGS_scicos);
-extern void tan_blk (ARGS_scicos);
-extern void asin_blk (ARGS_scicos);
-extern void acos_blk (ARGS_scicos);
-extern void atan_blk (ARGS_scicos);
-extern void sinh_blk (ARGS_scicos);
-extern void cosh_blk (ARGS_scicos);
-extern void tanh_blk (ARGS_scicos);
-extern void asinh_blk (ARGS_scicos);
-extern void acosh_blk (ARGS_scicos);
-extern void atanh_blk (ARGS_scicos);
-extern void evtvardly (ARGS_scicos);
+extern void F2C(evtdly) __PARAMS((ARGS_scicos));
+extern void F2C(cstblk) __PARAMS((ARGS_scicos));
+extern void F2C(lusat) __PARAMS((ARGS_scicos));
+extern void F2C(pload) __PARAMS((ARGS_scicos));
+extern void F2C(qzcel) __PARAMS((ARGS_scicos));
+extern void F2C(qzflr) __PARAMS((ARGS_scicos));
+extern void F2C(qzrnd) __PARAMS((ARGS_scicos));
+extern void F2C(qztrn) __PARAMS((ARGS_scicos));
+extern void F2C(scope) __PARAMS((ARGS_scicos));
+extern void F2C(lsplit) __PARAMS((ARGS_scicos));
+extern void F2C(csslti) __PARAMS((ARGS_scicos));
+extern void F2C(dsslti) __PARAMS((ARGS_scicos));
+extern void F2C(trash) __PARAMS((ARGS_scicos));
+extern void F2C(zcross) __PARAMS((ARGS_scicos));
+extern void F2C(expblk) __PARAMS((ARGS_scicos));
+extern void F2C(logblk) __PARAMS((ARGS_scicos));
+extern void F2C(sinblk) __PARAMS((ARGS_scicos));
+extern void F2C(tanblk) __PARAMS((ARGS_scicos));
+extern void F2C(powblk) __PARAMS((ARGS_scicos));
+extern void F2C(sqrblk) __PARAMS((ARGS_scicos));
+extern void F2C(delay) __PARAMS((ARGS_scicos));
+extern void F2C(selblk) __PARAMS((ARGS_scicos));
+extern void F2C(forblk) __PARAMS((ARGS_scicos));
+extern void F2C(writef) __PARAMS((ARGS_scicos));
+extern void F2C(invblk) __PARAMS((ARGS_scicos));
+extern void F2C(hltblk) __PARAMS((ARGS_scicos));
+extern void F2C(gensin) __PARAMS((ARGS_scicos));
+extern void F2C(rndblk) __PARAMS((ARGS_scicos));
+extern void F2C(lookup) __PARAMS((ARGS_scicos));
+extern void F2C(timblk) __PARAMS((ARGS_scicos));
+extern void F2C(gensqr) __PARAMS((ARGS_scicos));
+extern void F2C(mfclck) __PARAMS((ARGS_scicos));
+extern void F2C(sawtth) __PARAMS((ARGS_scicos));
+extern void F2C(tcslti) __PARAMS((ARGS_scicos));
+extern void F2C(tcsltj) __PARAMS((ARGS_scicos));
+extern void F2C(scopxy) __PARAMS((ARGS_scicos));
+extern void F2C(evscpe) __PARAMS((ARGS_scicos));
+extern void F2C(integr) __PARAMS((ARGS_scicos));
+extern void F2C(readf) __PARAMS((ARGS_scicos));
+extern void F2C(affich) __PARAMS((ARGS_scicos));
+extern void F2C(intpol) __PARAMS((ARGS_scicos));
+extern void F2C(intplt) __PARAMS((ARGS_scicos));
+extern void F2C(minblk) __PARAMS((ARGS_scicos));
+extern void F2C(maxblk) __PARAMS((ARGS_scicos));
+extern void F2C(dlradp) __PARAMS((ARGS_scicos));
+extern void F2C(iocopy) __PARAMS((ARGS_scicos));
+extern void F2C(sum2) __PARAMS((ARGS_scicos));
+extern void F2C(sum3) __PARAMS((ARGS_scicos));
+extern void F2C(delayv) __PARAMS((ARGS_scicos));
+extern void F2C(mux) __PARAMS((ARGS_scicos));
+extern void F2C(demux) __PARAMS((ARGS_scicos));
+extern void F2C(samphold) __PARAMS((ARGS_scicos));
+extern void F2C(dollar) __PARAMS((ARGS_scicos));
+extern void F2C(mscope) __PARAMS((ARGS_scicos));
+extern void F2C(intrp2) __PARAMS((ARGS_scicos));
+extern void F2C(intrpl) __PARAMS((ARGS_scicos));
+extern void F2C(fsv) __PARAMS((ARGS_scicos));
+extern void F2C(memo) __PARAMS((ARGS_scicos));
+extern void F2C(fscope) __PARAMS((ARGS_scicos));
+extern void F2C(scoxy) __PARAMS((ARGS_scicos));
+extern void F2C(diffblk) __PARAMS((ARGS_scicos));
+extern void F2C(constraint) __PARAMS((ARGS_scicos));
+extern void F2C(absblk) __PARAMS((ARGS_scicos));
+extern void F2C(andlog) __PARAMS((ARGS_scicos));
+extern void F2C(bidon) __PARAMS((ARGS_scicos));
+extern void F2C(gain) __PARAMS((ARGS_scicos));
+extern void F2C(cdummy) __PARAMS((ARGS_scicos));
+extern void F2C(dband) __PARAMS((ARGS_scicos));
+extern void F2C(cosblk) __PARAMS((ARGS_scicos));
+extern void F2C(ifthel) __PARAMS((ARGS_scicos));
+extern void F2C(eselect) __PARAMS((ARGS_scicos));
+extern void selector __PARAMS((ARGS_scicos));
+extern void sum __PARAMS((ARGS_scicos));
+extern void prod __PARAMS((ARGS_scicos));
+extern void switchn __PARAMS((ARGS_scicos));
+extern void relay __PARAMS((ARGS_scicos));
+extern void readc __PARAMS((ARGS_scicos));
+extern void writec __PARAMS((ARGS_scicos));
+extern void writeau __PARAMS((ARGS_scicos));
+extern void readau __PARAMS((ARGS_scicos));
+extern void plusblk __PARAMS((ARGS_scicos));
+extern void slider __PARAMS((ARGS_scicos));
+extern void zcross2 __PARAMS((ARGS_scicos));
+extern void mswitch __PARAMS((ARGS_scicos));
+extern void logicalop __PARAMS((ARGS_scicos));
+extern void switch2 __PARAMS((ARGS_scicos));
+extern void variable_delay __PARAMS((ARGS_scicos));
+extern void time_delay __PARAMS((ARGS_scicos));
+extern void cscope __PARAMS((ARGS_scicos));
+extern void cmscope __PARAMS((ARGS_scicos));
+extern void satur __PARAMS((ARGS_scicos));
+extern void step_func __PARAMS((ARGS_scicos));
+extern void integral_func __PARAMS((ARGS_scicos));
+extern void absolute_value __PARAMS((ARGS_scicos));
+extern void bounce_ball __PARAMS((ARGS_scicos));
+extern void bouncexy __PARAMS((ARGS_scicos));
+extern void extractor __PARAMS((ARGS_scicos));
+extern void scalar2vector __PARAMS((ARGS_scicos));
+extern void minmax __PARAMS((ARGS_scicos));
+extern void signum __PARAMS((ARGS_scicos));
+extern void product __PARAMS((ARGS_scicos));
+extern void summation __PARAMS((ARGS_scicos));
+extern void multiplex __PARAMS((ARGS_scicos));
+extern void gainblk __PARAMS((ARGS_scicos));
+extern void relationalop __PARAMS((ARGS_scicos));
+extern void modulo_count __PARAMS((ARGS_scicos));
+extern void hystheresis __PARAMS((ARGS_scicos));
+extern void ratelimiter __PARAMS((ARGS_scicos));
+extern void backlash __PARAMS((ARGS_scicos));
+extern void deadband __PARAMS((ARGS_scicos));
+extern void ramp __PARAMS((ARGS_scicos));
+extern void evaluate_expr __PARAMS((ARGS_scicos));
+extern void deriv __PARAMS((ARGS_scicos));
+extern void sin_blk __PARAMS((ARGS_scicos));
+extern void cos_blk __PARAMS((ARGS_scicos));
+extern void tan_blk __PARAMS((ARGS_scicos));
+extern void asin_blk __PARAMS((ARGS_scicos));
+extern void acos_blk __PARAMS((ARGS_scicos));
+extern void atan_blk __PARAMS((ARGS_scicos));
+extern void sinh_blk __PARAMS((ARGS_scicos));
+extern void cosh_blk __PARAMS((ARGS_scicos));
+extern void tanh_blk __PARAMS((ARGS_scicos));
+extern void asinh_blk __PARAMS((ARGS_scicos));
+extern void acosh_blk __PARAMS((ARGS_scicos));
+extern void atanh_blk __PARAMS((ARGS_scicos));
+extern void evtvardly __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
@@ -173,15 +173,15 @@ OpTab tabsim[] ={
 {"forblk",(ScicosF) F2C(forblk)},
 {"fscope",(ScicosF) F2C(fscope)},
 {"fsv",(ScicosF) F2C(fsv)},
-{"gainblk",(ScicosF) gainblk},
 {"gain",(ScicosF) F2C(gain)},
+{"gainblk",(ScicosF) gainblk},
 {"gensin",(ScicosF) F2C(gensin)},
 {"gensqr",(ScicosF) F2C(gensqr)},
 {"hltblk",(ScicosF) F2C(hltblk)},
 {"hystheresis",(ScicosF) hystheresis},
 {"ifthel",(ScicosF) F2C(ifthel)},
-{"integral_func",(ScicosF) integral_func},
 {"integr",(ScicosF) F2C(integr)},
+{"integral_func",(ScicosF) integral_func},
 {"intplt",(ScicosF) F2C(intplt)},
 {"intpol",(ScicosF) F2C(intpol)},
 {"intrp2",(ScicosF) F2C(intrp2)},
@@ -230,20 +230,20 @@ OpTab tabsim[] ={
 {"selblk",(ScicosF) F2C(selblk)},
 {"selector",(ScicosF) selector},
 {"signum",(ScicosF) signum},
-{"sinblk",(ScicosF) F2C(sinblk)},
 {"sin_blk",(ScicosF) sin_blk},
+{"sinblk",(ScicosF) F2C(sinblk)},
 {"sinh_blk",(ScicosF) sinh_blk},
 {"slider",(ScicosF) slider},
 {"sqrblk",(ScicosF) F2C(sqrblk)},
 {"step_func",(ScicosF) step_func},
+{"sum",(ScicosF) sum},
 {"sum2",(ScicosF) F2C(sum2)},
 {"sum3",(ScicosF) F2C(sum3)},
 {"summation",(ScicosF) summation},
-{"sum",(ScicosF) sum},
 {"switch2",(ScicosF) switch2},
 {"switchn",(ScicosF) switchn},
-{"tanblk",(ScicosF) F2C(tanblk)},
 {"tan_blk",(ScicosF) tan_blk},
+{"tanblk",(ScicosF) F2C(tanblk)},
 {"tanh_blk",(ScicosF) tanh_blk},
 {"tcslti",(ScicosF) F2C(tcslti)},
 {"tcsltj",(ScicosF) F2C(tcsltj)},
@@ -254,8 +254,8 @@ OpTab tabsim[] ={
 {"writeau",(ScicosF) writeau},
 {"writec",(ScicosF) writec},
 {"writef",(ScicosF) F2C(writef)},
-{"zcross2",(ScicosF) zcross2},
 {"zcross",(ScicosF) F2C(zcross)},
+{"zcross2",(ScicosF) zcross2},
 {(char *) 0, (ScicosF) 0}};
  
 int ntabsim= 126 ;
