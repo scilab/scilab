@@ -6,7 +6,8 @@ c!
 c     Copyright INRIA
       include '../stack.h'
       integer n,m
-
+      
+      if(err1.gt.0) return
       if(m.gt.1) then
 c     .  last is (i,j)
          rhs=m
