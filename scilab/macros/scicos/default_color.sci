@@ -9,7 +9,8 @@ elseif typ==0 then  //text, block shape,
   else
     clr=1
   end
-elseif typ==1 then //regular links
+elseif typ==1 | typ==2 then //regular links
+
   clr=options('Link')(1),
 end
 endfunction
