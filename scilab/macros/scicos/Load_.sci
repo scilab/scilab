@@ -1,5 +1,4 @@
 function Load_()
-
     Cmenu='Open/Set'
     if edited&~super_block then
       num=x_message(['Diagram has not been saved'],['OK','Go Back'])
@@ -27,10 +26,10 @@ function Load_()
 	if execstr(scs_m.props.context,'errcatch') <>0 then
 	  message(['Error occur when evaluating context:'
 		   lasterror() ])
-	else
-	  disablemenus()
-	  [scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)
-	  enablemenus()
+	//else
+	  //disablemenus()
+	  //[scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)
+	  //enablemenus()
 	end
 	xset('window',%now_win)
       else
