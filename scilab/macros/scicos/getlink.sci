@@ -93,7 +93,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     clr=default_color(typo)
     szout=getportsiz(o1,port_number,typp)
   end
-  from=[kfrom,port_number]
+  from=[kfrom,port_number,0]
   xl=xo
   yl=yo
 
@@ -212,7 +212,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
   
   //make last segment horizontal or vertical
   typ=typo
-  to=[kto,port_number]
+  to=[kto,port_number,1]
   nx=prod(size(xl))
   if nx==1 then //1 segment link
 
@@ -280,12 +280,12 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     link1=o1;
     link1.xx   = [xx(1:wh);d(1)];
     link1.yy   = [yy(1:wh);d(2)];
-    link1.to   = [nx,1]
+    link1.to   = [nx,1,1]
     
     link2=o1;
     link2.xx   = [d(1);xx(wh+1:size(xx,1))];
     link2.yy   = [d(2);yy(wh+1:size(yy,1))];
-    link2.from = [nx,1];
+    link2.from = [nx,1,0];
 
 
     // create split block

@@ -1,5 +1,19 @@
 function scs_m_new=do_version26(scs_m)
-  if typeof(scs_m)=='diagram' then scs_m_new=scs_m,return,end
+  if typeof(scs_m)=='diagram' then 
+    
+    scs_m_new=scs_m,
+
+    for k=1:size(scs_m_new.objs)
+      if typeof(scs_m_new.objs(k))=='Link' then
+	o=scs_m_new.objs(k)
+	if size(o.from,'*')==2 then o.from(3)=0,end
+	if size(o.to,'*')==2 then o.to(3)=1,end
+	scs_m_new.objs(k)=o
+      end
+    end
+
+    return,
+  end
   scs_m_new=scicos_diagram()
 
   tol=scs_m(1)(3)
@@ -87,14 +101,16 @@ function scs_m_new=do_version26(scs_m)
 
 
     elseif o(1)=='Link' then
+      from=o(8);from(3)=0;
+      to=o(9);to(3)=1;
       scs_m_new.objs(i)=scicos_link()
       scs_m_new.objs(i).xx=o(2),
       scs_m_new.objs(i).yy=o(3), 
       scs_m_new.objs(i).id=o(5),
       scs_m_new.objs(i).thick=o(6),
       scs_m_new.objs(i).ct=o(7),
-      scs_m_new.objs(i).from=o(8),
-      scs_m_new.objs(i).to=o(9)
+      scs_m_new.objs(i).from=from,
+      scs_m_new.objs(i).to=to
     elseif o(1)=='Text' then
       scs_m_new.objs(i)=TEXT_f('define')
       scs_m_new.objs(i).model.rpar=o(3)(8)
