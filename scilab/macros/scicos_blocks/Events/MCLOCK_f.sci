@@ -14,32 +14,34 @@ case 'set' then
   // paths to updatable parameters or states
   ppath = list(2)
   newpar=list();
-  for path=ppath ,
-    np=size(path,'*')
-    spath=[matrix([3*ones(1,np);8*ones(1,np);path],1,3*np)]
-    xx=get_tree_elt(arg1,spath)// get the block
-    execstr('xxn='+xx(5)+'(''set'',xx)')
-    if ~and(xxn==xx) then
-      // parameter or states changed
-      arg1=change_tree_elt(arg1,spath,xxn)// Update
-      newpar(size(newpar)+1)=path// Notify modification
-    end
+  //  for path=ppath ,
+  //    np=size(path,'*')
+  //    spath=[matrix([3*ones(1,np);8*ones(1,np);path],1,3*np)]
+  path=ppath
+  spath=list('model','rpar',path)
+  xx=get_tree_elt(arg1,spath)// get the block
+  execstr('xxn='+xx.gui+'(''set'',xx)')
+  if xxn<>xx then
+    // parameter or states changed
+    arg1=change_tree_elt(arg1,spath,xxn)// Update
+    newpar(size(newpar)+1)=path// Notify modification
   end
+  //end
   x=arg1
   y=0
   typ=newpar
-case 'define' then
+ case 'define' then
   nn=2
   dt=0.1
   exprs=[string(dt);string(nn)]
   model = list('csuper',[],[],[],[1;1],[],[],..
-  list(list([600,400],' ',[],[],[]),..
-  list('Block',list([334,199],[40,40],%t,exprs,[],[],13,[5;4]),..
-  list('mfclck',[],[],1,[1;1],[],0, .1,5,'d',[-1 0],[%f,%f],' ',list()),' ','MFCLCK_f'),..
-  list('Block',list([457,161],[16.666667,16.666667],%t,' ',[],[],[5;10;0],6),..
-  list('sum',[],[],[1;1;1],1,[],[],[],[],'d',[],[%f,%f],' ',list()),' ','CLKSOM_f'),..
-  list('Link',[360.7;360.7;411.9],[193.3;169.3;169.3],'drawlink',' ',[0,0],[10,-1],[2,2],[9,1]),..
-  list('Link',[347.3;347.3;461.8;461.8],[193.3;155.5;155.5;161],'drawlink',' ',[0,0],[10,-1],[2,1],[3,1]),..
+	       list(list([600,400],' ',[],[],[]),..
+   list('Block',list([334,199],[40,40],%t,exprs,[],[],13,[5;4]),..
+ list('mfclck',[],[],1,[1;1],[],0, .1,5,'d',[-1 0],[%f,%f],' ',list()),' ','MFCLCK_f'),..
+   list('Block',list([457,161],[16.666667,16.666667],%t,' ',[],[],[5;10;0],6),..
+			 list('sum',[],[],[1;1;1],1,[],[],[],[],'d',[],[%f,%f],' ',list()),' ','CLKSOM_f'),..
+		    list('Link',[360.7;360.7;411.9],[193.3;169.3;169.3],'drawlink',' ',[0,0],[10,-1],[2,2],[9,1]),..
+		    list('Link',[347.3;347.3;461.8;461.8],[193.3;155.5;155.5;161],'drawlink',' ',[0,0],[10,-1],[2,1],[3,1]),..
   list('Link',[468.9;482.5],[169.3;169.3],'drawlink',' ',[0,0],[10,-1],[3,1],[12,1]),..
   list('Block',list([509,261],[20,20],%t,'1',[],[],11,[]),..
   list('output',[],[],1,[],[],[],[],1,'d',[],[%f,%f],' ',list()),' ','CLKOUT_f'),..
