@@ -925,3 +925,6 @@ Francois VOGEL, 24/03/05
        tk bug 1169429)
      - further fix for quick drags, on Linux this time
  * version --> 3.56
+
+Francois VOGEL, 25/03/05
+ * version --> 4.0 for inclusion in Scilab 3.1RC
