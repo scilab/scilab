@@ -1129,11 +1129,11 @@ zcptr=cpr.sim.zcptr;
   //[junk_state,t]=scicosim(cpr.state,tcur,tf,Total_rdcpr,'finish',tolerances);
  
 nblk1=nblk;
- for kf=1:nblk
-   if (part(funs(kf),1:7) == 'capteur' | part(funs(kf),1:10) == 'actionneur' | funs(kf) == 'bidon') then 
-      nblk1=nblk1-1;
-   end
- end
+ //for kf=1:nblk
+   //if (part(funs(kf),1:7) == 'capteur' | part(funs(kf),1:10) == 'actionneur' | funs(kf) == 'bidon') then 
+     // nblk1=nblk1-1;
+   //end
+ //end
 
   
   //***********************************
