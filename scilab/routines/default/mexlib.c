@@ -1091,7 +1091,7 @@ mxArray *mxCreateCharArray(int ndim, const int *dims)
 mxArray *mxCreateCellArray(int ndim, const int *dims)
 {
   static int lw,lw1;
-  int retval;
+  int retval;int *header;
   int nfields;char *field_names[] = {"entries"};
   Nbvars++;
   lw = Nbvars;
@@ -1100,6 +1100,8 @@ mxArray *mxCreateCellArray(int ndim, const int *dims)
   if( !retval) {
     return (mxArray *) 0;
   }
+  header =  (int *) stk(C2F(vstk).Lstk[lw + Top - Rhs - 1 ]);
+  header[14]=12;header[15]=14; /*  "st" <-- "ce"  */
   C2F(intersci).ntypes[lw-1]=AsIs;
   return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
 }
