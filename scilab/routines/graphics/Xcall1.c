@@ -842,7 +842,7 @@ void drawpolyline_1(char *fname, char *str, integer *n, integer *v1, integer *v2
 void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *fillvect, integer *n, integer *p, integer *x8, double *vx, double *vy, double *dx3, double *dx4, integer lx0, integer lx1)
 {
   integer *xm,*ym,err=0,i,j;
-  integer px[*p+1],py[*p+1];
+  integer px[(*p)+1],py[(*p)+1];
   Myalloc(&xm,&ym,(*n)*(*p),&err);
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,p,"f2i",3L);
