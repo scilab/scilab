@@ -98,7 +98,6 @@ function xmltohtml(dirs,titles,xsl,step)
 	    
 	    if ierr<>0 then 
 	      write(%io(2),'     Warning '+fb+'.xml does not follow dtd','(a)')
-	      pause
 	    end
 	  end 
 	end
