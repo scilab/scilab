@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+static char env[4096];
 /*-----------------------------------------------------------------------------------*/
 /* returns 0 if there is a problem else 1 */
 int setenvc(char *string,char *value)
@@ -11,30 +13,14 @@ int setenvc(char *string,char *value)
 
 	int ret=0;
 
-#ifdef WIN32 
-	char *env=NULL;
-	env=(char*)malloc( (strlen(string)+strlen(value)+2)*sizeof(char) );
-	sprintf(env,"%s=%s",string,value);
-
-	if ( putenv(env) ) ret=FALSE;
-	else ret=TRUE;
-
-	if (env) free(env);
-#else
 	#if linux
 		if ( setenv(string,value,1) ) ret=FALSE;
 		else ret=TRUE;
-	#else /* others HP Solaris */
-		char *env=NULL;
-		env=(char*)malloc( (strlen(string)+strlen(value)+2)*sizeof(char) );
+	#else /* others HP Solaris WIN32*/
 		sprintf(env,"%s=%s",string,value);
-
 		if ( putenv(env) ) ret=FALSE;
 		else ret=TRUE;
-
-		if (env) free(env);
 	#endif
-#endif
 
 	return ret;
 }
