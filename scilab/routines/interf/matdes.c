@@ -5396,11 +5396,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"polyline_style", 14) == 0)
     {  
       if (sciGetEntityType (pobj) == SCI_POLYLINE)
-	if ((stk(*value)[0]==0) || (stk(*value)[0]==1) || (stk(*value)[0]==2) 
+	if ((stk(*value)[0]==1) || (stk(*value)[0]==2) 
 	    || (stk(*value)[0]==3) ||(stk(*value)[0]==4)||(stk(*value)[0]==5))
 	  pPOLYLINE_FEATURE (pobj)->plot = (int)stk(*value)[0];
 	else
-	  {strcpy(error_message,"Stylemust be 0,1,2,3,4 or 5");return -1;}
+	  {strcpy(error_message,"Style must be 1,2,3,4 or 5");return -1;}
       else
 	{strcpy(error_message,"Object is not a Polyline");return -1;}
     }
@@ -5433,7 +5433,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {
       xtmp = (int) *stk(*value);
       if ( (xtmp > 9) || xtmp < 0)
-	{strcpy(error_message,"The value must be in [0 10]");return -1;}
+	{strcpy(error_message,"The value must be in [0 9]");return -1;}
       else
 	sciSetFontStyle((sciPointObj *) pobj, xtmp);
     }
