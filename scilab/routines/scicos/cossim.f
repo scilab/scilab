@@ -204,52 +204,45 @@ c
      &           ng,jroot)
             if (istate .le. 0) then
                if (istate .eq. -3) then
-                  if(stuck) then
-c
-                     call grblk(neq,told,x,ng,w)
-                     do 32, ib=1,ng
-                        if(w(ib).eq.0d0) then
-                           jroot(2*ng+ib)=1
-                        endif
- 32                  continue
-                     hot=.false.
-                     goto 39
-c
-                     ierr= 2
-                     return
-                  endif
+                  call grblk(neq,told,x,ng,w)
+                  do 32, ib=1,ng
+                     if(w(ib).eq.0d0) then
+                        jroot(2*ng+ib)=1
+                     endif
+ 32               continue
+                  hot=.false.
                   itask = 2
                   rhot(5)=ttol
                   istate = 1
-                  call lsoda(simblk,neq,x,told,t,
+                  call lsodar(simblk,neq,x,told,t,
      &                 1,rtol,atol,itask,
-     &                 istate,1,rhot,nrwp,ihot,niwp,jdum,jt)
+     &                 istate,1,rhot,nrwp,ihot,niwp,jdum,jt,grblk,
+     &                 ng,jroot)
                   rhot(5)=0.0
-                  hot = .false.
-                  stuck=.true.
-                  if (istate .gt. 0) goto 39
-               endif
+                  hot=.false.
+                  if (istate .le. 0) then
+C     !           integration problem
+                     ierr = 100-istate
+                     return
+                  endif
+               else
 C     !        integration problem
-               ierr = 100-istate
-               return
+                  ierr = 100-istate
+                  return
+               endif
+            else
+               hot = .true.
             endif
-            hot = .true.
-            stuck=.false.
- 38         continue
 
 c     Initializing the zero crossing mask
-               call grblk(neq,told,x,-1,w)
-               do 385, ib=1,ng
-                  if((w(ib).ne.0d0).and.(jroot(2*ng+ib).eq.1)) then
-                     hot=.false.
-                     jroot(2*ng+ib)=0
-c                  elseif ((w(ib).eq.0d0).and.(jroot(2*ng+ib).ne.1)) then
-c                     hot=.false.
-c                     jroot(2*ng+ib)=1
-c                  else
-                  endif
- 385           continue
- 39         continue
+            call grblk(neq,told,x,-1,w)
+            do 38, ib=1,ng
+               if((w(ib).ne.0d0).and.(jroot(2*ng+ib).eq.1)) then
+                  hot=.false.
+                  jroot(2*ng+ib)=0
+               endif
+ 38         continue
+
 c     .     update outputs of 'c' type  blocks
             nclock = 0
             ntvec=0
