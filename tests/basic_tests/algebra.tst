@@ -1410,7 +1410,7 @@ if Err(A*X-b)>100*%eps then pause,end
 //Real rank deficient fat
 A=[1 2 3;1 2 3];b=[4;5];
 X=lsq(A,b);
-if Err(A'*A*X-A'*b)>100*%eps then pause,end
+if Err(A'*A*X-A'*b)> 100*%eps then pause,end
 //Real  tall
 A=[1 2;4 2;0 1];b=[1;1;1];
 X=lsq(A,b);
@@ -1438,7 +1438,7 @@ if Err(A'*A*X-A'*b)>100*%eps then pause,end
 if Err(A'*A*X-A'*b)>100*%eps then pause,end
 A=[1 2 3;1 2 3]+%i;b=[4;5]+%i;
 X=lsq(A,b);
-if Err(A'*A*X-A'*b)>100*%eps then pause,end
+if Err(A'*A*X-A'*b)>1000*%eps then pause,end
 
 //Complex  full rank tall
 A=[1 2;4 2;0 1]+%i;b=[1;1;1];

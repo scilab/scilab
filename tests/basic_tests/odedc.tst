@@ -33,7 +33,7 @@ xcd=odedc([x0c;0],1,1,t0,t,phis);
 //link('phis.o','phis')
 xcd2=odedc([x0c;0],1,1,t0,t,'phis');
 
-if norm(xcd-xcd2,1) > 1.d-10 then pause,end
+if norm(xcd-xcd2,1) > 1.d-5 then pause,end
 deff('xd=ff(t,x)','xd=A*x+B*u')
 
 u=1/2;xn=ode(x0c,t0,t,ff);

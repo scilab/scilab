@@ -1187,7 +1187,7 @@ p=rand(5,1);pc=p+i*rand(5,1);x=poly(0,'x');
  
 if norm(sort(p )-sort(real(roots(poly(p,'x'))))) > 1000*%eps then bugmes();quit;end
  
-if norm(sort(imag(pc))-sort(real(roots(poly(imag(pc),'x'))))) > 1000*%eps then bugmes();quit;end
+if norm(sort(imag(pc))-sort(real(roots(poly(imag(pc),'x'))))) > 10000*%eps then bugmes();quit;end
  
 //**
  

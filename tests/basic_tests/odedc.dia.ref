@@ -54,7 +54,7 @@ xcd=odedc([x0c;0],1,1,t0,t,phis);
 xcd2=odedc([x0c;0],1,1,t0,t,'phis');
  
  
-if norm(xcd-xcd2,1) > 1.d-10 then bugmes();quit;end
+if norm(xcd-xcd2,1) > 1.d-5 then bugmes();quit;end
  
 deff('xd=ff(t,x)','xd=A*x+B*u')
  

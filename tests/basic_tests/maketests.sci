@@ -54,7 +54,7 @@ function tests=testslist()
 'sprintf.tst';
 'sscanf.tst';
 'strelm.tst';
-'slicot.tst']
+'slicot.tst'];
 
 if MSDOS then
 tests(find(tests=='breakpoints.tst'))=[]

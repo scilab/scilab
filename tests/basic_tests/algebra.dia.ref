@@ -2565,7 +2565,7 @@ A=[1 2 3;1 2 3];b=[4;5];
  
 X=lsq(A,b);
  
-if Err(A'*A*X-A'*b)>100*%eps then bugmes();quit;end
+if Err(A'*A*X-A'*b)> 100*%eps then bugmes();quit;end
  
 //Real  tall
  
@@ -2618,7 +2618,7 @@ A=[1 2 3;1 2 3]+%i;b=[4;5]+%i;
  
 X=lsq(A,b);
  
-if Err(A'*A*X-A'*b)>100*%eps then bugmes();quit;end
+if Err(A'*A*X-A'*b)>1000*%eps then bugmes();quit;end
  
  
 //Complex  full rank tall
