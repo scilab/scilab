@@ -205,10 +205,8 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 
   xx[0]=0.5;xx[1]= *n2+0.5;
   yy[0]=0.5;yy[1]= *n1+0.5;
-
-  /* NG beg */  
+ 
   if (version_flag() == 0){
-    double x,y; /* void values  for ConstructGrayplot */
     if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
       sciXbasc(); 
       initsubwin();
@@ -252,7 +250,7 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
-		       &x,&y,z,*n1+1,*n2+1,1)); 
+		       NULL,NULL,z,*n1 + 1,*n2 + 1,1)); 
     sciDrawObj(sciGetCurrentObj ()); 
     pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
   }

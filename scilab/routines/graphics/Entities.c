@@ -9077,11 +9077,13 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
       pGRAYPLOT_FEATURE (pobj)->isselected = TRUE; 
       pGRAYPLOT_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
       pGRAYPLOT_FEATURE (pobj)->type = type;
-   
+      pGRAYPLOT_FEATURE (pobj)->pvecx = (double *)NULL;
+      pGRAYPLOT_FEATURE (pobj)->pvecy = (double *)NULL;
+
       strncpy (pGRAYPLOT_FEATURE (pobj)->datamapping, "scaled", 6);
       pgray = pGRAYPLOT_FEATURE (pobj);
       
-      if ((pgray->pvecx = MALLOC (n1 * sizeof (double))) == NULL)
+      if (pvecx && (pgray->pvecx = MALLOC (n1 * sizeof (double))) == NULL)
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
@@ -9091,45 +9093,41 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	}
       cmpt = (type == 2)? 4:n2 ;
       if (type != 2)
-	if ((pgray->pvecy = MALLOC (cmpt * sizeof (double))) == NULL)
+	if (pvecy && (pgray->pvecy = MALLOC (cmpt * sizeof (double))) == NULL)
 	  {
-	    FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
+	    if (pvecx) FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
 	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	    sciDelHandle (pobj);
 	    FREE(pGRAYPLOT_FEATURE(pobj));
 	    FREE(pobj);
 	    return (sciPointObj *) NULL;
 	  }
-      if ((pgray->pvecz = MALLOC ((n1*n2) * sizeof (double))) == NULL)
-	{
-	  FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
-	  FREE(pGRAYPLOT_FEATURE (pobj)->pvecy);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pGRAYPLOT_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+      if ((pgray->pvecz = MALLOC ((n1*n2) * sizeof (double))) == NULL){
+	if (pvecx) FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
+	if (pvecy) FREE(pGRAYPLOT_FEATURE (pobj)->pvecy);
+	sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	sciDelHandle (pobj);
+	FREE(pGRAYPLOT_FEATURE(pobj));
+	FREE(pobj);
+	return (sciPointObj *) NULL;
+      }
+      if (pvecx) {
+	for (i = 0; i < n1; i++) pgray->pvecx[i] = pvecx[i];
+      } 
+   
 
-      for (i = 0; i < n1; i++)
-	{
-	  pgray->pvecx[i] = pvecx[i];
-	}
-      if (type != 2)
-	for (i = 0; i < n2; i++)
-	  {
-	    pgray->pvecy[i] = pvecy[i];
-	  }
-      for (i = 0; i < (n1*n2); i++)
-	{
-	  pgray->pvecz[i] = pvecz[i];
-	}
-      pgray->nx = n1;	      
-      pgray->ny = n2;		
+      if (pvecy) {
+	if (type != 2)
+	  for (i = 0; i < n2; i++) pgray->pvecy[i] = pvecy[i];
+      }
+    
+      pgray->nx = n1;pgray->ny = n2;
+      for (i = 0; i < (n1*n2); i++) pgray->pvecz[i] = pvecz[i];
+	
       if (sciInitGraphicContext (pobj) == -1)
 	{
-	  FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
-	  FREE(pGRAYPLOT_FEATURE (pobj)->pvecy); 
+	  if (pvecx) FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
+	  if (pvecy) FREE(pGRAYPLOT_FEATURE (pobj)->pvecy); 
 	  FREE(pGRAYPLOT_FEATURE (pobj)->pvecz);
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
@@ -11256,7 +11254,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	case 0:
 	  if ((xm = MALLOC (n1*sizeof (integer))) == NULL)	return -1;
 	  if ((ym = MALLOC (n2*sizeof (integer))) == NULL){
-	    FREE(xm); xm = (integer *) NULL; return -1; /* F.Leray Rajout de xm = (integer *) NULL; 18.02.04*/
+	    FREE(xm); xm = (integer *) NULL; return -1; 
 	  }
  
 	  for ( i =0 ; i < n1 ; i++)  
