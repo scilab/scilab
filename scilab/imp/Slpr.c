@@ -16,19 +16,10 @@
 #include <floatingpoint.h>
 #endif
 
-#ifdef __STDC__
-#ifndef  __PARAMS
-#define  __PARAMS(paramlist)		paramlist
-#endif
-#else	
-#ifndef  __PARAMS
-#define  __PARAMS(paramlist)		()
-#endif
-#endif
+#include "util.h" 
 
-static void Sed __PARAMS((char *,char *,char *,char *,char *,char *,char *));
-static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen);
-static void ComputeSize __PARAMS((int num,int i,double *,double *,double *,double *));
+static void Sed (char *,char *,char *,char *,char *,char *,char *);
+static void ComputeSize (int num,int i,double *,double *,double *,double *);
 
 #ifdef WIN32 
 extern void SciEnv(void);
@@ -140,7 +131,7 @@ static void Sed(char *file, char *strin1, char *strout1, char *strin2, char *str
     { int stop=0;
       while ( stop != 1)
 	{  
-	  readOneLine (buff,&stop,fd,&buflen); 
+	  read_one_line (&buff,&stop,fd,&buflen); 
 	   if (strncmp(buff,strin1,strlen(strin1))==0)
 	     fprintf(stdout,"%s\n",strout1);
 	   else
@@ -165,41 +156,7 @@ static void Sed(char *file, char *strin1, char *strout1, char *strin2, char *str
     }
 }
 
-/*-----------------------------------------------
-  lit une ligne dans fd et la stocke dans buff
----------------------------------------------------*/
 
-static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen)
-{ 
-  int i ,c ;
-  for ( i = 0 ;  (c =getc(fd)) !=  '\n' && c != EOF ; i++) 
-    {
-      if ( i == *buflen ) 
-	{
-	  *buflen += 512;
-	  buff == realloc(buff,*buflen*sizeof(char));
-	  if ( buff == NULL) 
-	    {
-	      fprintf(stderr,"Running out of space \n");
-	      exit(1);
-	    }
-	}
-      buff[i]= c ;
-    }
-  if ( i+1 >= *buflen ) 
-    {
-      *buflen += 512;
-      buff == realloc(buff,*buflen*sizeof(char));
-      if ( buff == NULL) 
-	{
-	  fprintf(stderr,"Running out of space \n");
-	  exit(1);
-	}
-    }
-  buff[i]='\n';
-  buff[i+1]='\0';
-  if ( c == EOF) {*stop = 1;}
-}
 
 /*-----------------------------------------------
   calcule la taille pour un dessin suivant le nombre de dessin a 

@@ -6,8 +6,7 @@
 #include <malloc.h>
 #endif 
 #include <stdio.h>
-
-static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen);
+#include "util.h" 
 
 #ifdef WIN32 
 extern void SciEnv(void);
@@ -107,7 +106,7 @@ void Sed(char *file, char *strin1, char *strout1, char *strin2, char *strout2, c
     { int stop=0;
       while ( stop != 1)
 	{  
-	   readOneLine (buff,&stop,fd,&buflen); 
+	   read_one_line (&buff,&stop,fd,&buflen); 
 	   if (strncmp(buff,strin1,strlen(strin1))==0)
 	     fprintf(fdo,"%s\n",strout1);
 	   else
@@ -130,42 +129,6 @@ void Sed(char *file, char *strin1, char *strout1, char *strin2, char *strout2, c
       fprintf(stderr,"file %s not found ",file);
       return;
     }
-}
-
-/*-----------------------------------------------
-  lit une ligne dans fd et la stocke dans buff
----------------------------------------------------*/
-
-static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen)
-{ 
-  int i ,c ;
-  for ( i = 0 ;  (c =getc(fd)) !=  '\n' && c != EOF ; i++) 
-    {
-      if ( i == *buflen ) 
-	{
-	  *buflen += 512;
-	  buff == realloc(buff,*buflen*sizeof(char));
-	  if ( buff == NULL) 
-	    {
-	      fprintf(stderr,"Running out of space \n");
-	      exit(1);
-	    }
-	}
-      buff[i]= c ;
-    }
-  if ( i+1 >= *buflen ) 
-    {
-      *buflen += 512;
-      buff == realloc(buff,*buflen*sizeof(char));
-      if ( buff == NULL) 
-	{
-	  fprintf(stderr,"Running out of space \n");
-	  exit(1);
-	}
-    }
-  buff[i]='\n';
-  buff[i+1]='\0';
-  if ( c == EOF) {*stop = 1;}
 }
 
 /*-----------------------------------------------

@@ -14,12 +14,12 @@ char *getenv();
 #include <stdio.h>
 
 #include "../routines/machine.h"
+#include "util.h" 
 
-static int Sed __PARAMS((int,char *,FILE *,char *,char *,char *,char *,char *,char *));
-int ScilabPsToEps __PARAMS((char orientation,char *filein,char *fileout));
-static  void dos2win32 __PARAMS((char *filename,char *filename1));
-static void ConvertName __PARAMS((char *filein,char *fileout));
-static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen);
+static int Sed (int,char *,FILE *,char *,char *,char *,char *,char *,char *);
+int ScilabPsToEps (char orientation,char *filein,char *fileout);
+static  void dos2win32 (char *filename,char *filename1);
+static void ConvertName (char *filein,char *fileout);
 
 /**************************************************
  * SEpsf  Usage : BEpsf [-orientation] filename.ps 
@@ -217,13 +217,13 @@ static void ConvertName(char *filein,char *fileout)
 }
 
 
-/**************************************************
- * copies file to fileo performing some substitutions 
- **************************************************/
 
-static int Sed(int flag,char *file,FILE *fileo,
-	       char *strin1,char *strout1,char *strin2,
-	       char *strout2,char *strin3,char *strout3)
+/*----------------------------------------------------
+ * copies file to fileo performing some substitutions 
+ *----------------------------------------------------*/
+
+int Sed(int flag, char *file, FILE *fileo, char *strin1, char *strout1,
+	char *strin2, char *strout2, char *strin3, char *strout3)
 {
   FILE *fd;
 
@@ -238,37 +238,38 @@ static int Sed(int flag,char *file,FILE *fileo,
 	  exit(1);
 	}
     }
+
   fd=fopen(file,"r");
   if (fd != 0)
     { int stop=0;
-    while ( stop != 1)
-      {  
-	readOneLine (buff,&stop,fd,&buflen); 
-	if ( flag == 1 ) 
-	  {
-	    if ( strncmp(buff,"%!PS-Adobe-2.0 EPSF-2.0",
-			 strlen("%!PS-Adobe-2.0 EPSF-2.0"))== 0)
-	      {
-		fclose(fd);
-		return(1);
-	      }
-	  }
-	if ( strin1 != (char *) 0 && strncmp(buff,strin1,strlen(strin1))==0)
-	  fprintf(fileo,"%s\n",strout1);
-	else
-	  {
-	    if (  strin2 != (char *) 0 && strncmp(buff,strin2,strlen(strin2))==0)
-	      fprintf(fileo,"%s\n",strout2);
-	    else 
-	      {
-		if ( strin3 != (char *) 0 && strncmp(buff,strin3,strlen(strin3))==0)
-		  fprintf(fileo,"%s\n",strout3);
-		else
-		  fprintf(fileo,"%s",buff);
-	      }
-	  }
-      }
-    fclose(fd);
+      while ( stop != 1)
+	{ 
+	   read_one_line (&buff,&stop,fd,&buflen); 
+	   if ( flag == 1 ) 
+	     {
+	       if ( strncmp(buff,"%!PS-Adobe-2.0 EPSF-2.0",
+			    strlen("%!PS-Adobe-2.0 EPSF-2.0"))== 0)
+		 {
+		   fclose(fd);
+		   return(1);
+		 }
+	     }
+	   if ( strin1 != (char *) 0 && strncmp(buff,strin1,strlen(strin1))==0)
+	     fprintf(fileo,"%s\n",strout1);
+	   else
+	     {
+	       if (  strin2 != (char *) 0 && strncmp(buff,strin2,strlen(strin2))==0)
+		 fprintf(fileo,"%s\n",strout2);
+	       else 
+		 {
+		   if ( strin3 != (char *) 0 && strncmp(buff,strin3,strlen(strin3))==0)
+		     fprintf(fileo,"%s\n",strout3);
+		   else
+		     fprintf(fileo,"%s",buff);
+		 }
+	     }
+	 }
+      fclose(fd);
     }
   else 
     {
@@ -278,38 +279,3 @@ static int Sed(int flag,char *file,FILE *fileo,
   return(0);
 }
 
-/*-----------------------------------------------
-  lit une ligne dans fd et la stocke dans buff
-  ---------------------------------------------------*/
-
-static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen)
-{ 
-  int i ,c ;
-  for ( i = 0 ;  (c =getc(fd)) !=  '\n' && c != EOF ; i++) 
-    {
-      if ( i == *buflen ) 
-	{
-	  *buflen += 512;
-	  buff == realloc(buff,*buflen*sizeof(char));
-	  if ( buff == NULL) 
-	    {
-	      fprintf(stderr,"Running out of space \n");
-	      exit(1);
-	    }
-	}
-      buff[i]= c ;
-    }
-  if ( i+1 >= *buflen ) 
-    {
-      *buflen += 512;
-      buff == realloc(buff,*buflen*sizeof(char));
-      if ( buff == NULL) 
-	{
-	  fprintf(stderr,"Running out of space \n");
-	  exit(1);
-	}
-    }
-  buff[i]='\n';
-  buff[i+1]='\0';
-  if ( c == EOF) {*stop = 1;}
-}

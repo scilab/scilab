@@ -14,63 +14,63 @@ all:: $(SCIDIR)/bin/$(PREF)lpr $(SCIDIR)/bin/$(PREF)latexprs $(SCIDIR)/bin/$(PRE
 	$(SCIDIR)/util/$(PREF)latdocs $(SCIDIR)/bin/$(PREF)Epsf $(SCIDIR)/bin/$(PREF)latexpr \
 	 $(SCIDIR)/util/$(PREF)latdoc
 
-$(SCIDIR)/bin/$(PREF)lpr: Slpr.o $(ENV)
+$(SCIDIR)/bin/$(PREF)lpr: Slpr.o util.o $(ENV)
 	$(RM) $@
-	$(CC) -o $@ Slpr.o $(ENV) $(CC_LDFLAGS)
+	$(CC) -o $@ Slpr.o util.o $(ENV) $(CC_LDFLAGS)
 clean::
-	$(RM) Slpr.o $(ENV)
+	$(RM) Slpr.o util.o $(ENV)
 distclean::
-	$(RM) Slpr.o $(ENV) $(SCIDIR)/bin/$(PREF)lpr
+	$(RM) Slpr.o util.o $(ENV) $(SCIDIR)/bin/$(PREF)lpr
 
-$(SCIDIR)/bin/$(PREF)Epsf: SEpsf.o $(ENV)
+$(SCIDIR)/bin/$(PREF)Epsf: SEpsf.o util.o $(ENV)
 	$(RM) $@
-	$(CC) -o $@ SEpsf.o $(ENV) $(CC_LDFLAGS)
+	$(CC) -o $@ SEpsf.o util.o $(ENV) $(CC_LDFLAGS)
 clean::
-	$(RM) SEpsf.o
+	$(RM) SEpsf.o util.o
 distclean::
-	$(RM) SEpsf.o $(SCIDIR)/bin/$(PREF)Epsf
+	$(RM) SEpsf.o util.o $(SCIDIR)/bin/$(PREF)Epsf
 
-$(SCIDIR)/bin/$(PREF)latexpr: Slatexpr.o $(ENV)
+$(SCIDIR)/bin/$(PREF)latexpr: Slatexpr.o util.o $(ENV)
 	$(RM) $@
-	$(CC) -o $@ Slatexpr.o $(ENV) $(CC_LDFLAGS)
+	$(CC) -o $@ Slatexpr.o util.o $(ENV) $(CC_LDFLAGS)
 clean::
-	$(RM) Slatexpr.o
+	$(RM) Slatexpr.o util.o
 distclean::
-	$(RM) Slatexpr.o $(SCIDIR)/bin/$(PREF)latexpr
+	$(RM) Slatexpr.o util.o $(SCIDIR)/bin/$(PREF)latexpr
 
-$(SCIDIR)/bin/$(PREF)latexprs: Slatexprs.o $(ENV)
+$(SCIDIR)/bin/$(PREF)latexprs: Slatexprs.o util.o $(ENV)
 	$(RM) $@
-	$(CC) -o $@ Slatexprs.o $(ENV) $(CC_LDFLAGS)
+	$(CC) -o $@ Slatexprs.o util.o $(ENV) $(CC_LDFLAGS)
 clean::
-	$(RM) Slatexprs.o
+	$(RM) Slatexprs.o util.o
 distclean::
-	$(RM) Slatexprs.o $(SCIDIR)/bin/$(PREF)latexprs
+	$(RM) Slatexprs.o util.o $(SCIDIR)/bin/$(PREF)latexprs
 
-$(SCIDIR)/bin/$(PREF)latexpr2: Slatexpr2.o $(ENV)
+$(SCIDIR)/bin/$(PREF)latexpr2: Slatexpr2.o util.o $(ENV)
 	$(RM) $@
-	$(CC) -o $@ Slatexpr2.o $(ENV) $(CC_LDFLAGS)
+	$(CC) -o $@ Slatexpr2.o util.o $(ENV) $(CC_LDFLAGS)
 clean::
-	$(RM) Slatexpr2.o
+	$(RM) Slatexpr2.o util.o
 distclean::
-	$(RM) Slatexpr2.o $(SCIDIR)/bin/$(PREF)latexpr2
+	$(RM) Slatexpr2.o util.o $(SCIDIR)/bin/$(PREF)latexpr2
 
-$(SCIDIR)/util/$(PREF)latdocs: Slatdocs.o $(ENV)
+$(SCIDIR)/util/$(PREF)latdocs: Slatdocs.o util.o $(ENV)
 	$(RM) $@
-	$(CC) -o $@ Slatdocs.o $(ENV)  $(CC_LDFLAGS)
-
-clean::
-	$(RM) Slatdocs.o
-distclean::
-	$(RM) Slatdocs.o $(SCIDIR)/util/$(PREF)latdocs
-
-$(SCIDIR)/util/$(PREF)latdoc: Slatdoc.o $(ENV)
-	$(RM) $@
-	$(CC) -o $@ Slatdoc.o $(ENV)  $(CC_LDFLAGS)
-
+	$(CC) -o $@ Slatdocs.o util.o $(ENV)  $(CC_LDFLAGS)
 
 clean::
-	$(RM) Slatdoc.o
+	$(RM) Slatdocs.o util.o
 distclean::
-	$(RM) Slatdoc.o $(SCIDIR)/util/$(PREF)latdoc
+	$(RM) Slatdocs.o util.o $(SCIDIR)/util/$(PREF)latdocs
+
+$(SCIDIR)/util/$(PREF)latdoc: Slatdoc.o util.o $(ENV)
+	$(RM) $@
+	$(CC) -o $@ Slatdoc.o util.o $(ENV)  $(CC_LDFLAGS)
+
+
+clean::
+	$(RM) Slatdoc.o util.o
+distclean::
+	$(RM) Slatdoc.o util.o $(SCIDIR)/util/$(PREF)latdoc
 
 

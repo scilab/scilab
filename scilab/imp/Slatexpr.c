@@ -14,9 +14,10 @@ char *getenv();
 #include <stdio.h>
 
 #include "../routines/machine.h"
+#include "util.h" 
 
 static int Sed __PARAMS((int,char *,FILE *,char *,char *,char *,char *,char *,char *));
-static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen);
+
 static void FileNameChange __PARAMS((char *filein,char *fileout,char *,char *));
 static  void dos2win32 __PARAMS((char *filename,char *filename1));
 int ScilabPsToTeX __PARAMS((char orientation,char *filenamein,char *filenameout,double xs,double ys));
@@ -339,7 +340,7 @@ static int Sed(int flag, char *file, FILE *fileo, char *strin1, char *strout1, c
     { int stop=0;
       while ( stop != 1)
 	{ 
-	   readOneLine (buff,&stop,fd,&buflen); 
+	   read_one_line (&buff,&stop,fd,&buflen); 
 	   if ( flag == 1 ) 
 	     {
 	       if ( strncmp(buff,"%!PS-Adobe-2.0 EPSF-2.0",
@@ -374,38 +375,3 @@ static int Sed(int flag, char *file, FILE *fileo, char *strin1, char *strout1, c
   return(0);
 }
 
-/*-----------------------------------------------
-  lit une ligne dans fd et la stocke dans buff
----------------------------------------------------*/
-
-static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen)
-{ 
-  int i ,c ;
-  for ( i = 0 ;  (c =getc(fd)) !=  '\n' && c != EOF ; i++) 
-    {
-      if ( i == *buflen ) 
-	{
-	  *buflen += 512;
-	  buff == realloc(buff,*buflen*sizeof(char));
-	  if ( buff == NULL) 
-	    {
-	      fprintf(stderr,"Running out of space \n");
-	      exit(1);
-	    }
-	}
-      buff[i]= c ;
-    }
-  if ( i+1 >= *buflen ) 
-    {
-      *buflen += 512;
-      buff == realloc(buff,*buflen*sizeof(char));
-      if ( buff == NULL) 
-	{
-	  fprintf(stderr,"Running out of space \n");
-	  exit(1);
-	}
-    }
-  buff[i]='\n';
-  buff[i+1]='\0';
-  if ( c == EOF) {*stop = 1;}
-}
