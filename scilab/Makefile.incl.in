@@ -80,16 +80,9 @@ TCLTK_LIBS = @TCLTK_LIBS@
 # for WIN32 version 
 # win32 libraries for gcwin32 
 WIN32LIBS=-mwindows -lwsock32 -lshell32 -lcomctl32  -lwinspool -lm 
-WINLIBS = -lf2c $(WIN32LIBS)
+WINLIBS = $(WIN32LIBS)
+LINKEROPT= $(LD_LDFLAGS)
 # Ressource compiler 
-#
-RC=rc.exe
-RCVARS=-r -DWIN32
-# an other free resource compiler 
-#
-#RC=/softs/lccpub/bin/lrc 
-#RCVARS=/iC:/softs/lccpub/include
-# from .res to .o  
-CVTRES=windres
-# link options 
-LINKEROPT=-Wl,-subsystem,console
+RC=windres 
+RCVARS=-O coff 
+

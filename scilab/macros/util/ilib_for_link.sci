@@ -125,8 +125,14 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
     mfprintf(fd,"CC="+cc+ "\n");
   end
   if getenv('WIN32','NO')=='OK' then
-    mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL "+cflags+ "\n");
-    mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL "+fflags+ "\n");
+    // cygwin 
+    mfprintf(fd,"OTHERLIBS = ");
+    for x=libs(:)' ; mfprintf(fd," %s.a",x);end
+    mfprintf(fd,"\n");
+    mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines\"""+...
+	     " -Dmexfunction_=mex$*_  -DmexFunction=mex_$* "+ cflags +" \n"); 
+    mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines\"""+...
+	     " -Dmexfunction=mex$* "+ fflags +"\n"); 
   else
      mfprintf(fd,"CFLAGS = $(CC_OPTIONS) "+cflags+ "\n");
      mfprintf(fd,"FFLAGS = $(FC_OPTIONS) "+fflags+ "\n");

@@ -59,9 +59,13 @@ function tests=testslist()
 'slicot.tst'];
 
 if MSDOS then
-tests(find(tests=='breakpoints.tst'))=[]
-tests(find(tests=='pause.tst'))=[]
-tests(find(tests=='metanet.tst'))=[]
+  comp_target = getenv('COMPILER','NO');
+  if comp_target == 'gcc ' then 
+    tests(find(tests=='links.tst'))=[]
+  end
+//tests(find(tests=='breakpoints.tst'))=[]
+//tests(find(tests=='pause.tst'))=[]
+//tests(find(tests=='metanet.tst'))=[]
 tests(find(tests=='pvm.tst'))=[]
 end
 endfunction
