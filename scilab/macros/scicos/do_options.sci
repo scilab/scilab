@@ -71,7 +71,7 @@ elseif flag=='Cmap' then
     [ok,R,G,B]=getvalue(['Enter RGB description of new colors';
 	'Each component must be greater or equal to 0'
 	'and less or equal to 1'],['R','G','B'],..
-	list('vec','-1','vec','size(x1,''*'')','vec','size(x1,''*'')'),..
+	list('vec','-1','vec','size(%1,''*'')','vec','size(%1,''*'')'),..
 	[' ',' ',' '])
     if ~ok then break,end
     if or(R<0|R>1)|or(G<0|G>1)|or(B<0|B>1) then
