@@ -266,7 +266,7 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
 
   zord=cord
   oord=cord
-  n=size(cord,1)
+ 
 
   vec=-ones(1,nblk);
   vec(cord(:,1))=0;
@@ -291,13 +291,38 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
 
   ext_cord=unique(ext_cord1(:,1)');
   
-  for i=ext_cord
-    if typ_s(i) then typ_z(i)=clkptr(i+1)-clkptr(i)-1;end
-  end  // adding zero crossing surfaces to cont. time synchros
+  maX=max([ext_cord1(:,1);ordclk(:,1)])+1;
+  cordX=ext_cord1(:,1)*maX+ext_cord1(:,2);
+  n=clkptr(nblk+1)-1 //nb d'evenement
+  for i=1:n
+    for hh=ordptr1(i):ordptr1(i+1)-1
+      jj= ordclk(hh,1) //block excite par evenement i
+		       // if an event activates a block which is activated by cont. event, set
+		       // nevprt to negative
+      if or(jj*maX+ordclk(hh,2)==cordX) then
+	ordclk(hh,2)=-ordclk(hh,2)
+      end
+    end
+  end
+  
+  
+  for ii=ext_cord
+    if typ_s(ii) then 
+      // adding zero crossing surfaces to cont. time synchros
+      typ_z(ii)=clkptr(ii+1)-clkptr(ii)-1;
+      // making sure for restart activation nevprt is >0
+      for i=[clkptr(ii):clkptr(ii+1)-1]
+	ordclk([ordptr1(i):ordptr1(i+1)-1],2)=abs(ordclk([ordptr1(i):ordptr1(i+1)-1],2))
+      end
+    end
+  end 
+  
+  
+  
   
   //a supprimer
-  [ext_cord_old,ok]=new_tree3(vec,dep_ut,typp);
-  if or(sort(ext_cord_old)<>sort(ext_cord)) then pause,end
+  //[ext_cord_old,ok]=new_tree3(vec,dep_ut,typp);
+  //if or(sort(ext_cord_old)<>sort(ext_cord)) then pause,end
   //
   //pour mettre a zero les typ_z qui ne sont pas dans ext_cord
   //noter que typ_z contient les tailles des nzcross (peut etre >1)
@@ -305,9 +330,9 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
   typ_z=-min(typ_z,0)
   
   if ~ok then disp('serious bug, report.');pause;end
+  
+  n=size(cord,1)
   ext_cord=ext_cord(n+1:$);
-
-
   for iii=n:-1:1
     i=cord(iii,1)
     fl=%f
@@ -341,26 +366,8 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
   oord=oord(oord(:,1)<>zeros(oord(:,1)),:);
   zord=zord(zord(:,1)<>zeros(zord(:,1)),:)
 
-  //critev: vecteur indiquant si evenement est important pour tcrit
-  //Donc les blocks indiques sont des blocks susceptibles de produire
-  //des discontinuites quand l'evenement se produit
-  maX=max([ext_cord1(:,1);ordclk(:,1)])+1;
-  cordX=ext_cord1(:,1)*maX+ext_cord1(:,2);
 
-  // 1: important; 0:non
-  n=clkptr(nblk+1)-1 //nb d'evenement
-		     
-  //a priori tous les evenemets sont non-importants
-  //critev=zeros(n,1)
-  for i=1:n
-    for hh=ordptr1(i):ordptr1(i+1)-1
-      jj= ordclk(hh,1) //block excite par evenement i
-      //Following line is not correct because of ever active synchros
-      if or(jj*maX+ordclk(hh,2)==cordX) then
-	ordclk(hh,2)=-ordclk(hh,2)
-      end
-    end
-  end
+  
 endfunction
 
 function [ord,ok]=tree3(vec,dep_ut,typ_l)
