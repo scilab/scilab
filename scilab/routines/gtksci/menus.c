@@ -622,9 +622,10 @@ static void sci_menu_default_callback (gpointer  callback_data,
 {
   static char buf[256];
   menu_entry *m = (menu_entry *) callback_data;
-
+#ifdef DEBUG
   fprintf(stdout,"menu activated \"%s\"", 
 	  gtk_item_factory_path_from_widget (widget));
+#endif 
   if ( m== NULL) return ;
   /* 
      fprintf(stdout,"name = %s ",m->name);

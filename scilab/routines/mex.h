@@ -82,6 +82,9 @@ void *mxGetImagData __PARAMS((Matrix *ptr));
 extern int C2F(createptr) __PARAMS((char *type,integer * m,integer * n, integer *it,integer * lr,integer *ptr, long int type_len));
 extern int C2F(createstkptr) __PARAMS((integer *m, vraiptrst *ptr));
 extern int C2F(endmex)  __PARAMS((integer *nlhs,Matrix *plhs[],integer *nrhs,Matrix *prhs[]));
+
+void clear_mex(integer nlhs, Matrix **plhs, integer nrhs, Matrix **prhs);
+
 extern int C2F(getrhsvar) __PARAMS((integer *, char *, integer *, integer *, integer *, long unsigned int));
 extern int C2F(initmex) __PARAMS((integer *nlhs,Matrix *plhs[],integer *nrhs,Matrix *prhs[]));
 extern int C2F(putlhsvar) __PARAMS((void));

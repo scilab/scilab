@@ -322,7 +322,7 @@ double *mxGetPr(Matrix *ptr)
   int *loci = (int *) stkptr((long int)ptr);
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
-    return &loc[2];
+    return (loci[1]==0 || loci[2] == 0) ? NULL : &loc[2];
   case MLIST:
     switch (loci[6+2*(loci[4]-1)]){
     case DOUBLEMATRIX: case INTMATRIX:
@@ -343,15 +343,16 @@ double *mxGetPr(Matrix *ptr)
 
 
 double *mxGetPi(Matrix *ptr)
-{ int debut; int m,n,it;
- double *loc = (double *) stkptr((long int)ptr);
- int *loci = (int *) stkptr((long int)ptr);
- switch (loci[0]) {
- case DOUBLEMATRIX: case INTMATRIX:
-   if (loci[3]==0) return NULL;
-   return &loc[2 + loci[1] * loci[2]];
- case MLIST:
-   debut=6+2*(loci[4]-1);
+{ 
+  int debut; int m,n,it;
+  double *loc = (double *) stkptr((long int)ptr);
+  int *loci = (int *) stkptr((long int)ptr);
+  switch (loci[0]) {
+  case DOUBLEMATRIX: case INTMATRIX:
+    if (loci[3]==0 || loci[1]==0 || loci[2] == 0) return NULL;
+    return  &loc[2];&loc[2 + loci[1] * loci[2]];
+  case MLIST:
+    debut=6+2*(loci[4]-1);
     switch (loci[debut]){
     case DOUBLEMATRIX: case INTMATRIX:
       m=loci[debut+1];n=loci[debut+2];
@@ -360,11 +361,11 @@ double *mxGetPi(Matrix *ptr)
     default:
       return 0;
     }
- case SPARSEMATRIX:
-   if (loci[3]==0) return NULL;
-   return &loc[ i2sadr(5+loci[2] +loci[4]) + loci[1]*loci[2]];
- default:
-   return 0;
+  case SPARSEMATRIX:
+    if (loci[3]==0) return NULL;
+    return &loc[ i2sadr(5+loci[2] +loci[4]) + loci[1]*loci[2]];
+  default:
+    return 0;
  }
 }
 
@@ -698,6 +699,7 @@ Matrix *mxCreateFull(int m, int n, int it)
   static int lw, lr, lc;
   int k;
   lw = Nbvars + 1;
+  sciprint("mxCreateFull XXXX  %d\n\r",lw);
   if (! C2F(createcvar)(&lw, "d", &it, &m, &n, &lr, &lc, 1L)) {
     mexErrMsgTxt("No more memory available: increase stacksize");
   }
@@ -897,8 +899,12 @@ int mxGetString(Matrix *ptr, char *str, int strl)
 void mxFreeMatrix(Matrix *ptr)
 {
   /* If we free the last stored object we can decrement Nbvars */
-  if ( (int)ptr == C2F(vstk).Lstk[Top - Rhs + Nbvars - 1]) 
+  if ( (int)ptr == C2F(vstk).Lstk[Top - Rhs + Nbvars - 1]) {
+    /* sciprint("XXXX OK %dvar %d \r\n",(int)ptr,Nbvars); */
     Nbvars--;
+  }
+  else 
+    sciprint("XXXX Fail %d var %d\r\n",(int)ptr,Nbvars);
   /* Automatically freed when return from mexfunction */
   return ;
 }
@@ -917,7 +923,7 @@ void mxFree(void *ptr)
 
 int mexAtExit(Matrix *ptr)
 {
-  /* To be done....*/
+  /* XXXXX To be done....*/
   return 0;
 }
 
@@ -999,6 +1005,8 @@ void mexWarnMsgTxt(char *error_msg)
   /*  mexPrintf(strcat("Warning: ",error_msg)); */
 }
 
+/* 1 is returned in case of failure */
+
 static int mexCallSCI(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *name,int jumpflag)
 {
   static int i1, i2;
@@ -1011,7 +1019,7 @@ static int mexCallSCI(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *na
       if (kk == nv + 1) 
 	{
 	  mexErrMsgTxt("mexCallSCILAB: invalid pointer passed to called function");
-	  return 0;
+	  return 1;
 	} 
       else 
 	{
@@ -1026,14 +1034,14 @@ static int mexCallSCI(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *na
     if ( jumpflag == 1 )
       errjump();
     else 
-      return 0; 
+      return 1; 
     /*	      return 0;  */
   }
   for (k = 1; k <= nlhs; ++k) {
     plhs[k-1] = (Matrix *) C2F(vstk).Lstk[nv + k + Top - Rhs - 1];
   }
   Nbvars = nv+nlhs;
-  return 1;
+  return 0;
 }
 
 
@@ -1241,6 +1249,7 @@ int C2F(createptr)(char *type, int *m, int *n, int *it, int *lr, int *ptr, long 
   static int lc, lw;
   Nbvars++;
   lw = Nbvars;
+  sciprint("createptr XXXX  %d\n\r",lw);
   if (! C2F(createcvar)(&lw, type, it, m, n, lr, &lc, 1L)) {
     return 0;
   }
@@ -1267,6 +1276,23 @@ int C2F(endmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
   return 0;
 }
 
+/* a utility function to recover available Vars position */ 
+
+void clear_mex(integer nlhs, Matrix **plhs, integer nrhs, Matrix **prhs)
+{
+  int nv=Nbvars ,kk,k; 
+  int max = (int) plhs[0] ; 
+  for (k = 1; k <= nlhs; k++)
+    if (  (int)plhs[k-1] > max ) max =  (int)plhs[k-1];
+  for (k = 1; k <= nrhs; k++)
+    if ( (int)  prhs[k-1] > max ) max =  (int) prhs[k-1];
+  for (k = 1; k <= nv; k++)
+    if ( max <  C2F(vstk).Lstk[k + Top - Rhs -1]) Nbvars--;
+}
+
+void mexInfo(char *str) {
+  sciprint("%s %d\r\n",str,Nbvars);
+}
 
 /****************************************************
  * C functions for Fortran  mexfunctions 
