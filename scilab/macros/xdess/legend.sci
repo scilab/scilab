@@ -1,4 +1,4 @@
-function axleg=legend(varargin)
+function R=legend(varargin)
   if get('figure_style')=='old' then
     error('This function cannot be used with old style graphics, see legends')
   end
@@ -16,7 +16,7 @@ function axleg=legend(varargin)
     H=varargin(1)
     if H.type=='Axes' then 
       A=H,
-      set("current_axes",A)
+      //set("current_axes",A)
       k0=k0+1
       if k0<=narg&type(varargin(k0))==9 then //a handle
 	H=varargin(k0);k0=k0+1
@@ -41,11 +41,9 @@ function axleg=legend(varargin)
   if k0<=narg&type(varargin(k0))==4 then with_box=varargin(k0);k0=k0+1,end
   
   
-  [r1,r2,logflag,arect]=xgetech()  //preserve current graphic context
-  old_ax=gca(),
-  r2=old_ax.data_bounds;
-  arect=old_ax.margins;
-  r1=old_ax.axes_bounds;
+  r2=A.data_bounds;
+  arect=A.margins;
+  r1=A.axes_bounds;
   //create small axes on the top left corner (the axes is choosen very
   //small to avoid it can be selected for rotation in new graphic mode
   //case (a little tricky)
@@ -75,10 +73,14 @@ function axleg=legend(varargin)
   //upper left coordinates
   if size(opt,'*')>1 then 
     pos=opt;opt=0 ;
-  elseif opt<1|opt>5 then 
-    error('opt can take value in 1 2 3 4 5')
+  elseif opt<-1|opt>5 then 
+    error('opt can take value in -1:5')
   end
   select opt
+    case -1 then
+    opt=1
+    case 0 then
+
     case 1 then
     pos=[xmax-width-drx/5,ymax-dy/60]
     case 2 then
