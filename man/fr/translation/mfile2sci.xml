@@ -118,6 +118,9 @@
     Quand la conversion peut être incorrecte oou améliorée, mfile2sci ajoute
     des commentaires qui commencent par &quot;//!&quot; (suivant verbose-mode).
   </P>
+  <P>
+  Un appel à <VERB>mfile2sci()</VERB> sans rhs lance une interface graphique pour aider à la sélection d'un fichier/répertoire et des options.
+  </P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -7,7 +7,7 @@
   <DATE>March 2004</DATE>
   <SHORT_DESCRIPTION name="mfile2sci"> Matlab M-file to Scilab conversion function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>mfile2sci(M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprint]]]]])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mfile2sci([M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprint]]]]]])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -117,6 +117,9 @@
     <P>
     When translation may be incorrect or may be improved mfile2sci adds a
     comment which begins by &quot;//!&quot; (according to verbose-mode)
+  </P>
+  <P>
+  When called without rhs, <VERB>mfile2sci()</VERB> launches a GUI to help to select a file/directory and options.
   </P>
   </DESCRIPTION>
   <EXAMPLE>

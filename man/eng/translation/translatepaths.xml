@@ -31,6 +31,9 @@
     <P>
     Trace of conversion information is stored in a file named <VERB>&quot;log&quot;</VERB> in
     the <VERB>res_path</VERB> directory</P>
+    <P>
+    When called without rhs, <VERB>translatepaths()</VERB> launches a GUI to help to select a file/directory and options.
+    </P>  
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
