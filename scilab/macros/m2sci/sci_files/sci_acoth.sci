@@ -17,5 +17,6 @@ Op=Operation("./",list(Cste(1),X),list())
 tree.rhs=Rhs(Op)
 
 tree.lhs(1).dims=X.dims
-tree.lhs(1).type=X.type
+// Property unknown because result can be complex for real input
+tree.lhs(1).type=Type(X.vtype,Unknown) 
 endfunction
