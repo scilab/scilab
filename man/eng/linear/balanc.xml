@@ -69,6 +69,8 @@ norm(A(1,:))/norm(A(2,:))
 norm(Ab(1,:))/norm(Ab(2,:))
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>bdiag</LINK> <LINK>spec</LINK> <LINK>schur</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>bdiag</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM><LINK>spec</LINK></SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM><LINK>schur</LINK></SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
