@@ -29,9 +29,7 @@ function h=uicontrol(varargin)
             else
               h=CreateUiControl(h,"pushbutton");
             end
-            
             TCL_scf(TCL_gcf());
-            
             for i=2:2:Rhs do
     			    set(h,GetUiControlPropertyName(varargin(i)),varargin(i+1));
     			  end
@@ -39,7 +37,6 @@ function h=uicontrol(varargin)
         end
       end
     else
-      disp('ICI 2');
       [bOK,k]=TestParamUiControl(varargin,1);
       if ( bOK == %F) then
             error('Incorrect property '+string(varargin(k)),999);
@@ -53,9 +50,7 @@ function h=uicontrol(varargin)
           else
             h=CreateUiControl(0,"pushbutton");
           end
-          
     			TCL_scf(TCL_gcf());
-    			
     			for i=1:2:Rhs do
     			  set(h,GetUiControlPropertyName(varargin(i)),varargin(i+1));
     			end
@@ -72,7 +67,6 @@ function h=CreateUiControl(FigureHandle,Style)
                  GetInternalStyleName(GetUiControlStyleName(Style))+ ..
                  "];"
     TCL_EvalStr(TCL_Command);
-    disp(TCL_Command);
     h=evstr(TCL_GetVar('TclScilabTmpVar'));
   else
     error(string(FigureHandle)+' Value must be numeric.',999);
