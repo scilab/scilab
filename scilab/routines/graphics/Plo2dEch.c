@@ -591,7 +591,7 @@ void set_scale(char *flag, double *subwin, double *frame_values, integer *aaint,
       /* the scale is no more a default scale */
       Cscale.flag = 1;
     }
-  if ( wdim_changed == 't' || subwin_changed == 't' || frame_values_changed == 't' 
+  if ( Cscale.flag == 0 || wdim_changed == 't' || subwin_changed == 't' || frame_values_changed == 't' 
        ||  axis_changed == 't' )
     {
       /* Upgrading constants for 2D transformation */
@@ -612,7 +612,7 @@ void set_scale(char *flag, double *subwin, double *frame_values, integer *aaint,
       Cscale.Wscx1 = (val <=SMDOUBLE) ? Cscale.Wscx1/SMDOUBLE : Cscale.Wscx1/val; 
       val = Abs(Cscale.frect[1]- Cscale.frect[3]);
       Cscale.Wscy1 = (val <=SMDOUBLE) ? Cscale.Wscy1/SMDOUBLE : Cscale.Wscy1/val;
-
+      
       Cscale.WIRect1[0] = XScale( Cscale.frect[0]);
       Cscale.WIRect1[1] = YScale( Cscale.frect[3]);
       Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
