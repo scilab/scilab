@@ -1,0 +1,45 @@
+Linking a .mexglx, say xtimesy.mexglx, file with Scilab.
+VISUAL C++ environment.
+
+1/ Construct a xtimesy.lib file
+
+dumpbin /EXPORTS xtimesy.dll  shows that xtimesy.ddl exports the
+mexFunction symbol.
+
+Entering
+lib /def:xtimesy.def
+
+where xtimesy.def is the file:
+**********xtimesy.def********************
+LIBRARY xtimesy.dll
+EXPORTS
+	mexFunction
+******************************
+produces the required file xtimesy.lib
+2/ Edit Makelib.mak and adapt SCIDIR, SCIDIR1 and OTHERLIBS
+**********************
+SCIDIR =c:/path/to/scilab
+SCIDIR1 =c:\path\to\scilab
+# name of the dll to be built
+LIBRARY = libtst 
+# list of objects file
+OBJS = libtst.obj
+# added libraries 
+OTHERLIBS = xtimesy.lib
+!include $(SCIDIR1)\Makefile.incl.mak
+CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines" 
+FFLAGS = $(FC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
+EXTRA_LDFLAGS = 
+!include $(SCIDIR1)\config\Makedll.incl 
+*********************************
+3/enter
+nmake /f Makelib clean
+nmake /f Makelib
+This produces the file libtst.dll
+4/At Scilab prompt, enter 
+-->addinter('libtst.dll','libtst','xtimesy')
+-->xtimesy(2,3)
+
+Note that for each mex .dll file a second .dll file must be
+constructed. It is not possible to call several mex .dll
+files by a unique gateway (such as libtst).
