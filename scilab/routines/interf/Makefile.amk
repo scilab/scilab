@@ -42,84 +42,7 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.amk
 
-bva.obj: ../stack.h
-comm.obj: ../stack.h
-coselm.obj: ../stack.h
-dasrti.obj: ../stack.h
-defint.obj: ../stack.h
-feval.obj: ../stack.h
-fmlelm.obj: ../stack.h
-indxg.obj: ../stack.h
-intclear.obj: ../stack.h
-intcos.obj: ../stack.h
-intg.obj: ../stack.h
-int2d.obj: ../stack.h
-int3d.obj: ../stack.h
-logelm.obj: ../stack.h
-logic.obj: ../stack.h
-lspops.obj: ../stack.h
-lstelm.obj: ../stack.h
-lstops.obj: ../stack.h
-matdes.obj: ../stack.h ../stack-c.h
-matdsc.obj: ../stack.h
-matdsr.obj: ../stack.h
-matelm.obj: ../stack.h
-matimp.obj: ../stack.h
-matio.obj: ../stack.h
-matlu.obj: ../stack.h
-matnew.obj: ../stack.h
-matodc.obj: ../stack.h
-matode.obj: ../stack.h
-matops.obj: ../stack.h
-matopt.obj: ../stack.h
-matqr.obj: ../stack.h
-matqz.obj: ../stack.h
-matric.obj: ../stack.h
-matsvd.obj: ../stack.h
-matsys.obj: ../stack.h
-metane.obj: ../stack.h
-misops.obj: ../stack.h
-polaut.obj: ../stack.h
-polelm.obj: ../stack.h
-polops.obj: ../stack.h
-sigelm.obj: ../stack.h
-specfun.obj: ../stack.h
-spelm.obj: ../stack.h
-spops.obj: ../stack.h
-stack.obj: ../stack.h
-strelm.obj: ../stack.h
-strops.obj: ../stack.h
-where.obj: ../stack.h
-xawelm.obj: ../stack.h
-stack1.obj: ../callinter.h
-intwhat.obj: ../stack.h
-intwrite4b.obj: ../stack.h
-intread4b.obj: ../stack.h
-intdeff.obj : ../stack.h
-intdiary.obj : ../stack.h
-intdisp.obj : ../stack.h
-intexec.obj : ../stack.h
-intexecstr.obj : ../stack.h
-intgetf.obj : ../stack.h
-intgetpid.obj : ../stack.h
-inthost.obj : ../stack.h
-intlib.obj : ../stack.h
-intprint.obj : ../stack.h
-intrat.obj : ../stack.h
-intread.obj : ../stack.h
-intread4b.obj: ../stack.h
-intreadb.obj : ../stack.h
-intwritb.obj : ../stack.h
-intwrite.obj : ../stack.h
-intwrite4b.obj : ../stack.h
-oldloadsave.obj : ../stack.h
-intfile.obj : ../stack.h
-intgetenv.obj : ../stack.h
-stack0.obj stack1.obj stack2.obj: ../stack.h
-getdate.obj: ../machine.h
-intlapack.obj: ../machine.h ../stack-c.h
-intslicot.obj: ../machine.h ../stack-c.h ../mex.h
-intarpack.obj: ../machine.h ../stack-c.h ../mex.h
+
 
 all:: Makefile.mak Makefile.amk
 
@@ -133,3 +56,133 @@ Makefile.amk	: Makefile
 # but the code does not execute properly.
 intmgetl.obj: intmgetl.f ../stack.h
 	$(FC) $(FC_OPTIONS_O0) -c intmgetl.f -o intmgetl.obj
+
+bva.obj: ../stack.h
+comm.obj: ../stack.h
+complexify.obj: ../stack.h
+dasrti.obj: ../stack.h
+defint.obj: ../stack.h
+feval.obj: ../stack.h
+fmexslicot.obj: ../stack.h
+fmlelm.obj: ../stack.h
+followpath.obj: ../stack.h
+fscislicot.obj: ../stack.h
+hmcreate.obj: ../stack.h
+hndlops.obj: ../stack.h
+indxg.obj: ../stack.h
+insertfield.obj: ../stack.h
+int2d.obj: ../stack.h
+int3d.obj: ../stack.h
+intdeff.obj: ../stack.h
+intdiary.obj: ../stack.h
+intdisp.obj: ../stack.h
+intdpotrf.obj: stack.h
+intexec.obj: ../stack.h
+intexecstr.obj: ../stack.h
+intfile.obj: ../stack.h
+intg.obj: ../stack.h
+intgetenv.obj: ../stack.h
+intgetf.obj: ../stack.h
+intgetio.obj: ../stack.h
+intgetpid.obj: ../stack.h
+inthost.obj: ../stack.h
+intl_e.obj: ../stack.h
+intl_i.obj: ../stack.h
+intlib.obj: ../stack.h
+intlinmeq.obj: ../stack.h
+intlsqrsolve.obj: ../stack.h
+intmgetl.obj: ../stack.h
+intprint.obj: ../stack.h
+intrat.obj: ../stack.h
+intread.obj: ../stack.h
+intread4b.obj: ../stack.h
+intreadb.obj: ../stack.h
+intwritb.obj: ../stack.h
+intwrite.obj: ../stack.h
+intwrite4b.obj: ../stack.h
+intzpotrf.obj: stack.h
+isany.obj: ../stack.h
+issymmetric.obj: ../stack.h
+lapackf.obj: ../stack.h
+lapackf2.obj: ../stack.h
+logelm.obj: ../stack.h
+logic.obj: ../stack.h
+lstelm.obj: ../stack.h
+
+lstelmi.obj: ../stack.h
+lstops.obj: ../stack.h
+matelm.obj: ../stack.h
+matimp.obj: ../stack.h
+matio.obj: ../stack.h
+matnew.obj: ../stack.h
+matodc.obj: ../stack.h
+matode.obj: ../stack.h
+matold.obj: ../stack.h
+matops.obj: ../stack.h
+matopt.obj: ../stack.h
+matqz.obj: ../stack.h
+matric.obj: ../stack.h
+matsys.obj: ../stack.h
+misops.obj: ../stack.h
+newsave.obj: ../stack.h
+oldloadsave.obj: ../stack.h
+polaut.obj: ../stack.h
+polelm.obj: ../stack.h
+polops.obj: ../stack.h
+specfun.obj: ../stack.h
+stack0.obj: ../stack.h
+strelm.obj: ../stack.h
+strops.obj: ../stack.h
+v2cunit.obj: ../stack.h
+v2unit.obj: ../stack.h
+where.obj: ../stack.h
+xawelm.obj: ../stack.h
+
+Interf.obj: Interf.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+ciargc.obj: ciargc.c
+cs2st.obj: cs2st.c ../machine.h
+ctest.obj: ctest.c ../machine.h
+getdate.obj: getdate.c ../machine.h
+intarpack.obj: intarpack.c ../mex.h ../stack-c.h ../graphics/Math.h \
+  ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+intfilestat.obj: intfilestat.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h ../sun/Sun.h
+intlapack.obj: intlapack.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+intorand.obj: intorand.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+intslicot.obj: intslicot.c ../mex.h ../stack-c.h ../graphics/Math.h \
+  ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+matdes.obj: matdes.c ../graphics/bcg.h ../graphics/Entities.h ../stack-c.h \
+  ../graphics/Math.h ../machine.h ../graphics/Graphics.h ../stack-def.h \
+  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h \
+  ../graphics/PloEch.h matdes.h
+matdsr.obj: matdsr.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h matdsr.h ../control/control.h \
+  ../calelm/calelm.h
+stack1.obj: stack1.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h ../system/msgstore.h
+stack2.obj: stack2.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h ../sun/men_Sutils.h
+stack3.obj: stack3.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+stcreate.obj: stcreate.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+strelm-c.obj: strelm-c.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+structcreate.obj: structcreate.c ../stack-c.h ../graphics/Math.h \
+  ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h

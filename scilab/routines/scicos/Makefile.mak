@@ -74,35 +74,56 @@ distclean::
 	$(RM) Fblocknames Cblocknames blocks.h
 
 #--------------dependencies 
-
-scifunc.obj : ../stack.h ../callinter.h
-selector.obj: ../machine.h
-import.obj: ../machine.h import.h
-prod.obj: ../machine.h
-sciblk2.obj: ../machine.h
-sum.obj: ../machine.h
-switchn.obj: ../machine.h
-sciblk4.obj: ../machine.h	scicos_block.h	
-sciblk.obj : ../stack.h ../callinter.h
+affich.obj: ../stack.h
+coselm.obj: ../stack.h
 dtosci.obj: ../stack.h
+intcos.obj: ../stack.h
 itosci.obj: ../stack.h
 list2vars.obj: ../stack.h
 readf.obj: ../stack.h
-readf.obj: ../stack.h
-sciblk.obj: ../stack.h ../callinter.h
+sciblk.obj: ../stack.h
 scierr.obj: ../stack.h
+scifunc.obj: ../stack.h
 scitod.obj: ../stack.h
-str2sci.obj: ../stack-c.h ../machine.h	
 scitoi.obj: ../stack.h
 scitovv.obj: ../stack.h
 skipvars.obj: ../stack.h
 vvtosci.obj: ../stack.h
 writef.obj: ../stack.h
-writeau.obj: ../stack.h ../machine.h
-readau.obj: ../machine.h
-grblk.obj: ../machine.h import.h
-scicos.obj: ../machine.h import.h blocks.h ../sun/link.h scicos.h scicos_block.h
-coselm.obj : ../stack.h
-intcos.obj : ../stack.h
-cpass2.obj: ../machine.h cc_pass2.h
 
+
+blocks.obj: blocks.c ../machine.h ../calelm/calelm.h scicos.h \
+  scicos_block.h
+cpass2.obj: cpass2.c ../machine.h cc_pass2.h
+duplicate.obj: duplicate.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+import.obj: import.c ../machine.h import.h
+intrealtime.obj: intrealtime.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+plusblk.obj: plusblk.c ../machine.h
+prod.obj: prod.c ../machine.h
+readau.obj: readau.c ../machine.h
+readc.obj: readc.c ../machine.h
+realtime.obj: realtime.c ../machine.h
+relay.obj: relay.c ../machine.h
+sciblk2.obj: sciblk2.c ../machine.h
+sciblk2i.obj: sciblk2i.c ../machine.h
+sciblk4.obj: sciblk4.c ../machine.h ../stack-c.h ../graphics/Math.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h scicos_block.h
+scicos.obj: scicos.c ../machine.h ../sun/link.h scicos.h scicos_block.h \
+  import.h blocks.h
+scicosclip.obj: scicosclip.c ../machine.h ../graphics/Math.h \
+  ../graphics/Graphics.h ../graphics/PloEch.h
+selector.obj: selector.c ../machine.h
+slider.obj: slider.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
+str2sci.obj: str2sci.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+sum.obj: sum.c ../machine.h
+switchn.obj: switchn.c ../machine.h
+writeau.obj: writeau.c ../machine.h
+writec.obj: writec.c ../machine.h
+zcross2.obj: zcross2.c ../machine.h

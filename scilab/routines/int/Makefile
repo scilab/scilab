@@ -34,3 +34,86 @@ all:: Makefile.mak
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
 
+itops.o: ../stack.h
+convert.o: ../stack.h
+creimat.o: ../stack.h
+getimat.o: ../stack.h
+i_a_i.o: ../stack.h
+i_abs.o: ../stack.h
+i_c_i.o: ../stack.h
+i_convert.o: ../stack.h
+i_cumsum.o: ../stack.h
+i_d_i.o: ../stack.h
+i_diag.o: ../stack.h
+i_e.o: ../stack.h
+i_f_i.o: ../stack.h
+i_i_i.o: ../stack.h
+i_kron.o: ../stack.h
+i_l_i.o: ../stack.h
+i_logic.o: ../stack.h
+i_m_i.o: ../stack.h
+i_matrix.o: ../stack.h
+i_maxi.o: ../stack.h
+i_mget.o: ../stack.h
+i_mini.o: ../stack.h
+i_mput.o: ../stack.h
+i_p.o: ../stack.h
+i_q_i.o: ../stack.h
+i_r_i.o: ../stack.h
+i_s_i.o: ../stack.h
+i_sum.o: ../stack.h
+i_t.o: ../stack.h
+i_tril.o: ../stack.h
+i_triu.o: ../stack.h
+i_x_i.o: ../stack.h
+intelm.o: ../stack.h
+intinttype.o: ../stack.h
+intops.o: ../stack.h
+iread.o: ../stack.h
+readgif.o: ../stack.h
+readxbm.o: ../stack.h
+unarybit.o: ../stack.h
+
+db2int.o: db2int.c ../machine.h
+genabs.o: genabs.c ../machine.h
+genadd.o: genadd.c ../machine.h
+genbitops.o: genbitops.c ../machine.h
+genbitor.o: genbitor.c ../machine.h
+gencheck.o: gencheck.c ../machine.h
+genconcatcol.o: genconcatcol.c ../machine.h
+genconcatrow.o: genconcatrow.c ../machine.h
+gencopy.o: gencopy.c ../machine.h
+gencusum.o: gencusum.c ../machine.h
+gendiag.o: gendiag.c ../machine.h
+gendot.o: gendot.c ../machine.h
+genextrac1.o: genextrac1.c ../machine.h
+genextrac2.o: genextrac2.c ../machine.h
+geninsert1.o: geninsert1.c ../machine.h
+geninsert2.o: geninsert2.c ../machine.h
+genkron.o: genkron.c ../machine.h
+genmax2.o: genmax2.c ../machine.h
+genmcopy.o: genmcopy.c ../machine.h
+genmcusum.o: genmcusum.c ../machine.h
+genmdiag.o: genmdiag.c ../machine.h
+genmdsp.o: genmdsp.c ../machine.h
+genmin2.o: genmin2.c ../machine.h
+genmmax.o: genmmax.c ../machine.h
+genmmin.o: genmmin.c ../machine.h
+genmmul.o: genmmul.c ../machine.h
+genmsum.o: genmsum.c ../machine.h
+genmtran.o: genmtran.c ../machine.h
+genrdiv.o: genrdiv.c ../machine.h
+genrowconc.o: genrowconc.c ../machine.h
+genscal.o: genscal.c ../machine.h
+genset.o: genset.c ../machine.h
+gensubst.o: gensubst.c ../machine.h
+gensum.o: gensum.c ../machine.h
+gentril.o: gentril.c ../machine.h
+gentriu.o: gentriu.c ../machine.h
+genvmul.o: genvmul.c ../machine.h
+gifimg.o: gifimg.c ../gd/gd.h ../machine.h
+mgeti.o: mgeti.c ../machine.h ../sound/st.h ../sound/wav.h
+mputi.o: mputi.c ../machine.h ../sound/st.h ../sound/wav.h
+readgifimg.o: readgifimg.c ../gd/gd.h ../machine.h
+tpconv.o: tpconv.c ../machine.h
+

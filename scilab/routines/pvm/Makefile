@@ -25,14 +25,31 @@ Makefile.mak	: Makefile
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
 
-intpvm.o: ../stack.h
-lpack.o:../stack-c.h ../machine.h
-pvm_grp.o: ../calelm/sci_tools.h ../machine.h
-pvm_info.o: ../machine.h
-pvm_proc_ctrl.o: ../machine.h
-pvm_recv.o:../stack.h ../calelm/sci_tools.h ../machine.h
-pvm_send.o:../stack.h ../calelm/sci_tools.h ../machine.h
+mycmatptr.o: ../stack.h
 
-
-
+intpvm.o: intpvm.c ../../pvm3/include/pvm3.h ../mex.h ../stack-c.h \
+  ../graphics/Math.h ../machine.h ../graphics/Graphics.h ../stack-def.h \
+  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h sci_pvm.h
+pvm_grp.o: pvm_grp.c ../../pvm3/include/pvm3.h ../machine.h \
+  ../calelm/sci_tools.h sci_pvm.h
+pvm_info.o: pvm_info.c ../../pvm3/include/pvm3.h ../machine.h \
+  ../stack-c.h ../graphics/Math.h ../graphics/Graphics.h ../stack-def.h \
+  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h sci_pvm.h
+pvm_proc_ctrl.o: pvm_proc_ctrl.c ../../pvm3/include/pvm3.h ../machine.h \
+  sci_pvm.h
+pvm_recv.o: pvm_recv.c ../../pvm3/include/pvm3.h ../machine.h \
+  ../stack-c.h ../graphics/Math.h ../graphics/Graphics.h ../stack-def.h \
+  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h \
+  ../calelm/sci_tools.h sci_pvm.h
+pvm_send.o: pvm_send.c ../../pvm3/include/pvm3.h ../machine.h \
+  ../stack-c.h ../graphics/Math.h ../graphics/Graphics.h ../stack-def.h \
+  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h \
+  ../calelm/sci_tools.h sci_pvm.h
+sci_tools.o: sci_tools.c ../machine.h sci_tools.h sci_pvm.h
+scipvmf77.o: scipvmf77.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h sci_pvm.h
+varpack.o: varpack.c ../machine.h ../stack-c.h ../graphics/Math.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h sci_pvm.h
 

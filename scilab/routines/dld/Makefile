@@ -18,15 +18,15 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-define.o: defs.h dld.h
-dld.o: defs.h dld.h
-error.o: defs.h dld.h
-get_func.o: defs.h dld.h
-get_symbol.o: defs.h dld.h
-list_undef.o: defs.h dld.h
-mk_dummy.o: defs.h dld.h
-ref.o: defs.h dld.h
-remove.o: defs.h dld.h
-ul_file.o: defs.h dld.h
-ul_symbol.o: defs.h dld.h
-
+define.o: define.c defs.h dld.h
+dld.o: dld.c defs.h dld.h
+error.o: error.c defs.h dld.h
+find_exec.o: find_exec.c
+get_func.o: get_func.c defs.h dld.h
+get_symbol.o: get_symbol.c defs.h dld.h
+list_undef.o: list_undef.c defs.h dld.h
+mk_dummy.o: mk_dummy.c defs.h dld.h
+ref.o: ref.c defs.h dld.h
+remove.o: remove.c defs.h dld.h
+ul_file.o: ul_file.c defs.h dld.h
+ul_symbol.o: ul_symbol.c defs.h dld.h

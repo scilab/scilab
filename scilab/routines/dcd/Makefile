@@ -31,8 +31,6 @@ FFLAGS = $(FC_OPTIONS)
 include ../Make.lib
 
 
-ipmpar.o : ../stack.h
-DcdInterf.o : ../stack-c.h
 
 all:: Makefile.mak Makefile.amk
 
@@ -41,3 +39,16 @@ Makefile.mak	: Makefile
 
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
+
+dinvr.o: ../stack.h
+dlanor.o: ../stack.h
+dstrem.o: ../stack.h
+ipmpar.o: ../stack.h
+
+
+DcdInterf.o: DcdInterf.c ../../routines/stack-c.h \
+  ../../routines/graphics/Math.h ../../routines/machine.h \
+  ../../routines/graphics/Graphics.h ../../routines/stack-def.h \
+  ../../routines/interf/stack1.h ../../routines/interf/stack2.h \
+  ../../routines/interf/stack3.h
+ipmpar1.o: ipmpar1.c ../sparse/spConfig.h ../machine.h

@@ -25,5 +25,10 @@ Makefile.mak	: Makefile
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
 
-bdftogd.obj : gd.h
-gd.obj: gd.h
+bdftogd.obj: bdftogd.c gd.h ../machine.h
+gd.obj: gd.c gd.h ../machine.h mtables.c
+giftogd.obj: giftogd.c gd.h ../machine.h
+mathmake.obj: mathmake.c
+mtables.obj: mtables.c
+webgif.obj: webgif.c gd.h ../machine.h
+xfonts.obj: xfonts.c

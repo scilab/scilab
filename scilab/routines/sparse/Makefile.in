@@ -45,19 +45,23 @@ include ../Make.lib
 #Makefile.amk	: Makefile
 #	$(SCIDIR)/util/Mak2ABSMak Makefile
 
-lu.o: spConfig.h spmatrix.h spDefs.h  ../machine.h
-spBuild.o: spConfig.h  spmatrix.h spDefs.h
-spFortran.o: spConfig.h  spmatrix.h spDefs.h
-spSolve.o: spConfig.h  spmatrix.h spDefs.h
-spAllocate.o: spConfig.h  spmatrix.h spDefs.h
-spFactor.o: spConfig.h spmatrix.h spDefs.h
-spOutput.o: spConfig.h spmatrix.h spDefs.h
-spUtils.o: spConfig.h spmatrix.h spDefs.h
+lu.o: lu.c spConfig.h spmatrix.h spDefs.h ../machine.h
+mspelm.o: mspelm.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h ../calelm/calelm.h
+spAllocate.o: spAllocate.c spConfig.h spmatrix.h spDefs.h
+spBuild.o: spBuild.c spConfig.h spmatrix.h spDefs.h
+spFactor.o: spFactor.c spConfig.h spmatrix.h spDefs.h
+spFortran.o: spFortran.c spConfig.h spmatrix.h spDefs.h ../machine.h
+spOutput.o: spOutput.c spConfig.h spmatrix.h spDefs.h
+spSolve.o: spSolve.c spConfig.h spmatrix.h spDefs.h
+spUtils.o: spUtils.c spConfig.h spmatrix.h spDefs.h
 
-loadmps.o:       ../stack.h
 lspops.o:      ../stack.h
 spelm.o:      ../stack.h
 spops.o:       ../stack.h
+rdmps1.o: ../stack.h
+
 
 # according to compiler, do not optimize the following files
 

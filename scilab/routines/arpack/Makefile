@@ -34,3 +34,32 @@ Makefile.mak	: Makefile
 
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
+
+dgetv0.o: debug.h stat.h
+dnaitr.o: debug.h stat.h
+dnapps.o: debug.h stat.h
+dnaup2.o: debug.h stat.h
+dnaupd.o: debug.h stat.h
+dnconv.o: debug.h stat.h
+dneigh.o: debug.h stat.h
+dneupd.o: debug.h stat.h
+dngets.o: debug.h stat.h
+dsaitr.o: debug.h stat.h
+dsapps.o: debug.h stat.h
+dsaup2.o: debug.h stat.h
+dsaupd.o: debug.h stat.h
+dsconv.o: debug.h stat.h
+dseigt.o: debug.h stat.h
+dseupd.o: debug.h stat.h
+dsgets.o: debug.h stat.h
+dstatn.o: stat.h
+dstats.o: stat.h
+zgetv0.o: debug.h stat.h
+znaitr.o: debug.h stat.h
+znapps.o: debug.h stat.h
+znaup2.o: debug.h stat.h
+znaupd.o: debug.h stat.h
+zneigh.o: debug.h stat.h
+zneupd.o: debug.h stat.h
+zngets.o: debug.h stat.h
+zstatn.o: stat.h

@@ -22,5 +22,10 @@ Makefile.mak	: Makefile
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
 
-bdftogd.o : gd.h
-gd.o: gd.h
+bdftogd.o: bdftogd.c gd.h ../machine.h
+gd.o: gd.c gd.h ../machine.h mtables.c
+giftogd.o: giftogd.c gd.h ../machine.h
+mathmake.o: mathmake.c
+mtables.o: mtables.c
+webgif.o: webgif.c gd.h ../machine.h
+xfonts.o: xfonts.c

@@ -35,48 +35,40 @@ Makefile.mak	: Makefile
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
 
-
-
-alloc.o: ../stack.h
-back.o: ../stack.h
 badd.o: ../stack.h ../callinter.h
 bcol.o: ../stack.h ../callinter.h
 bfeval.o: ../stack.h ../callinter.h
 bgetx.o: ../stack.h ../callinter.h
 bgety.o: ../stack.h ../callinter.h
-bintg.o: ../stack.h ../callinter.h
 bint2d.o: ../stack.h ../callinter.h
 bint3d.o: ../stack.h ../callinter.h
+bintg.o: ../stack.h ../callinter.h
 bj2.o: ../stack.h ../callinter.h
 bjac.o: ../stack.h ../callinter.h
-bjacd.o: ../stack.h  ../callinter.h
+bjacd.o: ../stack.h ../callinter.h
+bjlsqrsolv.o: ../stack.h ../callinter.h
 bjsolv.o: ../stack.h ../callinter.h
+blsqrsolv.o: ../stack.h ../callinter.h
 boptim.o: ../stack.h ../callinter.h
 bresd.o: ../stack.h ../callinter.h
 bresid.o: ../stack.h ../callinter.h
 bschur.o: ../stack.h ../callinter.h
 bsolv.o: ../stack.h ../callinter.h
-blsqrsolv.o: ../stack.h ../callinter.h
-bjlsqrsolv.o: ../stack.h ../callinter.h
 bsurf.o: ../stack.h ../callinter.h
 bsurfd.o: ../stack.h ../callinter.h
 btof.o: ../stack.h
 btofm.o: ../stack.h
 bydot.o: ../stack.h ../callinter.h
 bydot2.o: ../stack.h ../callinter.h
-cmatptr.o: ../stack.h
-creadchain.o: ../stack.h
-creadmat.o: ../stack.h
 extlarg.o: ../stack.h
 ftob.o: ../stack.h
 getfun.o: ../stack.h
 istrue.o: ../stack.h
 matc.o: ../stack.h
-matptr.o: ../stack.h
 matz.o: ../stack.h
 matzs.o: ../stack.h
 namstr.o: ../stack.h
-readchain.o: ../stack.h
-readmat.o: ../stack.h
+rwstack.o: ../stack.h
 tradsl.o: ../stack.h
-rwstack.o : ../stack.h
+
+

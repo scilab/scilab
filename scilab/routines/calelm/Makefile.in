@@ -57,7 +57,16 @@ icopy.o: icopy.f
 unsfdcopy.o: unsfdcopy.f
 	$(FC) @FC_OPTIONS2@ -c unsfdcopy.f -o unsfdcopy.o
 
+watan.o: ../stack.h
 
-finite.o: ../machine.h
+ciargc.o: ciargc.c ../machine.h
+cmp.o: cmp.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h ../sun/Sun.h
+finite.o: finite.c ../machine.h
+sci_tools.o: sci_tools.c ../machine.h sci_tools.h
+vceil.o: vceil.c ../machine.h
+vfinite.o: vfinite.c ../machine.h
+vfloor.o: vfloor.c ../machine.h
+vfrexp.o: vfrexp.c ../machine.h
 
-sci_tools.o : sci_tools.h ../machine.h

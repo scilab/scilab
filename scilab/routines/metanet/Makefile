@@ -26,14 +26,19 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-loadg.o: ../machine.h mysearch.h defs.h
-saveg.o: ../machine.h
-connex.o: ../machine.h
-dmtree.o: ../machine.h
-paths.o: ../machine.h
-transc.o: ../machine.h
-myhsearch.o: mysearch.h
-metane.o : ../stack.h
+
+metane.o: ../stack.h
+
+connex.o: connex.c ../machine.h
+dmtree.o: dmtree.c ../machine.h
+files.o: files.c
+loadg.o: loadg.c mysearch.h ../machine.h defs.h
+myhsearch.o: myhsearch.c mysearch.h
+paths.o: paths.c ../machine.h
+saveg.o: saveg.c ../machine.h
+transc.o: transc.c ../machine.h
+
+
 
 all:: Makefile.mak Makefile.amk
 

@@ -20,7 +20,15 @@ include ../Make.lib.mak
 
 erro.obj:       ../stack.h
 out.obj:       ../stack.h
-libinter.obj: ../machine.h 
+
+cdouble.obj: cdouble.c ../machine.h
+cdoublef.obj: cdoublef.c ../machine.h
+cerro.obj: cerro.c ../machine.h cerro.h
+cout.obj: cout.c ../machine.h
+libinter.obj: libinter.c ../machine.h ../graphics/Math.h \
+  ../graphics/Graphics.h ../sun/men_Sutils.h libinter.h cerro.h sparse.h \
+  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+  ../interf/stack3.h
 
 
 
