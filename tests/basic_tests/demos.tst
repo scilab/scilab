@@ -74,7 +74,7 @@ else
 // UNIX
   sel=[1:8] 
 end
-sel=8
+
 dialogs='demo'+string(sel)+'.dialogs'
 for dia=dialogs
   I=file('open','SCI/tests/demos/'+dia,'old');
