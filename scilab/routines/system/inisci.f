@@ -39,6 +39,7 @@ c     ippty: interfaces properties
       integer byptr(mxbyptr),nbyptr
       common /ippty/ byptr,nbyptr
 
+      integer graphicsmodels
       logical first
       double precision dlamch
       integer i,k,l,nc,mode(2),vsizg
@@ -215,6 +216,7 @@ c     .  ------------------
 c     .  initial interface properties
 c     .  ----------------------------
       call setippty(0)
+      ier= graphicsmodels()
 c     
 c     .  Stack
 c     .  -----

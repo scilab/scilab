@@ -79,7 +79,6 @@ function %h_p(h)
 	 "mark_mode= "+string(h.mark_mode)
 	 "mark_style= "+sci2exp(h.mark_style,0)
 	 "mark_size= "+sci2exp(h.mark_size,0)
-	 "foreground= "+sci2exp(h.foreground,0)
 	 "clip_state= "+string(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
 	]

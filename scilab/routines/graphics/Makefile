@@ -62,10 +62,10 @@ Plo2dEch.o: Plo2dEch.c Math.h ../machine.h Graphics.h PloEch.h Entities.h \
 Plo2dn.o: Plo2dn.c Math.h ../machine.h Graphics.h PloEch.h \
   ../sparse/spConfig.h Entities.h ../stack-c.h ../graphics/Math.h \
   ../stack-def.h ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h
+Plo3dn.o: Plo3dn.c Math.h ../machine.h Graphics.h PloEch.h \
+  ../sparse/spConfig.h Entities.h ../stack-c.h ../graphics/Math.h \
+  ../stack-def.h ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h
 Plo3d.o: Plo3d.c Math.h ../machine.h Graphics.h PloEch.h Entities.h \
-  ../stack-c.h ../graphics/Math.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
-Plo3dn.o:Plo3d.c Math.h ../machine.h Graphics.h PloEch.h Entities.h \
   ../stack-c.h ../graphics/Math.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h
 Rec.o: Rec.c Math.h ../machine.h Graphics.h Rec.h PloEch.h

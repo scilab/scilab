@@ -29,6 +29,8 @@ void wininfo();
 extern void GPopupResize();
 struct BCG *tmpScilabXgc;
 int cmptclip=0;
+sciPointObj *pfiguremdl = (sciPointObj *) NULL;/* DJ.A 08/01/04 */
+sciPointObj *paxesmdl = (sciPointObj *) NULL;/* DJ.A 08/01/04 */
 extern int versionflag;
 extern void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
 		      integer *Ntr,double *zminmax,integer *colminmax));
@@ -44,11 +46,44 @@ extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,int
 int DestroyAgregation (sciPointObj * pthis);
 extern int cf_type; /* used by gcf to determine if current figure is a graphic (1) or a tksci (0) one */
 /*************************************************************************************************/
-/**DJ.Abdemouche2003**/
+/* DJ.A 08/01/04 */
 static double xz1,yz1;
+unsigned short defcolors[] = {
+  0,   0,   0, /* Black: DEFAULTBLACK */
+  0,   0, 255, /* Blue */
+  0, 255,   0, /* Green */
+  0, 255, 255, /* Cyan */
+  255,   0,   0, /* Red */
+  255,   0, 255, /* Magenta */
+  255,   255,   0, /* Yellow */
+  255, 255, 255, /* White: DEFAULTWHITE */
+  0,   0, 144, /* Blue4 */
+  0,   0, 176, /* Blue3 */
+  0,   0, 208, /* Blue2 */
+  135, 206, 255, /* LtBlue */
+  0, 144,   0, /* Green4 */
+  0, 176,   0, /* Green3 */
+  0, 208,   0, /* Green2 */
+  0, 144, 144, /* Cyan4 */
+  0, 176, 176, /* Cyan3 */
+  0, 208, 208, /* Cyan2 */
+  144,   0,   0, /* Red4 */
+  176,   0,   0, /* Red3 */
+  208,   0,   0, /* Red2 */
+  144,   0, 144, /* Magenta4 */
+  176,   0, 176, /* Magenta3 */
+  208,   0, 208, /* Magenta2 */
+  128,  48,   0, /* Brown4 */
+  160,  64,   0, /* Brown3 */
+  192,  96,   0, /* Brown2 */
+  255, 128, 128, /* Pink4 */
+  255, 160, 160, /* Pink3 */
+  255, 192, 192, /* Pink2 */
+  255, 224, 224, /* Pink */
+  255, 215,   0  /* Gold */
+};
+
 /** Functions for entity oriented graphic */
-
-
 /**
  * This variable is a prev/next structure
  * of the handle, pointing to the table 
@@ -66,6 +101,7 @@ static sciPointObj *pcurrentpobj = (sciPointObj *) NULL;
  */
 extern sciClipTab ptabclip[15];
 extern double C2F(dsort)();/*DJ.A merge*/ 
+static char error_message[70]; /* DJ.A 08/01/04 */
 /**sciGetPointerToFeature
  * @memo Returns the pointer to features structure from this object Used only for functions FREE or to use void pointer
  */
@@ -286,37 +322,38 @@ sciGetCharEntityType (sciPointObj * pobj)
 void
 sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
 {
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_PATCH:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXIS:  
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_MERGE:
-      (sciGetRelationship (pobj))->phandle = pvalue;		/** put the new index handle */
-      break;
-    default:
-      break;
-    }
+  if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
+    switch (sciGetEntityType (pobj))
+      {
+      case SCI_FIGURE:
+      case SCI_SUBWIN:
+      case SCI_TEXT:
+      case SCI_TITLE:
+      case SCI_LEGEND:
+      case SCI_ARC:
+      case SCI_SEGS: 
+      case SCI_FEC: 
+      case SCI_GRAYPLOT: 
+      case SCI_POLYLINE:
+      case SCI_PATCH:
+      case SCI_RECTANGLE:
+      case SCI_SURFACE:
+      case SCI_LIGHT:
+      case SCI_AXIS:  
+      case SCI_AXES:
+      case SCI_PANNER:
+      case SCI_SBH:
+      case SCI_SBV:
+      case SCI_MENU:
+      case SCI_MENUCONTEXT:
+      case SCI_STATUSB:
+      case SCI_AGREG:
+      case SCI_MERGE:
+	(sciGetRelationship (pobj))->phandle = pvalue;		/** put the new index handle */
+	break;
+      default:
+	break;
+      }
 }
 
 
@@ -496,18 +533,29 @@ sciGetPointerFromHandle (long handle)
 {
 
   sciHandleTab *phandletab;
-
-  phandletab = pendofhandletab;
-  while ((phandletab != NULL) && (phandletab->index != handle))
-    phandletab = phandletab->pprev;
-
-  if (phandletab == NULL)
+  if ( handle != sciGetHandle(pfiguremdl) && handle != sciGetHandle(paxesmdl))
+    {
+      phandletab = pendofhandletab;
+      while ((phandletab != NULL) && (phandletab->index != handle))
+	phandletab = phandletab->pprev;
+      
+      if (phandletab == NULL)
+	{
+	  sciprint ("this is not a valid handle !!\n");
+	  return (sciPointObj *) NULL;
+	}  
+      return (sciPointObj *) phandletab->pointobj;
+    }
+  else if ( handle == sciGetHandle(pfiguremdl))
+    return (sciPointObj *) pfiguremdl;
+  else if ( handle == sciGetHandle(paxesmdl))
+    return (sciPointObj *) paxesmdl;
+  else
     {
       sciprint ("this is not a valid handle !!\n");
       return (sciPointObj *) NULL;
     }
-
-  return (sciPointObj *) phandletab->pointobj;
+    
 }
 
 /************************************************ End Handle *************************************************/
@@ -605,17 +653,56 @@ sciInitGraphicContext (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      (sciGetGraphicContext(pobj))->backgroundcolor = 33;
-      (sciGetGraphicContext(pobj))->foregroundcolor = 32;
-      (sciGetGraphicContext(pobj))->fillstyle = HS_HORIZONTAL;
-      (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
-      (sciGetGraphicContext(pobj))->linewidth = 1;
-      (sciGetGraphicContext(pobj))->linestyle = PS_SOLID;
-      (sciGetGraphicContext(pobj))->ismark    = FALSE;
-      (sciGetGraphicContext(pobj))->markstyle = 0;
+      if (pobj == pfiguremdl)
+	{
+	  (sciGetGraphicContext(pobj))->backgroundcolor = 33;
+	  (sciGetGraphicContext(pobj))->foregroundcolor = 32;
+	  (sciGetGraphicContext(pobj))->fillstyle = HS_HORIZONTAL;
+	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
+	  (sciGetGraphicContext(pobj))->linewidth = 1;
+	  (sciGetGraphicContext(pobj))->linestyle = PS_SOLID;
+	  (sciGetGraphicContext(pobj))->ismark    = FALSE;
+	  (sciGetGraphicContext(pobj))->markstyle = 0;
+	  
+	}
+      else
+	{
+	  (sciGetGraphicContext(pobj))->backgroundcolor = (sciGetGraphicContext(pfiguremdl))->backgroundcolor;
+	  (sciGetGraphicContext(pobj))->foregroundcolor = (sciGetGraphicContext(pfiguremdl))->foregroundcolor;
+	  (sciGetGraphicContext(pobj))->fillstyle = (sciGetGraphicContext(pfiguremdl))->fillstyle;
+	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pfiguremdl))->fillcolor;
+	  (sciGetGraphicContext(pobj))->linewidth = (sciGetGraphicContext(pfiguremdl))->linewidth;
+	  (sciGetGraphicContext(pobj))->linestyle = (sciGetGraphicContext(pfiguremdl))->linestyle;
+	  (sciGetGraphicContext(pobj))->ismark    = (sciGetGraphicContext(pfiguremdl))->ismark ;
+	  (sciGetGraphicContext(pobj))->markstyle = (sciGetGraphicContext(pfiguremdl))->markstyle;
+	}  
       return 0;
       break;
     case SCI_SUBWIN:
+      if (pobj == paxesmdl)
+	{
+	  (sciGetGraphicContext(pobj))->backgroundcolor =	33;
+	  (sciGetGraphicContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
+	  (sciGetGraphicContext(pobj))->fillstyle =	sciGetFillStyle (sciGetParent (pobj));
+	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
+	  (sciGetGraphicContext(pobj))->linewidth =	sciGetLineWidth (sciGetParent (pobj));
+	  (sciGetGraphicContext(pobj))->linestyle =	sciGetLineStyle (sciGetParent (pobj));
+	  (sciGetGraphicContext(pobj))->ismark    =	sciGetIsMark (sciGetParent (pobj));
+	  (sciGetGraphicContext(pobj))->markstyle =	sciGetMarkStyle (sciGetParent (pobj));
+	}
+      else
+	{
+	  (sciGetGraphicContext(pobj))->backgroundcolor = (sciGetGraphicContext(paxesmdl))->backgroundcolor	;
+	  (sciGetGraphicContext(pobj))->foregroundcolor = (sciGetGraphicContext(paxesmdl))->foregroundcolor;
+	  (sciGetGraphicContext(pobj))->fillstyle = (sciGetGraphicContext(paxesmdl))->fillstyle;
+	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(paxesmdl))->fillcolor;
+	  (sciGetGraphicContext(pobj))->linewidth = (sciGetGraphicContext(paxesmdl))->linewidth;
+	  (sciGetGraphicContext(pobj))->linestyle = (sciGetGraphicContext(paxesmdl))->linestyle;
+	  (sciGetGraphicContext(pobj))->ismark    = (sciGetGraphicContext(paxesmdl))->ismark;
+	  (sciGetGraphicContext(pobj))->markstyle = (sciGetGraphicContext(paxesmdl))->markstyle;
+	}
+      return 0;
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -629,7 +716,7 @@ sciInitGraphicContext (sciPointObj * pobj)
     case SCI_AXES:
     case SCI_MENU:
     case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
+    case SCI_STATUSB: 
       (sciGetGraphicContext(pobj))->backgroundcolor =	sciGetBackground (sciGetParent (pobj)) - 1;
       (sciGetGraphicContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
       (sciGetGraphicContext(pobj))->fillstyle =	sciGetFillStyle (sciGetParent (pobj));
@@ -706,21 +793,44 @@ sciInitGraphicMode (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      (sciGetGraphicMode (pobj))->wresize = TRUE;
-      (sciGetGraphicMode (pobj))->addplot = TRUE;
-      (sciGetGraphicMode (pobj))->autoscaling = TRUE;
-      (sciGetGraphicMode (pobj))->zooming = FALSE;
-      (sciGetGraphicMode (pobj))->oldstyle = FALSE;
-      (sciGetGraphicMode (pobj))->xormode = 3;
+      if (pobj == pfiguremdl)
+	{
+	  (sciGetGraphicMode (pobj))->wresize = TRUE;
+	  (sciGetGraphicMode (pobj))->addplot = TRUE;
+	  (sciGetGraphicMode (pobj))->autoscaling = TRUE;
+	  (sciGetGraphicMode (pobj))->zooming = FALSE;
+	  (sciGetGraphicMode (pobj))->oldstyle = FALSE;
+	  (sciGetGraphicMode (pobj))->xormode = 3;
+	}
+      else
+	{
+	  (sciGetGraphicMode (pobj))->wresize = (sciGetGraphicMode (pfiguremdl))->wresize;
+	  (sciGetGraphicMode (pobj))->addplot = (sciGetGraphicMode (pfiguremdl))->addplot;
+	  (sciGetGraphicMode (pobj))->autoscaling = (sciGetGraphicMode (pfiguremdl))->autoscaling;
+	  (sciGetGraphicMode (pobj))->zooming = (sciGetGraphicMode (pfiguremdl))->zooming;
+	  (sciGetGraphicMode (pobj))->oldstyle = (sciGetGraphicMode (pfiguremdl))->oldstyle;
+	  (sciGetGraphicMode (pobj))->xormode = (sciGetGraphicMode (pfiguremdl))->xormode;
+	}
       break;
     case SCI_SUBWIN:
-      (sciGetGraphicMode (pobj))->wresize =sciGetResize (sciGetParent (pobj));
-      (sciGetGraphicMode (pobj))->addplot =sciGetAddPlot (sciGetParent (pobj));
-      (sciGetGraphicMode (pobj))->autoscaling =sciGetAutoScale (sciGetParent (pobj));
-      (sciGetGraphicMode (pobj))->zooming =sciGetZooming (sciGetParent (pobj));
-      (sciGetGraphicMode (pobj))->oldstyle =sciGetGraphicsStyle (sciGetParent (pobj)); 
-      (sciGetGraphicMode (pobj))->xormode =sciGetXorMode (sciGetParent (pobj));
-      break;
+      if (pobj == paxesmdl)
+	{
+	  (sciGetGraphicMode (pobj))->wresize =sciGetResize (sciGetParent (pobj));
+	  (sciGetGraphicMode (pobj))->addplot =sciGetAddPlot (sciGetParent (pobj));
+	  (sciGetGraphicMode (pobj))->autoscaling =sciGetAutoScale (sciGetParent (pobj));
+	  (sciGetGraphicMode (pobj))->zooming =sciGetZooming (sciGetParent (pobj));
+	  (sciGetGraphicMode (pobj))->oldstyle =sciGetGraphicsStyle (sciGetParent (pobj)); 
+	  (sciGetGraphicMode (pobj))->xormode =sciGetXorMode (sciGetParent (pobj));
+      	}
+      else
+	{
+	  (sciGetGraphicMode (pobj))->addplot =(sciGetGraphicMode (paxesmdl))->addplot;
+	  (sciGetGraphicMode (pobj))->autoscaling = (sciGetGraphicMode (paxesmdl))->autoscaling;
+	  (sciGetGraphicMode (pobj))->zooming =(sciGetGraphicMode (paxesmdl))->zooming;
+	  (sciGetGraphicMode (pobj))->oldstyle =(sciGetGraphicMode (paxesmdl))->oldstyle;
+	  (sciGetGraphicMode (pobj))->xormode =(sciGetGraphicMode (paxesmdl))->xormode;
+      	}
+	  break;
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
@@ -761,10 +871,11 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
 {
   double *pc;
   int k;
-  C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
+  if (pobj != pfiguremdl)
+       C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
   
   pc=pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap;
-
+  
   FREE(pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap);
   if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (m * n * sizeof (double))) == (double *) NULL)
     {
@@ -772,11 +883,15 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
       pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap=pc;
       return -1;
     }  
-  
   for (k=0;k<m*n;k++) 
     pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap[k] = rgbmat[k];
-  sciSetBackground ((sciPointObj *) pobj, sciGetNumColors (pobj));
-  sciSetForeground ((sciPointObj *) pobj, sciGetNumColors (pobj)+1); 
+  sciSetNumColors (pobj,m);
+  sciSetBackground ((sciPointObj *) pobj, m);
+  if (pobj == pfiguremdl) 
+    pSUBWIN_FEATURE (paxesmdl)->cubecolor= m;
+  else
+    pSUBWIN_FEATURE (sciGetSelectedSubWin (pobj))->cubecolor= m;
+  sciSetForeground ((sciPointObj *) pobj, m); 
   return 0;
 
 }
@@ -811,7 +926,10 @@ sciGetColormap (sciPointObj * pobj, double *rgbmat)
 int
 sciSetNumColors (sciPointObj * pobj, int numcolors)
 {
-  sciGetScilabXgc (pobj)->Numcolors = numcolors;
+  if ( (pobj == pfiguremdl) || (pobj == paxesmdl))
+    pFIGURE_FEATURE (pfiguremdl)->numcolors = numcolors;
+  else
+    sciGetScilabXgc (pobj)->Numcolors = numcolors;
   return 0;
 }
 
@@ -820,8 +938,11 @@ sciSetNumColors (sciPointObj * pobj, int numcolors)
  */
 int
 sciGetNumColors (sciPointObj * pobj)
-{
-  return sciGetScilabXgc (pobj)->Numcolors;
+{ 
+  if ( (pobj == pfiguremdl) || (pobj == paxesmdl))
+    return pFIGURE_FEATURE (pfiguremdl)->numcolors;
+  else
+    return sciGetScilabXgc (pobj)->Numcolors;
 }
 
 /**sciCloneColormap
@@ -856,15 +977,19 @@ int
 sciSetBackground (sciPointObj * pobj, int colorindex)
 {
   int zero = 0;
-  /* code taken in void C2F(setbackground)(num, v2, v3, v4) from JPC */
-  if (sciGetScilabXgc (pobj)->CurColorStatus == 1)
+
+  if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
     {
-      /* COLORREF px;                           COLORREF ? "periWin-bgc"*/
-      sciGetScilabXgc (pobj)->NumBackground =
-	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      C2F (dr) ("xset", "background",&colorindex,&colorindex,&zero,&zero,&zero,PI0,PD0,PD0,PD0,PD0,0L,0L);/* DJ.A 07/01/2004 */
-      C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
-	      PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      /* code taken in void C2F(setbackground)(num, v2, v3, v4) from JPC */
+      if (sciGetScilabXgc (pobj)->CurColorStatus == 1)
+	{
+	  /* COLORREF px;                           COLORREF ? "periWin-bgc"*/
+	  sciGetScilabXgc (pobj)->NumBackground =
+	    Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+	  C2F (dr) ("xset", "background",&colorindex,&colorindex,&zero,&zero,&zero,PI0,PD0,PD0,PD0,PD0,0L,0L);/* DJ.A 07/01/2004 */
+	  C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
+		  PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	}
     }
   switch (sciGetEntityType (pobj))
     {
@@ -873,7 +998,7 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
       break;
     case SCI_SUBWIN:
       (sciGetGraphicContext(pobj))->backgroundcolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      sciSetBackground (sciGetParentFigure (pobj), colorindex);	/* ajout mat necessaire pour l'instant */
+      sciSetBackground (sciGetParentFigure (pobj), colorindex);
       break;
     case SCI_TEXT:
       (sciGetFontContext(pobj))->backgroundcolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
@@ -1015,13 +1140,16 @@ int
 sciSetForeground (sciPointObj * pobj, int colorindex)
 {
   /*pour le moment les couleur pris en compte sont les memes pour tout le monde */
-  if (sciGetScilabXgc (pobj)->CurColorStatus == 1)
+  if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
     {
-
-      sciGetScilabXgc (pobj)->NumForeground =
-	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
-	      PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
+      if (sciGetScilabXgc (pobj)->CurColorStatus == 1)
+	{
+	  
+	  sciGetScilabXgc (pobj)->NumForeground =
+	    Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+	  C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
+		  PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
+	}
     }
   switch (sciGetEntityType (pobj))
     {
@@ -1030,7 +1158,7 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
       break;
     case SCI_SUBWIN:
       (sciGetGraphicContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      sciSetForeground (sciGetParentFigure (pobj), colorindex);
+      /*sciSetForeground (sciGetParentFigure (pobj), colorindex);*/
       break;
     case SCI_TEXT:
       (sciGetFontContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
@@ -1335,7 +1463,7 @@ sciSetLineWidth (sciPointObj * pobj, int linewidth)
 	  break;
 	case SCI_SUBWIN:
 	  (sciGetGraphicContext(pobj))->linewidth = linewidth;
-	  sciSetLineWidth (sciGetParentFigure (pobj), linewidth);
+	  /*sciSetLineWidth (sciGetParentFigure (pobj), linewidth);*/
 	  return 0;
 	  break;
 	case SCI_ARC:
@@ -1493,7 +1621,7 @@ sciSetLineStyle (sciPointObj * pobj, int linestyle)
 	  break;
 	case SCI_SUBWIN:
 	  (sciGetGraphicContext(pobj))->linestyle = linestyle;
-	  sciSetLineStyle (sciGetParentFigure (pobj), linestyle);
+	  /*sciSetLineStyle (sciGetParentFigure (pobj), linestyle);*/
 	  return 0;
 	  break;
 	case SCI_ARC:
@@ -1636,7 +1764,7 @@ sciSetIsMark (sciPointObj * pobj, BOOL ismark)
       break;
     case SCI_SUBWIN:
       (sciGetGraphicContext(pobj))->ismark = ismark;
-      sciSetIsMark (sciGetParentFigure (pobj), ismark);
+      /*sciSetIsMark (sciGetParentFigure (pobj), ismark);*/
       return 0;
       break;
     case SCI_ARC:
@@ -1779,7 +1907,7 @@ sciSetMarkStyle (sciPointObj * pobj, int markstyle)
 	  break;
 	case SCI_SUBWIN:
 	  (sciGetGraphicContext(pobj))->markstyle = markstyle;
-	  sciSetMarkStyle (sciGetParentFigure (pobj), markstyle);
+	  /*sciSetMarkStyle (sciGetParentFigure (pobj), markstyle);*/
 	  return 0;
 	  break;
 	case SCI_ARC:
@@ -1926,7 +2054,7 @@ sciSetFillStyle (sciPointObj * pobj, int fillstyle)
 	  break;
 	case SCI_SUBWIN:
 	  (sciGetGraphicContext(pobj))->fillstyle = fillstyle;
-	  sciSetFillStyle (sciGetParentFigure (pobj), fillstyle);
+	  /*sciSetFillStyle (sciGetParentFigure (pobj), fillstyle);*/
 	  return 0;
 	  break;
 	case SCI_ARC:
@@ -2067,7 +2195,7 @@ sciSetFillColor (sciPointObj * pobj, int fillcolor)
 	  break;
 	case SCI_SUBWIN:
 	  (sciGetGraphicContext(pobj))->fillcolor = fillcolor;
-	  sciSetFillStyle (sciGetParentFigure (pobj), fillcolor);
+	  /*sciSetFillStyle (sciGetParentFigure (pobj), fillcolor);*/
 	  return 0;
 	  break;
 	case SCI_ARC:
@@ -2400,6 +2528,8 @@ sciGetParent (sciPointObj * pobj)
 sciPointObj *
 sciGetParentFigure (sciPointObj * pobj)
 {
+  if ( (pobj == pfiguremdl) || (pobj == paxesmdl))
+    return (sciPointObj *) pfiguremdl;
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -3407,7 +3537,7 @@ sciSetAddPlot (sciPointObj * pobj, BOOL value)
       break;
     case SCI_SUBWIN:
       (sciGetGraphicMode (pobj))->addplot = value;
-      (sciGetGraphicMode (sciGetParentFigure(pobj)))->addplot = value;
+      /*(sciGetGraphicMode (sciGetParentFigure(pobj)))->addplot = value;*/
       break;
     case SCI_TEXT:
     case SCI_TITLE:
@@ -3483,10 +3613,14 @@ sciGetAddPlot (sciPointObj * pobj)
 void
 sciSetAutoScale (sciPointObj * pobj, BOOL value)
 {
+  
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      sciSetAutoScale(sciGetSelectedSubWin (pobj),value);
+      if (pobj == pfiguremdl)
+	(sciGetGraphicMode (pobj))->autoscaling = value;
+      else
+	sciSetAutoScale(sciGetSelectedSubWin (pobj),value);
       break;
     case SCI_SUBWIN:
       (sciGetGraphicMode (pobj))->autoscaling = value;
@@ -3753,7 +3887,8 @@ sciGetGraphicsStyle (sciPointObj * pobj)
 void
 sciSetXorMode (sciPointObj * pobj, int value)
 { 
-  C2F(dr)("xset","alufunction",&(value),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
+  if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
+    C2F(dr)("xset","alufunction",&(value),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -3848,28 +3983,30 @@ sciSetResize (sciPointObj * pobj, BOOL value)
   integer xtmp = 0;
   integer x[2];
   integer num1 = (value ? 1 : 0);
-
-  /* this code will coms from
-   *  C2F(setwresize)((i = value, &i), PI0,PI0,PI0);
-   * je changerais ce morceau de code quand tout csera OK
-   */
-  if (sciGetScilabXgc (pobj)->CurResizeStatus != num1)
+  if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
     {
-      sciGetScilabXgc (pobj)->CurResizeStatus = num1;	/* a faire avant setwindowdim */
-      
-      C2F(dr)("xget","wpdim",&xtmp,x,&xtmp,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L); 
-      C2F(dr)("xset","wpdim",&(x[0]),&(x[1]),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L);
+      /* this code will coms from
+       *  C2F(setwresize)((i = value, &i), PI0,PI0,PI0);
+       * je changerais ce morceau de code quand tout csera OK
+       */
+      if (sciGetScilabXgc (pobj)->CurResizeStatus != num1)
+	{
+	  sciGetScilabXgc (pobj)->CurResizeStatus = num1;	/* a faire avant setwindowdim */
+	  
+	  C2F(dr)("xget","wpdim",&xtmp,x,&xtmp,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L); 
+	  C2F(dr)("xset","wpdim",&(x[0]),&(x[1]),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L);
 #ifdef WIN32
-      /* Win function sciGetScilabXgc (pobj)->horzsi.nPos !!? BCG.horzsi.nPos*/
-      /* SetViewportOrgEx (GetDC (sciGetScilabXgc (pobj)->CWindow),  
-      			-sciGetScilabXgc (pobj)->horzsi.nPos,
-      			-sciGetScilabXgc (pobj)->vertsi.nPos, NULL);*/
-       /*if (sciGetPixmapStatus () == 0)                                          
-	InvalidateRect (sciGetScilabXgc (pobj)->CWindow, NULL, TRUE); 
-      return ScilabXgc->CurPixmapStatus;
-      UpdateWindow (sciGetScilabXgc (pobj)->CWindow); */ /* dependent function MacWinOther.c"*/
-
+	  /* Win function sciGetScilabXgc (pobj)->horzsi.nPos !!? BCG.horzsi.nPos*/
+	  /* SetViewportOrgEx (GetDC (sciGetScilabXgc (pobj)->CWindow),  
+	     -sciGetScilabXgc (pobj)->horzsi.nPos,
+	     -sciGetScilabXgc (pobj)->vertsi.nPos, NULL);*/
+	  /*if (sciGetPixmapStatus () == 0)                                          
+	    InvalidateRect (sciGetScilabXgc (pobj)->CWindow, NULL, TRUE); 
+	    return ScilabXgc->CurPixmapStatus;
+	    UpdateWindow (sciGetScilabXgc (pobj)->CWindow); */ /* dependent function MacWinOther.c"*/
+	  
 #endif
+	}
     }
   switch (sciGetEntityType (pobj))
     {
@@ -3879,7 +4016,7 @@ sciSetResize (sciPointObj * pobj, BOOL value)
     case SCI_SUBWIN:
       (sciGetGraphicMode (pobj))->wresize = value;
       /* the value is inhirated by the parent */
-      sciSetResize (sciGetParentFigure (pobj), value);
+      /*sciSetResize (sciGetParentFigure (pobj), value);*/
       break;
     case SCI_TEXT:
     case SCI_TITLE:
@@ -3969,7 +4106,8 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
 	       Min (sizeof ("ScilabGraphic") + 4, length));
       pFIGURE_FEATURE (pobj)->namelen =
 	Min (sizeof ("ScilabGraphic") + 4, length); 
-      C2F(dr)("xname",pvalue,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,(long) length);
+      if (pobj != pfiguremdl) 
+	C2F(dr)("xname",pvalue,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,(long) length);
       break;
     case SCI_SUBWIN:
     case SCI_AGREG:
@@ -4101,7 +4239,8 @@ sciSetDim (sciPointObj * pobj, int *pwidth, int *pheight)
     case SCI_SUBWIN:
       pSUBWIN_FEATURE (pobj)->windimwidth = *pwidth;
       pSUBWIN_FEATURE (pobj)->windimheight = *pheight;
-      C2F(dr)("xset","wdim",pwidth, pheight,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
+      if (pobj != paxesmdl)
+	C2F(dr)("xset","wdim",pwidth, pheight,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
       break;
     case SCI_AGREG:
     default:
@@ -4165,6 +4304,7 @@ sciSetFigurePos (sciPointObj * pobj, int pposx, int pposy)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
+      if (pobj != pfiguremdl)
       C2F(dr)("xset","wpos",&pposx,&pposy,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
       pFIGURE_FEATURE (pobj)->inrootposx = pposx;
       pFIGURE_FEATURE (pobj)->inrootposy = pposy;
@@ -6979,10 +7119,8 @@ ConstructFigure (XGC)
 {
  
   sciPointObj *pobj = (sciPointObj *) NULL;
-  /* data for scilab function getwindowdim getpopupdim ... */
-  integer verbose = 0;
-  integer x[2];
-  integer narg = 0, dummy=0, m; 
+  integer i , m, n;
+  integer x[2], verbose=0, narg=0; 
 
 
   /* memory allocation for the new Figure   affectation du type allocation de la structure */
@@ -7025,17 +7163,21 @@ ConstructFigure (XGC)
   pFIGURE_FEATURE (pobj)->pScilabXgc = XGC;
   
   /** the colormap is mx3 matrix */
-  m = sciGetNumColors (pobj);
-  if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)
+  n=3;
+  m = sciGetNumColors (pfiguremdl);
+  if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (m * n * sizeof (double))) == (double *) NULL)
     {
       sciDelHandle (pobj);
       FREE(pobj->pfeatures);
       FREE(pobj);
       return (sciPointObj *) NULL;
     }  
-    
-  C2F(dr)("xget", "colormap",&verbose,&narg,&dummy,PI0,PI0,PI0,pFIGURE_FEATURE(pobj)->pcolormap,PD0,PD0,PD0,4L,8L);
-  /* initialisation de context et mode graphique par defaut */
+  for (i=0; i <m*n ; i++) 
+    pFIGURE_FEATURE(pobj)->pcolormap[i] = pFIGURE_FEATURE(pfiguremdl)->pcolormap[i];
+  C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,pFIGURE_FEATURE(pobj)->pcolormap,PD0,PD0,PD0,0L,0L);
+  sciSetNumColors (pobj,m);
+   
+  /* initialisation de context et mode graphique par defaut (figure model)*/
   if (sciInitGraphicContext (pobj) == -1)
     {
       sciDelHandle (pobj);
@@ -7052,21 +7194,29 @@ ConstructFigure (XGC)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }   
-
-  strncpy (pFIGURE_FEATURE (pobj)->name, "Scilab Graphic", sizeof ("Scilab Graphic") + 4);
-  pFIGURE_FEATURE (pobj)->namelen = Min (sizeof ("Scilab Graphic") + 4, 14); 
+  sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciSetNum (pobj, &(XGC->CurWindow));
-  pFIGURE_FEATURE (pobj)->figuredimwidth = XGC->CWindowWidth;
-  pFIGURE_FEATURE (pobj)->figuredimheight = XGC->CWindowHeight;
+  pFIGURE_FEATURE(pobj)->windowdimwidth=pFIGURE_FEATURE(pfiguremdl)->windowdimwidth;  
+  pFIGURE_FEATURE(pobj)->windowdimheight=pFIGURE_FEATURE(pfiguremdl)->windowdimheight;
+  C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE(pobj)->windowdimwidth),
+	  &(pFIGURE_FEATURE(pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+  pFIGURE_FEATURE (pobj)->figuredimwidth = pFIGURE_FEATURE (pfiguremdl)->figuredimwidth;
+  pFIGURE_FEATURE (pobj)->figuredimheight = pFIGURE_FEATURE (pfiguremdl)->figuredimheight;
+  C2F(dr)("xset","wdim",&(pFIGURE_FEATURE(pobj)->figuredimwidth),
+		&(pFIGURE_FEATURE(pobj)->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","wpos",&verbose,x,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
-  sciSetFigurePos (pobj, x[0], x[1]);
-  pFIGURE_FEATURE (pobj)->isiconified = FALSE;
-  pFIGURE_FEATURE (pobj)->isselected = TRUE;
-  pFIGURE_FEATURE (pobj)->rotstyle = 0;
-  pFIGURE_FEATURE (pobj)->visible = TRUE;
-  pFIGURE_FEATURE (pobj)->numsubwinselected = 0; 
-  pFIGURE_FEATURE (pobj)->pixmap = 0; /*Ajout A.Djelal*/
-  pFIGURE_FEATURE (pobj)->wshow = 0; 
+  x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
+  x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
+  x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
+  x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
+  sciSetFigurePos (pobj,x[0],x[1]);
+  pFIGURE_FEATURE (pobj)->isiconified = pFIGURE_FEATURE (pfiguremdl)->isiconified;
+  pFIGURE_FEATURE (pobj)->isselected = pFIGURE_FEATURE (pfiguremdl)->isselected; 
+  pFIGURE_FEATURE (pobj)->rotstyle = pFIGURE_FEATURE (pfiguremdl)->rotstyle;
+  pFIGURE_FEATURE (pobj)->visible = pFIGURE_FEATURE (pfiguremdl)->visible;
+  pFIGURE_FEATURE (pobj)->numsubwinselected = pFIGURE_FEATURE (pfiguremdl)->numsubwinselected;
+  pFIGURE_FEATURE (pobj)->pixmap = pFIGURE_FEATURE (pfiguremdl)->pixmap ; 
+  pFIGURE_FEATURE (pobj)->wshow = pFIGURE_FEATURE (pfiguremdl)->wshow ; 
   return pobj;
 }
 
@@ -7184,8 +7334,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 {
 
   char dir;
-  int i; 
-  int verbose=0,narg;
+  int i;
 
   if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
     {
@@ -7238,91 +7387,72 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	  return (sciPointObj *) NULL;
 	} 
 
-      pSUBWIN_FEATURE (pobj)->logflags[0] = 'n';
-      pSUBWIN_FEATURE (pobj)->logflags[1] = 'n';
+      dir= pSUBWIN_FEATURE (paxesmdl)->logflags[0];
+      pSUBWIN_FEATURE (pobj)->logflags[0] = dir;
+      dir= pSUBWIN_FEATURE (paxesmdl)->logflags[1]; 
+      pSUBWIN_FEATURE (pobj)->logflags[1] = dir;
 
-  
-     /* axes labelling values*/
-      pSUBWIN_FEATURE (pobj)->axes.ticscolor  = -1;
-      pSUBWIN_FEATURE (pobj)->axes.textcolor  = -1;
-      pSUBWIN_FEATURE (pobj)->axes.fontsize  = -1;  
-      pSUBWIN_FEATURE (pobj)->axes.subint[0]  = 1;   
-      pSUBWIN_FEATURE (pobj)->axes.subint[1]  = 1; 
-      pSUBWIN_FEATURE (pobj)->axes.subint[2]  = 1;
-      pSUBWIN_FEATURE (pobj)->axes.xdir='d'; /*SS 02/01/03 */
-      pSUBWIN_FEATURE (pobj)->axes.ydir='l'; /*SS 02/01/03 */
+      pSUBWIN_FEATURE (pobj)->axes.ticscolor  = pSUBWIN_FEATURE (paxesmdl)->axes.ticscolor;
+      pSUBWIN_FEATURE (pobj)->axes.textcolor  = pSUBWIN_FEATURE (paxesmdl)->axes.textcolor;
+      pSUBWIN_FEATURE (pobj)->axes.fontsize   = pSUBWIN_FEATURE (paxesmdl)->axes.fontsize;  
+      pSUBWIN_FEATURE (pobj)->axes.subint[0]  = pSUBWIN_FEATURE (paxesmdl)->axes.subint[0];   
+      pSUBWIN_FEATURE (pobj)->axes.subint[1]  = pSUBWIN_FEATURE (paxesmdl)->axes.subint[1]; 
+      pSUBWIN_FEATURE (pobj)->axes.subint[2]  = pSUBWIN_FEATURE (paxesmdl)->axes.subint[2];
 
-
-      pSUBWIN_FEATURE (pobj)->axes.rect  = 1;
+      dir= pSUBWIN_FEATURE (paxesmdl)->axes.xdir; 
+      pSUBWIN_FEATURE (pobj)->axes.xdir = dir; 
+      dir= pSUBWIN_FEATURE (paxesmdl)->axes.ydir; 
+      pSUBWIN_FEATURE (pobj)->axes.ydir = dir;
+ 
+      pSUBWIN_FEATURE (pobj)->axes.rect  = pSUBWIN_FEATURE (paxesmdl)->axes.rect;
       for (i=0 ; i<6 ; i++)
-	pSUBWIN_FEATURE (pobj)->axes.limits[i]  = 0;
-      /**DJ.Abdemouche 2003**/
+	pSUBWIN_FEATURE (pobj)->axes.limits[i]  = pSUBWIN_FEATURE (paxesmdl)->axes.limits[i] ;
       for (i=0 ; i<3 ; i++)
-	pSUBWIN_FEATURE (pobj)->grid[i]  = -1;
-      pSUBWIN_FEATURE (pobj)->isaxes  = FALSE;
-      /***/
-      pSUBWIN_FEATURE (pobj)->alpha  = 0.0;
-      pSUBWIN_FEATURE (pobj)->theta  = 270.0;
-      pSUBWIN_FEATURE (pobj)->alpha_kp  = 45.0;
-      pSUBWIN_FEATURE (pobj)->theta_kp  = 215.0;
-      pSUBWIN_FEATURE (pobj)->is3d  = FALSE;
-     
-      dir= 'd'; pSUBWIN_FEATURE (pobj)->axes.xdir=dir;
-      dir= 'l'; pSUBWIN_FEATURE (pobj)->axes.ydir=dir;      
+	pSUBWIN_FEATURE (pobj)->grid[i]  = pSUBWIN_FEATURE (paxesmdl)->grid[i] ;
+      pSUBWIN_FEATURE (pobj)->isaxes  = pSUBWIN_FEATURE (paxesmdl)->isaxes;
+      pSUBWIN_FEATURE (pobj)->alpha  = pSUBWIN_FEATURE (paxesmdl)->alpha;
+      pSUBWIN_FEATURE (pobj)->theta  = pSUBWIN_FEATURE (paxesmdl)->theta;
+      pSUBWIN_FEATURE (pobj)->alpha_kp  = pSUBWIN_FEATURE (paxesmdl)->alpha_kp;
+      pSUBWIN_FEATURE (pobj)->theta_kp  = pSUBWIN_FEATURE (paxesmdl)->theta_kp;
+      pSUBWIN_FEATURE (pobj)->is3d  = pSUBWIN_FEATURE (paxesmdl)->is3d;
+       
       for (i=0 ; i<4 ; i++)
-        {  pSUBWIN_FEATURE (pobj)->axes.xlim[i]= Cscale.xtics[i]; 
-	pSUBWIN_FEATURE (pobj)->axes.ylim[i]= Cscale.ytics[i]; }
-	
-      pSUBWIN_FEATURE (pobj)->axes.zlim[0]= -1.0;
-      pSUBWIN_FEATURE (pobj)->axes.zlim[1]= 1.0;
+        {  
+	  pSUBWIN_FEATURE (pobj)->axes.xlim[i]= pSUBWIN_FEATURE (paxesmdl)->axes.xlim[i]; 
+	  pSUBWIN_FEATURE (pobj)->axes.ylim[i]= pSUBWIN_FEATURE (paxesmdl)->axes.ylim[i]; 
+	}
+      pSUBWIN_FEATURE (pobj)->axes.zlim[0]= pSUBWIN_FEATURE (paxesmdl)->axes.zlim[0];
+      pSUBWIN_FEATURE (pobj)->axes.zlim[1]= pSUBWIN_FEATURE (paxesmdl)->axes.zlim[1];
+      pSUBWIN_FEATURE (pobj)->axes.flag[0]= pSUBWIN_FEATURE (paxesmdl)->axes.flag[0];
+      pSUBWIN_FEATURE (pobj)->axes.flag[1]= pSUBWIN_FEATURE (paxesmdl)->axes.flag[1];
+      pSUBWIN_FEATURE (pobj)->axes.flag[2]= pSUBWIN_FEATURE (paxesmdl)->axes.flag[2];
+      pSUBWIN_FEATURE (pobj)->project[0]= pSUBWIN_FEATURE (paxesmdl)->project[0];
+      pSUBWIN_FEATURE (pobj)->project[1]= pSUBWIN_FEATURE (paxesmdl)->project[1];
+      pSUBWIN_FEATURE (pobj)->project[2]= pSUBWIN_FEATURE (paxesmdl)->project[2];
+      pSUBWIN_FEATURE (pobj)->cubecolor= pSUBWIN_FEATURE (paxesmdl)->cubecolor;
+      pSUBWIN_FEATURE (pobj)->hiddencolor= pSUBWIN_FEATURE (paxesmdl)->hiddencolor;
+      pSUBWIN_FEATURE (pobj)->hiddenstate= pSUBWIN_FEATURE (paxesmdl)->hiddenstate;
+      pSUBWIN_FEATURE (pobj)->isoview= pSUBWIN_FEATURE (paxesmdl)->isoview;
+      pSUBWIN_FEATURE (pobj)->facetmerge = pSUBWIN_FEATURE (paxesmdl)->facetmerge; 
+      pSUBWIN_FEATURE (pobj)->WRect[0]   = pSUBWIN_FEATURE (paxesmdl)->WRect[0];
+      pSUBWIN_FEATURE (pobj)->WRect[1]   = pSUBWIN_FEATURE (paxesmdl)->WRect[1];
+      pSUBWIN_FEATURE (pobj)->WRect[2]   = pSUBWIN_FEATURE (paxesmdl)->WRect[2];
+      pSUBWIN_FEATURE (pobj)->WRect[3]   = pSUBWIN_FEATURE (paxesmdl)->WRect[3];
 
-      pSUBWIN_FEATURE (pobj)->axes.flag[0]= 2;
-      pSUBWIN_FEATURE (pobj)->axes.flag[1]= 2;
-      pSUBWIN_FEATURE (pobj)->axes.flag[2]= 4;
-      /**DJ.Abdemouche 2003**/
-      pSUBWIN_FEATURE (pobj)->project[0]= 1;
-      pSUBWIN_FEATURE (pobj)->project[1]= 1;
-      pSUBWIN_FEATURE (pobj)->project[2]= 0;
-      pSUBWIN_FEATURE (pobj)->cubecolor= (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      /***/
-      /* DJ.A 2003 */
-      C2F(dr)("xget","hidden3d",&verbose,&(pSUBWIN_FEATURE (pobj)->hiddencolor),&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      pSUBWIN_FEATURE (pobj)->hiddenstate=0;
-      /***/
-
-      pSUBWIN_FEATURE (pobj)->isoview= TRUE;
-      pSUBWIN_FEATURE (pobj)->facetmerge = FALSE;/*DJ.A merge*/ 
-      pSUBWIN_FEATURE (pobj)->WRect[0]   = 0;
-      pSUBWIN_FEATURE (pobj)->WRect[1]   = 0;
-      pSUBWIN_FEATURE (pobj)->WRect[2]   = 1;
-      pSUBWIN_FEATURE (pobj)->WRect[3]   = 1;
-
-      pSUBWIN_FEATURE (pobj)->FRect[0]   = 0.0;
-      pSUBWIN_FEATURE (pobj)->FRect[1]   = 0.0;
-      pSUBWIN_FEATURE (pobj)->FRect[2]   = 1.0;
-      pSUBWIN_FEATURE (pobj)->FRect[3]   = 1.0;
-      pSUBWIN_FEATURE (pobj)->FRect[4]   = -1.0;
-      pSUBWIN_FEATURE (pobj)->FRect[5]   = 1.0;
+      pSUBWIN_FEATURE (pobj)->FRect[0]   = pSUBWIN_FEATURE (paxesmdl)->FRect[0];
+      pSUBWIN_FEATURE (pobj)->FRect[1]   = pSUBWIN_FEATURE (paxesmdl)->FRect[1] ;
+      pSUBWIN_FEATURE (pobj)->FRect[2]   = pSUBWIN_FEATURE (paxesmdl)->FRect[2];
+      pSUBWIN_FEATURE (pobj)->FRect[3]   = pSUBWIN_FEATURE (paxesmdl)->FRect[3];
+      pSUBWIN_FEATURE (pobj)->FRect[4]   = pSUBWIN_FEATURE (paxesmdl)->FRect[4] ;
+      pSUBWIN_FEATURE (pobj)->FRect[5]   = pSUBWIN_FEATURE (paxesmdl)->FRect[5];
      
-      /* on set cette fenetre comme selectionnee par defaut a son parent */
-      pSUBWIN_FEATURE (pobj)->isselected = FALSE; /* on place la valeur par defaut pour le bon fonctionnement*/ 
-      /** 25/11/2002 **/
-      pSUBWIN_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
-      pSUBWIN_FEATURE (pobj)->isclip = -1;
+      pSUBWIN_FEATURE (pobj)->isselected = pSUBWIN_FEATURE (paxesmdl)->isselected;  
+      pSUBWIN_FEATURE (pobj)->visible = pSUBWIN_FEATURE (paxesmdl)->visible; 
+      pSUBWIN_FEATURE (pobj)->isclip = pSUBWIN_FEATURE (paxesmdl)->isclip;
             
-      if (sciSetSelectedSubWin(pobj) != 1)
-	    
-	return (sciPointObj *)NULL;
-	    
-      /* recupere dans les structures Scilab wdim
-         C2F(getwindowdim)(&verbose, x, &narg,&dummy);
-         sciSetSubWinDim(pobj, x, x+1); */
-
+      if (sciSetSelectedSubWin(pobj) != 1) 
+	return (sciPointObj *)NULL; 
       pSUBWIN_FEATURE (pobj)->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
-
-      /* contruit le menu contextuel  pour tester */
-      /*sprintf(strtmp, "%d",sciGetNum(pobj));
-	sciAttachPopMenu(pobj, ConstructMenuContext(pparentfigure, strtmp, strlen(strtmp)));*/
       /*14/03/2002*/ sciSetCurrentObj (pobj);
       return (sciPointObj *)pobj;
     }
@@ -7354,6 +7484,238 @@ DestroySubWin (sciPointObj * pthis)
   return 0;
 }
 
+/* DJ.A 08/01/04 */
+int C2F(graphicsmodels) ()
+{
+ 
+  integer i ,m;
+  char dir;
+  sciHandleTab *newhd1, *newhd2;
+
+ if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    {
+      strcpy(error_message,"Default figure cannot be create");
+      return 0;  	  
+    }
+  sciSetEntityType (pfiguremdl, SCI_FIGURE);
+  if ((pfiguremdl->pfeatures = MALLOC ((sizeof (sciFigure)))) == NULL)
+    {
+      FREE(pfiguremdl);
+      strcpy(error_message,"Default figure cannot be create");
+      return 0;
+    }
+  
+ if ((newhd1 = MALLOC ((sizeof (sciHandleTab)))) == NULL)
+   {
+      FREE(pfiguremdl->pfeatures);
+      FREE(pfiguremdl);
+      strcpy(error_message,"Default figure cannot be create");
+      return 0;
+    }
+   newhd1->pnext = (sciHandleTab *) NULL;
+   newhd1->pprev = (sciHandleTab *) NULL;
+   newhd1->index = (long)pfiguremdl;
+   (sciGetRelationship (pfiguremdl))->phandle = newhd1;
+    
+  if (!(sciAddThisToItsParent(pfiguremdl, (sciPointObj *)NULL))) 
+    {
+      sciDelHandle (pfiguremdl);
+      FREE(pfiguremdl->pfeatures);
+      FREE(pfiguremdl);
+      strcpy(error_message,"Default figure cannot be create");
+      return 0;
+    }
+  
+  sciSetCurrentSon (pfiguremdl, (sciPointObj *) NULL);
+
+  pFIGURE_FEATURE (pfiguremdl)->relationship.psons = (sciSons *) NULL;
+  pFIGURE_FEATURE (pfiguremdl)->relationship.plastsons = (sciSons *) NULL;
+  pFIGURE_FEATURE (pfiguremdl)->numcolors=  NUMCOLORS;
+  /** the colormap is mx3 matrix */
+  m = NUMCOLORS;
+  if((pFIGURE_FEATURE(pfiguremdl)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)
+    {
+      sciDelHandle (pfiguremdl);
+      FREE(pfiguremdl->pfeatures);
+      FREE(pfiguremdl);
+      strcpy(error_message,"Default figure cannot be create");
+      return 0;
+    }  
+  for (i= 0 ; i < m ; i++)
+    {
+      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i] = (double) (defcolors[3*i]/255.0);
+      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+m] = (double) (defcolors[3*i+1]/255.0); 
+      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+2*m] = (double) (defcolors[3*i+2]/255.0);
+    }
+   /* initialisation de context et mode graphique par defaut */
+  if (sciInitGraphicContext (pfiguremdl) == -1)
+    {
+      sciDelHandle (pfiguremdl);
+      FREE(pFIGURE_FEATURE(pfiguremdl)->pcolormap);
+      FREE(pfiguremdl->pfeatures);
+      FREE(pfiguremdl);
+      strcpy(error_message,"Default figure cannot be create");
+      return 0;
+    }
+  if (sciInitGraphicMode (pfiguremdl) == -1)
+    {
+      sciDelHandle (pfiguremdl);    
+      FREE(pFIGURE_FEATURE(pfiguremdl)->pcolormap);
+      FREE(pfiguremdl->pfeatures);
+      FREE(pfiguremdl);
+      strcpy(error_message,"Default figure cannot be create");
+      return 0;
+    }   
+
+  strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic", sizeof ("Scilab Graphic") + 4);
+  pFIGURE_FEATURE (pfiguremdl)->namelen = Min (sizeof ("Scilab Graphic") + 4, 14); 
+  pFIGURE_FEATURE (pfiguremdl)->number=0;
+  pFIGURE_FEATURE (pfiguremdl)->figuredimwidth = 610;
+  pFIGURE_FEATURE (pfiguremdl)->figuredimheight = 461;
+  pFIGURE_FEATURE (pfiguremdl)->windowdimwidth = 610;
+  pFIGURE_FEATURE (pfiguremdl)->windowdimheight = 461;
+  pFIGURE_FEATURE (pfiguremdl)->inrootposx = 197;
+  pFIGURE_FEATURE (pfiguremdl)->inrootposy = 181;
+  pFIGURE_FEATURE (pfiguremdl)->isiconified = FALSE;
+  pFIGURE_FEATURE (pfiguremdl)->isselected = TRUE;
+  pFIGURE_FEATURE (pfiguremdl)->rotstyle = 0;
+  pFIGURE_FEATURE (pfiguremdl)->visible = TRUE;
+  pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0; 
+  pFIGURE_FEATURE (pfiguremdl)->pixmap = 0; 
+  pFIGURE_FEATURE (pfiguremdl)->wshow = 0; 
+
+  
+  if ((paxesmdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    {
+      strcpy(error_message,"Default axes cannot be create");
+      return 0;
+    }
+  sciSetEntityType (paxesmdl, SCI_SUBWIN);
+  if ((paxesmdl->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
+    {
+      FREE(paxesmdl);
+      strcpy(error_message,"Default axes cannot be create");
+      return 0;
+    }
+  if ((newhd2 = MALLOC ((sizeof (sciHandleTab)))) == NULL)
+   {
+      FREE(paxesmdl->pfeatures);
+      FREE(paxesmdl);
+      strcpy(error_message,"Default axes cannot be create");
+      return 0;
+    }
+   newhd2->pnext = (sciHandleTab *) NULL;
+   newhd2->pprev = (sciHandleTab *) NULL;
+   newhd2->index = (long)paxesmdl;
+   (sciGetRelationship (paxesmdl))->phandle = newhd2;
+  
+  if (!(sciAddThisToItsParent (paxesmdl, pfiguremdl)))
+    {
+      sciDelHandle (paxesmdl);
+      FREE(paxesmdl->pfeatures);
+      FREE(paxesmdl);
+      strcpy(error_message,"Default axes cannot be create");
+      return 0;
+    }
+  sciSetCurrentSon (paxesmdl, (sciPointObj *) NULL);
+  pSUBWIN_FEATURE (paxesmdl)->relationship.psons = (sciSons *) NULL;
+  pSUBWIN_FEATURE (paxesmdl)->relationship.plastsons = (sciSons *) NULL;
+  pSUBWIN_FEATURE (paxesmdl)->callback = (char *)NULL;
+  pSUBWIN_FEATURE (paxesmdl)->callbacklen = 0;
+  pSUBWIN_FEATURE (paxesmdl)->callbackevent = 100;
+  
+  if (sciInitGraphicContext (paxesmdl) == -1)
+    {
+      sciDelThisToItsParent (paxesmdl, sciGetParent (paxesmdl));
+      sciDelHandle (paxesmdl);
+      FREE(paxesmdl->pfeatures);
+      FREE(paxesmdl);          
+      strcpy(error_message,"Default axes cannot be create");
+      return 0;
+    }   
+  if (sciInitGraphicMode (paxesmdl) == -1)
+    {
+      sciDelThisToItsParent (paxesmdl, sciGetParent (paxesmdl));
+      sciDelHandle (paxesmdl);
+      FREE(paxesmdl->pfeatures);
+      FREE(paxesmdl);
+      strcpy(error_message,"Default axes cannot be create");
+      return 0;
+    } 
+  
+  pSUBWIN_FEATURE (paxesmdl)->logflags[0] = 'n';
+  pSUBWIN_FEATURE (paxesmdl)->logflags[1] = 'n';
+  
+  
+  /* axes labelling values*/
+  pSUBWIN_FEATURE (paxesmdl)->axes.ticscolor  = -1;
+  pSUBWIN_FEATURE (paxesmdl)->axes.textcolor  = -1;
+  pSUBWIN_FEATURE (paxesmdl)->axes.fontsize  = -1;  
+  pSUBWIN_FEATURE (paxesmdl)->axes.subint[0]  = 1;   
+  pSUBWIN_FEATURE (paxesmdl)->axes.subint[1]  = 1; 
+  pSUBWIN_FEATURE (paxesmdl)->axes.subint[2]  = 1;
+  pSUBWIN_FEATURE (paxesmdl)->axes.xdir='d'; 
+  pSUBWIN_FEATURE (paxesmdl)->axes.ydir='l';
+  
+  
+  pSUBWIN_FEATURE (paxesmdl)->axes.rect  = 1;
+  for (i=0 ; i<6 ; i++)
+    pSUBWIN_FEATURE (paxesmdl)->axes.limits[i]  = 0;
+  /**DJ.Abdemouche 2003**/
+  for (i=0 ; i<3 ; i++)
+    pSUBWIN_FEATURE (paxesmdl)->grid[i]  = -1;
+  pSUBWIN_FEATURE (paxesmdl)->isaxes  = FALSE;
+  pSUBWIN_FEATURE (paxesmdl)->alpha  = 0.0;
+  pSUBWIN_FEATURE (paxesmdl)->theta  = 270.0;
+  pSUBWIN_FEATURE (paxesmdl)->alpha_kp  = 45.0;
+  pSUBWIN_FEATURE (paxesmdl)->theta_kp  = 215.0;
+  pSUBWIN_FEATURE (paxesmdl)->is3d  = FALSE;
+  
+  dir= 'd'; pSUBWIN_FEATURE (paxesmdl)->axes.xdir=dir;
+  dir= 'l'; pSUBWIN_FEATURE (paxesmdl)->axes.ydir=dir;      
+  for (i=0 ; i<4 ; i++)
+    {  pSUBWIN_FEATURE (paxesmdl)->axes.xlim[i]= Cscale.xtics[i]; 
+    pSUBWIN_FEATURE (paxesmdl)->axes.ylim[i]= Cscale.ytics[i]; }
+  
+  pSUBWIN_FEATURE (paxesmdl)->axes.zlim[0]= -1.0;
+  pSUBWIN_FEATURE (paxesmdl)->axes.zlim[1]= 1.0;
+  
+  pSUBWIN_FEATURE (paxesmdl)->axes.flag[0]= 2;
+  pSUBWIN_FEATURE (paxesmdl)->axes.flag[1]= 2;
+  pSUBWIN_FEATURE (paxesmdl)->axes.flag[2]= 4;
+ 
+  pSUBWIN_FEATURE (paxesmdl)->project[0]= 1;
+  pSUBWIN_FEATURE (paxesmdl)->project[1]= 1;
+  pSUBWIN_FEATURE (paxesmdl)->project[2]= 0;
+  pSUBWIN_FEATURE (paxesmdl)->cubecolor= 34;
+  
+  /* DJ.A 2003 */
+  pSUBWIN_FEATURE (paxesmdl)->hiddencolor=4;
+  pSUBWIN_FEATURE (paxesmdl)->hiddenstate=0;
+  
+  pSUBWIN_FEATURE (paxesmdl)->isoview= TRUE;
+  pSUBWIN_FEATURE (paxesmdl)->facetmerge = FALSE;/*DJ.A merge*/ 
+  pSUBWIN_FEATURE (paxesmdl)->WRect[0]   = 0;
+  pSUBWIN_FEATURE (paxesmdl)->WRect[1]   = 0;
+  pSUBWIN_FEATURE (paxesmdl)->WRect[2]   = 1;
+  pSUBWIN_FEATURE (paxesmdl)->WRect[3]   = 1;
+  
+  pSUBWIN_FEATURE (paxesmdl)->FRect[0]   = 0.0;
+  pSUBWIN_FEATURE (paxesmdl)->FRect[1]   = 0.0;
+  pSUBWIN_FEATURE (paxesmdl)->FRect[2]   = 1.0;
+  pSUBWIN_FEATURE (paxesmdl)->FRect[3]   = 1.0;
+  pSUBWIN_FEATURE (paxesmdl)->FRect[4]   = -1.0;
+  pSUBWIN_FEATURE (paxesmdl)->FRect[5]   = 1.0;
+  
+  pSUBWIN_FEATURE (paxesmdl)->isselected = FALSE;
+
+  pSUBWIN_FEATURE (paxesmdl)->visible = sciGetVisibility(pfiguremdl); 
+  pSUBWIN_FEATURE (paxesmdl)->isclip = -1;
+  
+  pSUBWIN_FEATURE (paxesmdl)->pPopMenu = (sciPointObj *)NULL;
+
+  return 1;
+}
 
 
 /**ConstructScrollV
@@ -10080,7 +10442,10 @@ sciDrawObj (sciPointObj * pobj)
        flag=MaybeSetWinhdc();
 #endif
       C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
+      sciGetScilabXgc (pobj)->NumBackground = Max (0, Min (x[1] - 1, sciGetNumColors (pobj) + 1));
       C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
+      C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
 #ifdef WIN32
       if ( flag == 1) ReleaseWinHdc();
 #endif
@@ -13714,7 +14079,7 @@ int sciType (marker)
   else if (strncmp(marker,"visible", 7) == 0)     {return 10;} 
   else if (strncmp(marker,"auto_resize", 10) == 0){return 10;}
   else if (strncmp(marker,"pixel_drawing_mode", 18) == 0)    {return 10;}    
-  else if (strncmp(marker,"default_values", 14) == 0) {return 10;} 
+  else if (strncmp(marker,"default_values", 14) == 0) {return 1;} 
   else if (strncmp(marker,"color_map", 9) == 0)   {return 1;}    
   else if (strncmp(marker,"x_location", 10) == 0) {return 10;} 
   else if (strncmp(marker,"y_location", 10) == 0) {return 10;}   
@@ -13759,6 +14124,8 @@ int sciType (marker)
   else if (strcmp(marker,"z_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"current_axes") == 0)    {return 9;}
   else if (strcmp(marker,"current_figure") == 0)    {return 9;}
+  else if (strcmp(marker,"default_axes") == 12)    {return 9;}/* DJ.A 08/01/04 */
+  else if (strcmp(marker,"default_figure") == 14)    {return 9;}/* DJ.A 08/01/04 */
   else if (strcmp(marker,"children") == 0)    {return 9;}
 
   else { sciprint("\r\n Unknown property \r");return 0;}
@@ -14106,7 +14473,7 @@ sciGetCurrentScilabXgc ()
 
 void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
 {
-  sciPointObj *pobj;
+  
   /**dj20003***/ 
   if ((alpha == 0.0) && (theta == 270.0))
     {
@@ -15721,4 +16088,107 @@ sciPointObj *sciGetMerge(sciPointObj *psubwin)
       psonstmp = psonstmp->pnext;
     }
   return (sciPointObj *) NULL;
+}
+/* DJ.A 08/01/04 */
+int InitFigureModel()
+{ 
+  int i, m = NUMCOLORS;
+  
+  sciInitGraphicContext (pfiguremdl);
+  sciInitGraphicMode (pfiguremdl);
+  strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic", sizeof ("Scilab Graphic") + 4);
+  pFIGURE_FEATURE (pfiguremdl)->namelen = Min (sizeof ("Scilab Graphic") + 4, 14); 
+  pFIGURE_FEATURE (pfiguremdl)->number=0;
+  pFIGURE_FEATURE (pfiguremdl)->figuredimwidth = 610;
+  pFIGURE_FEATURE (pfiguremdl)->figuredimheight = 461;
+  pFIGURE_FEATURE (pfiguremdl)->inrootposx = 200;
+  pFIGURE_FEATURE (pfiguremdl)->inrootposy = 200;
+  if((pFIGURE_FEATURE(pfiguremdl)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)
+    {
+      strcpy(error_message,"Cannot init color map");
+      return 0;
+    }  
+  for (i= 0 ; i < m ; i++)
+    {
+      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i] = (double) (defcolors[3*i]/255.0);
+      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+m] = (double) (defcolors[3*i+1]/255.0); 
+      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+2*m] = (double) (defcolors[3*i+2]/255.0);
+    }
+  pFIGURE_FEATURE (pfiguremdl)->numcolors = m;
+  pFIGURE_FEATURE (pfiguremdl)->isiconified = FALSE;
+  pFIGURE_FEATURE (pfiguremdl)->isselected = TRUE;
+  pFIGURE_FEATURE (pfiguremdl)->rotstyle = 0;
+  pFIGURE_FEATURE (pfiguremdl)->visible = TRUE;
+  pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0; 
+  pFIGURE_FEATURE (pfiguremdl)->pixmap = 0; 
+  pFIGURE_FEATURE (pfiguremdl)->wshow = 0;
+  return 1;
+}
+/* DJ.A 08/01/04 */
+int InitAxesModel()
+{ 
+  char dir;
+  int i;
+  
+  sciInitGraphicContext (paxesmdl);
+  sciInitGraphicMode (paxesmdl);
+  pSUBWIN_FEATURE (paxesmdl)->callback = (char *)NULL;
+  pSUBWIN_FEATURE (paxesmdl)->callbacklen = 0;
+  pSUBWIN_FEATURE (paxesmdl)->callbackevent = 100;  
+  pSUBWIN_FEATURE (paxesmdl)->logflags[0] = 'n';
+  pSUBWIN_FEATURE (paxesmdl)->logflags[1] = 'n';
+  pSUBWIN_FEATURE (paxesmdl)->axes.ticscolor  = -1;
+  pSUBWIN_FEATURE (paxesmdl)->axes.textcolor  = -1;
+  pSUBWIN_FEATURE (paxesmdl)->axes.fontsize  = -1;  
+  pSUBWIN_FEATURE (paxesmdl)->axes.subint[0]  = 1;   
+  pSUBWIN_FEATURE (paxesmdl)->axes.subint[1]  = 1; 
+  pSUBWIN_FEATURE (paxesmdl)->axes.subint[2]  = 1;
+  pSUBWIN_FEATURE (paxesmdl)->axes.xdir='d'; 
+  pSUBWIN_FEATURE (paxesmdl)->axes.ydir='l';  
+  pSUBWIN_FEATURE (paxesmdl)->axes.rect  = 1;
+  for (i=0 ; i<6 ; i++)
+    pSUBWIN_FEATURE (paxesmdl)->axes.limits[i]  = 0;
+  for (i=0 ; i<3 ; i++)
+    pSUBWIN_FEATURE (paxesmdl)->grid[i]  = -1;
+  pSUBWIN_FEATURE (paxesmdl)->isaxes  = FALSE;
+  pSUBWIN_FEATURE (paxesmdl)->alpha  = 0.0;
+  pSUBWIN_FEATURE (paxesmdl)->theta  = 270.0;
+  pSUBWIN_FEATURE (paxesmdl)->alpha_kp  = 45.0;
+  pSUBWIN_FEATURE (paxesmdl)->theta_kp  = 215.0;
+  pSUBWIN_FEATURE (paxesmdl)->is3d  = FALSE;  
+  dir= 'd'; pSUBWIN_FEATURE (paxesmdl)->axes.xdir=dir;
+  dir= 'l'; pSUBWIN_FEATURE (paxesmdl)->axes.ydir=dir;      
+  for (i=0 ; i<4 ; i++)
+    {  
+      pSUBWIN_FEATURE (paxesmdl)->axes.xlim[i]= Cscale.xtics[i]; 
+      pSUBWIN_FEATURE (paxesmdl)->axes.ylim[i]= Cscale.ytics[i]; 
+    }
+  pSUBWIN_FEATURE (paxesmdl)->axes.zlim[0]= -1.0;
+  pSUBWIN_FEATURE (paxesmdl)->axes.zlim[1]= 1.0;  
+  pSUBWIN_FEATURE (paxesmdl)->axes.flag[0]= 2;
+  pSUBWIN_FEATURE (paxesmdl)->axes.flag[1]= 2;
+  pSUBWIN_FEATURE (paxesmdl)->axes.flag[2]= 4; 
+  pSUBWIN_FEATURE (paxesmdl)->project[0]= 1;
+  pSUBWIN_FEATURE (paxesmdl)->project[1]= 1;
+  pSUBWIN_FEATURE (paxesmdl)->project[2]= 0;
+  pSUBWIN_FEATURE (paxesmdl)->cubecolor= (sciGetGraphicContext(paxesmdl))->backgroundcolor + 1;
+  pSUBWIN_FEATURE (paxesmdl)->hiddencolor=4;
+  pSUBWIN_FEATURE (paxesmdl)->hiddenstate=0; 
+  pSUBWIN_FEATURE (paxesmdl)->isoview= TRUE;
+  pSUBWIN_FEATURE (paxesmdl)->facetmerge = FALSE; 
+  pSUBWIN_FEATURE (paxesmdl)->WRect[0]   = 0;
+  pSUBWIN_FEATURE (paxesmdl)->WRect[1]   = 0;
+  pSUBWIN_FEATURE (paxesmdl)->WRect[2]   = 1;
+  pSUBWIN_FEATURE (paxesmdl)->WRect[3]   = 1;  
+  pSUBWIN_FEATURE (paxesmdl)->FRect[0]   = 0.0;
+  pSUBWIN_FEATURE (paxesmdl)->FRect[1]   = 0.0;
+  pSUBWIN_FEATURE (paxesmdl)->FRect[2]   = 1.0;
+  pSUBWIN_FEATURE (paxesmdl)->FRect[3]   = 1.0;
+  pSUBWIN_FEATURE (paxesmdl)->FRect[4]   = -1.0;
+  pSUBWIN_FEATURE (paxesmdl)->FRect[5]   = 1.0;  
+  pSUBWIN_FEATURE (paxesmdl)->isselected = FALSE;
+  pSUBWIN_FEATURE (paxesmdl)->visible = sciGetVisibility(pfiguremdl); 
+  pSUBWIN_FEATURE (paxesmdl)->isclip = -1;  
+  pSUBWIN_FEATURE (paxesmdl)->pPopMenu = (sciPointObj *)NULL;
+  return 1;
 }

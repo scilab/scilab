@@ -49,7 +49,7 @@
 #define SB_VERT 0
 #define SB_HORZ 0
 #endif 
-
+#define NUMCOLORS 32
 /* Renvoi le pointeur sur la structure */
 
 #define pFIGURE_FEATURE(pointobj)      ((sciFigure        *)pointobj->pfeatures)/** */
@@ -428,7 +428,8 @@ typedef struct
   int inrootposy;
   /** specifies the colr map                         */
   double *pcolormap;
-  /** specifies if this window is iconified            */
+  /** specifies if this window is iconified*/
+  int numcolors;
   BOOL isiconified;		     
   /** specifies if this window is selected             */
   BOOL isselected; 
@@ -1496,3 +1497,7 @@ extern void MergeFac3d(sciPointObj *psubwin);/*DJ.A merge*/
 extern void Genfac3d(sciPointObj *pobj,double *x, double *y,double *z);
 extern void DrawFac3d(sciPointObj *psubwin, double *x, double *y,double *z, integer p, integer q, long *hdl );
 extern sciPointObj *sciGetMerge(sciPointObj *psubwin);
+/* DJ.A 08/01/04 */
+extern int C2F(CreateModels) ();
+extern int InitFigureModel();
+extern int InitAxesModel();
