@@ -127,14 +127,14 @@ cd wsci
 echo Making %1 in directory  wsci
  nmake /C /f Makefile.mak %1
 cd ..
-cd wsci/Wscilex
-echo Making %1 in directory  wsci/WScilex
+cd wsci\Wscilex
+echo Making %1 in directory  wsci\WScilex
  nmake /C /f Makefile.mak %1
-cd ../..
-cd wsci/CScilex
-echo Making %1 in directory  wsci/CScilex
+cd ..\..
+cd wsci\CScilex
+echo Making %1 in directory  wsci\CScilex
  nmake /C /f Makefile.mak %1
-cd ../..
+cd ..\..
 cd gd
 echo Making %1 in directory  gd
  nmake /C /f Makefile.mak %1
