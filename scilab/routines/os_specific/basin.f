@@ -19,7 +19,11 @@ c
          string=' '
          call xscion(iflag)
          if (iflag.eq.0) then 
-            call zzledt(string,len(string),lline,status)
+            if (intexmacs().eq.0) then
+               call zzledt(string,len(string),lline,status)
+            else
+               call texmacsin(string,len(string),lline,status)
+            endif
          else
             call zzledt1(string,len(string),lline,status)
          endif
