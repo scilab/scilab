@@ -75,7 +75,7 @@ case 'set' then
   exprs=graphics.exprs
   if size(exprs,'*')==2 then exprs=exprs(2),end
   if size(exprs,'*')<>3 then exprs=string(model.rpar),end
-  if graphics(3) then
+  if graphics.flip then
     labs=['down','left','up']
   else
     labs=['down','right','up']

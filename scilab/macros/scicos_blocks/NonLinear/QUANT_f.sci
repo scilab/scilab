@@ -27,13 +27,13 @@ case 'set' then
       model.ipar=meth
       select meth
       case 1 then
-	model(1)='qzrnd'
+	model.sim='qzrnd'
       case 2 then
-	model(1)='qztrn'
+	model.sim='qztrn'
       case 3 then
-	model(1)='qzflr'
+	model.sim='qzflr'
       case 4  then
-	model(1)='qzcel'
+	model.sim='qzcel'
       end
       graphics.exprs=exprs
       x.graphics=graphics;x.model=model

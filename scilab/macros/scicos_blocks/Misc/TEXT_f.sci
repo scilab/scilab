@@ -42,7 +42,7 @@ case 'set' then
       r=xstringl(0,0,exprs(1))
       xset('font',oldfont(1),oldfont(2))
       sz=r(3:4)
-      graphics(2)=sz
+      graphics.sz=sz
       x.graphics=graphics;
       ipar=[font;siz]
       model.rpar=txt

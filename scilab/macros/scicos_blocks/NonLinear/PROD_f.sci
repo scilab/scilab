@@ -40,7 +40,10 @@ case 'plot' then
     xset('dashes',patt)
 case 'getinputs' then
   graphics=arg1.graphics
-  [orig,sz,orient]=graphics(1:3)
+  orig=graphics.orig
+  sz=graphics.sz
+  orient=graphics.flip
+
   wd=xget('wdim');
   if orient then
     t=[%pi -%pi/2]

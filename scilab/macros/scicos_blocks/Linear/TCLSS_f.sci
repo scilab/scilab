@@ -52,9 +52,9 @@ case 'set' then
 	end
 	model.state=x0(:);model.rpar=rpar;
 	if D<>[] then 
-	  model(1)=list('tcslti',1) 
+	  model.sim=list('tcslti',1) 
 	else 
-	  model(1)=list('tcsltj',1);
+	  model.sim=list('tcsltj',1);
 	end
 	x.graphics=graphics;x.model=model
 	break
