@@ -15,7 +15,7 @@ SUBDIRS1 = interface-tour-so interface-tutorial-so \
 	link-examples-so \
 	interface-general \
 	interface-multi-so \
-	mex-examples/mex-with-so
+	mex-examples
 
 SUBDIRS2 = interface-tour interface-tutorial \
 	interface-lapack intersci-examples \
