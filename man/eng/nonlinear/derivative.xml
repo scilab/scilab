@@ -164,6 +164,7 @@ derivative(F, x, order = 4) etc.
  clean(He - H)
    ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>SSCI/macros/optim/numdiff.sci</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>derivat</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>numdiff</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>derivat</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -63,10 +63,9 @@ mom=cmoment(x,3,'c')
     <LINK>nanmeanf</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
     <LINK>stdev</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
     <LINK>stdevf</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>var</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>varf</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
+    <LINK>variance</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
+    <LINK>variancef</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
     <LINK>nanstdev</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>nanstdevf</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR> Carlos Klimann  </AUTHOR>
 </MAN>
