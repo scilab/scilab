@@ -134,7 +134,8 @@
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>quaskro</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ereduc</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>quaskro</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>ereduc</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT  </AUTHOR>
 </MAN>
