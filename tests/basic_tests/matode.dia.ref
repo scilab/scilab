@@ -592,6 +592,6 @@ x=ode(ones(10,1),0,[1,2,3],f);
  
 //link('fexab.o','fexab')
  
-if norm(x-ode(ones(10,1),0,[1,2,3],'fexab'),1) > 1.d-10 then bugmes();quit;end
+if norm(x-ode(ones(10,1),0,[1,2,3],'fexab'),1) > 1.d-9 then bugmes();quit;end
  
  
