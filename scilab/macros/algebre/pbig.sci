@@ -9,37 +9,14 @@ function [Q,M]=pbig(A,thres,flag)
 //F.D.
 //!
 // Copyright INRIA
-deff('[flag]=%csmall(x)',[...
-   'ls=x(1);';
-   'select ls;';
-   'case 1 then flag= x(2) >= thres*x(3);';
-   'case 2 then flag= x(2) >= thres/2;';
-   'end';
-   'if flag then flag=1;else flag=-1;end']);
+deff('[flag]=%csmall(x)','flag=real(x) >= thres')
 
-deff('[flag]=%dsmall(x)',[...
-   'ls=x(1);';
-   'select ls;';
-   'case 1 then flag= abs(x(2)) >= thres*abs(x(3));';
-   'case 2 then flag= abs(x(3)) >= thres*thres;';
-   'end';
-   'if flag then flag=1;else flag=-1;end']);
+deff('[flag]=%dsmall(x)','flag=abs(x) >= thres')
 
-deff('[flag]=%cbigeig(x)',[...
-     'ls=x(1);';
-     'select ls;';
-     'case 1 then flag= x(2) < thres*x(3);';
-     'case 2 then flag= x(2) < thres/2 ;';
-     'end';
-     'if flag then flag=1;else flag=-1;end']);
 
-deff('[flag]=%dbigeig(x)',[...
-     'ls=x(1);';
-     'select ls;';
-     'case 1 then flag= abs(x(2)) < thres*abs(x(3));';
-     'case 2 then flag= abs(x(3)) < thres*thres;';
-     'end';
-     'if flag then flag=1;else flag=-1;end']);
+deff('[flag]=%cbigeig(x)','flag=real(x) < thres')
+
+deff('[flag]=%dbigeig(x)','flag=abs(x) < thres')
 
  [n,n]=size(A);
  thres=real(thres);
