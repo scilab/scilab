@@ -7,6 +7,7 @@ function %helps=initial_help_chapters()
 	'/man/strings'          ,'Character string manipulations';
 	'/man/gui'              ,'Dialogs'
 	'/man/utilities'        ,'Utilities'
+	'/man/time-date'        ,'Time and date'
 	'/man/linear'		,'Linear Algebra';
 	'/man/polynomials'	,'Polynomial calculations';
 	'/man/dcd'		,'Cumulative Distribution Functions; Inverses, grand';
