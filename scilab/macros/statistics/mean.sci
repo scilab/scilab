@@ -1,7 +1,6 @@
 function y=mean(x,orient)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
-if x==[] then y=%nan;return,end
 if rhs==1 then
   if x==[] then y=%nan;return,end
   y=sum(x)/size(x,'*')
