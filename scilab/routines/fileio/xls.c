@@ -15,11 +15,12 @@
 
 extern int ripole(char *inputfile, char *outputfile, int debug, int verbose);
 extern void C2F(mgetnc) (integer *fd, void *res, integer *n, char *type, integer *ierr);
-extern void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error);
 extern void C2F(mtell) (integer *fd, double *offset, integer *err);
 extern void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err);
 extern FILE *GetFile(integer *fd);
 extern int GetSwap(integer *fd);
+extern void sciprint __PARAMS ((char *fmt,...));
+
 /*------------------------------------------------------------------*/
 /*------------------------------------------------------------------*/
 /*Prototype*/
@@ -80,6 +81,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   double resultat;/*Result of the formula*/
   short optionflag;/*Option flags*/
   int formula_notused; /*Not used*/
+  double NaN=return_a_nan();
 
   int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
   /* initialization of pointers corresponding to malloc's */
@@ -184,11 +186,11 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        capacite=hauteur*longueur;
 	
        /*Déclaration des tableaux de synthèse*/
-       if ((valeur=(void*) malloc((capacite+1)*sizeof(double)))==NULL)  goto ErrL;
-       if ((*chainesind=(int *) malloc((capacite+1)*sizeof(int)))==NULL)  goto ErrL;
+       if ((valeur=(void*) malloc(capacite*sizeof(double)))==NULL)  goto ErrL;
+       if ((*chainesind=(int *) malloc(capacite*sizeof(int)))==NULL)  goto ErrL;
        for (i=0;i<=capacite;i++) {
 	 (*chainesind)[i]=0;
-	 valeur[i]=return_a_nan();
+	 valeur[i]=NaN;
        }
        break;
      case 6:/* FORMULA*/
@@ -300,7 +302,6 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     if (*err > 0) goto Err2;
     C2F(mgetnc) (fd, &Len, &one, typ_ushort, err);
     if (*err > 0) goto Err2;
-    /*sciprint("Opcode:%d,Len:%d\n",Opcode,Len);*/
     switch(Opcode) {
     case 10: /*EOF*/
       cur_pos=cur_pos+4+Len;
@@ -422,7 +423,6 @@ static void getBOF(int *fd ,int* Data, int *err)
   Data[5]=HistoryFlags;
   Data[6]=LowestXlsVersion;
 
-  /*  sciprint("getBOF BIFF:%d,Version:%d DataType:%d \n",BIFF,Version,DataType);*/
 }
 
 static void getSST(int *fd,int BIFF,int *ns,char ***sst,int *err)
@@ -444,7 +444,6 @@ static void getSST(int *fd,int BIFF,int *ns,char ***sst,int *err)
     if (*err > 0) goto ErrL;
     C2F(mgetnc) (fd, (void*)&nm, &one, typ_int, err);
     if (*err > 0) goto ErrL;
-    /*sciprint(" number of strings: %d\n",nm);*/
     *ns=nm;
     if (nm !=0) {
       if( (*sst=(char **)malloc(nm*sizeof(char*)))==NULL)  goto ErrL;
@@ -498,7 +497,6 @@ static void getString(int *fd, int flag,char **str,int *err)
   else if(compressed==1)
     longueur=2*ln;
 		
-  /*  sciprint("compressed=%d,fareast=%d,rich=%d,ln=%d ",compressed,fareast,rich,ln);*/
   if(rich==0 && fareast==0) {
     /*Enregistrement du character array*/
     if ((*str= (char*) malloc((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
@@ -568,7 +566,6 @@ static void getString(int *fd, int flag,char **str,int *err)
     sciprint("Unhandled case");
     goto ErrL;
   }
-  /*sciprint(" %s\n",*str);*/
   return;
  ErrL:
   if (*err==0) {
