@@ -83,6 +83,7 @@ extern struct BCG *sciGetScilabXgc (sciPointObj * pobj); /* GET */
 
 /* GMODE */
 extern scigMode *sciGetGraphicMode (sciPointObj * pobj);  /* GET */
+extern int sciGetIsClipRegionValuated (sciPointObj * pobj);
 extern int sciGetIsClipping (sciPointObj * pobj); /* GET */
 extern double *sciGetClipping (sciPointObj * pobj); /* GET */
 extern BOOL sciGetHighLight (sciPointObj * pobj);  /* GET */

@@ -28,7 +28,7 @@ extern int GetScreenDPI(int *ixres, int *iyres);
 extern double C2F(dsort)();/*DJ.A merge*/ 
 
 int xinitxend_flag;
-sciClipTab ptabclip[15];
+/* sciClipTab ptabclip[15]; */
 
 static double xz1,yz1;
 #define TX3D(x1,y1,z1) inint(xz1= Cscale.Wscx1*(TRX(x1,y1,z1)-Cscale.frect[0]) +Cscale.Wxofset1);
@@ -5144,18 +5144,84 @@ void UpdateSubwinScale(sciPointObj * pobj)
  * @author Djalel ABDEMOUCHE
  * 29/11/2002
  */
+/* Note thta clipping is n,ot supported at all in 3D mode for now : */
+/* This assertion includes axes (in 3D), surfaces and parametric curves objects. */
+
 void
-sciClip (int value)
+sciClip (sciPointObj *pobj)
 {
   int x,y,w,h; 
-  if (value == 0)
+  int value;
+  double *clip_region = NULL;
+  
+  sciPointObj * psubwin = sciGetParentSubwin(pobj);
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  
+  value = sciGetIsClipping(pobj);     /* clipping state */
+  
+  if(value == -1) return;
+  if(ppsubwin->is3d == TRUE) return; /* no clipping in 3d */
+  
+  clip_region = sciGetClipping(pobj); /* clipping region */
+  
+  
+  if(sciGetIsClipRegionValuated(pobj) == 0)
+    value = 0; /* we use the 'clipgrf' value instead */
+  
+  if (value == 0){
+    double clip[4];
+    double tmpx, tmpy, tmpw, tmph;
+    
+    tmpw = fabs(ppsubwin->FRect[2] - ppsubwin->FRect[0]);
+    tmph = fabs(ppsubwin->FRect[3] - ppsubwin->FRect[1]);
+    
+    tmpx = ppsubwin->FRect[0]; /* xmin */
+    tmpy = ppsubwin->FRect[3]; /* ymax */
+    
+/*     if(ppsubwin->axes.reverse[0] == TRUE) */
+/*       tmpx = tmpx + tmpw; */
+    
+/*     if(ppsubwin->axes.reverse[1] == TRUE) */
+/*       tmpy = tmpy  - tmph; */
+    
+    clip[0] = tmpx;
+    clip[1] = tmpy;
+    clip[2] = tmpw;
+    clip[3] = tmph;
+    
+    sciSetClipping(pobj,clip);
+
     frame_clip_on();
+  }
   else if (value > 0)
     { 
-      x = XDouble2Pixel( ptabclip[value].clip[0]); 
-      y = YDouble2Pixel( ptabclip[value].clip[1]);     
-      w = WDouble2Pixel( ptabclip[value].clip[0],ptabclip[value].clip[2]); 
-      h = HDouble2Pixel( ptabclip[value].clip[1],ptabclip[value].clip[3]);
+/*       double tmpw, tmph; */
+/*       int i; */
+      
+/*       printf("AVANT\n"); */
+/*       for(i=0;i<4;i++) */
+/* 	printf("clip_region[%d] = %lf\n",i,clip_region[i]); */
+      
+/*       tmpw = fabs(clip_region[2] - clip_region[0]); */
+/*       tmph = fabs(clip_region[3] - clip_region[1]); */
+      
+/*       if(ppsubwin->axes.reverse[0] == TRUE) */
+/* 	clip_region[0] = clip_region[0] + tmpw; */
+      
+/*       if(ppsubwin->axes.reverse[1] == TRUE) */
+/* 	clip_region[1] = clip_region[1] - tmph; */
+      
+      
+/*       printf("APRES\n"); */
+/*       for(i=0;i<4;i++) */
+/* 	printf("clip_region[%d] = %lf\n",i,clip_region[i]); */
+/*       printf("\n"); */
+
+
+      x = XDouble2Pixel( clip_region[0]);
+      y = YDouble2Pixel( clip_region[1]);
+      w = WDouble2Pixel( clip_region[0], clip_region[2]);
+      h = HDouble2Pixel( clip_region[1], clip_region[3]);
       C2F(dr)("xset","clipping",&x, &y, &w, &h,PI0,PI0,PD0,PD0,PD0,PD0,4L,8L);
     }
 }
@@ -5166,9 +5232,13 @@ sciClip (int value)
  * 29/11/2002
  */
 void
-sciUnClip (int value)
+sciUnClip (sciPointObj * pobj)
 {
-  if (value > -1 )
+/*   sciPointObj * psubwin = sciGetParentSubwin(pobj); */
+  int value = sciGetIsClipping(pobj);     /* clipping state */
+  
+  /*  if (value > -1 && !pSUBWIN_FEATURE(psubwin)->is3d)*/
+  if (value > -1)
     C2F(dr)("xset","clipoff",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,7L);
 }
 
@@ -6453,7 +6523,7 @@ sciDrawObj (sciPointObj * pobj)
       set_scale ("tttftt", pSUBWIN_FEATURE (pobj)->WRect, pSUBWIN_FEATURE (pobj)->FRect,
 		 NULL, pSUBWIN_FEATURE (pobj)->logflags, 
 		 pSUBWIN_FEATURE (pobj)->ARect); 
-     
+
       if (pSUBWIN_FEATURE (pobj)->is3d) 
 	{  /* 3D Coordinates */ /* verifier si c'est encore utile SS */
 	  /*To have directly all the possible ISOVIEW Modes*/
@@ -6513,6 +6583,14 @@ sciDrawObj (sciPointObj * pobj)
 	 
 	  sci_update_frame_bounds_2d(pobj);
 	 
+	  
+	  /* Clipping only exists in 3d */
+	  /* the global var. Cscale has just been updated */
+	  /* therefore I can re-compute the clipping now (if it is "clipgrf") */
+	  
+	  sciClip(pobj); /* to update the clip_box if needed */
+	  sciUnClip(pobj);
+	  
 	  /* 	 if (sciGetVisibility(pobj)) */
 	  DrawAxesBackground();
 	   
@@ -6688,7 +6766,7 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_SEGS:    
       if (!sciGetVisibility(pobj)) break;
       
-      sciClip(sciGetIsClipping(pobj)); 
+      sciClip(pobj);
 
       /* load the object foreground and dashes color */
       x[0] = sciGetForeground(pobj); /* Adding F.leray 27.04.04 */
@@ -7072,7 +7150,7 @@ sciDrawObj (sciPointObj * pobj)
 	    }
 	}  
 
-      sciUnClip(sciGetIsClipping(pobj));
+      sciUnClip(pobj);
       break;
     case SCI_GRAYPLOT:
       if (!sciGetVisibility(pobj)) break;
@@ -7474,7 +7552,7 @@ sciDrawObj (sciPointObj * pobj)
       closeflag = pPOLYLINE_FEATURE (pobj)->closed;    
       
       /***/
-      sciClip(sciGetIsClipping(pobj));
+      sciClip(pobj);
 
 
 #ifdef WIN32 
@@ -7621,7 +7699,7 @@ sciDrawObj (sciPointObj * pobj)
 		/* 				 pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L); */
 		C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &n2, "f2i",3L);
 	      
-	      sciClip(sciGetIsClipping(pobj));
+	      sciClip(pobj);
 
 	      if(result_trans3d == 1)
 		C2F (dr) ("xarea", str, &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
@@ -7708,7 +7786,7 @@ sciDrawObj (sciPointObj * pobj)
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif  
       
-      sciUnClip(sciGetIsClipping(pobj));
+      sciUnClip(pobj);
       
       
       break;
@@ -7813,12 +7891,12 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       flag_DO = MaybeSetWinhdc ();
 #endif
-      sciClip(sciGetIsClipping(pobj));
+      sciClip(pobj);
       if (pARC_FEATURE (pobj)->fill  <= 0)
 	C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
       else
 	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
-      sciUnClip(sciGetIsClipping(pobj));
+      sciUnClip(pobj);
 #ifdef WIN32 
       if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
@@ -7908,7 +7986,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
 	  flag_DO = MaybeSetWinhdc ();
 #endif
-	  sciClip(sciGetIsClipping(pobj));
+	  sciClip(pobj);
 	  if(sciGetIsMark(pobj))
 	    {
 	      x[0] = sciGetMarkForeground(pobj);
@@ -7965,7 +8043,7 @@ sciDrawObj (sciPointObj * pobj)
 		    sciprint("  The value must be 1  or 0\r\n");
 	    }
 	  
-	  sciUnClip(sciGetIsClipping(pobj));
+	  sciUnClip(pobj);
 #ifdef WIN32 
 	  if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
@@ -7989,7 +8067,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
 	  flag_DO = MaybeSetWinhdc ();
 #endif
-	  sciClip(sciGetIsClipping(pobj));
+	  sciClip(pobj);
 	  if (sciGetIsMark(pobj)) 
 	    {
 	      x[0] = sciGetMarkForeground(pobj);
@@ -8031,7 +8109,7 @@ sciDrawObj (sciPointObj * pobj)
 		  sciprint("  The value must be 1  or 0\r\n");
 	    }
 	  
-	  sciUnClip(sciGetIsClipping(pobj));
+	  sciUnClip(pobj);
 #ifdef WIN32 
 	  if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
@@ -8063,7 +8141,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       flag_DO = MaybeSetWinhdc ();
 #endif
-      sciClip(sciGetIsClipping(pobj));
+      sciClip(pobj);
 
       if (pTEXT_FEATURE (pobj)->fill==-1) {
 	if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
@@ -8099,7 +8177,7 @@ sciDrawObj (sciPointObj * pobj)
 		 &(pTEXT_FEATURE (pobj)->wh[0]),&(pTEXT_FEATURE (pobj)->wh[1]),9L,0L);
       } 
 
-      sciUnClip(sciGetIsClipping(pobj));
+      sciUnClip(pobj);
 #ifdef WIN32 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
@@ -8125,7 +8203,7 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);
-      sciClip(sciGetIsClipping(pobj));
+      sciClip(pobj);
      
       /* Prototype Sci_Axis HAS CHANGED:  ************* F.Leray 19.05.04
 	 void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag, axisbuild_flag)
@@ -8144,7 +8222,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
-      sciUnClip(sciGetIsClipping(pobj));   
+      sciUnClip(pobj);   
 			  
       break;
     case SCI_MERGE:

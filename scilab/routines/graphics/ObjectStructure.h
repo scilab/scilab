@@ -214,16 +214,16 @@ typedef struct tagHandleTab
 }/** */
 sciHandleTab; 
 
-/**@name sciClipTab
- * Used to determine store clipping associated to the entity
- */
-typedef struct 
-{/** */
-  int index;
-  /** */
-  double clip[4];
-}/** */
-sciClipTab;  
+/* /\**@name sciClipTab */
+/*  * Used to determine store clipping associated to the entity */
+/*  *\/ */
+/* typedef struct  */
+/* {/\** *\/ */
+/*   int index; */
+/*   /\** *\/ */
+/*   double clip[4]; */
+/* }/\** *\/ */
+/* sciClipTab;   */
 
 
 /**@name Sons
@@ -491,6 +491,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
   int isclip;
+  double clip_region[4];
+  int clip_region_set;
 }/** */
 sciText;  
 
@@ -553,6 +555,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible; 
   int isclip;
+  double clip_region[4];
+  int clip_region_set;
 }/** */
 sciLegend;  
 
@@ -571,24 +575,24 @@ sciTitlePlace;
 
 
 /**@name Titre
- * Structure used to specify Texte 
+ * Structure used to specify Texte
  */
 typedef struct
 {
   /** */
   sciText text;
   /** absolut position in subindow*/
-  POINT2D pos;	
+  POINT2D pos;
   int ptype;
   /** up, down */
-  sciTitlePlace titleplace; 
+  sciTitlePlace titleplace;
   /** */
   BOOL isselected;
   /** specifies if this object is visble             */
   BOOL visible;
   int isclip;
 }/** */
-sciTitle;  
+sciTitle;
 
 /**@name Titre
  * Structure used to specify Labels like Title or classic labels
@@ -608,6 +612,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
   int isclip;
+  double clip_region[4];
+  int clip_region_set;
 }/** */
 sciLabel;  
 
@@ -718,6 +724,8 @@ typedef struct
   BOOL visible;
 
   int isclip;
+  double clip_region[4];
+  int clip_region_set;
   /**DJ.Abdemouche 2003**/
   integer project[3];
   BOOL isoview; 
@@ -777,7 +785,9 @@ typedef struct
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
-  int isclip; 
+  int isclip;
+  double clip_region[4];
+  int clip_region_set;
   double z; /**DJ.Abdemouche 2003**/
 }  /** */
 sciArc;
@@ -834,6 +844,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
   int isclip;
+  double clip_region[4];
+  int clip_region_set;
 }
 sciPolyline;  /** */
 
@@ -863,6 +875,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
   int isclip;
+  double clip_region[4];
+  int clip_region_set;
   double z;  /** rectangle */
 
   BOOL flagstring; /* flag used to determine wether the rectangle is used to surround a string : used when axes is reversed */
@@ -962,6 +976,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
   int isclip;
+  double clip_region[4];
+  int clip_region_set;
 }
 sciLightSource;	 /** */
 
@@ -1043,7 +1059,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
   int isclip;
-
+  double clip_region[4]; /* to introduce for axis ? */
+  int clip_region_set;
 
 }
 sciAxes;  
@@ -1081,6 +1098,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
   int isclip;
+  double clip_region[4];
+  int clip_region_set;
   double *vz; /**DJ.Abdemouche 2003**/
   double *vfz;
 

@@ -28,7 +28,7 @@
 extern sciPointObj *pfiguremdl;
 extern sciPointObj *paxesmdl;
 
-sciClipTab ptabclip[15];
+/* sciClipTab ptabclip[15]; */
 BOOL modereplay = FALSE;
 
 int cmptclip=0;
@@ -2262,33 +2262,39 @@ sciSetLegendPos (sciPointObj * pobj, int x, int y)
 void
 sciSetIsClipping (sciPointObj * pobj, int value)
 {  
-  
-  
   switch (sciGetEntityType (pobj))
     {
-   
     case SCI_SUBWIN:
       pSUBWIN_FEATURE (pobj)->isclip = value;
+      if(value>0) pSUBWIN_FEATURE (pobj)->clip_region_set=1;
+      break;
     case SCI_ARC:
       pARC_FEATURE (pobj)->isclip = value;
+      if(value>0) pARC_FEATURE (pobj)->clip_region_set=1;
       break;
     case SCI_POLYLINE:
       pPOLYLINE_FEATURE (pobj)->isclip = value;
+      if(value>0) pPOLYLINE_FEATURE (pobj)->clip_region_set=1;
       break;
     case SCI_RECTANGLE:
       pRECTANGLE_FEATURE (pobj)->isclip = value;
+      if(value>0) pRECTANGLE_FEATURE (pobj)->clip_region_set=1;
       break;   
     case SCI_SEGS: 
       pSEGS_FEATURE (pobj)->isclip = value;
+      if(value>0) pSEGS_FEATURE (pobj)->clip_region_set=1;
       break;       
     case SCI_TEXT: 
       pTEXT_FEATURE (pobj)->isclip = value;
+      if(value>0) pTEXT_FEATURE (pobj)->clip_region_set=1;
       break;   
     case SCI_LIGHT: 
       pLIGHT_FEATURE (pobj)->isclip = value;
+      if(value>0) pLIGHT_FEATURE (pobj)->clip_region_set=1;
       break;   
     case SCI_AXES: 
       pAXES_FEATURE (pobj)->isclip = value;
+      if(value>0) pAXES_FEATURE (pobj)->clip_region_set=1;
       break;
     case SCI_SURFACE:  
     case SCI_LEGEND: 
@@ -2317,17 +2323,72 @@ sciSetIsClipping (sciPointObj * pobj, int value)
  * @author Djalel ABDEMOUCHE
  * 29/11/2002
  */
-void
+int
 sciSetClipping (sciPointObj * pobj, double *pclip)
 {
   int i;
-  ++cmptclip;
-  sciSetIsClipping (pobj, cmptclip);
-  sciSetIsClipping (sciGetParentSubwin(pobj), cmptclip);
-  ptabclip[cmptclip].index=cmptclip;
-  for (i=0 ; i<4 ; i++)
-    ptabclip[cmptclip].clip[i]= pclip[i];
-  
+
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_SUBWIN:
+      for(i=0;i<4;i++) pSUBWIN_FEATURE (pobj)->clip_region[i] = pclip[i];
+      break;
+    case SCI_ARC:
+      for(i=0;i<4;i++) pARC_FEATURE (pobj)->clip_region[i] = pclip[i];
+      break;
+    case SCI_POLYLINE:
+      for(i=0;i<4;i++) pPOLYLINE_FEATURE (pobj)->clip_region[i] = pclip[i];
+      break;
+    case SCI_RECTANGLE:
+      for(i=0;i<4;i++) pRECTANGLE_FEATURE (pobj)->clip_region[i] = pclip[i];
+      break;
+    case SCI_SEGS: 
+      for(i=0;i<4;i++) pSEGS_FEATURE (pobj)->clip_region[i] = pclip[i];
+      break;      
+    case SCI_TEXT: 
+      for(i=0;i<4;i++) pTEXT_FEATURE (pobj)->clip_region[i] = pclip[i];
+      break;   
+    case SCI_LIGHT: 
+      for(i=0;i<4;i++) pLIGHT_FEATURE (pobj)->clip_region[i] = pclip[i]; /* not used for now 04.04.2005 */
+      break;   
+    case SCI_AXES: 
+      for(i=0;i<4;i++) pAXES_FEATURE (pobj)->clip_region[i] = pclip[i];
+      break;
+      /* not used for now 04.04.2005 */
+/*     case SCI_SURFACE: */
+/*       for(i=0;i<4;i++) pSURFACE_FEATURE (pobj)->clip_region[i] = pclip[i]; */
+/*       break; */
+/*     case SCI_LEGEND:  */
+/*       for(i=0;i<4;i++) pLEGEND_FEATURE (pobj)->clip_region[i] = pclip[i]; */
+/*       break; */
+/*     case SCI_TITLE:   */
+/*       for(i=0;i<4;i++) pSURFACE_FEATURE (pobj)->clip_region[i] = pclip[i]; */
+/*       break; */
+/*     case SCI_AGREG:  */
+/*       for(i=0;i<4;i++) pAGREG_FEATURE (pobj)->clip_region[i] = pclip[i]; /\* not used for now 04.04.2005 *\/ */
+/*       break; */
+/*     case SCI_FEC:  */
+/*       for(i=0;i<4;i++) pFEC_FEATURE (pobj)->clip_region[i] = pclip[i]; /\* not used for now 04.04.2005 *\/ */
+/*       break; */
+/*     case SCI_GRAYPLOT: */
+/*       for(i=0;i<4;i++) pGRAYPLOT_FEATURE (pobj)->clip_region[i] = pclip[i]; /\* not used for now 04.04.2005 *\/ */
+/*       break; */
+    case SCI_LABEL:
+      for(i=0;i<4;i++) pLABEL_FEATURE (pobj)->clip_region[i] = pclip[i];
+      break;
+    case SCI_SURFACE:
+    case SCI_LEGEND: 
+    case SCI_TITLE:    
+    case SCI_AGREG:
+    case SCI_FEC: 
+    case SCI_GRAYPLOT:
+    case SCI_FIGURE: 
+    default:
+      return -1;
+      break;
+    } 
+  return 0;
+
 }
 
 

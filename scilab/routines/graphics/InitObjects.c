@@ -337,7 +337,12 @@ int C2F(graphicsmodels) ()
   ppaxesmdl->SRect[2]   = 0.0;
   ppaxesmdl->SRect[3]   = 1.0;
   ppaxesmdl->SRect[4]   = -1.0;
-  ppaxesmdl->SRect[5]   = 1.0;  
+  ppaxesmdl->SRect[5]   = 1.0;
+  
+  ppaxesmdl->clip_region[0] = 0.;
+  ppaxesmdl->clip_region[1] = 0.;
+  ppaxesmdl->clip_region[2] = 0.;
+  ppaxesmdl->clip_region[3] = 0.;
   
   ppaxesmdl->tight_limits = FALSE;
   

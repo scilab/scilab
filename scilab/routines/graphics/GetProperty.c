@@ -43,7 +43,7 @@ extern sciPointObj *paxesmdl;
 
 extern int cf_type;
 
-extern sciClipTab ptabclip[15];
+/* extern sciClipTab ptabclip[15]; */
 static BOOL modereplay = FALSE;
 
 /**sciGetPointerToFeature
@@ -2644,6 +2644,60 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj)
 }
 
 
+/**sciGetIsClipRegionValuated*/
+/* To know if clip_region has been set at least once */
+/* (using sciSetClipping) */
+int
+sciGetIsClipRegionValuated (sciPointObj * pobj)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_SUBWIN:
+      return pSUBWIN_FEATURE (pobj)->clip_region_set;
+      break;
+    case SCI_ARC:
+      return pARC_FEATURE (pobj)->clip_region_set;
+      break;
+    case SCI_POLYLINE:
+      return pPOLYLINE_FEATURE (pobj)->clip_region_set;
+      break;
+    case SCI_RECTANGLE:
+      return pRECTANGLE_FEATURE (pobj)->clip_region_set;
+      break;   
+    case SCI_SEGS: 
+      return pSEGS_FEATURE (pobj)->clip_region_set;
+      break;      
+    case SCI_TEXT: 
+      return pTEXT_FEATURE (pobj)->clip_region_set;
+      break;   
+    case SCI_LIGHT: 
+      return pLIGHT_FEATURE (pobj)->clip_region_set;
+      break;   
+    case SCI_AXES: 
+      return pAXES_FEATURE (pobj)->clip_region_set;
+      break;
+    case SCI_SURFACE:
+    case SCI_LEGEND: 
+    case SCI_TITLE:    
+    case SCI_AGREG: 
+    case SCI_FIGURE: 
+    case SCI_FEC: 
+    case SCI_GRAYPLOT:
+    case SCI_SBH:   
+    case SCI_PANNER:
+    case SCI_SBV:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+    default:
+      return -2;
+      break;
+    } 
+  return -2;
+}
+
+
 /**sciGetIsClipping*/
 int
 sciGetIsClipping (sciPointObj * pobj)
@@ -2704,10 +2758,73 @@ sciGetIsClipping (sciPointObj * pobj)
 double *
 sciGetClipping (sciPointObj * pobj)
 {
-  int index;
+  /*   int index; */
 
-  index = sciGetIsClipping (pobj);
-  return ptabclip[index].clip;
+  /*   index = sciGetIsClipping (pobj); */
+  /*   return ptabclip[index].clip; */
+  switch (sciGetEntityType (pobj))
+    {
+   
+    case SCI_SUBWIN:
+      return pSUBWIN_FEATURE (pobj)->clip_region;
+      break;
+    case SCI_ARC:
+      return pARC_FEATURE (pobj)->clip_region;
+      break;
+    case SCI_POLYLINE:
+      return pPOLYLINE_FEATURE (pobj)->clip_region;
+      break;
+    case SCI_RECTANGLE:
+      return pRECTANGLE_FEATURE (pobj)->clip_region;
+      break;   
+    case SCI_SEGS: 
+      return pSEGS_FEATURE (pobj)->clip_region;
+      break;      
+    case SCI_TEXT: 
+      return pTEXT_FEATURE (pobj)->clip_region;
+      break;   
+    case SCI_LIGHT: 
+      return pLIGHT_FEATURE (pobj)->clip_region; /* not used for now 04.04.2005 */
+      break;   
+    case SCI_AXES: 
+      return pAXES_FEATURE (pobj)->clip_region;
+      break;
+      /* not used for now 04.04.2005 */
+/*     case SCI_SURFACE: */
+/*       return pSURFACE_FEATURE (pobj)->clip_region; */
+/*       break; */
+/*     case SCI_LEGEND:  */
+/*       return pLEGEND_FEATURE (pobj)->clip_region; */
+/*       break; */
+/*     case SCI_TITLE:   */
+/*       return pTITLE_FEATURE (pobj)->clip_region; */
+/*       break; */
+/*     case SCI_AGREG:  */
+/*       return pAGREG_FEATURE (pobj)->clip_region; */
+/*       break; */
+/*     case SCI_FEC:  */
+/*       return pFEC_FEATURE (pobj)->clip_region; */
+/*       break; */
+/*     case SCI_GRAYPLOT: */
+/*       return pGRAYPLOT_FEATURE (pobj)->clip_region; */
+/*       break; */
+    case SCI_LABEL:
+      return pLABEL_FEATURE (pobj)->clip_region;
+      break;
+    case SCI_SURFACE:
+    case SCI_LEGEND: 
+    case SCI_TITLE:    
+    case SCI_AGREG:
+    case SCI_FEC: 
+    case SCI_GRAYPLOT:
+    case SCI_FIGURE: 
+    default:
+      sciprint("Error: clip_region is NULL\n");
+      return (double *) NULL;
+      break;
+    }   
+  sciprint("Error: clip_region is NULL\n");
+  return (double *) NULL;
 
 }
 

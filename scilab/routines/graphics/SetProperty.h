@@ -64,7 +64,7 @@ extern int sciSetLegendPos (sciPointObj * pobj, int x, int y);
 
 /* GMODE */
 extern void sciSetIsClipping (sciPointObj * pobj, int value); /* SET */
-extern void sciSetClipping (sciPointObj * pobj, double *pclip); /* SET */
+extern int  sciSetClipping (sciPointObj * pobj, double *pclip); /* SET */
 extern void sciSetHighLight (sciPointObj * pobj, BOOL value); /* SET */
 extern void sciSetAddPlot (sciPointObj * pobj, BOOL value); /* SET */
 extern void sciSetAutoScale (sciPointObj * pobj, BOOL value); /* SET */

@@ -38,7 +38,6 @@ void wininfo();
 
 extern void GPopupResize();
 /* static struct BCG *tmpScilabXgc; */
-/* static int cmptclip=0; */
 
 extern void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
 			     integer *Ntr,double *zminmax, integer *colminmax, integer *colout, BOOL with_mesh));
@@ -116,8 +115,8 @@ extern void DrawAxes(sciPointObj*); /* DRAWINGS */
 
 extern void UpdateSubwinScale(sciPointObj * pobj); /* DRAWINGS */
 
-extern void sciClip (int value); /* DRAWINGS */
-extern void sciUnClip (int value); /* DRAWINGS */
+extern void sciClip (sciPointObj *pobj); /* DRAWINGS */
+extern void sciUnClip (sciPointObj *pobj); /* DRAWINGS */
 
 extern int sciDrawObj (sciPointObj * pobj); /* DRAWINGS */
 extern int sciDrawObjIfRequired (sciPointObj * pobj); /* DRAWINGS */
