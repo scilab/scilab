@@ -11,7 +11,7 @@
     <P>
   Scilab graphics is based on two differents modes. In the <VERB>&quot;old&quot;</VERB> 
   mode, the graphics functions are stored to enable redisplay, zoom and
-  rotations. Comparrement at the <VERB>&quot;new&quot;</VERB> mode, each graphics 
+  rotations. In the <VERB>&quot;new&quot;</VERB> mode, each graphics 
   window and the drawing it contains are represented by hierchical entities. 
   The hierachy top level is the Figure. Each Figure defines at least one
   children of type Axes. Each Axes entity contains a set of leaf
