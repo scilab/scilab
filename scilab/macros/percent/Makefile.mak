@@ -161,7 +161,7 @@ HMFUNS = %hm_abs.sci %hm_ceil.sci %hm_conj.sci \
 	 %hm_zeros.sci %hm_bool2s.sci %hm_find.sci %hm_isnan.sci \
 	 %hm_isreal.sci %hm_iconvert.sci
 
-BFUNS =  %b_diag.sci %b_tril.sci %b_triu.sci %b_string.sci 
+BFUNS =  %b_diag.sci %b_tril.sci %b_triu.sci %b_string.sci %b_iconvert.sci
 
 CFUNS =  %c_diag.sci %c_eye.sci %c_mclose.sci %c_ones.sci %c_rand.sci %c_tril.sci %c_triu.sci 
 
