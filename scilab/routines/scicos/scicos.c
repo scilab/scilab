@@ -1270,7 +1270,7 @@ int C2F(scicos)
   }
   C2F(iset)(&nblk, &c__0, mode, &c__1);
   scicos_xproperty=&mode[nblk];
-  C2F(iset)(&nblk, &c__1, scicos_xproperty, &c__1);
+  C2F(iset)(neq, &c__1, scicos_xproperty, &c__1);
   if((zcros=malloc(sizeof(int)*ng))== NULL ){
     *ierr =10000;
     free(rhot);
@@ -1289,7 +1289,6 @@ int C2F(scicos)
     return;
   }
 
-  
   /* Function Body */
 
   C2F(coshlt).halt = 0;
