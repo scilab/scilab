@@ -90,7 +90,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
    X = [x(1);x(1);matrix([1;1;1]*x(2:n),-1,1);x(n+1);x(n+1)] 
    Y = [matrix([0;1;1]*y,-1,1);0]
 
-   if opt_arg_seq = [] then
+   if opt_arg_seq == [] then
       plot2d(X,Y)
    else
       execstr('plot2d(X,Y'+opt_arg_seq+")")
