@@ -2474,7 +2474,8 @@ c
      &     (rstk(pt0).eq.616.and.pstk(pt0).eq.10)) count=count+1
       if(int(rstk(pt0)/100).ne.5) goto 151
 c
- 152  if(rstk(pt0).eq.501) then
+ 152  continue
+      if (rstk(pt0).eq.501) then
 c     resume in a compiled macro
          lc=pstk(pt)
          ids(1,pt0+1)=lc
@@ -2484,14 +2485,14 @@ c     resume in an uncompiled macro or an exec or an execstr
          if(rstk(pt0-1).eq.903.or.rstk(pt0-1).eq.706) then
 c     .  in an execstr, check execstr calling context
             ip0=pt0+1
-            pt0=pt0-2
+c            pt0=pt0-2
  153        pt0=pt0-1
             if(pt0.le.0) return
             if(rstk(pt0).eq.802.or.rstk(pt0).eq.612 .or.
      &           (rstk(pt0).eq.805.and.eqid(ids(1,pt0),sel)).or.
      &           (rstk(pt0).eq.616.and.pstk(pt0).eq.10)) count=count+1
             if(rstk(pt0).lt.501.or.rstk(pt0).gt.503) goto 153
-            if(rstk(pt0).eq.503.and.rio.eq.rte.and.pause.ne.0) then
+            if(rstk(pt0).eq.503.and.rio.eq.rte.and.paus.ne.0) then
 c     .       resume appele dans par un execstr sous pause
                k=lpt(1)-(13+nsiz)
                lpt(1)=lin(k+1)
@@ -2503,8 +2504,8 @@ c     .       resume appele dans par un execstr sous pause
                rhs=0
                paus=paus-1
                do 154 i=1,mrhs
-                  call stackp(ids(1,ip0),0)
-                  ip0=ip0-1
+                  call stackp(ids(1,ip0+mrhs-i),0)
+c                 ip0=ip0-1
  154           continue
                paus=paus+1
                lin(k+5)=bot
