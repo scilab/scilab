@@ -25,7 +25,10 @@
 #include "../version.h"
 #include "../machine.h"
 #include "../graphics/Math.h"
-#include "../graphics/Entities.h"
+
+#include "../graphics/DestroyObjects.h"
+
+extern void  controlC_handler(int n);
 
 #include "All-extern-x.h"
 #include "All-extern.h"

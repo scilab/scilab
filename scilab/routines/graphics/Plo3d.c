@@ -9,7 +9,11 @@
 #include <stdio.h>
 #include "Math.h"
 #include "PloEch.h"
-#include "Entities.h"
+#include "GetProperty.h"
+#include "SetProperty.h"
+#include "DrawObjects.h"
+
+
 #ifdef __STDC__
 void wininfo(char *format,...);
 #else

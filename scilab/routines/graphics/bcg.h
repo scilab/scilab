@@ -60,8 +60,8 @@ typedef struct _menu_entry {
 } menu_entry;
 
 
-#include "Entities.h"
-
+/* #include "Entities.h" */
+#include "ObjectStructure.h"
 
 typedef int (*EVTHANDLER) __PARAMS((int win,int x,int y,int ibut));
 

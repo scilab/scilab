@@ -15,7 +15,12 @@ for entities handling
 #include <string.h>
 #include "Math.h" 
 #include "Graphics.h"
-#include "Entities.h" /* NG */
+
+#include "GetProperty.h"
+#include "SetProperty.h"
+#include "BuildObjects.h"
+#include "DrawObjects.h"
+
 extern int version_flag(void); /* NG */
 
 

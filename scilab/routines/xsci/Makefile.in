@@ -76,7 +76,8 @@ distclean::
 # generated with gcc -MMD 
 jpc_SGraph.o: jpc_SGraph.c ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../sun/men_Sutils.h ../menusX/men_scilab.h \
-  All-extern.h All-extern-x1.h ../graphics/bcg.h ../graphics/Entities.h \
+  All-extern.h All-extern-x1.h ../graphics/bcg.h \
+  ../graphics/GetProperty.h ../graphics/DestroyObjects.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h
 jpc_coloredit.o: jpc_coloredit.c wf_fig.h wf_figx.h wf_resources.h \
@@ -127,7 +128,7 @@ x_data.o: x_data.c x_ptyxP.h x_ptyx.h x_data.h
 x_input.o: x_input.c x_ptyxP.h x_ptyx.h ../machine.h All-extern-x.h
 x_main.o: x_main.c x_ptyxP.h x_ptyx.h x_data.h x_error.h x_menu.h \
   ../version.h ../machine.h ../graphics/Math.h ../graphics/Graphics.h \
-  All-extern-x.h All-extern.h Xscilab.ad.h
+  All-extern-x.h All-extern.h Xscilab.ad.h ../graphics/DestroyObjects.h
 x_menu.o: x_menu.c x_ptyxP.h x_ptyx.h x_data.h x_menu.h ../machine.h \
   All-extern-x.h
 x_misc.o: x_misc.c x_ptyxP.h x_ptyx.h ../machine.h x_data.h x_error.h \

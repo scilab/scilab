@@ -158,7 +158,10 @@ intorand.o: intorand.c ../stack-c.h ../graphics/Math.h ../machine.h \
 intslicot.o: intslicot.c ../mex.h ../stack-c.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h
-matdes.o: matdes.c ../graphics/bcg.h ../graphics/Entities.h ../stack-c.h \
+matdes.o: matdes.c ../graphics/bcg.h ../stack-c.h \
+  ../graphics/CloneObjects.h ../graphics/Interaction.h ../graphics/SetProperty.h \
+  ../graphics/GetProperty.h ../graphics/InitObjects.h ../graphics/DrawObjects.h \
+  ../graphics/BuildObjects.h ../graphics/DestroyObjects.h \
   ../graphics/Math.h ../machine.h ../graphics/Graphics.h ../stack-def.h \
   ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h \
   ../graphics/PloEch.h matdes.h

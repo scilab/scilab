@@ -15,7 +15,12 @@
 #else
 #include "../sparse/spConfig.h"
 #endif
-#include "Entities.h"
+
+#include "SetProperty.h"
+#include "GetProperty.h"
+#include "InitObjects.h"
+#include "DrawObjects.h"
+#include "BuildObjects.h"
 
 extern void initsubwin();
 void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);

@@ -12,7 +12,13 @@
 #include "Math.h" 
 #include "Graphics.h"
 #include "PloEch.h"
-#include "Entities.h" /* NG */
+
+#include "GetProperty.h"
+#include "SetProperty.h"
+#include "DrawObjects.h"
+#include "BuildObjects.h"
+
+
 extern int version_flag(void); /* NG */
 
 extern void fill_grid_rectangles __PARAMS(( integer *x,  integer *y, 

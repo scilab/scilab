@@ -9,7 +9,11 @@
 #include <string.h>
 #include "Math.h"
 #include "PloEch.h"
-#include "Entities.h" /* NG */
+
+#include "GetProperty.h"
+#include "SetProperty.h"
+#include "DrawObjects.h"
+#include "BuildObjects.h"
 
 static double MiniD __PARAMS((double *x,integer n));
 extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,integer *na,

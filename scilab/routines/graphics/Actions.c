@@ -5,7 +5,10 @@
  --------------------------------------------------------------------------*/
 
 #include "Math.h"
-#include "Entities.h"
+
+#include "GetProperty.h"
+#include "SetProperty.h"
+#include "DrawObjects.h"
 
 /********************************************************
  * the functions in this file are called from 

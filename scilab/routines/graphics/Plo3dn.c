@@ -8,7 +8,14 @@
 #include <stdio.h>
 #include "Math.h"
 #include "PloEch.h"
-#include "Entities.h"
+
+#include "SetProperty.h"
+#include "GetProperty.h"
+#include "InitObjects.h"
+#include "DrawObjects.h"
+#include "BuildObjects.h"
+
+
 extern double C2F(dsort)();
 /*-------------------------------------------------------------------------
  *   plo3dn function  ( 3D Plotting of surfaces given by z=f(x,y)  )

@@ -17,7 +17,11 @@
 #include "../sparse/spConfig.h"
 #endif
 
-#include "Entities.h"
+#include "GetProperty.h"
+#include "DrawObjects.h"
+
+extern int version_flag();
+
 /*--------------------------------------------------------------------
  *  C2F(plot2d)(x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
  *  

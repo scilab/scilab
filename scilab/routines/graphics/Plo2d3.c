@@ -9,7 +9,10 @@
 #include <math.h>
 #include "Math.h"
 #include "PloEch.h"
-#include "Entities.h"
+
+#include "GetProperty.h"
+
+extern int version_flag();
 
 extern void Plo2d3RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 

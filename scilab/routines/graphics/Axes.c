@@ -14,7 +14,8 @@
 #include "PloEch.h"
 
 
-#include "Entities.h" /* NG */
+#include "GetProperty.h"
+
 static sciPointObj *psubwin;/* NG */
 
 

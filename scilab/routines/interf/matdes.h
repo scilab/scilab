@@ -173,6 +173,11 @@ static char ** CaseLogflagN2L(int * u_nxgrads,double *u_xgrads, char ** u_xlabel
 
 static double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads);
 extern int ChooseGoodFormat(char * c_format,char logflag, double *_grads,int n_grads);
+
+static int sciSet (sciPointObj * pobj, char *marker, int *value, int *numrow,
+		   int *numcol); /* Move into matdes.h */
+static int sciGet (sciPointObj * pobj, char *marker); ; /* Move into matdes.h */
+
 #endif 
 
 

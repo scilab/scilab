@@ -1702,27 +1702,12 @@ void set_default_colormap1(int m)
 {
   int i;
   Colormap cmap;
-  Pixel *c = (Pixel *) NULL ;
   Pixel pix;
-  float *r = (float *) NULL;
-  float *g = (float *) NULL;
-  float *b = (float *) NULL;
   unsigned int red, green, blue;
-
-  /* Save old color vectors */
-  if(ScilabXgc->Colors != (Pixel *) NULL) /*F.Leray*/
-    c = ScilabXgc->Colors;
-  
-  if(ScilabXgc->Red != (float *) NULL)
-    r = ScilabXgc->Red;
-  
-  if(ScilabXgc->Green != (float *) NULL)
-    g = ScilabXgc->Green;
-  
-  if(ScilabXgc->Blue != (float *) NULL)
-    b = ScilabXgc->Blue;
-  /* End save old color vectors*/
-  
+  Pixel *c = ScilabXgc->Colors;  /* Save old color vectors compônents */
+  float *r = ScilabXgc->Red;
+  float *g = ScilabXgc->Green;
+  float *b = ScilabXgc->Blue;
 
   if (!XgcAllocColors(ScilabXgc,m)) {
     ScilabXgc->Colors = c;
@@ -1789,25 +1774,13 @@ void set_default_colormap3(int m)
   Colormap cmap,dcmap,ocmap;
   XColor color;
   Pixel *pixels = (Pixel *) NULL;
-  Pixel *c = (Pixel *) NULL;
-  float *r = (float *) NULL;
-  float *g = (float *) NULL;
-  float *b = (float *) NULL;
+  Pixel *c = ScilabXgc->Colors;   /* Save old colors components */
+  float *r = ScilabXgc->Red;
+  float *g = ScilabXgc->Green;
+  float *b = ScilabXgc->Blue;
+  
   int bp1,wp1;
-
-  /* Save old color vectors */
-  if(ScilabXgc->Colors != (Pixel *) NULL) /*F.Leray*/
-    c = ScilabXgc->Colors;
-
-  if(ScilabXgc->Red != (float *) NULL)
-    r = ScilabXgc->Red;
-
-  if(ScilabXgc->Green != (float *) NULL)
-    g = ScilabXgc->Green;
-
-  if(ScilabXgc->Blue != (float *) NULL)
-    b = ScilabXgc->Blue;
-
+  
   if (!XgcAllocColors(ScilabXgc,m)) {
     ScilabXgc->Colors = c;
     ScilabXgc->Red = r;
@@ -2032,26 +2005,14 @@ void setcolormap1(struct BCG *Xgc,integer m, double *a) /*NG*/
 {
   int i;
   Colormap cmap;
-  Pixel *c = (Pixel *) NULL;
-  Pixel pix;
-  float *r = (float *) NULL;
-  float *g = (float *) NULL;
-  float *b = (float *) NULL;
   unsigned int red, green, blue;
+  Pixel pix;
 
-  /* Save old color vectors */
-  if(Xgc->Colors != (Pixel *) NULL) /* F.Leray*/
-    c = Xgc->Colors;
-
-  if(Xgc->Red != (float *) NULL)
-    r = Xgc->Red;
-  
-  if(Xgc->Green != (float *) NULL)
-    g = Xgc->Green;
-
-  if(Xgc->Blue != (float *) NULL)
-    b = Xgc->Blue;
-
+  Pixel *c = Xgc->Colors;  /* Save old color vectors components */
+  float *r = Xgc->Red;
+  float *g = Xgc->Green;
+  float *b = Xgc->Blue;
+ 
   if (!XgcAllocColors(ScilabXgc,m)) { /* Why ScilabXgc and not Xgc ?? F.Leray 26.08.04 */
     Xgc->Colors = c;
     Xgc->Red = r;
@@ -2130,25 +2091,13 @@ void setcolormap3(struct BCG *Xgc,integer m, double *a)
   int i;
   Colormap cmap,dcmap,ocmap;
   XColor color;
-  Pixel *pixels = (Pixel *) NULL;
-  Pixel *c = (Pixel *) NULL;
-  float *r = (float *) NULL;
-  float *g = (float *) NULL;
-  float *b = (float *) NULL;
   int bp1,wp1;
+  Pixel *pixels = (Pixel *) NULL;
 
-  /* Save old color vectors */
-  if(Xgc->Colors != (Pixel *) NULL) /* F.Leray*/
-    c = Xgc->Colors;
-
-  if(Xgc->Red != (float *) NULL)
-    r = Xgc->Red;
-  
-  if(Xgc->Green != (float *) NULL)
-    g = Xgc->Green;
-
-  if(Xgc->Blue != (float *) NULL)
-    b = Xgc->Blue;
+  Pixel *c = Xgc->Colors;  /* Save old color vectors compônents */
+  float *r = Xgc->Red;
+  float *g = Xgc->Green;
+  float *b = Xgc->Blue;
 
   if (!XgcAllocColors(Xgc,m)) {
     Xgc->Colors = c;

@@ -9,7 +9,10 @@
 #include <math.h>
 #include "Math.h"
 #include "PloEch.h"
-#include "Entities.h" /* F.Leray 21.04.04 : for update_2dbounds call*/
+
+#include "GetProperty.h"
+
+/* #include "Entities.h" /\* F.Leray 21.04.04 : for update_2dbounds call*\/ */
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);

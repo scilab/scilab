@@ -6,7 +6,13 @@
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
-#include "Entities.h"
+
+#include "SetProperty.h"
+#include "GetProperty.h"
+#include "DrawObjects.h"
+#include "BuildObjects.h"
+#include "InitObjects.h"
+
 #include "PloEch.h"
 
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);

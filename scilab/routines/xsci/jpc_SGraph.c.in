@@ -28,6 +28,13 @@
 #include <X11/@XAW@/ViewportP.h>
 
 #include <string.h>
+
+#include "../graphics/GetProperty.h"
+#include "../graphics/DestroyObjects.h"
+
+extern int StoreCommand  __PARAMS((char *command));
+
+
 /** getpid **/
 #ifdef __STDC__
 #include <stdlib.h>
@@ -1049,11 +1056,6 @@ Delete(w, number, client_data)
 {
   integer win_num = (integer) number ;
   int v_flag = 1;
-
-  double *XGC,dv=0;
-  struct BCG *CurrentScilabXgc; 
-  int v=0;
-
 
   if (  sci_graphic_protect == 1 )
     {

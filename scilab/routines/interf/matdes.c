@@ -16,6 +16,18 @@
 #include "../graphics/Graphics.h"
 #include "../graphics/PloEch.h"
 #include "matdes.h"
+
+#include "../graphics/CloneObjects.h"
+#include "../graphics/Interaction.h"
+#include "../graphics/SetProperty.h"
+#include "../graphics/GetProperty.h"
+#include "../graphics/InitObjects.h"
+#include "../graphics/DrawObjects.h"
+
+/* Constructors should NOT be called at this level (not inside matdes.c) */
+#include "../graphics/BuildObjects.h"
+#include "../graphics/DestroyObjects.h"
+
 #define SciWin() if(C2F(sciwin)() !=0)\
         {Scierror(999,"%s :Requested figure cannot be created \r\n",fname);return 0;  }
 

@@ -10,7 +10,12 @@
 #include "Math.h" 
 #include "Graphics.h"
 #include "PloEch.h"
-#include "Entities.h"
+
+#include "GetProperty.h"
+#include "SetProperty.h"
+#include "BuildObjects.h"
+#include "Interaction.h"
+#include "DrawObjects.h"
 
 /*----------------------------------------------
  * A List for storing Window scaling information 
