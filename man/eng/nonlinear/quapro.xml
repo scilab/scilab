@@ -164,5 +164,25 @@ me=3;
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>linpro</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>optim</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>E. Casas, C. Pola Mendez;   </AUTHOR>
+  <AUTHORS>
+<AUTHORS_ITEM label='Eduardo Casas  Renteria'>, Universidad de Cantabria,</AUTHORS_ITEM>
+<AUTHORS_ITEM label='Cecilia Pola Mendez'> , Universidad de Cantabria</AUTHORS_ITEM>
+</AUTHORS>
+<USED_FUNCTION>
+in routines/optim directory (authors E.Casas, C. Pola Mendez):
+<P>
+anfm01.f  anfm03.f  anfm05.f  anrs01.f  auxo01.f  dimp03.f  dnrm0.f   optr03.f  pasr03.f  zthz.f
+anfm02.f  anfm04.f  anfm06.f  anrs02.f  desr03.f  dipvtf.f  optr01.f
+opvf03.f  plcbas.f
+</P>
+<P> From BLAS library </P>
+<P>
+daxpy.f dcopy.f ddot.f dnrm2.f dscal.f dswap.f idamax.f
+</P>
+<P> in routines/calelm directory (authors INRIA):</P>
+<P>
+add.f ddif.f dmmul.f
+</P>
+<P> From LAPACK library : dlamch.f</P>
+</USED_FUNCTION>
 </MAN>
