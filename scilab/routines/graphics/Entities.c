@@ -15163,6 +15163,7 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"z_ticks") == 0)    {return 16;} 
   else if (strncmp(marker,"auto_ticks", 10) == 0){return 10;}
   else if (strncmp(marker,"axes_reverse",12) == 0){return 10;}
+  else if (strncmp(marker,"complete_redraw",15) == 0){return 10;}
 
   else {return -1;}
 }
