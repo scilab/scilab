@@ -49,7 +49,11 @@ static void sci_factory_add_last_menu_entry(GtkItemFactory *ifactory,menu_entry 
 static menu_entry *main_menu_entries = NULL;
 static GtkItemFactory  *main_item_factory= NULL;
 
-void create_main_menu() 
+/*
+ * used when the menu is plugged 
+ */
+
+void create_plugged_main_menu() 
 {
   static GtkWidget *menubar = NULL; 
   static int first = 0; 
@@ -88,6 +92,45 @@ void create_main_menu()
   gtk_widget_show_all(Plug);
 
 }
+
+
+
+/*
+ * used when zterm is plugged 
+ */
+
+GtkWidget *create_main_menu( GtkWidget  *window)
+{
+  static int first = 0;
+  static GtkWidget *menubar = NULL; 
+  static GtkItemFactory *item_factory;
+  GtkAccelGroup *accel_group = NULL ; 
+  
+  /* Make an accelerator group (shortcut keys) */
+  if ( window != NULL)  accel_group = gtk_accel_group_new ();
+
+  main_item_factory= item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, "<main>", 
+							  accel_group);
+  if ( first == 0 ) {
+    main_menu_entries = sci_window_initial_menu();
+    if ( main_menu_entries == NULL) return NULL;
+    first = 1;
+  }
+
+  /* This function generates the menu items from scilab description */
+  /* Attention il faut aussi gerer les menu en set unset XXXXX */
+
+  sci_menu_to_item_factory(item_factory, main_menu_entries);
+  
+  /* Finally, return the actual menu bar created by the item factory. */ 
+  if ( menubar != NULL) gtk_widget_destroy(menubar);
+  menubar = gtk_item_factory_get_widget (item_factory, "<main>");
+  if ( window != NULL )  gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
+  return menubar;
+
+}
+
+
 
 /*--------------------------------------------------------------
  * Graphic window menu in main menu 

@@ -8,12 +8,11 @@
 #include <string.h>
 #include "../sun/men_Sutils.h"
 #include "../menusX/men_scilab.h"
-#include "All-extern.h"
 #include "../graphics/Math.h"
 #include "../graphics/bcg.h"
+#include "All-extern.h"
 
 #include <gtk/gtk.h>
-
 
 /* #include "../graphics/periGtk-bcg.h" */
 

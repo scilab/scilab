@@ -52,9 +52,14 @@ extern int C2F(iargc)(void);
 extern void C2F(settmpdir)(void);
 extern char *get_sci_data_strings(int n);
 
+/* menus.c */
+extern void create_plugged_main_menu() ;
+extern GtkWidget *create_main_menu( GtkWidget  *window);
+extern void settexmacs();
+
 static char ** create_argv(int *argc);
 static void strip_blank(char *source);
-extern void settexmacs();
+static void nsp_create_gtk_toplevel(gint argc, gchar *argv[]);
 
 /* global var */
 
@@ -107,10 +112,24 @@ void C2F(realmain)()
 
   if ( no_window == 0 ) 
     {
+      char *shmid= getenv("SHMID");
       /* Not Always initialise gtk */
       gtk_init(&argc,&argv);
       /* we are in window mode */
-      create_main_menu() ;
+      if ( shmid != NULL )
+	{
+	  /* we build a toplevel widget and 
+	   * zterm will be inserted through socket/plug mechanism 
+	   */
+	  nsp_create_gtk_toplevel(argc,argv);
+	}
+      else 
+	{
+	  /* we just create a menu which will be inserted 
+	   * in the calling zterm through socket/plug mechanism 
+	   */
+	  create_plugged_main_menu() ;
+	}
       /* create a status bar */ 
       /* XXX en attente est-ce utile ? 
 	 create_scilab_status();
@@ -489,6 +508,88 @@ void scilab_status_show(char * message)
 }
 
 #endif 
+
+/*
+ * scilab toplevel widget when zterm widget is plugged 
+ */
+
+#include <gdk/gdkx.h>
+#include <gdk/gdkprivate.h>
+#include <gdk/gdkkeysyms.h>
+
+/**
+ * we use  shared memory to send back to the calling process 
+ * the id of a socket button 
+ */ 
+
+#include <sys/ipc.h>
+#include <sys/shm.h>
+
+static char *get_shared() 
+{
+  int shmid;
+  char *shm;
+  char *s= getenv("SHMID");
+  
+  if ( s == NULL) 
+    {
+      perror("cannot getenv SHMID");
+      exit(1);
+    }
+  shmid = atoi(s);
+
+  /*
+   * Now we attach the segment to our data space.
+   */
+  if ((shm = shmat(shmid, NULL, 0)) == (char *) -1) {
+    perror("shmat");
+    exit(1);
+  }
+  return shm;
+}
+
+/*
+ *  main routine
+ *  Does setup, initialises windows, forks child.
+ */
+
+static void nsp_create_gtk_toplevel(gint argc, gchar *argv[])
+{
+  GtkWidget  *window = NULL;
+  guint32 *xid; 
+  char * shm = get_shared() ;
+  GtkWidget *vbox,*menubar, *socket_button;
+
+  gtk_init(&argc, &argv);
+  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title (GTK_WINDOW (window), "Scilab");
+  gtk_window_set_wmclass (GTK_WINDOW (window), "scilab", "scilab");
+
+  /* create vbox */
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_box_set_spacing (GTK_BOX (vbox), 2);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 0);
+  gtk_container_add (GTK_CONTAINER (window), vbox);
+
+  /* create the menu bar */
+
+  menubar= create_main_menu( window);
+  gtk_box_pack_start(GTK_BOX(vbox),menubar,FALSE,TRUE,0);
+
+  /* a socket in which I will redirect interaction */ 
+  socket_button = gtk_socket_new();
+  gtk_widget_set_usize(socket_button,300,100);
+  gtk_box_pack_start(GTK_BOX(vbox), socket_button,TRUE,TRUE,0);
+
+  /* show them all! */
+  gtk_widget_show_all(window);
+  gtk_widget_grab_focus(socket_button);
+  /* I transmit the socket Id via shared memory  */ 
+  xid = (guint32 *) (shm+1); 
+  *xid = GDK_WINDOW_XWINDOW(socket_button->window); 
+  *shm = '*' ; /* just to tell that there's something to read */
+} 
+
 
 
 

@@ -82,7 +82,4 @@ extern char *get_sci_data_strings(int n);
 
 /* menu.c */ 
 
-extern void create_main_menu(void);
-
-
 #endif 

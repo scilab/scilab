@@ -6,6 +6,10 @@ include ../../Version.incl
 
 LIBRARY = $(SCIDIR)/libs/gtksci.a
 
+# gtk 1 HTMLFLAGS=`gnome-config --cflags gnome`
+# gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
+HTMLFLAGS=@HTMLFLAGS@
+
 OBJSC =	click.o command.o  io.o \
 	menus.o x_VTPrsTbl.o x_main.o \
 	@ZZLEDT@.o about.o queue.o helpbrowser.o 
@@ -21,14 +25,12 @@ include ../Make.lib
 
 # need gnome includes 
 
+
 helpbrowser.o : helpbrowser.c 
-	$(CC) $(CC_OPTIONS) `gnome-config --cflags gnome` -c helpbrowser.c 
+	$(CC) $(CFLAGS) $(HTMLFLAGS) -c helpbrowser.c 
 
-helpbrowser:  helpbrowser.c queue.o
-	$(CC) -DALONE $(CC_OPTIONS) `gnome-config --cflags gnome` \
-		-o helpbrowser helpbrowser.c queue.o \
-		`gnome-config --cflags gnome` $(XLIBS)
-
+helpbrowser :  helpbrowser.c   queue.o
+	$(CC) -DALONE $(CFLAGS) $(HTMLFLAGS)-o helpbrowser helpbrowser.c queue.o $(CC_LDFLAGS)  $(XLIBS)
 OBJTEST = x_test_loop.o
 
 # test 
@@ -55,7 +57,7 @@ click.o: click.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../graphics/periGtk-bcg.h
 command.o: command.c ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h All-extern.h ../sun/Sun.h
-helpbrowser.o: helpbrowser.c queue.h
+helpbrowser.o: helpbrowser.c 
 io.o: io.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../sun/Sun.h All-extern.h ../tksci/tksci.h ../tksci/C-LAB_Interf.h \
   ../stack-def.h
@@ -63,7 +65,7 @@ menus.o: menus.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../graphics/bcg.h ../graphics/Entities.h ../stack-c.h ../stack-def.h \
   ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h ../sun/Sun.h \
   ../sun/men_Sutils.h All-extern.h
-queue.o: queue.c queue.h
+queue.o: queue.c 
 readline.o: readline.c ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h
 x_VTPrsTbl.o: x_VTPrsTbl.c x_VTparse.h
