@@ -1,6 +1,6 @@
 function mtlb_save(mtlb_thefile,varargin)
 //save variable under  matlab 4.x .mat binary format files
-//
+//see: www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
 [lhs,rhs]=argn(0)
 mtlb_opts=[]
 if rhs==1 then
@@ -85,6 +85,17 @@ if mtlb_opts==[] then //binary save
       T=2
       [x,v,mn]=spget(x);
       x=[x v;[mn 0]]
+    case 8 then
+      T=0
+      select inttype(x)
+	case 4 then P=2,
+	case 14 then P=2,
+	case 2 then P=3
+	case 12 then P=4
+	case 1 then P=5,
+	case 11 then P=5,
+      end
+      x=double(x)
     case 10 then
       x1=part(x(:),1:max(length(x)))
       x=[]
