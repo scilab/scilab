@@ -1516,7 +1516,7 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
         }
       free(con);con=NULL;
       a=exe_cons[0]/2;
-      if (((double*) clkconnectjd=(double*)malloc(sizeof(double)*(a+1))) == NULL) return 0;
+      if ((clkconnectjd=(double*)malloc(sizeof(double)*(a+1))) == NULL) return 0;
       clkconnectjd[0]=a;
       for(j=1;j<a+1;j++)
         {
@@ -1813,7 +1813,7 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 	   }
 	 free(con);con=NULL;
          b=clkconnectj3[0];
-         if (((double*) clkconnectjd=(double*)malloc(sizeof(double)*(b+1))) == NULL) return 0;
+         if ((clkconnectjd=(double*)malloc(sizeof(double)*(b+1))) == NULL) return 0;
 	 clkconnectjd[0]=b;
          for(j=1;j<b+1;j++)
            {
@@ -3255,11 +3255,11 @@ int mini_extract_info(int* bllst2,int** bllst4,char **bllst10,int* bllst12,int* 
   if ((fff=(int*)malloc(sizeof(int)*(nbl+1)))==NULL) return 0;
   fff[0]=nbl;   
   Setmem(fff,1);
-  (int*)(*typ_l)=VecEg1(fff);
-  (int*)(*typ_r)=VecEg1(fff);
-  (int*)(*typ_cons)=VecEg1(fff);
-  (int*)(*typ_m)=VecEg1(fff);
-  (int*)(*tblock)=VecEg1(fff);
+  (*typ_l)=VecEg1(fff);
+  (*typ_r)=VecEg1(fff);
+  (*typ_cons)=VecEg1(fff);
+  (*typ_m)=VecEg1(fff);
+  (*tblock)=VecEg1(fff);
   if (fff) {free(fff);
   fff=NULL;}
   
