@@ -258,7 +258,9 @@ rep=evstr('['+str+']')
 
 function str=readline()
 // Copyright INRIA
-comm='/'+'/'
+  global LineCount
+  LineCount=LineCount+1
+comm='//'
 blank=' '
 while %t do
   rep=read(%IO(1),1,1,'(a)')
