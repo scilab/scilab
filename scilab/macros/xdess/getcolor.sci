@@ -121,8 +121,8 @@ while %t
     end
     k1=k;
     name=rgb2name(cmap(k,:)*255);
-    xinfo("Color number "+string(k)+": R="+string(floor(cmap(k,1)*255))+..
-	" G="+string(floor(cmap(k,2)*255))+" B="+string(floor(cmap(k,3)*255))+..
+    xinfo("Color number "+string(k)+": R="+string(floor(cmap(k,1)*255))+ ..
+	" G="+string(floor(cmap(k,2)*255))+" B="+string(floor(cmap(k,3)*255))+ ..
 	" Name="""+name(1)+"""");
   end
 end

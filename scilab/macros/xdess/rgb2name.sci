@@ -1616,7 +1616,7 @@ rgb=[
 144 238 144
 ];
 
-k=find(rgb(:,1)==r & rgb(:,2)==g & rgb(:,3)==b)
+k=find(rgb(:,1)==r & rgb(:,2)==g & rgb(:, 3)==b)
 if k==[] then
   r=[];
 else

@@ -1,7 +1,7 @@
 function r=name2rgb(name)
 [lhs,rhs]=argn(0)
 if rhs==1 then
-  if (type(name)<>10 | size(name,"*")<>1) then
+  if (type(name)<>10 | size(name, "*")<>1) then
     error("name2rgb: argument must be a string")
   end
 else
@@ -1610,7 +1610,7 @@ k=find(names==name);
 if k==[] then
   r=[];
 else
-  r=rgb(k,:);
+  r=rgb(k, :);
 end
 
 endfunction
