@@ -497,9 +497,9 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       
       sciSetText(ppsubwin->mon_title, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_title)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_title)->text.textlen);
-      sciSetFontStyle(ppsubwin->mon_title, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_title));
-      sciSetFontDeciWidth(ppsubwin->mon_title,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_title));
-      sciSetVisibility(ppsubwin->mon_title, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_title));
+/*       sciSetFontStyle(ppsubwin->mon_title, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_title)); */
+/*       sciSetFontDeciWidth(ppsubwin->mon_title,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_title)); */
+/*       sciSetVisibility(ppsubwin->mon_title, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_title)); */
       
       /*------------------------------------*/
       if ((ppsubwin->mon_x_label =  ConstructLabel (pobj, "",2)) == NULL){
@@ -523,9 +523,9 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	}
       sciSetText(ppsubwin->mon_x_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)->text.textlen);
-      sciSetFontStyle(ppsubwin->mon_x_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label));
-      sciSetFontDeciWidth(ppsubwin->mon_x_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_x_label));
-      sciSetVisibility(ppsubwin->mon_x_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_x_label));
+/*       sciSetFontStyle(ppsubwin->mon_x_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)); */
+/*       sciSetFontDeciWidth(ppsubwin->mon_x_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)); */
+/*       sciSetVisibility(ppsubwin->mon_x_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)); */
 
       /*------------------------------------*/
       if ((ppsubwin->mon_y_label =  ConstructLabel (pobj, "",3)) == NULL){
@@ -552,9 +552,9 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       sciSetText(ppsubwin->mon_y_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)->text.textlen);
-      sciSetFontStyle(ppsubwin->mon_y_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label));
-      sciSetFontDeciWidth(ppsubwin->mon_y_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_y_label));
-      sciSetVisibility(ppsubwin->mon_y_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_y_label));
+/*       sciSetFontStyle(ppsubwin->mon_y_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)); */
+/*       sciSetFontDeciWidth(ppsubwin->mon_y_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)); */
+/*       sciSetVisibility(ppsubwin->mon_y_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)); */
 
 
       /*------------------------------------*/
@@ -584,9 +584,9 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       sciSetText(ppsubwin->mon_z_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)->text.textlen);
-      sciSetFontStyle(ppsubwin->mon_z_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label));
-      sciSetFontDeciWidth(ppsubwin->mon_z_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_z_label));
-      sciSetVisibility(ppsubwin->mon_z_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_z_label));
+/*       sciSetFontStyle(ppsubwin->mon_z_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)); */
+/*       sciSetFontDeciWidth(ppsubwin->mon_z_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)); */
+/*       sciSetVisibility(ppsubwin->mon_z_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)); */
       
       
       ppsubwin->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
