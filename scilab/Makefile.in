@@ -93,7 +93,7 @@ distclean::
 	conftest conftest.c so_locations
 
 # SCIBASE for scilab binaries generation
-SCIBASE = scilab-2.7
+SCIBASE = scilab-3.0
 
 PVMBINDISTFILES = \
 	$(SCIBASE)/pvm3/Readme \
@@ -202,4 +202,4 @@ cvsclean::
 	@cd man; $(RM) -f -r arma comm control dcd elementary fileio functions graphics gui identification linear metanet nonlinear polynomials programming pvm robust scicos signal sound strings tdcs time-date tksci translation utilities
 
 setversion : 
-	echo "SCIVERSION=scilab-CVS-`date --iso`" > Version.incl
+	echo "SCIVERSION=Scilab-3.0-CVS-`date --iso`" > Version.incl
