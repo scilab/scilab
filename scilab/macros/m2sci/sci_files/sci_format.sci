@@ -53,10 +53,8 @@ end
 
 if unk then
   if rhs1==1 then
-    set_infos("See M2SCI documentation for replacement possibilities...")
     tree.name="mtlb_format"
   else
-    set_infos("See M2SCI documentation for replacement possibilities...")
     tree.name="mtlb_format"
   end
 elseif ratf|loose|compact|bank|hex then
