@@ -11,11 +11,9 @@
 #include "../sun/men_Sutils.h"
 #include "../menusX/men_scilab.h"
 #include "All-extern.h"
-#include "All-extern-x1.h"
 #include "../graphics/periX11-bcg.h"
 
 extern Window GetBGWindowNumber _PARAMS((int));
-extern integer F2C(fbutn) _PARAMS((char *,integer*,integer*));
 extern char * get_sci_data_strings(int n);
 struct BCG *GetWindowXgcNumber _PARAMS((int));
 

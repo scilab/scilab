@@ -1,3 +1,6 @@
+#ifndef PERIGTK_BCG 
+#define PERIGTK_BCG 
+
 /** Structure to keep the graphic state  **/
 
 
@@ -86,4 +89,8 @@ extern int ClearClickQueue  __PARAMS((integer));
 extern integer C2F(ismenu) __PARAMS((void));
 extern int C2F(getmen) __PARAMS((char *btn_cmd,integer *lb,integer *entry));
 extern void MenuFixCurrentWin __PARAMS(( int ivalue));
+
+extern struct BCG *GetWindowXgcNumber  __PARAMS((integer i));
+
+#endif 
 

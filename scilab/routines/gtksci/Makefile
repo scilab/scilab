@@ -6,9 +6,9 @@ include ../../Version.incl
 
 LIBRARY = $(SCIDIR)/libs/gtksci.a
 
-OBJSC =	click.o command.o help.o io.o jpc_xwidgets.o  \
-	menus.o x_VTPrsTbl.o x_main.o x_screen.o \
-	zzledt.o 
+OBJSC =	click.o command.o help.o io.o \
+	menus.o x_VTPrsTbl.o x_main.o \
+	zzledt.o about.o
 
 
 OBJSF  = 
@@ -71,7 +71,7 @@ distclean::
 # generated with gcc -MMD 
 
 click.o: click.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  ../sun/men_Sutils.h ../menusX/men_scilab.h All-extern.h All-extern-x1.h \
+  ../sun/men_Sutils.h ../menusX/men_scilab.h All-extern.h  \
   ../graphics/periX11-bcg.h
 command.o: command.c ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h All-extern.h ../sun/Sun.h
@@ -82,13 +82,13 @@ io.o: io.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
 jpc_xwidgets.o: jpc_xwidgets.c ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h
 menus.o: menus.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  ../graphics/periGtk-bcg.h jpc_global.h jpc_defs.h All-extern.h \
-  ../sun/h_help.h ../sun/Sun.h All-extern-x1.h
+  ../graphics/periGtk-bcg.h  All-extern.h \
+  ../sun/h_help.h ../sun/Sun.h 
 x_main.o: x_main.c version.h ../machine.h ../graphics/Math.h \
   ../graphics/Graphics.h x_ptyxP.h x_ptyx.h x_error.h x_menu.h \
-  All-extern-x.h All-extern.h
-x_screen.o: x_screen.c ../machine.h
+  All-extern.h
+
 x_test_loop.o: x_test_loop.c ../machine.h ../menusX/men_scilab.h \
   ../graphics/Math.h ../graphics/Graphics.h ../sun/men_Sutils.h \
-  All-extern-x1.h All-extern.h
+   All-extern.h
 x_VTPrsTbl.o: x_VTPrsTbl.c x_VTparse.h

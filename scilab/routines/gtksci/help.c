@@ -17,7 +17,6 @@
 #include "../sun/h_help.h"
 #include "../graphics/Math.h"
 
-void  popupHelpPanel();
 
 static void  initHelpWidgets(GtkWidget *);
 static void changeHelpList(int i) ;
@@ -35,26 +34,6 @@ static void create_notebook (char *pathname,char *name);
  *------------------------------------------------------------*/
 
 static GtkWidget *notebook_window = NULL; /* help widow */ 
-
-void popupHelpPanel()
-{
-  if ( notebook_window  == NULL) 
-    {
-      if ( Help_Init() == 1) 
-	{
-	  sciprint("can't use man\r\n");
-	  return;
-	}
-      initHelpWidgets(NULL);
-    }
-  else 
-    {
-      /* XXX test if help is iconified and uniconify it */
-      /* gtk_widget_show(notebook_window); */
-    }
-}
-
-
 
 /*------------------------------------------------------------
  * activate help on topic Topic 

@@ -14,16 +14,18 @@
 #include <gtk/gtk.h>
 #include "../graphics/Math.h"
 #include "../graphics/periGtk-bcg.h" 
-#include "jpc_global.h"
+#include "../graphics/Graphics.h" 
 #include "../sun/h_help.h" 
 #include "../sun/Sun.h" 
-#include "All-extern-x1.h" 
-#include "../graphics/Graphics.h" 
+#include "../menusX/men_scilab.h"
+#include "All-extern.h"
+
 
 #define PI0 (integer *) 0
 #define PD0 (double *) 0
 
-void menu_entry_show(menu_entry *m); 
+void menu_entry_show(menu_entry *m);  /* only used for debug */ 
+extern void create_scilab_about(void); 
 
 extern char GetDriver();
 static void * sci_window_initial_menu() ;
@@ -95,7 +97,7 @@ void create_main_menu()
 
 static integer lab_count = 0;
 static char gwin_name[100];
-static Widget GWinButMenu = (Widget) 0;
+
 
 void MenuFixCurrentWin(int ivalue)
 {
@@ -730,7 +732,10 @@ static void sci_menu_to_item_factory(GtkItemFactory *ifactory,menu_entry *m)
       else 
 	{
 	  menu_entry *loc;
-	  entry.item_type = "<Branch>";
+	  if ( is_menu_name(m->name,"Help")==0) 
+	    entry.item_type = "<LastBranch>";
+	  else 
+	    entry.item_type = "<Branch>";
 	  entry.callback = NULL;
 	  gtk_item_factory_create_item(ifactory,&entry,(void *)m,1);
 	  loc =  m->subs ; 
@@ -782,12 +787,14 @@ static void * sci_window_initial_menu()
 			      "Delete||$gwdelete",
 			      "+||$gwplus" ,
 			      "-||$gwminus" } ;
-			      
+	
+  char *help_entries[] = { "Scilab Help||$help",
+			   "About||$about"};
   sci_menu_add(&m,winid,"_File",file_entries,3,0,"$file");
   sci_menu_add(&m,winid,"_Control",control_entries,4,0,"$zoom");
   sci_menu_add(&m,winid,"_Demos",NULL,0,0,"$demos");
   sci_menu_add(&m,winid,"Graphic Window 0",graphic_entries,5,0,"$graphic_window");
-  sci_menu_add(&m,winid,"Help",NULL,0,0,"$help");
+  sci_menu_add(&m,winid,"Help",help_entries,2,0,"$help");
   return m;
 }
 
@@ -1131,6 +1138,7 @@ static int call_predefined_callbacks(char *name, int winid)
   else if (strcmp(name,"$gwdelete")== 0) sci_menu_gwdelete();
   else if (strcmp(name,"$gwplus")== 0)  sci_menu_gwplus();
   else if (strcmp(name,"$gwminus")== 0)  sci_menu_gwminus();
+  else if (strcmp(name,"$about")== 0)  create_scilab_about ();
   else return 0;
   return 1;
 }

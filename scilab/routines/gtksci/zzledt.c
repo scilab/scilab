@@ -1,8 +1,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.3 2001/06/23 16:29:09 chanceli Exp $
+ * $Id: zzledt.c,v 1.4 2001/06/27 08:56:12 chanceli Exp $
  * $Log: zzledt.c,v $
+ * Revision 1.4  2001/06/27 08:56:12  chanceli
+ * updates
+ *
  * Revision 1.3  2001/06/23 16:29:09  chanceli
  * updates
  *
@@ -1110,8 +1113,7 @@ static int search_line_forward(char *source)
  * changing the prompt 
  *----------------------------------------------------------------------*/
 
-void C2F(setprlev)(pause)
-     int *pause;
+void C2F(setprlev)(int *pause)
 {
   if ( *pause == 0 ) 
     sprintf(Sci_Prompt,"-->");

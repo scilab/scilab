@@ -11,27 +11,22 @@
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
+#include <signal.h>
 #include <gtk/gtk.h>
 
 #include "version.h"
 #include "../machine.h"
 #include "../graphics/Math.h"
-#include "x_ptyxP.h"
-#include "x_error.h"
-#include "x_menu.h"
-
-#include "All-extern-x.h"
 #include "All-extern.h"
 
 char *ProgramName = NULL;
 
-extern void sci_winch_signal(int);
-extern void C2F(tmpdirc)();
-extern void sci_clear_and_exit (int);
-extern void sci_usr1_signal(int);
-
+#if 0 
 static void Syntax  (char *badOption);  
 static void Help  (void);  
+static void create_scilab_status(void);
+#endif 
+
 static void set_sci_env (void);
 
 /*---------------------------------------------------------- 
@@ -101,6 +96,10 @@ void C2F(realmain)()
     {
       /* we are in window mode */
       create_main_menu() ;
+      /* create a status bar */ 
+      /* XXX en attente est-ce utile ? 
+	 create_scilab_status();
+      */
       SetXsciOn();
     }
   /* signals */
@@ -131,6 +130,9 @@ void C2F(realmain)()
     sprintf(startup,"exec('%s',-1)",initial_script);
   else 
     strcpy(startup," ");
+  /* message */  
+  /* scilab_status_show("Scilab (C) Inria/Enpc"); */ 
+
   /* execute the initial script and enter scilab */ 
   C2F(scirun)(startup,strlen(startup));
   /* cleaning */
@@ -191,6 +193,7 @@ int C2F(sciquit)()
       C2F(scirun)(quit_script,strlen(quit_script));
     }
   C2F(clearexit)(&status);
+  return 0;
 } 
 
 
@@ -257,6 +260,8 @@ int kill_process_group(pid, sig)
  * Syntax 
  *-------------------------------------------------------*/
 
+#if 0
+
 static struct _options {
   char *opt;
   char *desc;
@@ -296,9 +301,12 @@ static void Syntax (badOption)
   exit (1);
 }
 
+#endif 
 /*-------------------------------------------------------
  * Help utility function 
  *-------------------------------------------------------*/
+
+#if 0 
 
 static char *message[] = {
   "Options that start with a plus sign (+) restore the default.",
@@ -325,6 +333,8 @@ static void Help ()
   exit (0);
 }
 
+#endif 
+
 /*-------------------------------------------------------
  * color status 
  *-------------------------------------------------------*/
@@ -344,7 +354,7 @@ void setcolordef( int screenc)
 }
 
 /*-------------------------------------------------------
- * 
+ * try to build SCI and MANCHAPTERS if not provided 
  *-------------------------------------------------------*/
 
 static char *sci_env,*sci_man_chapters;
@@ -387,5 +397,34 @@ static void set_sci_env ()
       putenv (sci_man_chapters);
     }
 }
+
+/*-------------------------------------------------------
+ * status bar 
+ *-------------------------------------------------------*/
+
+#if 0 
+
+static GtkWidget *status = NULL; 
+
+static void create_scilab_status()
+{
+  GtkWidget *Plug; 
+  char * plug_info = getenv("SCIINFO");
+  if ( plug_info == NULL) return ; 
+
+  Plug = gtk_plug_new(atoi(getenv("SCIINFO")));
+  status  = gtk_statusbar_new ();
+  gtk_container_add(GTK_CONTAINER(Plug), status);
+  gtk_widget_show_all(Plug);
+}
+
+void scilab_status_show(char * message)
+{
+  gtk_statusbar_pop (GTK_STATUSBAR(status), 1);
+  gtk_statusbar_push(GTK_STATUSBAR(status), 1, message);
+}
+
+#endif 
+
 
 
