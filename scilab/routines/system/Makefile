@@ -48,6 +48,7 @@ Makefile.amk	: Makefile
 banier.o : ../version.h ../machine.h 
 storeversion.o : ../version.h ../stack-c.h
 inisci.o : ../machine.h 
+inisci-c.o : ../machine.h 
 System.o: ../machine.h
 System2.o: ../machine.h
 Calelm.o: ../machine.h
