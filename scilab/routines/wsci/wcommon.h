@@ -31,6 +31,8 @@
 #include "../graphics/periWin-bcg.h" /* Scilab graphic window */
 #include "wadd.h" 
 
+#include "common.h" 
+
 /* wgnuplib.c */
 
 extern HINSTANCE hdllInstance;
@@ -41,20 +43,22 @@ extern LPSTR szGraphClass;
 extern LPSTR szParentGraphClass;
 extern LPSTR szAboutClass;
 
-void * LocalAllocPtr(UINT flags, UINT size);
-void LocalFreePtr(void  *ptr);
-LPSTR GetInt(LPSTR str, LPINT pval);
-LPSTR GetLInt(LPSTR str, long int *pval);
+extern void * LocalAllocPtr(UINT flags, UINT size);
+extern void LocalFreePtr(void  *ptr);
+extern LPSTR GetInt(LPSTR str, LPINT pval);
+extern LPSTR GetLInt(LPSTR str, long int *pval);
 
 /* wtext.c */
 
-int CtrlCHit(LPTW lptw);
-void UpdateText(LPTW, int);
-void NewLine(LPTW);
-void TextPutStr(LPTW lptw, LPSTR str);
-void WriteTextIni(LPTW lptw);
-void ReadTextIni(LPTW lptw);
-void DragFunc(LPTW lptw, HDROP hdrop);
+extern void TextSelectFont (LPTW lptw);
+extern void TextCopyClip (LPTW lptw);
+extern int CtrlCHit(LPTW lptw);
+extern void UpdateText(LPTW, int);
+extern void NewLine(LPTW);
+extern void TextPutStr(LPTW lptw, LPSTR str);
+extern void WriteTextIni(LPTW lptw);
+extern void ReadTextIni(LPTW lptw);
+extern void DragFunc(LPTW lptw, HDROP hdrop);
 extern int C2F(sxevents)();
 
 /* wmenu.c - Menu */
@@ -68,25 +72,25 @@ typedef struct tagGFILE {
 	int	getleft;
 } GFILE;
 
-void SendMacro(LPTW lptw, UINT m);
-void LoadMacros(LPTW lptw);
-void CloseMacros(LPTW lptw);
-void MenuFixCurrentWin(int ivalue);
-BOOL SciOpenSave(HWND hWndParent,  BYTE **s,  char **d,int *ierr);
-int GetLine(char * buffer, int len, GFILE *gfile);
-void LeftJustify(char *d, char *s);
+extern void SendMacro(LPTW lptw, UINT m);
+extern void LoadMacros(LPTW lptw);
+extern void CloseMacros(LPTW lptw);
+extern void MenuFixCurrentWin(int ivalue);
+extern BOOL SciOpenSave(HWND hWndParent,  BYTE **s,  char **d,int *ierr);
+extern int GetLine(char * buffer, int len, GFILE *gfile);
+extern void LeftJustify(char *d, char *s);
 extern GFILE * Gfopen(LPSTR lpszFileName, int fnOpenMode);
 extern void Gfclose(GFILE * gfile);
 extern int Gfgets(LPSTR lp, int size, GFILE *gfile);
 
 /* wprinter.c - Printer setup and dump */
 
-BOOL PrintSize(HDC printer, HWND hwnd, LPRECT lprect);
-void PrintRegister(LPPRINT lpr);
-void PrintUnregister(LPPRINT lpr);
+extern BOOL PrintSize(HDC printer, HWND hwnd, LPRECT lprect);
+extern void PrintRegister(LPPRINT lpr);
+extern void PrintUnregister(LPPRINT lpr);
 
-EXPORT BOOL CALLBACK  PrintAbortProc(HDC hdcPrn, int code);
-EXPORT BOOL CALLBACK  PrintDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+extern EXPORT BOOL CALLBACK  PrintAbortProc(HDC hdcPrn, int code);
+extern EXPORT BOOL CALLBACK  PrintDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 /* wstatbar.c */
 
@@ -109,12 +113,12 @@ extern int sciprint2(int v,char *fmt,...);
 
 extern int Pause(LPSTR mess); 
 extern void WinExit(void);
-EXPORT int CALLBACK ShutDown(void);
+extern EXPORT int CALLBACK ShutDown(void);
 extern void Scistring(char *str);
 extern int C2F(clearexit)(integer *n);
 extern int ReadKey(void);
-int WriteStr(char *s, FILE *file);
-int WriteKey(char c, FILE *file);
+extern int WriteStr(char *s, FILE *file);
+extern int WriteKey(char c, FILE *file);
 
 /* ../menusX */
 
@@ -132,12 +136,12 @@ extern int TestMessage();
 /* readline-nowin */
 
 extern void add_history_nw();
-char *readline_nw(char *prompt);
+extern char *readline_nw(char *prompt);
 
 /* readline */
 
 extern void add_history_win();
-char *readline_win(char *prompt);
+extern char *readline_win(char *prompt);
 
 /* wgmenu */
 
@@ -156,7 +160,7 @@ extern int C2F(delbtn)(integer *,char *);
 extern int C2F(addmen)(integer *,char *,integer *,integer *,integer *,
 		       integer *,
 		       char *,	integer *);
-void AddMenu(integer *win_num,char * button_name,char ** entries,
+extern void AddMenu(integer *win_num,char * button_name,char ** entries,
 	     integer * ne,integer *typ,char * fname, integer * ierr);
 
 /* gvwprn.c */
@@ -187,12 +191,12 @@ extern int instring(char *str,char  c);
 /* wtloop */
 
 extern void sci_windows_main(int,int *,char *,int,int *,int);
-void SciMenuSelect(char *Name);
-void test_sci();
-void test_mouse();
-void  C2F(setfbutn)(char *buf,int *rep);
-void  C2F(fbutn)(char *buf,int *win,int *ent);
-void  SignalCtrC(void);
+extern void SciMenuSelect(char *Name);
+extern void test_sci();
+extern void test_mouse();
+extern void  C2F(setfbutn)(char *buf,int *rep);
+extern void  C2F(fbutn)(char *buf,int *win,int *ent);
+extern void  SignalCtrC(void);
 
 /* wgnuplib */
 
@@ -200,11 +204,10 @@ void  SignalCtrC(void);
 extern void  NoDll(HINSTANCE hInstance);
 #endif
 
-
 /** wgraph */
 extern void DebugGW (char *fmt, ...);
-EXPORT void WINAPI  GraphPrint(struct BCG *ScilabGC);
-EXPORT void WINAPI  GraphRedraw(struct BCG *ScilabGC);
+extern EXPORT void WINAPI  GraphPrint(struct BCG *ScilabGC);
+extern EXPORT void WINAPI  GraphRedraw(struct BCG *ScilabGC);
 extern int C2F(deletewin)(integer *number) ;
 extern void NewCopyClip(struct BCG *ScilabGC);
 extern void CopyClip(struct BCG *ScilabGC);
@@ -227,11 +230,11 @@ extern void DoHelpDialog();
 
 /* wmprint */
 
-int ScilabPsToEps(char orientation,char *filenamein,char *filenameout);
+extern int ScilabPsToEps(char orientation,char *filenamein,char *filenameout);
 
 /* wmtex.c */
 
-int ScilabPsToTeX(char orientation,char *filenamein,char *filenameout,double xs,double ys);
+extern int ScilabPsToTeX(char orientation,char *filenamein,char *filenameout,double xs,double ys);
 
 /* elsewhere in scilab : in Fortran code maybe */
 

@@ -9,24 +9,27 @@ DLL_NAME =libsci
 # scilex-lib
 
 bin/scilex : scilex-lib  routines/wsci/Rscilab.o $(DLL_NAME).dll 
-	gcc -Wl,-subsystem,console -o $@.exe libs/main.o  -L./bin -lsci $(WINLIBS) 
+	gcc -mconsole -o $@.exe libs/main.o  -L./bin -lsci $(WINLIBS) 
 
 # with gcc -mno-cygwin et  f2c 
 # g77 -mno-cygwin -Wl,-subsystem,console --shared 
 #  -mno-cygwin  \
 # -------------------------------------
+#			-Wl,--whole-archive \
+#			libs/*.a \
+#			-Wl,--no-whole-archive -lg2c \
 
 $(DLL_NAME).dll : $(DLL_NAME).def  
-	x=1;if test -f $(DLL_NAME).dll; then  \
+	@x=1;if test -f $(DLL_NAME).dll; then  \
 		x=`find $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) \
 		-newer $(DLL_NAME).dll  -print | wc -l `; \
 	fi;\
 	if test $$x -ne 0; then \
 		$(RM) $@; \
 		echo "linking"; \
-		$(CC) -v --shared -s \
-			-o $(DLL_NAME).dll $(DLL_NAME).def $(DEFAULTS) $(RESOURCES) $(LIBR) \
-			--whole-archive -Bstatic -lg2c -Bdynamic $(WINLIBS)  ; \
+		$(LD) --shared -s -o $(DLL_NAME).dll $(DLL_NAME).def \
+			$(DEFAULTS) $(RESOURCES) \
+			$(LIBR) -lg2c $(WINLIBS)  ; \
 	else \
 		echo $(DLL_NAME) is up to date ; \
 	fi
@@ -37,7 +40,7 @@ SED=sed
 
 $(DLL_NAME).def : $(DEFAULTS) $(RESOURCES) $(LIBR) 
 	@$(ECHO) ------- Building $@ --------
-	@$(ECHO) LIBRARY $* > $*.def
+	@$(ECHO) LIBRARY $(DLL_NAME) > $*.def
 	@$(ECHO) EXPORTS >> $*.def
 	@cat libs/libg2c.def  >> $*.def
 	@$(NM) $^ > Defs
@@ -50,11 +53,11 @@ $(DLL_NAME).a : $(DLL_NAME).dll $(DLL_NAME).def
 # XXXXX attention on veut un --whole-archive pour lg2c 
 
 scilex-force : 
-	$(CC)  -Wl,-subsystem,console -o bin/scilex.exe libs/scimain.o \
-	$(RESOURCES) bin/libsci.a $(WINLIBS) --enable-stdcall-fixup
+	$(CC)  -mconsole -o bin/scilex.exe libs/scimain.o \
+	$(RESOURCES) bin/libsci.a $(WINLIBS)  --enable-stdcall-fixup
 
 bin/sci.exe : 
-	$(CC) -Wl,-subsystem,console -o bin/sci.exe  \
+	$(CC) -mconsole -o bin/sci.exe  \
 		$(DEFAULTS) $(RESOURCES) $(LIBR) -lg2c $(WINLIBS) 
 
 

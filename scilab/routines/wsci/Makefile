@@ -16,7 +16,7 @@ OBJSF =
 
 include ../../Makefile.incl
 
-CFLAGS = $(CC_OPTIONS) -I../ -Wall
+CFLAGS = $(CC_OPTIONS)
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
@@ -37,17 +37,17 @@ all	:: ../../libs/scimain.o
 ../../libs/scimain.o	: 
 	$(CC) $(CFLAGS) -o ../../libs/scimain.o -c scimain.c 
 
+distclean::
+	@$(RM) ../../libs/scimain.o 
+
 #================= resources 
 
 RESOURCES= Rscilab.o
 
 all	:: $(RESOURCES) 
 
-Rscilab.o	: Rscilab.res 
-	$(CVTRES) Rscilab.res Rscilab.o
-
-Rscilab.res: Rscilab.rc wresource.h
-	$(RC) $(RCVARS) /foRscilab.res Rscilab.rc
+Rscilab.o	: Rscilab.rc wresource.h 
+	$(RC) Rscilab.rc $(RCVARS) -o Rscilab.o 
 
 #===================test ========================
 
@@ -64,34 +64,29 @@ wtest.o : wtloop.c
 all:: ../../bin/lpr.exe
 
 ../../bin/lpr.exe : lpr.o 
-	$(CC) $(CFLAGS) -DGVW_ALONE $(LINKEROPT)  -o $@ \
-	lpr.o  $(WIN32LIBS)
+	$(CC) $(CFLAGS) -DGVW_ALONE $(LINKEROPT)  -o $@ $^  $(WIN32LIBS)
 
 lpr.o : gvwprn.c 
 
+distclean::
+	@$(RM) ../../bin/lpr.exe 
+
 #=================== runscilab========================
-
-RUNOBJSC = runscilab.o
-RUNRESOURCES= Rrunscilab.o
-
-RUNLINKEROPT=-Wl,-subsystem,windows,-S
 
 all	:: ../../bin/runscilab.exe
 
-../../bin/runscilab.exe 	: $(RUNOBJSC) $(RUNRESOURCES)
-	$(CC) $(CFLAGS) $(RUNLINKEROPT) -o ../../bin/runscilab.exe $(RUNOBJSC) \
-	$(RUNRESOURCES) $(WIN32LIBS)
+../../bin/runscilab.exe: runscilab.o Rrunscilab.o
+	$(CC) $(CFLAGS) -o $@ $^ $(WIN32LIBS)
 
-all	:: $(RUNRESOURCES) 
-
-Rrunscilab.o	: Rrunscilab.res 
-	$(CVTRES) Rrunscilab.res Rrunscilab.o
-
-Rrunscilab.res: Rrunscilab.rc 
-	$(RC) $(RCVARS) /foRrunscilab.res Rrunscilab.rc
-
-clean	::
-	$(RM) $(RUNOBJSC) $(RUNRESOURCES) Rsunscilab.res
+Rrunscilab.o: Rrunscilab.rc wresource.h 
+	$(RC) Rrunscilab.rc $(RCVARS) -o Rrunscilab.o 
 
 distclean::
-	$(RM) $(RUNOBJSC) $(RUNRESOURCES) Rsunscilab.res
+	@$(RM) ../../bin/runscilab.exe 
+
+#=================== general ========================
+
+clean	::
+	@$(RM) *.o 
+
+distclean :: clean 

@@ -6,7 +6,7 @@ c     exemple with a call to cmatptr function
 c     -->param=[0.04,10000,3d+7];
 c     -->link('ext12f.o','ext12f')
 c     -->y=ode([1;0;0],0,[0.4,4],'ext12f')
-c     Copyright INRIA
+c     Copyright Inria/Enpc
       double precision t, y, ydot
       logical cmatptr
       dimension y(3), ydot(3)

@@ -1,5 +1,5 @@
       subroutine ext13if(n,a)
-c     Copyright INRIA
+c     Copyright Inria/Enpc
       common/cmntest/b(10)
       real a(*)
       do 1 k=1,max(n,10)

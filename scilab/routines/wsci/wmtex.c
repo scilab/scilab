@@ -1,13 +1,12 @@
-/* Copyright (C) 1998 Chancelier Jean-Philippe */
+/* Copyright (C) 1998-2002 Chancelier Jean-Philippe */
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#ifndef __STDC__
-#include <malloc.h>
-#endif
 #include <stdio.h>
-
 #include "../machine.h"
+
+#include "common.h" 
+
 
 static int Sed __PARAMS ((int, char *, FILE *, char *, char *, char *, char *, char *, char *));
 static void readOneLine __PARAMS ((char *buff, int *stop, FILE * fd));

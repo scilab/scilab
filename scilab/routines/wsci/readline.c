@@ -57,6 +57,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <signal.h>
+#include <conio.h>
 
 #ifdef __CYGWIN32__
 #include <unistd.h>		/* for isatty */

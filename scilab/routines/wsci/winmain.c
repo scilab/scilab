@@ -32,12 +32,6 @@
 #include <windowsx.h>
 #include <commctrl.h>
 
-#ifdef __STDC__
-#include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
-
 #if (defined __MSC__ ) || (defined __MINGW32__) 
 #define putenv(x) _putenv(x)
 #endif
@@ -84,6 +78,7 @@ extern void C2F (diary) (char *, int *, int);
 static void AllGraphWinDelete ();
 static int startupf = 0; /** 0 if we execute startup else 1 **/
 static int nointeractive = 0;
+static int show_logo = 1;
 
 #define MIN_STACKSIZE 180000
 
@@ -512,6 +507,14 @@ InteractiveMode ()
 {
   return nointeractive;
 }
+
+int 
+C2F(showlogo) ()
+{
+  return show_logo;
+}
+
+
 
 int
 MyPutCh (int ch)

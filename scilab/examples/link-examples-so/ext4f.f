@@ -7,7 +7,7 @@ c     -->c=sin(a)+cos(b)
 c     -->yes='no'
 c     -->c=a+b
 c     -->clear yes  --> undefined variable : yes
-c     Copyright INRIA
+c     Copyright Inria/Enpc
       double precision a(*),b(*),c(*)
       integer chmax
       logical creadchain

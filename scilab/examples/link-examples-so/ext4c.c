@@ -1,6 +1,6 @@
-/* Copyright INRIA */
+/* Copyright Inria/Enpc */
 #include <math.h>
-#include "../../routines/stack-c.h"
+#include "stack-c.h"
 
 /************************************
  *     simple example 4 (reading a scilab chain) 

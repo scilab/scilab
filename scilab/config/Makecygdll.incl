@@ -20,11 +20,6 @@ LDFLAGS =  $(EXTRA_LDFLAGS)
 LIBS = -lm 
 FLIBS=
 #******************************************************************* 
-INCLUDES=  $(XFLAGS) $(TK_INC_PATH) $(TCL_INC_PATH) -I$(SCIDIR)/routines 
-
-# we do not set CFLAGS and FFLAGS here 
-#CFLAGS = $(CC_OPTIONS) 
-#FFLAGS = $(FC_OPTIONS) 
 
 QUIET=--quiet
 
@@ -47,8 +42,10 @@ $(LIBRARY_NAME).dia	: $(LIBRARY_NAME).dll  $(LIBRARY_NAME).tst
 	$(SCIDIR)/bin/scilab -nw -e "scitest('$(LIBRARY_NAME).tst');quit;"
 
 $(LIBRARY_NAME).dll : $(LIBRARY_NAME).def  
-	$(CC) --shared -s -o $(LIBRARY_NAME).dll $(LIBRARY_NAME).def \
-	$(OBJS) $(SCIDIR)/bin/libsci.a --whole-archive -lg2c  $(WINLIBS)
+	@$(ECHO) ------- Building $@  --------
+	@$(CC) --shared -s -o $(LIBRARY_NAME).dll $(LIBRARY_NAME).def \
+		$(OBJS) $(OTHERLIBS) $(SCIDIR)/bin/libsci.a  -lg2c  $(WINLIBS);\
+	dlltool -k --as as --dllname $(LIBRARY_NAME).dll --def $(LIBRARY_NAME).def --output-lib $(LIBRARY_NAME).a ;
 
 # here we could also use dumpexts XXXX 
 ECHO=echo
@@ -64,27 +61,25 @@ $(LIBRARY_NAME).def : $(OBJS)
 	@$(RM) Defs
 
 
-.SUFFIXES: .F .F90 .f90 $(SUFFIXES)
+
+.SUFFIXES: .F  $(SUFFIXES)
 
 FCOMPILE = echo "to be done" 
 
 .f.o:
 	@echo "compiling $< with f2c (g77 pbs with dllimport)"
-	@$(SCIDIR)/bin/f2c $(INCLUDES) -A $< ;  \
-	$(CC) $(INCLUDES) -I"$(SCIDIR)/routines/f2c" $(CFLAGS) -c $*.c; \
-	$(RM) $*.c 
+	@$(SCIDIR)/bin/f2c -I"$(SCIDIR)/routines/f2c" \
+		-I"$(SCIDIR)/routines"  -A $< ; 
+		$(CC) $(CFLAGS) -I"$(SCIDIR)/routines/f2c" -c $*.c; \
+		$(RM) $*.c 
 
 .F.o:
-	@echo "compiling $<"
-	@$(FCOMPILE)  -c $<
+	@echo "compiling $< with f2c (g77 pbs with dllimport)"
+	@$(SCIDIR)/bin/f2c -I"$(SCIDIR)/routines/f2c" \
+		-I"$(SCIDIR)/routines"  -A $< ; 
+		$(CC) $(CFLAGS) -I"$(SCIDIR)/routines/f2c" -c $*.c; \
+		$(RM) $*.c 
 
-.F90.o:
-	@echo "compiling $<"
-	@$(FCOMPILE)  -c $<
-
-.f90.o:
-	@echo "compiling $<"
-	@$(FCOMPILE)  -c $<
 
 
 

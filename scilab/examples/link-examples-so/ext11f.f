@@ -5,7 +5,7 @@ c     -->param=[0.04,10000,3d+7];
 c     -->link('ext11f.o','ext11f')
 c     -->y=ode([1;0;0],0,[0.4,4],'ext11f')
 c     param must be defined as a scilab variable
-c     Copyright INRIA
+c     Copyright Inria/Enpc
       double precision t, y, ydot, param
       logical creadmat
       dimension y(3), ydot(3), param(3)

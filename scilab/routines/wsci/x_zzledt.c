@@ -1,5 +1,4 @@
-
-/* Copyright (C) 1998 Chancelier Jean-Philippe */
+/* Copyright (C) 1998-2002 Chancelier Jean-Philippe */
 /************************************
  * reading functions for scilab 
  * Scilab 1997
@@ -82,5 +81,5 @@ void C2F (setprlev) (pause)
   else if (*pause > 0)
     sprintf (save_prompt, "-%d->", *pause);
   else
-    sprintf (save_prompt, ">>", *pause);
+    sprintf (save_prompt, ">>");
 }

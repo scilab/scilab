@@ -1,4 +1,4 @@
-/* Copyright INRIA */
+/* Copyright Inria/Enpc */
 
 
 /************************************

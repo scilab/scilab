@@ -1,7 +1,7 @@
 
 
 
-/* Copyright (C) 1998 Chancelier Jean-Philippe */
+/* Copyright (C) 1998-2002 Chancelier Jean-Philippe */
 
 /*
    Simple program to start Scilab with its console window hidden.

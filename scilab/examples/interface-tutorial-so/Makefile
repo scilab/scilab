@@ -18,7 +18,7 @@ tests	: all
 
 clean	::
 	@echo Cleaning 
-	@$(RM) -f -r *.o *.lo *.la *.so *.a *.dia .job.sce so_locations
+	@$(RM) -f -r *.o *.lo *.la *.so *.dll *.a *.dia .job.sce so_locations
 	@$(RM) -f -r .libs 
 
 distclean:: clean 

@@ -2,8 +2,11 @@
 # Attempt to guess a canonical system name.
 #   Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001
 #   Free Software Foundation, Inc.
+# small patch added to detect if a cygwin should not be considered 
+# as mingw32 (using gcc) Jean-Philippe Chancelier 2002 
+# 
 
-timestamp='2001-09-04'
+timestamp='2002-07-07'
 
 # This file is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by
@@ -737,6 +740,21 @@ EOF
 	echo ${UNAME_MACHINE}-unknown-openbsd`echo ${UNAME_RELEASE}|sed -e 's/[-_].*/\./'`
 	exit 0 ;;
     i*:CYGWIN*:*)
+	eval $set_cc_for_build
+	sed 's/^	//' << EOF >$dummy.c
+	int main (argc, argv) int argc; char *argv[]; {
+	#if defined (__MINGW32__)
+	  printf ("%s-pc-mingw32\n",argv[1]);
+	#else 	  
+          printf ("%s-pc-cygwin\n",argv[1]);
+	#endif
+          exit (0);
+	}
+EOF
+	$CC_FOR_BUILD $dummy.c -o $dummy \
+	  && ./$dummy "${UNAME_MACHINE}" \
+	  && rm -f $dummy.c $dummy.exe && exit 0
+	rm -f $dummy.c $dummy.exe
 	echo ${UNAME_MACHINE}-pc-cygwin
 	exit 0 ;;
     i*:MINGW*:*)

@@ -1,4 +1,4 @@
-/* Copyright INRIA */
+/* Copyright Inria/Enpc */
 
 /************************************
  *     simple example 2 (using sin and cos) 

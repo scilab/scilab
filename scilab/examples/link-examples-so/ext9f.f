@@ -20,7 +20,7 @@ c     With dynamic link:
 c     -->link('ext9f.o','ext9f')
 c     -->ode([1;0;0],0,[0.4,4],'ext9f')
 c
-c     Copyright INRIA
+c     Copyright Inria/Enpc
       double precision t, y, ydot
       dimension y(3), ydot(3)
       ydot(1) = -.0400d+0*y(1) + 1.0d+4*y(2)*y(3)

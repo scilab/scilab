@@ -23,7 +23,7 @@ c     param(1)=y(n+1) , param(2)=y(n+2) etc
 c     with this calling sequence y is a n+np vector
 c     where np=dimension of scilab variable param
 c
-c     Copyright INRIA
+c     Copyright Inria/Enpc
       double precision t, y, ydot, param
       dimension y(3), ydot(3),param(3)
       param(1)=y(n+1)

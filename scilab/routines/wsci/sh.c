@@ -1,9 +1,9 @@
+/* Copyright (C) 1998-2002 Chancelier Jean-Philippe */
 
-
-/* Copyright (C) 1998 Chancelier Jean-Philippe */
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
+#include "common.h" 
 
 HANDLE hChildStdinRd, hChildStdinWr, hChildStdinWrDup, hChildStdoutRd,
   hChildStdoutWr, hInputFile, hSaveStdin, hSaveStdout;

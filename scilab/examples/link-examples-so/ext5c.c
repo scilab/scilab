@@ -1,5 +1,5 @@
-/* Copyright INRIA */
-#include "../../routines/stack-c.h"
+/* Copyright Inria/Enpc */
+#include "stack-c.h"
 
 /******************************************
  *     Example 5 

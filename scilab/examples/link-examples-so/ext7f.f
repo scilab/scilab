@@ -7,7 +7,7 @@ c     c does not exist (c made by the call to matz)
 c     -->call('ext7f',a,1,'d',b,2,'d','out',1);
 c     c now exists
 c     -->c=a+2*b
-c     Copyright INRIA
+c     Copyright Inria/Enpc
       double precision a(3),b(3),c(3),w
       logical cwritemat,cwritechain
       do 1 k=1,3

@@ -17,7 +17,7 @@ tests	: all
 
 clean	::
 	@echo Cleaning 
-	@$(RM) -f -r *.o *.lo *.la *.so *.sl *.a *.dia .job.sce so_locations
+	@$(RM) -f -r *.o *.dll *.lo *.la *.so *.sl *.a *.dia .job.sce so_locations
 	@$(RM) -f -r .libs f3cloader.sce f3cmake f3floader.sce f3fmake
 
 distclean:: clean 

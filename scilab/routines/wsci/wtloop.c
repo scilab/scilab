@@ -45,6 +45,8 @@
 #include "wresource.h"
 #include "wcommon.h"
 #include "../sun/h_help.h"
+#include "../sun/Sun.h"
+#include "../stack-c.h" 
 
 extern char input_line[];
 

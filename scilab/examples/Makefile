@@ -10,12 +10,17 @@ info	:
 	@echo "Type \"make tests\" in examples directory"
 	@echo "  to test link and addinter features"
 
-SUBDIRS = interface-tour interface-tour-so \
-	interface-tutorial interface-tutorial-so \
-	interface-lapack intersci-examples intersci-examples-so \
+SUBDIRS1 = interface-tour-so interface-tutorial-so \
+	intersci-examples-so \
+	link-examples-so \
 	interface-general \
-	link-examples link-examples-so \
-	misc-examples man-examples macros-examples mex-examples 
+	mex-examples/mex-with-so
+
+SUBDIRS2 = interface-tour interface-tutorial \
+	interface-lapack intersci-examples \
+	link-examples misc-examples man-examples macros-examples mex-examples 
+
+SUBDIRS= $(SUBDIRS1) $(SUBDIRS2)
 
 distclean::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
@@ -33,11 +38,7 @@ clean::
 		$(MAKE) $(MFLAGS) clean); \
 	done
 
-TEST_SUBDIRS = interface-tour interface-tour-so \
-	interface-tutorial interface-tutorial-so \
-	interface-lapack intersci-examples intersci-examples-so \
-	link-examples link-examples-so \
-	misc-examples man-examples macros-examples mex-examples 
+TEST_SUBDIRS = $(SUBDIRS1) 
 
 tests::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \

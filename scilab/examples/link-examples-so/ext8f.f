@@ -4,7 +4,7 @@ c     same example with call to cmatptr
 c     -->param=[1,2,3];         
 c     -->link('ext8c.o','ext8c','C');     
 c     -->y=call('ext8c','out',size(param),1,'d');
-c     Copyright INRIA
+c     Copyright Inria/Enpc
       logical cmatptr
       double precision y(*)
       include '../../routines/stack.h'

@@ -6,7 +6,7 @@ c     -->a=[1,2,3];b=[4,5,6];n=3;
 c     -->c=call('ext3f','yes',1,'c',n,2,'i',a,3,'d',b,4,'d','out',[1,3],5,'d')
 c     -->c=sin(a)+cos(b)
 c     -------------------------------------
-c     Copyright INRIA
+c     Copyright Inria/Enpc
       double precision a(*),b(*),c(*)
       character*(*) ch
       if(ch(1:3).eq.'yes') then

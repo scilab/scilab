@@ -39,12 +39,10 @@ OBJSF = $(FORTRANINTERFACES) $(OTHERFOBJS)
 
 OBJSC = $(CINTERFACES) $(OTHERCOBJS)
 
-f3f.obj : 
-	$(FC) $(FFLAGS) f3f.f
 
-f3f.dll: f3f.obj
+f3f.dll: f3f.obj 
 	@$(DUMPEXTS) -o "$*.def" "$*.dll" $**
-	@$(LINKER) $(LINKER_FLAGS) f3f.obj $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
+	$(LINKER) $(LINKER_FLAGS) f3f.obj $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
 
 f3c.obj :
 	$(CC) $(CFLAGS) f3c.c

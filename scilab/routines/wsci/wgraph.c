@@ -62,8 +62,7 @@ static int scig_buzy = 0;
 
 /* add handlers for delete action */
 
-void scig_deletegwin_handler_none (win)
-     int win;
+void scig_deletegwin_handler_none (int win)
 {
 };
 
@@ -611,8 +610,7 @@ But;
 static But ClickBuf[MaxCB];
 static int lastc = 0;
 
-int scig_click_handler_none (win, x, y, ibut, motion, release)
-     int win, x, y, ibut, motion, release;
+int scig_click_handler_none (int win,int x,int y,int ibut,int motion,int release)
 {
   return 0;
 };
@@ -1008,7 +1006,7 @@ EXPORT LRESULT CALLBACK
 	    break;
 	  case SB_PAGEDOWN:
 	    deltax = horzsi.nPos;
-	    horzsi.nPos = min (horzsi.nMax - horzsi.nPage, horzsi.nPos + 50);
+	    horzsi.nPos = min (horzsi.nMax - (int)horzsi.nPage, horzsi.nPos + 50);
 	    deltax = deltax - horzsi.nPos;
 	    break;
 	  case SB_LINEUP:
@@ -1018,7 +1016,7 @@ EXPORT LRESULT CALLBACK
 	    break;
 	  case SB_LINEDOWN:
 	    deltax = horzsi.nPos;
-	    horzsi.nPos = min (horzsi.nMax - horzsi.nPage, horzsi.nPos + 5);
+	    horzsi.nPos = min (horzsi.nMax - (int) horzsi.nPage, horzsi.nPos + 5);
 	    deltax = deltax - horzsi.nPos;
 	    break;
 	  case SB_THUMBTRACK:
@@ -1049,7 +1047,7 @@ EXPORT LRESULT CALLBACK
 	    break;
 	  case SB_PAGEDOWN:
 	    deltay = vertsi.nPos;
-	    vertsi.nPos = min (vertsi.nMax - vertsi.nPage, vertsi.nPos + 50);
+	    vertsi.nPos = min (vertsi.nMax - (int) vertsi.nPage, vertsi.nPos + 50);
 	    deltay = deltay - vertsi.nPos;
 	    break;
 	  case SB_LINEUP:
@@ -1059,7 +1057,7 @@ EXPORT LRESULT CALLBACK
 	    break;
 	  case SB_LINEDOWN:
 	    deltay = vertsi.nPos;
-	    vertsi.nPos = min (vertsi.nMax - vertsi.nPage, vertsi.nPos + 5);
+	    vertsi.nPos = min (vertsi.nMax - (int) vertsi.nPage, vertsi.nPos + 5);
 	    deltay = deltay - vertsi.nPos;
 	    break;
 	  case SB_THUMBTRACK:

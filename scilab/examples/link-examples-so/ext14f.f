@@ -1,5 +1,5 @@
 
-c     Copyright INRIA
+c     Copyright Inria/Enpc
       subroutine ext14fi(fname)
       character*(*) fname
       logical getrhsvar, createvar,  putlhsvar

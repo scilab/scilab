@@ -1,6 +1,6 @@
-/* Copyright INRIA */
+/* Copyright Inria/Enpc */
 
-#include "../../routines/stack-c.h"
+#include "stack-c.h"
 
 /****************************************
  *     exemple with a call to ReadMatrix

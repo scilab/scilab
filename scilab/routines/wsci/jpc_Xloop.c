@@ -1,6 +1,6 @@
 
 
-/* Copyright (C) 1998 Chancelier Jean-Philippe */
+/* Copyright (C) 1998-2002 Chancelier Jean-Philippe */
 /*
  * jpc_Xloop.c : 
  * (1997) : Jean-Philippe Chancelier 
