@@ -118,8 +118,8 @@ static HelpPage pages[] =
 static HelpPage  *current_page = &pages[HELP];
 static GList     *history = NULL;
 
-static GtkWidget *back_button;
-static GtkWidget *forward_button;
+static GtkWidget *back_button = NULL;
+static GtkWidget *forward_button = NULL;
 static GtkWidget *notebook;
 static GtkWidget *combo;
 static GtkWidget *window = NULL;
@@ -147,8 +147,29 @@ static void
 close_callback (GtkWidget *widget,
 		gpointer   user_data)
 {
+  int i;
   gtk_widget_destroy(window); 
   window=NULL;
+  back_button = NULL;
+  forward_button = NULL;
+  /* cleaning pages */
+  for (i=0 ; i < 3 ; i++) 
+    {
+      if ( pages[i].queue != NULL)
+	{
+	  queue_free (pages[i].queue); 
+	  pages[i].queue = NULL;
+	}
+      if ( pages[i].current_ref != NULL) 
+	{
+	  g_free(pages[i].current_ref);
+	  pages[i].current_ref = NULL;
+	}
+    }
+  if ( history != NULL) {
+    g_list_free(history);
+    history= NULL;
+  }
 }
 
 static void
@@ -322,7 +343,6 @@ history_add (gchar *ref,
 
   gtk_signal_handler_block_by_data (GTK_OBJECT (GTK_COMBO (combo)->entry), combo);
   gtk_combo_set_popdown_strings (GTK_COMBO (combo), combo_list);
-/*    gtk_entry_set_text (GTK_ENTRY (GTK_COMBO (combo)->entry), item->title); */
   gtk_signal_handler_unblock_by_data (GTK_OBJECT (GTK_COMBO (combo)->entry), combo);
 
   for (list = combo_list; list; list = list->next)
