@@ -10227,7 +10227,8 @@ sciDrawObj (sciPointObj * pobj)
           Plo2d3RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,"gnn"); 
           for ( j = 0 ; j < n2 ; j++)
 	    {
-	      lstyle=sciGetMarkStyle(pobj);iflag=0; nn1= n1*2;
+	      lstyle=x[0];
+	      iflag=0; nn1= n1*2;
 	      C2F(dr)("xsegs","v",&xm[2*n1*j],&ym[2*n1*j],&nn1,&lstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  return 0;
