@@ -268,7 +268,7 @@ for i=1:numplot
     PropertyName  = ListArg(Property);
     PropertyValue = ListArg(Property+1);
     
-    // Xdata
+    // Xdata can ONLY be a vector (cf. Matlab help)
     PName = getPlotPropertyName(PropertyName);
     if (PName == 'xdata')
       
@@ -292,7 +292,7 @@ for i=1:numplot
 	end
       end
       
-      // Ydata
+      // Ydata ONLY be a vector (contrary to what is said by the Matlab help)
     elseif (PName == 'ydata')
       
       if (type(PropertyValue)<>1 | and(size(PropertyValue)<>1))
