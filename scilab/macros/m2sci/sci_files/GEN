@@ -1,0 +1,4 @@
+#!/bin/sh
+# GEN prototype Matlab_fun_name Scilab_fun_name
+sed -e "s/Prototype.*$/File generated from $1: PLEASE DO NOT EDIT !/" -e "s/MFUN/$2/g" -e "s/SFUN/$3/g" $1
+ 
