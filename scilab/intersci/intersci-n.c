@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "intersci-n.h"
 #include "getrhs.h" 
 #include "crerhs.h" 

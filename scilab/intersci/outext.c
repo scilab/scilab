@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "intersci-n.h"
 
 void OutExtCommon  __PARAMS((FILE *f,VARPTR var,int insidelist,int nel));

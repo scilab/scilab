@@ -1,5 +1,8 @@
+#include <stdlib.h>
+
 #include "intersci-n.h"
 #include "check.h"
+
 
 
 CheckRhsTab CHECKTAB[] = {

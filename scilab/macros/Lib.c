@@ -27,7 +27,6 @@ int main(argc,argv)
   while (1)
     {
       int j;
-      char *c;
       if ( fscanf(filei,"%s",name) == EOF ) break;
       j= strlen(name);
       while ( j != 0 && name[j] != '.' ) j--; 
