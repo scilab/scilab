@@ -6,7 +6,7 @@
 
 
 # A Notebook widget for Tcl/Tk
-# $Revision: 1.6 $
+# $Revision: 1.7 $
 #
 # Copyright (C) 1996,1997,1998 D. Richard Hipp
 #
@@ -301,6 +301,8 @@ global xGrif yGrid zGrid
 
 global viewToggle isoToggle cubToggle
 global dbxmin dbxmax dbymin dbymax dbzmin dbzmax
+
+global msdos
 
 # add for XF init only : to remove after...
 
@@ -1147,7 +1149,7 @@ ScilabEval "global ged_handle;ged_handle.tight_limits='$limToggle'"
 
 # X LABEL
 proc setXGridColor {w index} {
-    global RED BLUE GREEN
+    global RED BLUE GREEN msdos
     variable REDCOL 
     variable GRECOL 
     variable BLUCOL
@@ -1156,7 +1158,11 @@ proc setXGridColor {w index} {
     if { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.grid(1)=$index;"
 	#nothing to draw: grey color used
-	set color [format \#e6e7e6]
+	if { $msdos == "F" } {
+	    set color [format \#e6e7e6]
+	} else {
+	    set color [format \#d6d3ce]
+	}
 	.axes.n.f0.frame.sample config -background $color
     } 
     
@@ -1238,7 +1244,7 @@ proc setXFontLabelColor {w  index} {
 
 # Y LABEL
 proc setYGridColor {w index} {
-    global RED BLUE GREEN
+    global RED BLUE GREEN msdos
     variable REDCOL 
     variable GRECOL 
     variable BLUCOL
@@ -1247,7 +1253,11 @@ proc setYGridColor {w index} {
     if { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.grid(2)=$index;"
 	#nothing to draw: grey color used
-	set color [format \#e6e7e6]
+	if { $msdos == "F" } {
+	    set color [format \#e6e7e6]
+	} else {
+	    set color [format \#d6d3ce]
+	}
 	.axes.n.f1.frame.sample config -background $color
     } 
     
@@ -1336,7 +1346,7 @@ proc setYFontLabelColor {w  index} {
 
 # Z LABEL
 proc setZGridColor {w index} {
-    global RED BLUE GREEN
+    global RED BLUE GREEN msdos
     variable REDCOL 
     variable GRECOL 
     variable BLUCOL
@@ -1345,7 +1355,11 @@ proc setZGridColor {w index} {
     if { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.grid(3)=$index;"
 	#nothing to draw: grey color used
-	set color [format \#e6e7e6]
+	if { $msdos == "F" } {
+	    set color [format \#e6e7e6]
+	} else {
+	    set color [format \#d6d3ce]
+	}
 	.axes.n.f2.frame.sample config -background $color
     } 
     
