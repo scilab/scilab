@@ -51,6 +51,8 @@ CHK_TCL_INCLUDE_PATH=$1
 CHK_TCL_MAJOR=$2
 CHK_TCL_MINOR=$3
 CHK_TCL_INC_NAME=$4
+saved_cflags="$CFLAGS"
+CFLAGS="$CFLAGS -I$CHK_TCL_INCLUDE_PATH"
 AC_MSG_CHECKING([if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later])
 AC_GREP_CPP(TCL_VERSION_OK,
 [
@@ -69,7 +71,7 @@ TCL_VERSION_OK=0 )
 cat > conftest.$ac_ext <<EOF
 #include "confdefs.h"
 #include <stdio.h>
-#include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
+#include <$CHK_TCL_INC_NAME>
 int main(int argc,char **argv) {
         FILE *maj = fopen("tclmajor","w");
         FILE *min = fopen("tclminor","w");
@@ -101,7 +103,7 @@ else
 	   AC_MSG_ERROR([you need at least version 8.0 of tcl])
 	fi
 fi
-
+CFLAGS=$saved_cflags
 ]) dnl End of AC_CHECK_TCL_VERSION
 
 
@@ -163,6 +165,85 @@ done
 ])
 
 
+
+AC_DEFUN( AC_CHECK_TK_VERSION, [
+dnl INPUTS :
+dnl  $1 : Path where to find the include file (/include f. ex.)
+dnl  $2 : Major version number ( 8 f. ex)
+dnl  $3 : Minor version number (0 f. ex.)
+dnl  $4 : include file name (tk.h f. ex.)
+dnl  ** WARNING : uses TCL_INC_PATH. it must be set correctly **
+dnl
+dnl OUTPUTS
+dnl  TK_VERSION_OK : 1 if OK, 0 otherwise
+dnl  TK_INC_PATH : include path flag for tcl.h (-I/usr/include f. ex.)
+dnl  TK_LIB : tcl lib name ( tk8.1 f. ex.)
+dnl  TK_VERSION : ( 8.1 f. ex.)
+dnl  TK_MAJOR_VERSION: 
+dnl  TK_MINOR_VERSION: 
+
+CHK_TK_INCLUDE_PATH=$1
+CHK_TK_MAJOR=$2
+CHK_TK_MINOR=$3
+CHK_TK_INC_NAME=$4
+saved_cppflags="$CFLAGS"
+CFLAGS="$CFLAGS -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
+AC_MSG_CHECKING([if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later])
+AC_GREP_CPP(TK_VERSION_OK,
+[
+#include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
+#if (TK_MAJOR_VERSION > $CHK_TK_MAJOR)
+TK_VERSION_OK
+#else
+#if ((TK_MAJOR_VERSION == $CHK_TK_MAJOR) && (TK_MINOR_VERSION >= $CHK_TK_MINOR))
+TK_VERSION_OK
+#endif
+#endif
+],\
+TK_VERSION_OK=1,\
+TK_VERSION_OK=0 )
+
+cat > conftest.$ac_ext <<EOF
+#include "confdefs.h"
+#include <stdio.h>
+#include <$CHK_TK_INC_NAME>
+int main(int argc,char **argv) {
+        FILE *maj = fopen("tkmajor","w");
+        FILE *min = fopen("tkminor","w");
+        fprintf(maj,"%d",TK_MAJOR_VERSION);
+        fprintf(min,"%d",TK_MINOR_VERSION);
+        fclose(maj);
+        fclose(min);
+        return 0;
+}
+EOF
+eval $ac_link
+if test -s conftest && (./conftest; exit) 2>/dev/null; then
+  TK_MAJOR_VERSION=`cat tkmajor`
+  TK_MINOR_VERSION=`cat tkminor`
+  TK_VERSION=$TK_MAJOR_VERSION.$TK_MINOR_VERSION
+  rm -f tkmajor tkminor
+else
+  TK_VERSION="can't happen"
+fi
+
+TK_INC_PATH=-I$i
+TK_LIB=tk$TK_VERSION
+if test $TK_VERSION_OK = 1; then 
+	AC_MSG_RESULT([($TK_VERSION) yes])
+else 
+	AC_MSG_RESULT([($TK_VERSION) no])
+	if $TK_VERSION = "can't happen"; then
+		AC_MSG_ERROR([can(t happen])
+        else 
+	   AC_MSG_ERROR([you need at least version 8.0 of tk])
+	fi
+fi
+CFLAGS=$saved_cflags
+]) dnl End of AC_CHECK_TK_VERSION
+
+
+
 AC_DEFUN( AC_CHECK_TK_LIB, [
 dnl INPUTS :
 dnl  $1 : major tcl version number
@@ -219,85 +300,6 @@ for e in $libexts; do
 dnl end of extension finding loop
 done
 ])
-
-
-
-AC_DEFUN( AC_CHECK_TK_VERSION, [
-dnl INPUTS :
-dnl  $1 : Path where to find the include file (/include f. ex.)
-dnl  $2 : Major version number ( 8 f. ex)
-dnl  $3 : Minor version number (0 f. ex.)
-dnl  $4 : include file name (tk.h f. ex.)
-dnl  ** WARNING : uses TCL_INC_PATH. it must be set correctly **
-dnl
-dnl OUTPUTS
-dnl  TK_VERSION_OK : 1 if OK, 0 otherwise
-dnl  TK_INC_PATH : include path flag for tcl.h (-I/usr/include f. ex.)
-dnl  TK_LIB : tcl lib name ( tk8.1 f. ex.)
-dnl  TK_VERSION : ( 8.1 f. ex.)
-dnl  TK_MAJOR_VERSION: 
-dnl  TK_MINOR_VERSION: 
-
-CHK_TK_INCLUDE_PATH=$1
-CHK_TK_MAJOR=$2
-CHK_TK_MINOR=$3
-CHK_TK_INC_NAME=$4
-saved_cppflags="$CPPFLAGS"
-CPPFLAGS="$CPPFLAGS $TCL_INC_PATH $X_CFLAGS"
-AC_MSG_CHECKING([if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later])
-AC_GREP_CPP(TK_VERSION_OK,
-[
-#include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
-#if (TK_MAJOR_VERSION > $CHK_TK_MAJOR)
-TK_VERSION_OK
-#else
-#if ((TK_MAJOR_VERSION == $CHK_TK_MAJOR) && (TK_MINOR_VERSION >= $CHK_TK_MINOR))
-TK_VERSION_OK
-#endif
-#endif
-],\
-TK_VERSION_OK=1,\
-TK_VERSION_OK=0 )
-
-cat > conftest.$ac_ext <<EOF
-#include "confdefs.h"
-#include <stdio.h>
-#include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
-int main(int argc,char **argv) {
-        FILE *maj = fopen("tkmajor","w");
-        FILE *min = fopen("tkminor","w");
-        fprintf(maj,"%d",TK_MAJOR_VERSION);
-        fprintf(min,"%d",TK_MINOR_VERSION);
-        fclose(maj);
-        fclose(min);
-        return 0;
-}
-EOF
-eval $ac_link
-if test -s conftest && (./conftest; exit) 2>/dev/null; then
-  TK_MAJOR_VERSION=`cat tkmajor`
-  TK_MINOR_VERSION=`cat tkminor`
-  TK_VERSION=$TK_MAJOR_VERSION.$TK_MINOR_VERSION
-  rm -f tkmajor tkminor
-else
-  TK_VERSION="can't happen"
-fi
-
-TK_INC_PATH=-I$i
-TK_LIB=tk$TK_VERSION
-if test $TK_VERSION_OK = 1; then 
-	AC_MSG_RESULT([($TK_VERSION) yes])
-else 
-	AC_MSG_RESULT([($TK_VERSION) no])
-	if $TK_VERSION = "can't happen"; then
-		AC_MSG_ERROR([can(t happen])
-        else 
-	   AC_MSG_ERROR([you need at least version 8.0 of tk])
-	fi
-fi
- CPPFLAGS=$saved_cppflags
-]) dnl End of AC_CHECK_TK_VERSION
-
 
 
 
