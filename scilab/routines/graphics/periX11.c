@@ -497,11 +497,11 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
   while (buttons == 0) {
     C2F(sxevents)();
     wincount =  GetWinsMaxId()+1;
-    if ( wincount == 0) {
+    /*    if ( wincount == 0) {
       *istr = *x1= *yy1 = *iwin = 0;
       *ibutton = -100;
       break;
-    }
+      }*/
    /** Check menu activation **/
     if ( *istr==1 && C2F(ismenu)()==1 ) {
       int entry;
@@ -521,6 +521,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
       *x1   =  SciClickInfo.x;
       *yy1  =  SciClickInfo.y;
       *ibutton = SciClickInfo.ibutton;
+
       if (*istr==1) *istr = 0;
       break;
     }
@@ -587,6 +588,8 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 
   if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
     {
+      *x1   =  -1;
+      *yy1  =  -1;
       *ibutton = -100;     return;
     }
   win = ScilabXgc->CurWindow;
@@ -601,6 +604,8 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
       /** maybe someone decided to destroy scilab Graphic window **/
       if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
 	{
+	  *x1   =  -1;
+	  *yy1  =  -1;
 	  *ibutton = -100;
 	  return;
 	}
