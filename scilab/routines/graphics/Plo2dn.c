@@ -136,6 +136,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       else {
         sciSetIsMark(sciGetCurrentObj(),  (style[jj] < 0 ? TRUE : FALSE));
         sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
+        sciSetForeground(sciGetCurrentObj(),-(style[jj])); // Adding here F.Leray 04.03.04
       } 
       if (with_leg) pptabofpointobj[jj] = sciGetCurrentObj();
       sciDrawObj(sciGetCurrentObj ()); 
