@@ -203,8 +203,8 @@ function texte = standard_document(objet, k)
     //- Connexions 
 
     tableau = [' ', 'Block', 'Port' ; '-', '-', '-'; 
-	       'From', string(objet.from); 
-	       'to', string(objet.to)]
+	       'From', string(objet.from(1:2)); 
+	       'to', string(objet.to(1:2))] 
     texte = [texte; 
 	     'Connections'; 
 	     '-----------';' ' 
