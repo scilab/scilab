@@ -233,12 +233,6 @@ case "operation" then
   // --------
 case "cste" then
   C=sci2exp(e.value)
-  if C==""":""" then
-    C=":"
-  elseif C=="""$""" then
-    C="$"
-  end
-  C=strsubst(C,"%Inf","%inf")
   // --------
   // VARIABLE
   // --------
