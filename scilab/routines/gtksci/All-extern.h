@@ -42,7 +42,7 @@ extern int C2F (xscion) (int *i);
 extern int Xorgetchar  (int interrupt);  
 extern int C2F (sxevents) (void);  
 extern int StoreCommand  (char *command);  
-extern void GetCommand  (char *str);  
+extern int GetCommand  (char *str);  
 extern integer C2F (ismenu) (void);  
 extern int C2F (getmen) (char *btn_cmd, integer *lb, integer *entry);  
 extern void MenuFixCurrentWin  (int ivalue);  

@@ -175,7 +175,7 @@ extern void C2F(winsci) (char *pname,int *nos,int *idisp,char *display,
 	     long int dummy1,long int dummy2);
 extern int C2F(getmen)(char *,integer *,integer *);
 extern integer C2F(ismenu)(void);
-extern void GetCommand(char *);
+extern int GetCommand(char *);
 extern int StoreCommand1(char *,int);
 extern int StoreCommand(char *);
 
