@@ -30,6 +30,11 @@ extern char	   *getwd();
 #endif
 #endif
 
+#ifdef WIN32
+extern void sciprint (char *fmt,...);
+#endif
+
+
 /*******************************
  * Changes scilab current directory 
  *******************************/

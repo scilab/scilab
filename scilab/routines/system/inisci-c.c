@@ -1,3 +1,4 @@
+#include <string.h>
 #include "../machine.h" 
 #include "../sun/Sun.h" 
 
