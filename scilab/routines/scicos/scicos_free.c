@@ -2,5 +2,5 @@
 
 void scicos_free(void *p)
 {
-  return free(p);
+  free(p);
 }
