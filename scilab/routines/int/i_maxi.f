@@ -78,18 +78,39 @@ c     ------------max of each column of a
       if(lhs.eq.2) then
          top=top+1
          ilk=iadr(lstk(top))
-
          l=sadr(ilk+4)
-         if(ilk+4.gt.lk) then
-            call int2db(mnr,istk(lk),-1,stk(l),-1)
+         if (job.ne.0) then
+            if(ilk+4.gt.lk) then
+               call int2db(mnr,istk(lk),-1,stk(l),-1)
+            else
+               call int2db(mnr,istk(lk),1,stk(l),1)
+            endif
+            istk(ilk)=1
+            istk(ilk+1)=mr
+            istk(ilk+2)=nr
+            istk(ilk+3)=0
+            lstk(top+1)=l+mnr
          else
-            call int2db(mnr,istk(lk),1,stk(l),1)
+           k=istk(lk)
+           kc=k/m
+           kl=k-kc*m
+           if(kl.eq.0) then 
+              kc=kc-1
+              kl=m
+           endif
+           err=l+2-lstk(bot)
+           if(err.gt.0) then
+              call error(17)
+              return
+           endif
+            istk(ilk)=1
+            istk(ilk+1)=1
+            istk(ilk+2)=2
+            istk(ilk+3)=0
+            lstk(top+1)=l+2
+            stk(l)=kl
+            stk(l+1)=kc+1
          endif
-         istk(ilk)=1
-         istk(ilk+1)=mr
-         istk(ilk+2)=nr
-         istk(ilk+3)=0
-         lstk(top+1)=l+mnr
       endif
       return
 

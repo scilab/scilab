@@ -29,7 +29,7 @@ Type *DY;\
           kk = k*ix;\
 	  for (l = 1; l <= *m; ++l) {\
             if (DX[l+kk] < DY[1]) {\
-	      DY[1] = DX[l+kk];DK[1] = l + k * iy;}}}}\
+	      DY[1] = DX[l+kk];DK[1] = l + kk;}}}}\
 }
 
 
