@@ -829,13 +829,17 @@ int sciparam3d1(fname, fname_len)
 
   if ( get_optionals(fname,opts) == 0) return 0;
   if ( FirstOpt() < 4) {
-    sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
+    sciprint("%s: misplaced optional argument, first must be at osition %d \r\n",
 	       fname,4);
     Error(999); 
     return(0);
   }
   GetRhsVar(1, "d", &m1, &n1, &l1);/* x */
+  if (m1 == 1 && n1 > 1) {m1 = n1;n1 = 1;}
+
   GetRhsVar(2, "d", &m2, &n2, &l2);/* y */
+ if (m2 == 1 && n2 > 1) {m2 = n2;n2 = 1;}
+
   if (m1 * n1 == 0) { LhsVar(1) = 0; return 0;};
   CheckSameDims(1,2,m1,n1,m2,n2); 
 
@@ -868,7 +872,7 @@ int sciparam3d1(fname, fname_len)
       OverLoad(3);
       return 0;
     }
-
+  if (m3 == 1 && n3 > 1) {m3 = n3;n3 = 1;}
   CheckSameDims(1,3,m1,n1,m3,n3); 
 
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
@@ -3065,7 +3069,9 @@ int scixtape(fname,fname_len)
   CheckRhs(1,7);
 
   /* NG beg */
-  if (version_flag() != 0) {
+  if (version_flag() == 0) {
+    Scierror(999,"%s: not implemented with new figure style\r\n",fname);
+    return 0;
     /* call a Scilab function to handle compatibility */
   }/* NG end */
 
