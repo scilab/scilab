@@ -1,4 +1,5 @@
 function xmlfiletohtml(path,xsl)
+// Copyright Enpc (Jean-Philippe Chancelier)
 //given a path on a Scilab help xml file  (assumed to respect 
 //SCI/man/man-rev.dtd ) this function generates the corresponding htm
 //file using the /man/<LANGUAGE>/html-rev.xsl xsl file
