@@ -14,4 +14,5 @@ browsehelpexe: browsehelpexe.c
 clean::
 
 distclean::
-	@$(RM) -f browsehelpexe
+	@$(RM) -f browsehelpexe browsehelpexe.exe
+
