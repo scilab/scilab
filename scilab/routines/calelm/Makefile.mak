@@ -25,8 +25,9 @@ OBJSF = coshin.obj arcosh.obj  dad.obj dadd.obj  ccopy.obj  rcopy.obj ddif.obj \
 	ivimp.obj intp.obj cusum.obj cupro.obj cuproi.obj rcsort.obj wsort.obj vpythag.obj\
 	calerf.obj gamma.obj ribesl.obj rkbesl.obj rjbesl.obj rybesl.obj psi.obj dlgama.obj\
 	dmsum.obj wmsum.obj dmprod.obj wmprod.obj drdiv.obj dcabs1.obj infinity.obj \
-	unsfdcopy.obj idmax.obj idmin.obj wacos.obj wasin.obj  wtan.obj nearfloat.obj dsearch.obj
-
+	unsfdcopy.obj idmax.obj idmin.obj wacos.obj wasin.obj  wtan.obj nearfloat.obj
+	unsfdcopy.obj idmax.obj idmin.obj wacos.obj wasin.obj  wtan.obj nearfloat.obj \
+	dsearch.obj
 
 include ../../Makefile.incl.mak
 
@@ -46,6 +47,16 @@ Makefile.amk	: Makefile
 
 # according to compiler, do not optimize the following files
 
+<<<<<<< Makefile.mak
+icopy.obj: icopy.f
+	$(FC) -O -c icopy.f -o icopy.obj
+
+unsfdcopy.obj: unsfdcopy.f
+	$(FC) -O -c unsfdcopy.f -o unsfdcopy.obj
+
+
+=======
+>>>>>>> 1.4
 finite.obj: ../machine.h
 
 sci_tools.obj : sci_tools.h ../machine.h
