@@ -1,4 +1,3 @@
-
 /** the first dynamic interface is at position 500+1 **/
-/* Copyright INRIA */
+/* Copyright ENPC */
 #define DynInterfStart 500

@@ -1,4 +1,4 @@
-/* Copyright INRIA */
+/* Copyright ENPC */
 
 #include <string.h> 
 #include <stdio.h>
