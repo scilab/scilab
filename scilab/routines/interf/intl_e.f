@@ -112,7 +112,13 @@ c     .     at the top of the stack
             rhs=1+m1i
             m2i=istk(il2i+1)
          else
-c     .     a matrix single  index 
+c     .     a matrix  index 
+            if(m1.gt.icount) then
+c     .        arg2(...)(i,j,..)(...) :too many indices in index list
+               call error(21)
+               return
+            endif
+c     .     arg2(...)(i,j,..) a matrix single index, use standard extraction to finish the job
 c     .     copy it at the top of the stack (may possible to put a pointer)
             top=top2
             call copyvar(il1ir,vol1)
