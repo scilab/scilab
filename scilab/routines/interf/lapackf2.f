@@ -11,7 +11,7 @@ c     [VS,dim]=fschur(A,"function")
       character*4  JOBVS, SORT
       integer schsel
       external schsel
- 
+      
       minrhs=2
       maxrhs=2
       minlhs=1
@@ -26,26 +26,30 @@ c
          call error(20)
          return
       endif
-       if(N.eq.0) then
+      if(N.eq.0) then
          if(lhs.eq.1) then
-           lhsvar(1) = 1
-           return
+            lhsvar(1) = 1
+            return
          else if(lhs.eq.2) then
-           if(.not.createvar(2,'d', 1, 1, lSDIM)) return
-           stk(lSDIM)=0.0d0
-           lhsvar(1)=1
-           lhsvar(2)=2
-           return
+            if(.not.createvar(2,'d', 1, 1, lSDIM)) return
+            stk(lSDIM)=0.0d0
+            lhsvar(1)=1
+            lhsvar(2)=2
+            return
          else if(lhs.eq.3) then
-          if(.not.createvar(2,'d', 1, 1, lSDIM)) return
-           stk(lSDIM)=0.0d0
-           if(.not.createvar(3,'d', N, N, lVS)) return
-           lhsvar(1)=1
-           lhsvar(2)=2
-           lhsvar(3)=3
-           return
+            if(.not.createvar(2,'d', 1, 1, lSDIM)) return
+            stk(lSDIM)=0.0d0
+            if(.not.createvar(3,'d', N, N, lVS)) return
+            lhsvar(1)=1
+            lhsvar(2)=2
+            lhsvar(3)=3
+            return
          endif
-       endif
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
+      endif
       if(.not.getrhsvar(2,'c', mr, mc, lc)) return
       call setschsel(mr*mc, cstk(lc:lc+mr*mc),irep)
       if ( irep.eq.1) then 
@@ -88,11 +92,11 @@ c
             call msgs(2,info)
          elseif(info.eq.N+1) then
             buf='eigenvalues could not be reordered (the problem '//
-     $              'is very ill-conditioned'
+     $           'is very ill-conditioned'
             call error(1002)
          elseif(info.eq.N+2) then   
-           call msgs(103,0) 
-        endif
+            call msgs(103,0) 
+         endif
       endif
 
       
@@ -125,102 +129,106 @@ c     [VS,dim,T]=zfschur(A,'function')
       integer zchsel
       external zchsel
 
-       minrhs=2
-       maxrhs=2
-       minlhs=1
-       maxlhs=3
-c
-       if(.not.checkrhs(fname,minrhs,maxrhs)) return
-       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+      minrhs=2
+      maxrhs=2
+      minlhs=1
+      maxlhs=3
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-       if(.not.getrhsvar(1,'z', M, N, lA)) return
-       if(M.ne.N) then
-          err=1
-          call error(20)
-          return
-       endif
-       if(N.eq.0) then
+      if(.not.getrhsvar(1,'z', M, N, lA)) return
+      if(M.ne.N) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(N.eq.0) then
          if(lhs.eq.1) then
-           lhsvar(1) = 1
-           return
+            lhsvar(1) = 1
+            return
          else if(lhs.eq.2) then
-           if(.not.createvar(2,'z', 0, 0, lSDIM)) return
-           lhsvar(1)=1
-           lhsvar(2)=2
-           return
+            if(.not.createvar(2,'z', 0, 0, lSDIM)) return
+            lhsvar(1)=1
+            lhsvar(2)=2
+            return
          else if(lhs.eq.3) then
-           if(.not.createvar(2,'z', N, N, lVS)) return
-           if(.not.createvar(3,'i', 0, 0, lSDIM)) return 
-           lhsvar(1)=2
-           lhsvar(2)=3
-           lhsvar(3)=1
-           return
+            if(.not.createvar(2,'z', N, N, lVS)) return
+            if(.not.createvar(3,'i', 0, 0, lSDIM)) return 
+            lhsvar(1)=2
+            lhsvar(2)=3
+            lhsvar(3)=1
+            return
          endif
-       endif
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
+      endif
 
-       if(.not.getrhsvar(2,'c', mr, mc, lc)) return
-       call setzchsel(mr*mc,cstk(lc:lc+mr*mc),irep)
-       if ( irep.eq.1) then 
-          buf = cstk(lc:lc+mr*mc)
-          call error(50)
-          return
-       endif
+      if(.not.getrhsvar(2,'c', mr, mc, lc)) return
+      call setzchsel(mr*mc,cstk(lc:lc+mr*mc),irep)
+      if ( irep.eq.1) then 
+         buf = cstk(lc:lc+mr*mc)
+         call error(50)
+         return
+      endif
 
-       if(.not.createvar(3,'z', N, 1, lW)) return
-       k = 4
-       if(lhs.gt.1) then
-          if(.not.createvar(4,'z', N, N, lVS)) return
-          k = 5
-       endif
-       if(.not.createvar(k,'i', 1, 1, lSDIM)) return 
-       if(.not.createvar(k+1,'d', N, 1, lRWORK)) return
-       if(.not.createvar(k+2,'i', 2*N, 1, lBWORK)) return
-       LWORKMIN = 2*N
-       LWORK=maxvol(k+3,'z')
-       if(LWORK.le.LWORKMIN) then
+      if(.not.createvar(3,'z', N, 1, lW)) return
+      k = 4
+      if(lhs.gt.1) then
+         if(.not.createvar(4,'z', N, N, lVS)) return
+         k = 5
+      endif
+      if(.not.createvar(k,'i', 1, 1, lSDIM)) return 
+      if(.not.createvar(k+1,'d', N, 1, lRWORK)) return
+      if(.not.createvar(k+2,'i', 2*N, 1, lBWORK)) return
+      LWORKMIN = 2*N
+      LWORK=maxvol(k+3,'z')
+      if(LWORK.le.LWORKMIN) then
          err=2*(LWORK-LWORKMIN)
          call error(17)
          return
-       endif
-       if(.not.createvar(k+3,'z',1,LWORK,lDWORK)) return     
+      endif
+      if(.not.createvar(k+3,'z',1,LWORK,lDWORK)) return     
 
       if(lhs.eq.1) then
-        JOBVS = 'N'
-        lVS = lDWORK
+         JOBVS = 'N'
+         lVS = lDWORK
       else
-        JOBVS = 'V'
+         JOBVS = 'V'
       endif 
       SORT = 'S'
 
       call ZGEES( JOBVS, SORT, ZCHSEL, N, zstk(lA), N, istk(lSDIM),
      $     zstk(lW), zstk(lVS), N, zstk(lDWORK), LWORK, stk(lRWORK),
      $     istk(lBWORK), INFO )
-c        SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W,
+c     SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W,
 c     $    VS, LDVS, WORK, LWORK, RWORK, BWORK, INFO )
       if(info.gt.0) then
          if(info.le.N) then
             call msgs(2,info)
          elseif(info.eq.N+1) then
             buf='eigenvalues could not be reordered (the problem '//
-     $              'is very ill-conditioned'
+     $           'is very ill-conditioned'
             call error(1002)
          elseif(info.eq.N+2) then   
-           call msgs(103,0) 
-        endif
+            call msgs(103,0) 
+         endif
       endif
-    
+      
       if(lhs.eq.1) then
-        lhsvar(1) = 1
+         lhsvar(1) = 1
       else if(lhs.eq.2) then
-        lhsvar(1)=4
-        lhsvar(2)=5
+         lhsvar(1)=4
+         lhsvar(2)=5
       else if(lhs.eq.3) then
-        lhsvar(1)=4
-        lhsvar(2)=5
-        lhsvar(3)=1
+         lhsvar(1)=4
+         lhsvar(2)=5
+         lhsvar(3)=1
       endif
-c
-       end
+c     
+      end
 
       subroutine intdgehrd(fname)
 
@@ -234,74 +242,85 @@ c     [H,Q]=hess(A)
       double precision ZERO
       parameter ( ZERO=0.0D0 )
 
-       minrhs=1
-       maxrhs=1
-       minlhs=1
-       maxlhs=2
-c
-       if(.not.checkrhs(fname,minrhs,maxrhs)) return
-       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+      minrhs=1
+      maxrhs=1
+      minlhs=1
+      maxlhs=2
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-       if(.not.getrhsvar(1,'d', M, N, lA)) return
-       if(M.ne.N) then
-          err=1
-          call error(20)
-          return
-       endif
-       if(N.eq.0) then
+      if(.not.getrhsvar(1,'d', M, N, lA)) return
+      if(M.ne.N) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(N.eq.0) then
          if(lhs.eq.1) then
-           lhsvar(1) = 1
-           return
+            lhsvar(1) = 1
+            return
          else if(lhs.eq.2) then
+            if(.not.createvar(2,'d', N, N, lQ)) return
+            lhsvar(1)=1
+            lhsvar(2)=2
+            return
+         endif 
+      elseif(N.eq.-1) then
+        if(lhs.eq.1) then
+           lhsvar(1) = 1
+        else if(lhs.eq.2) then
            if(.not.createvar(2,'d', N, N, lQ)) return
+           stk(lQ)=stk(lA)
+           stk(lA)=1.0d0
            lhsvar(1)=1
            lhsvar(2)=2
-           return
-         endif 
-       endif
-       if(.not.createvar(2,'d', N-1, 1, lTAU)) return
-       k = 3
-       if(lhs.gt.1) then
+        endif 
+        return
+      endif
+      if(.not.createvar(2,'d', N-1, 1, lTAU)) return
+      k = 3
+      if(lhs.gt.1) then
          if(.not.createvar(3,'d', N, N, lQ)) return
          k = 4
-       endif
-       LWORKMIN = N
-       LWORK=maxvol(k,'d')
-       if(LWORK.le.LWORKMIN) then
+      endif
+      LWORKMIN = N
+      LWORK=maxvol(k,'d')
+      if(LWORK.le.LWORKMIN) then
          err=(LWORK-LWORKMIN)
          call error(17)
          return
-       endif
+      endif
       if(.not.createvar(k,'d',1,LWORK,lDWORK)) return
       call DGEHRD( N, 1, N, stk(lA), N, stk(lTAU), stk(lDWORK),
      $     LWORK, INFO )
-c      SUBROUTINE DGEHRD( N, 1, N, A, LDA, TAU, WORK, INFO )
+c     SUBROUTINE DGEHRD( N, 1, N, A, LDA, TAU, WORK, INFO )
 
       if(lhs.gt.1) call DLACPY( 'F', N, N, stk(lA), N, stk(lQ), N )
-c      SUBROUTINE DLACPY( UPLO, N, N, A, LDA, B, LDB )
-       if(N.gt.2) then
+c     SUBROUTINE DLACPY( UPLO, N, N, A, LDA, B, LDB )
+      if(N.gt.2) then
          do 20 j = 1, N-2
             do 10 i = j+2, N
                ij = i+(j-1)*N
                stk(lA+ij-1) = ZERO
-   10       continue
-   20    continue
-       endif
+ 10         continue
+ 20      continue
+      endif
       
-       if(lhs.gt.1) then
+      if(lhs.gt.1) then
          call DORGHR( N, 1, N, stk(lQ), N, stk(lTAU), stk(lDWORK),
      $        LWORK, INFO )
-c         SUBROUTINE DORGHR( N, 1, N, A, LDA, TAU, WORK, INFO ) 
-       endif
+c     SUBROUTINE DORGHR( N, 1, N, A, LDA, TAU, WORK, INFO ) 
+      endif
 
       if(lhs.eq.1) then
-        lhsvar(1) = 1
+         lhsvar(1) = 1
       else
-        lhsvar(1)=3
-        lhsvar(2)=1
+         lhsvar(1)=3
+         lhsvar(2)=1
       endif 
-c
-       end
+c     
+      end
 
 
       subroutine intzgehrd(fname)
@@ -313,77 +332,87 @@ c     [Q,H]=hess(A)
       logical checklhs,checkrhs
 
       character fname*(*)
-      complex*16 ZERO
-      parameter ( ZERO=(0.0D0,0.0D0) )
+      complex*16 ZERO,ONE
+      parameter ( ZERO=(0.0D0,0.0D0), ONE=(1.0D0,0.0D0) )
 
-       minrhs=1
-       maxrhs=1
-       minlhs=1
-       maxlhs=2
-c
-       if(.not.checkrhs(fname,minrhs,maxrhs)) return
-       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+      minrhs=1
+      maxrhs=1
+      minlhs=1
+      maxlhs=2
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-       if(.not.getrhsvar(1,'z', M, N, lA)) return
-       if(M.ne.N) then
-          err=1
-          call error(20)
+      if(.not.getrhsvar(1,'z', M, N, lA)) return
+      if(M.ne.N) then
+         err=1
+         call error(20)
          return
-       endif
-       if(N.eq.0) then
+      endif
+      if(N.eq.0) then
          if(lhs.eq.1) then
-           lhsvar(1) = 1
-           return
+            lhsvar(1) = 1
+            return
          else if(lhs.eq.2) then
-           if(.not.createvar(2, 'z', N, N, lQ)) return
+            if(.not.createvar(2, 'z', N, N, lQ)) return
+            lhsvar(1)=1
+            lhsvar(2)=2
+            return
+         endif
+      elseif(N.eq.-1) then
+        if(lhs.eq.1) then
+           lhsvar(1) = 1
+        else if(lhs.eq.2) then
+           if(.not.createvar(2,'z', N, N, lQ)) return
+           zstk(lQ)=zstk(lA)
+           zstk(lA)=ONE
            lhsvar(1)=1
            lhsvar(2)=2
-           return
-         endif
-       endif
-       if(.not.createvar(2,'z', N-1, 1, lTAU)) return
-       k = 3
-       if(lhs.gt.1) then
+        endif 
+      endif
+      if(.not.createvar(2,'z', N-1, 1, lTAU)) return
+      k = 3
+      if(lhs.gt.1) then
          if(.not.createvar(3,'z', N, N, lQ)) return
          k = 4
-       endif
-       LWORKMIN = N
-       LWORK=maxvol(k,'z')
-       if(LWORK.le.LWORKMIN) then
+      endif
+      LWORKMIN = N
+      LWORK=maxvol(k,'z')
+      if(LWORK.le.LWORKMIN) then
          err=(LWORK-LWORKMIN)
          call error(17)
          return
-       endif
+      endif
       if(.not.createvar(k,'z',1,LWORK,lDWORK)) return
       call ZGEHRD( N, 1, N, zstk(lA), N, zstk(lTAU), zstk(lDWORK),
      $     LWORK, INFO )
-c      SUBROUTINE ZGEHRD( N, 1, N, A, LDA, TAU, WORK, INFO )
+c     SUBROUTINE ZGEHRD( N, 1, N, A, LDA, TAU, WORK, INFO )
 
       if(lhs.gt.1) call ZLACPY( 'F', N, N, zstk(lA), N, zstk(lQ), N )
-c      SUBROUTINE ZLACPY( UPLO, N, N, A, LDA, B, LDB )
-       if(N.gt.2) then
+c     SUBROUTINE ZLACPY( UPLO, N, N, A, LDA, B, LDB )
+      if(N.gt.2) then
          do 20 j = 1, N-2
             do 10 i = j+2, N
                ij = i+(j-1)*N
                zstk(lA+ij-1) = ZERO
-   10       continue
-   20    continue
-       endif
+ 10         continue
+ 20      continue
+      endif
       
-       if(lhs.gt.1) then
+      if(lhs.gt.1) then
          call ZUNGHR( N, 1, N, zstk(lQ), N, zstk(lTAU), zstk(lDWORK),
      $        LWORK, INFO )
-c         SUBROUTINE ZUNGHR( N, 1, N, A, LDA, TAU, WORK, INFO ) 
-       endif
+c     SUBROUTINE ZUNGHR( N, 1, N, A, LDA, TAU, WORK, INFO ) 
+      endif
 
       if(lhs.eq.1) then
-        lhsvar(1) = 1
+         lhsvar(1) = 1
       else
-        lhsvar(1)=3
-        lhsvar(2)=1
+         lhsvar(1)=3
+         lhsvar(2)=1
       endif
-c
-       end
+c     
+      end
 
 
       subroutine intdggev(fname)
@@ -440,16 +469,16 @@ c
          endif
          return
       endif
-       if(vfinite(N*N,stk(lA)).eq.0) then
-          err=1
-          call error(264)
-          return
-       endif  
-       if(vfinite(N*N,stk(lB)).eq.0) then
-          err=2
-          call error(264)
-          return
-       endif  
+      if(vfinite(N*N,stk(lA)).eq.0) then
+         err=1
+         call error(264)
+         return
+      endif  
+      if(vfinite(N*N,stk(lB)).eq.0) then
+         err=2
+         call error(264)
+         return
+      endif  
 
       if(.not.createcvar(3,'d',1, N, 1, lALPHAR,lALPHAI)) return
       if(.not.createvar(4,'d', N, 1, lBETA)) return
@@ -550,7 +579,7 @@ c     $     ALPHAI, BETA, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
          lhsvar(3)=6
          lhsvar(4)=5
       endif
-c
+c     
       end
 
 
@@ -564,76 +593,76 @@ c     [al,be]=gspec(A,B)
       logical getrhsvar,createvar
       logical checklhs,checkrhs
       integer vfinite
-   
+      
 
       character fname*(*)
       character JOBVL, JOBVR
 
-       minrhs=2
-       maxrhs=2
-       minlhs=1
-       maxlhs=4
-c
-       if(.not.checkrhs(fname,minrhs,maxrhs)) return
-       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+      minrhs=2
+      maxrhs=2
+      minlhs=1
+      maxlhs=4
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-       if(.not.getrhsvar(1,'z', MA, NA, lA)) return
-       if(MA.ne.NA) then
-          err=1
-          call error(20)
-          return
-       endif
-       if(.not.getrhsvar(2,'z', MB, NB, lB)) return
-       if(MB.ne.NB) then
-          err=2
-          call error(20)
-          return
-       endif
-       if(MA.ne.NB) then
+      if(.not.getrhsvar(1,'z', MA, NA, lA)) return
+      if(MA.ne.NA) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(.not.getrhsvar(2,'z', MB, NB, lB)) return
+      if(MB.ne.NB) then
+         err=2
+         call error(20)
+         return
+      endif
+      if(MA.ne.NB) then
          call error(267)
          return
-       endif
-       N = MA
-       if(N.eq.0) then
+      endif
+      N = MA
+      if(N.eq.0) then
          if(.not.createvar(3,'z', N, 1, lALPHA)) return
          if(.not.createvar(4,'z', N, 1, lBETA)) return
          lhsvar(1)=3
          lhsvar(2)=4
          if(lhs.ge.3) then
-           if(.not.createvar(5,'z', N, N, lVR)) return
-           lhsvar(3)=5
+            if(.not.createvar(5,'z', N, N, lVR)) return
+            lhsvar(3)=5
          endif
          if(lhs.eq.4) then
-           if(.not.createvar(6,'z', N, N, lVL)) return
-           lhsvar(4)=6
+            if(.not.createvar(6,'z', N, N, lVL)) return
+            lhsvar(4)=6
          endif
          return
-       endif
-       if(vfinite(2*N*N,zstk(lA)).eq.0) then
-          err=1
-          call error(264)
-          return
-       endif  
-       if(vfinite(2*N*N,zstk(lB)).eq.0) then
-          err=2
-          call error(264)
-          return
-       endif
-       if(.not.createvar(3,'z', N, 1, lALPHA)) return
-       if(.not.createvar(4,'z', N, 1, lBETA)) return
-       k = 5
-       if(lhs.ge.3) then
+      endif
+      if(vfinite(2*N*N,zstk(lA)).eq.0) then
+         err=1
+         call error(264)
+         return
+      endif  
+      if(vfinite(2*N*N,zstk(lB)).eq.0) then
+         err=2
+         call error(264)
+         return
+      endif
+      if(.not.createvar(3,'z', N, 1, lALPHA)) return
+      if(.not.createvar(4,'z', N, 1, lBETA)) return
+      k = 5
+      if(lhs.ge.3) then
          if(.not.createvar(5,'z', N, N, lVR)) return
          k = 6
-       endif
-       if(lhs.eq.4) then
+      endif
+      if(lhs.eq.4) then
          if(.not.createvar(6,'z', N, N, lVL)) return
          k = 7
-       endif
-       if(.not.createvar(k,'d', 8*N, 1, lRWORK)) return
-       LWORKMIN = 2*N
-       LWORK=maxvol(k+1,'z')
-       if(LWORK.le.LWORKMIN) then
+      endif
+      if(.not.createvar(k,'d', 8*N, 1, lRWORK)) return
+      LWORKMIN = 2*N
+      LWORK=maxvol(k+1,'z')
+      if(LWORK.le.LWORKMIN) then
          err=2*(LWORK-LWORKMIN)
          call error(17)
          return
@@ -649,8 +678,8 @@ c
          JOBVL = 'N'
          lVL = lDWORK
       else
-        JOBVR = 'V'
-        JOBVL = 'V'
+         JOBVR = 'V'
+         JOBVL = 'V'
       endif 
       call ZGGEV( JOBVL, JOBVR, N, zstk(lA), N, zstk(lB),N,
      $     zstk(lALPHA), zstk(lBETA), zstk(lVL), N, zstk(lVR), N,
@@ -682,7 +711,7 @@ c     $     VL, LDVL, VR, LDVR, WORK, LWORK, RWORK, INFO )
          lhsvar(3)=6
          lhsvar(4)=5
       endif
-c
+c     
       end
 
 
@@ -699,64 +728,64 @@ c     [D,V]=spec(A)
       character JOBZ, UPLO
       double precision ZERO
       parameter ( ZERO=0.0D0 )
-c
-       minrhs=1
-       maxrhs=1
-       minlhs=1
-       maxlhs=2
-c
-       if(.not.checkrhs(fname,minrhs,maxrhs)) return
-       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+c     
+      minrhs=1
+      maxrhs=1
+      minlhs=1
+      maxlhs=2
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-       if(.not.getrhsvar(1,'d', M, N, lA)) return
-       if(M.ne.N) then
-          err=1
-          call error(20)
-          return
-       endif
-       if(N.eq.0) then
+      if(.not.getrhsvar(1,'d', M, N, lA)) return
+      if(M.ne.N) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(N.eq.0) then
          if(lhs.eq.1) then
-           lhsvar(1) = 1
-           return
+            lhsvar(1) = 1
+            return
          else if(lhs.eq.2) then
-           if(.not.createvar(2,'d', N, N, lV)) return
-           lhsvar(1) = 2
-           lhsvar(2) = 1
-           return
+            if(.not.createvar(2,'d', N, N, lV)) return
+            lhsvar(1) = 2
+            lhsvar(2) = 1
+            return
          endif
-       endif
-       if(vfinite(M*N,stk(lA)).eq.0) then
-          err=1
-          call error(264)
-          return
-       endif 
-       if(lhs.eq.1) then
+      endif
+      if(vfinite(M*N,stk(lA)).eq.0) then
+         err=1
+         call error(264)
+         return
+      endif 
+      if(lhs.eq.1) then
          if(.not.createvar(2,'d', N, 1, lD)) return              
-       else
+      else
          if(.not.createvar(2,'d', N, N, lD)) return
-       endif
-       if(.not.createvar(3,'d', N, 1, lW)) return
-       LWORKMIN = 3*N - 1
-       LWORK=maxvol(4,'d')
-       if(LWORK.le.LWORKMIN) then
+      endif
+      if(.not.createvar(3,'d', N, 1, lW)) return
+      LWORKMIN = 3*N - 1
+      LWORK=maxvol(4,'d')
+      if(LWORK.le.LWORKMIN) then
          err=(LWORK-LWORKMIN)
          call error(17)
          return
       endif
       if(.not.createvar(4,'d',1,LWORK,lDWORK)) return
       if(lhs.eq.1) then
-        JOBZ = 'N'
+         JOBZ = 'N'
       else
-        JOBZ = 'V'
+         JOBZ = 'V'
       endif 
       UPLO = 'U'
       call DSYEV( JOBZ, UPLO, N, stk(lA), N, stk(lW),
      $     stk(lDWORK), LWORK, INFO )
-c      SUBROUTINE DSYEV( JOBZ, UPLO, N, A, LDA, W, WORK, LWORK, INFO )
-       if(info.ne.0) then
+c     SUBROUTINE DSYEV( JOBZ, UPLO, N, A, LDA, W, WORK, LWORK, INFO )
+      if(info.ne.0) then
          call error(24)
          return
-       endif
+      endif
 
       if(lhs.eq.1) then
          do 10 i = 1, N
@@ -792,46 +821,46 @@ c     [D,V]=spec(A)
       double precision ZERO
       parameter ( ZERO=0.0D0 )
 
-       minrhs=1
-       maxrhs=1
-       minlhs=1
-       maxlhs=2
-c
-       if(.not.checkrhs(fname,minrhs,maxrhs)) return
-       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+      minrhs=1
+      maxrhs=1
+      minlhs=1
+      maxlhs=2
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-       if(.not.getrhsvar(1,'z', M, N, lA)) return
-       if(M.ne.N) then
-          err=1
-          call error(20)
-          return
-       endif
-       if(N.eq.0) then
+      if(.not.getrhsvar(1,'z', M, N, lA)) return
+      if(M.ne.N) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(N.eq.0) then
          if(lhs.eq.1) then
-           lhsvar(1) = 1
-           return
+            lhsvar(1) = 1
+            return
          else if(lhs.eq.2) then
-           if(.not.createvar(2,'d', N, N, lV)) return
-           lhsvar(1) = 1
-           lhsvar(2) = 2
-           return
+            if(.not.createvar(2,'d', N, N, lV)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            return
          endif
-       endif
-       if(vfinite(2*M*N,zstk(lA)).eq.0) then
-          err=1
-          call error(264)
-          return
-       endif 
-       if(lhs.eq.1) then
+      endif
+      if(vfinite(2*M*N,zstk(lA)).eq.0) then
+         err=1
+         call error(264)
+         return
+      endif 
+      if(lhs.eq.1) then
          if(.not.createvar(2,'d', N, 1, lD)) return              
-       else
+      else
          if(.not.createvar(2,'d', N, N, lD)) return
-       endif
-       if(.not.createvar(3,'d', N, 1, lW)) return
-       if(.not.createvar(4,'d', 3*N-2, 1, lRWORK)) return
-       LWORKMIN = 2*N - 1
-       LWORK=maxvol(5,'z')
-       if(LWORK.le.LWORKMIN) then
+      endif
+      if(.not.createvar(3,'d', N, 1, lW)) return
+      if(.not.createvar(4,'d', 3*N-2, 1, lRWORK)) return
+      LWORKMIN = 2*N - 1
+      LWORK=maxvol(5,'z')
+      if(LWORK.le.LWORKMIN) then
          err=2*(LWORK-LWORKMIN)
          call error(17)
          return
@@ -839,38 +868,38 @@ c
       if(.not.createvar(5,'z',1,LWORK,lDWORK)) return
 
       if(lhs.eq.1) then
-        JOBZ = 'N'
+         JOBZ = 'N'
       else
-        JOBZ = 'V'
+         JOBZ = 'V'
       endif 
       UPLO = 'U'
       call ZHEEV( JOBZ, UPLO, N, zstk(lA), N, stk(lW),
      $     zstk(lDWORK), LWORK, stk(lRWORK), INFO )
-c      SUBROUTINE ZHEEV( JOBZ, UPLO, N, A, LDA, W, WORK, LWORK,
+c     SUBROUTINE ZHEEV( JOBZ, UPLO, N, A, LDA, W, WORK, LWORK,
 c     $    stk(lROWK), INFO )
-       if(info.ne.0) then
+      if(info.ne.0) then
          call error(24)
          return
-       endif
+      endif
 
       if(lhs.eq.1) then
-        do 10 i = 1, N
-           stk(lD+i-1) = stk(lW+i-1)
-  10    continue  
-        lhsvar(1)=2   
+         do 10 i = 1, N
+            stk(lD+i-1) = stk(lW+i-1)
+ 10      continue  
+         lhsvar(1)=2   
       else 
-        call DLASET( 'F', N, N, ZERO, ZERO, stk(lD), N ) 
-c       SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+         call DLASET( 'F', N, N, ZERO, ZERO, stk(lD), N ) 
+c     SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
 
-        do 20 i = 1, N
-           ii = i+(i-1)*N
-           stk(lD+ii-1) = stk(lW+i-1)
- 20     continue   
-        lhsvar(1)=1
-        lhsvar(2)=2
+         do 20 i = 1, N
+            ii = i+(i-1)*N
+            stk(lD+ii-1) = stk(lW+i-1)
+ 20      continue   
+         lhsvar(1)=1
+         lhsvar(2)=2
       endif 
-c
-       end
+c     
+      end
 
 
       subroutine intdgges(fname)
@@ -881,63 +910,67 @@ c     [AS,BS] = gschur(A,B)
       include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
-   
+      
       character fname*(*)
       character JOBVSL, JOBVSR, SORT
       logical voiddummy
       external voiddummy
 
-       minrhs=2
-       maxrhs=2
-       minlhs=2
-       maxlhs=4
-c
-       if(.not.checkrhs(fname,minrhs,maxrhs)) return
-       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+      minrhs=2
+      maxrhs=2
+      minlhs=2
+      maxlhs=4
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-       if(.not.getrhsvar(1,'d', MA, NA, lA)) return
-       if(MA.ne.NA) then
-          err=1
-          call error(20)
-          return
-       endif
-       if(.not.getrhsvar(2,'d', MB, NB, lB)) return
-       if(MB.ne.NB) then
-          err=2
-          call error(20)
-          return
-       endif
-       if(MA.ne.MB) then
+      if(.not.getrhsvar(1,'d', MA, NA, lA)) return
+      if(MA.ne.NA) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(.not.getrhsvar(2,'d', MB, NB, lB)) return
+      if(MB.ne.NB) then
+         err=2
+         call error(20)
+         return
+      endif
+      if(MA.ne.MB) then
          call error(267)
          return
-       endif
-       N = MA
-       if(N.eq.0) then
-        lhsvar(1)=1
-        lhsvar(2)=2
-        if(lhs.eq.4) then
-           if(.not.createvar(3,'d', N, N, lVSL)) return
-           if(.not.createvar(4,'d', N, N, lVSR)) return
-           lhsvar(3)=3
-           lhsvar(4)=4
-        endif
-        return
       endif
-       if(.not.createvar(3,'i', 1, 1, lSDIM)) return
-       if(.not.createvar(4,'d', N, 1, lALPHAR)) return
-       if(.not.createvar(5,'d', N, 1, lALPHAI)) return
-       if(.not.createvar(6,'d', N, 1, lBETA)) return
-       k = 7              
-       if(lhs.eq.4) then
+      N = MA
+      if(N.eq.0) then
+         lhsvar(1)=1
+         lhsvar(2)=2
+         if(lhs.eq.4) then
+            if(.not.createvar(3,'d', N, N, lVSL)) return
+            if(.not.createvar(4,'d', N, N, lVSR)) return
+            lhsvar(3)=3
+            lhsvar(4)=4
+         endif
+         return
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
+      endif
+      if(.not.createvar(3,'i', 1, 1, lSDIM)) return
+      if(.not.createvar(4,'d', N, 1, lALPHAR)) return
+      if(.not.createvar(5,'d', N, 1, lALPHAI)) return
+      if(.not.createvar(6,'d', N, 1, lBETA)) return
+      k = 7              
+      if(lhs.eq.4) then
          if(.not.createvar(7,'d', N, N, lVSL)) return
          if(.not.createvar(8,'d', N, N, lVSR)) return
          k = 9
-       endif
-       if(.not.createvar(k,'i', 2*N, 1, lBWORK)) return
+      endif
+      if(.not.createvar(k,'i', 2*N, 1, lBWORK)) return
 
-       LWORKMIN = 8*N+16
-       LWORK=maxvol(k+1,'d')
-       if(LWORK.le.LWORKMIN) then
+      LWORKMIN = 8*N+16
+      LWORK=maxvol(k+1,'d')
+      if(LWORK.le.LWORKMIN) then
          err=(LWORK-LWORKMIN)
          call error(17)
          return
@@ -945,13 +978,13 @@ c
       if(.not.createvar(k+1,'d',1,LWORK,lDWORK)) return
 
       if(lhs.eq.2) then
-        JOBVSL = 'N'       
-        JOBVSR = 'N'
-        lVSL = lDWORK
-        lVSR = lDWORK
+         JOBVSL = 'N'       
+         JOBVSR = 'N'
+         lVSL = lDWORK
+         lVSR = lDWORK
       else
-        JOBVSL = 'V'
-        JOBVSR = 'V'
+         JOBVSL = 'V'
+         JOBVSR = 'V'
       endif
       SORT = 'N' 
       call DGGES( JOBVSL, JOBVSR, SORT, voiddummy, N, stk(lA), N, 
@@ -959,7 +992,7 @@ c
      $     N, istk(lSDIM), stk(lALPHAR), stk(lALPHAI), stk(lBETA),
      $     stk(lVSL), N, stk(lVSR), N, stk(lDWORK), LWORK, istk(lBWORK),
      $     INFO )
-c      SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
+c     SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
 c     $     SDIM, ALPHAR, ALPHAI, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
 c     $     LWORK, BWORK, INFO )
       if(info.gt.0) then
@@ -971,18 +1004,18 @@ c     $     LWORK, BWORK, INFO )
          endif
       endif
 
-     
+      
       if(lhs.eq.2) then
-        lhsvar(1)=1
-        lhsvar(2)=2
+         lhsvar(1)=1
+         lhsvar(2)=2
       else 
-        lhsvar(1)=1
-        lhsvar(2)=2
-        lhsvar(3)=7
-        lhsvar(4)=8
+         lhsvar(1)=1
+         lhsvar(2)=2
+         lhsvar(3)=7
+         lhsvar(4)=8
       endif
-c
-       end
+c     
+      end
 
 
       subroutine intzgges(fname)
@@ -993,64 +1026,68 @@ c     [AS,BS]=gschur(A,B)
       include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
- 
+      
 
       character fname*(*)
       character JOBVSL, JOBVSR, SORT
       logical voiddummy
       external voiddummy
 
-       minrhs=2
-       maxrhs=2
-       minlhs=2
-       maxlhs=4
-c
-       if(.not.checkrhs(fname,minrhs,maxrhs)) return
-       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+      minrhs=2
+      maxrhs=2
+      minlhs=2
+      maxlhs=4
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-       if(.not.getrhsvar(1,'z', MA, NA, lA)) return
-       if(MA.ne.NA) then
-          err=1
-          call error(20)
-          return
-       endif
-       if(.not.getrhsvar(2,'z', MB, NB, lB)) return
-       if(MB.ne.NB) then
-          err=2
-          call error(20)
-          return
-       endif
-       if(MA.ne.NB) then
+      if(.not.getrhsvar(1,'z', MA, NA, lA)) return
+      if(MA.ne.NA) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(.not.getrhsvar(2,'z', MB, NB, lB)) return
+      if(MB.ne.NB) then
+         err=2
+         call error(20)
+         return
+      endif
+      if(MA.ne.NB) then
          call error(267)
          return
-       endif
-       N = MA
-       if(N.eq.0) then
-        lhsvar(1)=1
-        lhsvar(2)=2
-        if(lhs.eq.4) then
-           if(.not.createvar(3,'d', N, N, lVSL)) return
-           if(.not.createvar(4,'d', N, N, lVSR)) return
-           lhsvar(3)=3
-           lhsvar(4)=4
-        endif
-        return
       endif
-       if(.not.createvar(3,'i', 1, 1, lSDIM)) return
-       if(.not.createvar(4,'z', N, 1, lALPHA)) return
-       if(.not.createvar(5,'z', N, 1, lBETA)) return
-       K = 6
-       if(lhs.eq.4) then
+      N = MA
+      if(N.eq.0) then
+         lhsvar(1)=1
+         lhsvar(2)=2
+         if(lhs.eq.4) then
+            if(.not.createvar(3,'d', N, N, lVSL)) return
+            if(.not.createvar(4,'d', N, N, lVSR)) return
+            lhsvar(3)=3
+            lhsvar(4)=4
+         endif
+         return
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
+      endif
+      if(.not.createvar(3,'i', 1, 1, lSDIM)) return
+      if(.not.createvar(4,'z', N, 1, lALPHA)) return
+      if(.not.createvar(5,'z', N, 1, lBETA)) return
+      K = 6
+      if(lhs.eq.4) then
          if(.not.createvar(6,'z', N, N, lVSL)) return
          if(.not.createvar(7,'z', N, N, lVSR)) return
          k = 8
-       endif
-       if(.not.createvar(k,'d', 8*N, 1, lRWORK)) return
-       k=k+1
-       if(.not.createvar(k,'i', 2*N, 1, lBWORK)) return
-       LWORKMIN = 2*N
-       LWORK=maxvol(k+1,'z')
-       if(LWORK.le.LWORKMIN) then
+      endif
+      if(.not.createvar(k,'d', 8*N, 1, lRWORK)) return
+      k=k+1
+      if(.not.createvar(k,'i', 2*N, 1, lBWORK)) return
+      LWORKMIN = 2*N
+      LWORK=maxvol(k+1,'z')
+      if(LWORK.le.LWORKMIN) then
          err=2*(LWORK-LWORKMIN)
          call error(17)
          return
@@ -1059,13 +1096,13 @@ c
 
 
       if(lhs.eq.2) then
-        JOBVSL = 'N'
-        JOBVSR = 'N'
-        lVSL = lDWORK
-        lVSR = lDWORK
+         JOBVSL = 'N'
+         JOBVSR = 'N'
+         lVSL = lDWORK
+         lVSR = lDWORK
       else
-        JOBVSL = 'V'
-        JOBVSR = 'V'
+         JOBVSL = 'V'
+         JOBVSR = 'V'
       endif
       SORT = 'N'
       call ZGGES( JOBVSL, JOBVSR, SORT, voiddummy, N, 
@@ -1073,8 +1110,9 @@ c
      $     zstk(lB), N, istk(lSDIM), zstk(lALPHA), zstk(lBETA),
      $     zstk(lVSL), N, zstk(lVSR), N, zstk(lDWORK), LWORK,
      $     stk(lRWORK), istk(lBWORK), INFO )
-c      SUBROUTINE ZGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
-c     $    SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK, LWORK, RWORK,
+c     SUBROUTINE ZGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
+c     $    SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK, LWORK, RWORK
+c     ,
 c     $    BWORK, INFO )
       if(info.gt.0) then
          if(info.le.N) then
@@ -1086,16 +1124,16 @@ c     $    BWORK, INFO )
       endif
 
       if(lhs.eq.2) then
-        lhsvar(1)=1
-        lhsvar(2)=2
+         lhsvar(1)=1
+         lhsvar(2)=2
       else
-        lhsvar(1)=1
-        lhsvar(2)=2
-        lhsvar(3)=6
-        lhsvar(4)=7
+         lhsvar(1)=1
+         lhsvar(2)=2
+         lhsvar(3)=6
+         lhsvar(4)=7
       endif
-c
-       end
+c     
+      end
 
 
 
@@ -1107,7 +1145,7 @@ c     [VS,dim]=gshur(A,B,function)
       include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
-   
+      
       character fname*(*)
       character  JOBVSL, JOBVSR, SORT
       logical SCIZGSHR,scizgchk
@@ -1122,29 +1160,33 @@ c
       if(.not.checkrhs(fname,minrhs,maxrhs)) return
       if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-       if(.not.getrhsvar(1,'z', MA, NA, lA)) return
-       if(MA.ne.NA) then
-          err=1
-          call error(20)
-          return
-       endif
-       if(.not.getrhsvar(2,'z', MB, NB, lB)) return
-       if(MB.ne.NB) then
-          err=2
-          call error(20)
-          return
-       endif
-       N = MA 
-       if(N.eq.0) then
-        lhsvar(1)=1
-        lhsvar(2)=2
-        if(lhs.eq.4) then
-           if(.not.createvar(3,'z', N, N, lVSR)) return
-           if(.not.createvar(4,'d', N, N, lSDIM)) return
-           lhsvar(3)=3
-           lhsvar(4)=4
-        endif
-        return
+      if(.not.getrhsvar(1,'z', MA, NA, lA)) return
+      if(MA.ne.NA) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(.not.getrhsvar(2,'z', MB, NB, lB)) return
+      if(MB.ne.NB) then
+         err=2
+         call error(20)
+         return
+      endif
+      N = MA 
+      if(N.eq.0) then
+         lhsvar(1)=1
+         lhsvar(2)=2
+         if(lhs.eq.4) then
+            if(.not.createvar(3,'z', N, N, lVSR)) return
+            if(.not.createvar(4,'d', N, N, lSDIM)) return
+            lhsvar(3)=3
+            lhsvar(4)=4
+         endif
+         return
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       nf=3
       if(.not.getrhsvar(nf,'f', mlhs, mrhs, lf)) return
@@ -1154,18 +1196,18 @@ c
          return
       endif
 
-       if(.not.createvar(4,'i', 1, 1, lSDIM)) return
-       if(.not.createvar(5,'z', N, 1, lALPHA)) return
-       if(.not.createvar(6,'z', N, 1, lBETA)) return
-       if(.not.createvar(7,'z', N, N, lVSL)) return
-       if(.not.createvar(8,'z', N, N, lVSR)) return
-       if(.not.createvar(9,'d', 8*N, 1, lRWORK)) return
-       if(.not.createvar(10,'i', 2*N, 1, lBWORK)) return
-       LWORKMIN = 2*N
-       LWORK=LWORKMIN
-       if(.not.createvar(11,'z',1,LWORK,lDWORK)) return
-       nfree = 12
- 
+      if(.not.createvar(4,'i', 1, 1, lSDIM)) return
+      if(.not.createvar(5,'z', N, 1, lALPHA)) return
+      if(.not.createvar(6,'z', N, 1, lBETA)) return
+      if(.not.createvar(7,'z', N, N, lVSL)) return
+      if(.not.createvar(8,'z', N, N, lVSR)) return
+      if(.not.createvar(9,'d', 8*N, 1, lRWORK)) return
+      if(.not.createvar(10,'i', 2*N, 1, lBWORK)) return
+      LWORKMIN = 2*N
+      LWORK=LWORKMIN
+      if(.not.createvar(11,'z',1,LWORK,lDWORK)) return
+      nfree = 12
+      
       JOBVSL = 'V'
       JOBVSR = 'V' 
       SORT = 'S'
@@ -1176,8 +1218,9 @@ c
      $     zstk(lB), N, istk(lSDIM), zstk(lALPHA), zstk(lBETA),
      $     zstk(lVSL), N, zstk(lVSR), N, zstk(lDWORK), LWORK,
      $     stk(lRWORK), istk(lBWORK), INFO )
-c      SUBROUTINE ZGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
-c     $    SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK, LWORK, RWORK,
+c     SUBROUTINE ZGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
+c     $    SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK, LWORK, RWORK
+c     ,
 c     $    BWORK, INFO )
       if(info.gt.0) then
          if(info.le.N) then
@@ -1222,7 +1265,7 @@ c
       intrinsic dreal, dimag
 
       iadr(l) = l+l-1
-c
+c     
       scizgshr=.false.
       if(.not.createcvar(nx,'d',1,1,1,lar,lai)) return
       if(.not.createcvar(nx+1,'d',1,1,1,lbr,lbi)) return
@@ -1233,7 +1276,8 @@ c
       stk(lbi)=dimag(beta)
 
       if(.not.scifunction(nx,lf,1,2)) return
-c     stk(lx)=fct([alpha,beta])  evaluated by scilab fct pointed to by lf
+c     stk(lx)=fct([alpha,beta])  evaluated by scilab fct pointed to by
+c     lf
       ilx=iadr(lx-2)
       if(istk(ilx).eq.1) then
          scizgshr=(stk(lx).ne.0.0d0)
@@ -1244,10 +1288,10 @@ c     stk(lx)=fct([alpha,beta])  evaluated by scilab fct pointed to by lf
       end
 
       logical function scizgchk()
-c    checks fct passed to zgshur
+c     checks fct passed to zgshur
       INCLUDE '../stack.h'
       logical scifunction, createcvar
-   
+      
       integer iadr
       common/ierinv/iero
       common /scizgsch/ lf, nx, nf
@@ -1301,7 +1345,7 @@ c     [VSR,dim]=gschur(A,B,function)
       minrhs=3
       maxrhs=3
       minlhs=1
-      maxlhs=4
+      maxlhs=5
 c     
       if(.not.checkrhs(fname,minrhs,maxrhs)) return
       if(.not.checklhs(fname,minlhs,maxlhs)) return 
@@ -1314,68 +1358,83 @@ c
       endif
 
       if(.not.getrhsvar(2,'d', MB, NB, lB)) return
-       if(MB.ne.NB) then
+      if(MB.ne.NB) then
          err=2
          call error(20)
          return
-       endif
-       if(MA.ne.MB) then
+      endif
+      if(MA.ne.MB) then
          call error(267)
          return
-       endif
-       N = MA
-       if(N.eq.0) then
-        lhsvar(1)=1
-        if(lhs.eq.2) then
-           if(.not.createvar(2,'d', 1, 1, lSDIM)) return
-           stk(lSDIM)=0.0d0
-           lhsvar(2)=2
-        elseif(lhs.eq.3) then
-           if(.not.createvar(3,'d', 1, 1, lSDIM)) return
-           stk(lSDIM)=0.0d0
-           lhsvar(2)=2
-           lhsvar(3)=3
-        else
-           if(.not.createvar(3,'d', N, N, lVSR)) return
-           if(.not.createvar(4,'d', 1, 1, lSDIM)) return
-           stk(lSDIM)=0.0d0
-           lhsvar(2)=2
-           lhsvar(3)=3
-           lhsvar(4)=4
-        endif
-        return
+      endif
+      N = MA
+      if(N.eq.0) then
+         lhsvar(1)=1
+         if(lhs.eq.2) then
+            if(.not.createvar(2,'d', 1, 1, lSDIM)) return
+            stk(lSDIM)=0.0d0
+            lhsvar(2)=2
+         elseif(lhs.eq.3) then
+            if(.not.createvar(3,'d', 1, 1, lSDIM)) return
+            stk(lSDIM)=0.0d0
+            lhsvar(2)=2
+            lhsvar(3)=3
+         elseif(lhs.eq.4) then
+            if(.not.createvar(3,'d', N, N, lVSR)) return
+            if(.not.createvar(4,'d', 1, 1, lSDIM)) return
+            stk(lSDIM)=0.0d0
+            lhsvar(2)=2
+            lhsvar(3)=3
+            lhsvar(4)=4
+         else
+            if(.not.createvar(3,'d', N, N, lVSR)) return
+            if(.not.createvar(4,'d', N, N, lVSL)) return
+            if(.not.createvar(5,'d', 1, 1, lSDIM)) return
+            stk(lSDIM)=0.0d0
+            lhsvar(2)=2
+            lhsvar(3)=3
+            lhsvar(4)=4
+            lhsvar(5)=5
+         endif
+         return
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       nf=3
-       if(.not.getrhsvar(nf,'f', mlhs, mrhs, lf)) return
-       if(mlhs.ne.1 .or. mrhs.ne.2) then
-          err=nf
-          call error(80)
+      if(.not.getrhsvar(nf,'f', mlhs, mrhs, lf)) return
+      if(mlhs.ne.1 .or. mrhs.ne.2) then
+         err=nf
+         call error(80)
          return
-       endif
+      endif
 
-       if(.not.createvar(4,'i', 1, 1, lSDIM)) return
-       if(.not.createvar(5,'d', N, 1, lALPHAR)) return
-       if(.not.createvar(6,'d', N, 1, lALPHAI)) return
-       if(.not.createvar(7,'d', N, 1, lBETA)) return              
-       if(.not.createvar(8,'d', N, N, lVSL)) return
-       if(.not.createvar(9,'d', N, N, lVSR)) return
-       if(.not.createvar(10,'i', 2*N, 1, lBWORK)) return
+      if(.not.createvar(4,'i', 1, 1, lSDIM)) return
+      if(.not.createvar(5,'d', N, 1, lALPHAR)) return
+      if(.not.createvar(6,'d', N, 1, lALPHAI)) return
+      if(.not.createvar(7,'d', N, 1, lBETA)) return              
+      if(.not.createvar(8,'d', N, N, lVSL)) return
+      if(.not.createvar(9,'d', N, N, lVSR)) return
+      if(.not.createvar(10,'i', 2*N, 1, lBWORK)) return
 
-       LWORKMIN = 7*(N+1)+16
-       LWORK=LWORKMIN
-       if(.not.createvar(11,'d',1,LWORK,lDWORK)) return
-       nfree = 12
+      LWORKMIN = 7*(N+1)+16
+      LWORK=LWORKMIN
+      if(.not.createvar(11,'d',1,LWORK,lDWORK)) return
+      nfree = 12
 
       JOBVSL = 'V'
       JOBVSR = 'V'
       SORT = 'S'
-c 
+c     
       if(.not.scigchk()) return
       call DGGES( JOBVSL, JOBVSR, SORT, SCIGSHUR, N, stk(lA), N,
      $     stk(lB), N, istk(lSDIM), stk(lALPHAR), stk(lALPHAI),
      $     stk(lBETA), stk(lVSL), N, stk(lVSR), N, stk(lDWORK), LWORK,
      $     istk(lBWORK),INFO )
-c      SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
+
+
+c     SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
 c     $     SDIM, ALPHAR, ALPHAI, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
 c     $     LWORK, BWORK, INFO )
       if(info.gt.0) then
@@ -1407,6 +1466,12 @@ c     $     LWORK, BWORK, INFO )
          lhsvar(2)=2
          lhsvar(3)=9
          lhsvar(4)=4
+      else if(lhs.eq.5) then
+         lhsvar(1)=1
+         lhsvar(2)=2
+         lhsvar(3)=8
+         lhsvar(4)=9
+         lhsvar(5)=4
       endif
       end
 
@@ -1455,6 +1520,10 @@ c
          lhsvar(2)=2
          lhsvar(3)=3
          lhsvar(4)=4
+         return
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
          return
       endif
 
@@ -1535,6 +1604,10 @@ c
          lhsvar(2)=2
          lhsvar(3)=3
          lhsvar(4)=4
+         return
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
          return
       endif
       if(.not.createvar(3,'d', N, N, lX)) return

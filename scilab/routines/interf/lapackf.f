@@ -31,6 +31,10 @@ c
          lhsvar(3) = 4
          lhsvar(4) = 5
          return
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(.not.createvar(2,'d', M, M, lQ)) return
       if(.not.createvar(3,'d', M, N, lR)) return
@@ -173,6 +177,10 @@ c
          lhsvar(3) = 4
          lhsvar(4) = 5
          return
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(.not.createvar(2,'z', M, M, lQ)) return
       if(.not.createvar(3,'z', M, N, lR)) return
@@ -309,6 +317,10 @@ c
             lhsvar(3) = 4
          endif
          return
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(.not.createvar(2,'d', M, M, lQ)) return
       if(.not.createvar(3,'d', M, N, lR)) return
@@ -440,6 +452,10 @@ c
             lhsvar(3)=4
          endif
          return
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif   
       if(.not.createvar(2,'d', M, min(M,N), lQ)) return
       if(.not.createvar(3,'d', min(M,N), N, lR)) return
@@ -554,6 +570,10 @@ c
          if(lhs.gt.2) then
             lhsvar(3) = 4
          endif
+         return
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
          return
       endif
       if(.not.createvar(2,'z', M, M, lQ)) return
@@ -686,6 +706,10 @@ c
             lhsvar(3)=4
          endif
          return
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif      
       if(.not.createvar(2,'z', M, min(M,N), lQ)) return
       if(.not.createvar(3,'z', min(M,N), N, lR)) return
@@ -805,6 +829,10 @@ c
             lhsvar(3) = 3
             return
          endif
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(vfinite(M*N,stk(lA)).eq.0) then
          err=1
@@ -921,6 +949,10 @@ c
             lhsvar(3) = 3
             return
          endif
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(vfinite(M*N,stk(lA)).eq.0) then
          err=1
@@ -1044,6 +1076,10 @@ c
             lhsvar(3) = 3
             return
          endif
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(vfinite(M*N*2,zstk(lA)).eq.0) then
          err=1
@@ -1167,6 +1203,10 @@ c
             lhsvar(3) = 3
             return
          endif
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(vfinite(M*N*2,zstk(lA)).eq.0) then
          err=1
@@ -1283,6 +1323,10 @@ c
          lhsvar(1) = 3
          lhsvar(2) = 4
          return
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(rhs.eq.2) then
          eps = dlamch('eps')
@@ -1373,6 +1417,10 @@ c
          if(.not.createvar(4,'i', 0, 0, lRANK)) return     
          lhsvar(1) = 3
          lhsvar(2) = 4
+         return
+      elseif(M.eq.-1 .or.N.eq.-1) then
+         err=1
+         call error(271)
          return
       endif
       if(rhs.eq.2) then
@@ -1469,6 +1517,10 @@ c
             lhsvar(2) = 3
             return
          endif
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif 
       if(vfinite(M*N,stk(lA)).eq.0) then
          err=1
@@ -1596,6 +1648,10 @@ c
             lhsvar(2) = 3
             return
          endif
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif  
       if(vfinite(2*M*N,zstk(lA)).eq.0) then
          err=1
@@ -1686,6 +1742,10 @@ c
       if(n.eq.0) then
          lhsvar(1) = 1
          return
+      elseif(n.eq.-1) then
+         stk(lA)=1.0d0/stk(lA)
+         lhsvar(1) = 1
+         return
       endif
       if(.not.createvar(2,'i',1,N,lIWORK)) return
       LWORKMIN = MAX(1,N)
@@ -1738,6 +1798,10 @@ c
          return
       endif
       if(n.eq.0) then
+         lhsvar(1) = 1
+         return
+      elseif(n.eq.-1) then
+         stk(lA)=1.0d0/stk(lA)
          lhsvar(1) = 1
          return
       endif
@@ -1801,6 +1865,11 @@ c
          if(.not.createvar(2,'d', 0, 0, lRCOND)) return
          lhsvar(1) = 2
          return
+      elseif(n.eq.-1) then
+         if(.not.createvar(2,'d', 1, 1, lRCOND)) return
+         stk(lRCOND)=1.0d0
+         lhsvar(1) = 1
+         return
       endif
 
       if(.not.createvar(2,'d', 1, 1, lRCOND)) return
@@ -1863,6 +1932,11 @@ c
          if(.not.createvar(2,'d', 0, 0, lRCOND)) return
          lhsvar(1) = 2
          return
+      elseif(n.eq.-1) then
+         if(.not.createvar(2,'d', 1, 1, lRCOND)) return
+         stk(lRCOND)=1.0d0
+         lhsvar(1) = 1
+         return
       endif
 
       if(.not.createvar(2,'d', 1, 1, lRCOND)) return
@@ -1918,6 +1992,15 @@ c
          return
       endif
       if(N.eq.0) then
+         lhsvar(1) = 1
+         return
+      elseif(N.eq.-1) then
+         if(stk(lA).le.0.0d0) then
+            call error(29)
+            return
+         endif
+         lhsvar(1) = 1
+         stk(lA)=sqrt(stk(lA))
          return
       endif
 
@@ -1969,6 +2052,15 @@ c
          return
       endif
       if (N.eq.0) then
+         lhsvar(1)=1
+         return
+      elseif(N.eq.-1) then
+         if(stk(lA).le.0.0d0) then
+            call error(29)
+            return
+         endif
+         lhsvar(1)=1
+         stk(lA)=sqrt(stk(lA))
          return
       endif
 
@@ -2019,6 +2111,18 @@ c
          lhsvar(2) = 2
          if(lhs.eq.3) then
             if(.not.createvar(3,'d',0,0,lE)) return
+            lhsvar(3) = 3
+         endif
+         return
+      elseif (M.eq.-1 .or.N.eq.-1) then
+         lhsvar(1) = 1
+         if(.not.createvar(2,'d',-1,-1,lL)) return
+         stk(lL)=stk(lA)
+         stk(lA)=1.0d0
+         lhsvar(2) = 2
+         if(lhs.eq.3) then
+            if(.not.createvar(3,'d',-1,-1,lE)) return
+            stk(lE)=1.0d0
             lhsvar(3) = 3
          endif
          return
@@ -2122,6 +2226,24 @@ c
       if(.not.getrhsvar(1,'z', M, N, lA)) return
       if(M.eq.0 .or.N.eq.0) then
          lhsvar(1) = 1
+         if(.not.createvar(2,'d',0,0,lL)) return
+         lhsvar(2) = 2
+         if(lhs.eq.3) then
+            if(.not.createvar(3,'d',0,0,lE)) return
+            lhsvar(3) = 3
+         endif
+         return
+      elseif (M.eq.-1 .or.N.eq.-1) then
+         lhsvar(1) = 1
+         if(.not.createvar(2,'z',-1,-1,lL)) return
+         zstk(lL)=zstk(lA)
+         zstk(lA)=CONE
+         lhsvar(2) = 2
+         if(lhs.eq.3) then
+            if(.not.createvar(3,'z',-1,-1,lE)) return
+            zstk(lE)=CONE
+            lhsvar(3) = 3
+         endif
          return
       endif
       if(.not.createvar(2,'z',M,min(M,N),lL)) return
@@ -2219,19 +2341,24 @@ c
       if(.not.checklhs(fname,minlhs,maxlhs)) return
 
       if(.not.getrhsvar(1,'d', M, N, lA)) return
-      if(M.eq.0 .or.N.eq.0) then
+      if(M.ne.N) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(N.eq.0) then
          lhsvar(1) = 1
          if (lhs.eq.2) then
             if(.not.createvar(2,'d',0,0,lL)) return
             lhsvar(2) = 2
          endif
          return
-      endif
-      if(M.ne.N) then
+      elseif(N.eq.-1) then
          err=1
-         call error(20)
+         call error(271)
          return
       endif
+
       if(.not.createvar(2,'i',1,M,lIPIV)) return
 
 
@@ -2302,19 +2429,24 @@ c
       if(.not.checklhs(fname,minlhs,maxlhs)) return
 
       if(.not.getrhsvar(1,'z', M, N, lA)) return
-      if(M.eq.0 .or.N.eq.0) then
+      if(M.ne.N) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(N.eq.0) then
          lhsvar(1) = 1
          if (lhs.eq.2) then
             if(.not.createvar(2,'d',0,0,lL)) return
             lhsvar(2) = 2
          endif
          return
-      endif
-      if(M.ne.N) then
+      elseif(N.eq.-1) then
          err=1
-         call error(20)
+         call error(271)
          return
       endif
+
       if(.not.createvar(2,'i',1,M,lIPIV)) return
 
 
@@ -3026,6 +3158,10 @@ c
             lhsvar(2) = 2
          endif
          return
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(.not.getrhsvar(2,'c', M1, N1, lTYPE)) return
       TYPE = cstk(lTYPE:lTYPE)
@@ -3175,6 +3311,10 @@ c
             lhsvar(3)=3
             return
          endif
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(.not.getrhsvar(2,'f', mlhs, mrhs, lf)) return
       if(mlhs.ne.1 .or. mrhs.ne.1) then
@@ -3267,6 +3407,10 @@ c
          lhsvar(1) = 1
          lhsvar(2) = 2
          return
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif 
 
       if(.not.createvar(2,'d', N, N, lZ)) return
@@ -3315,6 +3459,10 @@ c
          if(.not.createvar(2,'d', 0, 0, lZ)) return
          lhsvar(1) = 1
          lhsvar(2) = 2
+         return
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
          return
       endif  
 
@@ -3431,6 +3579,10 @@ c
             lhsvar(2) = 1
             return
          endif
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif  
       if(.not.createvar(2,'z', N, 1, lW)) return
       k = 3
@@ -3513,6 +3665,10 @@ c
             lhsvar(2) = 2
             return
          endif
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif  
 
       if(.not.getrhsvar(2,'c', M1, N1, lTYPE)) return
@@ -3740,6 +3896,10 @@ c
             lhsvar(3)=3
             return
          endif
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
 
       if(.not.getrhsvar(2,'f', mlhs, mrhs, lf)) return
@@ -3923,6 +4083,10 @@ c
             lhsvar(3)=3
             lhsvar(4)=4
          endif
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
+         return
          return
       endif
       if(.not.getrhsvar(3,'c', mr, mc, lc)) return
@@ -4055,6 +4219,10 @@ c
             lhsvar(3)=3
             lhsvar(4)=4
          endif
+         return
+      elseif(N.eq.-1) then
+         err=1
+         call error(271)
          return
       endif
       if(.not.getrhsvar(3,'c', mr, mc, lc)) return
@@ -4241,6 +4409,10 @@ c
             lhsvar(4) = 4
             return
          endif
+      elseif(N.eq.-1.or.M.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
       k = 3              
@@ -4377,6 +4549,10 @@ c
             lhsvar(4) = 4
             return
          endif
+      elseif(N.eq.-1.or.M.eq.-1) then
+         err=1
+         call error(271)
+         return
       endif
       if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
       k = 3              
