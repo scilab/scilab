@@ -21,13 +21,13 @@ FFUNCTIONS = fdgemm dgebal dgebak dgels dgeqrf
 
 OTHERFOBJS = 
 ################ do not edit below this line #############################
-DUMPEXTS=$(SCIDIR1)\bin\dumpexts
+DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
 SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
 
 !include $(SCIDIR1)\Makefile.incl.mak
 
-FFLAGS = $(FC_OPTIONS) -DFORDLL -I$(SCIDIR1)\routines
-CFLAGS = $(CC_OPTIONS) -DFORDLL -I$(SCIDIR)/routines
+FFLAGS = $(FC_OPTIONS) -DFORDLL -I"$(SCIDIR1)\routines"
+CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
 
 FUNCTIONS = $(CFUNCTIONS) $(FFUNCTIONS)
 
@@ -47,14 +47,14 @@ $(LIBRARY)_gateway.c:
 	@echo "-- Generating the C function $(LIBRARY)_gateway.c";
 	@echo #include "mex.h"  > $(LIBRARY)_gateway.c
 	@echo /*  */ >> $(LIBRARY)_gateway.c
-	@$(SCIDIR1)\macros\Tomake @<< @<< @<<
+	@"$(SCIDIR1)\macros\Tomake" @<< @<< @<<
 extern Gatefunc %s;\n
 <<
 $(CINTERFACES:.obj=)
 <<
 $(LIBRARY)_gateway.c
 <<
-	@$(SCIDIR1)\macros\Tomake @<< @<< @<<
+	@"$(SCIDIR1)\macros\Tomake" @<< @<< @<<
 extern Gatefunc C2F(%s);\n
 <<
 $(FORTRANINTERFACES:.obj=)
@@ -63,14 +63,14 @@ $(LIBRARY)_gateway.c
 <<
 	@echo /*  */ >> $(LIBRARY)_gateway.c
 	@echo static GenericTable Tab[]={  >> $(LIBRARY)_gateway.c
-	@$(SCIDIR1)\macros\Tomake @<< @<< @<<
+	@"$(SCIDIR1)\macros\Tomake" @<< @<< @<<
 {(Myinterfun)sci_gateway, %s,"error msg"},\n
 <<
 $(CINTERFACES:.obj=)
 <<
 $(LIBRARY)_gateway.c
 <<
-	@$(SCIDIR1)\macros\Tomake @<< @<< @<<
+	@"$(SCIDIR1)\macros\Tomake" @<< @<< @<<
 {(Myinterfun)sci_gateway, C2F(%s),"error msg"},\n
 <<
 $(FORTRANINTERFACES:.obj=)
@@ -89,7 +89,7 @@ $(LIBRARY)_gateway.c
 $(LIBRARY).sce:
 	@echo -- Generating the Scilab script $(LIBRARY).sce;
 	@echo scilab_functions =[... > $(LIBRARY).sce
-	@$(SCIDIR1)\macros\Tomake @<< @<< @<<
+	@"$(SCIDIR1)\macros\Tomake" @<< @<< @<<
 "%s";\n
 <<
 $(FUNCTIONS)

@@ -8,7 +8,7 @@ Makelib.mak : builder.sce
 	@echo running builder BE PATIENT
 	cat builder.sce > job.sce
 	echo quit >> job.sce 
-	$(SCIDIR1)\bin\scilex.exe -nwni -f job.sce 
+	"$(SCIDIR1)\bin\scilex.exe" -nwni -f job.sce 
 	del job.sce 
 
 job	: 
@@ -34,7 +34,7 @@ distclean::
 	del Makelib.mak 
 
 tests	: all
-	$(SCIDIR1)\bin\scilex.exe  -f  libexamples.tst
+	"$(SCIDIR1)\bin\scilex.exe"  -f  libexamples.tst
 
 message:
 	@echo ------------------------------------------;

@@ -3,10 +3,10 @@
 SCIDIR=../..
 SCIDIR1=..\..
 
-DUMPEXTS=$(SCIDIR1)\bin\dumpexts
+DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
 SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
-INTERSCI=$(SCIDIR1)\bin\intersci-n
-F2C=$(SCIDIR1)\bin\f2c.exe
+INTERSCI="$(SCIDIR1)\bin\intersci-n"
+F2C="$(SCIDIR1)\bin\f2c.exe"
 
 include ../../Makefile.incl.mak 
 
@@ -45,7 +45,7 @@ distclean	::
 	@del libex*
 
 tests	: 
-	$(SCIDIR1)\bin\scilex.exe  -f zall.sce
+	"$(SCIDIR1)\bin\scilex.exe"  -f zall.sce
 
 distclean:: clean
 

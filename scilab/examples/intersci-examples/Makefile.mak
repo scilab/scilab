@@ -3,15 +3,15 @@ SHELL = /bin/sh
 SCIDIR=../..
 SCIDIR1=..\..
 
-DUMPEXTS=$(SCIDIR1)\bin\dumpexts
+DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
 SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
-INTERSCI=$(SCIDIR1)\bin\intersci
-F2C=$(SCIDIR1)\bin\f2c.exe
+INTERSCI="$(SCIDIR1)\bin\intersci"
+F2C="$(SCIDIR1)\bin\f2c.exe"
 
 include ../../Makefile.incl.mak 
 
-FFLAGS = $(FC_OPTIONS) -DFORDLL  -I$(SCIDIR1)\routines
-CFLAGS = $(CC_OPTIONS) -DFORDLL -I$(SCIDIR1)\routines 
+FFLAGS = $(FC_OPTIONS) -DFORDLL  -I"$(SCIDIR1)\routines"
+CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR1)\routines" 
 
 all:: info
 
@@ -240,7 +240,7 @@ zallfi.desc :
 	copy *.desc  zallfi.desc	
 
 tests	: zallfi.desc zallfi.obj 
-	$(SCIDIR1)\bin\scilex.exe  -f zall.sce
+	"$(SCIDIR1)\bin\scilex.exe"  -f zall.sce
 
 distclean:: clean
 

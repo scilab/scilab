@@ -3,7 +3,7 @@ SHELL = /bin/sh
 SCIDIR=../..
 SCIDIR1=..\..
 
-DUMPEXTS=$(SCIDIR1)\bin\dumpexts
+DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
 SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
 
 include ../../Makefile.incl.mak 
@@ -38,7 +38,7 @@ test : $(OBJSF) $(OBJSC)
 !IF "$(USE_F2C)" == "YES"
 .f.dll	:
 	@echo ----------- Compile file $*.f (using f2c) -------------
-	@$(SCIDIR1)\bin\f2c.exe $*.f 
+	@"$(SCIDIR1)\bin\f2c.exe" $*.f 
 	@$(CC) $(CFLAGS) $*.c 
 	@del $*.c 
 	@echo Creation of dll $(DLL) and import lib 
@@ -81,7 +81,7 @@ EXAMPLES=ext1c.sce ext1f.sce ext2c.sce ext2f.sce ext3c.sce \
 
 zlink.dia	: $(EXAMPLES)
 	copy *.sce /f zlink.tst 		
-	$(SCIDIR1)\bin\scilex.exe  -f zlink.tst 
+	"$(SCIDIR1)\bin\scilex.exe"  -f zlink.tst 
 
 clean	::
 	@del zlink.dia 

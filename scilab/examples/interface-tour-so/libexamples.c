@@ -54,6 +54,16 @@ extern Gatefunc intex15c;
 extern Gatefunc intex15f;
 extern Gatefunc intex16c;
 extern Gatefunc intex17c_1;
+extern Gatefunc intgrep;
+extern Gatefunc intascii;
+extern Gatefunc intstr2code;
+extern Gatefunc intcode2str;
+extern Gatefunc intstrindex;
+extern Gatefunc intstrsubst;
+extern Gatefunc intlength;
+extern Gatefunc intconvstr;
+extern Gatefunc intpart;
+extern Gatefunc intemptystr;
 static GenericTable Tab[]={
   {(Myinterfun)sci_gateway,intex1c,"ex1c"},
   {(Myinterfun)sci_gateway,C2F(intex1f),"ex1f"},
@@ -110,6 +120,16 @@ static GenericTable Tab[]={
   {(Myinterfun)sci_gateway,intex15f,"ex15f"},
   {(Myinterfun)sci_gateway,intex16c,"ex16c"},
   {(Myinterfun)sci_gateway,intex17c_1,"ex17c"},
+  {(Myinterfun)sci_gateway,intgrep,"mygrep"},
+  {(Myinterfun)sci_gateway,intascii,"myascii"},
+  {(Myinterfun)sci_gateway,intstr2code,"mycode"},
+  {(Myinterfun)sci_gateway,intcode2str,"mydecode"},
+  {(Myinterfun)sci_gateway,intstrindex,"myindex"},
+  {(Myinterfun)sci_gateway,intstrsubst,"mysubs"},
+  {(Myinterfun)sci_gateway,intlength,"mylength"},
+  {(Myinterfun)sci_gateway,intconvstr,"myconv"},
+  {(Myinterfun)sci_gateway,intpart,"mypart"},
+  {(Myinterfun)sci_gateway,intemptystr,"myempty"},
 };
  
 int C2F(libexamples)()

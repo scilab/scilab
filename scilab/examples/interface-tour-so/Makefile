@@ -2,7 +2,6 @@ SCIDIR=../../
 
 include $(SCIDIR)/Makefile.incl
 
-
 all	:: Makelib job 
 	make -f Makelib
 
@@ -30,4 +29,6 @@ message:
 	@echo "At Scilab prompt, enter:";
 	@echo "-->exec loader.sce";
 	@echo "------------------------------------------";
+
+
 

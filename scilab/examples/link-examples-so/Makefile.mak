@@ -14,7 +14,7 @@ message:
 	@echo ------------------------------------------;
 
 tests	: 
-	$(SCIDIR1)\bin\scilex.exe  -f zall.sce
+	"$(SCIDIR1)\bin\scilex.exe"  -f zall.sce
 
 
 distclean	::

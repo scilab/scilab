@@ -31,7 +31,7 @@ files = ['ex01intc.o'
 	 'ex15intf.o'
 	 'ex15f.o' 
 	 'ex16intc.o'
-	 'ex17intc.o' ];
+	 'ex17intc.o';'strings.o' ];
 
 
 libs  = [] 				// other libs needed for linking
@@ -93,7 +93,17 @@ table =['ex1c',		'intex1c';
 	'ex15c',	'intex15c';
 	'ex15f',	'intex15f';
 	'ex16c',	'intex16c';
-	'ex17c',	'intex17c_1'];
+	'ex17c',	'intex17c_1';
+	'mygrep',	'intgrep';
+	'myascii',	'intascii';
+	'mycode'	'intstr2code';
+	'mydecode'	'intcode2str';
+	'myindex'	'intstrindex'; 
+	'mysubs'	'intstrsubst';
+        'mylength'      'intlength';
+        'myconv'        'intconvstr';
+        'mypart'        'intpart';
+	'myempty'       'intemptystr';       ];
 
 // do not modify below 
 // ----------------------------------------------

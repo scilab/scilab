@@ -3,11 +3,11 @@ SHELL = /bin/sh
 SCIDIR=../../..
 SCIDIR1=..\..\..
 
-DUMPEXTS=$(SCIDIR1)\bin\dumpexts
+DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
 SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
 
-CFLAGS= $(CC_OPTIONS) -DFORDLL -I$(SCIDIR)/routines
-CPPFLAGS= $(CC_OPTIONS) -DFORDLL -I$(SCIDIR)/routines
+CFLAGS= $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
+CPPFLAGS= $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
 
 !include $(SCIDIR)/Makefile.incl.mak 
 

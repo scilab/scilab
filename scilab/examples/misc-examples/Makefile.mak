@@ -3,9 +3,9 @@ SHELL = /bin/sh
 SCIDIR=../..
 SCIDIR1=..\..
 
-DUMPEXTS=$(SCIDIR1)\bin\dumpexts
+DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
 SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
-F2C=$(SCIDIR1)\bin\f2c
+F2C="$(SCIDIR1)\bin\f2c"
 
 include ../../Makefile.incl.mak 
 
@@ -51,7 +51,7 @@ EXAMPLES= dasrt1.sce + dasrt2.sce + dasrt3.sce + dassl1.sce + dassl2.sce + ode1.
 tests	:
 	@del zlink.dia	
 	@copy  $(EXAMPLES) /f zlink.tst 		
-	$(SCIDIR1)\bin\scilex.exe  -f zlink.tst 
+	"$(SCIDIR1)\bin\scilex.exe"  -f zlink.tst 
 
 clean	::
 	@del zlink.dia 

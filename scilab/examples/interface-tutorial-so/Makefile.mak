@@ -8,7 +8,7 @@ Makelib.mak : builder.sce
 	@echo running builder 
 	cat builder.sce > job.sce
 	echo quit >> job.sce 
-	$(SCIDIR1)\bin\scilex.exe -nwni -f job.sce 
+	"$(SCIDIR1)\bin\scilex.exe" -nwni -f job.sce 
 	del job.sce 
 
 job	: 
@@ -23,7 +23,7 @@ distclean  	:
 	del libtutorial.pdb 
 
 tests	: all
-	$(SCIDIR1)\bin\scilex.exe  -f libtutorial.tst
+	"$(SCIDIR1)\bin\scilex.exe"  -f libtutorial.tst
 
 message:
 	@echo ------------------------------------------;
