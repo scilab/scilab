@@ -1485,7 +1485,7 @@ extern void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *z
 extern void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD);
 extern void Nextind(integer ind1, integer *ind2, integer *ind3);
 extern void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend);
-extern void trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z);
+extern int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z);
 extern BOOL Ishidden(sciPointObj *pobj);
 extern BOOL IsDownAxes(sciPointObj *pobj);
 extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1);

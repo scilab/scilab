@@ -183,9 +183,8 @@ void C2F(fac3dn)(int iflag, double *x, double *y, double *z, integer *cvect, int
       int j,nok=0;
       for ( j =0 ; j < (*p) ; j++)
 	{ 
-	trans3d(psubwin ,1, &(polyx[j]),&(polyy[j]),&(x[(*p)*locindex[i]+j]),
-		&(y[(*p)*locindex[i]+j]),&(z[(*p)*locindex[i]+j])); 
-	  if ( finite(polyx[j]) ==0 || finite(polyy[j])==0 ) 
+	if (trans3d(psubwin ,1, &(polyx[j]),&(polyy[j]),&(x[(*p)*locindex[i]+j]),
+		&(y[(*p)*locindex[i]+j]),&(z[(*p)*locindex[i]+j]))==0)
 	    {
 	      nok=1;break; 
 	    }

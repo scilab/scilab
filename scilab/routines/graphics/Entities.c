@@ -15616,7 +15616,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
   FREE(loc);
 }
 
-void trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z)
+int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z)
 {
   integer i;
   double tmpx,tmpy;
@@ -15630,12 +15630,14 @@ void trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doub
 	    {
 	      xm[i]= TX3D(x[i],y[i],0.0);
 	      ym[i]= TY3D(x[i],y[i],0.0);
+	      if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
 	    }
 	else
 	  for ( i=0 ; i < n ; i++)
 	    {
 	      xm[i]= TX3D(x[i],y[i],z[i]);
 	      ym[i]= TY3D(x[i],y[i],z[i]);
+	      if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
 	    }
       }
     else
@@ -15647,6 +15649,7 @@ void trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doub
 	      tmpy= (y[i]-pSUBWIN_FEATURE (pobj)->FRect[1])/(pSUBWIN_FEATURE (pobj)->FRect[3]-pSUBWIN_FEATURE (pobj)->FRect[1]);
 	      xm[i]= TX3D(tmpx,tmpy,0.0);
 	      ym[i]= TY3D(tmpx,tmpy,0.0);
+	      if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
 	    }
 	else
 	  for ( i=0 ; i < n ; i++)
@@ -15655,9 +15658,11 @@ void trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doub
 	      tmpy= (y[i]-pSUBWIN_FEATURE (pobj)->FRect[1])/(pSUBWIN_FEATURE (pobj)->FRect[3]-pSUBWIN_FEATURE (pobj)->FRect[1]);
 	      xm[i]= TX3D(tmpx,tmpy,z[i]);
 	      ym[i]= TY3D(tmpx,tmpy,z[i]);
+	      if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
 	    }
       }
   }
+  return(1);
 }
 
 BOOL Ishidden(sciPointObj *pobj)
@@ -15925,11 +15930,11 @@ int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, inte
   sciPointObj *pobj;
 
   pobj = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
-  trans3d(pobj ,1, &(polyx[  5*jj1]),&(polyy[  5*jj1]),&(x[i]),&(y[j]),&(z[i+(*p)*j])); 
-  trans3d(pobj ,1, &(polyx[1+  5*jj1]),&(polyy[1+  5*jj1]),&(x[i]),&(y[j+1]),&(z[i+(*p)*(j+1)])); 
-  trans3d(pobj ,1, &(polyx[2+  5*jj1]),&(polyy[2+  5*jj1]),&(x[i+1]),&(y[j+1]),&(z[(i+1)+(*p)*(j+1)])); 
-  trans3d(pobj ,1, &(polyx[3+  5*jj1]),&(polyy[3+  5*jj1]),&(x[i+1]),&(y[j]),&(z[(i+1)+(*p)*j]));   
-  trans3d(pobj ,1, &(polyx[4+  5*jj1]),&(polyy[4+  5*jj1]),&(x[i]),&(y[j]),&(z[i+(*p)*j])); 
+  if (trans3d(pobj ,1, &(polyx[  5*jj1]),&(polyy[  5*jj1]),&(x[i]),&(y[j]),&(z[i+(*p)*j]))==0) return 0; 
+  if (trans3d(pobj ,1, &(polyx[1+  5*jj1]),&(polyy[1+  5*jj1]),&(x[i]),&(y[j+1]),&(z[i+(*p)*(j+1)]))==0) return 0; 
+  if (trans3d(pobj ,1, &(polyx[2+  5*jj1]),&(polyy[2+  5*jj1]),&(x[i+1]),&(y[j+1]),&(z[(i+1)+(*p)*(j+1)]))==0) return 0; 
+  if (trans3d(pobj ,1, &(polyx[3+  5*jj1]),&(polyy[3+  5*jj1]),&(x[i+1]),&(y[j]),&(z[(i+1)+(*p)*j]))==0) return 0;   
+  if (trans3d(pobj ,1, &(polyx[4+  5*jj1]),&(polyy[4+  5*jj1]),&(x[i]),&(y[j]),&(z[i+(*p)*j]))==0) return 0; 
   
   if ((((polyx[1+5*jj1]-polyx[0+5*jj1])*(polyy[2+5*jj1]-polyy[0+5*jj1])-
 	(polyy[1+5*jj1]-polyy[0+5*jj1])*(polyx[2+5*jj1]-polyx[0+5*jj1])) <  0) && (dc!=fg)) 
@@ -16170,9 +16175,8 @@ void DrawFac3d(sciPointObj *psubwin, double *x, double *y,double *z,
       int j,nok=0;
       for ( j =0 ; j < p ; j++)
 	{ 
-	  trans3d(psubwin ,1, &(polyx[j]),&(polyy[j]),&(x[p*locindex[i]+j]),
-		  &(y[p*locindex[i]+j]),&(z[p*locindex[i]+j])); 
-	  if ( finite(polyx[j]) ==0 || finite(polyy[j])==0 ) 
+	  if (trans3d(psubwin ,1, &(polyx[j]),&(polyy[j]),&(x[p*locindex[i]+j]),
+		  &(y[p*locindex[i]+j]),&(z[p*locindex[i]+j]))==0) 
 	    {
 	      nok=1;break; 
 	    }
