@@ -21,18 +21,15 @@ txt=[]
 // - sparse: sparse scalar/vector/matrix/hypermatrix
 // - cell: cell array
 // - struct: struct array
-// - FOS structname datatype: Field Of Struct
-// - COC cell contents: Contents Of Cell (in this case name is ignored, set it to ? for example)
 // - ? if unknown
 
 //property:
 // - real/complex/? for double and int datatype
 // - real for string and boolean datatype (ignored if not)
-// - NOT USED for struct datatype
+// - NOT USED for struct/cell datatype
 
 // def is the comment added by the user
-//userdata=def.rhs(1).value
-userdata=def
+userdata=def.rhs(1).value
 // Remove all multiple blanks
 while strindex(userdata,"  ")<>[]
   userdata=strsubst(userdat,"  "," ")
@@ -101,35 +98,99 @@ if or(vtype==[Boolean,String]) then
   property="Real"
 end
 
-if part(datatype,1:3)=="fos" then // Struct field m2sciassume
-  blpos=strindex(datatype," ")
-  nbbl=size(blpos,"*")
-  if nbbl<>2 then
-    error("m2sciassume: wrong datatype for field of struct: "+datatype);
-  end
-  stname=part(datatype,blpos(1)+1:blpos(2)-1)
-  fdtype=part(datatype,blpos(2)+1:length(dadatype))
+if strindex(name,".")<>[] then // Cell or Struct m2sciassume
+  // Get varname
+  endofname=min([strindex(name,[".","("])])-1
+  varname=part(name,1:endofname)
   
-  [isvar,index]=isdefinedvar(Variable(stname,Infer()))
-  if ~isvar then
-    error("m2sciassume: undefined struct """+stname+""" in varslist")
-  else
-    varslist(index).infer.contents(name)=Infer(dims,Type(fdtype,property))
+  // First field name (if is 'entries' then a cell else a struct)
+  firstpoint=min(strindex(name,"."))
+  secpoint=min(strindex(part(name,firstpoint+1:length(name)),"."))
+  par=min(strindex(part(name,firstpoint+1:length(name)),"("))
+  if isempty(secpoint) & isempty(par) then //x.fieldname
+    firstfield=part(name,firstpoint:length(name))
+  elseif isempty(secpoint) then //x.fieldname(p...)
+    firstfield=part(name,firstpoint:par-1)
+  elseif isempty(par) then //x.fieldname.fieldname2 
+    firstfield=part(name,firstpoint:secpoint-1)
+  else //x.fieldname(p...).fieldname2 
+    firstfield=part(name,firstpoint:min([secpoint par])-1)
   end
-elseif part(datatype,1:3)=="coc" then // Cell contents m2sciassume  
-  blpos=strindex(datatype," ")
-  nbbl=size(blpos,"*")
-  if nbbl<>2 then
-    error("m2sciassume: wrong datatype for field of struct: "+datatype);
+    
+  if firstfield=="entries" then // Cell
+    vartype=Cell
+  else // Struct
+    vartype=Struct
   end
-  cename=part(datatype,blpos(1)+1:blpos(2)-1)
-  fdtype=part(datatype,blpos(2)+1:length(dadatype))
   
-  [isvar,index]=isdefinedvar(Variable(cename,Infer()))
-  if ~isvar then
-    error("m2sciassume: undefined cell """+cename+""" in varslist")
+  // Indexes for varname ? myvar(1,2).field....
+  if or(strindex(name,"(")<strindex(name,".")) then
+    vardims=evstr("list"+part(name,min(strindex(name,"(")):min(strindex(name,")"))))
   else
-    varslist(index).infer.contents.entries=Infer(dims,Type(fdtype,property))
+    vardims=list(1,1)
+  end
+  
+  [isvar,index]=isdefinedvar(Variable(varname,Infer()))
+    
+  if ~isvar then // If variable does not exist it is added to varslist
+    contents=struct()
+    evstr("contents"+part(name,length(name))+"=1"); // should be removed is no more Scilab bug for it
+    evstr("contents"+part(name,length(name))+"=Infer(dims,Type(vtype,property))");
+    varslist($+1)=M2scivar(varname,varname,Infer(vardims,Type(vartype,Unknown,contents)))
+  else
+    inferreddims=varslist(index).dims
+    
+    err=%F
+    for kd=1:min([lstsize(vardims) lstsize(infereddims)])
+      if infereddims(kd)~=vardims(kd) then
+	err=%T
+	break
+      end
+    end
+    
+    // Update dimensions
+    if err then
+      set_infos(["Dimensions current value and m2sciassume statements conflict for: "+varname
+	  "   m2sciassume given dimension: "+dims2str(vardims)
+	  "   Current dimension: "+dims2str(infereddims)
+	  "   m2sciassume IGNORED"],2)
+    else
+      varslist(index).dims=dims
+    end
+    
+    // Update vtype
+    if varslist(index).type.vtype==Unknown then
+      varslist(index).type.vtype=vartype
+    elseif varslist(index).type.vtype~=vartype then
+      set_infos(["Type current value and m2sciassume statements conflict for: "+varname
+	  "   m2sciassume given type: "+tp2str(vartype)
+	  "   current type: "+tp2str(varslist(index).type.vtype)
+	  "   m2sciassume IGNORED"],2)
+    end
+
+    // Update property
+    if varslist(index).type.property==Unknown then
+      varslist(index).type.property=Unknown
+    else
+      set_infos(["Property current value and m2sciassume statements conflict for: "+name
+	  "   m2sciassume given type: "+prop2str(Unknown)
+	  "   current type: "+prop2str(varslist(index).type.property)
+	  "   m2sciassume IGNORED"],2)
+    end
+    
+    // Update contents (no verification made...too complex)
+    contents=varslist(index).contents
+    if vartype==Cell & typeof(contents)<>"ce" then
+      contents=makecell()
+      evstr("contents"+part(name,length(name))+"=1"); // should be removed is no more Scilab bug for it
+    elseif vartype==Struct & typeof(contents)<>"st" then
+      contents=struct()
+      evstr("contents"+part(name,length(name))+"=1"); // should be removed is no more Scilab bug for it
+    end
+    evstr("contents"+part(name,length(name))+"=Infer(dims,Type(vtype,property))");
+    varslist(index).contents=M2scivar(varname,varname,Infer(vardims,Type(vartype,Unknown,contents)))
+    
+    
   end
 else // Variable m2sciassume  
   [isvar,index]=isdefinedvar(Variable(name,Infer()))
@@ -139,17 +200,15 @@ else // Variable m2sciassume
   else // Try to compare with already infered data
     // Update dims
     infereddims=varslist(index).dims
+    
     err=%F
-    if lstsize(dims)<>lstsize(infereddims) then
-      err=%T
-    else
-      for kd=1:lstsize(dims)
-	if infereddims(kd)~=dims(kd) then
-	  err=%T
-	  break
-	end
+    for kd=1:min([lstsize(dims) lstsize(infereddims)])
+      if infereddims(kd)~=dims(kd) then
+	err=%T
+	break
       end
     end
+
     if err then
       set_infos(["Dimensions current value and m2sciassume statements conflict for: "+name
 	  "   m2sciassume given dimension: "+dims2str(dims)
@@ -161,7 +220,7 @@ else // Variable m2sciassume
     
     // Update vtype
     if varslist(index).type.vtype==Unknown then
-      varslist(index).type.vtype=tp
+      varslist(index).type.vtype=vtype
     elseif varslist(index).type.vtype~=vtype then
       set_infos(["Type current value and m2sciassume statements conflict for: "+name
 	  "   m2sciassume given type: "+tp2str(vtype)
