@@ -107,8 +107,6 @@ static double c_b14 = 0.;
 static integer c__1 = 1;
 static integer c_n1 = -1;
 
-static double tvec[100];
-
 static integer *iwa;
 
 static integer *xptr, *evtspt;
@@ -372,6 +370,12 @@ int C2F(scicos)
       Blocks[kf].outsz[out]=lnkptr[lprt+1]-lnkptr[lprt];
     }
     Blocks[kf].nevout=clkptr[kf+2] - clkptr[kf+1];
+    if ((Blocks[kf].evout=malloc(sizeof(double*)*Blocks[kf].nevout))== NULL ){
+      free_blocks();
+      *ierr =5;
+      return 0;
+    }
+
     Blocks[kf].z=&(z__[zptr[kf+1]-1]);
     Blocks[kf].rpar=&(rpar[rpptr[kf+1]-1]);
     Blocks[kf].ipar=&(ipar[ipptr[kf+1]-1]);
@@ -473,7 +477,6 @@ int C2F(scicos)
   *ierr = 0;
   /*     initialization (flag 4) */
   /*     loop on blocks */
-  tvec[0] = 0.;
 
   C2F(dset)(&nout, &c_b14, W, &c__1);
   nclock = 0;
@@ -494,7 +497,6 @@ int C2F(scicos)
   }
   /*     initialization (flag 6) */
   nclock = 0;
-  tvec[0] = 0.;
 
   if (ncord > 0) {
     for (jj = 1; jj <= ncord; ++jj) {
@@ -528,7 +530,6 @@ int C2F(scicos)
     }
 
     nclock = 0;
-    tvec[0] = 0.;
 
     if (ncord > 0) {
       for (jj = 1; jj <= ncord; ++jj) {
@@ -944,14 +945,14 @@ int C2F(scicos)
 		  return;
 		}
 		/*     .              update event agenda */
-		for (k = 1; k <= Blocks[C2F(curblk).kfun-1].nevout; ++k) {
-		  if (tvec[k - 1] >= *told) {
-		    if (critev[k + clkptr[C2F(curblk).kfun] - 1] 
+		for (k = 0; k < Blocks[C2F(curblk).kfun-1].nevout; ++k) {
+		  if (Blocks[C2F(curblk).kfun-1].evout[k] >= *told) {
+		    if (critev[k + clkptr[C2F(curblk).kfun] ] 
 			== 1) {
 		      hot = 0;
 		    }
-		    i3 = k + clkptr[C2F(curblk).kfun] - 1;
-		    addevs(&tvec[k - 1], &i3, &ierr1);
+		    i3 = k + clkptr[C2F(curblk).kfun] ;
+		    addevs(&Blocks[C2F(curblk).kfun-1].evout[k], &i3, &ierr1);
 		    if (ierr1 != 0) {
 		      /*     .                       nevts too small */
 		      *ierr = 3;
@@ -1407,14 +1408,14 @@ int C2F(scicos)
 		  return;
 		}
 		/*     .              update event agenda */
-		for (k = 1; k <= Blocks[C2F(curblk).kfun-1].nevout; ++k) {
-		  if (tvec[k - 1] >= *told) {
-		    if (critev[k + clkptr[C2F(curblk).kfun] - 1] 
+		for (k = 0; k < Blocks[C2F(curblk).kfun-1].nevout; ++k) {
+		  if (Blocks[C2F(curblk).kfun-1].evout[k] >= *told) {
+		    if (critev[k + clkptr[C2F(curblk).kfun] ] 
 			== 1) {
 		      info[0] = 0;
 		    }
-		    i3 = k + clkptr[C2F(curblk).kfun] - 1;
-		    addevs(&tvec[k - 1], &i3, &ierr1);
+		    i3 = k + clkptr[C2F(curblk).kfun] ;
+		    addevs(&Blocks[C2F(curblk).kfun-1].evout[k], &i3, &ierr1);
 		    if (ierr1 != 0) {
 		      /*     .                       nevts too small */
 		      *ierr = 3;
@@ -1500,8 +1501,6 @@ int C2F(scicos)
   /* Function Body */
   *ierr = 0;
   /*     loop on blocks */
-  tvec[0] = 0.;
-
   nclock=0;
 
   for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
@@ -1690,16 +1689,17 @@ int C2F(scicos)
 	/*     Solution not satisfying but... Have to find a better test */
 	/*     to know if state can jump. If we only leave the first test */
 	/*     it sets hot to false at every event! */
-	if (Blocks[C2F(curblk).kfun-1].nx > 0 && ordclk[ii + nordclk] != 0) {
-	  hot = 0;
-	}
-	flag__ = 2;
 	nclock=ordclk[ii + nordclk];
-	callf(told, xd, x, x,x,&flag__);
-		
-	if (flag__ < 0) {
-	  *ierr = 5 - flag__;
-	  return;
+	if(nclock!= 0) {
+	  if (Blocks[C2F(curblk).kfun-1].nx > 0) {
+	    hot = 0;
+	  }
+	  flag__ = 2;
+	  callf(told, xd, x, x,x,&flag__);
+	  if (flag__ < 0) {
+	    *ierr = 5 - flag__;
+	    return;
+	  }
 	}
       }
     }
@@ -1754,7 +1754,8 @@ int C2F(scicos)
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] >= 0) {
 	d__1 = *told - 1.;
-	C2F(dset)(&Blocks[C2F(curblk).kfun - 1].nevout, &d__1, tvec, &c__1);
+	C2F(dset)(&Blocks[C2F(curblk).kfun - 1].nevout, 
+		  &d__1, Blocks[C2F(curblk).kfun-1].evout, &c__1);
 
 	flag__ = 3;
 	nclock=ordclk[ii + nordclk];
@@ -1766,10 +1767,10 @@ int C2F(scicos)
 	}
 
 	if (Blocks[C2F(curblk).kfun - 1].nevout >= 1) {
-	  for (i = 1; i <= Blocks[C2F(curblk).kfun - 1].nevout; ++i) {
-	    if (tvec[i - 1] >= *told) {
-	      i3 = i + clkptr[C2F(curblk).kfun] - 1;
-	      addevs(&tvec[i - 1], &i3, &ierr1);
+	  for (i = 0; i < Blocks[C2F(curblk).kfun - 1].nevout; ++i) {
+	    if (Blocks[C2F(curblk).kfun-1].evout[i] >= *told) {
+	      i3 = i + clkptr[C2F(curblk).kfun] ;
+	      addevs(&Blocks[C2F(curblk).kfun-1].evout[i], &i3, &ierr1);
 	      if (ierr1 != 0) {
 		/*     !                 event conflict */
 		*ierr = 3;
@@ -2180,7 +2181,7 @@ callf(t,xtd,xt,residual,g,flag)
     if (solver==100) {
       (*loc1)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&Blocks[kf-1].nx,
 	      Blocks[kf-1].z,&Blocks[kf-1].nz,
-	      tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	      Blocks[kf-1].evout,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
 	      Blocks[kf-1].ipar,&Blocks[kf-1].nipar,
 	      (double *)args[0],&sz[0],
 	      (double *)args[1],&sz[1],(double *)args[2],&sz[2],
@@ -2196,7 +2197,7 @@ callf(t,xtd,xt,residual,g,flag)
     else {
       (*loc1)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
 	      Blocks[kf-1].z,&Blocks[kf-1].nz,
-	      tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	      Blocks[kf-1].evout,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
 	      Blocks[kf-1].ipar,&Blocks[kf-1].nipar,
 	      (double *)args[0],&sz[0],
 	      (double *)args[1],&sz[1],(double *)args[2],&sz[2],
@@ -2268,14 +2269,14 @@ callf(t,xtd,xt,residual,g,flag)
     if (solver==100) {
       (*loc0)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&Blocks[kf-1].nx,
 	      Blocks[kf-1].z,&Blocks[kf-1].nz,
-	      tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	      Blocks[kf-1].evout,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
 	      Blocks[kf-1].ipar,&Blocks[kf-1].nipar,(double *)args[0],&ni,
 	      (double *)args[1],&no);
     }
     else {
       (*loc0)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
 	      Blocks[kf-1].z,&Blocks[kf-1].nz,
-	      tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	      Blocks[kf-1].evout,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
 	      Blocks[kf-1].ipar,&Blocks[kf-1].nipar,(double *)args[0],&ni,
 	      (double *)args[1],&no);
     }
@@ -2299,7 +2300,7 @@ callf(t,xtd,xt,residual,g,flag)
 	loc2 = (ScicosF2) loc;
 	(*loc2)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&Blocks[kf-1].nx,
 		Blocks[kf-1].z,&Blocks[kf-1].nz,
-		tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+		Blocks[kf-1].evout,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
 		Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,
 		Blocks[kf-1].insz,&Blocks[kf-1].nin,
 		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout);
@@ -2308,7 +2309,7 @@ callf(t,xtd,xt,residual,g,flag)
 	loc2z = (ScicosF2z) loc;
 	(*loc2z)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&Blocks[kf-1].nx,
 		 Blocks[kf-1].z,&Blocks[kf-1].nz,
-		 tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+		 Blocks[kf-1].evout,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
 		 Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&Blocks[kf-1].nin,
 		 Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout,
 		 Blocks[kf-1].g,&Blocks[kf-1].ng);
@@ -2319,7 +2320,7 @@ callf(t,xtd,xt,residual,g,flag)
 	loc2 = (ScicosF2) loc;
 	(*loc2)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
 		Blocks[kf-1].z,&Blocks[kf-1].nz,
-		tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+		Blocks[kf-1].evout,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
 		Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,
 		Blocks[kf-1].insz,&Blocks[kf-1].nin,
 		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout);
@@ -2328,7 +2329,7 @@ callf(t,xtd,xt,residual,g,flag)
 	loc2z = (ScicosF2z) loc;
 	(*loc2z)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
 		 Blocks[kf-1].z,&Blocks[kf-1].nz,
-		 tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+		 Blocks[kf-1].evout,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
 		 Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,
 		 Blocks[kf-1].insz,&Blocks[kf-1].nin,
 		 Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout,
@@ -2356,7 +2357,7 @@ callf(t,xtd,xt,residual,g,flag)
 
     (*loci1)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].xd,Blocks[kf-1].x,
 	     &Blocks[kf-1].nx,Blocks[kf-1].z,&Blocks[kf-1].nz,
-	     tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	     Blocks[kf-1].evout,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
 	     Blocks[kf-1].ipar,&Blocks[kf-1].nipar,
 	     (double *)args[0],&sz[0],
 	     (double *)args[1],&sz[1],(double *)args[2],&sz[2],
@@ -2378,7 +2379,7 @@ callf(t,xtd,xt,residual,g,flag)
       (*loci2)(flag,&nclock,t,Blocks[kf-1].res,
 	       Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
 	       Blocks[kf-1].z,&Blocks[kf-1].nz,
-	       tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	       Blocks[kf-1].evout,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
 	       Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,
 	       Blocks[kf-1].insz,&Blocks[kf-1].nin,
 	       Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout);
@@ -2389,7 +2390,7 @@ callf(t,xtd,xt,residual,g,flag)
       (*loci2z)(flag,&nclock,t,Blocks[kf-1].res,
 		Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
 		Blocks[kf-1].z,&Blocks[kf-1].nz,
-		tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+		Blocks[kf-1].evout,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
 		Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&Blocks[kf-1].nin,
 		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout,
 		Blocks[kf-1].g,&Blocks[kf-1].ng);
@@ -2623,17 +2624,22 @@ void free_blocks()
       break;
     }
     if (Blocks[kf].inptr!=NULL){
- free(Blocks[kf].inptr);
+      free(Blocks[kf].inptr);
     }else {
       break;
     }
     if (Blocks[kf].outsz!=NULL){
- free(Blocks[kf].outsz);
+      free(Blocks[kf].outsz);
     }else {
       break;
     }
     if (Blocks[kf].outptr!=NULL){
- free(Blocks[kf].outptr);
+      free(Blocks[kf].outptr);
+    }else {
+      break;
+    }
+    if (Blocks[kf].evout!=NULL){
+      free(Blocks[kf].evout);
     }else {
       break;
     }

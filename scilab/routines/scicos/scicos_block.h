@@ -19,6 +19,7 @@ typedef struct {
   int *outsz;
   double **outptr;
   int nevout;
+  double *evout;
   int nrpar;
   double *rpar;
   int nipar;
