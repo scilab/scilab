@@ -14,7 +14,8 @@
       <PARAM_ITEM>
         <PARAM_NAME>p</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: polynomial row vector <VERB>p=[p1,..,pn]</VERB></SP>
+          <SP>: polynomial row vector <VERB>p=[p1,..,pn]</VERB> or integer row
+	    vector (type equal to 8)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -29,10 +30,17 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
+//polynomial case
 s=poly(0,'s');
 p=[s,s*(s+1)^2,2*s^2+s^3];
 [pgcd,u]=gcd(p);
 p*u
+
+//integer case
+V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+[thegcd,U]=gcd(V)
+V*U
+
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
