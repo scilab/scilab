@@ -844,9 +844,10 @@ int sciparam3d(fname, fname_len)
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
   GetLegend(6,opts);
 
-  if (version_flag() == 0) iflag_def[1]=8;
+ /*  if (version_flag() == 0) iflag_def[1]=8; */
   ifl=&(iflag_def[1]);
   GetOptionalIntArg(7,"flag",&ifl,2,opts);
+  if(version_flag() == 0) iflag_def[0]=0;
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
   GetOptionalDoubleArg(8,"ebox",&ebox,6,opts);
 
@@ -950,9 +951,10 @@ int sciparam3d1(fname, fname_len)
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
   GetLegend(6,opts);
-  if (version_flag() == 0) iflag_def[1]=8;
+  /* if (version_flag() == 0) iflag_def[1]=8; */
   ifl=&(iflag_def[1]);
   GetOptionalIntArg(7,"flag",&ifl,2,opts);
+  if(version_flag() == 0) iflag_def[0]=0;
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
 
   GetOptionalDoubleArg(8,"ebox",&ebox,6,opts);
@@ -1139,7 +1141,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
       }
   }
   C2F(sciwin)();
-  if (version_flag() == 0) iflag_def[1]=8;
+  /* if (version_flag() == 0) iflag_def[1]=8;*/
 
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
