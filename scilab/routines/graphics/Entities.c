@@ -8170,7 +8170,7 @@ int C2F(graphicsmodels) ()
   
   
   pSUBWIN_FEATURE (paxesmdl)->axes.rect  = 1;
-  for (i=0 ; i<6 ; i++)
+  for (i=0 ; i<7 ; i++)
     pSUBWIN_FEATURE (paxesmdl)->axes.limits[i]  = 0;
   
   /* F.Leray 01.04.04*/
@@ -11042,8 +11042,8 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
       /* TO SEE !!!*/
 
 
-      /* F.Leray debug*/
-     /*  sciprint("----------------------------------------------\n"); */
+/*       /\* F.Leray debug*\/ */
+/*       sciprint("----------------------------------------------\n"); */
 /*       sciprint("pSUBWIN_FEATURE (pobj)->value_min[0]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_min[0]); */
 /*       sciprint("pSUBWIN_FEATURE (pobj)->value_min[1]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_min[1]); */
 /*       sciprint("pSUBWIN_FEATURE (pobj)->value_min[2]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_min[2]); */
@@ -11051,46 +11051,57 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 /*       sciprint("pSUBWIN_FEATURE (pobj)->value_max[0]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_max[0]); */
 /*       sciprint("pSUBWIN_FEATURE (pobj)->value_max[1]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_max[1]); */
 /*       sciprint("pSUBWIN_FEATURE (pobj)->value_max[2]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_max[2]); */
+
+/*       sciprint("pSUBWIN_FEATURE (pobj)->axes.limits[0]= %.3f\r\n\n",pSUBWIN_FEATURE (pobj)->axes.limits[0]); */
+/*       sciprint("pSUBWIN_FEATURE (pobj)->axes.limits[1]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->axes.limits[1]); */
+/*       sciprint("pSUBWIN_FEATURE (pobj)->axes.limits[2]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->axes.limits[2]); */
+/*       sciprint("pSUBWIN_FEATURE (pobj)->axes.limits[3]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->axes.limits[3]); */
+/*       sciprint("pSUBWIN_FEATURE (pobj)->axes.limits[4]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->axes.limits[4]); */
+/*       sciprint("pSUBWIN_FEATURE (pobj)->axes.limits[5]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->axes.limits[5]); */
+/*       sciprint("pSUBWIN_FEATURE (pobj)->axes.limits[6]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->axes.limits[6]); */
+  
 /*       sciprint("----------------------------------------------\n\n"); */
 
-      /* sciprint("pSUBWIN_FEATURE (pobj)->strflag= %s\n\n",pSUBWIN_FEATURE (pobj)->strflag);*/
-      /* sciprint("pSUBWIN_FEATURE (pobj)->old_strflag= %s\n\n",pSUBWIN_FEATURE (pobj)->old_strflag);*/
       
-      if(pSUBWIN_FEATURE (pobj)->isoview == TRUE)
-	{
-	  if((pSUBWIN_FEATURE (pobj)->strflag[1]=='3') || (pSUBWIN_FEATURE (pobj)->strflag[1]=='4'))
-	    {
-	      /* Nothing to do !! F.Leray 07.04.04 */
-	      /* sciprint("je suis la\n");
-		 sciprint("et pSUBWIN_FEATURE (pobj)->strflag[1]= %c\n\n",pSUBWIN_FEATURE (pobj)->strflag[1]);*/
-	    }
-	  else
-	    {
-	      pSUBWIN_FEATURE (pobj)->strflag[1] ='4'; /* 3 ou 4 ??  3 selon Serge mais je crois que frameflag=3 marche mal (test: resize fenetre plusieurs fois)*/
-	    }
-	}
+
+/*       /\* sciprint("pSUBWIN_FEATURE (pobj)->strflag= %s\n\n",pSUBWIN_FEATURE (pobj)->strflag);*\/ */
+/*       /\* sciprint("pSUBWIN_FEATURE (pobj)->old_strflag= %s\n\n",pSUBWIN_FEATURE (pobj)->old_strflag);*\/ */
+      
+/*       if(pSUBWIN_FEATURE (pobj)->isoview == TRUE) */
+/* 	{ */
+/* 	  if((pSUBWIN_FEATURE (pobj)->strflag[1]=='3') || (pSUBWIN_FEATURE (pobj)->strflag[1]=='4')) */
+/* 	    { */
+/* 	      /\* Nothing to do !! F.Leray 07.04.04 *\/ */
+/* 	      /\* sciprint("je suis la\n"); */
+/* 		 sciprint("et pSUBWIN_FEATURE (pobj)->strflag[1]= %c\n\n",pSUBWIN_FEATURE (pobj)->strflag[1]);*\/ */
+/* 	    } */
+/* 	  else */
+/* 	    { */
+/* 	      pSUBWIN_FEATURE (pobj)->strflag[1] ='4'; /\* 3 ou 4 ??  3 selon Serge mais je crois que frameflag=3 marche mal (test: resize fenetre plusieurs fois)*\/ */
+/* 	    } */
+/* 	} */
 
       
-      if(pSUBWIN_FEATURE (pobj)->isoview == FALSE)
-	{
-	  if((pSUBWIN_FEATURE (pobj)->strflag[1]=='3') || (pSUBWIN_FEATURE (pobj)->strflag[1]=='4'))
-	    pSUBWIN_FEATURE (pobj)->strflag[1] ='8';
-	  else
-	    {
-	      /* Nothing to do !! F.Leray 07.04.04 */
-	      /* sciprint("je suis la\n");
-		 sciprint("et pSUBWIN_FEATURE (pobj)->strflag[1]= %c\n\n",pSUBWIN_FEATURE (pobj)->strflag[1]);*/
-	    } 
-	}
+/*       if(pSUBWIN_FEATURE (pobj)->isoview == FALSE) */
+/* 	{ */
+/* 	  if((pSUBWIN_FEATURE (pobj)->strflag[1]=='3') || (pSUBWIN_FEATURE (pobj)->strflag[1]=='4')) */
+/* 	    pSUBWIN_FEATURE (pobj)->strflag[1] ='8'; */
+/* 	  else */
+/* 	    { */
+/* 	      /\* Nothing to do !! F.Leray 07.04.04 *\/ */
+/* 	      /\* sciprint("je suis la\n"); */
+/* 		 sciprint("et pSUBWIN_FEATURE (pobj)->strflag[1]= %c\n\n",pSUBWIN_FEATURE (pobj)->strflag[1]);*\/ */
+/* 	    }  */
+/* 	} */
       
-      /* Prototype:
-	 void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
-			               double *value_max, integer *aaint, 
-			               char *strflag, double *FRect) */
+/*       /\* Prototype: */
+/* 	 void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min, */
+/* 			               double *value_max, integer *aaint,  */
+/* 			               char *strflag, double *FRect) *\/ */
       
-      sci_update_frame_bounds(0,pSUBWIN_FEATURE (pobj)->logflags,pSUBWIN_FEATURE (pobj)->value_min,
-			      pSUBWIN_FEATURE (pobj)->value_max,pSUBWIN_FEATURE (pobj)->axes.aaint,
-			      pSUBWIN_FEATURE (pobj)->strflag,pSUBWIN_FEATURE (pobj)->FRect);
+/*       sci_update_frame_bounds(0,pSUBWIN_FEATURE (pobj)->logflags,pSUBWIN_FEATURE (pobj)->value_min, */
+/* 			      pSUBWIN_FEATURE (pobj)->value_max,pSUBWIN_FEATURE (pobj)->axes.aaint, */
+/* 			      pSUBWIN_FEATURE (pobj)->strflag,pSUBWIN_FEATURE (pobj)->FRect); */
       
       /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (pobj)->is3d)
@@ -16402,23 +16413,22 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
   
   /* if(pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag != 0) */ /* means : already set at least once*/
   /*  {*/
-  /*
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1],xmin);
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3],xmax);
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2],ymin);
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4],ymax);
-  */
+  
+ /*  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1],xmin); */
+/*   pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3],xmax); */
+/*   pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2],ymin); */
+/*   pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4],ymax); */
+  
 
   /*   } */
 /*   else */
 /*     { */
 
-  /*  F.Leray 13.04.04 
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin;
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax;
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin;
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax;
-  */
+  /*F.Leray 13.04.04 */
+     /*  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin; */
+/*       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax; */
+/*       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin; */
+/*       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax; */
 
 	  
     /*   pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag = 1; /\* F.Leray 01.04.04*\/ */
