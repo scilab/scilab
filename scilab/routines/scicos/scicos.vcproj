@@ -671,6 +671,9 @@ cd .. &gt;nul
 				RelativePath=".\deriv.c">
 			</File>
 			<File
+				RelativePath=".\edgetrig.c">
+			</File>
+			<File
 				RelativePath=".\evaluate_expr.c">
 			</File>
 			<File
