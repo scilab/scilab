@@ -1,10 +1,9 @@
 // Main Scilab initialisation file
 // Copyright INRIA
-
 mode(-1);  // silent execution mode
 
 // clean database when restarted
-predef(0); //unprotect all variables 
+predef('clear'); //unprotect all variables 
 clear  // erase all variables 
 clear  scicos_pal // explicitly clear %helps scicos_pal variables
 clearglobal();
@@ -47,23 +46,26 @@ if verbose then
   write(%io(2),'  loading initial environment')
 end 
 clear verbose
+
+load('SCI/macros/mtlb/lib')
+load('SCI/macros/sci2for/lib')
+load('SCI/macros/tdcs/lib')
+load('SCI/macros/arma/lib')
+load('SCI/macros/metanet/lib')
+load('SCI/macros/sound/lib')
+load('SCI/macros/robust/lib')
+load('SCI/macros/auto/lib')
+load('SCI/macros/optim/lib')
+load('SCI/macros/signal/lib')
+load('SCI/macros/algebre/lib')
+load('SCI/macros/statistics/lib')
 load('SCI/macros/util/lib')
 load('SCI/macros/elem/lib')
 load('SCI/macros/int/lib')
 load('SCI/macros/calpol/lib')
-load('SCI/macros/sound/lib')
 load('SCI/macros/percent/lib')
-load('SCI/macros/algebre/lib')
-load('SCI/macros/arma/lib')
-load('SCI/macros/auto/lib')
-load('SCI/macros/metanet/lib')
-load('SCI/macros/optim/lib')
-load('SCI/macros/robust/lib')
-load('SCI/macros/sci2for/lib')
-load('SCI/macros/signal/lib')
-load('SCI/macros/tdcs/lib')
 load('SCI/macros/xdess/lib')
-load('SCI/macros/mtlb/lib')
+
 
 
 // Create a temporary directory
