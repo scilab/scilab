@@ -146,32 +146,34 @@ case "operation" then
   elseif operator=="ins" then
     if type(e.operands(2))==15 then // Recursive insertion
       C=operands(1)+operands(2)
-      return
-    end
-    C=operands(1)
-    opened=%f
-    for k=2:size(operands,"*")
-      val = part(operands(k),1)=="""" & part(operands(k),length(operands(k)))==""""
+    else
+      // Deal with : 
+      for k=2:size(operands,"*")
+	if operands(k)==""":""" then
+	  operands(k)=":"
+	elseif operands(k)=="""$""" then
+	  operands(k)="$"
+	end
+      end
+      val = part(operands(2),1)=="""" & part(operands(2),length(operands(2)))==""""
       if val then // struct field
-	if opened==%t then
-	  C = C+")"
+	C=operands(1)+"."+evstr(operands(2))
+	if size(operands,"*")>=3 then
+	  C=C+"("
 	end
-	C=C+"."+evstr(operands(k))
-      elseif strindex(operands(k),"(")==[] then // Not a recursive ins/ext
-	if opened==%f then
-	  C = C+"("
-	  opened=%t
+	for k=3:size(operands,"*")
+	  C=C+","+operands(k)
 	end
-	C=C+operands(k)
-	if k<>size(operands,"*") then
-	  C = C+","
+	if size(operands,"*")>=3 then
+	  C=C+")"
 	end
       else
-	C = C+operands(k);
+	C=operands(1)+"("+operands(2)
+	for k=3:size(operands,"*")
+	  C=C+","+operands(k)
+	end
+	C=C+")"
       end
-    end
-    if opened==%t then
-      C = C+")"
     end
   // Unary Operators
   elseif size(operands,"*")==1 then 
