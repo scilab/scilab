@@ -67,10 +67,14 @@ int  sci_show_banner=1;
 
 void C2F(realmain)()
 {
-  int ierr, argc,i;
+  int ierr, argc,i,x=0;
   static int ini=-1;
   char startup[128];
   char **argv, *display = NULL;
+  /* to be sure that gtkmenu.c patched  (for gtk < 1.3.5 ) 
+   * is loaded 
+   */
+  if (x) gtk_menu_popdown(NULL);
 
   /* floating point exceptions */
   C2F(nofpex)(); 

@@ -10,8 +10,12 @@ LIBRARY = $(SCIDIR)/libs/gtksci.a
 # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
 HTMLFLAGS=@HTMLFLAGS@
 
+# gtkmenu.c, gtkmarshalers.h and gtkintl.h 
+# are only usefull for gtk version < 1.3.5 
+# to correct a gtk bug (see configure.in) 
+
 OBJSC =	click.o  io.o \
-	menus.o x_VTPrsTbl.o x_main.o \
+	menus.o  x_main.o \
 	about.o queue.o helpbrowser.o  @ZZLEDT@  @GTKPLUGBUG@
 
 OBJSF  = 
