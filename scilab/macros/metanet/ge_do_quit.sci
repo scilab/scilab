@@ -11,6 +11,6 @@ function  ok=ge_do_quit(check_if_edited)
     if ok==2 then ok=%f,return,end
   end
   if win==EGcurrent then EGcurrent=[],end
-   execstr('clearglobal EGdata_'+w+' EGhist_'+w)
-   ok=%t
+  execstr('clearglobal EGdata_'+w+' EGhist_'+w)
+  ok=%t
 endfunction
