@@ -4565,9 +4565,12 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      /*sprintf(pFIGURE_FEATURE (pobj)->name,pvalue,pFIGURE_FEATURE (pobj)->number);*/
-      strcpy (pFIGURE_FEATURE (pobj)->name, pvalue);
-      pFIGURE_FEATURE (pobj)->namelen = Min (60, length); 
+      if(strlen(pvalue) > 79){
+	sciprint("Warning: Figure name is limlited to 80 characters\n");
+	break;}
+      else
+	strcpy (pFIGURE_FEATURE (pobj)->name, pvalue);
+      pFIGURE_FEATURE (pobj)->namelen = Min (79, length); 
       if (pobj != pfiguremdl) {
 	char str[80];
 	sprintf(str,pvalue,sciGetNum(pobj));
