@@ -2729,6 +2729,15 @@ int scixset(fname,fname_len)
   if (strncmp(cstk(l1),"window",6L) != 0) C2F(sciwin)();
   isdc = 1;
   if (strncmp(cstk(l1),"colormap",8) == 0 || strncmp(cstk(l1),"default",7) == 0) C2F(sedeco)(&isdc);
+  if (strncmp(cstk(l1),"wdim",8) == 0 || strncmp(cstk(l1),"wpdim",7) == 0) {
+    /* Xwindows limits dimensions to 2^16 */
+    if ( (x[0]>65535)||(x[1]>65535)) {
+      x[0]=Min(x[0],65535);
+      x[1]=Min(x[1],65535);
+      i = 106;v=0;
+      C2F(msgs)(&i,&v);
+    }
+  }
 
   if (strncmp(cstk(l1),"clipping",8) == 0) 
     C2F(dr1)("xset",cstk(l1),&v,&v,&v,&v,&v,&v,&xx[0],&xx[1],&xx[2],&xx[3],5L,bsiz);
