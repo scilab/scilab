@@ -111,11 +111,12 @@ c
       if(.not.createvar(4,'i', 1, N, lIB)) return
       if(.not.createvar(5,'d', 1, N, lW)) return
       if (it.eq.0) then
-         call bdiag(n,n,stk(lA),0.d0,rmax,stk(lE),stk(lE+N),istk(iLB),
-     &        stk(lXr),t,stk(lW),0,fail)
+c     subroutine bdiag(lda,n,a,epsshr,rmax,er,ei,bs,x,xi,scale,job,fail)
+         call bdiag(N,N,stk(lA),0.d0,rmax,stk(lE),stk(lE+N),istk(lIB),
+     &        stk(lXr),stk(lXi),stk(lW),0,fail)
       else
          call wbdiag(n,n,stk(lA),stk(lA+N*N),rmax,stk(lE),stk(lE+N),
-     &        istk(iLB),stk(lXr),stk(lXi),t,t,stk(lW),0,fail)
+     &        istk(lIB),stk(lXr),stk(lXi),t,t,stk(lW),0,fail)
       endif
 C     
       if (fail) then
@@ -127,15 +128,15 @@ C
       if(lhs.eq.3) then
          nbloc = 0
          do 10 k = 1,n
-            if (istk(ilb+k-1) .ge. 0) nbloc = nbloc + 1
+            if (istk(lib+k-1) .ge. 0) nbloc = nbloc + 1
             nbloc = nbloc + 1
  10      continue
          if(.not.createvar(3,'d', 1, nbloc, lBs)) return
          ln = lBs - 1
          do 11 k = 1,n
-            if (istk(ilb+k-1) .lt. 0) goto 11
+            if (istk(lib+k-1) .lt. 0) goto 11
             ln = ln + 1
-            stk(ln) = dble(istk(ilb+k-1))
+            stk(ln) = dble(istk(lib+k-1))
  11      continue
       endif
 
