@@ -73,11 +73,9 @@
     The default value of <VERB>tol</VERB> is the same as in <VERB>rank</VERB>.
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='REFERENCES'>
-  <P>
-    svd decompositions are based on  the Lapack routines DGESVD for  real matrices and  ZGESVD for the complex case. 
-  </P>
-  </ITEMIZE>
+   <USED_FUNCTION>
+   svd decompositions are based on  the Lapack routines DGESVD for  real matrices and  ZGESVD for the complex case. 
+  </USED_FUNCTION>
   <EXAMPLE><![CDATA[
 X=rand(4,2)*rand(2,4)
 svd(X)

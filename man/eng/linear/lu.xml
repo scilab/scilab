@@ -58,11 +58,19 @@
   <P>
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='REFERENCES'>
-  <P>
-    lu decompositions are based on the Lapack routines DGETRF for  real matrices and  ZGETRF for the complex case. 
-  </P>
-  </ITEMIZE>
+   <USED_FUNCTION>
+   lu decompositions are based on the Lapack routines DGETRF for  real matrices and  ZGETRF for the complex case. 
+  </USED_FUNCTION>
+
+
+   <EXAMPLE><![CDATA[
+[h,rk]=lufact(sparse(a))  // lufact fonctionne avec des matrices creuses 
+[P,L,U,Q]=luget(h)
+ludel(h)
+P=full(P);L=full(L);U=full(U);Q=full(Q); 
+// P,Q sont des matrices de permutation telles que P*L*U*Q=A 
+ ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>lufact</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>luget</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lusolve</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>

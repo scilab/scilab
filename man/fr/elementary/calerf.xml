@@ -30,9 +30,9 @@
   </PARAM>
   <DESCRIPTION>
      <VERB>calerf(x,0)</VERB> calcule la fonction erreur :<VERB>erf(x)</VERB>
-  </P><P>
+  <P></P>
      <VERB>calerf(x,1)</VERB> calcule la fonction erreur complémentaire :<VERB>erfc(x)</VERB>
-  </P> <P>
+  <P></P> 
      <VERB>calerf(x,2)</VERB> calcule la fonction erreur complémentaire normalisée :<VERB>erfcx(x)</VERB>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

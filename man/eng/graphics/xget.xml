@@ -127,7 +127,7 @@
     : Get the current window number <VERB>win</VERB>.
   </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM  label='pos=xget(&quot;wpos&quot;,x,y);'> 
+  <DESCRIPTION_ITEM  label='pos=xget(&quot;wpos&quot;);'> 
     : Get the position of the upper left point of the graphics window pos=[x,y].
   </DESCRIPTION_ITEM>
  

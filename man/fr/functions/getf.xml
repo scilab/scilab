@@ -73,12 +73,11 @@ function [y1,...,yn]=foo(x1,...,xm)
   </P>
   <P>
   </P>
-  </DESCRIPTION>
-  <ITEMIZE label='REMARQUE'>
-  <P>
+ <P>
     <VERB>getf</VERB> est une ancienne manière de charger les fonctions. Si chaque fonction est terminée par <VERB>endfunction</VERB>, les fonctions peuvent être chargées avec la commande <VERB>exec</VERB> au lieu de <VERB>getf</VERB>. Dans ce cas l&apos;option par défaut <VERB>opt</VERB> est utilisée.
   </P>
-  </ITEMIZE>
+  </DESCRIPTION>
+
   <EXAMPLE><![CDATA[
 getf('SCI/macros/xdess/plot.sci')
 

@@ -66,11 +66,10 @@
     avec module &lt; <VERB>thres</VERB>.
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='REFERENCES'>
-  <P>
- <VERB>pbig</VERB> est basée sur la forme de Schur ordonnée (fonction Scilab  <VERB>schur</VERB>). 
-  </P>
-  </ITEMIZE>
+   <USED_FUNCTION>
+   <VERB>pbig</VERB> est basée sur la forme de Schur ordonnée (fonction Scilab  <VERB>schur</VERB>). 
+  </USED_FUNCTION>
+
   <EXAMPLE><![CDATA[
 A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
 [Q,M]=pbig(A,1.5,'d');

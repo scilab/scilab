@@ -125,7 +125,7 @@
     : donne le numéro de la fenêtre <VERB>win</VERB>.
   </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM  label='pos=xget(&quot;wpos&quot;,x,y);'> 
+  <DESCRIPTION_ITEM  label='pos=xget(&quot;wpos&quot;);'> 
     : donne la position du point en haut à gauche de la fenêtre graphique pos=[x,y].
   </DESCRIPTION_ITEM>
  

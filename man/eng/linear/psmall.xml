@@ -66,11 +66,9 @@
     of <VERB>A</VERB> with magnitude &gt;= <VERB>thres</VERB>.
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='REFERENCES'>
-  <P>
- <VERB>psmall</VERB> is based on the ordered schur form (scilab function <VERB>schur</VERB>).
-  </P>
-  </ITEMIZE>
+   <USED_FUNCTION>
+   <VERB>pbig</VERB> is based on the ordered schur form (scilab function <VERB>schur</VERB>).
+  </USED_FUNCTION>
   <EXAMPLE><![CDATA[
 A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
 [Q,M]=psmall(A,2.5,'d');

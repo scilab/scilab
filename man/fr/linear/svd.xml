@@ -67,6 +67,10 @@
     La valeur par défaut de <VERB>tol</VERB> est la même que pour la fonction <VERB>rank</VERB>.
   </P>
   </DESCRIPTION>
+   <USED_FUNCTION>
+   la décomposition svd est basée sur les routines  DGESVD pour les
+   matrices réelles et  ZGESVD pour le cas complexe.
+  </USED_FUNCTION>
   <EXAMPLE><![CDATA[
 X=rand(4,2)*rand(2,4)
 svd(X)

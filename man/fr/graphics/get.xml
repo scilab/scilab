@@ -21,7 +21,7 @@
   <PARAM_ITEM>
   <PARAM_NAME>h </PARAM_NAME>
   <PARAM_DESCRIPTION>
-     : handle, the handle of the entity to retrieve a property. <VERB>h<VERB> can be a vector of
+     : handle, the handle of the entity to retrieve a property. <VERB>h</VERB> can be a vector of
      handles, in which case get returns the property's value for all objects identified by h(i).
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>

@@ -38,10 +38,7 @@
     variables previously saved in a file with the <VERB>save</VERB> command.
   </P>
   <P>
-  </P>
-  <P>
-  </P>
-  <P>
+ 
     <VERB>load(filename)</VERB> loads the variables saved in file given by its
     path <VERB>filename</VERB>. 
   </P>
@@ -50,19 +47,16 @@
     descriptor <VERB>fd</VERB>. 
   </P>
   <P>
-  </P>
-  <P>
     <VERB>load(filename,&apos;x&apos;,&apos;y&apos;)</VERB> or <VERB>load(fd,&apos;x&apos;,&apos;y&apos;)</VERB> loads only
     variables <VERB>x,y</VERB>. 
   </P>
   <P>
-  </P>
-  </DESCRIPTION>
-  <ITEMIZE label='COMPATIBLITY'>
-  <P>
     Even if the binary file format has changed with 2.5 version, <VERB>load(filename,...)</VERB> is able to read old format files. Previous file format can be accessed for a while using function oldsave ans oldload.  
   </P>
-  </ITEMIZE>
+
+  </DESCRIPTION>
+
+
   <EXAMPLE><![CDATA[
 a=eye(2,2);b=ones(a);
 save('vals.dat',a,b);

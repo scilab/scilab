@@ -78,12 +78,12 @@ function [y1,...,yn]=foo(x1,...,xm)
     previous versions a function may also be terminated by  the following
     <VERB>function</VERB> keyword or the <VERB>EOF</VERB> mark.
   </P>
-  </DESCRIPTION>
-  <ITEMIZE label='REMARK'>
   <P>
     <VERB>getf</VERB> is an old way for loading functions into scilab from a file, If functions in a file are terminated by an <VERB>endfunction</VERB> keyword, the file maybe loaded using the <VERB>exec</VERB> function instead of <VERB>getf</VERB>. In this case default option <VERB>opt</VERB> is used.
   </P>
-  </ITEMIZE>
+  </DESCRIPTION>
+
+
   <EXAMPLE><![CDATA[
 getf('SCI/macros/xdess/plot.sci')
 

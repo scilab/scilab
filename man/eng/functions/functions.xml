@@ -12,7 +12,7 @@
     have the save meaning). 
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='FUNCTION DEFINITION'>
+  <ITEMIZE label='Function definition'>
   <P>
     Usually, they are defined in files with an editor and loaded into Scilab by <VERB>getf</VERB> or through a library (see <VERB>lib</VERB> or <VERB>genlib</VERB>). But They can also be defined on-line (see <VERB>deff</VERB> or <VERB>function</VERB> o.  A function is defined by two components: 
   </P>
@@ -32,7 +32,7 @@ a &quot;syntax definition&quot; part  as follows:
       The &quot;syntax definition&quot; line gives the &quot;full&quot; calling syntax of this function. The <VERB>yi</VERB> are output variables calculated as functions of input variables <VERB>xi</VERB> and variables existing in Scilab when the function is executed. 
   </P>
   </ITEMIZE>
-  <ITEMIZE label='CALLING FUNCTION'>
+  <ITEMIZE label='calling function'>
   <P>
     Usually function calling syntax is <VERB>[y1,...,yn]=foo(x1,...,xm)</VERB>. Shorter input or output argument list than definition ones may be used. In such cases, only the first variables from the left are used of set. The <VERB>argn</VERB> function may be used to get the actual number of calling arguments.
   </P>
@@ -43,7 +43,7 @@ a &quot;syntax definition&quot; part  as follows:
     When a function has no left hand side argument and is called only with character string arguments, the callling syntax may be simplified <VERB>fun(&apos;a&apos;,&apos;toto&apos;,&apos;a string&apos;)</VERB> can be replaced by <VERB>fun a toto &apos;a string&apos;</VERB> 
   </P>
   </ITEMIZE>
-  <ITEMIZE label='MISCELLANEOUS'>
+  <ITEMIZE label='Miscellaneous'>
   <P>
     Functions are Scilab objects (with type numbers 13 or 11). They and can be manipulated (built, saved, loaded, passed as arguments,..) as other variable types.
   </P>
