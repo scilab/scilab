@@ -55,7 +55,7 @@ elseif rhs==2 then
   end
   
   if B.vtype<>Double then
-    set_infos('eig() with 2 inputs: generalized eigen assumed. Check ',2)
+    set_infos('eig() with 2 inputs: consider generalized eigen. Check ',2)
   end
   m=A.dims(1)
   n=A.dims(2)
