@@ -180,7 +180,7 @@ while k<n
     txt=[txt;table2tex(mk(2))]
   case 'fill' then
     mk(2)=texsubstitute(mk(2))
-    txt=[txt;mk(2)]
+    txt=[txt;mk(2);'']
   case 'verbatim' then
     txt=[txt;
 	'\begin{verbatim}'
