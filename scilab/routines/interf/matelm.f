@@ -4160,6 +4160,10 @@ c
          call error(41)
          return
       endif
+      if (rhs .ne. 2) then
+         call error(42)
+         return
+      endif
 
       top2=top-rhs+1
       il2=iadr(lstk(top2))
