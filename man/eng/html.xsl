@@ -4,8 +4,8 @@
 <xsl:template match="MAN">
 <html>
 <body bgcolor="FFFFFF">
-        <CENTER><xsl:value-of select="./TYPE"/></CENTER>
-        <P></P>
+<CENTER><xsl:value-of select="./TYPE"/></CENTER>
+<P></P>
 <H3>NAME </H3>
 
 <xsl:for-each select="./SHORT_DESCRIPTION">
@@ -134,7 +134,7 @@
 <xsl:template match="ITEM">
 <li>
 <xsl:value-of select="@label"/> 
-<xsl:apply-templates select="ITEMIZE|TABLE|P|VERBATIM|text()"/>
+<xsl:apply-templates select="ITEMIZE|TABLE|P|VERBATIM|VERB|text()"/>
 </li>
 </xsl:template>
 
@@ -148,15 +148,15 @@
 <xsl:template match="TABLE">
 <table border="1">
 <xsl:for-each select="./TABLE_NEW_ROW">
-            <tr>
+<tr>
 <xsl:for-each select="./TABLE_NEW_COLUMN">
-                <td>
+<td>
 <xsl:value-of select="./text()"/>
 </td> 
 </xsl:for-each>
-            </tr>
+</tr>
 </xsl:for-each>
-        </table>
+</table>
 </xsl:template>
 
 <xsl:template match="VERB">
@@ -179,7 +179,7 @@
 <xsl:template match="DESCRIPTION_ITEM">
 <li>
 <xsl:value-of select="@label"/>  
-<xsl:apply-templates select="DESCRIPTION_INDENT|DESCRIPTION_ITEM|P|VERBATIM|TABLE|ITEMIZE|A|text()"/>
+<xsl:apply-templates select="DESCRIPTION_INDENT|DESCRIPTION_ITEM|P|VERBATIM|VERB|TABLE|ITEMIZE|A|text()"/>
 </li>
 </xsl:template>
 
@@ -206,7 +206,7 @@
 <xsl:template match="AUTHORS_ITEM">
 <li>
 <b><xsl:value-of select="@label"/>  </b>,
-<xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|TABLE|ITEMIZE|A|text()"/>
+<xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|VERB|TABLE|ITEMIZE|A|text()"/>
 </li>
 </xsl:template>
 

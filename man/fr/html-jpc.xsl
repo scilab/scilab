@@ -116,12 +116,12 @@
 </xsl:template>
 
 <xsl:template match="ITEM">
-	<li><xsl:value-of select="@label"/><xsl:apply-templates select="ITEMIZE|TABLE|P|VERBATIM|text()"/></li>
+	<li><xsl:value-of select="@label"/><xsl:apply-templates select="ITEMIZE|TABLE|P|VERBATIM|VERB|text()"/></li>
 </xsl:template>
 
 <xsl:template match="ITEMIZE">
 	<H3><font color="blue"><xsl:value-of select="@label"/></font></H3>
-	<ul><xsl:apply-templates select="ITEM|ITEMIZE|TABLE|P|VERBATIM"/></ul>
+	<ul><xsl:apply-templates select="ITEM|ITEMIZE|TABLE|P|VERBATIM|VERB"/></ul>
 </xsl:template>
 
 <xsl:template match="TABLE">
@@ -154,7 +154,7 @@
 </xsl:template>
 
 <xsl:template match="DESCRIPTION_ITEM">
-	<li><xsl:value-of select="@label"/><xsl:apply-templates select="DESCRIPTION_INDENT|DESCRIPTION_ITEM|P|VERBATIM|TABLE|ITEMIZE|A|text()"/></li>
+	<li><xsl:value-of select="@label"/><xsl:apply-templates select="DESCRIPTION_INDENT|DESCRIPTION_ITEM|P|VERBATIM|VERB|TABLE|ITEMIZE|A|text()"/></li>
 </xsl:template>
 
 <xsl:template match="P">
@@ -174,7 +174,7 @@
 <xsl:template match="AUTHORS_ITEM">
 <li>
 <xsl:value-of select="@label"/>  
-<xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|TABLE|ITEMIZE|A|text()"/>
+<xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|VERB|TABLE|ITEMIZE|A|text()"/>
 </li>
 </xsl:template>
 
