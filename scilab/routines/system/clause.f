@@ -8,11 +8,13 @@ c     Copyright INRIA
       integer do(nsiz),thenn(nsiz),cas(nsiz),sel(nsiz)
       integer elsif(nsiz)
       integer semi,equal,eol,blank,comma,name
+      integer lparen,rparen
       integer r,r1
       logical eqid,istrue,ok,first,eptover
       parameter (nz1=nsiz-1,nz2=nsiz-2)
       data semi/43/,equal/50/,eol/99/,blank/40/
       data comma/52/,name/1/
+      data lparen/41/,rparen/42/
       data do/673716237,nz1*673720360/, else/236721422,nz1*673720360/
       data ennd/671946510,nz1*673720360/
       data iff/673713938,nz1*673720360/
@@ -48,12 +50,19 @@ c
 c     for
 c     
  02   call getsym
-      if (sym .ne. name) then
-         call error(34)
-         return
-      endif
-      rstk(pt+1)=0
       if ( eptover(2,psiz))  return
+      pstk(pt-1)=0
+      rstk(pt-1)=0
+      if (sym .ne. name) then
+         if (sym. eq. lparen) then
+c     .  for matlab compatiblity  for (k=1:n)
+            call getsym
+            pstk(pt-1)=1
+         else
+            call error(34)
+            return
+         endif
+      endif
       call putid(ids(1,pt),syn)
       call getsym
       if (sym .ne. equal) then
@@ -73,6 +82,15 @@ c     *call* expr
       return
  05   if(comp(1).ne.0) call compcl
       if(err.gt.0) return
+      if (pstk(pt-1).eq.1) then
+c     .  for matlab compatiblity: for (k=1:n)
+         if (sym. eq. rparen) then
+            call getsym
+         else
+            call error(3)
+            return
+         endif
+      endif
       toperr=top
       pstk(pt-1) = 0
       ids(1,pt-1)=top
