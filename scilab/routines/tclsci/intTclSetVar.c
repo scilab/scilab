@@ -71,13 +71,13 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 			int lenJ=0;
 			int lenI=0;
 
-			snprintf(buffer,2048,"%d",j);
+			sprintf(buffer,"%d",j);
 			lenJ=strlen(buffer);
 
 			for (i=0;i<m1;i++)
 			{	
 				int len=0;
-				snprintf(buffer,2048,"%d",i);
+				sprintf(buffer,"%d",i);
 				lenI=strlen(buffer);
 							
 				len=strlen(VarName)+strlen("(,)")+lenI+lenJ+1;
