@@ -10,12 +10,12 @@ endfunction
 
 function setscipadwords(wset,wtype)
   lp=lineform(wset);
-  TK_EvalStr("scipad eval {set chset(scilab."+wtype+") {}}")
+  TCL_EvalStr("scipad eval {set chset(scilab."+wtype+") {}}")
   for i=1:size(lp,1)
     initial=part(lp(i),1);
-    TK_EvalStr("scipad eval {append chset(scilab."+wtype+") """+..
+    TCL_EvalStr("scipad eval {append chset(scilab."+wtype+") """+..
              initial+"""}") 
-    TK_EvalStr("scipad eval {set words(scilab."+wtype+"."+initial+") """+..
+    TCL_EvalStr("scipad eval {set words(scilab."+wtype+"."+initial+") """+..
              lp(i)+"""}")
   end
 endfunction

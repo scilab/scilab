@@ -200,16 +200,16 @@ proc getfromshell { {startitem 3} } {
     set fullcomm ""
     foreach var $watchvars {
         set comm1 "if exists(\"$var\"),"
-        set comm2 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"\"+FormatStringsForDebugWatch($var)+\"\"\"}\");"
+        set comm2 "TCL_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"\"+FormatStringsForDebugWatch($var)+\"\"\"}\");"
         set comm3 "else"
-        set comm4 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"$unklabel\"\"}\");"
+        set comm4 "TCL_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"$unklabel\"\"}\");"
         set comm5 "end;"
         set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5]
         ScilabEval $fullcomm "seq"
     }
-    set fullcomm "TK_EvalStr(\"scipad eval {set callstackcontent \"\"\"+FormatWhereForDebugWatch($startitem)+\"\"\"}\");"
+    set fullcomm "TCL_EvalStr(\"scipad eval {set callstackcontent \"\"\"+FormatWhereForDebugWatch($startitem)+\"\"\"}\");"
     ScilabEval $fullcomm "seq"
-    set fullcomm "TK_EvalStr(\"scipad eval {updatewatch_bp}\");"
+    set fullcomm "TCL_EvalStr(\"scipad eval {updatewatch_bp}\");"
     ScilabEval $fullcomm "seq"
 }
 

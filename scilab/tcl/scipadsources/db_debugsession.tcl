@@ -27,18 +27,18 @@ proc runtocursor_bp {} {
             tonextbreakpoint_bp
             set comm1 "\[db_l,db_m\]=where();"
             set comm2 "if size(db_l,1)>=3 then"
-            set comm3 "TK_EvalStr(\"scipad eval {set checklist \[ list \"+string(db_l(3))+\" \"+string(db_m(3))+\" $rfl $rfn \] }\");"
+            set comm3 "TCL_EvalStr(\"scipad eval {set checklist \[ list \"+string(db_l(3))+\" \"+string(db_m(3))+\" $rfl $rfn \] }\");"
             set comm4 "else"
-            set comm5 "TK_EvalStr(\"scipad eval {set checklist \[ list 0 \"\"\"\" $rfl $rfn \] }\");"
+            set comm5 "TCL_EvalStr(\"scipad eval {set checklist \[ list 0 \"\"\"\" $rfl $rfn \] }\");"
             set comm6 "end;"
             set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
             ScilabEval "$fullcomm" "seq"
-            ScilabEval "TK_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
+            ScilabEval "TCL_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
             ScilabEval "flush"
             while {$bptcheckresult == "WrongBpt" && [getdbstate] == "DebugInProgress"} {
                 tonextbreakpoint_bp
                 ScilabEval "$fullcomm" "seq"
-                ScilabEval "TK_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
+                ScilabEval "TCL_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
                 ScilabEval "flush"
             }
             if {[getdbstate] != "DebugInProgress"} {
@@ -233,7 +233,7 @@ proc canceldebug_bp {} {
 proc scilaberror {funnameargs} {
     global errnum errline errmsg errfunc
     ScilabEval "\[db_str,db_n,db_l,db_func\]=lasterror();\
-                TK_EvalStr(\"scipad eval { global errnum errline errmsg errfunc; \
+                TCL_EvalStr(\"scipad eval { global errnum errline errmsg errfunc; \
                                            set errnum  \"+string(db_n)+\"; \
                                            set errline \"+string(db_l)+\"; \
                                            set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \

@@ -9,11 +9,11 @@ end
 
  if (sciargs()<>"-nw")&(sciargs()<>"-nwni")
 	if with_tk() then
-  		TK_EvalStr("set isscipadinterp [interp exists scipad]")
-  		if TK_GetVar("isscipadinterp")<>'0' then 
-    			TK_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
-    			if TK_GetVar("isscipadopen")<>'0' then
-      				TK_EvalStr('scipad eval {catch {exitapp} }')
+  		TCL_EvalStr("set isscipadinterp [interp exists scipad]")
+  		if TCL_GetVar("isscipadinterp")<>'0' then 
+    			TCL_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
+    			if TCL_GetVar("isscipadopen")<>'0' then
+      				TCL_EvalStr('scipad eval {catch {exitapp} }')
     			end
   		end
 	end	

@@ -200,7 +200,7 @@ proc setdbstatevisualhint_bp {} {
 proc checkendofdebug_bp {} {
     set comm1 "\[db_l,db_m\]=where();"
     set comm2 "if size(db_l,1)==1 then"
-    set comm3 "TK_EvalStr(\"scipad eval {setdbstate \"\"ReadyForDebug\"\" }\");"
+    set comm3 "TCL_EvalStr(\"scipad eval {setdbstate \"\"ReadyForDebug\"\" }\");"
     set comm4 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4]
     ScilabEval "$fullcomm" "seq"

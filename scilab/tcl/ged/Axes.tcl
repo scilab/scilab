@@ -2792,7 +2792,7 @@ proc toggleXautoticks { win numpage } {
     global XautoticksToggle
     
     ScilabEval "global ged_handle;ged_handle.auto_ticks(1)='$XautoticksToggle'" "seq"
-    ScilabEval "TK_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
+    ScilabEval "TCL_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
     #    PopUp $w $numpage
 }
 
@@ -2800,7 +2800,7 @@ proc toggleYautoticks { win numpage } {
     global YautoticksToggle
     
     ScilabEval "global ged_handle;ged_handle.auto_ticks(2)='$YautoticksToggle'" "seq"
-    ScilabEval "TK_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
+    ScilabEval "TCL_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
     #     PopUp $w $numpage
 }
 
@@ -2808,7 +2808,7 @@ proc toggleZautoticks { win numpage } {
     global ZautoticksToggle
     
     ScilabEval "global ged_handle;ged_handle.auto_ticks(3)='$ZautoticksToggle'" "seq"
-    ScilabEval "TK_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
+    ScilabEval "TCL_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
     #     PopUp $w $numpage
 }
 
@@ -2963,7 +2963,7 @@ proc Reload_and_popup { win numpage } {
     global nbticks_x nbticks_y nbticks_z
     
     ScilabEval "global ged_handle; ReLoadTicks2TCL(ged_handle); " "seq"
-    ScilabEval "TK_EvalStr(\"PopUp \"+\"$win $numpage\")" "seq"
+    ScilabEval "TCL_EvalStr(\"PopUp \"+\"$win $numpage\")" "seq"
 
 }
 

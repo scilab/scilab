@@ -123,7 +123,7 @@ proc sciGUIDemoPlayProcFile { winId } {
 		set sciGUITable(win,$winId,data) 1
 		set filerun $sciGUITable(win,$winId,data,filerun)
 		set filetmp $sciGUITable(win,$winId,data,filetmp)
-		ScilabEval "exec('$filetmp',-1);TK_SetVar('sciGUITable(win,$winId,data)','0');TK_EvalStr('sciGUIDemoPlayDoAction $winId h');"
+		ScilabEval "exec('$filetmp',-1);TCL_SetVar('sciGUITable(win,$winId,data)','0');TCL_EvalStr('sciGUIDemoPlayDoAction $winId h');"
 	} else {
 		set sciGUITable(win,$winId,data) 0
 		sciGUIDemoPlayDoAction $winId h

@@ -620,6 +620,6 @@ proc GEDsciGUIEditVarDrawGrid { winId } {
 
 proc CloseEditorSaveData { winId } {
     ScilabEval "CloseEditorSaveData()" "seq"
-    ScilabEval "TK_EvalStr(\"sciGUIEditVarQuit \"+\"$winId\")" "seq"
+    ScilabEval "TCL_EvalStr(\"sciGUIEditVarQuit \"+\"$winId\")" "seq"
     
 }

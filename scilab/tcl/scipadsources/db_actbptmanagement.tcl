@@ -1,9 +1,9 @@
 proc updateactivebreakpoint { {itemno 3} } {
     set comm1 "\[db_l,db_m\]=where();"
     set comm2 "if size(db_l,1)>=$itemno then"
-    set comm3 "TK_EvalStr(\"scipad eval {updateactivebreakpointtag  \"+string(db_l($itemno))+\" \"+string(db_m($itemno))+\"}\");"
+    set comm3 "TCL_EvalStr(\"scipad eval {updateactivebreakpointtag  \"+string(db_l($itemno))+\" \"+string(db_m($itemno))+\"}\");"
     set comm4 "else"
-    set comm5 "TK_EvalStr(\"scipad eval {updateactivebreakpointtag 0 \"\"\"\"}\");"
+    set comm5 "TCL_EvalStr(\"scipad eval {updateactivebreakpointtag 0 \"\"\"\"}\");"
     set comm6 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
     ScilabEval "$fullcomm" "seq"

@@ -17,7 +17,7 @@ POSTONEG_f POWBLK_f PROD_f
 QUANT_f
 RAND_f READC_f REGISTER_f RELAY_f RFILE_f
 Signal SAMPLEHOLD_f SAT_f SAWTOOTH_f SCOPE_f SCOPXY_f SELECT_f SINBLK_f SOM_f SPLIT_f STOP_f SUPER_f
-TANBLK_f TCLSS_f TEXT_f TIME_f TK_EvalFile TK_EvalStr TK_GetVar TK_SetVar TRASH_f
+TANBLK_f TCLSS_f TEXT_f TIME_f TCL_EvalFile TCL_EvalStr TCL_GetVar TCL_SetVar TRASH_f
 WFILE_f WRITEC_f WSCI
 ZCROSS_f
 abort abs addf addinter addmenu amell and ans argn arma ascii atan

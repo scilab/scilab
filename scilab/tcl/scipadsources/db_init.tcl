@@ -12,7 +12,7 @@ set togglewvabutton [mc "Hide watch variables"]
 set showcallstackarea "true"
 set togglecsabutton [mc "Hide call stack"]
 # FV, 17/06/04, better do it in scipad.sci
-#ScilabEval "TK_EvalStr(\"scipad eval {set tmpdir \"+TMPDIR+\"}\");"
+#ScilabEval "TCL_EvalStr(\"scipad eval {set tmpdir \"+TMPDIR+\"}\");"
 set waitmessage [mc "Please wait..."]
 
 # Read debugger icons from gif files on disk and resize them independently of their
