@@ -809,7 +809,7 @@ c
          endif
        endif
        if(vfinite(M*N,stk(lA)).eq.0) then
-          buf='svd'//': the matrix contains NaN of Inf'
+          buf='svd'//': the matrix contains NaN or Inf'
           call error(997)
           return
        endif 
@@ -924,7 +924,7 @@ c
          endif
        endif
        if(vfinite(M*N,stk(lA)).eq.0) then
-          buf='svd'//': the matrix contains NaN of Inf'
+          buf='svd'//': the matrix contains NaN or Inf'
           call error(997)
           return
        endif 
@@ -1004,6 +1004,7 @@ c     s = svd(A)
       include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
+      integer vfinite
  
       character fname*(*)
       character JOBU, JOBVT
@@ -1038,6 +1039,11 @@ c
             return
          endif
        endif
+       if(vfinite(M*N*2,zstk(lA)).eq.0) then
+          buf='svd'//': the matrix contains NaN or Inf'
+          call error(997)
+          return
+       endif 
        if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
        k = 3              
        if(lhs.gt.1) then
@@ -1116,6 +1122,7 @@ c     s = svd(A)
       include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
+      integer vfinite
  
       character fname*(*)
       character JOBU, JOBVT
@@ -1150,6 +1157,11 @@ c
             return
          endif
        endif
+       if(vfinite(M*N*2,zstk(lA)).eq.0) then
+          buf='svd'//': the matrix contains NaN or Inf'
+          call error(997)
+          return
+       endif 
        if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
        k = 3              
        if(lhs.gt.1) then
@@ -1444,7 +1456,7 @@ c
          endif
        endif 
        if(vfinite(M*N,stk(lA)).eq.0) then
-          buf='spec'//': the matrix contains NaN of Inf'
+          buf='spec'//': the matrix contains NaN or Inf'
           call error(997)
           return
        endif  
@@ -1570,7 +1582,7 @@ c
          endif
        endif  
        if(vfinite(2*M*N,zstk(lA)).eq.0) then
-          buf='spec'//': the matrix contains NaN of Inf'
+          buf='spec'//': the matrix contains NaN or Inf'
           call error(997)
           return
        endif 
