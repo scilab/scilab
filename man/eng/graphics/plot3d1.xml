@@ -102,7 +102,8 @@
 
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_DESCRIPTION><SP><VERB>mode&gt;0</VERB> the surface
+		   <PARAM_NAME>mode&gt;0 </PARAM_NAME>
+                    <PARAM_DESCRIPTION><SP> the surface
                     is painted with color <VERB>"mode"</VERB> ; the boundary
                     of the facet is drawn with current line style and
                     color.</SP></PARAM_DESCRIPTION>
@@ -110,14 +111,14 @@
 
                   <PARAM_ITEM>
                     <PARAM_NAME>mode=0 </PARAM_NAME>
-
                     <PARAM_DESCRIPTION>
-                      <SP>a mesh of the surface is drawn.</SP>
+                      <SP> a mesh of the surface is drawn.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_DESCRIPTION><SP><VERB>mode&lt;0</VERB> the surface
+		   <PARAM_NAME>mode&lt;0</PARAM_NAME>
+                    <PARAM_DESCRIPTION><SP> the surface
                     is painted with color <VERB>"-mode"</VERB> ; the boundary
                     of the facet is not drawn.</SP><P> Note that the surface
                     color treatement can be done using <VERB>color_mode</VERB>
