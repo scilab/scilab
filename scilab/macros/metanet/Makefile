@@ -26,7 +26,7 @@ EG = dist2polylines.sci edit_graph.sci editgraph_arc.sci editgraph_diagram.sci e
 	ge_graph.sci ge_hilite_arcs.sci ge_hilite_nodes.sci ge_newarc.sci ge_node_fields.sci \
 	ge_set_winsize.sci ge_shortcut.sci ge_do_export.sci ge_check_names.sci ge_do_information.sci\
 	ge_help.sci initial_editgraph_tables.sci  message.sci splitfilepath.sci \
-	ge_check_before_quit.sci ge_do_find.sci
+	ge_check_before_quit.sci ge_do_find.sci ge_set_nodes_id.sci ge_set_arcs_id.sci 
 
 MET = adj_lists.sci add_edge.sci add_node.sci arc_graph.sci \
 	arc_number.sci articul.sci bandwr.sci \
