@@ -7,6 +7,7 @@
 #include <sys/time.h>
 #else 
 #include <windows.h>
+#include <winbase.h> /* header du compteur haute résolution */
 static int stimerwin(void);
 #endif 
 #endif 
@@ -24,16 +25,34 @@ static int stimerwin(void);
 #endif
 #endif
 
-static clock_t t1;
+#if WIN32
+	static LARGE_INTEGER   Tick1;
+#else
+	static clock_t t1;
+#endif
 static int init_clock = 1;
 
 int C2F(timer)(double *etime)
 {
-  clock_t t2;
-  t2 = clock();
-  if (init_clock == 1) {init_clock = 0; t1 = t2;}
-  *etime=(double)((double)(t2 - t1)/(double)CLOCKS_PER_SEC);
-  t1 = t2;
+#if WIN32 
+	/* Allan CORNET 2004 */
+	/* Timer Tres Precis */
+	LARGE_INTEGER   Tick2;
+	LARGE_INTEGER   freq;
+
+	QueryPerformanceFrequency(&freq);
+	QueryPerformanceCounter(&Tick2);
+
+	if (init_clock == 1) {init_clock = 0; Tick1 = Tick2;}
+	*etime=(double) ( (double) (Tick2.QuadPart - Tick1.QuadPart) / (double)(freq.QuadPart));
+	Tick1 = Tick2;
+#else
+	clock_t t2;
+	t2 = clock();
+	if (init_clock == 1) {init_clock = 0; t1 = t2;}
+	*etime=(double)((double)(t2 - t1)/(double)CLOCKS_PER_SEC);
+	t1 = t2;
+#endif
   return(0);
 }
 
