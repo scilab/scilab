@@ -113,6 +113,7 @@ sciClipTab ptabclip[15]; /* pourquoi n'est pas une prop de la figure */
 static char error_message[70];
 /* NG end */
 
+extern int xinitxend_flag;
 
 
 /*-----------------------------------------------------------
@@ -2255,9 +2256,23 @@ int scixend(fname,fname_len)
 {
   integer v;
   double dv;
+  sciPointObj * figure = NULL;
+  struct BCG *Xgc;
+
   C2F(sciwin)();
-  CheckRhs(-1,0)
+  CheckRhs(-1,0);
+  if(version_flag() == 0) {
+    xinitxend_flag = 0;   /* we DO draw now into the file/memory (depending on the driver type) */
+    sciDrawObj(sciGetCurrentFigure());
+  }
   C2F(dr1)("xend","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,2L);
+  if(version_flag() == 0) {
+    figure = sciGetCurrentFigure();
+    Xgc = (struct BCG *) pFIGURE_FEATURE(figure)->pScilabXgc;
+    DestroyAllGraphicsSons (figure);
+    DestroyFigure (figure);
+    Xgc->mafigure = (sciPointObj *) NULL;
+  }
   LhsVar(1)=0;
   return 0;
 }
@@ -2508,6 +2523,7 @@ int scixinit(fname,fname_len)
   integer m1,n1,l1,v,v1=-1;
   double dv;
   CheckRhs(-1,1);
+  if(version_flag() == 0) xinitxend_flag = 1; /* we do not draw now into the file/memory (depending on the driver type) */
   if (Rhs <= 0 )
     {
       C2F(dr1)("xinit"," ",&v1,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,2L);
@@ -5098,13 +5114,16 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  if ((strncmp(cstk(*value),"old", 3) == 0)) {
 	    if (version_flag() == 0)  {
 	      versionflag = 1;
+	     /*  versionflag = 0; */
 	      sciXbasc();
+	     /*  versionflag = 1; */
 	      C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
 	      C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
 	      if (XGC->mafigure != (sciPointObj *)NULL) {
 		DestroyFigure (XGC->mafigure);
 		XGC->mafigure = (sciPointObj *)NULL; 
 	      }
+	      XGC->graphicsversion = 0; /* Adding F.Leray 23.07.04 : we switch to old graphic mode */
 	    }
 	  }
 	  else if ((strncmp(cstk(*value),"new", 3) == 0)) {   
@@ -5118,7 +5137,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 		/* Adding F.Leray 25.03.04*/
 		sciSetCurrentObj(figure);
 		XGC->mafigure = (sciPointObj *) figure;
-		XGC->graphicsversion=1;   
+		XGC->graphicsversion=1;   /* new graphic mode */
 		cf_type=1;
 		if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL){
 		  sciSetCurrentObj(psubwin);
