@@ -267,7 +267,7 @@ int SearchInDynLinks(char *op, void (**realop) (/* ??? */))
       if ( strcmp(op,EP[i].name) == 0) 
 	{
            *realop = EP[i].epoint;
-	   return(i);
+	   return(EP[i].Nshared );
 	 }
     }
   return(-1);
