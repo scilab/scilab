@@ -18,14 +18,27 @@ extern double C2F(dsort)();
 void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p, integer *q)
 {
   static integer fg1,dc;
-  integer polysize,npoly,whiteid,verbose=0,narg;
+  integer polysize,whiteid,verbose=0,narg;
   integer *polyx,*polyy,*fill;
   static integer cache;
   static double zmin,zmax;
   integer i,j,flagcolor;  
-  sciPointObj *psubwin;
+  sciPointObj *psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* a laisser!!!!!!!! */
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(pobj);
 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+  /* Test to enable reverse axis in 3D */ /* F.Leray 14.10.04 */
+ /*  int u; */
+/*   double xmoy = (ppsubwin->FRect[0] + ppsubwin->FRect[2])/2; */
+  
+/*   double *xtmp = NULL; */
+  
+/*   xtmp = MALLOC((*p)*sizeof(double)); */
+
+/*   for(u=0;u<(*p);u++) */
+/*     { */
+/*       xtmp[u] = x[u]-2*(x[u]-xmoy); */
+/*     } */
+  
 
   zmin  = pSUBWIN_FEATURE(psubwin)->SRect[4]; /*zmin*/
   zmax  = pSUBWIN_FEATURE(psubwin)->SRect[5]; /*zmax*/
@@ -49,7 +62,7 @@ void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p
   C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /*  if (fg1<=0) fg1=dc;*/
   for ( i =0 ; i < (*q)-1 ; i++)   fill[i]= dc ;
-  polysize=5;npoly= (*q)-1;
+  polysize=5;
 
   /** The 3d plot **/
   /** Choix de l'ordre de parcourt **/
@@ -60,9 +73,18 @@ void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p
 	{
 	  int npolyok=0;
 	  for ( j =0 ; j < (*q)-1 ; j++)
-	    {
-	     npolyok += (Gen3DPoints)(flagcolor,polyx,polyy,fill,whiteid,zmin,zmax,
-				x,y,z,i,j,npolyok,p,dc,fg1);
+	    { 
+	    /*   ppsubwin->axes.reverse[0] = TRUE; */
+  
+	      
+/* 	      if(ppsubwin->axes.reverse[0] == TRUE) */
+/* 		{ */
+/* 		  npolyok += (Gen3DPoints)(flagcolor,polyx,polyy,fill,whiteid,zmin,zmax, */
+/* 					   xtmp,y,z,i,j,npolyok,p,dc,fg1); */
+/* 		} */
+/* 	      else */
+		npolyok += (Gen3DPoints)(flagcolor,polyx,polyy,fill,whiteid,zmin,zmax,
+					 x,y,z,i,j,npolyok,p,dc,fg1);
 	    }
 	  if ( npolyok != 0) 
 	    C2F(dr)("xliness","str",polyx,polyy,fill,&npolyok,&polysize
