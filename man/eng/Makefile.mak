@@ -5,8 +5,8 @@ include ../../Makefile.incl
 
 LANGUAGE=eng 
 
-XSLFILE=html-jpc.xsl
-#XSLFILE=html.xsl
+#XSLFILE=html-jpc.xsl
+XSLFILE=html.xsl
 
 man: 	
 	@echo "Creating html help files" 
