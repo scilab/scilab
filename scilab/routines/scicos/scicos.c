@@ -2654,14 +2654,13 @@ callf(t,xtd,xt,residual,g,flag)
     scicos_time=*t;
     Blocks[kf-1].nevprt=nclock;
     loc4 = (ScicosF4) loc;
+    if(Blocks[kf-1].ng>0){
+	Blocks[kf-1].g=&g[zcptr[kf]-1];
+      }
     if(Blocks[kf-1].nx==0){
       (*loc4)(&Blocks[kf-1],*flag);
     } 
     else {
-      
-      if(Blocks[kf-1].ng>0){
-	Blocks[kf-1].g=&g[zcptr[kf]-1];
-      }
       Blocks[kf-1].x=&xt[xptr[kf]-1];
       if(Blocks[kf-1].type==4) {
 	if(*flag==0 && solver==100) {
