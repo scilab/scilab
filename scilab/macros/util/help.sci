@@ -75,44 +75,40 @@ function res=findword(str,word)
 endfunction	   
 
 function browsehelp(path,key)
+// when %browsehelp is [] a  menu proposes to select a browser
   global LANGUAGE INDEX
   global %browsehelp
-  // when Scilab is built with gtk we use the prefered
-  // broswer given by %browsehelp
-  // when %browsehelp is [] a choose menu is given
-  global %browsehelp;
- 
-  // set of possible modes for gtk
-  // modif Matthieu PHILIPPE retirer : 'help widget';
-  browse_modes=['nautilus';
-	     'mozilla/netscape (gnome-moz-remote)';
-	     'opera'
-	     'quanta (kde)'];
- 
-  if with_tk() then browse_modes=[browse_modes;'tcltk'];end
-
-  if with_gtk() then browse_modes=['help widget';browse_modes];end
-
-  [lhs,rhs]=argn(0);
- 
-  // ask for an help mode
-  if with_gtk ()
-    if %browsehelp<>[] then
-      help_mode = %browsehelp;
-    else
-       %browsehelp= gtk_help_ask(browse_modes);
-    end
-  else // without gtk
-    if %browsehelp<>[] then
-      help_mode = %browsehelp;
-    else
-      %browsehelp=browse_modes(x_choose(browse_modes,[
-	  'Choose the help browser you want to use';
-	  'use %browsehelp=[] to reset your choice']));
-    end
-  end
   
-  if rhs==0 then
+  [lhs,rhs]=argn(0);
+  
+  // set of possible browsers
+  
+  if ~MSDOS then
+    browse_modes=['nautilus';
+		  'mozilla/netscape (gnome-moz-remote)';
+		  'opera'
+		  'quanta (kde)'];
+    if with_tk() then browse_modes=[browse_modes;'tcltk'];end
+    if with_gtk() then browse_modes=['help widget';browse_modes];end
+    
+    
+    if %browsehelp<>[] then //help mode already selected
+      if and(browse_modes<>%browsehelp) then
+	warning('Unhandled  help browser '+%browsehelp)
+	%browsehelp= help_ask(browse_modes);
+      end
+      help_mode = %browsehelp;
+    else // ask for an help mode
+	%browsehelp= help_ask(browse_modes);
+    end
+  else //for windows 
+    //tcltk forced because it is still not possible to start another
+    //thread using unix
+    browse_modes='tcltk'
+    help_mode = 'tcltk'
+  end
+ 
+  if argn(2)==0 then
     path=INDEX
     key="index"
   end
@@ -171,14 +167,12 @@ function run_help(path,key)
     unix_s(%browsehelp + " file://" +path+ '&');
    case 'quanta' then
     unix_s(%browsehelp + " --unique file://" +path+ '&');
-   case 'browsehelp' then
-    if MSDOS
-      unix(strsubst(SCI,'/','\')+'\tcl\browsehelpexe.exe ' +path+ '&');
-    else
-      unix(SCI+'/tcl/browsehelpexe ' +path+ '&');
-    end
    case 'tcltk' then 
-    tcltk_help(path,key);
+   if MSDOS then
+     tcltk_help(path,key);
+   else
+     unix(SCI+'/tcl/browsehelpexe ' +path+ '&');
+   end
   else
      write(%io(2),mgetl(path))
   end
@@ -252,14 +246,12 @@ function change_old_man()
   end
 endfunction
 
-function gtk_mode=gtk_help_ask(modes)
-  n=x_choose(modes,['Choose the help browser';'you want to use';
-		   'use %browsehelp=[] to reset your choice']);
-  if n<>0 then
-    gtk_mode=modes(n)
-  else   
-     gtk_mode=gtk_help_ask(modes)
+function md=help_ask(modes)
+  n=0
+  while n=0 then
+    n=x_choose(modes,['Choose the help browser';'you want to use']);
   end
+  md=modes(n)
 endfunction
 
 
