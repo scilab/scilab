@@ -1939,9 +1939,9 @@ void C2F(displaystring)(char *string, integer *x, integer *y, integer *v1, integ
 
 void C2F(DispStringAngle)(integer *x0, integer *yy0, char *string, double *angle)
 {
-  int i;
+  int i,flag=0;
   integer x,y, rect[4];
-  double sina ,cosa,l;
+  double sina ,cosa,l,zero=0.0;
   char str1[2];
   str1[1]='\0';
   x= *x0;
@@ -1951,6 +1951,7 @@ void C2F(DispStringAngle)(integer *x0, integer *yy0, char *string, double *angle
   for ( i = 0 ; i < (int)strlen(string); i++)
     { 
       str1[0]=string[i];
+      C2F(displaystring)(str1,&x,&y,PI0,&flag,PI0,PI0,&zero,PD0,PD0,PD0);
       /* XDrawString(dpy,ScilabXgc->Cdrawable,gc,(int) x,(int) y ,str1,1); */
       C2F(boundingbox)(str1,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
       /** C2F(drawrectangle)(string,rect,rect+1,rect+2,rect+3); **/
@@ -4019,4 +4020,5 @@ static void xget_scilabxgc(integer *verbose, integer *x,integer *narg, double *d
   
 }
 /* NG end */
+
 
