@@ -90,6 +90,7 @@ case 'set' then
     x.gui='CLOCK_f'
     x.graphics.sz=[2,2]
     x.graphics.gr_i=gr_i
+    x.graphics.peout=0
     x.model.sim='csuper'
     x.model.evtout=1
     x.model.blocktype='h'
@@ -105,5 +106,6 @@ case 'set' then
 				ct=[5,-1],from=[5,1],to=[2,1])  
     x.model.rpar(7)=scicos_link(xx=[380.71;380.71;340;340],yy=[172;302;302;277.71],..
 				ct=[5,-1],from=[5,2],to=[3,1])  
+    
 end
 endfunction
