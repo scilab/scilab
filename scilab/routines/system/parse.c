@@ -1669,7 +1669,7 @@ void C2F(parsecomment)()
   static integer l, ll, lkp, l0,c1=1;
   /* look for eol */
   l0=Lpt[4]-1;
-  if(Lin[l0]==slash&&Lin[l0-1]==slash&Lin[l0+1]==eol) 
+  if( (Lin[l0]==slash) &&(Lin[l0-1]==slash)&(Lin[l0+1]==eol)) /* Correction Warning */
     l0=l0+1;
     
   l=l0;
