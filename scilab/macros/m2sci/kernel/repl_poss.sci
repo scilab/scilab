@@ -1,7 +1,7 @@
 function []=repl_poss(expr,varargin)
 // Copyright INRIA
-
-return
+// Scilab Project - V. Couvert
+// Display informations for replacement for a statement in converted file
 
 txt=[]
 nposs=size(varargin)
