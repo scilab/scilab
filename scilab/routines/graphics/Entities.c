@@ -7545,7 +7545,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
       if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)
 	return (sciPointObj *) NULL;
       sciSetEntityType (pobj, SCI_TITLE);
-      if ((pTITLE_FEATURE (pobj) = MALLOC ((sizeof (sciTitle)))) == NULL)
+      if ((pobj->pfeatures = MALLOC ((sizeof (sciTitle)))) == NULL)
 	{
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
@@ -7664,7 +7664,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
 	return (sciPointObj *) NULL;
       sciSetEntityType (pobj, SCI_LEGEND);
-      if ((pLEGEND_FEATURE (pobj) = MALLOC ((sizeof (sciLegend)))) == NULL)
+      if ((pobj->pfeatures = MALLOC ((sizeof (sciLegend)))) == NULL)
 	{
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
