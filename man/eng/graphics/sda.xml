@@ -25,7 +25,9 @@
   </PARAM>
  
   <DESCRIPTION>
+  <P>
    This routine resets the axes' model to default values.
+   </P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[

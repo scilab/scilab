@@ -9,10 +9,12 @@
    Patch entity properties </SHORT_DESCRIPTION>
  
   <DESCRIPTION>
+  <P>
   A patch is a filled polyline.
   The Patch entity is a leaf of the graphics entities
   hierarchy. This entity defines the parameters for patchs.
-
+  </P>
+  <DESCRIPTION_INDENT>
   
    <DESCRIPTION_ITEM label="visible: ">
     <SP>This field contains the  <VERB>visible</VERB> property value
@@ -69,7 +71,7 @@
       entity should be of the type <VERB>&quot;Axes&quot;</VERB> or <VERB>&quot;Agregation&quot;</VERB>.</SP>
      </DESCRIPTION_ITEM>
   
-
+  </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[             
   

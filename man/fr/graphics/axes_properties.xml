@@ -9,11 +9,13 @@
    axes entity properties </SHORT_DESCRIPTION>
  
   <DESCRIPTION>
-  The Axes entity is the second level of the graphics entities
+   <P>
+   The Axes entity is the second level of the graphics entities
   hierarchy. This entity defines the parameters allowing the change of
   coordinates and the axes drawing as well as the  parameters' default 
   values for the children creation.
-
+   </P>
+    <DESCRIPTION_INDENT>
 
 
   <DESCRIPTION_ITEM label="Axes properties">
@@ -294,7 +296,7 @@
 
 
   
-
+  <DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
    set("figure_style","new") //create a figure

@@ -24,7 +24,9 @@
   </PARAM>
  
   <DESCRIPTION>
+  <P>
    This routine returns the handle of the current axes for the current figure.
+  </P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[

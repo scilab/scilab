@@ -25,8 +25,10 @@
   </PARAM>
  
   <DESCRIPTION>
+  <P>
    This routine returns the handle of the figure's model in the interest 
    to adapt it to the customer requirements.
+   </P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[

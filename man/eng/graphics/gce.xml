@@ -24,7 +24,9 @@
   </PARAM>
  
   <DESCRIPTION>
+  <P>
    This routine returns the handle of the last created (and still existent) entity.
+  </P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[

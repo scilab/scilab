@@ -9,9 +9,11 @@
    Polyline entity properties </SHORT_DESCRIPTION>
  
   <DESCRIPTION>
+  <P>
   The Polyline entity is a leaf of the graphics entities
   hierarchy. This entity defines the parameters for polylines.
-
+  </P>
+  <DESCRIPTION_INDENT>
    <DESCRIPTION_ITEM label="visible: ">
     <SP>This field contains the  <VERB>visible</VERB> property value
    for the entity . It should
@@ -46,10 +48,12 @@
         <DESCRIPTION_ITEM> 
         <SP>If the value is 0 or 1 lines are drawn between two consecutives points.</SP>
         </DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM> 
         <SP>If the value is 2 the polyline produces a staircase plot. Two
         consecutives points are linked by an horizontal line followed
         by a vertical line.</SP>
-        <DESCRIPTION_ITEM>
+        </DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM>
         <SP>If the value is 3 the polyline produces a bar plot. For each
         given point (x,y) a vertical line is drawn from (x,y) to (x,0).</SP>
         </DESCRIPTION_ITEM>
@@ -121,7 +125,7 @@
       entity should be of the type <VERB>&quot;Axes&quot;</VERB> or <VERB>&quot;Agregation&quot;</VERB>.</SP>
      </DESCRIPTION_ITEM>
   
-
+  </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[  
 

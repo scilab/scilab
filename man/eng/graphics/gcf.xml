@@ -24,9 +24,11 @@
   </PARAM>
  
   <DESCRIPTION>
+  <P>
    This routine returns the handle of the current  graphic or GUI window. If
     the current figure is a graphic one <VERB>gcf()</VERB> returns a handle on it. If
     the current figure is a <LINK>uicontrol</LINK> one <VERB>gcf()</VERB> returns it's figure number. 
+  </P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[

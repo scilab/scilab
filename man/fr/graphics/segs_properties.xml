@@ -9,11 +9,12 @@
    Segments entity properties </SHORT_DESCRIPTION>
  
   <DESCRIPTION>
+  <P>
   The Segs entity is a leaf of the graphics entities
   hierarchy. This entity defines the parameters for a set of colored
   segments or colored arrows.
-
-  
+  </P>
+  <DESCRIPTION_INDENT>
    <DESCRIPTION_ITEM label="visible: ">
     <SP>This field contains the  <VERB>visible</VERB> property value
    for the entity . It should
@@ -89,7 +90,7 @@
       entity should be of the type <VERB>&quot;Axes&quot;</VERB> or <VERB>&quot;Agregation&quot;</VERB>.</SP>
      </DESCRIPTION_ITEM>
   
-
+  </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 

@@ -9,10 +9,12 @@
    Rectangle entity properties </SHORT_DESCRIPTION>
  
   <DESCRIPTION>
+  <P>
   The Rectangle entity is a leaf of the graphics entities
   hierarchy. This entity defines the parameters for rectangles and
   filled rectangles.
-
+  </P>
+  <DESCRIPTION_INDENT>
   
    <DESCRIPTION_ITEM label="visible: ">
     <SP>This field contains the  <VERB>visible</VERB> property value
@@ -114,7 +116,7 @@
      </DESCRIPTION_ITEM>
    
   
-
+  </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
    set("figure_style","new") //create a figure
