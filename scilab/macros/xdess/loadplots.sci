@@ -764,11 +764,11 @@ function txt=%xcall1_string(rec)
 	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
 	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
     case 'xpolys' then
-    draw=sci2exp(rec.x3)
+    dr=sci2exp(rec.x3)
     m=rec.ndx1
     txt=[sci2exp(matrix(rec.dx1,m,-1),'x')
 	 sci2exp(matrix(rec.dx2,m,-1),'y')
-	 'xpolys(x,y,'+draw+')']
+	 'xpolys(x,y,'+dr+')']
     case 'xstring' then
     txt='xstring('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
 	sci2exp(rec.string)+','+sci2exp(rec.dx3)+')'
