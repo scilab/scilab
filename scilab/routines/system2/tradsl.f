@@ -1253,7 +1253,7 @@ c
  115  continue
 c     affectation
       nlhs=istk(lc+1)
-      print *, 'affectation'
+c      print *, 'affectation'
       il=iadr(lr)
       istk(il)=10
       istk(il+1)=1
