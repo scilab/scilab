@@ -291,7 +291,7 @@ void C2F(getclipPos)(integer *verbose, integer *x, integer *narg, double *dummy)
 
 void C2F(setabsourelPos)(integer *num, integer *v2, integer *v3, integer *v4)
 {
-  if (*num == CoordModeOrigin )
+  if (*num ==  CoordModeOrigin )
     ScilabGCPos.CurVectorStyle =  CoordModeOrigin;
   else 
     ScilabGCPos.CurVectorStyle =  CoordModePrevious ;
@@ -1034,15 +1034,6 @@ void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, in
 	   string));
  }
 
-
-double bsizePos[6][4]= {{ 0.0,-7.0,4.63,9.0  },  /* normalement inutilise ici avec les modifs suivantes */
-		{ 0.0,-9.0,5.74,12.0 },          
-		{ 0.0,-11.0,6.74,14.0},
-		{ 0.0,-12.0,7.79,15.0},
-		{0.0, -15.0,9.72,19.0 },
-		{0.0,-20.0,13.41,26.0}};
-
-
 /*** ajouts q&d en attendant mieux.... Bruno (le 24 Nov 2002) ***/
 
 struct posfont  /* a data type for handling a postscript font in scilab */
@@ -1162,8 +1153,86 @@ typedef struct posfont PosFont;
                              0,           /* Is Fixed Pitch */
                              WidthTimesBI };
    
-#define NB_MAX_POS_FONT 6
-static PosFont *FontArray[NB_MAX_POS_FONT] = {&Courier, &Symbol, &TimesR, &TimesI, &TimesB, &TimesBI};
+ /**   datas for postscript font : Helvetica   **/
+ static int WidthHelvetica[] = { 278 , 278 , 355 , 556 , 556 , 889 , 667 , 222 , 333 , 333 ,
+                                 389 , 584 , 278 , 333 , 278 , 278 , 556 , 556 , 556 , 556 ,
+                                 556 , 556 , 556 , 556 , 556 , 556 , 278 , 278 , 584 , 584 ,
+                                 584 , 556 ,1015 , 667 , 667 , 722 , 722 , 667 , 611 , 778 ,
+                                 722 , 278 , 500 , 667 , 556 , 833 , 722 , 778 , 667 , 778 ,
+                                 722 , 667 , 611 , 722 , 667 , 944 , 667 , 667 , 611 , 278 ,
+                                 278 , 278 , 469 , 556 , 222 , 556 , 556 , 500 , 556 , 556 ,
+                                 278 , 556 , 556 , 222 , 222 , 500 , 222 , 833 , 556 , 556 ,
+                                 556 , 556 , 333 , 500 , 278 , 556 , 500 , 722 , 500 , 500 ,
+                                 500 , 334 , 260 , 334 , 584 };
+ static PosFont Helvetica = { "Helvetica",
+                               775,         /* Ascender */
+                              -220,         /* Descender */
+                               526,         /* Mean Width */
+                               0,           /* Is Fixed Pitch */
+                               WidthHelvetica };
+   
+   
+ /**   datas for postscript font : Helvetica-Bold   **/
+ static int WidthHelveticaB[] = { 278 , 333 , 474 , 556 , 556 , 889 , 722 , 278 , 333 , 333 ,
+                                  389 , 584 , 278 , 333 , 278 , 278 , 556 , 556 , 556 , 556 ,
+                                  556 , 556 , 556 , 556 , 556 , 556 , 333 , 333 , 584 , 584 ,
+                                  584 , 611 , 975 , 722 , 722 , 722 , 722 , 667 , 611 , 778 ,
+                                  722 , 278 , 556 , 722 , 611 , 833 , 722 , 778 , 667 , 778 ,
+                                  722 , 667 , 611 , 722 , 667 , 944 , 667 , 667 , 611 , 333 ,
+                                  278 , 333 , 584 , 556 , 278 , 556 , 611 , 556 , 611 , 556 ,
+                                  333 , 611 , 611 , 278 , 278 , 556 , 278 , 889 , 611 , 611 ,
+                                  611 , 611 , 389 , 556 , 333 , 611 , 556 , 778 , 556 , 556 ,
+                                  500 , 389 , 280 , 389 , 584 };
+ static PosFont HelveticaB = { "Helvetica-Bold",
+                                775,         /* Ascender */
+                               -217,         /* Descender */
+                                551,         /* Mean Width */
+                                0,           /* Is Fixed Pitch */
+                                WidthHelveticaB };
+   
+   
+ /**   datas for postscript font : Helvetica-Oblique   **/
+ static int WidthHelveticaO[] = { 278 , 278 , 355 , 556 , 556 , 889 , 667 , 222 , 333 , 333 ,
+                                  389 , 584 , 278 , 333 , 278 , 278 , 556 , 556 , 556 , 556 ,
+                                  556 , 556 , 556 , 556 , 556 , 556 , 278 , 278 , 584 , 584 ,
+                                  584 , 556 ,1015 , 667 , 667 , 722 , 722 , 667 , 611 , 778 ,
+                                  722 , 278 , 500 , 667 , 556 , 833 , 722 , 778 , 667 , 778 ,
+                                  722 , 667 , 611 , 722 , 667 , 944 , 667 , 667 , 611 , 278 ,
+                                  278 , 278 , 469 , 556 , 222 , 556 , 556 , 500 , 556 , 556 ,
+                                  278 , 556 , 556 , 222 , 222 , 500 , 222 , 833 , 556 , 556 ,
+                                  556 , 556 , 333 , 500 , 278 , 556 , 500 , 722 , 500 , 500 ,
+                                  500 , 334 , 260 , 334 , 584 };
+ static PosFont HelveticaO = { "Helvetica-Oblique",
+                                775,         /* Ascender */
+                               -220,         /* Descender */
+                                526,         /* Mean Width */
+                                0,           /* Is Fixed Pitch */
+                                WidthHelveticaO };
+   
+   
+ /**   datas for postscript font : Helvetica-BoldOblique   **/
+ static int WidthHelveticaBO[] = { 278 , 333 , 474 , 556 , 556 , 889 , 722 , 278 , 333 , 333 ,
+                                   389 , 584 , 278 , 333 , 278 , 278 , 556 , 556 , 556 , 556 ,
+                                   556 , 556 , 556 , 556 , 556 , 556 , 333 , 333 , 584 , 584 ,
+                                   584 , 611 , 975 , 722 , 722 , 722 , 722 , 667 , 611 , 778 ,
+                                   722 , 278 , 556 , 722 , 611 , 833 , 722 , 778 , 667 , 778 ,
+                                   722 , 667 , 611 , 722 , 667 , 944 , 667 , 667 , 611 , 333 ,
+                                   278 , 333 , 584 , 556 , 278 , 556 , 611 , 556 , 611 , 556 ,
+                                   333 , 611 , 611 , 278 , 278 , 556 , 278 , 889 , 611 , 611 ,
+                                   611 , 611 , 389 , 556 , 333 , 611 , 556 , 778 , 556 , 556 ,
+                                   500 , 389 , 280 , 389 , 584 };
+ static PosFont HelveticaBO = { "Helvetica-BoldOblique",
+                                 775,         /* Ascender */
+                                -217,         /* Descender */
+                                 551,         /* Mean Width */
+                                 0,           /* Is Fixed Pitch */
+                                 WidthHelveticaBO };
+
+   
+#define NB_MAX_POS_FONT 10
+static PosFont *FontArray[NB_MAX_POS_FONT] = {&Courier, &Symbol, 
+					      &TimesR,    &TimesI,     &TimesB,     &TimesBI,
+                                              &Helvetica, &HelveticaO, &HelveticaB, &HelveticaBO};
 
 #define NB_MAX_SIZES 6
 static int Font_Size_in_pts[NB_MAX_SIZES] = {8, 10, 12, 14, 18, 24};
@@ -1226,12 +1295,8 @@ static double PosStrAsc(integer id_font, integer id_size)
 }
 /*** fin des ajouts de Bruno  ***/
 
-/** To get the bounding rectangle of a string **/
-/** we can't ask Postscript directly so we have an **/
-/** approximative result in Postscript : use the X11 driver **/
-/** with the same current font to have a good result **/
 
-/*** modified by Bruno by using the previus datas and functions ***/
+/** To get the bounding rectangle of a string (modified by Bruno by using the previus datas and functions) **/
 void C2F(boundingboxPos)(char *string, integer *x, integer *y, integer *rect, integer *v5, 
 			 integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
@@ -1244,35 +1309,27 @@ void C2F(boundingboxPos)(char *string, integer *x, integer *y, integer *rect, in
   rect[1]= (integer)(*y-h*prec_fact);
   rect[2]= (integer)(w*prec_fact);
   rect[3]= (integer)(h*prec_fact);
-  /* old code 
-     rect[0]= (int)(*x+bsizePos[font[1]][0]*((double) prec_fact));
-     rect[1]= (int)(*y+bsizePos[font[1]][1]*((double) prec_fact));
-     rect[2]= (int)(bsizePos[font[1]][2]*((double)prec_fact)*(int)strlen(string));
-     rect[3]= (int)(bsizePos[font[1]][3]*((double)prec_fact));
-  */
 }
 
-/* approximation of ascent using (asc + dsc) /2  */ 
-/** modified by bruno **/
+/* approximation of ascent using (asc + dsc) /2  (modified by bruno) */
 static double ascentPos() 
 { 
   static integer verbose=0,nargs,font[2];
   C2F(xgetfontPos)(&verbose,font,&nargs,vdouble);
   return (PosStrAsc(font[0], font[1]) * prec_fact);
-  /* old: return ((bsizePos[font[1]][1] +(bsizePos[font[1]][3]/2.0) ))*((double) prec_fact); */
 }
 
-/** Draw a single line in current style **/
 
+/** Draw a single line in current style **/
 void C2F(drawlinePos)(integer *xx1, integer *yy1, integer *x2, integer *y2)
 {
     FPRINTF((file,"\n %d %d %d %d L",(int)*xx1,(int)*yy1,(int)*x2,(int)*y2));
   }
 
+
 /** Draw a set of segments **/
 /** segments are defined by (vx[i],vy[i])->(vx[i+1],vy[i+1]) **/
 /** for i=0 step 2 **/
-
 void C2F(drawsegmentsPos)(char *str, integer *vx, integer *vy, integer *n, integer *style, integer *iflag, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer verbose=0,Dnarg,Dvalue[10],NDvalue;
@@ -1564,6 +1621,10 @@ void C2F(initgraphicPos)(char *string, integer *v2, integer *v3, integer *v4, in
       fnum=3;      C2F(loadfamilyPos)("Times-Italic",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
       fnum=4;      C2F(loadfamilyPos)("Times-Bold",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
       fnum=5;      C2F(loadfamilyPos)("Times-BoldItalic",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=6;      C2F(loadfamilyPos)("Helvetica",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=7;      C2F(loadfamilyPos)("Helvetica-Oblique",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=8;      C2F(loadfamilyPos)("Helvetica-Bold",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=9;      C2F(loadfamilyPos)("Helvetica-BoldOblique",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
 
     }
   FileInit();
@@ -1858,12 +1919,12 @@ void C2F(Write2VectPos)(integer *vx, integer *vy, integer from, integer n, char 
 
 /** Global variables to deal with fonts **/
 
-#define FONTNUMBER 7
+#define FONTNUMBER 11
 #define FONTMAXSIZE 6
 #define SYMBOLNUMBER 10
 integer FontsListPos[FONTNUMBER][FONTMAXSIZE];
 struct SciFontInfo { integer ok;
-		  char fname[20];} FontInfoTabPos[FONTNUMBER];
+		  char fname[21];} FontInfoTabPos[FONTNUMBER];
 
 static char *sizePos[] = { "08" ,"10","12","14","18","24"};
 static int  isizePos[] = { 8 ,10,12,14,18,24};
@@ -1876,21 +1937,23 @@ static int fontsizePos (void)
 }
 	 
 
-
 void C2F(xsetfontPos)(integer *fontid, integer *fontsize, integer *v3, integer *v4)
-{ integer i,fsiz;
+/* modified by bruno (Jan 2004) */
+{ 
+  integer i,fsiz;
   i = Min(FONTNUMBER-1,Max(*fontid,0));
   fsiz = Min(FONTMAXSIZE-1,Max(*fontsize,0));
   if ( FontInfoTabPos[i].ok !=1 )
-    Scistring("\n Sorry This Font is Not available ");
-  else 
-   {
-     ScilabGCPos.FontId = i;
-     ScilabGCPos.FontSize = fsiz;
-     FPRINTF((file,"\n/%s findfont %d scf mul scalefont setfont",
-	     FontInfoTabPos[i].fname,
-	     (int) (isizePos[fsiz]*prec_fact)));
-   }
+    {
+      /* currently this case occurs only when i=FONTNUMBER-1 */
+      Scistring("\n Sorry This Font is Not available: use default font (Times)\n");
+      i = 2;
+    }
+  ScilabGCPos.FontId = i;
+  ScilabGCPos.FontSize = fsiz;
+  FPRINTF((file,"\n/%s findfont %d scf mul scalefont setfont",
+	   FontInfoTabPos[i].fname,
+	   (int) (isizePos[fsiz]*prec_fact)));
 }
 
 /** To get the values id and size of the current font **/

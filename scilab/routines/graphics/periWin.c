@@ -4393,7 +4393,7 @@ void C2F(bitmap)(string, w, h)
  * Fonts for the graphic windows 
  ***********************************/
 
-#define FONTNUMBER 7 
+#define FONTNUMBER 11 
 #define FONTMAXSIZE 6
 #define SYMBOLNUMBER 10
 
@@ -4452,6 +4452,10 @@ FontAlias fonttab[] ={
   {"TimI", "-adobe-times-medium-i-normal--*-%s0-*-*-p-*-iso8859-1","Times New Roman Italic"},
   {"TimB", "-adobe-times-bold-r-normal--*-%s0-*-*-p-*-iso8859-1","Times New Roman Bold"},
   {"TimBI", "-adobe-times-bold-i-normal--*-%s0-*-*-p-*-iso8859-1","Times New Roman Bold Italic"},
+  {"HelvR", "-adobe-helvetica-medium-r-normal--*-%s0-*-*-p-*-iso8859-1","Arial"},
+  {"HelvO", "-adobe-helvetica-medium-o-normal--*-%s0-*-*-p-*-iso8859-1","Arial Italic"},
+  {"HelvB", "-adobe-helvetica-bold-r-normal--*-%s0-*-*-p-*-iso8859-1", "Arial Bold"},
+  {"HelvBO","-adobe-helvetica-bold-o-normal--*-%s0-*-*-p-*-iso8859-1", "Arial Bold Italic"},
   {(char *) NULL,( char *) NULL}
 };
 
@@ -4471,7 +4475,7 @@ void C2F(xsetfont)(fontid, fontsize, v3, v4)
   fsiz = Min(FONTMAXSIZE-1,Max(*fontsize,0));
   if ( (*FontTab)[i].ok !=1 )
     { 
-      if (i != 6 )
+      if (i != FONTNUMBER-1 )
 	{
 	  C2F(loadfamily)(fonttab[i].alias,&i,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 	}

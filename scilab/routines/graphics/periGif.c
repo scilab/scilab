@@ -1261,6 +1261,17 @@ void C2F(displaystringGif)(char *string, integer *x, integer *y, integer *v1, in
 		  GifLineColor());
     C2F(setdashGif)(Dvalue,PI0,PI0,PI0);
   }
+  else if ( Abs(*angle + 90) <= 0.1 )   /* added by Bruno */
+    {
+    C2F(boundingboxGif)(string,&x1,&y1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+    C2F(getdashGif)(&verbose,Dvalue,&Dnarg,vdouble);
+    C2F(setdashGif)((j=1,&j),PI0,PI0,PI0);
+    /* a voir (peut etre enlever le -rect[2] qui doit centrer en vertical alors
+       que ce n'est pas attendu) */
+    gdImageStringUp(GifIm, GifFont, *x - rect[3], *y - rect[2], (unsigned char*) string,
+		  GifLineColor());
+    C2F(setdashGif)(Dvalue,PI0,PI0,PI0);
+    }
   else 
     C2F(DispStringAngleGif)(x,y,string,angle);
 }
@@ -1982,13 +1993,13 @@ void C2F(displaynumbersGif)(char *str, integer *x, integer *y, integer *v1, inte
 
 /** Global variables to deal with fonts **/
 
-#define FONTNUMBER 6
+#define FONTNUMBER 11
 #define FONTMAXSIZE 6
 #define SYMBOLNUMBER 10
 
 
 static char *sizeGif[] = { "08" ,"10","12","14","18","24"};
-static int  isizeGif[FONTNUMBER] = { 8 ,10,12,14,18,24 };
+static int  isizeGif[FONTMAXSIZE] = { 8 ,10,12,14,18,24 };
 
 /* FontsList : stockage des structures des fonts 
    la font i a la taille fsiz se trouve ds 
@@ -2022,6 +2033,10 @@ static FontAlias fonttab[] ={
   {"timI", "-adobe-times-medium-i-normal--*-%s0-*-*-p-*-iso8859-1"},
   {"timB", "-adobe-times-bold-r-normal--*-%s0-*-*-p-*-iso8859-1"},
   {"timBI", "-adobe-times-bold-i-normal--*-%s0-*-*-p-*-iso8859-1"},
+  {"helvR", "-adobe-helvetica-medium-r-normal--*-%s0-*-*-p-*-iso8859-1"},
+  {"helvO", "-adobe-helvetica-medium-o-normal--*-%s0-*-*-p-*-iso8859-1"},
+  {"helvB", "-adobe-helvetica-bold-r-normal--*-%s0-*-*-p-*-iso8859-1"},
+  {"helvBO","-adobe-helvetica-bold-o-normal--*-%s0-*-*-p-*-iso8859-1"},
   {(char *) NULL,( char *) NULL}
 };
 
@@ -2033,15 +2048,14 @@ void C2F(xsetfontGif)(integer *fontid, integer *fontsize, integer *v3, integer *
   fsiz = Min(FONTMAXSIZE-1,Max(*fontsize,0));
   if ( FontInfoTabGif[i].ok !=1 )
     { 
-      if (i != 6 )
+      if (i != FONTNUMBER-1 )  /* a voir ... */
 	{
 	  C2F(loadfamilyGif)(fonttab[i].alias,&i,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 	}
       else 
 	{
-	  sciprint(" The Font Id %d is not affected \r\n",(int)i);
-	  Scistring(" use xlfont to set it \n");
-	  return;
+	  sciprint(" The Font Id %d is not affected: use default font (Times)\r\n",(int)i);
+	  i = 2; /* celle-ci est préchargée lors de l'init */
 	}
     }
   ScilabGCGif.FontId = i;
@@ -2117,10 +2131,10 @@ void C2F(loadfamilyGif)(char *name, integer *j, integer *v3, integer *v4, intege
   char *SciPath;
   gdFontPtr Font;
 
-/** generic name with % **/
-  if ( strchr(name,'%') != (char *) NULL)
+  /** test if it is an alias font name **/
+  if ( strchr(name,'%') != (char *) NULL)  /* no apriori it is an X11 font name */
     {
-      sciprint("Generic font names are not supported by gif driver\n");
+      sciprint("only alias font name are supported by gif driver\n");
       return;
     }
   SciPath=getenv("SCI");

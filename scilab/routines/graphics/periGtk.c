@@ -3058,7 +3058,7 @@ void C2F(bitmap)(char *string, integer w, integer h)
  * Using X11 Fonts
  *---------------------------------------------------------------------*/
 
-#define FONTNUMBER 7 
+#define FONTNUMBER 11 
 #define FONTMAXSIZE 6
 #define SYMBOLNUMBER 10
 
@@ -3097,11 +3097,15 @@ typedef  struct  {
 
 FontAlias fonttab[] ={
   {"CourR", "-adobe-courier-medium-r-normal--*-%s0-*-*-m-*-iso8859-1"},
-  {"Symb", "-adobe-symbol-medium-r-normal--*-%s0-*-*-p-*-adobe-fontspecific"},
-  {"TimR", "-adobe-times-medium-r-normal--*-%s0-*-*-p-*-iso8859-1"},
-  {"TimI", "-adobe-times-medium-i-normal--*-%s0-*-*-p-*-iso8859-1"},
-  {"TimB", "-adobe-times-bold-r-normal--*-%s0-*-*-p-*-iso8859-1"},
+  {"Symb",  "-adobe-symbol-medium-r-normal--*-%s0-*-*-p-*-adobe-fontspecific"},
+  {"TimR",  "-adobe-times-medium-r-normal--*-%s0-*-*-p-*-iso8859-1"},
+  {"TimI",  "-adobe-times-medium-i-normal--*-%s0-*-*-p-*-iso8859-1"},
+  {"TimB",  "-adobe-times-bold-r-normal--*-%s0-*-*-p-*-iso8859-1"},
   {"TimBI", "-adobe-times-bold-i-normal--*-%s0-*-*-p-*-iso8859-1"},
+  {"HelvR", "-adobe-helvetica-medium-r-normal--*-%s0-*-*-p-*-iso8859-1"},
+  {"HelvO", "-adobe-helvetica-medium-o-normal--*-%s0-*-*-p-*-iso8859-1"},
+  {"HelvB", "-adobe-helvetica-bold-r-normal--*-%s0-*-*-p-*-iso8859-1"},
+  {"HelvBO","-adobe-helvetica-bold-o-normal--*-%s0-*-*-p-*-iso8859-1"},
   {(char *) NULL,( char *) NULL}
 };
 
@@ -3127,11 +3131,11 @@ static void xset_font(integer *fontid, integer *fontsize, integer *v3, integer *
   fsiz_sca = fsiz ;/* XXX fontidscale(fsiz); Scale fonts */
   if ( FontInfoTab_[i].ok !=1 ) 
     { 
-      if (i != 6 )
+      if (i != FONTNUMBER-1 )   /* on charge la fonte par defaut correspondante */
 	{
 	  C2F(loadfamily)(fonttab[i].alias,&i,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 	}
-      else 
+      else
 	{
 	  Sciprintf(" The Font Id %d is not affected \r\n",(int)i);
 	  Sciprintf(" use xlfont to set it \n");
@@ -3197,9 +3201,17 @@ static void xget_mark(integer *verbose, integer *symb, integer *narg, double *du
  *   to X11 
  */
 
-void C2F(loadfamily)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
+void C2F(loadfamily)(char *name, integer *j, integer *v3, integer *v4, integer *v5, 
+		     integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
-  integer i,flag=1 ;
+  integer i,flag=1;
+
+  if ( *j < 0  ||  *j > FONTNUMBER-1 )
+    {
+      Scierror(999,"xlfont: font-id must be an integer between 0 and %d \r\n",  FONTNUMBER-1);
+      return;
+    }
+
   /** generic name with % **/
   if ( strchr(name,'%') != (char *) NULL)
     {
@@ -3276,7 +3288,8 @@ static void C2F(loadfamily_n)(char *name, integer *j)
     strcpy(FontInfoTab_[*j].fname,"fixed");
 }
 
-void C2F(queryfamily)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
+void C2F(queryfamily)(char *name, integer *j, integer *v3, integer *v4, integer *v5, 
+		      integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer i ;
   name[0]='\0';
@@ -3285,7 +3298,7 @@ void C2F(queryfamily)(char *name, integer *j, integer *v3, integer *v4, integer 
     if (v3[i] > 0)
       strcat(name,FontInfoTab_[i].fname);
     else
-      if (i < 6) {
+      if (i < FONTNUMBER-1) {      /* ici il y avait 6 ... */
 	v3[i]=strlen(fonttab[i].name);
 	strcat(name,fonttab[i].name);
       }

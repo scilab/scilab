@@ -80,14 +80,14 @@ static void set_dash_or_color (int dash,int *l_style,int *style_val,int *color);
 static double *vdouble = 0; /* used when a double argument is needed */
 /** Global variables to deal with fonts **/
 
-#define FONTNUMBER 7
+#define FONTNUMBER 11
 #define FONTMAXSIZE 6
 #define SYMBOLNUMBER 10
 integer FontsListXfig_[FONTNUMBER][FONTMAXSIZE];
 struct SciFontInfo { integer ok;
-		  char fname[20];} FontInfoTabXfig_[FONTNUMBER];
+		  char fname[21];} FontInfoTabXfig_[FONTNUMBER];
 /** xfig code for our fonts **/
-static integer  xfig_font[]= { 12,32,0,1,2,3,0};
+static integer  xfig_font[]= { 12,32,0,1,2,3,16,17,18,19,0};
 static char *sizeXfig_[] = { "08" ,"10","12","14","18","24"};
 static integer  isizeXfig_[] = { 8,10,12,14,18,24};
 
@@ -776,20 +776,38 @@ void C2F(gethidden3dXfig)(integer *verbose, integer *num, integer *narg, double 
 
 /** To set the current font id of font and size **/
 
+/* void C2F(xsetfontXfig)(integer *fontid, integer *fontsize, integer *v3, integer *v4) */
+/* { integer i,fsiz; */
+/*   i = Min(FONTNUMBER-1,Max(*fontid,0)); */
+/*   fsiz = Min(FONTMAXSIZE-1,Max(*fontsize,0)); */
+/*   if ( FontInfoTabXfig_[i].ok !=1 ) */
+/*     Scistring("\n Sorry This Font is Not available\n"); */
+/*   else  */
+/*    { */
+/*      ScilabGCXfig.FontId = i; */
+/*      ScilabGCXfig.FontSize = fsiz; */
+/*      FPRINTF((file,"#/%s findfont %d scalefont setfont\n", */
+/*      	     FontInfoTabXfig_[i].fname, */
+/* 	     (int)isizeXfig_[fsiz]*prec_fact)); */
+/*    } */
+/* } */
+
 void C2F(xsetfontXfig)(integer *fontid, integer *fontsize, integer *v3, integer *v4)
-{ integer i,fsiz;
+{ 
+  integer i,fsiz;
   i = Min(FONTNUMBER-1,Max(*fontid,0));
   fsiz = Min(FONTMAXSIZE-1,Max(*fontsize,0));
   if ( FontInfoTabXfig_[i].ok !=1 )
-    Scistring("\n Sorry This Font is Not available\n");
-  else 
-   {
-     ScilabGCXfig.FontId = i;
-     ScilabGCXfig.FontSize = fsiz;
-     FPRINTF((file,"#/%s findfont %d scalefont setfont\n",
-     	     FontInfoTabXfig_[i].fname,
-	     (int)isizeXfig_[fsiz]*prec_fact));
-   }
+    {
+      /* currently this case occurs only when i=FONTNUMBER-1 */
+      Scistring("\n Sorry This Font is Not available: use default font (Times)\n");
+      i = 2;
+    }
+  ScilabGCXfig.FontId = i;
+  ScilabGCXfig.FontSize = fsiz;
+  FPRINTF((file,"#/%s findfont %d scalefont setfont\n",
+	   FontInfoTabXfig_[i].fname,
+	   (int)isizeXfig_[fsiz]*prec_fact));
 }
 
 /** To get the values id and size of the current font **/
@@ -1015,12 +1033,12 @@ void C2F(displaystringXfig)(char *string, integer *x, integer *y, integer *v1, i
     }
 }
 
-integer bsizeXfig_[6][4]= {{ 0,-7,463,9  },
-		{ 0,-9,574,12 },
-		{ 0,-11,674,14},
-		{ 0,-12,779,15},
-		{0, -15,972,19 },
-		{0,-20,1341,26}};
+integer bsizeXfig_[6][4]= {{ 0, -7,  463, 9  },
+			   { 0, -9,  574, 12 },
+			   { 0, -11, 674, 14 },
+			   { 0, -12, 779, 15 },
+			   { 0, -15, 972, 19 },
+			   { 0, -20,1341, 26 }};
 
 /** To get the bounding rectangle of a string **/
 
@@ -1505,7 +1523,10 @@ void C2F(initgraphicXfig)(char *string, integer *v2, integer *v3, integer *v4, i
       fnum=3;      C2F(loadfamilyXfig)("Times-Italic",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
       fnum=4;      C2F(loadfamilyXfig)("Times-Bold",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
       fnum=5;      C2F(loadfamilyXfig)("Times-BoldItalic",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
-
+      fnum=6;      C2F(loadfamilyXfig)("Helvetica",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=7;      C2F(loadfamilyXfig)("Helvetica-Oblique",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=8;      C2F(loadfamilyXfig)("Helvetica-Bold",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=9;      C2F(loadfamilyXfig)("Helvetica-BoldOblique",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
     }
   C2F(FileInitXfig)();
   ScilabGCXfig.CurWindow =EntryCounter;
