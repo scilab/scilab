@@ -150,27 +150,27 @@ void cscope(scicos_block *block,int flag)
 	  /*     clear window */
 	  nax[0] = 2;
 	  nax[1] = 10;
-	    nax[2] = 2;
-	    nax[3] = 10;
-	    C2F(dr1)("xclear\000", "v\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv,
-		     &dv);
-	    C2F(dr1)("xset\000", "use color\000", &ipar[2], &c__0, &c__0, &c__0, &
-		     c__0, &v, &dv, &dv, &dv, &dv);
-	    C2F(dr)("xstart\000", "v\000", &wid, &v, &v, &v, &v, &v, &dv, &dv, &
-		    dv, &dv);
-	    rect[0] = per * (n1 + 1);
-	    rect[1] = ymin;
-	    rect[2] = per * (n1 + 2);
-	    rect[3] = ymax;
-	    C2F(dr1)("xset\000", "dashes\000", &c__0, &c__0, &c__0, &c__0, &c__0, 
-		     &v, &dv, &dv, &dv, &dv);
-	    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, "011", buf, rect, nax,
-			&c__4, &c__21);
+	  nax[2] = 2;
+	  nax[3] = 6;
+	  C2F(dr1)("xclear\000", "v\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv,
+		   &dv);
+	  C2F(dr1)("xset\000", "use color\000", &ipar[2], &c__0, &c__0, &c__0, &
+		   c__0, &v, &dv, &dv, &dv, &dv);
+	  C2F(dr)("xstart\000", "v\000", &wid, &v, &v, &v, &v, &v, &dv, &dv, &
+		  dv, &dv);
+	  rect[0] = per * (n1 + 1);
+	  rect[1] = ymin;
+	  rect[2] = per * (n1 + 2);
+	  rect[3] = ymax;
+	  C2F(dr1)("xset\000", "dashes\000", &c__0, &c__0, &c__0, &c__0, &c__0, 
+		   &v, &dv, &dv, &dv, &dv);
+	  C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, "011", buf, rect, nax,
+		      &c__4, &c__21);
 	}
 	t = tsave;
 	
   } else if (flag == 4) {/* the workspace is used to store buffer 
-			     */
+			  */
     if ((*block->work=
 	 scicos_malloc(sizeof(double)*(1+ipar[3]*(1+nu))))== NULL ) {
       set_block_error(-16);
@@ -179,8 +179,8 @@ void cscope(scicos_block *block,int flag)
     z__=*block->work; 
     --z__;
     z__[1]=-1.0;
-
-
+    
+    
     n = ipar[3];
     ymin = rpar[2];
     ymax = rpar[3];
@@ -188,7 +188,7 @@ void cscope(scicos_block *block,int flag)
     nax[0] = 2;
     nax[1] = 10;
     nax[2] = 2;
-    nax[3] = 10;
+    nax[3] = 6;
     n1 = (int) (t / per);
     if (t <= 0.) {
       --n1;
