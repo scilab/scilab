@@ -1,0 +1,24 @@
+-->xdel(winsid())
+31 //complex functions
+  1 //log
+  2 //exp
+  3 //tan
+  4 //atan
+  5 //sin
+  6 //asin
+  7 //cos
+  8 //acos
+  9 //sinh
+  10 //asinh
+  11 //cosh
+  12 //acosh
+  13 //tanh
+  14 //atanh
+  15 //custom
+    (1)./((z+2).*(2-z))
+    Disk
+    1.9
+    No
+    o //ok
+  0//exit
+
