@@ -5,6 +5,11 @@ extern "C" {
 #ifndef SCI_MEX 
 #define SCI_MEX 
 
+
+#ifdef WIN32
+	#include <stddef.h> /*for LCC */
+#endif
+
 #include "stack-c.h"
 
 typedef int Matrix;

@@ -14,6 +14,11 @@
 /* Les Definitions */
 /*-----------------------------------------------------------------------------------*/
 
+#define LCCEXE		"\\lcc\\bin\\lcc.exe" 
+#define LCCBIN		"\\lcc\\bin" 
+#define LCCINCLUDE	"\\lcc\\include" 
+#define LCCLIB		"\\lcc\\lib" 
+
 #if (defined __MSC__ ) || (defined __MINGW32__) 
 #define putenv(x) _putenv(x)
 #endif

@@ -1176,6 +1176,41 @@ void set_sci_env(char *p, char *wsci)
 		sprintf (env, "WSCI=%s", p);
 		putenv (env);
 	}
+	
+	/* Add lcc to path */
+	if ((p1 = getenv ("PATH")) == (char *) 0)
+	{
+		MessageBox(NULL,"No PATH environment ...","Error",MB_ICONWARNING);
+		exit(1);
+	}
+	else
+	{
+		char *NewPath;
+		char *PathWsci= getenv ("WSCI");
+		if ( PathWsci == (char *)0 )
+		{
+			MessageBox(NULL,"WSCI not defined","Error",MB_ICONWARNING);
+			exit(1);
+		}
+		else
+		{
+			char PathsLCC[1024];
+			char LCCFILE[MAX_PATH];
+
+			wsprintf(LCCFILE,"%s%s",PathWsci,LCCEXE);
+			if ( IsAFile(LCCFILE) )
+			{
+			wsprintf(PathsLCC,"%s%s;%s%s;%s%s",PathWsci,LCCBIN,PathWsci,LCCINCLUDE,PathWsci,LCCLIB);
+			NewPath=(char*)malloc( (strlen("PATH=;;")+strlen(p1)+strlen(PathsLCC)+1)*sizeof(char));
+			wsprintf(NewPath,"PATH=%s;%s;",p1,PathsLCC);
+			putenv (NewPath);
+			free(NewPath);
+			}
+		}
+	
+	}
+
+
 	#ifdef __MSC__
 	putenv ("COMPILER=VC++");
 	#endif
