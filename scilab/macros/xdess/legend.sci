@@ -49,17 +49,21 @@ function R=legend(varargin)
   xmin=arect(1);xmax=1-arect(2);ymin=-1+arect(4);ymax=-arect(3);
   axleg=gca();
   axleg.clip_state='off';
+  axleg.font_style=A.font_style;
+  axleg.font_size=A.font_size;
+  
   dy=ymax-ymin
   drx=(xmax-xmin)/20 //length of the line
 
   e=drx/2  // horizontal space between two columns
 
   bbx=[]
+  xset('font',A.font_style,A.font_size)
   for k=1:nleg
     r=xstringl(0,0,leg(k));
     bbx=[bbx;r(3:4)]; //[width height]
   end
-
+  
   coef = 0.5
   height=sum(bbx(:,2))
   dh = coef*height/nleg
@@ -89,7 +93,7 @@ function R=legend(varargin)
     opt=1
     case 0 then
 
-    case 1 then
+  case 1 then
     pos=[xmax-width-drx/5,ymax-dy/60]
     case 2 then
     pos=[xmin+drx/5,ymax-dy/60]
@@ -134,6 +138,7 @@ function R=legend(varargin)
 	    r.foreground=h.foreground;
 	    r.thickness=h.thickness;
 	    r.mark_style=h.mark_style;
+	    r.mark_size_unit=h.mark_size_unit;
 	    r.mark_size=h.mark_size;
 	  end
 	end
