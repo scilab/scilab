@@ -175,6 +175,18 @@ function gener_whatis(title)
     end
   end
   text = [head;gsort(line,'g','i');"</dl></body></html>"];
+  
+  // enleve &apos;
+  text=strsubst(text,"&apos;","''");
+  // Correction si format UTF-8
+  text=strsubst(text,"Ãª","ê");
+  text=strsubst(text,"Ã¹","ù");
+  text=strsubst(text,"Ã§","ç");
+  text=strsubst(text,"Ã©","é");
+  text=strsubst(text,"Ã¨","è");
+  text=strsubst(text,"Ã®","î");
+  text=strsubst(text,"Ã","à");
+   
   mputl(text,"whatis.htm");
 endfunction
 
@@ -214,6 +226,18 @@ function gener_index(dirs,txt)
     line(l)="<dd><A HREF="""+w+""">"+txt(k)+"</A></dd>"
   end
   line = [line;"</dl></body></html>"]
+  
+  // enleve &apos;
+  line=strsubst(line,"&apos;","''");
+  
+  // Correction si format UTF-8
+  line=strsubst(line,"Ãª","ê");
+  line=strsubst(line,"Ã¹","ù");
+  line=strsubst(line,"Ã§","ç");
+  line=strsubst(line,"Ã©","é");
+  line=strsubst(line,"Ã¨","è");
+  line=strsubst(line,"Ã®","î");
+  line=strsubst(line,"Ã","à");
   mputl(line,"index.htm")
 endfunction 
 
@@ -326,6 +350,18 @@ function gener_contents(dirs1)
 	       "</body></html>"
 	      ];
   
+  // enleve &apos;
+  full_whatis=strsubst(full_whatis,"&apos;","''");
+  
+  // Correction si format UTF-8
+  full_whatis=strsubst(full_whatis,"Ãª","ê");
+  full_whatis=strsubst(full_whatis,"Ã¹","ù");
+  full_whatis=strsubst(full_whatis,"Ã§","ç");
+  full_whatis=strsubst(full_whatis,"Ã©","é");
+  full_whatis=strsubst(full_whatis,"Ã¨","è");
+  full_whatis=strsubst(full_whatis,"Ã®","î");
+  full_whatis=strsubst(full_whatis,"Ã","à");
+  
   mputl(full_whatis,'contents.htm')
   
 endfunction 
@@ -380,7 +416,19 @@ function gener_hh(dirs,titles)
 		"</UL>";
 		"</UL>"];
 
-	mputl(full_index,'sciman.hhk')
+  // enleve &apos;
+  full_index=strsubst(full_index,"&apos;","''");
+  
+  // Correction si format UTF-8
+  full_index=strsubst(full_index,"Ãª","ê");
+  full_index=strsubst(full_index,"Ã¹","ù");
+  full_index=strsubst(full_index,"Ã§","ç");
+  full_index=strsubst(full_index,"Ã©","é");
+  full_index=strsubst(full_index,"Ã¨","è");
+  full_index=strsubst(full_index,"Ã®","î");
+  full_index=strsubst(full_index,"Ã","à");
+  
+  mputl(full_index,'sciman.hhk')
 
 	//--------------------------------------
 	// produce a scilab.hhc file 
@@ -403,7 +451,19 @@ function gener_hh(dirs,titles)
 		"</UL>";
 		"</UL>"];
 
-	mputl(contents,'sciman.hhc')
+  // enleve &apos;
+  contents=strsubst(contents,"&apos;","''");
+  
+  // Correction si format UTF-8
+  contents=strsubst(contents,"Ãª","ê");
+  contents=strsubst(contents,"Ã¹","ù");
+  contents=strsubst(contents,"Ã§","ç");
+  contents=strsubst(contents,"Ã©","é");
+  contents=strsubst(contents,"Ã¨","è");
+  contents=strsubst(contents,"Ã®","î");
+  contents=strsubst(contents,"Ã","à");
+  
+  mputl(contents,'sciman.hhc')
   
 	//--------------------------------------
 	// produce a scilab.hhp file 
@@ -428,7 +488,19 @@ function gener_hh(dirs,titles)
 
 	items=base+"*.htm";
        
-	mputl([head;items],'sciman.hhp')
+  // enleve &apos;
+  items=strsubst(items,"&apos;","''");
+  
+  // Correction si format UTF-8
+  items=strsubst(items,"Ãª","ê");
+  items=strsubst(items,"Ã¹","ù");
+  items=strsubst(items,"Ã§","ç");
+  items=strsubst(items,"Ã©","é");
+  items=strsubst(items,"Ã¨","è");
+  items=strsubst(items,"Ã®","î");
+  items=strsubst(items,"Ã","à");
+       
+  mputl([head;items],'sciman.hhp')  
 
 endfunction
 
