@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.73 $)dnl
+AC_REVISION($Revision: 1.74 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1546,7 +1546,7 @@ fi
 ## GTK
 #################
 
-ZZLEDT=zzledt
+ZZLEDT=
 GTKPLUGBUG=
 
 if test "$with_gtk" = yes; then
@@ -1598,7 +1598,7 @@ if test "$with_gtk" = yes; then
   LIBS=$ac_save_LIBS
   TERMCAPLIB="$READLINE $TERMCAPLIB"
   if test "no$READLINE" != no; then
-     ZZLEDT="zzledt-rl"
+     ZZLEDT="zzledt-rl.o"
      AC_DEFINE(WITH_READLINE)
   fi
 fi
@@ -1608,7 +1608,7 @@ fi
 ## GTK2 (XXXX A Finir)
 #################
 
-ZZLEDT=zzledt
+ZZLEDT=
 
 if test "$with_gtk2" = yes; then
   AC_CHECK_PROG(GTK_CONFIG,gtk-config,yes,no)
@@ -1657,7 +1657,7 @@ if test "$with_gtk2" = yes; then
   LIBS=$ac_save_LIBS
   TERMCAPLIB="$READLINE $TERMCAPLIB"
   if test "no$READLINE" != no; then
-     ZZLEDT="zzledt-rl"
+     ZZLEDT="zzledt-rl.o"
      AC_DEFINE(WITH_READLINE)
   fi
 fi
