@@ -21,7 +21,11 @@ if size(tree.operands)==2 then
     tree=Cste([])
     tree.dims=list(1,0)
   elseif not_empty(A) & not_empty(B) then
-    tree.out(1).dims=list(1,Unknown)
+    if and([typeof(A),typeof(B)]=="cste") then
+      tree.out(1).dims=list(1,size(A.value:B.value,"*"))
+    else
+      tree.out(1).dims=list(1,Unknown)
+    end
     tree.out(1).type=Type(Double,Real)
   else
     tree=Funcall("mtlb_imp",1,list(A,B),tree.out)
