@@ -269,7 +269,7 @@ case "list"
     if ind==""":""" then
       ind=":"
     end
-    val = part(ind,1)=="''" & part(ind,length(ind))=="''"
+    val = part(ind,1)=="""" & part(ind,length(ind))==""""
     if val then
       C=C+"."+evstr(ind)
     else
