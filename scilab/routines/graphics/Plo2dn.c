@@ -71,11 +71,16 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 
   long hdl;
   long *hdltab;
-  int cmpt=0;
+  int cmpt=0,i;
   int with_leg;
 
  
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+
+
+  for (i=0;i<4;i++)
+    pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 02.04.04 */
+
   if (!(sciGetGraphicMode (psubwin)->addplot)) { 
     sciXbasc(); 
     initsubwin(); 	/* Pb here Re-init for the psubwin does not work properly F.Leray 24.02.04*/
