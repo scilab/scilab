@@ -50,6 +50,9 @@ case 6 then
   t=sp2exp(a,lmax)
 case 10 then
   t=str2exp(a,lmax)
+case 13 then
+  t=fun2string(a,nom)
+  named=%f
 case 15 then
   t=list2exp(a,lmax)
 case 16 then
