@@ -7,6 +7,7 @@
  * Read and Write inside the Scilab stack 
  *------------------------------------------------------*/
 
+#include <string.h>
 #include "../stack-c.h"
 
 extern int C2F(dmcopy)  __PARAMS((double *a, integer *na, double *b, integer *nb, integer *m, integer *n));
@@ -351,6 +352,67 @@ int C2F(cmatptr)(namex, m, n, lp, name_len)
 	return FALSE_;
     }
     return TRUE_ ;
+}
+
+
+void *Name2ptr(namex)
+     char *namex;
+     /*  Returns a pointer to the Scilab variable with name namex
+         Usage:   int *header;
+                  header = (int *) Name2ptr("pipo");
+                  header[0], header[1], etc contains header info 
+                  about Scilab variable "pipo"   */
+{
+  int l1; int *loci;
+  integer id[nsiz];
+  C2F(str2name)(namex, id, strlen(namex));
+  /* get the position in fin */
+  Fin = -1;
+  C2F(stackg)(id);
+  if (Fin == 0) {
+    Scierror(4,"Undefined variable %s\r\n",get_fname(namex,strlen(namex)));
+    return 0;
+  }
+  /* get data */
+  if (*infstk(Fin ) == 2) {
+    Fin = *istk(iadr(*lstk(Fin )) + 1 +1);
+  }
+  loci = (int *) stk(*lstk(Fin));
+  if (loci[0] < 0) 
+    {
+      l1 = loci[1];
+      loci = (int *) stk(l1);
+    }
+  return loci;
+}
+
+int Name2where(namex)
+     /* returns the position in the internal stack of the variable with name
+	namex 
+     Usage:
+             int l=Name2where("pipo");
+	     stk(l) points to Scilab variable named "pipo"
+	     e.g. if pipo is a standard real matrix
+	     stk(l)[2]=first entry of the matrix pipo(1,1)
+	     stk(l)[3]=pipo(2,1)  etc
+	     (The header of pipo is given by istk(iadr(h))[0], 
+                                             istk(iadr(h))[1], etc )
+          */
+     char *namex;
+     /*     unsigned long name_len; */
+{
+  int loci;
+  integer id[nsiz];
+  C2F(str2name)(namex, id, strlen(namex));
+  /* get the position in fin */
+  Fin = -1;
+  C2F(stackg)(id);
+  if (Fin == 0) {
+    Scierror(4,"Undefined variable %s\r\n",get_fname(namex,strlen(namex)));
+    return 0;
+  }
+  loci = *lstk(Fin);
+  return loci;
 }
 
 /*----------------------------------------------------------------
