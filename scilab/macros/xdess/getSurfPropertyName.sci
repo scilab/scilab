@@ -32,8 +32,11 @@ if (k == [])
 elseif ( size(k,'*') > 1)
   if or(find(k==14)) // case PropertyName == 'marker'
     k=14; // set to PropertyName == 'marker' only
+  elseif or(find(k==2)) // case PropertyName == 'colordata'
+    k=2;
   else
-    disp("Ambiguous line property");
+    disp(k);
+    disp("Ambiguous surface property");
     PName=[];
     return;
   end

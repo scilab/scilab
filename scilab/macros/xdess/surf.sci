@@ -16,20 +16,24 @@ end
 
 
 if ~rhs
-  //  clf();
-  //  //LineSpec and PropertySpec examples:
-  //  clf();
-  //  t=0:%pi/20:2*%pi;
-  //  subplot(211)
-  //  plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
-  //  subplot(212)
-  //  plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
-  //  disp("clf();")
-  //  disp("t=0:%pi/20:2*%pi;");
-  //  disp("subplot(211)")
-  //  disp("plot(t,sin(t),''ro-.'',t,cos(t),''cya+'',t,abs(sin(t)),''--mo'')");
-  //  disp("subplot(212)");
-  //  disp("plot([t ;t],[sin(t) ;cos(t)],''xdat'',[1:2])")
+  clf();
+  
+  Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0168   -0.0008   -0.0000
+      0.0005    0.0089    0.0259   -0.3673   -1.8670   -2.4736   -1.0866   -0.1602   -0.0067    0.0000
+      0.0004    0.0214    0.1739   -0.3147   -4.0919   -6.4101   -2.7589   -0.2779    0.0131    0.0020
+      -0.0088   -0.0871    0.0364    1.8559    1.4995   -2.2171   -0.2729    0.8368    0.2016    0.0130
+      -0.0308   -0.4313   -1.7334   -0.1148    3.0731    0.4444    2.6145    2.4410    0.4877    0.0301
+      -0.0336   -0.4990   -2.3552   -2.1722    0.8856   -0.0531    2.6416    2.4064    0.4771    0.0294
+      -0.0137   -0.1967   -0.8083    0.2289    3.3983    3.1955    2.4338    1.2129    0.2108    0.0125
+      -0.0014   -0.0017    0.3189    2.7414    7.1622    7.1361    3.1242    0.6633    0.0674    0.0030
+      0.0002    0.0104    0.1733    1.0852    2.6741    2.6725    1.1119    0.1973    0.0152    0.0005
+      0.0000    0.0012    0.0183    0.1099    0.2684    0.2683    0.1107    0.0190    0.0014    0.0000];
+  lines(0);
+  surf(Z,'edgeco','b','marker','d','markersiz',9,'markeredg','red','markerfac','k')
+  disp("clf();")
+  disp("lines(0);");
+  disp(Z);
+  disp("surf(Z,''edgeco'',''b'',''marker'',''d'',''markersiz'',9,''markeredg'',''red'',''markerfac'',''k'')");
   return;
 end
 
@@ -40,6 +44,11 @@ f=gcf();
 cur_draw_mode = f.immediate_drawing;
 f.immediate_drawing = 'off';
 
+
+X=[];
+Y=[];
+Z=[];
+C=[];
 
 CurColor = 0; // current color used if no color specified via LineSpec
 // nor PropertyName
@@ -87,6 +96,7 @@ end
 // set some defaults here
 f=gcf();
 f.color_map=jetcolormap(64);
+colormap_size = size(f.color_map,1);
 
 if given_data == 1 //surf(Z) with Z giving us data + color info.
   // ---------------------------------------------------------- //
@@ -98,22 +108,11 @@ if given_data == 1 //surf(Z) with Z giving us data + color info.
   X = 1:size(ListArg(1),2);
   Y = 1:size(ListArg(1),1);
   Z = ListArg(1)'; // here a transposition is needed
+  C = Z;
   
   [XX,YY,ZZ] = genfac3d(X,Y,Z);
   CC = ZZ; // Add a color matrix based on Z values
-  
-  // => interp/shading mode: NO! by default, even if color number == zdata number, 
-  // we are in flat mode.
-  colormap_size = size(f.color_map,1);
-  CC = build_interp_color(CC,colormap_size);
-  plot3d(XX,YY,list(ZZ,CC));
-  a=gca();
-  a.cube_scaling = 'on';
-  a.rotation_angles = [51 -125];
-  e=gce();
-  e.hiddencolor=0;
-  e.color_flag=4; // Matlab special flat mode by default (different from mode 2)
-  
+
 elseif given_data == 2 //surf(Z,COLOR)
   // ---------------------------------------------------------- //
   if or(size(ListArg(1))==1)
@@ -142,119 +141,14 @@ elseif given_data == 2 //surf(Z,COLOR)
     [XX,YY,CC] = genfac3d(X,Y,Ctmp);     // CC must be a color matrix of size nf x n
   end
   
-  // => interp/shading mode: NO! by default, even if color number == zdata number, 
-  // we are in flat mode.
-  colormap_size = size(f.color_map,1);
-  CC = build_interp_color(CC,colormap_size);
-  plot3d(XX,YY,list(ZZ,CC));
-  a=gca();
-  a.cube_scaling = 'on';
-  a.rotation_angles = [51 -125];
-  e=gce();
-  e.hiddencolor=0;
-  e.color_flag=4; // Matlab special flat mode by default (different from mode 2)
-
 elseif given_data == 3 //surf(X,Y,Z) with Z giving us data + color info.
   // ---------------------------------------------------------- //
   
   X = ListArg(1)
   Y = ListArg(2);
+  Z = ListArg(3);
   
-  if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
-    
-    Z = ListArg(3)'; // here a transposition is needed
-    
-    if size(X,'*') ~= size(Z,2) | size(Y,'*') ~= size(Z,1)
-      error('surf : Vectors X, Y must match Z matrix dimensions');
-      return;
-    end 
-    
-    [XX,YY,ZZ] = genfac3d(X,Y,Z);
-    
-    // COLOR treatment
-    CC = ZZ;
-    
-  elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
-    
-    Z = ListArg(3);
-    
-    if or(size(X) ~= size(Y)) | or(size(X) ~= size(Z))
-      error('surf : Matrices must be the same size');
-      return;
-    end 
-    
-    [XX,YY,ZZ] = nf3d(X,Y,Z);
-    
-    // COLOR treatment
-    CC = ZZ;
-     
-  elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
-    
-    Z = ListArg(3);
-    
-    if size(X,'*') ~= size(Z,2) | or(size(Y) ~= size(Z))
-      error('surf : Matrices must be the same size');
-      return;
-    end 
-    
-    // X vector
-    // Y matrix
-    // Z matrix
-    
-    X=X(:)'; // X is forced to be a row vector
-    XMAT=[];
-    
-    for i=1:size(Z,2)
-      XMAT=[XMAT;X];
-    end
-    
-    [XX,YY,ZZ] = nf3d(XMAT,Y,Z);
-    
-    // COLOR treatment
-    CC = ZZ;
-     
-  elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
-    
-    Z = ListArg(3);
-    
-    if size(Y,'*') ~= size(Z,2) | or(size(X) ~= size(Z))
-      error('surf : Matrices must be the same size');
-      return;
-    end 
-    
-    // Y vector
-    // X matrix
-    // Z matrix
-    
-    Y=Y(:); // Y is forced to be a column vector
-    YMAT=[];
-    
-    for i=1:size(Z,1)
-      YMAT=[YMAT,Y];
-    end
-    
-    [XX,YY,ZZ] = nf3d(X,YMAT,Z);
-    
-    // COLOR treatment
-    CC = ZZ;
-    
-  else
-    disp("Error: X and Y must be of the same type\n")
-    return;
-  end
-  
-  colormap_size = size(f.color_map,1);
-  CC = build_interp_color(CC,colormap_size);
-  //pause;
-  plot3d(XX,YY,list(ZZ,CC));
-  
-  a=gca();
-  a.cube_scaling = 'on';
-  a.rotation_angles = [51 -125];
-  e=gce();
-  e.hiddencolor=0;
-  e.color_flag=4; // Matlab special flat mode by default (different from mode 2)
-
+  [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z);
   
 elseif given_data == 4 //surf(X,Y,Z,COLOR)
   // ---------------------------------------------------------- //
@@ -266,137 +160,10 @@ elseif given_data == 4 //surf(X,Y,Z,COLOR)
   
   X = ListArg(1)
   Y = ListArg(2);
+  Z = ListArg(3);
+  C = ListArg(4);
   
-  if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
-    
-    Z = ListArg(3)'; // here a transposition is needed
-    C = ListArg(4)'; // here a transposition is needed
-    
-    if size(X,'*') ~= size(Z,2) | size(Y,'*') ~= size(Z,1)
-      error('surf : Vectors X, Y must match Z matrix dimensions');
-      return;
-    end 
-    
-    [XX,YY,ZZ] = genfac3d(X,Y,Z);
-    
-    // COLOR treatment
-    if (size(ListArg(4)) == size(ListArg(3))) // color number == zdata number
-      [XX,YY,CC] = genfac3d(X,Y,C);     // CC must be a color matrix of size nf x n
-    elseif ((size(ListArg(4))) == size(ListArg(3))-1) // color number -1 == zdata number => ONLY flat mode can be enabled
-      Ctmp=[];
-      Ctmp = [C [C(:,$)]] ;
-      Ctmp = [Ctmp; Ctmp($,:)];
-      [XX,YY,CC] = genfac3d(X,Y,Ctmp);     // CC must be a color matrix of size nf x n
-    end
-    
-  elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
-    
-    Z = ListArg(3);
-    C = ListArg(4);
-
-    if or(size(X) ~= size(Y)) | or(size(X) ~= size(Z))
-      error('surf : Matrices must be the same size');
-      return;
-    end 
-    
-    [XX,YY,ZZ] = nf3d(X,Y,Z);
-    
-    // COLOR treatment
-    if (size(ListArg(4)) == size(ListArg(3))) // color number == zdata number
-      [XX,YY,CC] = nf3d(X,Y,C);     // CC must be a color matrix of size nf x n
-    elseif ((size(ListArg(4))) == size(ListArg(3))-1) // color number -1 == zdata number => ONLY flat mode can be enabled
-      Ctmp=[];
-      Ctmp = [C [C(:,$)]] ;
-      Ctmp = [Ctmp; Ctmp($,:)];
-      [XX,YY,CC] = nf3d(X,Y,Ctmp);     // CC must be a color matrix of size nf x n
-    end
-        
-  elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
-    
-    Z = ListArg(3);
-    C = ListArg(4);
-    
-    if size(X,'*') ~= size(Z,2) | or(size(Y) ~= size(Z))
-      error('surf : Matrices must be the same size');
-      return;
-    end 
-    
-    // X vector
-    // Y matrix
-    // Z matrix
-    
-    X=X(:)'; // X is forced to be a row vector
-    XMAT=[];
-    
-    for i=1:size(Z,2)
-      XMAT=[XMAT;X];
-    end
-
-    
-    
-    [XX,YY,ZZ] = nf3d(XMAT,Y,Z);
-    
-    // COLOR treatment
-    if (size(ListArg(4)) == size(ListArg(3))) // color number == zdata number
-      pause;
-      [XX,YY,CC] = nf3d(XMAT,Y,C);     // CC must be a color matrix of size nf x n
-    elseif ((size(ListArg(4))) == size(ListArg(3))-1) // color number -1 == zdata number => ONLY flat mode can be enabled
-      Ctmp=[];
-      Ctmp = [C [C(:,$)]] ;
-      Ctmp = [Ctmp; Ctmp($,:)];
-      [XX,YY,CC] = nf3d(XMAT,Y,Ctmp);     // CC must be a color matrix of size nf x n
-    end
-    
-  elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
-    
-    Z = ListArg(3);
-    C = ListArg(4);
-    
-    if size(Y,'*') ~= size(Z,2) | or(size(X) ~= size(Z))
-      error('surf : Matrices must be the same size');
-      return;
-    end 
-    
-    // Y vector
-    // X matrix
-    // Z matrix
-    
-    Y=Y(:); // Y is forced to be a column vector
-    YMAT=[];
-    
-    for i=1:size(Z,1)
-      YMAT=[YMAT,Y];
-    end
-    
-    [XX,YY,ZZ] = nf3d(X,YMAT,Z);
-    
-    // COLOR treatment
-    if (size(ListArg(4)) == size(ListArg(3))) // color number == zdata number
-      [XX,YY,CC] = nf3d(X,YMAT,C);     // CC must be a color matrix of size nf x n
-    elseif ((size(ListArg(4))) == size(ListArg(3))-1) // color number -1 == zdata number => ONLY flat mode can be enabled
-      Ctmp=[];
-      Ctmp = [C [C(:,$)]] ;
-      Ctmp = [Ctmp; Ctmp($,:)];
-      [XX,YY,CC] = nf3d(X,YMAT,Ctmp);     // CC must be a color matrix of size nf x n
-    end
-    
-  else
-    disp("Error: X and Y must be of the same type\n")
-    return;
-  end
-  
-  colormap_size = size(f.color_map,1);
-  CC = build_interp_color(CC,colormap_size);
-  //pause;
-  plot3d(XX,YY,list(ZZ,CC));
-  
-  a=gca();
-  a.cube_scaling = 'on';
-  a.rotation_angles = [51 -125];
-  e=gce();
-  e.hiddencolor=0;
-  e.color_flag=4; // Matlab special flat mode by default (different from mode 2)
-
+  [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C);
 end
 
 
@@ -414,50 +181,35 @@ while ((Property <> 0) & (Property <= nv-1))
   if (PName == 'xdata')
     
     if (type(PropertyValue)<>1)
-      disp("Xdata value must be a vector or matrix.")
+      disp("X data must be a vector or matrix.")
       return;
-    else
-      PropertyValue = PropertyValue(:); // force
-      if or(size(X))==1  // If X is a vector (inevitably a column vector because checkXYPair always returns a column vector)
-	X = PropertyValue; // X is replaced by PropertyValue
-	[X,Y] = checkXYPair(typeOfPlot,X,Y)
-      else // X is a matrix
-	if size(PropertyValue,'*') == size(X,1)
-	  for j=1:size(PropertyValue,'*')
-	    X(j,:) = PropertyValue(j,1);
-	  end
-	else
-	  str=sprintf('plot : incompatible dimensions in input arguments');
-	  error(str);
-	end
-      end
     end
     
+    X = PropertyValue;
+    [XX,tmp2,tmp3] = CreateFacetsFromXYZ(PropertyValue,Y,Z);
+        
     // Ydata
   elseif (PName == 'ydata')
     
     if (type(PropertyValue)<>1)
-      disp("Xdata value must be a vector or matrix.")
+      disp("Y data must be a vector or matrix.")
       return;
-    else
-      PropertyValue = PropertyValue(:); // force
-      if or(size(Y))==1  // If Y is a vector (inevitably a column vector because checkXYPair always returns a column vector)
-	Y = PropertyValue; // Y is replaced by PropertyValue
-	[X,Y] = checkXYPair(typeOfPlot,X,Y)
-      else // Y is a matrix
-	if size(PropertyValue,'*') == size(Y,1)
-	  for j=1:size(PropertyValue,'*')
-	    Y(j,:) = PropertyValue(j);
-	  end
-	else
-	  str=sprintf('plot : incompatible dimensions in input arguments');
-	  error(str);
-	end
-      end
-      
     end
     
-    // Zdata will be treated after plot building
+    Y = PropertyValue;
+    [tmp1,YY,tmp3] = CreateFacetsFromXYZ(X,PropertyValue,Z);
+        
+    // Zdata
+  elseif (PName == 'zdata')
+    
+    if (type(PropertyValue)<>1 | or(size(PropertyValue)==1))
+      disp("Z data must be a real matrix.")
+      return;
+    end
+    
+    Z = PropertyValue;
+    [tmp1,tmp2,ZZ] = CreateFacetsFromXYZ(X,Y,PropertyValue);
+  
   end
   
   Property = Property+2;
@@ -467,6 +219,18 @@ end
 
 
 
+
+// surf is made now !
+// with default option to simulate the Matlab mode
+
+plot3d(XX,YY,list(ZZ,CC));
+a=gca();
+a.cube_scaling = 'on';
+a.rotation_angles = [51 -125];
+e=gce();
+e.hiddencolor=0;
+e.color_flag=4; // Matlab special flat mode by default (different from mode 2)
+e.cdata_mapping = 'scaled'
 
 
 
@@ -553,7 +317,7 @@ current_surface.mark_size_unit='point';
 
 
 while ((Property <> 0) & (Property <= nv-1))
-  setSurfProperty(ListArg(Property),ListArg(Property+1),current_surface)
+  setSurfProperty(ListArg(Property),ListArg(Property+1),current_surface,X,Y,Z,C)
   
   Property = Property+2;
 end
@@ -577,62 +341,23 @@ endfunction
 
 
 
-
-
-function [xx]=nf3d_one_matrix(x)
-// 3d coding transformation 
-// from facets coded in three matrices x,y,z to scilab code for facets 
-// accepted by plot3d 
-//---------------------------------------------------------
-// Copyright INRIA
-[n1,n2]=size(x)
-ind=ones(1,n1-1).*.[0 1 n1+1 n1]+ (1:n1-1).*.[1 1 1 1];
-// ind=[1,2,n1+2,n1+1 , 2,3,n1+3,n1+2, ....  ,n1-1,n1,2n1,2n1-1
-ind2=ones(1,n2-1).*.ind+((0:n2-2)*n1).*.ones(ind);
-nx=prod(size(ind2))
-xx=matrix(x(ind2),4,nx/4);
-
-xx2=zeros(xx);
-
-pause;
-for i=2:size(xx,1)
-  xx2(i-1,:) = xx(i,:)
-end
-
-xx2($,:) = xx(1,:);
-xx = xx2;
-
-//permut = eye(size(xx,1),size(xx,1));
-//permut(1,1:$) = 0
-//permut(1,$) = 1;
 //
-//permut($,1:$) = 0
-//permut($,1) = 1;
+//function [C] = build_interp_color(C,colormap_size)
+//// C is considered as a data value in Matlab
+//MIN = min(C);
+//MAX = max(C);
+//NCOLMIN = 1;
+//NCOLMAX = colormap_size;
 //
-//disp(xx);
-//disp("-----------------------------");
-//xx = permut * xx;
-//disp(xx);
-//pause;
-endfunction
-
-
-function [C] = build_interp_color(C,colormap_size)
-// C is considered as a data value in Matlab
-MIN = min(C);
-MAX = max(C);
-NCOLMIN = 1;
-NCOLMAX = colormap_size;
-
-if MIN <> MAX
-  C = (NCOLMIN-NCOLMAX)/(MIN-MAX) * C + (MIN*NCOLMAX - NCOLMIN*MAX)/(MIN-MAX);
-  C = round(C);
-else
-  C = ones(C) * (NCOLMIN+NCOLMAX)/2;
-end
-endfunction 
-
-
+//if MIN <> MAX
+//  C = (NCOLMIN-NCOLMAX)/(MIN-MAX) * C + (MIN*NCOLMAX - NCOLMIN*MAX)/(MIN-MAX);
+//  C = round(C);
+//else
+//  C = ones(C) * (NCOLMIN+NCOLMAX)/2;
+//end
+//endfunction 
+//
+//
 
 
 function k=getIndexInStringTable(pattern,table)
@@ -643,3 +368,206 @@ k=find(part(table,1:length(str))==str);
 endfunction
 
 
+
+
+
+
+
+
+function [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z)
+
+if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
+  
+  Z = Z';  // here a transposition is needed
+  
+  if size(X,'*') ~= size(Z,2) | size(Y,'*') ~= size(Z,1)
+    error('surf : Vectors X, Y must match Z matrix dimensions');
+    return;
+  end 
+  
+  [XX,YY,ZZ] = genfac3d(X,Y,Z);
+  
+  // COLOR treatment
+  CC = ZZ;
+  
+elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
+  
+  if or(size(X) ~= size(Y)) | or(size(X) ~= size(Z))
+    error('surf : Matrices must be the same size');
+    return;
+  end 
+  
+  [XX,YY,ZZ] = nf3d(X,Y,Z);
+  
+  // COLOR treatment
+  CC = ZZ;
+  
+elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
+  
+  if size(X,'*') ~= size(Z,2) | or(size(Y) ~= size(Z))
+    error('surf : Matrices must be the same size');
+    return;
+  end 
+  
+  // X vector
+  // Y matrix
+  // Z matrix
+  
+  X=X(:)'; // X is forced to be a row vector
+  XMAT=[];
+  
+  for i=1:size(Z,2)
+    XMAT=[XMAT;X];
+  end
+  
+  [XX,YY,ZZ] = nf3d(XMAT,Y,Z);
+  
+  // COLOR treatment
+  CC = ZZ;
+  
+elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
+  
+  if size(Y,'*') ~= size(Z,2) | or(size(X) ~= size(Z))
+    error('surf : Matrices must be the same size');
+    return;
+  end 
+  
+  // Y vector
+  // X matrix
+  // Z matrix
+  
+  Y=Y(:); // Y is forced to be a column vector
+  YMAT=[];
+  
+  for i=1:size(Z,1)
+    YMAT=[YMAT,Y];
+  end
+  
+  [XX,YY,ZZ] = nf3d(X,YMAT,Z);
+  
+  // COLOR treatment
+  CC = ZZ;
+  
+else
+  disp("Error: X and Y must be of the same type\n")
+  return;
+end
+
+endfunction
+
+
+
+
+
+function [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C)
+
+if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
+  
+  Z = Z'; // here a transposition is needed
+  C = C'; // here a transposition is needed
+  
+  if size(X,'*') ~= size(Z,2) | size(Y,'*') ~= size(Z,1)
+    error('surf : Vectors X, Y must match Z matrix dimensions');
+    return;
+  end 
+  
+  [XX,YY,ZZ] = genfac3d(X,Y,Z);
+  
+  // COLOR treatment
+  if (size(C) == size(Z)) // color number == zdata number
+    [XX,YY,CC] = genfac3d(X,Y,C);     // CC must be a color matrix of size nf x n
+  elseif (size(C) == size(Z)-1) // color number -1 == zdata number => ONLY flat mode can be enabled
+    Ctmp=[];
+    Ctmp = [C [C(:,$)]] ;
+    Ctmp = [Ctmp; Ctmp($,:)];
+    [XX,YY,CC] = genfac3d(X,Y,Ctmp);     // CC must be a color matrix of size nf x n
+  end
+  
+elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
+  
+  if or(size(X) ~= size(Y)) | or(size(X) ~= size(Z))
+    error('surf : Matrices must be the same size');
+    return;
+  end 
+  
+  [XX,YY,ZZ] = nf3d(X,Y,Z);
+  
+  // COLOR treatment
+  if (size(C) == size(Z)) // color number == zdata number
+    [XX,YY,CC] = nf3d(X,Y,C);     // CC must be a color matrix of size nf x n
+  elseif (size(C) == size(Z)-1) // color number -1 == zdata number => ONLY flat mode can be enabled
+    Ctmp=[];
+    Ctmp = [C [C(:,$)]] ;
+    Ctmp = [Ctmp; Ctmp($,:)];
+    [XX,YY,CC] = nf3d(X,Y,Ctmp);     // CC must be a color matrix of size nf x n
+  end
+  
+elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
+  
+  if size(X,'*') ~= size(Z,2) | or(size(Y) ~= size(Z))
+    error('surf : Matrices must be the same size');
+    return;
+  end 
+  
+  // X vector
+  // Y matrix
+  // Z matrix
+  
+  X=X(:)'; // X is forced to be a row vector
+  XMAT=[];
+  
+  for i=1:size(Z,2)
+    XMAT=[XMAT;X];
+  end
+
+  
+  
+  [XX,YY,ZZ] = nf3d(XMAT,Y,Z);
+  
+  // COLOR treatment
+  if (size(C) == size(Z)) // color number == zdata number
+    pause;
+    [XX,YY,CC] = nf3d(XMAT,Y,C);     // CC must be a color matrix of size nf x n
+  elseif (size(C) == size(Z)-1) // color number -1 == zdata number => ONLY flat mode can be enabled
+    Ctmp=[];
+    Ctmp = [C [C(:,$)]] ;
+    Ctmp = [Ctmp; Ctmp($,:)];
+    [XX,YY,CC] = nf3d(XMAT,Y,Ctmp);     // CC must be a color matrix of size nf x n
+  end
+  
+elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
+  
+  if size(Y,'*') ~= size(Z,2) | or(size(X) ~= size(Z))
+    error('surf : Matrices must be the same size');
+    return;
+  end 
+  
+  // Y vector
+  // X matrix
+  // Z matrix
+  
+  Y=Y(:); // Y is forced to be a column vector
+  YMAT=[];
+  
+  for i=1:size(Z,1)
+    YMAT=[YMAT,Y];
+  end
+  
+  [XX,YY,ZZ] = nf3d(X,YMAT,Z);
+  
+  // COLOR treatment
+  if (size(C) == size(Z)) // color number == zdata number
+    [XX,YY,CC] = nf3d(X,YMAT,C);     // CC must be a color matrix of size nf x n
+  elseif (size(C) == size(Z)-1) // color number -1 == zdata number => ONLY flat mode can be enabled
+    Ctmp=[];
+    Ctmp = [C [C(:,$)]] ;
+    Ctmp = [Ctmp; Ctmp($,:)];
+    [XX,YY,CC] = nf3d(X,YMAT,Ctmp);     // CC must be a color matrix of size nf x n
+  end
+  
+else
+  disp("Error: X and Y must be of the same type\n")
+  return;
+end
+
+endfunction

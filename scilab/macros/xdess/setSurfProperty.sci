@@ -3,7 +3,7 @@
 //Copyright INRIA
 //
 
-function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface)
+function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C)
 
 fail=0;
 
@@ -20,6 +20,55 @@ str = convstr(PropertyName);
 
 select PName
 
+  /////////////////////////
+case 'colordata'
+  /////////////////////////
+  
+  if (type(PropertyValue)<>1 | or(size(PropertyValue)==1))
+    disp("Color data  must be a matrix.")
+    return;
+  end
+  
+  if (size(Z) == size(PropertyValue)) | (size(Z)-1 == size(PropertyValue))
+    [tmp1,tmp2,tmp3,CC] = CreateFacetsFromXYZColor(X,Y,Z,PropertyValue);
+    Surface.data.color = CC;
+  else
+    str=sprintf('surf : incompatible dimensions in input arguments');
+    error(str);
+  end
+  
+  /////////////////////////
+case 'colordatamapping'
+  /////////////////////////
+  
+  if (type(PropertyValue)<>10)
+    disp("Color data mapping must be a string with value ''scaled'' or ''direct''.");
+  end
+  
+  if (PropertyValue=='scaled')
+    Surface.cdata_mapping = 'scaled';
+  elseif (PropertyValue=='direct')
+    Surface.cdata_mapping = 'direct';
+  else
+    disp("Error : the cdatamapping property should be set exactly to ''scaled'' or ''direct''.")
+    return;
+  end
+  
+  /////////////////////////
+case 'cdatamode'
+  /////////////////////////
+  
+  //  /////////////////////////
+  //case 'clipping'           // Clipping // NO CLIPPING for now with 3d objects
+  //  /////////////////////////
+  //  if (type(PropertyValue)==10 & (PropertyValue=='on' | PropertyValue=='off'))
+  //    Surface.clip_state=PropertyValue;
+  //  else
+  //    disp("Bad value for property : Clipping")
+  //    return;
+  //  end
+
+  
   /////////////////////////
 case 'foreground'         // <=> EdgeColor
   /////////////////////////
@@ -58,16 +107,6 @@ case 'foreground'         // <=> EdgeColor
     return;
   end
 
-
-//  /////////////////////////
-//case 'clipping'           // Clipping // NO CLIPPING for now with 3d objects
-//  /////////////////////////
-//  if (type(PropertyValue)==10 & (PropertyValue=='on' | PropertyValue=='off'))
-//    Surface.clip_state=PropertyValue;
-//  else
-//    disp("Bad value for property : Clipping")
-//    return;
-//  end
 
   /////////////////////////
 case 'facecolor'          // FaceColor
@@ -159,7 +198,7 @@ case 'markstyle'        // <=> Marker
     //Marks
     Table = [ '+' 'o' '*' '.' 'x' 'square' 'diamond' '^' 'v' '>' '<' 'pentagram' 'none'];
     MarksStyleVal=[1 9 10 0 2 11 5 6 7 12 13 14 -99];
-//    MarksSizeVal =[4 3 7  1 3  3 4 3 3  3  3  3 -99];
+    //    MarksSizeVal =[4 3 7  1 3  3 4 3 3  3  3  3 -99];
     
     opt1=[];
     
@@ -175,10 +214,10 @@ case 'markstyle'        // <=> Marker
       return;
     end
     
-//    disp("str=")
-//    disp(str)
-//    disp("k=")
-//    disp(k);
+    //    disp("str=")
+    //    disp(str)
+    //    disp("k=")
+    //    disp(k);
     
     opt = Table(k);
     for i=1:length(str)
@@ -269,7 +308,7 @@ case 'markbackground'        // <=> MarkerFaceColor
     index = getColorIndex(PropertyValue);
     
     ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white' 'none']
-        
+    
     markmodeON = find(Surface.mark_mode=='on');
     
     if index == 10
@@ -338,44 +377,24 @@ case 'visible'        // <=> Visible
     return;
   end
   
-   
+  
   /////////////////////////
 case 'xdata'
   /////////////////////////
     
-  
-  /////////////////////////
+  // Already done at the beginning of surf execution.
+ 
+    /////////////////////////
 case 'ydata'
   /////////////////////////
-
+  
+  // Already done at the beginning of surf execution.
+ 
   /////////////////////////
 case 'zdata'
   /////////////////////////
   
-  if (type(PropertyValue)<>1 | and(size(PropertyValue)<>1))
-    disp("Zdata value must be a column or row vector.")
-    return;
-  else
-    PropertyValue = PropertyValue(:); // force
-    
-    for j=1:size(Surface,'*')
-      if size(Surface(i).data,1) <> size(PropertyValue,'*')
-	str=sprintf('plot : incompatible dimensions in input arguments');
-	error(str);
-      else
-	for jj=1:size(PropertyValue,'*')
-	  Surface(j).data(jj,3) = PropertyValue(jj);
-	end
-	a=gca();
-	a.view='3d';
-	a.data_bounds=[a.data_bounds(1,1) a.data_bounds(1,2) min(PropertyValue) ;  a.data_bounds(2,1) a.data_bounds(2,2) max(PropertyValue)];
-	a.view='2d';
-      end
-    end
-  end
-  
-  
-  
+  // Already done at the beginning of surf execution.
 end
 
 endfunction
