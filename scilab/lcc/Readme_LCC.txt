@@ -1,5 +1,7 @@
 Put LCC-Win32 in this directory
 Edit lcc.reg, modify all paths, merge lcc.reg in Windows registry
+Edit scilab.star and modify Line 150 to LCC=%T
+Launch Scilab and convert VC Library to LCC Library with VCtoLCCLib() Macro.
 
 example :
  if you are install scilab in D:\
