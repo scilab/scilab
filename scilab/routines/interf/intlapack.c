@@ -90,6 +90,57 @@ int intsvd()
   }
 }
 
+
+int intlsq(fname)
+  char *fname;
+{
+  int *header1;int *header2;
+  int CmplxA;int Cmplxb;int ret;
+
+  /*   lsq(A,b)  */
+  header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
+  CmplxA=header1[3];   Cmplxb=header1[3];
+  switch (CmplxA) {
+  case 0:   
+    switch (Cmplxb) {
+    case 0 :
+      /* A real, breal */
+      ret = C2F(intdgelsy)("lsq",3L);
+      return;
+      break;
+    case 1 :
+      /* A real, b complex : to be done */
+      ret = C2F(intzgelsy)("lsq",3L);
+      return;
+      break;
+    default:
+      return;
+      break;
+    }
+  case 1 :
+    switch (Cmplxb) {
+    case 0 :
+      /* A complex, b real : to be done */
+      ret = C2F(intzgelsy)("lsq",3L);
+      return;
+      break;
+    case 1 :
+      /* A complex, b complex */
+      ret = C2F(intzgelsy)("lsq",3L);
+      return;
+      break;
+    default:
+      return;
+      break;
+    }
+    break;
+  default :
+    Scierror(999,"%s: Invalid input! \r\n",fname);
+    return;
+    break;
+  }
+}
+
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct {
@@ -101,6 +152,7 @@ typedef struct table_struct {
 static LapackTable Tab[]={
   {intqr,"qr"},
   {intsvd,"svd"},
+  {intlsq,"lsq"},
 };
 
 int C2F(intlapack)()
