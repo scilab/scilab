@@ -73,7 +73,8 @@ end
 addmenu(win,'Exit');str='execstr(Exit_'+string(win)+'(1))'
 xinfo('click to get corresponding line')
 ok=%t
-dispfuntxt(txt,1)
+
+[h,M]=dispfuntxt(txt,1,0,%f)
 
 
 
@@ -83,7 +84,7 @@ while ok
   if cw==win then
     k=min(n,max(1,round(c_x)))
     // show source code in another window
-    dispfuntxt(txt,k)
+    [h,M]=dispfuntxt(txt,k,h,M)
   end
 end
 endprof()
@@ -94,72 +95,71 @@ if or(winsid()==(win+1)) then xdel(win+1);end
 if or(winsid()==(win)) then xdel(win);end
 
 endfunction
-function dispfuntxt(txt,k)
-    global h
-    global M
-lbl=string(1:size(txt,1))';lbl=part(lbl,1:max(length(lbl)));
-    t=lbl+': '+txt;
-    if ~or(winsid()==(win+1)) then
-      
-      xset('window',win+1);xset('wpdim',400,600);
-      xset('wdim',400,600);xset('wresize',0);
-      curwin=win+1
-      if ~MSDOS then
-	delmenu(curwin,'3D Rot.')
-	delmenu(curwin,'UnZoom')
-	delmenu(curwin,'Zoom')
-	delmenu(curwin,'File')
-      else
-	delmenu(curwin,'3D &Rot.')
-	delmenu(curwin,'&UnZoom')
-	delmenu(curwin,'&Zoom')
-	delmenu(curwin,'&File')
-      end     
+
+function [h,M]=dispfuntxt(txt,k,h,M)
+  lbl=string(1:size(txt,1))';lbl=part(lbl,1:max(length(lbl)));
+  t=lbl+': '+txt;
+  if ~or(winsid()==(win+1)) then
     
-      xsetech(wrect=[0 0 1 1],frect=[0 0 400 600],arect=[0.1 0 0 0])
-      w=xstringl(0,0,t);h=w(4);w=max(400,w(3))
-      if h>600 then
-	xset('wdim',w,h)
-	xsetech(wrect=[0 0 1 1],frect=[0 0 w h],arect=[0.1 0 0 0])
-	M=%t
-      elseif h<300 then
-	xset('wpdim',400,300)
-	xset('wdim',w,h)
-	xsetech(wrect=[0 0 1 1],frect=[0 0 w h],arect=[0.1 0 0 0])
-	M=%t
-      else
-	M=%f
-      end
+    xset('window',win+1);xset('wpdim',400,600);
+    xset('wdim',400,600);xset('wresize',0);
+    curwin=win+1
+    if ~MSDOS then
+      delmenu(curwin,'3D Rot.')
+      delmenu(curwin,'UnZoom')
+      delmenu(curwin,'Zoom')
+      delmenu(curwin,'File')
     else
-      xset('window',win+1);
-    end
-    xclear();
-    x=0;y=h;
-    if k>1 then
-      t1=t(1:k-1);
-      w=xstringl(0,0,t1);w=w(4);
-      y=y-w;xstring(x,y,t1);
-    end
-
-
-    xset('dashes',5)
-    w=xstringl(0,0,t(k));w=w(4);
-    y=y-w;xstring(x,y,t(k));
-    yp=y;
-    xset('dashes',33)
-
-
-    if k<n then
-      t1=t(k+1:$);
-      w=xstringl(0,0,t1);w=w(4);
-      y=y-w;xstring(x,y,t1)
-    end
-
-
-    if M then xset('viewport',x,-300+(k*(h/size(txt,1)))),end
-
-
-    xset('window',win)
-    xpause(10000)
+      delmenu(curwin,'3D &Rot.')
+      delmenu(curwin,'&UnZoom')
+      delmenu(curwin,'&Zoom')
+      delmenu(curwin,'&File')
+    end     
     
+    xsetech(wrect=[0 0 1 1],frect=[0 0 400 600],arect=[0.1 0 0 0])
+    w=xstringl(0,0,t);h=w(4);w=max(400,w(3))
+    if h>600 then
+      xset('wdim',w,h)
+      xsetech(wrect=[0 0 1 1],frect=[0 0 w h],arect=[0.1 0 0 0])
+      M=%t
+    elseif h<300 then
+      xset('wpdim',400,300)
+      xset('wdim',w,h)
+      xsetech(wrect=[0 0 1 1],frect=[0 0 w h],arect=[0.1 0 0 0])
+      M=%t
+    else
+      M=%f
+    end
+  else
+    xset('window',win+1);
+  end
+  xclear();
+  x=0;y=h;
+  if k>1 then
+    t1=t(1:k-1);
+    w=xstringl(0,0,t1);w=w(4);
+    y=y-w;xstring(x,y,t1);
+  end
+
+
+  xset('dashes',5)
+  w=xstringl(0,0,t(k));w=w(4);
+  y=y-w;xstring(x,y,t(k));
+  yp=y;
+  xset('dashes',33)
+
+
+  if k<n then
+    t1=t(k+1:$);
+    w=xstringl(0,0,t1);w=w(4);
+    y=y-w;xstring(x,y,t1)
+  end
+
+
+  if M then xset('viewport',x,-300+(k*(h/size(txt,1)))),end
+
+
+  xset('window',win)
+  xpause(10000)
+  
 endfunction
