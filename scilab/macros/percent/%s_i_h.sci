@@ -1,8 +1,6 @@
 function h=%s_i_h(i,v,h)
   hsave=h
-  if v==[] then
-    error('Field property cannot be []')
-  end
+//  if v==[] then error('Field property cannot be []'),end
   if type(i)==10 then set(h,i,v),return,end
   if type(i)<>15 then  error('Invalid path'),end
 
