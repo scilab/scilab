@@ -218,6 +218,8 @@ entry $w.frame.xlabel1 -relief sunken  -textvariable xlabel
 pack $w.frame.xlabel -in  $w.frame.lbx -side left
 pack $w.frame.xlabel1  -in  $w.frame.lbx  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.xlabel1 <Return> {setXlabel} 
+bind  $w.frame.xlabel1 <KP_Enter> {setXlabel}
+bind  $w.frame.xlabel1 <FocusOut> {setXlabel}
 
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
@@ -314,8 +316,13 @@ entry $w.frame.databmax -relief sunken  -textvariable dbxmax
 pack $w.frame.datalabel -in  $w.frame.datab -side left
 pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
 pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
-bind  $w.frame.databmin <Return> {setXdb} 
+bind  $w.frame.databmin <Return> {setXdb}
+bind  $w.frame.databmin <KP_Enter> {setXdb}
+bind  $w.frame.databmin <FocusOut> {setXdb}
+
 bind  $w.frame.databmax <Return> {setXdb} 
+bind  $w.frame.databmax <KP_Enter> {setXdb}
+bind  $w.frame.databmax <FocusOut> {setXdb}
 
 #Scale log or linear
 frame $w.frame.scalesw  -borderwidth 0
@@ -372,6 +379,8 @@ entry $w.frame.ylabel1 -relief sunken  -textvariable ylabel
 pack $w.frame.ylabel -in  $w.frame.lby -side left
 pack $w.frame.ylabel1  -in  $w.frame.lby  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.ylabel1 <Return> {setYlabel} 
+bind  $w.frame.ylabel1 <KP_Enter> {setYlabel}
+bind  $w.frame.ylabel1 <FocusOut> {setYlabel}
 
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
@@ -471,7 +480,12 @@ pack $w.frame.datalabel -in  $w.frame.datab -side left
 pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
 pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
 bind  $w.frame.databmin <Return> {setYdb} 
+bind  $w.frame.databmin <KP_Enter> {setYdb}
+bind  $w.frame.databmin <FocusOut> {setYdb}
+
 bind  $w.frame.databmax <Return> {setYdb} 
+bind  $w.frame.databmax <KP_Enter> {setYdb}
+bind  $w.frame.databmax <FocusOut> {setYdb}
 
 #Scale log or linear
 frame $w.frame.scalesw  -borderwidth 0
@@ -527,6 +541,8 @@ entry $w.frame.zlabel1 -relief sunken  -textvariable zlabel
 pack $w.frame.zlabel -in  $w.frame.lbz -side left
 pack $w.frame.zlabel1  -in  $w.frame.lbz  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.zlabel1 <Return> {setZlabel} 
+bind  $w.frame.zlabel1 <KP_Enter> {setZlabel}
+bind  $w.frame.zlabel1 <FocusOut> {setZlabel}
 
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
@@ -623,7 +639,12 @@ pack $w.frame.datalabel -in  $w.frame.datab -side left
 pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
 pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
 bind  $w.frame.databmin <Return> {setZdb} 
+bind  $w.frame.databmin <KP_Enter> {setZdb}
+bind  $w.frame.databmin <FocusOut> {setZdb}
+
 bind  $w.frame.databmax <Return> {setZdb} 
+bind  $w.frame.databmax <KP_Enter> {setZdb}
+bind  $w.frame.databmax <FocusOut> {setZdb}
 
 #Scale log or linear
 frame $w.frame.scalesw  -borderwidth 0
@@ -679,6 +700,8 @@ entry $w.frame.titlelabel1 -relief sunken  -textvariable tlabel
 pack $w.frame.titlelabel -in  $w.frame.lbtitle -side left
 pack $w.frame.titlelabel1  -in  $w.frame.lbtitle  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.titlelabel1 <Return> {setTitleLabel} 
+bind  $w.frame.titlelabel1 <KP_Enter> {setTitleLabel} 
+bind  $w.frame.titlelabel1 <FocusOut> {setTitleLabel} 
 
 #visibility for title
 frame $w.frame.vislab -borderwidth 0
@@ -989,8 +1012,9 @@ entry $w.frame.datay -relief sunken  -textvariable Yclipbox
 pack $w.frame.labelx  $w.frame.datax  -in  $w.frame.lb2 -side left  -fill x -pady 1.m -padx 1.m
 pack $w.frame.labely  $w.frame.datay  -in  $w.frame.lb21 -side left -fill x -pady 1.m -padx 1.m 
 bind  $w.frame.datax <Return> {SelectClipBox}
+bind  $w.frame.datax <KP_Enter> {SelectClipBox}
 bind  $w.frame.datay <Return> {SelectClipBox}
-
+bind  $w.frame.datay <KP_Enter> {SelectClipBox}
 #----------------------------#
 frame $w.frame.lb3 -borderwidth 0
 pack $w.frame.lb3  -in $w.frame -side top   -fill x
@@ -1011,7 +1035,9 @@ entry $w.frame.datah -relief sunken  -textvariable Hclipbox
 pack $w.frame.labelw  $w.frame.dataw -in  $w.frame.lb4  -side left -fill x -pady 1.m -padx 1.m
 pack $w.frame.labelh  $w.frame.datah -in  $w.frame.lb41 -side left -fill x -pady 1.m -padx 1.m
 bind  $w.frame.dataw <Return> {SelectClipBox}
+bind  $w.frame.dataw <KP_Enter> {SelectClipBox}
 bind  $w.frame.datah <Return> {SelectClipBox}
+bind  $w.frame.datah <KP_Enter> {SelectClipBox}
 
 #margins
 frame $w.frame.marg1 -borderwidth 0
@@ -1040,8 +1066,12 @@ pack $w.frame.labelleft  $w.frame.datamargl  $w.frame.labelleftaxesbounds $w.fra
 pack $w.frame.labelright $w.frame.datamargr  $w.frame.labelupaxesbounds $w.frame.dataupaxesbounds -in  $w.frame.marg21 -side left -fill x -pady 1.m -padx 1.m 
 bind  $w.frame.datamargl <Return> {SelectMargins}
 bind  $w.frame.datamargr <Return> {SelectMargins}
+bind  $w.frame.datamargl <KP_Enter> {SelectMargins}
+bind  $w.frame.datamargr <KP_Enter> {SelectMargins}
 bind  $w.frame.dataleftaxesbounds <Return> {SelectAxesbounds}
+bind  $w.frame.dataleftaxesbounds <KP_Enter> {SelectAxesbounds}
 bind  $w.frame.dataupaxesbounds   <Return> {SelectAxesbounds}
+bind  $w.frame.dataupaxesbounds   <KP_Enter> {SelectAxesbounds}
 
 frame $w.frame.marg4 -borderwidth 0
 pack $w.frame.marg4  -in $w.frame -side top   -fill x
@@ -1065,6 +1095,10 @@ bind  $w.frame.datamargt <Return> {SelectMargins}
 bind  $w.frame.datamargb <Return> {SelectMargins}
 bind  $w.frame.datawidthaxesbounds   <Return> {SelectAxesbounds}
 bind  $w.frame.dataheightaxesbounds  <Return> {SelectAxesbounds}
+bind  $w.frame.datamargt <KP_Enter> {SelectMargins}
+bind  $w.frame.datamargb <KP_Enter> {SelectMargins}
+bind  $w.frame.datawidthaxesbounds   <KP_Enter> {SelectAxesbounds}
+bind  $w.frame.dataheightaxesbounds  <KP_Enter> {SelectAxesbounds}
 
 
 #sep bar
@@ -1075,7 +1109,6 @@ pack $w.sep -fill both
 frame $w.buttons
 button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom
-
 
 ########### Viewpoint onglet ######################################
 ###################################################################
@@ -1105,6 +1138,10 @@ pack $w.frame.rotanglabel  -in $w.frame.rotang -side left  -pady 2m -padx 2m
 pack $w.frame.rotalpha $w.frame.rottheta -in $w.frame.rotang  -in $w.frame.rotang -side left  -pady 2m -padx 2m
 bind  $w.frame.rotalpha <Return> {setAlphaAngle} 
 bind  $w.frame.rottheta <Return> {setThetaAngle} 
+bind  $w.frame.rotalpha <KP_Enter> {setAlphaAngle} 
+bind  $w.frame.rottheta <KP_Enter> {setThetaAngle} 
+bind  $w.frame.rotalpha <FocusOut> {setAlphaAngle} 
+bind  $w.frame.rottheta <FocusOut> {setThetaAngle} 
 
 
 
@@ -1250,19 +1287,46 @@ proc SelectObject {w args} {
 }
 
 proc setXdb {} {
-global dbxmin dbxmax
-ScilabEval "setXdb($dbxmin, $dbxmax);"
+    global dbxmin dbxmax
+
+    if { $dbxmin=="" | $dbxmax=="" } {
+	return
+    }
+
+    if { $dbxmin > $dbxmax } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message " Xmin > Xmax !"
+    } else {
+	ScilabEval "setXdb($dbxmin, $dbxmax);"
+    }
 }
 
 proc setYdb {} {
-global dbymin dbymax
-ScilabEval "setYdb($dbymin, $dbymax);"
+    global dbymin dbymax
+
+    if { $dbymin=="" | $dbymax=="" } {
+	return
+    }
+
+    if { $dbymin > $dbymax } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message " Ymin > Ymax !"
+    } else {
+	ScilabEval "setYdb($dbymin, $dbymax);"
+    }
 }
 
 
 proc setZdb {} {
-global dbzmin dbzmax
-ScilabEval "setZdb($dbzmin, $dbzmax);"
+    global dbzmin dbzmax
+
+    if { $dbzmin=="" | $dbzmax=="" } {
+	return
+    }
+
+    if { $dbzmin > $dbzmax } {
+	 tk_messageBox -icon error -type ok -title "Incorrect input" -message " Zmin > Zmax !"
+    } else {
+	ScilabEval "setZdb($dbzmin, $dbzmax);"
+    }
 }
 
 
@@ -2000,6 +2064,7 @@ proc PopUp { w numpage} {
     entry $fen1.frame.stepe  -relief sunken  -justify right \
 	-background white -textvariable StepEntryX -width 10
     bind  $fen1.frame.stepe <Return> "SetStep $frameaxes $numpage 1"
+    bind  $fen1.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 1"
     pack $fen1.frame.steplabel $fen1.frame.stepe -in $fen1.frame.step -side left -pady 1.m -padx 1.m
 
     frame $fen1.frame.subticks -borderwidth 0
@@ -2011,6 +2076,7 @@ proc PopUp { w numpage} {
     entry $fen1.frame.subtickse  -relief sunken  -justify right \
 	-background white -textvariable SubticksEntryX -width 10
     bind  $fen1.frame.subtickse <Return> "SetSubticksX"
+    bind  $fen1.frame.subtickse <KP_Enter> "SetSubticksX"
     pack $fen1.frame.subtickslabel $fen1.frame.subtickse -in $fen1.frame.subticks -side left -pady 1.m -padx 1.m
 
     frame $fen1.frame.fdata -borderwidth 0
@@ -2032,6 +2098,7 @@ proc PopUp { w numpage} {
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
 	bind  $fen1.frame.c.locationsdata$i <ButtonPress-1> "setLEI_x $i;"
 	bind  $fen1.frame.c.locationsdata$i <Return> "TicksApplyX $fen1"
+	bind  $fen1.frame.c.locationsdata$i <KP_Enter> "TicksApplyX $fen1"
 	$fen1.frame.c create window $aa $bb -anchor c -window $fen1.frame.c.locationsdata$i
 	
 	
@@ -2042,6 +2109,7 @@ proc PopUp { w numpage} {
 	#	bind  $fen1.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
 	bind  $fen1.frame.c.labelsdata$i <ButtonPress-1> "setLEI_x $i;"
 	bind  $fen1.frame.c.labelsdata$i <Return> "TicksApplyX $fen1"
+	bind  $fen1.frame.c.labelsdata$i <KP_Enter> "TicksApplyX $fen1"
 	$fen1.frame.c create window $aa $bb -anchor c -window $fen1.frame.c.labelsdata$i
     }
 
@@ -2115,6 +2183,7 @@ proc PopUp { w numpage} {
     entry $fen2.frame.stepe  -relief sunken  -justify right \
 	-background white -textvariable StepEntryY -width 10
     bind  $fen2.frame.stepe <Return> "SetStep $frameaxes $numpage 2"
+    bind  $fen2.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 2"
     pack $fen2.frame.steplabel $fen2.frame.stepe -in $fen2.frame.step -side left -pady 1.m -padx 1.m
 
     frame $fen2.frame.subticks -borderwidth 0
@@ -2124,6 +2193,7 @@ proc PopUp { w numpage} {
     entry $fen2.frame.subtickse  -relief sunken  -justify right \
 	-background white -textvariable SubticksEntryY -width 10
     bind  $fen2.frame.subtickse <Return> "SetSubticksY"
+    bind  $fen2.frame.subtickse <KP_Enter> "SetSubticksY"
     pack $fen2.frame.subtickslabel $fen2.frame.subtickse -in $fen2.frame.subticks -side left -pady 1.m -padx 1.m
 
 
@@ -2146,6 +2216,7 @@ proc PopUp { w numpage} {
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
 	bind  $fen2.frame.c.locationsdata$i <ButtonPress-1> "setLEI_y $i;"
 	bind  $fen2.frame.c.locationsdata$i <Return> "TicksApplyY $fen2"
+	bind  $fen2.frame.c.locationsdata$i <KP_Enter> "TicksApplyY $fen2"
 	$fen2.frame.c create window $aa $bb -anchor c -window $fen2.frame.c.locationsdata$i
 	
 	
@@ -2156,6 +2227,7 @@ proc PopUp { w numpage} {
 	#	bind  $fen2.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
 	bind  $fen2.frame.c.labelsdata$i <ButtonPress-1> "setLEI_y $i;"
 	bind  $fen2.frame.c.labelsdata$i <Return> "TicksApplyY $fen2"
+	bind  $fen2.frame.c.labelsdata$i <KP_Enter> "TicksApplyY $fen2"
 	$fen2.frame.c create window $aa $bb -anchor c -window $fen2.frame.c.labelsdata$i
     }
 
@@ -2228,6 +2300,7 @@ proc PopUp { w numpage} {
     entry $fen3.frame.stepe  -relief sunken  -justify right \
 	-background white -textvariable StepEntryZ -width 10
     bind  $fen3.frame.stepe <Return> "SetStep $frameaxes $numpage 3"
+    bind  $fen3.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 3"
     pack $fen3.frame.steplabel $fen3.frame.stepe -in $fen3.frame.step -side left -pady 1.m -padx 1.m
 
     frame $fen3.frame.subticks -borderwidth 0
@@ -2237,6 +2310,7 @@ proc PopUp { w numpage} {
     entry $fen3.frame.subtickse  -relief sunken  -justify right \
 	-background white -textvariable SubticksEntryZ -width 10
     bind  $fen3.frame.subtickse <Return> "SetSubticksZ"
+    bind  $fen3.frame.subtickse <KP_Enter> "SetSubticksZ"
     pack $fen3.frame.subtickslabel $fen3.frame.subtickse -in $fen3.frame.subticks -side left -pady 1.m -padx 1.m
 
 
@@ -2259,6 +2333,7 @@ proc PopUp { w numpage} {
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
 	bind  $fen3.frame.c.locationsdata$i <ButtonPress-1> "setLEI_z $i;"
 	bind  $fen3.frame.c.locationsdata$i <Return> "TicksApplyZ $fen3"
+	bind  $fen3.frame.c.locationsdata$i <KP_Enter> "TicksApplyZ $fen3"
 	$fen3.frame.c create window $aa $bb -anchor c -window $fen3.frame.c.locationsdata$i
 	
 	
@@ -2269,6 +2344,7 @@ proc PopUp { w numpage} {
 	#	bind  $fen3.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
 	bind  $fen3.frame.c.labelsdata$i <ButtonPress-1> "setLEI_z $i;"
 	bind  $fen3.frame.c.labelsdata$i <Return> "TicksApplyZ $fen3"
+	bind  $fen3.frame.c.labelsdata$i <KP_Enter> "TicksApplyZ $fen3"
 	$fen3.frame.c create window $aa $bb -anchor c -window $fen3.frame.c.labelsdata$i
     }
 
