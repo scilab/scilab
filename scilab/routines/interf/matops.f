@@ -915,25 +915,25 @@ c
       if(it2.eq.0) then
          if(it1.eq.0) then
             call ddpow1(mn,stk(l1),inc1,stk(l2),inc2,
-     $           stk(lw),stk(lw+mn),1,err,itr)
+     $           stk(lw),stk(lw+mn),1,ierr,itr)
          else
             call wdpow1(mn,stk(l1),stk(l1+mn1),inc1,stk(l2),inc2,
-     $           stk(lw),stk(lw+mn),1,err)
+     $           stk(lw),stk(lw+mn),1,ierr)
          endif
       else
          if(it1.eq.0) then
             call dwpow1(mn,stk(l1),inc1,stk(l2),stk(l2+mn2),inc2,
-     &           stk(lw),stk(lw+mn),1,err)
+     &           stk(lw),stk(lw+mn),1,ierr)
          else
             call wwpow1(mn,stk(l1),stk(l1+mn1),inc1,stk(l2),stk(l2+mn2),
-     &           inc2,stk(lw),stk(lw+mn),1,err)
+     &           inc2,stk(lw),stk(lw+mn),1,ierr)
          endif
       endif
-      if(err.eq.1) then
+      if(ierr.eq.1) then
          call error(30)
          return
       endif
-      if(err.eq.2) then
+      if(ierr.eq.2) then
          if(ieee.eq.0) then
             call error(27)
             return
