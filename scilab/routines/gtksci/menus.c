@@ -516,6 +516,8 @@ void submenu_add(menu_entry *me,menu_entry *more)
  * Add a menu in a menu_item list
  *  win_num     : graphic window number or -1 for main scilab window
  *  name        : label of menu button
+ *                if entries is empty then name can be 
+ *                   "name|accelerator|specific_action"
  *  entries     : labels of submenus if any. each entry is a string 
  *                "entry_name" or "entry_name|accelerator|specific_action"
  * 
@@ -525,6 +527,35 @@ void submenu_add(menu_entry *me,menu_entry *more)
  *                action_type!=0 : hard coded a routine is called
  *  fname;      : name of the action function  
  ****************************************************/
+
+
+static menu_entry *gtksci_new_menu_entry(char *entry_name,int winid,int pos,int action_type,char *fname)
+{
+  menu_entry *menu ; 
+  char *entry=NULL,*accel=NULL,*action=NULL;
+  entry=strdup(entry_name);
+  accel = strchr(entry,'|');
+  if (accel != NULL) 
+    {
+      *accel = '\0'; accel +=1;
+      action =  strchr(accel,'|');
+      if ( action != NULL ) 
+	{ 
+	  *action = '\0'; action+=1;
+	}
+    }
+  if (action == NULL) action = fname ;
+  menu = new_menu_entry(entry,accel,1,pos+1,NULL,winid,action_type,action);
+  if ( menu == NULL) 
+    {
+      /* XXXXX clean and return */
+      if(entry != NULL) free(entry);
+      return NULL;
+    }
+  return menu;
+}
+
+
 
 static int sci_menu_add(menu_entry **m,int winid,char *name,char** entries,int ne, 
 			int action_type,char *fname)
@@ -536,49 +567,24 @@ static int sci_menu_add(menu_entry **m,int winid,char *name,char** entries,int n
   /* first build the sub_menus */
   for (i=0 ; i < ne ;i++) 
     {
-      char *accel;
-      entry=strdup(entries[i]);
-      accel = strchr(entry,'|');
-
-      if (accel != NULL) 
-	{
-	  char * action =  strchr(accel+1,'|');
-	  *accel = '\0';
-	  if ( action != NULL ) 
-	    { 
-	      *action = '\0';
-	      if ( action == accel + 1 ) 
-		me2 = new_menu_entry(entry,NULL,1,i+1,NULL,winid,
-				     action_type,action+1);
-	      else 
-		me2 = new_menu_entry(entry,accel+1,1,i+1,NULL,winid,
-				     action_type,action+1);
-	      *action = '|';
-	    }
-	  else 
-	    {
-	      me2 = new_menu_entry(entry,accel+1,1,i+1,NULL,winid,
-				   action_type,fname);
-	    }
-	  *accel='|';
-	}
-      else 
-	{
-	  me2 = new_menu_entry(entry,NULL,1,i+1,NULL,winid,
-			       action_type,fname);
-	}
+      me2 = gtksci_new_menu_entry(entries[i],winid,i,action_type,fname);
       if ( me2 == NULL) 
 	{
-	  /* XXXXX clean and return */
-	  if(entry != NULL) free(entry);
 	  return 1;
 	}
       if ( i != 0) me1->next = me2;
       else { subs = me2;}
       me1=me2;
     }
-  /* now the menu entry */
-  top = new_menu_entry(name,NULL,1,1,subs,winid,action_type,fname);
+  if ( ne == 0 ) 
+    {
+      top = gtksci_new_menu_entry(name,0,winid,action_type,fname);
+    }
+  else
+    {
+      /* now the menu entry */
+      top = new_menu_entry(name,NULL,1,1,subs,winid,action_type,fname);
+    }
   if ( top == NULL) 
     {
       /* XXXXX clean and return */
