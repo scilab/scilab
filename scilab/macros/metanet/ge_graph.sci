@@ -63,10 +63,6 @@ function r=ge_graph(kmen,win)
     old=xget('window');xset('window',win);seteventhandler("")  
     ge_do_settings()
     seteventhandler("ge_eventhandler") ;xset('window',old)
-  case "Default names" then
-    old=xget('window');xset('window',win);seteventhandler("")  
-    ge_do_default_names()
-    seteventhandler("ge_eventhandler") ;xset('window',old)
   case "Export" then
     old=xget('window');xset('window',win);seteventhandler("")  
     ge_do_export()
