@@ -4631,8 +4631,9 @@ sciSetSelectedSubWin (sciPointObj * psubwinobj)
   /* puis on selectionne la sous fenetre passee en argument */
   pSUBWIN_FEATURE (psubwinobj)->isselected = TRUE;
 
-  set_scale ("tttfff", pSUBWIN_FEATURE (psubwinobj)->WRect, 
-	     pSUBWIN_FEATURE (psubwinobj)->FRect, NULL, "nn", NULL);    
+  set_scale ("tttfff", pSUBWIN_FEATURE (psubwinobj)->WRect,
+	     pSUBWIN_FEATURE (psubwinobj)->FRect, NULL,
+	     pSUBWIN_FEATURE(psubwinobj)->logflags, NULL); 
   return 1;
 }
 
@@ -9768,7 +9769,7 @@ sciDrawObj (sciPointObj * pobj)
   double anglestr,w2,h2;
   double xx[2],yy[2];   
   integer px1[2],py1[2],pn1=1,pn2=2;
-  integer nn1,nn2, arsize,lstyle,iflag,flag;
+  integer nn1,nn2, arsize,lstyle,iflag;
   double arsize1=5.0,arsize2=5.0,dv;
   integer angle1, angle2;
   integer x1, yy1, w1, h1, wstr,hstr,hh1;
@@ -9777,9 +9778,12 @@ sciDrawObj (sciPointObj * pobj)
   sciSons *psonstmp;
   integer itmp[5];		
   integer markidsizeold[2], markidsizenew[2];
-  sciPointObj *psubwin;
+  sciPointObj *psubwin, *currentsubwin;
   double locx,locy,loctit;
   char logflags[4];
+#ifdef WIN32
+  int flag;
+#endif
 
   int i,j;
   /* variable pour le set_scale update_frame_bouns*/
@@ -9796,9 +9800,7 @@ sciDrawObj (sciPointObj * pobj)
   framevalues[2] = 1;
   framevalues[3] = 1;
 
- 
-
-
+   currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
   switch (sciGetEntityType (pobj))
     {
@@ -9823,7 +9825,7 @@ sciDrawObj (sciPointObj * pobj)
 	}
       break;
     case SCI_SUBWIN: 
-      if (!sciGetVisibility(pobj)) 	return 0;      
+      if (!sciGetVisibility(pobj)) break;
       sciSetSelectedSubWin(pobj);
       set_scale ("tttfff", pSUBWIN_FEATURE (pobj)->WRect, 
 		 pSUBWIN_FEATURE (pobj)->FRect,
@@ -9859,8 +9861,7 @@ sciDrawObj (sciPointObj * pobj)
       /******************/
 
     case SCI_AGREG: 
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
       /* scan the hierarchie and call sciDrawObj */
       psonstmp = sciGetLastSons (pobj);
       while (psonstmp != (sciSons *) NULL)
@@ -9872,8 +9873,7 @@ sciDrawObj (sciPointObj * pobj)
       /************ 30/04/2001 **************************************************/
 
     case SCI_LEGEND: 
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
       sciSetCurrentObj (pobj);	
       C2F (dr1) ("xget", "dashes", &flagx, &xold[0], &vold, &vold, &vold,
 		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
@@ -9929,8 +9929,7 @@ sciDrawObj (sciPointObj * pobj)
       break; 
       /******************************** 22/05/2002 ***************************/    
     case SCI_FEC:  
-      if (!sciGetVisibility(pobj))
-	return 0;  
+      if (!sciGetVisibility(pobj)) break;
       
       n1=1;      
       if ((xm = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL)	return -1;
@@ -9951,12 +9950,11 @@ sciDrawObj (sciPointObj * pobj)
       break;      
       /******************************** 22/05/2002 ***************************/    
      case SCI_SEGS:    
-      if (!sciGetVisibility(pobj))
-	return 0;
+       if (!sciGetVisibility(pobj)) break;
       
-     sciClip(sciGetIsClipping(pobj)); 
+       sciClip(sciGetIsClipping(pobj)); 
 
-      /* load the object foreground and dashes color */
+       /* load the object foreground and dashes color */
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
@@ -10049,8 +10047,7 @@ sciDrawObj (sciPointObj * pobj)
       sciUnClip(sciGetIsClipping(pobj));
       break;
     case SCI_GRAYPLOT:  
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
       n1 = pGRAYPLOT_FEATURE (pobj)->nx;
       n2 = pGRAYPLOT_FEATURE (pobj)->ny;    
   
@@ -10143,8 +10140,7 @@ sciDrawObj (sciPointObj * pobj)
 	}
       break; 
     case SCI_POLYLINE: 
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
 
       sciSetCurrentObj (pobj);	  
       
@@ -10235,7 +10231,6 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
 	  if ( flag == 1) ReleaseWinHdc ();
 #endif  
-	  return 0;
 	  break;     
 	}
       if (! sciGetIsMark(pobj))
@@ -10251,11 +10246,9 @@ sciDrawObj (sciPointObj * pobj)
       FREE (xm);
       FREE (ym);
      
-      return 0;
       break;
     case SCI_PATCH: 
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
       sciSetCurrentObj (pobj);	     
 
       itmp[0] = 0;		/* verbose*/
@@ -10306,12 +10299,9 @@ sciDrawObj (sciPointObj * pobj)
 
       FREE (xm);
       FREE (ym);
-     
-      /**/ return 0;
       break;
     case SCI_ARC: 
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
       sciSetCurrentObj (pobj);	
       n = 1;
       
@@ -10376,8 +10366,8 @@ sciDrawObj (sciPointObj * pobj)
 #endif
       break;
     case SCI_RECTANGLE:  
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
+
       sciSetCurrentObj (pobj);
       n = 1;
       if (sciGetFillStyle(pobj) != 0)
@@ -10475,11 +10465,9 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
      if ( flag == 1)  ReleaseWinHdc ();
 #endif
-      return 0;
       break;
     case SCI_TEXT: 
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
       sciSetCurrentObj (pobj);	
       n = 1;
       /* load the object foreground and dashes color */
@@ -10522,8 +10510,7 @@ sciDrawObj (sciPointObj * pobj)
       sciUnClip(sciGetIsClipping(pobj));
       break;
     case SCI_AXIS: 
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
       sciSetCurrentObj (pobj);	
       itmp[0] = 0;		/* verbose */
       itmp[1] = 0;		/* thickness value */
@@ -10582,11 +10569,9 @@ sciDrawObj (sciPointObj * pobj)
 	  style[0] = pAXIS_FEATURE (pobj)->grid;
 	  C2F(xgrid)(style);  
 	}
-      return 0;
       break;
     case SCI_TITLE:
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
       sciSetCurrentObj (pobj);       
       /* load the object foreground and dashes color */
       x[0] = sciGetFontForeground (pobj);
@@ -10680,12 +10665,10 @@ sciDrawObj (sciPointObj * pobj)
       if ( flag == 1) ReleaseWinHdc ();
 #endif
       sciUnClip(sciGetIsClipping(pobj));
-      return 0;
       break;
 
     case SCI_AXES:
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
       sciSetCurrentObj (pobj);	
     
       /* load the object foreground and dashes color */
@@ -10717,13 +10700,11 @@ sciDrawObj (sciPointObj * pobj)
 #endif
       sciUnClip(sciGetIsClipping(pobj));   
 			  
-      return 0;
       break;
 
       /****************************************************************************************/
     case SCI_SURFACE: 
-      if (!sciGetVisibility(pobj))
-	return 0;
+      if (!sciGetVisibility(pobj)) break;
       sciSetCurrentObj (pobj);	
       itmp[0] = 0;		/* verbose*/
       itmp[1] = 0;		/* thickness value*/
@@ -10831,8 +10812,6 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32
       if ( flag == 1) ReleaseWinHdc ();
 #endif
-
-      return 0;
       break;
     case SCI_LIGHT:
     case SCI_PANNER:
@@ -10845,6 +10824,7 @@ sciDrawObj (sciPointObj * pobj)
       return -1;
       break;
     }
+  sciSetSelectedSubWin (currentsubwin);
   return -1;
 }
 
