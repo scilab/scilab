@@ -173,7 +173,7 @@ static void SendCountRaise ();
 static void SendCountDelete ();
 
 void SendMacro (LPTW lptw, UINT m);
-BOOL SciOpenSave (HWND hWndParent, BYTE ** s, char **d, int *ierr);
+BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, char **d, int *ierr);
 void MenuFixCurrentWin (int ivalue);
 GFILE * Gfopen (LPSTR lpszFileName, int fnOpenMode);
 void Gfclose (GFILE * gfile);
