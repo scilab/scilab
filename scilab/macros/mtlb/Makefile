@@ -38,7 +38,8 @@ M5 = mtlb_cell.sci struct.sci  \
 	%cell_c_cell.sci %cell_f_cell.sci \
 	%cell_c_s.sci %cell_f_s.sci %s_f_cell.sci %s_c_cell.sci \
 	%c_c_cell.sci %c_f_cell.sci %cell_f_c.sci %cell_c_c.sci \
-	%i_c_cell.sci %i_f_cell.sci %cell_f_i.sci %cell_c_i.sci 
+	%i_c_cell.sci %i_f_cell.sci %cell_f_i.sci %cell_c_i.sci \
+	%cell_string.sci %struct_string.sci
 
 
 PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci \
