@@ -1,4 +1,4 @@
-all:: Branching Electrical Events Linear Misc NonLinear Sinks Sources Threshold
+all:: Branching Electrical Events Linear Misc NonLinear Sinks Sources Threshold hydraulics
 
 Branching	:
 	@cd Branching
@@ -42,6 +42,11 @@ Sources	:
 
 Threshold	:
 	@cd Threshold
+	@makemacros.bat
+	@cd ..
+
+hydraulics	:
+	@cd hydraulics
 	@makemacros.bat
 	@cd ..
 
