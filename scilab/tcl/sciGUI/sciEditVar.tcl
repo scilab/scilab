@@ -1,3 +1,19 @@
+
+
+set pwd [pwd]
+cd [file dirname [info script]]
+variable DEMODIR [pwd]
+cd $pwd
+
+variable DEMODIR
+
+lappend ::auto_path [file dirname  "$env(SCIPATH)/tcl/BWidget-1.7.0"]
+namespace inscope :: package require BWidget
+package require BWidget
+
+
+
+
 # sciEditVar.tcl
 # Implements a matrix editor
 # This file is part of sciGUI toolbox
@@ -432,3 +448,221 @@ if { $TEST==1 } {
 	sciGUIEditVarDrawGrid $winId
 }
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ----------------------------------------------------------------------------
+# Function    : sciGUIEditVar
+# Parameters  : winId filename
+# Description : Matrix editor GUI
+# ----------------------------------------------------------------------------
+proc GEDsciGUIEditVar { {winId -1 } } {
+	global sciGUITable	
+	set winId2 [sciGUICreate $winId "editvar" ]
+	# read the information	
+	set sciGUITable(win,$winId2,data,last_i) 0
+	set sciGUITable(win,$winId2,data,last_j) 0
+	
+	set w [sciGUIName $winId2]
+	wm title $w "Scilab Edit Var ($winId2)"
+	wm protocol $w WM_DELETE_WINDOW "sciGUIEditVarQuit $winId2"
+    #F.Leray
+        wm geometry $w 320x320
+
+
+	$w configure -background white
+	frame $w.top -bd 0 -background white
+	label $w.top.logo -image sciGUITable(gif,scilab01) -bg white
+	label $w.top.mes01 -text "Edit Var" -font $sciGUITable(font,1) -bg white
+	pack $w.top -expand 0
+	pack $w.top.logo -side left
+	pack $w.top.mes01 -side right
+
+	frame $w.buttons -bd 1 -background LightGray
+	frame $w.editor -bd 3 -background LightGray -relief groove
+
+	#button $w.buttons.update -text "Update to Scilab" -width 15 
+	button $w.buttons.quit -text "Refresh !"  -command "sciGUIEditVarQuit $winId2"
+	label $w.buttons.msg1 -text "Please wait: loading data... " -bg LightGray -fg blue
+	label $w.buttons.msg2 -text "" -bg LightGray -fg blue
+	pack $w.buttons.quit $w.buttons.msg1 $w.buttons.msg2 -side left -padx 4 -expand 1 -fill x -pady 2
+	
+	pack $w.buttons -side top -expand 0 -fill x
+	pack $w.editor -side top -expand 1 -fill both
+
+	return $winId2	
+}
+
+
+
+# ----------------------------------------------------------------------------
+# Function    : sciGUIEditVarDrawGrid
+# Parameters  : winId
+# Description : 
+# ----------------------------------------------------------------------------
+#proc GEDsciGUIEditVarDrawGrid { winId winWB} {
+proc GEDsciGUIEditVarDrawGrid { winId } {
+ 	global sciGUITable
+ #	set w "[sciGUIName $winId].buttons.update"
+ #	$w configure -command "sciGUIEditVarUpdateScilab $winId"
+ 	set w "[sciGUIName $winId].buttons.msg1"
+ 	$w configure -text "editing variable -> $sciGUITable(win,$winId,data,name)"
+ 	set w "[sciGUIName $winId].editor"
+ 	set ni $sciGUITable(win,$winId,data,ni)
+ 	set nj $sciGUITable(win,$winId,data,nj)
+ 	set defw 350
+ 	set defh 350
+ 	set defcc 15
+
+#TEST ICI
+
+
+#     set Nb_data [expr $ni*$nj]
+#     set Nb_data 100000
+#     #        set Nb_data $Nb_data.
+#     set tmp 100
+#     set index 0
+
+#     set zero 0
+
+#     #        set waitbartmp [sciGUIBarWait $winWB "ESSAI !!!!!!" $zero]
+
+
+#     set progmsg "Loading data, please wait..."
+#     #  set progval 0
+#     #  set cent 100000
+#     ProgressDlg  .pAEIOU  -parent $w -title "Wait..." \
+# 	-type         normal \
+# 	-width        250 \
+# 	-textvariable progmsg \
+# 	-variable     tmp \
+# 	-maximum      $Nb_data \
+# 	-stop         "Stop" \
+# 	-command      {destroy .pAEIOU}
+    
+#     raise .pAEIOU
+
+
+
+
+
+ ##
+
+
+ 	canvas $w.editzone -width $defw -height $defh -yscrollcommand "$w.sbi set" -xscrollcommand "$w.sbj set"
+ 	set k0 [entry $w.editzone.entry -width $defcc -bd 0 -relief flat -background yellow]
+ 	bind $k0 <Return> "sciGUIEditVarEditCellAdv $winId 1 0"
+ 	bind $k0 <Right> "sciGUIEditVarEditCellAdv $winId 0 1"
+ 	bind $k0 <Left> "sciGUIEditVarEditCellAdv $winId 0 -1"
+ 	bind $k0 <Up> "sciGUIEditVarEditCellAdv $winId -1 0"
+ 	bind $k0 <Down> "sciGUIEditVarEditCellAdv $winId 1 0"
+	
+ 	$w.editzone create window -100 -100 -window $w.editzone.entry -anchor nw -tags entryTag
+ 	set bb1 [$w.editzone bbox entryTag]
+ 	set dj [expr [lindex $bb1 2] - [lindex $bb1 0] + 2]
+ 	set dj2 [expr $dj/2]
+ 	set di [expr [lindex $bb1 3] - [lindex $bb1 1] + 2]
+ 	set di2 [expr $di/2]
+ 	set jall [expr $dj*$nj + 1 ]
+ 	set iall [expr $di*$ni + 1 ]
+ 	$w.editzone delete entryTag
+ 	set sciGUITable(win,$winId,data,jall) $jall
+ 	set sciGUITable(win,$winId,data,iall) $iall
+ 	set sciGUITable(win,$winId,data,di) $di
+
+ 	$w.editzone create rectangle 0 0 $jall $iall -fill white -width 0 -tag bground
+
+ 	canvas $w.jaxes -width $defw -height $di -xscrollcommand "$w.sbj set"
+ 	set sciGUITable(win,$winId,data,cwp,0) 0
+ 	set sciGUITable(win,$winId,data,cwc,0) 0
+ 	for { set j 1 } { $j<=$nj } { incr j } {
+ 		$w.jaxes create text [expr $j*$dj-3] $di2 -text $j -anchor e -tag coltxt$j
+ 		set sciGUITable(win,$winId,data,cwc,$j) $defcc
+ 		set sciGUITable(win,$winId,data,cwp,$j) [expr $dj*$j]
+ 	}
+ 	$w.jaxes config -scrollregion "0 0 $jall $di"
+
+ 	canvas $w.iaxes -height $defh -yscrollcommand "$w.sbi set"
+ 	for { set i 1 } { $i<=$ni } { incr i } {
+ 		$w.iaxes create text 5 [expr ($i-0.5)*$di] -text $i -anchor w
+ 	}
+ 	set q [$w.iaxes bbox all]
+ 	set wi [expr [lindex $q 2] - [lindex $q 0] + 10 ]
+ 	$w.iaxes config -width $wi
+ 	$w.iaxes config -scrollregion "0 0 $wi $iall"
+
+ 	scrollbar $w.sbj -orient horizontal -command "sciGUIEditVarReFreshX $winId"
+ 	scrollbar $w.sbi -orient vertical -command "sciGUIEditVarReFreshY $winId"
+
+ 	grid config $w.jaxes -column 1 -row 0 -sticky "snew" 
+ 	grid config $w.iaxes -column 0 -row 1 -sticky "snew" 
+ 	grid config $w.editzone -column 1 -row 1 -sticky "snew" 
+ 	grid config $w.sbi -column 2 -row 1 -sticky "snew"
+ 	grid config $w.sbj -column 1 -row 2 -sticky "snew"
+ 	grid columnconfigure $w 1 -weight 1
+ 	grid rowconfigure $w 1 -weight 1
+
+ #     for {set i 1} {$i<=$Nb_data} {incr i} { 
+#  	puts "tmp vaut $tmp"
+#  	raise .pAEIOU
+#  	set tmp $i
+#      }
+    
+
+ 	for { set i 1 } { $i<=$ni } { incr i } {
+ 	  #  set tmp 0
+ 		for { set j 1 } { $j<=$nj } { incr j } {
+ 			set y [expr ($i-0.5)*$di]
+ 			set x [expr $j*$dj-3]
+ 			sciGUIEditVarPutCell $w.editzone $x $y "$sciGUITable(win,$winId,data,$i,$j)" $dj item($i,$j) $di
+#  	      	        set tmp [expr $tmp + 1]
+
+
+ #		    puts "Nb_data = $Nb_data"
+#  		    puts "tmp = $tmp"
+ #rajout ici F.Leray
+ #		    set index [expr $tmp / $Nb_data]
+ #		    set index [expr $index *100]
+ #		    set index [expr round($index)]
+ #		    set index [expr $index /100.]
+ #		    puts "index ="
+ #		    puts $index
+ #		    puts "FIN"
+ 	#	    ScilabEval "waitbar($index,$winWB);" "seq"
+ 	#	    set waitbartmp [sciGUIBarWait $winWB "" $index]
+ 	#	    pack $waitbartmp
+ 		}
+ 	}
+
+ 	for { set i 0 } { $i<=$ni } { incr i } {
+ 		$w.editzone create line 0 [expr $i*$di] $jall [expr $i*$di] -tag row$i
+ 	}
+
+ 	for { set j 0 } { $j<=$nj } { incr j } {
+ 		$w.editzone create line [expr $j*$dj] 0 [expr $j*$dj] $iall -tag col$j
+ 		$w.jaxes create line [expr $j*$dj] 0 [expr $j*$dj] $di -tag colj$j
+ 		$w.jaxes bind colj$j <Any-Enter> "$w.jaxes configure -cursor sb_h_double_arrow"
+ 		$w.jaxes bind colj$j <Any-Leave> "$w.jaxes configure -cursor arrow"
+ 		$w.jaxes bind colj$j <1> "sciGUIEditVarChangeColWidth $winId $j"
+ 	}
+
+ 	set bb2 [$w.editzone bbox all]
+ 	$w.editzone config -scrollregion "0 0 $jall $iall"
+
+ 	bind $w.editzone <1> "sciGUIEditVarEdit $winId %x %y"	
+}
