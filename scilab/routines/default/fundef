@@ -42,6 +42,7 @@
 {"cumprod",		IN_matelm,	36,	0},	
 {"cumsum",		IN_matelm,	35,	0},	
 {"diag",		IN_matelm,	10,	0},	
+{"dsearch",		IN_matelm,	48,	0},	
 {"exp",			IN_matelm,	26,	2},	
 {"expm",		IN_matelm,	34,	2},	
 {"eye",			IN_matelm,	13,	1},	

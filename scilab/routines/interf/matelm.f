@@ -28,15 +28,15 @@ c     sqrt log   ^  sign clean floor ceil expm cumsum  cumprod testmatrix
 c      27   28   29  30   31     32   33   34    35      36      37
 c     isreal frexp zeross tan  log1p imult  asin acos number_properties
 c       38     39    40   41     42    43   44   45      46
-c     nearfloat
-c       47     
+c     nearfloat dsearch
+c       47        48
 c!
 c
       goto (10 ,15 ,20 ,25 ,30 ,35 ,40 ,45 ,50 ,60,
      1      61 ,62 ,70 ,72 ,71 ,90 ,91 ,105,110,110,
      2      110,130,140,150,160,170,180,190,200,210,
      3      220,37 ,39 ,173,46 ,47, 230,240,250,260,
-     4      165,195,196,152,154,300,310              ),fin
+     4      165,195,196,152,154,300,310,320        ),fin
 
  10   continue
       call intabs(id)
@@ -282,6 +282,12 @@ c     number_properties
 c
  310  call  intnearfl(id)
       go to 900
+
+c
+c     dsearch
+c
+ 320  call intdsearch(id)
+      goto 900
 c
  900  return
       end
@@ -4915,6 +4921,142 @@ c     3/ go on
 
       end
 
+      subroutine intdsearch(id)
+*
+*     interface for dsearch (Bruno le 10/12/2001)
+*
+*       [ind , occ, info] = dsearch(X, val [, ch])
+*        
+*       X and val must be real vectors (says of length m for X and n for val ), 
+*       if ch is not present then ch = 'c'  (dsearch on "intervals")
+*       ch must be 'd' or 'c'
+*
+*       ind is a vector with the same format than X
+*       occ is a vector with the same format than val (but with n-1
+*           components in the case ch='c')
+*       info is a scalar
+*
+      implicit none
+
+      INCLUDE '../stack.h'
+
+      integer id(nsiz)
+
+c     EXTERNAL SUBROUTINES
+      external  dsearchc, dsearchd
+
+c     EXTERNAL API FUNCTIONS
+      logical  checkrhs, checklhs, getsmat, getrvect, cremat
+      external checkrhs, checklhs, getsmat, getrvect, cremat
+
+c     LOCAL VAR
+      integer topk, topl
+      integer mX, nX, lX, mval, nval, lval, mch, nch, lch, nlch
+      integer lind, mocc, nocc, locc, linfo, lc, j
+      character*1 ch
+      character*9 fname
+
+c     STATEMENT FUNC
+      integer l, iadr,sadr
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
 
 
+c     TEXT
+      fname = 'dsearch'
+      topk=top
+      rhs=max(0,rhs)
 
+      if (.not.checkrhs(fname,2,3)) return
+      if (.not.checklhs(fname,1,3)) return
+
+*     get ch
+      if (rhs .eq. 3) then
+         if( .not. getsmat(fname,topk,top,mch,nch,1,1,lch,nlch)) return
+         top = top - 1
+         call cvstr(1,istk(lch),ch,1)
+      else
+         ch = 'c'
+      endif
+      if (ch.ne.'c' .and. ch.ne.'d') then
+         buf=fname//' : unknown char specifier (must be ''c'' or ''d'')'
+         call error(999)
+         return
+      endif
+
+c     get val 
+      if( .not. getrvect(fname, topk, top, mval, nval, lval) ) return
+      if (ch.eq.'d') then
+         if (mval*nval.lt.1) then
+            buf=fname//' : argument 2 must not be an empty vector'
+            call error(999)
+            return
+         endif
+         mocc = mval
+         nocc = nval
+      else    ! case ch='c'
+         if (mval*nval.lt.2) then
+            buf=fname//' : in the interval case, argument 2 must be'
+     $               //' a vector with length > 1'
+            call error(999)
+            return
+         endif
+         if (mval .eq. 1) then 
+            mocc = 1
+            nocc = nval - 1
+         else
+            mocc = mval - 1
+            nocc = nval
+         endif
+      endif
+*     verif that val is in strict increasing order
+      do j = 1, mval*nval-1
+         if (.not. stk(lval+j-1) .lt. stk(lval+j)) then  ! cette forme permet de detecter les nans
+            buf=fname//' : the array val (arg 2) is not well ordered'
+            call error(999)
+            return
+         endif
+      enddo
+      top = top - 1
+      
+c     get X
+      if( .not. getrvect(fname, topk, top, mX, nX, lX) ) return
+
+
+c     reserve space for ind
+      if (.not.cremat(fname, topk+1, 0, mX, nX, lind, lc)) return
+
+c     reserve space for occ
+      if (.not.cremat(fname, topk+2, 0, mocc, nocc, locc, lc)) return
+
+c     reserve space for info
+      if (.not.cremat(fname, topk+3, 0, 1, 1, linfo, lc)) return
+
+c     go on for the computation
+      if ( ch .eq. 'c') then
+         call dsearchc(stk(lX), mX*nX, stk(lval), mval*nval-1,
+     $                 stk(lind), stk(locc), stk(linfo))
+      else 
+         call dsearchd(stk(lX), mX*nX, stk(lval), mval*nval, stk(lind), 
+     $                 stk(locc), stk(linfo))
+      endif
+
+c     int2db ... (normalement ca doit passer avec -1 sans copie supplementaire)
+      call int2db(mX*nX,     istk(iadr(lind)), -1, stk(lind), -1) 
+      call int2db(mocc*nocc, istk(iadr(locc)), -1, stk(locc), -1) 
+      call int2db(mX*nX,     istk(iadr(linfo)),-1, stk(linfo),-1) 
+
+*     copie en "haut" 
+      topl = topk - rhs
+      if(lhs .ge. 1) then
+         call copyobj(fname,topk+1,topl+1)
+      endif
+      if(lhs .ge. 2) then
+         call copyobj(fname,topk+2,topl+2)
+      endif
+      if(lhs .ge. 3) then
+         call copyobj(fname,topk+3,topl+3)
+      endif
+      top=topl+lhs
+
+      end
