@@ -15,11 +15,13 @@ char *getenv();
 
 #include "../routines/machine.h"
 #include "util.h" 
+#define Min(x,y)  (((x)<(y))?(x):(y))
 
 static int Sed (int,char *,FILE *,char *,char *,char *,char *,char *,char *);
 int ScilabPsToEps (char orientation,char *filein,char *fileout);
 static  void dos2win32 (char *filename,char *filename1);
 static void ConvertName (char *filein,char *fileout);
+static void get_dims(char *file, int *w, int *h);
 
 /**************************************************
  * SEpsf  Usage : BEpsf [-orientation] filename.ps 
@@ -128,7 +130,13 @@ static char entete[PATH_MAX];
 
 int ScilabPsToEps(char orientation,char *filein,char *fileout)
 {
-  int flag = 0,rep;
+  /* A4 paper in mm */
+  double ccm = 28.346457;
+  double wp = ccm*210;
+  double hp = ccm*297;
+  double ws,hs,sc,marg= ccm*5; /* margin 5mm */
+
+  int flag = 0,rep, w=0,h=0;
   FILE *fo;
   char *env;
   env = getenv("SCI");
@@ -151,25 +159,68 @@ int ScilabPsToEps(char orientation,char *filein,char *fileout)
       sciprint(" Can't open file %s\r\n",fileout);
       exit(1);
     }
+  /* see if the postscript file was generated with non standard sizes */
 
+  get_dims(filein,&w,&h);
+
+  if ( w == 0 || h == 0 ) 
+    {
+      w= 6000; h = 4240; /* default dimensions */
+    }
+    
+  /* The Postscript dimension will (w,h) proportions */
   fprintf(fo,"%%!PS-Adobe-2.0 EPSF-2.0\n");
   if ( orientation == 'p' ) 
-    fprintf(fo,"%%%%BoundingBox: 0 200 600 624\n");
+    {
+      ws = (wp-2*marg)/((double) w);
+      hs = (hp-2*marg)/((double) h);
+      sc = Min(ws,hs);
+      ws = w*sc;
+      hs = h*sc; 
+      fprintf(fo,"%%%%BoundingBox: %d %d %d %d \n", 
+	      (int) ((wp - ws)/(2*10.0)),
+	      (int) ((hp - hs)/(2*10.0)),
+	      (int) (ws/10.0 + (wp - ws)/(2*10.0)),
+	      (int) (hs/10.0 + (hp - hs)/(2*10.0))
+	      );
+    }
   else 
-    fprintf(fo,"%%%%BoundingBox: 0 0 600 780\n");
-
+    {
+      ws = (hp-2*marg)/((double) w);
+      hs = (wp-2*marg)/((double) h);
+      sc = Min(ws,hs);
+      ws = w*sc;
+      hs = h*sc; 
+      fprintf(fo,"%%%%BoundingBox: %d %d %d %d \n", 
+	      (int) ((wp - hs)/(2*10.0)),
+	      (int) ((hp - ws)/(2*10.0)),
+	      (int) (hs/10.0 + (wp - hs)/(2*10.0)) ,
+	      (int) (ws/10.0 + (hp - ws)/(2*10.0))
+	      );
+      
+    }
+  
   Sed(0,entete,fo,"%!PS-ADOBE","%%",(char*) 0,(char *)0,(char*) 0,(char *)0);
-
+  
   if ( orientation == 'p' )
-    rep=Sed(1,filein,fo,"[0.5 10 div 0 0 0.5 10 div neg  0 2120 10 div] concat",
-	    "[0.5 5 div 0 0 0.5 5 div neg  0 3120 5 div] concat",
-	    (char*) 0,(char *)0,(char*) 0,(char *)0);
-  else {
-    fprintf(fo,"1.3 1.3  scale \n");
-    rep=Sed(1,filein,fo,"[0.5 10 div 0 0 0.5 10 div neg  0 2120 10 div] concat",
-	    "90 rotate 10 640 neg translate [0.5 5 div 0 0 0.5 5 div neg  0 3120 5 div] concat",
-	    (char*) 0,(char *)0,(char*) 0,(char *)0);
-  }
+    {
+      char cc[512];
+      sprintf(cc,"[%f 20 div 0 0 %f 20 div neg %d 10 div %d 10 div] concat",
+	      sc,sc,(int) ((wp - ws)/(2)), (int) ((hp - hs)/(2) + hs));
+      rep=Sed(1,filein,fo,"[0.5 10 div 0 0 0.5 10 div neg",
+	      cc,
+	      (char*) 0,(char *)0,(char*) 0,(char *)0);
+    }
+  else 
+    {
+      char cc[512];
+      sprintf(cc,"90 rotate 0 neg %d neg 10 div translate\n[%f 20 div 0 0 %f 20 div neg %d 10 div %d 10 div] concat",
+	      h + (int) ((wp - hs)/(2.0)) ,  sc,sc,(int) ((hp - ws)/2), h ); 
+      rep=Sed(1,filein,fo,"[0.5 10 div 0 0 0.5 10 div neg",
+	      cc,
+	      (char*) 0,(char *)0,(char*) 0,(char *)0);
+    }
+
   fclose(fo);
 
   if ( rep >= 1 ) 
@@ -226,7 +277,6 @@ int Sed(int flag, char *file, FILE *fileo, char *strin1, char *strout1,
 	char *strin2, char *strout2, char *strin3, char *strout3)
 {
   FILE *fd;
-
   static char *buff = NULL;
   static int buflen = 512;
   if ( buff == NULL) 
@@ -244,6 +294,7 @@ int Sed(int flag, char *file, FILE *fileo, char *strin1, char *strout1,
     { int stop=0;
       while ( stop != 1)
 	{ 
+	  
 	   read_one_line (&buff,&stop,fd,&buflen); 
 	   if ( flag == 1 ) 
 	     {
@@ -277,5 +328,51 @@ int Sed(int flag, char *file, FILE *fileo, char *strin1, char *strout1,
       return(2);
     }
   return(0);
+}
+
+
+/*----------------------------------------------------
+ * get w and h in the postscript file 
+ *----------------------------------------------------*/
+
+static void get_dims(char *file, int *w, int *h)
+{
+  FILE *fd;
+  static char scipos_w[] = "%scipos_w=";
+  static char scipos_h[] = "%scipos_h=";
+  static char stop_s[] = "% Dessin en bas a gauche";
+
+  static char *buff = NULL;
+  static int buflen = 512;
+  if ( buff == NULL) 
+    {
+      buff = malloc(buflen*sizeof(char));
+      if ( buff == NULL) 
+	{
+	  fprintf(stderr,"Running out of space \n");
+	  exit(1);
+	}
+    }
+
+  fd=fopen(file,"r");
+  if (fd != 0)
+    { 
+      int stop=0;
+      while ( stop != 1)
+	{ 
+	  read_one_line (&buff,&stop,fd,&buflen); 
+	  if ( strncmp(buff,scipos_w,strlen(scipos_w))==0)
+	    {
+	      sscanf(buff+strlen(scipos_w),"%d",w);
+	    }
+	  if ( strncmp(buff,scipos_h,strlen(scipos_h))==0)
+	    {
+	      sscanf(buff+strlen(scipos_h),"%d",h);
+	    }
+	  if ( strncmp(buff,stop_s,strlen(stop_s))==0 )
+	    break;
+	}
+      fclose(fd);
+    }
 }
 

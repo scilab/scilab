@@ -184,7 +184,7 @@ void C2F(setwindowposPos)(integer *x, integer *y, integer *v3, integer *v4)
 
 static integer prec_fact =10;
 static integer def_width =600;
-static integer def_height =424;
+static integer def_height = 424;
 
 void setposfig(integer *i,integer *j)
 {
@@ -1579,6 +1579,7 @@ void FileInit(void)
   verbose = 0; 
   C2F(getwindowdimPos)(&verbose,x,&narg,vdouble);
   ColorInit();
+  FPRINTF((file,"\n%%scipos_w=%d\n%%scipos_h=%d",(int)x[0]/2,(int)x[1]/2));
   FPRINTF((file,"\n%% Dessin en bas a gauche de taille %d,%d",(int)x[0]/2,(int)x[1]/2));
   FPRINTF((file,"\n[0.5 %d div 0 0 0.5 %d div neg  0 %d %d div] concat",
 	  (int)prec_fact, (int)prec_fact,(int)x[1]/2,(int) prec_fact ));
