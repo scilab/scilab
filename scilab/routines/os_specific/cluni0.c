@@ -7,9 +7,9 @@
 
 #define MAX_ENV 256 
 
-static char *SCI_a[] = {  "SCI/", "sci/", "$SCI", (char *) 0 };
-static char *HOME_a[] = {  "HOME/", "home/", "~/" , "$HOME", (char *) 0};
-static char *TMP_a[] = {  "TMPDIR/", "tmpdir/", "$TMPDIR", (char *) 0};
+static char *SCI_a[] = {  "SCI/", "sci/", "$SCI", "SCI\\", "sci\\", (char *) 0 };
+static char *HOME_a[] = {  "HOME/", "home/", "~/" , "HOME\\", "home\\", "~\\" ,"$HOME", (char *) 0};
+static char *TMP_a[] = {  "TMPDIR/", "tmpdir/","TMPDIR\\", "tmpdir\\", "$TMPDIR", (char *) 0};
 void GetenvB __PARAMS(( char *name,char *env, int len));
 static int Cluni0 __PARAMS((char *env,char **alias,char* in_name,char *out_name, long int lin));
 
@@ -22,7 +22,7 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
 {
   int  nc= MAX_ENV;
   static char SCI[MAX_ENV],HOME[MAX_ENV],TMP[MAX_ENV];
-  static int firstentry=0;
+  static int firstentry=0,k;
   if ( firstentry == 0 ) 
     {
       GetenvB("SCI",SCI,nc);
@@ -41,7 +41,15 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
   *out_n = strlen(out_name);
 #if defined(THINK_C)||defined(__MWERKS__)
   for (k=0 ; k < *out_n ;k++) if ( out_name[k]=='/') out_name[k]=':';
+#else
+#if defined(WIN32)
+  for (k=0 ; k < *out_n ;k++) if ( out_name[k]=='/') out_name[k]='\\';
+#else
+  for (k=0 ; k < *out_n ;k++) if ( out_name[k]=='\\') out_name[k]='/';
 #endif
+#endif
+
+
   /** sciprint( "out [%s] [%d]\r\n",out_name,*out_n); **/
   return(0);
 }
