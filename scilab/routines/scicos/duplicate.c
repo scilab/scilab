@@ -49,7 +49,7 @@ int C2F(inttime)(fname)
   CheckLhs(1,1);
   GetRhsVar(1,"d",&m,&n,&l2);
   CreateVar(2,"d",(un=1,&un),(un=1,&un),&l1);
-  *stk(l1)=get_scicos_time(stk(l2));
+  *stk(l1)=get_scicos_time();
   LhsVar(1)=2;
   return 0;
 }
@@ -63,7 +63,7 @@ int C2F(intxproperty)(fname)
   CheckLhs(1,1);
   GetRhsVar(1,"i",&m,&n,&l2);
   CreateVar(2,"i",&m,(un=1,&un),&l1);
-  px=(int*) get_pointer_xproperty(istk(l2));
+  px=(int*) get_pointer_xproperty();
   if (px) {
     for (i=0;i<m;i++){
       *istk(l1+i)=px[i];
@@ -85,7 +85,7 @@ int C2F(intphasesim)(fname)
   CheckLhs(1,1);
   GetRhsVar(1,"i",&m,&n,&l2);
   CreateVar(2,"i",(un=1,&un),(un=1,&un),&l1);
-  *istk(l1)=get_phase_simulation(stk(l2));
+  *istk(l1)=get_phase_simulation();
   LhsVar(1)=2;
   return 0;
 }

@@ -3210,13 +3210,13 @@ void free_blocks()
 }
   
   
-int get_phase_simulation(int p)
+int get_phase_simulation()
 
 {
   return phase;
 }
 
-int* get_pointer_xproperty(int p)
+int* get_pointer_xproperty()
 
 {
   return pointer_xproperty;
@@ -3251,7 +3251,7 @@ void set_block_error(int err)
 void set_pointer_xproperty(int* pointer,int n)
 {
   int * pp,i;
-  pp=get_pointer_xproperty(0);
+  pp=get_pointer_xproperty();
   for (i=0;i<n;i++){
     pp[i]=pointer[i];
   }
