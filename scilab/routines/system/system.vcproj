@@ -688,6 +688,9 @@ cd .. &gt;nul
 				RelativePath=".\Calelm.c">
 			</File>
 			<File
+				RelativePath=".\calendar.c">
+			</File>
+			<File
 				RelativePath=".\cvstr.c">
 			</File>
 			<File
@@ -745,6 +748,9 @@ cd .. &gt;nul
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
+			<File
+				RelativePath=".\calendar.h">
+			</File>
 			<File
 				RelativePath=".\fromjava.h">
 			</File>

@@ -262,6 +262,7 @@
 {"getos",           IN_matsys,	61,	2},
 {"banner",          IN_matsys,	62,	2},
 {"fromjava",        IN_matsys,	63,	2},
+{"Calendar",        IN_matsys,	64,	2},
 #define  IN_matusr  14  
 {"user",		IN_matusr,	1,	1},	
 #define  IN_metane  15  

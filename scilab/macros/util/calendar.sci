@@ -13,15 +13,6 @@ function listcal = calendar(varargin)
       ct=getdate();
       c=[ct(1),ct(2),1]
     break
-    case 1
-      ct=varargin(1);
-      if and(size(ct) == [1,1]) then
-        [c(1),c(2),c(3),c(4),c(5),c(6)] = datevec(ct);
-   	c(3) = 1;
-      else
-        error('D must be scalar.');
-      end   
-    break
     case 2
       Y=varargin(1);
       M=varargin(2);
@@ -36,25 +27,12 @@ function listcal = calendar(varargin)
      error('Number of parameters incorrect.');
   end
 
-  // Determine the week day for first day of the month.
-  k = modulo(datenum(c(1),c(2),c(3))+5,7)+1;
-    
-  // Determine number of days in the month.
-  dpm = [31 28 31 30 31 30 31 31 30 31 30 31];
-  d = dpm(c(2));
   
-  if (c(2) == 2) & ((modulo(c(1),4) == 0 & modulo(c(1),100) ~= 0) |  modulo(c(1),400) == 0) then
-    d = 29;
-  end
-  // Fix in the matrix.
-  x = zeros(7,6);
-  x(k:k+d-1) = 1:d;
-  cal = x';
-
   mths = ['Jan';'Feb';'Mar';'Apr';'May';'Jun';'Jul';
           'Aug';'Sep';'Oct';'Nov';'Dec'];
+          
   mth = mths(c(:,2),:);
-  
-  listcal=list(sprintf('%s %d',mth,c(1)),'   S      M      Tu     W      Th     F      S',cal);
+  cal=Calendar(c(2),c(1));
+  listcal=list(sprintf('%s %d',mth,c(1)),'   M      Tu     W      Th     F     Sat     Sun',cal);
 endfunction
 //------------------------------------------------------------------------

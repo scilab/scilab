@@ -84,7 +84,8 @@ extern void
       SearchBackwardInHistory(),
       AddHistory(),
       C2F(xerbla)(),
-      C2F(intfromjava)();
+      C2F(intfromjava)(),
+	  C2F(intcalendar)();
 
 
 void System_contents( int x)
@@ -172,6 +173,7 @@ void System_contents( int x)
       AddHistory();
       C2F(xerbla)();
       C2F(intfromjava)();
+	  C2F(intcalendar)();
     }
 } 
 
