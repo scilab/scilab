@@ -18,7 +18,7 @@ source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
 source [file join $sourcedir Balloon.tcl]
 
-ppackage require combobox 2.3
+package require combobox 2.3
 catch {namespace import combobox::*}
 
 global SELOBJECT
