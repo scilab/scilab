@@ -5,7 +5,7 @@ function help(key)
   global %gtkhelp;
   
   // set of possible modes for gtk
-  gtk_modes=['help widget';'nautilus'];
+  gtk_modes=['help widget';'nautilus';'mozilla';'netscape';'opera'];
   if %tk then gtk_mode=[gtk_modes;'tcltk'];end 
     
   [lhs,rhs]=argn(0);
@@ -134,10 +134,13 @@ function gtk_help(path,key)
   global LANGUAGE INDEX 
   global %gtkhelp
   select %gtkhelp 
-   case 'nautilus' then  unix_s("nautilus "+path+ '&'); 
+   case 'nautilus' then  unix_s("nautilus --no-desktop "+path+ '&'); 
    case 'help widget' 
     help_gtk(SCI+"/man/",LANGUAGE,path);
    case 'tcl/tl' then  tcltk_help(path,key); 
+   case 'mozilla' then unix_s(%gtkhelp + " file://" +path+ '&'); 
+   case 'netscape' then unix_s(%gtkhelp + " file://" +path+ '&'); 
+   case 'opera' then unix_s(%gtkhelp + " file://" +path+ '&'); 
   else
      write(%io(2),mgetl(path))
   end
