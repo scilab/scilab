@@ -1186,7 +1186,14 @@ static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int he
   ResetScilabXgc ();
 /** xclear will properly upgrade background if necessary **/
   C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-  C2F (dr) ("xreplay", "v", &win_num, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+  if (version_flag() == 0)
+    {
+      sciSetReplay (TRUE);
+      sciRedrawF(&win_num); /* NG */
+      sciSetReplay (FALSE);
+    }
+  else
+    C2F (dr) ("xreplay", "v", &win_num, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
   C2F (dr1) ("xset", "alufunction", &alu, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
   C2F (dr) ("xset", "window", &cur, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
   C2F (SetDriver) (name, PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0);
