@@ -15,7 +15,11 @@ function browsehelp(path,key)
     if  with_gtk () then
       run_help(path,key);
     else
-       write(%io(2),mgetl(path))
+       if with_tk() then
+       run_help(path,key);
+       else
+       	write(%io(2),mgetl(path))
+       end
     end
   else
     run_help(path,key)

@@ -2588,6 +2588,7 @@ void SetLanguageMenu(char *Language)
 	}
 	else
 	{
- 		sciprint("Not in Console mode\n");
+ 		// sciprint("Not in Console mode\n");
+		// No Message
 	}
 }
