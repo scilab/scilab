@@ -19,7 +19,7 @@ int intqr()
   switch (Rhs) {
   case 1:   /* ...=qr(A)   */
     if (Cmplx==0) {
-      /* ret = C2F(intdgeqpf3)("qr",2L);  */
+      ret = C2F(intdgeqpf3)("qr",2L);
       return; }
     if (Cmplx==1) {
       /*     ret = C2F(intzgeqpf3)("qr",2L); */
