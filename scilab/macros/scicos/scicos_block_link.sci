@@ -9,7 +9,7 @@ function ok=scicos_block_link(funam,txt,flag)
   mputl(txt,funam+'.'+flag);
   ilib_for_link;ilib_compile;
   ilib_link_gen_loader(funam,flag,'loader.sce',[],"");
-  ilib_link_gen_Make(funam,funam+'.o',"",'Makelib',"",...
+  ilib_link_gen_Make(funam,funam+'.o',[],'Makelib',"",...
 		     "","","","");
   [make_command,lib_name_make,lib_name,path,makename,files]= ...
       ilib_compile_get_names('lib'+funam,'Makelib',funam+'.o')
@@ -34,3 +34,4 @@ function ok=scicos_block_link(funam,txt,flag)
   chdir(cur_wd)
   ok=%t
 endfunction
+
