@@ -273,6 +273,8 @@
 139.7,329.3,0//xgemouse
 -2,0,0,-1,'execstr(Simulate_1000(4))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
+// x_choose:  Diagram has not been saved
+0 //dont save
 //x_choose:  Choose a demo
   2//Continuous Plant discrete controller
 -2,0,0,-1,'execstr(Simulate_1000(4))' 
