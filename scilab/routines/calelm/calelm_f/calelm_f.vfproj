@@ -6,20 +6,34 @@
 		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def calelm_f.def &gt;nul
+copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="PIV_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
@@ -31,211 +45,411 @@ cd .."/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
-		<Configuration Name="PIV_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
-				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def calelm_f.def &gt;nul
-copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
-del *.def &gt;nul
-cd .."/>
-				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
-				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Pentium_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="Debug with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def calelm_f.def &gt;nul
 copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="Release with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def calelm_f.def &gt;nul
+copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def calelm_f.def &gt;nul
-copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
-del *.def &gt;nul
-cd .."/>
-				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
-				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration>
-		<Configuration Name="PIV_Release with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
-				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def calelm_f.def &gt;nul
-copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
-del *.def &gt;nul
-cd .."/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+		<Configuration Name="PIV_Release with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentium" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def calelm_f.def &gt;nul
+copy calelm_f.def ..\..\..\..\libs\calelm_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="..\arcosh.f"/>
-		<File RelativePath="..\calerf.f"/>
-		<File RelativePath="..\ccopy.f"/>
-		<File RelativePath="..\coshin.f"/>
-		<File RelativePath="..\cshep2d.f"/>
+		<File RelativePath="..\arcosh.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\calerf.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\ccopy.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\coshin.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\cshep2d.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
 		<File RelativePath="..\cupro.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
-		<File RelativePath="..\cuproi.f"/>
-		<File RelativePath="..\cusum.f"/>
-		<File RelativePath="..\dad.f"/>
-		<File RelativePath="..\dadd.f"/>
-		<File RelativePath="..\dcabs1.f"/>
-		<File RelativePath="..\ddif.f"/>
-		<File RelativePath="..\ddpow.f"/>
-		<File RelativePath="..\ddpow1.f"/>
-		<File RelativePath="..\ddpowe.f"/>
-		<File RelativePath="..\ddrdiv.f"/>
-		<File RelativePath="..\dipow.f"/>
-		<File RelativePath="..\dipowe.f"/>
-		<File RelativePath="..\dlblks.f"/>
-		<File RelativePath="..\dlgama.f"/>
-		<File RelativePath="..\dmcopy.f"/>
-		<File RelativePath="..\dmmul.f"/>
-		<File RelativePath="..\dmmul1.f"/>
-		<File RelativePath="..\dmprod.f"/>
-		<File RelativePath="..\dmsum.f"/>
+		<File RelativePath="..\cuproi.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\cusum.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dad.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dadd.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dcabs1.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\ddif.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\ddpow.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\ddpow1.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\ddpowe.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\ddrdiv.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dipow.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dipowe.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dlblks.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dlgama.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dmcopy.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dmmul.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dmmul1.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dmprod.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dmsum.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
 		<File RelativePath="..\drdiv.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
-		<File RelativePath="..\dsearch.f"/>
-		<File RelativePath="..\dset.f"/>
-		<File RelativePath="..\dsort.f"/>
-		<File RelativePath="..\dspfit.f"/>
-		<File RelativePath="..\dsum.f"/>
-		<File RelativePath="..\dtensbs.f"/>
-		<File RelativePath="..\dtild.f"/>
-		<File RelativePath="..\dvmul.f"/>
+		<File RelativePath="..\dsearch.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dset.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dsort.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dspfit.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dsum.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dtensbs.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dtild.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dvmul.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
 		<File RelativePath="..\dwdiv.f"/>
-		<File RelativePath="..\dwpow.f"/>
-		<File RelativePath="..\dwpow1.f"/>
-		<File RelativePath="..\dwpowe.f"/>
+		<File RelativePath="..\dwpow.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dwpow1.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\dwpowe.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
 		<File RelativePath="..\dwrdiv.f"/>
-		<File RelativePath="..\dxlegf.f"/>
-		<File RelativePath="..\entier.f"/>
-		<File RelativePath="..\franck.f"/>
+		<File RelativePath="..\dxlegf.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\entier.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\franck.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
 		<File RelativePath="..\gamma.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
-		<File RelativePath="..\gdcp2i.f"/>
-		<File RelativePath="..\hilber.f"/>
+		<File RelativePath="..\gdcp2i.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\hilber.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
 		<File RelativePath="..\icopy.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended"/></FileConfiguration></File>
-		<File RelativePath="..\idmax.f"/>
-		<File RelativePath="..\idmin.f"/>
-		<File RelativePath="..\imcopy.f"/>
-		<File RelativePath="..\infinity.f"/>
-		<File RelativePath="..\int2db.f"/>
-		<File RelativePath="..\intp.f"/>
-		<File RelativePath="..\iset.f"/>
-		<File RelativePath="..\isort.f"/>
-		<File RelativePath="..\isova0.f"/>
-		<File RelativePath="..\isoval.f"/>
-		<File RelativePath="..\ivimp.f"/>
-		<File RelativePath="..\iwamax.f"/>
-		<File RelativePath="..\kronc.f"/>
-		<File RelativePath="..\kronr.f"/>
-		<File RelativePath="..\lnblnk.f"/>
-		<File RelativePath="..\magic.f"/>
-		<File RelativePath="..\mtran.f"/>
-		<File RelativePath="..\nearfloat.f"/>
-		<File RelativePath="..\pchim.f"/>
-		<File RelativePath="..\psi.f"/>
-		<File RelativePath="..\pythag.f"/>
-		<File RelativePath="..\rat.f"/>
-		<File RelativePath="..\rcopy.f"/>
-		<File RelativePath="..\rcsort.f"/>
-		<File RelativePath="..\rea2db.f"/>
-		<File RelativePath="..\ribesl.f"/>
-		<File RelativePath="..\rjbesl.f"/>
-		<File RelativePath="..\rkbesl.f"/>
-		<File RelativePath="..\round.f"/>
-		<File RelativePath="..\rybesl.f"/>
-		<File RelativePath="..\simple.f"/>
-		<File RelativePath="..\somespline.f"/>
+		<File RelativePath="..\idmax.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\idmin.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\imcopy.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\infinity.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\int2db.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\intp.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\iset.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\isort.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\isova0.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\isoval.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\ivimp.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\iwamax.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\kronc.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\kronr.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\lnblnk.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\magic.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\mtran.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\nearfloat.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\pchim.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\psi.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\pythag.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\rat.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\rcopy.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\rcsort.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\rea2db.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\ribesl.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\rjbesl.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\rkbesl.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\round.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\rybesl.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\simple.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\somespline.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
 		<File RelativePath="..\unsfdcopy.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended"/></FileConfiguration></File>
-		<File RelativePath="..\urand.f"/>
-		<File RelativePath="..\vpythag.f"/>
-		<File RelativePath="..\wacos.f"/>
-		<File RelativePath="..\wasin.f"/>
-		<File RelativePath="..\wasum.f"/>
-		<File RelativePath="..\watan.f"/>
-		<File RelativePath="..\waxpy.f"/>
-		<File RelativePath="..\wcopy.f"/>
+		<File RelativePath="..\urand.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\vpythag.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wacos.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wasin.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wasum.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\watan.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\waxpy.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wcopy.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
 		<File RelativePath="..\wddiv.f"/>
 		<File RelativePath="..\wdiv.f"/>
-		<File RelativePath="..\wdotci.f"/>
-		<File RelativePath="..\wdotcr.f"/>
-		<File RelativePath="..\wdpow.f"/>
-		<File RelativePath="..\wdpow1.f"/>
-		<File RelativePath="..\wdpowe.f"/>
+		<File RelativePath="..\wdotci.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wdotcr.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wdpow.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wdpow1.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wdpowe.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
 		<File RelativePath="..\wdrdiv.f"/>
-		<File RelativePath="..\wipow.f"/>
-		<File RelativePath="..\wipowe.f"/>
-		<File RelativePath="..\wlog.f"/>
-		<File RelativePath="..\wmmul.f"/>
-		<File RelativePath="..\wmprod.f"/>
-		<File RelativePath="..\wmsum.f"/>
-		<File RelativePath="..\wmul.f"/>
-		<File RelativePath="..\wnrm2.f"/>
-		<File RelativePath="..\wrscal.f"/>
-		<File RelativePath="..\wscal.f"/>
-		<File RelativePath="..\wsign.f"/>
-		<File RelativePath="..\wsort.f"/>
-		<File RelativePath="..\wsqrt.f"/>
-		<File RelativePath="..\wswap.f"/>
-		<File RelativePath="..\wtan.f"/>
-		<File RelativePath="..\wvmul.f"/>
+		<File RelativePath="..\wipow.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wipowe.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wlog.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wmmul.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wmprod.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wmsum.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wmul.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wnrm2.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wrscal.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wscal.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wsign.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wsort.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wsqrt.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wswap.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wtan.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wvmul.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
 		<File RelativePath="..\wwdiv.f"/>
-		<File RelativePath="..\wwpow.f"/>
-		<File RelativePath="..\wwpow1.f"/>
-		<File RelativePath="..\wwpowe.f"/>
+		<File RelativePath="..\wwpow.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wwpow1.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
+		<File RelativePath="..\wwpowe.f">
+			<FileConfiguration Name="Release with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
 		<File RelativePath="..\wwrdiv.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/></Files>
