@@ -19,5 +19,6 @@ function  Ids=ge_get_arcs_id(sel)
     case 7 then Ids=string(GraphList.edge_q_weight(sel))
     case 8 then Ids=string(GraphList.edge_q_orig(sel))
     case 9 then Ids=string(GraphList.edge_weight(sel))
+    case 10 then Ids=string(GraphList.edge_label(sel))
   end
 endfunction

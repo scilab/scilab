@@ -6,7 +6,7 @@ function ge_do_options()
   node=list('Nodes',EGdata.NodeId+1,['Nothing','Number','Name','Demand','Label'])
   arc=list('Arcs',EGdata.ArcId+1,['Nothing','Number','Name','Cost','Min cap','Max cap',..
 		     'Length', 'Quadratic weight','Quadratic origin', ...
-		    'Weight'])
+		    'Weight','Label'])
   rep=x_choices("Select information to display",list(node,arc))
   
   if EGdata.NodeId<>rep(1)-1 | ...
