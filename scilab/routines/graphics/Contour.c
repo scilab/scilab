@@ -287,7 +287,7 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
       pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
       pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
       
-      for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; 
+      /*****TO CHANGE F.Leray 10.09.04    for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
       if (sciGetGraphicMode (psubwin)->autoscaling) {
 	/* compute and merge new specified bounds with psubwin->Srect */
 	switch (strflag[1])  {

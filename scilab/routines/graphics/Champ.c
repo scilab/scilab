@@ -92,7 +92,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
             
       /* Force psubwin->axes.aaint to those given by argument aaint*/
-      for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; 
+      /*****TO CHANGE F.Leray 10.09.04      for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
       
       /* Force "cligrf" clipping */
       sciSetIsClipping (psubwin,0); 
