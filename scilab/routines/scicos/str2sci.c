@@ -12,7 +12,8 @@ void str2sci(char** x,int n,int m)
   unsigned long str_len;
       
   if (Top >= Bot) {
-    error(18);
+    i=18;
+    C2F(error)(&i);
   } else {
     Top = Top + 1;
     il = iadr(*lstk(Top));
@@ -21,7 +22,8 @@ void str2sci(char** x,int n,int m)
   
   err = l + n*m - *lstk(Bot);
   if (err > 0) {
-    error(17);
+    i=17;
+    C2F(error)(&i);
     return;
   }
   *istk(il) = 10;

@@ -34,9 +34,9 @@ c
       character*4 name
       logical herited
 
-      data cur/0/,verb/0/
       integer kfun
       common /curblk/ kfun
+      data cur/0/,verb/0/
 
 
 c     

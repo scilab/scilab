@@ -31,10 +31,11 @@ c
 c      character*(4) logf
       logical herited
 
-      data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
-      data cur/0/,verb/0/
       integer kfun
       common /curblk/ kfun
+
+      data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
+      data cur/0/,verb/0/
 
 c     
       if(nipar.lt.16) then
