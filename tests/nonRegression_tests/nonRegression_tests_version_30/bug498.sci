@@ -4,15 +4,15 @@ mode (-1)
 clear all
 
 correct=%F
-affich_result( min(2,uint16(1))   ==    2.  , 498.1)
+affich_result( min(2,uint16(1))   ==    1.  , 498.1)
 affich_result( min(2,int16(1))    ==    1.  , 498.2)
 affich_result( min(2,int8(1))     ==    1.  , 498.3)
 affich_result( min(2,int8(10))    ==    2.  , 498.4)
-affich_result( min(2,uint8(1))    ==    2.  , 498.5)
-affich_result( max(uint8(10),2)   ==    2.  , 498.6)
-affich_result( max(int8(10),2)    ==    2.  , 498.7)
-affich_result( max(int8(10),-2)   ==    2.  , 498.8)
-affich_result( max(int8(10),-2.6) ==    2.  , 498.9)
+affich_result( min(2,uint8(1))    ==    1.  , 498.5)
+affich_result( max(uint8(10),2)   ==    10.  , 498.6)
+affich_result( max(int8(10),2)    ==    10.  , 498.7)
+affich_result( max(int8(10),-2)   ==    10.  , 498.8)
+affich_result( max(int8(10),-2.6) ==    10.  , 498.9)
 affich_result( min(int8(10),-2.6) ==  - 2.6 , 498.11)
 
 clear all
