@@ -209,8 +209,17 @@ int C2F(macr2tree) _PARAMS((char *fname))
 
 	      return 0;
 	    }
-
-	  if(cod_sav==15 && Top!=TopSave+1) /* Column catenation with EOL after semi-colon */
+ 	  if(cod_sav==15 && data[cod_ind+1]==29) /* EOL as the last component of a column concatenation */
+	    {
+	      /* a = ['a'
+		 'b'
+		 ] */
+	      Top--; /* EOL is erased */
+	      last_eol_pos=-10; /* EOL position is erased */
+	      newinstr=0; /* No new instruction created */
+	      nbstat--; /* One statement deleted */
+	    }
+	  else if(cod_sav==15 && Top!=TopSave+1) /* Column catenation with EOL after semi-colon */
 	    newinstr=0;
 	  else if(cod_sav==15) /* If EOL is not after semi-colon in catenation, it is ignored */
 	    last_eol_pos=-10;
