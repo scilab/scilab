@@ -6,3 +6,15 @@ while %t //wait for toplevel to disapear
   TCL_EvalStr('set h [winfo exists .foo]');
   if TCL_GetVar("h")=='0' then break,end
 end
+
+TCL_UnsetVar('label1');
+TCL_UnsetVar('label2');
+TCL_UnsetVar('label3');
+TCL_UnsetVar('red');
+TCL_UnsetVar('green');
+TCL_UnsetVar('blue');
+TCL_UnsetVar('colorSpace');
+TCL_UnsetVar('color');
+TCL_UnsetVar('updating');
+TCL_UnsetVar('autoUpdate');
+TCL_UnsetVar('name');
