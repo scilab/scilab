@@ -525,7 +525,11 @@ int C2F(intgetos) _PARAMS((char *fname))
 	static int l1,n1,m1;
 	char OperatinSystem[256];
 	char Release[256];
-	char *output=NULL;
+    char *output=NULL;
+
+	#ifndef WIN32
+	struct utsname uname_pointer;
+	#endif
 
 	Rhs=Max(0,Rhs);
 	CheckRhs(0,0);
@@ -576,7 +580,7 @@ int C2F(intgetos) _PARAMS((char *fname))
 			break;
 	}
 #else
-	struct utsname uname_pointer;
+	
 
 	uname(&uname_pointer);
 	sprintf(OperatinSystem,"%s",uname_pointer.sysname);
