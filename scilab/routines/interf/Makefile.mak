@@ -54,8 +54,6 @@ Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
 
 intmgetl.obj: intmgetl.f ../stack.h
-	$(FC) $(FC_OPTIONS_O0) -c intmgetl.f -o intmgetl.obj
-
 bva.obj: ../stack.h
 comm.obj: ../stack.h
 complexify.obj: ../stack.h
