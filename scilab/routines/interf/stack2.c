@@ -2430,13 +2430,6 @@ static int C2F(mvfromto)(itopl, ix)
   unsigned char Type ;
   int iwh;
   int izpos,spos;
-/*   FD modif 
-     was:
-     m = C2F(intersci).nbrows[*ix - 1];
-     n = C2F(intersci).nbcols[*ix - 1];
-     it = C2F(intersci).itflag[*ix - 1];
-     Type = C2F(intersci).ntypes[*ix - 1];  
-*/
 
   Type = C2F(intersci).ntypes[*ix - 1];
   if ( Type != '$') 
@@ -2491,7 +2484,6 @@ static int C2F(mvfromto)(itopl, ix)
     }
     break;
   case 'c' : 
-    /*  FD added  next 3 */
     il = iadr(iwh);
     m = *istk(il + 4  +1) - *istk(il + 4 );
     n = 1;
