@@ -23,8 +23,8 @@ function config()
   if (vt(1)==0) then v4="v"; else v4="e"; end;
   v5=string(vt(2));
   vt=lines();
-  v6=string(vt(1));
-  v7=string(vt(2));
+  v6=string(vt(2));
+  v7=string(vt(1));
   if (exists("%ODEOPTIONS")==1) then
     locode=%ODEOPTIONS;
   else
