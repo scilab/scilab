@@ -25,6 +25,7 @@ catch {namespace import combobox::*}
 
 
 global fen1 fen2 fen3
+global Xaxes_reverseToggle Yaxes_reverseToggle Zaxes_reverseToggle
 global axes_boundsL axes_boundsU axes_boundsW axes_boundsH
 global xlabel_visibility ylabel_visibility zlabel_visibility titlelabel_visibility
 global SubticksEntryX SubticksEntryY SubticksEntryZ
@@ -332,14 +333,16 @@ pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left
 pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
 pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x
 
-# frame $w.frame.ticks  -borderwidth 0
-# pack  $w.frame.ticks -in $w.frame -side top   -fill x  -pady 2m
+#Reverse axis
+frame $w.frame.rev  -borderwidth 0
+pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 2m
 
-# set numpage 0
-# button $w.frame.ticks.buttonticks -text "Ticks..." -command "PopUp $ww $numpage"
-# pack $w.frame.ticks.buttonticks -in $w.frame.ticks  -expand 1 -fill x
-
-
+label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0
+checkbutton $w.frame.rev.revvalue  -textvariable Xaxes_reverseToggle \
+    -variable Xaxes_reverseToggle -onvalue "on" -offvalue "off" \
+    -command "toggleReverselabx" 
+pack $w.frame.rev.label -in $w.frame.rev -side left
+pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
 
 
 
@@ -486,6 +489,18 @@ pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left
 pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
 pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x
 
+#Reverse axis
+frame $w.frame.rev  -borderwidth 0
+pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 2m
+
+label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0
+checkbutton $w.frame.rev.revvalue  -textvariable Yaxes_reverseToggle \
+    -variable Yaxes_reverseToggle -onvalue "on" -offvalue "off" \
+    -command "toggleReverselaby"
+pack $w.frame.rev.label -in $w.frame.rev -side left
+pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
+
+
 # #sep bar
 # frame $w.sep -height 2 -borderwidth 1 -relief sunken
 # pack $w.sep -fill both -pady 10m  
@@ -626,6 +641,17 @@ pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left
 pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
 pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x
+
+#Reverse axis
+frame $w.frame.rev  -borderwidth 0
+pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 2m
+
+label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0
+checkbutton $w.frame.rev.revvalue  -textvariable Zaxes_reverseToggle \
+    -variable Zaxes_reverseToggle -onvalue "on" -offvalue "off" \
+    -command "toggleReverselabz"
+pack $w.frame.rev.label -in $w.frame.rev -side left
+pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
 
 # #sep bar
 # frame $w.sep -height 2 -borderwidth 1 -relief sunken
@@ -2863,4 +2889,20 @@ proc Reload_and_popup { win numpage } {
     ScilabEval "global ged_handle; ReLoadTicks2TCL(ged_handle); " "seq"
     ScilabEval "TK_EvalStr(\"PopUp \"+\"$win $numpage\")" "seq"
 
+}
+
+
+proc toggleReverselabx {} {
+global Xaxes_reverseToggle
+ScilabEval "global ged_handle;ged_handle.axes_reverse(1)='$Xaxes_reverseToggle'"
+}
+
+proc toggleReverselaby {} {
+global Yaxes_reverseToggle
+ScilabEval "global ged_handle;ged_handle.axes_reverse(2)='$Yaxes_reverseToggle'"
+}
+
+proc toggleReverselabz {} {
+global Zaxes_reverseToggle
+ScilabEval "global ged_handle;ged_handle.axes_reverse(3)='$Zaxes_reverseToggle'"
 }
