@@ -192,7 +192,7 @@ while i<nfrq
     f=frqs(i);fmax=frqs(i+1);
   end
   frq=[frq,f0];
-  pas=Pas(i)
+  pas=Pas(floor(i/2)+1)
   splitf=[splitf size(frq,'*')];
 
   f=mini(f0+pas,fmax);
