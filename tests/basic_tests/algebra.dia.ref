@@ -3512,10 +3512,7 @@ if Err(Ab2-Ab1)>>10*%eps then bugmes();quit;end
  
 if Err(Ab2-inv(X)*A*X )>1.d-10 then bugmes();quit;end
  
-if or(size(bs)<>[3,1] then bugmes();quit;end
-                         !--error     3 
-waiting for right parenthesis
- 
+if or(size(bs)<>[3,1]) then bugmes();quit;end
  
 if sum(bs)<>size(A,1) then bugmes();quit;end
  
@@ -3528,10 +3525,7 @@ if Err(Ab2-Ab1)>>10*%eps then bugmes();quit;end
  
 if Err(Ab2-inv(X)*A*X )>1d-7 then bugmes();quit;end
  
-if or(size(bs)<>[1,1] then bugmes();quit;end
-                         !--error     3 
-waiting for right parenthesis
- 
+if or(size(bs)<>[1,1]) then bugmes();quit;end
  
 if sum(bs)<>size(A,1) then bugmes();quit;end
  
