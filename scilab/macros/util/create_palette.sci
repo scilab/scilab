@@ -79,9 +79,9 @@ function routines=create_palette(bidon)
       elseif txt=='Others' then
 	lisf=['c_block.sci';'fortran_block.sci';
 	      'SUPER_f.sci';'scifunc_block.sci';
-	      'TEXT_f.sci';'CBLOCK.sci';'RATELIMITER.sci'; ...
+	      'TEXT_f.sci';'CBLOCK.sci';'RATELIMITER.sci'; 
 	      'BACKLASH.sci';'DEADBAND.sci';'EXPRESSION.sci';	      
-	      'CONSTRAINT_f.sci';'HYSTHERESIS.sci';
+	      'CONSTRAINT_f.sci';'HYSTHERESIS.sci';'DEBUG_SCICOS.sci'
 	      'LOGICAL_OP.sci';'RELATIONALOP.sci';'generic_block2.sci']
 	
       elseif txt=='Linear' then
