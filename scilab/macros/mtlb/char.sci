@@ -1,19 +1,21 @@
 function y=char(varargin)
 // Copyright INRIA
 // Case : One input argument
-// input : a cell of characters arrays 
-// output : matrix of arrays
+// Input : a cell of characters arrays 
+// Output : vector (column) of strings, 
+// This function returns a vector in  which the rows are the components of the cell characters arrays
 //
-// input : an array of ascii codes
-// output :an characters array corresponding into ascii codes
-// if dims input =[n1,n2,n3,n4,....],then returned a value has the dims=[n1,n3,n4,...],
+// Input : an array of ascii codes
+// Output :a characters array corresponding into ascii codes
+// If dims input =[n1,n2,n3,n4,....],then returned a value has the dims=[n1,n3,n4,...],
 // returned value have same size as input value instead of second dims !
 //
-// Case : more than one input argument
-// inputs must be string : st1,st2,st3,...
-// this function returns a matrix in  which the rows are st1, st2,st3,...,
+// Case : more than one input argument : y=char(st1,st2,st3,....)
+// Inputs must be string : st1,st2,st3,...
+// Outputs : vector (column) of strings
+// This function returns a vector in  which the rows are st1, st2,st3,...,
 // the length of all strings sti is completed by blanks,to have the same length than the lengthmax of sti.
-//F.B
+// F.B
 
 rhs=argn(2)
 y=[]
@@ -34,13 +36,13 @@ if rhs==1 then
 	else
 	  error("cell elements must be characters arrays")
 	end
-      elseif  type(lst)==10 then //cell elements are a strings matrix
+      elseif  type(lst)==10 then //cell elements are a string matrix
 	t=emptystr(size(lst,1),1)
 	for k=1:size(lst,2)
 	  t=t+lst(:,k)
 	end
 	y=[y,t]
-      else // cell contains more tha one element
+      else // cell contains more than one element
 	error("cell elements must be arrays chars")
       end
     else
