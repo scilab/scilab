@@ -67,7 +67,7 @@ case 'define' then
   graphics.exprs=exprs
 
 
-  x=tlist(['Text','graphics','model','void','gui'],graphics,model,' ','TEXT_f')
+  x=mlist(['Text','graphics','model','void','gui'],graphics,model,' ','TEXT_f')
 
 end
 endfunction

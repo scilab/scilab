@@ -26,7 +26,10 @@ MENU=	Documentation_.sci Addcolor_.sci Addnewblock_.sci Aspect_.sci \
 	Undo_.sci Window_.sci Zoomin_.sci Zoomout_.sci  CodeGeneration_.sci \
 	menu_stuff.sci 
 
-
+COMPAT= %Block_e.sci %graphics_e.sci %model_e.sci %model_e.sci \
+	%b_i_graphics.sci %s_i_graphics.sci %c_i_graphics.sci \
+	%l_i_graphics.sci %b_i_model.sci %s_i_model.sci %c_i_model.sci \
+        %l_i_model.sci %s_i_block.sci %c_i_block.sci %l_i_block.sci 
 
 MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci \
 	getblock.sci getinputs.sci getlink.sci getobj.sci \
@@ -73,6 +76,7 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
         do_version26.sci scicos_block.sci scicos_graphics.sci \
 	scicos_model.sci scicos_link.sci  %model_p.sci  %graphics_p.sci \
 	%Block_p.sci  %params_p.sci \
-	scicos_params.sci scicos_cpr.sci scicos_sim.sci scicos_state.sci $(MENU)
+	scicos_params.sci scicos_cpr.sci scicos_sim.sci scicos_state.sci \
+	$(MENU) $(COMPAT) 
 
 include ../Make.lib

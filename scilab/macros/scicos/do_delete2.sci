@@ -39,5 +39,5 @@ end
 if gr==%t then 
   if pixmap then xset('wshow'),end,
 end
-for k=DEL,scs_m(k)=tlist('Deleted'),end
+for k=DEL,scs_m(k)=mlist('Deleted'),end
 endfunction

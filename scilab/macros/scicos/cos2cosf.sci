@@ -30,7 +30,7 @@ for k=2:size(scs_m)
       cos2cosf(u,o.model.rpar,count);//model.rpar
 
       //open a block
-      tt= lname+'('+string(k)+')=tlist(..'
+      tt= lname+'('+string(k)+')=mlist(..'
       //add the type field
       
       tt=[tt;
@@ -40,7 +40,7 @@ for k=2:size(scs_m)
       tt=catinstr(tt,sci2exp(o.graphics,lmax-count*2),length(lhs))
 								   
       //open the model data structure and write code for type 
-      tt=catinstr(tt,'tlist(..',length(lhs))
+      tt=catinstr(tt,'mlist(..',length(lhs))
       //add the type field
       fn=getfield(1,o.model)
       tt=[tt;bl1+sci2exp(fn,lmax-count*2)]
