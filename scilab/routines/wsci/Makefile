@@ -6,7 +6,7 @@ LIBRARY = $(SCIDIR)/libs/wsci.a
 
 OBJSC1 = printf.o FilesAssociations.o GetOS.o SciEnv.o WinConsole.o dde.o interfdde.o registry.o FindScilab.o \
 clipboard.o wmcopydata.o wtext.o wgnuplib.o wmenu.o wprinter.o wpause.o wgraph.o \
-wgmenu.o wstatbar.o gvwprn.o wmprint.o wmtex.o winmain.o
+wgmenu.o wstatbar.o gvwprn.o wmprint.o wmtex.o winmain.o Events.o
 	
 
 OBJSC2 =readwin.o wtloop.o misc.o \

@@ -34,7 +34,7 @@
 #define STRICT
 #endif
 
-#define MaxCB 50
+
 #define MAXPRINTF 512
 
 /*-----------------------------------------------------------------------------------*/
@@ -57,11 +57,12 @@
 #include "../graphics/DestroyObjects.h"
 #include "../graphics/GetProperty.h"
 #include "../graphics/DrawObjects.h"
+#include "Events.h"
 
 extern int version_flag();
 
 /*-----------------------------------------------------------------------------------*/
-typedef struct but{  int win, x, y, ibutton, motion, release;}But;
+
 typedef struct
 {
   MSG msg;
@@ -84,11 +85,6 @@ extern void delete_sgwin_entities(int win_num,int v_flag);
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
 
 static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height, int scale);
-
-void scig_deletegwin_handler_none (int win);
-void scig_deletegwin_handler_sci (int win);
-Scig_deletegwin_handler set_scig_deletegwin_handler (Scig_deletegwin_handler f);
-void reset_scig_deletegwin_handler ();
 void set_delete_win_mode();
 
 int C2F (deletewin) (integer * number);
@@ -100,14 +96,7 @@ int CopyPrint (struct BCG *ScilabGC);
 void SciViewportMove (ScilabGC, x, y);
 void SciViewportGet (ScilabXgc, x, y);
 void GPopupResize (struct BCG * ScilabXgc,int * width,int * height);
-void set_wait_click(val);
-int scig_click_handler_none (int win,int x,int y,int ibut,int motion,int release);
-int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release);
-Scig_click_handler set_scig_click_handler (f);
-void reset_scig_click_handler ();
-int PushClickQueue (int win,int x,int y,int ibut,int motion,int release);
-int CheckClickQueue (integer *win,integer *x, integer *y, integer *ibut);
-int ClearClickQueue (int win);
+
 void sciSendMessage (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 int sciPeekMessage (MSG * msg);
 static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC);
@@ -120,26 +109,11 @@ static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam);
 static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale);
 EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-void C2F(seteventhandler)(int *win_num,char *name,int *ierr);
-
+extern Scig_deletegwin_handler set_scig_deletegwin_handler (Scig_deletegwin_handler f);
 /*-----------------------------------------------------------------------------------*/
-static int scig_buzy = 0;
-static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_sci;
-static int sci_graphic_protect = 0;
-static Scig_click_handler scig_click_handler = scig_click_handler_sci;
 static void sci_extra_margin(HDC hdc , struct BCG *ScilabGC);
 /*-----------------------------------------------------------------------------------*/
-/***********************************************
- * we keep track of the last MaxCB XXBUTTONDOWN 
- * events while we are in GraphicWindowProc 
- ***********************************************/
 
-static But ClickBuf[MaxCB];
-static int lastc = 0;
-
-/* used by xclick_any and xclick */ 
-static int wait_for_click=0;
-But SciClickInfo; /* for xclick and xclick_any */
 
 /* if thid flag is set to one then a pixmap is used 
  * when painting for windows with CurPixmapStatus==0.
@@ -165,6 +139,6 @@ BOOL HwndToBmpFile(HWND hwnd, char *pszflname);
 void ExportBMP(struct BCG *ScilabGC,char *pszflname);
 void ExportEMF(struct BCG *ScilabGC,char *pszflname);
 int GetScreenProperty(char *prop, char *value);
-int GetEventKeyboardAndMouse (UINT message, WPARAM wParam, LPARAM lParam);
+
 #endif /* __WGRAPH__ */
 /*-----------------------------------------------------------------------------------*/

@@ -24,6 +24,7 @@
 #include "../wsci/resource.h"
 #include "../wsci/wcommon.h"
 #include "../wsci/wgraph.h"
+#include "../wsci/Events.h"
 
 #include "bcg.h"
 #include "periWin.h" 
@@ -210,7 +211,9 @@ extern void CreateGraphToolBar(struct BCG * ScilabGC);
  *************************************************/
 
 static HDC  hdc = (HDC) 0 ; 
-static HDC  hdc1 = (HDC) 0 ; 
+static HDC  hdc1 = (HDC) 0 ;
+
+integer sciGetwresize(void);
 
 /*-----------------------------------------------------------------------------------*/
 int sciGetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si)
@@ -4904,9 +4907,7 @@ static void DrawMark(lhdc,x, y)
      integer *y;
 {
   char str[2];
-#ifdef DEBUG 
-  SIZE size ;
-#endif 
+
   str[0]=Marks[ScilabXgc->CurHardSymb];
   str[1]='\0';
   if ( ScilabXgc->CurDrawFunction ==  GXxor )

@@ -780,6 +780,9 @@ cd .. &gt;nul
 				RelativePath=".\DDE.c">
 			</File>
 			<File
+				RelativePath=".\Events.c">
+			</File>
+			<File
 				RelativePath="files.c">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -2822,6 +2825,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath="errno.h">
+			</File>
+			<File
+				RelativePath=".\Events.h">
 			</File>
 			<File
 				RelativePath=".\FilesAssociations.h">
