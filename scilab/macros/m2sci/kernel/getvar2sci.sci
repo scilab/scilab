@@ -38,7 +38,9 @@ if ~boolval then
     end
     sci_equiv=Funcall(varname,size(lhslist),list(),lhslist)
   elseif or(varname==["i","j"]) then
-    set_infos("Variable "+varname+" supposed to be the Imaginary unit",2);
+    if verbose_mode<0 then
+      m2sci_info("Variable "+varname+" supposed to be the Imaginary unit",-1);
+    end
     sci_equiv=Variable("%i",Infer(list(1,1),Type(Double,Complex)))
   else
     // Try to find what is 'varname'
