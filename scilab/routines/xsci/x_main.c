@@ -25,6 +25,7 @@
 #include "../version.h"
 #include "../machine.h"
 #include "../graphics/Math.h"
+#include "../graphics/Entities.h"
 
 #include "All-extern-x.h"
 #include "All-extern.h"
@@ -99,6 +100,9 @@ static void strip_blank  __PARAMS((char *source));
 static void Syntax  (char *badOption);  
 static char ** create_argv(int *argc);
 static void strip_blank(char *source);
+
+extern sciPointObj *pfiguremdl; /* F.Leray 18.11.04 : used to be destroyed with sciquit */
+extern sciPointObj *paxesmdl;   /* F.Leray 18.11.04 : used to be destroyed with sciquit */
 
 /*---------------------------------------------------------- 
  * mainsci.f directly call this function 
@@ -652,6 +656,11 @@ int C2F(sciquit)(void)            /* used at Fortran level */
 {
   int status = 0;
   /* fprintf(stderr,"I Quit Scilab through sciquit\n"); */
+
+ /* F.Leray : graphic objects models (for axe and figure) can now be deleted */
+  DestroyAllGraphicsSons(pfiguremdl); paxesmdl = (sciPointObj *) NULL;
+  DestroyFigure(pfiguremdl); pfiguremdl = (sciPointObj *) NULL;
+  
   if ( no_startup_flag == 0) 
     {
       char *quit_script =  get_sci_data_strings(5);
