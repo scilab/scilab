@@ -619,6 +619,8 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
       (sciGetFontContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_SEGS:
+      (sciGetGraphicContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      break;
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_AGREG:  

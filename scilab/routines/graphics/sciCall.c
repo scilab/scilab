@@ -155,12 +155,13 @@ void Objsegs (style,flag,n1,x,y,arsize)
   integer type=0,n2, colored=0;
   double *fx,*fy,arfact=1.0;
   sciPointObj *psubwin;
+  int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
   n2=n1;
   fx=x;fy=y;
   sciSetCurrentObj (ConstructSegs(psubwin,type,
-				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact)); 
+				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact,typeofchamp)); 
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
     /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */

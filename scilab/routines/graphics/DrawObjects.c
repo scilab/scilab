@@ -730,7 +730,8 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   /*x=ixbox[2]-(xz[0]+xz[1])/20 ;y=0.5*iybox[3]+0.5*iybox[2];*/
   
   /*   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); */
-  ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
+/*   ticscolor = pSUBWIN_FEATURE (psubwin)->axes.ticscolor; /\* no more use : property has been removed (except for AXIS (see drawaxis)) *\/ */
+  ticscolor = sciGetForeground(psubwin);
   textcolor=sciGetFontForeground(psubwin);
   fontsize=sciGetFontDeciWidth(psubwin)/100;
   fontstyle=sciGetFontStyle(psubwin);
@@ -740,9 +741,9 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
     return 0;
   }
   
-  /* if ticscolor is -1 or -2 */
-  /* compute the good index */
-  ticscolor=sciGetGoodIndex(psubwin,ticscolor);
+/*   /\* if ticscolor is -1 or -2 *\/ */
+/*   /\* compute the good index *\/ */
+/*   ticscolor=sciGetGoodIndex(psubwin,ticscolor); */
 
   bbox[0] =  xminval = pSUBWIN_FEATURE (psubwin)->FRect[0]; /*xmin*/
   bbox[1] =  xmaxval = pSUBWIN_FEATURE (psubwin)->FRect[2]; /*xmax*/
@@ -5376,7 +5377,7 @@ void Merge3d(sciPointObj *psubwin)
   
 }
 
-void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
+void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 {
   int N,i,j,index,p,max_p,n1,npoly;
   double * dist;
@@ -6140,7 +6141,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	    if(sciGetIsLine(pobj))
 	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    if(sciGetIsMark(pobj))
-	      DrawMarks3D(pobj,5*npoly,polyx,polyy);
+	      DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	  }
 	  else {
 	    switch ( pSURFACE_FEATURE (pobj)->flagcolor) {
@@ -6149,7 +6150,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	      if(sciGetIsLine(pobj))
 		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p, PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      if(sciGetIsMark(pobj))
-		DrawMarks3D(pobj,5*npoly,polyx,polyy);
+		DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	      break;
 	    case 1:
 	      zl=0;
@@ -6170,7 +6171,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	      if(sciGetIsLine(pobj))
 		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      if(sciGetIsMark(pobj))
-		DrawMarks3D(pobj,5*npoly,polyx,polyy);
+		DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	      break;
 	    case 2:
 	      fill[0]= pSURFACE_FEATURE (pobj)->zcol[index];
@@ -6178,7 +6179,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	      if(sciGetIsLine(pobj))
 		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      if(sciGetIsMark(pobj))
-		DrawMarks3D(pobj,5*npoly,polyx,polyy);
+		DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	      break;
 	    case 3:
 	      p--;
@@ -6197,7 +6198,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	      if(sciGetIsLine(pobj))
 		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      if(sciGetIsMark(pobj))
-		DrawMarks3D(pobj,5*npoly,polyx,polyy);
+		DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	      break;
 	    }
 	  }
@@ -6224,7 +6225,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	      
 	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			PD0, PD0, 0L, 0L);
-	      DrawNewMarks(pobj,n1,polyx,polyy);
+	      DrawNewMarks(pobj,n1,polyx,polyy,DPI);
 	    }
 	    
 	    if(sciGetIsLine(pobj)){
@@ -6340,7 +6341,8 @@ sciDrawObj (sciPointObj * pobj)
   int result_trans3d = 1;
 
   char STRFLAG[4];
-  
+  int DPI[2];
+
   subwin[0]    = 0;
   subwin[1]    = 0;
   subwin[2]   = 1;
@@ -6358,6 +6360,9 @@ sciDrawObj (sciPointObj * pobj)
   }
 
   currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+
+  /* get the DPI of the current driver to draw new marks correctly */
+  GetDPIFromDriver(DPI);
 
   switch (sciGetEntityType (pobj))
     {
@@ -6739,7 +6744,7 @@ sciDrawObj (sciPointObj * pobj)
 		
 		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			  PD0, PD0, 0L, 0L);
-		DrawNewMarks(pobj,n,xm,ym);
+		DrawNewMarks(pobj,n,xm,ym,DPI);
 	      }	   
 	    
 	    if(sciGetIsLine(pobj)){
@@ -6780,7 +6785,7 @@ sciDrawObj (sciPointObj * pobj)
 		    
 		    C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			      PD0, PD0, 0L, 0L);
-		    DrawNewMarks(pobj,n,xm,ym);
+		    DrawNewMarks(pobj,n,xm,ym,DPI);
 		  }
 		
 		if(sciGetIsLine(pobj)){
@@ -6814,7 +6819,7 @@ sciDrawObj (sciPointObj * pobj)
 		    C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			      PD0, PD0, 0L, 0L);
 		    
-		    DrawNewMarks(pobj,n,xm,ym);
+		    DrawNewMarks(pobj,n,xm,ym,DPI);
 		  }
 		
 		if(sciGetIsLine(pobj)){
@@ -6873,7 +6878,7 @@ sciDrawObj (sciPointObj * pobj)
 	      sciprint("Running out of memory \n");
 	      return -1;
 	    }      
-	  if ( pSEGS_FEATURE (pobj)->pcolored != 0) {
+	  if ( pSEGS_FEATURE (pobj)->typeofchamp == 1) { /* champ1 has been called */
 	    /*	    zm = graphic_alloc(2,n/2,sizeof(int)); */ /* F.Leray a voir le n/2... 20.02.04 */
 	    if ((zm = MALLOC (((int) (n/2))*sizeof (integer))) == NULL)	return -1;
 	    
@@ -6893,10 +6898,10 @@ sciDrawObj (sciPointObj * pobj)
 	     double *arfact;
 	  */
 
-	  Champ2DRealToPixel(xm,ym,zm,&na,&arssize,&(pSEGS_FEATURE (pobj)->pcolored),
+	  sciChamp2DRealToPixel(xm,ym,zm,&na,&arssize,
 			     pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,pSEGS_FEATURE (pobj)->vfx,
 			     pSEGS_FEATURE (pobj)->vfy,&(pSEGS_FEATURE (pobj)->Nbr1),
-			     &(pSEGS_FEATURE (pobj)->Nbr2),&(pSEGS_FEATURE (pobj)->parfact));
+			     &(pSEGS_FEATURE (pobj)->Nbr2),&(pSEGS_FEATURE (pobj)->parfact),&(pSEGS_FEATURE (pobj)->typeofchamp));
 #ifdef WIN32 
 	  flag_DO = MaybeSetWinhdc();
 #endif
@@ -6951,7 +6956,7 @@ sciDrawObj (sciPointObj * pobj)
 	      FREE(zvect); zvect = NULL;
 	    }
 
-	  if (pSEGS_FEATURE (pobj)->pcolored ==0){
+	  if (pSEGS_FEATURE (pobj)->typeofchamp == 0){
 	    if(sciGetIsMark(pobj))
 	      {
 		x[0] = sciGetMarkForeground(pobj);
@@ -6967,7 +6972,7 @@ sciDrawObj (sciPointObj * pobj)
 		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			  PD0, PD0, 0L, 0L);
 		
-		DrawNewMarks(pobj,n,xm,ym);
+		DrawNewMarks(pobj,n,xm,ym,DPI);
 	      }
 
 	    if(sciGetIsLine(pobj)){
@@ -6999,7 +7004,7 @@ sciDrawObj (sciPointObj * pobj)
 		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			  PD0, PD0, 0L, 0L);
 		
-		DrawNewMarks(pobj,n,xm,ym);
+		DrawNewMarks(pobj,n,xm,ym,DPI);
 	      }
 	    
 	    if(sciGetIsLine(pobj)){
@@ -7020,7 +7025,7 @@ sciDrawObj (sciPointObj * pobj)
 #endif 
 	  FREE(xm) ; xm = (integer *) NULL;
 	  FREE(ym) ; ym = (integer *) NULL;/* SS 02/04 */ /* et F.Leray 18.02.04*/
-	  if ( pSEGS_FEATURE (pobj)->pcolored != 0) 
+	  if ( pSEGS_FEATURE (pobj)->typeofchamp == 1) 
 	    {
 	      FREE(zm); zm = (integer *) NULL;/* F.Leray 1802.04 modif ici*/
 	    }
@@ -7606,7 +7611,7 @@ sciDrawObj (sciPointObj * pobj)
 		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			  PD0, PD0, 0L, 0L);   
 		
-		DrawNewMarks(pobj,n1,xm,ym);
+		DrawNewMarks(pobj,n1,xm,ym,DPI);
 	      }
 	      
 	      if (sciGetIsLine(pobj) == TRUE){
@@ -7744,9 +7749,32 @@ sciDrawObj (sciPointObj * pobj)
       w2 = pARC_FEATURE (pobj)->width;
       h2 = pARC_FEATURE (pobj)->height; 
       /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */ 
+
+      printf("dans sciDrawObj->SCI_ARC\n");
+      printf("Cscale.Wscx1 = %lf\n",Cscale.Wscx1);
+      printf("Cscale.Wscy1 = %lf\n",Cscale.Wscy1);
+      printf("Cscale.Wxofset1 = %lf\n",Cscale.Wxofset1);
+      printf("Cscale.Wyofset1 = %lf\n",Cscale.Wyofset1);
+      printf("Cscale.frect[0] = %lf\n",Cscale.frect[0]);
+      printf("Cscale.frect[1] = %lf\n",Cscale.frect[1]);
+      printf("Cscale.frect[2] = %lf\n",Cscale.frect[2]);
+      printf("Cscale.frect[3] = %lf\n",Cscale.frect[3]);
+ 
+       printf("AVANT Wscale\n");
+      printf("x1 = %d\n",x1);
+      printf("yy1 = %d\n",yy1);
+      printf("w1 = %lf\n",w2);
+      printf("h1 = %lf\n",h2);
+      
       w1 = WScale(w2);
       h1 = HScale(h2);
 
+      printf("APRES Wscale\n");
+      printf("x1 = %d\n",x1);
+      printf("yy1 = %d\n",yy1);
+      printf("w1 = %d\n",w1);
+      printf("h1 = %d\n\n",h1);
+      
       angle1 = (integer) (pARC_FEATURE (pobj)->alphabegin);
       angle2 = (integer) (pARC_FEATURE (pobj)->alphaend); 
 
@@ -7887,7 +7915,7 @@ sciDrawObj (sciPointObj * pobj)
 	      ytmp[2] = yy1+height;
 	      ytmp[3] = yy1+height;
 	     
-	      DrawNewMarks(pobj,n,xtmp,ytmp);
+	      DrawNewMarks(pobj,n,xtmp,ytmp,DPI);
 	    }
 
 	  if (sciGetIsLine(pobj))
@@ -7960,7 +7988,7 @@ sciDrawObj (sciPointObj * pobj)
 	     
 	      n=4;
 	     
-	      DrawNewMarks(pobj,n,xm,ym);
+	      DrawNewMarks(pobj,n,xm,ym,DPI);
 	    }
 
 	  if (sciGetIsLine(pobj)) 
@@ -8105,7 +8133,7 @@ sciDrawObj (sciPointObj * pobj)
      
       /*     if (!sciGetVisibility(pobj)) break; */
      
-      DrawMerge3d(sciGetParentSubwin(pobj), pobj);  /* TEST on sciGetVisibility inside */
+      DrawMerge3d(sciGetParentSubwin(pobj), pobj, DPI);  /* TEST on sciGetVisibility inside */
       break;
     case SCI_SURFACE:
      
@@ -8149,13 +8177,13 @@ sciDrawObj (sciPointObj * pobj)
 	  C2F(fac3dn)(pobj,pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
 		      pSURFACE_FEATURE (pobj)->pvecz,
 		      pSURFACE_FEATURE (pobj)->zcol,
-		      &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy);
+		      &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy, DPI);
 
 	  break;
 	case SCI_PLOT3D:
 	  C2F(plot3dn)(pobj,pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
 		       pSURFACE_FEATURE (pobj)->pvecz,
-		       &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy);
+		       &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy, DPI);
 	  break;
 	default:
 	  break;
@@ -8183,7 +8211,7 @@ sciDrawObj (sciPointObj * pobj)
 
 
 
-extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
+extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym, int *DPI)
 {
   int style = sciGetMarkStyle(pobj);
   double size = (double) sciGetMarkSize(pobj);
@@ -8201,10 +8229,13 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
   int tabulated_marksize[] = {8,10,12,14,18,24}; /* {3,5,7,9,11,13}; */
 
   integer verbose = 0,old_thick, old_linestyle[6],narg = 0;
-  int ixres, iyres;
+  int ixres = DPI[0]; /* only the x DPI is used here : */
     
   int pixel_offset = CheckPixelStatus();
-  
+  double size_plus_one = 0.;
+  double size_minus_one = 0.;
+
+
   linestyle[0] = 1;
   
   if(sciGetMarkSizeUnit(pobj) == 2){ /* tabulated */ /* size is given relative to the array tabulated_marksize */
@@ -8215,15 +8246,15 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
       size = tabulated_marksize[5];
     }
   }
-  
 
-  /* size is specified in 'points' */
-  /* we draw in pixel */
+  size_plus_one = size + 1.;
+  size_minus_one = size - 1.;
+
   /* We get the DPIs value : only the x DPI is used here : */
   /* we assum we have a square pixel (i.e. xDPI == yDPI or almost) */
-  GetScreenDPI(&ixres,&iyres);
-  
-  size = size * (ixres/72);
+  size = size * (ixres/72.);
+  size_minus_one = size_minus_one * (ixres/72.);
+  size_plus_one  = size_plus_one  * (ixres/72.);
 
   C2F (dr) ("xget", "foreground", &flagx, &old_foreground, &v, &v, &v,
 	    &v, &dv, &dv, &dv, &dv, 5L, 4096);
@@ -8269,7 +8300,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
   case 0:
     /* represents a simple full dot with editable foreground */
     for(i=0;i<n1;i++)
-      DrawMark_FullDot(xm[i], ym[i], size, foreground, foreground);
+      DrawMark_FullDot(xm[i], ym[i], size_minus_one, foreground, foreground, pixel_offset);
     
     break;
   case 1:
@@ -8285,10 +8316,11 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
     
     break;
   case 3:
+    
     /* represents a circle AND a plus within this circle with editable foreground and background */
     for(i=0;i<n1;i++)
       {
-	DrawMark_FullDot(xm[i], ym[i], size, foreground, background);
+	DrawMark_FullDot(xm[i], ym[i], size_minus_one, foreground, background, pixel_offset);
 	DrawMark_Plus(xm[i], ym[i], size/2, foreground, pixel_offset);
       }
     break;
@@ -8327,7 +8359,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
   case 9:
     /* represents a circle with editable foreground and background */
     for(i=0;i<n1;i++)
-      DrawMark_FullDot(xm[i], ym[i], size, foreground, background);
+      DrawMark_FullDot(xm[i], ym[i], size_minus_one, foreground, background, pixel_offset);
 
     break;
   case 10:
@@ -8339,7 +8371,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
   case 11:
     /* represents a square with editable foreground and background */
     for(i=0;i<n1;i++)
-      DrawMark_FullSquare(xm[i], ym[i], size, foreground, background);
+      DrawMark_FullSquare(xm[i], ym[i], size_minus_one, foreground, background, pixel_offset);
 
     break;
   case 12:
@@ -8378,7 +8410,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 }
 
 
-void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym)
+void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym, int *DPI)
 {
   integer v;
   double dv=0;
@@ -8398,7 +8430,7 @@ void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym)
     C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 	      PD0, PD0, 0L, 0L);   
     
-    DrawNewMarks(pobj,n1,xm,ym);
+    DrawNewMarks(pobj,n1,xm,ym,DPI);
   }
 }
 
@@ -8443,20 +8475,20 @@ int CheckPixelStatus(void)
 
 /* center : xmi,ymi */
 /* diameter : size */
-int DrawMark_FullDot(int xmi, int ymi, int size, int foreground, int background)
+int DrawMark_FullDot(int xmi, int ymi, double size, int foreground, int background, int pixel_offset)
 {
-  int x1 = xmi - size/2;
-  int yy1= ymi - size/2;
-  int w1 = size;
-  int h1 = size;
+  int x1 = (int) (xmi - size/2);
+  int yy1= (int) (ymi - size/2);
+  int w1 = (int) size+pixel_offset;
+  int h1 = (int) size+pixel_offset; 
   char str[2] = "xv";
   int x[4];
   integer v;
   double dv;
-  
+
   integer angle1 = 0;
   integer angle2 = 64*360;
-  
+
   C2F (dr) ("xset", "dashes", &background, &background, x+4, x+4, x+4, &v, &dv,
 	    &dv, &dv, &dv, 5L, 4096);
   C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
@@ -8694,7 +8726,7 @@ int DrawMark_Asterisk(int xmi, int ymi, int size, int foreground, int pixel_offs
 }
 
 
-int DrawMark_FullSquare(int xmi, int ymi, int size, int foreground, int background)
+int DrawMark_FullSquare(int xmi, int ymi, int size, int foreground, int background, int pixel_offset)
 {
   int x1 = xmi - size/2;
   int yy1= ymi - size/2;
@@ -8880,6 +8912,56 @@ int DrawMark_FullPentagram(int xmi, int ymi, int size, int foreground, int backg
 	    &dv, &dv, &dv, &dv, 5L, 4096);
 
   C2F (dr) ("xlines", "xv", &dix, xmpoints, ympoints, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+
+  return 0;
+}
+
+
+/* we draw marks in pixel */
+/* Returns the DPI depending on the used driver */
+int GetDPIFromDriver(int * DPI)
+{
+  int driver = GetDriverId(); /* return the first letter of the driver name (see XCall.c) */
+  int succeed = 0;
+  int ixres, iyres;
+  
+  switch(driver)
+    {
+    case 0: 
+      succeed = GetScreenDPI(&ixres,&iyres);
+      if(succeed == -1){
+	/* gtk version <2 enabled */
+	ixres = 72.; /* default value*/
+	iyres = 72.; /* default value*/
+      }
+      break;
+    case 1: /* Pos */
+      /*       printf("DRIVERS POS enabled -- -- -- --\n"); */
+      /* when using Pos driver, the output file is 6000x4240 pixels */
+      /* computed DPI: height : 6000/(30cm/2.54) = 508 ; width: 4240/(21.20/2.54) = 508 */
+      ixres = 508.;
+      iyres = 508.;
+      break;
+    case 2: /* Fig. */
+      /*       printf("DRIVERS FIG enabled -- -- -- --\n"); */
+      /* when using Pos driver, the output file is 6000x4240 pixels */
+      /* computed DPI: height : 9600/(8inches) = 1200 ; width: 6784/(5.7inches) = 1190 */
+      ixres = 1200.;
+      iyres = 1190.;
+      break;
+    case 3: /* Gif & PPM driver */ /* NOT SURE: may be 72. avery time... */
+    default:
+      succeed = GetScreenDPI(&ixres,&iyres);
+      if(succeed == -1){
+	/* gtk version <2 enabled */
+	ixres = 72.; /* default value*/	
+	iyres = 72.; /* default value*/
+      }
+      break;
+    }
+
+  DPI[0] = ixres;
+  DPI[1] = iyres;
 
   return 0;
 }

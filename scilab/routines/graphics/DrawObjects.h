@@ -50,9 +50,9 @@ extern void Plo2d1RealToPixel(integer *n1, integer *n2, double *x, double *y, in
 extern void Plo2d2RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 extern void Plo2d3RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 extern void Plo2d4RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
-extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,integer *na,
-					 integer *arsize,integer *colored,double *x,double *y,
-                                         double  *fx,double *fy,integer *n1,integer *n2,double *arfact));
+extern void sciChamp2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,integer *na,
+					 integer *arsize,double *x,double *y,
+                                         double  *fx,double *fy,integer *n1,integer *n2,double *arfact, int * typeofchamp));
 
 char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads);
 double * AllocUserGrads(double * u_xgrads, int nb);
@@ -130,33 +130,33 @@ extern int sciDrawObjIfRequired (sciPointObj * pobj); /* DRAWINGS */
 extern void NumberFormat __PARAMS((char *str,integer k,integer a));
 extern void C2F(plot3dn)(sciPointObj *pobj, 
 			 double *x, double *y, double *z, 
-			 integer *p, integer *q);
+			 integer *p, integer *q, int *DPI);
 
 extern void C2F(fac3dn)(sciPointObj *pobj, 
 			double *x, double *y, double *z, 
-			integer *cvect, integer *p, integer *q);
+			integer *cvect, integer *p, integer *q, int *DPI);
 /**DJ.Abdemouche 2003**/
 
 extern int Gen3DPoints (integer type,integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg); /* DRAWINGS */
 extern void Merge3d(sciPointObj *psubwin);/*DJ.A merge*/   /* DRAWINGS */
 extern void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_entity, int *pos);
 extern int Merge3dDimension(sciPointObj *pparent);
-extern void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge);  /* DRAWINGS */
+extern void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int *DPI);  /* DRAWINGS */
 
-extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym);
-extern void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym);
+extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym, int *DPI);
+extern void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym, int *DPI);
 extern int CheckPixelStatus(void);
 
-extern int DrawMark_FullDot(int x1, int yy1, int size, int foreground, int background);
+extern int DrawMark_FullDot(int x1, int yy1, double size, int foreground, int background, int pixel_offset);
 extern int DrawMark_Plus(int xmi, int ymi, int size, int foreground, int pixel_offset);
 extern int DrawMark_Cross(int xmi, int ymi, int size, int foreground, int pixel_offset);
 extern int DrawMark_FullDiamond(int xmi, int ymi, int size, int foreground, int background);
 extern int DrawMark_FullTriangleUp(int xmi, int ymi, int size, int foreground, int background);
 extern int DrawMark_FullTriangleDown(int xmi, int ymi, int size, int foreground, int background);
 extern int DrawMark_Asterisk(int xmi, int ymi, int size, int foreground, int pixel_offset);
-extern int DrawMark_FullSquare(int xmi, int ymi, int size, int foreground, int background);
+extern int DrawMark_FullSquare(int xmi, int ymi, int size, int foreground, int background, int pixel_offset);
 extern int DrawMark_FullTriangleRight(int xmi, int ymi, int size, int foreground, int background);
 extern int DrawMark_FullTriangleLeft(int xmi, int ymi, int size, int foreground, int background);
 extern int DrawMark_FullPentagram(int xmi, int ymi, int size, int foreground, int background);
-
+extern int GetDPIFromDriver(int * DPI);
 #endif /* __SCI_DRAWINGS__ */

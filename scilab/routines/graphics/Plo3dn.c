@@ -25,7 +25,7 @@ extern int facet_facing_rear (integer facteur, integer * x, integer * y,
  *-------------------------------------------------------------------------*/
 
 void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
-                    integer * p, integer * q)
+                    integer * p, integer * q, int *DPI)
 {
   static integer fg1, dc;
   /*   int jj, kk; */
@@ -118,7 +118,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
               else              /* y is NOT reversed */
@@ -141,7 +141,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
 
                     }
                 }
@@ -175,7 +175,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
               else              /* y is NOT reversed */
@@ -198,7 +198,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
             }
@@ -233,7 +233,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
               else              /* y is NOT reversed */
@@ -255,7 +255,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
             }
@@ -283,7 +283,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
               else
@@ -305,7 +305,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
             }
@@ -337,7 +337,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
               else              /* y is NOT reversed */
@@ -359,7 +359,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
             }
@@ -389,7 +389,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
               else
@@ -411,7 +411,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
             }
@@ -443,7 +443,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
               else              /* y is NOT reversed */
@@ -465,7 +465,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
             }
@@ -495,7 +495,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
               else
@@ -517,7 +517,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                                   PD0, 0L, 0L);
 
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy);
+                        DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
                 }
             }
@@ -535,7 +535,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
 
 
 void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
-                   integer * cvect, integer * p, integer * q)
+                   integer * cvect, integer * p, integer * q, int *DPI)
 {
   integer polysize, npoly, whiteid, verbose =
     0, narg, hiddencolor, front_size;
@@ -735,7 +735,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                 C2F (dr) ("xliness", "str", rear_x, rear_y, fill, &npoly,
                           &rear_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
               if (sciGetIsMark (pobj))
-                DrawMarks3D (pobj, rear_size, rear_x, rear_y);
+                DrawMarks3D (pobj, rear_size, rear_x, rear_y,DPI);
 
               /* If the polygon is a triangle or a "butterfly" there is nothing left to draw */
 
@@ -757,7 +757,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                               &npoly, &rear_size, PI0, PD0, PD0, PD0, PD0, 0L,
                               0L);
                   if (sciGetIsMark (pobj))
-                    DrawMarks3D (pobj, rear_size, rear_x, rear_y);
+                    DrawMarks3D (pobj, rear_size, rear_x, rear_y,DPI);
 
                   if (rear_size == *p)
                     continue;
@@ -770,7 +770,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                 C2F (dr) ("xliness", "str", polyx, polyy, col, &npoly,
                           &front_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
               if (sciGetIsMark (pobj))
-                DrawMarks3D (pobj, front_size, polyx, polyy);
+                DrawMarks3D (pobj, front_size, polyx, polyy,DPI);
 
             }
           else if (color_flag == 3)
@@ -800,7 +800,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                             shade (rear_x, rear_y, rear_col, rear_size, -1);
                         }
                       if (sciGetIsMark (pobj))
-                        DrawMarks3D (pobj, rear_size, rear_x, rear_y);
+                        DrawMarks3D (pobj, rear_size, rear_x, rear_y,DPI);
                       if (rear_size == *p)
                         continue;
                     }
@@ -809,7 +809,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                   if (sciGetIsLine (pobj))
                     shade (polyx, polyy, col, front_size, color_mode);
                   if (sciGetIsMark (pobj))
-                    DrawMarks3D (pobj, front_size, polyx, polyy);
+                    DrawMarks3D (pobj, front_size, polyx, polyy,DPI);
                 }
             }
           else
@@ -824,7 +824,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     C2F (dr) ("xliness", "str", rear_x, rear_y, fill, &npoly,
                               &rear_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
                   if (sciGetIsMark (pobj))
-                    DrawMarks3D (pobj, rear_size, rear_x, rear_y);
+                    DrawMarks3D (pobj, rear_size, rear_x, rear_y,DPI);
                   if (rear_size == *p)
                     continue;
                 }
@@ -832,7 +832,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                 C2F (dr) ("xliness", "str", polyx, polyy, fill, &npoly,
                           &front_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
               if (sciGetIsMark (pobj))
-                DrawMarks3D (pobj, front_size, polyx, polyy);
+                DrawMarks3D (pobj, front_size, polyx, polyy,DPI);
 
             }
         }
