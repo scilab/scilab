@@ -17,8 +17,6 @@
 #include "../sparse/spConfig.h"
 #endif
 
-#include "Entities.h"
-
 /*--------------------------------------------------------------------
  *  C2F(plot2d)(x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
  *  
@@ -70,9 +68,7 @@ int C2F(plot2d)(x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
 
   /* Storing values if using the Record driver */
   /* Boundaries of the frame */
-  
   update_frame_bounds(0,"gnn",x,y,n1,n2,aaint,strflag,brect);
-
   if (GetDriver()=='R') 
     StorePlot("plot2d1","gnn",x,y,n1,n2,style,strflag,legend,brect,aaint);
 
@@ -116,27 +112,17 @@ int C2F(xgrid)(style)
   integer closeflag=0,n=2,vx[2],vy[2],i,j;
   double pas;
   integer verbose=0,narg,xz[10];
-  if (version_flag() == 0)
-    {
-      sciPointObj *psubwin;
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-      for (i=0 ; i<3 ; i++) /**DJ.Abdmouche 2003**/
-	pSUBWIN_FEATURE (psubwin)->grid[i] = *style;
-      sciDrawObj(psubwin);
-      return(0);
-    }
-  else
-    {   /* Recording command */
-      if (GetDriver()=='R') StoreGrid("xgrid",style);
+  /* Recording command */
+  if (GetDriver()=='R') StoreGrid("xgrid",style);
 
-      /* changes dash style if necessary */
-      C2F(dr)("xget","color",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(dr)("xset","color",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      /** Get current scale **/
-      pas = ((double) Cscale.WIRect1[2]) / ((double) Cscale.Waaint1[1]);
-      /** x-axis grid (i.e vertical lines ) */
-      for ( i=0 ; i < Cscale.Waaint1[1]; i++)
-	{
+  /* changes dash style if necessary */
+  C2F(dr)("xget","color",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","color",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /** Get current scale **/
+  pas = ((double) Cscale.WIRect1[2]) / ((double) Cscale.Waaint1[1]);
+  /** x-axis grid (i.e vertical lines ) */
+  for ( i=0 ; i < Cscale.Waaint1[1]; i++)
+    {
       vy[0]=Cscale.WIRect1[1];
       vy[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];
       vx[0]=vx[1]= Cscale.WIRect1[0] + inint( ((double) i)*pas);
@@ -151,12 +137,12 @@ int C2F(xgrid)(style)
 	      C2F(dr)("xlines","void",&n, vx, vy,&closeflag,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	}
-	}
-      /** y-axis grid (i.e horizontal lines ) **/
-      pas = ((double) Cscale.WIRect1[3]) / ((double) Cscale.Waaint1[3]);
-      for ( i=0 ; i < Cscale.Waaint1[3]; i++)
-	{
-	  vx[0]=Cscale.WIRect1[0];
+    }
+  /** y-axis grid (i.e horizontal lines ) **/
+  pas = ((double) Cscale.WIRect1[3]) / ((double) Cscale.Waaint1[3]);
+  for ( i=0 ; i < Cscale.Waaint1[3]; i++)
+    {
+      vx[0]=Cscale.WIRect1[0];
       vx[1]=Cscale.WIRect1[0]+Cscale.WIRect1[2];
       vy[0]=vy[1]= Cscale.WIRect1[1] + inint( ((double) i)*pas);
       if (i!=0)  C2F(dr)("xlines","void",&n, vx, vy,&closeflag,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -170,9 +156,8 @@ int C2F(xgrid)(style)
 	      C2F(dr)("xlines","void",&n, vx, vy,&closeflag,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	}
-	}
-      C2F(dr)("xset","color",xz,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
+  C2F(dr)("xset","color",xz,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   return(0);
 }
 
@@ -200,9 +185,6 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
   int size_y = (cflag == 1) ? (*n2) : (*n1)*(*n2) ;
   char c;
 
-  
-  sciPointObj *subwindowtmp; /* NG */
-
   if ((int)strlen(strflag) < 2) return ;
   /* 
    * min,max using brect or x,y according to flags 
@@ -217,45 +199,17 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       if ( (int)strlen(xf) < 1) c='g' ; else c=xf[0];
       switch ( c )
 	{
-	case 'e' : xmin= 1.0 ; xmax = (*n2);break; /* F.Leray obsolete ??*/
-	case 'o' : xmax= Maxi(x,(*n2)); xmin= Mini(x,(*n2)); break; /* F.Leray obsolete ??*/
-	case 'g' : /* F.Leray obsolete ??*/
-	  /* F.Leray : look for the min/max inside the x/y vector of size size_x/size-y*/
-	default: xmax= Maxi(x, size_x); xmin= Mini(x, size_x); break; /* for x*/
+	case 'e' : xmin= 1.0 ; xmax = (*n2);break; 
+	case 'o' : xmax= Maxi(x,(*n2)); xmin= Mini(x,(*n2)); break;
+	case 'g' : 
+	default: xmax= Maxi(x, size_x); xmin= Mini(x, size_x); break; 
 	}
-      ymin=  Mini(y, size_y); ymax=  Maxi(y,size_y); /* for y*/
+      ymin=  Mini(y, size_y); ymax=  Maxi(y,size_y);
       /* back to default values for  x=[] and y = [] */
       if ( ymin == LARGEST_REAL ) { ymin = 0; ymax = 10.0 ;} 
       if ( xmin == LARGEST_REAL ) { xmin = 0; xmax = 10.0 ;} 
       break;
     }
-
-  
-  /* BLOCK that moved is HERE F.Leray 20.04.04 */
-  /* FRect gives the plotting boundaries xmin,ymin,xmax,ymax */
-  if (version_flag() == 0) 
-    {/*update A.Djalel for new graphics auto scaling*/
-      subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); /**DJ.Abdmouche 2003**/
-
-      
-      if ((pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1] !=0 )  || (pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3] !=0 ))
-	{  
-	  xmin=(double) Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1],xmin);
-	  xmax=(double) Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3],xmax);
-	}
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin;
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax;
-      
-      if ((pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2] !=0 )  || (pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4] !=0 ))
-	{  
-	  ymin=(double) Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2],ymin);
-	  ymax=(double) Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4],ymax);
-	}
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin;
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax;
-
-    }
-
 
   /*
    * modify computed min,max if isoview requested 
@@ -265,23 +219,19 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
     {
       /* code added by S. Mottelet 11/7/2000 */
       double FFRect[4],WRect[4],ARect[4];
-      /*char logscale[4]; */ /*   F.Leray 24.03.04      */
       char logscale[2]; 
       /* end of added code by S. Mottelet 11/7/2000 */
       
-      int verbose=0,wdim[2],narg; /* verbose set to 1 F.Leray 05.04.04 AND reset to 0 07.04.04*/
+      int verbose=0,wdim[2],narg; 
       C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       hx=xmax-xmin;
       hy=ymax-ymin;
 
       /* code added by S. Mottelet 11/7/2000 */
       getscale2d(WRect,FFRect,logscale,ARect);
-
       wdim[0]=linint((double)wdim[0] * WRect[2]);
       wdim[1]=linint((double)wdim[1] * WRect[3]);
       /* end of added code by S. Mottelet 11/7/2000 */
-
-    
 
       if ( hx/(double)wdim[0]  <hy/(double) wdim[1] ) 
 	{
@@ -329,14 +279,14 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       aaint[2]=1;aaint[3]=inint(ymax-ymin);
     }
   
-  /* MOVE OF THE BLOCK on axes.limits affectation */
+  /* FRect gives the plotting boundaries xmin,ymin,xmax,ymax */
 
   FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax;
 
   /* if strflag[1] == 7 or 8 we compute the max between current scale and the new one  */
   if (strflag[1] == '7' || strflag[1] == '8' )
     {
-      if ( Cscale.flag != 0 ) 
+      if ( Cscale.flag != 0 ) /* a previous plot exist */
 	{
 	  /* first check that we are not changing from normal<-->log */
 	  int xlog = ((int)strlen(xf) >= 2 && xf[1]=='l' ) ? 1: 0;
@@ -350,29 +300,16 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 	    }
 	  else 
 	    { 
-	      if (version_flag() != 0){
-		FRect[0] = Min(FRect[0],Cscale.frect[0]);
-		FRect[1] = Min(FRect[1],Cscale.frect[1]);
-		FRect[2] = Max(FRect[2],Cscale.frect[2]);
-		FRect[3] = Max(FRect[3],Cscale.frect[3]);
-	      }
-	      else{ /*dj2003*/
-		subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); /* rajout F.Leray*/
-		FRect[0] = Min(FRect[0],pSUBWIN_FEATURE (subwindowtmp)->FRect[0]);
-		FRect[1] = Min(FRect[1],pSUBWIN_FEATURE (subwindowtmp)->FRect[1]);
-		FRect[2] = Max(FRect[2],pSUBWIN_FEATURE (subwindowtmp)->FRect[2]);
-		FRect[3] = Max(FRect[3],pSUBWIN_FEATURE (subwindowtmp)->FRect[3]);
-	      }
+	      FRect[0] = Min(FRect[0],Cscale.frect[0]);
+	      FRect[1] = Min(FRect[1],Cscale.frect[1]);
+	      FRect[2] = Max(FRect[2],Cscale.frect[2]);
+	      FRect[3] = Max(FRect[3],Cscale.frect[3]);
+
 	      if ( FRect[0] < Cscale.frect[0] 
 		   || FRect[1] < Cscale.frect[1] 
 		   || FRect[2] > Cscale.frect[2] 
 		   || FRect[3] > Cscale.frect[3] )
 		redraw = 1; 
-	      /* F.Leray 15.04.04 */
-	      /* Here the redraw and the computed FRect will be used below */
-	      /* in Tape_ReplayNewScale1(" ",&ww,flag,PI0,aaint,PI0,PI0,FRect,PD0,PD0,PD0);*/
-	      /* in this case (if (strflag[1] == '7' || strflag[1] == '8' )), */
-	      /* we also recomput FRect */
 	    }
 	}
       /* and we force flag back to 5  */
@@ -388,10 +325,11 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 	case '6' : strflag[1]='5';break;
 	}
     }
+
     if ( (int)strlen(strflag) >=2 && ( strflag[1]=='5' || strflag[1]=='6' ))
     {
       /* recherche automatique des bornes et graduations */
-      Gr_Rescale(&xf[1],FRect,Xdec,Ydec,&(aaint[0]),&(aaint[2])); /* F.Leray 15.04.04 Here we change the value of FRect */
+      Gr_Rescale(&xf[1],FRect,Xdec,Ydec,&(aaint[0]),&(aaint[2])); 
     }
     else {
       Xdec[0]=inint(FRect[0]);Xdec[1]=inint(FRect[2]);Xdec[2]=0;
@@ -400,22 +338,6 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
   
   /* Update the current scale */
   set_scale("tftttf",NULL,FRect,aaint,xf+1,NULL); 
-/* NG beg */ 
-  if (version_flag() == 0){
-    subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); 
-    if (!(sciGetZooming(subwindowtmp))){
-     pSUBWIN_FEATURE (subwindowtmp)->FRect[0]   = FRect[0];
-     pSUBWIN_FEATURE (subwindowtmp)->FRect[1]   = FRect[1];
-     pSUBWIN_FEATURE (subwindowtmp)->FRect[2]   = FRect[2];
-     pSUBWIN_FEATURE (subwindowtmp)->FRect[3]   = FRect[3];}
-    else { 
-     pSUBWIN_FEATURE (subwindowtmp)->FRect_kp[0]   = FRect[0];
-     pSUBWIN_FEATURE (subwindowtmp)->FRect_kp[1]   = FRect[1];
-     pSUBWIN_FEATURE (subwindowtmp)->FRect_kp[2]   = FRect[2];
-     pSUBWIN_FEATURE (subwindowtmp)->FRect_kp[3]   = FRect[3];}
-  }
-  /* NG end*/
-
 
   /* Should be added to set_scale */
 
@@ -423,17 +345,8 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
   for (i=0; i < 3 ; i++ ) Cscale.ytics[i] = Ydec[i];
   Cscale.xtics[3] = aaint[1];
   Cscale.ytics[3] = aaint[3]; 
-  /* NG beg */ 
-  if (version_flag() == 0){
-    subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); 
-    for (i=0 ; i<4 ; i++)
-      {  
-	pSUBWIN_FEATURE (subwindowtmp)->axes.xlim[i]=Cscale.xtics[i]; 
-	pSUBWIN_FEATURE (subwindowtmp)->axes.ylim[i]=Cscale.ytics[i];
-      } 
-    }
-  /* NG end */ 
-  /* Changing back min,max and aaint if using log scaling X axis */  /* F.Leray 15.04.04 WHY NOT MAKE set_scale after this change ??? */
+
+  /* Changing back min,max and aaint if using log scaling X axis */  
   if ((int)strlen(xf) >= 2 && xf[1]=='l' && (int)strlen(strflag) >= 2 && strflag[1] != '0')
     {
       FRect[0]=exp10(xmin);FRect[2]=exp10(xmax);
@@ -443,8 +356,6 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
     {
       FRect[1]= exp10(ymin);FRect[3]= exp10(ymax);
     }
-
-
   /* Redraw other graphics */
   if ( redraw )
     {
@@ -453,24 +364,15 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       /* Redraw previous graphics with new Scale */
       integer ww,verbose=0,narg;
       GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-
-      if (version_flag() != 0) /* F.Leray*/
-	  {
-		if (strcmp("Rec",driver) != 0) 
-		{	
-		  Scistring("Auto rescale only works with the rec driver\n" );
-		  return;
-		}
-		C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-		C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		Tape_ReplayNewScale1(" ",&ww,flag,PI0,aaint,PI0,PI0,FRect,PD0,PD0,PD0);
-	  }
-	  else
-	  {
-	    sciDrawObj(subwindowtmp);
-      } 
-
+      if (strcmp("Rec",driver) != 0) 
+	{
+	  Scistring("Auto rescale only works with the rec driver\n");
+	  return;
+	}
+      C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      Tape_ReplayNewScale1(" ",&ww,flag,PI0,aaint,PI0,PI0,FRect,PD0,PD0,PD0);
       C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
 }
