@@ -262,8 +262,7 @@ function t=pol2exp(a,lmax)
 	    end
 	    if k>k0&part(s,1)<>'-' then s='+'+s,end
 	  end
-	  ls=length(s)
-	  if lmax==0|length(y($))+ls <lmax then
+	  if lmax==0|length(y($))+length(s) <lmax then
 	    y($)=y($)+s
 	  else
 	    y($)=y($)+dots

@@ -11,6 +11,7 @@ function files= listfiles(paths,flag,flagexpand)
 // Copyright Enpc 
   
   [lhs,rhs]=argn(0) 
+  if rhs < 1 then paths='./' ; end 
   if rhs <= 1 then flag = %t ; end 
   if rhs <= 2 then flagexpand = %t ; end 
   
