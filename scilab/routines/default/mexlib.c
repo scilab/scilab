@@ -65,7 +65,7 @@ extern int arr2num __PARAMS(( mxArray  *ptr ));
 extern int C2F(changetoref) __PARAMS((int number, int pointed));
 
 extern int IsReference  __PARAMS((mxArray *array_ptr));
-mxLOGICAL *mxGetLogicals(mxArray *array_ptr);
+
 #define DOUBLEMATRIX 1
 #define INTMATRIX 8
 #define STRINGMATRIX  10
