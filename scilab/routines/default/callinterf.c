@@ -27,16 +27,6 @@ static void  sci_sigint_addinter(int n);
  * interface function 
  ***********************************************************/
 
-static int Iflag=0; /* special flag for matdsr matdsc */
-
-void C2F(MatdsRC)(void)
-{
-  if (Iflag == 1) 
-    C2F(matdsc)();
-  else
-    C2F(matdsr)();
-}
-
 static int c_local = 9999;
 
 void C2F(NoTksci)(void)

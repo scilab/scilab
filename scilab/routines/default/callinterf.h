@@ -10,7 +10,7 @@
 
 
 extern void    /* 01  */ C2F(matold)(); /* for backward compatibility */
-extern void    /* 02  */ C2F(MatdsRC)();
+extern void    /* 02  */ C2F(matdsr)();
 extern void    /* 03  */ C2F(matold)();/* for backward compatibility */
 extern void    /* 04  */ C2F(matold)();/* for backward compatibility */
 extern void    /* 05  */ C2F(matio)();
