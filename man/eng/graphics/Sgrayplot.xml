@@ -7,14 +7,14 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>April 1993</DATE>
+  <DATE>April 1993, revised 2005</DATE>
 
   <SHORT_DESCRIPTION name="Sgrayplot">smooth 2D plot of a surface using
   colors</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z,&lt;opt_args&gt;)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -40,9 +40,10 @@
         <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements <VERB>key1=value1, key2=value2</VERB>,... where <VERB>key1</VERB>,
-          <VERB>key2,...</VERB> can be one of the following: strf, rect, nax, zminmax, colminmax
-          (see <LINK>plot2d</LINK> for the 3 first and <LINK>fec</LINK> for the 2 last).</SP>
+          <SP>: This represents a sequence of statements <VERB>key1=value1,
+          key2=value2</VERB>,... where <VERB>key1</VERB>,
+          <VERB>key2,...</VERB> can be one of the following: strf, rect, nax, zminmax, colminmax, mesh, colout
+          (see <LINK>plot2d</LINK> for the 3 first and <LINK>fec</LINK> for the 4 last).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -54,7 +55,7 @@
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>zminmax, colminmax</PARAM_NAME>
+        <PARAM_NAME>zminmax, colminmax, mesh, colout</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: see <LINK>fec</LINK>.</SP>
         </PARAM_DESCRIPTION>
