@@ -18,6 +18,7 @@ if rhs==2 then
 else
   tree.name="mgetl"
   tree.lhs(1).dims=list(1,Unknown)
+  tree.rhs(2)=Cste(1)
 end
 tree.lhs(1).type=Type(String,Real)
 endfunction
