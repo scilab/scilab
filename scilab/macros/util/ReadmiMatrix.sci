@@ -1,7 +1,11 @@
 function [value,ArrayName]=ReadmiMatrix(fd)
-//Copyright INRIA
-//Author Serge Steer  
-  [DataType,NumberOfBytes,Compressed]=ReadTag(fd); 
+// Read a variable in a Matlab binary file
+// This function has been developped following the 'MAT-File Format' description:
+// www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
+// Copyright INRIA
+// Authors: SS, VC
+
+  [DataType,NumberOfBytes,Compressed]=ReadTag(fd);
   if meof(fd) then value=[],ArrayName="",return,end
   if DataType<>miMatrix then 
     error('Found Datatype='+string(DataType)+', expecting '+ ...
@@ -79,10 +83,16 @@ function [value,ArrayName]=ReadmiMatrix(fd)
       Fnams=[Fnams,stripblanks(ascii(double(FieldNames(1:l,k))))];
       Fields(k)=list();
     end
-    for i=1:prod(DimensionArray)
+    if prod(DimensionArray)==1 then
        for k=1:NumberOfFields
-	 Fields(k)($+1)=ReadmiMatrix(fd);
+	 Fields(k)=ReadmiMatrix(fd);
        end
+    else
+      for i=1:prod(DimensionArray)
+	for k=1:NumberOfFields
+	  Fields(k)($+1)=ReadmiMatrix(fd);
+	end
+      end
     end
     //Form Scilab representation
     value=mlist(['st' 'dims' Fnams],int32(DimensionArray),Fields(:))
@@ -107,7 +117,7 @@ function [value,ArrayName]=ReadmiMatrix(fd)
     case 'tf' then
       value=Object2tf(value)
     end
-    case SparseClass then
+  case SparseClass then
     RowIndex=double(ReadSimpleElement(fd,NnzMax))
     ColumnIndex=double(ReadSimpleElement(fd,DimensionArray(2)+1))
     value=double(ReadSimpleElement(fd))
@@ -184,7 +194,6 @@ function value=ReadSimpleElement(fd,NumberOfValues,Class)
 //Author Serge Steer  
   pse=mtell(fd)
   [DataType,NumberOfBytes,Compressed]=ReadTag(fd) 
-  
   select DataType
   case miDOUBLE
     if argn(2)==1 then NumberOfValues=NumberOfBytes/8,end
@@ -219,6 +228,7 @@ function value=ReadSimpleElement(fd,NumberOfValues,Class)
   case miMatrix
     pause
   else
+    disp("Not implemented DataType: "+string(DataType));
     pause
   end
   padding()
@@ -315,7 +325,7 @@ function LoadMatConstants()
   Uint32Class=13
   
   //--set various reading format
-  md_i='i'+endian;md_d='d'+endian;md_s='s'+endian;md_l='l'+endian
+  md_i='i'+endian;md_d='d'+endian;md_s='s'+endian;md_l='l'+endian;md_f='f'+endian;
 
 endfunction
 
