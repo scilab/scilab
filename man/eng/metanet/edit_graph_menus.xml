@@ -5,7 +5,7 @@
   <TITLE>edit_graph_menus</TITLE>
   <TYPE>Description</TYPE>
   <DATE>2002</DATE>
-  <SHORT_DESCRIPTION name="edit_graph_menus"> edit_graph menus description</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="edit_graph_menus"> <VERB>edit_graph</VERB> menus description</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
   The edit_graph editor  supports the following menus: 

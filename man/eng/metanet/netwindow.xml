@@ -5,7 +5,7 @@
   <TITLE>netwindow</TITLE>
   <TYPE>Scilab function</TYPE>
   <DATE>September 1995</DATE>
-  <SHORT_DESCRIPTION name="netwindow"> selects the current edit_graph  window</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="netwindow"> selects the current <VERB>edit_graph</VERB>  window</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>netwindow(window)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
