@@ -135,6 +135,7 @@ int gdImageColorExact __PARAMS((gdImagePtr im, int r, int g, int b));
 void gdImageColorDeallocate __PARAMS((gdImagePtr im, int color));
 void gdImageColorTransparent __PARAMS((gdImagePtr im, int color));
 void gdImageGif __PARAMS((gdImagePtr im, FILE *out));
+void gdImagePPM __PARAMS((gdImagePtr im, FILE *out));
 void gdImageGd __PARAMS((gdImagePtr im, FILE *out));
 void gdImageArc __PARAMS((gdImagePtr im, int cx, int cy, int w, int h, int s, int e, int color));
 void gdImageFillToBorder __PARAMS((gdImagePtr im, int x, int y, int border, int color));
