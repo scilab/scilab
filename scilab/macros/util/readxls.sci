@@ -13,7 +13,7 @@ function sheets=readxls(fil)
       if size(Text,'*')==1 then
 	T=emptystr(Value)
       else
-	T=matrix(Text(TextInd+2),size(Value))
+	T=matrix(Text(TextInd+1),size(Value))
       end
       sheet=mlist(['xlssheet','name','text','value'],Sheetnames(k),T,Value)
     end
