@@ -58,6 +58,6 @@ function M=%hm_i_i(varargin)
     case 2
     M=matrix(v,Ndims(1),Ndims(2))
   else
-    M=mlist(['hm','dims','entries'],matrix(Ndims,1,-1),v)
+    M=mlist(['hm','dims','entries'],int32(matrix(Ndims,1,-1)),v)
   end
 endfunction

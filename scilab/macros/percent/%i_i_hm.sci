@@ -2,10 +2,10 @@ function M=%i_i_hm(varargin)
 // Copyright INRIA
 //insertion of an integer matrix in an hypermatrix
   rhs=argn(2)
-  M=varargin(rhs)// destination matrix
+  M=varargin(rhs)// destination hypermatrix
   N=varargin(rhs-1)//inserted matrix
   
-  dims=matrix(M.dims,-1,1)
+  dims=double(matrix(M.dims,-1,1))
   v=matrix(M.entries,-1,1);
 
   nd=size(dims,'*')
@@ -49,6 +49,6 @@ function M=%i_i_hm(varargin)
     case 2
     M=matrix(v,Ndims(1),Ndims(2))
   else
-    M=mlist(['hm','dims','entries'],matrix(Ndims,1,-1),v)
+    M=mlist(['hm','dims','entries'],int32(matrix(Ndims,1,-1)),v)
   end
 endfunction

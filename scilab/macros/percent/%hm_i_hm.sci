@@ -4,7 +4,7 @@ function M=%hm_i_hm(varargin)
   [lhs,rhs]=argn(0)
   M=varargin(rhs)
   N=varargin(rhs-1)//inserted matrix
-  dims=matrix(M.dims,-1,1);
+  dims=matrix(double(M.dims),-1,1);
 
   v=matrix(M.entries,-1,1);
 
@@ -58,6 +58,6 @@ function M=%hm_i_hm(varargin)
     case 2
     M=matrix(v,Ndims(1),Ndims(2))
   else
-    M=mlist(['hm','dims','entries'],matrix(Ndims,1,-1),v)
+    M=mlist(['hm','dims','entries'],int32(matrix(Ndims,1,-1)),v)
   end
 endfunction

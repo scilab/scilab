@@ -9,10 +9,7 @@ function [M] = %hm_e(varargin)
    nb_index_vect = rhs-1;
    
    if nb_index_vect > nbdims then
-     dims(nbdims+1:nb_index_vect)=1
-     nbdims=nb_index_vect
-     
-     // error('Too many subscripts')
+      error('Too many subscripts')
    elseif nb_index_vect < nbdims then
       nbdims = nb_index_vect;
       dims(nbdims) = prod(dims(nbdims:$))
@@ -87,5 +84,4 @@ function [M] = %hm_e(varargin)
    end
 
 endfunction
-
 
