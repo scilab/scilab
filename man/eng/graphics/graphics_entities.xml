@@ -94,14 +94,6 @@
   See <LINK>polyline_properties</LINK> for details.
  </P>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Patch">
-        <SP>The Patch entity is a leaf of the graphics entities
-  hierarchy. It defines filled polylines and its drawing
-  properties.</SP>
-        <P>
-  See <LINK>patch_properties</LINK> for details.
-  </P>
-      </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="Arc">
         <SP>The Arc entity is a leaf of the graphics entities
   hierarchy. This entity defines the parameters for ellipses and part
