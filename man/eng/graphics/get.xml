@@ -56,7 +56,7 @@
     Property name are character strings 
     This returns the value associated to the specified property.
 </P> <P>
-  see <LINK>graphics_handle</LINK> for detail about property names and
+  see <LINK>graphics_entities</LINK> for detail about property names and
     values for graphics entities
   </P><P>
   see <LINK>uicontrol</LINK> for detail about property names and

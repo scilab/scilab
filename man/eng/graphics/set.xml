@@ -40,7 +40,7 @@
   <PARAM_ITEM>
   <PARAM_NAME>val  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-     : value to give to the property (see <LINK>graphics_handle</LINK>)
+     : value to give to the property (see <LINK>graphics_entities</LINK>)
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -52,7 +52,7 @@
     The type of the value field depends on the property
     one aims at setting. 
   </P><P>
-   see <LINK>graphics_handle</LINK> for detail about property names and
+   see <LINK>graphics_entities</LINK> for detail about property names and
     values for graphics entities
   </P><P>
   see <LINK>uicontrol</LINK> for detail about property names and
@@ -77,7 +77,7 @@
     <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>copy</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>move</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>graphics_handle</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>uicontrol</LINK> </SEE_ALSO_ITEM>
 
   </SEE_ALSO>

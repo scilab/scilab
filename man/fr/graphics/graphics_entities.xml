@@ -2,7 +2,7 @@
 <!DOCTYPE MAN SYSTEM "../../man.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graphics_handle</TITLE>
+  <TITLE>graphics_entities</TITLE>
   <TYPE>Scilab Data type </TYPE>
   <DATE> 2002 </DATE>
   <SHORT_DESCRIPTION name="graphics_entities"> description of the
