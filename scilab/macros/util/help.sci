@@ -11,11 +11,14 @@ function help(key,flag)
     if key==1 then
       browsehelp(INDEX,"index");
       return
-    else
+    elseif key==2 then
       key=x_dialog('Select a keyword','')
       if key==[] then return,end
       help_apropos(key)
       return
+    elseif key==3 then //configure
+       browsehelp_configure('set')
+       return
     end
   end
  
@@ -83,17 +86,11 @@ function res=findword(str,word)
   if res==length(str)-length(word) then return; end
   res=[]
 endfunction	   
-
-function browsehelp(path,key)
-// when %browsehelp is [] a  menu proposes to select a browser
-  global LANGUAGE INDEX
+function  browsehelp_configure(job)
   global %browsehelp
-  
-  [lhs,rhs]=argn(0);
-  
-  // set of possible browsers
-  
+  if argn(2)<1 then job='check',end
   if ~MSDOS then
+    if job=='set' then %browsehelp=[],end
     browse_modes=['nautilus';
 		  'mozilla/netscape (gnome-moz-remote)';
 		  'opera'
@@ -107,17 +104,25 @@ function browsehelp(path,key)
 	warning('Unhandled  help browser '+%browsehelp)
 	%browsehelp= help_ask(browse_modes);
       end
-      help_mode = %browsehelp;
     else // ask for an help mode
 	%browsehelp= help_ask(browse_modes);
     end
   else //for windows 
     //tcltk forced because it is still not possible to start another
     //thread using unix
-    browse_modes='tcltk'
-    help_mode = 'tcltk'
+    %browsehelp = 'tcltk'
   end
- 
+endfunction
+
+function browsehelp(path,key)
+// when %browsehelp is [] a  menu proposes to select a browser
+  global LANGUAGE INDEX
+  global %browsehelp
+  
+   browsehelp_configure()
+  
+  // set of possible browsers
+  
   if argn(2)==0 then
     path=INDEX
     key="index"
@@ -188,7 +193,7 @@ function run_help(path,key)
    if MSDOS then
      tcltk_help(path,key);
    else
-     unix(SCI+'/tcl/browsehelpexe ' +path+ '&');
+     unix(SCI+'/tcl/browsehelpexe '+path+' '+INDEX+' '+LANGUAGE+ '&');
    end
   else
      write(%io(2),mgetl(path))
