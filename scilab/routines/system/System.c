@@ -83,8 +83,8 @@ extern void
       SearchForwardInHistory(),
       SearchBackwardInHistory(),
       AddHistory(),
-      C2F(xerbla)();
-
+      C2F(xerbla)(),
+      C2F(intfromjava)();
 
 
 void System_contents( int x)
@@ -171,6 +171,7 @@ void System_contents( int x)
       SearchBackwardInHistory();
       AddHistory();
       C2F(xerbla)();
+      C2F(intfromjava)();
     }
-}
+} 
 
