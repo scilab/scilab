@@ -5,8 +5,6 @@
  * Note: in this interface arguments are transmited by 
  *       reference. interfaces must take care not to 
  *       change transmited arguments. 
- *       (See for example the use of ConvertData in 
- *        strindex)
  * Rewriten from scratch from strelm.f except for 
  *    intmacrostring
  *    intlibstring
@@ -157,8 +155,6 @@ static int intstrcat(char* fname)
 	    *cstk(l3+ k++) = sep[j];
       }
     FreeRhsSVar(Str);
-    /* take care of ref argument 2 */
-    if (Rhs == 2 && IsRef(2) ) ConvertData("c",m2*n2,l2);
     LhsVar(1) = Rhs+1  ;
     break; 
   default : 
@@ -188,7 +184,6 @@ static int intstr2code(char* fname)
     CreateVar(2,"i",&mn,&un,&l2);
     C2F(asciitocode)(&mn,istk(l2),cstk(l1),&un,mn); 
     /* take care of ref argument 1 */
-    if ( IsRef(1) ) ConvertData("c",m1*n1,l1);
     LhsVar(1) = 2; 
     break; 
   default : 
@@ -216,7 +211,6 @@ static int intcode2str(char* fname)
     CreateVar(2,"c",&mn,&un,&l2);
     C2F(codetoascii)(&mn,istk(l1),cstk(l2),mn); 
     /* take care of ref argument 1 */
-    if ( IsRef(1) ) ConvertData("i",m1*n1,l1);
     LhsVar(1) = 2; 
     break; 
   default : 
@@ -245,7 +239,6 @@ static int intstrindex(char* fname)
   if ( m1 == 0 ) 
     {
       CreateVar(3,"d",&zero,&zero,&l3);
-      if (IsRef(1)) ConvertData("c",m1*n1,l1);
       LhsVar(1) = 3; 
       return 0;
     }
@@ -272,7 +265,6 @@ static int intstrindex(char* fname)
   /* WARNING:: must take care of arg 1 which is transmited by ref 
    * and was changed by the GetRhsVar 
    */
-  if (IsRef(1)) ConvertData("c",m1*n1,l1);
   LhsVar(1) = 3; 
   return 0;
 }
@@ -356,8 +348,6 @@ static int intstrsubst(char* fname)
   FreeRhsSVar(Str);
   FreeRhsSVar(Str1);
   /* take care of ref argument 1 */
-  if ( IsRef(2) ) ConvertData("c",m2*n2,l2);
-  if ( IsRef(3) ) ConvertData("c",m3*n3,l3);
   LhsVar(1) = 4; 
   return 0;
 }
@@ -444,7 +434,6 @@ static int intconvstr(char* fname)
 	  Str[i][j]=tolower(Str[i][j]);
   CreateVarFromPtr(Rhs+1,"S",&m1,&n1,Str);
   FreeRhsSVar(Str);
-  if (Rhs==2 && IsRef(2) ) ConvertData("c",m2*n2,l2);
   LhsVar(1) = Rhs+1; 
   return(0);
 }
@@ -504,13 +493,11 @@ static int intpart (char* fname)
     {
       Scierror(999,"running out of memory\r\n");
       FreeRhsSVar(Str);
-      if ( IsRef(2) ) ConvertData("i",m2*n2,l2);
       return 0;
     }
   CreateVarFromPtr(3,"S",&m1,&n1,Str1);
   FreeRhsSVar(Str);
   FreeRhsSVar(Str1);
-  if ( IsRef(2) ) ConvertData("i",m2*n2,l2);
   LhsVar(1) = 3; 
   return 0;
 }
