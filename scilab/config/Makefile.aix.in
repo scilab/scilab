@@ -1,7 +1,8 @@
 # Copyright INRIA
 LLD = ld -bh:4 -T512 -H512 -o /tmp/scilex-1 -bnodelcsect /lib/crt0.o
 LLD1 = ld -bh:4 -T512 -H512 -o $@ -bnodelcsect -bE:bin/scilex.exp /lib/crt0.o
-LLDLF = -lxlf90 -lxlf -lm -lc
+LLDLF = -lxlf90 -lxlopt -lxlf -lxlomp_ser -lm -lc
+
 
 bin/scilex: scilex-lib
 	@x=1;if [ -f $@ ] ; then \
@@ -14,7 +15,7 @@ bin/scilex: scilex-lib
 		$(RM) /tmp/scilex-1;\
 		$(LLD) $(DEFAULTS) $(LIBR) $(LD_LDFLAGS) $(TCLTK_LIBS) \
 			$(XLIBS) $(TERMCAPLIB) $(LLDLF);\
-		(echo "#!$(SCIDIR)/bin/scilex"; @NM@ -gp /tmp/scilex-1\
+		(echo "#!$(SCIDIR)/bin/scilex"; @NM@ -Bgp /tmp/scilex-1\
 			| sed -n -e '/.* T \./s///p' -e '/.* [DB] /s///p' \
 			| sort -u) > bin/scilex.exp ;\
 		$(RM) /tmp/scilex-1 ;\
@@ -23,3 +24,5 @@ bin/scilex: scilex-lib
 	else \
 		echo bin/scilex is up to date ;\
 	fi
+
+
