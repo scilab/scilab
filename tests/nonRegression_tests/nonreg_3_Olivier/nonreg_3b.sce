@@ -5,10 +5,14 @@ mode (-1)
 //affich_date()
 
 //exec('E:/cvsCompile/affich_result.sci');chdir('E:/testNonReg/nonreg_3_Olivier/');exec('nonreg_3b.sce'); 
-//exec('/home/huynh/poubelle/cvsCompile/affich_result.sci');chdir('/home/huynh/poubelle/testNonReg/nonreg_3_Olivier/') 
-//
-//
-//quit
+//exec('/home/huynh/poubelle/cvsCompile/affich_result.sci');chdir('/home/huynh/poubelle/testNonReg/nonreg_3_Olivier/') 
+
+//
+
+//
+
+//quit
+
 
 lines(0);
 
@@ -20,7 +24,7 @@ disp("");
 // a ajouter quand corrrigé: 654,656,
 // dans la variable num_test mettre tous les numéros de bugs corrigés dans la version 3.0
 //num_test = [525,528,534,542,545,546,549,553,557,558,564,566,568,569,570,575,577,584,604,608,610,612,623,632,625];
-num_test = [525,528,534,542,545,546,549,553,557,558,564,566,568,569,570,575, 584,604,608,610,612,623,632,625];
+num_test = [525,528,534,542,545,546,549,553,557,558,564,566,568,569,570,575,584,604,608,610,612,623,632,625];
 //,649
 for k = num_test
    exec('bug' + string(k) + '.sci');
