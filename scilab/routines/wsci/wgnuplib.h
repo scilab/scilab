@@ -39,7 +39,7 @@
 #define MyGetProcAddress(strProc,Proc) Proc 
 #endif
 
-#define WSCILABVERSION  "2.7.1   2003"
+#define WSCILABVERSION  "3.0   2004"
 
 EXPORT BOOL CheckWScilabVersion(LPSTR str);
 
@@ -107,6 +107,8 @@ typedef struct tagMW
   int		hButtonID[BUTTONMAX];
   WNDPROC	lpfnMenuButtonProc;
   WNDPROC	lpfnButtonProc[BUTTONMAX];
+  BOOL		IsAIcon[BUTTONMAX];
+  int		PositionX[BUTTONMAX];
 } MW;
 typedef MW  *LPMW;
 
