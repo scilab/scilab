@@ -928,7 +928,16 @@ void mxDestroyArray(Matrix *ptr)
 
 void mxFree(void *ptr)
 {
-  /* No need to free */
+  /* If we free the last stored object we can decrement Nbvars */
+  if ( Nbvars >= 1) { 
+    if ( (vraiptrst) ptr ==  C2F(locptr)(stk(C2F(intersci).lad[Nbvars - 1]))) 
+      {
+	sciprint("XXXX mxfree OK  %d \r\n",Nbvars);
+	Nbvars--;
+      }
+    else 
+      sciprint("XXXX mxfree NOTOK %d \r\n",Nbvars);
+  }
   return ;
 }
 
