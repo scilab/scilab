@@ -44,7 +44,7 @@
 
 <xsl:if test="./SEE_ALSO/SEE_ALSO_ITEM">
 	<H3><font color="blue">See Also</font></H3>
-	<p><ul><xsl:for-each  select="./SEE_ALSO/SEE_ALSO_ITEM"><xsl:apply-templates select="A"/>&#160;&#160;&#160;</xsl:for-each></ul></p>
+	<p><ul><xsl:for-each  select="./SEE_ALSO/SEE_ALSO_ITEM"><xsl:apply-templates select="A"/><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text></xsl:for-each></ul></p>
 </xsl:if>
 
 <xsl:if test="./AUTHOR">
