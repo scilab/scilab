@@ -484,8 +484,8 @@ char * readline_win (char *prompt,int interrupt)
   /* get characters */
   for (;;)
     {
-/*	cur_char = Windows_getch();*/ /* Moved below (Francois VOGEL, bug 1052) */
-	if (interrupt&&(C2F(ismenu) () == 1))
+	 /* Moved below (Francois VOGEL, bug 1052) */
+	 if (interrupt && (C2F(ismenu) () == 1))
       	{/* abort current line aquisition SS */
 		sendprompt=0;
 		new_line = (char *) alloc ((unsigned long) 2, "history");
@@ -494,7 +494,18 @@ char * readline_win (char *prompt,int interrupt)
 
 		return (new_line);
         }
-    cur_char = Windows_getch();
+
+     cur_char = Windows_getch();
+
+	 if (interrupt && (C2F(ismenu) () == 1))
+      	{/* abort current line aquisition SS */
+		sendprompt=0;
+		new_line = (char *) alloc ((unsigned long) 2, "history");
+		new_line[0] = -2;
+		new_line[1] = '\0';
+
+		return (new_line);
+        }
 	
 	if ((isprint (cur_char)  || ((unsigned char) cur_char > 0x7f)  ) && max_pos < MAXBUF - 1)
 	{
