@@ -14,6 +14,6 @@ else
   if size(v,'*')<> double(prod(dims)) then
     error('hypermat: Number of entries does not match product of dimensions')
   end
-  M=mlist(['hm','dims','entries'],matrix(dims,1,-1),v(:))
+  M=mlist(['hm','dims','entries'],matrix(dims,1,-1),matrix(v,-1,1))
 end
 endfunction
