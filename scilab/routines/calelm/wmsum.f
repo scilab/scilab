@@ -27,7 +27,7 @@ c     Copyright INRIA
       integer na,n,m,nv
       integer flag
 c
-      double precision t,dsum
+      double precision tr,ti,dsum
       integer iv
 c
       iv=1
