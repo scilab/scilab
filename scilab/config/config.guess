@@ -5,7 +5,7 @@
 # small patch added to detect if a cygwin should not be considered 
 # as mingw32 (using gcc) Jean-Philippe Chancelier 2004
 
-timestamp='2004-02-04'
+timestamp='2004-03-11'
 
 # This file is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by
@@ -776,7 +776,8 @@ EOF
 	exit 0 ;;
     i*:CYGWIN*:*)
 	eval $set_cc_for_build
-	sed 's/^	//' << EOF >$dummy.c
+	dummy_cyg=dummy
+	sed 's/^	//' << EOF > $dummy_cyg.c
 	int main (argc, argv) int argc; char *argv[]; {
 	#if defined (__MINGW32__)
 	  printf ("%s-pc-mingw32\n",argv[1]);
@@ -786,10 +787,13 @@ EOF
           exit (0);
 	}
 EOF
-	$CC_FOR_BUILD $dummy.c -o $dummy \
-	  && ./$dummy "${UNAME_MACHINE}" \
-	  && rm -f $dummy.c $dummy.exe && exit 0
-	rm -f $dummy.c $dummy.exe
+	# CC_FOR_BUILD pb because of tmp if using mingwin 
+	if test x"$CC_FOR_BUILD" = xno_compiler_found ; then
+	  CC_FOR_BUILD=gcc ;
+	fi
+	$CC_FOR_BUILD $dummy_cyg.c -o $dummy_cyg.exe \
+	    && ./$dummy_cyg.exe "${UNAME_MACHINE}" \
+	    && rm -f $dummy_cyg.c $dummy_cyg.exe && exit 0
 	echo ${UNAME_MACHINE}-pc-cygwin
 	exit 0 ;;
     i*:MINGW*:*)
