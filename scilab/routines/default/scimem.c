@@ -1,4 +1,5 @@
 /* Copyright INRIA */
+
 #include <string.h>
 
 #ifdef __STDC__
@@ -8,6 +9,7 @@
 #endif
 
 #include "../machine.h"
+#include "values.h"
 
 #if defined(netbsd)
 #include <ieeefp.h>
@@ -44,10 +46,18 @@ extern struct {
 
 integer C2F(scimem)(integer *n, integer *ptr)
 {
-  char *p1;
+  char *p1 = NULL;
   if (*n > 0){
     /* add 1 for alignment problems */
-    p1 = (char *) malloc((unsigned)sizeof(double) * (*n + 1));
+    double dsize = ((double) sizeof(double)) * (*n + 1);
+    unsigned long ulsize = ((unsigned long)sizeof(double)) * (*n + 1);
+    if ( dsize != (double) ulsize)
+	  {
+		unsigned long pos = MAXLONG/sizeof(double);
+		sciprint("stacksize requested size is too big (max < %lu)\r\n",pos);
+	  }
+    else 
+      p1 = (char *) malloc(((unsigned long) sizeof(double)) * (*n + 1));
     if (p1 != NULL) {
       the_ps = the_p;
       the_p = p1;
