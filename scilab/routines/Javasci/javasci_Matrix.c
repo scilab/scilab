@@ -9,6 +9,7 @@
 #include <string.h>
 #if WIN32
   #include <windows.h>
+  #pragma comment(lib, "User32.lib")
 #endif
 
 #include "../machine.h"
@@ -23,7 +24,7 @@ static int send_scilab_job(char *job) ;
 static void Initialize() ;
 /********************************************************************************************************/
 extern void C2F(banier)(int *x) ;
-extern  int C2F(ismenu)();
+extern integer C2F (ismenu) __PARAMS((void));
 extern void inittk();
 extern int C2F(inisci)(int *,int *,int *);
 extern int C2F (sciquit) (void);
