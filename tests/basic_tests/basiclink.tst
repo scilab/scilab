@@ -22,9 +22,9 @@ call('foo',5,1,'d',7,2,'d','out',[1,1],3,'d')
 // basic test for addinter 
 //--------------------------
  
-if ~c_link('intertest') then
+if ~c_link('libintertest') then
   files=['addinter.o'];
-  ilib_build('intertest',['scifun1','intfun1'],files,[]);
+  ilib_build('libintertest',['scifun1','intfun1'],files,[]);
   // load the shared library 
   exec loader.sce ;
   if norm(scifun1(%pi)- sin(%pi+1)/%pi ) > %eps then pause;end 
