@@ -502,34 +502,18 @@ static void aplotv1(strflag)
  *            if 1 the segment is drawn 
  *-------------------------------------------------------------*/
 
-
-void sci_axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag)
-     char pos,xy_type;        
-     double *x, *y; /* F.Leray 26.04.04 : before was double x[], y[];*/
-     int *nx,*ny;
-     char *str[];
-     int  subtics;
-     char *format; 
-     int fontsize,textcolor,ticscolor,fontstyle;
-     char logflag;
-     int seg_flag;
+void sci_axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
+	      char *str[], int subtics, char *format, int fontsize, int textcolor, 
+	      int fontstyle, int ticscolor, char logflag, int seg_flag)
 {
   if (GetDriver()=='R') 
     StoreSciAxis("axis",pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag);
   Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag,0);
 }
 
-void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag,axisbuild_flag)
-     char pos,xy_type;        
-     double *x, *y; 
-     int *nx,*ny;
-     char *str[];
-     int  subtics;
-     char *format; 
-     int fontsize,textcolor,ticscolor,fontstyle;
-     char logflag;
-     int seg_flag;
-     int axisbuild_flag; /* specifies if axis is built from a call to axis_draw or drawaxis method */
+void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
+	      char *str[], int subtics, char *format, int fontsize, int textcolor, 
+	      int fontstyle, int ticscolor, char logflag, int seg_flag, int axisbuild_flag)
 {
   int Nx,Ny,debug,j;
   double angle=0.0,vxx,vxx1;
@@ -1126,10 +1110,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 
 /* from double to pixel */ 
 
-static double  x_convert(xy_type, x , i)
-     char xy_type;
-     double *x;
-     int i;
+static double  x_convert(char xy_type, double *x , int i)
 {
   switch ( xy_type ) { 
   case 'v' :  return x[i];
@@ -1139,10 +1120,7 @@ static double  x_convert(xy_type, x , i)
   return 0.0;
 }
 
-static double y_convert(xy_type, y , i)
-     char xy_type;
-     double *y;
-     int i;
+static double y_convert(char xy_type, double *y , int i)
 {
   switch ( xy_type ) { 
   case 'v' :  return y[i]; 
@@ -1156,10 +1134,7 @@ static double y_convert(xy_type, y , i)
 
 /* Format pour imprimer un nombre de la forme k10^a */
 
-extern void NumberFormat(str, k, a)
-     char *str;
-     integer k;
-     integer a;
+extern void NumberFormat(char *str, integer k, integer a)
 {
   if ( k==0)
     {
