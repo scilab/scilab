@@ -15,26 +15,26 @@ extern double C2F(dsort)();
  *   plo3dn function  ( 3D Plotting of surfaces given by z=f(x,y)  )
  *-------------------------------------------------------------------------*/
 
-void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p, integer *q, integer *flag, double *bbox)
+void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p, integer *q)
 {
   static integer fg1,dc;
   integer polysize,npoly,whiteid,verbose=0,narg;
   integer *polyx,*polyy,*fill;
   static integer cache;
   static double zmin,zmax;
-  integer i,j;  
+  integer i,j,flagcolor;  
   sciPointObj *psubwin;
 
-  if (flag[1]!=1 && flag[1] != 0 && flag[1]!=3 && flag[1]!=5)
-    {
-      zmin=bbox[4]=(double) Mini(z,*p*(*q)); 
-      zmax=bbox[5]=(double) Maxi(z,*p*(*q));
-    }
-  if ( flag[1]==1 || flag[1]==3|| flag[1]==5) 
-    {
-      zmin=bbox[4];
-      zmax=bbox[5];
-    }
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+
+  zmin  = pSUBWIN_FEATURE(psubwin)->SRect[4]; /*zmin*/
+  zmax  = pSUBWIN_FEATURE(psubwin)->SRect[5]; /*zmax*/
+  fg1   = pSUBWIN_FEATURE (psubwin)->hiddencolor;   
+  cache = pSUBWIN_FEATURE (psubwin)->hiddenstate;
+
+  dc        = pSURFACE_FEATURE (pobj)->flag[0];
+  flagcolor = pSURFACE_FEATURE (pobj)->flagcolor;
+
    /** initialisation **/
   polyx = graphic_alloc(0,5*(*q),sizeof(int));
   polyy = graphic_alloc(1,5*(*q),sizeof(int));
@@ -44,14 +44,13 @@ void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p
       Scistring("plot3dg_ : malloc No more Place\n");
       return;
     }
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  
-  cache=pSUBWIN_FEATURE (psubwin)->hiddenstate;
+ 
+
   C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  dc =  flag[0];
-  fg1=pSUBWIN_FEATURE (psubwin)->hiddencolor;   
   if (fg1<=0) fg1=dc;
   for ( i =0 ; i < (*q)-1 ; i++)   fill[i]= dc ;
   polysize=5;npoly= (*q)-1;
+
   /** The 3d plot **/
   /** Choix de l'ordre de parcourt **/
   switch (cache)
@@ -62,7 +61,7 @@ void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p
 	  int npolyok=0;
 	  for ( j =0 ; j < (*q)-1 ; j++)
 	    {
-	     npolyok += (Gen3DPoints)(pSURFACE_FEATURE (pobj)->flagcolor,polyx,polyy,fill,whiteid,zmin,zmax,
+	     npolyok += (Gen3DPoints)(flagcolor,polyx,polyy,fill,whiteid,zmin,zmax,
 				x,y,z,i,j,npolyok,p,dc,fg1);
 	    }
 	  if ( npolyok != 0) 
@@ -76,7 +75,7 @@ void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p
 	  int npolyok=0;
 	  for ( j =0  ; j < (*q)-1  ; j++)
 	    {
-	      npolyok += (Gen3DPoints)(pSURFACE_FEATURE (pobj)->flagcolor,polyx,polyy,fill,whiteid,zmin,zmax,
+	      npolyok += (Gen3DPoints)(flagcolor,polyx,polyy,fill,whiteid,zmin,zmax,
 				 x,y,z,i,(*q)-2-j,npolyok,p,dc,fg1);
 	   }
 	  if ( npolyok != 0) 
@@ -90,7 +89,7 @@ void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p
 	  int npolyok=0;
 	  for ( j = 0 ; j < (*q)-1 ; j++)
 	    {
-	     npolyok +=     (Gen3DPoints)(pSURFACE_FEATURE (pobj)->flagcolor,polyx,polyy,fill,whiteid,zmin,zmax,
+	     npolyok +=     (Gen3DPoints)(flagcolor,polyx,polyy,fill,whiteid,zmin,zmax,
 				    x,y,z,i,(*q)-2-j,npolyok,p,dc,fg1);
 	   }
 	  if ( npolyok != 0) 
@@ -104,7 +103,7 @@ void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p
 	  int npolyok=0;
 	  for ( j =0 ; j < (*q)-1 ; j++)
 	    {
-	     npolyok += (Gen3DPoints)(pSURFACE_FEATURE (pobj)->flagcolor,polyx,polyy,fill,whiteid,zmin,zmax,
+	     npolyok += (Gen3DPoints)(flagcolor,polyx,polyy,fill,whiteid,zmin,zmax,
 				x,y,z,i,j,npolyok,p,dc,fg1);
 	   }
 	  if ( npolyok != 0) 
@@ -116,21 +115,24 @@ void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p
 
 }
 
-void C2F(fac3dn)(int iflag, double *x, double *y, double *z, integer *cvect, integer *p, integer *q, integer *flag, double *bbox)
+void C2F(fac3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *cvect, integer *p, integer *q)
 {
   integer polysize,npoly,whiteid,verbose=0,narg,fg1;
   integer *polyx,*polyy,*locindex,fill[4]; 
   static double zmin,zmax,*polyz;
-  integer i; 
+  integer i,flag,iflag; 
   sciPointObj *psubwin;
  
-  if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
-    sciXbasc(); 
-    initsubwin();
-    sciRedrawFigure();
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
-  } 
+
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+
+  zmin  = pSUBWIN_FEATURE(psubwin)->SRect[4]; /*zmin*/
+  zmax  = pSUBWIN_FEATURE(psubwin)->SRect[5]; /*zmax*/
+  fg1   = pSUBWIN_FEATURE (psubwin)->hiddencolor; 
   
+  flag       = pSURFACE_FEATURE (pobj)->flag[0];
+  iflag      = pSURFACE_FEATURE (pobj)->flagcolor;
+
   polyz = graphic_alloc(5,(*q),sizeof(double));
   if ( (polyz == NULL) && (*q) != 0)
     {
@@ -148,12 +150,9 @@ void C2F(fac3dn)(int iflag, double *x, double *y, double *z, integer *cvect, int
     }
 
   C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  fill[0]=  flag[0]; 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-  zmin=  pSUBWIN_FEATURE (psubwin)->FRect[4];
-  zmax= pSUBWIN_FEATURE (psubwin)->FRect[5];
-  fg1=pSUBWIN_FEATURE (psubwin)->hiddencolor; 
-  if (fg1<=0) fg1= flag[0];
+  fill[0]=  flag; 
+ 
+  if (fg1<=0) fg1= flag;
    /** le tri des facettes **/
   for ( i =0 ; i < *q ; i++)
     {
@@ -193,12 +192,12 @@ void C2F(fac3dn)(int iflag, double *x, double *y, double *z, integer *cvect, int
 	{
 	  polyx[(*p)]=polyx[0];
 	  polyy[(*p)]=polyy[0];
-	  fill[0]=  flag[0];
+	  fill[0]=  flag;
 	   if ( *p >= 2 && ((polyx[1]-polyx[0])*(polyy[2]-polyy[0])-
 			   (polyy[1]-polyy[0])*(polyx[2]-polyx[0])) <  0) 
 	    { 
-	      fill[0] = (flag[0] > 0 ) ? fg1 : -fg1 ;
-	      if (flag[0]==0) fill[0]=0;
+	      fill[0] = (flag > 0 ) ? fg1 : -fg1 ;
+	      if (flag==0) fill[0]=0;
 	       if (fg1>0) 
 		{
 		  C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize,
@@ -212,13 +211,13 @@ void C2F(fac3dn)(int iflag, double *x, double *y, double *z, integer *cvect, int
 	      for ( k= 0 ; k < *p ; k++) 
 		zl+= z[(*p)*locindex[i]+k];
 	      fill[0]=inint((whiteid-1)*((zl/(*p))-zmin)/(zmax-zmin))+1;
-	      if ( flag[0] < 0 ) fill[0]=-fill[0];
+	      if ( flag < 0 ) fill[0]=-fill[0];
 	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  else if ( iflag == 2) 
 	    {
 	      fill[0]= cvect[locindex[i]];
-	      if ( flag[0] < 0 ) fill[0]=-fill[0];
+	      if ( flag < 0 ) fill[0]=-fill[0];
 	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  else if (iflag ==3) { 
@@ -229,7 +228,7 @@ void C2F(fac3dn)(int iflag, double *x, double *y, double *z, integer *cvect, int
  		return;
 	      } else {
        	        for ( k= 0 ; k < *p ; k++) fill[k]= cvect[(*p)*locindex[i]+k];
-		 shade(polyx,polyy,fill,*p,flag[0]);
+		 shade(polyx,polyy,fill,*p,flag);
 	      }
 	  }
 	  else C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);

@@ -30,6 +30,10 @@ static void FindIntersection __PARAMS((double sx[], double sy[], double fxy[],
 void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
 		      integer *Ntr,double *zminmax,integer *colminmax));
 extern void initsubwin();
+extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
+extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
+extern int re_index_brect(double * brect, double * drect);
+extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 
 void get_frame_in_pixel(integer WIRect[]);
 
@@ -68,6 +72,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
      int cmpt=0,styl[2];
      sciPointObj *pptabofpointobj;
      sciPointObj  *psubwin;
+     double drect[6];
 
      if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
        sciXbasc(); 
@@ -75,23 +80,45 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
        sciRedrawFigure();
        psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
      } 
-  
-     /* Adding F.Leray 22.04.04 */
      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-     for (i=0;i<4;i++)
-       pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 22.04.04 */
+
      
-    /*---- Boundaries of the frame ----*/
-     if (sciGetGraphicMode (psubwin)->autoscaling)
-       update_2dbounds(psubwin,0,x,y,&n1,Nnode,brect); /* F.Leray 21.04.04 : replaces what follows IN COMMENT: */
-     /*update_frame_bounds(0,"gnn",x,y,&n1,Nnode,aaint,strflag,brect);*/
-     
+     /* Force psubwin->axes.aaint to those given by argument aaint*/
+     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i];
+ 
+     /* Force "cligrf" clipping */
      sciSetIsClipping (psubwin,0); 
  
-     strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
-     pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
+     /* Force  axes_visible property */
+     /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
 
-     sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));
+     if (sciGetGraphicMode (psubwin)->autoscaling) {
+       /* compute and merge new specified bounds with psubwin->Srect */
+       switch (strflag[1])  {
+       case '0': 
+	 /* do not change psubwin->Srect */
+	 break;
+       case '1' : case '3' : case '5' : case '7':
+	 /* Force psubwin->Srect=brect */
+	 re_index_brect(brect, drect);
+	 break;
+       case '2' : case '4' : case '6' : case '8':
+	 /* Force psubwin->Srect to the x and y bounds */
+	 compute_data_bounds(0,'g',x,y,n1,*Nnode,drect);
+	 break;
+       }
+       if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
+	 drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+	 drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+	 drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+	 drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+       }
+       if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
+
+     } 
+     strflag2axes_properties(psubwin, strflag);
+ 
+     sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* ???? */
      
      sciSetCurrentObj (ConstructFec 
 		       ((sciPointObj *)

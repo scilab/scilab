@@ -254,12 +254,6 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin;
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax;
 
-      /* Some prints*/
-    /*   sciprint("Passing through once IN Plo2dn.c AFTER having computed min,max if isoview requested\n"); */
-/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]); */
-/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]); */
-/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]); */
-/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]); */
     }
 
 
@@ -287,29 +281,19 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       wdim[1]=linint((double)wdim[1] * WRect[3]);
       /* end of added code by S. Mottelet 11/7/2000 */
 
-     /*  sciprint("wdim[0] = %d, wdim[1] = %d\r\n",wdim[0],wdim[1]); */
-/*       sciprint("  hx = %.3f, hy = %.3f\r\n",hx,hy); */
-/*       sciprint("xmin = %.3f, xmax = %.3f\r\n",xmin,xmax); */
-/*       sciprint("ymin = %.3f, ymax = %.3f \r\n\n",ymin,ymax); */
-      
+    
 
       if ( hx/(double)wdim[0]  <hy/(double) wdim[1] ) 
 	{
 	  hx1=wdim[0]*hy/wdim[1];
 	  xmin=xmin-(hx1-hx)/2.0;
 	  xmax=xmax+(hx1-hx)/2.0;
-	/*   sciprint("CAS 1:\n"); */
-/* 	  sciprint("hx1 =  %.3f\r\n",hx1); */
-/* 	  sciprint("xmin = %.3f, xmax = %.3f\r\n\n",xmin,xmax); */
 	}
       else 
 	{
 	  hy1=wdim[1]*hx/wdim[0];
 	  ymin=ymin-(hy1-hy)/2.0;
 	  ymax=ymax+(hy1-hy)/2.0;
-	/*   sciprint("CAS 2:\n"); */
-/* 	  sciprint("hy1 =  %.3f\r\n",hy1); */
-/* 	  sciprint("ymin = %.3f, ymax = %.3f\r\n\n",ymin,ymax); */
 	}
     }
 
@@ -347,20 +331,8 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
   
   /* MOVE OF THE BLOCK on axes.limits affectation */
 
-/*   sciprint("BEFORE FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax; AFFECTATION\n"); */
-/*   sciprint("FRect[0]=xmin=  %.3f\r\n", FRect[0]); */
-/*   sciprint("FRect[2]=xmax=  %.3f\r\n", FRect[2]); */
-/*   sciprint("FRect[1]=ymin=  %.3f\r\n", FRect[1]); */
-/*   sciprint("FRect[3]=ymax=  %.3f\r\n\n", FRect[3]); */
-
   FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax;
 
- /*  sciprint("AFTER FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax; AFFECTATION\n"); */
-/*   sciprint("FRect[0]=xmin=  %.3f\r\n", FRect[0]); */
-/*   sciprint("FRect[2]=xmax=  %.3f\r\n", FRect[2]); */
-/*   sciprint("FRect[1]=ymin=  %.3f\r\n", FRect[1]); */
-/*   sciprint("FRect[3]=ymax=  %.3f\r\n\n", FRect[3]); */
-  
   /* if strflag[1] == 7 or 8 we compute the max between current scale and the new one  */
   if (strflag[1] == '7' || strflag[1] == '8' )
     {
@@ -493,19 +465,14 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 		C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 		C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		Tape_ReplayNewScale1(" ",&ww,flag,PI0,aaint,PI0,PI0,FRect,PD0,PD0,PD0);
-      /*** MAJ A.Djalel */ 
-
 	  }
 	  else
 	  {
-	    /*	sciprint("JE SUIS LA  1 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");*/
 	    sciDrawObj(subwindowtmp);
-	    /*	sciprint("JE SUIS LA  2 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");*/
       } 
 
       C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
-  /*sciprint("Sortie de Fonction ----> update_frame_bounds");*/
 }
  
 

@@ -17,6 +17,11 @@
 #endif
 #include "Entities.h"
 extern void initsubwin();
+void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
+void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
+int re_index_brect(double * brect, double * drect);
+extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
+
 /*--------------------------------------------------------------------
  *  plot2dn(ptype,Logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
  *  
@@ -68,102 +73,70 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   int jj = 0;
   sciPointObj **pptabofpointobj;
   sciPointObj  *psubwin;
-
   long hdl;
   long *hdltab;
   int cmpt=0,i;
   int with_leg;
+  double drect[6];
+  char dataflag;
 
- 
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
 
-
-  for (i=0;i<4;i++)
-    pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 02.04.04 */
 
   if (!(sciGetGraphicMode (psubwin)->addplot)) { 
     sciXbasc(); 
     initsubwin(); 	/* Pb here Re-init for the psubwin does not work properly F.Leray 24.02.04*/
     sciRedrawFigure();
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 24.02.04 */
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
   } 
   
-  /*---- Boundaries of the frame ----*/
-  
+  /* Force psubwin->axes.aaint to those given by argument aaint*/
+  for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; 
+
+  /* Force psubwin->logflags to those given by argument*/
   pSUBWIN_FEATURE (psubwin)->logflags[0]=logflags[1];
   pSUBWIN_FEATURE (psubwin)->logflags[1]=logflags[2];
 
-  if (sciGetGraphicMode (psubwin)->autoscaling)
-  {
-    update_2dbounds(psubwin,0,x,y,n1,n2,brect);
-    /*update_frame_bounds(0,logflags,x,y,n1,n2,aaint,strflag,brect); */
-  } 
-
-  with_leg= ((int)strlen(strflag) >=1  && strflag[0] == '1');
-
-
-
-  /*---- Drawing the axes ----*/
-  /** Check if an other axis exist in the selected subwindow **/
-
+  /* Force "cligrf" clipping */
   sciSetIsClipping (psubwin,0); 
 
-  pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
+  /* Force  axes_visible property */
+  /*pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/ /* WHY ??? */
+
+  if (sciGetGraphicMode (psubwin)->autoscaling) {
+    /* compute and merge new specified bounds with psubwin->Srect */
+    switch (strflag[1])  {
+    case '0': 
+      /* do not change psubwin->Srect */
+      break;
+    case '1' : case '3' : case '5' : case '7':
+      /* Force psubwin->Srect=brect */
+      re_index_brect(brect, drect);
+      break;
+    case '2' : case '4' : case '6' : case '8':
+      /* Force psubwin->Srect to the x and y bounds */
+      if ( (int)strlen(logflags) < 1) dataflag='g' ; else dataflag=logflags[0];
+      compute_data_bounds(0,dataflag,x,y,*n1,*n2,drect);
+      break;
+    }
+    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
+      drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+      drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+      drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+      drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+    }
+    if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
+
+  } 
+
+  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
+  strflag2axes_properties(psubwin, strflag);
+
+  with_leg= (strflag[0] == '1');
+  pSUBWIN_FEATURE (psubwin)->with_leg = with_leg;
+
+  sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* ???? */ 
   
-  if (strflag[1]!='0'){
-    strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
-  }
-
-/*   F.Leray In case of switching to 2D view, I copy the flag[1] value in strflag[1] to keep the  */
-/*      scaling */
-/*   MARCHE MAL car confusion/absence entre arg nommes ebox et rect cas 2D/ 3D */
-  /*  if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '1') */
-/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  1; */
-/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '2') */
-/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  2; */
-/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '3') */
-/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  3; */
-/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '4') */
-/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  4; */
-/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '5') */
-/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  1; /\* change here *\/ */
-/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '6') */
-/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  6; */
-/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '7') */
-/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 1; */
-/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '8') */
-/*   pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 2; */
-  
-
-  /* MODIF HERE: I comment SS Modif*/
-  /* F.Leray 27.04.04 : Remove this because otherwise it overwrites the default made by the user...*/
-  /* example: set(gda(),"y_location","middle") is not take into account with what follows : (so I delete it!)*/
-  /*
-  if ((int)strlen(strflag) >=3){
-    if (strflag[2] == '0')
-      pSUBWIN_FEATURE (psubwin)->isaxes= FALSE;
-    else if (strflag[2] == '1')
-      pSUBWIN_FEATURE (psubwin)->axes.ydir = 'l';
-    else if (strflag[2] == '2')
-      pSUBWIN_FEATURE (psubwin)->axes.rect= 1;
-    else if (strflag[2] == '3')
-      pSUBWIN_FEATURE (psubwin)->axes.ydir = 'r';
-    else if (strflag[2] == '4'||strflag[2] == '5') {
-      pSUBWIN_FEATURE (psubwin)->axes.xdir = 'c';
-      pSUBWIN_FEATURE (psubwin)->axes.ydir = 'c';
-      pSUBWIN_FEATURE (psubwin)->axes.rect= 0;}
-  }
-  */
-  /* sciprint(" pSUBWIN_FEATURE (psubwin)->axes.flag[1]  = \n", pSUBWIN_FEATURE (psubwin)->axes.flag[1]);*/
- 
-
-  /* Adding F.Leray 07.04.04 */
-  if((pSUBWIN_FEATURE (psubwin)->strflag[1]=='3') || (pSUBWIN_FEATURE (psubwin)->strflag[1]=='4'))  /* Then isoview mode is enabled*/
-    pSUBWIN_FEATURE (psubwin)->isoview = TRUE;
-  
-  sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));
-
-
   /*---- Drawing the curves and the legengs ----*/
   if ( *n1 != 0 ) {
     frame_clip_on ();
@@ -223,3 +196,140 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 }
 
 
+
+
+/* Given two set of coordinates x and y this routine computes the corresponding 
+ *  data bounds rectangle drect=[xmin,ymin,xmax,ymax] 
+ */
+void compute_data_bounds(cflag,dataflag,x,y,n1,n2,drect)
+     int cflag;/* cflag is non zero when called by contour */
+     char dataflag; /* 'e','o' or 'g'*/
+     integer n1, n2;
+     double *x, *y; 
+     double *drect;
+{
+  int size_x,size_y;
+  double xd[2];
+  double *x1;
+  switch ( dataflag ) {
+  case 'e' : 
+    xd[0] = 1.0; xd[1] = (double)n2;
+    x1 = xd;size_x = (n2 != 0) ? 2 : 0 ;
+    break; 
+  case 'o' : 
+    x1 = x;size_x = n2;
+    break;
+  case 'g' : 
+  default  : 
+    x1 = x;size_x = (cflag == 1) ? n1 : (n1*n2) ;
+    break; 
+  }
+
+  if (size_x != 0) {
+    drect[0] =  Mini(x1, size_x); 
+    drect[1] =  Maxi(x1,size_x); 
+  }
+  else {
+    drect[0] = 0.0;
+    drect[1] = 10.0;
+  }
+
+  size_y = (cflag == 1) ? n2 : (n1*n2) ;
+  if (size_y != 0) {
+    drect[2] =  Mini(y, size_y); 
+    drect[3] =  Maxi(y,size_y); 
+  }
+  else {
+    drect[2] = 0.0;
+    drect[3] = 10.0;
+  }
+  /* back to default values for  x=[] and y = [] */
+  if ( drect[2] == LARGEST_REAL ) { drect[2] = 0.0; drect[3] = 10.0 ;} 
+  if ( drect[0] == LARGEST_REAL ) { drect[0] = 0.0; drect[1] = 10.0 ;} 
+
+}
+void update_specification_bounds(psubwin, rect,flag)
+     sciPointObj  *psubwin;
+     double *rect;
+     int flag;
+{
+    pSUBWIN_FEATURE (psubwin)->SRect[0]=rect[0];
+    pSUBWIN_FEATURE (psubwin)->SRect[1]=rect[1];
+    pSUBWIN_FEATURE (psubwin)->SRect[2]=rect[2];
+    pSUBWIN_FEATURE (psubwin)->SRect[3]=rect[3];
+    if (flag==3) {
+      pSUBWIN_FEATURE (psubwin)->SRect[4]=rect[4];
+      pSUBWIN_FEATURE (psubwin)->SRect[5]=rect[5];
+    }
+}
+
+
+/* F.Leray */
+/* brect must have the same format as drect i.e.: [xmin,xmax,ymin,ymax] */
+/* brect = INPUT ; drect = OUTPUT (warning drect is dim 6) */
+int re_index_brect(double * brect, double * drect)
+{
+  drect[0] = brect[0];
+  drect[1] = brect[2];
+  drect[2] = brect[1];
+  drect[3] = brect[3];
+/*  drect[4] = brect[4];
+    drect[5] = brect[5];*/
+  
+  return 0;
+}
+/* F.Leray 07.05.04 */
+/* Dispatch info contained in strflag to all the flag available in
+   sciSubwin object (tight_limits, isoview, isaxes...) */
+void strflag2axes_properties(sciPointObj * psubwin, char * strflag)
+{
+      
+  /* F.Leray 07.05.04 */
+  /* strflag[1] Isoview & tight_limits flags management*/
+  switch (strflag[1])  {
+  case '0': 
+    /* no changes */
+    break;
+  case '1' : case '2' : case '7' : case '8' :
+    pSUBWIN_FEATURE (psubwin)->tight_limits = TRUE;
+    /*pSUBWIN_FEATURE (psubwin)->isoview      = FALSE; */
+    break;
+  case '3' : case '4' :
+    /*pSUBWIN_FEATURE (psubwin)->tight_limits = TRUE;*/
+    pSUBWIN_FEATURE (psubwin)->isoview      = TRUE;
+    break;
+  case '5' : case '6' :
+    pSUBWIN_FEATURE (psubwin)->tight_limits = FALSE; /* pretty axes */
+    /*pSUBWIN_FEATURE (psubwin)->isoview      = FALSE;*/
+    break;
+  }
+      
+  /* F.Leray 07.05.04 */
+  /* strflag[2] */
+  switch (strflag[2])  {
+  case '0': 
+    pSUBWIN_FEATURE (psubwin)->isaxes = FALSE;
+    break;
+  case '1' : 
+    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE;
+    pSUBWIN_FEATURE (psubwin)->axes.ydir ='l';
+    break;
+  case '2' : 
+    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE;
+    /* Case not implemented yet : the plot is surrounded by a box without tics. */
+    break;
+  case '3' : 
+    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE;
+    pSUBWIN_FEATURE (psubwin)->axes.ydir ='r';
+    break;
+  case '4' :
+    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE;
+    /* Case not implemented yet : axes are drawn centred in the middle of the frame box. */
+    break;
+  case '5' :
+    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE;
+    pSUBWIN_FEATURE (psubwin)->axes.xdir ='c';
+    pSUBWIN_FEATURE (psubwin)->axes.ydir ='c';
+    break;
+  }
+}

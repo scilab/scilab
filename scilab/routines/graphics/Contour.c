@@ -10,6 +10,10 @@
 #include "Math.h"
 #include "PloEch.h"
 #include "Entities.h" /* F.Leray 21.04.04 : for update_2dbounds call*/
+extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
+extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
+extern int re_index_brect(double * brect, double * drect);
+extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 
 typedef void (level_f) __PARAMS((integer ival, double Cont, double xncont,
 			       double yncont));
@@ -248,6 +252,7 @@ int C2F(contour2)(double *x, double *y, double *z, integer *n1, integer *n2, int
 /* interface for contour2di used in macro contourf 
  * used when we want to get the values which constitues the contour inside Scilab 
  * contour2di + c2dex 
+ * THIS PROCEDURE IS NO LONGUER USED 
  */
 
 static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, integer *style, char *strflag, char *legend, double *brect, integer *aaint, integer lstr1, integer lstr2)
@@ -256,7 +261,7 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
   static double *zconst;
   double zmin,zmax;
   integer N[3],i;
-
+  double drect[6];
   sciPointObj * psubwin = NULL;  /* Adding F.Leray 22.04.04 */
 
   /** Boundaries of the frame **/
@@ -264,11 +269,33 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
     update_frame_bounds(1,"gnn",x,y,n1,n2,aaint,strflag,brect);
   else /* F.Leray 21.04.04 */
     {
-      /* Adding F.Leray 22.04.04 */
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-      for (i=0;i<4;i++)
-	pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 22.04.04 */
-      update_2dbounds(psubwin,1,x,y,n1,n2,brect);
+      for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; 
+      if (sciGetGraphicMode (psubwin)->autoscaling) {
+	/* compute and merge new specified bounds with psubwin->Srect */
+	switch (strflag[1])  {
+	case '0': 
+	  /* do not change psubwin->Srect */
+	  break;
+	case '1' : case '3' : case '5' : case '7':
+	  /* Force psubwin->Srect=brect */
+	  re_index_brect(brect,drect);
+	  break;
+	case '2' : case '4' : case '6' : case '8':
+	  /* Force psubwin->Srect to the x and y bounds */
+	  compute_data_bounds(1,'g',x,y,*n1,*n2,drect);
+	  break;
+	}
+	if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
+	  drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+	  drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+	  drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+	  drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+	}
+	if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
+      } 
+      strflag2axes_properties(psubwin, strflag);
+      pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
     }
   
   /** If Record is on **/

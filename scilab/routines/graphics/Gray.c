@@ -26,6 +26,10 @@ extern void GraySquare __PARAMS((integer *x,integer *y,double *z,
 extern void GraySquare1 __PARAMS((integer *x,integer *y,double *z,
 				 integer n1,integer n2));
 extern void initsubwin();
+extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
+extern void update_specification_bounds(sciPointObj *psubwin, double *rect, int flag);
+extern int re_index_brect(double * brect, double * drect);
+extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 
 /*------------------------------------------------------------
  * - z is a (n1,n2) matrix 
@@ -46,10 +50,9 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
   double xx[2],yy[2];
   integer *xm,*ym,j,nn1=1,nn2=2,i;   
   sciPointObj  *psubwin = NULL;
-
+  double drect[6];
   xx[0]=Mini(x,*n1);xx[1]=Maxi(x,*n1);
   yy[0]=Mini(y,*n2);yy[1]=Maxi(y,*n2);
-  
 
   /* NG beg */
   if (version_flag() == 0){
@@ -63,29 +66,51 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 
     /* Adding F.Leray 22.04.04 */
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-    for (i=0;i<4;i++)
-      pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 22.04.04 */
-    
-    
-    /*---- Boundaries of the frame ----*/
-    if (sciGetGraphicMode (psubwin)->autoscaling)
-      update_2dbounds(psubwin,0,xx,yy,&nn1,&nn2,brect); /* F.Leray 21.04.04 : replaces what follows IN COMMENT: */
-      /*update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);*/
 
+    /* Force psubwin->axes.aaint to those given by argument aaint*/
+    for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; 
+
+    /* Force "cligrf" clipping */
     sciSetIsClipping (psubwin,0); 
 
-    strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
-    pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
+    /* Force  axes_visible property */
+    /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
 
+    if (sciGetGraphicMode (psubwin)->autoscaling) {
+      /* compute and merge new specified bounds with psubwin->Srect */
+      switch (strflag[1])  {
+      case '0': 
+	/* do not change psubwin->Srect */
+	break;
+      case '1' : case '3' : case '5' : case '7':
+	/* Force psubwin->Srect=brect */
+	re_index_brect(brect, drect);
+	break;
+      case '2' : case '4' : case '6' : case '8':
+	/* Force psubwin->Srect to the x and y bounds */
+	compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect);
+	break;
+      }
+      if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
+	drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+	drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+	drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+	drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+      }
+      if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
+    } 
+    strflag2axes_properties(psubwin, strflag);
+   
     sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); /* ???? */
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       x,y,z,*n1,*n2,0));
     sciDrawObj(sciGetCurrentObj ()); 
-
+    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
   }
-  else { /* NG end  */
+
+  else { 
     /** Boundaries of the frame **/
     update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
     /** If Record is on **/
@@ -174,6 +199,7 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
   double xx[2],yy[2];
   static integer *xm,*ym,j, nn1=1,nn2=2;
   sciPointObj  *psubwin = NULL;
+  double drect[6];
 
   xx[0]=0.5;xx[1]= *n2+0.5;
   yy[0]=0.5;yy[1]= *n1+0.5;
@@ -193,15 +219,38 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
       pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 22.04.04 */
     
     /*---- Boundaries of the frame ----*/
-    if (sciGetGraphicMode (psubwin)->autoscaling)
-      update_2dbounds(psubwin,0,xx,yy,&nn1,&nn2,brect);
-      /*update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);*/
+    if (sciGetGraphicMode (psubwin)->autoscaling){
+      /* compute and merge new specified bounds with psubwin->Srect */
+      switch (strflag[1])  {
+      case '0': 
+	/* do not change psubwin->Srect */
+	break;
+      case '1' : case '3' : case '5' : case '7':
+	/* Force psubwin->Srect=brect */
+	re_index_brect(brect, drect);
+	break;
+      case '2' : case '4' : case '6' : case '8':
+	/* Force psubwin->Srect to the x and y bounds */
+	compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect);
+	break;
+      }
+      if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
+	drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+	drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+	drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+	drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+      }
+      if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
+    } 
+    strflag2axes_properties(psubwin, strflag);
+ 
     sciDrawObj(psubwin); /* ???? */
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       &x,&y,z,*n1+1,*n2+1,1)); 
     sciDrawObj(sciGetCurrentObj ()); 
+    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
   }
   else { /* NG end */
     /** Boundaries of the frame **/

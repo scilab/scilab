@@ -817,6 +817,7 @@ int sciparam3d(fname, fname_len)
     Error(999); 
     return(0);
   }
+
   GetRhsVar(1, "d", &m1, &n1, &l1);
   if (m1 * n1 == 0) { LhsVar(1) = 0; return 0;} 
   GetRhsVar(2, "d", &m2, &n2, &l2);
@@ -824,16 +825,18 @@ int sciparam3d(fname, fname_len)
   CheckSameDims(1,2,m1,n1,m2,n2);
   CheckSameDims(2,3,m2,n2,m3,n3);
 
-
+  C2F(sciwin)();
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
   GetLegend(6,opts);
+
+  if (version_flag() == 0) iflag_def[1]=8;
   ifl=&(iflag_def[1]);
   GetOptionalIntArg(7,"flag",&ifl,2,opts);
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
   GetOptionalDoubleArg(8,"ebox",&ebox,6,opts);
 
-  C2F(sciwin)();
+  
   C2F(scigerase)();
   ix1 = m1 * n1;
 
@@ -933,6 +936,7 @@ int sciparam3d1(fname, fname_len)
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
   GetLegend(6,opts);
+  if (version_flag() == 0) iflag_def[1]=8;
   ifl=&(iflag_def[1]);
   GetOptionalIntArg(7,"flag",&ifl,2,opts);
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
@@ -1120,6 +1124,8 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
 	return 0;
       }
   }
+  C2F(sciwin)();
+  if (version_flag() == 0) iflag_def[1]=8;
 
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
@@ -2074,7 +2080,7 @@ int scixclear(fname,fname_len)
      unsigned long fname_len;
 {
   integer verb=0,wid,cur,win,na;
-  integer ix,m1,n1,l1,v=0;
+  integer ix,m1,n1,l1/*,v=0*/;
   double dv;
 
 
@@ -2959,7 +2965,7 @@ int scixstring(fname,fname_len)
 	ib += strlen(Str[i+ m3*j]);
 	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
       }
-      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,-1,&hdlstr);
+      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,0,&hdlstr);
       hdltab[m3-1-i]=hdlstr;   
       wc = Max(wc,rect[2]);
       if (i != 0 ) 
@@ -5285,37 +5291,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"font_name", 9) == 0) {
     sciSetFontName((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow));
   }
-  else if (strncmp(marker,"text_box_mode", 13) == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_TEXT) {
-	if (strncmp(cstk(*value),"off", 3) == 0)
-	  pTEXT_FEATURE (pobj)->fill =  -1;
-	else if  (strncmp(cstk(*value),"centered", 8) == 0)
-	  pTEXT_FEATURE (pobj)->fill =  0;
-	else if  (strncmp(cstk(*value),"filled",6) ==  0)
-	  pTEXT_FEATURE (pobj)->fill =  1;
-	else  
-	  {strcpy(error_message,"Value must be 'off', 'centered' or 'filled'"); 
-	  return -1;}
-      }
-      else
-	{strcpy(error_message,"text_box_mode property does not exist for this handle");
-	return -1;}
-    }
-  else if (strncmp(marker,"text_box", 8) == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_TEXT) {
-	pTEXT_FEATURE (pobj)->wh[0]=*stk(*value);
-	pTEXT_FEATURE (pobj)->wh[1]=*stk(*value+1);
-      }
-      else
-      {strcpy(error_message,"text_box property does not exist for this handle");return -1;}
-    }
- 
   else if (strncmp(marker,"text", 4) == 0) {
     sciSetText((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow));
   }
-
+  /******************/
   else if (strncmp(marker,"auto_clear", 10) == 0) {
     if (strncmp(cstk(*value),"on",2)==0 )
       sciSetAddPlot((sciPointObj *) pobj,FALSE);
@@ -5440,36 +5419,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"tight_limits", 12) == 0) 
     {                   
       if ((strncmp(cstk(*value),"off", 3) == 0)) 
-	{                     
-	  pSUBWIN_FEATURE (pobj)->FRect[0]= 
-	    exp10( Cscale.xtics[2]) * (floor(pSUBWIN_FEATURE (pobj)->axes.limits[1]/ (exp10( Cscale.xtics[2])))); 
-	  pSUBWIN_FEATURE (pobj)->FRect[1]=  
-	    exp10( Cscale.ytics[2]) * (floor(pSUBWIN_FEATURE (pobj)->axes.limits[2]/ (exp10( Cscale.ytics[2]))));   
-	  pSUBWIN_FEATURE (pobj)->FRect[2]=  
-	    exp10( Cscale.xtics[2]) * (ceil(pSUBWIN_FEATURE (pobj)->axes.limits[3]/ (exp10( Cscale.xtics[2])))); 
-	  pSUBWIN_FEATURE (pobj)->FRect[3]=  
-	    exp10( Cscale.ytics[2]) * (ceil(pSUBWIN_FEATURE (pobj)->axes.limits[4]/ (exp10( Cscale.ytics[2])))); 
-	  
-	  /* We have pSUBWIN_FEATURE (paxesmdl)->axes.xlim[i]= Cscale.xtics[i] so what follows should be OK: */ 
-	  /* Adding F.Leray 21.04.04 */
-	  pSUBWIN_FEATURE (pobj)->FRect[4]=  
-	    exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2]) * (floor(pSUBWIN_FEATURE (pobj)->axes.limits[5]/ 
-								  (exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2])))); 
-	  pSUBWIN_FEATURE (pobj)->FRect[5]=  
-	    exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2]) * (ceil(pSUBWIN_FEATURE (pobj)->axes.limits[6]/ 
-								 (exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2])))); 
-	  pSUBWIN_FEATURE (pobj)->axes.limits[0] = 0;} 
-      else if ((strncmp(cstk(*value),"on", 2) == 0)){
-	
-	/*ppsubwin = pSUBWIN_FEATURE(pobj); */ /* F.Leray debug*/
-	
-	for (i=0;i<6 ; i++) 
-	  pSUBWIN_FEATURE (pobj)->FRect[i] = pSUBWIN_FEATURE (pobj)->axes.limits[i+1];
-	
-	pSUBWIN_FEATURE (pobj)->strflag[1]= '2'; /* F.Leray 28.04.04 : to force to take into account the FRect data min/max */
-	pSUBWIN_FEATURE (pobj)->axes.flag[1] = 2;
-	
-	pSUBWIN_FEATURE (pobj)->axes.limits[0] = 1; }            
+	pSUBWIN_FEATURE (pobj)->tight_limits=FALSE;
+      else if ((strncmp(cstk(*value),"on", 2) == 0))
+	pSUBWIN_FEATURE (pobj)->tight_limits=TRUE;
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
     }
@@ -5518,15 +5470,18 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       /**DJ.Abdemouche 2003**/
       if ((*numrow * *numcol != 4) && (*numrow * *numcol != 6)) 
 	{strcpy(error_message,"Second argument must have 4 elements (6 if 3d view)");return -1;}
-      pSUBWIN_FEATURE (pobj)->FRect[0]=stk(*value)[0];
-      pSUBWIN_FEATURE (pobj)->FRect[2]=stk(*value)[1];
-      pSUBWIN_FEATURE (pobj)->FRect[1]=stk(*value)[2];
-      pSUBWIN_FEATURE (pobj)->FRect[3]=stk(*value)[3];
+      pSUBWIN_FEATURE (pobj)->SRect[0]=stk(*value)[0];
+      pSUBWIN_FEATURE (pobj)->SRect[1]=stk(*value)[1];
+      pSUBWIN_FEATURE (pobj)->SRect[2]=stk(*value)[2];
+      pSUBWIN_FEATURE (pobj)->SRect[3]=stk(*value)[3];
       if (*numrow * *numcol == 6)
 	{
-	  pSUBWIN_FEATURE (pobj)->FRect[4]=stk(*value)[4];
-	  pSUBWIN_FEATURE (pobj)->FRect[5]=stk(*value)[5];
+	  pSUBWIN_FEATURE (pobj)->SRect[4]=stk(*value)[4];
+	  pSUBWIN_FEATURE (pobj)->SRect[5]=stk(*value)[5];
 	}
+      /* to inform plotxx function to take this boundary into account */
+      pSUBWIN_FEATURE (pobj)->FirstPlot = FALSE;
+
     }
    else if (sciGetEntityType (pobj) == SCI_SURFACE) {
      if (*numrow * *numcol != 6) 
@@ -6266,13 +6221,8 @@ if ((pobj == (sciPointObj *)NULL) &&
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
       if ((sciPointObj *) pobj != pfiguremdl)
 	{
-	#if WIN32 /* Correction pour figure_position (Windows) Allan CORNET Mai 2004 */
-		stk(outindex)[0] = sciGetFigurePosX ((sciPointObj *) pobj); 
-		stk(outindex)[1] = sciGetFigurePosY ((sciPointObj *) pobj);
-	#else
-		stk(outindex)[0] = sciGetFigurePosX ((sciPointObj *) pobj)-4; 
-		stk(outindex)[1] = sciGetFigurePosY ((sciPointObj *) pobj)-20;
-	#endif
+	  stk(outindex)[0] = sciGetFigurePosX ((sciPointObj *) pobj)-4; 
+	  stk(outindex)[1] = sciGetFigurePosY ((sciPointObj *) pobj)-20;
 	}
       else
 	{
@@ -6592,39 +6542,6 @@ if ((pobj == (sciPointObj *)NULL) &&
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
       strncpy(cstk(outindex), sciGetFontName((sciPointObj *)pobj), numrow*numcol);
     }
-  else if (strncmp(marker,"text_box_mode", 13) == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_TEXT) {
-	numrow = 1;
-	if (pTEXT_FEATURE (pobj)->fill == -1) {
-	  numcol = 3;
-	  CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-	  strncpy(cstk(outindex),"off", numcol);}
-	else if (pTEXT_FEATURE (pobj)->fill == 0) {
-	  numcol = 8;
-	  CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-	  strncpy(cstk(outindex),"centered", numcol);}
-	else {
-	  numcol = 6;
-	  CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-	  strncpy(cstk(outindex),"filled", numcol);}
-      }
-      else
-	{strcpy(error_message,"text_box_mode property does not exist for this handle");return -1;}
-    }
-  else if (strncmp(marker,"text_box", 8) == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_TEXT) {
-	numrow = 1;
-	numcol = 2;
-	CreateVar(Rhs+1,"d", &numrow, &numcol, &outindex);
-	*stk(outindex)= pTEXT_FEATURE (pobj)->wh[0];
-	*stk(outindex+1)= pTEXT_FEATURE (pobj)->wh[1];
-      }
-    else
-      {strcpy(error_message,"text_box property does not exist for this handle");return -1;}
-    }
-
   else if (strncmp(marker,"text", 4) == 0)
     {
       numrow = 1;
@@ -6632,7 +6549,6 @@ if ((pobj == (sciPointObj *)NULL) &&
       CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
       strncpy(cstk(outindex), sciGetText((sciPointObj *)pobj), numrow*numcol);
     }
-
   else if (strncmp(marker,"auto_clear", 10) == 0)
     {
       numrow = 1;numcol = 3;
@@ -6841,7 +6757,7 @@ if ((pobj == (sciPointObj *)NULL) &&
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	numrow   = 1;numcol   = 3;
 	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	if (pSUBWIN_FEATURE (pobj)->axes.limits[0] == 1)
+	if (pSUBWIN_FEATURE (pobj)->tight_limits == 1)
 	  strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
 	else 
 	  strncpy(cstk(outindex),"off", numrow*numcol);      
@@ -6880,14 +6796,14 @@ if ((pobj == (sciPointObj *)NULL) &&
 	numrow   = 2;
 	numcol=(pSUBWIN_FEATURE (pobj)->is3d)? 3 : 2;
 	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  stk(outindex)[0] = pSUBWIN_FEATURE (pobj)->FRect[0];
-	  stk(outindex)[1] = pSUBWIN_FEATURE (pobj)->FRect[2];
-	  stk(outindex)[2] = pSUBWIN_FEATURE (pobj)->FRect[1];
-	  stk(outindex)[3] = pSUBWIN_FEATURE (pobj)->FRect[3];
+	  stk(outindex)[0] = pSUBWIN_FEATURE (pobj)->SRect[0];
+	  stk(outindex)[1] = pSUBWIN_FEATURE (pobj)->SRect[1];
+	  stk(outindex)[2] = pSUBWIN_FEATURE (pobj)->SRect[2];
+	  stk(outindex)[3] = pSUBWIN_FEATURE (pobj)->SRect[3];
 	  if (pSUBWIN_FEATURE (pobj)->is3d)
 	    {
-	      stk(outindex)[4] = pSUBWIN_FEATURE (pobj)->FRect[4];
-	      stk(outindex)[5] = pSUBWIN_FEATURE (pobj)->FRect[5];	
+	      stk(outindex)[4] = pSUBWIN_FEATURE (pobj)->SRect[4];
+	      stk(outindex)[5] = pSUBWIN_FEATURE (pobj)->SRect[5];	
 	    }
     }
     else if (sciGetEntityType (pobj) == SCI_SURFACE) {

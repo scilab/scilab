@@ -630,18 +630,18 @@ typedef struct
   int zoomx;				 
   /** specifies the factor of the y zoom                     */
   int zoomy;
-  double FRect[6]; /**DJ.Abdemouche 2003**/
-  double WRect[4];
-  double ARect[4]; /* SS 22/04/04 */
+  double SRect[6]; /* [xmin xmax ymin ymax zmin zmax] : Strict rect. coming from update_specification_bounds function or from a set(a,"data_bounds",[...]) */
+  double FRect[6];
+  double WRect[4]; /* subwin */
+  double ARect[4]; /* margins*/
   int zoomy_kp;
   double FRect_kp[4];
-  double WRect_kp[4];
-  char logflags[2]; /* SS 01/01/03 */
-  char strflag[4];
-  int grid[3];/**DJ.Abdemouche 2003**/
+  char logflags[2]; 
+  int grid[3];
   BOOL isaxes;
   AXES axes;
   BOOL is3d;
+  BOOL tight_limits;
   double theta_kp;
   double alpha_kp;	
   double theta;
@@ -661,16 +661,11 @@ typedef struct
   BOOL isoview; 
   int hiddencolor;
   int hiddenstate;
-  BOOL facetmerge; /* DJ.A 30/12 */
-
-  /* I think I have to add the field : F.Leray 02.04.04 previous thinking...*/
-  double value_min[3]; /* Contain the x,y and z min data */
-  double value_max[3]; /* Contain the x,y and z max data */
-
+  BOOL facetmerge; 
   double brect[6];
-
+  int with_leg; /* Adding F.Leray 07.05.04 */ /* for strflag[0] support : not needed today */
   BOOL cube_scaling; /* Matlab like view in 3D when one or two range is/are preferential */
-
+  BOOL FirstPlot; /* An internal state used to indicated that high level functions must not use SRect*/
 }/** */
 sciSubWindow;  
 
@@ -1507,14 +1502,14 @@ extern void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style
 extern void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD);
 extern void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD);
 extern void Nextind(integer ind1, integer *ind2, integer *ind3);
-extern void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend);
+extern int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend);
 extern int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z);
 extern BOOL Ishidden(sciPointObj *pobj);
 extern BOOL IsDownAxes(sciPointObj *pobj);
 extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1);
-extern void update_3dbounds(sciPointObj *pobj,integer *flag,double *x,double *y,double *z,integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3,double theta,double alpha, double *ebox);/* DJ.A 2003 */
+extern void update_3dbounds(sciPointObj *pobj);
 
-extern void  sci_update_frame_bounds(int cflag, char* xf,double *value_min,double *value_max, integer *aaint, char *strflag); /* F.Leray 02.04.04*/
+extern void  sci_update_frame_bounds(int cflag, integer *aaint);
 extern double graphic_search(double *id, double *tab1, double *tab2, integer *n);
 extern void update_graduation(sciPointObj *pobj);
 /***/
@@ -1530,7 +1525,4 @@ extern int InitFigureModel();
 extern int InitAxesModel();
 
 extern sciHandleTab * sciGetpendofhandletab();
-
-
-/* TEST F.Leray 20.04.04 */
-extern int update_2dbounds(sciPointObj *pobj, int cflag, double *x, double *y, integer *n1, integer *n2, double *brect);
+extern void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG);

@@ -249,70 +249,107 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   sciTypeOf3D typeof3d;
   integer flagcolor;  
   long *hdltab;
-  int i, ok;
+  int i, ok, mn;
   sciPointObj *psubwin;
-     
+  double drect[6];
       
-  if (*isfac== 1) { 
-    if (*izcol == 0) { 
-      if (strncmp(fname,"plot3d1",7)==0) {
-	typeof3d = SCI_FAC3D;
-	flagcolor=1;
-      }
-      else {
-	typeof3d = SCI_FAC3D;
-	flagcolor=0;
-      }
-    }
-    else if (*izcol == 2) {
-      typeof3d = SCI_FAC3D;
-      flagcolor=3;
-    }
-      
-    else { 
-      typeof3d = SCI_FAC3D; 
-      flagcolor=2;
-    }
-      
+  if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
+    sciXbasc(); 
+    initsubwin();
+    sciRedrawFigure();
   } 
-  else  if  (*isfac== 0) {
-    if (strncmp(fname,"plot3d1",7)==0) {
-      typeof3d = SCI_PLOT3D;
-      flagcolor=1;
-    }
-    else {
-      typeof3d = SCI_PLOT3D;
-      flagcolor=0;
-    }
-  }
-  else {
-    typeof3d = SCI_PARAM3D1 ;
-    flagcolor=1;
-  }
-  ok=0; /* DJ.A 30/12 */
+
+  /* =================================================
+   * Force SubWindow properties according to arguments 
+   * ================================================= */
   psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
+  /* Force psubwin->logflags to linear */
+  pSUBWIN_FEATURE (psubwin)->logflags[0]='n';
+  pSUBWIN_FEATURE (psubwin)->logflags[1]='n';
   
-  /* Ajout F.Leray 16.04.04 */
-  if( iflag[1] == 3 || iflag[1] == 4 || iflag[1] == 5 || iflag[1] == 6)
-    pSUBWIN_FEATURE(psubwin)->isoview = TRUE;
+  pSUBWIN_FEATURE (psubwin)->axes.flag[0] = iflag[0]; /* mode: treatment of hidden parts */
+  if (iflag[1]<7)
+    pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1]; /* type: scaling (no more useful)  */
+  else
+    pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1]-6; /* type: scaling (no more useful)  */
+  pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2]; /* box: frame around the plot      */
 
- 
-  pSUBWIN_FEATURE (psubwin)->axes.flag[0] = iflag[0];
-  pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1];
-  pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2];
-  /* END Adding F.Leray*/
+  pSUBWIN_FEATURE (psubwin)->alpha  = *alpha;
+  pSUBWIN_FEATURE (psubwin)->theta  = *theta; 
 
-  /* F.Leray In case of switching to 2D view, I copy the flag[1] value in strflag[1] to keep the 
-     scaling */
-  /* MARCHE MAL car confusion/absence entre arg ebox et rect cas 2D/ 3D */
-  /* iflag[1] = (integer) (-48 + (integer) pSUBWIN_FEATURE (psubwin)->strflag[1]);*/
-  /* sciprint("iflag[1] = \n",iflag[1]);*/
+  if (pSUBWIN_FEATURE(psubwin)->FirstPlot) {
+    pSUBWIN_FEATURE (psubwin)->project[2]= 1;
+    pSUBWIN_FEATURE (psubwin)->is3d  = TRUE;
+    pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
+  }
 
-  if (sciGetSurface(psubwin) != (sciPointObj *) NULL)
-    ok=1;
-  if ((sciGetGraphicMode (psubwin)->autoscaling))
-    update_3dbounds(psubwin,isfac,x,y,z,m1,n1,m2,n2,m3,n3,*theta, *alpha,ebox);
+  ok=0;  
+  if (sciGetSurface(psubwin) != (sciPointObj *) NULL)   ok=1;
+
+  if ((sciGetGraphicMode (psubwin)->autoscaling)) {
+     /* compute and merge new specified bounds with psubwin->Srect */
+    switch (iflag[1])  {
+    case 0:  /* do not change psubwin->Srect */
+      break;
+    case 1 : case 3 : case 5 : case 7 : /* Force psubwin->Srect=ebox */
+      drect[0] = ebox[0]; /*xmin*/
+      drect[2] = ebox[2]; /*ymin*/
+      drect[1] = ebox[1]; /*xmax*/
+      drect[3] = ebox[3]; /*ymax*/
+      drect[4] = ebox[4]; /*zmin*/
+      drect[5] = ebox[5]; /*zmax*/
+      break;
+    case 2 : case 4 : case 6 : case 8:/* Force psubwin->Srect to the x and y bounds */
+      mn=(*m1) * (*n1); 
+      drect[0] = (double) Mini(x, mn); /*xmin*/
+      drect[1] = (double) Maxi(x, mn); /*xmax*/
+      mn=(*m2) * (*n2); 
+      drect[2] = (double) Mini(y, mn); /*ymin*/
+      drect[3] = (double) Maxi(y, mn); /*ymax*/
+      mn=(*m3) * (*n3); 
+      drect[4] = (double) Mini(z, mn); /*zmin*/
+      drect[5] = (double) Maxi(z, mn); /*zmax*/
+      break;
+    }
+    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(iflag[1]==7 || iflag[1]==8)) { /* merge psubwin->Srect and drect */
+      drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+      drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+      drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+      drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+      drect[4] = Min(pSUBWIN_FEATURE(psubwin)->SRect[4],drect[4]); /*zmin*/
+      drect[5] = Max(pSUBWIN_FEATURE(psubwin)->SRect[5],drect[5]); /*zmax*/
+    }
+    if (iflag[1] != 0) update_specification_bounds(psubwin, drect,3);
+  } 
+
+  pSUBWIN_FEATURE(psubwin)->isoview = (BOOL)( iflag[1] == 3 || iflag[1] == 4 ||
+					      iflag[1] == 5 || iflag[1] == 6);
+
+
+  /* =================================================
+   * Analyze arguments to find entity type 
+   * ================================================= */
+
+  if (*isfac== 1) { 
+    if (*izcol == 0) { 
+      if (strncmp(fname,"plot3d1",7)==0) {typeof3d = SCI_FAC3D;   flagcolor=1;}
+      else                               {typeof3d = SCI_FAC3D;   flagcolor=0;}
+    }
+    else if (*izcol == 2)                {typeof3d = SCI_FAC3D;   flagcolor=3;}
+    else                                 {typeof3d = SCI_FAC3D;   flagcolor=2;}
+  } 
+  else  if  (*isfac== 0) {
+    if (strncmp(fname,"plot3d1",7)==0)   {typeof3d = SCI_PLOT3D;  flagcolor=1;}
+    else                                 {typeof3d = SCI_PLOT3D;  flagcolor=0;}
+  }
+  else                                   {typeof3d = SCI_PARAM3D1;flagcolor=1;}
+
+
+  /* =================================================
+   * Construct the Entities
+   * ================================================= */
+
   if ( typeof3d != SCI_PARAM3D1 ) /*Distinction here between SCI_PARAM3D1 and others*/
     sciSetCurrentObj (ConstructSurface
 		      ((sciPointObj *)
@@ -348,13 +385,20 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
       if ( *n>1 ) sciSetCurrentObj (ConstructAgregation (hdltab, *n));  
       FREE(hdltab);
     }
-  if (ok==1) 
-    {
-      /* F.Leray Check this... 19.03.04*/
-      MergeFac3d(psubwin);
-    }
-  sciDrawObj(sciGetCurrentFigure ());/*dj2004*/
-     
+
+  /* =================================================
+   * Merge with previous 3D plots (build a set of facets)
+   * ================================================= */
+
+  if (ok==1) MergeFac3d(psubwin);
+
+  /* =================================================
+   * Redraw Figure
+   * ================================================= */
+
+  sciDrawObj(sciGetCurrentFigure ());
+  pSUBWIN_FEATURE(psubwin)->FirstPlot=FALSE;
+   
        
 }
 /*-----------------------------------------------------------

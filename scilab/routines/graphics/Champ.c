@@ -16,6 +16,11 @@ extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,int
 					 integer *arsize,integer *colored,double *x,double *y,
                                          double  *fx,double *fy,integer *n1,integer *n2,double *arfact));
 extern void initsubwin();
+extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
+extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
+extern int re_index_brect(double * brect, double * drect);
+extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
+
 /*-----------------------------------------------------------------
  *  int C2F(champ)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
  *  int C2F(champ1)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
@@ -33,8 +38,8 @@ extern void initsubwin();
  * - lstr : (used when called from Fortran code)
  -------------------------------------------------------------------*/
 
-void champg(char *name, integer colored, double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, 
-	    char *strflag, double *brect, double *arfact, integer lstr)
+void champg(char *name, integer colored, double *x, double *y, double *fx, double *fy, integer *n1, 
+	    integer *n2, char *strflag, double *brect, double *arfact, integer lstr)
 {
   static integer aaint[]={2,10,2,10};
   integer *xm = NULL,*ym = NULL,*zm = NULL,na,n;
@@ -46,7 +51,9 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   double arsize1;
   integer *style;
   integer i;
-  /* get default dash fo rarrows **/
+  double drect[6];
+	 
+  /* get default dash for arrows **/
   integer verbose=0,narg,xz[10],uc;
 
   C2F(dr)("xget","use color",&verbose, &uc, &narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -59,95 +66,103 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   n=2*(*n1)*((*n2)+1); /*F.Leray 17.02.04*/
   xx[0]=x[0];xx[1]=x[*n1-1];
   yy[0]=y[0];yy[1]=y[*n2-1];
-  /** Boundaries of the frame **/ 
   
-  if (version_flag() == 0)
-    {
-      if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) 
-        { 
-          sciXbasc();  
-          initsubwin();
-          sciRedrawFigure();
-        }  
-
-      /* Adding F.Leray 22.04.04 */
+  if (version_flag() == 0) {
+      if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
+	sciXbasc();  
+	initsubwin();
+	sciRedrawFigure();
+      }  
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-      for (i=0;i<4;i++)
-	pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 22.04.04 */
-      
-      /** Boundaries of the frame **/ 
-      if (sciGetGraphicMode (psubwin)->autoscaling)
-	update_2dbounds(psubwin,0,xx,yy,&nn1,&nn2,brect); /* replaces what follows IN COMMENT: */
-      /*update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);*/
 
-    }
-  else
-    update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
+      /* Force psubwin->axes.aaint to those given by argument aaint*/
+      for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; 
 
-  /* Storing values if using the Record driver */
-  if ((GetDriver()=='R') && (version_flag() != 0))
-    StoreChamp(name,x,y,fx,fy,n1,n2,strflag,brect,arfact); 
- 
-  /*---- Drawing the axes ----*/
-  if (version_flag() == 0)
-    {
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+      /* Force "cligrf" clipping */
       sciSetIsClipping (psubwin,0); 
 
-      strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
-      pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
+      /* Force  axes_visible property */
+      /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE; */
 
-      sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); 
+      if (sciGetGraphicMode (psubwin)->autoscaling) {
+	/* compute and merge new specified bounds with psubwin->Srect */
+	switch (strflag[1])  {
+	case '0': 
+	  /* do not change psubwin->Srect */
+	  break;
+	case '1' : case '3' : case '5' : case '7':
+	  /* Force psubwin->Srect=brect */
+	  re_index_brect(brect,drect);
+	  break;
+	case '2' : case '4' : case '6' : case '8':
+	  /* Force psubwin->Srect to the x and y bounds */
+	  compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect);
+	  break;
+	}
+	if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
+	  drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+	  drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+	  drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+	  drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+	}
+	    
+	if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
+
+      } 
+      pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
+      strflag2axes_properties(psubwin, strflag);
+
+      sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); /* ???? */
 
       flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
       arsize1 = 0.5;
 
       /* F.Leray Allocation de style[dim = Nbr1] */
-      if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL)
-	{
-	  sciprint("No more memory available\n");
-	  return;
-	}
-
-      for(i=0;i<(*n1);i++)
-	style[i]=i;
-
-
+      if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL) {
+	sciprint("No more memory available\n");
+	return;
+      }
+      for(i=0;i<(*n1);i++) style[i]=i;
 
       sciSetCurrentObj(ConstructSegs((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
 				     type,x,y,*n1,*n2,fx,fy,flag,style,arsize1,colored,*arfact)); 
 
       /* F.Leray Libération de style[dim = Nbr1]*/
       if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
+      pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
+  }
+  else {
+    update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
 
-    }
-  else 
+    /* Storing values if using the Record driver */
+    if (GetDriver()=='R')
+      StoreChamp(name,x,y,fx,fy,n1,n2,strflag,brect,arfact); 
+ 
+
     axis_draw(strflag);
-  /** Allocation **/  xm = graphic_alloc(0,n,sizeof(int));
-  ym = graphic_alloc(1,n,sizeof(int));
-  if ( xm == 0 || ym == 0) 
-    {
+    /** Allocation **/  
+    xm = graphic_alloc(0,n,sizeof(int));
+    ym = graphic_alloc(1,n,sizeof(int));
+    if ( xm == 0 || ym == 0) {
       sciprint("Running out of memory \n");
       return ;
     }      
-  if ( colored != 0) {
-    zm = graphic_alloc(2,n/2,sizeof(int)); /* F.Leray 19.02.04 OK one norm by vector => dim(zm) = n1*n2*/
-    if (  zm == 0 ) 
-      {
+    if ( colored != 0) {
+      zm = graphic_alloc(2,n/2,sizeof(int)); /* F.Leray 19.02.04 OK one norm by vector => dim(zm) = n1*n2*/
+      if (  zm == 0 ) {
 	sciprint("Running out of memory \n");
 	return ;
       }      
+    }
+    Champ2DRealToPixel(xm,ym,zm,&na,&arsize,&colored,x,y,fx,fy,n1,n2,arfact); 
+    /** Drawing the curves **/
+    frame_clip_on();
+    if ( colored ==0) 
+      C2F(dr)("xarrow","v",xm,ym,&na,&arsize,xz,&iflag,PD0,PD0,PD0,PD0,0L,0L);
+    else
+      C2F(dr)("xarrow","v",xm,ym,&na,&arsize,zm,(iflag=1,&iflag),PD0,PD0,PD0,PD0,0L,0L);
+    frame_clip_off();
   }
-
-  Champ2DRealToPixel(xm,ym,zm,&na,&arsize,&colored,x,y,fx,fy,n1,n2,arfact);
-  
-  /** Drawing the curves **/
-  frame_clip_on();
-  if ( colored ==0) 
-    C2F(dr)("xarrow","v",xm,ym,&na,&arsize,xz,&iflag,PD0,PD0,PD0,PD0,0L,0L);
-  else
-    C2F(dr)("xarrow","v",xm,ym,&na,&arsize,zm,(iflag=1,&iflag),PD0,PD0,PD0,PD0,0L,0L);
-  frame_clip_off();
 }
 
 int C2F(champ)(double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, char *strflag, double *brect, double *arfact, integer lstr)

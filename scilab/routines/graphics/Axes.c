@@ -21,6 +21,7 @@ static sciPointObj *psubwin;/* NG */
 static double  x_convert __PARAMS((char xy_type,double x[] ,int i));
 static double  y_convert __PARAMS((char xy_type,double x[] ,int i));
 extern void NumberFormat __PARAMS((char *str,integer k,integer a));
+/*extern void NumberFormat __PARAMS((char *str,double k,integer a));*/
 static void aplotv1 __PARAMS((char*));
 static void aplotv2 __PARAMS((char*));
 extern int version_flag();
@@ -32,18 +33,15 @@ void axis_draw(strflag)
      char strflag[];
 { 
   /* using foreground to draw axis */
-  integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp; /* F.Leray verbose=1 interesting here!!!*/
+  integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp; 
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  /*sciprint("APRES xget foreground IN axis_draw------------------------------------------");*/ /*F.Leray printf to see...*/
   C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
 
-  /* sciprint("Dans Axes.c, strflag = %c%c%c\n\n",strflag[0],strflag[1],strflag[2]); */
-
-  if (version_flag() == 0){/**DJ.Abdemouche 2003**/
+  if (version_flag() == 0){
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
      
     /* F.Leray test on color here*/
@@ -55,10 +53,8 @@ void axis_draw(strflag)
     ixbox[2]=Cscale.WIRect1[0]+Cscale.WIRect1[2];iybox[2]=iybox[1];
     ixbox[3]=ixbox[2];iybox[3]=iybox[0]; 
     C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    /* C2F (dr) ("xset","foreground",&color,&color,&verbose,&verbose,&verbose,PI0,PD0,PD0,PD0,PD0,5L,4096);	  */
     C2F(dr)("xset","pattern",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	 
-    C2F (dr) ("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
-    /*C2F (dr) ("xset","foreground",&fg,&fg,&verbose,&verbose,&verbose,PI0,PD0,PD0,PD0,PD0,5L,4096);*/
+    C2F(dr)("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
     C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	  
   }
 
@@ -97,16 +93,15 @@ void axis_draw(strflag)
 static void aplotv2(strflag) 
      char *strflag;
 {
-  char dir = 'l'; /* F.Leray Note: by default the position of y-axis is 'left'*/
+  char dir = 'l';
   int nx,ny;
   int fontsize=-1,textcolor=-1,ticscolor=-1 ; /*==> use default values  */
-  int fontstyle= 0; /* F.Leray 08.04.04 : New data for Axes Font*/
+  int fontstyle= 0; 
   int seg =0;
-  double x[4],y[4],x1,y1; /* F.leray 26.04.04: Before was : double x[3],y[3],x1,y1; */
-  /*** Ajout D.ABDEMOUCHE ****/
+  double x[4],y[4],x1,y1;
   char xstr,ystr;  
   char dirx = 'd';
-  /*int i;*/
+  int i;
   
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   x[0] = Cscale.frect[0]; x[1] = Cscale.frect[2] ; x[2]=Cscale.Waaint1[1];
@@ -122,14 +117,20 @@ static void aplotv2(strflag)
   if (version_flag() == 0) {
     Cscale.xtics[2]=pSUBWIN_FEATURE(psubwin)->axes.xlim[2];
     Cscale.ytics[2]=pSUBWIN_FEATURE(psubwin)->axes.ylim[2]; 
-   /*  for(i=0 ; i<4 ; i++ ) */
-/*       Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ; */
-    Cscale.xtics[1]= (Cscale.frect[2] / (exp10( Cscale.xtics[2]))) ; 
-    Cscale.xtics[0]  = (Cscale.frect[0]  / (exp10( Cscale.xtics[2]))) ;
-    Cscale.xtics[3]=inint(Cscale.xtics[1]-Cscale.xtics[0]);
-    Cscale.ytics[1]= (Cscale.frect[3] / (exp10( Cscale.ytics[2]))) ; 
-    Cscale.ytics[0]  = (Cscale.frect[1]  / (exp10( Cscale.ytics[2]))) ;
-    Cscale.ytics[3]=inint(Cscale.ytics[1]-Cscale.ytics[0]);}   
+
+    /* Remis F.Leray 06.05.04 */
+    for(i=0 ; i<4 ; i++ )
+      Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ;
+
+    Cscale.xtics[1] = (Cscale.frect[2] / (exp10( Cscale.xtics[2]))) ; 
+    Cscale.xtics[0] = (Cscale.frect[0]  / (exp10( Cscale.xtics[2]))) ;
+    Cscale.xtics[3] = inint(Cscale.xtics[1]-Cscale.xtics[0]);
+    Cscale.ytics[1] = (Cscale.frect[3] / (exp10( Cscale.ytics[2]))) ; 
+    Cscale.ytics[0] = (Cscale.frect[1]  / (exp10( Cscale.ytics[2]))) ;
+    Cscale.ytics[3] = inint(Cscale.ytics[1]-Cscale.ytics[0]);
+  }   
+
+
   switch ( c ) 
     { 
     case '3' : /* right axis */ 
@@ -234,22 +235,23 @@ static void aplotv1(strflag)
 {
   char dir = 'l';
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
-  int nx,ny,seg=0/*,i*/;
+  int nx,ny,seg=0,i;
   int fontsize = -1 ,textcolor = -1 ,ticscolor = -1 ; /* default values */
-  int fontstyle= 0; /* F.Leray 08.04.04 : New data for Axes Font*/
+  int fontstyle= 0;
   double  x1,y1;
-  /*** Ajout D.ABDEMOUCHE ****/  
   char xstr,ystr; 
   char dirx = 'd';  
 
   seg=0; 
 
-  if (version_flag() == 0){    
+  if (version_flag() == 0){    /* stockage des puissances ICI */
     Cscale.xtics[2]=pSUBWIN_FEATURE(psubwin)->axes.xlim[2];
     Cscale.ytics[2]=pSUBWIN_FEATURE(psubwin)->axes.ylim[2];
-   /*  for(i=0 ; i<4 ; i++ ) */
-/*       Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ; */
-    /*** parceque c'est pas la subwin selectionnee mais celle en cours ***/
+
+     for(i=0 ; i<4 ; i++ )
+      Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ;
+    /***COMMENT Djalel:  parceque c'est pas la subwin selectionnee mais celle en cours ***/
+
     Cscale.xtics[1]= (Cscale.frect[2] / (exp10( Cscale.xtics[2]))) ;
     Cscale.xtics[0]= (Cscale.frect[0]  / (exp10( Cscale.xtics[2]))) ;
     Cscale.xtics[3]= floor(Cscale.xtics[1])-ceil(Cscale.xtics[0]);  
@@ -339,11 +341,8 @@ static void aplotv1(strflag)
     Cscale.Waaint1[3]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.ylim[3]);/*SS 02/01/03 */
 
     ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
-    /*textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
-      fontsize=pSUBWIN_FEATURE (psubwin)->axes.fontsize;*/
     textcolor=sciGetFontForeground(psubwin);
     fontsize=sciGetFontDeciWidth(psubwin)/100;
-    /* F.Leray 08.04.04 New data for Axes Font*/
     fontstyle=sciGetFontStyle(psubwin);
   }
  
@@ -414,7 +413,7 @@ void sci_axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 
 void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag)
      char pos,xy_type;        
-     double *x, *y; /* F.Leray 26.04.04 : before was double x[], y[];*/
+     double *x, *y; 
      int *nx,*ny;
      char *str[];
      int  subtics;
@@ -431,12 +430,8 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
   integer i,barlength;
   int ns=2,style=0,iflag=0;
   integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp; 
-  /*** 01/07/2002 ***/
-  /* double xmin,xmax,ymin, ymax;*/ /* F.Leray 28.04.04 */
-  /*** MAJ Djalel A 21/01/2003 ***/
   integer pstyle;
 
-  /* F.Leray 08.04.04 Force the fontstyle knowledge :*/
   fontid[0]= fontstyle;
   
   if (version_flag() == 0)
@@ -444,17 +439,14 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
   
   C2F(dr)("xget","font",&verbose,fontid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   fontsize_kp = fontid[1] ;
-  /** 28/10/2002 **/
   if ((version_flag() == 0) && ( fontsize == -1 ))
     { fontid[0]= 0; fontid[1]= 1;  fontsize_kp = fontid[1] ;
-    /* F.Leray 08.04.04 Adding following line :*/
     fontid[0]= fontstyle;
     C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);}
   
   if ( fontsize != -1 ) 
     {
       fontid[1] = fontsize ;
-      /* F.Leray 08.04.04 Adding following line :*/
       fontid[0]= fontstyle;
       C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
@@ -469,7 +461,6 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
       smallersize=fontid[1]-2;
       C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
-  /**** 01/07/2002 ***/ 
   if (version_flag() == 0) 
     {
       /* Pb here, dim of x and y can be lesser than 4 (ie in example_eng.tst : nx = 6 and ny = 1) F.Leray 25.02.04
@@ -526,6 +517,10 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	switch (xy_type ) {
 	case 'v' : ChoixFormatE1(c_format,x,Nx);break;
 	case 'r' : ChoixFormatE (c_format,x[0],x[1],(x[1]-x[0])/x[2]);break;
+	case 'i' : ChoixFormatE (c_format,
+				 (x[0] * exp10(x[2])),
+				 (x[1] * exp10(x[2])),
+				 ((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]); break; /* Adding F.Leray 06.05.04 */
 	}
       /** the horizontal segment **/
 
@@ -541,18 +536,9 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
-      /******* 01/07/2002 **********/
-    /*   if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1) && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){   */
-/* 	xmax=Cscale.frect[2]; */
-/* 	xmin=Cscale.frect[0]; */
-/*         x[1]= floor(Cscale.frect[2] / (exp10( x[2]))) ;   */
-/*         x[0]  = ceil(Cscale.frect[0]  / (exp10( x[2]))) ;  */
-/*         x[3]=inint(x[1]-x[0]); */
-/*         while (x[3]>10)  x[3]=floor(x[3]/2); */
-/*         Nx=  (integer) (x[3]+1);} */
-      /**********************/
+
       /** loop on the ticks **/
-      if (Nx==1) break; /*D.Abdemouche 16/12/2003*/
+      if (Nx==1) break;
       for (i=0 ; i < Nx ; i++)
 	{  
 	  char foo[100];
@@ -562,10 +548,10 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  else if ( format == NULL) 
 	    {
 	      /*defaults format **/
-	      if  ( xy_type == 'i') 
-		NumberFormat(foo,((integer) (x[0] + i*(x[1]-x[0])/x[3])),
-			     ((integer) x[2]));
-	      else 
+	     /*  if  ( xy_type == 'i') */
+	/* 	NumberFormat(foo,( (x[0] + i*(x[1]-x[0])/x[3])), */
+/* 			     ((integer) x[2])); */
+/* 	      else */
 		sprintf(foo,c_format,vxx);
 	    }
 	  else 
@@ -631,41 +617,6 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 		C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      }
 	    } 
-	  /***   01/07/2002 ****/
-	 /*  if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){ */
-/* 	    if ( i == 0 )  */
-/* 	      { */
-/* 		int j; */
-/* 		double dx ;  */
-/* 		vxx1= x_convert(xy_type,x,i+1); */
-/* 		dx = (vxx1-vxx)/subtics; */
-/* 		for ( j = 1 ; j < subtics; j++) {   */
-/* 		  if ( vxx-dx*j > xmin){ */
-/* 		    vx[0] = vx[1] = XScale(vxx-dx*j); */
-/* 		    if ( pos == 'd' )  */
-/* 		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] + barlength/2.0) ; } */
-/* 		    else  */
-/* 		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] - barlength/2.0) ; } */
-/* 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* 		  }} */
-/* 	      }  */
-/* 	    if ( i == Nx-1 )  */
-/* 	      { */
-/* 		int j; */
-/* 		double dx ;  */
-/* 		vxx1= x_convert(xy_type,x,i+1); */
-/* 		dx = (vxx1-vxx)/subtics; */
-/* 		for ( j = 1 ; j < subtics; j++) {   */
-/* 		  if ( vxx+dx*j < xmax){ */
-/* 		    vx[0] = vx[1] = XScale(vxx+dx*j); */
-/* 		    if ( pos == 'd' )  */
-/* 		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] + barlength/2.0) ; } */
-/* 		    else  */
-/* 		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] - barlength/2.0) ; } */
-/* 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* 		  }} */
-/* 	      }  */
-/* 	  } */
          
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
@@ -678,6 +629,10 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	switch (xy_type ) {
 	case 'v' : ChoixFormatE1(c_format,y,Ny);break;
 	case 'r' : ChoixFormatE(c_format,y[0],y[1],(y[1]-y[0])/y[2]);break;
+	case 'i' : ChoixFormatE (c_format,
+				 (y[0] * exp10(y[2])),
+				 (y[1] * exp10(y[2])),
+				 ((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]); break; /* Adding F.Leray 06.05.04 */
 	}
       /** the vertical segment **/
       vy[0] =  YScale(y_convert(xy_type, y , 0));
@@ -689,16 +644,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
-      /******* 01/07/2002 **********/
-    /*   if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){   */
-/* 	ymax=Cscale.frect[3]; */
-/* 	ymin=Cscale.frect[1]; */
-/*         y[1]= floor(Cscale.frect[3] / (exp10( y[2]))) ;   */
-/*         y[0]  = ceil(Cscale.frect[1]  / (exp10( y[2]))) ;  */
-/*         y[3]=inint(y[1]-y[0]); */
-/*         while (y[3]>10)  y[3]=floor(y[3]/2); */
-/*         Ny= (integer) (y[3]+1);} */
-      /**********************/
+
       /** loop on the ticks **/
       if (Ny==1) break; /*D.Abdemouche 16/12/2003*/
       for (i=0 ; i < Ny ; i++)
@@ -709,10 +655,10 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    sprintf(foo,"%s",str[i]);
 	  else if ( format == NULL)
 	    {
-	      if ( xy_type == 'i') 
-		NumberFormat(foo,((integer) (y[0] + i*(y[1]-y[0])/y[3])),
-			     ((integer) y[2]));
-	      else 
+	      /* if ( xy_type == 'i') */
+/* 		NumberFormat(foo,( (y[0] + i*(y[1]-y[0])/y[3])), */
+/* 			     ((integer) y[2])); */
+/* 	      else */
 		sprintf(foo,c_format,vxx);
 	    }
 	  else 
@@ -778,41 +724,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 		  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		}
 	    }
-	  /***   01/07/2002 ****/
-	 /*  if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){ */
-/* 	    if ( i == 0 )   */
-/* 	      { */
-/* 		int j; */
-/* 		double dy ;  */
-/* 		vxx1= y_convert(xy_type,y,i+1); */
-/* 		dy = (vxx1-vxx)/subtics; */
-/* 		for ( j = 1 ; j < subtics; j++) {   */
-/* 		  if ( vxx-dy*j > ymin){ */
-/* 		    vy[0] = vy[1] = YScale(vxx-dy*j); */
-/* 		    if ( pos == 'r' )  */
-/* 		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] + barlength/2.0) ; } */
-/* 		    else  */
-/* 		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] - barlength/2.0) ; } */
-/* 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* 		  }} */
-/* 	      } */
-/* 	    if ( i == Ny-1 ) */
-/* 	      { */
-/* 		int j; */
-/* 		double dy ;  */
-/* 		vxx1= y_convert(xy_type,y,i+1); */
-/* 		dy = (vxx1-vxx)/subtics; */
-/* 		for ( j = 1 ; j < subtics; j++) {   */
-/* 		  if ( vxx+dy*j < ymax){ */
-/* 		    vy[0] = vy[1] = YScale(vxx+dy*j); */
-/* 		    if ( pos == 'r' )  */
-/* 		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] + barlength/2.0) ; } */
-/* 		    else  */
-/* 		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] - barlength/2.0) ; } */
-/* 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* 		  }} */
-/* 	      }   */
-/* 	  } */
+
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
       break;
@@ -868,13 +780,13 @@ extern void NumberFormat(str, k, a)
      integer k;
      integer a;
 {
-  if ( k==0) 
+  if ( k==0)
     {
       sprintf(str,"0");
     }
   else
     {
-      switch (a) 
+      switch (a)
 	{
 	case -1: sprintf(str,"%.1f",(double)k/10.0);break;
 	case -2: sprintf(str,"%.2f",(double)k/100.0);break;
@@ -882,9 +794,43 @@ extern void NumberFormat(str, k, a)
 	case 1 : sprintf(str,"%d0",(int)k);break;
 	case 2 : sprintf(str,"%d00",(int)k);break;
 	default: sprintf(str,"%de%d",(int)k,(int)a) ;break;
+
 	}
     }
 }
+
+
+
+/* extern void NumberFormat(str, k, a) */
+/*      char *str; */
+/*      double k; */
+/*      integer a; */
+/* { */
+/*   if ( k==0)  */
+/*     { */
+/*       sprintf(str,"0"); */
+/*     } */
+/*   else */
+/*     { */
+/*       switch (a)  */
+/* 	{ */
+/* 	case -1: sprintf(str,"%.1f",(double)k/10.0);break; */
+/* 	case -2: sprintf(str,"%.2f",(double)k/100.0);break; */
+/* 	case 0 : sprintf(str,"%f",(double)k);break; */
+/* 	case 1 : sprintf(str,"%f0",(double)k);break; */
+/* 	case 2 : sprintf(str,"%f00",(double)k);break; */
+/* 	default: sprintf(str,"%fe%d",(double)k,(integer)a) ;break; */
+
+/* 	} */
+/*     } */
+/* } */
+
+
+
+
+
+
+
 /*---------------------------------------------------------------------
  *Trace l'enveloppe convexe de la boite contenant le dessin 
  * et renvoit dans InsideU et InsideD les indices des points dans xbox et ybox
