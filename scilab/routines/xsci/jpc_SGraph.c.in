@@ -582,8 +582,8 @@ void GViewportResize(ScilabXgc,width,height)
        * the drawbox can be bigger than the popup if 
        * we are comming back from a ScilabXgc->CurResizeStatus==0 state 
        */
-      clwidth = Width  + Max(0,clwidth-cwidth);
-      clheight= Height + Max(0,clheight-cheight);
+      clwidth = Width  + Max(0,(int)clwidth - (int)cwidth);
+      clheight= Height + Max(0,(int)clheight - (int)cheight);
       iargs = 0;
       XtSetArg (args[iargs], XtNwidth, clwidth ); iargs++;
       XtSetArg (args[iargs], XtNheight,clheight); iargs++;
