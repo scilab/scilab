@@ -8,6 +8,7 @@
   <SHORT_DESCRIPTION name="strindex"> search position of a character string in an other string.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>ind=strindex(str1,str2)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[ind,which]=strindex(str1,str2)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -29,17 +30,26 @@
           <SP>: vector of indexes</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>which</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of indexes</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>strindex</VERB> searches indexes where <VERB>str2(i)</VERB> is found in
-    <VERB>str1</VERB></P>
     <P>
-    for each <VERB>k</VERB> it exist a <VERB>i</VERB><VERB> shuch that
-    part(str1,ind(k)+(0:length(str2(i))-1))</VERB> is the same string than
-    <VERB>str2(i)</VERB></P>
+      <VERB>strindex</VERB> searches indexes where <VERB>str2(i)</VERB> is found in
+      <VERB>str1</VERB>
+    </P>
     <P>
-    When str2 is a vector and str2</P>
+      for each <VERB>k</VERB> it exist a <VERB>i</VERB> shuch that
+      <VERB>part(str1,ind(k)+(0:length(str2(i))-1))</VERB> is the same string than
+      <VERB>str2(i)</VERB>. If <VERB>which</VERB> argument is required it
+      contains these <VERB>i</VERB>.
+    </P>
+  
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -48,6 +58,7 @@ k=strindex('SCI/demos/scicos','SCI/')
 k=strindex('SCI/demos/scicos','!')
 k=strindex('aaaaa','aa') 
 k=strindex('SCI/demos/scicos',['SCI','sci'])
+[k,w]=strindex('1+3*abc/2.33',['+','-','*','/'])
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

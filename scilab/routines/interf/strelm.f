@@ -301,7 +301,7 @@ c
          call error(39)
          return
       endif
-      if (lhs .ne. 1) then
+      if (lhs .gt. 2) then
          call error(41)
          return
       endif
@@ -315,11 +315,6 @@ c
          return
       endif
       mn2=istk(il2+1)*istk(il2+2)
-c      if(istk(il2+1)*istk(il2+2).ne.1) then
-c         err=2
-c         call error(36)
-c         return
-c      endif
       l2=il2+5+mn2
       do 01 i=1,mn2
          if(istk(il2+4+i)-istk(il2+3+i).eq.0) then
@@ -336,6 +331,14 @@ c
       ref=ilr.ne.il1
       if(istk(il1).eq.1) then
          if(istk(il1+1)*istk(il1+2).eq.0) then
+            istk(ilr)=1
+            istk(ilr+1)=0
+            istk(ilr+2)=0
+            istk(ilr+3)=0
+            lstk(top+1)=sadr(ilr+4)
+            if(lhs.eq.1) return
+            top=top+1
+            ilr=iadr(lstk(top))
             istk(ilr)=1
             istk(ilr+1)=0
             istk(ilr+2)=0
@@ -391,7 +394,7 @@ c     first character matches
       do 16 ii=0,nok-1
          i=istk(ilm+ii)
          if(k.ge.istk(il2+4+i)-istk(il2+3+i)) then
-c     .     a match found or ith string
+c     .     a match found for ith string
             nfound=i
             goto 30
          elseif(istk(ll1+k).eq.istk(l2+istk(il2+3+i)-1+k)) then
@@ -407,14 +410,14 @@ c     .     a match found or ith string
 c     a match found
       mc=mc+1
       if(mod(mc,10).eq.0) then
-         err=lpos+mc+10-lstk(bot)
+         err=lpos+2*(mc+10)-lstk(bot)
          if(err.gt.0) then
             call error(17)
             return
          endif
       endif
-      stk(lpos+mc-1)=ll1-l1+1
-c      ll1=ll1+k-1
+      stk(lpos+2*(mc-1)) = dble(ll1-l1+1)
+      stk(lpos+2*(mc-1)+1)     = dble(nfound)
       goto 10
  35   continue
 c     end of string str1 reached
@@ -424,18 +427,55 @@ c     end of string str1 reached
          istk(ilr+2)=0
          istk(ilr+3)=0
          lstk(top+1)=sadr(ilr+4)
-      else
-         l=sadr(ilr+4)
-         if(l.gt.lpos) then
-            call unsfdcopy(mc,stk(lpos),-1,stk(l),-1)
-         else
-            call unsfdcopy(mc,stk(lpos),1,stk(l),1)
-         endif
+         if (lhs.eq.1) return
+         top=top+1
+         ilr=iadr(lstk(top))
          istk(ilr)=1
-         istk(ilr+1)=1
-         istk(ilr+2)=mc
+         istk(ilr+1)=0
+         istk(ilr+2)=0
          istk(ilr+3)=0
-         lstk(top+1)=l+mc
+         lstk(top+1)=sadr(ilr+4)
+      else
+         if(lhs.eq.1) then
+            l=sadr(ilr+4)
+            call unsfdcopy(mc,stk(lpos),2,stk(l),1)
+            istk(ilr)=1
+            istk(ilr+1)=1
+            istk(ilr+2)=mc
+            istk(ilr+3)=0
+            lstk(top+1)=l+mc
+         else
+            lw=lpos+2*mc
+            ilw=iadr(lw)
+            err=lw+2*sadr(4)+2*mc-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            istk(ilw)=1
+            istk(ilw+1)=1
+            istk(ilw+2)=mc
+            istk(ilw+3)=0
+            l=sadr(ilw+4)
+            call dcopy(mc,stk(lpos),2,stk(l),1)
+            l=l+mc
+            l1=l
+            ilw=iadr(l)
+            istk(ilw)=1
+            istk(ilw+1)=1
+            istk(ilw+2)=mc
+            istk(ilw+3)=0
+            l=sadr(ilw+4)
+            call dcopy(mc,stk(lpos+1),2,stk(l),1)
+            l=l+mc
+c     .     copy the variables at the top of the stack
+            call unsfdcopy(l-lw,stk(lw),1,stk(lstk(top)),1)
+            lstk(top+1)=lstk(top)+l1-lw
+            top=top+1
+            lstk(top+1)=lstk(top)+l-l1
+
+         endif
+
       endif
       return
       end

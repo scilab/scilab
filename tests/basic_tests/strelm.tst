@@ -87,7 +87,27 @@ if or(strindex('abc,abd,aa,bxe',',')<>[4 8 11]) then pause,end
 if or(strindex('abc',',')<>[]) then pause,end
 if or(strindex('abc,abd,aa,bxe',',a')<>[4 8]) then pause,end
 if or(strindex('abc,abd,aa,bxe','a')<>[1 5 9 10]) then pause,end
-//if or(strindex(emptystr(),'a'))<>[] then pause,end
+if strindex(emptystr(),'a')<>[] then pause,end
+
+[pos,which]=strindex('abc,abd,aa,bxe',',');
+if or(pos<>[4 8 11])|or(which<>[1 1 1]) then pause,end
+[pos,which]=strindex('abc',',');
+if or(pos<>[])|or(which<>[]) then pause,end
+[pos,which]=strindex('abc,abd,aa,bxe',',a');
+if or(pos<>[4 8])|or(which<>[1 1]) then pause,end
+[pos,which]=strindex('abc,abd,aa,bxe','a');
+if or(pos<>[1 5 9 10])|or(which<>[1 1 1 1]) then pause,end
+[pos,which]=strindex('','a');
+if or(pos<>[])|or(which<>[]) then pause,end
+
+[pos,which]=strindex('abc,cbd,aa,bxe',[',a',',b']);
+if or(pos<>[8 11])|or(which<>[1 2]) then pause,end
+[pos,which]=strindex('abc,cbd,aa,bxe',[',a','bb']);
+if or(pos<>[8])|or(which<>[1]) then pause,end
+
+rand('u');str=strcat(string(round(8*rand(1,5000))));s= string(0:9);     
+[pos,which]=strindex(str,s); 
+if part(str,pos)<>strcat(s(which)) then pause,end
 
 //strsubst
 if strsubst('abc,abd,aa,bxe',',',';')<>'abc;abd;aa;bxe'  then pause,end
