@@ -25,5 +25,9 @@ MAKE		=	make
 !IF "$(PVM_CCOMPILER)" == "WATCOMC++"
 !include $(PVM_ROOT)\conf\win32watcom.def
 !else
+!IF "$(PVM_CCOMPILER)" == "VISUALC++"
 !include $(PVM_ROOT)\conf\win32visual.def
+!else
+!include $(PVM_ROOT)\conf\win32ming.def
+!endif
 !endif
