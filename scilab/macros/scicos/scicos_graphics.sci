@@ -1,5 +1,5 @@
 function graphics=scicos_graphics(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
-//initialisation de graphics mlist
+//initialisation de graphics tlist
   if exists('orig','local')==0 then orig=[0 0],end
   if exists('sz','local')==0 then sz=[20 20],end
   if exists('flip','local')==0 then flip=%t,end
@@ -11,7 +11,7 @@ function graphics=scicos_graphics(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
   if exists('gr_i','local')==0 then gr_i=[],end
   if exists('id','local')==0 then id='',end
   
-  graphics=mlist(['graphics','orig','sz','flip','exprs','pin',..
+  graphics=tlist(['graphics','orig','sz','flip','exprs','pin',..
 		  'pout','pein','peout','gr_i','id'],..
 		 orig,sz,flip,exprs,pin,pout,pein,peout,gr_i,id)
 endfunction
