@@ -72,14 +72,23 @@ TextMessage1 (int ctrlflag)
     }
 }
 
-/** function used in wtext.c in function TextGetCh  must wait for an event **/
+/* function used in wtext.c in function TextGetCh. 
+ * This function is not used any more (see wtext.c)
+ * If enableb in wtext.c then 99% of the cpu is used while scilab 
+ * is waiting for a character. 
+ * It should be turned into a blocking function in order to be 
+ * used in wtext.c but don't know how to make it work properly 
+ * with tcl/tk + Scilab dynamic menus. 
+ */
 
 void
-TextMessage2 ()
+TextMessage2()
 {
   MSG msg;
 #ifdef WITH_TK
   flushTKEvents ();
+#else 
+  MSG msg;
 #endif
 #ifdef WITH_TK
   if (  tcl_check_one_event() == 1) 
@@ -94,6 +103,7 @@ TextMessage2 ()
     }
 #endif
 }
+
 
 int C2F (sxevents) ()
 {

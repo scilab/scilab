@@ -1612,24 +1612,28 @@ TextGetCh (LPTW lptw)
 		   - lptw->CaretHeight - lptw->ScrollPos.y);
       ShowCaret (lptw->hWndText);
     }
+
   /** 
-    jpc 1998 : Here we must wait for an event so TextMessage 
-    cannot be called directly in order not to use 
+    Here we must wait for caracters while 
+    taking into account events. 
+    TextMessage cannot be called directly in order not to use 
     99% of the cpu time doing nothing. 
     we can use TextMessage with a Sleep or TextMessage2 
-    XXXX : must check if tck/tk works with both ?
-    **/
-  /** 
+    without a sleep but the second option does not work 
+    properly. 
+  **/
+
   do {
     Sleep(1);
     TextMessage();
   } while (!TextKBHit(lptw));
-  **/
 
+  /* 
   while (!TextKBHit (lptw))
     {
       TextMessage2 ();
     }
+  */
 
   ch = *lptw->KeyBufOut++;
   if (ch == '\r')
