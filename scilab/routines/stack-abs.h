@@ -21,7 +21,7 @@ c*-------------------------------------------------------------------
       integer   maxdb,maxbpt
       parameter (maxdb=20,maxbpt=100)
       integer intersiz
-      parameter (intersiz=60)
+      parameter (intersiz=1024)
 c
       double precision stk(vsiz)
 $IF DEFINED(SCI_IMPORTDLL)
