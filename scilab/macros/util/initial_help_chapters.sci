@@ -8,21 +8,22 @@ function %helps=initial_help_chapters()
 	'/man/gui'              ,'Dialogs'
 	'/man/utilities'        ,'Utilities'
 	'/man/time-date'        ,'Time and date'
-	'/man/linear'		,'Linear Algebra';
+	'/man/linear'		,'Linear Algebra functions';
 	'/man/polynomials'	,'Polynomial calculations';
 	'/man/dcd'		,'Cumulative Distribution Functions; Inverses, grand';
-	'/man/control'		,'General System and Control macros';
+	'/man/control'		,'General System and Control functions';
 	'/man/robust'		,'Robust control toolbox';
 	'/man/nonlinear'	,'Non-linear tools (optimization and simulation)';
 	'/man/signal'		,'Signal Processing toolbox';
 	'/man/arma'		,'Arma modelisation and simulation toolbox';
 	'/man/metanet'		,'Metanet: graph and network toolbox';
 	'/man/scicos'		,'Scicos: Bloc diagram editor and simulator';
-	'/man/sound'		,'wav file handling';
+	'/man/sound'		,'Sound file handling';
 	'/man/translation'	,'Language or data translations';
 	'/man/pvm'		,'PVM parallel toolbox';
 	'/man/comm'		,'GECI communication toolbox';
-	'/man/tdcs'		,'TdCs';
-	'/man/tksci'		,'TCL/Tk interface']
+	'/man/tksci'		,'TCL/Tk interface';
+	'/man/identification'	,'Identification toolbox';
+	'/man/tdcs'		,'TdCs']
 
 %helps=[ SCI+%helps(:,1),%helps(:,2)];
