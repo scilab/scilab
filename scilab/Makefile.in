@@ -164,7 +164,6 @@ BINDISTFILES = \
 	$(SCIBASE)/routines/default/*.h \
 	$(SCIBASE)/routines/graphics/Math.h \
 	$(SCIBASE)/routines/graphics/Graphics.h \
-	$(SCIBASE)/routines/graphics/Entities.h \
 	$(SCIBASE)/routines/interf/*.h \
 	$(SCIBASE)/routines/intersci/sparse.h \
 	$(SCIBASE)/routines/menusX/*.h \
@@ -246,7 +245,6 @@ INSTBINDISTFILES = \
 	routines/default/*.h \
 	routines/graphics/Math.h \
 	routines/graphics/Graphics.h \
-	routines/graphics/Entities.h \
 	routines/interf/*.h \
 	routines/intersci/sparse.h \
 	routines/menusX/*.h \
