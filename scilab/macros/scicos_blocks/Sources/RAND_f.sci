@@ -15,15 +15,17 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   if size(exprs,'*')==5 then exprs=exprs(1:3),end //compatibility
+  if size(exprs,'*')==3 then exprs=[exprs;string(model.dstate(1))],end //compatibility
   while %t do
-    [ok,flag,a,b,exprs]=getvalue([
+    [ok,flag,a,b,seed_c,exprs]=getvalue([
 	'Set Random generator block parameters';
 	'flag = 0 : Uniform distribution A is min and A+B max';
 	'flag = 1 : Normal distribution A is mean and B deviation';
 	' ';
-	'A and B must be vector with equal sizes'],..
-	['flag';'A';'B'],..
-	list('vec',1,'vec',-1,'vec','size(x2,''*'')'),exprs)
+	'A and B must be vector with equal sizes';
+	'seed is the seed of random number generator (integer<2**31)'],..
+	['flag';'A';'B';'seed'],..
+	list('vec',1,'vec',-1,'vec','size(x2,''*'')','vec',1),exprs)
     if ~ok then break,end
     if flag<>0&flag<>1 then
       message('flag must be equal to 1 or 0')
@@ -33,7 +35,7 @@ case 'set' then
       model.out=nout
       model.ipar=flag
       model.rpar=[a(:);b(:)]
-      model.dstate=[model.dstate(1);0*a(:)]
+      model.dstate=[seed_c;0*a(:)]
       x.graphics=graphics;x.model=model
       break
     end
@@ -48,7 +50,7 @@ case 'define' then
   model.sim='rndblk'
   model.out=out
   model.evtin=1
-  model.dstate=[rand();0*a(:)]
+  model.dstate=[int(rand()*(2**31-1));0*a(:)]
   model.rpar=[a(:);b(:)]
   model.ipar=flag
   model.blocktype='d'
