@@ -85,6 +85,7 @@ void C2F(readnextline)(fd,buf,n,count,nr,ierr)
 {
 
 FILE *fa= GetFile(fd);
+
 *ierr=LineRead(fa,buf,*n,count,nr);
 
 }

@@ -2,7 +2,7 @@
 
 #include "../machine.h"
 
-/** only used to force the linker to load all calelm functions **/
+/** only used to force the linker to load all  functions **/
 
 Sun_contents(x) 
      int x;
