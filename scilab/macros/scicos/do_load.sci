@@ -70,29 +70,36 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
 
   if typ=='diagram' then
     if %cpr<>list() then
+      
       for jj=1:size(%cpr.sim.funtyp,'*')
-	if %cpr.sim.funtyp(jj)<10000 then
-	  if %cpr.sim.funtyp(jj)>999 then
-	    funam=%cpr.sim.funs(jj)
-	    if ~c_link(funam) then
-	      qqq=%cpr.corinv(jj)
-	      path=list('objs',qqq(1))
-	      for kkk=qqq(2:$)
-		path($+1)='model'
-		path($+1)='rpar'
-		path($+1)='objs'
-		path($+1)=kkk
-	      end
-
-	      path($+1)='graphics';path($+1)='exprs';path($+1)=2;
-	      tt=scs_m(path)
-	      if %cpr.sim.funtyp(jj)>1999 then
-		[ok]=scicos_block_link(funam,tt,'c')
-	      else
-		[ok]=scicos_block_link(funam,tt,'f')
-	      end 
-	    end
+	if type(%cpr.corinv(jj))==15 then
+	  //force recompilation if diagram contains Modelica Blocks
+	  //Can be improved later, re-generating C code only...
+	  %cpr=list()
+	  edited=%t
+	  return
+	end
+	ft=modulo(%cpr.sim.funtyp(jj),10000)
+	if ft>999 then
+	  funam=%cpr.sim.funs(jj)
+	  //regenerate systematically dynamically linked blocks for safety
+	  [a,b]=c_link(funam); while a;  ulink(b);[a,b]=c_link(funam);end
+	  qqq=%cpr.corinv(jj)
+	  path=list('objs',qqq(1))
+	  for kkk=qqq(2:$)
+	    path($+1)='model'
+	    path($+1)='rpar'
+	    path($+1)='objs'
+	    path($+1)=kkk
 	  end
+
+	  path($+1)='graphics';path($+1)='exprs';path($+1)=2;
+	  tt=scs_m(path)
+	  if ft>1999 then
+	    [ok]=scicos_block_link(funam,tt,'c')
+	  else
+	    [ok]=scicos_block_link(funam,tt,'f')
+	  end 
 	end
       end
     end
