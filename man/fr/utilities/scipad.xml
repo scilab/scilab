@@ -3,39 +3,29 @@
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
 
-
   <TITLE>scipad</TITLE>
-
 
   <TYPE>Scilab Function</TYPE>
 
-
-  <DATE>31-May-2004</DATE>
-
+  <DATE>1st-Nov-2004</DATE>
 
   <SHORT_DESCRIPTION name="scipad">Embedded Scilab text
   editor</SHORT_DESCRIPTION>
 
-
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>scipad()</CALLING_SEQUENCE_ITEM>
 
-
     <CALLING_SEQUENCE_ITEM>scipad(f)</CALLING_SEQUENCE_ITEM>
-
 
     <CALLING_SEQUENCE_ITEM>scipad([f1,f2,...])</CALLING_SEQUENCE_ITEM>
 
-
     <CALLING_SEQUENCE_ITEM>scipad f1 f2 ...</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
-
 
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>f, f1, f2...</PARAM_NAME>
-
 
         <PARAM_DESCRIPTION>
           <SP>: file pathnames</SP>
@@ -44,136 +34,263 @@
     </PARAM_INDENT>
   </PARAM>
 
-
   <DESCRIPTION>
     <P>Scipad is an embedded Scilab text editor written in TCL/TK. It can be
     started with the "Editor" button on top of the main Scilab window, or from
     Scilab command line with the instruction <VERB>scipad()</VERB> or
     <VERB>scipad f</VERB>.</P>
 
-
     <P>The same invocation adds further files to an already opened scipad
     session. Scipad allows Windows like edition modes. Keyboard shortcuts are
     defined for most possible editing actions and reported by the menu
     entries.</P>
 
-
     <P>Additionally, the following shortcuts are defined:</P>
 
+    <TABLE>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;F2&gt;</TABLE_NEW_COLUMN>
 
-    <ITEMIZE label="shortcuts">
-      <ITEM label="&lt;F2&gt;">
-        <SP>Save file</SP>
-      </ITEM>
+        <TABLE_NEW_COLUMN>Save file</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
 
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;F5&gt;</TABLE_NEW_COLUMN>
 
-      <ITEM label="&lt;F5&gt;">
-        <SP>Save file and run it into Scilab</SP>
-      </ITEM>
+        <TABLE_NEW_COLUMN>Save file and run it into Scilab</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
 
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;F6&gt;, &lt;Control-F6&gt;</TABLE_NEW_COLUMN>
 
-      <ITEM label="&lt;F6&gt;, &lt;Control-F6&gt;">
-        <SP>show next buffer</SP>
-      </ITEM>
+        <TABLE_NEW_COLUMN>Show next buffer</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
 
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;F7&gt;, &lt;Control-F7&gt;</TABLE_NEW_COLUMN>
 
-      <ITEM label="&lt;F7&gt;, &lt;Control-F7&gt;">
-        <SP>show previous buffer</SP>
-      </ITEM>
+        <TABLE_NEW_COLUMN>Show previous buffer</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
 
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;double-click
+        mouse-button1&gt;</TABLE_NEW_COLUMN>
 
-      <ITEM label="&lt;double-click mouse-button1&gt;">
-        <SP>Select word</SP>
-      </ITEM>
+        <TABLE_NEW_COLUMN>Select word</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
 
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;triple-click
+        mouse-button1&gt;</TABLE_NEW_COLUMN>
 
-      <ITEM label="&lt;triple-click mouse-button1&gt;">
-        <SP>Select line</SP>
-      </ITEM>
+        <TABLE_NEW_COLUMN>Select line</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
 
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;mouse-button2&gt;</TABLE_NEW_COLUMN>
 
-      <ITEM label="&lt;mouse-button2&gt;">
-        <SP>Paste selection (unix)</SP>
-      </ITEM>
+        <TABLE_NEW_COLUMN>Paste selection</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
 
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;mouse-button3&gt;</TABLE_NEW_COLUMN>
 
-      <ITEM label="&lt;mouse-button3&gt;">
-        <SP>popup edit menu</SP>
-      </ITEM>
+        <TABLE_NEW_COLUMN>Popup edit menu, or debug menu if clicked during a
+        debug session</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
 
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;Shift-mouse-button3&gt;</TABLE_NEW_COLUMN>
 
-      <ITEM label="&lt;Shift-mouse-button3&gt;">
-        <SP>popup Execute menu</SP>
-      </ITEM>
+        <TABLE_NEW_COLUMN>Popup Execute menu</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
 
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;Control-mouse-button3&gt;</TABLE_NEW_COLUMN>
 
-      <ITEM label="&lt;Control-mouse-button3&gt;">
-        <SP>popup Options menu</SP>
-      </ITEM>
+        <TABLE_NEW_COLUMN>Popup Options menu</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
 
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;Control-plus&gt;</TABLE_NEW_COLUMN>
 
-      <ITEM label="&lt;Control-plus&gt;">
-        <SP>increase the font size</SP>
-      </ITEM>
+        <TABLE_NEW_COLUMN>Increase the font size</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
 
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN>&lt;Control-minus&gt;</TABLE_NEW_COLUMN>
 
-      <ITEM label="&lt;Control-minus&gt;">
-        <SP>decrease the font size</SP>
-      </ITEM>
-    </ITEMIZE>
-
+        <TABLE_NEW_COLUMN>Decrease the font size</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+    </TABLE>
 
     <P>The "Load Into Scilab" (Ctrl-lowercase-l) menu entry can be used to
-    <LINK>exec</LINK> the file contents into Scilab, while "Execute selection"
+    <LINK>exec</LINK> the file content into Scilab, while "Execute selection"
     (Ctrl-lowercase-y) passes the selected lines to the scilab shell using
     <LINK>ScilabEval</LINK> (i.e. <LINK>execstr</LINK>).</P>
-
 
     <P></P>
   </DESCRIPTION>
 
+  <SECTION label="Debugger">
+    <P>Scipad 2.0 or later includes a debugger (for .sci files only). The user
+    can:</P>
+
+    <P></P>
+
+    <ITEMIZE>
+      <ITEM label="Set/remove breakpoints anywhere in the opened files.">
+        <SP>The breakpointed lines get pink background.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Configure execution.">
+        <SP>The user has to provide the function name to execute, its variable
+        names, and variable values. To ease this step, a scan of the currently
+        displayed buffer is implemented to look for functions defined in it,
+        scan their names and variable names. All this is displayed to the user
+        in a dialog for easy selection. First, he has to select a function in
+        a spinbox, then eventually one of its variables. Once a variable is
+        selected, the user can set/change its value (another dialog pops).
+        Variable values and names are displayed in listboxes. The user can
+        also add a new variable or remove already defined variables. This is
+        in case the user changes the input variables of his function in the
+        file, and he does not want to scan the buffer again (which causes all
+        the variable values to reset to a null value, actually "").</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Launch execution with breakpoints.">
+        <SP>Scipad execs the currently displayed buffer as well as all the
+        opened buffers that contain functions, sends to Scilab the buffer as
+        well as all the opened buffers that contain functions, sends to Scilab
+        the setbpt instructions relative to all the breakpoints that have been
+        set, and executes the selected function with the input variable values
+        provided during the configure execution step. Then the execution is
+        automagically stopped by Scilab at the first breakpoint.</SP>
+
+        <P></P>
+      </ITEM>
+    </ITEMIZE>
+
+    <P>At this point there are several possibilities for the user:</P>
+
+    <P></P>
+
+    <ITEMIZE>
+      <ITEM label="Continue up to next breakpoint.">
+        <SP>Scilab resumes execution, and stops at the next breakpoint or goes
+        to the end of the file if there are no more breakpoints. The active
+        breakpoint is emphasized in Scipad so that it can easily be
+        identified.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Insert a new breakpoint or remove existing breakpoint during the debug.">
+        <SP>The breakpointed lines get pink background, and lines where
+        breakpoints are removed restore their normal background. The new
+        breakpoint configuration is taken into account for the next steps of
+        execution or debug.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Execute step by step.">
+        <SP>This is currently not available (it is always disabled in the
+        Debug menu). See proc stepbystep_bp in
+        SCI/tcl/scipadsources/db_debugsession.tcl for further details about
+        the problems encountered for this item.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Continue ignoring any breakpoint.">
+        <SP>Finish execution in Scilab as if there was no breakpoint at all:
+        Breakpoints are removed from Scilab but kept in Scipad.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Abort debug.">
+        <SP>Abort execution in Scilab and cancel the current debug session in
+        Scipad.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Remove all breakpoints.">
+         This allows to quickly remove all the breakpoints from both Scilab and Scipad. 
+
+        <P></P>
+
+         
+      </ITEM>
+    </ITEMIZE>
+
+    <P>At any time during the debug, a <BD>watch window</BD> can be displayed
+    on user request. It allows to monitor any variable value, or change a
+    variable value during a breakpoint stop and relaunch execution with the
+    modified value. The watch window also displays the calling stack.</P>
+
+    <P>After the end of the execution, the breakpoints are removed from Scilab
+    (but kept in Scipad).</P>
+
+    <P></P>
+
+    <P>In its current development state the debugger works well with
+    functions, i.e. <BD>pure .sci files</BD>. Support of .sce files or mixed
+    .sce/.sci files has been foreseen but not yet implemented. That means that
+    a .sce file will not crash Scipad, which is the very least, but more, once
+    a feasible solution for debugging this type of files is figured out, it
+    should be easy to add the functionality in the Scipad source code. Anyway,
+    if actually a debug is required in a .sce, you should first convert it
+    into a .sci function just by adding (output_vars)=function foo(input_vars)
+    / endfunction and that's it. The absence of breakpoints management for
+    .sce is therefore not such a major drawback.</P>
+
+    <P></P>
+  </SECTION>
 
   <SECTION label="Remarks">
     <ITEMIZE>
       <ITEM label="Known Issues:">
-        <ITEMIZE>
-          <ITEM label="Execute Selection">
-            <SP>deals only with selections containing less than 16000
-            characters. It gets confused if the selection contains a
-            <VERB>function</VERB> not terminated by an
-            <VERB>endfunction</VERB>. The commands passed are output on the
-            Scilab window, but are not recorded in the history.</SP>
-          </ITEM>
-        </ITEMIZE>
+        <P></P>
+
+        <EM>Execute selection</EM>
+
+        <SP> deals only with selections containing less than a reasonable
+        number of characters (~4000 on Linux, or ~500 on Windows). It gets
+        confused if the selection contains a <VERB>function</VERB> not
+        terminated by an <VERB>endfunction</VERB>. The commands passed are
+        output on the Scilab window, but are not recorded in the history.</SP>
+
+        <P></P>
       </ITEM>
 
-
       <ITEM label="Bugs:">
-        <SP>There are still a few...</SP>
+        <SP>There are still a few... Details can be found in file
+        SCI/tcl/scipadsources/BUGS</SP>
+
+        <P></P>
       </ITEM>
     </ITEMIZE>
   </SECTION>
 
-
-  <EXAMPLE><![CDATA[
- 
-   scipad(SCI+'/scilab.star')
-
-
-  ]]></EXAMPLE>
-
+  <EXAMPLE>
+   scipad SCI/scilab.star 
+</EXAMPLE>
 
   <AUTHORS>
     <AUTHORS_ITEM>Scipad is derived from <VERB>tknotepad</VERB> written by
     Joseph Acosta;</AUTHORS_ITEM>
 
-
     <AUTHORS_ITEM>Mathieu Philippe, INRIA, 2001;</AUTHORS_ITEM>
-
 
     <AUTHORS_ITEM>Enrico Segre, Weizmann Institute, 2003-2004;</AUTHORS_ITEM>
 
-
     <AUTHORS_ITEM>Francois Vogel, 2004.</AUTHORS_ITEM>
   </AUTHORS>
-</MAN> 
+</MAN>
