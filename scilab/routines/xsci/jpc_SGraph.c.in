@@ -638,6 +638,12 @@ EventProc(widget, number, event)
      XEvent *event;
 {
   XEvent event2;
+
+  char buf[100];
+  int cent=100;
+  KeySym keysym;
+  XComposeStatus compose_status = {NULL, 0};
+
   /* sciprint("Je suis ds EventProc\n"); */
   switch (event->type) 
     {
@@ -662,6 +668,13 @@ EventProc(widget, number, event)
       PushClickQueue((int) number,event->xbutton.x,
 		     event->xbutton.y,
 		     event->xbutton.button-1,0,0);
+      break;
+    case  KeyPress :
+      XLookupString((XKeyEvent *)&(event->xkey), buf, 
+		    cent, &keysym,&compose_status);
+      PushClickQueue((int) number,event->xkey.x,
+		     event->xkey.y,(int)keysym,0,0);
+
       break;
     default:
       /* printf("XXXJe suis ds EventProc defaut, fenetre %d\r\n",(integer) number);*/
