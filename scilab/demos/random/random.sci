@@ -85,10 +85,10 @@ function [y]=Exp(m,n,lambda)
   y=(-1/lambda)* log(rand(m,n,'uniform'));
 endfunction 
 
-function [y]=Weibull(m,n,alpha,beta)
+function [y]=Weibull(m,n,Alpha,Beta)
 //------------------------------- 
   y=rand(m,n,'uniform')
-  y= (beta*( - log(1-y)))^(1/alpha)
+  y= (Beta*( - log(1-y)))^(1/Alpha)
 endfunction 
 
 function [y]=HyperGeom(m,n,Mean,var)
