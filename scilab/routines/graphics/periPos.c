@@ -708,6 +708,7 @@ void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a)
   Xgc->IDLastPattern = m - 1;
   Xgc->NumForeground = m;
   Xgc->NumBackground = m + 1;
+  FPRINTF((file,"\n/WhiteLev %d def",Xgc->IDLastPattern));
   WriteColorRGB("R",a,0);
   WriteColorRGB("G",a,1);
   WriteColorRGB("B",a,2);
@@ -728,20 +729,25 @@ void C2F(setcolormapPos)(integer *v1, integer *v2, integer *v3, integer *v4, int
   m = *v1;
   C2F(setgccolormapPos)(&ScilabGCPos,m, a);
 }
+
 /* NG beg */
+
 void setcolormapgPos(struct  BCG *Xgc,integer *m,integer *v2, double *a) /* NG */
 {
 
   C2F(setgccolormapPos)(Xgc,*m, a);
 }
+
 /* NG end */
+
 static void WriteColorRGB(char *str, double *tab, int ind)
 {
+  /* RGB are the columns of tab */ 
   int i;
   FPRINTF((file,"\n/Color%s [",str));
   for ( i=0; i < ScilabGCPos.Numcolors; i++)
     {
-      FPRINTF((file,"%f ",(float) tab[3*i+ind]));
+      FPRINTF((file,"%f ",(float) tab[i+ ScilabGCPos.Numcolors*ind]));
       if ( (i % 10 ) == 0 ) FPRINTF((file,"\n"));
     }
   FPRINTF((file,"0.0 1.0] def"));
@@ -1602,7 +1608,7 @@ void FileInit(void)
 	  FPRINTF((file,"%f ",r));
 	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n"));
 	}
-      FPRINTF((file,"0.0 1.0 ] def"));
+      FPRINTF((file,"0.0 1.0] def"));
       FPRINTF((file,"\n/ColorG ["));
       for ( i=0; i < m ; i++) 
 	{
