@@ -86,7 +86,7 @@ if helppart<>[] then
   write(u,helppart,'(a)')
   file('close',u)
   if exists('whsfil_unit')==1 then
-    write(whsfil_unit,stripblanks(helppart(1))+' |'+fnam,'(a)')
+    write(whsfil_unit,stripblanks(helppart(1))+' @'+fnam,'(a)')
   end
 end
 
