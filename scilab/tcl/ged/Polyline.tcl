@@ -26,6 +26,8 @@ global ged_handle_list_size
 global lalist
 global curgedindex
 global curgedobject
+global curclipstate Xclipbox Yclipbox Wclipbox Hclipbox letext
+global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox ncolors
 
 
 # set ncolors 32
@@ -121,7 +123,7 @@ eval $w.frame.selgedobject list insert end $lalist
 
 
 #Notebook:create $uf.n -pages {Style Aspect Data} -pad 20     -height 520 -width 600
-Notebook:create $uf.n -pages {Style Data} -pad 20 -height 520 -width 600
+Notebook:create $uf.n -pages {Style Data Clipping} -pad 20 -height 520 -width 600
 pack $uf.n -fill both -expand yes
 
 ########### Style onglet ##########################################
@@ -245,90 +247,6 @@ button $w.b -text Quit -command "destroy $ww"
 pack $w.b -side bottom 
 
 
-########### Aspect onglet #########################################
-###################################################################
-# set w [Notebook:frame $uf.n Aspect]
-
-# frame $w.frame -borderwidth 0
-# pack $w.frame  -anchor w -fill both
-
-
-# #Clip state
-# frame $w.frame.clpstat  -borderwidth 0
-# pack $w.frame.clpstat  -in $w.frame -side top -fill x -pady 1.m
-
-# label $w.frame.cliplabel  -height 0 -text "   Clip state:  " -width 0 
-# combobox $w.frame.clip \
-#     -borderwidth 1 \
-#     -highlightthickness 1 \
-#     -maxheight 0 \
-#     -width 3 \
-#     -textvariable curclipstate\
-#     -editable false \
-#     -command [list SelectClipState ]
-# eval $w.frame.clip list insert end [list "on" "off" "clipgrf"]
-
-# pack $w.frame.cliplabel -in $w.frame.clpstat   -side left
-# pack $w.frame.clip -in $w.frame.clpstat   -expand 1 -fill x -pady 1.m -padx 1.m
-
-# #clip box
-# frame $w.frame.lb1 -borderwidth 0
-# pack $w.frame.lb1  -in $w.frame -side top   -fill x
-# label $w.frame.labelul -text "  Clip box : upper-left point coordinates "
-# pack $w.frame.labelul -in  $w.frame.lb1 -side left
-
-# frame $w.frame.lb2 -borderwidth 0
-# pack $w.frame.lb2  -in $w.frame -side top   -fill x
-
-# frame $w.frame.lb21 -borderwidth 0
-# pack $w.frame.lb21  -in $w.frame -side top   -fill x
-
-# frame $w.frame.lb22 -borderwidth 0
-# pack $w.frame.lb22  -in $w.frame -side top   -fill x
-
-# label $w.frame.labelx -text "             X: "
-# entry $w.frame.datax -relief sunken  -textvariable Xclipbox
-# label $w.frame.labely -text "             Y: "
-# entry $w.frame.datay -relief sunken  -textvariable Yclipbox
-
-# pack $w.frame.labelx  $w.frame.datax  -in  $w.frame.lb2 -side left  -fill x -pady 1.m -padx 1.m
-# pack $w.frame.labely  $w.frame.datay  -in  $w.frame.lb21 -side left -fill x -pady 1.m -padx 1.m 
-# bind  $w.frame.datax <Return> {SelectClipBox}
-# bind  $w.frame.datay <Return> {SelectClipBox}
-
-# #----------------------------#
-# frame $w.frame.lb3 -borderwidth 0
-# pack $w.frame.lb3  -in $w.frame -side top   -fill x
-# label $w.frame.labelwh -text "   Clip box : width and height  "
-# pack $w.frame.labelwh -in  $w.frame.lb3 -side left
-
-# frame $w.frame.lb4 -borderwidth 0
-# pack $w.frame.lb4  -in $w.frame -side top   -fill x
-
-# frame $w.frame.lb41 -borderwidth 0
-# pack $w.frame.lb41  -in $w.frame -side top   -fill x
-
-# label $w.frame.labelw -text "             W: "
-# entry $w.frame.dataw -relief sunken  -textvariable Wclipbox
-# label $w.frame.labelh -text "             H: "
-# entry $w.frame.datah -relief sunken  -textvariable Hclipbox
-
-# pack $w.frame.labelw  $w.frame.dataw -in  $w.frame.lb4  -side left -fill x -pady 1.m -padx 1.m
-# pack $w.frame.labelh  $w.frame.datah -in  $w.frame.lb41 -side left -fill x -pady 1.m -padx 1.m
-# bind  $w.frame.dataw <Return> {SelectClipBox}
-# bind  $w.frame.datah <Return> {SelectClipBox}
-
-
-# #sep bar
-# frame $w.sep -height 2 -borderwidth 1 -relief sunken
-# pack $w.sep -fill both -pady 30m  
-
-# #exit button
-# frame $w.buttons
-# button $w.b -text Quit -command "destroy $ww"
-# pack $w.b -side bottom 
-
-
 
 ########### Data onglet ###########################################
 ###################################################################
@@ -374,6 +292,101 @@ pack  $w.frame.c
 frame $w.buttons
 button $w.b -text Quit -command "destroy $ww"
 pack $w.b -side bottom 
+
+
+########### Clipping onglet #######################################
+###################################################################
+
+ set w9 [Notebook:frame $uf.n Clipping]
+
+ frame $w9.frame -borderwidth 0
+ pack $w9.frame -anchor w -fill both
+
+set letext ""
+
+#Clip state
+#frame $w9.frame.clpwarning  -borderwidth 0
+
+frame $w9.frame.clpstat  -borderwidth 0
+pack $w9.frame.clpstat  -in $w9.frame -side top -fill x -pady 1.m
+
+label $w9.frame.cliplabel  -height 0 -text "   Clip state:  " -width 0 
+combobox $w9.frame.clip \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curclipstate\
+    -editable false \
+    -command [list SelectClipState ]
+eval $w9.frame.clip list insert end [list "on" "off" "clipgrf"]
+
+pack $w9.frame.cliplabel -in $w9.frame.clpstat   -side left
+pack $w9.frame.clip -in $w9.frame.clpstat   -expand 1 -fill x -pady 1.m -padx 1.m
+
+#clip box
+frame $w9.frame.lb1 -borderwidth 0
+pack $w9.frame.lb1  -in $w9.frame -side top   -fill x
+label $w9.frame.labelul -text "  Clip box : upper-left point coordinates "
+pack $w9.frame.labelul -in  $w9.frame.lb1 -side left
+
+frame $w9.frame.lb2 -borderwidth 0
+pack $w9.frame.lb2  -in $w9.frame -side top   -fill x
+
+frame $w9.frame.lb21 -borderwidth 0
+pack $w9.frame.lb21  -in $w9.frame -side top   -fill x
+
+frame $w9.frame.lb22 -borderwidth 0
+pack $w9.frame.lb22  -in $w9.frame -side top   -fill x
+
+label $w9.frame.labelx -text "             X: "
+entry $w9.frame.datax -relief sunken  -textvariable Xclipbox
+label $w9.frame.labely -text "             Y: "
+entry $w9.frame.datay -relief sunken  -textvariable Yclipbox
+
+pack $w9.frame.labelx  $w9.frame.datax  -in  $w9.frame.lb2 -side left  -fill x -pady 1.m -padx 1.m
+pack $w9.frame.labely  $w9.frame.datay  -in  $w9.frame.lb21 -side left -fill x -pady 1.m -padx 1.m 
+bind  $w9.frame.datax <Return> "SelectClipBox $w9.frame"
+bind  $w9.frame.datay <Return> "SelectClipBox $w9.frame"
+
+#----------------------------#
+frame $w9.frame.lb3 -borderwidth 0
+pack $w9.frame.lb3  -in $w9.frame -side top   -fill x
+label $w9.frame.labelwh -text "   Clip box : width and height  "
+pack $w9.frame.labelwh -in  $w9.frame.lb3 -side left
+
+frame $w9.frame.lb4 -borderwidth 0
+pack $w9.frame.lb4  -in $w9.frame -side top   -fill x
+
+frame $w9.frame.lb41 -borderwidth 0
+pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
+
+label $w9.frame.labelw -text "             W: "
+entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox
+label $w9.frame.labelh -text "             H: "
+entry $w9.frame.datah -relief sunken  -textvariable Hclipbox
+
+pack $w9.frame.labelw  $w9.frame.dataw -in  $w9.frame.lb4  -side left -fill x -pady 1.m -padx 1.m
+pack $w9.frame.labelh  $w9.frame.datah -in  $w9.frame.lb41 -side left -fill x -pady 1.m -padx 1.m
+bind  $w9.frame.dataw <Return> "SelectClipBox $w9.frame"
+bind  $w9.frame.datah <Return> "SelectClipBox $w9.frame"
+
+
+frame $w9.frame.warning
+label $w9.frame.mesgwarning  -justify left -textvariable letext
+$w9.frame.mesgwarning config -foreground red
+pack $w9.frame.mesgwarning -in $w9.frame.warning
+pack $w9.frame.warning -in $w9.frame
+
+#sep bar
+frame $w9.sep -height 2 -borderwidth 1 -relief sunken
+pack $w9.sep -fill both  -pady 30m
+
+
+#exit button
+frame $w9.buttons
+button $w9.b -text Quit -command "destroy $ww"
+pack $w9.b -side bottom 
 
 
 
@@ -484,10 +497,25 @@ ScilabEval "global ged_handle;ged_handle.mark_mode='$curmarkmode'"
 }
 
 
-proc SelectClipBox {} {
-global Xclipbox Yclipbox Wclipbox Hclipbox curclipstate
-ScilabEval "global ged_handle;ged_handle.clip_box=\[$Xclipbox $Yclipbox $Wclipbox $Hclipbox\]"
-set curclipstate "on"
+#Clipping proc for all entities (clip box and clip state fields)
+proc SelectClipBox { w } {
+    global Xclipbox Yclipbox Wclipbox Hclipbox curclipstate letext
+    if { ($Xclipbox == "") || ($Yclipbox == "") ||
+	 ($Wclipbox == "") || ($Hclipbox == "") } {
+	if { [info exists  text] } {
+	    unset text
+	}
+	set letext "Note that all clip box fields must be filled."
+	
+    } else {
+	if { [info exists  text] } {
+	    unset text
+	}
+	set letext ""
+	
+	ScilabEval "global ged_handle;ged_handle.clip_box=\[$Xclipbox $Yclipbox $Wclipbox $Hclipbox\]"
+	set curclipstate "on"
+    }
 }
 
 proc SelectClipState {w args} {
@@ -510,3 +538,5 @@ ScilabEval "global ged_handle;ged_handle.clip_state='$curclipstate';"
 	set Hclipbox $old_Hclipbox
     }
 }
+
+
