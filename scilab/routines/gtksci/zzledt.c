@@ -1138,4 +1138,7 @@ void ClearScreenConsole(void)
   sciprint("Not yet implemented. \r\n");
 }
      
-
+void HistoryFunction _PARAMS((char *fname))     
+{
+	sciprint("Not yet implemented. \r\n");
+}

@@ -52,6 +52,10 @@ void ClearScreenConsole(void)
 	sciprint("\nNot yet implemented. \n");
 }
 
+void HistoryFunction _PARAMS((char *fname))     
+{
+	sciprint("Not yet implemented. \r\n");
+}
 
 /*
    allocates memory for a 2-dimensional array of chars and returns a pointer
