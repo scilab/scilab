@@ -2,10 +2,13 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.1 2001/04/26 07:48:09 scilab Exp $
+ * $Id: zzledt.c,v 1.2 2001/05/25 13:43:12 chanceli Exp $
  * $Log: zzledt.c,v $
- * Revision 1.1  2001/04/26 07:48:09  scilab
- * Initial revision
+ * Revision 1.2  2001/05/25 13:43:12  chanceli
+ * commentaires
+ *
+ * Revision 1.1.1.1  2001/04/26 07:48:09  scilab
+ * Imported sources
  *
  *
  * Revision 10.1  1993/02/11  14:34:03  mga
@@ -20,7 +23,6 @@
 
 #ifndef WIN32 
 /** The win32 version is defined in the wsci directory **/
-
 
 #ifdef __STDC__
 #include <stdlib.h>
@@ -219,8 +221,8 @@ long int dummy1;                /* added by FORTRAN to give buffer length */
    char wk_buf[WK_BUF_SIZE + 1];
 
    if(init_flag) {
-      init_io();
-      init_flag = FALSE;
+     init_io();
+     init_flag = FALSE;
    }
 
    set_is_reading(TRUE);
@@ -826,30 +828,25 @@ int gchar_no_echo()
 /**********************************************************************/
 {
    int i;
-   extern int ioctl();
-                            /* get next character, gotten in cbreak mode
-                             * so no wait for <cr> */
+   /* get next character, gotten in cbreak mode
+    * so no wait for <cr> */
    i = Xorgetchar();
-                            /* if more than one character */
+   /* if more than one character */
    if(i == ESC) {
-      /* translate control code sequences to codes over 100 hex */
-      i = translate(i);
+     /* translate control code sequences to codes over 100 hex */
+     i = translate(i);
    }
    return(i);
 }
 
-/***********************************************************************
+/*----------------------------------------------------------------------
  * set CBREAK mode and switch off echo and disable CR action!
- **********************************************************************/
-static void
-set_cbreak()
-/**********************************************************************/
+ *----------------------------------------------------------------------*/
+
+static void set_cbreak()
 {
-   extern int ioctl();
-
-                            /* switch to CBREAK mode without flushing
-                             * line buffer */
-
+  /* switch to CBREAK mode without flushing
+   * line buffer */
 #ifdef B42UNIX
    arg.sg_flags |= CBREAK;
    arg.sg_flags &= ~ECHO; 
@@ -872,16 +869,13 @@ set_cbreak()
    return;
 }
 
-/***********************************************************************
+/*----------------------------------------------------------------------
  * reset to original mode 
- **********************************************************************/
-static void
-set_crmod()
+ *----------------------------------------------------------------------*/
 
-/**********************************************************************/
+static void set_crmod()
 {
-   extern int ioctl();
-                            /* reset to original mode (CRMOD) */
+  /* reset to original mode (CRMOD) */
 
 #ifdef B42UNIX
    arg.sg_flags = save_sg_flags;
@@ -941,62 +935,57 @@ int ichar;
    return(ichar);
 }
 
-/************************************************************************
+/*----------------------------------------------------------------------
  * initialise the io sequences
- ***********************************************************************/
-static void
-init_io()
-/***********************************************************************/
-{
-   int  tgetent();
-   char *getenv();
-   char *tgetstr();
-   char tc_buf[1024];       /* holds termcap buffer */
-   char *area;
-   char erase_char;
-   int i;
-   extern int ioctl();
+ *----------------------------------------------------------------------*/
 
-                            /* check standard for interactive */
-   fd=fileno(stdin);
-   tty = isatty(fileno(stdin));
-   if (tty == 0) return;
+static void init_io()
+{
+  int  tgetent();
+  char *getenv();
+  char *tgetstr();
+  char tc_buf[1024];       /* holds termcap buffer */
+  char *area;
+  char erase_char;
+  int i;
+  /* check standard for interactive */
+  fd=fileno(stdin);
+  tty = isatty(fileno(stdin));
+  if (tty == 0) return;
 
 #ifdef B42UNIX
-   ioctl(fd,TIOCGETP,&arg);
-   save_sg_flags = arg.sg_flags;
-   ioctl(fd,TIOCGETC,&arg1);
-
-   erase_char = arg.sg_erase;
+  ioctl(fd,TIOCGETP,&arg);
+  save_sg_flags = arg.sg_flags;
+  ioctl(fd,TIOCGETC,&arg1);
+  erase_char = arg.sg_erase;
 #endif
 
 #ifdef ATTUNIX
-   ioctl(fd, TCGETA, &arg);
-   ioctl(fd, TCGETA, &save_term);
-
-   erase_char = save_term.c_cc [VERASE];
+  ioctl(fd, TCGETA, &arg);
+  ioctl(fd, TCGETA, &save_term);
+  erase_char = save_term.c_cc [VERASE];
 #endif
 
 #ifdef TERMCAP
-                            /* get termcap translations */
-   if(tgetent(tc_buf, getenv("TERM")) == 1) {
-                            /* loop thru zero terminated list of input
-                             * capabilities */
-      for(i = 0; *tc_capabilities[i]; i++) {
-         area = &seqs[i][0];
-         tgetstr(tc_capabilities[i], &area);
-      }
-      area = strings;       /* point to place where strings are to
+  /* get termcap translations */
+  if(tgetent(tc_buf, getenv("TERM")) == 1) {
+    /* loop thru zero terminated list of input
+     * capabilities */
+    for(i = 0; *tc_capabilities[i]; i++) {
+      area = &seqs[i][0];
+      tgetstr(tc_capabilities[i], &area);
+    }
+    area = strings;       /* point to place where strings are to
 			     * be stored */
-      KS = tgetstr("ks", &area);
-      KE = tgetstr("ke", &area);
-      CE = tgetstr("ce", &area);
-      BC = tgetstr("bc", &area);
-      IM = tgetstr("im", &area);
-      IC = tgetstr("ic", &area);
-      EI = tgetstr("ei", &area);
-      CL = tgetstr("cl", &area);
-   }
+    KS = tgetstr("ks", &area);
+    KE = tgetstr("ke", &area);
+    CE = tgetstr("ce", &area);
+    BC = tgetstr("bc", &area);
+    IM = tgetstr("im", &area);
+    IC = tgetstr("ic", &area);
+    EI = tgetstr("ei", &area);
+    CL = tgetstr("cl", &area);
+  }
 #endif
 }
 #ifdef TERMCAP
@@ -1116,7 +1105,7 @@ void C2F(setprlev)(pause)
   else if ( *pause > 0 )
     sprintf(Sci_Prompt,"-%d->",*pause);
   else
-    sprintf(Sci_Prompt,">>",*pause);
+    sprintf(Sci_Prompt,">>");
 }
 
      
