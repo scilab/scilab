@@ -13352,28 +13352,25 @@ BOOL sciIsAreaZoom(box,box1,section)
   return FALSE;
 
 }
-/*** 26/11/2002 ****/
-void DeleteObjs()
+
+void DeleteObjs(integer win_num)
 {
   sciPointObj *figure;
-  struct BCG *Xgc; 
-  
-  figure = (sciPointObj *)  sciGetCurrentFigure();
+  struct BCG *Xgc;
+
+  figure = (sciPointObj *)  sciIsExistingFigure(&win_num);
   if (  figure != (sciPointObj *) NULL )
     {
       Xgc = (struct BCG *) pFIGURE_FEATURE(figure)->pScilabXgc;
       DestroyAllGraphicsSons (figure);
-      DestroyFigure (figure); 
+      DestroyFigure (figure);
       Xgc->mafigure = (sciPointObj *) NULL;
     }
 }
 
-
-/*** 26/11/2002 ***/
 void scizoom(bbox)
      double bbox[4];
 {
-  /** 01/07/2002 ***/
   sciPointObj *psousfen;
   double fmin,fmax,lmin,lmax;
   integer min,max,puiss,deux=2,dix=10;
