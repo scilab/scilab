@@ -4,7 +4,6 @@ function [tree]=sci_rem(tree)
 // Conversion function for Matlab rem()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
-// Emulation function: mtlb_rem()
 // V.C.
 
 // %c_d_c and %b_d_b are not defined in Scilab
