@@ -105,7 +105,6 @@ void reset_scig_command_handler ()
 /*---------------------------------------------------------------
  * try to execute a command or add it to the end of command queue 
  *----------------------------------------------------------------*/
-/* problem with windows and events */
 int StoreCommand ( char *command)
 {
 	return (StoreCommand1 (command, 0)); /* jpc 1->0 */
@@ -145,16 +144,16 @@ int StoreCommand1 (char *command,int flag)
 				}
 			  p->flag = 0;
 			  p->command = (char *) malloc ((strlen (command) + 1) * sizeof (char));
-			 if (p->command == (char *) 0)
+			  if (p->command == (char *) 0)
 				{
 				  free(p);
 				  sciprint ("send_command : No more memory \r\n");
 				  return (1);
 				}
-			strcpy (p->command, command);
-			p->next = NULL;
-            if (!commandQueue) commandQueue = p;
-			else
+			  strcpy (p->command, command);
+			  p->next = NULL;
+			  if (!commandQueue) commandQueue = p;
+			  else
 				{
 					q = commandQueue;
 					while ((r = q->next))	q = r;
@@ -202,10 +201,10 @@ int GetCommand ( char *str)
       commandQueue = p->next;
       free (p->command);
       free (p);
-	  if (C2F(iop).ddt==-1) {
-		if (flag==0) { sciprint("   Unqueuing %s - No option\r\n",str); }
-		else         { sciprint("   Unqueuing %s - seq\r\n",str); }
-	  }
+      if (C2F(iop).ddt==-1) {
+        if (flag==0) { sciprint("   Unqueuing %s - No option\r\n",str); }
+        else         { sciprint("   Unqueuing %s - seq\r\n",str); }
+      }
     }
   return flag;
 }
@@ -234,12 +233,13 @@ int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
     {
       flag=GetCommand(btn_cmd);
       *lb=(integer)strlen(btn_cmd);
+      *entry=0;  /* This parameter entry seems to be unused. Probably a very old thing... */
     }
   else
     { 
       flag=0;
       *lb =0;
-      *entry=0;
+      *entry=0;  /* This parameter entry seems to be unused. Probably a very old thing... */
     }
   return flag;
 }
