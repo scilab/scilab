@@ -1,6 +1,7 @@
 /* an executable to launch browsehelp.tcl 
  * by Matthieu PHILIPPE 01/01/2003
  */
+#include <string.h>
 #include <stdio.h>
 #include <tcl.h>
 #include <tk.h>
