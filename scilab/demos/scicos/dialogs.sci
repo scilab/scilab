@@ -202,3 +202,19 @@ function c=getcolor(title,cini)
   str=readline()
   c=evstr('['+str+']')
 endfunction
+
+function color=tk_getcolor(title,color)
+// Copyright INRIA  
+  str=readline()
+  c=evstr('['+str+']')
+endfunction
+
+function num=tk_choose(varargin)
+  num=x_choose(varargin(:))
+endfunction
+
+function varargout=tk_getvalue(varargin)
+   varargout=getvalue(varargin(:))
+endfunction
+
+

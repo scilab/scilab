@@ -41,7 +41,9 @@ names=[
     'SaveasInterfFunc_'
     'do_addnew'
     'do_export'
-    'do_load' ]
+    'do_load' 
+    'do_exit'
+    'x_matrix']
 for k=1:size(names,'r')
   getf(get_function_path(names(k)))
 end

@@ -29,7 +29,6 @@ names=[
     'do_delete';
     'do_delete_region';
     'do_help';
-    'do_load';
     'do_move';
     'do_stupidmove';
     'do_palettes';
@@ -40,7 +39,14 @@ names=[
     'do_view';
     'getlink';
     'prt_align';
-    'cosclick';]
+    'cosclick';
+    'SaveasInterfFunc_'
+    'do_addnew'
+    'do_export'
+    'do_load' 
+    'do_exit'
+    'x_matrix']
+
 for k=1:size(names,'r')
   getf(get_function_path(names(k)))
 end

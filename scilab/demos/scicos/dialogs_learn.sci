@@ -67,8 +67,13 @@ function num=x_choose(items, title, button)
   else
     num = x_choose1(items, title);
   end,
-  txt=[comm + 'x_choose:  '+ title(1)
-       '  '+string(num)]
+  if num<>0 then
+    txt=[comm + 'x_choose:  '+ title(1)
+	 '  '+string(num) + '//'+items(num)]
+  else
+    txt=[comm + 'x_choose:  '+ title(1)
+	 '  '+string(num) + '// Cancel']
+  end
   mputl(txt,uapp);
 endfunction
 
@@ -88,8 +93,9 @@ endfunction
 
 function result=x_dialog(labels, valueini)
   result = x_dialog1(labels, valueini);
-  res = [comm + 'x_dialog'
-	 '  '+result]
+  res = [comm + 'x_dialog:' + labels(1)
+	 '  '+result
+	 '  '+'o //OK']
   mputl( res,uapp);
 endfunction
 
