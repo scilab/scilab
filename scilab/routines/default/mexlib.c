@@ -356,7 +356,13 @@ double *mxGetPi(Matrix *ptr)
   double *loc = (double *) stkptr((long int)ptr);
   int *loci = (int *) stkptr((long int)ptr);
   switch (loci[0]) {
-  case DOUBLEMATRIX: case INTMATRIX:
+  case DOUBLEMATRIX: 
+    if (loci[1]==0 || loci[2] == 0) return NULL;
+    if (loci[3]==0 ) 
+      return &loc[2]; 
+    else 
+      return  &loc[2 + loci[1] * loci[2]]; /* imag part */ 
+  case INTMATRIX:
     if (loci[3]==0 || loci[1]==0 || loci[2] == 0) return NULL;
     return  &loc[2];/* &loc[2 + loci[1] * loci[2]];*/  /*  ?  */
   case MLIST:
