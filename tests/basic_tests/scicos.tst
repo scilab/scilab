@@ -1,8 +1,15 @@
 load SCI/macros/scicos/lib;
 exec(loadpallibs,-1) 
+
 getf SCI/tests/scicos_tests.sci;
 options=default_options();
-Blocs=string(blockslib);Blocs=Blocs(2:$);
+//build the block set
+blockslib='scs'+['Branching','Events','Misc','Sinks','Threshold','Linear', ...
+	  'NonLinear','Sources','Electrical','Hydraulics']+'lib';
+Blocs=[]
+for blocklib=blockslib
+  B=string(blocklib);Blocs=[Blocs;B(2:$)];
+end
 Blocs(Blocs=="m_sin")=[];
 
 nb=size(Blocs,1);
