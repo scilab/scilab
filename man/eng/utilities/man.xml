@@ -225,6 +225,12 @@
       example is given. The method used required some tools (see the README file) but must work
       on Unix and Windows.</P>
   </SECTION>
+  <EXAMPLE><![CDATA[
+    function y=foo(a,b,c),y=a+2*b+c,endfunction
+    path=help_skeleton('foo',TMPDIR)
+    scipad(path)
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>apropos</LINK>
