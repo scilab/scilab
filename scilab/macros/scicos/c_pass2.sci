@@ -110,7 +110,11 @@ show_comment=%f
     k=1
     if temps_continu then
       [bouclalg,vec,primary]=ordo3(0,0,clkconnect,connectmat);
-      //
+      if bouclalg then
+	 message('Algebrique  loop detected; cannot be compiled.');
+	 cpr=list()
+	 return,
+      end
       // discardprimary duplicate calls to the same block port
       // and group calls to different ports of the same block
       // to compute execution table and its pointer.
@@ -125,21 +129,21 @@ show_comment=%f
     while k<=size(ordoclk,1) 
       n_out=clkptr(ordoclk(k,1)+1)-clkptr(ordoclk(k,1))
       if n_out>0 then
-	      for j=1:n_out
-	  				[bouclalg,vec,primary]=ordo3(ordoclk(k,1),j,clkconnect,connectmat);
-	  					if bouclalg then
-	    						message('Algebrique  loop detected; cannot be compiled.');
-	    						cpr=list()
-	    						return,
-	  					end
-	  	   	  primary=discardprimary(primary)	
-	         primary=gsort(primary,'lr','i')
-	         vecordo=vec(primary(:,1))
-	         ordoclk0=ordo_vecport(primary,vecordo)	  
-	         [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,ordoclk0,..
-                                         ordoclk(k),j,ordptr,blocs_traites)
-           ordoclk=set_primary_clkport(ordoclk,ordoclk0,k)
-	      end      
+	for j=1:n_out
+          [bouclalg,vec,primary]=ordo3(ordoclk(k,1),j,clkconnect,connectmat);
+	  if bouclalg then
+	    message('Algebrique  loop detected; cannot be compiled.');
+	    cpr=list()
+	    return,
+	  end
+	  primary=discardprimary(primary)	
+	  primary=gsort(primary,'lr','i')
+	  vecordo=vec(primary(:,1))
+	  ordoclk0=ordo_vecport(primary,vecordo)	  
+	  [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,ordoclk0,..
+                             ordoclk(k),j,ordptr,blocs_traites)
+          ordoclk=set_primary_clkport(ordoclk,ordoclk0,k)
+	end      
       end
       k=k+1      
     end
@@ -151,12 +155,12 @@ show_comment=%f
   end
    
   if show_trace then disp('c_pass31:'+string(timer())),end
-  
+ 
   //extract various info from bllst
   [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
    typ_mod,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,typ_z,..
-   typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,bexe,boptr,blnk,..
-   blptr,ok]=extract_info(bllst,connectmat,clkconnect);
+   typ_x,typ_m,funs,funtyp,initexe,labels,bexe,boptr,blnk,..
+   blptr,ok]=extract_info(bllst,connectmat,clkconnect,typ_l);
   typ_z0=typ_z;
 
   if ~ok then
@@ -169,7 +173,7 @@ show_comment=%f
 
   //form a matrix which gives destinations of each block
   [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
-  [evoutoin,evoutoinptr]=synch_clkconnect(typ_s,clkconnect)
+  [evoutoin,evoutoinptr]=synch_clkconnect(typ_l,clkconnect)
   //
   if show_trace then disp('c_pass50:'+string(timer())),end
     
@@ -182,7 +186,7 @@ show_comment=%f
   // Set execution scheduling tables 
   [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,..
    execlk_cons,outoin,outoinptr,evoutoin,evoutoinptr,typ_z,typ_x,..
-   typ_s,bexe,boptr,blnk,blptr,ordclk,ordptr,cord);
+   typ_l,bexe,boptr,blnk,blptr,ordclk,ordptr,cord);
 	 
 //  critev=zeros(critev);
 //  critev(1:size(critev_p,1))=critev_p;
@@ -198,6 +202,7 @@ show_comment=%f
   nb=size(typ_z,'*');
   zcptr=ones(nb+1,1);
   modptr=ones(nb+1,1);
+
   for i=1:nb
     zcptr(i+1)=zcptr(i)+typ_z(i)
     modptr(i+1)=modptr(i)+sign(typ_z(i))*typ_mod(i);
@@ -2327,7 +2332,7 @@ function primary=discardprimary(primary)
 endfunction
 
 function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_cons,outoin,outoinptr,..
-		      evoutoin,evoutoinptr,typ_z,typ_x,typ_s,bexe,boptr,blnk,blptr,ordclk,ordptr,cord);
+		      evoutoin,evoutoinptr,typ_z,typ_x,typ_l,bexe,boptr,blnk,blptr,ordclk,ordptr,cord);
 
   nblk=size(typ_x,1)
   //compute iord
@@ -2352,13 +2357,13 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   n=size(cord,1)
   vec=-ones(1,nblk);
   vec(cord(:,1))=0;
-  typp=zeros(typ_s);typp(typ_s)=1
+  typp=zeros(typ_l);typp(typ_l)=1
 
   ext_cord1=cord;
   j=1
   while %t
     ii=ext_cord1(j,1)
-    if typ_s(ii)
+    if typ_l(ii)
       for i=[clkptr(ii):clkptr(ii+1)-1]
 	 ext_cord1=[ext_cord1;ordclk([ordptr(i):ordptr(i+1)-1],:)];
       end
@@ -2372,7 +2377,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   ext_cord=yy(-sort(-kkn))
   //ext_cord=unique(ext_cord1(:,1)');
   //for i=ext_cord
-  //  if typ_s(i) then typ_z(i)=clkptr(i+1)-clkptr(i)-1;end
+  //  if typ_l(i) then typ_z(i)=clkptr(i+1)-clkptr(i)-1;end
   //end  // adding zero crossing surfaces to cont. time synchros
   
   //a supprimer
@@ -2420,8 +2425,9 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   cordX=ext_cord1(:,1)*maX+ext_cord1(:,2);
 
   // 1: important; 0:non
-  n=clkptr(nblk+1)-1 //nb d'evenement
-  
+  //n=clkptr(nblk+1)-1 //nb d'evenement
+  n=size(ordptr,'*')-1 //nb d'evenement
+ 
   //a priori tous les evenemets sont non-importants
   //critev=zeros(n,1)
   for i=1:n
@@ -2504,9 +2510,9 @@ endfunction
 
 function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
 	  xptr,zptr,typ_mod,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
-	  typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
+	  typ_z,typ_x,typ_m,funs,funtyp,initexe,labels,..
 	  bexe,boptr,blnk,blptr,ok]=extract_info(bllst,..
-						 connectmat,clkconnect)
+						 connectmat,clkconnect,typ_l)
   ok=%t
   nbl=length(bllst)
   clkptr=zeros(nbl+1,1);clkptr(1)=1
@@ -2517,20 +2523,20 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   xc0=[];xcd0=[];xd0=[];rpar=[];ipar=[];
 
   fff=ones(nbl,1)==1
-  dep_ut=[fff,fff];typ_z=zeros(nbl,1);typ_s=fff;typ_x=fff;typ_m=fff;typ_mod=zeros(nbl,1);
+  dep_ut=[fff,fff];typ_z=zeros(nbl,1);typ_x=fff;typ_m=fff;typ_mod=zeros(nbl,1);
 
   initexe=[];
   funs=list();
   funtyp=zeros(typ_z)
   labels=[]
-   
+  
   [ok,bllst]=adjust_inout(bllst,connectmat)
   
   // placed here to make sure nzcross and nmode correctly updated
   if ~ok then 
     lnkptr=[],inplnk=[],outlnk=[],clkptr=[],cliptr=[],inpptr=[],outptr=[],..
 	   xptr=[],zptr=[],rpptr=[],ipptr=[],xc0=[],xcd0=[],xd0=[],rpar=[],ipar=[],dep_ut=[],..
-	   typ_z=[],typ_s=[],typ_x=[],typ_m=[],funs=[],funtyp=[],initexe=[],labels=[],..
+	   typ_z=[],typ_x=[],typ_m=[],funs=[],funtyp=[],initexe=[],labels=[],..
 	   bexe=[],boptr=[],blnk=[],blptr=[],
     return;
   end
@@ -2605,7 +2611,6 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
 	      " e determined')
       ok=%f
     end
-    typ_s(i)=ll.blocktype=='s'
     typ_x(i)=ll.state<>[]|ll.blocktype=='x' // some blocks like delay
                                             // need to be in oord even
                                             // without state
@@ -2613,7 +2618,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     typ_m(i)=ll.blocktype=='m'
     dep_ut(i,:)=(ll.dep_ut(:))'
     //
-    if ~typ_s(i)&ll.evtout<>[] then  
+    if ~typ_l(i)&ll.evtout<>[] then  
       ll11=ll.firing
       prt=find(ll11>=zeros(ll11))
       nprt=prod(size(prt))
@@ -3143,11 +3148,11 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   end
 endfunction
 
-function [evoutoin,evoutoinptr]=synch_clkconnect(typ_s,clkconnect)
-  nblk=size(typ_s,'*')
+function [evoutoin,evoutoinptr]=synch_clkconnect(typ_l,clkconnect)
+  nblk=size(typ_l,'*')
   evoutoin=[];evoutoinptr=1
   for i=1:nblk
-    if typ_s(i) then
+    if typ_l(i) then
       dd=clkconnect(clkconnect(:,1)==i,3)
     else 
       dd=[]
@@ -3259,4 +3264,5 @@ function [critev]=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
     end
   end 
 endfunction
+
 
