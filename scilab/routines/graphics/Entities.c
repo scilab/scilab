@@ -7117,7 +7117,7 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_SUBWIN: 
       if (pobj == paxesmdl)
 	{
-	  sciSetFontStyle (pobj, 7);/* set helvetica font */
+	  sciSetFontStyle (pobj, 6);/* set helvetica font */
 	  (sciGetFontContext(pobj))->backgroundcolor = -3;
 	  (sciGetFontContext(pobj))->foregroundcolor = -2; 
 	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
@@ -7154,7 +7154,7 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_FIGURE:
       if (pobj == pfiguremdl)
 	{
-	  sciSetFontStyle (pobj, 7);/* set helvetica font */
+	  sciSetFontStyle (pobj, 6);/* set helvetica font */
 	  (sciGetFontContext(pobj))->backgroundcolor = -3;
 	  (sciGetFontContext(pobj))->foregroundcolor = -2;
 	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
