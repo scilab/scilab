@@ -1386,7 +1386,7 @@ function critev=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
       r=[clkconnect(ii(k),1)*ones(m,1),clkconnect(ii(k),2)*ones(m,1),r]
       clkconnect=[clkconnect;r]
     end
-    
+    pause
     done=%f;
     while ~done
       done=%t;
@@ -1401,6 +1401,7 @@ function critev=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
       end
     end
   end
+  
 
   critev=zeros(clkptr($)-1,1);
   for bb=1:size(clkptr,1)-1
