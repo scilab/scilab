@@ -9,133 +9,182 @@
   graphics entities data structures </SHORT_DESCRIPTION>
  
   <DESCRIPTION>
-  Scilab graphics is based on two different modes. In the "old" mode 
-  the graphics instructions are stored to enable redisplay, zoom and
-  rotations. In the "new" mode graphics each graphic window and the
-  drawing it contains are represented by hierchical entities. The
-  hierachy to level is the Figure. Each Figure defines at least one
+  Scilab graphics is based on two differents modes. In the <VERB>"old"</VERB> 
+  mode, the graphics functions are stored to enable redisplay, zoom and
+  rotations. Comparrement at the <VERB>"new"</VERB> mode, each graphics 
+  window and the drawing it contains are represented by hierchical entities. 
+  The hierachy to level is the Figure. Each Figure defines at least one
   children of type Axes. Each Axes entity contains a set of leaf
   entities which are the basic graphics objects like Polylines,
-  Rectangles, Segs,... It can also contain Agregation type entities
+  Rectangles, Arcs, Segs,... It can also contain an Agregation type 
   which are recursive sets of entities. The main interest of the new
-  graphic mode is to make property change easier. Graphics entities
-  are associated to Scilab variables of type
-  <VERB>handle</VERB>. These handles can be used to set or get entities
-  properties, to move them, to make copies or delete them.
+  graphic mode is to make property change easier. This new graphics'mode
+  provides a set of high-level graphing routines 
+  (see <LINK>set</LINK>,  <LINK>get</LINK>) used to control objects' properties
+  such us data, coordinates and scaling, color and appearences without requiring 
+  to replay the initial graphics commands. 
   <P></P>
-  To set the current graphics window mode  one can use the
-  instruction <VERB>set("figure_style","new") </VERB> or
-  <VERB>set("figure_style","old ")</VERB>. The instructions
-  <VERB>set("old_style","off")</VERB>  or
-  <VERB>set("old_style","on")</VERB> set the
+  Graphics entities are associated to Scilab variables of type
+  <VERB>handle</VERB>. The handle is a unique identifier which is associated
+  to each instance of a created graphical entity. Using this handle, 
+  it will be possible to reach entities' properties through "set" and "get" routines.
+  The handles are also used to manipulate graphics objects, to move them, 
+  to make copies or delete them.
+  <P></P>
+  To set the current graphics window mode we can use these following instructions: 
+  <VERB>set("figure_style","new") </VERB> to have a graphics window under the "new" mode or  
+  <VERB>set("figure_style","old ")</VERB> for the "old" mode. 
+  <P></P>
+  The instructions
+  <VERB>set("old_style","off")</VERB> and
+  <VERB>set("old_style","on")</VERB> are used to set the
   default mode to be used when a new graphics window is created. 
   <P></P>
   The new graphics mode is a beta version. So the "old" mode is set as
   default.
-
-
+  <P></P>
+  <P></P>
   <DESCRIPTION_ITEM label='Figure: '>
    The figure entity is the top level of the graphics entities
   hierarchy. This entity defines the parameters for the figure itself
-  as well as the  parameter's defaut values for the children
-  creation. The figure children should be Axes.
+  as well as the parameters' default values for the children
+  creation. The figure children are the Axes entities. 
+  <P></P>
   See <LINK>figure_properties</LINK> for details.
   <P></P>
-  The handle on the current figure may be got using <VERB>get("current_figure")</VERB>
+  The handle on the current figure may be got using <VERB>get("current_figure")</VERB>.
 
   </DESCRIPTION_ITEM>
   <DESCRIPTION_ITEM label='Axes'>
   The Axes entity is the second level of the graphics entities
   hierarchy. This entity defines the parameters for the change of
   coordinates and the axes drawing
-  as well as the  parameter's defaut values for the children creation.
+  as well as the  parameters' default values for the children creation. 
+  <P></P>
  See <LINK>axes_properties</LINK> for details.
  <P></P>
-  The handle on the current Axes may be got using <VERB>get("current_axes")</VERB>
+  The handle on the current Axes may be got using <VERB>get("current_axes")</VERB>.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Agregation'>
- The agregation entity is just a vector of children without any other
- property. It is used to glue a set of entities together.  See
-  <LINK>glue</LINK> and <LINK>unglue</LINK> functions.
+ The agregation entity is just a vector of children and with a single
+ property (visibility property). It is used to glue a set of entities together. 
+ <P></P>
+   See <LINK>glue</LINK> and <LINK>agregation_properties</LINK> functions.
+  </DESCRIPTION_ITEM>  
+
+  <DESCRIPTION_ITEM label='Axis'>
+  The Axis entity is a leaf of the graphics entities
+  hierarchy. This entity defines the parameters for axis scaling and appearance. 
+  <P></P>
+  See <LINK>axis_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Polyline'>
-  The polyline entitie is a leaf of the graphics entities
+  The polyline entity is a leaf of the graphics entities
   hierarchy. It defines polylines and polylines extensions drawing
-  properties. See <LINK>polyline_properties</LINK> for details.
+  properties.  
+  <P></P>
+  See <LINK>polyline_properties</LINK> for details.
  </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Patch'>
-  The Patch entitie is a leaf of the graphics entities
-  hierarchy. It defines filled polylines  drawing
-  properties. See <LINK>patch_properties</LINK> for details.
+  The Patch entity is a leaf of the graphics entities
+  hierarchy. It defines filled polylines and its drawing
+  properties.  
+  <P></P>
+  See <LINK>patch_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
  <DESCRIPTION_ITEM label='Arc'>
   The Arc entity is a leaf of the graphics entities
   hierarchy. This entity defines the parameters for ellipses and part
-  of ellipses filled or not.See <LINK>arc_properties</LINK> for details.
-  </DESCRIPTION_ITEM>
+  of ellipses. 
+  <P></P>
+  See <LINK>arc_properties</LINK> for details.
+  </DESCRIPTION_ITEM> 
 
   <DESCRIPTION_ITEM label='Rectangle'>
   The Rectangle entity is a leaf of the graphics entities
   hierarchy. This entity defines the parameters for rectangles and
-  filled rectangles. See <LINK>rectangle_properties</LINK> for details.
+  filled rectangles.  
+  <P></P>
+  See <LINK>rectangle_properties</LINK> for details.
  </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Surface'>
   The Surface entity is a leaf of the graphics entities
-  hierarchy. It has  sub_types Fac3d  Plot3d . This entity is still under developpement
-  and will problably evolve a lot. See <LINK>surface_properties</LINK> for details.
+  hierarchy. It has sub types Fac3d  Plot3d . This entity is still under developpement
+  and will problably evolve a lot.
+   <P></P> 
+  See <LINK>surface_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Param3d'>
-  The Surface entity is a leaf of the graphics entities
-  hierarchy. It is a  Surface sub_type . This entity is still under developpement
-  and will problably evolve a lot. See <LINK>param3d_properties</LINK> for details.
+  The Param3d entity is a leaf of the graphics entities
+  hierarchy. It is a Surface sub type . This entity is still under developpement
+  and will problably evolve a lot.  
+  <P></P> 
+  See <LINK>param3d_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Fec'>
   The Fec entity is a leaf of the graphics entities hierarchy. It
-  represents 2D finite elements plots . See <LINK>fec_properties</LINK> for details.
+  represents 2D finite elements plots . 
+  <P></P>  
+  See <LINK>fec_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Grayplot'>
   The Grayplot entity is a leaf of the graphics entities hierarchy. It
-  represents 2D plots of surface using colors and images. See
-  <LINK>grayplot_properties</LINK> for details.
+  represents 2D plots of surface using colors and images.  
+  <P></P> 
+  See <LINK>grayplot_properties</LINK> for details.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM label='Segs'>
+  The Segs entity is a leaf of the graphics entities
+  hierarchy. This entity defines the parameters for a set of colored
+  segments or colored arrows. 
+  <P></P>  
+  See <LINK>segs_properties</LINK> for details.
+ </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM label='Champ'>
+   The Champ entity is a leaf of the graphics entities
+  hierarchy. This entity defines the parameters for a 2D vector field.
+  <P></P>  
+  See <LINK>champ_properties</LINK> for details.
+  </DESCRIPTION_ITEM>
+
+
+  <DESCRIPTION_ITEM label='Text'>
+  The Text entity is a leaf of the graphics entities
+  hierarchy. This entity defines the parameters for string drawing. 
+  <P></P>  
+  See <LINK>text_properties</LINK> for details.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM label='Title'>
+  The Title entity is a leaf of the graphics entities
+  hierarchy. This entity defines the parameters for a title drawn 
+  on a graphics window. 
+  <P></P>  
+  See <LINK>title_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Legend'>
   The Legend entity is a leaf of the graphics entities
   hierarchy. This entity defines the parameters for legends drawn
   below <VERB>plot2dx</VERB> graphs. This entity requires further
-  developments. See <LINK>legend_properties</LINK> for details.
-
- </DESCRIPTION_ITEM>
-
-  <DESCRIPTION_ITEM label='Segs'>
-  The Segs entity is a leaf of the graphics entities
-  hierarchy. This entity defines the parameters for a set of colored
-  segments or colored arrows. See <LINK>segs_properties</LINK> for details.
- </DESCRIPTION_ITEM>
-
-  <DESCRIPTION_ITEM label='Champ'>
-   The Champ entity is a leaf of the graphics entities
-  hierarchy. This entity defines the parameters for a 2D vector field.
- See <LINK>champ_properties</LINK> for details.
-</DESCRIPTION_ITEM>
-
-
-  <DESCRIPTION_ITEM label='Text'>
-  The Text entity is a leaf of the graphics entities
-  hierarchy. This entity defines the parameters for string drawing.
- See <LINK>text_properties</LINK> for details.
+  developments.   
+  <P></P>  
+  See <LINK>legend_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
+
   //Play this example line per line
 
   set("figure_style","new") //create a figure in entity mode
@@ -157,16 +206,17 @@
   a.axes_bounds=[0 0 0.5 0.5]; 
 
   subplot(222) //create a new Axes entity
+  plot(1:10);
   a1=f.children(1); //get its handle
   copy(e.children,a1); //copy the polyline of the first plot in the new Axes
-  a1.data_bounds=[1 0 10 10]; //change the Axes bounds
-  a1.axes_visible='on'; //make them visible
+  a1.data_bounds=[1 0 10 100]; //change the Axes bounds  
 
 
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>move</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>draw</LINK> </SEE_ALSO_ITEM>
    <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>

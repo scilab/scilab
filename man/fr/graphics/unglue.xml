@@ -10,6 +10,7 @@
   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>unglue(h) </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>H=unglue(h) </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
   <PARAM_INDENT>
@@ -19,16 +20,26 @@
   <PARAM_DESCRIPTION>
      : a handle on an agregation.
   </PARAM_DESCRIPTION> 
+  </PARAM_ITEM> 
+
+  <PARAM_ITEM>
+  <PARAM_NAME>H </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+     : a vector of handle on the resulting entities after unagregation.
+  </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
 
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    Given a handle on an agregation this function unglue the corresponding
-    entities in individual parent children and returns a vector of handles.
-  </DESCRIPTION>
-  <EXAMPLE>
- </EXAMPLE>
+    Given a handle on an agregation entity, this function destroies the agregation 
+    and unpacks the elementary entities to associated them to its parent.
+    <VERB>glue</VERB> returns a vector of handles on these individual children.
+   </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+
+
+ ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
@@ -36,5 +47,5 @@
     <SEE_ALSO_ITEM> <LINK>glue</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djamel Abdemouche  </AUTHOR>
+  <AUTHOR> Djalel ABDEMOUCHE </AUTHOR>
 </MAN>

@@ -6,10 +6,11 @@
   <TYPE>Scilab Function  </TYPE>
   <DATE> 2002 </DATE>
   <SHORT_DESCRIPTION name="glue"> 
-   glue a set of graphic entity into a agregation.
+   glue a set of graphics entities into an agregation.
   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>glue(H) </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>h_agreg=glue(H) </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
   <PARAM_INDENT>
@@ -21,24 +22,32 @@
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
 
+  <PARAM_ITEM>
+  <PARAM_NAME>h_agreg </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+     : a handle, the handle on the agregation entity.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
   <P>
-    Given a vector of handles this function glue the corresponding
-    entities in single agregation and returns the handle on this new
+    Given a vector of handles, this function glue the corresponding
+    entities in a single agregation and returns the handle on this new
     entity.
-QUELLE CONTRAINTES SUR LES HANDLES SOURCES (meme fenetre, meme niveau hierarchique...)
   </P>
   </DESCRIPTION>
-  <EXAMPLE>
- </EXAMPLE>
+ <EXAMPLE><![CDATA[
+
+
+ ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>copy</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>move</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>unglue</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djamel Abdemouche  </AUTHOR>
+  <AUTHOR> Djalel ABDEMOUCHE </AUTHOR>
 </MAN>

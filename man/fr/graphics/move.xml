@@ -10,6 +10,7 @@
   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>move(h,xy) </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>move(h,xy,"alone") </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
   <PARAM_INDENT>
@@ -17,7 +18,7 @@
   <PARAM_ITEM>
   <PARAM_NAME>h </PARAM_NAME>
   <PARAM_DESCRIPTION>
-     : a handle, the handle of the entity  to move.
+     : a handle, the handle of the entity to move.
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
 
@@ -25,7 +26,14 @@
   <PARAM_NAME>xy </PARAM_NAME>
   <PARAM_DESCRIPTION>
      : an array <VERB>[dx,dy]</VERB> which gives the translation
-  vector to apply. DANS QUELLE COORD, SOUS FENETRE, CORRIGER interface
+  vector to apply. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+ <PARAM_ITEM>
+  <PARAM_NAME>"alone" </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+     : string keyword (optional). 
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
 
@@ -34,8 +42,12 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    This routine can be used to apply a translation to a graphics entity and
-    all its chidren. 
+    This routine can be used to apply a translation to a graphics entity.
+    If the entity has children, they will be also translated. 
+    <P></P>
+    Given the keyword <VERB>"alone"</VERB> , only the specified entity needs to be redraw. 
+     It must specially be used with the <VERB>pixel_drawing_mode</VERB> 
+     property of the figure entity (see draw objects under <VERB>"xor"</VERB> drawing mode).
   </P>
   </DESCRIPTION>
   <EXAMPLE>
@@ -43,9 +55,9 @@
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>copy</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>move</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>draw</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>figure_properties</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djamel Abdemouche  </AUTHOR>
+  <AUTHOR> Djalel ABDEMOUCHE </AUTHOR>
 </MAN>
