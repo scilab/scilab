@@ -119,8 +119,11 @@ int OpenTksci()
     {
       TKinterp = Tcl_CreateInterp();
       Tcl_Init(TKinterp);
-      Tk_Init(TKinterp);
-
+      if (Tk_Init(TKinterp) != TCL_OK) {
+	Cout("TK initialisation failed !\n");
+	return(1);
+      }
+      
       sprintf(MyCommand, "set SciPath \"%s\";",SciPath); 
       Tcl_Eval(TKinterp,MyCommand);
       Tcl_CreateCommand(TKinterp,"ScilabEval",TK_EvalScilabCmd,(ClientData)1,NULL);
