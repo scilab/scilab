@@ -64,9 +64,15 @@
   <P>
     <VERB>f2 = [S&apos;&apos;(xd(1)),S&apos;&apos;(xd(2)),...]</VERB>
   </P>
- 
+ <VERB>f0</VERB>, <VERB>f1</VERB>, <VERB>f2</VERB>,  <VERB>f3</VERB>
+ matrices have the same shape as <VERB>xd</VERB>. In versions 2.7 and
+ earlier <VERB>f1</VERB>, <VERB>f2</VERB>,  <VERB>f3</VERB> were transposed.
+
+  
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>splin</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>smooth</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>interpln</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>splin</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>smooth</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>interpln</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
