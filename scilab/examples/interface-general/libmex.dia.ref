@@ -13,8 +13,6 @@ libmex_path=get_file_path('loader.sce');
 link(libmex_path+'/lib/libutil.so');
 Loading shared executable0./lib/libutil.so
 
-Using global
-
 shared archive loaded
 
 Link done
