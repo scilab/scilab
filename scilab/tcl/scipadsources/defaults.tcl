@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.46"
+set version "Version 3.47"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -45,7 +45,7 @@ set WMGEOMETRY 600x480
 set printCommand lpr
 set actbptextFont "-Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*"
 set indentspaces 2
-set filenamesdisplaytype "pruned"  ;# "pruned" or "full"
+set filenamesdisplaytype "pruned"  ;# "pruned" or "full" or "fullifambig"
 set maxrecentfiles 4
 set listofrecent [list]    ;# always full filenames here
 set scilabSingleQuotedStrings "yes"

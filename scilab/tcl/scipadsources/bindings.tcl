@@ -8,6 +8,8 @@ bind Text <KeyPress> { if {{%A} != {{}}} {puttext %W %A}}
 bind Text <Delete> { deletetext}
 bind Text <BackSpace> { backspacetext}
 bind Text <Return> {insertnewline %W}
+bind Text <Tab> {inserttab %W}
+bind Text <Shift-Tab> {UnIndentSel}
 
 bind Text <parenright> { if {{%A} != {{}}} {insblinkbrace %W %A}}
 bind Text <bracketright> { if {{%A} != {{}}} {insblinkbrace %W %A}} 

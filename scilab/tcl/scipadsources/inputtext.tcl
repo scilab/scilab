@@ -75,6 +75,35 @@ proc insertnewline {w} {
     }
 }
 
+proc inserttab {w} {
+    global indentspaces
+    set textarea [gettextareacur]
+    if {[IsBufferEditable] == "No"} {return}
+    set selstart [lindex [$textarea tag nextrange sel 0.0] 0]
+    if {$selstart != ""} {
+        # there is a selection, put 1st column of selection in col
+        scan $selstart "%d.%d" line col
+    } else {
+        # there is no selection
+        set col -1
+    }
+    if {$col == 0} {
+        # there is a selection starting at the 1st column
+        IndentSel
+    } else {
+        # insert spaces up to the next tab stop
+        set curpos [$textarea index insert]
+        scan $curpos "%d.%d" curline curcol
+        set nexttabstop [expr ($curcol / $indentspaces + 1) * $indentspaces]
+        set nbtoinsert [expr $nexttabstop - $curcol]
+        set toinsert ""
+        for {set x 0} {$x<$nbtoinsert} {incr x} {
+            append toinsert " "
+        }
+        puttext $w $toinsert
+    }
+}
+
 proc puttext {w text} {
     global winTitle
     if {[IsBufferEditable] == "No"} {return}

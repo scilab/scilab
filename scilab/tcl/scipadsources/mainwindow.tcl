@@ -6,7 +6,7 @@ set textareacur $pad.new$winopened
 set listoftextarea $pad.new$winopened
 
 set listoffile("$pad.new$winopened",fullname) "[mc "Untitled"]$winopened.sce"
-set listoffile("$pad.new$winopened",prunedname) "[mc "Untitled"]$winopened.sce"
+set listoffile("$pad.new$winopened",displayedname) "[mc "Untitled"]$winopened.sce"
 set listoffile("$pad.new$winopened",save) 0; # file is unmodified
 set listoffile("$pad.new$winopened",new)  1; # is not an opened file from disk
 set listoffile("$pad.new$winopened",thetime) 0; # set the time of the last modify
@@ -19,7 +19,7 @@ set words()                 {}
 
 # main window settings
 eval destroy [winfo child $pad]
-wm title $pad "$winTitle - $listoffile("$pad.new$winopened",prunedname)"
+wm title $pad "$winTitle - $listoffile("$pad.new$winopened",displayedname)"
 wm iconname $pad $winTitle
 
 # catch the kill of the windowmanager

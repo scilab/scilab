@@ -234,13 +234,18 @@
     ::msgcat::mcset fr "&none" "&aucun"
 
     # menues.tcl - Options menu
-    ::msgcat::mcset fr "&font size" "&Taille de police"
-    ::msgcat::mcset fr "&micro" "&micro"
-    ::msgcat::mcset fr "&small" "&petit"
-    ::msgcat::mcset fr "m&edium" "m&oyen"
-    ::msgcat::mcset fr "&large" "&grand"
+    ::msgcat::mcset fr "&Font size" "&Taille de police"
+        ::msgcat::mcset fr "&micro" "&micro"
+        ::msgcat::mcset fr "&small" "&petit"
+        ::msgcat::mcset fr "m&edium" "m&oyen"
+        ::msgcat::mcset fr "&large" "&grand"
     ::msgcat::mcset fr "&Colors" "&Couleurs"
     ::msgcat::mcset fr "Word &Wrap" "&Retour à la ligne automatique"
+    ::msgcat::mcset fr "&Indentation spaces" "Dimension de l'&indentation"
+    ::msgcat::mcset fr "File&names" "&Noms de fichiers"
+        ::msgcat::mcset fr "&Full path" "&Complets"
+        ::msgcat::mcset fr "Full path if &ambiguous" "Complets si &ambigus"
+        ::msgcat::mcset fr "&Unambiguous pruned path" "&Raccourcis non ambigus"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset fr "Opened Files" "Fichiers ouverts"

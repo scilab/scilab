@@ -172,19 +172,10 @@ Wishes:
 
 -Improve the aesthetics of Scipad (see sciGUI)
 
--Among the Scipad preferences, the user should be able to select whether
- file names displayed in the title bar and windows menu entries is of
- pruned form or full pathname. The switch for that is already prepared in
- and saved in the preferences.
-
 -Among the Scipad preferences, the user should be able to set the number
  of recent files that he wants to see in the file menu. This number is
  already taken into account and saved in the preferences, it is just a
  matter of adding an option dialog box with that setting.
-
--Allow the user to select whether the tab key inserts tabs or spaces, and 
- in the latter, how many. Could be part of the Options menu or Preferences
- submenu.
 
 -Blink (single or double) quotes. Must find a way to distinguish between 
  opening and closing quotes in proc blinkbrace. This is not that easy since

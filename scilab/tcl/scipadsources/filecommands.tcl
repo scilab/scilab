@@ -18,9 +18,11 @@
 #     listoffile("$ta",fullname)
 #       Full path+name of the file on disk that is displayed in $ta
 #
-#     listoffile("$ta",prunedname)
-#       Pruned path+name of the file on disk that is displayed in $ta
-#       i.e. the shortest unambiguous reference to that file
+#     listoffile("$ta",displayedname)
+#       Displayed name of the file on disk that is displayed in $ta
+#       This may be:
+#         - the shortest unambiguous reference to that file
+#         - the full pathname of that file
 #
 #     listoffile("$ta",new)
 #       0: file was opened from disk
@@ -43,7 +45,7 @@
 #   The Windows menu entries are radionbuttons, with the following
 #   properties:
 #     -value is $winopened
-#     -label is $listoffile("$ta",prunedname), $ta being $pad.new$winopened
+#     -label is $listoffile("$ta",displayedname), $ta being $pad.new$winopened
 #     All the labels of the menu are different at any time, except
 #     during ambiguities removal.
 #
@@ -59,14 +61,14 @@ proc filesetasnew {} {
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
     set listoffile("$pad.new$winopened",fullname) [mc "Untitled"]$winopened.sce
-    set listoffile("$pad.new$winopened",prunedname) [mc "Untitled"]$winopened.sce
+    set listoffile("$pad.new$winopened",displayedname) [mc "Untitled"]$winopened.sce
     set listoffile("$pad.new$winopened",save) 0
     set listoffile("$pad.new$winopened",new) 1
     set listoffile("$pad.new$winopened",thetime) 0
     set listoffile("$pad.new$winopened",language) "scilab"
     set listoffile("$pad.new$winopened",readonly) 0
     lappend listoftextarea $pad.new$winopened
-    $pad.filemenu.wind add radiobutton -label $listoffile("$pad.new$winopened",prunedname) \
+    $pad.filemenu.wind add radiobutton -label $listoffile("$pad.new$winopened",displayedname) \
         -value $winopened -variable radiobuttonvalue \
         -command "montretext $pad.new$winopened"
     newfilebind
@@ -113,11 +115,11 @@ proc byebye {textarea} {
               $listoftextarea $textarea] [lsearch $listoftextarea $textarea]]
         # delete the windows menu entry
         set ilab [extractindexfromlabel $pad.filemenu.wind \
-                  $listoffile("$textarea",prunedname)]
+                  $listoffile("$textarea",displayedname)]
         $pad.filemenu.wind delete $ilab
         # delete the textarea entry in listoffile
         unset listoffile("$textarea",fullname) 
-        unset listoffile("$textarea",prunedname) 
+        unset listoffile("$textarea",displayedname) 
         unset listoffile("$textarea",save) 
         unset listoffile("$textarea",new) 
         unset listoffile("$textarea",thetime) 
@@ -136,7 +138,6 @@ proc byebye {textarea} {
         set lastwin [$pad.filemenu.wind entrycget end -value]
         set radiobuttonvalue $lastwin
         RefreshWindowsMenuLabels
-        modifiedtitle $tatodisplay
     } else {
         #save the geometry for the next time
         set WMGEOMETRY [eval {wm geometry $pad}] 
@@ -248,12 +249,11 @@ proc openfileifexists {file} {
     }
 }
 
-
 proc openfile {file} {
 # try to open a file with filename $file (no file selection through a dialog)
 # if file is not already open, open it
 # otherwise just switch buffers to show it
-    global pad winopened textareacur listoftextarea listoffile
+    global pad winopened listoftextarea listoffile
     if [string compare $file ""] {
         # search for an opened existing file
         set res [lookiffileisopen "$file"]
@@ -271,7 +271,6 @@ proc openfile {file} {
                 montretext $pad.new$winopened
                 update
                 RefreshWindowsMenuLabels
-                modifiedtitle $pad.new$winopened
             }
             $pad.new$winopened mark set insert "1.0"
             keyposn $pad.new$winopened
@@ -307,7 +306,7 @@ proc notopenedfile {file} {
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
     set listoffile("$pad.new$winopened",fullname) [file normalize $file]
-    set listoffile("$pad.new$winopened",prunedname) \
+    set listoffile("$pad.new$winopened",displayedname) \
             [file tail $listoffile("$pad.new$winopened",fullname)]
     set listoffile("$pad.new$winopened",language) [extenstolang $file]
     set listoffile("$pad.new$winopened",new) 0
@@ -318,7 +317,7 @@ proc notopenedfile {file} {
         set listoffile("$pad.new$winopened",readonly) 0
     }
     $pad.filemenu.wind add radiobutton \
-          -label $listoffile("$pad.new$winopened",prunedname) \
+          -label $listoffile("$pad.new$winopened",displayedname) \
           -value $winopened -variable radiobuttonvalue \
           -command "montretext $pad.new$winopened"
 }
@@ -326,10 +325,9 @@ proc notopenedfile {file} {
 proc shownewbuffer {file} {
     global pad winopened
     unsetmodified $pad.new$winopened
-    montretext $pad.new$winopened
     openoninit $pad.new$winopened $file
+    montretext $pad.new$winopened
     RefreshWindowsMenuLabels
-    modifiedtitle $pad.new$winopened
     AddRecentFile [file normalize $file]
     update
     colorize $pad.new$winopened 1.0 end
@@ -384,7 +382,6 @@ proc openoninit {textarea thefile} {
             $textarea insert end [read -nonewline $newnamefile ] 
         }
         close $newnamefile
-        modifiedtitle $textarea
     }
 }
 
@@ -457,26 +454,25 @@ proc filesaveas {textarea} {
         }
     }
     if {$listoffile("$textarea",new)==0 || $proposedname==""} {
-        set proposedname $listoffile("$textarea",prunedname)
+        set proposedname $listoffile("$textarea",displayedname)
     } else {
         set proposedname $proposedname.sci
     }
     set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
                     -initialfile $proposedname -initialdir $startdir]
     if { [expr [string compare $myfile ""]] != 0} {
-        $pad.filemenu.wind delete "$listoffile("$textarea",prunedname)"
+        $pad.filemenu.wind delete "$listoffile("$textarea",displayedname)"
         set listoffile("$textarea",fullname) [file normalize $myfile]
-        set listoffile("$textarea",prunedname) \
+        set listoffile("$textarea",displayedname) \
             [file tail $listoffile("$textarea",fullname)]
         set listoffile("$textarea",new) 0
         set listoffile("$textarea",save) 0
         $pad.filemenu.wind add radiobutton \
-           -label $listoffile("$textarea",prunedname) \
+           -label $listoffile("$textarea",displayedname) \
            -value $radiobuttonvalue -variable radiobuttonvalue \
            -command "montretext $textarea"
         writesave $textarea $myfile
         RefreshWindowsMenuLabels
-        modifiedtitle $textarea
         AddRecentFile [file normalize $myfile]
         return 1
     }
@@ -608,37 +604,53 @@ proc extractindexfromlabel {dm labsearched} {
 proc RefreshWindowsMenuLabels {} {
 # Reset all labels to file tails, then remove ambiguities
 # by expanding names as necessary
-    global listoffile listoftextarea pad
-    # Reset all to file tails
-    foreach ta $listoftextarea {
-        set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",prunedname)]
-        set pn [file tail $listoffile("$ta",fullname)]
-        set listoffile("$ta",prunedname) $pn
-        lappend ind $i $pn
-    }
-    foreach {i pn} $ind {
-        $pad.filemenu.wind entryconfigure $i -label $pn
-#numbers in front of the labels (needs further work)
-#        $pad.filemenu.wind entryconfigure $i -label "$i $pn"
-#        if {$i<10} {$pad.filemenu.wind entryconfigure $i -underline 0}
-    }
-    # Detect duplicates and remove ambiguities
-    foreach ta $listoftextarea {
-        set tochange [IsPrunedNameAmbiguous $ta]
-        if {$tochange != ""} {
-            RemoveAmbiguity $tochange
+    global listoffile listoftextarea pad filenamesdisplaytype
+    if {$filenamesdisplaytype != "full"} {
+        # Reset all to file tails
+        foreach ta $listoftextarea {
+            set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
+            set pn [file tail $listoffile("$ta",fullname)]
+            set listoffile("$ta",displayedname) $pn
+            lappend ind $i $pn
+        }
+        foreach {i pn} $ind {
+            $pad.filemenu.wind entryconfigure $i -label $pn
+    #numbers in front of the labels (needs further work)
+    #        $pad.filemenu.wind entryconfigure $i -label "$i $pn"
+    #        if {$i<10} {$pad.filemenu.wind entryconfigure $i -underline 0}
+        }
+        # Detect duplicates and remove ambiguities
+        foreach ta $listoftextarea {
+            set tochange [IsPrunedNameAmbiguous $ta]
+            if {$tochange != ""} {
+                RemoveAmbiguity $tochange
+            }
+        }
+    } else {
+        # always full file names are displayed, even if unambiguous
+        foreach ta $listoftextarea {
+            set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
+            set pn $listoffile("$ta",fullname)
+            set listoffile("$ta",displayedname) $pn
+            lappend ind $i $pn
+        }        
+        foreach {i pn} $ind {
+            $pad.filemenu.wind entryconfigure $i -label $pn
         }
     }
+    # montretext must have been called before RefreshWindowsMenuLabels
+    # so that $textareacur is up-to-date
+    modifiedtitle [gettextareacur]
 }
 
 proc IsPrunedNameAmbiguous {ta} {
 # Returns the list of textareas containing pruned file names
 # identical to the pruned file name attached to $ta
     global listoffile listoftextarea
-    set pn $listoffile("$ta",prunedname)
+    set pn $listoffile("$ta",displayedname)
     set whichta ""
     foreach ta1 $listoftextarea {
-        if {$listoffile("$ta1",prunedname)==$pn} {
+        if {$listoffile("$ta1",displayedname)==$pn} {
             lappend whichta $ta1
         }
     }
@@ -650,23 +662,24 @@ proc RemoveAmbiguity {talist} {
 # $talist containing the list of textareas attached to ambiguous
 # file tails, expand file names as necessary to remove ambiguities
     global listoffile pad filenamesdisplaytype
-    if {$filenamesdisplaytype == "full"} {
-        # full file names are displayed
+    if {$filenamesdisplaytype == "fullifambig"} {
+        # full file names are displayed if tails are ambiguous
         foreach ta $talist {
-            set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",prunedname)]
+            set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
             set en $listoffile("$ta",fullname)
-            set listoffile("$ta",prunedname) $en
+            set listoffile("$ta",displayedname) $en
             $pad.filemenu.wind entryconfigure $i -label $en
         }
     } else {
+        # assert: $filenamesdisplaytype must be "pruned"
         # unambiguous pruned file names are displayed
         foreach ta $talist {
-            set mli("$ta") [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",prunedname)]
+            set mli("$ta") [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
             $pad.filemenu.wind entryconfigure $mli("$ta") -label $ta
         }
         CreateUnambiguousPrunedNames $talist
         foreach ta $talist {
-            $pad.filemenu.wind entryconfigure $mli("$ta") -label $listoffile("$ta",prunedname)
+            $pad.filemenu.wind entryconfigure $mli("$ta") -label $listoffile("$ta",displayedname)
         }
     }
 }
@@ -710,7 +723,7 @@ proc CreateUnambiguousPrunedNames {talist} {
             set tojoin [lindex $elts("$ta") $i]
             set newname [file join $newname $tojoin]
         }
-        set listoffile("$ta",prunedname) $newname
+        set listoffile("$ta",displayedname) $newname
     }
 }
 

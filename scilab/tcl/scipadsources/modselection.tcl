@@ -83,7 +83,7 @@ proc IndentSel {} {
     }
     set seltexts [selection own]
     if {$seltexts != "" } {
-        if [catch {selection get -selection PRIMARY} sel] {	    
+        if [catch {selection get -selection PRIMARY} sel] {
             if {[selectline] != ""} {IndentSel}
         } else {
             set uctext [selection get]	    

@@ -46,7 +46,7 @@ proc modifiedtitle {textarea} {
 # set the Scipad window title to the name of the file displayed in $textarea
 # add tags (modified, readonly) 
     global pad winTitle listoffile 
-    set fname $listoffile("$textarea",prunedname)
+    set fname $listoffile("$textarea",displayedname)
     set ind [extractindexfromlabel $pad.filemenu.wind $fname]
     set mod1 ""; set mod2 ""
     if {$listoffile("$textarea",readonly) == 1} { 

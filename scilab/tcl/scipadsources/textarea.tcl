@@ -112,9 +112,16 @@ proc setfontscipad {FontSize} {
     $pad.filemenu.edit configure -font $menuFont
     $pad.filemenu.search configure -font $menuFont
     $pad.filemenu.wind configure -font $menuFont
+    $pad.filemenu.scheme configure -font $menuFont
     $pad.filemenu.options configure -font $menuFont
+    $pad.filemenu.options.fontsize configure -font $menuFont
+    $pad.filemenu.options.colors configure -font $menuFont
+    # warning! tk_optionMenu added ".menu" to the menu name given on creation!
+    $pad.filemenu.options.indentspaces.menu configure -font $menuFont
+    $pad.filemenu.options.filenames configure -font $menuFont
     $pad.filemenu.exec configure -font $menuFont
     $pad.filemenu.debug configure -font $menuFont
+    $pad.filemenu.debug.step configure -font $menuFont
     $pad.filemenu.help configure -font $menuFont
     foreach textarea $listoftextarea {
         $textarea configure -font $textFont

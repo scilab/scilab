@@ -847,3 +847,13 @@ ES  09/03/05
  * procs openlibfunsource1 and wordwrap eliminated; the menu entries using them
    can just inline them. 
  * version --> 3.46
+
+Francois VOGEL, 12/03/05
+ * New options made available:
+     - File names: Full, or Full if ambiguous, or Pruned file names
+     - Indentation spaces number - used for Ctrl-d as well as Tab
+     - Binding for Tab: insert spaces to the next tab stop, or indent the
+       selection if it starts at the beginning of a line - useful for
+       quickly reindenting code parts newly enclosed in ifs for example
+ * Fixed: some menues did not have the same fonts than the others
+ * version --> 3.47
