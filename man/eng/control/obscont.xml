@@ -66,8 +66,13 @@
      <VERB>K=[A+B*Kc+Kf*C+Kf*D*Kc,Kf,-Kc]</VERB>.</P>
     <P>
     The closed loop feedback system <VERB> Cl: v -&gt;y</VERB> with
-    (negative) feedback <VERB>K</VERB> (i.e. <VERB>y = P u, u = v - K y</VERB>, or <VERB>xdot
-    = A x + B u, y = C x + D u, zdot = (A + Kf C) z - Kf y + B u, u = v -F z</VERB>)
+    (negative) feedback <VERB>K</VERB> (i.e. <VERB>y = P u, u = v - K y</VERB>, or 
+    <VERBATIM>
+       xdot = A x + B u, 
+       y = C x + D u, 
+       zdot = (A + Kf C) z - Kf y + B u, 
+       u = v -F z
+    </VERBATIM>)
     is given by <VERB>Cl = P/.(-K)</VERB></P>
     <P>
     The poles of <VERB>Cl</VERB> (<VERB> spec(cl('A')) </VERB>) are located at the eigenvalues of <VERB>A+B*Kc</VERB>

@@ -74,7 +74,7 @@
         <SP>When <VERB>flag</VERB> is used and <VERB>flag=1</VERB> an output injection  as follows is used 
     and then a feedback is performed, <VERB>F</VERB> must be of size <VERB>(m+p,n)</VERB></SP>
         <P>
-    ( x is in R^n , y in R^p, u in R^m ). 
+    ( x is in <VERB>R^n</VERB> , y in <VERB>R^p</VERB>, u in <VERB>R^m</VERB> ). 
   </P>
         <P><VERB>right</VERB> and <VERB>left</VERB> have the following property:
   </P>

@@ -77,7 +77,7 @@
     below.
     The <VERB>dimV</VERB> first columns of <VERB>X</VERB> i.e <VERB>V=X(:,1:dimV)</VERB>, 
     span the AB-invariant subspace of <VERB>Sys</VERB> i.e the unobservable subspace of 
-    <VERB>(A+B*F,C+D*F)</VERB>. (<VERB>dimV=nx</VERB>  iff C^(-1)(D)=X).</P>
+    <VERB>(A+B*F,C+D*F)</VERB>. (<VERB>dimV=nx</VERB>  iff <VERB>C^(-1)(D)=X</VERB>).</P>
     <P>
     The <VERB>dimR</VERB> first columns of <VERB>X</VERB> i.e. <VERB>R=X(:,1:dimR)</VERB> spans  
     the controllable part of <VERB>Sys</VERB> in <VERB>V</VERB>, <VERB>(dimR&lt;=dimV)</VERB>. (<VERB>dimR=0</VERB>

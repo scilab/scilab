@@ -57,7 +57,7 @@
     roots of its determinant.</P>
     <P>
     For usual state-space system <VERB>trzeros</VERB> uses the state-space 
-    algorithm of Emami-Naeni &amp; Van Dooren.</P>
+    algorithm of Emami-Naeni and Van Dooren.</P>
     <P>
     If <VERB>D</VERB> is invertible the transmission zeros are the eigenvalues
     of the &quot;<VERB>A</VERB> matrix&quot; of the inverse system : <VERB>A - B*inv(D)*C</VERB>;</P>

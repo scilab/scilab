@@ -26,7 +26,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>e</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: array of integers that satisfy the equation: x = f.*2.^e</SP>
+          <SP>: array of integers that satisfy the equation: <VERB>x = f.*2.^e</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>

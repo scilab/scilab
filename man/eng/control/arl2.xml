@@ -71,7 +71,7 @@
     norm) the vector <VERB>y</VERB> assumed to be completed by an infinite number
     of zeros.</P>
     <P>
-    If y(z)  =  y(1)(1/z)+y(2)(1/z^2)+ ...+ y(ny)(1/z^ny)</P>
+    If <VERB>y(z)  =  y(1)(1/z)+y(2)(1/z^2)+ ...+ y(ny)(1/z^ny)</VERB></P>
     <P>
     then l2-norm of <VERB>num/den - y(z)</VERB> is <VERB>err</VERB>.</P>
     <P><VERB>n</VERB> is the degree of the polynomial <VERB>den</VERB>.</P>

@@ -64,7 +64,7 @@
     <P>
     The individual term of the negative binomial is the probability of
     S failures before XN successes and is
-    Choose( S, XN+S-1 ) * PR^(XN) * (1-PR)^S</P>
+    Choose <VERB>( S, XN+S-1 ) * PR^(XN) * (1-PR)^S</VERB></P>
     <P>
     Formula   26.5.26   of   Abramowitz  and  Stegun,  Handbook   of
     Mathematical Functions (1966) is used  to  reduce calculation of
