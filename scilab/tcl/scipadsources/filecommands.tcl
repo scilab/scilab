@@ -93,7 +93,7 @@ proc closefile {textarea} {
         # ask the user if buffer should be saved before closing
         set answer [tk_messageBox -message [ concat [mc "The contents of"] \
            $listoffile("$textarea",fullname) \
-           [mc "may have changed, do you wish to to save your changes?"] ] \
+           [mc "may have changed, do you wish to save your changes?"] ] \
              -title [mc "Save Confirm?"] -type yesnocancel -icon question]
         case $answer {
             yes { filetosave $textarea; byebye $textarea }
