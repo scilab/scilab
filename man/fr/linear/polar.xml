@@ -27,10 +27,10 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    renvoie la forme polaire de<VERB>A</VERB> c&apos;est à dire :
-  </P>
-  <P>
-    <VERB>A=Ro*expm(%i*Theta)</VERB> <VERB>Ro</VERB> symétrique &gt;=0 et <VERB>Theta</VERB> hermitienne &gt;=0.
+    <VERB>[Ro,Theta]=polar(A)</VERB> renvoie la forme polaire de
+    <VERB>A</VERB> c&apos;est à dire :<VERB>A=Ro*expm(%i*Theta)</VERB>
+    <VERB>Ro</VERB> symétrique &gt;=0 et <VERB>Theta</VERB>
+    hermitienne &gt;=0.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
@@ -39,7 +39,8 @@ A=rand(5,5);
 norm(A-Ro*expm(%i*Theta),1)
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>expm</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>expm</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>F. D.; ;   </AUTHOR>
+  <AUTHOR>F. Delebecque INRIA   </AUTHOR>
 </MAN>

@@ -27,27 +27,32 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    renvoie une matrice <VERB>X</VERB> de mêmes dimensions que <VERB>A&apos;</VERB> telle que :
+     <VERB>X = pinv(A)</VERB>  renvoie une matrice <VERB>X</VERB> de mêmes dimensions que <VERB>A&apos;</VERB> telle que :
   </P>
   <P>
     <VERB>A*X*A = A, X*A*X = X</VERB> avec
     <VERB>A*X</VERB> et <VERB>X*A</VERB> Hermitiennes.
   </P>
   <P>
-    Le calcul est basé sur une décomposition en valeurs singulières et les valeurs singulières plus petites qu&apos;une tolérance donnée sont considérées comme nulles : pour cela utiliser la syntaxe <VERB>X=pinv(A,tol)</VERB>.
+    Le calcul est basé sur une décomposition en valeurs singulières et
+    les valeurs singulières plus petites qu&apos;une tolérance donnée
+    sont considérées comme nulles : pour cela utiliser la syntaxe
+    <VERB>X=pinv(A,tol)</VERB>.
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='REFERENCES'>
-  <P>
- La fonction <VERB>pinv</VERB> est basée sur la decomposition en valeurs singulières
- (fonction Scilab  <VERB>svd</VERB>).
-  </P>
-  </ITEMIZE>
+
   <EXAMPLE><![CDATA[
 A=rand(5,2)*rand(2,4);
 norm(A*pinv(A)*A-A,1)
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+   <USED_FUNCTIONS>
+ La fonction <VERB>pinv</VERB> est basée sur la decomposition en valeurs singulières
+ (fonction Scilab  <VERB>svd</VERB>).
+
+  </USED_FUNCTIONS>
 </MAN>

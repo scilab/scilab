@@ -39,36 +39,42 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    Projection sur des sous-espaces propres de A associés aux valeurs propres
-    avec partie réelle &gt;= <VERB>thres</VERB> (<VERB>flag=&apos;c&apos;</VERB>) ou avec  
-    module &gt;= <VERB>thres</VERB> (<VERB>flag=&apos;d&apos;</VERB>).
+    Projection sur des sous-espaces propres de A associés aux valeurs
+    propres avec partie réelle &gt;= <VERB>thres</VERB>
+    (<VERB>flag=&apos;c&apos;</VERB>) ou avec module &gt;=
+    <VERB>thres</VERB> (<VERB>flag=&apos;d&apos;</VERB>).
   </P>
   <P>
-    La projection est définie par <VERB>Q*M</VERB>, où <VERB>Q</VERB> est de rang maximal,
-    les lignes de <VERB>M</VERB> sont linéairement indépendantes et <VERB>M*Q=eye</VERB>.
+    La projection est définie par <VERB>Q*M</VERB>, où <VERB>Q</VERB>
+    est de rang maximal, les lignes de <VERB>M</VERB> sont
+    linéairement indépendantes et <VERB>M*Q=eye</VERB>.
   </P>
   <P>
-    Si <VERB>flag=&apos;c&apos;</VERB>, les valeurs propres de <VERB>M*A*Q</VERB> = valeurs propres
-    de <VERB>A</VERB> avec partie réelle &gt;= <VERB>thres</VERB>.
+    Si <VERB>flag=&apos;c&apos;</VERB>, les valeurs propres de
+    <VERB>M*A*Q</VERB> = valeurs propres de <VERB>A</VERB> avec partie
+    réelle &gt;= <VERB>thres</VERB>.
   </P>
   <P>
-    Si <VERB>flag=&apos;d&apos;</VERB>, les valeurs propres de <VERB>M*A*Q</VERB> = valeurs propres 
-    de <VERB>A</VERB> avec module &gt;= <VERB>thres</VERB>.
+    Si <VERB>flag=&apos;d&apos;</VERB>, les valeurs propres de
+    <VERB>M*A*Q</VERB> = valeurs propres de <VERB>A</VERB> avec module
+    &gt;= <VERB>thres</VERB>.
   </P>
   <P>
-    Si <VERB>flag=&apos;c&apos;</VERB> et si <VERB>[Q1,M1]</VERB> = factorisation de rang maximal (<VERB>fullrf</VERB>) 
-    de <VERB>eye()-Q*M</VERB> alors les valeurs propres de <VERB>M1*A*Q1</VERB> = valeurs propres de <VERB>A</VERB> 
-    avec partie réelle &lt; <VERB>thres</VERB>.
+    Si <VERB>flag=&apos;c&apos;</VERB> et si <VERB>[Q1,M1]</VERB> =
+    factorisation de rang maximal (<VERB>fullrf</VERB>) de
+    <VERB>eye()-Q*M</VERB> alors les valeurs propres de
+    <VERB>M1*A*Q1</VERB> = valeurs propres de <VERB>A</VERB> avec
+    partie réelle &lt; <VERB>thres</VERB>.
   </P>
   <P>
-    Si <VERB>flag=&apos;d&apos;</VERB> et si <VERB>[Q1,M1]</VERB> = factorisation de rang maximal (<VERB>fullrf</VERB>) 
-    de <VERB>eye()-Q*M</VERB> alors les valeurs propres de <VERB>M1*A*Q1</VERB> = valeurs propres de <VERB>A</VERB> 
-    avec module &lt; <VERB>thres</VERB>.
+    Si <VERB>flag=&apos;d&apos;</VERB> et si <VERB>[Q1,M1]</VERB> =
+    factorisation de rang maximal (<VERB>fullrf</VERB>) de
+    <VERB>eye()-Q*M</VERB> alors les valeurs propres de
+    <VERB>M1*A*Q1</VERB> = valeurs propres de <VERB>A</VERB> avec
+    module &lt; <VERB>thres</VERB>.
   </P>
   </DESCRIPTION>
-   <USED_FUNCTION>
-   <VERB>pbig</VERB> est basée sur la forme de Schur ordonnée (fonction Scilab  <VERB>schur</VERB>). 
-  </USED_FUNCTION>
+
 
   <EXAMPLE><![CDATA[
 A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
@@ -84,4 +90,8 @@ spec(M1*A*Q1)
     <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>F. D. (1988); ;   </AUTHOR>
+   <USED_FUNCTIONS>
+   <VERB>pbig</VERB> est basée sur la forme de Schur ordonnée
+   (fonction Scilab <VERB>schur</VERB>).
+  </USED_FUNCTIONS>
 </MAN>

@@ -21,14 +21,15 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    est une estimation de l&apos;inverse du conditionnement de <VERB>X</VERB> pour la norme l_1.
+     <VERB>rcond(X)</VERB> est une estimation de l&apos;inverse du conditionnement de <VERB>X</VERB> pour la norme l_1.
   </P>
   <P>
     Si <VERB>X</VERB> est bien conditionnée, <VERB>rcond(X)</VERB> est proche 1.
     Sinon, <VERB>rcond(X)</VERB> est proche de 0.
   </P>
   <P>
-    renvoie <VERB>rcond(X)</VERB> dans <VERB>r</VERB> et renvoie aussi <VERB>z</VERB> tel que
+    <VERB>[r,z]=rcond(X)</VERB> renvoie <VERB>rcond(X)</VERB> dans
+    <VERB>r</VERB> et renvoie aussi <VERB>z</VERB> tel que <VERB>norm(X*z,1) = r*norm(X,1)*norm(z,1)</VERB> 
   </P>
   <P>
     Ainsi,  si <VERB>rcond</VERB> est très petit <VERB>z</VERB> est un vecteur se trouvant dans le noyau de X.

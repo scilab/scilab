@@ -48,22 +48,22 @@
 [Ab [,X [,bs]]]=bdiag(A [,rmax]) 
    ]]></VERBATIM>
   <P>
-    calcule la forme bloc-diagonale de <VERB>A</VERB>. 
-    bs précise la structure des blocs (tailles respectives des blocs).
-    <VERB>X</VERB> est la matrice de changement de base, c&apos;est à dire que 
+    <VERB>[Ab [,X [,bs]]]=bdiag(A [,rmax])</VERB> calcule la forme
+    bloc-diagonale de <VERB>A</VERB>.  bs précise la structure des
+    blocs (tailles respectives des blocs).  <VERB>X</VERB> est la
+    matrice de changement de base, c&apos;est à dire que <VERB>Ab =
+    inv(X)*A*X </VERB> est bloc-diagonale.
   </P>
   <P>
-    est bloc-diagonale.
+    <VERB>rmax</VERB> contrôle le conditionnement de <VERB>X</VERB>;
+    la valeur par défaut est la norme l1 de <VERB>A</VERB>.
   </P>
   <P>
-    <VERB>rmax</VERB> contrôle le conditionnement de <VERB>X</VERB>; la valeur par défaut est la
-    norme l1 de <VERB>A</VERB>. 
-  </P>
-  <P>
-    Pour obtenir une forme diagonale (si celle-ci existe) choisissez une valeur élevée de 
-    <VERB>rmax</VERB> (<VERB>rmax=1/%eps</VERB> par exemple). 
-    Pour une matrice réelle quelconque, les blocs sont de taille (1x1) ou (2x2) et <VERB>X</VERB> 
-    est la matrice des vecteurs propres.
+    Pour obtenir une forme diagonale (si celle-ci existe) choisissez
+    une valeur élevée de <VERB>rmax</VERB> (<VERB>rmax=1/%eps</VERB>
+    par exemple).  Pour une matrice réelle quelconque, les blocs sont
+    de taille (1x1) ou (2x2) et <VERB>X</VERB> est la matrice des
+    vecteurs propres.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
@@ -73,6 +73,8 @@ a=rand(5,5);[ab,x,bs]=bdiag(a);ab
 [ab,x,bs]=bdiag(a+%i*0);ab
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>sylv</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>sylv</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

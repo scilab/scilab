@@ -58,25 +58,35 @@
     calculées et <VERB>S</VERB> est <VERB>n x n </VERB>.
   </P>
   <P>
-    <VERB>s=svd(X)</VERB> renvoie un vecteur <VERB>s</VERB> contenant les valeurs singulières.
+    <VERB>s=svd(X)</VERB> renvoie un vecteur <VERB>s</VERB> contenant
+    les valeurs singulières.
   </P>
   <P>
-    <VERB>[U,S,V,rk]=svd(X [,tol])</VERB> renvoie de plus <VERB>rk</VERB>, le rang &quot;numérique&quot; de <VERB>X</VERB> c&apos;est à dire le nombre de valeurs singulières plus grandes que <VERB>tol</VERB>.
+    <VERB>[U,S,V,rk]=svd(X [,tol])</VERB> renvoie de plus
+    <VERB>rk</VERB>, le rang &quot;numérique&quot; de <VERB>X</VERB>
+    c&apos;est à dire le nombre de valeurs singulières plus grandes
+    que <VERB>tol</VERB>.
   </P>
   <P>
     La valeur par défaut de <VERB>tol</VERB> est la même que pour la fonction <VERB>rank</VERB>.
   </P>
   </DESCRIPTION>
-   <USED_FUNCTION>
-   la décomposition svd est basée sur les routines  DGESVD pour les
-   matrices réelles et  ZGESVD pour le cas complexe.
-  </USED_FUNCTION>
+
   <EXAMPLE><![CDATA[
 X=rand(4,2)*rand(2,4)
 svd(X)
 sqrt(spec(X*X'))
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>sva</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>sva</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+   <USED_FUNCTIONS>
+   la décomposition svd est basée sur les routines  DGESVD pour les
+   matrices réelles et  ZGESVD pour le cas complexe.
+  </USED_FUNCTIONS>
 </MAN>

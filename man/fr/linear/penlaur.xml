@@ -40,7 +40,7 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    computes the first Laurent coefficients of <VERB>(s*E-A)^-1</VERB> at
+    <VERB>penlaur</VERB> computes the first Laurent coefficients of <VERB>(s*E-A)^-1</VERB> at
     infinity.
   </P>
   <P>
@@ -59,10 +59,12 @@
     For a index-one pencil (order=0),<VERB>Di</VERB> =0.
   </P>
   <P>
-    For higher-index pencils, the terms <VERB> -s^2 Di(2), -s^3 Di(3),... </VERB> are given by:
+    For higher-index pencils, the terms <VERB> -s^2 Di(2), -s^3
+    Di(3),... </VERB> are given by:
   </P>
   <P>
-    <VERB> Di(2)=Di*A*Di</VERB>, <VERB> Di(3)=Di*A*Di*A*Di </VERB> (up to <VERB>Di(order)</VERB>).
+    <VERB> Di(2)=Di*A*Di</VERB>, <VERB> Di(3)=Di*A*Di*A*Di </VERB> (up
+    to <VERB>Di(order)</VERB>).
   </P>
   </DESCRIPTION>
   <ITEMIZE label='Remark'>
@@ -78,7 +80,9 @@ F=rand(6,6)*F*rand(6,6);[E,A]=pen2ea(F);
 norm(coeff(Bis,1)-Di,1)
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>glever</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pencan</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rowshuff</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>glever</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>pencan</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>rowshuff</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>F. D. (1988,1990) ;   </AUTHOR>
+  <AUTHOR>F. Delebecque INRIA(1988,1990) ;   </AUTHOR>
 </MAN>

@@ -34,7 +34,7 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    Calcule une matrice unitaire <VERB>U</VERB> et une matrice de Hessenberg <VERB>H</VERB> telles que <VERB>A = U*H*U&apos;</VERB> et <VERB>U&apos;*U</VERB> = Identité. La syntaxe <VERB>H=hess(A)</VERB> ne renvoie que la matrice de Hessenberg.
+   <VERB>[U,H] = hess(A)</VERB> Calcule une matrice unitaire <VERB>U</VERB> et une matrice de Hessenberg <VERB>H</VERB> telles que <VERB>A = U*H*U&apos;</VERB> et <VERB>U&apos;*U</VERB> = Identité. La syntaxe <VERB>H=hess(A)</VERB> ne renvoie que la matrice de Hessenberg.
   </P>
   <P>
     Les coefficients d&apos;une matrice sous forme de Hessenberg sont nuls sous la première sous-diagonale. Si la matrice est symétrique ou hermitienne, la forme est tridiagonale.
@@ -51,6 +51,8 @@ A=rand(3,3);[U,H]=hess(A);
 and( abs(U*H*U'-A)<1.d-10 )
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>contr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>contr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -37,13 +37,16 @@
     Approximation de valeurs singulières.
   </P>
   <P>
-     avec <VERB>k</VERB> un entier &gt;=1, renvoie <VERB>U,S</VERB> et <VERB>V</VERB> telles que
-    <VERB>B=U*S*V&apos;</VERB> est la meilleure approximation au sens l_2
-    de <VERB>A</VERB> avec rang(<VERB>B</VERB>)=<VERB>k</VERB>. 
+    <VERB>[U,S,V]=sva(A,k)</VERB> avec <VERB>k</VERB> un entier
+    &gt;=1, renvoie <VERB>U,S</VERB> et <VERB>V</VERB> telles que
+    <VERB>B=U*S*V&apos;</VERB> est la meilleure approximation au sens
+    l_2 de <VERB>A</VERB> avec rang(<VERB>B</VERB>)=<VERB>k</VERB>.
   </P>
   <P>
-     où <VERB>tol</VERB> est un réel positif, renvoie <VERB>U,S</VERB> et <VERB>V</VERB> tels que
-    <VERB>B=U*S*V&apos;</VERB> et la norme l_2 de <VERB>A-B</VERB> est inférieure à <VERB>tol</VERB>.
+     <VERB>[U,S,V]=sva(A,tol)</VERB> où <VERB>tol</VERB> est un réel
+    positif, renvoie <VERB>U,S</VERB> et <VERB>V</VERB> tels que
+    <VERB>B=U*S*V&apos;</VERB> et la norme l_2 de <VERB>A-B</VERB> est
+    inférieure à <VERB>tol</VERB>.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

@@ -106,12 +106,7 @@ Il découle de <VERB>Q*R = X</VERB> que la
     renvoie <VERB>rk</VERB> = rang estimé de <VERB>X</VERB>. Ici, <VERB>rk</VERB> est le nombre d&apos;éléments diagonaux de <VERB>R</VERB> supérieurs à <VERB>R(1,1)*%eps*max(size(R)</VERB>.
   </P>
   </DESCRIPTION>
-<ITEMIZE label='REFERENCES'>
-  <P>
-    La décomposition QR est basée sur les routines Lapack  DGEQRF, DGEQPF, DORGQR pour
-    les matrices réelles et ZGEQRF, ZGEQPF, ZORGQR pour le cas complexe.
-  </P>
-  </ITEMIZE>
+
   <EXAMPLE><![CDATA[
 // QR factorization, generic case
 // X is tall (full rank)
@@ -130,6 +125,13 @@ norm(Q'*A-R)
 svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+<USED_FUNCTIONS>
+    La décomposition QR est basée sur les routines Lapack  DGEQRF, DGEQPF, DORGQR pour
+    les matrices réelles et ZGEQRF, ZGEQPF, ZORGQR pour le cas complexe.
+</USED_FUNCTIONS>
 </MAN>
