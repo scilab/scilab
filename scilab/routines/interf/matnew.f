@@ -1,8 +1,8 @@
       subroutine matnew
 c ====================================================================
 c
-c             controllabilite ,observabilite
-c             reponse frequentielle
+c             
+c    Frequency response, time response
 c
 c ====================================================================
 c
@@ -14,7 +14,7 @@ c
       integer iadr,sadr
 c
 c         fin    1     2      3      4       5     6
-c              contr   ppol  tzer    freq  ltitr  rtitr
+c              xxxx   ppol  tzer    freq  ltitr  rtitr
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -33,188 +33,10 @@ c
       err=0
       goto (10,20,30,40,50,60) fin
  10   continue
-c
-c forme controllable
-c ==================
-c
-      if(rhs.lt.2.or.lhs.gt.4) then
-         call error(39)
-         return
-      endif
-      if(rhs.eq.3) then
-         ito=iadr(lstk(top))
-         lito=sadr(ito+4)
-         tol=stk(lito)
-         if(istk(ito+1)*istk(ito+2).eq.2) then
-           atol=stk(lito+1)
-         else 
-           atol=0.0d0
-         endif
-         top=top-1
-      else
-         tol=eps
-         atol=0.0d0
-      endif
-      mode=1
-      if(lhs.eq.1) mode=0
-c
-c     matrice b
-      ib=iadr(lstk(top))
-      if(istk(ib).ne.1) then
-         err=2
-         call error(53)
-         return
-      endif
-      if(istk(ib+3).ne.0) then
-         err=2
-         call error(52)
-         return
-      endif
-      mb=istk(ib+1)
-      nb=istk(ib+2)
-      nnb=nb*mb
-      lb=sadr(ib+4)
-c   matrice a
-      top=top-1
-      ia=iadr(lstk(top))
-      if(istk(ia).ne.1) then
-         err=1
-         call error(53)
-         return
-      endif
-      if(istk(ia+3).ne.0) then
-         err=1
-         call error(52)
-         return
-      endif
-      ma=istk(ia+1)
-      na=istk(ia+2)
-      if(na.ne.ma) then
-         err=1
-         call error(20)
-         return
-      endif
-      nna=ma*na
-      la=sadr(ia+4)
-c
-      if(nnb.eq.0) then
-         if(lhs.le.2) then
-c     n
-            il=iadr(lstk(top))
-            istk(il)=1
-            istk(il+1)=1
-            istk(il+2)=1
-            istk(il+3)=0
-            l=sadr(il+4)
-            stk(l)=0.0d0
-            lstk(top+1)=l+1
-            if(lhs.eq.2) then
-c     u
-               top=top+1
-               il=iadr(lstk(top))
-               istk(il)=1
-               istk(il+1)=na
-               istk(il+2)=na
-               istk(il+3)=0
-               l=sadr(il+4)
-               call dset(na*na,0.0d0,stk(l),1)
-               call dset(na,1.0d0,stk(l),na+1)
-               lstk(top+1)=l+na*na
-            endif
-         elseif(lhs.eq.4) then
-            top=top+1
-c     u
-            top=top+1
-            il=iadr(lstk(top))
-            istk(il)=1
-            istk(il+1)=na
-            istk(il+2)=na
-            istk(il+3)=0
-            l=sadr(il+4)
-            call dset(na*na,0.0d0,stk(l),1)
-            call dset(na,1.0d0,stk(l),na+1)
-            lstk(top+1)=l+na*na
-c     ind
-            top=top+1
-            il=iadr(lstk(top))
-            istk(il)=1
-            istk(il+1)=1
-            istk(il+2)=1
-            istk(il+3)=0
-            l=sadr(il+4)
-            stk(l)=0.0d0
-            lstk(top+1)=l+1
-         endif
-         return
-      endif
-c
-      if(mb.ne.na) then
-         call error(60)
-         return
-      endif
-c
-      if(dnrm2(nb*mb,stk(lb),1).lt.atol) then
-         call dset(nb*mb,0.0d0,stk(lb),1)
-      endif
-      iq=iadr(lb+nnb)
-      lq=sadr(iq+4)
-      lka=lq+nna
-      lk1=lka+na*nb
-      lk2=lk1+nb
-      lk3=lk2+nb
-      ilw=iadr(lk3+nb)
-      err=sadr(ilw+nb)-lstk(bot)
-      if(err.gt.0) then
-         call error(17)
-         return
-      endif
-      call ssxmc(na,nb,stk(la),na,stk(lb),ir,indcon,istk(ilw),stk(lq),
-     x           stk(lka),stk(lk1),stk(lk2),stk(lk3),tol,1)
-c    on stocke les resultats
-      if(lhs.gt.2) goto 11
-c index de controllabilite
-      istk(ia+1)=1
-      istk(ia+2)=1
-      stk(la)=dble(ir)
-      lstk(top+1)=la+1
-      if(mode.eq.0) return
-c     on sort aussi q
-      top=top+1
-      iq=iadr(lstk(top))
-      istk(iq)=1
-      istk(iq+1)=na
-      istk(iq+2)=na
-      istk(iq+3)=0
-      lqnew=sadr(iq+4)
-      call unsfdcopy(nna,stk(lq),1,stk(lqnew),1)
-      lstk(top+1)=lqnew+nna
-      goto 99
-   11 if(lhs.ne.4) then
-         call error(39)
-         return
-      endif
-      top=top+2
-      iq=iadr(lstk(top))
-      istk(iq)=1
-      istk(iq+1)=na
-      istk(iq+2)=na
-      istk(iq+3)=0
-      lstk(top+1)=lq+nna
-      top=top+1
-      ils=iadr(lstk(top))
-      istk(ils)=1
-      istk(ils+1)=1
-      istk(ils+2)=indcon
-      istk(ils+3)=0
-      ls=sadr(ils+4)
-      do 12 i=1,indcon
-      stk(ls-1+i)=real(istk(ilw-1+i))
-   12 continue
-      lstk(top+1)=ls+indcon
       goto 99
 c
-c placement de poles ppol
-c=========================
+c  ppol
+c
    20 continue
       if(lhs.ne.1.or.rhs.ne.3) then
          call error(39)
