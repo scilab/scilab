@@ -288,7 +288,7 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
     if j>size(ext_cord1,1) then break;end
   end
 
-  ext_cord=ext_cord1(:,1)';
+  ext_cord=unique(ext_cord1(:,1)');
   //a supprimer
   [ext_cord_old,ok]=new_tree3(vec,dep_ut,typp);
   if or(sort(ext_cord_old)<>sort(ext_cord)) then pause,end
