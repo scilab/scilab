@@ -50,7 +50,9 @@ extern int tcl_check_one_event();
 #define CoordModeOrigin 0
 
 extern BOOL IsTKGraphicalMode(void);
-
+#ifndef WITH_TK
+  #define GXxor 6
+#endif
 
 /** 
   Warning : the following code won't work if the win.a library is 
@@ -3982,10 +3984,15 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   static HMENU sysmenu;
   SCROLLINFO vertsi;
   SCROLLINFO horzsi;
+  #ifdef WITH_TK
   integer ne=7, menutyp=2, ierr;
   char *EditMenusE[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties","Start Entity Picker","Stop  Entity Picker"};
   char *EditMenusF[]={"Selectionner","Redessiner","Effacer","Propriétés de la Figure","Propriétés des Axes Courants","Démarrer Sélecteur d'Entitées","Arrêter Sélecteur d'Entitées"};
-  
+  #else
+  integer ne=3, menutyp=2, ierr;
+  char *EditMenusE[]={"Select","Redraw","Erase"};
+  char *EditMenusF[]={"Selectionner","Redessiner","Effacer"};
+  #endif
   if ( v2 != (integer *) NULL && *v2 != -1 )
     WinNum= *v2;
   else
@@ -4024,8 +4031,10 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   sprintf(popupname,"ScilabGraphic%d", (int)WinNum);
   if (EntryCounter == 0) { ReadGraphIni(ScilabXgc);};
   ScilabXgc->Inside_init=1; /** to know that we are inside init code **/
+ 
   if (IsTKGraphicalMode())
   {
+  	#ifdef WITH_TK
 	  Tk_Window  win;
 	  Window    windowId;
 	  /* TKmainWindow est initialise dans tksci.c  Tk_CreateMainWindow */
@@ -4044,7 +4053,9 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 				ScilabXgc->CWindowWidthView  = ScilabXgc->CWindowWidth;
 				ScilabXgc->CWindowHeightView = ScilabXgc->CWindowHeight;
 			}
+		
 		}
+		#endif	
     SetWinhdc();
 	 SetMapMode(hdc, MM_TEXT);
 	 SetBkMode(hdc,TRANSPARENT);
@@ -4066,7 +4077,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   }
   else
   {
-	  ScilabXgc->hWndParent = CreateWindow(szParentGraphClass, popupname,
+  	  ScilabXgc->hWndParent = CreateWindow(szParentGraphClass, popupname,
 				       WS_OVERLAPPEDWINDOW,
 				       graphwin.Origin.x, graphwin.Origin.y,
 				       graphwin.Size.x, graphwin.Size.y,
@@ -4168,7 +4179,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 		}
 	CreateGraphToolBar(ScilabXgc);
   }
-
+ 
  
   
   ScilabXgc->Inside_init=0;

@@ -30,10 +30,19 @@ int INXscilab = 0; /**  XXXX just to use zzledt1 **/
 /*-----------------------------------------------------------------------------------*/
 void SetNotBasic()
 {
+	#ifdef WITH_TK
   BasicScilab=0;
+  #endif
 }
 /*-----------------------------------------------------------------------------------*/
-int GetBasic() { return  BasicScilab;} 
+int GetBasic() 
+{
+#ifdef WITH_TK
+	 return  BasicScilab;
+#else
+	 return  0;
+#endif
+} 
 /*-----------------------------------------------------------------------------------*/
 
 void start_sci_gtk() 
@@ -70,7 +79,11 @@ int C2F (xscion) (int *i)
 int C2F(checkevts)(int *i)
 {
   /*  *i= INXscilab; */
+  #if WITH_TK
   *i= Max(INXscilab,1-BasicScilab);
+  #else
+  *i= INXscilab;
+  #endif
   return(0);
 }
 /*-----------------------------------------------------------------------------------*/
@@ -85,10 +98,11 @@ int C2F(checkevts)(int *i)
 
 void sci_tk_activate(void)
 {
+	#ifdef WITH_TK
   start_sci_gtk();
   inittk();
   BasicScilab = 0;
-
+  #endif
 }
 /*-----------------------------------------------------------------------------------*/
 /*************************************************
@@ -146,7 +160,11 @@ void TextMessage2()
 /*-----------------------------------------------------------------------------------*/
 int C2F (sxevents) ()
 {
+	#ifdef WITH_TK
   if (INXscilab == 1 || BasicScilab == 0 )
+  #else
+  if (INXscilab == 1 )
+  #endif
     {
       TextMessage1 (1);
     }
