@@ -116,7 +116,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
   static double zmin,zmax;
   integer i,j;
   /** If Record is on **/
-  if (GetDriver()=='R' && version_flag() == 0) 
+  if (GetDriver()=='R' && version_flag() != 0) 
     StorePlot3D(name,x,y,z,p,q,teta,alpha,legend,flag,bbox);
 
   C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -520,7 +520,7 @@ int C2F(param3d)(double *x, double *y, double *z, integer *n, double *teta, doub
   static integer *xm,*ym;
   integer verbose=0,xz[10],narg,fg1;
   /** If Record is on **/
-  if (GetDriver()=='R' && version_flag() == 0) 
+  if (GetDriver()=='R' && version_flag() != 0) 
     StoreParam3D("param3d",x,y,z,n,teta,alpha,legend,flag,bbox);
   C2F(dr)("xget","dashes",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   style[0]= xz[0];
@@ -608,7 +608,7 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
   static integer *xm,*ym;
   integer verbose=0,xz[10],narg,fg1,cur;
   /** If Record is on **/
-  if (GetDriver()=='R' && version_flag() == 0) 
+  if (GetDriver()=='R' && version_flag() != 0) 
     StoreParam3D1("param3d1",x,y,z,m,n,iflag,colors,teta,alpha,legend,flag,bbox);
   C2F(dr)("xget","dashes",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   style[0]= xz[0];

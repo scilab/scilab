@@ -5462,8 +5462,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strcmp(marker,"surface_color") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) { 
       if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PARAM3D1)  {
-	strcpy(error_message,"surface_color cannot be set in this case");
-	return -1;
+	if (pSURFACE_FEATURE (pobj)->dimzy != *numrow * *numcol) 
+	  {sprintf(error_message,"Second argument must have %d elements ",
+		   pSURFACE_FEATURE (pobj)->dimzy);return -1;}
+	for (i=0;i<pSURFACE_FEATURE (pobj)->dimzy;i++) 
+	    pSURFACE_FEATURE (pobj)->zcol[i]= stk(*value)[i];
       }
       else if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)  {
 	strcpy(error_message,"surface_color cannot be set in this case");
@@ -6299,7 +6302,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  *stk(outindex)=(double)pSURFACE_FEATURE (pobj)->zcol[0];
 	}
 	else {
-	  numrow=pSURFACE_FEATURE (pobj)->dimzx;
+	  numrow=1;
 	  numcol=pSURFACE_FEATURE (pobj)->dimzy;
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	  for (i=0;i<numcol*numrow;i++) 

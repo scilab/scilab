@@ -11538,10 +11538,32 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       }
       return (double*)tab;
       break;
+    case SCI_SURFACE:
+      if (pSURFACE_FEATURE (pthis)->typeof3d == SCI_PARAM3D1)  {
+	int N;
+	*numrow = pSURFACE_FEATURE (pthis)->dimzx;
+	*numcol = 3*pSURFACE_FEATURE (pthis)->dimzy;
+	N = *numrow * pSURFACE_FEATURE (pthis)->dimzy;
+	if ((tab = calloc(3*N,sizeof(double))) == NULL)
+	  return (double*)NULL;
+	for (i=0;i < N;i++) 
+	  tab[i] = pSURFACE_FEATURE (pthis)->pvecx[i];	
+	k=N;
+	for (i=0;i < N;i++) 
+	  tab[k+i] = pSURFACE_FEATURE (pthis)->pvecy[i];
+	k=k+ N;
+	for (i=0;i < N;i++) 
+	  tab[k+i] = pSURFACE_FEATURE (pthis)->pvecz[i];
+      }
+      else {
+	sciprint ("Un handled data field\n");
+	return (double*)NULL;
+      }
+      return (double*)tab;
+      break;
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_LEGEND:
-    case SCI_SURFACE:
     case SCI_LIGHT:
     case SCI_AXIS:    
     case SCI_AXES:
@@ -11797,6 +11819,67 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       return 0;
       break;
 
+
+    case SCI_SURFACE:
+      if (pSURFACE_FEATURE (pthis)->typeof3d == SCI_PARAM3D1)  {
+	int ncurv,N;
+	double *pvecx, *pvecy, *pvecz;
+	ncurv=*numcol/3;
+	if (3*ncurv != *numcol) {
+	  sciprint("The number of columns must be a multiple of 3\n");
+	  return -1;
+	}
+	N = *numrow * ncurv;
+	if ((*numrow != pSURFACE_FEATURE (pthis)->dimzx)||(*numcol != pSURFACE_FEATURE (pthis)->dimzy)){
+	  if ((pvecx = MALLOC (N * sizeof (double))) == NULL) return -1;
+	  if ((pvecy = MALLOC (N * sizeof (double))) == NULL) {
+	    FREE(pvecx);
+	    return -1;
+	  }
+	  if ((pvecz = MALLOC (N * sizeof (double))) == NULL) {
+	    FREE(pvecx);FREE(pvecy);
+	    return -1;
+	  }
+	  if ((zcol = MALLOC (ncurv * sizeof (int))) == NULL) {
+	    FREE(pvecx);FREE(pvecy);FREE(pvecz);
+	    return -1;
+	  }
+
+	  FREE(pSURFACE_FEATURE (pthis)->pvecx);pSURFACE_FEATURE (pthis)->pvecx=pvecx;
+	  FREE(pSURFACE_FEATURE (pthis)->pvecy);pSURFACE_FEATURE (pthis)->pvecy=pvecy;
+	  FREE(pSURFACE_FEATURE (pthis)->pvecz);pSURFACE_FEATURE (pthis)->pvecz=pvecz;
+
+	  /* adjust colors */
+	  if (ncurv <= pSURFACE_FEATURE (pthis)->dimzy) {
+	    for (i=0;i <ncurv ;i++) 
+	      zcol[i] = pSURFACE_FEATURE (pthis)->zcol[i];
+	  }
+	  else {
+	    for (i=0;i <pSURFACE_FEATURE (pthis)->dimzy ;i++) 
+	      zcol[i] = pSURFACE_FEATURE (pthis)->zcol[i];
+	    for (i=pSURFACE_FEATURE (pthis)->dimzy;i < ncurv ;i++) 
+	      zcol[i] = 1;
+	  }
+	  FREE(pSURFACE_FEATURE (pthis)->zcol);pSURFACE_FEATURE (pthis)->zcol=zcol;
+	  pSURFACE_FEATURE (pthis)->dimzx=*numrow;
+	  pSURFACE_FEATURE (pthis)->dimzy= ncurv;
+	}
+	for (i=0;i < N;i++) 
+	  pSURFACE_FEATURE (pthis)->pvecx[i] = tab[i];	
+	k=N;
+	for (i=0;i < N;i++) 
+	  pSURFACE_FEATURE (pthis)->pvecy[i] = tab[k+i];
+	k=k+ N;
+	for (i=0;i < N;i++) 
+	  pSURFACE_FEATURE (pthis)->pvecz[i] = tab[k+i];
+      }
+      else {
+	sciprint ("Un handled data field\n");
+	return -1;
+      }
+      return 0;
+      break;
+
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_SBV:
@@ -11805,7 +11888,6 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_SUBWIN:
     case SCI_TITLE:
     case SCI_LEGEND:
-    case SCI_SURFACE:
     case SCI_LIGHT:    
     case SCI_AXIS:
     case SCI_AXES:
