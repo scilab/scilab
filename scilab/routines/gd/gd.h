@@ -60,6 +60,7 @@ typedef struct {
 	/* Character width and height */
 	int w;
 	int h;
+        int fixed;
 	/* Font data; array of characters, one row after another.
 		Easily included in code, also easily loaded from
 		data files. */

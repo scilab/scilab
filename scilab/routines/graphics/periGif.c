@@ -2084,8 +2084,9 @@ static void C2F(displaysymbolsGif)(char *str, integer *n, integer *vx, integer *
   col = ( ScilabGCGif.CurColorStatus ==1) ? ScilabGCGif.CurColor : ScilabGCGif.CurPattern ;
   for (i = 0; i < *n; i++) {
       c = Char2Int(symb_listGif[ScilabGCGif.CurHardSymb]);
-      sz = isizeGif[ScilabGCGif.CurHardSymbSize];
-      gdImageChar(GifIm, GifFont, vx[i], vy[i]-sz, c,GifLineColor());
+      gdImageSymb(GifIm, GifFont, vx[i], vy[i], c,GifLineColor());
+      /*            sz = isizeGif[ScilabGCGif.CurHardSymbSize];
+		    gdImageChar(GifIm, GifFont, vx[i], vy[i]-sz, c,GifLineColor());*/
   }
 }
 

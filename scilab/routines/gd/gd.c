@@ -708,8 +708,12 @@ int gdImageChar(im, f, x, y, c, color)
 		cx = 0;
 		cy++;
 	}
-	return(mx-x+1);
+	if (f->fixed) 
+	  return(f->w-2);
+	else
+	  return(mx-x+1);
 }
+
 /*SG gdCharWidth has been added to compute the effective width of a character */
 int gdCharWidth(f, c)
      gdFontPtr f;
@@ -738,7 +742,49 @@ int gdCharWidth(f, c)
 		cx = 0;
 		cy++;
 	}
-	return(mx+1);
+	if (f->fixed) 
+	  return(f->w-2);
+	else
+	  return(mx+1);
+}
+
+/*SG gdImageSymb added for centered symbols */
+int gdImageSymb(im, f, x, y, c, color)
+     gdImagePtr im;
+     gdFontPtr f;
+     int x;
+     int y;
+     int c;
+     int color;
+{
+	int cx, cy,xx,yy;
+	int px, py;
+	int fline;
+	int mx;
+	int w;
+	if ((c < f->offset) || (c >= (f->offset + f->nchars))) {
+		return(0);
+	}
+
+
+	cx = 0;
+	cy = 0;
+	mx = x;
+
+	w = gdCharWidth(f,c);
+	xx=x-w/2;yy=y-f->h/2;
+	fline = (c - f->offset) * f->h * f->w;
+	for (py = yy; (py < (yy + f->h)); py++) {
+		for (px = xx; (px < (xx + f->w)); px++) {
+			if (f->data[fline + cy * f->w + cx]) {
+				gdImageSetPixel(im, px, py, color);	
+				mx = Max(mx,px+1);
+			}
+			cx++;
+		}
+		cx = 0;
+		cy++;
+	}
 }
 
 

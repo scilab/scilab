@@ -45,16 +45,16 @@ int ReadbdfFont(f,FontPtr,FontName)
      char *FontName;
 
 {
-  char s[MAXLINE],hex[3];
+  char s[MAXLINE],hex[3],Spacing[3];
   char tag[MAXLINE];
   int curptr, curptrs, curcharptr;
   int  bottom, width, currentchar, globalleft, globaltop, left;
   int height,hei,wid, gobitmap, bot;
   char *Data, *data;
   int i, j, nrow, nbytes,k ;
-  int c;
+  int c,fixed;
 
-
+  FontPtr->fixed =0;
   gobitmap =0;
   hex[2]=0;
 
@@ -66,6 +66,10 @@ int ReadbdfFont(f,FontPtr,FontName)
       }
       else if (!strcmp(tag,"FONT")){
 	sscanf(s,"%s %s",tag,FontName);
+      }
+      else if (!strcmp(tag,"SPACING")){
+	sscanf(s,"%s %s",tag,Spacing);
+	if (Spacing[1]=='M') FontPtr->fixed=1;
       }
       else if (!strcmp(tag,"FONTBOUNDINGBOX")){
 	sscanf(s,"%s %d %d %d %d",tag,&width,&height,&globalleft,&globaltop);
