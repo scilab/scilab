@@ -10,7 +10,7 @@ c     -------------------------------
       integer iadr,sadr
       external memused,uppertype
       integer memused,uppertype
-      integer s
+      double precision s
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -24,7 +24,6 @@ c
          return
       endif
       itype=gettype(topk)
-
       if(rhs.gt.1.and.itype.ne.10) goto 100
 c
 
