@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.26 $)dnl
+AC_REVISION($Revision: 1.27 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1490,7 +1490,7 @@ AC_SUBST(XAW_LOCAL_SUBDIR)
 AC_SUBST(XAW_LOCAL_INCLUDES)
 AC_SUBST(XAW_LOCAL_LIB)
 AC_SUBST(GTKCFLAGS)
-AC_SUBST(GTKLIB)
+AC_SUBST(GTKLIBS)
 AC_SUBST(GNOMECFLAGS)
 AC_SUBST(TERMCAPLIB)
 AC_SUBST(MAIN)
