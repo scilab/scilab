@@ -1,3 +1,38 @@
+/*------------------------------------------------------------------------
+ *    mexlib  library
+ *    Copyright (C)  Enpc/Inria 
+ *    Authors FD-JPC  (mail scilab@inria.fr)
+ *
+ *    This library emulates Matlab' API functions. It is not fully tested...
+ *    -Assumes that Scilab string matrices have one column, e.g. 
+ *    Str=["qwerty";"123456"]; here this is a 2 x 6 matrix but Scilab
+ *    considers Str as a 2 x 1 matrix. ["123";"1234"] is a valid string
+ *    matrix which cannot be used here.
+ *    -Assumes that sparse matrices have been converted into the Matlab
+ *    format. Scilab sparse matrices are stored in the transposed Matlab
+ *    format. If A is a sparse Scilab matrix, it should be converted 
+ *    by the command A=mtlb_sparse(A) in the calling sequence of the
+ *    mex function.
+ *    -Structs and Cells are Scilab mlists:
+ *    Struct=mlist(["st","dims","field1",...,"fieldk"],
+ *                 int32([d1,d2,...,dn]),
+ *                 list(obj1,      objN),
+ *                 .....
+ *                 list(obj1,      objN))     k such lists
+ *           N = d1 x d2    x dn
+ *           obj = Scilab variable or pointer to Scilab variable.
+ *     Cell = Struct with one field called "entries" and "st" <- "ce"
+ *    One dimensional structs or cells are as follows:
+ *    Struct=mlist(["st","dims","field1",...,"fieldk"],
+ *                 int32([1,1]),
+ *                 obj1,...,objk)
+ *
+ *    -Nd dimensional arrays are Scilab mlists (for Nd > 2):
+ *     X = mlist(["hm","dims","entries"],
+ *                 int32([d1,d2,...,dn]),
+ *                 values)
+ *     values = vector of doubles or int8-16-32 or char
+ --------------------------------------------------------------------------*/
 #include "../mex.h"
 #include <string.h>
 #include <stdio.h>
@@ -18,28 +53,33 @@ extern void cerro __PARAMS((char *str));
 extern int C2F(dcopy) __PARAMS((int*, double *, int *, double *, int *));
 extern int C2F(xscion)  __PARAMS((int *i));
 extern void C2F (xscisncr) __PARAMS((char *str, integer *n, integer dummy)); 
-extern int  C2F(mxgetm) __PARAMS((    Matrix *ptr));
-extern int  C2F(mxgetn) __PARAMS((    Matrix *ptr));
+extern int  C2F(mxgetm) __PARAMS((    mxArray *ptr));
+extern int  C2F(mxgetn) __PARAMS((    mxArray *ptr));
 extern void C2F(xscisrn) __PARAMS((char *str,int *n,int  dummy));
 extern int  C2F(erro)  __PARAMS((char *str,int dummy));
 extern int  C2F(hmcreate)  __PARAMS((int *lw,int *nz,int *sz,int *typv,int *iflag,int *retval));
 extern int  C2F(stcreate)  __PARAMS((int *lw1,int *ndim,int *dims, int *nfields, char **field_names, int *retval));
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
+extern int arr2num __PARAMS(( mxArray  *ptr ));
+
+extern int C2F(changetoref) __PARAMS((int number, int pointed));
+
+extern int IsReference  __PARAMS((mxArray *array_ptr));
 
 #define DOUBLEMATRIX 1
 #define INTMATRIX 8
 #define STRINGMATRIX  10
 #define SPARSEMATRIX  7
 #define LOGICAL 4
-#define MLIST   17
+#define MLIST 17
 #define AsIs  '$'
 #define NDARRAY 1
 #define CELL 2
 #define STRUCT 3
 
-/* s2iadr: loc adress to loci adress */
+/* s2iadr: value adress to header adress */
 #define s2iadr(l) ((l)+(l)-1)
-/* i2sadr: loci adress to loc adress */
+/* i2sadr: header adress to value adress */
 #define i2sadr(l) ( ( (l)/2 ) +1 )
 
 vraiptrst  stkptr(long int ptr_lstk)
@@ -48,106 +88,101 @@ vraiptrst  stkptr(long int ptr_lstk)
   return ptr;
 }
 
-Matrix *loci2ptr(int *loci)
+int *Header(const mxArray *ptr)
 {
-  Matrix ptr;
-  ptr=(Matrix) ((double *)loci-(double *)stkptr(C2F(vstk).Lstk[0])+C2F(vstk).Lstk[0]) ;
-  return (Matrix *) ptr;
+  /* Retuns an integer pointer to the header of a mxArray */
+  int *header = (int *) stkptr((long int)ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  return header;
 }
-/*    ix1 = il + 3 + *n;
- *ili = sadr(ix1) + *istk(il + 2 + (*ix - 1) ) - 1; */
 
 
-
-int *listentry(int *loci, int i)
+mxArray *header2ptr(int *header)
 {
-  int n, *ptr; /* , lll;*/
-  n = loci[1]; 
+  mxArray ptr;
+  ptr=(mxArray) ((double *)header-(double *)stkptr(C2F(vstk).Lstk[0])+C2F(vstk).Lstk[0]) ;
+  return (mxArray *) ptr;
+}
+
+int *listentry(int *header, int i)
+{
+  /*Usage int *header = header(array_ptr)   
+   *      int *headersub = listentry(header, k)
+   *   then headersub[0] ... is the header of the kth object in the
+   *   list array_ptr  */
+  int n, *ptr; 
+  n = header[1]; 
   if (i <= n) {
     if ( n%2 == 0 ) n++;
-    /* jpc lll = loci + 3 + n + 2*( loci[2 + (i - 1) ] -1); 
-       ptr = (int *) (lll); */
-    ptr = (int *) loci + 3 + n + 2*( loci[2 + (i - 1) ] -1);
+    /* n = n if n odd, n=n+1 if n even (=> n is odd and ptr even !) */
+    ptr = (int *) header + 3 + n + 2*( header[2 + (i - 1) ] -1);
   return ptr;
   } else {
     return NULL;
   }
 }
 
-double *listentryold(int *loci, int i)
+int theMLIST(int *header)
 {
-  int n;
-  double *ptr;
-
-  n = loci[1];
-  if (i <= n) {
-    ptr = (double *)(loci+3+n) + loci[2 + (i - 1) ] - 1;
-    return  ptr;
-  } else {
-    return NULL;
+  /* Returns the type of the mlist  (CELL, STRUCT or HYPERMATRIX)  */
+  int *header1; int nfplus2, l;
+  if (header[0]==MLIST && header[1]==3 && header[6]==STRINGMATRIX) {
+    if (header[14]==12 && header[15]==14) return 2;  /* CELL "c"=12 "e"=14  */
+    if (header[14]==17 && header[15]==22) return 1;  /* NDARRAY "h"=17 "m"=22   */
   }
-}
-
-int theMLIST(int *loci)
-{
-  int *loci1; int nfplus2, l;
-  if (loci[0]==17 && loci[1]==3 && loci[6]==10) {
-    if (loci[14]==12 && loci[15]==14) return 2;  /* CELL   */
-    if (loci[14]==17 && loci[15]==22) return 1;  /* NDARRAY   */
-  }
-  if (loci[0]==17) {
-    loci1 = (int *) listentry(loci,1);
-    nfplus2 = loci1[1]*loci1[2];
+  if (header[0]==MLIST) {
+    header1 = (int *) listentry(header,1);
+    nfplus2 = header1[1]*header1[2];
     l = 5 + nfplus2;
   /*  "s"=28,  "t"=29   */
-    if (loci1[0]==10 && loci1[l]==28 && loci1[l+1]==29) return 3;  /* STRUCT */
+    if (header1[0]==STRINGMATRIX && header1[l]==28 && header1[l+1]==29) return 3;  /* STRUCT */
   }
   return 0;
 }
 
 /*----------------------------------------------------------------
  *                       DOUBLEMATRIX                            
- *   loci[0]= DOUBLEMATRIX  =1                                   
- *   loci[1]= M (number of rows)                                 
- *   loci[2]= N (number of cols)                                 
- *   loci[3]= mxComplexity  (0 real, 1 complex)                  
- *   loc[2] = real part                                          
- *   loc[2+M*N] = imaginary part  (if mxComplexity =1)           
+ *   header[0]= DOUBLEMATRIX  =1                                   
+ *   header[1]= M (number of rows)                                 
+ *   header[2]= N (number of cols)                                 
+ *   header[3]= mxComplexity  (0 real, 1 complex)                  
+ *   value[2] = real part                                          
+ *   value[2+M*N] = imaginary part  (if mxComplexity =1)           
  *    
  *-----------------------------------------------------------------
  *                       INTMATRIX                               
- *   loci[0]= INTMATRIX =8                                       
- *   loci[1]= M (number of rows)                                 
- *   loci[2]= N (number of cols)                                 
- *   loci[3]= TYPE                                               
+ *   header[0]= INTMATRIX =8                                       
+ *   header[1]= M (number of rows)                                 
+ *   header[2]= N (number of cols)                                 
+ *   header[3]= TYPE                                               
  *      TYPE=   01    02   04    11     12    14                      
  *             int8 int16 int32 uint8 uint16 uint32                   
- *   loc[2] = real part                                               
+ *   value[2] = real part                                               
  *
  *------------------------------------------------------------------
  *                    SPARSEMATRIX                                    
- *   loci[0]= SPARSEMATRIX  =7 (converted from 8)                     
- *   loci[1]= M (number of rows)                                      
- *   loci[2]= N (number of cols)                                      
- *   loci[3]= mxComplexity  (0 real, 1 complex)                       
- *   loci[4]=nzmax                                                    
- *   loci[5]=Jc[0]                                                    
- *   loci[5+loci[2]+1]=Ir[0]                                         
- *   loc[(5+loci[2]+loci[4])/2 + 1] = real part                       
- *   loc[(5+loci[2]+loci[4])/2 + 1 + M*N] = imag part                 
+ *   header[0]= SPARSEMATRIX  =7 (converted from 8)                     
+ *   header[1]= M (number of rows)                                      
+ *   header[2]= N (number of cols)                                      
+ *   header[3]= mxComplexity  (0 real, 1 complex)                       
+ *   header[4]=nzmax                                                    
+ *   header[5]=Jc[0]                                                    
+ *   header[5+header[2]+1]=Ir[0]                                         
+ *   value[(5+header[2]+header[4])/2 + 1] = real part                       
+ *   value[(5+header[2]+header[4])/2 + 1 + M*N] = imag part                 
  *
  *-------------------------------------------------------------------
  *                    STRINGMATRIX                                        
- *    loci[0]= STRINGMATRIX   = 10                                        
- *    loci[1]=  nrows                                                     
- *    loci[2]=  ncols  (MUST be 1 since Matlab string matrices are seen   
+ *    header[0]= STRINGMATRIX   = 10                                        
+ *    header[1]=  nrows                                                     
+ *    header[2]=  ncols  (MUST be 1 since Matlab string matrices are seen   
  *                           as Scilab  column matrices, all columns      
  *                           having  the same length                      
- *    loci[3]=  0                                                         
- *    loci[4:...]= 1, ptr1, ..., ptrnrows,                                
- *    loci[5]=loci[4] + length of string in row 1                         
- *    loci[6]=loci[5] + length of string in row 2                         
- *    loci[5+loci[1]:...] = code of strings  (int)                        
+ *    header[3]=  0                                                         
+ *    header[4:...]= 1, ptr1, ..., ptrnrows,                                
+ *    header[5]=header[4] + length of string in row 1                         
+ *    header[6]=header[5] + length of string in row 2                         
+ *    header[5+header[1]:...] = code of strings  (int)                        
  *
  *--------------------------------------------------------------------
  *
@@ -159,11 +194,11 @@ int theMLIST(int *loci)
  *           <=>  matlab cell array
  *           <=> mlist(["ce","dims","entries"],[dim1,...,dimk], list())
  *
- *   loci[0]=   MLIST  =  17                                      
- *   loci[1]= 3   (3 elements in the mlist)                           
- *   loci[2,3,4,5]= 1,12,*,*  <-> 4 pointers                          
+ *   header[0]=   MLIST  =  17                                      
+ *   header[1]= 3   (3 elements in the mlist)                           
+ *   header[2,3,4,5]= 1,12,*,*  <-> 4 pointers                          
  * 
- * ->loci[6:27]  <-> ["hm","dims","entries"] = ...
+ * ->header[6:27]  <-> ["hm","dims","entries"] = ...
  *                     HYPERMATRIX
  *             10,1,3,0,1,3,7,14,17,22,13,18,22,28,14,23,29,27,18,14,28,* 
  *                                h  m  d  i  m  s  e  n  t  r  i  e  s   
@@ -172,34 +207,32 @@ int theMLIST(int *loci)
  *             10,1,3,0,1,3,7,14,12,14,13,18,22,28,14,23,29,27,18,14,28,* 
  *                                c  e  d  i  m  s  e  n  t  r  i  e  s   
  *
- * ->loci[28:...] <-> [dim1, ..., dimk] = ...
- *                1,ndims,1,0,****** (dimensions)  28=6+2*(loci[3]-1)
+ * ->header[28:...] <-> [dim1, ..., dimk] = ...
+ *                1,ndims,1,0,****** (dimensions)  28=6+2*(header[3]-1)
  *                            ^                                           
  *                            |                                           
- *                         loci[32]                                       
+ *                         header[32]                                       
  *
- * ->loci[6+2*(loci[4]-1):...] <-> vector
+ * ->header[6+2*(header[4]-1):...] <-> vector
  *                            = 1,m,n,it,*  for double  array               
  *                            = 8,m,n,it,* for int array   with n=1 
  *                            = 10,m,n,0,1,len+1 for char array with m=1, n=1 
  *                            = 15,n,...         for cell array
  *                              ^                                         
  *                              |                                         
- *                     loci[6+2*(loci[4]-1)]   ( = 1, 8, 10)
- *   loci[6+2*(loci[4]-1)+4:...] = ***** (entries) for double or int array
+ *                     header[6+2*(header[4]-1)]   ( = 1, 8, 10)
+ *   header[6+2*(header[4]-1)+4:...] = ***** (entries) for double or int array
  *   
- *   loci[6+2*(loci[4]-1)+4:6+2*(loci[4]-1)+5] = [1,length+1]
- *   loci[6+2*(loci[4]-1)+6:...] = entries = code of string  (int)
+ *   header[6+2*(header[4]-1)+4:6+2*(header[4]-1)+5] = [1,length+1]
+ *   header[6+2*(header[4]-1)+6:...] = entries = code of string  (int)
  *
  *----------------------------------------------------------------------
  **************************************************************************/
 
-mxClassID mxGetClassID(const mxArray *ptr)
+mxClassID mxGetClassID(mxArray *ptr)
 {
-  /* TO BE DONE */
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) {
+  int *header = Header(ptr);
+  switch (header[0]) {
   case DOUBLEMATRIX: 
     return mxDOUBLE_CLASS;
   case STRINGMATRIX:
@@ -208,8 +241,8 @@ mxClassID mxGetClassID(const mxArray *ptr)
     return mxSPARSE_CLASS;
   case INTMATRIX:
     /*[8,m,n,it] it=01    02   04    11     12    14
-      int8 int16 int32 uint8 uint16 uint32    */
-    switch (loci[3]){
+                   int8 int16 int32 uint8 uint16 uint32    */
+    switch (header[3]){
     case 1:
       return mxINT8_CLASS;
     case 2:
@@ -226,22 +259,20 @@ mxClassID mxGetClassID(const mxArray *ptr)
       return mxUNKNOWN_CLASS;
     }
   case MLIST:
-    /* to be done return mxCELL_CLASS or mxCHAR_CLASS or mxSTRUCT_CLASS */
-    /* loci[6+2*(loci[4]-1)]   ( = 1, 10, 8)  */
-    switch (theMLIST(loci)) {
+    switch (theMLIST(header)) {
     case CELL:
       return mxCELL_CLASS;
     case STRUCT:
       return mxSTRUCT_CLASS;
     case NDARRAY:
-    switch (loci[6+2*(loci[4]-1)]) {
-      /* listentry(loci,3) */
+    /* header[6+2*(header[4]-1)]   ( = 1, 10, 8)  */
+    switch (header[6+2*(header[4]-1)]) {
     case DOUBLEMATRIX:
       return mxDOUBLE_CLASS;
     case STRINGMATRIX:
       return mxCHAR_CLASS;
     case INTMATRIX:
-      switch (loci[6+2*(loci[4]-1)+3]) {
+      switch (header[6+2*(header[4]-1)+3]) {
       case 1:
 	return mxINT8_CLASS;
       case 2:
@@ -265,12 +296,36 @@ mxClassID mxGetClassID(const mxArray *ptr)
   return mxUNKNOWN_CLASS;
 }
 
-/*
-int mxIsInt8(mxArray *ptr)
+
+bool mxIsInt8(mxArray *ptr)
 {
   return mxGetClassID(ptr)==mxINT8_CLASS;
 }
-*/
+
+bool mxIsInt16(mxArray *ptr)
+{
+  return mxGetClassID(ptr)==mxINT16_CLASS;
+}
+
+bool mxIsInt32(mxArray *ptr)
+{
+  return mxGetClassID(ptr)==mxINT32_CLASS;
+}
+
+bool mxIsUint8(mxArray *ptr)
+{
+  return mxGetClassID(ptr)==mxUINT8_CLASS;
+}
+
+bool mxIsUint16(mxArray *ptr)
+{
+  return mxGetClassID(ptr)==mxUINT16_CLASS;
+}
+
+bool mxIsUint32(mxArray *ptr)
+{
+  return mxGetClassID(ptr)==mxUINT32_CLASS;
+}
 
 double mxGetEps(void)
 {
@@ -315,41 +370,58 @@ int mxIsNaN(double x)
     return 1;
   else return 0;
 }
-/*******************   C functions              ***************************/
-int *mxGetHeader(Matrix *ptr)
+
+int *RawHeader(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  return &loci[0];
+  /* Utility function : return an integer pointer to   *
+   * a Scilab variable. The variable can be            *
+   * a reference (header[0] < 0)                       */
+  int *header = (int *) stkptr((long int)ptr);
+  return header;
 }
+
+int Is1x1(mxArray *ptr)
+{
+  int proddims,k;
+  int *header = RawHeader(ptr);
+  int *headerdims = listentry(header,2);
+  proddims=1;
+  for (k=0; k<headerdims[1]*headerdims[2]; k++) {
+    proddims=proddims*headerdims[4+k];
+  }
+  return (int) proddims==1;
+}
+
 
 mxArray *mxCreateData(int m)
+     /* Utility fctn : create a no-header, unpopulated  *
+      * mxArray of size=m*sizeof(double)               */
 {
   static int lw, lr;
-  int n;
+  int n; int size;
   lw = Nbvars + 1;
-  /* sciprint("mxCreateFull XXXX  %d\n\r",lw); */
-  if (! C2F(createvar)(&lw, "d", &m, (n=1,&n), &lr, 1L)) {
+  size=m-2;
+  if (! C2F(createvar)(&lw, "d", &size, (n=1,&n), &lr, 1L)) {
     mexErrMsgTxt("No more memory available: increase stacksize");
   }
-   return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1]);  */
+  C2F(intersci).ntypes[lw-1]=AsIs;
+  return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
 
 
-int mxGetNumberOfElements(Matrix *ptr)
+int mxGetNumberOfElements(mxArray *ptr)
 {
   int m, commonlength;
-  int *loci = (int *) stkptr((long int) ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) {
+  int *header=Header(ptr);
+  switch (header[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
-    return loci[1]*loci[2];
-  case MLIST:
-    return loci[6+2*(loci[4]-1)+1];
-    /* debut=listentry(loci,3); (debut)... */
+    return header[1]*header[2];
+  case MLIST:   /* TO BE DONE */
+    return header[6+2*(header[4]-1)+1];
+    /* debut=listentry(header,3); (debut)... */
   case STRINGMATRIX:
-    m=loci[1];
-    commonlength=loci[5]-loci[4];
+    m=header[1];
+    commonlength=header[5]-header[4];
     return m*commonlength;
     /*case SPARSEMATRIX to be done */
   default:
@@ -358,30 +430,29 @@ int mxGetNumberOfElements(Matrix *ptr)
 }
 
 
-double *mxGetPr(Matrix *ptr)
+double *mxGetPr(mxArray *ptr)
 {
-  double *loc;
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) {
+  double *value;
+  int *header = Header(ptr);
+  switch (header[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
-    /*    return (loci[1]==0 || loci[2] == 0) ? NULL : &loci[4]; */
-    return (loci[1]==0 || loci[2] == 0) ? NULL : (double *) &loci[4];
+    /*    return (header[1]==0 || header[2] == 0) ? NULL : &header[4]; */
+    return (header[1]==0 || header[2] == 0) ? NULL : (double *) &header[4];
   case MLIST:
-    switch (loci[6+2*(loci[4]-1)]){
+    switch (header[6+2*(header[4]-1)]){
     case DOUBLEMATRIX: case INTMATRIX:
-      return (double *) &loci[6+2*(loci[4]-1)+4];
+      return (double *) &header[6+2*(header[4]-1)+4];
     case STRINGMATRIX:
-      return (double *) &loci[6+2*(loci[4]-1)+6];
+      return (double *) &header[6+2*(header[4]-1)+6];
     default:
       return 0;
     }
   case STRINGMATRIX:
-    loc = (double *) loci;
-    return &loc[i2sadr(5 + loci[2])];
+    value = (double *) header;
+    return &value[i2sadr(5 + header[2])];
   case SPARSEMATRIX:
-    loc = (double *) loci;
-    return &loc[ i2sadr(5+loci[2]+loci[4]) ];
+    value = (double *) header;
+    return &value[ i2sadr(5+header[2]+header[4]) ];
   default:
     return 0;
   }
@@ -389,54 +460,49 @@ double *mxGetPr(Matrix *ptr)
 
 
 
-double *mxGetPi(Matrix *ptr)
+double *mxGetPi(mxArray *ptr)
 { 
   int debut; int m,n,it;
-  /*  double *loc = (double *) stkptr((long int)ptr); */
-  double *loc;
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  loc = (double *) loci;
-  switch (loci[0]) {
+  /*  double *value = (double *) stkptr((long int)ptr); */
+  double *value;
+  int *header = Header(ptr);
+  value = (double *) header;
+  switch (header[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
-    if (loci[3]==0 || loci[1]==0 || loci[2] == 0) return NULL;
-    return  &loc[2 + loci[1] * loci[2]]; 
+    if (header[3]==0 || header[1]==0 || header[2] == 0) return NULL;
+    return  &value[2 + header[1] * header[2]]; 
   case MLIST:
-    debut=6+2*(loci[4]-1);
-    switch (loci[debut]){
+    debut=6+2*(header[4]-1);
+    switch (header[debut]){
     case DOUBLEMATRIX: case INTMATRIX:
-      m=loci[debut+1];n=loci[debut+2];
-      it=loci[debut+3];  /* it should be 1 */
-      return (double *) &loci[debut+4+2*m*n];
+      m=header[debut+1];n=header[debut+2];
+      it=header[debut+3];  /* it should be 1 */
+      return (double *) &header[debut+4+2*m*n];
     default:
       return 0;
     }
   case SPARSEMATRIX:
-    if (loci[3]==0) return NULL;
-    return &loc[ i2sadr(5+loci[2] +loci[4]) + loci[1]*loci[2]];
+    if (header[3]==0) return NULL;
+    return &value[ i2sadr(5+header[2] +header[4]) + header[1]*header[2]];
   default:
     return 0;
  }
 }
 
-int mxGetNumberOfDimensions(Matrix *ptr)
+int mxGetNumberOfDimensions(mxArray *ptr)
 {
-  int *loci1;
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) {
+  int *header1;
+  int *header = Header(ptr);
+  switch (header[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX: case STRINGMATRIX:
     return 2;
   case MLIST:
-    switch (theMLIST(loci)) {
+    switch (theMLIST(header)) {
     case NDARRAY:
-      return loci[29]*loci[30]; /* loci[29] or loci[30] = 1  */
-    case CELL:
-      loci1 = (int *) listentry(loci,2)  ;
-      return loci1[1]*loci1[2];
-    case STRUCT:
-      loci1 = (int *) listentry(loci,2)  ;
-      return loci1[1]*loci1[2];
+      return header[29]*header[30]; /* header[29] or header[30] = 1  */
+    case CELL: case STRUCT:
+      header1 = (int *) listentry(header,2)  ;
+      return header1[1]*header1[2];
     default:
       return 0;
 	}
@@ -445,23 +511,22 @@ int mxGetNumberOfDimensions(Matrix *ptr)
   }
 }
 
-int *mxGetDimensions(Matrix *ptr)
+int *mxGetDimensions(mxArray *ptr)
 {
-  int *loci1;
-  int *loci = (int *) stkptr((long int) ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) {
+  int *header1;
+  int *header = Header(ptr);
+  switch (header[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case STRINGMATRIX:
-    return &loci[1];
+    return &header[1];
   case SPARSEMATRIX: /* to be done  */
-    return &loci[1];
+    return &header[1];
     break;
   case MLIST:
-    switch (theMLIST(loci)) {
-      /*  case NDARRAY       return &loci[32];       break;  */
+    switch (theMLIST(header)) {
+      /*  case NDARRAY       return &header[32];       break;  */
     case NDARRAY: case CELL: case STRUCT:
-      loci1 = (int *) listentry(loci,2);
-      return &loci1[4];
+      header1 = (int *) listentry(header,2);
+      return &header1[4];
   default:
     return 0;
     }
@@ -469,21 +534,20 @@ int *mxGetDimensions(Matrix *ptr)
   return 0;
 }
 
-int mxGetM(Matrix *ptr)
+int mxGetM(mxArray *ptr)
 {
-  int *loci1;
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) {
+  int *header1;
+  int *header = Header(ptr);
+  switch (header[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case STRINGMATRIX: case SPARSEMATRIX:
-    return loci[1];
+    return header[1];
   case MLIST:
-    switch (theMLIST(loci)) {
+    switch (theMLIST(header)) {
     case NDARRAY:
-      return loci[32]; 
+      return header[32]; 
     case CELL: case STRUCT:
-      loci1 = (int *) listentry(loci,2);
-      return loci1[4];
+      header1 = (int *) listentry(header,2);
+      return header1[4];
     default:
       return 0;
     }
@@ -492,90 +556,131 @@ int mxGetM(Matrix *ptr)
   }
 }
 
-void mxSetM(Matrix *ptr, int M)
+void mxSetM(mxArray *ptr, int M)
 {
   mxArray *mxNew;
-  int size, new;
+  int size;
   int oldM; int commonlength; int j;
-  int *lociold, *locinew;
-  int *loci = (int *) stkptr((long int)ptr);
-  lociold=loci;
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) {
+  int *headernew;
+  double *valueold, *valuenew;
+  int *header = Header(ptr);
+  switch (header[0]) {
   case STRINGMATRIX:
-    /* string: copy loci[5+oldM] to loci[5+mnew]  */    
-    oldM=loci[1];
-    commonlength=loci[5]-loci[4];
+    /* string: copy header[5+oldM] to header[5+mnew]  */    
+    oldM=header[1];
+    commonlength=header[5]-header[4];
     for (j=0; j<=M*commonlength; ++j) {
-      loci[5+j+M]=loci[5+j+oldM];
+      header[5+j+M]=header[5+j+oldM];
     }
-    loci[1]=M;
+    header[1]=M;
     break;
- case DOUBLEMATRIX: case INTMATRIX: 
+  case DOUBLEMATRIX: case INTMATRIX: 
     /* make ptr a reference */
-  size=M*lociold[2];  /*  oldm=lociold[1] */
-  mxNew = mxCreateData(size);
-  locinew = (int *) stkptr((long int) mxNew);
-  locinew[0]=loci[0];
-  locinew[1]=M;
-  locinew[2]=loci[2];
-  locinew[3]=loci[3];
-  new = Nbvars;
-  lociold[0]=-999;
-  lociold[1]= *lstk(new);
-  lociold[2]= new;
-  lociold[3]= *lstk(new+1) - *lstk(new);
-  break;
+    size=2+M*header[2];  /*  oldN=header[2] */
+    mxNew = mxCreateData(size);   /* performs Nbvars++ */
+    headernew = (int *) stkptr((long int) mxNew);
+    headernew[0]=header[0];
+    headernew[1]=M;
+    headernew[2]=header[2];
+    headernew[3]=header[3];
+    valueold = (double *) &header[4]; valuenew = (double *) &headernew[4];
+    memcpy(valuenew, valueold, M*header[2]*sizeof(double));
+    ChangeToRef(arr2num(ptr),Nbvars);
+    break;
   default:
     break;
   }
 }
 
 
-int *mxGetJc(Matrix *ptr)
+int *mxGetJc(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if (loci[0] != SPARSEMATRIX) {
+  int *header = Header(ptr);
+  if (header[0] != SPARSEMATRIX) {
     return 0;}
-  /*  loci[0]=7;  M=loci[1];  N=loci[2];  it =loci[3];  nzmax=loci[4];
-      Jc[0]=loci[5];  Jc[1]=loci[6]; etc; Jc[N]=nnz; */
-  return &loci[5];
+  /*  header[0]=7;  M=header[1];  N=header[2];  it =header[3];  nzmax=header[4];
+      Jc[0]=header[5];  Jc[1]=header[6]; etc; Jc[N]=nnz; */
+  return &header[5];
 }
 
-int *mxGetIr(Matrix *ptr)
+int *mxGetIr(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  /* ... N=loci[2],  nzmax=loci[4]; then Jc,  then Ir   */
-  return &loci[5+loci[2]+1];
+  int *header = Header(ptr);
+  /* ... N=header[2],  nzmax=header[4]; then Jc,  then Ir   */
+  return &header[5+header[2]+1];
 }
 
-int mxGetN(Matrix *ptr)
+void mxSetJc(mxArray *array_ptr, int *jc_data)
+{
+ int * start_of_jc; 
+ int N;
+ int *header = Header(array_ptr);
+ 
+ start_of_jc = (int *) mxGetJc(array_ptr);
+ N = header[2];
+ memcpy(start_of_jc, jc_data, (N+1)*sizeof(int));
+}
+
+void mxSetIr(mxArray *array_ptr, int *ir_data)
+{
+  int * start_of_ir;
+  int NZMAX;
+  int *header = Header(array_ptr);
+  start_of_ir = (int *) mxGetIr(array_ptr);
+  NZMAX = header[4];
+  memcpy(start_of_ir, ir_data, NZMAX*sizeof(int));
+}
+
+void mxSetNzmax(mxArray *array_ptr, int nzmax)
+{
+  int isize, Mold, Nold, NZMAXold, ITold;
+  double *Prold, *Piold;
+  int *Irold, *Jcold;
+  mxArray *mxNew; int *headernew;
+  int *header = Header(array_ptr);
+  Mold=header[1]; Nold=header[2]; ITold=header[3]; NZMAXold=header[4]; 
+  Jcold=mxGetJc(array_ptr);
+  Irold=mxGetIr(array_ptr);
+  Prold=mxGetPr(array_ptr); 
+  isize = 5 + (Nold+1) + nzmax + (ITold+1)*2*nzmax; 
+  mxNew = mxCreateData( sadr(isize));   /* performs Nbvars++ */
+  headernew = (int *) stkptr((long int) mxNew);
+  headernew[0]=header[0];
+  headernew[1]=Mold;  headernew[2]=Nold;  headernew[3]=ITold;
+  headernew[4]=nzmax;
+  memcpy( mxGetJc(mxNew), Jcold, (Nold+1)*sizeof(int));
+  memcpy( mxGetIr(mxNew), Irold, NZMAXold*sizeof(int));
+  memcpy( mxGetPr(mxNew), Prold, NZMAXold*sizeof(double));
+  if (ITold==1) {
+    Piold = mxGetPi(array_ptr); 
+    memcpy( mxGetPi(mxNew), Piold, NZMAXold*sizeof(double));
+  }
+  ChangeToRef(arr2num(array_ptr),Nbvars);
+}
+
+int mxGetN(mxArray *ptr)
 {
   int ret;int j;
-  int *loci1;
+  int *header1;
   int numberofdim;
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-
-  switch (loci[0]) {
+  int *header = Header(ptr);
+  switch (header[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
-    return loci[2];
+    return header[2];
   case STRINGMATRIX:
-    /*  for strings, N=length of first (and unique, loci[2]=1) column 
+    /*  for strings, N=length of first (and unique, header[2]=1) column 
         (all rows have same Matlab-length) */
-    return loci[5]-loci[4];
+    return header[5]-header[4];
   case MLIST:
-    switch (theMLIST(loci)) {
+    switch (theMLIST(header)) {
     case NDARRAY: case CELL: case STRUCT:
-      loci1 = (int *) listentry(loci,2);
-      numberofdim = loci1[1]*loci1[2];
+      header1 = (int *) listentry(header,2);
+      numberofdim = header1[1]*header1[2];
       if (numberofdim==2)
-      return loci1[5];
+      return header1[5];
       else
-	ret=loci1[5];
-      for (j=0; j < numberofdim-2; ++j) ret=ret*loci1[6+j]; 
+	ret=header1[5];
+      for (j=0; j < numberofdim-2; ++j) ret=ret*header1[6+j]; 
       return ret;
     default:
       return 0;
@@ -585,62 +690,61 @@ int mxGetN(Matrix *ptr)
   }
 }
 
-void mxSetN(Matrix *ptr, int N)
+void mxSetN(mxArray *ptr, int N)
 {
   mxArray *mxNew;
   int i,m,new,size;
-  int *lociold, *locinew;
-  int *loci = (int *) stkptr((long int)ptr);
-  lociold=loci;
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) { 
+  int *headernew;
+  double *valueold, *valuenew;
+  int *header = Header(ptr);
+  switch (header[0]) { 
   case STRINGMATRIX:
-    m=loci[1];
-    /* oldN = loci[5]-loci[4];  */
+    m=header[1];
+    /* oldN = header[5]-header[4];  */
     for (i=0; i<m; ++i) {
-      loci[5+i]=loci[4+i]+N;
-      /* to be done: compress loci[5+m]  */
+      header[5+i]=header[4+i]+N;
+      /* to be done: compress header[5+m]  */
     }
     break;
   case DOUBLEMATRIX: case INTMATRIX: 
     /* make ptr a reference */
-  size=lociold[1]*N;  /*  oldm=lociold[1] */
-  mxNew = mxCreateData(size);
-  locinew = (int *) stkptr((long int) mxNew);
-  locinew[0]=loci[0];
-  locinew[1]=loci[1];
-  locinew[2]=N;
-  locinew[3]=loci[3];
-  new = Nbvars;
-  lociold[0]=-999;
-  lociold[1]= *lstk(new);
-  lociold[2]= new;
-  lociold[3]= *lstk(new+1) - *lstk(new);
-  break;
+    size=2+header[1]*N;  /*  oldM=header[1] */
+    mxNew = mxCreateData(size);
+    headernew = (int *) stkptr((long int) mxNew);
+    headernew[0]=header[0];
+    headernew[1]=header[1];
+    headernew[2]=N;
+    headernew[3]=header[3];
+    new = Nbvars;
+    valueold = (double *) &header[4]; valuenew = (double *) &headernew[4];
+    memcpy(valuenew, valueold, header[1]*N*sizeof(double));
+    ChangeToRef(arr2num(ptr),new);
+    break;
+  case SPARSEMATRIX:
+    /* TO BE DONE */
+    break;
   default:
     break;
   }
 }
 
 
-int mxIsString(Matrix *ptr)
+int mxIsString(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if (loci[0] == STRINGMATRIX) 
+  int *header = Header(ptr);
+  if (header[0] == STRINGMATRIX) 
     return 1;
   else return 0;
 } 
 
-int mxIsChar(Matrix *ptr)
+int mxIsChar(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) {
+  int *header = Header(ptr);
+  switch (header[0]) {
   case STRINGMATRIX:
     return 1;
   case MLIST:
-    switch (loci[6+2*(loci[4]-1)]){
+    switch (header[6+2*(header[4]-1)]){
     case STRINGMATRIX:
       return 1;
     default:
@@ -651,136 +755,113 @@ int mxIsChar(Matrix *ptr)
   } 
 }
 
-int mxIsNumeric(Matrix *ptr)
+int mxIsNumeric(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if (loci[0] != STRINGMATRIX)
+  int *header = Header(ptr);
+  if (header[0] != STRINGMATRIX)
     return 1;
   else
     return 0;
 }
 
-int mxIsDouble(Matrix *ptr)
+int mxIsDouble(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if ((loci[0] == DOUBLEMATRIX) | (loci[0] == SPARSEMATRIX) | ( (loci[0] == MLIST) && (loci[6+2*(loci[4]-1)] == DOUBLEMATRIX)))
+  int *header = Header(ptr);
+  if ((header[0] == DOUBLEMATRIX) | (header[0] == SPARSEMATRIX) | ( (header[0] == MLIST) && (header[6+2*(header[4]-1)] == DOUBLEMATRIX)))
     return 1;
   else 
     return 0;
 }
 
-int mxIsEmpty(Matrix *ptr)
+int mxIsEmpty(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if ( (loci[0] == DOUBLEMATRIX) | (loci[0] == SPARSEMATRIX) ) 
-    return 1-loci[1]*loci[2];
+  int *header = Header(ptr);
+  if ( (header[0] == DOUBLEMATRIX) | (header[0] == SPARSEMATRIX) ) 
+    return 1-header[1]*header[2];
   else 
     return 0;
 }
 
-int mxIsFull(Matrix *ptr)
+int mxIsFull(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if ( loci[0] != SPARSEMATRIX)
+  int *header = Header(ptr);
+  if ( header[0] != SPARSEMATRIX)
     return 1;
   else
     return 0;
 }
 
-int mxIsSparse(Matrix *ptr)
+int mxIsSparse(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if (loci[0] == SPARSEMATRIX) 
+  int *header = Header(ptr);
+  if (header[0] == SPARSEMATRIX) 
     return 1;
   else
     return 0;
 }
 
-int mxIsLogical(Matrix *ptr)
+int mxIsLogical(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if (loci[0] == LOGICAL) 
+  int *header = Header(ptr);
+  /*     TO BE DONE ND Array */
+  if (header[0] == LOGICAL) 
     return 1;
   else
     return 0;
 }
 
-void mxSetLogical(Matrix *ptr)
+void mxSetLogical(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  loci[0] = LOGICAL;
+  int *header = Header(ptr);
+  header[0] = LOGICAL;
 }
 
-void mxClearLogical(Matrix *ptr)
+void mxClearLogical(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if (loci[0] != LOGICAL)
+  int *header = Header(ptr);
+  if (header[0] != LOGICAL)
     mexErrMsgTxt("Variable is not logical");
-  loci[0] = DOUBLEMATRIX;
+  header[0] = DOUBLEMATRIX;
 }
 
-int mxIsComplex(Matrix *ptr)
+int mxIsComplex(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) {
+  int *header = Header(ptr);
+  switch (header[0]) {
   case DOUBLEMATRIX:
-    return loci[3];
+    return header[3];
   case MLIST:
-    if (loci[6+2*(loci[4]-1)] == DOUBLEMATRIX) {
-      return loci[6+2*(loci[4]-1)+3];
+    if (header[6+2*(header[4]-1)] == DOUBLEMATRIX) {
+      return header[6+2*(header[4]-1)+3];
     }
   default:
     return 0;
   }
 }
 
-double mxGetScalar(Matrix *ptr)
+double mxGetScalar(mxArray *ptr)
 { 
-  double *loc;
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  loc = (double *) loci;
-  if (loci[0] == DOUBLEMATRIX) {
-    return  loc[2];
+  double *value;
+  int *header = Header(ptr);
+  value = (double *) header;
+  if (header[0] == DOUBLEMATRIX) {
+    return  value[2];
   }
-  else if (loci[0] == SPARSEMATRIX) {
-    /* nnz = loci[4];    N = loci[2]; */
-    return loc[ i2sadr(5+loci[2]+loci[4]) ];
+  else if (header[0] == SPARSEMATRIX) {
+    /* nnz = header[4];    N = header[2]; */
+    return value[ i2sadr(5+header[2]+header[4]) ];
   }
   else {
     return 0;
   }
 }
 
-void *mxGetData(Matrix *ptr)
+void *mxGetData(mxArray *ptr)
 {
   return mxGetPr(ptr);
-  /*  double *loc = (double *) stkptr(ptr);
-  int *loci = (int *) stkptr(ptr);
-  switch (loci[0]) {
-  case DOUBLEMATRIX: case INTMATRIX:
-    return &loc[2];
-  case MLIST:
-    return &loc[loci[4]+4];
-  case STRINGMATRIX:
-    return &loci[5+loci[1]];
-  case SPARSEMATRIX:
-    return &loc[i2sadr(5+loci[2]+loci[4])];
-  default:
-  return 0;
-  }  */
 }
 
-void *mxGetImagData(Matrix *ptr)
+void *mxGetImagData(mxArray *ptr)
 {
   return mxGetPi(ptr);
 }
@@ -790,36 +871,43 @@ void mexErrMsgTxt(char *error_msg)
   cerro(error_msg);
   errjump();
 }
+
 void mxAssert(int expr, char *error_message)
 {
   if (!expr) mexErrMsgTxt(error_message);
 }
 
-Matrix *mxCreateFull(int m, int n, int it)
+mxArray *mxCreateDoubleMatrix(int m, int n, int it)
 {
   static int lw, lr, lc;
   int k;
   lw = Nbvars + 1;
-  /* sciprint("mxCreateFull XXXX  %d\n\r",lw); */
   if (! C2F(createcvar)(&lw, "d", &it, &m, &n, &lr, &lc, 1L)) {
     mexErrMsgTxt("No more memory available: increase stacksize");
   }
   for ( k=0; k<m*n*(it+1); k++ ) {
    *stk(lr+k)=0;
   }
-   return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1]);  */
+   return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1]);  */
 }
 
-int mxIsClass(Matrix *ptr, char *name)
+mxArray *mxCreateDoubleScalar(double value)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) {
+  mxArray *pa;
+  pa = mxCreateDoubleMatrix(1, 1, mxREAL);
+  *mxGetPr(pa) = value;
+  return (mxArray *) pa;
+}
+
+int mxIsClass(mxArray *ptr, char *name)
+{
+  int *header = Header(ptr);
+  switch (header[0]) {
   case DOUBLEMATRIX: 
     if ( strcmp(name,"double") == 0) return 1;
     break;
   case MLIST:
-    switch (loci[6+2*(loci[4]-1)]){
+    switch (header[6+2*(header[4]-1)]){
     case DOUBLEMATRIX:
       if ( strcmp(name,"double") == 0) return 1;
       break;
@@ -849,13 +937,96 @@ mxArray *mxCreateStructArray(int ndim, int *dims, int nfields, char **field_name
   lw1 = lw + Top - Rhs;
   C2F(stcreate)(&lw1, &ndim, dims, &nfields, field_names, &retval);
   if( !retval) {
-    return (Matrix *) 0;
+    return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
+  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
 }
 
-Matrix *mxCreateNumericArray(int ndim, int *dims, int CLASS, int cmplx)
+mxArray *mxCreateStructMatrix(int m, int n, int nfields, char **field_names)
+{
+  static int lw,lw1;
+  int ndim; 
+  int retval; int dims[] = {m , n};
+  Nbvars++;
+  lw = Nbvars;
+  lw1 = lw + Top - Rhs;
+  C2F(stcreate)(&lw1, (ndim=2, &ndim), dims, &nfields, field_names, &retval);
+  if( !retval) {
+    return (mxArray *) 0;
+  }
+  C2F(intersci).ntypes[lw-1]=AsIs;
+  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
+}
+
+void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray *value)
+{
+  int pointed, point_ed;
+  int *headerobj; int *headervalue;
+  int *header = Header(array_ptr);
+  if (Is1x1(array_ptr)) {
+    headerobj = listentry( header, field_number+3);}
+  else {
+    headerobj = listentry( listentry(header, field_number+3)  ,index+1);}
+  if (IsReference(value))
+    {
+      headervalue = RawHeader(value);
+      headerobj[0] = headervalue[0];
+      headerobj[1] = headervalue[1];
+      headerobj[2] = headervalue[2];
+      headerobj[3] = headervalue[3];
+    }
+  else 
+    {
+      pointed = arr2num(value);
+      point_ed = Top - Rhs + pointed;
+      headerobj[0]= - *istk( iadr(*lstk( point_ed )) );  /* reference : 1st entry (type) is opposite */
+      headerobj[1]= *lstk(point_ed);  /* pointed adress */
+      headerobj[2]= pointed; /* pointed variable */
+      headerobj[3]= *lstk(point_ed + 1) - *lstk(point_ed);  /* size of pointed variable */
+    }
+}
+
+void mxSetField(mxArray *array_ptr, int index, char *field_name, mxArray *value)
+{
+  int field_num;
+  field_num = mxGetFieldNumber(array_ptr, field_name);
+  mxSetFieldByNumber(array_ptr, index, field_num, value);
+}
+
+char *mxGetFieldNameByNumber(mxArray *array_ptr, int field_number)
+{
+  int k, longueur, istart, nf, job;
+  int *headerstr;
+  int *header = Header(array_ptr);
+  char *str = (char *) mxMalloc_m(25*sizeof(char));
+  headerstr = listentry(header,1);
+  nf=headerstr[1]*headerstr[2]-2;  /* number of fields */
+  k=field_number;
+  if (k>nf) return (char *) 0;  /*  ?  */
+  longueur=Min(headerstr[7+k]-headerstr[6+k],24);  /* size of kth fieldname */
+  istart=6+nf+headerstr[6+k];    /* start of kth fieldname code */
+  C2F(cvstr)(&longueur, &headerstr[istart], str, (job=1, &job),longueur);
+  str[longueur]='\0';
+  return str;
+}
+
+/*
+mxCHAR *mxGetChars(mxArray *array_ptr)
+{
+  mexPrintf("%Not yet implemented\n");
+}  */
+
+
+int IsReference(mxArray *array_ptr)
+{
+  if ((int) RawHeader(array_ptr)[0]<0) 
+    return 1;
+  else
+    return 0;
+}
+
+mxArray *mxCreateNumericArray(int ndim, int *dims, int CLASS, int cmplx)
 {
   static int lw,lw1;
   int retval;
@@ -864,28 +1035,28 @@ Matrix *mxCreateNumericArray(int ndim, int *dims, int CLASS, int cmplx)
   lw1 = lw + Top - Rhs;
   C2F(hmcreate)(&lw1, &ndim, dims, &CLASS, &cmplx,&retval);
   if( !retval) {
-    return (Matrix *) 0;
+    return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];  /* C2F(intersci).iwhere[lw-1])  */
+  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
-Matrix *mxCreateCharArray(int ndim, int *dims)
+mxArray *mxCreateCharArray(int ndim, int *dims)
 {
   static int lw,lw1, CLASS, cmplx;
   int retval;
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
-  C2F(hmcreate)(&lw1, &ndim, dims, (CLASS=1, &CLASS),(cmplx=0, &cmplx),&retval);
+  C2F(hmcreate)(&lw1, &ndim, dims, (CLASS=11, &CLASS),(cmplx=0, &cmplx),&retval);
   if( !retval) {
-    return (Matrix *) 0;
+    return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
+  return (mxArray *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
-Matrix *mxCreateCellArray(int ndim, int *dims)
+mxArray *mxCreateCellArray(int ndim, int *dims)
 {
   static int lw,lw1;
   int retval;
@@ -895,52 +1066,55 @@ Matrix *mxCreateCellArray(int ndim, int *dims)
   lw1 = lw + Top - Rhs;
   C2F(stcreate)(&lw1, &ndim, dims, (nfields=1,&nfields), field_names , &retval);
   if( !retval) {
-    return (Matrix *) 0;
+    return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
+  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
 }
 
-Matrix *mxCreateCellMatrix(int nrows, int ncols)
+mxArray *mxCreateCellMatrix(int nrows, int ncols)
 {
   int two=2;int dims[]={nrows, ncols};
   return mxCreateCellArray(two, dims);
 }
 
-Matrix *mxGetCell(Matrix *ptr, int index)
+mxArray *mxGetCell(mxArray *ptr, int index)
 {
   int kk,lw,isize;
-  int *locilist,*lociobj,*lociobjcopy;
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  locilist = listentry(loci,3);
-  lociobj = listentry(locilist,index+1);
-  isize=2*(locilist[index+3]-locilist[index+2]);
-  Nbvars++;
-  lw=Nbvars;
+  int *headerlist,*headerobj,*headerobjcopy;
+  int *header = Header(ptr);
+  if (Is1x1(ptr)) {
+    headerobj = listentry( header, index+1);
+    isize = header[5]- header[4];
+  }
+  else {
+    headerlist = listentry(header,3);
+    headerobj = listentry(headerlist,index+1);
+    isize=2*(headerlist[index+3]-headerlist[index+2]);
+  }
+  Nbvars++;  lw=Nbvars;
   CreateData(lw,4*isize);
-  lociobjcopy=GetData(lw);
-  for (kk = 0; kk < isize; ++kk) lociobjcopy[kk]=lociobj[kk];
+  headerobjcopy=GetData(lw);
+  for (kk = 0; kk < isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
   C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
-  /* TO BE REDONE! */
-  return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
+  return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
 
 int mxGetFieldNumber(mxArray *ptr, char *string)
 {
   int nf, longueur, istart, k, ilocal, retval;
-  int *locistr;
-  char *str= (char *) malloc(24*sizeof(char));
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  locistr = listentry(loci,1);
-  nf=locistr[1]*locistr[2]-2;  /* number of fields */
+  int *headerstr;
+  static char str[24];
+  int *header = Header(ptr);
+  headerstr = listentry(header,1);
+  nf=headerstr[1]*headerstr[2]-2;  /* number of fields */
   retval=-1;
   for (k=0; k<nf; k++) {
-    longueur=Min(locistr[7+k]-locistr[6+k],24);  /* size of kth fieldname */
-    istart=8+locistr[4+nf+k];            /* start of kth fieldname code */
-    C2F(cvstr)(&longueur, &locistr[istart], str, (ilocal=1, &ilocal),longueur);
+    longueur=Min(headerstr[7+k]-headerstr[6+k],24);  /* size of kth fieldname */
+    istart=6+nf+headerstr[6+k];    /* start of kth fieldname code */
+    /*    istart=8+headerstr[4+nf+k]; */
+    C2F(cvstr)(&longueur, &headerstr[istart], str, (ilocal=1, &ilocal),longueur);
     str[longueur]='\0';
     if (strcmp(string, str) == 0) {
       retval=k;
@@ -949,52 +1123,68 @@ int mxGetFieldNumber(mxArray *ptr, char *string)
   return retval;
 }
 
-Matrix *mxGetField(mxArray *ptr, int index, char *string)
+mxArray *mxGetField(mxArray *ptr, int index, char *string)
 {
   int kk,lw,isize,fieldnum;
-  int *locilist, *lociobj, *lociobjcopy;
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  int *headerlist, *headerobj, *headerobjcopy;
+  int *header = Header(ptr);
   fieldnum=mxGetFieldNumber(ptr, string);
-  locilist = listentry(loci,3+fieldnum);
-  lociobj = listentry(locilist,index+1);
-  isize=2*(locilist[index+3]-locilist[index+2]);
-  Nbvars++;
-  lw=Nbvars;
+  if (fieldnum==-1) return (mxArray *) 0;
+
+  if (Is1x1(ptr)) {
+    headerobj = listentry( header, 3+fieldnum);
+    isize = header[5+fieldnum]- header[4+fieldnum];
+  }
+  else {
+    headerlist = listentry(header,3+fieldnum);
+    headerobj = listentry(headerlist,index+1);
+    isize=2*(headerlist[index+3]-headerlist[index+2]);
+  }
+
+  Nbvars++; lw=Nbvars;
   CreateData(lw,4*isize);
-  lociobjcopy=GetData(lw);
-  for (kk = 0; kk < isize; ++kk) lociobjcopy[kk]=lociobj[kk];
+  headerobjcopy=GetData(lw);
+  for (kk = 0; kk < isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
   C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
-  /* TO BE REDONE! */
-  return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
+  return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
 
 mxArray *mxGetFieldByNumber(mxArray *ptr, int index, int field_number)
 {
-  int kk,lw,isize,fieldnum;
-  int *locilist, *lociobj, *lociobjcopy;
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  int kk,lw,isize,fieldnum;  /* maxfieldnum, maxindex; */
+  int *headerlist, *headerobj, *headerobjcopy;
+  int *header = Header(ptr);
   fieldnum = field_number;
-  locilist = listentry(loci,3+fieldnum);
-  lociobj = listentry(locilist,index+1);
-  isize=2*(locilist[index+3]-locilist[index+2]);
-  Nbvars++;
-  lw=Nbvars;
-  CreateData(lw,4*isize);
-  lociobjcopy=GetData(lw);
-  for (kk = 0; kk < isize; ++kk) lociobjcopy[kk]=lociobj[kk];
+  /* maxfieldnum = mxGetNumberOfFields(ptr);
+   * maxindex = mxGetM(ptr)*mxGetN(ptr);
+   * if (maxfieldnum < fieldnum) return (mxArray *) NULL;
+   * if (maxindex < index) return (mxArray *) NULL;  */
+
+
+  if (Is1x1(ptr)) {
+    headerobj = listentry( header, 3+fieldnum);
+    isize = header[5+fieldnum]- header[4+fieldnum];
+  }
+  else {
+    headerlist = listentry(header,3+fieldnum);
+    headerobj = listentry(headerlist,index+1);
+    isize=2*(headerlist[index+3]-headerlist[index+2]);
+  }
+
+  Nbvars++; lw=Nbvars;
+  CreateData(lw,isize*sizeof(int));
+  headerobjcopy=GetData(lw);
+  for (kk = 0; kk < isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
   C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
-  /* TO BE REDONE! */
-  return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
+  return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
+
 int mxGetNumberOfFields(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if (loci[0]==17) return loci[1]-2;
+  int *header = Header(ptr);
+  if (header[0]==MLIST) return header[1]-2;
   else return 0;
 }
 
@@ -1007,7 +1197,7 @@ int mxGetNumberOfFields(mxArray *ptr)
 void *mxCalloc(unsigned int n, unsigned int size)
 {
   int m;  vraiptrst lrd; 
-  static int one=1; 
+  static int one=1; int N;
   static double zero =0.0;
   m = (n * size) /sizeof(double) + 1;
   if (! C2F(createstkptr)( &m, &lrd)) {
@@ -1015,7 +1205,7 @@ void *mxCalloc(unsigned int n, unsigned int size)
   }
   if ( size ==  sizeof(double)) 
     {
-      C2F(dset)(&n,&zero,(double *) lrd,&one);
+      N=(int) n; C2F(dset)(&N,&zero,(double *) lrd,&one);
     }
   else 
     {
@@ -1150,57 +1340,70 @@ static void mxFree_m_all() {
  * we initialize to zero for double and int data types 
  *----------------------------------------------------*/
 
-
-
-int mxIsCell(Matrix *ptr)
+int mxIsCell(mxArray *ptr)
 {
-  int *loci1; int l;
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  int *header1; int l;
+  int *header = Header(ptr);
+
   /* mlist(["ce","dims","entries"],[d1,..,dk],list(...)) */
-  if (loci[0]==17) {
-    loci1 = (int *) listentry(loci,1);
+  if (header[0]==MLIST) {
+    header1 = (int *) listentry(header,1);
     l = 8;
   /*  "c"=12,  "e"=14   */
-    if (loci1[0]==10 && loci1[l]==12 && loci1[l+1]==14) return 1;
+    if (header1[0]==STRINGMATRIX && header1[l]==12 && header1[l+1]==14) return 1;
     else return 0;
       }
   else return 0;
 }
 
-int mxIsStruct(Matrix *ptr)
+int mxIsStruct(mxArray *ptr)
 {
-  int *loci1; int nfplus2, l;
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  int *header1; int nfplus2, l;
+  int *header = Header(ptr);
   /* mlist(["st","dims","field1",...,"fieldp"],[d1,..,dk],list1(...),listp(...)) */
-  if (loci[0]==17) {
-    loci1 = (int *) listentry(loci,1);
-    nfplus2 = loci1[1]*loci1[2];
+  if (header[0]==MLIST) {
+    header1 = (int *) listentry(header,1);
+    nfplus2 = header1[1]*header1[2];
     l = 5 + nfplus2;
   /*  "s"=28,  "t"=29   */
-    if (loci1[0]==10 && loci1[l]==28 && loci1[l+1]==29) return 1;
+    if (header1[0]==STRINGMATRIX && header1[l]==28 && header1[l+1]==29) return 1;
     else return 0;
   }
   else return 0;
 }
-      
+ 
+int IsstOrce(mxArray *ptr)
+{
+  int *header1; int l; int nfplus2;
+  int *header = Header(ptr);
+  if (header[0]==MLIST) {
+    header1 = (int *) listentry(header,1);
+    nfplus2 = header1[1]*header1[2];
+    l = 5 + nfplus2;
+    if (header1[0]==STRINGMATRIX)
+	if (header1[l]==12 && header1[l+1]==14) return 1;  /*  "ce"  */
+	if (header1[l]==28 && header1[l+1]==29) return 1;  /*  "st"  */
+    else return 0;
+      }
+  else return 0;
+}
+     
 /***************************************************************
  * Return in str at most strl characters from first element of 
  * string Matrix pointed to by ptr ( ptr is assumed to be a String Matrix )
  **************************************************************/
 
-int mxGetString(Matrix *ptr, char *str, int strl)
+int mxGetString(mxArray *ptr, char *str, int strl)
 {
   int commonlength, firstchain, nrows; 
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  /*  int ncols = loci[2]; This is 1 */
-  /* commonlength=nrows*(loci[5]-loci[4]); */
-  nrows = loci[1];
-  commonlength=loci[5]-loci[4];
+  int *header = Header(ptr);
+
+  /*  int ncols = header[2]; This is 1 */
+  /* commonlength=nrows*(header[5]-header[4]); */
+  nrows = header[1];
+  commonlength=header[5]-header[4];
   firstchain=5+nrows;
-  C2F(in2str)(&commonlength, &loci[firstchain], str,0L);
+  C2F(in2str)(&commonlength, &header[firstchain], str,0L);
   return 0;
 }
 
@@ -1221,7 +1424,7 @@ int mxGetString(Matrix *ptr, char *str, int strl)
  * for (i= rhs -1 ; i >=0 ; i--) mxFreeMatrix(rhs[i]);
  *-------------------------------------------------*/
 
-void mxFreeMatrix(Matrix *ptr)
+void mxFreeMatrix(mxArray *ptr)
 {
   /* If we free the last stored object we can decrement Nbvars */
   if ( (int)ptr == C2F(vstk).Lstk[Top - Rhs + Nbvars - 1]) {
@@ -1235,8 +1438,9 @@ void mxFreeMatrix(Matrix *ptr)
   return ;
 }
 
-void  numberandsize(const Matrix  *ptr, int *number, int *size)
-     /* utility fct : its number as scilab variable and its size as double */
+void  numberandsize(const mxArray  *ptr, int *number, int *size)
+     /* utility fct : its number as scilab variable 
+      * and its size in Scilab double stack */
 {
   int kk,lst_k;
   lst_k=(int) ptr;
@@ -1249,6 +1453,19 @@ void  numberandsize(const Matrix  *ptr, int *number, int *size)
   *size = C2F(vstk).Lstk[*number+ Top - Rhs] - lst_k;
 }
 
+int arr2num( mxArray  *ptr )
+{
+  int kk,lst_k,number;
+  lst_k=(int) ptr;
+  number=0;
+  for (kk = 1; kk <= Nbvars; kk++)
+    {
+      number=kk;
+      if (lst_k == C2F(vstk).Lstk[kk+ Top - Rhs -1]) break;
+    }
+  return number;
+}
+ 
 mxArray *mxDuplicateArray(const mxArray *ptr)
 {
   int start_in;
@@ -1262,10 +1479,140 @@ mxArray *mxDuplicateArray(const mxArray *ptr)
   data = (double *) GetData(lw);
   for (k = 0; k <size; ++k)
   data[k]=old[k];
-  return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];
+  return (mxArray *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];
 }
 
-void mxDestroyArray(Matrix *ptr)
+mxArray *UnrefStruct(mxArray *ptr)
+{
+  /*   Unreference objects in a struct or cell */
+  int number, k;
+  int list, index, offset; int sizeobj;
+  int nb, nbobj, suite, newbot;
+
+  int oldsize, newsize;
+
+  int *header, *headernew;
+  int *headerlist, *headerlistnew; 
+  int *headerobj, *headerobjnew;
+  int *headerdims; int proddims;int obj;
+
+  mxArray *mxNew;
+  header = RawHeader(ptr);
+  mxNew = mxDuplicateArray(ptr);
+  headernew = RawHeader(mxNew);
+  
+  offset = Top - Rhs;
+  newsize=header[4];   /* Initialize */
+  nb=header[1]-2;      /* Number of fields  */
+  headerdims = listentry(header,2);
+  proddims=1;
+  for (k=0; k<headerdims[1]*headerdims[2]; k++) {
+    proddims=proddims*headerdims[4+k];
+  }
+  if (!(proddims==1)) {
+    suite=0;
+    for (list=0; list<nb; list++) {
+      headerlist= listentry(header, list+3);  /* pointing to the field list */
+      nbobj=headerlist[1];   /* number of objects in the field */
+      for (index=0; index < nbobj; index++)
+	{
+	  headerobj = listentry( headerlist,index+1);  
+	  /* pointing to the object in the field */
+	  if (headerobj[0] < 0)
+	    sizeobj=headerobj[3];
+	  else
+	    sizeobj=headerlist[index+3]-headerlist[index+2];
+	  newsize += sizeobj;   /* update size of the field */
+	}
+      suite++;
+      newsize += (2+nbobj/2);   /* size of list = size of inside + ... */
+      headernew[4+suite] = newsize;
+    }
+    numberandsize( mxNew, &number, &oldsize);
+    newsize += 3;   /* taking account begining of list */
+    newbot=*lstk(number+offset)+newsize;
+    if( (newbot - *lstk(Bot)) > 0) 
+      {Error(17); return 0;}
+    *lstk(number+offset+1)=newbot;
+    for (list=0; list<nb; list++) {
+      headerlist= listentry(header, list+3);
+      headerlistnew=listentry(headernew, list+3);
+      nbobj=headerlist[1]; 
+      headerlistnew[0]= 15;
+      headerlistnew[1]= nbobj;
+      headerlistnew[2]= 1;
+      for (index=0; index < nbobj; index++)
+	{	headerobj = listentry( headerlist,index+1);
+	if (headerobj[0] < 0)
+	  sizeobj=headerobj[3];  /* reference (size of ) */
+	else
+	  sizeobj=headerlist[index+3]-headerlist[index+2];
+	headerlistnew[3+index]=headerlistnew[2+index]+sizeobj;
+	}
+    }
+    for (list=0; list<nb; list++) {
+      headerlist= listentry(header, list+3);
+      headerlistnew=listentry(headernew, list+3);
+      nbobj=headerlist[1]; 
+      for (index=0; index < nbobj; index++)
+	{	
+	  headerobj = listentry( headerlist,index+1);
+	  headerobjnew = listentry( headerlistnew,index+1);	
+	  if (headerobj[0] < 0)   /* reference */
+	    {
+	      sizeobj=headerobj[3];
+	      headerobj = (int *) stk(headerobj[1]);   /* dereference */
+	    }
+	  else
+	    {
+	      sizeobj=headerlist[index+3]-headerlist[index+2];
+	    }
+	  for (k=0; k<2*sizeobj; k++)
+	    headerobjnew[k]=headerobj[k];  /* OUF! */
+	}
+    }
+  }
+  else {
+    /*   1 x 1 x ... x 1 struct */
+    suite=0;
+    for (obj=0; obj<nb; obj++) {
+      headerobj = listentry(header,3+obj);
+      if (headerobj[0] < 0)
+	sizeobj=headerobj[3];
+      else
+	sizeobj = header[5+obj] - header[4+obj];
+      newsize += sizeobj;
+    suite++;
+    newsize += sizeobj;
+    headernew[4+suite]=newsize;
+    }
+    numberandsize( mxNew, &number, &oldsize);
+    newsize +=3;
+    newbot = *lstk(number+offset)+newsize;
+    if ( (newbot - *lstk(Bot)) > 0)
+      {Error(17); return 0;}
+    *lstk(number+offset+1)=newbot;
+    for (obj=0; obj<nb; obj++)
+      {
+	headerobj = listentry(header, 3+obj);
+	headerobjnew = listentry(headernew, 3+obj);
+	if (headerobj[0] < 0)
+	  {
+	    sizeobj=headerobj[3];
+	    headerobj = (int *) stk(headerobj[1]);
+	  }
+	else
+	  {
+	    sizeobj=header[5+obj]-header[4+obj];
+	  }
+	for (k=0; k<2*sizeobj; k++)
+	  headerobjnew[k]=headerobj[k];
+      }
+  }
+  return mxNew;
+}
+
+void mxDestroyArray(mxArray *ptr)
 {   /* No need */
   return; 
 }
@@ -1287,30 +1634,30 @@ void mxFree(void *ptr)
   return ;
 }
 
-int mexAtExit(Matrix *ptr)
+int mexAtExit(mxArray *ptr)
 {
   /* XXXXX To be done....*/
   return 0;
 }
 
-Matrix *mxCreateSparse(int m, int n, int nzmax, int cmplx)
+mxArray *mxCreateSparse(int m, int n, int nzmax, int cmplx)
 {
   static int lw, iprov;
   Nbvars++;
   lw=Nbvars;
   iprov = lw + Top - Rhs;
   if( ! C2F(mspcreate)(&iprov, &m, &n, &nzmax, &cmplx)) {
-    return (Matrix *) 0;
+    return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1];     /* C2F(intersci).iwhere[lw-1])  */
+  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1];     /* C2F(intersci).iwhere[lw-1])  */
 }
 
 /***************************************************************
  * Create on Scilab Stack a 1x1 string matrix filled with string
  **************************************************************/
 
-Matrix *mxCreateString(const char *string)
+mxArray *mxCreateString(const char *string)
 {
   static int i, lw;
   static int one=1;
@@ -1318,14 +1665,52 @@ Matrix *mxCreateString(const char *string)
   lw=Nbvars+1;
   /* we do not increment Nbvars since it is done inside createvar */
   if ( ! C2F(createvarfromptr)(&lw, "c", &one, &i, (double *) &string, 1L) ) {
-    return (Matrix *) 0;
+    return (mxArray *) 0;
   }
   /* back conversion to Scilab coding */
   Convert2Sci(lw);
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1];
+  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1];
 }
 
+mxArray *mxCreateLogicalMatrix(int m, int n)
+{
+  int new, k; int *header;
+  Nbvars++;
+  new=Nbvars;
+  CreateData(new, (3+m*n)*sizeof(int));
+  header =  (int *) GetData(new);
+  header[0]=LOGICAL;
+  header[1]= m; 
+  header[2]= n; 
+  for (k=0; k<m*n; k++) 
+    header[3+k]= 0;
+  return (mxArray *) C2F(intersci).iwhere[new-1]; 
+}
+
+mxArray *mxCreateLogicalScalar(mxLOGICAL *value)
+{
+  mxArray *pa; int *header;
+  pa = mxCreateLogicalMatrix(1, 1);
+  header = (int *) stkptr((long int) pa);
+  header[3]=(int) value;
+  return (mxArray *) pa;
+}
+
+bool mxIsLogicalScalarTrue(mxArray *pa)
+{
+  bool retval;
+  retval = mxIsLogical(pa) && mxGetNumberOfElements(pa) == 1 && mxGetLogicals(pa)[0] == 1;
+  return retval;
+}
+
+
+bool mxIsLogicalScalar(mxArray *pa)
+{
+  bool retval;
+  retval = mxIsLogical(pa) && mxGetNumberOfElements(pa) == 1;
+  return retval;
+}
 /* 
   Print function which prints (format,args,....) 
   in Scilab window
@@ -1373,7 +1758,7 @@ void mexWarnMsgTxt(char *error_msg)
 
 /* 1 is returned in case of failure */
 
-static int mexCallSCI(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *name,int jumpflag)
+static int mexCallSCI(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *name,int jumpflag)
 {
   static int i1, i2;
   static int k, kk, nv;
@@ -1405,18 +1790,18 @@ static int mexCallSCI(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *na
     /*	return 0;  */
   }
   for (k = 1; k <= nlhs; ++k) {
-    plhs[k-1] = (Matrix *) C2F(vstk).Lstk[nv + k + Top - Rhs - 1];
+    plhs[k-1] = (mxArray *) C2F(vstk).Lstk[nv + k + Top - Rhs - 1];
   }
   Nbvars = nv+nlhs;
   return 0;
 }
 
 
-int mexCallSCILAB(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *name) {
+int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *name) {
   return mexCallSCI(nlhs,plhs,nrhs,prhs,name,1); 
 }
 
-int mxCalcSingleSubscript(Matrix *ptr, int nsubs, int *subs)
+int mxCalcSingleSubscript(mxArray *ptr, int nsubs, int *subs)
 {
   int k, retval, coeff;
   int *dims = mxGetDimensions(ptr);
@@ -1428,7 +1813,7 @@ int mxCalcSingleSubscript(Matrix *ptr, int nsubs, int *subs)
   return retval;
 }
 
-int C2F(mexcallscilab)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs, char *name, int namelen)
+int C2F(mexcallscilab)(integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs, char *name, int namelen)
 {
   return mexCallSCILAB(*nlhs, plhs, *nrhs, prhs, name);
 }
@@ -1439,7 +1824,7 @@ const char *mexFunctionName(void) { return the_current_mex_name;}
 int mex_gateway(char *fname, GatefuncH F)
 {
   int nlhs,nrhs;
-  Matrix * plhs[intersiz];  Matrix * prhs[intersiz];
+  mxArray * plhs[intersiz];  mxArray * prhs[intersiz];
   the_current_mex_name=fname;
   C2F(initmex)(&nlhs, plhs, &nrhs, prhs);
   (*F)(nlhs, plhs, nrhs, prhs);
@@ -1450,7 +1835,7 @@ int mex_gateway(char *fname, GatefuncH F)
 int fortran_mex_gateway(char *fname, FGatefuncH F)
 {
   int nlhs,nrhs;
-  Matrix * plhs[intersiz];  Matrix * prhs[intersiz];
+  mxArray * plhs[intersiz];  mxArray * prhs[intersiz];
   C2F(initmex)(&nlhs, plhs, &nrhs, prhs);
   (*F)( &nlhs, plhs, &nrhs, prhs);
   C2F(endmex)(&nlhs, plhs, &nrhs, prhs);
@@ -1467,27 +1852,26 @@ int sci_gateway(char *fname, GatefuncS F)
   return 0;
 }
 
-int mxGetElementSize(Matrix *ptr)
+int mxGetElementSize(mxArray *ptr)
 { int k, it; 
- int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
- switch (loci[0]) {
+ int *header = Header(ptr);
+ switch (header[0]) {
  case DOUBLEMATRIX: case SPARSEMATRIX:
    return sizeof(double);
  case STRINGMATRIX:
    return 2*sizeof(char);    /* ? Matlab returns 2 */
  case MLIST:
-   k=loci[4];
-   /*   loci[6+2*(k-1)]  =  1 if double matrix, 8 if integer  */
-   if (loci[6+2*(k-1)]==DOUBLEMATRIX)  return sizeof(double);
-   if (loci[6+2*(k-1)]==INTMATRIX) {
-     it= loci[6+2*(k-1)+3]; return( it%10 );   
+   k=header[4];
+   /*   header[6+2*(k-1)]  =  1 if double matrix, 8 if integer  */
+   if (header[6+2*(k-1)]==DOUBLEMATRIX)  return sizeof(double);
+   if (header[6+2*(k-1)]==INTMATRIX) {
+     it= header[6+2*(k-1)+3]; return( it%10 );   
    }
    break;
  case INTMATRIX:
    /*[8,m,n,it] it=01    02   04    11     12    14
      int8 int16 int32 uint8 uint16 uint32    */
-   it=loci[3];
+   it=header[3];
    return( it%10 );
  default:
    mexErrMsgTxt("GetElementSize error");
@@ -1496,7 +1880,7 @@ int mxGetElementSize(Matrix *ptr)
  return 0;
 }
 
-Matrix *mxCreateCharMatrixFromStrings(int m, char **str)
+mxArray *mxCreateCharMatrixFromStrings(int m, char **str)
 {
   static int i, lr1, lw, ilocal, n, k,kk, nmax;
   nmax = strlen(str[0]);
@@ -1508,7 +1892,7 @@ Matrix *mxCreateCharMatrixFromStrings(int m, char **str)
   lw = Nbvars + Top -Rhs;
   /*      logical function cresmat3(fname,lw,m,n,nchar,lr) */
   if( ! C2F(cresmat4)("mxCreateString:", &lw, &m, &nmax, &lr1, 15L)) {
-    return (Matrix *) 0;
+    return (mxArray *) 0;
   }
   /*    Convert string to integer code    */
   /*   subroutine cvstr(n,line,str,job) */
@@ -1521,16 +1905,15 @@ Matrix *mxCreateCharMatrixFromStrings(int m, char **str)
     };
     lr1=lr1+nmax;
   }
-  /*    ichar($) = 36 : variable returned as is to scilab */
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (Matrix *) C2F(vstk).Lstk[lw - 1];
+  return (mxArray *) C2F(vstk).Lstk[lw - 1];
 }
 
 int mexEvalString(char *name)
 {
   double *val ;
   int rep;
-  Matrix *ppr[3];Matrix *ppl[1];
+  mxArray *ppr[3];mxArray *ppl[1];
   int nlhs;     int nrhs;
   ppr[0] = mxCreateString(name);
   ppr[1] = mxCreateString("errcatch");
@@ -1552,17 +1935,17 @@ int mexEvalString(char *name)
 
 mxArray *mexGetArray(char *name, char *workspace)
 {
-  int lw, fin, new ; int *loci;
+  int lw, fin, new ; int *header;
   /* mxArray *mxPointed; */
   if (C2F(objptr)(name,&lw,&fin,strlen(name))) {
     /*    mxPointed = (mxArray *) lw;   */
     Nbvars++; new=Nbvars; 
     CreateData(new, 4*sizeof(int));
-    loci =  (int *) GetData(new);
-    loci[0]=- *istk( iadr(*lstk(fin))); 
-    loci[1]= lw; 
-    loci[2]= fin; 
-    loci[3]= *lstk(fin+1) -*lstk(fin) ;
+    header =  (int *) GetData(new);
+    header[0]=- *istk( iadr(*lstk(fin))); 
+    header[1]= lw; 
+    header[2]= fin; 
+    header[3]= *lstk(fin+1) -*lstk(fin) ;
     /*    C2F(intersci).ntypes[new-1]=45;  */
     return (mxArray *) C2F(intersci).iwhere[new-1]; } 
   else
@@ -1572,7 +1955,15 @@ mxArray *mexGetArray(char *name, char *workspace)
 int mexPutArray(mxArray *array_ptr, char *workspace)
 {
   /* TO BE DONE obsolete ?  */
+  mexPrintf( "Function mexPutArray is obsolete, use mexPutVariable! \n");
   return 1;
+}
+
+int mexPutVariable(const char *workspace, char *var_name, mxArray *array_ptr)
+{
+  /*  workspace ignored: to be done .... */
+  PutVar( arr2num( array_ptr) , var_name);
+  return 0;  /* CHECK THIS !!!!!! */
 }
 
 void mxSetName(mxArray *array_ptr, const char *name)
@@ -1583,8 +1974,9 @@ void mxSetName(mxArray *array_ptr, const char *name)
 
 void mxSetPr(mxArray *array_ptr, double *pr)
 {
-  /* TO BE DONE */ 
   int size;
+  double *value;
+  value = mxGetPr(array_ptr);
   size=mxGetM(array_ptr)*mxGetN(array_ptr);
   memcpy(mxGetPr(array_ptr), pr, size*sizeof(double));
 }
@@ -1611,10 +2003,8 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 
 const char *mxGetClassName(const mxArray *ptr)
 {
-  /* TO BE DONE */
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  switch (loci[0]) {
+  int *header = Header(ptr);
+  switch (header[0]) {
   case DOUBLEMATRIX: 
     return "double";
   case STRINGMATRIX:
@@ -1624,7 +2014,7 @@ const char *mxGetClassName(const mxArray *ptr)
   case INTMATRIX:
     /*[8,m,n,it] it=01    02   04    11     12    14
       int8 int16 int32 uint8 uint16 uint32    */
-    switch (loci[3]){
+    switch (header[3]){
     case 1:
       return "int8";
     case 2:
@@ -1642,21 +2032,21 @@ const char *mxGetClassName(const mxArray *ptr)
     }
   case MLIST:
     /* to be done return mxCELL_CLASS or mxCHAR_CLASS or mxSTRUCT_CLASS */
-    /* loci[6+2*(loci[4]-1)]   ( = 1, 10, 8)  */
-    switch (theMLIST(loci)) {
+    /* header[6+2*(header[4]-1)]   ( = 1, 10, 8)  */
+    switch (theMLIST(header)) {
     case CELL:
       return "cell";
     case STRUCT:
       return "struct";
     case NDARRAY:
-    switch (loci[6+2*(loci[4]-1)]) {
-      /* listentry(loci,3) */
+    switch (header[6+2*(header[4]-1)]) {
+      /* listentry(header,3) */
     case DOUBLEMATRIX:
       return "double";
     case STRINGMATRIX:
       return "char";
     case INTMATRIX:
-      switch (loci[6+2*(loci[4]-1)+3]) {
+      switch (header[6+2*(header[4]-1)+3]) {
       case 1:
 	return "int8";
       case 2:
@@ -1682,26 +2072,34 @@ const char *mxGetClassName(const mxArray *ptr)
 
 void mxSetCell(mxArray *array_ptr, int index, mxArray *value)
 {
-  /* TO BE DONE */
+  return mxSetFieldByNumber(array_ptr, index, 0 , value);
 }
 
+/*
 const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
 {
-  /* TO BE DONE */
   return "not implemented";
 }
+*/
 
 int mxGetNzmax(mxArray *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  /* ... N=loci[2],  nzmax=loci[4]; then Jc,  then Ir   */
-  return loci[4];
+  int *header = Header(ptr);
+  /* ... N=header[2],  nzmax=header[4]; then Jc,  then Ir   */
+  return header[4];
 }
 
-int C2F(initmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
+mxLOGICAL *mxGetLogicals(mxArray *array_ptr)
 {
-  int *loci;int *loci1;
+  int *header = Header(array_ptr);
+  /*  TO BE DONE : ND Arrays  */
+  if (header[0] != LOGICAL) return  NULL;
+  return (mxLOGICAL *) &header[3];
+}
+
+int C2F(initmex)(integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs)
+{
+  int *header;int *header1;
   static int output, k, RhsVar;
   static int m, commonlength, line;
   if (Rhs==-1) Rhs++;
@@ -1711,24 +2109,24 @@ int C2F(initmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
   for (k = 1; k <= *nrhs ; ++k) 
     {
       RhsVar = k  + Top - Rhs;
-      prhs[k-1] = (Matrix *) C2F(vstk).Lstk[RhsVar - 1];
+      prhs[k-1] = (mxArray *) C2F(vstk).Lstk[RhsVar - 1];
       C2F(intersci).ntypes[k-1]=AsIs;
-      loci = (int *) stkptr((long int)prhs[k-1]);
+      header = (int *) stkptr((long int)prhs[k-1]);
       /*
 	Indirect
        */
-      if (loci[0] < 0) loci = (int *) stk(loci[1]);
-      switch (loci[0]) {
+      if (header[0] < 0) header = (int *) stk(header[1]);
+      switch (header[0]) {
       case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
 	break;
       case STRINGMATRIX:
-	if (loci[2] !=1) mexErrMsgTxt("Invalid string matrix (at most one column!)");
-	m=loci[1];
-	commonlength=loci[5]-loci[4];
+	if (header[2] !=1) mexErrMsgTxt("Invalid string matrix (at most one column!)");
+	m=header[1];
+	commonlength=header[5]-header[4];
 	if (m > 1) {
  	  for (line = 1; line < m; line++)
 	    {
-	      if (loci[5+line] - loci[4+line] != commonlength)
+	      if (header[5+line] - header[4+line] != commonlength)
 		mexErrMsgTxt("Column length of string matrix must agree!");
 	    }
 	}
@@ -1738,9 +2136,11 @@ int C2F(initmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
 	/*   scilab sparse  should be matlabified  */
 	return 0;
       case MLIST:
-	loci1 = (int *) listentry(loci,2);
-	m = loci1[1]*loci1[2];
-	/* C2F(entier)(&m, (double *) &loci1[4], &loci1[4]); */
+	header1 = (int *) listentry(header,2);
+	/* m = header1[1]*header1[2]; */
+	/* C2F(entier)(&m, (double *) &header1[4], &header1[4]); */
+	break;
+      case LOGICAL :
 	break;
       default:
 	mexErrMsgTxt("Invalid input");
@@ -1786,12 +2186,16 @@ int C2F(createptr)(char *type, int *m, int *n, int *it, int *lr, int *ptr, long 
   return 1;
 } 
 
-int C2F(endmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
+int C2F(endmex)(integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs)
 {
-  int nv=Nbvars ,kk,k,plhsk;
+  int nv,kk,k,plhsk;
+  for (k = 1; k <= *nlhs; k++) {
+    if (IsstOrce(plhs[k-1])) plhs[k-1]=UnrefStruct(plhs[k-1]);
+  }
+  nv=Nbvars;
   for (k = 1; k <= *nlhs; k++)
     {
-      plhsk=(int) plhs[k-1];
+      plhsk = (int) plhs[k-1];
       LhsVar(k) = 0;
       for (kk = 1; kk <= nv; kk++)
 	{
@@ -1810,7 +2214,7 @@ int C2F(endmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
 
 /* a utility function to recover available Vars position */ 
 
-void clear_mex(integer nlhs, Matrix **plhs, integer nrhs, Matrix **prhs)
+void clear_mex(integer nlhs, mxArray **plhs, integer nrhs, mxArray **prhs)
 {
   int nv=Nbvars ,k; 
   int max = (int) plhs[0] ; 
@@ -1838,19 +2242,19 @@ int mexCheck(char *str,int nbvars) {
  * C functions for Fortran  mexfunctions 
  ****************************************************/
 
-double * C2F(mxgetpr)(Matrix *ptr)
+double * C2F(mxgetpr)(mxArray *ptr)
 {
-  /*  double *loc = (double *) stkptr(*ptr); */
-  double *loc;
-  int *loci = (int *) stkptr(*ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  loc = (double *) loci;
-  if (loci[0]==DOUBLEMATRIX) {
-    return &loc[2];
+  /*  double *value = (double *) stkptr(*ptr); */
+  double *value;
+  int *header = (int *) stkptr(*ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  value = (double *) header;
+  if (header[0]==DOUBLEMATRIX) {
+    return &value[2];
   }
-  else if ( loci[0]==SPARSEMATRIX ) { 
-    /*    nnz = loci[4];  N = loci[2];  */
-    return &loc[ i2sadr(5+loci[2]+loci[4]) ];
+  else if ( header[0]==SPARSEMATRIX ) { 
+    /*    nnz = header[4];  N = header[2];  */
+    return &value[ i2sadr(5+header[2]+header[4]) ];
   }
   else {
     return 0;
@@ -1858,96 +2262,96 @@ double * C2F(mxgetpr)(Matrix *ptr)
 }
 
 
-double * C2F(mxgetpi)(Matrix *ptr)
+double * C2F(mxgetpi)(mxArray *ptr)
 {
-  /*  double *loc = (double *) stkptr(*ptr); */
-  double *loc;
-  int *loci = (int *) stkptr(*ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  loc = (double *) loci;
-  return &loc[2 +  C2F(mxgetm)(ptr) *  C2F(mxgetn)(ptr)];
+  /*  double *value = (double *) stkptr(*ptr); */
+  double *value;
+  int *header = (int *) stkptr(*ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  value = (double *) header;
+  return &value[2 +  C2F(mxgetm)(ptr) *  C2F(mxgetn)(ptr)];
 }
 
-int  C2F(mxgetm)(Matrix *ptr)
+int  C2F(mxgetm)(mxArray *ptr)
 {
-  int *loci = (int *) stkptr(*ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  return loci[1] ;
+  int *header = (int *) stkptr(*ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  return header[1] ;
 }
 
-int  C2F(mxgetn)(Matrix *ptr)
+int  C2F(mxgetn)(mxArray *ptr)
 {
-  int *loci = (int *) stkptr(*ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if ( loci[0] == STRINGMATRIX) {
-    return loci[5]-1;
+  int *header = (int *) stkptr(*ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  if ( header[0] == STRINGMATRIX) {
+    return header[5]-1;
   }
-  return loci[2] ;
+  return header[2] ;
 }
 
-int  C2F(mxisstring)(Matrix *ptr)
+int  C2F(mxisstring)(mxArray *ptr)
 {
-  int *loci = (int *) stkptr(*ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if (loci[0] == STRINGMATRIX) 
+  int *header = (int *) stkptr(*ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  if (header[0] == STRINGMATRIX) 
     return 1;
   else return 0;
 } 
 
-int  C2F(mxisnumeric)(Matrix *ptr)
+int  C2F(mxisnumeric)(mxArray *ptr)
 {
-  int *loci = (int *) stkptr(*ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if ( loci[0] == DOUBLEMATRIX) 
+  int *header = (int *) stkptr(*ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  if ( header[0] == DOUBLEMATRIX) 
     return 1;
   else 
     return 0;
 }
 
-int  C2F(mxisfull)(Matrix *ptr)
+int  C2F(mxisfull)(mxArray *ptr)
 {
-  int *loci = (int *) stkptr(*ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if ( loci[0] == DOUBLEMATRIX) {
+  int *header = (int *) stkptr(*ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  if ( header[0] == DOUBLEMATRIX) {
     return 1;
   }
   return 0;
 }
 
-int  C2F(mxissparse)(Matrix *ptr)
+int  C2F(mxissparse)(mxArray *ptr)
 {
-  int *loci = (int *) stkptr(*ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if (loci[0] == SPARSEMATRIX) {
+  int *header = (int *) stkptr(*ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  if (header[0] == SPARSEMATRIX) {
     return 1;
   }
   return 0;
 }
 
 
-int  C2F(mxiscomplex)(Matrix *ptr)
+int  C2F(mxiscomplex)(mxArray *ptr)
 {
-  int *loci = (int *) stkptr(*ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  if (loci[3] == DOUBLEMATRIX) {
+  int *header = (int *) stkptr(*ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  if (header[3] == DOUBLEMATRIX) {
     return 1;
   }
   return 0;
 }
 
-double  C2F(mxgetscalar)(Matrix *ptr)
+double  C2F(mxgetscalar)(mxArray *ptr)
 { 
   static int N,nnz;
-  double *loc;
-  int *loci = (int *) stkptr(*ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  loc = (double *) loci;
- if (loci[0] == DOUBLEMATRIX) {
-   return  loc[2];
+  double *value;
+  int *header = (int *) stkptr(*ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  value = (double *) header;
+ if (header[0] == DOUBLEMATRIX) {
+   return  value[2];
  }
- else if (loci[0] == SPARSEMATRIX) {
-   nnz = loci[4];   N = loci[2];
-   return loc[(5+nnz+N)/2+1];
+ else if (header[0] == SPARSEMATRIX) {
+   nnz = header[4];   N = header[2];
+   return value[(5+nnz+N)/2+1];
  }
  else {
    return 0;
@@ -1974,14 +2378,14 @@ void C2F(mexerrmsgtxt)(char *error_msg, int len)
   errjump();
 }
 
-Matrix *C2F(mxcreatefull)(int *m, int *n, int *it)
+mxArray *C2F(mxcreatefull)(int *m, int *n, int *it)
 {
   static int lr1;
   int lrd;
   if (! C2F(createptr)("d", m, n, it, &lr1, &lrd,1L)) {
-    return  (Matrix *) 0;
+    return  (mxArray *) 0;
   }
-  return (Matrix *) lrd ;
+  return (mxArray *) lrd ;
 } 
 
 
@@ -1996,26 +2400,26 @@ unsigned long int C2F(mxcalloc)(unsigned int *n, unsigned int *size)
   return (unsigned long int) lrd;
 }
 
-int  C2F(mxgetstring)(Matrix *ptr, char *str, int *strl)
+int  C2F(mxgetstring)(mxArray *ptr, char *str, int *strl)
 {
   int commonlength; int nrows;
-  int *loci = (int *) stkptr(*ptr);
-  if (loci[0] < 0) loci = (int *) stk(loci[1]);
-  nrows = loci[1];
-  /*  int ncols = loc[2]; This is 1 */
-  commonlength=nrows*(loci[5]-loci[4]);
-  C2F(in2str)(&commonlength, &loci[5+nrows], str,0L);
+  int *header = (int *) stkptr(*ptr);
+  if (header[0] < 0) header = (int *) stk(header[1]);
+  nrows = header[1];
+  /*  int ncols = value[2]; This is 1 */
+  commonlength=nrows*(header[5]-header[4]);
+  C2F(in2str)(&commonlength, &header[5+nrows], str,0L);
   *strl = Min(*strl,commonlength);
   return 0;
 }
 
-void C2F(mxfreematrix)(Matrix *ptr)
+void C2F(mxfreematrix)(mxArray *ptr)
 {
   return ;
 }
 
 
-Matrix * C2F(mxcreatestring)(char *string, long int l)
+mxArray * C2F(mxcreatestring)(char *string, long int l)
 {
   static int i, lr1, lw, iprov, ilocal; 
   /** i = strlen(string); **/
@@ -2024,53 +2428,51 @@ Matrix * C2F(mxcreatestring)(char *string, long int l)
   lw=Nbvars;
   iprov = lw + Top -Rhs;
   if( ! C2F(cresmat2)("mxCreateString:", &iprov, &i, &lr1, 15L)) {
-    return (Matrix *) 0;
+    return (mxArray *) 0;
   }
   C2F(cvstr)(&i, istk(lr1), string, (ilocal=0, &ilocal),l);
   C2F(intersci).ntypes[lw-1]=36;
-  return (Matrix *) C2F(vstk).Lstk[Top -Rhs + lw - 1];
+  return (mxArray *) C2F(vstk).Lstk[Top -Rhs + lw - 1];
 }
 
 
-int C2F(mxcopyreal8toptr)(double *y, Matrix *ptr, integer *n)
+int C2F(mxcopyreal8toptr)(double *y, mxArray *ptr, integer *n)
 {
   int one=1;
-  double *loc = ((double *) *ptr); 
-  C2F(dcopy)(n,y,&one,loc,&one);
+  double *value = ((double *) *ptr); 
+  C2F(dcopy)(n,y,&one,value,&one);
   return 0;
 }
 
-int C2F(mxcopycomplex16toptr)(double *y, Matrix *ptr, Matrix *pti, integer *n)
+int C2F(mxcopycomplex16toptr)(double *y, mxArray *ptr, mxArray *pti, integer *n)
 {
   int one=1; int two=2;
-  double *loc = ((double *) *ptr);  
-  double *locim = ((double *) *pti);
-  C2F(dcopy)(n,y,&two,loc,&one);
-  C2F(dcopy)(n,++y,&two,locim,&one);
+  double *value = ((double *) *ptr);  
+  double *headerm = ((double *) *pti);
+  C2F(dcopy)(n,y,&two,value,&one);
+  C2F(dcopy)(n,++y,&two,headerm,&one);
   return 0;
 }
 
-int C2F(mxcopyptrtoreal8)(Matrix *ptr, double *y, integer *n)
+int C2F(mxcopyptrtoreal8)(mxArray *ptr, double *y, integer *n)
 {
   int one=1;
-  double *loc = ((double *) *ptr); 
-  C2F(dcopy)(n,loc,&one,y,&one);
+  double *value = ((double *) *ptr); 
+  C2F(dcopy)(n,value,&one,y,&one);
   return 0;
 }
 
-int C2F(mxcopyptrtocomplex16)(Matrix *ptr, Matrix *pti, double *y, integer *n)
+int C2F(mxcopyptrtocomplex16)(mxArray *ptr, mxArray *pti, double *y, integer *n)
 {
   int one=1; int two=2;
-  double *loc = ((double *) *ptr);
-  double *locim = ((double *) *pti);
-  C2F(dcopy)(n,loc,&one,y,&two);
-  C2F(dcopy)(n,locim,&one,++y,&two);
+  double *value = ((double *) *ptr);
+  double *headerm = ((double *) *pti);
+  C2F(dcopy)(n,value,&one,y,&two);
+  C2F(dcopy)(n,headerm,&one,++y,&two);
   return 0;
 }
 
 
-
-
-
-
-
+/* mxCreateLogicalArray
+ * mxIsLogicalScalar
+ * mxIsLogicalScalarTrue  */
