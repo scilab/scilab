@@ -6,7 +6,7 @@
 
 
 # A Notebook widget for Tcl/Tk
-# $Revision: 1.4 $
+# $Revision: 1.5 $
 #
 # Copyright (C) 1996,1997,1998 D. Richard Hipp
 #
@@ -920,17 +920,17 @@ proc setForeColor {w index} {
     
     #ScilabEval "global h;"
     if { $index == -2 } {
-	ScilabEval "global h; h.foreground=$index;"
+	ScilabEval "global ged_handle;  ged_handle.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	.axes.n.f4.frame.samplefore config -background $color
     } elseif { $index == -1 } {
-	ScilabEval "global h; h.foreground=$index;"
+	ScilabEval "global ged_handle;  ged_handle.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	.axes.n.f4.frame.samplefore config -background $color
     } elseif { $index == 0 } {
-	ScilabEval "global h; h.foreground=$index;"
+	ScilabEval "global ged_handle;  ged_handle.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -939,7 +939,7 @@ proc setForeColor {w index} {
 	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
 	.axes.n.f4.frame.samplefore config -background $color
     } else { 
-	ScilabEval "global h; h.foreground=$index;"
+	ScilabEval "global ged_handle;  ged_handle.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -958,19 +958,19 @@ proc setBackColor {w index} {
     variable GRECOL 
     variable BLUCOL
     
-    #ScilabEval "global h;"
+    #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global h; h.background=$index;"
+	ScilabEval "global ged_handle; ged_handle.background=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	.axes.n.f4.frame.sampleback config -background $color
     } elseif { $index == -1 } {
-	ScilabEval "global h; h.background=$index;"
+	ScilabEval "global ged_handle; ged_handle.background=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	.axes.n.f4.frame.sampleback config -background $color
     } elseif { $index == 0 } {
-	ScilabEval "global h; h.background=$index;"
+	ScilabEval "global ged_handle; ged_handle.background=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -979,7 +979,7 @@ proc setBackColor {w index} {
 	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
 	.axes.n.f4.frame.sampleback config -background $color
     } else { 
-	ScilabEval "global h; h.background=$index;"
+	ScilabEval "global ged_handle; ged_handle.background=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -995,7 +995,7 @@ proc setBackColor {w index} {
 
 proc setColor {w colorindex} {    
 global red green blue color
-ScilabEval "global h;h.foreground=$colorindex;"
+ScilabEval "global ged_handle;ged_handle.foreground=$colorindex;"
 }
 proc setFontColor {w index} {    
     global RED BLUE GREEN
@@ -1003,19 +1003,19 @@ proc setFontColor {w index} {
     variable GRECOL 
     variable BLUCOL
     
-    #ScilabEval "global h;"
+    #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global h; h.font_color=$index;"
+	ScilabEval "global ged_handle; ged_handle.font_color=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	.axes.n.f4.frame.samplefont config -background $color
     } elseif { $index == -1 } {
-	ScilabEval "global h; h.font_color=$index;"
+	ScilabEval "global ged_handle; ged_handle.font_color=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	.axes.n.f4.frame.samplefont config -background $color
     } elseif { $index == 0 } {
-	ScilabEval "global h; h.font_color=$index;"
+	ScilabEval "global ged_handle; ged_handle.font_color=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -1024,7 +1024,7 @@ proc setFontColor {w index} {
 	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
 	.axes.n.f4.frame.samplefont config -background $color
     } else { 
-	ScilabEval "global h; h.font_color=$index;"
+	ScilabEval "global ged_handle; ged_handle.font_color=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -1037,54 +1037,54 @@ proc setFontColor {w index} {
     }
 }
 proc setThickness {w thick} {
-ScilabEval "global h;h.thickness=$thick;"
+ScilabEval "global ged_handle;ged_handle.thickness=$thick;"
 }
 proc setFontSize {w fs} {
-ScilabEval "global h;h.labels_font_size=$fs;"
+ScilabEval "global ged_handle;ged_handle.labels_font_size=$fs;"
 }
 
 
 proc toggleVisibility {} {
 global visToggle
-ScilabEval "global h;h.axes_visible='$visToggle'"
+ScilabEval "global ged_handle;ged_handle.axes_visible='$visToggle'"
 }
 
 
 proc toggleVis {} {
 global curvis
-ScilabEval "global h;h.visible='$curvis'"
+ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
 }
 
 proc toggleIsoview {} {
 global isoToggle
-ScilabEval "global h;h.isoview='$isoToggle'"
+ScilabEval "global ged_handle;ged_handle.isoview='$isoToggle'"
 }
 
 proc toggleCubview {} {
 global cubToggle
-ScilabEval "global h;h.cube_scaling='$cubToggle'"
+ScilabEval "global ged_handle;ged_handle.cube_scaling='$cubToggle'"
 }
 
 proc toggleView {} {
 global viewToggle
-ScilabEval "global h;h.view='$viewToggle'"
+ScilabEval "global ged_handle;ged_handle.view='$viewToggle'"
 }
 
 proc toggleBox {} {
 global boxToggle
-ScilabEval "global h;h.box='$boxToggle'"
+ScilabEval "global ged_handle;ged_handle.box='$boxToggle'"
 }
 proc toggleX {} {
 global xToggle
-ScilabEval "global h;h.log_flags='$xToggle'+part(h.log_flags,2)"
+ScilabEval "global ged_handle;ged_handle.log_flags='$xToggle'+part(ged_handle.log_flags,2)"
 }
 proc toggleY {} {
 global yToggle
-ScilabEval "global h;h.log_flags=part(h.log_flags,1)+'$yToggle'"
+ScilabEval "global ged_handle;ged_handle.log_flags=part(ged_handle.log_flags,1)+'$yToggle'"
 }
 proc toggleLimits {} {
 global limToggle
-ScilabEval "global h;h.tight_limits='$limToggle'"
+ScilabEval "global ged_handle;ged_handle.tight_limits='$limToggle'"
 }
 
 
@@ -1095,16 +1095,16 @@ proc setXGridColor {w index} {
     variable GRECOL 
     variable BLUCOL
     
-    #ScilabEval "global h;"
+    #ScilabEval "global ged_handle;"
     if { $index == -1 } {
-	ScilabEval "global h; h.grid(1)=$index;"
+	ScilabEval "global ged_handle; ged_handle.grid(1)=$index;"
 	#nothing to draw: grey color used
 	set color [format \#e6e7e6]
 	.axes.n.f0.frame.sample config -background $color
     } 
     
     if { $index == 0 } {
-	ScilabEval "global h; h.grid(1)=$index;"
+	ScilabEval "global ged_handle; ged_handle.grid(1)=$index;"
 	#like $index==1: display black color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -1115,7 +1115,7 @@ proc setXGridColor {w index} {
     }
     
     if { ( $index != -1) && ( $index != 0) } {
-	ScilabEval "global h; h.grid(1)=$index;"
+	ScilabEval "global ged_handle; ged_handle.grid(1)=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -1131,11 +1131,11 @@ proc setXGridColor {w index} {
 
 proc setXlabel {} {
 global xlabel
-ScilabEval "global h;h.x_label.text='$xlabel'"
+ScilabEval "global ged_handle;ged_handle.x_label.text='$xlabel'"
 }
 
 proc setXFontLabelSize {w siz} {
-ScilabEval "global h;h.x_label.font_size=$siz"
+ScilabEval "global ged_handle;ged_handle.x_label.font_size=$siz"
 }
 
 proc setXFontLabelColor {w  index} {
@@ -1144,19 +1144,19 @@ proc setXFontLabelColor {w  index} {
     variable GRECOL 
     variable BLUCOL
     
-    #ScilabEval "global h;"
+    #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global h; h.x_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.x_label.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	.axes.n.f0.frame.samplelabel config -background $color
     } elseif { $index == -1 } {
-	ScilabEval "global h; h.x_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.x_label.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	.axes.n.f0.frame.samplelabel config -background $color
     } elseif { $index == 0 } {
-	ScilabEval "global h; h.x_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.x_label.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -1165,7 +1165,7 @@ proc setXFontLabelColor {w  index} {
 	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
 	.axes.n.f0.frame.samplelabel config -background $color
     } else { 
-	ScilabEval "global h; h.x_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.x_label.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -1186,16 +1186,16 @@ proc setYGridColor {w index} {
     variable GRECOL 
     variable BLUCOL
     
-    #ScilabEval "global h;"
+    #ScilabEval "global ged_handle;"
     if { $index == -1 } {
-	ScilabEval "global h; h.grid(2)=$index;"
+	ScilabEval "global ged_handle; ged_handle.grid(2)=$index;"
 	#nothing to draw: grey color used
 	set color [format \#e6e7e6]
 	.axes.n.f1.frame.sample config -background $color
     } 
     
     if { $index == 0 } {
-	ScilabEval "global h; h.grid(2)=$index;"
+	ScilabEval "global ged_handle; ged_handle.grid(2)=$index;"
 	#like $index==1: display black color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -1206,7 +1206,7 @@ proc setYGridColor {w index} {
     }
     
     if { ( $index != -1) && ( $index != 0) } {
-	ScilabEval "global h; h.grid(2)=$index;"
+	ScilabEval "global ged_handle; ged_handle.grid(2)=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -1229,11 +1229,11 @@ proc setYGridColor {w index} {
 
 proc setYlabel {} {
 global ylabel
-ScilabEval "global h;h.y_label.text='$ylabel'"
+ScilabEval "global ged_handle;ged_handle.y_label.text='$ylabel'"
 }
 
 proc setYFontLabelSize {w siz} {
-ScilabEval "global h;h.y_label.font_size=$siz"
+ScilabEval "global ged_handle;ged_handle.y_label.font_size=$siz"
 }
 
 proc setYFontLabelColor {w  index} {
@@ -1242,19 +1242,19 @@ proc setYFontLabelColor {w  index} {
     variable GRECOL 
     variable BLUCOL
     
-    #ScilabEval "global h;"
+    #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global h; h.y_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.y_label.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	.axes.n.f1.frame.samplelabel config -background $color
     } elseif { $index == -1 } {
-	ScilabEval "global h; h.y_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.y_label.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	.axes.n.f1.frame.samplelabel config -background $color
     } elseif { $index == 0 } {
-	ScilabEval "global h; h.y_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.y_label.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -1263,7 +1263,7 @@ proc setYFontLabelColor {w  index} {
 	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
 	.axes.n.f1.frame.samplelabel config -background $color
     } else { 
-	ScilabEval "global h; h.y_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.y_label.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -1284,16 +1284,16 @@ proc setZGridColor {w index} {
     variable GRECOL 
     variable BLUCOL
     
-    #ScilabEval "global h;"
+    #ScilabEval "global ged_handle;"
     if { $index == -1 } {
-	ScilabEval "global h; h.grid(3)=$index;"
+	ScilabEval "global ged_handle; ged_handle.grid(3)=$index;"
 	#nothing to draw: grey color used
 	set color [format \#e6e7e6]
 	.axes.n.f2.frame.sample config -background $color
     } 
     
     if { $index == 0 } {
-	ScilabEval "global h; h.grid(3)=$index;"
+	ScilabEval "global ged_handle; ged_handle.grid(3)=$index;"
 	#like $index==1: display black color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -1304,7 +1304,7 @@ proc setZGridColor {w index} {
     }
     
     if { ( $index != -1) && ( $index != 0) } {
-	ScilabEval "global h; h.grid(3)=$index;"
+	ScilabEval "global ged_handle; ged_handle.grid(3)=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -1321,11 +1321,11 @@ proc setZGridColor {w index} {
 
 proc setZlabel {} {
 global zlabel
-ScilabEval "global h;h.z_label.text='$zlabel'"
+ScilabEval "global ged_handle;ged_handle.z_label.text='$zlabel'"
 }
 
 proc setZFontLabelSize {w siz} {
-ScilabEval "global h;h.z_label.font_size=$siz"
+ScilabEval "global ged_handle;ged_handle.z_label.font_size=$siz"
 }
 
 proc setZFontLabelColor {w  index} {
@@ -1334,19 +1334,19 @@ proc setZFontLabelColor {w  index} {
     variable GRECOL 
     variable BLUCOL
     
-    #ScilabEval "global h;"
+    #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global h; h.z_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.z_label.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	.axes.n.f2.frame.samplelabel config -background $color
     } elseif { $index == -1 } {
-	ScilabEval "global h; h.z_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.z_label.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	.axes.n.f2.frame.samplelabel config -background $color
     } elseif { $index == 0 } {
-	ScilabEval "global h; h.z_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.z_label.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -1355,7 +1355,7 @@ proc setZFontLabelColor {w  index} {
 	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
 	.axes.n.f2.frame.samplelabel config -background $color
     } else { 
-	ScilabEval "global h; h.z_label.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.z_label.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -1374,11 +1374,11 @@ proc setZFontLabelColor {w  index} {
 # Title
 proc setTitleLabel {} {
 global tlabel
-ScilabEval "global h;h.title.text='$tlabel'"
+ScilabEval "global ged_handle;ged_handle.title.text='$tlabel'"
 }
 
 proc setTitleFontLabelSize {w siz} {
-ScilabEval "global h;h.title.font_size=$siz"
+ScilabEval "global ged_handle;ged_handle.title.font_size=$siz"
 }
 
 proc setTitleFontLabelColor {w  index} {
@@ -1387,19 +1387,19 @@ proc setTitleFontLabelColor {w  index} {
     variable GRECOL 
     variable BLUCOL
     
-    #ScilabEval "global h;"
+    #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global h; h.title.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.title.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	.axes.n.f3.frame.samplelabel config -background $color
     } elseif { $index == -1 } {
-	ScilabEval "global h; h.title.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.title.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	.axes.n.f3.frame.samplelabel config -background $color
     } elseif { $index == 0 } {
-	ScilabEval "global h; h.title.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.title.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -1408,7 +1408,7 @@ proc setTitleFontLabelColor {w  index} {
 	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
 	.axes.n.f3.frame.samplelabel config -background $color
     } else { 
-	ScilabEval "global h; h.title.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.title.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -1427,14 +1427,14 @@ proc setTitleFontLabelColor {w  index} {
 proc setlabels {} {
 global ylabel
 global xlabel
-ScilabEval "global h;h.x_label.text='$xlabel';h.y_label.text='$ylabel'"
+ScilabEval "global ged_handle;ged_handle.x_label.text='$xlabel';ged_handle.y_label.text='$ylabel'"
 }
 
 proc SelectXpos {sel} {
-ScilabEval "global h;h.x_location='$sel'"
+ScilabEval "global ged_handle;ged_handle.x_location='$sel'"
 }
 proc SelectYpos {sel} {
-ScilabEval "global h;h.y_location='$sel'"
+ScilabEval "global ged_handle;ged_handle.y_location='$sel'"
 }
 
 

@@ -81,19 +81,19 @@ proc setColor {w index} {
     variable GRECOL 
     variable BLUCOL
     
-    #ScilabEval "global h;"
+    #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global h; h.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	.axes.frame.sample config -background $color
     } elseif { $index == -1 } {
-	ScilabEval "global h; h.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	.axes.frame.sample config -background $color
     } elseif { $index == 0 } {
-	ScilabEval "global h; h.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -102,7 +102,7 @@ proc setColor {w index} {
 	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
 	.axes.frame.sample config -background $color
     } else { 
-	ScilabEval "global h; h.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -118,14 +118,14 @@ proc setColor {w index} {
 
 
 proc setThickness {w thick} {
-ScilabEval "global h;h.thickness=$thick;"
+ScilabEval "global ged_handle;ged_handle.thickness=$thick;"
 
 #ScilabEval "disp($thick)"
 }
 
 proc toggleVisibility {} {
 global curvis
-ScilabEval "global h;h.visible='$curvis'"
+ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
 #ScilabEval "disp('$visToggle')"
 }
 
