@@ -17,6 +17,7 @@
 #include "../sparse/spConfig.h"
 #endif
 
+#include "Entities.h"
 /*--------------------------------------------------------------------
  *  C2F(plot2d)(x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
  *  
@@ -112,6 +113,16 @@ int C2F(xgrid)(style)
   integer closeflag=0,n=2,vx[2],vy[2],i,j;
   double pas;
   integer verbose=0,narg,xz[10];
+  if (version_flag() == 0) /* put it back to support xgrid under new graphics style*/
+    {
+      sciPointObj *psubwin;
+      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      for (i=0 ; i<3 ; i++) /**DJ.Abdmouche 2003**/
+	pSUBWIN_FEATURE (psubwin)->grid[i] = *style;
+      sciDrawObj(psubwin);
+      return(0);
+    }
+  
   /* Recording command */
   if (GetDriver()=='R') StoreGrid("xgrid",style);
 
