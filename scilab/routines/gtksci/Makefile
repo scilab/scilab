@@ -4,7 +4,7 @@ SHELL = /bin/sh
 SCIDIR=../..
 include ../../Version.incl
 
-LIBRARY = $(SCIDIR)/libs/xsci.a
+LIBRARY = $(SCIDIR)/libs/gtksci.a
 
 OBJSC =	 jpc_xwidgets.o \
 	io.o x_main.o  x_screen.o \
