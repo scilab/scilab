@@ -81,7 +81,8 @@ end
 // Update varslist  
 for k=1:size(instr_lhs)
   [bval,index]=isdefinedvar(instr_lhs(k))
-  
+  ierr=execstr("zz=instr_lhs(k).contents.index","errcatch")
+  if ierr<>0 then pause;end
   // Remove multiple entries from contents
   for kcont=lstsize(instr_lhs(k).contents.index):-1:1
     [infertlist,pos]=get_contents_infer(instr_lhs(k),instr_lhs(k).contents.index(kcont))
