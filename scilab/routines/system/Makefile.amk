@@ -12,7 +12,7 @@ LIBRARY = $(SCIDIR)/libs/system.lib
 
 OBJSC = System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.obj \
 	scicurdir.obj readline.obj msgstore.obj storeversion.obj cvstr.obj \
-	inisci-c.obj diary.obj
+	inisci-c.obj diary.obj dynamic_menus.obj history.obj
 
 OBJSF = allops.obj  banier.obj\
 	clause.obj comand.obj compcl.obj   \

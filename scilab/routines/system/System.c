@@ -79,7 +79,12 @@ extern void
       C2F(whatln)(),
       C2F(wspdsp)(),
       /* C2F(xchar)(), */
-  C2F(xerbla)();
+      C2F(waitforinputend)(),
+      SearchForwardInHistory(),
+      SearchBackwardInHistory(),
+      add_history(),
+      C2F(xerbla)();
+
 
 
 void System_contents( int x)
@@ -161,6 +166,10 @@ void System_contents( int x)
       C2F(whatln)();
       C2F(wspdsp)();
       /* C2F(xchar)(); */
+      C2F(waitforinputend)();
+      SearchForwardInHistory();
+      SearchBackwardInHistory();
+      add_history();
       C2F(xerbla)();
     }
 }
