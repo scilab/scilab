@@ -8,7 +8,7 @@ grand('setgen','clcg4');
 getf('SCI/tests/grand.sci')
  
 tstbot()
-For five virual generators of the 32
+For five virtual generators of the 101
  This test generates10 numbers then resets the block
       and does it again
  Any disagreements are reported -- there should be none
