@@ -38,7 +38,7 @@ case 'define' then
   model=scicos_model()
   model.sim=list('relationalop',4)
   model.in=[1;1]
-  model.out=2
+  model.out=1
   model.ipar=ipar
   model.blocktype='c'
   model.dep_ut=[%t %f]
