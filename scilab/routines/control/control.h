@@ -27,13 +27,11 @@ extern int C2F(dgefa) _PARAMS((double *a, int *lda, int *n, int *ipvt, int *info
 extern int C2F(dgesl) _PARAMS((double *a, int *lda, int *n, int *ipvt, double *b, int *job));
 extern int C2F(dhetr) _PARAMS((int *na, int *nb, int *nc, int *l, int *m, int *n, int *low, int *igh, double *a, double *b, double *c__, double *ort));
 extern int C2F(dlslv) _PARAMS((double *a, int *na, int *n, double *b, int *nb, int *m, double *w, double *rcond, int *ierr, int *job));
-extern int C2F(domout) _PARAMS((int *neq, double *q, double *qi, int *nbout, double *ti, double *touti, int *itol, double *rtol, double *atol, int *itask, int *istate, int *iopt, double *w, int *lrw, int *iw, int *liw, U_fp jacl2, int *mf, int *job));
 extern int C2F(dpofa) _PARAMS((double *a, int *lda, int *n, int *info));
 extern int C2F(dqrdc) _PARAMS((double *x, int *ldx, int *n, int *p, double *qraux, int *jpvt, double *work, int *job));
 extern int C2F(dqrsl) _PARAMS((double *x, int *ldx, int *n, int *k, double *qraux, double *y, double *qy, double *qty, double *b, double *rsd, double *xb, int *job, int *info));
 extern int C2F(dqrsm) _PARAMS((double *x, int *ldx, int *n, int *p, double *y, int *ldy, int *nc, double *b, int *ldb, int *k, int *jpvt, double *qraux, double *work));
 extern int C2F(drref) _PARAMS((double *a, int *lda, int *m, int *n, double *eps));
-extern int C2F(dsubsp) _PARAMS((int *nmax, int *n, double *a, double *b, double *z__, I_fp ftest, double *eps, int *ndim, int *fail, int *ind));
 extern int C2F(dsvdc) _PARAMS((double *x, int *ldx, int *n, int *p, double *s, double *e, double *u, int *ldu, double *v, int *ldv, double *work, int *job, int *info));
 extern int C2F(dzdivq) _PARAMS((int *ichoix, int *nv, double *tv, int *nq, double *tq));
 extern int C2F(ereduc) _PARAMS((double *e, int *m, int *n, double *q, double *z__, int *istair, int *ranke, double *tol));
@@ -56,7 +54,6 @@ extern int C2F(bae) _PARAMS((double *a, int *lda, double *e, double *q, int *ldq
 extern int C2F(dgiv) _PARAMS((double *da, double *db, double *dc, double *ds));
 extern int C2F(droti) _PARAMS((int *n, double *x, int *incx, double *y, int *incy, double *c__, double *s));
 extern int C2F(fxshfr) _PARAMS((int *l2, int *nz));
-/* comlen gloglo_ 4228 */
 extern int C2F(giv) _PARAMS((double *sa, double *sb, double *sc, double *ss));
 extern int C2F(hessl2) _PARAMS((int *neq, double *tq, double *pd, int *nrowpd));
 extern int C2F(hl2) _PARAMS((int *nq, double *tq, double *tg, int *ng, double *pd, int *nrowpd, double *tr, double *tp, double *tv, double *tw, double *tij, double *d1aux, double *d2aux, int *maxnv, int *maxnw));
@@ -66,7 +63,6 @@ extern int C2F(cdiv) _PARAMS((double *ar, double *ai, double *br, double *bi, do
 extern int C2F(htribk) _PARAMS((int *nm, int *n, double *ar, double *ai, double *tau, int *m, double *zr, double *zi));
 extern int C2F(htridi) _PARAMS((int *nm, int *n, double *ar, double *ai, double *d__, double *e, double *e2, double *tau));
 extern int C2F(imtql3) _PARAMS((int *nm, int *n, double *d__, double *e, double *z__, int *ierr, int *job));
-extern int C2F(inva) _PARAMS((int *nmax, int *n, double *a, double *z__, I_fp ftest, double *eps, int *ndim, int *fail, int *ind));
 extern int C2F(invtpl) _PARAMS((double *t, int *n, int *m, double *tm1, int *ierr));
 extern int C2F(irow1) _PARAMS((int *i__, int *m));
 extern int C2F(irow2) _PARAMS((int *i__, int *m));
@@ -83,7 +79,6 @@ extern int C2F(mzdivq) _PARAMS((int *ichoix, int *nv, double *tv, int *nq, doubl
 extern int C2F(newest) _PARAMS((int *type__, double *uu, double *vv));
 extern int C2F(nextk) _PARAMS((int *type__));
 extern int C2F(onface) _PARAMS((int *nq, double *tq, double *tg, int *ng, int *nprox, int *ierr, double *w));
-extern int C2F(optml2) _PARAMS((S_fp feq, U_fp jacl2, int *neq, double *q, int *nch, double *w, int *iw));
 extern int C2F(orthes) _PARAMS((int *nm, int *n, int *low, int *igh, double *a, double *ort));
 extern int C2F(ortran) _PARAMS((int *nm, int *n, int *low, int *igh, double *a, double *ort, double *z__));
 extern int C2F(outl2) _PARAMS((int *ifich, int *neq, int *neqbac, double *tq, double *v, double *t, double *tout));
