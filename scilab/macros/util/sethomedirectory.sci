@@ -26,7 +26,7 @@ function [HomeDirectory,ScilabHomeDirectory]=sethomedirectory(varargin)
     if MSDOS then
       ScilabHomeDirectory=HomeDirectory+'\Scilab\'+getversion();
     else
-      ScilabHomeDirectory=HomeDirectory+'/Scilab/'+getversion();
+      ScilabHomeDirectory=HomeDirectory+'/.Scilab/'+getversion();
     end
     
     if (ExistScilabHomeDirectory(ScilabHomeDirectory)==%F) then
@@ -69,7 +69,7 @@ function ScilabHome=CreateScilabHomeDirectory(Home,SciHome)
     HomeScilabLvl1=HomeDirectory+'\Scilab';
     HomeScilabLvl2=HomeScilabLvl1+'\'+getversion();
   else
-  	HomeScilabLvl1=HomeDirectory+'/Scilab';
+  	HomeScilabLvl1=HomeDirectory+'/.Scilab';
     HomeScilabLvl2=HomeScilabLvl1+'/'+getversion();
   end
   
