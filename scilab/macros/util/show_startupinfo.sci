@@ -37,7 +37,7 @@ function show_startupinfo()
       show=grep(mgetl('~/.scilab_settings'),'displayDialogNewGraphic=no')==[]
     end
     if show
-      if x_message(DialogNewGraphic,['Yes','No']) == 1 then
+      if x_message(DialogNewGraphic, Buttons) == 1 then
 	mputl('displayDialogNewGraphic=no','~/.scilab_settings')
       end
     end
