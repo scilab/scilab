@@ -124,9 +124,9 @@ while %t do
       [%mv,%nv]=size(%vv)
       if %nv<>1 then %nok=%kk,break,end,
       if %sz(1)>=0 then if %mv<>%sz(1) then %nok=%kk,break,end,end
-    case '%str'
+    case 'str'
       %sde=%str1(%kk)
-      %spe=find(str2code(%str1(k))==99)
+      %spe=find(str2code(%str1(%kk))==99)
       %spe($+1)=length(%sde)+1
       %vv=[];%kk1=1
       for %kkk=1:size(%spe,'*')
