@@ -13,11 +13,11 @@ function sciGUIhelp(key)
   update='0';
   
 
-  if execstr('TK_GetVar(''tcl_platform'')','errcatch')<>0 then
-    path=SCI+"/tcl/sciGUI/'
-    TK_EvalFile(path+'sciGUI.tcl');
-    TK_EvalFile(path+'sciBrowseHelp.tcl');
-    TK_EvalFile(path+'sciBar.tcl');
+  if execstr('TK_GetVar(''sciGUITable(browsehelp,nchap)'')','errcatch')<>0 then
+    tclpath=SCI+"/tcl/sciGUI/'
+    TK_EvalFile(tclpath+'sciGUI.tcl');
+    TK_EvalFile(tclpath+'sciBrowseHelp.tcl');
+    TK_EvalFile(tclpath+'sciBar.tcl');
     TK_EvalStr('sciGUIDoInit ""'+SCI+'/"";sciGUIBrowseHelpINI');
   end
    
