@@ -7,13 +7,14 @@
   <DATE>August 2003  </DATE>
   <SHORT_DESCRIPTION name="continue"> command passant le contrôle à
   l'itération suivante d'une boucle  </SHORT_DESCRIPTION>
+
   <DESCRIPTION>
-  <P>
     A l&apos;intérieur d&apos;une boucle <VERB>for</VERB> ou
     <VERB>while</VERB>, la commande <VERB>continue</VERB> passe le contrôle à
   l'itération suivante, sautant toutes les instructions comprise entre
     cet ordre et le  <VERB>end</VERB> marquant la fin de la boucle.
   </DESCRIPTION>
+
   <EXAMPLE><![CDATA[
   for k=1:10,K=k;if k>2&k<=8 then continue,end,k,end
 
