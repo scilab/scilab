@@ -23,14 +23,25 @@ function [x,y,typ]=standard_outputs(o)
     dx=-xf/7
   end
 
+typ=[];
 
   // output port location
   if out==0 then
-    x=[];y=[],typ=[]
+    x=[];y=[];
   else
     y=orig(2)+sz(2)-(sz(2)/(out+1))*(1:out)
     x=(xo+dx)*ones(y)
-    typ=ones(x)
+      for k=1:out
+         if o.graphics.out_implicit==[] then
+          typ=ones(x)
+         else
+            if o.graphics.out_implicit(k)=='E' then
+                     typ=[typ ones(x(k))]
+            elseif  o.graphics.out_implicit(k)=='I' then
+                       typ=[typ 2*ones(x(k))]
+            end
+         end
+      end
   end
 
 
@@ -41,3 +52,4 @@ function [x,y,typ]=standard_outputs(o)
     typ=[typ,-ones(1,clkout)]
   end
 endfunction
+

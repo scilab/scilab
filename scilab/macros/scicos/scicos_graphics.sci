@@ -10,8 +10,9 @@ function graphics=scicos_graphics(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
   if exists('peout','local')==0 then peout=[],end
   if exists('gr_i','local')==0 then gr_i=[],end
   if exists('id','local')==0 then id='',end
-  
+  if exists('in_implicit','local')==0 then in_implicit=[],end
+  if exists('out_implicit','local')==0 then out_implicit=[],end 
   graphics=mlist(['graphics','orig','sz','flip','exprs','pin',..
-		  'pout','pein','peout','gr_i','id'],..
-		 orig,sz,flip,exprs,pin,pout,pein,peout,gr_i,id)
+		  'pout','pein','peout','gr_i','id','in_implicit','out_implicit'],..
+		 orig,sz,flip,exprs,pin,pout,pein,peout,gr_i,id,in_implicit,out_implicit)
 endfunction

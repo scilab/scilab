@@ -38,13 +38,12 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout)
   end
 
 
-
   [label,ip1,op1,cip1,cop1]=(graphics.exprs,graphics.pin,graphics.pout,..
 			     graphics.pein,graphics.peout)
 
   [in1,out1,clkin1,clkout1]=(model.in,model.out,model.evtin,model.evtout)
 
-  n1=size(in1,'*');n=size(in,'*')
+  n1=size(in1(:,1),'*');n=size(in(:,1),'*')
   if n1>n then
     if or(ip1(n+1:$)>0) then
       message('Connected ports cannot be suppressed')
@@ -99,8 +98,17 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout)
   graphics.pein=cip1
   graphics.peout=cop1
 
-  model.in=in
-  model.out=out
+  if size(in1,2)<=1 then
+    model.in=in
+  elseif size(in1,2)==2 then
+    model.in=[in,2*ones(in)];
+  end
+  
+  if size(out1,2)<=1 then
+    model.out=out
+  elseif size(out1,2)==2 then
+    model.out=[out,2*ones(out)];
+  end
   model.evtin=clkin
   model.evtout=clkout
 

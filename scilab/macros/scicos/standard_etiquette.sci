@@ -27,26 +27,35 @@ function standard_etiquette(bloc, legende, job)
 // Copyright INRIA
 //= Initialisations ==
 //GRAPHIQUE = 2;ORIGINE = 1;TAILLE = 2
-
-//macro = bloc(5)
 macro = bloc.gui
-
+orient=bloc.graphics.flip
 select job
 case 'in' then //= Ports d'entree ==
+  
   execstr('[x, y, typ] = '+macro+'(''getinputs'', bloc)')
-  x = x(find(typ == 1))
-  y = y(find(typ == 1))
+  x = x(find(typ > 0))
+  y = y(find(typ > 0))
+
   for i = 1:size(legende,'*')
     rect = xstringl(0, 0, legende(i))
-    xstring(x(i)-rect(3),y(i),legende(i))
+    if orient then //standard orientation
+      xstring(x(i)-rect(3),y(i),legende(i))
+    else //tilded orientation
+      xstring(x(i)+rect(3)/2,y(i),legende(i))
+    end
   end
 
 case 'out' then //= Ports de sortie ==
   execstr('[x, y, typ] = '+macro+'(''getoutputs'', bloc)')
-  x = x(find(typ == 1))
-  y = y(find(typ == 1))
-  for i = 1:size(legende,'*'),
-    xstring(x(i),y(i),legende(i))
+  x = x(find(typ > 0))
+  y = y(find(typ > 0))
+  for i = 1:size(legende,'*')
+    rect = xstringl(0, 0, legende(i))
+    if orient then //standard orientation
+      xstring(x(i),y(i),legende(i))
+    else //tilded orientation
+      xstring(x(i)-rect(3),y(i),legende(i))
+    end
   end
 case 'clkin' then //= Port d'entree evenement ==
   execstr('[x, y, typ] = '+macro+'(''getinputs'', bloc)')
@@ -65,14 +74,14 @@ case 'clkout' then //= Ports de sortie evenement ==
     xstring(x(i)-rect(3), y(i)-i*rect(4)*1.2,legende(i))
   end
 case 'centre' then //= Centre du bloc ==
-  //origine = bloc(GRAPHIQUE)(ORIGINE)
+ // origine = bloc(GRAPHIQUE)(ORIGINE)
  // taille = bloc(GRAPHIQUE)(TAILLE)
   origine = bloc.graphics.orig
   taille = bloc.graphics.sz
   xstringb(origine(1), origine(2), legende, taille(1), taille(2), 'fill')
 case 'croix' then //= Identification des bases de donnees ==
- // origine = bloc(GRAPHIQUE)(ORIGINE)
-  //taille = bloc(GRAPHIQUE)(TAILLE)
+//  origine = bloc(GRAPHIQUE)(ORIGINE)
+//  taille = bloc(GRAPHIQUE)(TAILLE)
   origine = bloc.graphics.orig
   taille = bloc.graphics.sz
   nx = [origine(1), origine(1)+taille(1); origine(1), origine(1)+taille(1)] 
@@ -82,3 +91,8 @@ case 'croix' then //= Identification des bases de donnees ==
   xset('dashes', dashes)
 end
 endfunction
+
+
+
+
+

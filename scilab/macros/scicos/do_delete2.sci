@@ -15,11 +15,24 @@ while K<>[] do
   if typ=='Link' then
     [ct,from,to]=(o.ct,o.from,o.to)
     tokill=[%t,%t]
-
-    //disconnect to block
-    scs_m.objs(to(1))=mark_prt(scs_m.objs(to(1)),to(2),'in',ct(2),0)
-    //disconnect from block
-    scs_m.objs(from(1))=mark_prt(scs_m.objs(from(1)),from(2),'out',ct(2),0)
+    if ct(2)<>2 then
+      //disconnect to block
+      scs_m.objs(to(1))=mark_prt(scs_m.objs(to(1)),to(2),'in',ct(2),0)
+      //disconnect from block
+      scs_m.objs(from(1))=mark_prt(scs_m.objs(from(1)),from(2),'out',ct(2),0)
+    else
+      if or(scs_m.objs(to(1)).graphics.pin==k) then
+	scs_m.objs(to(1))=mark_prt(scs_m.objs(to(1)),to(2),'in',ct(2),0)
+      else
+	scs_m.objs(to(1))=mark_prt(scs_m.objs(to(1)),to(2),'out',ct(2),0)
+      end
+       if or(scs_m.objs(from(1)).graphics.pin==k) then
+	 scs_m.objs(from(1))=mark_prt(scs_m.objs(from(1)),from(2),'in',ct(2),0)
+       else
+	 scs_m.objs(from(1))=mark_prt(scs_m.objs(from(1)),from(2),'out',ct(2),0)
+       end
+    end
+    
     // erase and delete link
     if gr==%t then drawobj(o),end
   elseif typ=='Block' then

@@ -13,13 +13,13 @@ function o=mark_prt(o,prt_number,inout,typ,v)
 // Copyright INRIA
 
   if inout=='out' then //set an output port
-    if typ==1 then  //standard port
+    if typ==1 | typ==2 then  //standard (regular or implicit) port
       o.graphics.pout(prt_number)=v;
     else //clock port
       o.graphics.peout(prt_number)=v;
     end
   else //set an input port
-    if typ==1 then  //standard port
+    if typ==1 | typ==2 then  //standard (regular or implicit) port
       o.graphics.pin(prt_number)=v;
     else //clock port
       o.graphics.pein(prt_number)=v;

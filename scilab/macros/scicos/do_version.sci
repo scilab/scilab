@@ -21,6 +21,41 @@ if version=='scicos2.5.1' then
   lines(ncl(2))
 end
 if version=='scicos2.7' then scs_m=do_version271(scs_m),version='scicos2.7.1';end
+if version=='scicos2.7.1' then scs_m=do_version272(scs_m),version='scicos2.7.2';end
+endfunction
+
+function scs_m_new=do_version272(scs_m)
+
+  scs_m_new=scs_m
+  for i=1:lstsize(scs_m.objs)
+    
+    if typeof(scs_m.objs(i))=='Block' then
+      grphic=scs_m.objs(i).graphics
+      chmps=size(getfield(1,grphic))
+      if or(getfield(1,grphic)=='in_implicit') then 
+	in_implicit=grphic.in_implicit
+      else      
+	in_implicit=[]
+      end
+      
+      if or(getfield(1,grphic)=='out_implicit') then
+	out_implicit=grphic.out_implicit
+      else
+	out_implicit=[]
+      end
+      
+      scs_m_new.objs(i).graphics=mlist(['graphics','orig','sz','flip','exprs','pin',..
+		    'pout','pein','peout','gr_i','id','in_implicit','out_implicit'],..
+				       grphic.orig,grphic.sz,grphic.flip,grphic.exprs,grphic.pin,..
+				       grphic.pout,grphic.pein,grphic.peout,grphic.gr_i,grphic.id,..
+				       in_implicit,out_implicit)
+      
+      if or(scs_m_new.objs(i).model.sim==['super','csuper']) then
+	rpar=do_version_implicit(scs_m_new.objs(i).model.rpar)
+	scs_m_new.objs(i).model.rpar=rpar 
+      end
+    end
+  end
 endfunction
 
 function scs_m_new=do_version271(scs_m)

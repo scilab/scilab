@@ -1,4 +1,5 @@
-function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
+function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m)
+  //derived from c_pass1 for implicit diagrams
 //%Purpose
 // Determine one level blocks and connections matrix
 //%Parameters
@@ -6,483 +7,253 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 // ksup   :
 // blklst : a list containing the "model" information structure for each block
 //
-// cmat   : nx4 matrix. Each row contains, in order, the block
-//             number and the port number of an outgoing scicopath,
-//             and the block number and the port number of the target
-//             ingoing scicopath.
+// cmat   : nx6 matrix. Each row contains, in order, the block
+//             number and the port number and the port type of an outgoing scicopath,
+//             and the block number and the port number and the port type of the target
+//             ingoing scicopath. for regular links
 //
-// ccmat  : same as cmat but for clock scico-paths.
+// ccmat  : nx4 matrix.  Each row contains, in order, the block
+//             number and the port number  of an outgoing scicopath,
+//             and the block number and the port number  of the target
+//             ingoing scicopath for clock connections
+  
 // cor    : is a list with same recursive structure as scs_m each leaf 
 //          contains the index of associated block in blklst 
 // corinv : corinv(nb) is the path of nb ith block defined in blklst 
 //          in the scs_m structure
 //!
-// Copyright INRIA
-  [lhs,rhs]=argn(0);
-  sup_tab=[]
-  if rhs<=1 then ksup=0;end
+// Serge Steer 2003, Copyright INRIA
+//c_pass1;
+  [cor,corinvt,links_table,cur_fictitious,ok]=scicos_flat(scs_m);
+  nb=size(corinvt);
+  reg=1:nb
+  //form the block lists
+  blklst=list();kr=0 ; //regular  block list 
+  blklstm=list();km=0; //modelica block list
 
-  if ksup==0 then   // main scheme
-    MaxBlock=countblocks(scs_m);
-    nsblk=0; // number of special blocks (clock split,clock sum,super_blocks)
-    sup_tab=[]
-    path=[] // for delete_unconnected 
-    scs_m_s=scs_m // for delete_unconnected 
-  end
-  //suppress blocks with an unconnected regular port
-  scs_m=delete_unconnected(scs_m);
-
-  //initialize outputs
-  blklst=list(),nb=0,cor=list(),corinv=list(),cmat=[],ccmat=[];ok=%t
-  labels=[];
-  n=lstsize(scs_m.objs)
-  for k=1:n, cor(k)=0;end
-
-
-  clksplit=[] // clock split table for this level
-  clksum=[] // clock sum table for this level
-  nrmsplit=[]
-  nrmsum=[]
-  sel=1:n
-  for k=sel
-    o=scs_m.objs(k)
-    x=getfield(1,o)
-    if x(1)=='Block' then
-      sel(k)=0
-      if o.gui=='CLKSPLIT_f' then
-	nsblk=nsblk+1
-	cor(k)=MaxBlock+nsblk
-	clksplit=[clksplit,MaxBlock+nsblk]
-      elseif o.gui=='SPLIT_f' then	
-	nsblk=nsblk+1
-	cor(k)=MaxBlock+nsblk
-	nrmsplit=[nrmsplit,MaxBlock+nsblk]
-      elseif o.gui=='CLKSOM_f'|o.gui=='CLKSOMV_f' then
-	nsblk=nsblk+1
-	cor(k)=MaxBlock+nsblk
-	clksum=[clksum,MaxBlock+nsblk]
-      elseif o.gui=='NRMSOM_f' then
-	nsblk=nsblk+1
-	cor(k)=MaxBlock+nsblk
-	nrmsum=[nrmsum,MaxBlock+nsblk]
-      elseif o.gui=='SUM_f'|o.gui=='SOM_f' then
-	if ~and(o.graphics.pin) then
-	  //all input ports are not connected,renumber connected ones
-	  //and modify signs
-	  connected=get_connected(scs_m,k)
-	  count=0;cnct=[]
-	  for kk=1:prod(size(connected))
-	    kc=connected(kk)
-	    if scs_m.objs(kc).to(1)==k then  // an input link
-	      cnct=[cnct scs_m.objs(kc).to(2)]
-	      count=count+1
-	      scs_m.objs(kc).to(2)=count;
-	    end
-	  end
-          o.model.in=o.model.in(cnct);
-	end
-	nb=nb+1
-	corinv(nb)=k
-	blklst(nb)=o.model
-	cor(k)=nb
-      elseif o.model.sim=='super'|o.model.sim=='csuper' then
-	path=[path k]
-	nsblk=nsblk+1
-	sup_tab=[sup_tab MaxBlock+nsblk]
-	connected=get_connected(scs_m,k)
-	for kk=1:prod(size(connected))
-	  kc=connected(kk);
-	  if scs_m.objs(kc).to(1)==k then  // an input link
-	    scs_m.objs(kc).to(1)=MaxBlock+nsblk; 
-	  end
-	  if scs_m.objs(kc).from(1)==k then  // an output link 
-	    scs_m.objs(kc).from(1)=MaxBlock+nsblk;
-	  end
-	end
-        [blklsts,cmats,ccmats,cors,corinvs,ok]=c_pass1(o.model.rpar,..
-						       MaxBlock+nsblk)
-	if ~ok then return,end
-	nbs=size(blklsts)
-	for kk=1:nbs
-	  //blklst(nb+kk)=blklsts(kk)
-	  corinv(nb+kk)=[k,corinvs(kk)]
-	end
-	blklst=lstcat(blklst,blklsts)
-	cors=shiftcors(cors,nb)
-	if cmats<>[] then
-	  f=find(cmats(:,2)>0)
-	  if f<>[] then cmats(f,1)=cmats(f,1)+nb,end
-	  f=find(cmats(:,4)>0)
-	  if f<>[] then cmats(f,3)=cmats(f,3)+nb,end
-	  cmat=[cmat;cmats]
-	end
-	if ccmats<>[] then
-	  f=find(ccmats(:,2)>0)
-	  if f<>[] then ccmats(f,1)=ccmats(f,1)+nb,end
-	  f=find(ccmats(:,4)>0)
-	  if f<>[] then ccmats(f,3)=ccmats(f,3)+nb,end
-	  ccmat=[ccmat;ccmats]
-	end
-	cor(k)=cors
-	nb=nb+nbs
-	path($)=[]
-      elseif o.gui=='IN_f' then
-	if ksup==0 then
-	  message('Input port must be only used in a Super Block')
-	ok=%f
-	return
-      end
-      connected=get_connected(scs_m,k)
-      if connected==[] then
-	message(['A Super Block Input port is unconnected';
-	    'Please check'])
-	ok=%f
-	return
-      end
-      lk=scs_m.objs(connected)
-      //model.ipar contient le numero de port d'entree affecte
-      //a ce bloc
-      lk.from=[-ksup -o.model.ipar];scs_m.objs(connected)=lk
-      elseif o.gui=='OUT_f' then
-	if ksup==0 then
-	  message('Output port must be only used in a Super Block')
-	  ok=%f
-	  return
-	end
-	connected=get_connected(scs_m,k)
-	if connected==[] then
-	  message(['A Super Block Output port is unconnected';
-		   'Please check'])
-	  ok=%f
-	  return
-	end
-	lk=scs_m.objs(connected)
-	//ipar=model.ipar contient le numero de port de sortie affecte
-	//a ce bloc
-	lk.to=[-ksup -o.model.ipar];scs_m.objs(connected)=lk
-      elseif o.gui=='CLKIN_f'|o.gui=='CLKINV_f' then
-	if ksup==0 then
-	  message('Clock Input port must be only used in a Super Block')
-	  ok=%f
-	  return
-	end
-	connected=get_connected(scs_m,k)
-	if connected==[] then
-	  message(['A Super Block Clock Input port is unconnected';
-		   'Please check'])
-	  ok=%f
-	  return
-	end
-	lk=scs_m.objs(connected)
-	//model.ipar contient le numero de port d'entree affecte
-	//a ce bloc
-	lk.from=[-ksup -o.model.ipar];scs_m.objs(connected)=lk
-      elseif o.gui=='CLKOUT_f'|o.gui=='CLKOUTV_f' then
-	if ksup==0 then
-	  message('Clock Output port must be only used in a Super Block')
-	  ok=%f
-	  return
-	end
-	connected=get_connected(scs_m,k)
-	if connected==[] then
-	  message(['A Super Block Clock Output port is unconnected';
-		   'Please check'])
-	  ok=%f
-	  return
-	end
-	lk=scs_m.objs(connected)
-	//model.ipar contient le numero de port de sortie affecte
-	//a ce bloc
-	lk.to=[-ksup -o.model.ipar];scs_m.objs(connected)=lk
+  //if ind(i)>0  ith block is a regular  block and stored in blklst(ind(i))
+  //if ind(i)<0  ith block is a modelica block and stored in blklstm(-ind(i))
+  ind=[];
+  for kb=1:nb
+    o=scs_m(scs_full_path(corinvt(kb)));
+    if is_modelica_block(o) then
+      km=km+1;blklstm(km)=o.model;
+      ind(kb)=-km;
     else
-      //graphics=o(2)
-      nb=nb+1
-      corinv(nb)=k
-      if o.model.sim(1)=='scifunc' then
-        if o.model.ipar==0 then
-	  message('A scifunc block has not been defined')
-	  ok=%f
-	  return
-	end
-        o.model.sim=list(genmac(o.model.ipar,size(o.model.in,'*'),..
-				size(o.model.out,'*')),3)
+      [model,ok]=build_block(o);
+      if ~ok then return,end
+      if or(model.sim(1)==['plusblk';'sum']) then
+	[model,links_table]=adjust_sum(model,links_table,kb);
       end
-      if type(o.model.sim)==15 then
-        if int(o.model.sim(2)/1000)==1 then   //fortran block
-	  funam=o.model.sim(1)
-	  if ~c_link(funam) then
-	    tt=o.graphics.exprs(2);
-	    [ok]=scicos_block_link(funam,tt,'f')
-	  end
-        elseif int(o.model.sim(2)/1000)==2 then   //C block
-	  funam=o.model.sim(1)
-	  if ~c_link(funam) then
-	    tt=o.graphics.exprs(2);
-	    [ok]=scicos_block_link(funam,tt,'c')
-	  end
-	end
-      end
-      blklst(nb)=o.model
-      cor(k)=nb
-      end
-    elseif x(1)=='Deleted'|x(1)=='Text' then
-      sel(k)=0
-    end
-  end
-  if ksup==0&nb==0 then
-    message('Empty diagram')
-    ok=%f
-    return
-  end
-
-  //loop on links
-  sel(find(sel==0))=[]
-  for k=sel
-    o=scs_m.objs(k);
-    if o.from(2)<0&o.from(1)<0 then
-      //fil issu d'un port d'entree d'un super block
-      //on remet la valeur de from(1) au numero du superbloc dans scs_m
-      o.from(1)=-o.from(1)
-    elseif or(o.from(1)==sup_tab) then //fil provenant d'un super block
-				       //    o.from(2)=-o.from(2)
-    else
-      o.from(1)=cor(o.from(1)),
-    end
-    if o.to==[] then pause,end
-    if o.to(2)<0&o.to(1)<0 then 
-      //fil connecte a un port de sortie d'un super block
-      o.to(1)=-o.to(1)
-    elseif or(o.to(1)==sup_tab)  then 
-      //fil connecte a un super block
-      //    o.to(2)=-o.to(2)
-    else
-      o.to(1)=cor(o.to(1)),
-    end
-    if o.ct(2)==1 then
-      cmat=[cmat;[o.from(1),o.from(2),o.to(1),o.to(2)]];
-    else
-      ccmat=[ccmat;[o.from(1),o.from(2),o.to(1),o.to(2)]];
+      kr=kr+1;blklst(kr)=model;
+      ind(kb)=kr;
     end
   end
 
-  // strip super block input connection
-  //==========================================
-  to_kill=[]
-  for k=sup_tab //loop on super blocks
-    fn=find(cmat(:,1)==k); //super block inputs
-    if fn<>[] then
-      ni=max(abs(cmat(fn,2))) //number of super block input ports
-      for kp=1:ni //loop on ports
-	ip=find(cmat(fn,2)==-kp);fnp=fn(ip),
-	to=[cmat(fnp(1),1), -cmat(fnp(1),2)]
-	c=find(abs(cmat(:,3:4)-ones(cmat(:,1))*to)*[1;1]==0) //connected blocks
-	if c<>[] then
-	  cmat(c,3:4)=ones(c')*cmat(fnp(1),3:4);to_kill=[to_kill;fnp(1)],
-	  // handle nrmsum outputs (many links issued from a single port)
-	  for ii=2:size(fnp,'*')
-	    cmat=[cmat;[cmat(c,1:2),ones(c')*cmat(fnp(ii),3:4)] ]
-	    to_kill=[to_kill;fnp(ii)],
-	  end
-	else
-	  //	to_kill=[to_kill;fnp(:)], not useful (unconnected blocks
-	  //      are detected previously.
-	end
-      end
-    end
-  end
-  cmat(to_kill,:)=[];to_kill=[]
-  [nc,nw]=size(cmat)
-  // strip super block output  port connection
-  //===========================================
-  for k=sup_tab //loop on super blocks
-    fn=find(cmat(:,3)==k); //super block outputs
-    if fn<>[] then
-      no=max(abs(cmat(fn,4))); //number of super block output ports
-      for kp=1:no //loop on ports
-	ip=find(cmat(fn,4)==-kp);fnp=fn(ip);
-	to=[cmat(fnp(1),3), -cmat(fnp(1),4)]
-	c=find(abs(cmat(:,1:2)-ones(cmat(:,1))*to)*[1;1]==0) ;//connected blocks
-	if c<>[] then
-	  cmat(c,1:2)=ones(c')*cmat(fnp(1),1:2);to_kill=[to_kill;fnp(1)];
-	  // handle nrmsum outputs (many links issued from a single port)
-	  for ii=2:size(fnp,'*')
-	    cmat=[cmat;[ones(c')*cmat(fnp(ii),1:2),cmat(c,3:4)] ];
-	    to_kill=[to_kill;fnp(ii)];
-	  end
-	else
-	  to_kill=[to_kill;fnp(1)];
-	end
-      end
-    end
-  end
-  cmat(to_kill,:)=[]
-
-  [nc,nw]=size(cmat)
-  if nc<>0 then 
-    //strip splits and nrmsums
-    //============
-    to_kill=[]
-    for ksplit=nrmsplit
-      kfrom=find(cmat(:,1)==ksplit); //links coming from the split
-      kto=find(cmat(:,3)==ksplit); // link going to the split
-      if ~or(to_kill==kto) then to_kill=[to_kill,kto];end
-      cmat(kfrom,1:2)=cmat(kto*ones(kfrom'),1:2);
-    end
-  end
-
-  cmat(to_kill,:)=[];to_kill=[]
-  // strip nrmsum
   
-  [nc,nw]=size(cmat)
-  if nc<>0 then 
-    for ksum=nrmsum
-      //link(s) coming from the nrmsum.
-      //Due to previous substitutions, many links may go out of the nrmsum
-      kfrom=find(cmat(:,1)==ksum); // links coming from the nrmsum
-      if kfrom==[] then
-	  message('A merge block has unconnected output--not allowed.')
-	ok=%f
-	return
+  nl=size(links_table,1)/2
+  links_table=[links_table(:,1:3) matrix([1;1]*(1:nl),-1,1) links_table(:,4) ];
+
+  imp=find(ind<0)
+  reg(imp)=[]
+  if imp==[] then //no modelica block exists
+    cmat=matfromT(links_table(find(links_table(:,5)==1),:),nb); //data flow links
+    ccmat=cmatfromT(links_table(find(links_table(:,5)==-1),:),nb); //event links
+    corinv=corinvt
+  else // mixed diagram
+    nm=size(imp,'*') //number of modelica blocks
+    nr=nb-nm //number of regular blocks
+    
+    cmmat=mmatfromT(links_table(find(links_table(:,5)==2),:),nb); //modelica links
+    cmat=matfromT(links_table(find(links_table(:,5)==1),:),nb); //data flow links
+    ccmat=cmatfromT(links_table(find(links_table(:,5)==-1),:),nb);//event links
+
+    //build connections between modelica world and regular one. These
+    //links should be data flow links
+
+    // links from modelica world to regular world
+
+    fromM=find(dsearch(cmat(:,1),imp,'d')>0);NoM=size(fromM,'*');
+    if NoM>0 then
+      //add modelica Output ports in Modelica world
+      mo=modelica();mo.model='OutPutPort';mo.outputs='vo';mo.inputs='vi';
+      for k=1:NoM,blklstm($+1)=scicos_model(equations=mo);end
+      //add modelica connections to these Output ports, set negative
+      //value to port numbers to avoid conflits with other blocks
+      cmmat=[cmmat;
+	     cmat(fromM,1:2) zeros(NoM,1) -(nm+(1:NoM)'),ones(NoM,1),ones(NoM,1)];
+      nm=nm+NoM;
+      //add regular connection with regular block replacing the modelica world
+      cmat(fromM,1:2)=[-(nr+1)*ones(NoM,1),(1:NoM)'];
+    end
+     // links from regular world to modelica world 
+    toM=find(dsearch(cmat(:,3),imp,'d')>0);NiM=size(toM,'*');
+    if NiM>0 then
+      //add modelica Input ports in Modelica world
+      mo=modelica();mo.model='InPutPort';mo.outputs='vo';mo.inputs='vi';
+      for k=1:NiM,blklstm($+1)=scicos_model(equations=mo);end
+      //add modelica connections to these Input ports  set negative
+      //value to port numbers to avoid conflits with other blocks
+      cmmat=[cmmat;
+	     -(nm+(1:NiM)'), ones(NiM,1),zeros(NiM,1), cmat(toM,3:4), ones(NiM,1) ];
+      nm=nm+NiM;
+      //add regular connection with regular block replacing the modelica world
+      cmat(toM,3:4)=[-(nr+1)*ones(NiM,1),(1:NiM)'];
+    end
+    // modelica blocks with events ports are not allowed yet
+    if size(ccmat,1)>0 then
+      if or(dsearch(ccmat(:,[1 3]),imp,'d')>0) then
+	x_message('An implicit block has an event port')
+	ok=%f;return
       end
-      kto=find(cmat(:,3)==ksum); // links going to the nrmsum
-      if ~or(to_kill==kfrom(1)) then to_kill=[to_kill,kfrom(1)];end
-      cmat(kto,3:4)=cmat(kfrom(1)*ones(kto'),3:4);
-      kfrom(1)=[];
-      nto=size(kto,'c');
-      //add new links
-      for k=kfrom
-	if ~or(to_kill==k(1)) then to_kill=[to_kill,k(1)];end
-	nc=size(cmat,'r');
-	cmat=[cmat;cmat(kto,:)];
-	cmat(nc+1:nc+nto,3:4)=cmat(k*ones(kto'),3:4);
+    end
+
+    //renumber blocks according to their types	
+    corinv=list();corinvm=list();
+    for kb=1:nb
+      if ind(kb)<0 then // modelica block
+	km=-ind(kb);
+	//replace by negative value to avoid conflicts
+	cmmat(find(cmmat(:,1)==kb),1)=-km ;
+	cmmat(find(cmmat(:,4)==kb),4)=-km;
+	corinvm(km)=corinvt(kb);
+      else
+	kr=ind(kb);
+	cmat (find(cmat (:,1)==kb),1)=-kr;
+	cmat (find(cmat (:,3)==kb),3)=-kr;
+	ccmat(find(ccmat(:,1)==kb),1)=-kr;
+	ccmat(find(ccmat(:,3)==kb),3)=-kr;
+	corinv(kr)=corinvt(kb);
       end
-      cmat(to_kill,:)=[];to_kill=[]
-      [nc,nw]=size(cmat)
+    end
+    //renumbering done, replace negative value by positive ones
+
+    cmat(:,[1 3])=abs(cmat(:,[1 3])) ;
+    ccmat(:,[1 3])=abs(ccmat(:,[1 3])) ;
+    cmmat=abs(cmmat) ;
+    //create regular block associated to all modelica blocks
+
+    [model,ok]=build_modelica_block(blklstm, cmmat,NiM,NoM,scs_m.props.title(1),scs_m.props.title(2));
+    if ~ok then return,end
+    blklst(nr+1)=model;
+    //make compiled modelica block refer to the set of corresponding
+    //modelica blocks
+    corinv(nr+1)=corinvm //it may be useful to adapt function making use
+                         //of corinv
+
+  end
+   cor=update_cor(cor,reg)
+endfunction
+
+
+function [model,links_table]=adjust_sum(model,links_table,k)
+//sum blocks have variable number of input ports, adapt the associated
+//model data structure and input connection to take into account the
+//actual number of connected ports
+// Serge Steer 2003, Copyright INRIA
+  in=find(links_table(:,1)==k&links_table(:,3)==1)
+  nin=size(in,'*')
+  model.in=-ones(nin,1)
+  links_table(in,2)=(1:nin)'
+endfunction
+
+
+function mat=mmatfromT(Ts,nb)
+//S. Steer, R. Nikoukhah 2003. Copyright INRIA
+  Ts(:,1)=abs(Ts(:,1));
+  K=unique(Ts(find(Ts(:,1)>nb),1)); // identificator of blocks to be removed
+  //remove superblocks port and split connections 
+  Ts=remove_fictitious(Ts,K)
+  
+  // from connection matrix
+  Imat=[];
+  for u=matrix(unique(Ts(:,4)),1,-1)
+    kue=matrix(find(Ts(:,4)==u),-1,1); //identical links
+    Imat=[Imat;[kue(2:$)  kue(1).*ones(kue(2:$))]];
+  end
+  mat=[Ts(Imat(:,1),1:3)  Ts(Imat(:,2),1:3)]
+endfunction
+
+
+function mat=matfromT(Ts,nb)
+//S. Steer, R. Nikoukhah 2003. Copyright INRIA
+
+  Ts(:,1)=abs(Ts(:,1))
+  K=unique(Ts(find(Ts(:,1)>nb),1)); // identificator of blocks to be removed
+  //remove superblocks port and split connections 
+  Ts=remove_fictitious(Ts,K)
+
+  // from connection matrix
+  Imat=[];
+  for u=matrix(unique(Ts(:,4)),1,-1)
+    kue=matrix(find(Ts(:,4)==u&Ts(:,3)==-1),-1,1); //look for outputs
+    jue=matrix(find(Ts(:,4)==u&Ts(:,3)==1),-1,1); //look for inputs
+    Imat=[Imat;[ones(jue).*.kue jue.*.ones(kue)]];
+  end
+  mat=[Ts(Imat(:,1),1:2)  Ts(Imat(:,2),1:2)]
+endfunction
+
+function mat=cmatfromT(Ts,nb)
+//S. Steer, R. Nikoukhah 2003. Copyright INRIA
+  k=find(Ts(:,1)<0) //superblock ports links
+  K=unique(Ts(k,1));
+  Ts=remove_fictitious(Ts,K)
+  
+  if Ts==[] then mat=[],return,end
+  if size(Ts,1)<>int(size(Ts,1)/2)*2 then disp('PB'),pause,end
+  [s,k]=gsort(Ts(:,[4,3]),'lr','i');Ts=Ts(k,:)
+  
+  mat=[Ts(1:2:$,1:2) Ts(2:2:$,1:2)]
+  K=unique(Ts(Ts(:,1)>nb))
+  Imat=[];
+  for u=matrix(K,1,-1)
+    jue=matrix(find(mat(:,1)==u),-1,1); //look for outputs
+    kue=matrix(find(mat(:,3)==u),-1,1); //look for inputs
+    Imat=[ones(jue).*.kue jue.*.ones(kue)];
+    mat1=[mat(Imat(:,1),1:2), mat(Imat(:,2),3:4)];
+    mat([jue;kue],:)=[];
+    mat=[mat;mat1];
+  end
+  
+endfunction
+
+function Ts=remove_fictitious(Ts,K)
+//removes fictitious blocks connected links are replaced by a single one
+//S. Steer, R. Nikoukhah 2003. Copyright INRIA
+  count=min(Ts(:,4))
+  for i=1:size(K,'*')
+    ki=K(i);
+    v1=find(Ts(:,1)==ki);
+    if v1<>[] then
+      v=unique(Ts(v1,4));
+      Ts(v1,:)=[];
+      if size(v)==1 then
+	ind=find(Ts(:,4)==v);
+      else
+	ind = find(dsearch(Ts(:,4),gsort(v,'g','i'),'d')<>0);
+      end
+      if size(ind,'*')>1 then
+	count=count-1;
+	Ts(ind,4)=count
+      else
+	Ts(ind,:)=[]
+      end
     end
   end
+endfunction
 
-  [nc,nw]=size(ccmat)
-  if nc==0 then return,end
-  //strip clksplit and clksum blocks and change corresponding links
-  //===============================================================
-  // strip clksplit
-  to_kill=[]
-  for ksplit=clksplit
-    kfrom=find(ccmat(:,1)==ksplit); //links coming from the clksplit
-    kto=find(ccmat(:,3)==ksplit); // link going to the clksplit
-    if ~or(to_kill==kto) then to_kill=[to_kill,kto];end
-    ccmat(kfrom,1:2)=ccmat(kto*ones(kfrom'),1:2);
-  end
-
-
-  ccmat(to_kill,:)=[];to_kill=[]
-  // strip clksum
-  [nc,nw]=size(ccmat)
-  if nc==0 then return,end
-
-
-  for ksum=clksum
-    //link(s) coming from the clksum.
-    //Due to previous substitutions, many links may go out of the clksum
-    kfrom=find(ccmat(:,1)==ksum); // links coming from the clksum
-    kto=find(ccmat(:,3)==ksum); // links going to the clksum
-    if ~or(to_kill==kfrom(1)) then to_kill=[to_kill,kfrom(1)];end
-    if kfrom(1)<>[] then
-      ccmat(kto,3:4)=ccmat(kfrom(1)*ones(kto'),3:4);
-      kfrom(1)=[];
+function cor=update_cor(cor,reg)
+  n=size(cor)
+  for k=1:n
+    if type(cor(k))==15 then
+      cor(k)=update_cor(cor(k),reg)
     else
-      if ~or(to_kill==kto(1)) then to_kill=[to_kill,kto(1)];end
-    end
-    nto=size(kto,'c');
-    //add new links
-    for k=kfrom
-      if ~or(to_kill==k(1)) then to_kill=[to_kill,k(1)];end
-      nc=size(ccmat,'r');
-      ccmat=[ccmat;ccmat(kto,:)];
-      ccmat(nc+1:nc+nto,3:4)=ccmat(k*ones(kto'),3:4);
-    end
-    ccmat(to_kill,:)=[];to_kill=[]
-    [nc,nw]=size(ccmat)
-  end
-
-
-  if nc==0 then return,end
-
-  // strip super block input  clock connection
-  //==========================================
-  to_kill=[]
-
-  for k=sup_tab //loop on super blocks
-    fn=find(ccmat(:,1)==k); //super block inputs
-    if fn<>[] then
-      ni=max(abs(ccmat(fn,2))) //number of super block input ports
-      for kp=1:ni //loop on ports
-	ip=find(ccmat(fn,2)==-kp);fnp=fn(ip),
-	to=[ccmat(fnp(1),1), -ccmat(fnp(1),2)]
-	c=find(abs(ccmat(:,3:4)-ones(ccmat(:,1))*to)*[1;1]==0) //connected blocks
-	if c<>[] then
-	  ccmat(c,3:4)=ones(c')*ccmat(fnp(1),3:4);to_kill=[to_kill;fnp(1)],
-	  // handle clock sum outputs (many links issued from a single port)
-	  for ii=2:size(fnp,'*')
-	    ccmat=[ccmat;[ccmat(c,1:2),ones(c')*ccmat(fnp(ii),3:4)] ]
-	    to_kill=[to_kill;fnp(ii)],
-	  end
-	else
-	  to_kill=[to_kill;fnp(:)], //required????? SS 01/09/2000
-	end
+      p=find(cor(k)==reg)
+      if p<>[] then 
+	cor(k)=p
+      elseif cor(k)<>0 then
+	cor(k)=size(reg,'*')+1
       end
-    end
-  end
-  ccmat(to_kill,:)=[];to_kill=[]
-  [nc,nw]=size(ccmat)
-  if nc==0 then return,end
-  // strip super block output  clock connection
-  //===========================================
-  for k=sup_tab //loop on super blocks
-    fn=find(ccmat(:,3)==k); //super block links connected to outputs ports
-    if fn<>[] then
-      no=max(abs(ccmat(fn,4))); //number of super block output ports
-      for kp=1:no //loop on ports
-	ip=find(ccmat(fn,4)==-kp);fnp=fn(ip);//super block links connected to port kp
-	to=[ccmat(fnp(1),3), -ccmat(fnp(1),4)]
-	//current level blocks connected to the port kp of super block k:
-	c=find(abs(ccmat(:,1:2)-ones(ccmat(:,1))*to)*[1;1]==0) ;
-	if c<>[] then //there is blocks connected to this super block output port
-	  ccmat(c,1:2)=ones(c')*ccmat(fnp(1),1:2);to_kill=[to_kill;fnp(1)];
-	  // handle clock sum outputs (many links issued from a single port)
-	  for ii=2:size(fnp,'*')
-	    ccmat=[ccmat;[ones(c')*ccmat(fnp(ii),1:2),ccmat(c,3:4)] ];
-	    to_kill=[to_kill;fnp(ii)];
-	  end
-	else //there is no block connected to this super block output port
-	     //super bloc links going to this output port can be deleted
-	     to_kill=[to_kill;fnp(:)]; //required!!!! SS 01/09/2000 
-	end
-      end
-    end
-  end
-  ccmat(to_kill,:)=[]
-
-  if ksup==0 then
-    k1=find(ccmat(:,1)>MaxBlock)
-    k1n=find(ccmat(k1,2)<0)
-    ccmat(k1(k1n),:)=[]
-    k1(k1n)=[]
-    if k1<>[] then
-      message(['Warning: may be event loop'])
-      ok=%f;return
-    end
-    k2=find(ccmat(:,3)>MaxBlock)
-    k2n=find(ccmat(k2,4)<0)
-    ccmat(k2(k2n),:)=[]
-    k2(k2n)=[]
-    if k2<>[] then
-      message(['Warning: may be event loop'])
-      ok=%f;return
-    end
-    if or(cmat(:,1)>MaxBlock)|or(cmat(:,3)>MaxBlock)
-      message('Unexpected problem, please report')
-      ok=%f;return
     end
   end
 endfunction

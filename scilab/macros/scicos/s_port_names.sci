@@ -22,9 +22,15 @@ function s_port_names(sbloc)
 	  case 'IN_f' then
 	  inp=[inp modelb.ipar];
 	  etiquettes_in = [etiquettes_in; ident];
+          case  'INIMPL_f'  then
+          inp=[inp modelb.ipar];
+	  etiquettes_in = [etiquettes_in; ident];
 	  case 'OUT_f' then
 	  outp=[outp modelb.ipar];
-	  etiquettes_out = [etiquettes_out; ident];
+      	  etiquettes_out = [etiquettes_out; ident];
+          case 'OUTIMPL_f' then
+          outp=[outp modelb.ipar];
+      	  etiquettes_out = [etiquettes_out; ident];
 	  case 'CLKIN_f' then
 	  cinp=[cinp modelb.ipar];
 	  etiquettes_clkin = [etiquettes_clkin; ident];
@@ -45,6 +51,7 @@ function s_port_names(sbloc)
     [tmp,n_in]=sort(-inp)
     standard_etiquette(sbloc, etiquettes_in(n_in), 'in')
   end
+
   if outp<>[] then
     [tmp,n_out]=sort(-outp)
     standard_etiquette(sbloc, etiquettes_out(n_out), 'out')
