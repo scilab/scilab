@@ -198,6 +198,21 @@ void C2F(xendGif)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, 
 
 void C2F(clearwindowGif)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
+
+  /* F.Leray : I add a rectangle with  background color*/
+  int zero = 0;
+  int col_white = col_index[ScilabGCGif.Numcolors+1];
+
+  if (GifIm == (gdImagePtr)0 ) {
+    sciprint(" xinit must be called before any action \r\n");
+    return;
+  }
+
+/*   sciprint("JE PASSE PAR ICI et col_white vaut: %d\n",col_white); */
+
+  gdImageFilledRectangle(GifIm, zero, zero,  ScilabGCGif.CWindowWidth,  ScilabGCGif.CWindowHeight,
+			 col_white);
+
   /* FPRINTF((file,"\n showpage")); */
   /** Sending the scale etc.. in case we want an other plot **/
   /* FileInitGif(file); */
@@ -892,6 +907,12 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
   C2F(usecolorGif)((i=1,&i) ,PI0,PI0,PI0);
   C2F(setalufunction1Gif)((i=3,&i),PI0,PI0,PI0);
   C2F(setpatternGif)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);  
+
+ /*  /\* Rajout F.Leray 06.12.04 *\/ */
+/*   C2F(setforegroundGif)((i=ScilabGCGif.NumForeground+1,&i),PI0,PI0,PI0); */
+/*   C2F(setbackgroundGif)((i=ScilabGCGif.NumForeground+2,&i),PI0,PI0,PI0); */
+
+
 }
 
 void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
