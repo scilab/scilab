@@ -3140,7 +3140,7 @@ c     [VS,dim,T]=oschur(A,function)
       character*4  JOBVS, SORT
       logical SCISCHUR,scichk
       external SCISCHUR,scichk
-      common /scisch/ lf, nfree, nf
+      common /scisch/ lf, nx, nf
 
       minrhs=2
       maxrhs=2
@@ -3194,7 +3194,7 @@ c
       LWORKMIN = 3*N
       LWORK = LWORKMIN
       if(.not.createvar(k+2,'d',1,LWORKMIN,lDWORK)) return
-      nfree=k+3
+      nx=k+3
 
       if(lhs.eq.1) then
          JOBVS = 'N'
@@ -3706,7 +3706,7 @@ c     [VS,dim,T]=zschur(A,function)
       character*4  JOBVS, SORT
       logical SCIZSCHUR,scizchk
       external SCIZSCHUR,scizchk
-      common /scisch/ lf, nfree, nf
+      common /scisch/ lf, nx, nf
 
       minrhs=2
       maxrhs=2
@@ -3760,7 +3760,7 @@ c
       LWORKMIN = 3*N
       LWORK = LWORKMIN
       if(.not.createvar(k+3,'z',1,LWORKMIN,lDWORK)) return
-      nfree=k+4
+      nx=k+4
 
       if(lhs.eq.1) then
          JOBVS = 'N'
