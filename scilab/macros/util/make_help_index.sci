@@ -10,24 +10,18 @@ function path=make_help_index()
 	 "    <title>Index</title>";
 	 "</head>";
 	 "<body bgcolor=""FFFFFF"">";]
-  if MSDOS then
   global %browsehelp
   if %browsehelp == "Scilab Browser" then
   	// Scilab Browser
   	i_lines=[i_lines;
   		"<BR><A HREF="""+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
-	 	"</body></html>"]
+ 		"</body></html>"]
   	else 
-  	// Default Windows Browser
-  	i_lines=[i_lines;
-	 	"<BR><A HREF=""file:///"+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
-	 	"</body></html>"]
-  	end
-  clear %browsehelp	
-  else // Not Windows
+  	// Default Internet Browser IE,Mozilla, Opera,Nautilus
   	i_lines=[i_lines;
 		"<BR><A HREF=""file:///"+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
 		"</body></html>"]
-  end	 
+  	end
+  clear %browsehelp	
   mputl(i_lines,path)
 endfunction
