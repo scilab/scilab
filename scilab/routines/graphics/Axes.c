@@ -42,8 +42,7 @@ void axis_draw(strflag)
   C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
   if (version_flag() == 0){/**DJ.Abdemouche 2003**/
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-    color=pSUBWIN_FEATURE (psubwin)->cubecolor;
-    
+     
     /* F.Leray test on color here*/
     color=sciGetBackground(psubwin);
     

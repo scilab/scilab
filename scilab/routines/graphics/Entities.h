@@ -655,7 +655,6 @@ typedef struct
   /**DJ.Abdemouche 2003**/
   integer project[3];
   BOOL isoview; 
-  integer cubecolor;
   int hiddencolor;
   int hiddenstate;
   BOOL facetmerge; /* DJ.A 30/12 */

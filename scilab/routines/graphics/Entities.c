@@ -931,21 +931,6 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
 
   sciSetNumColors (pobj,m);
 
-  /* sciSetBackground ((sciPointObj *) pobj, m); */ /* F.Leray 29.03.04: Probably wrong index here: m+2 the bg is always STORED at m+2*/
-  
-  if (pobj == pfiguremdl) 
-    pSUBWIN_FEATURE (paxesmdl)->cubecolor= m;
-  else
-    pSUBWIN_FEATURE (sciGetSelectedSubWin (pobj))->cubecolor= m;
-  /*sciSetForeground ((sciPointObj *) pobj, m); */ /* F.Leray 29.03.04: Probably wrong index here: m+1 the fg is always STORED at m+2*/
- 
-  /* sciSetForeground ((sciPointObj *) pobj, -1); */ /* F.Leray 30.03.04*/
-  /*  sciSetBackground ((sciPointObj *) pobj, -2);*/ /* F.Leray 30.03.04*/
-  
-  /*** F.Leray 02.04.04 */
-  /* I force the re-set the Background on current Figure  (pobj here) and the subwins of the current figure*/
-  /*sciSetBackground ((sciPointObj *) pobj,sciGetBackground(pobj));*/
-
   return 0;
   
 }
@@ -1272,9 +1257,6 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
       break;
     case SCI_SUBWIN:
       (sciGetGraphicContext(pobj))->backgroundcolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      /* F.Leray 02.04.04 One thing more: init. of the pSUBWIN_FEATURE (pobj)->cubecolor;*/
-      pSUBWIN_FEATURE (pobj)->cubecolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      /* sciSetBackground (sciGetParentFigure (pobj), colorindex); */ /* F.Leray 01.04.04 TO DELETE OR NOT???  SEE sciDrawObj...*/ /* F.Leray 02.04.04 Yes! To delete*/
       break;
     case SCI_TEXT:
       (sciGetFontContext(pobj))->backgroundcolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
@@ -7927,7 +7909,6 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       pSUBWIN_FEATURE (pobj)->project[0]= pSUBWIN_FEATURE (paxesmdl)->project[0];
       pSUBWIN_FEATURE (pobj)->project[1]= pSUBWIN_FEATURE (paxesmdl)->project[1];
       pSUBWIN_FEATURE (pobj)->project[2]= pSUBWIN_FEATURE (paxesmdl)->project[2];
-      pSUBWIN_FEATURE (pobj)->cubecolor= pSUBWIN_FEATURE (paxesmdl)->cubecolor;
       pSUBWIN_FEATURE (pobj)->hiddencolor= pSUBWIN_FEATURE (paxesmdl)->hiddencolor;
       pSUBWIN_FEATURE (pobj)->hiddenstate= pSUBWIN_FEATURE (paxesmdl)->hiddenstate;
       pSUBWIN_FEATURE (pobj)->isoview= pSUBWIN_FEATURE (paxesmdl)->isoview;
@@ -8190,7 +8171,6 @@ int C2F(graphicsmodels) ()
   pSUBWIN_FEATURE (paxesmdl)->project[0]= 1;
   pSUBWIN_FEATURE (paxesmdl)->project[1]= 1;
   pSUBWIN_FEATURE (paxesmdl)->project[2]= 0;
-  pSUBWIN_FEATURE (paxesmdl)->cubecolor=  34; /* Let it 34 (will be automatically reset to -2) F.Leray 02.04.04*/
   
   /* DJ.A 2003 */
   pSUBWIN_FEATURE (paxesmdl)->hiddencolor=4;
@@ -15550,11 +15530,8 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	  else
 	    InsideD[3]=InsideD[0]+4;
 	  xind[5]=ind2;
-	  /****Ajout A.Djalel ***/
-	  background=pSUBWIN_FEATURE (pobj)->cubecolor;
 
-	  /** F.Leray Rajout 02.04.04: I delete background=pSUBWIN_FEATURE (pobj)->cubecolor*/
-	  /*Replaced by :*/
+	  /* F.Leray Rajout 02.04.04 :*/
 	  background=sciGetBackground(pobj);
 	  
 	  for (i=0; i < 6 ; i++)
@@ -17004,7 +16981,6 @@ int InitAxesModel()
   pSUBWIN_FEATURE (paxesmdl)->project[0]= 1;
   pSUBWIN_FEATURE (paxesmdl)->project[1]= 1;
   pSUBWIN_FEATURE (paxesmdl)->project[2]= 0;
-  pSUBWIN_FEATURE (paxesmdl)->cubecolor= (sciGetGraphicContext(paxesmdl))->backgroundcolor + 1;
   pSUBWIN_FEATURE (paxesmdl)->hiddencolor=4;
   pSUBWIN_FEATURE (paxesmdl)->hiddenstate=0; 
   pSUBWIN_FEATURE (paxesmdl)->isoview= TRUE;
