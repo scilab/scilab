@@ -82,18 +82,16 @@ c
             endif
 c     
             if (ntvec.ge.1) then 
-               do 70 i = 1,ntvec
-                  if (tvec(i) .gt. told) then
-                     urg=urg+1
-                     call putevs(tevts,evtspt,nevts,pointi,
-     &                    tvec(i),i+clkptr(kfun)-1,ierr1)
-                     if (ierr1 .ne. 0) then
+               if(funtyp(kfun).eq.-1) then
+                  urg=urg+1
+                  call putevs(tevts,evtspt,nevts,pointi,
+     &                 told,ntvec+clkptr(kfun)-1,ierr1)
+                  if (ierr1 .ne. 0) then
 C     !                 event conflict
-                        ierr = 3
-                        return
-                     endif
+                     ierr = 3
+                     return
                   endif
- 70            continue
+               endif
             endif
          endif
  60   continue
@@ -182,18 +180,16 @@ c
                return
             endif
 c     
-            do 70 i = 1,ntvec
-               if (tvec(i) .ge. told) then
-                  urg=urg+1
-                  call putevs(tevts,evtspt,nevts,pointi,
-     &                 tvec(i),i+clkptr(kfun)-1,ierr1)
-                  if (ierr1 .ne. 0) then
+            if(funtyp(kfun).eq.-1) then
+               urg=urg+1
+               call putevs(tevts,evtspt,nevts,pointi,
+     &              told,ntvec+clkptr(kfun)-1,ierr1)
+               if (ierr1 .ne. 0) then
 C     !                 event conflict
-                     ierr = 3
-                     return
-                  endif
+                  ierr = 3
+                  return
                endif
- 70         continue
+            endif
          endif
  19   continue
 c
