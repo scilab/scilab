@@ -43,6 +43,10 @@
     if object is a function
   </DESCRIPTION_ITEM>
 
+  <DESCRIPTION_ITEM  label='&quot;handle&quot;'> 
+    if object is an handle
+  </DESCRIPTION_ITEM>
+
   <DESCRIPTION_ITEM  label='&quot;string&quot;'> 
     if object is a matrix made of character strings
   </DESCRIPTION_ITEM>

@@ -163,6 +163,7 @@ int cre_listsparse_from_ptr  __PARAMS((char *fname,integer * lw,integer * numi,i
 				      SciSparse *M, unsigned long fname_len ));
 
 
+
 /**********************************************************************
  * INT MATRICES 
  **********************************************************************/
@@ -178,5 +179,15 @@ int C2F(creimat) __PARAMS((char *fname, integer *lw, integer *it, integer *m, in
 
 int C2F(creimati) __PARAMS((char *fname, integer *stlw, integer *it, integer *m, integer *n, integer *lr, int *flagx, long unsigned int fname_len));
 
+/**********************************************************************
+ * HANDLE MATRICES 
+ **********************************************************************/
+extern int C2F(getlisthmat)  __PARAMS((char *fname, integer *topk, integer *spos, integer *lnum, integer *m, integer *n, integer *lr, unsigned long fname_len));
+extern int C2F(gethmat)  __PARAMS((char *fname, integer *topk, integer *lw, integer *m, integer *n, integer *lr, unsigned long fname_len));
+extern int C2F(gethmati)  __PARAMS((char *fname, integer *topk, integer *spos, integer *lw, integer *m, integer *n, integer *lr, int *inlist__, integer *nel, unsigned long fname_len));
 
+
+extern  int C2F(listcrehmat)  __PARAMS((char *fname, integer *lw, integer *numi, integer *stlw, integer *m, integer *n, integer *lrs, unsigned long fname_len));
+extern int C2F(crehmat)  __PARAMS((char *fname, integer *lw, integer *m, integer *n, integer *lr, unsigned long fname_len));
+extern int C2F(crehmati)  __PARAMS((char *fname, integer *stlw, integer *m, integer *n, integer *lr, int *flag__, unsigned long fname_len));
 #endif 

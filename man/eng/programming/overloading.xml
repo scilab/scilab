@@ -39,48 +39,74 @@
   </P>
 <TABLE>
       <TABLE_NEW_ROW> 
-	<TABLE_NEW_COLUMN>string        </TABLE_NEW_COLUMN>
-	<TABLE_NEW_COLUMN>c           </TABLE_NEW_COLUMN>
-      </TABLE_NEW_ROW>
-
-      <TABLE_NEW_ROW> 
-	<TABLE_NEW_COLUMN>polynomial    </TABLE_NEW_COLUMN> 
-	<TABLE_NEW_COLUMN>p           </TABLE_NEW_COLUMN> 
-      </TABLE_NEW_ROW>
-      
-      <TABLE_NEW_ROW> 
-	<TABLE_NEW_COLUMN>function      </TABLE_NEW_COLUMN> 
-	<TABLE_NEW_COLUMN>mc          </TABLE_NEW_COLUMN> 
-      </TABLE_NEW_ROW>
-
-      <TABLE_NEW_ROW> 
-	<TABLE_NEW_COLUMN>constant      </TABLE_NEW_COLUMN> 
+	<TABLE_NEW_COLUMN>constant          </TABLE_NEW_COLUMN> 
 	<TABLE_NEW_COLUMN>s           </TABLE_NEW_COLUMN> 
       </TABLE_NEW_ROW>
 
       <TABLE_NEW_ROW> 
-	<TABLE_NEW_COLUMN>list          </TABLE_NEW_COLUMN> 
-	<TABLE_NEW_COLUMN>l           </TABLE_NEW_COLUMN> 
-      </TABLE_NEW_ROW>
-      
-      <TABLE_NEW_ROW> 
-	<TABLE_NEW_COLUMN>tlist         </TABLE_NEW_COLUMN> 
-	<TABLE_NEW_COLUMN>tlist_type  </TABLE_NEW_COLUMN> 
-      </TABLE_NEW_ROW>
-
-      <TABLE_NEW_ROW> 
-	<TABLE_NEW_COLUMN>boolean       </TABLE_NEW_COLUMN> 
+	<TABLE_NEW_COLUMN>boolean           </TABLE_NEW_COLUMN> 
 	<TABLE_NEW_COLUMN>b           </TABLE_NEW_COLUMN> 
       </TABLE_NEW_ROW>
 
       <TABLE_NEW_ROW> 
-	<TABLE_NEW_COLUMN>sparse        </TABLE_NEW_COLUMN> 
+	<TABLE_NEW_COLUMN>string            </TABLE_NEW_COLUMN>
+	<TABLE_NEW_COLUMN>c           </TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+
+      <TABLE_NEW_ROW> 
+	<TABLE_NEW_COLUMN>library           </TABLE_NEW_COLUMN>
+	<TABLE_NEW_COLUMN>f           </TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+
+      <TABLE_NEW_ROW> 
+	<TABLE_NEW_COLUMN>function pointer  </TABLE_NEW_COLUMN>
+	<TABLE_NEW_COLUMN>fptr        </TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+
+      <TABLE_NEW_ROW> 
+	<TABLE_NEW_COLUMN>handle            </TABLE_NEW_COLUMN> 
+	<TABLE_NEW_COLUMN>h           </TABLE_NEW_COLUMN> 
+      </TABLE_NEW_ROW>
+
+      <TABLE_NEW_ROW> 
+	<TABLE_NEW_COLUMN>integer           </TABLE_NEW_COLUMN> 
+	<TABLE_NEW_COLUMN>i           </TABLE_NEW_COLUMN> 
+      </TABLE_NEW_ROW>
+
+
+      <TABLE_NEW_ROW> 
+	<TABLE_NEW_COLUMN>list              </TABLE_NEW_COLUMN> 
+	<TABLE_NEW_COLUMN>l           </TABLE_NEW_COLUMN> 
+      </TABLE_NEW_ROW>
+
+      <TABLE_NEW_ROW> 
+	<TABLE_NEW_COLUMN>function          </TABLE_NEW_COLUMN> 
+	<TABLE_NEW_COLUMN>m           </TABLE_NEW_COLUMN> 
+      </TABLE_NEW_ROW>
+
+     <TABLE_NEW_ROW> 
+	<TABLE_NEW_COLUMN>compiled function </TABLE_NEW_COLUMN> 
+	<TABLE_NEW_COLUMN>mc          </TABLE_NEW_COLUMN> 
+      </TABLE_NEW_ROW>
+
+      <TABLE_NEW_ROW> 
+	<TABLE_NEW_COLUMN>polynomial        </TABLE_NEW_COLUMN> 
+	<TABLE_NEW_COLUMN>p           </TABLE_NEW_COLUMN> 
+      </TABLE_NEW_ROW>
+      
+      <TABLE_NEW_ROW> 
+	<TABLE_NEW_COLUMN>sparse            </TABLE_NEW_COLUMN> 
 	<TABLE_NEW_COLUMN>sp          </TABLE_NEW_COLUMN> 
       </TABLE_NEW_ROW>
       
       <TABLE_NEW_ROW> 
-	<TABLE_NEW_COLUMN>boolean sparse</TABLE_NEW_COLUMN> 
+	<TABLE_NEW_COLUMN>boolean sparse    </TABLE_NEW_COLUMN> 
 	<TABLE_NEW_COLUMN>spb         </TABLE_NEW_COLUMN> 
+      </TABLE_NEW_ROW>
+      
+      <TABLE_NEW_ROW> 
+	<TABLE_NEW_COLUMN>tlist             </TABLE_NEW_COLUMN> 
+	<TABLE_NEW_COLUMN>tlist_type  </TABLE_NEW_COLUMN> 
       </TABLE_NEW_ROW>
     </TABLE>
 

@@ -73,7 +73,7 @@ c     .     a() -->a
  03   continue
 
 c
-      goto (10,20,05,30,70,35,04,75,04,40,60,04,60,60,50,50,50) ,vt
+      goto (10,20,05,30,70,35,04,75,76,40,60,04,60,60,50,50,50) ,vt
 c     overloadable ops
       if(vt.eq.129.and.fin.eq.3) goto 20
  04   op=fin
@@ -100,6 +100,8 @@ c     overloadable ops
  70   call spops
       goto 80
  75   call intops
+      goto 80
+ 76   call hndlops
       goto 80
 
 c

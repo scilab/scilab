@@ -92,6 +92,9 @@ C     type 7 : msp
 C     type 8 : i
       call addtypename(8,'i',ierr)
       if(ierr.ne.0) goto 99
+C     type 9 : h
+      call addtypename(9,'h',ierr)
+      if(ierr.ne.0) goto 99
 c     type 10 : c
       call addtypename(10,'c',ierr)
       if(ierr.ne.0) goto 99

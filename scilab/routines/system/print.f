@@ -10,7 +10,7 @@ c
       integer itype,itypel,gettype
       integer fl,mode,m,n,it,lr,lc,nlr,lkeep,topk,lname,siz,vol,tops
       integer namef(nlgh),percent,under,pchar
-      logical getmat,ilog,getpoly,typer,clsave,getsimat
+      logical getmat,ilog,getpoly,typer,clsave,getsimat,gethmat
       logical crewimat ,islss,getilist,getbmat,eptover
       character*4 name
       character*10 form
@@ -50,7 +50,7 @@ C     topk : free stack zone for working areas
       mactop=0
       if (abs(itype).eq.11.or.abs(itype).eq.13) mactop=1
 c     
- 05   goto (20,10,06,55,25,26,06,06,06,30,60,06,60,70,40,40,40)
+ 05   goto (20,10,06,55,25,26,06,06,35,30,60,06,60,70,40,40,40)
      $     ,abs(itype)
  06   goto 75
 c     
@@ -122,6 +122,13 @@ C     working area
       if (.not.crewimat("print",topk,1,n,lw)) return
       call strdsp(istk(lr),istk(lr-m*n-1),m,n,lineln,lunit,istk(lw),buf)
       goto 48
+c     -------matrices of handle 
+ 35   ilog=gethmat("print",lk,lk,m,n,lr)
+      if (.not.crewimat("print",topk,1,m*n+2*n,lw)) return
+      call dmdsp(stk(lr),m,m,n,ndgt,mode,lineln,lunit,buf,istk(lw))
+
+      goto 48 
+
 c     -------lists 
  40   continue
       itype=gettype(lk)

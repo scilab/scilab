@@ -511,6 +511,12 @@ int C2F(createvar)(lw, typex, m, n, lr, type_len)
       C2F(intersci).iwhere[*lw - 1] = *lstk(lw1);
       C2F(intersci).lad[*lw - 1] = *lr;
       break;
+    case 'h' : 
+      if (! C2F(crehmat)(fname, &lw1, m, n, lr, nlgh))    return FALSE_;
+      C2F(intersci).ntypes[*lw - 1] = Type;
+      C2F(intersci).iwhere[*lw - 1] = *lstk(lw1);
+      C2F(intersci).lad[*lw - 1] = *lr;
+      break;
     }
   return TRUE_; 
 }
@@ -674,6 +680,11 @@ int C2F(createvarfrom)(lw, typex, m, n, lr, lar, type_len)
   case 'p' :
     MN=1;
     if (! C2F(crepointer)(fname, &lw1, lr, nlgh))    return FALSE_;
+    if (*lar != -1)  C2F(dcopy)(&MN, stk(*lar), &cx1, stk(*lr), &cx1);
+    *lar = *lr;
+    break;
+  case 'h' :
+    if (! C2F(crehmat)(fname, &lw1, m, n, lr, nlgh))  return FALSE_;
     if (*lar != -1)  C2F(dcopy)(&MN, stk(*lar), &cx1, stk(*lr), &cx1);
     *lar = *lr;
     break;
@@ -851,6 +862,15 @@ int C2F(createlistvarfrom)(lnumber, number, typex, m, n, lr, lar, type_len)
 	return FALSE_;
       }
     if (*lar != -1) *stk(*lr)= *stk(*lar);
+    *lar = *lr;
+    break;
+  case 'h' :
+    ix1 = *lnumber + Top - Rhs;
+    if (! C2F(listcrehmat)(fname, &ix1, number, &C2F(intersci).lad[*lnumber - 1],
+			   m, n, lr, nlgh)) {
+      return FALSE_;
+    }
+    if (*lar != -1) C2F(dcopy)(&mn, stk(*lar), &cx1,stk(*lr) , &cx1);
     *lar = *lr;
     break;
   default :
@@ -1414,6 +1434,12 @@ int C2F(getrhsvar)(number, typex, m, n, lr, type_len)
       C2F(intersci).iwhere[*number - 1] = *lstk(lw);
       C2F(intersci).lad[*number - 1] = *lr;
       break;
+    case 'h' :
+      if (! C2F(gethmat)(fname, &topk, &lw, m, n, lr, nlgh)) return FALSE_;
+      C2F(intersci).ntypes[*number - 1] = Type ;
+      C2F(intersci).iwhere[*number - 1] = *lstk(lw);
+      C2F(intersci).lad[*number - 1] = *lr;
+      break ;
     }
   return TRUE_;
 } 
@@ -2707,6 +2733,23 @@ static int C2F(mvfromto)(itopl, ix)
     }
     if ( C2F(vcopyobj)("mvfromto", &pointed, itopl, 8L) == FALSE_) 
 	  return FALSE_;
+    break;
+  case 'h' :
+    if (! C2F(crehmat)("mvfromto", itopl, &m, &n, &lrs, 8L)) {
+      return FALSE_;
+    }
+    /* no copy if the two objects are the same 
+     * the cremat above is kept to deal with possible size changes 
+     */
+    if (C2F(intersci).lad[*ix - 1] != lrs) {
+      ix1 = m * n;
+      l=C2F(intersci).lad[*ix - 1];
+      if (abs(l-lrs)<ix1)
+	C2F(unsfdcopy)(&ix1, stk(l), &cx1, stk(lrs), &cx1);
+      else
+	C2F(dcopy)(&ix1, stk(l), &cx1, stk(lrs), &cx1);
+      C2F(intersci).lad[*ix - 1] = lrs;
+    }
     break;
   case 'p' :   case '$' :
     /*     special case */

@@ -3321,5 +3321,176 @@ int C2F(credata)(fname, lw, m, fname_len)
   *lstk(*lw +1) = lr + 1 + m/sizeof(double);
   return TRUE_;
 } 
+/* ==============================================================
+MATRIX OF HANDLE
+================================================================= */
+/*--------------------------------------------------------- 
+ * internal function used by crehmat and listcrehmat 
+ *---------------------------------------------------------- */
 
+int C2F(crehmati)(fname, stlw, m, n, lr, flagx, fname_len)
+     char *fname;
+     integer *stlw, *m, *n, *lr;
+     int *flagx;
+     unsigned long fname_len;
+{
+  integer ix1;
+  integer il;
+  double size = ((double) *m) * ((double) *n);
+  il = iadr(*stlw);
+  ix1 = il + 4;
+  Err = sadr(ix1) - *lstk(Bot );
+  if ( (double) Err > -size ) {
+    Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
+    return FALSE_;
+  };
+  if (*flagx) {
+    *istk(il ) = 9;
+    /* if m*n=0 then both dimensions are to be set to zero */
+    *istk(il + 1) = Min(*m , *m * *n);
+    *istk(il + 2) = Min(*n ,*m * *n);
+    *istk(il + 3) = 0;
+  }
+  ix1 = il + 4;
+  *lr = sadr(ix1);
+  return TRUE_;
+} 
+
+/*---------------------------------------------------------- 
+ *  listcrehmat(top,numero,lw,....) 
+ *      le numero ieme element de la liste en top doit etre un matrice 
+ *      stockee a partir de lstk(lw) 
+ *      doit mettre a jour les pointeurs de la liste 
+ *      ainsi que stk(top+1) 
+ *      si l'element a creer est le dernier 
+ *      lw est aussi mis a jour 
+ *---------------------------------------------------------- */
+
+int C2F(listcrehmat)(fname, lw, numi, stlw, m, n, lrs,fname_len)
+     char *fname;
+     integer *lw, *numi, *stlw, *m, *n, *lrs;
+     unsigned long fname_len;
+{
+  integer ix1,il ;
+    
+  if (C2F(crehmati)(fname, stlw, m, n, lrs, &c_true, fname_len)==FALSE_)
+    return FALSE_ ;
+
+  *stlw = *lrs + *m * *n;
+  il = iadr(*lstk(*lw ));
+  ix1 = il + *istk(il +1) + 3;
+  *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
+  if (*numi == *istk(il +1))  *lstk(*lw +1) = *stlw;
+  return TRUE_;
+} 
+
+/*---------------------------------------------------------- 
+ *  crehmat :
+ *   checks that a matrix of handle of size [m,n] can be stored at position  lw 
+ *   <<pointers>> to data is returned on success
+ *   In : 
+ *     lw : position (entier) 
+ *     m, n dimensions 
+ *   Out : 
+ *     lr : stk(lr+i-1)= h(i)
+ *   Side effect : if matrix creation is possible 
+ *     [m,n] are stored in Scilab stack 
+ *     and lr is returned but stk(lr+..)  are unchanged 
+ *---------------------------------------------------------- */
+
+int C2F(crehmat)(fname, lw, m, n, lr, fname_len)
+     char *fname;
+     integer *lw, *m, *n, *lr;
+     unsigned long fname_len;
+{
+
+  if (*lw + 1 >= Bot) {
+    Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
+    return FALSE_;
+  }
+  if ( C2F(crehmati)(fname, lstk(*lw ), m, n, lr, &c_true, fname_len) == FALSE_)
+    return FALSE_ ;
+  *lstk(*lw +1) = *lr + *m * *n;
+  return TRUE_;
+} 
+/*------------------------------------------------------------------ 
+ * getlisthmat : 
+ *    checks that spos object is a list 
+ *    checks that lnum-element of the list exists and is a matrix 
+ *    extracts matrix information(m,n,lr) 
+ *     In  : 
+ *       fname : name of calling function for error message 
+ *       topk  : stack ref for error message 
+ *       lw    : stack position 
+ *     Out : 
+ *       [m,n] matrix dimensions 
+ *       lr : stk(lr+i-1)= h(i)) 
+ *------------------------------------------------------------------ */
+
+int C2F(getlisthmat)(fname, topk, spos, lnum, m, n, lr, fname_len)
+     char *fname;
+     integer *topk, *spos, *lnum, *m, *n, *lr;
+     unsigned long fname_len;
+{
+  integer nv, ili;
+
+  if ( C2F(getilist)(fname, topk, spos, &nv, lnum, &ili, fname_len) == FALSE_)
+    return FALSE_;
+
+  if (*lnum > nv) {
+    Scierror(999,"%s: argument %d should be a list of size at least %d \r\n",
+	     get_fname(fname,fname_len), Rhs+(*spos - *topk), *lnum);
+    return FALSE_;
+  }
+  return C2F(gethmati)(fname, topk, spos, &ili, m, n, lr, &c_true, lnum, fname_len);
+} 
+
+/*------------------------------------------------------------------- 
+ * gethmat :
+ *     check that object at position lw is a matrix 
+ *     In  : 
+ *       fname : name of calling function for error message 
+ *       topk  : stack ref for error message 
+ *       lw    : stack position ( ``in the top sense'' )
+ *     Out : 
+ *       [m,n] matrix dimensions 
+ *       lr : stk(lr+i-1)= h(i)
+ *------------------------------------------------------------------- */
+
+int C2F(gethmat)(fname, topk, lw, m, n, lr, fname_len)
+     char *fname;
+     integer *topk, *lw, *m, *n, *lr;
+     unsigned long fname_len;
+{
+  return C2F(gethmati)(fname, topk, lw,lstk(*lw), m, n, lr, &c_false, &cx0, fname_len);
+}
+
+/*------------------------------------------------------------------- 
+ * For internal use 
+ *------------------------------------------------------------------- */
+
+int C2F(gethmati)(fname, topk, spos, lw, m, n, lr, inlistx, nel, fname_len)
+     char *fname;
+     integer *topk, *spos, *lw, *m, *n, *lr;
+     int *inlistx;
+     integer *nel;
+     unsigned long fname_len;
+{
+  integer il;
+  il = iadr(*lw);
+  if (*istk(il ) < 0) il = iadr(*istk(il +1));
+  if (*istk(il ) != 9) {
+    if (*inlistx) 
+      Scierror(999,"%s: argument %d >(%d) should be a matrix of handle\r\n",
+	       get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
+    else 
+      Scierror(201,"%s: argument %d should be a matrix of handle\r\n",get_fname(fname,fname_len),
+	       Rhs + (*spos - *topk));
+    return  FALSE_;
+  }
+  *m = *istk(il + 1);
+  *n = *istk(il + 2);
+  *lr = sadr(il+4);
+  return TRUE_;
+} 
 
