@@ -27,8 +27,8 @@ end
 
 
 //X(i,j,k)=n  hypermatrix
-M=mlist(['hm','dims','entries'],size(M),M(:))
-dims=M('dims')
+M=mlist(['hm','dims','entries'],int32(size(M)),M(:))
+dims=double(M('dims'))
 v=M('entries');v=v(:)
 
 
@@ -82,7 +82,7 @@ case 1
 case 2
   M=matrix(v,dims1(1),dims1(2))
 else
-  M=mlist(['hm','dims','entries'],matrix(dims1,1,-1),v)
+  M=mlist(['hm','dims','entries'],int32(matrix(dims1,1,-1)),v)
 end
 endfunction
 
