@@ -1,4 +1,4 @@
-function [tree]=sci_gener(tree)
+function [tree]=sci_generic(tree)
 // Copyright INRIA
 // M2SCI function
 // Generic conversion function for unknown Matlab functions
