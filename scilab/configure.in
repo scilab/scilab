@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.46 $)dnl
+AC_REVISION($Revision: 1.47 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1314,6 +1314,14 @@ else
 fi
 
 PVMINCLUDE=$PVMROOT/include
+
+  case "$host" in
+      *-*-mingw32*)
+      PVMINCLUDE="$PVMROOT/include -I$PVMROOT/src"
+    ;;
+  esac
+
+
 AC_ARG_WITH(pvm-include,
     [  --with-pvm-include=DIR  PVM include files are in DIR ],
     [  PVMINCLUDE=$withval
