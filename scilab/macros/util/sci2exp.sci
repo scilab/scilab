@@ -230,7 +230,7 @@ for i=1:m
 	  end
 	end
 	if k>1 then
-	  if String(imag(v(k)))<>'0' then s='('+s+')',end
+	  if string(imag(v(k)))<>'0' then s='('+s+')',end
 	  if s=='1' then 
 	    s=mnm
 	  elseif s=='-1' then
