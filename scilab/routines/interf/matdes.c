@@ -2903,7 +2903,7 @@ int scixset(fname,fname_len)
   if (version_flag() == 0)
     {
       subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-      if (( strncmp(cstk(l1),"foreground",10) == 0) ||( strncmp(cstk(l1),"color",4) == 0)||( strncmp(cstk(l1),"pattern",7) == 0) ) {
+      if (( strncmp(cstk(l1),"foreground",10) == 0) || (strcmp(cstk(l1),"color") == 0) ||( strncmp(cstk(l1),"pattern",7) == 0) ) {
         sciSetForeground(subwin, x[0]); 
 	if (sciGetSons((sciPointObj *) subwin) == (sciSons *)NULL) {/* added SS 20.04.04 */
 	  /* if subwin is empty, set also the ticscolor and fontforeground */
