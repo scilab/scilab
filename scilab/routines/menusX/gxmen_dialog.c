@@ -16,21 +16,42 @@ extern SciDialog ScilabDialog;
 
 typedef enum { OK, CANCEL , RESET } state; 
 
-static void sci_dialog_ok(GtkWidget *widget,state *answer)
+typedef struct scigtk_dialog_ { 
+  state st;
+  GtkWidget *text;
+  GtkWidget *window;
+} scigtk_dialog;
+
+/* ok handler */
+
+static void sci_dialog_ok(GtkWidget *widget,scigtk_dialog *answer)
 {
-  *answer = TRUE;
+  dialog_str = gtk_editable_get_chars ( GTK_EDITABLE(answer->text),0,
+					gtk_text_get_length(GTK_TEXT(answer->text)));
+  if ( dialog_str != NULL ) 
+    {
+      int ind = strlen(dialog_str) - 1 ;
+      if ( dialog_str[ind] == '\n') dialog_str[ind] = '\0' ;
+    }
+  gtk_widget_destroy(answer->window);
+  /* this must be here since gtk_widget_destroy will also change answer->st */
+  answer->st =  ( dialog_str != NULL) ? OK : CANCEL;
   gtk_main_quit();
 }
 
-static void sci_dialog_cancel(GtkWidget *widget,state *answer)
+/* cancel and destroy handlers  */
+
+static void sci_dialog_cancel(GtkWidget *widget,scigtk_dialog *answer)
 {
-  *answer = FALSE;
+  answer->st = CANCEL;
+  gtk_widget_destroy(answer->window);
   gtk_main_quit();
 }
+
+/* the main function */
 
 int  DialogWindow()
 {
-  guint signals[3];
   GtkWidget *window = NULL;
   GtkWidget *vbox;
   GtkWidget *hbbox;
@@ -40,14 +61,15 @@ int  DialogWindow()
   GtkWidget *text;
   GtkWidget *label;
   GdkFont *font;
-  static state answer ;
-  answer = RESET;
-  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+
+  static scigtk_dialog answer = { RESET , NULL,NULL};
+
+  answer.window = window  = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window),"Scilab dialog");
   gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_MOUSE);
-  gtk_window_set_wmclass (GTK_WINDOW (window), "mdialog", "Scilab");
+  gtk_window_set_wmclass (GTK_WINDOW (window), "dialog", "Scilab");
 
-  signals[0]=gtk_signal_connect (GTK_OBJECT (window), "destroy",
+  gtk_signal_connect (GTK_OBJECT (window), "destroy",
 		      GTK_SIGNAL_FUNC(sci_dialog_cancel),
 		      &answer);
 
@@ -71,7 +93,7 @@ int  DialogWindow()
 				  GTK_POLICY_AUTOMATIC);
   gtk_widget_show (scrolled_window);
   
-  text = gtk_text_new (NULL, NULL);
+  answer.text = text  = gtk_text_new (NULL, NULL);
   gtk_text_set_editable (GTK_TEXT (text), TRUE);
   gtk_container_add (GTK_CONTAINER (scrolled_window), text);
   gtk_widget_grab_focus (text);
@@ -107,7 +129,7 @@ int  DialogWindow()
   else 
     button_ok = gtk_button_new_with_label (ScilabDialog.pButName[0]);
   gtk_container_add (GTK_CONTAINER (hbbox), button_ok);
-  signals[1]=gtk_signal_connect (GTK_OBJECT (button_ok), "clicked",
+  gtk_signal_connect (GTK_OBJECT (button_ok), "clicked",
 				 GTK_SIGNAL_FUNC(sci_dialog_ok),
 				 &answer);
   GTK_WIDGET_SET_FLAGS (button_ok, GTK_CAN_DEFAULT);
@@ -126,7 +148,7 @@ int  DialogWindow()
     button_cancel = gtk_button_new_with_label (ScilabDialog.pButName[1]);
   gtk_container_add (GTK_CONTAINER (hbbox), button_cancel);
   GTK_WIDGET_SET_FLAGS (button_cancel, GTK_CAN_DEFAULT);
-  signals[2]= gtk_signal_connect (GTK_OBJECT (button_cancel), "clicked",
+  gtk_signal_connect (GTK_OBJECT (button_cancel), "clicked",
 				  GTK_SIGNAL_FUNC(sci_dialog_cancel),
 				  &answer);
   gtk_widget_show (button_cancel);
@@ -137,24 +159,8 @@ int  DialogWindow()
       /* want to quit the gtk_main only when this 
        * list menu is achieved 
        */
-      if ( answer != RESET ) break;
+      if ( answer.st != RESET ) break;
     }
-  if ( answer == TRUE ) 
-    { 
-      /* OK activated : the free is performed in the calling function */ 
-      dialog_str = gtk_editable_get_chars ( GTK_EDITABLE(text),0,
-					    gtk_text_get_length(GTK_TEXT(text)));
-      if ( dialog_str == NULL ) answer = FALSE;
-      else 
-	{
-	  int ind = strlen(dialog_str) - 1 ;
-	  if ( dialog_str[ind] == '\n') dialog_str[ind] = '\0' ;
-	}
-    }
-  gtk_signal_disconnect(GTK_OBJECT(window),signals[0]);
-  gtk_signal_disconnect(GTK_OBJECT (button_ok),signals[1]);
-  gtk_signal_disconnect(GTK_OBJECT (button_cancel),signals[2]);
-  gtk_widget_destroy(window);
-  return answer ;
+  return (answer.st == OK ) ? TRUE : FALSE ;
 }
 

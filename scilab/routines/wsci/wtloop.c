@@ -215,6 +215,28 @@ int sci_exit(int n)
   return(0);
 }
 
+/*-------------------------------------------------------
+ * usr1 signal : used to transmit a Control C to 
+ * scilab 
+ *-------------------------------------------------------*/
+
+void sci_usr1_signal(int n) 
+{
+  controlC_handler(n);
+}
+
+/*-------------------------------------------------------
+ * Ctrl-Z : stops the current computation 
+ *          or the current interface call 
+ *-------------------------------------------------------*/
+
+void  sci_sig_tstp(int n)
+{
+  Scierror(999,"SIGSTP: aborting current computation\r\n");
+}
+
+
+
 #ifdef TEST
 
 int 

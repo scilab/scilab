@@ -941,6 +941,13 @@ void reset_scig_deletegwin_handler()
  * Delete Window 
  */
 
+
+
+static int sci_graphic_protect = 0;
+
+void   set_delete_win_mode() {  sci_graphic_protect = 0 ;}
+extern void   set_no_delete_win_mode()  {  sci_graphic_protect = 1 ;}
+ 
 static void
 Delete(w, number, client_data)
      Widget w;

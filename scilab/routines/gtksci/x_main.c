@@ -1,4 +1,4 @@
-/*---------------------------------------------------------- 
+ /*---------------------------------------------------------- 
  * mainsci.f directly call this function 
  * thus this is the real main for scilab 
  * Copyright 2001 Inria/Enpc 
@@ -25,6 +25,7 @@
 char *ProgramName;
 
 void sci_clear_and_exit (int);
+void sci_usr1_signal(int);
 
 extern void C2F(tmpdirc)();
 static void Syntax  (char *badOption);  
@@ -101,6 +102,7 @@ void C2F(realmain)()
   signal(SIGSEGV,sci_clear_and_exit);
   signal(SIGQUIT,sci_clear_and_exit);
   signal(SIGHUP,sci_clear_and_exit);
+  signal(SIGUSR1,sci_usr1_signal);
   /* initialize scilab interp  */
   C2F(inisci)(&ini, &memory, &ierr);
   if (ierr > 0) return ;
@@ -207,6 +209,26 @@ int C2F(clearexit)(n)
   /* really exit */
   exit(*n);
   return(0);
+}
+
+/*-------------------------------------------------------
+ * usr1 signal : used to transmit a Control C to 
+ * scilab 
+ *-------------------------------------------------------*/
+
+void sci_usr1_signal(int n) 
+{
+  controlC_handler(n);
+}
+
+/*-------------------------------------------------------
+ * Ctrl-Z : stops the current computation 
+ *          or the current interface call 
+ *-------------------------------------------------------*/
+
+void  sci_sig_tstp(int n)
+{
+  Scierror(999,"SIGSTP: aborting current computation\r\n");
 }
 
 /*-------------------------------------------------------

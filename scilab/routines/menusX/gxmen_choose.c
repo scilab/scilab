@@ -8,10 +8,13 @@
 #include "men_scilab.h"
 
 static int num_item_selected = -1 ;
+static GtkWidget *window = NULL; 
 
 static void item_selected(GtkWidget *widget,
 			  int selected)
 {
+  gtk_widget_destroy(window); 
+  /* must be there since gtk_widget_destroy will change num_item_selected */
   num_item_selected = selected ;
   gtk_main_quit();
 }
@@ -21,7 +24,6 @@ int ExposeChooseWindow(PCh)
 {
   guint destroy_id;
   int i,maxl;
-  static GtkWidget *window = NULL; 
   GtkWidget *cbox;
   GtkWidget *vbox;
   GtkWidget *label;
@@ -132,23 +134,7 @@ int ExposeChooseWindow(PCh)
        */
       if ( num_item_selected != -1 ) break; 
     }
-  switch ( num_item_selected ) 
-    {
-    case -2 :   /* cancel */
-      gtk_signal_disconnect(GTK_OBJECT(window),destroy_id);
-      gtk_widget_destroy(window); 
-      window = NULL ; 
-      return FALSE; 
-      break;
-    case -3 : /* window was destroyed */
-      window = NULL ; 
-      return FALSE; 
-      break;
-    default : PCh->choice = num_item_selected;  /* item selected */
-      gtk_signal_disconnect(GTK_OBJECT(window),destroy_id);
-      gtk_widget_destroy(window);
-      window = NULL ; 
-      return TRUE;
-      break;
-    }
+  window = NULL;
+  PCh->choice = num_item_selected;
+  return (  PCh->choice >= 0) ? TRUE : FALSE;
 }

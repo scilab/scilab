@@ -4,127 +4,222 @@
  *    jpc@cermics.enpc.fr 
  --------------------------------------------------------------------------*/
 
+#include <stdio.h>
+#include <gtk/gtk.h>
 #include "men_scilab.h"
 
-extern int IsPrivateCmap();
-extern void ShellFormCreate();
 extern int AllocAndCopy();
-static void select_button();
-static void line_up_labels();
-static int pttb();
-static XtCallbackProc ChoiceOk();
-static XtCallbackProc ChoiceCancel();
 static int choices_cmap();
 
-static int ok_Flag_sci;
+static GtkWidget *window = NULL; 
+
+/* Data structure to deal with a set of choices */
+
+typedef struct {
+  struct {
+    char *name;          /* name of combo box */
+    int  num_toggles;    /* number of choice in the combo */
+    int  default_toggle; /* initial value for combo choice */ 
+    GtkWidget *label;
+    GtkWidget *combo;
+  } choice;
+  char **name;         /* table with the combo box list description */
+} SciComboData;
+
+static SciComboData ** choices_data;
+
+/*---------------------------------------------------------------
+ * data and callbacks for print and export menu  
+ *---------------------------------------------------------------*/
+
+typedef enum { pOK, pCANCEL , RESET } state; 
+
+static void sci_choices_ok (GtkButton       *button, state * rep) 
+{  
+  int i = 0, j;
+  gchar *entry_text;
+  /* Loop on the combo boxes */
+  while ( choices_data[i] != NULL) 
+    {
+      SciComboData *info = choices_data[i];
+      entry_text = gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(info->choice.combo)->entry));
+      for (j = 0; j < info->choice.num_toggles; ++j) 
+	{ 
+	  if ( strcmp(entry_text,info->name[j]) == 0) 
+	    {
+	      info->choice.default_toggle = j;
+	      break;
+	    }
+	}
+      i++;
+    }
+  gtk_widget_destroy(window); 
+  *rep = pOK;  
+  gtk_main_quit();
+} 
+
+static void sci_choices_cancel (GtkButton       *button, state * rep) 
+{
+  gtk_widget_destroy(window); 
+  *rep = pCANCEL;  
+  gtk_main_quit();
+}
+
+/*---------------------------------------------------------------
+ * The x_choice interaction window 
+ *---------------------------------------------------------------*/
 
 int SciChoiceI(label,defval,nitems)
      char *label;
      int defval[], nitems;
 {
-  /* 
-  int i,flag=0;
-  static Widget ok,wlabel,toppaned,shell,wlabelviewport,dviewport,form,cform;
-  static Arg args[10];
-  static Cardinal iargs;
-  static Display *dpy = (Display *) NULL;
-
-  flag = choices_cmap();
-  flag = flag & IsPrivateCmap();
-
-  ShellFormCreate("choiceShell",&shell,&toppaned,&dpy);
-
-  ViewpLabelCreate(toppaned,&wlabel,&wlabelviewport,label);
-  if ( flag == 1) 
-    ChangeBF1(wlabelviewport,"label",1,0);
-
-  iargs=0;
-  dviewport = XtCreateManagedWidget("viewport",viewportWidgetClass,toppaned, args, iargs);
-
-  if ( flag == 1) 
-    {
-      ChangeBF1(toppaned,"viewport",1,0);
-    }
-  iargs=0;
-  form = XtCreateManagedWidget("form",formWidgetClass, dviewport , args, iargs);
-  if ( flag == 1) 
-    {
-      ChangeBF1(dviewport,"form",1,0);
-    }
-
-    (void) create_choices(form,(Widget) NULL,flag);
-
-  iargs=0;
-  if (flag == 1) 
-    {
-      XtSetArg(args[iargs], XtNforeground,1); iargs++;
-      XtSetArg(args[iargs], XtNbackground,0); iargs++;
-    }
-  cform = XtCreateManagedWidget("cform",formWidgetClass,toppaned,args,iargs);
-
-  ButtonCreate(cform,&ok,(XtCallbackProc) ChoiceOk,(XtPointer) NULL,"Ok","ok");
-  ButtonCreate(cform,&ok,(XtCallbackProc) ChoiceCancel,(XtPointer) NULL,"Cancel","cancel");
-
-  if ( flag == 1) 
-    {
-      ChangeBF1(cform,"ok",1,0);
-      ChangeBF1(cform,"cancel",1,0);
-    }
-  XtMyLoop(shell,dpy,flag,&ok_Flag_sci);
+  int Nchoices=0, use_scrolled=0, i;
+  static state rep = RESET ;
   
-  if (   ok_Flag_sci==1 ) 
+  GtkWidget *table;
+  GtkWidget *labelw;
+  GtkWidget *button_ok;
+  GtkWidget *button_cancel;
+  GtkWidget *vbox;
+  GtkWidget *hbbox;
+  GtkWidget *scrolled_win;
+
+  rep =RESET;
+  /* do not accept a reenter mode */ 
+  if ( window != NULL) return FALSE ; 
+
+  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title (GTK_WINDOW (window), "Scilab choices");
+
+  gtk_window_set_title   (GTK_WINDOW (window),"Scilab dialog");
+  gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_MOUSE);
+  gtk_window_set_wmclass  (GTK_WINDOW (window), "choices", "Scilab");
+
+  gtk_signal_connect (GTK_OBJECT (window), "destroy",
+		      GTK_SIGNAL_FUNC(sci_choices_cancel),
+		      &rep);
+
+  gtk_container_set_border_width (GTK_CONTAINER (window), 0);
+
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (window), vbox);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 10);
+  gtk_widget_show (vbox);
+
+  /* label widget description of the choices */
+  labelw = gtk_label_new (label);
+  gtk_box_pack_start (GTK_BOX (vbox), labelw, FALSE, FALSE, 0);
+  gtk_widget_show (labelw);
+
+  /* table widget  of the choices */
+
+  while ( choices_data[Nchoices] != (SciComboData *) NULL ) Nchoices++;
+
+  if ( Nchoices  > 15 ) use_scrolled = 1;
+
+  if ( use_scrolled ) {
+    scrolled_win = gtk_scrolled_window_new (NULL, NULL);
+    gtk_container_set_border_width (GTK_CONTAINER (scrolled_win), 1);
+    gtk_widget_set_usize (scrolled_win,300,300);
+    gtk_box_pack_start (GTK_BOX (vbox), scrolled_win, TRUE, TRUE, 0);
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
+				    GTK_POLICY_AUTOMATIC,
+				    GTK_POLICY_AUTOMATIC);
+  }
+
+  table = gtk_table_new ( Nchoices , 2, TRUE);
+  gtk_widget_show (table);
+
+  if ( use_scrolled == 1) 
+    {
+      gtk_scrolled_window_add_with_viewport
+	(GTK_SCROLLED_WINDOW (scrolled_win), table);
+      gtk_widget_show(scrolled_win);  
+    }
+  else 
+    gtk_box_pack_start (GTK_BOX (vbox), table , TRUE, TRUE , 0);
+
+  gtk_container_set_border_width (GTK_CONTAINER (table), 5);
+  
+  for ( i = 0 ; i <  Nchoices ; i++) 
+    {
+      int j;
+      SciComboData *info = choices_data[i];
+      GList *cbitems = NULL;
+      GtkWidget *combo;
+      if ( strncmp( info->choice.name,"colors",6)==0 &&  strlen(info->choice.name) > 7 )
+	info->choice.label = gtk_label_new (&info->choice.name[7]);
+      else 
+	info->choice.label = gtk_label_new (info->choice.name);
+      /* set up the toggle widgets */
+      /* qui doit detruire cette liste ? XXXXXXX */ 
+      for (j = 0; j < info->choice.num_toggles; ++j) 
+	cbitems = g_list_append(cbitems, info->name[j]);
+      info->choice.combo = combo =  gtk_combo_new ();
+      gtk_combo_set_popdown_strings (GTK_COMBO (combo), cbitems);
+      gtk_entry_set_text (GTK_ENTRY (GTK_COMBO(combo)->entry),
+		     info->name[info->choice.default_toggle]);
+      gtk_entry_set_editable(GTK_ENTRY (GTK_COMBO(combo)->entry),FALSE);
+      gtk_widget_show (combo);
+      gtk_widget_show (info->choice.label);
+      gtk_table_attach (GTK_TABLE (table),info->choice.label,0,1,i,i+1,
+			GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
+			0,0);
+      gtk_table_attach (GTK_TABLE (table), combo,1,2,i,i+1,
+			GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
+			0,0);
+    }
+
+  /* ok */ 
+
+  hbbox = gtk_hbutton_box_new ();
+  gtk_box_pack_start (GTK_BOX (vbox), hbbox, FALSE, FALSE , 2);
+  gtk_widget_show (hbbox);
+
+  button_ok = gtk_button_new_with_label ("OK");
+  gtk_container_add (GTK_CONTAINER (hbbox), button_ok);
+
+  gtk_signal_connect (GTK_OBJECT (button_ok), "clicked",
+		      GTK_SIGNAL_FUNC (sci_choices_ok),
+		      &rep);
+
+  GTK_WIDGET_SET_FLAGS (button_ok, GTK_CAN_DEFAULT);
+  gtk_widget_grab_default (button_ok);
+  gtk_widget_show (button_ok);
+
+  /* cancel */
+
+  button_cancel = gtk_button_new_with_label ("Cancel");
+  gtk_container_add (GTK_CONTAINER (hbbox), button_cancel);
+  gtk_signal_connect (GTK_OBJECT (button_cancel), "clicked",
+		      GTK_SIGNAL_FUNC (sci_choices_cancel),
+		      &rep);
+  GTK_WIDGET_SET_FLAGS (button_cancel, GTK_CAN_DEFAULT);
+  gtk_widget_show (button_cancel);
+
+  gtk_widget_show (window);
+
+  while (1) 
+    {
+      /* here we only want to quit gtk_main after a selection in 
+       */
+      gtk_main();
+      if ( rep != RESET ) break;
+    }
+  window = NULL;
+  if ( rep == pOK ) 
     {
       for ( i=0 ; i < nitems ; i++) 
 	{
-	  defval[i]= Everything[i]->choice.default_toggle +1;
+	  defval[i]= choices_data[i]->choice.default_toggle +1;
 	}
-      return(TRUE);
     }
-  else
-    return(FALSE);
-
-  */
- return(FALSE);
+  return (rep == pOK) ? TRUE : FALSE  ;
 }
-
-
-/*************************************************
- * OK Callback 
- ************************************************/
-
-
-static XtCallbackProc
-ChoiceOk(w,nv,callData)
-     Widget w;
-     caddr_t callData;
-     int nv;
-{ 
-  ok_Flag_sci=1 ;
-  /* sciprint("OK\r\n"); */
-  return(0);
-}
-
-
-/*************************************************
- * Cancel Callback 
- ************************************************/
-
-
-static XtCallbackProc
-ChoiceCancel(w,nv,callData)
-     Widget w;
-     caddr_t callData;
-     int nv;
-{ 
-  ok_Flag_sci=- 1 ;
-  /* sciprint("OK\r\n"); */
-  return(0);
-}
-
 
 /****************************************************
  *   SciChoiceCreate(items,defval,nitems) 
- *   This fuction is used to create the required SciStuff  
+ *   This fuction is used to create the required SciComboData  
  *   Object in order to call create_choices  
  *   from a simpler data structure in order to be able  
  *   to communicate with Scilab  
@@ -136,21 +231,17 @@ ChoiceCancel(w,nv,callData)
  *   En sortie defval contient ce qu'on a choisit  
  ****************************************************/
 
-int 
-SciChoiceCreate(items,defval,nitems)
-     char **items;
-     int defval[];
-     int nitems;
+int  SciChoiceCreate( char **items,int defval[],int nitems)
 {
   int i,j;
-  if ( Everything != (SciStuff **) NULL) 
+  if ( choices_data != (SciComboData **) NULL) 
     {
       /** someone is using toggles at the same time */
       return(-1);
     }
-  Everything= (SciStuff **) MALLOC( (nitems+1)*sizeof(SciStuff *));
-  if ( Everything == (SciStuff **) NULL) return(0);
-  Everything[nitems]= (SciStuff *) NULL;
+  choices_data= (SciComboData **) MALLOC( (nitems+1)*sizeof(SciComboData *));
+  if ( choices_data == (SciComboData **) NULL) return(0);
+  choices_data[nitems]= (SciComboData *) NULL;
   for ( i=0 ; i < nitems ; i++) 
     {
       char **loc= items ;
@@ -162,53 +253,34 @@ SciChoiceCreate(items,defval,nitems)
 	  sciprint("x_choices : There's no choice to the %d item\r\n",i);
 	  return(0);
 	};
-      Everything[i]= (SciStuff *) MALLOC( sizeof(SciStuff));
-      if ( Everything[i] == (SciStuff *) NULL) 
+      choices_data[i]= (SciComboData *) MALLOC( sizeof(SciComboData));
+      if ( choices_data[i] == (SciComboData *) NULL) 
 	{
 	  return(0);
 	}
-      if ( AllocAndCopy(&(Everything[i]->choice.name),items[0]) == 0) 
+      if ( AllocAndCopy(&(choices_data[i]->choice.name),items[0]) == 0) 
 	{
 	  return(0);
 	}
-      if ( AllocAndCopy(&(Everything[i]->choice.text),items[0]) == 0) 
-	{
-	  return(0);
-	}
-      Everything[i]->choice.num_toggles= numch;
-      Everything[i]->choice.columns = (numch >= 5 ) ? 5 :  0;
-      Everything[i]->choice.function = pttb;
-      Everything[i]->choice.default_toggle = Min(Max(0,defval[i]-1),numch-1);
-      Everything[i]->choice.label = (Widget) NULL;
-      Everything[i]->data = (SciData *) MALLOC( numch*sizeof(SciData));
-      if ( Everything[i]->data == (SciData *) NULL) 
-	{
-	  return(0);
-	}
+      choices_data[i]->choice.num_toggles= numch;
+      choices_data[i]->choice.default_toggle = Min(Max(0,defval[i]-1),numch-1);
+      choices_data[i]->choice.label = NULL;
+      choices_data[i]->choice.combo = NULL;
+      choices_data[i]->name = (char **) MALLOC( numch*sizeof(char *));
+      if ( choices_data[i]->name == NULL)  return(0);
       for ( j = 0 ; j < numch ; j++) 
 	{
-	  char loc[8];
-	  SciData *dataloc = Everything[i]->data ;
-	  if ( AllocAndCopy(&(dataloc[j].name),items[j+1]) == 0) 
+	  if ( AllocAndCopy(& choices_data[i]->name[j] ,items[j+1]) == 0) 
 	    {
 	      return(0);
 	    }
-	  sprintf(loc,"%d %d",i,j);
-	  if ( AllocAndCopy(&(dataloc[j].cbinfo),loc) == 0) 
-	    {
-	      return(0);
-	    }
-	  dataloc[j].toggle=(Widget) NULL;
 	}
       items = items + numch+2;
     }
   return(1);
 }
 
-
-
-int AllocAndCopy(strh1,str2)
-     char **strh1, *str2;
+int AllocAndCopy( char **strh1,char *str2)
 {
   *strh1= (char *) MALLOC((strlen(str2)+1)*sizeof(char));
   if ( *strh1 == (char *) NULL) return(0);
@@ -217,263 +289,20 @@ int AllocAndCopy(strh1,str2)
 }
 
 
-int SciChoiceFree(nitems) 
+int SciChoiceFree(int nitems) 
 {
   int i,j;
   for ( i=0 ; i < nitems ; i++) 
     {
-      for (j = 0 ; j < Everything[i]->choice.num_toggles ; j++) 
-	{
-	  SciData *dataloc = Everything[i]->data ;
-	  FREE(dataloc[j].name);
-	  FREE(dataloc[j].cbinfo);
-	}
-      FREE(Everything[i]->data) ;
-      FREE(Everything[i]->choice.name);
-      FREE(Everything[i]->choice.text);
+      for (j = 0 ; j < choices_data[i]->choice.num_toggles ; j++) 
+	FREE(choices_data[i]->name[j]);
+      FREE(choices_data[i]->name) ;
+      FREE(choices_data[i]->choice.name);
     }
-  FREE(Everything);
-  Everything = NULL;
+  FREE(choices_data);
+  choices_data = NULL;
   return(0);
 }
-
-/****************************************************
- * The main function which uses the global variable 
- * Everything to deal with choices 
- ****************************************************/
-
-
-Widget create_choices(toppaned,wvert,flag)
-     Widget toppaned;
-     Widget wvert;
-     int flag;
-{
-  Widget lastChoice;
-  static Arg gcchoiceargs[] = {
-    {XtNfromVert,    (XtArgVal) NULL}, /* put it under the one above it */
-    {XtNfromHoriz,   (XtArgVal) NULL}, /* and next to that one */
-    {XtNborderWidth, (XtArgVal) 0},     /* no ugly borders */
-    {XtNforeground, (XtArgVal) 1},
-    {XtNbackground, (XtArgVal) 0},
-  };
-  int Nchoices=0,i ;			/* counter */
-  while ( Everything[Nchoices] != (SciStuff *) NULL ) Nchoices++;
-  
-  /* we want the choises to be after wvert */
-  lastChoice = wvert ;
-
-  /* create all the GCchoices forms */
-
-  for (i=0 ; i < Nchoices ; ++i) {
-    int nres=3;
-    if ( flag == 1) nres= 5;
-    gcchoiceargs[0].value = (XtArgVal) lastChoice;
-    lastChoice = XtCreateManagedWidget(Everything[i]->choice.text,
-					 formWidgetClass,toppaned,
-					 gcchoiceargs,nres);
-
-    /* now fill up that form */
-    create_choice(lastChoice,Everything[i],flag);
-  }
-
-  /* make all the labels inside the choices line up nicely */
-
-  line_up_labels(Everything,Nchoices );
-
-  return(lastChoice);
-}
-
-
-/********************************************************************
- * create_choice(w,info)
- * ---------------------
- * What a choice widget is:  A collection of toggle buttons placed inside
- * a form widget.  Exactly one of these toggle buttons can be "on" at
-* any given time;  the rest are "off".  "On" toggle buttons have
-* the foreground and background colors reversed.
-* Also, specifically because it comes in handy in Sci, choosing one
-* of the buttons causes a string associated with it to be printed out
-* (and interpreted).  Half of the string is global to the whole form
-* and the other half is local to each button.
-*
-* For example, pressing the "xor" button in the "function" form would
-* cause Sci to interpret the string "function xor", thus changing the
-* function in the GC to xor.
-*
-* There's also a label widget to the left of that mess, with an
-* incredibly descriptive title.
-*
-* create_choice() makes one.
-*
-* w is the form widget (already created) into which we will place the
-* toggle buttons.  info contains lots of useful information, such
-* as the names of the buttons and their strings (see Sci.h).
-* Nchoice is the number of the choice this is useful for callback 
-*
-* Special names are recognised 
-* if info->choice.name == "colors" then the toggles are colorized 
-* and we get the number of colors 
-*********************************************************************/
-
-
-static void
-create_choice(w,info,flag)
-     Widget w;
-     SciStuff *info;
-     int flag;
-{
-  int col_numbers;
-  int i;			/* Counter */
-  /* ArgList for the label widget */
-  static Arg labelargs[] = {	
-    {XtNborderWidth,  (XtArgVal) 0}, 
-    {XtNjustify,      (XtArgVal) XtJustifyRight},
-    {XtNvertDistance, (XtArgVal) 4},
-    {XtNforeground, (XtArgVal) 1},/* XXX*/
-    {XtNbackground, (XtArgVal) 0},/* XXX*/
-  };
-  
-  /* ArgList for the toggle widgets */
-  static Arg toggleargs[] = {
-    {XtNfromHoriz,     (XtArgVal) NULL},
-    {XtNfromVert,      (XtArgVal) NULL},
-    {XtNhorizDistance, (XtArgVal) 4},
-    {XtNvertDistance,  (XtArgVal) 4},
-    {XtNradioGroup,    (XtArgVal) NULL},
-    {XtNforeground, (XtArgVal) 1},/* XXX*/
-    {XtNbackground, (XtArgVal) 0},/* XXX*/
-  };
-  Cardinal useargs = 7; 
-  /* number of toggles that we want to use */
-  int largs=3;
-  if ( flag == 1) largs= 5;
-  if ( strncmp(info->choice.name,"colors",6)==0)
-    {
-      col_numbers = 20;
-      if ( strlen(info->choice.name) > 7 ) 
-	info->choice.label = XtCreateManagedWidget(&info->choice.name[7],
-						   labelWidgetClass,w,
-						   labelargs,largs);
-      else 
-	info->choice.label = XtCreateManagedWidget(info->choice.name,
-						   labelWidgetClass,w,
-						   labelargs,largs);
-    }
-  else 
-    {
-      if ( flag != 1 )	useargs = 5;
-      col_numbers = info->choice.columns;
-      info->choice.label = XtCreateManagedWidget(info->choice.name,labelWidgetClass,w,
-						 labelargs,largs);
-    }
-
-
-  /* set up the toggle widgets */
-
-  for (i = 0; i < info->choice.num_toggles; ++i) 
-    {
-      if (i == 0) 
-	{
-	  /* the upper left toggle; put it next to the label
-	     and don't worry about radio groups */
-	  toggleargs[0].value = (XtArgVal) info->choice.label;
-	  toggleargs[1].value = (XtArgVal) NULL;
-	  toggleargs[2].value = (XtArgVal) 10;
-	  toggleargs[3].value = (XtArgVal) 4;
-	  toggleargs[4].value = (XtArgVal) NULL;
-	}
-      else 
-	{
-	  toggleargs[4].value = (XtArgVal) (info->data[0]).toggle;
-	  /* are we starting a new row? */
-	  if (col_numbers > 0 &&  i > 1 &&  (i % (col_numbers) == 0)) 
-	    {
-	      toggleargs[0].value = (XtArgVal) info->choice.label;
-	      /* under the appropriate toggle */
-	      toggleargs[1].value = (XtArgVal) (info->data[i-col_numbers]).toggle;
-	      toggleargs[2].value = (XtArgVal) 10;
-	      toggleargs[3].value = (XtArgVal) 4;
-	    }
-	  else 
-	    {
-	      /* we're in the middle of a row */
-	      /* to the right of the previous toggle */
-	      toggleargs[0].value = (XtArgVal) (info->data[i - 1]).toggle;
-	      toggleargs[1].value = (XtArgVal) NULL;
-	      toggleargs[2].value = (XtArgVal) -1; /* overlapping slightly */
-	      toggleargs[3].value = (XtArgVal) 4;
-	    }
-	  if (col_numbers > 0 &&  i >= col_numbers) 
-	    {
-	      /* correct vertical spacing */
-	      toggleargs[1].value = (XtArgVal) (info->data[i-col_numbers]).toggle;
-	      toggleargs[3].value = (XtArgVal) -1;
-	    }
-	}
-      if ( strncmp(info->choice.name,"colors",6)==0)
-	{
-	  XtArgVal c;
-	  c= (XtArgVal) get_pixel(i);
-	  toggleargs[5].value = (c == 1) ? 0 : 1;
-	  toggleargs[6].value = (XtArgVal) get_pixel(i);/* XXX */
-	}
-      else
-	{
-	  if ( flag == 1 )
-	    {
-	      toggleargs[5].value = 0;
-	      toggleargs[6].value = 1;
-	    }
-	}
-      
-      /* Create it finally */
-      (info->data[i]).toggle = XtCreateManagedWidget((info->data[i]).name, 
-					       toggleWidgetClass,
-					       w,
-					       toggleargs,useargs);
-    /* Add the Callback function */
-
-    XtAddCallback((info->data[i]).toggle,XtNcallback,(XtCallbackProc)info->choice.function,
-		  (XtPointer) (info->data)[i].cbinfo);
-    
-    /* set the default toggle on */
-
-  }
-  
-  /* The toggle widgets have all been created;
-  ** now make the all the same width if that's
-  ** what we want to do.                    */
-
-  if (col_numbers > 0) {
-    Dimension maxwidth = 0;	/* maximum width we've found */
-    Dimension width;		/* width of the current widget */
-    static Arg args[] = {	/* for getting and setting the width */
-      {XtNwidth,    (XtArgVal) NULL}
-    };
-
-    args[0].value = (XtArgVal) &width;
-
-    /* Find the maximum width of any toggle widget */
-    for (i = 0; i < info->choice.num_toggles; ++i) {
-      XtGetValues(info->data[i].toggle,args,1);
-      maxwidth = Max(maxwidth,width);
-    }
-
-    /* Now set them all to that width */
-    args[0].value = (XtArgVal) maxwidth;
-    for (i = 0; i < info->choice.num_toggles; ++i)
-      XtSetValues(info->data[i].toggle,args,1);
-  }
-
-  /* activate the default toggle value but don't call its callback */
-  /* special case for colors : In fact it's the same XXXX */
-
-  if ( strncmp(info->choice.name,"colors",6)==0)  
-    select_button(info->data[info->choice.default_toggle].toggle);
-  else
-    select_button(info->data[info->choice.default_toggle].toggle);
-}
-
 
 /****************************************************
  * checks for color status 
@@ -484,84 +313,13 @@ create_choice(w,info,flag)
 static int choices_cmap()
 {
   int Nchoices=0,i,flag=0 ;			/* counter */
-  while ( Everything[Nchoices] != (SciStuff *) NULL ) Nchoices++;
+  while ( choices_data[Nchoices] != (SciComboData *) NULL ) Nchoices++;
   for (i=0 ; i < Nchoices ; ++i) 
     { 
-      if ( strncmp(Everything[i]->choice.name,"colors",6)==0)
+      if ( strncmp(choices_data[i]->choice.name,"colors",6)==0)
 	flag=1;
   }
   return(flag);
 }
-
-/*********************************************************************
- * select_button(choice)
- *********************************************************************/
-
-static void
-select_button(w)
-     Widget w;
-{
-  static Arg toggleargs[] = {
-    {XtNstate,   (XtArgVal) True}
-  };
-
-  XtSetValues(w,toggleargs,XtNumber(toggleargs));
-}
-
-/*********************************************************************
- * line_up_labels(descs,numdescs)
- * ------------------------------
- * descs represents a bunch of choice layouts (numdescs is the size of
- * descs).  This function sets each label in descs to the same width,
- * thus making them line up nicely since they're all on the left margin.
- *********************************************************************/
-
-static void
-line_up_labels(Everything,num)
-     SciStuff *Everything[];
-     int num;
-{
-  int i;			/* counter */
-  Dimension width;		/* current width */
-  Dimension maxwidth = (Dimension) 0; /* max width found */
-
-  static Arg widthargs[] = {
-    {XtNwidth,     (XtArgVal) NULL }
-  };
-
-  widthargs[0].value = (XtArgVal) &width;
-
-  /* Find the maximum width */
-  for (i = 0; i < num; ++i) {
-    XtGetValues(Everything[i]->choice.label, widthargs, XtNumber(widthargs));
-    maxwidth = Max(maxwidth,width);
-  }
-
-  /* Set all labels to that width */
-  widthargs[0].value = (XtArgVal) maxwidth;
-  for (i = 0; i < num; ++i) {
-    XtSetValues(Everything[i]->choice.label, widthargs, XtNumber(widthargs));
-  }
-}
-
-/*********************************************************************
- * The callback 
- *********************************************************************/
-
-static int
-pttb(w,closure,call_data)
-     Widget  w;
-     caddr_t closure;           /* contains the string */
-     caddr_t call_data;
-{
-  int itm=0,tog=0;
-  sscanf((char *) closure,"%d %d",&itm,&tog);
-  Everything[itm]->choice.default_toggle = tog;
-  return(0);
-}
-
-
-
-
 
 

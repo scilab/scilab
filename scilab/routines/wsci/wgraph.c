@@ -85,6 +85,11 @@ void reset_scig_deletegwin_handler ()
   scig_deletegwin_handler = scig_deletegwin_handler_none;
 }
 
+static int sci_graphic_protect = 0;
+
+void   set_delete_win_mode() {  sci_graphic_protect = 0 ;}
+extern void   set_no_delete_win_mode()  {  sci_graphic_protect = 1 ;}
+
 int C2F (deletewin) (integer * number)
 {
   /* destroying recorded graphic commands */

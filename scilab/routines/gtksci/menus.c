@@ -102,6 +102,7 @@ void MenuFixCurrentWin(ivalue)
 	}
     }
 } 
+
 /* 
 
 static void 
@@ -185,6 +186,7 @@ void create_graphic_window_menu(struct BCG *dd)
   /* This function generates the menu items from scilab description */
 
   /* Attention il faut aussi gerer les menu en set unest XXXXX */
+  
   sci_menu_to_item_factory(dd->item_factory,dd->menu_entries);
   
   /* Attach the new accelerator group to the window. */

@@ -7,7 +7,7 @@ include ../../Version.incl
 LIBRARY = $(SCIDIR)/libs/gtksci.a
 
 OBJSC =	click.o command.o help.o io.o jpc_xwidgets.o  \
-	menus.o x_VTPrsTbl.o x_main.o x_screen.o x_test_loop.o 
+	menus.o x_VTPrsTbl.o x_main.o x_screen.o
 
 OBJSF  = 
 
