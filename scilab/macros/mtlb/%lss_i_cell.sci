@@ -1,4 +1,5 @@
 function M=%lss_i_cell(varargin)
 // Copyright INRIA
-//insertion of a polynomial matrix in an cell
-M=%s_i_cell(varargin)
+//insertion of a lss in an cell
+M=%s_i_cell(varargin(:))
+endfunction
