@@ -56,7 +56,7 @@ MACROS = copyfile.sci mkdir.sci rmdir.sci calendar.sci datevec.sci \
 	tree2code.sci expression2code.sci instruction2code.sci cat_code.sci format_txt.sci \
 	rhs2code.sci create_palette.sci ndgrid.sci \
 	m2sci_gui.sci mdelete.sci show_startupinfo.sci ged.sci \
-	tic.sci toc.sci etime.sci fullfile.sci edit_error.sci
+	tic.sci toc.sci etime.sci fullfile.sci edit_error.sci tokens.sci
 
 
 include ../Make.lib
