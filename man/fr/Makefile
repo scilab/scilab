@@ -5,7 +5,7 @@ include ../../Makefile.incl
 
 DIRS = arma control dcd elementary fileio functions graphics gui \
 	linear metanet nonlinear polynomials programming pvm robust \
-	signal sound strings tdcs tksci translation utilities mtlb
+	signal sound strings tdcs tksci translation utilities mtlb sparse
 #scicos 
 QUIET= > /dev/null 
 LANGUAGE=fr
