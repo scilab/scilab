@@ -61,6 +61,7 @@ c     .     a() -->a
          endif
          nt=1
       else
+         call ref2val
          nt=rhs
       endif
       do 03 i=1,nt
