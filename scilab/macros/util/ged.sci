@@ -268,6 +268,7 @@ function tkged()
     TK_SetVar("curthick",string(h.thickness))
     TK_SetVar("curvis",h.visible)
     TK_SetVar("curfontsize",string(h.font_size))
+    TK_SetVar("curfontcolor",string(h.font_color))
     TK_SetVar("visToggle",h.axes_visible)
     TK_SetVar("limToggle",h.tight_limits)
     TK_SetVar("isoToggle",h.isoview)
@@ -278,6 +279,16 @@ function tkged()
     TK_SetVar("yToggle",part(h.log_flags,2))
     TK_SetVar("xGrid",string(h.grid(1)))
     TK_SetVar("yGrid",string(h.grid(2)))
+    //color_map array for color sample display
+    f=gcf();
+    for i=1:size(get(gcf(),'color_map'),1)
+      redname= "RED("+string(i)+")";
+      TK_EvalStr('set '+redname+" "+string(int(255*f.color_map(i,1))));
+      grename= "GREEN("+string(i)+")";
+      TK_EvalStr('set '+grename+" "+string(int(255*f.color_map(i,2))));
+      bluname= "BLUE("+string(i)+")";
+      TK_EvalStr('set '+bluname+" "+string(int(255*f.color_map(i,3))));
+    end
     select h.view
      case "2d"
     TK_SetVar("zGrid","-1")
@@ -339,33 +350,16 @@ end;
 endfunction
 
 
+function updatecolor(index)
 
+fcol=get(gcf(),'color_map');
+COL= int(255*fcol(index,1)) ;
+TK_SetVar("RED",string(COL));
 
+COL= int(255*fcol(index,2)) ;
+TK_SetVar("GREEN",string(COL));
 
-
-function Grid2d3d(axe,h,index)
-
-select axe
-case "x"
-  if h.view == '2d' then 
-   h.grid=[index , h.grid(2) ]; 
-  else 
-   h.grid=[index , h.grid(2) , h.grid(3)]; 
-  end;
-
-case "y"
-  if h.view == '2d' then 
-   h.grid=[h.grid(1), index ]; 
-  else 
-   h.grid=[h.grid(1), index, h.grid(3)]; 
-  end;
-
-case "z"
-  if h.view == '2d' then 
-   disp "Error: Should be in 3D Mode first"
-  else 
-   h.grid=[h.grid(1), h.grid(2), index]; 
-  end;
-end
+COL= int(255*fcol(index,3)) ;
+TK_SetVar("BLUE",string(COL));
 
 endfunction
