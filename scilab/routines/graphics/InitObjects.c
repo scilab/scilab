@@ -792,9 +792,6 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_LABEL: /* Re-init here must be better F.Leray 28.05.04 */
       if(sciGetParent(pobj) == paxesmdl)
 	{
-	  aa[0] = sciGetFontForeground (sciGetParent (pobj)) -1;
-	  aa[1] = (sciGetFontContext(paxesmdl))->foregroundcolor;
-
 	  /* init plabelmdl that could be models for title, x_label, y_label or z_label */
 	  sciSetFontStyle (pobj, 6);/* set helvetica font */
 	  (sciGetFontContext(pobj))->backgroundcolor = -3;
