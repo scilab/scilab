@@ -1234,14 +1234,20 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
       PostQuitMessage (0);
       DebugGW ("Je fais un destroy \n");
       DragAcceptFiles (hwnd, FALSE);
+	  
+
       return 0;
     case WM_CLOSE:
       DebugGW ("Je fais un close \n");
-      /*TranslateMessage(&message);*/
-      /*DispatchMessage(&message);*/
+	  
+      
       PostQuitMessage (0);
       C2F (deletewin) (&(ScilabGC->CurWindow));
       SetWindowLong (hwnd, 0, (LONG) 0L);
+
+	  /* Ajout pour probleme fermeture fenetre scicos
+	  si une boite de dialogue TK est presente */
+	  TextMessage1 (0);
       return 0;
     }
   return DefWindowProc (hwnd, message, wParam, lParam);
