@@ -1,6 +1,11 @@
 #include "../stack-c.h"
 #include "../calelm/calelm.h"
 
+#define CHAR(x)         (cstk(x))
+#define INT(x)  	(istk(x))
+#define DOUBLE(x)	( stk(x))
+#define CMPLX(x)	(zstk(x))
+
 /*     Copyright INRIA */
 /*----------------------------------------------------------
  * conversion of Scilab sparse to Matlab sparse 
@@ -46,6 +51,9 @@ int C2F(intmsparse)(integer *id)
     static integer ia, il, it, lr, lw, ilc, nel, ilr, iat, irc, lat, top0;
     static integer kkk;
     
+    if( Rhs==2) {
+      return empty();
+      }
     --id;
     /* Function Body */
     Rhs = Max(0,Rhs);
@@ -117,6 +125,30 @@ int C2F(intmsparse)(integer *id)
     return 0;
 }
 
+int empty()
+{
+  int m,n;int k;
+  int m1,n1,p1;
+  int m2,n2,p2;
+  int NZMAX=1;int jc=5;int ir;
+  int *header;double *value;
+  GetRhsVar(1,"d",&m1,&n1,&p1);
+  GetRhsVar(2,"d",&m2,&n2,&p2);
+  m= (int) *stk(p1);
+  n= (int) *stk(p2);
+  CreateData(3, (6+n+1)*sizeof(int)+sizeof(double));
+  header = (int *) GetData(3); value= (double *) header;
+  header[0]=7;
+  header[1]=m;header[2]=n;header[3]=0;
+  header[4]=NZMAX;header[jc]=0;
+  ir=jc+n+1;
+    for (k=0; k<n; ++k) header[jc+k+1]=0;
+  header[ir]=0;
+  value[(5+header[2]+header[4])/2 + 1] = 0.0;
+  LhsVar(1)=3;
+  PutLhsVar();
+  return 1;
+}
 
 /*---------------------------------------
  * %msp_get 
