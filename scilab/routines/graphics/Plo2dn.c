@@ -202,7 +202,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   }
   
   if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-    EraseAndOrRedraw(psubwin);
+    sciDrawObj(sciGetCurrentFigure());
+  /*     EraseAndOrRedraw(psubwin); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
   
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {

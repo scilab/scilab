@@ -164,7 +164,8 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
     }
 
     if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-      EraseAndOrRedraw(psubwin);
+      sciDrawObj(sciGetCurrentFigure());
+ /*      EraseAndOrRedraw(psubwin);  /\*  inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
     
     sciSetCurrentObj (ConstructFec 
 		      ((sciPointObj *)

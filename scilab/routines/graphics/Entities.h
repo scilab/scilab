@@ -1598,6 +1598,6 @@ extern double InvAxis(double min, double max, double u);
 extern int ReverseDataFor3D(sciPointObj * psubwin, double * xvect, double * yvect, double * zvect, int n1);
 extern void DrawAxes(sciPointObj*);
 extern void CleanRectangle(sciPointObj * psubwin);
-extern void EraseAndOrRedraw(sciPointObj * pobj);
+/* extern void EraseAndOrRedraw(sciPointObj * pobj); */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
 
 #endif /*__SCI_ENTITIES__*/

@@ -15163,7 +15163,7 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"z_ticks") == 0)    {return 16;} 
   else if (strncmp(marker,"auto_ticks", 10) == 0){return 10;}
   else if (strncmp(marker,"axes_reverse",12) == 0){return 10;}
-  else if (strncmp(marker,"complete_redraw",15) == 0){return 10;}
+/*   else if (strncmp(marker,"complete_redraw",15) == 0){return 10;} */
 
   else {return -1;}
 }
@@ -22276,18 +22276,20 @@ void CleanRectangle(sciPointObj * psubwin)
 }
 
 
-void EraseAndOrRedraw(sciPointObj * pobj)
-{
-  sciPointObj * pfigure = sciGetParentFigure (pobj);
+/* inhibit EraseAndOrRedraw for now F.Leray 20.12.04*/
+
+/* void EraseAndOrRedraw(sciPointObj * pobj) */
+/* { */
+/*   sciPointObj * pfigure = sciGetParentFigure (pobj); */
   
-  if(pFIGURE_FEATURE (pfigure)->allredraw == TRUE || sciGetEntityType(pobj) == SCI_FIGURE)
-    {
-      sciDrawObj(sciGetParentFigure(pobj));
-    }
-  else
-    {
-      sciPointObj * psubwin = sciGetParentSubwin(pobj);
-      CleanRectangle(psubwin);
-      sciDrawObj(psubwin);
-    }
-}
+/*   if(pFIGURE_FEATURE (pfigure)->allredraw == TRUE || sciGetEntityType(pobj) == SCI_FIGURE) */
+/*     { */
+/*       sciDrawObj(sciGetParentFigure(pobj)); */
+/*     } */
+/*   else */
+/*     { */
+/*       sciPointObj * psubwin = sciGetParentSubwin(pobj); */
+/*       CleanRectangle(psubwin); */
+/*       sciDrawObj(psubwin); */
+/*     } */
+/* } */

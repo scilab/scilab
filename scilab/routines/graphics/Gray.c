@@ -146,7 +146,8 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
     }
     
     if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-      EraseAndOrRedraw(psubwin);
+      sciDrawObj(sciGetCurrentFigure());
+/*       EraseAndOrRedraw(psubwin); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
     
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
@@ -334,7 +335,8 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
   /*   sciDrawObj(psubwin); /\* ???? *\/ */
     
     if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-      EraseAndOrRedraw(psubwin);
+      sciDrawObj(sciGetCurrentFigure());
+ /*      EraseAndOrRedraw(psubwin); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
     
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
