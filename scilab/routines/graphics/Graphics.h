@@ -49,6 +49,7 @@ extern void sci_axis __PARAMS((char,char,double *,int *,double *,int*,char *str[
 			      int fontsize,int textcolor,int fontstyle,int ticscolor,char logflag,int seg_flag));
 extern void axis_draw  __PARAMS(( char strflag[]));
 extern void axis_draw2  __PARAMS(( char strflag[]));
+extern void DrawAxesBackground __PARAMS((void));
 
 extern void ChoixFormatE  __PARAMS((char *fmt,double xmin,double xmax,double xpas)); 
 extern void ChoixFormatE1  __PARAMS((char *fmt,double *x,integer nx)); 

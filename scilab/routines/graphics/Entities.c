@@ -11576,7 +11576,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32
      flag_DO = MaybeSetWinhdc();
 #endif
-
+     
      C2F(dr)("xset","pixmap",&(pFIGURE_FEATURE (pobj)->pixmap),PI0,PI0,PI0,PI0,PI0,PD0,
 	     PD0,PD0,PD0,0L,0L);
      if (pFIGURE_FEATURE (pobj)->pixmap == 0){
@@ -11603,17 +11603,13 @@ sciDrawObj (sciPointObj * pobj)
      }
      break;
    case SCI_SUBWIN: 
-	ppsubwin = pSUBWIN_FEATURE (pobj);
-	
-	isaxes = GetIsAxes(pobj);
-	/* TEST en DUR F.Leray ICIIIIIIIIIIIII 12.10.04 */
-	
-/* 	ppsubwin->axes.reverse[0] = TRUE; /\* reverse X axis *\/ */
-/* 	ppsubwin->axes.reverse[1] = FALSE; */
-   
+     ppsubwin = pSUBWIN_FEATURE (pobj);
+     
+     isaxes = GetIsAxes(pobj);
+     
      if (!sciGetVisibility(pobj)) break;
      sciSetSelectedSubWin(pobj); 
-          
+     
      set_scale ("tttftt", pSUBWIN_FEATURE (pobj)->WRect, pSUBWIN_FEATURE (pobj)->FRect,
 		NULL, pSUBWIN_FEATURE (pobj)->logflags, 
 		pSUBWIN_FEATURE (pobj)->ARect); 
@@ -11673,13 +11669,7 @@ sciDrawObj (sciPointObj * pobj)
 	 
 	 sci_update_frame_bounds_2d(pobj);
 	 
-	 if (isaxes) {
-	   char STRFLAG[4];
-	   rebuild_strflag(pobj,STRFLAG);
-	   axis_draw (STRFLAG);
-	 }
-	 
-	 labels2D_draw(pobj); /* F.Leray 18.10.04 : move here to allow labels drawing with isaxes==FALSE */
+	 DrawAxesBackground();
 	   
 	 /** walk subtree **/
 	 psonstmp = sciGetLastSons (pobj);
@@ -11700,7 +11690,9 @@ sciDrawObj (sciPointObj * pobj)
 	 C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
 	 C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	 C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	 
+	 	 
+	 labels2D_draw(pobj); /* F.Leray 18.10.04 : move here to allow labels drawing with isaxes==FALSE */
+
 	 if (isaxes) {
 	   char STRFLAG[4];
 	   rebuild_strflag(pobj,STRFLAG);
