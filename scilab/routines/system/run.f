@@ -58,9 +58,11 @@ c
          goto 91
       endif
       if(err1.ne.0) then
-c     .  errcatch in exec(function,'errrcatch') or catched error in an
-C     external
-         if(rstk(pt-1).eq.909.or.rstk(pt).eq.1001) return
+c     .  errcatch in exec(function,'errcatch') 
+c     .  or catched error in an external
+c     .  or errcatch in execstr('foo()','errcatch')
+         if(rstk(pt-1).eq.903.or.rstk(pt-1).eq.909.or.
+     $        rstk(pt).eq.1001) return
       endif
       if(lc-l0.ne.nc) goto 11
       r=rstk(pt)-610
