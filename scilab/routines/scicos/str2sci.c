@@ -9,7 +9,6 @@ void str2sci(char** x,int n,int m)
      Copyright INRIA */
       
   int l,il,zero=0,err,n1,i,m1=0;
-  unsigned long str_len;
       
   if (Top >= Bot) {
     i=18;
@@ -34,7 +33,7 @@ void str2sci(char** x,int n,int m)
   for (i = 1; i <= n*m; i++){
     n1=strlen(x[i-1]);
     *istk(il+4+i) =  *istk(il+4+i-1)+n1;
-  if (n1 > 0) C2F(cvstr)(&n1,istk(il+m*n+5 -1 + *istk(il+3+i)),x[i-1],&zero,str_len);
+  if (n1 > 0) C2F(cvstr)(&n1,istk(il+m*n+5 -1 + *istk(il+3+i)),x[i-1],&zero,(unsigned long) n1);
   m1=m1+n1;
   }
   *lstk(Top+1) = l + m1;      
