@@ -267,44 +267,45 @@ S(2,2)=S1;
 Sr=mlist(['st','dims','a','b'],int32([2,2]),list(33,[],[],33),list('toto',12,[],'toto'));
 if or(S<>Sr) pause,end
 
-S2.a=-5;
-S2.c=8;
-S(2,2,2)=S2;
-Sr=mlist(['st','dims','a','b','c'],int32([2,2,2]),..
-	 list(33,[],[],33,[],[],[],-5),..
-	 list('toto',12,[],'toto',[],[],[],[]),..
-	 list([],[],[],[],[],[],[],8));
-if or(S<>Sr) pause,end
+//S2.a=-5;
+//S2.c=8;
+// Not possible in Matlab structs
+// S(2,2,2)=S2;
+//Sr=mlist(['st','dims','a','b','c'],int32([2,2,2]),..
+//	 list(33,[],[],33,[],[],[],-5),..
+//	 list('toto',12,[],'toto',[],[],[],[]),..
+//	 list([],[],[],[],[],[],[],8));
+//if or(S<>Sr) pause,end
 
-S1=S(:,1,1);
-Sr=mlist(['st','dims','a','b','c'],int32([2,1]),list(33,[]),..
-	 list('toto',12),list([],[]));
-if or(S1<>Sr) pause,end
+//S1=S(:,1,1);
+//Sr=mlist(['st','dims','a','b','c'],int32([2,1]),list(33,[]),..
+//	 list('toto',12),list([],[]));
+//if or(S1<>Sr) pause,end
 
-S1=S(1:2,1,1);
-Sr=mlist(['st','dims','a','b','c'],int32([2,1]),list(33,[]),..
-	 list('toto',12),list([],[]));
-if or(S1<>Sr) pause,end
+//S1=S(1:2,1,1);
+//Sr=mlist(['st','dims','a','b','c'],int32([2,1]),list(33,[]),..
+//	 list('toto',12),list([],[]));
+//if or(S1<>Sr) pause,end
 
-S1=S([1 1],1,1);
-Sr=mlist(['st','dims','a','b','c'],int32([2,1]),list(33,33),..
-	 list('toto','toto'),list([],[]));
-if or(S1<>Sr) pause,end
+//S1=S([1 1],1,1);
+//Sr=mlist(['st','dims','a','b','c'],int32([2,1]),list(33,33),..
+//	 list('toto','toto'),list([],[]));
+//if or(S1<>Sr) pause,end
 
-S1=S([1 2 1],1,1);
-Sr=mlist(['st','dims','a','b','c'],int32([3,1]),list(33,[],33),..
-	 list('toto',12,'toto'),list([],[],[]));
-if or(S1<>Sr) pause,end
+//S1=S([1 2 1],1,1);
+//Sr=mlist(['st','dims','a','b','c'],int32([3,1]),list(33,[],33),..
+//	 list('toto',12,'toto'),list([],[],[]));
+//if or(S1<>Sr) pause,end
 
-S1=S(1,:,1);
-Sr=mlist(['st','dims','a','b','c'],int32([1,2]),list(33,[]),..
-	 list('toto',[]),list([],[]));
-if or(S1<>Sr) pause,end
+//S1=S(1,:,1);
+//Sr=mlist(['st','dims','a','b','c'],int32([1,2]),list(33,[]),..
+//	 list('toto',[]),list([],[]));
+//if or(S1<>Sr) pause,end
 
-S1=S(:,:);
-Sr=mlist(['st','dims','a','b','c'],int32([2,2]),list(33,[],[],33), ...
-	 list('toto',12,[],'toto'),list([],[],[],[]));
-if or(S1<>Sr) pause,end
+//S1=S(:,:);
+//Sr=mlist(['st','dims','a','b','c'],int32([2,2]),list(33,[],[],33), ...
+//	 list('toto',12,[],'toto'),list([],[],[],[]));
+//if or(S1<>Sr) pause,end
 
 
 S=struct();
