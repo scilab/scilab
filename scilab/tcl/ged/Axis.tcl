@@ -48,6 +48,7 @@ wm iconname $ww "SO"
 wm geometry $ww 435x600
 #wm geometry $ww 545x600
 #wm geometry $ww 650x700
+wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
 set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]

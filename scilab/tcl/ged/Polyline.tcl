@@ -63,6 +63,7 @@ toplevel $ww
 wm title $ww "Polyline Editor"
 wm iconname $ww "PE"
 wm geometry $ww 435x520
+wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
 set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]

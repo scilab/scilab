@@ -50,6 +50,7 @@ wm title $ww "Champ Object"
 wm iconname $ww "CO"
 
 wm geometry $ww 435x520
+wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 
 set topf  [frame $ww.topf]

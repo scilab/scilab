@@ -36,6 +36,7 @@ toplevel $ww
 wm title $ww "Agregation Editor"
 wm iconname $ww "AE"
 wm geometry $ww 435x500
+wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 
 

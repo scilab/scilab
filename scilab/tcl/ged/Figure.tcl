@@ -49,6 +49,7 @@ toplevel $ww
 wm title $ww "Figure Editor"
 wm iconname $ww "FE"
 wm geometry $ww 690x650
+wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 
 set topf  [frame $ww.topf]

@@ -48,6 +48,7 @@ wm title $ww "Arc Object"
 wm iconname $ww "AO"
 wm geometry $ww 435x530
 #wm geometry $ww 650x700
+wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
 set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]

@@ -126,7 +126,7 @@ wm iconname $ww "AE"
 wm geometry $ww 500x750
 #wm geometry $ww 650x700
 #wm maxsize  $ww 450 560
-
+wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
 set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
@@ -169,6 +169,8 @@ append lalist "\" "
 
 set curgedobject $SELOBJECT($curgedindex)
 
+#bind $ww <destroy> {destroy $ww}
+#bind $ww <Maximize> "DestroyGlobals; destroy $ww"
 
 #Hiereachical viewer
 set fra [frame $w.frame.view  -borderwidth 0]
