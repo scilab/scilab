@@ -1,5 +1,8 @@
 function r=mtlb_exist(nam,wh)
 // Copyright INRIA
+// Emulation function for exist() Matlab function
+// V.C.
+
 [lhs,rhs]=argn(0)
 fptr=funptr(nam)
 r=0
@@ -20,9 +23,9 @@ if rhs==1 then
   end
 else
   select wh
-  case 'var' then
+  case "var" then
     if exists(nam)==1 then r=1,end
-  case 'builtin' then
+  case "builtin" then
     if fptr<>0 then 
       fptr=int(fptr/100)
       if fptr<=500 then
@@ -31,8 +34,8 @@ else
 	r=3
       end
     end
-  case 'file' then
-  case 'dir' then
+  case "file" then
+  case "dir" then
   end
 end
 endfunction
