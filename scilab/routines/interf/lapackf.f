@@ -509,6 +509,24 @@ c
        if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
        if(.not.getrhsvar(1,'d', M, N, lA)) return
+       if(M.eq.0) then
+         if(lhs.eq.1) then
+            lhsvar(1) = 1
+            return
+         else if(lhs.eq.2) then
+            if(.not.createvar(2,'d', N, N, lS)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            return
+         else if(lhs.eq.3) then
+            if(.not.createvar(2,'d', M, N, lS)) return
+            if(.not.createvar(3,'d', N, N, lV)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            lhsvar(3) = 3
+            return
+         endif
+       endif
        if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
        k = 3              
        if(lhs.gt.1) then
@@ -591,8 +609,8 @@ c     s = dgesvd(A)
       double precision ZERO
       parameter ( ZERO=0.0D0 )
 
-       minrhs=1
-       maxrhs=1
+       minrhs=2
+       maxrhs=2
        minlhs=1
        maxlhs=3
 c
@@ -600,6 +618,24 @@ c
        if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
        if(.not.getrhsvar(1,'d', M, N, lA)) return
+       if(M.eq.0) then
+         if(lhs.eq.1) then
+            lhsvar(1) = 1
+            return
+         else if(lhs.eq.2) then
+            if(.not.createvar(2,'d', N, N, lS)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            return
+         else if(lhs.eq.3) then
+            if(.not.createvar(2,'d', M, N, lS)) return
+            if(.not.createvar(3,'d', N, N, lV)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            lhsvar(3) = 3
+            return
+         endif
+       endif
        if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
        k = 3              
        if(lhs.gt.1) then
@@ -692,6 +728,24 @@ c
        if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
        if(.not.getrhsvar(1,'z', M, N, lA)) return
+       if(M.eq.0) then
+         if(lhs.eq.1) then
+            lhsvar(1) = 1
+            return
+         else if(lhs.eq.2) then
+            if(.not.createvar(2,'d', N, N, lS)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            return
+         else if(lhs.eq.3) then
+            if(.not.createvar(2,'d', M, N, lS)) return
+            if(.not.createvar(3,'d', N, N, lV)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            lhsvar(3) = 3
+            return
+         endif
+       endif
        if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
        k = 3              
        if(lhs.gt.1) then
@@ -777,8 +831,8 @@ c     s = zgesvd(A)
       parameter ( ZERO=0.0D0 )
       intrinsic conjg
 
-       minrhs=1
-       maxrhs=1
+       minrhs=2
+       maxrhs=2
        minlhs=1
        maxlhs=3
 c
@@ -786,6 +840,24 @@ c
        if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
        if(.not.getrhsvar(1,'z', M, N, lA)) return
+       if(M.eq.0) then
+         if(lhs.eq.1) then
+            lhsvar(1) = 1
+            return
+         else if(lhs.eq.2) then
+            if(.not.createvar(2,'d', N, N, lS)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            return
+         else if(lhs.eq.3) then
+            if(.not.createvar(2,'d', M, N, lS)) return
+            if(.not.createvar(3,'d', N, N, lV)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            lhsvar(3) = 3
+            return
+         endif
+       endif
        if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
        k = 3              
        if(lhs.gt.1) then
