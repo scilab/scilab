@@ -1080,8 +1080,6 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_MENUCONTEXT:
 	case SCI_STATUSB:
 	  sciSetBackground(pobj,value);
-	  if(sciGetEntityType (pobj) == SCI_SUBWIN)  /* F.Leray 02.04.04 One thing more: init. of the pSUBWIN_FEATURE (pobj)->cubecolor;*/
-	    pSUBWIN_FEATURE (pobj)->cubecolor = sciGetBackground(pobj);
 	  break;
 	case SCI_AGREG:
 	case SCI_TEXT:
@@ -1274,6 +1272,8 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
       break;
     case SCI_SUBWIN:
       (sciGetGraphicContext(pobj))->backgroundcolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      /* F.Leray 02.04.04 One thing more: init. of the pSUBWIN_FEATURE (pobj)->cubecolor;*/
+      pSUBWIN_FEATURE (pobj)->cubecolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       /* sciSetBackground (sciGetParentFigure (pobj), colorindex); */ /* F.Leray 01.04.04 TO DELETE OR NOT???  SEE sciDrawObj...*/ /* F.Leray 02.04.04 Yes! To delete*/
       break;
     case SCI_TEXT:
@@ -11114,7 +11114,7 @@ sciDrawObj (sciPointObj * pobj)
       flag_DO = MaybeSetWinhdc();
 #endif
       C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
-      /*   (sciGetScilabXgc (pobj))->NumBackground = Max (0, Min (x[1] - 1, sciGetNumColors (pobj) + 1)); */ /*F.Leray 02.04.04:  No need here...*/
+      /*(sciGetScilabXgc (pobj))->NumBackground = Max (0, Min (x[1] - 1, sciGetNumColors (pobj) + 1)); */  /*F.Leray 02.04.04:  No need here...*/
       /*With a colormap of 32 colors,NumBackground is between 1 and 34 */
       /*(or in C value between 0 and 33 = (sciGetNumColors (pobj) + 1), so it was OK!! */
       C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
@@ -15555,7 +15555,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 
 	  /** F.Leray Rajout 02.04.04: I delete background=pSUBWIN_FEATURE (pobj)->cubecolor*/
 	  /*Replaced by :*/
-	  /*background=sciGetBackground(pobj);*/
+	  background=sciGetBackground(pobj);
 	  
 	  for (i=0; i < 6 ; i++)
 	    {
