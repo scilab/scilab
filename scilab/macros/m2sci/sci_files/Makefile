@@ -37,8 +37,8 @@ OTHERS = sci_atan2.sci sci_balance.sci sci_break.sci sci_cd.sci sci_cell.sci sci
          sci_isreal.sci sci_isspace.sci sci_issparse.sci sci_isstr.sci sci_keyboard.sci sci_length.sci sci_load.sci sci_log2.sci \
          sci_logical.sci sci_lookfor.sci sci_lu.sci sci_makecell.sci sci_mod.sci sci_more.sci \
          sci_ndims.sci sci_norm.sci sci_pause.sci sci_pow2.sci sci_qr.sci sci_quit.sci sci_rcond.sci sci_rem.sci \
-         sci_reshape.sci sci_return.sci sci_save.sci sci_schur.sci sci_setstr.sci sci_size.sci sci_sort.sci sci_sparse.sci\
-         sci_strcmpi.sci sci_strcmp.sci sci_strfind.sci sci_strrep.sci sci_struct.sci sci_svd.sci \
+         sci_reshape.sci sci_return.sci sci_save.sci sci_schur.sci sci_setstr.sci sci_size.sci sci_sort.sci sci_sparse.sci \
+         sci_strcmpi.sci sci_strcmp.sci sci_strfind.sci sci_strrep.sci sci_struct.sci sci_svd.sci sci_tic.sci sci_toc.sci \
          sci_home.sci sci_type.sci sci_uigetdir.sci sci_waitforbuttonpress.sci sci_warning.sci
 
 MACROS = $(PROTO0) $(PROTO1) $(PROTO2) $(PROTO3) $(PROTO4) \
