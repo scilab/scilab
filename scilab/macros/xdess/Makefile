@@ -29,7 +29,7 @@ MACROS = errbar.sci fchamp.sci fcontour.sci fplot2d.sci fplot3d.sci \
 	gca.sci gcf.sci gce.sci gdf.sci gda.sci sdf.sci scf.sci sda.sci sca.sci \
 	colorbar.sci jetcolormap.sci  show_pixmap.sci clear_pixmap.sci \
 	twinkle.sci color.sci name2rgb.sci rgb2name.sci clf.sci \
-	%h_save.sci %h_load.sci %xsave.sci %xload.sci \
+	%h_save.sci %h_load.sci %xsave.sci %xload.sci oldplot.sci \
 	plot.sci getColorIndex.sci getLineSpec.sci getPlotPropertyName.sci \
 	setPlotProperty.sci setDefaultColor.sci checkXYPair.sci
 

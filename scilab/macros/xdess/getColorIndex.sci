@@ -67,5 +67,4 @@ if (size(opt1,'*') > 1)  // unreachable case normally
 end
 
 
-
 endfunction
