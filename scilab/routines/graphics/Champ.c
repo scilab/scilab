@@ -131,9 +131,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       }
       
       if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
-      
-      pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
-      
+     
       axes_properties_changed = strflag2axes_properties(psubwin, strflag);
 
       if(bounds_changed == TRUE || axes_properties_changed == TRUE)
