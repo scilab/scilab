@@ -1,7 +1,7 @@
 #include "../mex.h"
 #include <string.h>
 #include <stdio.h>
-#ifdef sgi
+#if defined  sgi && ! defined  __STDC__
 #define __STDC__
 #endif
  
@@ -190,35 +190,26 @@ mxClassID mxGetClassID(Matrix *ptr)
   switch (loci[0]) {
   case DOUBLEMATRIX: 
     return mxDOUBLE_CLASS;
-    break;
   case STRINGMATRIX:
     return mxCHAR_CLASS;
-    break;
   case SPARSEMATRIX:
     return mxSPARSE_CLASS;
-    break;
   case INTMATRIX:
     /*[8,m,n,it] it=01    02   04    11     12    14
       int8 int16 int32 uint8 uint16 uint32    */
     switch (loci[3]){
     case 1:
       return mxINT8_CLASS;
-      break;
     case 2:
       return mxINT16_CLASS;
-      break;
     case 4:
       return mxINT32_CLASS;
-      break;
     case 11:
       return mxUINT8_CLASS;
-      break;
     case 12:
       return mxUINT16_CLASS;
-      break;
     case 14:
       return mxUINT32_CLASS;
-      break;
     default:
       return mxUNKNOWN_CLASS;
     }
@@ -229,30 +220,22 @@ mxClassID mxGetClassID(Matrix *ptr)
       /* listentry(loci,3) */
     case DOUBLEMATRIX:
       return mxDOUBLE_CLASS;
-      break;
     case STRINGMATRIX:
       return mxCHAR_CLASS;
-      break;
     case INTMATRIX:
       switch (loci[6+2*(loci[4]-1)+3]) {
       case 1:
 	return mxINT8_CLASS;
-	break;
       case 2:
 	return mxINT16_CLASS;
-	break;
       case 4:
 	return mxINT32_CLASS;
-	break;
       case 11:
 	return mxUINT8_CLASS;
-	break;
       case 12:
 	return mxUINT16_CLASS;
-	break;
       case 14:
 	return mxUINT32_CLASS;
-	break;
       default:
 	return mxUNKNOWN_CLASS;
       }
@@ -318,16 +301,13 @@ int mxGetNumberOfElements(Matrix *ptr)
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
     return loci[1]*loci[2];
-    break;
   case MLIST:
     return loci[6+2*(loci[4]-1)+1];
     /* debut=listentry(loci,3); (debut)... */
-    break;
   case STRINGMATRIX:
     m=loci[1];
     commonlength=loci[5]-loci[4];
     return m*commonlength;
-    break;
     /*case SPARSEMATRIX to be done */
   default:
     return 0;
@@ -342,25 +322,19 @@ double *mxGetPr(Matrix *ptr)
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
     return &loc[2];
-    break;
   case MLIST:
     switch (loci[6+2*(loci[4]-1)]){
     case DOUBLEMATRIX: case INTMATRIX:
       return (double *) &loci[6+2*(loci[4]-1)+4];
-      break;
     case STRINGMATRIX:
       return (double *) &loci[6+2*(loci[4]-1)+6];
-      break;
     default:
       return 0;
-      break;
     }
   case STRINGMATRIX:
     return &loc[i2sadr(5 + loci[2])];
-    break;
   case SPARSEMATRIX:
     return &loc[ i2sadr(5+loci[2]+loci[4]) ];
-    break;
   default:
     return 0;
   }
@@ -375,7 +349,6 @@ double *mxGetPi(Matrix *ptr)
  case DOUBLEMATRIX: case INTMATRIX:
    if (loci[3]==0) return NULL;
    return &loc[2 + loci[1] * loci[2]];
-   break;
  case MLIST:
    debut=6+2*(loci[4]-1);
     switch (loci[debut]){
@@ -383,15 +356,12 @@ double *mxGetPi(Matrix *ptr)
       m=loci[debut+1];n=loci[debut+2];
       it=loci[debut+3];  /* it should be 1 */
       return (double *) &loci[debut+4+2*m*n];
-      break;
     default:
       return 0;
-      break;
     }
  case SPARSEMATRIX:
    if (loci[3]==0) return NULL;
    return &loc[ i2sadr(5+loci[2] +loci[4]) + loci[1]*loci[2]];
-   break;
  default:
    return 0;
  }
@@ -404,20 +374,16 @@ int mxGetNumberOfDimensions(Matrix *ptr)
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
     return 2;
-    break;
   case MLIST:
     switch (theMLIST(loci)) {
     case NDARRAY:
       return loci[29]*loci[30]; /* loci[29] or loci[30] = 1  */
-      break;
     case CELL:
       loci1 = (int *) listentry(loci,2)  ;
       return loci1[1]*loci1[2];
-      break;
     case STRUCT:
       loci1 = (int *) listentry(loci,2)  ;
       return loci1[1]*loci1[2];
-      break;
     default:
       return 0;
 	}
@@ -433,7 +399,6 @@ int *mxGetDimensions(Matrix *ptr)
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case STRINGMATRIX:
     return &loci[1];
-    break;
   case SPARSEMATRIX: /* to be done  */
     break;
   case MLIST:
@@ -442,7 +407,6 @@ int *mxGetDimensions(Matrix *ptr)
     case NDARRAY: case CELL: case STRUCT:
       loci1 = (int *) listentry(loci,2);
       return &loci1[4];
-      break;
   default:
     return 0;
     }
@@ -457,16 +421,13 @@ int mxGetM(Matrix *ptr)
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case STRINGMATRIX: case SPARSEMATRIX:
     return loci[1];
-    break;
   case MLIST:
     switch (theMLIST(loci)) {
     case NDARRAY:
       return loci[32]; 
-      break;
     case CELL: case STRUCT:
       loci1 = (int *) listentry(loci,2);
       return loci1[4];
-      break;
     default:
       return 0;
     }
@@ -525,12 +486,10 @@ int mxGetN(Matrix *ptr)
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
     return loci[2];
-    break;
   case STRINGMATRIX:
     /*  for strings, N=length of first (and unique, loci[2]=1) column 
         (all rows have same Matlab-length) */
     return loci[5]-loci[4];
-    break;
   case MLIST:
     switch (theMLIST(loci)) {
     case NDARRAY: case CELL: case STRUCT:
@@ -542,7 +501,6 @@ int mxGetN(Matrix *ptr)
 	ret=loci1[5];
       for (j=0; j < numberofdim-2; ++j) ret=ret*loci1[6+j]; 
       return ret;
-      break;
     default:
       return 0;
 	}
@@ -587,19 +545,15 @@ int mxIsChar(Matrix *ptr)
   switch (loci[0]) {
   case STRINGMATRIX:
     return 1;
-    break;
   case MLIST:
     switch (loci[6+2*(loci[4]-1)]){
     case STRINGMATRIX:
       return 1;
-      break;
     default:
       return 0;
-      break;
     }
   default:
     return 0;
-    break;
   } 
 }
 
@@ -677,11 +631,9 @@ int mxIsComplex(Matrix *ptr)
   switch (loci[0]) {
   case DOUBLEMATRIX:
     return loci[3];
-    break;
   case MLIST:
     if (loci[6+2*(loci[4]-1)] == DOUBLEMATRIX) {
       return loci[6+2*(loci[4]-1)+3];
-      break;
     }
   default:
     return 0;
@@ -714,16 +666,12 @@ void *mxGetData(Matrix *ptr)
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
     return &loc[2];
-    break;
   case MLIST:
     return &loc[loci[4]+4];
-    break;
   case STRINGMATRIX:
     return &loci[5+loci[1]];
-    break;
   case SPARSEMATRIX:
     return &loc[i2sadr(5+loci[2]+loci[4])];
-    break;
   default:
   return 0;
   }  */
@@ -1115,10 +1063,8 @@ int mxGetElementSize(Matrix *ptr)
  switch (loci[0]) {
  case DOUBLEMATRIX: case SPARSEMATRIX:
    return sizeof(double);
-   break;
  case STRINGMATRIX:
    return 2*sizeof(char);    /* ? Matlab returns 2 */
-   break;
  case MLIST:
    k=loci[4];
    /*   loci[6+2*(k-1)]  =  1 if double matrix, 8 if integer  */
@@ -1132,7 +1078,6 @@ int mxGetElementSize(Matrix *ptr)
      int8 int16 int32 uint8 uint16 uint32    */
    it=loci[3];
    return( it%10 );
-   break;
  default:
    mexErrMsgTxt("GetElementSize error");
    return 0;
@@ -1223,7 +1168,6 @@ int C2F(initmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
 	mexErrMsgTxt("Use mtlb_sparse(sparse( ))!");
 	/*   scilab sparse  should be matlabified  */
 	return 0;
-	break;
       case MLIST:
 	loci1 = (int *) listentry(loci,2);
 	m = loci1[1]*loci1[2];
