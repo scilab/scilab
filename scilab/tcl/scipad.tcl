@@ -34,6 +34,12 @@ exec `which wish` "$0" "$@"
 # *corrected bug - scipad(newfilename) began in an unnamed buffer
 #   [connected in scipad.sci: scipad(filename) does not open an additional "Untitled.sce"]
 
+#ES 11/9/2003
+# closing/reopening scipad remembers previous font size
+# cursor doesn't disappear any more (it used to every second keypress or so or mouse move)
+# cursor is red
+# cursor is positioned at 1.1 when opening an existing file 
+
 # default global values
 #global .
 
@@ -54,6 +60,9 @@ set wordWrap none
 set printCommand lpr
 set BGCOLOR "snow1"
 set FGCOLOR "black"
+##ES
+set CURCOLOR "red"
+#
 set BASENAME scipad5.tcl;#[string range $argv0 [expr [string last "/" $argv0] + 1] end]
 set argc 0
 #
@@ -67,7 +76,8 @@ set listoffile("$pad.textarea",save) 0; # set flag to know if the editing file w
 set listoffile("$pad.textarea",new) 1; # is not an opened file from disk
 set listoffile("$pad.textarea",thetime) 0; # set the time of the last modify
 set listoftextarea $pad.textarea
-set winopened 0
+## ES changet from 0 to 1, no effect?
+set winopened 1
 set radiobuttonvalue 0
 ###
 # main window settings
@@ -100,11 +110,14 @@ $pad.filemenu configure -font $menuFont
 # to have the possibility to launch multiple
 # browser from scilab with independant menu
 # a little uggly !!!
-set Size 0
+##ES: remember fontsize
+if { ![info exists Size] } {set Size 4 }
+
 proc setfontscipad0 {} {
     global textFont
     global listoftextarea
-
+    global Size
+    set Size 0
     set textFont -Adobe-courier-medium-R-Normal-*-12-*
     foreach textarea $listoftextarea {
 	$textarea configure -font $textFont
@@ -114,7 +127,8 @@ proc setfontscipad0 {} {
 proc setfontscipad4 {} {
     global textFont
     global listoftextarea
-
+    global Size
+    set Size 4
     set textFont -Adobe-courier-medium-R-Normal-*-14-*
     foreach textarea $listoftextarea {
 	$textarea configure -font $textFont
@@ -124,7 +138,8 @@ proc setfontscipad4 {} {
 proc setfontscipad12 {} {
     global textFont
     global listoftextarea
-
+    global Size
+    set Size 12
     set textFont -Adobe-courier-medium-R-Normal-*-18-*
     foreach textarea $listoftextarea {
 	$textarea configure -font $textFont
@@ -145,6 +160,7 @@ pack  $pad.bottomrightmenu -in $pad.bottomTopMenu  -side right -expand 0 -fill b
 # this is for the x scroll bar at the bottom of the window
 frame $pad.bottombottommenu
 pack $pad.bottombottommenu -side bottom -expand 0 -fill both
+
 
 #file menu
 menu $pad.filemenu.files -tearoff 0 -font $menuFont
@@ -256,7 +272,9 @@ if {$lang == "eng"} {
     $pad.filemenu.options add radiobutton -label "moyen" -value 4  -variable $Size -command "setfontscipad4"
     $pad.filemenu.options add radiobutton -label "grand" -value 12  -variable $Size -command "setfontscipad12"
 }
-set Size 2
+##ES: whats this?
+##set Size 2
+
 # exec menu
 if {$lang == "eng"} {
     $pad.filemenu add command -label "Load into Scilab" -underline 0 -command "execfile"
@@ -316,11 +334,18 @@ $pad configure -menu $pad.filemenu
 set taille [expr [font measure $textFont " "] *3]
 
 # creates the default textarea 
+##ES was here: added inserttime 0 and exportselection
 text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
 	-yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
-        -fg $FGCOLOR -bg $BGCOLOR  -setgrid 1 -font $textFont -tabs $taille -insertwidth 3 -insertborderwidth 8 
+        -fg $FGCOLOR -bg $BGCOLOR  -setgrid 1 -font $textFont -tabs $taille \
+        -insertwidth 3 -insertborderwidth 2 -insertofftime 0 -insertbackground $CURCOLOR\
+        -exportselection 1
 set textareacur $pad.textarea  
 ####
+##ES: remember fontsize
+if {$Size == 0} {setfontscipad0}
+if {$Size == 4} {setfontscipad4}
+if {$Size == 12} {setfontscipad12}
 
 scrollbar $pad.yscroll -command "$textareacur yview"
 scrollbar $pad.xscroll -command "$textareacur xview" -orient horizontal
@@ -904,6 +929,11 @@ proc openfile {file} {
 #
 		update
 	    }
+##added ES 11/9/2003
+#            tkTextSetCursor $pad.new$winopened "1.0"
+	    $pad.new$winopened mark set insert "1.0"
+            keyposn $pad.new$winopened
+#
 	    set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
 	    if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
 		# more bindings
@@ -932,6 +962,11 @@ proc openfile {file} {
 proc filetoopen {textarea} {
     #switchcase filetosave $textarea showopenwin $textarea
     showopenwin $textarea
+##added ES 11/9/2003
+#    tkTextSetCursor [gettextareacur] "1.0"
+    [gettextareacur] mark set insert "1.0"
+    keyposn [gettextareacur]
+#
 }
 
 # generic save function
@@ -1168,7 +1203,7 @@ proc pastetext {} {
 	}
     }
     set i1  [[gettextareacur] index insert]
-    tk_textPaste [gettextareacur]
+    tk_textPaste [gettextareacur] 
     inccount [gettextareacur]
     # Added by Matthieu PHILIPPE
     set  i2 [[gettextareacur] index insert]
@@ -1194,8 +1229,8 @@ proc FindIt {w} {
 	set len [string length $SearchString]
 	if {$SearchPos != ""} {
 	    [gettextareacur] see $SearchPos
-	    [gettextareacur] mark set insert $SearchPos
 #	    tkTextSetCursor [gettextareacur] $SearchPos
+	    [gettextareacur] mark set insert $SearchPos
 	    [gettextareacur] tag add sel $SearchPos  "$SearchPos + $len char"
 	    
 	    if {$SearchDir == "forwards"} {
@@ -1418,8 +1453,8 @@ proc gotoline {} {
 	global textareacur
 	global gotlnCommand
 	set gotlnCommand [$prnt.top.gotln get]
-	[gettextareacur] mark set insert "$gotlnCommand.0"
 #	tkTextSetCursor [gettextareacur] "$gotlnCommand.0"
+	[gettextareacur] mark set insert "$gotlnCommand.0"
 	catch {keyposn [gettextareacur]}
 	destroy $prnt
     }
@@ -1510,7 +1545,7 @@ if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
 	bind $textareacur <Control-v> {pastetext}
 ##
 ## added by ES 30/8/2003 (to be improved --- copies at the present cursor position)
-##	bind Text <2> {copytext ; pastetext}
+##	bind Text <2> {tk_textCopy [gettextareacur]; pastetext}
 ##
     } else {
 	#events
