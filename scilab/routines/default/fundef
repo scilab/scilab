@@ -140,7 +140,6 @@
 {"xinit",		IN_matdes,	30,	2},	
 {"xlfont",		IN_matdes,	31,	2},	
 {"xload",		IN_matdes,	51,	2},	
-{"xnumb",		IN_matdes,	32,	2},	
 {"xpause",		IN_matdes,	33,	2},	
 {"xpoly",		IN_matdes,	34,	2},	
 {"xpolys",		IN_matdes,	35,	2},	
