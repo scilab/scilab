@@ -3,7 +3,7 @@
 /*------------------------------------------------------------------------
  *   Graphic library for 2D and 3D plotting 
  *   Copyright (C) 2000 Chancelier Jean-Philippe 
- *   jpc@cereve.enpc.fr 
+ *   jpc@cermics.enpc.fr 
  *--------------------------------------------------------------------------*/
 
 #include <string.h>

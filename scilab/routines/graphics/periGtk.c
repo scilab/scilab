@@ -364,16 +364,26 @@ static gboolean locator_button_release(GtkWidget *widget,
 }
 
 static gboolean locator_button_motion(GtkWidget *widget,
-				      GdkEventButton *event,
+				      GdkEventMotion *event,
 				      BCG *gc)
 {
-  if ( info.sci_click_activated == 0 || info.getmouse == 0 ) 
-    {
-      PushClickQueue( gc->CurWindow,event->x, event->y,-1 ,1,0);
+  int x,y; 
+  GdkModifierType state;
+  if (event->is_hint)
+    { 
+      gdk_window_get_pointer (event->window, &x, &y, &state);
     }
   else 
     {
-      info.ok =1 ;  info.win=  gc->CurWindow; info.x = event->x;  info.y = event->y;
+      x= event->x; y = event->y;
+    }
+  if ( info.sci_click_activated == 0 || info.getmouse == 0 ) 
+    {
+      PushClickQueue( gc->CurWindow,x, y,-1 ,1,0);
+    }
+  else 
+    {
+      info.ok =1 ;  info.win=  gc->CurWindow; info.x = x;  info.y = y;
       info.button = -1;
       gtk_main_quit();
     }
@@ -435,7 +445,10 @@ gint timeout_test (BCG *gc)
   return TRUE;
 }
 
-void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iwin, integer *iflag, integer *istr, double *dv1, double *dv2, double *dv3, double *dv4)
+void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, 
+		     integer *yy1, integer *iwin, integer *iflag,
+		     integer *istr, double *dv1, double *dv2, 
+		     double *dv3, double *dv4)
 {
   GTK_locator_info rec_info ; 
   int win = -1;
@@ -474,7 +487,8 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
 
   if (  info.getmen == 1 && info.timer == 0 ) 
     {
-      info.timer = gtk_timeout_add (100, (GtkFunction) timeout_test, ScilabXgc);
+      /*  Check soft menu activation during xclick_any */ 
+      info.timer = gtk_timeout_add(100, (GtkFunction) timeout_test, ScilabXgc);
       info.str   = str;
     }
 
@@ -498,20 +512,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
   /* take care of recursive calls i.e restore info  */
   info = rec_info ; 
 
-  /*  Check menu activation 
-    if ( *istr==1 && C2F(ismenu)()==1 ) 
-      {
-	int entry;
-	C2F(getmen)(str,&lstr,&entry);
-	*ibutton = -2;
-	*istr=lstr;
-	*x1=0;
-	*yy1=0;
-	*iwin=-1;
-	break;
-      }
-      }
-
+  /* XXXXX 
   for (i=0;i < wincount;i++) {
     CW=GetWindowNumber(i);
     if (CW!=(Window ) NULL) 
@@ -522,7 +523,10 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
   
 }
 
-void C2F(xclick)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iflag, integer *istr, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
+void C2F(xclick)(char *str, integer *ibutton, integer *x1,
+		 integer *yy1, integer *iflag, integer *istr,
+		 integer *v7, double *dv1, double *dv2,
+		 double *dv3, double *dv4)
 {
   integer lstr ;
   SciClick(ibutton,x1, yy1,iflag,0,0,*istr,str,&lstr);
@@ -538,7 +542,10 @@ void C2F(xclick)(char *str, integer *ibutton, integer *x1, integer *yy1, integer
     }
 }
 
-void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
+void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, 
+		    integer *yy1, integer *iflag, integer *v6, 
+		    integer *v7, double *dv1, double *dv2,
+		    double *dv3, double *dv4)
 {
   integer lstr ;
   SciClick(ibutton,x1, yy1,iflag,1,0,0,(char *) 0,&lstr);
@@ -3829,8 +3836,10 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
 
   gtk_widget_set_events(dd->drawing, GDK_EXPOSURE_MASK 
 			| GDK_BUTTON_PRESS_MASK 
-			| GDK_BUTTON_RELEASE_MASK 
-			| GDK_BUTTON_MOTION_MASK);
+			| GDK_BUTTON_RELEASE_MASK
+			| GDK_POINTER_MOTION_MASK
+			| GDK_POINTER_MOTION_HINT_MASK
+			| GDK_LEAVE_NOTIFY_MASK );
 
   /* drawingarea properties */
   /* min size of the graphic window */
