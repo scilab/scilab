@@ -1,0 +1,28 @@
+function [q]=quart(x,orien)
+//
+//This function computes the quartiles of a vector or a matrix x.
+//
+//For a vector  or a matrix x, q=quart(x)  returns  in the vector q  the
+//three quartiles entries of x.
+//
+//q=quart(x,'r')  (or,   equivalently,  q=quart(x,1))   is  the  rowwise
+//quartiles range.  It returns in each  column of the 3xlength(x)-matrix
+//q, the quartiles of the corresponding column of x.
+//
+//q=quart(x,'c')  (or, equivalently,   q=quart(x,2))  is the  columnwise
+//interquartile range. It returns  in  each row of  length(x)x3-matrix q
+//the quartiles of each row of x.
+//
+//author: carlos klimann
+//
+//date: 1999-05-12
+//
+  if x==[]then q=%nan, return, end
+  [lhs,rhs]=argn(0)
+  if rhs==0 then error('quart requires at least one input.'), end
+  if rhs==1 then
+    q=pctl(x,[25 50 75])
+  else
+    q=pctl(x,[25 50 75],orien)
+  end
+endfunction
