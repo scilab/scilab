@@ -8,7 +8,6 @@ function M=%st_i_st(varargin)
   M=varargin($)
   N=varargin($-1)//inserted matrix
   dims=double(matrix(M.dims,1,-1));
-
   
   if type(varargin(1))==10 //addind a new field
     flds=getfield(1,M);flds=[flds,varargin(1)];
@@ -28,6 +27,7 @@ function M=%st_i_st(varargin)
 
     //convert N-dimensionnal indexes to 1-D and extend dims if necessary
     [Ndims,I]=convertindex(dims,varargin(1:$-2));Ndims=matrix(Ndims,1,-1)
+
     if or(Ndims>dims) then
       //extend the destination matrix
       I1=0
@@ -50,7 +50,6 @@ function M=%st_i_st(varargin)
       R=mlist(['st','dims',matrix(FR,1,-1)],int32(Ndims));
       for k=1:size(FR,'*'),setfield(2+k,v1,R),end
       // populate it with M entries
-
       for k=1:nFM
 	v2=v1;
 	kf=find(FR==FM(k));
@@ -77,10 +76,12 @@ function M=%st_i_st(varargin)
     for k=1:nFN
       kf=find(FR==FN(k))
       v2=getfield(kf+2,R)
-      w=getfield(k+2,N);if type(w)<>15 then w=list(w),end
+      w=getfield(k+2,N);
+      if type(w)<>15 then w=list(w),end
       for i=1:size(I,'*'), 
 	v2(I(i))=w(i)
       end 
+      if length(v2)==1 then v2=v2(1);end
       setfield(kf+2,v2,R);
     end
     
