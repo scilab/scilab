@@ -649,10 +649,7 @@ char ** AllocAndSetUserLabels(char ** u_xlabels, double * u_xgrads, int u_nxgrad
   int nbtics = u_nxgrads;
 
   if(u_xgrads == NULL)
-    {
-      /*   sciprint("Impossible: u_xgrads must be filled before u_xlabels"); */
-      return (char **) NULL;
-    }
+    return (char **) NULL;
   
   if(u_xlabels != NULL)
     {
@@ -692,14 +689,15 @@ char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, i
   int i;
   int nbtics = u_nxgrads;
 
+  if(u_nxgrads == 0)
+    return (char **) NULL;
+  
   if(u_xlabels != NULL)
     {
-      /*   FreeUserLabels(u_xlabels */
       sciprint("Impossible: u_xlabels must be freed before re-allocating");
       return (char **) NULL;
     }
   
-
   if((u_xlabels=(char **)MALLOC(u_nxgrads*sizeof(char *)))==NULL){
     sciprint("No more place for allocating user labels using Nax");
     return (char **) NULL;

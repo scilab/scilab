@@ -3461,9 +3461,13 @@ sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
 
   switch (sciGetEntityType (pthis))
     {
+
     case SCI_FIGURE:
       /* on ne fait rien puisqu'il ne peut y avoir un parent dans ce cas */
       return TRUE;
+    case SCI_POLYLINE:
+ /*      printf("je vais detruire le lien entre polyline et subwin\n"); fflush(NULL); */
+    case SCI_AGREG:
     case SCI_SUBWIN:
     case SCI_PANNER:
     case SCI_SBH:
@@ -3478,13 +3482,12 @@ sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
+
     case SCI_SURFACE:
     case SCI_LIGHT:
       /*   case SCI_AXIS*/
     case SCI_AXES:
     case SCI_ARC:
-    case SCI_AGREG:
     case SCI_MERGE:
     case SCI_LABEL:
       /* recherche de l'objet a effacer*/
@@ -7838,6 +7841,7 @@ DestroyFigure (sciPointObj * pthis)
   /* This code has to be validated on all systems
    * because sciGetPointerToFeature returns a void
    */
+  FREE ((sciGetFontContext(pthis))->pfontname);
   FREE(pFIGURE_FEATURE(pthis)->pcolormap);
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
@@ -8318,6 +8322,7 @@ DestroySubWin (sciPointObj * pthis)
   if ( sciGetCallback(pthis) != (char *)NULL)
     FREE(sciGetCallback(pthis));
 
+  FREE ((sciGetFontContext(pthis))->pfontname);
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis); 
   return 0;
@@ -8884,8 +8889,8 @@ int C2F(graphicsmodels) ()
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.callbacklen = 0;
  /*  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_z_label))); */
   pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(paxesmdl);
-    
-
+  
+  
   if ((pLABEL_FEATURE ((ppobj->mon_z_label))->text.ptextstring =calloc (1, sizeof (char))) == NULL)
     {
       sciprint("No more place to allocates text string, try a shorter string");
@@ -12074,7 +12079,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       logflags[0]='g';
       logflags[1]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[0]; /* F.Leray 26.10.04 Pb when logscale on and data is <= 0 for clipping */
       logflags[2]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[1];
-      
+      logflags[3]='\0';
+
       /* //////////////////////////////////////////////////////////////// */
       BuildXYZvectForClipping_IfNanOrLogON(pobj,sciGetParentSubwin(pobj),&nb_curves, &xvect, &yvect, &zvect, &curves_size);
       /* //////////////////////////////////////////////////////////////// */
@@ -21297,15 +21303,16 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
       /* Allocating arrays x, y and zvect */
       if (( (*xvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
       if (( (*yvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
-      if (( (*zvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
+      if(pppolyline->pvz == NULL)
+	(*zvect)[i] = NULL;
+      else
+	if (( (*zvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
       
       for(j=store_data[0][i];j<store_data[1][i];j++)
 	{
 	  (*xvect)[i][cmpteur] = pppolyline->pvx[j];
 	  (*yvect)[i][cmpteur] = pppolyline->pvy[j];
-	  if(pppolyline->pvz == NULL)
-	    (*zvect)[i] = NULL;
-	  else
+	  if(pppolyline->pvz != NULL)
 	    (*zvect)[i][cmpteur] = pppolyline->pvz[j];
 	  
 	  cmpteur++;
