@@ -4,8 +4,7 @@ function scipad(f)
     TK_EvalStr("set isscipadinterp [interp exists scipad]")
     if TK_GetVar("isscipadinterp")=='0' then    
       TK_EvalStr("interp create scipad")
-      if MSDOS then tklib='tk83.dll', else tklib='libtk8.3.so',end
-      TK_EvalStr("load {'+tklib+'} Tk scipad")
+      TK_EvalStr("load {'+gettklib()+'} Tk scipad")
       TK_EvalStr("scipad eval {wm withdraw .}")
       TK_EvalStr("scipad alias ScilabEval ScilabEval")
     end
