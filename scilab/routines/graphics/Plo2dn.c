@@ -240,13 +240,13 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       if (with_leg) pptabofpointobj[jj] = sciGetCurrentObj();
       sciDrawObjIfRequired(sciGetCurrentObj ());
 
-      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
-
-
       hdl=sciGetHandle(sciGetCurrentObj ());   
       hdltab[cmpt]=hdl;
       cmpt++;
     }
+    
+    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing once is sufficient (F.Leray 10.01.05) */
+    
     frame_clip_off ();
 
     /*---- Drawing the Legends ----*/
