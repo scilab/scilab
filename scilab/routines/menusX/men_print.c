@@ -20,7 +20,7 @@ static char *Print_Formats[] = {
   "PPM",
 };
 
-static int nF=5;
+static int nF=6;
 
 /******************************************
  * main function 
@@ -133,4 +133,3 @@ int SetPrinterList(flag)
     }
   return(OK);
 }
-
