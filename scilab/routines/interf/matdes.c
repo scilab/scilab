@@ -3076,18 +3076,18 @@ int scidelw(fname,fname_len)
 } 
 
 /*-----------------------------------------------------------
- * impression
+ * used to print or export a graphic window 
  *-----------------------------------------------------------*/
 
-int scixg2psofig_G(fname,dr,fname_len,dr_len)
-     char *fname,*dr;
-     unsigned long fname_len;
-     unsigned long dr_len;
+int scixg2psofig_G(char * fname,char * dr,unsigned long fname_len,unsigned long dr_len)
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,flagx = -1,iwin;
   CheckRhs(2,3);
+  /* the window number */ 
   GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1); iwin  = (integer) *stk(l1);
+  /* the file name */ 
   GetRhsVar(2,"c",&m2,&n2,&l2);
+  /* color or n & b */ 
   if (Rhs >= 3) {GetRhsVar(3,"d",&m3,&n3,&l3); CheckScalar(3,m3,n3); flagx = (integer) *stk(l3); }
   C2F(xg2psofig)(cstk(l2),&m2,&iwin,&flagx,dr,bsiz,dr_len);
   LhsVar(1)=0;
@@ -3766,6 +3766,15 @@ int scicontour2d1 (fname,fname_len)
   return 0;
 }
 
+int scixs2ps(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  return scixg2psofig_G(fname,"Pos",fname_len,3);
+}
+
+/* backward compatibility */
+
 int scixg2ps(fname,fname_len)
      char *fname;
      unsigned long fname_len;
@@ -3773,12 +3782,29 @@ int scixg2ps(fname,fname_len)
   return scixg2psofig_G(fname,"Pos",fname_len,3);
 }
 
-int scixg2fig(fname,fname_len)
+int scixs2fig(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
   return scixg2psofig_G(fname,"Fig",fname_len,3);
 }
+
+int scixs2gif(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  return scixg2psofig_G(fname,"GIF",fname_len,3);
+}
+
+int scixs2ppm(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  return scixg2psofig_G(fname,"PPM",fname_len,3);
+}
+
+
+
 
 int sciseteventhandler(fname, fname_len)
      char *fname;
@@ -3866,7 +3892,7 @@ static MatdesTable Tab[]={
   {scidelw,"xdel"},
   {scicontour2d,"contour2d"},
   {scixg2ps,"xg2ps"},
-  {scixg2fig,"xg2fig"},
+  {scixs2fig,"xs2fig"},
   {scixsort,"gsort"},
   {sciwinsid,"winsid"},
   {sciparam3d1,"param3d1"},
@@ -3883,6 +3909,10 @@ static MatdesTable Tab[]={
 #ifdef WITH_GTK
   {int_gtkhelp,"help_gtk"},
 #endif 
+
+  {scixs2gif,"xs2gif"},
+  {scixs2ppm,"xs2ppm"},
+  {scixs2ps,"xs2ps"},
 };
 
 /* interface for the previous function Table */ 

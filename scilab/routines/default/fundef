@@ -148,6 +148,9 @@
 #ifdef WITH_GTK
 {"help_gtk",           	IN_matdes,      69,     2},
 #endif 
+{"xs2gif",           	IN_matdes,      70,     2},
+{"xs2ppm",           	IN_matdes,      71,     2},
+{"xs2ps",		IN_matdes,	72,	2},	
 #define  IN_matqz  8  
 {"ereduc",		IN_matqz,	3,	2},	
 {"fstair",		IN_matqz,	4,	2},	
