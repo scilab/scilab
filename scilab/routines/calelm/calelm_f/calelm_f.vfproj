@@ -161,7 +161,7 @@ cd .."/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/calelm_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\arcosh.f">
@@ -291,7 +291,9 @@ cd .."/>
 		<File RelativePath="..\dexint.f"/>
 		<File RelativePath="..\dgamlm.f"/>
 		<File RelativePath="..\dgamln.f"/>
-		<File RelativePath="..\dgamma.f"/>
+		<File RelativePath="..\dgamma.f">
+			<FileConfiguration Name="Debug with Atlas|Win32">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dgamrn.f"/>
 		<File RelativePath="..\dhkseq.f"/>
 		<File RelativePath="..\dipow.f">
@@ -429,19 +431,6 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
 			<FileConfiguration Name="Release with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration></File>
-		<File RelativePath="..\gamma.f">
-			<FileConfiguration Name="Debug without Java|Win32">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Release with Atlas|Win32">
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
-			<FileConfiguration Name="Debug|Win32">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Release with Atlas without Java|Win32">
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas without Java|Win32">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\gdcp2i.f">
 			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="false" Optimization="optimizeMaxSpeed"/></FileConfiguration>
@@ -802,6 +791,7 @@ cd .."/>
 		<File RelativePath="..\zairy.f"/>
 		<File RelativePath="..\zasyi.f"/>
 		<File RelativePath="..\zbesh.f"/>
+		<File RelativePath="..\zbeshg.f"/>
 		<File RelativePath="..\zbesi.f"/>
 		<File RelativePath="..\zbesig.f"/>
 		<File RelativePath="..\zbesj.f"/>
