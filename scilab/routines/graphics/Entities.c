@@ -715,14 +715,16 @@ sciInitGraphicContext (sciPointObj * pobj)
 	}
       else
 	{
-	  (sciGetGraphicContext(pobj))->backgroundcolor = (sciGetGraphicContext(paxesmdl))->backgroundcolor	;
-	  (sciGetGraphicContext(pobj))->foregroundcolor = (sciGetGraphicContext(paxesmdl))->foregroundcolor;
-	  (sciGetGraphicContext(pobj))->fillstyle = (sciGetGraphicContext(paxesmdl))->fillstyle;
-	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(paxesmdl))->fillcolor;
-	  (sciGetGraphicContext(pobj))->linewidth = (sciGetGraphicContext(paxesmdl))->linewidth;
-	  (sciGetGraphicContext(pobj))->linestyle = (sciGetGraphicContext(paxesmdl))->linestyle;
-	  (sciGetGraphicContext(pobj))->ismark    = (sciGetGraphicContext(paxesmdl))->ismark;
-	  (sciGetGraphicContext(pobj))->markstyle = (sciGetGraphicContext(paxesmdl))->markstyle;
+	  /** CHANGE HERE */
+	  /** F.Leray 02.04.04: the subwin must inherit from its parent figure */
+	  (sciGetGraphicContext(pobj))->backgroundcolor =	sciGetBackground (sciGetParent (pobj)) - 1;
+	  (sciGetGraphicContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
+	  (sciGetGraphicContext(pobj))->fillstyle =	sciGetFillStyle (sciGetParent (pobj));
+	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
+	  (sciGetGraphicContext(pobj))->linewidth =	sciGetLineWidth (sciGetParent (pobj));
+	  (sciGetGraphicContext(pobj))->linestyle =	sciGetLineStyle (sciGetParent (pobj));
+	  (sciGetGraphicContext(pobj))->ismark    =	sciGetIsMark (sciGetParent (pobj));
+	  (sciGetGraphicContext(pobj))->markstyle =	sciGetMarkStyle (sciGetParent (pobj));
 	}
       return 0;
       break;
@@ -942,7 +944,7 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
   
   /*** F.Leray 02.04.04 */
   /* I force the re-set the Background on current Figure  (pobj here) and the subwins of the current figure*/
-  /* sciSetBackground ((sciPointObj *) pobj,sciGetBackground(pobj));*/
+  /*sciSetBackground ((sciPointObj *) pobj,sciGetBackground(pobj));*/
 
   return 0;
   
@@ -1063,7 +1065,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
        switch (sciGetEntityType (pobj))
 	{
 	case SCI_FIGURE:
-	case SCI_SUBWIN: 
+	case SCI_SUBWIN:
 	case SCI_ARC:
 	case SCI_SEGS: 
 	case SCI_FEC: 
@@ -1078,6 +1080,8 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_MENUCONTEXT:
 	case SCI_STATUSB:
 	  sciSetBackground(pobj,value);
+	  if(sciGetEntityType (pobj) == SCI_SUBWIN)  /* F.Leray 02.04.04 One thing more: init. of the pSUBWIN_FEATURE (pobj)->cubecolor;*/
+	    pSUBWIN_FEATURE (pobj)->cubecolor = sciGetBackground(pobj);
 	  break;
 	case SCI_AGREG:
 	case SCI_TEXT:
@@ -1242,7 +1246,7 @@ int sciGetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or 
 int
 sciSetBackground (sciPointObj * pobj, int colorindex)
 {
-  int zero = 0;
+  /*int zero = 0;*/
   
   int m = sciGetNumColors(pobj); 
   if(colorindex < -2 || colorindex > m+2) return 0;
@@ -1257,7 +1261,8 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
 	  /* COLORREF px;                           COLORREF ? "periWin-bgc"*/
 	  sciGetScilabXgc (pobj)->NumBackground =
 	    Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-	  C2F (dr) ("xset", "background",&colorindex,&colorindex,&zero,&zero,&zero,PI0,PD0,PD0,PD0,PD0,0L,0L);/* DJ.A 07/01/2004 */
+	  /* F.Leray 02.04.04: WARNING: What follows is wrong because it forces the background for the all figure, not the object!! IT HAS TO BE REMOVE!!!!*/
+	  /*	  C2F(dr) ("xset", "background",&colorindex,&colorindex,&zero,&zero,&zero,PI0,PD0,PD0,PD0,PD0,0L,0L); */ /* DJ.A 07/01/2004 */ 
 	  C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
 		  PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
@@ -1269,7 +1274,7 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
       break;
     case SCI_SUBWIN:
       (sciGetGraphicContext(pobj))->backgroundcolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      sciSetBackground (sciGetParentFigure (pobj), colorindex); /* F.Leray 01.04.04 TO DELETE OR NOT???  SEE sciDrawObj...*/
+      /* sciSetBackground (sciGetParentFigure (pobj), colorindex); */ /* F.Leray 01.04.04 TO DELETE OR NOT???  SEE sciDrawObj...*/ /* F.Leray 02.04.04 Yes! To delete*/
       break;
     case SCI_TEXT:
       (sciGetFontContext(pobj))->backgroundcolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
@@ -8185,7 +8190,7 @@ int C2F(graphicsmodels) ()
   pSUBWIN_FEATURE (paxesmdl)->project[0]= 1;
   pSUBWIN_FEATURE (paxesmdl)->project[1]= 1;
   pSUBWIN_FEATURE (paxesmdl)->project[2]= 0;
-  pSUBWIN_FEATURE (paxesmdl)->cubecolor= 34;
+  pSUBWIN_FEATURE (paxesmdl)->cubecolor=  34; /* Let it 34 (will be automatically reset to -2) F.Leray 02.04.04*/
   
   /* DJ.A 2003 */
   pSUBWIN_FEATURE (paxesmdl)->hiddencolor=4;
@@ -11109,7 +11114,7 @@ sciDrawObj (sciPointObj * pobj)
       flag_DO = MaybeSetWinhdc();
 #endif
       C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
-      (sciGetScilabXgc (pobj))->NumBackground = Max (0, Min (x[1] - 1, sciGetNumColors (pobj) + 1)); /*F.Leray 04.03.04:  OK!*/
+      /*   (sciGetScilabXgc (pobj))->NumBackground = Max (0, Min (x[1] - 1, sciGetNumColors (pobj) + 1)); */ /*F.Leray 02.04.04:  No need here...*/
       /*With a colormap of 32 colors,NumBackground is between 1 and 34 */
       /*(or in C value between 0 and 33 = (sciGetNumColors (pobj) + 1), so it was OK!! */
       C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
@@ -15546,11 +15551,11 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	    InsideD[3]=InsideD[0]+4;
 	  xind[5]=ind2;
 	  /****Ajout A.Djalel ***/
-	  /*background=pSUBWIN_FEATURE (pobj)->cubecolor;*/
+	  background=pSUBWIN_FEATURE (pobj)->cubecolor;
 
 	  /** F.Leray Rajout 02.04.04: I delete background=pSUBWIN_FEATURE (pobj)->cubecolor*/
 	  /*Replaced by :*/
-	  background=sciGetBackground(pobj);
+	  /*background=sciGetBackground(pobj);*/
 	  
 	  for (i=0; i < 6 ; i++)
 	    {
