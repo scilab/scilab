@@ -1940,7 +1940,7 @@ c     .  return current format definition
       if(istk(il).eq.1) then
 c     .  nbre de digits
          if(.not.getscalar('format',topk,top,l)) return
-         nd=max(2,int(stk(l)))
+         nd=min(max(2,int(stk(l))),25)
          if(lct(6).eq.0) nd=max(nd,8)
          lct(7)=nd
       elseif(istk(il).eq.10) then
