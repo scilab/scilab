@@ -3,7 +3,7 @@
 //Copyright INRIA
 //
 
-function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves)
+function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface)
 
 fail=0;
 
@@ -14,36 +14,97 @@ str = convstr(PropertyName);
 
 //Property = ['foreground' 'clipping'];
 
-[PName] = getPlotPropertyName(str)
+[PName] = getSurfPropertyName(str)
 
 
 
 select PName
 
   /////////////////////////
-case 'foreground'         // <=> Color
+case 'foreground'         // <=> EdgeColor
   /////////////////////////
 
   if (type(PropertyValue) == 10)
     
     index = getColorIndex(PropertyValue);
     
-    ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white'];
+    ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
 
-    if (index < 10)
-      Curves.line_mode='on';
-      Curves.foreground = color(ColorVal(index));
-      Curves.mark_foreground = color(ColorVal(index));
-    else  // 'none' selected
-      disp("Bad value for line color property : none can not be selected");
+    if index < 10
+      Surface.surface_mode='on';
+      Surface.foreground = color(ColorVal(index));
+      Surface.mark_foreground = color(ColorVal(index));
+    elseif index == 10  // 'none' selected
+      Surface.surface_mode='on';
+      Surface.foreground = -1; // <=> - colormap(1) and not black at all!!
+      Surface.mark_foreground = -1; // <=> black
+    else
+      disp("Color value must be a 3 element vector or an index in the colormap.")
       return;
     end
   elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
     
     if (size(PropertyValue,'*')==3)
-      Curves.line_mode='on';
-      Curves.foreground = addcolor(PropertyValue);
-      Curves.mark_foreground = addcolor(PropertyValue);
+      Surface.surface_mode='on';
+      Surface.foreground = addcolor(PropertyValue);
+      Surface.mark_foreground = addcolor(PropertyValue);
+    else
+      disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      return;
+    end
+
+  else
+    disp("Color value must be a 3 element vector or an index in the colormap.")
+    return;
+  end
+
+
+//  /////////////////////////
+//case 'clipping'           // Clipping // NO CLIPPING for now with 3d objects
+//  /////////////////////////
+//  if (type(PropertyValue)==10 & (PropertyValue=='on' | PropertyValue=='off'))
+//    Surface.clip_state=PropertyValue;
+//  else
+//    disp("Bad value for property : Clipping")
+//    return;
+//  end
+
+  /////////////////////////
+case 'facecolor'          // FaceColor
+  /////////////////////////
+
+  if (type(PropertyValue) == 10)
+    
+    index = getColorIndex(PropertyValue);
+    
+    ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
+
+    if index < 10
+      Surface.surface_mode='on';
+      Surface.color_mode = color(ColorVal(index));
+      //Surface.mark_foreground = color(ColorVal(index));
+      Surface.color_flag = 0;
+    elseif index == 10  // 'none' selected
+      Surface.surface_mode='on';
+      Surface.color_mode = 0;
+      //Surface.mark_foreground = color(ColorVal(index));
+      Surface.color_flag = 0;
+    elseif index == 12  // 'flat' selected
+      Surface.surface_mode='on';
+      Surface.color_flag = 4;
+    elseif index == 13  // 'interp' selected
+      Surface.surface_mode='on';
+      Surface.color_flag = 3;
+    else
+      disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      return;
+    end
+  elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
+    
+    if (size(PropertyValue,'*')==3)
+      Surface.surface_mode='on';
+      Surface.foreground = addcolor(PropertyValue);
+      Surface.mark_foreground = addcolor(PropertyValue);
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
       return;
@@ -56,34 +117,23 @@ case 'foreground'         // <=> Color
 
 
   /////////////////////////
-case 'clipping'           // Clipping
-  /////////////////////////
-  if (type(PropertyValue)==10 & (PropertyValue=='on' | PropertyValue=='off'))
-    Curves.clip_state=PropertyValue;
-  else
-    disp("Bad value for property : Clipping")
-    return;
-  end
-
-
-  /////////////////////////
 case 'linestyle'          // LineStyle
   /////////////////////////
   if (type(PropertyValue)==10)
     if (PropertyValue=='--')
-      Curves.line_style=2;
-      Curves.line_mode = 'on';
+      Surface.line_style=2;
+      Surface.surface_mode = 'on';
     elseif (PropertyValue=='-.')
-      Curves.line_style=4;
-      Curves.line_mode = 'on';
+      Surface.line_style=4;
+      Surface.surface_mode = 'on';
     elseif (PropertyValue==':')
-      Curves.line_style=5;
-      Curves.line_mode = 'on';
+      Surface.line_style=5;
+      Surface.surface_mode = 'on';
     elseif (PropertyValue=='-')
-      Curves.line_style=1;
-      Curves.line_mode = 'on';
+      Surface.line_style=1;
+      Surface.surface_mode = 'on';
     elseif (PropertyValue=='none')
-      Curves.line_mode = 'off';
+      Surface.surface_mode = 'off';
     end
   else
     disp("Bad value for property : LineStyle")
@@ -94,7 +144,7 @@ case 'linestyle'          // LineStyle
 case 'thickness'        // <=> LineWidth
   /////////////////////////
   if (type(PropertyValue)==1)
-    Curves.thickness=PropertyValue;
+    Surface.thickness=PropertyValue;
   else
     disp("Bad value for property : LineStyle")
     return;
@@ -147,12 +197,12 @@ case 'markstyle'        // <=> Marker
     end
     
     if (opt1 > 0)
-      Curves.mark_style = MarksStyleVal(opt1);
-      Curves.mark_size  = 6;
+      Surface.mark_style = MarksStyleVal(opt1);
+      Surface.mark_size  = 6;
       //MarksSizeVal(opt1);
     else
       // 'none' is selected
-      Curves.mark_mode='off'
+      Surface.mark_mode='off'
     end
     
   else
@@ -170,18 +220,18 @@ case 'markforeground'        // <=> MarkerEdgeColor
     
     ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white' 'none']
     
-    markmodeON = find(Curves.mark_mode=='on');
+    markmodeON = find(Surface.mark_mode=='on');
     
     if index == 10
       // 'none' specified
       a=gca(); // pick up the background color of the parent axes
       if markmodeON <> []
-	Curves(markmodeON).mark_foreground = a.background;
+	Surface(markmodeON).mark_foreground = a.background;
       end
     elseif index == 11
       // 'auto' specified
       if markmodeON <> []
-	Curves(markmodeON).mark_foreground =  Curves.foreground;
+	Surface(markmodeON).mark_foreground =  Surface.foreground;
       end
     else
       if (index==-1)
@@ -189,16 +239,16 @@ case 'markforeground'        // <=> MarkerEdgeColor
 	return;
       else
 	if markmodeON <> []
-	  Curves(markmodeON).mark_foreground = color(ColorVal(index));
+	  Surface(markmodeON).mark_foreground = color(ColorVal(index));
 	end
       end
     end
   elseif (type(PropertyValue)==1)
     if (size(PropertyValue,'*')==3)
       
-      markmodeON = find(Curves.mark_mode=='on');
+      markmodeON = find(Surface.mark_mode=='on');
       if markmodeON <> []
-	Curves(markmodeON).mark_foreground = addcolor(PropertyValue);
+	Surface(markmodeON).mark_foreground = addcolor(PropertyValue);
       end
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
@@ -220,19 +270,19 @@ case 'markbackground'        // <=> MarkerFaceColor
     
     ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white' 'none']
         
-    markmodeON = find(Curves.mark_mode=='on');
+    markmodeON = find(Surface.mark_mode=='on');
     
     if index == 10
       // 'none' specified
       a=gca(); // pick up the background color of the parent axes
       if markmodeON <> []
-	Curves(markmodeON).mark_background = a.background;
+	Surface(markmodeON).mark_background = a.background;
       end
     elseif index == 11
       // 'auto' specified
       a=gca();
       if markmodeON <> []
-	Curves(markmodeON).mark_background = a.background;
+	Surface(markmodeON).mark_background = a.background;
       end
     else
       if (index==-1)
@@ -240,7 +290,7 @@ case 'markbackground'        // <=> MarkerFaceColor
 	return;
       else
 	if markmodeON <> []
-	  Curves(markmodeON).mark_background = color(ColorVal(index));
+	  Surface(markmodeON).mark_background = color(ColorVal(index));
 	end
       end
     end
@@ -248,9 +298,9 @@ case 'markbackground'        // <=> MarkerFaceColor
     
     if (size(PropertyValue,'*')==3)
       
-      markmodeON = find(Curves.mark_mode=='on');
+      markmodeON = find(Surface.mark_mode=='on');
       if markmodeON <> []
-	Curves(markmodeON).mark_background = addcolor(PropertyValue);
+	Surface(markmodeON).mark_background = addcolor(PropertyValue);
       end
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
@@ -268,10 +318,10 @@ case 'marksize'        // <=> MarkerSize
   /////////////////////////
   if (type(PropertyValue)==1 & size(PropertyValue,'*')==1)
     
-    markmodeON = find(Curves.mark_mode=='on');
+    markmodeON = find(Surface.mark_mode=='on');
     
     if markmodeON <> []
-      Curves(markmodeON).mark_size = PropertyValue;
+      Surface(markmodeON).mark_size = PropertyValue;
     end
   else
     disp("Color value must be an integer.")
@@ -282,27 +332,24 @@ case 'marksize'        // <=> MarkerSize
 case 'visible'        // <=> Visible
   /////////////////////////
   if (type(PropertyValue)==10 & (PropertyValue=='on' | PropertyValue=='off'))
-    Curves.visible = PropertyValue;
+    Surface.visible = PropertyValue;
   else
     disp("Error : the visibility property should be set to on or off.")
     return;
   end
   
-  
+   
   /////////////////////////
 case 'xdata'
   /////////////////////////
-  
-  // Already done at the beginning of plot execution.
+    
   
   /////////////////////////
 case 'ydata'
   /////////////////////////
 
-  // Already done at the beginning of plot execution.
-  
   /////////////////////////
-case 'zdata'        // <=> Zdata is treated after the curve was created
+case 'zdata'
   /////////////////////////
   
   if (type(PropertyValue)<>1 | and(size(PropertyValue)<>1))
@@ -311,13 +358,13 @@ case 'zdata'        // <=> Zdata is treated after the curve was created
   else
     PropertyValue = PropertyValue(:); // force
     
-    for j=1:size(Curves,'*')
-      if size(Curves(i).data,1) <> size(PropertyValue,'*')
+    for j=1:size(Surface,'*')
+      if size(Surface(i).data,1) <> size(PropertyValue,'*')
 	str=sprintf('plot : incompatible dimensions in input arguments');
 	error(str);
       else
 	for jj=1:size(PropertyValue,'*')
-	  Curves(j).data(jj,3) = PropertyValue(jj);
+	  Surface(j).data(jj,3) = PropertyValue(jj);
 	end
 	a=gca();
 	a.view='3d';
@@ -332,3 +379,14 @@ case 'zdata'        // <=> Zdata is treated after the curve was created
 end
 
 endfunction
+
+
+
+function k=getIndexInStringTable(pattern,table)
+
+str =  convstr(pattern);
+k=find(part(table,1:length(str))==str);
+
+endfunction
+
+
