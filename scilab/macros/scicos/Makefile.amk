@@ -17,7 +17,7 @@ MENU=	Documentation_.sci Addcolor_.sci Addnewblock_.sci Aspect_.sci \
 	Align_.sci Backgroundcolor_.sci Calc_.sci Color_.sci \
 	Compile_.sci Context_.sci CopyRegion_.sci Copy_.sci \
 	Defaultlinkcolors_.sci DeleteRegion_.sci Delete_.sci Eval_.sci \
-	ExportAll_.sci Export_.sci FSave_.sci Flip_.sci \
+	ExportAll_.sci Export_.sci Flip_.sci \
 	GetInfo_.sci Help_.sci IDfonts_.sci IconEditor_.sci \
 	Icon_.sci Identification_.sci Label_.sci Link_.sci \
 	Load_.sci LoadasPalette_.sci Move_.sci Navigator_.sci \
@@ -51,7 +51,7 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
 	do_delete.sci check_io.sci do_tild.sci do_copy.sci \
 	save_super.sci genfunc.sci genfunc1.sci drawtitle.sci getparpath.sci \
 	save_csuper.sci do_help.sci do_run.sci do_replace.sci \
-	do_purge.sci do_view.sci do_fsave.sci do_window.sci mark_newpars.sci \
+	do_purge.sci do_view.sci do_window.sci mark_newpars.sci \
 	getportsiz.sci do_block.sci do_load.sci do_SaveAs.sci do_resize.sci \
 	do_version.sci splitfilepath.sci check_mac.sci countblocks.sci \
 	shiftcors.sci  ctree.sci genmac.sci mkvect.sci \
