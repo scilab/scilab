@@ -1,6 +1,6 @@
 
 
-# Copyright INRIA
+# Copyright ENPC
 with(share):
 
 if SearchText(`Release 3`,interface(version))<>0 then

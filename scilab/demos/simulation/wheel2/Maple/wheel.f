@@ -1,7 +1,7 @@
 c      
 c     SUBROUTINE wheel
 c     
-c     Copyright INRIA 
+c     Copyright ENPC 
       subroutine wheel(neq,t,z,zdot)
         implicit double precision (t)
         parameter (kn=3)

@@ -1,7 +1,7 @@
 c      
 c     SUBROUTINE wheelg
 c      
-c     Copyright INRIA
+c     Copyright ENPC
       subroutine wheelg(n,k,uf,vf,wf,xx)
         implicit double precision (t)
         doubleprecision uf(n,k),vf(n,k),wf(n,k)

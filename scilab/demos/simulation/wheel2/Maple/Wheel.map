@@ -1,4 +1,4 @@
-# Copyright INRIA
+# Copyright ENPC
 
 if SearchText(`Release 3`,interface(version))<>0 then
 	matadd:=add;
