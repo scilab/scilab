@@ -32,6 +32,7 @@
   The handles are also used to manipulate graphics objects, to move them, 
   to make copies or delete them.
   </P>
+ <P></P>
     <P>  
   To set the current graphics window mode we can use these following instructions: 
   <VERB>set(&quot;figure_style&quot;,&quot;new&quot;) </VERB> to have a graphics window under the &quot;new&quot; mode or  
@@ -44,21 +45,26 @@
   default mode to be used when a new graphics window is created. 
   </P>
     <P>
-  The new graphics mode is a beta version. So the &quot;old&quot; mode is set as
-  default.
+  The new graphics mode is a beta version. 
   </P>
+  <P></P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="Figure: ">
+
         <SP>The figure entity is the top level of the graphics entities
-  hierarchy. This entity defines the parameters for the figure itself
-  as well as the parameters' default values for the children
-  creation. The figure children are the Axes entities.</SP>
-        <P>
-  See <LINK>figure_properties</LINK> for details.
-  </P>
-        <P>
-  The handle on the current figure may be got using <VERB>get(&quot;current_figure&quot;)</VERB>.
-  </P>
+            hierarchy. This entity defines the parameters for the figure itself
+            as well as the parameters' default values for the children
+            creation. The figure children are the Axes entities.</SP>
+
+
+        <P>The handle on the current figure (The figure used where the drawing are
+	   sent) may be got using  <VERB>get(&quot;current_figure&quot;)</VERB>
+	   and it may be set  using
+	   <VERB>set(&quot;current_figure&quot;,h)</VERB>, where <VERB>h</VERB>
+	   is either a handle on a figure or a  <VERB>figure_id</VERB> in this
+	  last case if the figure does not already exists , it is created</P>
+  
+        <P> See <LINK>figure_properties</LINK> for details.</P>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="Axes">
         <P>
@@ -194,8 +200,8 @@
   e=a.children //Agregation of 2 polylines
 
   p1=e.children(1) //the last drawn polyline properties
-  p1.foreground=5  // change the polyline color
-  e.children.thickness=5 // change the thickness of the two polylines
+  p1.foreground=5;  // change the polyline color
+  e.children.thickness=5; // change the thickness of the two polylines
 
   delete(e.children(2))
 
@@ -209,6 +215,10 @@
   copy(e.children,a1); //copy the polyline of the first plot in the new Axes
   a1.data_bounds=[1 0 10 100]; //change the Axes bounds  
 
+  set("current_figure",10) //create a new figure with figure_id=10
+  plot3d() //the drawing are sent to figure 10
+  set("current_figure",f) //make the previous figure the current one
+  plot2d(x,x^3) the drawing are send to the initial figure
 
  ]]>
   </EXAMPLE>

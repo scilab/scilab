@@ -209,8 +209,6 @@
    f.figure_position
    f.figure_size=[200,200]
    f.background=2
-
-
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
