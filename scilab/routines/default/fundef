@@ -518,6 +518,7 @@
 {"besselj",		IN_otherspecfun,	4,	3},	
 {"besselk",		IN_otherspecfun,	5,	3},	
 {"bessely",		IN_otherspecfun,	6,	3},	
+{"besselh",		IN_otherspecfun,	7,	3},	
 
 #define  IN_tksci  40
 #ifdef WITH_TK

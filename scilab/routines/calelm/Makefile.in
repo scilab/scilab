@@ -7,7 +7,8 @@ LIBRARY = $(SCIDIR)/libs/calelm.a
 OBJSC = vfloor.o vceil.o  finite.o vfrexp.o sci_tools.o vfinite.o cmp.o \
 	someinterp.o
 
-SLATECEXT= dbesig.o zbesig.o dbeskg.o zbeskg.o dbesjg.o zbesjg.o dbesyg.o zbesyg.o
+SLATECEXT= dbesig.o zbesig.o dbeskg.o zbeskg.o dbesjg.o zbesjg.o dbesyg.o zbesyg.o \
+	zbeshg.o
 
 SLATEC= d9knus.o d9lgmc.o dasyik.o dbdiff.o dbesi.o dbesi0.o dbesi1.o		\
 	dbesk.o dbesk0.o dbesk1.o dbesks.o dbkias.o dbkisr.o dbsi0e.o dbsi1e.o	\
