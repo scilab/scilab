@@ -125,7 +125,9 @@ static scicos_block *Blocks;
 
 static integer phase;
 
-static integer *pointer_xproperty;
+integer *pointer_xproperty;
+
+integer n_pointer_xproperty;
 
 static integer *block_error;
 
@@ -1001,6 +1003,13 @@ int C2F(scicos)
 		}
 	      }	
 	      hot = 0;
+	      if (inxsci == 1) {
+		ntimer = C2F(stimer)();
+		if (ntimer != otimer) {
+		  C2F(sxevents)();
+		  otimer = ntimer;
+		}
+	      }
 	      goto L60; 
 	      
 	    } else {
@@ -1162,10 +1171,12 @@ int C2F(scicos)
 	  if(*pointi!=0){
 	    t=tevts[*pointi];
 	    if(*told<t-ttol){
+	      cdoit(told);
 	      goto L15;
 	    }
 	  }else{
 	    if(*told<*tf){
+	      cdoit(told);
 	      goto L15;
 	    }
 	  }
@@ -1586,6 +1597,13 @@ int C2F(scicos)
 		}
 	      }
 	      hot=0;
+	      if (inxsci == 1) {
+		ntimer = C2F(stimer)();
+		if (ntimer != otimer) {
+		  C2F(sxevents)();
+		  otimer = ntimer;
+		}
+	      }
 	      goto L60;
 	    } else {
 	    
@@ -1693,6 +1711,7 @@ int C2F(scicos)
 		    nclock = -kev;
 		    pointer_xproperty=
 		      &scicos_xproperty[-1+xptr[C2F(curblk).kfun]];
+		    n_pointer_xproperty=xptr[C2F(curblk).kfun];
 		    callf(told, xd, x, x,W,&flag__);
 		    if (flag__ < 0) {
 		      *ierr = 5 - flag__;
@@ -1756,10 +1775,12 @@ int C2F(scicos)
 	  if(*pointi!=0){
 	    t=tevts[*pointi];
 	    if(*told<t-ttol){
+	      cdoit(told);
 	      goto L15;
 	    }
 	  }else{
 	    if(*told<*tf){
+	      cdoit(told);
 	      goto L15;
 	    }
 	  }
@@ -2275,6 +2296,7 @@ int C2F(scicos)
       flag__ = 7;
       nclock = oord[ii + noord];
       pointer_xproperty=&scicos_xproperty[-1+xptr[C2F(curblk).kfun]];
+      n_pointer_xproperty=xptr[C2F(curblk).kfun];
       callf(told, xd, x, xd,x,&flag__);
 
       if (flag__ < 0) {
@@ -2291,6 +2313,7 @@ int C2F(scicos)
       if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].mode > 0) {
 	flag__ = 7;
 	nclock = abs(ordclk[ii + nordclk]);
+	n_pointer_xproperty=xptr[C2F(curblk).kfun];
 	pointer_xproperty=&scicos_xproperty[-1+xptr[C2F(curblk).kfun]];
 	callf(told, xd, x, xd,x,&flag__);
 
@@ -3215,11 +3238,7 @@ int get_phase_simulation()
   return phase;
 }
 
-int* get_pointer_xproperty()
 
-{
-  return pointer_xproperty;
-}
 
 void do_cold_restart()
 
@@ -3228,7 +3247,7 @@ void do_cold_restart()
   return;
 }
 
-double get_scicos_time(double p)
+double get_scicos_time()
 
 {
   return scicos_time;
@@ -3247,12 +3266,11 @@ void set_block_error(int err)
 }
 
 
-void set_pointer_xproperty(int* pointer,int n)
+void set_pointer_xproperty(int* pointer)
 {
-  int * pp,i;
-  pp=get_pointer_xproperty();
-  for (i=0;i<n;i++){
-    pp[i]=pointer[i];
+  int i;
+  for (i=0;i<n_pointer_xproperty;i++){
+    pointer_xproperty[i]=pointer[i];
   }
   return;
 }

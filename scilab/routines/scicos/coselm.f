@@ -24,13 +24,9 @@ c
       endif
 c
 c     functions/fin
-c     var2vec  vec2var get_import set_import get_curblk getlabel duplicate
-c       1          2       3         4         5          6         7
-c     scicos_cpass2  diffobjs  scicos_time pointer_xproperty phase_simulation
-c           8            9        10             11               12
-c     set_xproperty 
-c          13
-      goto(10,20,30,40,50,60,70,80,90,100,110,120,130) fin
+c     var2vec  vec2var get_import set_import get_curblk getlabel 
+c       1          2       3         4         5          6      
+      goto(10,20,30,40,50,60) fin
 
 c     var2vec
  10   continue
@@ -97,44 +93,7 @@ c     getblocklabel
  60   continue
       call intgetlabel
       goto 999
-c
-c     duplicate
- 70   continue
-      call intduplicate('duplicate')
-      call putlhsvar
-      goto 999
-c     cpass2
- 80   continue
-      call intcpass2('scicos_cpass2')
-      call putlhsvar
-      goto 999
-c     difobjs
- 90   continue
-      call intdiffobjs('diffobjs')
-      call putlhsvar
-      goto 999
-c     scicos_time
- 100  continue
-      call inttime('scicos_time')
-      call putlhsvar
-      goto 999
-c     pointer_xproperty
- 110  continue
-      call intxproperty('pointer_xproperty')
-      call putlhsvar
-      goto 999
-c     phase_simulation
- 120  continue
-      call intphasesim('phase_simulation')
-      call putlhsvar
-      goto 999
 c     
-c     set_xproperty
- 130  continue
-      call intsetxproperty('set_xproperty')
-      call putlhsvar
-      goto 999
-c    
  999  return
       end
 

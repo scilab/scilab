@@ -1,114 +1,92 @@
-
 #include <string.h>
+#include <stdio.h>
+#include <math.h>
 #include "../stack-c.h"
 #include "../machine.h"
+#include "intcscicos.h"
 
-int C2F(intcpass2) __PARAMS((char *fname));
-int connection(int* path_out,int* path_in);
-int badconnection(int* path_out,int prt_out,int nout,int* path_in,int prt_in,int nin);
-int Message(char* code);
-extern int Max1(int* vect);
-extern int *listentry(int *header, int i);
-extern double get_scicos_time();
-extern int *get_pointer_xproperty();
-extern int get_phase_simulation();
-extern void set_pointer_xproperty(int* pointer,int n);
 
-void  duplicata(n,v,w,ww,nw)
-     double *v,*w,*ww;
-     int *n,*nw;
-{
-  int i,j,k;
-  k=0;
-  for (i=0;i<*n;i++) {
-    for (j=0;j<(int) w[i];j++) {
-      ww[k]=v[i];
-      k=k+1;
-    }
-  }
-*nw=k;
-}
+typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 
-void  comp_size(v,nw,n)
-double *v;
-     int *nw,n;
+typedef struct table_struct {
+  des_interf f;    /** function **/
+  char *name;      /** its name **/
+} intcscicosTable;
+
+static intcscicosTable Tab[]={
+  {inttimescicos,"scicos_time"},
+  {intduplicate,"duplicate"},
+  {intdiffobjs,"diffobjs"},
+  {intxproperty,"pointer_xproperty"},
+  {intphasesim,"phase_simulation"},
+  {intsetxproperty,"set_xproperty"},
+  {intcpass2,"scicos_cpass2"},
+};
+
+/* interface for the previous function Table */ 
+
+int C2F(intcscicos)()
 {  
-  int i;
-  *nw=0;
-  for (i=0;i<n;i++) {
-    if (v[i]>0) *nw=*nw+(int) v[i];
-  }
+  Rhs = Max(0, Rhs);
+  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+  C2F(putlhsvar)();
+  return 0;
 }
 
-int C2F(inttime)(fname)
+int inttimescicos(fname,fname_len)
      /* renvoi le temps de simulation t=get_scicos_time() */
      char *fname;
+     unsigned long fname_len;
 { 
-  int un,l1,m,n,l2;
-  CheckRhs(0,1);
+  int un,l1;
+  CheckRhs(-1,0);
   CheckLhs(1,1);
-  GetRhsVar(1,"d",&m,&n,&l2);
-  CreateVar(2,"d",(un=1,&un),(un=1,&un),&l1);
+  CreateVar(1,"d",(un=1,&un),(un=1,&un),&l1);
   *stk(l1)=get_scicos_time();
-  LhsVar(1)=2;
+  LhsVar(1)=1;
   return 0;
 }
-int C2F(intxproperty)(fname)
-     /* renvoi le type d'equation get_pointer_xproperty() 
-      *	(-1: algebriques, +1 differentielles) */
-     char *fname;
-{
-  int i,un,*px,l1,m,n,l2;
-  CheckRhs(0,1);
-  CheckLhs(1,1);
-  GetRhsVar(1,"i",&m,&n,&l2);
-  CreateVar(2,"i",&m,(un=1,&un),&l1);
-  px=(int*) get_pointer_xproperty();
-  if (px) {
-    for (i=0;i<m;i++){
-      *istk(l1+i)=px[i];
-    }
-  }
-  else{
-    *istk(l1)=0;
-  }
-    LhsVar(1)=2; 
-  return 0;
-}
- 
-int C2F(intphasesim)(fname)
-     /* renvoi la phase de simulation phase=get_phase_simulation() */
-     char *fname;
-{ 
-  int un,l1,m,n,l2;
-  CheckRhs(0,1);
-  CheckLhs(1,1);
-  GetRhsVar(1,"i",&m,&n,&l2);
-  CreateVar(2,"i",(un=1,&un),(un=1,&un),&l1);
-  *istk(l1)=get_phase_simulation();
-  LhsVar(1)=2;
-  return 0;
-}
- 
-int C2F(intsetxproperty)(fname)
-     /* renvoi le type d'equation get_pointer_xproperty() 
-      *	(-1: algebriques, +1 differentielles) */
-     char *fname;
-{
-  int un,l1,m1,n1,l2,m2;
-  CheckRhs(2,2);
- 
-  GetRhsVar(1,"i",&m1,&n1,&l1);
-  GetRhsVar(2,"i",&m2,(un=1,&un),&l2);
-  set_pointer_xproperty(istk(l1),*istk(l2));
-  LhsVar(1)=0; 
-  return 0;
-}
- 
 
-int C2F(intdiffobjs)(fname)
+int intduplicate(fname,fname_len)
+
+     /* v=duplicate(u,count) 
+      * returns v=[u(1)*ones(count(1),1);
+      *            u(2)*ones(count(2),1);
+      *            ...
+      */
+
+     char *fname;
+     unsigned long fname_len;
+{
+  int m1,m2,m3,n1,n2,n3,l1,l2,l3,n;
+  CheckRhs(2,2);
+  CheckLhs(1,1);
+  GetRhsVar(1,"d",&m1,&n1,&l1);
+  GetRhsVar(2,"d",&m2,&n2,&l2);
+  n=m1*n1;
+  if (n==0) {
+    m3=0;
+    CreateVar(3, "d", &m3, &m3, &l3);
+    LhsVar(1) = 3;
+    return 0;
+  }
+  if (n!=m2*n2) 
+    {
+      Scierror(999,"%s: 1st and 2nd argument must have equal size \r\n",fname);
+      return 0;
+    }
+  comp_size(stk(l2),&n3,n);
+  m3=1;
+  CreateVar(3, "d", &n3, &m3, &l3);
+  duplicata(&n,stk(l1),stk(l2),stk(l3),&n3);
+  LhsVar(1) = 3;
+  return 0;
+}
+
+int intdiffobjs(fname,fname_len)
      /*   diffobjs(A,B) returns 0 if A==B and 1 if A and B differ */
      char *fname;
+     unsigned long fname_len;
 {
   int un,l3,k;
   int size1;int size2;
@@ -137,44 +115,80 @@ int C2F(intdiffobjs)(fname)
   return 0;
 }
 
-int C2F(intduplicate)(fname)
-
-     /* v=duplicate(u,count) 
-      * returns v=[u(1)*ones(count(1),1);
-      *            u(2)*ones(count(2),1);
-      *            ...
-      */
-
+int intxproperty(fname,fname_len)
+     /* renvoi le type d'equation get_pointer_xproperty() 
+      *	(-1: algebriques, +1 differentielles) */
      char *fname;
+     unsigned long fname_len;
 {
-  int m1,m2,m3,n1,n2,n3,l1,l2,l3,n;
-  CheckRhs(2,2);
+  int un;
+  extern int* pointer_xproperty;
+  extern int n_pointer_xproperty;
+  CheckRhs(-1,0);
   CheckLhs(1,1);
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
-  n=m1*n1;
-  if (n==0) {
-    m3=0;
-    CreateVar(3, "d", &m3, &m3, &l3);
-    LhsVar(1) = 3;
-    return 0;
-  }
-  if (n!=m2*n2) 
-    {
-      Scierror(999,"%s: 1st and 2nd argument must have equal size \r\n",fname);
-      return 0;
-    }
-  comp_size(stk(l2),&n3,n);
-  m3=1;
-  CreateVar(3, "d", &n3, &m3, &l3);
-  duplicata(&n,stk(l1),stk(l2),stk(l3),&n3);
-  LhsVar(1) = 3;
+  CreateVarFromPtr(1,"i",&n_pointer_xproperty,(un=1,&un),&pointer_xproperty);
+  LhsVar(1)=1;
+  return 0;
+}
+ 
+int intphasesim(fname,fname_len)
+     /* renvoi la phase de simulation phase=get_phase_simulation() */
+     char *fname;
+     unsigned long fname_len;
+{ 
+  int un,l1;
+  CheckRhs(-1,0);
+  CheckLhs(1,1);
+  CreateVar(1,"i",(un=1,&un),(un=1,&un),&l1);
+  *istk(l1)=get_phase_simulation();
+  LhsVar(1)=1;
   return 0;
 }
 
-/* ******************cpass2 *************************************/
-int C2F(intcpass2)(fname) 
+int intsetxproperty(fname,fname_len)
+     /* renvoi le type d'equation get_pointer_xproperty() 
+      *	(-1: algebriques, +1 differentielles) */
      char *fname;
+     unsigned long fname_len;
+{
+  int un,l1,m1;
+  CheckRhs(1,1);
+  GetRhsVar(1,"i",&m1,(un=1,&un),&l1);
+  set_pointer_xproperty(istk(l1));
+  LhsVar(1)=0; 
+  return 0;
+}
+
+void  duplicata(n,v,w,ww,nw)
+     double *v,*w,*ww;
+     int *n,*nw;
+{
+  int i,j,k;
+  k=0;
+  for (i=0;i<*n;i++) {
+    for (j=0;j<(int) w[i];j++) {
+      ww[k]=v[i];
+      k=k+1;
+    }
+  }
+  *nw=k;
+}
+
+void  comp_size(v,nw,n)
+     double *v;
+     int *nw,n;
+{  
+  int i;
+  *nw=0;
+  for (i=0;i<n;i++) {
+    if (v[i]>0) *nw=*nw+(int) v[i];
+  }
+}
+
+/* ******************cpass2 *************************************/
+int intcpass2(fname,fname_len) 
+     char *fname;
+     unsigned long fname_len;
 {
   static int l1,l2,m1,m2,m3; 
   static int n1,n2,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16;
@@ -866,85 +880,5 @@ int C2F(intcpass2)(fname)
   free(corinvptr);
   return 0;
 }
-
-int connection(int* path_out,int* path_in) 
-{
-  int mlhs,mrhs,ibegin,i;
-  static int l1, m1, n1, m2, n2, l2, il, l, l5,ninnout;
-  static char name[] = "under_connection" ;
-  
-  m1=path_out[0];
-  n1=n2=1;
-  m2=path_in[0];
-  
-  CreateVar(1, "i", &n1, &m1, &l1);  
-  for (i=1; i<=m1; i++)
-    *istk(l1+i-1)=path_out[i];
-  CreateVar(2, "i", &n2, &m2, &l2);
-  for (i=1; i<=m2; i++)
-    *istk(l2+i-1)=path_in[i];
-  
-  Convert2Sci(1);
-  Convert2Sci(2);
-  
-  ibegin=1;  mlhs=1; mrhs=2 ;  
-  SciString(&ibegin,name,&mlhs,&mrhs);
-  l5=Top - Rhs + ibegin;
-  il=iadr(*lstk(l5));
-  l=sadr(il+4);
-  ninnout=*stk(l);  
-  return ninnout;
-}
-int badconnection(int* path_out,int prt_out, int nout,int* path_in,int prt_in,int nin) 
-{
-  int mlhs,mrhs,ibegin,i;
-  static int l1, m1, n1, m2, l2, l3, l4, l6, l5;
-  static char name[] = "bad_connection" ;
-  
-  m1=path_out[0];
-  n1=1;
-  m2=path_in[0];
-  
-  CreateVar(1, "i", &n1, &m1, &l1);  
-  for (i=1; i<=m1; i++)
-    *istk(l1+i-1)=path_out[i];
-  CreateVar(2, "i", &n1, &n1, &l2);
-  *istk(l2)=prt_out;
-  CreateVar(3, "i", &n1, &n1, &l3);
-  *istk(l3)=nout;
-  CreateVar(4, "i", &n1, &m2, &l4);
-  for (i=1; i<=m2; i++)
-    *istk(l4+i-1)=path_in[i];
-  CreateVar(5, "i", &n1, &n1, &l5);
-  *istk(l5)=prt_in;
-  CreateVar(6, "i", &n1, &n1, &l6);
-  *istk(l6)=nin;
-  
-  Convert2Sci(1);
-  Convert2Sci(2);
-  Convert2Sci(3);
-  Convert2Sci(4);
-  Convert2Sci(5);
-  Convert2Sci(6);
-
-  ibegin=1;  mlhs=0; mrhs=6 ;  
-  SciString(&ibegin,name,&mlhs,&mrhs);
-  
-  return 0;
-}
-
-int Message(char* code) 
-{
-  int mlhs=0,mrhs=1,ibegin=1;
-  int l1, m1=strlen(code), n1=1;
-  static char name[] = "x_message" ;
-  CreateVar(1, "c", &m1, &n1, &l1);
-  strcpy(cstk(l1),code);
-  Convert2Sci(1);
-  SciString(&ibegin,name,&mlhs,&mrhs);
-  return 0;
-}
-
-
 
 
