@@ -55,7 +55,8 @@ MACROS = with_lcc.sci VCtoLCCLib.sci \
 	add_help_chapter.sci add_demo.sci add_palette.sci fileparts.sci head_comments.sci OS_Version.sci \
 	tree2code.sci expression2code.sci instruction2code.sci cat_code.sci format_txt.sci \
 	rhs2code.sci create_palette.sci ndgrid.sci \
-	m2sci_gui.sci mdelete.sci show_startupinfo.sci ged.sci
+	m2sci_gui.sci mdelete.sci show_startupinfo.sci ged.sci \
+	tic.sci toc.sci etime.sci
 
 
 include ../Make.lib.amk
