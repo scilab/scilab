@@ -699,7 +699,7 @@ Matrix *mxCreateFull(int m, int n, int it)
   static int lw, lr, lc;
   int k;
   lw = Nbvars + 1;
-  sciprint("mxCreateFull XXXX  %d\n\r",lw);
+  /* sciprint("mxCreateFull XXXX  %d\n\r",lw); */
   if (! C2F(createcvar)(&lw, "d", &it, &m, &n, &lr, &lc, 1L)) {
     mexErrMsgTxt("No more memory available: increase stacksize");
   }
@@ -903,8 +903,9 @@ void mxFreeMatrix(Matrix *ptr)
     /* sciprint("XXXX OK %dvar %d \r\n",(int)ptr,Nbvars); */
     Nbvars--;
   }
-  else 
-    sciprint("XXXX Fail %d var %d\r\n",(int)ptr,Nbvars);
+  else {
+    /* sciprint("XXXX Fail %d var %d\r\n",(int)ptr,Nbvars); */
+  }
   /* Automatically freed when return from mexfunction */
   return ;
 }
@@ -1031,10 +1032,11 @@ static int mexCallSCI(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *na
     }
   i1 = nv + 1;
   if (! C2F(scistring)(&i1, name, &nlhs, &nrhs, strlen(name) )) { 
-    if ( jumpflag == 1 )
-      errjump();
-    else 
-      return 1; 
+    if ( jumpflag == 1) 
+      {
+	mexErrMsgTxt("mexCallSCILAB: evaluation failed ");
+      }
+    return 1; 
     /*	      return 0;  */
   }
   for (k = 1; k <= nlhs; ++k) {
@@ -1158,11 +1160,17 @@ Matrix *mxCreateCharMatrixFromStrings(int m, char **str)
 
 int mexEvalString(char *name)
 {
+  int rep;
   Matrix *ppr[1];Matrix *ppl[1];
   int nlhs;     int nrhs;
   *ppr = mxCreateString(name);
   nrhs=1;nlhs=0;
-  return mexCallSCI(nlhs, ppl, nrhs, ppr, "execstr",0);    
+  if (( rep = mexCallSCI(nlhs, ppl, nrhs, ppr, "execstr",0))==1) 
+    {
+      sciprintf("Error in mexEvalString %s\r\n",name);
+      errjump();
+    }
+  return rep;
 }
 
 mxArray *mexGetArray(char *name, char *workspace)
