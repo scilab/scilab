@@ -26,6 +26,8 @@ typedef struct table_struct {
   char *name;      /** its name **/
 } GenericTable;
 
+#define mxLOGICAL int
+
 #define REAL 0
 #define COMPLEX 1
 
@@ -33,7 +35,7 @@ typedef struct table_struct {
 #define NULL 0
 #endif
 
-#define mxCreateDoubleMatrix mxCreateFull
+#define mxCreateFull mxCreateDoubleMatrix
 #define bool int
 #define mexCallMATLAB mexCallSCILAB
 #define mexGetMatrixPtr(name) mexGetArrayPtr(name, "caller")
@@ -79,6 +81,7 @@ int *mxGetDimensions __PARAMS((Matrix *ptr));
 int mxCalcSingleSubscript __PARAMS((Matrix *ptr, int nsubs, int *subs));
 int mxGetNumberOfElements __PARAMS((Matrix *ptr));
 int mxGetNumberOfDimensions __PARAMS((Matrix *ptr));
+int mxGetNumberOfFields __PARAMS((Matrix *ptr));
 void *mxGetData __PARAMS((Matrix *ptr));
 void *mxGetImagData __PARAMS((Matrix *ptr));
 
@@ -111,15 +114,11 @@ int C2F(initmex)  __PARAMS((integer *nlhs, Matrix **plhs, integer *nrhs, Matrix 
 int C2F(mexcallscilab)  __PARAMS((integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs, char *name, int namelen));
 int C2F(mxcopyptrtoreal8)  __PARAMS((Matrix *ptr, double *y, integer *n));
 int C2F(mxcopyreal8toptr)  __PARAMS((double *y, Matrix *ptr, integer *n));
-int C2F(mxgetheader)  __PARAMS((int lw, void **header));
-int C2F(mxgetheader2)  __PARAMS((Matrix *ptr, int **header));
 int fortran_mex_gateway __PARAMS((char *fname, FGatefuncH F));
 int mexAtExit __PARAMS((Matrix *ptr));
 int mexCallSCILAB __PARAMS((int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *name));
 int mex_gateway __PARAMS((char *fname, GatefuncH F));
 int mxGetElementSize __PARAMS((Matrix *ptr));
-int *mxGetHeader __PARAMS((Matrix *ptr));
-int mxGetHeader2 __PARAMS((Matrix *ptr, void **header));
 int mxGetM __PARAMS((Matrix *ptr));
 int mxGetN __PARAMS((Matrix *ptr));
 int mxGetString __PARAMS((Matrix *ptr, char *str, int strl));
@@ -158,8 +157,12 @@ int  mexEvalString __PARAMS((char *name));
 void mexWarnMsgTxt __PARAMS((char *error_msg));
 void mexprint __PARAMS((char* fmt,...));
 void mxFree __PARAMS((void *ptr));
-void mxFreeMatrix __PARAMS((Matrix *ptr));
-void mxDestroyArray __PARAMS((Matrix *ptr));
+void mxFreeMatrix __PARAMS((mxArray *ptr));
+void mxDestroyArray __PARAMS((mxArray *ptr));
+int mxGetFieldNumber __PARAMS((mxArray *ptr, char *string));
+void  mxSetFieldByNumber __PARAMS((mxArray *array_ptr, int index, int field_number, mxArray *value));
+mxLOGICAL *mxGetLogicals __PARAMS((mxArray *array_ptr));
+
 vraiptrst C2F(locptr) __PARAMS((void *x));
 
 typedef enum {
@@ -179,7 +182,7 @@ typedef enum {
 	mxUNKNOWN_CLASS = -1
 } mxClassID;
 
-mxClassID mxGetClassID __PARAMS((const mxArray *ptr));
+mxClassID mxGetClassID __PARAMS((mxArray *ptr));
 
 typedef enum {
   mxREAL,
@@ -188,8 +191,8 @@ typedef enum {
 
 /* typedef uint16_T mxChar; */
 
-typedef short int mxChar;
-#define mxLOGICAL int
+/* typedef short int mxChar; */
+typedef unsigned short mxChar;
 
 #define mxREAL 0
 #define mxCOMPLEX 1
