@@ -371,7 +371,7 @@ static int intlsq_splin(char * fname)
   return 0;
 }
 
-static int intinterp(char * fname)
+static int intinterp1(char * fname)
 {
   int minrhs=4, maxrhs=5, minlhs=1, maxlhs=4;
 
@@ -1219,7 +1219,7 @@ static int intbsplin3val(char * fname)
 static TabF Tab[]={ 
   {intsplin,           "splin"},
   {intlsq_splin,       "lsq_splin"},
-  {intinterp,          "interp"},
+  {intinterp1,          "interp"},
   {intlinear_interpn,  "linear_interpn"},
   {intsplin2d,         "splin2d"},
   {intinterp2d,        "interp2d"},
