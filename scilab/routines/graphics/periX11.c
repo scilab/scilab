@@ -4284,14 +4284,10 @@ void  set_clip_box(integer xxleft, integer xxright, integer yybot, integer yytop
 
 void clip_line(integer x1, integer yy1, integer x2, integer y2, integer *x1n, integer *yy1n, integer *x2n, integer *y2n, integer *flag)
 {
-  //integer x, y, dx, dy, x_intr[2], y_intr[2], count, pos1, pos2; 
-  // Tout comme sous Windows, on a un pb dimension des x_intr et y_intr F.Leray 18.02.04
-
-  integer x, y, dx, dy, x_intr[5], y_intr[5], count, pos1, pos2;
-
-
-// Ou sont les allocations memoires de *x1n, yy1n etc... ???  F.Leray 18.02.04
-// Je le fais maitenant: NON c'est OK car x1n, yy1n, x2n, y2n sont sur la pile cf. Champ.c->Champ2DRealToPixel.
+  integer  x_intr[2], y_intr[2]; /* used to store intersection points 
+				  * at most two points 
+				  */
+  integer x, y, dx, dy, count, pos1, pos2; 
 
   *x1n=x1;*yy1n=yy1;*x2n=x2;*y2n=y2;*flag=4;
   pos1 = clip_point(x1, yy1);
@@ -4323,25 +4319,27 @@ void clip_line(integer x1, integer yy1, integer x2, integer y2, integer *x1n, in
 	y_intr[count++] = ytop;
       }
     }
-    if ( count < 2 ) {
-      /* Find intersections with the y parallel bbox lines: */
-      if (dx != 0) {
-	y = (xleft - x2) * ((double) dy / (double) dx) + y2;   
-	/* Test for xleft boundary. */
-	if (y >= ybot && y <= ytop) {
-	  x_intr[count] = xleft;
-	  y_intr[count++] = y;
-	}
-	if ( count < 2 ) {
-	  y = (xright - x2) * ((double) dy / (double) dx) + y2;  
-	  /* Test for xright boundary. */
+    if ( count < 2 ) 
+      {
+	/* Find intersections with the y parallel bbox lines: */
+	if (dx != 0) {
+	  y = (xleft - x2) * ((double) dy / (double) dx) + y2;   
+	  /* Test for xleft boundary. */
 	  if (y >= ybot && y <= ytop) {
-	    x_intr[count] = xright;
+	    x_intr[count] = xleft;
 	    y_intr[count++] = y;
 	  }
+	  if ( count < 2 ) 
+	    {
+	      y = (xright - x2) * ((double) dy / (double) dx) + y2;  
+	      /* Test for xright boundary. */
+	      if (y >= ybot && y <= ytop) {
+		x_intr[count] = xright;
+		y_intr[count++] = y;
+	      }
+	    }
 	}
       }
-    }
 
     if (count == 2) {
       if (pos1 && pos2) {	   /* Both were out - update both */
