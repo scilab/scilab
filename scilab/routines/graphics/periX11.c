@@ -165,7 +165,7 @@ static void ResetScilabXgc __PARAMS((void));
 static XPoint *get_xpoints __PARAMS((void));
 static int ReallocVector  __PARAMS((int));
 static void DrawMark(integer *x, integer *y),LoadFonts(void), LoadSymbFonts(void), C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore);
-static void DrawMark(integer *x, integer *y), My2draw(integer j, integer *vx, integer *vy), MyDraw(integer iib, integer iif, integer *vx, integer *vy), change_points(integer i, integer x, integer y);
+static void My2draw(integer j, integer *vx, integer *vy), MyDraw(integer iib, integer iif, integer *vx, integer *vy), change_points(integer i, integer x, integer y);
 static void C2F(loadfamily_n)(char *name, integer *j);
 static void PixmapClear   __PARAMS((struct BCG *Xgc,int x,int y,int w,int h));
 static void xset_colormap __PARAMS((integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *a));
