@@ -377,28 +377,26 @@ endfunction
 
 function ged_rectangle(h)
   global ged_handle; ged_handle=h
-//  if((h.clip_state<>'clipgrf') & (h.clip_state<>'on'))
-//    h.clip_state='clipgrf';
-//    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-//    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-//    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-//    TK_SetVar("Hclipbox",string(h.clip_box(4)))
-//    h.clip_state='off';
-//   else
-//    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-//    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-//    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-//    TK_SetVar("Hclipbox",string(h.clip_box(4)))
-//  end
-//  TK_SetVar("curclipstate",h.clip_state);
+ if(h.clip_box==[])
+    TK_SetVar("old_Xclipbox","")
+    TK_SetVar("old_Yclipbox","")
+    TK_SetVar("old_Wclipbox","")
+    TK_SetVar("old_Hclipbox","")
+    TK_SetVar("Xclipbox","")
+    TK_SetVar("Yclipbox","")
+    TK_SetVar("Wclipbox","")
+    TK_SetVar("Hclipbox","")
+   else
+    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+  end
+  TK_SetVar("curclipstate",h.clip_state);
 
   f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
   ax=h;while stripblanks(ax.type)<>"Axes" then ax=ax.parent,end
@@ -434,28 +432,26 @@ endfunction
 function ged_polyline(h)
     global ged_handle; ged_handle=h
 
-//    if((h.clip_state<>'clipgrf') & (h.clip_state<>'on'))
-//     h.clip_state='clipgrf';
-//     TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//     TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//     TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//     TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//     TK_SetVar("Xclipbox",string(h.clip_box(1)))
-//     TK_SetVar("Yclipbox",string(h.clip_box(2)))
-//     TK_SetVar("Wclipbox",string(h.clip_box(3)))
-//     TK_SetVar("Hclipbox",string(h.clip_box(4)))
-//     h.clip_state='off';
-//    else
-//     TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//     TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//     TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//     TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//     TK_SetVar("Xclipbox",string(h.clip_box(1)))
-//     TK_SetVar("Yclipbox",string(h.clip_box(2)))
-//     TK_SetVar("Wclipbox",string(h.clip_box(3)))
-//     TK_SetVar("Hclipbox",string(h.clip_box(4)))
-//    end
-//    TK_SetVar("curclipstate",h.clip_state);
+  if(h.clip_box==[])
+    TK_SetVar("old_Xclipbox","")
+    TK_SetVar("old_Yclipbox","")
+    TK_SetVar("old_Wclipbox","")
+    TK_SetVar("old_Hclipbox","")
+    TK_SetVar("Xclipbox","")
+    TK_SetVar("Yclipbox","")
+    TK_SetVar("Wclipbox","")
+    TK_SetVar("Hclipbox","")
+   else
+    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+  end
+  TK_SetVar("curclipstate",h.clip_state);
 
     f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
     TK_SetVar("ncolors",string(size(f.color_map,1)))
@@ -705,6 +701,27 @@ function ged_text(h)
   TK_SetVar("curtextboxmode",h.text_box_mode)
   TK_SetVar("curtext",h.text)
 
+  if(h.clip_box==[])
+    TK_SetVar("old_Xclipbox","")
+    TK_SetVar("old_Yclipbox","")
+    TK_SetVar("old_Wclipbox","")
+    TK_SetVar("old_Hclipbox","")
+    TK_SetVar("Xclipbox","")
+    TK_SetVar("Yclipbox","")
+    TK_SetVar("Wclipbox","")
+    TK_SetVar("Hclipbox","")
+   else
+    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+  end
+  TK_SetVar("curclipstate",h.clip_state);
+
   TK_EvalFile(SCI+'/tcl/ged/Text.tcl')
 endfunction
 
@@ -712,24 +729,125 @@ endfunction
 function ged_legend(h)
   global ged_handle; ged_handle=h
   TK_SetVar("curvis",h.visible)
-  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
-  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+  TK_SetVar("ncolors",string(size(f.color_map,1)))
+  TK_SetVar("curforeground",string(h.foreground))
+  ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic"...
+	 "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica  Italic"...
+	 "Helvetica Bold" "Helvetica Bold Italic"];
+  TK_SetVar("curfontstyle",ged_fontarray(h.font_style+1))
+  TK_SetVar("curfontsize",string(h.font_size))
+  TK_SetVar("curtext",h.text)
+
+  TK_EvalFile(SCI+'/tcl/ged/Legend.tcl')
 endfunction
 
 
 function ged_arc(h)
   global ged_handle; ged_handle=h
+
+  if(h.clip_box==[])
+    TK_SetVar("old_Xclipbox","")
+    TK_SetVar("old_Yclipbox","")
+    TK_SetVar("old_Wclipbox","")
+    TK_SetVar("old_Hclipbox","")
+    TK_SetVar("Xclipbox","")
+    TK_SetVar("Yclipbox","")
+    TK_SetVar("Wclipbox","")
+    TK_SetVar("Hclipbox","")
+   else
+    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+  end
+  TK_SetVar("curclipstate",h.clip_state);
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"];
+  TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+  TK_SetVar("nbcol",string(size(h.data,2)))
+  for i=1:size(h.data,2)
+    val= "arcVAL("+string(i)+")";
+      TK_EvalStr('set '+val+" "+string(h.data(2)));
+  end
+  f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
+  TK_SetVar("ncolors",string(size(f.color_map,1)))
+  TK_SetVar("curcolor",string(h.foreground))
   TK_SetVar("curvis",h.visible)
-  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
-  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+  TK_SetVar("curfillmode",h.fill_mode)
+  TK_SetVar("curthick",string(h.thickness))
+
+  ax=getparaxe(h);
+  // Arc data
+   select ax.view
+    case "2d" 
+    ax.view='3d'  //strange behavior in 3D... seems to be bugged!!
+    TK_SetVar("Xval",string(h.data(1)))
+    TK_SetVar("Yval",string(h.data(2)))
+    TK_SetVar("Zval",string(h.data(3)))
+    TK_SetVar("Wval",string(h.data(4)))
+    TK_SetVar("Hval",string(h.data(5)))
+    TK_SetVar("A1val",string(h.data(6)))
+    TK_SetVar("A2val",string(h.data(7)))
+     ax.view='2d'
+    case "3d"
+    TK_SetVar("Xval",string(h.data(1)))
+    TK_SetVar("Yval",string(h.data(2)))
+    TK_SetVar("Zval",string(h.data(3)))
+    TK_SetVar("Wval",string(h.data(4)))
+    TK_SetVar("Hval",string(h.data(5)))
+    TK_SetVar("A1val",string(h.data(6)))
+    TK_SetVar("A2val",string(h.data(7)))
+  end
+  TK_EvalFile(SCI+'/tcl/ged/Arc.tcl')
 endfunction
 
 
 function ged_segs(h)
   global ged_handle; ged_handle=h
   TK_SetVar("curvis",h.visible)
-  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
-  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+  TK_SetVar("ncolors",string(size(f.color_map,1)))
+  TK_SetVar("curarrowsize",string(h.arrow_size))
+  TK_SetVar("curthick",string(h.thickness))
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
+  TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+  TK_SetVar("nbrow",string(size(h.data,1)))
+  for i=1:size(h.data,1)
+    val= "segsVAL("+string(i)+",1)";
+    TK_EvalStr('set '+val+" "+string(h.data(i,1)));
+    val= "segsVAL("+string(i)+",2)";
+    TK_EvalStr('set '+val+" "+string(h.data(i,2)));
+  end
+  TK_SetVar("nbcolsegscolor",string(size(h.segs_color,2)))
+  for i=1:size(h.segs_color,2)
+    val= "segscolorVAL("+string(i)+")";
+    TK_EvalStr('set '+val+" "+string(h.segs_color(i)));
+  end
+
+  if(h.clip_box==[])
+    TK_SetVar("old_Xclipbox","")
+    TK_SetVar("old_Yclipbox","")
+    TK_SetVar("old_Wclipbox","")
+    TK_SetVar("old_Hclipbox","")
+    TK_SetVar("Xclipbox","")
+    TK_SetVar("Yclipbox","")
+    TK_SetVar("Wclipbox","")
+    TK_SetVar("Hclipbox","")
+   else
+    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+  end
+  TK_SetVar("curclipstate",h.clip_state);
+
+  TK_EvalFile(SCI+'/tcl/ged/Segs.tcl')
 endfunction
 
 
@@ -1086,7 +1204,7 @@ function setZdb(zmin, zmax)
       tmp=h.data_bounds;
       tmp(1,3)=zmin;
       tmp(2,3)=zmax;
-      tst=execstr('h.data_bounds=tmp','errcatch',n');
+      tst=execstr('h.data_bounds=tmp','errcatch','n');
       if tst<>0 then
         disp 'Warning: Z data_bounds must contain double'
       end
@@ -1235,3 +1353,50 @@ function setHval(val)
      end
 endfunction
 
+
+// complement for Arc entity
+function setA1val(val)
+  global ged_handle; h=ged_handle
+ ax=getparaxe(h);
+ select ax.view
+     case "2d"
+      ax.view='3d';
+      tmp=h.data;
+      tmp(6)=val;
+      tst=execstr('h.data=tmp','errcatch','n');
+      ax.view='2d';
+      if tst<>0 then
+       disp 'Warning: Width data must contain double'
+      end
+     case "3d"
+      tmp=h.data;
+      tmp(6)=val;
+      tst=execstr('h.data=tmp','errcatch',n');
+      if tst<>0 then
+        disp 'Warning: a1 data must contain double'
+      end
+     end
+endfunction
+
+function setA2val(val)
+  global ged_handle; h=ged_handle
+ ax=getparaxe(h);
+ select ax.view
+     case "2d"
+      ax.view='3d';
+      tmp=h.data;
+      tmp(7)=val;
+      tst=execstr('h.data=tmp','errcatch','n');
+      ax.view='2d';
+      if tst<>0 then
+       disp 'Warning: Width data must contain double'
+      end
+     case "3d"
+      tmp=h.data;
+      tmp(7)=val;
+      tst=execstr('h.data=tmp','errcatch',n');
+      if tst<>0 then
+        disp 'Warning: a2 data must contain double'
+      end
+     end
+endfunction
