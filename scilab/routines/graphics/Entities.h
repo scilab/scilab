@@ -79,6 +79,8 @@
 #define pAGREG_FEATURE(pointobj)       ((sciAgreg         *)pointobj->pfeatures)/** */
 #define pSEGS_FEATURE(pointobj)        ((sciSegs          *)pointobj->pfeatures)/** */
 
+#define pLABEL_FEATURE(pointobj)       ((sciLabel         *)pointobj->pfeatures)/** */
+
 #ifndef WIN32
 typedef unsigned short HMENU;
 typedef void *HFONT;                                         
@@ -173,7 +175,9 @@ typedef enum
   /**Entity type STATUS BAR*/
   SCI_STATUSB,	    
   /**Entity type AGREGATION */
-  SCI_AGREG			
+  SCI_AGREG,			
+  /**Entity type LABEL created by F.Leray 26.05.04 */
+  SCI_LABEL
 }
 /**Struct of Entity type*/
 sciEntityType;	
@@ -305,7 +309,7 @@ sciGraphicContext;
 
 
 /*----------------------
-   SCIFONT.H header file no more used
+  SCIFONT.H header file no more used
   ----------------------*/
 
 /* Changing those lines, be carreful that
@@ -567,6 +571,28 @@ typedef struct
 }/** */
 sciTitle;  
 
+/**@name Titre
+ * Structure used to specify Labels like Title or classic labels
+ */
+typedef struct
+{
+  /* sciRelationShip relationship; */
+  /** */
+  sciText text;
+  /** absolut position in subindow*/
+  POINT2D pos;	
+  int ptype;
+  /** up, down */
+  /*sciTitlePlace titleplace; */
+  /** */
+  BOOL isselected;
+  /** specifies if this object is visble             */
+  BOOL visible; 
+  int isclip;
+}/** */
+sciLabel;  
+
+
 typedef struct 
 {  
   int  ticscolor;
@@ -601,7 +627,6 @@ typedef struct
   /** */
   sciGraphicContext graphiccontext; 
   /** */
-  sciTitle title;
   /** specifies the title for this window  */
   char name[sizeof ("ScilabGraphic") + 4];	    
     /** */
@@ -659,6 +684,14 @@ typedef struct
   int with_leg; /* Adding F.Leray 07.05.04 */ /* for strflag[0] support : not needed today */
   BOOL cube_scaling; /* Matlab like view in 3D when one or two range is/are preferential */
   BOOL FirstPlot; /* An internal state used to indicated that high level functions must not use SRect*/
+
+  /* F.Leray 25.04.05 Labels in sciSubWin*/
+  sciPointObj * mon_title;
+  sciPointObj * mon_x_label;
+  sciPointObj * mon_y_label;
+  sciPointObj * mon_z_label;
+
+
 }/** */
 sciSubWindow;  
 
@@ -1496,7 +1529,8 @@ extern void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style
 extern void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD);
 extern void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD);
 extern void Nextind(integer ind1, integer *ind2, integer *ind3);
-extern int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend);
+/* extern int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend); */
+extern int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind);
 extern int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z);
 extern BOOL Ishidden(sciPointObj *pobj);
 extern BOOL IsDownAxes(sciPointObj *pobj);
@@ -1519,3 +1553,8 @@ extern int InitAxesModel();
 
 extern sciHandleTab * sciGetpendofhandletab();
 extern void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG);
+
+/* F.Leray 25.05.04 */
+extern int labels2D_draw(sciPointObj * psubwin);
+extern sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type);
+extern int DestroyLabel (sciPointObj * pthis);

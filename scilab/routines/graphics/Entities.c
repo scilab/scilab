@@ -203,6 +203,9 @@ sciGetPointerToFeature (sciPointObj * pobj)
     case SCI_MERGE:
       return (sciMerge *) pMERGE_FEATURE (pobj);
       break;
+    case SCI_LABEL:
+      return (sciLabel *) pLABEL_FEATURE (pobj);
+      break;
     default:
       return (void *) NULL;
       break;
@@ -323,6 +326,9 @@ sciGetCharEntityType (sciPointObj * pobj)
     case SCI_MERGE:
       return "Merge";
       break;
+    case SCI_LABEL: /* F.Leray 27.05.04 */
+      return "Label";
+      break;
     default:
       return (char *)NULL;
       break;
@@ -364,6 +370,7 @@ sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
       case SCI_STATUSB:
       case SCI_AGREG:
       case SCI_MERGE:
+      case SCI_LABEL: /* F.Leray 28.05.04 */
 	(sciGetRelationship (pobj))->phandle = pvalue;		/** put the new index handle */
 	break;
       default:
@@ -435,6 +442,7 @@ sciGetHandleTabPointer (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_MERGE: 
+    case SCI_LABEL:
       return (sciHandleTab *) ((sciGetRelationship (pobj))->phandle);
     default:
       return (sciHandleTab *) NULL;
@@ -532,10 +540,11 @@ sciGetHandle (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_MERGE:  
+    case SCI_LABEL: /* F.Leray 27.05.04 */
       return (sciGetRelationship (pobj))->phandle->index;
       break;
     default:
-      sciprint("no handle for this object!\n");
+      sciprint("no handle for this object !\n");
       return -1;
       break;
     }
@@ -647,6 +656,7 @@ sciGetGraphicContext (sciPointObj * pobj)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_LEGEND:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       return (sciGraphicContext *) NULL;
       break;
@@ -756,6 +766,7 @@ sciInitGraphicContext (sciPointObj * pobj)
     case SCI_PANNER:		/* pas de context graphics */
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       return -1;
       break;
@@ -798,6 +809,7 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_LEGEND:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       return (scigMode *) NULL;
       break;
@@ -873,6 +885,7 @@ sciInitGraphicMode (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object haven't any graphic mode\n");
       return -1;
@@ -1029,6 +1042,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_MENU:
 	case SCI_MENUCONTEXT:
 	case SCI_STATUSB:
+	case SCI_LABEL: /* F.Leray 28.05.04 */
 	  sciSetForeground(pobj,value);
 	  break;
 	case SCI_AGREG:
@@ -1060,6 +1074,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_MENU:
 	case SCI_MENUCONTEXT:
 	case SCI_STATUSB:
+	case SCI_LABEL: /* F.Leray 28.05.04 */
 	  sciSetBackground(pobj,value);
 	  break;
 	case SCI_AGREG:
@@ -1086,6 +1101,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_LEGEND:
 	case SCI_FIGURE:
 	case SCI_SUBWIN:
+	case SCI_LABEL: /* F.Leray 28.05.04 */
 	  sciSetFontForeground(pobj,value);
 	  break;
 	default:
@@ -1105,6 +1121,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_LEGEND:
 	case SCI_FIGURE:
 	case SCI_SUBWIN:
+	case SCI_LABEL: /* F.Leray 28.05.04 */
 	  sciSetFontBackground(pobj,value);
 	  break;
 	default:
@@ -1296,7 +1313,10 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
       break;
     case SCI_STATUSB:
       (sciGetGraphicContext(pobj))->backgroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      break;   
+      break; 
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      (sciGetFontContext(pobj))->backgroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      break;
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT:
@@ -1304,6 +1324,7 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
+  
     default:
       break;
     }
@@ -1379,10 +1400,14 @@ sciGetBackground (sciPointObj * pobj)
     case SCI_STATUSB:
       colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;  
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
+      break;
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_AGREG:
+   
     default:
       break;
     }
@@ -1466,6 +1491,9 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
     case SCI_STATUSB:
       (sciGetGraphicContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      (sciGetFontContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      break;
     case SCI_SEGS:
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -1539,6 +1567,9 @@ sciGetForeground (sciPointObj * pobj)
       break;
     case SCI_STATUSB:
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_SEGS:
     case SCI_FEC: 
@@ -1619,6 +1650,9 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
     case SCI_STATUSB:
       colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;  
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
+      break;
     case SCI_PANNER:	/* pas de context graphics */
     case SCI_SBH:	/* pas de context graphics */
     case SCI_SBV:	/* pas de context graphics */
@@ -1695,6 +1729,9 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
     case SCI_STATUSB:
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
+    case SCI_LABEL:
+      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
+      break;
     case SCI_SEGS:
     case SCI_FEC: 
     case SCI_GRAYPLOT:
@@ -1747,7 +1784,8 @@ sciSetFillFlag (sciPointObj * pobj, int fillflag)
     case SCI_AGREG:  
     case SCI_PANNER:		
     case SCI_SBH:		
-    case SCI_SBV:		
+    case SCI_SBV:
+    case SCI_LABEL: /* F.Leray 28.05.04 */	
     default:
       break;
     }
@@ -1785,7 +1823,8 @@ sciGetFillFlag (sciPointObj * pobj)
     case SCI_AGREG:  
     case SCI_PANNER:		
     case SCI_SBH:		
-    case SCI_SBV:		
+    case SCI_SBV:
+    case SCI_LABEL: /* F.Leray 28.05.04 */	
     default:
       break;
     }
@@ -1855,6 +1894,7 @@ sciGetLineWidth (sciPointObj * pobj)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no Line Width\n");
       return -1;
@@ -1939,6 +1979,7 @@ sciSetLineWidth (sciPointObj * pobj, int linewidth)
 	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LEGEND:
+	case SCI_LABEL: /* F.Leray 28.05.04 */
 	default:
 	  /* pas de context graphics */
 	  sciprint ("This object has no  line width \n");
@@ -2006,6 +2047,7 @@ sciGetLineStyle (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no Line Style\n");
       return -1;
@@ -2090,6 +2132,7 @@ sciSetLineStyle (sciPointObj * pobj, int linestyle)
 	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LEGEND:
+	case SCI_LABEL: /* F.Leray 28.05.04 */
 	default:
 	  /* pas de context graphics */
 	  sciprint ("This object have no  line width \n");
@@ -2150,6 +2193,7 @@ sciGetIsMark (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no ismark\n");
       return -1;
@@ -2219,6 +2263,7 @@ sciSetIsMark (sciPointObj * pobj, BOOL ismark)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       /* pas de context graphics */
       sciprint ("This object have no  ismark \n");
@@ -2279,6 +2324,7 @@ sciGetMarkStyle (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       return -1;
       break;
@@ -2355,6 +2401,7 @@ sciSetMarkStyle (sciPointObj * pobj, int markstyle)
 	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LEGEND:
+	case SCI_LABEL: /* F.Leray 28.05.04 */
 	default:
 	  /* pas de context graphics */
 	  sciprint ("This object have no mark \n");
@@ -2418,6 +2465,7 @@ sciGetFillStyle (sciPointObj * pobj)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no Fill Style\n");
       return -1;
@@ -2489,6 +2537,7 @@ sciSetFillStyle (sciPointObj * pobj, int fillstyle)
 	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LEGEND:
+	case SCI_LABEL: /* F.Leray 28.05.04 */
 	default:
 	  sciprint ("This object have no  line style \n");
 	  return -1;
@@ -2550,6 +2599,7 @@ sciGetFillColor (sciPointObj * pobj)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no Fill Color\n");
       return -1;
@@ -2623,6 +2673,7 @@ sciSetFillColor (sciPointObj * pobj, int fillcolor)
 	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LEGEND:
+	case SCI_LABEL: /* F.Leray 28.05.04 */
 	default:
 	  sciprint ("This object have no  line width \n");
 	  return -1;
@@ -2710,6 +2761,9 @@ sciGetRelationship (sciPointObj * pobj)
       break; 
     case SCI_MERGE:
       return  &(pMERGE_FEATURE (pobj)->relationship);
+      break;
+    case SCI_LABEL: /* F.Leray 27.05.04 */
+      return  &(pLABEL_FEATURE (pobj)->text.relationship);
       break;
     default:
       return (sciRelationShip *) NULL;
@@ -2801,6 +2855,9 @@ sciSetParent (sciPointObj * pson, sciPointObj * pparent)
     case SCI_MERGE:
       (sciGetRelationship (pson))->pparent = pparent;
       break;
+    case SCI_LABEL: /* F.Leray 27.05.04 */
+      (sciGetRelationship (pson))->pparent = pparent;
+      break;
     default:
       return -1;
       break;
@@ -2888,6 +2945,9 @@ sciGetParent (sciPointObj * pobj)
     case SCI_MERGE:
       return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
       break; 
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
+      break; 
     default:
       break;
     }
@@ -2929,6 +2989,7 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_MERGE:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       return sciGetScilabXgc ((sciPointObj *) pobj)->mafigure;  
       break;                                                     
     default:  
@@ -2974,6 +3035,7 @@ sciGetParentSubwin (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_MERGE:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       while (sciGetEntityType(subwin) != SCI_SUBWIN)
 	subwin=sciGetParent(subwin);      
       return (sciPointObj *) subwin;  
@@ -3020,6 +3082,7 @@ sciGetNumFigure (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       while (sciGetEntityType(figure) != SCI_FIGURE)
 	figure=sciGetParent(figure);      
       return sciGetNum(figure); 
@@ -3064,6 +3127,7 @@ sciGetScilabXgc (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_MERGE:  
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       /* on recherche la root par recursivite 
 	 puisque scilabxgc n'est connu que par le parent */
       return (struct BCG *) sciGetScilabXgc (sciGetParent (pobj));	
@@ -3177,6 +3241,9 @@ sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson)
     case SCI_MERGE:
       (sciGetRelationship (pparent))->pcurrentson = pson;
       break;  
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      (sciGetRelationship (pparent))->pcurrentson = pson;
+      break;  
     default:
       break;
     }
@@ -3260,6 +3327,9 @@ sciGetCurrentSon (sciPointObj * pobj)
     case SCI_MERGE:
       return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
       break;
+    case SCI_LABEL: /* F.Leray 28.05.04 : normally useless... */
+      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
+      break;
     default:
       return (sciPointObj *) NULL;
       break;
@@ -3307,6 +3377,7 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     case SCI_ARC:
     case SCI_AGREG:
     case SCI_MERGE: 
+    case SCI_LABEL: /* F.Leray 27.05.04 */
       /* Si c'est null alors il n'y a pas encore de fils d'affecte */
       if ((sciSons *) (sciGetRelationship (pparent)->psons) != NULL)
 	{			
@@ -3378,6 +3449,7 @@ sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     case SCI_ARC:
     case SCI_AGREG:
     case SCI_MERGE:
+    case SCI_LABEL:
       /* recherche de l'objet a effacer*/
       OneSon = (sciGetRelationship (pparent)->psons);
       OneSonprev = OneSon;
@@ -3519,6 +3591,12 @@ sciGetSons (sciPointObj * pobj)
     case SCI_MERGE:
       return (sciSons *) (sciGetRelationship (pobj)->psons);
       break;
+    case SCI_LABEL: /* F.Leray 28.05.04  */
+      
+      /*printf("(sciGetRelationship (pobj)->psons = %d\n", (sciGetRelationship (pobj)->psons));*/
+      
+      return (sciSons *) (sciGetRelationship (pobj)->psons);
+      break;
     default:
       return (sciSons *) NULL;
       break;
@@ -3605,6 +3683,9 @@ sciGetLastSons (sciPointObj * pobj)
     case SCI_MERGE:
       return (sciSons *)sciGetRelationship (pobj)->plastsons;
       break;
+    case SCI_LABEL: /* F.Leray 28.05.04 : normally useless... */
+      return (sciSons *)sciGetRelationship (pobj)->plastsons;
+      break;
     default:
       return (sciSons *) NULL;
       break;
@@ -3663,6 +3744,7 @@ sciSetIsClipping (sciPointObj * pobj, int value)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       break;
     }
@@ -3715,6 +3797,7 @@ sciGetIsClipping (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       return -2;
       break;
@@ -3826,6 +3909,7 @@ sciSetHighLight (sciPointObj * pobj, BOOL value)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       sciprint ("We cannot highlight this object\n");
       break;
     default:
@@ -3866,6 +3950,7 @@ sciGetHighLight (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object cannot be highlighted\n");
       return FALSE;
@@ -3907,6 +3992,7 @@ sciSetAddPlot (sciPointObj * pobj, BOOL value)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object cannot be addploted\n");
       break;
@@ -3948,6 +4034,7 @@ sciGetAddPlot (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object cannot be addploted\n");
       return FALSE;
@@ -3991,6 +4078,7 @@ sciSetAutoScale (sciPointObj * pobj, BOOL value)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       sciprint ("This object cannot be autoscaled 1 sciSetAutoScale\n");
       break;
       break;
@@ -4031,6 +4119,7 @@ sciGetAutoScale (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       sciprint ("This object cannot be autoscaled 1 sciGetAutoScale\n");
       return FALSE;
       break;
@@ -4075,6 +4164,7 @@ sciSetZooming (sciPointObj * pobj, BOOL value)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       sciprint ("\r\nThis object cannot be zoomed\r\n");
       break;
     default:
@@ -4115,6 +4205,7 @@ sciGetZooming (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       sciprint ("\r\nThis object cannot be zoomed \r\n");
       return FALSE;
       break;
@@ -4176,6 +4267,7 @@ sciSetGraphicsStyle (sciPointObj * pobj, BOOL value)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       sciprint ("\r\nNothing to do\n");
       break;
     default:
@@ -4214,6 +4306,7 @@ sciGetGraphicsStyle (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       sciprint ("\r\nNothing to do\n");
       return FALSE;
       break;
@@ -4262,6 +4355,7 @@ sciSetXorMode (sciPointObj * pobj, int value)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       sciprint ("\r\nNothing to do\n");
       break;
     default:
@@ -4304,6 +4398,7 @@ sciGetXorMode (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       sciprint ("\r\nNothing to do\n");
       return FALSE;
       break;
@@ -4379,6 +4474,7 @@ sciSetResize (sciPointObj * pobj, BOOL value)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object cannot be resized\n");
       return;
@@ -4420,6 +4516,7 @@ sciGetResize (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       sciprint ("This object cannot be resized\n");
       return FALSE;
       break;
@@ -4902,6 +4999,7 @@ sciGetIsSelected (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       return FALSE;
       break;
@@ -4981,6 +5079,9 @@ sciSetVisibility (sciPointObj * pobj, BOOL value)
 	  psonstmp = psonstmp->pnext;
 	}  
       break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      pLABEL_FEATURE (pobj)->visible = value;
+      break;
     case SCI_SBH:   
     case SCI_PANNER:
     case SCI_SBV:
@@ -5045,6 +5146,9 @@ sciGetVisibility (sciPointObj * pobj)
       break;    
     case SCI_AGREG: 
       return pAGREG_FEATURE (pobj)->visible;
+      break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      return pLABEL_FEATURE (pobj)->visible;
       break;
     case SCI_SBH:   
     case SCI_PANNER:
@@ -5327,6 +5431,9 @@ sciGetFontDeciWidth (sciPointObj * pobj)
     case SCI_STATUSB:
       return (sciGetFontContext(pobj))->fontdeciwidth;
       break;
+    case SCI_LABEL:
+      return (sciGetFontContext(pobj))->fontdeciwidth;
+      break;
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT:
@@ -5445,6 +5552,10 @@ sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth)
 	  (sciGetFontContext(pobj))->fontdeciwidth =
 	    fontdeciwidth;
 	  break;
+	case SCI_LABEL:
+	  (sciGetFontContext(pobj))->fontdeciwidth =
+	    fontdeciwidth;
+	  break;
         case SCI_SEGS: 
 	case SCI_FEC: 
 	case SCI_GRAYPLOT:
@@ -5500,6 +5611,10 @@ sciGetFontOrientation (sciPointObj * pobj)
       break;
     case SCI_FIGURE:
       /* Adding F.Leray 08.04.04 */
+      return (sciGetFontContext(pobj))->textorientation;
+      break;
+    case SCI_LABEL:
+      /* Adding F.Leray 28.05.04 */
       return (sciGetFontContext(pobj))->textorientation;
       break;
     case SCI_ARC:
@@ -5579,6 +5694,10 @@ sciSetFontOrientation (sciPointObj * pobj, int textorientation)
 	  (sciGetFontContext(pobj))->textorientation = textorientation;
 	  return 0;
 	  break;
+	case SCI_LABEL: /* F.Leray 28.05.04*/
+	  (sciGetFontContext(pobj))->textorientation = textorientation;
+	  return 0;
+	  break;
 	case SCI_ARC:
 	case SCI_SEGS: 
 	case SCI_FEC: 
@@ -5637,6 +5756,13 @@ sciSetText (sciPointObj * pobj, char text[], int n)
       strncpy (pLEGEND_FEATURE (pobj)->text.ptextstring, text, n);
       pLEGEND_FEATURE (pobj)->text.textlen = n;
       break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      FREE(pLABEL_FEATURE (pobj)->text.ptextstring);
+      if ((pLABEL_FEATURE (pobj)->text.ptextstring = calloc (n+1, sizeof (char))) == NULL)
+	return -1;
+      strncpy (pLABEL_FEATURE (pobj)->text.ptextstring, text, n);
+      pLABEL_FEATURE (pobj)->text.textlen = n;
+      break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
@@ -5656,7 +5782,7 @@ sciSetText (sciPointObj * pobj, char text[], int n)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
-    default:
+      default:
       return -1;
       break;
     }
@@ -5686,6 +5812,9 @@ sciGetText (sciPointObj * pobj)
       break;
     case SCI_LEGEND:
       return pLEGEND_FEATURE (pobj)->text.ptextstring;
+      break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      return pLABEL_FEATURE (pobj)->text.ptextstring;
       break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
@@ -5733,6 +5862,9 @@ sciGetTextLength (sciPointObj * pobj)
       break;
     case SCI_LEGEND:
       return pLEGEND_FEATURE (pobj)->text.textlen;
+      break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      return pLABEL_FEATURE (pobj)->text.textlen;
       break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
@@ -5798,6 +5930,7 @@ sciSetTextPosX (sciPointObj * pobj, double x)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
     default:
       sciprint ("This object has no text !\n");
       return 0;
@@ -5842,6 +5975,7 @@ sciGetTextPosX (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
     default:
       sciprint ("This object has no text !\n");
       return 0;
@@ -5887,6 +6021,7 @@ sciGetTextPosWidth (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
     default:
       sciprint ("This object has no text !\n");
       return 0;
@@ -5932,6 +6067,7 @@ sciGetTextPosHeight (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
     default:
       sciprint ("This object has no text !\n");
       return 0;
@@ -5979,6 +6115,7 @@ sciSetTextPosY (sciPointObj * pobj, double y)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
     default:
       sciprint ("This object has no text !\n");
       return 0;
@@ -6023,6 +6160,7 @@ sciGetTextPosY (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
     default:
       sciprint ("This object has no text !\n");
       return 0;
@@ -6056,6 +6194,7 @@ sciGetFontBackground (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_SUBWIN: /* F.Leray 08.04.04 */
     case SCI_FIGURE: /* F.Leray 08.04.04 */
+    case SCI_LABEL:  /* F.Leray 28.05.04 */
       colorindex = (sciGetFontContext(pobj))->backgroundcolor;
       break;
     case SCI_ARC:
@@ -6101,6 +6240,7 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_SUBWIN: /* F.Leray 08.04.04 */
     case SCI_FIGURE: /* F.Leray 08.04.04 */
+    case SCI_LABEL:  /* F.Leray 28.05.04 */
       colorindex = (sciGetFontContext(pobj))->backgroundcolor;
       break;
     case SCI_ARC:
@@ -6184,6 +6324,10 @@ sciSetFontBackground (sciPointObj * pobj, int colorindex)
       (sciGetFontContext(pobj))->backgroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      (sciGetFontContext(pobj))->backgroundcolor =
+	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -6228,6 +6372,7 @@ sciGetFontForeground (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_SUBWIN:  /* F.Leray 08.04.04 */
     case SCI_FIGURE:  /* F.Leray 08.04.04 */
+    case SCI_LABEL:   /* F.Leray 28.05.04 */
       colorindex =  (sciGetFontContext(pobj))->foregroundcolor+ 1 ; /* Modif. F.Leray 31.03.04*/
       break;
     case SCI_ARC:
@@ -6273,6 +6418,7 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_SUBWIN:  /* F.Leray 08.04.04 */
     case SCI_FIGURE:  /* F.Leray 08.04.04 */
+    case SCI_LABEL:   /* F.Leray 28.05.04 */
       colorindex =  (sciGetFontContext(pobj))->foregroundcolor+ 1 ; /* Modif. F.Leray 31.03.04*/
       break;
     case SCI_ARC:
@@ -6356,6 +6502,10 @@ sciSetFontForeground (sciPointObj * pobj, int colorindex)
       (sciGetFontContext(pobj))->foregroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
+    case SCI_LABEL: /* F.Leray 08.04.04 */
+      (sciGetFontContext(pobj))->foregroundcolor =
+	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -6377,14 +6527,19 @@ sciSetFontForeground (sciPointObj * pobj, int colorindex)
 
 
 
+
+
 /**sciGetFontStyle
  * @memo Gets the font style 
+
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 OK, -1 if not
  */
 int
 sciGetFontStyle (sciPointObj * pobj)
 {
+
+
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -6416,7 +6571,6 @@ sciGetFontStyle (sciPointObj * pobj)
       break;
     }
 }
-
 
 
 /**sciSetFontStyle
@@ -6461,7 +6615,6 @@ sciSetFontStyle (sciPointObj * pobj, int iAttributes)
     }
   return 0;
 }
-
 
 
 /**sciSetFontName
@@ -6521,6 +6674,7 @@ sciSetFontName (sciPointObj * pobj, char pfontname[], int n)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
     default:
       return -1;
       break;
@@ -6554,6 +6708,9 @@ sciGetFontName (sciPointObj * pobj)
       return 	(sciGetFontContext(pobj))->pfontname;
       break;
     case SCI_FIGURE: /* F.Leray 08.04.04 */
+      return 	(sciGetFontContext(pobj))->pfontname;
+      break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       return 	(sciGetFontContext(pobj))->pfontname;
       break;
     case SCI_ARC:
@@ -6605,6 +6762,9 @@ sciGetFontNameLength (sciPointObj * pobj)
       return 	(sciGetFontContext(pobj))->fontnamelen;
       break;
     case SCI_FIGURE: /* F.Leray 08.04.04 */
+      return 	(sciGetFontContext(pobj))->fontnamelen;
+      break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
       return 	(sciGetFontContext(pobj))->fontnamelen;
       break;
     case SCI_ARC:
@@ -6668,6 +6828,7 @@ sciSetLegendPos (sciPointObj * pobj, int x, int y)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("Your are not using a legend object !\n");
       return -1;
@@ -6773,6 +6934,7 @@ sciSetTitlePos (sciPointObj * pobj, int x, int y)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("Your are not using a title object !\n");
       return -1;
@@ -6882,6 +7044,9 @@ sciGetFontContext (sciPointObj * pobj)
     case SCI_FIGURE: /* F.Leray 08.04.04 THE MOST IMPORTANT*/
       return &(pFIGURE_FEATURE (pobj)->fontcontext);
       break;
+    case SCI_LABEL: /* F.Leray 27.05.04 */
+      return &(pLABEL_FEATURE (pobj)->text.fontcontext);
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -6919,6 +7084,8 @@ sciInitFontContext (sciPointObj * pobj)
   /* unknown function initfontname "Win-stand"!! */
   /* static TCHAR inifontname[] = TEXT ("Times New Roman");*/  
 
+  /*  sciPointObj * psubwin = NULL;*/
+  
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -6928,6 +7095,7 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+    case SCI_LABEL: /* Re-init here must be better F.Leray 28.05.04 */
       (sciGetFontContext(pobj))->backgroundcolor = sciGetFontBackground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->foregroundcolor = sciGetFontForeground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->fonttype        = (sciGetFontContext(sciGetParent(pobj)))->fonttype; 
@@ -6965,7 +7133,7 @@ sciInitFontContext (sciPointObj * pobj)
 	  (sciGetFontContext(pobj))->backgroundcolor = (sciGetFontContext(paxesmdl))->backgroundcolor;
 	  (sciGetFontContext(pobj))->foregroundcolor = (sciGetFontContext(paxesmdl))->foregroundcolor;
 	  (sciGetFontContext(pobj))->fonttype =        (sciGetFontContext(paxesmdl))->fonttype;
-	  (sciGetFontContext(pobj))->fontdeciwidth =   (sciGetFontContext(paxesmdl))->fontdeciwidth;
+ 	  (sciGetFontContext(pobj))->fontdeciwidth =   (sciGetFontContext(paxesmdl))->fontdeciwidth;
 	  (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(paxesmdl))->textorientation;
 	  (sciGetFontContext(pobj))->fontnamelen =     (sciGetFontContext(paxesmdl))->fontnamelen; /*fontname not used */
 	  
@@ -7005,7 +7173,7 @@ sciInitFontContext (sciPointObj * pobj)
 	  (sciGetFontContext(pobj))->backgroundcolor = (sciGetFontContext(pfiguremdl))->backgroundcolor;	
 	  (sciGetFontContext(pobj))->foregroundcolor = (sciGetFontContext(pfiguremdl))->foregroundcolor;
 	  (sciGetFontContext(pobj))->fonttype =        (sciGetFontContext(pfiguremdl))->fonttype;
-	  (sciGetFontContext(pobj))->fontdeciwidth =   (sciGetFontContext(pfiguremdl))->fontdeciwidth;
+  	  (sciGetFontContext(pobj))->fontdeciwidth =   (sciGetFontContext(pfiguremdl))->fontdeciwidth;
 	  (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(pfiguremdl))->textorientation;
 	  (sciGetFontContext(pobj))->fontnamelen =     (sciGetFontContext(pfiguremdl))->fontnamelen; /*fontname not used */
 	  
@@ -7081,6 +7249,7 @@ sciGethPopMenu (sciPointObj * pthis)
   case SCI_MENU:
   case SCI_STATUSB:
   case SCI_AGREG:
+  case SCI_LABEL: /* F.Leray 28.05.04 */
   default: 
     return (HMENU) NULL ;
     break;
@@ -7208,6 +7377,7 @@ sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu)
       case SCI_MENU:
       case SCI_STATUSB:
       case SCI_AGREG:
+      case SCI_LABEL: /* F.Leray 28.05.04 */
       default: 
 	return -1;
 	break;
@@ -7272,7 +7442,7 @@ int
 DestroyAllGraphicsSons (sciPointObj * pthis)
 {
   /* to destroy only the sons put the while into the switch !*/
-  sciSons *toto;
+  sciSons *toto = NULL;
  
   toto = sciGetSons (pthis);
   while ((toto != (sciSons *) NULL) &&
@@ -7371,6 +7541,10 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
       DestroyMerge (pthis);
       return 0;
       break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      DestroyLabel (pthis);
+      return 0;
+      break;
     default:
       sciprint ("Entity with type %d cannot be destroyed\n",sciGetEntityType (pthis));
       return -1;
@@ -7409,6 +7583,7 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_AGREG:
     case SCI_TEXT:
     case SCI_MERGE: 
+    case SCI_LABEL:
       DestroyAllGraphicsSons (pthis);
       return 0;
       break;
@@ -7676,12 +7851,12 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
   char dir;
   int i;
 
-  /* sciSubWindow * ppsubwin = NULL; */ /* debug */
+  sciPointObj *pobj = (sciPointObj *) NULL;
+  sciSubWindow * ppsubwin = NULL; 
 
   if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
     {
-      sciPointObj *pobj = (sciPointObj *) NULL;
-      /*if (sciInitChildWin (pparentfigure, pwinname) == -1)
+         /*if (sciInitChildWin (pparentfigure, pwinname) == -1)
 	return NULL;*/
       if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
 	return NULL;
@@ -7827,17 +8002,112 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       pSUBWIN_FEATURE (pobj)->tight_limits = pSUBWIN_FEATURE (paxesmdl)->tight_limits;
       pSUBWIN_FEATURE (pobj)->FirstPlot = pSUBWIN_FEATURE (paxesmdl)->FirstPlot;
       pSUBWIN_FEATURE (pobj)->with_leg =  pSUBWIN_FEATURE (paxesmdl)->with_leg;
-
+      
       if (sciSetSelectedSubWin(pobj) != 1) 
 	return (sciPointObj *)NULL; 
+      
+      /* Construction des labels: x,y,z et Title */
+      ppsubwin =  pSUBWIN_FEATURE (pobj);
+
+      if ((ppsubwin->mon_title =  ConstructLabel (pobj, "",1)) == NULL){
+	sciDelThisToItsParent (pobj, sciGetParent (pobj)); /* pobj type = scisubwindow*/
+	sciDelHandle (pobj);
+	FREE(pobj->pfeatures);
+	FREE(pobj);
+	return (sciPointObj *) NULL;
+      }
+      
+      if (sciInitFontContext (ppsubwin->mon_title) == -1)
+	{
+	  DestroyLabel(ppsubwin->mon_title);
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pobj->pfeatures);	  
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      
+      /*------------------------------------*/
+      if ((ppsubwin->mon_x_label =  ConstructLabel (pobj, "",2)) == NULL){
+	DestroyLabel(ppsubwin->mon_title);
+	sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	sciDelHandle (pobj);
+	FREE(pobj->pfeatures);
+	FREE(pobj);
+	return (sciPointObj *) NULL;
+      }
+
+      if (sciInitFontContext (ppsubwin->mon_x_label) == -1)
+	{
+	  DestroyLabel(ppsubwin->mon_title);
+	  DestroyLabel(ppsubwin->mon_x_label);
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pobj->pfeatures);
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+
+      /*------------------------------------*/
+      if ((ppsubwin->mon_y_label =  ConstructLabel (pobj, "",3)) == NULL){
+	DestroyLabel(ppsubwin->mon_title);
+	DestroyLabel(ppsubwin->mon_x_label);
+	sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	sciDelHandle (pobj);
+	FREE(pobj->pfeatures);
+	FREE(pobj);
+	return (sciPointObj *) NULL;
+      }
+  
+      if (sciInitFontContext (ppsubwin->mon_y_label) == -1)
+	{
+	  DestroyLabel(ppsubwin->mon_title);
+	  DestroyLabel(ppsubwin->mon_x_label);
+	  DestroyLabel(ppsubwin->mon_y_label);
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pobj->pfeatures);
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+
+      /*------------------------------------*/
+      if ((ppsubwin->mon_z_label =  ConstructLabel (pobj, "",4)) == NULL){
+	DestroyLabel(ppsubwin->mon_title);
+	DestroyLabel(ppsubwin->mon_x_label);
+	DestroyLabel(ppsubwin->mon_y_label);
+	sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	sciDelHandle (pobj);
+	FREE(pobj->pfeatures);
+	FREE(pobj);
+	return (sciPointObj *) NULL;
+      }
+
+      if (sciInitFontContext (ppsubwin->mon_z_label) == -1)
+	{
+	  DestroyLabel(ppsubwin->mon_title);
+	  DestroyLabel(ppsubwin->mon_x_label);
+	  DestroyLabel(ppsubwin->mon_y_label);
+	  DestroyLabel(ppsubwin->mon_z_label);
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pobj->pfeatures);
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+
+
+      
       pSUBWIN_FEATURE (pobj)->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
       return (sciPointObj *)pobj;
+      
     }
   else
     {
       sciprint ("The parent has to be a FIGURE \n");
       return (sciPointObj *) NULL;
     }
+  
   return (sciPointObj *) NULL;
 }
 
@@ -7850,12 +8120,12 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 int
 DestroySubWin (sciPointObj * pthis)
 { 
- 
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
   if ( sciGetCallback(pthis) != (char *)NULL)
     FREE(sciGetCallback(pthis));
+
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis); 
   return 0;
@@ -8135,7 +8405,7 @@ int C2F(graphicsmodels) ()
   pSUBWIN_FEATURE (paxesmdl)->isclip = -1;
   
   pSUBWIN_FEATURE (paxesmdl)->pPopMenu = (sciPointObj *)NULL;
-
+  
   return 1;
 }
 
@@ -8453,7 +8723,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-
+      
       pTITLE_FEATURE (pobj)->text.relationship.psons = (sciSons *) NULL;
       pTITLE_FEATURE (pobj)->text.relationship.plastsons = (sciSons *) NULL;
 
@@ -10622,6 +10892,7 @@ sciCloneObj (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object cannot be cloned !\n");
       return (sciPointObj *)NULL;
@@ -10658,9 +10929,9 @@ sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget )
 int
 sciDrawObj (sciPointObj * pobj)
 {
-  char str[2] = "xv",locstr;
+  char str[2] = "xv"/*,locstr*/;
   integer n,n1,uc,verbose=0,narg,xz[10],na,arssize,sflag=0,un=1;
-  integer *xm, *ym,*zm,n2 = 1, xtmp[4], ytmp[4], *pstyle,rect1[4];
+  integer *xm, *ym,*zm,n2 = 1, xtmp[4], ytmp[4], *pstyle/*,rect1[4]*/;
   integer closeflag = 0,ias,ias1;
   integer width, height;
   double anglestr,w2,h2,as;
@@ -10675,8 +10946,8 @@ sciDrawObj (sciPointObj * pobj)
   sciSons *psonstmp;
   integer itmp[5];		
   integer markidsizeold[2], markidsizenew[2];
-  sciPointObj *psubwin, *currentsubwin;
-  double locx,locy,loctit;
+  sciPointObj /* *psubwin, */ *currentsubwin;
+/*   double locx,locy,loctit; */
   char logflags[4];
   double xbox[8],ybox[8],zbox[8], *xzz,*yzz,*zzz;
   static integer InsideU[4],InsideD[4];
@@ -10810,7 +11081,7 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   
 
 	    axis_draw (STRFLAG); 
-
+	    labels2D_draw(pobj);
 	   /*  sciprint("JUSTE APRES axis_draw...\n"); */
 /* 	    sciprint("Cscale.ytics[0] = %f\n",Cscale.ytics[0]); */
 /* 	    sciprint("Cscale.ytics[1] = %f\n",Cscale.ytics[1]); */
@@ -11643,103 +11914,121 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       break;
       /*   case SCI_AXIS 
       break; */
-    case SCI_TITLE:
+/*     case SCI_TITLE: */
      
-      if (!sciGetVisibility(pobj)) break;
-      /*sciSetCurrentObj (pobj);       F.Leray 25.03.04*/
-      /* load the object foreground and dashes color */
-      x[0] = sciGetFontForeground (pobj);
-      x[2] = sciGetFontDeciWidth (pobj)/100;
-      x[3] = 0;
-      x[4] = sciGetFontStyle(pobj);
-      v = 0;
-      dv = 0;
-#ifdef WIN32
-      flag_DO = MaybeSetWinhdc ();
-#endif
-      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-      C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
-#ifdef WIN32
-      if ( flag_DO == 1) ReleaseWinHdc ();
-#endif
-      sciClip(sciGetIsClipping(pobj));
-      flagx = 0;
-      anglestr = 0;
-      psubwin = sciGetParentSubwin(pobj);
-      if (sciGetEntityType(psubwin) == SCI_SUBWIN)
-	{
-	  locstr=pSUBWIN_FEATURE(psubwin)->axes.xdir;
-	  switch (locstr)
-	    {
-	    case 'd':
-	      locy=pSUBWIN_FEATURE (psubwin)->FRect[1];
-	      loctit=pSUBWIN_FEATURE (psubwin)->FRect[3];
-	      break;
-	    case 'c':
-	      locy=(pSUBWIN_FEATURE (psubwin)->FRect[1]>0.0)?pSUBWIN_FEATURE (psubwin)->FRect[1]: 0.0;
-	      locy=(pSUBWIN_FEATURE (psubwin)->FRect[3]<0.0)?pSUBWIN_FEATURE (psubwin)->FRect[1]: locy;
-	      loctit=pSUBWIN_FEATURE (psubwin)->FRect[3];
-	      break;
-	    case 'u':
-	      locy=pSUBWIN_FEATURE (psubwin)->FRect[3];
-	      loctit=pSUBWIN_FEATURE (psubwin)->FRect[1];
-	      break;
-	    default:
-	      locy=pSUBWIN_FEATURE (psubwin)->FRect[1];
-	      loctit=pSUBWIN_FEATURE (psubwin)->FRect[3];
-	      break;
-	    }
-	  locstr=pSUBWIN_FEATURE(psubwin)->axes.ydir;
-	  switch (locstr)
-	    {
-	    case 'l':
-	      locx=pSUBWIN_FEATURE (psubwin)->FRect[0];
-	      break;
-	    case 'c':
-	      locx=(pSUBWIN_FEATURE (psubwin)->FRect[0]>0.0)?pSUBWIN_FEATURE (psubwin)->FRect[0]: 0.0;
-	      locx=(pSUBWIN_FEATURE (psubwin)->FRect[2]<0.0)?pSUBWIN_FEATURE (psubwin)->FRect[0]: locx;
-	      loctit=pSUBWIN_FEATURE (psubwin)->FRect[1];
-	      break;
-	    case 'r':
-	      locx=pSUBWIN_FEATURE (psubwin)->FRect[2];
-	      break;
-	    default:
-	      locx=pSUBWIN_FEATURE (psubwin)->FRect[0];
-	      break;
-	    }
-	}
-      switch (pTITLE_FEATURE (pobj)->ptype)
-	{
-	case 1:
-	  rect1[0]= XScale(pSUBWIN_FEATURE (psubwin)->FRect[0]);
-	  rect1[1]= (loctit==pSUBWIN_FEATURE (psubwin)->FRect[1])?(YScale(loctit)+Cscale.WIRect1[3]/6):YScale(loctit);
+/*       if (!sciGetVisibility(pobj)) break; */
+/*       /\*sciSetCurrentObj (pobj);       F.Leray 25.03.04*\/ */
+/*       /\* load the object foreground and dashes color *\/ */
+/*       x[0] = sciGetFontForeground (pobj); */
+/*       x[2] = sciGetFontDeciWidth (pobj)/100; */
+/*       x[3] = 0; */
+/*       x[4] = sciGetFontStyle(pobj); */
+/*       v = 0; */
+/*       dv = 0; */
+/* #ifdef WIN32 */
+/*       flag_DO = MaybeSetWinhdc (); */
+/* #endif */
+/*       C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L); */
+/*       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L); */
+/*       C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L); */
+/* #ifdef WIN32 */
+/*       if ( flag_DO == 1) ReleaseWinHdc (); */
+/* #endif */
+/*       sciClip(sciGetIsClipping(pobj)); */
+/*       flagx = 0; */
+/*       anglestr = 0; */
+/*       psubwin = sciGetParentSubwin(pobj); */
+/*       if (sciGetEntityType(psubwin) == SCI_SUBWIN) */
+/* 	{ */
+/* 	  locstr=pSUBWIN_FEATURE(psubwin)->axes.xdir; */
+/* 	  switch (locstr) */
+/* 	    { */
+/* 	    case 'd': */
+/* 	      locy=pSUBWIN_FEATURE (psubwin)->FRect[1]; */
+/* 	      //loctit=pSUBWIN_FEATURE (psubwin)->FRect[3]; */
+/* 	      break; */
+/* 	    case 'c': */
+/* 	      locy=(pSUBWIN_FEATURE (psubwin)->FRect[1]>0.0)?pSUBWIN_FEATURE (psubwin)->FRect[1]: 0.0; */
+/* 	      locy=(pSUBWIN_FEATURE (psubwin)->FRect[3]<0.0)?pSUBWIN_FEATURE (psubwin)->FRect[1]: locy; */
+/* 	      //loctit=pSUBWIN_FEATURE (psubwin)->FRect[3]; */
+/* 	      break; */
+/* 	    case 'u': */
+/* 	      locy=pSUBWIN_FEATURE (psubwin)->FRect[3]; */
+/* 	      //loctit=pSUBWIN_FEATURE (psubwin)->FRect[1]; */
+/* 	      break; */
+/* 	    default: */
+/* 	      locy=pSUBWIN_FEATURE (psubwin)->FRect[1]; */
+/* 	      //loctit=pSUBWIN_FEATURE (psubwin)->FRect[3]; */
+/* 	      break; */
+/* 	    } */
+/* 	  locstr=pSUBWIN_FEATURE(psubwin)->axes.ydir; */
+/* 	  switch (locstr) */
+/* 	    { */
+/* 	    case 'l': */
+/* 	      locx=pSUBWIN_FEATURE (psubwin)->FRect[0]; */
+/* 	      break; */
+/* 	    case 'c': */
+/* 	      locx=(pSUBWIN_FEATURE (psubwin)->FRect[0]>0.0)?pSUBWIN_FEATURE (psubwin)->FRect[0]: 0.0; */
+/* 	      locx=(pSUBWIN_FEATURE (psubwin)->FRect[2]<0.0)?pSUBWIN_FEATURE (psubwin)->FRect[0]: locx; */
+/* 	      //loctit=pSUBWIN_FEATURE (psubwin)->FRect[1]; */
+/* 	      break; */
+/* 	    case 'r': */
+/* 	      locx=pSUBWIN_FEATURE (psubwin)->FRect[2]; */
+/* 	      break; */
+/* 	    default: */
+/* 	      locx=pSUBWIN_FEATURE (psubwin)->FRect[0]; */
+/* 	      break; */
+/* 	    } */
+/* 	} */
+/*       switch (pTITLE_FEATURE (pobj)->ptype) */
+/* 	{ */
+/* 	case 1: /\* main title *\/ /\* We fix the title always at the top *\/ */
+/* 	  rect1[0]= Cscale.WIRect1[0]; //XScale(pSUBWIN_FEATURE (psubwin)->FRect[0]); */
+/* 	  rect1[1]= Cscale.WIRect1[1]; //(loctit==pSUBWIN_FEATURE (psubwin)->FRect[1])?(YScale(loctit)+Cscale.WIRect1[3]/6):YScale(loctit); */
+/* 	  rect1[2]= Cscale.WIRect1[2]; */
+/* 	  rect1[3]= Cscale.WIRect1[3]/6; */
+/* #ifdef WIN32 */
+/* 	  flag_DO = MaybeSetWinhdc (); */
+/* #endif */
+/* 	  C2F(dr1)("xstringtt",sciGetText (pobj),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); */
+/* #ifdef WIN32 */
+/* 	  if ( flag_DO == 1) ReleaseWinHdc (); */
+/* #endif */
+/* 	  break; */
+/* 	case 2: /\* x label *\/ */
+/* 	  if(!pSUBWIN_FEATURE (psubwin)->is3d){ /\* display for 2D mode only *\/ */
+/* 	    rect1[0]= Cscale.WIRect1[0]+Cscale.WIRect1[2]; */
+/* 	    rect1[1]= Cscale.WIRect1[1]+ Cscale.WIRect1[3];//YScale(locy-(pSUBWIN_FEATURE (psubwin)->FRect[3]-pSUBWIN_FEATURE (psubwin)->FRect[1])/12); */
+/* 	    rect1[2]= Cscale.WIRect1[2]/6; */
+/* 	    rect1[3]= Cscale.WIRect1[3]/6; */
+/* #ifdef WIN32 */
+/* 	    flag_DO = MaybeSetWinhdc (); */
+/* #endif */
+/* 	    C2F(dr1)("xstringtt",sciGetText (pobj),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); */
+/* #ifdef WIN32 */
+/* 	    if ( flag_DO == 1) ReleaseWinHdc (); */
+/* #endif */
+/* 	  } */
+/* 	  break; */
+/* 	case 3: /\* y label *\/ */
+/* /\* 	  if(!pSUBWIN_FEATURE (psubwin)->is3d){ /\\* display for 2D mode only *\\/ *\/ */
+/* /\* 	    rect1[0]= XScale(locx-(pSUBWIN_FEATURE (psubwin)->FRect[2]-pSUBWIN_FEATURE (psubwin)->FRect[0])/12); *\/ */
+/* /\* 	    rect1[1]= Cscale.WIRect1[1]-Cscale.WIRect1[3]/24; *\/ */
+/* /\* 	    rect1[2]= Cscale.WIRect1[2]/6; *\/ */
+/* /\* 	    rect1[3]= Cscale.WIRect1[3]/12; *\/ */
+/* /\* #ifdef WIN32 *\/ */
+/* /\* 	  flag_DO = MaybeSetWinhdc (); *\/ */
+/* /\* #endif *\/ */
+/* /\* 	  C2F(dr1)("xstringtt",sciGetText (pobj),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); *\/ */
+/* /\* #ifdef WIN32 *\/ */
+/* /\* 	  if ( flag_DO == 1) ReleaseWinHdc (); *\/ */
+/* /\* #endif *\/ */
+/* /\* 	  } *\/ */
+/* 	  break; */
+/* 	} */
 
-	  rect1[2]= Cscale.WIRect1[2];
-	  rect1[3]= Cscale.WIRect1[3]/6;
-	  break;
-	case 2:
-	  rect1[0]= Cscale.WIRect1[0]+Cscale.WIRect1[2];
-	  rect1[1]= YScale(locy-(pSUBWIN_FEATURE (psubwin)->FRect[3]-pSUBWIN_FEATURE (psubwin)->FRect[1])/12);
-	  rect1[2]= Cscale.WIRect1[2]/6;
-	  rect1[3]= Cscale.WIRect1[3]/6;
-	  break;
-	case 3:
-	  rect1[0]= XScale(locx-(pSUBWIN_FEATURE (psubwin)->FRect[2]-pSUBWIN_FEATURE (psubwin)->FRect[0])/12);
-	  rect1[1]= Cscale.WIRect1[1]-Cscale.WIRect1[3]/24;
-	  rect1[2]= Cscale.WIRect1[2]/6;
-	  rect1[3]= Cscale.WIRect1[3]/12;
-	  break;
-	}
-#ifdef WIN32
-      flag_DO = MaybeSetWinhdc ();
-#endif
-      C2F(dr1)("xstringtt",sciGetText (pobj),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L);
-#ifdef WIN32
-      if ( flag_DO == 1) ReleaseWinHdc ();
-#endif
-      sciUnClip(sciGetIsClipping(pobj));
-      break;
+/*       sciUnClip(sciGetIsClipping(pobj)); */
+/*       break; */
 
     case SCI_AXES:
       if (!sciGetVisibility(pobj)) break;
@@ -11844,19 +12133,19 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       break;
-    case SCI_LIGHT:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    default:
-      return -1;
-      break;
-    }
-  sciSetSelectedSubWin (currentsubwin);
-  return -1;
+   case SCI_LIGHT:
+   case SCI_PANNER:
+   case SCI_SBH:
+   case SCI_SBV:
+   case SCI_MENU:
+   case SCI_MENUCONTEXT:
+   case SCI_STATUSB:
+   default:
+     return -1;
+     break;
+   }
+ sciSetSelectedSubWin (currentsubwin);
+ return -1;
 }
 
 
@@ -12081,6 +12370,7 @@ sciSetPosX (sciPointObj * pthis, double x)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no place X\n");
       return -1;
@@ -12128,6 +12418,7 @@ sciSetPosY (sciPointObj * pthis, double y)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no place Y\n");
       return -1;
@@ -12190,6 +12481,7 @@ sciGetPosX (sciPointObj * pthis)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no place X\n");
       return -1;
@@ -12254,6 +12546,7 @@ sciGetPosWidth (sciPointObj * pthis)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no place X\n");
       return -1;
@@ -12314,6 +12607,7 @@ sciGetPosY (sciPointObj * pthis)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no place Y\n");
       return -1;
@@ -12378,6 +12672,7 @@ sciGetPosHeight (sciPointObj * pthis)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no place X\n");
       return -1;
@@ -12418,6 +12713,7 @@ sciGetPosZ (sciPointObj * pthis)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no place Z\n");
       return -1;
@@ -12650,6 +12946,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no points Y\n");
       return (double*)NULL;
@@ -13115,8 +13412,9 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("This object has no possibility to set points points Y\n");
+      sciprint ("This object has no possibility to set points !\n");
       return -1;
       break;
     }
@@ -13308,6 +13606,7 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
     case SCI_SBV:
     case SCI_SBH:
     case SCI_LIGHT:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       return FALSE;
       break;
@@ -13439,6 +13738,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("\r\n No Callback is associated with this Entity");
       return -1;
@@ -13501,6 +13801,7 @@ char *sciGetCallback(sciPointObj * pthis)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("\r\nNo Callback is associetad with this Entity");
       return (char *)NULL;
@@ -13561,6 +13862,7 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("\r\nNo Callback is associated with this Entity");
       return 100;
@@ -13618,6 +13920,7 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("\r\nNo Callback is associated with this Entity");
       return 100;
@@ -13673,6 +13976,7 @@ sciGetCallbackLen (sciPointObj * pthis)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("\r\nNo Callback is associated with this Entity");
       return -1;
@@ -13748,6 +14052,7 @@ sciDelCallback (sciPointObj * pthis)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("\r\nNo Callback is associated with this Entity");
       return -1;
@@ -13804,6 +14109,7 @@ sciExecCallback (sciPointObj * pthis)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("\r\nNo Callback is associated with this Entity");
       return -1;
@@ -13888,6 +14194,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 	case SCI_FIGURE:
 	case SCI_SBV:
 	case SCI_SBH:
+	case SCI_LABEL: /* F.Leray 28.05.04 A REVOIR...*/
 	default:
 	  sciprint("entity number %d have to be a basic graphic entity\n",(i+1));
 	  return (sciPointObj *) NULL;
@@ -13967,6 +14274,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 
   /*  rect of the dimension of the agregation */
   pAGREG_FEATURE(pobj)->isselected = TRUE;
+
   return (sciPointObj *)pobj;
 }
 
@@ -14297,6 +14605,7 @@ int Objmove (hdl,x,y,opt)
     case SCI_SBV:	      
     case SCI_TITLE:
     case SCI_LEGEND:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object can not be moved\r\n");
       return -1;
@@ -14403,8 +14712,12 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"default_axes") == 12)    {return 9;}/* DJ.A 08/01/04 */
   else if (strcmp(marker,"default_figure") == 14)    {return 9;}/* DJ.A 08/01/04 */
   else if (strcmp(marker,"children") == 0)    {return 9;}
-
   else if (strcmp(marker,"cube_scaling") == 0)    {return 10;} /* F.Leray 22.04.04 */
+  else if (strcmp(marker,"x_label") == 0)    {return 9;}  /* F.Leray 27.05.04 */
+  else if (strcmp(marker,"y_label") == 0)    {return 9;} 
+  else if (strcmp(marker,"z_label") == 0)    {return 9;} 
+  else if (strcmp(marker,"title") == 0)    {return 9;} 
+
   else { sciprint("\r\n Unknown property \r");return 0;}
 }
 /**sciGetAxes
@@ -14756,7 +15069,7 @@ void set_version_flag(int flag)
   double *XGC,dv=0;
   struct BCG *CurrentScilabXgc; 
   int v=0;
-
+  
   C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
   CurrentScilabXgc=(struct BCG *)XGC;
   if (CurrentScilabXgc !=(struct BCG *)NULL) 
@@ -14872,7 +15185,7 @@ sciPointObj *sciGetSurface(sciPointObj *psubwin)
 void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD) 
 {
   double dbox[6];
-  char *legend="x@y@z",logf[2];
+  char /* *legend="x@y@z",*/logf[2];
   integer flag,ib,i,p,n,pat,hiddencolor, x[5]; /* F. Leray : redimmensionnment (+1) du tableau x[4];*/
   static double Alpha, Teta,cost=0.5,sint=0.5,cosa=0.5,sina=0.5;
   double xmmin,ymmax,xmmax,ymmin,FRect[4],WRect[4],ARect[4];
@@ -15141,7 +15454,8 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	  if(pSUBWIN_FEATURE (pobj)->axes.rect == 1)
 	    if (flag >=3){C2F(dr)("xpolys","v",ixbox,iybox,x,&n,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);}
 	  /** graduation ***/
-	  if (flag>=3) {Axes3dStrings(ixbox,iybox,xind,legend);}
+	/*   if (flag>=3) {Axes3dStrings(ixbox,iybox,xind,legend);} */
+	  if (flag>=3) {Axes3dStrings(ixbox,iybox,xind);}
 	}
       C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -15205,27 +15519,35 @@ void Nextind(integer ind1, integer *ind2, integer *ind3)
  * @author Djalel Abdemouche 10/2003
  * Should be in Axes.c file
  */
-int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
+/* int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend) */
+int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind)
 {
   integer verbose=0,narg,xz[2],fontid[2],fontsize_kp,color_kp,size;
   integer iof,barlengthx = 0,barlengthy = 0, posi[2]; 
-  char *loc,*legx,*legy,*legz;
+  char *legx = NULL;
+  char *legy = NULL;
+  char *legz = NULL;
+  char *title = NULL;
   integer rect[4],flag=0,x=0,y=0;
   double ang=0.0, bbox[6];
   int fontsize=-1,textcolor=-1,ticscolor=-1, doublesize ;
   int fontstyle=0; /* F.Leray 08.04.04 */
-  sciPointObj *psubwin;
+  sciPointObj *psubwin = NULL;
+  sciSubWindow * ppsubwin = NULL;
   int ns=2,style=0,iflag=0,gstyle,trois=3,dash[6];
   double xx[4],yy[4],zz[4],vxx,vxx1,vyy,vyy1,vzz,vzz1,dx;
   integer i,xm,ym,vx[2],vy[2],xg[2],yg[2],j,subtics;
-  loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
-  if ( loc == 0)    
-    {
-      Scistring("Axes3dStrings : No more Place to store Legends\n");
-      return -1;
-    }
-  strcpy(loc,legend);
-  legx=strtok(loc,"@");legy=strtok((char *)0,"@");legz=strtok((char *)0,"@");
+  integer fontid_old[2], textcolor_old;
+
+
+  psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  ppsubwin = pSUBWIN_FEATURE (psubwin);
+
+  title= sciGetText(ppsubwin->mon_title);
+  legx = sciGetText(ppsubwin->mon_x_label);
+  legy = sciGetText(ppsubwin->mon_y_label);
+  legz = sciGetText(ppsubwin->mon_z_label);
+
   /** le cot\'e gauche ( c'est tjrs un axe des Z **/
   xz[0]=Cscale.WIRect1[2] ;
   xz[1]= Cscale.WIRect1[2];
@@ -15272,6 +15594,29 @@ int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
     zz[i]=pSUBWIN_FEATURE (psubwin)->axes.zlim[i];
   } 
 
+  /* main title */ /* We fix the title always at the top */
+  rect[0]= Cscale.WIRect1[0];
+  rect[1]= Cscale.WIRect1[1];
+  rect[2]= Cscale.WIRect1[2];
+  rect[3]= Cscale.WIRect1[3]/6;
+  textcolor_old = textcolor;
+  fontid_old[0] = fontid[0];
+  fontid_old[1] = fontid[1];
+
+  textcolor = sciGetFontForeground(ppsubwin->mon_title);
+  fontid[0] = sciGetFontStyle(ppsubwin->mon_title);
+  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_title)/100;
+  
+  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
+  if( sciGetVisibility(ppsubwin->mon_title) == TRUE)
+    C2F(dr1)("xstringtt",title,&rect[0],&rect[1],&rect[2],&rect[3],PI0,PI0,PD0,PD0,PD0,PD0,10L,0L);
+  
+  textcolor = textcolor_old;
+  fontid[0] = fontid_old[0];
+  fontid[1] = fontid_old[1];
+
   size = xz[0]>=xz[1] ? (integer) (xz[1]/50.0) : (integer) (xz[0]/50.0); 
     
   /*** le z scaling ***/
@@ -15311,6 +15656,7 @@ int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	    posi[0] = inint( xm+2*barlengthx - rect[2]); 
 	    posi[1]=inint( ym + 2*barlengthy + rect[3]/2);
 	    C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 	    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
 	    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -15353,12 +15699,25 @@ int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	{
 	  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
 	  /* legend to be the same as those used for the numbers for the axes*/
+
+	  textcolor_old = textcolor;
+	  fontid_old[0] = fontid[0];
+	  fontid_old[1] = fontid[1];
 	  
+	  textcolor = sciGetFontForeground(ppsubwin->mon_z_label);
+	  fontid[0] = sciGetFontStyle(ppsubwin->mon_z_label);
+	  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_z_label)/100;
+	  	  
 	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xset","font",fontid,&doublesize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xstringl",legz,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xstring",legz,(x=x - rect[3],&x),&y,PI0,&flag
-		  ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	  if( sciGetVisibility(ppsubwin->mon_z_label) == TRUE)
+	    C2F(dr)("xstring",legz,(x=x - rect[3],&x),&y,PI0,&flag
+		    ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	  
+	  textcolor = textcolor_old;
+	  fontid[0] = fontid_old[0];
+	  fontid[1] = fontid_old[1];
 	}
     }
   /*** le x-y scaling ***/
@@ -15463,11 +15822,26 @@ int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	      /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
 	      /* legend to be the same as those used for the numbers for the axes*/
 	      
+	      textcolor_old = textcolor;
+	      fontid_old[0] = fontid[0];
+	      fontid_old[1] = fontid[1];
+	      
+	      textcolor = sciGetFontForeground(ppsubwin->mon_x_label);
+	      fontid[0] = sciGetFontStyle(ppsubwin->mon_x_label);
+	      fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_x_label)/100;
+	      
 	      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xset","font",fontid,&doublesize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xstringl",legx,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xstring",legx,(x=x-rect[2],&x),&y,PI0,&flag
-		      ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+
+	      if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE)
+		C2F(dr)("xstring",legx,(x=x-rect[2],&x),&y,PI0,&flag
+			,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+
+	      textcolor = textcolor_old;
+	      fontid[0] = fontid_old[0];
+	      fontid[1] = fontid_old[1];
+
 	    }
 	}
     }
@@ -15569,11 +15943,24 @@ int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	    { 
 	      /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
 	      /* legend to be the same as those used for the numbers for the axes*/
+
+	      textcolor_old = textcolor;
+	      fontid_old[0] = fontid[0];
+	      fontid_old[1] = fontid[1];
 	      
+	      textcolor = sciGetFontForeground(ppsubwin->mon_y_label);
+	      fontid[0] = sciGetFontStyle(ppsubwin->mon_y_label);
+	      fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_y_label)/100;
+	      	      
 	      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xset","font",fontid,&doublesize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xstringl",legy,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* Adding F.Leray too */
-	      C2F(dr)("xstring",legy,&x,&y,PI0,&flag,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	      if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE)
+		C2F(dr)("xstring",legy,&x,&y,PI0,&flag,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+
+	      textcolor = textcolor_old;
+	      fontid[0] = fontid_old[0];
+	      fontid[1] = fontid_old[1];
 	    }
 	}
     }
@@ -15675,11 +16062,24 @@ int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	    { /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
 	      /* legend to be the same as those used for the numbers for the axes*/
 	      
+	      textcolor_old = textcolor;
+	      fontid_old[0] = fontid[0];
+	      fontid_old[1] = fontid[1];
+	      
+	      textcolor = sciGetFontForeground(ppsubwin->mon_x_label);
+	      fontid[0] = sciGetFontStyle(ppsubwin->mon_x_label);
+	      fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_x_label)/100;
+	      
 	      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xset","font",fontid,&doublesize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xstringl",legx,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xstring",legx,(x=x-rect[2],&x),&y,PI0,&flag
-		      ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	      if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE)
+		C2F(dr)("xstring",legx,(x=x-rect[2],&x),&y,PI0,&flag
+			,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+
+	      textcolor = textcolor_old;
+	      fontid[0] = fontid_old[0];
+	      fontid[1] = fontid_old[1];
 	    }
 	}
     }
@@ -15779,12 +16179,25 @@ int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	  if (legy != 0)
 	    {  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
 	      /* legend to be the same as those used for the numbers for the axes*/
+
+	      textcolor_old = textcolor;
+	      fontid_old[0] = fontid[0];
+	      fontid_old[1] = fontid[1];
+	      
+	      textcolor = sciGetFontForeground(ppsubwin->mon_y_label);
+	      fontid[0] = sciGetFontStyle(ppsubwin->mon_y_label);
+	      fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_y_label)/100;
 	      
 	      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xset","font",fontid,&doublesize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xstringl",legy,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xstring",legy,(x=x-rect[2],&x),&y,PI0,&flag
-		      ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	      if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE)
+		C2F(dr)("xstring",legy,(x=x-rect[2],&x),&y,PI0,&flag
+			,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	      
+	      textcolor = textcolor_old;
+	      fontid[0] = fontid_old[0];
+	      fontid[1] = fontid_old[1];
 	    }
 	}
     }
@@ -15796,7 +16209,7 @@ int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
   if ( textcolor != -1 || ticscolor != -1 ) 
     C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /***/
-  FREE(loc);
+  /* FREE(loc); */
 
   
   return 0;
@@ -16488,6 +16901,7 @@ int InitAxesModel()
   pSUBWIN_FEATURE (paxesmdl)->SRect[5]   = 1.0;  /* zmax */
   
   pSUBWIN_FEATURE (paxesmdl)->tight_limits = FALSE;
+
   return 1; 
 }
 
@@ -16591,6 +17005,7 @@ int DestroyMerge (sciPointObj * pthis)
   return 0;
 }
 
+
 int  Merge3dDimension(sciPointObj *pparent)
 {
   integer N,q; 
@@ -16643,12 +17058,15 @@ int  Merge3dDimension(sciPointObj *pparent)
   return q;
 }
 
+
+
 void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_entity, int *pos)
 {
   sciSons *psonstmp;
   int i,N;
 
   psonstmp = sciGetSons (pparent);
+
   while (psonstmp != (sciSons *) NULL) {   
     switch (sciGetEntityType (psonstmp->pointobj)) {  
     case SCI_SURFACE:
@@ -16686,7 +17104,6 @@ void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_en
       }
     psonstmp = psonstmp->pnext;
   }
-
 }
 
 
@@ -16696,24 +17113,24 @@ void Merge3d(sciPointObj *psubwin)
   sciPointObj *pmerge; 
   int *index_in_entity;
   long *from_entity;
-
+  
   if(sciGetEntityType (psubwin) != SCI_SUBWIN) return; 
   if ((pmerge= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
     DestroyMerge(pmerge); 
-
+  
   /* ========================================================================
    * Compute the number of facets, segments,... included in all the subwin 
    * children
    * ========================================================================*/
-
-
+  
+  
   q =  Merge3dDimension(psubwin);
-
-
+  
+  
   /* ========================================================================
    * allocate tables for index and handles
    * ========================================================================*/
-
+  
   /* q now contains the total number of elements */
   if ((index_in_entity = (int *) malloc (q * sizeof (int))) == (int *)NULL) {
     Scistring("Merge3d : not enough memory to allocate \n");
@@ -16723,24 +17140,24 @@ void Merge3d(sciPointObj *psubwin)
     Scistring("Merge3d : not enough memory to allocate \n");
     free(index_in_entity);
   }
- 
+  
   /* ========================================================================
    * fill the index and handles tables
    * ========================================================================*/
   k=0;
   Merge3dBuildTable(psubwin, index_in_entity, from_entity, &k);
-
+  
   /* ========================================================================
    * create the Merge data structure
    * ========================================================================*/
-
+  
   if ((pmerge=ConstructMerge ((sciPointObj *) psubwin,q,index_in_entity,from_entity)) == (sciPointObj *) NULL) {
     free(index_in_entity);
     free(from_entity);
     sciprint ("\r\n No merge supported");}
   else /* inform the subwindow to display Merge instead of individual children */
     pSUBWIN_FEATURE (psubwin)->facetmerge = TRUE;
-
+  
 }
 
 void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
@@ -17142,3 +17559,219 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
   }
   FREE(dist);FREE(locindex);FREE(polyx);FREE(polyy);
 }
+
+
+
+int labels2D_draw(sciPointObj * psubwin)
+{
+  integer x[6], v,rect1[4];
+  double dv, locx, locy;
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+  char locstr;
+/*   integer fontid, fontsize, textcolor; */
+
+  if (!sciGetVisibility(psubwin)) return 0;
+  /*sciSetCurrentObj (pobj);       F.Leray 25.03.04*/
+  /* load the object foreground and dashes color */
+ 
+  if (sciGetEntityType(psubwin) == SCI_SUBWIN)
+    {
+      locstr=ppsubwin->axes.xdir;
+      switch (locstr)
+	{
+	case 'd':
+	  locy=ppsubwin->FRect[1];
+	  break;
+	case 'c':
+	  locy=(ppsubwin->FRect[1]>0.0)?ppsubwin->FRect[1]: 0.0;
+	  locy=(ppsubwin->FRect[3]<0.0)?ppsubwin->FRect[1]: locy;
+	  break;
+	case 'u':
+	  locy=ppsubwin->FRect[3];
+	  break;
+	default:
+	  locy=ppsubwin->FRect[1];
+	  break;
+	}
+      locstr=ppsubwin->axes.ydir;
+      switch (locstr)
+	{
+	case 'l':
+	  locx=ppsubwin->FRect[0];
+	  break;
+	case 'c':
+	  locx=(ppsubwin->FRect[0]>0.0)?ppsubwin->FRect[0]: 0.0;
+	  locx=(ppsubwin->FRect[2]<0.0)?ppsubwin->FRect[0]: locx;
+	  break;
+	case 'r':
+	  locx=ppsubwin->FRect[2];
+	  break;
+	default:
+	  locx=ppsubwin->FRect[0];
+	  break;
+	}
+    }
+
+  /* main title */ /* We fix the title always at the top */
+  rect1[0]= Cscale.WIRect1[0];
+  rect1[1]= Cscale.WIRect1[1];
+  rect1[2]= Cscale.WIRect1[2];
+  rect1[3]= Cscale.WIRect1[3]/6;
+
+  x[0] = sciGetFontForeground (ppsubwin->mon_title);
+  x[2] = sciGetFontDeciWidth (ppsubwin->mon_title)/100;
+  x[3] = 0;
+  x[4] = sciGetFontStyle(ppsubwin->mon_title);
+  
+  C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+  C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+  C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+  
+  if( sciGetVisibility(ppsubwin->mon_title) == TRUE)
+    C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_title),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L);
+  
+  
+  /* x label */
+  rect1[0]= Cscale.WIRect1[0]+Cscale.WIRect1[2];
+  rect1[1]= YScale(locy-(ppsubwin->FRect[3]-ppsubwin->FRect[1])/12);
+  rect1[2]= Cscale.WIRect1[2]/6;
+  rect1[3]= Cscale.WIRect1[3]/6;
+  
+  x[0] = sciGetFontForeground (ppsubwin->mon_x_label);
+  x[2] = sciGetFontDeciWidth (ppsubwin->mon_x_label)/100;
+  x[3] = 0;
+  x[4] = sciGetFontStyle(ppsubwin->mon_x_label);
+  
+  C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+  C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+  C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+  
+   if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE)
+    C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_x_label),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L);
+  
+  /* y label */
+  rect1[0]= XScale(locx-(ppsubwin->FRect[2]-ppsubwin->FRect[0])/12);
+  rect1[1]= Cscale.WIRect1[1]-Cscale.WIRect1[3]/24;
+  rect1[2]= Cscale.WIRect1[2]/6;
+  rect1[3]= Cscale.WIRect1[3]/12;
+  
+  x[0] = sciGetFontForeground (ppsubwin->mon_y_label);
+  x[2] = sciGetFontDeciWidth (ppsubwin->mon_y_label)/100;
+  x[3] = 0;
+  x[4] = sciGetFontStyle(ppsubwin->mon_y_label);
+  
+  C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+  C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+  C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+  
+  if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE)
+    C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_y_label),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L);
+  
+  return 0;
+}
+
+
+
+/**ConstructLabel
+ * @memo This function creates Label structure used for x,y,z labels and for the Title.
+ * @param  sciPointObj *pparentsubwin
+ * @param  char text[] : intial text string.
+ * @param  int type to get info. on the type of label
+ * @return  : pointer sciPointObj if ok , NULL if not
+ */
+sciPointObj *
+ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
+{
+  sciPointObj *pobj = (sciPointObj *) NULL;
+  
+  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
+    {
+      if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)
+	return (sciPointObj *) NULL;
+      sciSetEntityType (pobj, SCI_LABEL);
+      if ((pobj->pfeatures = MALLOC ((sizeof (sciLabel)))) == NULL)
+	{
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      if (sciAddNewHandle (pobj) == -1)
+	{
+	  FREE(pLABEL_FEATURE(pobj));
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+     /*  sciSetParent (pobj, pparentsubwin); */
+      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
+	{
+	  sciDelHandle (pobj);
+	  FREE(pLABEL_FEATURE(pobj));
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      
+      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      
+      pLABEL_FEATURE (pobj)->text.relationship.psons = (sciSons *) NULL;
+      pLABEL_FEATURE (pobj)->text.relationship.plastsons = (sciSons *) NULL;
+
+      pLABEL_FEATURE (pobj)->text.callback = (char *)NULL;
+      pLABEL_FEATURE (pobj)->text.callbacklen = 0; 
+      pLABEL_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
+     
+
+      if ((pLABEL_FEATURE (pobj)->text.ptextstring =calloc (strlen(text)+1, sizeof (char))) == NULL)
+	{
+	  sciprint("No more place to allocates text string, try a shorter string");
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pLABEL_FEATURE(pobj));
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      /* on copie le texte du label dans le champs specifique de l'objet */
+      strcpy (pLABEL_FEATURE (pobj)->text.ptextstring, text);
+      
+      pLABEL_FEATURE (pobj)->text.textlen = strlen(text);
+      pLABEL_FEATURE (pobj)->ptype = type;
+      
+      pLABEL_FEATURE (pobj)->text.fontcontext.textorientation = 0; 
+
+    /*   pLABEL_FEATURE (pobj)->titleplace = SCI_LABEL_IN_TOP; */
+      pLABEL_FEATURE (pobj)->isselected = TRUE;
+      if (sciInitFontContext (pobj) == -1)
+	{
+	  FREE(pLABEL_FEATURE(pobj)->text.ptextstring);
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pLABEL_FEATURE(pobj));
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      return (sciPointObj *) pobj;
+    }
+  else
+    {
+      sciprint ("The parent has to be a SUBWIN \n");
+      return (sciPointObj *) NULL;
+    }
+}
+
+
+/**DestroyTitle
+ * @memo This function destroies the Subwindow (the Axe) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
+ * @param sciPointObj * pthis: the pointer to the entity
+ */
+int
+DestroyLabel (sciPointObj * pthis)
+{
+  FREE (pLABEL_FEATURE (pthis)->text.ptextstring);
+  sciDelThisToItsParent (pthis, sciGetParent (pthis));
+  if (sciDelHandle (pthis) == -1)
+    return -1;
+  FREE ((sciGetFontContext(pthis))->pfontname);
+  FREE (sciGetPointerToFeature (pthis));
+  FREE (pthis);
+  /* on peut alors destroyer le parent */
+  return 0;
+}
+
