@@ -120,6 +120,8 @@ GUILIBS=-NODEFAULTLIB:libcmt.lib $(GUI) libc.lib msvcrt.lib
 XLIBS=$(TKLIBS) $(PVMLIB) $(GUILIBS)
 # XLIBSBIN is used by the binary version of Scilab for linking examples
 XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS)
+# if you use ATLAS library (dll)
+#XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS) "$(SCIDIR1)\bin\atlas.lib"
 
 .c.obj	:
 	@echo ------------- Compile file $< --------------
