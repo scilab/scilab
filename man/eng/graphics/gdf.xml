@@ -32,7 +32,7 @@
 
   <DESCRIPTION>
     <P>The default figure is a graphic entity which is never drawn. It is used
-    as a reference for the figure properties default values. Theses default
+    as a reference for the figure properties default values. These default
     properties values are used to initialize new figures.</P>
 
     <P>The <VERB>gdf</VERB> function returns the handle on the default figure.

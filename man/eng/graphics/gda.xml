@@ -32,7 +32,7 @@
 
   <DESCRIPTION>
     <P>The default axes is a graphic entity which is never drawn. It is used
-    as a reference for the axes properties default values. Theses default
+    as a reference for the axes properties default values. These default
     properties values are used to initialize new axes inside figures.</P>
 
     <P>The <VERB>gda</VERB> function returns the handle on the default axes.
