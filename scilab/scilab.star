@@ -114,14 +114,12 @@ clear initial_demos_tables
 if (sciargs()<>"-nw")&(sciargs()<>"-nwni") then
   if MSDOS then
     delmenu("Help")
+    addmenu("Help",list(0,"helpcommand"))
+    helpcommand="help()"
     if funptr("TK_EvalStr")<>0 then
-      addmenu("Help",list(0,"helpcommand"))
-      helpcommand="help()"
+      delmenu("Editor")
       addmenu("Editor",list(0,"editcommand"))
       editcommand="editor()"
-    else
-      addmenu("Help",list(0,"helpcommand"))
-      helpcommand="help()"
     end
   else
     if %gtk == %f then     
@@ -158,7 +156,7 @@ if (sciargs()<>"-nw")&(sciargs()<>"-nwni") then
       // Create Scipad TCL interpretor
       TK_EvalStr('set a [interp exists scipad]');
       a=TK_GetVar('a');
-      if a <> 1 then 
+      if a <> "1" then 
 	TK_EvalStr("interp create scipad")
 	TK_EvalStr("load {"+SCI+"/bin/tk83.dll} Tk scipad")
 	TK_EvalStr("scipad eval {wm withdraw .}")
@@ -167,7 +165,7 @@ if (sciargs()<>"-nw")&(sciargs()<>"-nwni") then
       // Create Browsehelp TCL interpretor
       TK_EvalStr('set a [interp exists browsehelp]');
       a=TK_GetVar('a');
-      if a <> 1 then 
+      if a <> "1" then 
 	TK_EvalStr("interp create browsehelp")
 	TK_EvalStr("load {"+SCI+"/bin/tk83.dll} Tk browsehelp")
 	TK_EvalStr("browsehelp eval {wm withdraw .}")
