@@ -774,7 +774,7 @@ Matrix *mxCreateCharArray(int ndim, int *dims)
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
-  C2F(hmcreate)(&lw1, &ndim, dims, (CLASS=4, &CLASS),(cmplx=0, &cmplx),&retval);
+  C2F(hmcreate)(&lw1, &ndim, dims, (CLASS=1, &CLASS),(cmplx=0, &cmplx),&retval);
   if( !retval) {
     return (Matrix *) 0;
   }
@@ -804,16 +804,21 @@ Matrix *mxCreateCellArray(int ndim, int *dims)
 
 Matrix *mxGetCell(Matrix *ptr, int index)
 {
-  int *locilist,*lociobj;
+  int *locilist,*lociobj,*lociobjcopy;
   int *loci = (int *) stkptr((long int)ptr);
-  int k;
+  int kk,lw,isize;
   locilist = listentry(loci,3);
-  for (k=1;k<5;k++) {
-  lociobj = listentry(locilist,k);
-  printf("%d %d %d %d\n", lociobj[0],lociobj[1],lociobj[2],lociobj[3]);
-  }
-  /* TO BE DONE */
-return (Matrix *) 0;
+  lociobj = listentry(locilist,index);
+  isize=2*(locilist[index+2]-locilist[index+1]);
+  Nbvars++;
+  lw=Nbvars;
+  CreateData(lw,4*isize);
+  lociobjcopy=GetData(lw);
+  for (kk = 0; kk < isize; ++kk) lociobjcopy[kk]=lociobj[kk];
+  C2F(intersci).ntypes[lw-1]=AsIs;
+  C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
+  /* TO BE REDONE! */
+  return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
 void *mxCalloc(unsigned int n, unsigned int size)
