@@ -305,7 +305,7 @@ sciGraphicContext;
 
 
 /*----------------------
-   SCIFONT.H header file
+   SCIFONT.H header file no more used
   ----------------------*/
 
 /* Changing those lines, be carreful that
@@ -339,13 +339,7 @@ typedef struct
   /** renvoi la longueur de fontname */
   unsigned int fontnamelen;	
   /** */
-  BOOL fontbold;
-  /** */
-  BOOL fontitalic;
-  /** */
-  BOOL fontunderline;
-  /** */
-  BOOL fontstrikeout;
+  int fonttype; /* scilab font index 0 to 9 */
   /** Gets the width of the character in tenth of point */
   int fontdeciwidth;		
   /** this is coded in tenth of a degree */
