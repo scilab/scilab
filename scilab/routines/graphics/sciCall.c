@@ -48,11 +48,18 @@ void Objarc (angle1,angle2,x,y,width,height,color,fill,hdl)
     int color,fill;
     long *hdl;
 { 
+  sciPointObj *psubwin, *pobj;
+  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+
   sciSetCurrentObj (ConstructArc
-         ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),*x,*y,
+         (psubwin,*x,*y,
 	  *height, *width, *angle1, *angle2, color, fill));
-  *hdl=sciGetHandle(sciGetCurrentObj ()); 
-  sciDrawObj(sciGetCurrentObj ());
+  pobj = sciGetCurrentObj();
+  sciSetLineStyle(pobj, sciGetLineStyle (psubwin));
+  sciSetForeground (pobj, sciGetForeground (psubwin));
+ 
+  *hdl=sciGetHandle(pobj); 
+  sciDrawObj(pobj);
  
 }
 
@@ -66,23 +73,26 @@ void Objpoly (x,y,n,closed,mark,hdl)
     long *hdl;
     int mark;
 { 
-  sciPointObj *psubwin;
+  sciPointObj *psubwin, *pobj;
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
   sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,0)); 
+  pobj = sciGetCurrentObj();
   if (mark <= 0)
     { 
-      sciSetIsMark(sciGetCurrentObj(), TRUE);
-      sciSetMarkStyle (sciGetCurrentObj(),(-mark));
+      sciSetIsMark(pobj, TRUE);
+      sciSetMarkStyle (pobj,sciGetMarkStyle(psubwin));
+      sciSetForeground (pobj, sciGetForeground (psubwin));
     }
    else
      {
-      sciSetIsMark(sciGetCurrentObj(), FALSE);
-      sciSetForeground (sciGetCurrentObj(), mark);
+      sciSetIsMark(pobj, FALSE);
+      sciSetLineStyle(pobj, sciGetLineStyle (psubwin));
+      sciSetForeground (pobj, sciGetForeground (psubwin));
      }
-  *hdl=sciGetHandle(sciGetCurrentObj ()); 
+  *hdl=sciGetHandle(pobj); 
   if (sciGetSurface(psubwin) != (sciPointObj *) NULL) Merge3d(psubwin);
-  sciDrawObj(sciGetCurrentObj ());
+  sciDrawObj(pobj);
  
 }
 
@@ -152,16 +162,19 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wh,fill,hdl)
   integer v;
   double dv;
   integer x1,yy1,n=1,rect1[4];
-  sciPointObj *pobj;
+  sciPointObj *psubwin, *pobj;
    
+  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   sciSetCurrentObj (ConstructText
-			((sciPointObj *)
-               		 sciGetSelectedSubWin (sciGetCurrentFigure ()), fname,
+			(psubwin, fname,
 			 strlen (fname), x, y,wh));
   pobj=sciGetCurrentObj ();
   *hdl= sciGetHandle(pobj);
   sciSetFontOrientation (pobj, (int) (*angle *  10)); 
   pTEXT_FEATURE (pobj)->fill=fill;
+  sciSetForeground (pobj, sciGetForeground (psubwin));
+  sciSetFontStyle(pobj, sciGetFontStyle (psubwin));
+  sciSetFontDeciWidth(pobj, sciGetFontDeciWidth (psubwin));
   sciDrawObj(pobj);
           
 
