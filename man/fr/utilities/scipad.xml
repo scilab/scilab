@@ -29,7 +29,23 @@
    from Scilab command line with the instruction <VERB>scipad()</VERB> or scipad(f). It allows Windows 
    like edition modes. The "Load Into Scilab" menu can be used to <VERB>exec</VERB> the file contents 
    into Scilab.
-   
+     <P></P>
+The following shortcuts are defined<P></P>
+  &lt;Control-o&gt; :  open file<P></P>
+  &lt;Control-z&gt; :  undo<P></P>
+  &lt;Control-y&gt; :  redo<P></P>
+  &lt;Control-f&gt; :  find<P></P>
+  &lt;Control-r&gt; :  find and replace<P></P>
+  &lt;Control-x&gt; :  cut<P></P>
+  &lt;Control-v&gt; :  paste<P></P>
+  &lt;Control-w&gt; :  close current file<P></P>
+  &lt;Control-n&gt; :  new file<P></P>
+  &lt;Control-q&gt; :  exit scipad file<P></P>
+  &lt;Control-g&gt; :  goto line<P></P>
+  &lt;Control-p&gt; :  print selection<P></P>
+  &lt;Control-P&gt; :  print <P></P>
+  &lt;Control-S&gt; :  Save As <P></P>
+ 
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
