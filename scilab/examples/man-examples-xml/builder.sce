@@ -1,5 +1,5 @@
 mode(-1)
-path=get_absolute_file_path('loader.sce');
+path=get_absolute_file_path('builder.sce');
 
 myhelps=[path+'helpdir1', "Title1";
 	 path+'helpdir2', "Title2"]
