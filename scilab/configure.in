@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.72 $)dnl
+AC_REVISION($Revision: 1.73 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1131,7 +1131,7 @@ case "$host" in
      STRIP=echo 
      GCC=yes
      CC=cc
-     CC_OPTIONS='-no-cpp-precomp -O2 -I/sw/include'
+     CC_OPTIONS='-no-cpp-precomp -O2 -I/sw/include -L/sw/lib'
      CC_LDFLAGS=
      CC_PICFLAGS='-fPIC'
      # script shell f77 have bugs, get ours
@@ -1327,7 +1327,7 @@ fi
 
 if test "$XAW3D" = yes; then
   save_cflags=$CFLAGS
-  CFLAGS=$X_CFLAGS
+  CFLAGS="$X_CFLAGS $CC_OPTIONS"
   AC_TRY_COMPILE([#include <X11/IntrinsicP.h>
 #include <X11/Xaw3d/ViewportP.h>],,,
     AC_MSG_ERROR([Include file "ViewportP.h" for Xaw3d not found. 
