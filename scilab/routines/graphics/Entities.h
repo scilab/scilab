@@ -67,7 +67,7 @@
 #define pMERGE_FEATURE(pointobj)       ((sciMerge         *)pointobj->pfeatures)/* DJ.A 30/12 */
 #define pSURFACE_FEATURE(pointobj)     ((sciSurface       *)pointobj->pfeatures)/** */
 #define pLIGHT_FEATURE(pointobj)       ((sciLightSource   *)pointobj->pfeatures)/** */ 
-#define pAXIS_FEATURE(pointobj)        ((sciAxis          *)pointobj->pfeatures)/** */
+//#define pAXIS_FEATURE(pointobj)        ((sciAxis          *)pointobj->pfeatures)/** */
 #define pAXES_FEATURE(pointobj)        ((sciAxes          *)pointobj->pfeatures)/** */
 #define pGRAYPLOT_FEATURE(pointobj)    ((sciGrayplot      *)pointobj->pfeatures)/** */
 #define pFEC_FEATURE(pointobj)         ((sciFec           *)pointobj->pfeatures)/** */
@@ -839,6 +839,18 @@ typedef struct
   integer izcol;  
   integer dimzx;
   integer dimzy;
+
+   //F.Leray 12.03.04 Adding here to know the length of arrays pvecx, pvecy and pvecz
+
+  int nc;
+  int nx;
+  int ny;
+  int nz;
+  int isfac;
+  int m1,n1;
+  int m2,n2;
+  int m3,n3;
+
   POINT2D *pproj;			/* projections on 2d */
   integer flag[3];
   double ebox[6];
@@ -1372,16 +1384,16 @@ extern int DestroyRectangle (sciPointObj * pthis);
 extern sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
 				  double * pvecx, double * pvecy, double * pvecz,
 				  integer *zcol, integer izcol, integer dimzx, integer dimzy, 
-                                  integer *flag, double *ebox, integer flagcolor);
+                                  integer *flag, double *ebox, integer flagcolor, integer *isfac, integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3);
 extern int DestroySurface (sciPointObj * pthis);
 extern sciPointObj *ConstructMerge (sciPointObj * pparentsubwin, double * pvecx, double * pvecy, double * pvecz,
 				  integer dimzx, integer dimzy, long *tab);/*DJ.A*/
 extern int DestroyMerge (sciPointObj * pthis);
-extern sciPointObj *ConstructAxis (sciPointObj * pparentfigure,char *strflag,int style,
+/*extern sciPointObj *ConstructAxis (sciPointObj * pparentfigure,char *strflag,int style,
 				   double minx, double miny, double minz,
 				   double maxx, double maxy, double maxz); 
 extern int DestroyAxis (sciPointObj * pthis);
-
+*/
 extern sciPointObj *ConstructGrayplot (sciPointObj * pparentfigure,double *vx,double *vy, 
                                    double *vz,int nx,int ny, int type);
 extern int DestroyGrayplot (sciPointObj * pthis);
@@ -1461,7 +1473,7 @@ extern void Zoom_Subwin(double bbox[]);
 extern void Unzoom_Subwin();
 extern sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin);
 extern void sciSwitchWindow(int *winnum);
-extern int sciType (char *marker);
+extern int sciType (char *marker, sciPointObj *pobj);  // F.Leray MODIFICATION ICI
 extern int sciUnAgregation (sciPointObj * pobj);
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
 extern int version_flag(); 
@@ -1491,7 +1503,7 @@ extern BOOL Ishidden(sciPointObj *pobj);
 extern BOOL IsDownAxes(sciPointObj *pobj);
 extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1);
 extern void update_3dbounds(sciPointObj *pobj,integer *flag,double *x,double *y,double *z,integer n1, integer n2,double alpha,double theta);/* DJ.A 2003 */
-extern double search(double *id, double *tab1, double *tab2, integer *n);
+extern double graphic_search(double *id, double *tab1, double *tab2, integer *n);
 extern void update_graduation(sciPointObj *pobj);
 /***/
 extern void initsubwin();
@@ -1504,3 +1516,4 @@ extern sciPointObj *sciGetMerge(sciPointObj *psubwin);
 extern int C2F(CreateModels) ();
 extern int InitFigureModel();
 extern int InitAxesModel();
+
