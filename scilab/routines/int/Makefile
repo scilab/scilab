@@ -34,7 +34,7 @@ all:: Makefile.mak
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
 
-itops.o: ../stack.h
+bitops.o: ../stack.h
 convert.o: ../stack.h
 creimat.o: ../stack.h
 getimat.o: ../stack.h
