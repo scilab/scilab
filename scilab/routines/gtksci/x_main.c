@@ -45,8 +45,8 @@ static char * initial_script = NULL;
 static int  initial_script_type = 0; /* 0 means filename 1 means code */
 
 #ifdef WITH_TK
-  extern void initTCLTK(void);
-  extern void flushTKEvents(void);
+  /*extern void initTCLTK(void);
+  extern void flushTKEvents(void);*/
 #endif
 
 /* extern int C2F(initcom)(int *,int*); */
@@ -127,8 +127,8 @@ void C2F(realmain)()
   C2F(settmpdir)();
 
   #ifdef WITH_TK
-    initTCLTK();
-    flushTKEvents();
+    /*initTCLTK();
+    flushTKEvents();*/
   #endif
   
   if ( no_window == 0 ) 

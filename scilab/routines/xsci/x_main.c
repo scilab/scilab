@@ -87,8 +87,8 @@ extern void exit();
 char *ProgramName;
 
 #ifdef WITH_TK
-  extern void initTCLTK(void);
-  extern void flushTKEvents(void);
+/*  extern void initTCLTK(void);
+  extern void flushTKEvents(void); */
 #endif
 
 
@@ -215,8 +215,8 @@ void C2F(realmain)()
     }
     
  #ifdef WITH_TK
-   initTCLTK();
-   flushTKEvents();
+   /*initTCLTK();
+   flushTKEvents();*/
  #endif
   
 
