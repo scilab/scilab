@@ -46,6 +46,7 @@ Makefile.amk	: Makefile
 
 include Make.banier
 
+inisci.o : ../machine.h 
 System.o: ../machine.h
 System2.o: ../machine.h
 Calelm.o: ../machine.h
