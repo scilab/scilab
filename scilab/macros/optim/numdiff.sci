@@ -14,6 +14,8 @@ end
 if type(%f)==15 then
   params=%f;params(1)=null();
   %f=%f(1)
+else
+  params=list()
 end
 
 %x=%x(:);
