@@ -39,7 +39,7 @@ equation
   /* Calcul des pertes de charges */
   deltaP = deltaPf + rho*g*(z2 - z1);
 
-  ThermoCar = noEvent(if (abs(Q) > eps) then Q*abs(Q) else Q*eps);
+  ThermoCar = if (abs(Q) > eps) then Q*abs(Q) else Q*eps;
   deltaPf = 8*khi*ThermoCar/(pi^2*D^4*rho);
   
   

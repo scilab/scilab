@@ -34,7 +34,7 @@ equation
   
   /* Calcul de la perte de charge */
 
-  ThermoCar = noEvent(if (abs(Q) > eps) then Q*abs(Q) else Q*eps);
+  ThermoCar = if (abs(Q) > eps) then Q*abs(Q) else Q*eps;
   deltaP*Cv*abs(Cv) = 1.733e12*ThermoCar/rho^2;
   
   /* Calcul du Cv en fonction de l'ouverture */

@@ -60,7 +60,7 @@ equation
   Cs1.H = 1.e5;
 
   Max_e1 = if (z - ze1 < 0.0) then 0.0 else (z - ze1);
-  ThermoCar1 = noEvent(if (abs(Ce1.Q) > eps) then Ce1.Q*abs(Ce1.Q) else Ce1.Q*eps);
+  ThermoCar1 = if (abs(Ce1.Q) > eps) then Ce1.Q*abs(Ce1.Q) else Ce1.Q*eps;
   (Patm + rho*g*Max_e1 - Ce1.P)*Oe1 = k*ThermoCar1/2/rho;
 
   Oe1 = if (Ce1.Q >= 0.0) then 1.0
@@ -79,7 +79,7 @@ equation
   Os1 = 0;
 
   Max_s2 = if (z - zs2 < 0.0) then 0.0 else (z - zs2);
-  ThermoCar2 =noEvent( if (abs(Cs2.Q) > eps) then Cs2.Q*abs(Cs2.Q) else Cs2.Q*eps);
+  ThermoCar2 =if (abs(Cs2.Q) > eps) then Cs2.Q*abs(Cs2.Q) else Cs2.Q*eps;
   (Patm + rho*g*Max_s2 - Cs2.P)*Os2 = k*ThermoCar2/2/rho;
 
   Os2 = if (Cs2.Q <= 0.0) then 1.0
