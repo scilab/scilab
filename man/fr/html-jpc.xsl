@@ -3,7 +3,7 @@
 <xsl:output method="html" encoding="ISO-8859-1" />
 <xsl:template match="MAN">
 <html>
-<head><link REL="STYLESHEET" HREF="../../man.css"></link>
+<head>
 <title><xsl:for-each select="./SHORT_DESCRIPTION">
 <xsl:value-of select="@name"/>
 </xsl:for-each>
@@ -22,7 +22,7 @@
 </xsl:if>
 
 <xsl:if test="./PARAM">
-	<H3><font color="blue">Paramètres</font></H3>
+	<H3><font color="blue">Parametres</font></H3>
 	<xsl:apply-templates select="PARAM"/>
 </xsl:if>
 
@@ -54,7 +54,7 @@
 </xsl:if>
 
 <xsl:if test="./USED_FUNCTION">
-	<H3><font color="blue">Fonction utilisée</font></H3>
+	<H3><font color="blue">Fonction utilisee</font></H3>
 	<p><xsl:value-of select="./USED_FUNCTION"/></p>
 </xsl:if>
 
@@ -72,13 +72,13 @@
 </xsl:template>
 
 <xsl:template match="PARAM[@target='in']">
-	<ul><li><H3><font color="blue">Paramètres d'entrée</font></H3>
+	<ul><li><H3><font color="blue">Parametres d'entree</font></H3>
 	<ul><xsl:apply-templates select="PARAM_ITEM|PARAM_INDENT|ITEMIZE|P|TABLE|VERBATIM"/></ul>
 	</li></ul>
 </xsl:template>
 
 <xsl:template match="PARAM[@target='out']">
-	<ul><li><H3><font color="blue">Paramètres de sortie</font></H3>
+	<ul><li><H3><font color="blue">Parametres de sortie</font></H3>
 		<ul><xsl:apply-templates select="PARAM_ITEM|PARAM_INDENT|ITEMIZE|P|TABLE|VERBATIM"/></ul>
 	</li>
 	</ul>

@@ -10,7 +10,7 @@ DIRS = arma control dcd elementary fileio functions graphics gui \
 QUIET= > /dev/null 
 
 XSLFILE=../html-jpc.xsl
-#XSLFILE=../html.xsl
+XSLFILE=../html.xsl
 
 man: whatis html index contents
 

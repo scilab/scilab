@@ -3,7 +3,7 @@
 <xsl:output method="html" encoding="ISO-8859-1" />
 <xsl:template match="MAN">
 <html>
-<head><link REL="STYLESHEET" HREF="../../man.css"></link>
+<head>
 <title><xsl:for-each select="./SHORT_DESCRIPTION">
 <xsl:value-of select="@name"/>
 </xsl:for-each>
