@@ -13,7 +13,12 @@
 #ifdef WIN32 
 #include <windows.h>
 #else 
+#if defined(__ppc__)
+#include <limits.h>
+#define MAXLONG LONG_MAX
+#else 
 #include <values.h>
+#endif
 #endif
 
 #if defined(netbsd)
