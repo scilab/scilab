@@ -20,59 +20,84 @@ exec `which wish` "$0" "$@"
 
 # ES 28/7/2003: 
 # changed text font from helvetica bold to courier medium
-# added accelerators Ctrl-w, Ctrl-n, Ctrl-q, Ctrl-p, Ctrl-P, Ctrl-S, Ctrl-g; Alt-L
-# fixed "unset pad" in closewin rather than exitapp - fixes a bug apparent when exiting
-#   scipad by closing the last active buffer and trying to relaunch it
+# added accelerators Ctrl-w, Ctrl-n, Ctrl-q, Ctrl-p, Ctrl-P, Ctrl-S, Ctrl-g; 
+#  Alt-L
+# fixed "unset pad" in closewin rather than exitapp - fixes a bug apparent when
+#   exiting scipad by closing the last active buffer and trying to relaunch it
 # colorization: added "punct", "operator"; changed colors of the colorization
 # corrected "parencesis" in blinkbrace - fixes highlighting of ()
 # "Scilab specials" in colorize -- added code to distinguish {} [], () from ;: 
 # [external but connected: new list of keywords "words"]
 
 #ES 4/9/2003
-# * added colorization pattern for "number"; separated pattern "xmltag" from "rem2"; 
+# * added colorization pattern for "number"; separated pattern "xmltag" from 
+#   "rem2";
 # * xmltags colorized only if filename contains ".xml"
 # *corrected bug - scipad(newfilename) began in an unnamed buffer
-#   [connected in scipad.sci: scipad(filename) does not open an additional "Untitled.sce"]
+#   [connected in scipad.sci: scipad(filename) does not open an additional 
+#   "Untitled.sce"]
 
 #ES 11/9/2003
 # closing/reopening scipad remembers previous font size
-# cursor doesn't disappear any more (it used to every second keypress or so or mouse move)
+# cursor doesn't disappear any more (it used to every second keypress or so or 
+#  mouse move)
 # cursor is red
 # cursor is positioned at 1.1 when opening an existing file 
 
 #ES 18/9/2003
-# *changed $Size to Size in the option menu entries - the correct radiobutton is tagged at startup
-# *commented #destroy $textarea in proc closefile - seems to solve the shrink bug (if the initial
-#   Untitled.sce is closed, then the next setfontscipadN, openfile, newfile command causes the window
-#   to shrink to its minimal size). Not sure it is the right thing to do. The bug is cured and the
-#   only apparent side effect is that thw window does not resize upon font change (was never exact 
-#   anyway) 
+# *changed $Size to Size in the option menu entries - the correct radiobutton  
+#   is tagged at startup
+# *commented #destroy $textarea in proc closefile - seems to solve the shrink
+#   bug (if the initial Untitled.sce is closed, then the next setfontscipadN,
+#   openfile,newfile command causes the window to shrink to its minimal size).
+#    Not sure it is the right thing to do. The bug is cured and the only 
+#   apparent side effect is that the window does not resize upon font change
+#   (was never exact anyway) 
 # *fixed tagging of radiobuttons in the windows menu when files are closed 
-# *added comment selection command (glitch - adds // after the last newline also when the selection
-#   ends there)
-# *added uncomment selection command (glitch - removes also the white space between beginning 
-#   of line and //)
+# *added comment selection command (glitch - adds // after the last newline 
+#  also when the selection ends there)
+# *added uncomment selection command (glitch - removes also the white space 
+#  between beginning of line and //)
 
 #ES 25/9/2003
 # *the code is now free of TKSetCursor's (even in FindIt)
-# *restored default mouseclicks actions (double-1=select word, triple-1=select line, 2=paste sel) 
-# *deglitched "\n//" in comment selection and restore selection in uncomment (not yet 100.0% ok)
+# *restored default mouseclicks actions (double-1=select word, triple-1=select 
+#   line, 2=paste sel) 
+# *deglitched "\n//" in comment selection and restore selection in uncomment 
+#   (not yet 100.0% ok)
 # *selection remains on after copytext
 # *accelerator Ctrl-Z for Undo (more standard)
 # *accelerator F1 for About
 # *Help opens the scipad page in the helpbrowser
 # *version -> 1.2
-# *button3 popsup the edit menu (not so useful but why not - perhaps in future I'll replace
-#    it with a tailored menu)
-# *"(modified)" appears on the titlebar, and the corresponding entry in the windows menu is colored
-#   (and of course things are reverted to normal when the buffer is saved)
+# *button3 popsup the edit menu (not so useful but why not - perhaps in future 
+#   I'll replace it with a tailored menu)
+# *"(modified)" appears on the titlebar, and the corresponding entry in the 
+#   windows menu is colored (and of course things are reverted to normal when
+#    the buffer is saved)
 # *translated to french (!!?) some "file already open"
-# *created the Execute menu; added the command execute selection and its accelerator Ctrl-y
-#   (inherits problems from ScilabEval/execstr() - most dangerous problem, goes
-#   amok when the selection contains a function without endfunction) -- glitch: splits
-#   quoted strings containing // as if // starts a comment
+# *created the Execute menu; added the command execute selection and its 
+#   accelerator Ctrl-y (inherits problems from ScilabEval/execstr() - most 
+#   dangerous problem, goes amok when the selection contains a function without
+#   endfunction) -- glitch: splits quoted strings containing // as if // starts
+#   a comment
 # *bug solved: Esc or Ctrl-c on a find/replace dialog used to hang scipad
-# *copy/paste (Ctrl-{c,v}) possible on find/replace strings [but not cut nor replace-paste --why?]
+# *copy/paste (Ctrl-{c,v}) possible on find/replace strings [but not cut nor 
+#   replace-paste --why?]
+
+#ES 2/10/2003
+# * $pad.statusind goes Salmon when the buffer is modified
+# * splitted long lines in the code for improved readability
+# * the popup menu doesn't pop on the bottom bar
+# * bug fixed: upon closing a buffer, the radiobutton of the one previously
+#    opened (which becomes the current buffer) was not correctly checked
+# * shift-button3 and ctrl-button3 popup execute and options
+# * bug fixed: search and replace strings can begin with "-"
+# * copytext doesn't tag the buffer as modified
+# * glitch corrected: //..."string"... is all colorized as comment, "...//..."
+#    as string
+# * glitch corrected: gotoline didn't scroll to make the target line visible
+# * begun proc whichfun
 
 # default global values
 #global .
@@ -97,7 +122,8 @@ set FGCOLOR "black"
 ##ES
 set CURCOLOR "red"
 #
-set BASENAME scipad5.tcl;#[string range $argv0 [expr [string last "/" $argv0] + 1] end]
+set BASENAME scipad5.tcl;
+#[string range $argv0 [expr [string last "/" $argv0] + 1] end]
 set argc 0
 #
 # added by Matthieu PHILIPPE
@@ -106,7 +132,8 @@ if {[info exists SciPath]} { set env(SCIPATH) $SciPath };
 set chset()                 {} 
 set words()                 {}  
 set listoffile("$pad.textarea",filename)   "[pwd]/Untitled.sce"
-set listoffile("$pad.textarea",save) 0; # set flag to know if the editing file was change by user
+set listoffile("$pad.textarea",save) 0; 
+# set flag to know if the editing file was change by user
 set listoffile("$pad.textarea",new) 1; # is not an opened file from disk
 set listoffile("$pad.textarea",thetime) 0; # set the time of the last modify
 set listoftextarea $pad.textarea
@@ -186,10 +213,12 @@ frame $pad.bottomTopMenu
 pack $pad.bottomTopMenu  -side top -expand 1 -fill both
 # where the text widget is packed
 frame $pad.bottomleftmenu
-pack $pad.bottomleftmenu -in $pad.bottomTopMenu  -side left -expand 1 -fill both
+pack $pad.bottomleftmenu -in $pad.bottomTopMenu  -side left -expand 1 \
+    -fill both
 # where the y scrollbar is packed
 frame $pad.bottomrightmenu 
-pack  $pad.bottomrightmenu -in $pad.bottomTopMenu  -side right -expand 0 -fill both 
+pack  $pad.bottomrightmenu -in $pad.bottomTopMenu  -side right -expand 0 \
+    -fill both 
 # this is for the x scroll bar at the bottom of the window
 frame $pad.bottombottommenu
 pack $pad.bottombottommenu -side bottom -expand 0 -fill both
@@ -198,130 +227,206 @@ pack $pad.bottombottommenu -side bottom -expand 0 -fill both
 #file menu
 menu $pad.filemenu.files -tearoff 0 -font $menuFont
 if {$lang == "eng"} {
-    $pad.filemenu  add cascade -label "File" -underline 0 -menu $pad.filemenu.files
-    $pad.filemenu.files add command -label "New" -underline 0 -command "filesetasnewmat" -accelerator Ctrl+n
-    $pad.filemenu.files add command -label "Open" -underline 0 -command "filetoopen $textareacur" -accelerator Ctrl+o
-    $pad.filemenu.files add command -label "Save" -underline 0 -command "filetosavecur" -accelerator Ctrl+s
-    $pad.filemenu.files add command -label "Save As" -underline 5 -command "filesaveascur" -accelerator Ctrl+S
+    $pad.filemenu  add cascade -label "File" -underline 0 \
+	-menu $pad.filemenu.files
+    $pad.filemenu.files add command -label "New" -underline 0 \
+                   -command "filesetasnewmat" -accelerator Ctrl+n
+    $pad.filemenu.files add command -label "Open" -underline 0 \
+                   -command "filetoopen $textareacur" -accelerator Ctrl+o
+    $pad.filemenu.files add command -label "Save" -underline 0 \
+                   -command "filetosavecur" -accelerator Ctrl+s
+    $pad.filemenu.files add command -label "Save As" -underline 5 \
+                   -command "filesaveascur" -accelerator Ctrl+S
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
-	$pad.filemenu.files add command -label "Print Setup" -underline 8 -command "printseupselection" -accelerator Ctrl+P
-	$pad.filemenu.files add command -label "Print" -underline 0 -command "selectprint $textareacur" -accelerator Ctrl+p
+	$pad.filemenu.files add command -label "Print Setup" -underline 8 \
+                   -command "printseupselection" -accelerator Ctrl+P
+	$pad.filemenu.files add command -label "Print" -underline 0 \
+                   -command "selectprint $textareacur" -accelerator Ctrl+p
 	$pad.filemenu.files add separator
     }
-    $pad.filemenu.files add command -label "Close" -underline 0 -command "closecur" -accelerator Ctrl+w
-    $pad.filemenu.files add command -label "Exit" -underline 1 -command "exitapp" -accelerator Ctrl+q
+    $pad.filemenu.files add command -label "Close" -underline 0 \
+	-command "closecur" -accelerator Ctrl+w
+    $pad.filemenu.files add command -label "Exit" -underline 1 \
+	-command "exitapp" -accelerator Ctrl+q
 } else {
-    $pad.filemenu  add cascade -label "Fichier" -underline 0 -menu $pad.filemenu.files
-    $pad.filemenu.files add command -label "Nouveau" -underline 0 -command "filesetasnewmat" -accelerator Ctrl+n
-    $pad.filemenu.files add command -label "Ouvrir" -underline 0 -command "filetoopen $textareacur" -accelerator Ctrl+o
-    $pad.filemenu.files add command -label "Enregistrer" -underline 0 -command "filetosavecur" -accelerator Ctrl+s
-    $pad.filemenu.files add command -label "Enregistrer sous" -underline 5 -command "filesaveascur" -accelerator Ctrl+S
+    $pad.filemenu  add cascade -label "Fichier" -underline 0 \
+	-menu $pad.filemenu.files
+    $pad.filemenu.files add command -label "Nouveau" -underline 0 \
+	-command "filesetasnewmat" -accelerator Ctrl+n
+    $pad.filemenu.files add command -label "Ouvrir" -underline 0 \
+	-command "filetoopen $textareacur" -accelerator Ctrl+o
+    $pad.filemenu.files add command -label "Enregistrer" -underline 0 \
+	-command "filetosavecur" -accelerator Ctrl+s
+    $pad.filemenu.files add command -label "Enregistrer sous" -underline 5 \
+	-command "filesaveascur" -accelerator Ctrl+S
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
-	$pad.filemenu.files add command -label "Mise en page" -underline 8 -command "printseupselection" -accelerator Ctrl+P
-	$pad.filemenu.files add command -label "Imprimer" -underline 0 -command "selectprint $textareacur" -accelerator Ctrl+p
+	$pad.filemenu.files add command -label "Mise en page" -underline 8 \
+	    -command "printseupselection" -accelerator Ctrl+P
+	$pad.filemenu.files add command -label "Imprimer" -underline 0 \
+	    -command "selectprint $textareacur" -accelerator Ctrl+p
 	$pad.filemenu.files add separator
     }
-    $pad.filemenu.files add command -label "Fermer" -underline 0 -command "closecur" -accelerator Ctrl+w
-    $pad.filemenu.files add command -label "Quitter" -underline 1 -command "exitapp" -accelerator Ctrl+q 
+    $pad.filemenu.files add command -label "Fermer" -underline 0 \
+	-command "closecur" -accelerator Ctrl+w
+    $pad.filemenu.files add command -label "Quitter" -underline 1 \
+	-command "exitapp" -accelerator Ctrl+q 
 }
 
 #edit menu
 menu $pad.filemenu.edit -tearoff 0 -font $menuFont
 if {$lang == "eng"} {
-    $pad.filemenu add cascade -label "Edit" -underline 0 -menu $pad.filemenu.edit
-    $pad.filemenu.edit add command -label "Undo" -underline 0 -command " undo_menu_proc" -accelerator Ctrl+z
-    $pad.filemenu.edit add command -label "Redo" -underline 0 -command "redo_menu_proc" -accelerator Ctrl+Z
+    $pad.filemenu add cascade -label "Edit" -underline 0 \
+	-menu $pad.filemenu.edit
+    $pad.filemenu.edit add command -label "Undo" -underline 0 \
+	-command " undo_menu_proc" -accelerator Ctrl+z
+    $pad.filemenu.edit add command -label "Redo" -underline 0 \
+	-command "redo_menu_proc" -accelerator Ctrl+Z
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Cut" -underline 2 -command "cuttext" -accelerator Ctrl+x
-    $pad.filemenu.edit add command -label "Copy" -underline 0 -command "copytext" -accelerator Ctrl+c
-    $pad.filemenu.edit add command -label "Paste" -underline 0 -command "pastetext" -accelerator Ctrl+v
-    $pad.filemenu.edit add command -label "Delete" -underline 2 -command "deletetext" -accelerator Del
+    $pad.filemenu.edit add command -label "Cut" -underline 2 \
+	-command "cuttext" -accelerator Ctrl+x
+    $pad.filemenu.edit add command -label "Copy" -underline 0 \
+	-command "copytext" -accelerator Ctrl+c
+    $pad.filemenu.edit add command -label "Paste" -underline 0 \
+	-command "pastetext" -accelerator Ctrl+v
+    $pad.filemenu.edit add command -label "Delete" -underline 2 \
+	-command "deletetext" -accelerator Del
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Select All" -underline 7 -command "selectall" -accelerator Ctrl+/
-#    $pad.filemenu.edit add command -label "Time/Date" -underline 5 -command "printtime"
+    $pad.filemenu.edit add command -label "Select All" -underline 7 \
+	-command "selectall" -accelerator Ctrl+/
+#    $pad.filemenu.edit add command -label "Time/Date" -underline 5 \
+#	-command "printtime"
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Comment selection" -underline 3 -command "CommentSel" -accelerator Ctrl+m
-    $pad.filemenu.edit add command -label "Uncomment selection" -underline 1 -command "UnCommentSel" -accelerator Ctrl+M
+    $pad.filemenu.edit add command -label "Comment selection" -underline 3 \
+	-command "CommentSel" -accelerator Ctrl+m
+    $pad.filemenu.edit add command -label "Uncomment selection" -underline 1 \
+	-command "UnCommentSel" -accelerator Ctrl+M
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add check -label "Word Wrap" -underline 5 -command "wraptext"
+    $pad.filemenu.edit add check -label "Word Wrap" -underline 5 \
+	-command "wraptext"
 } else {
-    $pad.filemenu add cascade -label "Edition" -underline 0 -menu $pad.filemenu.edit
-    $pad.filemenu.edit add command -label "Annuler" -underline 0 -command " undo_menu_proc" -accelerator Ctrl+z
-    $pad.filemenu.edit add command -label "Répéter" -underline 0 -command "redo_menu_proc" -accelerator Ctrl+Z
+    $pad.filemenu add cascade -label "Edition" -underline 0 \
+	-menu $pad.filemenu.edit
+    $pad.filemenu.edit add command -label "Annuler" -underline 0 \
+	-command " undo_menu_proc" -accelerator Ctrl+z
+    $pad.filemenu.edit add command -label "Répéter" -underline 0 \
+	-command "redo_menu_proc" -accelerator Ctrl+Z
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Couper" -underline 2 -command "cuttext" -accelerator Ctrl+x
-    $pad.filemenu.edit add command -label "Copier" -underline 0 -command "copytext" -accelerator Ctrl+c
-    $pad.filemenu.edit add command -label "Coller" -underline 0 -command "pastetext" -accelerator Ctrl+v
-    $pad.filemenu.edit add command -label "Effacer" -underline 2 -command "deletetext" -accelerator Del
+    $pad.filemenu.edit add command -label "Couper" -underline 2 \
+	-command "cuttext" -accelerator Ctrl+x
+    $pad.filemenu.edit add command -label "Copier" -underline 0 \
+	-command "copytext" -accelerator Ctrl+c
+    $pad.filemenu.edit add command -label "Coller" -underline 0 \
+	-command "pastetext" -accelerator Ctrl+v
+    $pad.filemenu.edit add command -label "Effacer" -underline 2 \
+	-command "deletetext" -accelerator Del
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Selectionner tout" -underline 7 -command "selectall" -accelerator Ctrl+/
-#    $pad.filemenu.edit add command -label "Time/Date" -underline 5 -command "printtime"
+    $pad.filemenu.edit add command -label "Selectionner tout" -underline 7 \
+	-command "selectall" -accelerator Ctrl+/
+#    $pad.filemenu.edit add command -label "Time/Date" -underline 5 \
+#      -command "printtime"
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Commenter selection" -underline 3 -command "CommentSel" -accelerator Ctrl+m
-    $pad.filemenu.edit add command -label "Decommenter selection" -underline 0 -command "UnCommentSel" -accelerator Ctrl+M
+    $pad.filemenu.edit add command -label "Commenter selection" -underline 3 \
+	-command "CommentSel" -accelerator Ctrl+m
+    $pad.filemenu.edit add command -label "Decommenter selection" -underline 0\
+	-command "UnCommentSel" -accelerator Ctrl+M
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add check -label "Retour à la ligne automatique" -underline 5 -command "wraptext"
+    $pad.filemenu.edit add check -label "Retour à la ligne automatique" \
+	-underline 5 -command "wraptext"
 } 
 
 #search menu
 menu $pad.filemenu.search -tearoff 0 -font $menuFont
 if {$lang == "eng"} {
-    $pad.filemenu add cascade -label "Search" -underline 0 -menu $pad.filemenu.search 
-    $pad.filemenu.search add command -label "Find" -underline 0 -command "findtext find" -accelerator Ctrl+f
-    $pad.filemenu.search add command -label "Find Next" -underline 1 -command "findnext find" -accelerator F3
-    $pad.filemenu.search add command -label "Replace" -underline 0 -command "findtext replace" -accelerator Ctrl+r
-    # add new menu option include by Matthieu PHILIPPE from gotoline.pth 21/11/2001
-    $pad.filemenu.search add command -label "Goto Line" -underline 0 -command "gotoline" -accelerator Ctrl+g
+    $pad.filemenu add cascade -label "Search" -underline 0 \
+	-menu $pad.filemenu.search 
+    $pad.filemenu.search add command -label "Find" -underline 0 \
+	-command "findtext find" -accelerator Ctrl+f
+    $pad.filemenu.search add command -label "Find Next" -underline 1 \
+	-command "findnext find" -accelerator F3
+    $pad.filemenu.search add command -label "Replace" -underline 0 \
+	-command "findtext replace" -accelerator Ctrl+r
+# add new menu option include by Matthieu PHILIPPE from gotoline.pth 21/11/2001
+    $pad.filemenu.search add command -label "Goto Line" -underline 0 \
+	-command "gotoline" -accelerator Ctrl+g
 } else {
-    $pad.filemenu add cascade -label "Rechercher" -underline 0 -menu $pad.filemenu.search 
-    $pad.filemenu.search add command -label "Rechercher" -underline 0 -command "findtext find" -accelerator Ctrl+f
-    $pad.filemenu.search add command -label "Rechercher suivant" -underline 1 -command "findnext find" -accelerator F3
-    $pad.filemenu.search add command -label "Remplacer" -underline 0 -command "findtext replace" -accelerator Ctrl+r
-    # add new menu option include by Matthieu PHILIPPE from gotoline.pth 21/11/2001
-    $pad.filemenu.search add command -label "Atteindre" -underline 0 -command "gotoline" -accelerator Ctrl+g
+    $pad.filemenu add cascade -label "Rechercher" -underline 0 \
+	-menu $pad.filemenu.search 
+    $pad.filemenu.search add command -label "Rechercher" \
+	-underline 0 -command "findtext find" -accelerator Ctrl+f
+    $pad.filemenu.search add command -label "Rechercher suivant" \
+	-underline 1 -command "findnext find" -accelerator F3
+    $pad.filemenu.search add command -label "Remplacer" -underline 0 \
+	-command "findtext replace" -accelerator Ctrl+r
+# add new menu option include by Matthieu PHILIPPE from gotoline.pth 21/11/2001
+    $pad.filemenu.search add command -label "Atteindre" -underline 0 \
+	-command "gotoline" -accelerator Ctrl+g
 } 
 
 # added by matthieu PHILIPPE dec 11th 2001
 # window menu
 if {$lang == "eng"} {
     menu $pad.filemenu.wind -tearoff 1 -title "Opened Files" -font $menuFont
-    $pad.filemenu add cascade -label "Windows" -underline 0 -menu $pad.filemenu.wind
-    #$pad.filemenu.wind add command -label "$listoffile("$pad.textarea",filename)" -command "montretext $pad.textarea"
+    $pad.filemenu add cascade -label "Windows" -underline 0 \
+	-menu $pad.filemenu.wind
+    #$pad.filemenu.wind add command \
+    #  -label "$listoffile("$pad.textarea",filename)" \
+    #  -command "montretext $pad.textarea"
 } else {
-    menu $pad.filemenu.wind -tearoff 1 -title "Fichiers ouverts" -font $menuFont
-    $pad.filemenu add cascade -label "Fenêtres" -underline 0 -menu $pad.filemenu.wind
-    #$pad.filemenu.wind add command -label "$listoffile("$pad.textarea",filename)" -command "montretext $pad.textarea"
+    menu $pad.filemenu.wind -tearoff 1 -title "Fichiers ouverts" \
+	-font $menuFont
+    $pad.filemenu add cascade -label "Fenêtres" -underline 0 \
+	-menu $pad.filemenu.wind
+    #$pad.filemenu.wind add command \
+    #-label "$listoffile("$pad.textarea",filename)" \
+    #  -command "montretext $pad.textarea"
 }
-$pad.filemenu.wind add radiobutton -label "$listoffile("$pad.textarea",filename)"  -value $winopened -variable radiobuttonvalue -command "montretext $pad.textarea"
+$pad.filemenu.wind add radiobutton \
+    -label "$listoffile("$pad.textarea",filename)"\
+    -value $winopened -variable radiobuttonvalue \
+    -command "montretext $pad.textarea"
 # options menu
 if {$lang == "eng"} {
     menu $pad.filemenu.options -tearoff 1 -font $menuFont
-    $pad.filemenu add cascade -label "Options" -underline 0 -menu $pad.filemenu.options
+    $pad.filemenu add cascade -label "Options" -underline 0 \
+	-menu $pad.filemenu.options
     $pad.filemenu.options add command -label "font size" -foreground red 
-    $pad.filemenu.options add radiobutton -label "small" -value 0  -variable Size -command "setfontscipad0"
-    $pad.filemenu.options add radiobutton -label "medium" -value 4  -variable Size -command "setfontscipad4"
-    $pad.filemenu.options add radiobutton -label "large" -value 12  -variable Size -command "setfontscipad12"
+    $pad.filemenu.options add radiobutton -label "small" -value 0 \
+	-variable Size -command "setfontscipad0"
+    $pad.filemenu.options add radiobutton -label "medium" -value 4 \
+	-variable Size -command "setfontscipad4"
+    $pad.filemenu.options add radiobutton -label "large" -value 12\
+	-variable Size -command "setfontscipad12"
 } else {
     menu $pad.filemenu.options -tearoff 1 -font $menuFont
-    $pad.filemenu add cascade -label "Options" -underline 0 -menu $pad.filemenu.options
-    $pad.filemenu.options add command -label "taille de fontes" -foreground red 
-    $pad.filemenu.options add radiobutton -label "petit" -value 0  -variable Size -command "setfontscipad0"
-    $pad.filemenu.options add radiobutton -label "moyen" -value 4  -variable Size -command "setfontscipad4"
-    $pad.filemenu.options add radiobutton -label "grand" -value 12  -variable Size -command "setfontscipad12"
+    $pad.filemenu add cascade -label "Options" -underline 0 \
+	-menu $pad.filemenu.options
+    $pad.filemenu.options add command -label "taille de fontes" -foreground red
+    $pad.filemenu.options add radiobutton -label "petit" -value 0 \
+	-variable Size -command "setfontscipad0"
+    $pad.filemenu.options add radiobutton -label "moyen" -value 4  \
+	-variable Size -command "setfontscipad4"
+    $pad.filemenu.options add radiobutton -label "grand" -value 12 \
+	-variable Size -command "setfontscipad12"
 }
 
 # exec menu
 menu $pad.filemenu.exec -tearoff 1 -font $menuFont
 if {$lang == "eng"} {
-    $pad.filemenu add cascade -label "Execute" -underline 1 -menu $pad.filemenu.exec
-    $pad.filemenu.exec add command -label "Load into Scilab" -underline 0 -command "execfile" -accelerator Ctrl-l
-    $pad.filemenu.exec add command -label "Evaluate selection" -underline 0 -command "execselection" -accelerator Ctrl-y
+    $pad.filemenu add cascade -label "Execute" -underline 1 \
+	-menu $pad.filemenu.exec
+    $pad.filemenu.exec add command -label "Load into Scilab" -underline 0\
+	-command "execfile" -accelerator Ctrl-l
+    $pad.filemenu.exec add command -label "Evaluate selection" -underline 0\
+	-command "execselection" -accelerator Ctrl-y
 } else {
-    $pad.filemenu add cascade -label "Execute" -underline 1 -menu $pad.filemenu.exec
-    $pad.filemenu.exec add command -label "Charger dans Scilab" -underline 0 -command "execfile" -accelerator Ctrl-l
-    $pad.filemenu.exec add command -label "Evaluer la selection" -underline 0 -command "execselection" -accelerator Ctrl-y
+    $pad.filemenu add cascade -label "Execute" -underline 1 \
+	-menu $pad.filemenu.exec
+    $pad.filemenu.exec add command -label "Charger dans Scilab" -underline 0\
+	-command "execfile" -accelerator Ctrl-l
+    $pad.filemenu.exec add command -label "Evaluer la selection" -underline 0\
+	-command "execselection" -accelerator Ctrl-y
 }
 
 proc execfile {} {
@@ -332,9 +437,11 @@ proc execfile {} {
     set doexec 1
     if [ expr [string compare [getccount $textarea] 1] == 0 ] {
 	if {$lang == "eng"} {
-	    set answer [tk_messageBox -message "The contents of $listoffile("$textarea",filename) may have changed, do you wish to to save your changes?" -title "Save Confirm?" -type yesnocancel -icon question]
+	    set answer [tk_messageBox -message "The contents of $listoffile("$textarea",filename) may have changed, do you wish to to save your changes?" \
+	      -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
-	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" -title "Confirmer sauver ?" -type yesnocancel -icon question]
+	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" \
+	     -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
 	    yes { filetosave $textarea; set doexec 1 }
@@ -346,9 +453,11 @@ proc execfile {} {
     if $doexec {
 	if [ expr [string compare $sciprompt -1] == 0 ] {
 	    if {$lang == "eng"} {
-		tk_messageBox -message "Scilab is working, wait for the prompt to load file $listoffile("$textarea",filename)" -title "Scilab working" -type ok -icon info
+		tk_messageBox -message "Scilab is working, wait for the prompt to load file $listoffile("$textarea",filename)" \
+		    -title "Scilab working" -type ok -icon info
 	    } else {
-		tk_messageBox -message "Scilab est occupé, attendez le prompt pour charger le fichier $listoffile("$textarea",filename)" -title "Scilab occupé" -type ok -icon info
+		tk_messageBox -message "Scilab est occupé, attendez le prompt pour charger le fichier $listoffile("$textarea",filename)" \
+		    -title "Scilab occupé" -type ok -icon info
 	    }
 	} else {
 	    set f $listoffile("$textarea",filename)
@@ -361,9 +470,11 @@ proc execselection {} {
     global sciprompt lang
     if [ expr [string compare $sciprompt -1] == 0 ] {
 	if {$lang == "eng"} {
-	   tk_messageBox -message "Scilab is working, wait for the prompt to execute the selection" -title "Scilab working" -type ok -icon info
+	   tk_messageBox -message "Scilab is working, wait for the prompt to execute the selection" \
+	       -title "Scilab working" -type ok -icon info
 	 } else {
-	   tk_messageBox -message "Scilab est occupé, attendez le prompt pour charger la selection" -title "Scilab occupé" -type ok -icon info
+	   tk_messageBox -message "Scilab est occupé, attendez le prompt pour charger la selection" \
+	       -title "Scilab occupé" -type ok -icon info
 	 }
      } else {
         set seltexts [selection own]
@@ -371,14 +482,20 @@ proc execselection {} {
 	  if [catch {selection get -selection PRIMARY} sel] {	    
 	  } else {
      	    set f [selection get]
-#SciEval does not digest multilines, nor comments. The following hacks are not optimal 
-# - they can produce very long lines, and get confused about quoted strings containing //.
-#strip comments from // to \n (note - \n stays, as the interpreter allows "...//bla\n rest"
+#SciEval does not digest multilines, nor comments. The following hacks are 
+# not optimal - they can produce very long lines, and get confused about 
+# quoted strings containing //.
+#strip comments from // to \n (note - \n stays, as the interpreter allows 
+#    "...//bla\n rest" ) (NOTE: this way strings like "...//..." are truncated 
+#    -- FIXIT -- has to use tag textquoted information)
             regsub -all -line "//.*(\\n|\\Z)" $f "\n" f1
 #join continued lines
             regsub -all -line "\\.{2,} *\\n" $f1 "" f2
 #join multilines with ","
             regsub -all -line "\\n" $f2 "," comm
+# last hack - add a final endfunction if there is an unterminated
+# function in the selection: TODO (try to involve proc whichfun)
+#
 # Besides, I'd like to see screen output too.
             regsub -all -line "\"" $comm "\"\"" dispcomm
             regsub -all -line "'" $dispcomm "''" dispcomm1
@@ -392,13 +509,17 @@ proc execselection {} {
 # help menu
 menu $pad.filemenu.help -tearoff 0 -font $menuFont
 if {$lang == "eng"} {
-    $pad.filemenu add cascade -label "Help" -underline 0 -menu $pad.filemenu.help
+    $pad.filemenu add cascade -label "Help" -underline 0 \
+	-menu $pad.filemenu.help
     $pad.filemenu.help add command -label "Help" -underline 0 -command "helpme"
-    $pad.filemenu.help add command -label "About" -underline 0 -command "aboutme" -accelerator F1
+    $pad.filemenu.help add command -label "About" -underline 0 \
+	-command "aboutme" -accelerator F1
 } else {
-    $pad.filemenu add cascade -label "Aide" -underline 0 -menu $pad.filemenu.help
+    $pad.filemenu add cascade -label "Aide" -underline 0 \
+	-menu $pad.filemenu.help
     $pad.filemenu.help add command -label "Aide" -underline 0 -command "helpme"
-    $pad.filemenu.help add command -label "Apropos" -underline 0 -command "aboutme" -accelerator F1
+    $pad.filemenu.help add command -label "Apropos" -underline 0 \
+	-command "aboutme" -accelerator F1
 }
 
 # now make the menu visible
@@ -412,8 +533,8 @@ set taille [expr [font measure $textFont " "] *3]
 text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
 	-yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
         -fg $FGCOLOR -bg $BGCOLOR  -setgrid 1 -font $textFont -tabs $taille \
-        -insertwidth 3 -insertborderwidth 2 -insertofftime 0 -insertbackground $CURCOLOR\
-        -exportselection 1
+        -insertwidth 3 -insertborderwidth 2 -insertofftime 0 \
+        -insertbackground $CURCOLOR -exportselection 1
 set textareacur $pad.textarea  
 ####
 ##ES: remember fontsize
@@ -440,6 +561,12 @@ proc showpopup3 {} {
     set numx [winfo pointerx .]
     set numy [winfo pointery .]
     tk_popup $pad.filemenu.exec $numx $numy
+}
+proc showpopupfont {} {
+    global pad
+    set numx [winfo pointerx .]
+    set numy [winfo pointery .]
+    tk_popup $pad.filemenu.options $numx $numy
 }
 
 
@@ -496,7 +623,8 @@ proc nondefOpts {widget} {
 #	a new widget
 #
 proc dupWidgetOption {widget name} {
-	return [eval  "[string tolower [winfo class $widget]] $name [nondefOpts $widget]"]
+	return [eval  \
+           "[string tolower [winfo class $widget]] $name [nondefOpts $widget]"]
 }
 
 #
@@ -559,12 +687,18 @@ proc blinkbrace {w pos brace} {
 	global	bracefind fno
 
 	switch $brace {
-		\{	{ set findbs {[{}]}; set bs "\}"; set dir {-forwards}; set bn brace }
-		\}	{ set findbs {[{}]}; set bs "\{"; set dir {-backwards}; set bn brace }
-		\[	{ set findbs {[][]}; set bs "\]"; set dir {-forwards}; set bn bracket }
-		\]	{ set findbs {[][]}; set bs "\["; set dir {-backwards}; set bn bracket }
-		\(	{ set findbs {[()]}; set bs "\)"; set dir {-forwards}; set bn parenthesis }
-		\)	{ set findbs {[()]}; set bs "\("; set dir {-backwards}; set bn parenthesis }
+		\{	{ set findbs {[{}]}; set bs "\}";\
+                              set dir {-forwards}; set bn brace }
+		\}	{ set findbs {[{}]}; set bs "\{"; \
+                              set dir {-backwards}; set bn brace }
+		\[	{ set findbs {[][]}; set bs "\]"; \
+                              set dir {-forwards}; set bn bracket }
+		\]	{ set findbs {[][]}; set bs "\["; \
+			      set dir {-backwards}; set bn bracket }
+		\(	{ set findbs {[()]}; set bs "\)"; set dir {-forwards};\
+			      set bn parenthesis }
+		\)	{ set findbs {[()]}; set bs "\("; \
+                          set dir {-backwards}; set bn parenthesis }
 	}
 	set p [set i [$w index $pos-1c]]
 	set d 1
@@ -625,7 +759,6 @@ proc insertnewline {w} {
     }
     set n [$w get {insert linestart} p1]
     $w mark unset p1
-    #puttext $w "\n$n"
     puttext $w "\n$n"
     set c [$w get insert "insert+1c"]
     while {$c == " " || $c == "\t"} {
@@ -642,7 +775,8 @@ set colormen [$pad.filemenu cget -background]
 entry $pad.statusind -relief groove -state disabled -background $colormen
 # added by Matthieu PHILIPPE 07/12/2001
 # this addes an entry widget to dsplay information !
-entry $pad.statusmes -relief groove -state disabled -background $colormen -foreground blue
+entry $pad.statusmes -relief groove -state disabled -background $colormen \
+    -foreground blue
 pack $pad.statusind -in $pad.bottombottommenu -side right -expand 0
 pack $pad.statusmes -in $pad.bottombottommenu -side bottom -expand 0 -fill x
 
@@ -713,7 +847,8 @@ proc openoninit {textarea thefile} {
 $textareacur mark set insert "1.0"
 #tkTextSetCursor $textareacur "1.0"
 keyposn $textareacur
-##geometry in what units? The width is more than 65 columns, though it's resized proportionally
+##geometry in what units? The width is more than 65 columns, though it's 
+## resized proportionally
 #wm geometry $pad 65x24 
 
 
@@ -724,9 +859,11 @@ proc helpme {} {
     global lang
     global textFont
 #    if {$lang == "eng"} {
-#	tk_messageBox -title "Basic Help" -type ok -message "This is a simple editor for Scilab."
+#	tk_messageBox -title "Basic Help" -type ok \
+#            -message "This is a simple editor for Scilab."
 #    } else {
-#	tk_messageBox -title "Aide de base" -type ok -message "C'est un simple éditeur pour Scilab."
+#	tk_messageBox -title "Aide de base" -type ok \
+#            -message "C'est un simple éditeur pour Scilab."
 #    }
 ##ES:
     ScilabEval "help scipad"
@@ -736,11 +873,13 @@ proc helpme {} {
 proc aboutme {} {
     global winTitle version lang
     if {$lang == "eng"} {
-	tk_messageBox -title "About" -type ok -message "$winTitle $version\n originated by Joseph Acosta,\n\
+	tk_messageBox -title "About" -type ok \
+	    -message "$winTitle $version\n originated by Joseph Acosta,\n\
 	    joeja@mindspring.com.\n\
             Modified by Scilab Group.\nRevised by Enrico Segre 2003"
     } else {
-	tk_messageBox -title "Apropos" -type ok -message "$winTitle $version\n créé par Joseph Acosta,\n\
+	tk_messageBox -title "Apropos" -type ok \
+	    -message "$winTitle $version\n créé par Joseph Acosta,\n\
 	    joeja@mindspring.com.\n\
             Modifié par le Groupe Scilab.\nAmelioré par Enrico Segre 2003"
     }
@@ -798,8 +937,11 @@ proc filesetasnewmat {} {
     bind $pad.new$winopened <KeyRelease> {keyposn %W}
     bind $pad.new$winopened <ButtonRelease> {keyposn %W}
     TextStyles $pad.new$winopened
-    #$pad.filemenu.wind add command -label "[pwd]/Untitled$winopened.sce" -command "montretext $pad.new$winopened"
-    $pad.filemenu.wind add radiobutton -label "[pwd]/Untitled$winopened.sce" -value $winopened -variable radiobuttonvalue -command "montretext $pad.new$winopened"
+    #$pad.filemenu.wind add command -label "[pwd]/Untitled$winopened.sce" \
+    #	-command "montretext $pad.new$winopened"
+    $pad.filemenu.wind add radiobutton -label "[pwd]/Untitled$winopened.sce" \
+	-value $winopened -variable radiobuttonvalue \
+	-command "montretext $pad.new$winopened"
     set radiobuttonvalue $winopened
     showinfo "New Script"
     montretext $pad.new$winopened
@@ -844,24 +986,29 @@ proc closefile {textarea} {
 	global pad winopened radiobuttonvalue
 	if {  [ llength $listoftextarea ] > 1 } {
 	    # delete the textarea entry in the listoftextarea
-	    set listoftextarea [lreplace $listoftextarea [lsearch $listoftextarea $textarea] [lsearch $listoftextarea $textarea]]
+	    set listoftextarea [lreplace $listoftextarea [lsearch \
+		   $listoftextarea $textarea] [lsearch $listoftextarea \
+						   $textarea]]
 	    # delte the menu windows entry
-	    $pad.filemenu.wind delete [$pad.filemenu.wind index $listoffile("$textarea",filename)]
+	    $pad.filemenu.wind delete [$pad.filemenu.wind index \
+					   $listoffile("$textarea",filename)]
 	    # delete the textarea entry in listoffile
 	    unset listoffile("$textarea",filename) 
 	    unset listoffile("$textarea",save) 
 	    unset listoffile("$textarea",new) 
 	    unset listoffile("$textarea",thetime) 
 	    # delete the textarea entry in Undoerr
-##ES: the text widget was opened for $pad.textarea. If that is destroyed, the next change font,
-## new file or open file command causes the window to shrink. On the other side, the only side
-## effect of not destroying it which I see is that font changes do not resize the window (so 
-## what? -- the resizing was not exact anyway)
+##ES: the text widget was opened for $pad.textarea. If that is destroyed, the 
+## next change font, new file or open file command causes the window to shrink.
+## On the other side, the only side
+## effect of not destroying it which I see is that font changes do not resize
+## the window (so what? -- the resizing was not exact anyway)
 #	    destroy $textarea
 	    # place as current textarea the last 
 	    montretext [lindex $listoftextarea end]
-##ES 17/9/03
-            set radiobuttonvalue $winopened
+##ES 30/9/03 
+            set lastwin [$pad.filemenu.wind entrycget end -value]
+            set radiobuttonvalue $lastwin
 ##
 	} else {
 	    killwin $pad 
@@ -872,9 +1019,11 @@ proc closefile {textarea} {
 
     if  [ expr [string compare [getccount $textarea] 1] == 0 ] {
 	if {$lang == "eng"} {
-	    set answer [tk_messageBox -message "The contents of $listoffile("$textarea",filename) may have changed, do you wish to to save your changes?" -title "Save Confirm?" -type yesnocancel -icon question]
+	    set answer [tk_messageBox -message "The contents of $listoffile("$textarea",filename) may have changed, do you wish to to save your changes?"\
+		       -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
-	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" -title "Confirmer sauver ?" -type yesnocancel -icon question]
+	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" \
+		      -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
 	    yes { filetosave $textarea; byebye $textarea }
@@ -958,8 +1107,11 @@ proc showopenwin {textarea} {
 	    set listoffile("$pad.new$winopened",filename) $file
 	    set listoffile("$pad.new$winopened",new) 0
 	    set listoffile("$pad.new$winopened",thetime) [file mtime $file]
-#ES: the following line has to be brought here for modifiedtitle to work - what afterwards opening #fails?
-	    $pad.filemenu.wind add radiobutton -label "$file" -value $winopened -variable radiobuttonvalue  -command "montretext $pad.new$winopened"
+#ES: the following line has to be brought here for modifiedtitle to work - what
+# afterwards opening fails?
+	    $pad.filemenu.wind add radiobutton -label "$file" \
+		-value $winopened -variable radiobuttonvalue \
+		-command "montretext $pad.new$winopened"
 	    #####
 	    setTextTitleAsNew $pad.new$winopened
 	    montretext $pad.new$winopened
@@ -967,7 +1119,8 @@ proc showopenwin {textarea} {
 	    outccount $pad.new$winopened
 	    update
 	    colorize $pad.new$winopened 1.0 end
-	    set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
+	    set listundo_id("$pad.new$winopened") \
+		[new textUndoer $pad.new$winopened]
 	    if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
 		# more bindings
 		bind Text <Control-v> {}
@@ -979,8 +1132,11 @@ proc showopenwin {textarea} {
 	    bind $pad.new$winopened <KeyRelease> {keyposn %W}
 	    bind $pad.new$winopened <ButtonRelease> {keyposn %W}
 	    TextStyles $pad.new$winopened
-	    #$pad.filemenu.wind add command -label "$file" -command "montretext $pad.new$winopened"
-#	    $pad.filemenu.wind add radiobutton -label "$file" -value $winopened -variable radiobuttonvalue  -command "montretext $pad.new$winopened"
+	    #$pad.filemenu.wind add command -label "$file" 
+	    # -command "montretext $pad.new$winopened"
+#	    $pad.filemenu.wind add radiobutton -label "$file" \
+#                -value $winopened -variable radiobuttonvalue \
+#                -command "montretext $pad.new$winopened"
 	    set radiobuttonvalue $winopened
 	} else {
 	    # file is already opened
@@ -1018,7 +1174,9 @@ proc openfile {file} {
 	    set listoffile("$pad.new$winopened",filename) $file
 	    set listoffile("$pad.new$winopened",new) 0
 #ES: the following line has to be brought here for modifiedtitle to work
-	    $pad.filemenu.wind add radiobutton -label "$file" -value $winopened -variable radiobuttonvalue  -command "montretext $pad.new$winopened"
+	    $pad.filemenu.wind add radiobutton -label "$file" \
+		-value $winopened -variable radiobuttonvalue \
+		-command "montretext $pad.new$winopened"
 	    if [ file exists $file ] {
 		set listoffile("$pad.new$winopened",thetime) [file mtime $file]
 		setTextTitleAsNew $pad.new$winopened
@@ -1041,7 +1199,8 @@ proc openfile {file} {
 	    $pad.new$winopened mark set insert "1.0"
             keyposn $pad.new$winopened
 #
-	    set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
+	    set listundo_id("$pad.new$winopened") \
+		[new textUndoer $pad.new$winopened]
 	    if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
 		# more bindings
 		bind Text <Control-v> {}
@@ -1053,7 +1212,9 @@ proc openfile {file} {
 	    bind $pad.new$winopened <KeyRelease> {keyposn %W}
 	    bind $pad.new$winopened <ButtonRelease> {keyposn %W}
 	    TextStyles $pad.new$winopened
-#	    $pad.filemenu.wind add radiobutton -label "$file" -value $winopened -variable radiobuttonvalue  -command "montretext $pad.new$winopened"
+#	    $pad.filemenu.wind add radiobutton -label "$file" \
+#             -value $winopened -variable radiobuttonvalue  \
+#             -command "montretext $pad.new$winopened"
 	    set radiobuttonvalue $winopened
 	} else {
 	    # file is already opened
@@ -1108,17 +1269,23 @@ proc filetosave {textarea} {
 
     # save the opened file from disk, if not, user has to get a file name.
     # we would verify if the file has not been modify by antother application
-    if { [file exists $listoffile("$textarea",filename)] && $listoffile("$textarea",new) == 0  } {
-	if { $listoffile("$textarea",thetime) != [file mtime $listoffile("$textarea",filename)]} {
-	    set answer [tk_messageBox -message $msgChanged -title $msgTitle -type yesnocancel -icon question]
+    if { [file exists $listoffile("$textarea",filename)] && \
+	     $listoffile("$textarea",new) == 0  } {
+	if { $listoffile("$textarea",thetime) != [file mtime \
+		    $listoffile("$textarea",filename)]} {
+	    set answer [tk_messageBox -message $msgChanged -title $msgTitle \
+			    -type yesnocancel -icon question]
 	    case $answer {
-		yes { writesave $textarea $listoffile("$textarea",filename); set listoffile("$textarea",thetime) [file mtime $listoffile("$textarea",filename)]}
+		yes { writesave $textarea $listoffile("$textarea",filename);
+                       set listoffile("$textarea",thetime) \
+                             [file mtime $listoffile("$textarea",filename)]}
 		no {}
 		cancel {}
 	    }
 	} else {  
 	    writesave $textarea $listoffile("$textarea",filename)
-	    set listoffile("$textarea",thetime) [file mtime $listoffile("$textarea",filename)] 
+	    set listoffile("$textarea",thetime) \
+		[file mtime $listoffile("$textarea",filename)] 
 	}
 	return 1
     } else {
@@ -1155,18 +1322,25 @@ proc filesaveas {textarea} {
 	}
 	showinfo "Enregistrer sous"
     }
-    set myfile [tk_getSaveFile -filetypes $types -parent $pad -initialfile $listoffile("$textarea",filename)]
+    set myfile [tk_getSaveFile -filetypes $types -parent $pad \
+		    -initialfile $listoffile("$textarea",filename)]
     if { [expr [string compare $myfile ""]] != 0} {
        $pad.filemenu.wind delete "$listoffile("$textarea",filename)"
 	set listoffile("$textarea",filename) $myfile
 	set listoffile("$textarea",new) 0
 	set listoffile("$textarea",save) 0
 ##ES: brought up for modifiedtitle to work
-	$pad.filemenu.wind add radiobutton -label "$myfile" -value $radiobuttonvalue -variable radiobuttonvalue -command "montretext $textarea"
+	$pad.filemenu.wind add radiobutton -label "$myfile" \
+	   -value $radiobuttonvalue -variable radiobuttonvalue \
+	   -command "montretext $textarea"
 	writesave  $textarea $myfile
-	set listoffile("$textarea",thetime) [file mtime $listoffile("$textarea",filename)] 
-	#$pad.filemenu.wind add command -label "$myfile" -command "montretext $textarea"
-#	$pad.filemenu.wind add radiobutton -label "$myfile" -value $radiobuttonvalue -variable radiobuttonvalue -command "montretext $textarea"
+	set listoffile("$textarea",thetime) \
+	   [file mtime $listoffile("$textarea",filename)] 
+	#$pad.filemenu.wind add command -label "$myfile" \
+	   #-command "montretext $textarea"
+#	$pad.filemenu.wind add radiobutton -label "$myfile" \
+	#-value $radiobuttonvalue -variable radiobuttonvalue \
+	   #-command "montretext $textarea"
 	#set radiobuttonvalue $winopened
 	settitle $myfile
         return 1
@@ -1178,8 +1352,10 @@ proc filesaveas {textarea} {
 proc setwingeom {wintoset} {
     global pad
     wm resizable $wintoset 0 0
-    set myx [expr (([winfo screenwidth $pad]/2) - ([winfo reqwidth $wintoset]))]
-    set myy [expr (([winfo screenheight $pad]/2) - ([winfo reqheight $wintoset]/2))]
+    set myx [expr (([winfo screenwidth $pad]/2) - \
+		       ([winfo reqwidth $wintoset]))]
+    set myy [expr (([winfo screenheight $pad]/2) - \
+		       ([winfo reqheight $wintoset]/2))]
     wm geometry $wintoset +$myx+$myy
 }
 
@@ -1214,12 +1390,14 @@ proc printseupselection {} {
 	button $print.bottom.cancel -text "Cancel" -command "destroy $print"
     } else {
 	button $print.bottom.ok -text "OK" -command "addtoprint $print"
-	button $print.bottom.cancel -text "Annuler" -command "destroy $print"	
+	button $print.bottom.cancel -text "Annuler" -command "destroy $print"
     }
     pack $print.top -side top -expand 0 
     pack $print.bottom -side bottom -expand 0 
-    pack $print.top.label $print.top.print -in $print.top -side left -fill x -fill y
-    pack $print.bottom.ok $print.bottom.cancel -in $print.bottom -side left -fill x -fill y
+    pack $print.top.label $print.top.print -in $print.top -side left -fill x \
+	-fill y
+    pack $print.bottom.ok $print.bottom.cancel -in $print.bottom -side left \
+	-fill x -fill y
     bind $print <Return> "addtoprint $print"
     bind $print <Escape> "destroy $print"
     
@@ -1259,7 +1437,8 @@ proc deletetext {} {
     inccount [gettextareacur]
     # Added by Matthieu PHILIPPE
     set  i1 [[gettextareacur] index insert]
-    colorize [gettextareacur] [[gettextareacur] index "$i1 wordstart"] [[gettextareacur] index "$i1 wordend"]
+    colorize [gettextareacur] [[gettextareacur] index "$i1 wordstart"] \
+	[[gettextareacur] index "$i1 wordend"]
 }
 
 #cut text procedure
@@ -1279,7 +1458,8 @@ proc backspacetext {} {
     inccount [gettextareacur]
     # Added by Matthieu PHILIPPE
     set  i1 [[gettextareacur] index insert]
-    colorize [gettextareacur] [[gettextareacur] index "$i1 wordstart"] [[gettextareacur] index "$i1 wordend"]
+    colorize [gettextareacur] [[gettextareacur] index "$i1 wordstart"] \
+	[[gettextareacur] index "$i1 wordend"]
 }
 
 #cut text procedure
@@ -1289,7 +1469,8 @@ proc cuttext {} {
     inccount [gettextareacur]
     # Added by Matthieu PHILIPPE
     set  i1 [[gettextareacur] index insert]
-    colorize [gettextareacur] [[gettextareacur] index "$i1 linestart"] [[gettextareacur] index "$i1 lineend"]
+    colorize [gettextareacur] [[gettextareacur] index "$i1 linestart"] \
+	[[gettextareacur] index "$i1 lineend"]
     selection clear
 }
 
@@ -1297,7 +1478,8 @@ proc cuttext {} {
 proc copytext {} {
     global textareacur
     tk_textCopy  [gettextareacur]
-    inccount [gettextareacur]
+#ES: why? just copying does not alter the buffer
+#    inccount [gettextareacur]
 #ES: isn't it nicer if it stays selected?
 #    selection clear
 }
@@ -1320,7 +1502,8 @@ proc pastetext {} {
     inccount [gettextareacur]
     # Added by Matthieu PHILIPPE
     set  i2 [[gettextareacur] index insert]
-    colorize [gettextareacur] [[gettextareacur] index "$i1 wordstart"] [[gettextareacur] index "$i2 wordend"]
+    colorize [gettextareacur] [[gettextareacur] index "$i1 wordstart"] \
+	[[gettextareacur] index "$i2 wordend"]
 #added by ES (but might also be unhandy)
 #    $textareacur tag add sel $i1 $i2
 }
@@ -1340,7 +1523,8 @@ proc FindIt {w} {
 	} else {
 	    set limit 1.0
 	}
-	set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir $SearchString $SearchPos $limit]
+	set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+			    -- $SearchString $SearchPos $limit]
 	set len [string length $SearchString]
 	if {$SearchPos != ""} {
 	    [gettextareacur] see $SearchPos
@@ -1373,13 +1557,16 @@ proc ReplaceIt {} {
 	} else {
 	    set limit 1.0
 	}
-	set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir $SearchString $SearchPos $limit]
+	set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+			    -- $SearchString $SearchPos $limit]
 	set len [string length $SearchString]
 	if {$SearchPos != ""} {
 	    [gettextareacur] see $SearchPos
 	    [gettextareacur] delete $SearchPos "$SearchPos+$len char"
 	    [gettextareacur] insert $SearchPos $ReplaceString
-	    colorize [gettextareacur] [[gettextareacur] index "$SearchPos linestart"] [[gettextareacur] index "$SearchPos lineend"]
+	    colorize [gettextareacur] \
+		[[gettextareacur] index "$SearchPos linestart"] \
+		[[gettextareacur] index "$SearchPos lineend"]
 	    if {$SearchDir == "forwards"} {
 		set SearchPos "$SearchPos+$len char"
 	    }         
@@ -1403,7 +1590,8 @@ proc ReplaceAll {} {
 proc CancelFind {w} {
     global textareacur pad
     [gettextareacur] tag delete tg1
-    bind $pad <Expose> {};#ajout pour mettre a la fenetre Search devant le scipad !
+    bind $pad <Expose> {};
+#ajout pour mettre a la fenetre Search devant le scipad !
     destroy $w
 }
 
@@ -1462,19 +1650,27 @@ proc findtext {typ} {
 	}
 	frame $find.f2
 	if {$lang == "eng"} {
-	    button $find.f2.button1 -text "Find Next" -command "FindIt $find" -width 10 -height 1 -underline 5 
-	    button $find.f2.button2 -text "Cancel" -command "CancelFind $find" -width 10 -underline 0
+	    button $find.f2.button1 -text "Find Next" -command "FindIt $find" \
+		-width 10 -height 1 -underline 5 
+	    button $find.f2.button2 -text "Cancel" -command "CancelFind $find"\
+		-width 10 -underline 0
 	} else {
-	    button $find.f2.button1 -text "Rechercher suivant" -command "FindIt $find" -width 15 -height 1 -underline 5 
-	    button $find.f2.button2 -text "Annuler" -command "CancelFind $find" -width 10 -underline 0	    
+	    button $find.f2.button1 -text "Rechercher suivant" -command \
+		"FindIt $find" -width 15 -height 1 -underline 5 
+	    button $find.f2.button2 -text "Annuler" \
+		-command "CancelFind $find" -width 10 -underline 0	    
 	}
 	if {$typ=="replace"} {
 	    if {$lang == "eng"} {
-		button $find.f2.button3 -text "Replace" -command ReplaceIt -width 10 -height 1 -underline 0
-		button $find.f2.button4 -text "Replace All" -command ReplaceAll -width 10 -height 1 -underline 8		
+		button $find.f2.button3 -text "Replace" -command ReplaceIt \
+		    -width 10 -height 1 -underline 0
+		button $find.f2.button4 -text "Replace All" \
+		    -command ReplaceAll -width 10 -height 1 -underline 8
 	    } else {
-		button $find.f2.button3 -text "Remplacer" -command ReplaceIt -width 10 -height 1 -underline 0
-		button $find.f2.button4 -text "Remplacer tout" -command ReplaceAll -width 12 -height 1 -underline 8		
+		button $find.f2.button3 -text "Remplacer" -command ReplaceIt \
+		    -width 10 -height 1 -underline 0
+		button $find.f2.button4 -text "Remplacer tout" \
+                    -command ReplaceAll -width 12 -height 1 -underline 8
 	    }
 	    pack $find.f2.button3 $find.f2.button4 $find.f2.button2  -pady 4
 	} else {
@@ -1483,18 +1679,24 @@ proc findtext {typ} {
 	frame $find.l.f4
 	frame $find.l.f4.f3 -borderwidth 2 -relief groove
 	if {$lang == "eng"} {
-	    radiobutton $find.l.f4.f3.up -text "Up" -underline 0 -variable SearchDir -value "backwards" 
-	    radiobutton $find.l.f4.f3.down -text "Down"  -underline 0 -variable SearchDir -value "forwards"
+	    radiobutton $find.l.f4.f3.up -text "Up" -underline 0 \
+		-variable SearchDir -value "backwards" 
+	    radiobutton $find.l.f4.f3.down -text "Down"  -underline 0 \
+		-variable SearchDir -value "forwards"
 	} else {
-	    radiobutton $find.l.f4.f3.up -text "Vers le haut" -underline 0 -variable SearchDir -value "backwards" 
-	    radiobutton $find.l.f4.f3.down -text "Vers le bas"  -underline 0 -variable SearchDir -value "forwards"
+	    radiobutton $find.l.f4.f3.up -text "Vers le haut" -underline 0 \
+		-variable SearchDir -value "backwards" 
+	    radiobutton $find.l.f4.f3.down -text "Vers le bas"  -underline 0 \
+		-variable SearchDir -value "forwards"
 	} 
 	$find.l.f4.f3.down invoke
 	pack $find.l.f4.f3.up $find.l.f4.f3.down -side left
 	if {$lang == "eng"} {
-	    checkbutton $find.l.f4.cbox1 -text "Match case" -variable findcase -underline 0
+	    checkbutton $find.l.f4.cbox1 -text "Match case" -variable findcase\
+		-underline 0
 	} else {
-	    checkbutton $find.l.f4.cbox1 -text "Respecter la casse" -variable findcase -underline 0
+	    checkbutton $find.l.f4.cbox1 -text "Respecter la casse" \
+		-variable findcase -underline 0
 	}
 	pack $find.l.f4.cbox1 $find.l.f4.f3 -side left -padx 10
 	pack $find.l.f4 -pady 11
@@ -1529,8 +1731,10 @@ proc findtext {typ} {
 	bindevnt $find.l.f1.entry $typ $find	
 #    bind $find <Control-c> "destroy $find";
 #    bind $find <Control-c> "CancelFind $find";
-    bind $find <Visibility> {raise $find $pad};#ajout pour mettre a la fenetre Search devant le scipad !
-    bind $pad <Expose> {raise $find $pad};#ajout pour mettre a la fenetre Search devant le scipad !
+    bind $find <Visibility> {raise $find $pad};
+#ajout pour mettre a la fenetre Search devant le scipad !
+    bind $pad <Expose> {raise $find $pad};
+#ajout pour mettre a la fenetre Search devant le scipad !
 	focus $find.l.f1.entry
 	grab $find
 }
@@ -1567,15 +1771,19 @@ proc gotoline {} {
 	$gotln.top.gotln delete 0 end 
 	button $gotln.bottom.ok -text "OK" -command "addtogotln $gotln"
 	if {$lang == "eng"} {
-	    button $gotln.bottom.cancel -text "Cancel" -command "destroy $gotln"
+	    button $gotln.bottom.cancel -text "Cancel" \
+		-command "destroy $gotln"
 	} else {
-	    button $gotln.bottom.cancel -text "Annuler" -command "destroy $gotln"
+	    button $gotln.bottom.cancel -text "Annuler" \
+	         -command "destroy $gotln"
 	}
 	focus $gotln.top.gotln
 	pack $gotln.top -side top -expand 0 
 	pack $gotln.bottom -side bottom -expand 0 
-	pack $gotln.top.label $gotln.top.gotln -in $gotln.top -side left -fill x -fill y
-	pack $gotln.bottom.ok $gotln.bottom.cancel -in $gotln.bottom -side left -fill x -fill y
+	pack $gotln.top.label $gotln.top.gotln -in $gotln.top -side left \
+	    -fill x -fill y
+	pack $gotln.bottom.ok $gotln.bottom.cancel -in $gotln.bottom \
+	    -side left -fill x -fill y
 	bind $gotln <Return> "addtogotln $gotln"
 	bind $gotln <Escape> "destroy $gotln"
 
@@ -1586,6 +1794,7 @@ proc gotoline {} {
 #	tkTextSetCursor [gettextareacur] "$gotlnCommand.0"
 	[gettextareacur] mark set insert "$gotlnCommand.0"
 	catch {keyposn [gettextareacur]}
+        [gettextareacur] see insert
 	destroy $prnt
     }
 }
@@ -1593,7 +1802,8 @@ proc gotoline {} {
 #procedure to set the time change %R to %I:%M for 12 hour time display
 proc printtime {} {
     global textareacur
-    [gettextareacur] insert insert [clock format [clock seconds] -format "%R %p %D"]
+    [gettextareacur] insert insert [clock format [clock seconds] \
+					-format "%R %p %D"]
     inccount [gettextareacur]
 }
 
@@ -1667,7 +1877,8 @@ bind $pad <Control-Z> {redo_menu_proc}
 bind $pad <Control-f> {findtext find}
 bind $pad <Control-r> {findtext replace}
 ##ES: I do not know why the following. Commenting it I get at once standard
-### behaviors: double click=word select, triple click line select, 2nd button click copy.
+### behaviors: double click=word select, triple click line select, 
+### 2nd button click copy.
 ##bind $pad <Button> {selection clear}
 # because windows is 'different' and mac is unknown
 if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
@@ -1710,8 +1921,11 @@ bind $pad <Control-M> {UnCommentSel}
 bind $pad <Control-l> {execfile}
 bind $pad <Control-y> {execselection}
 bind $pad <F1> {aboutme}
-bind $pad <Button-3> {showpopup2}
-
+bind Text <Button-3> {showpopup2}
+#ES 30/9/03
+bind Text <Shift-Button-3> {showpopup3}
+bind Text <Control-Button-3> {showpopupfont}
+bind $pad <Control-b> {whichfun}
 
 
 ###################################################################
@@ -1744,7 +1958,8 @@ proc delete {className id} {
         ${className}:~$className $id
     }
     global $className
-    # and delete all this object array members if any (assume that they were stored as $className($id,memberName))
+    # and delete all this object array members if any (assume that they were 
+    # stored as $className($id,memberName))
     foreach name [array names $className "$id,*"] {
         unset ${className}($name)
     }
@@ -1779,7 +1994,7 @@ proc lifo:pop {id} {
     if {$lifo($id,last)<$lifo($id,first)} {
         error "lifo($id) pop error, empty"
     }
-    # delay unsetting popped data to improve performance by avoiding a data copy
+   # delay unsetting popped data to improve performance by avoiding a data copy
     set lifo($id,unset) $lifo($id,last)
     incr lifo($id,last) -1
     incr lifo($id,size) -1
@@ -1813,7 +2028,8 @@ proc textUndoer:textUndoer {id widget {depth 2147483647}} {
     }
     set textUndoer($id,widget) $widget
     set textUndoer($id,originalBindingTags) [bindtags $widget]
-    bindtags $widget [concat $textUndoer($id,originalBindingTags) UndoBindings($id)]
+    bindtags $widget [concat $textUndoer($id,originalBindingTags) \
+			  UndoBindings($id)]
 
     bind UndoBindings($id) <Control-u> "textUndoer:undo $id"
 
@@ -1821,7 +2037,8 @@ proc textUndoer:textUndoer {id widget {depth 2147483647}} {
     bind UndoBindings($id) <Destroy> "delete textUndoer $id"
 
     # rename widget command
-    rename $widget [set textUndoer($id,originalCommand) textUndoer:original$widget]
+    rename $widget [set textUndoer($id,originalCommand) \
+			textUndoer:original$widget]
     # and intercept modifying instructions before calling original command
     proc $widget {args} "textUndoer:checkpoint $id \$args; 
 		global search_count;
@@ -1873,9 +2090,12 @@ proc textUndoer:processInsertion {id arguments} {
         incr length [string length [lindex $arguments $index]]
     }
     if {$length>0} {
-        set index [$textUndoer($id,originalCommand) index [lindex $arguments 0]]
-        lifo:push $textUndoer($id,commandStack) "delete $index $index+${length}c"
-        lifo:push $textUndoer($id,cursorStack) [$textUndoer($id,originalCommand) index insert]
+        set index [$textUndoer($id,originalCommand) index \
+		       [lindex $arguments 0]]
+        lifo:push $textUndoer($id,commandStack) \
+	    "delete $index $index+${length}c"
+        lifo:push $textUndoer($id,cursorStack) \
+	    [$textUndoer($id,originalCommand) index insert]
     }
 }
 
@@ -1887,9 +2107,11 @@ proc textUndoer:processDeletion {id arguments} {
 
     set start [$command index [lindex $arguments 0]]
     if {[llength $arguments]>1} {
-        lifo:push $textUndoer($id,commandStack) "insert $start [list [$command get $start [lindex $arguments 1]]]"
+        lifo:push $textUndoer($id,commandStack) \
+	    "insert $start [list [$command get $start [lindex $arguments 1]]]"
     } else {
-        lifo:push $textUndoer($id,commandStack) "insert $start [list [$command get $start]]"
+        lifo:push $textUndoer($id,commandStack) \
+	    "insert $start [list [$command get $start]]"
     }
 }
 
@@ -1955,9 +2177,12 @@ proc textRedoer:processInsertion {id arguments} {
         incr length [string length [lindex $arguments $index]]
     }
     if {$length>0} {
-        set index [$textUndoer($id,originalCommand) index [lindex $arguments 0]]
-        lifo:push $textRedoer($id,commandStack) "delete $index $index+${length}c"
-        lifo:push $textRedoer($id,cursorStack) [$textUndoer($id,originalCommand) index insert]
+        set index [$textUndoer($id,originalCommand) index \
+		       [lindex $arguments 0]]
+        lifo:push $textRedoer($id,commandStack) \
+	    "delete $index $index+${length}c"
+        lifo:push $textRedoer($id,cursorStack) \
+	    [$textUndoer($id,originalCommand) index insert]
     }
 }
 
@@ -1968,9 +2193,11 @@ proc textRedoer:processDeletion {id arguments} {
 
     set start [$command index [lindex $arguments 0]]
     if {[llength $arguments]>1} {
-        lifo:push $textRedoer($id,commandStack) "insert $start [list [$command get $start [lindex $arguments 1]]]"
+        lifo:push $textRedoer($id,commandStack) \
+	    "insert $start [list [$command get $start [lindex $arguments 1]]]"
     } else {
-        lifo:push $textRedoer($id,commandStack) "insert $start [list [$command get $start]]"
+        lifo:push $textRedoer($id,commandStack) \
+	    "insert $start [list [$command get $start]]"
     }
 }
 proc textRedoer:redo {id} {
@@ -2052,6 +2279,23 @@ proc load_words {} {
 	}
 }
 
+#ES 2/10/2003
+proc remalltags {w begin ende} {
+	$w tag remove parenthesis begin ende
+	$w tag remove bracket begin ende
+	$w tag remove brace begin ende
+	$w tag remove punct begin ende
+	$w tag remove operator begin ende
+	$w tag remove number begin ende
+	$w tag remove keywords begin ende
+	$w tag remove text begin ende
+	$w tag remove rem2 begin ende
+        $w tag remove xmltag begin ende
+	$w tag remove textquoted begin ende  
+        $w tag remove indentation begin ende
+	    }
+
+
 proc colorize {w cpos iend} {
 	global	words chset
         global listoffile 
@@ -2062,22 +2306,11 @@ proc colorize {w cpos iend} {
 ###
 	$w mark set begin "$cpos linestart"
 	$w mark set ende "$iend+1l linestart"
-#order matters here - for instance textquoted has to be after operator, so operators are
-# not colorized within strings
-	$w tag remove parenthesis begin ende
-	$w tag remove bracket begin ende
-	$w tag remove brace begin ende
-	$w tag remove punct begin ende
-	$w tag remove operator begin ende
-#number can contain +-. so follows operator (?)
-	$w tag remove number begin ende
-	$w tag remove keywords begin ende
-	$w tag remove text begin ende
-	$w tag remove rem2 begin ende
-        $w tag remove xmltag begin ende
-	$w tag remove textquoted begin ende  
-##still, "//" textquoted becomes rem2 
-        $w tag remove indentation begin ende
+        remalltags $w begin ende
+# TAGS:
+# order matters here - for instance textquoted has to be after operator, so 
+# operators are not colorized within strings
+#
 # Scilab specials
 	$w mark set last begin
 	while {[set ind [$w search -regexp {[;,]} last ende]] != {}} {
@@ -2100,7 +2333,8 @@ proc colorize {w cpos iend} {
 			$w tag add bracket $ind last
 		} else break
 	}
-#ES: why at all call ":" a "brace? "{}" are anyway parsed above for matching pairs
+#ES: why at all call ":" a "brace? 
+# "{}" are anyway parsed above for matching pairs
 	$w mark set last begin
 	while {[set ind [$w search -regexp {[\{\}:]} last ende]] != {}} {
 		if {[$w compare $ind >= last]} {
@@ -2109,15 +2343,18 @@ proc colorize {w cpos iend} {
 		} else break
 	}
 ##ES: numbers (the regexp can be perfectioned -- it matches e.g. single e6)
+# number can contain +-. so follows operator (?)
 	$w mark set last begin
-	while {[set ind [$w search -regexp {\m\d*\.?\d*[deDE]?\-?\d{1,3}\M} last ende]] != {}} {
+	while {[set ind [$w search -regexp {\m\d*\.?\d*[deDE]?\-?\d{1,3}\M} \
+			     last ende]] != {}} {
 		if {[$w compare $ind >= last]} {
 			$w mark set last $ind+1c
 			$w tag add number $ind last
 		} else break
 	}
 	$w mark set last begin
-	while {[set ind [$w search -regexp {['\.+\-*\/\\\^=\~$|&<>]} last ende]] != {}} {
+	while {[set ind [$w search -regexp {['\.+\-*\/\\\^=\~$|&<>]} \
+			     last ende]] != {}} {
 		if {[$w compare $ind >= last]} {
 			$w mark set last $ind+1c
 			$w tag add operator $ind last
@@ -2125,15 +2362,18 @@ proc colorize {w cpos iend} {
 	}
 # Scilab
 	$w mark set last begin
-	while {[set ind [$w search -count num -regexp "(\[^A-Za-z0-9_\]|^)\[$chset(scilab.col1)\]" last ende]] != {}} {
+	while {[set ind [$w search -count num -regexp \
+	      "(\[^A-Za-z0-9_\]|^)\[$chset(scilab.col1)\]" last ende]] != {}} {
 	    if {[$w compare $ind >= last]} {
 		set res ""
-		regexp "(\[^A-Za-z0-9_\]|^)\[$chset(scilab.col1)\]" [$w get $ind end] res
+		regexp "(\[^A-Za-z0-9_\]|^)\[$chset(scilab.col1)\]" \
+		    [$w get $ind end] res
 		set num [string length $res]
 		$w mark set last "$ind + $num c"
 		$w mark set next {last wordend}
 		set word [$w get last-1c next]
-		if {[lsearch -exact $words(scilab.col1.[string range $word 0 0]) $word] != -1} {
+		if {[lsearch -exact $words(scilab.col1.[string range \
+					       $word 0 0]) $word] != -1} {
 		    $w tag add keywords last-1c next
 		}
 		$w mark set last next-1c
@@ -2157,7 +2397,8 @@ proc colorize {w cpos iend} {
           }
 # Text
 	  $w mark set last begin
-	  while { [set ind [$w search -count num -regexp {"[^"]*("|$)} last ende]] != {}} {
+	  while { [set ind [$w search -count num -regexp \
+                          {"[^"]*("|$)} last ende]] != {}} {
 	      if {[$w compare $ind >= last]} {
 		  set res ""
 		  $w mark set endetext "$ind lineend"
@@ -2167,6 +2408,8 @@ proc colorize {w cpos iend} {
 		      $w mark set last "$ind + 1c"
 		  } else {
 		      $w mark set last "$ind + $num c"
+                 # textquoted deletes any other tag
+                 #     remalltags $w $ind last
 		      $w tag add textquoted $ind last
 		  }	  
 	      } else break
@@ -2175,10 +2418,17 @@ proc colorize {w cpos iend} {
 	      $w mark set last begin
 	      while {[set ind [$w search -exact {//} last ende]] != {}} {
 		  if {[$w compare $ind >= last]} {
-		      $w tag add rem2 $ind "$ind lineend"
+#ES
 		      $w mark set last "$ind+1l linestart"
+# tags as rem2 only if not already textquoted (does not tag as comment "..//..")
+                      if {[lsearch [$w tag names $ind] "textquoted"] ==-1 } {
+                 # rem2 deletes any other tag
+		 #          remalltags $w $ind $ind 
+			   $w tag add rem2 $ind "$ind lineend" }
 		  } else break
 		  }
+# anyway, commented textquoted are displayed as rem2
+              $w tag raise rem2 textquoted
 }
 
 proc selectall {} {
@@ -2207,24 +2457,25 @@ proc puttext {w text} {
 }
 
 ##ES 17/9/2003
-## this is ok, but is undone by as many ^z as lines (and not recolorized properly if undone)
+## this is ok, but is undone by as many ^z as lines (and not recolorized 
+##  properly if undone)
 #proc CommentSelx {} {
 #    global textareacur
 #    set seltexts [selection own]
 #    if {$seltexts != "" } {
 #	if [catch {selection get -selection PRIMARY} sel] {	    
 #	} else {	    
-#            set i1 [$textareacur index sel.first]
-#            set i2 [$textareacur index sel.last]
-#            set i3 $i1
-#            while {$i3<$i2} {
+#           set i1 [$textareacur index sel.first]
+#           set i2 [$textareacur index sel.last]
+#           set i3 $i1
+#           while {$i3<$i2} {
 #                   $textareacur insert $i3 "//" 
-#                   set i3 [$textareacur index "$i3+1l linestart"]                   
+#                   set i3 [$textareacur index "$i3+1l linestart"] 
 #                 }
-#            if {$i1 != $i2 } {
-#	        colorize $textareacur $i1 [$textareacur index "$i2+1l linestart"]
-#            }
-#            $textareacur tag add sel $i1 $i2
+#           if {$i1 != $i2 } {
+#	      colorize $textareacur $i1 [$textareacur index "$i2+1l linestart"]
+#           }
+#           $textareacur tag add sel $i1 $i2
 #         }
 #    }
 #}
@@ -2246,7 +2497,8 @@ proc CommentSel {} {
             if {[string range $ctext end-1 end]=="//"} {
                    set ctext [string range $ctext 0 end-2]
                    set i2 $i2-2c }
-#this fixes another glitch - missing "//" at the second line if the first is empty
+#this fixes another glitch - missing "//" at the second line if the first is
+#  empty
             if {[string range $ctext 0 2]=="//\n"} {
                    set ctext1 [string range $ctext 3 end]
                    set ctext "//\n//"
@@ -2276,8 +2528,10 @@ proc UnCommentSel {} {
             }
             regsub -all -line "^\\s*//" $ctext  "" uctext
             puttext $textareacur $uctext
-# there are still little glitches to correct, the easiest is just NOT to reselect...
-            $textareacur tag add sel $i1 [expr [$textareacur index "$i2 lineend"]+$toendline] }
+# there are still little glitches to correct, the easiest is just NOT to
+#  reselect...
+            $textareacur tag add sel $i1 \
+		[expr [$textareacur index "$i2 lineend"]+$toendline] }
     }
 }
 
@@ -2293,13 +2547,70 @@ proc modifiedtitle {textarea} {
        }
        $pad.filemenu.wind  entryconfigure [$pad.filemenu.wind index $fname] \
                           -background Salmon -activebackground LightSalmon
+       $pad.statusind configure -background Salmon
     } else {  
        settitle "$fname"
        $pad.filemenu.wind  entryconfigure [$pad.filemenu.wind index $fname]\
                           -background "" -activebackground ""
+       $pad.statusind configure -background grey86
      }
 }
 
+proc whichfun {} {
+    set textarea [gettextareacur]
+    set indexin [$textarea index insert]
+    scan $indexin "%d.%d" ypos xpos
+# search for the previous "function" which is not in a comment nor
+# in a string
+    set precfun [$textarea search -count len -exact -backwards -regexp\
+		     "\\mfunction\\M" $indexin 0.0]
+    if {$precfun!=""} {
+        while {[lsearch [$textarea tag names $precfun] "textquoted"] ==1 | \
+	       [lsearch  [$textarea tag names $precfun] "rem2"] ==1} {
+          set precfun [$textarea search -count len -exact -backwards -regexp\
+		     "\\mfunction\\M" $precfun 0.0]
+ 	  if {$precfun==""} break
+	}
+    }
+# search for the previous "function" which is not in a comment nor
+# in a string
+    set precendfun [$textarea search -count len -exact -backwards -regexp\
+		     "\\mendfunction\\M" $indexin 0.0]
+    if {$precendfun!=""} {
+        while {[lsearch [$textarea tag names $precendfun] "textquoted"] ==1 | \
+	       [lsearch  [$textarea tag names $precendfun] "rem2"] ==1} {
+          set precendfun [$textarea search -count len -exact -backwards -regexp\
+		     "\\mendfunction\\M" $precendfun 0.0]
+ 	  if {$precendfun==""} break
+	}
+    }
+    set insidefun 1
+    if {$precfun == "" | $precendfun > $precfun} {
+      set insidefun 0
+    } else { 
+# find the function name, excluding too pathological cases
+      set i1 [$textarea index "$precfun+8c"]
+      set i2 [$textarea index "$precfun lineend"]
+      set funline [$textarea get $i1 $i2]
+      set funname ""
+      set funpat  "\[\%\#\]*\\m\[\\w%\#\]*\\M\[%\#\]*"
+      if {[set i3 [string first "=" $funline]] !={}} {
+	  regexp -start [expr $i3+1] $funpat $funline funname  
+      } else {
+	  regexp  $funpat $funline funname  
+      }
+      if {$funname==""} {set insidefun 0}
+    }
+    if {$insidefun == 0} {
+      tk_messageBox -message \
+	  "The cursor is not currently inside a function body"
+    } else {
+      tk_messageBox -message \
+	   "Being at line $ypos, function $funname begins at $precfun"
+#TODO here check how many continued (...) lines between $indexin and $precfun,
+#  and derive the current line within the function definition
+    }
+}
 
 proc bindtext {textarea} {
     bind $textarea <Control-v> {pastetext}
@@ -2311,7 +2622,6 @@ proc bindtext {textarea} {
     bind $textarea <parenright> { if {{%A} != {{}}} {insblinkbrace %W %A}}
     bind $textarea <bracketright> { if {{%A} != {{}}} {insblinkbrace %W %A}} 
     bind $textarea <braceright>  { if {{%A} != {{}}} {insblinkbrace %W %A}}
-
 }
 
 load_words
