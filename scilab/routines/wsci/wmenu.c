@@ -1865,8 +1865,6 @@ void UpdateFileNameMenu(LPTW lptw)
 /*-----------------------------------------------------------------------------------*/   
 void SwitchLanguage(LPTW lptw)
 {
-	
-	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);", 2);
 	switch (lptw->lpmw->CodeLanguage)
 	{
 		case 1:
@@ -1877,7 +1875,7 @@ void SwitchLanguage(LPTW lptw)
 			StoreCommand1 ("LANGUAGE=\"eng\";", 2);
 		break;
 	}
-
+	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);", 2);
 
 	ReLoadMenus(lptw);
 	ToolBarOnOff(lptw);
