@@ -297,7 +297,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
 	  sciSetCurrentObj (ConstructPolyline
 			    ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,0));  
-	  if (*n > 1) sciSetForeground (sciGetCurrentObj(), zcol[i]);
+	  if ((*n > 1) && (zcol != (integer *)NULL)) sciSetForeground (sciGetCurrentObj(), zcol[i]);
 	  hdltab[i]=sciGetHandle(sciGetCurrentObj ()); 
 	} 
 	/** construct agregation and make it current object**/
