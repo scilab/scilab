@@ -49,9 +49,11 @@ double get_scicos_time();
 int get_block_number();
 void set_block_error(int);
 void set_pointer_xproperty(int* pointer);
-
 void * scicos_malloc(size_t );
 void scicos_free(void *p);
+double Get_Jacobian_parameter(void);
+double Get_Scicos_SQUR(void);
+void Set_Jacobian_flag(int flag);
 
 #if WIN32
 #undef min

@@ -1,3 +1,6 @@
+/* 11-03-2005, Masoud*/
+/* adding A-Jacobian*/
+/* istate =-1 case;*/
 
 #include <stdlib.h> 
 #include <string.h>
@@ -6,7 +9,7 @@
 #include "scicos.h"
 #include "import.h"
 #include "blocks.h"
-
+#include <math.h>
 
 #ifdef FORDLL 
 #define IMPORT  __declspec (dllimport)
@@ -57,6 +60,15 @@ void putevs(double *,integer *,integer *);
 void free_blocks();
 int setmode(double *,double *,double *,integer *,double);
 
+/* Jacobian*/
+void Jdoit(double *,double *,double *,double *,int *);
+int C2F(Jacobian)(double *, double *, double *, double *, double *, double *, int *);
+void Multp(double *, double *,double *, int, int, int ,int);
+void Set_Jacobian_flag(int flag);
+double Get_Jacobian_parameter(void);
+double Get_Scicos_SQUR(void);
+/*void DISP(A,ra ,ca,name);*/
+/* Jacobian*/
 
 IMPORT struct {
   int cosd;
@@ -149,6 +161,11 @@ integer *pointer_xproperty;
 integer n_pointer_xproperty;
 
 static integer *block_error;
+  /* Jacobian*/
+static integer Jacobian_Flag;
+static double  CJJ;
+static double SQuround;
+  /* Jacobian*/
 
 void call_debug_scicos(double *, double *, double *, double *,double *,integer
  *,integer,integer,integer);
@@ -556,6 +573,9 @@ int C2F(scicos)
     *ierr =10000;
     return;
   }
+  /* Jacobian*/
+  Jacobian_Flag=0;
+  /* Jacobian*/
 
   /* Function Body */
   *ierr = 0;
@@ -1049,7 +1069,7 @@ int C2F(scicos)
   double /*d__1,*/*rpardummy=NULL;
 
   /* Local variables */
-  static integer flag__, jdum;
+  static integer flag__;
   static integer info[20];
 
   static integer ierr1;
@@ -1070,11 +1090,20 @@ int C2F(scicos)
   double *W;
   integer *Mode_save;
   integer Mode_change;
-
+  /*-------------------- Analytical Jacobian memory allocation ----------*/
+  int  Jn, Jnx, Jno, Jni, Jactaille;
+  double uround;
+  Jactaille=0;   
+  if(Jacobian_Flag==1){
+    Jn=*neq;
+    Jnx=Blocks[nblk-1].nx;
+    Jno=Blocks[nblk-1].nout;
+    Jni=Blocks[nblk-1].nin;
+    Jactaille= 2+3*Jn+(Jn+Jni)*(Jn+Jno)+Jnx*(Jni+2*Jn+Jno)+(Jn-Jnx)*(2*(Jn-Jnx)+Jno+Jni)+2*Jni*Jno;}
+  /*----------------------------Jacobian----------------------------------*/
   maxord = 5;
-  nrwp = max(maxord + 4,7) * (*neq) + 60 + (*neq)*(*neq) + ng * 3;
-  niwp = (*neq) + 40 + (*neq) +ng ; /* + ng is for change in ddaskr to
-				       handle masking */
+  nrwp = max(maxord + 4,7) * (*neq) + 60 + (*neq)*(*neq) + ng * 3 + Jactaille;
+  niwp = (*neq) + 40 + (*neq) +ng ; /* + ng is for change in ddaskr to handle masking */ 
 
    /* +1 below is so that rhot starts from 1; one wasted location */
   if((rhot=malloc(sizeof(double)*(nrwp+1)))== NULL ){
@@ -1129,7 +1158,12 @@ int C2F(scicos)
     return;
   }
 
-
+  uround = 1.0;
+  do{
+    uround = uround*0.5;
+  }while ( 1.0 + uround == 1.0);
+  uround = uround*2.0;
+  SQuround=sqrt(uround);
   /* Function Body */
 
   C2F(coshlt).halt = 0;
@@ -1168,7 +1202,7 @@ int C2F(scicos)
   info[11] = 0;
   info[12] = 0;
   info[13] = 0;
-  info[14] = 0;
+  info[14] = 0; 
   info[15] = 0;
   info[16] = 0;
   info[17] = 0;
@@ -1290,10 +1324,12 @@ int C2F(scicos)
 	      ihot[jj + 40] = scicos_xproperty[jj-1];
 	    }
 	    phase=2;
-
+	    /* Jacobian*/
+	    info[4] =Jacobian_Flag; 
+	    /*	    info[4] =0; */ /* numerical Jacobian */
 	    C2F(ddaskr)(C2F(simblkdaskr), neq, told, x, xd, &t, info,  &rtol, 
 			 &Atol, &istate, &rhot[1],&nrwp, &ihot[1], &niwp,
-			rpardummy, ipardummy, &jdum, rpardummy, 
+			rpardummy, ipardummy, C2F(Jacobian), rpardummy, 
 			C2F(grblkdaskr), &ng, jroot);
 
 	    if (*ierr > 5) {
@@ -1350,8 +1386,10 @@ int C2F(scicos)
 	C2F(ddaskr)(C2F(simblkdaskr), neq, told, x, xd, &t, 
 		    info, &rtol, &Atol, &istate, &rhot[1], &
 		    nrwp, &ihot[1], &niwp, rpardummy, ipardummy
-		    , &jdum, rpardummy, C2F(grblkdaskr), &ng, jroot);
+		    ,C2F(Jacobian), rpardummy, C2F(grblkdaskr), &ng, jroot);
 
+	if (istate == -1)
+	  sciprint("**** Stiffness at: %26.18f %d\r\n",*told,istate);
 
 	phase=1;
 	if (*ierr > 5) {
@@ -1359,7 +1397,7 @@ int C2F(scicos)
 	  return;
 	}
 	
-	if (istate <= 0) {
+	if (istate <= -2) { /* in case istate==-1 : continue the integration*/
 	  *ierr = 100 - istate;
 	  freeallx;/* singularity in block */
 	  return;
@@ -2968,4 +3006,279 @@ void set_pointer_xproperty(int* pointer)
   }
   return;
 }
+
+/* Jacobian*/
+void Set_Jacobian_flag(int flag)
+{
+  Jacobian_Flag=flag;
+  return;
+}
+
+double Get_Jacobian_parameter(void)
+{
+  return CJJ;
+}
+
+double Get_Scicos_SQUR(void)
+{
+  return  SQuround;
+}
+
+void Jdoit(residual, xt, xtd, told, job)
+     double *residual, *xt, *xtd;
+     double *told;
+     int *job;
+{ 
+  /* System generated locals */
+  integer i2;
+
+  /* Local variables */
+  static integer flag__, keve, kiwa;
+  static integer ierr1, i;
+  static integer ii, jj;
+  /* Function Body */
+  kiwa = 0;
+  for (jj = 1; jj <= noord; ++jj) {
+    C2F(curblk).kfun = oord[jj];
+    nclock = oord[jj + noord];
+    if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
+      flag__ = 1;
+
+      if ((*job==2)&&(oord[jj]==nblk)) {// applying desired output
+      }else
+	callf(told, xtd, xt, residual,x,&flag__);      
+      if (flag__ < 0) {
+	*ierr = 5 - flag__;
+	return;
+      }
+    }
+
+    if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
+      if (funtyp[C2F(curblk).kfun] < 0) {
+	if(Blocks[C2F(curblk).kfun - 1].nmode > 0){
+	  i2 = Blocks[C2F(curblk).kfun - 1].mode[0] + 
+	    clkptr[C2F(curblk).kfun] - 1;
+	} else{
+	  if (funtyp[C2F(curblk).kfun] == -1) {
+	    if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
+	      i=2;
+	    } else {
+	      i=1;
+	    }
+	  } else if (funtyp[C2F(curblk).kfun] == -2) {
+	    i=max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		      Blocks[C2F(curblk).kfun - 1].nevout),1);
+	  }
+	  i2 =i+ clkptr[C2F(curblk).kfun] - 1;
+	}
+	putevs(told, &i2, &ierr1);
+	if (ierr1 != 0) {
+	  /*     !                 event conflict */
+	  *ierr = 3;
+	  return;
+	}
+	ozdoit(xtd, xt,told, &kiwa);
+      }
+    }
+  }
+
+  /*     .  update states derivatives */
+  for (ii = 1; ii <= noord; ++ii) {
+    C2F(curblk).kfun = oord[ii];
+    if (Blocks[C2F(curblk).kfun-1].nx > 0||
+	*Blocks[C2F(curblk).kfun-1].work !=NULL) {
+      /* work tests if a hidden state exists, used for delay block */
+      flag__ = 0;
+      if (((*job==1)&&(oord[ii]==nblk))||(*job!=1)){
+	if (*job==1)  flag__ = 10;
+	nclock = oord[ii + noord];
+	callf(told, xtd, xt, residual,xt,&flag__);
+      };
+      if (flag__ < 0) {
+	*ierr = 5 - flag__;
+	return;
+      }
+    }
+  }
+
+  for (i = 0; i < kiwa; ++i) {
+    keve = iwa[i];
+    for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
+      C2F(curblk).kfun = ordclk[ii ];
+      if (Blocks[C2F(curblk).kfun-1].nx > 0||
+	*Blocks[C2F(curblk).kfun-1].work !=NULL) {
+	/* work tests if a hidden state exists */
+
+	flag__ = 0;
+	if (((*job==1)&&(oord[ii]==nblk))||(*job!=1)){
+	  if (*job==1)  flag__ = 10;
+	  nclock = abs(ordclk[ii + nordclk]);
+	  callf(told, xtd, xt, residual,xt,&flag__);
+	}
+	if (flag__ < 0) {
+	  *ierr = 5 - flag__;
+	  return;
+	}
+      }
+    }
+  }
+} /* odoit_ */
+//-----------------------------------------------------------------------
+
+int C2F(Jacobian)(t,xc, xcdot,residual,cj,rpar1,ipar1)
+     int *ipar1;
+     double *t, *xc, *xcdot, *rpar1, *residual;
+     double *cj;
+{ 
+  int i,j,n, nx,ni,no,nb,m;
+  double *RX, *Fx, *Fu, *Gx, *Gu, *Ewt,*H,*SQUR,*ERR1,*ERR2;
+  double *Hx, *Hu,*Kx,*Ku,*HuGx,*FuKx,*FuKuGx,*HuGuKx;
+  double del,delinv,xsave,xdsave,ysave;
+  double a,b;
+  int job;
+  double **y = Blocks[nblk-1].outptr;
+  double **u = Blocks[nblk-1].inptr;
+  /*  taill1= 2+3*n+(n+ni)*(n+no)+nx(2*nx+ni+2*m+no)+m*(2*m+no+ni)+2*ni*no*/
+  *ierr= 0;
+  CJJ=*cj;
+  n=*neq; 
+  nb=nblk;
+  nx=Blocks[nblk-1].nx;m=n-nx;
+  no=Blocks[nblk-1].nout;
+  ni=Blocks[nblk-1].nin;
+  H=residual+ n * n;
+  SQUR=H+1;
+  Ewt=SQUR+1;
+  ERR1=Ewt+n;
+  ERR2=ERR1+n;
+  RX=ERR2+n;
+  Fx=RX+(n+ni)*(n+no); /* car (nx+ni)*(nx+no) peut etre > `a n*n*/
+  Fu=Fx+nx*nx;
+  Gx=Fu+nx*ni;
+  Gu=Gx+no*nx;
+  Hx=Gu+no*ni;
+  Hu=Hx+m*m; 
+  Kx=Hu+m*no;
+  Ku=Kx+ni*m;
+  HuGx=Ku+ni*no;
+  FuKx=HuGx+m*nx;
+  FuKuGx=FuKx+nx*m;
+  HuGuKx=FuKuGx+nx*nx;
+  /* HuGuKx+m*m;=.  m*m=size of HuGuKx */
+  /* ------------------ Numerical Jacobian--->> Hx,Kx */
+  job=0;/* read residuals;*/
+  Jdoit(ERR1, xc, xcdot,t,&job);
+  if (*ierr < 0) return -1;
+
+  for (i=0;i<m;i++)
+    for (j=0;j<ni;j++)
+      Kx[j+i*ni]=u[j][0];
+
+  for(i=0;i<m;i++){
+    a= max(abs(H[0]*xcdot[i]),abs(1.0/Ewt[i]));
+    b= max(1.0,abs(xc[i]));
+    del=SQUR[0]*max(a,b);
+    if (H[0]*xcdot[i]<0) del*=-1;
+    del=(xc[i]+del)-xc[i];
+    xsave=xc[i];
+    xdsave=xcdot[i];
+    xc[i]+=del;
+    xcdot[i]+=CJJ*del;
+    job=0;/* read residuals */
+    Jdoit(ERR2, xc, xcdot,t,&job);
+    if (*ierr < 0) return -1;
+    delinv=1.0/del;
+    for(j=0;j<m;j++)
+      Hx[m*i+j]=(ERR2[j]-ERR1[j])*delinv;
+    for (j=0;j<ni;j++)
+      Kx[j+i*ni]=(u[j][0]-Kx[j+i*ni])*delinv;
+    xc[i]=xsave;
+    xcdot[i]=xdsave;
+  }
+  /*----- Numerical Jacobian--->> Hu,Ku */
+  job=0;
+  Jdoit(ERR1, xc, xcdot,t,&job);
+  for (i=0;i<no;i++)
+    for (j=0;j<ni;j++)
+      Ku[j+i*ni]=u[j][0];
+
+  for(i=0;i<no;i++){
+    del=SQUR[0]* max(1.0,abs(y[i][0]));
+    del=(y[i][0]+del)-y[i][0];
+    ysave=y[i][0];
+    y[i][0]+=del;
+    job=2;/* applying y[i][0] to the output of imp block*/
+    Jdoit(ERR2, xc, xcdot,t,&job);
+    if (*ierr < 0) return -1;
+    delinv=1.0/del;
+    for(j=0;j<m;j++)
+      Hu[m*i+j]=(ERR2[j]-ERR1[j])*delinv;
+    for (j=0;j<ni;j++)
+      Ku[j+i*ni]=(u[j][0]-Ku[j+i*ni])*delinv;
+    y[i][0]=ysave;
+  }
+  /*----------------------------------------------*/
+  job=1;/* read jacobian through flag=10; */
+  Jdoit(&Fx[-m], xc, xcdot,t,&job);/* Filling up the FX:Fu:Gx:Gu*/
+  if (*block_error!=0) sciprint("\n\r error in Jacobian");
+  /*-------------------------------------------------*/
+  Multp(Fu,Ku,RX,nx,ni,ni,no);Multp(RX,Gx,FuKuGx,nx,no,no,nx);
+  for (i=0;i<nx;i++)
+    for (j=0;j<nx;j++){
+      residual[i+m+(j+m)*n]=Fx[i+j*nx]+FuKuGx[i+j*nx];
+    }
+
+  Multp(Hu,Gx,HuGx,m, no, no,nx);
+  for (i=0;i<nx;i++)
+    for (j=0;j<m;j++){
+      residual[j+(i+m)*n]=HuGx[j+i*m];
+    }
+
+  Multp(Fu,Kx,FuKx,nx,ni,ni,m);
+  for (i=0;i<m;i++)
+    for (j=0;j<nx;j++){
+      residual[(j+m)+i*n]=FuKx[j+i*nx];
+    }
+
+  Multp(Hu,Gu,RX,m,no,no,ni); Multp(RX,Kx,HuGuKx,m,ni,ni,m);
+  for (i=0;i<m;i++)
+    for (j=0;j<m;j++){
+      residual[i+(j)*n]=Hx[i+j*m]+HuGuKx[i+j*m]; 
+    }
+
+  /*  chr='R'; DISP(residual,n,n,&chr);*/
+  C2F(ierode).iero = *ierr;
+ return 0;
+
+}
+//----------------------------------------------------
+void Multp(A,B,R,ra ,ca, rb,cb)
+     double *A, *B, *R;
+     int ra,rb,ca,cb;
+{ 
+  int i,j,k;
+  if (ca!=rb) sciprint("\n\r Error in matrix multiplication");
+  for (i = 0; i<ra; i++)
+    for (j = 0; j<cb; j++){
+      R[i+ra*j]=0.0;
+      for (k = 0; k<ca; k++)
+	R[i+ra*j]+=A[i+k*ra]*B[k+j*rb];
+    }
+  return;
+}
+
+/* void DISP(A,ra ,ca,name)
+     double *A;
+     int ra,ca,*name;
+{
+  int i,j;
+  sciprint("\n\r");
+  for (i=0;i<ca;i++)
+    for (j=0;j<ra;j++){
+      if (A[j+i*ra]!=0) 
+       sciprint(" %s(%d,%d)=%g;",name,j+1,i+1,A[j+i*ra]);
+    }; 
+}*/
+/* Jacobian*/
+
 
