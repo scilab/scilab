@@ -53,10 +53,14 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
          sci_fseek.sci sci_ftell.sci sci_full.sci sci_fullfile.sci \
 	 sci_fwrite.sci sci_getenv.sci \
 	 sci_global.sci sci_hankel.sci sci_help.sci sci_helpbrowser.sci sci_helpdesk.sci\
-	 sci_helpwin.sci sci_hess.sci sci_input.sci \
-         sci_isa.sci sci_ischar.sci sci_isempty.sci sci_isfinite.sci sci_isglobal.sci \
-	 sci_ishandle.sci sci_isinf.sci sci_isletter.sci sci_islogical.sci sci_isnan.sci \
-         sci_isreal.sci sci_isspace.sci sci_issparse.sci sci_isstr.sci sci_keyboard.sci \
+	 sci_helpwin.sci sci_hess.sci sci_horzcat.sci sci_ifft.sci sci_input.sci \
+         sci_isa.sci sci_iscell.sci sci_ischar.sci sci_isdir.sci \
+	 sci_isempty.sci sci_isequal.sci sci_isfield.sci sci_isfinite.sci sci_isglobal.sci \
+	 sci_ishandle.sci sci_isinf.sci sci_isinteger.sci \
+	 sci_isletter.sci sci_islogical.sci sci_isnan.sci sci_isnumeric.sci sci_ispc.sci\
+         sci_isreal.sci sci_isscalar.sci \
+	 sci_isspace.sci sci_issparse.sci sci_isstr.sci sci_isstruct.sci sci_isunix.sci \
+	 sci_isvector.sci sci_keyboard.sci \
 	 sci_length.sci sci_load.sci sci_log2.sci \
          sci_logical.sci sci_lookfor.sci sci_lu.sci sci_makecell.sci sci_mod.sci \
 	 sci_more.sci \
