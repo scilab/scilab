@@ -93,6 +93,30 @@ function rec=LoadXcall1()
   rec.dx2=LoadVectF()
   rec.dx3=LoadVectF()
   rec.dx4=LoadVectF()
+  if rec.fname=='xstringa' then
+    // in fact xtitle 
+    str=rec.string
+    rec=xtitle_rec()
+    rec.strs=[str,"",""]
+    for k=1:2
+      pos=mtell(ufil)
+      fname=LoadVectC()
+      if fname<>'xcall1' then
+	mseek(pos,ufil,'set')
+	return
+      else
+	fname=LoadVectC()
+	if fname<>'xstringa' then
+	  mseek(pos,ufil,'set')
+	  return
+	end
+	rec.strs(k+1)=LoadVectC()
+	for i=1:10,LoadLI(),end
+	for i=1:6,LoadVectLI(),end
+	for i=1:4,LoadVectF(),end
+      end
+    end
+  end
 endfunction
 
 function rec=LoadEch()
@@ -590,6 +614,11 @@ function rec= xcall1_rec()
 	     'ndx1' 'ndx2' 'ndx3' 'ndx4' 'x1' 'x2' 'x3' 'x4' 'x5' 'x6' ,..
 	     'dx1' 'dx2' 'dx3' 'dx4'])
 endfunction
+function rec= xtitle_rec()
+// Copyright INRIA
+// Author: Serge Steer
+  rec=tlist(['xtitle','strs'])
+endfunction
 
 function rec=scale_rec()
 // Copyright INRIA
@@ -776,6 +805,19 @@ function %xcall1_p(rec)
   disp(string(rec))
 endfunction
 
+function txt=%xtitle_string(rec)
+// Copyright INRIA
+// Author: Serge Steer
+  txt='xtitle('+sci2exp(rec.strs(1))+','+sci2exp(rec.strs(2))+','+..
+      sci2exp(rec.strs(3))+')'
+endfunction
+
+function %xtitle_p(rec)
+// Copyright INRIA
+// Author: Serge Steer
+  disp(%xtitle_string(rec))
+endfunction
+
 
 function txt=%plot2d_string(rec)
 // Copyright INRIA
@@ -874,7 +916,6 @@ endfunction
 function %SPLOT_p(rec)
 // Copyright INRIA
 // Author: Serge Steer
-  
   for k=2:size(rec)
     disp(rec(k))
   end
@@ -883,7 +924,6 @@ endfunction
 function txt=%SPLOT_string(rec)
 // Copyright INRIA
 // Author: Serge Steer
-  
   txt=[]
   for k=2:size(rec)
     txt=[txt;string(rec(k))]
