@@ -13,7 +13,7 @@ QUIET= > /dev/null
 LANGUAGE=eng 
 
 XSLFILE=html-jpc-rev.xsl
-XSLFILE=html-rev.xsl
+#XSLFILE=html-rev.xsl
 
 man: 	
 	@echo "Creating html help files" 
@@ -59,8 +59,9 @@ distclean::
 	$(RM)  $(FILES_TO_CLEAN)
 
 manclean: distclean 
-	$(RM)  */whatis */*.htm index.htm contents.htm
-	$(RM)  sciman.hh* sciman.chm
+	@echo "Cleaning generated html files" 
+	@for file in `find ./ -name '*.xml'`; do $(RM) $${file%xml}htm; done
+	@for file in `find ./ -name '*.xml'`; do $(RM) $${file%xml}xml2; done
+	@for dir in `ls -d ./ | grep -v scicos`; do $(RM) $${dir}/whatis.htm; done
 
- 
 
