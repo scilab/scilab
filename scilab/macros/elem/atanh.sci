@@ -1,4 +1,4 @@
-function [z] = atanh(z)
+function [t] = atanh(z)
   // 
   //  PURPOSE 
   //     element wise hyperbolic arctangent
@@ -8,10 +8,16 @@ function [z] = atanh(z)
   //
   if type(z)<>1 then error(53),end
   if isreal(z) then 
-    k=find(abs(z)>1)
-    z(k) = imult(atan(-imult(z(k))))// result is complex 
-    k=find(abs(z)<=1)
-    z(k)= -imag(atan(-imult(z(k))))// result is real
+    if max(abs(z)) > 1 then  // il faut faire le test ds ce sens pour
+                             // les Nan (sinon on obtient NaN + i NaN ! )
+      // result is complex 
+      t = imult(atan(-imult(z)))
+    else
+      // result is real
+      t= -imag(atan(-imult(z)))
+    end
   else
-    z = imult(atan(-imult(z)))
+    t = imult(atan(-imult(z)))
   end
+endfunction
+
