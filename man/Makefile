@@ -3,25 +3,11 @@ SHELL = /bin/sh
 include ../Path.incl
 include ../Makefile.incl
 
-whatis:: 
+man :: 
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
 	for i in eng fr;\
 	do \
-		(cd $$i ; $(MAKE) $(MFLAGS) whatis); \
-	done
-
-html:: 
-	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
-	for i in eng fr;\
-	do \
-		(cd $$i ; $(MAKE) $(MFLAGS) html); \
-	done
-
-index:: 
-	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
-	for i in eng fr;\
-	do \
-		(cd $$i ; $(MAKE) $(MFLAGS) index); \
+		(cd $$i ; $(MAKE) $(MFLAGS) man ); \
 	done
 
 manclean::

@@ -67,31 +67,15 @@ clean::
 		(cd $$i ; echo "making clean in $$i..."; \
 			$(MAKE) $(MFLAGS)  clean); \
 	done
-# making the man
-# whatis must be done first
 
-man: whatis html index
-
-whatis:
+man::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
 	for i in man;\
 	do \
-		(cd $$i ; echo "making whatis in $$i..."; \
+		(cd $$i ; echo "making man in $$i..."; \
 			$(MAKE) $(MFLAGS) whatis); \
 	done
 
-html:	
-	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
-	for i in man;\
-	do \
-		(cd $$i ; echo "making html in $$i..."; \
-			$(MAKE) $(MFLAGS) html); \
-	done
-
-index:
-	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
-	(cd man ; echo "making index in man..."; \
-	$(MAKE) $(MFLAGS) index);
 
 manclean:	
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
