@@ -4961,7 +4961,6 @@ c     STATEMENT FUNC
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 
-
 c     TEXT
       fname = 'dsearch'
       topk=top
@@ -5058,5 +5057,5 @@ c     int2db ... (normalement ca doit passer avec -1 sans copie supplementaire)
          call copyobj(fname,topk+3,topl+3)
       endif
       top=topl+lhs
-
+      return 
       end
