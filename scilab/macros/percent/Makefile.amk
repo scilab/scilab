@@ -60,7 +60,8 @@ I =      %b_i_s.sci %b_i_sp.sci %b_i_spb.sci %c_i_lss.sci \
 	 %r_i_p.sci %r_i_r.sci %r_i_s.sci %s_i_hm.sci \
 	 %s_i_lss.sci %s_i_p.sci %s_i_r.sci %s_i_s.sci \
 	 %s_i_sp.sci %s_i_spb.sci %sp_i_s.sci %sp_i_sp.sci \
-	 %i_i_hm.sci %i_i_s.sci %b_i_hm.sci %s_i_h.sci %c_i_h.sci 
+	 %i_i_hm.sci %i_i_s.sci %b_i_hm.sci %s_i_h.sci %c_i_h.sci \
+	 %i_i_i.sci 
 
 J =      %hm_j_hm.sci %hm_j_s.sci %p_j_s.sci %r_j_s.sci
 
