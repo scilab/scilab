@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "intersci_f", "intersci_f.vfproj", "{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Debug.ActiveCfg = Debug|Win32
+		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Debug.Build.0 = Debug|Win32
+		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Release.ActiveCfg = Release|Win32
+		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

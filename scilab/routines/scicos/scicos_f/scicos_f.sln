@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "scicos_f", "scicos_f.vfproj", "{566E524B-D327-4416-A865-9C83503FAB7B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{566E524B-D327-4416-A865-9C83503FAB7B}.Debug.ActiveCfg = Debug|Win32
+		{566E524B-D327-4416-A865-9C83503FAB7B}.Debug.Build.0 = Debug|Win32
+		{566E524B-D327-4416-A865-9C83503FAB7B}.Release.ActiveCfg = Release|Win32
+		{566E524B-D327-4416-A865-9C83503FAB7B}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

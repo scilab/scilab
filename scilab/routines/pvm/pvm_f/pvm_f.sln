@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "pvm_f", "pvm_f.vfproj", "{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Debug.ActiveCfg = Debug|Win32
+		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Debug.Build.0 = Debug|Win32
+		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Release.ActiveCfg = Release|Win32
+		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

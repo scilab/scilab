@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib", "randlib.vcproj", "{E7D93734-E20E-416C-8DA2-AD07AFC89FAB}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{E7D93734-E20E-416C-8DA2-AD07AFC89FAB}.Debug.ActiveCfg = Debug|Win32
+		{E7D93734-E20E-416C-8DA2-AD07AFC89FAB}.Debug.Build.0 = Debug|Win32
+		{E7D93734-E20E-416C-8DA2-AD07AFC89FAB}.Release.ActiveCfg = Release|Win32
+		{E7D93734-E20E-416C-8DA2-AD07AFC89FAB}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

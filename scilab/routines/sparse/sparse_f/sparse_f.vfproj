@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="8.00" ProjectIdGuid="{13082624-97F9-47DB-A9A1-AD7D6BF3856A}">
+	<Platforms>
+		<Platform Name="Win32"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def sparse_f.def &gt;nul
+copy sparse_f.def ..\..\..\..\libs\sparse_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/sparse_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def sparse_f.def &gt;nul
+copy sparse_f.def ..\..\..\..\libs\sparse_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentium" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/sparse_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+		<Configuration Name="PIV_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" UseProcessorExtensions="codeForStreamingSIMD2" RequireProcessorExtensions="codeExclusivelyStreamingSIMD2" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def sparse_f.def &gt;nul
+copy sparse_f.def ..\..\..\..\libs\sparse_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/sparse_f.lib" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Pentium_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentium" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def sparse_f.def &gt;nul
+copy sparse_f.def ..\..\..\..\libs\sparse_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/sparse_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="..\blkfc1.f"/>
+		<File RelativePath="..\blkfct.f"/>
+		<File RelativePath="..\blkslv.f"/>
+		<File RelativePath="..\dcompa.f"/>
+		<File RelativePath="..\dful2sp.f"/>
+		<File RelativePath="..\dij2sp.f"/>
+		<File RelativePath="..\dperm.f"/>
+		<File RelativePath="..\dsmsp.f"/>
+		<File RelativePath="..\dsosp.f"/>
+		<File RelativePath="..\dspasp.f"/>
+		<File RelativePath="..\dspcle.f"/>
+		<File RelativePath="..\dspcsp.f"/>
+		<File RelativePath="..\dspe2.f"/>
+		<File RelativePath="..\dspful.f"/>
+		<File RelativePath="..\dspis.f"/>
+		<File RelativePath="..\dspisp.f"/>
+		<File RelativePath="..\dspmat.f"/>
+		<File RelativePath="..\dspmax.f"/>
+		<File RelativePath="..\dspmin.f"/>
+		<File RelativePath="..\dspms.f"/>
+		<File RelativePath="..\dspmsp.f"/>
+		<File RelativePath="..\dspos.f"/>
+		<File RelativePath="..\dsposp.f"/>
+		<File RelativePath="..\dspssp.f"/>
+		<File RelativePath="..\dspt.f"/>
+		<File RelativePath="..\dspxs.f"/>
+		<File RelativePath="..\dspxsp.f"/>
+		<File RelativePath="..\findl.f"/>
+		<File RelativePath="..\inpnv.f"/>
+		<File RelativePath="..\intreadmps.f"/>
+		<File RelativePath="..\iperm.f"/>
+		<File RelativePath="..\isort1.f"/>
+		<File RelativePath="..\lcompa.f"/>
+		<File RelativePath="..\lful2sp.f"/>
+		<File RelativePath="..\lij2sp.f"/>
+		<File RelativePath="..\lsosp.f"/>
+		<File RelativePath="..\lspasp.f"/>
+		<File RelativePath="..\lspcsp.f"/>
+		<File RelativePath="..\lspe2.f"/>
+		<File RelativePath="..\lspful.f"/>
+		<File RelativePath="..\lspis.f"/>
+		<File RelativePath="..\lspisp.f"/>
+		<File RelativePath="..\lspmat.f"/>
+		<File RelativePath="..\lspops.f"/>
+		<File RelativePath="..\lspos.f"/>
+		<File RelativePath="..\lsposp.f"/>
+		<File RelativePath="..\lspt.f"/>
+		<File RelativePath="..\lspxsp.f"/>
+		<File RelativePath="..\ordmmd.f"/>
+		<File RelativePath="..\rdmps1.f"/>
+		<File RelativePath="..\rdmpsz.f"/>
+		<File RelativePath="..\sp2col.f"/>
+		<File RelativePath="..\spcho1.f"/>
+		<File RelativePath="..\spcho2.f"/>
+		<File RelativePath="..\spcompack.f"/>
+		<File RelativePath="..\spelm.f"/>
+		<File RelativePath="..\spind.f"/>
+		<File RelativePath="..\spops.f"/>
+		<File RelativePath="..\spord.f"/>
+		<File RelativePath="..\spsort.f"/>
+		<File RelativePath="..\symfct.f"/>
+		<File RelativePath="..\sz2ptr.f"/>
+		<File RelativePath="..\wcompa.f"/>
+		<File RelativePath="..\wful2sp.f"/>
+		<File RelativePath="..\wij2sp.f"/>
+		<File RelativePath="..\wperm.f"/>
+		<File RelativePath="..\wsmsp.f"/>
+		<File RelativePath="..\wsosp.f"/>
+		<File RelativePath="..\wspasp.f"/>
+		<File RelativePath="..\wspcle.f"/>
+		<File RelativePath="..\wspcsp.f"/>
+		<File RelativePath="..\wspe2.f"/>
+		<File RelativePath="..\wspful.f"/>
+		<File RelativePath="..\wspis.f"/>
+		<File RelativePath="..\wspisp.f"/>
+		<File RelativePath="..\wspmat.f"/>
+		<File RelativePath="..\wspms.f"/>
+		<File RelativePath="..\wspmsp.f"/>
+		<File RelativePath="..\wspos.f"/>
+		<File RelativePath="..\wsposp.f"/>
+		<File RelativePath="..\wspssp.f"/>
+		<File RelativePath="..\wspt.f"/>
+		<File RelativePath="..\wspxs.f"/>
+		<File RelativePath="..\wspxsp.f"/></Filter>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/></Files>
+	<Globals/></VisualStudioProject>
