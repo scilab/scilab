@@ -102,13 +102,15 @@ c     quote delimited string
  19   continue
 c     end reading : the string is stored in istk(ln-> ln+(n-1))
 c     Storing size info in data Base
-      if(comp(1).ne.0) then 
-         istk(l0)=n
-         comp(1)=l+n
-      else
-         if (.not.cresmat("getstr",top,1,1,n)) return
+      if (n.gt.0) then
+         if(comp(1).ne.0) then 
+            istk(l0)=n
+            comp(1)=l+n
+         else
+            if (.not.cresmat("getstr",top,1,1,n)) return
+         endif
+         rhs=rhs+1
       endif
-      rhs=rhs+1
       if (char1.eq.eol.or.char1.eq.comma.or.char1.eq.semi) last=1
       sym=char1
       if(last.eq.0) goto 01
