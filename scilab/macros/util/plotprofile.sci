@@ -110,6 +110,7 @@ function [h,M]=dispfuntxt(txt,k,h,M)
       delmenu(curwin,'3D Rot.')
       delmenu(curwin,'UnZoom')
       delmenu(curwin,'Zoom')
+      delmenu(curwin,'Edit')
       delmenu(curwin,'File')
     else
         hidetoolbar(curwin)

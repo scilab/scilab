@@ -22,15 +22,13 @@ function [palettes,windows]=do_load_as_palette(palettes,windows)
     delmenu(curwin,'3D Rot.')
     delmenu(curwin,'UnZoom')
     delmenu(curwin,'Zoom')
-    //  delmenu(curwin,'File')
+    delmenu(curwin,'Edit')
   else
         hidetoolbar(curwin)
      // French
-     // delmenu(curwin,'&Fichier')
   	delmenu(curwin,'&Editer')
   	delmenu(curwin,'&Outils')
      // English
-     //	delmenu(curwin,'&File')
   	delmenu(curwin,'&Edit')
   	delmenu(curwin,'&Tools')
     

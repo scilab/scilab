@@ -32,7 +32,7 @@ function [palettes,windows]=do_palettes(palettes,windows)
     delmenu(curwin,'3D Rot.')
     delmenu(curwin,'UnZoom')
     delmenu(curwin,'Zoom')
-    //  delmenu(curwin,'File')
+    delmenu(curwin,'Edit')
   else
         hidetoolbar(curwin)
      // French

@@ -10,6 +10,7 @@ if ~MSDOS then
   delmenu(win,'3D Rot.')
   delmenu(win,'UnZoom')
   delmenu(win,'Zoom')
+  delmenu(win,"Edit")
   delmenu(win,'File')
 else
   hidetoolbar(win)
