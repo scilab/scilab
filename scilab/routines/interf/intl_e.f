@@ -77,7 +77,7 @@ c
       endif
 c     go ahead along the path
       call followpath(top1,top2,il1ir,vol1,il2ir,vol2,istk(ilind),
-     $     icount,info,lw,0)
+     $     icount,info,lw)
       if(err.gt.0) return
       if(vol2.eq.0) then
 c     empty field found
@@ -226,8 +226,7 @@ c     move results at its correct location
       call unsfdcopy(vol,stk(lstk(top)),1,stk(lstk(top-2)),1)
       top=top-2
       lstk(top+1)=lstk(top)+vol
-      fin=0
-      fun=0
+
       pt=pt-1
 c     nothing more to do here
       return

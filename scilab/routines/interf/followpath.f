@@ -1,5 +1,5 @@
       subroutine followpath(indtop,listtop,ilindi,voli,ilp,voll,ind,
-     $     count,info,lwork,job)
+     $     count,info,lwork)
 c     Copyright INRIA
 c =============================================================
 c     given 
@@ -34,7 +34,7 @@ c
 c     Copyright INRIA
       include '../stack.h'
 c     
-      integer indtop,listtop,ind(*),job
+      integer indtop,listtop,ind(*)
       integer typi,count,oldcount,voll,voli
 
       integer strpos
@@ -92,7 +92,6 @@ c     move pointer to next entry in index list
 
 c     extract infos out of the current sublist
  12   typi=istk(illisti)
-      if(job.eq.1.and.typi.eq.17) typi=16
       mi=istk(illisti+1)
       llisti=sadr(illisti+mi+3)
       voll=istk(illisti+mi+2)-1+sadr(3+mi)

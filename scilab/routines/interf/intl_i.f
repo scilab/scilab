@@ -98,7 +98,7 @@ c     protect index list
 c     go ahead along the path
       icount=0
       call followpath(top1,top3,il1ir,vol1,il3ir,vol3,
-     $     istk(ilind),icount,info,lw,0)
+     $     istk(ilind),icount,info,lw)
       if(err.gt.0) return
       il1i=il1ir
       if(istk(il1i).lt.0) il1i=iadr(istk(il1i+1))
