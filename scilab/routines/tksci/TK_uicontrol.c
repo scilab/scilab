@@ -21,7 +21,8 @@ char *ListStr2Str();
 char *UiStyleName[] = {"button", "checkbutton", "checkbutton", "entry", "label",
 		       "scale", "frame", "scrolllistbox", "popupmenu"};
 
-
+extern int GetScreenProperty(char *prop, char *value);
+extern int  Scierror __PARAMS((int iv,char *fmt,...));
 
 
 
@@ -95,7 +96,7 @@ int TK_UiGet(int Handle,Matrix * Mfield,Matrix ** Mvalue)
   char *StrField;
   
   char MyCommand[2000];
-  char *MyAnswer;
+  char *MyAnswer=NULL;
   Matrix * TmpMat;
   int mem_siz;
 
@@ -106,7 +107,15 @@ int TK_UiGet(int Handle,Matrix * Mfield,Matrix ** Mvalue)
 
   if(Handle==0) /* Screen properties */
     {
-      if(!GetScreenProperty(StrField,&MyAnswer))
+	if((MyAnswer=(char *)calloc(1,sizeof(char)*(200+1)))==NULL)
+    {
+      Scierror(999,"GetScreenProperty: No more memory available\r\n");
+      return -1;
+    }
+
+    (MyAnswer)[200]='\0';
+
+    if(!GetScreenProperty(StrField,MyAnswer))
 	{
 	  Str2MatReal(MyAnswer, Mvalue);
 	  free(MyAnswer);
