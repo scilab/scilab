@@ -6,7 +6,7 @@ function help(key)
   
   // set of possible modes for gtk
   gtk_modes=['help widget';'nautilus';'mozilla';'netscape';'opera'];
-  if %tk then gtk_mode=[gtk_modes;'tcltk'];end 
+  if %tk then gtk_modes=[gtk_modes;'tcltk'];end 
     
   [lhs,rhs]=argn(0);
   
