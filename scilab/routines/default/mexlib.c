@@ -11,6 +11,8 @@
 #include <varargs.h>
 #endif 
 
+#include "../calelm/calelm.h"
+
 extern void cerro __PARAMS((char *str));
 extern int C2F(dcopy) __PARAMS((int*, double *, int *, double *, int *));
 extern int C2F(xscion)  __PARAMS((int *i));
@@ -356,7 +358,7 @@ double *mxGetPi(Matrix *ptr)
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
     if (loci[3]==0 || loci[1]==0 || loci[2] == 0) return NULL;
-    return  &loc[2];&loc[2 + loci[1] * loci[2]];  /*  ?  */
+    return  &loc[2];/* &loc[2 + loci[1] * loci[2]];*/  /*  ?  */
   case MLIST:
     debut=6+2*(loci[4]-1);
     switch (loci[debut]){
@@ -881,7 +883,7 @@ int mxGetNumberOfFields(mxArray *ptr)
 void *mxCalloc(unsigned int n, unsigned int size)
 {
   int m;  vraiptrst lrd; 
-  static one=1; 
+  static int one=1; 
   static double zero =0.0;
   m = (n * size) /sizeof(double) + 1;
   if (! C2F(createstkptr)( &m, &lrd)) {
@@ -1384,7 +1386,7 @@ int C2F(endmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
 
 void clear_mex(integer nlhs, Matrix **plhs, integer nrhs, Matrix **prhs)
 {
-  int nv=Nbvars ,kk,k; 
+  int nv=Nbvars ,k; 
   int max = (int) plhs[0] ; 
   for (k = 1; k <= nlhs; k++)
     if (  (int)plhs[k-1] > max ) max =  (int)plhs[k-1];
