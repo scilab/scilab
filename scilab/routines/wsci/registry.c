@@ -374,11 +374,13 @@ void ReadTextIni (LPTW lptw)
 	
   	if ( RegQueryValueEx(key, "SysColors", 0, NULL, (LPBYTE)&SysColors, &size) !=  ERROR_SUCCESS )
 	{
-		lptw->bSysColors = 0;
+		lptw->bSysColors = 1;
 	}
 	else
 	{
-		lptw->bSysColors = SysColors;
+		//lptw->bSysColors = SysColors;
+		// Pour le moment en attendant l'ajout des boites de dialogues ...
+		lptw->bSysColors = 1;
 	}
 	
 	if ( RegQueryValueEx(key, "ColorWindow", 0, NULL, (LPBYTE)&ColorWindow, &size) !=  ERROR_SUCCESS )

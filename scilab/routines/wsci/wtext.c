@@ -832,6 +832,11 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 		SendMessage (lptw->hWndText, message, wParam, lParam);
 		/* pass on menu commands */
 		return (0);
+		case WM_SYSCOLORCHANGE:
+		  lptw->hbrBackground =  CreateSolidBrush (GetSysColor (COLOR_HIGHLIGHT));
+		  InvalidateRect (lptw->hWndText, (LPRECT) NULL, 1);
+		  UpdateWindow (lptw->hWndText);
+		return (0);
 		case WM_PAINT:
 		{
 			hdc = BeginPaint (hwnd, &ps);
@@ -1567,13 +1572,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 
 	  }
       return (0);
-    case WM_SYSCOLORCHANGE:
-      DeleteBrush (lptw->hbrBackground);
-      /*lptw->hbrBackground = CreateSolidBrush (lptw->bSysColors ?
-				GetSysColor (COLOR_WINDOW) : RGB (0, 0, 0));
-				*/
-	  lptw->hbrBackground =  CreateSolidBrush (GetConsoleColorWindow());
-      return (0);
+    
     case WM_ERASEBKGND:
       return (1);		/* we will erase it ourselves */
     case WM_PAINT:
