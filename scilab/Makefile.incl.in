@@ -21,6 +21,12 @@ TERMCAPLIB = @TERMCAPLIB@
 ##################################################################
 
 ############
+# C++ compiler 
+CXX= @CXX@
+CXX_OPTIONS= @CXXFLAGS@
+CXX_CPP =  @CXXCPP@
+
+############
 # C compiler
 # typically, for compiling use: CFLAGS = $(CC_OPTIONS)
 # and for linking: $(CC) -o $(PROGRAM) $(OBJS) $(CC_LDFLAGS)
