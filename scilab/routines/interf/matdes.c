@@ -2602,7 +2602,7 @@ int scixstringb(fname,fname_len)
 	}
       C2F(cha1).buf[ib]= '\n'; ib++;
     }
-  C2F(cha1).buf[ib]='\0';
+  C2F(cha1).buf[ib-1]='\0';
   C2F(dr1)("xstringb",C2F(cha1).buf,&fill,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz);
   /* we must free Str2 memory */ 
   FreeRhsSVar(Str);
