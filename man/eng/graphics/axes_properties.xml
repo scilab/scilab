@@ -337,7 +337,7 @@
    x=0:0.1:2.5*%pi;plot2d(10*cos(x),sin(x));
    a=gca(); 
    a.rotation_angles=[45 45];
-   a.data_bounds=[-20,-3,-2;20; 3 ,2];
+   a.data_bounds=[-20,-3,-2;20 3 ,2];
    xrect([-4 0.5 8 1]);
    a.isoview="on"; // isoview mode
    xrect([-2 0.25 4 0.5]);
@@ -354,6 +354,7 @@
    a.data_bounds //the boundary values for the x,y and z coordinates
    a.view="2d";
    a.data_bounds=[-10,-1; 10,1]; // set the boundary values for the two-dimensional views
+
  ]]></EXAMPLE>
   <SEE_ALSO>
    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
