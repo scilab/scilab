@@ -43,7 +43,7 @@ OBJSF=intcos.o coselm.o sciblk.o  addevt.o doit.o odoit.o zdoit.o scicos.o \
 	scitovv.o cosiord.o $(BLOCKS_CODE)
 
 OBJSC=callf.o import.o sciblk2.o sciblk2i.o simblk.o grblk.o realtime.o \
-	intrealtime.o duplicate.o blocks.o $(BLOCKSC)
+	intrealtime.o duplicate.o blocks.o cpass2.o $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
 
@@ -102,3 +102,5 @@ grblk.o: ../machine.h import.h
 simblk.o: ../machine.h import.h
 coselm.o : ../stack.h
 intcos.o : ../stack.h
+cpass2.o: ../machine.h
+

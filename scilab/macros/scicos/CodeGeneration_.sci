@@ -1198,7 +1198,7 @@ function  [ok,XX]=do_compile_superblock(XX)
     end
   end
 
-  cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
+  cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   if cpr==list() then ok=%f,return, end
 

@@ -59,7 +59,7 @@ load('SCI/macros/scicos/lib')
 if ~ok then
   error('Diagram does not compile in pass 1');
 end
-%cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv);
+%cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv);
 if %cpr==list() then 
   ok=%f,
 end

@@ -43,7 +43,7 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
 	standard_outputs.sci systshow.sci \
 	analyse.sci default_color.sci do_move.sci do_compile.sci \
 	prt_align.sci  mark_prt.sci get_connected.sci \
-	c_pass1.sci c_pass2.sci modipar.sci do_setup.sci \
+	c_pass1.sci c_pass2.sci newc_pass2.sci modipar.sci do_setup.sci \
 	standard_define.sci get_tree_elt.sci \
 	change_tree_elt.sci choosefile.sci lstfiles.sci \
 	do_delete.sci check_io.sci do_tild.sci do_copy.sci \
