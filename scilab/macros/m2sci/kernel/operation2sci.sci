@@ -58,10 +58,7 @@ if ind==-1 then
   error("operation2sci(): operator "+mtlb_expr.operator+" not found !")
 end
 rhs=size(mtlb_expr.operands)
-ierr=execstr("[sci_equiv]=%"+ops(ind,2)+"2sci(mtlb_expr)","errcatch");
-if ierr<>0 then
-  error("operation2sci: error while executing [sci_equiv]=%"+ops(ind,2)+"2sci(mtlb_expr)");
-end
+execstr("[sci_equiv]=%"+ops(ind,2)+"2sci(mtlb_expr)");
 
 // Update lhsnb if Scilab equivalent is a function call
 if typeof(sci_equiv)=="funcall" then

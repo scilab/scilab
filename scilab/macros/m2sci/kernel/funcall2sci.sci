@@ -37,10 +37,7 @@ funname=mtlb_expr.name
 
 // If a translation function exists
 if exists("sci_"+funname)==1 then
-  ierr=execstr("[sci_equiv]=sci_"+funname+"(mtlb_expr)","errcatch");
-  if ierr<>0 then
-    error("funcall2sci: Error while executing : [sci_equiv]=sci_"+funname+"(mtlb_expr)");
-  end
+  execstr("[sci_equiv]=sci_"+funname+"(mtlb_expr)");
 // If I don't know where I can search other M-files
 elseif res_path==[] then
   sci_equiv=default_trad(mtlb_expr)
@@ -49,10 +46,7 @@ else
   ierr=execstr("getf(sci_file)","errcatch");errclear();
   // If a translation function exists
   if ierr==0 then
-    ierr=execstr("[sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)","errcatch");
-    if ierr<>0 then
-      error("funcall2sci: Error while executing : [sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)");
-    end
+    execstr("[sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)");
   // If no translation indication given
   elseif Recmode then
     // Check if the M-file exists in the given paths
