@@ -105,21 +105,21 @@ C     !                 event conflict
  60   continue
       
       
-      do 65 ii=ordptr(keve),ordptr(keve+1)-1
-         kfun=ordclk(ii,1)
-         if(xptr(kfun+1)-xptr(kfun).gt.0) then
-            nclock=ordclk(ii,2)
-            flag=0
-            call callf(kfun,nclock,funptr,funtyp,told,xd,x,xptr,z,
-     $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
-     $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $           outtb,flag) 
-            if(flag.lt.0) then
-               ierr=5-flag
-               return
-            endif
-         endif
- 65   continue
+C      do 65 ii=ordptr(keve),ordptr(keve+1)-1
+C         kfun=ordclk(ii,1)
+C         if(xptr(kfun+1)-xptr(kfun).gt.0) then
+C            nclock=ordclk(ii,2)
+C            flag=0
+C            call callf(kfun,nclock,funptr,funtyp,told,xd,x,xptr,z,
+C     $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
+C     $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
+C     $           outtb,flag) 
+C            if(flag.lt.0) then
+C               ierr=5-flag
+C               return
+C            endif
+C         endif
+C 65   continue
       end
 
       subroutine odoit(neq,xd,x,xptr,z,zptr,iz,izptr,told
