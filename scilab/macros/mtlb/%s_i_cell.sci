@@ -11,7 +11,7 @@ v=M('entries');
 ndims=rhs-2
 nd=size(dims,'*')
 if ndims>nd then dims(nd+1:ndims)=0;end  
-del=prod(dims)==0;count=[]
+del=size(N,'*')==0;count=[]
 dims1=[]
 I=0;I1=0
 for k=ndims:-1:1
@@ -80,7 +80,6 @@ else
   end
   v(I+1)=N
 end
-
 if del then
   if size(count,'*')>1 then
     error('A null assignment can have only one non-colon index')
@@ -89,6 +88,7 @@ if del then
 end
 
 while  dims1($)==1 then dims1($)=[],end
+if size(dims1,'*')<2 then dims1(2)=1,end
 M=mlist(['cell','dims','entries'],dims1,v)
 
 endfunction

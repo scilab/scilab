@@ -13,9 +13,6 @@ NAM = SCI/macros/mtlb
 MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 	mtlb_max.sci mtlb_min.sci \
 	mtlb_ones.sci mtlb_zeros.sci mtlb_eye.sci mtlb_rand.sci mtlb_length.sci\
-	mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci\
-	mtlb_hold.sci mtlb_ishold.sci mtlb_mesh.sci mtlb_meshdom.sci \
-	mtlb_semilogx.sci mtlb_semilogy.sci mtlb_loglog.sci \
 	mtlb_fscanf.sci \
 	mtlb_all.sci mtlb_any.sci mtlb_sum.sci mtlb_cumsum.sci \
 	mtlb_prod.sci mtlb_cumprod.sci mtlb_median.sci mtlb_std.sci mtlb_mean.sci\
@@ -33,10 +30,16 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 M5 = mtlb_cell.sci struct.sci  \
 	%s_i_struct.sci %b_i_struct.sci %i_i_struct.sci %sp_i_struct.sci \
 	%c_i_struct.sci %s_i_struct.sci %struct_p.sci\
-        %cell_e.sci %cell_p.sci %cell_size.sci %s_i_cell.sci cell.sci 
+        %cell_e.sci %cell_p.sci %cell_size.sci %s_i_cell.sci cell.sci \
+	%cell_c_cell.sci %cell_f_cell.sci 
+
+PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci\
+	mtlb_hold.sci mtlb_ishold.sci mtlb_mesh.sci mtlb_meshdom.sci \
+	mtlb_semilogx.sci mtlb_semilogy.sci mtlb_loglog.sci \
+	mtlb_image.sci mtlb_pcolor.sci 
 
 
-MACROS =$(MTLB) $(M5)
+MACROS =$(MTLB) $(M5) $(PLOT)
 
 include ../Make.lib
 
