@@ -1,0 +1,101 @@
+-->xdel(winsid())
+26 //scicos
+ 1  //Thermostat
+     -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+     -2,0,450,-1,'execstr(Object_1000(1))' //Open
+      0,482.22,50.18,0,' ' //Scope
+        [1,3,5,7,9,11,13,15]      //colors
+        1   //output window
+        [122;172]     //output window position
+        [600;400]     //output window size
+        -15    //ymin
+        15     //ymax
+        30     //refresh period
+        2      //buffer size
+        1      // Accept herited events
+        o      //ok
+     -2,0,450,-1,'execstr(Simulate_1000(4))'//Run
+     -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+  2 // Continuous plant ..
+       -2,0,450,-1,'execstr(Object_1000(1))' //Open
+       0,295.42,232.1,0,' ' // Block num/den
+    1   //Numerator
+    1+s //denominator
+    o   //ok
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+    Exit
+  3 //Simple demo
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+    Exit
+  4 //Bouncing Ball
+       -2,0,450,-1,'execstr(Object_1000(1))' //Open
+       0,253.8,232.4,0,' ' // Block
+       -2,0,450,-1,'execstr(Diagram_1001(16))'//Exit
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+    Exit
+  5 //Table Lookup
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+    Exit
+  6 //Threshold
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+    Exit
+  7 //Scilab Block
+       -2,0,450,-1,'execstr(Object_1000(1))' //Open
+       0,267.00508,203.92405,0,' ' //Block
+        [] //input port sizes
+        1  //output port sizes
+        1  //input event port sizes
+        1  //output event port sizes
+        [] //initial continuous state
+        1  //initial discrete state
+        1  //system parameter vector
+        0  //initial firing
+        0  //is block always active
+        o //ok
+        y1=z
+        o //ok
+        z=-z
+        o //ok
+        t_evo=(5*rand())^2+t
+        o //ok
+
+        o //ok
+
+        o //ok
+
+        o //ok
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+       Exit
+  8 //Thermostat
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+  9 // Fibonacci
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+  10 // Cont.Disc-Observer
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+       Exit
+  11 // Controller
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+       Exit
+  12 // system observer
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+       Exit
+  //13 sound demo 
+  14 // Synchro Block
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+       Exit
+
+  0 //Exit scicos demo
+0 // Exit
+

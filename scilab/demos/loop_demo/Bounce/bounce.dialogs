@@ -1,0 +1,17 @@
+-2,0,0,-1,'execstr(Diagram_1000(8))'// Diagram/Load
+Bounce/bounce4.cos
+-2,0,0,-1,'execstr(Simulate_1000(1))'// Simulate/Setup
+//x_mdialog: Set parameters
+  60
+  1
+  0.0001
+  1.000E-06
+  1.000E-10
+  100001
+  0
+  o //OK
+-2,0,0,-1,'execstr(Simulate_1000(4))'// Simulate/Run
+-->xdel(1)
+-2,0,0,-1,'execstr(Diagram_1000(16))'// Diagram/Quit
+//x_choose:  Diagram has not been saved
+  0
