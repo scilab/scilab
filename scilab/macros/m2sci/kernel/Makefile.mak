@@ -22,7 +22,7 @@ TLIST_6 = %funcall_6.sci %operatio_6.sci %variable_6.sci
 INSER = %ce_i_variable.sci %ce_i_operatio.sci \
 	%infer_i_st.sci  %infer_i_s.sci \
 	%l_i_cste.sci %l_i_funcall.sci %l_i_operatio.sci %l_i_variable.sci \
-	%s_i_variable.sci \
+	%s_i_variable.sci %s_i_operatio.sci \
 	%st_i_operatio.sci %st_i_variable.sci \
 	%type_i_cste.sci %type_i_funcall.sci %type_i_operatio.sci %type_i_variable.sci 
 
