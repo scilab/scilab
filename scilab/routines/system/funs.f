@@ -125,6 +125,12 @@ c     .  requested varible not loaded
          fun=0
          fin=0
       else
+         il=iadr(lstk(k))
+         if(istk(il).ne.11.and.istk(il).ne.13.and.istk(il).ne.130) then
+            fin=0
+            fun=0
+            return
+         endif
          fun=-2
          fin=k
       endif
