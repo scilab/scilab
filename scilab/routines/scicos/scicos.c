@@ -934,6 +934,7 @@ int C2F(scicos)
 	    free(W);
 	    return;
 	  }
+	L60:
 	  for (ib = 0; ib < ng; ++ib) {
 	    if (W[ib] != 0. && mask[ib] == 1) {
 	      hot = 0;
@@ -970,27 +971,27 @@ int C2F(scicos)
 	
 	
 	if (istate <= 0) {
-	  /* if (istate == -3) {
-	     C2F(grblk)(neq, told, x, &ng, W);
-	     for (ib = 0; ib < ng; ++ib) {
-	     if (W[ib] == 0.) {
-	     mask[ib] = 1;
-	     }
-	     }
-	     hot = 0;
-	     
-	     
-	     } else {
-	     integration problem */
-	  *ierr = 100 - istate;
-	  free(rhot);
-	  free(ihot);
-	  free(jroot);
-	  free(mask);
-	  free(zcros);
-	  free(W);
-	  return;
-	  /* } */
+	  if (istate == -3) {
+	    C2F(grblk)(neq, told, x, &ng, W);
+	    for (ib = 0; ib < ng; ++ib) {
+	      if (W[ib] == 0.) {
+		mask[ib] = 1;
+	      }
+	    }
+	    hot = 0;
+	    goto L60; 
+	    
+	  } else {
+	    /* integration problem */
+	    *ierr = 100 - istate;
+	    free(rhot);
+	    free(ihot);
+	    free(jroot);
+	    free(mask);
+	    free(zcros);
+	    free(W);
+	    return;
+	  } 
 	} else {
 	  if (C2F(cosdebug).cosd >= 1) {
 	    sciprint("****lsodar reached: %f\r\n",*told);
@@ -1494,6 +1495,7 @@ int C2F(scicos)
 	    free(W);
 	    return;
 	  }
+	L60:
 	  for (ib = 0; ib < ng; ++ib) {
 	    if (W[ib] != 0. && mask[ib] == 1) {
 	      hot = 0;
@@ -1526,27 +1528,27 @@ int C2F(scicos)
 	}
 	
 	if (istate <= 0) {
-	  /*  if (istate == -33) {
-	      
-	      C2F(grblkdassl)(neq, told, x,xd, &ng, W,rpardummy,ipardummy); 
-	      for (ib = 0; ib < ng; ++ib) {
+	  if (istate == -33) {
+	    
+	    C2F(grblkdassl)(neq, told, x,xd, &ng, W,rpardummy,ipardummy); 
+	    for (ib = 0; ib < ng; ++ib) {
 	      if (W[ib] == 0.) {
-	      mask[ib] = 1;
+		mask[ib] = 1;
 	      }
-	      }
-	      hot=0;
-	      
-	      } else {
-	    */  
-	  *ierr = 100 - istate;
-	  free(rhot);
-	  free(ihot);
-	  free(jroot);
-	  free(mask);
-	  free(zcros);
-	  free(W);
-	  return;
-	  /*}  */
+	    }
+	    hot=0;
+	    goto L60;
+	  } else {
+	    
+	    *ierr = 100 - istate;
+	    free(rhot);
+	    free(ihot);
+	    free(jroot);
+	    free(mask);
+	    free(zcros);
+	    free(W);
+	    return;
+	  } 
 	} else {
 	  if (C2F(cosdebug).cosd >= 1) {
 	    sciprint("****daskr reached: %f\r\n",*told);
