@@ -692,9 +692,12 @@ static void xstringb (char *string, integer x, integer y, integer w, integer h)
   loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
   if ( loc != 0)
     {
-      integer wmax=0,htot=0,x1=0,yy1=0,rect[4];
+      integer wmax=0,htot=0,x1=0,yy1=0,rect[4],i;
       strcpy(loc,string);
       loc1=strtok(loc,"@");
+
+	  for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0. for preventing Windows RunTime 'error' in debug mode F.Leray 06.04.04 */
+
       while ( loc1 != ( char * ) 0) 
 	{  
 	  C2F(dr)("xstringl",loc1,&x1,&yy1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
