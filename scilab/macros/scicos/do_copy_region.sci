@@ -56,6 +56,9 @@ function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
       o.graphics.pein(k_conn)=o.graphics.pein(k_conn)+n
       k_conn=find(o.graphics.peout>0)
       o.graphics.peout(k_conn)=o.graphics.peout(k_conn)+n
+    elseif typeof(o)=='Text' then
+      o.graphics.orig(1)=o.graphics.orig(1)-rect(1)+xc
+      o.graphics.orig(2)=o.graphics.orig(2)-rect(2)+yc
     end
     scs_m.objs($+1)=o
     drawobj(o)
