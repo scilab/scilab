@@ -32,7 +32,7 @@ function [mom]= moment(x,ord,orien)
   elseif rhs==3 then
     if x==[]then mom=%nan, return, end
     le=size(x,orien)
-    mom=sum((x.^ord),orien)
+    mom=sum((x.^ord),orien)/le
   else 
     error('The function moment must have two or three parameters')
   end
