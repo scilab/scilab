@@ -72,28 +72,24 @@ c
 c     .     Initialize tvec
          ntvec=clkptr(kfun+1)-clkptr(kfun)
          if(ntvec.gt.0) then
-            if(funtyp(kfun).ne.-1)  call dset(ntvec,told-1.0d0,tvec,1)
-c     
-            flag=3
-            call callf(kfun,ordclk(ii,2),funptr,funtyp,told,w,x,
-     $           xptr,z,zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
-     $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $           outtb,flag) 
-            if(flag.lt.0) then
-               ierr=5-flag
-               return
-            endif
-c     
-            if (ntvec.ge.1) then
-               if(funtyp(kfun).eq.-1) then
-                  urg=urg+1
-                  call putevs(tevts,evtspt,nevts,pointi,
-     &                 told,ntvec+clkptr(kfun)-1,ierr1)
-                  if (ierr1 .ne. 0) then
-C     !                 event conflict
-                     ierr = 3
-                     return
+            if(funtyp(kfun).eq.-1)  then
+               if (ntvec.eq.2) then
+                  if (outtb(inplnk(inpptr(kfun))).le.0) then
+                     ntvec=2
+                  else
+                     ntvec=1
                   endif
+               else
+                  ntvec=max(min(int(outtb(inplnk(inpptr(kfun)))),
+     $                 nclk),1)
+               endif
+               urg=urg+1
+               call putevs(tevts,evtspt,nevts,pointi,
+     &              told,ntvec+clkptr(kfun)-1,ierr1)
+               if (ierr1 .ne. 0) then
+C     !                 event conflict
+                  ierr = 3
+                  return
                endif
             endif
          endif
@@ -170,28 +166,25 @@ c
 c     
          ntvec=clkptr(kfun+1)-clkptr(kfun)
          if(ntvec.gt.0) then
-            if(funtyp(kfun).ne.-1) call dset(ntvec,told-1.0d0,tvec,1)
+            if(funtyp(kfun).eq.-1) then
 c     
-            flag=3
-            call callf(kfun,nclock,funptr,funtyp,told,w,x,
-     $           xptr,z,zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
-     $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $           outtb,flag) 
-            if(flag.lt.0) then
-               ierr=5-flag
-               return
-            endif
-c     
-            if (ntvec.ge.1) then
-               if(funtyp(kfun).eq.-1) then
-                  urg=urg+1
-                  call putevs(tevts,evtspt,nevts,pointi,
-     &                 told,ntvec+clkptr(kfun)-1,ierr1)
-                  if (ierr1 .ne. 0) then
-C     !                 event conflict
-                     ierr = 3
-                     return
+               if (ntvec.eq.2) then
+                  if (outtb(inplnk(inpptr(kfun))).le.0) then
+                     ntvec=2
+                  else
+                     ntvec=1
                   endif
+               else
+                  ntvec=max(min(int(outtb(inplnk(inpptr(kfun)))),
+     $                 nclk),1)
+               endif
+               urg=urg+1
+               call putevs(tevts,evtspt,nevts,pointi,
+     &              told,ntvec+clkptr(kfun)-1,ierr1)
+               if (ierr1 .ne. 0) then
+C     !                 event conflict
+                  ierr = 3
+                  return
                endif
             endif
          endif
@@ -298,20 +291,20 @@ c
 c     .     Initialize tvec
          ntvec=clkptr(kfun+1)-clkptr(kfun)
          if(ntvec.gt.0) then
-            if(funtyp(kfun).ne.-1) call dset(ntvec,told-1.0d0,tvec,1)
+            if(funtyp(kfun).ne.-1) then
+               call dset(ntvec,told-1.0d0,tvec,1)
 c     
-            flag=3
-            call callf(kfun,ordclk(ii,2),funptr,funtyp,told,w,x,
-     $           xptr,z,zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
-     $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $           outtb,flag) 
-            if(flag.lt.0) then
-               ierr=5-flag
-               return
-            endif
+               flag=3
+               call callf(kfun,ordclk(ii,2),funptr,funtyp,told,w,x,
+     $              xptr,z,zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
+     $              ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
+     $              outtb,flag) 
+               if(flag.lt.0) then
+                  ierr=5-flag
+                  return
+               endif
 c     
-            if (ntvec.ge.1) then
-               if(funtyp(kfun).ne.-1) then
+               if (ntvec.ge.1) then
                   do 70 i = 1,ntvec
                      if (tvec(i) .ge. told) then
                         call addevs(tevts,evtspt,nevts,pointi,
@@ -323,15 +316,26 @@ C     !                 event conflict
                         endif
                      endif
  70               continue
-               else
-                  urg=urg+1
-                  call putevs(tevts,evtspt,nevts,pointi,
-     &                 told,ntvec+clkptr(kfun)-1,ierr1)
-                  if (ierr1 .ne. 0) then
-C     !                 event conflict
-                     ierr = 3
-                     return
+               endif
+
+            else
+               if (ntvec.eq.2) then
+                  if (outtb(inplnk(inpptr(kfun))).le.0) then
+                     ntvec=2
+                  else
+                     ntvec=1
                   endif
+               else
+                  ntvec=max(min(int(outtb(inplnk(inpptr(kfun)))),
+     $                 nclk),1)
+               endif
+               urg=urg+1
+               call putevs(tevts,evtspt,nevts,pointi,
+     &              told,ntvec+clkptr(kfun)-1,ierr1)
+               if (ierr1 .ne. 0) then
+C     !                 event conflict
+                  ierr = 3
+                  return
                endif
             endif
          endif
@@ -463,21 +467,20 @@ c
 c     .     Initialize tvec
          ntvec=clkptr(kfun+1)-clkptr(kfun)
          if(ntvec.gt.0) then
-            if(funtyp(kfun).ne.-1) call dset(ntvec,told-1.0d0,tvec,1)
+            if(funtyp(kfun).ne.-1) then
+               call dset(ntvec,told-1.0d0,tvec,1)
 c     
-            flag=3
-            call callf(kfun,ordclk(ii,2),funptr,funtyp,told,w,x,
-     $           xptr,z,zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
-     $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $           outtb,flag) 
-            if(flag.lt.0) then
-               ierr=5-flag
-               return
-            endif
+               flag=3
+               call callf(kfun,ordclk(ii,2),funptr,funtyp,told,w,x,
+     $              xptr,z,zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
+     $              ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
+     $              outtb,flag) 
+               if(flag.lt.0) then
+                  ierr=5-flag
+                  return
+               endif
 c     
-
-            if (ntvec.ge.1) then
-               if(funtyp(kfun).ne.-1) then
+               if (ntvec.ge.1) then
                   do 70 i = 1,ntvec
                      if (tvec(i) .ge. told) then
                         call addevs(tevts,evtspt,nevts,pointi,
@@ -489,15 +492,26 @@ C     !                 event conflict
                         endif
                      endif
  70               continue
-               else
-                  urg=urg+1
-                  call putevs(tevts,evtspt,nevts,pointi,
-     &                 told,ntvec+clkptr(kfun)-1,ierr1)
-                  if (ierr1 .ne. 0) then
-C     !                 event conflict
-                     ierr = 3
-                     return
+               endif
+
+            else
+               if (ntvec.eq.2) then
+                  if (outtb(inplnk(inpptr(kfun))).le.0) then
+                     ntvec=2
+                  else
+                     ntvec=1
                   endif
+               else
+                  ntvec=max(min(int(outtb(inplnk(inpptr(kfun)))),
+     $                 nclk),1)
+               endif
+               urg=urg+1
+               call putevs(tevts,evtspt,nevts,pointi,
+     &              told,ntvec+clkptr(kfun)-1,ierr1)
+               if (ierr1 .ne. 0) then
+C     !                 event conflict
+                  ierr = 3
+                  return
                endif
             endif
          endif
