@@ -27,7 +27,7 @@ c     opening file
       top = top-rhs+1
       il=iadr(lstk(top))
       call v2cunit(top,'rb',lunit,opened,ierr)
-     if(ierr.lt.0) then
+      if(ierr.lt.0) then
          call error(244)
          return
       elseif(ierr.gt.0) then
