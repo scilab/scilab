@@ -1,334 +1,350 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<?xml-stylesheet type="text/xsl" href="file:///usr/local/lib/scilab/man/eng/html-rev.xsl"?>
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>plot2d</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="plot2d"> 2D plot</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="plot2d">2D plot</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>plot2d([x],y)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>plot2d([x],y,&lt;opt_args&gt;)  (new syntax)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>plot2d([logflag],x,y,[style,strf,leg,rect,nax])  (old syntax) </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>plot2d([x],y)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>plot2d([x],y,&lt;opt_args&gt;)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x,y</PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: two matrices (or column vectors).</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME/>
-              <PARAM_DESCRIPTION>
-                <SP>in the usual way <VERB>x</VERB> is a matrix of the same size than <VERB>y</VERB>  
-            (the column j of <VERB>y</VERB> is plotted with respect to column j of <VERB>x</VERB>)</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME/>
-              <PARAM_DESCRIPTION>
-                <SP>if all the columns of <VERB>x</VERB> are equal (ie the abscissae of all the curves
-            are the same), <VERB>x</VERB> may be simply the (column) vector of these abscissae
-            (<VERB>x</VERB> is then a column vector of length equal to the row dimension of 
-            <VERB>y</VERB>).</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME/>
-              <PARAM_DESCRIPTION>
-                <SP>when <VERB>x</VERB> is not given, it is supposed to be the column vector 
-            [1; 2; ...;  row dimension of y].</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
+          <SP>: a real matrice or vector. If omitted, it is assumed to be the
+	    vector <VERB>1:n</VERB> where <VERB>n</VERB> is the number of
+	    curve points given by the  <VERB>y</VERB> parameter.</SP>
+	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real matrice or vector.</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements <VERB>key1=value1, key2=value2</VERB>,... 
-          where <VERB>key1</VERB>, <VERB>key2,...</VERB> can be one of the following:</SP>
+          <SP>: This represents a sequence of statements <VERB>key1=value1,
+          key2=value2</VERB>,... where <VERB>key1</VERB>,
+          <VERB>key2,...</VERB> can be one of the following:</SP>
+
           <PARAM_INDENT>
             <PARAM_ITEM>
               <PARAM_NAME>style</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: sets the style for each curve, see below for value.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>leg</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: sets the curves captions. If this key is given and <VERB>strf</VERB> is not given then <VERB>x</VERB> character of <VERB>strf</VERB> is supposed to be <VERB>1</VERB>. See below for value.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
+                <SP>: sets the style for each curve. The associated value
+		  should be a  real vector with integer (positive or negative)
+		  values</SP>
+	      </PARAM_DESCRIPTION>
+	    </PARAM_ITEM>
+
+
+
             <PARAM_ITEM>
               <PARAM_NAME>rect</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: sets the bounds of the plot. If this key is given and neither <VERB>frameflag</VERB> nor <VERB>strf</VERB> is  given then the <VERB>y</VERB> character of <VERB>strf</VERB> is supposed to be <VERB>7</VERB>.  See below for value.</SP>
+                <SP>: sets the mimimal bounds requested for the plot. The associated value should be a
+		      real vector with four entries:
+		      <VERB>[xmin,ymin,xmax,ymax]</VERB>.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>nax</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: sets the grids definition. If this key is given and neither <VERB>axesflag</VERB> nor <VERB>strf</VERB> is given then the <VERB>z</VERB> character of <VERB>strf</VERB> is supposed to be <VERB>1</VERB>.  See below for value.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
+
+  
             <PARAM_ITEM>
               <PARAM_NAME>logflag</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: sets the scale (linear or logarithmic) along the axes. See below for value.</SP>
+                <SP>: sets the scale (linear or logarithmic) along the axes. 
+		      The associated value should be a a string with possible values:
+		      <VERB>"nn"</VERB>, <VERB>"nl"</VERB> , <VERB>"ln"</VERB> and <VERB>"ll"</VERB> .</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+
             <PARAM_ITEM>
               <PARAM_NAME>frameflag</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: specifies how the frame of the plot is computed. The value is an integer ranging from 0 to 8. It corresponds to the <VERB>y</VERB> character of <VERB>strf</VERB>. See below.</SP>
+                <SP>: controls the computation of the actual coordinate ranges
+		      from the minimal requested values. The associated value should
+		      be  an integer ranging from 0 to 8 :</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+
             <PARAM_ITEM>
               <PARAM_NAME>axesflag</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: specifies what kind of axes are drawn around the plot. The value is an integer ranging from 0 to 5. It corresponds to the <VERB>z</VERB> character of <VERB>strf</VERB>. See below.</SP>
+                <SP>: specifies how the axes are drawn. The associated value should
+		      be  an integer ranging from 0 to 5 :</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+
+          <PARAM_ITEM>
+              <PARAM_NAME>nax</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: sets the axes labels and tics definition. The associated value should be a
+		      real vector with four integer entries <VERB>[nx,Nx,ny,Ny]</VERB></SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+
+            <PARAM_ITEM>
+              <PARAM_NAME>leg</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: sets the curves captions. The associated value should be a
+		      character string</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+
           </PARAM_INDENT>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>style</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: is a real row vector of size nc. The style to use for curve <VERB>i</VERB> is defined by <VERB>style(i)</VERB>.  The default style is <VERB>1:nc</VERB> (1 for the first curve,  2 for the second, etc.).</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>-  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>if <VERB>style(i)</VERB> is negative or zero, the curve is plotted using the mark with id  <VERB>abs(style(i))</VERB>; use <VERB>xset()</VERB> to set the mark id and xget('mark') to get the current mark id.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>-  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>if <VERB>style(i)</VERB> is strictly positive, a plain line with color id  <VERB>style(i)</VERB> or a dashed line with dash id <VERB>style(i)</VERB> is used;  use <VERB>xset()</VERB> to see the color ids.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>-  </PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>When only one curve is drawn, <VERB>style</VERB> can be the row vector  of size 2 <VERB>[sty,pos]</VERB> where <VERB>sty</VERB> is used to specify the style and <VERB>pos</VERB> is an integer ranging from 1 to 6 which specifies a position to use for the caption.  This can be useful when a user wants to draw multiple curves on a plot by  calling the function <VERB>plot2d</VERB> several times and wants to give a caption  for each curve.</SP>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>strf</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: is a string of length 3 <VERB>&quot;xyz&quot;</VERB> (by default <VERB>strf= &quot;081&quot;</VERB>)</SP>
-          <PARAM_INDENT>
-            <PARAM_ITEM>
-              <PARAM_NAME>x</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: controls the display of captions.</SP>
-                <PARAM_INDENT>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>x=0</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: no caption.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>x=1</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: captions are displayed. They are given by the optional argument <VERB>leg</VERB>.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                </PARAM_INDENT>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>y</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: controls the computation of the actual coordinate ranges from the minimal requested 
-      values. Actual ranges can be larger than minimal requirements.</SP>
-                <PARAM_INDENT>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>y=0</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: no computation, the plot use the previus (or default) scale</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>y=1</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: from the rect arg</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>y=2</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: from the min/max of the x, y datas</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>y=3</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: built for an isometric scale from the rect arg</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>y=4</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: built for an isometric plot from the min/max of the x, y datas</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>y=5</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: enlarged for pretty axes from the rect arg</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>y=6</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: enlarged for pretty axes from  the min/max of the x, y datas</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>y=7</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: like y=1 but the previus plot(s) are redrawn to use the new scale</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>y=8</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>: like y=2 but the previus plot(s) are redrawn to use the new scale</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                </PARAM_INDENT>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-              <PARAM_NAME>z</PARAM_NAME>
-              <PARAM_DESCRIPTION>
-                <SP>: controls the display of information on the frame around the plot. If axes are requested, the number of tics can be specified by the <VERB>nax</VERB> optional argument.</SP>
-                <PARAM_INDENT>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>z=0</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>:  nothing is drawn around the plot.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>z=1</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>:  axes are drawn, the y=axis is displayed on the left.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>z=2</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>:  the plot is surrounded by a box without tics.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>z=3</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>:  axes are drawn, the y=axis is displayed on the right.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>z=4</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>:  axes are drawn centred in the middle of the frame box.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                  <PARAM_ITEM>
-                    <PARAM_NAME>z=5</PARAM_NAME>
-                    <PARAM_DESCRIPTION>
-                      <SP>:  axes are drawn so as to cross at point <VERB>(0,0)</VERB>.  If point <VERB>(0,0)</VERB> does not lie inside the frame, axes will not appear on the graph.</SP>
-                    </PARAM_DESCRIPTION>
-                  </PARAM_ITEM>
-                </PARAM_INDENT>
-              </PARAM_DESCRIPTION>
-            </PARAM_ITEM>
-          </PARAM_INDENT>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>leg</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a string. It is used when the first character x of argument
-  <VERB>strf</VERB> is 1. <VERB>leg</VERB> has the form
-  <VERB>&quot;leg1@leg2@....&quot;</VERB> where <VERB>leg1</VERB>,
-  <VERB>leg2</VERB>,  etc. are respectively the captions of the first
-  curve, of the second curve, etc.  The default is <VERB>&quot;
-  &quot;</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>rect</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  This argument is used when the second character y of argument <VERB>strf</VERB> is 1, 3 or 5. It is a row vector of size 4 and gives the dimension of the frame:  <VERB>rect=[xmin,ymin,xmax,ymax]</VERB>.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>nax</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  This argument is used when the third character z of argument
-  <VERB>strf</VERB> is 1. It is a row vector with four entries
-  <VERB>[nx,Nx,ny,Ny]</VERB> where <VERB>nx</VERB> (<VERB>ny</VERB>)
-  is the number of subgraduations on the x (y) axis and
-  <VERB>Nx</VERB> (<VERB>Ny</VERB>) is the number of graduations on
-  the x (y) axis.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>logflag</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>:  a string formed by to characters h (for
-  horizontal axis) and v (for vertical axis) each of these characters
-  can take the values &quot;n&quot; or &quot;l&quot;. &quot;l&quot;
-  stands for logarithmic graduation and &quot;n&quot; for normal
-  graduation. For example &quot;ll&quot;stands for a log-log
-  plot. Default value is &quot;nn&quot;.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+
     </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
-    <P><VERB>plot2d</VERB> plots a set of 2D curves. Piecewise linear plotting is used.
-  </P>
-    <P>
-    By default, successive plots are superposed. To clear the previous plot, 
-    use <VERB>xbasc()</VERB>.
-  </P>
-    <P>
-    See the meaning of the parameters above for a complete description.
-  </P>
-    <P>
-    Enter the command <VERB>plot2d()</VERB> to see a demo.
-  </P>
-    <P>
-    Other high level plot2d function exist:
-  </P>
+    <P><VERB>plot2d</VERB> plots a set of 2D curves. </P>
+
+   <P></P>
+
+    <P>If <VERB>x</VERB> and <VERB>y</VERB> are vectors,
+      plot2d(x,y,&lt;opt_args&gt;) plots vector <VERB>y</VERB> versus
+      vector <VERB>x</VERB>.  <VERB>x</VERB> and <VERB>y</VERB>
+     vectors should have the same number of entries.</P>
+
+
+    <P>If <VERB>x</VERB> is a vector and <VERB>y</VERB> a matrix
+      plot2d(x,y,&lt;opt_args&gt;) plots each columns of  <VERB>y</VERB> versus vector
+      <VERB>x</VERB>. In this case the number of columns of <VERB>y</VERB>
+      should be equal to the number of <VERB>x</VERB> entries.</P>
+
+   <P>If <VERB>x</VERB> and <VERB>y</VERB> are matrices,
+      plot2d(x,y,&lt;opt_args&gt;)  plots each columns of  <VERB>y</VERB>
+      versus corresponding column of <VERB>x</VERB>. In this case the
+      <VERB>x</VERB> and <VERB>y</VERB> sizes should be the same.</P>
+
+    <P>If <VERB>y</VERB> is a vector,
+      plot2d(y,&lt;opt_args&gt;) plots vector <VERB>y</VERB> versus vector
+      <VERB>1:size(y,'*')</VERB>.</P>
+
+    <P>If <VERB>y</VERB> is a matrix,
+      plot2d(y,&lt;opt_args&gt;) plots each columns of  <VERB>y</VERB> versus vector
+      <VERB>1:size(y,1)</VERB>.</P>
+    <P></P>
+
+    <P>The  <VERB>&lt;opt_args&gt;</VERB> arguments sould be used to customize
+      the plot</P>
+
+    <P> </P>
+
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="plot2d2">
-        <SP>: same as <VERB>plot2d</VERB> but the curve is supposed to be  piecewise constant.</SP>
+
+      <DESCRIPTION_ITEM label="style">
+	<SP>: This option may be used to specify how the curves are drawn. If this
+	option is specified, the associated value should be a vector with as
+	many entries as curves. </SP>
+	<DESCRIPTION_INDENT>
+
+	  <DESCRIPTION_ITEM>
+	    <SP>if <VERB>style(i)</VERB> is  strictly positive, the curve is
+	      drawn as plain line and <VERB>style(i)</VERB> defines the
+	      index of the color used to draw the curve (see
+	      <LINK>getcolor</LINK>). Note that the line style and the thickness
+	      can be set throught the polyline entity properties
+	      (see <LINK>polyline_properties</LINK>).</SP>
+
+	    <SP>Piecewise linear interpolation is done between the given curve points.</SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM>
+	    <SP>if <VERB>style(i)</VERB> is  negative or zero, the given curve points
+	      are drawn using marks, <VERB>abs(style(i))</VERB>
+	      defines  the mark with id used. Note that the marks color and
+	      marks sizes can be set throught the polyline entity properties
+	      (see <LINK>polyline_properties</LINK>).</SP>
+	  </DESCRIPTION_ITEM>
+
+	</DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="plot2d3">
-        <SP>: same as <VERB>plot2d</VERB> but the curve is plotted with vertical bars.</SP>
+
+      <DESCRIPTION_ITEM label="logflags">
+	<SP>: This option may be used to set the scale (linear or logarithmic) along the axes. 
+	  The associated value should be a a string with possible values:
+	  <VERB>"nn"</VERB>, <VERB>"nl"</VERB> , <VERB>"ln"</VERB> and
+	  <VERB>"ll"</VERB>. <VERB>"l"</VERB> stands for logarithmic scale and graduations
+	  and <VERB>"n"</VERB> for normal scale. </SP> 
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="plot2d4">
-        <SP>: same as <VERB>plot2d</VERB> but the curve is plotted with arrows.</SP>
+
+      <DESCRIPTION_ITEM label="rect">
+	<SP>: This option may be used to set the mimimal bounds requested for the plot. 
+	  If this option is specified, the associated value should be a real
+	  vector with four entries:</SP>
+	<P> <VERB>[xmin,ymin,xmax,ymax]</VERB>. <VERB>xmin</VERB> and
+	  <VERB>xmax</VERB> defines the bounds on the abscissae while <VERB>ymin</VERB> and
+	  <VERB>ymax</VERB> defines the bounds on the ordinates.</P>
+
+	<P> This argument may be used together with the <VERB>frameflag</VERB> option
+	  to specify how the axes boundaries are derived from teh given
+	  <VERB>rect</VERB> argument. If the <VERB>frameflag</VERB> option is
+	  not given, it is supposed to be <VERB>frameflag=7</VERB>. </P>
+
+	<P>The axes boundaries  can also be customized throught the axes entity
+	  properties (see <LINK>axes_properties</LINK>).</P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="frameflag">
+	<SP>: This option may be used to control the computation of the actual
+	coordinate ranges from the minimal requested values. Actual ranges can
+	be larger than minimal requirements.</SP>
+	<DESCRIPTION_INDENT>
+	  <DESCRIPTION_ITEM label="frameflag=0">
+	    <SP>: no computation, the plot use the previous (or default) scale.</SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="frameflag=1">
+	    <SP>: The actual range is the range given by the <VERB>rect</VERB> option.</SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="frameflag=2">
+	    <SP>: The actual range is computed from the min/max of the
+	      <VERB>x</VERB>and <VERB>y</VERB> data.</SP> 
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="frameflag=3">
+	    <SP>: The actual range is the range given by the <VERB>rect</VERB>
+	      option and enlarged to get an isometric scale.</SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="frameflag=4">   
+	    <SP>: The actual range is computed from the min/max of the
+	      <VERB>x</VERB>and <VERB>y</VERB> data and enlarged to get an
+	      isometric scale.</SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="frameflag=5">   
+	    <SP>: The actual range is the range given by the <VERB>rect</VERB>
+	      option and enlarged to get pretty axes labels.</SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="frameflag=6">
+	    <SP>: The actual range is computed from the min/max of the
+	      <VERB>x</VERB>and <VERB>y</VERB> data and enlarged to get pretty
+	      axes labels.</SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="frameflag=7">
+	    <SP>: like <VERB>frameflag=1</VERB> but the previous plot(s) are
+	      redrawn to use the new scale. Used to add the current graph to
+	      a previous one.</SP> 
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="frameflag=8">
+	    <SP>: like<VERB>frameflag=2</VERB> but the previous plot(s) are
+	      redrawn to use the new scale. Used to add the current graph to  a
+	      previous one.</SP> 
+	  </DESCRIPTION_ITEM>
+	</DESCRIPTION_INDENT>
+	<SP>The axes boundaries  can also be customized throught the axes entity
+	properties (see <LINK>axes_properties</LINK>)</SP> 
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="axesflag">
+	<SP>: This option may be used to specify how the axes are drawn. The associated value should
+	  be  an integer ranging from 0 to 5 :</SP>
+	<DESCRIPTION_INDENT>
+	  <DESCRIPTION_ITEM label="axesflag=0">
+	    <SP>: nothing is drawn around the plot.</SP>
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="axesflag=1">
+	    <SP>: axes are drawn, the y=axis is displayed on the left</SP>
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="axesflag=2">
+	    <SP>: the plot is surrounded by a box without tics</SP>
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="axesflag=3">
+	    <SP>: axes are drawn, the y=axis is displayed on the right</SP>
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="axesflag=4">
+	    <SP>: axes are drawn centred in the middle of the frame box</SP>
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="axesflag=5">
+	    <SP>: axes are drawn so as to cross at point  (0,0)  . If point
+	      (0,0)   does not lie inside the frame, axes will not appear on
+	      the graph</SP>
+	  </DESCRIPTION_ITEM>
+	</DESCRIPTION_INDENT>
+	<P>The axes aspect can also be customized throught the axes entity
+	properties (see <LINK>axes_properties</LINK>).</P> 
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="nax">
+	<SP>: This option may be used to specify the axes labels and tics
+	    definition when <VERB>axesflag=1</VERB> option is used. 
+	  The associated value should be a real vector with four
+	  integer entries <VERB>[nx,Nx,ny,Ny]</VERB>.</SP> 
+	<SP><VERB>Nx</VERB> gives the number of main tics to be used on the
+	  x-axis, <VERB>nx</VERB> gives the number of subtics to be drawn
+	  between two main x-axis tics.</SP>  
+	<SP><VERB>Ny</VERB> and <VERB>ny</VERB> give similar information for
+	  the y-axis.</SP> 
+	<SP>If <VERB>axesflag</VERB> option is not set <VERB>nax</VERB> option
+	supposes that <VERB>axesflag</VERB> option has been set to 1.</SP> 
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="leg">
+	<SP>: This option may be used to  sets the curve captions. It must be a
+	  string with the form  <VERB>"leg1@leg2@...."</VERB>   where
+	  <VERB>leg1</VERB>  ,  <VERB>leg2</VERB>  , etc. are respectively the
+	  captions of the first curve, of the second curve, etc. The default is
+	  <VERB> " "</VERB>.</SP> 
+	<P>The curve captions are drawn on below the x-axis. This option is
+	  not flexible enough, use the <LINK>legends</LINK> function preferably.</P> 
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
+
+ <SECTION label="More information">
+    <P>To get more information on the plot2d old syntax , use
+      the<LINK>plot2d_old_version</LINK> help document.</P>
+  <P></P>
+ 
+    <P>By default, successive plots are superposed. To clear the previous
+    plot, use <VERB>xbasc()</VERB>.</P>
+<P></P>
+    <P>Enter the command <VERB>plot2d()</VERB> to see a demo.</P>
+<P></P>
+    <P>Other high level plot2d function exist:</P>
+    <ITEMIZE>
+    <ITEM label="plot2d2">
+        <SP>: same as <VERB>plot2d</VERB> but the curve is supposed to be
+        piecewise constant.</SP>
+      </ITEM>
+
+      <ITEM label="plot2d3">
+        <SP>: same as <VERB>plot2d</VERB> but the curve is plotted with
+        vertical bars.</SP>
+      </ITEM>
+
+      <ITEM label="plot2d4">
+        <SP>: same as <VERB>plot2d</VERB> but the curve is plotted with
+        arrows.</SP>
+      </ITEM>
+    </ITEMIZE>
+</SECTION>
+
   <EXAMPLE>
 <![CDATA[
-//simple plot
+// x initialisation 
 x=[0:0.1:2*%pi]';
+//simple plot
 plot2d(sin(x))
 xbasc()
 plot2d(x,sin(x))
@@ -336,60 +352,76 @@ plot2d(x,sin(x))
 xbasc()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 // multiple plot giving the dimensions of the frame
-//   old syntax and new syntax
-xbasc()
-plot2d(x,[sin(x) sin(2*x) sin(3*x)],1:3,"011"," ",[0,0,6,0.5])
 xbasc()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5])
-//multiple plot with captions and given tics
-//   old syntax and new syntax
-xbasc()
-plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
-  [1,2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10])
+//multiple plot with captions and given tics + style
 xbasc()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
   [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2])
 // isoview
 xbasc()
-plot2d(x,sin(x),1,"041")
+plot2d(x,sin(x),1,frameflag= 4) 
 // scale 
 xbasc()
-plot2d(x,sin(x),1,"061") 
-// auto scaling with previous plots 
+plot2d(x,sin(x),1,frameflag= 6) 
+// auto scaling with previous plots + style
 xbasc()
-plot2d(x,sin(x),1)
-plot2d(x,2*sin(x),2)
-plot2d(2*x,cos(x),3)
+plot2d(x,sin(x),-1)
+plot2d(x,2*sin(x),12) 
+plot2d(2*x,cos(x),3) 
 // axis on the right 
 xbasc()
-plot2d(x,sin(x),1,"183","sin(x)")
-// centered axis
+plot2d(x,sin(x),leg="sin(x)") 
+a=gca(); // Handle on axes entity 
+a.y_location ="right"; 
+// axis centered at (0,0) 
 xbasc()
-plot2d(x,sin(x),1,"184","sin(x)")
-// axis centered at (0,0)
-xbasc()
-plot2d(x-4,sin(x),1,"185","sin(x)")
+plot2d(x-4,sin(x),1,leg="sin(x)") 
+a=gca() // Handle on axes entity
+a.x_location = "middle"; 
+a.y_location = "middle"; 
+// Some operations on entities created by plot2d ...
+a=gca();
+a.isoview='on'; 
+a.children // list the children of the axes : here it is an Agregation child composed of 2 entities 
+poly1= a.children.children(2); //store polyline handle into poly1 
+poly1.foreground = 4; // another way to change the style...
+poly1.thickness = 3;  // ...and the tickness of a curve.
+poly1.clip_state='off' // clipping control
+leg= a.children.children(1); // store legend handle into leg
+leg.font_style = 9; 
+leg.foreground = 6;
+a.isoview='off'; 
  ]]>
-  </EXAMPLE>
+</EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>plot2d1</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>plot2d2</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>plot2d3</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>plot2d4</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>xbasc</LINK>
     </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xset</LINK>
+  <SEE_ALSO_ITEM>
+      <LINK>xdel</LINK>
+    </SEE_ALSO_ITEM>
+  <SEE_ALSO_ITEM>
+      <LINK>delete</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
+
+  <AUTHOR></AUTHOR>
 </MAN>
