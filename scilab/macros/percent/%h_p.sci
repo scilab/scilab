@@ -43,7 +43,8 @@ function %h_p(h)
       case "Agregation"
       t=[t;
 	 "parent: "+h.parent.type
-	 "children: "+fmtchildren(h.children)]
+	 "children: "+fmtchildren(h.children)
+	 "visible: "+string(h.visible)]
       case "Axes"
       t=[t;
 	 "parent: "+h.parent.type
