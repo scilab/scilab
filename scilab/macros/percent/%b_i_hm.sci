@@ -12,7 +12,7 @@ function M=%b_i_hm(varargin)
   if rhs-2>nd then dims(nd+1:rhs-2)=1;end  
 
   //convert N-dimensionnal indexes to 1-D
-  [Ndims,I]=convertindex(dims,varargin(1:$-2))
+  [Ndims,I]=convertindex(list(dims,double(matrix(N.dims,1,-1))),varargin(1:$-2))
 
   //extend resulting matrix if necessary
   if or(Ndims>dims) then

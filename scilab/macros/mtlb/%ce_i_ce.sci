@@ -26,7 +26,7 @@ function M=%ce_i_ce(varargin)
     if rhs-2>nd then dims(nd+1:rhs-2)=1;end  
 
     //convert N-dimensionnal indexes to 1-D and extend dims if necessary
-    [Ndims,I]=convertindex(dims,varargin(1:$-2));Ndims=matrix(Ndims,1,-1)
+    [Ndims,I]=convertindex(list(dims,double(matrix(N.dims,1,-1))),varargin(1:$-2));Ndims=matrix(Ndims,1,-1)
 
     if or(Ndims>dims) then
       //extend the destination matrix
