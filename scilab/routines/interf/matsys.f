@@ -2525,22 +2525,30 @@ c            pt0=pt0-2
      &           (rstk(pt0).eq.616.and.pstk(pt0).eq.10)) count=count+1
             if(rstk(pt0).lt.501.or.rstk(pt0).gt.503) goto 153
             if(rstk(pt0).eq.503.and.rio.eq.rte.and.paus.ne.0) then
-c     .       resume appele dans par un execstr sous pause
+c     .     resume called by execstr under pause
+               mrhs=rhs
+               rhs=0
+c     .        remove execstr context 
                k=lpt(1)-(13+nsiz)
                lpt(1)=lin(k+1)
                macr=macr-1
 
+c     .        remove pause context temporarily to save variables in the
+c     .        calling context
                k=lpt(1)-(13+nsiz)
+               lpt1=lpt(1)
+               lpt(1)=lin(k+1)
                bot=lin(k+5)
-               mrhs=rhs
-               rhs=0
                paus=paus-1
+c     .        save resumed variables in the calling context
                do 154 i=1,mrhs
                   call stackp(ids(1,ip0+mrhs-i),0)
-c                 ip0=ip0-1
  154           continue
+c     .        recreate  pause context (the pause will be finished normally)
+               lpt(1)=lpt1
                paus=paus+1
                lin(k+5)=bot
+c     .        remove top variables associated with unstacked contexts (for, select,..)
                top=top-count
                pt=pt0
                goto 999
