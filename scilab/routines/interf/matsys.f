@@ -3008,7 +3008,7 @@ c     .  get stored variables
       subroutine intgetdate()
 c     Copyright INRIA
       include '../stack.h'
-      parameter (nf=9)
+      parameter (nf=10)
       integer w(nf),dt
       logical checkrhs,checklhs,cremat,getscalar
       integer gettype
@@ -3026,6 +3026,8 @@ c
             if(.not.getscalar('getdate', top,top, lr)) return
             dt=stk(lr)
             call convertdate(dt,w)
+c dt contains a number of seconds, number of milliseconds w(10) must be 0
+            w(10)=0
             n=nf
             top=top-1
             goto 10

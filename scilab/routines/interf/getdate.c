@@ -2,18 +2,44 @@
 #include <time.h>
 #include <locale.h>
 #include <stdio.h>
+
+#if WIN32
+	#include <sys/timeb.h>
+#else
+	#include <sys/time.h> 
+#endif
+
+
+
 static int week_number __PARAMS ((struct tm *tp));
 void C2F(scigetdate) __PARAMS ((time_t *dt, int *ierr));
 void C2F(convertdate) __PARAMS ((time_t *dt, int w[]));
+
+
+
+#if WIN32
+static struct __timeb64 timebufferW;
+#else
+static struct timeval timebufferU;
+#endif
+
+static int ChronoFlag=0;
 
 void  C2F(scigetdate)(dt,ierr)
      time_t *dt;
      int *ierr;
 {
   *ierr=0;
-  if (time(dt) == (time_t) - 1) {
+  if (time(dt) == (time_t) - 1) 
+  {
     *ierr=1;
   }
+  ChronoFlag=1;
+  #if WIN32
+	_ftime64( &timebufferW );
+  #else
+	gettimeofday(&timebufferU,NULL);
+  #endif
 }
 
 void C2F(convertdate)(dt,w)
@@ -24,7 +50,7 @@ void C2F(convertdate)(dt,w)
 
   /* Is setlocale useful?
      (void) setlocale(LC_ALL, ""); */
-  
+
 	nowstruct = localtime(dt);
 	if (nowstruct)
 	{
@@ -37,6 +63,20 @@ void C2F(convertdate)(dt,w)
 		w[6] =        nowstruct->tm_hour;
 		w[7] =        nowstruct->tm_min;
 		w[8] =        nowstruct->tm_sec;
+                if (ChronoFlag)
+		  {
+                        #if WIN32
+			w[9] = timebufferW.millitm;
+			#else
+			w[9] = timebufferU.tv_usec / 1000;  /* micro to ms */
+			#endif
+			ChronoFlag=0;
+		  }
+		else
+		  {
+		    w[9] = 0;
+		  }
+		
 	}
 	else
 	{
@@ -49,9 +89,9 @@ void C2F(convertdate)(dt,w)
 		w[6] = 0;
 		w[7] = 0;
 		w[8] = 0;
+		w[9] = 0;
 		sciprint("dt=getdate(x) x must be >0.\n");
 	}
-
 }
 
 /* following code issued from glibc-2.1.2/time/strftime.c, 
