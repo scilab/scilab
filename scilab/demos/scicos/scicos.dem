@@ -14,7 +14,8 @@ demos_name=[
     'Controller.cosf'
     'System-Observer.cosf'
 //    'Live demo'
-    'sound demo (Unix only)']
+    'sound demo (Unix only)'
+    'Synchro Block demo']
             
 
 while %t do
@@ -51,5 +52,8 @@ while %t do
 //    scicos_play('SCI/demos/scicos/live.dat')
   case 13 then  
     scicos('SCI/demos/scicos/sound.cosf');
+  case 14 then  
+    scicos('SCI/demos/scicos/Ifsub.cosf');
   end
+
 end
