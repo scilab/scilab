@@ -1363,9 +1363,12 @@ void C2F(setpopupdim)(x, y, v3, v4)
      integer *v3;
      integer *v4;
 {
-  int x1= Min((int) *x, ScilabXgc->CWindowWidth);
+	/*  int x1= Min((int) *x, ScilabXgc->CWindowWidth);
   int x2= Min((int) *y, ScilabXgc->CWindowHeight);
-  GPopupResize(ScilabXgc,&x1,&x2);
+
+  GPopupResize(ScilabXgc,&x1,&x2);*/
+
+  GPopupResize(ScilabXgc,x,y);
 }
 /*-----------------------------------------------------------------------------------*/
 /** To change the window view  **/
