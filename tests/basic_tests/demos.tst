@@ -60,7 +60,7 @@ else
 // UNIX
   sel=[1:31] 
 end
-
+sel(29)=[]//suppression de pvm
 sel(find(sel==16))=[] // do not execute demo 16 (Dialog)
 dialogs='demo'+string(sel)+'.dialogs'
 for dia=dialogs
