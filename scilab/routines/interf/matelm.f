@@ -28,15 +28,15 @@ c     sqrt log   ^  sign clean floor ceil expm cumsum  cumprod testmatrix
 c      27   28   29  30   31     32   33   34    35      36      37
 c     isreal frexp zeros tan  log1p imult  asin acos number_properties
 c       38     39    40   41     42    43   44   45      46
-c     nearfloat dsearch
-c       47        48
+c     nearfloat dsearch isequal
+c       47        48      49
 c!
 c
       goto (10 ,15 ,20 ,25 ,30 ,35 ,40 ,45 ,50 ,60,
      1      61 ,62 ,70 ,72 ,71 ,90 ,91 ,105,110,110,
      2      110,130,140,150,160,170,180,190,200,210,
      3      220,37 ,39 ,173,46 ,47, 230,240,250,260,
-     4      165,195,196,152,154,300,310,320        ),fin
+     4      165,195,196,152,154,300,310,320,330     ),fin
 
  10   continue
       call intabs(id)
@@ -287,6 +287,11 @@ c
 c     dsearch
 c
  320  call intdsearch(id)
+      goto 900
+c
+c     isequal
+c
+ 330  call intisequal(id)
       goto 900
 c
  900  return
@@ -5091,4 +5096,111 @@ c     int2db ... (normalement ca doit passer avec -1 sans copie supplementaire)
       endif
       top=topl+lhs
       return 
+      end
+
+      subroutine intisequal(id)
+
+c     Interface for isequal:
+
+      implicit none
+
+      INCLUDE '../stack.h'
+
+      integer id(nsiz)
+      integer typ,m,n,l,il,il1,ilk,k,topk,top1,srhs
+
+c     EXTERNAL API FUNCTIONS
+      logical  checkrhs, checklhs
+      external checkrhs, checklhs
+      integer gettype
+      external gettype
+      character*7 fname
+      integer iadr,sadr
+      integer equal
+      data equal/50/
+c     TEXT
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+c
+      fname = 'isequal'
+
+      topk=top
+      top1=top-rhs+1
+      rhs=max(0,rhs)
+
+      if (.not.checkrhs(fname,2,2000000)) return
+      if (.not.checklhs(fname,1,1)) return
+c first check the types
+      typ=abs(gettype(1))
+      do 10 k=2,rhs
+        if (gettype(k).ne.typ) goto 60
+ 10   continue
+c
+      if (typ.ge.15.and.typ.le.17) then
+         call setfunnam(ids(1,pt+1),'%l_isequal',10)
+         fun=-1
+         return
+      endif
+
+      if(typ.gt.14) then
+         call funnam(ids(1,pt+1),'isequal',iadr(lstk(top-rhs+1)))
+         fun=-1
+         return
+      endif
+
+
+c first check the dimensions
+      il=iadr(lstk(top-rhs+1))
+      if(istk(il).lt.0) il=iadr(istk(il+1))
+      m=istk(il+1)
+      n=istk(il+2)
+      do 20 k=2,rhs
+         il=iadr(lstk(top-rhs+k))
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+         if(m.ne.istk(il+1).or.n.ne.istk(il+2)) goto 60
+ 20   continue
+
+      srhs=rhs
+
+ 30   do 40 k=2,srhs
+      call createref(iadr(lstk(top1)),top1,lstk(top1+1)-lstk(top1))
+      topk=top1+k-1
+      call createref(iadr(lstk(topk)),topk,lstk(topk+1)-lstk(topk))
+      fin=equal
+      rhs=2
+      call allops()
+      if(err.gt.0.or.err1.gt.0) return
+      if(icall.ne.0) then
+c     should not happen
+         rhs=srhs
+         top=top1-1+rhs
+         call funnam(ids(1,pt+1),'isequal',iadr(lstk(top-rhs+1)))
+         fun=-1
+         return
+      endif
+      il=iadr(lstk(top))
+      if(istk(il+3).eq.0) goto 60
+      top=top-1
+ 40   continue
+c variables are equal
+      top=top1
+      il=iadr(lstk(top))
+      istk(il)=4
+      istk(il+1)=1
+      istk(il+2)=1
+      istk(il+3)=1
+      lstk(top+1)=sadr(il+4)
+      return
+c variables are different
+ 60   continue
+      top=top1
+      il=iadr(lstk(top))
+      istk(il)=4
+      istk(il+1)=1
+      istk(il+2)=1
+      istk(il+3)=0
+      lstk(top+1)=sadr(il+4)
+      return
+
+
       end
