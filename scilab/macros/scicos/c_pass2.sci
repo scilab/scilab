@@ -42,7 +42,6 @@ show_pause=%f
 
 show_comment=%f
 
-  //???
   global need_newblk
   need_newblk=%t
 
@@ -90,7 +89,6 @@ show_comment=%f
     end 
     
     
-    //my_paksazi
     [clkptr,cliptr,typ_l,dep_ut,typ_m]=make_ptr(bllst,clkptr,cliptr,typ_l,..
 	dep_ut,typ_m)
     [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
@@ -113,6 +111,7 @@ show_comment=%f
     nblock=size(typ_l,1);
     ordoclk(:,2)=1
     ordptr=1;
+
     ordclk=[];
     cord=[];
     k=1
@@ -125,7 +124,7 @@ show_comment=%f
       cord=ordoclk0; 
       ordoclkcont=ordoclk0
     end
-    
+
     while k<=size(ordoclk,1) 
       n_out=clkptr(ordoclk(k,1)+1)-clkptr(ordoclk(k,1))
       if n_out>0 then
@@ -142,10 +141,10 @@ show_comment=%f
 	  primary=gsort(primary,'lr','i')
 	  vecordo=vec(primary(:,1))
 	  ordoclk0=ordo_vecport(primary,vecordo)	  
-	  [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,ordoclk0,ordoclk(k),j,ordptr,blocs_traites)
-          
-	  ordoclk=set_primary_clkport(ordoclk,ordoclk0,k)
-	end
+	  [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,ordoclk0,..
+                                   ordoclk(k),j,ordptr,blocs_traites)
+          ordoclk=set_primary_clkport(ordoclk,ordoclk0,k)
+	end      
       end
       k=k+1
       
@@ -157,16 +156,7 @@ show_comment=%f
     disp('fin de my paksazi')
     pause
   end
-  
-  //fin de my_paksazi
-
-  //disp(timer()-t)
-  
-  if show_pause then 
-    disp('fin de paksazi')
-    pause
-  end
-  
+   
   if show_trace then disp('c_pass31:'+string(timer())),end
   
   //extract various info from bllst
@@ -199,7 +189,7 @@ show_comment=%f
   
   [ordptr1,execlk,execlk0,execlk_cons]=..
       discard(clkptr,cliptr,clkconnect,exe_cons)
-   
+
   clkconnect=[];exe_cons=[]
 
   if show_trace then disp('c_pass501:'+string(timer())),end
@@ -209,7 +199,7 @@ show_comment=%f
    typ_z,ok]=scheduler(inpptr,outptr,clkptr,..
 			execlk_cons,outoin,outoinptr,..
 			evoutoin,evoutoinptr,typ_z,typ_x,typ_s,..
-			bexe,boptr,blnk,blptr,ordclk,ordptr,cord);
+			bexe,boptr,blnk,blptr,ordclk,ordptr1,cord);
 		    
 		    
   	
@@ -251,7 +241,7 @@ show_comment=%f
   sim=scicos_sim(funs=funs,xptr=xptr,zptr=zptr,zcptr=zcptr,..
 		 inpptr=inpptr,outptr=outptr,inplnk=inplnk,outlnk=outlnk,..
 		 lnkptr=lnkptr,rpar=rpar,rpptr=rpptr,ipar=ipar,ipptr=ipptr,..
-		 clkptr=clkptr,ordptr=ordptr,execlk=execlk,ordclk=ordclk,..
+		 clkptr=clkptr,ordptr=ordptr1,execlk=execlk,ordclk=ordclk,..
 		 cord=cord,oord=oord,zord=zord,critev=critev(:),..
 		 nb=nb,ztyp=ztyp,nblk=nblk,ndcblk=ndcblk,..
 		 subscr=subscr,funtyp=funtyp,iord=iord,labels=labels,modptr=modptr);
@@ -371,7 +361,8 @@ function vec_clk0=set_primary_clkport(vec_clk,primary,i)
 endfunction
 
 //insere la sous-matrice ordoclk0 dans ordclk après le block k
-function [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,ordoclk0,k,j,ordptr,blocs_traites)
+function [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,..
+                         ordoclk0,k,j,ordptr,blocs_traites)
   if ordoclk0~=[] then
     if ordclk==[] then
       ordclk=[ordclk;ordoclk0];
@@ -665,7 +656,8 @@ function [allpar,allparptr]=maj_allpar(allpar,allparptr,clkconnect,oldvec,vec,am
   newplus=cleanup1([amaj;newplus])
   newplus=my_setdiff(newplus,dontmaj)
   if newplus~=[] then
-    [allpar,allparptr,oldvec]=maj_add(allpar,allparptr,oldvec,vec,newplus,allparmaj,allparmajptr,vecmaj)
+    [allpar,allparptr,oldvec]=maj_add(allpar,allparptr,oldvec,vec,..
+                                newplus,allparmaj,allparmajptr,vecmaj)
   end
   
 endfunction
@@ -695,7 +687,8 @@ function [allpar,allparptr,oldvec]=maj_del(allpar,allparptr,oldvec,newless)
   end
 endfunction
 
-function [allpar,allparptr,oldvec]=maj_add(allpar,allparptr,oldvec,vec,newplus,allparmaj,allparmajptr,vecmaj)
+function [allpar,allparptr,oldvec]=maj_add(allpar,allparptr,oldvec,vec,..
+                                    newplus,allparmaj,allparmajptr,vecmaj)
   //disp('dans maj_add')
   //pause
   for i=1:size(newplus,1)
@@ -771,9 +764,10 @@ function [vec]=my_setdiff(vec,blk)
   vec=gsort(vec,'g','i')
 endfunction
 
-function [done,blk_duplicated,primary,wire,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
-          cliptr,critev,vec_plus,allpar,allparptr,amaj,oldvec,majplus]=get_wire2(wire,blk,port,typ_l,..
-          clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev,vec_plus,allpar,allparptr)
+function [done,blk_duplicated,primary,wire,typ_l,clkconnect,connectmat,bllst,..
+          dep_ut,corinv,clkptr,cliptr,critev,vec_plus,allpar,allparptr,amaj,..
+          oldvec,majplus]=get_wire2(wire,blk,port,typ_l,clkconnect,connectmat,..
+          bllst,dep_ut,corinv,clkptr,cliptr,critev,vec_plus,allpar,allparptr)
 
   primary=get_children([],blk,port)
   //on enleve blk de primary (cas des horloges)
@@ -1809,23 +1803,23 @@ function [bouclalg,vec,primary]=ordo3(blk,port,clkconnect,connectmat)
 	for k=1:n_w
 	  if dep_ut(w(k,1),1) then
 	    g=get_from([],w(k,1))
-	    if g<>[] then
+	    if (g ~= []) then
 	      //on garde les blocs de g qui ne sont pas dans w  
 	      h=setdiff(g,w(:,1))
 	      if h==[] then
-		//si aucun bloc ne vient d'en dehors du faisceau
-		vec(w(k,1))=max(vec(g))
+	        //si aucun bloc ne vient d'en dehors du faisceau
+	        vec(w(k,1))=max(vec(g))
 	      else 
-		//on garde dans h les termes >-1
-		//i.e. les blocs activés par l'horloge clk
-		h=h(find(vec(h)>-1))
-		if h~=[] then
-		  vec(w(k,1))=max(vec(w(k,1)),max(vec(h))+1)
-		else 
+	        //on garde dans h les termes >-1
+	        //i.e. les blocs activés par l'horloge clk
+	        h=h(find(vec(h)>-1))
+	        if h~=[] then
+	       	  vec(w(k,1))=max(vec(w(k,1)),max(vec(h))+1)
+	        else 
 		  vec(w(k,1))=max(vec(w(:,1)))
-		end
+	        end
 	      end
-	    end
+            end
 	  else
 	    //si le bloc w(k) n'est pas dep_ut
 	    vec(w(k,1))=vec(primary(i,1))
@@ -2023,7 +2017,7 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,b
 	  n_w=size(w,1)
 	  if size(dupl,2)<n_w then
 	    //si tous les enfants d'un même bloc n'ont pas le même n°, on duplique le parent
-	    ////pause
+	    
 	    blk0=children(i,1)
 	    port0=children(i,2)
 	    blk1=w(dupl(1),1)
@@ -2224,8 +2218,7 @@ endfunction
 
 function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
           cliptr,critev]=paksazi1(typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev)
-//pause  
-    
+
   vec_clk=get_clocks(clkconnect,clkptr);
   //vec_clk=[0; find(~typ_l&(clkptr(2:$)-clkptr(1:$-1))>0)'];
   vec_clk=gsort(vec_clk,'g','i')
@@ -2489,7 +2482,8 @@ endfunction
 function [ordclk,iord,oord,zord,typ_z,ok]=..
       scheduler(inpptr,..
 		outptr,clkptr,execlk_cons,outoin,outoinptr,..
-		evoutoin,evoutoinptr,typ_z,typ_x,typ_s,bexe,boptr,blnk,blptr,ordclk,ordptr,cord);
+		evoutoin,evoutoinptr,typ_z,typ_x,typ_s,bexe,boptr,..
+                blnk,blptr,ordclk,ordptr,cord);
   //
   nblk=size(typ_x,1)
   
@@ -2597,7 +2591,7 @@ typ_z=typ_z_save
 
   // 1: important; 0:non
   n=clkptr(nblk+1)-1 //nb d'evenement
-	     
+  
   //a priori tous les evenemets sont non-importants
   //critev=zeros(n,1)
   for i=1:n
@@ -2643,174 +2637,6 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
   ord(find(k==1))=[];
 endfunction
 
-function [okk,done,bllst,connectmat,clkconnect,typ_l,typ_m,critev,corinv]=..
-      paksazi(bllst,connectmat,clkconnect,corinv,clkptr,cliptr,..
-	      typ_l,typ_m,critev,dep_ut)
-
-  global need_newblk  
-  okk=%t
-  nblk=length(bllst)
-  nblkorg=nblk
-  if ~or(typ_l) then
-    done=%t;
-    return
-  end
-  change=%f
-  if need_newblk then
-    
-    [junk,ii]=sort(-clkconnect(:,3))
-    clkconnect=clkconnect(ii,:)
-    id=find(typ_l(clkconnect(:,3)))
-    ltmp=clkconnect(id,3)
-    dl=[1;ltmp(2:$)-ltmp(1:$-1);1];
-    idl=find(dl<>0)
-    ki=0
-
-    for lb=find(typ_l)
-      ki=ki+1
-      indx=id([idl(ki):idl(ki+1)-1])
-
-      if indx==[] then 
-	message(['A synchro block is inactive';'cannot be compile']);
-	okk=%f;return
-      end
-      if or(clkconnect(indx,1)==lb) then 
-	message(['Algebrique loop detected';'on activation links']);
-	okk=%f;return
-      end
-      nn=size(indx,'*')
-      need_newblk=%f
-      if nn>=2 then
-	need_newblk=%t
-	indxo=find(clkconnect(:,1)==lb)
-	indy=find(connectmat(:,3)==lb)
-	if size(indy,'*')>1 then 
-	  disp('Synchro block cannot have more than 1 input')
-	end
-
-	for k=2:nn
-	  critev=[critev;critev(clkptr(lb):clkptr(lb+1)-1)]
-	  clkconnect(indx(k),3)=nblk+1;
-	  bllst(nblk+1)=bllst(lb);
-	  corinv(nblk+1)=corinv(lb);
-	  tmp=clkconnect(indxo,:);
-	  yek=ones(tmp(:,1))
-	  clkconnect=[clkconnect;[yek*(nblk+1),tmp(:,[2 3 4])]]
-	  nblk=nblk+1
-	end
-	onn=ones(nn-1,1)
-	connectmat=[connectmat;..
-		    [onn*connectmat(indy,[1 2]),[nblkorg+1:nblk]',onn]]
-	change=%t
-	nblkorg=nblk
-      end
-    end
-    if change then done=%f;return; end
-  end
-  //
-
-  clkconnecttmp=clkconnect;
-  clkconnect=clkconnecttmp(find(clkconnecttmp(:,1)<>0),:);
-  clkconnect0=clkconnecttmp(find(clkconnecttmp(:,1)==0),:);
-  bclkconnect0=clkconnect0(:,[1 3]);
-  con0=zeros(clkconnect0(:,1));
-
-  texeclk0=bclkconnect0(find(bclkconnect0(:,1)==0),2);
-
-
-  con=clkptr(clkconnect(:,1))+clkconnect(:,2)-1;
-  [junk,ind]=sort(-con);con=-junk;
-  clkconnect=clkconnect(ind,:);
-  //
-  bclkconnect=clkconnect(:,[1 3]);
-
-  bexe=bclkconnect(:,2);
-  bbclk=bclkconnect(:,1);
-  sbb=size(bbclk,1);
-  boptr=duplicate(1:sbb,bbclk-[0;bbclk(1:$-1)]);
-  nbo=size(boptr,1);
-  boptr=[boptr;(sbb+1)*ones(nblk-nbo+1,1)]
-
-  //
-  junk=max(connectmat(:,2))*connectmat(:,1)+connectmat(:,2)-1;
-  [junk,ind]=sort(-junk);
-  connectmat=connectmat(ind,:);
-  //
-  bconnectmat=connectmat(:,[1 3]);
-
-  //
-  blnk=bconnectmat(:,2);
-  bblk=bconnectmat(:,1);
-  sbb=size(bblk,1);
-  blptr=duplicate(1:sbb,bblk-[0;bblk(1:$-1)]);
-  nbo=size(blptr,1);
-  blptr=[blptr;(sbb+1)*ones(nblk-nbo+1,1)]
-
-  tclkconnect=clkconnect(~typ_l(clkconnect(:,1)),:);
-  tcon=clkptr(tclkconnect(:,1))+tclkconnect(:,2)-1;
-  texeclk=tclkconnect(:,[3 4]);
-
-  //
-  sbb=size(tcon,1);
-  ordptr1=duplicate(1:sbb,tcon-[0;tcon(1:$-1)]);
-  nbo=size(ordptr1,1);
-  ordptr1=[ordptr1;(sbb+1)*ones(clkptr($)-nbo,1)]
-  //
-  clkconnect=[clkconnect0;clkconnect];
-  con=[con0;con];
-  //
-  pointer=[];
-
-  for o=0:clkptr($)-1
-    if o==0 then 
-      texeclki=texeclk0; 
-    else 
-      texeclki=texeclk(ordptr1(o):ordptr1(o+1)-1,1);
-    end
-    
-    test=or(typ_l(texeclki))
-    if test then
-      vec=-ones(1,nblk);
-      vec(texeclki')=zeros(texeclki)';
-
-      typ_lm=zeros(typ_l);typ_lm(typ_l)=1;typ_lm(typ_m)=-1;
-      [r,ok]=new_tree3(vec,dep_ut,typ_lm);
-
-      if ~ok then 
-	message('Algebrique loop detected; cannot be compiled.');
-	bllst=[];connectmat=[];clkconnect=[];typ_l=[];corinv=[]
-	okk=%f;done=%t;return,
-      end
-      
-      pointer=find(con==o)
-      for bl=r
-	if typ_l(bl) then
-	  mod=bllst(bl);mod.blocktype='s',bllst(bl)=mod,typ_l(bl)=%f
-	  pointer=pointer(find(clkconnect(pointer,3)<>bl));
-	  yek=ones(pointer');
-	  clkconnect(pointer,:)=..
-	      [yek*bl,yek,clkconnect(pointer,[3 4])];
-	  //connect all the event outputs of the logical block to ....
-	  for bl_out=2:clkptr(bl+1)-clkptr(bl)
-	    clkconnect=[clkconnect;[yek*bl,bl_out*yek,clkconnect(pointer,[3 4])]];
-	  end
-	  //
-	  need_newblk=%t
-	  okk=%t,done=%f;return
-	else
-	  pointer=pointer(find(clkconnect(pointer,3)<>bl))
-	end
-      end
-    end
-    if pointer<>[] then warning('problem1');pause;end
-  end;
-  //
-
-  if or(typ_l) then warning('problem2');pause;end
-  //
-  okk=%t;done=%t;
-
-endfunction
 
 function [ordptr1,execlk,clkconnectj0,clkconnectj_cons]=..
       discard(clkptr,cliptr,clkconnect,exe_cons)
@@ -3144,7 +2970,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     n=j-outptr(m)+1
     nm=bllst(m).out(n)
     if nm<1 then 
-      //pause
+      
       under_connection(corinv(m),n,nm,-1,0,0),ok=%f,return,end
     siz_unco=maxi(siz_unco,nm)
   end
