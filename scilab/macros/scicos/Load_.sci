@@ -23,7 +23,10 @@ function Load_()
 
       if type(scs_m.props.context)==10 then
 	%now_win=xget('window')
-	if execstr(scs_m.props.context,'errcatch') <>0 then
+
+	[%scicos_context,ierr]=script2var(scs_m.props.context,%scicos_context)
+      
+      if ierr  <>0 then
 	  message(['Error occur when evaluating context:'
 		   lasterror() ])
 	//else

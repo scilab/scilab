@@ -5,7 +5,13 @@ function Context_()
       [context,ok]=do_context(scs_m.props.context)
       xset('window',%now_win)
       if ~ok then break,end
-      if execstr(context,'errcatch') <>0 then
+      clear %scicos_context  // to make sure only parent context is used
+      if ~exists('%scicos_context') then
+	%scicos_context=struct()
+      end
+      [%scicos_context,ierr]=script2var(context,%scicos_context)
+      
+      if ierr <>0 then
 	message(['Error occur when evaluating context:'
 		 lasterror() ])
       else
@@ -20,3 +26,6 @@ function Context_()
       end
     end
 endfunction
+
+
+

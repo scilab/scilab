@@ -42,7 +42,7 @@ for hh=1:length(bllst)
 	      if sum(ww)==nout then
 		bllst(blkin).in(portin)=nout
 	      else
-		bad_connection(corinv(blkin))
+		bad_connection(corinv(blkin),0,0,-1,0,0)
 		ok=%f;return
 	      end
 	    else
@@ -54,10 +54,10 @@ for hh=1:length(bllst)
 	    if norm(nww-nww(1),1)==0 & nout>0 then
 	      bllst(blkin).in(portin)=nout
 	      k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
-	      if k==int(k) then
+	      if k==int(k)&k>0 then
 		bllst(blkin).out(find(ww<0))=k
 	      else
-		bad_connection(corinv(blkin))
+		bad_connection(corinv(blkin),0,0,-1,0,0)
 		ok=%f;return
 	      end
 	    else
@@ -71,7 +71,7 @@ for hh=1:length(bllst)
 	      if sum(ww)==nin then
 		bllst(blkout).out(portout)=nin
 	      else
-		bad_connection(corinv(blkout))
+		bad_connection(corinv(blkout),0,0,-1,0,0)
 		ok=%f;return
 	      end
 	    else
@@ -82,11 +82,11 @@ for hh=1:length(bllst)
 	    nww=ww(find(ww<0))
 	    if norm(nww-nww(1),1)==0 & nin>0 then
 	      bllst(blkout).out(portout)=nin
-	      k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
-	      if k==int(k) then
+	      k=(nin-sum(ww(find(ww>0))))/size(nww,'*')
+	      if k==int(k)&k>0 then
 		bllst(blkout).in(find(ww<0))=k
 	      else
-		bad_connection(corinv(blkout))
+		bad_connection(corinv(blkout),0,0,-1,0,0)
 		ok=%f;return
 	      end
 	    else

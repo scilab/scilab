@@ -36,7 +36,7 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
       x_message(['Modelica compiler error:'
 		  mgetl(TMPDIR+'/unix.err');
 		 'sorry ']);
-      ok=%f,nx=0,nin=0,nout=0,ng=0;return
+      ok=%f,nx=0,nin=0,nout=0,ng=0;nz=0;return
     end
     mprintf('   C code generated at '+path+name+'.c\n')
   end

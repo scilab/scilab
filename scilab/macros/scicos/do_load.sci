@@ -45,12 +45,12 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
       message(['Only *.cos (binary) and *.cosf (formatted) files';
 	       'allowed'])
       ok=%f
-      scs_m=list()
+      scs_m=scicos_diagram()
       return
     end
     if ierr<>0 then
       message(name+' cannot be loaded.') 
-      ok=%f;return
+      ok=%f;scs_m=scicos_diagram();return
     end
     if scicos_ver=='scicos2.2' then
       if scs_m==[] then scs_m=x,end //for compatibility

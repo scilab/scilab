@@ -27,7 +27,10 @@ for %kk=1:%nx
     if model.sim=='super'|model.sim=='csuper' then
       sblock=model.rpar
       context=sblock.props.context
-      if execstr(context,'errcatch')<>0 then
+
+      [%scicos_context,ierr]=script2var(context,%scicos_context)
+      
+      if ierr <>0 then
 	%now_win=xget('window')
         message(['Cannot evaluate a context';lasterror()])
 	xset('window',%now_win)

@@ -47,12 +47,26 @@ return;end
 //!
 // Copyright INRIA
 [%lhs,%rhs]=argn(0)
+
 %nn=prod(size(%lables))
 if %lhs<>%nn+2&%lhs<>%nn+1 then error(41),end
 if size(%typ)<>2*%nn then
   error('typ : list(''type'',[sizes],...)')
 end
-%1=[];%2=[];%3=[];%4=[];%5=[];%6=[];%7=[];%8=[];%9=[];%10=[];%11=[];%12=[];%13=[];%14=[]
+%1=[];%2=[];%3=[];%4=[];%5=[];%6=[];%7=[];%8=[];%9=[];%10=[];%11=[]; ...
+   %12=[];%13=[];%14=[]
+
+if exists('%scicos_context') then
+  %mm=getfield(1,%scicos_context)
+  for %mi=%mm(3:$)
+    if execstr(%mi+'=%scicos_context(%mi)','errcatch')<>0 then
+      disp(lasterror())
+      ok=%f
+      return
+    end
+  end
+end 
+
 if %rhs==3 then  %ini=emptystr(%nn,1),end
 ok=%t
 while %t do
