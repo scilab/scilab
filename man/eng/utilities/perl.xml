@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>perl</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>25-August-2004</DATE>
+
+  <SHORT_DESCRIPTION name="perl">Call Perl script using appropriate operating
+  system executable</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>perl('perlfile')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>perl('perlfile',arg1,arg2,...)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>result = perl(...)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>perl('perlfile') calls the Perl script perlfile, using the appropriate
+    operating system Perl executable.</P>
+
+    <P>perl('perlfile',arg1,arg2,...) calls the Perl script perlfile, using
+    the appropriate operating system Perl executable, and passes the arguments
+    arg1, arg2, and so on, to perlfile.</P>
+
+    <P>result = perl(...) returns the results of attempted Perl call to
+    result.</P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>unix</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

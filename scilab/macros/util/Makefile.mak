@@ -13,7 +13,7 @@ include ../../Makefile.incl.mak
 NAME = utillib
 NAM = SCI/macros/util
 
-MACROS = clipboard.sci with_atlas.sci setlanguage.sci with_lcc.sci VCtoLCCLib.sci \
+MACROS = perl.sci clipboard.sci with_atlas.sci setlanguage.sci with_lcc.sci VCtoLCCLib.sci \
 	sysconv.sci  lin.sci halt.sci bloc2exp.sci \
 	pol2tex.sci texprint.sci bloc2ss.sci \
 	cmb_lin.sci  solve.sci trianfml.sci trisolve.sci \
