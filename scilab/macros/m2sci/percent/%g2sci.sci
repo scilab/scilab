@@ -15,8 +15,30 @@ function [tree]=%g2sci(tree)
 // To have good size for result with String as input
 // And overloading functions are not written for Strings
 [A,B] = getoperands(tree)
-A = convert2double(A)
-B = convert2double(B)
+
+// Short circuiting OR
+if (typeof(B)=="variable" & B.name=="%shortcircuit") then
+  if typeof(tree.out(1))=="variable" & tree.out(1).name=="ans" then
+    tmp=gettempvar()
+    tree=tmp
+  else
+    tmp=tree.out(1)
+    global("varslist")
+    varslist($+1)=M2scivar(tree.out(1).name,tree.out(1).name,Infer(list(1,1),Type(Boolean,Real)))
+    tree=list()
+  end
+  insert(Equal(list(tmp),Cste(%F)))
+  insert(tlist(["ifthenelse","expression","then","elseifs","else"],convert2double(A),list(Equal(list(tmp),Cste(%T))),list(),list()))
+  return
+end
+
+
+if or(A.vtype==[String,Unknown]) then
+  A = convert2double(A)
+end
+if or(B.vtype==[String,Unknown]) then
+  B = convert2double(B)
+end
 tree.operands=list(A,B)
 
 tree.out(1).type=Type(Boolean,Real)
