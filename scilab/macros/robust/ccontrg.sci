@@ -109,10 +109,10 @@ ncom=norm(d11+d12*dk*d21);
 //DETERMINATION OF AK
 //-------------------
  
-ca=a+b2*dk*c2; cb=b1+b2*dk*d21; cc=c1+d12*dk*c2; cd=d11+d12*dk*d21;
+ca=a+b2*dk*c2; cb=b1+b2*dk*d21; cc=c1+d12*dk*c2; Cd=d11+d12*dk*d21;
 ak=py'*b2*that+ttil*c2*px-py'*ca*px-qy'*ca'*qx/gs+..
     [-qy'*cc'/Gamma,py'*cb-ttil*d21]/..
-       [Gamma*eye(p1,p1),cd;cd',Gamma*eye(m1,m1)]*..
+       [Gamma*eye(p1,p1),Cd;Cd',Gamma*eye(m1,m1)]*..
           [cc*px-d12*that;-cb'*qx/Gamma];
 ak=sz\(vz'*ak*uz)/sz;
  

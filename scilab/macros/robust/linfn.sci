@@ -147,7 +147,7 @@ end
 e=eye(2*na,2*na); e(nf,nf)=0;
 nul=0; nul(na,na)=0;
 f=[a,nul;-c'*c,-a']; f(nf,nf)=0;
-dd=d'*d; cd=c'*d;
+dd=d'*d; Cd=c'*d;
  
  
 //----------------------
@@ -163,10 +163,10 @@ if part(options,1)=='t' then
      '(''lower,current,upper = '',3e20.10)');
 end
  
-bga=b/ga; cdga=cd/ga;
+bga=b/ga; Cdga=Cd/ga;
 f(1:na,twona+1:nf)=-bga;
-f(na+1:twona,twona+1:nf)=cdga;
-f(twona+1:nf,1:nf)=[cdga',bga',eye(dd)-dd/(ga**2)];
+f(na+1:twona,twona+1:nf)=Cdga;
+f(twona+1:nf,1:nf)=[Cdga',bga',eye(dd)-dd/(ga**2)];
  
  
 // Test for generalized eigenvalues on the imaginary axis
@@ -213,10 +213,10 @@ else if 1-lower/upper < PREC,
  
 // Compute all the frequencies achieving ||G||
    if lower<>0 then
-       bga=b/lower; cdga=cd/lower;
+       bga=b/lower; Cdga=Cd/lower;
        f(1:na,twona+1:nf)=-bga;
-       f(na+1:twona,twona+1:nf)=cdga;
-       f(twona+1:nf,1:nf)=[cdga',bga',eye(dd)-dd/(lower**2)];
+       f(na+1:twona,twona+1:nf)=Cdga;
+       f(twona+1:nf,1:nf)=[Cdga',bga',eye(dd)-dd/(lower**2)];
        [dist,frequ]=heval_test(e,f,RELTOL,'freq');
    end
    if frequ==[] then
@@ -226,7 +226,7 @@ else if 1-lower/upper < PREC,
 // evaluate the condition of the eigenproblem of (e,f) near || G ||
    if part(options,1)=='c' then
       gt=1.1*ga;
-      f=[a,nul,-b/gt;cc,at,cd/gt;dc/gt,bt/gt,eye(dd)-dd/(gt**2)]
+      f=[a,nul,-b/gt;cc,at,Cd/gt;dc/gt,bt/gt,eye(dd)-dd/(gt**2)]
       co=cond_test(e,f,frequ,RELTOL);
       if co < RELTOL then
          write(%io(2),'The computed value of || G || may be inaccurate');
