@@ -1,12 +1,14 @@
 /* Copyright INRIA/ENPC */
+
 #include <stdio.h>
 
-#if ~defined(THINK_C) && ~defined(__MWERKS__) 
-#if !(defined __MSC__) && !(defined __ABSC__)
-#ifndef  __MINGW32__
+#if ~defined(THINK_C) && ~defined(__MWERKS__)
+#if !(defined __MSC__) && !(defined __ABSC__) && !(defined __MINGW32__) 
 #include <sys/time.h>
+#else 
+#include <windows.h>
+static int stimerwin(void);
 #endif 
-#endif
 #endif 
 
 #include <time.h>
@@ -71,19 +73,13 @@ int C2F(stimer)(void)
         YieldToAnyThread();
         return(0);
 #else 
-#if !(defined __MSC__) && !(defined __ABSC__)
-#ifndef __MINGW32__
+#if !(defined __MSC__) && !(defined __ABSC__)&& !(defined __MINGW32__)
   struct timeval ctime;
   X_GETTIMEOFDAY(&ctime);
   return(ctime.tv_usec);
-#endif
-#endif
-
-#ifdef WIN32 
-#ifndef __CYGWIN32__
+#else 
   return(stimerwin());
-#endif 
-#endif
+#endif /* !(defined __MSC__) && !(defined __ABSC__)&& !(defined __MINGW32__) */ 
 #endif /* defined(THINK_C)||defined(__MWERKS__) */
 }
 
@@ -91,12 +87,9 @@ int C2F(stimer)(void)
  * stimer for non cygwin win32 compilers 
  ****************************/
 
-#ifdef WIN32 
-#ifndef __CYGWIN32__
-#include <windows.h>
-int stimerwin()
+#if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__)
+static int stimerwin(void)
 {
-#ifndef __MINGW32__
   int i;
   union {FILETIME ftFileTime;
     __int64  ftInt64;
@@ -107,14 +100,10 @@ int stimerwin()
   /* Filetimes are in 100NS units */
   i= (int) (ftRealTime.ftInt64  & ((LONGLONG) 0x0ffffffff));
   return( i/10); /** convert to microseconds **/
-#else 
-  return(0);
-#endif
 }
-#endif
 #endif
 
 int C2F(fclock)(void)
 {
-return (int)clock();
+  return (int)clock();
 }
