@@ -1,4 +1,4 @@
-function M=%c_i_s(varargin)
+function M=%mc_i_s(varargin)
 [lhs,rhs]=argn(0)
 M=varargin(rhs)
 N=varargin(rhs-1)//inserted matrix
@@ -9,4 +9,3 @@ if rhs==3&(type(index)==10|type(index)==15) then
   return
 end
 endfunction
-
