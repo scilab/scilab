@@ -35,17 +35,6 @@ extern int  sciprint2(int iv,char *fmt,...) ;
 extern int sciprint2() ;
 #endif 
 
-void *mymalloc(int n) {
-  int z;
-  if ( n < 0) {
-    sciprint("BUG");
-    z=9;
-  }
-  return malloc(n);
-}
-
-#define malloc mymalloc 
-
 
 /* extern int sciprint2 __PARAMS((int i,char *fmt, ...));*/
 
