@@ -14,19 +14,15 @@ case 'set' then
   // paths to updatable parameters or states
   ppath = list(2)
   newpar=list();
-  //  for path=ppath ,
-  //    np=size(path,'*')
-  //    spath=[matrix([3*ones(1,np);8*ones(1,np);path],1,3*np)]
-  path=ppath
+  path=ppath(1)
   spath=list('model','rpar',path)
-  xx=get_tree_elt(arg1,spath)// get the block
+  xx=arg1(spath)// get the block
   execstr('xxn='+xx.gui+'(''set'',xx)')
   if xxn<>xx then
     // parameter or states changed
-    arg1=change_tree_elt(arg1,spath,xxn)// Update
+    arg1(spath)=xxn// Update
     newpar(size(newpar)+1)=path// Notify modification
   end
-  //end
   x=arg1
   y=0
   typ=newpar
