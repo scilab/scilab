@@ -191,7 +191,7 @@ c     .  *call* matfns
 c         call ref2val
          fin=lstk(fin)
          if (ptover(1,psiz)) return
-         call putid(ids(1,pt),syn(1))
+         call putid(ids(1,pt),id)
          rstk(pt)=401
          icall=5
 c     .  *call* macro
