@@ -92,18 +92,12 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
       *ok=false;
       return 0;
     }
-  if ((*connectmat)[0] == 0 && (*connectmat)[0] == 0) 
-    {
-      Message("Any connection existing");
-      *ok=false;
-      return 0;
-    }
   adjust_inout(*bllst2,*bllst3,*bllst2ptr,*bllst3ptr,*connectmat,ok,*corinvec,*corinvptr,nblk1);
+  if (!*ok) return 0;
   mini_extract_info(*bllst2,bllst4,*bllst10,*bllst12,*bllst2ptr,*bllst3ptr,bllst4ptr,*connectmat,
 		    *clkconnect,inplnk,outlnk,&typ_l,&typ_r,&typ_m,&tblock,&typ_cons,ok);
  
   conn_mat(*inplnk,*outlnk,*bllst2ptr,*bllst3ptr,&outoin,&outoinptr,nblk);
-  
   pak_ersi(clkconnect,typ_r,typ_l,outoin,outoinptr,tblock,typ_cons,*bllst5ptr,&exe_cons,*nblk);
   free(typ_r);
   typ_r=NULL;
@@ -165,7 +159,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   if(!(*ok)) return 0;
   if(!OR(*typ_x) && OR(typ_z) )
     {
-      Message("For using treshold with explicit solver (0),you need a block with continuous-time state in your diagram.You can include DUMMY CLSS block (linear palette).");
+      Message("For using treshold, You need a DUMMY CLSS block.");
       *ok=false;
       return 0;
    }
@@ -1982,6 +1976,11 @@ int extract_info(int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bll
   free(idl);idl=NULL;
   clkconnecttmp=GetPartVect(clkconnect,1,clkconnect[0]/4);
   idl=GetPartVect(clkconnect,clkconnect[0]/4+1,clkconnect[0]/4);
+  if (!idl)
+    {
+      if ((idl=(int*)malloc(sizeof(int))) == NULL ) return 0;
+      idl[0]=0;
+    }
   if ((con=(int*)malloc(sizeof(int)*(idl[0]+1))) == NULL ) return 0;
   con[0]=idl[0];
   for(l=1;l<clkconnect[0]/4+1;l++)
@@ -4040,3 +4039,4 @@ void Incr1(int* vect,int j)
     }
   vect[0]--;
 }
+
