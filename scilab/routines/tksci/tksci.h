@@ -9,7 +9,12 @@
 #ifdef _MSC_VER
 #define IS_MSVC
 #endif
+#if defined (__MINGW32__) 
+#define IS_MSVC
+#endif
 #endif 
+
+
 
 #ifndef IS_MSVC
 #ifdef SYSV
