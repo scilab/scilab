@@ -68,8 +68,8 @@ c     hotstart work size
          niwp = 20 + nx 
       elseif(solver.eq.100) then
          MAXORD=5
-         nrwp = 50+(MAXORD+4)*nx+nx**2+3*ng
-         niwp = 20 + nx 
+         nrwp = 60+max(MAXORD+4,7)*nx+nx**2+3*ng
+         niwp = 40 + nx +nx
       else
 c        add an error message please
       endif

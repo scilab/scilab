@@ -33,7 +33,7 @@ int C2F(simblk)(neq, t, xc, xcdot)
   integer nordclk;
   C2F(ierode).iero = 0;
   nordclk=scicos_imp.ordptr[C2F(cossiz).nordptr-1]-1;
-  C2F(odoit)(neq, xcdot, xc, scicos_imp.xptr, scicos_imp.z, 
+  C2F(odoit)(neq, xcdot, xc,xcdot, scicos_imp.xptr, scicos_imp.z, 
 	     scicos_imp.zptr, scicos_imp.iz, 
 	     scicos_imp.izptr, t, 
 	     scicos_imp.tevts, scicos_imp.evtspt, 
@@ -52,10 +52,10 @@ int C2F(simblk)(neq, t, xc, xcdot)
 	     scicos_imp.iwa,&C2F(ierode).iero);    
 }
  
-int C2F(simblkdassl)(t,xc,xcdot,residual,ires,rpar,ipar)
+int C2F(simblkdassl)(t,xc,xcdot,cj,residual,ires,rpar,ipar)
      integer *ires,*ipar;
      double *t, *xc, *xcdot, *rpar, *residual;
-    
+     integer *cj;
      
      /* 
 	!purpose 
@@ -72,7 +72,7 @@ int C2F(simblkdassl)(t,xc,xcdot,residual,ires,rpar,ipar)
  C2F(ierode).iero = 0;
  neq=scicos_imp.xptr[scicos_imp.nblk]-1;
  nordclk=scicos_imp.ordptr[C2F(cossiz).nordptr-1]-1;
- C2F(odoit)(neq, residual, xc, scicos_imp.xptr, scicos_imp.z, scicos_imp.zptr, 
+ C2F(odoit)(neq, residual, xc, xcdot,scicos_imp.xptr, scicos_imp.z, scicos_imp.zptr, 
 	    scicos_imp.iz, 
 	    scicos_imp.izptr, t, 
 	    scicos_imp.tevts, scicos_imp.evtspt, &scicos_imp.nevts, 
@@ -90,6 +90,7 @@ int C2F(simblkdassl)(t,xc,xcdot,residual,ires,rpar,ipar)
 	    scicos_imp.funtyp, scicos_imp.outtb, 
 	    scicos_imp.iwa,&C2F(ierode).iero);
  if(C2F(ierode).iero != 0) *ires=-2;
-/* printf("residual %f \n", *residual); */   
+/*printf("after t xc xcdot %f %f %f\n", *t, *xc,*xcdot);
+  printf("residual %f \n", *residual);  */  
 }
  

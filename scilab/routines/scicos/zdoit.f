@@ -56,7 +56,8 @@ c
          if(outptr(kfun+1)-outptr(kfun).gt.0) then
             nclock=ordclk(ii,2)
             flag=1
-            call callf(kfun,nclock,funptr,funtyp,told,x,x,xptr,z,
+            call callf(kfun,nclock,funptr,funtyp,told,
+     $           xd,x,x,xptr,z,
      $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
      $           outtb,flag) 
@@ -154,7 +155,7 @@ c
          if(outptr(kfun+1)-outptr(kfun).gt.0) then
             flag=1
             call callf(kfun,nclock,funptr,funtyp,told,
-     $           x,x,xptr,z,zptr,iz,izptr,rpar,
+     $           xd,x,x,xptr,z,zptr,iz,izptr,rpar,
      $           rpptr,ipar,ipptr,tvec,ntvec,inpptr,
      $           inplnk,outptr,outlnk,lnkptr,outtb,flag) 
 

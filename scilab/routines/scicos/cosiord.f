@@ -54,7 +54,8 @@ c     initialisation (propagation of constant blocks outputs)
          kfun=iord(jj)
          nclock = iord(jj+niord)
          flag=1
-         call callf(kfun,nclock,funptr,funtyp,told,x,x,xptr,z,zptr,iz,
+         call callf(kfun,nclock,funptr,funtyp,told,
+     $        x(xptr(nblk+1)),x,x,xptr,z,zptr,iz,
      $        izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk
      $        ,outptr,outlnk,lnkptr,outtb,flag) 
          if (flag .lt. 0) then

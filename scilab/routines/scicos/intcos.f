@@ -504,13 +504,13 @@ c     .    lsodar IWORK 20 + neq
            lw44=lw
            lw=lw+sadr(nn44)+1
         elseif(solver.eq.100) then
-c     .    dassrt
+c     .    daskr
            ncst=ncst/2
            MAXORD=5
-           nn42=nout+50+(MAXORD+4)*ncst+ncst**2+3*ng
+           nn42=nout+60+max(MAXORD+4,7)*ncst+ncst**2+3*ng
            lw42=lw
            lw=lw+nn42
-           nn43=20 + ncst + 2*ng
+           nn43=40 +ncst+ ncst + 2*ng
            lw43=lw
            lw=lw+nn43
            nn44=2*nblk

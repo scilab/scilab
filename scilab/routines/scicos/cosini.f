@@ -33,7 +33,8 @@ C     loop on blocks
       nclock = 0
       do 5 kfun=1,nblk
          flag=4
-         call callf(kfun,nclock,funptr,funtyp,told,x,x,xptr,z,zptr,iz,
+         call callf(kfun,nclock,funptr,funtyp,told,x(xptr(nblk+1))
+     $        ,x,x,xptr,z,zptr,iz,
      $        izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk,
      $        outptr,outlnk,lnkptr,outtb,flag) 
          if(flag.lt.0.and.ierr.eq.0) then
@@ -54,8 +55,10 @@ C     initialization (flag 6)
          do 10 jj=1,ncord
             kfun=cord(jj)
             flag=6
-            call callf(kfun,nclock,funptr,funtyp,told,x,x,xptr,z,zptr,iz
-     $           ,izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk
+            call callf(kfun,nclock,funptr,funtyp,told,
+     $           x(xptr(nblk+1)),x,x,xptr,z,
+     $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
+     $           ntvec,inpptr,inplnk
      $           ,outptr,outlnk,lnkptr,outtb,flag) 
             if (flag .lt. 0) then
                ierr = 5 - flag
@@ -71,7 +74,8 @@ c
 C     loop on blocks
          do 11 kfun=1,nblk
             flag=6
-            call callf(kfun,0,funptr,funtyp,told,w,x,xptr,z,
+            call callf(kfun,0,funptr,funtyp,told,x(xptr(nblk+1)),
+     $           x,w,xptr,z,
      $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
      $           outtb,flag) 
@@ -89,7 +93,8 @@ c
             do 12 jj=1,ncord
                kfun=cord(jj)
                flag=6
-               call callf(kfun,nclock,funptr,funtyp,told,x,x,xptr,z,zptr
+               call callf(kfun,nclock,funptr,funtyp,told,
+     $              x(xptr(nblk+1)),x,x,xptr,z,zptr
      $              ,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr
      $              ,inplnk,outptr,outlnk,lnkptr,outtb,flag) 
                if (flag .lt. 0) then
@@ -107,7 +112,7 @@ c           do 25 kfun=1,nblk
 c              if(xptr(kfun+1)-xptr(kfun).gt.0) then
 c                 flag=7
 c                 call callf(kfun,nclock,funptr,funtyp,told,
-c     $                w,x,xptr,z,zptr,iz,izptr,rpar,
+c     $                xd,x,residual,xptr,z,zptr,iz,izptr,rpar,
 c     $                rpptr,ipar,ipptr,tvec,ntvec,inpptr,
 c     $                inplnk,outptr,outlnk,lnkptr,outtb,flag) 
 c                 if (flag .lt. 0) then

@@ -56,7 +56,8 @@ c
          if(outptr(kfun+1)-outptr(kfun).gt.0) then
             nclock=ordclk(ii,2)
             flag=1
-            call callf(kfun,nclock,funptr,funtyp,told,w,x,xptr,z,
+            call callf(kfun,nclock,funptr,funtyp,told,
+     $           x(xptr(nblk+1)),x,x,xptr,z,
      $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
      $           outtb,flag) 
@@ -156,7 +157,7 @@ c
          if(outptr(kfun+1)-outptr(kfun).gt.0) then
             flag=1
             call callf(kfun,nclock,funptr,funtyp,told,
-     $           x,x,xptr,z,zptr,iz,izptr,rpar,
+     $           x(xptr(nblk+1)),x,x,xptr,z,zptr,iz,izptr,rpar,
      $           rpptr,ipar,ipptr,tvec,ntvec,inpptr,
      $           inplnk,outptr,outlnk,lnkptr,outtb,flag) 
             if (flag .lt. 0) then
@@ -277,7 +278,8 @@ c
          if(outptr(kfun+1)-outptr(kfun).gt.0) then
             nclock=ordclk(ii,2)
             flag=1
-            call callf(kfun,nclock,funptr,funtyp,told,w,x,xptr,z,
+            call callf(kfun,nclock,funptr,funtyp,told,
+     $           x(xptr(nblk+1)),x,x,xptr,z,
      $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
      $           outtb,flag) 
@@ -297,7 +299,8 @@ c     .     Initialize tvec
                call dset(ntvec,told-1.0d0,tvec,1)
 c     
                flag=3
-               call callf(kfun,ordclk(ii,2),funptr,funtyp,told,w,x,
+               call callf(kfun,ordclk(ii,2),funptr,funtyp,told,
+     $              x(xptr(nblk+1)),x,x,
      $              xptr,z,zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $              ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
      $              outtb,flag) 
@@ -374,7 +377,8 @@ c     it sets hot to false at every event!
                if(xptr(kfun+1)-xptr(kfun).gt.0.and.ordclk(ii,2).ne.0)
      $              hot=.false.
                flag=2
-               call callf(kfun,ordclk(ii,2),funptr,funtyp,told,w,x,
+               call callf(kfun,ordclk(ii,2),funptr,funtyp,told,
+     $              x(xptr(nblk+1)),x,x,
      $              xptr,z,zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $              ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
      $              outtb,flag) 
@@ -454,7 +458,8 @@ c
          if(outptr(kfun+1)-outptr(kfun).gt.0) then
             nclock=ordclk(ii,2)
             flag=1
-            call callf(kfun,nclock,funptr,funtyp,told,w,x,xptr,z,
+            call callf(kfun,nclock,funptr,funtyp,told,
+     $           x(xptr(nblk+1)),x,x,xptr,z,
      $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
      $           outtb,flag) 
@@ -474,7 +479,8 @@ c     .     Initialize tvec
                call dset(ntvec,told-1.0d0,tvec,1)
 c     
                flag=3
-               call callf(kfun,ordclk(ii,2),funptr,funtyp,told,w,x,
+               call callf(kfun,ordclk(ii,2),funptr,funtyp,told,
+     $              x(xptr(nblk+1)),x,x,
      $              xptr,z,zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $              ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
      $              outtb,flag) 

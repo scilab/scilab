@@ -76,7 +76,8 @@ c     initialisation (propagation of constant blocks outputs)
          kfun=iord(jj)
          nclock = iord(jj+niord)
          flag=1
-         call callf(kfun,nclock,funptr,funtyp,told,x,x,xptr,z,zptr,iz,
+         call callf(kfun,nclock,funptr,funtyp,told,x(xptr(nblk+1)),
+     $        x,x,xptr,z,zptr,iz,
      $        izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk
      $        ,outptr,outlnk,lnkptr,outtb,flag) 
          if (flag .lt. 0) then
@@ -263,7 +264,7 @@ c     .           kev is a base 2 coding of reached zero crossing surfaces
                         ntvec=clkptr(kfun+1)-clkptr(kfun)
 c     .              call corresponding block to determine output event (kev)
                         call callf(kfun,kev,funptr,funtyp,
-     $                       told,x,x,xptr,z,
+     $                       told,x(xptr(nblk+1)),x,x,xptr,z,
      $                       zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $                       ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
      $                       outtb,flag) 
@@ -339,7 +340,7 @@ c
       logical hot,stuck
       integer i,k,ierr1,iopt,istate,itask,j,jdum,jt,
      &     ksz,flag,keve,kpo,nord,nclock
-      integer info(15),nng
+      integer info(20),nng
       double precision t,tkeep
       double precision tvec(nts)
 c
@@ -397,14 +398,39 @@ c     no info on solution sign available
       info(10)=0
 c     initial t,y,yprime are not assumed to be consistent
       info(11)=1
+c     direc method instead of Dcrylof method
+      info(12)=0
+      info(13)=0
+      info(14)=0
+      info(15)=0
+      info(16)=0
+      info(17)=0
+      info(18)=0
+      do 02 jj=1,neq(1)
+         ihot(40+jj) = 1
+ 02   continue
 
+
+c    .  saving zcross block number in jroot(ng+xx)
+      jj=0
+      do 03 kfun = 1,nblk
+         if (ztyp(kfun).eq.1) then
+            jj=jj+1
+            jroot(ng+jj)=kfun
+         endif
+ 03   continue
+c     . Il fault:  ng >= jj
+      if (jj .ne. ng)  jroot(ng+jj+1)=-1
+c    .  saving zcross block number in jroot(ng+xx)
+     
 c     initialisation (propagation of constant blocks outputs)
       if(niord.eq.0) goto 10
       do 05 jj=1,niord
          kfun=iord(jj)
          nclock = iord(jj+niord)
          flag=1
-         call callf(kfun,nclock,funptr,funtyp,told,x,x,xptr,z,zptr,iz,
+         call callf(kfun,nclock,funptr,funtyp,told,x(xptr(nblk+1)),
+     $        x,x,xptr,z,zptr,iz,
      $        izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk
      $        ,outptr,outlnk,lnkptr,outtb,flag) 
          if (flag .lt. 0) then
@@ -484,26 +510,26 @@ c            rhot(1)=tf+ttol
             rhot(1)=rhotmp
 c     
 c     .     form initial zero crossing input signs
-            ig=1
-            if (ng.gt.0) then
+c            ig=1
+c            if (ng.gt.0) then
 c     .        loop on zero crossing block
-               do 35 kfun=1,nblk
-                  if (ztyp(kfun).eq.1) then
+c               do 35 kfun=1,nblk
+c                  if (ztyp(kfun).eq.1) then
 c     .           loop on block ports
-                     do 34 kport=inpptr(kfun),inpptr(kfun+1)-1
-                        klink=inplnk(kport)
-                        do 33 i=lnkptr(klink),lnkptr(klink+1)-1
-                           if (outtb(i).gt.0.d0) then
-                              jroot(ng+ig) = 1
-                           else
-                              jroot(ng+ig) = 0
-                           endif
-                           ig=ig+1
- 33                     continue
- 34                  continue
-                  endif
- 35            continue
-            endif
+c                     do 34 kport=inpptr(kfun),inpptr(kfun+1)-1
+c                        klink=inplnk(kport)
+c                        do 33 i=lnkptr(klink),lnkptr(klink+1)-1
+c                           if (outtb(i).gt.0.d0) then
+c                              jroot(ng+ig) = 1
+c                           else
+c                              jroot(ng+ig) = 0
+c                           endif
+c                           ig=ig+1
+c 33                     continue
+c 34                  continue
+c                  endif
+c 35            continue
+c            endif
 c   
             iopt = 0
 c
@@ -516,14 +542,14 @@ c
                nng=ng
                info(3)=0
             endif
-
             if(info(1).eq.0) then
                do 36 kfun=1,nblk
                   if(xptr(kfun+1)-xptr(kfun).gt.0) then
                      flag=7
                      nclock=0
                      call callf(kfun,nclock,funptr,funtyp,told,
-     $                    w,x,xptr,z,zptr,iz,izptr,rpar,
+     $                    x(xptr(nblk+1)),x,x(xptr(nblk+1))
+     $                    ,xptr,z,zptr,iz,izptr,rpar,
      $                    rpptr,ipar,ipptr,tvec,ntvec,inpptr,
      $                    inplnk,outptr,outlnk,lnkptr,outtb,flag) 
                      if (flag .lt. 0) then
@@ -534,13 +560,16 @@ c
  36            continue
             endif
 
-c     
 c            write(6,'(''told='',e10.3,'' t='',e10.3,'' neq='',i3)') 
 c     $           told,t,neq(1)
 c     Warning rpar and ipar are used here as dummy pointers
-            call DDASRT (simblkdassl,neq,told,x,x(neq(1)+1),t,info,
-     *           rtol,atol,istate,rhot,nrwp,ihot,niwp,rpar,ipar,
-     *           jdum,grblkdassl,nng,jroot)
+            call DDASKR (simblkdassl, neq, told, x, x(neq(1)+1),
+     *           t, info, rtol , atol, istate, rhot, nrwp, ihot,
+     *           niwp, rpar, ipar,jdum, rpar, grblkdassl, 
+     *           nng,jroot)  
+c            call DDASRT (simblkdassl,neq,told,x,x(neq(1)+1),t,info,
+c     *           rtol,atol,istate,rhot,nrwp,ihot,niwp,rpar,ipar,
+c     *           jdum,grblkdassl,nng,jroot)
 
             if (istate .le. 0) then
 C     !        integration problem (to be revised)
@@ -571,62 +600,74 @@ c                  if(ierr.ne.0) return
 c                  if(.NOT.hot) info(1)=0
                endif
             endif
-            if (istate .eq. 4) then
+            if (istate .eq. 5) then
                info(1)=0
                stuck=.true.
+c     ......... update inputs to zcross blocks .............
+               call grblkdassl(neq,told,x,x(neq(1)+1),ng,w,rpar,ipar)
+c     .  now the sign of jroot is saved in w(i) like the following example
+c               do 39 jj = 1,ng
+c                  if (jroot(jj) .eq. 0 ) jroot(jj)=sign(2.0,w(jj))
+c 39            continue
+c     ....................... mis a jours les portes entres ............     
+ 
 C     .        at a least one root has been found
                ig = 1
-               do 50 kfun = 1,nblk
-                  if (ztyp(kfun).eq.1) then
+               do 50 jj = 1,ng
+                  kfun=jroot(ng+jj)
+                  if (kfun .eq. -1)  goto 51  
+c     .       boucle sur les zcross blocks, ils ont sauves dans jroot(ng+xx)
 c     .              loop on block input ports
-                     ksz=0
-                     do 42 kport=inpptr(kfun),inpptr(kfun+1)-1
+                  ksz=0
+                  do 42 kport=inpptr(kfun),inpptr(kfun+1)-1
 c     .                 get corresponding link pointer 
-                        klink=inplnk(kport)
-                        ksz=ksz+lnkptr(klink+1)-lnkptr(klink)
- 42                  continue
-c     .           kev is a base 2 coding of reached zero crossing surfaces
-                     kev=0
-                     do 44 j = 1,ksz
-                        kev=2*kev+jroot(ig+ksz-j)
- 44                  continue
-                     jjflg=1
-                     if (kev.eq.0) jjflg=0
-                     do 45 j = 1,ksz
-                        kev=2*kev+jroot(ng+ig+ksz-j)
+                     klink=inplnk(kport)
+                     ksz=ksz+lnkptr(klink+1)-lnkptr(klink)
+ 42               continue
+                  ig=ig+ksz
+                  ntvec=clkptr(kfun+1)-clkptr(kfun)
+c     .           ...............................................
+                  kev=0
+                  
+c     .           ++++++++++++++++++++++++++++++++++++++
+                  do 44 j = 1,ksz
+                     kev=2*kev+abs(jroot(ig-j))
+ 44               continue
+                  if (kev .ne. 0) then
+                     do 45 j = 1,ksz 
+                        kev=2*kev
+                        if (jroot(ig-j).eq.-1) kev=kev+1
  45                  continue
-                     ig=ig+ksz
-                     if (jjflg .ne. 0) then
-                        flag=3
-                        ntvec=clkptr(kfun+1)-clkptr(kfun)
+                     flag=3
+                     ntvec=clkptr(kfun+1)-clkptr(kfun)
 c     .              call corresponding block to determine output event (kev)
-                        call callf(kfun,kev,funptr,funtyp,
-     $                       told,x,x,xptr,z,zptr,
-     $                       iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
-     $                       ntvec,inpptr,inplnk,outptr,outlnk,
-     $                       lnkptr,outtb,flag) 
-                        if(flag.lt.0) then
-                           ierr=5-flag
-                           return
-                        endif
-c     .              update event agenda
-                        do 47 k=1,clkptr(kfun+1)-clkptr(kfun)
-                           if (tvec(k).ge.told) then
-                              if (critev(k+clkptr(kfun)-1).eq.1)
-     $                             info(1)=0
-                              call addevs(tevts,evtspt,nevts,
-     $                             pointi,tvec(k),
-     $                             k+clkptr(kfun)-1,ierr1)
-                              if (ierr1 .ne. 0) then
-C     .                       nevts too small
-                                 ierr = 3
-                                 return
-                              endif
-                           endif
- 47                     continue
+                     call callf(kfun,kev,funptr,funtyp,
+     $                    told,x(xptr(nblk+1)),x,x,xptr,z,zptr,
+     $                    iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
+     $                    ntvec,inpptr,inplnk,outptr,outlnk,
+     $                    lnkptr,outtb,flag) 
+                     if(flag.lt.0) then
+                        ierr=5-flag
+                        return
                      endif
+c     .              update event agenda
+                     do 47 k=1,clkptr(kfun+1)-clkptr(kfun)
+                        if (tvec(k).ge.told) then
+                           if (critev(k+clkptr(kfun)-1).eq.1)
+     $                          info(1)=0
+                           call addevs(tevts,evtspt,nevts,
+     $                          pointi,tvec(k),
+     $                          k+clkptr(kfun)-1,ierr1)
+                           if (ierr1 .ne. 0) then
+C     .                       nevts too small
+                              ierr = 3
+                              return
+                           endif
+                        endif
+ 47                  continue
                   endif
  50            continue
+ 51            continue
             endif
 c     !     save initial signs of zero crossing surface
 c     

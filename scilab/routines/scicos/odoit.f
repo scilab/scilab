@@ -64,7 +64,8 @@ c
          if(outptr(kfun+1)-outptr(kfun).gt.0) then
             nclock=ordclk(ii,2)
             flag=1
-            call callf(kfun,nclock,funptr,funtyp,told,x,x,xptr,z,
+            call callf(kfun,nclock,funptr,funtyp,
+     $           told,xd,x,x,xptr,z,
      $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
      $           outtb,flag) 
@@ -103,7 +104,7 @@ C     !                 event conflict
  60   continue
       end
 
-      subroutine odoit(neq,xd,x,xptr,z,zptr,iz,izptr,told
+      subroutine odoit(neq,residual,x,xd,xptr,z,zptr,iz,izptr,told
      $     ,tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr
      $     ,outlnk,lnkptr,clkptr,ordptr,nptr
      $     ,ordclk,nordcl,cord,oord,zord,critev
@@ -119,7 +120,8 @@ c     maximum number of clock output for one block
 C     
       integer neq(*)
 C     neq must contain after #states all integer data for simblk and grblk
-      double precision x(*),z(*),told,tevts(*),rpar(*),outtb(*),xd(*)
+      double precision x(*),z(*),told,tevts(*),rpar(*)
+      double precision outtb(*),xd(*),residual(*)
 C     X must contain after state values all real data for simblk and grblk
       integer xptr(*),zptr(*),iz(*),izptr(*),evtspt(nevts),nevts,pointi
       integer inpptr(*),inplnk(*),outptr(*),outlnk(*),lnkptr(*)
@@ -162,7 +164,7 @@ c
          if(outptr(kfun+1)-outptr(kfun).gt.0) then
             flag=1
             call callf(kfun,nclock,funptr,funtyp,told,
-     $           x,x,xptr,z,zptr,iz,izptr,rpar,
+     $           xd,x,residual,xptr,z,zptr,iz,izptr,rpar,
      $           rpptr,ipar,ipptr,tvec,ntvec,inpptr,
      $           inplnk,outptr,outlnk,lnkptr,outtb,flag) 
             if (flag .lt. 0) then
@@ -216,7 +218,7 @@ c     .  update states derivatives
                flag=0
                nclock=iwa(kfun)
                call callf(kfun,nclock,funptr,funtyp,told,
-     $              xd,x,xptr,z,zptr,iz,izptr,rpar,
+     $              xd,x,residual,xptr,z,zptr,iz,izptr,rpar,
      $              rpptr,ipar,ipptr,tvec,ntvec,inpptr,
      $              inplnk,outptr,outlnk,lnkptr,outtb,flag) 
                if (flag .lt. 0) then

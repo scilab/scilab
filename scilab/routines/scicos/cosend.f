@@ -30,7 +30,8 @@ C     loop on blocks
       ntvec=0
       do 5 kfun=1,nblk
          flag=5
-         call callf(kfun,nclock,funptr,funtyp,told,x,x,xptr,z,zptr,iz,
+         call callf(kfun,nclock,funptr,funtyp,told,x(xptr(nblk+1))
+     $        ,x,x,xptr,z,zptr,iz,
      $        izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk,
      $        outptr,outlnk,lnkptr,outtb,flag) 
          if(flag.lt.0.and.ierr.eq.0) then
