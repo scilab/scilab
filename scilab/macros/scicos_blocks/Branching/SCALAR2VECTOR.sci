@@ -28,6 +28,7 @@ function [x,y,typ]=SCALAR2VECTOR(job,arg1,arg2)
 	[model,graphics,ok]=check_io(model,graphics,[1],nout,[],[])
       end	   
       if ok then
+	graphics.exprs=exprs;// Correction ED le 24/11/04
 	x.graphics=graphics;x.model=model
 	break
       end
