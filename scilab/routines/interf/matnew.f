@@ -125,6 +125,7 @@ c calcul de la forme canonique orthogonale
    22 call ssxmc(n,m,stk(la),n,stk(lb),idc,inc,istk(ilw),stk(lz),
      1  stk(lw+m),stk(lw+m+n*m),stk(lw+2*m+n*m),stk(lw),
      2    eps,1)
+      if(idc.lt.n) goto 91
 c placement de poles
       lw1=lw+m+m*m
       lw2=lw1+m*max(2,m)
