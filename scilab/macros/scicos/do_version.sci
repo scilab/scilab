@@ -82,14 +82,16 @@ function scs_m_new=do_version272(scs_m)
       chmps=size(getfield(1,grphic))
       if or(getfield(1,grphic)=='in_implicit') then 
 	in_implicit=grphic.in_implicit
-      else      
-	in_implicit=[]
+      else    
+	I='E';
+	in_implicit=I(ones(grphic.pin(:)));
       end
       
       if or(getfield(1,grphic)=='out_implicit') then
 	out_implicit=grphic.out_implicit
       else
-	out_implicit=[]
+	I='E';
+	out_implicit=I(ones(grphic.pout(:)));
       end
       
       scs_m_new.objs(i).graphics=mlist(['graphics','orig','sz','flip','exprs','pin',..
