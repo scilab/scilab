@@ -1062,7 +1062,7 @@ function  [ok,XX]=do_compile_superblock(XX)
 	scs_m.objs(i).gui='EVTGEN_f';
 	scs_m.objs(i).model.sim(1)='bidon'
 	clkIN=[clkIN scs_m.objs(i).model.ipar];
-      elseif scs_m.objs(i).model.firing(2)==%t then
+      elseif scs_m.objs(i).model.dep_ut(2)==%t then
 	//check for time dependency PAS IICI
 	ok=%f;%cpr=list()
 	message('a block have time dependence.')
