@@ -96,6 +96,7 @@ distclean::
 SCIBASE = scilab-2.7
 
 PVMBINDISTFILES = \
+	$(SCIBASE)/pvm3/Readme \
 	$(SCIBASE)/pvm3/lib/pvm \
 	$(SCIBASE)/pvm3/lib/pvmd \
 	$(SCIBASE)/pvm3/lib/pvmtmparch \
@@ -193,4 +194,4 @@ cvsclean::
 	@cd man; $(RM) -f -r arma comm control dcd elementary fileio functions graphics gui identification linear metanet nonlinear polynomials programming pvm robust scicos signal sound strings tdcs time-date tksci translation utilities
 
 setversion : 
-	echo "SCIVERSION=scilab-2.7-CVS-`date --iso`" > Version.incl
+	echo "SCIVERSION=scilab-CVS-`date --iso`" > Version.incl
