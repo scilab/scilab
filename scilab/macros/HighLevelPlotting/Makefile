@@ -30,6 +30,7 @@ computeLight.sci         loadDefaultColormap.sci      parseGrid.sci             
 coolcolormap.sci         loadDefaultGraphicState.sci  parseHiddenMode.sci         saveGraphicState.sci \
 coppercolormap.sci       loadGlobalGraphicState.sci   parseHideMode.sci           semilogx.sci \
 loadGraphicState.sci         parseLabel.sci              semilogy.sci \
-diffuse.sci              loglog.sci                   parseLegend.sci             setCurrentViewport.sci
+diffuse.sci              loglog.sci                   parseLegend.sci             setCurrentViewport.sci \
+parseBackFaceLighting.sci
 
 include ../Make.lib
