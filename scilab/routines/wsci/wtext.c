@@ -2056,71 +2056,80 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 				{
 				case IDC_LICENCE:
 					{
-					#define LICENCEFR "Licence.txt"
-					#define LICENSEENG "License.txt"
-					#define	PATHBIN "bin\\"
+						#define LICENCEFR "Licence.txt"
+						#define LICENSEENG "License.txt"
+						#define	PATHBIN "bin\\"
 
-					char Chemin[MAX_PATH];
-					char szModuleName[MAX_PATH];
-					LPSTR tail;
-					HINSTANCE hInstance=NULL;
-					int error=0;
-					extern char ScilexWindowName[MAX_PATH];
-					LPTW lptw;
-					lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+						char Chemin[MAX_PATH];
+						char szModuleName[MAX_PATH];
+						LPSTR tail;
+						HINSTANCE hInstance=NULL;
+						int error=0;
+						extern char ScilexWindowName[MAX_PATH];
+						LPTW lptw;
+						if ( IsWindowInterface() ) lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
-					hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
-					GetModuleFileName (hInstance,szModuleName, MAX_PATH);
+						hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
+						GetModuleFileName (hInstance,szModuleName, MAX_PATH);
 
-					if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
-						{
-						tail++;
-						*tail = '\0';
-						}
-					szModuleName[strlen(szModuleName)-strlen(PATHBIN)]='\0';
-					strcpy(Chemin,szModuleName);
-
-					switch (lptw->lpmw->CodeLanguage)
-						{
-						case 1: /* French */
+						if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
 							{
-							strcat(Chemin,LICENCEFR);
+								tail++;
+								*tail = '\0';
 							}
-						break;
+						szModuleName[strlen(szModuleName)-strlen(PATHBIN)]='\0';
+						strcpy(Chemin,szModuleName);
 
-						default: case 0: /*English */
-							{
-							strcat(Chemin,LICENSEENG);
-							}
-						break;
-						}
-
-					error =(int)ShellExecute(NULL, "open", Chemin, NULL, NULL, SW_SHOWNORMAL);
-					if (error<= 32) 
+						if ( IsWindowInterface() )
 						{
-						switch (lptw->lpmw->CodeLanguage)
+							switch (lptw->lpmw->CodeLanguage)
 							{
-							case 1: /* French */
+								case 1: /* French */
 								{
-								MessageBox(NULL,"Impossible d'ouvrir le fichier Licence.txt","Attention",MB_ICONWARNING);
+									strcat(Chemin,LICENCEFR);
 								}
-							break;
+								break;
 
-							default: case 0: /*English */
+								default: case 0: /*English */
 								{
-								MessageBox(NULL,"Couldn't Open License.txt","Warning",MB_ICONWARNING);
+									strcat(Chemin,LICENSEENG);
 								}
-							break;
+								break;
 							}
 						}
+						else strcat(Chemin,LICENSEENG);
+
+						error =(int)ShellExecute(NULL, "open", Chemin, NULL, NULL, SW_SHOWNORMAL);
+						if (error<= 32) 
+							{
+								if (IsWindowInterface())
+									{
+										switch (lptw->lpmw->CodeLanguage)
+										{
+											case 1: /* French */
+											{
+												MessageBox(NULL,"Impossible d'ouvrir le fichier Licence.txt","Attention",MB_ICONWARNING);
+											}
+											break;
+
+											default: case 0: /*English */
+											{
+												MessageBox(NULL,"Couldn't Open License.txt","Warning",MB_ICONWARNING);
+											}
+											break;
+										}
+									}
+								else MessageBox(NULL,"Couldn't Open License.txt","Warning",MB_ICONWARNING);
+							}
 					}
-				break;
+					break;
+
 				case IDOK:
 					EndDialog (hDlg, LOWORD (wParam));
 					return TRUE;
 
 				}
-			}	
+			}
 		break;
 
 		case WM_DESTROY :
@@ -2147,8 +2156,6 @@ EXPORT void WINAPI AboutBox (HWND hwnd, LPSTR str)
   hdlg = CreateDialog(hdllInstance, "AboutDlgBox", hwnd,AboutDlgProc);
   ShowWindow(	hdlg,SW_SHOW );
 }
-
-/*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 void HelpOn(LPTW lptw)
 /* Affiche l'aide concernant la zone de texte selectionnée */

@@ -60,6 +60,7 @@ extern int	InterfaceWindowsDDEreq _PARAMS((char *fname));
 extern int	InterfaceWindowsDDEIsOpen _PARAMS((char *fname));
 extern int ToolBarWin32(int WinNum,char *onoff);
 extern int GetStateToolBarWin32(int WinNum);
+extern void Callback_ABOUT(void);
 #endif /*WIN32*/
 
 extern void banner(void);
@@ -939,6 +940,24 @@ int C2F(intconsole) _PARAMS((char *fname))
 	LhsVar(1) = 1;
 	C2F(putlhsvar)();	
 	if (Output) {free(Output);Output=NULL;}
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+int C2F(intabout) _PARAMS((char *fname))
+{
+	Rhs=Max(Rhs,0);
+	CheckRhs(0,0) ;
+	CheckLhs(0,1) ;
+
+	#if WIN32
+		Callback_ABOUT();
+	#else
+	   /* A voir sous Unix */
+	#endif
+
+	LhsVar(1) = 0;
+	C2F(putlhsvar)();	
+	
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
