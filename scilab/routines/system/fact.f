@@ -493,14 +493,14 @@ c     all arguments evaluated
       endif
       rhs = excnt
 
- 47   continue
 c     get function or variable to be evaluated for computed arguments
       fin=0
-      if(comp(1).eq.0) then
+c      if(comp(1).eq.0) then
          fin=-2
          call stackg(id)
          if(err.gt.0) return
-      endif
+c      endif
+      if(comp(1).ne.0) goto 47
       if(fin.eq.0) then
 c     .  id is not a standard variable
          if (recurs) then
@@ -533,7 +533,7 @@ c     .  id is not a standard variable
 c     
 c     --- variable is a matrix or list :extraction
 c     
-      rhs=rhs+1
+ 47   rhs=rhs+1
       if ( eptover(1,psiz-1)) return
       rstk(pt)=308
       fin=extrac
