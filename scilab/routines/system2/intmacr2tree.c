@@ -542,6 +542,10 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
     CreateEqualTList("code29",data,index);
     *addinstr=1;
     break;
+  case 30: /* Expression evaluation short circuiting */
+    /* This code is ignored */
+    *index += 2;
+    break;
   case 99: /* return */
     CreateFuncallTList("datacode",data,index);
     *addinstr=1;
