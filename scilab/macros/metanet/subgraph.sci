@@ -67,28 +67,28 @@ else
   g1=make_graph('foo',g('directed'),nnew,ta,he);
 end
 //
-a=g('node_name');g1('node_name')=a(dd);
-a=g('node_type');g1('node_type')=a(dd);
-a=g('node_x');g1('node_x')=a(dd);
-a=g('node_y');g1('node_y')=a(dd);
-a=g('node_color');g1('node_color')=a(dd);
-a=g('node_diam');g1('node_diam')=a(dd);
-a=g('node_border');g1('node_border')=a(dd);
-a=g('node_font_size');g1('node_font_size')=a(dd);
-a=g('node_demand');g1('node_demand')=a(dd);
-a=g('node_label');g1('node_label')=a(dd);
+a=g('node_name');if a<>[] then g1('node_name')=a(dd);end
+a=g('node_type');if a<>[] then g1('node_type')=a(dd);end
+a=g('node_x');if a<>[] then g1('node_x')=a(dd);end
+a=g('node_y');if a<>[] then g1('node_y')=a(dd);end
+a=g('node_color');if a<>[] then g1('node_color')=a(dd);end
+a=g('node_diam');if a<>[] then g1('node_diam')=a(dd);end
+a=g('node_border');if a<>[] then g1('node_border')=a(dd);end
+a=g('node_font_size');if a<>[] then g1('node_font_size')=a(dd);end
+a=g('node_demand');if a<>[] then g1('node_demand')=a(dd);end
+a=g('node_label');if a<>[] then g1('node_label')=a(dd);end
 //
-a=g('edge_name');g1('edge_name')=a(v);
-a=g('edge_color');g1('edge_color')=a(v);
-a=g('edge_width');g1('edge_width')=a(v);
-a=g('edge_hi_width');g1('edge_hi_width')=a(v);
-a=g('edge_font_size');g1('edge_font_size')=a(v);
-a=g('edge_length');g1('edge_length')=a(v);
-a=g('edge_cost');g1('edge_cost')=a(v);
-a=g('edge_min_cap');g1('edge_min_cap')=a(v);
-a=g('edge_max_cap');g1('edge_max_cap')=a(v);
-a=g('edge_q_weight');g1('edge_q_weight')=a(v);
-a=g('edge_q_orig');g1('edge_q_orig')=a(v);
-a=g('edge_weight');g1('edge_weight')=a(v);
-a=g('edge_label');g1('edge_label')=a(v);
+a=g('edge_name');if a<>[] then g1('edge_name')=a(v);end
+a=g('edge_color');if a<>[] then g1('edge_color')=a(v);end
+a=g('edge_width');if a<>[] then g1('edge_width')=a(v);end
+a=g('edge_hi_width');if a<>[] then g1('edge_hi_width')=a(v);end
+a=g('edge_font_size');if a<>[] then g1('edge_font_size')=a(v);end
+a=g('edge_length');if a<>[] then g1('edge_length')=a(v);end
+a=g('edge_cost');if a<>[] then g1('edge_cost')=a(v);end
+a=g('edge_min_cap');if a<>[] then g1('edge_min_cap')=a(v);end
+a=g('edge_max_cap');if a<>[] then g1('edge_max_cap')=a(v);end
+a=g('edge_q_weight');if a<>[] then g1('edge_q_weight')=a(v);end
+a=g('edge_q_orig');if a<>[] then g1('edge_q_orig')=a(v);end
+a=g('edge_weight');if a<>[] then g1('edge_weight')=a(v);end
+a=g('edge_label');if a<>[] then g1('edge_label')=a(v);end
 endfunction

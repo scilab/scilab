@@ -53,8 +53,9 @@ noe=[1:ne];noe(ic)=[];
 g1=make_graph('foo',g('directed'),(n+1-ndel),a1,b1);
 idel=vv(2:$);ivv=vv(1);
 a=g('node_type');a(idel)=[];g1('node_type')=a;
-a=g('node_x');a(ivv)=sum(a(vv))/ndel;a(idel)=[];g1('node_x')=a;
-a=g('node_y');a(ivv)=sum(a(vv))/ndel;a(idel)=[];g1('node_y')=a;
+pause
+a=g('node_x');if a<>[] then a(ivv)=sum(a(vv))/ndel;end;a(idel)=[];g1('node_x')=a;
+a=g('node_y');if a<>[] then a(ivv)=sum(a(vv))/ndel;end;a(idel)=[];g1('node_y')=a;
 a=g('node_color');a(idel)=[];g1('node_color')=a;
 //
 if g('node_diam') <> [] then
@@ -78,18 +79,18 @@ if g('node_label') <> [] then
   a=g('node_label');g1('node_label')=a(noe);
 end;
 //
-a=g('edge_name');g1('edge_name')=a(noe);
-a=g('edge_color');g1('edge_color')=a(noe);
-a=g('edge_width');g1('edge_width')=a(noe);
-a=g('edge_hi_width');g1('edge_hi_width')=a(noe);
-a=g('edge_font_size');g1('edge_font_size')=a(noe);
-a=g('edge_length');g1('edge_length')=a(noe);
-a=g('edge_cost');g1('edge_cost')=a(noe);
-a=g('edge_min_cap');g1('edge_min_cap')=a(noe);
-a=g('edge_max_cap');g1('edge_max_cap')=a(noe);
-a=g('edge_q_weight');g1('edge_q_weight')=a(noe);
-a=g('edge_q_orig');g1('edge_q_orig')=a(noe);
-a=g('edge_weight');g1('edge_weight')=a(noe);
+a=g('edge_name');if a<>[] then g1('edge_name')=a(noe);end
+a=g('edge_color');if a<>[] then g1('edge_color')=a(noe);end
+a=g('edge_width');if a<>[] then g1('edge_width')=a(noe);end
+a=g('edge_hi_width');if a<>[] then g1('edge_hi_width')=a(noe);end
+a=g('edge_font_size');if a<>[] then g1('edge_font_size')=a(noe);end
+a=g('edge_length');if a<>[] then g1('edge_length')=a(noe);end
+a=g('edge_cost');if a<>[] then g1('edge_cost')=a(noe);end
+a=g('edge_min_cap');if a<>[] then g1('edge_min_cap')=a(noe);end
+a=g('edge_max_cap');if a<>[] then g1('edge_max_cap')=a(noe);end
+a=g('edge_q_weight');if a<>[] then g1('edge_q_weight')=a(noe);end
+a=g('edge_q_orig');if a<>[] then g1('edge_q_orig')=a(noe);end
+a=g('edge_weight');if a<>[] then g1('edge_weight')=a(noe);end
 if size(g('edge_label'),2) <> 0,
   a=g('edge_label');g1('edge_label')=a(noe);
 end;

@@ -54,17 +54,17 @@ a=g('node_border');a(v)=[];g1('node_border')=a;
 a=g('node_font_size');a(v)=[];g1('node_font_size')=a;
 a=g('node_demand');a(v)=[];g1('node_demand')=a;
 a=g('node_label');a(v)=[];g1('node_label')=a;
-a=g('edge_name');g1('edge_name')=a(noe);
-a=g('edge_color');g1('edge_color')=a(noe);
-a=g('edge_width');g1('edge_width')=a(noe);
-a=g('edge_hi_width');g1('edge_hi_width')=a(noe);
-a=g('edge_font_size');g1('edge_font_size')=a(noe);
-a=g('edge_length');g1('edge_length')=a(noe);
-a=g('edge_cost');g1('edge_cost')=a(noe);
-a=g('edge_min_cap');g1('edge_min_cap')=a(noe);
-a=g('edge_max_cap');g1('edge_max_cap')=a(noe);
-a=g('edge_q_weight');g1('edge_q_weight')=a(noe);
-a=g('edge_q_orig');g1('edge_q_orig')=a(noe);
-a=g('edge_weight');g1('edge_weight')=a(noe);
-a=g('edge_label');g1('edge_label')=a(noe);
+a=g('edge_name');if a<>[] then g1('edge_name')=a(noe);end
+a=g('edge_color');if a<>[] then g1('edge_color')=a(noe);end
+a=g('edge_width');if a<>[] then g1('edge_width')=a(noe);end
+a=g('edge_hi_width');if a<>[] then g1('edge_hi_width')=a(noe);end
+a=g('edge_font_size');if a<>[] then g1('edge_font_size')=a(noe);end
+a=g('edge_length');if a<>[] then g1('edge_length')=a(noe);end
+a=g('edge_cost');if a<>[] then g1('edge_cost')=a(noe);end
+a=g('edge_min_cap');if a<>[] then g1('edge_min_cap')=a(noe);end
+a=g('edge_max_cap');if a<>[] then g1('edge_max_cap')=a(noe);end
+a=g('edge_q_weight');if a<>[] then g1('edge_q_weight')=a(noe);end
+a=g('edge_q_orig');if a<>[] then g1('edge_q_orig')=a(noe);end
+a=g('edge_weight');if a<>[] then g1('edge_weight')=a(noe);end
+a=g('edge_label');if a<>[] then g1('edge_label')=a(noe);end
 endfunction

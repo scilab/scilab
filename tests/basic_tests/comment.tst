@@ -288,6 +288,7 @@ function [C,L,lc]=getcomments(lst,lc)
       [CC,LL,lc]=getcomments(l,lc)
       C=[C;CC]
       L=[L;LL]
+    elseif l==[] then
     elseif l(1)=='31' then
       C=[C;l(2)]
       L=[L;lc]

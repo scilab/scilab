@@ -10,8 +10,12 @@ ii=find(ta==j);ta(ii)=i*ones(ii);
 ii=find(he==j);he(ii)=i*ones(ii);
 g1('tail')=ta;g1('head')=he;
 xnodes=g('node_x');ynodes=g('node_y');
-x1=xnodes(i);x2=xnodes(j);
-y1=ynodes(i);y2=ynodes(j);
+if xnodes<>[] then
+  x1=xnodes(i);x2=xnodes(j);
+  y1=ynodes(i);y2=ynodes(j);
+else
+  x1=[],x2=[],y1=[],y2=[]
+end
 if (x1<>[]) then 
   xnodes(i)=0.5*(x1+x2);
   g1('node_x')=xnodes;
