@@ -10,7 +10,7 @@ l=0;
 // find the title 
 ind=grep(%helps(:,1),getcwd());
 if ind<>[] then 
-  whatis_title= %helps(ind,2)
+  whatis_title= %helps(ind(1),2)
 else
    whatis_title='Chapitre du Help '
 end
