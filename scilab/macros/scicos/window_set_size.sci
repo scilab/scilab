@@ -1,24 +1,27 @@
-function window_set_size(a)
+function window_set_size()
   [lhs,rhs]=argn(0)
 
   rect=dig_bound(scs_m);
   if rect<>[] then
     w=rect(3)-rect(1);
     h=rect(4)-rect(2);
-    if rhs==0 then j=1.5;a=max(600/(j*w),400/(j*h),j); end
+   j=1.5;
+   ax=max(600/(j*w),j);
+   ay=max(400/(j*h),j);
   else
     w=600;h=400;rect=[0,0,w,h];
-    if rhs==0 then a=1.5; end
+    ax=1.5;ay=ax;
   end
 
 
   xbasc()
 
   xset("wresize",0);
-  width=%zoom*w*a;height=%zoom*h*a
+  width=%zoom*w*ax;height=%zoom*h*ay
   xset('wdim',width,height);
-  b=(1-1/a)/2;
-  xsetech([b,b,1/a,1/a],rect)
+  bx=(1-1/ax)/2;
+  by=(1-1/ay)/2;
+  xsetech([bx,by,1/ax,1/ay],rect)
   
   r=xget('wpdim');
   %XSHIFT=max((width-r(1))/2,0)

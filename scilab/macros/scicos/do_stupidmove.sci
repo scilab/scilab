@@ -2,24 +2,18 @@ function [%pt,scs_m]=do_stupidmove(%pt,scs_m)
 // Copyright INRIA
 // get a scicos object to move, and move it with connected objects
 //!
-  
 //get block to move
   rela=.1
   while %t
     if %pt==[] then
-      [btn,xc,yc,win,Cmenu]=cosclick()
+      [btn,%pt,win,Cmenu]=cosclick()
       if Cmenu<>[] then
-	%pt=[]
-	[Cmenu]=resume(Cmenu)
-      elseif btn>31 then
-	Cmenu=%tableau(min(100,btn-31));%pt=[xc;yc];
-	if Cmenu==emptystr() then Cmenu=[];%pt=[];end
 	[%win,Cmenu]=resume(win,Cmenu)
       end
     else
-      xc=%pt(1);yc=%pt(2);win=%win;%pt=[]
+      win=%win;
     end
-
+    xc=%pt(1);yc=%pt(2);%pt=[]
     [k,wh,scs_m]=stupid_getobj(scs_m,[xc;yc])
     if k<>[] then break,end
   end

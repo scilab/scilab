@@ -1,10 +1,10 @@
 function wdm=do_focus(scs_m)
 // Copyright INRIA
-[btn,xc,yc,win,Cmenu]=cosclick()
+[btn,%pt,win,Cmenu]=cosclick()
 if Cmenu<>[] then
   Cmenu=resume(Cmenu)
 end
-
+xc=%pt(1);yc=%pt(2);
 wpar=scs_m.props;wdm=wpar.wpar
 if size(wdm,'*')<6 then wdm(3)=0;wdm(4)=0;wdm(5)=wdm(1);wdm(6)=wdm(2);end
 Xshift=wdm(3)

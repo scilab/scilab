@@ -7,8 +7,12 @@ case 'plot' then //normal  position
   model=arg1.model;
   if model.rpar==[] then model.rpar=graphics.exprs(1),end //compatibility
   ppat=xget('pattern')
-  xset('pattern',default_color(1))
   oldfont=xget('font');  xset('font',model.ipar(1),model.ipar(2))
+  if MSDOS then
+    xset('pattern',scs_m.props.options.Background(1))
+    xstring(graphics.orig(1),graphics.orig(2),model.rpar)
+  end
+  xset('pattern',default_color(1))
   xstring(graphics.orig(1),graphics.orig(2),model.rpar)
   xset('font',oldfont(1),oldfont(2))
   xset('pattern',ppat)

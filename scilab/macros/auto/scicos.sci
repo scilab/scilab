@@ -47,7 +47,34 @@ if ~super_block then
     end
   end
   //intialize lhb menu
-  %scicos_lhb_txt=scicos_lhb(%scicos_short)
+ 
+ %scicos_lhb_list=list()
+ %scicos_lhb_list(1)=list('Open/Set',..
+		 'Smart Move'  ,..
+		 'Move'  ,..
+		 'Copy',..
+		 'Delete',..
+		 'Link',..
+		 'Align',..
+		 'Replace',..
+		 'Flip',..
+		 list('Properties',..
+		      'Resize',..
+		      'Icon',..
+		      'Icon Editor',..
+		      'Color',..
+		      'Label',..
+		      'Get Info',..
+		      'Identification',..
+		      'Documentation'),..
+		 'Code Generation',..
+		 'Help')
+  %scicos_lhb_list(2)=list('Undo','Palettes','Context','Add new block',..
+	      'Copy Region','Delete Region','Region to Super Block',..
+	      'Replot','Save','Save As',..
+	      'Load','Export','Quit','Background color','Aspect',..
+	      'Zoom in',  'Zoom out','Help')
+ %scicos_lhb_list(3)=list('Copy','Help')
   //
   if exists('scicoslib')==0 then load('SCI/macros/scicos/lib'),end
   if exists('blockslib')==0 then load('SCI/macros/scicos_blocks/lib'),end
@@ -82,6 +109,7 @@ if ~super_block then // global variables
   end
 
   execstr('load(''.scicos_short'')','errcatch')  //keyboard shortcuts
+
 end
 //
 if rhs>=1 then
@@ -156,6 +184,25 @@ if ~super_block then
   noldwin=0
   windows=[1 curwin]
   pixmap=%scicos_display_mode
+  //
+  if ~exists('%scicos_gui_mode') then 
+    if with_tk() then %scicos_gui_mode=1,else %scicos_gui_mode=0,end
+  end
+  //%scicos_gui_mode=0
+  if %scicos_gui_mode==1 then
+    getfile=tk_getfile;
+    savefile=tk_savefile;
+    if MSDOS then mpopup=tk_mpopup, else mpopup=tk_mpopupX,end
+    if MSDOS then choose=tk_choose; else
+      deff('x=choose(varargin)','x=x_choose(varargin(1:$))');
+    end
+    getcolor=tk_getcolor;
+  else
+    deff('x=getfile(varargin)','x=xgetfile(varargin(1:$))');
+    savefile=getfile;
+    deff('Cmenu=mpopup(x)','Cmenu=[]')
+    deff('x=choose(varargin)','x=x_choose(varargin(1:$))');
+  end
 //
 else
   noldwin=size(windows,1)
@@ -224,7 +271,7 @@ end
 drawobjs(scs_m)
 
 if pixmap then xset('wshow'),end
-%pt=[];%win=0;
+%pt=[];%win=curwin;
 Cmenu='Open/Set'
 while %t
   while %t do
@@ -234,13 +281,8 @@ while %t
       disp('stacksize increased to '+string(2*%stack(1)))
     end
     if Cmenu==[]&%pt==[] then
-      [btn,%xc,%yc,%win_1,Cmenu]=cosclick()
+      [btn,%pt,%win,Cmenu]=cosclick()
       if Cmenu<> [] then 
-	%pt=[];
-	break
-      elseif btn>31 then
-	%pt=[%xc;%yc];%win=%win_1;Cmenu=%tableau(min(100,btn-31));
-	if Cmenu==emptystr() then Cmenu=[];%pt=[];end
 	break
       end
     else
@@ -268,13 +310,3 @@ function [x,k]=gunique(x)
     k(keq)=[]
 endfunction
 
-function txt=scicos_lhb(choix)
-ts=[];tt=[];
-for i=1:size(choix,1)
-  t=choix(i,2)
-  btn=choix(i,1)
-tt=tt+'proc scicos_'+string(i)+' {} {ScilabEval '"btn='+string(ascii(btn))+''"};'
-ts=ts+'.scicoslhb.edit add command -label '"'+t+''" -underline 0 -command '" scicos_'+string(i)+''";'
-end
-txt='if { [winfo exists .scicoslhb ] } { } else {toplevel .scicoslhb;wm state .scicoslhb withdrawn;menu .scicoslhb.edit -tearoff 0;.scicoslhb configure -menu .scicoslhb.edit;'+ts+tt+'proc showpopup2 {} {set numx [winfo pointerx .];set numy [winfo pointery .];set z {expr {$numy+1}};set numz [eval $z];tk_popup .scicoslhb.edit $numx $numz;.scicoslhb.edit activate 0}};showpopup2'
-endfunction

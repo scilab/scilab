@@ -3,22 +3,15 @@ xinfo('Click to open block or make a link')
 %kk=[]
 while %t 
   if %pt==[] then
-    [btn,%xc,%yc,%win_1,Cmenu]=cosclick()
+    [btn,%pt,%win,Cmenu]=cosclick()
     if Cmenu<>[] then
-      %pt=[];break
-    elseif btn>31 then
-      Cmenu=%tableau(min(100,btn-31));%pt=[%xc;%yc];%win=%win_1
-      if Cmenu==emptystr() then 
-	Cmenu=[];%pt=[];
-      end 
       break
     end
-  else
-    %xc=%pt(1);%yc=%pt(2);%win_1=%win;%pt=[]
   end
+  %xc=%pt(1);%yc=%pt(2);%pt=[]
   
   disablemenus()
-  if windows(find(%win_1==windows(:,2)),1)==100000 then
+  if windows(find(%win==windows(:,2)),1)==100000 then
 
     //click in navigator
     [%Path,%kk,ok]=whereintree(%Tree,%xc,%yc)

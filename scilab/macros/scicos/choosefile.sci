@@ -25,7 +25,7 @@ end
 lst=lstfiles(path)
 if lst==[]&errmess then message('No such file exists'),end
 if prod(size(lst))>0 then
-  n=x_choose(lst,comm,'Cancel')
+  n=choose(lst,comm,'Cancel')
   if n<>0 then
     fname=lst(n)
   else

@@ -7,18 +7,14 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
   //------------------------------------------------------------------
   while %t
     if %pt==[] then
-      [btn,xc1,yc1,win,Cmenu]=cosclick()
+      [btn,%pt,win,Cmenu]=cosclick()
       if Cmenu<>[] then
-	%pt=[]
-	[Cmenu]=resume(Cmenu)
-      elseif btn>31 then
-	Cmenu=%tableau(min(100,btn-31));%pt=[xc1;yc1];
-	if Cmenu==emptystr() then Cmenu=[];%pt=[];end
 	[%win,Cmenu]=resume(win,Cmenu)
       end
     else
-      xc1=%pt(1);yc1=%pt(2);win=%win;%pt=[]
+      win=%win;
     end
+    xc1=%pt(1);yc1=%pt(2);%pt=[]
     [kfrom,wh]=getblocklink(scs_m,[xc1;yc1])
 
     if kfrom<>[] then o1=scs_m.objs(kfrom);break,end

@@ -18,7 +18,8 @@ function [scs_m,fct]=do_addnew(scs_m)
   end
   if to_get then // try to get it
     path=name+'.sci'
-    path=xgetfile(path)
+    path=getfile("*.sci",path,title="File containing function: "+name)
+
     if length(path)<=0 then return,end
     [u,err]=file('open',path,'old','formatted')
     if err<>0 then
@@ -76,7 +77,7 @@ function [scs_m,fct]=do_addnew(scs_m)
   // draw block shape
   dr=driver()
   if dr=='Rec' then driver('X11'),end
-
+%xc=%pt(1);%yc=%pt(2);
   xrect(%xc,%yc+sz(2),sz(1),sz(2))
   if pixmap then xset('wshow'),end
   while rep(3)==-1 , //move loop

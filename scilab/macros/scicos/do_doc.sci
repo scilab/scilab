@@ -1,10 +1,11 @@
 function scs_m = do_doc(scs_m)
 // Copyright INRIA
   while %t
-    [btn,xc,yc,win,Cmenu]=cosclick()
+    [btn,%pt,win,Cmenu]=cosclick()
     if Cmenu<>[] then
       Cmenu=resume(Cmenu)
     end
+    xc=%pt(1);yc=%pt(2);
     k=getobj(scs_m,[xc;yc])
     if k<>[] then break,end
   end

@@ -6,18 +6,14 @@ function [%pt,scs_m,needcompile]=do_delete(%pt,scs_m,needcompile)
 while %t
   
   if %pt==[] then
-    [btn,xc,yc,win,Cmenu]=cosclick()
+    [btn,%pt,win,Cmenu]=cosclick()
     if Cmenu<>[] then
-      %pt=[]
-      [Cmenu]=resume(Cmenu)
-    elseif btn>31 then
-      Cmenu=%tableau(min(100,btn-31));%pt=[xc;yc];
-      if Cmenu==emptystr() then Cmenu=[];%pt=[];end
       [%win,Cmenu]=resume(win,Cmenu)
     end
   else
-    xc=%pt(1);yc=%pt(2);win=%win;%pt=[]
+    win=%win;
   end
+  xc=%pt(1);yc=%pt(2);%pt=[]
   K=getobj(scs_m,[xc;yc])
   if K<>[] then break,end
 end

@@ -1,7 +1,8 @@
 function [palettes,windows]=do_palettes(palettes,windows)
 // Copyright INRIA
 
-  kpal=x_choose(scicos_pal(:,1),'Choose a Palette')
+  kpal=choose(scicos_pal(:,1),'Choose a Palette')
+
   if kpal==0 then return,end
 
   lastwin=curwin

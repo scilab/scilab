@@ -1,45 +1,43 @@
 function  CodeGeneration_()
-Cmenu='Open/Set'
-xinfo('Click on a Superblock (without activation output)'+..
-    ' to obtain a coded block ! ')
-k=[]
-while %t 
-  [btn,xc,yc,win,Cmenu]=cosclick()
-  
-  if Cmenu<>[] then
-    %pt=[];break
-  elseif btn>31 then
-    Cmenu=%tableau(min(100,btn-31));%pt=[xc;yc];%win=win
-    if Cmenu==emptystr() then 
-      Cmenu=[];%pt=[];
-    end 
+  Cmenu='Open/Set'
+  xinfo('Click on a Superblock (without activation output)'+..
+	' to obtain a coded block ! ')
+  k=[]
+  while %t 
+    if %pt==[] then
+      [btn,%pt,win,Cmenu]=cosclick()
+      
+      if Cmenu<>[] then
+	[%win,Cmenu]=resume(win,Cmenu)
+      end
+    else 
+      win=%win
+    end
+    
+    xc=%pt(1);yc=%pt(2);%pt=[]
+    k=getobj(scs_m,[xc;yc])
+    if k<>[] then break,end
+  end
+  if scs_m.objs(k).model.sim(1)=='super' then
+    disablemenus()
+    all_scs_m=scs_m;
+    XX=scs_m.objs(k);
+    [ok,XX]=do_compile_superblock(XX,all_scs_m,k)
+    enablemenus()
+    if ok then 
+      scs_m.objs(k)=XX
+      edited=%t;
+      needcompile=4
+      Cmenu='Replot';
+      break
+    else
+      Cmenu='Open/Set' 
+      break
+    end     
+  else
+    message('Generation Code only work for a Superblock ! ')
     break
   end
-  k=getobj(scs_m,[xc;yc])
-  if k<>[] then
-    if scs_m.objs(k).model.sim(1)=='super' then
-      disablemenus()
-      all_scs_m=scs_m;
-      XX=scs_m.objs(k);
-      [ok,XX]=do_compile_superblock(XX,all_scs_m,k)
-      enablemenus()
-      if ok then 
-	scs_m.objs(k)=XX
-	edited=%t;
-	needcompile=4
-	Cmenu='Replot';
-	break
-      else
-	Cmenu='Open/Set' 
-	break
-      end     
-    else
-      message('Generation Code only work for a Superblock ! ')
-	break
-      end
-    end
-  end    
-  
 endfunction
 
 function [ok,Makename]=buildnewblock() 

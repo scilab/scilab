@@ -1,10 +1,19 @@
-function scs_m=do_region2block(scs_m)
+function [%pt,scs_m]=do_region2block(%pt,scs_m)
 // Copyright INRIA
-  [btn,xc,yc,win,Cmenu]=cosclick()
-  if Cmenu<>[] then
-    Cmenu=resume(Cmenu)
+  while %t
+    if %pt==[] then
+      [btn,%pt,win,Cmenu]=cosclick()
+      if Cmenu<>[] then
+	[%win,Cmenu]=resume(win,Cmenu)
+      end
+    else
+      win=%win;
+      break
+    end
   end
+  xc=%pt(1);yc=%pt(2);
   scs_m_save=scs_m,nc_save=needcompile
+
   [scs_mb,rect,prt]=get_region2(xc,yc,win)
   if rect==[] then return,end
   if lstsize(scs_mb.objs)==0 then return, end

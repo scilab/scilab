@@ -6,10 +6,10 @@ function do_export(scs_m,fname)
   winc=xget('window');
   if rhs==1 then
 
-    num=x_choose(['Postscript file';..
+    num=choose(['Postscript file';..
 		  'Graphics window'],'How do you want to export?')
     if num==0 then return;end
-    if num<>2 then  fname= xgetfile('*');end
+    if num<>2 then  fname= savefile('*');end
   end
   // remove blanks and apostrophe
   if num<>2 then

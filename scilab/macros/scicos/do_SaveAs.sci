@@ -1,9 +1,9 @@
 function [scs_m,edited]=do_SaveAs()
 //
 // Copyright INRIA
-  tit=['For saving in binary file use .cos extension,';
-       'for saving in ascii file use .cosf extension']
-  fname=xgetfile('*.cos*',emptystr(),tit)
+  tit=['Use .cos extension for binary and .cosf for ascii file'];
+  fname=savefile('*.cos*',emptystr(),tit)
+
   if fname==emptystr() then return,end
 
   [path,name,ext]=splitfilepath(fname)

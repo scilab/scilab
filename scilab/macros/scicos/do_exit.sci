@@ -3,7 +3,7 @@ function do_exit()
 r=0
 if edited then
   if ~super_block then
-    r=x_choose(['Save';'Save As'],..
+    r=choose(['Save';'Save As'],..
 	['Diagram has not been saved';
 	'What to do before leaving?'],'Don''t save')
   end

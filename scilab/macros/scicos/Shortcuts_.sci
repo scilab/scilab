@@ -5,7 +5,7 @@ disp(%scicos_short)
 lines(%rr(2));
 xpause(1000)
 xinfo('Select an item in a menu to set shortcut')
-[btn,xc,yc,cwin,Cmenu]=cosclick()
+[btn,%pt,cwin,Cmenu]=cosclick()
 if Cmenu<>'Quit' then
   %okay=%f
   if Cmenu<>[] then

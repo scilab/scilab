@@ -2,7 +2,7 @@ function SaveasInterfFunc_()
     Cmenu=[]
     ok=%f
     while ~ok then
-      fname=xgetfile('*.sci')
+      fname=savefile('*.sci')
       if fname<>emptystr() then 
 	[dir,name,ext]=splitfilepath(fname)
 	select ext

@@ -1,10 +1,15 @@
-function scs_m=do_resize(scs_m)
+function [%pt,scs_m]=do_resize(%pt,scs_m)
 // Copyright INRIA
 while %t
-  [btn,xc,yc,win,Cmenu]=cosclick()
-  if Cmenu<>[] then
-    Cmenu=resume(Cmenu)
+  if %pt==[] then
+    [btn,%pt,win,Cmenu]=cosclick()
+    if Cmenu<>[] then
+      [%win,Cmenu]=resume(win,Cmenu)
+    end
+  else
+    win=%win;
   end
+  xc=%pt(1);yc=%pt(2);%pt=[];
   K=getblocklink(scs_m,[xc;yc])
   if K<>[] then 
     if typeof(scs_m.objs(K))=='Block' then

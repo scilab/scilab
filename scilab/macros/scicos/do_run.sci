@@ -49,7 +49,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
   
   // ask user what to do
   if choix<>[] then
-    to_do=x_choose(choix,'What do you want to do')
+    to_do=choose(choix,'What do you want to do')
     if to_do==0 then ok=%f,return,end
     select choix(to_do)
       case 'Continue' then 
