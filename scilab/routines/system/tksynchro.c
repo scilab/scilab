@@ -22,8 +22,12 @@ void C2F(tksynchro)(l)
     int RET;
 
     sprintf(str,"scipad eval {set sciprompt %d}",*l);
-	  RET=Tcl_Eval(TCLinterp,str);
-    
+	RET=Tcl_Eval(TCLinterp,str);
+
+	if (RET==TCL_ERROR)
+	{
+		Scierror(999,"Error : tksynchro %s \r\n",fname,TCLinterp->result);
+	}
 
   }
 #endif
