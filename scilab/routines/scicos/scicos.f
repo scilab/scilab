@@ -16,7 +16,7 @@ c iz,izptr are used to pass block labels
       integer ipptr(*),clkptr(*),ordptr(nordptr1),ordclk(*)
       integer cord(ncord1,2),ncord1,iord(niord,2),niord,oord(noord1,2)
       integer noord1,zord(nzord1,2),nzord1,critev(*)
-      integer subscr(*),nsubs,iw(*),iwa(*),flag,ierr,ztyp(nblk1)
+      integer subscr(*),nsubs,iw(*),iwa(*),flag,ierr,ztyp(nblk1),ierr0
 c
       integer louttb
 c

@@ -12,10 +12,10 @@ c
       integer flag,nclock,ntvec
       double precision tvec(1)
 c
-      integer nblk,nxblk,ncblk,ndblk,nout,ng,nrwp,
-     &     niwp,ncord,noord,nzord
-      common /cossiz/ nblk,nxblk,ncblk,ndblk,nout,ng,nrwp,
-     &     niwp,ncord,noord,nzord
+      integer         nblk,nordptr,nout,ng,nrwp,niwp,ncord,
+     &     noord,nzord
+      common /cossiz/ nblk,nordptr,nout,ng,nrwp,niwp,ncord,
+     &     noord,nzord
 C     
       integer kfun
       common /curblk/ kfun
