@@ -230,12 +230,15 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
                         ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure()),&(x[jj*(*n2)]),
                         &(y[jj*(*n2)]),PD0,closeflag,*n2,1,ptype)); 
       if (style[jj] > 0) { 
-        sciSetIsMark(sciGetCurrentObj(), FALSE);   
+        sciSetIsMark(sciGetCurrentObj(), FALSE);
+        sciSetIsLine(sciGetCurrentObj(),  TRUE);
         sciSetForeground (sciGetCurrentObj(), style[jj]);
       }
       else {
-	sciSetIsMark(sciGetCurrentObj(),  (style[jj] <= 0 ? TRUE : FALSE));
-	sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
+ 	sciSetIsMark(sciGetCurrentObj(),  TRUE);
+	sciSetIsLine(sciGetCurrentObj(), FALSE);
+ 	sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
+	
       } 
       if (with_leg) pptabofpointobj[jj] = sciGetCurrentObj();
       sciDrawObjIfRequired(sciGetCurrentObj ());
