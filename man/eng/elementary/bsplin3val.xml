@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>bsplin3val</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 2004</DATE>
+  <SHORT_DESCRIPTION name="bsplin3val">3d spline arbitrary derivative evaluation function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[dfp]=bsplin3val(xp,yp,zp,tl,der)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>xp, yp, zp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vectors or matrices of same size</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: tlist of type &quot;splin3d&quot;, defining a 3d tensor spline (called <VERB>s</VERB> 
+                in the following)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>der</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector with 3 components  <VERB>[ox,oy,oz]</VERB> defining which derivative of <VERB>s</VERB> 
+                to compute.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dfp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector or matrix of same format than <VERB>xp</VERB>, <VERB>yp</VERB> and <VERB>zp</VERB>, 
+                elementwise evaluation of the specified derivative of <VERB>s</VERB> on these points.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    While the function <LINK>interp3d</LINK> may compute only the spline  <VERB>s</VERB> and
+    its first derivatives, <VERB>bsplin3val</VERB> may compute any derivative of  <VERB>s</VERB>.
+    The derivative to compute is specified by the argument  <VERB>der=[ox,oy,oz]</VERB> :
+    </P>
+        <VERBATIM><![CDATA[
+               ox   oy   oz
+              d    d    d
+   dfp(i) =  ---  ---  ---   s (xp(i),yp(i),zp(i))
+               ox   oy   oz
+             dx   dy   dz
+         ]]></VERBATIM>
+    <P>
+    So <VERB>der=[0 0 0]</VERB> corresponds to <EM>s</EM>, <VERB>der=[1 0 0]</VERB>
+    to <EM>ds/dx</EM>,  <VERB>der=[0 1 0]</VERB> to  <EM>ds/dy</EM>,  
+    <VERB>der=[1 1 0]</VERB> to  <EM>d2s/dxdy</EM>, etc...
+    </P>
+    <P>
+    For a point with coordinates <EM>(xp(i),yp(i),zp(i))</EM> outside the grid, the
+    function returns 0.
+    </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+deff("v=f(x,y,z)","v=cos(x).*sin(y).*cos(z)");
+deff("v=fx(x,y,z)","v=-sin(x).*sin(y).*cos(z)");
+deff("v=fxy(x,y,z)","v=-sin(x).*cos(y).*cos(z)");
+deff("v=fxyz(x,y,z)","v=sin(x).*cos(y).*sin(z)");
+deff("v=fxxyz(x,y,z)","v=cos(x).*cos(y).*sin(z)");
+n = 20;  // n x n x n  interpolation points
+x = linspace(0,2*%pi,n); y=x; z=x; // interpolation grid
+[X,Y,Z] = ndgrid(x,y,z); V = f(X,Y,Z);
+tl = splin3d(x,y,z,V,[5 5 5]);
+
+// compute f and some derivates on a point
+// and compare with the spline interpolant 
+xp = grand(1,1,"unf",0,2*%pi); 
+yp = grand(1,1,"unf",0,2*%pi); 
+zp = grand(1,1,"unf",0,2*%pi); 
+
+f_e = f(xp,yp,zp)
+f_i = bsplin3val(xp,yp,zp,tl,[0 0 0])
+
+fx_e = fx(xp,yp,zp)
+fx_i = bsplin3val(xp,yp,zp,tl,[1 0 0])
+
+fxy_e = fxy(xp,yp,zp)
+fxy_i = bsplin3val(xp,yp,zp,tl,[1 1 0])
+
+fxyz_e = fxyz(xp,yp,zp)
+fxyz_i = bsplin3val(xp,yp,zp,tl,[1 1 1])
+
+fxxyz_e = fxxyz(xp,yp,zp)
+fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
+
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>splin3d</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>interp3d</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+     <AUTHORS_ITEM> R.F. Boisvert, C. De Boor (code from the CMLIB fortran lib)</AUTHORS_ITEM>
+     <AUTHORS_ITEM> B. Pincon (scilab interface)</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>

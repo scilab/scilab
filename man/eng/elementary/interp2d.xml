@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>interp2d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 2004</DATE>
+  <SHORT_DESCRIPTION name="interp2d">bicubic spline (2d) evaluation function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[zp[,dzpdx,dzpdy[,d2zpdxx,d2zpdxy,d2zpdyy]]]=interp2d(xp,yp,x,y,C [,out_mode])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>xp, yp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vectors or matrices of same size</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x,y,C</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vectors defining a bicubic spline or sub-spline function 
+                (called <VERB>s</VERB> in the following)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>out_mode</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optionnal) string defining the evaluation of <VERB>s</VERB> outside 
+                [x(1),x(nx)]x[y(1),y(ny)]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>zp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector or matrix of same format than <VERB>xp</VERB> and <VERB>yp</VERB>, elementwise 
+                evaluation of <VERB>s</VERB> on these points.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dzpdx, dzpdy</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vectors (or matrices) of same format than <VERB>xp</VERB> and <VERB>yp</VERB>, elementwise
+                evaluation of the first derivatives of <VERB>s</VERB> on these points.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>d2zpdxx, d2zpdxy, d2zpdyy</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vectors (or matrices) of same format than <VERB>xp</VERB> and <VERB>yp</VERB>, elementwise
+                evaluation of the second derivatives of <VERB>s</VERB> on these points.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given three vectors <VERB>(x,y,C)</VERB> defining a bicubic spline or sub-spline function
+    (see <LINK>splin2d</LINK>) this function evaluates <EM>s</EM> (and <EM>ds/dx, ds/dy, d2s/dxx, d2s/dxy,
+    d2s/dyy</EM> if needed) at <EM>(xp(i),yp(i))</EM> :
+    </P>
+        <VERBATIM><![CDATA[
+      zp(i) = s(xp(i),yp(i))   
+      dzpdx(i) = ds/dx(xp(i),yp(i))
+      dzpdy(i) = ds/dy(xp(i),yp(i))  
+      d2zpdxx(i) = d2s/dx2(xp(i),yp(i))
+      d2zpdxy(i) = d2s/dxdy(xp(i),yp(i))  
+      d2zpdyy(i) = d2s/dy2(xp(i),yp(i))
+         ]]></VERBATIM>
+    <P>
+    The <VERB>out_mode</VERB> parameter defines the evaluation rule for extrapolation,
+    i.e. for <EM>(xp(i),yp(i)) not in [x(1),x(nx)]x[y(1),y(ny)]</EM>: 
+    </P>
+    <ITEMIZE label="out_mode">
+      <ITEM label="&quot;by_zero&quot;">
+         <SP>: an extrapolation by zero is done</SP>
+      </ITEM>
+      <ITEM label="&quot;by_nan&quot;">
+         <SP>: extrapolation by Nan</SP>
+      </ITEM>
+      <ITEM label="&quot;C0&quot;">
+         <SP>: the extrapolation is defined as follows :</SP>
+        <VERBATIM><![CDATA[
+     s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point 
+                           of [x(1),x(nx)]x[y(1),y(ny)] from (x,y)
+         ]]></VERBATIM>
+      </ITEM>
+      <ITEM label="&quot;natural&quot;">
+         <SP>: the extrapolation is done by using the nearest bicubic-patch from (x,y).</SP>
+      </ITEM>
+      <ITEM label="&quot;periodic&quot;">
+         <SP>: <VERB>s</VERB> is extended by periodicity.</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+// see the examples of splin2d
+
+// this example shows some different extrapolation features
+// interpolation of cos(x)cos(y)
+n = 7;  // a n x n interpolation grid
+x = linspace(0,2*%pi,n); y = x;
+z = cos(x')*cos(y);
+C = splin2d(x, y, z, "periodic");
+
+// now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+m = 80; // discretisation parameter of the evaluation grid
+xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+[XX,YY] = ndgrid(xx,yy);
+zz1 = interp2d(XX,YY, x, y, C, "C0");
+zz2 = interp2d(XX,YY, x, y, C, "by_zero");
+zz3 = interp2d(XX,YY, x, y, C, "periodic");
+zz4 = interp2d(XX,YY, x, y, C, "natural");
+xbasc()
+subplot(2,2,1)
+  plot3d(xx, yy, zz1, flag=[2 6 4])
+  xtitle("extrapolation with the C0 outmode")
+subplot(2,2,2)
+  plot3d(xx, yy, zz2, flag=[2 6 4])
+  xtitle("extrapolation with the by_zero outmode")
+subplot(2,2,3)
+  plot3d(xx, yy, zz3, flag=[2 6 4])
+  xtitle("extrapolation with the periodic outmode")
+subplot(2,2,4)
+  plot3d(xx, yy, zz4, flag=[2 6 4])
+  xtitle("extrapolation with the natural outmode")
+xselect()
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>splin2d</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>
+    B. Pincon
+  </AUTHOR>
+</MAN>
