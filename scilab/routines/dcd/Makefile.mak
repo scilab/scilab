@@ -21,9 +21,8 @@ OBJSF = algdiv.obj alngam.obj alnrel.obj apser.obj \
 	gam1.obj gaminv.obj gamln.obj gamln1.obj gamma.obj grat1.obj gratio.obj gsumln.obj \
 	ipmpar.obj psi.obj \
 	rcomp.obj rexp.obj rlog.obj rlog1.obj \
-	spmpar.obj \
-	stvaln.obj dlngam.obj
-
+	spmpar.obj stvaln.obj 
+#dlngam.obj
 
 include ../../Makefile.incl.mak
 
