@@ -104,11 +104,9 @@ WinMain (HINSTANCE hSelf, HINSTANCE hPrev, LPSTR cmdline, int nShow)
   *p = 0;
 
   SciEnv ();
-#ifdef __ABSC__
+
   new_cmdline = malloc (MAX_PATH + strlen (cmdline) + 1);
-#else
-  new_cmdline = alloca (MAX_PATH + strlen (cmdline) + 1);
-#endif
+
   strcpy (new_cmdline, modname + 1);
   strcat (new_cmdline, "\\scilex.exe ");
 

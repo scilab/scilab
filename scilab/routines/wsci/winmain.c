@@ -278,7 +278,9 @@ int MyWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   return 0;
 }
 
-
+#define MAXCMDTOKENS 128
+static int my_argc = 0;
+static LPSTR my_argv[MAXCMDTOKENS];
 
 #ifndef __ABSC__
 int WINAPI 
@@ -290,32 +292,35 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	 LPSTR szCmdLine, int iCmdShow)
 #endif
 {
+#ifdef TEST 
+  char test[50];
+  int i;
+#endif
   LPSTR tail;
   int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
   char *path = NULL;
   OSVERSIONINFO os;
-#if ((defined __GNUC__) && !(defined __MINGW32)) || (defined __ABSC__)	/* arguments are in szCmdline */
-#define MAXCMDTOKENS 128
-  int _argc = -1;
-  LPSTR _argv[MAXCMDTOKENS];
-  _argv[++_argc] = strtok (szCmdLine, " ");
-//  fprintf(stderr,"argv[%d] = %s\n",_argc,_argv[_argc]);
-  while (_argv[_argc] != NULL)
+  my_argc = -1;
+  my_argv[++my_argc] = strtok (szCmdLine, " ");
+  while (my_argv[my_argc] != NULL)
     {
-      _argv[++_argc] = strtok (NULL, " ");
-      //   fprintf(stderr,"argv[%d] = %s\n",_argc,_argv[_argc]);
+      my_argv[++my_argc] = strtok (NULL, " ");
     }
-#else
-/** VC++  doesn't give us _argc and _argv[] so ...   */
-#define MAXCMDTOKENS 128
-  int _argc = 0;
-  LPSTR _argv[MAXCMDTOKENS];
-  _argv[_argc] = "scilex.exe";
-  _argv[++_argc] = strtok (szCmdLine, " ");
-  while (_argv[_argc] != NULL)
-    _argv[++_argc] = strtok (NULL, " ");
-#endif
-/** __GNUC__ **/
+
+#ifdef TEST 
+  if ( szCmdLine )
+    MessageBox (NULL, szCmdLine, "pipo", MB_ICONSTOP | MB_OK);
+  else
+    MessageBox (NULL, "vide", "pipo", MB_ICONSTOP | MB_OK);
+
+  sprintf(test,"%d",my_argc);
+  MessageBox (NULL, test, "pipo", MB_ICONSTOP | MB_OK);
+
+  for (i=0; i < my_argc ; i++) {
+      sprintf(test,"%s",my_argv[i]);
+      MessageBox (NULL, test, "pipo", MB_ICONSTOP | MB_OK);
+  }
+#endif 
 
   os.dwOSVersionInfoSize = sizeof (os);
   GetVersionEx (&os);
@@ -390,32 +395,32 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   graphwin.lptw = &textwin;
   graphwin.IniFile = textwin.IniFile;
   graphwin.IniSection = textwin.IniSection;
-  argcount = _argc;
+  argcount = my_argc;
   while (argcount > 0)
     {
       argcount--;
-      if (strcmp (_argv[argcount], "-nw") == 0)
+      if (strcmp (my_argv[argcount], "-nw") == 0)
 	nowin = 1;
-      else if (strcmp (_argv[argcount], "-ns") == 0)
+      else if (strcmp (my_argv[argcount], "-ns") == 0)
 	startupf = 1;
-      else if (strcmp (_argv[argcount], "-nwni") == 0)
+      else if (strcmp (my_argv[argcount], "-nwni") == 0)
 	{
 	  nowin = 1;
 	  nointeractive = 1;
 	}
-      else if (strcmp (_argv[argcount], "-f") == 0 && argcount + 1 < _argc)
+      else if (strcmp (my_argv[argcount], "-f") == 0 && argcount + 1 < my_argc)
 	{
-	  path = _argv[argcount + 1];
-	  lpath = strlen (_argv[argcount + 1]);
+	  path = my_argv[argcount + 1];
+	  lpath = strlen (my_argv[argcount + 1]);
 	}
-      else if (strcmp (_argv[argcount], "-e") == 0 && argcount + 1 < _argc)
+      else if (strcmp (my_argv[argcount], "-e") == 0 && argcount + 1 < my_argc)
 	{
-	  path = _argv[argcount + 1];
-	  lpath = strlen (_argv[argcount + 1]);
+	  path = my_argv[argcount + 1];
+	  lpath = strlen (my_argv[argcount + 1]);
 	  pathtype=1;
 	}
-      else if ( strcmp(_argv[argcount],"-mem") == 0 && argcount + 1 < _argc)
-	{ memory = Max(atoi( _argv[argcount + 1]),MIN_STACKSIZE );} 
+      else if ( strcmp(my_argv[argcount],"-mem") == 0 && argcount + 1 < my_argc)
+	{ memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );} 
     }
 #ifndef __DLL__
   /** when we don't use a dll version of the graphic library 
@@ -467,6 +472,37 @@ MAIN__ ()
   return (0);
 }
 #endif
+
+/* Fortran iargc and fgetarg implemented here */
+
+int sci_iargc() {
+#ifdef TEST  
+ char test[50];
+ sprintf(test,"%d",my_argc);
+  MessageBox (NULL, test, "pipo", MB_ICONSTOP | MB_OK);
+#endif 
+  return my_argc -1 ;
+}
+
+int sci_getarg(int *n,char *s,long int ls)
+{
+  register char *t;
+  register int i;
+#ifdef TEST 
+  char test[50];
+  sprintf(test,"%d %d",my_argc,ls);
+  MessageBox (NULL, test, "pipo", MB_ICONSTOP | MB_OK);
+#endif 
+  if(*n>=0 && *n <= my_argc)
+    t = my_argv[*n];
+  else
+    t = "";
+  for(i = 0; i < ls && *t!='\0' ; ++i)
+    *s++ = *t++;
+  for( ; i<ls ; ++i)
+    *s++ = ' ';
+  return 0;
+}
 
 
 /* replacement stdio routines that use Text Window for stdin/stdout */
