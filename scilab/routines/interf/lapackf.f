@@ -2619,7 +2619,7 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )
             else
 c     .        ill conditioned problem
                write(buf(1:13),'(1pd13.4)') RCOND
-               call msgs(5,0)
+               call msgs(5,1)
             endif
          endif
       endif
@@ -2766,7 +2766,7 @@ c
          endif
          write(buf(1:13),'(1pd13.4)') RCOND
 c     .  ill conditionned problem
-         call msgs(5,0)
+         call msgs(5,1)
       endif
 c     
 c     M.ne.N or A singular
@@ -2914,7 +2914,7 @@ c
             endif
          endif
          write(buf(1:13),'(1pd13.4)') RCOND
-         call msgs(5,0)
+         call msgs(5,1)
       endif
 c     
 c     M.ne.N or A singular
@@ -3035,7 +3035,7 @@ c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
             endif
          endif
          write(buf(1:13),'(1pd13.4)') RCOND
-         call msgs(5,0)
+         call msgs(5,1)
       endif
 c     
 c     M.ne.N or A singular

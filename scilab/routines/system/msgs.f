@@ -62,8 +62,10 @@ c---------------------- message de matlu et matnew---------------------
       call basout(io,wte,
      $     ' matrix is close to singular or badly scaled. rcond = '//
      $     buf(1:13))
-      call basout(io,wte,
-     +              'computing least squares solution. (see lsq)')
+      if(ierr.gt.0) then
+         call basout(io,wte,
+     +        'computing least squares solution. (see lsq)')
+      endif
       goto 9999
  106  continue
       call basout(io,wte,'  Warning.')
