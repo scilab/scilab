@@ -6,8 +6,7 @@ include ../../Version.incl
 
 LIBRARY = $(SCIDIR)/libs/console.a
 
-
-OBJSC =   dynamic_menus.o history.o  Screen.o zzledt.o
+OBJSC =   dynamic_menus.o history.o   zzledt.o
 
 OBJSF = 
 

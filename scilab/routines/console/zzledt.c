@@ -1030,19 +1030,19 @@ static void enable_keypad_mode(){}
 static void disable_keypad_mode(){}
 #endif
 
-/*----------------------------------------------------------------------
- * clear the screen 
- *----------------------------------------------------------------------*/
+
 
 void HomeFunction(void)
 {
-  sciprint("Not yet implemented. \r\n");
+  sciprint("\nNot yet implemented. \n");
 }
 
-void ClearScreenConsole _PARAMS((char *fname))
+void ClearScreenConsole(char *fname)
 {
-  sciprint("Not yet implemented. \r\n");
+  sciprint("\nNot yet implemented. \n");
 }
+
+
 
 #endif /* The win32 version is defined in the wsci directory **/
 #endif /* the gtk readline version is in gtk */ 
