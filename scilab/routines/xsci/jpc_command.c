@@ -210,7 +210,7 @@ static void CreateButtons (parent)
   iargs=0;
   XtSetArg(args[iargs], XtNmenuName, "MenuC"); iargs++;
   menubut1= XtCreateManagedWidget("ButMenuC",menuButtonWidgetClass,parent,args,iargs);
-  AddInfoHandler(menubut1,"Abort/Stop/Resume/Restart");
+  AddInfoHandler(menubut1,"Abort/Stop/Resume");
   menu1 = XtCreatePopupShell("MenuC", simpleMenuWidgetClass,menubut1,(Arg *) 0,(Cardinal)0);
   menuentry = AddInMenu(menu1, "Resume", DoIt, "resume\n");
   /* AddInfoHandler(menuentry,"Continue Scilab execution after pause or stop"); */
