@@ -22,7 +22,7 @@ case 'set' then
 	list('vec',1),exprs)
     if ~ok then break,end
     graphics.exprs=exprs
-    model.rpar=Amplitude
+    model.dstate=Amplitude
     x.graphics=graphics;x.model=model
     break
   end
@@ -32,7 +32,7 @@ case 'define' then
   model.sim='gensqr'
   model.out=1
   model.evtin=1
-  model.rpar=Amplitude
+  model.dstate=Amplitude
   model.blocktype='d'
   model.dep_ut=[%f %f]
   

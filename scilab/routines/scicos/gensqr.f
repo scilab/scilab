@@ -19,9 +19,7 @@ c
          write(6,'(''gensqr     t='',e10.3,'' flag='',i1)') t,flag
       endif
 c
-      if(flag.eq.3) then
-         tvec(1)=t+max(rpar(1),ttol/2)
-      elseif(flag.eq.2) then
+      if(flag.eq.2) then
          z(1)=-z(1)
       elseif(flag.eq.1.or.flag.eq.6) then
          y(1)=z(1)
