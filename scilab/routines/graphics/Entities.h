@@ -1536,7 +1536,7 @@ extern BOOL Ishidden(sciPointObj *pobj);
 extern BOOL IsDownAxes(sciPointObj *pobj);
 extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1);
 extern void update_3dbounds(sciPointObj *pobj);
-
+double Fill_XYdec01_TLO_and_ISO_case(int Xdec3, double val);
 extern void  sci_update_frame_bounds(int cflag);
 extern double graphic_search(double *id, double *tab1, double *tab2, integer *n);
 extern void update_graduation(sciPointObj *pobj);
