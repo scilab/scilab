@@ -55,7 +55,7 @@ int C2F (deletewin) (integer * number)
      that could have been possibly previously deleted !! */
   
   /* So, we use another flag named v_flag :*/
-  delete_sgwin_entities(win_num,v_flag);
+  delete_sgwin_entities(*number,v_flag);
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/
