@@ -32,7 +32,7 @@ OBJSF =  bezous.obj cerr.obj coef.obj dclmat.obj dexpm1.obj \
 	qhesz.obj qitz.obj quad.obj quadit.obj quadsd.obj qvalz.obj qvecz.obj \
 	realit.obj scaleg.obj reduc2.obj \
 	rpoly.obj split.obj tql2.obj tred2.obj wbalin.obj wbdiag.obj wexchn.obj \
-	wshrsl.obj fstair.obj
+	wshrsl.obj fstair.obj riccpack.obj
 
 include ../../Makefile.incl.mak
 
