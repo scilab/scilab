@@ -1,0 +1,199 @@
+SHELL			:@SHELL@
+------------------------------------------------------------
+Path Variables
+------------------------------------------------------------
+prefix			:@prefix@
+exec_prefix		:@exec_prefix@
+program_transform_name	:@program_transform_name@
+bindir			:@bindir@
+sbindir			:@sbindir@
+libexecdir		:@libexecdir@
+datadir			:@datadir@
+sysconfdir		:@sysconfdir@
+sharedstatedir		:@sharedstatedir@
+localstatedir		:@localstatedir@
+libdir			:@libdir@
+includedir		:@includedir@
+oldincludedir		:@oldincludedir@
+infodir			:@infodir@
+mandir			:@mandir@
+PATH_SEPARATOR		:@PATH_SEPARATOR@
+------------------------------------------------------------
+Package Variables
+------------------------------------------------------------
+PACKAGE_NAME		:@PACKAGE_NAME@
+PACKAGE_TARNAME		:@PACKAGE_TARNAME@
+PACKAGE_VERSION		:@PACKAGE_VERSION@
+PACKAGE_STRING		:@PACKAGE_STRING@
+PACKAGE_BUGREPORT	:@PACKAGE_BUGREPORT@
+Package			:@PACKAGE@
+SCIVERSION		:@SCIVERSION@
+BLPR_SCRIPTS		:@BLPR_SCRIPTS@
+EXAMPLES_TESTS		:@EXAMPLES_TESTS@
+IMPPREF			:@IMPPREF@
+IMPENV			:@IMPENV@
+FILES_TO_CLEAN		:@FILES_TO_CLEAN@
+SCILAB_GS		:@SCILAB_GS@
+SCILABSCRIPT		:@SCILABSCRIPT@
+
+MAIN			:@MAIN@
+PERIFILE		:@PERIFILE@
+------------------------------------------------------------
+Host variable
+------------------------------------------------------------
+build_alias		:@build_alias@
+host_alias		:@host_alias@
+target_alias		:@target_alias@
+build			:@build@
+build_cpu		:@build_cpu@
+build_vendor		:@build_vendor@
+build_os		:@build_os@
+host			:@host@
+host_cpu		:@host_cpu@
+host_vendor		:@host_vendor@
+host_os			:@host_os@
+HPPA_OLD		:@HPPA_OLD@
+------------------------------------------------------------
+C Compiler Variables
+------------------------------------------------------------
+WITH_GCC		:@WITH_GCC@
+CC			:@CC@
+CFLAGS			:@CFLAGS@
+CC_OPTIONS		:@CC_OPTIONS@
+CC_PICFLAGS		:@CC_PICFLAGS@
+
+CPP			:@CPP@
+CPPFLAGS		:@CPPFLAGS@
+ac_ct_CC		:@ac_ct_CC@
+DEFS			:@DEFS@
+------------------------------------------------------------
+Fortran Compiler Variables
+------------------------------------------------------------
+WITH_G77		:@WITH_G77@
+F77			:@F77@
+F2C			:@F2C@
+FC			:@FC@
+F2C_SUBDIR		:@F2C_SUBDIR@
+FFLAGS			:@FFLAGS@
+ac_ct_F77		:@ac_ct_F77@
+
+
+FC_OPTIONS		:@FC_OPTIONS@
+FC_OPTIONS1		:@FC_OPTIONS1@
+FC_OPTIONS2		:@FC_OPTIONS2@
+FC_PICFLAGS		:@FC_PICFLAGS@
+FC_USE_CDEC		:@FC_USE_CDEC@
+FC_SUBDIR		:@FC_SUBDIR@
+------------------------------------------------------------
+Linker Variables
+------------------------------------------------------------
+LD			:@LD@
+LD_LDFLAGS		:@LD_LDFLAGS@
+LDFLAGS			:@LDFLAGS@
+
+CC_LDFLAGS		:@CC_LDFLAGS@
+FLIBS			:@FLIBS@
+FC_LDFLAGS		:@FC_LDFLAGS@
+
+X_CFLAGS		:@X_CFLAGS@
+X_PRE_LIBS		:@X_PRE_LIBS@
+X_LIBS			:@X_LIBS@
+X_EXTRA_LIBS		:@X_EXTRA_LIBS@
+
+EXEEXT			:@EXEEXT@
+OBJEXT			:@OBJEXT@
+
+LIBS			:@LIBS@
+------------------------------------------------------------
+Unix functions
+------------------------------------------------------------
+LN_S			:@LN_S@
+ECHO			:@ECHO@
+ECHO_C			:@ECHO_C@
+ECHO_N			:@ECHO_N@
+ECHO_T			:@ECHO_T@
+RANLIB			:@RANLIB@
+ac_ct_RANLIB		:@ac_ct_RANLIB@
+STRIP			:@STRIP@
+ac_ct_STRIP		:@ac_ct_STRIP@
+RM			:@RM@
+AR			:@AR@
+AR_FLAGS		:@AR_FLAGS@
+NM			:@NM@
+OBJDUMP			:@OBJDUMP@
+------------------------------------------------------------
+Xwindow Variables
+------------------------------------------------------------
+
+XAWLIB			:@XAWLIB@
+XAW			:@XAW@
+XMULIB			:@XMULIB@
+XAW_LOCAL_SUBDIR	:@XAW_LOCAL_SUBDIR@
+XAW_LOCAL_INCLUDES	:@XAW_LOCAL_INCLUDES@
+XAW_LOCAL_LIB		:@XAW_LOCAL_LIB@
+------------------------------------------------------------
+GTK/GNOME Variables
+------------------------------------------------------------
+GTK_CONFIG		:@GTK_CONFIG@
+GTKCFLAGS		:@GTKCFLAGS@
+GTKLIBS			:@GTKLIBS@
+
+GNOME_CONFIG		:@GNOME_CONFIG@
+GNOMECFLAGS		:@GNOMECFLAGS@
+GZVT			:@GZVT@
+------------------------------------------------------------
+pvm Variables
+------------------------------------------------------------
+PVMARCH			:@PVMARCH@
+PVMLIB			:@PVMLIB@
+PVMSCIDIR		:@PVMSCIDIR@
+PVMSCILIB		:@PVMSCILIB@
+PVMGLIB			:@PVMGLIB@
+PVMTARGET		:@PVMTARGET@
+PVMROOT			:@PVMROOT@
+PVMROOTR		:@PVMROOTR@
+PVMINST			:@PVMINST@
+PVMINCLUDE		:@PVMINCLUDE@
+PVMHOSTERFILES		:@PVMHOSTERFILES@
+PVMHOSTER		:@PVMHOSTER@
+------------------------------------------------------------
+tcl/tk Variables
+------------------------------------------------------------
+TK_INC_PATH		:@TK_INC_PATH@
+TCL_INC_PATH		:@TCL_INC_PATH@
+TCLTK_LIBS		:@TCLTK_LIBS@
+TKSCILIB		:@TKSCILIB@
+TKSCIDIR		:@TKSCIDIR@
+------------------------------------------------------------
+Blas Variables
+------------------------------------------------------------
+NOINLINE		:@NOINLINE@
+WHICH_BLAS		:@WHICH_BLAS@
+ATLAS_DIR		:@ATLAS_DIR@
+IN_ATLAS		:@IN_ATLAS@
+------------------------------------------------------------
+Libtools Variables
+------------------------------------------------------------
+LIBTOOL			:@LIBTOOL@
+DLDLIB			:@DLDLIB@
+DLD_SUBDIR		:@DLD_SUBDIR@
+DLLTOOL			:@DLLTOOL@
+LIBM			:@LIBM@
+LIBTOOL_DEPS		:@LIBTOOL_DEPS@
+------------------------------------------------------------
+Misc Variables
+------------------------------------------------------------
+TERMCAPLIB		:@TERMCAPLIB@
+MAKEFILE_TARGET		:@MAKEFILE_TARGET@
+GUILIB			:@GUILIB@
+
+XDRLIB			:@XDRLIB@
+XDRLIBNAME		:@XDRLIBNAME@
+FGETARG			:@FGETARG@
+GETARG			:@GETARG@
+WINXFLAGS		:@WINXFLAGS@
+MENUSOBJS		:@MENUSOBJS@
+MALLOC			:@MALLOC@
+STATIC			:@STATIC@
+SED_CYGDRIVE		:@SED_CYGDRIVE@
+ZZLEDT			:@ZZLEDT@
