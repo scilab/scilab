@@ -3731,7 +3731,7 @@ int GradLog(double _min, double _max, double *_grads, int * n_grads)
 	  *n_grads =2;
 	}
       else
-	for(i=0;i<=(int )(size/pas);i=i++)
+	for(i=0;i<=(int )(size/pas);i++)
 	  {
 	    _grads[i] = log_min+(i*pas);
 	    
