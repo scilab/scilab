@@ -5292,9 +5292,14 @@ sciSetSelectedSubWin (sciPointObj * psubwinobj)
   /* puis on selectionne la sous fenetre passee en argument */
   pSUBWIN_FEATURE (psubwinobj)->isselected = TRUE;
 
-  set_scale ("tttfff", pSUBWIN_FEATURE (psubwinobj)->WRect,
+  /*set_scale ("tttfff", pSUBWIN_FEATURE (psubwinobj)->WRect,
 	     pSUBWIN_FEATURE (psubwinobj)->FRect, NULL,
-	     pSUBWIN_FEATURE(psubwinobj)->logflags, NULL); 
+	     pSUBWIN_FEATURE(psubwinobj)->logflags, NULL); */
+  set_scale ("tttftf", pSUBWIN_FEATURE (psubwinobj)->WRect,
+	     pSUBWIN_FEATURE (psubwinobj)->FRect, NULL,
+	     pSUBWIN_FEATURE(psubwinobj)->logflags, NULL);
+  
+
   return 1;
 }
 
@@ -7903,6 +7908,9 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       pSUBWIN_FEATURE (pobj)->axes.rect  = pSUBWIN_FEATURE (paxesmdl)->axes.rect;
       for (i=0 ; i<6 ; i++)
 	pSUBWIN_FEATURE (pobj)->axes.limits[i]  = pSUBWIN_FEATURE (paxesmdl)->axes.limits[i] ;
+      
+      pSUBWIN_FEATURE (pobj)->update_axes_flag = pSUBWIN_FEATURE (paxesmdl)->update_axes_flag;
+      
       for (i=0 ; i<3 ; i++)
 	pSUBWIN_FEATURE (pobj)->grid[i]  = pSUBWIN_FEATURE (paxesmdl)->grid[i] ;
       pSUBWIN_FEATURE (pobj)->isaxes  = pSUBWIN_FEATURE (paxesmdl)->isaxes;
@@ -8158,6 +8166,10 @@ int C2F(graphicsmodels) ()
   pSUBWIN_FEATURE (paxesmdl)->axes.rect  = 1;
   for (i=0 ; i<6 ; i++)
     pSUBWIN_FEATURE (paxesmdl)->axes.limits[i]  = 0;
+  
+  /* F.Leray 01.04.04*/
+  pSUBWIN_FEATURE (paxesmdl)->update_axes_flag = 0; /* Not yet determinated the xmin/max */
+                                                    /* and ymin/max (and zmin/max)*/
   /**DJ.Abdemouche 2003**/
   for (i=0 ; i<3 ; i++)
     pSUBWIN_FEATURE (paxesmdl)->grid[i]  = -1;
@@ -11058,7 +11070,7 @@ sciDrawObj (sciPointObj * pobj)
   integer nn1,nn2, arsize,lstyle,iflag;
   double arsize1=5.0,arsize2=5.0,dv;
   integer angle1, angle2;
-  integer x1, yy1, w1, h1, wstr,hstr,hh1;
+  integer x1, yy1, w1, h1, wstr,hstr/*,hh1*/;
   integer x[6], v;
   integer xold[5], vold = 0, flagx = 0;
   sciSons *psonstmp;
@@ -11135,10 +11147,25 @@ sciDrawObj (sciPointObj * pobj)
      
       if (!sciGetVisibility(pobj)) break;
       sciSetSelectedSubWin(pobj); 
-      set_scale ("tttfff", pSUBWIN_FEATURE (pobj)->WRect, 
-		 pSUBWIN_FEATURE (pobj)->FRect,
-		 NULL, pSUBWIN_FEATURE (pobj)->logflags, NULL);      
+      /*-------------------------------------------
+       * changes selected items in the current scale 
+       * flag gives which component must be used for 
+       *      upgrading or setting the current scale 
+       * flag[0]   : used for window dim upgrade 
+       * flag[1:5] : subwin,frame_values,aaint,logflag,axis_values
+       * Result: Cscale is changed 
+       * Warning : frame_values[i] must be log10(val[i]) 
+       *           when using log scales 
+       *-------------------------------------------
+       * Prototype:
+       void set_scale(flag,subwin,frame_values,aaint,logflag,axis_values)*/
 
+      /* set_scale ("tttfff", pSUBWIN_FEATURE (pobj)->WRect, 
+		 pSUBWIN_FEATURE (pobj)->FRect,
+		 NULL, pSUBWIN_FEATURE (pobj)->logflags, NULL);      */
+      set_scale ("tttftf", pSUBWIN_FEATURE (pobj)->WRect, 
+		 pSUBWIN_FEATURE (pobj)->FRect,
+		 NULL, pSUBWIN_FEATURE (pobj)->logflags, NULL);  
       
       /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (pobj)->is3d)
@@ -12020,7 +12047,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #ifdef WIN32 
       flag_DO = MaybeSetWinhdc ();
 #endif
-      sciClip(sciGetIsClipping(pobj)); /* F.Leray 26.03.04: pb comes from clipping*/
+      sciClip(sciGetIsClipping(pobj));
 
 	  C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L); /* Correction bug F.Leray 29.03.04*/
  /*     C2F (displaystring) (sciGetText (pobj), &x1, &yy1, PI0, &flagx, PI0,
@@ -12029,7 +12056,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
       if ( flag_DO == 1) ReleaseWinHdc (); /* F.Leray 26.03.04: pb comes from clipping?? 
-										   NO!!! It comes from using of displaystring function instead of (dr)("xstring")*/
+										   NO!!! It comes from using displaystring function instead of (dr)("xstring")*/
 #endif
       break;
       /*   case SCI_AXIS 
@@ -13623,7 +13650,9 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
 	  && (y <= ytmp2)
 	  )
 	{
-	  set_scale ("tttfff", pSUBWIN_FEATURE (pthis)->WRect, 
+	  /*set_scale ("tttfff", pSUBWIN_FEATURE (pthis)->WRect, 
+	    pSUBWIN_FEATURE (pthis)->FRect, NULL, "nn", NULL);*/
+	  set_scale ("tttftf", pSUBWIN_FEATURE (pthis)->WRect, 
 		     pSUBWIN_FEATURE (pthis)->FRect, NULL, "nn", NULL);
 	  return TRUE;
 	}
@@ -13632,7 +13661,9 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
       break;
     case SCI_ARC:
       /* on recupere la dimension de la sous fenetre parente */
-      set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
+      /*set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
+	pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);*/
+      set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
 		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
       DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
       DELTAY = fabs(0.01 * sciGetHeight (sciGetParent(pthis)));/* dimension in pixel */
@@ -13655,7 +13686,9 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
       break;
     case SCI_AGREG:
       /* on recupere la dimension de la sous fenetre parente */
-      set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
+      /*set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
+	pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);*/
+      set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
 		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
       DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
       DELTAY = fabs(0.01 * sciGetHeight (sciGetParent(pthis)));/* dimension in pixel */
@@ -13678,7 +13711,9 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
       break;
     case SCI_RECTANGLE:
       /* on recupere la dimension de la sous fenetre parente */
-      set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
+      /*set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
+	pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);*/
+      set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
 		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
       DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
       DELTAY = fabs(0.01 * sciGetHeight (sciGetParent(pthis)));/* dimension in pixel */
@@ -13700,7 +13735,9 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
       return FALSE;
       break;
     case SCI_POLYLINE:
-      set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
+      /*set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
+	pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);*/
+      set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
 		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
       DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
       DELTAY = fabs(0.01 * sciGetHeight (sciGetParent(pthis)));/* dimension in pixel */
@@ -13722,7 +13759,9 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
       return FALSE;
       break;
     case SCI_PATCH:
-      set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
+      /*set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
+	pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);*/
+      set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
 		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
       DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
       DELTAY = fabs(0.01 * sciGetHeight (sciGetParent(pthis)));/* dimension in pixel */
@@ -16940,6 +16979,9 @@ int InitAxesModel()
   pSUBWIN_FEATURE (paxesmdl)->axes.rect  = 1;
   for (i=0 ; i<6 ; i++)
     pSUBWIN_FEATURE (paxesmdl)->axes.limits[i]  = 0;
+
+  pSUBWIN_FEATURE (paxesmdl)->update_axes_flag = 0;
+
   for (i=0 ; i<3 ; i++)
     pSUBWIN_FEATURE (paxesmdl)->grid[i]  = -1;
   pSUBWIN_FEATURE (paxesmdl)->isaxes  = FALSE;
