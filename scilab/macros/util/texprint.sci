@@ -35,22 +35,10 @@ case 10 then //strings
   tt=tt+strcat(a(m,:),'&')
   if  m*n<>1 then tt='\pmatrix{'+tt+'}',end
 case 8 then //int
-  [m,n]=size(a)
+  [m,n]=size(a);a=string(a)
   for l=1:m-1,tt=tt+strcat(a(l,:),'&')+'\cr ';end
   tt=tt+strcat(a(m,:),'&')
   if  m*n<>1 then tt='\pmatrix{'+tt+'}',end
-case 5 then //sparse
-  [ij,v,mn]=spget(a)
-  ij=strsubst(string([mn,ij]),'.','')
-  v=['Sparse matrix';string(v)]
-  tt=strcat('('+ij(:,1)+'&'+ij(:,2)+'&) '+v,'\cr ')
-
-case 6 then //boolean sparse
-  [ij,v,mn]=spget(a)
-  x='F'+emptystr(size(v,'*'),1);x(v)='T';v=x;
-  ij=strsubst(string([mn;ij]),'.','')
-  v=['Sparse matrix';string(v)]
-  tt=strcat('('+ij(:,1)+'&'+ij(:,2)+'&) '+v,'\cr ')
 case 16 then 
   a1=getfield(1,a)
   select a1(1)
