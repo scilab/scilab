@@ -79,25 +79,7 @@ typedef struct
 static gchar *doc_not_found_format_string =
 "<html><head><title>Document not found</title></head><center><p>%s<h3>Couldn't find document</h3><tt>%s</tt></center></body></html>";
 
-static gchar *dir_not_found_format_string =
-"<html><head><title>Directory not found</title></head>\
-<body bgcolor=\"#ffffff\">\
-<center>\
-<p>\
-%s\
-<h3>Couldn't change to directory</h3>\
-<tt>%s</tt>\
-<h3>while trying to access</h3>\
-<tt>%s</tt>\
-</center>\
-<p>\
-<small>This either means that the help for this topic has not been written \
-yet or that something is wrong with your installation. \
-Please check carefully before you report this as a bug.</small>\
-</body>\
-</html>";
-
-static gchar *eek_png_tag = "<h1>Eeek!</h1>";
+static gchar *eek_png_tag = "<h1>Oooooops!</h1>";
 
 static void write_scilab_example(char *);
 
@@ -132,8 +114,6 @@ static HelpPage pages[] =
     "introduction.html"
   }
 };
-
-static gchar     *sci_help_root = NULL;
 
 static HelpPage  *current_page = &pages[HELP];
 static GList     *history = NULL;
@@ -696,10 +676,14 @@ open_browser_dialog (gchar *help_path,
   gint     success;
   guint    i;
 
+  if ( window != NULL) 
+    {
+      return 0;
+    }
+
   /*
    * check for index 
    */
-
   index= g_strconcat (help_path, G_DIR_SEPARATOR_S,
 		      locale,G_DIR_SEPARATOR_S,
 		      "index.html",NULL);
@@ -707,12 +691,6 @@ open_browser_dialog (gchar *help_path,
     return 1; 
   
   g_free (index);
-
-  if ( window != NULL) 
-    {
-      sciprint("exits already");
-      return 0;
-    }
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_signal_connect (GTK_OBJECT (window), "delete_event",
@@ -722,7 +700,7 @@ open_browser_dialog (gchar *help_path,
 		      GTK_SIGNAL_FUNC (close_callback),
 		      NULL);
   gtk_window_set_wmclass (GTK_WINDOW (window), "helpbrowser", "Scilab");
-  gtk_window_set_title (GTK_WINDOW (window), ("GIMP Help Browser"));
+  gtk_window_set_title (GTK_WINDOW (window), ("Scilab Help Browser"));
 
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (window), vbox);
@@ -927,7 +905,10 @@ open_browser_dialog (gchar *help_path,
 
 int Sci_Help(char *mandir,char *locale,char *help_file) 
 {
-  return open_browser_dialog (mandir,locale,help_file);
+  if ( window == NULL) 
+    open_browser_dialog (mandir,locale,help_file);
+  else if ( help_file != NULL)
+    load_page (current_page, &pages[HELP], help_file, 0, TRUE, TRUE);
 }
 
 
