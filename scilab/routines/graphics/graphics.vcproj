@@ -623,13 +623,7 @@ cd.. &gt;nul
 				RelativePath="periPos.h">
 			</File>
 			<File
-				RelativePath="periWin-bcg.h">
-			</File>
-			<File
 				RelativePath="periWin.h">
-			</File>
-			<File
-				RelativePath="periX11-bcg.h">
 			</File>
 			<File
 				RelativePath="periX11.h">
