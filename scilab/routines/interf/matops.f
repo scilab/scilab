@@ -2133,7 +2133,15 @@ c            arg2(:) or arg2([])
             istk(il1+3)=0
             lstk(top+1)=sadr(il1+4)
          else
-            call error(21)
+c     should be an error but a lot of code uses this feature
+c     we will change it just after 3.1 release  see also matext2
+c            call error(21)
+            il1=iadr(lstk(top))
+            istk(il1)=1
+            istk(il1+1)=0
+            istk(il1+2)=0
+            istk(il1+3)=0
+            lstk(top+1)=sadr(il1+4)
          endif
          return
 
@@ -2267,7 +2275,17 @@ c     .  arg3=[]
             istk(il1+3)=0
             lstk(top+1)=sadr(il1+4)
          else
-            call error(21)
+c     should be an error but a lot of code uses this feature
+c     we will change it just after 3.1 release see also matext1
+
+c           call error(21)
+            il1=iadr(lstk(top))
+            istk(il1)=1
+            istk(il1+1)=0
+            istk(il1+2)=0
+            istk(il1+3)=0
+            lstk(top+1)=sadr(il1+4)
+
          endif
          return
       elseif(m3.lt.0) then
