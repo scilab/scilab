@@ -17,16 +17,16 @@ REGEDIT4
 @="SCE Scilab File"
 
 [HKEY_CLASSES_ROOT\SCE_scilab_file\DefaultIcon]
-@="\"D:\\Scilab\\bin\\scilex.exe\",9"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\",9"
 
 [HKEY_CLASSES_ROOT\SCE_scilab_file\shell\open\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -O"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -O \"%1\""
 
 [HKEY_CLASSES_ROOT\SCE_scilab_file\shell\Execute\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -X"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -X \"%1\""
 
 [HKEY_CLASSES_ROOT\SCE_scilab_file\shell\print\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -P"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -P \"%1\""
 
 ;--------------------------------------------------------------------------------
 ;SCI File
@@ -38,16 +38,16 @@ REGEDIT4
 @="SCI Scilab File"
 
 [HKEY_CLASSES_ROOT\SCI_scilab_file\DefaultIcon]
-@="\"D:\\Scilab\\bin\\scilex.exe\",10"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\",10"
 
 [HKEY_CLASSES_ROOT\SCI_scilab_file\shell\open\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -O"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -O \"%1\""
 
 [HKEY_CLASSES_ROOT\SCI_scilab_file\shell\Execute\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -X"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -X \"%1\""
 
 [HKEY_CLASSES_ROOT\SCI_scilab_file\shell\print\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -P"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -P \"%1\""
 
 ;--------------------------------------------------------------------------------
 ;TST File
@@ -59,16 +59,16 @@ REGEDIT4
 @="TST Scilab File"
 
 [HKEY_CLASSES_ROOT\TST_scilab_file\DefaultIcon]
-@="\"D:\\Scilab\\bin\\scilex.exe\",11"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\",11"
 
 [HKEY_CLASSES_ROOT\TST_scilab_file\shell\open\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -O"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -O \"%1\""
 
 [HKEY_CLASSES_ROOT\TST_scilab_file\shell\Execution\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -X"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -X \"%1\""
 
 [HKEY_CLASSES_ROOT\TST_scilab_file\shell\print\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -P"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -P \"%1\""
 
 ;--------------------------------------------------------------------------------
 ;DEM File
@@ -80,16 +80,16 @@ REGEDIT4
 @="DEM Scilab File"
 
 [HKEY_CLASSES_ROOT\DEM_scilab_file\DefaultIcon]
-@="\"D:\\Scilab\\bin\\scilex.exe\",6"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\",6"
 
 [HKEY_CLASSES_ROOT\DEM_scilab_file\shell\open\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -O"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -O \"%1\""
 
 [HKEY_CLASSES_ROOT\DEM_scilab_file\shell\Execution\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -X"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -X \"%1\""
 
 [HKEY_CLASSES_ROOT\DEM_scilab_file\shell\print\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -P"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -P \"%1\""
 
 ;--------------------------------------------------------------------------------
 ;COS File
@@ -101,10 +101,10 @@ REGEDIT4
 @="COS Scilab File"
 
 [HKEY_CLASSES_ROOT\COS_scilab_file\DefaultIcon]
-@="\"D:\\Scilab\\bin\\scilex.exe\",4"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\",4""
 
 [HKEY_CLASSES_ROOT\COS_scilab_file\shell\open\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -X"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -X \"%1\""
 
 ;--------------------------------------------------------------------------------
 ;COSF File
@@ -116,16 +116,16 @@ REGEDIT4
 @="COSF Scilab File"
 
 [HKEY_CLASSES_ROOT\COSF_scilab_file\DefaultIcon]
-@="\"D:\\Scilab\\bin\\scilex.exe\",5"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\",5"
 
 [HKEY_CLASSES_ROOT\COSF_scilab_file\shell\open\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -O"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -O \"%1\""
 
 [HKEY_CLASSES_ROOT\COSF_scilab_file\shell\Execution\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -X"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -X \"%1\""
 
 [HKEY_CLASSES_ROOT\COSF_scilab_file\shell\print\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -P"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -P \"%1\""
 
 ;--------------------------------------------------------------------------------
 ;SAV File
@@ -137,10 +137,10 @@ REGEDIT4
 @="SAV Scilab File"
 
 [HKEY_CLASSES_ROOT\SAV_scilab_file\DefaultIcon]
-@="\"D:\\Scilab\\bin\\scilex.exe\",8"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\",8"
 
 [HKEY_CLASSES_ROOT\SAV_scilab_file\shell\Open\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\""
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -X \"%1\""
 
 ;--------------------------------------------------------------------------------
 ;BIN File
@@ -152,10 +152,10 @@ REGEDIT4
 @="BIN Scilab File"
 
 [HKEY_CLASSES_ROOT\BIN_scilab_file\DefaultIcon]
-@="\"D:\\Scilab\\bin\\scilex.exe\",3"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\",3"
 
 [HKEY_CLASSES_ROOT\BIN_scilab_file\shell\Open\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\""
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -X \"%1\""
 
 ;--------------------------------------------------------------------------------
 ;GRAPH File
@@ -167,10 +167,10 @@ REGEDIT4
 @="GRAPH Scilab File"
 
 [HKEY_CLASSES_ROOT\GRAPH_scilab_file\DefaultIcon]
-@="\"D:\\Scilab\\bin\\scilex.exe\",7"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\",7"
 
 [HKEY_CLASSES_ROOT\GRAPH_scilab_file\shell\open\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -X"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -X \"%1\""
 
 ;--------------------------------------------------------------------------------
 ;GRAPHB File
@@ -182,9 +182,9 @@ REGEDIT4
 @="GRAPHB Scilab File"
 
 [HKEY_CLASSES_ROOT\GRAPHB_scilab_file\DefaultIcon]
-@="\"D:\\Scilab\\bin\\scilex.exe\",7"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\",7"
 
 [HKEY_CLASSES_ROOT\GRAPHB_scilab_file\shell\open\command]
-@="\"D:\\Scilab\\bin\\scilex.exe\" \"%1\" -X"
+@="\"D:\\ScilabCVS\\bin\\Wscilex.exe\" -X \"%1\""
 
 ;--------------------------------------------------------------------------------
