@@ -128,7 +128,7 @@ scs_m.objs(10)=mlist(["Block","graphics","model","gui","doc"],..
                ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
                "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
                "equations"],list("eselect",-2),1,[],1,[1;1],[],[],[],[],"l",..
-               [-1;-1],[%f,%f],"",0,0,list()),"ESELECT_f",list())
+               [-1;-1],[%t,%f],"",0,0,list()),"ESELECT_f",list())
 scs_m.objs(11)=mlist(["Block","graphics","model","gui","doc"],..
                mlist(..
                ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
