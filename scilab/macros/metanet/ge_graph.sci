@@ -26,17 +26,17 @@ function r=ge_graph(kmen,win)
     seteventhandler("ge_eventhandler") ;xset('window',old)
   case "SaveAs"
     seteventhandler("")  
-    execstr('GraphList=EGdata_'+w+'.GraphList')
-    [GraphList,ok]=ge_do_SaveAs(GraphList)
+    execstr('GraphList=EGdata_'+w+'.GraphList;path=EGdata_'+w+'.Path')
+    [GraphList,ok,path]=ge_do_SaveAs(GraphList,path)
     if ok then
       ge_drawtitle(GraphList.name)
-      execstr('EGdata_'+w+'.GraphList=GraphList;EGdata_'+w+'.Edited=%f;')
+      execstr('EGdata_'+w+'.GraphList=GraphList;EGdata_'+w+'.Edited=%f;EGdata_'+w+'.Path=path;')
     end
     seteventhandler("ge_eventhandler") 
   case "Save"
     seteventhandler("")  
-    execstr('GraphList=EGdata_'+w+'.GraphList')
-    ok=ge_do_save(GraphList)   
+    execstr('GraphList=EGdata_'+w+'.GraphList;path=EGdata_'+w+'.Path')
+    ok=ge_do_save(GraphList,path)   
     if ok then
       execstr('EGdata_'+w+'.Edited=%f;')
     end

@@ -24,7 +24,7 @@ function ge_do_information()
 endfunction
 
 function txt=ge_make_text_info()
-  txt=['Information about graph : '+GraphList.name(1)
+  txt=['Information about graph : '+GraphList.name
        ' '
        ' ']
   if GraphList.directed==0 then
@@ -84,6 +84,7 @@ function txt=ge_make_text_info()
   txt=[txt;'';
        'Information on arcs'
        '-------------------';''];
+  
   
   w='';
   c=['Numbers';
@@ -182,14 +183,14 @@ function txt=ge_make_text_info()
        'Quadratic weights';'Quadratic origins';'Weights';'Labels'];
     T=T(~t)
     if size(T,'*')==1 then
-      txt=[txt;'';strcat(T,', ')+' is set to default values';''];
+      txt=[txt;'';strcat(T,', ')+' is set to default values (0 or """")';''];
     else
       if size(T,'*')>4 then
 	txt=[txt;'';
 	     strcat(T(1:4),', ')+',';
-	     strcat(T(5:$),', ')+' are set to default values';''];
+	     strcat(T(5:$),', ')+' are set to default values (0 or """")';''];
       else
-	txt=[txt;'';strcat(T,', ')+' are set to default values';''];
+	txt=[txt;'';strcat(T,', ')+' are set to default values (0 or """")';''];
       end
     end
   end 
@@ -201,7 +202,7 @@ function txt=ge_make_tex_info()
   txt=['\documentclass{article}'
        '\begin{document}'
       '\begin{center}'
-      '{\large \bf Information about graph : '+GraphList.name(1)+'}'
+      '{\large \bf Information about graph : '+GraphList.name+'}'
        '\end{center}'
        '\bigskip\bigskip'
        ' ']
