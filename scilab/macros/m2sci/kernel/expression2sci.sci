@@ -34,11 +34,11 @@ case "operation"
 // --- Expression is a 'funcall' tlist ---
 case "funcall"
 
-  // Particular case if expression is a call to 'm2sciassume'
-  if mtlb_expr.name=="m2sciassume" then
+  // Particular case if expression is a call to 'm2scideclare'
+  if mtlb_expr.name=="m2scideclare" then
     sci_expr=list()
     // varslist is updated with user defined data
-    sci_m2sciassume(mtlb_expr)
+    sci_m2scideclare(mtlb_expr)
   
   // Particular case if expression is a call to 'comment'
   elseif mtlb_expr.name=="comment" then

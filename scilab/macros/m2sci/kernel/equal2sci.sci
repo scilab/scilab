@@ -53,7 +53,7 @@ end
 // Convert expression
 [sci_expr]=expression2sci(mtlb_instr.expression,lhslist);
 
-if sci_expr==list() then // Conversion made by inserted instructions or m2sciassume
+if sci_expr==list() then // Conversion made by inserted instructions or 'm2scideclare'
   sci_instr=list()
 else
   sci_instr.expression=sci_expr;

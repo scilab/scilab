@@ -165,16 +165,19 @@ for k=1:n
   // Looking for comments
   kc=isacomment(tk)
   if kc<>0 then // Current line has or is a comment
-    // A comment is replaced by a call to function comment() or m2sciassume()
+    // A comment is replaced by a call to function comment() or m2scideclare()
     com=part(tk,kc+1:length(tk))
     if ~endofhelp then helppart=[helppart;com];end // Get help part placed at the beginning of the file
-    if length(com)==0 then com=' ',end
+    if length(com)==0 then com=" ",end
     com=strsubst(com,quote,quote+quote)
     com=strsubst(com,dquote,dquote+dquote)
-    if part(com,1:12)=='m2sciassume ' then // User has given a clue to help translation
-      com=';m2sciassume('+quote+part(com,13:length(com))+quote+')'
+    if part(com,1:12)=="m2sciassume " | part(com,1:13)=="m2scideclare " then // User has given a clue to help translation
+      if part(com,1:12)=="m2sciassume " then
+	warning("m2sciassume is obsolete, used m2scideclare instead");
+      end
+      com=";m2scideclare("+quote+part(com,13:length(com))+quote+")"
     else
-      com=';comment('+quote+com+quote+')'
+      com=";comment("+quote+com+quote+")"
     end
     tkbeg=part(tk,1:kc-1)
     
