@@ -365,8 +365,8 @@ void C2F(setpopupname)(x0, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 typedef struct _GTK_locator_info GTK_locator_info;
 
 struct _GTK_locator_info {
-  guint win, x,y, button, ok;
-  int getrelease,getmouse,getmen;
+  guint win, x,y, ok;
+  int getrelease,getmouse,getmen,getkey, button;
   int sci_click_activated;
   guint timer;
   char *str;
@@ -421,6 +421,47 @@ static gboolean locator_button_motion(GtkWidget *widget,
   return TRUE;
 }
 
+
+static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
+{
+  if (info.getkey == 1 && (event->keyval >= 0x20) && (event->keyval <= 0xFF))
+    {
+      /* since Alt-keys and Ctrl-keys are stored in menus I want to ignore them here */
+      if ( event->state != GDK_CONTROL_MASK && event->state != GDK_MOD1_MASK ) 
+	{
+	  fprintf(stderr,"key accepted %d %d\r\n",event->keyval,event->state);
+	  info.ok =1 ;  info.win=  gc->CurWindow; info.x = 0;  info.y = 0;
+	  info.button = event->keyval;
+	  gtk_main_quit();
+	}
+    }
+  return TRUE;
+}
+
+static int sci_graphic_protect = 0;
+
+void   set_delete_win_mode() {  sci_graphic_protect = 0 ;}
+extern void   set_no_delete_win_mode()  {  sci_graphic_protect = 1 ;}
+
+static gboolean sci_destroy_window (GtkWidget *widget, GdkEventKey *event,  BCG *gc)
+{
+  if (  sci_graphic_protect == 1 )
+    {
+      wininfo("Cannot destroy window while acquiring zoom rectangle ");
+      return TRUE;
+    }
+  if ( info.sci_click_activated != 0 ) 
+    {
+      info.ok =1 ;  info.win=  gc->CurWindow; info.x = 0 ;  info.y = 0;
+      info.button = -100;
+      DeleteSGWin(gc->CurWindow);
+      gtk_main_quit();
+    }
+  else 
+    DeleteSGWin(gc->CurWindow);
+  return TRUE;
+}
+
 gint timeout_test (BCG *gc)
 {
   if ( info.getmen  == 1 &&  C2F(ismenu)()==1 ) 
@@ -471,6 +512,7 @@ void C2F(xclick_any)(str, ibutton, x1, yy1, iwin,iflag, istr, dv1, dv2, dv3, dv4
   info.ok = 0 ; 
   info.getrelease = 0 ;
   info.getmouse   = 0 ; 
+  info.getkey     = 1 ; 
   info.getmen     = 1 ; 
   info.sci_click_activated = 1;
 
@@ -522,7 +564,7 @@ void C2F(xclick_any)(str, ibutton, x1, yy1, iwin,iflag, istr, dv1, dv2, dv3, dv4
   XSync (dpy, 0);
   */
   
-  }
+}
 
 void C2F(xclick)(str, ibutton, x1, yy1, iflag,istr, v7, dv1, dv2, dv3, dv4)
      char *str;
@@ -607,6 +649,7 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   info.getrelease = getrelease ; 
   info.getmouse   = getmouse ;
   info.getmen     = dyn_men;
+  info.getkey     = 0; /* do not check keys in xclick */
   info.sci_click_activated = 1;
 
   if (  info.getmen == 1 && info.timer == 0 ) 
@@ -617,10 +660,9 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   
   while (1) 
     {
-      /* take care of window destroy during this .....XXXXXX */
       gtk_main();
       /* be sure that gtk_main_quit was activated by proper event */
-      if ( info.ok == 1 && info.win == ScilabXgc->CurWindow ) break;
+      if ( info.ok == 1 &&  info.win == win  ) break;
     }
 
   *x1 = info.x;
@@ -2771,7 +2813,7 @@ void C2F(drawpolymark)(str, n, vx, vy, v5, v6, v7, dv1, dv2, dv3, dv4)
     {
       if (gtk_store_points(*n, vx, vy,(integer)0L))
 	{
-	  /* 
+	  /* XXXXXXX
 	     XDrawPoints (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), *n,CoordModeOrigin);
 	     gdk_flush();
 	  */
@@ -2887,10 +2929,13 @@ void DeleteWindowToList(num)
     {
       if ( L1->winxgc.CurWindow == num )
 	{
-	  if ( L1->winxgc.Cdrawable != (GdkDrawable *) L1->winxgc.drawing->window)
+	  /* the animation pixmap */
+	  if ( L1->winxgc.CurPixmapStatus == 1 ) 
 	    gdk_pixmap_unref(L1->winxgc.Cdrawable);
-	  gtk_widget_destroy(L1->winxgc.window);
+	  /* backing store pixmap */
 	  gdk_pixmap_unref(L1->winxgc.pixmap);
+	  /* destroy window */
+	  gtk_widget_destroy(L1->winxgc.window);
 	  /** fenetre a detruire trouvee **/
 	  if ( L1 != L2 )
 	    {
@@ -3118,15 +3163,11 @@ void C2F(xinfo)(message, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
      double *dv3;
      double *dv4;
 {
-  /* 
-  Arg args[1];
-  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CinfoW != (Widget) NULL)
+  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CinfoW != NULL)
     {
-      Cardinal n = 0;
-      XtSetArg(args[n], XtNlabel, message);n++;
-      XtSetValues(ScilabXgc->CinfoW, args, n);
+      gtk_statusbar_pop ((GtkStatusbar *) ScilabXgc->CinfoW, 1);
+      gtk_statusbar_push ((GtkStatusbar *) ScilabXgc->CinfoW, 1, message);
     }
-  */
 }
 
 /* 
@@ -3160,14 +3201,11 @@ void wininfo(va_alist) va_dcl
 #endif
   (void ) vsprintf(buf, format, ap );
   va_end(ap);
-  /* 
-  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CinfoW != (Widget) NULL)
+  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CinfoW != NULL)
     {
-      Cardinal n = 0;
-      XtSetArg(args[n], XtNlabel,buf);n++;
-      XtSetValues(ScilabXgc->CinfoW, args, n);
+      gtk_statusbar_pop ((GtkStatusbar *) ScilabXgc->CinfoW, 1);
+      gtk_statusbar_push ((GtkStatusbar *) ScilabXgc->CinfoW, 1,buf);
     }
-  */
 }
 
 
@@ -3177,8 +3215,7 @@ void wininfo(va_alist) va_dcl
  *  to come back to the default graphic state}
  *---------------------------------------------------------*/
 
-static void 
-InitMissileXgc (v1, v2, v3, v4)
+static void InitMissileXgc (v1, v2, v3, v4)
      integer *v1;
      integer *v2;
      integer *v3;
@@ -4262,16 +4299,8 @@ static gint expose_event(GtkWidget *widget, GdkEventExpose *event, gpointer data
   return FALSE;
 }
 
-static gint delete_event(GtkWidget *widget, GdkEvent *event, gpointer data)
-{
-    BCG *dd = (BCG *) data;
-    g_return_val_if_fail(dd != NULL, FALSE);
-    /* XXXXXXXXXX a faire  KillDevice(dd); */
-    return TRUE;
-}
-
-
 #define R_RGB(r,g,b)	((r)|((g)<<8)|((b)<<16))
+
 
 
 /* create window etc */
@@ -4296,9 +4325,10 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
   dd->CWindowHeight = ih = h; /*  pixelHeight(); */
 
   dd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_widget_set_name (dd->window, "Test Input");
 
+  gtk_widget_set_name (dd->window, "Test Input");
   gtk_window_set_policy(GTK_WINDOW(dd->window), TRUE, TRUE, FALSE);
+
   gtk_widget_realize(dd->window);
 
   vbox = gtk_vbox_new (FALSE, 0);
@@ -4310,6 +4340,8 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
   dd->menu_entries = graphic_initial_menu(dd->CurWindow );
   dd->menubar = NULL;
   create_graphic_window_menu(dd);
+  dd->CinfoW = gtk_statusbar_new ();
+  gtk_box_pack_start (GTK_BOX (vbox), dd->CinfoW, FALSE, TRUE, 0);
 
   /* create a new scrolled window. */
   dd->scrolled = scrolled_window = gtk_scrolled_window_new (NULL, NULL);
@@ -4330,20 +4362,21 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
   /* create drawingarea */
 
   dd->drawing = gtk_drawing_area_new();
-  gtk_widget_set_events(dd->drawing,
-			GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK |
-			GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK);
 
-  gtk_signal_connect(GTK_OBJECT(ScilabXgc->drawing), "button-press-event",
-		     (GtkSignalFunc) locator_button_press, ScilabXgc);
-  gtk_signal_connect(GTK_OBJECT(ScilabXgc->drawing), "button-release-event",
-		     (GtkSignalFunc) locator_button_release, ScilabXgc);
-  gtk_signal_connect(GTK_OBJECT(ScilabXgc->drawing), "motion-notify-event",
-		     (GtkSignalFunc) locator_button_motion, ScilabXgc);
+  gtk_signal_connect(GTK_OBJECT(dd->drawing), "button-press-event",
+		     (GtkSignalFunc) locator_button_press, (gpointer) dd);
+  gtk_signal_connect(GTK_OBJECT(dd->drawing), "button-release-event",
+		     (GtkSignalFunc) locator_button_release, (gpointer) dd);
+  gtk_signal_connect(GTK_OBJECT(dd->drawing), "motion-notify-event",
+		     (GtkSignalFunc) locator_button_motion, (gpointer) dd);
 
-  /* connect to signal handlers, etc */
   gtk_signal_connect(GTK_OBJECT(dd->drawing), "realize",
 		     (GtkSignalFunc) realize_event, (gpointer) dd);
+
+  gtk_widget_set_events(dd->drawing, GDK_EXPOSURE_MASK 
+			| GDK_BUTTON_PRESS_MASK 
+			| GDK_BUTTON_RELEASE_MASK 
+			| GDK_BUTTON_MOTION_MASK);
 
   /* drawingarea properties */
   /* min size of the graphic window */
@@ -4361,21 +4394,28 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
   gtk_scrolled_window_add_with_viewport (
     GTK_SCROLLED_WINDOW (scrolled_window),dd->drawing);
   gtk_widget_realize(dd->drawing);
+
   /* connect to signal handlers, etc */
   gtk_signal_connect(GTK_OBJECT(dd->drawing), "configure_event",
 		     (GtkSignalFunc) configure_event, (gpointer) dd);
   gtk_signal_connect(GTK_OBJECT(dd->drawing), "expose_event",
 		     (GtkSignalFunc) expose_event, (gpointer) dd);
+
   gtk_signal_connect(GTK_OBJECT(dd->window), "delete_event",
-		     (GtkSignalFunc) delete_event, (gpointer) dd);
+		     (GtkSignalFunc)  sci_destroy_window, (gpointer) dd);
+  
+  gtk_signal_connect (GTK_OBJECT (dd->window), "key_press_event",
+		      (GtkSignalFunc) key_press_event, (gpointer) dd);
 
   /* show everything */
+  gtk_widget_realize(dd->window);
   gtk_widget_show_all(dd->window);
 
   /* create offscreen drawable */
   dd->pixmap = gdk_pixmap_new(dd->drawing->window,
 			      dd->CWindowWidth, dd->CWindowHeight,
 			      -1);
+
   gdk_gc_set_foreground(dd->wgc, &dd->gcol_bg);
   gdk_draw_rectangle(dd->pixmap, dd->wgc, TRUE, 0, 0,
 		     dd->CWindowWidth, dd->CWindowHeight);
@@ -4389,4 +4429,3 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
 static void CreateGtkGWindow(struct BCG *ScilabXgc) {
   GTK_Open(ScilabXgc,"unix:0",600,400);
 }
-

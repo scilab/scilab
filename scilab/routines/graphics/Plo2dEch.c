@@ -10,6 +10,9 @@
 #include "Math.h"
 #include "PloEch.h"
 
+extern void   set_delete_win_mode();
+extern void   set_no_delete_win_mode();
+
 /*----------------------------------------------
  * A List for storing Window scaling information 
  *----------------------------------------------*/
@@ -965,6 +968,7 @@ void zoom_get_rectangle(bbox)
   C2F(dr)("xget","color",&verbose,&color,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","line style",&verbose,style,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  set_no_delete_win_mode();
 
 #ifdef WIN32
   SetWinhdc();
@@ -1006,7 +1010,9 @@ void zoom_get_rectangle(bbox)
   C2F(dr)("xset","thickness",&th,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
+  
+  set_delete_win_mode();
+  wininfo(" ");
 #ifdef WIN32
   ReleaseWinHdc();
   SciMouseRelease();
@@ -1036,7 +1042,6 @@ void zoom()
       Tape_ReplayNewScale(" ",&ww,flag,PI0,aaint,PI0,PI0,bbox,PD0,PD0,PD0);
     }
 }
-
 
 void unzoom()
 {

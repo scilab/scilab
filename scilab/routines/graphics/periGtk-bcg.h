@@ -56,10 +56,11 @@ typedef struct BCG
   GtkWidget *vbox;                      /* vbox */
   GtkWidget *menubar;
   GtkItemFactory *item_factory;
-  menu_entry * menu_entries;                 /* */
+  menu_entry * menu_entries;            /* */
   GdkPixmap *pixmap;                    /* Backing store */
-  GdkDrawable *Cdrawable;               /* set to drawing or to a pixmap 
-					   when using animation mode */
+  GdkDrawable *Cdrawable;               /* set to drawing->window or to a pixmap 
+					 * when using animation mode 
+					 * See CurPixmapStatus */
   GdkGC *wgc;
   GdkGC *stdgc;
   GdkColor gcol_bg; 
