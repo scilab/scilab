@@ -1484,9 +1484,6 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   static int *Rstk = C2F(recu).rstk-1;
   static int *Lstk = C2F(vstk).lstk-1;
   static int *Infstk  = C2F(vstk).infstk-1;
-  printf("entering syncexec %d \n",C2F(recu).niv);
-
-
   C2F(basbrk).interruptible = seq != 0;
   C2F(bexec)(str, ns, ierr, (*ns));
   if (*ierr != 0) {
@@ -1619,7 +1616,6 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   /* + */
   --C2F(recu).niv;
   *ierr = 0;
-  printf("leaving syncexec %d\n",C2F(recu).niv);
   return 0;
  L9998:
   *ierr = 1;
