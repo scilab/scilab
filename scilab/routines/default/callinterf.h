@@ -47,6 +47,7 @@ extern void    /* 35  */ C2F(coselm)();
 extern void    /* 36  */ C2F(specfun)();
 extern void    /* 37  */ C2F(dcd)();
 extern void    /* 38  */ C2F(randlib)();
+extern void    /* 39  */ C2F(otherspfunlib)();
 
 #ifdef WITH_TK
 extern void    /* 40  */ C2F(tksciInterf)();
@@ -65,8 +66,8 @@ extern void    /* 43  */ C2F(intelm)();
 extern void    /* 44  */ C2F(intlapack)();
 extern void    /* 45  */ C2F(intslicot)();
 extern void    /* 46  */ C2F(intarpack)();
-extern void    /* 46  */ C2F(intcscicos)();
-
+extern void    /* 47  */ C2F(intcscicos)();
+extern void    /* 47  */ C2F(intcscicos)();
 static OpTab Interfaces[] ={
             /* 01  */ {C2F(matlu)},
 	    /* 02  */ {C2F(matdsr)},
@@ -106,7 +107,7 @@ static OpTab Interfaces[] ={
 	    /* 36  */ {C2F(specfun)},
 	    /* 37  */ {C2F(dcd)},
      	    /* 38  */ {C2F(randlib)},
-     	    /* 39  */ {C2F(matus2)}, /* free position may be used */
+     	    /* 39  */ {C2F(otherspfunlib)},
      	    /* 40  */ {TKINTERF},
 	    /* 41  */ {C2F(lstelmi)},
 	    /* 42  */ {PVMINTERF},
