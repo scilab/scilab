@@ -686,7 +686,6 @@ open_browser_dialog (gchar *help_path,
 		     gchar *locale,
 		     gchar *help_file)
 {
-  GtkWidget *window;
   GtkWidget *vbox, *hbox, *bbox, *html_box;
   GtkWidget *button;
   GtkWidget *title;
@@ -709,6 +708,11 @@ open_browser_dialog (gchar *help_path,
   
   g_free (index);
 
+  if ( window != NULL) 
+    {
+      sciprint("exits already");
+      return 0;
+    }
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_signal_connect (GTK_OBJECT (window), "delete_event",

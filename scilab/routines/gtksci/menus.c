@@ -1039,10 +1039,7 @@ extern int  Sci_Help(char *name);
 
 static void sci_menu_help()
 {
-  sciprint("A revoir \n");
-  /* 
-   * Sci_Help("help");
-   */
+  StoreCommand("help();");
 }
 
 /*-----------------------------------------------------------------
