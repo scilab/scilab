@@ -47,7 +47,7 @@ void HomeFunction(void)
 	sciprint("\nNot yet implemented. \n");
 }
 
-void ClearScreenConsole(void)
+void ClearScreenConsole _PARAMS((char *fname))
 {
 	sciprint("\nNot yet implemented. \n");
 }
@@ -57,6 +57,20 @@ void HistoryFunction _PARAMS((char *fname))
 	sciprint("Not yet implemented. \r\n");
 }
 
+void LoadHistoryFunction(void)
+{
+  sciprint("Not yet implemented. \r\n");
+}
+
+void SaveHistoryFunction(void)
+{
+  sciprint("Not yet implemented. \r\n");
+}
+
+void ResetHistoryFunction(void)
+{
+  sciprint("Not yet implemented. \r\n");
+}
 /*
    allocates memory for a 2-dimensional array of chars and returns a pointer
    thereto

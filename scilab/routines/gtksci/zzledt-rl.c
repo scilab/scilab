@@ -165,12 +165,27 @@ void HomeFunction(void)
   rl_clear_screen(0,0);
 }
 
-void ClearScreenConsole(void)
+void ClearScreenConsole _PARAMS((char *fname))
 {
   rl_clear_screen (0,0);
 }
 
 void HistoryFunction _PARAMS((char *fname))     
+{
+  sciprint("Not yet implemented. \r\n");
+}
+
+void LoadHistoryFunction(void)
+{
+  sciprint("Not yet implemented. \r\n");
+}
+
+void SaveHistoryFunction(void)
+{
+  sciprint("Not yet implemented. \r\n");
+}
+
+void ResetHistoryFunction(void)
 {
   sciprint("Not yet implemented. \r\n");
 }
