@@ -83,9 +83,9 @@ endfunction
 //------------------------------------------------------------------------
 function Rep=IsBissextile(annee)
   Rep=%F
-  [q0,r0] = divEucl(annee,400);
-  [q1,r1] = divEucl(annee,4);
-  [q2,r2] = divEucl(annee,100);
+  r0 = modulo(annee,400);
+  r1 = modulo(annee,4);
+  r2 = modulo(annee,100);
   if ( (r0 == 0 ) | ((r1 ==  0) & (r2 == 0)) ) then Rep=%T,end;
 endfunction
 //------------------------------------------------------------------------
@@ -96,9 +96,4 @@ endfunction
 function days=years_to_days (annee)
   days=annee * 365 + (annee / 4) - (annee / 100) + (annee / 400);
 endfunction
-//------------------------------------------------------------------------
-function [quotient,reste] = divEucl(p,q) 
-  reste = p; quotient = 0; while reste >= q 
-  reste = reste - q; quotient = quotient + 1; end 
-endfunction 
 //------------------------------------------------------------------------
