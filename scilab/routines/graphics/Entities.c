@@ -10612,7 +10612,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32
       if ( flag == 1) ReleaseWinHdc();
 #endif
-
+      FREE(xm);FREE(ym);/* SS 02/04 */
       break;      
       /******************************** 22/05/2002 ***************************/    
      case SCI_SEGS:    
@@ -10685,6 +10685,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
 	  if ( flag == 1) ReleaseWinHdc ();
 #endif 
+	  FREE(xm);FREE(ym);/* SS 02/04 */
 	}
       else
         {
@@ -10702,6 +10703,7 @@ sciDrawObj (sciPointObj * pobj)
 	n=2*(pSEGS_FEATURE (pobj)->Nbr1)*(pSEGS_FEATURE (pobj)->Nbr2); 
 	xm = graphic_alloc(0,n,sizeof(int));
 	ym = graphic_alloc(1,n,sizeof(int));
+	zm=0;/* SS 02/04 */
 	if ( xm == 0 || ym == 0) 
 	  {
 	    sciprint("Running out of memory \n");
@@ -10729,6 +10731,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       if ( flag == 1) ReleaseWinHdc ();
 #endif 
+      FREE(xm);FREE(ym);FREE(zm);/* SS 02/04 */
         }  
 
       sciUnClip(sciGetIsClipping(pobj));
@@ -10954,6 +10957,7 @@ sciDrawObj (sciPointObj * pobj)
 #endif  
 	  break;     
 	}
+      FREE(xzz);FREE(yzz);FREE(zzz);/* SS 02/04 */
       if (! sciGetIsMark(pobj))
 	C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
       else
@@ -11000,8 +11004,9 @@ sciDrawObj (sciPointObj * pobj)
 
       if ((xm = MALLOC (n * sizeof (int))) == NULL)
       	return -1;
-      if ((ym = MALLOC (n * sizeof (int))) == NULL)
-      	return -1; 
+      if ((ym = MALLOC (n * sizeof (int))) == NULL) {
+	FREE(xm);/* SS 02/04 */
+      	return -1; }
       /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 	    trans3d(sciGetParentSubwin(pobj),n,xm,ym,pPATCH_FEATURE (pobj)->pvx,
