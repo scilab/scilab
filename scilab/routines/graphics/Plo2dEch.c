@@ -1133,17 +1133,28 @@ int zoom()
 		/** regraduation de l'axe des axes ***/
 		fmin=  bbox[0];
 		fmax=  bbox[2];
-		C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-		pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
-		pSUBWIN_FEATURE (psousfen)->FRect[0]=lmin;
-		pSUBWIN_FEATURE (psousfen)->FRect[2]=lmax;
+		if(pSUBWIN_FEATURE (psousfen)->logflags[0] == 'n') {
+		  C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+		  pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
+		  pSUBWIN_FEATURE (psousfen)->FRect[0]=lmin;
+		  pSUBWIN_FEATURE (psousfen)->FRect[2]=lmax;}
+		else {
+		  pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=0;
+		  pSUBWIN_FEATURE (psousfen)->FRect[0]=fmin;
+		  pSUBWIN_FEATURE (psousfen)->FRect[2]=fmax;
+		}
 
 
 		fmin= bbox[1]; fmax= bbox[3];
-		C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-		pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-		pSUBWIN_FEATURE (psousfen)->FRect[1]=lmin;
-		pSUBWIN_FEATURE (psousfen)->FRect[3]=lmax;
+		if(pSUBWIN_FEATURE (psousfen)->logflags[1] == 'n') {
+		  C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+		  pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
+		  pSUBWIN_FEATURE (psousfen)->FRect[1]=lmin;
+		  pSUBWIN_FEATURE (psousfen)->FRect[3]=lmax;}
+		else {
+		  pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=0;
+		  pSUBWIN_FEATURE (psousfen)->FRect[1]=fmin;
+		  pSUBWIN_FEATURE (psousfen)->FRect[3]=fmax;}
 	      }
 	  }
 	psonstmp = psonstmp->pnext;
