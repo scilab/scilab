@@ -23,6 +23,8 @@ for k=1:size(txt,'r')
 	  txt(k)=strsubst(strsubst(txt(k),'{','('),'}',').entries')
 	end
       end
+    elseif ~isempty(strindex(txt(k),"}")) then
+      txt(k)=strsubst(txt(k),'}',']))')
     end
   end
 end
