@@ -593,7 +593,7 @@ void xerror(d, ev)
 {
   fprintf(stderr, "%s:  warning, error event receieved:\n", xterm_name);
   (void) XmuPrintDefaultErrorMessage(d, ev, stderr);
- sci_clear_and_exit(ERROR_XERROR);
+  /*sci_clear_and_exit(ERROR_XERROR);*/
 }
 
 /*ARGSUSED*/
