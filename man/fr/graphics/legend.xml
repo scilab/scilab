@@ -32,7 +32,7 @@
           <SP>: n vector of strings, strings(i) is the legend of the ith curve</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
-    
+      <PARAM_ITEM>
         <PARAM_NAME>pos</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optionnal) specify where to draw the legend; this parameter may be a integer
@@ -46,30 +46,35 @@
                 <SP> the legend are drawn in the upper right-hand corner (default).</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+
             <PARAM_ITEM>
               <PARAM_NAME>2</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP> the legend are drawn in the upper left-hand corner.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+
             <PARAM_ITEM>
               <PARAM_NAME>3</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP> the legend are drawn in the lower left-hand corner.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+
             <PARAM_ITEM>
               <PARAM_NAME>4</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP> the legend are drawn in the lower right-hand corner.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+
             <PARAM_ITEM>
               <PARAM_NAME>5</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP> interactive placement with the mouse .</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+
           </PARAM_INDENT>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -95,7 +100,7 @@
     <P> when called without handle argument (or with a handle on a axes entity)
       the function looks first build the vectors of handle on polylines entities which
       are the children of the given axes. </P>
-    <P> If there is
+   
     <P>
     In the interactive placement (opt=5) move the legend box with the
     mouse and press the left button to release it.</P>
