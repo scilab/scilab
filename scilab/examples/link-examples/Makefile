@@ -111,7 +111,7 @@ clean::
 	@$(RM) /tmp/ext*.o so_locations *.o
 
 distclean::
-	@$(RM) /tmp/ext*.o so_locations *.o
+	@$(RM) /tmp/ext*.o so_locations *.o *.dll *.obj *.ilib *.def *.exp
 
 ##----------------------  test all the example  
 
