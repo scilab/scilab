@@ -40,7 +40,7 @@ for i=1:length(bllst)
     xptr(i+1)=xptr(i)+size(ll.state,'*')/2
   end
   
-  if funtyp(i,1)==3 then //sciblocks
+  if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
     xd0k=var2vec(ll.dstate)
   else
     xd0k=ll.dstate(:)
@@ -48,7 +48,7 @@ for i=1:length(bllst)
   xd0=[xd0;xd0k];
   zptr=[zptr;zptr($)+size(xd0k,'*')]
   
-  if funtyp(i,1)==3 then //sciblocks
+  if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10003 | funtyp(i,1)==10005) then //sciblocks
     rpark=var2vec(ll.rpar)
   else
     rpark=ll.rpar(:)

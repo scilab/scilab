@@ -501,8 +501,8 @@ int C2F(scicos)
   static integer jj;
 
   double *W;
-
-  if((W=malloc(sizeof(double)*nout))== NULL ){
+  jj=max(ng,nout);
+  if((W=malloc(sizeof(double)*(jj)))== NULL ){
     *ierr =10000;
     return;
   }
@@ -512,7 +512,7 @@ int C2F(scicos)
   /*     initialization (flag 4) */
   /*     loop on blocks */
 
-  C2F(dset)(&nout, &c_b14, W, &c__1);
+  C2F(dset)(&jj, &c_b14, W, &c__1);
   nclock = 0;
   for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
     if (funtyp[C2F(curblk).kfun] >= 0) {

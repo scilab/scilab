@@ -30,10 +30,11 @@ for k=newparameters
     om=scs_m.objs(k).model
     [fun,statek,dstatek,rpark,ipark,nscross]=(om.sim,om.state,om.dstate,om.rpar,om.ipar,om.nzcross);
     if type(fun)==15 then
-      if fun(2)==3 then 
+      if (fun(2)==3 | fun(2)==5 |  fun(2)==10005) then 
 	if rpark<>[] then rpark=var2vec(rpark); end
         if dstatek<>[] then dstatek=var2vec(dstatek),end
-      elseif fun(2)>10000 then
+      end
+      if fun(2)>10000 then
 	statekd=statek($/2+1:$)
 	statek=statek(1:$/2)
       end
@@ -46,10 +47,11 @@ for k=newparameters
     statekd=[]
     [fun,statek,dstatek,rpark,ipark]=(o.model.sim,o.model.state,o.model.dstate,o.model.rpar,o.model.ipar);
     if type(fun)==15 then
-      if fun(2)==3 then 
+      if (fun(2)==3 | fun(2)==5 | fun(2)==10005) then 
         rpark=var2vec(rpark),
         dstatek=var2vec(dstatek),
-      elseif fun(2)>10000 then
+      end
+      if fun(2)>10000 then
 	statekd=statek($/2+1:$)
 	statek=statek(1:$/2)
       end
@@ -141,4 +143,5 @@ else
   %state0('x')=st0
 end
 %state0('z')=dst0
+
 endfunction
