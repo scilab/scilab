@@ -1184,8 +1184,24 @@ C     errors from semidef
      +     buf(1:3))
       goto 999
  269  continue
+      if(err.ne.1) then
+         write(buf(1:3),'(i3)') err
+         call msgout(io,lunit,buf(1:3)//
+     +        'th argument eigenvalues must have negative real parts')
+      else
+         call msgout(io,lunit,
+     +        'argument eigenvalues must have negative real parts')
+      endif
       goto 999
  270  continue
+      if(err.ne.1) then
+         write(buf(1:3),'(i3)') err
+         call msgout(io,lunit,buf(1:3)//
+     +        'th argument eigenvalues modulus must be less than one')
+      else
+         call msgout(io,lunit,
+     +        'argument eigenvalues modulus must be less than one')
+      endif
       goto 999
 c
 c
