@@ -411,7 +411,7 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
       return 0;
     }
   (name[0])[nlgh]='\0';
-  
+
   switch(data[*index]) {
   case 0: /* Deleted operation */
     /* This code is ignored */
@@ -512,7 +512,7 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
     *addinstr=1;
     break;
   case 18: /* Mark named variable */
-    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index]);
+    CreateEqualTList("code18",data,index);
     break;
   case 19: /* Form recursive index list */
     CreateRecursiveIndexList(data,index);
@@ -1320,9 +1320,9 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index)
 ****************************************************************/
 static int CreateEqualTList(char *fromwhat,int *data,int *index)
 {
-  char *eq_tlist[] = {"equal","expression","lhs"};
+  char *eq_tlist[] = {"equal","expression","lhs","endsymbol"};
   int m_eq_tlist = 1;
-  int n_eq_tlist = 3;
+  int n_eq_tlist = 4;
 
   int nblhs = 0,nbrhs = 0;
 
@@ -1345,6 +1345,9 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
   char **operator;
 
   int one = 1;
+
+  char **endsymbol;
+  int symbol = 0;
 
   /* Memory allocation */
   if((name=calloc(1,sizeof(char)))==NULL)
@@ -1389,6 +1392,52 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
       nblhs = data[*index];
       (*index)++;
       
+      /* Symbol which ends the line: ; , or nothing */
+      symbol=data[*index];
+      if(symbol==43) /* ; */
+	{
+	  if((endsymbol=calloc(1,sizeof(char)))==NULL)
+	    {
+	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	      return 0;
+	    }
+	  if((endsymbol[0]=(char *)calloc(1,sizeof(char)*2))==NULL)
+	    {
+	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	      return 0;
+	    }
+	  strcpy(endsymbol[0],";");
+	  (endsymbol[0])[1] = '\0';
+	}
+      else if(symbol==52) /* , */
+	{
+	  if((endsymbol=calloc(1,sizeof(char)))==NULL)
+	    {
+	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	      return 0;
+	    }
+	  if((endsymbol[0]=(char *)calloc(1,sizeof(char)*2))==NULL)
+	    {
+	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	      return 0;
+	    }
+	  strcpy(endsymbol[0],",");
+	  (endsymbol[0])[1] = '\0';
+	}
+      else /* Nothing */
+	{
+	  if((endsymbol=calloc(1,sizeof(char)))==NULL)
+	    {
+	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	      return 0;
+	    }
+	  if((endsymbol[0]=(char *)calloc(1,sizeof(char)*1))==NULL)
+	    {
+	      Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	      return 0;
+	    }
+	  (endsymbol[0])[0] = '\0';
+	}
       for(k=0;k<nblhs;k++)
 	{
 	  (*index)++;
@@ -1445,6 +1494,9 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
       orig = Top;
       dest = Top - nblhs;
       VCopyObj("CreateEqualTList",&orig,&dest,16L);
+
+      /* Symbol */
+      str2sci(endsymbol,one,one);
       
       /* Create equal tlist */
       C2F(mktlist)(&n_eq_tlist);
@@ -1454,6 +1506,46 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
       dest = Top - nb_indexes - 1;
       VCopyObj("CreateEqualTList",&orig,&dest,16L);
     }
+  else if(!strncmp(fromwhat,"code18",6)) /* A code 18 was found in data */
+    {
+      /* Copy expression */
+      orig = Top - 1;
+      dest = Top + 1;
+      VCopyObj("CreateEqualTList",&orig,&dest,16L);
+
+      (*index)++;
+      nblhs++;
+      CvNameL(&data[*index],name[0],&job1,&namelgth);
+      (name[0])[namelgth]='\0';
+      CreateVariableTList(name);
+      *index = *index + nsiz;
+      *index = *index - 1;
+      
+      /* Create list of lhs */
+      C2F(mklist)(&nblhs);
+
+      /* Symbol */
+      if((endsymbol=calloc(1,sizeof(char)))==NULL)
+	{
+	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  return 0;
+	}
+      if((endsymbol[0]=(char *)calloc(1,sizeof(char)*1))==NULL)
+	{
+	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  return 0;
+	}
+      (endsymbol[0])[0] = '\0';
+      str2sci(endsymbol,one,one);
+      
+      /* Create equal tlist */
+      C2F(mktlist)(&n_eq_tlist);
+
+      /* Copy equal tlist */
+      orig = Top;
+      dest = Top - 1;
+      VCopyObj("CreateEqualTList",&orig,&dest,16L);
+   }
   else if(!strncmp(fromwhat,"code1",5)) /* A code 1 was found in data (should no more exist) */
     {
       /* Copy expression */
@@ -1475,6 +1567,20 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
       /* Create list of lhs */
       C2F(mklist)(&nblhs);
 
+      /* Symbol */
+      if((endsymbol=calloc(1,sizeof(char)))==NULL)
+	{
+	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  return 0;
+	}
+      if((endsymbol[0]=(char *)calloc(1,sizeof(char)*1))==NULL)
+	{
+	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  return 0;
+	}
+      (endsymbol[0])[0] = '\0';
+      str2sci(endsymbol,one,one);
+      
       /* Create equal tlist */
       C2F(mktlist)(&n_eq_tlist);
     }
@@ -1494,6 +1600,20 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
       /* Create list of lhs */
       C2F(mklist)(&nblhs);
 
+      /* Symbol */
+      if((endsymbol=calloc(1,sizeof(char)))==NULL)
+	{
+	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  return 0;
+	}
+      if((endsymbol[0]=(char *)calloc(1,sizeof(char)*1))==NULL)
+	{
+	  Scierror(999,"CreateEqualTList: No more memory available\r\n");
+	  return 0;
+	}
+      (endsymbol[0])[0] = '\0';
+      str2sci(endsymbol,one,one);
+      
       /* Create equal tlist */
       C2F(mktlist)(&n_eq_tlist);
 
@@ -1517,6 +1637,10 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
   operator[0]=NULL;
   free(operator);
   operator=NULL;
+  free(endsymbol[0]);
+  endsymbol[0]=NULL;
+  free(endsymbol);
+  endsymbol=0;
 
   return 0;
 }
