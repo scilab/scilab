@@ -31,6 +31,4 @@ if k==[] then gm=%inf,fr=[],return,end
 mingain=mingain(k);ws=ws(k)
 gm=-20*log(abs(mingain))/log(10)
 fr=abs(ws/(2*%pi)) // choix de la frequence positive
-
-
-
+endfunction

@@ -54,3 +54,4 @@ for kk=2:ni,
    k0=kmin;kmin=kmax+1;
 end;
 ac=ac(v,v),bc=bc(v,:),u=u(:,v);
+endfunction

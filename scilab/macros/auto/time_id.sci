@@ -37,4 +37,4 @@ h=syslin('d',num,den)
 if lhs==2 then 
   err=norm(y-rtitr(num,den,u')',2)
 end
-
+endfunction

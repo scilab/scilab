@@ -80,8 +80,4 @@ if flag==1 then
    k=size(elts);
    for kk=1:k,elts(kk)=ss2tf(elts(kk));end
  end
-
-
-
-
-
+endfunction

@@ -24,6 +24,4 @@ case 'r' then
 else  
   error(97,1)
 end
-
-
-
+endfunction

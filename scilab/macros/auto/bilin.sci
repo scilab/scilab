@@ -13,3 +13,4 @@ if dom=='c' then Sl2=syslin('d',AB,BB,CB,DB);
   else Sl2=syslin('c',AB,BB,CB,DB);end
 
   
+endfunction

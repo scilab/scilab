@@ -23,3 +23,4 @@ C=[C1,C2];
 B=[B1;B2];
 if flag<>"withD" then D=0*C*B;end
 S=tlist(['des','A','B','C','D','E'],A,B,C,D,E);
+endfunction

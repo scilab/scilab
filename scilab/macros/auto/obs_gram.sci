@@ -30,7 +30,4 @@ else
   if maxi(abs(s))>=1 then error('Unstable system'),end
 end
 go=lyap(a,-c'*c,domaine)
-
-
-
-
+endfunction

@@ -39,6 +39,4 @@ n1=n(1);
 ri=inv(r);r=r(1:n1,:);ri=ri(:,1:n1)
 a=r*a*ri;b=r*b;c=c*ri
 if lhs==1 then a=syslin(dom,a,b,c,d,r*x0),end
-
-
-
+endfunction

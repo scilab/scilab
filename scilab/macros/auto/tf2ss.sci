@@ -57,3 +57,4 @@ if n1<>0 then
 else
   sl=syslin(h('dt'),[],[],[],d)
 end
+endfunction

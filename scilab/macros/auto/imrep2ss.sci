@@ -15,5 +15,4 @@ obs=u(:,1:deg);con=h1*v1';con=con(1:deg,:);
 //shift
 obstild=obs(no+1:n*no,:);obstild(n*no,deg)=0;
 sl=syslin('d',obs'*obstild,con(:,1),obs(1:no,:))
-
-
+endfunction

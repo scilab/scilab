@@ -36,5 +36,4 @@ else
 end;
 [n,n]=size(a);
 sl=syslin([],a,b,c,d,0*ones(n,1))
-
-
+endfunction

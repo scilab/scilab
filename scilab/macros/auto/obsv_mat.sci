@@ -15,6 +15,4 @@ select type(a)
  else error('(a,c) pair or syslin list')
 end;
 o=c;for k=1:n-1, o=[c;o*a],end
-
-
-
+endfunction

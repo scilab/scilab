@@ -60,3 +60,4 @@ i=i+1;
 end
 if flag==1 then
  Ws=ss2tf(Ws);Stmp=ss2tf(Stmp);end
+endfunction

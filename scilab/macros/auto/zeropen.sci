@@ -11,4 +11,4 @@ BD=[B;D];
 [U,rk]=rowcomp(BD);U=[U(rk+1:n,:);U(1:rk,:)];
 W=U*([-s*eye()+A;C])
 Z=W(1:n-rk,:);
-
+endfunction

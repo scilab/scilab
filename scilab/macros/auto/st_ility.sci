@@ -34,7 +34,4 @@ if n<>na then
 end;
 //
 if lhs==4 then sl=syslin(dom,a,b,c,d,x0),end
-
-
-
-
+endfunction

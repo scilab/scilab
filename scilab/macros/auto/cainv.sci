@@ -85,10 +85,4 @@ X=[X(:,n4),X(:,n3),X(:,n2),X(:,n1)];
 J=F';Z=Z';Y=U';Y=[Y(k+1:$,:);Y(1:k,:)];
 return;
 end
-
-
-
-
-
-
-
+endfunction

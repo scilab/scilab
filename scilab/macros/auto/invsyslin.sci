@@ -13,6 +13,4 @@ a=t(2)-t(3)*d*t(4);
 b=t(3)*d;
 c=-d*t(4);
 it=syslin(t(7),a,b,c,d,t(6));
-
-
-
+endfunction

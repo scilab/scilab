@@ -40,7 +40,4 @@ else
     if k<>[] then phi(l,k)=phi(l,k)-360*ones(k),end
   end
 end
-
-
-
-
+endfunction

@@ -141,6 +141,4 @@ case 'pp'
 	dims=[dimR,dimR+nc2,dimR+ns2];
 end
 Z=syslin(timedomain,A+B*F,B*U,F,U);
-
-
-
+endfunction

@@ -26,6 +26,4 @@ ad=a\(2*fs*eye()+s(2))
 b=(ad+eye())/a*s(3);
 d=s(5)+s(4)/a*s(3)
 s1=syslin('d',ad,b,s(4),d,s(6))
-
-
-
+endfunction

@@ -254,9 +254,10 @@ if pixmap then xset('wshow'),end
 end
 
   
+endfunction
 function [x,k]=gunique(x)
     [x,k]=gsort(x);
     keq=find(x(2:$)==x(1:$-1))
     x(keq)=[]
     k(keq)=[]
-
+endfunction

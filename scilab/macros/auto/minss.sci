@@ -28,4 +28,4 @@ u=u2(:,1:no)
 a=u'*a*u;b=u'*b;c=c*u
 if lhs==1 then Slmin=syslin(dom,a,b,c,d,u'*x0),end
 //Would be nice to return U=U1*U2
-
+endfunction

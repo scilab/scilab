@@ -118,4 +118,4 @@ for n=bs',
 end;
 if imp==0 then y=c*x+d*ut,else y=c*x,end
 if lhs==2 then x=v*x,end
-
+endfunction

@@ -32,6 +32,4 @@ P=syslin(dom,A,real([B1,B2]),real([C1;C2]),real([D11,D12;D21,D22]));
 m=size(C2*B2);
 if flag==1 then
 P=ss2tf(P);end
-
-
-
+endfunction

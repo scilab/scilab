@@ -5,6 +5,4 @@ t=chol(q);
 s=diag(s);
 ll=ones(s)./sqrt(sqrt(s));
 t=diag(ll)*u'*t
-
-
-
+endfunction

@@ -29,7 +29,4 @@ if rhs==3 then
   r=f*s(1:n1,n1+1:n1+n1),
 end;
 f=syslin(dt,f,g,c,d,x0)
-
-
-
-
+endfunction

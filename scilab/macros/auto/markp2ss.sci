@@ -23,3 +23,4 @@ end;
 obs=u(:,1:deg);con=s*v(1:deg,:)';
 obstild=obs(nout+1:n*nout,:);obstild(n*nout,deg)=0;
 Sl=syslin('c',obs'*obstild,con(1:deg,1:nin),obs(1:nout,:))
+endfunction

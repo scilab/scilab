@@ -43,4 +43,4 @@ end;
 
 [y,k]=sort(y)
 R=R(k)
-
+endfunction

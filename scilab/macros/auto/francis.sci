@@ -26,5 +26,4 @@ rhs=[0*ones(n*d,1);matrix(G,size(G,'*'),1)];
 TL=Mat\rhs;
 T=Tl(1:n*d);T=matrix(T,n,d);
 L=TL(n*d+1:n*d+mm*d);L=matrix(L,mm,d);
-
-
+endfunction

@@ -27,3 +27,4 @@ else
   w=w($-1:-2:1)
 end
 fr=w/(2*%pi)
+endfunction

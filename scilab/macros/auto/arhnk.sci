@@ -58,3 +58,4 @@ if m<n then
 end;
 //
 slm=syslin('c',a,b,c,d,0*ones(m,1));
+endfunction

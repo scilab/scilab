@@ -66,6 +66,4 @@ select flag(1)
     y=y(:,1:min(mu,l));
   else error(97,2)
 end;
-
-
-
+endfunction

@@ -115,6 +115,8 @@ state('outtb')(pointi)=U;
 XP=state('x');
 Y=state('outtb')(pointo);
 
+endfunction
+
 function [f,g,ind]=cost(ux,ind)
 state;
 X;
@@ -132,6 +134,4 @@ f=.5*(norm(xp,2)+norm(err,2));
 sys=lincos(scs_m,X,U,param)
 g=xp'*[sys('B')(:,Indu) sys('A')(:,Indx)]-..
     err'*[sys('D')(:,Indu) sys('C')(:,Indx)];
-
-
-
+endfunction

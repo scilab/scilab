@@ -86,6 +86,4 @@ else error(97,1),
 end;
 //representation
 if lhs==1 then frq=rep,end
-
-
-
+endfunction

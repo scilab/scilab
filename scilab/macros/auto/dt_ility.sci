@@ -16,15 +16,4 @@ end
 u2=[u1(:,n1+1:nx),u1(:,n2+1:n1),u1(:,1:n2)];
 sl2=ss2ss(sl,u2);
 m1=nx-n1;m2=nx-n2;
-
-
-
-
-
-
-
-
-
-
-
-
+endfunction

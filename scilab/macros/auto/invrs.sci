@@ -23,5 +23,4 @@ if Sli(2)~=[] then Sli(2)=Sli(2)+alfa*eye();end
 if type(Sli(5))==2 then 
   Sli(5)=horner(Sli(5),s-alfa);
 end
-
-
+endfunction

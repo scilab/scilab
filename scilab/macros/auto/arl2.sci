@@ -13,4 +13,4 @@ end;
 if lhs<=1 then
   den=syslin('d',num,den);
 end
-
+endfunction

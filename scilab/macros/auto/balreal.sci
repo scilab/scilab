@@ -22,7 +22,4 @@ b=diag(ll)*b
 c=c*diag(lli)
 slb=syslin(dom,a,b,c,d,diag(ll)*r*x0),
 if lhs==2 then u=ri*diag(lli),end
-
-
-
-
+endfunction

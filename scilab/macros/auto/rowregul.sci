@@ -8,4 +8,4 @@ function [Stmp,Ws]=rowregul(Sl,alfa,beta);
 // Copyright INRIA
 [Stmp,Ws]=colregul(Sl',alfa,beta);
 Stmp=Stmp';Ws=Ws';
-
+endfunction

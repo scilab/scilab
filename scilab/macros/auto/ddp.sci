@@ -65,6 +65,7 @@ D22=Sys('D');D22=D22(not_zeroed,:);D21=D21+D22*G;
 Closed=syslin(Sys('dt'),A11,B11,C21,D21);
 
 
+endfunction
 function G=lowlev()
 ww=[B21 B22;D11 D12];
 [xx,dd]=colcomp(ww);
@@ -78,4 +79,4 @@ if rcond(Kup) <= 1.d-10 then
 end
 K1=K*inv(Kup);   //test conditioning here!
 G=K1(size(K,2)+1:$,:);
-
+endfunction

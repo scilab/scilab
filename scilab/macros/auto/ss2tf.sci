@@ -113,3 +113,4 @@ case 'p' then
  if type(w)==1 then h=w;return;end   //degenerate case
  h=syslin(domaine,w);
 end
+endfunction

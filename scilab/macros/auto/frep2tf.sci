@@ -32,7 +32,7 @@ for k=1:N
   err=err1;
   write(%io(2),'iteration '+string(k+1)+', error='+string(err1));
 end
-
+endfunction
 
 function [h,err]=frep2tf_b(frq,repf,dg,dom,weight)
 // steer, jpc, fd 1997 (Nov)
@@ -109,7 +109,7 @@ if lhs==2 then
  repf1=repfreq(h,frq);
  err = sum(abs(repf1(:)-repf(:)))/n;
 end
-
+endfunction
 
 function [x]=LSC(A,L,c)
 // Ax=0 Least sq. + Lx = c
@@ -122,5 +122,4 @@ x2=inv(LW(:,$-rk+1:$))*c
 b= -A2*x2
 x1=A1\b
 x=W*[x1;x2]
-
- 
+endfunction

@@ -11,6 +11,4 @@ function [dim,x]=unobs(A,C,tol)
 [n,w]=contr(A',C',tol);
 x=[w(:,n+1:p),w(:,1:n)];
 dim=p-n;
-
-
-
+endfunction

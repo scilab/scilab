@@ -89,4 +89,4 @@ select RHS
 	  left=syslin(Sl(7),At+G*Ct,[G,-G],Ct,[eye(Ct*G),zeros(Ct*G)]);
 	end 
 end
-
+endfunction

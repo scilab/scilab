@@ -53,5 +53,4 @@ F=stabil(A1,B1,al);
 G=stabil(A1',C1',be);G=G';
 F=obscont(Sys,F,G);
 end
-
-
+endfunction

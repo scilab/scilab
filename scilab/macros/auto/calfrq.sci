@@ -259,5 +259,4 @@ while i<nfrq
 end
 frq( size(frq,'*') )=fmax
 frq=frq/c;
-
-
+endfunction

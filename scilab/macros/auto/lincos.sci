@@ -142,5 +142,4 @@ for i=1:nx+nu
   F(:,i)=(zo-zo0)/del(i);
 end  
 sys=syslin('c',F(1:nx,1:nx),F(1:nx,nx+1:nx+nu),F(nx+1:nx+ny,1:nx),F(nx+1:nx+ny,nx+1:nx+nu));
-
-
+endfunction

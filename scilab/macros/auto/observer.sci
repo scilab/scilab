@@ -80,3 +80,4 @@ Do=D;
   Obs=syslin(td,F,G,eye(Ao));
   return;
 end
+endfunction

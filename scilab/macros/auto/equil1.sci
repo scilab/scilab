@@ -42,6 +42,4 @@ t4=[diag(sqrt(sigma1))  0*ones(nq,n-nq);
     0*ones(n-np,np)               u']
 t=t4*t3*t2*t1
 siz=[nq,np-nq,n3]
-
-
-
+endfunction

@@ -23,6 +23,4 @@ f=freq(n,d,%i*ws);
 phm=atan(imag(f),real(f))
 phm=180*phm(:)/%pi 
 fr=real(ws)/(2*%pi) 
-
-
-
+endfunction

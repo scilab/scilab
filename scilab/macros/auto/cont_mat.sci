@@ -20,6 +20,4 @@ select type(a)
  else error('a,b pair or syslin list')
 end;
 c=b;for k=1:n-1, c=[b,a*c],end
-
-
-
+endfunction

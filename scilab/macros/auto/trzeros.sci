@@ -78,4 +78,4 @@ finitepencil=Q(ix,:)*syst_matrix*Z(:,iy);
 [E,A]=pen2ea(finitepencil);
 [nt,dt]=gspec(A,E);rk=[];
 if LHS==1 then nt=nt./dt;dt=[];rk=[];end;
-
+endfunction

@@ -32,4 +32,4 @@ end
 //[X,d,F,U,k,Z]=abinv(Sys);
 //ss2tf(Sys*Z)
 //ss2tf(Sys*sysfact(Sys,F,'post')*U)
-
+endfunction

@@ -81,6 +81,7 @@ disp(norm([eye(size(N,1),size(N,1)),N]*[C11,D11;C21,D21]));
 D12=D1(:,not_reject);C12=C1new(:,ns+1:$);
 UIobs('C')=[C12+N*C22];UIobs('D')=[D12+N*D22,-N];
 
+endfunction
 function N=lowlevel()
 ww=[C11 D11;C21 D21];
 [xx,dd]=rowcomp(ww);
@@ -96,6 +97,4 @@ if rcond(Kleft) <= 1.d-10 then
 end
 K1=inv(Kleft)*K;   //test conditioning here!
 N=K1(:,size(K,1)+1:$)
-
-
-
+endfunction

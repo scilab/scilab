@@ -24,5 +24,4 @@ B=coeff(sysmat(1:n,n+1:nc),0);
 C=coeff(sysmat(n+1:nl,1:n),0);
 D=coeff(sysmat(n+1:nl,n+1:nc),0);
 des=tlist(['des','A','B','C','D','E'],A,B,C,D,E);
-
-
+endfunction

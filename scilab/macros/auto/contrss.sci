@@ -15,6 +15,4 @@ if rhs>2 then error('1 or 2 inputs to contrss : sl [,tol]')
 u=u(:,1:nc)
 a=u'*a*u;b=u'*b;c=c*u
 slc=syslin(dom,a,b,c,d,u'*x0)
-
-
-
+endfunction

@@ -52,4 +52,4 @@ err=norm(Wplant*[T,zeros(nf,num);
                  L,M]-[T,zeros(nf,lc);
                        zeros(lc,na),eye(lc,lc)]*Wmodel,1);
 if err > 1.d-5 then warning('Francis equations not satisfied!');end
-
+endfunction
