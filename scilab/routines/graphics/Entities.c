@@ -16895,7 +16895,7 @@ sciPointObj *sciGetMerge(sciPointObj *psubwin)
 int InitFigureModel()
 { 
   int i, m = NUMCOLORS_SCI;
-  sciPointObj *pfiguremdl = (sciPointObj *) NULL;/* DJ.A 08/01/04 */
+  /*sciPointObj *pfiguremdl = (sciPointObj *) NULL;*//* DJ.A 08/01/04 */
 
   sciInitGraphicContext (pfiguremdl);
   sciInitGraphicMode (pfiguremdl);
