@@ -27,7 +27,6 @@ function k=ge_getarc(GraphList,pt)
     RX=1.2*h/2;RY=h/2;
 
     d=abs(((pt(1)-x1)./RX)^2+((pt(2)-y1-RY)./RY)^2-1)
-    disp(d)
     [m,k]=mini(d)
     if m<0.3 then
       k=loops(jj(k));break
