@@ -880,10 +880,7 @@ EventProc1(widget, number, event)
       if ( event1->count == 0) 
 	{
 	  FDEBUG((stderr,"Expose--> scig_replay or wshow \r\n")); 
-	  if (version_flag() == 0) /* NG */
-	    sciRedrawF(&win_num); /* NG */
-	  else /* NG */
-	    scig_expose(win_num);
+	  scig_expose(win_num);
 	  ignore_expose(widget,&event2);
 	}
       break;
@@ -896,7 +893,7 @@ EventProc1(widget, number, event)
       if (version_flag() == 0) /* NG */
        sciRedrawF(&win_num); /* NG */
       else /* NG */
-	scig_replay(win_num);
+      scig_replay(win_num);
       /** I ignore the following expose events **/
       ignore_expose(widget,&event2);
       ignore_StructureNotify(widget,&event2);
