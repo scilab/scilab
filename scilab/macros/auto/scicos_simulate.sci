@@ -31,6 +31,12 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
 // list of blocks to ignore (blocks using graphics) in nw mode
   Ignoreb=['cscope','cmscope','scope','mscope','scopexy','evscpe','affich']
   //
+  //redefine gui functions
+  prot=funcprot();funcprot(0);
+  deff('disablemenus()',' ')
+  deff('enablemenus()',' ')
+  funcprot(prot) 
+  
   if argn(2)==3 then
     if type(%scicos_context)==10&(stripblanks(%scicos_context)=='nw') then
       Ignore=Ignoreb
@@ -167,11 +173,3 @@ function [alreadyran,%cpr]=do_terminate1(scs_m,%cpr)
     end    
   end
 endfunction
-
-function disablemenus()
-endfunction
-
-function enablemenus()
-endfunction
-
-
