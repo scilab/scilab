@@ -42,15 +42,17 @@
     are case-sensitive. The subkey and valname arguments are not.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
-lines(-1);
-mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
-len=size(mousechar);
-for k=1:len(1)
-   setting = winqueryreg('HKEY_CURRENT_USER','control panel\mouse', mousechar(k));
-   if (mousechar(k)=='') then mousechar(k)='default';,end
-   str = sprintf('%s = %s', mousechar(k), string(setting));
-   disp(str);
+  <EXAMPLE><![CDATA[if MSDOS then
+  winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
+  lines(-1);
+  mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
+  len=size(mousechar);
+  for k=1:len(1)
+     setting = winqueryreg('HKEY_CURRENT_USER','control panel\mouse', mousechar(k));
+     if (mousechar(k)=='') then mousechar(k)='default';,end
+     str = sprintf('%s = %s', mousechar(k), string(setting));
+     disp(str);
+  end
 end]]></EXAMPLE>
 
   <AUTHORS>
