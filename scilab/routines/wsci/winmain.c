@@ -75,6 +75,8 @@ void WinExit (void);
 
 extern void C2F (getwins) (integer *, integer *, integer *);
 extern void C2F (diary) (char *, int *, int);
+extern void set_sci_env(char *p, char *wsci) ;
+
 static void AllGraphWinDelete ();
 static int startupf = 0; /** 0 if we execute startup else 1 **/
 static int nointeractive = 0;
@@ -159,9 +161,8 @@ EXPORT int CALLBACK  ShutDown (void)
 
 static void SciEnv ()
 {
-  char *p, *p1;
   char modname[MAX_PATH + 1];
-  char env[MAX_PATH + 1 + 10];
+  char *p;
   if (!GetModuleFileName (NULL, modname + 1, MAX_PATH))
     return;
   if ((p = strrchr (modname + 1, '\\')) == NULL)
@@ -192,60 +193,71 @@ static void SciEnv ()
 #else
       p = modname + 1;
 #endif
-      if ((p1 = getenv ("SCI")) == (char *) 0)
+      set_sci_env(p,(char *) 0);
+    }
+}
+
+/*----------------------------------------------------
+ * set env variables (used when calling scilab from 
+ * other programs)
+ *----------------------------------------------------*/
+
+void set_sci_env(char *p, char *wsci) 
+{
+  char *p1;
+  char env[MAX_PATH + 1 + 10];
+  if ((p1 = getenv ("SCI")) == (char *) 0)
+    {
+      sprintf (env, "SCI=%s",p);
+      putenv (env);
+    }
+  if ((p1 = getenv ("HOME")) == (char *) 0)
+    {
+      sprintf (env, "HOME=%s", p);
+      putenv (env);
+    }
+  if ((p1 = getenv ("PWD")) == (char *) 0)
+    {
+      sprintf (env, "PWD=%s", p);
+      putenv (env);
+    }
+  /** for PVM **/
+  for (p1 = p; *p1; p1++)
+    {
+      if (*p1 == '/')
+	*p1 = '\\';
+    }
+  if ((p1 = getenv ("PVM_ROOT")) == (char *) 0)
+    {
+      sprintf (env, "PVM_ROOT=%s\\pvm3", p);
+      putenv (env);
+    }
+  if ((p1 = getenv ("PVM_ARCH")) == (char *) 0)
+    {
+      sprintf (env, "PVM_ARCH=WIN32");
+      putenv (env);
+    }
+  if ((p1 = getenv ("PVM_TMP")) == (char *) 0)
+    {
+      if ((p1 = getenv ("TEMP")) == (char *) 0)
 	{
-	  sprintf (env, "SCI=%s", p);
+	  sprintf (env, "PVM_TMP=c:\\tmp");
 	  putenv (env);
 	}
-      if ((p1 = getenv ("HOME")) == (char *) 0)
+      else
 	{
-	  sprintf (env, "HOME=%s", p);
+	  sprintf (env, "PVM_TMP=%s", p1);
 	  putenv (env);
 	}
-      if ((p1 = getenv ("PWD")) == (char *) 0)
-	{
-	  sprintf (env, "PWD=%s", p);
-	  putenv (env);
-	}
-      if ((p1 = getenv ("MANCHAPTERS")) == (char *) 0)
-	{
-	  sprintf (env, "MANCHAPTERS=%s/man/Chapters", p);
-	  putenv (env);
-	}
-      /** for PVM **/
-      for (p1 = p; *p1; p1++)
-	{
-	  if (*p1 == '/')
-	    *p1 = '\\';
-	}
-      if ((p1 = getenv ("PVM_ROOT")) == (char *) 0)
-	{
-	  sprintf (env, "PVM_ROOT=%s\\pvm3", p);
-	  putenv (env);
-	}
-      if ((p1 = getenv ("PVM_ARCH")) == (char *) 0)
-	{
-	  sprintf (env, "PVM_ARCH=WIN32");
-	  putenv (env);
-	}
-      if ((p1 = getenv ("PVM_TMP")) == (char *) 0)
-	{
-	  if ((p1 = getenv ("TEMP")) == (char *) 0)
-	    {
-	      sprintf (env, "PVM_TMP=c:\\tmp");
-	      putenv (env);
-	    }
-	  else
-	    {
-	      sprintf (env, "PVM_TMP=%s", p1);
-	      putenv (env);
-	    }
-	}
-      if ((p1 = getenv ("WSCI")) == (char *) 0)
-	{
-	  sprintf (env, "WSCI=%s", p);
-	  putenv (env);
-	}
+    }
+  if ((p1 = getenv ("WSCI")) == (char *) 0)
+    {
+      if ( wsci != NULL) 
+	sprintf (env, "WSCI=%s", wsci);
+      else 
+	sprintf (env, "WSCI=%s", p);
+      putenv (env);
+    }
 #ifdef __MSC__
       putenv ("COMPILER=VC++");
 #endif
@@ -256,8 +268,9 @@ static void SciEnv ()
       putenv ("COMPILER=ABSOFT");
 #endif
       putenv ("WIN32=OK");
-    }
 }
+
+
 
 /*---------------------------------------------------
  * platform flag 

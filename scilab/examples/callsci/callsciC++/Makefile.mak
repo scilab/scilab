@@ -22,7 +22,7 @@ clean	::
 
 distclean:: clean 
 	@del $(SCIDIR1)\bin\prog.*
-	@del libod_ex.* loader.sce 
+	@del libod_ex.* loader.sce Makelib.mak
 
 RESOURCES= $(SCIDIR)/routines/wsci/Rscilab.res 
 
