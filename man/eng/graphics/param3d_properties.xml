@@ -107,13 +107,9 @@
    a=get("current_axes");//get the handle of the newly created axes
    t=[0:0.1:5*%pi]';
    param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
- 
    h=a.children //get the handle of the param3d entity
-   h.rotation_angles=[65,75];
-   h.surface_color=[3 5];
-   h.flag=[1,2,3];
+   a.rotation_angles=[65,75]; 
    h.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
-   h.flag=[2 5 0];
    h.thickness = 2;
   
  ]]>
