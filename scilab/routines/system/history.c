@@ -87,7 +87,7 @@ struct hist * SearchBackwardInHistory(char *line)
 		Parcours=history;
 	}
 	
-	while (Parcours->prev)
+	while (Parcours)
 	{
 		int len=strlen(line);
 		strncpy(LineComp,Parcours->line,len);
@@ -127,7 +127,7 @@ struct hist * SearchForwardInHistory(char *line)
 		Parcours=history;
 	}
 	
-	while (Parcours->next)
+	while (Parcours)
 	{
 		int len=strlen(line);
 		strncpy(LineComp,Parcours->line,len);

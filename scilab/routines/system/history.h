@@ -37,9 +37,9 @@ struct hist
 /*-----------------------------------------------------------------------------------*/
 struct hist *history = NULL;	/* no history yet */
 struct hist *cur_entry = NULL;
+struct hist *research_knot_last = NULL;/* Use for SearchInHistory --> ! */
 
-/* Use for SearchInHistory --> ! */
-static struct hist *research_knot_last = NULL;
+
 BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
 
 /*-----------------------------------------------------------------------------------*/
