@@ -4083,10 +4083,10 @@ c
             lhsvar(3)=3
             lhsvar(4)=4
          endif
+         return
       elseif(N.eq.-1) then
          err=1
          call error(271)
-         return
          return
       endif
       if(.not.getrhsvar(3,'c', mr, mc, lc)) return
