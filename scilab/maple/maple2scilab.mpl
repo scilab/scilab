@@ -421,7 +421,7 @@ end:
   d := length(stro) + l - (maxl - 2);
   if d <= 0 then _scilab_buffer := cat(_scilab_buffer,e);
   else
-    if substring(e,l-d)=`.` then
+    if l<>d and substring(e,l-d)=`.` then
       # problem if we cut at a point
       _scilab_buffer := cat(stro,substring(e,1..l-d-1),`..`);
       `maple2scilab/lprint`(_scilab_buffer);
