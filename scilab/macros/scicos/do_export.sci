@@ -27,7 +27,9 @@ function do_export(scs_m,fname)
   if num<>2 then xinit(fname);end
 
   options=scs_m.props.options
-
+  if ~set_cmap(options('Cmap')) then // add colors if required
+    options('3D')(1)=%f //disable 3D block shape
+  end
   set_background()
 
 
