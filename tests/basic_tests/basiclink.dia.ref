@@ -25,9 +25,7 @@ if ~c_link('foo') then
    building shared library (be patient)
   exec loader.sce ;
 shared archive loaded
-
 Link done
-
   chdir(path)
  ans  =
  
@@ -60,7 +58,6 @@ if ~c_link('libintertest') then
   // load the shared library
   exec loader.sce ;
 shared archive loaded
-
   if norm(scifun1(%pi)- sin(%pi+1)/%pi ) > %eps then pause;end
 end
  
