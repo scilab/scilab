@@ -17396,13 +17396,13 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 
   zmin=  pSUBWIN_FEATURE (psubwin)->FRect[4];
   zmax= pSUBWIN_FEATURE (psubwin)->FRect[5];
-  if ((polyx=(int *)MALLOC(max_p*sizeof(int)))==(int *) NULL) {
+  if ((polyx=(int *)MALLOC((max_p+1)*sizeof(int)))==(int *) NULL) {
     FREE(dist);FREE(locindex);
     Scistring("DrawMerge3d : malloc No more Place\n");
 
     return;
   }
-  if ((polyy=(int *)MALLOC(max_p*sizeof(int)))==(int *) NULL) {
+  if ((polyy=(int *)MALLOC((max_p+1)*sizeof(int)))==(int *) NULL) {
     FREE(dist);FREE(locindex);
     Scistring("DrawMerge3d : malloc No more Place\n");
     return;
