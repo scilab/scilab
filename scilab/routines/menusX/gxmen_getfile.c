@@ -15,34 +15,24 @@
 
 #include "men_scilab.h"
 
-extern int set_cmap __PARAMS((Window w)); 
-extern void DisplayInit __PARAMS((char *string,Display **dpy,Widget *toplevel));
-extern int ok_prep  __PARAMS((char *filemask,char *dirname,char *title,int flag,int *err));
-extern int ok_end  __PARAMS((void));
-extern int w_init  __PARAMS((  Widget w));
-extern int set_temp_wf_cursor __PARAMS((Cursor cursor));
-extern void Rescan    __PARAMS( (Widget widget, XEvent*	event,
-				String* params,    Cardinal* num_params));
-extern int reset_wf_cursor  __PARAMS((void));
-extern int create_file_panel  __PARAMS((  Widget w, char * description));
-extern int getMenuBut0  __PARAMS((  Widget *w));
-
 extern void C2F(cvstr)();
 
 /*--------------------------------------------------------------
- * Gtk version 
+ * Gtk version for scilab file selection 
+ * GtkFileSelection
  *--------------------------------------------------------------*/
 
-
-/*
- * GtkFileSelection
- */
-
-typedef enum { OK, CANCEL , RESET } state; 
+typedef enum { OK, CANCEL , DESTROY, RESET } state; 
 
 static void file_selection_ok (GtkWidget  *w,  state *rep)
 {
   *rep = OK;
+  gtk_main_quit();
+}
+
+static void file_selection_destroy (GtkWidget  *w,  state *rep)
+{
+  *rep = DESTROY;
   gtk_main_quit();
 }
 
@@ -58,37 +48,37 @@ static void file_selection_cancel (GtkWidget *w,  state *rep)
 
 int GetFileWindow(char *filemask,char **file,char *dirname,int flag,int *ierr,char *title)
 {
+  guint signals[3];
   static state rep;
   GtkWidget *window;
   rep =RESET ;
   window = gtk_file_selection_new (title);
 
-  gtk_file_selection_set_filename (GTK_FILE_SELECTION (window),dirname);
-
+  if ( strcmp(dirname,".") == 0) 
+    gtk_file_selection_set_filename (GTK_FILE_SELECTION (window),"");
+  else 
+    gtk_file_selection_set_filename (GTK_FILE_SELECTION (window),dirname);
   gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_MOUSE);
-  gtk_signal_connect (GTK_OBJECT (window), "destroy",
-		      GTK_SIGNAL_FUNC(file_selection_cancel),
+  signals[0]=gtk_signal_connect (GTK_OBJECT (window), "destroy",
+		      GTK_SIGNAL_FUNC(file_selection_destroy),
 		      &rep);
 
-  gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (window)->ok_button),
+  signals[1]=gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (window)->ok_button),
 		      "clicked", GTK_SIGNAL_FUNC(file_selection_ok),
 		      &rep);
   
-  gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (window)->cancel_button),
+  signals[2]=gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (window)->cancel_button),
 		      "clicked", GTK_SIGNAL_FUNC(file_selection_cancel),
 		      &rep);
   gtk_widget_show (window);
   while (1) 
     {
       gtk_main();
+      /* want to quit the gtk_main only when this getfile is achieved 
+       */
       if ( rep != RESET ) break;
     }
-  if ( rep == CANCEL ) 
-    {
-      gtk_widget_destroy(window);
-      return(FALSE);
-    }
-  else
+  if ( rep == OK ) 
     {
       char *loc = gtk_file_selection_get_filename(GTK_FILE_SELECTION(window));
       if (( *file = (char *) MALLOC((strlen(loc)+1)*sizeof(char))) == NULL) 
@@ -101,7 +91,16 @@ int GetFileWindow(char *filemask,char **file,char *dirname,int flag,int *ierr,ch
 	  strcpy(*file,loc);
 	  *ierr=0;
 	}
-      gtk_widget_destroy(window);
-      return TRUE;
     }
+  /* since here we are no more in a gtk_main we must disconnect signals 
+   * before destroying widget window 
+   */
+  if ( rep != DESTROY ) 
+    {
+      gtk_signal_disconnect(GTK_OBJECT(window),signals[0]);
+      gtk_signal_disconnect(GTK_OBJECT (GTK_FILE_SELECTION (window)->ok_button),signals[1]);
+      gtk_signal_disconnect(GTK_OBJECT (GTK_FILE_SELECTION (window)->cancel_button),signals[2]);
+      gtk_widget_destroy(window);
+    }
+  return (rep == OK) ? TRUE : FALSE ; 
 }
