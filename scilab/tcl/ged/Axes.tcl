@@ -1,5 +1,15 @@
+set pwd [pwd]
+cd [file dirname [info script]]
+variable DEMODIR [pwd]
+cd $pwd
 
-#  set env(SCIPATH) "~/scilab/"
+
+
+variable DEMODIR
+
+lappend ::auto_path [file dirname  "$env(SCIPATH)/tcl/BWidget-1.7.0"]
+namespace inscope :: package require BWidget
+package require BWidget
 
 set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
 
@@ -86,13 +96,35 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
-wm geometry $ww 650x700
+wm geometry $ww 530x750
+#wm geometry $ww 650x700
 #wm maxsize  $ww 450 560
 
 
-set w $ww
-frame $w.frame -borderwidth 0
-pack $w.frame -anchor w -fill both
+set topf  [frame $ww.topf]
+set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
+
+set parent  [$titf1 getframe]
+set pw1  [PanedWindow $parent.pw -side top]
+set pane3  $pw1  
+
+
+
+# Make a frame scrollable
+
+set sw [ScrolledWindow $pane3.sw -relief sunken -borderwidth 2]
+# pack $sw -in .sw -fill both -expand true 
+set sf [ScrollableFrame $sw.f]
+$sw setwidget $sf
+set uf [$sf getframe]
+
+set w $uf
+set fra [frame $w.frame -borderwidth 0]
+pack $fra  -anchor w -fill both
+
+#set w $ww
+#frame $w.frame -borderwidth 0
+#pack $w.frame -anchor w -fill both
 
 #Hierarchical selection
 set lalist ""
@@ -106,30 +138,36 @@ set curgedobject $SELOBJECT($curgedindex)
 
 
 #Hiereachical viewer
-frame $w.frame.view  -borderwidth 0
-pack $w.frame.view  -in $w.frame  -side top  -fill x
+set fra [frame $w.frame.view  -borderwidth 0]
+pack $fra -in $w.frame  -side top  -fill x
+#frame $w.frame.view  -borderwidth 0
+#pack $w.frame.view  -in $w.frame  -side top  -fill x
 
-label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 
-combobox $w.frame.selgedobject \
-    -borderwidth 2 \
-    -highlightthickness 3 \
-    -maxheight 0 \
-    -width 3 \
-    -textvariable curgedobject \
-    -editable false \
-    -background white \
-    -command [list SelectObject ]
+#label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 
+set lab [label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 ]
+pack $lab -in $w.frame.view   -side left
+
+set comb [ combobox $w.frame.selgedobject \
+	       -borderwidth 2 \
+	       -highlightthickness 3 \
+	       -maxheight 0 \
+	       -width 3 \
+	       -textvariable curgedobject \
+	       -editable false \
+	       -background white \
+	       -command [list SelectObject ]]
+pack $comb  -in $w.frame.view  -fill x
 eval $w.frame.selgedobject list insert end $lalist
-pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
-pack $w.frame.selgedobject   -in $w.frame.view   -fill x
+#pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
+#pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
-Notebook:create .axes.n -pages {X Y Z Title Style Aspect Viewpoint} -pad 20 
-pack .axes.n -fill both -expand 1
+Notebook:create $uf.n -pages {X Y Z Title Style Aspect Viewpoint} -pad 20   -height 600 -width 430
+pack $uf.n -fill both -expand yes
 
 
 ########### X onglet ##############################################
 ###################################################################
-set w [Notebook:frame .axes.n X]
+set w [Notebook:frame $uf.n X]
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
@@ -245,6 +283,10 @@ pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left
 pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
 
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both -pady 25m  
+
 #exit button
 frame $w.buttons
 button $w.b -text Quit -command "destroy $ww"
@@ -252,7 +294,7 @@ pack $w.b -side bottom
 
 ########### Y onglet ##############################################
 ###################################################################
- set w [Notebook:frame .axes.n Y]
+ set w [Notebook:frame $uf.n Y]
 
 
 frame $w.frame -borderwidth 0
@@ -372,6 +414,10 @@ pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left
 pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
 
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both -pady 25m  
+
 #exit button
 frame $w.buttons
 button $w.b -text Quit -command "destroy $ww"
@@ -379,7 +425,7 @@ pack $w.b -side bottom
 
 ########### Z onglet ##############################################
 ###################################################################
- set w [Notebook:frame .axes.n Z]
+ set w [Notebook:frame $uf.n Z]
 
 
 frame $w.frame -borderwidth 0
@@ -496,6 +542,10 @@ bind  $w.frame.databmax <Return> {setZdb}
 #pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
 #pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
 
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both -pady 37m  
+
 #exit button
 frame $w.buttons
 button $w.b -text Quit -command "destroy $ww"
@@ -503,7 +553,7 @@ pack $w.b -side bottom
 
 ########### Title onglet ##############################################
 ###################################################################
- set w [Notebook:frame .axes.n Title]
+ set w [Notebook:frame $uf.n Title]
 
 
 frame $w.frame -borderwidth 0
@@ -564,6 +614,10 @@ pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst  -expand 1 -fill x -pady 2m -padx 2m
 
 
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both -pady 50m  
+
 #exit button
 frame $w.buttons
 button $w.b -text Quit -command "destroy $ww"
@@ -572,7 +626,7 @@ pack $w.b -side bottom
 
 ########### Style onglet ##########################################
 ###################################################################
-set w [Notebook:frame .axes.n Style]
+set w [Notebook:frame $uf.n Style]
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
@@ -695,6 +749,10 @@ pack $w.frame.linestylelabel -in $w.frame.linest   -side left
 pack $w.frame.linestyle   -in $w.frame.linest   -expand 1 -fill x -pady 2m -padx 2m
 
 
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both -pady 20m  
+
 #exit button
 frame $w.buttons
 button $w.b -text Quit -command "destroy $ww"
@@ -702,7 +760,7 @@ pack $w.b -side bottom
 
 ########### Aspect onglet #########################################
 ###################################################################
-set w [Notebook:frame .axes.n Aspect]
+set w [Notebook:frame $uf.n Aspect]
 
 frame $w.frame -borderwidth 0
 pack $w.frame  -anchor w -fill both
@@ -884,6 +942,10 @@ bind  $w.frame.datamargt <Return> {SelectMargins}
 bind  $w.frame.datamargb <Return> {SelectMargins}
 
 
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both  
+
 #exit button
 frame $w.buttons
 button $w.b -text Quit -command "destroy $ww"
@@ -892,7 +954,7 @@ pack $w.b -side bottom
 
 ########### Viewpoint onglet ######################################
 ###################################################################
-set w [Notebook:frame .axes.n Viewpoint]
+set w [Notebook:frame $uf.n Viewpoint]
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
@@ -923,10 +985,20 @@ bind  $w.frame.rottheta <Return> {setThetaAngle}
 
 
 
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both  -pady 60m
+
 #exit button
 frame $w.buttons
 button $w.b -text Quit -command "destroy $ww"
 pack $w.b -side bottom
+
+
+
+pack $sw $pw1 -fill both -expand yes
+pack $titf1 -padx 4 -side left -fill both -expand yes
+pack $topf -fill both -pady 2 -expand yes
 
 
 

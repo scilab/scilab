@@ -1,3 +1,16 @@
+set pwd [pwd]
+cd [file dirname [info script]]
+variable DEMODIR [pwd]
+cd $pwd
+
+
+
+variable DEMODIR
+
+lappend ::auto_path [file dirname  "$env(SCIPATH)/tcl/BWidget-1.7.0"]
+namespace inscope :: package require BWidget
+package require BWidget
+
 
 set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
 
@@ -25,11 +38,35 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Figure Editor"
 wm iconname $ww "FE"
-wm geometry $ww 650x700
+wm geometry $ww 690x650
 
-set w $ww
-frame $w.frame -borderwidth 0
-pack $w.frame -anchor w -fill both
+
+set topf  [frame $ww.topf]
+set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
+
+set parent  [$titf1 getframe]
+set pw1  [PanedWindow $parent.pw -side top]
+set pane3  $pw1  
+
+
+
+# Make a frame scrollable
+
+set sw [ScrolledWindow $pane3.sw -relief sunken -borderwidth 2]
+# pack $sw -in .sw -fill both -expand true 
+set sf [ScrollableFrame $sw.f]
+$sw setwidget $sf
+set uf [$sf getframe]
+
+
+
+set w $uf
+set fra [frame $w.frame -borderwidth 0]
+pack $fra  -anchor w -fill both
+
+#set w $ww
+#frame $w.frame -borderwidth 0
+#pack $w.frame -anchor w -fill both
 
 #Hierarchical selection
 set lalist ""
@@ -43,29 +80,35 @@ set curgedobject $SELOBJECT($curgedindex)
 
 
 #Hiereachical viewer
-frame $w.frame.view  -borderwidth 0
-pack $w.frame.view  -in $w.frame  -side top  -fill x
+set fra [frame $w.frame.view  -borderwidth 0]
+pack $fra -in $w.frame  -side top  -fill x
+#frame $w.frame.view  -borderwidth 0
+#pack $w.frame.view  -in $w.frame  -side top  -fill x
 
-label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 
-combobox $w.frame.selgedobject \
-    -borderwidth 2 \
-    -highlightthickness 3 \
-    -maxheight 0 \
-    -width 3 \
-    -textvariable curgedobject \
-    -editable false \
-    -background white \
-    -command [list SelectObject ]
+#label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 
+set lab [label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 ]
+pack $lab -in $w.frame.view   -side left
+
+set comb [combobox $w.frame.selgedobject \
+	      -borderwidth 2 \
+	      -highlightthickness 3 \
+	      -maxheight 0 \
+	      -width 3 \
+	      -textvariable curgedobject \
+	      -editable false \
+	      -background white \
+	      -command [list SelectObject ]]
+pack $comb  -in $w.frame.view  -fill x
 eval $w.frame.selgedobject list insert end $lalist
-pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
-pack $w.frame.selgedobject   -in $w.frame.view   -fill x
+#pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
+#pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
-Notebook:create .axes.n -pages {Style Mode Colormap} -pad 20 
-pack .axes.n -fill both -expand 1
+Notebook:create  $uf.n -pages {Style Mode Colormap} -pad 20   -height 520 -width 600
+pack  $uf.n -fill both -expand 1
 
 ########### Style onglet ##########################################
 ###################################################################
-set w [Notebook:frame .axes.n Style]
+set w [Notebook:frame  $uf.n Style]
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
@@ -108,7 +151,7 @@ pack $w.frame.xfigpos  -in $w.frame -side top   -fill x
 label $w.frame.xfigposlabel -text "   X position : "
 entry $w.frame.xfigposlabel1 -relief sunken  -textvariable figure_xposition
 pack $w.frame.xfigposlabel -in  $w.frame.xfigpos -side left
-pack $w.frame.xfigposlabel1  -in  $w.frame.xfigpos  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.xfigposlabel1  -in  $w.frame.xfigpos   -pady 2m -padx 2m -side left 
 bind  $w.frame.xfigposlabel1 <Return> {setFigPos} 
 
 
@@ -119,7 +162,7 @@ pack $w.frame.yfigpos  -in $w.frame -side top   -fill x
 label $w.frame.yfigposlabel -text "   Y position : "
 entry $w.frame.yfigposlabel1 -relief sunken  -textvariable figure_yposition
 pack $w.frame.yfigposlabel -in  $w.frame.yfigpos -side left
-pack $w.frame.yfigposlabel1  -in  $w.frame.yfigpos  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.yfigposlabel1  -in  $w.frame.yfigpos  -pady 2m -padx 2m -side left 
 bind  $w.frame.yfigposlabel1 <Return> {setFigPos} 
 
 #figure size x
@@ -129,7 +172,7 @@ pack $w.frame.xfigsiz  -in $w.frame -side top   -fill x
 label $w.frame.xfigsizlabel -text "         X size : "
 entry $w.frame.xfigsizlabel1 -relief sunken  -textvariable figure_xsiz
 pack $w.frame.xfigsizlabel -in  $w.frame.xfigsiz -side left
-pack $w.frame.xfigsizlabel1  -in  $w.frame.xfigsiz  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.xfigsizlabel1  -in  $w.frame.xfigsiz  -pady 2m -padx 2m -side left 
 bind  $w.frame.xfigsizlabel1 <Return> {setFigSiz} 
 
 
@@ -140,7 +183,7 @@ pack $w.frame.yfigsiz  -in $w.frame -side top   -fill x
 label $w.frame.yfigsizlabel -text "         Y size : "
 entry $w.frame.yfigsizlabel1 -relief sunken  -textvariable figure_ysiz
 pack $w.frame.yfigsizlabel -in  $w.frame.yfigsiz -side left
-pack $w.frame.yfigsizlabel1  -in  $w.frame.yfigsiz  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.yfigsizlabel1  -in  $w.frame.yfigsiz  -pady 2m -padx 2m -side left 
 bind  $w.frame.yfigsizlabel1 <Return> {setFigSiz} 
 
 
@@ -151,7 +194,7 @@ pack $w.frame.xaxesiz  -in $w.frame -side top   -fill x
 label $w.frame.xaxesizlabel -text "  X axis size : "
 entry $w.frame.xaxesizlabel1 -relief sunken  -textvariable figure_xaxesiz
 pack $w.frame.xaxesizlabel -in  $w.frame.xaxesiz -side left
-pack $w.frame.xaxesizlabel1  -in  $w.frame.xaxesiz  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.xaxesizlabel1  -in  $w.frame.xaxesiz  -pady 2m -padx 2m -side left 
 bind  $w.frame.xaxesizlabel1 <Return> {setAxeSiz} 
 
 
@@ -162,7 +205,7 @@ pack $w.frame.yaxesiz  -in $w.frame -side top   -fill x
 label $w.frame.yaxesizlabel -text "  Y axis size : "
 entry $w.frame.yaxesizlabel1 -relief sunken  -textvariable figure_yaxesiz
 pack $w.frame.yaxesizlabel -in  $w.frame.yaxesiz -side left
-pack $w.frame.yaxesizlabel1  -in  $w.frame.yaxesiz  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.yaxesizlabel1  -in  $w.frame.yaxesiz  -pady 2m -padx 2m -side left 
 bind  $w.frame.yaxesizlabel1 <Return> {setAxeSiz} 
 
 
@@ -175,8 +218,12 @@ scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setBackColor $w.frame.bcolor" -tickinterval 0
 
 pack $w.frame.bcolorlabel -in $w.frame.clrb -side left
-pack $w.frame.bcolor -in  $w.frame.clrb -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.bcolor -in  $w.frame.clrb -side left  -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.bcolor set $bcolor
+
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both -pady 18m
 
 #exit button
 frame $w.buttons
@@ -187,7 +234,7 @@ pack $w.buttons.dismiss  -side bottom -expand 1
 
 ########### Mode onglet ###########################################
 ###################################################################
-set w [Notebook:frame .axes.n Mode]
+set w [Notebook:frame  $uf.n Mode]
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
@@ -252,6 +299,10 @@ eval $w.frame.rotstyl list insert end [list "unary" "multiple"]
 pack $w.frame.rotstylelbl -in $w.frame.rotstyle   -side left
 pack $w.frame.rotstyl -in $w.frame.rotstyle  -expand 1 -fill x -pady 2m -padx 2m
 
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both -pady 50m
+
 #exit button
 frame $w.buttons
 pack $w.buttons -side bottom -fill x -pady 2m
@@ -259,9 +310,9 @@ button $w.buttons.dismiss -text Quit -command "destroy $ww"
 pack $w.buttons.dismiss  -side bottom -expand 1
 
 
-########### Colormap onglet ###########################################
+########### Colormap onglet #######################################
 ###################################################################
-set w [Notebook:frame .axes.n Colormap]
+set w [Notebook:frame  $uf.n Colormap]
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
@@ -320,6 +371,11 @@ frame $w.buttons
 pack $w.buttons -side bottom -fill x -pady 2m
 button $w.buttons.dismiss -text Quit -command "destroy $ww" 
 pack $w.buttons.dismiss  -side bottom -expand 1
+
+
+pack $sw $pw1 -fill both -expand yes
+pack $titf1 -padx 4 -side left -fill both -expand yes
+pack $topf -fill both -pady 2 -expand yes
 
 
 
