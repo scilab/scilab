@@ -593,7 +593,7 @@ c
               buf='scicos unexpected error,please report...'
               kfun=0
            endif
-           call error(888)
+           if(.not.(err.gt.0.or.err1.gt.0)) call error(888)
            fun=0
            return
         endif
