@@ -66,3 +66,10 @@ deff('b=foo()',['b=[]';
                 '  if iserror(4)==1 then errclear(-1),end'
                 'end'])
 b=foo();if or(b<>(1:3)) then pause,end
+
+clear N
+function foo(),N,endfunction
+ierr=execstr('foo()','errcatch');
+if ierr<>4 then pause,end
+ierr=exec(foo,'errcatch');
+if ierr<>4 then pause,end

@@ -121,3 +121,17 @@ Warning :redefining function: foo
  
 b=foo();if or(b<>(1:3)) then bugmes();quit;end
  
+ 
+clear N
+ 
+function foo(),N,endfunction
+Warning :redefining function: foo                     
+ 
+ 
+ierr=execstr('foo()','errcatch');
+ 
+if ierr<>4 then bugmes();quit;end
+ 
+ 
+if ierr<>4 then bugmes();quit;end
+ 
