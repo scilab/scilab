@@ -22,10 +22,12 @@ function Load_()
       xselect();
 
       if type(scs_m.props.context)==10 then
+	%now_win=xget('window')
 	if execstr(scs_m.props.context,'errcatch') <>0 then
 	  message(['Error occur when evaluating context:'
 		   lasterror() ])
 	end
+	xset('window',%now_win)
       else
 	scs_m.props.context=' '
       end

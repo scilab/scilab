@@ -1,7 +1,9 @@
 function Context_()
     Cmenu='Open/Set'
     while %t do
+      %now_win=xget('window')
       [context,ok]=do_context(scs_m.props.context)
+      xset('window',%now_win)
       if ~ok then break,end
       if execstr(context,'errcatch') <>0 then
 	message(['Error occur when evaluating context:'

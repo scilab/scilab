@@ -28,7 +28,9 @@ for %kk=1:%nx
       sblock=model.rpar
       context=sblock.props.context
       if execstr(context,'errcatch')<>0 then
+	%now_win=xget('window')
         message(['Cannot evaluate a context';lasterror()])
+	xset('window',%now_win)
       else
         [sblock,%w,needcompile2,ok]=do_eval(sblock,list())
         needcompile1=max(needcompile1,needcompile2)
