@@ -1,8 +1,22 @@
 function [ok,name,nx,nin,nout,ng]=compile_modelica(fil)
 // Serge Steer 2003, Copyright INRIA
   ng=0
-  mlibs=modelica_libs()
-  modelicac=modelicac_path()+strcat(' -L '+mlibs)
+  if exists('modelica_libs')==0 then 
+    message('Variable modelica_libs which gives path of modelica library is not set')
+    return
+  end
+  if exists('modelicac_path')==0 then 
+    message('Variable modelicac_path which gives path of modelica compiler is not set')
+    return
+  end
+  
+  mlibs=pathconvert(modelica_libs,%f,%t)
+  if MSDOS then
+    modelicac=pathconvert(modelicac_path+'/modelicac.exe',%f,%t)
+  else
+     modelicac=pathconvert(modelicac_path+'/modelicac',%f,%t)
+  end
+  modelicac=modelicac+strcat(' -L '+mlibs)
   
   name=basename(fil)
   path=strsubst(stripblanks(fil),name+'.mo','')
