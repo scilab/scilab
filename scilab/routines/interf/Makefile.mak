@@ -11,7 +11,7 @@ LIBRARY = $(SCIDIR)/libs/interf.lib
 OBJSC = Interf.obj ctest.obj  cs2st.obj getdate.obj stack1.obj stack2.obj stack3.obj \
 	intlapack.obj intslicot.obj intarpack.obj matdes.obj intorand.obj stcreate.obj \
 	intfilestat.obj strelm-c.obj  matdsr.obj otherspecfun.obj hmops.obj \
-	intinterp.obj intsetenv.obj
+	intinterp.obj intsetenv.obj intreadxls.obj
 
 OBJSF = lstelm.obj lstelmi.obj matelm.obj matold.obj lstops.obj intl_e.obj intl_i.obj \
 	matio.obj intdeff.obj intdiary.obj intdisp.obj intexec.obj intexecstr.obj \
@@ -55,6 +55,8 @@ Makefile.amk	: Makefile
 
 # some versions of g77 on sparc will compile intmgetl.f
 # but the code does not execute properly.
+intmgetl.obj: intmgetl.f ../stack.h
+	$(FC) -g -c intmgetl.f -o intmgetl.obj
 
 bva.obj: ../stack.h
 comm.obj: ../stack.h
