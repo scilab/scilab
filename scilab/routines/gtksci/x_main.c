@@ -597,3 +597,12 @@ static void nsp_create_gtk_toplevel(gint argc, gchar *argv[])
 } 
 
 
+/*-----------------------------------------------------------
+ * should be moved elsewhere 
+ * I ignore what this function is supposed to do 
+ *-----------------------------------------------------------*/
+
+void ShowWindowFunction (char *fname)
+{
+  
+}
