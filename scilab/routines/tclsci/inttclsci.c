@@ -6,6 +6,7 @@
 extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/
 extern void sci_tk_activate(void);
+extern initTCLTK(void);
 /*-----------------------------------------------------------------------------------*/
 static int first =0;
 /*-----------------------------------------------------------------------------------*/
@@ -64,8 +65,13 @@ int ReInitTCL(void)
 		first++;
 	    if ( TK_Started != 1 ) 
 	    {
-	      Scierror(999,"You have started Scilab in a mode in which TCL/TK not initialized.\n");
-	      return 0;
+		  initTCLTK();
+		  /* Derniere chance ;) d'initialisation */
+		  if ( TK_Started != 1 ) 
+	      {
+	        Scierror(999,"You have started Scilab in a mode in which TCL/TK not initialized.\n");
+	        return 0;
+		  }
 	    }
 	  }
   }
