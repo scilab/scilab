@@ -19,8 +19,10 @@
 #include <X11/Xaw/Paned.h>
 
 #include "version.h"
+#include "../stack-c.h"
 #include "../sun/h_help.h"
 #include "../graphics/Math.h"
+
 
 extern Widget   toplevel;
 extern Atom     wm_delete_window;
@@ -278,6 +280,7 @@ int FreeWidgetList( help_c,ntopic)
   int k;
   for ( k = 0 ; k < ntopic ; k++ ) FREE(help_c[k]);
   FREE(help_c);
+  return 0;
 }
 
 /************************************************
@@ -403,7 +406,6 @@ void SciCallHelp(helpPath,Topic)
 {
   int i;
   static char format1[]= "$SCI/bin/xless %s/%s.cat 2> /dev/null &";
-  static char format2[]= "cat %s/%s.cat | more ";
   C2F(xscion)(&i);
   if ( i != 0 )
     {
@@ -415,9 +417,48 @@ void SciCallHelp(helpPath,Topic)
     }
   else 
     {
-      char *buf = (char *) MALLOC((strlen(helpPath)+strlen(Topic)+strlen(format1)+1) * (sizeof(char)));
-      if (buf == NULL){ sciprint("Running out of memory, I cannot activate help\n");return;}
-      sprintf(buf,format2, helpPath, Topic);
+      static char tformat[] = "cat %s/%s.cat | %s ";
+      static char defaultpager[] = "more";
+      static char pagervar[] = "%pager";
+      int len = 256;
+      char *pager = (char *) MALLOC(len * sizeof(char));
+      char *textpager;
+      char *buf;
+      int id[nsiz];
+
+      if (pager == NULL)
+        {
+          sciprint("Running out of memory, I cannot activate help\n");
+	  return;
+        }
+      *pager = '\0';
+
+      C2F(str2name) (pagervar, id, strlen(pagervar));
+      Fin = -1;
+      Err = 0;
+      C2F(stackg)(id);
+      if (Err > 0 || Fin == 0)
+	textpager = defaultpager;
+      else
+        {
+	  if (C2F(creadchain) (pagervar, &len, pager,
+			       strlen(pagervar), strlen(pager)) != 0)
+	    textpager = pager;
+	  else
+	    textpager = defaultpager;
+        }
+
+      buf = (char *) MALLOC((strlen(helpPath) + strlen(Topic)
+			     + strlen(textpager) + strlen(tformat) + 1)
+			    * sizeof(char));
+      if (buf == NULL)
+        {
+	  FREE(pager);
+          sciprint("Running out of memory, I cannot activate help\n");
+	  return;
+	}
+      sprintf(buf, tformat, helpPath, Topic, textpager);
+      FREE(pager);
       system(buf);
       FREE(buf);
     }
