@@ -53,7 +53,7 @@ LIBRSCI = libs/system.lib libs/interf.lib libs/system2.lib libs/optim.lib \
 	libs/intersci.lib libs/wsci.lib libs/graphics.lib libs/menusX.lib \
 	libs/sound.lib libs/dcd.lib \
 	libs/rand.lib libs/blas.lib libs/xdr.lib  \
-	libs/gd.lib libs/int.lib \
+	libs/gd.lib libs/int.lib libs/arpack.lib \
 	libs/libf2c.lib $(TKSCI) $(PVM)
 
 LIBR = $(XAW_LOCAL_LIB) $(LIBRSCI) $(DLDLIB)
