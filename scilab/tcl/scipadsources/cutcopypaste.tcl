@@ -1,6 +1,7 @@
 #cut text procedure
 proc deletetext {} {
     global textareacur
+    if {[IsBufferEditable] == "No"} {return}
     set cuttexts [selection own]
 # FV 07/06/04, next line corrected (see bug #723)
 #    if {$cuttexts != "" } {}
@@ -27,6 +28,7 @@ proc deletetext {} {
 #cut text procedure
 proc backspacetext {} {
     global textareacur
+    if {[IsBufferEditable] == "No"} {return}
     set cuttexts [selection own]
 # FV 07/06/04, next line corrected (see bug #723)
 #    if {$cuttexts != "" } {}
@@ -54,6 +56,7 @@ proc backspacetext {} {
 proc cuttext {} {
 # FV 07/06/04, removed superfluous global
     global textareacur
+    if {[IsBufferEditable] == "No"} {return}
 # FV 14/06/04, added test to avoid setting the modified flag if cut nothing
     if {[catch {selection get -selection CLIPBOARD}] == 0} {
         inccount $textareacur
@@ -79,6 +82,7 @@ proc copytext {} {
 proc pastetext {} {
 # FV 07/06/04, removed superfluous funny test and globals
     global textareacur
+    if {[IsBufferEditable] == "No"} {return}
     catch {
         $textareacur delete sel.first sel.last
     }
@@ -102,6 +106,7 @@ proc button2copypaste {w x y} {
 ##ES 16/11/04 -- strange I have to write a full proc for this!
 ## am I missing something?
   global textareacur
+  if {[IsBufferEditable] == "No"} {return}
   clipboard clear;
   set ct ""
   catch {set ct [selection get]}; 

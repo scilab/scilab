@@ -248,6 +248,7 @@ proc ResetFind {} {
 proc findtext {typ} {
 # FV 13/05/04, regexp mode added
     global SearchString SearchDir ReplaceString findcase c find pad lang regexpcase
+    if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
     set find $pad.find
     catch {destroy $find}
     toplevel $find

@@ -645,3 +645,9 @@ ES 26/1/05
  * a nicer color for libfun
  * filename printed in the message "file is alread opened" 
  * version 3.20
+
+Francois VOGEL, 27/01/05
+ * Bug corrected - When hitting return somewhere in the active breakpoint
+   line, the related activebreakpoint tag was not updated
+ * The buffer is now locked during a debug session, no changes allowed
+ * version --> 3.21

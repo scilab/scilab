@@ -40,7 +40,7 @@ proc showpopupsource {ind} {
              set sourcecommand "scipad(get_function_path(\"$curterm\"))"
              menu $pad.popsource -tearoff 0 -font $menuFont
 	      if {$lang=="eng"} { set plabel "Open the source of $curterm"
-	      } else { set plabel "Ouvrir le source du $curterm"}
+	      } else { set plabel "Ouvrir le source de $curterm"}
              $pad.popsource add command -label $plabel\
 	      -command "ScilabEval $sourcecommand"
 	  }

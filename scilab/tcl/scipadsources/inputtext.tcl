@@ -55,13 +55,15 @@ proc blinkbrace {w pos brace} {
 }
 
 proc insblinkbrace {w brace} {
+    if {[IsBufferEditable] == "No"} {return}
     puttext $w $brace
     blinkbrace $w insert $brace 
 }
 
-proc insquote {w quote} {
-    $w insert insert $quote {textquoted}
-}
+#Francois VOGEL, 27/01/05, commented proc insquote since no more used
+#proc insquote {w quote} {
+#    $w insert insert $quote {textquoted}
+#}
 
 ########
 
@@ -69,6 +71,7 @@ proc insquote {w quote} {
 # Added by Matthieu PHILIPPE 07/12/2001
 # code coms from EDDI.tcl
 proc insertnewline {w} {
+    if {[IsBufferEditable] == "No"} {return}
     set n {}
     $w mark set p1 {insert linestart}
     set c [$w get p1 {p1+1c}]
@@ -90,6 +93,7 @@ proc insertnewline {w} {
 proc puttext {w text} {
     global winTitle
 #   global pad
+    if {[IsBufferEditable] == "No"} {return}
     set rem 0
     set cuttexts [selection own]
 # FV 13/05/04, next line corrected (see bug #723)
@@ -141,22 +145,24 @@ proc outccount {textarea} {
     modifiedtitle $textarea
 }
 
-proc bindtext {textarea} {
-    bind $textarea <Control-v> {pastetext}
-    bind $textarea <Control-o> {}
-    bind $textarea <Control-f> {}
-    bind $textarea <KeyPress> { if {{%A} != {{}}} {puttext %W %A}}
-    bind $textarea <Delete> { deletetext}
-    bind $textarea <BackSpace> { backspacetext}
-    bind $textarea <parenright> { if {{%A} != {{}}} {insblinkbrace %W %A}}
-    bind $textarea <bracketright> { if {{%A} != {{}}} {insblinkbrace %W %A}} 
-    bind $textarea <braceright>  { if {{%A} != {{}}} {insblinkbrace %W %A}}
-}
+#Francois VOGEL, 27/01/05, commented proc bindtext since no more used
+#proc bindtext {textarea} {
+#    bind $textarea <Control-v> {pastetext}
+#    bind $textarea <Control-o> {}
+#    bind $textarea <Control-f> {}
+#    bind $textarea <KeyPress> { if {{%A} != {{}}} {puttext %W %A}}
+#    bind $textarea <Delete> { deletetext}
+#    bind $textarea <BackSpace> { backspacetext}
+#    bind $textarea <parenright> { if {{%A} != {{}}} {insblinkbrace %W %A}}
+#    bind $textarea <bracketright> { if {{%A} != {{}}} {insblinkbrace %W %A}} 
+#    bind $textarea <braceright>  { if {{%A} != {{}}} {insblinkbrace %W %A}}
+#}
 
 
 #procedure to set the time change %R to %I:%M for 12 hour time display
 proc printtime {} {
     global textareacur
+    if {[IsBufferEditable] == "No"} {return}
     [gettextareacur] insert insert [clock format [clock seconds] \
 					-format "%R %p %D"]
     inccount [gettextareacur]
@@ -174,3 +180,17 @@ proc wraptext {} {
     [gettextareacur] configure -wrap $wordWrap
 }
 
+proc IsBufferEditable {} {
+    global lang
+    if {[getdbstate]=="DebugInProgress"} {
+        if {$lang == "eng"} {
+            set txt "Code editing is not allowed during debug!"
+        } else {
+            set txt "Impossible de modifier le code durant le débug!"
+        }
+        showinfo $txt
+        return "No"
+    } else {
+        return "Yes"
+    }
+}

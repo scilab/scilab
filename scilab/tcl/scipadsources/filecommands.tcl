@@ -250,7 +250,7 @@ proc fileisopen {file} {
  # file is already opened
    if {$lang == "eng"} {
        tk_messageBox -type ok -title "Open file $file" -message \
-          "Thie file $file is already opened! Save the current opened\
+          "The file $file is already opened! Save the current opened\
             file to an another name and reopen it from disk!"
    } else {
        tk_messageBox -type ok -title "Ouvrir fichier $file" -message \

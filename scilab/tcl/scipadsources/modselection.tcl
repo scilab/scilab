@@ -16,6 +16,7 @@ proc selectline {} {
 
 proc CommentSel {} {
     global textareacur
+    if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {$seltexts != "" } {
 	if [catch {selection get -selection PRIMARY} sel] {	    
@@ -48,6 +49,7 @@ proc CommentSel {} {
 
 proc UnCommentSel {} {
     global textareacur
+    if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {$seltexts != "" } {
 	if [catch {selection get -selection PRIMARY} sel] {	    
@@ -72,6 +74,7 @@ proc UnCommentSel {} {
 proc IndentSel {} {
 # just copied from CommentSel
     global textareacur
+    if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {$seltexts != "" } {
 	if [catch {selection get -selection PRIMARY} sel] {	    
@@ -107,6 +110,7 @@ proc IndentSel {} {
 proc UnIndentSel {} {
 # just copied from UncommentSel
     global textareacur
+    if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {$seltexts != ""} {
 	if [catch {selection get -selection PRIMARY} sel] {	    

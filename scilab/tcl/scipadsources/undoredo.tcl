@@ -299,6 +299,7 @@ proc undo_menu_proc {} {
     global undo_id
     global listundo_id
 
+    if {[IsBufferEditable] == "No"} {return}
     #textUndoer:undo $undo_id
     set i1 [[gettextareacur] index insert]
     set isempty [textUndoer:undo $listundo_id("[gettextareacur]")]
@@ -318,6 +319,7 @@ proc redo_menu_proc {} {
     global undo_id
     global listundo_id
 
+    if {[IsBufferEditable] == "No"} {return}
     #textRedoer:redo $undo_id
     set i1 [[gettextareacur] index insert]
     textRedoer:redo $listundo_id("[gettextareacur]")

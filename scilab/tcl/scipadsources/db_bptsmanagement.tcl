@@ -119,4 +119,9 @@ proc reshape_bp {} {
         $textareacur tag remove breakpoint $tstart $tstop
         $textareacur tag add breakpoint "$tstart linestart" "$tstart lineend"
     }
+    set acttagranges [$textareacur tag ranges activebreakpoint]
+    foreach {tstart tstop} $acttagranges {
+        $textareacur tag remove activebreakpoint $tstart $tstop
+        $textareacur tag add activebreakpoint "$tstart linestart" "$tstart lineend"
+    }
 }
