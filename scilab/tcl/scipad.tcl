@@ -178,6 +178,25 @@
 #       not report the file as modified any more
 # * added Ctrl-F6 (prevbuffer) and Ctrl-F7 (nextbuffer) bindings
 
+# Francois VOGEL, 13/05/04
+# * breakpoint and debug tools added - see below in this file for detailed
+#   explanations (perform a search for "breakpoint stuff" for quick access)
+#   Note: matsys.f as provided under bug #718 correction should be used
+# * proc whichfun now can search in a buffer different from the current one (used
+#   for breakpoint stuff)
+# * Find/Replace now can use a regexp mode
+# * cosmetic: replaced tab indents by 4 spaces in the code (e.g. in proc findtext)
+#   Please use spaces instead of tabs for further updates of the code!
+# * cosmetic: harmonised accelerator names through menus (e.g. ctrl-x changed to
+#   ctrl+x)
+# * rearranged bindings in find/replace dialogs - were not always consistent with
+#   the underlines, especially for the french dialog
+# * cursor blinks only if tk version is >= 8.4
+# * message at the bottom of the Scipad window is cleared when colorization ends
+# * bugzilla bug #723 corrected - an error poped when trying to write text in
+#   Scipad when a selection was active in another tcl/tk application such as the
+#   Scilab help
+# * version --> 2.0
 
 # default global values
 #global .
@@ -194,7 +213,7 @@ set fileName " "
 set textareacur $pad.textarea
 set saveTextMsg 0
 set winTitle "SciPad"
-set version "Version 1.3"
+set version "Version 2.0"
 set wordWrap none
 ##ES: default options which can be overridden
 if { ![info exists BGCOLOR] } {set BGCOLOR "snow1"}
@@ -212,6 +231,8 @@ if { ![info exists REMCOLOR] } {set REMCOLOR "green4"}
 if { ![info exists XMLCOLOR] } {set XMLCOLOR "orange"}
 if { ![info exists NUMCOLOR] } {set NUMCOLOR "yellow4"}
 if { ![info exists SELCOLOR] } {set SELCOLOR "PaleGreen"}
+# FV 13/05/04
+if { ![info exists BREAKPOINTCOLOR] } {set BREAKPOINTCOLOR "pink"}
 ##ES: remember fontsize, pad geometry
 if { ![info exists FontSize] } {set FontSize 12 }
 if { ![info exists WMGEOMETRY] } { set WMGEOMETRY 32x36 }
@@ -219,7 +240,7 @@ if { ![info exists printCommand] } { set printCommand lpr }
 
 #
 #[string range $argv0 [expr [string last "/" $argv0] + 1] end]
-set argc 0
+#set argc 0
 #
 # added by Matthieu PHILIPPE
 if { ![info exists lang] } { set lang "eng" }
@@ -501,16 +522,16 @@ if {$lang == "eng"} {
     $pad.filemenu add cascade -label "Execute" -underline 1 \
 	-menu $pad.filemenu.exec
     $pad.filemenu.exec add command -label "Load into Scilab" -underline 0\
-	-command "execfile" -accelerator Ctrl-l
+	-command "execfile" -accelerator Ctrl+l
     $pad.filemenu.exec add command -label "Evaluate selection" -underline 0\
-	-command "execselection" -accelerator Ctrl-y
+	-command "execselection" -accelerator Ctrl+y
 } else {
-    $pad.filemenu add cascade -label "Execute" -underline 1 \
+    $pad.filemenu add cascade -label "Exécuter" -underline 1 \
 	-menu $pad.filemenu.exec
     $pad.filemenu.exec add command -label "Charger dans Scilab" -underline 0\
-	-command "execfile" -accelerator Ctrl-l
+	-command "execfile" -accelerator Ctrl+l
     $pad.filemenu.exec add command -label "Evaluer la sélection" -underline 0\
-	-command "execselection" -accelerator Ctrl-y
+	-command "execselection" -accelerator Ctrl+y
 }
 
 proc execfile {} {
@@ -553,7 +574,7 @@ proc execfile {} {
 	    }
 	} else {
 	    set f $listoffile("$textarea",filename)
-	    ScilabEval "exec(\"$f\");"
+	    ScilabEval "exec(\"$f\");\n"
 	}
     }
 }
@@ -694,26 +715,969 @@ proc failmatlabimp {} {
   }
 }
 
+#######################################################################
+################## Beginning of breakpoint stuff ######################
+#######################################################################
+#            FV 13/05/04, breakpoint and debug stuff added            #
+#######################################################################
+#
+# The way it works is basically the following:
+# 
+# 1. Set/remove bp anywhere you want in the buffer. This is just text tags
+#    management (nice pink background, etc.).
+# 
+# 2. Configure execution: the user has to provide the function name to
+#    execute, its variable names, and variable values. To ease this step, I
+#    implemented a scan of the currently displayed buffer to look for defined
+#    functions in it, scan their names and variable names (thanks to proc
+#    whichfun!). All this is displayed to the user in a dialog for easy
+#    selection. First, he has to select a function in a spinbox (sorry, but
+#    comboboxes are not available natively in tk), then eventually one of
+#    its variables (listbox). Once a variable is selected, the user can
+#    set/change its value (another dialog pops). Variable values and names are
+#    displayed in listboxes. The user can also add or remove a new variable. This
+#    is in case the user changes the input variables of his function in the file,
+#    and he does not want to scan the buffer again (which causes all the variable
+#    values to reset to "").
+# 
+# 3. Launch execution with breakpoints. Scipad execs the _current _buffer to
+#    Scilab, sends to Scilab the setbpt() instructions relative to the
+#    _function_selected_ at step 2 (which may be different from the one he sees
+#    in the displayed buffer), and executes the selected function with the
+#    provided input variable values. Then the execution is automagically stopped
+#    by Scilab at the first breakpoint.
+# 
+# 4. Now there are several possibilities for the user:
+#   4.1. Continue up to next bp: just a resume to send to Scilab.
+# 
+#   4.2. Insert/Remove a new bp during the debug: Scipad sends a setbpt() (or
+#        delbpt()), then a resume to Scilab.
+# 
+#   4.3. Step by step execution. This is what I'm currently fighting at (it is
+#        disabled in the Debug menu for the time being).
+#        See proc stepbystep_bp for further details about the problems I
+#        encounter.
+# 
+#   4.4. Continue ignoring any breakpoint, and finish execution as if there
+#        were no breakpoint: Scipad sends adequate delbpt(), then resume.
+# 
+#   4.5. Display call stack: Scipad sends a whereami() to Scilab. Sometimes
+#        useful.
+# 
+#   4.6. Abort debug: Scipad sends adequate delbpt(), then sends abort to
+#        Scilab.
+# 
+# 5. Besides, there is a command to remove all the bp in Scilab, in case
+#    anything did not run as expected (could be removed later, but anyway).
+#    Currently, this may be useful in case of loss of first characters sent by
+#    ScilabEval, which still may occur, and which produce errors in the Scilab
+#    shell.
+# 
+# Of course, after the end of the execution, the breakpoints are removed from
+# Scilab (but kept in Scipad).
+# 
+# All this can be invoked through a nice debug menu, with adequate
+# accelerators and shortcuts.
+# 
+# All what I have just described above works well with functions, i.e. .sci
+# files. I thought about .sce files, but setbpt() essentially cannot be used
+# with them. However, the .sce case is foreseen in all the procs of
+# scipad.tcl. That means that a .sce file will not crash scipad, which is the
+# very least, but more, once I figure out a solution it should be easy to add
+# the functionality. Anyway, if actually a debug is required in a .sce, the
+# user could first turn int into a .sci function and that's it. The absence of
+# breakpoints management for .sce is therefore not such a major disadvantage.
+# For the deff's, I really think that if a debug is required in such a simple
+# thing, the user should also turn it into a [...]=function(...). A deff is
+# almost always a very simple function that does not require internal debug.
+# But you may disagree...
+# 
+#######################################################################
+#
+# Now a few words about the variables used:
+#
+# Highest level:
+# --------------
+#   funnameargs: Full command sent to Scilab (function name with arguments)
+#                Generated by proc OKconf_bp
+#                Used by execfile_bp
+#
+# One level down: ($conf level)
+# ---------------
+#   Elements of listboxinput
+#   Elements of listboxinputval
+#   Elements of spin
+#   funname: function name shown by spin
+#   funvars($funname): arguments list of function $funname, e.g. {arg1 arg2}
+#   funvarsvals($funname,var): content of argument var from function $funname
+#   funnames: list of all the different function names found by Obtainall_bp
+#   funsinbuffer($textarea): same as funnames, but limited to $textarea
+#
+# One further level down: ($adda level)
+# -----------------------
+#   argname: name of currently selected function argument
+#   argvalue: content of this argument
+#
+# Aside of these:
+# ---------------
+#   Breakpoints are set and managed using tags in the text widget that
+#   displays the current buffer.
+#   They are sent or removed in Scilab using setbpt and delbpt.
+#
+#######################################################################
+
+menu $pad.filemenu.debug -tearoff 1 -font $menuFont
+if {$lang == "eng"} {
+    $pad.filemenu add cascade -label "Debug" -underline 0 \
+	-menu $pad.filemenu.debug
+    $pad.filemenu.debug add command -label "Insert/Remove breakpoint" \
+      -underline 0 -command "insertremove_bp" -accelerator F9
+    $pad.filemenu.debug add command -label "Remove all breakpoints" \
+      -underline 7 -command "removeall_bp" -accelerator Ctrl+F9
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Configure execution" \
+      -underline 0 -command "configurefoo_bp" -accelerator F10
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Start execution with breakpoints" \
+      -underline 0 -command "execfile_bp" -accelerator Ctrl+F11
+    $pad.filemenu.debug add command -label "Go on up to next breakpoint" \
+      -underline 12 -command "resume_bp" -accelerator F11
+    $pad.filemenu.debug add command -label "Insert/Remove breakpoint during debug" \
+      -underline 18 -command "insertremovedebug_bp" -accelerator Shift+F11
+    $pad.filemenu.debug add command -label "Step by step" \
+      -underline 0 -command "stepbystep_bp" -accelerator F12 -state disabled
+    $pad.filemenu.debug add command -label "Go on ignoring any breakpoint" \
+      -underline 1 -command "goonwo_bp" -accelerator Shift+F12
+    $pad.filemenu.debug add command -label "Display call stack" \
+      -underline 6 -command "dispcallstack_bp"
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Cancel debug" \
+      -underline 5 -command "canceldebug_bp"
+    $pad.filemenu.debug add command -label "Remove all breakpoints in Scilab" \
+      -underline 0 -command "removescilab_bp with_output"
+} else {
+    $pad.filemenu add cascade -label "Débug" -underline 0 \
+	-menu $pad.filemenu.debug
+    $pad.filemenu.debug add command -label "Insérer/Supprimer un point d'arrêt" \
+      -underline 0 -command "insertremove_bp" -accelerator F9
+    $pad.filemenu.debug add command -label "Supprimer tous les points d'arrêt" \
+      -underline 10 -command "removeall_bp" -accelerator Ctrl+F9
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Configurer l'exécution" \
+      -underline 3 -command "configurefoo_bp" -accelerator F10
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Démarrer l'exécution avec les points d'arrêt" \
+      -underline 0 -command "execfile_bp" -accelerator Ctrl+F11
+    $pad.filemenu.debug add command -label "Continuer jusqu'au prochain point d'arrêt" \
+      -underline 10 -command "resume_bp" -accelerator F11
+    $pad.filemenu.debug add command -label "Insérer/Supprimer un point d'arrêt pendant le debug" \
+      -underline 40 -command "insertremovedebug_bp" -accelerator Shift+F11
+    $pad.filemenu.debug add command -label "Pas à pas" \
+      -underline 0 -command "stepbystep_bp" -accelerator F12 -state disabled
+    $pad.filemenu.debug add command -label "Continuer sans aucun point d'arrêt" \
+      -underline 0 -command "goonwo_bp" -accelerator Shift+F12
+    $pad.filemenu.debug add command -label "Montrer la pile des appels" \
+      -underline 0 -command "dispcallstack_bp"
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Annuler le débug" \
+      -underline 0 -command "canceldebug_bp"
+    $pad.filemenu.debug add command -label "Supprimer tous les points d'arrêt dans Scilab" \
+      -underline 0 -command "removescilab_bp with_output"
+}
+
+proc insertremove_bp {} {
+    set textareacur [gettextareacur]
+    set i1 "insert linestart"
+    set i2 "insert lineend"
+    set activetags [$textareacur tag names $i1]
+    if {[string first breakpoint $activetags] == -1} {
+        $textareacur tag add breakpoint $i1 $i2
+    } else {
+        $textareacur tag remove breakpoint $i1 $i2
+        $textareacur tag remove activebreakpoint $i1 $i2
+    }
+}
+
+proc removeall_bp {} {
+    set textareacur [gettextareacur]
+    set saveinsert [$textareacur index insert]
+    set tagranges [$textareacur tag ranges breakpoint]
+    foreach {bp_start bp_stop} $tagranges {
+        $textareacur mark set insert $bp_start
+        insertremove_bp
+    }
+    $textareacur mark set insert $saveinsert
+}
+
+proc insertremovedebug_bp {} {
+    set textareacur [gettextareacur]
+    set i1 "insert linestart"
+    set i2 "insert lineend"
+    set activetags [$textareacur tag names $i1]
+    if {[string first breakpoint $activetags] == -1} {
+        $textareacur tag add breakpoint $i1 $i2
+        set infun [whichfun [$textareacur index $i1]]
+        if {$infun !={} } {
+            set funname [lindex $infun 0]
+            set lineinfun [expr [lindex $infun 1] - 1]
+            set setbpcomm " setbpt(\"$funname\",$lineinfun);"
+            ScilabEval $setbpcomm
+        } else {
+            # <TODO> .sce case
+        }
+    } else {
+        # There was bug(s) in scilab routines/interf/matsys.f file
+        # on this one: in -1-> mode, setbpt("foo",linenum) worked, but
+        # delbpt("foo",linenum) did not (bp was removed from dispbpt
+        # list but execution still stopped at linenum)
+        # The correction has been submitted to Scilab team (see
+        # bugzilla #718). If the patch is not installed, the following
+        # will fail.
+        $textareacur tag remove breakpoint $i1 $i2
+        $textareacur tag remove activebreakpoint $i1 $i2
+        set infun [whichfun [$textareacur index $i1]]
+        if {$infun !={} } {
+            set funname [lindex $infun 0]
+            set lineinfun [expr [lindex $infun 1] - 1]
+            set delbpcomm " delbpt(\"$funname\",$lineinfun);"
+            ScilabEval $delbpcomm
+        } else {
+            # <TODO> .sce case
+        }
+    }
+}
+
+proc reshape_bp {} {
+    set textareacur [gettextareacur]
+    set tagranges [$textareacur tag ranges breakpoint]
+    foreach {tstart tstop} $tagranges {
+        $textareacur tag remove breakpoint $tstart $tstop
+        $textareacur tag add breakpoint "$tstart linestart" "$tstart lineend"
+    }
+}
+
+set funnameargs ""
+set funnames ""
+
+proc execfile_bp {} {
+    global funnameargs funsinbuffer
+    set removecomm [removescilab_bp "no_output"]
+    set textareacur [gettextareacur]
+    set tagranges [$textareacur tag ranges breakpoint]
+    set setbpcomm ""
+    set firstbp true
+#    set nlins -1
+ #   set nlins -2
+    foreach {tstart tstop} $tagranges {
+        set infun [whichfun [$textareacur index $tstart]]
+        if {$infun !={} } {
+            set funname [lindex $infun 0]
+            set lineinfun [expr [lindex $infun 1] - 1]
+            set setbpcomm [concat $setbpcomm "setbpt(\"$funname\",$lineinfun);"]
+            if {$firstbp == true} {
+                set firstbp false
+                $textareacur tag remove activebreakpoint 1.0 end
+                $textareacur tag add activebreakpoint "$tstart linestart" "$tstart lineend"
+                $textareacur mark set insert "$tstart linestart"
+                $textareacur see "$tstart linestart"
+            }
+       } else {
+            # <TODO> .sce case: I thought about:
+            # - inserting pause before each bp, or
+            # - inserting mode(6) plus mode(0) before each bp
+            # but none is satisfactory. Using mode() will fail in loops,
+            # and pause is very limited (no way to add a new bp during debug,
+            # or to remove all bp to finish execution ignoring them)
+#            incr nlins 1
+ #           incr nlins 2
+#            $textareacur insert "$tstart +$nlins l linestart" "pause\n"
+ #           $textareacur insert "$tstart +$nlins l linestart" "mode(6)\nmode(0)\n"
+        }
+    }
+    if {$funnameargs != ""} {
+        execfile
+# Leading space and trailing ;\n here to avoid loss of first character
+# However this does not work for long lines created by execfile (i.e.
+# lines that take a long time to display or execute in Scilab window)
+        if {$setbpcomm != ""} {
+            ScilabEval " $setbpcomm; $funnameargs,$removecomm\n"
+        } else {
+            ScilabEval " $funnameargs\n"
+        }
+    } else {
+        # <TODO> .sce case
+##        execfile
+    }
+}
+
+proc removescilab_bp {outp} {
+    global funnames
+    set textareacur [gettextareacur]
+    set tagranges [$textareacur tag ranges breakpoint]
+    set setbpcomm ""
+    if {$funnames != ""} {
+        foreach fun $funnames {
+            set setbpcomm [concat $setbpcomm "delbpt(\"$fun\");"]
+        }
+        if {$outp != "no_output"} {
+            ScilabEval " $setbpcomm\n"
+        }
+    } else {
+        # <TODO> .sce case
+    }
+    return $setbpcomm
+}
+
+proc stepbystep_bp {} {
+# <TODO>
+# I have no satisfactory solution for the time being.
+# The heart of the matter with step by step execution is that
+# once the execution is stopped there is no way of knowing what is the next
+# line of code to execute. Of course, it is usually the next code line in the
+# sci file, but this is not necessarily true in for, while, if, and case
+# structures. I do not foresee any other remedy than a complete code analysis
+# performed in tcl (!), but this is a huge task I'm not prepared to go into.
+# Moreover, all this analysis is already (and surely better) done by the
+# Scilab interpreter, therefore the best way would probably be to add a new
+# Scilab function that would return the line number of the next instruction to
+# be executed. This should no be such a tricky thing to do drawing inspiration
+# e.g. from setbpt. Then I would have to hack a way of returning a result to
+# tcl from a ScilabEval. 
+# Note: There is a similar issue with active bp tag in conditional structures.
+# Currently the "next active bp" is the next one in the file
+# but this becomes wrong if the bp is in a for, while, if or case
+    tk_messageBox -message "Sorry, step execution not yet implemented!"
+}
+
+proc resume_bp {} {
+# <TODO> correct wrong active bp tag when bp is in conditional structure
+# Solution to this is similar to what is explained in proc stepbystep_bp 
+ #   global funnameargs
+    set textareacur [gettextareacur]
+    set actbprange [$textareacur tag ranges activebreakpoint]
+    if {$actbprange != {} } {
+        set actstart [lindex $actbprange 0]
+        set actstop [lindex $actbprange 1]
+        $textareacur tag remove activebreakpoint $actstart $actstop
+        set nextbprange [$textareacur tag nextrange breakpoint $actstop]
+        if {$nextbprange != {} } {
+            set newipos [lindex $nextbprange 0]
+            $textareacur tag add activebreakpoint $newipos [lindex $nextbprange 1]
+            $textareacur mark set insert $newipos
+            $textareacur see $newipos
+        }
+    }
+ #   if {$funnameargs != ""} {
+        ScilabEval " resume\n"
+ #   } else {
+        # <TODO> .sce case
+        # Sending \n is if mode(6) mode(0) is used. If pause, there is no
+        # need to ditinguish between .sci and .sce (resume is sent for both)
+ #       ScilabEval " \n"
+ #   }
+}
+
+proc goonwo_bp {} {
+    [gettextareacur] tag remove activebreakpoint 1.0 end
+    removescilab_bp "with_output"
+    ScilabEval " resume\n"
+}
+
+proc dispcallstack_bp {} {
+    ScilabEval " whereami()\n"
+}
+
+proc canceldebug_bp {} {
+    [gettextareacur] tag remove activebreakpoint 1.0 end
+    ScilabEval " abort\n"
+    removescilab_bp "with_output"
+}
+
+proc configurefoo_bp {} {
+    global pad conf lang
+    global listboxinput listboxinputval listboxscrolly spin buttonAdd
+    global funnames funvars funvarsvals funnameargs
+    set conf $pad.conf
+    catch {destroy $conf}
+    toplevel $conf
+    if {$lang == "eng"} {
+        wm title $conf "Configure execution"
+    } else {
+        wm title $conf "Configurer l'exécution"
+    }
+    setwingeom $conf
+    frame $conf.f
+
+    frame $conf.f.f1
+    if {$lang == "eng"} {
+        set tl "Function name:"
+    } else {
+        set tl "Nom de la fonction :"
+    }
+    label $conf.f.f1.label -text $tl -width 20
+    set spin $conf.f.f1.spinbox
+    spinbox $spin -width 30 -command "spinboxbuttoninvoke" \
+                  -values $funnames -state readonly -takefocus 0
+    set oppar [string first "\(" $funnameargs]
+    set funname [string range $funnameargs 0 [expr $oppar-1]]
+    if {$funname != "" } {
+        $spin set $funname
+    } else {
+        $spin set [lindex $funnames 0]
+        set funname [$spin get]
+    }
+    if {$lang == "eng"} {
+        set bl "Obtain"
+    } else {
+        set bl "Obtenir"
+    }
+    button $conf.f.f1.buttonObtain -text $bl -command "Obtainall_bp"\
+           -width 10 -underline 1
+    pack $conf.f.f1.label $spin $conf.f.f1.buttonObtain \
+         -side left -padx 4
+    pack $conf.f.f1
+
+    frame $conf.f.f2
+    frame $conf.f.f2.f2l
+    if {$lang == "eng"} {
+        set tl "Input arguments:"
+    } else {
+        set tl "Arguments d'entrée :"
+    }
+    label $conf.f.f2.f2l.label -text $tl
+    if {$lang == "eng"} {
+        set bl "Add/Change"
+    } else {
+        set bl "Ajouter/Modifier"
+    }
+    set buttonAdd $conf.f.f2.f2l.buttonAdd
+    button $buttonAdd -text $bl -command "Addarg_bp" -width 20 -underline 0
+    if {$lang == "eng"} {
+        set bl "Remove"
+    } else {
+        set bl "Supprimer"
+    }
+    button $conf.f.f2.f2l.buttonRemove -text $bl -command "Removearg_bp"\
+           -width 20 -underline 0
+    pack $conf.f.f2.f2l.label $buttonAdd $conf.f.f2.f2l.buttonRemove -pady 4
+    frame $conf.f.f2.f2r
+    set listboxinput $conf.f.f2.f2r.listboxinput
+    set listboxscrolly $conf.f.f2.f2r.yscroll
+    scrollbar $listboxscrolly -command "scrollyboth_bp"
+    listbox $listboxinput -height 6 -yscrollcommand "scrollyrightandscrollbar_bp" \
+                          -takefocus 0
+    set listboxinputval $conf.f.f2.f2r.listboxinputval
+    listbox $listboxinputval -height 6 -yscrollcommand "scrollyleftandscrollbar_bp" \
+                          -takefocus 0
+    if {[info exists funvars($funname)]} {
+        foreach var $funvars($funname) {
+            $listboxinput insert end $var
+            $listboxinputval insert end $funvarsvals($funname,$var)
+        }
+        $listboxinput selection set 0
+        $listboxinput see 0
+    }
+    pack $listboxinput $listboxscrolly $listboxinputval -side left \
+            -expand 1 -fill both -padx 2
+    pack $conf.f.f2.f2l $conf.f.f2.f2r -side left -padx 10
+    pack $conf.f.f2 -pady 4
+
+    frame $conf.f.f9
+    button $conf.f.f9.buttonOK -text "OK" -command "OKconf_bp $conf"\
+           -width 10 -height 1 -underline 0
+    if {$lang == "eng"} {
+        set bl "Cancel"
+    } else {
+        set bl "Annuler"
+    }
+#    button $conf.f.f9.buttonCancel -text $bl -command "Cancelconf_bp $conf"\
+#           -width 10 -underline 0
+#    pack $conf.f.f9.buttonOK $conf.f.f9.buttonCancel -side left -padx 10
+    pack $conf.f.f9.buttonOK
+    pack $conf.f.f9 -pady 4
+
+    pack $conf.f
+#    bind $conf <Return> "OKconf_bp $conf"
+    bind $conf <Return> "Addarg_bp"
+#    bind $conf <Escape> "Cancelconf_bp $conf"
+    bind $conf <Escape> "OKconf_bp $conf"
+    bind $conf <BackSpace> "Removearg_bp"
+    bind $conf <Delete> "Removearg_bp"
+    bind $listboxinputval <<ListboxSelect>> {selectininputval_bp}
+    bind $listboxinput <ButtonPress-3> {set itemindex [dragitem_bp %y]}
+    bind $listboxinput <ButtonRelease-3> {dropitem_bp $itemindex %y}
+    bind $conf <Up> {scrollarrows_bp up}
+    bind $conf <Down> {scrollarrows_bp down}
+    bind $conf <MouseWheel> {if {%D<0} {scrollarrows_bp down}\
+                                       {scrollarrows_bp up}}
+    focus $buttonAdd
+    grab $conf
+    if {$funnames == ""} {Obtainall_bp}
+    if {$funnames == ""} {OKconf_bp $conf}
+}
+
+proc scrollyboth_bp {args} {
+    global listboxinput listboxinputval
+    eval "$listboxinput yview $args"
+    eval "$listboxinputval yview $args"
+}
+proc scrollyleftandscrollbar_bp {x y} {
+    global listboxscrolly listboxinput listboxinputval
+    eval "$listboxscrolly set $x $y"
+    set firstvisible [expr round([lindex [$listboxinputval yview] 0] \
+                               * [$listboxinputval size])]
+    eval "$listboxinput yview $firstvisible"
+}
+proc scrollyrightandscrollbar_bp {x y} {
+    global listboxscrolly listboxinput listboxinputval
+    eval "$listboxscrolly set $x $y"
+    set firstvisible [expr round([lindex [$listboxinput yview] 0] \
+                               * [$listboxinput size])]
+    eval "$listboxinputval yview $firstvisible"
+}
+proc selectininputval_bp {} {
+    global listboxinput listboxinputval
+    set selecteditem [$listboxinputval curselection]
+    if {$selecteditem != ""} {
+        $listboxinputval selection clear $selecteditem
+        $listboxinput selection set $selecteditem
+    }
+}
+proc spinboxbuttoninvoke {} {
+    global spin listboxinput listboxinputval funvars funvarsvals
+    $listboxinput delete 0 [$listboxinput size]
+    $listboxinputval delete 0 [$listboxinputval size]
+    set funname [$spin get]
+    if {[info exists funvars($funname)]} {
+        foreach var $funvars($funname) {
+            $listboxinput insert end $var
+            $listboxinputval insert end $funvarsvals($funname,$var)
+        }
+    $listboxinput selection set 0
+    $listboxinput see 0
+    }
+}
+
+proc scrollarrows_bp {dir} {
+    global listboxinput
+    set ind [$listboxinput curselection]
+    if {$ind != ""} {
+        if {$dir == "down"} {
+            if {$ind < [expr [$listboxinput size] - 1]} {
+                $listboxinput selection clear $ind
+                $listboxinput selection set [expr $ind + 1]
+                $listboxinput see [expr $ind + 1]
+            }
+        } else {
+            if {$ind > 0} {
+                $listboxinput selection clear $ind
+                $listboxinput selection set [expr $ind - 1]
+                $listboxinput see [expr $ind - 1]
+            }
+        }
+    }
+}
+
+set curdropind 0
+
+proc dragitem_bp {dragpos} {
+    global listboxinput curdropind
+    set se [$listboxinput curselection]
+    if {$se != "" } {
+        $listboxinput selection clear $se
+        $listboxinput selection set @0,$dragpos
+        set curdropind [$listboxinput curselection]
+        bind $listboxinput <Motion> {set curdropind [showdroppos_bp $curdropind %y]}
+    }
+    return [$listboxinput curselection]
+}
+
+proc dropitem_bp {dragind droppos} {
+    global listboxinput listboxinputval spin funvars curdropind
+    if {$dragind != "" } {
+        set funname [$spin get]
+        set dropind [$listboxinput index @0,$droppos]
+        set dragitem [$listboxinput get $dragind]
+        if {$dragind != $dropind} {
+            $listboxinput insert $dropind $dragitem
+            $listboxinputval insert $dropind [$listboxinputval get $dragind]
+            set funvars($funname) [linsert $funvars($funname) $dropind $dragitem]
+            if {$dropind < $dragind} {
+                incr dragind
+                incr curdropind
+            } else {
+                incr dropind -1
+            }
+            $listboxinput delete $dragind
+            $listboxinput selection set $dropind
+            $listboxinputval delete $dragind
+            set funvars($funname) [lreplace $funvars($funname) $dragind $dragind]
+        }
+        $listboxinput itemconfigure $curdropind -background white
+        bind $listboxinput <Motion> {}
+    }
+}
+
+proc showdroppos_bp {oldcurdropind droppos} {
+    global listboxinput
+    if {$droppos < 1} {
+        if {$oldcurdropind > 0} {
+            $listboxinput see [expr $oldcurdropind - 1]
+        }
+    }
+# $maxi computation is unperfect, but should work in most cases
+# The best: to get $listboxinput height in pixels - how?
+    set maxi [$listboxinput bbox $oldcurdropind]
+    set maxi [expr [lindex $maxi 3] + 1]
+    set maxi [expr $maxi * [$listboxinput cget -height] + 4]
+    if {$droppos > $maxi} {
+        if {$oldcurdropind < [expr [$listboxinput size] - 1]} {
+            $listboxinput see [expr $oldcurdropind + 1]
+        }
+    }
+    set dropind [$listboxinput index @0,$droppos]
+    if {$oldcurdropind != $dropind} {
+        $listboxinput itemconfigure $oldcurdropind -background white
+        $listboxinput itemconfigure $dropind -background lightblue
+    }
+    return $dropind
+}
+
+proc OKconf_bp {w} {
+    global listboxinput listboxinputval spin
+    global funnameargs
+    set funname [$spin get]
+    if {$funname != ""} {
+        set orderOK [checkarglist $funname]
+        if {$orderOK == true} {
+            set strargs ""
+            for {set i 0} {$i < [$listboxinput size]} {incr i} {
+                set argvalue [$listboxinputval get $i]
+                set strargs "$strargs,$argvalue"
+            }
+            set strargs [string range $strargs 1 end]
+            set funnameargs "$funname\($strargs\)"
+        }
+    } else {
+        set funnameargs ""
+    }
+    destroy $w
+}
+
+proc checkarglist {funname} {
+# Because the user could add input variables (in the buffer text) to the
+# currently selected function, checking the argument list cannot just
+# rely on the latest Obtainall_bp
+    global listoftextarea funvars lang
+    set pat "\\mfunction\\M.*\\m$funname\\M"
+    set orderOK false
+    foreach textarea $listoftextarea {
+        set ex [$textarea search -regexp $pat 0.0 end]
+        if {$ex != "" } {
+            while {[lsearch [$textarea tag names $ex] "textquoted"] != -1 || \
+                   [lsearch [$textarea tag names $ex] "rem2"] != -1 } {
+                set ex [$textarea search -regexp $pat "$ex+8c" end]
+                if {$ex == ""} break
+            }
+            if {$ex != "" } {
+                set infun [whichfun [$textarea index "$ex +1l"] $textarea]
+                set funline [lindex $infun 2]
+                set oppar [string first "\(" $funline]
+                set clpar [string first "\)" $funline]
+                set listvars [string range $funline [expr $oppar+1] [expr $clpar-1]]
+                set listvars [string map {, " "} $listvars]
+                set orderOK true
+                set i 0
+                foreach var $funvars($funname) {
+                    if {$var != [lindex $listvars $i]} {
+                        set orderOK false
+                        break
+                    } else {
+                        incr i
+                    }
+                }
+            }
+        }
+    }
+    if {$orderOK != true } {
+        if {$lang == "eng" } {
+            set mes "Function name or input arguments do not match definition\
+                     of the function $funname in the file!\n\nCheck function\
+                     name and arguments (names, order) in the configuration dialog.\
+                     \nArguments order can be changed using drap and drop with\
+                     right mouse button in the arguments listbox."
+            set tit "Error in selected function name or arguments"
+        } else {
+            set mes "Le nom de la fonction ou ses arguments ne correspondent pas\
+                     à la définition de la fonction $funname dans le fichier!\n\n\
+                     Vérifier le nom de la fonction et ses arguments (nom, ordre\
+                     d'apparition) dans la boîte de dialogue de configuration.\n\
+                     L'ordre des arguments peut être modifié par glisser/déposer\
+                     avec le bouton droit de la souris."
+            set tit "Erreur sur la fonction sélectionnée ou ses arguments"
+        }
+        tk_messageBox -message $mes -icon warning -title $tit
+    }
+    return $orderOK
+}
+
+#proc Cancelconf_bp {w} {
+# Better always close the window with OK button. Saves variables management.
+#    destroy $w
+#}
+
+proc Obtainall_bp {} {
+    global spin listboxinput listboxinputval funnames funvars funvarsvals
+    global funsinbuffer
+    set textarea [gettextareacur]
+    set funsinbuffer($textarea) ""
+    set nextfun [$textarea search -exact -forwards -regexp\
+                 "\\mfunction\\M" 0.0 end ]
+    set firstfuninbuffer true
+    while {$nextfun != ""} {
+        while {[lsearch [$textarea tag names $nextfun] "textquoted"] != -1 || \
+               [lsearch [$textarea tag names $nextfun] "rem2"] != -1 } {
+            set nextfun [$textarea search -exact -forwards -regexp\
+                         "\\mfunction\\M" "$nextfun +8c" end]
+            if {$nextfun == ""} break
+        }
+        if {$nextfun != ""} {
+            set infun [whichfun [$textarea index "$nextfun +1l"]]
+        } else {
+            set infun {}
+        }
+        if {$infun != {} } {
+            $spin configure -state normal
+            $spin delete 0 end
+            set funname [lindex $infun 0]
+            set precval [$spin cget -values]
+            if {[lsearch $precval $funname] == -1} {
+                $spin configure -values "$precval $funname"
+            }
+            $spin configure -state readonly
+            if {$firstfuninbuffer == true} {
+                set firstfuninbuffer false
+                set funtoset $funname
+            }
+            set funline [lindex $infun 2]
+            $listboxinput delete 0 [$listboxinput size]
+            $listboxinputval delete 0 [$listboxinputval size]
+            set oppar [string first "\(" $funline]
+            set clpar [string first "\)" $funline]
+            set listvars [string range $funline [expr $oppar+1] [expr $clpar-1]]
+            set listvars [string map {, " "} $listvars]
+            foreach var $listvars {
+                $listboxinput insert end $var
+                set funvarsvals($funname,$var) ""
+                $listboxinputval insert end $funvarsvals($funname,$var)
+            }
+            $listboxinput selection set 0
+            $listboxinput see 0
+            set funvars($funname) $listvars
+            set funsinbuffer($textarea) "$funsinbuffer($textarea) $funname"
+            set nextfun [$textarea search -exact -forwards -regexp\
+                         "\\mfunction\\M" "$nextfun +8c" end]
+        }
+    }
+    set funnames [$spin cget -values]
+    if {[info exists funtoset]} {
+        $spin set $funtoset
+    } else {
+        $spin set [lindex $funnames 0]
+    }
+    spinboxbuttoninvoke
+    $listboxinput see 0
+}
+
+proc Addarg_bp {} {
+    global conf lang
+    global argname argvalue listboxinput listboxinputval spin
+    global buttonAdd
+    set pos [$listboxinput curselection]
+    if {[$spin get] != ""} {
+        set adda $conf.adda
+        toplevel $adda
+        if {$lang == "eng"} {
+            wm title $adda "Add argument"
+        } else {
+            wm title $adda "Ajouter un argument"
+        }
+        setwingeom $adda
+        set selecteditem [$listboxinput curselection]
+        if {$selecteditem != ""} {
+            set argname [$listboxinput get $selecteditem]
+            set argvalue [$listboxinputval get $selecteditem]
+        }
+        frame $adda.f
+        frame $adda.f.f1
+        if {$lang == "eng"} {
+            set tl "Argument:"
+        } else {
+            set tl "Argument:"
+        }
+        label $adda.f.f1.label -text $tl -width 10
+        entry $adda.f.f1.entry  -textvariable argname -width 20 
+        pack $adda.f.f1.label $adda.f.f1.entry -side left
+        $adda.f.f1.entry selection range 0 end
+        pack $adda.f.f1
+        frame $adda.f.f2
+        if {$lang == "eng"} {
+            set tl "Value:"
+        } else {
+            set tl "Valeur:"
+        }
+        label $adda.f.f2.label -text $tl -width 10
+        entry $adda.f.f2.entry  -textvariable argvalue -width 20 
+        pack $adda.f.f2.label $adda.f.f2.entry -side left
+        $adda.f.f2.entry selection range 0 end
+        pack $adda.f.f2
+        frame $adda.f.f9
+        button $adda.f.f9.buttonOK -text "OK" -command "OKadda_bp $adda $pos"\
+               -width 10 -height 1 -underline 0
+        if {$lang == "eng"} {
+            set bl "Cancel"
+        } else {
+            set bl "Annuler"
+        }
+        button $adda.f.f9.buttonCancel -text $bl -command "Canceladda_bp $adda $pos"\
+               -width 10 -underline 0
+        pack $adda.f.f9.buttonOK $adda.f.f9.buttonCancel -side left -padx 10
+        pack $adda.f.f9 -pady 4
+        pack $adda.f
+        bind $adda <Return> "OKadda_bp $adda $pos"
+        bind $adda <Escape> "Canceladda_bp $adda $pos"
+        focus $adda.f.f2.entry
+        grab $adda
+    }
+    focus $buttonAdd
+}
+
+proc OKadda_bp {w pos} {
+    global argname argvalue listboxinput listboxinputval
+    global spin funvars funvarsvals
+    if {$argname!= ""} {
+        set listboxinputelts [$listboxinput get 0 end]
+        set alreadyexists false
+        set eltindex 0
+        foreach elt $listboxinputelts {
+            if {$argname == $elt} {
+                set alreadyexists true
+                break
+            } else {
+                incr eltindex
+            }
+        }
+        set funname [$spin get]
+        if {$alreadyexists == false} {
+            set pos [expr $pos + 1]
+            $listboxinput insert $pos $argname
+            $listboxinputval insert $pos $argvalue
+
+            $listboxinput selection set $pos
+            $listboxinput see $pos
+            set funvars($funname) [linsert $funvars($funname) $pos $argname]
+       } else {
+            set nextone [expr $eltindex + 1]
+            if {$nextone >= [$listboxinput size]} {
+                set nextone 0
+            }
+            $listboxinput selection set $nextone
+            $listboxinput see $nextone
+            $listboxinputval delete $eltindex
+            $listboxinputval insert $eltindex $argvalue
+        }
+        set funvarsvals($funname,$argname) $argvalue
+    }
+    destroy $w
+}
+
+proc Canceladda_bp {w pos} {
+    global listboxinput
+    destroy $w
+    $listboxinput selection set $pos
+}
+
+proc Removearg_bp {} {
+    global listboxinput listboxinputval spin
+    global funvars funvarsvals
+    set selecteditem [$listboxinput curselection]
+    if {$selecteditem != ""} {
+        set funname [$spin get]
+        set argname [$listboxinput get $selecteditem]
+        unset funvarsvals($funname,$argname)
+        set funvars($funname) [lreplace $funvars($funname) \
+                                        $selecteditem $selecteditem]
+        $listboxinput delete $selecteditem
+        $listboxinput see $selecteditem
+        $listboxinputval delete $selecteditem
+        if {$selecteditem < [expr [$listboxinput size] ]} {
+            $listboxinput selection set $selecteditem
+        } else {
+            $listboxinput selection set [expr [$listboxinput size] - 1]
+        }
+    }
+}
+
+proc removefuns_bp {textarea} {
+    global funsinbuffer funvars funvarsvals funnames funnameargs
+    if {[info exists funsinbuffer($textarea)]} {
+        foreach fun $funsinbuffer($textarea) {
+            if {[info exists funvars($fun)]} {
+                foreach arg $funvars($fun) {
+                    unset funvarsvals($fun,$arg)
+                }
+                unset funvars($fun)
+            }
+            set pos [lsearch $funnames $fun]
+            set funnames [lreplace $funnames $pos $pos]
+            set oppar [expr [string first "\(" $funnameargs] - 1]
+            set curfunname [string range $funnameargs 0 $oppar]
+            if {$curfunname == $fun} {
+                set funnameargs "[lindex $funnames 0]("
+            }
+        }
+        if {$funnameargs != "("} {
+            set funname [string range $funnameargs 0 [expr [string length $funnameargs] - 2]]
+            set strargs ""
+            if {[info exists funvars($funname)]} {
+                foreach var $funvars($funname) {
+                    set argvalue $funvarsvals($funname,$var)
+                    set strargs "$strargs,$argvalue"
+                }
+                set strargs [string range $strargs 1 end]
+            }
+            set funnameargs "$funname\($strargs\)"
+        } else {
+            set funnameargs ""
+        }
+    }
+}
+
+#######################################################################
+##################### End of breakpoint stuff #########################
+#######################################################################
+
 # help menu
+# FV 13/05/04, -accelerator Shift+F1 uncommented
 menu $pad.filemenu.help -tearoff 0 -font $menuFont
 if {$lang == "eng"} {
     $pad.filemenu add cascade -label "Help" -underline 0 \
 	-menu $pad.filemenu.help
     $pad.filemenu.help add command -label "About" -underline 0 \
-	-command "aboutme" ;#-accelerator Shift-F1
+	-command "aboutme" -accelerator Shift+F1
     $pad.filemenu.help add command -label "Help" -underline 0 \
         -command "helpme" -accelerator F1
     $pad.filemenu.help add command -label "What's?" -underline 0 \
-	-command "helpword" -accelerator Ctrl-F1
+	-command "helpword" -accelerator Ctrl+F1
 } else {
     $pad.filemenu add cascade -label "Aide" -underline 0 \
 	-menu $pad.filemenu.help
     $pad.filemenu.help add command -label "A propos" -underline 1 \
-	-command "aboutme" ;#-accelerator Shift-F1
+	-command "aboutme" -accelerator Shift+F1
     $pad.filemenu.help add command -label "Aide" -underline 0 \
         -command "helpme" -accelerator F1
     $pad.filemenu.help add command -label "Qu'est-ce ?" -underline 0 \
-	-command "helpword" -accelerator Ctrl-F1
+	-command "helpword" -accelerator Ctrl+F1
 }
 
 # now make the menu visible
@@ -725,12 +1689,18 @@ set taille [expr [font measure $textFont " "] *3]
 # creates the default textarea 
 ##ES was here: added insertofftime 0 and exportselection
 ## Francois Vogel, 21/04/04: changed insertofftime to 500, and added insertontime 500
+## FV 13/05/04: added test with tk_version on ES request
 text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
 	-yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
         -fg $FGCOLOR -bg $BGCOLOR  -setgrid 1 -font $textFont -tabs $taille \
-        -insertwidth 3 -insertborderwidth 2 -insertofftime 500 -insertontime 500 \
+        -insertwidth 3 -insertborderwidth 2 \
         -insertbackground $CURCOLOR -selectbackground $SELCOLOR -exportselection 1
 set textareacur $pad.textarea  
+if {[expr $tk_version] >= 8.4} {
+    $textareacur configure -insertofftime 500 -insertontime 500
+} else {
+    $textareacur configure -insertofftime 0
+}
 ####
 ##ES: remember fontsize
 setfontscipad $FontSize
@@ -843,6 +1813,7 @@ proc scipadindent {textarea cm} {
 proc TextStyles { t } {
     global FGCOLOR PARCOLOR BRAKCOLOR BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR
     global TXTCOLOR QTXTCOLOR REMCOLOR XMLCOLOR NUMCOLOR
+    global BREAKPOINTCOLOR
 
     $t tag configure parenthesis -foreground $PARCOLOR
     $t tag configure bracket -foreground $BRAKCOLOR
@@ -856,6 +1827,9 @@ proc TextStyles { t } {
     $t tag configure xmltag -foreground $XMLCOLOR
     $t tag configure number -foreground $NUMCOLOR
     scipadindent $t .8
+# FV 13/05/04
+    $t tag configure breakpoint -background $BREAKPOINTCOLOR
+    $t tag configure activebreakpoint -underline true
 }
 TextStyles $textareacur
 ######################
@@ -1077,14 +2051,18 @@ proc aboutme {} {
     global winTitle version lang
     if {$lang == "eng"} {
 	tk_messageBox -title "About" -type ok \
-	    -message "$winTitle $version\n originated by Joseph Acosta,\n\
-	    joeja@mindspring.com.\n\
-            Modified by Scilab Group.\nRevised by Enrico Segre 2003,2004"
+	    -message "$winTitle $version\n\
+            Originated by Joseph Acosta, joeja@mindspring.com.\n\
+            Modified by Scilab Group.\n\
+            Revised by Enrico Segre 2003,2004.\n\
+            Miscellaneous improvements, particularly debug tools, by François Vogel 2004."
     } else {
 	tk_messageBox -title "A propos" -type ok \
-	    -message "$winTitle $version\n créé par Joseph Acosta,\n\
-	    joeja@mindspring.com.\n\
-            Modifié par le Groupe Scilab.\nAmélioré par Enrico Segre 2003,2004"
+	    -message "$winTitle $version\n\
+            Créé par Joseph Acosta, joeja@mindspring.com.\n\
+            Modifié par le Groupe Scilab.\n\
+            Amélioré par Enrico Segre 2003,2004.\n\
+            Améliorations diverses, dont outils de débug, par François Vogel 2004."
     }
 }
 
@@ -1113,12 +2091,12 @@ proc switchcase {yesfn argyesfn nofn argnofn} {
     if [ expr [string compare [getccount [gettextareacur]] 1] ==0 ] {
 	if {$lang == "eng"} {
 	    set answer [tk_messageBox -message \
-             "The contents of this file may have changed, do you wish \
+             "The contents of this file may have changed, do you wish\
               to save your changes?"\
 		    -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
 	    set answer [tk_messageBox -message \
-                "Voulez-vous enregistrer les modifications apportées à \
+                "Voulez-vous enregistrer les modifications apportées à\
                   ce fichier ?" \
 		  -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
@@ -1192,6 +2170,7 @@ proc killwin {widget} {
 # close app
 # added by matthieu PHILIPPE 16/12/2001
 proc closecur {} {
+    removefuns_bp [gettextareacur]
     closefile [gettextareacur]
 }
 
@@ -1275,7 +2254,7 @@ proc exitapp {} {
 }
 
 proc montretext {textarea} {
-    global listoffile
+#    global listoffile
     global pad
 # Next line added by Francois VOGEL 16/04/04, to fix the silent clearing of 
 # selection
@@ -1340,7 +2319,7 @@ proc showopenwin {textarea} {
 	set types {
 	    {"Scilab files" {*.sce *.sci }} 
 	    {"XML files" {*.xml }} 
-	    {"All files" {* *.*}}
+	    {"All files" {*.* *}}
 	}
 	#showinfo "Open file"
     } else {
@@ -1374,6 +2353,9 @@ proc showopenwin {textarea} {
 	    outccount $pad.new$winopened
 	    update
 	    colorize $pad.new$winopened 1.0 end
+# FV 13/05/04
+          reshape_bp
+          showinfo " "
 	    set listundo_id("$pad.new$winopened") \
 		[new textUndoer $pad.new$winopened]
 	    bind $pad.new$winopened <KeyRelease> {keyposn %W}
@@ -1479,7 +2461,7 @@ proc writesave {textarea nametosave} {
     close $FileNameToSave
     outccount $textarea
     if {$lang == "eng"} {
-	set msgWait "file $nametosave saved"
+	set msgWait "File $nametosave saved"
     } else {
 	set msgWait \
          "Fichier $nametosave sauvegardé"
@@ -1500,8 +2482,8 @@ proc filetosave {textarea} {
 
     if {$lang == "eng"} {
 	set msgChanged "The contents of $listoffile("$textarea",filename) \
-            has changed on Disk, Save it anyway ?"
-	set msgTitle "File has changed !"
+            has changed on Disk, Save it anyway?"
+	set msgTitle "File has changed!"
     } else {
 	set msgChanged "Le contenu de $listoffile("$textarea",filename) a\
             changé sur le disque, êtes-vous sûr de vouloir le sauvegarder ?"
@@ -1509,7 +2491,7 @@ proc filetosave {textarea} {
     }
 
     # save the opened file from disk, if not, user has to get a file name.
-    # we would verify if the file has not been modify by antother application
+    # we would verify if the file has not been modify by another application
     if { [file exists $listoffile("$textarea",filename)] && \
 	     $listoffile("$textarea",new) == 0  } {
 	if { $listoffile("$textarea",thetime) != [file mtime \
@@ -1674,6 +2656,8 @@ proc deletetext {} {
     set  i1 [[gettextareacur] index insert]
     colorize [gettextareacur] [[gettextareacur] index "$i1 wordstart"] \
 	[[gettextareacur] index "$i1 wordend"]
+# FV 13/05/04
+    reshape_bp
 }
 
 #cut text procedure
@@ -1695,6 +2679,8 @@ proc backspacetext {} {
     set  i1 [[gettextareacur] index insert]
     colorize [gettextareacur] [[gettextareacur] index "$i1 wordstart"] \
 	[[gettextareacur] index "$i1 wordend"]
+# FV 13/05/04
+    reshape_bp
 }
 
 #cut text procedure
@@ -1707,6 +2693,8 @@ proc cuttext {} {
     colorize [gettextareacur] [[gettextareacur] index "$i1 linestart"] \
 	[[gettextareacur] index "$i1 lineend"]
     selection clear
+# FV 13/05/04
+    reshape_bp
 }
 
 #copy text procedure
@@ -1741,10 +2729,13 @@ proc pastetext {} {
 	[[gettextareacur] index "$i2 wordend"]
 #added by ES (but might also be unhandy)
 #    $textareacur tag add sel $i1 $i2
+# FV 13/05/04
+    reshape_bp
 }
 
 proc FindIt {w} {
-    global SearchString SearchPos SearchDir findcase 
+# FV 13/05/04, regexp mode added
+    global SearchString SearchPos SearchDir findcase regexpcase
     global textareacur pad
     global lang SearchEnd SearchPosI
 #    [gettextareacur] tag configure sel -background green
@@ -1769,12 +2760,22 @@ proc FindIt {w} {
 #	}
 #	set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
 #			    -- $SearchString $SearchPos $limit]
-        if {$SearchEnd == "No_end"} {
-            set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
-                            -- $SearchString $SearchPos]
+        if {$regexpcase != "1"} {
+            if {$SearchEnd == "No_end"} {
+                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                                -- $SearchString $SearchPos]
+            } else {
+                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                                -- $SearchString $SearchPos $SearchEnd]
+            }
         } else {
-            set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
-                            -- $SearchString $SearchPos $SearchEnd]
+            if {$SearchEnd == "No_end"} {
+                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                                -regexp -- $SearchString $SearchPos]
+            } else {
+                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                                -regexp -- $SearchString $SearchPos $SearchEnd]
+            }
         }
         set len [string length $SearchString]
         if {$SearchPos != ""} {
@@ -1828,7 +2829,8 @@ proc FindIt {w} {
 }
 
 proc ReplaceIt {once_or_all} {
-    global SearchString SearchDir ReplaceString SearchPos findcase
+# FV 13/05/04, regexp mode added
+    global SearchString SearchDir ReplaceString SearchPos findcase regexpcase
     global textareacur
     global find lang SearchEnd
 # Francois VOGEL, 21/04/04
@@ -1847,12 +2849,22 @@ proc ReplaceIt {once_or_all} {
 #	}
 #	set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
 #			    -- $SearchString $SearchPos $limit]
-        if {$SearchEnd == "No_end"} {
-            set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
-                            -- $SearchString $SearchPos]
+        if {$regexpcase != "1"} {
+            if {$SearchEnd == "No_end"} {
+                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                                -- $SearchString $SearchPos]
+            } else {
+                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                                -- $SearchString $SearchPos $SearchEnd]
+            }
         } else {
-            set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
-                            -- $SearchString $SearchPos $SearchEnd]
+            if {$SearchEnd == "No_end"} {
+                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                                -regexp -- $SearchString $SearchPos]
+            } else {
+                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                                -regexp -- $SearchString $SearchPos $SearchEnd]
+            }
         }
         set len [string length $SearchString]
         if {$SearchPos != ""} {
@@ -1876,6 +2888,8 @@ proc ReplaceIt {once_or_all} {
                 }
             }         
             inccount [gettextareacur]
+# FV 13/05/04
+            reshape_bp
             focus [gettextareacur]
             return "Done"
         } else {
@@ -1956,145 +2970,174 @@ proc ResetFind {} {
 
 # procedure to find text
 proc findtext {typ} {
-	global SearchString SearchDir ReplaceString findcase c find pad lang
-	set find $pad.find
-	catch {destroy $find}
-	toplevel $find
-	if {$lang == "eng"} {
-	    wm title $find "Find"
-	} else {
-	    wm title $find "Rechercher"
-	}
-	setwingeom $find
+# FV 13/05/04, regexp mode added
+    global SearchString SearchDir ReplaceString findcase c find pad lang regexpcase
+    set find $pad.find
+    catch {destroy $find}
+    toplevel $find
+    if {$lang == "eng"} {
+        wm title $find "Find"
+    } else {
+        wm title $find "Rechercher"
+    }
+    setwingeom $find
 # Francois VOGEL, 21/04/04, this is already done by invoking down radiobutton below
 # as I added -command on this radiobutton to take care of the case where find shall
 # look backwards in selection
-#	ResetFind
-	frame $find.l
-	frame $find.l.f1
-	if {$lang == "eng"} {
-	    label $find.l.f1.label -text "Find what:" -width 11
-	} else {
-	    label $find.l.f1.label -text "Rechercher :" -width 11
-	}
-	entry $find.l.f1.entry  -textvariable SearchString -width 30 
-	pack $find.l.f1.label $find.l.f1.entry -side left
-	$find.l.f1.entry selection range 0 end
+#    ResetFind
+    frame $find.l
+    frame $find.l.f1
+    if {$lang == "eng"} {
+        label $find.l.f1.label -text "Find what:" -width 11
+    } else {
+        label $find.l.f1.label -text "Rechercher :" -width 11
+    }
+    entry $find.l.f1.entry  -textvariable SearchString -width 30 
+    pack $find.l.f1.label $find.l.f1.entry -side left
+    $find.l.f1.entry selection range 0 end
 #ES 
 #        bind $find.l.f1.entry <Control-c> {tk_textCopy $find.l.f1.entry}
 #        bind $find.l.f1.entry <Control-v> {tk_textPaste $find.l.f1.entry}
 # this doesn't work?
 #        bind $find.l.f1.entry <Control-x> {tk_textCut $find.l.f1.entry}
 #
-	if {$typ=="replace"} {
-	    frame $find.l.f2
-	    if {$lang == "eng"} {
-		label $find.l.f2.label2 -text "Replace with:" -width 11
-	    } else {
-		label $find.l.f2.label2 -text "Remplacer par :" -width 11
-	    }
-	    entry $find.l.f2.entry2  -textvariable ReplaceString -width 30 
-	    pack $find.l.f2.label2 $find.l.f2.entry2 -side left
-	    pack $find.l.f1 $find.l.f2 -side top
+    if {$typ=="replace"} {
+        frame $find.l.f2
+        if {$lang == "eng"} {
+            label $find.l.f2.label2 -text "Replace with:" -width 11
+        } else {
+            label $find.l.f2.label2 -text "Remplacer par :" -width 11
+        }
+        entry $find.l.f2.entry2  -textvariable ReplaceString -width 30 
+        pack $find.l.f2.label2 $find.l.f2.entry2 -side left
+        pack $find.l.f1 $find.l.f2 -side top -pady 2
 #ES 
 #            bind $find.l.f2.entry2 <Control-c> {tk_textCopy $find.l.f2.entry2}
 #            bind $find.l.f2.entry2 <Control-v> {tk_textPaste $find.l.f2.entry2}
 # this doesn't work?
 #            bind $find.l.f2.entry2 <Control-x> {tk_textCut $find.l.f2.entry2}
 #
-	} else {
-	    pack $find.l.f1
-	}
-	frame $find.f2
-	if {$lang == "eng"} {
-	    button $find.f2.button1 -text "Find Next" -command "FindIt $find" \
-		-width 10 -height 1 -underline 5 
-	    button $find.f2.button2 -text "Cancel" -command "CancelFind $find"\
-		-width 10 -underline 0
-	} else {
-	    button $find.f2.button1 -text "Rechercher suivant" -command \
-		"FindIt $find" -width 15 -height 1 -underline 5 
-	    button $find.f2.button2 -text "Annuler" \
-		-command "CancelFind $find" -width 15 -underline 0	    
-	}
-	if {$typ=="replace"} {
-	    if {$lang == "eng"} {
-		button $find.f2.button3 -text "Replace" -command "ReplaceIt once"\
-		    -width 10 -height 1 -underline 0
-		button $find.f2.button4 -text "Replace All" \
-		    -command ReplaceAll -width 10 -height 1 -underline 8
-	    } else {
-		button $find.f2.button3 -text "Remplacer" -command "ReplaceIt once" \
-		    -width 15 -height 1 -underline 0
-		button $find.f2.button4 -text "Remplacer tout" \
-                    -command ReplaceAll -width 15 -height 1 -underline 8
-	    }
-	    pack $find.f2.button3 $find.f2.button4 $find.f2.button2  -pady 4
-	} else {
-	    pack $find.f2.button1 $find.f2.button2  -pady 4
-	}
-	frame $find.l.f4
-	frame $find.l.f4.f3 -borderwidth 2 -relief groove
+    } else {
+        pack $find.l.f1 -pady 4
+    }
+    frame $find.f2
+    if {$lang == "eng"} {
+        button $find.f2.button1 -text "Find Next" -command "FindIt $find" \
+            -width 10 -height 1 -underline 5 
+        button $find.f2.button2 -text "Cancel" -command "CancelFind $find"\
+            -width 10 -underline 5
+    } else {
+        button $find.f2.button1 -text "Rechercher suivant" -command \
+            "FindIt $find" -width 15 -height 1 -underline 16 
+        button $find.f2.button2 -text "Annuler" \
+            -command "CancelFind $find" -width 15 -underline 4	    
+    }
+    if {$typ=="replace"} {
+        if {$lang == "eng"} {
+            button $find.f2.button3 -text "Replace" -command "ReplaceIt once"\
+                -width 10 -height 1 -underline 2
+            button $find.f2.button4 -text "Replace All" \
+                -command ReplaceAll -width 10 -height 1 -underline 8
+        } else {
+            button $find.f2.button3 -text "Remplacer" -command "ReplaceIt once" \
+                -width 15 -height 1 -underline 3
+            button $find.f2.button4 -text "Remplacer tout" \
+                -command ReplaceAll -width 15 -height 1 -underline 10
+        }
+        pack $find.f2.button3 $find.f2.button4 $find.f2.button2  -pady 4
+    } else {
+        pack $find.f2.button1 $find.f2.button2  -pady 4
+    }
+    frame $find.l.f4
+    frame $find.l.f4.f3 -borderwidth 2 -relief groove
 # Francois VOGEL 21/04/04, added -command on these two radiobuttons
-	if {$lang == "eng"} {
-	    radiobutton $find.l.f4.f3.up -text "Up" -underline 0 \
-		-variable SearchDir -value "backwards" -command "ResetFind"
-	    radiobutton $find.l.f4.f3.down -text "Down"  -underline 0 \
-		-variable SearchDir -value "forwards" -command "ResetFind"
-	} else {
-	    radiobutton $find.l.f4.f3.up -text "Vers le haut" -underline 0 \
-		-variable SearchDir -value "backwards" -command "ResetFind"
-	    radiobutton $find.l.f4.f3.down -text "Vers le bas"  -underline 0 \
-		-variable SearchDir -value "forwards" -command "ResetFind"
-	} 
-	$find.l.f4.f3.down invoke
-	pack $find.l.f4.f3.up $find.l.f4.f3.down -side left
-	if {$lang == "eng"} {
-	    checkbutton $find.l.f4.cbox1 -text "Match case" -variable findcase\
-		-underline 0
-	} else {
-	    checkbutton $find.l.f4.cbox1 -text "Respecter la casse" \
-		-variable findcase -underline 0
-	}
-	pack $find.l.f4.cbox1 $find.l.f4.f3 -side left -padx 10
-	pack $find.l.f4 -pady 11
-	pack $find.l $find.f2 -side left -padx 1
+    if {$lang == "eng"} {
+        radiobutton $find.l.f4.f3.up -text "Up" -underline 0 \
+            -variable SearchDir -value "backwards" -command "ResetFind"
+        radiobutton $find.l.f4.f3.down -text "Down"  -underline 0 \
+            -variable SearchDir -value "forwards" -command "ResetFind"
+    } else {
+        radiobutton $find.l.f4.f3.up -text "Vers le haut" -underline 10 \
+            -variable SearchDir -value "backwards" -command "ResetFind"
+        radiobutton $find.l.f4.f3.down -text "Vers le bas"  -underline 9 \
+            -variable SearchDir -value "forwards" -command "ResetFind"
+    } 
+    $find.l.f4.f3.down invoke
+    pack $find.l.f4.f3.up $find.l.f4.f3.down -side left
+    frame $find.l.f4.f5
+    if {$lang == "eng"} {
+        checkbutton $find.l.f4.f5.cbox1 -text "Match case" \
+            -variable findcase -underline 0
+    } else {
+        checkbutton $find.l.f4.f5.cbox1 -text "Respecter la casse" \
+            -variable findcase -underline 0
+    }
+    if {$lang == "eng"} {
+        checkbutton $find.l.f4.f5.cbox2 -text "Regular expression" \
+            -variable regexpcase -underline 0
+    } else {
+        checkbutton $find.l.f4.f5.cbox2 -text "Expression régulière" \
+            -variable regexpcase -underline 13
+    }
+    pack $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 -anchor sw
+    pack $find.l.f4.f5 $find.l.f4.f3 -side left -padx 10
+    pack $find.l.f4 -pady 11
+    pack $find.l $find.f2 -side left -padx 1
 #	bind $find <Escape> "destroy $find" ##this hangs scipad
-	bind $find <Escape> "CancelFind $find"
+    bind $find <Escape> "CancelFind $find"
 
-     # each widget must be bound to th eevents of the other widgets
-     proc bindevnt {widgetnm types find} {
-	if {$types=="replace"} {
-		bind $widgetnm <Return> "ReplaceIt once"
-		bind $widgetnm <Control-r> "ReplaceIt once"
-		bind $widgetnm <Control-a> "ReplaceAll"
-	} else {
-		bind $widgetnm <Return> "FindIt $find"
-		bind $widgetnm <Control-n> "FindIt $find"
-	}
-	bind $widgetnm <Control-m> { $find.l.f4.cbox1 invoke }
-	bind $widgetnm <Control-u> { $find.l.f4.f3.up invoke }
-	bind $widgetnm <Control-d> { $find.l.f4.f3.down invoke }
-     }
-	if {$typ == "replace"} {
-   		bindevnt $find.f2.button3 $typ $find
-		bindevnt $find.f2.button4 $typ $find
-	} else {
-		bindevnt $find.f2.button1 $typ $find
-  	        bindevnt $find.f2.button2 $typ $find
-	}
-        bindevnt $find.l.f4.f3.up  $typ $find
-        bindevnt $find.l.f4.f3.down $typ $find
-        bindevnt $find.l.f4.cbox1 $typ $find
-	bindevnt $find.l.f1.entry $typ $find	
+     # each widget must be bound to the events of the other widgets
+    proc bindevnt {widgetnm types find} {
+        global lang
+        if {$lang == "eng"} {
+            if {$types=="replace"} {
+                bind $widgetnm <Return> "ReplaceIt once"
+                bind $widgetnm <Control-p> "ReplaceIt once"
+                bind $widgetnm <Control-a> "ReplaceAll"
+            } else {
+                bind $widgetnm <Return> "FindIt $find"
+                bind $widgetnm <Control-n> "FindIt $find"
+            }
+            bind $widgetnm <Control-m> { $find.l.f4.f5.cbox1 invoke }
+            bind $widgetnm <Control-r> { $find.l.f4.f5.cbox2 invoke }
+            bind $widgetnm <Control-u> { $find.l.f4.f3.up invoke }
+            bind $widgetnm <Control-d> { $find.l.f4.f3.down invoke }
+        } else {
+            if {$types=="replace"} {
+                bind $widgetnm <Return> "ReplaceIt once"
+                bind $widgetnm <Control-p> "ReplaceIt once"
+                bind $widgetnm <Control-t> "ReplaceAll"
+            } else {
+                bind $widgetnm <Return> "FindIt $find"
+                bind $widgetnm <Control-n> "FindIt $find"
+            }
+            bind $widgetnm <Control-r> { $find.l.f4.f5.cbox1 invoke }
+            bind $widgetnm <Control-g> { $find.l.f4.f5.cbox2 invoke }
+            bind $widgetnm <Control-u> { $find.l.f4.f3.up invoke }
+            bind $widgetnm <Control-a> { $find.l.f4.f3.down invoke }
+        }
+    }
+    if {$typ == "replace"} {
+        bindevnt $find.f2.button3 $typ $find
+        bindevnt $find.f2.button4 $typ $find
+    } else {
+        bindevnt $find.f2.button1 $typ $find
+        bindevnt $find.f2.button2 $typ $find
+    }
+    bindevnt $find.l.f4.f3.up  $typ $find
+    bindevnt $find.l.f4.f3.down $typ $find
+    bindevnt $find.l.f4.f5.cbox1 $typ $find
+    bindevnt $find.l.f4.f5.cbox2 $typ $find
+    bindevnt $find.l.f1.entry $typ $find	
 #    bind $find <Control-c> "destroy $find";
 #    bind $find <Control-c> "CancelFind $find";
+    bind $find <Control-l> "CancelFind $find"
     bind $find <Visibility> {raise $find $pad};
 #ajout pour mettre a la fenetre Search devant le scipad !
     bind $pad <Expose> {raise $find $pad};
 #ajout pour mettre a la fenetre Search devant le scipad !
-	focus $find.l.f1.entry
-	grab $find
+    focus $find.l.f1.entry
+    grab $find
 }
 
 # proc for find next
@@ -2320,6 +3363,17 @@ bind $pad <Control-minus> {set FontSize [expr round($FontSize*0.9)]; \
                               setfontscipad $FontSize}
 
 bind $pad <F4> {importmatlab}
+
+# FV 13/05/04
+bind $pad <F9> {insertremove_bp}
+bind $pad <Control-F9> {removeall_bp}
+bind all <F10> {}
+bind $pad <F10> {configurefoo_bp}
+bind $pad <Control-F11> {execfile_bp}
+bind $pad <F11> {resume_bp}
+bind $pad <Shift-F11> {insertremovedebug_bp}
+bind $pad <Shift-F12> {goonwo_bp}
+bind $pad <F12> {stepbystep_bp}
 
 ###################################################################
 #set zed_dir [file dirname [info script]] 
@@ -2647,6 +3701,8 @@ proc undo_menu_proc {} {
     } else {
         outccount [gettextareacur]
     }
+# FV 13/05/04
+    reshape_bp
 }
 
 proc redo_menu_proc {} {
@@ -2659,6 +3715,8 @@ proc redo_menu_proc {} {
     set i2 [[gettextareacur] index insert]
     colorize [gettextareacur] $i1 [[gettextareacur] index "$i2+1l linestart"]
     inccount [gettextareacur]
+# FV 13/05/04
+    reshape_bp
 }
 
 #######################################
@@ -2842,10 +3900,11 @@ proc selectall {} {
 }
 
 proc puttext {w text} {
-    global winTitle
+    global winTitle pad
     set rem 0
     set cuttexts [selection own]
-    if {$cuttexts != "" } {
+# FV 13/05/04, next line corrected (see bug #723)
+    if {[string range $cuttexts 0 [expr [string length $pad]-1]] == $pad} {
 	if [catch {selection get -selection PRIMARY} sel] {
 	    
 	} else {
@@ -2859,6 +3918,8 @@ proc puttext {w text} {
     if {$i1 != $i2 || $rem} {
 	colorize $w $i1 [$w index "$i2+1l linestart"]
     }
+# FV 13/05/04
+    reshape_bp
     $w see insert
 }
 
@@ -3009,30 +4070,37 @@ proc modifiedtitle {textarea} {
      }
 }
 
-proc whichfun {indexin} {
+proc whichfun {indexin {buf "current"}} {
     global lang
 #it is implicitely meant that indexin refers to a position in textareacur
-    set textarea [gettextareacur]
+# FV 13/05/04, added capability for looking in a buffer which is not the current one
+    if {$buf == "current"} {
+        set textarea [gettextareacur]
+    } else {
+        set textarea $buf
+    }
     scan $indexin "%d.%d" ypos xpos
 # search for the previous "function" which is not in a comment nor
 # in a string
     set precfun [$textarea search -count len -exact -backwards -regexp\
 		     "\\mfunction\\M" $indexin 0.0]
     if {$precfun!=""} {
-        while {[lsearch [$textarea tag names $precfun] "textquoted"] ==1 | \
-	       [lsearch  [$textarea tag names $precfun] "rem2"] ==1} {
+# FV 13/05/04, changed ==1 to !=-1 (twice) to take breakpoint tag into account
+        while {[lsearch [$textarea tag names $precfun] "textquoted"] !=-1 | \
+	       [lsearch  [$textarea tag names $precfun] "rem2"] !=-1} {
           set precfun [$textarea search -count len -exact -backwards -regexp\
 		     "\\mfunction\\M" $precfun 0.0]
  	  if {$precfun==""} break
 	}
     }
-# search for the previous "function" which is not in a comment nor
+# search for the previous "endfunction" which is not in a comment nor
 # in a string
     set precendfun [$textarea search -count len -exact -backwards -regexp\
 		     "\\mendfunction\\M" $indexin 0.0]
     if {$precendfun!=""} {
-        while {[lsearch [$textarea tag names $precendfun] "textquoted"] ==1 | \
-	       [lsearch  [$textarea tag names $precendfun] "rem2"] ==1} {
+# FV 13/05/04, changed ==1 to !=-1 (twice) to take breakpoint tag into account
+        while {[lsearch [$textarea tag names $precendfun] "textquoted"] !=-1 | \
+	       [lsearch  [$textarea tag names $precendfun] "rem2"] !=-1} {
           set precendfun [$textarea search -count len -exact -backwards -regexp\
 		     "\\mendfunction\\M" $precendfun 0.0]
  	  if {$precendfun==""} break
@@ -3074,14 +4142,15 @@ proc whichfun {indexin} {
         
         scan $precfun "%d." beginfunline 
 	set lineinfun [expr $ypos-$beginfunline-$contlines+1]
-      if {$lang == "eng"} {
-        tk_messageBox -message \
-	   "Being at line $ypos, function $funname begins at $precfun, and there are $contlines continued lines, i.e. we are at line $lineinfun of $funname"
-      } else {
-        tk_messageBox -message \
-	   "Etant à la ligne $ypos, la fonction $funname débute à $precfun, et il y a $contlines lignes multiples, i.e. nous sommes à la ligne $lineinfun de $funname"
-      }
-        return [list $funname $lineinfun] 
+# FV 13/05/04, message box commented
+#      if {$lang == "eng"} {
+#        tk_messageBox -message \
+#	   "Being at line $ypos, function $funname begins at $precfun, and there are $contlines continued lines, i.e. we are at line $lineinfun of $funname"
+#      } else {
+#        tk_messageBox -message \
+#	   "Etant à la ligne $ypos, la fonction $funname débute à $precfun, et il y a $contlines lignes multiples, i.e. nous sommes à la ligne $lineinfun de $funname"
+#      }
+        return [list $funname $lineinfun $funline $precfun] 
     }
 }
 
