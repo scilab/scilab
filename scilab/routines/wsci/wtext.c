@@ -59,7 +59,7 @@ void SetReadyOrNotForAnewLign(BOOL Ready);
 HANDLE hThreadWrite;
 CRITICAL_SECTION Sync; /* Section Critique pour Write_scilab */
 
-
+static BOOL ConsoleIsMinimized=FALSE;
 /*-----------------------------------------------------------------------------------*/
 /*********************************************
  * message Loop 
@@ -1235,24 +1235,22 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
       lptw->bFocus = FALSE;
       break;
     case WM_SIZE:
+		SendCTRLandAKey(CTRLU); /* Scrollbar */
+		
 	  lptw->ClientSize.y = HIWORD (lParam);
       lptw->ClientSize.x = LOWORD (lParam);
       nc = lptw->ClientSize.x / lptw->CharSize.x;
       nl = lptw->ClientSize.y / lptw->CharSize.y;
-/** send number of lines info to scilab **/
+	  /** send number of lines info to scilab **/
       nl = (nl > 5) ? nl : 5;
-/** to avoid lines set to 0 when iconified **/
+	  /** to avoid lines set to 0 when iconified **/
       C2F (scilines) (&nl, &nc);
       
-	  
-
- /*if (wParam != SIZE_RESTORED) A modifier pour show_window(-1)*/
-		
 	  lptw->ScrollMax.y = max (0, lptw->CharSize.y * lptw->ScreenSize.y - lptw->ClientSize.y);
-       lptw->ScrollPos.y = min (lptw->ScrollPos.y, lptw->ScrollMax.y);
+      lptw->ScrollPos.y = min (lptw->ScrollPos.y, lptw->ScrollMax.y);
 
       SetScrollRange (hwnd, SB_VERT, 0, lptw->ScrollMax.y, FALSE);    
-       SetScrollPos (hwnd, SB_VERT, lptw->ScrollPos.y, TRUE);
+      SetScrollPos (hwnd, SB_VERT, lptw->ScrollPos.y, TRUE);
 
       lptw->ScrollMax.x = max (0, lptw->CharSize.x * lptw->ScreenSize.x - lptw->ClientSize.x);
       lptw->ScrollPos.x = min (lptw->ScrollPos.x, lptw->ScrollMax.x);
@@ -1268,7 +1266,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 		       - lptw->CaretHeight - lptw->ScrollPos.y);
 	  ShowCaret (hwnd);
 	}
-
+		
 	  return (0);
       
     case 0x020A :/*WM_MOUSEWHEEL*/
@@ -3350,12 +3348,14 @@ void ShowWindowFunction _PARAMS((char *fname))
 			if ( IsIconic(lptw->hWndParent) )
 			{
 				ShowWindow(lptw->hWndParent,SW_RESTORE);
-				SendMessage (lptw->hWndText, WM_VSCROLL, SB_TOP, (LPARAM) 0);
+				ConsoleIsMinimized=FALSE;
+				
 	
 			}
 			else
 			{
 				ShowWindow(lptw->hWndParent,SW_MINIMIZE);
+				ConsoleIsMinimized=TRUE;
 			} 
 			
 
