@@ -10,8 +10,11 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
-     Revision 1.1  2001/04/26 07:49:01  scilab
-     Initial revision
+     Revision 1.2  2002/02/08 10:27:33  steer
+      modifs de mcmahill@mtl.mit.edu
+
+     Revision 1.1.1.1  2001/04/26 07:49:01  scilab
+     Imported sources
 
      Revision 1.16  1999/07/08 21:43:13  fleury
      Modifs relative a pvm_start([hostfile])
@@ -463,10 +466,14 @@ C2F(scipvmspawn)(task, l1, win, l2, where, l3, ntask, tids, res)
     strcat(cmd, "\\bin\\scilex.exe");
   }
   else {
-    strcpy(cmd, "scilex");
+    if (path = getenv("SCI")) {
+      strcpy(cmd,path);
+      strcat(cmd,"/bin/scilex");
+    }
+    else {
+      strcpy(cmd, "scilex");
+    }
   }
-#else 
-  strcpy(cmd, "scilex");
 #endif 
 #if (defined __MSC__) || (defined __ABSC__)
   if ( _stricmp(task,"null") != 0) {

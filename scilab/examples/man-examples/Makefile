@@ -11,6 +11,8 @@ include $(SCIDIR)/Makefile.incl
 
 all:: 
 	$(SCIDIR)/bin/scilab -nw -f "format.sci"
+tests   :  Makefile 
+	@echo "No tests to do in man-examples"
 
 distclean::
 	$(RM)  $(FILES_TO_CLEAN) */*.cat

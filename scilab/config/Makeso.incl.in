@@ -18,7 +18,7 @@ LN_S = @LN_S@
 NM = @NM@
 LDFLAGS = @LDFLAGS@ $(EXTRA_LDFLAGS) 
 LIBS = @LIBS@
-
+FLIBS = @FLIBS@
 #******************************************************************* 
 INCLUDES=  $(XFLAGS) $(TK_INC_PATH) $(TCL_INC_PATH) -I$(SCIDIR)/routines 
 
@@ -34,7 +34,7 @@ FCOMPILE = $(FC) $(INCLUDES) $(FFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(QUIET) $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
 FLTCOMPILE = $(LIBTOOL) --mode=compile $(QUIET) $(FC) $(INCLUDES) $(FFLAGS)
 
-LINK = $(LIBTOOL) --mode=link $(QUIET) $(CC) $(CFLAGS) $(LDFLAGS) -o $@
+LINK = $(LIBTOOL) --mode=link $(QUIET) $(CC) $(CFLAGS) $(LDFLAGS)  $(FLIBS)-o $@
 
 OBJECTS = $(OBJS:.o=.lo)
 LIBRARY_NAME = $(LIBRARY:.a=)
