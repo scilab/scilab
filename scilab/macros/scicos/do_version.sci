@@ -1141,7 +1141,7 @@ function scs_m_new=do_version27(scs_m)
 	
     //       end
     //     end
-
+    scs_m_new=scs_m
     return,
   end
   scs_m_new=scicos_diagram()
