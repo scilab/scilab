@@ -2,7 +2,7 @@ function str=%ce_string(c)
 str=[];
   val=c.entries
   dims=double(c.dims);  
-  for k=1:size(val)
+  for k=1:length(val)
     tp=typeof(val(k))
     if tp=="st" then
       str=%st_string(val(k))
