@@ -91,8 +91,8 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
    xptr,zptr,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
    typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
-   bexe,boptr,blnk,blptr,ok]=extract_info(bllst,..
-					  connectmat,clkconnect)
+   bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect);
+  typ_z0=typ_z;
 
   if ~ok then
      message('Problem in port size');
@@ -151,7 +151,8 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   end
   
   
-  ztyp=sign(typ_z)  //completement inutile pour simulation
+  ztyp=sign(typ_z0)  //completement inutile pour simulation
+                     // utiliser pour la generation de code
 
 
   subscr=[]
