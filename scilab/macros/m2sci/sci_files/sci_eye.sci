@@ -53,7 +53,7 @@ end
 if tree.name=="randn" |tree.name=="rand" then
   if tree.rhs(1).vtype==String then // State
     if rhs==1 then // Get the state
-      if tree.name=="rand"then
+      if tree.name=="rand" then
 	onescall=Funcall("ones",1,Rhs(35,1),list())
 	randcall=Funcall("rand",1,Rhs("seed"),list())
 	tree=Operation("*",list(onescall,randcall),tree.lhs)

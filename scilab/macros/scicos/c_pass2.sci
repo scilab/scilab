@@ -168,7 +168,6 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 	     'If you want to reactivate the thresholds, the you need';
 	     'to include a block with continuous-time state in your diagram.';
 	     'You can for example include DUMMY CLSS block (linear palette).']);
-
   end
 
   subscr=[]
