@@ -27,19 +27,18 @@ static int scig_buzy = 0;
  ********************************************************/
 
 
-int scig_handler_none(win_num)int win_num; {return win_num;};
+int scig_handler_none(int win_num) {return win_num;};
 
 Scig_handler scig_handler = scig_handler_none;
 
-Scig_handler set_scig_handler(f) 
-     Scig_handler f;
+Scig_handler set_scig_handler(Scig_handler f)
 {
   Scig_handler old = scig_handler;
   scig_handler = f;
   return old;
 }
 
-void reset_scig_handler() 
+void reset_scig_handler(void)
 {
   scig_handler = scig_handler_none;
 }
@@ -49,8 +48,7 @@ void reset_scig_handler()
  * Basic Replay : redraw recorded graphics 
  ********************************************************/
 
-void scig_replay(win_num)
-     integer win_num;
+void scig_replay(integer win_num)
 {
   integer verb=0,cur,na;
   char name[4];
@@ -76,8 +74,7 @@ void scig_replay(win_num)
  * else we perform a sgig_replay 
  ********************************************************/
 
-void scig_expose(win_num)
-     integer win_num;
+void scig_expose(integer win_num)
 {
   integer verb=0,cur,pix,na;
   char name[4];
@@ -113,8 +110,7 @@ void scig_expose(win_num)
  * Redraw graphic window win_num  after resizing 
  ********************************************************/
 
-void scig_resize(win_num)
-     integer win_num;
+void scig_resize(integer win_num)
 {
   integer verb=0,cur,na;
   char name[4];
@@ -138,8 +134,7 @@ void scig_resize(win_num)
  * Just resize a pixmap (win95 only)
  ********************************************************/
 
-void scig_resize_pixmap(win_num)
-     integer win_num;
+void scig_resize_pixmap(integer win_num)
 {
   integer verb=0,cur,na;
   char name[4];
@@ -160,8 +155,7 @@ void scig_resize_pixmap(win_num)
  * clear window 
  ********************************************************/
 
-void  scig_erase(win_num)
-     integer win_num;
+void  scig_erase(integer win_num)
 {
   integer verb=0,cur,na;
   char name[4];
@@ -187,9 +181,7 @@ void  scig_erase(win_num)
  * driver : driver for code generation 
  ********************************************************/
 
-void scig_tops(win_num,colored,bufname,driver)
-     integer win_num,colored;
-     char *bufname,*driver;
+void scig_tops(integer win_num, integer colored, char *bufname, char *driver)
 {
   char name[4];
   integer zero=0,un=1;
@@ -226,10 +218,7 @@ void scig_tops(win_num,colored,bufname,driver)
   scig_buzy = 0;
 }
 
-int C2F(xg2psofig)(fname,len,iwin,color,driver,l1,l2)
-     char *fname,*driver;
-     integer *len,*iwin,*color;
-     long int l1,l2;
+int C2F(xg2psofig)(char *fname, integer *len, integer *iwin, integer *color, char *driver, long int l1, long int l2)
 {
   int sc;
   if ( *color == -1 ) 
@@ -244,8 +233,7 @@ int C2F(xg2psofig)(fname,len,iwin,color,driver,l1,l2)
  * 2D Zoom 
  ******************************************************/
 
-void scig_2dzoom(win_num)
-     integer win_num;
+void scig_2dzoom(integer win_num)
 {
   char name[4];
   if ( scig_buzy  == 1 ) return ;
@@ -272,8 +260,7 @@ void scig_2dzoom(win_num)
  * Unzoom function 
  ******************************************************/
 
-void   scig_unzoom(win_num)
-     integer win_num;
+void   scig_unzoom(integer win_num)
 {
   integer verb=0,cur,na;
   char name[4];
@@ -299,8 +286,7 @@ void   scig_unzoom(win_num)
  * 3d rotation function 
  ******************************************************/
 
-void scig_3drot(win_num)
-     integer win_num;
+void scig_3drot(integer win_num)
 {
   integer verb=0,cur,na;
   char name[4];
@@ -326,8 +312,7 @@ void scig_3drot(win_num)
  * graphic Window selection 
  ********************************************************/
 
-void scig_sel(win_num)
-     integer win_num;
+void scig_sel(integer win_num)
 {
   C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
@@ -336,8 +321,7 @@ void scig_sel(win_num)
  * graphic Window raise 
  ********************************************************/
 
-void scig_raise(win_num)
-     integer win_num;
+void scig_raise(integer win_num)
 {
   C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -349,9 +333,7 @@ void scig_raise(win_num)
  * Reload a saved graphic
  ********************************************************/
 
-void scig_loadsg(win_num,filename)
-     int win_num;
-     char *filename;
+void scig_loadsg(int win_num, char *filename)
 {
   integer verb=0,cur,na;
   if ( scig_buzy  == 1 ) return ;
