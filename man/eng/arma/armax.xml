@@ -88,12 +88,12 @@ B(z) = b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
     <P>
     for the method see Eykhoff in trends and progress in system identification, page 96.
     with  
-     z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)] 
+     <VERB>z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)]</VERB>
     and
-     coef= [-a1,..,-ar,b0,...,b_s] 
+     <VERB>coef= [-a1,..,-ar,b0,...,b_s] </VERB>
     we can write 
-    y(t)= coef* z(t) + sig*e(t) and the algorithm minimises 
-    sum_{t=1}^N ( [y(t)- coef'z(t)]^2)
+    <VERB>y(t)= coef* z(t) + sig*e(t) </VERB> and the algorithm minimises 
+    <VERB>sum_{t=1}^N ( [y(t)- coef'z(t)]^2)</VERB>
     where t0=maxi(maxi(r,s)+1,1))).</P>
   </DESCRIPTION>
   <EXAMPLE>

@@ -15,7 +15,7 @@
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="armac">
         <SP>: this function creates a Scilab tlist which code an  Armax
-  process     A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</SP>
+  process    <VERB> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</VERB></SP>
         <VERBATIM>
 <![CDATA[
 -->ar=armac([1,2],[3,4],1,1,1,sig);
@@ -41,10 +41,11 @@
         <SP>: extract polynomial matrices from ar representation</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="armax">
-        <SP>: is used to identify the coefficients of a n-dimensional  ARX process    A(z^-1)y= B(z^-1)u + sig*e(t)</SP>
+        <SP>: is used to identify the coefficients of a n-dimensional  ARX process   <VERB>A(z^-1)y= B(z^-1)u + sig*e(t)</VERB></SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="armax1">
-        <SP>: armax1 is used to identify the coefficients of a 1-dimensional  ARX process    A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</SP>
+        <SP>: armax1 is used to identify the coefficients of a 1-dimensional  ARX process    
+         <VERB>A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</VERB></SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="arsimul">
         <SP>: armax trajectory simulation.</SP>

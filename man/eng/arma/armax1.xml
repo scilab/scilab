@@ -43,19 +43,19 @@
             <PARAM_ITEM>
               <PARAM_NAME>a</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: is the vector [1,a1,...,a_r]</SP>
+                <SP>: is the vector <VERB>[1,a1,...,a_r]</VERB></SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
               <PARAM_NAME>b</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: is the vector [b0,......,b_s]</SP>
+                <SP>: is the vector <VERB>[b0,......,b_s]</VERB></SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
               <PARAM_NAME>d</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: is the vector [1,d1,....,d_q]</SP>
+                <SP>: is the vector <VERB>[1,d1,....,d_q]</VERB></SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
@@ -85,11 +85,16 @@
     <P>
     for the method, see Eykhoff in trends and progress in system identification) page 96.
     with 
+    <VERBATIM>
             z(t)=[y(t-1),..,y(t-r),u(t),...,
                   u(t-s),e(t-1),...,e(t-q)] 
+    </VERBATIM>
     and
+    <VERBATIM>
             coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
-            y(t)= coef'* z(t) + sig*e(t).</P>
+            y(t)= coef'* z(t) + sig*e(t).
+    </VERBATIM>
+    </P>
     <P>
     a sequential version of the AR estimation where e(t-i) is replaced 
     by an estimated value is used (RLLS). With q=0 this method is exactly

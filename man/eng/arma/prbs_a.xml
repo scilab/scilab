@@ -12,7 +12,7 @@
   <DESCRIPTION>
     <P>
     generation of pseudo random binary sequences
-    <VERB> u=[u0,u1,...,u_(n-1)];</VERB>
+    <VERB>u=[u0,u1,...,u_(n-1)]</VERB>
     u takes values in {-1,1} and changes at most nc times its sign.
     ids can be used to fix the date at which u must change its sign 
     ids is then an integer vector with values in <VERB>[1:n]</VERB>.</P>
