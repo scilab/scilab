@@ -9,6 +9,11 @@ else
   if strindex(path,['SCI/','SCI\'])==1 then
     path=SCI+part(path,4:length(path))
   end
+  if fileinfo(path)==[] then
+    warning(" there is no file named "+name+".sci in the library directory "..
+              +t(1))
+    path=[]
+  end
 end
 endfunction
 
