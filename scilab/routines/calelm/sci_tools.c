@@ -10,6 +10,9 @@
    HISTORY
      fleury - Dec 17, 1997: Created.
      $Log: sci_tools.c,v $
+     Revision 1.3  2001/10/16 08:23:38  chanceli
+     change in includes
+
      Revision 1.2  2001/06/11 17:53:43  delebecq
      f772sci with 2 pointers
 
@@ -45,11 +48,13 @@
 
 ***/
 #include "../machine.h"
-#ifndef __ABSC__
-#include <malloc.h>
-#else
+
+#ifdef __STDC__
 #include <stdlib.h>
-#endif
+#else 
+#include <malloc.h>
+#endif 
+
 #include <stdio.h>
 #include <string.h>
 
