@@ -12,7 +12,7 @@ NAM = SCI/macros/auto
 
 MACROS = calfrq.sci svplot.sci abcd.sci sm2ss.sci sm2des.sci \
 	arhnk.sci balreal.sci observer.sci stabil.sci \
-	canon.sci cont_frm.sci \
+	canon.sci cont_frm.sci lyap.sci sylv.sci \
 	cont_mat.sci contrss.sci unobs.sci csim.sci ctr_gram.sci \
 	cls2dls.sci dscr.sci dsimul.sci dt_ility.sci \
 	equil.sci equil1.sci flts.sci \
