@@ -53,9 +53,6 @@ extern void SendSGDeleteMessage __PARAMS((int win_num));
 extern void do_kill();
 extern int get_is_reading();
 extern char GetDriver();
-extern int versionflag; /* NG */
-extern void sciSwitchWindow  __PARAMS((int *winnum));/* NG */
-extern void sciGetIdFigure __PARAMS((int *vect, int *id, int *iflag));/* NG */
 #ifdef BSD
 static char	savedCommand[LINESIZ] = ""; 
 #endif
@@ -311,12 +308,7 @@ SendCountSet(widget, closure, callData)
      Widget widget;
      XtPointer closure, callData;
 {
-  char c ;
-  if ((c=GetDriver())=='R' || c == 'X' || c == 'W')
-    {
-      C2F(dr)("xset","window",&lab_count,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      if (versionflag==0) sciSwitchWindow(lab_count);
-    };
+  scig_sel(lab_count);
 }
 
 
@@ -325,51 +317,7 @@ SendCountRaise(widget, closure, callData)
      Widget widget;
      XtPointer closure, callData;
 {
-  char c ;
-  int cur,n,na,verb=0,iflag=0;
-
-  if (versionflag == 0) /* NG */
-    { 
-      sciGetIdFigure (PI0,&n,&iflag);
-      if (n>0)
-	{
-	  C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  if (lab_count != cur)
-	    {
-	      C2F(dr)("xset","window",&lab_count,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      sciSwitchWindow(&lab_count);
-	      C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
-	  else
-	    {
-	      C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
-	}
-      else
-	{ 
-	  C2F(dr)("xset","window",&lab_count,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  sciSwitchWindow(&lab_count);
-	}
-    }
-  else 
-    {
-      if ((c=GetDriver())=='R' || c == 'X' || c == 'W')
-	{
-	  C2F(getwins)(&n,PI0 ,&iflag);
-	  if (n>0) /* at least on figure exists, preserve the current one*/
-	    {
-	      C2F (dr)("xget", "window",&verb,&cur,&n,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xset","window",&lab_count,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
-	  else
-	    {
-	      C2F(dr)("xset","window",&lab_count,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
-	}
-    }
+  scig_raise(lab_count);
 }
 
 static void 

@@ -19,6 +19,9 @@
  *            flag scig_buzy  is used to check for that 
  *            
  ********************************************************/
+extern int versionflag; /* NG */
+extern void sciSwitchWindow  __PARAMS((int *winnum));/* NG */
+extern void sciGetIdFigure __PARAMS((int *vect, int *id, int *iflag));/* NG */
 
 static int scig_buzy = 0;
 
@@ -328,7 +331,12 @@ void scig_3drot(integer win_num)
 
 void scig_sel(integer win_num)
 {
-  C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  char c ;
+  if ((c=GetDriver())=='R' || c == 'X' || c == 'W')
+    {
+      C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if (versionflag==0) sciSwitchWindow(&win_num);
+    }
 }
 
 /********************************************************
@@ -337,10 +345,53 @@ void scig_sel(integer win_num)
 
 void scig_raise(integer win_num)
 {
-  C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-}
+ 
+  char c ;
+  int cur,n,na,verb=0,iflag=0;
 
+  if (versionflag == 0) /* NG */
+    { 
+      sciGetIdFigure (PI0,&n,&iflag);
+      if (n>0)
+	{
+	  C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  if (win_num != cur)
+	    {
+	      C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      sciSwitchWindow(&win_num);
+	      C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	  else
+	    {
+	      C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	}
+      else
+	{ 
+	  C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  sciSwitchWindow(&win_num);
+	}
+    }
+  else 
+    {
+      if ((c=GetDriver())=='R' || c == 'X' || c == 'W')
+	{
+	  C2F(getwins)(&n,PI0 ,&iflag);
+	  if (n>0) /* at least on figure exists, preserve the current one*/
+	    {
+	      C2F (dr)("xget", "window",&verb,&cur,&n,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	  else
+	    {
+	      C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	}
+    }
+}
 
 
 /********************************************************

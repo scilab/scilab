@@ -29,7 +29,6 @@
 #define STRICT
 #endif
 
-
 /*-----------------------------------------------------------------------------------*/
 /*********************************
  * Send a macro to the text window 
@@ -533,23 +532,14 @@ static void Countm ()
 /*-----------------------------------------------------------------------------------*/
 static void SendCountSet ()
 {
-  char c;
-  if ((c = GetDriver ()) == 'R' || c == 'X' || c == 'W')
-    {
-      C2F (dr) ("xset", "window", &lab_count, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-    };
+  scig_sel(lab_count);
 }
 /*-----------------------------------------------------------------------------------*/
-static void SendCountRaise ()
+static void SendCountRaise()
 {
-  char c;
-  if ((c = GetDriver ()) == 'R' || c == 'X' || c == 'W')
-    {
-      /* C2F(dr)("xsetdr","Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-      C2F (dr) ("xset", "window", &lab_count, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-      C2F (dr) ("xselect", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-    };
+  scig_raise(lab_count);
 }
+
 /*-----------------------------------------------------------------------------------*/
 static void SendCountDelete ()
 {
