@@ -17,10 +17,8 @@
    </P>
     <DESCRIPTION_INDENT>
 
-
   <DESCRIPTION_ITEM label="Axes properties">
-  <DESCRIPTION_INDENT>
-  
+  <DESCRIPTION_INDENT> 
      <DESCRIPTION_ITEM label="visible: ">
       <SP>This field contains the  <VERB>visible</VERB> property value
      for axes . It's value should
@@ -136,7 +134,7 @@
      <DESCRIPTION_ITEM label="tight_limits: ">
       <SP>If this property value is <VERB>&quot;on&quot;</VERB>  axes adapt to
       fit exactly with the minima and maxima values of the data_bounds.
-      <P></P>
+      
       If this field value is <VERB>&quot;off&quot;</VERB> a  axes may enlarge
       boundary such as to produce pretty tics labels.</SP>
      </DESCRIPTION_ITEM>
@@ -164,16 +162,14 @@
      <DESCRIPTION_ITEM label="parent: "> 
       <SP>This field contains the handle of the parent figure.</SP>
      </DESCRIPTION_ITEM>
-
-
-
   </DESCRIPTION_INDENT>
-  <DESCRIPTION_ITEM label="Properties for high level functions">
-   <SP>The <VERB>plot2dx</VERB> <VERB>grayplot</VERB> <VERB>matplot</VERB>
+  </DESCRIPTION_ITEM>
+   <DESCRIPTION_ITEM label="Properties for high level functions">
+   <P>The <VERB>plot2dx</VERB> <VERB>grayplot</VERB> <VERB>matplot</VERB>
    functions use the following properties to decide how to merge
-   consecutive plots if this is not stated by the <VERB>frameflag</VERB> calling argument.</SP>
-   <P></P>
-   The result of the merge is decided through these two following properties:
+   consecutive plots if this is not stated by the <VERB>frameflag</VERB> calling argument.
+   
+   The result of the merge is decided through these two following properties:</P>
    
   <DESCRIPTION_INDENT>
   
@@ -191,10 +187,9 @@
       <SP>If its  value is <VERB>&quot;off&quot;</VERB> the new plot will be drawing under the current 
       axes properties.</SP>
      </DESCRIPTION_ITEM>
-
- 
-   </DESCRIPTION_INDENT>
-
+    </DESCRIPTION_INDENT>
+   </DESCRIPTION_ITEM>
+  
   <DESCRIPTION_ITEM label="Children s default values: ">
      <DESCRIPTION_INDENT>
 
@@ -288,15 +283,10 @@
       value for all objects.  Its value should be an empty matrix if
       clip_state is &quot;off&quot;. Other case the clipping is given by 
        the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height).</SP>
-     </DESCRIPTION_ITEM>
-  </DESCRIPTION_INDENT>
-  </DESCRIPTION_ITEM>
-  </DESCRIPTION_ITEM>
-  </DESCRIPTION_ITEM>
-
-
-  
-  <DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+    </DESCRIPTION_ITEM> 
+   </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
    set("figure_style","new") //create a figure
