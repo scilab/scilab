@@ -62,6 +62,10 @@ cd lapack
 echo Making %1 in directory  lapack
  nmake /C /f Makefile.mak %1
 cd ..
+cd slicot
+echo Making %1 in directory  lapack
+ nmake /C /f Makefile.mak %1
+cd ..
 cd libcomm
 echo Making %1 in directory  libcomm
  nmake /C /f Makefile.mak %1
