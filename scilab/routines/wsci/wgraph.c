@@ -630,8 +630,7 @@ void reset_scig_click_handler ()
   scig_click_handler = scig_click_handler_none;
 }
 
-int PushClickQueue (win, x, y, ibut, motion, release)
-     int win, x, y, ibut, motion, release;
+int PushClickQueue (int win,int x,int y,int ibut,int motion,int release)
 {
   struct BCG *SciGc;
   EVTHANDLER h;
@@ -673,8 +672,7 @@ int PushClickQueue (win, x, y, ibut, motion, release)
   return (0);
 }
 
-int CheckClickQueue (win, x, y, ibut)
-     integer *win, *x, *y, *ibut;
+int CheckClickQueue (integer *win,integer *x, integer *y, integer *ibut)
 {
   int i;
   for (i = 0; i < lastc; i++)
@@ -702,8 +700,7 @@ int CheckClickQueue (win, x, y, ibut)
   return (0);
 }
 
-int ClearClickQueue (win)
-     int win;
+int ClearClickQueue (int win)
 {
   int i;
   if (win == -1)
