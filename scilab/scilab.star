@@ -178,7 +178,7 @@ if ierr== 0 then;
 	global %toolboxes
 	global %toolboxes_dir
 	exec(SCI+'/contrib/loader.sce');
-	end
+end
 clear fd ierr
 
 // calling user initialization
