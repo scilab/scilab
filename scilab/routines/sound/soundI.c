@@ -477,6 +477,28 @@ int intsmclearerr(char *fname)
   PutLhsVar();
   return 0;
 }
+/******************************************
+ * SCILAB function : merror, 
+ ******************************************/
+
+int intsmerror(char *fname)
+{
+  int m1,n1,l1,un=1,lr;
+  int fd=-1;
+  Nbvars=0;
+  CheckRhs(0,1);
+  CheckLhs(1,1);
+  if ( Rhs >= 1) 
+    {
+      GetRhsVar(1,"i",&m1,&n1,&l1);
+      fd  = *istk(l1);
+    }
+  CreateVar(Rhs+1,"d",&un,&un,&lr);
+  C2F(merror)(&fd,stk(lr));
+  LhsVar(1)= Rhs+1;
+  PutLhsVar();
+  return 0;
+}
 
 extern int int_objprintf __PARAMS((char *));
 extern int int_objfprintf __PARAMS((char *));
@@ -516,6 +538,7 @@ static TabF Tab[]={
  {int_objfscanfMat,"fscanfMat"},
  {int_objfprintfMat,"fprintfMat"},
  {int_objnumTokens,"NumTokens"},
+ { intsmerror, "merror"},
 };
 
 int C2F(soundi)(void)

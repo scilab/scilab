@@ -324,6 +324,16 @@ void C2F(meof) (integer *fd, double *res)
   FILE *fa= GetFile(fd);
   *res = fa ? feof(fa) : 1;
 }
+/*********************************************
+ * check error
+ *********************************************/
+
+
+void C2F(merror) (integer *fd, double *res)
+{       
+  FILE *fa= GetFile(fd);
+  *res = fa ? ferror(fa) : 1;
+}
 
 /*********************************************
  * clear errors 

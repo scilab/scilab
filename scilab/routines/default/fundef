@@ -416,6 +416,7 @@
 {"loadwave",		IN_soundi,	2,	3},	
 {"mclose",		IN_soundi,	5,	3},	
 {"meof",		IN_soundi,	9,	3},	
+{"merror",		IN_soundi,	22,	3},	
 {"mget",		IN_soundi,	7,	3},	
 {"mgetstr",		IN_soundi,	8,	3},	
 {"mopen",		IN_soundi,	3,	3},	
@@ -434,6 +435,7 @@
 {"fscanfMat",           IN_soundi,      19,     3},
 {"fprintfMat",		IN_soundi,	20,	3},
 {"NumTokens",		IN_soundi,	21,	3},
+
 #define  IN_coselm  35  
 {"curblock",		IN_coselm,	5,	3},	
 {"duplicate",		IN_coselm,	7,	3},	

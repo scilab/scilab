@@ -9,6 +9,7 @@ int C2F(savewave) __PARAMS((char *filename, double *res, integer *rate, integer 
 void C2F(mopen) __PARAMS((int *fd, char *file, char *status, int *f_swap, double *res, int *error));
 void C2F(mclose) __PARAMS((integer *fd, double *res));
 void C2F(meof) __PARAMS((integer *fd, double *res));
+void C2F(merror) __PARAMS((integer *fd, double *res));
 void C2F(mclearerr) __PARAMS((integer *fd));
 void C2F(mseek) __PARAMS((integer *fd, integer *offset, char *flag, integer *err));
 void C2F(mtell) __PARAMS((integer *fd, double *offset, integer *err));
