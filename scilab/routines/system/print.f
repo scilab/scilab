@@ -543,8 +543,6 @@ c     preserve data for recursion
       rstk(pt)   = 1101
       lhs=1
       rhs=1
-      print *,'surcharge '
-
       if(fun.eq.0) then
          fin=lstk(fin)
          icall=5
@@ -569,7 +567,6 @@ c     set back preserved data
       topk    = ids(5,pt)
       top     = ids(6,pt)
       pt=pt-2
-      print *,'surcharge retour'
 c      if(lk.ne.top) top=top-1
       goto 48
 
