@@ -141,3 +141,9 @@ set undo_id [new textUndoer $textareacur]
 #
 # added by Matthieu PHILIPPE 14/12/2001
 set listundo_id("$textareacur") $undo_id
+
+
+# Drad and drop feature using TkDnD
+if {$TkDnDloaded == "true"} {
+    dnd bindtarget $pad.textarea text/uri-list <Drop> {openlistoffiles %D}
+}

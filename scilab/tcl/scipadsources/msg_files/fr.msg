@@ -8,7 +8,7 @@
 ::msgcat::mcset fr "Scilab working" "Scilab occupé"
 ::msgcat::mcset fr "All files" "Tous les fichiers"
 ::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
-::msgcat::mcset fr "Untitled" "Sans_titre"
+::msgcat::mcset fr "Untitled" "SansTitre"
 
 
 # buffernavigation.tcl

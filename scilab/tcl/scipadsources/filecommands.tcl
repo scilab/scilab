@@ -149,7 +149,6 @@ proc openfile {file} {
 ##added ES 4/9/2003
                 lappend listoftextarea $pad.new$winopened
                 montretext $pad.new$winopened
-#
                 update
             }
 ##added ES 11/9/2003
@@ -225,13 +224,18 @@ proc notopenedfile {file} {
 }
 
 proc newfilebind {} {
-   global pad winopened radiobuttonvalue listundo_id
-   set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
+    global pad winopened radiobuttonvalue listundo_id
+    global TkDnDloaded
+    set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
 #Francois VOGEL, 17/10/04 - Added catch {}
-   bind $pad.new$winopened <KeyRelease> {catch {keyposn %W}}
-   bind $pad.new$winopened <ButtonRelease> {catch {keyposn %W}}
-   TextStyles $pad.new$winopened
-   set radiobuttonvalue $winopened
+    bind $pad.new$winopened <KeyRelease> {catch {keyposn %W}}
+    bind $pad.new$winopened <ButtonRelease> {catch {keyposn %W}}
+    TextStyles $pad.new$winopened
+    set radiobuttonvalue $winopened
+    # Drad and drop feature using TkDnD
+    if {$TkDnDloaded == "true"} {
+        dnd bindtarget $pad.new$winopened text/uri-list <Drop> {openlistoffiles %D}
+    }
 }
 
 proc fileisopen {file} {
@@ -535,4 +539,8 @@ proc openlibfunsource {ind} {
     }
 }
 
-
+proc openlistoffiles {filelist} {
+    foreach f $filelist {
+        openfile $f
+    }
+}

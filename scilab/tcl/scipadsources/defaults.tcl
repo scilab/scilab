@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.31"
+set version "Version 3.32"
 
 # all one needs in order to add a new retriavable preference is:
 #  -add the variable name to $listofpref below
@@ -53,3 +53,12 @@ package require msgcat
 namespace import -force msgcat::*
 ::msgcat::mclocale "$lang"
 ::msgcat::mcload [file join "$env(SCIPATH)" "tcl" "scipadsources" "msg_files"]
+
+# Francois VOGEL, 17/02/05, drag and drop capability added
+if { [catch {package require tkdnd}] == 0 } {
+    # package is present and loaded
+    set TkDnDloaded "true"
+} else {
+    ScilabEval "mprintf(\"Warning: TkDnD package is not present (please get it from http://sourceforge.net/projects/tkdnd)\\n         Drag''n''drop to Scipad will not be available\\n\")"
+    set TkDnDloaded "false"
+}

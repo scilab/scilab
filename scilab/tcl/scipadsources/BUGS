@@ -1,4 +1,4 @@
-SCIPAD BUGS AND WISHES LIST - Rev. 3.16
+SCIPAD BUGS AND WISHES LIST
 
 Bugs:
 -----
@@ -226,9 +226,6 @@ Wishes:
  some sort of left grey band in which some more information could be
  put (breakpoint pink dot, yellow arrow to show the next instruction
  to be executed like in Visual C++ or Matlab, or wrapped lines sign).
-
--Drag a file from the explorer and drop into the Scipad window (action:
- open the file)
 
 -Colorization progressbar. Could be an overlay on the left status area,
  incrementing over the "Wait seconds for loading..." message.

@@ -725,3 +725,10 @@ Francois VOGEL, 16/02/05
  * Added strings in the message files
  * .ScipadPreferences.tcl is now saved in the home of Scilab
  * version --> 3.31
+
+Francois VOGEL, 17/02/05
+ * Drag'n'drop one or more files at once from the explorer to Scipad now
+   works (opens the file(s)).
+   Reference: TkDnD package - http://sourceforge.net/projects/tkdnd
+   Possible absence of the package is catched and a warning is issued.
+ * version --> 3.32
