@@ -21,8 +21,13 @@ do
 	rm -f $fout-temp$$
 	touch $fout-temp$$
 	for i in $files 
+		do  (  echo "$i" >> $fout-temp$$ ;) done ;
+	files=`sort $fout-temp$$`
+	rm -f $fout-temp$$
+	touch $fout-temp$$
+	for i in $files 
 		do  (  echo "{\"$i\", (voidf)  C2F($i)}," >> $fout-temp$$ ;) done ;
-	sort $fout-temp$$ >> $fout; 
+	cat $fout-temp$$ >> $fout; 
 	echo "{(char *) 0, (voidf) 0}};" >> $fout ;
 done 
 rm -f $fout-temp$$
