@@ -27,7 +27,16 @@ extern char * SciGetLine __PARAMS((char *));
 extern FILE *GetFile __PARAMS((int *));
 extern void C2F(zzledt1) __PARAMS((char *buffer, int *buf_size, int *len_line, int *eof, long int dummy1)); 
 extern int C2F(xscion) __PARAMS((int *));
-extern int sciprint2 __PARAMS((int i,char *fmt, ...));
+
+#ifdef __STDC__ 
+extern int  sciprint2(int iv,char *fmt,...) ;
+#else 
+/*VARARGS0*/
+extern int sciprint2() ;
+#endif 
+
+/* extern int sciprint2 __PARAMS((int i,char *fmt, ...));*/
+
 static int do_printf __PARAMS((char *fname,FILE * fp, char *format,int n_args,
 			      int arg_cnt,int lcount,char **strv));
 
@@ -681,7 +690,7 @@ static int ReadLine(fd)
 	}
       Info[n]= c ; 
       if ( c == '\n') { Info[n] = '\0' ; return 1;}
-      else if ( c == EOF ) return EOF;  
+      else if ( c == (char)EOF ) return EOF;  
       n++;
     }
 }
@@ -1160,7 +1169,6 @@ static int do_printf (fname,fp,format,nargs,argcnt,lcount,strv)
   int retval;			/* Attempt to return C-printf() return-val */
   arg_cnt = argcnt;
   ccount = 1;
-
   q = format;
   retval = 0;
 
@@ -1448,7 +1456,6 @@ static int do_printf (fname,fp,format,nargs,argcnt,lcount,strv)
 
       save = *q;
       *q = 0;
-
       /* ready to call printf() */
       /* 
        * target:   The output file (or variable for sprintf())
@@ -1644,6 +1651,7 @@ static int GetScalarDouble(fname,previous_t,arg,narg,ic,ir,dval)
     *ic=1;
     *previous_t = 1;
   }
+
   if (! C2F(getrhsvar)(arg,"d",&mx,&nx,&lx,1L))
     return RET_BUG;
   else {
