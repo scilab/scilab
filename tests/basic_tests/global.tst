@@ -110,3 +110,40 @@ deff('foo()','global b;for k=1:5,b=[b ones(n,10)];end')
 foo()
 if or(size(b)<>[n,n+50]) then pause,end
 if find(b<>1)<>[] then pause,end
+clearglobal a b c
+
+//test passing global variable as an argument
+global G;
+G=1;
+function foo(x),x=-1,endfunction
+foo(G);if G<>1 then pause,end
+
+//change the global variable that had been passed as an argument
+function y=foo(x),global G,G=33,y=x,endfunction
+if (foo(G)<>1) then pause,end
+clearglobal G
+
+function y=foo(),global a b,b=[],a=1:3,y=foo1(a),endfunction
+function y=foo1(x),global b,b=[b 1],y=x(3),endfunction
+if (foo()<>3) then pause,end
+clearglobal a b 
+
+global G b;
+a=rand(3,3);
+G=mlist(['test','a'],a);
+
+function V=%s_i_test(i,j,I,V)
+  global b; b=[b 1:5];  V.a(i,j)=I;
+endfunction
+G(1,3)=0;a(1,3)=0;
+if or(a<>G.a) then pause,end
+
+// Is it the good choice?
+function r=%test_e(i,j,V)
+  global G; G.a(i,j)=1;  r=V.a(i,j);
+endfunction
+a13=G.a(1,3);
+X=G(1,3)
+if or(G.a(1,3)<>1) then pause,end
+
+
