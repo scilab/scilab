@@ -224,6 +224,7 @@ static void xset_pixmapclear(integer *v1, integer *v2, integer *v3, integer *v4)
 
 static void xset_show(integer *v1, integer *v2, integer *v3, integer *v4)
 {
+  if (ScilabXgc->CurPixmapStatus == 0) return; /* added line  22/10/2002 */
   XClearWindow(dpy,ScilabXgc->CWindow);
   XFlush(dpy);
 }

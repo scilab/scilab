@@ -3877,5 +3877,6 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
 }
 
 static void CreateGtkGWindow(struct BCG *ScilabXgc) {
+  start_sci_gtk(); /* be sure that gtk is started */
   GTK_Open(ScilabXgc,"unix:0",600,400);
 }
