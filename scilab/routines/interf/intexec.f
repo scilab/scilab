@@ -93,10 +93,13 @@ c     error control
       if(istk(il).eq.11.or.istk(il).eq.13) goto 15
 c     opening file
       call v2cunit(top,'rb',lunit,opened,ierr)
-      if(ierr.gt.0) return
+     if(ierr.lt.0) then
+         call error(244)
+         return
+      elseif(ierr.gt.0) then
+         return
+      endif
       top=top-1
-
-
 
       pstk(pt)=rio
       rio = lunit
