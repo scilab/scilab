@@ -10,7 +10,7 @@ col3d=[0.8 0.8 0.8]
 //end
 options('Background')=[8 1] //white,black
 options('Link')=[1,5] //black,red
-options('ID')=list([5 0],[4 0])
+options('ID')=list([5 1],[4 1])
 options('Cmap')=col3d
 
 endfunction

@@ -24,7 +24,11 @@ function texte = standard_document(objet, k)
 	language = '2 (C code)'
       elseif fonction(2) == 3 then
 	language = '3 (Scilab function)'
-      elseif fonction(2) < 0  then
+      elseif fonction(2) == 4 then
+	language = '4 (C code)'
+      elseif fonction(2) == 5 then
+	language = '5 (Scilab function)'
+       elseif fonction(2) < 0  then
 	language = '<0 (synchro block)'
       elseif fonction(2) <10000 then
 	language = string(fonction(2))+'  (dynamic link or...)'
@@ -38,8 +42,8 @@ function texte = standard_document(objet, k)
 
     if modele.blocktype == 'l' then
       typ= 'synchro'
-    elseif modele.blocktype == 'z'
-      typ= 'zero-crossing'
+    elseif modele.blocktype == 'x'
+      typ= 'x-type'
     elseif modele.blocktype == 'm'
       typ = 'memory'
     else
