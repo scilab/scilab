@@ -29,7 +29,7 @@ PROTO14 = sci_acos.sci
 
 OTHERS = sci_atan2.sci sci_balance.sci sci_break.sci sci_cd.sci sci_cell.sci sci_chol.sci sci_clear.sci sci_clock.sci sci_continue.sci \
          sci_cputime.sci sci_det.sci sci_diag.sci sci_diary.sci sci_diff.sci sci_dir.sci sci_display.sci sci_disp.sci \
-         sci_eig.sci sci_exit.sci sci_fclose.sci sci_feof.sci sci_ferror.sci sci_feval.sci sci_fft.sci \
+         sci_eig.sci sci_error.sci sci_eval.sci sci_exist.sci sci_exit.sci sci_fclose.sci sci_feof.sci sci_ferror.sci sci_feval.sci sci_fft.sci \
          sci_fgets.sci sci_find.sci sci_findstr.sci sci_fopen.sci sci_format.sci sci_fprintf.sci sci_fread.sci sci_fscanf.sci \
          sci_fseek.sci sci_ftell.sci sci_full.sci sci_fwrite.sci sci_getenv.sci sci_global.sci sci_help.sci sci_hess.sci sci_input.sci \
          sci_ischar.sci sci_isempty.sci sci_isfinite.sci sci_isglobal.sci sci_isinf.sci sci_isletter.sci sci_islogical.sci sci_isnan.sci \
