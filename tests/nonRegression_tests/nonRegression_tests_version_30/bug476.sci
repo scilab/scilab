@@ -1,7 +1,7 @@
 // bug476
 
 mode (-1)
-clear all
+clear
 
 //correct=%F
 a=hypermat([3,3,1],int8(1:9))
@@ -10,7 +10,7 @@ a=hypermat([3,3,1],int8(1:9))
 
 affich_result((m==1)&((i==k)==(j==l)), 476)
 
-clear all
+clear
 
 //    No Error Messages 
 //    wrong result with " %hm_find " function

@@ -1,7 +1,7 @@
 // bug71
 
 mode (-1)
-clear all
+clear
 
 function result = bug()
 // This part replay bug
@@ -11,7 +11,7 @@ function result = bug()
 endfunction
 affich_result(bug()==0, 71)
 
-clear all
+clear
 
 // Error message :
 //   !--error    37

@@ -1,7 +1,7 @@
 // bug475
 
 mode (-1)
-clear all
+clear
 
 //correct=%F
 a=hypermat([3,3,1],uint16(1:9))
@@ -11,7 +11,7 @@ if result == 0 then
 end
 affich_result(result==0, 475)
 
-clear all
+clear
 
 //    The Error Messages are:
 //                                             !--error    59 

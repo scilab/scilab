@@ -1,7 +1,7 @@
 // bug480
 
 mode (-1)
-clear all
+clear
 
 // correct=%F
 a=hypermat([3,3,1],1:9)
@@ -11,7 +11,7 @@ if result == 0 then
 end
 affich_result(and(toto(:,:,1)), 480)
 
-clear all
+clear
 
 //    No Error Messages 
 //    wrong result with " %hm_find " function

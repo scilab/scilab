@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS=["function [a] = bug942 (x) % bug942";"% help line";"% help line";"a = x;"]
 
@@ -43,4 +43,4 @@ end
 
 affich_result(correct,942);
 
-clear all
+clear

@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS=["M(1,1) = -sin(0.1);";"M(1,1) = sin(0.1);"]
 
@@ -37,4 +37,4 @@ end
 
 affich_result(correct,699);
 
-clear all
+clear

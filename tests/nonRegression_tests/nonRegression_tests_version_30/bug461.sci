@@ -1,7 +1,7 @@
 // bug461
 
 mode (-1)
-clear all
+clear
 
 correct=%F
 x=[0. 1.01 2.01 3. 4.02]; 
@@ -18,6 +18,6 @@ result=execstr("plot2d(xx,[s0 s1 s2 s3])","errcatch","n")
 xdel()
 affich_result(result==0, 461)
 
-clear all
+clear
 
 // Error message :

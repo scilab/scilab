@@ -1,7 +1,7 @@
 // bug502
 
 mode (-1)
-clear all
+clear
  set old_style on
 
 // correct=%F
@@ -13,7 +13,7 @@ result=execstr("for k=1:20,xclear();xtape(""replay"",0),xpause(1d5),end","errcat
 xdel()
 affich_result(result==0, 502)
 
-clear all
+clear
 
 //    The Error Messages are:
 //   If the Graphic Window is "interfered" with,

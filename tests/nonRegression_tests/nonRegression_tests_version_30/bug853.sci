@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS=["dir_name=''path'';";
 "dir_target=dir(dir_name);";
@@ -45,4 +45,4 @@ end
 
 affich_result(correct,853);
 
-clear all
+clear

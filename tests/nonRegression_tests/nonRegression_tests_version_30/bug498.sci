@@ -1,7 +1,7 @@
 // bug498 
 
 mode (-1)
-clear all
+clear
 
 correct=%F
 affich_result( min(2,uint16(1))   ==    1.  , 498.1)
@@ -15,7 +15,7 @@ affich_result( max(int8(10),-2)   ==    10.  , 498.8)
 affich_result( max(int8(10),-2.6) ==    10.  , 498.9)
 affich_result( min(int8(10),-2.6) ==  - 2.6 , 498.11)
 
-clear all
+clear
 
 //min(2,uint16(1))   //WRONG  		ans  =    2.  
 //min(2,int16(1))    //OK 			ans  =    1.  

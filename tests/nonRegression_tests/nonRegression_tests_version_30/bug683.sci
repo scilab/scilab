@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 // Create 2 M-files
 MFUN1TXT=["function [a,c] = test_cell1(b)";
@@ -60,4 +60,4 @@ affich_result(correct5,681.5);
 correct=correct1&correct2&correct3&correct4&correct5
 affich_result(correct,681);
 
-clear all
+clear

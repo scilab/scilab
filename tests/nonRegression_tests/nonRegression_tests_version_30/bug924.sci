@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS=["function bug924";
 "a=''milou'';";
@@ -61,4 +61,4 @@ end
 
 affich_result(correct,924);
 
-clear all
+clear

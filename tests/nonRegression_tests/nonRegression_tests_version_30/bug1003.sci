@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS=["fp = fopen(''testfile.txt'',''r'');";
 "tempstr = '' '';";
@@ -48,4 +48,4 @@ end
 
 affich_result(correct,1003);
 
-clear all
+clear

@@ -1,7 +1,7 @@
 // bug470
 
 mode (-1)
-clear all
+clear
 
 // correct=%F
 result=execstr("a=int8(ones(2,2))","errcatch","n")
@@ -10,7 +10,7 @@ if result == 0 then
 end
 affich_result(result==0, 470)
 
-clear all
+clear
 
 // %i_i_i is undefined because /macros/percent/%i_i_i.sci is WRONG 
 // and defines function %i_i_s() instead. 

@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS="error(''This is an error message'')"
 
@@ -36,4 +36,4 @@ end
 
 affich_result(correct,681);
 
-clear all
+clear

@@ -2,7 +2,7 @@
 // 489, 491 492 496 duplicate
 
 mode (-1)
-clear all
+clear
 
 // rechercher l'existance du répertoire tcl sous Scilab
 
@@ -17,7 +17,7 @@ end // du if
 
 affich_result(correct, 488)
 
-clear all
+clear
 
 // Error message :
 //  --> !--error   999

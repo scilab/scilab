@@ -2,8 +2,8 @@
 // 
 
 mode (-1)
-clear all
+clear
 affich_result( isdir(getenv('SCI')) == isdir(getenv('SCI')+"/") , 656)
-clear all
+clear
 
 

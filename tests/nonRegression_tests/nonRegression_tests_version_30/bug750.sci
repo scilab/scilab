@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS=["t=[];";"cputime;";"t(10)=cputime;"]
 
@@ -38,4 +38,4 @@ end
 
 affich_result(correct,750);
 
-clear all
+clear

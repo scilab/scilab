@@ -4,7 +4,7 @@
 // verifier qu'il n'y a pas de fichier avec l'extension .testbug650 pour effectuer le test
  
 if MSDOS then
-	clear all
+	clear
 	mode (-1)
 	correct = %F
 	correctT1 = %F
@@ -68,5 +68,5 @@ if MSDOS then
 	end
 	
 	affich_result(correct, 650)
-	clear all
+	clear
 end

@@ -1,7 +1,7 @@
 // bug467
 
 mode (-1)
-clear all
+clear
 
 correct=%F
 result=execstr("[x,y] = wavread(''bug467.wav'',''size'')","errcatch","n")
@@ -10,7 +10,7 @@ if result == 0 then
 end
 affich_result(result==0, 467)
 
-clear all
+clear
 
 // The Error Messages are:
 //    !--error     4

@@ -1,7 +1,7 @@
 // bug477
 
 mode (-1)
-clear all
+clear
 
 correct=%F
 a=hypermat([3,3,1],1:9)
@@ -13,7 +13,7 @@ if result2==0 then
 end
 affich_result(correct, 477)
 
-clear all
+clear
 
 //    The Error Messages are:
 //    -->[m,i]=max(a)

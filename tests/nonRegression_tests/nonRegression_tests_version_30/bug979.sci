@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS=["comment=1;";"%This line is a comment line"]
 
@@ -37,4 +37,4 @@ end
 
 affich_result(correct,979);
 
-clear all
+clear

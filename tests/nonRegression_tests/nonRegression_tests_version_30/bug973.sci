@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS=["%m2scideclare var|Unknown Unknown|Unknown";"var1 = strrep(var,'' '','','')"]
 
@@ -37,4 +37,4 @@ end
 
 affich_result(correct,973);
 
-clear all
+clear

@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS=["% i and j do not exist as variables -> Imaginary unit";
 "a=1+2*i";
@@ -96,4 +96,4 @@ end
 
 affich_result(correct,857);
 
-clear all
+clear

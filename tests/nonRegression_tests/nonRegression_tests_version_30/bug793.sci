@@ -1,7 +1,7 @@
 // bug793
 
 mode (-1);
-clear all
+clear
 
 affich_result(getdate(-1) == [0 0 0 0 0 0 0 0 0 0], 793)
 
@@ -10,5 +10,5 @@ affich_result(getdate(-1) == [0 0 0 0 0 0 0 0 0 0], 793)
 // ans  =
 //
 //!   0.    0.    0.    0.    0.    0.    0.    0.    0. !  
-clear all
+clear
 

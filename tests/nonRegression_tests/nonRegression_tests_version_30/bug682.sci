@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS=["b=1;";"if b==0 | b(2)>0";"  a = 1;";"  else a = 0;";"end"]
 
@@ -40,4 +40,4 @@ end
 
 affich_result(correct,682);
 
-clear all
+clear

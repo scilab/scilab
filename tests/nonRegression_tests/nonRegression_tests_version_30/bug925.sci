@@ -3,7 +3,7 @@
 // Scilab Project - V. Couvert
 
 mode(-1);
-clear all;
+clear;
 
 MFILECONTENTS=["function bug925(A,B)";"A(4)=B(3)"]
 
@@ -38,4 +38,4 @@ end
 
 affich_result(correct,925);
 
-clear all
+clear

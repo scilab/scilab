@@ -1,7 +1,7 @@
 // bug474
 
 mode (-1)
-clear all
+clear
 
 //correct=%F
 a=matrix(1:9,3,3)
@@ -17,7 +17,7 @@ affich_result(and(kia==kib), 474.2)
 affich_result(maa==mab, 474.3)
 affich_result(and(kaa==kab), 474.4)
 
-clear all
+clear
 
 //
 //The Error Messages are:
