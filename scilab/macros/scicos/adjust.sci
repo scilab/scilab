@@ -11,51 +11,51 @@ for hh=1:length(bllst)
       for kk=outoinptr(jj):outoinptr(jj+1)-1
 	blkin=outoin(kk,1);portin=outoin(kk,2)
 	//
-	nout=bllst(blkout)(3)(portout);nin=bllst(blkin)(2)(portin)
+	nout=bllst(blkout).out(portout);nin=bllst(blkin).in(portin)
 	if (nout>0&nin>0) then
 	  if nin<>nout then
 	    bad_connection(corinv(blkout),portout,nout,corinv(blkin),portin,nin)
 	    ok=%f;return
 	  end
 	elseif (nout>0&nin<0) then 
-	  ww=find(bllst(blkin)(2)==nin)
+	  ww=find(bllst(blkin).in==nin)
 	  if ww<>[] then
-	    bllst(blkin)(2)(ww)=nout
+	    bllst(blkin).in(ww)=nout
 	  end
-	  ww=find(bllst(blkin)(3)==nin)
+	  ww=find(bllst(blkin).out==nin)
 	  if ww<>[] then  
-	    bllst(blkin)(3)(ww)=nout
+	    bllst(blkin).out(ww)=nout
 	  end
 	elseif (nin>0&nout<0) then 
-	  ww=find(bllst(blkout)(3)==nout)
+	  ww=find(bllst(blkout).out==nout)
 	  if ww<>[] then
-	    bllst(blkout)(3)(ww)=nin
+	    bllst(blkout).out(ww)=nin
 	  end
-	  ww=find(bllst(blkout)(2)==nout)
+	  ww=find(bllst(blkout).in==nout)
 	  if ww<>[] then
-	    bllst(blkout)(2)(ww)=nin
+	    bllst(blkout).in(ww)=nin
 	  end
 	elseif (nin==0) then
-	  ww=bllst(blkin)(3)(:)
+	  ww=bllst(blkin).out(:)
 	  if mini(ww)>0 then 
 	    if nout>0 then
 	      if sum(ww)==nout then
-		bllst(blkin)(2)(portin)=nout
+		bllst(blkin).in(portin)=nout
 	      else
 		bad_connection(corinv(blkin))
 		ok=%f;return
 	      end
 	    else
-	      bllst(blkin)(2)(portin)=sum(ww)
+	      bllst(blkin).in(portin)=sum(ww)
 	      ok=%f
 	    end
 	  else      
 	    nww=ww(find(ww<0))
 	    if norm(nww-nww(1),1)==0 & nout>0 then
-	      bllst(blkin)(2)(portin)=nout
+	      bllst(blkin).in(portin)=nout
 	      k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
 	      if k==int(k) then
-		bllst(blkin)(3)(find(ww<0))=k
+		bllst(blkin).out(find(ww<0))=k
 	      else
 		bad_connection(corinv(blkin))
 		ok=%f;return
@@ -65,26 +65,26 @@ for hh=1:length(bllst)
 	    end
 	  end
 	elseif (nout==0) then
-	  ww=bllst(blkout)(2)(:)
+	  ww=bllst(blkout).in(:)
 	  if mini(ww)>0 then 
 	    if nin>0 then
 	      if sum(ww)==nin then
-		bllst(blkout)(3)(portout)=nin
+		bllst(blkout).out(portout)=nin
 	      else
 		bad_connection(corinv(blkout))
 		ok=%f;return
 	      end
 	    else
-	      bllst(blkout)(3)(portout)=sum(ww)
+	      bllst(blkout).out(portout)=sum(ww)
 	      ok=%f
 	    end
 	  else      
 	    nww=ww(find(ww<0))
 	    if norm(nww-nww(1),1)==0 & nin>0 then
-	      bllst(blkout)(3)(portout)=nin
+	      bllst(blkout).out(portout)=nin
 	      k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
 	      if k==int(k) then
-		bllst(blkout)(2)(find(ww<0))=k
+		bllst(blkout).in(find(ww<0))=k
 	      else
 		bad_connection(corinv(blkout))
 		ok=%f;return

@@ -24,12 +24,12 @@ case 1 then // parameter changes and/or port sizes changes
   sim=%cpr.sim
   for k=1:size(corinv)
     if size(corinv(k),'*')==1 then
-      bllst(k)=scs_m(corinv(k))(3);
+      bllst(k)=scs_m(corinv(k)).model;
     else
       path=list();
-      for l=corinv(k)(1:$-1),path($+1)=l;path($+1)=3;path($+1)=8;end
+      for l=corinv(k)(1:$-1),path($+1)=l;path($+1)='model';path($+1)='rpar';end
       path($+1)=corinv(k)($);
-      path($+1)=3;
+      path($+1)='model';
       bllst(k)=scs_m(path);
     end
   end
