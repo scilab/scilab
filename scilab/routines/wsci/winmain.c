@@ -688,7 +688,7 @@ void sciprint (char *fmt,...)
  * the same but no diary record 
  *---------------------------------------------------*/
 
-void sciprint (char *fmt,...)
+void sciprint_nd (char *fmt,...)
 {
   int i, count, lstr;
   char buf[MAXPRINTF];
