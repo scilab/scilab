@@ -1034,9 +1034,10 @@ Delete(w, number, client_data)
     }
   /** Delete the graphic window **/
   Efface((Widget) 0,(XtPointer) number, (XtPointer) 0);
+  if (version_flag() == 0) DeleteObjs(win_num); 
   scig_deletegwin_handler(win_num);
   DeleteSGWin(win_num);
-  /*if (version_flag() == 0) DeleteObjs(win_num); NG */
+
 
 }
 
