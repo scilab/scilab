@@ -131,7 +131,7 @@ gint main (gint argc, gchar *argv[])
 
   login_shell = 0;
   cmdindex = 0;
-  scrollbacklines = 50;
+  scrollbacklines = 1000;
 
   /* set up terminal environment */
   env = environ;
