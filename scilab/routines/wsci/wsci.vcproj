@@ -504,6 +504,9 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\DDE.c">
+			</File>
+			<File
 				RelativePath="files.c">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -627,6 +630,9 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\interfdde.C">
 			</File>
 			<File
 				RelativePath="jpc_Xloop.c">
@@ -1807,6 +1813,9 @@ cd .. &gt;nul
 				RelativePath="common.h">
 			</File>
 			<File
+				RelativePath=".\DDE.h">
+			</File>
+			<File
 				RelativePath="dstrings.h">
 			</File>
 			<File
@@ -1817,6 +1826,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath="gvwin.h">
+			</File>
+			<File
+				RelativePath=".\interfdde.h">
 			</File>
 			<File
 				RelativePath="plot.h">
