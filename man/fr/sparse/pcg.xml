@@ -9,7 +9,7 @@
 
   <DATE>Janvier 2004</DATE>
 
-  <SHORT_DESCRIPTION name="pcg">gradient conjugué préconditionné
+  <SHORT_DESCRIPTION name="pcg">gradient conjuguÃ© prÃ©conditionnÃ©
   </SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE><CALLING_SEQUENCE_ITEM>[x, err, iter, flag, res] = pcg(A,
@@ -18,7 +18,7 @@
   <PARAM><PARAM_INDENT> 
     <PARAM_ITEM>
       <PARAM_NAME>A</PARAM_NAME>
-      <PARAM_DESCRIPTION>: matrice symétrique définie positive ou fonction
+      <PARAM_DESCRIPTION>: matrice symÃ©trique dÃ©finie positive ou fonction
       retournant <VERB>A*x</VERB></PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
@@ -27,23 +27,23 @@
     </PARAM_ITEM>
     <PARAM_ITEM>
       <PARAM_NAME>x0</PARAM_NAME>
-      <PARAM_DESCRIPTION>: solution initiale (par défaut: zeros(n,1))
+      <PARAM_DESCRIPTION>: solution initiale (par dÃ©faut: zeros(n,1))
       </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
       <PARAM_NAME>M</PARAM_NAME>
-      <PARAM_DESCRIPTION>: préconditionnement: matrice ou fonction retournant
-      <VERB>M*x</VERB> (par défaut: aucun)
+      <PARAM_DESCRIPTION>: prÃ©conditionnement: matrice ou fonction retournant
+      <VERB>M*x</VERB> (par dÃ©faut: aucun)
       </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
       <PARAM_NAME>maxi</PARAM_NAME>
-      <PARAM_DESCRIPTION>: nompbre maximum d'iterations (par défaut: n)
+      <PARAM_DESCRIPTION>: nompbre maximum d'iterations (par dÃ©faut: n)
       </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
       <PARAM_NAME>tol</PARAM_NAME>
-      <PARAM_DESCRIPTION>: tolérance (par défaut: 1e-8)
+      <PARAM_DESCRIPTION>: tolÃ©rance (par dÃ©faut: 1e-8)
       </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
@@ -56,24 +56,24 @@
     </PARAM_ITEM>
     <PARAM_ITEM>
       <PARAM_NAME>iter</PARAM_NAME>
-      <PARAM_DESCRIPTION>: nombre d'itérations exécutées</PARAM_DESCRIPTION>
+      <PARAM_DESCRIPTION>: nombre d'itÃ©rations exÃ©cutÃ©es</PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
       <PARAM_NAME>flag</PARAM_NAME>
-      <PARAM_DESCRIPTION>: 0 si <VERB>pcg</VERB> a convergé à la tolérance
-      voulue avant <VERB>maxi</VERB> itérations, 1 autrement
+      <PARAM_DESCRIPTION>: 0 si <VERB>pcg</VERB> a convergÃ© Ã  la tolÃ©rance
+      voulue avant <VERB>maxi</VERB> itÃ©rations, 1 autrement
       </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
       <PARAM_NAME>res</PARAM_NAME>
-      <PARAM_DESCRIPTION>: vecteur des normes des résidus</PARAM_DESCRIPTION>
+      <PARAM_DESCRIPTION>: vecteur des normes des rÃ©sidus</PARAM_DESCRIPTION>
     </PARAM_ITEM> 
   </PARAM_INDENT></PARAM>
 
   <DESCRIPTION>
-    <P> Résout le système linéaire <VERB>Ax=b</VERB> par la méthode du
-    gradient conjugué avec préconditionnement. </P> 
-    <P> La matrice <VERB>A</VERB> doit ête définie positive. </P>
+    <P> RÃ©sout le systÃ¨me linÃ©aire <VERB>Ax=b</VERB> par la mÃ©thode du
+    gradient conjuguÃ© avec prÃ©conditionnement. </P> 
+    <P> La matrice <VERB>A</VERB> doit Ãªte dÃ©finie positive. </P>
   </DESCRIPTION>
 
   <EXAMPLE>
@@ -85,6 +85,6 @@
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>
-    Équipe Sage (IRISA, 2004)
+    Ã‰quipe Sage (IRISA, 2004)
   </AUTHOR>
 </MAN>
