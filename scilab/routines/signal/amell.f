@@ -21,7 +21,7 @@ c
       data de, dz /1.0d+0,2.0d+0/
 c
       domi=2.0d+0*dlamch('p')
-       dpi=4.0d+0*atan(1.0d+0)
+      dpi=4.0d+0*atan(1.0d+0)
       call compel(dk,ddk)
       call compel(sqrt(1.0d+0-dk*dk),dkprim)
       do 1 ijk=1,n
