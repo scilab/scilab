@@ -6,7 +6,7 @@ NEW FUNCTIONALITIES
 - [a(i,j),b(..),..]=foo(..) syntax is now handled
 - arpack algorithms for sparse matrix eigenvalues/eigenvectors computation added 
 - Levenberg-Marquardt algorithm of Minpack used to define function lsqrsolve
-- New graphics mode improved (3D)
+- New graphics mode improved
 - beta and legendre function added (thanks to B Pincon)
 - Scicos has been extended to handle non causal systems description (supported by RNTL)
 - Matlab to Scilab translator has been re-written, and extended to current Matlab syntax.
@@ -26,6 +26,8 @@ OTHERS IMPROVEMENTS
   from 6 to 9) (thanks to B Pincon)
 - N dimensionnal matrices efficiency improved (thanks to B Pincon)
 - logical expressions shortcuts handled in if
+- cd, ls, clc, clf, tohome functions added
+- functions with no argument can be called without () if called as a command
 
 
 INCOMPATIBLITIES
