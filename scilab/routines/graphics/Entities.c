@@ -7398,7 +7398,7 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
       return 0;
       break;
     default:
-      sciprint ("This object cannot be destroyall\n");
+      sciprint ("Entity with type %d cannot be destroyed\n",sciGetEntityType (pthis));
       return -1;
       break;
     }
@@ -13985,8 +13985,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 
       sons->pprev         = (sciSons *)NULL;
       sons->pnext         = sonsnext;
-      if (sonsnext)
-	sonsnext->pprev = sons;
+      if (sonsnext) sonsnext->pprev = sons;
       sonsnext            = sons;
     }
 
@@ -14776,6 +14775,18 @@ int version_flag()
   if (CurrentScilabXgc==(struct BCG *)NULL) return 1;
 
   return (CurrentScilabXgc->graphicsversion == 0) ? 1 : 0; 
+}
+
+void set_version_flag(int flag) 
+{ 
+  double *XGC,dv=0;
+  struct BCG *CurrentScilabXgc; 
+  int v=0;
+
+  C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
+  CurrentScilabXgc=(struct BCG *)XGC;
+  if (CurrentScilabXgc !=(struct BCG *)NULL) 
+    CurrentScilabXgc->graphicsversion = flag; 
 }
 
 struct BCG *

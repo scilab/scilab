@@ -257,11 +257,11 @@ void scig_tops(integer win_num, integer colored, char *bufname, char *driver)
     sciPointObj *curFig=sciGetCurrentFigure ();
     integer bg;
     C2F(dr)("xget","background",&verb,&bg,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,11L);
-	/* Rajout F.Leray 06.04.04 */
-	bg = sciGetBackground(curFig);
-
+    /* Rajout F.Leray 06.04.04 */
+    bg = sciGetBackground(curFig);
     C2F(dr)("xsetdr",driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     C2F(dr)("xinit",bufname,&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    set_version_flag(1);
     sciSetCurrentFigure(curFig);
     C2F(dr)("xset","background",&bg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
     sciDrawObj(curFig);
