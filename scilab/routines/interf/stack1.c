@@ -251,11 +251,11 @@ int C2F(cremati)(fname, stlw, it, m, n, lr, lc, flagx, fname_len)
 {
   integer ix1;
   integer il;
-
+  double size = ((double) *m) * ((double) *n) * ((double) (*it + 1));
   il = iadr(*stlw);
   ix1 = il + 4;
-  Err = sadr(ix1) + *m * *n * (*it + 1) - *lstk(Bot );
-  if (Err > 0) {
+  Err = sadr(ix1) - *lstk(Bot );
+  if ( (double) Err > -size ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
   };
@@ -438,11 +438,11 @@ int C2F(creimati)(fname, stlw, it, m, n, lr, flagx, fname_len)
 {
   integer ix1;
   integer il;
-
+  double size =  memused(*it,((double)*m)*((double) *n));
   il = iadr(*stlw);
   ix1 = il + 4;
-  Err = sadr(ix1) + memused(*it,(*m)*(*n)) - *lstk(Bot );
-  if (Err > 0) {
+  Err = sadr(ix1) - *lstk(Bot );
+  if (Err > -size ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
   };
@@ -655,10 +655,11 @@ int C2F(crebmati)(fname, stlw, m, n, lr, flagx, fname_len)
      int *flagx;
      unsigned long fname_len;
 {
+  double size = ((double) *m) * ((double) *n) ;
   integer il;
   il = iadr(*stlw);
-  Err = il + 3 + *m * *n - iadr(*lstk(Bot ));
-  if (Err > 0) {
+  Err = il + 3  - iadr(*lstk(Bot ));
+  if (Err > -size ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
   }
@@ -1616,13 +1617,14 @@ int cre_sparse_from_ptr_i(fname, lw, m, n, S, fname_len ,rep)
      unsigned long fname_len;
      integer *rep;
 {
+  double size = ((double) *m) * ((double) *n) * ((double) (S->it + 1));
   integer ix1,  il, lr, lc;
   integer cx1=1;
   il = iadr(*lw);
 
   ix1 = il + 5 + *m + S->nel;
-  Err = sadr(ix1) + *m * *n * (S->it + 1) - *lstk(Bot );
-  if (Err > 0) {
+  Err = sadr(ix1)  - *lstk(Bot );
+  if (Err > -size ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
 	     get_fname(fname,fname_len));
     return  FALSE_;
@@ -2258,14 +2260,15 @@ int C2F(crewimat)(fname, lw, m, n, lr, fname_len)
      integer *lw, *m, *n, *lr;
      unsigned long fname_len;
 {
+  double size = ((double) *m) * ((double) *n ); 
   integer ix1,il;
   if (*lw + 1 >= Bot) {
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return FALSE_;
   }
   il = iadr(*lstk(*lw ));
-  Err = il + 3 + *m * *n - iadr(*lstk(Bot ));
-  if (Err > 0) {
+  Err = il + 3  - iadr(*lstk(Bot ));
+  if (Err > -size ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
 	     get_fname(fname,fname_len));
     return FALSE_;
@@ -2704,7 +2707,7 @@ int C2F(mspcreate)(lw, m, n, nzMax, it)
 {
   integer ix1;
   integer jc, il, ir;
-
+  double size;
   if (*lw + 1 >= Bot) {
     Scierror(18,"too many names\r\n");
     return FALSE_;
@@ -2712,8 +2715,9 @@ int C2F(mspcreate)(lw, m, n, nzMax, it)
 
   il = iadr(*lstk(*lw ));
   ix1 = il + 4 + (*n + 1) + *nzMax;
-  Err = sadr(ix1) + (*it + 1) * *nzMax - *lstk(Bot );
-  if (Err > 0) {
+  size = (*it + 1) * *nzMax ;
+  Err = sadr(ix1)  - *lstk(Bot );
+  if (Err > -size ) {
     Scierror(17,"stack size exceeded (Use stacksize function to increase it)\r\n");
     return FALSE_;
   };
@@ -3298,8 +3302,9 @@ int C2F(credata)(fname, lw, m, fname_len)
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return FALSE_;
   }
-  Err = lr + m  - *lstk(Bot);
-  if (Err > 0) {
+  
+  Err = lr   - *lstk(Bot);
+  if (Err > -m ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
   };
