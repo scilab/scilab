@@ -13,6 +13,12 @@ function help(key,flag)
   end
  
   if rhs> 2 then error(39),return; end
+  key=stripblanks(key)
+  if or(part(key,1)==['(',')','[',']','{','}','%','''','""',':','*','/', ...
+		      '\','.','<','>','&','^','|','~']) then
+    key="symbols";
+  end
+
   if rhs == 2 then
     help_apropos(key)
     return
@@ -129,9 +135,9 @@ function tcltk_help(path,key)
   global LANGUAGE INDEX
   // We must have / in paths, even for Windows
   path=strsubst(path,"\","/")
-  key1=strsubst(key,' ','_') //for temp file and widget name
-
-
+  key1=key //for temp file and widget name
+  K=[' ','(',')','[',']','{','}','""','/','\','.','<','>']
+  for k=K,key1=strsubst(key1,k,'_'),end
   if MSDOS then
     TK_EvalStr('set isbrowsehelpinterp [interp exists browsehelp]');
     if TK_GetVar("isbrowsehelpinterp")=='0' then    
@@ -144,7 +150,7 @@ function tcltk_help(path,key)
     TK_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
     TK_EvalStr("browsehelp eval {set sciw .scihelp-"+key1+"}")
     TK_EvalStr("browsehelp eval {set manpath """+path+"""}")
-    TK_EvalStr("browsehelp eval {source '+SCI+'/tcl/browsehelp.tcl}")
+    TK_EvalStr("browsehelp eval {source ""'+SCI+'/tcl/browsehelp.tcl""}")
   else
      TK_SetVar("lang",LANGUAGE)
      TK_SetVar("Home",INDEX)
@@ -297,7 +303,9 @@ function [provpath]=apropos_gener(key)
 // provpath is the path of generated html file
   global %helps LANGUAGE INDEX
   sep="/";
-  key=stripblanks(key)
+  key1=key
+  K=[' ','(',')','[',']','{','}','""','/','\','.','<','>']
+  for k=K,key1=strsubst(key1,k,'_'),end
   l=length(key)
   found=[];foundkey=[]
   for k=1:size(%helps,1)
@@ -330,14 +338,8 @@ function [provpath]=apropos_gener(key)
      [s,k]=sort(foundkey);
      found= found(k);
   end
-      
-  if (strindex(key," "))
-    provpath=TMPDIR+sep+"apropos_"+part(key,1:strindex(key," ")-1);
-  else
-    provpath=TMPDIR+sep+"apropos_"+key;
-  end;
+  provpath=TMPDIR+sep+"apropos_"+key1;
 
- 
   apropos_txt =["<html>";
 		 "<head>";
 		 "  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">";

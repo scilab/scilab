@@ -18,7 +18,7 @@ if with_tk() then
       TK_EvalStr("scipad eval {wm withdraw .}")
       TK_EvalStr("scipad alias ScilabEval ScilabEval")
     end
-    TK_EvalStr("scipad eval {source '+SCI+'/tcl/scipad.tcl}")
+    TK_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipad.tcl""}")
 
   end
 else
