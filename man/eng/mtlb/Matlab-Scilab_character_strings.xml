@@ -25,6 +25,10 @@
   All these differences can lead to different results while executing same commands in Scilab or in Matlab, particularly for "dimension" functions such as length() or size().
   </P>
   </DESCRIPTION> 
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mstr2sci</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
   
   <AUTHORS>
     <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>

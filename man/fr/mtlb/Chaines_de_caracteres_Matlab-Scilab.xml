@@ -26,6 +26,10 @@
   Toutes ces différences peuvent conduire à des résultats différents pour l'exécution des mêmes commandes dans Scilab ou dans Matlab, particulièrement pour les fonctions travaillant sur les dimensions comme length() ou size().
   </P>
   </DESCRIPTION> 
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mstr2sci</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
   
   <AUTHORS>
     <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
