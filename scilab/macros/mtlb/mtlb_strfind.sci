@@ -3,7 +3,7 @@ function y=mtlb_strfind(A,B)
 // Emulation function for strfind() Matlab function
 // V.C.
 
-if type(A)==10 & typeof(B)==10 then
+if type(A)==10 & type(B)==10 then
   y=strindex(A,B)
 else
   if A==B then
