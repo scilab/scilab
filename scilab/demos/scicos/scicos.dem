@@ -82,10 +82,11 @@ while %t do
       if n ==0 then break,end
       dirr=pwd()
       chdir(TMPDIR)
-      if n> 4 then err=execstr('getf(''toto.sci'')','errcatch'),end
-      if err<>0 then 
-	x_message('tutorials must be played in order!'),
-	break
+      if n>4 then err=execstr('getf(''toto.sci'')','errcatch'),
+	if err<>0 then 
+	  x_message('tutorials must be played in order!'),
+	  break
+	end
       end
       str='SCI/demos/scicos/tut'+string(n)
       getf('SCI/demos/scicos/scicos_play.sci')
