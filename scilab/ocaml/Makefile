@@ -108,8 +108,10 @@ lexer.mll parser.mly README.txt Makefile
 	done
 	@tar cvf - sources | gzip > archive.tar.gz
 
+depend : .depend 
 
-depend: $(MLS) $(MLIS)
+.depend: $(MLS) $(MLIS)
+	@echo "regenerate .depend"
 	@touch .depend
 	@$(OCAMLDEP) $(MLS) $(MLIS) > .depend
 
@@ -129,7 +131,7 @@ clean:
 	@$(RM) -f lexer.ml
 	@$(RM) -f $(EXE)
 
-
 distclean : clean
-	@$(RM) -rf doc
+	@$(RM) -rf doc $(EXE) 
+
 super_distclean : distclean
