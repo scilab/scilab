@@ -307,7 +307,7 @@ c     .  arg2=eye
       elseif(m1.lt.0) then
 c     .  arg2(:), just reshape to column vector
          il1=iadr(lstk(top))
-         istk(il1)=1
+         istk(il1)=9
          istk(il1+1)=mn2
          istk(il1+2)=1
          l1=sadr(il1+4)
