@@ -14,11 +14,13 @@ bind .m2sci <Destroy> {cancelConversionCross}
 # Gets the directory to convert, and initialize the eTranslatePath
 ######################################################################
 proc setPathToConvert {} { 
+    global rFlagWhatToConvert
     set ePathToConvert [ tk_chooseDirectory ]
     
     # Refresh the entry text
     .m2sci.mainframe.eDirName delete 0 end 
     .m2sci.mainframe.eDirName insert 1 $ePathToConvert
+    set rFlagWhatToConvert 0
 } 
 
 
@@ -26,11 +28,13 @@ proc setPathToConvert {} {
 # Gets the file to convert
 ######################################################################
 proc setFileToConvert {} { 
+    global rFlagWhatToConvert
     set eFileToConvert [ tk_getOpenFile ]
     
     # Refresh the entry text
     .m2sci.mainframe.eFileName delete 0 end 
     .m2sci.mainframe.eFileName insert 1 $eFileToConvert
+    set rFlagWhatToConvert 1
 } 
 
 
