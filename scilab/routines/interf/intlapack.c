@@ -834,6 +834,7 @@ int C2F(intschur)(fname)
       }
       break;
     default: /* switch (something) */
+      break;
     }
     break; /* end of case 3 */
   default : 
