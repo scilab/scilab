@@ -2852,11 +2852,13 @@ void C2F(MissileGCGetorSet)(str, flag, verbose, x1, x2, x3, x4, x5,x6,dv1)
 	{ if ( j <= 0)
 	    {
 	      sciprint("\nUnknow X operator <%s>\r\n",str);
+	      *x1=1;*x2=0;
 	      return;
 	    }
 	}
     }
   sciprint("\n Unknow X operator <%s>\r\n",str);
+  *x1=1;*x2=0;
 }
 
 
