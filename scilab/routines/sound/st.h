@@ -248,7 +248,13 @@ char *version();			/* return version number */
 
 #include "../machine.h" 
 
+#if defined(__alpha)
+int wavread __PARAMS((ft_t ft, int *buf, long int len));
+#else
 int wavread __PARAMS((ft_t ft, long int *buf, long int len));
+#endif
+
+
 void  wavstartread __PARAMS((ft_t ft,WavInfo *,int flag));
 void wavwrite __PARAMS((ft_t ft, long int *buf, long int len));
 void wavstartwrite __PARAMS((ft_t ft));

@@ -41,7 +41,7 @@ typedef struct wavstuff
   int	second_header; /* non-zero on second header write */
 } *wav_t;
 
-static char *wav_format_str(); 
+static char *wav_format_str(unsigned int wFormatTag); 
 
 /*
  * Do anything required before you start reading samples.
@@ -51,10 +51,7 @@ static char *wav_format_str();
  *	mono/stereo/quad.
  */
 
-void wavstartread(ft,Wi,flag) 
-     ft_t ft;
-     WavInfo *Wi;
-     int flag;
+void wavstartread(ft_t ft, WavInfo *Wi, int flag)
 {
   wav_t	wav = (wav_t) ft->priv;
   char	magic[4];
@@ -280,10 +277,11 @@ void wavstartread(ft,Wi,flag)
  * Place in buf[].
  * Return number of samples read.
  */
-
-int wavread(ft, buf, len) 
-     ft_t ft;
-     long *buf, len;
+#if defined(__alpha)
+int wavread(ft_t ft,int *buf, long int len)
+#else 
+int wavread(ft_t ft, long int *buf, long int len)
+#endif
 {
   wav_t	wav = (wav_t) ft->priv;
   int	done;
@@ -303,13 +301,11 @@ int wavread(ft, buf, len)
  * Don't close input file! 
  */
 
-void wavstopread(ft) 
-ft_t ft;
+void wavstopread(ft_t ft)
 {
 }
 
-void wavstartwrite(ft) 
-ft_t ft;
+void wavstartwrite(ft_t ft)
 {
   wav_t	wav = (wav_t) ft->priv;
   int	littlendian = 1;
@@ -325,8 +321,7 @@ ft_t ft;
   wavwritehdr(ft);
 }
 
-void wavwritehdr(ft) 
-     ft_t ft;
+void wavwritehdr(ft_t ft)
 {
   wav_t	wav = (wav_t) ft->priv;
   /* wave file characteristics */
@@ -434,17 +429,14 @@ void wavwritehdr(ft)
     sciprint("Finished writing Wave file, %u data bytes\r\n",data_length);
 }
 
-void wavwrite(ft, buf, len) 
-     ft_t ft;
-     long *buf, len;
+void wavwrite(ft_t ft, long int *buf, long int len)
 {
   wav_t	wav = (wav_t) ft->priv;
   wav->samples += len;
   rawwrite(ft, buf, len);
 }
 
-void wavstopwrite(ft) 
-     ft_t ft;
+void wavstopwrite(ft_t ft)
 {
   /* All samples are already written out. */
   /* If file header needs fixing up, for example it needs the */
@@ -464,8 +456,7 @@ void wavstopwrite(ft)
  * Return a string corresponding to the wave format type.
  */
 static char *
-wav_format_str(wFormatTag) 
-     unsigned wFormatTag;
+wav_format_str(unsigned int wFormatTag)
 {
   switch (wFormatTag)
     {
