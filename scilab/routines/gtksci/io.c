@@ -239,7 +239,7 @@ void write_scilab(s)
       sci_input_char_buffer[sci_input_char_buffer_count++]= *s;
       s++;
     }
-  sci_input_char_buffer[sci_input_char_buffer_count++]='\n';
+  /*sci_input_char_buffer[sci_input_char_buffer_count++]='\n';*/
 }
 
 /* wait for a character and check for pending events */
