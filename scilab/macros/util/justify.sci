@@ -15,6 +15,8 @@ function t=justify(t,job)
 	nr=(mx-length(t(l,k)))-nl
 	t(l,k)=part(' ',1:nl)+t(l,k)+part(' ',1:nr)
       end
+    else
+      error('justify: Invalid option')
     end
   end
 endfunction
