@@ -1,0 +1,28 @@
+#---------------------------------------------------------
+# This Makefile is to be run as 
+# make -f config/Makefile.all PROG=... SCIDIR=... OBJS=....
+#--------------------------------------------------------
+# do not modify below 
+#--------------------------------------------------------
+SHELL = /bin/sh
+
+include config/Makefile.incl
+
+CFLAGS = $(CC_OPTIONS) -I$(SCIDIR)/routines -DSCI=\"$(SCIDIR)\"
+FFLAGS = $(FC_OPTIONS) 
+CPPFLAGS= $(CC_OPTIONS) -I$(SCIDIR)/routines -DSCI=\"$(SCIDIR)\"
+
+all:: $(PROG) 
+
+world:: $(PROG) 
+
+include config/Makefile.Top
+include config/Makefile 
+
+distclean::
+	$(RM) $(PROG)
+	$(RM) -f -r  config ./configs 
+
+
+
+
