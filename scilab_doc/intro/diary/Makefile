@@ -15,7 +15,7 @@ TESTS = d1p1.dia d1p2.dia d1p2bis.dia \
 	d3.3.dia d3.4.dia d3.5.dia d3.6.dia d3.7.dia d3.8.dia d3.9.dia \
 	d4.1.dia d4.2.dia d4.3.dia d4.4.dia d4.5.dia d4.6.dia d4.7.dia \
 	d4.8.dia d5.1.dia d5.2.dia d5.3.dia d5.4.dia d5.5.dia d5.6.dia \
-	d6.1.dia d1p1.dia d6.2.dia d8.1.dia da.1.dia da.2.dia \
+	d6.1.dia d1p1.dia d6.2.dia da.1.dia da.2.dia \
 	da.3.dia connect.dia demo1.dia mulplot.dia simple.dia \
 	syslin.dia extract.dia list.dia
 
