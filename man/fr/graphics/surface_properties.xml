@@ -72,7 +72,7 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="foreground: ">
-        <SP>This field contains the color index used to draw the axes and the
+        <SP>This field contains the color index used to draw the
         facets contours. Its value should be a color index (relative to the
         current colormap).</SP>
       </DESCRIPTION_ITEM>
