@@ -22,8 +22,8 @@ function [y] = mean(x,orient)
 	 end
       end
       if rhs == 2 then
-	 if orient == "r" then, orient == 1, end 
-	 if orient == "c" then, orient == 2, end
+	 if orient == "r" then, orient = 1, end 
+	 if orient == "c" then, orient = 2, end
 	 if floor(orient)~=orient | orient < 1 | orient > length(size(x)) then
 	    error("mean: bad second argument")
 	 end
