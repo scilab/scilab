@@ -131,8 +131,8 @@ extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
 
    if ( line == NULL) 
      {
-       *len_line= 1;
-       strncpy(buffer,"\n",1);
+       *len_line= 0;
+       buffer[0]=buffer[1]='\0';
        *eof = FALSE;
      }
    else 
