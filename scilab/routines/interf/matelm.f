@@ -3016,11 +3016,42 @@ c
       la=sadr(il+4)
       mna=ma*na
 c
+      l=sadr(ilr+4)
+      l1=l+mnb*mna*(max(itb,ita)+1)
+      lstk(top+1)=l1
+      lw=l1
+c
       if(fin.eq.19) goto 115
-      if(fin.eq.20) goto 111
-      l=la
-      mn=mna
-      it=ita
+      if(fin.eq.20) then
+         if(refb) then
+            err=lw+mnb*(itb+1)-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            call dcopy(mnb*(itb+1),stk(lb),1,stk(lw),1)
+         endif
+         lb=lw
+         lw=lb+mnb*(itb+1)
+         l=lb
+         mn=mnb
+         it=itb
+      elseif(fin.eq.21) then
+         if(refa) then
+            err=lw+mna*(ita+1)-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            call dcopy(mna*(ita+1),stk(la),1,stk(lw),1)
+         endif
+         la=lw
+         lw=la+mna*(ita+1)
+         l=la
+         mn=mna
+         it=ita
+      endif
+
   111 if(it.eq.1) goto 113
       do 112 k=1,mn
          lk=l+k-1
@@ -3045,12 +3076,9 @@ c
  114  continue
 c
  115  continue
-      l=sadr(ilr+4)
-      l1=l+mnb*mna*(max(itb,ita)+1)
-      lstk(top+1)=l1
+
 c
 c move a and b if necessary
-      lw=l1
       if(.not.refb) then
          lw=lw+mnb*(itb+1)
          err=lw-lstk(bot)
