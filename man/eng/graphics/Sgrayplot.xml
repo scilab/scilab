@@ -13,28 +13,116 @@
   colors</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z,[strf,rect,nax])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z,&lt;opt_args&gt;)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x,y</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: real row vectors of size n1 and n2.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>z</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix of size (n1,n2). <VERB>z(i,j)</VERB> is the value
+          of the surface at the point (x(i),y(j)).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: This represents a sequence of statements <VERB>key1=value1,
+          key2=value2</VERB>,... where <VERB>key1</VERB>,
+          <VERB>key2,...</VERB> can be one of the following: strf, rect, nax, zminmax, colminmax
+          (see <LINK>plot2d</LINK> for the 3 first and <LINK>fec</LINK> for the 2 last).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>strf,rect,nax</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: see <LINK>plot2d</LINK>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>zminmax, colminmax</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: see <LINK>fec</LINK>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+
 
   <DESCRIPTION>
     <P><VERB>Sgrayplot</VERB> is the same as <VERB>grayplot</VERB> but the
     plot is smoothed. The function <VERB>fec</VERB> is used for smoothing. The
     surface is plotted assuming that it is linear on a set of triangles built
-    from the grid:</P>
+    from the grid (here with n1=5, n2=3):</P>
+    <VERBATIM>
+             _____________
+             | /| /| /| /|
+             |/_|/_|/_|/_| 
+             | /| /| /| /| 
+             |/_|/_|/_|/_|</VERBATIM>
 
-    <VERBATIM>______ | /| /| |/_|/_| | /| /| |/_|/_|</VERBATIM>
+    <P>The function <LINK>colorbar</LINK> may be used to see the color scale.</P>
+
+    <P>The parameter <VERB>zminmax</VERB> is useful for animation purpose (see an
+       example after) and the parameter <VERB>colminmax</VERB> lets the user choose a part
+       of the current colormap (see the <LINK>fec</LINK> help page).</P>
 
     <P>Enter the command <VERB>Sgrayplot()</VERB> to see a demo.</P>
+
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-
+// example #1
 x=-10:10; y=-10:10;m =rand(21,21);
-Sgrayplot(x,y,m,"111",[-20,-20,20,20])
+xbasc()
+xset("colormap",hotcolormap(64))
+Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
+
+// example #2
 t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
-clf()
-Sgrayplot(t,t,m)
- 
+xbasc()
+xset("colormap",jetcolormap(64))
+colorbar(-1,1)
+Sgrayplot(t,t,m, strf="041")
+
+// example #3: an animation display cos(t)*sin(x)sin(y).
+// (Remark: this animation uses the old mode)
+n = 30;
+nt = 100;
+x = linspace(0,2*%pi,n);
+y = linspace(0,%pi,n/2);
+z = sin(x')*sin(y);
+t = linspace(0,4*%pi,nt);
+xselect(); xbasc()
+fig_styl_init = get("figure_style");
+if fig_styl_init == "new" then, set("figure_style","old"), end
+xset("font",6,2)
+xset("colormap",jetcolormap(64))
+driver("X11"); xset("pixmap",1);
+for i = 1:nt
+   xbasc()
+   colorbar(-1,1)
+   Sgrayplot(x,y,cos(t(i))*z, strf="042", zminmax=[-1,1])
+   xtitle("Kaa''s eyes")
+   xset("wshow")
+end
+xset("pixmap",0); driver("Rec")
+if fig_styl_init == "new" then, set("figure_style","new"), end
   ]]></EXAMPLE>
 
   <SEE_ALSO>
@@ -52,6 +140,10 @@ Sgrayplot(t,t,m)
 
     <SEE_ALSO_ITEM>
       <LINK>Sfgrayplot</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>colorbar</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 

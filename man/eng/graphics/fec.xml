@@ -7,6 +7,7 @@
   <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="fec"> pseudo-color plot of a function defined on a triangular mesh</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>fec(x,y,triangles,func,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
@@ -14,19 +15,36 @@
       <PARAM_ITEM>
         <PARAM_NAME>x,y</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: two vectors of size <VERB>n</VERB>, <VERB>(x(i),y(i))</VERB> gives the coordinates of node  <VERB>i</VERB></SP>
+          <SP>: two vectors of size <VERB>n</VERB>, <VERB>(x(i),y(i))</VERB> gives the coordinates of 
+                node  <VERB>i</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>func</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a vector of size <VERB>n</VERB> : <VERB>func(i)</VERB> gives the value of the function for which we want the pseudo-color plot.</SP>
+          <SP>: a vector of size <VERB>n</VERB> : <VERB>func(i)</VERB> gives the value at node <VERB>i</VERB>
+                of the function for which we want the pseudo-color plot.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>triangles</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: is a <VERB>[Ntr,5]</VERB> matrix. Each line of <VERB>triangles</VERB> specifies a triangle of the  mesh <VERB>triangle(j) = [number,node1,node2,node3,flag]</VERB>. <VERB>node1,node2,node3</VERB> are the number of the nodes which constitutes the triangle. number is the number of the triangle and flag is an integer not used in the fec function</SP>
+          <SP>: is a <VERB>[Ntr,5]</VERB> matrix. Each line of <VERB>triangles</VERB> specifies a triangle 
+                of the  mesh <VERB>triangle(j) = [number,node1,node2,node3,flag]</VERB>. 
+                <VERB>node1,node2,node3</VERB> are the number of the nodes which constitutes 
+                the triangle. number is the number of the triangle and flag is an integer 
+                not used in the fec function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: This represents a sequence of statements <VERB>key1=value1,
+          key2=value2</VERB>,... where <VERB>key1</VERB>,
+          <VERB>key2,...</VERB> can be one of the following: strf, leg, rect, nax, zminmax, colminmax
+          (see <LINK>plot2d</LINK> for the 4 first ones).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -38,20 +56,43 @@
       <PARAM_ITEM>
         <PARAM_NAME>zminmax</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: useful only for animation with fec, zminmax is a vector of  size 2 [zmin zmax] which gives the z values associated with  the first and the last color (of the current colormap).  (More exactly if the colormap have nc colors and if we note dz = (zmax-zmin)/nc, then the part of the triangulation where  zmin + (i-1)dz &lt;= z &lt; zmin + i dz is filled with the color i). By default zmin = min(func) and zmax = max(func). If you want to do an animation with func values that varie in time, take for zmin and zmax the global minimum and maximum or something close.  CAUTION : for func values greather than zmax the last color  is used and for func values less than zmin this is the first color  (so you don't see that the zminmax levels are crossed).</SP>
+          <SP>: vector with 2 components [zmin zmax] (useful only for animation)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>colminmax</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a vector of 2 positives integers colminmax=[colmin colmax] with 1 &lt;= colmin &lt; colmax &lt;= nc (where nc is the number of colors of the current colormap). By default all the colors of the colormap are used but with colminmax you may choose a sub-part of the (current) colormap.</SP>
+          <SP>: vector of 2 positives integers [colmin colmax]</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
+    <P>This function is the good one to draw linear triangular finite element solutions 
+       or simply to display a function defined on a triangulation. The color interpolation
+      is done through software computation and so it is not too fast.</P>
+
+    <P>The function <LINK>colorbar</LINK> may be used to see the color scale (see the example
+       section).</P>
+
+    <P>    
+    The <VERB>zminmax</VERB> argument gives the z values associated with the first and the last 
+    color (of the current colormap). More exactly if the colormap have nc colors and if we note 
+    <EM>dz = (zmax-zmin)/nc</EM>, then the part of the triangulation where  
+    <EM>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</EM> is filled with the color <EM>i</EM>). 
+    By default <EM>zmin = min(func)</EM> and <EM>zmax = max(func)</EM>. If you want to do 
+    an animation with func values that varie in time, take for zmin and zmax the global 
+    minimum and maximum or something close.  CAUTION : for func values greather than zmax 
+    the last color  is used and for func values less than zmin this is the first color  
+    (so you don't see that the zminmax levels are crossed).
+    </P>
+    <P>If you don't want to use the complete colormap you may use the <VERB>colminmax</VERB>
+    argument with <EM>1 &lt;= colmin &lt; colmax &lt;= nc</EM> (nc being the number of colors 
+    of the current colormap) so as to use only the [colmin,colmax]  sub-part of the colormap.
+    (by default all the colors of the colormap are used).
+    </P>
     <P>
-    See the demo files <VERB>demos/fec</VERB>.</P>
+    See the demo files <VERB>demos/fec</VERB>:</P>
     <P><VERB>fec.ex1</VERB> is a simple demo file in which a mesh and a function 
     on that mesh is completely built in Scilab syntax</P>
     <P><VERB>fec.ex2</VERB> is an example for which the mesh and the function value where 
@@ -59,7 +100,57 @@
     A set of macros ( provided in file <VERB>macros.sci</VERB>) can be used to read the 
     data files in Scilab and plot the results.</P>
   </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// define a mini triangulation (4 vertices, 2 triangles)
+x = [0 1 0 -1];
+y = [0 0 1  1];
+T = [1 1 2 3 1;
+     2 3 4 1 1];
+z = [0 1 0 -1];  // values of the func at each vertices
+// datas to draw the mesh
+xx = [0 1 0  0 -1;...
+      1 0 0 -1  0];
+yy = [0 0 1  0  1
+      0 1 0  1  1];
+xbasc()
+xset("colormap",jetcolormap(64))
+colorbar(-1,1)
+fec(x,y,T,z,strf="040")
+xtitle("fec example on a small triangulation")
+xsegs(xx,yy)       // the mesh
+
+
+// this example shows the effect of zminmax and uses the
+// previous example datas (you have to execute the it before)
+xbasc()
+xset("colormap",jetcolormap(64))
+colorbar(-0.5,0.5)  // be careful colorbar must be set by hands !
+fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5])
+xtitle("fec example : using zminmax argument")
+xsegs(xx,yy)        // the mesh
+
+
+// this example shows a feature from colminmax:
+// playing with 2 colormaps for 2 subplots. It
+// uses also the data of the first example.
+xbasc()
+xset("colormap",[hotcolormap(64);jetcolormap(64)])
+subplot(1,2,1)
+   colorbar(-1,1,[1 64])
+   fec(x,y,T,z,strf="040", colminmax=[1 64])
+   xtitle("fec using the hot colormap")
+   xsegs(xx,yy)
+subplot(1,2,2)
+   colorbar(-1,1,[65 128])
+   fec(x,y,T,z,strf="040", colminmax=[65 128])
+   xtitle("fec using the jet colormap")
+   xsegs(xx,yy)
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>colorbar</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>Sfgrayplot</LINK>
     </SEE_ALSO_ITEM>
