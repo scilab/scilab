@@ -69,6 +69,7 @@ void C2F(addinter)(int *iflag,int *descla, int *ptrdescla, int *nvla, char *inam
   int i,rhs=2,ilib=0,inum;
   char **files,*names[2];
   *err=0;
+  files=NULL; /* Initialisation pour Windows */
 
   Use_cpp_code=*lib_cpp;
   Use_c_cpp = (char *) malloc((strlen(c_cpp) +1) * sizeof(char));
