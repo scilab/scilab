@@ -6,7 +6,7 @@ function loadmatfile(fil)
 
 //Copyright INRIA
 //Author Serge Steer    
-  ReadmiMatrix; //load the matfile functions 
+  ReadmiMatrix=ReadmiMatrix; //load the matfile functions 
 
   //--file opening
   fd=open_matfile(fil)

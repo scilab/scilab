@@ -11,7 +11,7 @@ function matfile2sci(mat_file_path,result_file_path)
 //Author Serge Steer  
   
 
-  ReadmiMatrix; //load the matfile functions 
+  ReadmiMatrix=ReadmiMatrix; //load the matfile functions 
 
   //--file opening
   fdi=open_matfile(mat_file_path)

@@ -2,7 +2,7 @@ mode(-1)
 //Author Serge Steer Copyright INRIA
 path=get_absolute_file_path("loop.sce")
 function demo_help(key)
-  browsehelp;
+  browsehelp=browsehelp;
   tcltk_help(gethelpfile(key),key,'demo')
 endfunction
 

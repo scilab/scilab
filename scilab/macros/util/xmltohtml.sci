@@ -210,7 +210,7 @@ function gener_index(dirs,txt)
 //-------------------------------------
 // 
   lines(0);
-  find_links;
+  find_links=find_links;
   sep="/";// if MSDOS then sep="\",end
   path=get_absolute_file_path("html.xsl")+"html.xsl"
   [lhs,rhs]=argn(0) 

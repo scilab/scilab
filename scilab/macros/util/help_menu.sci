@@ -1,6 +1,6 @@
 function help_menu(i)
 //function associated with the help button in Scilab main window
-  browsehelp;
+  browsehelp=browsehelp;// load browsehelp subfunctions
   change_old_man()
   INDEX=make_help_index()
   if i==1 then

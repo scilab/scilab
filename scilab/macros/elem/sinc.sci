@@ -4,7 +4,7 @@ function y=sinc(x,fl)
 //               [  1 if x(i)~=0
   if argn(2)==2 then // for compatibility
     warning('obsolete use of sinc, use filt_sinc instead')
-    ffilt;
+    ffilt=ffilt;//load ffilt and its subfunctions
     y=filt_sinc(x,fl)
     return
   end

@@ -61,7 +61,7 @@ function [scs_m,fct]=do_addnew(scs_m)
 	fct=[]
 	return
       end
-      do_version;
+      do_version=do_version;//load do_version and its subfunctions
       ierror=execstr('blk=up_to_date(blk)','errcatch');
       if ierror <>0 then
 	message("Translation did not work, sorry" )
