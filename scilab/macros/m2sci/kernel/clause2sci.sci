@@ -85,10 +85,23 @@ case "selectcase"
   
   // Convert cases
   sci_cases=list()
-  for k=1:size(mtlb_clause.cases)
+  k=0
+  while k<size(mtlb_clause.cases)
+    k=k+1
     level(2)=level(2)+1
-    
     // Convert expression
+    if typeof(mtlb_clause.cases(k).expression)=="funcall" then
+      if mtlb_clause.cases(k).expression.name=="makecell" then
+	// Insert new cases
+	for nbcas=size(mtlb_clause.cases):-1:k+1
+	  mtlb_clause.cases(nbcas+size(mtlb_clause.cases(k).expression.rhs))=mtlb_clause.cases(nbcas)
+	end
+	for nbrhs=1:size(mtlb_clause.cases(k).expression.rhs)
+	  mtlb_clause.cases(nbrhs+k)=tlist(["case","expression","then"],mtlb_clause.cases(k).expression.rhs(nbrhs),mtlb_clause.cases(k).then)
+	end
+	mtlb_clause.cases(k)=null()
+      end
+    end
     [sci_exprn]=expression2sci(mtlb_clause.cases(k).expression)
     // Get instructions to insert if there are
     if m2sci_to_insert_b<>list() then
