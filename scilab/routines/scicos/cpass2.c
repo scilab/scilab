@@ -221,6 +221,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
     {
       (*zcptr)[i+1]=(*zcptr)[i] + typ_z[i];
     }
+  free(typ_z);
   /*completement inutile pour simulation, c'est pour la generation de code*/
   *ztyp=VecEg1(*nzcross); 
   for (i=1;i<(*ztyp)[0];i++)

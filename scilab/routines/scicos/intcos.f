@@ -464,10 +464,7 @@ c
         lfunpt=iadr(lw)
         lw=sadr(lfunpt+nblk)
 c
-        ncst = n1e2
-        ndst = n1e3
         linpptr=iadr(l4e6)
-        linplnk=iadr(l4e8)
         llnkptr=iadr(l4e10)
         iloutptr=iadr(l4e7)
 c
@@ -475,45 +472,7 @@ c
 c
         ng=istk(iadr(l4e5)+n4e5-1)-1
 
-
-c     
-c     maximum block state and input sizes      
-c        ilst=iadr(l4e3)
         ilinp=iadr(l4e4)
-c        ilout=iadr(l4e5)
-c        ilclk=iadr(l4e11)
-    
-        if(solver.eq.0) then 
-c     .    see also paragraph f below.
-c     .    nout is for flag 6 point fix iteration and
-c     .    temp storage in cossim
-c     .    22+ncst*max(16,ncst + 9)+3*ng is for lsodar RWORK
-           nn42=max(nout,ng)+22+ncst*max(16,ncst + 9)+3*ng 
-           lw42=lw
-           lw=lw+nn42
-c     .    lsodar IWORK 20 + neq
-           nn43= 20 + ncst + 2*ng +ng
-c     .    last ng is for the zcross mask
-           lw43=lw
-           lw=lw+nn43
-           nn44=istk(iadr(l4e15)+n4e15-1)
-           lw44=lw
-           lw=lw+sadr(nn44)+1
-        elseif(solver.eq.100) then
-c     .    daskr
-           ncst=ncst/2
-           MAXORD=5
-           nn42=max(nout,ng)+60+max(MAXORD+4,7)*ncst+ncst**2+3*ng
-           lw42=lw
-           lw=lw+nn42
-           nn43=40 +ncst+ ncst + 2*ng +ng
-c     .    last ng is for the zcross mask
-           lw43=lw
-           lw=lw+nn43
-           nn44=istk(iadr(l4e15)+n4e15-1)
-           lw44=lw
-           lw=lw+sadr(nn44)+1
-        endif
         err=lw-lstk(bot)
         if (err .gt. 0) then
           call error(17)
@@ -574,8 +533,7 @@ c
      $       istk(iadr(l4e29)),n4e29,
      $       istk(iadr(l4e20)),n4e20,istk(iadr(l4e21)),n4e21,
      $       istk(iadr(l4e22)),nblk,istk(iadr(l4e24)),istk(iadr(l4e5)),
-     $       ng,istk(iadr(l4e27)),n4e27,simpar,stk(lw42),stk(lw43),
-     $       stk(lw44),flag,ierr)
+     $       ng,istk(iadr(l4e27)),n4e27,simpar,flag,ierr)
         idb=0
         if (ierr .gt. 0 ) then
            if(ierr.eq.1) then
