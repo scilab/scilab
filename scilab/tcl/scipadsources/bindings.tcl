@@ -10,6 +10,9 @@ bind Text <BackSpace> { backspacetext}
 bind Text <Return> {insertnewline %W}
 bind Text <Tab> {inserttab %W}
 bind Text <Shift-Tab> {UnIndentSel}
+#XF86 4.3 modmap has the following instead of Shift-Tab
+#catched not to cause trouble on other platforms
+catch {bind Text <ISO_Left_Tab> {UnIndentSel}}
 
 bind Text <parenright> { if {{%A} != {{}}} {insblinkbrace %W %A}}
 bind Text <bracketright> { if {{%A} != {{}}} {insblinkbrace %W %A}} 
@@ -70,6 +73,9 @@ bind $pad <F2> {filetosave %W}
 bind $pad <F1> {helpme}
 bind $pad <Control-F1> {helpword}
 bind $pad <Shift-F1> {aboutme}
+#XF86 4.3 modmap has the following instead of Shift-F1
+#catched not to cause trouble on other platforms
+catch {bind $pad <XF86_Switch_VT_1> {aboutme}}
 
 # remove the default bind ctrl-d=delete char
 bind Text <Control-d> ""

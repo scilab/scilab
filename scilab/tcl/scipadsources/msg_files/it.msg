@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync with v3.47
+# in sync with v3.48
 
 
 # commons
@@ -262,17 +262,17 @@
         ::msgcat::mcset it "m&edium" "m&edio"
         ::msgcat::mcset it "&large" "&grande"
     ::msgcat::mcset it "&Colors" "&Colori"
-    ::msgcat::mcset it "&Tabs and indentation" "&Tabs and indentation"
-        ::msgcat::mcset it "Tab inserts &spaces" "Tab inserts &spaces"
+    ::msgcat::mcset it "&Tabs and indentation" "&Tabulatori e indentazione"
+        ::msgcat::mcset it "Tab inserts &spaces" "&Tab inserisce spazi"
         ::msgcat::mcset it "&Indentation spaces" "&Spazi di indentazione"
     ::msgcat::mcset it "Word &Wrap" "&Ritorno a capo visuale"
-    ::msgcat::mcset it "File&names" "&Nomi dei files"
+    ::msgcat::mcset it "File&names" "Nome dei &files"
         ::msgcat::mcset it "&Full path" "&Percorso completo"
         ::msgcat::mcset it "Full path if &ambiguous"\
                            "Percorso completo se &ambiguo"
         ::msgcat::mcset it "&Unambiguous pruned path" \
                            "Percorso &ridotto univoco"
-    ::msgcat::mcset it "&Recent files" "&Recent files"
+    ::msgcat::mcset it "&Recent files" "&Numero files recenti"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset it "Opened Files" "Files aperti"
