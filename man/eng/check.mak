@@ -128,4 +128,10 @@ utilities:
 	@cd $@
 	@$(XMLINTCHECK)
 	@cd ..
+sparse:
+  @echo Checking $@
+	@cd $@
+	@$(XMLINTCHECK)
+	@cd ..
+
 	
