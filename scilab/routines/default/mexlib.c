@@ -1111,12 +1111,12 @@ mxArray *mxGetCell(const mxArray *ptr, int index)
   else {
     headerlist = listentry(header,3);
     headerobj = listentry(headerlist,index+1);
-    isize=2*(headerlist[index+3]-headerlist[index+2]);
+    isize=headerlist[index+3]-headerlist[index+2];
   }
   Nbvars++;  lw=Nbvars;
-  CreateData(lw,4*isize);
+  CreateData(lw,isize*sizeof(double));
   headerobjcopy=GetData(lw);
-  for (kk = 0; kk < isize; ++kk) headerobjcopy[kk]=headerobj[kk];
+  for (kk = 0; kk < 2*isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
   C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
   return (mxArray *) C2F(intersci).iwhere[lw-1];
@@ -1159,13 +1159,13 @@ mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
   else {
     headerlist = listentry(header,3+fieldnum);
     headerobj = listentry(headerlist,index+1);
-    isize=2*(headerlist[index+3]-headerlist[index+2]);
+    isize=headerlist[index+3]-headerlist[index+2];
   }
 
   Nbvars++; lw=Nbvars;
-  CreateData(lw,4*isize);
+  CreateData(lw,isize*sizeof(double));
   headerobjcopy=GetData(lw);
-  for (kk = 0; kk < isize; ++kk) headerobjcopy[kk]=headerobj[kk];
+  for (kk = 0; kk < 2*isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
   C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
   return (mxArray *) C2F(intersci).iwhere[lw-1];
@@ -1190,13 +1190,13 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
   else {
     headerlist = listentry(header,3+fieldnum);
     headerobj = listentry(headerlist,index+1);
-    isize=2*(headerlist[index+3]-headerlist[index+2]);
+    isize=headerlist[index+3]-headerlist[index+2];
   }
 
   Nbvars++; lw=Nbvars;
-  CreateData(lw,isize*sizeof(int));
+  CreateData(lw,isize*sizeof(double));
   headerobjcopy=GetData(lw);
-  for (kk = 0; kk < isize; ++kk) headerobjcopy[kk]=headerobj[kk];
+  for (kk = 0; kk < 2*isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
   C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
   return (mxArray *) C2F(intersci).iwhere[lw-1];
@@ -1420,6 +1420,7 @@ int mxGetString(const mxArray *ptr, char *str, int strl)
 {
   int commonlength, firstchain, nrows; 
   int *header = Header(ptr);
+
   /*  int ncols = header[2]; This is 1 */
   /* commonlength=nrows*(header[5]-header[4]); */
   nrows = header[1];
@@ -1590,6 +1591,7 @@ mxArray *UnrefStruct(mxArray *ptr)
 	      sizeobj=headerlist[index+3]-headerlist[index+2];
 	    }
 	  for (k=0; k<2*sizeobj; k++)
+	    /*  printf("%i\n", headerobj[k]);  */
 	    headerobjnew[k]=headerobj[k];  /* OUF! */
 	}
     }
@@ -1990,13 +1992,13 @@ int mexPutVariable(const char *workspace, char *var_name, mxArray *array_ptr)
 
 void mxSetName(mxArray *array_ptr, const char *name)
 {
-  mexPrintf("Routine mxSetName  not implemented \r\n");
+  mexErrMsgTxt("Routine mxSetName not implemented ! \r\n");
   exit(1);  /* TO BE DONE */
 }
 
 void mxSetData(mxArray *array_ptr, void *data_ptr)
 {
-  mexPrintf("Routine mxSetData  not implemented \r\n");
+  mexErrMsgTxt("Routine mxSetData  not implemented \r\n");
   exit(1);  /* TO BE DONE */
 }
 
