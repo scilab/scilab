@@ -28,7 +28,7 @@ c
       common /dbcos/ idb
       data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
       data cur/0/,verb/0/
-      data yy / 0.00d0,0.80d0/
+c      data yy / 0.00d0,0.80d0/
 c     
       if(idb.eq.1) then
          write(6,'(''evscpe t='',e10.3,'' flag='',i1,''window='',i3)') t
@@ -89,10 +89,23 @@ c
      &        0,0,v,dv,dv,dv,dv)
          buf='xlines'//char(0)
          xx(1)=t
-         xx(2)=t
-         call dr1('xpolys'//char(0),'v'//char(0),v,v,ipar(2+nevprt),
-     &        1,2,v,xx,yy,dv,dv)
-c
+         xx(2)=t 
+
+c  ------------------------------------------------------
+         yy(1)=0.0
+         yy(2)=0.8
+         i=1
+         nx=1
+ 10      if (iand(nevprt,nx) .ne. 0)  then
+            call dr1('xpolys'//char(0),'v'//char(0),v,v,
+     $           ipar(2+i),1,2,v,xx,yy,dv,dv)
+            yy(1)=(yy(1)+yy(2))/2
+         endif
+         i=i+1
+         nx=nx*2
+         if(nx.le.nevprt) goto 10
+         yy(1)=0.0
+c ----------------------------------------------------------
       elseif(flag.eq.4) then
          wid=ipar(1)
          ymin=0.0d0
