@@ -100,15 +100,15 @@ c     exec accepte les fichiers ouverts par C ou Fortran
       pstk(pt)=rio
       rio = lunit
       rstk(pt)=902
-      ids(1,pt)=0
-      if(opened) ids(1,pt)=1
+      ids(6,pt)=0
+      if(opened) ids(6,pt)=1
       icall=5
       fin=flag
 c     *call*  macro
       go to 999
       
  12   continue
-      opened=ids(1,pt).eq.1
+      opened=ids(6,pt).eq.1
       if(.not.opened) call clunit(-rio,buf,mode)
       rio=pstk(pt)
       top=top+1
