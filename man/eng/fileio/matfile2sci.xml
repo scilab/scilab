@@ -33,7 +33,7 @@
   <DESCRIPTION>
   <P>
     Converts a Matlab 5 MAT-file into a Scilabn binary file compatible
-    with  the function <verb>load</verb> The Matlab data types are
+    with  the function <VERB>load</VERB> The Matlab data types are
     converted into the Scilab equivalents. 
   </P>
 

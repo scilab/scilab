@@ -8,8 +8,6 @@
   <SHORT_DESCRIPTION name="rubberbox"> Rubberband box for rectangle selection</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox(initial_rect)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox()  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>

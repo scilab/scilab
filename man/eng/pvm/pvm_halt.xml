@@ -34,12 +34,9 @@
     This  will prevent PVM  from restarting on
     that host.  Deletion of this file will fix this problem and 
     it can be done as follows:
-    <VERBATIM><![CDATA[ 
-             rm `( grep $user /etc/passwd || ypmatch $user passwd )
-                  | awk -F: '{print "/tmp/pvmd.";$3;exit}'`
-     ]]></VERBATIM>
-  </P>
-  <P>
+     <VERB> rm `( grep $user /etc/passwd || ypmatch $user passwd )</VERB>
+     <VERB>             | awk -F: '{print "/tmp/pvmd.";$3;exit}'`</VERB>
+</P>    <P>
     For example:
   </P>
   <VERBATIM><![CDATA[
