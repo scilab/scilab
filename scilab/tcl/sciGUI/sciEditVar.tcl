@@ -472,40 +472,49 @@ if { $TEST==1 } {
 # Description : Matrix editor GUI
 # ----------------------------------------------------------------------------
 proc GEDsciGUIEditVar { {winId -1 } } {
-	global sciGUITable	
-	set winId2 [sciGUICreate $winId "editvar" ]
-	# read the information	
-	set sciGUITable(win,$winId2,data,last_i) 0
-	set sciGUITable(win,$winId2,data,last_j) 0
-	
-	set w [sciGUIName $winId2]
-	wm title $w "Scilab Edit Var ($winId2)"
-	wm protocol $w WM_DELETE_WINDOW "sciGUIEditVarQuit $winId2"
+    global sciGUITable	
+    set winId2 [sciGUICreate $winId "editvar" ]
+    # read the information	
+    set sciGUITable(win,$winId2,data,last_i) 0
+    set sciGUITable(win,$winId2,data,last_j) 0
+    
+    set w [sciGUIName $winId2]
+    wm title $w "Scilab Edit Var ($winId2)"
+    wm protocol $w WM_DELETE_WINDOW "sciGUIEditVarQuit $winId2"
     #F.Leray
-        wm geometry $w 320x320
-
-
-	$w configure -background white
-	frame $w.top -bd 0 -background white
-	label $w.top.logo -image sciGUITable(gif,scilab01) -bg white
-	label $w.top.mes01 -text "Edit Var" -font $sciGUITable(font,1) -bg white
-	pack $w.top -expand 0
-	pack $w.top.logo -side left
-	pack $w.top.mes01 -side right
-
-	frame $w.buttons -bd 1 -background LightGray
-	frame $w.editor -bd 3 -background LightGray -relief groove
-
-	#button $w.buttons.update -text "Update to Scilab" -width 15 
-	button $w.buttons.quit -text "Refresh !"  -command "sciGUIEditVarQuit $winId2"
-	label $w.buttons.msg1 -text "Please wait: loading data... " -bg LightGray -fg blue
-	label $w.buttons.msg2 -text "" -bg LightGray -fg blue
-	pack $w.buttons.quit $w.buttons.msg1 $w.buttons.msg2 -side left -padx 4 -expand 1 -fill x -pady 2
-	
-	pack $w.buttons -side top -expand 0 -fill x
-	pack $w.editor -side top -expand 1 -fill both
-
-	return $winId2	
+    wm geometry $w 320x320
+    
+    # I will now force this window to be always on top while not closed.
+    wm withdraw  $w
+    update idletasks
+#    wm transient $www $w
+    wm deiconify $w
+    grab set $w
+    
+    
+    
+    $w configure -background white
+    frame $w.top -bd 0 -background white
+    label $w.top.logo -image sciGUITable(gif,scilab01) -bg white
+    label $w.top.mes01 -text "Edit Var" -font $sciGUITable(font,1) -bg white
+    pack $w.top -expand 0
+    pack $w.top.logo -side left
+    pack $w.top.mes01 -side right
+    
+    frame $w.buttons -bd 1 -background LightGray
+    frame $w.editor -bd 3 -background LightGray -relief groove
+    
+    #button $w.buttons.update -text "Update to Scilab" -width 15 
+#    button $w.buttons.quit -text "Refresh !"  -command "CloseEditorSaveData ; sciGUIEditVarQuit $winId2"
+    button $w.buttons.quit -text "Refresh !"  -command "CloseEditorSaveData $winId2"
+    label $w.buttons.msg1 -text "Please wait: loading data... " -bg LightGray -fg blue
+    label $w.buttons.msg2 -text "" -bg LightGray -fg blue
+    pack $w.buttons.quit $w.buttons.msg1 $w.buttons.msg2 -side left -padx 4 -expand 1 -fill x -pady 2
+    
+    pack $w.buttons -side top -expand 0 -fill x
+    pack $w.editor -side top -expand 1 -fill both
+    
+    return $winId2	
 }
 
 
@@ -528,41 +537,6 @@ proc GEDsciGUIEditVarDrawGrid { winId } {
  	set defw 350
  	set defh 350
  	set defcc 15
-
-#TEST ICI
-
-
-#     set Nb_data [expr $ni*$nj]
-#     set Nb_data 100000
-#     #        set Nb_data $Nb_data.
-#     set tmp 100
-#     set index 0
-
-#     set zero 0
-
-#     #        set waitbartmp [sciGUIBarWait $winWB "ESSAI !!!!!!" $zero]
-
-
-#     set progmsg "Loading data, please wait..."
-#     #  set progval 0
-#     #  set cent 100000
-#     ProgressDlg  .pAEIOU  -parent $w -title "Wait..." \
-# 	-type         normal \
-# 	-width        250 \
-# 	-textvariable progmsg \
-# 	-variable     tmp \
-# 	-maximum      $Nb_data \
-# 	-stop         "Stop" \
-# 	-command      {destroy .pAEIOU}
-    
-#     raise .pAEIOU
-
-
-
-
-
- ##
-
 
  	canvas $w.editzone -width $defw -height $defh -yscrollcommand "$w.sbi set" -xscrollcommand "$w.sbj set"
  	set k0 [entry $w.editzone.entry -width $defcc -bd 0 -relief flat -background yellow]
@@ -617,35 +591,11 @@ proc GEDsciGUIEditVarDrawGrid { winId } {
  	grid columnconfigure $w 1 -weight 1
  	grid rowconfigure $w 1 -weight 1
 
- #     for {set i 1} {$i<=$Nb_data} {incr i} { 
-#  	puts "tmp vaut $tmp"
-#  	raise .pAEIOU
-#  	set tmp $i
-#      }
-    
-
  	for { set i 1 } { $i<=$ni } { incr i } {
- 	  #  set tmp 0
  		for { set j 1 } { $j<=$nj } { incr j } {
  			set y [expr ($i-0.5)*$di]
  			set x [expr $j*$dj-3]
  			sciGUIEditVarPutCell $w.editzone $x $y "$sciGUITable(win,$winId,data,$i,$j)" $dj item($i,$j) $di
-#  	      	        set tmp [expr $tmp + 1]
-
-
- #		    puts "Nb_data = $Nb_data"
-#  		    puts "tmp = $tmp"
- #rajout ici F.Leray
- #		    set index [expr $tmp / $Nb_data]
- #		    set index [expr $index *100]
- #		    set index [expr round($index)]
- #		    set index [expr $index /100.]
- #		    puts "index ="
- #		    puts $index
- #		    puts "FIN"
- 	#	    ScilabEval "waitbar($index,$winWB);" "seq"
- 	#	    set waitbartmp [sciGUIBarWait $winWB "" $index]
- 	#	    pack $waitbartmp
  		}
  	}
 
@@ -665,4 +615,11 @@ proc GEDsciGUIEditVarDrawGrid { winId } {
  	$w.editzone config -scrollregion "0 0 $jall $iall"
 
  	bind $w.editzone <1> "sciGUIEditVarEdit $winId %x %y"	
+}
+
+
+proc CloseEditorSaveData { winId } {
+    ScilabEval "CloseEditorSaveData()" "seq"
+    ScilabEval "TK_EvalStr(\"sciGUIEditVarQuit \"+\"$winId\")" "seq"
+    
 }

@@ -551,7 +551,7 @@ proc sciCommandData {} {
 }
 
 proc GUIEditData  {} {
-    ScilabEval "global ged_handle;ged_handle.data=EditData(ged_handle.data)" "seq"
+    ScilabEval "global ged_handle;EditData(ged_handle.data,\"ged_handle.data\")" "seq"
 }
 
 proc SelectData  {w args} {

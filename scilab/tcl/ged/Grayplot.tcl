@@ -585,7 +585,7 @@ proc SelectDataX  {w args} {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;ged_handle.data(2:$,1)=EditData(ged_handle.data(2:$,1))" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.data(2:$,1),\"ged_handle.data(2:$,1)\")" "seq"
 	}
     }
 }
@@ -604,7 +604,7 @@ proc SelectDataY  {w args} {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;ged_handle.data(1,2:$)=EditData(ged_handle.data(1,2:$))" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.data(1,2:$),\"ged_handle.data(1,2:$)\")" "seq"
 	}
     }
 }
@@ -622,7 +622,7 @@ proc SelectDataZ  {w args} {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;ged_handle.data(2:$,2:$)=EditData(ged_handle.data(2:$,2:$))" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.data(2:$,2:$),\"ged_handle.data(2:$,2:$)\")" "seq"
 	}
     }
 }

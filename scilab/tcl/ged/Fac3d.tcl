@@ -579,7 +579,7 @@ proc SelectDataX  {w args} {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;ged_handle.data.x=EditData(ged_handle.data.x)" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.data.x,\"ged_handle.data.x\")" "seq"
 	}
     }
 }
@@ -598,7 +598,7 @@ proc SelectDataY  {w args} {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;ged_handle.data.y=EditData(ged_handle.data.y)" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.data.y,\"ged_handle.data.y\")" "seq"
 	}
     }
 }
@@ -610,13 +610,13 @@ proc SelectDataZ  {w args} {
     set finddbarray -1
     set dbarray "double array"
     set finddbarray [expr [string first $dbarray $mycurdata]]
-#    puts "finddbarray = $finddbarray"
-
+    #    puts "finddbarray = $finddbarray"
+    
     if { ($mycurdata == "----") || ($finddbarray != -1) } {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;ged_handle.data.z=EditData(ged_handle.data.z)" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.data.z,\"ged_handle.data.z\")" "seq"
 	}
     }
 }
@@ -634,7 +634,7 @@ proc SelectDataColor  {w args} {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;ged_handle.data.color=EditData(ged_handle.data.color)" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.data.color,\"ged_handle.data.color\")" "seq"
 	}
     }
 }

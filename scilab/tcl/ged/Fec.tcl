@@ -607,7 +607,7 @@ proc SelectDataData  {w args} {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;ged_handle.data=EditData(ged_handle.data)" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.data,\"ged_handle.data\")" "seq"
 	}
     }
 }
@@ -626,7 +626,7 @@ proc SelectDataTriangles  {w args} {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;ged_handle.triangles=EditData(ged_handle.triangles)" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.triangles,\"ged_handle.triangles\")" "seq"
 	}
     }
 }

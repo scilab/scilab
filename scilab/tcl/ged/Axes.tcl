@@ -299,8 +299,8 @@ label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setXGridColor $w.frame.gridcolor" -tickinterval 0 
 
-pack $w.frame.gridcolorlabel -in  $w.frame.gridcol -side left 
-pack  $w.frame.gridcolor  -in  $w.frame.gridcol    -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
+pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.gridcolor set $xGrid
 
 #X Data bounds
@@ -311,8 +311,8 @@ label $w.frame.datalabel -text "Data bounds:"
 entry $w.frame.databmin -relief sunken  -textvariable dbxmin 
 entry $w.frame.databmax -relief sunken  -textvariable dbxmax
 pack $w.frame.datalabel -in  $w.frame.datab -side left
-pack $w.frame.databmin -in  $w.frame.datab  -side left -expand 1 -fill x 
-pack $w.frame.databmax -in  $w.frame.datab  -side left -expand 1 -fill x 
+pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
+pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
 bind  $w.frame.databmin <Return> {setXdb} 
 bind  $w.frame.databmax <Return> {setXdb} 
 
@@ -325,7 +325,7 @@ radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable xToggle -value "n
 radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable xToggle -value "l" 	  -command "toggleX" 	   
 
 set numpage 0
-button $w.frame.scalesw.buttonticks -text "Ticks..." -command "ReLoadTicks ; PopUp $ww $numpage"
+button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage" 
 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left
 pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
@@ -479,7 +479,7 @@ radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable yToggle -value "n
 radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable yToggle -value "l" 	  -command "toggleY" 	   
 
 set numpage 1
-button $w.frame.scalesw.buttonticks -text "Ticks..." -command "ReLoadTicks ; PopUp $ww $numpage"
+button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage"
 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
@@ -594,7 +594,7 @@ scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setZGridColor $w.frame.gridcolor" -tickinterval 0 
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack  $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.gridcolor set $zGrid
 
 #Z Data bounds
@@ -612,14 +612,14 @@ bind  $w.frame.databmax <Return> {setZdb}
 
 #Scale log or linear
 frame $w.frame.scalesw  -borderwidth 0
-pack $w.frame.scalesw  -in $w.frame -side top   -fill x
+pack $w.frame.scalesw  -in $w.frame -side top   -fill x -pady 2m
 
 label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0 
 radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable zToggle -value "n"    -command "toggleZ" 
 radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable zToggle -value "l" 	  -command "toggleZ" 	   
 
 set numpage 2
-button $w.frame.scalesw.buttonticks -text "Ticks..." -command "ReLoadTicks ; PopUp $ww $numpage"
+button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage"
 
 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left 
@@ -2686,37 +2686,28 @@ proc setLEI_z { i } {
 #    return $LEI
 }
 
-proc ReLoadTicks { } {
-    global LOCATIONS_X LABELS_X
-    global LOCATIONS_Y LABELS_Y
-    global LOCATIONS_Z LABELS_Z
-    global nbticks_x nbticks_y nbticks_z
-
-    ScilabEval "global ged_handle; ReLoadTicks2TCL(ged_handle); " "sync" "seq"
-}
-
-proc toggleXautoticks { w numpage } {
+proc toggleXautoticks { win numpage } {
     global XautoticksToggle
     
     ScilabEval "global ged_handle;ged_handle.auto_ticks(1)='$XautoticksToggle'" "seq"
-    ReLoadTicks
-    PopUp $w $numpage
+    ScilabEval "TK_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
+    #    PopUp $w $numpage
 }
 
-proc toggleYautoticks { w numpage } {
+proc toggleYautoticks { win numpage } {
     global YautoticksToggle
     
     ScilabEval "global ged_handle;ged_handle.auto_ticks(2)='$YautoticksToggle'" "seq"
-    ReLoadTicks
-    PopUp $w $numpage
+    ScilabEval "TK_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
+    #     PopUp $w $numpage
 }
 
-proc toggleZautoticks { w numpage } {
+proc toggleZautoticks { win numpage } {
     global ZautoticksToggle
     
     ScilabEval "global ged_handle;ged_handle.auto_ticks(3)='$ZautoticksToggle'" "seq"
-    ReLoadTicks
-    PopUp $w $numpage
+    ScilabEval "TK_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
+    #     PopUp $w $numpage
 }
 
 
@@ -2860,4 +2851,16 @@ proc SetSubticksZ { } {
 
 proc DestroyGlobals { } {
     ScilabEval "DestroyGlobals()" "seq"
+}
+
+
+proc Reload_and_popup { win numpage } {
+    global LOCATIONS_X LABELS_X
+    global LOCATIONS_Y LABELS_Y
+    global LOCATIONS_Z LABELS_Z
+    global nbticks_x nbticks_y nbticks_z
+    
+    ScilabEval "global ged_handle; ReLoadTicks2TCL(ged_handle); " "seq"
+    ScilabEval "TK_EvalStr(\"PopUp \"+\"$win $numpage\")" "seq"
+
 }
