@@ -31,10 +31,14 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
 // list of blocks to ignore (blocks using graphics) in nw mode
   Ignoreb=['cscope','cmscope','scope','mscope','scopexy','evscpe','affich']
   //
+  load SCI/macros/scicos/lib
+  exec(loadpallibs,-1)
+  
   //redefine gui functions
   prot=funcprot();funcprot(0);
   deff('disablemenus()',' ')
   deff('enablemenus()',' ')
+  do_terminate=do_terminate1
   funcprot(prot) 
   
   if argn(2)==3 then
@@ -52,9 +56,9 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
   else
     Ignore=[]
   end
-  load SCI/macros/scicos/lib
-  exec(loadpallibs,-1)
+
   //
+
   if Info<>list() then
     [%tcur,%cpr,alreadyran,needstart,needcompile,%state0]=Info(:)
   else
@@ -73,11 +77,13 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
   else
       error(['Incorrect context definition, ';lasterror()] )
   end
+
+  if %cpr==list() then need_suppress=%t, else need_suppress=%f,end
   
   [%cpr,%state0_n,needcompile,alreadyran,ok]=..
       do_update(%cpr,%state0,needcompile)
   if ~ok then error('Error updating parameters.'),end
-  
+ 
   if or(%state0_n<>%state0) then //initial state has been changed
     %state0=%state0_n
     [alreadyran,%cpr]=do_terminate1(scs_m,%cpr)
@@ -96,7 +102,7 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
     tolerances(6)=solver
   end
   
-  if Info==list() then //this is done only once--cpr is save in Info
+  if need_suppress then //this is done only once
     for i=1:length(%cpr.sim.funs)
       if type(%cpr.sim.funs(i))<>13 then
 	if find(%cpr.sim.funs(i)(1)==Ignore)<>[] then
@@ -105,10 +111,9 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
       end
     end
   end
-//  if Ignore==[] then
-//    bak=get('figure_style')
-//    set('figure_style','old')
-//  end
+  
+  switch_to_old_graphics_style()
+  
   if needstart then //scicos initialisation
     if alreadyran then
       [alreadyran,%cpr]=do_terminate1(scs_m,%cpr)
@@ -125,11 +130,10 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
 		 '''start'',tolerances)','errcatch')
     %cpr.state=state
     if ierr<>0 then
+      restore_graphics_style()
       error(['Initialisation problem:'])
     end
   end
-  
-  
   
   ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
 	       '''run'',tolerances)','errcatch')
@@ -144,14 +148,26 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
       %tcur=t
     end
   else
+    restore_graphics_style()
     error(['Simulation problem:';lasterror()])
   end
-  
+  restore_graphics_style()
   Info=list(%tcur,%cpr,alreadyran,needstart,needcompile,%state0)
-  
-//  if Ignore==[] then
-//    set('figure_style',bak)
-//  end
+endfunction
+
+function restore_graphics_style()
+  global bak
+  if Ignore==[] then
+    set('figure_style',bak)
+  end
+endfunction
+
+function switch_to_old_graphics_style()
+  global bak
+  if Ignore==[] then
+    bak=get('figure_style')
+    set('figure_style','old')
+  end
 endfunction
 
 
