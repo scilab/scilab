@@ -235,6 +235,7 @@ extern void GraySquare(integer *x, integer *y, double *z, integer n1, integer n2
 
 
 /*-------------------------------------------------------
+ * Matplot subroutine
  *  z : of size n1*n2 
  *  the z value is interpreted as a color number inside the current colormap
  *  z[i,j] is used as the color of a square [i-0.5,i+0.5] [j-0.5,j+0.5]
