@@ -39,10 +39,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Blpr", "imp\Blpr\Blpr.vcpro
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "browsehelp", "tcl\browsehelp\browsehelp.vcproj", "{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildMacros", "macros\BuildMacros.vcproj", "{66F2FB48-5D68-4445-A856-119F685A371B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77} = {9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}
@@ -85,7 +81,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab", "libs\LibScilab
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1} = {4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC} = {FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A} = {13082624-97F9-47DB-A9A1-AD7D6BF3856A}
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1} = {A64E873A-FFEE-4B49-9633-24DEF5E26EE1}
 		{B7A0273E-8E71-4663-8497-0895945ED54D} = {B7A0273E-8E71-4663-8497-0895945ED54D}
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290} = {BC23A846-75D6-4375-A5AB-F5A8EFEFE290}
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621} = {4FC72D4A-80EE-4B1A-8724-0201C1A35621}
@@ -664,28 +659,6 @@ Global
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug.ActiveCfg = Debug|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug.Build.0 = Debug|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug with Atlas without Java.ActiveCfg = Debug with Atlas without Java|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug with Atlas without Java.Build.0 = Debug with Atlas without Java|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug without Java.ActiveCfg = Debug without Java|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug without Java.Build.0 = Debug without Java|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Pentium_Release.Build.0 = Pentium_Release|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.PIV_Release.ActiveCfg = PIV_Release|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.PIV_Release.Build.0 = PIV_Release|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release.ActiveCfg = Release|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release.Build.0 = Release|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Atlas.Build.0 = Release with Atlas|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
-		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Debug.ActiveCfg = Debug|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Debug.Build.0 = Debug|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
