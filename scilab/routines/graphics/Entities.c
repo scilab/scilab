@@ -9841,6 +9841,7 @@ sciDrawObj (sciPointObj * pobj)
   integer markidsizeold[2], markidsizenew[2];// variables du type de mark
   sciPointObj *psubwin;
   double locx,locy,loctit;
+  char logflags[4];
 
   int i,j;
   /* variable pour le set_scale update_frame_bouns*/
@@ -9882,7 +9883,9 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_SUBWIN: 
       if (!sciGetVisibility(pobj)) 	return 0;      
       sciSetSelectedSubWin(pobj);
-      set_scale ("tttfff", pSUBWIN_FEATURE (pobj)->WRect, pSUBWIN_FEATURE (pobj)->FRect, NULL, "nn", NULL);      
+      set_scale ("tttfff", pSUBWIN_FEATURE (pobj)->WRect, 
+		 pSUBWIN_FEATURE (pobj)->FRect,
+		 NULL, pSUBWIN_FEATURE (pobj)->logflags, NULL);      
       if (pSUBWIN_FEATURE (pobj)->isaxes)
 	{
 	  sciSetCurrentObj (sciGetParent(pobj));
@@ -10183,6 +10186,10 @@ sciDrawObj (sciPointObj * pobj)
       x[4] = 0;
       v = 0;
       dv = 0;
+      logflags[0]='g';
+      logflags[1]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[0];
+      logflags[2]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[1];
+
 
 #ifdef WIN32 
       SetWinhdc ();
@@ -10218,14 +10225,14 @@ sciDrawObj (sciPointObj * pobj)
 	    C2F (dr) ("xmarks", "xv", &n1, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 6L,2L);
 	  break; 
         case 1:
-	  Plo2d1RealToPixel(&n1,&n2,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,"gnn");  
+	  Plo2d1RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  
 	  break;
         case 2:
-	  Plo2d2RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,"gnn");
+	  Plo2d2RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);
           n1=n1*2;
           break;
         case 3:  
-          Plo2d3RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,"gnn"); 
+          Plo2d3RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags); 
           for ( j = 0 ; j < n2 ; j++)
 	    {
 	      lstyle=x[0];
@@ -10235,7 +10242,7 @@ sciDrawObj (sciPointObj * pobj)
 	  return 0;
 	  break;
         case 4: 
-          Plo2d4RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,"gnn");  
+          Plo2d4RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  
           nn2=2*(n1)-1;
           arsize1= Cscale.WIRect1[2]/70.0;arsize2= Cscale.WIRect1[3]/70.0;
           arsize=  (arsize1 < arsize2) ? inint(10*arsize1) : inint(10*arsize2) ;
