@@ -42,7 +42,11 @@
 
 #include <libzvt/libzvt.h>
 
+#ifdef HAS_I18N
+#define FONT "monospace 13"
+#else
 #define FONT "-misc-fixed-medium-r-normal--12-200-75-75-c-100-iso8859-1"
+#endif
 
 extern char      **environ;		
 static char      **env;
@@ -215,7 +219,7 @@ gint main (gint argc, gchar *argv[])
 
   /* create terminal */
   term = zvt_term_new_with_size(60,24);
-  /* zvt_term_set_font_name(ZVT_TERM (term), fontname; */
+  zvt_term_set_font_name(ZVT_TERM (term), fontname);
   /* zvt_term_set_blink (ZVT_TERM (term), TRUE);
    * zvt_term_set_bell (ZVT_TERM (term), TRUE);
    */
