@@ -40,7 +40,7 @@ OTHERS = coshin.obj arcosh.obj dad.obj dadd.obj ccopy.obj rcopy.obj ddif.obj			\
 	ddpow1.obj dwpow1.obj wdpow1.obj wwpow1.obj						\
 	wwdiv.obj wddiv.obj dwdiv.obj ddrdiv.obj wwrdiv.obj dwrdiv.obj wdrdiv.obj		\
 	ivimp.obj intp.obj cusum.obj cupro.obj cuproi.obj rcsort.obj wsort.obj vpythag.obj	\
-	calerf.obj ribesl.obj rkbesl.obj rjbesl.obj rybesl.obj psi.obj dlgama.obj		\
+	calerf.obj ribesl.obj rkbesl.obj rjbesl.obj rybesl.obj gamma.obj psi.obj dlgama.obj	\
 	dmsum.obj wmsum.obj dmprod.obj wmprod.obj drdiv.obj dcabs1.obj infinity.obj		\
 	unsfdcopy.obj idmax.obj idmin.obj wacos.obj wasin.obj  wtan.obj nearfloat.obj		\
 	dsearch.obj  somespline.obj cshep2d.obj dtensbs.obj					\

@@ -1,5 +1,5 @@
 CS    REAL FUNCTION GAMMA(X)
-      DOUBLE PRECISION FUNCTION DGAMMA(X)
+      DOUBLE PRECISION FUNCTION DGAMMACODY(X)
 C----------------------------------------------------------------------
 C
 C This routine calculates the GAMMA function for a real argument X.
@@ -89,6 +89,25 @@ C           Argonne National Laboratory
 C           Argonne, IL 60439
 C
 C----------------------------------------------------------------------
+*
+*  A few modifs from Bruno (25 Feb 2005) from a Serge 's request:
+*
+*     - change the name of this function (DGAMMA ->  DGAMMACODY) to avoid conflict with 
+*       the gamma Slatec (file dgamma.f). (in fact thare was no conflict as this
+*       function was retrieved in the makefile...)
+*    
+*     - modify to get "better" values in some cases:
+*
+*         1/ when x is small we used more completly the equivalent gamma(x) ~ 1/x
+*            (the original code uses it only if XMININ <= x < eps)
+*            this lets to get  +-Inf for x = +-0
+*         2/ when x is a negative integer return Nan (in place of XINF)
+*         3/ when the gamma overflow return Inf (in place of XINF)
+*       Serge asks me to change this in the Slatec gamma function but I try
+*       first to do it in the Cody 's gamma... In fact to do a real job an
+*       exception may be returned (with an integer flag say IERR) in theses
+*       cases so as to prevent the user depending on the ieee scilab var.
+*
       INTEGER I,N
       LOGICAL PARITY
 CS    REAL 
@@ -152,21 +171,29 @@ CS    CONV(I) = REAL(I)
       FACT = ONE
       N = 0
       Y = X
-      IF (Y .LE. ZERO) THEN
+
+      if (abs(Y) .LT. EPS) then
+*        argument is enough small (to use the equivalent 1/x)
+         RES = ONE / Y
+         goto 900
+ 
+      ELSE IF (Y .LE. ZERO) THEN
 C----------------------------------------------------------------------
 C  Argument is negative
 C----------------------------------------------------------------------
-            Y = -X
-            Y1 = AINT(Y)
-            RES = Y - Y1
-            IF (RES .NE. ZERO) THEN
-                  IF (Y1 .NE. AINT(Y1*HALF)*TWO) PARITY = .TRUE.
-                  FACT = -PI / SIN(PI*RES)
-                  Y = Y + ONE
-               ELSE
-                  RES = XINF
-                  GO TO 900
-            END IF
+         Y = -X
+         Y1 = AINT(Y)
+         RES = Y - Y1
+         IF (RES .NE. ZERO) THEN
+            IF (Y1 .NE. AINT(Y1*HALF)*TWO) PARITY = .TRUE.
+            FACT = -PI / SIN(PI*RES)
+            Y = Y + ONE
+         ELSE
+*          RES = XINF
+* modif Bruno: return Nan (Y is a negative integer)
+            RES = return_a_nan() ! this one is defined in somespline.f
+            GO TO 900
+         END IF
       END IF
 C----------------------------------------------------------------------
 C  Argument is positive
@@ -175,69 +202,72 @@ C----------------------------------------------------------------------
 C----------------------------------------------------------------------
 C  Argument .LT. EPS
 C----------------------------------------------------------------------
-            IF (Y .GE. XMININ) THEN
-                  RES = ONE / Y
-               ELSE
-                  RES = XINF
-                  GO TO 900
-            END IF
-         ELSE IF (Y .LT. TWELVE) THEN
-            Y1 = Y
-            IF (Y .LT. ONE) THEN
+*         IF (Y .GE. XMININ) THEN
+         RES = ONE / Y
+*         ELSE
+*            RES = XINF
+*            GO TO 900
+*         END IF
+      ELSE IF (Y .LT. TWELVE) THEN
+         Y1 = Y
+         IF (Y .LT. ONE) THEN
 C----------------------------------------------------------------------
 C  0.0 .LT. argument .LT. 1.0
 C----------------------------------------------------------------------
-                  Z = Y
-                  Y = Y + ONE
-               ELSE
+            Z = Y
+            Y = Y + ONE
+         ELSE
 C----------------------------------------------------------------------
 C  1.0 .LT. argument .LT. 12.0, reduce argument if necessary
 C----------------------------------------------------------------------
-                  N = INT(Y) - 1
-                  Y = Y - CONV(N)
-                  Z = Y - ONE
-            END IF
+            N = INT(Y) - 1
+            Y = Y - CONV(N)
+            Z = Y - ONE
+         END IF
 C----------------------------------------------------------------------
 C  Evaluate approximation for 1.0 .LT. argument .LT. 2.0
 C----------------------------------------------------------------------
-            XNUM = ZERO
-            XDEN = ONE
-            DO 260 I = 1, 8
-               XNUM = (XNUM + P(I)) * Z
-               XDEN = XDEN * Z + Q(I)
-  260       CONTINUE
-            RES = XNUM / XDEN + ONE
-            IF (Y1 .LT. Y) THEN
+         XNUM = ZERO
+         XDEN = ONE
+         DO 260 I = 1, 8
+            XNUM = (XNUM + P(I)) * Z
+            XDEN = XDEN * Z + Q(I)
+ 260     CONTINUE
+         RES = XNUM / XDEN + ONE
+         IF (Y1 .LT. Y) THEN
 C----------------------------------------------------------------------
 C  Adjust result for case  0.0 .LT. argument .LT. 1.0
 C----------------------------------------------------------------------
-                  RES = RES / Y1
-               ELSE IF (Y1 .GT. Y) THEN
+            RES = RES / Y1
+         ELSE IF (Y1 .GT. Y) THEN
 C----------------------------------------------------------------------
 C  Adjust result for case  2.0 .LT. argument .LT. 12.0
 C----------------------------------------------------------------------
-                  DO 290 I = 1, N
-                     RES = RES * Y
-                     Y = Y + ONE
-  290             CONTINUE
-            END IF
-         ELSE
+            DO 290 I = 1, N
+               RES = RES * Y
+               Y = Y + ONE
+ 290        CONTINUE
+         END IF
+      ELSE
 C----------------------------------------------------------------------
 C  Evaluate for argument .GE. 12.0,
 C----------------------------------------------------------------------
-            IF (Y .LE. XBIG) THEN
-                  YSQ = Y * Y
-                  SUM = C(7)
-                  DO 350 I = 1, 6
-                     SUM = SUM / YSQ + C(I)
-  350             CONTINUE
-                  SUM = SUM/Y - Y + SQRTPI
-                  SUM = SUM + (Y-HALF)*LOG(Y)
-                  RES = EXP(SUM)
-               ELSE
-                  RES = XINF
-                  GO TO 900
-            END IF
+         IF (Y .LE. XBIG) THEN
+            YSQ = Y * Y
+            SUM = C(7)
+            DO 350 I = 1, 6
+               SUM = SUM / YSQ + C(I)
+ 350        CONTINUE
+            SUM = SUM/Y - Y + SQRTPI
+            SUM = SUM + (Y-HALF)*LOG(Y)
+            RES = EXP(SUM)
+         ELSE
+*                  RES = XINF
+* modif bruno : return an Inf
+            RES = 2*XINF
+* end modif bruno
+            GO TO 900
+         END IF
       END IF
 C----------------------------------------------------------------------
 C  Final adjustments and return
@@ -245,7 +275,7 @@ C----------------------------------------------------------------------
       IF (PARITY) RES = -RES
       IF (FACT .NE. ONE) RES = FACT / RES
 CS900 GAMMA = RES
-  900 DGAMMA = RES
+  900 DGAMMACODY = RES
       RETURN
 C ---------- Last line of GAMMA ----------
       END

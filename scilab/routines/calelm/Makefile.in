@@ -37,7 +37,7 @@ OTHERS = coshin.o arcosh.o dad.o dadd.o ccopy.o rcopy.o ddif.o			\
 	ddpow1.o dwpow1.o wdpow1.o wwpow1.o					\
 	wwdiv.o wddiv.o dwdiv.o ddrdiv.o wwrdiv.o dwrdiv.o wdrdiv.o		\
 	ivimp.o intp.o cusum.o cupro.o cuproi.o rcsort.o wsort.o vpythag.o	\
-	calerf.o ribesl.o rkbesl.o rjbesl.o rybesl.o psi.o dlgama.o		\
+	calerf.o ribesl.o rkbesl.o rjbesl.o rybesl.o gamma.o psi.o dlgama.o	\
 	dmsum.o wmsum.o dmprod.o wmprod.o drdiv.o dcabs1.o infinity.o		\
 	unsfdcopy.o idmax.o idmin.o wacos.o wasin.o  wtan.o nearfloat.o		\
 	dsearch.o  somespline.o cshep2d.o dtensbs.o				\

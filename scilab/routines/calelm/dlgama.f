@@ -93,6 +93,14 @@ C
 C  Latest modification: June 16, 1988
 C
 C----------------------------------------------------------------------
+*
+*  Some modifs from Bruno (25 Feb 2005):
+*    - return Nan (in place of XINF) if x <= 0
+*    - return Inf (in place of XINF) if x > XBIG 
+*
+*  In fact an error indicator should be returned in these cases to prevent
+*  the user...
+*
       INTEGER I
 CS    REAL      
       DOUBLE PRECISION
@@ -270,7 +278,14 @@ C----------------------------------------------------------------------
 C----------------------------------------------------------------------
 C  Return for bad arguments
 C----------------------------------------------------------------------
-            RES = XINF
+*           modif from Bruno (see comment at the beginning)
+*            RES = XINF
+            if (X .le. 0.d0) then
+               RES = return_a_nan()
+            else  ! this means that X > XBIG and so that log(gamma) overflows 
+               RES = 2*XINF  ! bad trick to get Inf
+            endif
+*           end modif
       END IF
 C----------------------------------------------------------------------
 C  Final adjustments and return
