@@ -82,7 +82,7 @@
     equivalent Scilab primitives and functions.
   </P>
     <P>
-    To convert a Matlab M-file just enter the Sscilab instruction:
+    To convert a Matlab M-file just enter the Scilab instruction:
     mfile2sci(file)
   </P>
     <P>
