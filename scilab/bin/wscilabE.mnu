@@ -23,6 +23,9 @@
  			[CHDIR]
  		Ge&t Current Directory 
 			[GETCWD]
+		--	
+		P&rint ...
+			[PRINT]
 		--
  		E&xit
  			[EXIT]

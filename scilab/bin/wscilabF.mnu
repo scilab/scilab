@@ -22,6 +22,9 @@
  		[CHDIR]
  	&Répertoire Courant
 		[GETCWD]
+	--	
+	Im&primer ...
+		[PRINT]	
 	--
  	&Quitter
  		[EXIT]
