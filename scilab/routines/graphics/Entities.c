@@ -14595,7 +14595,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 {
   double dbox[6];
   char *legend="x@y@z",logf[2];
-  integer flag,ib,i,p,n,pat,hiddencolor, x[4];
+  integer flag,ib,i,p,n,pat,hiddencolor, x[5]; // F. Leray : redimmensionnment (+1) du tableau x[4];
   static double Alpha, Teta,cost=0.5,sint=0.5,cosa=0.5,sina=0.5;
   double xmmin,ymmax,xmmax,ymmin,FRect[4],WRect[4],ARect[4];
   static integer aaint[]={2,10,2,10};
@@ -14809,7 +14809,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
            /**  l'enveloppe cvxe*/
 	   x[0] = sciGetForeground (pobj);	
 	   x[3] = sciGetLineStyle (pobj);
-	   x[4] = 0; // BUG ICI dimension de X << 4 F. Leray
+	   x[4] = 0; // BUG supprime ici F. Leray
 	   C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	   C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	   C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096);
