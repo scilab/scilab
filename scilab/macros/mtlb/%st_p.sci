@@ -10,23 +10,26 @@ function %st_p(s)
     return
   end
   if multi> 1 then
-    t=strcat(string(double(s.dims)),'x') + '  struct';
+    t=strcat(string(double(s.dims)),'x') + ' struct array with fields:';
   end
   for k=3:size(f,'*')
     var=f(k)
     value=s(var)
     tp=typeof(value)
     if tp~='st' then
-      str=sci2exp(value,ll(1))
+      //str=sci2exp(value,ll(1))
+      str="[" + strcat(string(size(value)),"x")+" "+typeof(value) + "]";
     else
-      str=strcat(string(size(value)),'x')+' struct';
+      str="[" + strcat(string(size(value)),"x")+" struct" + "]";
     end
-    txt='   '+var+': '
-    if size(str,'*')==1 then
-      txt=txt+str
-    else
-      tp=typeof(value)
-      txt=txt+'{'+strcat(string(size(value)),'x')+' entries'+' '+tp+'}'
+    txt='   '+var
+    if multi<=1 then
+      if size(str,'*')==1 then
+	txt=txt+': '+str
+      else
+	tp=typeof(value)
+	txt=txt+': '+'{'+strcat(string(size(value)),'x')+' entries'+' '+tp+'}'
+      end
     end
     t=[t;txt]
   end
