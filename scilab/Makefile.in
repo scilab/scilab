@@ -179,35 +179,116 @@ tarbindist:
 	@STRIP@ bin/scilex
 	cd tests; make distclean
 	cd examples; make distclean
-	cd .. ; tar cvf $(SCIBASE)/$(SCIBASE)-bin.tar $(BINDISTFILES) $(PVMBINDISTFILES)
+	cd .. ; tar cvf $(SCIBASE)/$(SCIBASE)-bin.tar @PVMINST@ 
 	$(RM) .binary
 
-LIBPREFIX = @prefix@/lib
+
+#-------------------------------------------------
+# installation 
+# Scilab is installed in $(PREFIX)/lib/SCIBASE
+# with links in $(PREFIX)/bin/
+# PREFIX is set by in configure --prefix= option 
+# -----------------------------------------------
+
+
+PREFIX=@prefix@
+
+INSTPVMBINDISTFILES = \
+	pvm3/Readme \
+	pvm3/lib/pvm \
+	pvm3/lib/pvmd \
+	pvm3/lib/pvmtmparch \
+	pvm3/lib/pvmgetarch \
+	pvm3/lib/`pvm3/lib/pvmgetarch`/pvmd3 \
+	pvm3/lib/`pvm3/lib/pvmgetarch`/pvmgs \
+	pvm3/lib/`pvm3/lib/pvmgetarch`/pvm \
+	pvm3/bin/`pvm3/lib/pvmgetarch`/*
+
+INSTBINDISTFILES = \
+	.pvmd.conf \
+	ACKNOWLEDGEMENTS \
+	CHANGES \
+	Makefile \
+        Makefile.OBJ \
+	Makefile.incl \
+	Makemex \
+        Path.incl \
+	README_Unix \
+	Version.incl \
+	configure \
+	libtool \
+	license.txt \
+	licence.txt \
+	scilab.quit \
+	scilab.star \
+	X11_defaults \
+	bin \
+	config \
+	contrib \
+	demos \
+	examples \
+	imp/NperiPos.ps \
+	imp/giffonts \
+	macros \
+	man \
+	maple \
+	routines/*.h \
+	routines/Make.lib \
+	routines/default/FCreate \
+	routines/default/Flist \
+	routines/default/README \
+	routines/default/fundef \
+	routines/default/*.c \
+	routines/default/*.f \
+	routines/default/*.h \
+	routines/graphics/Math.h \
+	routines/graphics/Graphics.h \
+	routines/graphics/Entities.h \
+	routines/interf/*.h \
+	routines/intersci/sparse.h \
+	routines/menusX/*.h \
+	routines/scicos/scicos.h \
+	routines/scicos/scicos_block.h \
+	routines/sun/*.h \
+	routines/xsci/*.h \
+	scripts \
+	tcl \
+	tests \
+	util
 
 install:
-	@if test `pwd` != ${LIBPREFIX}/$(SCIBASE); then \
-		touch .binary; \
-		@STRIP@ $(SCIDIR)/bin/scilex; \
-		(cd tests; make distclean); \
-		(cd examples; make distclean); \
-		(cd .. ; tar cf - $(BINDISTFILES) @PVMINST@ | (cd ${LIBPREFIX}; tar xf -)); \
-		(cd ${LIBPREFIX}/$(SCIBASE); make); \
-		$(RM) .binary; \
+	@if test `pwd`/..  != ${PREFIX}/lib ; then \
+		mkdir ${PREFIX}/lib; \
+		mkdir ${PREFIX}/lib/$(SCIBASE); \
+		( tar cf - $(INSTBINDISTFILES) @PVMINST1@  | (cd ${PREFIX}/lib/$(SCIBASE) ; tar xf -)); \
+		(cd ${PREFIX}/lib/$(SCIBASE);touch .binary; make postinstall ) \
 	fi
-	$(RM) @prefix@/bin/scilab
-	ln -fs ${LIBPREFIX}/$(SCIBASE)/bin/scilab @prefix@/bin/scilab
-	$(RM) @prefix@/bin/intersci
-	ln -fs ${LIBPREFIX}/$(SCIBASE)/bin/intersci @prefix@/bin/intersci
-	$(RM) @prefix@/bin/intersci-n
-	ln -fs ${LIBPREFIX}/$(SCIBASE)/bin/intersci-n @prefix@/bin/intersci-n
+	$(RM)  $(PREFIX)/bin/scilab
+	ln -fs ${PREFIX}/lib/$(SCIBASE)/bin/scilab $(PREFIX)/bin/scilab
+	$(RM)  $(PREFIX)$/bin/intersci
+	ln -fs ${PREFIX}/lib/$(SCIBASE)/bin/intersci $(PREFIX)/bin/intersci
+	$(RM)  $(PREFIX)$/bin/intersci-n
+	ln -fs ${PREFIX}/lib/$(SCIBASE)/bin/intersci-n $(PREFIX)/bin/intersci-n
+
+postinstall: 
+	@echo "creating Path.incl"
+	@echo "SCIDIR=$(PREFIX)/lib/$(SCIBASE)"  > Path.incl
+	@cd scripts; make 
+	@cd tests ; make distclean > /dev/null
+	@cd examples ; make distclean > /dev/null
+	@cp contrib/loader.sce contrib-loader.sce 
+	@$(RM) -f -r contrib 
+	@mkdir contrib 
+	@mv contrib-loader.sce contrib/loader.sce
+	@$(RM) man/*/*/*.xml 
+	@@STRIP@ bin/scilex;
 
 
 uninstall:
-	$(RM) -r ${LIBPREFIX}/$(SCIBASE)
-	$(RM) @prefix@/bin/scilab
-	$(RM) @prefix@/bin/intersci
-	$(RM) @prefix@/bin/intersci-n
-
+	$(RM) -r ${PREFIX}/$(SCIBASE)
+	$(RM) $(PREFIX)/bin/scilab
+	$(RM) $(PREFIX)/bin/intersci
+	$(RM) $(PREFIX)/bin/intersci-n
 
 cvsclean::
 	@$(RM) -f -r geci xless wless xmetanet routines/comm routines/libcomm

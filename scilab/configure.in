@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.98 $)dnl
+AC_REVISION($Revision: 1.99 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1533,6 +1533,7 @@ PVMROOT=
 # need an non empty default value for scilab script 
 PVMROOTR='$SCI/pvm3'
 PVMINST=
+PVMINST1=
 
 # files to be added for building the hoster with mingw 
 PVMHOSTERFILES= 
@@ -1550,6 +1551,7 @@ else
   PVMROOTR='$SCI/pvm3'
   PVMTARGET=scilex-lib
   PVMINST='$(PVMBINDISTFILES) $(PVMBINDISTFILES1)'
+  PVMINST1='$(INSTPVMBINDISTFILES) $(INSTPVMBINDISTFILES1)'
 fi
 
 PVMINCLUDE=$PVMROOT/include
@@ -1567,6 +1569,7 @@ if test "$ac_cv_PVM_arch" = UNKNOWN; then
   AC_MSG_WARN([PVM unable to find architecture: I will not use PVM])
   PVMTARGET=pvm-bidon
   PVMINST='$(PVMBINDISTFILES)'
+  PVMINST1='$(INSTPVMBINDISTFILES)'
 else
   AC_DEFINE(WITH_PVM)
   PVMARCH="$ac_cv_PVM_arch"
@@ -2008,6 +2011,7 @@ AC_SUBST(PVMTARGET)
 AC_SUBST(PVMROOT)
 AC_SUBST(PVMROOTR)
 AC_SUBST(PVMINST)
+AC_SUBST(PVMINST1)
 AC_SUBST(PVMINCLUDE)
 AC_SUBST(PVMHOSTERFILES)
 AC_SUBST(PVMHOSTER)
