@@ -1582,4 +1582,8 @@ extern int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double * dbo
 extern int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind);
 extern int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _maxval, double fx, double fy, double fz);
 extern int FindGrads(double *grads,int * n_grads);
+extern int CheckIfiisNan(int j, int dim, int * tab);
+extern int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * psubwin, int * nb_curves, double *** xvect, double *** yvect, double *** zvect, int ** curves_size);
+
+
 #endif /*__SCI_ENTITIES__*/
