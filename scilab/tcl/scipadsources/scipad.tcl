@@ -40,8 +40,8 @@ if { [info exists pad] } {
 # useful in order to run scipad outside of scilab (e.g. to debug it)
     if {[catch {ScilabEval ";"}] != 0} {
         proc ScilabEval args { 
-                  showinfo [mc "NOT CONNECTED TO SCILAB"]
-                  puts $args }
+            showinfo [mc "NOT CONNECTED TO SCILAB"]
+            puts $args }
         set sciprompt 0
     }
 

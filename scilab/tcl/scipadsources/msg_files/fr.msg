@@ -7,6 +7,8 @@
 ::msgcat::mcset fr "OK" "OK"
 ::msgcat::mcset fr "Scilab working" "Scilab occupé"
 ::msgcat::mcset fr "All files" "Tous les fichiers"
+::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
+::msgcat::mcset fr "Untitled" "Sans_titre"
 
 
 # buffernavigation.tcl
@@ -19,7 +21,6 @@
 
 
 # db_argsmanagement.tcl
-::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
 ::msgcat::mcset fr "Variable:" "Variable :"
 ::msgcat::mcset fr "Value:" "Valeur :"
 
@@ -29,7 +30,6 @@
 ::msgcat::mcset fr "Function name:" "Nom de la fonction :"
 ::msgcat::mcset fr "Obtain" "Obtenir"
 ::msgcat::mcset fr "Input arguments:" "Arguments d'entrée :"
-::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
 ::msgcat::mcset fr "Remove" "Supprimer"
 ::msgcat::mcset fr "Function name or input arguments do not match definition of the function" \
                     "Le nom de la fonction ou ses arguments ne correspondent pas à la définition de la fonction"
@@ -43,6 +43,7 @@
                         L'ordre des arguments peut être modifié par glisser/déposer\
                         avec le bouton droit de la souris."
 ::msgcat::mcset fr "Error in selected function name or arguments" "Erreur sur la fonction sélectionnée ou ses arguments"
+::msgcat::mcset fr "Debugger is not yet developed for sce scripts!" "Débug de scripts .sce non implémenté!"
 
 
 # db_debugsession.tcl
@@ -69,7 +70,6 @@
 
 # db_watch.tcl
 ::msgcat::mcset fr "Watch variables:" "Variables espions :"
-::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
 ::msgcat::mcset fr "Remove" "Supprimer"
 ::msgcat::mcset fr "Call stack:" "Pile des appels:"
 ::msgcat::mcset fr "Close" "Fermer"

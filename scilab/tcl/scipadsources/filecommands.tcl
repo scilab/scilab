@@ -6,7 +6,7 @@ proc filesetasnewmat {} {
 
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
-    set listoffile("$pad.new$winopened",filename) [pwd]/Untitled$winopened.sce
+    set listoffile("$pad.new$winopened",filename) [pwd]/[mc "Untitled"]$winopened.sce
     set listoffile("$pad.new$winopened",save) 0
     set listoffile("$pad.new$winopened",new) 1
     set listoffile("$pad.new$winopened",thetime) 0
@@ -14,7 +14,7 @@ proc filesetasnewmat {} {
     set listoffile("$pad.new$winopened",language) "scilab"
     set listoffile("$pad.new$winopened",readonly) 0
     lappend listoftextarea $pad.new$winopened
-    $pad.filemenu.wind add radiobutton -label "[pwd]/Untitled$winopened.sce" \
+    $pad.filemenu.wind add radiobutton -label "[pwd]/[mc "Untitled"]$winopened.sce" \
         -value $winopened -variable radiobuttonvalue \
         -command "montretext $pad.new$winopened"
     newfilebind

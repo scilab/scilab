@@ -7,6 +7,8 @@
 ::msgcat::mcset it "OK" "OK"
 ::msgcat::mcset it "Scilab working" "Scilab occupato"
 ::msgcat::mcset it "All files" "Tutti i files"
+::msgcat::mcset it "Add/Change" "Aggiungi/modifica"
+::msgcat::mcset it "Untitled" "Senza_titolo"
 
 
 # buffernavigation.tcl
@@ -20,7 +22,6 @@
 
 
 # db_argsmanagement.tcl
-::msgcat::mcset it "Add/Change" "Aggiungi/modifica"
 ::msgcat::mcset it "Variable:" "Variabile:"
 ::msgcat::mcset it "Value:" "Valore:"
 
@@ -30,7 +31,6 @@
 ::msgcat::mcset it "Function name:" "Nome della funzione:"
 ::msgcat::mcset it "Obtain" "Ottenere"
 ::msgcat::mcset it "Input arguments:" "Argumenti di ingresso:"
-::msgcat::mcset it "Add/Change" "Aggiungi/Modifica"
 ::msgcat::mcset it "Remove" "Rimuovi"
 ::msgcat::mcset it "Function name or input arguments do not match definition of the function" \
                     "Il nome della funzione o i suoi argomenti non corrispondono alla definizione della funzione"
@@ -45,6 +45,8 @@
                         col mouse."
 ::msgcat::mcset it "Error in selected function name or arguments" \
         "Errore nella funzione selezionata o nei suoi argomenti"
+# <TODO> Translate it!
+#::msgcat::mcset it "Debugger is not yet developed for sce scripts!" ""
 
 
 # db_debugsession.tcl
@@ -78,7 +80,6 @@
 
 # db_watch.tcl
 ::msgcat::mcset it "Watch variables:" "Variabili osservate:"
-::msgcat::mcset it "Add/Change" "Aggiungi/modifica"
 ::msgcat::mcset it "Remove" "Rimuovi"
 ::msgcat::mcset it "Call stack:" "stack di programma:"
 ::msgcat::mcset it "Close" "Chiudi"

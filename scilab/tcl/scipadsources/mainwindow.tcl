@@ -7,7 +7,7 @@ set saveTextMsg 0
 # added by Matthieu PHILIPPE
 set chset()                 {} 
 set words()                 {}  
-set listoffile("$pad.textarea",filename)   "[pwd]/Untitled.sce"
+set listoffile("$pad.textarea",filename)   "[pwd]/[mc "Untitled"].sce"
 set listoffile("$pad.textarea",save) 0; 
 # set flag to know if the editing file was change by user
 set listoffile("$pad.textarea",new) 1; # is not an opened file from disk

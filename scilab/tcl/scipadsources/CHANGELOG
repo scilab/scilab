@@ -719,3 +719,9 @@ ES 16/02/05
  * typo corrected in fr.msg
  * fake ScilabEval also puts to stdout
  * version --> 3.30
+
+Francois VOGEL, 16/02/05
+ * Removed duplicate "Add/Change" in fr.msg and it.msg
+ * Added strings in the message files
+ * .ScipadPreferences.tcl is now saved in the home of Scilab
+ * version --> 3.31
