@@ -1215,6 +1215,8 @@ int zoom_box(double *bbox)
     double fmin,fmax,lmin,lmax;
     sciPointObj *psousfen,*tmpsousfen;
     sciSons *psonstmp;
+    sciSubWindow * ppsubwin = NULL; /* debug */
+
 
     box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
     box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
@@ -1234,10 +1236,33 @@ int zoom_box(double *bbox)
 	      return 0;
 	    }
 	    sciSetSelectedSubWin(psousfen);
+	    ppsubwin = pSUBWIN_FEATURE (psousfen);
+
+
 	    box1[0]= Cscale.WIRect1[0];
 	    box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
 	    box1[1]= Cscale.WIRect1[1];
 	    box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
+
+	    /* F.Leray 09.12.04 */
+	    /* HERE I force the re-computation of ppsubwin->FRect to always have a user data
+	       without any treatment in case we have a logflag enable */
+	    /* this should correct the bug 972 */
+
+	    if (sciGetZooming(psousfen))
+	      {
+		if(pSUBWIN_FEATURE (psousfen)->logflags[0] == 'l') {
+		  pSUBWIN_FEATURE (psousfen)->FRect[0]= exp10(pSUBWIN_FEATURE (psousfen)->FRect[0]); /* xmin: -1 -> 10^(-1) to have good treatment in sci_update_frame_bounds */
+		  pSUBWIN_FEATURE (psousfen)->FRect[2]= exp10(pSUBWIN_FEATURE (psousfen)->FRect[2]);
+		}
+
+		if(pSUBWIN_FEATURE (psousfen)->logflags[1] == 'l') {
+		  pSUBWIN_FEATURE (psousfen)->FRect[1]= exp10(pSUBWIN_FEATURE (psousfen)->FRect[1]); /* ymin: -1 -> 10^(-1) to have good treatment in sci_update_frame_bounds */
+		  pSUBWIN_FEATURE (psousfen)->FRect[3]= exp10(pSUBWIN_FEATURE (psousfen)->FRect[3]);
+		}
+	      }
+
+	    /* end of adding */
 
 	    if (sciIsAreaZoom(box,box1,section))
 	      {
