@@ -1,5 +1,7 @@
 function a=%cblock_c_cblock(a,b)
   na=length(a)
+  if na==1 then a=b,return,end
+  if length(b)==1 then return,end
   v1=getfield(na,a)
   v2=getfield(2,b)
   
