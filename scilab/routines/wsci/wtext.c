@@ -1761,6 +1761,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	    
 	  case M_HELPON:
 	  {
+        SaveCurrentLine();
 	  	HelpOn(lptw);
 	  }
 	  return 0;
@@ -1773,6 +1774,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	  
 	  case M_OPENSELECTION:
 	  {
+		SaveCurrentLine();
 	  	OpenSelection(lptw);
 	  }
 	  return 0;
@@ -2494,12 +2496,13 @@ void HelpOn(LPTW lptw)
 		
 		lpMem= GlobalLock (hGMem);
 		l=strlen(lpMem);
-		MessagePaste=(char*)malloc(l*sizeof(char));
+		MessagePaste=(char*)malloc( (l+1)*sizeof(char));
 		strcpy(MessagePaste,lpMem);
+		MessagePaste[l]='\0';
 		GlobalUnlock (hGMem);
 		
 		/* On enleve les prompts */
-		CleanPromptFromText(MessagePaste);
+		/*CleanPromptFromText(MessagePaste);*/
 		
 		/* On enleve  : et retour chariot */
 		l=strlen(MessagePaste);
@@ -2517,7 +2520,20 @@ void HelpOn(LPTW lptw)
 	
 	if (MessagePaste)
 	{
-		wsprintf(Command,"help \"%s\"",MessagePaste);
+		
+		int minlen=strlen("help \"\"");
+
+		if ( strlen(MessagePaste)+minlen > MAX_PATH)
+		{
+			char MessageTMP[MAX_PATH];
+			strncpy(MessageTMP,MessagePaste,MAX_PATH-minlen);
+			wsprintf(Command,"help \"%s\"",MessageTMP);
+		}
+		else
+		{
+			wsprintf(Command,"help \"%s\"",MessagePaste);
+		}
+		
 		if (strcmp (Command,"help \"\"")!=0 ) StoreCommand1 (Command,2);
 		free(MessagePaste);
 	}
@@ -3022,7 +3038,8 @@ void CleanPromptFromText(char *Text)
 {
 	char *CleanText=NULL;
 	
-	char prompt[6]="-->";
+	char prompt[6];
+
 	int LenText=0;
 	int i=0;
 	
@@ -3039,8 +3056,10 @@ void CleanPromptFromText(char *Text)
 
 	for (i=1;i<127;i++)
 	{
-		wsprintf(prompt,"-%d->",i);
-		ReplacePrompt(CleanText,prompt);
+		char TmpPrompt[6];
+		wsprintf(TmpPrompt,"-%d->",i);
+		ReplacePrompt(CleanText,TmpPrompt);
+		strcpy(TmpPrompt," ");
 	}
 	
 	strcpy(Text,CleanText);
@@ -3054,23 +3073,26 @@ int ReplacePrompt(char *Text,char *prompt)
 	int Retour=FALSE;
 	int l=0;
 	char *TextTMP=NULL;
+	char *LocalPrompt=NULL;
 	
 	char *OccurenceDebutPrompt=NULL;
 	
-	
+	LocalPrompt=(char*)malloc((strlen(prompt)+1)*sizeof(char));
 	TextTMP=(char*)malloc((strlen(Text)+1)*sizeof(char));
 	
 	strcpy(TextTMP,Text);
+	strcpy(LocalPrompt,prompt);
 	
-	l=strlen(prompt);
-	while ( OccurenceDebutPrompt = strstr(TextTMP,prompt) )
+	l=strlen(LocalPrompt);
+
+	while ( OccurenceDebutPrompt = strstr(TextTMP,LocalPrompt) )
 	{
 		int j=0;
 		if (OccurenceDebutPrompt)
 		{
-			for(j=0;j< (signed)(  strlen(OccurenceDebutPrompt)- strlen(prompt) );j++)		
+			for(j=0;j< (signed)(  strlen(OccurenceDebutPrompt)- strlen(LocalPrompt) );j++)		
 			{
-				OccurenceDebutPrompt[j]=OccurenceDebutPrompt[j+strlen(prompt)];
+				OccurenceDebutPrompt[j]=OccurenceDebutPrompt[j+strlen(LocalPrompt)];
 			}
 			OccurenceDebutPrompt[j]='\0';
 		Retour=TRUE;	
@@ -3081,6 +3103,7 @@ int ReplacePrompt(char *Text,char *prompt)
 	strcpy(Text,TextTMP);		
 	
 	free(TextTMP);
+	free(LocalPrompt);
 	return Retour;
 	
 }

@@ -237,7 +237,7 @@ void ReAllocScreenBuffer(LPTW lptw);
 void InitScreenBuffer(LPTW lptw);
 void ReorganizeScreenBuffer(LPTW lptw);
 
-
+extern void SaveCurrentLine(void);
 extern BOOL IsWindowInterface(void);
 extern void ReplaceSlash(char *pathout,char *pathin);
 extern BOOL IsAFile(char *chainefichier);
