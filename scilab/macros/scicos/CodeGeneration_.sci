@@ -1409,9 +1409,6 @@ function ok=gen_ccode();
 	make_decl_standalone()
 	make_static_standalone()
         make_standalone()]
-	//make_outevents()
-	//make_actuator(%t)
-	//make_sensor(%t)
   ierr=execstr('mputl(Code,rpat+''/''+rdnom+''_standalone.c'')','errcatch')
   if ierr<>0 then
     message(lasterror())

@@ -144,9 +144,9 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   if show_trace then disp('c_pass51:'+string(timer())),end
   //form scicos arguments
-
-  zcptr=ones(nblk+1,1);
-  for i=1:nblk
+  nb=size(typ_z,'*');
+  zcptr=ones(nb+1,1);
+  for i=1:nb
     zcptr(i+1)=zcptr(i)+typ_z(i)
   end
   
@@ -162,7 +162,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 		 lnkptr=lnkptr,rpar=rpar,rpptr=rpptr,ipar=ipar,ipptr=ipptr,..
 		 clkptr=clkptr,ordptr=ordptr,execlk=execlk,ordclk=ordclk,..
 		 cord=cord,oord=oord,zord=zord,critev=critev(:),..
-		 nb=size(typ_z,'*'),ztyp=ztyp,nblk=nblk,ndcblk=ndcblk,..
+		 nb=nb,ztyp=ztyp,nblk=nblk,ndcblk=ndcblk,..
 		 subscr=subscr,funtyp=funtyp,iord=iord,labels=labels);
 
   //initialize agenda
