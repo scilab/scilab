@@ -9,7 +9,7 @@ c     Copyright INRIA
 c     
       integer op,r,blank,sign,plus,minus,name,colon,eye(nsiz),ou,et
       integer equal,less,great,not,eol,p,temp
-      logical eptover, skip, compil,ifexpr
+      logical eptover, skip, compil, ifexpr, istrue
       
       external gettype,istrue
       
