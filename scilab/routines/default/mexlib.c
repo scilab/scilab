@@ -895,7 +895,15 @@ void *mxCalloc(unsigned int n, unsigned int size)
   if (! C2F(createstkptr)( &m, &lrd)) {
     return 0;
   }
-  if ( size ==  sizeof(double)) C2F(dset)(&n,&zero,(double *) lrd,&one);
+  if ( size ==  sizeof(double)) 
+    {
+      C2F(dset)(&n,&zero,(double *) lrd,&one);
+    }
+  else 
+    {
+      int i;
+      for (i=0; i < n*size ; i++) ((char *) lrd)[i]=0;
+    }
   return (void *) lrd;
 }
 
