@@ -482,9 +482,11 @@ gtk_plug_unrealize (GtkWidget *widget)
     {
       if (plug->modality_window)
 	handle_modality_off (plug);
-
-      gtk_window_group_remove_window (plug->modality_group, GTK_WINDOW (plug));
-      g_object_unref (plug->modality_group);
+      if (plug->modality_group)
+	{
+	  gtk_window_group_remove_window (plug->modality_group, GTK_WINDOW (plug));
+	  g_object_unref (plug->modality_group);
+	}
     }
   
   if (GTK_WIDGET_CLASS (parent_class)->unrealize)
@@ -553,7 +555,7 @@ gtk_plug_realize (GtkWidget *widget)
 	}
       
       gdk_window_add_filter (widget->window, gtk_plug_filter_func, widget);
-
+      plug->modality_group = NULL; /* jpc */
       
       xembed_set_info (widget->window, 0);
     }
