@@ -2,10 +2,10 @@
 # To be customized 
 #--------------------------------------------------------
 
-SCIDIR=../../../
+SCIDIR=../../..
 
 PROG=myprog 
-OBJS=myprog.o 
+OBJS=myprog.o my_ode.o
 
 #--------------------------------------------------------
 # do not modify below 
