@@ -2012,6 +2012,13 @@ c     .     check if it is defined in local area
             if(err.gt.0) return
             if(fin.eq.0) then
 c     .        no, create an empty variable in the global area
+               vol=5
+               if (lstk(gtop+1)+vol.gt.lstk(gbot)) then
+c     .           not enought memory, realloc
+                  mem=lstk(gbot)-lstk(isiz+2)+max(vol+1,10000)
+                  call reallocglobal(mem)
+                  if(err.gt.0) return
+               endif
                gtop=gtop+1
                call putid(idstk(1,gtop),id)
                infstk(gtop)=0
@@ -2026,7 +2033,7 @@ c     .        yes, move it to the global area
                vol=lstk(fin+1)-lstk(fin)
                if (lstk(gtop+1)+vol+10.ge.lstk(gbot)) then
 c     .           max(vol+1,100000) to avoid too many reallocation
-                  mem=lstk(gbot)-lstk(isiz+2)+max(vol+1,100000)
+                  mem=lstk(gbot)-lstk(isiz+2)+max(vol+1,10000)
                   call reallocglobal(mem)
                   if(err.gt.0) return
                endif

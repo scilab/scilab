@@ -46,7 +46,7 @@ c     .     make room to install new variable
 c     .        new is bigger, move bottom down
                if (lstk(gtop+1)+v-vk.gt.lstk(gbot)) then
 c     .           not enought memory, realloc
-                  mem=lstk(gbot)-lstk(isiz+2)+v+1
+                  mem=lstk(gbot)-lstk(isiz+2)+max(v+1,10000)
                   call reallocglobal(mem)
                   if(err.gt.0) return
                   ls=lstk(kg+1)
@@ -65,7 +65,7 @@ c     .        new is smaller, move bottom up
             if(v.gt.vk) then
                if (lstk(gtop+1)+v-vk.gt.lstk(gbot)) then
 c     .        not enought memory, realloc
-                  mem=lstk(gbot)-lstk(isiz+2)+v+1
+                  mem=lstk(gbot)-lstk(isiz+2)+max(v+1,10000)
                   call reallocglobal(mem)
                   if(err.gt.0) return
                endif
