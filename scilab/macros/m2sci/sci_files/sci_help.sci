@@ -6,11 +6,10 @@ function [tree]=sci_help(tree)
 // Ouput: tree = Scilab equivalent for tree
 // V.C.
 
-topic=getrhs(tree)
-
-if topic.value=="" then
+if rhs==0 then
   tree.rhs=list()
 else
+  topic=getrhs(tree)
   k=strindex(topic.value,"/")
   if k<>[] & min(k)<>2 then // help toolbox/
     no_equiv(expression2code(tree));
