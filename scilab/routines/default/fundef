@@ -544,3 +544,4 @@
 {"findBD",		IN_intslicot,	3,	3},
 {"rankqr",		IN_intslicot,	4,	3},
 {"contr",		IN_intslicot,	5,	3},
+{"mucomp",		IN_intslicot,	6,	3}
