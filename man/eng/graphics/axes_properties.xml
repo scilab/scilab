@@ -289,14 +289,6 @@
             should be positive integer.</SP>
           </DESCRIPTION_ITEM>
 
-          <DESCRIPTION_ITEM label="fill_mode: ">
-            <SP>This field contains the default state of
-            <VERB>fill_mode</VERB> property for Rectangle, Arcs and Polyline
-            objects. Its value should be <VERB>"on" </VERB> or
-            <VERB>"off"</VERB>. if it is "on" the object is filled with the
-            color given by its "foreground" property value.</SP>
-          </DESCRIPTION_ITEM>
-
           <DESCRIPTION_ITEM label="mark_mode: ">
             <SP>This field contains the default <VERB>mark_mode</VERB>
             property value for Segs Rectangle and Polyline objects. Its value
