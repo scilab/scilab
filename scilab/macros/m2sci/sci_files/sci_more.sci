@@ -18,18 +18,7 @@ if typeof(opt)=="cste" then
     // Nothing to do
   end
 else
-  scitree=tree
-  scitree.name="mtlb_more"
-  repl1=tree
-  repl1.rhs=Rhs(0)
-  repl2=tree
-  repl2.rhs=Rhs(60)
-  
-  repl_poss(scitree,..
-      repl1,opt,"is ""off""",..
-      repl2,opt,"is ""on""",..
-      tree,opt,"is a Double value")
-  tree=scitree
+  tree.name="mtlb_more"
 end
 
 endfunction
