@@ -7117,7 +7117,7 @@ int delete(fname,fname_len)
 
   CheckRhs(0,1);
   CheckLhs(0,1);
-  C2F(sciwin)();
+  /*C2F(sciwin)();*/
   switch(VarType(1)) 
     {
     case 9: /* delete Entity given by a handle */
@@ -7134,6 +7134,7 @@ int delete(fname,fname_len)
       GetRhsVar(1,"c",&m2,&n2,&l2);
       if (strncmp(cstk(l2),"all", 3) == 0) 
 	{   
+	  C2F(sciwin)();
 	  sciXbasc();return 0;
 	} 
       else
@@ -7154,6 +7155,7 @@ int delete(fname,fname_len)
       return 0;
     }
   num= sciGetNumFigure (pobj); 
+  C2F(sciwin)();
   C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ((Rhs == 2) && (strncmp(cstk(l2),"callback", 8) == 0))
@@ -7169,50 +7171,9 @@ int delete(fname,fname_len)
       }
     else if(sciGetEntityType(pobj) == SCI_FIGURE) /* F.Leray 13.04.04: We delete the special object Figure !!*/
       {
-	/*struct BCG *Xgc = NULL;
-	Xgc = (struct BCG *) pFIGURE_FEATURE(pobj)->pScilabXgc;
-	DestroyAllGraphicsSons (pobj);
-	DestroyFigure (pobj);
-	Xgc->mafigure = (sciPointObj *) NULL;
-	C2F(deletewin)( &num);*/
-
-	/** Delete the graphic window COPY from /wsci/jpc_SGraph.c**/
-	/*Efface((Widget) 0,(XtPointer) number, (XtPointer) 0);
-	DeleteObjs(num); 
-	scig_deletegwin_handler(num);
-	DeleteSGWin(num);*/
-
-
 	C2F(deletewin)( &num);
-	
-
-	/* Need to reset the new current figure returned by sciGetCurrentFigure */
-/* 	sciHandleTab *hdl; */
-/* 	sciPointObj  *pobj; */
-/* 	int compteur = 0; */
-
-/* 	hdl = sciGetpendofhandletab();   */
-	
-/* 	while (hdl != NULL) */
-/* 	  {  */
-/* 	    pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index); */
-/* 	    if (sciGetEntityType(pobj) == SCI_FIGURE) */
-/* 	      { */
-/* 		sciSetCurrentFigure(pobj); */
-/* 		sciSetCurrentObj(pobj); /\* The current object will always be the figure too. *\/ */
-/* 		compteur = 99; */
-/* 		break; */
-		
-/* 	      }  */
-/* 	    hdl = hdl->pprev; */
-/* 	  } */
-	
-/* 	if(compteur == 0) */
-/* 	  sciprint("********************1  PAS DE FIGURE TROUVEE\n"); */
-	  
-	
       }
-		
+    
   }
 
   if(cur != num)
