@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.92 $)dnl
+AC_REVISION($Revision: 1.93 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1226,16 +1226,14 @@ LDFLAGS=$CC_LDFLAGS
 ####################
 
 if test "$PERIFILE" = periX11.o; then 
-AC_PATH_XTRA
-
-# fixing a bug for SunOs
-if test "$X_LIBS" = ' -L/usr/lib'; then
-  X_LIBS=
-fi
-
-if test "$no_x" = yes; then
-  AC_MSG_ERROR([X Window not found])
-fi
+   AC_PATH_XTRA
+   # fixing a bug for SunOs
+   if test "$X_LIBS" = ' -L/usr/lib'; then
+     X_LIBS=
+   fi
+   if test "$no_x" = yes; then
+      AC_MSG_ERROR([X Window not found])
+   fi
 fi 
 
 ###################
@@ -1274,6 +1272,16 @@ fi
 ##########################################
 ## test for X11 and Xaw3d  Athena widgets
 ##########################################
+
+# do not want to check for X11 when using gtk or gtk2
+if test "$with_gtk" = yes; then	
+   PERIFILE=periGtk.o  
+fi 
+
+if test "$with_gtk2" = yes; then	
+   PERIFILE=periGtk.o  
+fi 
+
 if test "$PERIFILE" = periX11.o; then 
   ac_save_LDFLAGS="$LDFLAGS"
   if test -n "$x_libraries"; then
@@ -1523,6 +1531,79 @@ fi
 fi
 
 #################
+## Tcl/Tk library
+#################
+
+TK_INC_PATH=
+TK_LIB_PATH=
+TCLTK_LIBS=
+TKSCILIB=
+TKSCIDIR=
+
+if test "$with_tk" != no; then
+
+# check user arguments
+USER_TCL_LIB_PATH=""
+USER_TCL_INC_PATH=""
+AC_ARG_WITH(tcl-library,
+    [  --with-tcl-library=DIR  Tcl library files are in DIR ],
+    [  USER_TCL_LIB_PATH=$withval
+    ])
+AC_ARG_WITH(tcl-include,
+    [  --with-tcl-include=DIR  Tcl include files are in DIR ],
+    [  USER_TCL_INC_PATH=$withval
+    ])
+
+USER_TK_LIB_PATH=$USER_TCL_LIB_PATH
+USER_TK_INC_PATH=$USER_TCL_INC_PATH
+AC_ARG_WITH(tk-library,
+    [  --with-tk-library=DIR   Tk library files are in DIR ],
+    [  USER_TK_LIB_PATH=$withval
+    ])
+AC_ARG_WITH(tk-include,
+    [  --with-tk-include=DIR   Tk include files are in DIR ],
+    [  USER_TK_INC_PATH=$withval
+    ])
+
+saved_cflags="$CFLAGS"
+saved_ldflags="$LDFLAGS"
+saved_cppflags="$CPPFLAGS"
+
+AC_CHECK_LIB(dl, main,TCLTK_LIBS=" -ldl")
+AC_CHECK_TCLTK()
+
+# set variables
+if test $WITH_TKSCI = 1; then
+  AC_DEFINE(WITH_TK)
+  TKSCILIB="\$(SCIDIR)/libs/tksci.a"
+  TKSCIDIR=tksci
+else
+  AC_MSG_ERROR([TCL/TK not found. Use --without-tk])
+fi
+
+TKBASE=
+case "$host" in
+  *-*-mingw32*)
+	TKBASE=$SCIDIR
+	TK_INC_PATH=`echo $TK_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
+	TCL_INC_PATH=`echo $TCL_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
+	TCLTK_LIBS=`echo $TCLTK_LIBS | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
+    ;;
+esac
+
+GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.so
+
+case "$host" in
+  *-*-darwin*)
+  GETLIBTK=/sw/lib/libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.dylib
+  ;;
+esac 
+
+fi
+
+
+
+#################
 ## GTK
 #################
 
@@ -1580,6 +1661,26 @@ if test "$with_gtk" = yes; then
   if test "no$READLINE" != no; then
      ZZLEDT="zzledt-rl.o"
      AC_DEFINE(WITH_READLINE)
+  fi
+  # we remove the X libs they were just used above during tcl/tk check 
+  if test "$with_gtk" = yes; then
+    XAWLIB=
+    XMULIB=
+    XAW_LOCAL_SUBDIR=
+    XAW_LOCAL_LIB=
+    X_CFLAGS=
+    XAW_LOCAL_INCLUDES=
+    X_EXTRA_LIBS=
+    XXTXEXT=
+    XX11=
+    X_LIBS= 
+    X_PRE_LIBS=
+    if test "$TK_INC_PATH" = '-I/usr/include' ; then
+        TK_INC_PATH=
+    fi
+    if test "$TCL_INC_PATH" = '-I/usr/include' ; then
+        TCL_INC_PATH=
+    fi
   fi
 fi
 
@@ -1660,79 +1761,28 @@ if test "$with_gtk2" = yes; then
      ZZLEDT="zzledt-rl.o"
      AC_DEFINE(WITH_READLINE)
   fi
+  # we remove the X libs they were just used above during tcl/tk check 
+  if test "$with_gtk2" = yes; then
+    XAWLIB=
+    XMULIB=
+    XAW_LOCAL_SUBDIR=
+    XAW_LOCAL_LIB=
+    X_CFLAGS=
+    XAW_LOCAL_INCLUDES=
+    X_EXTRA_LIBS=
+    XXTXEXT=
+    XX11=
+    X_LIBS= 
+    X_PRE_LIBS=
+    if test "$TK_INC_PATH" = '-I/usr/include' ; then
+        TK_INC_PATH=
+    fi
+    if test "$TCL_INC_PATH" = '-I/usr/include' ; then
+        TCL_INC_PATH=
+    fi
+  fi
 fi
 
-
-#################
-## Tcl/Tk library
-#################
-
-TK_INC_PATH=
-TK_LIB_PATH=
-TCLTK_LIBS=
-TKSCILIB=
-TKSCIDIR=
-
-if test "$with_tk" != no; then
-
-# check user arguments
-USER_TCL_LIB_PATH=""
-USER_TCL_INC_PATH=""
-AC_ARG_WITH(tcl-library,
-    [  --with-tcl-library=DIR  Tcl library files are in DIR ],
-    [  USER_TCL_LIB_PATH=$withval
-    ])
-AC_ARG_WITH(tcl-include,
-    [  --with-tcl-include=DIR  Tcl include files are in DIR ],
-    [  USER_TCL_INC_PATH=$withval
-    ])
-
-USER_TK_LIB_PATH=$USER_TCL_LIB_PATH
-USER_TK_INC_PATH=$USER_TCL_INC_PATH
-AC_ARG_WITH(tk-library,
-    [  --with-tk-library=DIR   Tk library files are in DIR ],
-    [  USER_TK_LIB_PATH=$withval
-    ])
-AC_ARG_WITH(tk-include,
-    [  --with-tk-include=DIR   Tk include files are in DIR ],
-    [  USER_TK_INC_PATH=$withval
-    ])
-
-saved_cflags="$CFLAGS"
-saved_ldflags="$LDFLAGS"
-saved_cppflags="$CPPFLAGS"
-
-AC_CHECK_LIB(dl, main,TCLTK_LIBS=" -ldl")
-AC_CHECK_TCLTK()
-
-# set variables
-if test $WITH_TKSCI = 1; then
-  AC_DEFINE(WITH_TK)
-  TKSCILIB="\$(SCIDIR)/libs/tksci.a"
-  TKSCIDIR=tksci
-else
-  AC_MSG_ERROR([TCL/TK not found. Use --without-tk])
-fi
-
-TKBASE=
-case "$host" in
-  *-*-mingw32*)
-	TKBASE=$SCIDIR
-	TK_INC_PATH=`echo $TK_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-	TCL_INC_PATH=`echo $TCL_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-	TCLTK_LIBS=`echo $TCLTK_LIBS | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-    ;;
-esac
-
-GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.so
-
-case "$host" in
-  *-*-darwin*)
-  GETLIBTK=/sw/lib/libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.dylib
-  ;;
-esac 
-
-fi
 
 #################
 ## atlas 
