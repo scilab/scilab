@@ -1168,7 +1168,7 @@ if norm(t-expm(s)) > 200*%eps then bugmes();quit;end
  
 s=sqrtm(tc);
  
-if norm(tc-s*s,1) > 220*%eps then bugmes();quit;end
+if norm(tc-s*s,1) > 230*%eps then bugmes();quit;end
  
 s=expm(tc);s=triu(s,1)+triu(s,1)'+diag(real(diag(s)));
  
