@@ -1047,13 +1047,11 @@ int C2F(scicos)
   nrwp = max(maxord + 4,7) * (*neq) + 60 + (*neq)*(*neq) + ng * 3;
   niwp = (*neq) + 40 + (*neq);
 
-  nrwp = (*neq) * max(16,*neq + 9) + 22 + ng * 3;
    /* +1 below is so that rhot starts from 1; one wasted location */
   if((rhot=malloc(sizeof(double)*(nrwp+1)))== NULL ){
     *ierr =10000;
     return;
   }
-  niwp = *neq + 20;
 /* +1 below is so that ihot starts from 1; one wasted location */
   if((ihot=malloc(sizeof(int)*(niwp+1)))== NULL ){
     free(rhot);
@@ -2328,7 +2326,6 @@ callf(t,xtd,xt,residual,g,flag)
     break;
   case 10001 :			
     /* implicit block one entry for each input or output */
-    for (in = 0 ; in < Blocks[kf-1].nin ; in++) 
       for (in = 0 ; in < Blocks[kf-1].nin ; in++) 
 	{
 	  args[in]=Blocks[kf-1].inptr[in];
