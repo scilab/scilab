@@ -2321,7 +2321,7 @@ integer C2F(maxvol)(lw, lw_type, type_len)
     case 'i' : return iadr(m);break;
     case 'r' : return iadr(m);break;
     case 'c' : return cadr(m);break;
-    case 'z' : return sadr(m)-1;break;
+    case 'z' : return sadr(m)-3;break;
     }
   /* should never get there */
   return m; 
