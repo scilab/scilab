@@ -270,7 +270,7 @@ c     [m,n] given
             call error(60)
             return
          endif
-         if (m*n.eq.0) then
+         if (m.eq.0 .or. n.eq.0) then  ! m*n correction (Bruno)
             top=top0
             il=iadr(lstk(top))
             istk(il)=1
