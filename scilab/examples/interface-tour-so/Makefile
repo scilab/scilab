@@ -7,7 +7,7 @@ all	:: Makelib job
 	make -f Makelib
 
 Makelib : builder.sce
-	@echo running builder 
+	@echo running builder: BE PATIENT ...
 	@$(SCIDIR)/util/scidem $(SCIDIR) builder.sce builder.dia
 
 job	: 
