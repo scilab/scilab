@@ -818,3 +818,14 @@ Francois VOGEL, 07/03/05
      - now the possibly existing selection remains visible while the find
        dialog is open
  * version --> 3.42
+
+ES 8/3/2005
+ * Options menu splitted in Scheme and Options
+ * Word Wrap moved to Options menu
+ * all scipad colors are confugurable within scilab with the Option/Colors
+   submenu, and immediately updated
+ * version --> 3.43
+
+TODO: propagate changes to french messagese
+ADD an eventual "revert to defaults button" 
+

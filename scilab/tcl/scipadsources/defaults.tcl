@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.42"
+set version "Version 3.43"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -8,12 +8,16 @@ set version "Version 3.42"
 #    it is visible at main level (i.e. globalize it)
 #  - if needed, assign an initial fallback value here
 
+# group here for convenience all the color settings
+set colorpref {BGCOLOR FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
+       BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR QTXTCOLOR \
+       REMCOLOR XMLCOLOR NUMCOLOR SELCOLOR BREAKPOINTCOLOR LFUNCOLOR \
+       PDEFCOLOR FOUNDTEXTCOLOR}
+
 # those are the preferences which are going to be saved
-set listofpref {wordWrap BGCOLOR FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
-       BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR TXTCOLOR QTXTCOLOR \
-       REMCOLOR XMLCOLOR NUMCOLOR SELCOLOR BREAKPOINTCOLOR FOUNDTEXTCOLOR FontSize \
-       LFUNCOLOR PDEFCOLOR WMGEOMETRY printCommand actbptextFont indentspaces \
-       filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings}
+set listofpref "$colorpref wordWrap FontSize \
+       WMGEOMETRY printCommand actbptextFont indentspaces \
+       filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings"
 set listofpref_list { listofrecent }
 
 # default options which can be overriden
@@ -29,7 +33,6 @@ set KEYWCOLOR "blue2"
 set PDEFCOLOR "purple"
 set LFUNCOLOR \#006874
 set OPCOLOR "blue4"
-set TXTCOLOR $FGCOLOR
 set QTXTCOLOR "red"
 set REMCOLOR "green4"
 set XMLCOLOR "orange"

@@ -70,11 +70,15 @@ proc scipadindent {textarea cm} {
 }
 
 proc TextStyles { t } {
-    global FGCOLOR PARCOLOR BRAKCOLOR BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR
-    global TXTCOLOR QTXTCOLOR REMCOLOR XMLCOLOR NUMCOLOR LFUNCOLOR PDEFCOLOR
-    global BREAKPOINTCOLOR FOUNDTEXTCOLOR REPLACEDTEXTCOLOR FAKESELCOLOR 
+    global colorpref
+    foreach c1 $colorpref {global $c1}
     global actbptextFont textFont
 
+    set REPLACEDTEXTCOLOR $FOUNDTEXTCOLOR
+    set FAKESELCOLOR $SELCOLOR
+
+    $t configure -fg $FGCOLOR -bg $BGCOLOR -insertbackground $CURCOLOR \
+        -selectbackground $SELCOLOR 
     $t tag configure parenthesis -foreground $PARCOLOR
     $t tag configure bracket -foreground $BRAKCOLOR
     $t tag configure brace -foreground $BRACCOLOR
