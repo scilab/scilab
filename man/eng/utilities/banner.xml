@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>banner</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>28-Feb-2005</DATE>
+
+  <SHORT_DESCRIPTION name="banner">show scilab banner
+  (Windows)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>banner()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>show scilab banner.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[clc();banner()
+]]></EXAMPLE>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>
