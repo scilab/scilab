@@ -4,7 +4,8 @@ function m2sci_info(txt,verb_mode)
 // verb_mode=1: information written as comment is resulting SCI-file
 // verb_mode=2: information written as comment is resulting SCI-file and in logfile
 // verb_mode=3: information written as comment is resulting SCI-file, in logfile and displayed in Scilab window
-// verb_mode=-1: information written in logfile and displayed in Scilab window (should not be used by user)
+// verb_mode=-1: information written in logfile and displayed in Scilab window (should not be used by user) (TEST MODE)
+// verb_mode=-2: information written in logfile and displayed in Scilab window (should not be used by user) and varslist displayed in Scilab command window (DEBUG MODE)
 
 
 
