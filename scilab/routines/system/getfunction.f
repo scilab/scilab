@@ -4,13 +4,13 @@ c     Copyright INRIA
       parameter (nz1=nsiz-1,nz2=nsiz-2,nz3=nsiz-3)
       integer cblock,rblock,fcount
       parameter (rblock=30,cblock=rblock*50)
-      integer quote,eol,equal,lparen,rparen,comma,semi,left,right
-      integer psym,qcount,strcnt
+      integer quote,eol,equal,lparen,rparen,comma,semi,left,right,dot
+      integer psym,qcount,strcnt,pchar
       integer func(nsiz),endfunc(nsiz),iadr,sadr
       logical cresmat,eqid,last,eof
       data quote/53/,eol/99/,name/1/
       data equal/50/,lparen/41/,rparen/42/
-      data comma/52/,semi/43/,left/54/,right/55/
+      data comma/52/,semi/43/,left/54/,right/55/,dot/51/
 
 
       data func/202841615,387453469,nz2*673720360/
