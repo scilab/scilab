@@ -140,6 +140,15 @@ exec `which wish` "$0" "$@"
 # * fixed Ctrl-y bind, does not paste selection surretptitiously
 # * cursor position info (keyposn) updated when switching buffers
 
+#15/2/2004
+# * file dialogs for "all files" show also * files 
+
+#30/2/2004
+# * fixed remalltags for textquoted and rem2 (i.e., lines with "aaa//bbb",
+#    "123456", //123 etc. should be colorized consistently 
+# * comment/uncomment, indent/unindent applies to the current line 
+#    if unselected
+  
 # default global values
 #global .
 
@@ -1177,14 +1186,14 @@ proc showopenwin {textarea} {
 	set types {
 	    {"Scilab files" {*.sce *.sci }} 
 	    {"XML files" {*.xml }} 
-	    {"All files" *.*}
+	    {"All files" {* *.*}}
 	}
 	#showinfo "Open file"
     } else {
 	set types {
 	    {"Fichiers Scilab" {*.sce *.sci }} 
 	    {"Fichiers XML" {*.xml }} 
-	    {"Tous les fichiers" *.*}
+	    {"Tous les fichiers" {*.* *}}
 	}
 	#showinfo "Ouvrir le fichier"
     }
@@ -1389,14 +1398,14 @@ proc filesaveas {textarea} {
 	set types {
 	    {"Scilab files" {*.sce *.sci }} 
 	    {"XML files" {*.xml }} 
-	    {"All files" *.*}
+	    {"All files" {*.* *}}
 	}
 	showinfo "Save As"
     } else {
 	set types {
 	    {"Fichiers Scilab" {*.sce *.sci }} 
 	    {"Fichiers XML" {*.xml }} 
-	    {"Tous les fichiers" *.*}
+	    {"Tous les fichiers" {*.* *}}
 	}
 	showinfo "Enregistrer sous"
     }
@@ -2376,18 +2385,18 @@ proc load_words {} {
 
 #ES 2/10/2003
 proc remalltags {w begin ende} {
-	$w tag remove parenthesis begin ende
-	$w tag remove bracket begin ende
-	$w tag remove brace begin ende
-	$w tag remove punct begin ende
-	$w tag remove operator begin ende
-	$w tag remove number begin ende
-	$w tag remove keywords begin ende
-	$w tag remove text begin ende
-	$w tag remove rem2 begin ende
-        $w tag remove xmltag begin ende
-	$w tag remove textquoted begin ende  
-        $w tag remove indentation begin ende
+	$w tag remove parenthesis $begin $ende
+	$w tag remove bracket $begin $ende
+	$w tag remove brace $begin $ende
+	$w tag remove punct $begin $ende
+	$w tag remove operator $begin $ende
+	$w tag remove number $begin $ende
+	$w tag remove keywords $begin $ende
+	$w tag remove text $begin $ende
+	$w tag remove rem2 $begin $ende
+        $w tag remove xmltag $begin $ende
+	$w tag remove textquoted $begin $ende  
+        $w tag remove indentation $begin $ende
 	    }
 
 
@@ -2504,7 +2513,7 @@ proc colorize {w cpos iend} {
 		  } else {
 		      $w mark set last "$ind + $num c"
                  # textquoted deletes any other tag
-                 #     remalltags $w $ind last
+                      remalltags $w $ind last
 		      $w tag add textquoted $ind last
 		  }	  
 	      } else break
@@ -2518,7 +2527,7 @@ proc colorize {w cpos iend} {
 # tags as rem2 only if not already textquoted (does not tag as comment "..//..")
                       if {[lsearch [$w tag names $ind] "textquoted"] ==-1 } {
                  # rem2 deletes any other tag
-		 #          remalltags $w $ind $ind 
+		           remalltags $w $ind "$ind lineend" 
 			   $w tag add rem2 $ind "$ind lineend" }
 		  } else break
 		  }
@@ -2551,12 +2560,24 @@ proc puttext {w text} {
     $w see insert
 }
 
+proc selectline {} {
+# ancillary for un/comment, un/indent
+    global textareacur
+    set i1 [$textareacur index "insert linestart"]
+    set i2 [$textareacur index "insert lineend"]
+    selection clear
+    $textareacur tag add sel $i1 $i2
+    set seltext ""
+    catch {set seltext [selection get]}
+    return $seltext
+}
 
 proc CommentSel {} {
     global textareacur
     set seltexts [selection own]
     if {$seltexts != "" } {
 	if [catch {selection get -selection PRIMARY} sel] {	    
+	    if {[selectline] != ""} CommentSel
 	} else {
             set uctext [selection get]	    
             set i1 [$textareacur index sel.first]
@@ -2578,6 +2599,8 @@ proc CommentSel {} {
             puttext $textareacur $ctext
             $textareacur tag add sel $i1 $i2+2c
          }
+    } else {
+       if {[selectline] != ""} CommentSel
     }
 }
 
@@ -2586,6 +2609,7 @@ proc UnCommentSel {} {
     set seltexts [selection own]
     if {$seltexts != "" } {
 	if [catch {selection get -selection PRIMARY} sel] {	    
+           if {[selectline] != ""} {UnCommentSel}
 	} else {
             set ctext [selection get]	    
             set i1 [$textareacur index sel.first]
@@ -2598,6 +2622,8 @@ proc UnCommentSel {} {
 # after many deglitches, this only sometimes loses the selection for <one line
             $textareacur tag add sel $i1 [$textareacur index insert] 
 	}
+    } else {
+       if {[selectline] != ""} UnCommentSel
     }
 }
 
@@ -2607,6 +2633,7 @@ proc IndentSel {} {
     set seltexts [selection own]
     if {$seltexts != "" } {
 	if [catch {selection get -selection PRIMARY} sel] {	    
+          if {[selectline] != ""} {IndentSel}
 	} else {
             set uctext [selection get]	    
             set i1 [$textareacur index sel.first]
@@ -2630,6 +2657,8 @@ proc IndentSel {} {
             puttext $textareacur $ctext1
             $textareacur tag add sel $i1 $i2+2c
          }
+    } else {
+       if {[selectline] != ""} IndentSel
     }
 }
 
@@ -2637,8 +2666,9 @@ proc UnIndentSel {} {
 # just copied from UncommentSel
     global textareacur
     set seltexts [selection own]
-    if {$seltexts != "" } {
+    if {$seltexts != ""} {
 	if [catch {selection get -selection PRIMARY} sel] {	    
+          if {[selectline] != ""} {UnIndentSel}
 	} else {
             set ctext [selection get]	    
             set i1 [$textareacur index sel.first]
@@ -2651,6 +2681,8 @@ proc UnIndentSel {} {
  # as above in UnCommentSel
             $textareacur tag add sel $i1 [$textareacur index insert]
         }
+    } else {
+       if {[selectline] != ""} UnIndentSel
     }
 }
 
