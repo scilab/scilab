@@ -35,7 +35,7 @@ if P.name<>"" then // Not a batch file
   end
   rhsstr="("+strcat(rhsstr,",")+")"
   
-  C=lhsstr+" = "+P.name+rhsstr;
+  C="function "+lhsstr+" = "+P.name+rhsstr;
 end
 
 I=P.statements
