@@ -686,12 +686,12 @@ void sciprint (char *fmt,...)
 
 int sciprint2 (int iv, char *fmt,...)
 {
-  int i, count;
+  int i, count,lstr;
   va_list ap;
   char s_buf[1024];
   va_start (ap, fmt);
   /* next three lines added for diary SS */
-  count = vsprintf (s_buf, fmt, args);
+  count = vsprintf (s_buf, fmt, ap);
   lstr = strlen (s_buf);
   C2F (diary) (s_buf, &lstr, 0L);
 
