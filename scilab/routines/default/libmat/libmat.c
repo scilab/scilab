@@ -33,7 +33,7 @@
  *                 values)
  *     values = vector of doubles or int8-16-32 or char
  --------------------------------------------------------------------------*/
-#include "../../mex.h"
+#include "../mex.h"
 #include <string.h>
 #include <stdio.h>
 #if defined  sgi && ! defined  __STDC__
@@ -50,7 +50,7 @@
 	#include <stdlib.h> /*pour exit()*/
 #endif
 
-#include "../../calelm/calelm.h"
+#include "../calelm/calelm.h"
 static char *the_current_mex_name;
 
 extern void cerro __PARAMS((char *str));
@@ -105,7 +105,7 @@ int *Header(const mxArray *ptr)
 mxArray *header2ptr(int *header)
 {
   mxArray ptr;
-  ptr=(mxArray) ((double *)header-(double *)stkptr(C2F(vstk).Lstk[0])+C2F(vstk).Lstk[0]) ;
+  ptr=(mxArray) ((double *)header-(double *)stkptr(C2F(vstk).lstk[0])+C2F(vstk).lstk[0]) ;
   return (mxArray *) ptr;
 }
 
@@ -905,7 +905,7 @@ mxArray *mxCreateDoubleMatrix(int m, int n, mxComplexity it)
   for ( k=0; k<m*n*(it+1); k++ ) {
    *stk(lr+k)=0;
   }
-   return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1]);  */
+   return (mxArray *) C2F(vstk).lstk[lw + Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1]);  */
 }
 
 mxArray *mxCreateDoubleScalar(double value)
@@ -957,7 +957,7 @@ mxArray *mxCreateStructArray(int ndim, const int *dims, int nfields, const char 
     return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
+  return (mxArray *) C2F(vstk).lstk[lw + Top - Rhs - 1 ];
 }
 
 mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_names)
@@ -977,7 +977,7 @@ mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_name
     return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
+  return (mxArray *) C2F(vstk).lstk[lw + Top - Rhs - 1 ];
 }
 
 void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray *value)
@@ -1009,10 +1009,10 @@ void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray
     {
       pointed = arr2num(value);
       point_ed = Top - Rhs + pointed;
-      headerobj[0]= - *istk( iadr(*lstk( point_ed )) );  /* reference : 1st entry (type) is opposite */
-      headerobj[1]= *lstk(point_ed);  /* pointed adress */
+      headerobj[0]= - *istk( iadr(*Lstk( point_ed )) );  /* reference : 1st entry (type) is opposite */
+      headerobj[1]= *Lstk(point_ed);  /* pointed adress */
       headerobj[2]= pointed; /* pointed variable */
-      headerobj[3]= *lstk(point_ed + 1) - *lstk(point_ed);  /* size of pointed variable */
+      headerobj[3]= *Lstk(point_ed + 1) - *Lstk(point_ed);  /* size of pointed variable */
     }
 }
 
@@ -1068,7 +1068,7 @@ mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID CLASS, mxComp
     return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ]; 
+  return (mxArray *) C2F(vstk).lstk[lw + Top - Rhs - 1 ]; 
 }
 
 mxArray *mxCreateNumericMatrix(int m, int n, mxClassID CLASS, int cmplx)
@@ -1106,7 +1106,7 @@ mxArray *mxCreateNumericMatrix(int m, int n, mxClassID CLASS, int cmplx)
     return (mxArray *) 0;  
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
+  return (mxArray *) C2F(vstk).lstk[lw + Top - Rhs - 1 ];
 }
 
 
@@ -1122,7 +1122,7 @@ mxArray *mxCreateCharArray(int ndim, const int *dims)
     return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (mxArray *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
+  return (mxArray *) C2F(vstk).lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
 mxArray *mxCreateCellArray(int ndim, const int *dims)
@@ -1137,10 +1137,10 @@ mxArray *mxCreateCellArray(int ndim, const int *dims)
   if( !retval) {
     return (mxArray *) 0;
   }
-  header =  (int *) stk(C2F(vstk).Lstk[lw + Top - Rhs - 1 ]);
+  header =  (int *) stk(C2F(vstk).lstk[lw + Top - Rhs - 1 ]);
   header[14]=12;header[15]=14; /*  "st" <-- "ce"  */
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
+  return (mxArray *) C2F(vstk).lstk[lw + Top - Rhs - 1 ];
 }
 
 mxArray *mxCreateCellMatrix(int nrows, int ncols)
@@ -1177,7 +1177,7 @@ mxArray *mxGetCell(const mxArray *ptr, int index)
   headerobjcopy=GetData(lw);
   for (kk = 0; kk < 2*isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
-  C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
+  C2F(intersci).iwhere[lw-1]=C2F(vstk).lstk[lw+ Top - Rhs - 1];
   return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
 
@@ -1234,7 +1234,7 @@ mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
   headerobjcopy=GetData(lw);
   for (kk = 0; kk < 2*isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
-  C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
+  C2F(intersci).iwhere[lw-1]=C2F(vstk).lstk[lw+ Top - Rhs - 1];
   return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
 
@@ -1273,7 +1273,7 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
   headerobjcopy=GetData(lw);
   for (kk = 0; kk < 2*isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
-  C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
+  C2F(intersci).iwhere[lw-1]=C2F(vstk).lstk[lw+ Top - Rhs - 1];
   return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
 
@@ -1553,7 +1553,7 @@ char *mxArrayToString(const mxArray *array_ptr)
 void mxFreeMatrix(mxArray *ptr)
 {
   /* If we free the last stored object we can decrement Nbvars */
-  if ( (int)ptr == C2F(vstk).Lstk[Top - Rhs + Nbvars - 1]) {
+  if ( (int)ptr == C2F(vstk).lstk[Top - Rhs + Nbvars - 1]) {
     /* sciprint("XXXX OK %dvar %d \r\n",(int)ptr,Nbvars); */
     Nbvars--;
   }
@@ -1570,23 +1570,23 @@ void  numberandsize(const mxArray  *ptr, int *number, int *size)
 {
   int kk,lst_k;
   lst_k=(int) ptr;
-  if (lst_k < *lstk(C2F(vstk).bot)) {
+  if (lst_k < *Lstk(C2F(vstk).bot)) {
     *number=0;*size=0;
   for (kk = 1; kk <= Nbvars; kk++)
     {
       *number=kk;
-      if (lst_k == C2F(vstk).Lstk[kk+ Top - Rhs -1]) break;
+      if (lst_k == C2F(vstk).lstk[kk+ Top - Rhs -1]) break;
     }
-  *size = C2F(vstk).Lstk[*number+ Top - Rhs] - lst_k;
+  *size = C2F(vstk).lstk[*number+ Top - Rhs] - lst_k;
   } else
     {
     *number=0;
   for (kk = C2F(vstk).bot; kk <  C2F(vstk).isiz; kk++)
     {
       *number=kk;
-      if (lst_k == C2F(vstk).Lstk[kk-1]) break;
+      if (lst_k == C2F(vstk).lstk[kk-1]) break;
     }
-  *size = C2F(vstk).Lstk[*number] - lst_k;
+  *size = C2F(vstk).lstk[*number] - lst_k;
     }
 }
 
@@ -1595,12 +1595,12 @@ int arr2num( mxArray  *ptr )
 {
   int kk,lst_k,number;
   lst_k=(int) ptr;
-  if (lst_k < *lstk(C2F(vstk).bot)) {
+  if (lst_k < *Lstk(C2F(vstk).bot)) {
     number=0;
   for (kk = 1; kk <= Nbvars; kk++)
     {
       number=kk;
-      if (lst_k == C2F(vstk).Lstk[kk+ Top - Rhs -1]) break;
+      if (lst_k == C2F(vstk).lstk[kk+ Top - Rhs -1]) break;
     }
   return number;
   } else
@@ -1609,7 +1609,7 @@ int arr2num( mxArray  *ptr )
   for (kk = C2F(vstk).bot; kk <  C2F(vstk).isiz; kk++)
     {
       number=kk;
-      if (lst_k == C2F(vstk).Lstk[kk-1]) break;
+      if (lst_k == C2F(vstk).lstk[kk-1]) break;
     }
   return number;
     }
@@ -1619,12 +1619,12 @@ int arr2numcst(const mxArray  *ptr )
 {
   int kk,lst_k,number;
   lst_k=(int) ptr;
-  if (lst_k < *lstk(C2F(vstk).bot)) {
+  if (lst_k < *Lstk(C2F(vstk).bot)) {
     number=0;
   for (kk = 1; kk <= Nbvars; kk++)
     {
       number=kk;
-      if (lst_k == C2F(vstk).Lstk[kk+ Top - Rhs -1]) break;
+      if (lst_k == C2F(vstk).lstk[kk+ Top - Rhs -1]) break;
     }
   return number;
   } else
@@ -1633,7 +1633,7 @@ int arr2numcst(const mxArray  *ptr )
   for (kk = C2F(vstk).bot; kk <  C2F(vstk).isiz; kk++)
     {
       number=kk;
-      if (lst_k == C2F(vstk).Lstk[kk-1]) break;
+      if (lst_k == C2F(vstk).lstk[kk-1]) break;
     }
   return number;
     }
@@ -1648,10 +1648,10 @@ bool mexIsGlobal(const mxArray *ptr)
   rheader=(int *) RawHeader(ptr);
   pointed = arr2numcst(ptr);
   /*  A FINIR si interface par reference OK  
-      printf("POINTED %i infstk(pointed) %i\n", pointed, *infstk(pointed));
-      printf("header[2] %i infstk(pointed) %i\n", header[2], *infstk(header[2])); */
+      printf("POINTED %i Infstk(pointed) %i\n", pointed, *Infstk(pointed));
+      printf("header[2] %i Infstk(pointed) %i\n", header[2], *Infstk(header[2])); */
   pointed=header[2];
-  if (*infstk(pointed) == 2) 
+  if (*Infstk(pointed) == 2) 
    ret_val = 1;
   else
    ret_val = 0;
@@ -1679,7 +1679,7 @@ mxArray *mxDuplicateArray(const mxArray *ptr)
   data = (double *) GetRawData(lw); 
   for (k = 0; k <size; ++k)
     data[k]=old[k];
-  return (mxArray *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];
+  return (mxArray *) C2F(vstk).lstk[lw+ Top - Rhs - 1];
 }
 
 mxArray *UnrefStruct(mxArray *ptr)
@@ -1730,10 +1730,10 @@ mxArray *UnrefStruct(mxArray *ptr)
     }
     numberandsize( mxNew, &number, &oldsize);
     newsize += 3;   /* taking account begining of list */
-    newbot=*lstk(number+offset)+newsize+1;
-    if( (newbot - *lstk(Bot)) > 0) 
+    newbot=*Lstk(number+offset)+newsize+1;
+    if( (newbot - *Lstk(Bot)) > 0) 
       {Error(17); return 0;}
-    *lstk(number+offset+1)=newbot;
+    *Lstk(number+offset+1)=newbot;
     for (list=0; list<nb; list++) {
       headerlist= listentry(header, list+3);
       headerlistnew=listentry(headernew, list+3);
@@ -1788,10 +1788,10 @@ mxArray *UnrefStruct(mxArray *ptr)
     }
     numberandsize( mxNew, &number, &oldsize);
     newsize +=3;
-    newbot = *lstk(number+offset)+newsize+1;
-    if ( (newbot - *lstk(Bot)) > 0)
+    newbot = *Lstk(number+offset)+newsize+1;
+    if ( (newbot - *Lstk(Bot)) > 0)
       {Error(17); return 0;}
-    *lstk(number+offset+1)=newbot;
+    *Lstk(number+offset+1)=newbot;
     for (obj=0; obj<nb; obj++)
       {
 	headerobj = listentry(header, 3+obj);
@@ -1850,7 +1850,7 @@ mxArray *mxCreateSparse(int m, int n, int nzmax, mxComplexity cmplx)
     return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1];     /* C2F(intersci).iwhere[lw-1])  */
+  return (mxArray *) C2F(vstk).lstk[lw + Top - Rhs - 1];     /* C2F(intersci).iwhere[lw-1])  */
 }
 
 /***************************************************************
@@ -1870,7 +1870,7 @@ mxArray *mxCreateString(const char *string)
   /* back conversion to Scilab coding */
   Convert2Sci(lw);
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1];
+  return (mxArray *) C2F(vstk).lstk[lw + Top - Rhs - 1];
 }
 
 mxArray *mxCreateLogicalMatrix(int m, int n)
@@ -2027,7 +2027,7 @@ static int mexCallSCI(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *
   for (k = 1; k <= nrhs; ++k) 
     {
       for (kk = 1; kk <= nv; ++kk) 
-	if ((int) prhs[k-1] == C2F(vstk).Lstk[kk + Top - Rhs - 1]) break;
+	if ((int) prhs[k-1] == C2F(vstk).lstk[kk + Top - Rhs - 1]) break;
       if (kk == nv + 1) 
 	{
 	  mexErrMsgTxt("mexCallSCILAB: invalid pointer passed to called function");
@@ -2051,7 +2051,7 @@ static int mexCallSCI(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *
     /*	return 0;  */
   }
   for (k = 1; k <= nlhs; ++k) {
-    plhs[k-1] = (mxArray *) C2F(vstk).Lstk[nv + k + Top - Rhs - 1];
+    plhs[k-1] = (mxArray *) C2F(vstk).lstk[nv + k + Top - Rhs - 1];
   }
   Nbvars = nv+nlhs;
   return 0;
@@ -2171,7 +2171,7 @@ mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
     lr1=lr1+nmax;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (mxArray *) C2F(vstk).Lstk[lw - 1];
+  return (mxArray *) C2F(vstk).lstk[lw - 1];
 }
 
 int mexEvalString(char *name)
@@ -2207,10 +2207,10 @@ mxArray *mexGetArray(char *name, char *workspace)
     Nbvars++; new=Nbvars; 
     CreateData(new, 4*sizeof(int));
     header =  (int *) GetRawData(new);
-    header[0]=- *istk( iadr(*lstk(fin))); 
+    header[0]=- *istk( iadr(*Lstk(fin))); 
     header[1]= lw; 
     header[2]= fin; 
-    header[3]= *lstk(fin+1) -*lstk(fin) ;
+    header[3]= *Lstk(fin+1) -*Lstk(fin) ;
     /*    C2F(intersci).ntypes[new-1]=45;  */
     return (mxArray *) C2F(intersci).iwhere[new-1]; } 
   else
@@ -2227,10 +2227,10 @@ const mxArray *mexGetVariablePtr(const char *workspace, const char *var_name)
     Nbvars++; new=Nbvars; 
     CreateData(new, 4*sizeof(int));
     header =  (int *) GetRawData(new);
-    header[0]=- *istk( iadr(*lstk(fin))); 
+    header[0]=- *istk( iadr(*Lstk(fin))); 
     header[1]= lw; 
     header[2]= fin; 
-    header[3]= *lstk(fin+1) -*lstk(fin) ;
+    header[3]= *Lstk(fin+1) -*Lstk(fin) ;
     return (mxArray *) C2F(intersci).iwhere[new-1]; 
     } 
   else
@@ -2246,10 +2246,10 @@ mxArray *mexGetVariable(const char *workspace, const char *name)
     Nbvars++; new=Nbvars; 
     CreateData(new, 4*sizeof(int));
     header =  (int *) GetData(new);
-    header[0]=- *istk( iadr(*lstk(fin))); 
+    header[0]=- *istk( iadr(*Lstk(fin))); 
     header[1]= lw; 
     header[2]= fin; 
-    header[3]= *lstk(fin+1) -*lstk(fin) ;
+    header[3]= *Lstk(fin+1) -*Lstk(fin) ;
     /*    C2F(intersci).ntypes[new-1]=45;  */
     return (mxArray *) C2F(intersci).iwhere[new-1]; } 
   else
@@ -2417,7 +2417,7 @@ int C2F(initmex)(integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs)
   for (k = 1; k <= *nrhs ; ++k) 
     {
       RhsVar = k  + Top - Rhs;
-      prhs[k-1] = (mxArray *) C2F(vstk).Lstk[RhsVar - 1];
+      prhs[k-1] = (mxArray *) C2F(vstk).lstk[RhsVar - 1];
       C2F(intersci).ntypes[k-1]=AsIs;
       header = (int *) stkptr((long int)prhs[k-1]);
       /*
@@ -2490,7 +2490,7 @@ int C2F(createptr)(char *type, int *m, int *n, int *it, int *lr, int *ptr, long 
   if (! C2F(createcvar)(&lw, type, it, m, n, lr, &lc, 1L)) {
     return 0;
   }
-  *ptr = C2F(vstk).Lstk[lw + Top - Rhs - 1];
+  *ptr = C2F(vstk).lstk[lw + Top - Rhs - 1];
   return 1;
 } 
 
@@ -2507,7 +2507,7 @@ int C2F(endmex)(integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs)
       LhsVar(k) = 0;
       for (kk = 1; kk <= nv; kk++)
 	{
-	  if (plhsk == C2F(vstk).Lstk[kk+ Top - Rhs -1]) 
+	  if (plhsk == C2F(vstk).lstk[kk+ Top - Rhs -1]) 
 	    {
 	      LhsVar(k) = kk;
 	      break;
@@ -2531,7 +2531,7 @@ void clear_mex(integer nlhs, mxArray **plhs, integer nrhs, mxArray **prhs)
   for (k = 1; k <= nrhs; k++)
     if ( (int)  prhs[k-1] > max ) max =  (int) prhs[k-1];
   for (k = 1; k <= nv; k++)
-    if ( max <  C2F(vstk).Lstk[k + Top - Rhs -1]) Nbvars--;
+    if ( max <  C2F(vstk).lstk[k + Top - Rhs -1]) Nbvars--;
 }
 
 void mexInfo(char *str) {
@@ -2745,7 +2745,7 @@ mxArray * C2F(mxcreatestring)(char *string, long int l)
   }
   C2F(cvstr)(&i, istk(lr1), string, (ilocal=0, &ilocal),l);
   C2F(intersci).ntypes[lw-1]=36;
-  return (mxArray *) C2F(vstk).Lstk[Top -Rhs + lw - 1];
+  return (mxArray *) C2F(vstk).lstk[Top -Rhs + lw - 1];
 }
 
 
