@@ -39,6 +39,13 @@ c
 c     
       nr=max(ma,mb)
       nc=max(na,nb)
+
+      if (ma.eq.mb .and. na.eq.nb .and. .not.dcompa(0.d0,0.d0,op)) then
+         call cmpsp(op, ma, na, nela, a, inda, inda(nr+1),
+     $                  mb, nb, nelb, b, indb, indb(nr+1), 
+     $                  nelc, indc, indc(nr+1), ierr)
+         return
+      endif
 c     
       nelmx=nelc
       ierr=0
@@ -249,3 +256,95 @@ c     no more place for c
       end
 
 
+      subroutine cmp_and_update(x, y, op, C_mnel_i, C_icol, j, kC, 
+     $                          C_nelmax, ierr)
+      double precision x, y
+      integer op, C_mnel_i, C_icol(*), j, kC, C_nelmax, ierr
+      logical dcompa
+      external dcompa
+
+      if ( dcompa(x, y, op) ) then
+         kC = kC + 1
+         if ( kC .gt. C_nelmax ) then
+            ierr = 1
+            return
+         endif
+         C_icol(kC) = j
+         C_mnel_i = C_mnel_i + 1
+      endif
+      end         
+      
+      
+      subroutine cmpsp(op, A_m, A_n, A_nel, A_R, A_mnel, A_icol,
+     $                     B_m, B_n, B_nel, B_R, B_mnel, B_icol,
+     $                     C_nelmax, C_mnel, C_icol, ierr)
+      
+      implicit none
+      integer op, A_m, A_n, A_nel, A_mnel(*), A_icol(*),
+     $            B_m, B_n, B_nel, B_mnel(*), B_icol(*), 
+     $            C_nelmax, C_mnel(*), C_icol(*), ierr
+      double precision A_R(*), B_R(*)
+
+      integer kA, kAf, kB, kBf, kC, i, jA, jB, k
+
+      kAf = 0
+      kBf = 0
+      kC = 0
+      ierr = 0
+
+      do i = 1, A_m
+
+         kA = kAf + 1
+         kB = kBf + 1
+         kAf = kAf + A_mnel(i)
+         kBf = kBf + B_mnel(i)
+         C_mnel(i) = 0
+
+ 100     if ( kA .gt. kAf  .or.  kB .gt. kBf ) goto 300
+             jA = A_icol(kA)
+             jB = B_icol(kB)
+ 200         continue
+                if ( jA .lt. jB ) then
+                   call cmp_and_update(A_R(kA), 0.d0, op, C_mnel(i),
+     $                                 C_icol, jA, kC, C_nelmax, ierr)
+                   if (ierr .eq. 1 ) return
+                   kA = kA + 1
+                   if ( kA .gt. kAf ) goto 300
+                   jA = A_icol(kA)
+                   goto 200
+                elseif ( jA .gt. jB ) then
+                   call cmp_and_update(0.d0, B_R(kB), op, C_mnel(i),
+     $                                 C_icol, jB, kC, C_nelmax, ierr)
+                   if (ierr .eq. 1 ) return
+                   kB = kB + 1
+                   if ( kB .gt. kBf ) goto 300
+                   jB = B_icol(kB)
+                   goto 200
+                else  ! jA = jB
+                   call cmp_and_update(A_R(kA), B_R(kB), op, C_mnel(i),
+     $                                 C_icol, jA, kC, C_nelmax, ierr)
+                   if (ierr .eq. 1 ) return
+                   kA = kA + 1
+                   kB = kB + 1
+                   goto 100
+                endif
+ 300     continue
+         if ( kA .le. kAf) then
+            do k = kA, kAf
+               call cmp_and_update(A_R(k), 0.d0, op, C_mnel(i), C_icol,
+     $                             A_icol(k), kC, C_nelmax, ierr)
+               if (ierr .eq. 1 ) return
+            enddo
+         else if ( kB .le. kBf ) then
+            do k = kB, kBf
+               call cmp_and_update(0.d0, B_R(k), op, C_mnel(i), C_icol,
+     $                             B_icol(k), kC, C_nelmax, ierr)
+               if (ierr .eq. 1 ) return
+            enddo
+         endif
+
+      enddo
+
+      C_nelmax = kC
+
+      end

@@ -46,7 +46,7 @@ c     ka,kb are numbers in first i rows of a,b.
 c     jb counts elements of b.
       jb     = 1
 c     i counts rows of a,b,c.
-      if(ma*na.eq.1.and.mb*nb.gt.1) then
+      if( (ma.eq.1 .and. na.eq.1) .and. (mb.gt.1 .or. nb.gt.1) ) then
 c     compare all element of b with scalar a
          t=0.0d0
          if(inda(1).eq.1) t=a(1)
@@ -65,10 +65,16 @@ c     compare all element of b with scalar a
             kc=jc
  10      continue
 
-      elseif(ma*na.gt.1.and.mb*nb.eq.1) then
+      elseif((ma.gt.1 .or. na.gt.1) .and. (mb.eq.1 .and. nb.eq.1)) then
 c     compare all elements of a with scalar b  
          t=b(1,1)
          z=dcompa(0.0d0,t,op)
+         if (.not. z) then
+            call spcmps(op, ma, na, nela, a, inda, inda(ma+1),
+     $                  t, nelc, indc, indc(ma+1), ierr)
+            return
+         endif
+
          do 20 i=1,nr
             indc(i)=0
             nira=inda(i)
@@ -154,3 +160,36 @@ c     no more place for c
       return 
       end
 
+
+      subroutine spcmps(op, A_m, A_n, A_nel, A_R, A_mnel, A_icol,
+     $                  s, C_nelmax, C_mnel, C_icol, ierr)
+      
+*     comparizon  A op scalaire (where "0 op s" is false)
+*     added by bruno to speed up this operation
+      implicit none
+      integer op, A_m, A_n, A_nel, A_mnel(*), A_icol(*),
+     $            C_nelmax, C_mnel(*), C_icol(*), ierr
+      double precision A_R(*), s
+
+      integer kA, kAf, kC, i, jA, k
+
+      kAf = 0
+      kC = 0
+      ierr = 0
+
+      do i = 1, A_m
+
+         kA = kAf + 1
+         kAf = kAf + A_mnel(i)
+         C_mnel(i) = 0
+
+         do k = kA, kAf
+             call cmp_and_update(A_R(k), s, op, C_mnel(i),
+     $                           C_icol, A_icol(k), kC, C_nelmax, ierr)
+             if (ierr .eq. 1 ) return
+         enddo
+      enddo
+
+      C_nelmax = kC
+
+      end

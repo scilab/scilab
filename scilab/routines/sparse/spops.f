@@ -15,6 +15,13 @@ c
       integer insert,extrac
       integer top0
       logical isany
+
+*     the following boolean var are defined to replace test on m*n == 0 or m*n == 1)
+*     for sparse matrices the product m x n may leads to integer overflow.
+*     (bruno dec 2004)
+*     Currently this has been done only for the comparisons.
+      logical a1_is_empty, a1_is_scalar, a2_is_empty, a2_is_scalar, 
+     $        a3_is_empty, a3_is_scalar, a4_is_empty, a4_is_scalar
       
       data star/47/,dstar/62/,slash/48/
       data bslash/49/,dot/51/,colon/44/,quote/53/
@@ -57,7 +64,10 @@ c
          fin=-fin
          return
       endif
-      mn4=m4*n4
+      mn4=m4*n4   ! must not be used 
+      a4_is_empty = m4.eq.0 .or. n4.eq.0
+      a4_is_scalar = (.not.a4_is_empty) .and. (m4.eq.1 .and. n4.eq.1)
+
       top=top-1
 c     
  02   il3=iadr(lstk(top))
@@ -77,7 +87,10 @@ c
          fin=-fin
          return
       endif
-      mn3=m3*n3
+      mn3=m3*n3 ! must not be used 
+      a3_is_empty = m3.eq.0 .or. n3.eq.0
+      a3_is_scalar = (.not.a3_is_empty) .and. (m3.eq.1 .and. n3.eq.1)
+
       top=top-1
 c     
  03   il2=iadr(lstk(top))
@@ -97,7 +110,10 @@ c
          fin=-fin
          return
       endif
-      mn2=m2*n2
+      mn2=m2*n2 ! must not be used 
+      a2_is_empty = m2.eq.0 .or. n2.eq.0
+      a2_is_scalar = (.not.a2_is_empty) .and. (m2.eq.1 .and. n2.eq.1)
+
       top=top-1
 c     
  04   il1=iadr(lstk(top))
@@ -118,6 +134,9 @@ c
          return
       endif
       mn1=m1*n1
+      a1_is_empty = m1.eq.0 .or. n1.eq.0
+      a1_is_scalar = (.not.a1_is_empty) .and. (m1.eq.1 .and. n1.eq.1)
+
       top=top-1
 c     
 c     operations binaires et ternaires
@@ -876,7 +895,7 @@ c     sparse.*sparse
       return
 c     
 c     
-c     transposition
+c     transposition (modified by bruno)
  60   istk(il1+1)=n1
       istk(il1+2)=m1
       if(nel1.eq.0) then
@@ -890,32 +909,32 @@ c     transposition
          lstk(top+1)=lw
          goto 999
       endif
-      ia=iadr(lw)
-      iat=ia+m1+1
-      irc=iat+n1+1
-      lat=sadr(irc+n1+nel1)
-      lw=lat+nel1*(it1+1)
+      iptr=iadr(lw)  ! for work array ptr of size n1
+      irc2=iptr+n1 
+      l2=sadr(irc2+n1+nel1)
+      lw=l2+nel1*(it1+1) 
       err=lw-lstk(bot)
       if(err.gt.0) then
          call error(17)
          return
       endif
-      istk(ia)=1
-      do 61 i=1,m1
-         istk(ia+i)=istk(ia+i-1)+istk(irc1+i-1)
- 61   continue
-      if(it1.eq.0) then
-         call dspt(m1,n1,stk(l1),nel1,istk(irc1),istk(ia),
-     $        stk(lat),istk(iat),istk(irc))
+
+      if (it1 .eq. 0) then
+         inc = 0
       else
-         call wspt(m1,n1,stk(l1),stk(l1+nel1),nel1,istk(irc1),istk(ia),
-     $        stk(lat),stk(lat+nel1),istk(iat),istk(irc))
+         inc = nel1
       endif
-      call icopy(n1+nel1,istk(irc),1,istk(irc1),1)
+
+      call spt(m1, n1, nel1, it1, istk(iptr),
+     $         stk(l1), stk(l1+inc), istk(irc1), istk(irc1+m1),
+     $         stk(l2), stk(l2+inc), istk(irc2), istk(irc2+n1))
+
+*     recopie en "top"
+      call icopy(n1+nel1,istk(irc2),1,istk(irc1),1)
       l1=sadr(irc1+n1+nel1)
-      call unsfdcopy(nel1*(it1+1),stk(lat),1,stk(l1),1)
-      if(it1.eq.1.and.op.ne.quote+dot) then
-         call dscal(nel1,-1.0d0,stk(l1+nel1),1)
+      call unsfdcopy(nel1*(it1+1),stk(l2),1,stk(l1),1)
+      if(it1.eq.1 .and. op.ne.quote+dot) then
+         call dscal(nel1,-1.0d0,stk(l1+nel1),1)  ! complexe conjugue si A' et it=1
       endif
       lstk(top+1)=l1+nel1*(it1+1)
       goto 999
@@ -1034,8 +1053,8 @@ c
 c     arg2(arg1)
 c     get arg2
       il2=iadr(lstk(top))
-      if(istk(il2).lt.0) il2=iadr(istk(il2+1))
-      m2=istk(il2+1)
+      if(istk(il2).lt.0) il2=iadr(istk(il2+1))  ! pas de test sur le type de arg2 (sans doute
+      m2=istk(il2+1)                            ! fait avant pour arriver dans cette interface)
       n2=istk(il2+2)
       it2=istk(il2+3)
       nel2=istk(il2+4)
@@ -1046,25 +1065,26 @@ c     get arg2
 c     get arg1
       il1=iadr(lstk(top))
       ilrs=il1
-      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))  ! meme rmq (pas de test sur le type de arg1)
       m1=istk(il1+1)
       n1=istk(il1+2)
 c
-      if(mn2.eq.0) then 
-c     .  arg2=[]
-         ilrs=iadr(lstk(top))
+c****** extraction arg2(arg1) (suite)
+
+      if(m2.eq.0 .or. n2.eq.0) then
+c     .  arg2=[]  -> return a void matrix [] (=> change of type)
+         ilrs=iadr(lstk(top))   ! inutile
          istk(ilrs)=1
          istk(ilrs+1)=0
          istk(ilrs+2)=0
          istk(ilrs+3)=0
          lstk(top+1)=sadr(ilrs+4)+1
          goto 999
-      elseif(m2.lt.0) then
+      elseif(m2.lt.0) then  ! demander explication
 c     .  arg2=eye
          call error(14)
          return
-      elseif(m1.lt.0) then
-c     .  arg2(:), just reshape to column vector
+      elseif(m1.lt.0) then  !  case  arg2(:) => just reshape to column vector
          if(n2.eq.1) then
 c     .     already a column vector
             ilrs=iadr(lstk(top))
@@ -1072,8 +1092,8 @@ c     .     already a column vector
             l1=sadr(ilrs+5+m2+nel2)
             call unsfdcopy(nel2*(it2+1),stk(l2),1,stk(l1),1)
             lstk(top+1)=l1+nel2*(it2+1)
-         else
-c     .     reshape to column vector
+         else               !  n2 > 1
+c     .     reshape to column vector via spmat (reshape is named matrix in scilab)
             ilrs=iadr(lstk(top))
             istk(ilrs)=5
             istk(ilrs+1)=mn2
@@ -1085,39 +1105,42 @@ c     .     reshape to column vector
 
             ircr=iadr(lw)
             iw=ircr+m2*n2+nel2
-            lw=sadr(iw+3*nel2)
+** correction d'un bug
+            lr=sadr(iw+3*nel2)
+            lw= lr + nel2*(it2+1)
             err=lw-lstk(bot)
             if(err.gt.0) then
                call error(17)
                return 
             endif
+            ! copie des valeurs de arg2
+            call unsfdcopy(nel2*(it2+1),stk(l2),1,stk(lr),1)
             if(it2.eq.0) then
-               call dspmat(m2,n2,stk(l2),nel2,istk(irc2),m2*n2
+*** le bug etait du au fait que  stk(l2) (remplace par stk(lr)) est remanie 
+*** (via une permutation) et donc pb si arg2 est passe par reference
+               call dspmat(m2,n2,stk(lr),nel2,istk(irc2),m2*n2
      $              ,istk(ircr),istk(iw))  
             else
-               call wspmat(m2,n2,stk(l2),stk(l2+mn2),nel2,istk(irc2)
+               call wspmat(m2,n2,stk(lr),stk(lr+mn2),nel2,istk(irc2)
      $              ,m2*n2,istk(ircr),istk(iw)) 
             endif
             call icopy(m2*n2+nel2,istk(ircr),1,istk(irc1),1)
-            call unsfdcopy(nel2*(it2+1),stk(l2),1,stk(l1),1)
+            call unsfdcopy(nel2*(it2+1),stk(lr),1,stk(l1),1)
             lstk(top+1)=l1+nel2*(it2+1)
          endif
          return
-      elseif(m2.gt.1.and.n2.gt.1) then
-c     .  call macro coded operation
-         top=top0
-         fin=-fin
-         return
       endif
-c     check and convert indices variable
-      call indxg(il1,mn2,ilr,mi,mx,lw,1)
+
+*** modif bruno
+*** extraction  arg2(arg1)  
+      call indxg(il1,mn2,ilr,mi,mx,lw,1)  ! analysis of the index vector arg1
       if(err.gt.0) return
       if(mx.gt.mn2) then
          call error(21)
          return
       endif
- 72   if(mi.eq.0) then
-c     arg2([])
+
+ 72   if(mi.eq.0) then  ! case  arg2([]) => return a void matrix (type = 1)
          ilrs=iadr(lstk(top))
          istk(ilrs)=1
          istk(ilrs+1)=0
@@ -1126,48 +1149,40 @@ c     arg2([])
          lstk(top+1)=sadr(ilrs+4)+1
          goto 999
       endif
-c     set output sizes
-      if (m2.eq.1.and.n2.eq.1.and.m1.gt.0) then
-         m = m1
-         n = min(n1,mi)
-         mr = m
-         nr = n
-      elseif (m2 .gt. 1.or.m1.lt.0) then
-c     .  column vector
-         m=mi
-         n=-1
+c     set output sizes  !  extraction  arg2(arg1)
+      if ( m2 .eq. 1 ) then  ! A is a row sparse => B also (and only in this case)
+         mr = 1
+         nr = mi
+      else                   ! A not a row sparse => B a column sparse
          mr = mi
          nr = 1
-      else
-c     .  row vector
-         m=-1
-         n=mi
-         nr = mi
-         mr = 1
       endif
+
 c     get memory for the result
       lptr=iadr(lw)
-      irc=lptr+m2+1
+      irc=lptr+m2
       lw=sadr(irc+mr)
-      nelr=(lstk(bot)-lw)/(1+2*(it2+1))
-      if(nelr.le.0) then
+      nelrm=(2*(lstk(bot)-lw)-1)/(3+2*it2)
+      if(nelrm.le.0) then
          err=lw-lstk(bot)
          call error(17)
          return
       endif
-      lr=sadr(irc+mr+nelr)
-      lw=lr+nelr*(it2+1)
-      nel=nelr
+      lr=sadr(irc+mr+nelrm)
+      lw=lr+nelrm*(it2+1)
+      inc2 = nel2*it2
+      incr = nelrm*it2
 
-      if(it2.eq.0) then
-         call dspe2(m2,n2,stk(l2),nel2,istk(irc2),
-     $        istk(ilr),m,istk(ilr),n,mr,nr,
-     $        stk(lr),nelr,istk(irc),istk(lptr),ierr)
-      else
-         call wspe2(m2,n2,stk(l2),stk(l2+nel2),nel2,istk(irc2),
-     $        istk(ilr),m,istk(ilr),n,mr,nr,
-     $        stk(lr),stk(lr+nelr),nelr,istk(irc),istk(lptr),ierr)
-      endif
+*       subroutine spextr1(A_m, A_n, A_nel, A_mnel, A_icol, A_R, A_I,
+*     $                   B_m, B_n, B_nel, B_mnel, B_icol, B_R, B_I,
+*     $                   it, i, ni, nel_max, ptr, ierr)
+
+      call spextr1(m2, n2, nel2, istk(irc2), istk(irc2+m2), stk(l2), 
+     $             stk(l2+inc2),
+     $             mr, nr, nelr, istk(irc), istk(irc+mr), stk(lr),
+     $             stk(lr+incr), 
+     $             it2, istk(ilr), mi, nelrm, istk(lptr), ierr)
+
 c     form resulting variable
       ilrs=iadr(lstk(top))
       istk(ilrs)=5
@@ -1175,10 +1190,10 @@ c     form resulting variable
       istk(ilrs+2)=nr
       istk(ilrs+3)=it2
       istk(ilrs+4)=nelr
-      call icopy(m+nelr,istk(irc),1,istk(ilrs+5),1)
+      call icopy(mr+nelr,istk(irc),1,istk(ilrs+5),1)
       l1=sadr(ilrs+5+mr+nelr)
       call unsfdcopy(nelr,stk(lr),1,stk(l1),1)
-      if(it2.eq.1)  call unsfdcopy(nelr,stk(lr+nel),1,stk(l1+nelr),1)
+      if(it2.eq.1)  call unsfdcopy(nelr,stk(lr+nelrm),1,stk(l1+nelr),1)
       lstk(top+1)=l1+nelr*(it2+1)
       go to 999
 c     
@@ -1232,7 +1247,7 @@ c     check and convert indices variables
          return
       endif
       if(mi.lt.0) then
-         mr=mxi
+         mr=m3 ! modif bruno
       else
          mr=mi
       endif
@@ -1243,14 +1258,13 @@ c     check and convert indices variables
          return
       endif
       if(nj.lt.0) then
-         nr=mxj
+         nr=n3 ! modif bruno
       else
          nr=nj
       endif
 c
  76   continue
-      mn=mr*nr
-      if(mn.eq.0) then 
+      if(mr.eq.0 .or. nr.eq.0) then 
 c     .  arg1=[] or arg2=[] 
          ilrs=iadr(lstk(top))
          istk(ilrs)=1
@@ -1261,27 +1275,44 @@ c     .  arg1=[] or arg2=[]
          goto 999
       endif
 c     get memory for the result
-      lptr=iadr(lw)
-      irc=lptr+m3+1
-      lw=sadr(irc+mr)
-      nelr=(lstk(bot)-lw)/(1+2*(it3+1))
-      if(nelr.le.0) then
+      lptr=iadr(lw)    !  istk(lptr) = ptr(1)
+      irc=lptr+m3+1    !  m3+1 cases pour le tableau ptr =>  istk(irc) = p(1)
+      ircr = irc + nr  !  nr cases pour le tableau p de la permutation mnelr(1) = istk(ircr)
+      lw=sadr(ircr+mr) !  
+      nelrmax = (lstk(bot)-lw)/(1+2*(it3+1))  ! nb max possible d'elts pour la matrice resultat
+      if(nelrmax.le.0) then
          err=lw-lstk(bot)
          call error(17)
          return
       endif
-      lr=sadr(irc+mr+nelr)
-      lw=lr+nelr*(it3+1)
-      nel=nelr
+      lr=sadr(ircr+mr+nelrmax)
+      lw=lr+nelrmax*(it3+1)
+
 c     perform extraction
-      if(it3.eq.0) then
-         call dspe2(m3,n3,stk(l3),nel3,istk(irc3),istk(ili),mi,
-     $        istk(ilj),nj,mr,nr,stk(lr),nelr,istk(irc),istk(lptr),ierr)
+      if(it3.eq.0) then  ! les parties imaginaires (inutilisées)
+         inc3 = 0        ! pointeront sur les parties réelles
+         incr = 0
       else
-         call wspe2(m3,n3,stk(l3),stk(l3+nel3),nel3,istk(irc3),
-     $        istk(ili),mi,istk(ilj),nj,mr,nr,
-     $        stk(lr),stk(lr+nel),nelr,istk(irc),istk(lptr),ierr)
+         inc3 = nel3
+         incr = nelrmax
       endif
+      call spextr(m3, n3, nel3, istk(irc3), istk(irc3+m3), stk(l3),
+     $            stk(l3+inc3),
+     $            mr, nr, nelr, istk(ircr), istk(ircr+mr), stk(lr),
+     $            stk(lr+incr),
+     $            it3, istk(ili), mi, istk(ilj), nj, nelrmax, 
+     $            istk(lptr), istk(irc), ierr)
+
+*      subroutine spextr(A_m, A_n, A_nel, A_mnel, A_icol, A_R, A_I,
+*     $                  B_m, B_n, B_nel, B_mnel, B_icol, B_R, B_I,
+*     $                  it, i, ni, j, nj, nel_max, ptr, p, ierr)
+
+      if(ierr .eq. -1) then  ! not enough memory
+         err=1               ! valeur bidon : j'imagine qu'il faut donner 
+         call error(17)      ! une idee a l'utilisateur de la mémoire manquante
+         return
+      endif
+
 c     form resulting variable
       ilrs=iadr(lstk(top))
       istk(ilrs)=5
@@ -1289,10 +1320,10 @@ c     form resulting variable
       istk(ilrs+2)=nr
       istk(ilrs+3)=it3
       istk(ilrs+4)=nelr
-      call icopy(mr+nelr,istk(irc),1,istk(ilrs+5),1)
+      call icopy(mr+nelr,istk(ircr),1,istk(ilrs+5),1)
       l1=sadr(ilrs+5+mr+nelr)
       call unsfdcopy(nelr,stk(lr),1,stk(l1),1)
-      if(it3.eq.1) call unsfdcopy(nelr,stk(lr+nel),1,stk(l1+nelr),1)
+      if(it3.eq.1) call unsfdcopy(nelr,stk(lr+nelrmax),1,stk(l1+nelr),1)
       lstk(top+1)=l1+nelr*(it3+1)
       go to 999
 c      
@@ -1472,7 +1503,7 @@ c     .  arg3([])=c  --> arg3
          endif
       endif
 c     
-      if (n3.gt.1.and.m3.gt.1) then
+      if (n3.gt.1.and.m3.gt.1) then  ! ce test est inutile puisque ce cas est traite par macro
 c     .  arg3 is not a vector
          if(n2.gt.1.and.m2.gt.1) then
             call error(15)
@@ -1567,39 +1598,43 @@ c     .  row vector
       call unsfdcopy(nelr,stk(lr),1,stk(l1),1)
       if(itr.eq.1) call unsfdcopy(nelr,stk(lr+nel),1,stk(l1+nelr),1)
       lstk(top+1)=l1+nelr*(itr+1)
-      go to 999
+      go to 999   ! c'est un return
 
  90   continue
-c     arg4(arg1,arg2)=arg3
+
+c     **** insertion  arg4(arg1,arg2)=arg3  *****
+c     (comments added by Bruno to try to understand this stuff)
+
 c     get arg4      
       il4=iadr(lstk(top))
+      top4 = top ! pour le cas en place
       if(istk(il4).lt.0) il4=iadr(istk(il4+1))
       m4=istk(il4+1)
       n4=istk(il4+2)
       it4=istk(il4+3)
-      if(istk(il4).eq.5) then
+      if(istk(il4).eq.5) then  ! arg4 is a sparse matrix
          nel4=istk(il4+4)
-         irc4=il4+5
-         l4=sadr(irc4+m4+nel4)
-      else
-         top=top0
+         irc4=il4+5             ! irc4 index in istk for the arrays  mnel(m4 elts) and icol(nel4 elts)
+         l4=sadr(irc4+m4+nel4)  ! l4   index in stk for the coef arrays (real and complex if any)
+      else                 
+         top=top0          
          fin=-fin
          return
       endif
       mn4=m4*n4
 
-c     get arg3
+c     get arg3    ! for insertion  arg4(arg1,arg2)=arg3
       top=top-1
       il3=iadr(lstk(top))
       if(istk(il3).lt.0) il3=iadr(istk(il3+1))
       m3=istk(il3+1)
       n3=istk(il3+2)
       it3=istk(il3+3)
-      if(istk(il3).eq.5) then
+      if(istk(il3).eq.5) then  ! arg3 is a sparse matrix
          nel3=istk(il3+4)
-         irc3=il3+5
+         irc3=il3+5            
          l3=sadr(irc3+m3+nel3)
-      elseif(istk(il3).eq.1) then
+      elseif(istk(il3).eq.1) then  !  arg3 is a full matrix
          l3=sadr(il3+4)
          nel3=m3*n3
       else
@@ -1608,37 +1643,43 @@ c     get arg3
          return
       endif
       mn3=m3*n3
-c     get arg2
+
+c     get arg2    ! for insertion  arg4(arg1,arg2)=arg3
       top=top-1
       il2=iadr(lstk(top))
       if(istk(il2).lt.0) il2=iadr(istk(il2+1))
       m2=istk(il2+1)
-c     get arg1
+
+c     get arg1    ! for insertion  arg4(arg1,arg2)=arg3
       top=top-1
       il1=iadr(lstk(top))
       ilrs=il1
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
       m1=istk(il1+1)
 
-      if (m3.eq.0) then
-c     .  arg4(arg1,arg2)=[]
-         if(m1.eq.-1.and.m2.eq.-1) then
-c     .    arg4(:,:)=[] -->[]
+      if (m3.eq.0) then   ! So this is the operation   arg4(arg1,arg2) = [] => all rows of
+                          ! of indices arg1 and all columns of indices arg2 must be deleted. 
+                          ! In the following many special cases are taken into account
+                          ! this is certainly not necessary.
+         if(m1.eq.-1.and.m2.eq.-1) then 
+            ! this is  arg4(:,:)=[] and so arg4 becomes a empty matrix arg4 <- []
             istk(ilrs)=1
             istk(ilrs+1)=0
             istk(ilrs+2)=0
             istk(ilrs+3)=0
             lstk(top+1)=sadr(ilrs+4)+1
-            goto 999
+            goto 999      ! goto the end
+
          elseif(m1.eq.0.or.m2.eq.0) then
-c     .     arg4([],arg2)=[],  arg4(arg1,[])=[] --> arg4
-            call icopy(5+m4+nel4,istk(il4),1,istk(ilrs),1)
+            ! this is   arg4([],arg2)=[] or  arg4(arg1,[])=[] --> arg4 is not modified
+            call icopy(5+m4+nel4,istk(il4),1,istk(ilrs),1)  ! ilrs index in istk of the result
             l=sadr(ilrs+5+m4+nel4)
             call unsfdcopy(nel4*(it4+1),stk(l4),1,stk(l),1)
             lstk(top+1)=l+mn4*(it4+1)
             goto 999
+
          elseif(m2.eq.-1) then
-c     .     arg3(arg1,:)=[] --> arg3(compl(arg1),:)
+            ! this is   arg3(arg1,:)=[] --> arg3(compl(arg1),:)
             call indxgc(il1,m4,ili,mi,mxi,lw)
             if(err.gt.0) return
             mr=mi
@@ -1656,10 +1697,11 @@ c     .     arg3(arg1,:)=[] --> arg3(compl(arg1),:)
             it3=it4
             irc3=irc4
             nel3=nel4
-c     .     call extraction
+c     .     call extraction (the result is arg3(compl(arg1),:))
             goto 76
+
          elseif(m1.eq.-1) then
-c     .     arg3(:,arg2)=[] --> arg3(:,compl(arg2))
+            ! this is   arg4(:,arg2)=[] --> arg4(:,compl(arg2))
             call indxgc(il2,n4,ilj,nj,mxj,lw)
             if(err.gt.0) return
             nr=nj
@@ -1677,10 +1719,10 @@ c     .     arg3(:,arg2)=[] --> arg3(:,compl(arg2))
             it3=it4
             irc3=irc4
             nel3=nel4
-c     .     call extraction
+c     .     call extraction (the result is arg3(:,compl(arg2)))
             goto 76
          else
-c     .     arg4(arg1,arg2)=[] 
+            ! this is   arg4(arg1,arg2)=[] 
             lw1=lw
             call indxgc(il2,n4,ilj,nj,mxj,lw)
             if(err.gt.0) return
@@ -1755,29 +1797,41 @@ c     .           call extraction
                endif
             endif
          endif
+
       elseif(m3.lt.0.or.m4.lt.0) then
 c     .  arg3=eye , arg4=eye
          call error(14)
          return
+
       elseif(m1.eq.-1.and.m2.eq.-1) then
 c     .  arg4(:,:)=arg3
          if(mn3.eq.mn4) then
-            if(m3.ne.m4) then
-               top=top0
+            if(m3.ne.m4) then  ! bizarre ca on a alors A(:,:)=B qui ne change pas A
+               top=top0        ! en fait on imagine plutot une erreur a indiquer
                fin=-fin
                return
+c     .  reshape arg3 according to arg4  : ici on a donc des matrices de tailles identiques
+c             il ne semble pas y avoir de distinctions entre sparse ou pleine pour arg3 (B)
+c             ca peut expliquer le plantage ...  OUI
+c             remede : cependant ce cas peut etre pris en compte par les routines generiques
+c                      plutot que de le traiter dans l'interface. De plus ce n'est pas si
+c                      court comme code vu qu'il faut tester les coefs de B. L'interface
+c                      ne doit s'occuper que des cas triviaux et des cas d'erreurs
+*
+*   A signaler a Serge.
+*
+            elseif (istk(il3) .eq. 5) then ! ajout bruno (si arg3 est pleine le code suivant n'est pas bon)
+               istk(ilrs)=5
+               istk(ilrs+1)=m4
+               istk(ilrs+2)=n4
+               call icopy(2+m3+nel3,istk(il3+3),1,istk(ilrs+3),1)
+               l1=sadr(ilrs+5+m3+nel3)
+               call unsfdcopy(nel3*(it3+1),stk(l3),1,stk(l1),1)
+               lstk(top+1)=l1+nel3*(it3+1)
+               return
             endif
-c     .  reshape arg3 according to arg4
-            istk(ilrs)=5
-            istk(ilrs+1)=m4
-            istk(ilrs+2)=n4
-            call icopy(2+m3+nel3,istk(il3+3),1,istk(ilrs+3),1)
-            l1=sadr(ilrs+5+m3+nel3)
-            call unsfdcopy(nel3*(it3+1),stk(l3),1,stk(l1),1)
-            lstk(top+1)=l1+nel3*(it3+1)
-            return
-         elseif(mn3.eq.1) then
-            istk(ilrs)=1
+         elseif(mn3.eq.1) then   ! arg4(:,:)=arg3 avec arg3 un scalaire 
+            istk(ilrs)=1         ! on change de type (matrice pleine)
             istk(ilrs+1)=m4
             istk(ilrs+2)=n4
             istk(ilrs+3)=it3
@@ -1792,17 +1846,18 @@ c     .  reshape arg3 according to arg4
          endif
       endif
 
+      ! insertion  arg4(arg1,arg2)=arg3 ... suite 
       call indxg(il1,m4,ili,mi,mxi,lw,11)
       if(err.gt.0) return
       if(mi.lt.0) then
-         mr1=mxi
+         mr1=mxi   ! car indice implicite :
       else
          mr1=mi
       endif
       call indxg(il2,n4,ilj,mj,mxj,lw,11)
       if(err.gt.0) return
       if(mj.lt.0) then
-         nr1=mxj
+         nr1=mxj   ! car indice implicite :
       else
          nr1=mj
       endif
@@ -1826,28 +1881,58 @@ c     .  sizes of arg1 or arg2 dont agree with arg3 sizes
             return
          endif
       else
-         if(mr1.eq.0.or.nr1.eq.0) then
+         if(mr1.eq.0.or.nr1.eq.0) then  ! est-ce possible ?
             call error(15)
             return
          endif
       endif
       mr=max(m4,mxi)
       nr=max(n4,mxj)
-c
-      itr=max(it4,it3)
-      lptr=iadr(lw)
-      irc=lptr+mr+1
-      lw=sadr(irc+mr)
-      nelr=(lstk(bot)-lw)/(1+2*(itr+1))
-      if(nelr.le.0) then
+c      ! insertion  arg4(arg1,arg2)=arg3 ... suite 
+
+      ! try if we can do insertion in place
+      if (      (istk(il3).eq.1) .and. (it4.ge.it3) 
+     $    .and. (mi.gt.0).and.(mj.gt.0).and.(mi.le.m4).and.(mj.le.n4)
+     $    .and. (mi*mj.lt.nel4/4) ) then 
+*
+         lws = lw               ! sauvegarde
+         lptr=iadr(lw)          ! for ptr (size m4)
+         lka = lptr + m4        ! for ka  (size mi*mj)
+         lw = sadr(lka+mi*mj)
          err=lw-lstk(bot)
-         call error(17)
-         return
+         if (err .gt. 0) then
+            call error(17)
+            return
+         endif
+         call spifp(m4, n4, nel4, istk(irc4), istk(irc4+m4), stk(l4),
+     $              stk(l4+it4*nel4), it4, istk(ili), mi, istk(ilj), mj,
+     $              istk(lptr), istk(lka), it3, stk(l3), 
+     $              stk(l3+mi*mj*it3), iflag)
+         if (iflag .eq. 1) then ! yes insertion in place is OK (and also done by spifp)
+            k=istk(iadr(lstk(top4))+2)
+            top = top - 1
+            call setref(k)
+            goto 999
+         else
+            lw = lws 
+         endif
       endif
-      lr=sadr(irc+mr+nelr)
-      lw=lr+nelr*(itr+1)
-      nel=nelr
-      if(istk(il3).eq.5) then
+
+      itr=max(it4,it3)
+      if(istk(il3).eq.5) then  ! insertion sparse(ind_i, ind_j) = sparse matrix
+         lptr=iadr(lw)    
+         irc=lptr+mr+1
+         lw=sadr(irc+mr)
+         nelr=(lstk(bot)-lw)/(1+2*(itr+1))
+         if(nelr.le.0) then
+            err=lw-lstk(bot)
+            call error(17)
+            return
+         endif
+         lr=sadr(irc+mr+nelr)
+         lw=lr+nelr*(itr+1)
+         nel=nelr
+
          if(itr.eq.0) then
             call dspisp(m4,n4,stk(l4),nel4,istk(irc4),
      $           istk(ili),mi,istk(ilj),mj,
@@ -1860,22 +1945,41 @@ c
      $           mr,nr,stk(lr),stk(lr+nelr),nelr,istk(irc),
      $           istk(lptr),ierr,it4,it3)
          endif
-      else
-         if(itr.eq.0) then
-            call dspis(m4,n4,stk(l4),nel4,istk(irc4),
-     $           istk(ili),mi,istk(ilj),mj,
-     $           m3,n3,stk(l3),
-     $           mr,nr,stk(lr),nelr,istk(irc),ierr) 
-         else
-            call wspis(m4,n4,stk(l4),stk(l4+nel4),nel4,istk(irc4),
-     $           istk(ili),mi,istk(ilj),mj,
-     $           m3,n3,stk(l3),stk(l3+nel3),
-     $           mr,nr,stk(lr),stk(lr+nelr),nelr,istk(irc),
-     $           ierr,it4,it3) 
+
+      else  ! insertion sparse(ind_i, ind_j) = full matrix
+
+         ipi = iadr(lw)   ! indice pour pi
+         ipj = ipi + max(0,mi)  ! indice pour pj
+         irc = ipj + max(0,mj)  ! indice pour C_mnel
+         lw = sadr(irc + mr)    ! indice de stk à partir duquel il faut caser C_icol, C_R et C_I
+         nelmax = 2*(lstk(bot)-lw)/(1+2*(itr+1))
+         if(nelmax .le. 0) then
+            err = lw-lstk(bot)
+            call error(17)
+            return
          endif
+         lr = sadr(irc + mr + nelmax)
+         lw = lr + nelmax*(itr + 1)
+
+c     arg4(arg1,arg2)=arg3   A(i,j) = B
+*      subroutine spif(A_m, A_n, A_nel, A_it, A_mnel, A_icol, A_R, A_I,
+*     $                B_m, B_n, B_it, B_R, B_I,
+*     $                C_m, C_n, C_nel, C_it, C_mnel, C_icol, C_R, C_I,
+*     $                i, pi, ni, j, pj, nj, nelmax, ierr)
+*
+         call spif(m4,n4,nel4,it4,istk(irc4),istk(irc4+m4),
+     $             stk(l4),stk(l4+it4*nel4),
+     $             m3,n3,it3,stk(l3),stk(l3+it3*m3*n3),
+     $             mr,nr,nelr,itr,istk(irc), istk(irc+mr), 
+     $             stk(lr), stk(lr+itr*nelmax),
+     $             istk(ili), istk(ipi), mi, istk(ilj), istk(ipj), mj, 
+     $             nelmax, ierr) 
+         nel = nelmax
+
       endif
-      if(ierr.ne.0) then
-         buf='not enough memory'
+
+      if(ierr.ne.0) then     ! methode a utiliser lorsque l'on peut difficilement
+         buf='not enough memory'   ! evaluer la memoire manquante
          call error(9999)
          return
       endif
@@ -1910,7 +2014,7 @@ c     comparaisons
             return
          endif
       endif
-      if(mn2.eq.0.and.mn1.eq.0) then
+      if (a1_is_empty .and. a2_is_empty) then
          if(op.eq.equal.or.op.eq.less+great) then
             istk(il1)=4
             istk(il1+1)=1
@@ -1924,8 +2028,8 @@ c     comparaisons
             return
          endif
       endif
-      if((mn2.eq.0.or.mn1.eq.0).or.
-     &     (mn1.ne.1.and.mn2.ne.1)) then
+      if( (a1_is_empty .or. a2_is_empty).or.
+     &    (.not.a1_is_scalar .and. .not. a2_is_scalar)) then
          if(n1.ne.n2.or.m1.ne.m2) then
             if(op.eq.equal.or.op.eq.less+great) then
                istk(il1)=4
@@ -1944,7 +2048,7 @@ c     comparaisons
 c
       mr=m1
       nr=n1
-      if(m1*n1.eq.1) then
+      if( a1_is_scalar ) then
          mr=m2
          nr=n2
       endif
