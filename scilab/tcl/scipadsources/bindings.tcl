@@ -4,7 +4,7 @@ bind All <Alt-E> {}
 bind All <Alt-S> {}
 bind ALL <Alt-H> {}
 bind $pad <F3> {findnext find}
-bind $pad <Control-x> {cuttext}
+bind Text <Control-x> {cuttext}
 bind $pad <Control-c> {copytext}
 bind $pad <Control-s> {filetosave %W}
 bind Text <Control-o> {}

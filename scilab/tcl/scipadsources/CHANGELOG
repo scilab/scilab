@@ -657,3 +657,8 @@ ES 27/1/05
  * corrected search for keywords in colorize.tcl, whichfun.tcl: scilab
    names ae not just words in the tcl sense, they can contain %#!?$
  * version --> 3.22
+
+Francois VOGEL, 27/01/05
+ * Bug corrected - Ctrl-x was still able to cut text in a locked buffer
+ * version --> 3.22
+
