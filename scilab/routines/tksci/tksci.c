@@ -39,6 +39,11 @@ void flushTKEvents()
   while (Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT)==1) {}
 }
 
+
+int  tcl_check_one_event(void) {
+  return Tcl_DoOneEvent ( TCL_DONT_WAIT);
+}
+
 /***/
 int OpenTksci()
      /* Checks if tk has already been initialised and if not */

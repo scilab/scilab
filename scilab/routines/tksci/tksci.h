@@ -46,6 +46,7 @@ extern int TK_NbEv;
 extern int TK_Started;
 
 extern void flushTKEvents(void);
+extern int  tcl_check_one_event(void);
 extern void nocase (char*s);
 extern void inittk(void);
 

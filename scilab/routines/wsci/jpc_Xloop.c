@@ -19,6 +19,7 @@
 #include "tcl.h"
 extern void inittk ();
 extern void flushTKEvents ();
+extern int  tcl_check_one_event(void);
 #endif
 
 /** do I want a scilab or an xscilab (here it means Windows ) */
@@ -47,10 +48,6 @@ int C2F (xscion) (int *i)
  *************************************************/
 
 extern TW textwin;
-
-int  tcl_check_one_event(void) {
-  return Tcl_DoOneEvent ( TCL_DONT_WAIT);
-}
 
 void
 TextMessage1 (int ctrlflag)
