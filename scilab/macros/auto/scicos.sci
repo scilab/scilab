@@ -299,7 +299,8 @@ while %t
   else
     Cmenu=[];%pt=[]
   end
-if pixmap then xset('wshow'),end
+  if Cmenu=='Quit' then do_exit();break;end
+  if pixmap then xset('wshow'),end
 end
 
   
