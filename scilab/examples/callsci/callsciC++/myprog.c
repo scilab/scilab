@@ -78,9 +78,9 @@ double f(double x)
 static int my_plot() 
 {
   int m,n,lx,ly,i;
-  /* j'utilise scilab pour creer les abscisses 
-   * et reserver de la place pour les ordonnees 
-   */ 
+  /* Scilab is called to build the abscissae vector and 
+     to allocate the ordinates */
+
   send_scilab_job("x=1:0.1:10;y=x;");
   GetMatrixptr("x", &m, &n, &lx);  
   GetMatrixptr("y", &m, &n, &ly);  
@@ -104,7 +104,7 @@ static int my_job()
   static double b[]={4,5};
   int mb=2,nb=1;
   int m,n,lp,i;
-  WriteMatrix("A", &mA, &nA, A); // provoque un return 0 en cas d'echec 
+  WriteMatrix("A", &mA, &nA, A); /* if failed make my_job return O; */
   WriteMatrix("b", &mb, &nb, b);
 
   if ( send_scilab_job("A,b,x=0\\b;") != 0) 
@@ -154,24 +154,20 @@ int MAIN__(void)
   C2F(sciquit)();
 }
 
-/*----------------------------------------------
- * Et la faisons des trucs vraiment tordus 
- *----------------------------------------------*/
 
-/* je veux integrer l'equation qui precede */
+/* I want to integrate the previous equation */
 
 int my_ode_job() 
 {
   double x[]={1,0,0} ; int mx=3,nx=1;
   double time[]={0.4,4}; int mt=1,nt=2;
-  fprintf(stdout,"je linke \n");
+  fprintf(stdout,"linking \n");
   send_scilab_job("ilib_for_link(''odeex'',''my_ode.o'',[],''c'');");
-  fprintf(stdout,"fin du link  \n");
+  fprintf(stdout,"link done  \n");
   send_scilab_job("exec(''loader.sce'');link(''show'')");
   WriteMatrix("x", &mx, &nx, x);
   WriteMatrix("time", &mt, &nt,time);
-  /* pour que scilab <<linke>> mon_edo */
-  /* appel de ode */
+  /* scilab is called to solve the ODE */
   send_scilab_job("y=ode(x,0,time,''mon_ode''),");
 }
 
