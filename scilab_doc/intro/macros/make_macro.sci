@@ -1,5 +1,4 @@
 function [newfunction]=makefunction(p)
-// Copyright INRIA
 num=mulf(makestr(p(1)),'1');
 for k=2:size(p);
    new=mulf(makestr(p(k)),'s^'+string(k-1));
