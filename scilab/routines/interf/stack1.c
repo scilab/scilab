@@ -1658,6 +1658,7 @@ int cre_sparse_from_ptr_i(fname, lw, m, n, S, fname_len ,rep)
   *istk(il ) = 5;
   /* note: code sligtly modified (remark of C. Deroulers in the newsgroup) */
   if ( *m == 0  |  *n == 0 )
+  {
       *istk(il + 1) = 0; 
       *istk(il + 2) = 0;
   } else {
