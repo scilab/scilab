@@ -65,7 +65,8 @@ SOFTWARE.
 #include <X11/Xmu/Converters.h>
 #include <X11/Xmu/Atoms.h>
 #include <X11/Xmu/Editres.h>
-#include <X11/Xmu/ExtAgent.h>
+/* #include <X11/Xmu/ExtAgent.h> */
+#include "ExtAgent.h"
 
 /* The following two headers are for the input method. */
 
