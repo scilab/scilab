@@ -3,7 +3,7 @@ function do_exit()
 r=0
 if edited then
   if ~super_block then
-    r=choose(['Save';'Save As'],..
+    r=x_choose(['Save';'Save As'],..
 	['Diagram has not been saved';
 	'What to do before leaving?'],'Don''t save')
   end
@@ -48,3 +48,4 @@ for win=windows(size(windows,1):-1:noldwin+1,2)'
   end
 end
 endfunction
+
