@@ -7,7 +7,7 @@ include ../Makefile.incl
 CFLAGS = $(CC_OPTIONS) $(XFLAGS) $(TK_INC_PATH) $(TCL_INC_PATH) -I. 
 
 all::
-	$(CC)  $(CFLAGS) $(CFLAGS) $(TCLTK_LIBS) $(XLIBS) browsehelpexe.c -o browsehelpexe
+	$(CC)  $(CFLAGS) $(CFLAGS) $(TCLTK_LIBS) $(XLIBS)  browsehelpexe.c  $(LD_LDFLAGS) -o browsehelpexe
 
 clean::
 	-rm browsehelpexe
