@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>datevec</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>31-Aout-2004</DATE>
+
+  <SHORT_DESCRIPTION name="datevec">Reconstruction d'un vecteur contenant une
+  Date</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>V=datevec(DT)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[Y,M,D,H,MI,S]=datevec(DT)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>V = datevec(DT) convertie un nombre (défini par datenum) en un vecteur
+    contenant une date dont les éléments sont [year, month, day, hour, minute,
+    second]. </P>
+
+    <P>[Y, M, D, H, MI, S] = datevec(DT) retourne les composants de la date
+    dans 6 variables.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[datevec(720840)
+
+datevec(datenum()) 
+
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>datenum</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>calendar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

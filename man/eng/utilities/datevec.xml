@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>datevec</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>31-August-2004</DATE>
+
+  <SHORT_DESCRIPTION name="datevec">Date components</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>V=datevec(DT)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[Y,M,D,H,MI,S]=datevec(DT)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>V = datevec(DT) converts a serial date number (defined by datenum) to a
+    date vector V having elements [year, month, day, hour, minute, second].
+    The first five vector elements are integers.</P>
+
+    <P>[Y, M, D, H, MI, S] = datevec(DT) returns the components of the date
+    vector as individual variables</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[datevec(720840)
+
+datevec(datenum()) 
+
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>datenum</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>calendar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
