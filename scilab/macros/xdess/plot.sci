@@ -8,13 +8,24 @@ function plot(varargin)
 // plot(x,y,'X',1:10); // where X stands for Xdata (Matlab recognize
 //it and treats it well...
 
+[lhs,rhs]=argn(0);
+
+if ~rhs
+  clf();
+  //LineSpec and PropertySpec examples:
+  clf();
+  t=0:%pi/20:2*%pi;
+  subplot(211)
+  plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+  subplot(212)
+  plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
+  return;
+end
 
 
 
 CurColor = 0; // current color used if no color specified via LineSpec
 // nor PropertyName
-
-
 
 
 ListArg = varargin;
