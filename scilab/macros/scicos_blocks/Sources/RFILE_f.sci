@@ -14,19 +14,18 @@ case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
-  out=model.out
   dstate=model.dstate
   ipar=model.ipar
-  nout=sum(out)
   ievt=ipar(3);N=ipar(4);
   imask=5+ipar(1)+ipar(2)
   tmask=ipar(imask)
-  outmask=ipar(imask+1:imask+nout)
   lunit=dstate(3)
   fname=exprs(3)
   frmt=exprs(4)
+  //for backward compatibility
+  if size(exprs,'*')>5 then exprs(6)=[],end
   while %t do
-    [ok,tmask1,outmask,fname1,frmt1,N,out,exprs]=getvalue(..
+    [ok,tmask1,outmask,fname1,frmt1,N,exprs]=getvalue(..
 	['Set RFILE block parameters';
 	 'Read is done on';
 	 '  -  a binary file if no format given';
@@ -35,15 +34,15 @@ case 'set' then
 	 'Outputs record selection';
 	 'Input file name';
 	 'Input Format';
-	 'Buffer size';
-	 'Output size'],..
-	 list('vec',-1,'vec',-1,'str',1,'str',1,'vec',1,'vec',1),..
+	 'Buffer size'],..
+	 list('vec',-1,'vec',-1,'str',1,'str',1,'vec',1),..
 	 exprs)
     if ~ok then break,end //user cancel modification
     fname1=stripblanks(fname1)
     frmt1=stripblanks(frmt1)
-    out=int(out)
-    nout=out
+    //out=int(out)
+    //nout=out
+    nout = size(outmask,'*')
     if prod(size(tmask1))>1 then
       message('Time record selection must be a scalar or an empty matrix')
     elseif lunit>0&min(length(frmt),1)<>min(length(frmt1),1) then
@@ -55,11 +54,13 @@ case 'set' then
       message('You cannot modify time management when running')
     elseif N<2 then
       message('Buffer size must be at least 2')
-    elseif out==[] then
-      message('Block must have at least one output port')
+    elseif nout==0 then
+      message('You must read at least one record')
+    elseif min(outmask)<=0 then
+      message('Records must be > 0.')
     else
       if tmask1==[] then ievt=0;cout=[];tmask1=0;else ievt=1,cout=1;end
-      [model,graphics,ok]=check_io(model,graphics,[],out,1,cout)
+      [model,graphics,ok]=check_io(model,graphics,[],nout,1,cout)
       if ok then
 	if ievt==0 then
 	  model.firing=[]
