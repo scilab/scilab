@@ -12,15 +12,8 @@ function sciGUIhelp(key)
   
   update='0';
   
+  sciGUI_init();
 
-  if execstr('TK_GetVar(''sciGUITable(browsehelp,nchap)'')','errcatch')<>0 then
-    tclpath=SCI+"/tcl/sciGUI/'
-    TK_EvalFile(tclpath+'sciGUI.tcl');
-    TK_EvalFile(tclpath+'sciBrowseHelp.tcl');
-    TK_EvalFile(tclpath+'sciBar.tcl');
-    TK_EvalStr('sciGUIDoInit ""'+SCI+'/"";sciGUIBrowseHelpINI');
-  end
-   
   nch=eval(TK_GetVar('sciGUITable(browsehelp,nchap)'));
   if (size(%helps,1)~=nch) then	
     rescan_helps()
@@ -28,7 +21,7 @@ function sciGUIhelp(key)
     update='1';
   end
   tmpDir=strsubst(TMPDIR,'\','/');
-  if (argn(2)==0|key=='index') then
+  if (argn(2)==0|key='index') then
     TK_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt""');
   elseif (argn(2)==1) then
     key=stripblanks(key)
