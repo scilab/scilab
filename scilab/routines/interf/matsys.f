@@ -46,8 +46,8 @@ c
 c     fonction/fin
 c     debu who        line argn comp   fort  mode type error
 c     1    2    3    4    5    6      7     8    9    10
-c     resu form  link   exists errcatch errclear iserror predef
-c     11   12     XXX    14      15       16       17      18
+c     resu form  isdef   exists errcatch errclear iserror predef
+c     11   12     13    14      15       16       17      18
 c     newfun clearfun  funptr  macr2lst setbpt delbpt dispbpt
 c     19      20       21       22       23     24      25
 c     funcprot whereis where   timer         havewindow stacksize
@@ -128,13 +128,13 @@ c     format
       goto 999
 c     
 c     exists
- 180  call intexists()
+ 180  call intexists(0)
       goto 999
 c     
-c     link dynamique
- 190  continue
-      return
-c
+c     isdef
+ 190  call intexists(1)
+      goto 999
+c     
 c     errcatch
  200  call interrcatch()
       goto 999
@@ -1793,12 +1793,12 @@ c     .  get error number  if given
       return
       end
 
-      subroutine intexists
+      subroutine intexists(job)
 c     Copyright INRIA
       include '../stack.h'
       integer topk
       integer id(nsiz)
-      logical checkrhs,checklhs,cremat,getsmat,checkval
+      logical checkrhs,checklhs,cremat,getsmat,checkval,crebmat
       logical flag
       integer local
       integer iadr,sadr
@@ -1852,11 +1852,22 @@ c     look for libraries functions
          endif
       endif
 c
-      if(.not.cremat('exists',top,0,1,1,l,lc)) return
-      if (fin.gt.0) then
-         stk(l)=1.0d0
+      if(job.eq.0) then
+c     exists returns 0 or 1
+         if(.not.cremat('exists',top,0,1,1,l,lc)) return
+         if (fin.gt.0) then
+            stk(l)=1.0d0
+         else
+            stk(l)=0.0d0
+         endif
       else
-         stk(l)=0.0d0
+c     isdef returns %f or %t
+         if(.not.crebmat('exists',top,1,1,l)) return
+         if (fin.gt.0) then
+            istk(l)=1
+         else
+            istk(l)=0.0d0
+         endif
       endif
       fin=1
       return

@@ -19,7 +19,7 @@ MACROS = copyfile.sci mkdir.sci rmdir.sci calendar.sci datevec.sci \
 	sci2map.sci \
 	logspace.sci linspace.sci ssprint.sci ssrand.sci \
 	sysdiag.sci syslin.sci syssize.sci trfmod.sci manedit.sci \
-	typeof.sci ndims.sci isdef.sci edit.sci \
+	typeof.sci ndims.sci  edit.sci \
 	whereami.sci projaff.sci derivative.sci \
 	unix_g.sci unix_s.sci unix_x.sci unix_w.sci \
 	x_choices.sci x_matrix.sci getvalue.sci getclick.sci \
