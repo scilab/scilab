@@ -32,7 +32,7 @@ case 'c' then
         s',b2',r];
 
   [bige,biga,dummy,z]=balanc(bige,biga);
-  [w,k]=gschur(biga,bige,'c');
+  [w,k]=schur(biga,bige,'c');
   if k<>n then warning('leqr: stable subspace too small!');...
             k=[];w=[];err=[];return;
   end
@@ -57,7 +57,7 @@ case 'd' then
        -q,i, -s;
         s', 0*b2', r];
   [bige,biga,dummy,z]=balanc(bige,biga);
-  [w,k]=gschur(biga,bige,'d');
+  [w,k]=schur(biga,bige,'d');
   if k<>n then warning('leqr: stable subspace too small!');...
             k=[];w=[];err=[];return;end
   ws=z*w(:,1:n);

@@ -30,7 +30,7 @@ function [x1,x2]=riccati(a,b,c,dom,typ)
          end,
       else
          aa=[eye(n,n) b;0*ones(n,n) a'],bb=[a  0*ones(n,n);-c eye(n,n)],
-         [bs,as,s,n1]=gschur(bb,aa,'d');s=s(:,1:n1);
+         [bs,as,s,n1]=schur(bb,aa,'d');s=s(:,1:n1);
       end,
       x1=s(n+1:2*n,:),x2=s(1:n,:),
       if lhs==1 then x1=x1/x2,end

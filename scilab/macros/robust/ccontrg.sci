@@ -46,13 +46,13 @@ j22=j22-[d11;d21]*[d11;d21]';
 [q,r]=qr([h12;h22]);
 q12=q(1:nh,sh22+1:nh+sh22); q22=q(nh+1:nh+sh22,sh22+1:nh+sh22);
 hr=q12'*h11+q22'*h21;
-[uh,dh]=gschur(hr,q12','c');
+[uh,dh]=schur(hr,q12','c');
 px=uh(1:na,1:na);   qx=uh(na+1:nh,1:na);
  
 [q,r]=qr([j12;j22]);
 q12=q(1:nh,sj22+1:nh+sj22); q22=q(nh+1:nh+sj22,sj22+1:nh+sj22);
 jr=q12'*j11+q22'*j21;
-[uj,dj]=gschur(jr,q12','c');
+[uj,dj]=schur(jr,q12','c');
 py=uj(1:na,1:na);   qy=uj(na+1:nh,1:na);
  
  
