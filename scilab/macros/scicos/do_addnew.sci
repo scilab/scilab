@@ -8,7 +8,7 @@ function [scs_m,fct]=do_addnew(scs_m)
 
   if ~ok then return,end
   name=stripblanks(name);
-  if name=emptystr() then message('No block name specified');return,end
+  if name==emptystr() then message('No block name specified');return,end
   to_get=%f
   if exists(name)==0 then 
     to_get=%t
