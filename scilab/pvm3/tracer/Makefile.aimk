@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.aimk,v 1.4 2002/10/15 08:04:19 chanceli Exp $
+# $Id: Makefile.aimk,v 1.5 2002/10/15 08:12:25 chanceli Exp $
 #
 
 #
@@ -106,7 +106,9 @@ PROGS		=
 
 default:  local
 
-install:  $(PVMXDIR) $(PVMLDIR) $(PROGS)
+# $(PVMXDIR) $(PVMLDIR) $(PROGS)
+
+install:  local 
 
 $(PVMXDIR)/tracer$(EXESFX):  tracer$(EXESFX)
 	@ cp tracer$(EXESFX) $(PVMXDIR)
