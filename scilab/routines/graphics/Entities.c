@@ -11523,9 +11523,9 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  x1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->x);
 	  yy1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->y);
 	}
-      hh1 = inint (318.0 * pTEXT_FEATURE (pobj)->wy) ;  
+      /*    hh1 = inint (318.0 * pTEXT_FEATURE (pobj)->wy) ;  
       if (hh1 != 0)
-	yy1 -=hh1;
+      yy1 -=hh1;*/
         
       anglestr = (sciGetFontOrientation (pobj)/10); 	/* *10 parce que l'angle est concerve en 1/10eme de degre*/
 
