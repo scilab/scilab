@@ -50,7 +50,7 @@ C     topk : free stack zone for working areas
       mactop=0
       if (abs(itype).eq.11.or.abs(itype).eq.13) mactop=1
 c     
- 05   goto (20,10,06,55,25,26,06,06,35,30,60,06,60,70,40,40,40)
+ 05   goto (20,10,06,55,25,26,06,06,75,30,60,06,60,70,40,40,40)
      $     ,abs(itype)
  06   goto 75
 c     
