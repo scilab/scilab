@@ -68,5 +68,6 @@ integer *ir, *n, *ierr;
     RDIV(unsigned int);
     break;
   }
+  return 0;
 }
 

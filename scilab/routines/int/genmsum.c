@@ -53,4 +53,5 @@ int C2F(genmsum)(typ,job, a, na, m, n, v, nv)
     MSUM(unsigned int);
     break;
   }
+  return 0;
 }

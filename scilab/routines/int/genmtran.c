@@ -51,5 +51,6 @@ int *b;
     MTRAN(unsigned int);
     break;
   }
+  return 0;
 }
 
