@@ -68,6 +68,7 @@ void C2F(setscilabVersionPos)(integer *vers, integer *v2, integer *v3, integer *
 void C2F(getscilabVersionPos)(integer *verbose, integer *vers, integer *narg, double *dummy);
 void C2F(setscilabxgcPos)(integer *v1, integer *v2, integer *v3, integer *v4); 
 void C2F(getscilabxgcPos)(integer *verbose, integer *x,integer *narg, double *dummy);
+void setposfig(integer *i,integer *j);
 /* NG end */
 
 static double ascentPos(void);
@@ -184,6 +185,18 @@ void C2F(setwindowposPos)(integer *x, integer *y, integer *v3, integer *v4)
 static integer prec_fact =10;
 static integer def_width =600;
 static integer def_height =424;
+
+void setposfig(integer *i,integer *j)
+{
+  def_width =*i;
+  def_height =*j;
+  if (def_width*def_height==0){
+    def_width =600;
+    def_height =424;
+  }
+}
+
+
 
 void C2F(getwindowdimPos)(integer *verbose, integer *x, integer *narg, double *dummy)
 {     
