@@ -10,7 +10,7 @@ c     Interface for maxi and mini
       integer iadr,sadr
       external memused,uppertype
       integer memused,uppertype
-      double precision s
+      integer s
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1

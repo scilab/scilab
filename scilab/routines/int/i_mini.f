@@ -9,7 +9,7 @@ c     -------------------------------
       external memused,uppertype
       integer memused,uppertype
       integer iadr,sadr
-      double precision s
+      integer s
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
