@@ -81,9 +81,13 @@ nt=size(dt,'*');x=0*ones(ma,nt)
 //
 if type(u)==1 then
    ut=u;
-   deff('[y]=u(t)',['ind=find(dt<=t)','nn=ind($)',...
-        'if (t==dt(nn)|nn==nt) then y=ut(nn),...
-         else y=ut(nn)+(t-dt(nn))/(dt(nn+1)-dt(nn))*(ut(nn+1)-ut(nn)), end']);
+   if min(size(ut))==1 then ut=matrix(ut,1,-1),end
+   deff('[y]=u(t)',['ind=find(dt<=t);nn=ind($)'
+		    'if (t==dt(nn)|nn==nt) then '
+		    '   y=ut(:,nn)'
+		    'else '
+		    '   y=ut(:,nn)+(t-dt(nn))/(dt(nn+1)-dt(nn))*(ut(:,nn+1)-ut(:,nn))'
+		    'end']);
    deff('[ydot]=%sim2(%tt,%y)','ydot=ak*%y+bk*u(%tt)');
 elseif type(u)<>15 then
   deff('[ydot]=%sim2(%tt,%y)','ydot=ak*%y+bk*u(%tt)');
