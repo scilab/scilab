@@ -4608,7 +4608,9 @@ int gset(fname,fname_len)
       Scierror(999,"%s: %s\r\n",fname,error_message);
       return 0;
     }
-    if ((strncmp(cstk(l2),"figure_style",12) !=0) && (strncmp(cstk(l2),"old_style",9) !=0 )) {
+    if ((strncmp(cstk(l2),"figure_style",12) !=0) &&
+	(strncmp(cstk(l2),"old_style",9) !=0 ) && 
+	(strncmp(cstk(l2),"current_axes",12) !=0) ) { 
       num= sciGetNumFigure (pobj);    
       C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -4718,7 +4720,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   int  i,num,v,na,id;
   double dtmp,dv; 
   char  **str, **ptr, ctmp[10];    
-  sciPointObj *psubwin, *figure;
+  sciPointObj *psubwin, *figure, *tmpobj;
   struct BCG *XGC;
  
   if (pobj != (sciPointObj *)NULL) {
@@ -4829,7 +4831,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
   else if (strncmp(marker,"current_axes", 12) == 0) 
     {
-      sciSetSelectedSubWin((sciPointObj *)sciGetPointerFromHandle(stk(*value)[0]));
+      tmpobj =(sciPointObj *)sciGetPointerFromHandle(stk(*value)[0]);
+      if (tmpobj == (sciPointObj *) NULL)
+	{strcpy(error_message,"Object is not valid");return -1;}
+      if (sciGetEntityType (tmpobj) == SCI_SUBWIN)
+	sciSetSelectedSubWin(tmpobj);
+      else
+	{strcpy(error_message,"Object is not an Axes Entity");return -1;}
     }
 	
   /************************  figure Properties *****************************/ 
