@@ -16,7 +16,7 @@
 #include "others_generators.h"
 #include <math.h>
 
-enum {MT, KISS, CLCG4, CLCG2, URAND};
+enum {MT, KISS, CLCG4, CLCG2, URAND, FSULTRA};
 
 /* the current generator : */
 static int current_gen = MT;  
@@ -30,13 +30,13 @@ unsigned long int clcg4_with_gen(void)
   return ( clcg4(current_clcg4) );
 }
 
-#define NbGenInScilab 5
+#define NbGenInScilab 6
 
 /*  pointers onto the generators func */
-unsigned long int (*gen[NbGenInScilab])() = { randmt, kiss,  clcg4_with_gen, clcg2 , urand };
+unsigned long int (*gen[NbGenInScilab])() = { randmt, kiss,  clcg4_with_gen, clcg2 , urand , fsultra};
 
 /*  names at the scilab level */
-static char *names_gen[NbGenInScilab] = { "mt",  "kiss","clcg4", "clcg2", "urand" };
+static char *names_gen[NbGenInScilab] = { "mt",  "kiss","clcg4", "clcg2", "urand", "fsultra" };
 
 /* all the generators provided integers in [0, RngMaxInt] :        */
 static
@@ -44,16 +44,16 @@ unsigned long RngMaxInt[NbGenInScilab] = { 4294967295ul,  /* mt    */
 					   4294967295ul,  /* kiss  */
 					   2147483646ul,  /* clcg4 */
 					   2147483561ul,  /* clcg2 */
-					   2147483647ul };/* urand */
-
+					   2147483647ul,  /* urand */
+					   4294967295ul}; /* fsultra*/
 /* the factors (1/(RngMaxInt+1)) to get reals in [0,1) :           */
 static
 double factor[NbGenInScilab] = { 2.3283064365386963e-10,  /* mt    */
 				 2.3283064365386963e-10,  /* kiss  */
                                  4.6566128752457969e-10,  /* clcg4 */
 		                 4.6566130595601735e-10,  /* clcg2 */
-		                 4.6566128730773926e-10}; /* urand */
-
+		                 4.6566128730773926e-10,  /* urand */
+				 2.3283064365386963e-10}; /* fsultra*/
 
 double C2F(ranf)(void)   
 {
@@ -150,6 +150,10 @@ int RandI( char* fname)
 		  get_state_urand(stk(lr));
 		  /* *stk(lr) = C2F(com).ran[0]; */ 
 		  break;
+		case(FSULTRA) : 
+		  CreateVar(2,"d",&deux,&un,&lr);
+		  get_state_fsultra(stk(lr));
+		  break;
 		};
 	      LhsVar(1) = 2;
 	      PutLhsVar();
@@ -232,9 +236,10 @@ int RandI( char* fname)
 		  {Error(999); return 0;};}
 	      break;
 	    case(CLCG2) :
+	    case(FSULTRA) :
 	      if ( Rhs != 3 ) 
 		{
-		  Scierror(999,"Rhs should be 3 for 'setsd'  option with the clcg2 generator\n\r");
+		  Scierror(999,"Rhs should be 3 for 'setsd'  option with the clcg2 or fsultra generator\n\r");
 		  return 0;
 		}
 	      GetRhsVar(2,"d",&m1,&n1,&l1);
@@ -243,8 +248,16 @@ int RandI( char* fname)
 	      GetRhsVar(3,"d",&m1,&n1,&l2);
 	      if ( m1*n1 != 1) 
 		{ Scierror(999,"third argument must be scalar\r\n"); return 0;};
-	      if (! set_state_clcg2(*stk(l1),*stk(l2))) 
-		{Error(999); return 0;};
+	      if (current_gen == CLCG2) 
+		{
+		  if (! set_state_clcg2(*stk(l1),*stk(l2))) 
+		    { Error(999); return 0;};
+		}
+	      else 
+		{
+		  if (! set_state_fsultra(*stk(l1),*stk(l2))) 
+		    { Error(999); return 0;};
+		}
 	      break;
 	    case(URAND) :
 	      if ( Rhs != 2 ) 
@@ -377,9 +390,11 @@ int RandI( char* fname)
 	    current_gen = CLCG2;
 	  else if (strcmp("urand",cstk(lsb))==0)
 	    current_gen = URAND;
+	  else if (strcmp("fsultra",cstk(lsb))==0)
+	    current_gen = FSULTRA;
 	  else
 	    {
-	      Scierror(999,"unknown generator (choose among : mt kiss clcg4 clcg2 urand) \n\r");
+	      Scierror(999,"unknown generator (choose among : mt kiss clcg4 clcg2 urand fsultra) \n\r");
 	      return 0;
 	    }
 	  LhsVar(1) = 2;

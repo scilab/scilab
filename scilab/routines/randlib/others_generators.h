@@ -22,6 +22,12 @@ unsigned long urand();
 int set_state_urand(double g);
 void get_state_urand(double g[]);
 
+/* header for scilab fsultra */
+unsigned long fsultra();
+int set_state_fsultra(double g1,double g2);
+void get_state_fsultra(double g[]);
+
+
 #endif /** SCI_OTHER_GEN   **/
 
 
