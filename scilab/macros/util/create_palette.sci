@@ -25,7 +25,7 @@ function create_palette(bidon)
     
     if stripblanks(bidon)=='all' then
       bidon=['Sources','Sinks','Branching','Non_linear','Events','Threshold',...
-	     'Others','Linear','OldBlocks','DemoBlocks'];
+	     'Others','Linear','OldBlocks','DemoBlocks','Electrical','Hydraulics'];
     else
       bidon=bidon(:)'
     end
@@ -98,7 +98,14 @@ function create_palette(bidon)
 
       elseif txt=='DemoBlocks' then
 	lisf=['BOUNCE.sci';'BOUNCEXY.sci']
-      
+	
+      elseif txt=='Electrical' then
+	lisf=['Capacitor.sci';'Ground.sci';'VVsourceAC.sci';'ConstantVoltage.sci';
+	      'Inductor.sci';'PotentialSensor.sci';'VariableResistor.sci';'CurrentSensor.sci';
+	      'Resistor.sci';'VoltageSensor.sci';'Diode.sci';'VsourceAC1.sci']
+	
+      elseif txt=='Hydraulics' then
+	lisf=['Bache.sci';'VanneReglante.sci';'PerteDP.sci';'PuitsP.sci';'SourceP.sci';]
       else
 	error('Palette '+txt+' does not exists')
       end
