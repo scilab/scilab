@@ -108,38 +108,29 @@ end
 if typeof(scs_m)<>'diagram' then error('first argument must be a scicos diagram'),end
 
 
-
 %cor_item_exec=[];
 for %Y=1:length(%scicos_menu)
-  for %R=2:size(%scicos_menu(%Y),2)
-    %kaka=%scicos_menu(%Y)(%R)
-    %koko=stripblanks(%kaka)+'_'
-    %koko=strsubst(%koko,'/','')
-    %koko=strsubst(%koko,' ','')
-    %koko=strsubst(%koko,'.','')
-    %koko=strsubst(%koko,'-','')
-    %cor_item_exec=[%cor_item_exec;[%kaka,%koko]];
-  end
+  %cor_item_exec=[%cor_item_exec,%scicos_menu(%Y)(2:$)];
 end
-
-      
-
+%cor_item_exec=%cor_item_exec';
+%R = %cor_item_exec; 
+%R= stripblanks(%R)+'_'
+%R=strsubst(%R,'/','')
+%R=strsubst(%R,' ','')
+%R=strsubst(%R,'.','')
+%R=strsubst(%R,'-','');
+%cor_item_exec=[%cor_item_exec, %R];
 
 menus=tlist('xxx')
 for %Y=1:length(%scicos_menu)
   menus(1)=[menus(1),%scicos_menu(%Y)(1)];
-  execstr(%scicos_menu(%Y)(1)+'_t=[]');
-  for %R=2:size(%scicos_menu(%Y),2)
-    execstr(%scicos_menu(%Y)(1)+'_t=['+%scicos_menu(%Y)(1)+'_t '''+%scicos_menu(%Y)(%R)+''']')
-end
-  menus($+1)=evstr(%scicos_menu(%Y)(1)+'_t');
+  menus($+1)=%scicos_menu(%Y)(2:$); 
 end
 
-%rpar=')'
 for %Y=1:length(%scicos_menu)
-%w='menus('''+%scicos_menu(%Y)(1)+''')(';
-menu_e=%scicos_menu(%Y)(1)+'_t'
-execstr(%scicos_menu(%Y)(1)+'=%w(ones('+%scicos_menu(%Y)(1)+'_t))+string(1:size('+%scicos_menu(%Y)(1)+'_t,''*''))+%rpar(ones('+%scicos_menu(%Y)(1)+'_t))')
+  %R= %scicos_menu(%Y);
+  %w='menus('''+%R(1)+''')('+ string(1:(size(%R,'*')-1)) + ')';
+  execstr(%R(1)+ '=%w;');
 end
 
 
