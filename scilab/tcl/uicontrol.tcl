@@ -27,6 +27,8 @@ set AnchorEq(left)   w;
 set AnchorEq(right)  e;
 set AnchorEq(e)      e;
 set AnchorEq(w)      w;
+set AnchorEq(top)    n;
+set AnchorEq(bottom) s;
 
 
 
@@ -43,7 +45,6 @@ proc CreateUIControl {hparent control} {
   # append the global variables and so on
 
     global Win WinIdx StyTrad;
-    
     set parent [GetRealParent $hparent $control];
     
   # Get the good counter name 
@@ -105,7 +106,7 @@ proc CreateUIControl {hparent control} {
       }
       
       #  text 
-      "text" {   
+      "text" {  
 	  set "$name\(fontunits)" "pixels";
 	  set "$name\(fontsize)" 12;
 	  set "$name\(fontname)" "helvetica";
@@ -178,11 +179,10 @@ proc CreateUIControl {hparent control} {
   
   Setmin $name 0;
   Setmax $name 1;
-  
+    
   # +++++++++++++++++
   bind $path <Configure> {ChgConfigure %W %w %h};
-  
-  
+    
   
   
   
