@@ -1617,7 +1617,8 @@ int cre_sparse_from_ptr_i(fname, lw, m, n, S, fname_len ,rep)
      unsigned long fname_len;
      integer *rep;
 {
-  double size = (double) ( (S->nel)*(S->it + 1) + (S->nel + S->m + 6)/2 );
+  double size = (double) ( (S->nel)*(S->it + 1) 
+
   integer ix1,  il, lr, lc;
   integer cx1=1;
   il = iadr(*lw);
