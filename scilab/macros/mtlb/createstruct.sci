@@ -1,12 +1,12 @@
 function  M=createstruct(index,N)
   //create a struct with field pointed to by index equal to N
-    
 if type(index)==15 then
  if size(index)==2 then
    if type(index(2))==10 then
       if type(index(1))==1 then
       //X(p,q).f = y  : index=list([p,q],f)
       Dims=list2vec(index(1));
+      if and(size(Dims)==[1 1]) then Dims=[1,Dims];end
       M=mlist(["st","dims",index(2)],int32(Dims));
       nmax=prod(Dims);
       li=list();
