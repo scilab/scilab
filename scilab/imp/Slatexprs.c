@@ -7,7 +7,7 @@
 #endif 
 #include <stdio.h>
 
-void readOneLine();
+static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen);
 
 #ifdef WIN32 
 extern void SciEnv(void);
@@ -94,12 +94,25 @@ void Sed(file,strin1,strout1,strin2,strout2,strin3,strout3,fdo)
      char strin2[],strout2[],strin3[];
 {
   FILE *fd;
+
+  static char *buff = NULL;
+  static int buflen = 512;
+  if ( buff == NULL) 
+    {
+      buff = malloc(buflen*sizeof(char));
+      if ( buff == NULL) 
+	{
+	  fprintf(stderr,"Running out of space \n");
+	  exit(1);
+	}
+    }
+
   fd=fopen(file,"r");
   if (fd != 0)
     { int stop=0;
       while ( stop != 1)
-	{  char buff[512];
-	   readOneLine (buff,&stop,fd); 
+	{  
+	   readOneLine (buff,&stop,fd,&buflen); 
 	   if (strncmp(buff,strin1,strlen(strin1))==0)
 	     fprintf(fdo,"%s\n",strout1);
 	   else
@@ -128,13 +141,35 @@ void Sed(file,strin1,strout1,strin2,strout2,strin3,strout3,fdo)
   lit une ligne dans fd et la stocke dans buff
 ---------------------------------------------------*/
 
-void readOneLine(buff,stop,fd)
-     char buff[];
-     int *stop;
-     FILE *fd;
-{ int i ,c ;
-  for ( i = 0 ;  (c =getc(fd)) !=  '\n' && c != EOF ; i++) buff[i]= c ;
-  buff[i]='\n';buff[i+1]='\0';
+static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen)
+{ 
+  int i ,c ;
+  for ( i = 0 ;  (c =getc(fd)) !=  '\n' && c != EOF ; i++) 
+    {
+      if ( i == *buflen ) 
+	{
+	  *buflen += 512;
+	  buff == realloc(buff,*buflen*sizeof(char));
+	  if ( buff == NULL) 
+	    {
+	      fprintf(stderr,"Running out of space \n");
+	      exit(1);
+	    }
+	}
+      buff[i]= c ;
+    }
+  if ( i+1 >= *buflen ) 
+    {
+      *buflen += 512;
+      buff == realloc(buff,*buflen*sizeof(char));
+      if ( buff == NULL) 
+	{
+	  fprintf(stderr,"Running out of space \n");
+	  exit(1);
+	}
+    }
+  buff[i]='\n';
+  buff[i+1]='\0';
   if ( c == EOF) {*stop = 1;}
 }
 

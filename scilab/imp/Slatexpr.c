@@ -16,7 +16,7 @@ char *getenv();
 #include "../routines/machine.h"
 
 static int Sed __PARAMS((int,char *,FILE *,char *,char *,char *,char *,char *,char *));
-static void readOneLine __PARAMS((char *buff,int *stop,FILE *fd));
+static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen);
 static void FileNameChange __PARAMS((char *filein,char *fileout,char *,char *));
 static  void dos2win32 __PARAMS((char *filename,char *filename1));
 int ScilabPsToTeX __PARAMS((char orientation,char *filenamein,char *filenameout,double xs,double ys));
@@ -331,12 +331,25 @@ static int Sed(flag,file,fileo,strin1,strout1,strin2,strout2,strin3,strout3)
      int flag;
 {
   FILE *fd;
+
+  static char *buff = NULL;
+  static int buflen = 512;
+  if ( buff == NULL) 
+    {
+      buff = malloc(buflen*sizeof(char));
+      if ( buff == NULL) 
+	{
+	  fprintf(stderr,"Running out of space \n");
+	  exit(1);
+	}
+    }
+
   fd=fopen(file,"r");
   if (fd != 0)
     { int stop=0;
       while ( stop != 1)
-	{  char buff[512];
-	   readOneLine (buff,&stop,fd); 
+	{ 
+	   readOneLine (buff,&stop,fd,&buflen); 
 	   if ( flag == 1 ) 
 	     {
 	       if ( strncmp(buff,"%!PS-Adobe-2.0 EPSF-2.0",
@@ -375,14 +388,34 @@ static int Sed(flag,file,fileo,strin1,strout1,strin2,strout2,strin3,strout3)
   lit une ligne dans fd et la stocke dans buff
 ---------------------------------------------------*/
 
-static void readOneLine(buff,stop,fd)
-     char buff[];
-     int *stop;
-     FILE *fd;
-{ int i ,c ;
-  for ( i = 0 ;  (c =getc(fd)) !=  '\n' && c != EOF ; i++) buff[i]= c ;
-  buff[i]='\n';buff[i+1]='\0';
+static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen)
+{ 
+  int i ,c ;
+  for ( i = 0 ;  (c =getc(fd)) !=  '\n' && c != EOF ; i++) 
+    {
+      if ( i == *buflen ) 
+	{
+	  *buflen += 512;
+	  buff == realloc(buff,*buflen*sizeof(char));
+	  if ( buff == NULL) 
+	    {
+	      fprintf(stderr,"Running out of space \n");
+	      exit(1);
+	    }
+	}
+      buff[i]= c ;
+    }
+  if ( i+1 >= *buflen ) 
+    {
+      *buflen += 512;
+      buff == realloc(buff,*buflen*sizeof(char));
+      if ( buff == NULL) 
+	{
+	  fprintf(stderr,"Running out of space \n");
+	  exit(1);
+	}
+    }
+  buff[i]='\n';
+  buff[i+1]='\0';
   if ( c == EOF) {*stop = 1;}
 }
-
-

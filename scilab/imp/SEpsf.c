@@ -1,4 +1,5 @@
 /* Copyright ENPC/Chancelier Jean-Philippe */
+
 #ifdef __STDC__
 # include <stdlib.h>
 # include <stdarg.h>
@@ -17,8 +18,8 @@ char *getenv();
 static int Sed __PARAMS((int,char *,FILE *,char *,char *,char *,char *,char *,char *));
 int ScilabPsToEps __PARAMS((char orientation,char *filein,char *fileout));
 static  void dos2win32 __PARAMS((char *filename,char *filename1));
-static void readOneLine __PARAMS((char *buff,int *stop,FILE *fd));
 static void ConvertName __PARAMS((char *filein,char *fileout));
+static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen);
 
 /**************************************************
  * SEpsf  Usage : BEpsf [-orientation] filename.ps 
@@ -31,19 +32,19 @@ char * UsageStr[]={
   "\torientation : p[ortrait] or l[andscape]  \n",
   "fin"};
 
-static char file1[256],file2[256];
+#define PATH_MAX 1024
 
-int main(argc, argv)
-     int argc;
-     char *argv[];
+static char file1[PATH_MAX],file2[PATH_MAX];
+
+int main(int argc,char *argv[])
 {
   char orientation='p';
   if (argc >= 4 || argc <= 1) 
     { int i=0;
-      fprintf(stderr,"Usage  : %s [-orientation] filename.ps \n",argv[0]);
-      while (strcmp(UsageStr[i],"fin")!=0)
-	  fprintf(stderr,"%s",UsageStr[i]),i++;
-      return(1);
+    fprintf(stderr,"Usage  : %s [-orientation] filename.ps \n",argv[0]);
+    while (strcmp(UsageStr[i],"fin")!=0)
+      fprintf(stderr,"%s",UsageStr[i]),i++;
+    return(1);
     }
   switch ( argc ) 
     {
@@ -63,7 +64,7 @@ int main(argc, argv)
       else if ( strncmp( argv[1] ,"-l",2) == 0) 
 	orientation = 'l';
       else 
-       fprintf(stderr,"Invalid first argument %s\n",argv[1]);
+	fprintf(stderr,"Invalid first argument %s\n",argv[1]);
       break;
     }
   /** converts file1 format into file2 **/
@@ -96,8 +97,7 @@ void sciprint(va_alist) va_dcl
 }
 #endif 
 
-static  void dos2win32(filename,filename1)
-char *filename, *filename1;
+static  void dos2win32(char *filename,char *filename1)
 {
 #ifdef CVT_PATH_BEG
   if ( filename[1] == ':' ) 
@@ -117,17 +117,16 @@ char *filename, *filename1;
 }
 
 /** file wmprint.c in wsci ( should be gathered in a unique 
-  lib ) **/
+    lib ) **/
 
 /**************************************************
  * Converts a scilab Eps file to an Epsf file 
  * by adding a preamble 
  **************************************************/
 
-static char entete[256];
+static char entete[PATH_MAX];
 
-int ScilabPsToEps(orientation,filein,fileout)
-     char orientation,*filein, *fileout;
+int ScilabPsToEps(char orientation,char *filein,char *fileout)
 {
   int flag = 0,rep;
   FILE *fo;
@@ -163,13 +162,13 @@ int ScilabPsToEps(orientation,filein,fileout)
 
   if ( orientation == 'p' )
     rep=Sed(1,filein,fo,"[0.5 10 div 0 0 0.5 10 div neg  0 2120 10 div] concat",
-	"[0.5 5 div 0 0 0.5 5 div neg  0 3120 5 div] concat",
-	(char*) 0,(char *)0,(char*) 0,(char *)0);
+	    "[0.5 5 div 0 0 0.5 5 div neg  0 3120 5 div] concat",
+	    (char*) 0,(char *)0,(char*) 0,(char *)0);
   else {
-      fprintf(fo,"1.3 1.3  scale \n");
-      rep=Sed(1,filein,fo,"[0.5 10 div 0 0 0.5 10 div neg  0 2120 10 div] concat",
-	"90 rotate 10 640 neg translate [0.5 5 div 0 0 0.5 5 div neg  0 3120 5 div] concat",
-	(char*) 0,(char *)0,(char*) 0,(char *)0);
+    fprintf(fo,"1.3 1.3  scale \n");
+    rep=Sed(1,filein,fo,"[0.5 10 div 0 0 0.5 10 div neg  0 2120 10 div] concat",
+	    "90 rotate 10 640 neg translate [0.5 5 div 0 0 0.5 5 div neg  0 3120 5 div] concat",
+	    (char*) 0,(char *)0,(char*) 0,(char *)0);
   }
   fclose(fo);
 
@@ -196,8 +195,7 @@ int ScilabPsToEps(orientation,filein,fileout)
 }
 
 
-static void ConvertName(filein,fileout)
-     char *filein,*fileout;
+static void ConvertName(char *filein,char *fileout)
 {
   char *p=filein,*p1;
   p1=strchr(p,'/');
@@ -214,7 +212,7 @@ static void ConvertName(filein,fileout)
       *p = '.';
     }
   else 
-      sprintf(fileout,"%s.eps",filein);
+    sprintf(fileout,"%s.eps",filein);
   /** sciprint("[%s]=>[%s]\r\n",filein,fileout); **/
 }
 
@@ -223,44 +221,54 @@ static void ConvertName(filein,fileout)
  * copies file to fileo performing some substitutions 
  **************************************************/
 
-static int Sed(flag,file,fileo,strin1,strout1,strin2,strout2,strin3,strout3)
-     char file[],strin1[],strout1[],strout3[];
-     char strin2[],strout2[],strin3[];
-     FILE *fileo;
-     int flag;
+static int Sed(int flag,char *file,FILE *fileo,
+	       char *strin1,char *strout1,char *strin2,
+	       char *strout2,char *strin3,char *strout3)
 {
   FILE *fd;
+
+  static char *buff = NULL;
+  static int buflen = 512;
+  if ( buff == NULL) 
+    {
+      buff = malloc(buflen*sizeof(char));
+      if ( buff == NULL) 
+	{
+	  fprintf(stderr,"Running out of space \n");
+	  exit(1);
+	}
+    }
   fd=fopen(file,"r");
   if (fd != 0)
     { int stop=0;
-      while ( stop != 1)
-	{  char buff[512];
-	   readOneLine (buff,&stop,fd); 
-	   if ( flag == 1 ) 
-	     {
-	       if ( strncmp(buff,"%!PS-Adobe-2.0 EPSF-2.0",
-		    strlen("%!PS-Adobe-2.0 EPSF-2.0"))== 0)
-		 {
-		   fclose(fd);
-		   return(1);
-		 }
-	     }
-	   if ( strin1 != (char *) 0 && strncmp(buff,strin1,strlen(strin1))==0)
-	     fprintf(fileo,"%s\n",strout1);
-	   else
-	     {
-	       if (  strin2 != (char *) 0 && strncmp(buff,strin2,strlen(strin2))==0)
-		 fprintf(fileo,"%s\n",strout2);
-	       else 
-		 {
-		   if ( strin3 != (char *) 0 && strncmp(buff,strin3,strlen(strin3))==0)
-		     fprintf(fileo,"%s\n",strout3);
-		   else
-		     fprintf(fileo,"%s",buff);
-		 }
-	     }
-	 }
-      fclose(fd);
+    while ( stop != 1)
+      {  
+	readOneLine (buff,&stop,fd,&buflen); 
+	if ( flag == 1 ) 
+	  {
+	    if ( strncmp(buff,"%!PS-Adobe-2.0 EPSF-2.0",
+			 strlen("%!PS-Adobe-2.0 EPSF-2.0"))== 0)
+	      {
+		fclose(fd);
+		return(1);
+	      }
+	  }
+	if ( strin1 != (char *) 0 && strncmp(buff,strin1,strlen(strin1))==0)
+	  fprintf(fileo,"%s\n",strout1);
+	else
+	  {
+	    if (  strin2 != (char *) 0 && strncmp(buff,strin2,strlen(strin2))==0)
+	      fprintf(fileo,"%s\n",strout2);
+	    else 
+	      {
+		if ( strin3 != (char *) 0 && strncmp(buff,strin3,strlen(strin3))==0)
+		  fprintf(fileo,"%s\n",strout3);
+		else
+		  fprintf(fileo,"%s",buff);
+	      }
+	  }
+      }
+    fclose(fd);
     }
   else 
     {
@@ -272,14 +280,36 @@ static int Sed(flag,file,fileo,strin1,strout1,strin2,strout2,strin3,strout3)
 
 /*-----------------------------------------------
   lit une ligne dans fd et la stocke dans buff
----------------------------------------------------*/
+  ---------------------------------------------------*/
 
-static void readOneLine(buff,stop,fd)
-     char buff[];
-     int *stop;
-     FILE *fd;
-{ int i ,c ;
-  for ( i = 0 ;  (c =getc(fd)) !=  '\n' && c != EOF ; i++) buff[i]= c ;
-  buff[i]='\n';buff[i+1]='\0';
+static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen)
+{ 
+  int i ,c ;
+  for ( i = 0 ;  (c =getc(fd)) !=  '\n' && c != EOF ; i++) 
+    {
+      if ( i == *buflen ) 
+	{
+	  *buflen += 512;
+	  buff == realloc(buff,*buflen*sizeof(char));
+	  if ( buff == NULL) 
+	    {
+	      fprintf(stderr,"Running out of space \n");
+	      exit(1);
+	    }
+	}
+      buff[i]= c ;
+    }
+  if ( i+1 >= *buflen ) 
+    {
+      *buflen += 512;
+      buff == realloc(buff,*buflen*sizeof(char));
+      if ( buff == NULL) 
+	{
+	  fprintf(stderr,"Running out of space \n");
+	  exit(1);
+	}
+    }
+  buff[i]='\n';
+  buff[i+1]='\0';
   if ( c == EOF) {*stop = 1;}
 }
