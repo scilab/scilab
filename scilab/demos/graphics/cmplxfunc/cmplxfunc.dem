@@ -1,7 +1,8 @@
 // demo pour visualisation des fonctions elementaires
 // complexe - Bruno Pincon 
+path=get_absolute_file_path('cmplxfunc.dem');
 
-getf("SCI/demos/cmplxfunc/MacCmplx.sci")  //  les macros utilisees ici
+getf(path+"MacCmplx.sci")  //  les macros utilisees ici
 
 my_win = max(winsid())+1;
 
