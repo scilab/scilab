@@ -33,7 +33,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>color</VERB> returns the color id corresponding to its argument:
+    <P><VERB>color</VERB> returns the color id corresponding to its argument:</P>
     <ITEMIZE>
       <ITEM>
         <SP> <VERB>name</VERB> must be the name of a known color (see <LINK>color_list</LINK>). </SP>
@@ -43,11 +43,12 @@
         corresponding to colors components red, green and blue. As usual 0 means no intensity and 
         255 means all the intensity of the color. </SP>
       </ITEM>
-    </ITEMIZE></P>
+    </ITEMIZE>
     <P> If the requested color does not exist in the current colormap it is added to the
     colormap.</P>
     <P> This function can be used to specify the foreground or background colors when plotting. 
     </P>
+  </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
 x=linspace(-2*%pi,2*%pi,100)';
@@ -60,7 +61,6 @@ p1.foreground=color("purple"); p2.foreground=color("navy blue");
 p1.foreground=color(255,128,128);
  ]]>
   </EXAMPLE>
-  </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>colormap</LINK>

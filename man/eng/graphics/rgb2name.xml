@@ -37,10 +37,10 @@
     given by its argument. A vector of color names can also be returned if the color has more than 1 name.
     <VERB>r</VERB>, <VERB>g</VERB> and <VERB>b</VERB> must be integers between 0 and 255
     corresponding to colors components red, green and blue. As usual 0 means no intensity and 
-    255 means all the intensity of the color. RGB values can also be given by a vector <VERB>[r,g,b]</VERB>.
-    </P>
+    255 means all the intensity of the color. RGB values can also be given by a vector <VERB>[r,g,b]</VERB>.</P>
     <P> If no color is found <VERB>[]</VERB> is returned.</P>
     <P> The list of all known colors is given by <LINK>color_list</LINK>.</P>
+  </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
 rgb2name(255,128,128)
@@ -50,7 +50,6 @@ cmap=get(gcf(),"color_map");
 rgb2name(cmap(10,:)*255)
  ]]>
   </EXAMPLE>
-  </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>color</LINK>

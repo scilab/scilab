@@ -30,6 +30,7 @@
     find the graphics object corresponding to a graphics handle in the graphics window. By default the graphics
     entity twinkles 5 times, but you can change this by using optional argument <VERB>n</VERB>.
     </P>
+  </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
 x=linspace(-2*%pi,2*%pi,100)';
@@ -43,7 +44,6 @@ twinkle(p2,10)
 twinkle(gca())
  ]]>
   </EXAMPLE>
-  </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>graphics_entities</LINK>

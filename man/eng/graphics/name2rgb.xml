@@ -33,13 +33,13 @@
     </P>
     <P> If no color is found <VERB>[]</VERB> is returned.</P>
     <P> The list of all known colors is given by <LINK>color_list</LINK>.</P>
+  </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
 rgb=name2rgb("gold")
 rgb2name(rgb)
  ]]>
   </EXAMPLE>
-  </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>color</LINK>
