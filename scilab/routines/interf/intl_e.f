@@ -78,6 +78,7 @@ c
 c     go ahead along the path
       call followpath(top1,top2,il1ir,vol1,il2ir,vol2,istk(ilind),
      $     icount,info,lw)
+      if(err.gt.0) return
       if(vol2.eq.0) then
 c     empty field found
          err=istk(ilind-1+icount)
