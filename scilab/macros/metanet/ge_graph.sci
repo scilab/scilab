@@ -67,6 +67,11 @@ function r=ge_graph(kmen,win)
     old=xget('window');xset('window',win);seteventhandler("")  
     ge_do_export()
     seteventhandler("ge_eventhandler") ;xset('window',old)
+  case "Information" then
+    old=xget('window');xset('window',win);seteventhandler("")  
+    ge_do_information()
+    seteventhandler("ge_eventhandler") ;xset('window',old)
+  case "Information" then
     
   case "Quit" then
     old=xget('window');xset('window',win);seteventhandler("")  
