@@ -93,12 +93,8 @@ c     error control
       if(istk(il).eq.11.or.istk(il).eq.13) goto 15
 c     opening file
       call v2cunit(top,'rb',lunit,opened,ierr)
-      if(ierr.lt.0) then
-         call error(244)
-         return
-      elseif(ierr.gt.0) then
-         return
-      endif
+c     exec accepte les fichiers ouverts par C ou Fortran
+      if(ierr.gt.0)  return
       top=top-1
 
       pstk(pt)=rio
