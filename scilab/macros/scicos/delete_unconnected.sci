@@ -3,6 +3,7 @@ function scs_m=delete_unconnected(scs_m);
 //may be used before compilation
 // Copyright INRIA
 n=lstsize(scs_m.objs)
+if n==0 then return,end
 DEL=[];
 DELL=[]
 finish=%f

@@ -781,8 +781,13 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     //
     if ~typ_s(i)&ll.evtout<>[] then  
       ll11=ll.firing
-      prt=find(ll11>=zeros(ll11))
+      if ll11<>[] then
+	prt=find(ll11>=zeros(ll11))
+      else
+	prt=[]
+      end
       nprt=prod(size(prt))
+	
       initexe=[initexe;..
 	       [i*ones(nprt,1),matrix(prt,nprt,1),matrix(ll11(prt),nprt,1)]];
     end
