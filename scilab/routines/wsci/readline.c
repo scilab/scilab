@@ -214,6 +214,7 @@ struct hist
     struct hist *next;
   };
 
+static struct hist *FirstInHistory = NULL;
 static struct hist *history = NULL;	/* no history yet */
 static struct hist *cur_entry = NULL;
 
@@ -842,8 +843,73 @@ copy_line (line)
   cur_pos = max_pos = strlen (cur_line);
 }
 
-/* add line to the history */
+#ifdef USE_CONSOLE
+#else
+void HistoryFunction _PARAMS((char *fname))
+{
+  static int l1, m1, n1;	
+  int indice=0;
+  struct hist *CurrentEntry=FirstInHistory;	
+  
+  if (Rhs == 0) /* aucun parametre --> affichage de la liste de l'historique */
+    {
+    	if (CurrentEntry)
+        {
+  		/* Parcours la liste */
+  		while(CurrentEntry->next)
+  		{
+  			sciprint("%d : %s\n",indice,CurrentEntry->line);
+  			CurrentEntry=CurrentEntry->next;
+  			indice++;
+  		}
+  	
+     	}	
+  	else
+    	{
+  		sciprint("No history\n");
+    	}
+     }
+  else
+  {
+  	/* Affichage d'une ligne en particulier */
+  	int GotoLine=0;	
+        int IndiceMax=0;	
+        
+  	while(CurrentEntry->next)
+  	{
+  		CurrentEntry=CurrentEntry->next;
+  		IndiceMax++;
+  	}
+  	CurrentEntry=FirstInHistory;
+  
+  	CheckRhs(1,1);
+  	CheckLhs(1,1);
+  	GetRhsVar(1,"i",&m1,&n1,&l1);
+  	GotoLine=*istk(l1);
+  	LhsVar(1)=0;
+  	
+  	if ( (GotoLine>=0) && (GotoLine<=IndiceMax) )
+  	{
+  	  	while  ( CurrentEntry->next )
+  		{	
+  			if ( indice == GotoLine ) break;
+  			CurrentEntry=CurrentEntry->next;
+  			indice++;
+  		}
+  	
+  		write_scilab(CurrentEntry->line);
+  	}
+  	else
+  	{
+  		sciprint("Error with param. %d not in [0,%d]\n",GotoLine,IndiceMax);
+  	}
+  }
+  
+}
+#endif
 
+/* add line to the history */
+/* Modification Allan CORNET Novembre 2003 */
 #ifdef USE_CONSOLE
 void 
 add_history_nw (char *line)
@@ -853,6 +919,15 @@ add_history_win (char *line)
 #endif
 {
   struct hist *entry;
+  /* Supprime les lignes identiques par rapport à la precedente */
+  if (history)
+  {
+  	if ( strcmp(history->line,line)==0 )
+  	{
+  		return;
+  	}
+  } 
+  
   entry = (struct hist *) alloc ((unsigned long) sizeof (struct hist), "history");
   entry->line = alloc ((unsigned long) (strlen (line) + 1), "history");
   strcpy (entry->line, line);
@@ -863,6 +938,7 @@ add_history_win (char *line)
     {
       history->next = entry;
     }
+   else  FirstInHistory=entry;
   history = entry;
 }
 
