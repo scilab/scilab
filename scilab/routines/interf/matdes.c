@@ -5084,9 +5084,12 @@ int gset(fname,fname_len)
       if (t2<0) {
 	Scierror(999,"%s: unknown property name '%s' \r\n",fname,cstk(l2));
 	return 0;} 
-      if (VarType(2) != t2) { /* F.Leray MODIFICATION ICI*/
+      if (VarType(2) != t2)
+		  if(strncmp(cstk(l2),"current_figure",14) != 0){  
+			  /* F.Leray : special unique case here set("current_figure", HANDLE);*/
+			  /* HANDLE type is 9 */
 	Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
-	return 0;} 
+	return 0;}
 
       if ( (VarType(2) == 1) )   {GetRhsVar(2,"d",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 9) )   {GetRhsVar(2,"h",&numrow3,&numcol3,&l3); }
