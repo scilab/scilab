@@ -32,8 +32,8 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2005/01/08 21:19:21 $
- *  $Revision: 1.3 $
+ *  $Date: 2005/01/08 21:21:35 $
+ *  $Revision: 1.4 $
  */
 
 
@@ -241,7 +241,7 @@
  *      option should be turned off.
  */
 #ifdef WIN32
-#undef delete
+#undef DELETE
 #endif
 /* Begin options. */
 #define  REAL                           YES
