@@ -16,8 +16,8 @@
 
 extern int C2F(intlapack)  __PARAMS((void));
 
-extern int C2F(complexify)__PARAMS((int *num));
-extern int C2F(issymmetric)__PARAMS((int *num));
+extern int C2F(complexify)  __PARAMS((int *num));
+extern int C2F(issymmetric)  __PARAMS((int *num));
 
 int intqr(fname)
      char *fname;
