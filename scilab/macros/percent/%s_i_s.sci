@@ -11,6 +11,12 @@ if rhs==3&(type(index)==10|type(index)==15) then
     M(index)=N
   else
     M=createstruct(index,N)
+
+  end
+  if index($)=='entries' then
+    // change struct to cell
+    f=getfield(1,M);f(1)='ce'
+    setfield(1,f,M)
   end
   return
 end
