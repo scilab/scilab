@@ -8,8 +8,8 @@ ZTERM_CFLAGS= `pkg-config libzvt-2.0 --cflags ` -DHAS_I18N
 VTE_LDFLAGS= `pkg-config vte --cflags --libs` 
 VTE_CFLAGS=  `pkg-config vte --cflags` 
 
-TERM_NAME=vte
-LDFLAGS=$(VTE_LDFLAGS)
+TERM_NAME=@TERM_NAME@
+LDFLAGS=$(@TERM_LDFLAGS@)
 
 all	::  ../../bin/zterm 
 
