@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.69 $)dnl
+AC_REVISION($Revision: 1.70 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1617,7 +1617,8 @@ if test "$with_gtk2" = yes; then
     AC_DEFINE(WITH_GTK)
     GUILIB='gtksci'
     # GZVT='gzvt2' dose not work: gtk2 bug with plugged menus
-    GZVT='gzvt2.1'
+    # gzvt2 works again with a gtk patch 
+    GZVT='gzvt2'
     SCILABSCRIPT=scilab-gtk.g
     MENUSOBJS=GOBJS
     PERIFILE=periGtk.o
