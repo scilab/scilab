@@ -96,7 +96,6 @@ c     get memory for the result
       endif
 c     perform extraction
       call genextrac1(it2,mi,istk(ilr),istk(l2),istk(lr))
-
  81   continue
 c     set output sizes
       if (m2.eq.1.and.n2.eq.1.and.m1.gt.0) then
@@ -116,8 +115,8 @@ c     form resulting variable
       istk(il1+3)=it2
       if(lr.ne.l1) then
          call gencopy(it2,mi,istk(lr),1,istk(l1),1)
-         lstk(top+1)=sadr(l1+memused(it2,mi))
       endif
+      lstk(top+1)=sadr(l1+memused(it2,mi))
       go to 999
 c     
 c     arg3(arg1,arg2)
