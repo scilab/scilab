@@ -30,13 +30,15 @@ C     loop on blocks
       ntvec=0
       do 5 kfun=1,nblk
          flag=5
-         call callf(kfun,ntvec,funptr,funtyp,told,x(xptr(nblk+1))
-     $        ,x,x,xptr,z,zptr,iz,
-     $        izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk,
-     $        outptr,outlnk,lnkptr,outtb,flag) 
-         if(flag.lt.0.and.ierr.eq.0) then
-            ierr=5-flag
-            kfune=kfun
+         if (funtyp(kfun).ge.0) then
+            call callf(kfun,ntvec,funptr,funtyp,told,x(xptr(nblk+1))
+     $           ,x,x,xptr,z,zptr,iz,
+     $           izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk,
+     $           outptr,outlnk,lnkptr,outtb,flag) 
+            if(flag.lt.0.and.ierr.eq.0) then
+               ierr=5-flag
+               kfune=kfun
+            endif
          endif
  5    continue
       if(ierr.ne.0) then

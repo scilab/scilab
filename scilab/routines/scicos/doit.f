@@ -73,14 +73,14 @@ c
 c     .     Initialize tvec
          ntvec=clkptr(kfun+1)-clkptr(kfun)
          if(ntvec.gt.0) then
-            if(funtyp(kfun).eq.-1)  then
-               if (ntvec.eq.2) then
+            if(funtyp(kfun).lt.0)  then
+               if(funtyp(kfun).eq.-1)  then
                   if (outtb(lnkptr(inplnk(inpptr(kfun)))).le.0) then
                      ntvec=2
                   else
                      ntvec=1
                   endif
-               else
+               elseif (funtyp(kfun).eq.-2)  then
                   ntvec=max(min(int(outtb(
      $                 lnkptr(inplnk(inpptr(kfun))))),
      $                 ntvec),1)
@@ -168,15 +168,15 @@ c
 c     
          ntvec=clkptr(kfun+1)-clkptr(kfun)
          if(ntvec.gt.0) then
-            if(funtyp(kfun).eq.-1) then
+            if(funtyp(kfun).lt.0) then
 c     
-               if (ntvec.eq.2) then
+               if (funtyp(kfun).eq.-1) then
                   if (outtb(lnkptr(inplnk(inpptr(kfun)))).le.0) then
                      ntvec=2
                   else
                      ntvec=1
                   endif
-               else
+               elseif (funtyp(kfun).eq.-2) then
                   ntvec=max(min(int(outtb(
      $                 lnkptr(inplnk(inpptr(kfun))))),
      $                 ntvec),1)
@@ -295,7 +295,7 @@ c
 c     .     Initialize tvec
          ntvec=clkptr(kfun+1)-clkptr(kfun)
          if(ntvec.gt.0) then
-            if(funtyp(kfun).ne.-1) then
+            if(funtyp(kfun).ge.0) then
                call dset(ntvec,told-1.0d0,tvec,1)
 c     
                flag=3
@@ -324,13 +324,13 @@ C     !                 event conflict
                endif
 
             else
-               if (ntvec.eq.2) then
+               if (funtyp(kfun).eq.-1) then
                   if (outtb(lnkptr(inplnk(inpptr(kfun)))).le.0) then
                      ntvec=2
                   else
                      ntvec=1
                   endif
-               else
+               elseif (funtyp(kfun).eq.-2) then
                   ntvec=max(min(int(outtb(
      $                 lnkptr(inplnk(inpptr(kfun))))),
      $                 ntvec),1)
@@ -475,7 +475,7 @@ c
 c     .     Initialize tvec
          ntvec=clkptr(kfun+1)-clkptr(kfun)
          if(ntvec.gt.0) then
-            if(funtyp(kfun).ne.-1) then
+            if (funtyp(kfun).ge.0) then
                call dset(ntvec,told-1.0d0,tvec,1)
 c     
                flag=3
@@ -504,13 +504,13 @@ C     !                 event conflict
                endif
 
             else
-               if (ntvec.eq.2) then
+               if (funtyp(kfun).eq.-1) then
                   if (outtb(lnkptr(inplnk(inpptr(kfun)))).le.0) then
                      ntvec=2
                   else
                      ntvec=1
                   endif
-               else
+               elseif (funtyp(kfun).eq.-2) then
                   ntvec=max(min(int(outtb(
      $                 lnkptr(inplnk(inpptr(kfun))))),
      $                 ntvec),1)

@@ -32,14 +32,16 @@ C     loop on blocks
       call dset(nout,0.0d0,outt,1)
       nclock = 0
       do 5 kfun=1,nblk
-         flag=4
-         call callf(kfun,nclock,funptr,funtyp,told,x(xptr(nblk+1))
-     $        ,x,x,xptr,z,zptr,iz,
-     $        izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk,
-     $        outptr,outlnk,lnkptr,outtb,flag) 
-         if(flag.lt.0.and.ierr.eq.0) then
-            ierr=5-flag
-            kfune=kfun
+         if (funtyp(kfun).ge.0) then
+            flag=4
+            call callf(kfun,nclock,funptr,funtyp,told,x(xptr(nblk+1))
+     $           ,x,x,xptr,z,zptr,iz,
+     $           izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk,
+     $           outptr,outlnk,lnkptr,outtb,flag) 
+            if(flag.lt.0.and.ierr.eq.0) then
+               ierr=5-flag
+               kfune=kfun
+            endif
          endif
  5    continue
       if(ierr.ne.0) then
@@ -55,14 +57,16 @@ C     initialization (flag 6)
          do 10 jj=1,ncord
             kfun=cord(jj)
             flag=6
-            call callf(kfun,nclock,funptr,funtyp,told,
-     $           x(xptr(nblk+1)),x,x,xptr,z,
-     $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
-     $           ntvec,inpptr,inplnk
-     $           ,outptr,outlnk,lnkptr,outtb,flag) 
-            if (flag .lt. 0) then
-               ierr = 5 - flag
-               return
+            if (funtyp(kfun).ge.0) then
+               call callf(kfun,nclock,funptr,funtyp,told,
+     $              x(xptr(nblk+1)),x,x,xptr,z,
+     $              zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
+     $              ntvec,inpptr,inplnk
+     $              ,outptr,outlnk,lnkptr,outtb,flag) 
+               if (flag .lt. 0) then
+                  ierr = 5 - flag
+                  return
+               endif
             endif
  10      continue
       endif
@@ -74,15 +78,16 @@ c
 C     loop on blocks
          do 11 kfun=1,nblk
             flag=6
-            call callf(kfun,0,funptr,funtyp,told,x(xptr(nblk+1)),
-     $           x,w,xptr,z,
-     $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
-     $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $           outtb,flag) 
-            if(flag.lt.0) then
-               ierr=5-flag
-
-               return
+            if (funtyp(kfun).ge.0) then
+               call callf(kfun,0,funptr,funtyp,told,x(xptr(nblk+1)),
+     $              x,w,xptr,z,
+     $              zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
+     $              ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
+     $              outtb,flag) 
+               if(flag.lt.0) then
+                  ierr=5-flag
+                  return
+               endif
             endif
  11      continue
 c
@@ -93,13 +98,15 @@ c
             do 12 jj=1,ncord
                kfun=cord(jj)
                flag=6
-               call callf(kfun,nclock,funptr,funtyp,told,
-     $              x(xptr(nblk+1)),x,x,xptr,z,zptr
-     $              ,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr
-     $              ,inplnk,outptr,outlnk,lnkptr,outtb,flag) 
-               if (flag .lt. 0) then
-                  ierr = 5 - flag
-                  return
+               if (funtyp(kfun).ge.0) then
+                  call callf(kfun,nclock,funptr,funtyp,told,
+     $                 x(xptr(nblk+1)),x,x,xptr,z,zptr
+     $                 ,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr
+     $                 ,inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+                  if (flag .lt. 0) then
+                     ierr = 5 - flag
+                     return
+                  endif
                endif
  12         continue
          endif

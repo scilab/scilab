@@ -106,16 +106,17 @@ C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,residual,xptr,z,zptr,iz,izptr,
   nin=inpptr[kf+1]-inpptr[kf]; /* number of input ports */
   nout=outptr[kf+1]-outptr[kf];/* number of output ports */
   switch (funtype) {
-  case -1 :
+ /* case -2:
+  case -1 :*/
     /* special synchro blocks */
-    in=0;
+   /*  in=0;
     lprt=inplnk[inpptr[kf]-1+in];
     args[in]=&(outtb[lnkptr[lprt-1]-1]);
     sz[in]=lnkptr[lprt]-lnkptr[lprt-1];
     loc3 = (ScicosFm1) loc;
     (*loc3)(flag,nclock,ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
 	    &(ipar[ipptr[kf]-1]),&nipar,(double *)args[0],&sz[0]);
-    break;   
+    break;  */  
   case 1 :			
     /* one entry for each input or output */
     for (in = 0 ; in < nin ; in++) 
