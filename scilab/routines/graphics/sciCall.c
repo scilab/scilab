@@ -33,8 +33,11 @@ void Objrect (x,y,width,height,fillflag,fillcolor,n,hdl,flagstring)
 		    (psubwin ,*x,*y,*height, *width, 0, 0,fillflag, fillcolor ,n,flagstring));
      
    *hdl=sciGetHandle(sciGetCurrentObj ()); 
-   if (sciGetSurface(psubwin) != (sciPointObj *) NULL) Merge3d(psubwin);
-   sciDrawObj(sciGetCurrentObj ());
+   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
+     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+     sciDrawObj(sciGetCurrentFigure ());}
+   else
+     sciDrawObj(sciGetCurrentObj ());
    
 }
 
@@ -92,8 +95,11 @@ void Objpoly (x,y,n,closed,mark,hdl)
       sciSetForeground (pobj, sciGetForeground (psubwin));
      }
   *hdl=sciGetHandle(pobj); 
-  if (sciGetSurface(psubwin) != (sciPointObj *) NULL) Merge3d(psubwin);
-  sciDrawObj(pobj);
+  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
+     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+     sciDrawObj(sciGetCurrentFigure ());}
+   else
+     sciDrawObj(pobj);
  
 }
 
@@ -103,25 +109,28 @@ void Objpoly (x,y,n,closed,mark,hdl)
  *-----------------------------------------------*/
 
 void Objfpoly (x,y,n,style,hdl)
-    integer n,style;
-    double *x,*y;
-    long * hdl;
+     integer n,style;
+     double *x,*y;
+     long * hdl;
 { 
   long hdltab[2];
   sciPointObj *psubwin;
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   
-    sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,1,n,1,5)); 
-    sciSetForeground (sciGetCurrentObj(), abs(style));
-    hdltab[0]=sciGetHandle(sciGetCurrentObj ()); 
+  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,1,n,1,5)); 
+  sciSetForeground (sciGetCurrentObj(), abs(style));
+  hdltab[0]=sciGetHandle(sciGetCurrentObj ()); 
  
-    if (style > 0) {
-      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,1,n,1,0)); 
-      hdltab[1]=sciGetHandle(sciGetCurrentObj ()); 
-      sciSetCurrentObj(ConstructAgregation (hdltab, 2)); }
+  if (style > 0) {
+    sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,1,n,1,0)); 
+    hdltab[1]=sciGetHandle(sciGetCurrentObj ()); 
+    sciSetCurrentObj(ConstructAgregation (hdltab, 2)); }
 
-  if (sciGetSurface(psubwin) != (sciPointObj *) NULL) Merge3d(psubwin);
-  sciDrawObj(sciGetCurrentObj ());
+  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
+     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+     sciDrawObj(sciGetCurrentFigure ());}
+   else
+     sciDrawObj(sciGetCurrentObj ());
   *hdl=sciGetHandle(sciGetCurrentObj ()); 
  
 }
@@ -144,8 +153,11 @@ void Objsegs (style,flag,n1,x,y,arsize)
   fx=x;fy=y;
   sciSetCurrentObj (ConstructSegs(psubwin,type,
 				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact)); 
-  if (sciGetSurface(psubwin) != (sciPointObj *) NULL) Merge3d(psubwin);
-  sciDrawObj(sciGetCurrentObj ());  
+  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
+     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+     sciDrawObj(sciGetCurrentFigure ());}
+   else
+     sciDrawObj(sciGetCurrentObj ());  
     
 }
 /*-----------------------------------------------------------
@@ -369,7 +381,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   }
 
   ok=0;  
-  if (sciGetSurface(psubwin) != (sciPointObj *) NULL)   ok=1;
+ if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) ok=1;
 
   if ((sciGetGraphicMode (psubwin)->autoscaling)) {
      /* compute and merge new specified bounds with psubwin->Srect */

@@ -717,7 +717,7 @@ typedef struct
 
   /*  An internal state used as subtics flag (auto == FALSE, TRUE == manual) named flagNax */
   BOOL flagNax;
-
+  int surfcounter; /* used to merge 3d objects */
 }/** */
 sciSubWindow;  
 

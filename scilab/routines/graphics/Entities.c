@@ -8285,6 +8285,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       
       
       ppsubwin->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
+      ppsubwin->surfcounter = 0;
       return (sciPointObj *)pobj;
       
     }
@@ -10811,7 +10812,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-
+      pSUBWIN_FEATURE(pparentsubwin)->surfcounter++;
       return pobj;
     }
   else
@@ -10840,7 +10841,7 @@ DestroySurface (sciPointObj * pthis)
   FREE(pSURFACE_FEATURE (pthis)->inputCMoV); /* Adding F.Leray 24.03.04*/
   if (pSURFACE_FEATURE (pthis)->izcol != 0 ) 
     FREE(pSURFACE_FEATURE (pthis)->zcol);
-
+  pSUBWIN_FEATURE (psubwin)->surfcounter--;
   /* DJ.A 2003 */
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
