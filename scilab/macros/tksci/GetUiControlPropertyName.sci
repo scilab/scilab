@@ -20,6 +20,7 @@
 												'tag' ..
 												'units' ..
 												'userdata' ..
+												'value' ..
 												'label'];
   //conversion to lower format
   str = convstr(PropertyName);
