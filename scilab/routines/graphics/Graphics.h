@@ -27,6 +27,7 @@ extern void scig_replay __PARAMS((integer ));
 extern void scig_expose __PARAMS((integer )); 
 extern void scig_3drot __PARAMS((integer )); 
 extern void scig_sel __PARAMS((integer )); 
+extern void scig_raise __PARAMS((integer )); 
 extern void scig_loadsg __PARAMS((int ,char *)); 
 extern void scig_resize __PARAMS((integer )); 
 extern void scig_resize_pixmap __PARAMS((integer )); 

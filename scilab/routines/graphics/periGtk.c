@@ -2862,6 +2862,7 @@ static struct BCG *AddNewWindow(listptr)
       else 
 	{ 
 	  (*listptr)->winxgc.window = NULL;
+	  (*listptr)->winxgc.item_factory = NULL;
 	  (*listptr)->winxgc.drawing =  NULL;
 	  (*listptr)->winxgc.pixmap =   NULL;
 	  (*listptr)->winxgc.CinfoW =   NULL ;

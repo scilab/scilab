@@ -321,6 +321,7 @@ void scig_3drot(win_num)
     }
   scig_buzy = 0;
 }
+
 /********************************************************
  * graphic Window selection 
  ********************************************************/
@@ -330,6 +331,18 @@ void scig_sel(win_num)
 {
   C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
+
+/********************************************************
+ * graphic Window raise 
+ ********************************************************/
+
+void scig_raise(win_num)
+     integer win_num;
+{
+  C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+}
+
 
 
 /********************************************************

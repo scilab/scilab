@@ -372,6 +372,10 @@ static void set_sci_env ()
 		  break;
 		}
 	    }
+	  /* special case when ProgramName = bin/scilex */
+	  if ( strcmp(sci_env,"SCI")==0 )  strcpy(sci_env,"SCI=./");
+					      
+	  /* sciprint("using computed %s\n",sci_env);  */
 	  putenv(sci_env);
 	}
     }    
