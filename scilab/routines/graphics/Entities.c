@@ -4678,9 +4678,9 @@ sciGetFigurePosX (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     { 
     case SCI_FIGURE:
-      /* modifiee par D.ABDEMOUCHE **/ 
+      /* synchronize figure position with its actual value */
       C2F(dr)("xget","wpos",&y,x,&y,PI0,PI0,PI0,&d,PD0,PD0,PD0,4L,4L);
-      sciSetFigurePos (pobj, x[0], x[1]);
+      pFIGURE_FEATURE (pobj)->inrootposx=x[0];
       return pFIGURE_FEATURE (pobj)->inrootposx;
       break;
     case SCI_AGREG:
@@ -4706,9 +4706,9 @@ sciGetFigurePosY (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      /* modifiee par D.ABDEMOUCHE **/ 
+      /* synchronize figure position with its actual value */
       C2F(dr)("xget","wpos",&y,x,&y,PI0,PI0,PI0,&d,PD0,PD0,PD0,4L,4L);
-      sciSetFigurePos (pobj, x[0], x[1]);
+      pFIGURE_FEATURE (pobj)->inrootposy=x[1];
       return pFIGURE_FEATURE (pobj)->inrootposy;
       break;
     case SCI_AGREG:
