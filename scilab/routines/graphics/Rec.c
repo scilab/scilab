@@ -2322,10 +2322,23 @@ void Tape_Replay(char *unused, integer *winnumber, integer *v3, integer *v4, int
     }
 }
 
+/* old version : we can reach the recursion stack limit 
+
 static void Tape_Replay1(struct listplot *list, integer winnumber)
 {
   if (list->window == winnumber) GReplay(list->type,list->theplot);
   if (list->ptrplot != NULL) Tape_Replay1(list->ptrplot,winnumber);
+}
+
+*/
+
+static void Tape_Replay1(struct listplot *list, integer winnumber)
+{
+  while (list)
+    {
+      if (list->window == winnumber )  GReplay(list->type,list->theplot);
+      list =list->ptrplot;
+    }
 }
 
 static void Replay3D(char *theplot)
