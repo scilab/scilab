@@ -1,8 +1,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.2 2001/06/18 12:41:41 chanceli Exp $
+ * $Id: zzledt.c,v 1.3 2001/06/23 16:29:09 chanceli Exp $
  * $Log: zzledt.c,v $
+ * Revision 1.3  2001/06/23 16:29:09  chanceli
+ * updates
+ *
  * Revision 1.2  2001/06/18 12:41:41  chanceli
  * upgrade
  *
@@ -199,7 +202,7 @@ static int gchar_no_echo(void );
 static void move_right(char *source,int  max_chars);
 static void move_left(char *source); 
 static void display_string( char *string); 
-static void get_line(  int  line_index,  char *source);
+static void get_line(int  line_index,  char *source);
 static void save_line(char *source);
 static void backspace(int n);
 static void erase_nchar( int n ); 
@@ -995,8 +998,8 @@ void sci_get_screen_size (int *rows,int *cols)
   struct winsize window_size;
   if (ioctl (fd, TIOCGWINSZ, &window_size) == 0)
     {
-      *rows = (int) window_size.ws_col;
-      *cols = (int) window_size.ws_row;
+      *cols = (int) window_size.ws_col;
+      *rows = (int) window_size.ws_row;
     }
 }
 
@@ -1102,6 +1105,10 @@ static int search_line_forward(char *source)
    }
 }
 
+
+/*----------------------------------------------------------------------
+ * changing the prompt 
+ *----------------------------------------------------------------------*/
 
 void C2F(setprlev)(pause)
      int *pause;

@@ -1,8 +1,9 @@
  /*---------------------------------------------------------- 
- * mainsci.f directly call this function 
- * thus this is the real main for scilab 
- * Copyright 2001 Inria/Enpc 
- *----------------------------------------------------------*/
+  * mainsci.f directly call this function 
+  * thus this is the real main for scilab 
+  * Copyright 2001 Inria/Enpc 
+  *----------------------------------------------------------*/
+
 #include <pwd.h>
 #include <ctype.h>
 #include <sys/ioctl.h>
@@ -22,17 +23,16 @@
 #include "All-extern-x.h"
 #include "All-extern.h"
 
-char *ProgramName;
+char *ProgramName = NULL;
 
 extern void sci_winch_signal(int);
-
 extern void C2F(tmpdirc)();
+extern void sci_clear_and_exit (int);
+extern void sci_usr1_signal(int);
+
 static void Syntax  (char *badOption);  
 static void Help  (void);  
-
-void sci_clear_and_exit (int);
-void sci_usr1_signal(int);
-
+static void set_sci_env (void);
 
 /*---------------------------------------------------------- 
  * mainsci.f directly call this function 
@@ -88,6 +88,10 @@ void C2F(realmain)()
 	  C2F(initcom)(&p1, &p2);
 	}
     }
+  
+  /* provide a default SCI  */
+  set_sci_env();
+
   /* create temp directory */
   C2F(settmpdir)();
 
@@ -131,7 +135,6 @@ void C2F(realmain)()
   C2F(scirun)(startup,strlen(startup));
   /* cleaning */
   C2F(sciquit)();
-  return 0;
 }
 
 /* utility */
@@ -339,4 +342,46 @@ void setcolordef( int screenc)
 {
   screencolor = screenc;
 }
+
+/*-------------------------------------------------------
+ * 
+ *-------------------------------------------------------*/
+
+static char *sci_env,*sci_man_chapters;
+
+static char format[] = "MANCHAPTERS=%s/man/Chapters";
+
+static void set_sci_env ()
+{
+  char *p1; 
+  char *p; 
+  if ((p1 = getenv ("SCI")) == (char *) 0)
+    {
+      sci_env = malloc((strlen(ProgramName)+1+4)*sizeof(char));
+      if ( sci_env != NULL) 
+	{
+	  int i;
+	  sprintf (sci_env, "SCI=%s",ProgramName);
+	  /* removing the trailing /bin/scilex  */
+	  for ( i = strlen(sci_env) ; i >= 0 ; i-- ) 
+	    {
+	      if ( sci_env[i]== '/' ) 
+		{
+		  if ( i >= 4 ) sci_env[i-4]= '\0';
+		  else { free(sci_env) ; return ;}
+		  break;
+		}
+	    }
+	  putenv(sci_env);
+	}
+    }    
+  if ((p1 = getenv ("MANCHAPTERS")) == (char *) 0)
+    {
+      if ((p = getenv ("SCI")) == (char *) 0) return ;
+      sci_man_chapters= malloc((strlen(p)+1+strlen(format))*sizeof(char));
+      sprintf (sci_man_chapters,format,p);
+      putenv (sci_man_chapters);
+    }
+}
+
 
