@@ -11,8 +11,8 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
-     Revision 1.10  2003/11/04 09:12:19  steer
-      to remove undefined include of pvm3.h
+     Revision 1.11  2003/11/04 09:36:06  steer
+     back to previous version
 
      Revision 1.9  2003/10/22 09:03:27  steer
      ifdef added for intel compiler
@@ -102,6 +102,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "pvm3.h"
 #include "../machine.h"
 #include "sci_pvm.h"
 

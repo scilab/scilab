@@ -9,12 +9,13 @@
      PVM task information
    HISTORY
      fleury - Nov 18, 1997: Created.
-     $Id: pvm_info.c,v 1.3 2003/11/04 09:12:19 steer Exp $
+     $Id: pvm_info.c,v 1.4 2003/11/04 09:36:06 steer Exp $
 ***/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "pvm3.h"
 #include "../machine.h" 
 #include "../stack-c.h" 
 #include "sci_pvm.h"
