@@ -34,7 +34,7 @@ $(LIBRARY): $(OBJS)
 	@$(FC) -Wl,-shared -g -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);
 
 class::	
-	$(JAVAC) -d $(SCIDIR)/bin $(SOURCESJ)
+	$(JAVAC) -d $(SCIDIR)/bin classes/$(SOURCESJ)
 clean::
 	$(RM) *.o
 

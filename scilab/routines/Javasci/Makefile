@@ -6,13 +6,13 @@ SCIDIR=../..
 SCIDIR1=..\..
 
 
-JAVAINC= -I/usr/lib/SunJava2-1.4.1/include -I/usr/lib/SunJava2-1.4.1/include/linux
+JAVAINC= -I/usr/java/j2sdk1.4.2_06/include -I/usr/java/j2sdk1.4.2_06/include/linux
 
 #--------------------------------------------------------
 LIBRARY= $(SCIDIR)/bin/libjavasci.so 
 JAVAC=javac
 SOURCESJ=*.java
-OBJSC= javasci_globals.o javasci_Scilab.o javasci_SciReal.o
+OBJSC= javasci_globals.o javasci_Scilab.o javasci_SciReal.o fix.o
 
 OBJSF = 
 
@@ -34,7 +34,7 @@ $(LIBRARY): $(OBJS)
 	@$(FC) -Wl,-shared -g -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);
 
 class::	
-	$(JAVAC) -d $(SCIDIR)/bin $(SOURCESJ)
+	$(JAVAC) -d $(SCIDIR)/bin classes/$(SOURCESJ)
 clean::
 	$(RM) *.o
 
