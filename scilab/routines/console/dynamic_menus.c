@@ -509,7 +509,8 @@ int C2F(intsleep) _PARAMS((char *fname))
 {
 	integer m1,n1,l1,sec=0;
 
-	CheckRhs(-1,1);
+	CheckLhs(0,1);
+	CheckRhs(1,1);
 	if (Rhs == 1) 
 	{ 
 		GetRhsVar(1,"d",&m1,&n1,&l1);
@@ -527,10 +528,10 @@ int C2F(intsleep) _PARAMS((char *fname))
 			useconds=(unsigned) sec;
 			if (useconds != 0)  
 				#ifdef HAVE_USLEEP
-					{ usleep(useconds); }
+					{ usleep(useconds*1000); }
 				#else
 					#ifdef HAVE_SLEEP
-					{  sleep(useconds/1000); }
+					{  sleep(useconds*1000); }
 					#endif
 				#endif
 		}
