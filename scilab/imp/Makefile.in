@@ -1,4 +1,4 @@
-nSHELL = /bin/sh
+SHELL = /bin/sh
 
 SCIDIR=..
 include ../Makefile.incl
@@ -7,7 +7,7 @@ include ../Makefile.incl
 # il you prefer epsfig to special to insert postscript files in LaTeX 
 
 CFLAGS = $(CC_OPTIONS)
-PREF=@IMPPREF@ 
+PREF=@IMPPREF@
 ENV=@IMPENV@
 
 all:: $(SCIDIR)/bin/$(PREF)lpr $(SCIDIR)/bin/$(PREF)latexprs $(SCIDIR)/bin/$(PREF)latexpr2 \
