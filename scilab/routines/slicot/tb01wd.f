@@ -140,8 +140,8 @@ C     .. Local Scalars ..
 C     .. Local Arrays ..
       LOGICAL          BWORK( 1 )
 C     .. External Functions ..
-      LOGICAL          LSAME, SELECT
-      EXTERNAL         LSAME, SELECT
+      LOGICAL          LSAME, SELECT1
+      EXTERNAL         LSAME, SELECT1
 C     .. External Subroutines ..
       EXTERNAL         DCOPY, DGEES, DGEMM, DGEMV, DLACPY, XERBLA
 C     .. Intrinsic Functions ..
@@ -191,7 +191,7 @@ C
 C     Workspace:  need   3*N;
 C                 prefer larger.
 C
-      CALL DGEES( 'Vectors', 'Not ordered', SELECT, N, A, LDA, SDIM,
+      CALL DGEES( 'Vectors', 'Not ordered', SELECT1, N, A, LDA, SDIM,
      $            WR, WI, U, LDU, DWORK, LDWORK, BWORK, INFO )
       WRKOPT = DWORK( 1 )
       IF( INFO.NE.0 )

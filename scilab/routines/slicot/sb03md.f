@@ -335,9 +335,9 @@ C     .. Local Scalars ..
 C     .. Local Arrays ..
       LOGICAL           BWORK( 1 )
 C     .. External Functions ..
-      LOGICAL           LSAME, SELECT
+      LOGICAL           LSAME, SELECT1
       DOUBLE PRECISION  DLAMCH, DLANHS
-      EXTERNAL          DLAMCH, DLANHS, LSAME, SELECT
+      EXTERNAL          DLAMCH, DLANHS, LSAME, SELECT1
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEES, DLACON, MB01RD, SB03MX, SB03MY, 
      $                  XERBLA
@@ -430,7 +430,7 @@ C        code, as well as the preferred amount for good performance.
 C        NB refers to the optimal block size for the immediately
 C        following subroutine, as returned by ILAENV.)
 C
-         CALL DGEES( 'Vectors', 'Not ordered', SELECT, N, A, LDA, SDIM,
+         CALL DGEES( 'Vectors', 'Not ordered', SELECT1, N, A, LDA, SDIM,
      $               WR, WI, U, LDU, DWORK, LDWORK, BWORK, INFO )
          IF( INFO.GT.0 )
      $      RETURN

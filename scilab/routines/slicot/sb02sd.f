@@ -340,9 +340,9 @@ C     .. Local Arrays ..
       LOGICAL            BWORK( 1 )
 C     ..
 C     .. External Functions ..
-      LOGICAL            LSAME, SELECT
+      LOGICAL            LSAME, SELECT1
       DOUBLE PRECISION   DLAMCH, DLANGE, DLANHS, DLANSY
-      EXTERNAL           DLAMCH, DLANGE, DLANHS, DLANSY, LSAME, SELECT
+      EXTERNAL           DLAMCH, DLANGE, DLANHS, DLANSY, LSAME, SELECT1
 C     ..
 C     .. External Subroutines ..
       EXTERNAL           DAXPY, DCOPY, DGEES, DGEMM, DGESV, DLACON,
@@ -507,7 +507,7 @@ C
          ELSE
             SJOB = 'N'
          END IF
-         CALL DGEES( SJOB, 'Not ordered', SELECT, N, T, LDT, SDIM,
+         CALL DGEES( SJOB, 'Not ordered', SELECT1, N, T, LDT, SDIM,
      $               DWORK( LWA+1 ), DWORK( LWA+N+1 ), U, LDU,
      $               DWORK( LWA+2*N+1 ), LDWORK-LWA-2*N, BWORK, INFO )
          IF( INFO.GT.0 ) THEN

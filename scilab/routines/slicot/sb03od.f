@@ -320,9 +320,9 @@ C     .. Local Scalars ..
 C     .. Local Arrays ..
       LOGICAL           BWORK(1)
 C     .. External Functions ..
-      LOGICAL           LSAME, SELECT
+      LOGICAL           LSAME, SELECT1
       DOUBLE PRECISION  DLAPY2
-      EXTERNAL          DLAPY2, LSAME, SELECT
+      EXTERNAL          DLAPY2, LSAME, SELECT1
 C     .. External Subroutines ..
       EXTERNAL          DCOPY, DGEES, DGEMM, DGEMV, DGEQRF, DGERQF,
      $                  DLACPY, DTRMM, SB03OU, XERBLA
@@ -389,7 +389,7 @@ C        Find the Schur factorization of A,   A = Q*S*Q'.
 C        Workspace:  need   3*N;
 C                    prefer larger.
 C
-         CALL DGEES( 'Vectors', 'Not ordered', SELECT, N, A, LDA, SDIM,
+         CALL DGEES( 'Vectors', 'Not ordered', SELECT1, N, A, LDA, SDIM,
      $               WR, WI, Q, LDQ, DWORK, LDWORK, BWORK, INFORM )
          IF ( INFORM.NE.0 ) THEN
             INFO = 6

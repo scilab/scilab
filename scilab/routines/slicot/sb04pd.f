@@ -308,8 +308,8 @@ C     .. Local Arrays ..
       LOGICAL            BWORK( 1 )
 C     ..
 C     .. External Functions ..
-      LOGICAL            LSAME, SELECT
-      EXTERNAL           LSAME, SELECT
+      LOGICAL            LSAME, SELECT1
+      EXTERNAL           LSAME, SELECT1
 C     ..
 C     .. External Subroutines ..
       EXTERNAL           DCOPY, DGEES, DGEMM, DGEMV, DLACPY, DTRSYL,
@@ -421,7 +421,7 @@ C
          JWORK  = 2*M + 2
          IA     = JWORK
          AVAILW = LDWORK - JWORK + 1
-         CALL DGEES( 'Vectors', 'Not ordered', SELECT, M, A, LDA, SDIM,
+         CALL DGEES( 'Vectors', 'Not ordered', SELECT1, M, A, LDA, SDIM,
      $               DWORK( 2 ), DWORK( M+2 ), U, LDU, DWORK( JWORK ),
      $               AVAILW, BWORK, IERR )
          IF( IERR.GT.0 ) THEN
@@ -489,7 +489,7 @@ C                    prefer larger.
 C
          JWORK  = IA + 2*N
          AVAILW = LDWORK - JWORK + 1
-         CALL DGEES( 'Vectors', 'Not ordered', SELECT, N, B, LDB, SDIM,
+         CALL DGEES( 'Vectors', 'Not ordered', SELECT1, N, B, LDB, SDIM,
      $               DWORK( IA ), DWORK( N+IA ), V, LDV, DWORK( JWORK ),
      $               AVAILW, BWORK, IERR )
          IF( IERR.GT.0 ) THEN
