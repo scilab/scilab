@@ -8,14 +8,14 @@ function []=fgrayplot(x,y,f,strf,rect,nax,void)
 // le niveau de gris choisi sur chaque maillage depend de la valeur
 //    moyenne de z dans le maillage.
 // Exemple : taper fgrayplot() pour voir un exemple .
-//    deff('[z]=surf(x,y)','z=x**2+y**2');
-//    fgrayplot(-1:0.1:1,-1:0.1:1,surf);
+//    deff('[z]=Surf(x,y)','z=x**2+y**2');
+//    fgrayplot(-1:0.1:1,-1:0.1:1,Surf);
 //!
 // Copyright INRIA
 [lhs,rhs]=argn(0);
 if rhs<=0,
-  s_mat=['deff(''[z]=surf(x,y)'',''z=x**2+y**2'');';
-      'fgrayplot(-1:0.1:1,-1:0.1:1,surf);'];
+  s_mat=['deff(''[z]=Surf(x,y)'',''z=x**2+y**2'');';
+      'fgrayplot(-1:0.1:1,-1:0.1:1,Surf);'];
   write(%io(2),s_mat);execstr(s_mat);
   return;
 end;

@@ -13,8 +13,8 @@ function []=Sfgrayplot(x,y,f,strf,rect,aaint)
 //!
 // Copyright INRIA
 [lhs,rhs]=argn(0);
-if rhs<=0,s_mat=['deff(''[z]=surf(x,y)'',''z=x**3+y'');';
-                'Sfgrayplot(-1:0.1:1,-1:0.1:1,surf);'];
+if rhs<=0,s_mat=['deff(''[z]=Surf(x,y)'',''z=x**3+y'');';
+                'Sfgrayplot(-1:0.1:1,-1:0.1:1,Surf);'];
          write(%io(2),s_mat);execstr(s_mat);
          return;end;
 if rhs <= 3,strf="121";end

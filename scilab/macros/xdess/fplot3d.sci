@@ -12,9 +12,9 @@ function fplot3d(xr,yr,f,theta,alpha,leg,flag,ebox)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 if rhs<=0 then
-  s_mat=['deff(''[z]=surf(x,y)'',''z=sin(x)*cos(y)'');';
+  s_mat=['deff(''[z]=Surf(x,y)'',''z=sin(x)*cos(y)'');';
       't=-%pi:0.3:%pi;';
-      'fplot3d(t,t,surf,35,45,'"X@Y@Z'");'];
+      'fplot3d(t,t,Surf,35,45,'"X@Y@Z'");'];
   write(%io(2),s_mat);execstr(s_mat);
   return;
 end;
