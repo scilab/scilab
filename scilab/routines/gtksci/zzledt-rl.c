@@ -143,7 +143,7 @@ void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
      use_prompt=1;
    }
 
-   if (hist && line && *line != '\0') 
+   if (hist && line && *line != '\0' ) 
      add_history (line);
 
    if ( line == NULL) 

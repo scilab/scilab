@@ -355,10 +355,14 @@ load_page (const gchar *ref,
                                 0);
       
       request_url (doc, abs, doc->current_stream, NULL);
+
     }
 
   if (anchor)
-    html_view_jump_to_anchor (HTML_VIEW (html), anchor);
+    {
+      fprintf(stdout,"jump to anchor\n");
+      html_view_jump_to_anchor (HTML_VIEW (html), anchor);
+    }
 
   g_free (current_ref);
   current_ref = new_ref;

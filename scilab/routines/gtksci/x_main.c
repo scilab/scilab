@@ -198,6 +198,13 @@ void C2F(realmain)()
   /* message */  
   /* scilab_status_show("Scilab (C) Inria/Enpc"); */ 
   /* execute the initial script and enter scilab */ 
+
+  /* 
+  C2F(sciwin)();
+  test3DA();
+  gtk_main();
+  */
+
   C2F(scirun)(startup,strlen(startup));
   /* cleaning */
   C2F(sciquit)();

@@ -30,7 +30,7 @@
 #include "../tksci/tksci.h"
 #endif
 
-
+extern void start_sci_gtk(void);
 extern int getdiary();
 void C2F(diary) __PARAMS((char *str,int *n));
 void diary_nnl __PARAMS((char *str,int *n));

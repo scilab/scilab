@@ -801,10 +801,43 @@ void * graphic_initial_menu(int winid) {
 			   "S_ave|<control>S|$save",
 			   "L_oad|<control>L|$load",
 			   "C_lose||$close" };
+  char *graph_entries[] =  {"gtk_main_quit||$gtk_main_quit",
+			    "test2D+xsetech||$test2DD",
+			    "test2D||$test2D",
+			    "plot2d with animation||$test2D2",
+			    "test2D3||$test2D3",
+			    "test2D4||$test2D4",
+			    "test2DN 1||$test2DN1",
+			    "test2DN 2||$test2DN2",
+			    "test2DN 3||$test2DN3",
+			    "test3D||$test3D",
+			    "test3D animation||$test3DA",
+			    "test3D1||$test3D1",
+			    "test3D2||$test3D2",
+			    "testArrows||$testArrows",
+			    "testC 1||$testC1",
+			    "testC 2||$testC2",
+			    "testC 3||$testC3",
+			    "testC2d||$TestC2d",
+			    "testCh||$testCh",
+			    "testG||$testG",
+			    "testP3D||$testP3D",
+			    "testPattern||$testPattern",
+			    "testColor||$testColor",
+			    "testPrim||$testPrim",
+			    "testString||$testString",
+			    "testXor||$testXormode",
+			    "testXliness||$testXliness",
+			    "testXrects||$testXrects",
+			    "testXpoly||$testPoly",
+			    "testMark||$testMarks"};
+
+
   sci_menu_add(&m,winid,"_File",file_entries,7,0,"$file");
   sci_menu_add(&m,winid,"_Zoom",NULL,0,0,"$zoom");
   sci_menu_add(&m,winid,"_UnZoom",NULL,0,0,"$unzoom");
   sci_menu_add(&m,winid,"3D _Rot.",NULL,0,0,"$rot3d");
+  sci_menu_add(&m,winid,"Tests",graph_entries,30,0,"$testg");
   return m;
 }
 
@@ -818,7 +851,8 @@ static void * sci_window_initial_menu()
   char *control_entries[] = { "Resume||$resume",
 			      "Abort||$abort",
 			      "Restart||$restart",
-			      "Stop||$stop" };
+			      "Stop||$stop",
+                              "Clear history||$clear_history"};
   char *graphic_entries[] = { "Create or Select||$gwselect",
 			      "Raise||$gwraise", 
 			      "Delete||$gwdelete",
@@ -828,7 +862,7 @@ static void * sci_window_initial_menu()
   char *help_entries[] = { "Scilab Help||$help",
 			   "About||$about"};
   sci_menu_add(&m,winid,"_File",file_entries,3,0,"$file");
-  sci_menu_add(&m,winid,"_Control",control_entries,4,0,"$zoom");
+  sci_menu_add(&m,winid,"_Control",control_entries,5,0,"$zoom");
   sci_menu_add(&m,winid,"_Demos",NULL,0,0,"$demos");
   sci_menu_add(&m,winid,"Graphic Window 0",graphic_entries,5,0,"$graphic_window");
   sci_menu_add(&m,winid,"Help",help_entries,2,0,"$help");
@@ -1169,12 +1203,25 @@ static void sci_menu_gwdelete()
   scig_menu_delete(lab_count);
 }
 
+extern void   reset_history(void);
+
+
+static void sci_menu_clear_history() 
+{
+  reset_history();
+}
+
+
+
 /*-----------------------------------------------------------------
  * Execute predefined callbacks 
  *-----------------------------------------------------------------*/
 
+extern int call_graphics_predefined_callbacks(char *name, int winid);
+
 static int call_predefined_callbacks(char *name, int winid)
 {
+  if ( call_graphics_predefined_callbacks(name,winid) == 1 ) return 1;
   if      (strcmp(name,"$clear")== 0)  scig_menu_erase(winid) ;
   else if (strcmp(name,"$select")== 0) scig_menu_select(winid) ;
   else if (strcmp(name,"$print")== 0)  scig_menu_print(winid);
@@ -1200,6 +1247,10 @@ static int call_predefined_callbacks(char *name, int winid)
   else if (strcmp(name,"$abort")== 0)  StoreCommand1("abort",1); 
   else if (strcmp(name,"$restart")== 0) StoreCommand1("exec SCI/scilab.star;",1);
   else if (strcmp(name,"$quit")== 0)  StoreCommand1("quit;",1);
+  else if (strcmp(name,"$clear_history")== 0) sci_menu_clear_history();
   else return 0;
   return 1;
 }
+
+
+

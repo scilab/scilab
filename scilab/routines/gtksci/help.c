@@ -624,7 +624,9 @@ static void create_text (GtkWidget *container,char *path, char *fname)
    */
   gdk_font_unref (font);
   gtk_text_thaw (GTK_TEXT (text));
-
+  /* 
+  gtk_adjustment_set_value( gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW ( scrolled_window)),0);
+  */
   cbox = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (box1), cbox, FALSE, TRUE, 0);
   
