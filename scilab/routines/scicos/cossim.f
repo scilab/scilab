@@ -7,11 +7,15 @@ c     Copyright INRIA
      $     ipptr,funptr,funtyp,rhot,ihot,outtb,jroot,w,iwa,ierr) 
 C     
 C     
+      include '../stack.h'
 C..   Parameters .. 
 c     maximum number of clock output for one block
       integer nts
       parameter (nts=100)
 C     
+      character ch*4,ch2*10
+      common /cosdebug/ cosd
+      integer cosd
       integer neq(*)
 C     neq must contain after #states all integer data for simblk and grblk
       double precision x(*),z(*),told,tf,tevts(*),rpar(*),outtb(*)
@@ -299,12 +303,22 @@ c
          call realtime(told)
       else
 C     .  t==told
+c
+         if(cosd.ge.1) then
+            write(ch,'(i3)') pointi
+            write(ch2,'(f9.3)') told
+            call basout(io,wte,'Event:'//ch//' activated at t='//ch2)
+         endif
+c
          call ddoit(neq,x,xptr,z,zptr,iz,izptr,told,tf,
      $        tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr,
      $        outlnk,lnkptr,clkptr,ordptr,nptr,
      $        ordclk,nordcl,cord,iord,niord,oord,zord,critev,
      $        rpar,rpptr,ipar,
      $        ipptr,funptr,funtyp,outtb,w,iwa,hot,ierr) 
+         if(cosd.ge.1) then
+            call basout(io,wte,'End of activation')
+         endif
          if(ierr.ne.0) return
 C     
       endif
@@ -324,6 +338,10 @@ C
 C     
 C..   Parameters .. 
 c     maximum number of clock output for one block
+      include '../stack.h'
+      character ch*4,ch2*10
+      common /cosdebug/ cosd
+      integer cosd
       integer nts
       parameter (nts=100)
 C     
@@ -652,6 +670,12 @@ c
          call realtime(told)
       else
 C     .  t==told
+         if(cosd.ge.1) then
+            write(ch,'(i4)') pointi
+            write(ch2,'(f9.3)') told
+            call basout(io,wte,'Event:'//ch//' activated at t='//ch2)
+         endif
+c
          hot=info(1).eq.1
          call ddoit(neq,x,xptr,z,zptr,iz,izptr,told,tf,
      $        tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr,
@@ -659,6 +683,9 @@ C     .  t==told
      $        ordclk,nordcl,cord,iord,niord,oord,zord,critev,
      $        rpar,rpptr,ipar,
      $        ipptr,funptr,funtyp,outtb,w,iwa,hot,ierr) 
+         if(cosd.ge.1) then
+            call basout(io,wte,'End of activation')
+         endif
          if(ierr.ne.0) return
          if(.NOT.hot) info(1)=0
 C     

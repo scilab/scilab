@@ -717,7 +717,7 @@ c
       logical putlhsvar,checkrhs,checklhs
       character*(nlgh) fname
 c
-      goto (1,2,3,4,5,6,7) fin 
+      goto (1,2,3,4,5,6,7,8) fin 
       return
  1    call intsscicos
       return
@@ -751,6 +751,13 @@ c     [r1,r2,ok]=tree4(vec,outoin,outoinptr,dep_ut,typ_r)
  7    continue
       fname='realtime'
       call intsrealtime(fname) 
+      goto 9988
+ 8    continue
+c     scicos_debug(i)
+      if(.not.checklhs(fname,1,1)) return
+      if(.not.checkrhs(fname,1,1)) return
+      fname='scicos_debug'
+      call scicosdebug(fname)
       goto 9988
  9988 if(.not.putlhsvar())return
       end
@@ -846,4 +853,16 @@ c      nbcols(7)=nr
       istk(iadr(iwhere(7))+2)=nr
       end
 
-
+c     ********************
+      subroutine  scicosdebug(fname)
+c     
+      include '../stack.h'
+c     
+      common /cosdebug/ cosd
+      logical getrhsvar
+      integer cosd
+      character*(*) fname
+c
+      if(.not.getrhsvar(1,'i',n,m,i)) return
+      cosd=istk(i)
+      end

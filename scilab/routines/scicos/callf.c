@@ -23,6 +23,10 @@ extern void  C2F(iislink)();
 #endif
 
 IMPORT struct {
+  int cosd;
+} C2F(cosdebug);
+
+IMPORT struct {
   int solver;
 } C2F(cmsolver);
 ScicosImport  scicos_imp;
@@ -42,13 +46,19 @@ C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,residual,xptr,z,zptr,iz,izptr,
   int ii,i,kf,nx,nz,nrpar,nipar,in,out,ki,ko,ni,no,k,Nx;
   int nin,nout,lprt,szi,funtype,flagi;
   int solver=C2F(cmsolver).solver;
+  int cosd=C2F(cosdebug).cosd;
   ScicosF0 loc0;
   ScicosF loc1;
-  ScicosFm1 loc3;
+  /*  ScicosFm1 loc3;*/
   ScicosF2 loc2;
   ScicosFi loci1;
   ScicosFi2 loci2;
 
+  if ( cosd > 1){
+    sciprint("block %d is called ",*kfun);
+    sciprint("with flag %d ",*flag);
+    sciprint("at time %f \r\n",*t);
+  }
   kf=*kfun-1;
   i=funptr[kf];
   funtype=funtyp[kf];
