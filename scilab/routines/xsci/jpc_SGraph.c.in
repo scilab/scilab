@@ -27,6 +27,7 @@
 #include <X11/IntrinsicP.h>
 #include <X11/@XAW@/ViewportP.h>
 
+
 #include <string.h>
 
 #include "../graphics/GetProperty.h"
@@ -201,21 +202,23 @@ btn_pressed(widget, event, params, num_params)
   while (wait_dclick);
   /* So here, dclick&lose_up have correct values.*/
 
-  if (dclick ) {
+  if (dclick ) { /* double click detected [10 11 12]*/
      PushClickQueue(EventWindow,event->xbutton.x,
 		     event->xbutton.y,
 		     event->xbutton.button-1+10,0,0);
-     /* sciprint("Double Click detected for button %d in window %d\n",event->xbutton.button,EventWindow );*/
   }
   else  {
-    PushClickQueue(EventWindow,event->xbutton.x,
-		   event->xbutton.y,
-		   event->xbutton.button-1,0,0);
-    /* if (lose_up)
-      sciprint("Button %d click detected in window %d \n",event->xbutton.button,EventWindow);
-    else
-      sciprint("Button %d pressed detected in window %d \n",event->xbutton.button,EventWindow);
-    */
+    if  (lose_up) { /* simple click detected [3 4 5]*/
+      PushClickQueue(EventWindow,event->xbutton.x,
+		     event->xbutton.y,
+		     event->xbutton.button-1+3,0,0);
+    }
+    else { /* button pressed detected [0 1 2]*/
+      PushClickQueue(EventWindow,event->xbutton.x,
+		      event->xbutton.y,
+		      event->xbutton.button-1,0,0);
+    }
+   
  }
 }
 
@@ -231,12 +234,13 @@ btn_released(widget, event, params, num_params)
     return;
   }
   if (dclick)  return;
+
+ /* button released detected [-5 -4 -3]*/
   PushClickQueue(EventWindow,event->xbutton.x,
 		 event->xbutton.y,
 		 event->xbutton.button-6,0,1);
-
-  /*sciprint("Button %d released detected in window %d\n",event->xbutton.button,EventWindow );*/
 }
+
 void
 ctrl_key(widget, event, params, num_params)
     Widget	widget;
@@ -251,12 +255,11 @@ ctrl_key(widget, event, params, num_params)
 
   XLookupString((XKeyEvent *)&(event->xkey), buf, 
 		ten, &keysym,&compose_status);
+  /* <Ctrl> key  detected return  )keysym+1000 */
   PushClickQueue(EventWindow,event->xkey.x,
 		 event->xkey.y,(int)keysym+1000,0,0);
-  
-  /*sciprint("<Ctrl> key %d pressed in window %d\n",(int)keysym,EventWindow );*/
-
 }
+
 void
 key_pressed(widget, event, params, num_params)
     Widget	widget;
@@ -271,11 +274,11 @@ key_pressed(widget, event, params, num_params)
 
   XLookupString((XKeyEvent *)&(event->xkey), buf, 
 		ten, &keysym,&compose_status);
-  if ((int)keysym <65000)
+  if ((int)keysym <65000){
+    /* regular key pressed detected. return  keysym */
     PushClickQueue(EventWindow,event->xkey.x,
 		   event->xkey.y,(int)keysym,0,0);
-  
-  /*sciprint("key %d pressed %s in window %d\n",(int)keysym,params[0],EventWindow );*/
+  }
 }
 void
 key_released(widget, event, params, num_params)
@@ -291,11 +294,11 @@ key_released(widget, event, params, num_params)
 
   XLookupString((XKeyEvent *)&(event->xkey), buf, 
 		ten, &keysym,&compose_status);
-  if ((int)keysym <65000)
+  if ((int)keysym <65000) {
+    /* regular key released detected. return  -keysym */
     PushClickQueue(EventWindow,event->xkey.x,
 		   event->xkey.y,-(int)keysym,0,1);
-  
-  /*sciprint("key %d released %s in window %d\n",(int)keysym,params[0],EventWindow );*/
+  }
 }
 void
 mouse_moved(widget, event, params, num_params)
@@ -304,11 +307,6 @@ mouse_moved(widget, event, params, num_params)
     String*	params;
     Cardinal*	num_params;
 {
-  int btn;
-  if (strcmp(params[0],"0")==0)
-    btn = -1;
-  else
-    btn = -2;
 
   /*ignore_events(widget,&event2, ExposureMask) ;*/
 
@@ -317,6 +315,10 @@ mouse_moved(widget, event, params, num_params)
 		 -1,1,0);
 }
 
+/*
+<Btn1Motion>:MouseMoved(1)\n\
+
+ */
 
 static XtActionsRec event_actions[] =
 {
@@ -330,8 +332,7 @@ static XtActionsRec event_actions[] =
 
 static String	event_translations =
 "\
-<BtnMotion>:MouseMoved(1)\n\
-<Motion>:MouseMoved(0)\n\
+<MouseMoved>:MouseMoved()\n\
 Ctrl<Key>:CtrlKey()\n\
 !Shift<KeyDown>:KeyPressed(1)\n\
 None<KeyDown>:KeyPressed(0)\n\
