@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.93 $)dnl
+AC_REVISION($Revision: 1.94 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -955,7 +955,7 @@ case "$host" in
   *-*-hpux11.*)
     # standard compilers
     CC=cc
-    CC_OPTIONS='-O -DSYSV -Dhpux +Z +DAportable'
+    CC_OPTIONS='-O -DSYSV -Dhpux +-Dhppa Z +DAportable'
     CC_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
     if test "$WITH_G77" != yes; then    
       AC_CHECK_PROGS(F77,fort77 f77 f90 f2c-f77,no)
