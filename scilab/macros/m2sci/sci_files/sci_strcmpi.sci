@@ -20,8 +20,7 @@ elseif A.vtype<>Unknown & B.vtype<>Unknown then
   tree = Cste(0)
 else
   tree.name="mtlb_strcmpi"
-  repl1=Operation("==",list(Funcall("convstr",1,Rhs(A),list()),Funcall("convstr",1,Rhs(B),list())),tree.lhs)
-  tree.out(1).dims=list(1,1)
-  tree.out(1).type=Type(Boolean,Real)
+  tree.lhs(1).dims=list(1,1)
+  tree.lhs(1).type=Type(Boolean,Real)
 end
 endfunction
