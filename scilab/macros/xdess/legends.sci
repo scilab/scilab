@@ -11,40 +11,46 @@ function legends(leg, style, opt, with_box)
  
   if rhs < 2 then, error("bad number of arguments"), end
   if type(leg) ~= 10 then, 
-    error("first arg may a vector of strings"), 
+    error("first arg may be a vector of strings"), 
   end
   nleg=size(leg,'*')
-  if type(style) ~= 1 then, 
-    error("second arg may a vector"), 
+  if type(style) ~= 1&type(style) ~= 9 then, 
+    error("second argument type may be 1 or 9  "), 
   end  
-  if or(size(style)==1) then 
-    ns=size(style,'*'),
-  else 
-    ns=size(style,1),
-  end
-  if ns ~= nleg then
-     error("first and second arg must have the same number of components")
-  end
   if ~exists("opt","local") then
-     opt=5
+    opt=5
   elseif typeof(opt)=="string" then
-     select opt
+    select opt
       case "ur" then, opt=1,
       case "ul" then, opt=2,
       case "ll" then, opt=3,       
       case "lr" then, opt=4,              
       case "?"  then, opt=5,
-     else
-	error("bad value for argument opt")
-     end
+    else
+      error("bad value for argument opt")
+    end
   end
   if ~exists("with_box","local") then, with_box=%t, end
 
+  
+  if or(size(style)==1) then   style=matrix(style,1,-1),end
+  ns=size(style,2)
 
-  fs=get('figure_style')=='old' 
+//  if ns<=nleg then
+//     style(1,ns+1:nleg)=-1
+//     ns=nleg
+//   else
+//     ns=nleg
+//   end
+
+
+
+  fs=get('figure_style')=='old'
   
   [r1,r2,logflag,arect]=xgetech()  //preserve current graphic context
   if ~fs then 
+    f=gcf()
+    vis=f.visible;
     old_ax=gca(),
     r2=old_ax.data_bounds;
     arect=old_ax.margins;
@@ -116,13 +122,15 @@ function legends(leg, style, opt, with_box)
     ls=xget('line style')
     clr=xget('color')
     for k=1:nleg
-      if style(1,k)<= 0 then
-	if size(style,1)==2 then  xset("color",style(2,k));end
-	xpolys(x+drx/2,y-bbx(k,2)/2,style(1,k))
-	xset('color',clr)
-      else
-	if size(style,1)==2 then  xset("line style",style(2,k));end
-	xsegs([x;x+drx],[y;y]-bbx(k,2)/2,style(1,k))
+      if k<=size(style,2) then
+	if style(1,k)<= 0 then
+	  if size(style,1)==2 then  xset("color",style(2,k));end
+	  xpolys(x+drx/2,y-bbx(k,2)/2,style(1,k))
+	  xset('color',clr)
+	else
+	  if size(style,1)==2 then  xset("line style",style(2,k));end
+	  xsegs([x;x+drx],[y;y]-bbx(k,2)/2,style(1,k))
+	end
       end
       xstring(x+drx*1.2,y-bbx(k,2),leg(k))
       y=y-bbx(k,2)-dh
@@ -135,22 +143,53 @@ function legends(leg, style, opt, with_box)
     drawlater()
     R=[]
     if with_box then xrect(pos(1),pos(2),width,height),R=gce();end
-
+    a=gca()
     a.clip_state='off';
     for k=1:nleg
-      if style(1,k)<= 0 then
-	xpoly(x+drx/2,y-bbx(k,2)/2)
-	r=gce(),
-	r.mark_mode='on'
-	r.mark_style=-style(1,k)
-	if size(style,1)==2 then r.foreground=style(2,k);end
-      else
-	xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines')
-	r=gce(),
-	r.foreground=style(1,k)
-	if size(style,1)==2 then r.line_style=style(2,k);end
+      if k<=size(style,2) then
+	if type(style)==9 then
+	  h=style(k)
+	  select h.type
+	    case "Polyline"
+	    if h.polyline_style==5 then //patch
+	      xfpoly([x;x+drx;x+drx;x;x],[y-bbx(k,2);y-bbx(k,2);y;y;y-bbx(k,2)]);r=gce();
+	      r.foreground=h.foreground;
+	      r.thickness=h.thickness;
+	      r.polyline_style=h.polyline_style;
+	      r.line_style=h.line_style;
+	    else
+	      if stripblanks(h.mark_mode)=='off'
+		xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines');r=gce();
+		r.foreground=h.foreground;
+		r.thickness=h.thickness;
+		r.polyline_style=h.polyline_style;
+		r.line_style=h.line_style;
+	      else
+		xpoly(x+drx/2,y-bbx(k,2)/2);r=gce();
+		r.foreground=h.foreground;
+		r.thickness=h.thickness;
+		r.mark_style=h.mark_style;
+		r.mark_size=h.mark_size;
+	      end
+	    end
+	  else
+	    error('Only handle on polyline,are allowed')
+	  end
+	else
+	  if style(1,k)<= 0 then
+	    xpoly(x+drx/2,y-bbx(k,2)/2)
+	    r=gce(),
+	    r.mark_mode='on'
+	    r.mark_style=-style(1,k)
+	    if size(style,1)==2 then r.foreground=style(2,k);end
+	  else
+	    xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines')
+	    r=gce(),
+	    r.foreground=style(1,k)
+	    if size(style,1)==2 then r.line_style=style(2,k);end
+	  end
+	end
       end
-
       R=[R,r]
       xstring(x+drx*1.2,y-bbx(k,2),leg(k))
       r=gce()
@@ -163,5 +202,6 @@ function legends(leg, style, opt, with_box)
  
     set('current_axes',old_ax),
     drawnow()
+    f.visible=vis;
   end
 endfunction
