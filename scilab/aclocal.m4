@@ -96,8 +96,8 @@ else
 fi
 
 
-case $host in
-  darwin*) 
+case $host_os in
+  darwin* | rhapsody*) 
 # already added to CFLAGS 
   ;;
   *)
@@ -243,8 +243,8 @@ else
   TK_VERSION="can't happen"
 fi
 
-case $host in
-  darwin*) 
+case $host_os in
+  darwin* | rhapsody*) 
 # already added to CFLAGS 
   ;;
   *)
@@ -288,12 +288,11 @@ libnames="tk$CHK_TK_MAJ.$CHK_TK_MIN tk.$CHK_TK_MAJ.$CHK_TK_MIN tk$CHK_TK_MAJ$CHK
 
 TK_PLUS=
 
-case $host in
-  darwin*) 
+case $host_os in
+  darwin* | rhapsody*) 
 	TK_PLUS="-L${X11BASE}/lib -lX11"
   ;;
 esac
-echo POOOO $TK_PLUS 
 
 for e in $libexts; do
 	for j in $dirs; do
@@ -314,9 +313,9 @@ for e in $libexts; do
 				# Check for Tcl lib
 				if test "$USER_TK_LIB_PATH" = ""
 				then AC_CHECK_LIB([$NAME_LIB_TK], Tk_BindEvent, TK_LIB_OK=1,TK_LIB_OK=0,
-						  [ -L$PATH_LIB_TK -l$NAME_LIB_TK $TK_LDFLAGS])
+						  [ -L$PATH_LIB_TK -l$NAME_LIB_TK $TK_LDFLAGS $TK_PLUS])
 				else AC_CHECK_LIB([$NAME_LIB_TK], Tk_BindEvent, TK_LIB_OK=1,TK_LIB_OK=0,
-						  [ -L$USER_TK_LIB_PATH -l$NAME_LIB_TK $TK_LDFLAGS])
+						  [ -L$USER_TK_LIB_PATH -l$NAME_LIB_TK $TK_LDFLAGS $TK_PLUS])
 				fi
 				CFLAGS="$saved_cflags"
 				CPPFLAGS="$saved_cppflags"
