@@ -29,7 +29,7 @@ e=0*ones(k,1);e(2)=1;
 if k==1 then ksi=1,else ksi=fft(e,-1);end
 
 fi=[];
-if ~isreal(A,0)  then
+if ~isreal(W,0)  then
   for kk=1:k,fi=[fi,det(horner(W,ksi(kk)))];end
   zzz=poly(fft(fi,1),varn(W),'c');
   res=clean(real(zzz),epsa,epsr)+%i*clean(imag(zzz),epsa,epsr);
