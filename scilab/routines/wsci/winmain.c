@@ -38,7 +38,7 @@
 #include <malloc.h>
 #endif
 
-#ifdef __MSC__
+#if (defined __MSC__ ) || (defined __MINGW32__) 
 #define putenv(x) _putenv(x)
 #endif
 
@@ -217,7 +217,7 @@ static void SciEnv ()
 	  sprintf (env, "MANCHAPTERS=%s/man/Chapters", p);
 	  putenv (env);
 	}
-/** for PVM **/
+      /** for PVM **/
       for (p1 = p; *p1; p1++)
 	{
 	  if (*p1 == '/')
@@ -249,7 +249,7 @@ static void SciEnv ()
 #ifdef __MSC__
       putenv ("COMPILER=VC++");
 #endif
-#ifdef __CYGWIN32__
+#if (defined __CYGWIN32__ ) || (defined __MINGW32__) 
       putenv ("COMPILER=gcc");
 #endif
 #ifdef __ABSC__
@@ -290,7 +290,7 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
   char *path = NULL;
   OSVERSIONINFO os;
-#if (defined __GNUC__) || (defined __ABSC__)	/* arguments are in szCmdline */
+#if ((defined __GNUC__) && !(defined __MINGW32)) || (defined __ABSC__)	/* arguments are in szCmdline */
 #define MAXCMDTOKENS 128
   int _argc = -1;
   LPSTR _argv[MAXCMDTOKENS];
@@ -422,7 +422,7 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   SciEnv ();
   if (nowin == 1)
     {
-/** XXXX AllocConsole(); **/
+      /** XXXX AllocConsole(); **/
       sci_windows_main (nowin, &startupf,path,pathtype, &lpath,memory);
     }
   else
@@ -432,7 +432,7 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
       textwin.hIcon = LoadIcon (hInstance, "texticon");
       SetClassLong (textwin.hWndParent, GCL_HICON, (DWORD) textwin.hIcon);
       SetXsciOn ();
-/** XXX **/
+      /** XXX **/
       ShowWindow (textwin.hWndParent, SW_SHOWNORMAL);
       sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
     }
@@ -460,7 +460,6 @@ MAIN__ ()
   HMODULE x = GetModuleHandle (0);
   WinMain (x, 0, GetCommandLine (), 1);
 #endif
-
   return (0);
 }
 #endif

@@ -17,7 +17,7 @@
 #ifdef __CYGWIN32__
 #include <unistd.h>		/* for getpid */
 #endif
-#ifdef __MSC__
+#if (defined __MSC__) || (defined __MINGW32__)
 #include <process.h>		/* for getpid */
 #endif
 
