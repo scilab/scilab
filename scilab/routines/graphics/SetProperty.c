@@ -151,9 +151,8 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
      (sciGetEntityType(pobj) != SCI_AXES)        &&
      (sciGetEntityType(pobj) != SCI_MENU)        &&
      (sciGetEntityType(pobj) != SCI_MENUCONTEXT) &&
-     (sciGetEntityType(pobj) != SCI_STATUSB)) 
-    /* &&
-       (sciGetEntityType(pobj) != SCI_LABEL)) */
+     (sciGetEntityType(pobj) != SCI_STATUSB)    &&
+     (sciGetEntityType(pobj) != SCI_LABEL))
     {
       if(old_m +1 == sciGetForeground(pobj)) {   /* 0 => deals with Foreground */
 	sciSetNumColors (pobj,m);
@@ -246,7 +245,6 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
       }
     }
   
-  
   sciSetNumColors (pobj,m); /* Add F.Leray 25.06.04 */
   
   psonstmp = sciGetLastSons (pobj);
@@ -261,9 +259,6 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
 int  
 sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 {
-  
-  /* F.Leray debug 30.03.04*/
-  
   switch (flag)
     {
     case 0: /* Foreground*/
@@ -285,7 +280,6 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_STATUSB:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	  sciSetForeground(pobj,value);
-	  sciSetMarkForeground(pobj,value); /* F.Leray 21.01.05 */
 	  break;
 	case SCI_AGREG:
 	case SCI_TEXT:
@@ -318,7 +312,6 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_STATUSB:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	  sciSetBackground(pobj,value);
-	  sciSetMarkBackground(pobj,value); /* F.Leray 21.01.05 */
 	  break;
 	case SCI_AGREG:
 	case SCI_TEXT:
@@ -881,17 +874,16 @@ sciSetIsMark (sciPointObj * pobj, BOOL ismark)
 int
 sciSetMarkForeground (sciPointObj * pobj, int colorindex)
 {
-  int aa; /* debug */
   colorindex = sciSetGoodIndex(pobj,colorindex); /* Adding F.Leray 31.03.04*/
   
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE: /* F.Leray 08.04.04 */
-      (sciGetGraphicContext(pobj))->markforeground = aa =
+      (sciGetGraphicContext(pobj))->markforeground =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_SUBWIN: /* F.Leray 08.04.04 */
-      (sciGetGraphicContext(pobj))->markforeground = aa =
+      (sciGetGraphicContext(pobj))->markforeground =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_ARC:
@@ -899,7 +891,7 @@ sciSetMarkForeground (sciPointObj * pobj, int colorindex)
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_POLYLINE:
-      (sciGetGraphicContext(pobj))->markforeground = aa =
+      (sciGetGraphicContext(pobj))->markforeground =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_RECTANGLE:
@@ -1763,7 +1755,6 @@ sciSetFontBackground (sciPointObj * pobj, int colorindex)
 int
 sciSetFontForeground (sciPointObj * pobj, int colorindex)
 {
-  
   colorindex = sciSetGoodIndex(pobj,colorindex); /* Adding F.Leray 31.03.04*/
   
   switch (sciGetEntityType (pobj))
