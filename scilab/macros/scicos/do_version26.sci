@@ -47,7 +47,7 @@ function scs_m=do_version26(scs_m)
       
       if mdl(1)(1)=='super'|mdl(1)(1)=='csuper' then
 	if type(mdl(8))==15 then
-	  mdl(8)=traductor(mdl(8))
+	  mdl(8)=do_version26(mdl(8))
 	end
       end
       
