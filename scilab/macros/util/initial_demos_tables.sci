@@ -29,7 +29,8 @@ if getenv('WIN32','NO')=='OK'
       'Scicos','scicos/scicos.dem';
       'Sounds','sound/sound.dem';
       'Random','random/random.dem';
-      'TK/TCL demos','tk/tk.dem'];
+      'TK/TCL demos','tk/tk.dem';
+      'Complex elementary functions','cmplxfunc/cmplxfunc.dem'];
 else
   // This is LINUX
   demolist=[
@@ -62,7 +63,8 @@ else
       'Sounds','sound/sound.dem';
       'Random','random/random.dem';
       'Communications with PVM','pvm/pvm.dem';
-      'TK/TCL demos','tk/tk.dem'];
+      'TK/TCL demos','tk/tk.dem'
+      'Complex elementary functions','cmplxfunc/cmplxfunc.dem'];
 end
 demolist(:,2)='SCI/demos/'+demolist(:,2)
 endfunction
