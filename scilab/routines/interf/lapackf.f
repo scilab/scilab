@@ -2381,10 +2381,13 @@ c
          return
       endif
       if(N.eq.0) then
-         lhsvar(1) = 1
+         lhsvar(1) = 2
+         if(.not.createvar(2,'d',1,1,lL)) return
+         stk(lL)=1.0d0
          if (lhs.eq.2) then
-            if(.not.createvar(2,'d',0,0,lL)) return
-            lhsvar(2) = 2
+            if(.not.createvar(3,'d',1,1,lL)) return
+            stk(lL)=0.0d0
+            lhsvar(2) = 3
          endif
          return
       elseif(N.eq.-1) then
