@@ -1,7 +1,15 @@
 function contour2d(x,y,z,nz,style,strf,leg,rect,nax,void)
 opts=[]
 if ~exists('style','local')==1 then style=1:nz,end
-if exists('strf','local')==1 then opts=[opts,'strf=strf'],end
+if exists('strf','local')==1 then 
+  yflag=part(strf,2)
+  if or(yflag==['2' '4' '6' '8']) then
+     rect=[min(x),min(y),max(x),max(y)]
+    yflag=string(evstr(yflag)-1)
+    strf=part(strf,1)+yflag+part(strf,3)
+  end
+  opts=[opts,'strf=strf'],
+end
 if exists('leg','local')==1 then opts=[opts,'leg=leg'],end
 if exists('rect','local')==1 then opts=[opts,'rect=rect'],end
 if exists('nax','local')==1 then opts=[opts,'nax=nax'],end
