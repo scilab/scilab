@@ -100,12 +100,19 @@ goto end
 :MakeMexLib
 cd routines/default
  echo making all Mexlib
- nmake /C /f makemexlib.mak all /a
+ nmake /C /f makemex.mak all /a
+ @copy /Y mexlib.dll ..\..\bin\libmex.dll 
+ @copy /Y mexlib.dll ..\..\bin\libmx.dll
+ @copy /Y mexlib.dll ..\..\bin\libmat.dll
+ @del /Q mexlib.def
+ @del /Q mexlib.dll
+ @del /Q mexlib.ilib
+ @del /Q mexlib.exp
 cd ../.. 
 goto end
 
 :Javasci
-cd routines/javasci
+cd routines\javasci
  echo making all Javasci
  nmake /C /f makefile.mak all /a
 cd ../.. 
