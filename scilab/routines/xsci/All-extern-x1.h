@@ -109,7 +109,7 @@ extern void TabZonk  __PARAMS((unsigned int *tabs));
      
      /* 1 "x_zzledt-n.c.X1" */
 extern void C2F (zzledt1) __PARAMS((char *buffer, int *buf_size, int *len_line, int *eof, long int dummy1));  
-extern int ctrl_action  __PARAMS((int i));  
+
 
 #endif /**  ALL_EXTERN_X1 **/
 

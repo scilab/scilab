@@ -230,7 +230,7 @@ extern void ReverseVideo  __PARAMS((XtermWidget termw));
 extern void recolor_cursor  __PARAMS((Cursor cursor, long unsigned int fg, long unsigned int bg));  
      /* 1 "x_zzledt-n.c.X1" */
 extern void C2F (zzledt1) __PARAMS((char *buffer, int *buf_size, int *len_line, int *eof, long int dummy1));  
-extern int ctrl_action  __PARAMS((int i));  
+
 
 #endif /**  ALL_EXTERN_X **/
 
