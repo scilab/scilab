@@ -252,11 +252,12 @@ case "string" then
   // -------
 case "funcall" then
   if size(e.rhs)==0 then
+    I=I; // I is defined in instruction2code
     C=e.name
     [l,mac]=where()
     if size(grep(mac,"expression2code"),"*")>1 then
       C=C+"()"
-    elseif I.lhs(1).name<>"ans" then // I is defined in instruction2code
+    elseif typeof(I)=="equal" & ( (typeof(I.lhs(1))=="variable" & I.lhs(1).name<>"ans") | typeof(I.lhs(1))=="operation") then 
       C=C+"()"
     end
   else
