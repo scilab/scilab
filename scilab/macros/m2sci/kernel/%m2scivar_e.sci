@@ -1,7 +1,7 @@
 function val=%m2scivar_e(field,m2scitlist)
-// File generated from %PROTO_e.g: PLEASE DO NOT EDIT !
 // Copyright INRIA
 // V.C.
+
 val=[]
 if field=="infer" then
   val=m2scitlist.infer

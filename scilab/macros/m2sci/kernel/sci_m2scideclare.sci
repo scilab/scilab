@@ -90,7 +90,7 @@ else
 end
 // Property correction
 if or(vtype==[Boolean,String]) then
-  property="Real"
+  property=Real
 end
 
 if strindex(name,".")<>[] then // Cell or Struct m2scideclare
@@ -111,16 +111,22 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
   else //x.fieldname(p...).fieldname2 
     firstfield=part(name,firstpoint:min([secpoint par])-1)
   end
-    
-  if firstfield=="entries" then // Cell
+  if firstfield==".entries" then // Cell
     vartype=Cell
   else // Struct
     vartype=Struct
   end
   
   // Indexes for varname ? myvar(1,2).field....
-  if or(strindex(name,"(")<strindex(name,".")) then
-    vardims=evstr("list"+part(name,min(strindex(name,"(")):min(strindex(name,")"))))
+  if or(strindex(name,"(")<strindex(name,".")) | (~isempty(strindex(name,"("))&isempty(strindex(name,".")))then
+    ierr=execstr("vardims=list"+part(name,min(strindex(name,"(")):min(strindex(name,")"))),"errcatch")
+    if ierr then
+      if ~isempty(strindex(part(name,min(strindex(name,"(")):min(strindex(name,")"))),"*")) then // Generic command *
+	vardims="generic"
+      else
+	error("Wrong dimensions user data");
+      end
+    end
   else
     vardims=list(1,1)
   end
@@ -128,11 +134,43 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
   [isvar,index]=isdefinedvar(Variable(varname,Infer()))
     
   if ~isvar then // If variable does not exist it is added to varslist
-    contents=struct()
-    evstr("contents"+part(name,length(name))+"=1"); // should be removed is no more Scilab bug for it
-    evstr("contents"+part(name,length(name))+"=Infer(dims,Type(vtype,property))");
-    varslist($+1)=M2scivar(varname,varname,Infer(vardims,Type(vartype,Unknown,contents)))
+    if vardims=="generic" then
+      vardims=list(Unknown,Unknown)
+    end
+    contents=Contents()
+    name=strsubst(name,"*","%genericm2sciindex")
+    deff("m2scitmp",name)
+    t=macr2tree(m2scitmp);
+    if isempty(firstpoint) then
+      contents.index($+1)=t.statements(2).expression.rhs;
+    else
+      contents.index($+1)=t.statements(2).expression.rhs(1);
+    end
+    clear m2scitmp
+    for k=1:lstsize(contents.index($))
+      if typeof(contents.index($)(k))=="variable" & contents.index($)(k).name=="%genericm2sciindex" then
+	contents.index($)(k)=Cste("*")
+      elseif typeof(contents.index($)(k))=="cste" then
+	contents.index($)(k)=Cste(contents.index($)(k).value)
+      elseif typeof(contents.index($)(k))=="list" then
+	for kk=1:lstsize(contents.index($)(k))
+	  if typeof(contents.index($)(k)(kk))=="variable" & contents.index($)(k)(kk).name=="%genericm2sciindex" then
+	    contents.index($)(k)(kk)=Cste("*")
+	  elseif typeof(contents.index($)(k)(kk))=="cste" then
+	    contents.index($)(k)(kk)=Cste(contents.index($)(k)(kk).value)
+	  end
+	end
+      end
+    end
+    contents.data($+1)=Infer(dims,Type(vtype,property))
+    varslist($+1)=M2scivar(varname,varname,Infer(vardims,Type(vartype,Unknown),contents))
   else
+    if vardims=="generic" then
+      vardims=varslist(index).dims
+    else
+      vardims=dims
+    end
+    
     infereddims=varslist(index).dims
     
     err=%F
@@ -150,12 +188,12 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
 	  "   Current dimension: "+dims2str(infereddims)
 	  "   m2scideclare IGNORED"],2)
     else
-	varslist(index)=M2scivar(varslist(index).matname,varslist(index).matname,Infer(dims,Type(varslist(index).type.vtype,property)))
+      varslist(index)=M2scivar(varslist(index).matname,varslist(index).matname,Infer(vardims,Type(varslist(index).type.vtype,property)))
     end
     
     // Update vtype
     if varslist(index).type.vtype==Unknown then
-      varslist(index)=M2scivar(varslist(index).matname,varslist(index).matname,Infer(dims,Type(vartype,varslist(index).property)))
+      varslist(index)=M2scivar(varslist(index).matname,varslist(index).matname,Infer(vardims,Type(vartype,varslist(index).property)))
     elseif varslist(index).type.vtype~=vartype then
       set_infos(["Type current value and m2scideclare statements conflict for: "+varname
 	  "   m2scideclare given type: "+tp2str(vartype)
@@ -164,8 +202,8 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     end
 
     // Update property
-    if varslist(index).type.property==Unknown then
-      varslist(index).type.property=property
+    if varslist(index).property==Unknown then
+      varslist(index).infer.type.property=property
     elseif property==Unknown then
       varslist(index).type.property=Unknown
     elseif varslist(index).type.property~=property then
@@ -177,17 +215,32 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     
     // Update contents (no verification made...too complex)
     contents=varslist(index).contents
-    if vartype==Cell & typeof(contents)<>"ce" then
-      contents=makecell()
-      execstr("contents"+part(name,endofname+1:length(name))+"=1"); // should be removed is no more Scilab bug for it
-    elseif vartype==Struct & typeof(contents)<>"st" then
-      contents=struct()
-      execstr("contents"+part(name,endofname+1:length(name))+"=1"); // should be removed is no more Scilab bug for it
+    name=strsubst(name,"*","%genericm2sciindex")
+    deff("m2scitmp",name)
+    t=macr2tree(m2scitmp);
+    if isempty(firstpoint) then
+      contents.index($+1)=t.statements(2).expression.rhs;
+    else
+      contents.index($+1)=t.statements(2).expression.rhs(1);
     end
-    disp("contents"+part(name,endofname+1:length(name))+"=Infer(dims,Type(vtype,property))");
-    execstr("contents"+part(name,endofname+1:length(name))+"=Infer(dims,Type(vtype,property))");
+    clear m2scitmp
+    for k=1:lstsize(contents.index($))
+      if typeof(contents.index($)(k))=="variable" & contents.index($)(k).name=="%genericm2sciindex" then
+	contents.index($)(k)=Cste("*")
+      elseif typeof(contents.index($)(k))=="cste" then
+	contents.index($)(k)=Cste(contents.index($)(k).value)
+      elseif typeof(contents.index($)(k))=="list" then
+	for kk=1:lstsize(contents.index($)(k))
+	  if typeof(contents.index($)(k)(kk))=="variable" & contents.index($)(k)(kk).name=="%genericm2sciindex" then
+	    contents.index($)(k)(kk)=Cste("*")
+	  elseif typeof(contents.index($)(k)(kk))=="cste" then
+	    contents.index($)(k)(kk)=Cste(contents.index($)(k)(kk).value)
+	  end
+	end
+      end
+    end
+    contents.data($+1)=Infer(dims,Type(vtype,property))
     varslist(index)=M2scivar(varname,varname,Infer(vardims,Type(vartype,Unknown),contents))
-    
     
   end
 else // Variable m2scideclare 

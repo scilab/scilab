@@ -68,9 +68,6 @@ while k<=size(instr_lhs)
   // Insertion operation
   if typeof(instr_lhs(k))=="operation" then
     instr_lhs(k)=null()
-  // List of indices in recursive extraction
-  //elseif typeof(instr_lhs(k))=="list" then
-  //  instr_lhs(k)=null()
   else
     k=k+1
   end
@@ -84,6 +81,15 @@ end
 // Update varslist  
 for k=1:size(instr_lhs)
   [bval,index]=isdefinedvar(instr_lhs(k))
+  
+  // Remove multiple entries from contents
+  for kcont=lstsize(instr_lhs(k).contents.index):-1:1
+    [infertlist,pos]=get_contents_infer(instr_lhs(k),instr_lhs(k).contents.index(kcont))
+    if pos<>0 & pos<>kcont then
+      instr_lhs(k).contents.index(pos)=null()
+      instr_lhs(k).contents.data(pos)=null()
+    end
+  end
 
   if bval then
     if level(1)>0 then // If in a clause, create a new variable
@@ -112,7 +118,7 @@ for k=1:size(instr_lhs)
     else // Else, update existing variable
       varslist(index)=M2scivar(varslist(index).sciname,..
 	  varslist(index).matname,..
-	  instr_lhs(k).infer,..
+	  Infer(instr_lhs(k).infer.dims,instr_lhs(k).infer.type,instr_lhs(k).infer.contents),..
 	  varslist(index).level)
     end
   else
@@ -174,10 +180,17 @@ if newprop<>oldprop then
   newprop=Unknown
 end
 
-// Write result in varslist
-if type(newvar.contents)==15 then
-  newvar.infer.contents=[]
+// Verify contents
+for k=1:lstsize(newvar.contents.index)
+  olddata=get_contents_infer(oldvar,newvar.contents.index(k))
+  newdata=newvar.contents.data(k)
+  
+  if or(olddata<>newdata) then
+    newvar.infer.contents.data(k)=Infer()
+  end
 end
+
+// Write result in varslist
 varslist(oldvarindex)=M2scivar(oldvar.sciname,..
     oldvar.matname,..
     Infer(newdims,Type(newvtype,newprop),newvar.contents),..

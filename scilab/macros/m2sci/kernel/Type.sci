@@ -15,8 +15,8 @@ end
 if typeof(property)=="list" then
   error("Type(): list of properties is not yet implemented !")
 else
-  if and(property~=[Real,Complex]) & property~=Unknown then
-    error("Type(): wrong property !")
+  if and(property~=[Real,Complex,Units]) & property~=Unknown then
+    error("Type(): wrong property "+string(property)+"!")
   end
 end  
 
