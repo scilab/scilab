@@ -143,11 +143,12 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   }
   while(!done)
     {
-      make_ptr(*bllst10,bllst4ptr,bllst5ptr,&typ_l,&typ_m);
+      make_ptr(*bllst10,&typ_l,&typ_m);
       cleanup(clkconnect);
       if (OR(typ_l))
-	paksazi(bllst111,bllst112,bllst2,bllst3,bllst9,bllst10,bllst12,bllst2ptr,bllst3ptr,*bllst5ptr,
-		bllst9ptr,connectmat,clkconnect,typ_l,typ_m,&done,ok,&need_newblk,corinvec,corinvptr,critev,&prime_pointer,&prime_act);
+	paksazi(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,bllst12,nzcross,bllst2ptr,bllst3ptr,
+		bllst4ptr,bllst5ptr,bllst9ptr,connectmat,clkconnect,typ_l,typ_m,&done,ok,&need_newblk,
+		corinvec,corinvptr,critev,&prime_pointer,&prime_act);
       else done=true;
       if(!(*ok)) return 0;
     }
@@ -159,30 +160,18 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
     {
       if (((*typ_x)=(int*)realloc((*typ_x),sizeof(int)*(nombr+1))) == NULL ) return 0;
       (*typ_x)[0]=nombr;
-      if (((*bllst4)=(int*)realloc((*bllst4),sizeof(int)*((*bllst4ptr)[(*bllst4ptr)[0]]))) == NULL ) return 0;
-      (*bllst4)[0]=(*bllst4ptr)[(*bllst4ptr)[0]]-1;
-      if (((*bllst5)=(int*)realloc((*bllst5),sizeof(int)*((*bllst5ptr)[(*bllst5ptr)[0]]))) == NULL ) return 0;
-      (*bllst5)[0]=(*bllst5ptr)[(*bllst5ptr)[0]]-1;
       if (((*bllst11ptr)=(int*)realloc((*bllst11ptr),sizeof(int)*((*bllst11ptr)[0]+nombr-nblk1+1))) == NULL ) return 0;
       (*bllst11ptr)[0]=(*bllst11ptr)[0]+nombr-nblk1;
       if (((*bllst11)=(double*)realloc((*bllst11),sizeof(double)*(((int*) (*bllst11))[0]+2*(nombr-nblk1)+1))) == NULL ) return 0;
       ((int*)(*bllst11))[0]=((int*)(*bllst11))[0]+2*(nombr-nblk1);
       if (((*nmode)=(int*)realloc((*nmode),sizeof(int)*(nombr+1))) == NULL ) return 0;
-      (*nmode)[0]=nombr;
-      if (((*nzcross)=(int*)realloc((*nzcross),sizeof(int)*(nombr+1))) == NULL ) return 0;
-      (*nzcross)[0]=nombr;
+      (*nmode)[0]=nombr;      
       if (((*bllst13)=(char**)realloc((*bllst13),sizeof(char*)*(nombr+1))) == NULL )  return 0;
       ((int*) (*bllst13))[0]=nombr;
       for(i=nblk1+1;i<nombr+1;i++)
 	{	  
 	  (*typ_x)[i]=0;
-	  (*nzcross)[i]=0;
-	  (*nmode)[i]=1;
-	  (*bllst4)[(*bllst4ptr)[i]]=1;
-	  for(l=(*bllst5ptr)[i];l<=(*bllst5ptr)[i+1]-1;l++)
-	    {
-	      (*bllst5)[l]=1;
-	    }	  
+	  (*nmode)[i]=1;	 	  
 	  (*bllst11ptr)[i+1]=(*bllst11ptr)[i]+2;
 	  for(l=(*bllst11ptr)[i];l<=(*bllst11ptr)[i+1]-1;l++)
 	    {
@@ -691,17 +680,17 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
 } /* end function */
 /***************************************** fin de scheduler**********************************/
 /* =======================================function paksazi=============================================== */
-int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** bllst9,char*** bllst10,
-	    int** bllst12,int** bllst2ptr,int** bllst3ptr,int* bllst5ptr,int** bllst9ptr,
-	    int** connectmat,int** clkconnect,int* typ_l,int* typ_m,int* done,int* ok,int* need_newblk,
-	    int** corinvec,int** corinvptr,int** critev,int* prime_pointer,int** prime_act)
+int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** bllst4,int** bllst5,int** bllst9,
+	    char*** bllst10,int** bllst12,int** nzcross,int** bllst2ptr,int** bllst3ptr,int** bllst4ptr,int** bllst5ptr,
+	    int** bllst9ptr,int** connectmat,int** clkconnect,int* typ_l,int* typ_m,int* done,int* ok,
+	    int* need_newblk,int** corinvec,int** corinvptr,int** critev,int* prime_pointer,int** prime_act)
 {
   
   int i,j=1,k,l,o,leng,ki,sbb,m1,a;
   int *vectconnect,*iVect,*id,*dl,*ltmp,*idl,*lb,*indx,*tmpvect,*indxo,*indy,*bexe,*blnk;
   int *tmp,*clkconnecttmp,*clkconnect0,*texeclk0,*ind,*w2,*w1,*boptr,*blptr,*tclkconnect,*tcon,*ordptr1,*texeclki;
   int *b1,*typ_lm,*pointer,*r,*w3,*pointer1,*con,*vec,*clkconnectind,*connectmatind,*con1;
-  int okk[1],nn,nblk=((int*) (*bllst10))[0];
+  int okk[1],nn=1,nblk=((int*) (*bllst10))[0];
   int nblkorg=nblk;
   int change=false;  
   Mat4C clkconnecti,connectmati;
@@ -797,7 +786,9 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 	      free(ppget);
 	      if (indy[0] > 1) sciprint("Synchro block cannot have more than 1 input");
 	      if (((*bllst2ptr)=(int*)realloc((*bllst2ptr),sizeof(int)*((*bllst2ptr)[0]+nn))) == NULL ) return 0;
-	      if (((*bllst3ptr)=(int*)realloc((*bllst3ptr),sizeof(int)*((*bllst3ptr)[0]+nn))) == NULL ) return 0;		  
+	      if (((*bllst3ptr)=(int*)realloc((*bllst3ptr),sizeof(int)*((*bllst3ptr)[0]+nn))) == NULL ) return 0;
+	      if (((*bllst4ptr)=(int*)realloc((*bllst4ptr),sizeof(int)*((*bllst4ptr)[0]+nn))) == NULL ) return 0;
+	      if (((*bllst5ptr)=(int*)realloc((*bllst5ptr),sizeof(int)*((*bllst5ptr)[0]+nn))) == NULL ) return 0;	      
 	      if (((*bllst9ptr)=(int*)realloc((*bllst9ptr),sizeof(int)*((*bllst9ptr)[0]+nn))) == NULL ) return 0;
 	      if ((*bllst10=(char**)realloc(*bllst10,(nblk+nn)*sizeof(char*))) ==NULL )  return 0;
 	      ((int*)(*bllst10))[0]=nblk+nn-1;
@@ -813,14 +804,16 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 	      (*bllst12)[0]=2*(nblk+nn-1);
 	      if (((*corinvptr)=(int*)realloc((*corinvptr),sizeof(int)*((*corinvptr)[0]+nn))) == NULL ) return 0;
 	      if (((*corinvec)=(int*)realloc((*corinvec),sizeof(int)*((*corinvec)[0]+4*nn+1))) == NULL ) return 0;
+	      if (((*nzcross)=(int*)realloc((*nzcross),sizeof(int)*(nblk+nn))) == NULL ) return 0;
+	      (*nzcross)[0]=nblk+nn-1;
 	      
 	      for(k=2;k<nn+1;k++)
 		{
-		  if (((*critev)=(int*)realloc((*critev),sizeof(int)*((*critev)[0]+bllst5ptr[lb[i]+1]-bllst5ptr[lb[i]]+1))) == NULL ) return 0;
-		  a=(*critev)[0]-bllst5ptr[lb[i]]+1;
-		  for(l=bllst5ptr[lb[i]]; l<bllst5ptr[lb[i]+1]; l++)
+		  if (((*critev)=(int*)realloc((*critev),sizeof(int)*((*critev)[0]+(*bllst5ptr)[lb[i]+1]-(*bllst5ptr)[lb[i]]+1))) == NULL ) return 0;
+		  a=(*critev)[0]-(*bllst5ptr)[lb[i]]+1;
+		  for(l=(*bllst5ptr)[lb[i]]; l<(*bllst5ptr)[lb[i]+1]; l++)
 		    (*critev)[l+a]=(*critev)[l];
-		  (*critev)[0]=(*critev)[0]+bllst5ptr[lb[i]+1]-bllst5ptr[lb[i]];	
+		  (*critev)[0]=(*critev)[0]+(*bllst5ptr)[lb[i]+1]-(*bllst5ptr)[lb[i]];	
   
 		  (*clkconnect)[indx[k]+(*clkconnect)[0]/2]=nblk+1;
 		  
@@ -846,6 +839,24 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		  for(l=(*bllst3ptr)[nblk+1];l<=(*bllst3ptr)[nblk+2]-1;l++)
 		    {
 		      (*bllst3)[l]=(*bllst3)[a+l];
+		    }
+		  (*bllst4ptr)[(*bllst4ptr)[0]+1]=(*bllst4ptr)[(*bllst4ptr)[0]]+(*bllst4ptr)[lb[i]+1]-(*bllst4ptr)[lb[i]];
+		  (*bllst4ptr)[0]++;
+		  if (((*bllst4)=(int*)realloc((*bllst4),sizeof(int)*((*bllst4)[0]+(*bllst4ptr)[nblk+2]-(*bllst4ptr)[nblk+1]+1))) == NULL ) return 0;
+		  (*bllst4)[0]=(*bllst4)[0]+(*bllst4ptr)[nblk+2]-(*bllst4ptr)[nblk+1];
+		  a=(*bllst4ptr)[lb[i]]-(*bllst4ptr)[nblk+1];
+		  for(l=(*bllst4ptr)[nblk+1];l<=(*bllst4ptr)[nblk+2]-1;l++)
+		    {
+		      (*bllst4)[l]=(*bllst4)[a+l];
+		    }
+		  (*bllst5ptr)[(*bllst5ptr)[0]+1]=(*bllst5ptr)[(*bllst5ptr)[0]]+(*bllst5ptr)[lb[i]+1]-(*bllst5ptr)[lb[i]];
+		  (*bllst5ptr)[0]++;
+		  if (((*bllst5)=(int*)realloc((*bllst5),sizeof(int)*((*bllst5)[0]+(*bllst5ptr)[nblk+2]-(*bllst5ptr)[nblk+1]+1))) == NULL ) return 0;
+		  (*bllst5)[0]=(*bllst5)[0]+(*bllst5ptr)[nblk+2]-(*bllst5ptr)[nblk+1];
+		  a=(*bllst5ptr)[lb[i]]-(*bllst5ptr)[nblk+1];
+		  for(l=(*bllst5ptr)[nblk+1];l<=(*bllst5ptr)[nblk+2]-1;l++)
+		    {
+		      (*bllst5)[l]=(*bllst5)[a+l];
 		    }
 		  (*bllst9ptr)[(*bllst9ptr)[0]+1]=(*bllst9ptr)[(*bllst9ptr)[0]]+(*bllst9ptr)[lb[i]+1]-(*bllst9ptr)[lb[i]];
 		  (*bllst9ptr)[0]++;
@@ -873,6 +884,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		      (*bllst12)[l]=bllst12i.col1[l];
 		      (*bllst12)[l+nblk+1]=bllst12i.col2[l];
 		    }
+		  (*nzcross)[nblk+1]=(*nzcross)[lb[i]];
 		  
 		  (*corinvptr)[(*corinvptr)[0]+1]=(*corinvptr)[(*corinvptr)[0]]+(*corinvptr)[lb[i]+1]-(*corinvptr)[lb[i]];
 		  (*corinvptr)[0]++;
@@ -882,6 +894,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		    {
 		      (*corinvec)[l]=(*corinvec)[a+l];
 		    }
+		  
 		  
 		  if ((tmp=(int*)malloc(sizeof(int)*(1+4*indxo[0]))) == NULL ) return 0;;
 		  tmp[0]=4*indxo[0];
@@ -1070,7 +1083,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
   con[0]=(*clkconnect)[0]/4;
   for(l=1;l<con[0]+1;l++)
     {
-      con[l]=-(bllst5ptr[(*clkconnect)[l]]+(*clkconnect)[l+(*clkconnect)[0]/4]-1);
+      con[l]=-((*bllst5ptr)[(*clkconnect)[l]]+(*clkconnect)[l+(*clkconnect)[0]/4]-1);
     } 
   if ((ind=(int*)malloc(sizeof(int)*(con[0]+1))) == NULL ) return 0;
   ind[0]=con[0];
@@ -1192,7 +1205,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
   w2=GetPartVect(tclkconnect,tclkconnect[0]/4+1,tclkconnect[0]/4);
   for(l=1;l<tcon[0]+1;l++)
     {
-      tcon[l]=bllst5ptr[w1[l]]+w2[l]-1;
+      tcon[l]=(*bllst5ptr)[w1[l]]+w2[l]-1;
     }
   free(w1);
   w1=NULL;
@@ -1217,13 +1230,13 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
   free(w2);
   w2=NULL;
   free(idl);
-  if ((ordptr1=(int*)realloc(ordptr1,sizeof(int)*(bllst5ptr[bllst5ptr[0]]+1))) == NULL ) return 0;
+  if ((ordptr1=(int*)realloc(ordptr1,sizeof(int)*((*bllst5ptr)[(*bllst5ptr)[0]-nn+1]+1))) == NULL ) return 0;
   a=sbb+1;
-  for(l=1;l<bllst5ptr[bllst5ptr[0]]-ordptr1[0]+1;l++)
+  for(l=1;l<(*bllst5ptr)[(*bllst5ptr)[0]-nn+1]-ordptr1[0]+1;l++)
     {
       ordptr1[l+ordptr1[0]]=a;
     }
-  ordptr1[0]=bllst5ptr[bllst5ptr[0]];
+  ordptr1[0]=(*bllst5ptr)[(*bllst5ptr)[0]-nn+1];
   leng=clkconnect0[0]/4;
   if ((clkconnecti.col1=(int*)malloc(sizeof(int)*(leng+(*clkconnect)[0]/4+1))) == NULL ) return 0;
   clkconnecti.col1[0]=leng+(*clkconnect)[0]/4;  
@@ -1327,8 +1340,8 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 	  {
 	    Message("Algebraic loop detected; cannot be compiled.");
 	    *bllst2=NULL;*bllst3=NULL;**bllst10=NULL;
-	    *ok=true;
-	    *done=true;
+	    *ok=false;
+	    *done=true;	    
 	    return 0;
 	  }
 	pointer=FindEg(con,o);
@@ -1340,11 +1353,11 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		*((*bllst10)[r[j]])='s';
 		typ_l[r[j]]=false;
 		
-		if ((vec=malloc(sizeof(int)*(bllst5ptr[r[j]+1]-bllst5ptr[r[j]]+1)))== NULL ) return 0;
-		vec[0]=bllst5ptr[r[j]+1]-bllst5ptr[r[j]];
+		if ((vec=malloc(sizeof(int)*((*bllst5ptr)[r[j]+1]-(*bllst5ptr)[r[j]]+1)))== NULL ) return 0;
+		vec[0]=(*bllst5ptr)[r[j]+1]-(*bllst5ptr)[r[j]];
 		if ((*prime_act=(int*)realloc(*prime_act,sizeof(int)*((*prime_act)[0]+vec[0]+1))) == NULL ) return 0;      
 		for (l = 1; l <= vec[0]; l++){
-		  (*prime_act)[(*prime_act)[0]+l]=bllst5ptr[r[j]]+l-1;
+		  (*prime_act)[(*prime_act)[0]+l]=(*bllst5ptr)[r[j]]+l-1;
 		}
 		(*prime_act)[0]=(*prime_act)[0]+vec[0];
 		free(vec);		
@@ -1375,7 +1388,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		  }
 		if(w1) free(w1);
 		if(w3) free(w3);
-		for (bl_out=2;bl_out<bllst5ptr[r[j]+1]-bllst5ptr[r[j]]+1;bl_out++)
+		for (bl_out=2;bl_out<(*bllst5ptr)[r[j]+1]-(*bllst5ptr)[r[j]]+1;bl_out++)
 		  {
 		    leng=(*clkconnect)[0]/4;
 		    if ((clkconnecti.col1=(int*)malloc(sizeof(int)*(leng+pointer[0]+1))) == NULL ) return 0;
@@ -1471,6 +1484,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
     {
       sciprint("warning(problem2)");
     }
+  
   *ok=true;
   *done=true;
   free(bexe);
@@ -1960,11 +1974,11 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
          new_ordptr1[m+1]=new_ordptr1[m];
        }
      
-   } /* for m */
- free( *ordptr1);
- *ordptr1=new_ordptr1;
- if (clkconnect[0] != 0) free(clkconnect);
- return NULL;
+    } /* for m */
+  free( *ordptr1);
+  *ordptr1=new_ordptr1;
+  if (clkconnect[0] != 0) free(clkconnect);
+  return NULL;
 }/* fin de funct */
 
 /* ======================================= endfunction discard =============================================== */
@@ -2634,40 +2648,24 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
 /* ======================================= endfunction critical_events ========================================== */
 
 /* *************************************** function make_ptr ******************************************* */
-int make_ptr(char** bllst10,int** bllst4ptr,int** bllst5ptr,int** typ_l,int** typ_m)
+int make_ptr(char** bllst10,int** typ_l,int** typ_m)
 {
   int ll,j=1;
-  int *cliptr1,*clkptr1,*typ_l1,*pp,*typ_m1;
-  if (((int *)bllst10)[0]<(*bllst5ptr)[0]) return 0;
-  if ((cliptr1=(int*)calloc((((int *)bllst10)[0]-(*bllst5ptr)[0]+2),sizeof(int))) == NULL ) return 0;
-  cliptr1[0]=((int*)bllst10)[0]-(*bllst5ptr)[0]+1;
-  clkptr1=VecEg1(cliptr1);
-  cliptr1[1]=(*bllst4ptr)[(*bllst4ptr)[0]]+1;
-  clkptr1[1]=(*bllst5ptr)[(*bllst5ptr)[0]]+2;
-  if ((typ_l1=(int*)calloc((cliptr1[0]+1),sizeof(int))) == NULL ) return 0;
-  typ_l1[0]=cliptr1[0];
-  if ((typ_m1=(int*)calloc((cliptr1[0]+1),sizeof(int))) == NULL ) return 0;
-  typ_m1[0]=cliptr1[0];
-  if(cliptr1[1]==1) typ_l1[1]=1;
-  else typ_l1[1]=0;
-  if (*(bllst10[(*bllst5ptr)[0]])=='l') typ_l1[1]=1;
+  int *typ_l1,*pp,*typ_m1;
+  if (((int *)bllst10)[0]<(*typ_l)[0]+1) return 0;
+  ll=((int*)bllst10)[0]-(*typ_l)[0];
+  if ((typ_l1=(int*)calloc((ll+1),sizeof(int))) == NULL ) return 0;
+  typ_l1[0]=ll;
+  if ((typ_m1=(int*)calloc((ll+1),sizeof(int))) == NULL ) return 0;
+  typ_m1[0]=ll;
+  if (*(bllst10[(*typ_l)[0]+1])=='l') typ_l1[1]=1;
   j=1;
-  for (ll=(*bllst5ptr)[0]+1;ll<((int*)bllst10)[0]+1;ll++)
+  for (ll=(*typ_l)[0]+2;ll<((int*)bllst10)[0]+1;ll++)
     {
-      j++;
-      cliptr1[j]=cliptr1[j-1]+1;
-      clkptr1[j]=clkptr1[j-1]+2;
+      j++;      
       if (*(bllst10[ll]) == 'l') typ_l1[j]=1;
       else typ_l1[j]=0;
     }
-  if (((*bllst4ptr)=(int*)realloc((*bllst4ptr),sizeof(int)*((*bllst4ptr)[0]+cliptr1[0]+1))) == NULL ) return 0;
-  pp=&(*bllst4ptr)[(*bllst4ptr)[0]+1];
-  pp=memcpy(pp,&cliptr1[1],sizeof(int)*(cliptr1[0]));
-  (*bllst4ptr)[0]+=cliptr1[0];
-  if (((*bllst5ptr)=(int*)realloc((*bllst5ptr),sizeof(int)*((*bllst5ptr)[0]+clkptr1[0]+1))) == NULL ) return 0;
-  pp=&(*bllst5ptr)[1+(*bllst5ptr)[0]];
-  pp=memcpy(pp,&clkptr1[1],sizeof(int)*(clkptr1[0]));
-  (*bllst5ptr)[0]+=clkptr1[0];
   if (((*typ_l)=(int*)realloc((*typ_l),sizeof(int)*((*typ_l)[0]+typ_l1[0]+1))) == NULL ) return 0;
   pp=&(*typ_l)[1+(*typ_l)[0]];
   pp=memcpy(pp,&typ_l1[1],sizeof(int)*(typ_l1[0]));
@@ -2677,8 +2675,6 @@ int make_ptr(char** bllst10,int** bllst4ptr,int** bllst5ptr,int** typ_l,int** ty
   pp=&(*typ_m)[1+(*typ_m)[0]];
   pp=memcpy(pp,&typ_m1[1],sizeof(int)*(typ_m1[0]));
   (*typ_m)[0]+=typ_m1[0];
-  free(cliptr1);cliptr1=NULL;
-  free(clkptr1);clkptr1=NULL;
   free(typ_l1);typ_l1=NULL;
   free(typ_m1);typ_m1=NULL;
   return 0;
@@ -4380,4 +4376,6 @@ void Incr1(int* vect,int j)
     }
   vect[0]--;
 }
+
+
 

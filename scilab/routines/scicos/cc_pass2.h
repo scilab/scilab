@@ -39,6 +39,8 @@ extern int Message(char* code);
 extern int badconnection(int* path_out,int prt_out,int nout,int* path_in,int prt_in,int nin);
 extern int connection(int* path_out,int* path_in);
 extern void sciprint __PARAMS((char *fmt, ...));  
+extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,int *n,
+				  char *type,char *iord));
 
 typedef struct 
 {
@@ -68,11 +70,12 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,i
 	     int* typ_cons,int* bllst5ptr,int** exe_cons,int nblk);
 int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int *typ_l,int *typ_zx,int *outoin,
 		    int *outoinptr,int *bllst5ptr,int **critev);
-int make_ptr(char** bllst10,int** bllst4ptr,int** bllst5ptr,int** typ_l,int** typ_m);
+int make_ptr(char** bllst10,int** typ_l,int** typ_m);
 int cleanup(int** clkconnect);
-int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int**bllst9,char*** bllst10,int** bllst12,
-	    int** bllst2ptr,int** bllst3ptr,int* bllst5ptr,int** bllst9ptr,int** connectmat,int** clkconnect,int* typ_l,
-	    int* typ_m,int* done,int* ok,int* need_newblk,int** corinvec,int** corinvptr,int** critev,int* prime_pointer,
+int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** bllst4,int** bllst5,int**bllst9,
+	    char*** bllst10,int** bllst12,int** nzcross,int** bllst2ptr,int** bllst3ptr,int** bllst4ptr,int** bllst5ptr,
+	    int** bllst9ptr,int** connectmat,int** clkconnect,int* typ_l,int* typ_m,int* done,int* ok,
+	    int* need_newblk,int** corinvec,int** corinvptr,int** critev,int* prime_pointer,
 	    int** prime_act);
 int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,int* bllst2ptr,
 		 int* bllst3ptr,int* bllst4ptr,int* bllst5ptr,int* bllst11ptr,int* connectmat,
@@ -91,6 +94,8 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 int tree4(int* vec,int *nd,int nnd,int* outoin,int* outoinptr,int* typ_r,int** r);
 int tree2(int* vect,int nb,int* wec,int* ind,int* deput,int* outoin,int* outoinptr,int** ord,int* ok);
 int tree3(int*vec,int nb,int* deput,int* typl,int* bexe,int* boptr,int* blnk,int* blptr,int** ord,int* ok);
+
+
 
 
 
