@@ -28,7 +28,7 @@ function [s2]=mad(x,orien)
   if rhs==1 then
     s2=sum(abs(x-mean(x)))/(nrow*ncol)
     return
-  elsef rhs==2 then
+  elseif rhs==2 then
     if orien=='r'|orien==1 then
       s2=sum(abs(x-(ones(nrow,1)*mean(x,1))),1)/nrow
     elseif orien=='c'|orien==1 then
