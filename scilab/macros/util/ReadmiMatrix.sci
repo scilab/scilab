@@ -102,13 +102,14 @@ function [value,ArrayName]=ReadmiMatrix(fd)
     case 'tf' then
       value=Object2tf(value)
     end
-  case SparseClass then
+    case SparseClass then
     RowIndex=double(ReadSimpleElement(fd,NnzMax))
     ColumnIndex=double(ReadSimpleElement(fd,DimensionArray(2)+1))
     value=double(ReadSimpleElement(fd))
     if Flags(1) then 
       value=value+%i*double(ReadSimpleElement(fd))
     end
+ 
     //Form Scilab representation
     ptr=ColumnIndex(2:$)-ColumnIndex(1:$-1);
     col=[];cc=1;
@@ -118,7 +119,8 @@ function [value,ArrayName]=ReadmiMatrix(fd)
     //in some cases the initial value of ne is  bigger than necessary
     ne=min(size(RowIndex,'*'),size(col,'*'));
     RowIndex=RowIndex(1:ne);col=col(1:ne);
-    value=sparse([col(:),RowIndex(:)+1],value(:),DimensionArray([2 1])).'
+    if RowIndex<>[] then RowIndex=RowIndex(:)+1,end
+    value=sparse([col(:),RowIndex],value(:),DimensionArray([2 1])).'
   else
     error('Unknown Class')
   end
