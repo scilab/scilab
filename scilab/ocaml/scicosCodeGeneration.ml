@@ -527,7 +527,9 @@ let rec bufferize_rhs model_info tabs modes_on lhs expr =
         | [] -> ()
         | [expr'] ->
             Printf.bprintf model_info.code_buffer "/";
-            bufferize_expression_under (precedence expr) expr'
+            bufferize_expression_under (precedence expr + 1) expr'
+            (* add one to the precedence to ensure parentheses to be correctly
+               placed arroud expr' *)
         | exprs' ->
             Printf.bprintf model_info.code_buffer "/(";
             bufferize_arguments_under (precedence expr) "*" exprs';
@@ -545,7 +547,9 @@ let rec bufferize_rhs model_info tabs modes_on lhs expr =
     let bufferize_rational_power' () =
       if eq_num num (Int ~-1) then begin
         Printf.bprintf model_info.code_buffer "1.0/";
-        bufferize_expression_under (precedence expr) expr'
+        bufferize_expression_under (precedence expr + 1) expr'
+        (* add one to the precedence to ensure parentheses to be correctly
+           placed aroud expr' *)
       end else begin
         Printf.bprintf model_info.code_buffer "pow(";
         bufferize_expression expr';
@@ -942,12 +946,10 @@ let generate_code path filename fun_name model =
   bufferize_surfaces model_info;
   Printf.bprintf model_info.code_buffer "\t}\n";
   if model_info.max_index >= 0 then begin
-    let m = ref 0 in
     Printf.fprintf oc "\t/* Intermediate variables */\n\tdouble ";
     for i = 0 to model_info.max_index - 1 do
       Printf.fprintf oc "v%d" i;
-      incr m;
-      if !m mod 16 = 0 then Printf.fprintf oc ";\n\tdouble "
+      if (i + 1) mod 16 = 0 then Printf.fprintf oc ";\n\tdouble "
       else Printf.fprintf oc ", "
     done;
     Printf.fprintf oc "v%d;\n\n" model_info.max_index

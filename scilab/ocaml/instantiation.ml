@@ -1268,7 +1268,7 @@ and search_into_variable ctx s cs level path ivar =
         tex_type = CompoundType dims;
         tex_expression = VariableValue (level, [(s, ics)])
       }
-  | _ -> failwith "find_variable: variable not found"
+  | (s, _) :: _, _ -> failwith ("find_variable: variable not found: " ^ s)
 
 and search_into_compound_variable ctx s ics level path iexpr =
   let iexpr' = get_compound_subvector ics iexpr in

@@ -57,21 +57,57 @@ module type MatrixElement =
 module type Matrix =
   sig
     type elt
+    (** the type of the elements of the matrix *)
     type t
+    (** the type of the sparse matrices        *)
     val init: int -> elt -> (int -> int -> elt) -> t
+    (** [init size default f] creates a square sparse matrix of
+    [size]*[size] elements whose default element is [default] and whose
+    initial elements are given by [f] ([f i j] returns the element to be
+    placed at ([i], [j])). *)
     val iterij: (int -> int -> elt -> unit) -> t -> unit
+    (** [iterij f mtrx] behaves like [iter f mtrx] except that f receives
+    the row index as first argument, the column index as second argument
+    and the current element as third argument. *)
     val row_storage_iterj: int -> (int -> elt -> unit) -> t -> unit
+    (** [row_storage_iterj i f mtrx] is a restriction of
+    [row_iterj i f mtrx] to the elements effectively stored into the matrix,
+    in an unspecified order. Provided for efficiency. *)
     val update_row_storage: int -> (int -> elt -> elt) -> t -> unit
+    (** [update_row_storage i f mtrx] replaces the elements effectively
+    stored into [mtrx] at row [i] by the results of [f] applyied to the
+    current column index as first argument and the current element as
+    second argument, in an unspecified order. Provided for efficiency. *)
     val column_storage_iteri: int -> (int -> elt -> unit) -> t -> unit
+    (** [column_storage_iteri j f mtrx] is a restriction of
+    [column_iteri j f mtrx] to the elements effectively stored into the
+    matrix, in an unspecified order. Provided for efficiency. *)
     val update_column_storage: int -> (int -> elt -> elt) -> t -> unit
+    (** [update_column_storage j f mtrx] replaces the elements effectively
+    stored into [mtrx] at column [j] by the results of [f] applyied to the
+    current row index as first argument and the current element as
+    second argument, in an unspecified order. Provided for efficiency. *)
   end
 
 module type BipartiteGraph =
   sig
     type t
-    val create: int -> t
-    val link: int -> int -> t -> unit
-    val ford_and_fulkerson: t -> int * (int * int option) list
+    (** The type of the bipartite graphs. *)
+
+    val create : int -> t
+    (** [create size] creates a bipartite graph of size [size]. *)
+
+    val link : int -> int -> t -> unit
+    (** [link i j bg] links the [i]th left-side node of [bg] to the [j]th
+    right-side node of [bg]. If [i] or [j] are outside \[0, size) where size
+    is the size of [bg], Invalid_argument is raised. *)
+
+    val ford_and_fulkerson : t -> int * (int * int option) list
+    (** [ford_and_fulkerson bg] performs the Ford and Fulkerson method over the
+    bipartite graph [bg], returning a couple whose first element is the
+    number of successful coupling an second one a list whose elements are of
+    the form [(i, None)] if no right-side node could be associated to the
+    [i]th left-side one and [(i, Some j)] in case of success. *)
   end
 
 module type S =
@@ -80,7 +116,7 @@ module type S =
     (** the type of the objects manipulated by the method *)
     type t
      (** the type of the structure used to hold the data   *)
-   val init: int -> (int -> int -> elt) -> t
+    val init: int -> (int -> int -> elt) -> t
     (** [init size fun] returns a structure on which it is possible
     to perform the Hungarian Method. [size] is the size of the square matrix
     used to perform the method. Given a pair of ints [(i, j)], [fun i j]

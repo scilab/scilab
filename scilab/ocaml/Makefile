@@ -62,6 +62,7 @@ all : opt doc
 
 opt: bytecode $(MLIS:.mli=.cmi) $(MLS:.ml=.cmx)
 	ocamlopt -o $(EXE) $(LFLAGS) $(LIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
+	cp -p $(EXE) ../bin/
 
 bytecode: depend $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo)
 	ocamlc $(OCAMLFLAGS) -o $(EXE) $(LFLAGS) $(LIBS) $(MLS:.ml=.cmo)

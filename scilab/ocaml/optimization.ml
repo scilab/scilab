@@ -56,6 +56,7 @@ and parameter =
 and input =
   {
     input_id: int;
+    input_name: string;
     input_comment: string;
   }
 
@@ -518,6 +519,7 @@ let create_model iexpr =
         Instantiation.InstantiatedRealVariable (s', _, _, _)) ->
         {
           input_id = i;
+          input_name = s;
           input_comment = s'
         }
     | _ -> assert false
@@ -576,7 +578,10 @@ let create_model iexpr =
   and nb_vars = map_length (Lazy.force maps.variables_map)
   and nb_equs = List.length equations in
   if nb_equs <> nb_vars then
-    failwith "The number of equations doesn't match the number of variables."
+    failwith
+      ("The number of equations doesn't match the number of variables: " ^
+      string_of_int nb_equs ^ " equations and " ^ string_of_int nb_vars ^
+      " variables.")
   else
     let parameters_array =
       Array.init
@@ -656,7 +661,7 @@ let create_model iexpr =
     StringMap.iter
       (fun _ inp ->
         assert (inp.input_id < Array.length inputs_array);
-        inputs_array.(inp.input_id) <- inp.input_comment)
+        inputs_array.(inp.input_id) <- inp.input_name)
       (Lazy.force maps.inputs_map);
     StringMap.iter
       (fun s dvar ->
