@@ -1,3 +1,9 @@
+#ifndef _SCI_HISTORY 
+#define _SCI_HISTORY 
+
+/* Allan CORNET 2004 */
+/* Scilab INRIA */
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -6,9 +12,6 @@
 #ifndef	WIN32
 #include "../stack-c.h"
 #endif
-
-/* Allan CORNET 2004 */
-/* Scilab INRIA */
 
 #ifndef STRICT
   #define STRICT
@@ -27,35 +30,36 @@
 #ifndef FALSE
 #define FALSE 0
 #endif
+
 extern void write_scilab  __PARAMS((char *s));
 /*-----------------------------------------------------------------------------------*/
 #define HistoryFileName "history.scilab"
 #define MAXBUF	1024
 /*-----------------------------------------------------------------------------------*/
-struct hist
+typedef struct hist_
 {
-    		char *line;
-    		struct hist *prev;
-    		struct hist *next;
-};
-/*-----------------------------------------------------------------------------------*/
-struct hist *history = NULL;	/* no history yet */
-struct hist *cur_entry = NULL;
+  char *line;
+  struct hist_ *prev;
+  struct hist_ *next;
+} sci_hist;
 
+/*-----------------------------------------------------------------------------------*/
+extern sci_hist *history ;	/* no history yet */
+extern sci_hist *cur_entry;
 /* Use for SearchInHistory --> ! */
-struct hist *research_knot_last = NULL;
-BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
+extern sci_hist *research_knot_last;
+extern BOOL NewSearchInHistory; /* rlgets wsci\command.c */
 /*-----------------------------------------------------------------------------------*/
 char *ASCIItime(const struct tm *timeptr);
 void GetCommentDateSession(char *line,int BeginSession);
 void AddHistory (char *line);
-struct hist * SearchBackwardInHistory(char *line); /* Effectue la recherche via ! dans l'historique*/
-struct hist * SearchForwardInHistory(char *line); /* Effectue la recherche via ! dans l'historique*/
+sci_hist * SearchBackwardInHistory(char *line); /* Effectue la recherche via ! dans l'historique*/
+sci_hist * SearchForwardInHistory(char *line); /* Effectue la recherche via ! dans l'historique*/
 /*-----------------------------------------------------------------------------------*/
-struct hist * GoFirstKnot(struct hist * CurrentKnot);
-struct hist * GoLastKnot(struct hist * CurrentKnot);
-struct hist * GoPrevKnot(struct hist * CurrentKnot);
-struct hist * GoNextKnot(struct hist * CurrentKnot);
+sci_hist * GoFirstKnot(sci_hist * CurrentKnot);
+sci_hist * GoLastKnot(sci_hist * CurrentKnot);
+sci_hist * GoPrevKnot(sci_hist * CurrentKnot);
+sci_hist * GoNextKnot(sci_hist * CurrentKnot);
 
 /*-----------------------------------------------------------------------------------*/
 int C2F(resethistory) _PARAMS((char *fname));
@@ -64,3 +68,5 @@ int C2F(savehistory) _PARAMS((char *fname));
 int C2F(gethistory) _PARAMS((char *fname)); /* Affiche le contenu de l'historique */
 
 /*-----------------------------------------------------------------------------------*/
+
+#endif 
