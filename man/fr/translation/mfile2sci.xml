@@ -1,114 +1,127 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
-  <LANGUAGE>eng</LANGUAGE>
+  <LANGUAGE>fr</LANGUAGE>
   <TITLE>mfile2sci</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>April 1998</DATE>
-  <SHORT_DESCRIPTION name="mfile2sci"> Matlab M_file to scilab translation function</SHORT_DESCRIPTION>
+  <TYPE>Fonction Scilab</TYPE>
+  <DATE>Mars 2004</DATE>
+  <SHORT_DESCRIPTION name="mfile2sci"> Fonction de conversion de M-file Matlab vers Scilab</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>mfile2sci(M_file_path [,result_path [,Imode [,Recmode]]])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mfile2sci(M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprint]]]]])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>M_file_path</PARAM_NAME>
+        <PARAM_NAME>M-file-path</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a character string which gives the path of Matlab M_file to translate</SP>
+          <SP>: une chaîne de caractères qui donne le chemin du M-file à traduire</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>result_path</PARAM_NAME>
+        <PARAM_NAME>result-path</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a character string which gives the directory where the result has to be written. Default value is current directory.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>Imode</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: Boolean flag, If true mfile2sci ask user for variable type and sizes when he cannot infer them. Default value : %f</SP>
+          <SP>: une chaîne de caractères qui donne le répertoire où le résultat sera écrit. La valeur par défault est le répetoire courant.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>Recmode</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: Boolean flag, used by translatepaths function. Must be %f to translate a single mfile.</SP>
+          <SP>: Flag booléen, utilisé par translatepaths pour une conversion récursive. Doit être %F pour convertir un seul M-file. Valeur par défaut : %F</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
-    </PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>only-double</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Flag booléen, si il vaut %T mfile2sci considère que les fonctions de calcul numériques ont été utilisées uniquement avec des données numériques (Aucune fonction de surcharge Scilab est requise). Valeur par défaut : %F</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>verbose-mode</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: mode d'affichage des information de conversion</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>0</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: aucune information donnée</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>1</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: les ionformations sont écrites comme commentaires du fichier Scilab</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>2</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: les ionformations sont écrites comme commentaires du fichier Scilab et dans le fichier log</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>3</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: les ionformations sont écrites comme commentaires du fichier Scilab, dans le fichier log et affichées dans la fenêtre Scilab (Valeur par défaut).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>prettyprint</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Flag booléen, si il vaut %T le code généré est réarrangé. Valeur par défaut : %F</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
     <P>
-    mfile2sci, is Matlab M-file to Scilab function traduction tools. It
-    tries whenever possible to replace call to Matlab functions by the
-    equivalent scilab primitives and functions.
+    M2SCI (et en particulier mfile2sci) est un ensemble d'outils de conversion de M-file vers Scilab. Il essaie
+    à chaque fois que c'est possible de remplacer l'appel à une fonction Matlab par la
+    primitive ou la fonction Scilab équivalente.
   </P>
     <P>
-    To translate a Matlab M-file just enter the scilab instruction:
-    mfile2sci(file)
+    Pour convertir un M-file, entrer l'instruction Scilab :
+    mfile2sci(fichier)
   </P>
     <P>
-    where file is a character string giving the path name of the M-file
-    mfile2sci will generate three files in the same directory
+    où fichier est une chaîne de caractère qui donne le chemin du M-file.
+    mfile2sci va générer trois fichiers dans le même répertoire :
   </P>
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="&lt;function_name&gt;.sci">
-        <SP>: the scilab equivalent of the m_file</SP>
+      <DESCRIPTION_ITEM label="&lt;function-name&gt;.sci">
+        <SP>: l'équivalent Scilab pour le M-file</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="&lt;function_name&gt;.cat">
-        <SP>: the scilab help file associated to the function</SP>
+      <DESCRIPTION_ITEM label="&lt;function-name&gt;.cat">
+        <SP>: le fichier d'aide Scilab associé à la fonction</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="sci_&lt;function_name&gt;.sci">
-        <SP>: the scilab function required to translate the calls to this  Matlab M_file in other Matlab M_files. This function may be improved &quot;by hand&quot;. This function only useful for translation not for use of translated functions.</SP>
+      <DESCRIPTION_ITEM label="sci_&lt;function-name&gt;.sci">
+        <SP>: la fonction Scilab requise pour convertir les appels à ce M-file dans d'autres M-files. Cette fonction peut être améliorée &quot;à la main&quot;. Cette fonction est utile uniquement pour la conversion, pas pour utiliser la fonction convertie.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
     <P>
-    Some functions like eye, ones, size, sum,... behave differently
-    according to the dimension of their arguments. When mfile2sci cannot
-    infer dimensions it replaces these function call by a call to an
-    emulation function named mtlb_&lt;function_name&gt;. For efficiency these
-    functions may be replaced by the proper scilab equivalent instructions.
-  </P>
+    Des fonctions comme eye, ones, size, sum,... se comportent différemment
+    selon la dimension de leurs arguments. Quand mfile2sci ne peut pas 
+    inférer les dimensions, il remplace ces fonctions par un appel à une
+    fonction d'émulation nommée mtlb_&lt;function_name&gt;. Pour une meilleure éfficacité,
+    ces fonctions peuvent être remplacées par les instructions Scilab équivalentes.
+    Pour avoir des informations sur le remplacement, entrer :
+    help mtlb_&lt;function_name&gt; dans la fenêtre de commande Scilab.
+    </P>
     <P>
-    Some other functions like plot, has no straightforward translation in
-    scilab. They are also replaced by an emulation function named
-    mtlb_&lt;function_name&gt;.
-  </P>
+    D'autres fonctions comme plot, n'ont pas d'équivalent direct en
+    Scilab. Elles sont aussi remplacées par des fonctions d'émulation nommées :
+     mtlb_&lt;function_name&gt;.
+    </P>
     <P>
-    When translation may be incorrect or may be improved mfile2sci adds a
-    comment which began by &quot;//!&quot;
+    Quand la conversion peut être incorrecte oou améliorée, mfile2sci ajoute
+    des commentaires qui commencent par &quot;//!&quot; (suivant verbose-mode).
   </P>
   </DESCRIPTION>
-  <SECTION label="Remarks">
-    <P>
-    This function is a still under developpement and is delivered as beta test.  Some Matlab4 basic functions are not yet translated. It is quite simple to add it. See &lt;SCIDIR&gt;/macros/m2sci/README for more details. 
-  </P>
-  </SECTION>
-  <SECTION label="Known bugs">
-    <ITEMIZE>
-      <ITEM label="1-">
-        <SP>: eval function instructions passed as strings are not translated.</SP>
-      </ITEM>
-      <ITEM label="2-">
-        <SP>: most of plot function are not yet translated</SP>
-      </ITEM>
-      <ITEM label="3-">
-        <SP>: if, for, endded by the end of file produce an error, add the closing end's</SP>
-      </ITEM>
-      <ITEM label="4-">
-        <SP>: Loop variable of for clause is available afterwards if loops terminates     normally in matlab; it is cleared  in Scilab generated code.</SP>
-      </ITEM>
-      <ITEM label="5-">
-        <SP>: inequality comparison which implies complex numbers produce a run time error such as &quot;undefined variable : %s_2_s&quot;. User can define these operation with Matlab meaning with the following function definition:  deff('r=%s_1_s(a,b)','r=real(a)&lt;real(b)')   deff('r=%s_2_s(a,b)','r=real(a)&gt;real(b)')    deff('r=%s_3_s(a,b)','r=real(a)&lt;=real(b)')   deff('r=%s_4_s(a,b)','r=real(a)&gt;=real(b)')</SP>
-      </ITEM>
-      <ITEM label="6-">
-        <SP>: When i is a vector, Matlab allows insertions like a(i)=v for any v. In scilab v must have the same shape as a(i). This produces run time errors &quot;submatrix incorrectly defined&quot;. Rewrite them as  a(i)=v.' .</SP>
-      </ITEM>
-    </ITEMIZE>
-  </SECTION>
   <EXAMPLE>
 <![CDATA[
-//create a simple m_file
+// Création d'une fichier .m simple
 write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
  '[m,n] = size(A);'
  'if nargin == 1'
@@ -130,20 +143,24 @@ write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
  'else'
  '    B = A;'
  'end']);
-// translate it dor scilab
+// Conversion en Scilab
 mfile2sci(TMPDIR+'/rot90.m',TMPDIR)
-// show the new code
+// Affichage du code
 write(%io(2),read(TMPDIR+'/rot90.sci',-1,1,'(a)'))
 // get it into scilab
 getf(TMPDIR+'/rot90.sci')
-//execute it
+// Exécution du code
 m=rand(4,2);rot90(m,1)
  ]]>
   </EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>translatepaths</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Serge Steer, INRIA</AUTHOR>
+  <AUTHOR>
+    <AUTHOR_ITEM>V. Couvert</AUTHOR_ITEM>
+    <AUTHOR_ITEM>S. Steer</AUTHOR_ITEM>
+  </AUTHOR>
 </MAN>
