@@ -626,16 +626,25 @@ cd.. &gt;nul
 				RelativePath=".\Axes.c">
 			</File>
 			<File
+				RelativePath=".\BuildObjects.c">
+			</File>
+			<File
 				RelativePath=".\Champ.c">
+			</File>
+			<File
+				RelativePath=".\CloneObjects.c">
 			</File>
 			<File
 				RelativePath=".\Contour.c">
 			</File>
 			<File
+				RelativePath=".\DestroyObjects.c">
+			</File>
+			<File
 				RelativePath=".\dr1Call.c">
 			</File>
 			<File
-				RelativePath=".\Entities.c">
+				RelativePath=".\DrawObjects.c">
 			</File>
 			<File
 				RelativePath=".\FeC.c">
@@ -644,10 +653,22 @@ cd.. &gt;nul
 				RelativePath=".\Format.c">
 			</File>
 			<File
+				RelativePath=".\GetProperty.c">
+			</File>
+			<File
 				RelativePath=".\Gray.c">
 			</File>
 			<File
 				RelativePath=".\gsort.c">
+			</File>
+			<File
+				RelativePath=".\HandleManagement.c">
+			</File>
+			<File
+				RelativePath=".\InitObjects.c">
+			</File>
+			<File
+				RelativePath=".\Interaction.c">
 			</File>
 			<File
 				RelativePath=".\Math.c">
@@ -752,6 +773,9 @@ cd.. &gt;nul
 				RelativePath=".\sciCall.c">
 			</File>
 			<File
+				RelativePath=".\SetProperty.c">
+			</File>
+			<File
 				RelativePath=".\Tests.c">
 			</File>
 			<File
@@ -768,10 +792,22 @@ cd.. &gt;nul
 				RelativePath="bcg.h">
 			</File>
 			<File
+				RelativePath=".\BuildObjects.h">
+			</File>
+			<File
+				RelativePath=".\CloneObjects.h">
+			</File>
+			<File
 				RelativePath="color.h">
 			</File>
 			<File
-				RelativePath="Entities.h">
+				RelativePath=".\DestroyObjects.h">
+			</File>
+			<File
+				RelativePath=".\DrawObjects.h">
+			</File>
+			<File
+				RelativePath=".\GetProperty.h">
 			</File>
 			<File
 				RelativePath="giffonts.h">
@@ -792,7 +828,19 @@ cd.. &gt;nul
 				RelativePath="gsort.h">
 			</File>
 			<File
+				RelativePath=".\HandleManagement.h">
+			</File>
+			<File
+				RelativePath=".\InitObjects.h">
+			</File>
+			<File
+				RelativePath=".\Interaction.h">
+			</File>
+			<File
 				RelativePath="Math.h">
+			</File>
+			<File
+				RelativePath=".\ObjectStructure.h">
 			</File>
 			<File
 				RelativePath="periFig.h">
@@ -817,6 +865,9 @@ cd.. &gt;nul
 			</File>
 			<File
 				RelativePath="scigraphic.h">
+			</File>
+			<File
+				RelativePath=".\SetProperty.h">
 			</File>
 		</Filter>
 	</Files>
