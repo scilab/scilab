@@ -26,7 +26,7 @@
  *     Gershon Elber and many others.
  *   Scilab port 
  *     Jean-Philippe Chancelier 
- *     Allan CORNET 2004 
+ *     Allan CORNET 2004-2005 
 */
 
 /***********************************************************
@@ -59,21 +59,14 @@
 #include <conio.h>
 #include <string.h>
 
-
 #ifndef STRICT
 	#define STRICT
 #endif
 	
 #include "wcommon.h"
-	
-#ifdef USE_CONSOLE
-/*	#include "wtextc.h"*/
-#else
-	#include "wtext.h"
-#endif
-
+#include "printf.h"	
+#include "wtext.h"
 #include "../machine.h"
-
 
 /*-----------------------------------------------------------------------------------*/
 #define TEXTUSER 0xf1
@@ -129,38 +122,38 @@ void Write_Scilab_Console (char *buf)
 void Write_Scilab_Window (char *buf)
 #endif
 {
-	#ifdef USE_CONSOLE
-	char prompt[10];
-	GetCurrentPrompt(prompt);
-	clear_line (prompt);
-	copy_line (buf);
-	#else
-	char *d;
-	char buffer[1024];
-	if ( ( buf[strlen(buf)-1] != '\n' ) && ( buf[strlen(buf)-1] != '\r' ) )
+	if (IsWindowInterface())
 	{
-		strcpy(buffer,buf);
-		strcat(buffer,"\n");
+		char *d;
+		char buffer[1024];
+		if ( ( buf[strlen(buf)-1] != '\n' ) && ( buf[strlen(buf)-1] != '\r' ) )
+		{
+			strcpy(buffer,buf);
+			strcat(buffer,"\n");
+		}
+		else
+		{
+			strcpy(buffer,buf);
+		}
+	
+		if (buffer[0] != '\0')
+		{
+			d	= buffer;
+			while (*d)
+			{
+				SendMessage (textwin.hWndText, WM_CHAR, *d, 1L);
+				d++;
+			}
+		}
 	}
 	else
 	{
-		strcpy(buffer,buf);
+		char prompt[10];
+		GetCurrentPrompt(prompt);
+		clear_line (prompt);
+		copy_line (buf);
 	}
-	
-	if (buffer[0] != '\0')
-    {
-      d = buffer;
-      while (*d)
-		{
-			SendMessage (textwin.hWndText, WM_CHAR, *d, 1L);
-			d++;
-		}
-	}
-	#endif
-
-
 }
-
 /*-----------------------------------------------------------------------------------*/
 /* user_putc and user_puts should be used in the place of
  * fputc(ch,stdout) and fputs(str,stdout) for all output
@@ -170,32 +163,38 @@ void Write_Scilab_Window (char *buf)
 static int user_putc (int ch)
 {
 	int rv;
-  
-	#ifndef USE_CONSOLE
-  		TextAttr (&textwin, TEXTUSER);
-	#endif
 
-  	rv = fputc (ch, stdout);
-  
-	#ifndef USE_CONSOLE
-  		TextAttr (&textwin, TEXTGNUPLOT);
-	#endif
+	if (IsWindowInterface()) TextAttr (&textwin, TEXTUSER);
+	
+	if (IsWindowInterface())
+	{
+		rv =MyFPutC (ch, stdout);
+	}
+	else
+	{
+		rv = fputc (ch, stdout);
+	}
 
+  	if (IsWindowInterface()) TextAttr (&textwin, TEXTGNUPLOT);
+	
   	return rv;
 }
 /*-----------------------------------------------------------------------------------*/
 static int user_puts (char *str)
 {
 	int rv;
-	#ifndef USE_CONSOLE
-  		TextAttr (&textwin, TEXTUSER);
-	#endif
-  
-  	rv = fputs (str, stdout);
-  
-	#ifndef USE_CONSOLE
-  		TextAttr (&textwin, TEXTGNUPLOT);
-  	#endif
+	
+  	if (IsWindowInterface()) TextAttr (&textwin, TEXTUSER);
+	
+	if (IsWindowInterface())
+	{
+		rv =MyFPutS (str, stdout);
+	}
+	else
+	{
+		rv = fputs (str, stdout);
+	}
+   	if (IsWindowInterface()) TextAttr (&textwin, TEXTGNUPLOT);
   
   	return rv;
 }
@@ -206,7 +205,8 @@ static void strip_blank(char *source)
   p = source;
   /* look for end of string */
   while(*p != '\0') p++;
-  while(p != source) {
+  while(p != source)
+  {
     p--;
     if(*p != ' ') break;
     *p = '\0';
@@ -236,10 +236,20 @@ static int NotTTyRead (char *prompt, char *buffer, int buf_size, int *eof)
   if (!tty)
     {
       /** We are reading a file ==> no prompts : XXXXX to test **/
-      fputs ("-->", stdout);
-      /* read a line into the buffer, but not too* big */
-      *eof = (fgets (buffer, buf_size, stdin) == NULL);
-      /* remove newline character if there */
+		if (IsWindowInterface())
+		{
+			MyFPutS ("-->", stdout);
+			/* read a line into the buffer, but not too* big */
+			*eof = (MyFGetS (buffer, buf_size, stdin) == NULL);
+			/* remove newline character if there */
+		}
+		else
+		{
+			fputs ("-->", stdout);
+			/* read a line into the buffer, but not too* big */
+			*eof = (fgets (buffer, buf_size, stdin) == NULL);
+			/* remove newline character if there */
+		}
       return (1);
     }
   return (0);
@@ -449,9 +459,6 @@ char * readline_nw (char *prompt, int interrupt)
 				return (new_line);
 			}
 		break;
-	      
-	    
-	    
 	    default:
 	      break;
 	    }
@@ -466,7 +473,7 @@ char * readline_win (char *prompt,int interrupt)
   char *new_line;  /* unsigned char *new_line; */
   
   /* print the prompt */
-  if (sendprompt) fputs (prompt, stdout);
+  if (sendprompt) MyFPutS (prompt, stdout);
   sendprompt=1;
 
   cur_line[0] = '\0';
@@ -585,8 +592,8 @@ char * readline_win (char *prompt,int interrupt)
 	      break;
 	    case 014:		/* ^L */
 	    case 022:		/* ^R */
-	      putc ('\n', stdout);	/* go to a fresh line */
-	      putc ('\n', stdout);
+	      MyFPutC ('\n', stdout);	/* go to a fresh line */
+	      MyFPutC ('\n', stdout);
 	      redraw_line (prompt);
 	      break;
 	    case 0177:		/* DEL */
@@ -646,7 +653,7 @@ char * readline_win (char *prompt,int interrupt)
 			}
 		    else
 			{
-				putc ('\n', stdout);
+				MyFPutC ('\n', stdout);
 				new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
 				strcpy (new_line, cur_line);
 				return (new_line);
@@ -668,8 +675,15 @@ static void redraw_line (prompt)
      char *prompt;
 {
   int i;
+  if (IsWindowInterface())
+  {
+	  MyFPutS (prompt, stdout);
+  }
+  else
+  {
+	  fputs (prompt, stdout);
+  }
 
-  fputs (prompt, stdout);
   user_puts (cur_line);
 
   /* put the cursor where it belongs */
@@ -684,8 +698,7 @@ static void fix_line(void)
   int i;
 
   /* write tail of string */
-  for (i = cur_pos; i < max_pos; i++)
-    user_putc (cur_line[i]);
+  for (i = cur_pos; i < max_pos; i++) user_putc (cur_line[i]);
 
   /* write a space at the end of the line in case we deleted one */
   user_putc (SPACE);
@@ -700,18 +713,29 @@ static void clear_line (prompt)
      char *prompt;
 {
   int i;
-  for (i = 0; i < max_pos; i++)
-    cur_line[i] = '\0';
+  for (i = 0; i < max_pos; i++) cur_line[i] = '\0';
 
-  for (i = cur_pos; i > 0; i--)
-    backspace ();
+  for (i = cur_pos; i > 0; i--) backspace ();
 
   for (i = 0; i < max_pos; i++)
-    putc (SPACE, stdout);
+  {
+	   if (IsWindowInterface())
+	   {
+		    MyFPutC (SPACE, stdout);
+	   }
+	   else putc (SPACE, stdout);
+  }
 
-  putc ('\r', stdout);
-  fputs (prompt, stdout);
-
+  if (IsWindowInterface())
+  {
+	  MyFPutC ('\r', stdout);
+	  MyFPutS (prompt, stdout);
+  }
+  else
+  {
+	  putc ('\r', stdout);
+	  fputs (prompt, stdout);
+  }
   cur_pos = 0;
   max_pos = 0;
 }
@@ -721,13 +745,19 @@ static void clear_eoline (prompt)
      char *prompt;
 {
   int i;
-  for (i = cur_pos; i < max_pos; i++)
-    cur_line[i] = '\0';
+  for (i = cur_pos; i < max_pos; i++)  cur_line[i] = '\0';
 
   for (i = cur_pos; i < max_pos; i++)
-    putc (SPACE, stdout);
-  for (i = cur_pos; i < max_pos; i++)
-    backspace ();
+	  if (IsWindowInterface())
+	  {
+		  MyFPutC (SPACE, stdout);
+	  }
+	  else
+	  {
+		  putc (SPACE, stdout);
+	  }
+   
+  for (i = cur_pos; i < max_pos; i++) backspace ();
 }
 /*-----------------------------------------------------------------------------------*/
 /* copy line to cur_line, draw it and set cur_pos and max_pos */
@@ -766,8 +796,6 @@ static char msdos_getch ()
     {
 	
   	 c = getch ();		/* Get the extended code. */
-
-      
 
       switch (c)
 	{

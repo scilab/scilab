@@ -43,9 +43,6 @@ POINT ScrollSize = {80,360}; /* the default is {80,120} */
 char szNoMemory[] = "out of memory";
 
 
-
-
-
 /* Utiliser par write_scilab_synchro */
 HANDLE hThreadWrite;
 CRITICAL_SECTION Sync; /* Section Critique pour Write_scilab */
