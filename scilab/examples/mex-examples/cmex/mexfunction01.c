@@ -13,7 +13,6 @@ void mexFunction(nlhs, plhs, nrhs, prhs)
     double *A,*B;
     int m,n,it,strl;
     char *str;
-    mexWarnMsgTxt("This function requires 2 inputs");
     if (nrhs!=2) mexErrMsgTxt("This function requires 2 inputs!");
     if (nlhs>3) mexErrMsgTxt("This function requires at most 3 outputs!");
     if (! mxIsNumeric(prhs[0])) mexErrMsgTxt("First argument must be numeric matrix.");
