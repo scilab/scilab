@@ -42,6 +42,9 @@ Unknown=-1;
 Complex="Complex"
 Real="Real"
 
+global %graphicswindow
+%graphicswindow=Handle
+
 // Translated function input arguments
 macrhs=size(mtlbtree.inputs) 
 

@@ -187,7 +187,19 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     
     
   end
-else // Variable m2scideclare  
+else // Variable m2scideclare 
+  
+  // Special part for %graphicswindow
+  if name=="%graphicswindow" then
+    global %graphicswindow
+    if and(vtype<>[Handle,Double]) then
+      set_infos("%graphicswindow set to default value Handle",2);
+    else
+      %graphicswindow=vtype
+    end
+    return
+  end
+  
   [isvar,index]=isdefinedvar(Variable(name,Infer()))
 
   if ~isvar then // If variable does not exist it is added to varslist
