@@ -46,36 +46,48 @@ C        boucle implicite
      $           2.0d0*max(abs(stk(lr+1)),abs(stk(lr+2)))*dlamch('p'))
      $           goto 50
          endif
-         if (j.gt.1) then
-c     .     check if loop variable has moved since previous j
-            k=idstk(1,top-1)
-            if(k.ge.bot.and.eqid(id,idstk(1,k))) then
-c     .        No, loop variable is updated in place
-               lr1=sadr(iadr(lstk(k))+4)
-               stk(lr1)=x
-               top=top-1
-               return
-            endif
-         endif
+C     The accelaration expected of the following lines is not obvious!
+c         if (j.gt.1) then
+c     .     check if loop variable has moved or be modified since previous j
+C             k=idstk(1,top-1)
+C             if(k.ge.bot.and.eqid(id,idstk(1,k))) then
+C c     .        check header
+C                il=iadr(lstk(k))
+C                if (istk(il).eq.1.and.istk(il+1).eq.1.and.
+C      $              istk(il+2).eq.1.and.istk(il+3).eq.0) then
+C c     .            No, loop variable is updated in place
+C                   lr1=sadr(il+4)
+C                   stk(lr1)=x
+C                   top=top-1
+C                   return
+C                endif
+C             endif
+C          endif
          if (.not.cremat("nextj",top,0,1,1,lr1,lc1)) return
          stk(lr1)=x
       else
          if (j .gt. n .or. m.eq.0) go to 50
-         if (j.gt.1) then
-            k=idstk(1,top-1)
-            if(k.ge.bot.and.eqid(id,idstk(1,k))) then
-c     .        loop variable is updated in place
-               lr1=sadr(iadr(lstk(k))+4)
-               call unsfdcopy(m,stk(lr+(j-1)*m),1,stk(lr1),1)
-               if(it.eq.1) call unsfdcopy(m,stk(lc+(j-1)*m),1,
-     $              stk(lr1+m),1)
-               top=top-1
-               return
-            endif
-         endif
+C     The accelaration expected of the following lines is not obvious!
+C          if (j.gt.1) then
+C             k=idstk(1,top-1)
+C             if(k.ge.bot.and.eqid(id,idstk(1,k))) then
+C c     .        check header
+C                il=iadr(lstk(k))
+C                if (istk(il).eq.1.and.istk(il+1).eq.m.and.
+C      $              istk(il+2).eq.1.and.istk(il+3).eq.it) then
+C c     .           loop variable is updated in place
+C                   lr1=sadr(il+4)
+C                   call unsfdcopy(m,stk(lr+(j-1)*m),1,stk(lr1),1)
+C                   if(it.eq.1) call unsfdcopy(m,stk(lc+(j-1)*m),1,
+C      $                 stk(lr1+m),1)
+C                   top=top-1
+C                   return
+C                endif
+C             endif
+C          endif
          if (.not.cremat("nextj",top,it,m,1,lr1,lc1)) return
          call unsfdcopy(m,stk(lr+(j-1)*m),1,stk(lr1),1)
-         if(it.eq.1) call unsfdcopy(m,stk(lc+(j-1)*m),1,stk(lc1),1)
+         if(it.eq.1) call unsfdcopy(m,stk(lc+(j-1)*m),1,stk(lr1+m),1)
       endif
 
       goto 21
