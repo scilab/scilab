@@ -34,7 +34,7 @@ function unix_s(cmd)
   stat=host(cmd1);
   
   if MSDOS then
-    host('del '+tmp);
+    host('if exist '+tmp+ ' del '+tmp);
   end
   select stat
    case 0 then
@@ -48,7 +48,7 @@ function unix_s(cmd)
        		msg=read(TMPDIR+'\unix.err',-1,1,'(a)');
 		for i=1:size(msg,'*') do write(%io(2),'   '+msg(i));end
 		error('unix_s: error during ``'+cmd+''''' execution')
-		host('del '+TMPDIR+'\unix.err');
+		host('if exist '+TMPDIR+'\unix.err'+' del '+TMPDIR+'\unix.err');
        	end
      else 
 	msg=read(TMPDIR+'/unix.err',-1,1,'(a)');

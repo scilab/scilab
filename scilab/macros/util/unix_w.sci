@@ -53,10 +53,10 @@ function unix_w(cmd)
   end
   if MSDOS then
     if ver == 'Windows 98' | ver == 'Windows 95' then
-    	host('del '+tmp);
+    	host('if exist '+tmp+' del '+tmp);
     else
-    	host('del '+tmp);
-    	host('del '+TMPDIR+'\unix.err');
+    	host('if exist '+tmp+' del '+tmp);
+    	host('if exist '+TMPDIR+'\unix.err'+' del '+TMPDIR+'\unix.err');
     end
   else
      host('rm -f '+tmp);
