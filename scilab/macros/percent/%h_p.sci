@@ -59,6 +59,10 @@ function %h_p(h)
 	 "log_flags = "+sci2exp(h.log_flags)
 	 "x_location = "+sci2exp(h.x_location)
 	 "y_location = "+sci2exp(h.y_location)
+	 "title  "
+	 "x_label  "
+	 "y_label  "
+	 "z_label  "
 	 "box = "+sci2exp(h.box)
 	 "tics_color = "+string(h.tics_color)
          "font_style = "+string(h.font_style)
@@ -248,6 +252,16 @@ function %h_p(h)
 	 "font_style = "+string(h.font_style)
 	 "font_size = "+string(h.font_size)
 	 "font_angle = "+string(h.font_angle)]
+      case "Label"
+      T=sci2exp(h.text,0)
+      if length(T)>70 then T="string array '+strcat(string(size(h.text)),'x'),end
+      t=[t;
+	 "parent: "+h.parent.type
+	 "visible = "+sci2exp(h.visible) 
+	 "text = "+T
+	 "foreground = "+string(h.foreground)
+	 "font_style = "+string(h.font_style)
+	 "font_size = "+string(h.font_size)]
       case "Plot3d"
       Data = h.data
       dx=sci2exp(Data.x,0)
