@@ -1231,9 +1231,9 @@ int C2F(getrhsvar)(number, typex, m, n, lr, type_len)
       if (!(*lr % 2) ) {  /* bad adress (lr is even) shift up the stack */
 	double2z(stk(*lr), stk(*lr)-1, ix2, ix2);
 	*istk(iadr(*lr)-4)=133;
-	*istk(iadr(*lr)-3)=iadr(*lr + 2*ix2);
-	*istk( iadr(*lr + 2*ix2) )= *m;
-	*istk( iadr(*lr + 2*ix2) +1 )= *n;
+	*istk(iadr(*lr)-3)=iadr(*lr + 2*ix2-1);
+	*istk( iadr(*lr + 2*ix2-1) )= *m;
+	*istk( iadr(*lr + 2*ix2-1) +1 )= *n;
 	C2F(intersci).ntypes[*number - 1] = Type ;
 	C2F(intersci).iwhere[*number - 1] = *lstk(lw);
 	C2F(intersci).lad[*number - 1] = *lr-1;
@@ -2535,10 +2535,10 @@ static int C2F(mvfromto)(itopl, ix)
       *stk(lrs)=wsave;
       C2F(intersci).lad[*ix - 1] = lrs;
       }
-    else {
-    if (! C2F(cremat)("mvfromto", itopl, &it, &m, &n, &lrs, &lcs, 8L)) {
-      return FALSE_;
-    }
+    else { 
+      if (! C2F(cremat)("mvfromto", itopl, &it, &m, &n, &lrs, &lcs, 8L)) {
+	return FALSE_;
+      }
     z2double(stk(C2F(intersci).lad[*ix - 1]), stk(lrs), m*n, m*n);
     C2F(intersci).lad[*ix - 1] = lrs;
     }
@@ -2563,8 +2563,7 @@ static int C2F(mvfromto)(itopl, ix)
     C2F(icopy)(&ix1, istk(C2F(intersci).lad[*ix - 1]), &cx1,istk(lrs), &cx1);
     C2F(intersci).lad[*ix - 1] = lrs;
     break;
-  case 'p' :
-  case '$' :
+  case 'p' :   case '$' :
     /*     special case */
     if (Top - Rhs + *ix != *itopl) 
       {
