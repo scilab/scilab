@@ -10644,8 +10644,8 @@ sciDrawObj (sciPointObj * pobj)
 #endif
 	  
       // FREE(xm);FREE(ym);/* SS 02/04 */
-      if (xm != NULL) {FREE(xm); xm = (integer *) NULL;}
-      if (ym != NULL) {FREE(ym); ym = (integer *) NULL;} /* et F.Leray 18.02.04*/
+      FREE(xm); xm = (integer *) NULL;
+      FREE(ym); ym = (integer *) NULL; /* et F.Leray 18.02.04*/
 
       break;      
       /******************************** 22/05/2002 ***************************/    
@@ -10727,8 +10727,8 @@ sciDrawObj (sciPointObj * pobj)
 	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
 	  //	  FREE(xm);FREE(ym);/* SS 02/04 */
-	  if (xm != NULL) {FREE(xm); xm = (integer *) NULL;}
-	  if (ym != NULL) {FREE(ym); ym = (integer *) NULL;} /* et F.Leray 18.02.04*/
+	  FREE(xm); xm = (integer *) NULL;
+	  FREE(ym); ym = (integer *) NULL; /* et F.Leray 18.02.04*/
 	}
       else    //ptype == 1
         {
@@ -10745,17 +10745,26 @@ sciDrawObj (sciPointObj * pobj)
 #endif 
 	  //n=2*(pSEGS_FEATURE (pobj)->Nbr1)*(pSEGS_FEATURE (pobj)->Nbr2); F.Leray 17.02.04
 	  n=2*(pSEGS_FEATURE (pobj)->Nbr1)*((pSEGS_FEATURE (pobj)->Nbr2)+1);
-	  xm = graphic_alloc(0,n,sizeof(int));
-	  ym = graphic_alloc(1,n,sizeof(int));
-	  zm=0;/* SS 02/04 */
-	  if ( xm == 0 || ym == 0) 
+	 
+
+	  // On laisse tomber le graphic_alloc ICI F.Leray 20.02.04
+	  /*	  xm = graphic_alloc(0,n,sizeof(int));
+		  ym = graphic_alloc(1,n,sizeof(int)); */
+
+	  if ((xm = MALLOC (n*sizeof (integer))) == NULL)	return -1;
+	  if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1;
+
+	  zm = NULL;/* SS 02/04 */
+	  if ( xm == NULL || ym == NULL) 
 	    {
 	      sciprint("Running out of memory \n");
 	      return -1;
 	    }      
 	  if ( pSEGS_FEATURE (pobj)->pcolored != 0) {
-	    zm = graphic_alloc(2,n/2,sizeof(int)); // F.Leray a voir le n/2...
-	    if (  zm == 0 ) 
+	    /*	    zm = graphic_alloc(2,n/2,sizeof(int)); // F.Leray a voir le n/2... 20.02.04 */
+	  if ((zm = MALLOC (((int) (n/2))*sizeof (integer))) == NULL)	return -1;
+	    
+	    if (  zm == NULL ) 
 	      {
 		sciprint("Running out of memory \n");
 		return -1;
@@ -10785,11 +10794,11 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #ifdef WIN32 
 	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
-	  if (xm != NULL) {FREE(xm); xm = (integer *) NULL;}
-	  if (ym != NULL) {FREE(ym); ym = (integer *) NULL;}/* SS 02/04 */ /* et F.Leray 18.02.04*/
+	  FREE(xm) ; xm = (integer *) NULL;
+	  FREE(ym) ; ym = (integer *) NULL;/* SS 02/04 */ /* et F.Leray 18.02.04*/
 	  if ( pSEGS_FEATURE (pobj)->pcolored != 0) 
 	    {
-	      if (zm != NULL) {FREE(zm); zm = (integer *) NULL;}// F.Leray 1802.04 modif ici
+	      FREE(zm); zm = (integer *) NULL;// F.Leray 1802.04 modif ici
 	    }
 	}  
 
@@ -10830,8 +10839,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #endif
 
 	  //  FREE(xm);FREE(ym); /* SS 03/01/03 */
-	  if (xm != NULL) {FREE(xm); xm = (integer *) NULL;} // F.Leray c'est mieux.
-	  if (ym != NULL) {FREE(ym); ym = (integer *) NULL;}
+	  FREE(xm); xm = (integer *) NULL; // F.Leray c'est mieux.
+	  FREE(ym); ym = (integer *) NULL;
 	  break;
 	case 1:
 	  if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
@@ -10855,8 +10864,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #endif
 
 	  //  FREE(xm);FREE(ym); /* SS 03/01/03 */
-	  if (xm != NULL) {FREE(xm); xm = (integer *) NULL;} // F.Leray c'est mieux.
-	  if (ym != NULL) {FREE(ym); ym = (integer *) NULL;}
+	  FREE(xm); xm = (integer *) NULL; // F.Leray c'est mieux.
+	  FREE(ym); ym = (integer *) NULL;
           break;
 	case 2:
 	  if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
@@ -10887,8 +10896,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	  //	  FREE(xm);FREE(ym); /* SS 03/01/03 */
-	  if (xm != NULL) {FREE(xm); xm = (integer *) NULL;} // F.Leray c'est mieux.
-	  if (ym != NULL) {FREE(ym); ym = (integer *) NULL;}
+	  FREE(xm); xm = (integer *) NULL; // F.Leray c'est mieux.
+	  FREE(ym); ym = (integer *) NULL;
 	  break;
 	default:
 	  break;
@@ -11022,7 +11031,9 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #endif  
 	  break;     
 	}
-      FREE(xzz);FREE(yzz);FREE(zzz);/* SS 02/04 */
+      FREE(xzz); xzz = (double *) NULL;
+      FREE(yzz); yzz = (double *) NULL;
+      FREE(zzz); zzz = (double *) NULL;/* SS 02/04 */
       if (! sciGetIsMark(pobj))
 	C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
       else
@@ -11031,8 +11042,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif  
       sciUnClip(sciGetIsClipping(pobj));
-      FREE (xm);
-      FREE (ym); 	
+      FREE (xm); xm = (integer *) NULL;
+      FREE (ym); ym = (integer *) NULL;
       break;
     case SCI_PATCH: 
       if (!sciGetVisibility(pobj)) break;
@@ -11070,7 +11081,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       if ((xm = MALLOC (n * sizeof (int))) == NULL)
       	return -1;
       if ((ym = MALLOC (n * sizeof (int))) == NULL) {
-	FREE(xm);/* SS 02/04 */
+	FREE(xm); xm = (int *) NULL;/* SS 02/04 */ // F.Leray 20.02.04
       	return -1; }
       /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
@@ -11089,8 +11100,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #endif
       sciUnClip(sciGetIsClipping(pobj));
 
-      FREE (xm);
-      FREE (ym);
+      FREE (xm); xm = (integer *) NULL; // F.Leray 20.02.04
+      FREE (ym); ym = (integer *) NULL;
       break;
     case SCI_ARC: 
       if (!sciGetVisibility(pobj)) break;
@@ -12462,28 +12473,32 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	  n1=*numrow;
 	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
 	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	    FREE(pvx);
+	    FREE(pvx); pvx = (double *) NULL;
 	    return -1;
 	  } 
 	  if ((pvector = MALLOC (n1 * sizeof (POINT2D))) == NULL) {
-	    FREE(pvx);FREE(pvy);
+	    FREE(pvx); pvx = (double *) NULL;
+	    FREE(pvy); pvy = (double *) NULL;
 	    return -1;
 	  }
 	  if (*numcol == 3)
 	    if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
 	      if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-		FREE(pvx);
-		FREE(pvy);
-		FREE(pvector);
+		FREE(pvx); pvx = (double *) NULL;
+		FREE(pvy); pvy = (double *) NULL;
+		FREE(pvector); pvector = (POINT2D *) NULL;
 		return -1;
 	      }
 	  
-	  FREE(pPOLYLINE_FEATURE (pthis)->pvx);
-	  FREE(pPOLYLINE_FEATURE (pthis)->pvy); 
-	  FREE(pPOLYLINE_FEATURE (pthis)->pvector);
+	  FREE(pPOLYLINE_FEATURE (pthis)->pvx); pPOLYLINE_FEATURE (pthis)->pvx = NULL;
+	  FREE(pPOLYLINE_FEATURE (pthis)->pvy); pPOLYLINE_FEATURE (pthis)->pvy = NULL;
+	  FREE(pPOLYLINE_FEATURE (pthis)->pvector); pPOLYLINE_FEATURE (pthis)->pvector = NULL;
 	  if ((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
 	      && (pPOLYLINE_FEATURE (pthis)->pvz != NULL))
-	    FREE(pPOLYLINE_FEATURE (pthis)->pvz);
+	    {
+	      FREE(pPOLYLINE_FEATURE (pthis)->pvz); 
+	      pPOLYLINE_FEATURE (pthis)->pvz = NULL;
+	    }
 	  for (i=0;i < *numrow;i++)
 	    {
 	      pvx[i] = tab[i];
@@ -12529,27 +12544,31 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	  n1=*numrow;
 	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
 	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	    FREE(pvx);
+	    FREE(pvx); pvx = (double *) NULL;
 	    return -1;
 	  } 
 	  if ((pvector = MALLOC (n1 * sizeof (POINT2D))) == NULL) {
-	    FREE(pvx);FREE(pvy);
+	    FREE(pvx); pvx = (double *) NULL;
+	    FREE(pvy); pvy = (double *) NULL;
 	    return -1;
 	  }
 	  if (*numcol == 3)
 	    if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
 	      if ((pvz = MALLOC (*numrow * sizeof (double))) == NULL) {
-		FREE(pvx);
-		FREE(pvy);
-		FREE(pvector);
+		FREE(pvx); pvx = (double *) NULL;
+		FREE(pvy); pvy = (double *) NULL;
+		FREE(pvector); pvector = (POINT2D *) NULL;
 		return -1;
 	      }
-	  FREE(pPATCH_FEATURE (pthis)->pvx);
-	  FREE(pPATCH_FEATURE (pthis)->pvy);
-	  FREE(pPATCH_FEATURE (pthis)->pvector);
+	  FREE(pPATCH_FEATURE (pthis)->pvx); pPATCH_FEATURE (pthis)->pvx = NULL;
+	  FREE(pPATCH_FEATURE (pthis)->pvy); pPATCH_FEATURE (pthis)->pvy = NULL;
+	  FREE(pPATCH_FEATURE (pthis)->pvector); pPATCH_FEATURE (pthis)->pvector = NULL;
 	  if ((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
 	      && (pPOLYLINE_FEATURE (pthis)->pvz != NULL))
-	    FREE(pPATCH_FEATURE (pthis)->pvz);
+	    {
+	      FREE(pPATCH_FEATURE (pthis)->pvz);
+	      pPATCH_FEATURE (pthis)->pvz = NULL;
+	    }
 	  for (i=0;i < *numrow;i++)
 	    {
 	      pvx[i] = tab[i];
@@ -12656,23 +12675,27 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	    n1=*numrow;
 	    if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
 	    if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	      FREE(pvx);
+	      FREE(pvx); pvx = (double *) NULL;
 	      return -1;
 	    }
 	    if (*numcol == 3)
 	      if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-		FREE(pvx);FREE(pvy);
+		FREE(pvx); pvx = (double *) NULL;
+		FREE(pvy); pvy = (double *) NULL;
 		return -1;
 	      }
 	    if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
-	      FREE(pvx);FREE(pvy); FREE(pvz);
+	      FREE(pvx); pvx = (double *) NULL;
+	      FREE(pvy); pvy = (double *) NULL;
+	      FREE(pvz); pvz = (double *) NULL;
 	      return -1;
 	    }
-	    FREE(pSEGS_FEATURE (pthis)->vx);
-	    FREE(pSEGS_FEATURE (pthis)->vy);
+	    FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
+	    FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vx = NULL;
 	    if (*numcol == 3)
-	      FREE(pSEGS_FEATURE (pthis)->vz);
-	    FREE(pSEGS_FEATURE (pthis)->pstyle);
+	      FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
+	    // Attention ici on detruit pstyle !! F.Leray 20.02.04
+	    FREE(pSEGS_FEATURE (pthis)->pstyle); pSEGS_FEATURE (pthis)->vz = NULL;
 	    for (i=0;i < *numrow;i++)
 	      {
 		pvx[i] = tab[i];
@@ -12710,35 +12733,45 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	    n1=*numrow;
 	    if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
 	    if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	      FREE(pvx);
+	      FREE(pvx); pvx = (double *) NULL;
 	      return -1;
 	    }
 	    if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
-	      FREE(pvx);FREE(pvy);FREE(pvz);
+	      FREE(pvx); pvx = (double *) NULL;
+	      FREE(pvy); pvy = (double *) NULL;
+	      FREE(pvz); pvz = (double *) NULL;
 	      return -1;
 	    }
 	    if ((pvfx = MALLOC ((n1*n1) * sizeof (double))) == NULL) return -1;
 	    if ((pvfy = MALLOC ((n1*n1) * sizeof (double))) == NULL) {
-	      FREE(pvx);FREE(pvy);FREE(pvz);FREE(pvfx);
+	      FREE(pvx); pvx = (double *) NULL;
+	      FREE(pvy); pvy = (double *) NULL;
+	      FREE(pvz); pvz = (double *) NULL;
+	      FREE(pvfx); pvfx = (double *) NULL;
 	      return -1;
 	    }
 	    if (*numcol == 3 +3*(*numrow * *numrow))
 	      {
 		if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-		  FREE(pvx);FREE(pvy);
+		  FREE(pvx); pvx = (double *) NULL;
+		  FREE(pvy); pvy = (double *) NULL;
 		  return -1;
 		}
 		if ((pvfz = MALLOC ((n1*n1) * sizeof (double))) == NULL) {
-		  FREE(pvx);FREE(pvy);FREE(pvz);FREE(pvfx);FREE(pvfy);
+		  FREE(pvx); pvx = (double *) NULL;
+		  FREE(pvy); pvy = (double *) NULL;
+		  FREE(pvz); pvz = (double *) NULL;
+		  FREE(pvfx); pvfx = (double *) NULL;
+		  FREE(pvfy); pvfy = (double *) NULL;
 		  return -1;
 		}
-		FREE(pSEGS_FEATURE (pthis)->vz);
-		FREE(pSEGS_FEATURE (pthis)->vfz);
+		FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
+		FREE(pSEGS_FEATURE (pthis)->vfz); pSEGS_FEATURE (pthis)->vfz = NULL;
 	      }
-	    FREE(pSEGS_FEATURE (pthis)->vx);
-	    FREE(pSEGS_FEATURE (pthis)->vy);
-	    FREE(pSEGS_FEATURE (pthis)->vfx);
-	    FREE(pSEGS_FEATURE (pthis)->vfy);
+	    FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
+	    FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vy = NULL;
+	    FREE(pSEGS_FEATURE (pthis)->vfx); pSEGS_FEATURE (pthis)->vfx = NULL;
+	    FREE(pSEGS_FEATURE (pthis)->vfy); pSEGS_FEATURE (pthis)->vfy = NULL;
 	    for (i=0;i < n1;i++)
 	      {
 		pvx[i] = tab[i];

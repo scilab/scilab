@@ -93,9 +93,9 @@ void scig_expose(integer win_num)
 	C2F(SetDriver)("Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
       C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
       if (version_flag() == 0) /* NG */
-       sciRedrawF(&win_num); /* NG */
+	sciRedrawF(&win_num); /* NG */
       else /* NG */  
-      /* XXXX scig_handler(win_num); */
+	/* XXXX scig_handler(win_num); */
 	C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
   else
