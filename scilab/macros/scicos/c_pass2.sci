@@ -170,7 +170,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   if show_trace then disp('c_pass61:'+string(timer())),end
 
   outtb=0*ones(lnkptr($)-1,1)
-  iz0=[]
+  iz0=zeros(nb,1);
 
   if max(funtyp)>10000 &%scicos_solver==0 then
     message(['Diagram contains implicit blocks,'
@@ -723,7 +723,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
       xptr(i+1)=xptr(i)+size(ll.state,'*')/2
     end
     
-    if funtyp(i,1)==3 then //sciblocks
+    if (funtyp(i,1)==3 | funtyp(i,1)==5) then //sciblocks
       if ll.dstate==[] then xd0k=[]; else xd0k=var2vec(ll.dstate);end
     else
       xd0k=ll.dstate(:)
@@ -731,7 +731,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     xd0=[xd0;xd0k]
     zptr(i+1)=zptr(i)+size(xd0k,'*')
     //  
-    if funtyp(i,1)==3 then //sciblocks
+    if (funtyp(i,1)==3 | funtyp(i,1)==5) then //sciblocks
       if ll.rpar==[] then rpark=[]; else rpark=var2vec(ll.rpar);end
     else
       rpark=ll.rpar(:)

@@ -57,7 +57,7 @@ c       --   subvariable z0(state) --
         n1e3 = istk(il1e3+1)
         l1e3 = sadr(il1e3+4)
 c      
-c       --   subvariable iz0(state)  NO MORE USED --
+c       --   subvariable work(state) --
         il1e4=iadr(l1+istk(il1+5)-1)
         n1e4 = istk(il1e4+1)
         l1e4 = sadr(il1e4+4)
@@ -521,7 +521,8 @@ C     Block is defined by a predefined scilab function
 c
         if(ddt.ne.0) idb=1
 c
-        call scicos(stk(l1e2),istk(iadr(l4e3)),stk(l1e3),istk(ilinp),
+        call scicos(stk(l1e2),istk(iadr(l4e3)),stk(l1e3),
+     $       stk(l1e4),istk(ilinp),
      &       istk(llab),istk(labptr),stk(l2),stk(l3),stk(l1e5),
      $       istk(iadr(l1e6)),n1e5,pointi,stk(l1e8),nout,
      $       istk(lfunpt),istk(iadr(l4e28)),istk(linpptr),

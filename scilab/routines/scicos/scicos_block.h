@@ -28,5 +28,10 @@ typedef struct {
   double *g;
   int ztyp;
   int *jroot;
-  char label[41];
+  char *label;
+  void **work;
 } scicos_block;
+
+
+void do_cold_restart();
+int get_phase_simulation();

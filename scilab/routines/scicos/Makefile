@@ -42,7 +42,8 @@ OBJSF=intcos.o coselm.o sciblk.o  addevt.o   \
 	scitovv.o  $(BLOCKS_CODE)
 
 OBJSC=scicos.o import.o sciblk2.o sciblk2i.o  realtime.o \
-	intrealtime.o duplicate.o blocks.o cpass2.o scicosclip.o $(BLOCKSC)
+	intrealtime.o duplicate.o blocks.o cpass2.o scicosclip.o \
+	sciblk4.o str2sci.o $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
 
@@ -78,7 +79,7 @@ prod.o: ../machine.h
 sciblk2.o: ../machine.h
 sum.o: ../machine.h
 switchn.o: ../machine.h
-
+sciblk4.o: ../machine.h	scicos_block.h	
 sciblk.o : ../stack.h ../callinter.h
 dtosci.o: ../stack.h
 itosci.o: ../stack.h
@@ -88,6 +89,7 @@ readf.o: ../stack.h
 sciblk.o: ../stack.h ../callinter.h
 scierr.o: ../stack.h
 scitod.o: ../stack.h
+str2sci.o: ../stack-c.h ../machine.h	
 scitoi.o: ../stack.h
 scitovv.o: ../stack.h
 skipvars.o: ../stack.h

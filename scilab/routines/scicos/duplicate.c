@@ -341,7 +341,7 @@ int C2F(intcpass2)(fname)
       le8=(int*) listentry(li,9);
       ne8=le8[1];
       le88=((double *) (le8+4));
-      if ( bllst112[k] == 3)
+      if ( bllst112[k] == 3 || bllst112[k] == 5)
 	{
 	  if (ne7 != 0)
 	    {
