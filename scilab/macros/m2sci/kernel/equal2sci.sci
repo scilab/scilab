@@ -146,13 +146,19 @@ if sci_instr<>list() then
   if ~batch & or(mtlb_instr.endsymbol==[",",""]) then
     if typeof(sci_instr.lhs(1))=="variable" & sci_instr.lhs(1).name=="ans" then // Variable to display
       if typeof(sci_instr.expression)<>"funcall" | sci_instr.expression.name<>"comment" then
-	sci_instr.expression=Funcall("disp",1,list(sci_instr.expression),list())
+	sci_instr.expression=Funcall("disp",1,list(sci_instr.expression,Cste("ans  =")),list())
       end
     else // Instruction lhs to display
       sci_instr.endsymbol=","
       displhs=list()
       for klhs=size(sci_instr.lhs):-1:1
-	displhs($+1)=sci_instr.lhs(klhs)
+	if typeof(sci_instr.lhs(klhs))=="variable" then
+	  displhs($+1)=sci_instr.lhs(klhs)
+	  displhs($+1)=Cste(sci_instr.lhs(klhs).name+"  =")
+	else
+	  displhs($+1)=sci_instr.lhs(klhs).operands(1)
+	  displhs($+1)=Cste(sci_instr.lhs(klhs).operands(1).name+"  =")
+	end
       end
       m2sci_to_insert_a($+1)=Equal(list(Variable("ans",Infer())),Funcall("disp",1,displhs,list()))
     end
