@@ -45,10 +45,13 @@ extern WCScaleList Cscale;
 /*
  * Current geometric transformation : from double to pixel 
  */
+#ifndef Min
+#define Min(x,y)	(((x)<(y))?(x):(y))
+#endif 
 
-#define XScale(x)    inint( Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1)
+#define XScale(x)    inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647))
 #define XLogScale(x) inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1)
-#define YScale(y)    inint( Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1)
+#define YScale(y)    inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647))
 #define YLogScale(y) inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1)
 #define XDouble2Pixel(x) ((Cscale.logflag[0] == 'n') ? ( XScale(x)) : ( XLogScale(x)))
 #define YDouble2Pixel(y) ((Cscale.logflag[1] == 'n') ? ( YScale(y)) : ( YLogScale(y)))
