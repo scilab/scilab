@@ -368,9 +368,8 @@ C     ================================================================
       character*(*) fname
 cc    implicit undefined (a-z)
       include '../stack.h'
-      integer topk,iadr
-      logical getwsmat,checkrhs,getsmat,lib_cpp
-
+      integer topk,iadr,gettype
+      logical getwsmat,checkrhs,getsmat,lib_cpp,getscalar
       character strf*25, c_cpp*10
 
       iadr(l)=l+l-1
@@ -432,9 +431,19 @@ c
       strf(nlr2+1:nlr2+1)=char(0)
       top=top-1
 C     first argument 
-      if (.not.getwsmat(fname,topk,top,m1,n1,il1,ild1)) return
-      call addinter(istk(il1),istk(ild1),m1*n1,strf,
-     $     istk(il3),istk(ild3),m3*n3,c_cpp,lib_cpp,ierr)
+C     jpc on accepte un entier 
+      itop = gettype(top);
+      if ( itop == 1 ) then 
+         if (.not.getscalar(fname,topk,top,il1)) return
+         ilib=int(stk(il1))
+         call addinter(ilib,iv,iv,iv,strf,
+     $        istk(il3),istk(ild3),m3*n3,c_cpp,lib_cpp,ierr)
+      else
+         if (.not.getwsmat(fname,topk,top,m1,n1,il1,ild1)) return
+         ilib=-1
+         call addinter(ilib,istk(il1),istk(ild1),m1*n1,strf,
+     $        istk(il3),istk(ild3),m3*n3,c_cpp,lib_cpp,ierr)
+      endif
       if(ierr.ne.0) then
          if (ierr.eq.-1) then
             call error(236)
