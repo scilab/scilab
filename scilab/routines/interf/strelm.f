@@ -1850,7 +1850,7 @@ c     count the number of words (and characters)
          endif
       enddo
 
-      if ( nb_words .eq. 0 ) then C
+      if ( nb_words .eq. 0 ) then 
 c     !   return a void matrix
          il1=iadr(lstk(top)) 
          istk(il1)   = 1
