@@ -485,9 +485,10 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
  ext_cord2=VecEg1(ext_cord);
  C2F(isort)(&ext_cord2[1],&ext_cord2[0],&ind[1]);
  free(ind);
- if ((vec=(int*)calloc(ext_cord[0],sizeof(int))) == NULL ) return 0;
+ if ((vec=(int*)calloc((ext_cord[0]+1),sizeof(int))) == NULL ) return 0;
+ vec[0]=ext_cord[0];
  for (i=1; i<=ext_cord[0]; i++){
-   if (ext_cord2[i] != ext_cord_old[i]) vec[i-1]=1;
+   if (ext_cord2[i] != ext_cord_old[i]) vec[i]=1;
  }
  free(ext_cord2);
  if ( OR(vec)){
@@ -1118,14 +1119,11 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
     }
   if ((w2=(int*)malloc(sizeof(int)*(sbb+1))) == NULL ) return 0;
   w2[0]=sbb;
-  w1=GetPartVect(*clkconnect,1,sbb-1);
-  w2[1]=w1[1];
+  w2[1]=(*clkconnect)[1];
   for(l=1;l<sbb;l++)
     {
-      w2[l+1]=(*clkconnect)[l+1]-w1[l];
+      w2[l+1]=(*clkconnect)[l+1]-(*clkconnect)[l];
     }
-  free(w1);
-  w1=NULL;
   boptr=Duplicataa(idl,w2);
   free(w2);
   w2=NULL;
@@ -1172,18 +1170,15 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
     }
   if ((w2=(int*)malloc(sizeof(int)*(sbb+1))) == NULL ) return 0;
   w2[0]=sbb;
-  w1=GetPartVect(*connectmat,1,sbb-1);
-  w2[1]=w1[1];
+  w2[1]=(*connectmat)[1];
   for(l=1;l<sbb;l++)
     {
-      w2[l+1]=(*connectmat)[l+1]-w1[l];
+      w2[l+1]=(*connectmat)[l+1]-(*connectmat)[l];
     }
-  free(w1);
-  w1=NULL;
   blptr=Duplicataa(idl,w2);
+  free(w2);
   free(idl);
   idl=NULL;
-  free(w2);
   if ((blptr=(int*)realloc(blptr,sizeof(int)*(nblk+2))) == NULL ) return 0;
   a=sbb+1;
   for (l=1;l<nblk-blptr[0]+2;l++)
@@ -1232,17 +1227,14 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
     {
       idl[l]=l;
     }
-  w1=GetPartVect(tcon,1,sbb-1);
   if ((w2=(int*)malloc(sizeof(int)*(sbb+1))) == NULL ) return 0;
   w2[0]=sbb;
   w2[1]=tcon[1];
   for(l=1;l<sbb;l++)
     {
-      w2[l+1]=tcon[l+1]-w1[l];
+      w2[l+1]=tcon[l+1]-tcon[l];
     }
   free(tcon);
-  free(w1);
-  w1=NULL;
   ordptr1=Duplicataa(idl,w2);
   free(w2);
   w2=NULL;
@@ -4390,5 +4382,4 @@ void Incr1(int* vect,int j)
     }
   vect[0]--;
 }
-
 
