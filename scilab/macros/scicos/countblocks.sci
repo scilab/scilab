@@ -4,7 +4,8 @@ function n=countblocks(scs_m)
 
 n=0
 for o=scs_m.objs
-  if typeof(o)=='Block' then
+  x=getfield(1,o)
+  if x(1)=='Block' then
     if o.model.sim=='super'|o.model.sim=='csuper' then
       n=n+countblocks(o.model.rpar)
     else

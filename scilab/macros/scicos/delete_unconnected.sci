@@ -6,7 +6,8 @@ n=lstsize(scs_m.objs)
 DEL=[]
 DELL=[]
 for k=1:n  //loop on scs_m objects
-  if typeof(scs_m.objs(k))=='Block' then
+  x=getfield(1,scs_m.objs(k))
+  if x(1)=='Block' then
     if scs_m.objs(k).gui<>'SUM_f'&scs_m.objs(k).gui<>'SOM_f' then
     if find(scs_m.objs(k).graphics.pin==0)<>[] then
       // at least one  input port is not connected

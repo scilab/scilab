@@ -10,8 +10,14 @@ if version=='scicos2.2' then scs_m=do_version22(scs_m);version='scicos2.3';end
 if version=='scicos2.3' then scs_m=do_version23(scs_m);version='scicos2.3.1';end
 if version=='scicos2.3.1' then scs_m=do_version231(scs_m); version='scicos2.4';end
 if version=='scicos2.4' then scs_m=do_version251(scs_m),version='scicos2.5.1';end
-if version=='scicos2.5.1' then 
+if version=='scicos2.5.1' then
+  ncl=lines()
+  lines(0)
+  disp('This is an old scicos diagram. I have to translate.')
   scs_m=do_versionxx(scs_m);scs_m=do_version27(scs_m);version='scicos2.7';
+  disp('I am now going to clean your diagram. Block numbers may change.')
+  disp('Save the diagram (under a different name just in case)')
+  lines(ncl(2))
 end
 endfunction
 
@@ -1008,7 +1014,8 @@ endfunction
 function scs_m_new=do_version27(scs_m)
   if typeof(scs_m)=='diagram' then 
     scs_m_new=scs_m,
-    for k=1:lstsize(scs_m_new.objs)
+    nlstsize=lstsize(scs_m_new.objs)
+    for k=1:nlstsize
       if typeof(scs_m_new.objs(k))=='Link' then
 	o=scs_m_new.objs(k)
 	if size(o.from,'*')==2 then o.from(3)=0,end
@@ -1040,6 +1047,8 @@ function scs_m_new=do_version27(scs_m)
   n=lstsize(scs_m)
   back_col=8   //white background
   
+  mprintf('.')
+
   for i=2:n //loop on objects
     o=scs_m(i);
     if o(1)=='Block' then
@@ -1051,11 +1060,13 @@ function scs_m_new=do_version27(scs_m)
 	  end
 	else
 	  gr_io=o(2)(9);
+	  back_col=8
 	end
 	gr_i=convert_gri(o(5),gr_io);
 	if gr_i==[] then gr_i=gr_io;, end
       elseif size(o(2)) < 9 then
 	gr_i=[];
+	back_col=8
       end
       gr_i=list(gr_i,back_col)
       

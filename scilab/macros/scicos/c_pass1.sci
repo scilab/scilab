@@ -46,7 +46,8 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
   sel=1:n
   for k=sel
     o=scs_m.objs(k)
-    if typeof(o)=='Block' then
+    x=getfield(1,o)
+    if x(1)=='Block' then
       sel(k)=0
       if o.gui=='CLKSPLIT_f' then
 	nsblk=nsblk+1
@@ -141,8 +142,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
       lk=scs_m.objs(connected)
       //model.ipar contient le numero de port d'entree affecte
       //a ce bloc
-      from=[-ksup -o.model.ipar]
-      lk.from=from;scs_m.objs(connected)=lk
+      lk.from=[-ksup -o.model.ipar];scs_m.objs(connected)=lk
       elseif o.gui=='OUT_f' then
 	if ksup==0 then
 	  message('Output port must be only used in a Super Block')
@@ -159,8 +159,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 	lk=scs_m.objs(connected)
 	//ipar=model.ipar contient le numero de port de sortie affecte
 	//a ce bloc
-	to=[-ksup -o.model.ipar]
-	lk.to=to;scs_m.objs(connected)=lk
+	lk.to=[-ksup -o.model.ipar];scs_m.objs(connected)=lk
       elseif o.gui=='CLKIN_f'|o.gui=='CLKINV_f' then
 	if ksup==0 then
 	  message('Clock Input port must be only used in a Super Block')
@@ -177,8 +176,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 	lk=scs_m.objs(connected)
 	//model.ipar contient le numero de port d'entree affecte
 	//a ce bloc
-	from=[-ksup -o.model.ipar]
-	lk.from=from;scs_m.objs(connected)=lk
+	lk.from=[-ksup -o.model.ipar];scs_m.objs(connected)=lk
       elseif o.gui=='CLKOUT_f'|o.gui=='CLKOUTV_f' then
 	if ksup==0 then
 	  message('Clock Output port must be only used in a Super Block')
@@ -195,8 +193,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 	lk=scs_m.objs(connected)
 	//model.ipar contient le numero de port de sortie affecte
 	//a ce bloc
-	to=[-ksup -o.model.ipar]
-	lk.to=to;scs_m.objs(connected)=lk
+	lk.to=[-ksup -o.model.ipar];scs_m.objs(connected)=lk
     else
       //graphics=o(2)
       nb=nb+1
@@ -228,7 +225,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
       blklst(nb)=o.model
       cor(k)=nb
       end
-    elseif typeof(o)=='Deleted'|typeof(o)=='Text' then
+    elseif x(1)=='Deleted'|x(1)=='Text' then
       sel(k)=0
     end
   end
