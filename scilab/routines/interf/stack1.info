@@ -1,0 +1,119 @@
+/**********************************************************************
+ * MATRICES 
+ **********************************************************************/
+ * getlistmat : 
+ * getmat / matsize / getrmat 
+ * listcremat
+ * cremat / fakecremat
+
+/**********************************************************************
+ * BOOLEAN MATRICES 
+ **********************************************************************/
+
+ * getlistbmat : 
+ * getbmat / matbsize 
+ * listcrebmat 
+ * crebmat / fakecrebmat
+
+/**********************************************************************
+ * SPARSE MATRICES 
+ **********************************************************************/
+
+ * getlistsparse 
+ * getsparse :
+ * getrsparse :
+ * listcresparse
+ * cresparse
+
+/**********************************************************************
+ * VECTORS  
+ **********************************************************************/
+ 
+ * getlistvect
+ * getvect / getrvect / vectsize
+
+/**********************************************************************
+ * SCALAR   
+ **********************************************************************/
+
+ * getlistscalar
+ * getscalar
+
+/**********************************************************************
+ * STRING and string Matrices 
+ **********************************************************************/
+
+ * getlistsmat / getlistwsmat 
+ * getsmat  / getsimat / getwsmat
+ * listcresmat / listcrestring
+ * cresmat /  cresmat1 /  cresmat2 / cresmat3 / cresmat4 / cre_smat_from_str 
+ * crestring 
+ * smatj : utilise ds for 
+ * copysmat : 
+ * setsimat : 
+
+/**********************************************************************
+ * LISTS
+ **********************************************************************/
+
+ * crelist
+ * cretlist
+ * lmatj 
+ * getilist 
+
+/**********************************************************************
+ * POLYNOMS 
+ **********************************************************************/
+
+ * getpoly 
+ * getonepoly
+ * pmatj
+
+/**********************************************************************
+ * WORKING ARRAYS 
+ **********************************************************************/
+
+ * crewmat
+ * crewimat 
+ * getwimat 
+
+/**********************************************************************
+ * A TERMINER 
+ **********************************************************************/
+
+ * crestringv
+ * crepointer
+ * lcrestringmatfromc
+ * crestringmatfromc
+ * getlistvectrow
+ * getvectrow 
+ * getlistvectcol 
+ * getvectcol
+ * getlistsimat
+ * crempointer
+ * getmpointer
+ * creopointer
+ * getopointer
+ * mspcreate
+ * Scierror
+
+/**********************************************************************
+ * Utilities 
+ **********************************************************************/
+
+ * get_fname
+ * realmat
+ * copyobj 
+ * vcopyobj 
+ * swapmat 
+ * insmat 
+ * stackinfo 
+ * allmat 
+ * allmatset 
+ * objvide 
+ * getexternal 
+ * checkval 
+ * optvarget
+ * bufstore 
+
+

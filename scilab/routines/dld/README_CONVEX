@@ -1,0 +1,55 @@
+12 May 1995: 
+----------- 
+
+The GNU's dynamic loader, dld. supports Convex C2, C3 and C4 series
+machines.
+
+* The library is built with Convex's optimizing C compiler (cc) with
+IEEE floating point representation.  Note that it was not built with
+gcc!  Using Convex's C compiler allows for vectorization and
+parallelization of code that gcc does not support.  The makefiles used
+by Convex C-Series are named Makefile.convex (source and test
+directories).
+		make -f Makefile.convex
+
+* This package was NOT ported with the -pcc flag.  This may be of no
+consequence, but you should be aware of it.
+
+* The relocatables built with the Convex compilers (cc and fc) are in
+SOFF format (an extended COFF structure).
+
+* Sources depend upon _CONVEX_SOURCE being set (which is automatically
+done by Convex cc.
+
+* Although the sources here pass the test suites, it's not guaranteed
+to be bug free.  To maintain coherency, please send bugs to
+isom@convex.com along with a test case.  The initial port was done
+with version 3.2.3 and has been operational since the summer of 1993
+without problems.  No real testing has been performed with the C++
+interface.
+
+* Due to the way Convex handles relocation information (see Compiler
+Utilities Guide for details), sharing of objects may be minimal.  For
+best results, unloading is encouraged.
+
+* Dynamic loading of FORTRAN objects with initialized common is not
+recommended.  In fact dld will crash upon recognition of initialized
+common.  There are plans to provide this support in the future.
+
+* Whether you are using the Convex FORTRAN (fc) or C (cc) compiler to
+link in dld, it is necessary to maintain the order in which the
+compiler searchs the libraries.  To output the order of the libraries,
+execute the following command with the compiler options and user
+specified libraries used to build your application:
+
+	%fc <compiler options> +dvo +dvo foo.f <user specified libraries>
+
+Note 1: the +dvo compiler option is an undocumented and unsupported
+option; therefore, it may not always be available.
+
+Note 2: As of 12 May 1995, there are two (2) libraries in /usr/lib
+that really are object files with an .a extension.  They are libV77.a
+and libD77.a.  If you try to load these to resolve undefined symbols,
+you will get "multiple definitions of symbol" (DLD_EMULTDEFS).  A bug
+report has been submitted to Convex to insure that all .a files really
+are libraries.

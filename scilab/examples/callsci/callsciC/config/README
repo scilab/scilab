@@ -1,0 +1,4 @@
+
+The strange link ln -s ../config .
+is only here because make on dec machines 
+does not have the same rules than other unix make

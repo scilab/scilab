@@ -1,0 +1,27 @@
+# Copyright INRIA
+FFLAGS = $(FC_OPTIONS)
+CFLAGS = $(CC_OPTIONS)
+RESOURCES= routines/wsci/Rscilab.o
+
+# scilex-lib
+bin/scilex: scilex-lib  routines/wsci/Rscilab.o 
+	@x=1;if test -f $@.exe; then  \
+		x=`find $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) \
+		-newer $@.exe -print | wc -l `; \
+	fi;\
+	if test $$x -ne 0; then \
+		$(RM) $@.exe; \
+		echo "linking"; \
+		$(CC) $(CFLAGS) -o $@.exe $(DEFAULTS) $(RESOURCES) $(LIBR) \
+			$(CC_LDFLAGS) \
+			$(LINKEROPT) $(WINLIBS)  ; \
+		strip $@.exe ; \
+	else \
+		echo bin/scilex is up to date ; \
+	fi
+
+
+show	:
+	@echo	$(CC) $(CFLAGS) -o $@.exe $(DEFAULTS) $(RESOURCES) $(LIBR) \
+		$(CC_LDFLAGS) \
+		$(LINKEROPT) $(WINLIBS)  ; 

@@ -1,0 +1,118 @@
+#-----------------------------------------------------------------
+# This file can be used to produce a shared libary instead 
+# a standard .a library 
+# for examples: replace the line ``include ../Make.lib'' by 
+# ``include ../../config/Makeso.incl in file 
+# routines/calelm/Makefile to produce a calelm.so shared libary 
+#-----------------------------------------------------------------
+
+top_builddir = $(SCIDIR)
+
+SHELL = /bin/sh
+DLLTOOL = 
+LIBM = 
+LIBTOOL = $(SHELL) $(top_builddir)/libtool
+OBJDUMP = 
+STATIC = 
+LN_S = ln -s
+NM = /usr/bin/nm -B
+LDFLAGS = 
+LIBS = -lm 
+
+#******************************************************************* 
+INCLUDES=  $(XFLAGS) $(TK_INC_PATH) $(TCL_INC_PATH) -I$(SCIDIR)/routines 
+
+# we do not set CFLAGS and FFLAGS here 
+#CFLAGS = $(CC_OPTIONS) 
+#FFLAGS = $(FC_OPTIONS) 
+
+QUIET=--quiet
+ 
+COMPILE = $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+FCOMPILE = $(FC) $(INCLUDES) $(FFLAGS)
+
+LTCOMPILE = $(LIBTOOL) --mode=compile $(QUIET) $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+FLTCOMPILE = $(LIBTOOL) --mode=compile $(QUIET) $(FC) $(INCLUDES) $(FFLAGS)
+
+LINK = $(LIBTOOL) --mode=link $(QUIET) $(CC) $(CFLAGS) $(LDFLAGS) -o $@
+
+OBJECTS = $(OBJS:.o=.lo)
+LIBRARY_NAME = $(LIBRARY:.a=)
+#******************************************************************* 
+
+all:: $(LIBRARY_NAME).la 
+
+.SUFFIXES:
+.SUFFIXES: .c .lo .o .F .f .F90 .f90
+
+$(LIBRARY_NAME).la : $(OBJECTS) 
+	@echo linking 
+	@$(LINK) -rpath `pwd` -module -avoid-version -export-dynamic $(OBJECTS) 
+	@$(LIBTOOL) --mode=install $(QUIET) cp $(LIBRARY_NAME).la `pwd`/$(LIBRARY_NAME).la > /dev/null
+
+clean	::
+	@$(RM) *.o *.lo
+	@$(RM) $(LIBRARY_NAME).la
+	@$(RM) $(LIBRARY_NAME).so
+	@$(RM) $(LIBRARY_NAME).a
+	@$(RM) -r .libs
+	@$(RM) $(LIBRARY_NAME)_gateway.c 
+
+distclean:: clean 
+	@$(RM) $(LIBRARY_NAME).dia
+
+tests	: $(LIBRARY_NAME).dia
+
+$(LIBRARY_NAME).dia	: $(LIBRARY_NAME).la $(LIBRARY_NAME).tst
+	@$(SCIDIR)/util/scidem $(SCIDIR) $(LIBRARY_NAME).tst $(LIBRARY_NAME).dia
+
+.c.o:
+	@echo "compiling $<"
+	@$(COMPILE)  -c $<
+
+.c.lo :
+	@echo "Compiling $<"
+	@$(LTCOMPILE) -c $<
+
+.F.o:
+	@echo "compiling $<"
+	@$(FCOMPILE)  -c $<
+
+.F.lo :
+	@echo "Compiling $<"
+	@$(FLTCOMPILE)  -c $<
+
+.f.o:
+	@echo "compiling $<"
+	@$(FCOMPILE)  -c $<
+
+.f.lo :
+	@echo "Compiling $<"
+	@$(FLTCOMPILE)  -c $<
+
+.F90.o:
+	@echo "compiling $<"
+	@$(FCOMPILE)  -c $<
+
+.F90.lo :
+	@echo "Compiling $<"
+	@$(FLTCOMPILE)  -c $<
+
+.f90.o:
+	@echo "compiling $<"
+	@$(FCOMPILE)  -c $<
+
+.f90.lo :
+	@echo "Compiling $<"
+	@$(FLTCOMPILE)  -c $<
+
+
+
+
+
+
+
+
+
+
+

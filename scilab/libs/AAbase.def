@@ -1,0 +1,19 @@
+LIBRARY    LibScilab.dll
+EXETYPE WINDOWS
+CODE PRELOAD MOVEABLE DISCARDABLE
+DATA PRELOAD MOVEABLE MULTIPLE
+
+EXPORTS
+	stack_
+	vstk_
+	recu_
+	iop_
+	errgst_
+	com_
+	adre_
+	intersci_
+	cha1_
+	dialog_str
+	SciMDialog
+	ScilabDialog
+	ScilabMessage

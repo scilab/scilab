@@ -1,0 +1,20 @@
+mode(-1)
+// Copyright INRIA
+oldln=lines();
+lines(0)
+deff('[]=demoex(num)','exec(''SCI/demos/ode/''+demolist(num,2),-1)')
+demolist=[
+'Simple ODE','ode1.dem';
+'Chemical process (Stiff)','ode2.dem';
+'Chemical process (Implicit)','ode3.dem';
+'Lorenz equation','ode4.dem']
+
+while %t then
+  num=x_choose(demolist(:,1),'Click to choose a demo')
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     demoex(num)
+  end,
+end

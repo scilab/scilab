@@ -1,0 +1,38 @@
+port dld to Decstation.
+
+port to systems that use COFF format.
+
+function to return the name of a symbol given its address.
+
+A "bind-name-to-address" function.  That is, the storage for the
+variable has already been allocated by other (non-dld) functions, and
+want to enter a symtab entry that points to this location.
+
+handle the problem of I-cache:  When removing/replacing any functions,
+the I-cache (if there is one) should be flushed--just in case.
+
+make the N_COMM data block contiguous: put down the offset into the
+N_COMM area as the symbol's value in the first pass, eliminate the
+linked-list altogether, and add to the symbol's value the starting
+address of the N_COMM area when I do the relocation of other symbol
+addresses--because I need to go through the nlists during the
+relocation phase anyway.
+
+autoload option -- defer linking until it is necessary.
+
+compile options to specify whether '_' should be prepended to C symbols.
+
+separate program to massage the executable file --> remove everything
+but global symbol definitions.  So that dld_init can be speed up and
+use less memory (esp. for programs with large debugging symtab).
+
+higher level interface to the symtab and unlink functions
+	call_func (func, args);
+
+add in support to link (mmap) in SunOS 4's shared library.
+
+*maybe* : provide support for multiple symbol tables--kind of like the
+idea of "package" as in Lisp.  This allows different package to define
+the same global symbol and so on.  But don't know how this should be
+intergrate with C's scope rules, or if there is any conflict with
+them.  Need to think about this more.

@@ -1,0 +1,89 @@
+"DLD" is a library package of C functions that performs "dynamic link
+editing".  Programs that use dld can add compiled object code to or
+remove such code from a process anytime during its execution.  Loading
+modules, searching libraries, resolving external references, and
+allocating storage for global and static data structures are all
+performed at run time.
+
+It resides in:
+ ftp-swiss.ai.mit.edu:pub/scm/dld-3.2.7.tar.gz
+ prep.ai.mit.edu:/pub/gnu/jacal/dld-3.2.7.tar.gz
+ ftp.cs.indiana.edu:/pub/scheme-repository/imp/SCM-support/dld-3.2.7.tar.gz
+ tsx-11.mit.edu:/pub/linux/sources/libs/dld-3.2.7.tar.gz
+
+New in dld-3.2.7 is:
+
+	* error.c (dld_perror): Now prints out multiply defined symbol's
+	name with DLD_EMULTDEFS.
+
+	* dld.c (_dld_enter_global_ref): Sets dld_errname to multiply
+	defined symbol's name before calling fatal.
+
+	From: chen@adi.com (Franklin Chen)
+
+	* added const declarations where appropriate in source and
+	dld.texi.
+
+	From: cdteel@esy.com (Carlton Teel)
+
+	* dld support for Convex C-Series using Convex's optimizing C
+	(cc) compiler with IEEE floating point representation.  Note
+	that it is not built with gcc!  Using Convex's C compiler
+	allows for vectorization and parallelization of code that gcc
+	does not support.
+
+	* sources are included and depend on _CONVEX_SOURCE be set
+	(which is automatically done by Convex cc.
+
+	* Although the sources pass all the test suites, it's not
+	guaranteed to be bug free.  To maintain coherency, please send
+	bugs to isom@convex.com along with a test case.  Note that a
+	modified version of 3.2.3 has been in operation since the fall
+	of 1993 without problems.
+
+	* Due to the way Convex handles relocation information (see
+	Compiler Utilities Guide for details), sharing of objects may
+	be minimal.  For best results, unloading is encouraged.
+
+	* Dynamic loading of objects with initialized common is not
+	supported.
+
+The original, with postscript papers, is available from
+prep.ai.mit.edu:pub/gnu/dld-3.2.3.tar.gz.
+
+If you are running on a Sparc Sun4 edit dld/test/Makefile to add the
+"-static" flag to CFLAGS.
+
+From the dld directory, type `make check' (or `make' for no tests).
+This will make libdld.a and then make and run the test programs in
+subdirectory `test'.
+
+Examine the output.  The output from the "general" test should look
+similar to "test/EXPECTED_OUTPUT".  The other tests should print no
+error messages
+
+If this is satisfactory, typing `make install' will copy libdld.a into
+/usr/local/lib/, dld.h into /usr/local/include, and dld.info into
+/usr/local/info/.  These locations can be changed in "Makefile".
+
+	Aubrey Jaffer (jaffer@zurich.ai.mit.edu)
+	Tue Dec  7 22:48:22 GMT 1993
+
+Here is the original README:
+================================================================
+This is dld version 3.2.3.  It currently supports VAX (Ultrix), Sun 3
+(SunOS 3.4 and 4.0), SPARCstation (SunOS 4.0), Sequent Symmetry
+(Dynix), and Atari ST.
+
+To compile,  type "make".
+To compile the test programs, cd to "test" and then type "make".
+
+Changes from 3.2.1 to 3.2.3 is minimal.  Mainly contains the port to
+Atari and Symmetry.  I've received quite a number of suggestions for
+improvements, new features, and debugging support.  I'll incorporate
+them in release 3.3--whenever I have time to work on it!
+
+Wilson Ho (how@cs.ucdavis.edu)
+Wed May 29 22:21:31 PDT 1991
+
+P.S.  Port for Atari is contributed by Edgar Roeder.  See ChangeLog.

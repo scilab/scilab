@@ -1,0 +1,52 @@
+# Makefile for f2c, a Fortran 77 to C converter
+SCIDIR=../../..
+
+include ../../../Makefile.incl.amk
+
+OBJECTSd = main.obj init.obj gram.obj lex.obj proc.obj equiv.obj \
+	data.obj format.obj \
+	expr.obj exec.obj intr.obj io.obj misc.obj error.obj mem.obj \
+	names.obj output.obj p1output.obj pread.obj put.obj putpcc.obj \
+	vax.obj formatdata.obj \
+	parse_args.obj niceprintf.obj cds.obj sysdep.obj version.obj
+
+OBJECTS = $(OBJECTSd) 
+
+#OBJECTS = $(OBJECTSd) malloc.obj
+
+CFLAGS=$(CC_OPTIONS) -DMSDOS
+
+all::  $(SCIDIR)/bin/f2c.exe
+
+$(SCIDIR)/bin/f2c.exe	: $(OBJECTS)
+	$(LINKER) $(GUIFLAGS) $(LINKER_FLAGS) -OUT:"$(SCIDIR)/bin/f2c.exe" $(OBJECTS) absRT0.lib kernel32.lib \
+	unix.lib fmath.lib libac.lib -aliases:unicode.als
+
+cds.obj: sysdep.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+exec.obj: p1defs.h names.h
+expr.obj: output.h niceprintf.h names.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+format.obj: p1defs.h format.h output.h niceprintf.h names.h iob.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+formatdata.obj: format.h output.h niceprintf.h names.h 
+gram.obj: p1defs.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+init.obj: output.h niceprintf.h iob.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+intr.obj: names.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+io.obj: names.h iob.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+lex.obj : tokdefs.h p1defs.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+main.obj: parse.h usignal.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+mem.obj: iob.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+names.obj: iob.h names.h output.h niceprintf.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+niceprintf.obj: defs.h names.h output.h niceprintf.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+output.obj: output.h niceprintf.h names.h  defs.h ftypes.h defines.h machdefs.h sysdep.h
+p1output.obj: p1defs.h output.h niceprintf.h names.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+parse_args.obj: parse.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+proc.obj: tokdefs.h names.h niceprintf.h output.h p1defs.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+put.obj: names.h pccdefs.h p1defs.h defs.h ftypes.h defines.h machdefs.h sysdep.h pccdefs.h
+putpcc.obj: names.h defs.h ftypes.h defines.h machdefs.h sysdep.h pccdefs.h
+vax.obj: defs.h output.h pccdefs.h defs.h ftypes.h defines.h machdefs.h sysdep.h
+output.h: niceprintf.h 
+
+clean::
+	del *.obj 
+
+distclean:: clean 
+	del $(SCIDIR)/bin/f2c.exe

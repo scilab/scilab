@@ -1,0 +1,16 @@
+calc6a	a
+a	stringmat 	m n
+
+ccalc6a	a  m n
+a	Cstringv
+
+out	sequence	a
+***********************
+calc6b
+a	stringmat	m n
+
+ccalc6b	a  m n err
+a	Cstringv
+
+out	sequence 	a
+***********************

@@ -1,0 +1,28 @@
+// Just like anim1.dem 
+// but using the xtape command to redraw 
+// It must be faster than demo1.dem
+// Copyright INRIA
+kdr=driver();
+driver("Rec");
+kp=xget("pixmap");xset("pixmap",1);
+win=xget("window");
+
+xset("wwpc");
+t=%pi*(-5:5)/5;
+plot3d1(t,t,sin(t)'*cos(t),35,45," ",[2,2,4])
+// I stop recording graphic command for xtape('replay')
+// to work 
+driver("X11")
+xset("wshow");
+sp=2;
+for i=35:sp:80,
+  xset("wwpc");
+  xtape('replayna',win,i,45)
+  xset("wshow");
+end
+for i=45:sp:80,
+  xset("wwpc");
+  xtape('replayna',win,80,i)
+  xset("wshow");
+end
+xset("pixmap",kp);driver(kdr);

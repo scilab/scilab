@@ -1,0 +1,12 @@
+# This fake Makefile is used when people get the source
+# version and have not done configure
+
+
+SHELL = /bin/sh
+
+all:
+	@echo "**********************************";
+	@echo "Humm... this is a source version.";
+	@echo "You have to execute configure.";
+	@echo "Please, read the README file first.";
+	@echo "**********************************";

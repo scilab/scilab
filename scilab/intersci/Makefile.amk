@@ -1,0 +1,21 @@
+SHELL = /bin/sh
+
+SCIDIR=..
+include ../Makefile.incl.amk
+
+# just add -DEPSFIG 
+# il you prefer epsfig to special to insert postscript files in LaTeX 
+
+CFLAGS = $(CC_OPTIONS) -windefs
+CFLGDLL=
+
+all:: ..\bin\intersci.exe
+
+..\bin\intersci.exe: intersci.obj
+	@$(LINKER) -SUBSYSTEM:console -OUT:$@ intersci.obj ..\routines\wsci\abs_putenv.obj $(GUILIBS)
+
+clean::
+	@del intersci.obj
+
+distclean:: clean 
+	@del ..\bin\intersci.exe

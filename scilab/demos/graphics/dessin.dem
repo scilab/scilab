@@ -1,0 +1,23 @@
+mode(-1)
+// Copyright INRIA
+oldln=lines()
+lines(0)
+
+deff('[]=xdemo(info,str)',['x_message([info;str]);xbasc();';
+                           'execstr(str)']);
+xset("default");
+
+exec('SCI/demos/graphics/dessin-1.dem');
+
+nn=prod(size(str_l))
+while %t then
+  num=x_choose(info_l,'Choose a demo    ');
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     xdemo(" ",str_l(num));
+  end,
+end
+
+

@@ -1,0 +1,10 @@
+// Copyright INRIA
+host('cd $SCI/demos/velpic;make all');
+if ~c_link('testpt') then  link('/tmp/testpt.o','testpt');end
+if ~c_link('id_rgn') then  link('/tmp/id_rgn.o /tmp/testpt.o','id_rgn');end
+getf('SCI/demos/velpic/velpic.sci')
+xselect()
+x=velpic(20,20);
+grayplot(1:20,1:20,x(:,20:-1:1));
+
+

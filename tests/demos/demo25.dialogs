@@ -1,0 +1,84 @@
+25 //Control Examples
+  1 // LQG
+    1  // Continuous time
+      [(s-1)/(s^2-5*s+1)] // system
+      o                   //OK
+      [1, 0; 0, 1]        //x_weighting matrix
+      o                   //OK
+      1                   //u_weighting matrix
+      o                   //OK
+      [1, 0; 0, 1]        // x-noise cov matrix
+      o                   //OK
+      1                   // y-noise cov matrix
+      o                   //OK
+         1                // Frequency response
+         2                // time response
+           0.1              //sampling period
+           20               //tmax
+           o                //ok
+             1                //step response
+         2                // time response
+           0.1              //sampling period
+           20               //tmax
+           o                //ok
+             2                //Impulse response
+         0                // Cancel
+  1 // LQG
+    2  // Discrete time
+      (z+1)/(z^2-5*z+2)
+      o                   //OK
+      [1, 0; 0, 1]        //x_weighting matrix
+      o                   //OK
+      1                   //u_weighting matrix
+      o                   //OK
+      [1, 0; 0, 1]        // x-noise cov matrix
+      o                   //OK
+      1                   // y-noise cov matrix
+      o                   //OK
+         1                // Frequency response
+         2                // time response
+           30               //tmax
+           o                //ok
+             1                //step response
+         2                // time response
+           30               //tmax
+           o                //ok
+             2                //Impulse response
+         0               // Cancel
+  2  // Mixed sensitivity
+      (s-1)/((s-1)^2*(s+2)) // Nominal plant
+      o                     // Ok
+      s                     // W1
+      1                     // W2
+      1                     // W3
+      o                     // Ok
+      0.01                  //gamma min
+      1000                  //gamma max
+      50                    // #iterations
+      o                     // Ok
+      Yes                   // S function
+      No                    // R function
+      Yes                   // T function
+      o                     // Ok
+  3  // PID
+      1                     // Continuous time
+      (s-1)/(s^2+5*s+1)     // Nominal plant
+      o                     // Ok
+      -1.2                  // Kp
+      1                     // T0
+      0.1                   // T1
+      o                     // Ok
+         1                // Frequency response
+         2                // time response
+           0.1              //sampling period
+           50               //tmax
+           o                //ok
+             1                //step response
+         2                // time response
+           0.1              //sampling period
+           50               //tmax
+           o                //ok
+             2                //Impulse response
+         0                // Cancel
+  0 //Exit Control examples
+0 // Exit

@@ -1,0 +1,17 @@
+How to create a library of Scilab functions
+*******************************************
+1-Put all your .sci files in a directory
+2-Edit the Makefile given here and set the variables:
+SCIDIR    (the Scilab directory)
+NAM       (the name of the library e.g. NAM = library-name)
+NAME      (the pathname of the directory containing the .sci files)
+MACROS    (the list of .sci files to be inserted in the library)
+3-make    (two files "names' and "lib" are created; names is an ascii file
+           containing the names of the functions; lib is a binary file
+           containing the code of the scilab functions).  
+4-load the library into Scilab by the command: load("lib") 
+Within Scilab, the content of the library is obtained by typing
+the name of the library.
+
+Aternatively you can use the command: lib("pathname-of-the-library")
+Scilab will load the needed functions from the "names" file.

@@ -1,0 +1,17 @@
+#!/bin/sh 
+# scibatch scidir filename 
+# Copyright INRIA
+#-------------------------------------------------------
+SCI=$1; export SCI
+echo Running Scilab 
+cat $2 | $SCI/bin/scilex -ns -nw 2>&1 1>report 
+if (grep "\-\-error" report 1> /dev/null  2>&1); 
+then 
+	grep error report ;echo " "
+        echo see `pwd`/report for more informations
+	exit 1;
+else 
+	rm -f report;
+	exit 0;
+fi
+

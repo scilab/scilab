@@ -1,0 +1,16 @@
+// Copyright INRIA
+
+mode(-1)
+deff("[]=demoexc(fil)","exec(""SCI/demos/ode/""+fil)")
+
+while %t do
+  n=x_choose(["ODE 1D","ODE 2D"],"Select a demo");
+  select n
+  case 0
+    break
+  case 1
+    demoexc("odenew1.dem")
+  case 2
+    demoexc("odenew2.dem")
+  end
+end

@@ -1,0 +1,31 @@
+
+	We provide here two interfaces intview.c and intmatmul.c.
+	They are used to add two function view and matmul at Scilab level. 
+	A shared library tutorial.so is built and loading this 
+	shared library in Scilab will add view and matmul
+
+[1] How to make the library run 
+	jum to next section at number 2
+
+[2] How to adapt the code for your functions
+	0 - Write your interface program (see intmatmul.c and intview.c)
+	1 - Edit the builder.sce file and customize it according.
+	2 - at the Scilab prompt --> enter "exec builder.sce"
+
+	3 - Then to load the library, at the Scilab prompt --> enter 
+		exec loader.sce
+	(Note that you can load the library from an other directory)
+	4 - Use the new function e.g. 
+		-->AB=matmul(ones(2,2),ones(2,2))
+	5 - change tutorial.tst (and rename it if you have changed the library
+		name in builder.sce 
+	    at Scilab prompt type make tests to run tutorial.tst
+    	The first time you run make tests whith a changed tutorial.tst,
+	the generated file tutorial.dia will differ from tutorial.dia.ref. 
+        Manually check tutorial.dia, if it is ok copy it to tutorial.dia.ref 
+    
+[3] How to run the contents of this directory as a test
+
+	make distclean 
+	make tests 
+	should perform steps 2.2 to 2.4 automatically 

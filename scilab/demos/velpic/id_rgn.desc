@@ -1,0 +1,32 @@
+id_rgn      	indexlist linelist seed ind nol nolt ic icount noe newlist bav lln ncount
+indexlist	matrix	2	ic
+linelist	matrix 	2	nolt
+seed		row	2
+ind		matrix	2	ic
+nol		scalar
+nolt		scalar
+ic		scalar
+icount		scalar
+noe		row	ic
+newlist		matrix	2	ic
+bav		matrix	3	nolt
+lln		matrix	2	nolt
+ncount      	scalar
+
+id_rgn		indexlist linelist seed ind nol nolt ic icount noe newlist bav lln ncount
+indexlist	integer
+linelist	real
+seed		real
+ind		integer
+nol		integer
+nolt		integer
+ic		integer
+icount		integer
+noe		integer
+newlist		integer
+bav		real
+lln		real
+ncount      	integer
+
+out	sequence	ind	newlist	icount	ncount
+***********************

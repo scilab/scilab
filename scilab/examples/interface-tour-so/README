@@ -1,0 +1,159 @@
+This directory contains examples of C and Fortran interface routines
+which are used to build a shared library.
+The shared library is dynamically linked with scilab by the addinter command.
+
+For building a library of your own you have to provide 
+your own interfaces and to write a specific builder.sce.
+You can take a look at addinter-tutorial-so which is simpler.
+
+-------------------------------------------------------
+To build the shared library enter 
+	--> exec builder.sce 
+	at scilab prompt 
+To load the shared library enter 
+	--> exec loader.sce 
+	at scilab prompt 
+To run a test just exec the corresponding .sce file
+
+You can also build and run all the tests with 
+	make tests (Unix) 
+	nmake /f Makefile.mak tests (visual C++) 
+-------------------------------------------------------
+
+ex01*: An interface with the function ex1* . Shows how to pass
+	integer, float or double arrays and strings to a C or Fortran 
+	function. 
+
+        CheckRhs(minrhs,maxrhs) ;
+	CheckLhs(minlhs,maxlhs) ;
+	GetRhsVar(..) with "c","i","r","d" 
+	accessing data with stk(l4), cstk(l1), istk(l2), sstk(l3)
+	return objects with LhsVar(x)=y 
+	taking care of errors Scierror(...) 
+
+ex02*: Passing a complex array to the interface.
+ 
+	GetRhsCVar(1, "d" ,....)
+	GetRhsVar(..., 'z',.... ) 
+
+ex03*: Passing a boolean matrix to the interface.
+
+	GetRhsVar(....,'b',...) 
+	CreateVar(....,'b',...)
+	CreateVarFrom(....,'b',...)
+
+
+ex04*: interfacing C function which creates objects on the execution stack 
+	(with malloc). How to transfer these objects to Scilab
+       	Interfaces are given in C and Fortran but the functions 
+       	which are to be interfaced are only given in C (they use malloc)
+       	We give examples with C allocated double array, int array, char array.
+
+	CreateVarFromPtr( 1, "d",..)
+  	CreateVarFromPtr( 1, "i",..)
+  	CreateVarFromPtr( 1, "c",..)
+  	FreePtr(..)
+
+
+
+ex05*:	Passing string matrices. 
+
+	GetRhsVar(1,"S",...)
+  	CreateVarFromPtr( 2, "S",...)
+  	FreeRhsSVar(...);
+
+ex06*:  Passing sparse matrices. 
+	Passing int matrices 
+
+	GetRhsVar(1,"s",...)
+	CreateVarFromPtr(1,"s",...)
+	GetRhsVar(1,"I",...)
+	CreateVar(1,"I",...)
+
+ex07* : Passing lists (list/tlist/mlist)
+
+	GetListRhsVar(...)
+	GetListRhsCVar(...)
+	CreateVarFrom(...)
+	CreateVarFromPtr(...)
+	FreeRhsSVar(Str2);
+
+	CreateVar(5, "l", ...)
+	CreateListVarFrom(...)
+  	CreateListVarFromPtr(...) 
+
+ex08*:	Check arguments size constraints 
+
+	CheckVector(1,m1,n1);                  
+  	CheckLength(1,m1*n1,4);
+  	CheckRow(2,m2,n2);
+  	CheckDimProp(1,2, m1 * n1 != n2); 
+  	CheckSameDims(1,3,m1,n1,m3,n3);
+  	CheckScalar(4,m4,n4);
+  	CheckSquare(5,m5,n5);
+  	CheckDims(5,m5,m5,5,5);
+
+	VarType(1)
+	OverLoad(1);
+
+
+ex09*:  Getting a Scilab variable (a matrix) in the interface, 
+	giving its name.
+	Creating a Scilab variable with a specific name. The variable
+	created is not a return variable of the interface. It is directly
+	put into the Scilab internal stack.
+	Getting a Scilab variable (a string) in the interface, 
+	giving its name.
+	Creating a Scilab string variable with a specific name.
+	Putting a Scilab variable (a string) in the interface, 
+	giving its name.
+
+	GetMatrixptr("param", &m, &n, &lp);
+	WriteMatrix("C", &m, &n, C);
+	ReadString("Mystr", &strl, str);
+	WriteString("Str", &strl, str);
+
+ex10*:  Pointers to C objects stored in a Scilab object (pointer). 
+	Building new Scilab data type with pointers stored in a tlist.
+	
+	CreateVarFromPtr(1,"p",...) 
+	CreateListVarFromPtr(1,2,"p",...)
+
+ex11*:  C-structs and Scilab mlist/tlist/list. 
+	example: how to get a Scilab hypermatrix into a C struct. 
+
+ex12*:  Optional argument passing with the syntax ex2*(..., var=val) 
+
+        rhs_opts and  get_optionals(fname,opts) == 0) return 0;
+
+
+ex13*:  Executing a Scilab built-in function within the interface.
+	Executing a Scilab function within the interface. 
+
+	SciString(&ibegin,name,&mlhs,&mrhs);
+
+ex14*:  Calling a function transmited as argument. 
+
+        SciFunction(&ibegin,&lf,&mlhs,&mrhs);
+
+ex15*:  Interface program for a  function which requires an other function in its
+	argument list. The required function f is passed as a parameter of the 
+	Scilab associated function.  
+	The parameter is either a string or a Scilab function. When it is a string 
+	it gives the function f name which is to be searched in predefined tables 
+	or in dynamically linked functions (f3*.c give an example of function f which is 
+	dynamically linked). 
+
+ 	GetFuncPtr(...) 
+	PExecSciFunction(...) 
+
+
+ex16*:  Manually code and decode headers 
+
+	GetData(...)
+	CreateData(...) 
+
+
+ex17* : Performing data type back-conversion 
+	ConvertData and GetListRhsVar 
+

@@ -1,0 +1,14 @@
+// Copyright INRIA
+getf(SCI+'/demos/lmitool/h2hinf.sci','c');
+n=4;m1=1;m2=2;n1=2;n2=2;
+A=rand(n,n);
+B2=rand(n,m2);
+C2=rand(n2,n);
+B1=rand(n,m1);
+C1=rand(n1,n);
+D11=rand(n1,m1);
+D12=rand(n1,m2);
+D22=rand(n2,m2);
+gama=10;
+[X,Y,L]=h2hinf(A,B1,B2,C1,C2,D11,D12,D22,gama)
+

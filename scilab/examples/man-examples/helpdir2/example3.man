@@ -1,0 +1,7 @@
+.TH example3 2 "April 1993" "Scilab Group" "Scilab Function"
+.SH NAME
+example3 - apropos3
+.SH DESCRIPTION
+A blank example to show facilities for adding man pages 
+
+

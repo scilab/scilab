@@ -1,0 +1,45 @@
+mode(0);
+// Copyright INRIA
+xbasc();
+getf('SCI/demos/flat/fcts.sci')
+getf('SCI/demos/flat/car.sci')
+
+demolist=['Car  ';
+          'Two trailers truck ';];
+rep=x_message(['Car and truck parking via flatness and frenet formulas';
+    'see:'
+    '  SCI/demos/flat/fcts.sci'
+    'and'
+    '  SCI/demos/flat/car.sci'
+    'for details'],['Ok','Cancel']);
+
+go_on=rep==1;
+
+while go_on then
+  num=x_choose(demolist(:,1),'Choose a vehicle');
+  if num==0 then go_on=%f;
+  else
+     select num
+     case 1 then 
+       ystr=[ 'x_0'; 'y_0'; 'theta (direction) ';'phi (steering wheel)'];
+       rep=x_mdialog(['Choose initial state'],ystr,...
+			string([0;4;%pi/3;-%pi/6]));
+       if rep<>[] then 
+	     xstart=evstr(rep);
+	     xbasc();
+	     mvcr(xstart(1),xstart(2),xstart(3),xstart(4));
+       end 
+     case 2 then 
+       ystr=[ 'x2';'y2';'theta2 ' ;'theta12';'theta01'; 'phi'];
+       rep= x_mdialog(['Choose initial state'],...
+                 ystr,string([-2;3;%pi/6;0;0;1]));
+       if rep<>[] then 
+	     xstart=evstr(rep);
+       	     xbasc();
+             mvcr2T(xstart(1),xstart(2),xstart(3),xstart(4),xstart(5),...
+		xstart(6));
+       end
+     end;
+  end,
+end;
+

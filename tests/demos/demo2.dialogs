@@ -1,0 +1,34 @@
+2 //Graphics I
+ 1   //plot2d 
+ 2   //plot2d1
+ 3   //plot2d3
+ 4   //plot2d1
+ 5   //Histplot
+ 6   //fplot2d
+ 7   //param3d
+ 8   //param3d
+ 9   //plot3d
+ 10  //fplot3d
+ 11  //plot3d1
+ 12  //fplot3d1
+ 13  //contour
+ 14  //fcontour
+ 15  //champ
+ 16  //fchamp
+ 17  //grayplot
+ 18  //fgrayplot
+ 19  //errbar
+ 20  //abaque
+ 21  //zgrid
+ 22  //xgeom 1
+ 23  //xgeom 2
+ 24  //contour (3d) 2
+ 25  //contour (3d) 3
+ 26  //contour (3d) 4
+ 27  //plot2d+gr_menu
+ 28  //plot3d+gr_menu
+ 29  //plots+xsetech
+ 30  //fac3d
+ 31  //fac3d1
+ 0   //exit
+0 // Exit

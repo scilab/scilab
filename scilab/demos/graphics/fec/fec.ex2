@@ -1,0 +1,20 @@
+// A small example of MESH Creation 
+// and visualisation of a linear on triangles function 
+getf('SCI/demos/fec/macros.sci')
+// An more complex example from NSCK2E  (Inria)
+// With a Mesh of amdba type 
+// Copyright INRIA
+path='SCI/demos/fec/';
+amdbaR(path+'MESH')
+meshvisu()
+halt()
+xbasc()
+xset("use color",1)
+emc2C(1,6,path+'MESH.VAL')
+halt()
+xbasc()
+xset("use color",1)
+emc2C(1,6,path+'MESH.VAL',[-2,-2,2,2])
+//emc2V(2,3,6,20,path+'MESH.VAL',[-0.5,-0.5,2,0.5])
+//halt()
+//xbasc()

@@ -1,0 +1,11 @@
+// Copyright INRIA
+mode(1)
+kp=xget("pixmap");xset("pixmap",1);
+xselect();plot3d();
+t=-%pi:0.3:%pi;
+for i=20:-1:1,
+  xset("wwpc");
+  plot3d1(t,t,sin((i/10)*t)'*cos((i/10)*t),35,45," ",[2,0,0])
+  xset("wshow");
+end
+xset("pixmap",kp);

@@ -1,0 +1,113 @@
+			    ORIGIN OF CODE
+			    **************
+
+    The contribution of many people is acknowledged (the following list
+    is not exhaustive!).
+
+graphics: Scilab graphic routines by Jean-Philippe Chancelier (Cergrene
+	Enpc).  contains a qsort.c ( quicksort from the University of
+	California Berkeley ) modified for Scilab.
+ 
+calelm: low level routines (INRIA).
+
+control: LINPACK + EISPACK + INRIA routines.
+         dsubsp and exchnqz: Paul van Dooren.
+         rpoly: copyrighted by the ACM (alg. 493), which grants
+                 general permission to distribute provided 
+                 the copies are not made for direct commercial advantage. 
+         lybsc, lydsr, lybad,sydsr and sybad are adapted from SLICE 
+                (M. Denham).
+         sszer: Emami-naeini, A. and van Dooren, P. (Automatica paper).
+         syhsc: G.Golub, S.Nash, C.van Loan, Stanford University.
+         rilac, ricd: A. Laub.
+         dexpm1, pade, dclmat, coef, cerr, wexpm1, wpade, wclmat: J. Roche.
+         polmc: adapted from P.Hr. Petkov, Sofia, Bulgaria.
+         bdiag: adapted from Bavely and Stewart.
+         ereduc,fstair: T. Beelen, P. Van Dooren.
+
+default: Scilab routines (INRIA/ENPC) for the user.  Funtab.c
+	 (J.P.Chancelier) is derived form an hash table code from The
+	 University of California, Berkeley.
+
+dld: is a library package of C functions that performs "dynamic link
+         editing" from Wilson Ho (how@cs.ucdavis.edu). It is used on
+         the linux version of scilab.
+
+integ: routines from Odepack and Quadpack.
+         dassl: L. Petzold (LLNL).
+         hybrd: Minpack (ANL).
+	 routines colnew from U. Ascher and G. Bader
+
+interf: Scilab interface with numerical libraries (INRIA/ENPC).
+
+metanet: routines for network analysis (Metanet, INRIA and many public
+         programs).
+
+optim: optimization routines (Modulopt library, INRIA).
+         quapro: E. Casas Renteria & C. Pola Mendez (Universidad de Cantabria).
+         semidef: L. Vandenberghe- S. Boyd code (sp.c, see copyright notice in
+         /routines/optim).
+
+poly: Scilab polynomial library (INRIA).
+
+signal: routines from IEEE Signal processing library.
+
+sparse: Operations on sparse matrices (S. Steer INRIA)
+
+         sparse Lu factorization and resolution comes from Sparse 1.3
+         by Kenneth S. Kundert, Alberto Sangiovanni-Vincentelli and
+         the University of California (see Copyright notice in
+         programs of the "sparse" directory). The code was modified to
+         work with singular matrices (J.P.Chancelier). lu.c
+         (INRIA/ENPC)
+
+	 sparse Cholesky factorization codes are by Joseph W.H. Liu
+         and Esmond G. Ng and Barry W. Peyton from Mathematical
+         Sciences Section, Oak Ridge National Laboratory
+
+	 routines to read .mps file (sparse linear programming) are from 
+         J. Gondzio (Hopdm).
+
+sun: system specific Scilab routines (INRIA/ENPC). 
+         link.c ,link*.c: dynamic linking of programs for differents 
+         architectures (Erlich,Chancelier,INRIA) link_linux.c was initiated 
+         by B.Lapeyre CERMICS.
+         zzledt.c is from Mitchell and Gauthier ass.
+
+system: basic routines of Scilab interpreter (INRIA). Inspired by
+        "classic" Matlab of C. Moler.
+
+system2: low level Scilab routines (INRIA).
+
+X11: optionnal Xaw and Xmu routines  (from mit X11 distribution).
+
+xless: Xless
+
+xsci: top level window and utilities using code from: xterm, xxgdb, xfig 
+	 combined and modified by J.P. Chancelier.
+
+menusX: Scilab menus for XWindow (J.P.Chancelier/INRIA) and Windows 
+         (J.P.Chancelier).
+
+wsci: Scilab programs for the windows version using code from 
+         gnuplot/gsview (gvwprn.c) and emacs (runemacs.c) (J.P.Chancelier).
+
+imp: a set of programs for Scilab prints (J.P.Chancelier).
+
+geci: interprocess communication tool made by CalICo group from
+         LaBRI (University of Bordeaux I, France).
+
+dcd: Library of Fortran Routines for Cumulative Distribution
+         Functions, Inverses, and Other Parameters (February, 1994)
+         Barry W. Brown, James Lovato, Kathy Russell Department of
+         Biomathematics, Box 237, The University of Texas,
+         M.D. Anderson Cancer Center. 1515 Holcombe
+         Boulevard. Houston, TX 77030
+
+randlib: Library of Fortran Routines for Random Number Generation
+	  Barry W. Brown, James Lovato, Kathy Russell, John Venier.
+
+pvm: interface routines with PVM developed by ReMaP and Resedas projects 
+     at INRIA.
+
+tksci: interface with TCL/TK developed by Bertrand Guiheneuf.

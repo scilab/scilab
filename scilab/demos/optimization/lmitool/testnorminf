@@ -1,0 +1,11 @@
+// Copyright INRIA
+getf(SCI+'/demos/lmitool/norminf.sci','c')
+n=4;nu=2;ny=2;
+E=eye(n,n);
+rand('seed',0)
+A=rand(n,n)-3*eye();
+B=rand(n,nu);
+C=rand(ny,n);
+D=0*rand(nu,ny);
+gama=10;
+[X,cost]=norminf(E,A,B,C,D,gama)

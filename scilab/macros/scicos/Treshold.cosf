@@ -1,0 +1,26 @@
+scicos_ver = 'scicos2.4'
+scs_m=list()
+scs_m(1)=list([399,443,0,0,400,450],..
+['Treshold','/usr/local/lib/scilab-2.4.1/macros/scicos/'],[],[],' ',list(),..
+tlist(['scsopt','3D','Background','Link','ID','Cmap'],list(%t,33),[8,1],[1,5],..
+list([5,0],[4,0]),[ .8, .8, .8]),[],[],[])
+scs_m(2)=list('Block',..
+         list([20,20],[40,40],%t,'1',0,[],[],0,..
+         'xstringb(orig(1),orig(2),''Zcross'',sz(1),sz(2),''fill'');'),..
+         list('zcross',1,[],[],1,[],[],[-1;-1;0;0],[],'z',-1,[%t,%f],' ',list()),..
+         ' ','ZCROSS_f')
+scs_m(3)=list('Block',..
+         list([20,129.52381],[40,40],%t,[],0,[],[],0,..
+         'xstringb(orig(1),orig(2),'' - to + '',sz(1),sz(2),''fill'');'),..
+         list('zcross',1,[],[],1,[],[],[-1;-1;0;-1],[],'z',-1,[%t,%f],' ',list()),..
+         ' ','NEGTOPOS_f')
+scs_m(4)=list('Block',..
+         list([20,239.04762],[40,40],%t,[],0,[],[],0,..
+         'xstringb(orig(1),orig(2),'' + to - '',sz(1),sz(2),''fill'')'),..
+         list('zcross',1,[],[],1,[],[],[-1;-1;-1;0],[],'z',-1,[%t,%f],' ',list()),..
+         ' ','POSTONEG_f')
+scs_m(5)=list('Block',..
+         list([78.095238,20],[60,40],%t,['1';'1'],0,[],[],0,..
+         'xstringb(orig(1),orig(2),''GENERAL'',sz(1),sz(2),''fill'');'),..
+         list('zcross',1,[],[],1,[],[],[0;0;0;0],[],'z',-1,[%t,%f],' ',list()),..
+         ' ','GENERAL_f')

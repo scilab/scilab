@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include "../machine.h"
+
+#ifndef WIN32
+#include <sys/time.h>
+#include <unistd.h>
+
+#ifndef __GNUC__
+#define inline
+#endif
+
+static double simulation_start = 0;
+static double simulation_scale = 0;
+static struct timeval realtime_start;
+
+static int simulation_doinit = 1;
+
+
+int C2F(realtimeinit)(t,scale)
+     double *t; 
+     double *scale; 
+{
+  struct timeval now;
+  
+  gettimeofday(&now, 0); 
+  /*  printf("Realtime init %f %f\n", *t, *scale);*/
+  realtime_start= now;
+    
+  simulation_doinit = 1;
+  simulation_scale = *scale;
+  return 0;
+}
+/**********************************************************************
+ * realtime(t) 
+ * wait until time t (in scicos time unit) is reached 
+ **********************************************************************/
+int C2F(realtime)(t) 
+double *t;
+{
+  struct timeval now;
+  struct timeval realtime_diff;
+  double simulation_diff,delay;
+
+  if (simulation_doinit) {
+    simulation_doinit = 0;
+    simulation_start = *t;
+  }
+  gettimeofday(&now, 0); 
+  /* Compute the delay (in sec) relative to beginning of simulation  up to t */ 
+  simulation_diff = (*t - simulation_start) * simulation_scale;
+ 
+  /* Compute the delay (in  sec )  between now and time to reach */	
+  delay = simulation_diff - ( ((double) (now.tv_usec - realtime_start.tv_usec))/1000000.0 +
+			     (double) (now.tv_sec  - realtime_start.tv_sec ) );
+
+
+  if (delay >0.0) {
+    /* convert to timeval*/
+    realtime_diff.tv_sec  = (long) delay ;
+    realtime_diff.tv_usec = (long) ( 1000000*(delay - (double)realtime_diff.tv_sec));
+
+    /* request a pause of computed delay */
+    select(0, 0, 0, 0, &realtime_diff);
+  }
+  return 0;
+}
+
+#else
+#include <windows.h>
+
+static double simulation_start = 0;
+static double simulation_scale = 0;
+static __int64 realtime_start = 0;
+static int simulation_doinit = 1;
+  union {FILETIME ftFileTime;
+    __int64  ftInt64;
+  } ftRealTime; 
+
+int C2F(realtimeinit)(double *t, double *scale) {
+  SYSTEMTIME st;
+  GetSystemTime(&st);
+  SystemTimeToFileTime(&st,&ftRealTime.ftFileTime); 
+
+  realtime_start = ftRealTime.ftInt64;
+  simulation_doinit = 1;
+  simulation_scale = *scale;
+  return 0;
+}
+
+int C2F(realtime)(double *t) {
+  __int64 realtime_diff;
+  double simulation_diff;
+  __int64 delay;
+  SYSTEMTIME st;
+
+  if (simulation_doinit) {
+    simulation_doinit = 0;
+    simulation_start = *t;
+  }
+  GetSystemTime(&st);
+  SystemTimeToFileTime(&st,&ftRealTime.ftFileTime);
+
+  realtime_diff = ftRealTime.ftInt64  - realtime_start;
+  simulation_diff = (*t - simulation_start) * simulation_scale;
+  delay = (__int64)(simulation_diff * 10000000) - realtime_diff;
+/*  printf("Realtime diff %Ld %f -> %Ld (t=%f)\n", 
+    realtime_diff, simulation_diff, delay, *t);
+*/
+
+  if (delay > 0) {
+    Sleep(delay/10000);
+  }
+  return 0;
+}
+#endif

@@ -1,0 +1,80 @@
+#include "mex.h" 
+ 
+extern Gatefunc intex1c;
+extern Gatefunc intex2c;
+extern Gatefunc intex3c;
+extern Gatefunc intex4c;
+extern Gatefunc intex5c;
+extern Gatefunc intex6c;
+extern Gatefunc intex7c;
+extern Gatefunc intex8c;
+extern Gatefunc intex9c;
+extern Gatefunc intex10c;
+extern Gatefunc intex11c;
+extern Gatefunc intex12c;
+extern Gatefunc intex13c;
+extern Gatefunc intex14c;
+extern Gatefunc intex15c;
+extern Gatefunc intex16c;
+extern Gatefunc intex17c;
+extern Gatefunc intex17f;
+extern Gatefunc C2F(intex1f);
+extern Gatefunc C2F(intex2f);
+extern Gatefunc C2F(intex3f);
+extern Gatefunc C2F(intex4f);
+extern Gatefunc C2F(intex5f);
+extern Gatefunc C2F(intex6f);
+extern Gatefunc C2F(intex7f);
+extern Gatefunc C2F(intex8f);
+extern Gatefunc C2F(intex9f);
+extern Gatefunc C2F(intex10f);
+extern Gatefunc C2F(intex11f);
+extern Gatefunc C2F(intex12f);
+extern Gatefunc C2F(intex13f);
+extern Gatefunc C2F(intex14f);
+extern Gatefunc C2F(intex15f);
+extern Gatefunc C2F(intex16f);
+ 
+static GenericTable Tab[]={
+{(Myinterfun)sci_gateway, intex1c,"error msg"},
+{(Myinterfun)sci_gateway, intex2c,"error msg"},
+{(Myinterfun)sci_gateway, intex3c,"error msg"},
+{(Myinterfun)sci_gateway, intex4c,"error msg"},
+{(Myinterfun)sci_gateway, intex5c,"error msg"},
+{(Myinterfun)sci_gateway, intex6c,"error msg"},
+{(Myinterfun)sci_gateway, intex7c,"error msg"},
+{(Myinterfun)sci_gateway, intex8c,"error msg"},
+{(Myinterfun)sci_gateway, intex9c,"error msg"},
+{(Myinterfun)sci_gateway, intex10c,"error msg"},
+{(Myinterfun)sci_gateway, intex11c,"error msg"},
+{(Myinterfun)sci_gateway, intex12c,"error msg"},
+{(Myinterfun)sci_gateway, intex13c,"error msg"},
+{(Myinterfun)sci_gateway, intex14c,"error msg"},
+{(Myinterfun)sci_gateway, intex15c,"error msg"},
+{(Myinterfun)sci_gateway, intex16c,"error msg"},
+{(Myinterfun)sci_gateway, intex17c,"error msg"},
+{(Myinterfun)sci_gateway, intex17f,"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex1f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex2f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex3f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex4f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex5f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex6f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex7f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex8f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex9f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex10f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex11f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex12f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex13f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex14f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex15f),"error msg"},
+{(Myinterfun)sci_gateway, C2F(intex16f),"error msg"},
+	 };
+ 
+int C2F(examples_gateway)()
+{  Rhs = Max(0, Rhs);
+(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
+  return 0;
+}
+ 

@@ -1,0 +1,14 @@
+// Copyright INRIA
+getf(SCI+'/demos/lmitool/linprog.sci','c')
+rand('seed',0);
+//rand('normal')
+n=10;nc=6;
+A=eye(n,n);
+b=zeros(n,1);
+C=rand(nc,n);
+d=-C*ones(n,1);
+c=rand(n,1);
+x0=rand(c);
+[x,cout]=linprog(A,b,C,d,c,x0)
+
+

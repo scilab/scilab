@@ -1,0 +1,30 @@
+mode(-1)
+// Copyright INRIA
+getf('SCI/demos/graphics/xdemo-1.dem');
+oldln=lines();
+lines(0)
+deff('[]=demoex(num)',['select num,';
+     'case 1 then exec(''SCI/demos/arma/arma1.dem'');';
+     'case 2 then exec(''SCI/demos/arma/arma2.dem'');';
+     'case 3 then exec(''SCI/demos/arma/arma3.dem'');';
+     'end']);
+
+demolist=[
+'Arma 1','xdemo1()';
+'Arma 2','xdemo2()';
+'Spectral power','xdemo3()';
+]
+
+while %t then
+  num=x_choose(demolist(:,1),'Choose a demo');
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     demoex(num)
+  end,
+end
+
+
+
+

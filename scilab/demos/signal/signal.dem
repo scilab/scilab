@@ -1,0 +1,31 @@
+// Copyright INRIA
+mode(-1)
+xbasc();
+demolist=['Spectral Estimation ';
+          'IIR filter design ';
+          'Minimax FIR filter design';
+	  'Wiegner filter';
+	  'Bode plots'];
+while %t then
+  num=x_choose(demolist(:,1),'Choose a topic');
+  if num==0 then 
+     break;
+  else
+     select num
+     case 1 then 
+       exec('SCI/demos/signal/spect.dem',1)
+     case 2 then   
+       exec('SCI/demos/signal/iir.dem',1)
+     case 3 then
+       exec('SCI/demos/signal/remezfilt.dem',1);
+     case 4 then
+       exec('SCI/demos/signal/wiener.dem',1);
+     case 5 then
+       exec('SCI/demos/signal/bode.dem',1);
+     end;
+  end,
+end;
+
+
+
+

@@ -1,0 +1,29 @@
+    An example of calling scilab as a subroutine of a user's main program
+
+
+Useful files
+============
+
+    * callsci.f: Fortran Example of a usermain program. This main program send matrices 
+                (call matz) and commands (call scirun) to scilab and 
+                 gets the results back (call matz).
+    * callsci.sh : a small script which runs callsci with proper environment variables 
+    * callsci.sh.in : used to produce callsci.sh 
+
+    * Init : a script mainly used by the Makefile 
+
+Usage
+=====
+	Under unix/linux systems, edit the Makefile and fill the
+	variables SCIDIR variable with the path of your installed scilab 
+	then type make 
+
+	In order to run the generated callsci program type callsci.sh 
+	you can edit callsci.sh or callsci.sh.in to change environement
+	variables. 
+
+	SCI  : path of main scilab directory (to load libraries if necessary)
+	PRINTERS : available printer names
+	DISPLAY: xwindow output display
+	see <SCIDIR>/bin/scilab for more details
+

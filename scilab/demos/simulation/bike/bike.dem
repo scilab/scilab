@@ -1,0 +1,40 @@
+// This is just a graphic demo of the bike
+// Copyright INRIA
+mode(0);
+xbasc();
+path='SCI/demos/bike/';
+
+x=read(path+'data/'+'x1.dat',46,368,"(e10.4)");
+
+getf(path+'macros/'+'velo1.sci');
+getf(path+'macros/'+'velo2.sci');
+getf(path+'macros/'+'velo3.sci');
+getf(path+'macros/'+'velo4.sci');
+getf(path+'macros/'+'velo4p.sci');
+getf(path+'macros/'+'velo5.sci');
+getf(path+'macros/'+'velod.sci');
+getf(path+'macros/'+'velodp.sci');
+getf(path+'macros/'+'show.sci');
+demolist=['bike-1: xpoly (full wheels)';
+            'bike-2: param3d';
+            'bike-3';
+            'bike-4: xpoly + xgeom';
+            'bike-4p: xpoly + xgeom + obstacles';
+            'bike-5'];
+go_on=%t;
+while go_on then
+  num=x_choose(demolist(:,1),'Choose a bike');
+  if num==0 then go_on=%f;
+  else
+     select num
+     case 1 then xbasc();show(x(:,300:368),1,1,velo1)
+     case 2 then xbasc();show(x(:,300:368),1,1,velo2)
+     case 3 then xbasc();show(x(:,300:368),1,1,velo3)
+     case 4 then xbasc();show(x(:,300:368),1,1,velo4)
+     case 5 then xbasc();show(x(:,300:368),1,1,velo4p)
+     case 6 then xbasc();show(x(:,300:368),1,1,velo5)
+     end;
+  end,
+end
+
+

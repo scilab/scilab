@@ -1,0 +1,16 @@
+12  //Wheel Simulation 
+  1   //reading a precomputed trajectory
+12  //Wheel Simulation 
+  2   // simulation with ode (may fail)
+    2   // Go on
+       -10.940468 //phi
+        1.0631321 //theta
+        73.444368 //psi
+       -1.3947561 //Dpsi
+       -3.5513231 //Dtheta
+        3.6337222 //Dpsi
+       -1.5013428 //x
+        3.5348768 //y
+        o         //Ok
+    1  //Stop
+0 // Exit

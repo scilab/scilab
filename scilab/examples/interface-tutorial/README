@@ -1,0 +1,12 @@
+intview.c and intmatmul.c are two sample C gateway functions.
+How to adapt the code for your functions
+****************************************
+0 - Write your interface program (see intmatmul.c and intview.c)
+1 - Edit the Makefile (or Makefile.mak for Windows) to add the name
+    of the new .c gateway file. (CINTERFACES = ...)  and the name
+    of the associated Scilab function (CFUNCTIONS = ...).
+    Check that SCIDIR = pathname of Scilab directory
+2 - Type "make"  (Files tutorial.sce and tutorial_gateway.c are made).
+3 - At the Scilab prompt --> enter "exec tutorial.sce"
+4 - Use the new function e.g. -->AB=matmul(ones(2,2),ones(2,2))
+

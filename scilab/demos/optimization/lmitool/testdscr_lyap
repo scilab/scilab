@@ -1,0 +1,18 @@
+// Copyright INRIA
+n=3;
+rand('seed',0)
+rand('normal')
+E=rand(n,1)*rand(1,n)
+A=-rand(n,n)-eye()
+C=rand(n,n);
+getf(SCI+'/demos/lmitool/dscr_lyap.sci','c')
+[X,Y]=dscr_lyap(E,A,C)
+A'*X+Y'*A+C'*C
+E'*X-Y'*E
+spec(E'*X)
+
+
+getf(SCI+'/demos/lmitool/dscr_lyap2.sci','c') 
+X=dscr_lyap2(E,A)
+E'*X-Y'*E
+spec(E'*X)

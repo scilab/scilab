@@ -1,0 +1,5 @@
+This directory contains LAPACK routines.
+File xerbla.f is not used. 
+A customized version of xerbla
+for Scilab is in SCIDIR/system/xerbla.f
+

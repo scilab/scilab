@@ -1,0 +1,78 @@
+getf(SCI+'/demos/lmitool/lmidem.sci');
+// Copyright INRIA
+mode(-1);
+x_message(['      ';
+'LMITOOL is a Scilab package for LMI optimization';
+      '           ';
+'It can solve the following problem';
+      '                 ';
+      '   minimize  f(X1,...,XM)  ';
+      'subject to the LME constraints: ';
+      '   Gi(X1,...,XM)=0,  i=1,2,...,p,';
+      'and the LMI constraints:  ';
+      '   Hj(X1,...,XM)>=0,  j=1,2,...,q.';
+      '              ';
+      'where';
+'X1,...,XM are unknown real matrices';
+'f is the objective function, a linear scalar function of the entries of the X''s,';
+'Gi''s are affine matrix functions of the entries of the X''s,';
+'Hj''s are affine symmetric matrix functions of the entries of the X''s.';
+      '            ';
+'For a detailed description and examples consult: ';
+      '          ''LMITOOL: a Package for LMI Optimization in Scilab, User''s Guide'' ';
+      '          ';
+      '          ';
+'LMITOOL uses Semidefinite Programming package SP developed by L. Vandenberghe and S. Boyd.']);
+
+while %t
+  %demo_=x_choose(['H-infinity gain';'Output Feedback';'Sylvester equation'],...
+      ['This is a sample of LMI problems that LMITOOL can solve';
+      'Select a problem (other examples are given in demos/lmitool directory)']);
+  select %demo_
+  case 0
+    break;
+  case 1
+    mode(1)
+    lmidem(SCI+'/demos/lmitool/normopt.sci');
+    getf(SCI+'/demos/lmitool/normopt.sci');
+    x_message(['Let''s try a simple example with 3 states';...
+	    'Edit below A,B,C,D matrices']);
+    [ok,A,B,C,D]=getvalue('Enter A, B, C, D matrices',['A';'B';'C';'D'],...
+	list('mat',[3,3],'mat',[3,2],'mat',[2,3],'mat',[2,2]),...
+	['[0,1,0;2,3,1;-1,-2,0]','[1,0;-2,1;0,1]','[1,2,0;0,1,-2]','[0,0;0,0]']);
+    if ok then
+      [X,gopt]=normopt(A,B,C,D);
+      disp(gopt, 'optimal gama found is:')
+      disp(gopt-h_norm(syslin('c',A,B,C,D)),...
+	  'check: gopt-h_norm(syslin(''c'',A,B,C,D)=')
+    end
+    mode(-1)
+  case 2
+    mode(1)
+    lmidem(SCI+'/demos/lmitool/of.sci');
+    getf(SCI+'/demos/lmitool/of.sci');
+    x_message(['Let''s try a simple example with 3 states';...
+	    'Enter A,B,C matrices']);
+    [ok,A,B,C]=getvalue('Edit below A, B, C matrices',['A';'B';'C'],...
+	list('mat',[3,3],'mat',[3,2],'mat',[2,3]),...
+	['[0,1,0;2,3,1;-1,-2,0]','[1,0;-2,1;0,1]','[1,2,0;0,1,-2]']);
+    if ok then
+      [P,Q]=of(A,B,C);
+      disp(P,Q);
+    end
+    mode(-1)
+  case 3
+    mode(1)
+    lmidem(SCI+'/demos/lmitool/sylvester.sci');
+    getf(SCI+'/demos/lmitool/sylvester.sci');
+    x_message(['Let''s try a simple example with 3 states';...
+	    'Enter A,B,C matrices']);
+    [ok,A,B,C]=getvalue('Edit below A, B, C matrices',['A';'B';'C'],...
+	list('mat',[3,3],'mat',[2,2],'mat',[3,2]),...
+	['[0,1,0;2,3,1;-1,-2,0]','[1,0;-2,1]','[1,2;0,1;1,-2]']);
+    [X]=sylvester(A,B,C,'c');
+    disp(X, 'X found is:')
+    disp(A*X+X*B-C ,'Check: A*X+X*B-C =')
+    mode(-1)
+  end   
+end

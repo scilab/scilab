@@ -1,0 +1,53 @@
+  mode(1)
+//
+//             ------------------------------
+//                     SIMULATION  
+//             ------------------------------
+//
+//                   L                   R     i2
+//           -----@@@@@@--------------^v^v^v^v-----
+//           !                      !             !
+//           !i1                     -----! !------
+//           !                             C      !
+//           -----(E)------------------------------
+//
+// Copyright INRIA
+   halt()
+// 
+   l=10; r=1000; c=0.000001; e=10; pe1=0.002; pe2=0.0001;
+// 
+   getf('SCI/demos/misc/oscil.sci')
+   halt()
+// initialization : 
+// --------------   
+//                  
+   y0 = [0;0];
+   t0 = 0;
+   t  = 0:.00003:0.005;
+//  solution
+// ----------
+   yt=ode('adams',y0,t0,t,fty);
+   halt()
+// plot
+// ------
+  [m,n]=size(t); en=t;
+   en=ene1(t,pe1,pe2);
+//
+
+xbasc()
+plot2d([t;t]',yt')
+xtitle(['main intensity';'resistor'],...
+      'time','intensity');
+//
+cw=xget("window");c_c=cw;if cw>=1 then;cw=cw-1;else cw=cw+1;end
+xset("window",cw); xbasc(cw);
+plot2d2("gnn",t',en',[1,-1],"111",...
+     "en",[mini(t),mini(en)-0.5,maxi(t),maxi(en)+0.5])
+xset("window",c_c); 
+//
+//    save
+// ----------
+//
+//   save('oscil.sa');
+halt();
+xbasc(0:1);

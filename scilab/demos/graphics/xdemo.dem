@@ -1,0 +1,39 @@
+mode(-1)
+// Copyright INRIA
+getf('SCI/demos/graphics/xdemo-1.dem');
+getf('SCI/demos/graphics/bike.dem');
+oldln=lines();
+lines(0)
+deff('[]=demoex(num)',['select num,';
+     'case 1 then xdemo1()';
+     'case 2 then xdemo2()';
+     'case 3 then xdemo3()';
+     'case 4 then xdemo4()';
+     'case 5 then xdemo5()';
+     'case 6 then xdemo6()';
+     'case 7 then xdemo7()';
+     'case 8 then xdemo8()';
+     'case 9 then bike()';
+     'end']);
+
+demolist=[
+'Graphics X11 1','xdemo1()';
+'Graphics X11 2','xdemo2()';
+'Graphics X11 3','xdemo3()';
+'Graphics X11 4','xdemo4()';
+'Graphics X11 5','xdemo5()';
+'Graphics X11 6','xdemo6()';
+'Graphics X11 7','xdemo7()';
+'Graphics X11 8','xdemo8()';
+'Draw the bike','bike()';
+]
+
+while %t then
+  num=x_choose(demolist(:,1),'Choose a demo');
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     demoex(num)
+  end,
+end

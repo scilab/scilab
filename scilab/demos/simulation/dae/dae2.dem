@@ -1,0 +1,22 @@
+// Copyright INRIA
+
+mode(-1)
+deff("[]=demoexc(fil)","exec(""SCI/demos/dae/""+fil)")
+
+x_message(["Modeling of a sliding dumped pendulum";
+	   "  using Lagrange formulation";
+	   "You can choose the curve on which the pendulum slides"]);
+while %t do
+  n=x_choose(["Parabola";"Upside down camel"],..
+      "Choose a curve");
+  select n
+  case 0
+    return
+  case 1
+    demoexc("pendg1.sce");
+  case 2
+    demoexc("pendg2.sce");
+  case 3
+    demoexc("pendg3.sce");
+  end
+end

@@ -1,0 +1,24 @@
+mode(0);
+// Copyright INRIA
+xbasc();
+
+path='SCI/demos/anim/';
+deff('[]=demoexc(fil)','exec(path+fil)')
+demolist=['Rotation of a 3D Surface (plot3d1)';
+          '3D curve (param3d)';
+	  'Lorentz curve (param3d) ';
+	  'Rotation of a 3D contour';
+	  'Evolution of a 3D surface (plot3d)';
+	  'N link pendulum movement';
+	  'plot3d1 with xtape';
+          'Shell'];
+
+while %t then
+  num=x_choose(demolist(:,1),'Choose a demo');
+  if num==0 then break;
+  else
+    xdel(0);xset('window',0)
+    demoexc('anim'+string(num)+'.dem');
+  end,
+end
+

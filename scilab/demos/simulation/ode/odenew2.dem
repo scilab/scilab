@@ -1,0 +1,24 @@
+// Copyright INRIA
+
+mode(-1)
+deff("[]=demoexc(fil)","exec(""SCI/demos/ode/""+fil)")
+
+x_message(["Examples of autonomous ODE''s in 2 dimensions";" ";
+           "A trajectory is plotted on the plane phase";
+           "  by clicking on the LEFT button of the mouse."
+           "  The trajectory is updated as you move the mouse.";
+           "  To fix the trajectory, click again on the LEFT button.";
+           "You can start over by clicking on the LEFT button again";
+           "  or stop everything by clicking on the RIGHT button."]);
+while %t do
+  n=x_choose(["Van der Pol";"Lotka-Volterra"],..
+      "Choose an ODE");
+  select n
+  case 0
+    return
+  case 1
+    demoexc("vanderpol.sce");
+  case 2
+    demoexc("lotka.sce");
+  end
+end

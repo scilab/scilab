@@ -1,0 +1,125 @@
+scicos_ver = 'scicos2.4'
+scs_m=list()
+scs_m(1)=list([449,443,0,0,450,450],..
+['Non_linear','/usr/local/lib/scilab-2.4.1/macros/scicos/'],[],[],' ',list(),..
+tlist(['scsopt','3D','Background','Link','ID','Cmap'],list(%t,33),[8,1],[1,5],..
+list([5,0],[4,0]),[ .8, .8, .8]),[],[],[])
+scs_m(2)=list('Block',..
+         list([39.593909,354.3038],[40,40],%t,['0.1';'1'],0,0,[],[],..
+         ['thick=xget(''thickness'');xset(''thickness'',2);';
+         'xx=orig(1)+[1;2;2;3;3;4;4]/5*sz(1);';
+         'yy= orig(2)+[1;1;2;2;3;3;4]/5*sz(2);';
+         'xpoly(xx,yy,''lines'');';
+         'xset(''thickness'',thick);']),..
+         list('qzrnd',-1,-1,[],[],[],[], .1,1,'c',[],[%t,%f],' ',list()),' ',..
+         'QUANT_f')
+scs_m(3)=list('Block',..
+         list([39.593909,266.58228],[40,40],%t,['-1';'1';'1'],0,0,[],[],..
+         ['thick=xget(''thickness'');xset(''thickness'',2);';
+         'xx=orig(1)+[4/5;1/2+1/5;1/2-1/5;1/5]*sz(1);';
+         'yy=orig(2)+[1-1/5;1-1/5;1/5;1/5]*sz(2);';
+         'xpoly(xx,yy,''lines'');';
+         'xset(''thickness'',thick)']),..
+         list('lusat',1,1,[],[],[],[],[-1;1;1],[],'c',[],[%t,%f],' ',list()),' ',..
+         'SAT_f')
+scs_m(4)=list('Block',..
+         list([31.472081,43.565401],[16.666667,16.666667],%t,[],[0;0],0,[],[],[]),..
+         list(list('prod',2),[-1;-1],-1,[],[],[],[],[],[],'c',[],[%t,%f],' ',..
+         list()),' ','PROD_f')
+scs_m(5)=list('Block',..
+         list([39.593909,108.22785],[40,40],%t,'3',0,0,[],[],..
+         list(..
+         ['puiss=arg1(2)(4)(1)';
+         'puiss=puiss+''^u''';
+         'xstringb(orig(1),orig(2),puiss,sz(1),sz(2),''fill'');';
+         emptystr()],[])),..
+         list('expblk',-1,-1,[],[],[],[],3,[],'c',[],[%t,%f],' ',list()),' ',..
+         'EXPBLK_f')
+scs_m(6)=list('Block',..
+         list([144.16244,354.3038],[40,40],%t,' ',0,0,[],[],..
+         'xstringb(orig(1),orig(2),''sin'',sz(1),sz(2),''fill'')'),..
+         list('sinblk',-1,-1,[],[],[],[],[],[],'c',[],[%t,%f],' ',list()),' ',..
+         'SINBLK_f')
+scs_m(7)=list('Block',..
+         list([144.16244,266.58228],[40,40],%t,' ',0,0,[],[],..
+         'xstringb(orig(1),orig(2),[''cos''],sz(1),sz(2),''fill'');'),..
+         list('cosblk',-1,-1,[],[],[],[],[],[],'c',[],[%t,%f],' ',list()),' ',..
+         'COSBLK_f')
+scs_m(8)=list('Block',..
+         list([144.16244,191.39241],[40,40],%t,'-1',0,0,[],[],..
+         'xstringb(orig(1),orig(2),''tan'',sz(1),sz(2),''fill'');'),..
+         list('tanblk',-1,-1,[],[],[],[],[],[],'c',[],[%t,%f],' ',list()),' ',..
+         'TANBLK_f')
+scs_m(9)=list('Block',..
+         list([144.16244,108.22785],[40,40],%t,' ',0,0,[],[],..
+         'xstringb(orig(1),orig(2),''1/u'',sz(1),sz(2),''fill'');'),..
+         list('invblk',-1,-1,[],[],[],[],[],[],'c',[],[%t,%f],' ',list()),' ',..
+         'INVBLK_f')
+scs_m(10)=list('Block',..
+          list([237.56345,354.3038],[40,40],%t,'%e',0,0,[],[],..
+          'xstringb(orig(1),orig(2),''Log'',sz(1),sz(2),''fill'');'),..
+          list('logblk',-1,-1,[],[],[],[],2.7182818,[],'c',[],[%t,%f],' ',list()),..
+          ' ','LOGBLK_f')
+scs_m(11)=list('Block',..
+          list([144.16244,31.898734],[40,40],%t,'3',0,0,[],[],..
+          list(..
+          ['puiss=arg1(2)(4)(1)';
+          'if evstr(puiss)==.5 then ';
+          'puiss=''sqrt'';';
+          'else';
+          'puiss=''u^''+puiss';
+          'end';
+          'xstringb(orig(1),orig(2),puiss,sz(1),sz(2),''fill'');'],[])),..
+          list('powblk',-1,-1,[],[],[],[],[],3,'c',[],[%t,%f],' ',list()),' ',..
+          'POWBLK_f')
+scs_m(12)=list('Block',..
+          list([237.56345,266.58228],[40,40],%t,' ',0,0,[],[],..
+          'xstringb(orig(1),orig(2),''Abs'',sz(1),sz(2),''fill'')'),..
+          list(list('absblk',1),-1,-1,[],[],[],[],[],[],'c',[],[%t,%f],' ',..
+          list()),' ','ABSBLK_f')
+scs_m(13)=list('Block',..
+          list([39.593909,191.39241],[40,40],%t,[],0,0,[],[],..
+          ['rpar=model(8);n=size(rpar,''*'')/2;';
+          'thick=xget(''thickness'');xset(''thickness'',2);';
+          'xx=rpar(1:n);yy=rpar(n+1:2*n);';
+          'mnx=mini(xx);xx=xx-mnx*ones(xx);mxx=maxi(xx);';
+          'xx=orig(1)+sz(1)*(1/10+(4/5)*xx/mxx);';
+          'mnx=mini(yy);yy=yy-mnx*ones(yy);mxx=maxi(yy);';
+          'yy=orig(2)+sz(2)*(1/10+(4/5)*yy/mxx);';
+          'xpoly(xx,yy,''lines'');';
+          'xset(''thickness'',thick);']),..
+          list('lookup',1,1,[],[],[],[],[-2;-1;1;2;-1;1;-1;1],[],'c',[],[%t,%f],..
+          ' ',list()),' ','LOOKUP_f')
+scs_m(14)=list('Block',..
+          list([237.56345,191.39241],[40,40],%t,'-1',0,0,[],[],..
+          'xstringb(orig(1),orig(2),''MIN'',sz(1),sz(2),''fill'')'),..
+          list('minblk',-1,1,[],[],[],[0;0],[],[],'c',[],[%t,%f],' ',list()),' ',..
+          'MIN_f')
+scs_m(15)=list('Block',..
+          list([237.56345,108.22785],[40,40],%t,' ',0,0,[],[],..
+          'xstringb(orig(1),orig(2),''Max'',sz(1),sz(2),''fill'');'),..
+          list('maxblk',-1,1,[],[],[],[0;0],[],[],'c',[],[%t,%f],' ',list()),' ',..
+          'MAX_f')
+scs_m(16)=list('Block',..
+          list([237.56345,31.898734],[40;50],%t,..
+          ['[0;1]';
+          '[]';
+          '[0.2+%i*0.8,0.2-%i*0.8;0.3+%i*0.7,0.3-%i*0.7]';
+          '[1;1]';
+          '[]';
+          '[0;0]'],[0;0],0,0,[],..
+          ['txt=[''N(z,p)'';''-----'';''D(z,p)''];';
+          'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
+          list('dlradp',[1;1],1,1,[],[],[0;0],..
+          [0;1; .2; .3; .2; .3; .8; .7; -.8; -.7;1;1],[0;2;2],'d',[],[%t,%f],' ',..
+          list()),' ','DLRADAPT_f')
+scs_m(17)=list('Block',..
+          list([314.59276,353.16456],[40,40],%t,['[0;1]';'[0;1]'],0,0,[],[],..
+          'xstringb(orig(1),orig(2),''interp'',sz(1),sz(2),''fill'');'),..
+          list('intrpl',1,1,[],[],[],[],[0;1;0;1],[],'c',[],[%t,%f],' ',list()),..
+          ' ','INTRPLBLK_f')
+scs_m(18)=list('Block',..
+          list([307.78781,267.72152],[60,40],%t,['[0;1]';'[0;1]';'[0;1]'],[0;0],..
+          0,[],[],'xstringb(orig(1),orig(2),''interp2'',sz(1),sz(2),''fill'');'),..
+          list(list('intrp2',1),[1;1],1,[],[],[],[],[0;1;0;1;0;1;1;2],[2;2],'c',..
+          [],[%t,%f],' ',list()),' ','INTRP2BLK_f')

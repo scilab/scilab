@@ -1,0 +1,81 @@
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c periX11.c -o periX11.o
+periX11.c: In function `xget_dash_or_color':
+periX11.c:1422: warning: unused variable `i'
+periX11.c: In function `drawsegments_':
+periX11.c:2859: warning: unused variable `j'
+periX11.c:2858: warning: unused variable `fg'
+periX11.c: In function `drawarrows_':
+periX11.c:2908: warning: unused variable `j'
+periX11.c: In function `drawarcs_':
+periX11.c:3188: warning: unused variable `j'
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c periPos.c -o periPos.o
+periPos.c: In function `drawsegmentsPos_':
+periPos.c:1335: warning: unused variable `j'
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c periFig.c -o periFig.o
+periFig.c: In function `get_dash_or_color_Xfig_':
+periFig.c:723: warning: unused variable `i'
+periFig.c: In function `displaystringXfig_':
+periFig.c:1260: warning: unused variable `j'
+periFig.c: At top level:
+periFig.c:2399: warning: static declaration for `set_dash_or_color' follows non-static
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c periGif.c -o periGif.o
+periGif.c: In function `drawsegmentsGif_':
+periGif.c:1501: warning: unused variable `pat'
+periGif.c: In function `drawarrowsGif_':
+periGif.c:1551: warning: unused variable `cpat'
+periGif.c: In function `drawrectanglesGif_':
+periGif.c:1621: warning: implicit declaration of function `gdImageThickRectangle'
+periGif.c: In function `fillpolylinesGif_':
+periGif.c:1891: warning: unused variable `num'
+periGif.c:1891: warning: unused variable `verb'
+periGif.c:1891: warning: unused variable `cpat'
+periGif.c: In function `drawpolylineGif_':
+periGif.c:1940: warning: unused variable `c'
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Xcall.c -o Xcall.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Xcall1.c -o Xcall1.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Contour.c -o Contour.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Plo3d.c -o Plo3d.o
+Plo3d.c: In function `plot3dg_':
+Plo3d.c:141: warning: unused variable `xz'
+Plo3d.c:139: warning: unused variable `pat'
+Plo3d.c: In function `fac3dg_':
+Plo3d.c:296: warning: unused variable `xz'
+Plo3d.c: In function `SetEch3d1':
+Plo3d.c:887: warning: suggest parentheses around comparison in operand of |
+Plo3d.c:894: warning: suggest parentheses around comparison in operand of |
+Plo3d.c:916: warning: suggest parentheses around comparison in operand of |
+Plo3d.c: In function `shade':
+Plo3d.c:1574: warning: `return' with no value, in function returning non-void
+Plo3d.c:1647: warning: control reaches end of non-void function
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Math.c -o Math.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Axes.c -o Axes.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Champ.c -o Champ.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Plo2d.c -o Plo2d.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Plo2d1.c -o Plo2d1.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Plo2d2.c -o Plo2d2.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Plo2d3.c -o Plo2d3.o
+Plo2d3.c: In function `plot2d3_':
+Plo2d3.c:33: warning: unused variable `narg1'
+Plo2d3.c:33: warning: unused variable `xz1'
+Plo2d3.c:33: warning: unused variable `verbose1'
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Plo2d4.c -o Plo2d4.o
+Plo2d4.c: In function `plot2d4_':
+Plo2d4.c:30: warning: unused variable `narg'
+Plo2d4.c:30: warning: unused variable `xz'
+Plo2d4.c:30: warning: unused variable `verbose'
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Plo2dEch.c -o Plo2dEch.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Rec.c -o Rec.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Gray.c -o Gray.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Alloc.c -o Alloc.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c FeC.c -o FeC.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c RecLoad.c -o RecLoad.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c RecSave.c -o RecSave.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Tests.c -o Tests.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Actions.c -o Actions.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c gsort.c -o gsort.o
+gsort-int.h:349: warning: `sorttestint' defined but not used
+gsort-double.h:345: warning: `sorttestdouble' defined but not used
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c qsort.c -o qsort.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c nues1.c -o nues1.o
+cc -g -Wall -Dlinux -fwritable-strings -DNARROWPROTO -I/usr/X11R6/include     -c Format.c -o Format.o
+Creation of ../../libs/graphics.a

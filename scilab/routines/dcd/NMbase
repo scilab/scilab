@@ -1,0 +1,4 @@
+#!/bin/csh 
+echo ===========$1
+nm ../../libs/*.a | grep $1  | grep -v UNDEF
+

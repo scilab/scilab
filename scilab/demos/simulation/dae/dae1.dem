@@ -1,0 +1,22 @@
+// Copyright INRIA
+
+mode(-1)
+deff("[]=demoexc(fil)","exec(""SCI/demos/dae/""+fil)")
+
+x_message(["Modeling of a spherical pendulum";
+	   "  using Lagrange formulation"]);
+
+while %t do
+  n=x_choose(["Index 2";"Index 1";"Index 1 with stabilization"],..
+      "Choose the type of the system");
+  select n
+  case 0
+    return
+  case 1
+    demoexc("pend3d2.sce");
+  case 2
+    demoexc("pend3d1.sce");
+  case 3
+    demoexc("pend3d1s.sce");
+  end
+end

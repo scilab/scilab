@@ -1,0 +1,20 @@
+Begin3
+Title:          DLD dynamic link editor
+Version:        3.2.7
+Entered-date:   Fri Jul 28 22:32:36 EDT 1995
+Description:    DLD is a library package of C functions that performs
+		"dynamic link editing".  Programs that use dld can add
+		compiled object code to or remove such code from a
+		process anytime during its execution.  Loading
+		modules, searching libraries, resolving external
+		references, and allocating storage for global and
+		static data structures are all performed at run time.
+Keywords:       dynamic link load
+Author:         how@cs.ucdavis.edu (Wilson Ho)
+Maintained-by:  jaffer@ai.mit.edu (Aubrey Jaffer)
+Primary-site:   54k ftp-swiss.ai.mit.edu pub/scm/dld-3.2.7.tar.gz
+Alternate-site: 54k tsx-11.mit.edu pub/linux/sources/libs/dld-3.2.7.tar.gz
+Original-site:  prep.ai.mit.edu pub/gnu/dld-3.2.3.tar.gz
+Platform:       C compiler
+Copying-policy: GPL
+End

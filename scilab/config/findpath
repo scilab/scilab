@@ -1,0 +1,15 @@
+#! /bin/sh
+# Copyright INRIA
+
+
+SCIDIR=`pwd`
+
+if test -f Path.incl; then
+  PATH_INCL=`cat Path.incl`
+fi
+if test "$PATH_INCL" != "SCIDIR=$SCIDIR"; then
+  echo "creating Path.incl"
+  cat << EOF > Path.incl
+SCIDIR=$SCIDIR
+EOF
+fi

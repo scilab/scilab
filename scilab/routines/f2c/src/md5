@@ -1,0 +1,75 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+
+# netlib-bl master Wed Oct 2 08:32:09 EDT 1996
+svLF4apVj5Cw7Y4HOucy8g	.depend
+6BR1A9ALI8Eyew84wWiqKA	Notice
+K0JKQP82foG6dU7BRqo/1A	README
+0A0jraDD9riqPZ/oXtO+7w	cds.c
+BxgNfhoIPU8S9giQUA/DJA	data.c
+Bi8xI4z7YYsZh2tz+Zg3hA	defines.h
+NVyzj5nR/A6FzSb54eL34A	defs.h
+ysudT7Sin4BzEafx2MrbRg	equiv.c
+W2onInXhz8ypprxgPmmlHA	error.c
+v/QPf9TuOkC+VCfRX1cgsw	exec.c
+dkLZaKGzeCsop26re82vtA	expr.c
+XLk0rYpiZcrfl2AXSrBZaw	f2c.1
+QROtjjKx47AexDcpFSVYhw	f2c.1t
+vv8W5sYIAWZm0M+newkVQA	f2c.h
+ACbJADnNcxmvvVeGLoiL9g	format.c
+Ct8Xy1SJtDzDSbqULTh+Ew	format.h
+93tRP+hiq+Eq2/QCpOr3gg	formatdata.c
+ja4zGdfpHwq/IPhL957CSw	ftypes.h
+F2/yWdlcXM8+TxzR7eH9wg	gram.c
+HST1NclbJyZgtnVBhWc95w	gram.dcl
+1ml5ffcGcN0wKsBVtrj53Q	gram.exec
+oOV77Eso2kMvqZ89ZFeNaA	gram.expr
+/BVNFVpMXKYGB4ich2RbRw	gram.head
+9d0qB7EH+x2ugikmKtCkng	gram.io
+ZOiywuPlJlTmokeA6DvfuQ	index
+vWR1MBzaGeQgyvKJrRBHKQ	init.c
+yvNTLCVlwiXX07kzOC1rEg	intr.c
+9YDnBFY0VtnCNAH6mVkUXw	io.c
+k4LUzpooKR+PVPCpYGYzgA	iob.h
+sj2fb9cc4GQ8xD9Yk1gfFw	lex.c
+rLrbDUdP8lQ5Qvs4al4aLQ	machdefs.h
+89+dm1oiMdf8oj9+MiWQJA	main.c
+JcDxEZlnZyMx4CQSptq8zg	makefile
+uzD/oatBxlEql3V6fGi0/g	malloc.c
+7wTNSY1GQk/JhnDDaKbLSQ	mem.c
+pbGYsgKnhA+Y3ryUTWdr4w	memset.c
+v1jH+jyzZ13ASm4yxaR08A	misc.c
+3Lqlzf9GY10VW9TtpkJdSA	names.c
+SjM9kTf4iqCa3FSpruk1Bw	names.h
+hPQNSDH3MamRr+jfDyxk0Q	niceprintf.c
+8bQkhXLa4jeUyjkSHmJ7Sw	niceprintf.h
+6BR1A9ALI8Eyew84wWiqKA	notice
+TTcKitJwR7m9h7xrAa1EqA	output.c
+LB3lIuaW4T9e+bUFa0sGKQ	output.h
+G+/SMd3RtJP3UEQ4O6NHNw	p1defs.h
+RgQsiStnqpu6AsvcIS677g	p1output.c
+1EG8wUqqheRu5l2qVpgOyw	parse.h
+Rk4C0WvbNyDiefmjIKb8Fw	parse_args.c
+xtwBUFmjEPS/6PxGqmjFXw	pccdefs.h
+DycidR+4YfbarOEC0aF2rg	pread.c
+sayxPywn/RktMBclp2Eqpw	proc.c
+0IzXQROvs1wRqmm1IDi5VA	put.c
+j3nGaIyYXrQwC16+M7usIg	putpcc.c
+K0JKQP82foG6dU7BRqo/1A	readme
+Be9qg3q1LRMtd+ITrsWSiQ	sysdep.c
+pLI/6TP87Phg8HXFR6vWUQ	sysdep.h
+s2LooafMGSGVYx56EviCOg	tokens
+hJKWx144bZPbU4t6SzJ/wA	usignal.h
+91d7ghFgM9TEsCHsbslRmg	vax.c
+RYPMIfwKGiyQ0luPS13LpA	version.c
+wRjImTRzmwxiRJCCi1Ql+Q	xsum.c
+lte6E6GlAWKhE1R3a8PSFQ	xsum0.out
+
+-----BEGIN PGP SIGNATURE-----
+Version: 2.6.2
+
+iQCVAwUBMlJgzL5pvxO9gjtZAQF8PwP/XpQT8dtyzD8kcyWPQoKtB4q7a27AqF0/
+bEMagOP7r8AMb7+06sPkVuJ+QUq9jACHoCAR19mwjMLjg4qixoADRFR4ZI3E9t+D
+oKUpbp/Ab0MMbsswBXbB88uZhG2vHZezEThTduzYzeYWaYq7E5+g8a8U/WXTu0aj
+yqJxGNrAxZY=
+=sDUG
+-----END PGP SIGNATURE-----

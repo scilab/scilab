@@ -1,0 +1,33 @@
+#-----------------------------
+# generated from Makefile: DO NOT EDIT
+# -----------------------------
+SHELL = /bin/sh
+
+SCIDIR=../..
+SCIDIR1=..\..
+
+include ../../Makefile.incl.mak
+
+.SUFFIXES: .sci .bin $(SUFFIXES)
+
+NAME = xdesslib
+NAM = SCI/macros/xdess
+
+MACROS = errbar.sci fchamp.sci fcontour.sci fplot2d.sci fplot3d.sci \
+	fgrayplot.sci fplot3d1.sci  locate.sci xbasc.sci \
+	xbasimp.sci xbasr.sci plot3d2.sci plot3d3.sci nf3d.sci  \
+	xclip.sci xstringb.sci histplot.sci plot.sci eval3d.sci \
+	gr_menu.sci hist3d.sci scaling.sci isoview.sci \
+	milk_drop.sci xrpoly.sci rotate.sci secto3d.sci square.sci \
+	titlepage.sci nyquist.sci m_circle.sci bode.sci \
+	chart.sci black.sci plzr.sci gainplot.sci evans.sci \
+	zgrid.sci graduate.sci  paramfplot2d.sci \
+	fac3d.sci fac3d1.sci eval3dp.sci plotframe.sci xsetm.sci \
+	edit_curv.sci  genfac3d.sci Sgrayplot.sci \
+	Sfgrayplot.sci fcontour2d.sci addcolor.sci replot.sci sgrid.sci \
+	hotcolormap.sci graycolormap.sci getsymbol.sci getcolor.sci \
+	sd2sci.sci contourf.sci polarplot.sci graypolarplot.sci \
+	legends.sci dragrect.sci subplot.sci getlinestyle.sci getmark.sci \
+	getfont.sci
+
+include ../Make.lib.mak

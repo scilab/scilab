@@ -1,0 +1,30 @@
+#!/bin/sh 
+# scilab batch execution for preparing the doc 
+# scidem scidir fn fileres  flag
+
+# Copyright INRIA
+echo ------------------- File $2--------------------
+SCI=$1
+export SCI
+if [ -f $3  ]; then rm $3;fi;
+trap "rm -f /tmp/$2.$$ /tmp/$2.$$.res /tmp/$2.$$.err /tmp/$2.$$.diff\
+	;exit 1"  1 2 13 15
+echo "clear;lines(0);deff('[]=bugmes()','write(%io(2),''error on test'')');\
+	diary('$3');driver('Pos');" >> /tmp/$2.$$ ;
+sed     -e "s/pause,end/bugmes();quit;end/" \
+	-e "s/halt()//" \
+        $2 >> /tmp/$2.$$ ;
+echo "diary(0);xend();quit;quit;quit;quit;quit;quit;" >> /tmp/$2.$$ ;
+($SCI/bin/scilex -nw < /tmp/$2.$$ > /tmp/$2.$$.res ) 2> /tmp/$2.$$.err ;
+sed -e "s/ \.[0-9]/0&/g" -e "s/0 \./0./g" -e "s/E+/D+/g" -e "s/E-/D-/g" -e "s/-\./-0\./g" $3 > $3.n
+grep -v "xinit(" $3.n | grep -v "diary(" | grep -v "exec("  > $3
+rm -f $3.n
+if ( grep error /tmp/$2.$$.res >  /dev/null ) ; then 
+	if [ $# != 4 ]; then 
+		echo "ERROR DETECTED  while executing $2" ;
+	fi;
+fi;
+echo ---------------------------------------------------------- 
+rm -f /tmp/$2.$$ /tmp/$2.$$.res /tmp/$2.$$.err /tmp/$2.$$.diff
+exit 0
+

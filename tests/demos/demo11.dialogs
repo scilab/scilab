@@ -1,0 +1,18 @@
+11  // Car parking
+ Ok   //Ok
+ 1   //car
+    0           //x_0
+    4           //y_0
+    1.0471976   //theta
+    -0.5235988  //phi
+    o           //Ok
+ 2   //Two trailer truck
+    -2          //x2
+     3          //y2
+     0.5235988  //theta2
+     0          //theta12
+     0          //theta10
+     1          //phi
+     o          //Ok
+ 0  //Exit Car parking
+0 // Exit

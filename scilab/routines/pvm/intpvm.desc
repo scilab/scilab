@@ -1,0 +1,1917 @@
+pvm_joingroup	group
+group		string	l
+inum		scalar
+
+sci_pvm_joingroup	group l inum
+group		char
+l		integer
+inum		integer
+
+out		sequence	inum
+***********************
+pvm_lvgroup	group
+group		string	l
+size		scalar
+
+sci_pvm_lvgroup	group l size
+group		char
+l		integer
+size		integer
+
+out		sequence	size
+***********************
+pvm_gsize	group
+group		string	l
+size		scalar
+
+sci_pvm_gsize	group l size
+group		char
+l		integer
+size		integer
+
+out		sequence	size
+***********************
+pvm_gettid	group inum
+group		string	l
+inum		scalar
+tid		scalar
+
+sci_pvm_gettid	group l inum tid
+group		char
+l		integer
+inum		integer
+tid		integer
+
+out		sequence	tid
+***********************
+pvm_getinst	group tid
+group		string	l
+tid		scalar
+inum		scalar
+
+sci_pvm_getinst	group l tid inum
+group		char
+l		integer
+tid		integer
+inum		integer
+
+out		sequence	inum
+***********************
+pvm_barrier	group count
+group		string	l
+count		scalar
+res		scalar
+
+sci_pvm_barrier	group l count res
+group		char
+l		integer
+count		integer
+res		integer
+
+out		sequence	res
+***********************
+pvm_bcast	group buff msgtag
+group		string	l
+buff		matrix	m	n
+msgtag		scalar
+res		scalar
+
+sci_pvm_bcast	group l buff m n msgtag res
+group		char
+l		integer
+buff		double
+m		integer
+n		integer
+msgtag		integer
+res		integer
+
+out		sequence	res
+***********************
+pvm_tasks	[where 0]
+where		scalar
+ntask		scalar
+tid		row	n
+ptid		row	n
+dtid		row	n
+flag		row	n
+name		stringmat	1	n
+info		scalar
+
+sci_pvm_tasks	where ntask tid ptid dtid flag name n info
+where		integer
+ntask		integer
+tid		cintf
+ptid		cintf
+dtid		cintf
+flag		cintf
+name		Cstringv
+n		integer
+info		integer
+
+out		list	tid ptid dtid flag name ntask info
+***********************
+pvm_config	
+nhost		scalar
+narch		scalar
+dtid		row		n
+name		stringmat	1	n
+arch		stringmat	1	n
+speed		row		n
+info		scalar
+
+sci_pvm_config	nhost narch dtid name arch speed n info
+nhost		integer
+narch		integer
+dtid		cintf
+name		Cstringv
+arch		Cstringv
+speed		cintf
+n		integer
+info		integer
+
+out		list	nhost narch dtid name arch speed info	
+***********************
+pvm_addhosts		hosts
+hosts			stringmat	1	n
+infos			row		n
+
+sci_pvm_addhosts	hosts n infos
+hosts			Cstringv
+infos			integer
+
+out			sequence	infos
+***********************
+pvm_delhosts		hosts
+hosts			stringmat	1	n
+infos			row		n
+
+sci_pvm_delhosts	hosts n infos
+hosts			Cstringv
+infos			integer
+
+out			sequence	infos
+***********************
+pvm_parent
+res		scalar
+
+sci_pvm_parent	res
+res		integer
+
+out		sequence	res
+***********************
+pvm_tidtohost	tid
+tid		scalar
+res		scalar
+
+sci_pvm_tidtohost	tid res
+tid		integer
+res		integer
+
+out		sequence	res
+***********************
+pvm_set_timer	
+res		scalar
+
+sci_pvm_set_timer	res
+res		integer
+
+out		sequence	res
+***********************
+pvm_get_timer	
+res		scalar
+
+sci_pvm_get_timer	res
+res		double
+
+out		sequence	res
+***********************
+pvm_mytid	
+res		scalar
+
+sci_pvm_mytid	res
+res		integer
+
+out		sequence	res
+***********************
+pvm_exit	
+res		scalar
+
+sci_pvm_exit	res
+res		integer
+
+out		sequence	res
+***********************
+pvm_kill	tids
+tids		row	n
+res		row	n
+
+sci_pvm_kill	tids n res
+tids		integer
+res		integer
+
+out		sequence	res
+***********************
+pvm_spawn	task  ntask [where null]
+task		string		l1
+where		string		l3
+ntask		scalar
+tids		row		ntask
+res		scalar
+
+sci_pvm_spawn	task l1 where l3 ntask tids res
+task		char
+l1		integer
+where		char
+l3		integer
+ntask		integer
+tids		integer
+res		integer
+
+out		sequence	tids res
+***********************
+pvm_spawn_independent	task  ntask [where null]
+task			string		l1
+ntask			scalar
+where			string		l3
+tids			row		ntask
+res			scalar
+
+sci_pvm_spawn_independent	task l1 ntask where l3 tids res
+task				char
+l1				integer
+where				char
+l3				integer
+ntask				integer
+tids				integer
+res				integer
+
+out				sequence	tids res
+***********************
+pvm_recv	tid tag
+tid		scalar
+tag		scalar
+buff		matrix	m	n
+res		scalar
+
+scipvmrecv	tid  tag buff m n res
+tid		integer
+tag		integer
+buff		crecvf
+m		integer
+n		integer
+res		integer
+
+out		sequence	buff res
+***********************
+pvm_send	tids buff tag
+tids		row	p
+buff		matrix	m	n
+tag		scalar
+res		scalar
+
+sci_pvm_send	tids p  buff m n tag res
+tids		integer
+p		integer
+buff		double
+m		integer
+n		integer
+tag		integer
+res		integer
+
+out		sequence	res
+***********************
+pvm_send_bmat	tids buff tag
+tids		row	p
+buff		bmatrix	m	n
+tag		scalar
+res		scalar
+
+sci_pvm_send_bmat	tids p  buff m n tag res
+tids		integer
+p		integer
+buff		integer
+m		integer
+n		integer
+tag		integer
+res		integer
+
+out		sequence	res
+***********************
+pvm_recv_var    tid tag buff
+tid             scalar
+tag             scalar
+buff            string l
+res             scalar
+
+sci_pvm_recv_var        tid  tag buff res
+tid             integer
+tag             integer
+buff            char
+res             integer
+
+out             sequence        res
+***********************
+pvm_send_var    tids buff tag
+tids            row     p
+buff            string  l
+tag             scalar
+res             scalar
+
+sci_pvm_send_var        tids p  buff tag res
+tids            integer
+p               integer
+buff            char
+tag             integer
+res             integer
+
+out             sequence        res
+***********************
+blacs_pinfo	
+mypnum		scalar
+nprocs		scalar
+
+sci_blacs_pinfo	mypnum nprocs
+mypnum		integer
+nprocs		integer
+
+out		sequence	mypnum nprocs
+***********************
+blacs_setup	nprocs
+nprocs		scalar
+mypnum		scalar
+
+sci_blacs_setup	mypnum nprocs
+mypnum		integer
+nprocs		integer
+
+out		sequence	mypnum nprocs
+***********************
+blacs_get	[icontxt 0] [what 0]
+icontxt		scalar
+what		scalar
+val		row	m
+
+sci_blacs_get	icontxt what val m
+icontxt		integer
+what		integer
+val		cintf
+m		integer
+
+out		sequence	val
+***********************
+blacs_set	icontxt what val
+icontxt		scalar
+what		scalar
+val		row	m
+
+sci_blacs_set	icontxt what val
+icontxt		integer
+what		integer
+val		integer
+m		integer
+
+out		empty
+***********************
+blacs_gridinit	icontxt order nprow npcol
+icontxt		scalar
+order		string	1
+nprow		scalar
+npcol		scalar
+
+sci_blacs_gridinit	icontxt order nprow npcol
+icontxt		integer
+order		char
+nprow		integer
+npcol		integer
+
+out		sequence	icontxt
+***********************
+blacs_gridmap	icontxt pmap nprow npcol
+icontxt		scalar
+pmap		matrix	ldpmap npcol
+nprow		scalar
+npcol		scalar
+
+sci_blacs_gridmap	icontxt pmap ldpmap nprow npcol
+icontxt		integer
+pmap		integer
+ldpmap		integer
+nprow		integer
+npcol		integer
+
+out		sequence	icontxt
+***********************
+blacs_freebuff		icontxt [wait 0]
+icontxt			scalar
+wait			scalar
+
+sci_blacs_freebuff	icontxt wait
+icontxt		integer
+wait		integer
+
+out		empty
+***********************
+blacs_gridexit		icontxt
+icontxt			scalar
+
+sci_blacs_gridexit	icontxt
+icontxt		integer
+
+out		empty
+***********************
+blacs_abort		icontxt errornum
+icontxt			scalar
+errornum		scalar
+
+sci_blacs_abort	icontxt errornum
+icontxt		integer
+errornum	integer
+
+out		empty
+***********************
+blacs_exit	[doneflag 0]
+doneflag	scalar
+
+sci_blacs_exit	doneflag
+doneflag	integer
+
+out		empty
+***********************
+blacs_gridinfo		icontxt
+icontxt			scalar
+nprow			scalar
+npcol			scalar
+myprow			scalar
+mypcol			scalar
+
+sci_blacs_gridinfo	icontxt nprow npcol myprow mypcol
+icontxt			integer
+nprow			integer
+npcol			integer
+myprow			integer
+mypcol			integer
+
+out			list	nprow npcol myprow mypcol
+***********************
+blacs_pnum		icontxt prow pcol
+icontxt			scalar
+prow			scalar
+pcol			scalar
+pid			scalar
+
+sci_blacs_pnum		icontxt prow pcol pid
+icontxt			integer
+prow			integer
+pcol			integer
+pid			integer
+
+out			sequence	pid
+***********************
+blacs_pcoord		icontxt pnum
+icontxt			scalar
+pnum			scalar
+prow			scalar
+pcol			scalar
+
+sci_blacs_pcoord	icontxt pnum prow pcol
+icontxt			integer
+pnum			integer
+prow			integer
+pcol			integer
+
+out			list	prow pcol
+***********************
+blacs_barrier		icontxt [scope A]
+icontxt			scalar
+scope			string	1
+
+sci_blacs_barrier	icontxt scope
+icontxt			integer
+scope			char
+
+out			empty
+***********************
+blacs_gesd2d		icontxt buff rdest cdest
+icontxt			scalar
+buff			matrix	m	n
+rdest			scalar
+cdest			scalar
+
+sci_blacs_gesd2d	icontxt buff m n rdest cdest
+icontxt			int
+buff			double
+m			integer
+n			integer
+rdest			integer
+cdest			integer
+
+out			empty
+***********************
+blacs_trsd2d		icontxt uplo diag buff rdest cdest
+icontxt			scalar
+uplo			string	1
+diag			string	1
+buff			matrix	m	n
+rdest			scalar
+cdest			scalar
+
+sci_blacs_trsd2d	icontxt uplo diag buff m n rdest cdest
+icontxt			int
+uplo			char
+diag			char
+buff			double
+m			integer
+n			integer
+rdest			integer
+cdest			integer
+
+out			empty
+***********************
+blacs_gerv2d		icontxt rsrc csrc
+icontxt			scalar
+rsrc			scalar
+csrc			scalar
+buff			matrix	m	n
+
+sci_blacs_gerv2d	icontxt rsrc csrc buff m n
+icontxt			int
+rsrc			integer
+csrc			integer
+buff			cdoublef
+m			integer
+n			integer
+
+out			sequence	buff
+***********************
+blacs_trrv2d		icontxt uplo diag rsrc csrc
+icontxt			scalar
+uplo			string	1
+diag			string	1
+rsrc			scalar
+csrc			scalar
+buff			matrix	m	n
+
+sci_blacs_trrv2d	icontxt uplo diag rsrc csrc buff m n
+icontxt			int
+rsrc			integer
+csrc			integer
+uplo			char
+diag			char
+buff			cdoublef
+m			integer
+n			integer
+
+out			sequence	buff
+***********************
+blacs_gebs2d		icontxt scope top buff
+icontxt			scalar
+scope			string	1
+top			string	1
+buff			matrix	m	n
+
+sci_blacs_gebs2d	icontxt scope top buff m n 
+icontxt			int
+scope			char
+top			char
+buff			double
+m			integer
+n			integer
+
+out			empty
+***********************
+blacs_trbs2d		icontxt scope top uplo diag buff
+icontxt			scalar
+scope			string	1
+top			string	1
+uplo			string	1
+diag			string	1
+buff			matrix	m	n
+
+sci_blacs_trbs2d	icontxt scope uplo diag top buff m n 
+icontxt			int
+scope			char
+top			char
+uplo			char
+diag			char
+buff			double
+m			integer
+n			integer
+
+out			empty
+***********************
+blacs_gebr2d		icontxt scope top rsrc csrc
+icontxt			scalar
+scope			string	1
+top			string	1
+rsrc			scalar
+csrc			scalar
+buff			matrix	m	n
+
+sci_blacs_gebr2d	icontxt scope top rsrc csrc buff m n
+icontxt			int
+scope			char
+top			char
+rsrc			integer
+csrc			integer
+buff			cdoublef
+m			integer
+n			integer
+
+out			sequence	buff
+***********************
+blacs_trbr2d		icontxt scope top uplo diag rsrc csrc
+icontxt			scalar
+scope			string	1
+top			string	1
+uplo			string	1
+diag			string	1
+rsrc			scalar
+csrc			scalar
+buff			matrix	m	n
+
+sci_blacs_trbr2d	icontxt scope top uplo diag rsrc csrc buff m n
+icontxt			int
+scope			char
+top			char
+uplo			char
+diag			char
+rsrc			integer
+csrc			integer
+buff			cdoublef
+m			integer
+n			integer
+
+out			sequence	buff
+***********************
+blacs_gsum2d		icontxt scope top buff [rdest -1] [cdest -1]
+icontxt			scalar
+scope			string	1
+top			string	1
+rdest			scalar
+cdest			scalar
+buff			matrix	m	n
+
+sci_blacs_gsum2d	icontxt scope top buff m n rdest cdest
+icontxt			int
+scope			char
+top			char
+rdest			integer
+cdest			integer
+buff			double
+m			integer
+n			integer
+
+out			sequence	buff
+***********************
+blacs_gamx2d		icontxt scope top buff [rcflag -1] [rdest -1] [cdest -1]
+icontxt			scalar
+scope			string	1
+top			string	1
+buff			matrix	m	n
+rcflag			scalar
+rdest			scalar
+cdest			scalar
+ra			matrix	p	q
+ca			matrix	p	q
+
+sci_blacs_gamx2d	icontxt scope top buff m n rcflag rdest cdest ra ca p q
+icontxt			int
+scope			char
+top			char
+buff			double
+m			integer
+n			integer
+rcflag			integer
+rdest			integer
+cdest			integer
+ra			cintf
+ca			cintf
+p			integer
+q			integer
+
+out			sequence	ra ca buff
+***********************
+blacs_gamn2d		icontxt scope top buff [rcflag -1] [rdest -1] [cdest -1]
+icontxt			scalar
+scope			string	1
+top			string	1
+buff			matrix	m	n
+rcflag			scalar
+rdest			scalar
+cdest			scalar
+ra			matrix	p	q
+ca			matrix	p	q
+
+sci_blacs_gamn2d	icontxt scope top buff m n rcflag rdest cdest ra ca p q
+icontxt			int
+scope			char
+top			char
+buff			double
+m			integer
+n			integer
+rcflag			integer
+rdest			integer
+cdest			integer
+ra			cintf
+ca			cintf
+p			integer
+q			integer
+
+out			sequence	ra ca buff
+***********************
+sca_descinit		icontxt m n mb nb rowner cowner ld
+icontxt			scalar
+m			scalar
+n			scalar
+mb			scalar
+nb			scalar
+rowner			scalar
+cowner			scalar
+desc			vector	9
+ld			scalar
+info			scalar
+
+DESCINIT		desc m n mb nb rowner cowner icontxt ld info
+desc			integer
+m			integer
+n			integer
+mb			integer
+nb			integer
+rowner			integer
+cowner			integer
+icontxt			integer
+ld			integer
+info			integer
+
+out			sequence desc info
+***********************
+sca_sl_init		nprow npcol
+nprow			scalar
+npcol			scalar
+ictxt			scalar
+
+SL_INIT			ictxt nprow npcol
+ictxt			integer
+nprow			integer
+npcol			integer
+
+out			sequence ictxt
+***********************
+pblas_swap		n x descx y descy [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1]
+n			scalar
+x			string	lx
+descx			vector	9
+y			string	ly
+descy			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+
+sci_pblas_swap		n x descx ix jx incx y descy iy jy incy
+n			integer
+x			char
+descx			integer
+y			char
+descy			integer	9
+ix			integer
+jx			integer
+incx			integer
+iy			integer
+jy			integer
+incy			integer
+
+out			empty
+***********************
+pblas_scal		n alpha x descx [ix 1] [jx 1] [incx 1]
+n			scalar
+alpha			matrix	1	1
+x			string	lx
+descx			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+
+sci_pblas_scal		n alpha x descx ix jx incx
+n			integer
+alpha			double
+x			char
+descx			integer
+ix			integer
+jx			integer
+incx			integer
+
+out			empty
+***********************
+pblas_copy		n x descx y descy [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1]
+n			scalar
+x			string	lx
+descx			vector	9
+y			string	ly
+descy			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+
+sci_pblas_copy		n x descx ix jx incx y descy iy jy incy
+n			integer
+x			char
+descx			integer
+y			char
+descy			integer	9
+ix			integer
+jx			integer
+incx			integer
+iy			integer
+jy			integer
+incy			integer
+
+out			empty
+***********************
+pblas_axpy		n alpha x descx y descy [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1]
+n			scalar
+alpha			matrix	1	1
+x			string	lx
+descx			vector	9
+y			string	ly
+descy			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+
+sci_pblas_axpy		n alpha x descx ix jx incx y descy iy jy incy
+n			integer
+alpha			double
+x			char
+descx			integer
+y			char
+descy			integer	9
+ix			integer
+jx			integer
+incx			integer
+iy			integer
+jy			integer
+incy			integer
+
+out			empty
+***********************
+pblas_dot		n x descx y descy [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1]
+n			scalar
+dot			matrix	mr	nc
+x			string	lx
+descx			vector	9
+y			string	ly
+descy			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+
+sci_pblas_dot		n dot mr nc x descx ix jx incx y descy iy jy incy
+n			integer
+dot			cdoublef
+mr			integer
+nc			integer
+x			char
+descx			integer
+ix			integer
+jx			integer
+incx			integer
+y			char
+descy			integer	9
+iy			integer
+jy			integer
+incy			integer
+
+out			sequence	dot
+***********************
+pblas_dotu		n x descx y descy [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1]
+n			scalar
+dotu			matrix	mr	nc
+x			string	lx
+descx			vector	9
+y			string	ly
+descy			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+
+sci_pblas_dotu		n dotu mr nc x descx ix jx incx y descy iy jy incy
+n			integer
+dotu			ccomplexf
+mr			integer
+nc			integer
+x			char
+descx			integer
+ix			integer
+jx			integer
+incx			integer
+y			char
+descy			integer	9
+iy			integer
+jy			integer
+incy			integer
+
+out			sequence	dotu
+***********************
+pblas_dotc		n x descx y descy [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1]
+n			scalar
+dotc			matrix	mr	nc
+x			string	lx
+descx			vector	9
+y			string	ly
+descy			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+
+sci_pblas_dotc		n dotc mr nc x descx ix jx incx y descy iy jy incy
+n			integer
+dotc			cdoublef
+mr			integer
+nc			integer
+x			char
+descx			integer
+ix			integer
+jx			integer
+incx			integer
+y			char
+descy			integer	9
+iy			integer
+jy			integer
+incy			integer
+
+out			sequence	dotc
+***********************
+pblas_nrm2		n x descx [ix 1] [jx 1] [incx 1]
+n			scalar
+norm2			scalar
+x			string	lx
+descx			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+
+sci_pblas_nrm2		n norm2 x descx ix jx incx
+n			integer
+norm2			double
+x			char
+descx			integer
+ix			integer
+jx			integer
+incx			integer
+
+out			sequence	norm2
+***********************
+pblas_asum		n x descx [ix 1] [jx 1] [incx 1]
+n			scalar
+asum			scalar
+x			string	lx
+descx			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+
+sci_pblas_asum		n asum x descx ix jx incx
+n			integer
+asum			double
+x			char
+descx			integer
+ix			integer
+jx			integer
+incx			integer
+
+out			sequence	asum
+***********************
+pblas_amax		n x descx [ix 1] [jx 1] [incx 1]
+n			scalar
+x			string	lx
+descx			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+amax			scalar
+indx			scalar
+
+sci_pblas_amax		n amax indx x descx ix jx incx
+n			integer
+amax			double
+indx			integer
+x			char
+descx			integer
+ix			integer
+jx			integer
+incx			integer
+
+out			sequence	amax indx
+***********************
+pblas_gemv		m n alpha a desca x descx beta y descy [trans N] [ia 1] [ja 1] [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1]
+m			scalar
+n			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+x			string	lx
+descx			vector	9
+beta			matrix	1	1
+y			string	ly
+descy			vector	9
+trans			string	1
+ia			scalar
+ja			scalar
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+
+sci_pblas_gemv		trans m n alpha a ia ja desca x ix jx descx incx beta y iy jy descy incy 
+trans			char
+m			integer
+n			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+beta			double
+y			char
+iy			integer
+jy			integer
+descy			integer	9
+incy			integer
+
+out			empty
+***********************
+pblas_hemv		uplo n alpha a desca x descx beta y descy [ia 1] [ja 1] [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1]
+uplo			string	1
+n			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+x			string	lx
+descx			vector	9
+beta			matrix	1	1
+y			string	ly
+descy			vector	9
+ia			scalar
+ja			scalar
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+
+sci_pblas_hemv		uplo n alpha a ia ja desca x ix jx descx incx beta y iy jy descy incy 
+uplo			char
+n			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+beta			double
+y			char
+iy			integer
+jy			integer
+descy			integer	9
+incy			integer
+
+out			empty
+***********************
+pblas_symv		uplo n alpha a desca x descx beta y descy [ia 1] [ja 1] [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1]
+uplo			string	1
+n			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+x			string	lx
+descx			vector	9
+beta			matrix	1	1
+y			string	ly
+descy			vector	9
+ia			scalar
+ja			scalar
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+
+sci_pblas_hemv		uplo n alpha a ia ja desca x ix jx descx incx beta y iy jy descy incy 
+uplo			char
+n			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+beta			double
+y			char
+iy			integer
+jy			integer
+descy			integer	9
+incy			integer
+
+out			empty
+***********************
+pblas_trmv		uplo trans diag n a desca x descx [ia 1] [ja 1] [ix 1] [jx 1] [incx 1]
+uplo			string	1
+trans			string	1
+diag			string	1
+n			scalar
+a			string	la
+desca			vector	9
+x			string	lx
+descx			vector	9
+ia			scalar
+ja			scalar
+ix			scalar
+jx			scalar
+incx			scalar
+
+sci_pblas_trmv		uplo trans diag n a ia ja desca x ix jx descx incx
+uplo			char
+trans			char
+diag			char
+n			integer
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+
+out			empty
+***********************
+pblas_trsv		uplo trans diag n a desca x descx [ia 1] [ja 1] [ix 1] [jx 1] [incx 1]
+uplo			string	1
+trans			string	1
+diag			string	1
+n			scalar
+a			string	la
+desca			vector	9
+x			string	lx
+descx			vector	9
+ia			scalar
+ja			scalar
+ix			scalar
+jx			scalar
+incx			scalar
+
+sci_pblas_trsv		uplo trans diag n a ia ja desca x ix jx descx incx
+uplo			char
+trans			char
+diag			char
+n			integer
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+
+out			empty
+***********************
+pblas_ger		m n alpha x descx y descy a desca [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1] [ia 1] [ja 1] 
+m			scalar
+n			scalar
+alpha			matrix	1	1
+x			string	lx
+descx			vector	9
+y			string	ly
+descy			vector	9
+a			string	la
+desca			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+ia			scalar
+ja			scalar
+
+sci_pblas_ger		m n alpha x ix jx descx incx y iy jy descy incy  a ia ja desca  
+m			integer
+n			integer
+alpha			double
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+y			char
+iy			integer
+jy			integer
+descy			integer	9
+incy			integer
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+
+out			empty
+***********************
+pblas_geru		m n alpha x descx y descy a desca [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1] [ia 1] [ja 1] 
+m			scalar
+n			scalar
+alpha			matrix	1	1
+x			string	lx
+descx			vector	9
+y			string	ly
+descy			vector	9
+a			string	la
+desca			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+ia			scalar
+ja			scalar
+
+sci_pblas_ger		m n alpha x ix jx descx incx y iy jy descy incy  a ia ja desca  
+m			integer
+n			integer
+alpha			double
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+y			char
+iy			integer
+jy			integer
+descy			integer	9
+incy			integer
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+
+out			empty
+***********************
+pblas_gerc		m n alpha x descx y descy a desca [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1] [ia 1] [ja 1] 
+m			scalar
+n			scalar
+alpha			matrix	1	1
+x			string	lx
+descx			vector	9
+y			string	ly
+descy			vector	9
+a			string	la
+desca			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+ia			scalar
+ja			scalar
+
+sci_pblas_gerc		m n alpha x ix jx descx incx y iy jy descy incy  a ia ja desca  
+m			integer
+n			integer
+alpha			double
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+y			char
+iy			integer
+jy			integer
+descy			integer	9
+incy			integer
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+
+out			empty
+***********************
+pblas_her		uplo n alpha x descx a desca [ix 1] [jx 1] [incx 1] [ia 1] [ja 1] 
+uplo			string	1
+n			scalar
+alpha			matrix	1	1
+x			string	lx
+descx			vector	9
+a			string	la
+desca			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+ia			scalar
+ja			scalar
+
+sci_pblas_her		uplo n alpha x ix jx descx incx a ia ja desca  
+uplo			char
+n			integer
+alpha			double
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+
+out			empty
+***********************
+pblas_her2		uplo n alpha x descx y descy a desca [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1] [ia 1] [ja 1] 
+uplo			string	1
+n			scalar
+alpha			matrix	1	1
+x			string	lx
+descx			vector	9
+y			string	ly
+descy			vector	9
+a			string	la
+desca			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+ia			scalar
+ja			scalar
+
+sci_pblas_her2		uplo n alpha x ix jx descx incx y iy jy descy incy  a ia ja desca  
+uplo			char
+n			integer
+alpha			double
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+y			char
+iy			integer
+jy			integer
+descy			integer	9
+incy			integer
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+
+out			empty
+***********************
+pblas_syr		uplo n alpha x descx a desca [ix 1] [jx 1] [incx 1] [ia 1] [ja 1] 
+uplo			string	1
+n			scalar
+alpha			matrix	1	1
+x			string	lx
+descx			vector	9
+a			string	la
+desca			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+ia			scalar
+ja			scalar
+
+sci_pblas_syr		uplo n alpha x ix jx descx incx a ia ja desca  
+uplo			char
+n			integer
+alpha			double
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+
+out			empty
+***********************
+pblas_syr2		uplo n alpha x descx y descy a desca [ix 1] [jx 1] [incx 1] [iy 1] [jy 1] [incy 1] [ia 1] [ja 1] 
+uplo			string	1
+n			scalar
+alpha			matrix	1	1
+x			string	lx
+descx			vector	9
+y			string	ly
+descy			vector	9
+a			string	la
+desca			vector	9
+ix			scalar
+jx			scalar
+incx			scalar
+iy			scalar
+jy			scalar
+incy			scalar
+ia			scalar
+ja			scalar
+
+sci_pblas_syr2		uplo n alpha x ix jx descx incx y iy jy descy incy  a ia ja desca  
+uplo			char
+n			integer
+alpha			double
+x			char
+ix			integer
+jx			integer
+descx			integer
+incx			integer
+y			char
+iy			integer
+jy			integer
+descy			integer	9
+incy			integer
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+
+out			empty
+***********************
+pblas_gemm		m n k alpha a desca b descb beta c descc [transa N] [transb N] [ia 1] [ja 1] [ib 1] [jb 1] [ic 1] [jc 1]
+m			scalar
+n			scalar
+k			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+b			string	lb
+descb			vector	9
+beta			matrix	1	1
+c			string	lc
+descc			vector	9
+transa			string	1
+transb			string	1
+ia			scalar
+ja			scalar
+ib			scalar
+jb			scalar
+ic			scalar
+jc			scalar
+
+sci_pblas_gemm		transa transb m n k alpha a ia ja desca b ib jb descb  beta c ic jc descc
+transa			char
+transb			char
+m			integer
+n			integer
+k			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+b			char
+ib			integer
+jb			integer
+descb			integer	9
+beta			double
+c			char
+ic			integer
+jc			integer
+descc			integer	9
+
+out			empty
+***********************
+pblas_symm		side uplo m n alpha a desca b descb beta c descc [ia 1] [ja 1] [ib 1] [jb 1] [ic 1] [jc 1]
+side			string	1
+uplo			string	1
+m			scalar
+n			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+b			string	lb
+descb			vector	9
+beta			matrix	1	1
+c			string	lc
+descc			vector	9
+ia			scalar
+ja			scalar
+ib			scalar
+jb			scalar
+ic			scalar
+jc			scalar
+
+sci_pblas_symm		side uplo m n alpha a ia ja desca b ib jb descb  beta c ic jc descc
+side			char
+uplo			char
+m			integer
+n			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+b			char
+ib			integer
+jb			integer
+descb			integer	9
+beta			double
+c			char
+ic			integer
+jc			integer
+descc			integer	9
+
+out			empty
+***********************
+pblas_hemm		side uplo m n alpha a desca b descb beta c descc [ia 1] [ja 1] [ib 1] [jb 1] [ic 1] [jc 1]
+side			string	1
+uplo			string	1
+m			scalar
+n			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+b			string	lb
+descb			vector	9
+beta			matrix	1	1
+c			string	lc
+descc			vector	9
+ia			scalar
+ja			scalar
+ib			scalar
+jb			scalar
+ic			scalar
+jc			scalar
+
+sci_pblas_hemm		side uplo m n alpha a ia ja desca b ib jb descb  beta c ic jc descc
+side			char
+uplo			char
+m			integer
+n			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+b			char
+ib			integer
+jb			integer
+descb			integer	9
+beta			double
+c			char
+ic			integer
+jc			integer
+descc			integer	9
+
+out			empty
+***********************
+pblas_syrk		uplo n k alpha a desca beta c descc [trans N] [ia 1] [ja 1] [ic 1] [jc 1]
+uplo			string	1
+n			scalar
+k			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+beta			matrix	1	1
+c			string	lc
+descc			vector	9
+trans			string	1
+ia			scalar
+ja			scalar
+ic			scalar
+jc			scalar
+
+sci_pblas_syrk		uplo trans n k alpha a ia ja desca beta c ic jc descc
+uplo			char
+trans			char
+n			integer
+k			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+beta			double
+c			char
+ic			integer
+jc			integer
+descc			integer	9
+
+out			empty
+***********************
+pblas_herk		uplo n k alpha a desca beta c descc [trans N] [ia 1] [ja 1] [ic 1] [jc 1]
+uplo			string	1
+n			scalar
+k			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+beta			matrix	1	1
+c			string	lc
+descc			vector	9
+trans			string	1
+ia			scalar
+ja			scalar
+ic			scalar
+jc			scalar
+
+sci_pblas_herk		uplo trans n k alpha a ia ja desca beta c ic jc descc
+uplo			char
+trans			char
+n			integer
+k			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+beta			double
+c			char
+ic			integer
+jc			integer
+descc			integer	9
+
+out			empty
+***********************
+pblas_syr2k		uplo n k alpha a desca b descb beta c descc [trans N] [ia 1] [ja 1] [ib 1] [jb 1] [ic 1] [jc 1]
+uplo			string	1
+n			scalar
+k			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+b			string	lb
+descb			vector	9
+beta			matrix	1	1
+c			string	lc
+descc			vector	9
+trans			string	1
+ia			scalar
+ja			scalar
+ib			scalar
+jb			scalar
+ic			scalar
+jc			scalar
+
+sci_pblas_syr2k		uplo trans n k alpha a ia ja desca b ib jb descb  beta c ic jc descc
+uplo			char
+trans			char
+n			integer
+k			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+b			char
+ib			integer
+jb			integer
+descb			integer	9
+beta			double
+c			char
+ic			integer
+jc			integer
+descc			integer	9
+
+out			empty
+***********************
+pblas_her2k		uplo n k alpha a desca b descb beta c descc [trans N] [ia 1] [ja 1] [ib 1] [jb 1] [ic 1] [jc 1]
+uplo			string	1
+n			scalar
+k			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+b			string	lb
+descb			vector	9
+beta			matrix	1	1
+c			string	lc
+descc			vector	9
+trans			string	1
+ia			scalar
+ja			scalar
+ib			scalar
+jb			scalar
+ic			scalar
+jc			scalar
+
+sci_pblas_her2k		uplo trans n k alpha a ia ja desca b ib jb descb  beta c ic jc descc
+uplo			char
+trans			char
+n			integer
+k			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+b			char
+ib			integer
+jb			integer
+descb			integer	9
+beta			double
+c			char
+ic			integer
+jc			integer
+descc			integer	9
+
+out			empty
+***********************
+pblas_tran		m n alpha a desca beta c descc [ia 1] [ja 1] [ic 1] [jc 1]
+m			scalar
+n			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+beta			matrix	1	1
+c			string	lc
+descc			vector	9
+ia			scalar
+ja			scalar
+ic			scalar
+jc			scalar
+
+sci_pblas_tran		m n alpha a ia ja desca beta c ic jc descc
+m			integer
+n			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+beta			double
+c			char
+ic			integer
+jc			integer
+descc			integer	9
+
+out			empty
+***********************
+pblas_tranu		m n alpha a desca beta c descc [ia 1] [ja 1] [ic 1] [jc 1]
+m			scalar
+n			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+beta			matrix	1	1
+c			string	lc
+descc			vector	9
+ia			scalar
+ja			scalar
+ic			scalar
+jc			scalar
+
+sci_pblas_tran		m n alpha a ia ja desca beta c ic jc descc
+m			integer
+n			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+beta			double
+c			char
+ic			integer
+jc			integer
+descc			integer	9
+
+out			empty
+***********************
+pblas_tranc		m n alpha a desca beta c descc [ia 1] [ja 1] [ic 1] [jc 1]
+m			scalar
+n			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+beta			matrix	1	1
+c			string	lc
+descc			vector	9
+ia			scalar
+ja			scalar
+ic			scalar
+jc			scalar
+
+sci_pblas_tranc		m n alpha a ia ja desca beta c ic jc descc
+m			integer
+n			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+beta			double
+c			char
+ic			integer
+jc			integer
+descc			integer	9
+
+out			empty
+***********************
+pblas_trmm		side uplo trans diag m n alpha a desca b descb [ia 1] [ja 1] [ib 1] [jb 1]
+side			string	1
+uplo			string	1
+trans			string	1
+diag			string	1
+m			scalar
+n			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+b			string	lc
+descb			vector	9
+ia			scalar
+ja			scalar
+ib			scalar
+jb			scalar
+
+sci_pblas_trmm		side uplo trans diag m n alpha a ia ja desca b ib jb descb
+side			char
+uplo			char
+trans			char
+diag			char
+m			integer
+n			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+b			char
+ib			integer
+jb			integer
+descb			integer	9
+
+out			empty
+***********************
+pblas_trsm		side uplo trans diag m n alpha a desca b descb [ia 1] [ja 1] [ib 1] [jb 1]
+side			string	1
+uplo			string	1
+trans			string	1
+diag			string	1
+m			scalar
+n			scalar
+alpha			matrix	1	1
+a			string	la
+desca			vector	9
+b			string	lc
+descb			vector	9
+ia			scalar
+ja			scalar
+ib			scalar
+jb			scalar
+
+sci_pblas_trsm		side uplo trans diag m n alpha a ia ja desca b ib jb descb
+side			char
+uplo			char
+trans			char
+diag			char
+m			integer
+n			integer
+alpha			double
+a			char
+ia			integer
+ja			integer
+desca			integer	9
+b			char
+ib			integer
+jb			integer
+descb			integer	9
+
+out			empty
+**********************************************

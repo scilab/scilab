@@ -1,0 +1,24 @@
+1 type
+type    string  3
+******************************
+2 state matrix
+a       matrix  nstate  nstate
+******************************
+3 input matrix
+b       matrix  nstate  nin
+******************************
+4 output matrix
+c       matrix  nout    nstate
+******************************
+5 direct tranfert matrix
+d       matrix  nout    nin
+******************************
+6 initial state
+x0      column  nstate
+******************************
+7 time domain
+t       any
+******************************
+8 names
+names	string	4
+******************************

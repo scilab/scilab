@@ -1,0 +1,34 @@
+	How to make calls to Scilab interpreter 
+	from a Java program using JNI 
+	(Java Native interface: 
+		http://java.sun.com/j2se/1.3/docs/guide/jni/index.html)
+	(Unix only since the proper Makefiles for windows 
+	are not still writen) 
+	
+In this directory we provide a small example of a java class 
+which use the Scilab interpreter to perform matrix computation 
+
+This example was only tested under linux: Red Hat 7.0 linux and 
+Java(TM) 2 Runtime Environment, Standard Edition (build 1.3.0)
+Java HotSpot(TM) Client VM (build 1.3.0, mixed mode). 
+
+To make it run you have to edit the Makefile 
+and change the SCIDIR variable to fit your local Scilab installation 
+
+You also have to edit the file config/Makefile.all 
+and change in CFLAGS the include path associated to java 
+(on my local installation it was 
+ -I/usr/local/jdk1.3/include -I/usr/local/jdk1.3/include/linux ) 
+
+Then type 
+	make distclean 
+	javac JavaSciMatrix.java 
+	make all 
+
+	setenv LD_LIBRARY_PATH `pwd`
+	java JavaciMatrix 
+
+That's all 
+
+jpc
+

@@ -1,0 +1,17 @@
+mode(-1)
+// Copyright INRIA
+demos_name=[
+    'Master and slave'
+    ]
+exec('SCI/demos/pvm/pvm1.sce');
+return
+while %t do
+  n=x_choose(demos_name,'Choose a demo')
+  select n
+  case 0 then 
+    break
+  case 1 then  
+    exec('SCI/demos/pvm/pvm1.sce');
+
+  end
+end

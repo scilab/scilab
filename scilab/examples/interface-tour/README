@@ -1,0 +1,77 @@
+This directory contains examples of C and Fortran interface routines
+dynamically linked with scilab by the addinter command.
+Below, * stands for c (C functions) or f (Fortran routines).
+
+The user is invited to customize the Makefile to link his
+own functions. A Fortran compiler is required; to ignore Fortran 
+just leave the corresponding variables empty in the Makefile i.e.
+
+FORTRANINTERFACES =
+FFUNCTIONS =
+OTHERFOBJS =
+
+Type "make"  (or nmake /f makefile.mak [Windows]).
+Then enter "exec examples.sce" at the Scilab prompt -->.
+
+Enter  "exec ex1c.sce" to run example ex1c, etc...
+
+intex1* : An interface with the function ex1* . Shows how to pass
+	integer, float or double arrays and strings to a C or Fortran 
+	function.
+
+intex2* : optional argument passing with the syntax ex2*(..., var=val) 
+
+intex3* : interfacing C function which creates object on the stack 
+	( malloc ). How to transfer these objects to Scilab
+       Interfaces are given in C and Fortran but the functions 
+       which are to be interfaced are only given in C (they use malloc)
+
+intex4*	: same as above with int array.
+
+intex5*	: same as above with string.
+
+intex6* : ex3*, ex4*, ex5* put together.
+
+intex7* : executing a Scilab built-in function (disp) within the interface.
+
+intex8* : passing a Scilab function to the interface and executing it
+	inside the interface.
+
+intex9* : Passing a Scilab string to the interface.
+
+intex10* : Getting a Scilab variable (a matrix) in the interface, 
+	giving its name.
+
+intex11* : Executing a Scilab function within the interface. The function
+	is not passed in the arguments (as done in intex8*) but is
+	known by its name ("myfct"). The function "myfct" must be defined
+	in Scilab before ex11* is called.
+
+intex12* :  Executing a Scilab function within the interface. The Scilab
+	function ("mypoly") creates a variable which is a polynomial.
+
+
+intex13* : Passing a complex array to the interface.
+
+intex14* : Creating a Scilab variable with a specific name. The variable
+	created is not a return variable of the interface. It is directly
+	put into the Scilab internal stack.
+
+intex15* : Getting a Scilab variable (a string) in the interface, 
+	giving its name.
+
+intex16* : Creating a Scilab string variable with a specific name.
+	Putting a Scilab variable (a string) in the interface, 
+	giving its name.
+
+intex17c.c : This is a C interface program with the C function ex17c.c
+	ex17c.c requires a C function f.c to calculate its outputs from 
+	its inputs.
+	The function f is passed as a parameter of the Scilab function ex17c. 
+	It is either a C function or a Scilab function.
+
+intex17f.c : This is a C interface program with the Fortran routine ex17f.f
+	ex17f.f requires a Fortran external routine f.f to calculate 
+	its outputs from its inputs.
+	The function f is passed as a parameter of the Scilab function ex17f. 
+	It is either a Fortran routine or a Scilab function.

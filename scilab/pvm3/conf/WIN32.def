@@ -1,0 +1,129 @@
+ARCHCFLAGS	=	-DHASSTDLIB -DWIN32 -DSYSVBFUNC -DSYSVSTR \
+				-DHASERRORVARS -DNOWAIT3 -DNOGETDTBLSIZ -DNOUNIXDOM \
+				-DNOTMPNAM -DMAXHOSTNAMELEN=64 -DMAXPATHLEN=64 \
+				-DNEEDSFFS
+
+# for the defines in the workspace declaration
+# HASSTDLIB, WIN32, SYSVBFUNC, SYSVSTR, HASERRORVARS, NOWAIT3,
+# NOGETDTBLSIZ, NOUNIXDOM, NOTMPNAM, MAXHOSTNAMELEN=64, MAXPATHLEN=64,
+# NEEDSFFS, STDC_HEADERS, REGEX_MALLOC
+
+ARCHDLIB	=
+ARCHDOBJ	=
+ARCHLIB		=
+PVM_ARCH	=	WIN32
+
+COMPILER	=	BORLAND
+COMPILER	=	VISUALC++
+
+!if "$(COMPILER)" == "VISUALC++"
+
+#  USER installation specific part -- to be modified
+#######################################################
+#
+# VISUAL C++ 4.0 or higher
+#
+#######################################################
+#
+
+LIBDIR	=	c:\progra~1\devstudio\vc\lib		######## to be changed
+INCLUDE	=	c:\progra~1\devstudio\vc\include	######## to be changed
+
+cc		=	cl.exe
+fc		=	fl32.exe
+OUT		=	/Fo
+OUTBIN	=	-out:
+link	=	link
+libspec	=	-lib
+
+link_flags	=	$(LIBDIR)\wsock32.lib $(LIBDIR)\kernel32.lib\
+				$(LIBDIR)\libc.lib \
+				$(LIBDIR)\gdi32.lib $(LIBDIR)\winspool.lib \
+				$(LIBDIR)\comdlg32.lib \
+				$(LIBDIR)\advapi32.lib \
+				$(LIBDIR)\shell32.lib  \
+				$(LIBDIR)\ole32.lib \
+				$(LIBDIR)\oleaut32.lib \
+				$(LIBDIR)\uuid.lib \
+				$(LIBDIR)\oldnames.lib
+
+link_multithread	=	$(LIBDIR)\wsock32.lib $(LIBDIR)\kernel32.lib\
+						$(LIBDIR)\libcmt.lib \
+						$(LIBDIR)\gdi32.lib $(LIBDIR)\winspool.lib \
+						$(LIBDIR)\comdlg32.lib \
+						$(LIBDIR)\advapi32.lib \
+						$(LIBDIR)\shell32.lib  \
+						$(LIBDIR)\ole32.lib \
+						$(LIBDIR)\oleaut32.lib \
+						$(LIBDIR)\uuid.lib \
+						$(LIBDIR)\oldnames.lib
+
+conflags	=	/MACHINE:IX86 /NOLOGO
+conlibs		=	$(libc)
+
+########################################################
+#  Optimized Code
+
+cflags	=	-c -W2 $(ARCHCFLAGS) /nologo /GX /O2 /D "NDEBUG"  \
+			/D "_CONSOLE" -I $(INCLUDE) -I $(PVM_ROOT)/include \
+			-I $(PVM_ROOT)/tracer -I $(PVM_ROOT)/src
+
+fflags	=	-c $(ARCHCFLAGS) /nologo /D "NDEBUG" /D "_CONSOLE" \
+			-I $(INCLUDE) -I $(PVM_ROOT)/include -I $(PVM_ROOT)/src
+
+#  Debugging mode
+#
+#cflags	=	-c -W2 $(ARCHCFLAGS) /nologo /GX /D "DEBUG" /D "_CONSOLE" \
+#			-I $(INCLUDE) -I $(PVM_ROOT)/include
+#
+#
+########################################################
+
+!else
+
+# For those Borland freaks
+#
+#
+
+LIBDIR	=	d:\bc5\lib
+INCLUDE	=	d:\bc5\include    ######## to be changed
+
+cc		=	bcc32.exe
+
+link	=	bcc32.exe
+
+OUT		=	-o
+OUTBIN	=	-o
+libspec	=	-lib
+
+link_flags	=	$(LIBDIR)\wsock32.lib $(LIBDIR)\kernel32.lib\
+				$(LIBDIR)\libc.lib \
+				$(LIBDIR)\gdi32.lib $(LIBDIR)\winspool.lib \
+				$(LIBDIR)\comdlg32.lib \
+				$(LIBDIR)\advapi32.lib \
+				$(LIBDIR)\shell32.lib  \
+				$(LIBDIR)\ole32.lib \
+				$(LIBDIR)\oleaut32.lib \
+				$(LIBDIR)\uuid.lib \
+				$(LIBDIR)\oldnames.lib
+
+conflags	=
+conlibs		=	$(libc)
+
+####################################################
+#  Optimized Code
+
+cflags	=	-c $(ARCHCFLAGS) -DWIN32 /D "NDEBUG"  \
+			/D "_CONSOLE" -I $(INCLUDE) -I $(PVM_ROOT)/include \
+			-I $(PVM_ROOT)/src
+
+#  Debugging mode
+#
+#cflags	=	-c -W2 $(ARCHCFLAGS) -DWIN32 /nologo /GX /D "DEBUG" \
+#			/D "_CONSOLE" /I $(INCLUDE) /I $(PVM_ROOT)/include
+#
+#
+#####################################################
+
+!endif
+

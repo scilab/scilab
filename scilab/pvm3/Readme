@@ -1,0 +1,170 @@
+
+         PVM version 3.4:  Parallel Virtual Machine System
+               University of Tennessee, Knoxville TN.
+           Oak Ridge National Laboratory, Oak Ridge TN.
+                   Emory University, Atlanta GA.
+      Authors:  J. J. Dongarra, G. E. Fagg, G. A. Geist,
+                 J. A. Kohl, R. J. Manchek, P. Mucci,
+         P. M. Papadopoulos, S. L. Scott, and V. S. Sunderam
+                   (C) 1997 All Rights Reserved
+
+                              NOTICE
+
+ Permission to use, copy, modify, and distribute this software and
+ its documentation for any purpose and without fee is hereby granted
+ provided that the above copyright notice appear in all copies and
+ that both the copyright notice and this permission notice appear in
+ supporting documentation.
+
+ Neither the Institutions (Emory University, Oak Ridge National
+ Laboratory, and University of Tennessee) nor the Authors make any
+ representations about the suitability of this software for any
+ purpose.  This software is provided ``as is'' without express or
+ implied warranty.
+
+ PVM version 3 was funded in part by the U.S. Department of Energy,
+ the National Science Foundation and the State of Tennessee.
+
+________________________________________________________________________
+WHAT IS PVM?
+
+PVM is a software system that enables a collection of heterogeneous
+computers to be used as a coherent and flexible concurrent computational
+resource.
+
+The individual computers may be shared- or local-memory multiprocessors,
+vector supercomputers, specialized graphics engines, or scalar
+workstations, that may be interconnected by a variety of networks,
+such as ethernet, FDDI.
+
+User programs written in C, C++ or Fortran access PVM through library
+routines.
+
+
+UNPACKING
+
+This distribution contains source code, simple examples, and run-time
+support for PVM version 3.  The documentation for PVM can be obtained
+separately from Netlib.  To get a list of available subsets, send
+e-mail to "netlib@ORNL.GOV" with the subject:  "send index from pvm3".
+
+Files in the distribution unpack in directory pvm3.  The pvm3 directory
+can reside in either a private or shared disk area.  Installations for
+multiple machine architectures can coexist because compiled files are
+placed in subdirectories named for each architecture (ARCH).
+
+Some of the more important directories are:
+
+    Directory   Contains
+    ---------------------------------------------------------------
+    bin/ARCH    PVM user program executables (the examples or your programs)
+    conf        Make configuration files for all PVM architectures
+    console     Source for the pvm console
+    doc         Miscellaneous documentation
+    examples    Example PVM program source
+    gexamples   More example PVM programs - for group library
+    hoster      An example "hoster" program
+    include     Header files for PVM programs
+    lib         Generic system executables (scripts)
+    lib/ARCH    System executables (pvmd, console, etc.)
+    libfpvm     Source for the libfpvm Fortran library
+    man/man[13] Online manual pages (nroff format)
+    misc        Some PVM examples and utilities
+    patches     Patch files and instructions, as they are released
+    pvmgs       Source for the libgpvm library and group nameserver
+    src         Source for the libpvm library and pvmd daemon
+    src/ARCH    Additional source code for specific machines
+    tasker      An example "tasker" program
+    xep         An example interactive X-Window program
+
+
+BUILDING AND INSTALLING
+
+Before building or running PVM, you must set environment variable PVM_ROOT
+to the path where PVM resides, i.e. the path of this directory.  This can
+be in a private area, for example $HOME/pvm3, or a public one, such as
+/usr/local/pvm3.
+
+If your shell is csh, add a line such as:
+
+    setenv PVM_ROOT $HOME/pvm3
+
+to your .cshrc file.  If you use a shell that reads .profile, such as sh
+or ksh, add the following lines to that file:
+
+    PVM_ROOT=$HOME/pvm3
+    PVM_DPATH=$PVM_ROOT/lib/pvmd
+    export PVM_ROOT PVM_DPATH
+
+The use of these variables is explained more fully in the pvm_intro man
+page.
+
+Type "make" in this directory.  Make will use aimk to build the daemon
+executable (pvmd3), C library (libpvm3.a), Fortran library (libfpvm3.a)
+and console client program (pvm).
+
+The libraries and executables are installed in $PVM_ROOT/lib/ARCH/, where
+ARCH is the host architecture name, e.g. "CRAY".
+
+The scripts $PVM_ROOT/lib/pvm and $PVM_ROOT/lib/pvmd are used,
+respectively, to start the PVM console and pvmd.  They determine the
+machine architecture and run the actual programs in $PVM_ROOT/lib/ARCH.
+You can either copy these scripts to your bin directory or add
+$PVM_ROOT/lib to your shell search path.
+
+You may wish to add $PVM_ROOT/man to your MANPATH environment variable,
+if it's supported on your system.  This will allow you to easily read
+the online manual pages.
+
+
+STARTING AND STOPPING PVM
+
+To start PVM, run $PVM_ROOT/lib/pvm.  This starts the console task, which
+in turn starts a pvmd if one is not already running.  More hosts can be
+started by using the console "add" command.
+
+To stop PVM, use the PVM console command "halt".  From programs, use the
+pvm_halt() function.  You can also kill the pvmd (always use a catchable
+signal).
+
+For more information about the console commands, see the console "help"
+function or console man page.
+
+To start the pvmd without starting the console, run pvm3/lib/pvmd .
+A number of hosts can be started by supplying the pvmd with a host
+file.
+
+
+APPLICATION PROGRAMS
+
+C, C++ and Fortran programs must be linked with pvm3/lib/ARCH/libpvm3.a .
+Fortran programs must also be linked with pvm3/lib/ARCH/libfpvm3.a .
+Include C/C++ header file pvm3/include/pvm3.h for constants and function
+prototypes.  Fortran header file is in pvm3/include/fpvm3.h.
+
+Executables should be installed in pvm3/bin/ARCH .  This path can be
+changed; see the pvmd man page.
+
+
+CONTACT
+
+The PVM web home page is at
+
+    http://www.epm.ornl.gov/pvm/pvm_home.html .
+
+A newsgroup, comp.parallel.pvm, exists for discussion about PVM
+and help with problems.
+
+Please direct any e-mail (questions, bugs, bug fixes, etc.) to:
+
+    pvm@msr.EPM.ORNL.GOV.
+
+To report bugs or problems with PVM, please see the file
+
+    $PVM_ROOT/doc/bugreport .
+
+________________________________________________________________________
+
+Sincerely,
+The PVM research group
+

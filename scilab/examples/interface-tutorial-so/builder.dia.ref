@@ -1,0 +1,40 @@
+ 
+// This is the builder.sce
+ 
+// must be run from this directory
+ 
+ 
+ilib_name  = 'libtutorial' 		// interface library name
+ ilib_name  =
+ 
+ libtutorial   
+ 
+files = ['intview.o','intmatmul.o']     // objects files
+ files  =
+ 
+!intview.o  intmatmul.o  !
+ 
+					//
+ 
+libs  = [] 				// other libs needed for linking
+ libs  =
+ 
+     []
+ 
+table = [ 'view', 'intview';		// table of (scilab_name,interface-name)
+          'matmul','intmatmul'];	// for fortran coded interface use 'C2F(name)'
+ 
+ 
+// do not modify below
+ 
+// ----------------------------------------------
+ 
+ilib_build(ilib_name,table,files,libs)
+   generate a gateway file
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+ 
+ 
+ 
+ 

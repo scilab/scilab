@@ -1,0 +1,98 @@
+
+         PVM version 3.4:  Parallel Virtual Machine System
+               University of Tennessee, Knoxville TN.
+           Oak Ridge National Laboratory, Oak Ridge TN.
+                   Emory University, Atlanta GA.
+      Authors:  J. J. Dongarra, G. E. Fagg, M. Fischer,
+          G. A. Geist, J. A. Kohl, R. J. Manchek, P. Mucci,
+         P. M. Papadopoulos, S. L. Scott, and V. S. Sunderam
+                   (C) 1997 All Rights Reserved
+
+                              NOTICE
+
+ Permission to use, copy, modify, and distribute this software and
+ its documentation for any purpose and without fee is hereby granted
+ provided that the above copyright notice appear in all copies and
+ that both the copyright notice and this permission notice appear in
+ supporting documentation.
+
+ Neither the Institutions (Emory University, Oak Ridge National
+ Laboratory, and University of Tennessee) nor the Authors make any
+ representations about the suitability of this software for any
+ purpose.  This software is provided ``as is'' without express or
+ implied warranty.
+
+ PVM version 3 was funded in part by the U.S. Department of Energy,
+ the National Science Foundation and the State of Tennessee.
+
+________________________________________________________________________
+
+This is a supplement to the main Readme file.  The reader should consult
+that file for more information.
+
+
+Table of Contents
+-----------------
+1. Possible User Specifications - Different Compiler Dependencies
+2. Installation, Environment Settings
+3. Startup Differences compared to the Unix version
+4. Additional Software for WIN32
+5. Further, detailed information
+6. Basic Testing
+7. Fortran Problems
+-----------------
+
+1. Unlike standardized compilers in the Unix world, different flags
+   and libs are used for WIN32.  Currently we distinguish between
+   Borland 5.0 or VC++ 4.0 or higher.  Thus, a dependency file in
+   %PVM_ROOT/conf named WIN32.def can be modified to point to the
+   INCLUDE and LIB directories of the installed Compiler.
+   It also provides a compiler detection mechanism,
+   which works with a normal compiler installation (checking for
+   INCLUDE environment variables).
+
+2. Make sure you set PVM_ROOT, PVM_ARCH, PVM_TMP, PVM_RSH before using
+   PVM.  Differences in setting these variables are for NT or WIN95.
+   In NT the Admin has to put these variables into the system variables
+   (Control Panel -> System -> Environment variables).
+
+   Installing requires only pointing to the location of this extracted
+   directory.  No registry modifications need to be performed.
+   The way to build a Virtual Machine is briefly described in Section 3.
+
+3. PVM is built by invoking the console command "pvm" with an additional
+   hostfile argument which identifies potential resources.  The machine
+   on which "pvm" is run for the first time (in a given session) is
+   referred to as the "master daemon."  If this machine crashes, your
+   PVM virtual machine goes down (a single point of failure).
+   The hostfile should be added by full path, e.g. pvm d:\hostfile.
+
+   Manual adding of hosts is performed by the "add" command in the
+   "pvm" console.  Add commands must specify the location of the daemon
+   executable, e.g.
+
+		pvm> add "hostname dx=d:\pvm3\lib\win32\pvmd3.exe"
+
+4. Rshd or rexecd are required for WINNT, Rshd for WIN95.  This is
+   additional (shareware) software that you will find on the WWW,
+   as long as MS does not offer its own solution.
+   Please note that the rshd is required to run remote processes
+   under your account.  If you find pvm{d,l}.System in your PVM_TMP
+   directory, then the rshd is NOT working properly.
+
+5. If you are new to PVM, please read the book on PVM or check out the
+   user's guide.  You will find it on the PVM homepage at:
+
+        http://www.epm.ornl.gov/pvm
+
+6. Before using PVM, you should test the functionality of the additional
+   software, e.g.
+
+		"rsh remotehost -l login dir | more"
+
+   This should show the directory listing of the remote host.  Piping
+   to "more" additionally checks for buffered std{io,err}.
+
+7. We are aware of Fortran problems when calling one of the 
+   pvm_pk* functions. This is currently an open question.
+

@@ -1,0 +1,15 @@
+contrb   sys     tol
+tol     scalar
+sys     tlist     ex04fi-l
+icontr  scalar
+
+contr   nstate(sys)	nin(sys)     a(sys)  b(sys)  icontr  tol
+a(sys)  double
+b(sys)  double
+tol     double
+nstate(sys)     integer
+nin(sys)        integer
+icontr  integer
+
+out     sequence        icontr
+******************************

@@ -1,0 +1,10 @@
+calc10    ll	
+ll	list    ex10fi-l
+
+fcalc10	a(ll) ma(ll) na(ll) b(ll) mb(ll) nb(ll) c(ll) mc(ll) nc(ll)
+a(ll)	integer
+b(ll)	double 
+c(ll)	real 
+
+out	list a(ll) b(ll) c(ll)
+******************************

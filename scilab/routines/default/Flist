@@ -1,0 +1,131 @@
+# -------------------------------------------------
+# predefined function for ode, optim and others...
+# just put here the list of 'names' that 
+# is used as argument functions for ode, optim, ...
+# For example if you use
+# -->ode(y0,t0,t1,'fex')
+# the name of the argument function 'fex' must be 
+# in the fydot_list list below
+#
+# 	You must also provide the associated code 
+#	in the file Ex-ode.f
+# --------------------------------------------------
+# -------------------------------------------------
+# predefined function(s) for ode
+# --------------------------------------------------
+
+fydot_list=fex fex2 fex3 fexab loren arnol bcomp lcomp 
+fjac_list=jex
+ 
+# -------------------------------------------------
+# predefined function(s) for optim 
+# --------------------------------------------------
+
+foptim_list=genros topt2 icsemc
+
+# -------------------------------------------------
+# predefined function(s) for intg 
+# --------------------------------------------------
+
+fintg_list=intgex
+
+# -------------------------------------------------
+# predefined function(s) for int2d
+# --------------------------------------------------
+
+fint2d_list=int2dex
+
+# -------------------------------------------------
+# predefined function(s) for int3d
+# --------------------------------------------------
+
+fint3d_list=int3dex
+
+# -------------------------------------------------
+# predefined function(s) for fsolve 
+# --------------------------------------------------
+
+fsolvf_list= fsol1
+fsolvj_list= fsolj1
+
+# -------------------------------------------------
+# predefined function(s) for schur
+# --------------------------------------------------
+
+fschur_list=folhp find
+
+# -------------------------------------------------
+# predefined function(s) for odedc
+# uses also fjac and fsurf
+# --------------------------------------------------
+
+fydot2_list= fexcd fcd fcd1 phis phit 
+
+# -------------------------------------------------
+# predefined function(s) for dassl 
+# --------------------------------------------------
+
+fresd_list= dres1 dres2 res1 res2
+fjacd_list= djac1 djac2 jac2 
+fsurfd_list= gr1 gr2 
+
+# -------------------------------------------------
+# predefined function(s) for dasrt 
+# --------------------------------------------------
+
+fsurf_list=
+
+# -------------------------------------------------
+# predefined function(s)s for impl  
+#    fres 
+#  and 
+#    fadda 
+#  Example :
+#  impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp')
+# --------------------------------------------------
+
+fres_list= resid
+fadda_list= aplusp 
+fj2_list=  dgbydy
+
+# -------------------------------------------------
+# predefined function(s) for colnew
+#  uses : fcoldg , fcolg, fcoldf,fcolf,fcolgu
+# --------------------------------------------------
+
+fcoldg_list=cndg
+fcolg_list=cng
+fcoldf_list=cndf
+fcolf_list=cnf
+fcolgu_list=cngu
+
+# -------------------------------------------------
+# predefined function(s) for addmenu 
+# --------------------------------------------------
+
+fbutn_list= haltscicos
+
+# --------------------------------------------------
+# predefined function(s) for feval 
+# just put here the list of 'names' that 
+# can be used as  argument functions for feval
+# 	you must also provide the associated code 
+#	for example in the file ffeval-ex.f
+#	If you want to use C code use the examples
+#	in ffeval-c-ex.c 	
+# --------------------------------------------------
+
+ffeval_list=parab parabc
+
+# -------------------------------------------------
+# predefined function(s) for corr
+# --------------------------------------------------
+
+dgetx_list= corexx
+dgety_list= corexy
+
+# -------------------------------------------------
+# predefined function(s) for Ex-fort or other Ex-something
+# --------------------------------------------------
+
+interf_list= foubare foobar1 icomp loset arset icse0 icse icscof

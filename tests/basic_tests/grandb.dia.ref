@@ -1,0 +1,29 @@
+ 
+// Copyright INRIA
+ 
+ 
+// Low level test for grand
+ 
+getf('SCI/tests/grand.sci')
+ 
+tstbot()
+For five virual generators of the 32
+ This test generates10 numbers then resets the block
+      and does it again
+ Any disagreements are reported -- there should be none
+ Testing generator 1
+ Finished testing generator 1
+ Test completed successfully
+ Testing generator 5
+ Finished testing generator 5
+ Test completed successfully
+ Testing generator 10
+ Finished testing generator 10
+ Test completed successfully
+ Testing generator 20
+ Finished testing generator 20
+ Test completed successfully
+ Testing generator 32
+ Finished testing generator 32
+ Test completed successfully
+ 

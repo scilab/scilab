@@ -1,0 +1,58 @@
+FFLAGS = $(FC_OPTIONS)
+CFLAGS = $(CC_OPTIONS)
+RESOURCES= routines/wsci/Rscilab.res 
+
+bin/Nscilex.exe : $(DEFAULTS1) $(LIBRSCI)
+	@echo Linking $*.exe 
+	@$(LINKER) $(LINKER_FLAGS) $(GUIFLAGS) -OUT:"$*.exe"  \
+		$(DEFAULTS) $(RESOURCES) $(LIBR) $(XLIBS) 
+	@echo Link done
+
+DEFAULTS1 = routines/wsci/winmain.obj	\
+	routines/default/Ex-colnew.obj \
+	routines/default/Ex-corr.obj \
+	routines/default/Ex-feval.obj \
+	routines/default/Ex-fsolve.obj \
+	routines/default/Ex-impl.obj \
+	routines/default/Ex-intg.obj \
+	routines/default/Ex-int2d.obj \
+	routines/default/Ex-int3d.obj \
+	routines/default/Ex-ode-more.obj \
+	routines/default/Ex-ode.obj\
+	routines/default/Ex-odedc.obj \
+	routines/default/Ex-optim.obj \
+	routines/default/Ex-schur.obj \
+	routines/default/Ex-fort.obj\
+	routines/default/Ex-dasrt.obj \
+	routines/default/Ex-dassl.obj \
+	routines/default/Ex-fbutn.obj \
+	routines/default/FTables.obj \
+	routines/default/mainwin95.obj \
+	routines/default/matusr.obj \
+	routines/default/matus2.obj \
+	routines/default/Funtab.obj \
+	routines/default/msgstxt.obj \
+	routines/default/scimem.obj \
+	routines/default/callinterf.obj
+
+bin/LibScilab.dll:
+	@echo Creation of $*.def
+	@$(LINKER) -lib $(OBJDLL) -exports:LibScilab.def
+	@echo Creation of $*.dll and import lib $*.lib
+	@$(LINKER) $(LINKER_FLAGS) $(OBJDLL) /exports:LibScilab.def \
+	 /dll /out:LibScilab.dll $(GUI) /aliases:Unicode.als
+	@copy LibScilab.* bin
+	@del LibScilab.*
+	@echo Done
+
+#bin/scilex.exe : bin/LibScilab.dll
+bin/scilex.exe: bin/LibScilab.dll routines/wsci/abs_main.obj
+	@echo Creation of "bin/scilex.exe"
+	@lnk -SUBSYSTEM:console $(LINKER_FLAGS) -out:bin\scilex.exe  $(RESOURCES) \
+	routines/wsci/abs_main.obj \
+	bin\LibScilab.lib absRT0.lib kernel32.lib fiodll.lib  fmathdll.lib libacdll.lib
+
+
+
+routines/wsci/abs_main.obj:routines/wsci/abs_main.c
+	@$(CC) -c $(CFLAGS) routines/wsci/abs_main.c

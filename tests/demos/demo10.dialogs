@@ -1,0 +1,29 @@
+10 //n-pendulum
+  1  //read a precomputed trajectory
+10 //n-pendulum
+  2  //Simulation with ode (may fail)
+    2 //Go on
+        -1.3912301// theta1
+        -1.6560533// theta2
+        -3.1197583// theta3
+        -1.5835081// theta4
+        -1.5713455// theta5
+        -1.1955653// theta6
+        -8.2452393// theta7
+        -1.3010066// theta8
+        1.1671875// theta9
+        -18.619763// theta10
+        1.4255478// thetad1
+        -6.5174875// thetad2
+        2.2944054// thetad3
+        2.3835463// thetad4
+        -5.9062465// thetad5
+        9.8190264// thetad6
+        -0.8858167// thetad7
+        -15.979205// thetad8
+        -14.57535// thetad9
+        0.4054334// thetad10
+       o         //Ok
+     1 //With last point trajectory
+    1 // Stop
+0 // Exit

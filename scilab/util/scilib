@@ -1,0 +1,19 @@
+#!/bin/sh 
+#-------------------------------------------------------
+# scilib scidir name nam 
+# To create the library name  stored in macro/nam
+# The file names is supposed to exist (See Imakefiles)
+
+# Copyright INRIA
+#-------------------------------------------------------
+SCI=$1; export SCI
+echo generating $2.bin
+echo "write(%io(2),' ');predef(0);$2=lib('SCI/macros/$3/');\
+	save('lib',$2);quit"|$SCI/bin/scilex -ns -nw |sed 1,/--\>/d 1>report 2>&1
+if (grep error report 1> /dev/null  2>&1);
+then cat report;echo " " 
+   echo see `pwd`/report for more informations
+   grep libok report>/dev/null; 
+else rm -f report;
+fi
+exit 0

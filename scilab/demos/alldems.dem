@@ -1,0 +1,16 @@
+mode(-1)
+// Copyright INRIA
+oldln=lines();
+lines(0)
+// Demos list is defined in scilab.star
+deff('[]=demoex(num)','exec(demolist(num,2),-1)')
+while %t then
+  num=x_choose(demolist(:,1),['Click to choose a demo';
+'(see also in SCIDIR/demos/...)']);
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     demoex(num)
+  end,
+end

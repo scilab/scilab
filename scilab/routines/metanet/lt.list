@@ -1,0 +1,102 @@
+1 list type = 'graph'
+type	string	10
+*****************************
+2 graph name
+name	string	80
+*****************************
+3 directed flag
+directed	scalar
+*****************************
+4 node number
+node_number	scalar
+*****************************
+5 tail edge row vector
+tail	row	ma
+*****************************
+6 head edge row vector
+head	row	ma
+*****************************
+7 node name row vector (default [])
+node_name	stringmat	1	n
+*****************************
+8 node type row vector (default [])
+node_type	row	n
+*****************************
+9 node x coordinate row vector (default [])
+node_x	row	n
+*****************************
+10 node y coordinate row vector (default [])
+node_y	row	n
+*****************************
+11 node color row vector (default [])
+node_color	row	n
+*****************************
+12 node diameter row vector (default [])
+node_diam	row	n
+*****************************
+13 node border width row vector (default [])
+node_border	row	n
+*****************************
+14 node font size row vector (default [])
+node_font_size	row	n
+*****************************
+15 node demand row vector (default [])
+node_demand	row	n
+*****************************
+16 edge name row vector (default [])
+edge_name	stringmat	1	ma
+*****************************
+17 edge color row vector (default [])
+edge_color	row	ma
+*****************************
+18 edge arc width row vector (default [])
+edge_width 	row 	ma
+*****************************
+19 edge width of hilited arc row vector (default [])
+edge_hi_width 	row 	ma
+*****************************
+20 edge font size row vector (default [])
+edge_font_size	row	 ma
+*****************************
+21 edge length row vector (default [])
+edge_length	row	ma
+*****************************
+22 edge cost row vector (default [])
+edge_cost	row	ma
+*****************************
+23 edge minimum capacity row vector (default [])
+edge_min_cap	row	ma
+*****************************
+24 edge maximum capacity row vector (default [])
+edge_max_cap	row	ma
+*****************************
+25 edge quadratic weight edge row vector (default [])
+edge_q_weight	row	ma
+*****************************
+26 edge quadratic origin edge row vector (default [])
+edge_q_orig	row	ma
+*****************************
+27 edge weight row vector  (default [])
+edge_weight	row	ma
+*****************************
+28 graph default node diameter (default [])
+default_node_diam	scalar
+*****************************
+29 graph default node border width (default [])
+default_node_border 	scalar
+*****************************
+30 graph default edge width (default [])
+default_edge_width 	scalar
+*****************************
+31 graph default arc hilited width (default [])
+default_edge_hi_width	scalar
+*****************************
+32 graph default font size (default [])
+default_font_size 	scalar
+*****************************
+33 node label row vector (default [])
+node_label	stringmat	1	n
+*****************************
+34 edge label row vector (default [])
+edge_label	stringmat	1	ma
+*****************************

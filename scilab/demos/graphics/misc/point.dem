@@ -1,0 +1,118 @@
+mode(1)
+//
+//                    -----------------------------
+//
+//                    BOUCLE  DE  POINTAGE  DE  FIN
+//
+//                    -----------------------------
+//
+
+// Copyright INRIA
+// constants
+// -------------------------
+   tr=186.d-6; gb=6000; g1=0.55; tau=6.d-4; g2=0.02; g4=26;
+    r=3      ; l=6.d-3; ga=100 ; kr=17.d-3; j=1.d-7; c=0.05;
+   g5=0.07   ; g=0.27;
+//
+   s=poly(0,'s');
+   halt()
+//
+// system 1  ->  feedback le plus interne
+// ---------
+   h1=(1/(r+l*s)*ga*g)/.r
+   halt()
+//
+// system 2  ->  deuxieme feedback
+// ---------
+   h2=(h1*kr*(1/(c+j*s*s)))/.(g4*g5*s)
+   halt()
+ 
+//
+// system 3  ->  premier feedback
+// ---------
+   h3=(g1+g2/(tau*s))*gb
+   halt()
+//
+// system sans le retard
+// ----------------------
+   h=2*h2*h3,
+ 
+// definition du systeme lineaire
+// ------------------------------
+   h=syslin('c',h);
+   halt()
+//
+// comparaison avec le resultat donne
+// ----------------------------------
+   hc=(2*ga/(1+g*ga)*kr*gb*g*(g1*tau*s+g2)) ...
+      /(j*l*tau*s^4/(1+g*ga)+j*r*tau*s^3+  ...
+       tau*s*s*(ga/(1+g*ga)*g4*g5*kr*g+l*c/(1+g*ga))+r*c*tau*s);
+   hc=syslin('c',hc);
+   h/hc
+   halt()
+//
+// reponse frequentielle
+// ---------------------
+   omeg=exp(log(10)*(-3:0.05:3));
+   rep_freq=exp(-tr*omeg*%i*2*%pi).*repfreq(h,omeg);
+   bode(omeg,rep_freq);halt()
+   halt();xbasc();
+   black(omeg,rep_freq);
+   halt()
+//
+// representation de la partie lineaire
+// ------------------------------------
+   sst=tf2ss(syslin('c',h(2)/h(3)))
+   [a,b,c,d]=sst(2:5);
+   halt()
+//
+// On place devant le retard un bloqueur
+// d'ordre 0 et de periode td
+// -------------------------------------------------------
+   td = tr/10;
+//
+// discretisation du systeme lineaire
+// ----------------------------------
+   m=[a,b;0*b',0]*td
+   m=expm(m)
+   [nl,nc]=size(a);
+   ad=m(1:nl,1:nl); bd=m(1:nl,nl+1); cd=c;
+   halt()
+//
+// definition de la macro simulant le systeme en boucle fermee
+// -----------------------------------------------------------
+   deff('[y,x]=ddls_sim(a,b,c,tr,td,u,x)',[
+        '[lhs,rhs]=argn(0);if rhs==6 then [n,n]=size(a);x=0*ones(n,1),end'
+        't0=int(tr/td)+1'
+        '[nl,nc]=size(u),np=nl*nc,u=[0*ones(1,t0),matrix(u,1,np)]'
+        'y(1,t0)=0'
+        'for k=1:np,e=u(k)-y(k),x=a*x+b*e,y(t0+k)=c*x,end'
+        'y=y(t0+1:t0+np)' ]);
+   halt()
+//
+// appel pour un echelon de 100mrd
+// -------------------------------
+   e=100.d-6*ones(1,400);
+   [tetae,x]=ddls_sim(ad,bd,c,tr,td,e);
+   xbasc();
+   plot2d1("onn",(1:400)'*td,[e;tetae]');
+   xtitle(['step  100mrd';'response']);
+   halt()
+//
+// appel pour une entree sinusoidale 10mrd 100hz
+// ---------------------------------------------
+   s1=1.d-5*sin(200*%pi*(1:600)*td);
+   [tetas1,x]=ddls_sim(ad,bd,c,tr,td,s1);
+   xbasc();
+   plot2d1("onn",(1:600)'*td,[s1;tetas1]');
+   xtitle(['sinusoidale input 10mrd 100hz';'response']);
+   halt()
+//
+// appel pour une entree sinusoidale 3mrd 300hz
+// ---------------------------------------------
+   s2=3.d-5*sin(600*%pi*(1:600)*td);
+   [tetas2,x]=ddls_sim(ad,bd,c,tr,td,s2);
+   xbasc();
+   plot2d1("onn",(1:600)'*td,[s2;tetas2]');
+   xtitle(['sinus input 3mrd 300hz';'response']);
+//

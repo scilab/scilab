@@ -1,0 +1,50 @@
+include ../Makefile.incl.amk 
+SCIDIR=../bin
+SCIDIR1=..\bin
+SCIIMPLIB=$(SCIDIR)/libscilab.lib
+
+FFLAGS = $(FC_OPTIONS)
+
+OBJS = externals.obj
+
+all :: externals.dll
+
+clean ::
+	@del externals.obj 
+	@del externals.dll
+	@del *.dia 
+	@del examples.tst 
+	@del get_examples.log 
+	@del *.graph 
+	@del test.wav 
+	@del one_man.tst 
+	@del test_macro_exec 
+	@del asave 
+	@del results 
+	@del *.bin
+
+distclean:: clean 
+
+externals.dll : $(OBJS) 
+	@echo Creation of dll $(DLL) and import lib 
+	$(LINKER) -lib $(OBJS) -exports:$*.xps
+	$(LINKER) $(OBJS) -exports:$*.xps absRT0.lib fiodll.lib fmathdll.lib  $(SCIIMPLIB) \
+	/dll /out:$*.dll
+
+.f.obj	:
+	@echo ----------- Compile file $*.f -------------
+	$(F77) -c -N25 $(FFLAGS) $< 
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

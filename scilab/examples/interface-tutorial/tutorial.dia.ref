@@ -1,0 +1,39 @@
+ 
+scilab_functions =[...
+"view";
+"matmul";
+           ];
+ 
+auxiliary="";
+ 
+files=G_make(["tutorial_gateway.o","tutorial.a", auxiliary],"void(Win)");
+ 
+addinter(files,"tutorial_gateway",scilab_functions);
+linking files 
+tutorial_gateway.o 
+tutorial.a 
+ 
+ to create a shared executable
+
+shared archive loaded
+
+Linking tutorial_gateway 
+
+Interface 0 tutorial_gateway
+
+ 
+ 
+//same as "exec tutorial.sce"
+ 
+A=ones(2,2);B=ones(2,2);
+ 
+C=matmul(A,B);
+ 
+if norm(A*B-matmul(A,B)) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,55 @@
+mode(-1)
+// Copyright INRIA
+demos_name=[
+    'Simple Thermostat'
+    'Continuous Plant discrete controller'
+    'Simple demo'
+    'Bouncing ball'
+    'Table lookup example'
+    'Threshold'
+    'Scilab Block'
+    'Thermostat'
+    'Fibonacci'
+    'Cont.Disc-Observer.cosf'
+    'Controller.cosf'
+    'System-Observer.cosf'
+//    'Live demo'
+    'sound demo (Unix only)']
+            
+
+while %t do
+  n=x_choose(demos_name,'Choose a demo')
+  select n
+  case 0 then 
+    break
+  case 1 then  
+    scicos('SCI/demos/scicos/demo1.cosf');
+  case 2 then  
+    scicos('SCI/demos/scicos/demo2.cosf');
+  case 3 then  
+    scicos('SCI/demos/scicos/demo3.cosf');
+  case 4 then  
+    scicos('SCI/demos/scicos/demo4.cosf');	
+  case 5 then  
+    scicos('SCI/demos/scicos/demo5.cosf');	
+  case 6 then  
+    scicos('SCI/demos/scicos/demo6.cosf');	
+  case 7 then  
+    scicos('SCI/demos/scicos/demo7.cosf');	
+  case 8 then  
+    scicos('SCI/demos/scicos/Temp.cosf');	
+  case 9 then  
+    scicos('SCI/demos/scicos/fibo.cosf');
+  case 10 then  
+    scicos('SCI/demos/scicos/Cont.Disc-Observer.cosf');
+  case 11 then  
+    scicos('SCI/demos/scicos/Controller.cosf');
+  case 12 then  
+    scicos('SCI/demos/scicos/System-Observer.cosf');
+//  case 13 then
+//    getf('SCI/demos/scicos/scicos_play.sci','n')
+//    scicos_play('SCI/demos/scicos/live.dat')
+  case 13 then  
+    scicos('SCI/demos/scicos/sound.cosf');
+  end
+end

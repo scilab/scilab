@@ -1,0 +1,1213 @@
+ 
+tutorial_path=get_file_path('libtutorial.tst');
+ 
+Loading shared executable0.///libexamples.so
+
+shared archive loaded
+
+Linking libexamples 
+
+Interface 0 libexamples
+
+ 
+ 
+ 
+a=1:10;b=a+1;c=ones(2,3)+2;
+ 
+ 
+// calling C function
+ 
+//--------------------
+ 
+[x,y,z,t]=ex1c('mul',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a*2)) > %eps then pause,end
+ 
+if norm(z-(b*2) ) > %eps then pause,end
+ 
+if norm(y-(c*2)) > %eps then pause,end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( y.* feval(0:1,0:2,f))) > %eps then pause,end
+ 
+ 
+[x,y,z,t]=ex1c('add',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a+2)) > %eps then pause,end
+ 
+if norm(z-(b+2) ) > %eps then pause,end
+ 
+if norm(y-(c+2)) > %eps then pause,end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( c +2 + feval(0:1,0:2,f))) > %eps then pause,end
+ 
+ 
+// calling Fortran function
+ 
+//--------------------
+ 
+a=1:10;b=a+1;c=ones(2,3)+2;
+ 
+[x,y,z,t]=ex1f('mul',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a*2)) > %eps then pause,end
+ 
+if norm(z-(b*2) ) > %eps then pause,end
+ 
+if norm(y-(c*2)) > %eps then pause,end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( y.* feval(1:2,1:3,f))) > %eps then pause,end
+ 
+ 
+[x,y,z,t]=ex1f('add',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a+2)) > %eps then pause,end
+ 
+if norm(z-(b+2) ) > %eps then pause,end
+ 
+if norm(y-(c+2)) > %eps then pause,end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( c +2 + feval(1:2,1:3,f))) > %eps then pause,end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+// C
+ 
+//--------------------------------------------------
+ 
+ 
+a=ex2c_1([1,2,3]+%i*[4,5,5]);
+ 
+if norm(a-2*[1,2,3]-%i*[4,5,5]*3) > %eps then pause,end
+ 
+ 
+a=ex2c_1([1,2,3]);
+ 
+if norm(a-2*[1,2,3]) > %eps then pause,end
+ 
+ 
+// Complex matrix as complex array
+ 
+ 
+a=ex2c_2([1,2,3]+%i*[4,5,5]);
+ 
+if norm(a-2*[1,2,3]-%i*[4,5,5]*3) > %eps then pause,end
+ 
+ 
+ 
+ 
+a=ex2f_1([1,2,3]+%i*[4,5,5]);
+ 
+if norm(a-2*[1,2,3]-%i*[4,5,5]*3) > %eps then pause,end
+ 
+ 
+a=ex2f_1([1,2,3]);
+ 
+if norm(a-2*[1,2,3]) > %eps then pause,end
+ 
+ 
+// Complex matrix as complex array
+ 
+ 
+a=ex2f_2([1,2,3]+%i*[4,5,5]);
+ 
+if norm(a-2*[1,2,3]-%i*[4,5,5]*3) > %eps then pause,end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A = rand(10,10,'n')>=0 ;
+ 
+ 
+B=ex3c_1(A);
+ 
+ 
+if (~B)<>A then pause,end
+ 
+ 
+B=ex3c_2(A);
+ 
+ 
+if (~B)<>A then pause,end
+ 
+ 
+B=ex3c_3(A);
+ 
+ 
+if B<>A then pause,end
+ 
+ 
+ 
+ 
+ 
+//matrix (double) created by C function
+ 
+x1=ex4c_1();
+ 
+if norm(x1-matrix((1:5*3),3,5)) > %eps then pause,end
+ 
+ 
+//matrix (int) created by C function
+ 
+x2=ex4c_2();
+ 
+x2ref = matrix((1:5*3),3,5);
+ 
+x2ref(1)=12;
+ 
+if norm(x2- x2ref) > %eps then pause,end
+ 
+ 
+//Character string created by C function
+ 
+x3=ex4c_3();
+ 
+if x3<>"Scilab is0..." then pause,end
+ 
+ 
+// all together
+ 
+ 
+[y1,y2,y3]=ex4c_4();
+ 
+if y1<>"Xcilab is0..." then pause,end
+ 
+if norm(y2-x2ref) > %eps then pause,end
+ 
+x1ref=x1; x1ref(1)=89;
+ 
+if norm(y3-x1ref) > %eps then pause,end
+ 
+ 
+ 
+//matrix (double) created by C function
+ 
+x1=ex4f_1();
+ 
+if norm(x1-matrix((1:5*3),3,5)) > %eps then pause,end
+ 
+ 
+//matrix (int) created by C function
+ 
+x2=ex4f_2();
+ 
+if norm(x2-matrix((1:5*3),3,5)) > %eps then pause,end
+ 
+ 
+//Character string created by C function
+ 
+x3=ex4f_3();
+ 
+if x3<>"Scilab is0..." then pause,end
+ 
+ 
+ 
+// all together
+ 
+ 
+[y1,y2,y3]=ex4f_4();
+ 
+if y1<>x3 then pause,end
+ 
+if norm(y2-x2) > %eps then pause,end
+ 
+if norm(y3-x1) > %eps then pause,end
+ 
+ 
+ 
+Bref =[ "Un","Trois","Cinq"; "Deux", "Quatre","Six" ];
+ 
+ 
+// first example
+ 
+ 
+[A,B]=ex5c_1(string(1:10));
+ 
+if A<>string(1:10) then pause,end
+ 
+if B<>Bref then pause,end
+ 
+ 
+// second example
+ 
+ 
+I= ex5c_2("Cinq",Bref) ;
+ 
+if I<>5 then pause,end
+ 
+ 
+ 
+ 
+ 
+// test with sparse and int matrices
+ 
+//------------------------------------
+ 
+ 
+// a sparse as an input-argument
+ 
+W=int(10*sprand(10,10,0.1));
+ 
+[W1,icol,mnel]=ex6c_1(W);
+ 
+ 
+if norm(full(W1-2*W)) > %eps  then pause,end
+ 
+[I,J]=find(W<>0) ;
+ 
+if J<>icol then pause,end
+ 
+ 
+mnel1=[];
+ 
+[m,n]=size(W);
+ 
+for x=1:m , mnel1(x) = size(find(W(x,:)),'*');end
+ 
+if mnel<>mnel1' then pause,end
+ 
+ 
+// a complex sparse as input-argument
+ 
+ 
+W = W +%i*int(10*sprand(10,10,0.1));
+ 
+ 
+[W1,icol,mnel]=ex6c_1(W);
+ 
+ 
+if norm(full(W1- (2*real(W)+%i*3*imag(W)))) > %eps  then pause,end
+ 
+[I,J]=find(W<>(0+%i*0)) ;
+ 
+if J<>icol then pause,end
+ 
+ 
+mnel1=[];
+ 
+[m,n]=size(W);
+ 
+for x=1:m , mnel1(x) = size(find(W(x,:)),'*');end
+ 
+if mnel<>mnel1' then pause,end
+ 
+ 
+// a sparse created in the interface
+ 
+ 
+W=ex6c_2();
+ 
+Wres=sparse([2,2,3,3,3,4,5;1,2,1,2,3,3,5]',[1,2,4,5,3,6,7]);
+ 
+if W<>Wres then pause,end
+ 
+ 
+// an int matrix as argument and as returned value
+ 
+//----------------------------------------------
+ 
+ 
+A=int(100*rand(1,10));
+ 
+[A1,B1,C1]=ex6c_3(int8(A));
+ 
+ 
+if A1<>A then pause,end
+ 
+if B1<>int8(A) then pause,end
+ 
+if C1<>int8(A) then pause,end
+ 
+ 
+A=int(100*rand(1,10));
+ 
+[A1,B1,C1]=ex6c_3(int16(A));
+ 
+ 
+if A1<>A then pause,end
+ 
+if B1<>int16(A) then pause,end
+ 
+if C1<>int16(A) then pause,end
+ 
+ 
+if A1<>A then pause,end
+ 
+A=int(100*rand(1,10));
+ 
+[A1,B1,C1]=ex6c_3(int32(A));
+ 
+ 
+if A1<>A then pause,end
+ 
+if B1<>int32(A) then pause,end
+ 
+if C1<>int32(A) then pause,end
+ 
+ 
+A1=ex6c_4(A);
+ 
+ 
+if A1<>int16(A) then pause,end
+ 
+ 
+ 
+ 
+e1=rand(4,3);
+ 
+e2=int(10*rand(5,6));
+ 
+e3='ex07c';
+ 
+e4=rand(7,8) >= 0;
+ 
+e5=string(1:10);
+ 
+e6=int(10*sprand(10,10,0.1));
+ 
+e7=int8(10*rand(1,5,'u'));
+ 
+ 
+[x1,x2,x3,x4,x5,x6,x7]=ex7c_1(list(e1,e2,e3,e4,e5,e6,e7));
+ 
+ 
+if x1<>e1  then pause,end
+ 
+if x2<>e2  then pause,end
+ 
+if x3<>e3  then pause,end
+ 
+if x4<>e4  then pause,end
+ 
+if x5<>e5  then pause,end
+ 
+if x6<>e6  then pause,end
+ 
+if x7<>e7  then pause,end
+ 
+ 
+e6 = e6 +%i*int(10*sprand(10,10,0.1));
+ 
+ 
+[x1,x2,x3,x4,x5,x6,x7]=ex7c_1(list(e1,e2,e3,e4,e5,e6,e7));
+ 
+ 
+if x1<>e1  then pause,end
+ 
+if x2<>e2  then pause,end
+ 
+if x3<>e3  then pause,end
+ 
+if x4<>e4  then pause,end
+ 
+if x5<>e5  then pause,end
+ 
+if x6<>e6  then pause,end
+ 
+if x7<>e7  then pause,end
+ 
+ 
+//-------------------
+ 
+ 
+L= ex7c_2([10,20,30],[1:10],"string",[%t,%f],int16([1,2,90]));
+ 
+if L(1)<>[10,20,30]  then pause,end
+ 
+if L(2)<>[1:10]  then pause,end
+ 
+if L(3)<>"string"  then pause,end
+ 
+if L(4)<>[%t,%f]  then pause,end
+ 
+if L(5)<>int16([1,2,90])  then pause,end
+ 
+ 
+//----------------------
+ 
+ 
+L=ex7c_3('l');
+ 
+if L(1)<>['type','x1','x2','x3','x4','x4'] then pause,end
+ 
+if L(2)<>[10,20,30]  then pause,end
+ 
+if L(3)<>[1:4]  then pause,end
+ 
+if L(4)<>"a string"  then pause,end
+ 
+if L(5)<>[%t,%f]  then pause,end
+ 
+Wres=sparse([2,2,3,3,3,4,5;1,2,1,2,3,3,5]',[1,2,4,5,3,6,7]);
+ 
+if L(6)<>Wres then pause,end
+ 
+Ires=uint8([41,52,63]);
+ 
+if L(7)<>Ires then pause,end
+ 
+ 
+L=ex7c_3('t');
+ 
+if typeof(L)<>'type'  then pause,end
+ 
+if L.x1 <>[10,20,30]  then pause,end
+ 
+ 
+L=ex7c_3('m');
+ 
+if typeof(L)<>'type'  then pause,end
+ 
+if L.x1 <>[10,20,30]  then pause,end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+// checks arguments compatibility
+ 
+ 
+ex8c_1([1;2;3;4],[3,4,5,6],[6;7;8;9],90,rand(5,5))
+ 
+ 
+// first argument can have different types
+ 
+ 
+ex8c_2([1,2,2]);
+1 is a scalar matrix
+
+ 
+ex8c_2('foo');
+1 is a string
+
+ 
+ 
+// overload case
+ 
+ 
+deff('[]=%sp_ex8c_2(sp)','disp(''sparse overloaded'')');
+ 
+ex8c_2(sparse([1,2,3]));
+1 is a sparse trying to overload
+
+ 
+ sparse overloaded   
+ 
+ 
+ 
+ 
+// accessing a Scilab matrix inside an interface
+ 
+//----------------------------
+ 
+ 
+param=1:10;
+ 
+z=ex9c_1();
+ 
+if norm(z-param) > %eps then pause,end
+ 
+ 
+//--------------------------------------------------
+ 
+// creation of a matrix: the variable C
+ 
+ex9c_2();
+ 
+if C<>[10,20,30] then pause,end
+ 
+ 
+//--------------------------------------------------
+ 
+// accessing a Scilab string inside an interface
+ 
+Mystr='My string';
+ 
+ex9c_3()
+Mystr= "My string", length 9 
+
+ 
+ 
+//--------------------------------------------------
+ 
+// creation of a Scilab string in an interface
+ 
+ex9c_4();
+ 
+if Str<> "Pilgrim said he, where can it be this land of Eldorado" then pause;end
+ 
+ 
+// Fortran interfaces
+ 
+// accessing a Scilab matrix inside an interface
+ 
+//----------------------------
+ 
+ 
+param=1:10;
+ 
+z=ex9f_1();
+ 
+if norm(z-param) > %eps then pause,end
+ 
+ 
+//--------------------------------------------------
+ 
+// creation of a matrix: the variable C
+ 
+ex9f_2();
+ 
+if C<>[10,20,30] then pause,end
+ 
+ 
+//--------------------------------------------------
+ 
+// accessing a Scilab string inside an interface
+ 
+Mystr='My string';
+ 
+ex9f_3()
+Mystr=My string  Its length is0...      
+ 
+ 
+//--------------------------------------------------
+ 
+// creation of a Scilab string in an interface
+ 
+ex9f_4();
+ 
+if Str<> "Pilgrim said he, where can it be this land of Eldorado" then pause;end
+ 
+ 
+ 
+ 
+ 
+ 
+H=ex10c_1();
+ 
+ex10c_2(H);
+Test structure : int = 10 , y = My string
+
+ 
+ 
+deff('[]=%myh_p(H)','ex10c_4(H)')
+ 
+H=ex10c_3();
+ 
+H
+ H  =
+ 
+Test structure : int = 10 , y = My string
+
+ 
+ 
+ 
+ 
+ 
+ 
+M=hypermat([2 3 2 2],1:24);
+ 
+M1=ex11c(M);
+ 
+if M1('dims')<>M('dims') then pause,end
+ 
+if M1('entries')<>M('entries') then pause,end
+ 
+ 
+ 
+ 
+ 
+// Example with optional argument specified with the
+ 
+// arg=value syntax
+ 
+// [a,b,c] = ex12c(x1,{ v1= arg1, v2=arg2}) , arg1 default value 99
+ 
+//					       arg2 default value 3
+ 
+// only v1 and v2 are recognized as optional argument names
+ 
+// the return value are a<--x1, b = 2*v2 , c = 3*v2
+ 
+ 
+// C functions
+ 
+// ---------------------------
+ 
+[a,b,c]=ex12c('test');
+ 
+if norm([99*2,3*3]-[b,c]) > %eps then pause,end
+ 
+ 
+[a,b,c]=ex12c('test',v1=[10,20]);
+ 
+if norm([[10,20]*2,3*3]-[b,c]) > %eps then pause,end
+ 
+ 
+[a,b,c]=ex12c('test',v1=[10,20],v2=8);
+ 
+if norm([[10,20]*2,8*3]-[b,c]) > %eps then pause,end
+ 
+ 
+[a,b,c]=ex12c('test',v2=8,v1=[10]);
+ 
+if norm([10*2,8*3]-[b,c]) > %eps then pause,end
+ 
+ 
+ 
+// Fortran functions
+ 
+// ---------------------------
+ 
+ 
+[a,b,c]=ex12f('test');
+ 
+if norm([99*2,3*3]-[b,c]) > %eps then pause,end
+ 
+ 
+[a,b,c]=ex12f('test',v1=[10,20]);
+ 
+if norm([[10,20]*2,3*3]-[b,c]) > %eps then pause,end
+ 
+ 
+[a,b,c]=ex12f('test',v1=[10,20],v2=8);
+ 
+if norm([[10,20]*2,8*3]-[b,c]) > %eps then pause,end
+ 
+ 
+[a,b,c]=ex12f('test',v2=8,v1=[10]);
+ 
+if norm([10*2,8*3]-[b,c]) > %eps then pause,end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A=[1,2,3,4];
+ 
+B=[10,20,30;40,50,60];
+ 
+ 
+//Just display A and B
+ 
+//C interface
+ 
+ex13c_1(A,B)
+ 
+!   10.    20.    30. !
+!   40.    50.    60. !
+ 
+!   1.    2.    3.    4. !
+ 
+ 
+//Just display A and B
+ 
+//Fortran Interface
+ 
+ex13f_1(A,B)
+ 
+!   10.    20.    30. !
+!   40.    50.    60. !
+ 
+!   1.    2.    3.    4. !
+ 
+ 
+// C
+ 
+// executes myfct with input variables x=5 and y=6
+ 
+//----------------------------
+ 
+ 
+deff('[u,v,w]=myfct(x,y)','u=7+x,v=8+y,w=9+y')
+ 
+x=5;y=6;[u,v,w]=myfct(x,y);
+ 
+[p,q,r]=ex13c_2(1,2,3,4,5,6);
+ 
+if p<>u | q <> v | r <> w then pause,end
+ 
+ 
+// Fortran
+ 
+//  executes myfct with input variables x=5 and y=6
+ 
+//----------------------------
+ 
+ 
+deff('[u,v,w]=myfct(x,y)','u=7+x,v=8+y,w=9+y')
+ 
+x=5;y=6;[u,v,w]=myfct(x,y);
+ 
+[p,q,r]=ex13f_2(1,2,3,4,5,6);
+ 
+if p<>u | q <> v | r <> w then pause,end
+ 
+ 
+// C
+ 
+//----------------------------
+ 
+deff('p=mypoly(x)','p=poly(x,''z'',''coeffs'')')
+ 
+c=[1,2,3];
+ 
+P1=ex13c_3(2,c);
+ 
+if P1<>poly(c*2,'z','coeffs') then pause,end
+ 
+ 
+// Fortran
+ 
+//----------------------------
+ 
+deff('p=mypoly(x)','p=poly(x,''z'',''coeffs'')')
+ 
+c=[1,2,3];
+ 
+P1=ex13f_3(2,c);
+ 
+if P1<>poly(c*2,'z','coeffs') then pause,end
+ 
+ 
+ 
+ 
+ 
+ 
+a_chain='hello';s=poly(0,'s');
+ 
+deff('[y1,y2,y3]=myfunction(x1,x2)','y1=x1+x2,y2=1+s,y3=a_chain')
+ 
+ 
+x1=1;x2=2;
+ 
+[y1,y2,y3]=myfunction(x1,x2);
+ 
+ 
+// C interface
+ 
+//----------------------------
+ 
+[u,v,w]=ex14c(x1,x2,myfunction);
+ 
+ 
+if u-y1 > %eps then pause,end
+ 
+if v-y2<>0 then pause,end
+ 
+if w<>y3 then pause,end
+ 
+ 
+// Fortran interface
+ 
+//----------------------------
+ 
+[u,v,w]=ex14f(x1,x2,myfunction);
+ 
+ 
+if u-y1 > %eps then pause,end
+ 
+if v-y2<>0 then pause,end
+ 
+if w<>y3 then pause,end
+ 
+ 
+ 
+ 
+ 
+//We build a function ex15c with 3 input parameters X,Y,f and
+ 
+//1 output parameter Z: Z=ex15c(X,Y,f).
+ 
+//The third input parameter of ex15c (f) is a function.
+ 
+//This function, which is passed to ex15c as an argument,
+ 
+//is called a "argument function".
+ 
+//This function can be a Scilab function or a C function.
+ 
+//In both cases, this function must have a specific calling
+ 
+//sequence which is imposed by ex15c.
+ 
+// (A typical example is the case of an ode solver:
+ 
+//  if we want to solve an ode xdot=f(x), we want to build a function
+ 
+//  ode with a syntax like y=ode(x0,t,f) where x0 is a real vector,
+ 
+//  t a real number and f the "argument function" f: x->f(x). )
+ 
+ 
+//There are two ways of calling ex15c:
+ 
+//Z=ex15c(X,Y,f) for computing Z from X and Y using the Scilab function f
+ 
+ 
+//Z=ex15c(X,Y,"f") for computing Z from X and Y using the C function "f"
+ 
+//The C function f can be dynamically linked to Scilab, using the
+ 
+//link command (e.g. if f=f3c, link("f3c.o","f3c","C") ) or it can be put in
+ 
+//a table of functions (see ex15c.c).
+ 
+ 
+//In the example proposed here, we want to build a function ex15c with
+ 
+//syntax Z=ex15c(X,Y,f) which returns a real matrix Z obtained from
+ 
+//the two real input vectors X and Y by a calculation performed by
+ 
+//f. To be specific, we want Z(i,j)=f(X(i),Y(j)). In this example,
+ 
+//the argument function f is a function from R x R to R.
+ 
+//The Scilab built-in function function feval does this: ex15c emulates
+ 
+//feval.
+ 
+ 
+//If f is a Scilab function, its syntax is z=f(x,y), defined for instance
+ 
+//by:
+ 
+//deff('z=f(x,y)','z=cos(x+y)');
+ 
+//
+ 
+//If f is a C function, its definition will be:
+ 
+//int f(x,y,z)
+ 
+//     double x,y,*z;
+ 
+//{
+ 
+//  *z= cos(x+y);
+ 
+//}
+ 
+//Note that the argument function f must be defined as above, defining f as e.g.
+ 
+//int f(z,x,y)
+ 
+//is not allowed.
+ 
+ 
+//If X is a vector with m components and Y is a vector with n components,
+ 
+//the resulting matrix Z=ext15(X,Y) is m x n.
+ 
+ 
+//The interface function is intex15c.
+ 
+ 
+//Test inputs for ex15c:
+ 
+X=1:3;Y=4:6;
+ 
+//...and 3 examples of Scilab argument functions:
+ 
+deff('z=f1(x,y)','z=x+y');
+ 
+deff('z=f2(x,y)','z=x*x+y*y');
+ 
+deff('z=f3(x,y)','z=cos(x+y)');
+ 
+ 
+//reference values for Z calculated by feval
+ 
+Zref1=feval(X,Y,f1);
+ 
+Zref2=feval(X,Y,f2);
+ 
+Zref3=feval(X,Y,f3);
+ 
+ 
+// Calling ex15c with a argument function which is a Scilab function:
+ 
+Z1=ex15c(X,Y,f1);
+ 
+if norm(Z1-Zref1) > %eps then pause,end
+ 
+ 
+Z2=ex15c(X,Y,f2);
+ 
+if norm(Z2-Zref2) > %eps then pause,end
+ 
+ 
+Z3=ex15c(X,Y,f3);
+ 
+if norm(Z3-Zref3) > %eps then pause,end
+ 
+ 
+// Calling ex15c with a argument function which is a C function:
+ 
+Z1=ex15c(X,Y,'f1c');     // f1c defined in ex15c.c
+ 
+if norm(Z1 - Zref1) > %eps then pause,end
+ 
+ 
+Z2=ex15c(X,Y,'f2c');   // f2c defined in ex15c.c
+ 
+if norm(Z2 - Zref2) > %eps then pause,end
+ 
+ 
+// making f3c.so and linking f3c dynamically with Scilab
+ 
+ 
+if ~c_link('f3c') then
+  // see link-examples-so for link examples
+  ilib_for_link('f3c','f3c.o',[],'c','f3cmake','f3cloader.sce');
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+  exec f3cloader.sce
+ 
+// generated by builder.sce: Please do not edit this file
+ 
+// ------------------------------------------------------
+ 
+f3c_path=get_file_path('f3cloader.sce');
+ 
+link(f3c_path+'/libf3c.so',['f3c'],'c');
+Loading shared executable0./libf3c.so
+
+shared archive loaded
+
+Linking f3c 
+
+Link done
+
+ 
+end
+ 
+ 
+// Calling ex15c with the C argument function fp3
+ 
+Z3=ex15c(X,Y,'f3c');
+ 
+if norm(Z3 - Zref3) > %eps then pause,end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+//Test inputs for ex15f:
+ 
+X=1:3;Y=4:6;
+ 
+//...and 3 examples of Scilab argument functions:
+ 
+deff('z=f1(x,y)','z=x+y');
+ 
+deff('z=f2(x,y)','z=x*x+y*y');
+ 
+deff('z=f3(x,y)','z=cos(x+y)');
+ 
+ 
+//reference values for Z calculated by feval
+ 
+Zref1=feval(X,Y,f1);
+ 
+Zref2=feval(X,Y,f2);
+ 
+Zref3=feval(X,Y,f3);
+ 
+ 
+// Calling ex15f with a argument function which is a Scilab function:
+ 
+Z1=ex15f(X,Y,f1);
+ 
+if norm(Z1-Zref1) > %eps then pause,end
+ 
+ 
+Z2=ex15f(X,Y,f2);
+ 
+if norm(Z2-Zref2) > %eps then pause,end
+ 
+ 
+Z3=ex15f(X,Y,f3);
+ 
+if norm(Z3-Zref3) > %eps then pause,end
+ 
+ 
+// Calling ex15f with a argument function which is a Fortran function:
+ 
+Z1=ex15f(X,Y,'f1f');     // f1f defined in ex15f.f
+ 
+if norm(Z1 - Zref1) > %eps then pause,end
+ 
+ 
+Z2=ex15f(X,Y,'f2f');   // f2f defined in ex15f.f
+ 
+if norm(Z2 - Zref2) > %eps then pause,end
+ 
+ 
+// making f3f.o and linking f3f dynamically with Scilab
+ 
+ 
+if ~c_link('f3f') then
+  // see link-examples-so for link examples
+  ilib_for_link('f3f','f3f.o',[],'f','f3fmake','f3floader.sce');
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+  exec f3floader.sce
+ 
+// generated by builder.sce: Please do not edit this file
+ 
+// ------------------------------------------------------
+ 
+f3f_path=get_file_path('f3floader.sce');
+ 
+link(f3f_path+'/libf3f.so',['f3f'],'f');
+Loading shared executable0./libf3f.so
+
+shared archive loaded
+
+Linking f3f 
+
+Link done
+
+ 
+end
+ 
+ 
+ 
+// Calling ex15f with the Fortran argument function fp3
+ 
+Z3=ex15f(X,Y,'f3f');
+ 
+if norm(Z3 - Zref3) > %eps then pause,end
+ 
+ 
+ 
+ 
+ 
+w=int16([3,5,7]);
+ 
+w1=ex16c(w);
+ 
+wref=int16([33,44,55]);
+ 
+w2=ex16c();
+ 
+if norm(double(w1-wref)) > %eps then pause,end
+ 
+if norm(double(w2-wref)) > %eps then pause,end
+ 
+ 
+ 
+e1=int(10*rand(2,2));
+ 
+e2=int(10*rand(3,3));
+ 
+e3='ex07c';
+ 
+e4=rand(2,2);
+ 
+e5=rand(3,3);
+ 
+e5=e5+rand(e5)*%i;
+ 
+L=list(e1,e2,e3,e4,e5);
+ 
+ 
+L1=ex17c(L);
+ 
+ 
+for i=[1,2,4,5]
+ if norm(L1(i)-L(i)) > 1.e-4  then pause,end
+end
+ 
+if L1(3)<>L(3) then pause,end
+ 
+ 
+e1 = e1 +%i*int(10*rand(e1));
+ 
+L=list(e1,e2,e3,e4,e5);
+ 
+ 
+L1=ex17c(L);
+ 
+ 
+ 
+for i=[1,2,4,5]
+ if norm(L1(i)-L(i)) > 1.e-4  then pause,end
+end
+ 
+ 
+if L1(3)<>L(3) then pause,end
+ 
+ 

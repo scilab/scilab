@@ -1,0 +1,28 @@
+# Copyright INRIA
+
+
+FFLAGS = $(FC_OPTIONS)
+
+bin/scilex: scilex-lib
+	@x=1;if [ -f $@ ] ; then  \
+		x=`find $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \)\
+		-newer $@ -print | wc -l `; \
+	fi;\
+	if [ $$x -ne 0 ] ; then \
+		$(RM) $@; \
+		echo "linking";\
+		$(FC) -o $@ $(DEFAULTS) $(LIBR) $(FC_LDFLAGS) $(TCLTK_LIBS) \
+			$(XLIBS) $(TERMCAPLIB)  ;\
+		@NM@ $@ > $@.nm;\
+		grep ' T ' $@.nm > $@.txtnm;\
+		grep ' [A-SU-Z] ' $@.nm > $@.datnm;\
+		rm $@.nm;\
+	else \
+		echo bin/scilex is up to date ;\
+	fi
+
+show	:
+	@echo 		$(FC) -o $@ $(DEFAULTS) $(LIBR) $(FC_LDFLAGS) $(TCLTK_LIBS) \
+			$(XLIBS) $(TERMCAPLIB)  ;
+
+	

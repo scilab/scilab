@@ -1,0 +1,39 @@
+This directory contains demo examples of dynamic links.
+Dynamically linked fortran routines are:
+ext1f.f, ext2f.f etc
+Dynamically linked C routines are:
+ext1c.c, ext2c.c etc
+
+make /tmp/ext1f.o creates an object file in the /tmp directory
+
+To run a demo, execute Scilab HERE in this directory and enter at Scilab 
+prompt:
+-->exec('ext1f.sce')
+
+make clean to clean old stuff
+
+Additional examples are given in "misc" directory
+
+	Fort 
+
+ ext1c.c ext1f.f  :  Simple example, double and integer arguments.
+ ext2c.c ext2f.f  :   '' '' 
+ ext3c.c ext3f.f  :  String argument  
+ ext4c.c ext4f.f  :  ReadString, creadchain : Reading a string in Scilab stack  
+ ext5c.c ext5f.f  :  ReadMatrix, creadmat : Reading a matrix in Scilab stack  
+ ext6c.c ext6f.f  :  ''  
+ ext7c.c ext7f.f  :  WriteMatrix, WriteString
+		      cwritemat,cwritechain : Writing a matrix or a string in Scilab stack   
+ ext8c.c ext8f.f  :  GetMatrixPtr,  cmatptr
+		  : Getting a pointer to Scilab matrix. data is read from this
+	             pointer and changed   
+ ext13c.c ext13f.f: link to function which share data 
+ ext14c.c ext14f.f: Short argument list form and C or Fortran wrapper      
+
+
+	Ode 
+
+ ext9c.c 	: ode reference 
+ ext10c.c 	: param transmited using list('xxx',param)
+ ext11c.c	: using ReadMatrix to get param 
+ ext12c.c	: using GetMatrixptr to get param 

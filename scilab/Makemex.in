@@ -1,0 +1,173 @@
+# Generated automatically from Makemex.in  by configure.
+# see examples/mex-examples/mex-with-so/Makefile 
+# for an example of Makemex use 
+# some variables are defined here and other are defined in Makefile.incl 
+
+SHELL = @SHELL@
+top_builddir = $(SCIDIR)
+
+DLLTOOL = @DLLTOOL@
+LIBM = @LIBM@
+LIBTOOL = @LIBTOOL@
+LIBTOOL_DEPS = @LIBTOOL_DEPS@
+LN_S = @LN_S@
+NM = @NM@
+
+OBJDUMP = @OBJDUMP@
+STATIC = @STATIC@
+
+CPPFLAGS = @CPPFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+
+INCLUDES= -I$(SCIDIR)/routines 
+CFLAGS = $(CC_OPTIONS) 
+FFLAGS = $(FC_OPTIONS) 
+COMPILE = $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+FCOMPILE = $(FC) $(FFLAGS)
+
+QUIET=--quiet
+
+LTCOMPILE = $(LIBTOOL) --mode=compile $(QUIET) $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+FLTCOMPILE = $(LIBTOOL) --mode=compile $(QUIET) $(FC) $(FFLAGS)
+
+LINK = $(LIBTOOL) --mode=link $(QUIET)  $(CC) $(CFLAGS) $(LDFLAGS) -o $@
+
+OBJECTS = $(LIBRARY)_gateway.lo $(OTHEROBJECTS:.o=.lo)
+FCTMEXLO = $(FCTMEX:.c=.lo) $(FORTRANFCTMEX:.F=.lo)
+#******************************************************************* 
+
+all:: all_nomes message
+
+all_nomes : CLEAROLD GATEWAYS $(OTHEROBJECTS) $(LIBRARY)_gateway.lo $(LIBRARY).la $(LIBRARY).sce 
+
+.SUFFIXES:
+.SUFFIXES: .c .lo .o .F 
+
+$(LIBRARY).la : $(OBJECTS) 
+	@MEXOBJECTS=`echo $(FCTMEXLO) | sed -e "s+[a-zA-Z0-9_%$#]*/++g"`; \
+	$(LINK) -rpath `pwd` -module -avoid-version -export-dynamic $$MEXOBJECTS $(OBJECTS) 
+	@$(LIBTOOL) --mode=install $(QUIET)  cp $(LIBRARY).la `pwd`/$(LIBRARY).la 
+
+$(LIBRARY)_gateway.c:  Makefile 
+	@echo "-- Generating the C function $(LIBRARY)_gateway.c";
+	@echo $(FCTMEX) > tmp_sce; echo $(FORTRANFCTMEX) >> tmp_sce;
+	@echo $(LIBRARY) > tmp2_sce; 
+	@$(SCIDIR)/macros/Gensomex Xtmp_sce Xtmp2_sce;
+	@$(RM)  tmp_sce; 
+	@$(RM)  tmp2_sce; 	
+	@echo "int C2F($(LIBRARY)_gateway)()" >> $(LIBRARY)_gateway.c;
+	@echo "{ Rhs = Max(0, Rhs); " >> $(LIBRARY)_gateway.c;
+	@echo "(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);" >> $(LIBRARY)_gateway.c;
+	@echo " return 0;" >> $(LIBRARY)_gateway.c;
+	@echo "}" >> $(LIBRARY)_gateway.c;
+	@echo " /* */ " >> $(LIBRARY)_gateway.c;
+
+$(LIBRARY).sce: Makefile 
+	@echo "-- Generating the Scilab script $(LIBRARY).sce";
+	@echo $(FCTMEX) > tmp_sce; echo $(FORTRANFCTMEX) >> tmp_sce;
+	@echo $(LIBRARY) > tmp2_sce; 
+	@$(SCIDIR)/macros/Gensosce Xtmp_sce Xtmp2_sce;
+	@$(RM)  tmp_sce; 
+	@$(RM)  tmp2_sce; 
+	@echo "LIBPATH=\"$(LIBPATH)\";" >> $(LIBRARY).sce;
+	@echo "addinter(LIBPATH+\"$(LIBRARY).so\",\"$(LIBRARY)_gateway\",scilab_functions)" >> $(LIBRARY).sce;
+	@if test "$(LIBPATH)" = ""; then \
+	echo "------------------------------------------"; \
+	echo "Check LD_LIBRARY_PATH environment variable: "; \
+	echo "LD_LIBRARY_PATH=`pwd`; export LD_LIBRARY_PATH"; \
+	echo "or"; \
+	echo "setenv LD_LIBRARY_PATH `pwd`"; \
+	echo "------------------------------------------"; \
+	fi
+
+message:
+	@echo "------------------------------------------";
+	@echo "To load the function(s): ";
+	@for i in $(FCTMEX) ;\
+	do (\
+	name=`dirname $$i`; \
+	echo "              $$name; " \
+	); \
+	done
+	@for i in $(FORTRANFCTMEX) ;\
+	do (\
+	name=`dirname $$i`; \
+	echo "              $$name; " \
+	); \
+	done
+	@echo " at Scilab prompt, enter:";
+	@echo "-->exec $(LIBRARY).sce";
+	@echo "------------------------------------------";
+
+clean	::
+	$(RM) *.o *.lo
+	$(RM) $(LIBRARY).sce
+	$(RM) $(LIBRARY)_gateway.c
+	$(RM) $(LIBRARY).la
+	$(RM) $(LIBRARY).so
+	$(RM) -r .libs
+
+distclean:: clean 
+	$(RM) -f -r .libs  $(LIBRARY).*
+	$(RM) $(LIBRARY).sce
+	$(RM) $(LIBRARY)_gateway.c
+
+$(LIBRARY)_gateway.lo: $(LIBRARY)_gateway.c
+	@$(LTCOMPILE) -c $(LIBRARY)_gateway.c
+
+GATEWAYS:
+	@for f in $(FCTMEX); \
+	do \
+	obj=`basename $$f .c`; \
+	mex=`dirname $$f`; \
+	make $$obj.o MEX=mex_$$mex ; \
+	make $$obj.lo MEX=mex_$$mex ; \
+	done;
+	@for f in $(FORTRANFCTMEX); \
+	do \
+	obj=`basename $$f .F`; \
+	mex=`dirname $$f`; \
+	make $$obj.o MEX=mex$$mex ; \
+	make $$obj.lo MEX=mex$$mex ; \
+	done;
+
+.c.o:
+	@$(COMPILE) -DmexFunction=$(MEX) -c $<
+
+.c.lo :
+	@$(LTCOMPILE) -DmexFunction=$(MEX) -c $<
+
+.F.o:
+	@$(FCOMPILE) -Dmexfunction=$(MEX) -c $<
+
+.F.lo :
+	@$(FLTCOMPILE) -Dmexfunction=$(MEX) -c $<
+
+.f.o:
+	@$(FCOMPILE) -Dmexfunction=$(MEX) -c $<
+
+.f.lo :
+	@$(FLTCOMPILE) -Dmexfunction=$(MEX) -c $<
+
+CLEAROLD:
+	$(RM) $(LIBRARY).sce
+	$(RM) $(LIBRARY)_gateway.c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

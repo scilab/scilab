@@ -1,0 +1,5 @@
+Template interface for Lapack routines.
+Not fully tested!
+Volunters are needed to write interfaces for 
+all programs in SCIDIR/routines/lapack...
+Just add new items in the Makefile.

@@ -1,0 +1,21 @@
+// Copyright INRIA
+mode(1)
+kp=xget("pixmap");xset("pixmap",1);
+xset("wwpc");
+t=-%pi:0.3:%pi;
+contour(t,t,sin(t)'*cos(t),10,35,45,"X@Y@Z",[0,2,4])
+xset("wshow");
+if driver()=='Pos' then sp=5; else sp=1;end
+for i=35:sp:80,
+  xset("wwpc");
+  contour(t,t,sin(t)'*cos(t),10,i,45,"X@Y@Z",[0,0,4])
+  xset("wshow");
+end
+for i=45:sp:80,
+  xset("wwpc");
+  contour(t,t,sin(t)'*cos(t),10,80,i,"X@Y@Z",[0,0,4])
+  xset("wshow");
+end
+xset("pixmap",kp);
+
+

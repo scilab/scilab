@@ -1,0 +1,27 @@
+This directory contains utility functions:
+
+- An example of calling scilab as a subroutine of a user's main program
+=======================================================================    
+    * callsci.f: Fortran main program. This main program send matrices 
+                (call matz) and commands (call scirun) to scilab and 
+                 gets the results back (call matz).
+
+    * Makefile: is a makefile usable to generate executable associated to
+                callsci.f 
+
+    * Makefile.in: source file used by SCIDIR/Makefile to create
+                   Makefile file
+
+    * sci2for.f Fortran routines used by sci2for translator
+
+- Scilab utility shell scripts
+==============================
+    * scicomp generates a .bin file correspondig to a scilab function
+         ascii .sci file	
+
+    * scidem executes a batch scilab instructions file
+
+    * scidoc used for documentation generation
+
+    * scilib generates a binary file containing the image of a scilab
+          library 

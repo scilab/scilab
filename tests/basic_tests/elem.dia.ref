@@ -1,0 +1,98 @@
+ 
+// Copyright INRIA
+ 
+a=-1
+ a  =
+ 
+  - 1.  
+ 
+b=1+%i
+ b  =
+ 
+    1. + i    
+ 
+c=[]
+ c  =
+ 
+     []
+ 
+ 
+abs(a)
+ ans  =
+ 
+    1.  
+ 
+abs(b)
+ ans  =
+ 
+    1.4142136  
+ 
+abs(c)
+ ans  =
+ 
+     []
+ 
+ 
+real(a)
+ ans  =
+ 
+  - 1.  
+ 
+real(b)
+ ans  =
+ 
+    1.  
+ 
+real(c)
+ ans  =
+ 
+     []
+ 
+ 
+imag(a)
+ ans  =
+ 
+    0.  
+ 
+imag(b)
+ ans  =
+ 
+    1.  
+ 
+imag(c)
+ ans  =
+ 
+     []
+ 
+ 
+conj(a)
+ ans  =
+ 
+  - 1.  
+ 
+conj(b)
+ ans  =
+ 
+    1. - i    
+ 
+conj(c)
+ ans  =
+ 
+     []
+ 
+ 
+int(a)
+ ans  =
+ 
+  - 1.  
+ 
+int(b)
+ ans  =
+ 
+    1. + i    
+ 
+int(c)
+ ans  =
+ 
+     []
+ 

@@ -1,0 +1,34 @@
+#!/bin/sh 
+# scilab batch execution for testing 
+# scidem scidir fn fileres  flag
+echo ------------------- File $2--------------------
+SCI=$1
+export SCI
+if [ -f $3  ]; then rm $3;fi;
+trap "rm -f /tmp/$2.$$ /tmp/$2.$$.res /tmp/$2.$$.err /tmp/$2.$$.diff\
+        ;exit 1"  1 2 13 15
+echo "clear;lines(0);deff('[]=bugmes()','write(%io(2),''error on test'')');\
+        diary('$3');driver('Pos');" >> /tmp/$2.$$ ;
+sed     -e "s/pause,end/bugmes();quit;end/" \
+        -e "s/halt()//" \
+        $2 >> /tmp/$2.$$ ;
+echo "diary(0);xend();exit;" >> /tmp/$2.$$ ;
+(cat /tmp/$2.$$ | $SCI/bin/scilex -nwni > /tmp/$2.$$.res ) 2> /tmp/$2.$$.err ;
+sed -e "s/ \./0\./g" -e "s/E+/D+/g" -e "s/E-/D-/g" -e "s/-\./-0\./g" -e "s/^-->//g" -e "s/^-1->//g" $3 > $3.n
+grep -v "xinit(" $3.n | grep -v "diary(" | grep -v "exec("  > $3
+rm -f $3.n
+if ( grep error /tmp/$2.$$.res >  /dev/null ) ; then 
+        if [ $# != 4 ]; then 
+                echo "Test failed ERROR DETECTED  while executing $2" ;
+        fi;
+else if [ -f $3.ref ];then 
+        if ( diff -w $3 $3.ref > /tmp/$2.$$.diff ) ;
+        then  echo Test passed ;
+        else  echo Test Failed SEE : diff -w  $3 $3.ref ;
+        fi;
+      fi;
+fi;
+echo ---------------------------------------------------------- 
+rm -f /tmp/$2.$$ /tmp/$2.$$.res /tmp/$2.$$.err /tmp/$2.$$.diff
+exit 0
+

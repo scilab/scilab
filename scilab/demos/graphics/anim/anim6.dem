@@ -1,0 +1,12 @@
+// Copyright INRIA
+mode(1)
+xselect();  //raise the graphic window
+kp=xget("pixmap");xset("pixmap",1)
+getf('SCI/demos/anim/anim6.sci');
+n=10;
+r=1*ones(1,n);m=1*ones(1,n);j=1*ones(1,n);g=9.81;
+y0=0*ones(2*n,1);
+yt=read('SCI/demos/npend/yt.wrt',20,201);  //load data
+chainap(yt); //draw the animation
+xset("pixmap",kp);
+

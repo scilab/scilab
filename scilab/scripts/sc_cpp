@@ -1,0 +1,1153 @@
+#! /bin/sh
+
+# ************************* GET THE ARGUMENTS ***********************
+
+MY_CXX=$1
+FILES=
+i=2
+while [ "$#" -ne 1 ]
+do
+  FILES="$FILES $2"
+  shift
+done
+
+# *********************** LOOK FOR A C++ COMPILER *******************
+
+# File descriptor usage:
+# 0 standard input
+# 1 file creation
+# 2 errors and warnings
+# 3 some systems may open it to /dev/tty
+# 4 used on the Kubota Titan
+# 6 checking for... messages and results
+# 5 compiler messages saved in sc_cpp.log
+
+trap '' 1 2 15
+
+if test "$silent" = yes; then
+  exec 6>/dev/null
+else
+  exec 6>&1
+fi
+exec 5>./sc_cpp.log
+
+# AIX cpp loses on an empty file, so make sure it contains at least a newline.
+echo > confdefs.h
+
+trap 'rm -fr conftest* confdefs* core core.* *.core $ac_clean_files; exit 1' 1 2 15
+
+trap 'rm -f $CONFIG_STATUS conftest*; exit 1' 1 2 15
+
+# Find the source files, if location was not specified.
+if test -z "$srcdir"; then
+  ac_srcdir_defaulted=yes
+  # Try the directory containing this script, then its parent.
+  ac_prog=$0
+  ac_confdir=`echo $ac_prog|sed 's%/[^/][^/]*$%%'`
+  test "x$ac_confdir" = "x$ac_prog" && ac_confdir=.
+  srcdir=$ac_confdir
+  if test ! -r $srcdir/$ac_unique_file; then
+    srcdir=..
+  fi
+else
+  ac_srcdir_defaulted=no
+fi
+if test ! -r $srcdir/$ac_unique_file; then
+  if test "$ac_srcdir_defaulted" = yes; then
+    { echo "error: can not find sources in $ac_confdir or .." 1>&2; exit 1; }
+  else
+    { echo "error: can not find sources in $srcdir" 1>&2; exit 1; }
+  fi
+fi
+srcdir=`echo "${srcdir}" | sed 's%\([^/]\)/*$%\1%'`
+
+ac_ext=c
+# CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+ac_link='${CC-cc} -o conftest $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+
+if (echo "testing\c"; echo 1,2,3) | grep c >/dev/null; then
+  # Stardent Vistra SVR4 grep lacks -e, says ghazi@caip.rutgers.edu.
+  if (echo -n testing; echo 1,2,3) | sed s/-n/xn/ | grep xn >/dev/null; then
+    ac_n= ac_c='
+' ac_t='	'
+  else
+    ac_n=-n ac_c= ac_t=
+  fi
+else
+  ac_n= ac_c='\c' ac_t=
+fi
+
+# Check if you must use the user's C++ compiler
+if test $MY_CXX != none; then
+  CXX="$MY_CXX"
+else
+  for ac_prog in $CCC c++ g++ gcc CC cxx cc++
+  do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+  set dummy $ac_prog; ac_word=$2
+  echo "checking for $ac_word" >&5
+  if eval "test \"`echo '$''{'ac_cv_prog_CXX'+set}'`\" = set"; then
+    echo $ac_n "(cached) $ac_c" 1>&5
+  else
+    if test -n "$CXX"; then
+    ac_cv_prog_CXX="$CXX" # Let the user override the test.
+  else
+    IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS="${IFS}:"
+    for ac_dir in $PATH; do
+      test -z "$ac_dir" && ac_dir=.
+      if test -f $ac_dir/$ac_word; then
+        ac_cv_prog_CXX="$ac_prog"
+        break
+      fi
+    done
+    IFS="$ac_save_ifs"
+  fi
+  fi
+  CXX="$ac_cv_prog_CXX"
+  if test -n "$CXX"; then
+    echo "$ac_t""$CXX" 1>&5
+  else
+    echo "$ac_t""no" 1>&5
+  fi
+
+  test -n "$CXX" && break
+  done
+
+  if test -z "$CXX"; then 
+  echo "None C++ compiler detect"
+  exit 10;
+  fi
+fi
+
+#echo $ac_n "checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) works""... $ac_c" 1>&6
+echo "checking whether the C++ compiler ($CXX) works" >&5
+
+ac_ext=C
+# CXXFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
+ac_cpp='$CXXCPP $CPPFLAGS'
+ac_compile='${CXX-g++} -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+ac_link='${CXX-g++} -o conftest $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+
+cat > conftest.$ac_ext <<EOF
+#include "confdefs.h"
+main(){return(0);}
+EOF
+if (eval $ac_link) && test -s conftest; then
+  ac_cv_prog_cxx_works=yes
+else
+  echo "failed program was:" >&5
+  cat conftest.$ac_ext >&5
+  ac_cv_prog_cxx_works=no
+fi
+rm -fr conftest*
+ac_ext=c
+# CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+ac_link='${CC-cc} -o conftest $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+
+echo "$ac_t""$ac_cv_prog_cxx_works" 1>&5
+if test $ac_cv_prog_cxx_works = no; then
+  { echo "error: installation or configuration problem: C++ compiler cannot create executables." 1>&2; exit 1; }
+fi
+
+
+echo "checking whether we are using GNU C++" >&5
+if eval "test \"`echo '$''{'ac_cv_prog_gxx'+set}'`\" = set"; then
+  echo $ac_n "(cached) $ac_c" 1>&5
+else
+  cat > conftest.C <<EOF
+#ifdef __GNUC__
+  yes;
+#endif
+EOF
+if { ac_try='${CXX-g++} -E conftest.C'; {(eval $ac_try); }; } | egrep yes >/dev/null 2>&1; then
+  ac_cv_prog_gxx=yes
+else
+  ac_cv_prog_gxx=no
+fi
+fi
+
+echo "$ac_t""$ac_cv_prog_gxx" 1>&5
+
+if test $ac_cv_prog_gxx = yes; then
+  GXX=yes
+  ac_test_CXXFLAGS="${CXXFLAGS+set}"
+  ac_save_CXXFLAGS="$CXXFLAGS"
+  CXXFLAGS=
+
+echo "checking whether ${CXX-g++} accepts -g" >&5
+if eval "test \"`echo '$''{'ac_cv_prog_cxx_g'+set}'`\" = set"; then
+  echo $ac_n "(cached) $ac_c" 1>&5
+else
+  echo 'void f(){}' > conftest.cc
+if test -z "`${CXX-g++} -g -c conftest.cc 2>&1`"; then
+  ac_cv_prog_cxx_g=yes
+else
+  ac_cv_prog_cxx_g=no
+fi
+rm -f conftest*
+
+fi
+
+echo "$ac_t""$ac_cv_prog_cxx_g" 1>&5
+  if test "$ac_test_CXXFLAGS" = set; then
+    CXXFLAGS="$ac_save_CXXFLAGS"
+  elif test $ac_cv_prog_cxx_g = yes; then
+    CXXFLAGS="-g -O2"
+  else
+    CXXFLAGS="-O2"
+  fi
+else
+  GXX=
+  test "${CXXFLAGS+set}" = set || CXXFLAGS="-g"
+fi
+
+rm -f confdefs.h
+
+# ***************** LOOK FOR THE HOST SYSTEM TYPE ******************
+
+# Use $HOST_CC if defined. $CC may point to a cross-compiler
+if test x"$CC_FOR_BUILD" = x; then
+  if test x"$HOST_CC" != x; then
+    CC_FOR_BUILD="$HOST_CC"
+  else
+    if test x"$CC" != x; then
+      CC_FOR_BUILD="$CC"
+    else
+      CC_FOR_BUILD=cc
+    fi
+  fi
+fi
+# This is needed to find uname on a Pyramid OSx when run in the BSD universe.
+# (ghazi@noc.rutgers.edu 8/24/94.)
+if (test -f /.attbin/uname) >/dev/null 2>&1 ; then
+	PATH=$PATH:/.attbin ; export PATH
+fi
+
+UNAME_MACHINE=`(uname -m) 2>/dev/null` || UNAME_MACHINE=unknown
+UNAME_RELEASE=`(uname -r) 2>/dev/null` || UNAME_RELEASE=unknown
+UNAME_SYSTEM=`(uname -s) 2>/dev/null` || UNAME_SYSTEM=unknown
+UNAME_VERSION=`(uname -v) 2>/dev/null` || UNAME_VERSION=unknown
+
+trap 'rm -f $dummy.c $dummy.o $dummy; exit 1' 1 2 15
+
+# Note: order is significant - the case branches are not exclusive.
+dummy=dummy-$$
+
+case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
+    alpha:OSF1:*:*)
+	if test $UNAME_RELEASE = "V4.0"; then
+		UNAME_RELEASE=`/usr/sbin/sizer -v | awk '{print $3}'`
+	fi
+	# A Vn.n version is a released version.
+	# A Tn.n version is a released field test version.
+	# A Xn.n version is an unreleased experimental baselevel.
+	# 1.2 uses "1.2" for uname -r.
+	cat <<EOF >$dummy.s
+	.globl main
+	.ent main
+main:
+	.frame \$30,0,\$26,0
+	.prologue 0
+	.long 0x47e03d80 # implver $0
+	lda \$2,259
+	.long 0x47e20c21 # amask $2,$1
+	srl \$1,8,\$2
+	sll \$2,2,\$2
+	sll \$0,3,\$0
+	addl \$1,\$0,\$0
+	addl \$2,\$0,\$0
+	ret \$31,(\$26),1
+	.end main
+EOF
+	$CC_FOR_BUILD $dummy.s -o $dummy 2>/dev/null
+	if test "$?" = 0 ; then
+		./$dummy
+		case "$?" in
+			7)
+				UNAME_MACHINE="alpha"
+				;;
+			15)
+				UNAME_MACHINE="alphaev5"
+				;;
+			14)
+				UNAME_MACHINE="alphaev56"
+				;;
+			10)
+				UNAME_MACHINE="alphapca56"
+				;;
+			16)
+				UNAME_MACHINE="alphaev6"
+				;;
+		esac
+	fi
+	rm -f $dummy.s $dummy
+	host="${UNAME_MACHINE}-dec-osf`echo ${UNAME_RELEASE} | sed -e 's/^[VTX]//' | tr [[A-Z]] [[a-z]]`"
+	;;
+    21064:Windows_NT:50:3)
+	host="alpha-dec-winnt3.5"
+	;;
+    Amiga*:UNIX_System_V:4.0:*)
+	host="m68k-cbm-sysv4"
+	;;
+    amiga:NetBSD:*:*)
+      host="m68k-cbm-netbsd${UNAME_RELEASE}"
+      ;;
+    amiga:OpenBSD:*:*)
+	host="m68k-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    *:[Aa]miga[Oo][Ss]:*:*)
+	host="${UNAME_MACHINE}-unknown-amigaos"
+	;;
+    arc64:OpenBSD:*:*)
+	host="mips64el-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    arc:OpenBSD:*:*)
+	host="mipsel-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    hkmips:OpenBSD:*:*)
+	host="mips-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    pmax:OpenBSD:*:*)
+	host="mipsel-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    sgi:OpenBSD:*:*)
+	host="mips-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    wgrisc:OpenBSD:*:*)
+	host="mipsel-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    arm:RISC*:1.[012]*:*|arm:riscix:1.[012]*:*)
+	host="arm-acorn-riscix${UNAME_RELEASE}"
+	;;
+    arm32:NetBSD:*:*)
+	host="arm-unknown-netbsd`echo ${UNAME_RELEASE}|sed -e 's/[-_].*/\./'`"
+	;;
+    SR2?01:HI-UX/MPP:*:*)
+	host="hppa1.1-hitachi-hiuxmpp"
+        ;;
+    Pyramid*:OSx*:*:*|MIS*:OSx*:*:*|MIS*:SMP_DC-OSx*:*:*)
+	# akee@wpdis03.wpafb.af.mil (Earle F. Ake) contributed MIS and NILE.
+	if test "`(/bin/universe) 2>/dev/null`" = att ; then
+		host="pyramid-pyramid-sysv3"
+	else
+		host="pyramid-pyramid-bsd"
+	fi
+	;;
+    NILE*:*:*:dcosx)
+	host="pyramid-pyramid-svr4"
+	;;
+    sun4H:SunOS:5.*:*)
+	host="sparc-hal-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`"
+	;;
+    sun4*:SunOS:5.*:* | tadpole*:SunOS:5.*:*)
+	host="sparc-sun-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`"
+	;;
+    i86pc:SunOS:5.*:*)
+	host="i386-pc-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`"
+	;;
+    sun4*:SunOS:6*:*)
+	# According to config.sub, this is the proper way to canonicalize
+	# SunOS6.  Hard to guess exactly what SunOS6 will be like, but
+	# it's likely to be more like Solaris than SunOS4.
+	host="sparc-sun-solaris3`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`"
+	;;
+    sun4*:SunOS:*:*)
+	case "`/usr/bin/arch -k`" in
+	    Series*|S4*)
+		UNAME_RELEASE=`uname -v`
+		;;
+	esac
+	# Japanese Language versions have a version number like `4.1.3-JL'.
+	host="sparc-sun-sunos`echo ${UNAME_RELEASE}|sed -e 's/-/_/'`"
+	;;
+    sun3*:SunOS:*:*)
+	host="m68k-sun-sunos${UNAME_RELEASE}"
+	;;
+    sun*:*:4.2BSD:*)
+	UNAME_RELEASE=`(head -1 /etc/motd | awk '{print substr($5,1,3)}') 2>/dev/null`
+	test "x${UNAME_RELEASE}" = "x" && UNAME_RELEASE=3
+	case "`/bin/arch`" in
+	    sun3)
+		host="m68k-sun-sunos${UNAME_RELEASE}"
+		;;
+	    sun4)
+		host="sparc-sun-sunos${UNAME_RELEASE}"
+		;;
+	esac
+	;;
+    aushp:SunOS:*:*)
+	host="sparc-auspex-sunos${UNAME_RELEASE}"
+	;;
+    atari*:NetBSD:*:*)
+	host="m68k-atari-netbsd${UNAME_RELEASE}"
+	;;
+    atari*:OpenBSD:*:*)
+	host="m68k-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    # The situation for MiNT is a little confusing.  The machine name
+    # can be virtually everything (everything which is not
+    # "atarist" or "atariste" at least should have a processor 
+    # > m68000).  The system name ranges from "MiNT" over "FreeMiNT"
+    # to the lowercase version "mint" (or "freemint").  Finally
+    # the system name "TOS" denotes a system which is actually not
+    # MiNT.  But MiNT is downward compatible to TOS, so this should
+    # be no problem.
+    atarist[e]:*MiNT:*:* | atarist[e]:*mint:*:* | atarist[e]:*TOS:*:*)
+        host="m68k-atari-mint${UNAME_RELEASE}"
+	;;
+    atari*:*MiNT:*:* | atari*:*mint:*:* | atarist[e]:*TOS:*:*)
+	host="m68k-atari-mint${UNAME_RELEASE}"
+        ;;
+    *falcon*:*MiNT:*:* | *falcon*:*mint:*:* | *falcon*:*TOS:*:*)
+        host="m68k-atari-mint${UNAME_RELEASE}"
+        ;;
+    milan*:*MiNT:*:* | milan*:*mint:*:* | *milan*:*TOS:*:*)
+        host="m68k-milan-mint${UNAME_RELEASE}"
+        ;;
+    hades*:*MiNT:*:* | hades*:*mint:*:* | *hades*:*TOS:*:*)
+        host="m68k-hades-mint${UNAME_RELEASE}"
+        ;;
+    *:*MiNT:*:* | *:*mint:*:* | *:*TOS:*:*)
+        host="m68k-unknown-mint${UNAME_RELEASE}"
+        ;;
+    sun3*:NetBSD:*:*)
+	host="m68k-sun-netbsd${UNAME_RELEASE}"
+	;;
+    sun3*:OpenBSD:*:*)
+	host="m68k-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    mac68k:NetBSD:*:*)
+	host="m68k-apple-netbsd${UNAME_RELEASE}"
+	;;
+    mac68k:OpenBSD:*:*)
+	host="m68k-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    mvme68k:OpenBSD:*:*)
+	host="m68k-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    mvme88k:OpenBSD:*:*)
+	host="m88k-unknown-openbsd${UNAME_RELEASE}"
+	;;
+    powerpc:machten:*:*)
+	host="powerpc-apple-machten${UNAME_RELEASE}"
+	;;
+    macppc:NetBSD:*:*)
+        host="powerpc-apple-netbsd${UNAME_RELEASE}"
+        ;;
+    RISC*:Mach:*:*)
+	host="mips-dec-mach_bsd4.3"
+	;;
+    RISC*:ULTRIX:*:*)
+	host="mips-dec-ultrix${UNAME_RELEASE}"
+	;;
+    VAX*:ULTRIX*:*:*)
+	host="vax-dec-ultrix${UNAME_RELEASE}"
+	;;
+    2020:CLIX:*:* | 2430:CLIX:*:*)
+	host="clipper-intergraph-clix${UNAME_RELEASE}"
+	;;
+    mips:*:*:UMIPS | mips:*:*:RISCos)
+	sed 's/^	//' << EOF >$dummy.c
+#ifdef __cplusplus
+	int main (int argc, char *argv[]) {
+#else
+	int main (argc, argv) int argc; char *argv[]; {
+#endif
+	#if defined (host_mips) && defined (MIPSEB)
+	#if defined (SYSTYPE_SYSV)
+	  printf ("mips-mips-riscos%ssysv\n", argv[1]); exit (0);
+	#endif
+	#if defined (SYSTYPE_SVR4)
+	  printf ("mips-mips-riscos%ssvr4\n", argv[1]); exit (0);
+	#endif
+	#if defined (SYSTYPE_BSD43) || defined(SYSTYPE_BSD)
+	  printf ("mips-mips-riscos%sbsd\n", argv[1]); exit (0);
+	#endif
+	#endif
+	  exit (-1);
+	}
+EOF
+	$CC_FOR_BUILD $dummy.c -o $dummy \
+	  && ./$dummy `echo "${UNAME_RELEASE}" | sed -n 's/\([0-9]*\).*/\1/p'` \
+	  && rm $dummy.c $dummy
+	rm -f $dummy.c $dummy
+	host="mips-mips-riscos${UNAME_RELEASE}"
+	;;
+    Night_Hawk:Power_UNIX:*:*)
+	host="powerpc-harris-powerunix"
+	;;
+    m88k:CX/UX:7*:*)
+	host="m88k-harris-cxux7"
+	;;
+    m88k:*:4*:R4*)
+	host="m88k-motorola-sysv4"
+	;;
+    m88k:*:3*:R3*)
+	host="m88k-motorola-sysv3"
+	;;
+    AViiON:dgux:*:*)
+        # DG/UX returns AViiON for all architectures
+        UNAME_PROCESSOR=`/usr/bin/uname -p`
+        if [ $UNAME_PROCESSOR = mc88100 -o $UNAME_PROCESSOR = mc88110 ] ; then
+	if [ ${TARGET_BINARY_INTERFACE}x = m88kdguxelfx \
+	     -o ${TARGET_BINARY_INTERFACE}x = x ] ; then
+		host="m88k-dg-dgux${UNAME_RELEASE}"
+	else
+		host="m88k-dg-dguxbcs${UNAME_RELEASE}"
+	fi
+        else host="i586-dg-dgux${UNAME_RELEASE}"
+        fi
+ 	;;
+    M88*:DolphinOS:*:*)	# DolphinOS (SVR3)
+	host="m88k-dolphin-sysv3"
+	;;
+    M88*:*:R3*:*)
+	# Delta 88k system running SVR3
+	host="m88k-motorola-sysv3"
+	;;
+    XD88*:*:*:*) # Tektronix XD88 system running UTekV (SVR3)
+	host="m88k-tektronix-sysv3"
+	;;
+    Tek43[0-9][0-9]:UTek:*:*) # Tektronix 4300 system running UTek (BSD)
+	host="m68k-tektronix-bsd"
+	;;
+    *:IRIX*:*:*)
+	host="mips-sgi-irix`echo ${UNAME_RELEASE}|sed -e 's/-/_/g'`"
+        ;;
+    ????????:AIX?:[12].1:2)   # AIX 2.2.1 or AIX 2.1.1 is RT/PC AIX.
+	host="romp-ibm-aix" # uname -m gives an 8 hex-code CPU id
+	;;              # Note that: echo "'`uname -s`'" gives 'AIX '
+    i?86:AIX:*:*)
+	host="i386-ibm-aix"
+	;;
+    *:AIX:2:3)
+	if grep bos325 /usr/include/stdio.h >/dev/null 2>&1; then
+		sed 's/^		//' << EOF >$dummy.c
+		#include <sys/systemcfg.h>
+
+		main()
+			{
+			if (!__power_pc())
+				exit(1);
+			puts("powerpc-ibm-aix3.2.5");
+			break;
+			}
+EOF
+		$CC_FOR_BUILD $dummy.c -o $dummy && ./$dummy && rm $dummy.c $dummy
+		rm -f $dummy.c $dummy
+		host="rs6000-ibm-aix3.2.5"
+	elif grep bos324 /usr/include/stdio.h >/dev/null 2>&1; then
+		host="rs6000-ibm-aix3.2.4"
+	else
+		host="rs6000-ibm-aix3.2"
+	fi
+	;;
+    *:AIX:*:4)
+	IBM_CPU_ID=`/usr/sbin/lsdev -C -c processor -S available | head -1 | awk '{ print $1 }'`
+	if /usr/sbin/lsattr -EHl ${IBM_CPU_ID} | grep POWER >/dev/null 2>&1; then
+		IBM_ARCH=rs6000
+	else
+		IBM_ARCH=powerpc
+	fi
+	if [ -x /usr/bin/oslevel ] ; then
+		IBM_REV=`/usr/bin/oslevel`
+	else
+		IBM_REV=4.${UNAME_RELEASE}
+	fi
+	host="${IBM_ARCH}-ibm-aix${IBM_REV}"
+	;;
+    *:AIX:*:*)
+	host="rs6000-ibm-aix"
+	;;
+    ibmrt:4.4BSD:*|romp-ibm:BSD:*)
+	host="romp-ibm-bsd4.4"
+	;;
+    ibmrt:*BSD:*|romp-ibm:BSD:*)            # covers RT/PC NetBSD and
+	host="romp-ibm-bsd${UNAME_RELEASE}" # 4.3 with uname added to
+	;;                           # report: romp-ibm BSD 4.3
+    *:BOSX:*:*)
+	host="rs6000-bull-bosx"
+	;;
+    DPX/2?00:B.O.S.:*:*)
+	host="m68k-bull-sysv3"
+	;;
+    9000/[34]??:4.3bsd:1.*:*)
+	host="m68k-hp-bsd"
+	;;
+    hp300:4.4BSD:*:* | 9000/[34]??:4.3bsd:2.*:*)
+	host="m68k-hp-bsd4.4"
+	;;
+    9000/[34678]??:HP-UX:*:*)
+	case "${UNAME_MACHINE}" in
+	    9000/31? )            HP_ARCH=m68000 ;;
+	    9000/[34]?? )         HP_ARCH=m68k ;;
+	    9000/6?? | 9000/7?? | 9000/80[024] | 9000/8?[136790] | 9000/892 )
+              sed 's/^              //' << EOF >$dummy.c
+              #include <stdlib.h>
+              #include <unistd.h>
+
+              int main ()
+              {
+              #if defined(_SC_KERNEL_BITS)
+                  long bits = sysconf(_SC_KERNEL_BITS);
+              #endif
+                  long cpu  = sysconf (_SC_CPU_VERSION);
+
+                  switch (cpu)
+              	{
+              	case CPU_PA_RISC1_0: puts ("hppa1.0"); break;
+              	case CPU_PA_RISC1_1: puts ("hppa1.1"); break;
+              	case CPU_PA_RISC2_0:
+              #if defined(_SC_KERNEL_BITS)
+              	    switch (bits)
+              		{
+              		case 64: puts ("hppa2.0w"); break;
+              		case 32: puts ("hppa2.0n"); break;
+              		default: puts ("hppa2.0"); break;
+              		} break;
+              #else  /* !defined(_SC_KERNEL_BITS) */
+              	    puts ("hppa2.0"); break;
+              #endif
+              	default: puts ("hppa1.0"); break;
+              	}
+                  exit (0);
+              }
+EOF
+	($CC_FOR_BUILD $dummy.c -o $dummy 2>/dev/null ) && HP_ARCH=`./$dummy`
+	rm -f $dummy.c $dummy
+	esac
+	HPUX_REV=`echo ${UNAME_RELEASE}|sed -e 's/[^.]*.[0B]*//'`
+	host="${HP_ARCH}-hp-hpux${HPUX_REV}"
+	;;
+    3050*:HI-UX:*:*)
+	sed 's/^	//' << EOF >$dummy.c
+	#include <unistd.h>
+	int
+	main ()
+	{
+	  long cpu = sysconf (_SC_CPU_VERSION);
+	  /* The order matters, because CPU_IS_HP_MC68K erroneously returns
+	     true for CPU_PA_RISC1_0.  CPU_IS_PA_RISC returns correct
+	     results, however.  */
+	  if (CPU_IS_PA_RISC (cpu))
+	    {
+	      switch (cpu)
+		{
+		  case CPU_PA_RISC1_0: puts ("hppa1.0-hitachi-hiuxwe2"); break;
+		  case CPU_PA_RISC1_1: puts ("hppa1.1-hitachi-hiuxwe2"); break;
+		  case CPU_PA_RISC2_0: puts ("hppa2.0-hitachi-hiuxwe2"); break;
+		  default: puts ("hppa-hitachi-hiuxwe2"); break;
+		}
+	    }
+	  else if (CPU_IS_HP_MC68K (cpu))
+	    puts ("m68k-hitachi-hiuxwe2");
+	  else puts ("unknown-hitachi-hiuxwe2");
+	  exit (0);
+	}
+EOF
+	$CC_FOR_BUILD $dummy.c -o $dummy && ./$dummy && rm $dummy.c $dummy
+	rm -f $dummy.c $dummy
+	host="unknown-hitachi-hiuxwe2"
+	;;
+    9000/7??:4.3bsd:*:* | 9000/8?[79]:4.3bsd:*:* )
+	host="hppa1.1-hp-bsd"
+	;;
+    9000/8??:4.3bsd:*:*)
+	host="hppa1.0-hp-bsd"
+	;;
+    *9??*:MPE*:*:*)
+	host="hppa1.0-hp-mpeix"
+	;;
+    hp7??:OSF1:*:* | hp8?[79]:OSF1:*:* )
+	host="hppa1.1-hp-osf"
+	;;
+    hp8??:OSF1:*:*)
+	host="hppa1.0-hp-osf"
+	;;
+    i?86:OSF1:*:*)
+	if [ -x /usr/sbin/sysversion ] ; then
+	    host="${UNAME_MACHINE}-unknown-osf1mk"
+	else
+	    host="${UNAME_MACHINE}-unknown-osf1"
+	fi
+	;;
+    parisc*:Lites*:*:*)
+	host="hppa1.1-hp-lites"
+	;;
+    C1*:ConvexOS:*:* | convex:ConvexOS:C1*:*)
+	host="c1-convex-bsd"
+        ;;
+    C2*:ConvexOS:*:* | convex:ConvexOS:C2*:*)
+	if getsysinfo -f scalar_acc
+	then host="c32-convex-bsd"
+	else host="c2-convex-bsd"
+	fi
+        ;;
+    C34*:ConvexOS:*:* | convex:ConvexOS:C34*:*)
+	host="c34-convex-bsd"
+        ;;
+    C38*:ConvexOS:*:* | convex:ConvexOS:C38*:*)
+	host="c38-convex-bsd"
+        ;;
+    C4*:ConvexOS:*:* | convex:ConvexOS:C4*:*)
+	host="c4-convex-bsd"
+        ;;
+    CRAY*X-MP:*:*:*)
+	host="xmp-cray-unicos"
+        ;;
+    CRAY*Y-MP:*:*:*)
+	host="ymp-cray-unicos${UNAME_RELEASE}"
+	;;
+    CRAY*[A-Z]90:*:*:*)
+	host="${UNAME_MACHINE}-cray-unicos${UNAME_RELEASE} \
+	| sed -e 's/CRAY.*\([A-Z]90\)/\1/' \
+	      -e y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz"/
+	;;
+    CRAY*TS:*:*:*)
+	host="t90-cray-unicos${UNAME_RELEASE}"
+	;;
+    CRAY*T3E:*:*:*)
+	host="t3e-cray-unicosmk${UNAME_RELEASE}"
+	;;
+    CRAY-2:*:*:*)
+	host="cray2-cray-unicos"
+        ;;
+    F300:UNIX_System_V:*:*)
+        FUJITSU_SYS=`uname -p | tr [A-Z] [a-z] | sed -e 's/\///'`
+        FUJITSU_REL=`echo ${UNAME_RELEASE} | sed -e 's/ /_/'`
+        host="f300-fujitsu-${FUJITSU_SYS}${FUJITSU_REL}"
+        ;;
+    F301:UNIX_System_V:*:*)
+       host="f301-fujitsu-uxpv`echo $UNAME_RELEASE | sed 's/ .*//'`"
+       ;;
+    hp3[0-9][05]:NetBSD:*:*)
+	host="m68k-hp-netbsd${UNAME_RELEASE}"
+	;;
+    hp300:OpenBSD:*:*)
+	host="m68k-unknown-openbsd${UNAME_RELEASE}"
+        ;;
+    sparc*:BSD/OS:*:*)
+	host="sparc-unknown-bsdi${UNAME_RELEASE}"
+	;;
+    i?86:BSD/386:*:* | i?86:BSD/OS:*:*)
+	host="${UNAME_MACHINE}-pc-bsdi${UNAME_RELEASE}"
+	;;
+    *:BSD/OS:*:*)
+	host="${UNAME_MACHINE}-unknown-bsdi${UNAME_RELEASE}"
+	;;
+    *:FreeBSD:*:*)
+	if test -x /usr/bin/objformat; then
+	    if test "elf" = "`/usr/bin/objformat`"; then
+		host="${UNAME_MACHINE}-unknown-freebsdelf`echo ${UNAME_RELEASE}|sed -e 's/[-_].*//'`"
+	    fi
+	fi
+	host="${UNAME_MACHINE}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`"
+	;;
+    *:NetBSD:*:*)
+	host="${UNAME_MACHINE}-unknown-netbsd`echo ${UNAME_RELEASE}|sed -e 's/[-_].*/\./'`"
+	;;
+    *:OpenBSD:*:*)
+	host="${UNAME_MACHINE}-unknown-openbsd`echo ${UNAME_RELEASE}|sed -e 's/[-_].*/\./'`"
+	;;
+    i*:CYGWIN*:*)
+	host="${UNAME_MACHINE}-pc-cygwin"
+	;;
+    i*:MINGW*:*)
+	host="${UNAME_MACHINE}-pc-mingw32"
+	;;
+    p*:CYGWIN*:*)
+	host="powerpcle-unknown-cygwin"
+	;;
+    prep*:SunOS:5.*:*)
+	host="powerpcle-unknown-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`"
+	;;
+    *:GNU:*:*)
+	host="`echo ${UNAME_MACHINE}|sed -e 's,[-/].*$,,'`-unknown-gnu`echo ${UNAME_RELEASE}|sed -e 's,/.*$,,'`"
+	;;
+    *:Linux:*:*)
+	# uname on the ARM produces all sorts of strangeness, and we need to
+	# filter it out.
+	case "$UNAME_MACHINE" in
+	  armv*)		      UNAME_MACHINE=$UNAME_MACHINE ;;
+	  arm* | sa110*)	      UNAME_MACHINE="arm" ;;
+	esac
+
+	# The BFD linker knows what the default object file format is, so
+	# first see if it will tell us. cd to the root directory to prevent
+	# problems with other programs or directories called `ld' in the path.
+	ld_help_string=`cd /; ld --help 2>&1`
+	ld_supported_emulations=`echo $ld_help_string \
+			 | sed -ne '/supported emulations:/!d
+				    s/[ 	][ 	]*/ /g
+				    s/.*supported emulations: *//
+				    s/ .*//
+				    p'`
+        case "$ld_supported_emulations" in
+	  i?86linux)  host="${UNAME_MACHINE}-pc-linux-gnuaout";;
+	  i?86coff)   host="${UNAME_MACHINE}-pc-linux-gnucoff";;
+	  sparclinux) host="${UNAME_MACHINE}-unknown-linux-gnuaout";;
+	  armlinux)   host="${UNAME_MACHINE}-unknown-linux-gnuaout" ;;
+	  m68klinux)  host="${UNAME_MACHINE}-unknown-linux-gnuaout";;
+	  elf32ppc)   host="powerpc-unknown-linux-gnu";;
+	esac
+
+	if test "${UNAME_MACHINE}" = "alpha" ; then
+		sed 's/^	//'  <<EOF >$dummy.s
+		.globl main
+		.ent main
+	main:
+		.frame \$30,0,\$26,0
+		.prologue 0
+		.long 0x47e03d80 # implver $0
+		lda \$2,259
+		.long 0x47e20c21 # amask $2,$1
+		srl \$1,8,\$2
+		sll \$2,2,\$2
+		sll \$0,3,\$0
+		addl \$1,\$0,\$0
+		addl \$2,\$0,\$0
+		ret \$31,(\$26),1
+		.end main
+EOF
+		LIBC=""
+		$CC_FOR_BUILD $dummy.s -o $dummy 2>/dev/null
+		if test "$?" = 0 ; then
+			./$dummy
+			case "$?" in
+			7)
+				UNAME_MACHINE="alpha"
+				;;
+			15)
+				UNAME_MACHINE="alphaev5"
+				;;
+			14)
+				UNAME_MACHINE="alphaev56"
+				;;
+			10)
+				UNAME_MACHINE="alphapca56"
+				;;
+			16)
+				UNAME_MACHINE="alphaev6"
+				;;
+			esac
+
+			objdump --private-headers $dummy | \
+			  grep ld.so.1 > /dev/null
+			if test "$?" = 0 ; then
+				LIBC="libc1"
+			fi
+		fi
+		rm -f $dummy.s $dummy
+	        host="${UNAME_MACHINE}-unknown-linux-gnu${LIBC}";
+	elif test "${UNAME_MACHINE}" = "mips" ; then
+	  cat >$dummy.c <<EOF
+#ifdef __cplusplus
+	int main (int argc, char *argv[]) {
+#else
+	int main (argc, argv) int argc; char *argv[]; {
+#endif
+#ifdef __MIPSEB__
+  printf ("%s-unknown-linux-gnu\n", argv[1]);
+#endif
+#ifdef __MIPSEL__
+  printf ("%sel-unknown-linux-gnu\n", argv[1]);
+#endif
+  return 0;
+}
+EOF
+	  $CC_FOR_BUILD $dummy.c -o $dummy 2>/dev/null && host=`./$dummy "${UNAME_MACHINE}"` && rm $dummy.c $dummy
+	  rm -f $dummy.c $dummy
+	else
+	  # Either a pre-BFD a.out linker (linux-gnuoldld)
+	  # or one that does not give us useful --help.
+	  # GCC wants to distinguish between linux-gnuoldld and linux-gnuaout.
+	  # If ld does not provide *any* "supported emulations:"
+	  # that means it is gnuoldld.
+	  echo "$ld_help_string" | grep >/dev/null 2>&1 "supported emulations:"
+	  test $? != 0 && host="${UNAME_MACHINE}-pc-linux-gnuoldld"
+	  case "${UNAME_MACHINE}" in
+	  i?86)
+	    VENDOR=pc;
+	    ;;
+	  *)
+	    VENDOR=unknown;
+	    ;;
+	  esac
+	  # Determine whether the default compiler is a.out or elf
+	  cat >$dummy.c <<EOF
+#include <features.h>
+#ifdef __cplusplus
+	int main (int argc, char *argv[]) {
+#else
+	int main (argc, argv) int argc; char *argv[]; {
+#endif
+#ifdef __ELF__
+# ifdef __GLIBC__
+#  if __GLIBC__ >= 2
+    printf ("%s-${VENDOR}-linux-gnu\n", argv[1]);
+#  else
+    printf ("%s-${VENDOR}-linux-gnulibc1\n", argv[1]);
+#  endif
+# else
+   printf ("%s-${VENDOR}-linux-gnulibc1\n", argv[1]);
+# endif
+#else
+  printf ("%s-${VENDOR}-linux-gnuaout\n", argv[1]);
+#endif
+  return 0;
+}
+EOF
+	  $CC_FOR_BUILD $dummy.c -o $dummy 2>/dev/null && host=`./$dummy "${UNAME_MACHINE}"` && rm -f $dummy.c $dummy
+	fi ;;
+# ptx 4.0 does uname -s correctly, with DYNIX/ptx in there.  earlier versions
+# are messed up and put the nodename in both sysname and nodename.
+    i?86:DYNIX/ptx:4*:*)
+	host="i386-sequent-sysv4"
+	;;
+    i?86:UNIX_SV:4.2MP:2.*)
+        # Unixware is an offshoot of SVR4, but it has its own version
+        # number series starting with 2...
+        # I am not positive that other SVR4 systems won't match this,
+	# I just have to hope.  -- rms.
+        # Use sysv4.2uw... so that sysv4* matches it.
+	host="${UNAME_MACHINE}-pc-sysv4.2uw${UNAME_VERSION}"
+	;;
+    i?86:*:4.*:* | i?86:SYSTEM_V:4.*:*)
+	if grep Novell /usr/include/link.h >/dev/null 2>/dev/null; then
+		host="${UNAME_MACHINE}-univel-sysv${UNAME_RELEASE}"
+	else
+		host="${UNAME_MACHINE}-pc-sysv${UNAME_RELEASE}"
+	fi
+	;;
+    i?86:*:3.2:*)
+	if test -f /usr/options/cb.name; then
+		UNAME_REL=`sed -n 's/.*Version //p' </usr/options/cb.name`
+		host="${UNAME_MACHINE}-pc-isc$UNAME_REL"
+	elif /bin/uname -X 2>/dev/null >/dev/null ; then
+		UNAME_REL=`(/bin/uname -X|egrep Release|sed -e 's/.*= //')`
+		(/bin/uname -X|egrep i80486 >/dev/null) && UNAME_MACHINE=i486
+		(/bin/uname -X|egrep '^Machine.*Pentium' >/dev/null) \
+			&& UNAME_MACHINE=i586
+		host="${UNAME_MACHINE}-pc-sco$UNAME_REL"
+	else
+		host="${UNAME_MACHINE}-pc-sysv32"
+	fi
+	;;
+    i?86:UnixWare:*:*)
+	if /bin/uname -X 2>/dev/null >/dev/null ; then
+	  (/bin/uname -X|egrep '^Machine.*Pentium' >/dev/null) \
+	    && UNAME_MACHINE=i586
+	fi
+	host="${UNAME_MACHINE}-unixware-${UNAME_RELEASE}-${UNAME_VERSION}"
+	;;
+    pc:*:*:*)
+        # uname -m prints for DJGPP always 'pc', but it prints nothing about
+        # the processor, so we play safe by assuming i386.
+	host="i386-pc-msdosdjgpp"
+        ;;
+    Intel:Mach:3*:*)
+	host="i386-pc-mach3"
+	;;
+    paragon:*:*:*)
+	host="i860-intel-osf1"
+	;;
+    i860:*:4.*:*) # i860-SVR4
+	if grep Stardent /usr/include/sys/uadmin.h >/dev/null 2>&1 ; then
+	  host="i860-stardent-sysv${UNAME_RELEASE}" # Stardent Vistra i860-SVR4
+	else # Add other i860-SVR4 vendors below as they are discovered.
+	  host="i860-unknown-sysv${UNAME_RELEASE}"  # Unknown i860-SVR4
+	fi
+        ;;
+    mini*:CTIX:SYS*5:*)
+	# "miniframe"
+	host="m68010-convergent-sysv"
+        ;;
+    M68*:*:R3V[567]*:*)
+	test -r /sysV68 && host="m68k-motorola-sysv";;
+    3[34]??:*:4.0:3.0 | 3[34]??,*:*:4.0:3.0 | 4850:*:4.0:3.0)
+	OS_REL=''
+	test -r /etc/.relid \
+	&& OS_REL=.`sed -n 's/[^ ]* [^ ]* \([0-9][0-9]\).*/\1/p' < /etc/.relid`
+	/bin/uname -p 2>/dev/null | grep 86 >/dev/null \
+	  && host="i486-ncr-sysv4.3${OS_REL}"
+	/bin/uname -p 2>/dev/null | /bin/grep entium >/dev/null \
+	  && host="i586-ncr-sysv4.3${OS_REL}";;
+    3[34]??:*:4.0:* | 3[34]??,*:*:4.0:*)
+        /bin/uname -p 2>/dev/null | grep 86 >/dev/null \
+          && host="i486-ncr-sysv4";;
+    m68*:LynxOS:2.*:*)
+	host="m68k-unknown-lynxos${UNAME_RELEASE}"
+        ;;
+    mc68030:UNIX_System_V:4.*:*)
+	host="m68k-atari-sysv4"
+	;;
+    i?86:LynxOS:2.*:* | i?86:LynxOS:3.[01]*:*)
+	host="i386-unknown-lynxos${UNAME_RELEASE}"
+	;;
+    TSUNAMI:LynxOS:2.*:*)
+	host="sparc-unknown-lynxos${UNAME_RELEASE}"
+	;;
+    rs6000:LynxOS:2.*:* | PowerPC:LynxOS:2.*:*)
+	host="rs6000-unknown-lynxos${UNAME_RELEASE}"
+	;;
+    SM[BE]S:UNIX_SV:*:*)
+	host="mips-dde-sysv${UNAME_RELEASE}"
+        ;;
+    RM*:ReliantUNIX-*:*:*)
+	host="mips-sni-sysv4"
+	;;
+    RM*:SINIX-*:*:*)
+	host="mips-sni-sysv4"
+	;;
+    *:SINIX-*:*:*)
+	if uname -p 2>/dev/null >/dev/null ; then
+		UNAME_MACHINE=`(uname -p) 2>/dev/null`
+		host="${UNAME_MACHINE}-sni-sysv4"
+	else
+		host="ns32k-sni-sysv"
+	fi
+	;;
+    PENTIUM:CPunix:4.0*:*) # Unisys `ClearPath HMP IX 4000' SVR4/MP effort
+                           # says <Richard.M.Bartel@ccMail.Census.GOV>
+        host="i586-unisys-sysv4"
+        ;;
+    *:UNIX_System_V:4*:FTX*)
+	# From Gerald Hewes <hewes@openmarket.com>.
+	# How about differentiating between stratus architectures? -djm
+	host="hppa1.1-stratus-sysv4"
+	;;
+    *:*:*:FTX*)
+	# From seanf@swdc.stratus.com.
+	host="i860-stratus-sysv4"
+	;;
+    mc68*:A/UX:*:*)
+	host="m68k-apple-aux${UNAME_RELEASE}"
+	;;
+    news*:NEWS-OS:*:6*)
+	host="mips-sony-newsos6"
+	;;
+    R[34]000:*System_V*:*:* | R4000:UNIX_SYSV:*:* | R4000:UNIX_SV:*:*)
+	if [ -d /usr/nec ]; then
+	        host="mips-nec-sysv${UNAME_RELEASE}"
+	else
+	        host="mips-unknown-sysv${UNAME_RELEASE}"
+	fi
+        ;;
+    BeBox:BeOS:*:*)	# BeOS running on hardware made by Be, PPC only.
+	host="powerpc-be-beos"
+	;;
+    BeMac:BeOS:*:*)	# BeOS running on Mac or Mac clone, PPC only.
+	host="powerpc-apple-beos"
+	;;
+    BePC:BeOS:*:*)	# BeOS running on Intel PC compatible.
+	host="i586-pc-beos"
+	;;
+    SX-4:SUPER-UX:*:*)
+	host="sx4-nec-superux${UNAME_RELEASE}"
+	;;
+    SX-5:SUPER-UX:*:*)
+	host="sx5-nec-superux${UNAME_RELEASE}"
+	;;
+    Power*:Rhapsody:*:*)
+	host="powerpc-apple-rhapsody${UNAME_RELEASE}"
+	;;
+    *:Rhapsody:*:*)
+	host="${UNAME_MACHINE}-apple-rhapsody${UNAME_RELEASE}"
+	;;
+esac
+
+echo "****************************" >&5
+echo "HOST SYSTEM TYPE = $host" >&5
+
+# ************************* SET THE C++ FLAGS ************************
+
+case "$host" in
+  alpha*-dec-osf4.*)
+    # standard compilers
+    CXX_OPTIONS='-Wl,-expect_unresolved -Wl,"*_"'
+    CXX_LDFLAGS='-fPIC -shared'
+    ;;
+  alpha*-dec-osf*)
+    # standard compilers
+    CXX_OPTIONS='-Wl,-expect_unresolved -Wl,"*_"'
+    CXX_LDFLAGS='-fPIC -shared'
+    ;;
+  rs6000-*-*)
+    # standard compilers
+    CXX_OPTIONS=
+    CXX_LDFLAGS='-fPIC -shared'
+    ;;
+  sparc-*-sunos*)
+    # standard compilers
+    CXX_OPTIONS=
+    CXX_LDFLAGS='-fPIC -shared' 
+    ;;
+  sparc-*-solaris*)
+    # standard compilers
+    CXX_OPTIONS=
+    CXX_LDFLAGS='-fPIC -shared' 
+    ;;
+# Linux a.out
+  *-pc-linux-gnuaout)
+    CXX_OPTIONS=
+    CXX_LDFLAGS='-fPIC -shared' 
+   ;;
+# Linux ELF
+  *-pc-linux-gnu)
+    CXX_OPTIONS=
+    CXX_LDFLAGS='-fPIC -shared' 
+   ;;
+# Alpha Linux
+  alpha-*-linux-gnu)
+    CXX_OPTIONS=
+    CXX_LDFLAGS='-fPIC -shared' 
+   ;;
+# Mklinux PowerPC
+  powerpc-*-linux-gnu)
+    CXX_OPTIONS=
+    CXX_LDFLAGS='-fPIC -shared'  
+   ;;
+  # MIPS ULTRIX NO LONGER SUPPORTED
+  mips-*-ultrix*)
+    # standard compilers
+    CXX_OPTIONS=
+    CXX_LDFLAGS='-fPIC -shared' 
+    ;;
+  mips-sgi-irix*)
+    # standard compilers
+    CXX_OPTIONS=
+    CXX_LDFLAGS='-fPIC -shared' 
+    ;;
+  # OLD HP
+  *-*-hpux9.*)
+    # standard compilers
+    CXX_OPTIONS=
+    CXX_LDFLAGS='-fPIC -shared' 
+    if test "$CXX" = aCC -o "$CXX" = CC; then
+      CXX_LDFLAGS='+Z -b' 
+    fi
+    ;;
+  *-*-hpux*)
+    # standard compilers
+    CXX_OPTIONS='-Wl,+I -Wl,call_ctor_dtor'
+    CXX_LDFLAGS='-fPIC -shared' 
+    if test "$CXX" = "CC" -o "$CXX" = "aCC"; then
+      CXX_LDFLAGS='+Z -b' 
+    fi
+    ;;
+  *-*-cygwin32)
+    CXX_OPTIONS=
+    CXX_LDFLAGS='-fPIC -shared'
+    ;;
+  *)
+    echo "Unable to compile C++ object file(s)"
+    ;;
+esac
+
+# ******************** CREATE THE SHARED LIBRARY *********************
+
+${CXX} ${CXX_OPTIONS} ${CXX_LDFLAGS} ${FILES}

@@ -1,0 +1,49 @@
+
+OBJ = $(MACROS:.sci=.bin)
+MACROSN = $(MACROS:.sci=)
+
+all :: genlib names lib 
+
+all ::	Makefile.mak Makefile.amk
+
+
+Makefile.mak	: Makefile
+	$(SCIDIR)/util/Mak2VCMak Makefile
+Makefile.amk	: Makefile
+	$(SCIDIR)/util/Mak2ABSMak Makefile
+
+distclean::
+	$(RM) lib  *.bin
+
+.sci.bin:
+	@SCI=$(SCIDIR);export SCI;$(SCIDIR)/bin/scilab -comp  $*.sci
+
+
+lib  :   $(MACROS) 
+	@echo $? > tmp_comp ;$(SCIDIR)/macros/Lib Xtmp_comp; $(RM) tmp_comp
+	@$(RM) `cat tmp_Bin`
+	@echo Starting Compilation 
+	@if ( $(SCIDIR)/util/scibatch $(SCIDIR) tmp_Macros ) ; \
+	then echo generating lib and names; \
+	     $(SCIDIR)/util/scibatch $(SCIDIR) genlib ;\
+	else echo "Compilation failed";$(RM) `cat tmp_Bin` ;exit 1; \
+	fi
+	@echo End of compilation
+	@$(RM) tmp_* 
+
+clean::
+	$(RM) *tmp_*
+
+distclean::
+	$(RM) *.bin lib names Lib.mak Macros.mak  genlib 
+
+# generates the names file and a Scilab script genlib 
+# for building lib 
+
+names genlib : 	$(MACROS) Makefile 
+	@echo $(NAM) > tmp_comp ;
+	@echo $(NAME) >> tmp_comp ;
+	@echo $(MACROS) >> tmp_comp ;
+	@$(SCIDIR)/macros/Name Xtmp_comp; $(RM) tmp_comp
+
+

@@ -1,0 +1,12 @@
+19 //DAE'S
+  1 // Spherical pendulum
+    1 // Index 2
+    2 // Index 1
+    3 // Index 1 with stabilization
+    0 //exit
+  2 // Sliding pendulum
+    1 // Parabola
+    2 // Upside down camel
+    0 // Exit
+  0    //Exit
+0 // Exit

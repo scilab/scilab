@@ -1,0 +1,153 @@
+; Menu file for Windows Scilab 
+; From the gnuplot version ( Roger Hadgraft, 26-5-92,Russell Lang, 30 Nov 1992)
+; Jean-Philippe Chancelier 1996 / 1997
+
+[Menu]
+&File
+	&Getf ...
+		getf('[OPEN]getf[EOS]*.sci[EOS]');
+	&Exec ...
+		exec('[OPEN]getf[EOS]*.sci;*.sce[EOS]');
+	&Save ...
+		save('[SAVE]save[EOS]*.bin[EOS]')
+	&Load ...
+		load('[OPEN]load[EOS]*.sav;*.bin[EOS]')
+	&Change Directory ...
+		chdir('[INPUT]New directory?[EOS]')
+	Ge&T current Directory ...
+		getcwd()
+	--
+	E&xit
+		quit
+[EndMenu]
+
+[Menu]
+E&dit
+	&Copy to Clipboard
+		[MCOPY]
+	&Paste
+		[PASTE]
+	Choose &Font...
+		[CHOOSETHEFONT]
+	[Menu]
+	&History
+		Previous command	^P
+			{^P}
+		Next command	^N
+			{^N}
+		--
+		Back one character	^B
+			{^B}
+		Forward one character	^F
+			{^F}
+		--
+		Beginning of the line	^A
+			{^A}
+		End of the line	^E
+			{^E}
+		--
+		Delete previous character	^H
+			{^H}
+		Delete current character	^D
+			{^D}
+		Delete last word	^W
+			{^W}
+		Delete to end of line	^K
+			{^K}
+		Delete entire line	^U
+			{^U}
+		--
+		Redraw the line	^L
+			{^L}
+	[EndMenu]
+[EndMenu]
+
+[Menu]
+&Control
+	&Restart
+		abort;{ENTER};exec('SCI/scilab.star',-1);
+	&Pause
+		pause
+	R&Esume
+		resume
+	&Abort
+		abort
+	&Interupt
+		{^C}
+[EndMenu]
+
+&Demos 
+	exec('SCI/demos/alldems.dem');
+
+[Menu]
+	&Graphic Window 0
+	&Set (Create) Window
+		[SET]
+	&Raise (Create) Window
+		[RAISE]
+	&Delete Graphic Window 
+		[DELETESCIW]
+	&+ (increase current num)
+		[PLUS]
+	&- (decrease current num)
+		[MINUS]
+	--
+	&Clear Current Window
+		xbasc()
+[EndMenu]
+
+[Menu]
+&Help
+	&Help Dialog
+		[HELP]
+	&Topic
+		help [INPUT]Help Topic?
+	&Apropos 
+		apropos [INPUT]Key ?
+[EndMenu]
+
+; [Menu]
+; &Plot
+; 	Plot2d
+; 		plot2d
+; 	Clear Current Window
+; 		xbasc()
+; 	--
+; 	[Menu]
+; 	Exemple de submenu 
+; 		Lines
+; 			with lines
+; 		Points
+; 			with points
+; 		Boxes
+; 			with boxes
+; 		Box Error Bars
+; 			with boxerrorbars
+; 	[EndMenu]
+; [EndMenu]
+
+; now some buttons
+; DON'T put a shortcut key (&) on any of these because
+; it doesn't work with Windows 3.1 and it HANGS Windows 3.0.
+;[Button]
+;	Getf
+;		getf('[OPEN]getf[EOS]*.sci[EOS]');
+;[Button]
+;	Save
+;		save '[SAVE]save[EOS]*.plt[EOS]'
+;[Button]
+;	ChDir
+;		cd '[INPUT]New directory?[EOS]'
+;[Button]
+;	Prev
+;		{^P}
+;[Button]
+;	Next
+;		{^N}
+;[Button]
+;	pause
+;		pause
+;[Button]
+;	resume
+;		resume
+;

@@ -1,0 +1,31 @@
+s=poly(0,'s');
+// Copyright INRIA
+Plant=[1/(s+1),s/(s-1)^2;(s-1)*s/(s^2-3*s+2),2/s];
+Plant=syslin('c',[1/(s+1)*s/(s-1)^2]);     //Nominal Plant
+P22=tf2ss(Plant);    //...in state-space form
+[ny,nu,nx]=size(P22);
+rand('seed',0);rand('normal');
+bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
+bigR=rand(nx+ny,nx+ny);bigR=bigR*bigR';  //random weighting matrices
+[Plqg,r]=lqg2stan(P22,bigQ,bigR);     //LQG pb as a standard problem
+Klqg=lqg(Plqg,r);          //Controller
+spec(h_cl(Plqg,r,Klqg))    //Check internal stability
+[Slqg,Rlqg,Tlqg]=sensi(P22,Klqg);  //Sensitivity functions
+frq=logspace(-3,3);     //10^-3  to 10^3 
+y=svplot(Slqg);       //Computes singular values;
+xbasc();xset("window",0);gainplot(frq,y)   //Plot sing. values
+w1=1/(s+1);
+w2=100;
+[Ptmp,r]=augment(P22,'SR');         //"S/KS" problem
+Pinf=sysdiag(w1,w2,1)*Ptmp;        //Weighting functions
+[Kinf,ro]=h_inf(Pinf,r,0,0.1,50);
+[Sinf,Rinf,Tinf]=sensi(P22,Kinf);  //Sensitivity functions
+y=svplot(Sinf);       //Computes singular values;
+xset("window",1);xselect();gainplot(frq,y)   //Plot sing. values
+
+xbasc();t=0:0.01:30;u=sin(t);
+plot2d([t',t'],[u',(flts(u,dscr(Tlqg,0.1))')])
+
+clear s  n  Plant P22 ny nu nx Qx Qu bigQ Rx Ry bigR bigQ  Plqg r 
+clear Klqg Slqg Rlqg Tlqg resp title dttmax dt t n1 defv Tmax n2 u frq
+clear y w1 w2 Ptmp Pinf ro Sinf Rinf Tinf

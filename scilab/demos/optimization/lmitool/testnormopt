@@ -1,0 +1,22 @@
+// Copyright INRIA
+getf(SCI+'/demos/lmitool/normopt.sci','c')
+n=5;nu=2;ny=2;
+//rand('seed',0)
+A=rand(n,n);
+B=rand(n,nu);
+C=rand(ny,n);
+D=rand(nu,ny);
+//find H_inf norm of linear system A,B,C,D
+//   min gama 
+//   such that
+//   X-X'=0
+//  -[A*X+X*A',B,X*C';B',-gama*Ib,D';C*X,D,-gama*Ic]>0
+[X,gamaopt]=normopt(A,B,C,D)
+h_norm(syslin('c',A,B,C,D))
+
+
+getf(SCI+'/demos/lmitool/normoptd.sci','c')
+[X,g2opt]=normoptd(A,B,C,D);
+sqrt(g2opt)
+dhnorm(syslin('d',A,B,C,D),0.00001,1000)
+

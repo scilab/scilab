@@ -1,0 +1,31 @@
+.TH velpic 1 "XXDATE" "Scilab Group" "Scilab Function"
+.SH NAME
+velpic - interactive graphical design of a matrix 
+.SH DESCRIPTION
+   [vel,regionlist,linelist,seedlist,velolist]=velpic(nz,nx)
+
+Macro which interactively defines regions of a matrix.
+Closed surfaces inside the frame are not allowed.
+.TP 10
+nz 
+:Number of columns in the matrix
+.TP 10
+nx 
+:Number of rows in the matrix
+.TP 10
+vel
+:the matrix
+.TP 10
+regionlist 
+:list whose elements are matrices of dimension
+(2xN) containing the indices of the different regions
+.TP 10
+linelist   
+:list whose elements are matrices of dimension (2xM)
+containing the indices of the different lines
+.TP 10
+seedlist   
+:(2xK) vector containing positions of seeds
+.TP 10
+velolist   
+:(1xK) vector containing velocities associated to seeds

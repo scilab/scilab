@@ -1,0 +1,35 @@
+function [stk,txt,top]=%m2sci()
+// multiplications 
+//!
+// Copyright INRIA
+txt=[]
+s1=stk(top-1)
+s2=stk(top)
+
+[e1,te1]=s1(1:2);
+[e2,te2]=s2(1:2);
+if s2(5)=='4' then 
+  e2='bool2s('+e2+')',s2(5)='1';te2='0';
+elseif s2(5)=='10' then
+  e2='str2code('+e2+')''',te2='0';
+end
+if s1(5)=='4' then 
+  e1='bool2s('+e1+')',s1(5)='1';te1='0'
+elseif s1(5)=='10' then
+  e1='str2code('+e1+')''',te1='0',
+end
+
+//
+if te2=='1'|te2=='2'|te2=='3' then e2='('+e2+')',end
+if te1=='2'|te1=='3' then e1='('+e1+')',end
+
+if s1(3)=='1'&s1(4)=='1' then
+  stk=list(e1+'*'+e2,'1',s2(3),s2(4),s1(5))
+elseif s2(3)=='1'&s2(4)=='1' then
+  stk=list(e1+'*'+e2,'1',s1(3),s1(4),s1(5))
+else
+  stk=list(e1+'*'+e2,'1',s1(3),s1(4),s1(5))
+end
+top=top-1
+
+

@@ -1,0 +1,18 @@
+# --------------------- Build with HP C -------------------
+#CC		= /opt/ansic/bin/cc
+#C_OPT	= -U_REENTRANT +DA1.1 +DS1.1 -Wl,+tm,hpux
+#F77	= /opt/fortran/bin/f77
+#AS		= /usr/ccs/bin/as
+# --------------------- Standard Stuff ------------------------
+ARCHCFLAGS	=	-DSYSVSIGNAL -DNOWAIT3 -DNOGETDTBLSIZ \
+				-DRSHCOMMAND=\"/usr/bin/remsh\" -DFDSETISINT
+ARCHDLIB	=
+ARCHDOBJ	=
+ARCHLIB		=
+HASRANLIB	=	f
+PVM_ARCH	=	HPPA
+FC			=	fort77
+#AR			=	/usr/bin/ar
+AR			=	ar
+LOPT		=	-Wl,-aarchive
+NEEDF2M4	=	t

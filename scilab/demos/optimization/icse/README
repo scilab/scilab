@@ -1,0 +1,45 @@
+              Use of ICSE within SCILAB
+
+-1- The user must provide a ``simulator'' program for his problem:
+ 
+      this simulator is made of a main routine :
+
+      subroutine mysim(ind,nu,u,co,g,itv,rtv,dtv)
+      external secmbr, cost, inist
+      call icse(ind,nu,u,co,g,itv,rtv,dtv,secmbr,cost,inist)
+      end
+
+      and three additional subroutines secmbr, cost and inist
+
+     where secmbr, cost, inist are symbolic name of particular routines
+       secmbr : computes the RHS 
+       cost   : computes the cost function
+       inist  : computes the initial state
+
+       cost may be replaced by the predefined routine icsec2 for quadratic cost.
+
+       inist may be replaced by the predefined routine icsei for standard
+            initialization.
+
+ It is better to put the four routines in a single file called mysim.f
+
+-2- compile (f77) the file mysim.f 
+
+-3- Link mysim with scilab :
+    link('mysim.o',mysim)
+
+    Otherwise you have to link your program as follows:
+ .modify the routines/default/foptim.f routine to add the call to mysim 
+ .put your mysim.f file in the routines/default directory, 
+ .append mysim.o in ICSE variable definition within routines/default/Makefile
+ .re-generate a new scilab with the main Makefile
+     
+
+
+
+
+
+
+
+
+

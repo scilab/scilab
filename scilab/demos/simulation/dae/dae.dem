@@ -1,0 +1,18 @@
+// Copyright INRIA
+
+mode(-1)
+deff("[]=demoexc(fil)","exec(""SCI/demos/dae/""+fil)")
+
+while %t do
+  n=x_choose(["Spherical pendulum";"Sliding pendulum"],..
+      "Examples of DAE");
+  select n
+  case 0
+    return
+  case 1
+    demoexc("dae1.dem");
+  case 2
+    demoexc("dae2.dem");
+  end
+end
+

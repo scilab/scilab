@@ -1,0 +1,27 @@
+kp=xget("pixmap");
+// Copyright INRIA
+dr=driver()
+driver('X11')
+if kp==0, xset("pixmap",1);end;
+lpat=xget("lastpattern");
+wid=30
+N=2000;
+Max_v=50;
+t=linspace(0,Max_v,N*wid);
+y=ode(1.e-8*[1;1;1],0,t,'loren'); 
+ds=xget("dashes");
+param3d(y(1,:),y(2,:),y(3,:),60,45,'X@Y@Z',[2,4]);
+xset('wwpc');
+y1=y(1,:);y1=matrix(y1,wid,N);
+y2=y(2,:);y2=matrix(y2,wid,N);
+y3=y(3,:);y3=matrix(y3,wid,N);
+clear y;
+for i=1:N,
+	param3d1(y1(:,i),y2(:,i),list(y3(:,i),modulo(i,lpat)),60,45,...
+	'X@Y@Z',[0,0]);
+	xset("wshow");
+end
+if kp==0, xset("pixmap",0);end;
+driver(dr)
+xset('default')
+

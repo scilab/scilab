@@ -1,0 +1,83 @@
+#!/bin/sh5
+OBJNM=/tmp/objnm$$
+JMPTAB=/tmp/jmptab$$
+#	Separons les .o des autres arguments
+while test $# -ge 1; do
+case $1 in
+		-r) OPTARG="$OPTARG -N";;
+		-G) case $2 in 0) shift;; *) OPTARG="$OPTARG $1";; esac;;
+	-A) BASEBIN=$2; shift;;
+	*.o) OBJARG="$OBJARG $1";;
+	-o) OPTARG="$OPTARG $1"; OUTBIN=$2;;
+	-e) ENTRY=$2; shift;;
+	*) OPTARG="$OPTARG $1";;
+esac
+shift; done
+
+SCITXTNM=$BASEBIN.txtnm
+SCIDATNM=$BASEBIN.datnm
+#	Si les fichiers de table des symboles n'existent pas, tentons
+#	de les creer.
+{ test -f $SCITXTNM && test -f $SCIDATNM; } ||
+{ nm $BASEBIN > $BASEBIN.nm &&
+{ grep ' T ' $BASEBIN.nm > $SCITXTNM
+  grep ' [A-SU-Z] ' $BASEBIN.nm > $SCIDATNM
+  rm $BASEBIN.nm
+}
+}
+#	Si les fichiers de table des symboles n'existent tojours pas,
+#	inutile de continuer
+{ test -f $SCITXTNM && test -f $SCIDATNM; } || exit 1
+
+#	Creons la liste des symboles indefinis de ces .o
+nm -u $OBJARG | sed -n '/^  *U /s///p' | sort -u > $OBJNM
+#	Creons l'intersection de cette liste avec celle des symboles de scilab
+#	et produisons un source assembleur qui definit ces symboles et cres
+#	les branchements indirects
+grep ' A _gp$' $SCIDATNM | (read ADDR SKIP; echo ".lowgp=0x$ADDR" >>$JMPTAB.s)
+join -j1 1 -j2 3 -o 2.3 2.1 $OBJNM $SCITXTNM | \
+while read NAME ADDR
+do cat <<EOF
+.$NAME=0x$ADDR
+	.globl	$NAME
+1:	.word	0
+$NAME:	sw	\$31,1b
+	la	\$8,.$NAME
+	li	\$28,.lowgp
+	jal	\$8
+	lw	\$31,1b
+	la	\$28,_gp
+	j	\$31
+EOF
+done >> $JMPTAB.s
+#	Ajoutons le code de commutation de gp
+cat >>$JMPTAB.s <<EOF
+savra:	.word	0
+	.globl	$ENTRY
+	.globl	.$ENTRY
+.$ENTRY:
+	sw	\$31,savra
+	la	\$28,_gp
+	jal	$ENTRY
+	lw	\$31,savra
+	la	\$28,.lowgp
+	j	\$31	
+EOF
+echo "	.data" >>$JMPTAB.s
+#	Ajoutons des definitions pour les symboles de data
+join -j1 1 -j2 3 -o 2.3 2.1 $OBJNM $SCIDATNM | \
+while read NAME ADDR
+do echo ".globl $NAME;$NAME=0x$ADDR"
+done  >> $JMPTAB.s
+
+#	Assemblons le resultat
+as $JMPTAB.s -o $JMPTAB.o
+#	Y a plus qu'a faire l'edition de liens
+ld $OBJARG $JMPTAB.o $OPTARG -e .$ENTRY
+#	sauvons le status
+STATUS=$?
+rm $JMPTAB.[so] $OBJNM
+#	c'est correct si le link s'est bien passe et qu'il nde reste pas
+#	d'indefini(s).
+test $STATUS -eq 0 && STATUS=`nm -u $OUTBIN | wc -l` && { test $STATUS -eq 0 ||  { echo $STATUS undefined:;nm -u $OUTBIN; }; }
+exit $STATUS

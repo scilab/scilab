@@ -1,0 +1,153 @@
+scicos_ver = 'scicos2.5.1'
+scs_m=list()
+scs_m(1)=list([448,433,0,0,450,450],['Linear','/usr/local/lib/scilab/macros/scicos/'],[],..
+[],' ',list(),..
+tlist(['scsopt','3D','Background','Link','ID','Cmap'],list(%t,33),[8,1],[1,5],..
+list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],[])
+scs_m(2)=list('Block',..
+         list([20,20],[60,40],%t,['-1';'1';'1';'0';'0'],0,0,[],[],..
+         ['txt=[''xd=Ax+Bu'';''y=Cx+Du''];';
+         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
+         list(list('csslti',1),1,1,[],[],0,[],[-1;1;1;0],[],'c',[],[%f,%t],' ',..
+         list()),' ','CLSS_f')
+scs_m(3)=list('Block',..
+         list([20,129.52381],[50,50],%t,['1';'1+s'],0,0,[],[],..
+         'xstringb(orig(1),orig(2),[''Num(s)'';''-----'';''Den(s)''],sz(1),sz(2),''fill'');'),..
+         list(list('csslti',1),1,1,[],[],0,[],[-1;1;1;0],[],'c',[],[%f,%t],' ',..
+         list()),' ','CLR_f')
+scs_m(4)=list('Block',..
+         list([103.80952,20],[50,50],%t,['1';'1+z'],0,0,0,[],..
+         ['txt=[''Num(z)'';''-----'';''Den(z)''];';
+         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
+         list('dsslti',1,1,1,[],[],0,[-1;1;1;0],[],'d',[],[%f,%f],' ',list()),..
+         ' ','DLR_f')
+scs_m(5)=list('Block',..
+         list([103.80952,155.2381],[60,40],%t,['-1';'1';'1';'0';'0'],0,0,0,[],..
+         ['txt=[''x+=Ax+Bu'';''y=Cx+Du''];';
+         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
+         list(list('dsslti',1),1,1,1,[],[],0,[-1;1;1;0],[],'d',[],[%f,%f],' ',..
+         list()),' ','DLSS_f')
+scs_m(6)=list('Block',..
+         list([103.80952,264.7619],[60,40],%t,['0';'1';'1';'0';'0'],[0;0],0,0,[],..
+         ['txt=[''Jump'';''(A,B,C,D)''];';
+         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']),..
+         list(list('tcslti',1),[1;1],1,1,[],0,[],[0;1;1;0],[],'c',[],[%f,%t],' ',..
+         list()),' ','TCLSS_f')
+scs_m(7)=list('Block',..
+         list([187.61905,179.04762],[60,40],%t,[],[],[],[],[],..
+         'xstringb(orig(1),orig(2),[''DUMMY'';''CLSS''],sz(1),sz(2),''fill'');'),..
+         list('cdummy',[],[],[],[],0,[],[],[],'c',[],[%f,%t],' ',list()),' ',..
+         'CLINDUMMY_f')
+scs_m_1=list()
+scs_m_1(1)=list([600,450,0,0,600,450],'DELAY_f',[],[],' ',list(),..
+tlist(['scsopt','3D','Background','Link','ID','Cmap'],list(%t,33),[8,1],[1,5],..
+list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],[])
+scs_m_1(2)=list('Block',list([92,210],[20,20],%t,['1';'1'],[],7,[],[],[]),..
+           list('input',[],1,[],[],[],[],[],1,'c',[],[%f,%f],' ',list()),' ',..
+           'IN_f')
+scs_m_1(3)=list('Block',list([440,210],[20,20],%t,['1';'1'],6,[],[],[],[]),..
+           list('output',1,[],[],[],[],[],[],1,'c',[],[%f,%f],' ',list()),' ',..
+           'OUT_f')
+scs_m_1(4)=list('Block',..
+           list([238,195],[50,50],%t,'0;0;0;0;0;0;0;0;0;0',7,6,10,[],..
+           ['dly=model(8);';
+           'txt=[''Shift'';''Register'';string(dly)];';
+           'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']),..
+           list('delay',1,1,1,[],[],[0;0;0;0;0;0;0;0;0;0],[],[],'d',[],[%f,%f],..
+           ' ',list()),' ','REGISTER_f')
+scs_m_1(5)=list('Block',..
+           list([243,296],[40,40],%t,['0.1';'1'],[],[],11,8,..
+           ['dt=model(8);';
+           'txt=[''Delay'';string(dt)];';
+           'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
+           list('evtdly',[],[],1,1,[],[],0.1,[],'d',1,[%f,%f],' ',list()),' ',..
+           'EVTDLY_f')
+scs_m_1(6)=list('Link',[296.6;440],[220;220],'drawlink',' ',[0,0],[1,1],[4,1],..
+           [3,1])
+scs_m_1(7)=list('Link',[112;229.4],[220;220],'drawlink',' ',[0,0],[1,1],[2,1],..
+           [4,1])
+scs_m_1(8)=list('Link',[263;263],[290.3;271.2],'drawlink',' ',[0,0],[5,-1],[5,1],..
+           [9,1])
+scs_m_1(9)=list('Block',list([263;271.2],[1,1],%t,' ',[],[],8,[10;11]),..
+           list('lsplit',[],[],1,[1;1],[],[],[],[],'d',[-1,-1],[%t,%f],' ',..
+           list()),' ','CLKSPLIT_f')
+scs_m_1(10)=list('Link',[263;263],[271.2;250.7],'drawlink',' ',[0,0],[5,-1],..
+            [9,1],[4,1])
+scs_m_1(11)=list('Link',[263;308.6;308.6;263;263],[271.2;271.2;367;367;341.7],..
+            'drawlink',' ',[0,0],[5,-1],[9,2],[5,1])
+scs_m(8)=list('Block',..
+         list([187.61905,288.57143],[40,40],%t,'DELAY_f',0,0,[],[],..
+         'xstringb(orig(1),orig(2),''Delay'',sz(1),sz(2),''fill'')'),..
+         list('csuper',1,1,[],[],[],[],scs_m_1,[],'h',%f,[%f,%f]),' ','DELAY_f')
+scs_m(9)=list('Block',..
+         list([271.42857,20],[50,50],%t,['1';'0;0;0;0;0;0;0;0;0;0';'1'],[0;0],0,..
+         0,[0;0],..
+         ['txt=[''Variable'';''delay''];';
+         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
+         list(list('delayv',1),[1;1],1,1,[1;1],[],[0;0;0;0;0;0;0;0;0;0;0],1,[],..
+         'd',[0,-1],[%t,%t],' ',list()),' ','DELAYV_f')
+scs_m(10)=list('Block',..
+          list([271.42857,155.2381],[50,50],%t,'0;0;0;0;0;0;0;0;0;0',0,0,0,[],..
+          ['dly=model(8);';
+          'txt=[''Shift'';''Register'';string(dly)];';
+          'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']),..
+          list('delay',1,1,1,[],[],[0;0;0;0;0;0;0;0;0;0],[],[],'d',-1,[%f,%f],..
+          ' ',list()),' ','REGISTER_f')
+scs_m(11)=list('Block',..
+          list([271.42857,290.47619],[40,40],%t,' ',0,0,0,[],..
+          'xstringb(orig(1),orig(2),''S/H'',sz(1),sz(2),''fill'')'),..
+          list('samphold',-1,-1,1,[],[],[],[],[],'d',[],[%t,%f],' ',list()),' ',..
+          'SAMPLEHOLD_f')
+scs_m(12)=list('Block',..
+          list([342.38095,20],[40,40],%t,'0',0,0,0,[],..
+          'xstringb(orig(1),orig(2),''1/z'',sz(1),sz(2),''fill'')'),..
+          list('dollar',1,1,1,[],[],0,[],[],'d',[],[%f,%f],' ',list()),' ',..
+          'DOLLAR_f')
+scs_m(13)=list('Block',..
+          list([340.56818,231.33903],[40,60],%t,'[1;1]',[0;0],0,[],[],..
+          list(..
+          ['[x,y,typ]=standard_inputs(o) ';
+          'sgn=o(3)(8)';
+          'for k=1:size(x,''*'')';
+          '  if sgn(k)>0 then';
+          '    xstring(orig(1)+sz(1)/8 ,y(k)-4,''+'')';
+          '  else';
+          '    xstring(orig(1)+sz(1)/8 ,y(k)-4,''-'')';
+          '  end';
+          'end';
+          'xx=sz(1)*[.8 .4 0.75 .4 .8]+orig(1)';
+          'yy=sz(2)*[.8 .8 .5 .2 .2]+orig(2)';
+          'xpoly(xx,yy,''lines'')'],[])),..
+          list(list('sum',2),[-1;-1],-1,[],[],[],[],[1;1],[],'c',[],[%t,%f],' ',..
+          list()),' ','BIGSOM_f')
+scs_m(14)=list('Block',..
+          list([192.42081,97.081218],[40,40],%t,'1',0,0,[],[],..
+          ['gain=arg1(2)(4);';
+          'if orient then';
+          '  xx=orig(1)+[0 1 0 0]*sz(1);';
+          '  yy=orig(2)+[0 1/2 1 0]*sz(2);';
+          '  x1=0';
+          'else';
+          '  xx=orig(1)+[0   1 1 0]*sz(1);';
+          '  yy=orig(2)+[1/2 0 1 1/2]*sz(2);';
+          '  x1=1/4';
+          'end';
+          'pats=xget(''dashes'')';
+          'xset(''dashes'',default_color(1))';
+          'xpoly(xx,yy,''lines'');';
+          'xstringb(orig(1)+x1*sz(1),orig(2),gain,(1-x1)*sz(1),sz(2));';
+          'xset(''dashes'',pats)']),..
+          list('gain',1,1,[],[],[],[],1,[],'c',[],[%t,%f],' ',list()),' ',..
+          'GAINBLK_f')
+scs_m(15)=list('Block',..
+          list([203.04314,34.819866],[16.666667,16.666667],%t,['1';'[1;1;1]'],..
+          [0;0;0],0,[],[],..
+          ['rx=sz(1)*p/2;ry=sz(2)/2';
+          'xsegs(orig(1)+rx*[1/2.3 1;2-1/2.3 1],orig(2)+ry*[1 2-1/2.3;1,1/2.3],0)']),..
+          list(list('plusblk',2),[-1;-1;-1],-1,[],[],[],[],[],[],'c',[],[%t,%f],..
+          ' ',list()),' ','SUM_f')
+scs_m(16)=list('Block',..
+          list([22.593729,264.89828],[40,40],%t,'0',0,0,[],[],..
+          'xstringb(orig(1),orig(2),''  1/s  '',sz(1),sz(2),''fill'');'),..
+          list('integr',1,1,[],[],0,[],[],[],'c',[],[%f,%f],' ',list()),' ',..
+          'INTEGRAL_f')

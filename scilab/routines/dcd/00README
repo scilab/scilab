@@ -1,0 +1,7 @@
+
+
+ipmpar and spmpar were changed to use lapack machine constant computation
+dlamch + ipmpar1.c (largestint) in calelm 
+
+psi and dexpm1 were renamed not to conflict with other Scilab entries 
+

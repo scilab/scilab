@@ -1,0 +1,18 @@
+			     Metanet 3.0.2
+			     *************
+
+You can load a graph or create a new one.
+
+Menus description:
+******************
+
+Files
+
+  New: Create a new graph. Prompt for the name of the graph and for its type 
+       (directed or not directed).
+       Then you enter Modify Mode.
+  Load: Load a graph. Show the list of graphs in the default directory. You
+        have to choose one.
+  Directory: Change the default directory.
+
+  Quit: Quit Metanet.

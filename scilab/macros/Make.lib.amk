@@ -1,0 +1,29 @@
+all	:: genlib names lib
+
+lib 	: $(MACROS) 
+	@echo $(MACROS) > $(TEMP)\file001.tmp
+	@$(SCIDIR1)\macros\Lib @$(TEMP)\file001.tmp
+	@del *.bin
+	$(SCIDIR1)\bin\scilex.exe -nwni -ns -f tmp_Macros
+	$(SCIDIR1)\bin\scilex.exe -nwni -ns -f genlib
+	@del tmp_*
+	@del $(TEMP)\file001.tmp
+
+clean::
+
+
+distclean::
+	@del *.bin 
+	@del lib 
+	@del names 
+	@del genlib 
+
+# generates the names file and a Scilab script genlib 
+# for building lib 
+
+names genlib : 	$(MACROS) Makefile 
+	@echo $(NAM) $(NAME) $(MACROS) > $(TEMP)\file002.tmp
+	@$(SCIDIR1)\macros\Name @$(TEMP)\file002.tmp
+	@del $(TEMP)\file002.tmp
+
+

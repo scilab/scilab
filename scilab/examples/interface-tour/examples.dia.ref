@@ -1,0 +1,704 @@
+ 
+linking files 
+examples_gateway.o 
+examples.a 
+ 
+ to create a shared executable
+
+shared archive loaded
+
+Linking examples_gateway 
+
+Interface 0 examples_gateway
+
+ 
+a=1:10;b=a+1;c=ones(2,3)+2;
+ 
+ 
+[x,y,z,t]=ex1c('mul',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a*2)) > %eps then bugmes();quit;end
+ 
+if norm(z-(b*2) ) > %eps then bugmes();quit;end
+ 
+if norm(y-(c*2)) > %eps then bugmes();quit;end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( y.* feval(0:1,0:2,f))) > %eps then bugmes();quit;end
+ 
+ 
+[x,y,z,t]=ex1c('add',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a+2)) > %eps then bugmes();quit;end
+ 
+if norm(z-(b+2) ) > %eps then bugmes();quit;end
+ 
+if norm(y-(c+2)) > %eps then bugmes();quit;end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( c +2 + feval(0:1,0:2,f))) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+// Example with optional argument specified with the
+ 
+// arg=value syntax
+ 
+// [a,b,c] = ex2c(x1,{ v1= arg1, v2=arg2}) , arg1 default value 99
+ 
+//					       arg2 default value 3
+ 
+// only v1 and v2 are recognized as optional argument names
+ 
+// the return value are a<--x1, b = 2*v2 , c = 3*v2
+ 
+//
+ 
+ 
+[a,b,c]=ex2c('test');
+ 
+ 
+if norm([99*2,3*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=ex2c('test',v1=[10,20]);
+ 
+ 
+if norm([[10,20]*2,3*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=ex2c('test',v1=[10,20],v2=8);
+ 
+ 
+if norm([[10,20]*2,8*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=ex2c('test',v2=8,v1=[10]);
+ 
+ 
+if norm([10*2,8*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+//matrix (double) created by C function
+ 
+x1=ex3c();
+ 
+if norm(x1-matrix((1:5*3),3,5)) > %eps then bugmes();quit;end
+ 
+ 
+//matrix (int) created by C function
+ 
+x2=ex4c();
+ 
+if norm(x2-matrix((1:5*3),3,5)) > %eps then bugmes();quit;end
+ 
+ 
+//Character string created by C function
+ 
+x3=ex5c();
+ 
+if x3<>"Scilab is0..." then bugmes();quit;end
+ 
+ 
+// all together
+ 
+ 
+[y1,y2,y3]=ex6c();
+ 
+if y1<>x3 then bugmes();quit;end
+ 
+if norm(y2-x2) > %eps then bugmes();quit;end
+ 
+if norm(y3-x1) > %eps then bugmes();quit;end
+ 
+ 
+ 
+A=[1,2,3,4];
+ 
+B=[10,20,30;40,50,60];
+ 
+//Just display A and B
+ 
+ex7c(A,B)
+ 
+!   10.    20.    30. !
+!   40.    50.    60. !
+ 
+!   1.    2.    3.    4. !
+ 
+ 
+a_chain='hello';s=poly(0,'s');
+ 
+deff('[y1,y2,y3]=myfunction(x1,x2)','y1=x1+x2,y2=1+s,y3=a_chain')
+ 
+ 
+x1=1;x2=2;
+ 
+[y1,y2,y3]=myfunction(x1,x2);
+ 
+ 
+[u,v,w]=ex8c(x1,x2,myfunction);
+ 
+ 
+if u-y1 > %eps then bugmes();quit;end
+ 
+if v-y2<>0 then bugmes();quit;end
+ 
+if w<>y3 then bugmes();quit;end
+ 
+ 
+ 
+//a's to o's
+ 
+x=ex9c('gaad');
+character string length 4
+
+ 
+if x<>'good' then bugmes();quit;end
+ 
+//variable read in Scilab stack
+ 
+param=1:10;
+ 
+z=ex10c();
+ 
+if norm(z-param) > %eps then bugmes();quit;end
+ 
+deff('[u,v,w]=myfct(x,y)','u=7+x,v=8+y,w=9+y')
+ 
+//ex11c executes myfct with input variables x=5 and y=6
+ 
+x=5;y=6;[u,v,w]=myfct(x,y);
+ 
+[p,q,r]=ex11c(1,2,3,4,5,6);
+ 
+if p<>u | q <> v | r <> w then bugmes();quit;end
+ 
+ 
+deff('p=mypoly(x)','p=poly(x,''z'',''coeffs'')')
+ 
+c=[1,2,3];
+ 
+P1=ex12c(2,c);
+ 
+if P1<>poly(c*2,'z','coeffs') then bugmes();quit;end
+ 
+a=ex13c([1,2,3]+%i*[4,5,5]);
+ 
+if norm(a-2*[1,2,3]-%i*[4,5,5]*3) > %eps then bugmes();quit;end
+ 
+ 
+a=ex13c([1,2,3]);
+ 
+if norm(a-2*[1,2,3]) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+// Creating the variable C
+ 
+ex14c();
+ 
+if C<>[10,20,30] then bugmes();quit;end
+ 
+ 
+ 
+// Accessing a Scilab string inside an interface
+ 
+Mystr='My string';
+ 
+ex15c()
+Mystr= "My string", length 9 
+
+ 
+ 
+ex16c();
+ 
+if Str<> "Pilgrim said he, where can it be this land of Eldorado" then pause;end
+ 
+ 
+ 
+//We build a function ex17c with 3 input parameters X,Y,f and
+ 
+//1 output parameter Z: Z=ex17c(X,Y,f).
+ 
+//The third input parameter of ex17c (f) is a function.
+ 
+//This function, which is passed to ex17c as an argument,
+ 
+//is called a "argument function".
+ 
+//This function can be a Scilab function or a C function.
+ 
+//In both cases, this function must have a specific calling
+ 
+//sequence which is imposed by ex17c.
+ 
+// (A typical example is the case of an ode solver:
+ 
+//  if we want to solve an ode xdot=f(x), we want to build a function
+ 
+//  ode with a syntax like y=ode(x0,t,f) where x0 is a real vector,
+ 
+//  t a real number and f the "argument function" f: x->f(x). )
+ 
+ 
+//There are two ways of calling ex17c:
+ 
+//Z=ex17c(X,Y,f) for computing Z from X and Y using the Scilab function f
+ 
+ 
+//Z=ex17c(X,Y,"f") for computing Z from X and Y using the C function "f"
+ 
+//The C function f can be dynamically linked to Scilab, using the
+ 
+//link command (e.g. if f=f3c, link("f3c.o","f3c","C") ) or it can be put in
+ 
+//a table of functions (see ex17c.c).
+ 
+ 
+//In the example proposed here, we want to build a function ex17c with
+ 
+//syntax Z=ex17c(X,Y,f) which returns a real matrix Z obtained from
+ 
+//the two real input vectors X and Y by a calculation performed by
+ 
+//f. To be specific, we want Z(i,j)=f(X(i),Y(j)). In this example,
+ 
+//the argument function f is a function from R x R to R.
+ 
+//The Scilab built-in function function feval does this: ex17c emulates
+ 
+//feval.
+ 
+ 
+//If f is a Scilab function, its syntax is z=f(x,y), defined for instance
+ 
+//by:
+ 
+//deff('z=f(x,y)','z=cos(x+y)');
+ 
+//
+ 
+//If f is a C function, its definition will be:
+ 
+//int f(x,y,z)
+ 
+//     double x,y,*z;
+ 
+//{
+ 
+//  *z= cos(x+y);
+ 
+//}
+ 
+//Note that the argument function f must be defined as above, defining f as e.g.
+ 
+//int f(z,x,y)
+ 
+//is not allowed.
+ 
+ 
+//If X is a vector with m components and Y is a vector with n components,
+ 
+//the resulting matrix Z=ext17(X,Y) is m x n.
+ 
+ 
+//The interface function is intex17c.
+ 
+ 
+//Test inputs for ex17c:
+ 
+X=1:3;Y=4:6;
+ 
+//...and 3 examples of Scilab argument functions:
+ 
+deff('z=f1(x,y)','z=x+y');
+ 
+deff('z=f2(x,y)','z=x*x+y*y');
+ 
+deff('z=f3(x,y)','z=cos(x+y)');
+ 
+ 
+//reference values for Z calculated by feval
+ 
+Zref1=feval(X,Y,f1);
+ 
+Zref2=feval(X,Y,f2);
+ 
+Zref3=feval(X,Y,f3);
+ 
+ 
+// Calling ex17c with a argument function which is a Scilab function:
+ 
+Z1=ex17c(X,Y,f1);
+ 
+if norm(Z1-Zref1) > %eps then bugmes();quit;end
+ 
+ 
+Z2=ex17c(X,Y,f2);
+ 
+if norm(Z2-Zref2) > %eps then bugmes();quit;end
+ 
+ 
+Z3=ex17c(X,Y,f3);
+ 
+if norm(Z3-Zref3) > %eps then bugmes();quit;end
+ 
+ 
+// Calling ex17c with a argument function which is a C function:
+ 
+Z1=ex17c(X,Y,'f1c');     // f1c defined in ex17c.c
+ 
+if norm(Z1 - Zref1) > %eps then bugmes();quit;end
+ 
+ 
+Z2=ex17c(X,Y,'f2c');   // f2c defined in ex17c.c
+ 
+if norm(Z2 - Zref2) > %eps then bugmes();quit;end
+ 
+ 
+// making f3c.o and linking f3c dynamically with Scilab
+ 
+if ~c_link('f3c') then
+  files=G_make(['f3c.o'],'f3c.dll');
+  link(files,'f3c','C') ;
+linking files 
+f3c.o 
+ to create a shared executable
+
+shared archive loaded
+
+Linking f3c 
+
+Link done
+
+end
+ 
+ 
+// Calling ex17c with the C argument function fp3
+ 
+Z3=ex17c(X,Y,'f3c');
+ 
+if norm(Z3 - Zref3) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+a=1:10;b=a+1;c=ones(2,3)+2;
+ 
+[x,y,z,t]=ex1f('mul',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a*2)) > %eps then bugmes();quit;end
+ 
+if norm(z-(b*2) ) > %eps then bugmes();quit;end
+ 
+if norm(y-(c*2)) > %eps then bugmes();quit;end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( y.* feval(1:2,1:3,f))) > %eps then bugmes();quit;end
+ 
+ 
+[x,y,z,t]=ex1f('add',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a+2)) > %eps then bugmes();quit;end
+ 
+if norm(z-(b+2) ) > %eps then bugmes();quit;end
+ 
+if norm(y-(c+2)) > %eps then bugmes();quit;end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( c +2 + feval(1:2,1:3,f))) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+// Example with optional argument specified with the
+ 
+// arg=value syntax
+ 
+// [a,b,c] = ex2f(x1,{ v1= arg1, v2=arg2}) , arg1 default value 99
+ 
+//					       arg2 default value 3
+ 
+// only v1 and v2 are recognized as optional argument names
+ 
+// the return value are a<--x1, b = 2*v2 , c = 3*v2
+ 
+//
+ 
+ 
+[a,b,c]=ex2f('test');
+ 
+ 
+if norm([99*2,3*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=ex2f('test',v1=[10,20]);
+ 
+ 
+if norm([[10,20]*2,3*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=ex2f('test',v1=[10,20],v2=8);
+ 
+ 
+if norm([[10,20]*2,8*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=ex2f('test',v2=8,v1=[10]);
+ 
+ 
+if norm([10*2,8*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+//matrix (double) created by C function
+ 
+x1=ex3f();
+ 
+if norm(x1-matrix((1:5*3),3,5)) > %eps then bugmes();quit;end
+ 
+ 
+//matrix (int) created by C function
+ 
+x2=ex4f();
+ 
+if norm(x2-matrix((1:5*3),3,5)) > %eps then bugmes();quit;end
+ 
+ 
+//Character string created by C function
+ 
+x3=ex5f();
+ 
+if x3<>"Scilab is0..." then bugmes();quit;end
+ 
+ 
+ 
+// all together
+ 
+ 
+[y1,y2,y3]=ex6f();
+ 
+if y1<>x3 then bugmes();quit;end
+ 
+if norm(y2-x2) > %eps then bugmes();quit;end
+ 
+if norm(y3-x1) > %eps then bugmes();quit;end
+ 
+A=[1,2,3,4];
+ 
+B=[10,20,30;40,50,60];
+ 
+//Just display A and B
+ 
+ex7f(A,B)
+ 
+!   10.    20.    30. !
+!   40.    50.    60. !
+ 
+!   1.    2.    3.    4. !
+ 
+ 
+ 
+a_chain='hello';s=poly(0,'s');
+ 
+deff('[y1,y2,y3]=myfunction(x1,x2)','y1=x1+x2,y2=1+s,y3=a_chain')
+ 
+ 
+x1=1;x2=2;
+ 
+[y1,y2,y3]=myfunction(x1,x2);
+ 
+ 
+[u,v,w]=ex8f(x1,x2,myfunction);
+ 
+ 
+if u-y1 > %eps then bugmes();quit;end
+ 
+if v-y2<>0 then bugmes();quit;end
+ 
+if w<>y3 then bugmes();quit;end
+ 
+//a's to o's
+ 
+x=ex9f('gaad');
+ 
+if x<>'good' then bugmes();quit;end
+ 
+//variable read in Scilab stack
+ 
+param=1:10;
+ 
+z=ex10f();
+ 
+if norm(z-param) > %eps then bugmes();quit;end
+ 
+deff('[u,v,w]=myfct(x,y)','u=7+x,v=8+y,w=9+y')
+ 
+//ex11f executes myfct with input variables x=5 and y=6
+ 
+x=5;y=6;[u,v,w]=myfct(x,y);
+ 
+[p,q,r]=ex11f(1,2,3,4,5,6);
+ 
+if p<>u | q <> v | r <> w then bugmes();quit;end
+ 
+deff('p=mypoly(x)','p=poly(x,''z'',''coeffs'')')
+ 
+c=[1,2,3];
+ 
+P1=ex12f(2,c);
+ 
+if P1<>poly(c*2,'z','coeffs') then bugmes();quit;end
+ 
+ 
+ 
+ 
+[a]=ex13f([1,2,3]+%i*[4,5,5]);
+ 
+if norm(a-2*[1,2,3]-%i*[4,5,5]*3) > %eps then bugmes();quit;end
+ 
+ 
+[a]=ex13f([1,2,3]);
+ 
+if norm(a-2*[1,2,3]) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+// Creating the variable C
+ 
+ex14f();
+ 
+if C<>[10,20,30] then bugmes();quit;end
+ 
+ 
+ 
+// Accessing a Scilab string inside an interface
+ 
+Mystr='My string';
+ 
+ex15f()
+Mystr=My string  Its length is0...      
+ 
+ 
+ex16f();
+ 
+if Str<> "Pilgrim said he, where can it be this land of Eldorado" then pause;end
+ 
+ 
+//Test inputs for ex17f:
+ 
+X=1:3;Y=4:6;
+ 
+//...and 3 examples of Scilab argument functions:
+ 
+deff('z=f1(x,y)','z=x+y');
+ 
+deff('z=f2(x,y)','z=x*x+y*y');
+ 
+deff('z=f3(x,y)','z=cos(x+y)');
+ 
+ 
+//reference values for Z calculated by feval
+ 
+Zref1=feval(X,Y,f1);
+ 
+Zref2=feval(X,Y,f2);
+ 
+Zref3=feval(X,Y,f3);
+ 
+ 
+// Calling ex17f with a argument function which is a Scilab function:
+ 
+Z1=ex17f(X,Y,f1);
+ 
+if norm(Z1-Zref1) > %eps then bugmes();quit;end
+ 
+ 
+Z2=ex17f(X,Y,f2);
+ 
+if norm(Z2-Zref2) > %eps then bugmes();quit;end
+ 
+ 
+Z3=ex17f(X,Y,f3);
+ 
+if norm(Z3-Zref3) > %eps then bugmes();quit;end
+ 
+ 
+// Calling ex17f with a argument function which is a Fortran function:
+ 
+Z1=ex17f(X,Y,'f1f');     // f1f defined in ex17f.f
+ 
+if norm(Z1 - Zref1) > %eps then bugmes();quit;end
+ 
+ 
+Z2=ex17f(X,Y,'f2f');   // f2f defined in ex17f.f
+ 
+if norm(Z2 - Zref2) > %eps then bugmes();quit;end
+ 
+ 
+// making f3f.o and linking f3f dynamically with Scilab
+ 
+if ~c_link('f3f') then
+  files=G_make(['f3f.o'],'f3f.dll');
+  link(files,'f3f','f') ;
+linking files 
+f3f.o 
+ to create a shared executable
+
+shared archive loaded
+
+Linking f3f 
+
+Link done
+
+end
+ 
+ 
+// Calling ex17f with the Fortran argument function fp3
+ 
+Z3=ex17f(X,Y,'f3f');
+ 
+if norm(Z3 - Zref3) > %eps then bugmes();quit;end
+ 
+ 
+ 

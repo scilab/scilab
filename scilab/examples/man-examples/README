@@ -1,0 +1,26 @@
+In this directory we show how to customize Scilab help by 
+adding two new sections.
+
+Directories "helpdir1" and "helpdir2" contain ".man" files.
+
+By executing into Scilab the commands:
+
+dir1="SCI/examples/man-examples/helpdir1";
+dir2="SCI/examples/man-examples/helpdir2";
+formatman(dir1,"ascii");
+formatman(dir2,"ascii");
+
+".man" files are processed (transformed into ".cat" files) and the
+whatis files are generated. These commands are in the file
+"format.sci".
+
+Defining in Scilab an updated "%helps" variable:
+
+%helps = [%helps; 
+"./helpdir1", "Title1";
+"./helpdir2", "Title2";];
+
+allows the items in "helpdir1" and "helpdir2" to be in the Scilab
+help. See the file "help.sce".  You can change your Scilab startup
+(".scilab") by adding the content of this file "help.sce" in order to
+get access to the new help sections.

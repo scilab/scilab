@@ -1,0 +1,21 @@
+15  //Signal Processing
+  1    // Spectral Estimation
+  2    // IIR filter Design
+     lp         //type
+     3          //order
+     ellip      //design
+     0.15 0.25  //cut-off frequencies
+     0.08 0.035 // error values
+     o          //Ok
+  2   // IIR filter Design
+     bp         //type
+     3          //order
+     butt       //design
+     0.15 0.25  //cut-off frequencies
+     0.08 0.030 // error values
+     o           //Ok
+  3   // Minimax FIR filter design
+  4  // Wiegner filter
+  5  // Bode plots
+  0 //Exit Signal Processing
+0 // Exit

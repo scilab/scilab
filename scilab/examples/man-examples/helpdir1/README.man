@@ -1,0 +1,30 @@
+.TH example1 1 "April 1993" "Scilab Group" "Scilab Function"
+.SH NAME
+README - read me file
+.SH DESCRIPTION
+This is an help directory.
+Scilab help facility works if:
+The global scilab string variable %helps which is as follows:
+.nf
+%helps=[..
+"Pathname1","title1";
+"Pathname2","title2";
+...];
+.fi
+has an appropriate row containing the pathname and
+the title of an help directory. 
+
+.nf
+Any help directory must contain:
+********************************
+-  a whatis file formatted as follows:
+helpitem1 - brief apropos   @helpitem1
+helpitem2 - brief apropos   @helpitem2
+...
+
+- a set of associated .cat files:
+helpitem1.cat
+helpitem2.cat
+...
+.fi
+

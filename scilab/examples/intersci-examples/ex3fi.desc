@@ -1,0 +1,18 @@
+scilabdaxpy	n	a	x	incx	y	incy
+n	scalar
+a	scalar
+x	vector	nx
+incx	scalar
+y	vector	ny
+incy	scalar
+
+daxpy	n	a	x	incx	y	incy
+n	int
+a	double
+x	double
+incx	int
+y	double
+incy	int
+
+out	sequence	y
+*********************

@@ -1,0 +1,39 @@
+SHELL = /bin/sh
+SCIDIR=../
+
+all:: Lib.exe Name.exe
+	@Makesubdirs.bat all ABSOFT
+
+distclean::
+	@Makesubdirs.bat distclean 
+
+clean::
+	@Makesubdirs.bat clean 
+
+include ../Makefile.incl.amk
+
+CFLAGS = $(CC_OPTIONS) 
+FFLAGS = $(FC_OPTIONS)
+
+OBJS = Lib.obj Name.obj 
+
+clean ::
+	@$(RM) $(OBJS)
+
+distclean::
+	@$(RM) $(OBJS) 
+
+
+Lib.exe	: Lib.c 
+	@$(CC) $(CFLAGS) $*.c 	
+	@$(LINKER) -SUBSYSTEM:console -OUT:"Lib.exe" Lib.obj $(GUILIBS)
+
+Name.exe: Name.c 
+	@$(CC) $(CFLAGS) $*.c 	
+	@$(LINKER) -SUBSYSTEM:console -OUT:"Name.exe" Name.obj $(GUILIBS)
+
+
+
+
+
+

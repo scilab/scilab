@@ -1,0 +1,5 @@
+The files "config.guess" and "config.sub" are used to find
+the type of the machine when compiling Scilab.
+
+The last versions of these files can be found at:
+"http://subversions.gnu.org/cgi-bin/cvsweb/config/"

@@ -1,0 +1,13 @@
+The directory contains scilab function which emulate some matlab
+functions to complex for an inline translation. 
+
+Translator often uses these functions when it cannot determine type or
+dimensions of some crucial args. These function allows translated
+functions to work, but it is often simple and much more efficient to
+replace the call to these function by the correponding scilab
+code. See code of these function to have the scilab equivalents.
+
+
+The functions which name begin with a percent are used to emulate
+operations between boolean and regular matrices (see overloading)
+

@@ -1,0 +1,7 @@
+#!/bin/sh 
+# Scilab Makefile to Absoft .amk
+echo "#-----------------------------" > $1.amk 
+echo "# generated from Makefile: DO NOT EDIT" >> $1.amk 
+echo "# -----------------------------" >> $1.amk 
+sed -e "s/\.a *$/.lib/" -e "s/\.o/.obj/g" -e "s/Makefile\.incl/Makefile.incl.amk/" -e "s/Make\.lib/Make.lib.amk/" -e "s/Make.banier/Make.banier.amk/" -e "s/Make.Blocks/Make.Blocks.amk/"  $1 >> $1.amk
+

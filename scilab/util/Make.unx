@@ -1,0 +1,10 @@
+SHELL = /bin/sh
+# Warning SCIDIR has to be defined in the make calling sequence
+#include ../Path.incl
+include $(SCIDIR)/Version.incl
+include $(SCIDIR)/Makefile.incl
+
+FFLAGS = $(FC_OPTIONS) $(FC_PICFLAGS) -I$(SCIDIR)/routines
+CFLAGS = $(CC_OPTIONS) $(CC_PICFLAGS) -I$(SCIDIR)/routines
+all:: 
+

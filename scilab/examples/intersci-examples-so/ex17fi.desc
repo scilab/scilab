@@ -1,0 +1,11 @@
+ex17	l
+l	list 	ex17-l
+
+ext17	str(l) a(l) b(l)
+str(l)  char
+a(l)	real
+b(l)	int 
+
+out	sequence l
+***********************
+

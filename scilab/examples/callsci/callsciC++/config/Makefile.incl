@@ -1,0 +1,96 @@
+# Generated automatically from Makefile.incl.in by configure.
+RM = rm -f
+AR = ar cq
+FILES_TO_CLEAN = *.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS make.log MakeOut .*~ *.trace so_locations *.orig *.cos
+
+all::
+
+clean::
+	@echo Cleaning 
+	@$(RM) $(FILES_TO_CLEAN)
+distclean::
+	@$(RM) $(FILES_TO_CLEAN)
+
+RANLIB = ranlib
+
+TERMCAPLIB = -ltermcap
+
+##################################################################
+# NOTE: the following schemes for compiling and linking are not  #
+#       exactly used for the main executable scilex; for it, see #
+#       the files Makefile.<host>                                #
+##################################################################
+
+############
+# C compiler
+# typically, for compiling use: CFLAGS = $(CC_OPTIONS)
+# and for linking: $(CC) -o $(PROGRAM) $(OBJS) $(CC_LDFLAGS)
+###########
+CC = cc
+CC_OPTIONS = -g -ieee_with_inexact
+CC_LDFLAGS = -ieee_with_inexact
+CC_PICFLAGS = 
+
+##################
+# Fortran compiler
+# typically, for compiling use: FFLAGS = $(FC_OPTIONS)
+# and for linking: $(FC) -o $(PROGRAM) $(OBJS) $(FC_LDFLAGS)
+##################
+FC = f77
+FC_OPTIONS = -g -fpe3
+FC_LDFLAGS = 
+FC_PICFLAGS = 
+
+
+########
+# Linker
+# typically, for linking: $(LD) -o $(PROGRAM) $(OBJS) $(LD_LDFLAGS)
+########
+LD = ld
+LD_LDFLAGS = 
+
+##########
+# X Window: use $(XFLAGS) for compilation and $(XLIBS) for linking
+# typically, for compiling use: CFLAGS = $(CC_OPTIONS) $(XFLAGS)
+# and for linking with X Window
+#  with C compiler: $(CC) -o $(PROGRAM) $(OBJS) $(CC_LDFLAGS) $(XLIBS)
+#  with Fortran compiler: $(FC) -o $(PROGRAM) $(OBJS) $(FC_LDFLAGS) $(XLIBS)
+#  with linker: $(LD) -o $(PROGRAM) $(OBJS) $(LD_LDFLAGS) $(XLIBS)
+##########
+DLDLIB = 
+DLD_SUBDIR = 
+PVMLIB = /usr/local/lib/scilab-2.5.1/pvm3/lib/ALPHA/libpvm3.a
+PVMGLIB = /usr/local/lib/scilab-2.5.1/pvm3/lib/ALPHA/libgpvm3.a
+PVMROOT = /usr/local/lib/scilab-2.5.1/pvm3
+XAWLIB = -lXaw
+XMULIB = -lXmu
+XAW_LOCAL_SUBDIR = 
+XAW_LOCAL_LIB = 
+XFLAGS =  
+X_EXTRA_LIBS =  -ldnet_stub
+XLIBS =  $(XAWLIB) $(XMULIB) -lXt -lXext  -lSM -lICE -lX11 $(X_EXTRA_LIBS)
+
+#####################
+# TCL/TK
+#####################
+TK_INC_PATH = -I/usr/local/include
+TCL_INC_PATH = -I/usr/local/include
+TCLTK_LIBS =   -ltk8.0    -ltcl8.0 
+
+#####################
+# for WIN32 version 
+# win32 libraries for gcwin32 
+WIN32LIBS=-mwindows -lwsock32 -lshell32 -lcomctl32  -lwinspool -lm 
+WINLIBS = -lf2c $(WIN32LIBS)
+# Ressource compiler 
+#
+RC=/msdev/bin/rc.exe
+RCVARS=-r -DWIN32
+# an other free resource compiler 
+#
+#RC=/softs/lccpub/bin/lrc 
+#RCVARS=/iC:/softs/lccpub/include
+# from .res to .o  
+CVTRES= /SOFTS/gnuwin32/b18/H-i386-cygwin32/bin/cvtres.exe
+# link options 
+LINKEROPT=-Wl,-subsystem,console

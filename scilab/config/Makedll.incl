@@ -1,0 +1,31 @@
+#--- see examples/addinter-tutorial-so ----------
+
+DUMPEXTS=$(SCIDIR1)\bin\dumpexts
+SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
+
+!include $(SCIDIR1)\Makefile.incl.mak
+
+FFLAGS = $(FC_OPTIONS) -DFORDLL -I$(SCIDIR1)\routines
+CFLAGS = $(CC_OPTIONS) -DFORDLL -I$(SCIDIR)/routines
+
+all :: $(LIBRARY).dll
+
+$(LIBRARY).dll: $(OBJS)
+	@echo Creation of dll $(LIBRARY).dll and import lib from ...
+	@echo $(OBJS)
+	@$(DUMPEXTS) -o "$*.def" "$*.dll" $**
+	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
+
+clean	::
+	@del *.obj
+	@del $(LIBRARY)_gateway.c
+	@del $(LIBRARY).def
+	@del $(LIBRARY).dll
+	@del $(LIBRARY).exp
+	@del $(LIBRARY).ilib
+
+distclean:: 	clean
+
+tests	: 
+	@echo run $(LIBRARY).tst under scilab to test examples
+

@@ -1,0 +1,23 @@
+	How to make calls to Scilab interpreter 
+	from a C++ program 
+	(Unix only since the proper Makefiles for windows 
+	are not still writen) 
+	
+In this directory we provide small examples of C++ calls to the Scilab 
+interpreter. 
+
+To make it run you have to edit the Makefile 
+and change the SCIDIR variable to fit your local Scilab installation 
+
+Then type 
+	make distclean 
+	make all 
+	./myprog 
+
+Note: The whole process should work under Windows but the Windows 
+	Makefiles remain to be writen 
+
+That's all 
+
+jpc
+

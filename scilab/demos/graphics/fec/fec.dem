@@ -1,0 +1,20 @@
+mode(-1)
+// Copyright INRIA
+oldln=lines();
+lines(0)
+deff('[]=demoex(num)','exec(''SCI/demos/''+demolist(num,2))')
+demolist=[
+'Graphics : Fec 1','fec/fec.ex1';
+'Graphics : Fec 2','fec/fec.ex4';
+'Graphics : Fec 3','fec/fec.ex2';
+'Graphics : Fec 4 : Sfgrayplot ','fec/fec.ex3'];
+
+while %t then
+  num=x_choose(demolist(:,1),'Click to choose a demo');
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     demoex(num)
+  end,
+end

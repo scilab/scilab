@@ -1,0 +1,24 @@
+#!/bin/sh 
+#-------------------------------------------------------
+# scicomp scidir macrofile
+# Compilation of macros 
+# can only be executed by the owner of Scilab tree 
+# $1 is the name  of scilab directory 
+# $2 the macrofile 
+
+# Copyright INRIA
+#-------------------------------------------------------
+name=`basename $2 .sci`
+SCI=$1; export SCI
+echo generating $name.bin
+echo "write(%io(2),' ');u=file('open','$name.bin','unknown','unformatted');\
+	old_new=predef();predef(old_new(2)+1);\
+	getf('$name.sci','c');save(u),quit" | $SCI/bin/scilex -ns -nw \
+	| sed 1,/--\>/d 1>report 2>&1
+if (grep error report 1> /dev/null  2>&1);
+then cat report;echo " " 
+   echo see `pwd`/report for more informations
+   grep libok report>/dev/null; 
+else rm -f report;
+fi
+exit 0

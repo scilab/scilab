@@ -1,0 +1,36 @@
+.TH example1 1 "April 1993" "Scilab Group" "Scilab Function"
+.SH NAME
+example1 - apropos1
+.SH CALLING SEQUENCE
+.nf
+[X,Y]=fct(a,b,c)
+.fi
+.SH PARAMETERS
+.TP
+a
+: what is a
+.TP
+b
+: what is b
+.TP
+c
+: what is c
+.TP
+X
+: what is X
+.TP
+Y
+: what is Y
+.SH DESCRIPTION
+This is a blank example to show facilities for adding man pages 
+.SH EXAMPLE
+.nf
+The example
+.fi
+.SH AUTHOR
+Author 
+.SH SEE ALSO
+example2
+
+
+

@@ -1,0 +1,24 @@
+mode(-1)
+// Copyright INRIA
+oldln=lines()
+lines(0)
+
+deff('[]=xdemo(info,str)',['x_message([info;str]);xbasc();';
+                           'write(%io(2),str)';
+                           'execstr(str)']);
+xset("default");
+
+exec('SCI/demos/graphics/dessin-1.dem');
+deff('[y]=halt()','y=10');
+
+nn=prod(size(str_l))
+driver("Rec");
+for i=1:nn-2,
+    xset("window",0)
+    execstr(str_l(i));
+    xbasimp([0],'test'+string(i),1);
+    xs2fig(0,'test'+string(i)+'.fig');
+    xbasc([0]);
+end
+
+

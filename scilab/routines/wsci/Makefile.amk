@@ -1,0 +1,128 @@
+SHELL = /bin/sh
+SCIDIR=../..
+SCIDIR1=..\..
+LIBRARY = $(SCIDIR)/libs/wsci.lib
+
+OBJSC1 =wtext.obj wgnuplib.obj wmenu.obj wprinter.obj wpause.obj wgraph.obj winmain.obj \
+	wmhelp.obj wgmenu.obj wstatbar.obj gvwprn.obj wmprint.obj wmtex.obj
+
+OBJSC2 =readwin.obj wtloop.obj misc.obj \
+	command.obj readcons.obj x_zzledt.obj jpc_Xloop.obj sh.obj \
+	strings.obj files.obj tclWinError.obj
+
+OBJSC = $(OBJSC1) $(OBJSC2)
+
+OBJSF = 
+
+include ../../Makefile.incl.amk
+CFLAGS = $(CC_OPTIONS) -windefs -I.. -I../graphics
+FFLAGS = $(FC_OPTIONS)
+
+include ../Make.lib.amk
+
+#================== dependencies 
+
+wgraph.obj : ../graphics/periWin-bcg.h
+wmhelp.obj : ../sun/h_help.h ../graphics/periWin-bcg.h ../machine.h
+$(OBJSC) : wgnuplib.h
+
+#================= resources 
+
+RESOURCES= Rscilab.res
+
+all	:: $(RESOURCES) 
+
+Rscilab.res: Rscilab.rc wresource.h
+	$(RC) $(RCVARS) /foRscilab.res Rscilab.rc
+
+#GUIFLAGS=-SUBSYSTEM:windows
+
+#===================test ========================
+#!IF "$(DTK)" == "-DWITH_TK"
+#GTK_LIBS= ../../libs/tksci.lib ../../libs/intersci.lib ../../libs/libf2c.lib $(XLIBS)
+#!ELSE 
+GTK_LIBS= $(XLIBS)
+#!ENDIF
+
+test	: $(RESOURCES) wtest.obj ../../libs/wsci.lib 
+	@echo Creation of ../../bin/test-vc.exe
+	$(LINKER) $(LINKER_FLAGS) $(GUIFLAGS) \
+	 -OUT:"../../bin/test-vc.exe" wtest.obj \
+	$(RESOURCES) abs_putenv.obj \
+	../../libs/system.lib ../../libs/interf.lib ../../libs/system2.lib ../../libs/optim.lib \
+	../../libs/integ.lib ../../libs/control.lib \
+	../../libs/scicos.lib ../../libs/signal.lib \
+	../../libs/poly.lib ../../libs/calelm.lib ../../libs/lapack.lib ../../libs/graphics.lib \
+	../../libs/sparse.lib ../../libs/metanet.lib ../../libs/sun.lib \
+	../../libs/intersci.lib ../../libs/wsci.lib ../../libs/graphics.lib ../../libs/menusX.lib \
+	../../libs/libcomm.lib ../../libs/comm.lib ../../libs/sound.lib ../../libs/dcd.lib \
+	../../libs/rand.lib ../../libs/blas.lib ../../libs/xdr.lib  ../../libs/fraclab.lib \
+	../../libs/gd.lib \
+	../../routines/default/Ex-colnew.obj \
+	../../routines/default/Ex-corr.obj \
+	../../routines/default/Ex-feval.obj \
+	../../routines/default/Ex-fsolve.obj \
+	../../routines/default/Ex-impl.obj \
+	../../routines/default/Ex-intg.obj \
+	../../routines/default/Ex-int2d.obj \
+	../../routines/default/Ex-int3d.obj \
+	../../routines/default/Ex-ode-more.obj \
+	../../routines/default/Ex-ode.obj\
+	../../routines/default/Ex-odedc.obj \
+	../../routines/default/Ex-optim.obj \
+	../../routines/default/Ex-schur.obj \
+	../../routines/default/Ex-fort.obj\
+	../../routines/default/Ex-dasrt.obj \
+	../../routines/default/Ex-dassl.obj \
+	../../routines/default/Ex-fbutn.obj \
+	../../routines/default/FTables.obj \
+	../../routines/default/mainwin95.obj \
+	../../routines/default/matusr.obj \
+	../../routines/default/matus2.obj \
+	../../routines/default/Funtab.obj \
+	../../routines/default/msgstxt.obj \
+	../../routines/default/scimem.obj \
+	../../routines/default/callinterf.obj /aliases:unicode.als $(GTK_LIBS) 
+
+wtest.obj : wtloop.c 
+
+#=================== lpr ===========================
+
+all:: ../../bin/lpr.exe
+
+../../bin/lpr.exe 	: lpr.obj
+	@echo Creation of $*.exe 
+	$(LINKER) -SUBSYSTEM:console -OUT:"../../bin/lpr.exe" lpr.obj \
+	$(RESOURCES) $(GUILIBS) 
+#/aliases:$(ABSOFT)\lib\unicode.als
+
+lpr.obj : gvwprn.c 
+
+#=================== runscilab========================
+
+RUNRESOURCES= Rrunscilab.res
+
+all:: ../../bin/runscilab.exe
+
+../../bin/runscilab.exe: runscilab.c abs_putenv.obj $(RUNRESOURCES) 
+	@echo Creation of $*.exe 
+	@del runscilab.obj 
+	@$(CC) $(CFLAGS) -DTEST runscilab.c 	
+	@$(LINKER) -SUBSYSTEM:windows -OUT:"../../bin/runscilab.exe" \
+	runscilab.obj abs_putenv.obj $(RESOURCES) $(GUILIBS) 
+
+# resources 
+
+all	:: $(RUNRESOURCES)
+
+Rrunscilab.res: Rrunscilab.rc 
+	$(RC) $(RCVARS) /foRrunscilab.res Rrunscilab.rc
+
+readcons.obj	: readline.c wtextc.h 
+readgcwin.obj	: readline.c 
+#readwin.obj 	: readline.c
+
+abs_putenv.obj:abs_putenv.c
+
+
+

@@ -1,0 +1,10 @@
+# jpc : Pbs avec b19 malloc.o standard 
+# ca ne marche pas (core dump) 
+# avec -lmmalloc ca marche !!!!
+
+atention f2c sans malloc.c marche bien avec standard ou libmmalloc 
+avec malloc.c + l'otpion -DCRAY ca a l'air OK 
+
+	==> comparer les 2 viteses
+
+jpc 1997 

@@ -1,0 +1,38 @@
+31  // Fractal signal analysis
+  1 //Generalized Weierstrass Synthesys and Local Holder Estimation
+    1024 //length
+    0.2  //Holder: starting value
+    0.8  //Holder: ending value
+    0  //smoothness of Holder fnc
+    2  //lambda
+    1  //time support
+    slope//limit time
+    o //OK
+  2 //Binomial Measure Synthesis ans Multifractal Spectrum Est
+    0.3 0.7 //weight
+    10     //number of cascades
+    1 8 4   //Min scale, max scale, Nb scale
+    dec     // Scale progression
+    cent    //Ball type
+    200     //Holder sampling rate
+    o //OK
+  3 // fBm Synthesis ans Wavelet transform
+    512     //Number of time samples
+    0.5     //Holder exponent
+    1 5 128 //Min scale, max scale, Nb scale
+    Morlet  //Wavelet type
+    o //OK
+  3 // fBm Synthesis ans Wavelet transform
+    512     //Number of time samples
+    0.5     //Holder exponent
+    1 5 128 //Min scale, max scale, Nb scale
+    Mexican  //Wavelet type
+    o //OK
+  4 //Alpha stable process synthesis and estimation
+    1.5  // Characteristic exponent
+    0  // Skewness parameter
+    0  // Location parameter
+    1  // Scale parameter
+    5000 // Sample size
+    o //OK
+  0 //exit fractal demo

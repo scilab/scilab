@@ -1,0 +1,51 @@
+
+include Makefile
+
+#==============Lint 
+# These rules are not universal, just for Scilab team to test sources 
+#
+# for dec alpha 
+LINTF=  -wA -wdh -Dlint5
+# for sun
+# LINTF=
+
+SRCS=$(OBJSC:.o=.c)
+
+lint5	:
+	f2c ../interf/matdes.f 
+	(/usr/5bin/lint -Dlint5 $(XFLAGS) -zvu $(SRCS) matdes.c 2>&1) > lint-res 
+	\rm matdes.c
+
+lint	:
+	(lint $(XFLAGS) -vu $(LINTF)  $(SRCS) 2>&1) > lint-res 
+
+lint5-lib: 
+	f2c ../interf/matdes.f 
+	(/usr/5bin/lint -Dlint5 -CX11G $(XFLAGS) -zvu $(SRCS) matdes.c 2>&1) > lint-res 
+	\rm matdes.c
+
+MACS =  periMac.c periPos.c periFig.c Xcall.c Xcall1.c\
+	Contour.c Plo3d.c Math.c Axes.c Champ.c Plo2d.c \
+	Plo2d1.c Plo2d2.c Plo2d3.c Plo2d4.c Plo2dEch.c Rec.c Gray.c \
+	Alloc.c FeC.c XGraphic-test/All.c XGraphic-test/MainMac.c
+
+lintmac	:
+	(/usr/5bin/lint -Dlint5 -IMac -I`pwd` -DTHINK_C -zvu $(MACS) 2>&1) > lint-res 
+
+# lint with the X11 lint libraries 
+
+FILE=periX11.c
+
+lint5one	:
+	(/usr/5bin/lint -Dlint5 $(XFLAGS) -zvu $(FILE)  2>&1)
+
+lintone	:
+	(lint $(XFLAGS) -vu $(FILE) 2>&1) 
+
+lintX5one	:
+	(/usr/5bin/lint -Dlint5 $(XFLAGS) -zvu $(FILE) -lX11 -lXau -lXaw -lXext -lXi -lXmu -lXt -loldX | grep $(FILE) 2>&1)
+
+lintXone	:
+	(lint $(XFLAGS) -zvu $(FILE) -lX11 -lXau -lXaw -lXext -lXi -lXmu -lXt -loldX | grep $(FILE) 2>&1) 
+
+#============================
