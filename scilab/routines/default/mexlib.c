@@ -1052,6 +1052,7 @@ mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID CLASS, mxComp
 {
   static int lw,lw1;
   int retval;
+  if (ndim < 3) return mxCreateNumericMatrix(dims[0],dims[1], CLASS, cmplx);
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
