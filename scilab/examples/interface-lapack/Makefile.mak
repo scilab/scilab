@@ -19,7 +19,7 @@ FORTRANINTERFACES = intfdgemm.obj intdgebal.obj intdgebak.obj intdgels.obj intdg
 
 FFUNCTIONS = fdgemm dgebal dgebak dgels dgeqrf 
 
-OTHERFOBJS = zgemm.obj
+OTHERFOBJS = 
 ################ do not edit below this line #############################
 DUMPEXTS=$(SCIDIR1)\bin\dumpexts
 SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
