@@ -96,7 +96,7 @@ case 'define' then
   exprs=[fname;
 	string(N);
 	string(swap)]
-  gr_i=['txt=[''read from .au'';'' sound binary file''];';
+  gr_i=['txt=[''read from .au'';'' sound file''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
   x=standard_define([4 2],model,exprs,gr_i)
 end

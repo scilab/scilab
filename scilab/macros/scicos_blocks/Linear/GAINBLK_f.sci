@@ -123,7 +123,7 @@ function [x,y,typ]=GAINBLK_f(job,arg1,arg2)
     model.blocktype='c'
     model.dep_ut=[%t %f]
     
-    exprs=[strcat(sci2exp(gain));strcat(sci2exp(in));strcat(sci2exp(out))]
+    exprs=[strcat(sci2exp(gain))]
     gr_i=''
     x=standard_define([2 2],model,exprs,gr_i)
   end
