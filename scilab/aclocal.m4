@@ -291,7 +291,7 @@ dirs="$USER_TK_LIB_PATH /lib /usr/lib /usr/lib/tk /usr/lib/tk8.* /shlib /shlib/t
 libexts="so so.1.0 sl dylib a"
 libnames="tk$CHK_TK_MAJ.$CHK_TK_MIN tk.$CHK_TK_MAJ.$CHK_TK_MIN tk$CHK_TK_MAJ$CHK_TK_MIN tk.$CHK_TK_MAJ$CHK_TK_MIN"
 
-TK_PLUS=
+TK_PLUS=  $TCL_LIB -lX11
 
 case $host_os in
   darwin* | rhapsody*) 
@@ -315,16 +315,17 @@ for e in $libexts; do
 				CPPFLAGS="$CPPFLAGS $TK_INC_PATH"
 				LDFLAGS=$LDFLAGS
 				TK_LDFLAGS="$X_LIBS $X_EXTRA_LIBS $TCLTK_LIBS"
-				# Check for Tcl lib
+				# Check for Tk lib
 				if test "$USER_TK_LIB_PATH" = ""
 				then
 					LDFLAGS="$LDFLAGS $TK_LDFLAGS -L$PATH_LIB_TK"
 					AC_CHECK_LIB([$NAME_LIB_TK], Tk_BindEvent, TK_LIB_OK=1,TK_LIB_OK=0,
-						  [-l$NAME_LIB_TK $TCL_LIB -lX11])
+						  [-l$NAME_LIB_TK $TK_PLUS])
 				else
 					LDFLAGS="$LDFLAGS $TK_LDFLAGS -L$USER_TK_LIB_PATH" 
+
 					AC_CHECK_LIB([$NAME_LIB_TK], Tk_BindEvent, TK_LIB_OK=1,TK_LIB_OK=0,
-						  [-l$NAME_LIB_TK $TCL_LIB  -lX11])
+						  [-l$NAME_LIB_TK $TK_PLUS])
 				fi
 				CFLAGS="$saved_cflags"
 				CPPFLAGS="$saved_cppflags"
