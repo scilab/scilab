@@ -323,6 +323,12 @@
   </ITEM>
   <ITEM label='xs2fig'>
 : send graphics to a file in Xfig syntax
+  </ITEM>
+  <ITEM label='xs2gif'>
+: send graphics to a file in Gif syntax
+  </ITEM>
+  <ITEM label='xs2ppm'>
+: send graphics to a file in PPM syntax
 
   </ITEM>
   </ITEMIZE>
