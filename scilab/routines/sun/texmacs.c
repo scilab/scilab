@@ -16,7 +16,7 @@
 static int first=1;
 static int texmacs_mode=0;
 
-void C2F(settexmacs)() {
+void settexmacs() {
   texmacs_mode=1;
 }
 
