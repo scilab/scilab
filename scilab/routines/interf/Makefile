@@ -111,6 +111,8 @@ intgetenv.o : ../stack.h
 intmgetl.o: ../stack.h
 stack0.o stack1.o stack2.o: ../stack.h
 getdate.o: ../machine.h
+intlapack.o: ../machine.h ../stack-c.h
+intslicot.o: ../machine.h ../stack-c.h ../mex.h
 
 all:: Makefile.mak Makefile.amk
 
