@@ -22,13 +22,6 @@ c
 c
       integer n
       integer mode(2)
-      common /dbcos/ idb
-c      double precision tmp(100)
-c     
-      if(idb.eq.1) then
-         write(6,'(''readf t='',e10.3,'' flag='',i1)') t ,flag
-         write(6,'(''      nevprt='',i2)') nevprt
-      endif
 c
       if(flag.eq.1) then
          n=ipar(4)

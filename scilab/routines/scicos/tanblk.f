@@ -10,12 +10,6 @@ c
 
 c
       double precision ww
-      common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''Tanblk     t='',e10.3,'' flag='',i1)') t,flag
-      endif
-
 c     
       do 15 i=1,nu
          ww=cos(u(i))

@@ -11,11 +11,6 @@ c     outputs the maximum of all inputs
 c
       double precision ww
 c
-      common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''Maxblk   t='',e10.3,'' flag='',i1)') t,flag
-      endif
 c     
       ww=u(1)
       do 15 i=1,nu

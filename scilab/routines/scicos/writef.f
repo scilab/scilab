@@ -19,11 +19,6 @@ c
       include '../stack.h'
       integer i,n
       integer mode(2)
-      common /dbcos/ idb
-c     
-      if(idb.eq.1) then
-         write(6,'(''writef t='',e10.3,'' flag='',i1)') t ,flag
-      endif
 c     
       N=ipar(4)
       K=int(z(1))

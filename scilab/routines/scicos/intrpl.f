@@ -10,11 +10,6 @@ c
       integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*),i
       integer nipar
 c
-      common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''intrpl     t='',e10.3,'' flag='',i1)') t,flag
-      endif
 c    
       do 100 i=2,nrpar/2
          if (u1.le.rpar(i)) goto 200 

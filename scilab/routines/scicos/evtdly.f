@@ -10,11 +10,6 @@ c
       integer nipar,nu,ny
 
 c
-      common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''Evtdly     t='',e10.3,'' flag='',i1)') t,flag
-      endif
 c
       if(flag.eq.3) then
          tvec(1)=t+rpar(1)

@@ -11,13 +11,8 @@ c
       integer nipar,nu,ny
 
 c
-      common /dbcos/ idb
       double precision atol,rtol,ttol,deltat
       common /costol/ atol,rtol,ttol,deltat
-c
-      if(idb.eq.1) then
-         write(6,'(''gensqr     t='',e10.3,'' flag='',i1)') t,flag
-      endif
 c
       if(flag.eq.2) then
          z(1)=-z(1)

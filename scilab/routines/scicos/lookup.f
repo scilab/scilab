@@ -13,13 +13,7 @@ c
 c
       double precision du,dout
       integer i
-      common /dbcos/ idb
 c
-c
-      if(idb.eq.1) then
-         write(6,'(''lookup t='',e10.3,'' flag='',i1)') t,flag
-      endif
-
       n=nrpar/2
       if(n.gt.2) then
          do 10 i=2,n-1

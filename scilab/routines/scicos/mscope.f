@@ -33,15 +33,9 @@ c
       character*(4) logf
       character*4 name
       logical herited
-      common /dbcos/ idb
+
       data cur/0/,verb/0/
 
-c     
-      if(idb.eq.1) then
-         write(6,'(''MScope t='',e10.3,'' flag='',i1,''window='',i3)') t
-     $        ,flag,ipar(1) 
-      endif
-c     
 c     
       call dr1('xgetdr'//char(0),name,v,v,v,v,v,v,
      $     dv,dv,dv,dv)

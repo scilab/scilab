@@ -13,12 +13,6 @@ c
       integer nipar,nu,ny
 
 c
-      common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''Csslti   t='',e10.3,'' flag='',i1)') t,flag
-      endif
-
       la=1
       lb=nx*nx+la
       lc=lb+nx*nu

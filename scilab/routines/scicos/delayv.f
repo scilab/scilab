@@ -12,13 +12,7 @@ c
 
       double precision a,dtat,u2r
       integer i,in,j,k 
-      
-      common /dbcos/ idb
-      
-      
-      if(idb.eq.1) then
-         write(6,'(''delayv     t='',e10.3,'' flag='',i1)') t,flag
-      endif
+
       j=int((nz-1)/nu1)    
       if(flag.eq.3) then
          tvec(1)=t+rpar(1)     

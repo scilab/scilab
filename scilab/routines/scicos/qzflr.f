@@ -14,12 +14,7 @@ c
 
 
       integer i
-      common /dbcos/ idb
 c
-      if(idb.eq.1) then
-         write(6,'(''Qzflr     t='',e10.3,'' flag='',i1)') t,flag
-      endif
- 
       do 15 i=1,nu
          y(i)=rpar(i)*ANINT(u(i)/rpar(i)+0.5d0)
  15   continue

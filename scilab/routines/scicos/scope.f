@@ -31,16 +31,11 @@ c
       double precision frect(4)
 c      character*(4) logf
       logical herited
-      common /dbcos/ idb
+
       data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
       data cur/0/,verb/0/
 
 c     
-      if(idb.eq.1) then
-         write(6,'(''Scope t='',e10.3,'' flag='',i1,''window='',i3)') t
-     $        ,flag,ipar(1) 
-      endif
-
       if(nipar.lt.16) then
 c     compatibility
          herited=.true.

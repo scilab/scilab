@@ -29,18 +29,14 @@ c
       double precision dv
       double precision frect(4)
 c      character*(4) logf
-      common /dbcos/ idb
+
       data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
       data cur/0/,verb/0/
 
 c     
-      if(idb.eq.1) then
-         write(6,'(''FScope t='',e10.3,'' flag='',i1,''window='',i3)') t
-     $        ,flag,ipar(1) 
-      endif
-        iwp=12
-         iwd=14
-
+      iwp=12
+      iwd=14
+        
 c     
          call dr1('xgetdr'//char(0),name,v,v,v,v,v,v,
      $        dv,dv,dv,dv)

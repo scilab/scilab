@@ -13,12 +13,6 @@ c
 c
       integer halt
       common /coshlt/ halt
-      common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''hltblk     t='',e10.3,'' flag='',i1)') t,flag
-      endif
-
 c
       if(flag.eq.2) then
          halt=1

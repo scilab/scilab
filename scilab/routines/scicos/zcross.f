@@ -9,11 +9,6 @@ c
       integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
       integer nipar,nu,ny
 c   
-      common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''Zcross     t='',e10.3,'' flag='',i1)') t,flag
-      endif
 
       if (flag.eq.3) then
          l=nevprt*ntvec

@@ -26,7 +26,7 @@ c     z(6)=height
 
 
       integer wid
-      common /dbcos/ idb
+
       integer cur,v
       double precision dv,round,ur
       character*40 drv
@@ -34,10 +34,6 @@ c     z(6)=height
 
 
 c     
-      if(idb.eq.1) then
-         write(6,'(''Affich t='',e10.3,'' flag='',i1,''window='',i3)') t
-     $        ,flag,ipar(4) 
-      endif
 c     
       if(flag.eq.2) then
 c     state evolution

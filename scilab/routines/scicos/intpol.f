@@ -15,11 +15,6 @@ c
       integer nipar,nu,ny
 
 c
-      common /dbcos/ idb
-c     
-      if(idb.eq.1) then
-         write(6,'(''intpol     t='',e10.3,'' flag='',i1)') t,flag
-      endif
 c
       np=ipar(1)
       call intp(u,rpar(1),rpar(1+np),ny,np,y)

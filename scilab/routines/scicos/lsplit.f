@@ -10,12 +10,6 @@ cc
       integer nipar,nu,ny
 
 c
-      common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''Split     t='',e10.3,'' flag='',i1)') t,flag
-      endif
-
       j=0
       do 2 i=1,ny/nu
          do 1 k=1,nu

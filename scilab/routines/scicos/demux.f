@@ -12,12 +12,7 @@ c
       integer nipar
       integer k
 c
-      common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''mux     t='',e10.3,'' flag='',i1)') t,flag
-      endif
-c    
+
       k=0
       goto(20,30,40,50,60,70,80),ipar(1)-1
 c

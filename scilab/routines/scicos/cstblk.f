@@ -11,11 +11,6 @@ c
       integer nipar,ny
 
 c
-      common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''Const     t='',e10.3,'' flag='',i1)') t,flag
-      endif
 c
       call dcopy(nrpar,rpar,1,y,1)
       return

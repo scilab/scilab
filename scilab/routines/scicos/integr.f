@@ -10,11 +10,6 @@ c
       integer nipar,nu,ny
 
 c
-      common /dbcos/ idb
-c
-      if(idb.eq.1) then
-         write(6,'(''Integr   t='',e10.3,'' flag='',i1)') t,flag
-      endif
 c
       if(flag.eq.1.or.flag.eq.6) then
          y(1)=x(1)
