@@ -52,7 +52,7 @@
     <PARAM_DESCRIPTION>
       <SP> : are the  principal  factors: eigenvectors  of
          V. Each column is an eigenvector element of the
-         dual of R^p.</SP>
+         dual of <VERB>R^p</VERB>.</SP>
 
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -66,7 +66,7 @@
          principal  axis.  Each one of this  columns
          is a linear combination  of the variables
          x1,   ...,xp  with   maximum   variance  under
-         condition u'_iM^(-1)u_i=1</SP>
+         condition <VERB>u'_iM^(-1)u_i=1</VERB></SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
   </PARAM_INDENT>

@@ -73,13 +73,13 @@
    ]]>
     </VERBATIM>
     <P>
-    exploiting block structure in the matrices F_i.</P>
+    exploiting block structure in the matrices <VERB>F_i</VERB>.</P>
     <P>
     It interfaces L. Vandenberghe and S. Boyd sp.c program.</P>
     <P>
     The <VERB>Fi's</VERB> matrices are stored columnwise in <VERB>F</VERB> in
-    compressed format: if F_i^j, i=0,..,m, j=1,...,L denote the jth 
-    (symmetric) diagonal block of F_i, then</P>
+    compressed format: if <VERB>F_i^j</VERB>, i=0,..,m, j=1,...,L denote the jth 
+    (symmetric) diagonal block of <VERB>F_i</VERB>, then</P>
     <VERBATIM>
 <![CDATA[
     [ pack(F_0^1)  pack(F_1^1) ...  pack(F_m^1) ]

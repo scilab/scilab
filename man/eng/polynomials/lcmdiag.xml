@@ -40,10 +40,10 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>[N,D]=lcmdiag(H,'row')</VERB> computes a factorization <VERB>D*H=N</VERB>,
-    i.e.  H=D^(-1)*N  where D is a diagonal matrix with D(k,k)=lcm of 
+    i.e.  <VERB>H=D^(-1)*N</VERB>  where D is a diagonal matrix with D(k,k)=lcm of 
     kth row of H('den').</P>
     <P><VERB>[N,D]=lcmdiag(H)</VERB> or <VERB>[N,D]=lcmdiag(H,'col)</VERB> returns
-    H=N*D^(-1) with diagonal D and D(k,k)=lcm of kth col of H('den')</P>
+    <VERB>H=N*D^(-1)</VERB> with diagonal D and D(k,k)=lcm of kth col of H('den')</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

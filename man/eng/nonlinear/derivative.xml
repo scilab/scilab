@@ -15,8 +15,8 @@
       <PARAM_ITEM>
         <PARAM_NAME>F</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a Scilab function F: R^n --&gt; R^m or a list(F,p1,...,pk), where F is a scilab function 
-      in the form y=F(x,p1,...,pk), p1, ..., pk being any scilab objects (matrices, lists,...).</SP>
+          <SP>: a Scilab function F: <VERB>R^n --&gt; R^m</VERB> or a <VERB>list(F,p1,...,pk)</VERB>, where F is a scilab function 
+      in the form <VERB>y=F(x,p1,...,pk)</VERB>, p1, ..., pk being any scilab objects (matrices, lists,...).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -46,7 +46,7 @@
             <PARAM_ITEM>
               <PARAM_NAME>H_form='default'  </PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: H is a m x (n^2) matrix ; in this form, the k-th row of H  corresponds to the Hessean of 
+                <SP>: H is a m x (<VERB>n^2</VERB>) matrix ; in this form, the k-th row of H  corresponds to the Hessean of 
       the k-th component of F, given  as the following row vector :</SP>
                 <VERBATIM>
 <![CDATA[
@@ -84,7 +84,7 @@
   <DESCRIPTION>
     <P>
     Numerical approximation of the first and second derivatives of a function
-    F: R^n --&gt; R^m at the point x. The Jacobian is computed  by approximating
+    F: <VERB> R^n --&gt; R^m</VERB> at the point x. The Jacobian is computed  by approximating
     the directional derivatives of the components of F in the direction of 
     the columns of Q. 
     (For m=1, v=Q(:,k) : grad(F(x))*v = Dv(F(x)).)

@@ -81,10 +81,10 @@
     rows of <VERB>R</VERB>. 
   </P>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="[Q,R,rk,E] = qr(X ,tol)\FR">
+      <DESCRIPTION_ITEM label="[Q,R,rk,E] = qr(X ,tol)">
         <SP>returns <VERB>rk</VERB> = rank estimate of <VERB>X</VERB> i.e. <VERB>rk</VERB> is the number of diagonal elements in <VERB>R</VERB> which are larger than a given threshold <VERB>tol</VERB>.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="[Q,R,rk,E] = qr(X) \FR">
+      <DESCRIPTION_ITEM label="[Q,R,rk,E] = qr(X) ">
         <SP>returns <VERB>rk</VERB> = rank estimate of <VERB>X</VERB>
     i.e. <VERB>rk</VERB> is the number of diagonal elements in
     <VERB>R</VERB> which are larger than

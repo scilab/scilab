@@ -39,7 +39,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    given a function <VERB>fun(x)</VERB> from R^n to R^p
+    given a function <VERB>fun(x)</VERB> from <VERB>R^n</VERB> to <VERB>R^p</VERB>
     computes the matrix <VERB>g</VERB> such as</P>
     <VERBATIM>
 <![CDATA[

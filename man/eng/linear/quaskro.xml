@@ -81,9 +81,9 @@ Q(sE-A)Z = |=================================|============|
     the pencil</P>
     <P>
     The structure of epsilon blocks are given by:</P>
-    <P><VERB>numbeps(1)</VERB> = # of eps blocks of size 0 x 1</P>
-    <P><VERB>numbeps(2)</VERB> = # of eps blocks of size 1 x 2</P>
-    <P><VERB>numbeps(3)</VERB> = # of eps blocks of size 2 x 3     etc...</P>
+    <P><VERB>numbeps(1)</VERB> = <VERB>#</VERB> of eps blocks of size 0 x 1</P>
+    <P><VERB>numbeps(2)</VERB> = <VERB>#</VERB> of eps blocks of size 1 x 2</P>
+    <P><VERB>numbeps(3)</VERB> = <VERB>#</VERB> of eps blocks of size 2 x 3     etc...</P>
     <P>
     The complete (four blocks) Kronecker form is given by
     the function <VERB>kroneck</VERB> which calls <VERB>quaskro</VERB> on

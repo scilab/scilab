@@ -76,12 +76,12 @@ Q(sE-A)Z = |---------------------------------|----------------------------|
     the pencil</P>
     <P>
     The structure of epsilon and eta blocks are given by:</P>
-    <P><VERB>numbeps(1)</VERB> = # of eps blocks of size 0 x 1</P>
-    <P><VERB>numbeps(2)</VERB> = # of eps blocks of size 1 x 2</P>
-    <P><VERB>numbeps(3)</VERB> = # of eps blocks of size 2 x 3     etc...</P>
-    <P><VERB>numbeta(1)</VERB> = # of eta blocks of size 1 x 0</P>
-    <P><VERB>numbeta(2)</VERB> = # of eta blocks of size 2 x 1</P>
-    <P><VERB>numbeta(3)</VERB> = # of eta blocks of size 3 x 2     etc...</P>
+    <P><VERB>numbeps(1)</VERB> = <VERB>#</VERB> of eps blocks of size 0 x 1</P>
+    <P><VERB>numbeps(2)</VERB> = <VERB>#</VERB> of eps blocks of size 1 x 2</P>
+    <P><VERB>numbeps(3)</VERB> = <VERB>#</VERB> of eps blocks of size 2 x 3     etc...</P>
+    <P><VERB>numbeta(1)</VERB> = <VERB>#</VERB> of eta blocks of size 1 x 0</P>
+    <P><VERB>numbeta(2)</VERB> = <VERB>#</VERB> of eta blocks of size 2 x 1</P>
+    <P><VERB>numbeta(3)</VERB> = <VERB>#</VERB> of eta blocks of size 3 x 2     etc...</P>
     <P>
     The code is taken from T. Beelen (Slicot-WGS group).</P>
   </DESCRIPTION>

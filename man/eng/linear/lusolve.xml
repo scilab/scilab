@@ -36,8 +36,8 @@
     <P><VERB>x=lusolve(hand,b)</VERB> solves the sparse linear system
     <VERB>A*x = b</VERB>.</P>
     <P><VERB>[hand,rk]=lufact(A)</VERB> is the output of lufact.</P>
-    <P><VERB>x=lusolve(A,b)</VERB> solves the sparse linear system  \fVA*x
-  = b\fR.</P>
+    <P><VERB>x=lusolve(A,b)</VERB> solves the sparse linear system  
+    <VERB>A*x = b</VERB></P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

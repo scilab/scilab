@@ -153,7 +153,7 @@
     Non-linear optimization routine for programs without constraints or with bound constraints: 
    </P>
     <P><VERB>min sum(f(x)).^2</VERB>  w.r.t  <VERB>x</VERB>, 
-   Here, <VERB>f</VERB> is a function from R^n to R^m which returns <VERB>f(x)</VERB>, a
+   Here, <VERB>f</VERB> is a function from <VERB>R^n</VERB> to <VERB>R^m</VERB> which returns <VERB>f(x)</VERB>, a
     real vector ( value of function at <VERB>x</VERB>). </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="fun">
