@@ -38,6 +38,12 @@ for k=1:n
     lisdir(k)=double(int32(x(2)) & mask) == dirtype
   end
 end
+if n==1 then
+  lfiles=lfiles(1);
+  ldate=ldate(1);
+  lbytes=lbytes(1);
+  lisdir=lisdir(1);
+end
 L=mlist(["st","dims","name","date","bytes","isdir"],int32([n 1]),lfiles,ldate,lbytes,lisdir)
 
 endfunction
