@@ -105,6 +105,7 @@ extern void Write_Scilab_Console (char *buf);
 extern void Write_Scilab_Window (char *buf);
 extern void ResetMenu(void);
 
+BOOL GraphToolBarDefault=TRUE;
 /*********************************
  * Send a macro to the text window 
  *********************************/

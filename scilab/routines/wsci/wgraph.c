@@ -376,53 +376,106 @@ PrintAbortProc);
   return bError || pr.bUserAbort;
 }
 /*-----------------------------------------------------------------------------------*/
-/****************************************
- *  INI file stuff 
- *  XXXX : should be upgraded for win95/winnt 
- *  using the registry ? 
- ****************************************/
 void WriteGraphIni (struct BCG *ScilabGC)
 {
-  RECT rect;
-  LPSTR file = ScilabGC->lpgw->IniFile;
-  LPSTR section = ScilabGC->lpgw->IniSection;
-  char profile[80];
-  if ((file == (LPSTR) NULL) || (section == (LPSTR) NULL))
-    return;
-  if (IsIconic (ScilabGC->CWindow))
-    ShowWindow (ScilabGC->CWindow, SW_SHOWNORMAL);
-  GetWindowRect (ScilabGC->CWindow, &rect);
-  wsprintf (profile, "%d %d", rect.left, rect.top);
-  WritePrivateProfileString (section, "GraphOrigin", profile, file);
-  wsprintf (profile, "%d %d", rect.right - rect.left, rect.bottom - rect.top);
-  WritePrivateProfileString (section, "GraphSize", profile, file);
-  return;
+	/* Modification Allan CORNET Sauvegarde dans la base de registre dans 
+			HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Graph Settings
+	"Version" correspondant à la version de Scilab
+	Sauvegarde dans HKEY_CURRENT_USER car données dépendant de l'utilisateur
+	*/
+
+	HKEY key;
+	DWORD result,dwsize=4;
+	char Clef[MAX_PATH];
+
+	RECT rect;
+	long GraphSizeX,GraphSizeY;
+	int iconic;
+
+	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Graph Settings",VERSION);  	
+  	RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
+  	iconic = IsIconic (ScilabGC->hWndParent);
+	if (iconic) ShowWindow (ScilabGC->hWndParent, SW_SHOWNORMAL);
+
+	GetWindowRect (ScilabGC->hWndParent, &rect);
+	RegSetValueEx(key, "GraphOriginX", 0, REG_DWORD, (LPBYTE)&rect.left, dwsize);
+  	RegSetValueEx(key, "GraphOriginY", 0, REG_DWORD, (LPBYTE)&rect.top, dwsize);
+
+	GraphSizeX=rect.right - rect.left;
+	GraphSizeY=rect.bottom - rect.top;
+	RegSetValueEx(key, "GraphSizeX", 0, REG_DWORD,(LPBYTE)&GraphSizeX, dwsize);
+  	RegSetValueEx(key, "GraphSizeY", 0, REG_DWORD,(LPBYTE)&GraphSizeY, dwsize);
+	RegSetValueEx(key, "ToolBar", 0, REG_DWORD, (LPBYTE)&ScilabGC->lpmw.ShowToolBar, dwsize);
+
+	RegCloseKey(key);
+	if (iconic) ShowWindow (ScilabGC->hWndParent, SW_SHOWMINIMIZED);
+  
 }
 /*-----------------------------------------------------------------------------------*/
 void ReadGraphIni (struct BCG *ScilabGC)
 {
-  LPSTR file = ScilabGC->lpgw->IniFile;
-  LPSTR section = ScilabGC->lpgw->IniSection;
-  char profile[81];
-  LPSTR p;
-  BOOL bOKINI;
-  bOKINI = (file != (LPSTR) NULL) && (section != (LPSTR) NULL);
-  if (!bOKINI)
-    profile[0] = '\0';
-  if (bOKINI)
-    GetPrivateProfileString (section, "GraphOrigin", "", profile, 80, 
-file);
-  if ((p = GetLInt (profile, &ScilabGC->lpgw->Origin.x)) == NULL)
-    ScilabGC->lpgw->Origin.x = CW_USEDEFAULT;
-  if ((p = GetLInt (p, &ScilabGC->lpgw->Origin.y)) == NULL)
-    ScilabGC->lpgw->Origin.y = CW_USEDEFAULT;
-  if (bOKINI)
-    GetPrivateProfileString (section, "GraphSize", "", profile, 80, 
-file);
-  if ((p = GetLInt (profile, &ScilabGC->lpgw->Size.x)) == NULL)
-    ScilabGC->lpgw->Size.x = CW_USEDEFAULT;
-  if ((p = GetLInt (p, &ScilabGC->lpgw->Size.y)) == NULL)
-    ScilabGC->lpgw->Size.y = CW_USEDEFAULT;
+	/* Modification Allan CORNET Restauration depuis la base de registre dans 
+			HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Graph Settings
+	"Version" correspondant à la version de Scilab
+	*/
+	HKEY key;
+	DWORD result,size=4;
+	long GraphSizeX,GraphSizeY;
+	char Clef[MAX_PATH];
+	int Toolbar;
+	
+	RECT rect;
+
+	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Graph Settings",VERSION);
+  	result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
+
+	if ( RegQueryValueEx(key, "GraphOriginX", 0, NULL, (LPBYTE)&rect.left, &size) !=  ERROR_SUCCESS )
+	{
+		ScilabGC->lpgw->Origin.x = CW_USEDEFAULT;
+
+	}
+	else
+	{
+		ScilabGC->lpgw->Origin.x = rect.left;
+	}
+
+	if ( RegQueryValueEx(key, "GraphOriginY", 0, NULL, (LPBYTE)&rect.top, &size) !=  ERROR_SUCCESS )
+	{
+		ScilabGC->lpgw->Origin.y = CW_USEDEFAULT;
+	}
+	else
+	{
+		ScilabGC->lpgw->Origin.y = rect.top;
+	}
+
+	if ( RegQueryValueEx(key, "GraphSizeX", 0, NULL, (LPBYTE)&GraphSizeX, &size) !=  ERROR_SUCCESS )
+	{
+		ScilabGC->lpgw->Size.x = CW_USEDEFAULT;
+	}
+	else
+	{
+	ScilabGC->lpgw->Size.x = GraphSizeX;
+	}
+
+	if ( RegQueryValueEx(key, "GraphSizeY", 0, NULL, (LPBYTE)&GraphSizeY, &size) !=  ERROR_SUCCESS )
+	{
+		ScilabGC->lpgw->Size.y = CW_USEDEFAULT;
+	}
+	else
+	{
+		ScilabGC->lpgw->Size.y = GraphSizeY;
+	}
+
+	if ( RegQueryValueEx(key, "ToolBar", 0, NULL, (LPBYTE)&Toolbar, &size) !=  ERROR_SUCCESS )
+  	{
+		GraphToolBarDefault = TRUE;
+	}
+	else
+	{
+		GraphToolBarDefault  = Toolbar;
+	}
+
+	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
 }
 /*-----------------------------------------------------------------------------------*/
 /****************************************************

@@ -109,6 +109,7 @@ typedef struct tagMW
   WNDPROC	lpfnButtonProc[BUTTONMAX];
   BOOL		IsAIcon[BUTTONMAX];
   int		PositionX[BUTTONMAX];
+  BOOL		ShowToolBar;
 } MW;
 typedef MW  *LPMW;
 

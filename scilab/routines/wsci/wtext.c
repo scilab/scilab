@@ -3422,7 +3422,7 @@ void InvalidateCursor( void )
 void MessageBoxNewGraphicMode(void)
 {
 	HKEY key;
-	DWORD result,Length,size=4;
+	DWORD result,size=4;
 	char Clef[MAX_PATH];
 	int DontShowMessageNewGraphicMode,Ans;
 

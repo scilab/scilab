@@ -48,6 +48,7 @@
 #include <ctype.h>
 #include <stdarg.h>
 
+#include "../version.h"
 #include "wresource.h"
 #include "wcommon.h"
 #include "../graphics/scigraphic.h"
@@ -63,6 +64,7 @@ SCISEND;
 SCISEND sciSend;
 /*-----------------------------------------------------------------------------------*/
 extern TW textwin;
+extern GW graphwin;
 extern void SetGHdc __PARAMS ((HDC lhdc, int width, int height));
 extern void sci_pixmapclear(HDC hdc_c, struct BCG *ScilabGC );
 extern void sci_pixmapclear_rect(HDC hdc_c, struct BCG *ScilabGC,int w,int h); 
@@ -139,6 +141,7 @@ But SciClickInfo; /* for xclick and xclick_any */
 static int emulate_backing_store = 1; /* to use  ScilabPaintWithBitmap*/
 /* static COLORREF DefaultBackground = RGB(255,255,255); define in periwin.c */
 
+extern BOOL GraphToolBarDefault;
 
 #endif /* __WGRAPH__ */
 /*-----------------------------------------------------------------------------------*/
