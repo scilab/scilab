@@ -31,6 +31,6 @@ MACROS = errbar.sci fchamp.sci fcontour.sci fplot2d.sci fplot3d.sci \
 	getfont.sci loadplots.sci rubberbox.sci xclear.sci contour2d.sci \
 	gca.sci gcf.sci gce.sci gdf.sci gda.sci sdf.sci scf.sci sda.sci \
 	colorbar.sci jetcolormap.sci  show_pixmap.sci clear_pixmap.sci \
-	twinkle.sci color.sci name2rgb.sci rgb2name.sci
+	twinkle.sci color.sci name2rgb.sci rgb2name.sci clf.sci
 
 include ../Make.lib.amk
