@@ -6,6 +6,7 @@ NEW FUNCTIONALITIES
 - Sparspack algorithm for sparse matrix eigenvalues/eigenvectors computation added 
 - Levenberg-Marquardt algorithm of Minpack used to define function lsqrsolve
 - New graphic mode improved (3D)
+- beta and legendre function added (thanks to B Pincon)
 
 OTHERS IMPROVEMENTS
 ===================
