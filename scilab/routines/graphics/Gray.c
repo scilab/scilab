@@ -56,16 +56,9 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
       update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
     sciSetIsClipping (psubwin,0); 
-    if ((realloc (pSUBWIN_FEATURE (psubwin)->strflag,(strlen(strflag)+1)*sizeof (char)))== NULL)
-      {
-	sciprint("No more Memory allocation for axes !\n");
-	return (0);
-      }
-    else
-      { 
-	strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
-	pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
-      }
+
+    strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
+    pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
 
     sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); /* ???? */
     sciSetCurrentObj (ConstructGrayplot 

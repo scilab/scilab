@@ -617,7 +617,7 @@ typedef struct
   double FRect_kp[4];
   double WRect_kp[4];
   char logflags[2]; /* SS 01/01/03 */
-  char *strflag;
+  char strflag[4];
   int grid;
   BOOL isaxes;
   AXES axes;	
@@ -858,7 +858,7 @@ typedef struct
   sciRelationShip relationship;
   sciGraphicContext graphiccontext; 
   sciText text;
-  char *strflag;
+  char strflag[4];
   int strflaglen;
   double aaint[4];
   double minx;

@@ -98,17 +98,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   /** Check if an other axis exist in the selected subwindow **/
 
   sciSetIsClipping (psubwin,0); 
-  if ((realloc (pSUBWIN_FEATURE (psubwin)->strflag,(strlen(strflag)+1)*sizeof (char)))== NULL)
-    {
-      sciprint("No more Memory allocation for axes !\n");
-      return (0);
-    }
-  else
-    { 
-      if (strflag[1]!='0')
-	strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
-      pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
-    }
+
+  if (strflag[1]!='0')
+    strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
+  pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
 
   sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));
 

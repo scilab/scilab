@@ -78,16 +78,10 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
        update_frame_bounds(0,"gnn",x,y,&n1,Nnode,aaint,strflag,brect);
      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
      sciSetIsClipping (psubwin,0); 
-     if ((realloc (pSUBWIN_FEATURE (psubwin)->strflag,(strlen(strflag)+1)*sizeof (char)))== NULL)
-       {
-	 sciprint("No more Memory allocation for axes !\n");
-	 return (0);
-       }
-     else
-       { 
-	 strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
-	 pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
-       }
+ 
+     strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
+     pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
+
      sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));
      
      sciSetCurrentObj (ConstructFec 
