@@ -30,7 +30,8 @@ int FindFreeScilexNumber(void);
 void HideScilex(void);
 void ShowScilex(void);
 void SwitchConsole(void);
-
+int GetConsoleState(void); /* Show 1 or Hide 0 */
+void SetConsoleState(int state);
 
 
 #endif /* __WINCONSOLE_H__ */

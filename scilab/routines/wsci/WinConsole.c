@@ -161,20 +161,20 @@ void ShowScilex(void)
 /*-----------------------------------------------------------------------------------*/
 void SwitchConsole(void)
 {
-	switch (Windows_Console_State)
+	switch (GetConsoleState())
   			{
   				/* La fenetre etait cachée , on la restaure */
   				case 0:
   					{
   						ShowScilex();
-  						Windows_Console_State=1;
+  						SetConsoleState(1);
   					}
   				break;
   				/* La fenetre etait apparente , on la cache */ 
   				case 1:
   					{
   						HideScilex();
-  						Windows_Console_State=0;
+  						SetConsoleState(0);
   					}
   				break;
   			}
@@ -183,5 +183,15 @@ void SwitchConsole(void)
 void SetWindowMode(BOOL ON)
 {
 	  WindowMode=ON;
+}
+/*-----------------------------------------------------------------------------------*/
+int GetConsoleState(void)
+{
+	return Windows_Console_State;
+}
+/*-----------------------------------------------------------------------------------*/
+void SetConsoleState(int state)
+{
+	Windows_Console_State=state;
 }
 /*-----------------------------------------------------------------------------------*/
