@@ -5,9 +5,9 @@ path=pathconvert(get_absolute_file_path('npend.dem'),%t,%t)
 
 global LANGUAGE
 if LANGUAGE=='fr' then
-  browsehelp(path+'demo_pendulum_fr.htm',' ')
+//  browsehelp(path+'demo_pendulum_fr.htm',' ')
 else
-  browsehelp(path+'demo_pendulum_eng.htm',' ')
+//   browsehelp(path+'demo_pendulum_eng.htm',' ')
 end
 getf(path+'n_pendulum.sci');
 demo_pendulum()

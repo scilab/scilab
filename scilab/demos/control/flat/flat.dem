@@ -17,17 +17,17 @@ while %t then
   select num
     case 1 then 
     if LANGUAGE=='fr' then
-      browsehelp(path+'demo_car_fr.htm',' ')
+//      browsehelp(path+'demo_car_fr.htm',' ')
     else
-      browsehelp(path+'demo_car_eng.htm',' ')
+//      browsehelp(path+'demo_car_eng.htm',' ')
     end
     demo_car()
     
     case 2 then 
     if LANGUAGE=='fr' then
-      browsehelp(path+'demo_truck_fr.htm',' ')
+//      browsehelp(path+'demo_truck_fr.htm',' ')
     else
-      browsehelp(path+'demo_truck_eng.htm',' ')
+//      browsehelp(path+'demo_truck_eng.htm',' ')
     end
     demo_truck()
   end;
