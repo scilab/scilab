@@ -9773,7 +9773,7 @@ sciDrawObj (sciPointObj * pobj)
   double arsize1=5.0,arsize2=5.0,dv;
   integer angle1, angle2;
   integer x1, yy1, w1, h1, wstr,hstr,hh1;
-  integer x[5], v;
+  integer x[6], v;
   integer xold[5], vold = 0, flagx = 0;
   sciSons *psonstmp;
   integer itmp[5];		
