@@ -35,6 +35,7 @@ c     inv  det  rcond  lu      chol  rref
       call cvname(ids(1,pt+1),fnam,0)
       fun=-1
       goto 2000
+c
  1000 continue
       call putlhsvar
       call cvname(ids(1,pt+1),fnam,0)
@@ -81,7 +82,7 @@ c     svd      pinv     cond     norm     rank   sva
       call cvname(ids(1,pt+1),fnam,0)
       fun=-1
       goto 2000
-      end
+
  1000 continue
       call putlhsvar
       call cvname(ids(1,pt+1),fnam,0)
@@ -90,6 +91,7 @@ c     svd      pinv     cond     norm     rank   sva
  2000 continue
       call msgs(102,0)
       return
+      end
 
       subroutine matqr
 c     Copyright INRIA
