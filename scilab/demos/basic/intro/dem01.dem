@@ -144,14 +144,21 @@ X'*H*X
 X'*H*X
 
 //Selection of user-defined eigenvalues (# 3 and 4 here);
-deff('[flg]=sel(x)',...
-'flg=0,ev=x(2)/x(3),...
- if abs(ev-ww(3))<0.0001|abs(ev-ww(4))<0.00001 then flg=1,end')
+function [flg]=sel(x)
+  flg=%f
+  if abs(x-ww(3))<0.0001|abs(x-ww(4))<0.00001 then flg=%t,end 
+endfunction
+
 [X,d]=schur(H,sel)
 
 X'*H*X
 
 //               With matrix pencil
+function [flg]=sel(x,y)
+  flg=%f
+  if abs(x/y-ww(3))<0.0001|abs(x/y-ww(4))<0.00001 then flg=%t,end 
+endfunction
+
 [X,d]=schur(H,eye(H),sel)
 X'*H*X
 
