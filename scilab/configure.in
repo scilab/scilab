@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.13 $)dnl
+AC_REVISION($Revision: 1.14 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -937,19 +937,19 @@ case "$host" in
   *-*-darwin*)
      GCC=yes
      CC=cc
-     CC_OPTIONS='-no-cpp-precomp -O2'
+     CC_OPTIONS='-no-cpp-precomp -O2 -I/sw/include'
      CC_LDFLAGS=
      CC_PICFLAGS='-fPIC'
      # script shell f77 have bugs, get ours
      FC=g77
      FC_OPTIONS='-O2'
      FC_OPTIONS_O0=
-     FC_LDFLAGS=
+     FC_LDFLAGS='-L/sw/lib -ldl'
      FC_PICFLAGS='-fPIC'
      LD=ld
      LD_LDFLAGS=
      if test "$enable_debug" = yes; then
-       CC_OPTIONS='-g '
+       CC_OPTIONS='-g -I/sw/include '
        FC_OPTIONS=-g
      fi
      if test "$G77" = yes; then
