@@ -289,15 +289,19 @@ c
       subroutine intrand(fname,id)
 c     -------------------------------
       character*(*) fname
-c     Interface for rand function 
+c     Interface for rand function
       INCLUDE '../stack.h'
-      double precision s,sr,si
+      double precision s,sr,si,r
+      save             si, r
       integer id(nsiz),tops,topk,name(nlgh)
       double precision urand
       logical checkrhs,checklhs,getsmat,getscalar,cremat,getmat
       logical cresmat2
       integer gettype
       character*(20) randtype
+      logical phase
+      save    phase
+      data    phase /.true./
       integer iadr,sadr
 c
       iadr(l)=l+l-1
@@ -442,17 +446,27 @@ C     random generation
       if (.not.cremat(fname,top,itres,m,n,lr,lc)) return
       if ( m*n .ne. 0 ) then 
          if ( ran(2).eq.0 ) then 
-            do 76 j = 0, (itres+1)*m*n-1
+*           U(0,1) random numbers
+            do j = 0, (itres+1)*m*n-1
                stk(lr+j) = urand(ran(1))
- 76         continue
+            enddo
          elseif (ran(2).eq.1) then 
-            do 77 j = 0, m*n-1
- 75            sr=2.0d+0*urand(ran(1))-1.0d+0
-               si=2.0d+0*urand(ran(1))-1.0d+0
-               t = sr*sr+si*si
-               if (t .gt. 1.0d+0) go to 75
-               stk(lr+j) = sr*sqrt(-2.0d+0*log(t)/t)
- 77         continue
+*           N(0,1) random numbers (modified by Bruno 11/10/2001
+*                  to use si*r and to correct the bug in the
+*                  complex case)
+            do j = 0, (itres+1)*m*n-1
+               if (phase) then
+ 75               sr=2.d0*urand(ran(1)) - 1.d0
+                  si=2.d0*urand(ran(1)) - 1.d0
+                  t = sr*sr + si*si
+                  if (t .gt. 1.d0) go to 75
+                  r = sqrt(-2.d0*log(t)/t)
+                  stk(lr+j) = sr*r
+               else
+                  stk(lr+j) = si*r
+               endif
+               phase = .not. phase
+            enddo
          endif
       endif
 C     switching back to the default randvalue
@@ -4831,6 +4845,7 @@ c     denormalised number are used
       endif
       
       end
+
 
       subroutine intnearfl(id)
 
