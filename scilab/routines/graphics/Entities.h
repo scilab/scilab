@@ -921,6 +921,7 @@ typedef struct
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible; 
+  int isclip; // Adding F.Leray 10.03.04
 }
 sciAxis;  /** */
 
