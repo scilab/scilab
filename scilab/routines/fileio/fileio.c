@@ -86,7 +86,7 @@ static int GetScalarInt __PARAMS((char *fname,int *first,int *arg,int narg,
 static int GetScalarDouble  __PARAMS((char *fname,int *first,int *arg,int narg,
 				     int *ir,int ic,double *dval));
 static int StringConvert __PARAMS((char *str));
-static int ReadLine __PARAMS((FILE *fd));
+
 int NumTokens __PARAMS((char *str));
 
 /*********************************************************************
@@ -346,7 +346,10 @@ int int_objscanf(char *fname)
     /** use the scaned line as input **/
     args = Rhs; /* args set to Rhs on entry */
     if (do_scanf("scanf",(FILE *) 0,cstk(l1),&args,String,&retval,buf,type) < 0) return 0;
-
+    if ( retval == EOF) {
+      Scierror(999,"Error: in %s: end of file reached\r\n",fname);
+      return 0;
+    }
     if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,
 			buf,&data,rowcount,args)) <0 ) {
       switch (err) {
@@ -428,7 +431,11 @@ int int_objsscanf(char *fname)
     args = Rhs; /* args set to Rhs on entry */
     err = do_scanf("sscanf",(FILE *)0,cstk(l2),&args,str,&retval,buf,type);
     free(str);
-    if ( err < 0)  return 0;
+    if ( err < 0 )  return 0;
+    if ( retval == EOF) {
+      Scierror(999,"Error: in %s: end of string reached\r\n",fname);
+      return 0;
+    }
     if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,
 			buf,&data,rowcount,args)) <0 ) {
       switch (err) {
@@ -503,6 +510,10 @@ int int_objfscanf(char *fname)
     args = Rhs; /* args set to Rhs on entry */
     pos=ftell(f);
     if ( do_scanf("fscanf",f,cstk(l2),&args,(char *)0,&retval,buf,type) < 0 )  return 0;
+    if ( retval == EOF) {
+      Scierror(999,"Error: in %s: end of file reached\r\n",fname);
+      return 0;
+    }
     if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,
 			buf,&data,rowcount,args)) <0 ) {
       switch (err) {
@@ -600,16 +611,29 @@ int int_objfprintfMat(char *fname)
  * Scilab fscanMat function
  *********************************************************************/
 #define INFOSIZE 1024
-static char Info[INFOSIZE];
+
+static int  Info_size = 0;
+static char *Info= NULL;
+static int ReadLine __PARAMS((FILE *fd,int *mem));
+
 
 int int_objfscanfMat(char *fname)
 {
+  int mem=0;
   double x;
   static int l1, m1, n1,l2,m2,n2;
   int i,j,rows,cols,lres,n;
   int vl=-1;
   FILE  *f;
   char *Format;
+  if ( Info == NULL ) {
+    if (( Info =malloc(INFOSIZE*sizeof(char)))==NULL) {
+      Scierror(999,"Error: in function %s, no more memory\r\n",fname);
+      return 0;
+    }
+    Info_size = INFOSIZE;
+  }
+
   Nbvars = 0;
   CheckRhs(1,1); /** just 1 <<pour l''instant>> **/
   CheckLhs(1,1);
@@ -634,7 +658,11 @@ int int_objfscanfMat(char *fname)
   strcpy(Info,"--------");
   n =0; 
   while ( sscanf(Info,"%lf",&x) <= 0 && n != EOF ) 
-    { n=ReadLine(f); vl++;}
+    { 
+      n=ReadLine(f,&mem); 
+      if ( mem == 1) return 0;
+      vl++;
+    }
   if ( n == EOF )
     {
       Scierror(999,"Error: in function %s, cannot read data in file %s\r\n",
@@ -646,7 +674,8 @@ int int_objfscanfMat(char *fname)
   rows = 1;
   while (1) 
     { 
-      n=ReadLine(f);
+      n=ReadLine(f,&mem);
+      if ( mem == 1) return 0;
       if ( n == EOF ||  n == 0 ) break;
       if ( sscanf(Info,"%lf",&x) <= 0) break;
       rows++;
@@ -656,7 +685,11 @@ int int_objfscanfMat(char *fname)
   /** second pass to read data **/
   rewind(f);
   /** skip non numeric lines **/
-  for ( i = 0 ; i < vl ; i++) ReadLine(f);
+  for ( i = 0 ; i < vl ; i++) 
+    {
+      ReadLine(f,&mem);
+      if ( mem == 1) return 0;
+    }
   for (i=0; i < rows ;i++)
     for (j=0;j < cols;j++)
       { 
@@ -667,30 +700,34 @@ int int_objfscanfMat(char *fname)
   fclose(f);
   LhsVar(1)=Rhs+1;
   PutLhsVar();
+  /* just in case Info is too Big */ 
+  if ( Info_size > INFOSIZE ) 
+    {
+      Info_size = INFOSIZE;
+      Info = realloc(Info,Info_size*sizeof(char));
+    }
   return 0;
 }  
 
-/* 
-static int ReadLine_Old(fd)
-     FILE *fd;
-{
-  int n;
-  n= fscanf(fd,"%[^\n]%*c",Info);
-  if ( n==0) n=fscanf(fd,"%*c");
-  return(n);
-}
-*/
 
-static int ReadLine(FILE *fd)
+static int ReadLine(FILE *fd,int *mem)
 {
   int n=0;
   while (1)
     {
       char c = (char) getc(fd);
-      if ( n > INFOSIZE) 
+      if ( n > Info_size ) 
 	{
+	  Info_size += INFOSIZE;
+	  if (( Info = realloc(Info,Info_size*sizeof(char)))==NULL) {
+	    Scierror(999,"Error: no more memory\r\n");
+	    *mem=1;
+	    return EOF;
+	  }
+	  /* 
 	  sciprint("Error Info buffer is too small (too many columns in your file ?)\r\n");
-	  return EOF ;/** A changer XXXX : pour retourner un autre message **/
+	  return EOF ;
+	  */
 	}
       Info[n]= c ; 
       if ( c == '\n') { Info[n] = '\0' ; return 1;}
