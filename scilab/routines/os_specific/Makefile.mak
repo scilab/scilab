@@ -7,7 +7,7 @@ LIBRARY = $(SCIDIR)/libs/sun.lib
 
 OBJSF = bashos.obj basin.obj basout.obj \
 	clunit.obj ctrlc.obj dbasin.obj  \
-	fgetarg.obj getpro.obj inibrk.obj sigbas.obj 
+	fgetarg.obj getpro.obj inibrk.obj sigbas.obj getarg.obj
 
 OBJSC  = getenvc.obj link.obj systemc.obj zzledt.obj  csignal.obj getpidc.obj timer.obj \
 	flags.obj men_Sutils.obj addinter.obj tmpdir.obj cluni0.obj \
