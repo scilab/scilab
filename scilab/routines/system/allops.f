@@ -38,7 +38,7 @@ c
             pt=pt-1
 C         elseif (r.eq.403.or.r.eq.404.or.r.eq.406.or.r.eq.407) then
          elseif (r.ge.403.and.r.le.407) then
-            goto 50
+            goto 51
          elseif (r.eq.408) then
             goto 60
          endif
@@ -54,7 +54,7 @@ c     . insertions
          nt=2
          vt1=abs(ogettype(top))
          if(vt1.eq.15.or.vt1.eq.16) then
-c     . every thing can be inserted in a list
+c     .     every thing can be inserted in a list
             goto 50
          endif
       elseif(fin.eq.3) then
@@ -113,13 +113,13 @@ c     .     a() -->a
  03   continue
 
 c
-      goto (10,20,05,30,70,35,04,75,76,40,60,04,60,60,50,50,50) ,vt
+ 04   goto (10,20,06,30,70,35,05,75,76,40,60,05,60,60,50,50,50) ,vt
 c     overloadable ops
       if(vt.eq.129.and.fin.eq.3) goto 20
- 04   op=fin
+ 05   op=fin
       goto 90
 
- 05   call error(43)
+ 06   call error(43)
       return
  10   call matops
       goto 80
@@ -131,7 +131,10 @@ c     overloadable ops
       goto 80
  40   call strops
       goto 80
- 50   call lstops
+ 50   continue
+c     change rstk(pt) if necessary to avoid bad interpretation in intl_i
+      if(rstk(pt).eq.406) rstk(pt)=409
+ 51   call lstops
       if(err.gt.0) return
       if(icall.eq.4) goto 02
       goto 81
@@ -147,6 +150,7 @@ c     overloadable ops
 c
  80   if(err.gt.0) return
  81   call iset(rhs,0,infstk(max(top-lhs+1,1)),1)
+      if(rstk(pt).eq.409)  rstk(pt)=406
 c
       if(fun.ne.0) then 
 c     .  appel d'un matfn necessaire pour achever l'evaluation
@@ -168,7 +172,7 @@ c
 c      if(rstk(pt).eq.406.or.rstk(pt).eq.405) then
       if(rstk(pt).eq.406) then
 c     .  list recursive extraction insertion 
-         goto 50
+         goto 51
       endif
       return
 
@@ -193,4 +197,5 @@ c         call ref2val
 c     .  *call* macro
          return
       endif
+c
       end
