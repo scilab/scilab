@@ -182,9 +182,11 @@ c return with x1 as the root.  set jroot.  set x = x1 and gx = g1. -----
       do 320 i = 1,ng
         jroot(i) = 0
         if (dabs(g1(i)) .gt. zero) go to 310
-          jroot(i) = 1
+          jroot(i) = dsign(1.0d0,-g0(i))
           go to 320
- 310    if (dsign(1.0d0,g0(i)) .ne. dsign(1.0d0,g1(i))) jroot(i) = 1
+ 310    if (dsign(1.0d0,g0(i)) .gt. dsign(1.0d0,g1(i))) jroot(i) =-1
+        if (dsign(1.0d0,g0(i)) .lt. dsign(1.0d0,g1(i))) jroot(i) = 1
+
  320    continue
       return
 c
@@ -196,7 +198,7 @@ c zero value at x1 and no sign change in (x0,x1).  return jflag = 3. ---
       call dcopy (ng, g1, 1, gx, 1)
       do 410 i = 1,ng
         jroot(i) = 0
-        if (dabs(g1(i)) .le. zero) jroot (i) = 1
+        if (dabs(g1(i)) .le. zero) jroot (i) = dsign(1.0d0,-g0(i))
  410  continue
       jflag = 3
       return
