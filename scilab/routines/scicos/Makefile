@@ -87,9 +87,9 @@ intcos.o: intcos.f  ../stack.h
 itosci.o: itosci.f  ../stack.h
 list2vars.o: list2vars.f ../stack.h
 readf.o: readf.f ../stack.h
-sciblk.o: sciblk.f  ../stack.h
+sciblk.o: sciblk.f  ../stack.h ../callinter.h
 scierr.o: scierr.f  ../stack.h
-scifunc.o: scifunc.f ../stack.h
+scifunc.o: scifunc.f ../stack.h ../callinter.h
 scitod.o: scitod.f ../stack.h
 scitoi.o: scitoi.f ../stack.h
 scitovv.o: scitovv.f ../stack.h

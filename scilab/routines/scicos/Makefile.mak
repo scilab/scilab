@@ -90,9 +90,9 @@ intcos.obj: intcos.f  ../stack.h
 itosci.obj: itosci.f  ../stack.h
 list2vars.obj: list2vars.f ../stack.h
 readf.obj: readf.f ../stack.h
-sciblk.obj: sciblk.f  ../stack.h
+sciblk.obj: sciblk.f  ../stack.h ../callinter.h
 scierr.obj: scierr.f  ../stack.h
-scifunc.obj: scifunc.f ../stack.h
+scifunc.obj: scifunc.f ../stack.h ../callinter.h
 scitod.obj: scitod.f ../stack.h
 scitoi.obj: scitoi.f ../stack.h
 scitovv.obj: scitovv.f ../stack.h
