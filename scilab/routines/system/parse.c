@@ -1621,7 +1621,8 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   *ierr = 1;
   return 0;
  L9999:
-  *ierr = 1;
+  /* Err == 9999999 arises if abort has been used to terminate the callback execution */
+  if (Err != 9999999) *ierr = 1;
   --Top;
   --C2F(recu).niv;
   return 0;
