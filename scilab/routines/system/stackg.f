@@ -95,7 +95,7 @@ c     .  does global variable variable really exists
             fin=0
             return
          endif
-         if(fin.eq.-3) k=kg
+         if(fin.eq.-3.or.fin.eq.-2) k=kg
       endif
 
       if(fin.eq.-1.or.fin.eq.-5.or.fin.eq.-6) then
