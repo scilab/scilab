@@ -11,6 +11,7 @@ OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o \
 	Sparse.o \
 	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o \
 	inisci-c.o diary.o  parse.o run.o Sparse.o fromjava.o calendar.o
+	CallScilab.o
 
 OBJSF = allops.o  banier.o\
 	clause.o comand.o compcl.o   \

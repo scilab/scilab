@@ -691,6 +691,9 @@ cd .. &gt;nul
 				RelativePath=".\calendar.c">
 			</File>
 			<File
+				RelativePath=".\CallScilab.c">
+			</File>
+			<File
 				RelativePath=".\cvstr.c">
 			</File>
 			<File
@@ -750,6 +753,9 @@ cd .. &gt;nul
 			Filter="h;hpp;hxx;hm;inl">
 			<File
 				RelativePath=".\calendar.h">
+			</File>
+			<File
+				RelativePath=".\CallScilab.h">
 			</File>
 			<File
 				RelativePath=".\fromjava.h">
