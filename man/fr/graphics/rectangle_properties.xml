@@ -59,7 +59,7 @@
         <SP>The <VERB>mark_style</VERB> property value is used to select the
         type of mark to use when <VERB>mark_mode</VERB> property is
         <VERB>"on"</VERB>. The value should be an integer in [0 14] which
-        stands for: dot, plus, cross, star, diamond fill, diamond, triangle
+        stands for: dot, plus, cross, star, filled diamond, diamond, triangle
         up, triangle down, diamond plus, circle, asterisk, square, triangle
         right, triangle left and pentagram.</SP>
       </DESCRIPTION_ITEM>

@@ -382,7 +382,7 @@
             property value for Segs Rectangle and Polyline objects.
             <VERB>mark_style</VERB> selects the type of mark to be displayed.
             Its value should be an integer in [0 9] which stands for: dot,
-            plus, cross, star, diamond fill, diamond, triangle up, triangle
+            plus, cross, star, filled diamond, diamond, triangle up, triangle
             down, trefle and circle.</SP>
           </DESCRIPTION_ITEM>
 
