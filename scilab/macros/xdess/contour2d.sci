@@ -1,6 +1,12 @@
 function contour2d(x,y,z,nz,style,strf,leg,rect,nax,void)
 opts=[]
-if ~exists('style','local')==1 then style=1:nz,end
+if ~exists('style','local')==1 then 
+  if size(nz,'*')==1 then
+    style=1:nz,
+  else
+    style=1:size(nz,'*')
+  end
+end
 if exists('strf','local')==1 then 
   yflag=part(strf,2)
   if or(yflag==['2' '4' '6' '8']) then
