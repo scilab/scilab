@@ -191,12 +191,13 @@ static void xset_show(integer *v1, integer *v2, integer *v3, integer *v4)
        * and expose 
        */
       gdk_gc_set_background(ScilabXgc->stdgc, &ScilabXgc->gcol_bg);
-      gdk_draw_rectangle(ScilabXgc->pixmap,ScilabXgc->stdgc, TRUE,
-			 0,0,ScilabXgc->CWindowWidth, ScilabXgc->CWindowHeight);
+      /* drawing to the window and to the backing store pixmap */
+      gdk_draw_pixmap(ScilabXgc->drawing->window,ScilabXgc->stdgc, ScilabXgc->Cdrawable,0,0,
+		      0,0,ScilabXgc->CWindowWidth, ScilabXgc->CWindowHeight);
       gdk_draw_pixmap(ScilabXgc->pixmap, ScilabXgc->stdgc, ScilabXgc->Cdrawable,0,0,0,0,
 		      ScilabXgc->CWindowWidth, ScilabXgc->CWindowHeight);
       /* force expose */
-      gtk_widget_queue_draw(ScilabXgc->drawing);
+      /* gtk_widget_queue_draw(ScilabXgc->private->drawing);*/
     }
 }
 
@@ -3801,21 +3802,6 @@ static gint configure_event(GtkWidget *widget, GdkEventConfigure *event, gpointe
   return FALSE;
 }
 
-static void GTK_Resize(BCG *dd)
-{
-  if (dd->resize != 0) {
-    dd->resize = 0;
-    gdk_pixmap_unref(dd->pixmap);
-    dd->pixmap = gdk_pixmap_new(dd->drawing->window,
-				dd->CWindowWidth, dd->CWindowHeight,
-				-1);
-    gdk_gc_set_background(dd->stdgc, &dd->gcol_bg);
-    gdk_draw_rectangle(dd->pixmap,dd->stdgc, TRUE,0,0,dd->CWindowWidth, dd->CWindowHeight);
-    /* On lance l'action standard de resize + redessin  */
-    scig_resize(dd->CurWindow);
-  }
-}
-
 static gint expose_event(GtkWidget *widget, GdkEventExpose *event, gpointer data)
 {
   BCG *dd = (BCG *) data;
@@ -3823,10 +3809,20 @@ static gint expose_event(GtkWidget *widget, GdkEventExpose *event, gpointer data
   g_return_val_if_fail(dd->drawing != NULL, FALSE);
   g_return_val_if_fail(GTK_IS_DRAWING_AREA(dd->drawing), FALSE);
   if(dd->resize != 0) { 
-    GTK_Resize(dd); 
-    gdk_draw_pixmap(dd->drawing->window, dd->stdgc, dd->pixmap,0,0,0,0,
-		    dd->CWindowWidth, dd->CWindowHeight);
-  }
+      dd->resize = 0;
+      gdk_pixmap_unref(dd->pixmap);
+      dd->pixmap = gdk_pixmap_new(dd->drawing->window,
+					   dd->CWindowWidth, dd->CWindowHeight,
+					   -1);
+
+      /* fill private background with background */
+      gdk_gc_set_background(dd->stdgc, &dd->gcol_bg);
+      gdk_draw_rectangle(dd->pixmap,dd->stdgc, TRUE,0,0,dd->CWindowWidth, dd->CWindowHeight);
+      /* On lance l'action standard de resize + redessin  */
+      scig_resize(dd->CurWindow);
+      gdk_draw_pixmap(dd->drawing->window, dd->stdgc, dd->pixmap,0,0,0,0,
+		      dd->CWindowWidth, dd->CWindowHeight);
+    }
   else 
     {
       gdk_draw_pixmap(dd->drawing->window, dd->stdgc, dd->pixmap,
@@ -3952,8 +3948,8 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
 			      dd->CWindowWidth, dd->CWindowHeight,
 			      -1);
 
-  gdk_gc_set_foreground(dd->wgc, &dd->gcol_bg);
-  gdk_draw_rectangle(dd->pixmap, dd->wgc, TRUE, 0, 0,
+  gdk_gc_set_foreground(dd->stdgc, &dd->gcol_bg);
+  gdk_draw_rectangle(dd->pixmap, dd->stdgc, TRUE, 0, 0,
 		     dd->CWindowWidth, dd->CWindowHeight);
 
   /* let other widgets use the default colour settings */
