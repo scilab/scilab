@@ -1728,11 +1728,15 @@ void WriteFortranCall(f)
     call[strlen(call)-1] = ')';
   Fprintf(f,indent,call);
   Fprintf(f,indent,"\n");
-  Fprintf(f,indent++,"if(err .gt. 0) then \n");  
-  Fprintf(f,indent,"buf = fname // ' Internal Error' \n");  
-  Fprintf(f,indent,"call error(999)\n");
-  Fprintf(f,indent,"return\n");
-  Fprintf(f,--indent,"endif\n");
+  /*    
+      Fprintf(f,indent++,"if(err .gt. 0) then \n");  
+      Fprintf(f,indent,"buf = fname // ' Internal Error' \n");  
+      Fprintf(f,indent,"call error(999)\n");
+      Fprintf(f,indent,"return\n");
+      Fprintf(f,--indent,"endif\n");
+  */
+  Fprintf(f,indent,"if(err .gt. 0 .or. err1 .gt. 0) return \n");  
+
   FCprintf(f,"c\n");
 }
 
