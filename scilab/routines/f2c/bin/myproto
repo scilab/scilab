@@ -1,0 +1,13 @@
+#!/bin/csh
+set name=$1:r
+sed -e "s/C2F[ ]*(\([a-zA-Z_0-9]*\))/c2fxx\1xxf2c/g" $name.c >! ${name}__1.c 
+sed -e "s/C2F[ ]*(\([a-zA-Z_0-9]*\))/c2fxx\1xxf2c/g" $name.h >! ${name}__1.h
+mv -f ${name}__1.h  $name.h 
+protoize -c -I../ ${name}__1.c
+sed -e "s/c2fxx/C2F(/g" -e "s/xxf2c/)/g" ${name}__1.c >!  $name.c
+sed -e "s/c2fxx/C2F(/g" -e "s/xxf2c/)/g" ${name}.h >!  ${name}__1.h 
+mv -f  ${name}__1.h  $name.h 
+rm -f ${name}__1*
+
+
+

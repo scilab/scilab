@@ -1,0 +1,31 @@
+#include "../stack-c.h"
+
+
+typedef char * address;
+
+/*internal read, write*/
+
+typedef long int ftnint;
+
+typedef struct
+{	int icierr;
+	char *iciunit;
+	int iciend;
+	char *icifmt;
+	ftnint icirlen;
+	ftnint icirnum;
+} icilist;
+
+#define TRUE_ 1
+#define FALSE_ 0
+
+#define iadr(l) ((l)+(l)-1)
+#define sadr(l) (((l)/2)+1)
+#define cadr(l) ((l)+(l)+(l)+(l)-3)
+
+typedef float real;
+
+#define infstk(x) (((integer *) C2F(vstk).Infstk) + x-1 )
+#define pstk(x) (((integer *) C2F(recu).Pstk) + x-1 )
+
+
