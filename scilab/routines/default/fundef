@@ -168,10 +168,6 @@
 {"clc",			IN_matdes,	84,	2},	
 {"tohome",		IN_matdes,	85,	2},
 {"set_posfig_dim",	IN_matdes,	86,	2},
-{"history",		IN_matdes,	87,	2},
-{"loadhistory",		IN_matdes,	88,	2},
-{"savehistory",		IN_matdes,	89,	2},
-{"resethistory",	IN_matdes,	90,	2},
 #define  IN_matqz  8  
 {"ereduc",		IN_matqz,	3,	2},	
 {"fstair",		IN_matqz,	4,	2},	
@@ -244,6 +240,10 @@
 {"intppty",          	IN_matsys,      52,     2},
 {"lasterror",          	IN_matsys,      53,     2},
 {"getversion",         	IN_matsys,      54,     2},
+{"loadhistory",		IN_matsys,	55,	2},
+{"savehistory",		IN_matsys,	56,	2},
+{"gethistory",		IN_matsys,	57,	2},
+{"resethistory",	IN_matsys,	58,	2},
 #define  IN_matusr  14  
 {"user",		IN_matusr,	1,	1},	
 #define  IN_metane  15  
