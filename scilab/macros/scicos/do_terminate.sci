@@ -1,10 +1,11 @@
 function [alreadyran,%cpr]=do_terminate(scs_m,%cpr)
 // Copyright INRIA
-  alreadyran=%f
-  if prod(size(%cpr))<2 then return,end
+
+  if prod(size(%cpr))<2 then   alreadyran=%f,return,end
   par=scs_m.props;
 
   if alreadyran then
+    alreadyran=%f
     //terminate current simulation
     win=xget('window')
     ierr=execstr('[state,t]=scicosim(%cpr.state,par.tf,par.tf,'+..
