@@ -1,8 +1,8 @@
 function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
 // Serge Steer 2003, Copyright INRIA
   
-  if ~with_ocaml() then
-    message('Scilab has not been built with Ocaml, Modelica compiler unavailable')
+  if ~with_modelica_compiler() then
+    message('Modelica compiler unavailable')
     ok=%f,name='',nx=0,nin=0,nout=0,ng=0,nm=0
     return
   end
