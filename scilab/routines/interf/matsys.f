@@ -1561,8 +1561,10 @@ c     Copyright INRIA
 c
       topk=top
 
+c Francois VOGEL, February 2005 - Request 156 fixed - delbpt()
+      rhs=max(0,rhs)
       if(.not.checklhs('delbpt',1,1)) return
-      if(.not.checkrhs('delbpt',1,2)) return
+      if(.not.checkrhs('delbpt',0,2)) return
 
       if(rhs.eq.2) then
          if(.not.getscalar('delbpt',topk,top,l)) return
@@ -1574,20 +1576,28 @@ c Francois VOGEL, January 2005 - Bug 1187 fixed
          endif
          lnb=int(stk(l))
          top=top-1
+         if(nmacs.eq.0) goto 360
       endif
-      if(.not.getsmat('delbpt',topk,top,m,n,1,1,l,n1)) return
-      if(.not.checkval('delbpt',m*n,1) ) return
-      call namstr(id,istk(l),n1,0)
 
-      if(nmacs.eq.0) goto 360
-c
-      do 353 kmac=1,nmacs
-         if(eqid(macnms(1,kmac),id)) goto 355
- 353  continue
-      goto 360
-      
+      if(rhs.gt.0) then
+         if(.not.getsmat('delbpt',topk,top,m,n,1,1,l,n1)) return
+         if(.not.checkval('delbpt',m*n,1) ) return
+         call namstr(id,istk(l),n1,0)
+         if(nmacs.eq.0) goto 360
+         do 353 kmac=1,nmacs
+            if(eqid(macnms(1,kmac),id)) goto 355
+ 353     continue
+         goto 360
+      endif
+
+      if(rhs.eq.0) then
+ 354     if(nmacs.eq.0) goto 360
+         kmac=nmacs
+         goto 355
+      endif
+
  355  continue
-      if(rhs.eq.1) then
+      if(rhs.eq.1.or.rhs.eq.0) then
 c     on supprime tous les points d'arret de la macro
          if(kmac.lt.nmacs) then
             l0=lgptrs(kmac+1)
@@ -1608,6 +1618,7 @@ c else part (just these two lines) added to cure bugzilla #718
             lgptrs(nmacs+1)=0
          endif
          nmacs=nmacs-1
+         if(rhs.eq.0) goto 354
       else
 c     on supprime le point d'arret specifie
          kk1=lgptrs(kmac)-1
