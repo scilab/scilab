@@ -1,26 +1,30 @@
-function genlib(nam,path,force,verbose)
+function genlib(nam,path,force,verbose,names)
 // get all .sci files in the specified directory
 // Copyright Inria/Enpc 
   
   [lhs,rhs]=argn(0); 
-  if rhs <= 2 then force = %f ; end 
-  if rhs <= 3 then verbose = %f ; end 
-    
+  if exists('force','local')==0 then force = %f,end
+  if exists('verbose','local')==0 then verbose = %f,end
+  
   // convert path according to MSDOS flag 
   // without env variable substitution
   path1 = pathconvert(path,%t,%f); 
   // with env subsitution 
   path = pathconvert(path,%t,%t); 
 
-
-  // list the sci files 
-  files=listfiles(path+'*.sci',%f)
-
-  if files==[] | files== "" then 
-    error('I cannot find any sci files in '+path);
-    return ;
+  
+  if exists('names','local')==0 then 
+    // list the sci files 
+    files=listfiles(path+'*.sci',%f)
+    if files==[] | files== "" then 
+      error('I cannot find any sci files in '+path);
+      return ;
+    end
+    names = basename(files,%f);
+  else
+    files = path+names
+    names=strsubst(names,'.sci','')
   end
-  names = basename(files,%f);
   
   modified=%f
 
@@ -50,7 +54,7 @@ function genlib(nam,path,force,verbose)
        end
        if recompile == %t then 
 	 if verbose then 
-	   write(%io(2),' '+names(i) + '.sci must be recompiled');
+	   write(%io(2),'Processing file '+names(i) + '.sci');
 	 end
 	 // getf sci file and save functions it defines as a .bin file
 	 getsave(scif);
@@ -61,7 +65,7 @@ function genlib(nam,path,force,verbose)
   
   if modified then 
     if verbose then 
-      write(%io(2),' regenerate names and lib');
+      write(%io(2),'Regenerate names and lib');
     end
     // write 'names' file in directory given by path
     u=file('open',path+'names','unknown');
