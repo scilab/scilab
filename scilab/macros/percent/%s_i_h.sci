@@ -8,7 +8,7 @@ function h=%s_i_h(i,v,h)
     hdl=h
     p=i($)
     if type(p)==1|type(p)==4|type(p)==2|type(p)==129|type(p)==15 then
-      index=i($)
+      index=p
       i($)=null()
     else
       index=:
@@ -26,13 +26,22 @@ function h=%s_i_h(i,v,h)
 	error('Invalid path')
       end
     end
+//    pause
     if type(index)==15 then
       if get(hdl,'type')=="children" then
 	hdl=hdl(index(:))
       else // the index is relative to the property
+	if index<>: then
+	  prop=get(hdl,i($))
+	  prop(index(:))=v
+	  v=prop
+	end
+      end
+    elseif type(i($))==10 then // the index is relative to the property
+      if index<>: then
 	prop=get(hdl,i($))
 	prop(index(:))=v
-        v=prop
+	v=prop
       end
     else
       hdl=hdl(index)
