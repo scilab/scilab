@@ -1,13 +1,13 @@
 function M=%s_i_s(varargin)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
-if rhs==3 then
-  M=struct()
-  M(varargin(1))=varargin(2)
-  return
-end
 M=varargin(rhs)
 N=varargin(rhs-1)//inserted matrix
+if type(varargin(1)==10) then
+  M=mlist(["st","dims",varargin(1)],int32([1 1]),N);
+  return	
+end
+
 M=mlist(['hm','dims','entries'],size(M),M(:))
 dims=M('dims')
 v=M('entries');v=v(:)
