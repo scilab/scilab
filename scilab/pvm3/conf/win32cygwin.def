@@ -1,0 +1,24 @@
+#*****************************************************************************#
+# 
+# Definitions
+# for cygwin.mak files
+#
+#*****************************************************************************#
+
+PVM_ARCH = win32
+
+LINK_FLAGS = 
+LINK_MULTITHREAD =  
+
+ARCHCFLAGS = -DCYGWIN -DHASSTDLIB -DSYSVBFUNC -DNOTMPNAM -DHASREADLINE \
+ -DSYSVSTR -DNOGETDTBLSIZ -DNOUNIXDOM -DNOREXEC -DFDSETNOTSTRUCT \
+ -DNEEDSFFS -DSTDC_HEADERS -DARCHCLASS=\"WIN32\" -DRSHCOMMAND=\"rsh\" \
+ -DNO_NETINET_TCP_H -DUSESTRERROR
+
+LIB = $(PVM_ROOT_U)/lib/$(PVM_ARCH)/libpvm3.a
+GLIB = $(PVM_ROOT_U)/lib/$(PVM_ARCH)/libgpvm3.a
+
+CFLAGS = -c $(ARCHCFLAGS) -I$(PVM_ROOT_U)/include -I$(PVM_ROOT_U)/src \
+	  -I$(PVM_ROOT_U)/tracer 
+
+CDEBUG = -g -O

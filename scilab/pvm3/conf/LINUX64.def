@@ -1,0 +1,31 @@
+#
+# Notes on readline Usage:
+#
+#	If your Linux system has readline, then you may append the
+#	following flags to the defines below:
+#
+#		ARCHCFLAGS = . . .  -DHASREADLINE
+#		ARCHLIB = . . .  -lreadline
+#
+#	and recompile PVM.
+#
+#	On some Linux systems, readline requires ncurses, so you
+#	must also add "-lncurses" to the ARCHLIB define.
+#
+# Add define of HASSTDLIB for LINUX64 (copied from the LINUX template) 
+# new definitions to allow, at least, "malloc.h" heder file include
+# and thus not generate 32-bits truncating (thru "sxt4" assembly
+# instruction ...) code, leading to Linux64 Virtual Memory addresses
+# to be corrupted ("segments" bits are located in the highest weighted
+# word/bits !!), on IA-64/Linux64 platforms.
+#
+ARCHCFLAGS	=	-DSYSVSIGNAL -DNOWAIT3 -DRSHCOMMAND=\"/usr/bin/rsh\" \
+				-DNEEDENDIAN -DFDSETNOTSTRUCT -DHASERRORVARS \
+				-DHASSTDLIB -DCTIMEISTIMET -DSYSERRISCONST -DNOTMPNAM
+ARCHDLIB	=
+ARCHDOBJ	=
+ARCHLIB		=
+HASRANLIB	=	t
+AR			=	ar
+PVM_ARCH	=	LINUX64
+MAKE		=	make
