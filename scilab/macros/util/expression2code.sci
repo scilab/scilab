@@ -121,7 +121,7 @@ case "operation" then
 	  operands(k)=":"
 	end
       end
-      val = part(operands(2),1)=="''" & part(operands(2),length(operands(2)))=="''"
+      val = part(operands(2),1)=="""" & part(operands(2),length(operands(2)))==""""
       if val then // struct field
 	C=operands(1)+"."+evstr(operands(2))
 	if size(operands,"*")>=3 then
@@ -150,7 +150,7 @@ case "operation" then
     C=operands(1)
     opened=%f
     for k=2:size(operands,"*")
-      val = part(operands(k),1)=="''" & part(operands(k),length(operands(k)))=="''"
+      val = part(operands(k),1)=="""" & part(operands(k),length(operands(k)))==""""
       if val then // struct field
 	if opened==%t then
 	  C = C+")"
@@ -230,7 +230,7 @@ case "operation" then
   // --------
 case "cste" then
   C=sci2exp(e.value)
-  if C=="'':''" then
+  if C==""":""" then
     C=":"
   end
   C=strsubst(C,"%Inf","%inf")
