@@ -68,7 +68,7 @@ SVM = svplot(sl,logspace(-3,%pi)) (discrete)
   <EXAMPLE>
 <![CDATA[
 x=logspace(-3,3);
-y=svplot(ssrand(2,2,4));
+y=svplot(ssrand(2,2,4),x);
 xbasc();plot2d1("oln",x',20*log(y')/log(10));
 xgrid(12)
 xtitle("Singular values plot","(Rd/sec)", "Db");
