@@ -50,6 +50,7 @@ int cmptclip=0;
 sciPointObj *pfiguremdl = (sciPointObj *) NULL;/* DJ.A 08/01/04 */
 sciPointObj *paxesmdl = (sciPointObj *) NULL;/* DJ.A 08/01/04 */
 extern int versionflag;
+int xinitxend_flag;
 extern void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
 			     integer *Ntr,double *zminmax,integer *colminmax));
 extern void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2);
@@ -5273,11 +5274,13 @@ sciGetSelectedSubWin (sciPointObj * pparent)
 	     && ((sciGetIsSelected (psonstmp->pointobj) != TRUE) 
 		 || (sciGetEntityType (psonstmp->pointobj) != SCI_SUBWIN)))
 	psonstmp = psonstmp->pnext;
-      if (sciGetIsSelected (psonstmp->pointobj) == FALSE)
-	return (sciPointObj *) NULL;
+      if (sciGetIsSelected (psonstmp->pointobj) == FALSE) {
+	/*printf("cas 1 : (pSUBWIN_FEATURE(psonstmp->pointobj))->isselected = %d\n",(pSUBWIN_FEATURE(psonstmp->pointobj))->isselected); */ /* BUG The Hnadle is not a SubWindow passes through here F.Leray 23.07.04 */
+	return (sciPointObj *) NULL;}
       else 
-	if (sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-	  return (sciPointObj *) psonstmp->pointobj;
+	if (sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) {
+	/*   printf("cas 2 : (pSUBWIN_FEATURE(psonstmp->pointobj))->isselected = %d\n",(pSUBWIN_FEATURE(psonstmp->pointobj))->isselected); */
+	  return (sciPointObj *) psonstmp->pointobj;}
 	else return (sciPointObj *) NULL;
     }
   else
@@ -11362,8 +11365,8 @@ sciDrawObj (sciPointObj * pobj)
   int fontstyle_zero = 0; /*To fill Sci_Axis for Axes objects */
   integer isoflag =0;     /*  for 3d isoview mode*/
 
-  sciAxes *paxes = (sciAxes *) NULL;
-
+  sciAxes *paxes = (sciAxes *) NULL; /* debug */
+/*   sciPointObj * pfigure = NULL;  sciPointObj * psubwin = NULL;/\* debug *\/  */
   int i,j;
   /* variable pour le set_scale update_frame_bounds*/
   double subwin[4], framevalues[4];
@@ -11377,7 +11380,17 @@ sciDrawObj (sciPointObj * pobj)
   framevalues[2] = 1;
   framevalues[3] = 1;
  
+  /* driver test */
+  
+  if((GetDriverId() != 0) && (xinitxend_flag == 1)){
+/*     printf("I DO NOTHING !!\n"); */
+    return -1;
+  }
+  /*pfigure = sciGetCurrentFigure ();
+    psubwin = sciGetSelectedSubWin (pfigure);*//*  printf("before currentsubwin init.\n"); */
   currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  /*  printf("currentsubwin = %d\n\n",currentsubwin); */ /* debug F.Leray 23.07.04 */
+/*   fflush(NULL); */
  switch (sciGetEntityType (pobj))
    {
    case SCI_FIGURE: 
@@ -12681,7 +12694,34 @@ sciSetCurrentObj (sciPointObj * pobj)
  */
 sciPointObj *
 sciGetCurrentFigure ()
-{
+{ 
+  /* debug F.Leray 22.07.04 */
+  BCG * moncurScilabXgc = NULL;
+  sciPointObj * pfigure = NULL;
+
+  
+  static sciPointObj *mafigure;
+  static sciPointObj *masousfen;  
+
+  moncurScilabXgc = sciGetCurrentScilabXgc();
+  pfigure = (sciPointObj *) (moncurScilabXgc->mafigure);
+
+  if(pfigure == (sciPointObj *) NULL )
+    {
+      /* it would mean that we have change the driver F.Leray 22.07.04 */
+      if ((mafigure = ConstructFigure (moncurScilabXgc)) != NULL)
+	{
+	  sciSetCurrentObj (mafigure); 
+	  moncurScilabXgc->mafigure = mafigure;
+          moncurScilabXgc->graphicsversion = 1;
+	  if ((masousfen = ConstructSubWin (mafigure, moncurScilabXgc->CurWindow)) != NULL) {
+	    sciSetCurrentObj (masousfen);
+	    sciSetOriginalSubWin (mafigure, masousfen);
+	    cf_type=1;/* current figure is a graphic one */
+	  }
+	}
+    }
+  
   return (sciPointObj *) sciGetCurrentScilabXgc ()->mafigure  ;
   cf_type=1;/* current figure is a graphic one */
 }                                                               
@@ -14241,19 +14281,20 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 
 /**sciConstructAgregationSeq
  * @memo constructes an agregation of with the last n entities created in the current subwindow
-  on entry subwin children list is
-   null->s1->s2->...->sn->sn+1->...->null
+ on entry subwin children list is
+ null->s1->s2->...->sn->sn+1->...->null
   on exit it is
-   null->A->sn+1->...->null
+  null->A->sn+1->...->null
   with A an agregation whose children list is:
-   null->s1->s2->...->sn->null
- */
+  null->s1->s2->...->sn->null
+*/
 sciPointObj *
 ConstructAgregationSeq (int number) 
 {
   sciSons *sons, *lastsons,*stmp;
   sciPointObj *pobj;
   int i;
+
   sciPointObj *psubwin;
   sciSubWindow *ppsubwin;
   sciAgreg     *ppagr;
@@ -14276,6 +14317,7 @@ ConstructAgregationSeq (int number)
       free(pobj->pfeatures);free(pobj);
       return (sciPointObj *) NULL;
     }
+
 
   sons=ppsubwin->relationship.psons;
   /* check if s1 predecessor is null*/
@@ -14341,6 +14383,7 @@ ConstructAgregationSeq (int number)
  
   /* re chain A sons lists */
   ppagr->relationship.psons = sons;
+
   ppagr->relationship.plastsons = lastsons;
   ppagr->relationship.plastsons->pnext = (sciSons *)NULL;
   ppagr->relationship.psons->pprev = (sciSons *)NULL; /* this should do nothing*/
@@ -14359,8 +14402,6 @@ ConstructAgregationSeq (int number)
 
   return (sciPointObj *)pobj;
 }
-
-
 
 
 
@@ -14440,7 +14481,7 @@ sciPointObj *sciIsExistingFigure(value)
   struct BCG *figGC;
 
   figGC=GetWindowXgcNumber(*value);
-  if (figGC != (struct BCG *) 0)
+  if ((figGC != (struct BCG *) NULL) && (figGC->mafigure != (sciPointObj *) NULL)) // ajout F.Leray 22.07.04
     return figGC->mafigure;
   else
     return  (sciPointObj *) NULL;    
@@ -14722,7 +14763,7 @@ int sciType (marker, pobj)
   else if (strncmp(marker,"textcolor", 9) == 0)   {return 1;}
   else if (strcmp(marker,"labels_font_size") == 0)   {return 1;}
   else if (strcmp(marker,"labels_font_color") == 0)   {return 1;}
-  else if (strcmp(marker,"text") == 0)        {return 10;}	
+  else if (strcmp(marker,"text") == 0)        {return 10;}	 
   else if (strcmp(marker,"text_box") == 0)     {return 1;}	
   else if (strcmp(marker,"text_box_mode") == 0){return 10;}	
   else if (strncmp(marker,"old_style", 9) == 0)   {return 10;}
