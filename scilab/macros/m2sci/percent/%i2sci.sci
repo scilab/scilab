@@ -85,7 +85,7 @@ if rhs==1 then
 	if typeof(ind)=="cste" then
 	  tree.out(1).dims=list(1,ind.value)
 	else
-	  tree.out(1).dims=list(1,ind.value)
+	  tree.out(1).dims=list(1,Unknown)
 	end
 	tree.out(1).type=to.type
       else
