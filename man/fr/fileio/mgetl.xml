@@ -57,7 +57,7 @@
   <EXAMPLE><![CDATA[
 mgetl('SCI/scilab.star',5)
 
-mgetl SCI/macros/elem/and.sci
+mgetl SCI/macros/elem/erf.sci
 
 fd=mopen('SCI/scilab.star','r')
 mgetl(fd,10)
