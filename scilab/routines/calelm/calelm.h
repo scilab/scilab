@@ -80,7 +80,7 @@ extern int C2F(rea2db) _PARAMS((int *n, float *dx, int *incx, double *dy, int *i
 extern int C2F(ribesl) _PARAMS((double *x, double *alpha, int *nb, int *ize, double *b, int *ncalc));
 extern int C2F(rjbesl) _PARAMS((double *x, double *alpha, int *nb, double *b, int *ncalc));
 extern int C2F(rkbesl) _PARAMS((double *x, double *alpha, int *nb, int *ize, double *bk, int *ncalc));
-extern double C2F(round) _PARAMS((double *x1));
+/*extern double C2F(round) _PARAMS((double *x1));*/
 extern int C2F(rybesl) _PARAMS((double *x, double *alpha, int *nb, double *by, int *ncalc));
 extern int C2F(simple) _PARAMS((int *n, double *d__, float *s));
 extern int C2F(unsfdcopy) _PARAMS((int *n, double *dx, int *incx, double *dy, int *incy));
