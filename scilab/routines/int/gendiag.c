@@ -28,7 +28,7 @@ integer *typ;
 int *dx;
 int *dy;
 {
-  static integer i, ix, iy, nn;
+  static integer i, iy, nn;
 
   nn = *n+Abs(*k);
 
@@ -52,5 +52,6 @@ int *dy;
     DIAG(unsigned int);
     break;
   }
+  return 0;
 }
 

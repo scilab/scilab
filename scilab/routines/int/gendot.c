@@ -2,7 +2,6 @@
 typedef signed char integer1;
 typedef short integer2;
 /*     Copyright INRIA */
-static integer c1 = 1;
 
 #define DOT(Type) {\
 Type *DX;\
@@ -31,9 +30,8 @@ integer *typ;
 int *dx;
 int *dy;
 {
-  int *c;
   integer i1;
-  static integer i, m, itemp, ix, iy, mp1;
+  static integer i, itemp, ix, iy;
 
   itemp = 0;
   i1 = *n;
@@ -58,5 +56,6 @@ int *dy;
     DOT(unsigned int);
     break;
   }
+  return 0;
 }
 
