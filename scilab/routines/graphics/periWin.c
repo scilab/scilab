@@ -52,6 +52,9 @@
 
 LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndParentGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+#ifdef WITH_TK
+extern void flushTKEvents();
+#endif
 
 /* Initialization values - Guess Now Scale later */
 
@@ -680,7 +683,11 @@ void C2F(xclick_any)(str, ibutton, x1, yy1, iwin, iflag, istr, dv1, dv2, dv3, dv
   
   while (buttons == 0) 
   {
-	int ok =0;
+    int ok =0;
+#ifdef WITH_TK
+    flushTKEvents();
+#endif
+
     if (PeekMessage(&msg, 0, 0, 0,PM_REMOVE) != -1) {
 		/* Attention il faut peut etre prendre PeekMessage mais il y a bug */
     //if (sciPeekMessage(&msg) != 0) {
@@ -924,6 +931,9 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   SetCursor(LoadCursor(NULL,IDC_CROSS));
   /*  track a mouse click */
   while (buttons == 0) {
+#ifdef WITH_TK
+      flushTKEvents();
+#endif
     /* PeekMessage(&msg, ScilabXgc->CWindow, 0, 0, PM_REMOVE); jpc may 2000 */
        PeekMessage(&msg, 0, 0, 0, PM_REMOVE);
       /** maybe someone decided to destroy scilab Graphic window **/
