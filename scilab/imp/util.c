@@ -25,7 +25,7 @@ void read_one_line(char **buff,int *stop,FILE *fd,int *buflen)
   if ( i+1 >= *buflen - 1 ) 
     {
       *buflen += 512;
-      *buff == realloc(*buff,*buflen*sizeof(char));
+      *buff = realloc(*buff,*buflen*sizeof(char));
       if ( *buff == NULL) 
 	{
 	  fprintf(stderr,"Running out of space \n");
