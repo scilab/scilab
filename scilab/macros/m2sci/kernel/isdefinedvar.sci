@@ -27,12 +27,14 @@ if type(var)==10 then
   end
   varname=var
 else
-
   // If input is not a 'variable', it can be a defined variable...
-  if typeof(var)<>"variable" then
+  if typeof(var)=="variable" then
+    varname=var.name
+  elseif typeof(var)=="m2scivar" then
+    varname=var.matname
+  else
     return
   end
-  varname=var.name
 end
 
 // Compare with all existing variables in varslist
