@@ -19,7 +19,7 @@
 #ifdef FORDLL 
 #define IMPORT extern  __declspec (dllimport)
 #else 
-#define IMPORT extern 
+#define IMPORT 
 #endif
 
 typedef long int integer;
