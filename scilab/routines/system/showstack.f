@@ -3,12 +3,13 @@ c     -------------------------
 c     this routines handle  display of calling tree
 c!
 c     Copyright INRIA
+c     Revised and corrected by Francois VOGEL, July 2004 (bug 908)
       include '../stack.h'
 c
       integer sadr
 c
       character mg*9
-      integer lunit,lpt1(6),top1
+      integer lunit,lpt1(6),top1,rios
       integer l1,ilk,m,lk,km,k,ll,r,p
       logical first
       data mg /' !       '/
@@ -21,6 +22,7 @@ c
       top1=top
       call icopy(6,lpt,1,lpt1,1)
       lct4=lct(4)
+      rios=rio
 c
       m1=lpt(2)-lpt(1)
       if(m1.lt.1) m1=1
@@ -144,6 +146,7 @@ c
          call basout(io,lunit,buf(1:m))
  1505    p=p-1
          if(rstk(p).ne.902) goto 1505
+         rio=pstk(p)
          goto 1501
       else
 c     pause
@@ -155,6 +158,7 @@ c
 
       call basout(io,lunit,' ')
       lct(4)=lct4
+      rio=rios
 c
       return
       end
