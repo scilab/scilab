@@ -67,13 +67,15 @@ function xmltohtml(dirs,titles,xsl,step)
       global %helps;
       if and(%helps<>part(dirs(k),1:length(dirs(k))-1)) then
 	saved_helps=%helps;
-	%helps=[%helps;part(dirs(k),1:length(dirs(k))-1),"Temp"]; 
+	//dd= pathconvert(dirs(k));
+	//%helps=[%helps;part(dd,1:length(dd)-1),"Temp"]; 
+	%helps=[%helps;'./',"Temp"];
 	rep=gener_links();
-	// Restore %helps
 	%helps=saved_helps;
       else
 	rep=gener_links();
       end
+      
       if rep then 
 	// if rep is %t then new xml2 files have been 
 	// generated
