@@ -2,9 +2,8 @@ scicos_ver = 'scicos2.5.1'
 scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ['params','wpar','title','tol','tf','context','void1','options','void2','void3',..
-'doc'],[600,450,0,0,600,450],..
-['Others','/usr/local/src/scilab/macros/scicos/Others.cosf'],..
-[0.0001,0.000001,1.000E-10,100001,0,0],100000,[],[],..
+'doc'],[600,450,0,0,600,450],'Untitled',[0.0001,0.000001,1.000E-10,100001,0,0],..
+100000,[],[],..
 tlist(['scsopt','3D','Background','Link','ID','Cmap'],list(%t,33),[8,1],[1,5],..
 list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],list())
 scs_m_1=scicos_diagram()
@@ -34,8 +33,8 @@ scs_m_1,[],'h',[],[%f,%f],emptystr()),'SUPER_f',list())
 scs_m.objs(2)=mlist(['Text','graphics','model','void','gui'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-              'gr_i','id'],[70,0],[40,20],%t,['Text';'2';'1'],[],[],[],[],..
-              list([],8),emptystr()),..
+              'gr_i','id'],[70,0],[40,20],%t,['Text';'2';'1'],[],[],[],[],[],..
+              emptystr()),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
               'ipar','blocktype','firing','dep_ut','label'],'text',[],[],[],[],..
@@ -71,26 +70,16 @@ scs_m.objs(5)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
               'gr_i','id'],[280,0],[40,40],%t,..
-              ['sinblk';
-              '1';
-              '1';
-              '1';
-              '[]';
-              '[]';
-              '[]';
-              '[]';
-              '[]';
-              '[]';
-              '[]';
-              'y';
-              'n'],0,0,[],[],..
+              ['sinblk';'1';'1';'1';'[]';'[]';'[]';'[]';'[]';'[]';'[]';'y';'n'],..
+              0,0,[],[],..
               list(..
               'xstringb(orig(1),orig(2),''GENERIC'',sz(1),sz(2),''fill'');',8),..
               emptystr()),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
               'ipar','blocktype','firing','dep_ut','label'],list('sinblk',1),1,1,..
-              [],[],[],[],[],[],'c',[],['y','n']),'generic_block',list())
+              [],[],[],[],[],[],'c',[],[%t,%f],emptystr()),'generic_block',..
+              list())
 scs_m.objs(6)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..

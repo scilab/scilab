@@ -2,9 +2,8 @@ scicos_ver = 'scicos2.5.1'
 scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ['params','wpar','title','tol','tf','context','void1','options','void2','void3',..
-'doc'],[600,450,0,0,600,450],..
-['Sources','/usr/local/src/scilab/macros/scicos/Sources.cosf'],..
-[0.0001,0.000001,1.000E-10,100001,0,0],100000,[],[],..
+'doc'],[600,450,0,0,600,450],'Untitled',[0.0001,0.000001,1.000E-10,100001,0,0],..
+100000,[],[],..
 tlist(['scsopt','3D','Background','Link','ID','Cmap'],list(%t,33),[8,1],[1,5],..
 list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],list())
 scs_m.objs(1)=mlist(['Block','graphics','model','gui','doc'],..
@@ -107,7 +106,7 @@ scs_m.objs(7)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
               'ipar','blocktype','firing','dep_ut','label'],'rndblk',[],1,1,[],..
-              [],[0.2113249;0],[0;1],0,'d',[],[%f,%f],emptystr()),'RAND_f',..
+              [],[4.538E+08;0],[0;1],0,'d',[],[%f,%f],emptystr()),'RAND_f',..
               list())
 scs_m.objs(8)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
@@ -147,7 +146,7 @@ scs_m.objs(10)=mlist(['Block','graphics','model','gui','doc'],..
                mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
                'ipar','blocktype','firing','dep_ut','label'],'gensqr',[],1,1,[],..
-               [],[],1,[],'d',[],[%f,%f],emptystr()),'GENSQR_f',list())
+               [],1,[],[],'d',[],[%f,%f],emptystr()),'GENSQR_f',list())
 scs_m.objs(11)=mlist(['Block','graphics','model','gui','doc'],..
                mlist(..
                ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
