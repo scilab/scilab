@@ -48,6 +48,8 @@ all::
 			$(MAKE) $(MFLAGS) all); \
 	done
 
+all:: @MANTARGET@
+
 distclean::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
 	for i in routines $(SUBDIRS) man;\
