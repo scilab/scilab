@@ -466,6 +466,7 @@ Global
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug.ActiveCfg = Debug|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug.Build.0 = Debug|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
+		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.PIV_Release.ActiveCfg = PIV_Release|Win32
