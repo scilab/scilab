@@ -114,7 +114,11 @@ c     check argument and compute dimension of the result.
             ili=iadr(lstk(topk-rhs+i))
             mi=istk(ili+1)
             ni=istk(ili+2)
-            if(it.ne.0) it=uppertype(it,istk(ili+3))
+            if (i.eq.1) then
+               it=istk(ili+3)
+            else
+               if(it.ne.0) it=uppertype(it,istk(ili+3))
+            endif
          endif
 
 
