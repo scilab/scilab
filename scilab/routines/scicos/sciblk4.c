@@ -54,8 +54,13 @@ integer flag;
   if (C2F(scierr)()!=0) goto err;
   C2F(itosci)(&Blocks[0].nz,&one,&one);
   if (C2F(scierr)()!=0) goto err;
-  C2F(vvtosci)(Blocks[0].z,&Blocks[0].nz);
-  if (C2F(scierr)()!=0) goto err; 
+  if(Blocks[0].scsptr<0){
+    C2F(vvtosci)(Blocks[0].z,&Blocks[0].nz);
+    if (C2F(scierr)()!=0) goto err; 
+  }  else{
+    C2F(dtosci)(Blocks[0].z,&Blocks[0].nz,&one);
+    if (C2F(scierr)()!=0) goto err; 
+  }
   C2F(itosci)(&Blocks[0].nx,&one,&one);
   if (C2F(scierr)()!=0) goto err;
   C2F(dtosci)(Blocks[0].x,&Blocks[0].nx,&one);
@@ -94,8 +99,13 @@ integer flag;
   if (C2F(scierr)()!=0) goto err; 
   C2F(itosci)(&Blocks[0].nrpar,&one,&one);
   if (C2F(scierr)()!=0) goto err;
-  C2F(vvtosci)(Blocks[0].rpar,&Blocks[0].nrpar);
-  if (C2F(scierr)()!=0) goto err; 
+  if(Blocks[0].scsptr<0){
+    C2F(vvtosci)(Blocks[0].rpar,&Blocks[0].nrpar);
+    if (C2F(scierr)()!=0) goto err; 
+  }  else{
+    C2F(dtosci)(Blocks[0].rpar,&Blocks[0].nrpar,&one);
+    if (C2F(scierr)()!=0) goto err; 
+  }
   C2F(itosci)(&Blocks[0].nipar,&one,&one);
   if (C2F(scierr)()!=0) goto err;
   C2F(itosci)(Blocks[0].ipar,&Blocks[0].nipar,&one);
@@ -180,8 +190,13 @@ integer flag;
       /* 6ieme element de la tlist z */
       if (Blocks[0].nz != 0){
 	le1=(int*) listentry(header,7);
-	le111=(double*) listentry(header,7);
-	ne1=header[7+2]-header[7+1];
+	if(Blocks[0].scsptr<0){
+	  le111=(double*) listentry(header,7);
+	  ne1=header[7+2]-header[7+1];
+	} else{
+	  ne1=le1[1];
+	  le111=((double *) (le1+4));
+	}
 	C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
       }
       /* 8 ieme element de la tlist x */
