@@ -7,7 +7,8 @@ char *dialog_str = (char *) 0;
 char *dialog_str = (char *) 0;
 #endif
 
-SciDialog ScilabDialog;
+SciDialog ScilabDialog = { NULL,NULL,NULL,-1,0}; 
+
 
 /**********************************************************
  * Test function 
@@ -44,6 +45,11 @@ int TestDialog(void)
 void C2F(xdialg)(int *value, int *ptrv, int *nv, int *desc, int *ptrdesc, int *nd, int *btn, int *ptrbtn, int *nb, int *res, int *ptrres, int *nr, int *ierr)
 {
   int maxlines,maxchars,i,rep;
+  if (ScilabDialog.nb >= 0) 
+    {
+      sciprint("Only one dialog at a time please \r\n");
+      return ;
+    }
   maxlines= *nr;
   maxchars= *ierr;
   *ierr=0;
@@ -70,6 +76,7 @@ void C2F(xdialg)(int *value, int *ptrv, int *nv, int *desc, int *ptrdesc, int *n
     FREE(dialog_str);/** allocated in DialogOK **/
     dialog_str = NULL;
   }
+  ScilabDialog.nb = -1;
 }
 
 
@@ -80,6 +87,11 @@ void C2F(xdialg)(int *value, int *ptrv, int *nv, int *desc, int *ptrdesc, int *n
 void xdialg1(char *description, char *valueinit, char **pButName, char *value, int *ok)
 {
   int rep;
+  if (ScilabDialog.nb >= 0) 
+    {
+      sciprint("Only one dialog at a time please \r\n");
+      return ;
+    }
   ScilabDialog.description = description ;
   ScilabDialog.init = valueinit;
   ScilabDialog.pButName = pButName;
@@ -93,5 +105,6 @@ void xdialg1(char *description, char *valueinit, char **pButName, char *value, i
     FREE(dialog_str);/** allocated in DialogOK **/
     dialog_str = NULL;
   }
+  ScilabDialog.nb = -1;
 }
 

@@ -106,7 +106,8 @@ typedef struct {
   char *labels;           /** Title **/
   char **pszTitle;        /** items **/
   char **pszName;         /** buttons **/
-  int  nv;                /** number of items **/
+  int  nv;                /** number of items: when nv # 0 this means that 
+			   MDialog is used **/
   int  ierr;
 }  MDialog ;
 

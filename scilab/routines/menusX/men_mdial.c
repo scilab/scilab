@@ -5,7 +5,8 @@
 #include "men_scilab.h"
 #endif
 
-MDialog SciMDialog;        /** used to stored the mdialog data **/
+
+MDialog SciMDialog = {NULL,NULL,NULL,-1,0};  /** used to stored the mdialog data **/
 /*************************************************     
  * a test function used in command.c
  **********************************************************/
@@ -49,6 +50,13 @@ void C2F(xmdial)(int *label, int *ptrlab, int *nlab, int *value, int *ptrv, int 
   int i,rep;
   int  maxchars= *ierr;
   *ierr=0;
+
+  /* first test that no one is using xmdial */ 
+  if (SciMDialog.nv >= 0) 
+    {
+      sciprint("Only one mdialog at a time please \r\n");
+      return(-1);
+    }
   /* conversion of scilab characters into strings */
   ScilabMStr2C(label,nlab,ptrlab,&(SciMDialog.labels),ierr);
   if ( *ierr == 1) return;
@@ -62,6 +70,7 @@ void C2F(xmdial)(int *label, int *ptrlab, int *nlab, int *value, int *ptrv, int 
       sciprint("Sorry : x_mdialog limited to %d items on Windows\n",
 	        NPAGESMAX*NITEMMAXPAGE );
       *ierr = 1;
+      SciMDialog.nv = -1;
       return;
     }
   SciMDialog.ierr = 0;
@@ -79,4 +88,5 @@ void C2F(xmdial)(int *label, int *ptrlab, int *nlab, int *value, int *ptrv, int 
   FREE(SciMDialog.pszName);
   for (i=0; i< *nv;i++) FREE(SciMDialog.pszTitle[i]); 
   FREE(SciMDialog.pszTitle);
+  SciMDialog.nv = -1;
 }
