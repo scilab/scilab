@@ -377,6 +377,28 @@ endfunction
 
 function ged_rectangle(h)
   global ged_handle; ged_handle=h
+//  if((h.clip_state<>'clipgrf') & (h.clip_state<>'on'))
+//    h.clip_state='clipgrf';
+//    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+//    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+//    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+//    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//    h.clip_state='off';
+//   else
+//    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+//    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+//    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+//    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//  end
+//  TK_SetVar("curclipstate",h.clip_state);
 
   f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
   ax=h;while stripblanks(ax.type)<>"Axes" then ax=ax.parent,end
@@ -411,6 +433,30 @@ endfunction
 
 function ged_polyline(h)
     global ged_handle; ged_handle=h
+
+//    if((h.clip_state<>'clipgrf') & (h.clip_state<>'on'))
+//     h.clip_state='clipgrf';
+//     TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//     TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//     TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//     TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//     TK_SetVar("Xclipbox",string(h.clip_box(1)))
+//     TK_SetVar("Yclipbox",string(h.clip_box(2)))
+//     TK_SetVar("Wclipbox",string(h.clip_box(3)))
+//     TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//     h.clip_state='off';
+//    else
+//     TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//     TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//     TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//     TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//     TK_SetVar("Xclipbox",string(h.clip_box(1)))
+//     TK_SetVar("Yclipbox",string(h.clip_box(2)))
+//     TK_SetVar("Wclipbox",string(h.clip_box(3)))
+//     TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//    end
+//    TK_SetVar("curclipstate",h.clip_state);
+
     f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
     TK_SetVar("ncolors",string(size(f.color_map,1)))
     TK_SetVar("curcolor",string(h.foreground))
@@ -448,16 +494,145 @@ endfunction
 
 function ged_plot3d(h)
   global ged_handle; ged_handle=h
+
+//  if((h.clip_state<>'clipgrf') & (h.clip_state<>'on'))
+//   h.clip_state='clipgrf';
+//   TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//   TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//   TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//   TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//   TK_SetVar("Xclipbox",string(h.clip_box(1)))
+//   TK_SetVar("Yclipbox",string(h.clip_box(2)))
+//   TK_SetVar("Wclipbox",string(h.clip_box(3)))
+//   TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//   h.clip_state='off';
+//  else
+//   TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//   TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//   TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//   TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//   TK_SetVar("Xclipbox",string(h.clip_box(1)))
+//   TK_SetVar("Yclipbox",string(h.clip_box(2)))
+//   TK_SetVar("Wclipbox",string(h.clip_box(3)))
+//   TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//  end
+//  TK_SetVar("curclipstate",h.clip_state);
+
   TK_SetVar("curvis",h.visible)
-  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
-  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+  TK_SetVar("curcolormode",string(h.color_mode))
+  TK_SetVar("colorflagToggle",string(h.color_flag))
+  TK_SetVar("curforeground",string(h.foreground))
+  TK_SetVar("curhiddencolor",string(h.hiddencolor))
+  TK_SetVar("curthick",string(h.thickness))
+
+// pass the 2 vectors and the z matrix
+// X vector
+  TK_SetVar("nbrowX",string(size(h.data.x,2)))
+  for i=1:size(h.data.x,2)
+      val= "plot3dXVAL("+string(i)+")";
+      TK_EvalStr('set '+val+" "+string(h.data.x(i)));
+  end
+// Y vector
+  TK_SetVar("nbrowY",string(size(h.data.y,2)))
+  for i=1:size(h.data.y,2)
+      val= "plot3dYVAL("+string(i)+")";
+      TK_EvalStr('set '+val+" "+string(h.data.y(i)));
+  end
+// Z matrix
+  for i=1:size(h.data.z,1) // X axis
+   for j=1:size(h.data.z,2) // Y axis
+      val= "plot3dZVAL("+string(i)+","+string(j)+")";
+      TK_EvalStr('set '+val+" "+string(h.data.z(i,j)));
+   end
+  end
+// COLOR matrix
+   TK_EvalStr('set flagCOLOR 0')
+   if(h.data(1)==["3d" "x" "y" "z" "color"])
+    TK_EvalStr('set flagCOLOR 1')
+    for i=1:size(h.data.color,1) // X axis
+     for j=1:size(h.data.color,2) // Y axis
+        val= "plot3dCOLORVAL("+string(i)+","+string(j)+")";
+        TK_EvalStr('set '+val+" "+string(h.data.color(i,j)));
+     end
+    end
+   end
+
+  TK_EvalFile(SCI+'/tcl/ged/Plot3d.tcl')
 endfunction
 
 
 function ged_fac3d(h)
   global ged_handle; ged_handle=h
+
+//  if((h.clip_state<>'clipgrf') & (h.clip_state<>'on'))
+//   h.clip_state='clipgrf';
+//   TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//   TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//   TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//   TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//   TK_SetVar("Xclipbox",string(h.clip_box(1)))
+//   TK_SetVar("Yclipbox",string(h.clip_box(2)))
+//   TK_SetVar("Wclipbox",string(h.clip_box(3)))
+//   TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//   h.clip_state='off';
+//  else
+//   TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//   TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//   TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//   TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//   TK_SetVar("Xclipbox",string(h.clip_box(1)))
+//   TK_SetVar("Yclipbox",string(h.clip_box(2)))
+//   TK_SetVar("Wclipbox",string(h.clip_box(3)))
+//   TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//  end
+//  TK_SetVar("curclipstate",h.clip_state);
+
   TK_SetVar("curvis",h.visible)
-  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
+  TK_SetVar("curcolormode",string(h.color_mode))
+  TK_SetVar("colorflagToggle",string(h.color_flag))
+  TK_SetVar("curforeground",string(h.foreground))
+  TK_SetVar("curhiddencolor",string(h.hiddencolor))
+  TK_SetVar("curthick",string(h.thickness))
+
+// pass the 2 vectors and the z matrix
+// X matrix
+  TK_SetVar("nbrowX",string(size(h.data.x,1)))
+  TK_SetVar("nbcolX",string(size(h.data.x,2)))
+  for i=1:size(h.data.x,1)
+   for j=1:size(h.data.x,2)
+      val= "fac3dXVAL("+string(i)+","+string(j)+")";
+      TK_EvalStr('set '+val+" "+string(h.data.x(i,j)));
+   end
+  end
+// Y matrix
+  TK_SetVar("nbrowY",string(size(h.data.y,1)))
+  TK_SetVar("nbcolY",string(size(h.data.y,2)))
+  for i=1:size(h.data.y,1)
+   for j=1:size(h.data.y,2)
+    val= "fac3dYVAL("+string(i)+","+string(j)+")";
+    TK_EvalStr('set '+val+" "+string(h.data.y(i,j)));
+   end
+  end
+// Z matrix
+  for i=1:size(h.data.z,1) // X axis
+   for j=1:size(h.data.z,2) // Y axis
+      val= "fac3dZVAL("+string(i)+","+string(j)+")";
+      TK_EvalStr('set '+val+" "+string(h.data.z(i,j)));
+   end
+  end
+// COLOR matrix
+   TK_EvalStr('set flagCOLOR 0')
+   if(h.data(1)==["3d" "x" "y" "z" "color"])
+    TK_EvalStr('set flagCOLOR 1')
+    for i=1:size(h.data.color,1) // X axis
+     for j=1:size(h.data.color,2) // Y axis
+        val= "fac3dCOLORVAL("+string(i)+","+string(j)+")";
+        TK_EvalStr('set '+val+" "+string(h.data.color(i,j)));
+     end
+    end
+   end
+
+  TK_EvalFile(SCI+'/tcl/ged/Fac3d.tcl')
 endfunction
 
 
@@ -465,7 +640,6 @@ function ged_text(h)
   global ged_handle; ged_handle=h
   TK_SetVar("curvis",h.visible)
   disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
-  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
   TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
 endfunction
 
