@@ -37,7 +37,32 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 xset('default')
-windows=[] //for getclick
+//in line definition of get_click
+deff('[btn,xc,yc,win,Cmenu]=get_click(flag)',[
+'if ~or(winsid() == curwin) then   Cmenu = ''Quit'';return,end,';
+'if argn(2) == 1 then';
+'  [btn, xc, yc, win, str] = xclick(flag);';
+'else';
+'  [btn, xc, yc, win, str] = xclick();';
+'end';
+'if btn == -100 then';
+'  if win == curwin then';
+'    Cmenu = ''Quit'';';
+'  else';
+'    Cmenu = ''Open/Set'';';
+'  end,';
+'  return,';
+'end';
+'if btn == -2 then';
+'  xc = 0;yc = 0;';
+'  execstr(''Cmenu='' + part(str, 9:length(str) - 1));';
+'  execstr(''Cmenu='' + Cmenu);';
+'  return,';
+'end';
+'Cmenu=[]'])
+ 
+
+
 ok=%t
 if rhs==0 then x=[];y=[],end;
 if rhs==1 then y=x;x=(1:size(y,'*'))',end
@@ -124,7 +149,7 @@ end
 // -- boucle principale
 while %t then
   [n1,n2]=size(x);npt=n1*n2
-  [btn,xc,yc,win,Cmenu]=getclick()
+  [btn,xc,yc,win,Cmenu]=get_click()
   c1=[xc,yc]
   if Cmenu=='Quit' then Cmenu='Abort',end
   if Cmenu==[] then Cmenu='edit',end
