@@ -42,7 +42,7 @@ function ged(k,win)
     end
     
     //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
-
+    
     ged_figure(gcf())
     case 5 then //edit current axes
     // hierarchical viewer
@@ -252,7 +252,6 @@ endfunction
 
 function ged_figure(h)
   global ged_handle;ged_handle=h;
-
   TK_SetVar("background",string(h.background))
   TK_SetVar("rotation_style",h.rotation_style)
   TK_SetVar("figure_name",h.figure_name)
@@ -431,7 +430,7 @@ endfunction
 
 function ged_polyline(h)
     global ged_handle; ged_handle=h
-
+ 
   if(h.clip_box==[])
     TK_SetVar("old_Xclipbox","")
     TK_SetVar("old_Yclipbox","")
@@ -1021,10 +1020,10 @@ function ged_axis(h)
   TK_SetVar("curfontsize",string(h.labels_font_size))
   TK_SetVar("nbcolX",string(size(h.xtics_coord,2)))
   TK_SetVar("nbcolY",string(size(h.ytics_coord,2)))
-  TK_SetVar("xticscoord",sci2exp(h.xtics_coord,"",lmax=0))
-  TK_SetVar("yticscoord",sci2exp(h.ytics_coord,"",lmax=0))
+  TK_SetVar("xticscoord",sci2exp(h.xtics_coord,0))
+  TK_SetVar("yticscoord",sci2exp(h.ytics_coord,0))
   TK_SetVar("cursubtics",string(h.sub_tics))
-  TK_SetVar("curticslabel",str2exp(h.tics_labels,lmax=0))
+  TK_SetVar("curticslabel",sci2exp(h.tics_labels,0))
   TK_SetVar("curticsdir",string(h.tics_direction))
 
   if(h.clip_box==[])
@@ -1586,54 +1585,28 @@ endfunction
 
 
 
+////////////////////////////////
+// Scilab Command Interface ////
+////////////////////////////////
+//Plot3d
+function set3dtlistXYZ (X,Y,Z)
+  global ged_handle; h=ged_handle
+  ged_tmp_tlist = tlist(["3d","x","y","z"],X,Y,Z)
+  h.data=ged_tmp_tlist;
+  clear ged_tmp_tlist;
+endfunction
 
-function t=str2exp(a,lmax) 
-  [lhs,rhs]=argn(0)
-  if rhs<2 then lmax=0,end
-  [m,n]=size(a),
-  dots='.'+'.'
-  t=[];
-  quote=''''
+function set3dtlistXYZC (X,Y,Z,COLOR)
+  global ged_handle; h=ged_handle
+  ged_tmp_tlist = tlist(["3d","x","y","z","color"],X,Y,Z,COLOR)
+  h.data=ged_tmp_tlist;
+  clear ged_tmp_tlist;
+endfunction
 
-  a=strsubst(a,quote,quote+quote)
-  dquote='""'
-  a=strsubst(a,dquote,dquote+dquote)
-  a=quote(ones(a))+a+quote(ones(a))
-
-  for i=1:m
-    x=emptystr();
-    for j=1:n,
-      y=a(i,j);
-      y=dquote+part(y,2:length(y))
-      y=part(y,1:length(y)-1)+dquote
-      if y=='''''' then y='emptystr()',end
-      if lmax==0|length(x($))+length(y)<lmax then
-	if j==1 then
-	  x=y
-	else
-	  x($)=x($)+','+y,
-	end
-      else
-	if j>1 then 
-	  x($)=x($)+','+dots;
-	  x($+1)=y
-	else
-	  x=y
-	end
-      end
-    end
-    if i<m then x($)=x($)+';',end
-    if lmax>0 then
-      t=[t;x]
-    else
-      t=t+x
-    end
-  end,
-  if lmax>0&sum(length(t))<lmax then
-    t=strcat(t)
-  end
-  if m*n>1 then
-    t(1)='['+t(1)
-    t($)=t($)+']'
-  end
+function setGrayplot(X,Y,Z)
+  global ged_handle; h=ged_handle
+  Z=[Y; Z];
+  X=[0;X];
+  Z=[X Z];
+  h.data=Z;
 endfunction
