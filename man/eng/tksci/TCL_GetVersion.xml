@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>TCL_GetVersion</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 2005</DATE>
+
+  <SHORT_DESCRIPTION name="TCL_GetVersion">get the version of the TCL/TK
+  library at runtime.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>TCL_GetVersion()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>get the version of the TCL/TK library at runtime.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[TCL_GetVersion() ]]></EXAMPLE>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>TCL_UpVar</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 2005</DATE>
+
+  <SHORT_DESCRIPTION name="TCL_UpVar">make a link from a tcl source variable
+  to a tcl destination variable</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>OK=TCL_UpVar(varname1,varname2)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>varname1</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: string character contains the name of the tcl source
+          variable.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>varname2:</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>string character contains the name of the tcl destination
+          variable.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>ok</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean %T if iti is ok.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>make a link from a tcl source variable to a tcl destination
+    variable.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+TCL_SetVar('Scilab','OK')
+TCL_UpVar('Scilab','ScilabBis')
+TCL_GetVar('ScilabBis')
+TCL_SetVar('Scilab','NOK')
+TCL_GetVar('ScilabBis')
+TCL_SetVar('ScilabBis','modified')
+TCL_GetVar('ScilabBis')
+TCL_GetVar('Scilab')
+
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_ExistVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_SetVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_GetVar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

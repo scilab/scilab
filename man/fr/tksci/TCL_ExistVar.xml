@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>TCL_ExistVar</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 2005</DATE>
+
+  <SHORT_DESCRIPTION name="TCL_ExistVar"> returns %T if a tcl variable exists</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>OK=TCL_ExistVar(varname)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>varname</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: string character Contains the name of the tcl/tk variable.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>ok</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean %T if varname exists.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>This routine allows to test if a tcl variable exists .</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+TCL_SetVar('Scilab','OK')
+TCL_GetVar('Scilab')
+TCL_UnsetVar('Scilab')
+TCL_ExistVar('Scilab')
+                             
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_ExistVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_SetVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_GetVar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

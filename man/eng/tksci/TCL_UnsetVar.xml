@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>TCL_UnsetVar</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 2005</DATE>
+
+  <SHORT_DESCRIPTION name="TCL_UnsetVar">remove a tcl
+  variable</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>OK=TCL_UnsetVar(varname)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>varname</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: string character Contains the name of the tcl/tk variable to
+          unset.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>ok</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean %T if varname deleted.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>This routine allows to unset a tcl variable. .</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+TCL_SetVar('Scilab','OK')
+TCL_GetVar('Scilab')
+TCL_UnsetVar('Scilab')
+TCL_ExistVar('Scilab')
+                             
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_ExistVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_SetVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_GetVar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>
