@@ -210,7 +210,12 @@ Lapack_contents(x)
 	C2F(ztrsyl)(); 
 	C2F(ztrti2)();  
 	C2F(zungl2)(); 
-	C2F(zunmlq)(); 
+	C2F(zunmlq)();
+	C2F(dzsum1)();
+	C2F(izmax1)();
+	C2F(zlartg)();
+	C2F(zrot)();
+	C2F(zunml2)();
 }
 }
 
