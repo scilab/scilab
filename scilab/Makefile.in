@@ -147,10 +147,10 @@ BINDISTFILES = \
 	$(SCIBASE)/imp/NperiPos.ps \
 	$(SCIBASE)/imp/giffonts \
 	$(SCIBASE)/macros \
-	$(SCIBASE)/man/eng/index.html \
-	$(SCIBASE)/man/eng/*/*.html \
-	$(SCIBASE)/man/fr/index.html \
-	$(SCIBASE)/man/fr/*/*.html \
+	$(SCIBASE)/man/eng/*.htm \
+	$(SCIBASE)/man/eng/*/*.htm \
+	$(SCIBASE)/man/fr/*/*.htm \
+	$(SCIBASE)/man/fr/*.htm \
 	$(SCIBASE)/maple \
 	$(SCIBASE)/routines/*.h \
 	$(SCIBASE)/routines/Make.lib \
