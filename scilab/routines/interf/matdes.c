@@ -4798,8 +4798,7 @@ int sciunzoom(fname,fname_len)
   else {
     int m,n,l,i;
     GetRhsVar(1,"h",&m,&n,&l); 
-    for (i=0;i<m*n;i++)
-      unzoom_one_axes(*hstk(l+i));
+    for (i=0;i<m*n;i++) unzoom_one_axes((sciPointObj*)hstk(l+i)); // Correction Bug 1083 Compilation avec VC++ 6.0
   }
   LhsVar(1)=0; 
   return 0;
