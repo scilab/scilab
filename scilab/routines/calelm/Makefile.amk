@@ -7,15 +7,15 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/calelm.lib
 
-OBJSC = vfloor.obj vceil.obj  finite.obj vfrexp.obj sci_tools.obj vfinite.obj   cmp.obj
+OBJSC = vfloor.obj vceil.obj  finite.obj vfrexp.obj sci_tools.obj vfinite.obj   cmp.obj xerhlt.obj
 SLATECEXT= dbesig.obj zbesig.obj dbeskg.obj zbeskg.obj dbesjg.obj zbesjg.obj dbesyg.obj zbesyg.obj  \
-	zbeshg.obj
+	zbeshg.obj 
 
 SLATEC= d9knus.obj d9lgmc.obj dasyik.obj dbdiff.obj dbesi.obj dbesi0.obj dbesi1.obj		\
 	dbesk.obj dbesk0.obj dbesk1.obj dbesks.obj dbkias.obj dbkisr.obj dbsi0e.obj dbsi1e.obj	\
 	dbsk0e.obj dbsk1e.obj dbskes.obj dbskin.obj dbsknu.obj dcsevl.obj dexint.obj		\
 	dgamma.obj dgamrn.obj dhkseq.obj dlngam.obj dgamlm.obj dpsixn.obj fdump.obj initds.obj	\
-	j4save.obj xercnt.obj xerhlt.obj xermsg.obj xerprn.obj xersve.obj xgetua.obj zbesi.obj	\
+	j4save.obj xercnt.obj  xermsg.obj xerprn.obj xersve.obj xgetua.obj zbesi.obj	\
 	zbinu.obj zbesk.obj zacon.obj zbknu.obj zbunk.obj zuoik.obj zunhj.obj zunk1.obj		\
 	zunk2.obj zwrsk.obj zuchk.obj zs1s2.obj zmlri.obj zrati.obj zasyi.obj dgamln.obj	\
 	zshch.obj zseri.obj zkscl.obj zairy.obj zacai.obj zbuni.obj zuni2.obj zuni1.obj		\

@@ -5,7 +5,7 @@ SCIDIR1=..\..
 LIBRARY = $(SCIDIR)/libs/calelm.a
 
 OBJSC = vfloor.o vceil.o  finite.o vfrexp.o sci_tools.o vfinite.o cmp.o \
-	someinterp.o
+	someinterp.o xerhlt.o
 
 SLATECEXT= dbesig.o zbesig.o dbeskg.o zbeskg.o dbesjg.o zbesjg.o dbesyg.o zbesyg.o \
 	zbeshg.o
@@ -14,7 +14,7 @@ SLATEC= d9knus.o d9lgmc.o dasyik.o dbdiff.o dbesi.o dbesi0.o dbesi1.o		\
 	dbesk.o dbesk0.o dbesk1.o dbesks.o dbkias.o dbkisr.o dbsi0e.o dbsi1e.o	\
 	dbsk0e.o dbsk1e.o dbskes.o dbskin.o dbsknu.o dcsevl.o dexint.o		\
 	dgamma.o dgamrn.o dhkseq.o dlngam.o dgamlm.o dpsixn.o fdump.o initds.o	\
-	j4save.o xercnt.o xerhlt.o xermsg.o xerprn.o xersve.o xgetua.o zbesi.o	\
+	j4save.o xercnt.o  xermsg.o xerprn.o xersve.o xgetua.o zbesi.o	\
 	zbinu.o zbesk.o zacon.o zbknu.o zbunk.o zuoik.o zunhj.o zunk1.o		\
 	zunk2.o zwrsk.o zuchk.o zs1s2.o zmlri.o zrati.o zasyi.o dgamln.o	\
 	zshch.o zseri.o zkscl.o zairy.o zacai.o zbuni.o zuni2.o zuni1.o		\
