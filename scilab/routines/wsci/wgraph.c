@@ -43,7 +43,7 @@
 #include "wcommon.h"
 #include "../graphics/scigraphic.h"
 #include "../graphics/Graphics.h"
-
+#include "wgraph.h"
 extern void SetGHdc __PARAMS ((HDC lhdc, int width, int height));
 static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height,
 			     int scale);
@@ -612,15 +612,20 @@ void GPopupResize (ScilabXgc, width, height)
  * events while we are in GraphicWindowProc 
  ***********************************************/
 
-typedef struct but
-{
-  int win, x, y, ibutton, motion, release;
-}
-But;
-
 #define MaxCB 50
 static But ClickBuf[MaxCB];
 static int lastc = 0;
+
+/* used by xclick_any and xclick */ 
+
+static int wait_for_click=0;
+But SciClickInfo; /* for xclick and xclick_any */
+
+void set_wait_click(val) {  
+  wait_for_click=val;
+  if ( val == 1 ) 
+    SciClickInfo.win=-1; 
+}
 
 int scig_click_handler_none (int win,int x,int y,int ibut,int motion,int release)
 {
@@ -660,6 +665,19 @@ void reset_scig_click_handler ()
 
 int PushClickQueue (int win,int x,int y,int ibut,int motion,int release)
 {
+  /* If we are in xclick_any or xclick then send info */
+  if ( wait_for_click==1)
+    {
+
+      SciClickInfo.win= win;
+      SciClickInfo.x= x;
+      SciClickInfo.y= y;
+      SciClickInfo.ibutton= ibut;
+      SciClickInfo.motion= motion;
+      SciClickInfo.release= release;
+      return 0;
+    }
+     
   /* first let a click_handler do the job  */
   if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;
   /* do not record motion events and release button 
@@ -933,7 +951,7 @@ EXPORT LRESULT CALLBACK
       return (0);
     case WM_CHAR:
       check_pointer_win(&x,&y,&iwin);
-      PushClickQueue (ScilabGC->CurWindow, x,y,wParam,1,0);
+      PushClickQueue (ScilabGC->CurWindow, x,y,wParam,0,0);
       return (0);
     case WM_MOUSEMOVE:
       PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,

@@ -25,6 +25,7 @@
 #include "../wsci/wgnuplib.h"
 #include "../wsci/wresource.h"
 #include "../wsci/wcommon.h"
+#include "../wsci/wgraph.h"
 
 #include "periWin.h" 
 #include "../version.h"
@@ -695,7 +696,7 @@ int check_pointer_win(int *x1,int *yy1,int *win)
   return 0;
 }
 
-void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
+void C2F(xclick_any_old)(char *str,integer *ibutton,integer* x1,integer * yy1,
 		     integer *iwin,integer *iflag,integer *istr,
 		     double * dv1, double *dv2,double * dv3,double * dv4)
 {
@@ -804,7 +805,7 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
 #ifdef WITH_TK
 	      else if (  tcl_check_one_event() == 1) 
 		{
-		  sciprint("tcl event %l\r\n",msg.hwnd);
+		  //sciprint("tcl event %l\r\n",msg.hwnd);
 		}
 #else
 	      else 
@@ -821,7 +822,73 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
 }
 
 
+/* used by xclick_any and xclick */ 
 
+extern But SciClickInfo; /* for xclick and xclick_any */
+extern void set_wait_click(val); 
+
+void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
+		     integer *iwin,integer *iflag,integer *istr,
+		     double * dv1, double *dv2,double * dv3,double * dv4)
+{
+  int buttons = 0,win = 0;
+  win = -1;
+  if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
+  {
+    /* we already have something stored in the ClickQueue */
+    *iwin = win ; return;
+  }
+  if ( *iflag ==0 )  ClearClickQueue(-1);
+  deleted_win=-1;
+  set_wait_click(1);
+#ifdef WITH_TK
+  flushTKEvents();
+#endif
+  while ( 1 ) 
+    {
+#ifdef WITH_TK
+      if (  tcl_check_one_event() == 1) 
+	{
+	  //sciprint("tcl event %l\r\n",msg.hwnd);
+	}
+#else 
+      PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
+      TranslateMessage(&msg);
+      DispatchMessage(&msg);
+#endif
+      if ( deleted_win != -1 ) {
+	/* a graphic window was deleted we quit */
+	*iwin       = deleted_win;
+	deleted_win = -1; *x1= 0; *yy1 = 0; *ibutton    = -100;
+	set_wait_click(0);
+	return ;
+      }
+      if ( *istr==1 && C2F(ismenu)()==1 ) 
+	{
+	  integer lstr ;
+	  int entry;
+	  C2F(getmen)(str,&lstr,&entry);
+	  *iwin = -1;
+	  *ibutton = -2; *istr=lstr; *x1=0; *yy1=0;  buttons++;
+	  set_wait_click(0);
+	  return ;
+	}
+      if ( CtrlCHit(&textwin) == 1) 
+	{
+	  *iwin=-1;*x1= 0 ;  *yy1= 0;  *ibutton=0; break ;
+	}
+      if ( SciClickInfo.win != -1 &&
+	   SciClickInfo.motion == 0 && 
+	   SciClickInfo.release== 0 ) 
+	break;
+    }
+  /* reste les menus XXXXX **/
+  *iwin =  SciClickInfo.win;
+  *x1   =  SciClickInfo.x;
+  *yy1  =  SciClickInfo.y;
+  *ibutton = SciClickInfo.ibutton;
+  set_wait_click(0);
+}
 
 void C2F(xclick)(str, ibutton, x1, yy1, iflag,istr, v7, dv1, dv2, dv3, dv4)
      char *str;
@@ -934,7 +1001,7 @@ static int check_mouse(MSG *msg,integer *ibutton,integer *x1,integer *yy1,
 }
 
 
-void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
+void SciClick_Old(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
      integer *ibutton,*x1,*yy1, *iflag,*lstr;
      int getmouse,dyn_men,getrelease;
      char *str;
@@ -1021,6 +1088,86 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
     }
   }
   /** SetCursor(LoadCursor(NULL,IDC_ARROW)); **/
+}
+
+void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
+     integer *ibutton,*x1,*yy1, *iflag,*lstr;
+     int getmouse,dyn_men,getrelease;
+     char *str;
+{
+  int win;
+  /** BOOL flag1= TRUE; **/
+  integer buttons = 0;
+
+  if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
+    {
+      *ibutton = -100;     return;
+    }
+  win = ScilabXgc->CurWindow;
+  if ( *iflag ==1 && CheckClickQueue(&win,x1, yy1,ibutton) == 1) return ;
+  if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
+
+  /** Pas necessaire en fait voir si c'est mieux ou moins bien **/
+  if (IsIconic(ScilabXgc->hWndParent)) 
+    ShowWindow(ScilabXgc->hWndParent, SW_SHOWNORMAL);
+  BringWindowToTop(ScilabXgc->hWndParent);
+
+  // SetCursor(LoadCursor(NULL,IDC_CROSS));
+  /*  track a mouse click */
+#ifdef WITH_TK
+  flushTKEvents();
+#endif
+
+  set_wait_click(1);
+  while ( 1 ) 
+    {
+#ifdef WITH_TK
+      if (  tcl_check_one_event() == 1) 
+	{
+	  //sciprint("tcl event %l\r\n",msg.hwnd);
+	}
+#else 
+      PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
+      TranslateMessage(&msg);
+      DispatchMessage(&msg);
+#endif
+      if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
+	{
+	  /* graphic window was deleted */
+	  *x1= 0 ;  *yy1= 0;  *ibutton=-100; 
+	  set_wait_click(0);
+	  return;
+	}
+      if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) 
+	{
+	  int entry;
+	  C2F(getmen)(str,lstr,&entry);
+	  *ibutton = -2; *x1=0; *yy1=0;  buttons++;
+	  set_wait_click(0);
+	  return ;
+	}
+      if ( CtrlCHit(&textwin) == 1) 
+	{
+	  *x1= 0 ;  *yy1= 0;  *ibutton=0; break ;
+	}
+
+      if ( SciClickInfo.win == win ) 
+	{
+	  if ( SciClickInfo.motion == 1 ) {
+	    if ( getmouse == 1) break;
+	  }
+	  if ( SciClickInfo.release == 1 ) {
+	    if ( getrelease == 1) break;
+	  }
+	  if ( SciClickInfo.motion == 0 && SciClickInfo.release ==0 ) 
+	    break;
+	}
+    }
+  *x1   =  SciClickInfo.x;
+  *yy1  =  SciClickInfo.y;
+  *ibutton = SciClickInfo.ibutton;
+  set_wait_click(0);
+  // SetCursor(LoadCursor(NULL,IDC_ARROW));
 }
  
 
