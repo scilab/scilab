@@ -6,6 +6,15 @@
   <TYPE>Scicos data structure  </TYPE>
   <DATE>Janvier 2003  </DATE>
   <SHORT_DESCRIPTION name="scicos_link"> Scicos link data structure  </SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+  <P>
+    Scicos editor creates and uses for each link a data structure
+    containing all information relative to the graphic interface and
+    interconnection information. Each of them are stored in the Scicos
+    editor diagram data structure. Index of these in Scicos
+    editor diagram data structure is given by the creation order.
+  </P>
   <ITEMIZE label='DEFINITION'>
   <VERBATIM><![CDATA[
 lnk=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
@@ -47,14 +56,6 @@ name &apos;Link&apos; and containing the following fields:
 
   </ITEM>
   </ITEMIZE>
-  <DESCRIPTION>
-  <P>
-    Scicos editor creates and uses for each link a data structure
-    containing all information relative to the graphic interface and
-    interconnection information. Each of them are stored in the Scicos
-    editor diagram data structure. Index of these in Scicos
-    editor diagram data structure is given by the creation order.
-  </P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>scicos_block</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_graphics</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_diagram</LINK> </SEE_ALSO_ITEM>

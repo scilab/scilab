@@ -39,7 +39,7 @@
     current axes and makes all its children visibles. 
     With the option <VERB>"all"</VERB>, the current figure and all its children 
     graphics entities will be visibles.
-    <p></p>
+    <P></P>
     It can specially be used with the  <VERB>drawlater</VERB> function.
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

@@ -6,6 +6,12 @@
   <TYPE>Scicos data structure  </TYPE>
   <DATE>Janvier 2003  </DATE>
   <SHORT_DESCRIPTION name="scicos_state"> Initial state data structure of Scicos diagram  </SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+  <P>
+    Initial state data structure of Scicos compiled diagram data structure
+    needed to simulate the system (see <VERB>scicos_cpr</VERB>).
+  </P>
   <ITEMIZE label='DEFINITION'>
   <VERBATIM><![CDATA[
 state=tlist(['xcs','x','z','iz','tevts','evtspt','pointi','outtb'],..
@@ -47,11 +53,6 @@ formal name &apos;xcs&apos; and containing the following fields:
 
   </ITEM>
   </ITEMIZE>
-  <DESCRIPTION>
-  <P>
-    Initial state data structure of Scicos compiled diagram data structure
-    needed to simulate the system (see <VERB>scicos_cpr</VERB>).
-  </P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_diagram</LINK> </SEE_ALSO_ITEM>

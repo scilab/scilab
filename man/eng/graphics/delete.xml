@@ -34,7 +34,7 @@
   </PARAM_INDENT> 
   </PARAM>
   <DESCRIPTION>
-  <P>
+  
     This routine can be used to delete a graphics entity identified
     by the handle given as argument. In this case, All children of 
     this graphics entity will be deleted. 
@@ -44,7 +44,6 @@
     <P> </P>
     The <VERB>"callback"</VERB> argument is not yet handled.
  
-  </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 

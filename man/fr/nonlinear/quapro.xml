@@ -168,7 +168,7 @@ me=3;
 <AUTHORS_ITEM label='Eduardo Casas  Renteria'>, Universidad de Cantabria,</AUTHORS_ITEM>
 <AUTHORS_ITEM label='Cecilia Pola Mendez'> , Universidad de Cantabria</AUTHORS_ITEM>
 </AUTHORS>
-<USED_FUNCTION>
+<USED_FUNCTIONS>
 in routines/optim directory (authors E.Casas, C. Pola Mendez):
 <P>
 anfm01.f  anfm03.f  anfm05.f  anrs01.f  auxo01.f  dimp03.f  dnrm0.f   optr03.f  pasr03.f  zthz.f
@@ -184,5 +184,5 @@ daxpy.f dcopy.f ddot.f dnrm2.f dscal.f dswap.f idamax.f
 add.f ddif.f dmmul.f
 </P>
 <P> From LAPACK library : dlamch.f</P>
-</USED_FUNCTION>
+</USED_FUNCTIONS>
 </MAN>

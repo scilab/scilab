@@ -24,8 +24,9 @@
         <PARAM_NAME>x,y  </PARAM_NAME>
         <PARAM_DESCRIPTION>
         : two matrices (or column vectors).
-        </PARAM_DESCRIPTION>
+        
         <PARAM_INDENT> 
+
         <PARAM_ITEM>
           <PARAM_NAME></PARAM_NAME>
           <PARAM_DESCRIPTION>
@@ -33,6 +34,7 @@
             (the column j of <VERB>y</VERB> is plotted with respect to column j of <VERB>x</VERB>)
           </PARAM_DESCRIPTION>
         </PARAM_ITEM>
+
         <PARAM_ITEM>
           <PARAM_NAME></PARAM_NAME>
           <PARAM_DESCRIPTION>
@@ -42,6 +44,7 @@
             <VERB>y</VERB>).
           </PARAM_DESCRIPTION>
         </PARAM_ITEM>
+
         <PARAM_ITEM>
           <PARAM_NAME></PARAM_NAME>
           <PARAM_DESCRIPTION>
@@ -49,8 +52,11 @@
             [1; 2; ...;  row dimension of y].
           </PARAM_DESCRIPTION>
         </PARAM_ITEM>
+
         </PARAM_INDENT>
+       </PARAM_DESCRIPTION>
      </PARAM_ITEM>
+
      <PARAM_ITEM>
         <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
         <PARAM_DESCRIPTION>
@@ -58,7 +64,9 @@
           where <VERB>key1</VERB>, <VERB>key2,...</VERB> can be one of the following:
         </PARAM_DESCRIPTION> 
      </PARAM_ITEM>
+
  <PARAM_INDENT>
+
   <PARAM_ITEM>
   <PARAM_NAME>style  </PARAM_NAME>
   <PARAM_DESCRIPTION>

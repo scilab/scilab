@@ -310,10 +310,10 @@ ordinary differential equation solvers,
 acm-signum newsletter, vol. 15, no. 4 (1980), pp. 10-11.
 </BIBLIO>
 
-<USED_FUNCTION>
+<USED_FUNCTIONS>
 The associated routines can be found in  routines/integ directory :
 <P>
 lsode.f lsodar.f
 </P>
-</USED_FUNCTION>
+</USED_FUNCTIONS>
 </MAN>

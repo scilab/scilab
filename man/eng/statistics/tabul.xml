@@ -93,8 +93,8 @@ results = [m(1)(p) string(occ)]             // display result
    </SEE_ALSO>
 
    <AUTHORS>
-      <AUTHOR_ITEM> Carlos Klimann (original author)</AUTHOR_ITEM>
-      <AUTHOR_ITEM> J.S. Giet and B. Pincon (new version)</AUTHOR_ITEM>
+      <AUTHORS_ITEM> Carlos Klimann (original author)</AUTHORS_ITEM>
+      <AUTHORS_ITEM> J.S. Giet and B. Pincon (new version)</AUTHORS_ITEM>
    </AUTHORS>
 
    <BIBLIO>

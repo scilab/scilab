@@ -129,12 +129,17 @@ Ham=[F+G*Fit*H -G*Fit;-Fit*H Fit];
 [T,d]=schur(Ham,'d');T=T(:,1:d);X2=T(4:6,:)/T(1:3,:);
 norm(X2-X,1)
  ]]></EXAMPLE>
-  <ITEMIZE label='REFERENCE'>
-  <P>
-    See SCIDIR/routines/control/riccpack. Code written by P. Petkov.
-  </P>
-  </ITEMIZE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>riccati</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ric_desc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>riccati</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>ric_desc</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM> 
   </SEE_ALSO>
+<AUTHOR>
+ P. Petkov
+</AUTHOR>
+<USED_FUNCTIONS>
+See SCIDIR/routines/control/riccpack
+</USED_FUNCTIONS>
+
+
 </MAN>

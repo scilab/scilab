@@ -15,13 +15,14 @@
     This function can be used to not display on the screen 
     all graphics objects called by its basic drawing commands. 
     Their Visibility property is set to <VERB>"off" </VERB>.
-    <p></p>
+    <P></P>
     It can specially be used with the  <VERB>drawnow</VERB> function.  
-    <p></p>
+    <P></P>
     To return to the visible mode, it will be necessary to set a Visibility 
     property of the current figure entity to <VERB>"on" </VERB>. It's equival
     to make <VERB>drawnow("all")</VERB>.   
   </DESCRIPTION>
+
   <EXAMPLE><![CDATA[
 
   set("figure_style","new") // select entity based graphics

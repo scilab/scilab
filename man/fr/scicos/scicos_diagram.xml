@@ -6,6 +6,14 @@
   <TYPE>Scicos data structure  </TYPE>
   <DATE>Decembre 2002  </DATE>
   <SHORT_DESCRIPTION name="scicos_diagram"> Scicos diagram data structure  </SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+  <P>
+    Scicos editor uses and modifies the  Scicos editor main  data
+    structure to keep all information relative to the edited
+    diagram. Scicos compiler uses it as a input.
+  </P>
+
   <ITEMIZE label='DEFINITION'>
   <VERBATIM><![CDATA[
 scs_m=mlist(['diagram','props','objs'],props,objs)
@@ -26,16 +34,9 @@ formal name &apos;diagram&apos; and containing the following fields:
 
   </ITEM>
   </ITEMIZE>
-  <DESCRIPTION>
-  <P>
-    Scicos editor uses and modifies the  Scicos editor main  data
-    structure to keep all information relative to the edited
-    diagram. Scicos compiler uses it as a input.
-  </P>
-  <P>
-  </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>scicos_block</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_link</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>scicos_block</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>scicos_link</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

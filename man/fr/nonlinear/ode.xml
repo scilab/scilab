@@ -295,10 +295,10 @@ ordinary differential equation solvers,
 acm-signum newsletter, vol. 15, no. 4 (1980), pp. 10-11.
 </BIBLIO>
 
-<USED_FUNCTION>
+<USED_FUNCTIONS>
 Les sous programmes associés se trouvent dans le repertoire  routines/integ:
 <P>
 lsode.f lsodar.f
 </P>
-</USED_FUNCTION>
+</USED_FUNCTIONS>
 </MAN>

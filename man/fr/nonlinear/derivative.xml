@@ -115,8 +115,7 @@ derivative(F, x, order = 4) etc.
    ]]></VERBATIM>
   </ITEMIZE>
 
-  <AUTHORS> Rainer von Seggern, Bruno Pincon </AUTHORS>
-
+ 
   <EXAMPLE><![CDATA[
   function y=F(x)
    y=[sin(x(1)*x(2))+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
@@ -172,5 +171,6 @@ derivative(F, x, order = 4) etc.
     <SEE_ALSO_ITEM> <LINK>numdiff</LINK> </SEE_ALSO_ITEM>     
     <SEE_ALSO_ITEM> <LINK>derivat</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+ <AUTHORS> Rainer von Seggern, Bruno Pincon </AUTHORS>
 
 </MAN>

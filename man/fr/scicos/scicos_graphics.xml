@@ -6,6 +6,14 @@
   <TYPE>Scicos data structure  </TYPE>
   <DATE>Decembre 2001  </DATE>
   <SHORT_DESCRIPTION name="scicos_graphics"> Scicos block graphics data structure  </SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+  <P>
+    Scicos block graphics data structure contains all information relative
+    to graphical display of the block and to user dialogue. Fields may be
+    fixed by block definition or set as a result of user dialogue or
+    connections.
+  </P>
   <ITEMIZE label='DEFINITION'>
   <VERBATIM><![CDATA[
 graphics=mlist(['graphics','orig','sz','flip','exprs','pin',..
@@ -60,15 +68,6 @@ formal name &apos;graphics&apos; and containing the following fields:
 
   </ITEM>
   </ITEMIZE>
-  <DESCRIPTION>
-  <P>
-    Scicos block graphics data structure contains all information relative
-    to graphical display of the block and to user dialogue. Fields may be
-    fixed by block definition or set as a result of user dialogue or
-    connections.
-  </P>
-  <P>
-  </P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_diagram</LINK> </SEE_ALSO_ITEM>

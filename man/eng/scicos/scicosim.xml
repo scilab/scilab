@@ -77,7 +77,7 @@
     <VERB>scs_m</VERB> is the diagram Scicos main data structure.
   </P>
   <P>
-    <VERB>%cpr</VERB> (see LINK>scicos_cpr</LINK>) is a data structure with fields 
+    <VERB>%cpr</VERB> (see <LINK>scicos_cpr</LINK>) is a data structure with fields 
     <VERB>state</VERB> ,<VERB>sim</VERB> ,<VERB>cor</VERB>
     ,<VERB>corinv</VERB> if the diagram had been compiled before
     saved, else <VERB>%cpr=list()</VERB>. 

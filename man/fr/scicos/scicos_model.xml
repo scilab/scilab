@@ -6,6 +6,23 @@
   <TYPE>Scicos data structure  </TYPE>
   <DATE>Decembre 2002  </DATE>
   <SHORT_DESCRIPTION name="scicos_model"> Scicos block functionality  data structure  </SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+  <P>
+    Scicos block model data structure contains all information relative
+    to the simulation functionalities of the block. Fields may be
+    fixed by block definition or set. 
+  </P>
+  <P>
+    If block is a super block, the fields
+    <VERB>state</VERB>,<VERB>dstate</VERB>,<VERB>ipar</VERB>,<VERB>blocktype</VERB>,<VERB>firing</VERB>,
+    <VERB>dep_ut</VERB>, are unused. 
+  </P>
+  <P>
+    The <VERB>rpar</VERB> field contains a
+    data structure similar to the <VERB>scicos_diagram</VERB> data structure.
+  </P>
+
   <ITEMIZE label='DEFINITION'>
   <VERBATIM><![CDATA[
 model=mlist(['model','sim','in','out','evtin','evtout','state',..
@@ -97,25 +114,6 @@ formal name &apos;model&apos; and containing the following fields:
 
   </ITEM>
   </ITEMIZE>
-  <DESCRIPTION>
-  <P>
-    Scicos block model data structure contains all information relative
-    to the simulation functionalities of the block. Fields may be
-    fixed by block definition or set. 
-  </P>
-  <P>
-    If block is a super block, the fields
-    <VERB>state</VERB>,<VERB>dstate</VERB>,<VERB>ipar</VERB>,<VERB>blocktype</VERB>,<VERB>firing</VERB>,
-    <VERB>dep_ut</VERB>, are unused. 
-  </P>
-  <P>
-    The <VERB>rpar</VERB> field contains a
-    data structure similar to the <VERB>scicos_diagram</VERB> data structure.
-  </P>
-  <P>
-  </P>
-  <P>
-  </P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_diagram</LINK> </SEE_ALSO_ITEM>

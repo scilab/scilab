@@ -8,6 +8,7 @@
   <SHORT_DESCRIPTION name="mine"> a mining problem   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>[cout,feed]=mine(n1,n2,uvect)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[]=showcost(n1,n2,teta,alpha)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
  <PARAM_INDENT>
@@ -75,21 +76,9 @@
     <VERB>V_F(i,n2)</VERB> is a final cost which is set so as to impose the steam shovel to be at ground level 
     at position <VERB>n2</VERB>
   </P>
+  <VERB>showcost</VERB> Shows a 3D representation of the instantaneous cost.
   </DESCRIPTION>
-  <ITEMIZE label='FF_o'>
-  </ITEMIZE>
-  <ITEMIZE label='SHOWCOST'>
-  </ITEMIZE>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[]=showcost(n1,n2,teta,alpha)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-  <P>
-    Shows a 3D representation of the instantaneous cost.
-  </P>
-  <P>
-  </P>
-  <P>
-  </P>
-  </DESCRIPTION>
+
+
+
 </MAN>

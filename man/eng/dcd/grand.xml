@@ -438,40 +438,40 @@
     <SEE_ALSO_ITEM> <LINK>rand</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
-  <ITEMIZE label='Authors, References'>
-  <ITEM label='randlib'>
+  <AUTHORS> 
+  <AUTHORS_ITEM label='randlib'>
      The codes to generate sequences following other distributions than def, unf, lgi,  uin and geom are
      from &quot;Library of Fortran Routines for Random Number  Generation&quot;, by Barry W. Brown 
      and James Lovato, Department of Biomathematics, The University of Texas, Houston.  
-  </ITEM>
-  <ITEM label='mt'>
+  </AUTHORS_ITEM>
+  <AUTHORS_ITEM label='mt'>
      The code is the mt19937int.c by M. Matsumoto and  T. Nishimura, &quot;Mersenne Twister: 
      A 623-dimensionally equidistributed  uniform pseudorandom number generator&quot;, 
      ACM Trans. on Modeling and  Computer Simulation Vol. 8, No. 1, January, pp.3-30 1998.
-  </ITEM>
-  <ITEM label='kiss'>
+  </AUTHORS_ITEM>
+  <AUTHORS_ITEM label='kiss'>
      The code was given by G. Marsaglia at the end of a thread concerning RNG in C in several 
      newsgroups (whom sci.math.num-analysis) &quot;My offer of  RNG&apos;s for C was an invitation 
      to dance...&quot; only kiss have been included in Scilab (kiss is made of a combinaison of 
      severals others which are not visible at the scilab level).
-  </ITEM>
-  <ITEM label='clcg2'>
+  </AUTHORS_ITEM>
+  <AUTHORS_ITEM label='clcg2'>
      The method is from P. L&apos;Ecuyer but the C code is provided at the Luc  Devroye home page 
      (http://cgm.cs.mcgill.ca/~luc/rng.html).
-  </ITEM>
-  <ITEM label='clcg4'>
+  </AUTHORS_ITEM>
+  <AUTHORS_ITEM label='clcg4'>
      The code is from P. L&apos;Ecuyer and Terry H.Andres and provided at the P. L&apos;Ecuyer
      home page ( http://www.iro.umontreal.ca/~lecuyer/papers.html) A paper is also provided 
      and this new package is the logical successor of an old &apos;s one from : P.  L&apos;Ecuyer
      and S. Cote.   Implementing a Random   Number Package with Splitting Facilities.  ACM Transactions 
      on Mathematical  Software 17:1,pp 98-111.
-  </ITEM>
-  <ITEM label='fsultra'>
+  </AUTHORS_ITEM>
+  <AUTHORS_ITEM label='fsultra'>
      code from Arif Zaman (arif@stat.fsu.edu) and George Marsaglia (geo@stat.fsu.edu)
-  </ITEM>
-  <ITEM label='scilab packaging'>
+  </AUTHORS_ITEM>
+  <AUTHORS_ITEM label='scilab packaging'>
      By Jean-Philippe Chancelier and Bruno Pincon  
-  </ITEM>
-  </ITEMIZE>
+  </AUTHORS_ITEM>
+  </AUTHORS>
 
 </MAN>

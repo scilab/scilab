@@ -13,7 +13,7 @@
   hierarchy. Two classes appears under this type of entity :
   <VERB>Plot3d</VERB> and <VERB>Fac3d </VERB>
   according to the ploting function.
-  <p></p> 
+  <P></P> 
   This entity is still under developpement
   and will problably evolve a lot. In particular we intend to extend
   the Axes data structure to 3D and split the Axes propteies and

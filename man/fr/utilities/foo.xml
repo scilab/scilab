@@ -64,7 +64,7 @@ foo("toto")
       <SEE_ALSO_ITEM> <LINK>apropos</LINK> </SEE_ALSO_ITEM>
    </SEE_ALSO>
 
-   <AUTHOR>
-      <AUTHOR_ITEM>B. P.</AUTHOR_ITEM>
-   </AUTHOR>
+   <AUTHORS>
+      <AUTHORS_ITEM>B. P.</AUTHORS_ITEM>
+   </AUTHORS>
 </MAN>

@@ -30,7 +30,7 @@
   <DESCRIPTION>
   <P>
    convertit un fichier  Matlab .mat  en un fichier binaire compatible
-   avec la fonction <verb>load</verb>. Les types de données Matlab
+   avec la fonction <VERB>load</VERB>. Les types de données Matlab
    sont convertis en leur équivalent Scilab.
   </P>
 

@@ -53,13 +53,13 @@ scipad SCI/scilab.star
 
   ]]></EXAMPLE>
 
-  
+  <AUTHOR>
+    Mathieu Philippe, INRIA
+  </AUTHOR>  
 
   <BIBLIO>
  Scipad is derived from the tknotepad written by Joseph Acosta
   </BIBLIO>
 
-  <AUTHOR>
-    Mathieu Philippe, INRIA
-  </AUTHOR>
+
 </MAN>

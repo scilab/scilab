@@ -198,8 +198,8 @@ nmeas=2
 gam=111.30;
 [AK,BK,CK,DK] = dhinf(A,B,C,D,ncon,nmeas,gam)
  ]]></EXAMPLE>
-  <P>  </P>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>hinf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>h_inf</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>hinf</LINK> </SEE_ALSO_ITEM>  
+   <SEE_ALSO_ITEM> <LINK>h_inf</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
