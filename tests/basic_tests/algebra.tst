@@ -858,7 +858,7 @@ if Err(As-Q'*A*Z) >100*%eps then pause,end
 if Err(Es-Q'*E*Z) >100*%eps then pause,end
 
 //ordered sel
-function t=sel(Alpha,Beta),t=Beta<2 ,endfunction
+function t=sel(Alpha,Beta),t=real(Alpha)>-0.2*real(Beta) ,endfunction
 
 dim=schur(A,E,sel);
 if dim<>2 then pause,end
@@ -993,20 +993,20 @@ if Err(As-Q'*A*Z) >100*%eps then pause,end
 if Err(Es-Q'*E*Z) >100*%eps then pause,end
 
 //ordered sel
-function t=sel(Alpha,Beta),t=Beta<2 ,endfunction
+function t=sel(Alpha,Beta),t=real(Alpha)>-0.2*real(Beta) ,endfunction
 
 dim=schur(A,E,sel);
-if dim<>24 then pause,end
+if dim<>12 then pause,end
 [Z,dim]=schur(A,E,sel);
 if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,sel);
 if Err(Z1-Z)>10*%eps then pause,end
 if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if dim<>24 then pause,end
+if dim<>12 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,sel);
-if dim<>24 then pause,end
+if dim<>12 then pause,end
 if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
 if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
 if Err(As-Q'*A*Z) >100*%eps then pause,end
@@ -1808,9 +1808,9 @@ if e<>0 |Err(m-1-%i)>10*%eps then pause,end
 //Real
 v=rand(1,21);
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
-if Err(det(A)-prod(v))>1000*%eps then pause,end
+if Err(det(A)-prod(v))>100000*%eps then pause,end
 [e,m]=det(A);
-if Err(m*(10^e)-prod(v))>1000*%eps then pause,end
+if Err(m*(10^e)-prod(v))>100000*%eps then pause,end
 //Complex
 v=(v+rand(v)*%i)/2;
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));

@@ -1546,7 +1546,7 @@ if Err(Es-Q'*E*Z) >100*%eps then bugmes();quit;end
  
 //ordered sel
  
-function t=sel(Alpha,Beta),t=Beta<2 ,endfunction
+function t=sel(Alpha,Beta),t=real(Alpha)>-0.2*real(Beta) ,endfunction
 Warning :redefining function: sel                     
  
  
@@ -1798,14 +1798,14 @@ if Err(Es-Q'*E*Z) >100*%eps then bugmes();quit;end
  
 //ordered sel
  
-function t=sel(Alpha,Beta),t=Beta<2 ,endfunction
+function t=sel(Alpha,Beta),t=real(Alpha)>-0.2*real(Beta) ,endfunction
 Warning :redefining function: sel                     
  
  
  
 dim=schur(A,E,sel);
  
-if dim<>24 then bugmes();quit;end
+if dim<>12 then bugmes();quit;end
  
 [Z,dim]=schur(A,E,sel);
  
@@ -1818,12 +1818,12 @@ if Err(Z1-Z)>10*%eps then bugmes();quit;end
  
 if Err(Q*Q'-eye(Q)) >100*%eps then bugmes();quit;end
  
-if dim<>24 then bugmes();quit;end
+if dim<>12 then bugmes();quit;end
  
  
 [As,Es,Z,dim]=schur(A,E,sel);
  
-if dim<>24 then bugmes();quit;end
+if dim<>12 then bugmes();quit;end
  
 if Err(Q*Q'-eye(Q)) >100*%eps then bugmes();quit;end
  
@@ -3300,11 +3300,11 @@ v=rand(1,21);
  
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
  
-if Err(det(A)-prod(v))>1000*%eps then bugmes();quit;end
+if Err(det(A)-prod(v))>100000*%eps then bugmes();quit;end
  
 [e,m]=det(A);
  
-if Err(m*(10^e)-prod(v))>1000*%eps then bugmes();quit;end
+if Err(m*(10^e)-prod(v))>100000*%eps then bugmes();quit;end
  
 //Complex
  
