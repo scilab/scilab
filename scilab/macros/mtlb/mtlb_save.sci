@@ -1,6 +1,14 @@
 function mtlb_save(mtlb_thefile,varargin)
 //save variable under  matlab 4.x .mat binary format files
 //see: www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
+
+// Verify that all inputs are character strings
+for k=1:size(varargin)
+  if type(varargin(k))<>10 then
+    error("All inputs must be character strings");
+  end
+end
+
 [lhs,rhs]=argn(0)
 mtlb_opts=[]
 if rhs==1 then
