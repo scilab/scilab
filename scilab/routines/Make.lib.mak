@@ -49,5 +49,7 @@ cleanF :
 
 distclean::
 	del *.obj
-	del $(LIBRARY)
+
+
+# won't work since LIBRARY is a path with \ del $(LIBRARY)
 

@@ -1,6 +1,4 @@
-
 /** machine.h version for vc++ **/
-
 /* Copyright INRIA/ENPC */
 
 #ifndef MACHINE_H 
@@ -96,4 +94,4 @@ typedef int integer;
 
 
 
-#endif MACHINE_H 
+#endif /* MACHINE_H  */

@@ -70,12 +70,12 @@ do_scilex_now()
 
 do_geci_scilex()
 {
-    do_scilex
+    do_scilex $*
 }
 
 do_geci_scilex_now()
 {
-    do_scilex_now
+    do_scilex_now $*
 }
 
 
@@ -423,21 +423,20 @@ if test "$rest" = "yes"; then
        do_scilex_now -ns -nw $start_file $arguments
      else
         if test -n "$nowi"; then 
-	    do_scilex_now -ns -nwni $display $start_file  $arguments 
+     	    do_scilex_now -ns -nwni $display $start_file  $arguments 
         else
-	    do_scilex -ns $display $start_file  $arguments &
+	        do_scilex -ns $display $start_file  $arguments &
         fi
      fi
   else
      if test -n "$now"; then
-       do_geci_scilex_now -nw $start_file $arguments
+       do_scilex_now -nw $start_file $arguments
      else
         if test -n "$nowi"; then 
-	    do_scilex_now -nwni $display $start_file  $arguments 
+	       do_scilex_now -nwni $display $start_file  $arguments 
         else
-	    do_scilex $display $start_file  $arguments 
+	       do_scilex $display $start_file  $arguments 
         fi
-       do_geci_scilex $display $start_file  $arguments&
      fi
   fi    
 

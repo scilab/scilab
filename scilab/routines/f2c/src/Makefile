@@ -59,7 +59,9 @@ f2c.t: f2c.1t
 #	nroff -man f2c.1t | col -b | uniq >f2c.1
 
 clean::
-	rm -f  *.o f2c tokdefs.h f2c.t
+	rm -f  *.o f2c tokdefs.h f2c.t *.obj 
+
+distclean :: clean 
 
 b = Notice README cds.c data.c defines.h defs.h equiv.c error.c \
 	exec.c expr.c f2c.1 f2c.1t f2c.h format.c format.h formatdata.c \

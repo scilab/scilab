@@ -1,6 +1,7 @@
 #!/bin/sh
 #
-# $Id: pvmgetarch,v 1.1 2001/04/26 07:47:08 scilab Exp $
+# 2002: small patch in order to return UNKNOWN on cygwin (jpc)
+# $Id: pvmgetarch,v 1.2 2002/07/08 08:10:26 chanceli Exp $
 #
 # pvmgetarch.sh
 #
@@ -18,7 +19,7 @@
 # 08 Apr 1993  Robert Manchek  manchek@CS.UTK.EDU.
 # 24 Aug 1994  last revision
 # 28 Jul 1995  release 3.3.8
-#
+# 
 
 #
 # begin section that may need to be tuned.
@@ -49,6 +50,8 @@ if [ -f /bin/uname -o -f /usr/bin/uname \
 	fi
 
 	case "$os,$ht" in
+	CYGW*,* )               ARCH=CYGWIN ;;
+	MING*,* )               ARCH=CYGWIN ;;
 	SunOS,sun3* )           ARCH=SUN3 ;;
 	SunOS,sun4* )           ARCH=SUN4 ;;
 	SunOS,i86pc )           ARCH=X86SOL2 ;;
@@ -68,7 +71,7 @@ if [ -f /bin/uname -o -f /usr/bin/uname \
 	*,mips )                ARCH=MIPS ;;
 	*,CRAY-2 )              ARCH=CRAY2 ;;
 	Linux,i[3456]86 )       ARCH=LINUX ;;
-	Linux,sparc)			ARCH=LINUXSPARC ;;
+        Linux,sparc)            ARCH=LINUXSPARC ;;
 	BSD/OS,i[3456]86 )      ARCH=BSD386 ;;
 	FreeBSD,i386 )          ARCH=FREEBSD ;;
 	SUPER-UX,SX-3 )         ARCH=SX3 ;;
@@ -236,6 +239,12 @@ if [ "$ARCH" = HPPA ]; then
 		then ARCH=HPPAMP;
 	fi
 fi
+
+
+if [ "$ARCH" = CYGWIN ]; then
+	ARCH=UNKNOWN;
+fi
+
 #
 # ugh, done.
 #

@@ -1,4 +1,11 @@
 #!/bin/csh
+# a f2c-script adapted for scilab interfaces 
+# must be in a routines/subdir to make it work 
+# some work remains to be done in the 
+# generated C-file 
+# Copyright Enpc
+# Jean-Philippe Chancelier 
+#-------------------------------------------------
 set name=$1:r
 sed -e "s+..\/stack.h+../f2c/bin/f2c-stack.h+g"  \
     -e "s/^[ ]*iadr(l)=l+l-1/c     iadr(l)=l+l-1/g" \

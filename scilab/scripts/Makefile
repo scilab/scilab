@@ -14,18 +14,18 @@ BPROGRAMS = $(SBIN)/Blatexpr $(SBIN)/Blatexpr2 \
 	$(SBIN)/Blatexprs $(SBIN)/Blpr $(SBIN)/BEpsf \
 	$(UTIL)/Blatdoc $(UTIL)/Blatdocs
 
-PROGRAMS = $(SBIN)/scilab @BLPR_SCRIPTS@
+PROGRAMS = $(SBIN)/scilab 
 
 all:: $(PROGRAMS)
 
 CYGDRIVE= -e "s+/cygdrive/\([a-zA-Z]*\)/+\1:/+g" 
-SED_CYGDRIVE= @SED_CYGDRIVE@
+SED_CYGDRIVE= $(CYGDRIVE)
 
-$(SBIN)/scilab: @SCILABSCRIPT@ $(IP) $(IV)
+$(SBIN)/scilab: scilab-gcwin32.g $(IP) $(IV)
 	@$(RM) $(SBIN)/scilab
 	@sed -e "s+SCILAB_DIRECTORY+$(SCIDIR)+" $(SED_CYGDRIVE) \
 	-e "s+SCILAB_VERSION+$(SCIVERSION)+" \
-	-e "s+SCILABGS+@SCILAB_GS@+" @SCILABSCRIPT@ > scilab;
+	-e "s+SCILABGS+sh+" scilab-gcwin32.g > scilab;
 	@cp scilab $(SBIN)
 	@chmod 775 $(SBIN)/scilab
 	@$(RM) scilab

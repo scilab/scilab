@@ -1,8 +1,7 @@
 /* f2c.h  --  Standard Fortran to C header file */
-
 /**  barf  [ba:rf]  2.  "He suggested using FORTRAN, and everybody barfed."
-
 	- From The Shogakukan DICTIONARY OF NEW ENGLISH (Second edition) */
+/* updated for scilab: Jean-Philippe Chancelier */
 
 #ifndef F2C_INCLUDE
 #define F2C_INCLUDE
@@ -13,11 +12,14 @@
 #endif 
 
 /** added for Scilab addinter  vc++ version **/
+/* XXXXX pour gcc -3.1 il faut un extern devant le 
+ * __declspec(dllimport) 
+ */ 
 
 #ifdef FORDLL 
-#define IMPORT  __declspec (dllimport)
+#define IMPORT extern  __declspec (dllimport)
 #else 
-#define IMPORT 
+#define IMPORT extern 
 #endif
 
 typedef long int integer;
