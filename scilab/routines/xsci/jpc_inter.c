@@ -146,10 +146,14 @@ void sci_tk_activate(void)
   /*Cout("You have started Scilab in a mode in which TK is not initialized.\n");
     Cout("Trying to initialize \n");*/
   DisplayInit("",&dpy,&toplevel);
+#ifdef WITH_TK
   initTCLTK();
+#endif
   BasicScilab = 0;
   basic_scilab_mask(&dpy);
+#ifdef WITH_TK
   flushTKEvents();
+#endif
 }
 
 void DisplayInit(char *string,Display **dpy,Widget * toplevel)
