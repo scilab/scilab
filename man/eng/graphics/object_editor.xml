@@ -133,9 +133,9 @@
     <P></P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[Below is an example of the appearance of such an interface with objects of type Axes.
+  <EXAMPLE><![CDATA[// Below is an example of the appearance of such an interface with objects of type Axes.
 
-No images for now
+// No images for now
 ]]></EXAMPLE>
 
   <SEE_ALSO>
