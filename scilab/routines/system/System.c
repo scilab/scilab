@@ -82,7 +82,7 @@ extern void
   /* C2F(waitforinputend)(), */
       SearchForwardInHistory(),
       SearchBackwardInHistory(),
-      add_history_sci(),
+      AddHistory(),
       C2F(xerbla)();
 
 
@@ -169,7 +169,7 @@ void System_contents( int x)
       /* C2F(waitforinputend)(); */
       SearchForwardInHistory();
       SearchBackwardInHistory();
-      add_history_sci();
+      AddHistory();
       C2F(xerbla)();
     }
 }
