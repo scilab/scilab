@@ -46,19 +46,31 @@ function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_
   if getenv('WIN32','NO')=='OK' then
     lib_name=lib_name+'.dll'
     lib_name_make=lib_name;
-    if files<>[] then 
-      files = files + '.obj' ;
-    end
     select comp_target
      case 'VC++' then 
       makename = makename + '.mak' ; 
       make_command = 'nmake /nologo /f '
+      if files<>[] then 
+	files = files + '.obj' ;
+      end
      case 'ABSOFT' then 
       makename = makename + '.amk ';
       make_command = 'amake /f '
-    else // gnuwin32 ? 
+      if files<>[] then 
+	files = files + '.obj' ;
+      end
+     case 'gcc' then 
        makename = makename;
        make_command = 'make -f '
+       if files<>[] then 
+	 files = files + '.o' ;
+       end
+    else // like gnuwin32 
+       makename = makename;
+       make_command = 'make -f '
+       if files<>[] then 
+	 files = files + '.o' ;
+       end
     end
   else
      if files <> [] then 
