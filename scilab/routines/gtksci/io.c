@@ -41,11 +41,24 @@ static int BasicScilab = 1;
  * Input output functions 
  *---------------------------------------------------------*/
 
+void C2F(xscisrn)(char *str,integer *n,long int dummy)
+{
+  int i;
+  for ( i =0 ; i < *n; i++) {
+    if ( str[i] == '\n' ) 
+      {
+	fprintf(stdout,"%c",'\r');
+      }
+    fprintf(stdout,"%c",str[i]);
+  }
+}
+
 void C2F(xscisncr)(char *str,integer *n,long int dummy)
 {
   int i;
   for ( i =0 ; i < *n; i++)  fprintf(stdout,"%c",str[i]);
 }
+
 
 void C2F(xscistring)(char *str, int *n, long int dummy)
 {
