@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>clf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>June 2004</DATE>
+  <SHORT_DESCRIPTION name="clf"> efface une fenŽêtre graphique et dŽétruit les
+    entitŽés associŽées.</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>clf  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>clf reset </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>clf(id [,job])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>clf(handle [,job])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>id</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: entier ou vecteur d'entiers. identificateur de fenŽêtre graphique</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>handle</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: handle ou vecteur de handles. </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>job</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: chaŽîne de caractŽères optionnelle dont les valeurs possibles sont <VERB>'clear'</VERB> or
+	    <VERB>'reset'</VERB>. La valeur par dŽéfaut est <VERB>'clear'</VERB> </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      Sans argument, cette fonction efface la fenŽêtre graphique courante et dŽétruit
+      toutes ses entitŽées filles.
+    </P>
+    <P>
+    Sinon le trauitement est appliquŽé aux fenŽêtres graphiques dŽésignŽées par
+      leur identificateur ou leur handle.. For example 
+    <VERB>clf(1:3)</VERB> clears windows 1, 2 and 3.
+    </P>
+    <P>
+      L'option  <VERB>'reset'</VERB> doit Žêtre spŽécifiŽée pour rŽéinitialiser les
+      propriŽétŽés de la figure (voir <LINK>figure_properties</LINK>) (exceptŽés  la position et la taille) avec les
+      valeurs donnŽées dans la figure par dŽéfaut  (voir <LINK>gdf</LINK>).
+    </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>gdf</LINK>
+    </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM>
+      <LINK>delete</LINK>
+    </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM>
+      <LINK>figure_properties</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
