@@ -175,7 +175,7 @@ frame $w.frame.clrh  -borderwidth 0
 pack $w.frame.clrh  -in $w.frame -side top  -fill x
 
 label $w.frame.colorlabelh -height 0 -text " Hidden color: " -width 0 
-scale $w.frame.colorh -orient horizontal -from 0 -to $ncolors \
+scale $w.frame.colorh -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setHiddenColor $w.frame.colorh" -tickinterval 0 
 
 pack $w.frame.colorlabelh -in $w.frame.clrh -side left
@@ -604,9 +604,21 @@ proc setHiddenColor {w index} {
     variable BLUCOL
     
     #ScilabEval "global ged_handle;"
-   
-    if { $index == 0 } {
+    if { $index < 0 } {
 	ScilabEval "global ged_handle; ged_handle.hiddencolor=$index;"
+	
+	set index [expr -$index]
+	
+	set REDCOL $RED($index)
+	set GRECOL $GREEN($index)
+	set BLUCOL $BLUE($index)
+	
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+	
+    } elseif { $index == 0 } {
+  	ScilabEval "global ged_handle; ged_handle.hiddencolor=$index;"
 	#like $index==1: display first color
 	set color [format \#%02x%02x%02x 255 255 255]
 	$w config  -activebackground $color -troughcolor $color
