@@ -114,6 +114,10 @@ static sciPointObj *pcurrentpobj = (sciPointObj *) NULL;
 extern sciClipTab ptabclip[15];
 extern double C2F(dsort)();/*DJ.A merge*/ 
 static char error_message[70]; /* DJ.A 08/01/04 */
+
+#ifdef WIN32
+static int flag_DO; /* F.Leray 16.02.04 flag global pour la fonction récursive DrawObj*/
+#endif
 /**sciGetPointerToFeature
  * @memo Returns the pointer to features structure from this object Used only for functions FREE or to use void pointer
  */
@@ -10424,9 +10428,9 @@ sciDrawObj (sciPointObj * pobj)
   double xbox[8],ybox[8],zbox[8], *xzz,*yzz,*zzz;
   static integer InsideU[4],InsideD[4];
   	
-#ifdef WIN32
+/*#ifdef WIN32
   int flag;
-#endif
+#endif*/
 
   int i,j;
   /* variable pour le set_scale update_frame_bouns*/
@@ -10451,7 +10455,7 @@ sciDrawObj (sciPointObj * pobj)
       x[1] = sciGetBackground (pobj);x[4] = 0;
       /** xclear will properly upgrade background if necessary **/
 #ifdef WIN32
-       flag=MaybeSetWinhdc();
+       flag_DO = MaybeSetWinhdc();
 #endif
       C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
       (sciGetScilabXgc (pobj))->NumBackground = Max (0, Min (x[1] - 1, sciGetNumColors (pobj) + 1));
@@ -10459,7 +10463,7 @@ sciDrawObj (sciPointObj * pobj)
       C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 #ifdef WIN32
-      if ( flag == 1) ReleaseWinHdc();
+		if ( flag_DO == 1) ReleaseWinHdc();
 #endif
       psonstmp = sciGetLastSons (pobj);
       while (psonstmp != (sciSons *) NULL)
@@ -10507,7 +10511,8 @@ sciDrawObj (sciPointObj * pobj)
 	      markidsizenew[1] = sciGetLineWidth (pobj);x[4] = 0;v = 0;dv = 0;
 	      
 #ifdef WIN32
-	      flag=MaybeSetWinhdc();
+		  flag_DO=MaybeSetWinhdc();
+		//  sciprint(" 1) flag = %d\n",flag_DO); F.Leray 16.04.02
 #endif
 	      C2F (dr) ("xset","dashes",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
 	      C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
@@ -10528,9 +10533,11 @@ sciDrawObj (sciPointObj * pobj)
 	      sciDrawObj (psonstmp->pointobj);
 	      psonstmp = psonstmp->pprev;
 	    }/***/
+
+	  //sciprint(" 1) flag = %d\n",flag);
 #ifdef WIN32
-	//	flag = 1 // leray
-	  if ( flag == 1) ReleaseWinHdc();
+	//flag = 1;
+	  if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	  wininfo("");  
 	}
@@ -10572,7 +10579,7 @@ sciDrawObj (sciPointObj * pobj)
       v = 0;
       dv = 0;
 #ifdef WIN32 
-      flag=MaybeSetWinhdc();
+      flag_DO=MaybeSetWinhdc();
 #endif
       C2F (dr1) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
 		 &dv, &dv, &dv, 5L, 4096);
@@ -10600,7 +10607,7 @@ sciDrawObj (sciPointObj * pobj)
       C2F (dr1) ("xset", "foreground", &xold[1], &vold, &vold, &vold, &vold,
 		 &v, &dv, &dv, &dv, &dv, 5L, 10L);
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
  
       break; 
@@ -10615,13 +10622,13 @@ sciDrawObj (sciPointObj * pobj)
 	xm[i]= XScale(pFEC_FEATURE (pobj)->pvecx[i]); 
 	ym[i]= YScale(pFEC_FEATURE (pobj)->pvecy[i]);} 
 #ifdef WIN32
-       flag=MaybeSetWinhdc();
+       flag_DO=MaybeSetWinhdc();
 #endif   
       newfec(xm,ym,pFEC_FEATURE (pobj)->pnoeud,pFEC_FEATURE (pobj)->pfun,
 	     &pFEC_FEATURE (pobj)->Nnode,&pFEC_FEATURE (pobj)->Ntr,
 	     pFEC_FEATURE (pobj)->zminmax,pFEC_FEATURE (pobj)->colminmax);
 #ifdef WIN32
-      if ( flag == 1) ReleaseWinHdc();
+      if ( flag_DO == 1) ReleaseWinHdc();
 #endif
       FREE(xm);FREE(ym);/* SS 02/04 */
       break;      
@@ -10639,7 +10646,7 @@ sciDrawObj (sciPointObj * pobj)
       markidsizenew[1] =  sciGetLineWidth (pobj);;
 
 #ifdef WIN32 
-      flag=MaybeSetWinhdc();
+      flag_DO=MaybeSetWinhdc();
 #endif
 
       C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
@@ -10651,7 +10658,7 @@ sciDrawObj (sciPointObj * pobj)
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 		PD0, PD0, 0L, 0L);
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
      
       if (pSEGS_FEATURE (pobj)->ptype == 0)
@@ -10673,7 +10680,7 @@ sciDrawObj (sciPointObj * pobj)
 		ym[i]= YScale(pSEGS_FEATURE (pobj)->vy[i]);}
 	    } 
 #ifdef WIN32 
-	  flag=MaybeSetWinhdc();
+	  flag_DO = MaybeSetWinhdc();
 #endif
 	  if (pSEGS_FEATURE (pobj)->arrowsize == 0)
 	    C2F(dr)("xsegs","v",xm,ym,&n,pSEGS_FEATURE (pobj)->pstyle,&pSEGS_FEATURE (pobj)->iflag,
@@ -10694,14 +10701,14 @@ sciDrawObj (sciPointObj * pobj)
 		       ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,&pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
 	  } /***/
 #ifdef WIN32 
-	  if ( flag == 1) ReleaseWinHdc ();
+	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
 	  FREE(xm);FREE(ym);/* SS 02/04 */
 	}
       else
         {
 #ifdef WIN32 
-	  flag=MaybeSetWinhdc();
+	  flag_DO = MaybeSetWinhdc();
 #endif
         C2F(dr)("xget","use color",&verbose, &uc, &narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
         if (uc)
@@ -10709,7 +10716,7 @@ sciDrawObj (sciPointObj * pobj)
 	else
 	  C2F(dr)("xget","line style",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
 #ifdef WIN32 
-	if ( flag == 1) ReleaseWinHdc ();
+	if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
 	n=2*(pSEGS_FEATURE (pobj)->Nbr1)*(pSEGS_FEATURE (pobj)->Nbr2); 
 	xm = graphic_alloc(0,n,sizeof(int));
@@ -10733,14 +10740,14 @@ sciDrawObj (sciPointObj * pobj)
            pSEGS_FEATURE (pobj)->vfy,&(pSEGS_FEATURE (pobj)->Nbr1),
            &(pSEGS_FEATURE (pobj)->Nbr2),&(pSEGS_FEATURE (pobj)->parfact));
 #ifdef WIN32 
-	flag=MaybeSetWinhdc();
+	flag_DO = MaybeSetWinhdc();
 #endif
 	if ( pSEGS_FEATURE (pobj)->pcolored ==0) 
           C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,&sflag,&dv,&dv,&dv,&dv,0L,0L); 
 	else
 	  C2F(dr)("xarrow","v",xm,ym,&na,&arssize,zm,(sflag=1,&sflag),&dv,&dv,&dv,&dv,0L,0L);   
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
       FREE(xm);FREE(ym);FREE(zm);/* SS 02/04 */
         }  
@@ -10765,7 +10772,7 @@ sciDrawObj (sciPointObj * pobj)
 	  for ( i =0 ; i < n2 ; i++)  
 	    ym[i]= YScale(pGRAYPLOT_FEATURE (pobj)->pvecy[i]);   
 #ifdef WIN32
-       flag=MaybeSetWinhdc();
+       flag_DO = MaybeSetWinhdc();
 #endif
 	  frame_clip_on(); 
   
@@ -10778,7 +10785,7 @@ sciDrawObj (sciPointObj * pobj)
 	  C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
 		  &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #ifdef WIN32
-      if ( flag == 1) ReleaseWinHdc();
+      if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 
 	  FREE(xm);FREE(ym); /* SS 03/01/03 */
@@ -10793,7 +10800,7 @@ sciDrawObj (sciPointObj * pobj)
           for ( j =0 ; j < n2 ; j++) xm[j]= XScale(j+0.5);
           for ( j =0 ; j < n1 ; j++) ym[j]= YScale(((n1-1)-j+0.5));
 #ifdef WIN32
-       flag=MaybeSetWinhdc();
+       flag_DO = MaybeSetWinhdc();
 #endif
           frame_clip_on(); 
           GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2);  
@@ -10801,7 +10808,7 @@ sciDrawObj (sciPointObj * pobj)
           C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
 		  &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #ifdef WIN32
-      if ( flag == 1) ReleaseWinHdc();
+      if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 
 	  FREE(xm);FREE(ym); /* SS 03/01/03 */
@@ -10825,14 +10832,14 @@ sciDrawObj (sciPointObj * pobj)
 	  for ( j =0 ; j < n1 ; j++)	 
 	    ym[j]= (int) (( py1[0]*j + py1[1]*((n1-1)-j) )/ (n1-1)); 
 #ifdef WIN32
-	  flag=MaybeSetWinhdc();
+	  flag_DO = MaybeSetWinhdc();
 #endif
 
 	  frame_clip_on(); 
 	  GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); 
 	  frame_clip_off();
 #ifdef WIN32
-      if ( flag == 1) ReleaseWinHdc();
+      if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	  FREE(xm);FREE(ym); /* SS 03/01/03 */
 	  break;
@@ -10864,7 +10871,7 @@ sciDrawObj (sciPointObj * pobj)
 
 
 #ifdef WIN32 
-      flag=MaybeSetWinhdc();
+      flag_DO = MaybeSetWinhdc();
 #endif
 
       C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
@@ -10878,7 +10885,7 @@ sciDrawObj (sciPointObj * pobj)
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif  
       n1 = pPOLYLINE_FEATURE (pobj)->n1;
       n2 = pPOLYLINE_FEATURE (pobj)->n2;
@@ -10893,7 +10900,7 @@ sciDrawObj (sciPointObj * pobj)
       /***/
       sciClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
-      flag=MaybeSetWinhdc ();
+      flag_DO = MaybeSetWinhdc ();
 #endif
       /**DJ.Abdemouche 2003**/
       switch (pPOLYLINE_FEATURE (pobj)->plot)
@@ -10964,7 +10971,7 @@ sciDrawObj (sciPointObj * pobj)
 	default:
 	  sciprint ("This Polyline cannot be drawn !\n");
 #ifdef WIN32 
-	  if ( flag == 1) ReleaseWinHdc ();
+	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif  
 	  break;     
 	}
@@ -10974,7 +10981,7 @@ sciDrawObj (sciPointObj * pobj)
       else
 	C2F (dr) ("xmarks", "xv", &n1, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif  
       sciUnClip(sciGetIsClipping(pobj));
       FREE (xm);
@@ -10998,7 +11005,7 @@ sciDrawObj (sciPointObj * pobj)
       v = 0;
       dv = 0;
 #ifdef WIN32 
-      flag=MaybeSetWinhdc ();
+      flag_DO = MaybeSetWinhdc ();
 #endif
       C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
 		&dv, &dv, &dv, 5L, 6L);
@@ -11007,7 +11014,7 @@ sciDrawObj (sciPointObj * pobj)
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 4L, 9L);
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
 
       n = pPATCH_FEATURE (pobj)->n;
@@ -11026,12 +11033,12 @@ sciDrawObj (sciPointObj * pobj)
 	C2F (echelle2d) (pPATCH_FEATURE (pobj)->pvx,
 			 pPATCH_FEATURE (pobj)->pvy, xm, ym, &n, &n2, "f2i",3L);
 #ifdef WIN32 
-       flag=MaybeSetWinhdc ();
+       flag_DO = MaybeSetWinhdc ();
 #endif
       sciClip(sciGetIsClipping(pobj));
       C2F (dr) ("xarea", str, &n, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       sciUnClip(sciGetIsClipping(pobj));
 
@@ -11059,7 +11066,7 @@ sciDrawObj (sciPointObj * pobj)
       v = 0;
       dv = 0;
 #ifdef WIN32 
-      flag=MaybeSetWinhdc ();
+      flag_DO = MaybeSetWinhdc ();
 #endif
     
       
@@ -11074,7 +11081,7 @@ sciDrawObj (sciPointObj * pobj)
 		PD0, PD0, PD0, PD0, 4L, 10L);
       
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
@@ -11098,7 +11105,7 @@ sciDrawObj (sciPointObj * pobj)
      
       
 #ifdef WIN32 
-      flag=MaybeSetWinhdc ();
+      flag_DO = MaybeSetWinhdc ();
 #endif
       sciClip(sciGetIsClipping(pobj));
       if (pARC_FEATURE (pobj)->fill  <= 0)
@@ -11107,7 +11114,7 @@ sciDrawObj (sciPointObj * pobj)
 	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
       sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
-     if ( flag == 1)  ReleaseWinHdc ();
+     if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
       break;
     case SCI_RECTANGLE:  
@@ -11123,13 +11130,13 @@ sciDrawObj (sciPointObj * pobj)
 	x[4] = 0;
 	x[5] = sciGetFillColor(pobj);
 #ifdef WIN32 
-	flag=MaybeSetWinhdc ();
+	flag_DO = MaybeSetWinhdc ();
 #endif
 		 
 	C2F (dr1) ("xset", "pattern", &x[5], x+3, x, x+1, x+3, &v, &dv,
 		   &dv, &dv, &dv, 5L, 4096);
 #ifdef WIN32 
-	if ( flag == 1) ReleaseWinHdc ();
+	if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
 	}
       /* load the object foreground and dashes color */
@@ -11143,7 +11150,7 @@ sciDrawObj (sciPointObj * pobj)
       v = 0;
       dv = 0; 
 #ifdef WIN32 
-      flag=MaybeSetWinhdc ();
+      flag_DO = MaybeSetWinhdc ();
 #endif
 
       C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
@@ -11157,7 +11164,7 @@ sciDrawObj (sciPointObj * pobj)
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 		PD0, PD0, 0L, 0L);
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
       /**DJ.Abdemouche 2003**/
       if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d))
@@ -11180,7 +11187,7 @@ sciDrawObj (sciPointObj * pobj)
 	  
 	  
 #ifdef WIN32 
-	  flag=MaybeSetWinhdc ();
+	  flag_DO = MaybeSetWinhdc ();
 #endif
 	  sciClip(sciGetIsClipping(pobj));
 	  if (! sciGetIsMark(pobj))
@@ -11211,7 +11218,7 @@ sciDrawObj (sciPointObj * pobj)
 	  }
 	  sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
-	  if ( flag == 1)  ReleaseWinHdc ();
+	  if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
 	}
       else
@@ -11228,7 +11235,7 @@ sciDrawObj (sciPointObj * pobj)
 	  rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
 	  trans3d(sciGetParentSubwin(pobj),n,xm,ym,rectx,recty,rectz);
 #ifdef WIN32 
-	  flag=MaybeSetWinhdc ();
+	  flag_DO = MaybeSetWinhdc ();
 #endif
 	  sciClip(sciGetIsClipping(pobj));
 	  if (! sciGetIsMark(pobj))
@@ -11246,7 +11253,7 @@ sciDrawObj (sciPointObj * pobj)
 	    }
 	  sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
-	  if ( flag == 1)  ReleaseWinHdc ();
+	  if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
 	}
       break;
@@ -11262,13 +11269,13 @@ sciDrawObj (sciPointObj * pobj)
       v = 0;
       dv = 0;
 #ifdef WIN32 
-      flag=MaybeSetWinhdc ();
+      flag_DO = MaybeSetWinhdc ();
 #endif
       C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
       C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
@@ -11286,14 +11293,14 @@ sciDrawObj (sciPointObj * pobj)
 
       flagx = 0;
 #ifdef WIN32 
-      flag=MaybeSetWinhdc ();
+      flag_DO = MaybeSetWinhdc ();
 #endif
       sciClip(sciGetIsClipping(pobj));
 
       C2F (displaystring) (sciGetText (pobj), &x1, &yy1, PI0, &flagx, PI0,
       			   PI0, &anglestr, PD0, PD0, PD0);
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       sciUnClip(sciGetIsClipping(pobj));
       break;
@@ -11319,7 +11326,7 @@ sciDrawObj (sciPointObj * pobj)
       dv = 0;
 
 #ifdef WIN32 
-      flag=MaybeSetWinhdc ();
+      flag_DO = MaybeSetWinhdc ();
 #endif
 
       C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
@@ -11332,7 +11339,7 @@ sciDrawObj (sciPointObj * pobj)
 		PD0, PD0, 0L, 0L);
      
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
 
       mx[0] = pSUBWIN_FEATURE (sciGetParent(pobj))->FRect[0];
@@ -11343,11 +11350,11 @@ sciDrawObj (sciPointObj * pobj)
       mn2 = 2;
 
 #ifdef WIN32 
-      flag=MaybeSetWinhdc (); 
+      flag_DO = MaybeSetWinhdc (); 
 #endif
       axis_draw (pAXIS_FEATURE (pobj)->strflag);
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();       
+      if ( flag_DO == 1) ReleaseWinHdc ();       
 #endif
 
 	
@@ -11369,13 +11376,13 @@ sciDrawObj (sciPointObj * pobj)
       v = 0;
       dv = 0;
 #ifdef WIN32
-      flag=MaybeSetWinhdc ();
+      flag_DO = MaybeSetWinhdc ();
 #endif
       C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
       C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
 #ifdef WIN32
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       sciClip(sciGetIsClipping(pobj));
       flagx = 0;
@@ -11446,11 +11453,11 @@ sciDrawObj (sciPointObj * pobj)
 	  break;
 	}
 #ifdef WIN32
-      flag=MaybeSetWinhdc ();
+      flag_DO = MaybeSetWinhdc ();
 #endif
       C2F(dr1)("xstringtt",sciGetText (pobj),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L);
 #ifdef WIN32
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       sciUnClip(sciGetIsClipping(pobj));
       break;
@@ -11468,7 +11475,7 @@ sciDrawObj (sciPointObj * pobj)
       v = 0;
       dv = 0;
 #ifdef WIN32 
-      flag=MaybeSetWinhdc ();
+      flag_DO = MaybeSetWinhdc ();
 #endif
           C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
 		&dv, &dv, &dv, 5L, 4096);
@@ -11484,7 +11491,7 @@ sciDrawObj (sciPointObj * pobj)
                pAXES_FEATURE (pobj)->fontsize,pAXES_FEATURE (pobj)->textcolor,
                pAXES_FEATURE (pobj)->ticscolor,(char)(pAXES_FEATURE (pobj)->logscale),pAXES_FEATURE (pobj)->seg); 
 #ifdef WIN32 
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       sciUnClip(sciGetIsClipping(pobj));   
 			  
@@ -11512,7 +11519,7 @@ sciDrawObj (sciPointObj * pobj)
       markidsizenew[1] = sciGetLineWidth (pobj);
       x[4] = 0;v = 0;dv = 0; 
 #ifdef WIN32
-       flag=MaybeSetWinhdc();
+       flag_DO = MaybeSetWinhdc();
 #endif
       C2F (dr) ("xset", "dashes",     x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
@@ -11520,13 +11527,13 @@ sciDrawObj (sciPointObj * pobj)
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); /*D.A 17/12/2003*/
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
 #ifdef WIN32
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
 		
 
       n=1;               
 #ifdef WIN32
-	  flag=MaybeSetWinhdc();
+	  flag_DO = MaybeSetWinhdc();
 #endif     
  
       switch(pSURFACE_FEATURE (pobj)->typeof3d)
@@ -11552,7 +11559,7 @@ sciDrawObj (sciPointObj * pobj)
 	  break;
 	}
 #ifdef WIN32
-      if ( flag == 1) ReleaseWinHdc ();
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       break;
     case SCI_LIGHT:

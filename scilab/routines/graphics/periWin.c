@@ -309,18 +309,27 @@ int MaybeSetWinhdc()
   /** a clarifier XXXX faut-il aussi un test **/
   if ( hdc == (HDC) 0)  
     {
-      if ( sciGetPixmapStatus() == 1) 
-	hdc = ScilabXgc->hdcCompat;
+	if ( sciGetPixmapStatus() == 1) 
+		{
+		hdc	= ScilabXgc->hdcCompat;
 
-      /* 09.02.04 */
+      /* 09.02.04 et 16.02.04 Leray*/
       /* IL FAUDRA RETOURNER UNE VALEUR MAIS LAQUELLE ???*/
       // return( ?? );
-      else
-	hdc=GetDC(ScilabXgc->CWindow);
-      return(1);
-    }
+	  // je mets un return(1) pour le moment pour rester cohérent
+	  // avec SetWinhdc (cf. ci-dessus).
+		return(1);
+		}
+     else
+		{
+		hdc=GetDC(ScilabXgc->CWindow);
+		return(1);
+		}
+	}
   else 
-    return(0);
+  {
+	return(0);
+  }
 }
 
 void  ReleaseWinHdc()
