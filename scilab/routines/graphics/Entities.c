@@ -7831,6 +7831,8 @@ ConstructFigure (XGC)
   pFIGURE_FEATURE (pobj)->isselected = pFIGURE_FEATURE (pfiguremdl)->isselected; 
   pFIGURE_FEATURE (pobj)->rotstyle = pFIGURE_FEATURE (pfiguremdl)->rotstyle;
   pFIGURE_FEATURE (pobj)->visible = pFIGURE_FEATURE (pfiguremdl)->visible;
+  pFIGURE_FEATURE (pobj)->drawlater = pFIGURE_FEATURE (pfiguremdl)->drawlater;
+
   pFIGURE_FEATURE (pobj)->numsubwinselected = pFIGURE_FEATURE (pfiguremdl)->numsubwinselected;
   pFIGURE_FEATURE (pobj)->pixmap = pFIGURE_FEATURE (pfiguremdl)->pixmap ; 
   pFIGURE_FEATURE (pobj)->wshow = pFIGURE_FEATURE (pfiguremdl)->wshow ; 
@@ -8154,7 +8156,10 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
      
 
       ppsubwin->isselected = ppaxesmdl->isselected;  
-      ppsubwin->visible = ppaxesmdl->visible; 
+      ppsubwin->visible = ppaxesmdl->visible;
+      /*       ppsubwin->drawlater = ppaxesmdl->drawlater; */
+      ppsubwin->drawlater = sciGetDrawLater(sciGetParentFigure(pobj));
+      
       ppsubwin->isclip = ppaxesmdl->isclip;
 
       ppsubwin->cube_scaling = ppaxesmdl->cube_scaling;
@@ -8463,6 +8468,7 @@ int C2F(graphicsmodels) ()
   pFIGURE_FEATURE (pfiguremdl)->isselected = TRUE;
   pFIGURE_FEATURE (pfiguremdl)->rotstyle = 0;
   pFIGURE_FEATURE (pfiguremdl)->visible = TRUE;
+  pFIGURE_FEATURE (pfiguremdl)->drawlater = FALSE;
   pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0; 
   pFIGURE_FEATURE (pfiguremdl)->pixmap = 0; 
   pFIGURE_FEATURE (pfiguremdl)->wshow = 0; 
@@ -8661,7 +8667,8 @@ int C2F(graphicsmodels) ()
   
   ppaxesmdl->isselected = FALSE;
 
-  ppaxesmdl->visible = sciGetVisibility(pfiguremdl); 
+  ppaxesmdl->visible = sciGetVisibility(pfiguremdl);
+  ppaxesmdl->drawlater = FALSE;
   ppaxesmdl->isclip = -1;
   
   ppaxesmdl->pPopMenu = (sciPointObj *)NULL;
@@ -9126,7 +9133,9 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
       pTEXT_FEATURE (pobj)->callback = (char *)NULL;
       pTEXT_FEATURE (pobj)->callbacklen = 0;
       pTEXT_FEATURE (pobj)->callbackevent = 100;
-      pTEXT_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure (pobj));  
+      pTEXT_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure (pobj));
+      pTEXT_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj)); 
+
       pTEXT_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
 
       if ((pTEXT_FEATURE (pobj)->ptextstring = calloc (n+1, sizeof (char))) ==
@@ -9270,8 +9279,8 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
       pTITLE_FEATURE (pobj)->text.callback = (char *)NULL;
       pTITLE_FEATURE (pobj)->text.callbacklen = 0; 
       pTITLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
+      pTITLE_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj)); 
      
-
       if ((pTITLE_FEATURE (pobj)->text.ptextstring =calloc (strlen(text)+1, sizeof (char))) == NULL)
 	{
 	  sciprint("No more place to allocates text string, try a shorter string");
@@ -9388,7 +9397,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       pLEGEND_FEATURE (pobj)->text.callbacklen = 0;
       pLEGEND_FEATURE (pobj)->text.callbackevent = 100; 
       pLEGEND_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
-      
+      pLEGEND_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj)); 
 
       /* Allocation de la structure sciText */
       if ((pLEGEND_FEATURE (pobj)->text.ptextstring = calloc (n+1, sizeof (char))) == NULL)
@@ -9537,6 +9546,8 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       pPOLYLINE_FEATURE (pobj)->callbacklen = 0; 
       pPOLYLINE_FEATURE (pobj)->callbackevent = 100; 
       pPOLYLINE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
+      pPOLYLINE_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj));
+
       pPOLYLINE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
 
       pPOLYLINE_FEATURE (pobj)->isselected = TRUE;
@@ -9765,6 +9776,8 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 
       pGRAYPLOT_FEATURE (pobj)->isselected = TRUE; 
       pGRAYPLOT_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+      pGRAYPLOT_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj));
+
       pGRAYPLOT_FEATURE (pobj)->type = type;
       pGRAYPLOT_FEATURE (pobj)->pvecx = (double *)NULL;
       pGRAYPLOT_FEATURE (pobj)->pvecy = (double *)NULL;
@@ -9904,7 +9917,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 
       pFEC_FEATURE (pobj)->isselected = TRUE; 
       pFEC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
-     
+      pFEC_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj));
    
       pfec = pFEC_FEATURE (pobj);
       
@@ -10101,6 +10114,8 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
        
       pSEGS_FEATURE (pobj)->isselected = TRUE;  
       pSEGS_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
+      pSEGS_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj));
+
       pSEGS_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
      
    
@@ -10315,6 +10330,8 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
       pARC_FEATURE (pobj)->alphaend = alphaend;
       pARC_FEATURE (pobj)->isselected = TRUE; 
       pARC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
+      pARC_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj));
+
       pARC_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       pARC_FEATURE (pobj)->fill = fill;
 
@@ -10456,6 +10473,8 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
       pRECTANGLE_FEATURE (pobj)->vertcurvature = vertcurvature;
       pRECTANGLE_FEATURE (pobj)->isselected = TRUE;
       pRECTANGLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
+      pRECTANGLE_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj));
+
       pRECTANGLE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -10618,7 +10637,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       pSURFACE_FEATURE (pobj)->callbacklen = 0;
       pSURFACE_FEATURE (pobj)->callbackevent = 100; 
       pSURFACE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
- 
+      pSURFACE_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj));
 
       /*debug F.Leray*/
       psurf = pSURFACE_FEATURE (pobj);
@@ -11071,6 +11090,8 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       pAXES_FEATURE (pobj)->callbacklen = 0;
       pAXES_FEATURE (pobj)->callbackevent = 100;
       pAXES_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+      pAXES_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj));
+
       /*pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
        pAXES_FEATURE (pobj)->isclip = -1;  /*F.Leray Change here: by default Axis are not clipped. 10.03.04 */
 
@@ -11571,14 +11592,39 @@ sciDrawObj (sciPointObj * pobj)
   }
 
   /* START implement drawlater / drawnow functions effect here */
-  if(sciGetVisibility(sciGetParentFigure(pobj)) == FALSE) /* <=> 1/2 drawlater or f=gcf(); f.visible='off'; */
-    return -1;                                            /* see below at SCI_SUBWIN for visibility on axes case */
+ /*  if(sciGetVisibility(sciGetParentFigure(pobj)) == FALSE) /\* <=> 1/2 drawlater or f=gcf(); f.visible='off'; *\/ */
+/*     return -1;                                            /\* see below at SCI_SUBWIN for visibility on axes case *\/ */
 
-  if(sciGetEntityType(pobj) != SCI_FIGURE)
-    if(sciGetVisibility(sciGetParentSubwin(pobj)) == FALSE) /* for every objects except Figure, we must take into */
-      return -1;                                            /* account the parent subwin visibility too */
+/*   if(sciGetEntityType(pobj) != SCI_FIGURE) */
+/*     if(sciGetVisibility(sciGetParentSubwin(pobj)) == FALSE) /\* for every objects except Figure, we must take into *\/ */
+/*       return -1;                                            /\* account the parent subwin visibility too *\/ */
+
+
+
+
+
+
+
   
-  /* END */
+/*   if(sciGetDrawLater(pobj) == -1) */
+/*     return -1; */
+/*   /\*   else if(sciGetDrawLater(pobj) == 1) *\/ */
+/*   /\*     continue; *\/ */
+/*   else if (sciGetEntityType(pobj) != SCI_FIGURE){ */
+/*     int dlpobj = sciGetDrawLater(pobj); */
+/*     int dlfigure = sciGetDrawLater(sciGetParentFigure(pobj)); */
+/*     int dlsubwin = sciGetDrawLater(sciGetParentSubwin(pobj)); */
+/*     if((sciGetDrawLater(pobj) == 0) &&  */
+/*        ((sciGetDrawLater(sciGetParentFigure(pobj)) == -1) || */
+/* 	(sciGetDrawLater(sciGetParentSubwin(pobj)) == -1))) /\* case where sciGetDrawLater(pobj) == 0 AND *\/ */
+/*       return -1;                                               /\* sciGetDrawLater(sciGetParentFigure(pobj)) == -1) ||(sciGetDrawLater(sciGetParentSubwin(pobj)) == -1) *\/ */
+/*   } */
+
+
+
+
+
+/* END */
 
 
   /*pfigure = sciGetCurrentFigure ();
@@ -11623,10 +11669,10 @@ sciDrawObj (sciPointObj * pobj)
      
      isaxes = GetIsAxes(pobj);
      
-     if (!sciGetVisibility(pobj)) break; /* <=> 2/2 a=gca(); or a another axes handle, a.visible='off'; */
-/*      /\* In case we directly draw the subwin, we must have a look to the parent figure visibility; indeed the figure can be set *\/ */
-/*      /\* to visible off so we can not draw any children of this figure (i.e. its subwin(s)) *\/ */
-/*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
+/*      if (!sciGetVisibility(pobj)) break; /\* <=> 2/2 a=gca(); or a another axes handle, a.visible='off'; *\/ */
+/* /\*      /\\* In case we directly draw the subwin, we must have a look to the parent figure visibility; indeed the figure can be set *\\/ *\/ */
+/* /\*      /\\* to visible off so we can not draw any children of this figure (i.e. its subwin(s)) *\\/ *\/ */
+/* /\*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; *\/ */
 
      sciSetSelectedSubWin(pobj); 
      
@@ -11661,14 +11707,18 @@ sciDrawObj (sciPointObj * pobj)
 	     pSUBWIN_FEATURE (pobj)->axes.flag[1] = 2; 
 	 }
 	 
-	 axis_3ddraw(pobj,xbox,ybox,zbox,InsideU,InsideD); 
-	 
+	 axis_3ddraw(pobj,xbox,ybox,zbox,InsideU,InsideD); /* TEST on sciIsVisibleAndDrawable inside */
+	 /* because axis_3ddraw displays 3d axes BUT ALSO compute + reset the 3d scale BEFORE !! */
+
 	 psonstmp = sciGetLastSons (pobj);
 	 while (psonstmp != (sciSons *) NULL) {
 	   sciDrawObj (psonstmp->pointobj);
 	   psonstmp = psonstmp->pprev;
 	 }
-	 triedre(pobj,xbox,ybox,zbox,InsideU,InsideD);
+
+	 if (sciIsVisibleAndDrawable(pobj))
+	   triedre(pobj,xbox,ybox,zbox,InsideU,InsideD);
+	 
 	 wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (pobj)->alpha,pSUBWIN_FEATURE (pobj)->theta); 
        }/***/
      else /* we are in 2D mode...*/
@@ -11689,7 +11739,8 @@ sciDrawObj (sciPointObj * pobj)
 	 
 	 sci_update_frame_bounds_2d(pobj);
 	 
-	 DrawAxesBackground();
+	 if (sciIsVisibleAndDrawable(pobj))
+	   DrawAxesBackground();
 	   
 	 /** walk subtree **/
 	 psonstmp = sciGetLastSons (pobj);
@@ -11710,14 +11761,17 @@ sciDrawObj (sciPointObj * pobj)
 	 C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
 	 C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	 C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	 	 
-	 labels2D_draw(pobj); /* F.Leray 18.10.04 : move here to allow labels drawing with isaxes==FALSE */
-
-	 if (isaxes) {
-	   char STRFLAG[4];
-	   rebuild_strflag(pobj,STRFLAG);
-	   axis_draw2 (STRFLAG);
-	 }
+	 
+	 if (sciIsVisibleAndDrawable(pobj))
+	   {
+	     labels2D_draw(pobj); /* F.Leray 18.10.04 : move here to allow labels drawing with isaxes==FALSE */
+	     
+	     if (isaxes) {
+	       char STRFLAG[4];
+	       rebuild_strflag(pobj,STRFLAG);
+	       axis_draw2 (STRFLAG);
+	     }
+	   }
 	 /* END */
 	 
 	 
@@ -11735,7 +11789,7 @@ sciDrawObj (sciPointObj * pobj)
 /*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
 /*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
 
-      if (!sciGetVisibility(pobj)) break;
+/*       if (!sciGetVisibility(pobj)) break; */ /* NOT REPLACED anywhere */
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
       /* scan the hierarchie and call sciDrawObj */
       psonstmp = sciGetLastSons (pobj);
@@ -11753,7 +11807,7 @@ sciDrawObj (sciPointObj * pobj)
 /*       if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
 /*       if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
       
-      if (!sciGetVisibility(pobj)) break;
+      if (!sciIsVisibleAndDrawable(pobj)) break;
       /* sciSetCurrentObj (pobj);	F.Leray 25.03.04*/
       C2F (dr1) ("xget", "dashes", &flagx, &xold[0], &vold, &vold, &vold,
 		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
@@ -11823,7 +11877,7 @@ sciDrawObj (sciPointObj * pobj)
 /*       if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
 /*       if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
       
-      if (!sciGetVisibility(pobj)) break;
+      if (!sciIsVisibleAndDrawable(pobj)) break;
       
       n1=1;
       if ((xm = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL)	return -1;
@@ -11884,7 +11938,7 @@ sciDrawObj (sciPointObj * pobj)
 /*       if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
 /*       if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
       
-      if (!sciGetVisibility(pobj)) break;
+      if (!sciIsVisibleAndDrawable(pobj)) break;
       
       sciClip(sciGetIsClipping(pobj)); 
 
@@ -12128,7 +12182,7 @@ sciDrawObj (sciPointObj * pobj)
 /*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
 /*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
      
-     if (!sciGetVisibility(pobj)) break;
+     if (!sciIsVisibleAndDrawable(pobj)) break;
      n1 = pGRAYPLOT_FEATURE (pobj)->nx;
      n2 = pGRAYPLOT_FEATURE (pobj)->ny;    
      
@@ -12484,7 +12538,7 @@ sciDrawObj (sciPointObj * pobj)
 /*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
 /*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
      
-     if (!sciGetVisibility(pobj)) break;
+     if (!sciIsVisibleAndDrawable(pobj)) break;
      
      /*sciSetCurrentObj (pobj);	  F.Leray 25.03.04 */
      
@@ -12745,7 +12799,7 @@ sciDrawObj (sciPointObj * pobj)
 /*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
 /*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
      
-     if (!sciGetVisibility(pobj)) break;
+     if (!sciIsVisibleAndDrawable(pobj)) break;
      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
      n = 1;
       
@@ -12860,7 +12914,7 @@ sciDrawObj (sciPointObj * pobj)
 /*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
 /*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
      
-     if (!sciGetVisibility(pobj)) break;
+     if (!sciIsVisibleAndDrawable(pobj)) break;
      
      /*sciSetCurrentObj (pobj); F.Leray 25.03.04 */
      n = 1;
@@ -13025,7 +13079,7 @@ sciDrawObj (sciPointObj * pobj)
 /*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
 /*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
      
-     if (!sciGetVisibility(pobj)) break;
+     if (!sciIsVisibleAndDrawable(pobj)) break;
      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
      n = 1;
      /* load the object foreground and dashes color */
@@ -13097,7 +13151,7 @@ sciDrawObj (sciPointObj * pobj)
 /*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
 /*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
      
-     if (!sciGetVisibility(pobj)) break;
+     if (!sciIsVisibleAndDrawable(pobj)) break;
      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
     
      /* load the object foreground and dashes color */
@@ -13146,8 +13200,10 @@ sciDrawObj (sciPointObj * pobj)
 /*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
      
      if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge)) break; 
-
-     DrawMerge3d(sciGetParentSubwin(pobj), pobj);
+     
+ /*     if (!sciIsVisibleAndDrawable(pobj)) break; */
+     
+     DrawMerge3d(sciGetParentSubwin(pobj), pobj);  /* TEST on sciIsVisibleAndDrawable inside */
      break;
    case SCI_SURFACE:
 /*      /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
@@ -13158,7 +13214,7 @@ sciDrawObj (sciPointObj * pobj)
      ppsurface = pSURFACE_FEATURE (pobj);
 
      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
-     if (!sciGetVisibility(pobj)) break;
+     if (!sciIsVisibleAndDrawable(pobj)) break;
      itmp[0] = 0;		/* verbose*/
      itmp[1] = 0;		/* thickness value*/
      itmp[2] = 1;		/* narg*/
@@ -14912,6 +14968,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
   pAGREG_FEATURE (pobj)->callback = (char *)NULL;
   pAGREG_FEATURE (pobj)->callbacklen = 0;
   pAGREG_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+  pAGREG_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj));
 
   sonsnext = (sciSons *) NULL;
 
@@ -15046,6 +15103,8 @@ ConstructAgregationSeq (int number)
   ppagr->callback = (char *)NULL;
   ppagr->callbacklen = 0;
   ppagr->visible = sciGetVisibility (sciGetParentFigure(pobj));
+  ppagr->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj)); 
+
   ppagr->isselected = TRUE;
  
   /* re chain A sons lists */
@@ -15595,6 +15654,7 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
   pSUBWIN_FEATURE (psubwin)->axes.subint[2] =  1;
   pSUBWIN_FEATURE (psubwin)->axes.limits[0]  = 0;  
   pSUBWIN_FEATURE (psubwin)->visible = TRUE;
+  pSUBWIN_FEATURE (psubwin)->drawlater = FALSE;
   pSUBWIN_FEATURE (psubwin)->is3d = FALSE;  
   pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
   pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
@@ -16163,9 +16223,11 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
       /* dans le cas ind < 3 ET ybox[tmpind] < ybox[tmpind]*/
       for(i=0;i<8;i++) xind[i] = 0;
 
-      /******/
-      /* 	if(isaxes) */
-      /* 	  {   */
+
+      /* Until here we have computed + reset the 3d scale*/
+      
+      if (!sciIsVisibleAndDrawable(pobj)) return; /* END HERE if nothing to display */
+      
       flag = pSUBWIN_FEATURE (pobj)->axes.flag[2];
 	  
 	   
@@ -20021,6 +20083,8 @@ int InitFigureModel()
   pFIGURE_FEATURE (pfiguremdl)->isselected = TRUE;
   pFIGURE_FEATURE (pfiguremdl)->rotstyle = 0;
   pFIGURE_FEATURE (pfiguremdl)->visible = TRUE;
+  pFIGURE_FEATURE (pfiguremdl)->drawlater = FALSE; /* by default, we draw live */ /* F.Leray 29.12.04 */
+
   pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0; 
   pFIGURE_FEATURE (pfiguremdl)->pixmap = 0; 
   pFIGURE_FEATURE (pfiguremdl)->wshow = 0;
@@ -20138,6 +20202,9 @@ int InitAxesModel()
   ppaxesmdl->FRect[5]   = 1.0;   /* zmax */
   ppaxesmdl->isselected = FALSE;
   ppaxesmdl->visible = sciGetVisibility(pfiguremdl); 
+/*   ppaxesmdl->drawlater = sciGetDrawLater(pfiguremdl); */
+  ppaxesmdl->drawlater = FALSE;
+
   ppaxesmdl->isclip = -1;  
   ppaxesmdl->pPopMenu = (sciPointObj *)NULL;
 
@@ -20536,7 +20603,7 @@ int DestroyMerge (sciPointObj * pthis)
 }
 
 
-int  Merge3dDimension(sciPointObj *pparent)
+int Merge3dDimension(sciPointObj *pparent)
 {
   integer N,q; 
   sciSons *psonstmp;
@@ -21110,8 +21177,8 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
     j=locindex[i-1]-1;
     index=pMERGE_FEATURE (pmerge)->index_in_entity[j];
     pobj=(sciPointObj *) sciGetPointerFromHandle (pMERGE_FEATURE (pmerge)->from_entity[j]);
-    if (sciGetVisibility (pobj)) {
-      
+/*     if (sciGetVisibility (pobj)) { */
+    if (sciIsVisibleAndDrawable(pobj)) {
       /* build the element coordinates */
       switch (sciGetEntityType (pobj)) {  
       case SCI_SURFACE:
@@ -21733,7 +21800,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
       pLABEL_FEATURE (pobj)->text.callback = (char *)NULL;
       pLABEL_FEATURE (pobj)->text.callbacklen = 0; 
       pLABEL_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
-     
+      pLABEL_FEATURE (pobj)->drawlater = sciGetDrawLater(sciGetParentSubwin(pobj));
 
       if ((pLABEL_FEATURE (pobj)->text.ptextstring =calloc (strlen(text)+1, sizeof (char))) == NULL)
 	{
@@ -21933,6 +22000,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   pFIGURE_FEATURE (pobj)->isselected = pFIGURE_FEATURE (pfiguremdl)->isselected; 
   pFIGURE_FEATURE (pobj)->rotstyle = pFIGURE_FEATURE (pfiguremdl)->rotstyle;
   pFIGURE_FEATURE (pobj)->visible = pFIGURE_FEATURE (pfiguremdl)->visible;
+  pFIGURE_FEATURE (pobj)->drawlater = pFIGURE_FEATURE (pfiguremdl)->drawlater;
   pFIGURE_FEATURE (pobj)->numsubwinselected = pFIGURE_FEATURE (pfiguremdl)->numsubwinselected;
   pFIGURE_FEATURE (pobj)->pixmap = pFIGURE_FEATURE (pfiguremdl)->pixmap ; 
   pFIGURE_FEATURE (pobj)->wshow = pFIGURE_FEATURE (pfiguremdl)->wshow ; 
@@ -22586,13 +22654,14 @@ int ReverseDataFor3D(sciPointObj * psubwin, double * xvect, double * yvect, doub
 void DrawAxes(sciPointObj * pobj)
 {
   sciPointObj * psubwin = sciGetParentSubwin(pobj);
-  sciPointObj * pfigure = sciGetParentFigure(pobj);
+/*   sciPointObj * pfigure = sciGetParentFigure(pobj); */
   BOOL isaxes =  GetIsAxes(psubwin);
   char STRFLAG[4];
   integer x[6], v, markidsizenew[2];
   double dv;
 
-  if ((sciGetVisibility(psubwin) == FALSE) || (sciGetVisibility(pfigure) == FALSE)) return;
+/*   if ((sciGetVisibility(psubwin) == FALSE) || (sciGetVisibility(pfigure) == FALSE)) return; */
+  if (!sciIsVisibleAndDrawable(pobj)) return;
   
   x[0] = sciGetForeground (psubwin);
   x[2] = sciGetLineWidth (psubwin);
@@ -22666,3 +22735,174 @@ void CleanRectangle(sciPointObj * psubwin)
 /*       sciDrawObj(psubwin); */
 /*     } */
 /* } */
+
+
+
+
+
+/**sciSetDrawLater */
+void
+sciSetDrawLater (sciPointObj * pobj, BOOL value)
+{  
+  sciSons *psonstmp;
+
+  psonstmp = sciGetSons ((sciPointObj *) pobj);
+  
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_FIGURE: /* OK */
+      pFIGURE_FEATURE (pobj)->drawlater = value;
+      while ((psonstmp != (sciSons *) NULL) && (psonstmp->pointobj != (sciPointObj *)NULL))
+	{
+	 sciSetDrawLater((sciPointObj *)psonstmp->pointobj,value); 
+	  psonstmp = psonstmp->pnext;
+	}
+      break;
+    case SCI_SUBWIN: /* OK */
+      pSUBWIN_FEATURE (pobj)->drawlater = value;
+      while ((psonstmp != (sciSons *) NULL) && (psonstmp->pointobj != (sciPointObj *)NULL))
+	{
+	  sciSetDrawLater((sciPointObj *)psonstmp->pointobj,value); 
+	  psonstmp = psonstmp->pnext;
+	}
+      break;
+    case SCI_TITLE: /* OK */
+      pTITLE_FEATURE (pobj)->drawlater = value;
+      break;
+    case SCI_LEGEND: /* OK */
+      pLEGEND_FEATURE (pobj)->drawlater = value;
+      break;
+    case SCI_ARC: /* OK */
+      pARC_FEATURE (pobj)->drawlater = value;
+      break;
+    case SCI_POLYLINE: /* OK */
+      pPOLYLINE_FEATURE (pobj)->drawlater = value;
+      break;
+    case SCI_RECTANGLE: /* OK */
+      pRECTANGLE_FEATURE (pobj)->drawlater = value;
+      break;
+    case SCI_SURFACE: /* OK */
+      pSURFACE_FEATURE (pobj)->drawlater = value;
+      break;    
+    case SCI_SEGS:  /* OK */
+      pSEGS_FEATURE (pobj)->drawlater = value;
+      break;    
+    case SCI_FEC:  /* OK */
+      pFEC_FEATURE (pobj)->drawlater = value;
+      break;    
+    case SCI_GRAYPLOT:  /* OK */
+      pGRAYPLOT_FEATURE (pobj)->drawlater = value;
+      break;    
+    case SCI_TEXT:  /* OK */
+      pTEXT_FEATURE (pobj)->drawlater = value;
+      break;   
+    case SCI_LIGHT:  /* OK */
+      pLIGHT_FEATURE (pobj)->drawlater = value;
+      break;   
+      /*   case SCI_AXIS 
+	   pAXIS_FEATURE (pobj)->drawlater = value;
+	   break;     */
+    case SCI_AXES:  /* OK */
+      pAXES_FEATURE (pobj)->drawlater = value;
+      break;    
+    case SCI_AGREG:  /* OK */
+      pAGREG_FEATURE (pobj)->drawlater = value; 
+      while ((psonstmp != (sciSons *) NULL) && (psonstmp->pointobj != (sciPointObj *)NULL))
+	{
+	  sciSetDrawLater ((sciPointObj *)psonstmp->pointobj,value);
+	  psonstmp = psonstmp->pnext;
+	}
+      break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */ /* OK */
+      pLABEL_FEATURE (pobj)->drawlater = value;
+      break;
+    case SCI_SBH:   
+    case SCI_PANNER:
+    case SCI_SBV:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    default:
+      break;
+    }
+}
+
+/**sciGetDrawLater */
+BOOL
+sciGetDrawLater (sciPointObj * pobj)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_FIGURE:
+      return pFIGURE_FEATURE (pobj)->drawlater;
+      break;
+    case SCI_SUBWIN:
+      return pSUBWIN_FEATURE (pobj)->drawlater;
+      break;
+    case SCI_TITLE:
+      return pTITLE_FEATURE (pobj)->drawlater;
+      break;
+    case SCI_LEGEND:
+      return pLEGEND_FEATURE (pobj)->drawlater;
+      break;
+    case SCI_ARC:
+      return pARC_FEATURE (pobj)->drawlater;
+      break;
+    case SCI_POLYLINE:
+      return pPOLYLINE_FEATURE (pobj)->drawlater;
+      break;
+    case SCI_RECTANGLE:
+      return pRECTANGLE_FEATURE (pobj)->drawlater;
+      break;
+    case SCI_SURFACE:
+      return pSURFACE_FEATURE (pobj)->drawlater;
+      break;    
+    case SCI_SEGS: 
+      return pSEGS_FEATURE (pobj)->drawlater;
+      break;    
+    case SCI_FEC: 
+      return pFEC_FEATURE (pobj)->drawlater;
+      break;    
+    case SCI_GRAYPLOT: 
+      return pGRAYPLOT_FEATURE (pobj)->drawlater;
+      break;    
+    case SCI_TEXT: 
+      return pTEXT_FEATURE (pobj)->drawlater;
+      break;   
+    case SCI_LIGHT: 
+      return pLIGHT_FEATURE (pobj)->drawlater;
+      break;   
+      /*    case SCI_AXIS: 
+	    return pAXIS_FEATURE (pobj)->drawlater;
+	    break;     */
+    case SCI_AXES: 
+      return pAXES_FEATURE (pobj)->drawlater;
+      break;    
+    case SCI_AGREG: 
+      return pAGREG_FEATURE (pobj)->drawlater;
+      break;
+    case SCI_LABEL:
+      return pLABEL_FEATURE (pobj)->drawlater;
+      break;
+    case SCI_SBH:   
+    case SCI_PANNER:
+    case SCI_SBV:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    default:
+      return TRUE;
+      break;
+    }
+}
+
+
+
+
+BOOL sciIsVisibleAndDrawable(sciPointObj * pobj)
+{
+  if((sciGetVisibility(pobj) == TRUE) && (sciGetDrawLater(pobj) == FALSE))
+    return TRUE;
+  else
+    return FALSE;
+}

@@ -433,6 +433,7 @@ typedef struct
   int rotstyle;
   /** specifies if this object is visble             */
   BOOL visible;
+  int drawlater;
   /** specifies the number of the selected son         */
   int numsubwinselected;
   /** specifies the current pixmap status         */
@@ -476,6 +477,7 @@ typedef struct
   int callbackevent; 
   /** specifies if this object is visble             */
   BOOL visible;
+  int drawlater;
   int isclip;
 }/** */
 sciText;  
@@ -537,6 +539,7 @@ typedef struct
   sciPointObj **pptabofpointobj;
   /** specifies if this object is visble             */
   BOOL visible; 
+  int drawlater;
   int isclip;
 }/** */
 sciLegend;  
@@ -571,6 +574,7 @@ typedef struct
   BOOL isselected;
   /** specifies if this object is visble             */
   BOOL visible; 
+  int drawlater;
   int isclip;
 }/** */
 sciTitle;  
@@ -591,7 +595,8 @@ typedef struct
   /** */
   BOOL isselected;
   /** specifies if this object is visble             */
-  BOOL visible; 
+  BOOL visible;
+  int drawlater;
   int isclip;
 }/** */
 sciLabel;  
@@ -700,7 +705,9 @@ typedef struct
   int callbacklen;  
   int callbackevent; 
   /** specifies if this object is visble             */
-  BOOL visible;  
+  BOOL visible;
+  int drawlater;
+
   int isclip;
   /**DJ.Abdemouche 2003**/
   integer project[3];
@@ -760,7 +767,8 @@ typedef struct
   int callbacklen;   
   int callbackevent;
   /** specifies if this object is visble             */
-  BOOL visible;  
+  BOOL visible;
+  int drawlater;
   int isclip; 
   double z; /**DJ.Abdemouche 2003**/
 }  /** */
@@ -816,7 +824,8 @@ typedef struct
   int callbacklen;		/** the length of the callback code */  
   int callbackevent;
   /** specifies if this object is visble             */
-  BOOL visible; 
+  BOOL visible;
+  int drawlater;
   int isclip;
 }
 sciPolyline;  /** */
@@ -845,7 +854,8 @@ typedef struct
   int callbacklen; /** the length of the callback code */  
   int callbackevent;
   /** specifies if this object is visble             */
-  BOOL visible; 
+  BOOL visible;
+  int drawlater;
   int isclip;
   double z;  /** rectangle */
 
@@ -908,7 +918,8 @@ typedef struct
   int callbacklen; /** the length of the callback code */  
   int callbackevent;
   /** specifies if this object is visble             */
-  BOOL visible; 
+  BOOL visible;
+  int drawlater;
 
 }
 sciSurface;  /** */
@@ -938,7 +949,8 @@ typedef struct
   POINT3D org;
   BOOL switchon;		/* on or off */
   /** specifies if this object is visble             */
-  BOOL visible; 
+  BOOL visible;
+  int drawlater;
   int isclip;
 }
 sciLightSource;	 /** */
@@ -947,38 +959,40 @@ sciLightSource;	 /** */
 /**@name Axis
  * Structure used to specify axis feature 
  */
-typedef struct
-{
-  sciRelationShip relationship;
-  sciGraphicContext graphiccontext; 
-  sciText text;
-  char strflag[4];
-  int strflaglen;
-  double aaint[4];
-  double minx;
-  double miny;
-  double minz;
-  double maxx;
-  double maxy;
-  double maxz;
-  int styledimension;		/* 2=2d 3=3d */
-  int stylecrossing;
-  double orgcrossing;
-  char *plabelx;
-  char *plabely;
-  char *plabelz;
-  BOOL manualscale;
-  BOOL plotit;
-  BOOL isselected;
-  int grid;
-  char *callback; /** specifies the text scilab code for the callback associated with this entity */
-  int callbacklen; /** the length of the callback code */  
-  int callbackevent;
-  /** specifies if this object is visble             */
-  BOOL visible; 
-  int isclip; /* Adding F.Leray 10.03.04*/
-}
-sciAxis;  /** */
+/* NOT USED IN FACT */
+/* typedef struct */
+/* { */
+/*   sciRelationShip relationship; */
+/*   sciGraphicContext graphiccontext;  */
+/*   sciText text; */
+/*   char strflag[4]; */
+/*   int strflaglen; */
+/*   double aaint[4]; */
+/*   double minx; */
+/*   double miny; */
+/*   double minz; */
+/*   double maxx; */
+/*   double maxy; */
+/*   double maxz; */
+/*   int styledimension;		/\* 2=2d 3=3d *\/ */
+/*   int stylecrossing; */
+/*   double orgcrossing; */
+/*   char *plabelx; */
+/*   char *plabely; */
+/*   char *plabelz; */
+/*   BOOL manualscale; */
+/*   BOOL plotit; */
+/*   BOOL isselected; */
+/*   int grid; */
+/*   char *callback; /\** specifies the text scilab code for the callback associated with this entity *\/ */
+/*   int callbacklen; /\** the length of the callback code *\/   */
+/*   int callbackevent; */
+/*   /\** specifies if this object is visble             *\/ */
+/*   BOOL visible; */
+/*   int drawlater; */
+/*   int isclip; /\* Adding F.Leray 10.03.04*\/ */
+/* } */
+/* sciAxis;  /\** *\/ */
 
 
 
@@ -1018,7 +1032,8 @@ typedef struct
   int callbacklen; /** the length of the callback code */  
   int callbackevent;
   /** specifies if this object is visble             */
-  BOOL visible; 
+  BOOL visible;
+  int drawlater;
   int isclip;
 
 
@@ -1055,7 +1070,8 @@ typedef struct
   int callbacklen; /** the length of the callback code */  
   int callbackevent;
   /** specifies if this object is visble             */
-  BOOL visible; 
+  BOOL visible;
+  int drawlater;
   int isclip;
   double *vz; /**DJ.Abdemouche 2003**/
   double *vfz;
@@ -1092,7 +1108,8 @@ typedef struct
   int callbacklen; /** the length of the callback code */   
   int callbackevent;
   /** specifies if this object is visble             */
-  BOOL visible; 
+  BOOL visible;
+  int drawlater;
 }
 sciGrayplot;  
 /** */
@@ -1127,7 +1144,7 @@ typedef struct
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
-
+  int drawlater;
 }
 sciFec;  /** */
 
@@ -1237,6 +1254,7 @@ typedef struct
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
+  int drawlater;
 
 }
 sciAgreg;  /** */
@@ -1604,4 +1622,7 @@ extern void DrawAxes(sciPointObj*);
 extern void CleanRectangle(sciPointObj * psubwin);
 /* extern void EraseAndOrRedraw(sciPointObj * pobj); */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
 
+extern void sciSetDrawLater (sciPointObj * pobj, BOOL value);
+extern BOOL sciGetDrawLater (sciPointObj * pobj);
+extern BOOL sciIsVisibleAndDrawable(sciPointObj * pobj);
 #endif /*__SCI_ENTITIES__*/
