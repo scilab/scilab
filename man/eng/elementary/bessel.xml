@@ -57,7 +57,7 @@
       the oldbesseli, oldbesselj, oldbesselk, oldbessely functions.</SP> 
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
 	<SP>
 	  <VERB>besseli(alpha,x)</VERB> computes modified Bessel functions of the
 	  first kind (I sub alpha), for real order <VERB>alpha</VERB>  and argument
@@ -65,7 +65,7 @@
 	  <VERB>besseli(alpha,x).*exp(-abs(real(x)))</VERB>.
 	</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
 	<SP>
 	  <VERB>besselj(alpha,x)</VERB> computes modified Bessel functions of the
 	  first kind (J sub alpha), for real order <VERB>alpha</VERB>  and argument
@@ -73,7 +73,7 @@
 	  <VERB>besselj(alpha,x).*exp(-abs(imag(x)))</VERB>.
 	</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
 	<SP>
 	  <VERB>besselk(alpha,x)</VERB> computes modified Bessel functions of the
 	  second kind (K sub alpha), for real order <VERB>alpha</VERB>  and argument
@@ -81,7 +81,7 @@
 	  <VERB>besselk(alpha,x).*exp(x)</VERB>.
 	</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
 	<SP>
 	  <VERB>bessely(alpha,x)</VERB> computes modified Bessel functions of the
 	  second kind (Y sub alpha), for real order <VERB>alpha</VERB>  and argument
@@ -89,7 +89,7 @@
 	  <VERB>bessely(alpha,x).*exp(-abs(imag(x)))</VERB>.
 	</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
 	<SP>
 	  <VERB>besselh(alpha [,K] ,x)</VERB> computes modified Bessel functions of the
 	  third kind (Hankel function H1 or H2 depending on <VERB>K</VERB>), for real order <VERB>alpha</VERB>  and argument
