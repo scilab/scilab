@@ -16,6 +16,7 @@ ma=prod(size(g('tail')))
 if size(g('node_name'))==0 then
   g('node_name')=string(1:n)
 end
+
 // node_type
 if size(g('node_type'))==0 then
   g('node_type')=0*(1:n)
@@ -122,3 +123,7 @@ if type(data)<>10|prod(size(data))<>1 then
 end
 m6saveg(g,g('name'),ma,data)
 endfunction
+
+
+    
+  

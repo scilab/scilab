@@ -11,6 +11,34 @@ function [GraphList,ok]=ge_do_SaveAs(GraphList)
 
   [path,name,ext]=splitfilepath(fname)
   GraphList.node_number=size(GraphList.node_x,'*')
+  
+   if GraphList.tail==[] then
+    x_message(['Graph with no arcs cannot be saved'])
+    ok=%f
+    return
+  end
+
+  if GraphList.node_name==[] then
+    GraphList.node_name=string(1:size(GraphList.node_x,'*'))
+  else
+    GraphList.node_name=stripblanks(GraphList.node_name)
+    conflicts=ge_check_names(GraphList)
+    if conflicts(1)<>[] then
+      ge_hilite_nodes(conflicts(1),GraphList)
+      x_message(['Hilited nodes have no name'
+		 'Graph has not been saved'])
+      ok=%f
+      return
+    elseif size(conflicts)>1 then
+      ge_hilite_nodes(conflicts(2),GraphList)
+      x_message(['Hilited nodes have identical name'
+		 'Graph has not been saved'])
+      ok=%f
+      return
+    end
+  end
+  
+  
   select ext
     case 'graph' then
     if fileinfo(fname)<>[] then

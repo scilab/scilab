@@ -10,8 +10,38 @@ function ok=ge_do_save(GraphList)
     path='./'
   else
     path=GraphList.name(2)
+    GraphList.name=GraphList.name(1)
   end
   //open file
+  
+  GraphList.node_number=size(GraphList.node_x,'*')
+  
+  if GraphList.tail==[] then
+    x_message(['Graph with no arcs cannot be saved'])
+    ok=%f
+    return
+  end
+
+  if GraphList.node_name==[] then
+    GraphList.node_name=string(1:size(GraphList.node_x,'*'))
+  else
+    GraphList.node_name=stripblanks(GraphList.node_name)
+    conflicts=ge_check_names(GraphList)
+    if conflicts(1)<>[] then
+      ge_hilite_nodes(conflicts(1),GraphList)
+      x_message(['Hilited nodes have no name'
+		 'Graph has not been saved'])
+      ok=%f
+      return
+    elseif size(conflicts)>1 then
+      ge_hilite_nodes(conflicts(2),GraphList)
+      x_message(['Hilited nodes have identical name'
+		 'Graph has not been saved'])
+      ok=%f
+      return
+    end
+    
+  end
 
   fname=path+GraphList.name+'.graph'
   if fileinfo(fname)<>[] then
@@ -21,6 +51,11 @@ function ok=ge_do_save(GraphList)
       unix_s('rm '+fname)
     end
   end
-  ok=execstr('save_graph(GraphList,fname)','errcatch')==0
-
+  
+ // ok=execstr('save_graph(GraphList,fname)','errcatch')==0
+ //  if ~ok then
+ //    x_message(lasterror())
+ //  end
+ ok=%t
+ save_graph(GraphList,fname)
 endfunction
