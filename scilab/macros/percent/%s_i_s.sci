@@ -1,11 +1,13 @@
 function M=%s_i_s(varargin)
 // Copyright INRIA
+//insertion of a matrix in an hypermatrix
 [lhs,rhs]=argn(0)
 M=varargin(rhs)
 N=varargin(rhs-1)//inserted matrix
-index=varargin(1) //
 
+index=varargin(1) //
 if rhs==3&(type(index)==10|type(index)==15) then
+  //result will be a cell
   if type(index)<>15 then
    M=struct()
     M(index)=N
@@ -25,38 +27,37 @@ if rhs==3&(type(index)==10|type(index)==15) then
   return
 end
 
-
 //X(i,j,k)=n  hypermatrix
-M=mlist(['hm','dims','entries'],int32(size(M)),M(:))
-dims=double(M('dims'))
-v=M('entries');v=v(:)
+dims=matrix(size(M),-1,1)
+v=M(:)
 
-
-if rhs-2>size(dims,'*') then
-  dims(size(dims,'*')+1:(rhs-2))=0
-end
+Ndims=rhs-2
+nd=size(dims,'*')
+if Ndims>nd then dims(nd+1:Ndims)=1;end  
+del=N==[];count=[]
 dims1=[]
-I=0
-iimp=0
-for k=rhs-2:-1:1
-  ik=varargin(k)
+I=0;I1=0
+for k=Ndims:-1:1
+  ik=varargin(k)//the kth subscript
   if type(ik)==2 |type(ik)==129 then // size implicit subscript $...
-    ik=horner(ik,dims(k)) // explicit subscript
+    ik=round(horner(ik,dims(k))) // explicit subscript
+    dims1(k,1)=max(max(ik),dims(k))
   elseif type(ik)==4 then // boolean subscript
     ik=find(ik)
+    dims1(k,1)=max(max(ik),dims(k))
   elseif mini(size(ik))<0 then // :
-    if dims(k)<>0 then
-      ik=1:dims(k)
-    else
-      iimp=iimp+1
-      if iimp<=2 then
-	ik=1:size(N,3-iimp)
-      else
-	ik=1
+    ik=1:dims(k)
+    dims1(k,1)=max(max(ik),dims(k))
+    if k==Ndims then
+      if k<nd then
+	ik=1:prod(dims(k:$))
+	dims1(k:nd,1)=dims(k:nd)
       end
     end
+  else
+    ik=round(ik)
+    dims1(k,1)=max(max(ik),dims(k))
   end
-  dims1(k)=max([max(ik),dims(k)])
   if size(ik,'*')>1 then
     ik=ik(:)
     if size(I,'*')>1 then
@@ -67,11 +68,39 @@ for k=rhs-2:-1:1
   else
     I=dims1(k)*I+ik-1
   end
+  if del then
+    if or(ik<>(1:dims1(k))') then
+      count=[count k]
+      nk=size(ik,'*')
+    end
+  end
 end
-//
-if prod(dims1)>size(v,'*') then v(prod(dims1))=0,end
-v(I+1)=N(:)
-
+if ~del&or(dims1>dims) then
+  I1=0
+  for k=size(dims1,'*'):-1:1
+    ik1=(1:dims(k))'
+    if ik1<>[] then
+      if dims1(k)>1 then
+	if size(I1,'*')>1 then
+	  I1=(dims1(k)*I1).*.ones(ik1)+ones(I1).*.(ik1-1)
+	else
+	  I1=dims1(k)*I1+ik1-1
+	end
+      else
+	I1=dims1(k)*I1+ik1-1
+      end
+    end
+  end
+  v1=zeros(prod(dims1),1)
+  v1(I1+1)=v;v=v1
+end
+v(I+1)=matrix(N,-1,1)
+if del then
+  if size(count,'*')>1 then
+    error('A null assignment can have only one non-colon index')
+  end
+  dims1(count)=dims1(count)-nk
+end
 
 while  dims1($)==1 then dims1($)=[],end
 select size(dims1,'*')
@@ -83,36 +112,5 @@ case 2
   M=matrix(v,dims1(1),dims1(2))
 else
   M=mlist(['hm','dims','entries'],int32(matrix(dims1,1,-1)),v)
-end
-endfunction
-
-
-function [index,N]=pre_trait(index,N)
-//St.h....  .f(i1,i2,...in)=A <=> St.h....  .f=B
-//with B(i1,...,in)=A
-if type(INDX)==1 then
-//  INDX<-> (i1,i2,  ,in) = i1 ,  numeric index (integer) 
- xxx(INDX)=N;N=xxx;index($)=null();
- if size(index)==1 then index=index(1);end
- return;
-end
-
-if type(INDX)==15 then
-// INDX<-> (i1,i2, in) =list(i1,i2,  in) , list index (all integers)
-  numeric=1
-  for kk=INDX
-    if type(kk)~=1 
-      numeric=0;break;
-    end
-  end
-  if numeric==1 then
-  xxx(INDX(:))=N;N=xxx;index($)=null();
-  if size(index)==1 then
-  index=index(1);
-  end
-  return;
-  else
-  error('invalid struct indexing');
-  end
 end
 endfunction
