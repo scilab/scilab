@@ -32,16 +32,13 @@
     (Mandrake 9.2, Red Hat 9.0, Suse 9.0). But it should work on
     other UNIXes.
  
-    You need X Window (X11R4, X11R5 or X11R6), Athena Widgets libraries, 
-    C compiler and Fortran compiler.
+    You need X Window (X11R4, X11R5 or X11R6), C compiler and Fortran compiler.
  
     1 - Configure your system by issuing the following command in the Scilab 
         directory:
  	./configure
-        Use  "./configure  --without-xaw3d" if you don't have 3D
-        Athena Widgets installed.
-	Use  "./configure  --without-tk" if you don't have tcl/tk 8.0 or later 
-        installed.
+      	Use  "./configure  --without-tk" if you don't have tcl/tk 8.4 or later 
+        installed (not recommended).
  
         This will create and/or modify a few Makefile and other files for your 
         system.
@@ -72,16 +69,11 @@
          --x-includes=DIR: X Window include files are in DIR.
  
  	--with-local-xaw: compile and use Athena Widgets libraries given 
-           with Scilab (do not use then for X11R4); configure chooses local
-           Athena Widgets library when needed, so the use of this option is not
-           recommanded (see below KNOWN PROBLEMS 3).
-
-       --without-xaw3d: do not use 3D version of Athena Widgets. The default
-           is to compile with these libraries. If they are not found, standard
-           Athena Widgets are taken.
+           with Scilab; configure chooses local Athena Widgets 3D library 
+           when needed (not recommended).
 
         --without-pvm: compile without PVM library. The default is to compile
-           with PVM library.
+           with PVM library. In this case the PVM interface is not built.
        
            If your PVM libraries and include files are in customized places, 
            you can specify them by hand with the following arguments:
@@ -89,12 +81,14 @@
         --with-pvm-include=DIR: PVM include files are in DIR
  
         --without-tk: compile without TCL/TK library. The default is to compile
-           with TCL/TK library. You must have libraries of TCL/TK 8.x and 
-           corresponding include files installed in standard directory 
-           (configure is looking for them).
+           with TCL/TK library. Use this option if you do not have libraries of 
+	   TCL/TK 8.4 or higher installed (not recommended, in this case the 
+  	   TCL/TK interface is not build, Scilab help browser, scipad edidor 
+           graphic editor, ... will not be available).
 
            If your TCL/TK libraries and include files are in customized places, 
-           you can specify them by hand with the following arguments:
+           or if you have several versions of TCL/TK installed you can specify them 
+           by hand with all the following arguments:
         --with-tcl-library=DIR: Tcl library files are in DIR
         --with-tcl-include=DIR: Tcl include files are in DIR
         --with-tk-library=DIR: Tk library files are in DIR
@@ -188,16 +182,11 @@
         in the environment variable "PRINTERS" or in the beginning of 
         the shell script "bin/scilab".
  
-    4 - Note that the functions "macros/util/edit" and
-        "macros/util/manedit" assume that your default editor 
-        is emacs. You may change this in the corresponding function (or 
-        explicitly specify your editor when you invoke these functions).
- 
-    5 - Icons for windows managers: icons for Scilab, Scilab graphics windows
+    4 - Icons for windows managers: icons for Scilab, Scilab graphics windows
         are given in the X11_defaults subdirectory. See the README in
         this subdirectory.
  
-    6 - COLOR RESOURCES: if you want to change the colors of your 
+    5 - COLOR RESOURCES: if you want to change the colors of your 
         customization you need to modify the files in the X11_defaults
         subdirectory (essentially the Xscilab file) or to copy the same
         color resources in your personal resource file (home directory).
