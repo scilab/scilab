@@ -2677,7 +2677,7 @@ void C2F(DispStringAngle)(integer *x, integer *y, char *string, double *angle)
   XFontStruct *font;
 
   font=FontsList_[ScilabXgc->FontId][ScilabXgc->FontSize];
-  ang=*angle * M_PI/180.0;
+  ang= - *angle * M_PI/180.0;
 
   if (ScilabXgc->Cdrawable != (Drawable) 0)	
     XRotDrawString(dpy, font, ang, ScilabXgc->Cdrawable, gc, *x, *y, string);
