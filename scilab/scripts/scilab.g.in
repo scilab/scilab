@@ -287,16 +287,16 @@ if test "$rest" = "yes"; then
     sci_args="$sci_args  $arguments"
   fi
 
-
-  if test -n "$now"; then
-      sci_exe="do_scilex_now"
-  else
-      sci_exe="do_scilex"
-  fi
-
-  if test -n "$debug"; then 
+  if test -n "$debug"; then
      gdb  $SCI/bin/scilex
-  else	
-      $sci_exe $sci_args 
-  fi 
+  else
+    if test -n "$now"; then
+        sci_exe="do_scilex_now"
+        $sci_exe $sci_args
+    else
+        sci_exe="do_scilex"
+        $sci_exe $sci_args &
+    fi
+  fi
 fi
+
