@@ -45,8 +45,10 @@ extern int TK_Wait;
 extern int TK_NbEv;
 extern int TK_Started;
 
-extern void flushTKEvents();
-extern void nocase ();
+extern void flushTKEvents(void);
+extern void nocase (void);
+extern void inittk(void);
+
 #endif
 
 
