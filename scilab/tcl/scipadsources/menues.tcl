@@ -5,12 +5,14 @@ if {$lang == "eng"} {
 	-menu $pad.filemenu.files
     $pad.filemenu.files add command -label "New" -underline 0 \
                    -command "filesetasnewmat" -accelerator Ctrl+n
-    $pad.filemenu.files add command -label "Open" -underline 0 \
+    $pad.filemenu.files add command -label "Open..." -underline 0 \
                    -command "filetoopen $textareacur" -accelerator Ctrl+o
     $pad.filemenu.files add command -label "Save" -underline 0 \
                    -command "filetosavecur" -accelerator Ctrl+s
-    $pad.filemenu.files add command -label "Save As" -underline 5 \
+    $pad.filemenu.files add command -label "Save As..." -underline 5 \
                    -command "filesaveascur" -accelerator Ctrl+S
+    $pad.filemenu.files add command -label "Revert..." -underline 0 \
+                   -command "revertsaved" -accelerator Ctrl+R -state disabled
     $pad.filemenu.files add separator
     $pad.filemenu.files add command -label "Import Matlab file..." \
 	-underline 7 -command "importmatlab" -accelerator F4
@@ -31,12 +33,14 @@ if {$lang == "eng"} {
 	-menu $pad.filemenu.files
     $pad.filemenu.files add command -label "Nouveau" -underline 0 \
 	-command "filesetasnewmat" -accelerator Ctrl+n
-    $pad.filemenu.files add command -label "Ouvrir" -underline 0 \
+    $pad.filemenu.files add command -label "Ouvrir..." -underline 0 \
 	-command "filetoopen $textareacur" -accelerator Ctrl+o
     $pad.filemenu.files add command -label "Enregistrer" -underline 0 \
 	-command "filetosavecur" -accelerator Ctrl+s
-    $pad.filemenu.files add command -label "Enregistrer sous" -underline 2 \
+    $pad.filemenu.files add command -label "Enregistrer sous..." -underline 2 \
 	-command "filesaveascur" -accelerator Ctrl+S
+    $pad.filemenu.files add command -label "Revenir..." -underline 2 \
+                   -command "revertsaved" -accelerator Ctrl+R -state disabled
     $pad.filemenu.files add separator
     $pad.filemenu.files add command -label "Importer fichier Matlab..." \
                    -underline 17 -command "importmatlab" -accelerator F4
@@ -131,45 +135,112 @@ menu $pad.filemenu.search -tearoff 0 -font $menuFont
 if {$lang == "eng"} {
     $pad.filemenu add cascade -label "Search" -underline 0 \
 	-menu $pad.filemenu.search 
-    $pad.filemenu.search add command -label "Find" -underline 0 \
+    $pad.filemenu.search add command -label "Find..." -underline 0 \
 	-command "findtext find" -accelerator Ctrl+f
     $pad.filemenu.search add command -label "Find Next" -underline 5 \
 	-command "findnext find" -accelerator F3
-    $pad.filemenu.search add command -label "Replace" -underline 0 \
+    $pad.filemenu.search add command -label "Replace..." -underline 0 \
 	-command "findtext replace" -accelerator Ctrl+r
 # add new menu option include by Matthieu PHILIPPE from gotoline.pth 21/11/2001
-    $pad.filemenu.search add command -label "Goto Line" -underline 0 \
+    $pad.filemenu.search add command -label "Goto Line..." -underline 0 \
 	-command "gotoline" -accelerator Ctrl+g
 } else {
     $pad.filemenu add cascade -label "Rechercher" -underline 0 \
 	-menu $pad.filemenu.search 
-    $pad.filemenu.search add command -label "Rechercher" \
+    $pad.filemenu.search add command -label "Rechercher..." \
 	-underline 0 -command "findtext find" -accelerator Ctrl+f
     $pad.filemenu.search add command -label "Rechercher suivant" \
 	-underline 11 -command "findnext find" -accelerator F3
-    $pad.filemenu.search add command -label "Remplacer" -underline 3 \
+    $pad.filemenu.search add command -label "Remplacer..." -underline 3 \
 	-command "findtext replace" -accelerator Ctrl+r
 # add new menu option include by Matthieu PHILIPPE from gotoline.pth 21/11/2001
-    $pad.filemenu.search add command -label "Atteindre" -underline 0 \
+    $pad.filemenu.search add command -label "Atteindre..." -underline 0 \
 	-command "gotoline" -accelerator Ctrl+g
 } 
 
-# added by matthieu PHILIPPE dec 11th 2001
-# window menu
+# exec menu
+menu $pad.filemenu.exec -tearoff 1 -font $menuFont
 if {$lang == "eng"} {
-    menu $pad.filemenu.wind -tearoff 1 -title "Opened Files" -font $menuFont
-    $pad.filemenu add cascade -label "Windows" -underline 0 \
-	-menu $pad.filemenu.wind
+    $pad.filemenu add cascade -label "Execute" -underline 1 \
+	-menu $pad.filemenu.exec
+    $pad.filemenu.exec add command -label "Load into Scilab" -underline 0\
+	-command "execfile" -accelerator Ctrl+l
+    $pad.filemenu.exec add command -label "Evaluate selection" -underline 0\
+	-command "execselection" -accelerator Ctrl+y
 } else {
-    menu $pad.filemenu.wind -tearoff 1 -title "Fichiers ouverts" \
-	-font $menuFont
-    $pad.filemenu add cascade -label "Fenêtres" -underline 0 \
-	-menu $pad.filemenu.wind
+    $pad.filemenu add cascade -label "Exécuter" -underline 1 \
+	-menu $pad.filemenu.exec
+    $pad.filemenu.exec add command -label "Charger dans Scilab" -underline 0\
+	-command "execfile" -accelerator Ctrl+l
+    $pad.filemenu.exec add command -label "Evaluer la sélection" -underline 0\
+	-command "execselection" -accelerator Ctrl+y
 }
-$pad.filemenu.wind add radiobutton \
-    -label "$listoffile("$pad.textarea",filename)"\
-    -value $winopened -variable radiobuttonvalue \
-    -command "montretext $pad.textarea"
+
+#debug menu
+menu $pad.filemenu.debug -tearoff 1 -font $menuFont
+if {$lang == "eng"} {
+    $pad.filemenu add cascade -label "Debug" -underline 0 \
+	-menu $pad.filemenu.debug
+    $pad.filemenu.debug add command -label "Insert/Remove breakpoint" \
+      -underline 0 -command "insertremove_bp" -accelerator F9 \
+      -image menubutsetbptimage -compound left
+    $pad.filemenu.debug add command -label "Remove all breakpoints" \
+      -underline 7 -command "removeall_bp" -accelerator Ctrl+F9 \
+      -image menubutremoveallimage -compound left
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Configure execution..." \
+      -underline 0 -command "configurefoo_bp" -accelerator F10 \
+      -image menubutconfigureimage -compound left
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Go to next breakpoint" \
+      -underline 12 -command "tonextbreakpoint_bp" -accelerator F11 \
+      -image menubutnextimage -compound left
+    $pad.filemenu.debug add command -label "Step by step" \
+      -underline 0 -command "stepbystep_bp" -accelerator F12 -state disabled \
+      -image menubutstepimage -compound left
+    $pad.filemenu.debug add command -label "Go on ignoring any breakpoint" \
+      -underline 1 -command "goonwo_bp" -accelerator Shift+F12 \
+      -image menubutgoonignorimage -compound left
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Show watch" \
+      -underline 5 -command "showwatch_bp" -accelerator Ctrl+F12 \
+      -image menubutwatchimage -compound left
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Cancel debug" \
+      -underline 5 -command "canceldebug_bp" \
+      -image menubutcancelimage -compound left
+} else {
+    $pad.filemenu add cascade -label "Débug" -underline 0 \
+	-menu $pad.filemenu.debug
+    $pad.filemenu.debug add command -label "Insérer/Supprimer un point d'arrêt" \
+      -underline 0 -command "insertremove_bp" -accelerator F9 \
+      -image menubutsetbptimage -compound left
+    $pad.filemenu.debug add command -label "Supprimer tous les points d'arrêt" \
+      -underline 10 -command "removeall_bp" -accelerator Ctrl+F9 \
+      -image menubutremoveallimage -compound left
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Configurer l'exécution..." \
+      -underline 3 -command "configurefoo_bp" -accelerator F10 \
+      -image menubutconfigureimage -compound left
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Aller jusqu'au prochain point d'arrêt" \
+      -underline 10 -command "tonextbreakpoint_bp" -accelerator F11 \
+      -image menubutnextimage -compound left
+    $pad.filemenu.debug add command -label "Pas à pas" \
+      -underline 0 -command "stepbystep_bp" -accelerator F12 -state disabled \
+      -image menubutstepimage -compound left
+    $pad.filemenu.debug add command -label "Continuer sans aucun point d'arrêt" \
+      -underline 0 -command "goonwo_bp" -accelerator Shift+F12 \
+      -image menubutgoonignorimage -compound left
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Fenêtre watch" \
+      -underline 8 -command "showwatch_bp" -accelerator Ctrl+F12 \
+      -image menubutwatchimage -compound left
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Annuler le débug" \
+      -underline 0 -command "canceldebug_bp" \
+      -image menubutcancelimage -compound left
+}
 
 # options menu
 if {$lang == "eng"} {
@@ -244,95 +315,43 @@ $pad.filemenu.options add radiobutton -label "none" -underline 0 \
 # $pad.filemenu.options.scheme add radiobutton -label "none" \
 #         -command {changelanguage "none"} -variable Scheme -value "none"
 
-# exec menu
-menu $pad.filemenu.exec -tearoff 1 -font $menuFont
+# window menu
 if {$lang == "eng"} {
-    $pad.filemenu add cascade -label "Execute" -underline 1 \
-	-menu $pad.filemenu.exec
-    $pad.filemenu.exec add command -label "Load into Scilab" -underline 0\
-	-command "execfile" -accelerator Ctrl+l
-    $pad.filemenu.exec add command -label "Evaluate selection" -underline 0\
-	-command "execselection" -accelerator Ctrl+y
+    menu $pad.filemenu.wind -tearoff 1 -title "Opened Files" -font $menuFont
+    $pad.filemenu add cascade -label "Windows" -underline 0 \
+	-menu $pad.filemenu.wind
 } else {
-    $pad.filemenu add cascade -label "Exécuter" -underline 1 \
-	-menu $pad.filemenu.exec
-    $pad.filemenu.exec add command -label "Charger dans Scilab" -underline 0\
-	-command "execfile" -accelerator Ctrl+l
-    $pad.filemenu.exec add command -label "Evaluer la sélection" -underline 0\
-	-command "execselection" -accelerator Ctrl+y
+    menu $pad.filemenu.wind -tearoff 1 -title "Fichiers ouverts" \
+	-font $menuFont
+    $pad.filemenu add cascade -label "Fenêtres" -underline 0 \
+	-menu $pad.filemenu.wind
 }
-
-#debug menu
-menu $pad.filemenu.debug -tearoff 1 -font $menuFont
-if {$lang == "eng"} {
-    $pad.filemenu add cascade -label "Debug" -underline 0 \
-	-menu $pad.filemenu.debug
-    $pad.filemenu.debug add command -label "Insert/Remove breakpoint" \
-      -underline 0 -command "insertremove_bp" -accelerator F9
-    $pad.filemenu.debug add command -label "Remove all breakpoints" \
-      -underline 7 -command "removeall_bp" -accelerator Ctrl+F9
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Configure execution" \
-      -underline 0 -command "configurefoo_bp" -accelerator F10
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Go to next breakpoint" \
-      -underline 12 -command "tonextbreakpoint_bp" -accelerator F11
-    $pad.filemenu.debug add command -label "Step by step" \
-      -underline 0 -command "stepbystep_bp" -accelerator F12 -state disabled
-    $pad.filemenu.debug add command -label "Go on ignoring any breakpoint" \
-      -underline 1 -command "goonwo_bp" -accelerator Shift+F12
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Show watch" \
-      -underline 5 -command "showwatch_bp" -accelerator Ctrl+F12
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Cancel debug" \
-      -underline 5 -command "canceldebug_bp"
-} else {
-    $pad.filemenu add cascade -label "Débug" -underline 0 \
-	-menu $pad.filemenu.debug
-    $pad.filemenu.debug add command -label "Insérer/Supprimer un point d'arrêt" \
-      -underline 0 -command "insertremove_bp" -accelerator F9
-    $pad.filemenu.debug add command -label "Supprimer tous les points d'arrêt" \
-      -underline 10 -command "removeall_bp" -accelerator Ctrl+F9
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Configurer l'exécution" \
-      -underline 3 -command "configurefoo_bp" -accelerator F10
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Aller jusqu'au prochain point d'arrêt" \
-      -underline 10 -command "tonextbreakpoint_bp" -accelerator F11
-    $pad.filemenu.debug add command -label "Pas à pas" \
-      -underline 0 -command "stepbystep_bp" -accelerator F12 -state disabled
-    $pad.filemenu.debug add command -label "Continuer sans aucun point d'arrêt" \
-      -underline 0 -command "goonwo_bp" -accelerator Shift+F12
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Fenêtre watch" \
-      -underline 8 -command "showwatch_bp" -accelerator Ctrl+F12
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Annuler le débug" \
-      -underline 0 -command "canceldebug_bp"
-}
+$pad.filemenu.wind add radiobutton \
+    -label "$listoffile("$pad.textarea",filename)"\
+    -value $winopened -variable radiobuttonvalue \
+    -command "montretext $pad.textarea"
 
 # help menu
 # FV 13/05/04, -accelerator Shift+F1 uncommented
 menu $pad.filemenu.help -tearoff 0 -font $menuFont
 if {$lang == "eng"} {
     $pad.filemenu add cascade -label "Help" -underline 0 \
-	-menu $pad.filemenu.help
-    $pad.filemenu.help add command -label "About" -underline 0 \
-	-command "aboutme" -accelerator Shift+F1
-    $pad.filemenu.help add command -label "Help" -underline 0 \
+        -menu $pad.filemenu.help
+    $pad.filemenu.help add command -label "Help..." -underline 0 \
         -command "helpme" -accelerator F1
-    $pad.filemenu.help add command -label "What's?" -underline 0 \
-	-command "helpword" -accelerator Ctrl+F1
+    $pad.filemenu.help add command -label "What's?..." -underline 0 \
+        -command "helpword" -accelerator Ctrl+F1
+    $pad.filemenu.help add command -label "About" -underline 0 \
+        -command "aboutme" -accelerator Shift+F1
 } else {
     $pad.filemenu add cascade -label "Aide" -underline 0 \
-	-menu $pad.filemenu.help
-    $pad.filemenu.help add command -label "A propos" -underline 1 \
-	-command "aboutme" -accelerator Shift+F1
-    $pad.filemenu.help add command -label "Aide" -underline 0 \
+        -menu $pad.filemenu.help
+    $pad.filemenu.help add command -label "Aide..." -underline 0 \
         -command "helpme" -accelerator F1
-    $pad.filemenu.help add command -label "Qu'est-ce ?" -underline 0 \
-	-command "helpword" -accelerator Ctrl+F1
+    $pad.filemenu.help add command -label "Qu'est-ce ?..." -underline 0 \
+        -command "helpword" -accelerator Ctrl+F1
+    $pad.filemenu.help add command -label "A propos" -underline 1 \
+        -command "aboutme" -accelerator Shift+F1
 }
 
 # now make the menu visible

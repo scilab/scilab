@@ -4,6 +4,7 @@ proc showwatch_bp {} {
     global watchvars watchvarsvals buttonAddw
     global firsttimeinshowwatch watchgeom
     global callstackwidget callstackcontent
+    global watchwinicons db_butimages
     set watch $pad.watch
     catch {destroy $watch}
     toplevel $watch
@@ -16,12 +17,32 @@ proc showwatch_bp {} {
     }
     frame $watch.f
 
+    frame $watch.f.f1
+    set buttonConfigure $watch.f.f1.configure
+    button $buttonConfigure -command "configurefoo_bp" -image [lindex $db_butimages 4] \
+           -relief flat -overrelief raised
+    set buttonToNextBpt $watch.f.f1.toNextBpt
+    button $buttonToNextBpt -command "tonextbreakpoint_bp" -image [lindex $db_butimages 6] \
+           -relief flat -overrelief raised
+    set buttonGoOnIgnor $watch.f.f1.goOnIgnor
+    button $buttonGoOnIgnor -command "goonwo_bp" -image [lindex $db_butimages 8] \
+           -relief flat -overrelief raised
+    set buttonCancelDebug $watch.f.f1.cancelDebug
+    button $buttonCancelDebug -command "canceldebug_bp" -image [lindex $db_butimages 12] \
+           -relief flat -overrelief raised
+    pack $buttonConfigure $buttonToNextBpt $buttonGoOnIgnor $buttonCancelDebug \
+         -padx 2 -pady 2 -side left
+    pack $watch.f.f1 -anchor w
+    set watchwinicons [list "sep" "" "" "sep" $buttonConfigure "sep" $buttonToNextBpt \
+                            "" $buttonGoOnIgnor "sep" "" "sep" $buttonCancelDebug ]
+    setdbmenuentriesstates_bp
+
     frame $watch.f.f2 -relief groove -borderwidth 2 -padx 2 -pady 4
     frame $watch.f.f2.f2l
     if {$lang == "eng"} {
-        set tl "Variable name:"
+        set tl "Watch variables:"
     } else {
-        set tl "Nom de la variable :"
+        set tl "Variables espions :"
     }
     label $watch.f.f2.f2l.label -text $tl
     if {$lang == "eng"} {
@@ -121,10 +142,24 @@ proc showwatch_bp {} {
 }
 
 proc updatewatch_bp {} {
-    global watch
+    global watch watchvars lbvarname lbvarval watchvarsvals
+    global callstackwidget callstackcontent
     if {[info exists watch]} {
         if {[winfo exists $watch]} {
-            showwatch_bp
+            if {[info exists watchvars]} {
+                $lbvarname delete 0 end
+                $lbvarval delete 0 end
+                foreach var $watchvars {
+                    $lbvarname insert end $var
+                    $lbvarval insert end $watchvarsvals($var)
+                }
+                $lbvarname selection set 0
+                $lbvarname see 0
+                $callstackwidget configure -state normal
+                $callstackwidget delete 1.0 end
+                $callstackwidget insert 1.0 $callstackcontent
+                $callstackwidget configure -state disabled
+            }
         }
     }
 }

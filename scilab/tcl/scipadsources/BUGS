@@ -144,8 +144,6 @@ Wishes:
  Note: a first step to this has been implemented. During a debug session, the popup
  menu is the debug menu.
 
--Add a Revert to saved... in the file menu.
-
 -display only pruned filenames (and full pathnames in case of ambiguity) 
  in the titlebar, windows menu, etc. 
 
@@ -153,6 +151,7 @@ Wishes:
  automatically indents back, etc)
  
 -(customizable?) tool bar
+ Note: a first step to this has been implemented in the debugger watch window.
  
 -paned window, to allow for viewing two different parts of the text buffer at the
  same time, or maybe two different buffers.
@@ -174,7 +173,7 @@ Wishes:
  should inherit the current font size
 
 -Outside of scipad: bulletproof a function for opening the script which produced 
- the lasterror(): editoffendingline()
+ the lasterror(): edit_error() (aka editoffendingline())
 
 -"compile xml as help page" command - Note: Use xmlfiletohtml.sci since it has now
  been implemented by Scilab Team
@@ -221,3 +220,14 @@ Wishes:
  absolutely sure that the variable names instantiated by Scipad in not used in Scilab,
  so that conflicts would always be avoided. For instance, browsing the existing known
  variables and checking for existence, etc. could be used.
+
+-Arrange for removal of all the if {$lang="eng"} in the Scipad code, to ease
+ maintainability and readability. Possible references for implementation are:
+ http://wiki.tcl.tk/1488
+ http://www.tcl.tk/man/tcl8.4/TclCmd/msgcat.htm
+
+-Make printing from Scipad work on Linux and implement it for Windows.
+ Try to preserve the colorization in the process.
+ Possible references for implementation on a Windows box are:
+ http://wiki.tcl.tk/11319
+ http://wiki.tcl.tk/9846

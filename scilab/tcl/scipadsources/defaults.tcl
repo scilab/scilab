@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.10"
+set version "Version 3.12"
 set wordWrap none
 ##ES: default options which can be overridden
 if { ![info exists BGCOLOR] } {set BGCOLOR "snow1"}

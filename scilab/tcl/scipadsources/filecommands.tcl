@@ -533,3 +533,31 @@ proc extractindexfromlabel {dm labsearched} {
     }
     return -1
 }
+
+
+proc revertsaved {} {
+   global listoffile lang
+   set textarea [gettextareacur]
+   set thefile $listoffile("$textarea",filename) 
+   if [ file exists $thefile ] {
+       if {$lang == "eng"} {
+           set answer [tk_messageBox -message "Revert $thefile to saved?" \
+		        -type yesno -icon question]
+       } else {
+           set answer [tk_messageBox -message "Revenir à la version enregistrée de $thefile ?" \
+		        -type yesno -icon question]
+       }
+       if {$answer == yes} {
+            set oldfile [open $thefile r]
+            $textarea delete 1.0 end 
+            while {![eof $oldfile]} {
+               $textarea insert end [read -nonewline $oldfile ] 
+            }
+            close $oldfile
+            set listoffile("$textarea",save) 0
+            set listoffile("$textarea",thetime) [file mtime $thefile]
+            modifiedtitle $textarea
+            colorize $textarea 1.0 end
+	}
+   }
+}

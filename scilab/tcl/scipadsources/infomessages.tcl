@@ -93,4 +93,12 @@ proc modifiedtitle {textarea} {
        $pad.statusind configure -background [$pad.filemenu cget -background]
      }
      settitle "$fname$mod1$mod2"
+     if {$listoffile("$textarea",save) ==1 && \
+           $listoffile("$textarea",thetime) !=0} { 
+       $pad.filemenu.files entryconfigure 4 -state normal
+       bind $pad <Control-R> {revertsaved}
+     } else {
+       $pad.filemenu.files entryconfigure 4 -state disabled
+       bind $pad <Control-R> {}
+     }
 } 

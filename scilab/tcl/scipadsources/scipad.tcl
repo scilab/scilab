@@ -31,9 +31,9 @@ if { [info exists pad] } {
 #ES 12/06/04: now all the pure main level code
     source [file join $sourcedir defaults.tcl]
     source [file join $sourcedir mainwindow.tcl]
+    source [file join $sourcedir db_init.tcl]
     source [file join $sourcedir menues.tcl]
     source [file join $sourcedir bindings.tcl]
-    source [file join $sourcedir db_init.tcl]
 
 
 #added by Matthieu PHILIPPE 21/11/2001 from linenum.pth

@@ -55,9 +55,11 @@ proc getdbstate {} {
 }
 
 proc setdbmenuentriesstates_bp {} {
-    global pad
-    set dm $pad.filemenu.debug
+    global pad watch watchwinicons
 
+    set errmess "Unknown debugstate in proc setdbmenuentriesstates_bp: please report"
+
+    set dm $pad.filemenu.debug
     if {[getdbstate] == "NoDebug"} {
         $dm entryconfigure 1 -state normal
         bind all <F9> {insertremove_bp}
@@ -111,8 +113,33 @@ proc setdbmenuentriesstates_bp {} {
         $dm entryconfigure 12 -state normal
 
     } else {
-        tk_messageBox -message "Unknown debugstate in proc setdbmenuentriesstates_bp: please report"
+        tk_messageBox -message $errmess
     }
+
+    if {[info exists watchwinicons]} {
+        if {[winfo exists $watch]} {
+            set wi $watchwinicons
+            if {[getdbstate] == "NoDebug"} {
+                [lindex $wi 4] configure -state normal
+                [lindex $wi 6] configure -state disabled
+                [lindex $wi 8] configure -state disabled
+                [lindex $wi 12] configure -state disabled
+            } elseif {[getdbstate] == "ReadyForDebug"} {
+                [lindex $wi 4] configure -state normal
+                [lindex $wi 6] configure -state normal
+                [lindex $wi 8] configure -state disabled
+                [lindex $wi 12] configure -state disabled
+            } elseif {[getdbstate] == "DebugInProgress"} {
+                [lindex $wi 4] configure -state disabled
+                [lindex $wi 6] configure -state normal
+                [lindex $wi 8] configure -state normal
+                [lindex $wi 12] configure -state normal
+            } else {
+                tk_messageBox -message $errmess
+            }
+        }
+    }
+
 }
 
 proc getdebuggersciancillaries_bp {} {

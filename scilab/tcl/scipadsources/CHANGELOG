@@ -503,9 +503,9 @@ Francois VOGEL, 20/10/04
    There was a quirk for subroutines of the exec'ed function: for the main function, where()
    returns the line number just before the breakpoint, but for subfunctions it returns the
    exact line number of the breakpoint. Probably a Scilab bug, but Scipad implements a
-   workaround.
+   workaround. This is bug 1054.
    Note: FormatWhereForDebugWatch.sci could be slightly improved.
- * Implemented a workaround for bug#633 (workspace erased after abort of a callback). This
+ * Implemented a workaround for bug 633 (workspace erased after abort of a callback). This
    was required to fix the command "Cancel debug".
  * Suppressed the temporary file getwatchcomm.sce and replaced by successive ScilabEvals.
  * Proc updateactivebreakpointtag bullet-proofed against values of $activeline. Scipad hangs
@@ -562,3 +562,22 @@ ES 3/11/04:
    or because the file is readonly), a warning pops up, and Save translates to
    "Save as..."
  * version --> 3.10
+
+Francois VOGEL, 04/11/04
+ * Added debugger icons in the watch window as an initial attempt for having a toolbar.
+ * Added same icon images in the debug menu.
+ * Removed the workaround for bug 633 (workspace erased after aborting a callback) since
+   this bug has been solved in the CVS.
+ * version --> 3.11
+
+Francois VOGEL, 10/11/04
+ * Reworked reading of icons from disk. Resized icons independently of their original
+   size (for display in a toolbar such as in the watch window). Same icons with further
+   reduced size are now displayed in the debug menu. There is now an icon for each debug
+   menu entry (thanks to ES for the design!)
+ * Changed the order of the menues in the menubar.
+ * Changed the order of the items in the help menu.
+ * The watch window content is now updated instead of completely redrawn at a breakpoint
+   stop.
+ * Added ES' changes for addition of the Revert to saved command in the file menu.
+ * version --> 3.12

@@ -116,3 +116,6 @@ bind $pad <Control-minus> {set FontSize [expr round($FontSize*0.9)]; \
                               setfontscipad $FontSize}
 
 bind $pad <F4> {importmatlab}
+
+#ES 10/11/04
+bind $pad <Control-R> {revertsaved}

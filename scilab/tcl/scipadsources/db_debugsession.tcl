@@ -83,8 +83,8 @@ proc execfile_bp {} {
                 if {[catch {ScilabEval "$setbpcomm; $funnameargs; $removecomm"  "seq"}]} {
                     scilaberror $funnameargs
                 }
-                getfromshell
                 updateactivebreakpoint
+                getfromshell
                 checkendofdebug_bp
             } else {
                 if {[catch {ScilabEval "$funnameargs" "seq"}]} {
@@ -125,16 +125,12 @@ proc resume_bp {} {
             if {$watchsetcomm != ""} {
                 ScilabEval "$watchsetcomm" "seq"
                 set returnwithvars [lindex $commnvars 1]
-    # [..]=resume(..) was bugged (see bug 818)
-    # The changes made by the user in the watch window were not reflected in the calling
-    # workspace in Scilab. The correction is part of CVS from 18/06/04 or later, and
-    # it has been included in Scilab 3.0
                 ScilabEval "$returnwithvars" "seq"
             } else {
                 ScilabEval "resume(0)" "seq"
             }
-            getfromshell
             updateactivebreakpoint
+            getfromshell
             checkendofdebug_bp
         } else {
             # <TODO> .sce case
@@ -167,10 +163,6 @@ proc canceldebug_bp {} {
             [gettextareacur] tag remove activebreakpoint 1.0 end
             ScilabEval "abort" "seq"
             removescilab_bp "with_output"
-# Next line should not be required but it is since the workspace is erased under some
-# circumstances like after the ScilabEval "abort" above. See bug #633.
-# <TODO> Once this bug is solved, getdebuggersciancillaries_bp on next line can be removed.
-            getdebuggersciancillaries_bp
             getfromshell
         }
         setdbstate "NoDebug"
