@@ -51,6 +51,7 @@ LOCAL struct Intrblock
 "int", 		{ INTRCONV, TYLONG },
 "real", 	{ INTRCONV, TYREAL, 1 },
 		/* 1 ==> real(TYDCOMPLEX) yields TYDREAL */
+"dreal", 	{ INTRCONV, TYREAL, 1 },
 "dble", 	{ INTRCONV, TYDREAL },
 "cmplx", 	{ INTRCONV, TYCOMPLEX },
 "dcmplx", 	{ INTRCONV, TYDCOMPLEX, 0, 1 },
