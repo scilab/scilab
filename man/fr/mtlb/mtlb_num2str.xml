@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_num2str</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Juillet 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_num2str">Fonction d'émulation de la fonction Matlab num2str</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Dans plusieurs cas particuliers, la fonction Matlab <VERB>num2str</VERB> et ses équivalents Scilab
+    (<VERB>string</VERB>, <VERB>msprintf</VERB>) se comportent différemment :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Avec deux paramètres d'entrée, le second donnant une précision : Il n'y a pas de fonction Scilab équivalente 
+	mais <VERB>msprintf</VERB> peut être utilisée pour émuler ce cas.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Avec deux paramètres d'entrée, le second donnant un format : l'équivalent Scilab pour l'expression Matlab 
+	<VERB>num2string(a,format)</VERB> est <VERB>msprintf(format,a)</VERB>.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_num2str(x,f)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>num2str(x,f)</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_num2str</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>f</VERB> est une chaîne de caractères,
+        <VERB>mtlb_num2str(x,f)</VERB> peut être remplacé par <VERB>msprintf(f,x)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_num2str</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>string</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>msprintf</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
