@@ -28,7 +28,7 @@ else
     y=a==b
   elseif op=="<" then
     y=a<b
-  elseif op==">"then
+  elseif op==">" then
     y=a>b
   elseif op=="<=" then
     y=a<=b
