@@ -48,7 +48,6 @@ static int filetype __PARAMS((int fd));
 int C2F(loadwave)(char * filename,double *res, integer * size_res,
 		  integer flag,WavInfo *Wi, integer *ierr)
 {
-  double maxi,sum;
   long i,size_max;
 #if defined(__alpha)
   int buf[BUFSIZ];
