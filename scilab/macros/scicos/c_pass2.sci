@@ -85,6 +85,12 @@ end
 
 if show_trace then disp('c_pass31:'+string(timer())),end
 
+// discard calls by events other than from virtual block (active-perm)
+// to event port 0 of blocks
+
+clkconnect(find((clkconnect(:,2)<>0)&(clkconnect(:,4)==0)),:)=[]
+
+
 //extract various info from bllst
 [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     xptr,zptr,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
@@ -242,7 +248,7 @@ for o=1:clkptr(nblk+1)-1
   ordclk=[ordclk;r]
 end
 
-if ordptr1<>ordptr2 then disp("serious bug,report");pause;end
+if and(ordptr1<>ordptr2) then disp("serious bug,report");pause;end
 //ordptr=[ordptr1,ordptr2];
 
 zord=cord
@@ -615,14 +621,17 @@ for j=1:clkptr($)-1
   new_ordptr1=[new_ordptr1;new_ordptr1($)+size(clkconnectjj,1)]
 end
 ordptr1=new_ordptr1
-
-
 endfunction
+
+
+
+
 function a=mysum(b)
 if b<>[] then a=sum(b), else a=[], end
-
-
 endfunction
+
+
+
 function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     xptr,zptr,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
     typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
