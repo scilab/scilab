@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_linspace</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>August 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_linspace">Matlab linspace emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>linspace</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With character string inputs: Matlab <VERB>linspace(A,B[,n])</VERB> returns a character string vector if <VERB>A</VERB>
+	and/or <VERB>B</VERB> are character strings, but Scilab function does not work with such inputs.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_linspace(A,B[,n])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>linspace(A,B[,n])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_linspace</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> and <VERB>B</VERB> are not character strings
+        <VERB>mtlb_linspace(A,B[,n])</VERB> may be replaced by <VERB>linspace(A,B[,n])</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> or <VERB>B</VERB> are character strings
+        <VERB>mtlb_linspace(A,B[,n])</VERB> may be replaced by <VERB>ascii(linspace(ascii(A),ascii(B)[,n]))</VERB>
+         </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_linspace</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ascii</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

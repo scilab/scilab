@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_linspace</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Août 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_linspace">Fonction d'émulation de la fonction Matlab linspace</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Dans plusieurs cas particuliers, la fonction <VERB>linspace</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Avec les chaînes de caractère: La fonction Matlab <VERB>linspace(A,B[,n])</VERB> renvoie un vecteur de caractères si <VERB>A</VERB> ou <VERB>B</VERB> est une chaîne de caractère, mais la fonction Scilab ne marche pas avec des entrées de ce type.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_linspace(A,B[,n])</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>linspace(A,B[,n])</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_linspace</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> et <VERB>B</VERB> ne sont pas des chaînes de caractères,
+        <VERB>mtlb_linspace(A,B[,n])</VERB> peut être remplacé par <VERB>linspace(A,B[,n])</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> ou <VERB>B</VERB> est une chaîne de caractères,
+        <VERB>mtlb_linspace(A,B[,n])</VERB> peut être remplacé par <VERB>ascii(linspace(ascii(A),ascii(B)[,n]))</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_linspace</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ascii</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
