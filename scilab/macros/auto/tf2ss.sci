@@ -24,6 +24,7 @@ for k=1:md
    else
         pp=den(k);nk=num(k);
    end;
+   
    slk=cont_frm(nk,pp);//
    [ak,bk,ck,dk1]=slk(2:5);
    // [s sk]
@@ -43,7 +44,7 @@ if n1<>0 then
   
   nrmb=norm(b,1);nrmc=norm(c,1);fact=sqrt(nrmc*nrmb);
   b=b*fact/nrmb;c=c*fact/nrmc;
-  [a,u]=balanc(a);c=c*u;b=u\b; 
+  [a,u]=balanc(a);c=c*u;b=u^(-1)*b; 
 
   if rhs<2 then 
     [no,u]=contr(a',c');
@@ -52,7 +53,7 @@ if n1<>0 then
   end
   u=u(:,1:no);
   a=u'*a*u;b=u'*b;c=c*u;
-  [a,u]=balanc(a);c=c*u;b=u\b; 
+  [a,u]=balanc(a);c=c*u;b=u^(-1)*b; 
   sl=syslin(h('dt'),a,b,c,d);
 else
   sl=syslin(h('dt'),[],[],[],d)
