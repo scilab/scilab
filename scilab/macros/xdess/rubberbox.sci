@@ -1,10 +1,6 @@
 function [rect,btn]=rubberbox(rect)
 // Copyright INRIA
-pat=xget('pattern')
-xset('pattern',0)
 
-dr=driver()
-if dr=='Rec' then driver('X11'),end
 first=%t
 if argn(2)<1 then
   [btn,xc,yc]=xclick(0)
@@ -17,9 +13,14 @@ rep(3)=-1
 ox=rect(1);xc=ox,
 oy=rect(2);yc=oy
 w=rect(3);h=rect(4)
-alu=xget('alufunction')
 
 if get("figure_style")=="old" then
+  pat=xget('pattern')
+  xset('pattern',0)
+  dr=driver()
+  if dr=='Rec' then driver('X11'),end
+
+  alu=xget('alufunction')
   xset('alufunction',6)
   while rep(3)==-1 do
     xrect(ox,oy,w,h)
@@ -33,27 +34,27 @@ if get("figure_style")=="old" then
     w=abs(xc-xc1);h=abs(yc-yc1)
     first=%f
   end
+  xset('alufunction',alu)
+  driver(dr)
+  xset('pattern',pat)
 else
+  f=gcf();pix=f.pixmap;f.pixmap='on'
   xrect(ox,oy,w,h)
-  hdl=get("hdl")
+  r=gce();r.foreground=-1;
   while rep(3)==-1 do
     if first then rep=xgetmouse();else rep=xgetmouse(0),end
-    if xget('pixmap') then xset('wshow'),end  
+    show_pixmap()
     xc1=rep(1);yc1=rep(2)
     ox=mini(xc,xc1)
     oy=maxi(yc,yc1)
     w=abs(xc-xc1);h=abs(yc-yc1)
-    hdl.data=[ox,oy,w,h]
-
+    r.data=[ox,oy,w,h]
     first=%f
   end 
-  delete(hdl)
+  delete(r)
 end
 rect=[ox,oy,w,h]
 btn=rep(3)
-xset('alufunction',alu)
-driver(dr)
-xset('pattern',pat)
 
 endfunction
 

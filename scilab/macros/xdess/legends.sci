@@ -5,12 +5,24 @@ function legends(leg, style, opt, with_box)
 // AUTHORS
 //    F. Delebecque + slight modif from B. Pincon 
 //   
+
+  
   rhs=argn(2)
+ 
   if rhs < 2 then, error("bad number of arguments"), end
-  if type(leg) ~= 10 then, error("first arg may a vector of strings"), end
+  if type(leg) ~= 10 then, 
+    error("first arg may a vector of strings"), 
+  end
   nleg=size(leg,'*')
-  if type(style) ~= 1 then, error("second arg may a vector"), end  
-  if size(style,"*") ~= nleg then
+  if type(style) ~= 1 then, 
+    error("second arg may a vector"), 
+  end  
+  if or(size(style)==1) then 
+    ns=size(style,'*'),
+  else 
+    ns=size(style,1),
+  end
+  if ns ~= nleg then
      error("first and second arg must have the same number of components")
   end
   if ~exists("opt","local") then
@@ -29,19 +41,14 @@ function legends(leg, style, opt, with_box)
   if ~exists("with_box","local") then, with_box=%t, end
 
   //preserve current graphic context
-  d=driver(); 
-  ls=xget('line style')
-  clr=xget('color')
-  //
-  xset('line style',1)
-  xset('color',xget('foreground'))
+
   
   [r1,r2,logflag,arect]=xgetech()
-  xsetech(wrect=r1,frect=[0 0 1 1],arect=arect,logflag='nn')
-  ymin=0
-  ymax=1
-  xmin=0
-  xmax=1
+
+  ymin=r2(2)
+  ymax=r2(4)
+  xmin=r2(1)
+  xmax=r2(3)
   dy=ymax-ymin
 
   drx=(xmax-xmin)/20 //length of the line
@@ -78,7 +85,16 @@ function legends(leg, style, opt, with_box)
    case 4 then 
     pos=[xmax-width-drx/5,ymin+height+dy/60]
    case 5 then
-    rect=dragrect([xmax-width-drx/5,ymax-dy/60,width,height])
+    if get('figure_style')=='old' then
+      rect=dragrect([xmax-width-drx/5,ymax-dy/60,width,height])
+    else
+      a=gca()
+      clip=a.clip_state;
+      a.clip_state='off';
+      rect=dragrect([xmax-width-drx/5,ymax-dy/60,width,height])
+      a.clip_state=stripblanks(clip);
+    end
+    
     pos=rect(1:2)
   end
   
@@ -88,20 +104,49 @@ function legends(leg, style, opt, with_box)
   
   x=pos(1)+drx/5
   y=pos(2)-dy/60
-  for k=1:nleg
-    if style(1,k)<= 0 then
-      if size(style,1)==2 then  xset("color",style(2,k));end
-      xpolys(x+drx/2,y-bbx(k,2)/2,style(1,k))
-      xset('color',clr)
-    else
-       if size(style,1)==2 then  xset("line style",style(2,k));end
-       xsegs([x;x+drx],[y;y]-bbx(k,2)/2,style(1,k))
+  if get('figure_style')=='old' then
+    ls=xget('line style')
+    clr=xget('color')
+ 
+    for k=1:nleg
+      if style(1,k)<= 0 then
+	if size(style,1)==2 then  xset("color",style(2,k));end
+	xpolys(x+drx/2,y-bbx(k,2)/2,style(1,k))
+	xset('color',clr)
+      else
+	if size(style,1)==2 then  xset("line style",style(2,k));end
+	xsegs([x;x+drx],[y;y]-bbx(k,2)/2,style(1,k))
+      end
+      xstring(x+drx*1.2,y-bbx(k,2),leg(k))
+      y=y-bbx(k,2)-dh
     end
-    xstring(x+drx*1.2,y-bbx(k,2),leg(k))
-    y=y-bbx(k,2)-dh
+    //reset saved graphic context
+    xset('line style',ls)
+    xset('color',clr)
+  else
+    R=[]
+    a.clip_state='off';
+    for k=1:nleg
+      if style(1,k)<= 0 then
+	xpoly(x+drx/2,y-bbx(k,2)/2)
+	r=gce(),
+	r.mark_mode='on'
+	r.mark_style=-style(1,k)
+	if size(style,1)==2 then r.foreground=style(2,k);end
+      else
+	xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines')
+	r=gce(),
+	r.foreground=style(1,k)
+	if size(style,1)==2 then r.line_style=style(2,k);end
+      end
+
+      R=[R,r]
+      xstring(x+drx*1.2,y-bbx(k,2),leg(k))
+      r=gce()
+      R=[R,r]
+      y=y-bbx(k,2)-dh
+    end
+    glue(R)
+    a.clip_state=stripblanks(clip);
   end
-  //reset saved graphic context
-  xset('line style',ls)
-  xset('color',clr)
-  xsetech(wrect=r1,frect=r2,arect=arect,logflag=logflag)
 endfunction
