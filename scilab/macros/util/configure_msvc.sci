@@ -15,7 +15,7 @@ if MSDOS then
   case 'msvc50' then
       bOK=setmsvc50()
   else
-      disp('Warning Ms Visual C Compiler not found.');
+      //disp('Warning Ms Visual C Compiler not found.');
       bOK=%F;
   end
 else
