@@ -23,7 +23,7 @@ case 'set' then
     else
       [model,graphics,ok]=check_io(model,graphics,1,[],[1],[ones(out,1)])
       if ok then
-	graphics.exprs=exprs;model.evtout=ones(out,1);model.ipar=out
+	graphics.exprs=exprs;model.evtout=ones(out,1); model.firing=-ones(out,1)
 	x.graphics=graphics;x.model=model
 	break
       end
@@ -35,7 +35,6 @@ case 'define' then
   model.in=1
   model.evtin=1
   model.evtout=[1;1]
-  model.ipar=2
   model.blocktype='l'
   model.firing=[-1 -1]
   model.dep_ut=[%f %f]

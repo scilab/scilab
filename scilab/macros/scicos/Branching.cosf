@@ -137,5 +137,5 @@ scs_m.objs(11)=mlist(['Block','graphics','model','gui','doc'],..
                mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
                'ipar','blocktype','firing','dep_ut','label','nzcross'],..
-               list('eselect',-2),1,[],1,[1;1],[],[],[],2,'l',[-1,-1],[%f,%f],..
+               list('eselect',-2),1,[],1,[1;1],[],[],[],[],'l',[-1,-1],[%f,%f],..
                emptystr(),0),'ESELECT_f',list())
