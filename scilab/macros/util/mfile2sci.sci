@@ -149,9 +149,17 @@ if txt~=[] then
   
   // Blanks in file name are replaced by _ for batch
   // kc+9 because 'function '
-  func_proto=part(txt(1),kc+9:length(txt(1)))
-  keq=strindex(func_proto,"=")
-  kpar=strindex(func_proto,"(")
+  ksc=min(strindex(txt(1),";")) // searching for a comment on first line after function prototype
+  if isempty(ksc) then 
+    ksc=length(txt(1));
+    firstline=[]
+  else
+    firstline=part(txt(1),ksc+1:length(txt(1)));
+  end
+  
+  func_proto=part(txt(1),kc+9:ksc-1)
+  keq=min(strindex(func_proto,"="))
+  kpar=min(strindex(func_proto,"("))
   if isempty(keq) then
     keq=1
   end
@@ -162,7 +170,7 @@ if txt~=[] then
       strsubst(stripblanks(part(func_proto,keq+1:kpar-1))," ","_")+..
       part(func_proto,kpar:length(func_proto))
 
-  deff(func_proto,txt(2:$),"n")
+  deff(func_proto,[firstline;txt(2:$)],"n")
   w=who("get");
   mname=w(1);
   nametbl=[nametbl;mname]
@@ -191,7 +199,13 @@ if txt~=[] then
   [scitree,trad,hdr,crp]=m2sci(mtlbtree,w(1),Recmode,prettyprint)
 
   crp(1)=""; // Delete function prototype
-  res=[hdr;crp]
+  if isempty(firstline) then
+    res=[hdr;crp]
+  else
+    hdr(1)=hdr(1)+" "+crp(2);
+    crp(2)=[];
+    res=[hdr;crp];
+  end
 
   // Strip last return and blank lines
   n=size(res,1)
