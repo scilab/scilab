@@ -193,67 +193,67 @@ integer *type ;/* type of the imported data 0:integer,1:double */
 	*v=(void *) (scicos_imp.xptr);
 	*type=0;
 	break;
-    case 3 :			/* continuous state splitting array*/
+	/*    case 3 :		
 	*nv=(integer)(nblk+1);
 	*v=(void *) (scicos_imp.zcptr);
 	*type=0;
-	break;
-    case 4 :			/* discrete state */
+	break;*/
+    case 3 :			/* discrete state */
 	*nv=(integer)(scicos_imp.zptr[nblk]-scicos_imp.zptr[0]);
 	*v=(void *) (scicos_imp.z);
 	*type=1;
 	break;
-    case 5 :			/* discrete  state splitting array*/
+    case 4 :			/* discrete  state splitting array*/
 	*nv=(integer)(nblk+1);
 	*v=(void *) (scicos_imp.zptr);
 	*type=0;
 	break;
-    case 6 :			/* rpar */
+    case 5 :			/* rpar */
 	*nv=(integer)(scicos_imp.rpptr[nblk]-scicos_imp.rpptr[0]);
 	*v=(void *) (scicos_imp.rpar);
 	*type=1;
 	break;
-    case 7 :			/* rpar  splitting array*/
+    case 6 :			/* rpar  splitting array*/
 	*nv=(integer)(nblk+1);
 	*v=(void *) (scicos_imp.rpptr);
 	*type=0;
 	break;
-    case 8 :			/* ipar */
+    case 7 :			/* ipar */
 	*nv=(integer)(scicos_imp.ipptr[nblk]-scicos_imp.ipptr[0]);
 	*v=(void *) (scicos_imp.ipar);
 	*type=0;
 	break;
-    case 9 :			/* ipar  splitting array*/
+    case 8 :			/* ipar  splitting array*/
 	*nv=(integer)(nblk+1);
 	*v=(void *) (scicos_imp.ipptr);
 	*type=0;
 	break;
-    case 10 :			/* outtb */
+    case 9 :			/* outtb */
 	*nv=(integer)(scicos_imp.nout);
 	*v=(void *) (scicos_imp.outtb);
 	*type=1;
 	break;
-    case 11 :                   /* inpptr */
+    case 10 :                   /* inpptr */
 	*nv=(integer)(nblk+1);
 	*v=(void *) (scicos_imp.inpptr); 
 	*type=0;
 	break;
-    case 12 :                   /* outptr */
+    case 11 :                   /* outptr */
 	*nv=(integer)(nblk+1);
 	*v=(void *) (scicos_imp.outptr); 
 	*type=0;
 	break;
-    case 13 :                   /* inplnk */
+    case 12 :                   /* inplnk */
 	*nv=(integer)(scicos_imp.inpptr[nblk]-scicos_imp.inpptr[0]); 
 	*v=(void *) (scicos_imp.inplnk); 
 	*type=0;
 	break;
-    case 14 :                   /* outlnk */
+    case 13 :                   /* outlnk */
 	*nv=(integer)(scicos_imp.outptr[nblk]-scicos_imp.outptr[0]); 
 	*v=(void *) (scicos_imp.outlnk); 
 	*type=0;
 	break;
-    case 15 :                   /* lnkptr */
+    case 14 :                   /* lnkptr */
 	*nv=(integer)(scicos_imp.nlnkptr);
 	*v=(void *) (scicos_imp.lnkptr); 
 	*type=0;
