@@ -54,18 +54,40 @@ char *fnames[];
 /*     set struct fields */
     nels=1;
     for (k=0; k< *nz;k++) nels=nels*sz[k];
+    if (nels==1) {
     for (k=0; k< *nf;k++)
       {
-	crelistofvoids(&l,&next,&nels);
-	/*	creemptylist(&l,&next);   */
+	creonevoid(&l,&next);
 	n1 = next - l;
 	l += n1;
 	*istk(il + 5 + k) = *istk(il + 4 + k) + n1;
       }
+    }
+    else {
+    for (k=0; k< *nf;k++)
+      {
+	crelistofvoids(&l,&next,&nels);
+	n1 = next - l;
+	l += n1;
+	*istk(il + 5 + k) = *istk(il + 4 + k) + n1;
+      }
+    }
     *lstk(*lw+1)=l;
-    return 1;
+    return 1; 
 } 
-
+int creonevoid(slw,lw)
+     integer *slw, *lw;
+{
+  int il;
+  il = iadr(*slw);
+  *istk(il  )=1;
+  *istk(il+1)=0;
+  *istk(il+2)=0;
+  *istk(il+3)=0;
+  il += 4;
+  *lw = sadr(il);
+  return 0;
+}
 int crelistofvoids(slw,lw,nels)
      integer *slw, *lw, *nels;
 {
