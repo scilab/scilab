@@ -1,8 +1,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.8 2002/12/12 16:10:13 chanceli Exp $
+ * $Id: zzledt.c,v 1.9 2003/01/03 13:24:38 steer Exp $
  * $Log: zzledt.c,v $
+ * Revision 1.9  2003/01/03 13:24:38  steer
+ * ajout de la definition de get_one_char
+ *
  * Revision 1.8  2002/12/12 16:10:13  chanceli
  * update
  *
@@ -1143,6 +1146,19 @@ void C2F(setprlev)(int *pause)
     sprintf(Sci_Prompt,"-%d->",*pause);
   else
     sprintf(Sci_Prompt,">>");
+}
+
+int get_one_char(char *prompt) {
+  static char lp[24];
+  char buffer[2];
+  int buf_size=2, len_line, eof;
+
+  strcpy(lp,Sci_Prompt);
+  strcpy(Sci_Prompt,prompt); 
+  C2F(zzledt)(buffer,&buf_size,&len_line,&eof,2);
+  strcpy(Sci_Prompt,lp);
+
+  return buffer[0];
 }
 
      
