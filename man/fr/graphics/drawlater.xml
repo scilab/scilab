@@ -1,30 +1,75 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>drawlater</TITLE>
+
   <TYPE>Scilab Function</TYPE>
-  <DATE> 2002</DATE>
-  <SHORT_DESCRIPTION name="drawlater"> 
-   makes axes children invisible.
-  </SHORT_DESCRIPTION>
+
+  <DATE>2002</DATE>
+
+  <SHORT_DESCRIPTION name="drawlater">makes axes children
+  invisible.</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>drawlater() </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>drawlater()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>drawlater(h)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>drawlater('all')</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a handle or a list of handles of type axes.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>"all"</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: string keyword (optional).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
   <DESCRIPTION>
-    <P>
-    This function can be used to not display on the screen 
-    all graphics objects called by its basic drawing commands. 
-    Their Visibility property is set to <VERB>&quot;off&quot; </VERB>.</P>
-    <P>
-    It can specially be used with the  <VERB>drawnow</VERB> function.</P>
-    <P>
-    To return to the visible mode, it will be necessary to set a Visibility 
-    property of the current figure entity to <VERB>&quot;on&quot; </VERB>. It's equival
-    to make <VERB>drawnow(&quot;all&quot;)</VERB>.</P>
+    <P>This function can be used to not display on the screen all graphics
+    objects called by its basic drawing commands. The Visibility property of
+    the <VERB>current axes</VERB> (no argument specified), or the axes entity
+    (represented by the handle <VERB>h</VERB>) or the current figure
+    (<VERB>'all'</VERB>) is set to <VERB>"off" </VERB>. Therefore, all
+    children of these axes or figure will not be displayed too.</P>
+
+    <P>It can specially be used with the <VERB>drawnow</VERB> function.</P>
+
+    <P>To return to the visible mode, it will be necessary to set a Visibility
+    property back to <VERB>"on"</VERB> value using the <VERB>drawnow</VERB>
+    function. As a mirror, you can use:</P>
+
+    <P>-<VERB>drawnow()</VERB> to display the <VERB>current axes</VERB>.
+    Warning : note that between drawlater and drawnow calls, the current
+    figure and/or current axes may have changed. Therefore, the use of
+    drawlater/drawnow commands without argument must be used carefully.</P>
+
+    <P>-<VERB>drawnow(h)</VERB> to display the axes reprensented by the handle
+    <VERB>h</VERB>.</P>
+
+    <P>-<VERB>drawnow('all')</VERB> to display the<VERB> current
+    figure</VERB>. Warning : note that between drawlater and drawnow calls,
+    the current figure may have changed. Therefore, this must be used
+    carefully.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+
+  <EXAMPLE><![CDATA[
+  Example 1 // one axes / one figure
   set("figure_style","new") // select entity based graphics
   drawlater(); 
   xfarc(.25,.55,.1,.15,0,64*360);
@@ -46,21 +91,38 @@
   a.children(7).foreground=25;
   a.children(8).foreground=25;
   xclick();drawnow();
- ]]>
-  </EXAMPLE>
+ 
+  Example 2 // two axes / one figure
+
+  subplot(212)
+  a=gca();
+  drawlater(a) // what will be present in this axes will be displayed later
+  plot2d // draw these axes and children later...
+
+  subplot(211) // Warning: we change the axes
+  plot2d1 // default drawing mode
+
+  drawnow(a) // ...now!
+
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>get</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>set</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>drawnow</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Djalel ABDEMOUCHE</AUTHOR>
+
+  <AUTHOR>Djalel ABDEMOUCHE, F.Leray</AUTHOR>
 </MAN>
