@@ -6569,29 +6569,13 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_AGREG: 
       if (!sciGetVisibility(pobj)) break; /* RE-PUT F.Leray 21.01.05 */
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
-/*       /\* scan the hierarchie and call sciDrawObj *\/ */
-/*       psonstmp = sciGetLastSons (pobj); */
-/*       while (psonstmp != (sciSons *) NULL) */
-/* 	{ */
-/* 	  sciDrawObj (psonstmp->pointobj); */
-/* 	  psonstmp = psonstmp->pprev; */
-/* 	} */
-      
-      /* F.Leray 14.02.05 */
-      /* Change the order in Agreg drawing to make the 'plot' command easier to code */
-      
+      /* scan the hierarchie and call sciDrawObj */
       psonstmp = sciGetLastSons (pobj);
-      
-      /* search the first son */
-      while(psonstmp->pprev != NULL)
-	psonstmp = psonstmp->pprev;
-      
-      do
+      while (psonstmp != (sciSons *) NULL)
 	{
 	  sciDrawObj (psonstmp->pointobj);
-	  psonstmp = psonstmp->pnext;
-	} while (psonstmp !=  NULL);
-      
+	  psonstmp = psonstmp->pprev;
+	}
       break;
       /************ 30/04/2001 **************************************************/
       
