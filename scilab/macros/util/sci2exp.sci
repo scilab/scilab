@@ -50,6 +50,8 @@ case 5 then
   t=sp2exp(a,lmax)
 case 6 then
   t=sp2exp(a,lmax)
+case 7 then
+  t=sp2exp(a,lmax)
 case 8 then 
   t=int2exp(a,lmax)
 case 10 then
