@@ -4500,6 +4500,7 @@ int sci_demo (fname,code, flagx)
       sciprint("Demo of %s\r\n",fname);
       sciprint("%s\r\n",code);
     }
+  C2F(recu).krec=-1; /* added to avoid recursion errors */
   SciString(&ibegin,name,&mlhs,&mrhs);
   /* check if an error has occured while running a_function */
   LhsVar(1) = 0; 
