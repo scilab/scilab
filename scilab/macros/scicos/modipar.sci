@@ -26,11 +26,15 @@ nb=prod(size(rpptr))-1
 
 for k=newparameters
   if prod(size(k))==1 then //parameter of a sImple block
+    statekd=[]
     [fun,statek,dstatek,rpark,ipark]=scs_m(k)(3)([1 6:9]);
     if type(fun)==15 then
       if fun(2)==3 then 
         rpark=var2vec(rpark),
         dstatek=var2vec(dstatek),
+      elseif fun(2)>10000 then
+	statekd=statek($/2+1:$)
+	statek=statek(1:$/2)
       end
     end
     kc=cor(k) //index of modified block in compiled structure
@@ -52,7 +56,7 @@ for k=newparameters
   end
   
   if kc>0 then
-    //Change continuuous state
+    //Change continuous state
     nek=prod(size(statek))-(xptr(kc+1)-xptr(kc))
     if nek<>0&kc<>nb then
       st(nek+(xptr(kc+1)-1:xptr($)-1))=st((xptr(kc+1)-1:xptr($)-1))

@@ -607,7 +607,7 @@ c
       else
 C     .  t==told
          hot=info(1).eq.1
-         call ddoitdassl(neq,x,xptr,z,zptr,iz,izptr,told,tf,
+         call ddoit(neq,x,xptr,z,zptr,iz,izptr,told,tf,
      $        tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr,
      $        outlnk,lnkptr,clkptr,ordptr,nptr,
      $        ordclk,nordcl,cord,iord,niord,oord,zord,critev,

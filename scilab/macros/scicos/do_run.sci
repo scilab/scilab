@@ -43,6 +43,11 @@ if %cpr(2).xptr($)-1<size(%cpr(1).x,'*') & solver<100 then
 	   'switching to implicit Solver'])
   solver=100
   tolerances(6)=solver
+elseif %cpr(2).xptr($)-1==size(%cpr(1).x,'*') & solver==100 then
+  message(['Diagram has been compiled for explicit solver'
+	   'switching to explicit Solver'])
+  solver=0
+  tolerances(6)=solver
 end
 
 

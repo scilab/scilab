@@ -85,11 +85,6 @@ end
 
 if show_trace then disp('c_pass31:'+string(timer())),end
 
-// discard calls by events other than from virtual block (active-perm)
-// to event port 0 of blocks
-
-clkconnect(find((clkconnect(:,2)<>0)&(clkconnect(:,4)==0)),:)=[]
-
 
 //extract various info from bllst
 [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
@@ -305,6 +300,9 @@ zord=zord(zord(:,1)<>zeros(zord(:,1)),:)
 //Donc les blocks indiques sont des blocks susceptibles de produire
 //des discontinuites quand l'evenement se produit
 
+maX=max(max(cord(:,1)),max(ordclk(:,1)))+1;
+cordX=cord(:,1)*maX+cord(:,2);
+
 // 1: important; 0:non
 n=clkptr(nblk+1)-1 //nb d'evenement
 //a priori tous les evenemets sont non-importants
@@ -312,10 +310,14 @@ critev=zeros(n,1)
 for i=1:n
   fl=%f
   for hh=ordptr1(i):ordptr1(i+1)-1
-  jj= ordclk(hh,1) //block excite par evenement i
-    if ~(ordclk(hh,2)==0) then
+    jj= ordclk(hh,1) //block excite par evenement i
+    //Folowing line is not correct
+    //if ~(ordclk(hh,2)==0) then
+    if ~or(jj*maX+ordclk(hh,2)==cordX)
+      // if a bloc with internal state is excited then it is critical
+      if typ_x(jj)  then fl=%t;break; end
       for ii=[outoin(outoinptr(jj):outoinptr(jj+1)-1,1)',..
-	  evoutoin(evoutoinptr(jj):evoutoinptr(jj+1)-1,1)']
+	      evoutoin(evoutoinptr(jj):evoutoinptr(jj+1)-1,1)']
 	//block excite par block excite par evenement i
 	//si il est integre, i est important
 	if typ_x(ii) | typ_z(ii) then fl=%t;break; end
