@@ -2734,7 +2734,8 @@ int C2F(mspcreate)(lw, m, n, nzMax, it)
      integer *lw, *m, *n, *nzMax, *it;
 {
   integer ix1;
-  integer jc, il, ir;
+  integer jc, il, ir; int NZMAX;
+  int k,pr;
   double size;
   if (*lw + 1 >= Bot) {
     Scierror(18,"too many names\r\n");
@@ -2742,31 +2743,39 @@ int C2F(mspcreate)(lw, m, n, nzMax, it)
   }
 
   il = iadr(*Lstk(*lw ));
-  ix1 = il + 4 + (*n + 1) + *nzMax;
-  size = (*it + 1) * *nzMax ;
-  Err = sadr(ix1)  - *Lstk(Bot );
+  NZMAX=*nzMax;
+  if (NZMAX==0) NZMAX=1;
+  ix1 = il + 4 + (*n + 1) + NZMAX;
+  size = (*it + 1) * NZMAX ;
+  Err = sadr(ix1)  - *lstk(Bot );
   if (Err > -size ) {
     Scierror(17,"stack size exceeded (Use stacksize function to increase it)\r\n");
     return FALSE_;
   };
   *istk(il ) = 7;
-  /*        si m*n=0 les deux dimensions sont mises a zero. */
+  /*        si m*n=0 les deux dimensions sont mises a zero. 
   *istk(il +1) = Min(*m , *m * *n);
-  *istk(il + 1 +1) = Min(*n,*m * *n);
-  *istk(il + 2 +1) = *it;
-  *istk(il + 3 +1) = *nzMax;
-  *istk(il + 4 +1) = 0;
-  *istk(il + 5 + *n ) = *nzMax;
+  *istk(il + 1 +1) = Min(*n, *m * *n);     */
+  *istk(il +1) = *m;
+  *istk(il + 2) = *n;
+  *istk(il + 3) = *it;
+  *istk(il + 4) = NZMAX;
   jc = il + 5;
+
+  for (k=0; k<*n+1; ++k) *istk(jc+k)=0;  /* Jc =0 */
   ir = jc + *n + 1;
-  ix1 = il + 4 + (*n + 1) + *nzMax;
-  *Lstk(*lw +1) = sadr(ix1) + (*it + 1) * *nzMax + 1;
+  for (k=0; k<NZMAX; ++k) *istk(ir+k)=0;   /* Ir = 0 */
+  pr = sadr(ir + NZMAX );
+
+  for (k=0; k<NZMAX; ++k) *stk(pr+k)=0;    /* Pr =0  */
+  ix1 = il + 4 + (*n + 1) + NZMAX;
+  *Lstk(*lw +1) = sadr(ix1) + (*it + 1) * NZMAX + 1;
+
   C2F(intersci).ntypes[*lw-Top+Rhs-1] = '$';
   C2F(intersci).iwhere[*lw-Top+Rhs-1] = *Lstk(*lw);
   /* C2F(intersci).lad[*lw-Top+Rhs-1] = should point to numeric data */
   return TRUE_;
 }
-
 
 /**********************************************************************
  * Scilab Error at C level 
