@@ -37,27 +37,20 @@ void relationalop(scicos_block *block,int flag)
 	  }
 	  break;    
 	case 3:
-	  if(block->inptr[0][0]<block->inptr[1][0]) {
-	    block->outptr[0][0]=1.0;
-	  }else{
-	    block->outptr[0][0]=0.0;
-	  }
-	  break;    
-	case 4:
 	  if(block->inptr[0][0]<=block->inptr[1][0]) {
 	    block->outptr[0][0]=1.0;
 	  }else{
 	    block->outptr[0][0]=0.0;
 	  }
 	  break;   
-	case 5:
+	case 4:
 	  if(block->inptr[0][0]>=block->inptr[1][0]) {
 	    block->outptr[0][0]=1.0;
 	  }else{
 	    block->outptr[0][0]=0.0;
 	  }
 	  break;   
-	case 6:
+	case 5:
 	  if(block->inptr[0][0]>block->inptr[1][0]) {
 	    block->outptr[0][0]=1.0;
 	  }else{
@@ -95,27 +88,20 @@ void relationalop(scicos_block *block,int flag)
 	  }
 	  break;    
 	case 3:
-	  if(block->inptr[0][0]<block->inptr[1][0]) {
-	    block->mode[0]=(int)2.0;
-	  }else{
-	    block->mode[0]=(int)1.0;
-	  }
-	  break;    
-	case 4:
 	  if(block->inptr[0][0]<=block->inptr[1][0]) {
 	    block->mode[0]=(int)2.0;
 	  }else{
 	    block->mode[0]=(int)1.0;
 	  }
 	  break;   
-	case 5:
+	case 4:
 	  if(block->inptr[0][0]>=block->inptr[1][0]) {
 	    block->mode[0]=(int)2.0;
 	  }else{
 	    block->mode[0]=(int)1.0;
 	  }
 	  break;   
-	case 6:
+	case 5:
 	  if(block->inptr[0][0]>block->inptr[1][0]) {
 	    block->mode[0]=(int)2.0;
 	  }else{
