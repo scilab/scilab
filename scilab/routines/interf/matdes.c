@@ -761,7 +761,7 @@ int sciparam3d1(fname, fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer izcol, *zcol=NULL;
+  integer izcol=0, *zcol=NULL;
   static double  ebox_def [6]= { 0,1,0,1,0,1};
   double *ebox = ebox_def ;
   static integer iflag_def[3]={1,2,4};
@@ -944,7 +944,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
   integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
   integer m3n, n3n, l3n, m3l, n3l, l3l;
 
-  integer izcol, *zcol=NULL;
+  integer izcol=0, *zcol=NULL;
 
   static rhs_opts opts[]= { {-1,"alpha","?",0,0,0},
 			    {-1,"ebox","?",0,0,0},
@@ -3592,9 +3592,6 @@ extern void Sci_Help(char *,char *,char *);
 static int int_gtkhelp(fname)
      char *fname;
 {
-  char *path;
-  char *locale;
-  char *file;
   int m1,n1,l1,m2,n2,l2,m3,n3,l3;
   CheckRhs(3,3);
   CheckLhs(0,1);
@@ -3605,6 +3602,7 @@ static int int_gtkhelp(fname)
   Sci_Help(cstk(l1),cstk(l2),cstk(l3));
 #endif 
   LhsVar(1)=0;
+  return 0;
 }
 
 /*-----------------------------------------------------------
