@@ -250,7 +250,7 @@ frame $w.frame.mksize  -borderwidth 0
 pack $w.frame.mksize  -side top -fill x
 
 label $w.frame.marksizelabel -height 0 -text "      Mark size:   " -width 0 
-scale $w.frame.marksize -orient horizontal -length 284 -from 1 -to 20 \
+scale $w.frame.marksize -orient horizontal -length 284 -from 0 -to 20 \
 	 -resolution 1.0 -command "setMarkSize $w.frame.marksize" -tickinterval 0
 pack $w.frame.marksizelabel -in $w.frame.mksize -side left 
 pack $w.frame.marksize  -in $w.frame.mksize  -expand 1 -fill x -pady 2m -padx 2m
