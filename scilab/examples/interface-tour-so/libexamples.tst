@@ -19,4 +19,3 @@ exec('ex15c.sce')
 exec('ex15f.sce')
 exec('ex16.sce')
 exec('ex17.sce')
-quit
