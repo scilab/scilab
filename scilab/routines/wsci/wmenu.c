@@ -69,7 +69,7 @@ void Callback_EXEC(void)
 	{
 		SendCTRLandAKey(CTRLU);
 		wsprintf(command,"exec('%s');disp('exec done');\n;",Fichier);
-		write_scilab(command);
+		StoreCommand1 (command,1);
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -86,7 +86,7 @@ void Callback_GETF(void)
 	{
 		SendCTRLandAKey(CTRLU);
 		wsprintf(command,"getf('%s');disp('getf done');\n;",Fichier);
-		write_scilab(command);
+		StoreCommand1 (command,1);
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -103,7 +103,7 @@ void Callback_LOAD(void)
 	{
 		SendCTRLandAKey(CTRLU);
 	    	wsprintf(command,"load('%s');disp('file loaded');\n;",Fichier);
-	    	write_scilab(command);
+			StoreCommand1 (command,1);
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -119,8 +119,8 @@ void Callback_SAVE(void)
 	if (OpenSaveSCIFile(lptw->hWndParent,"Save",FALSE,"Files *.sav\0*.sav\0Files *.bin\0*.bin\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
 		SendCTRLandAKey(CTRLU);
-		wsprintf(command," save('%s');disp('file saved');\n;",Fichier);
-		write_scilab(command);
+		wsprintf(command,"save('%s');disp('file saved');\n;",Fichier);
+		StoreCommand1 (command,1);
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -163,7 +163,7 @@ void Callback_CHDIR(void)
 	 	SHGetPathFromIDList(pidl, chemin); 
 	 	SendCTRLandAKey(CTRLU);
 		wsprintf(command,"chdir('%s');",chemin);
-		StoreCommand1 (command, 2);
+		StoreCommand (command);
 	}
 
 }
@@ -243,19 +243,16 @@ void Callback_CHOOSETHEFONT(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_RESTART(void)
 {
-	#define TEMPOTOUCHE  1
 	extern char ScilexWindowName[MAX_PATH];
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
 	SendCTRLandAKey(CTRLU);
-	//SendCTRLandAKey(CTRLC);
 
 	ClearCommandWindow(lptw,TRUE);
 
 	SendCTRLandAKey(CTRLU);
 	StoreCommand1("abort;",0);
-
 
 	SendCTRLandAKey(CTRLU);
 	StoreCommand1("savehistory();",0);
@@ -271,19 +268,20 @@ void Callback_RESTART(void)
 void Callback_ABORT(void)
 {
 	SendCTRLandAKey(CTRLU);
-	write_scilab("abort;\n");
+	StoreCommand1("abort;\n",1);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_PAUSE(void)
 {
 	SendCTRLandAKey(CTRLU);
-	write_scilab("pause;\n");
+	StoreCommand1("pause;\n",1);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_RESUME(void)
 {
 	SendCTRLandAKey(CTRLU);
-	write_scilab("resume;\n");
+	StoreCommand1("resume;\n",1);
+	
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_CONSOLE(void)
@@ -293,18 +291,19 @@ void Callback_CONSOLE(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_SCIPAD(void)
 {
-	StoreCommand1 ("scipad()", 2);
+	StoreCommand1 ("scipad()",2);
 	switch (LanguageCode)
 	{
 		case 1:
-			StoreCommand1 ("LANGUAGE=\"fr\";", 2);
+			StoreCommand("LANGUAGE=\"fr\";");
 		break;
 		
 		default: case 0:
-			StoreCommand1 ("LANGUAGE=\"eng\";", 2);
+			StoreCommand("LANGUAGE=\"eng\";");
 		break;
 	}
-	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);", 2);
+	StoreCommand ("%helps=initial_help_chapters(LANGUAGE);");
+	
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_HELP(void)
@@ -313,22 +312,22 @@ void Callback_HELP(void)
 	switch (LanguageCode)
 	{
 		case 1:
-			StoreCommand1 ("LANGUAGE=\"fr\";", 2);
+			StoreCommand ("LANGUAGE=\"fr\";");
 		break;
 		
 		default: case 0:
-			StoreCommand1 ("LANGUAGE=\"eng\";", 2);
+			StoreCommand ("LANGUAGE=\"eng\";");
 		break;
 	}
 		
-	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);", 2);
+	StoreCommand ("%helps=initial_help_chapters(LANGUAGE);");
 	    		
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_DEMOS(void)
 {
 	SendCTRLandAKey(CTRLU);
-	StoreCommand1 ("exec('SCI/demos/alldems.dem');\n", 1);
+	StoreCommand("exec('SCI/demos/alldems.dem');");
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_WEB(void)

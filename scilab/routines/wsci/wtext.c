@@ -3418,5 +3418,91 @@ void InvalidateCursor( void )
 	GetCursorPos( &pt );
 	SetCursorPos( pt.x, pt.y );
 }
+/*-----------------------------------------------------------------------------------*/
+void MessageBoxNewGraphicMode(void)
+{
+	HKEY key;
+	DWORD result,Length,size=4;
+	char Clef[MAX_PATH];
+	int DontShowMessageNewGraphicMode,Ans;
 
+	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);
+  	result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
 
+	if ( RegQueryValueEx(key, "DontShowMessageNewGraphicMode", 0, NULL, (LPBYTE)&Ans, &size) !=  ERROR_SUCCESS )
+  	{
+  			DontShowMessageNewGraphicMode = 0;
+	}
+	else
+	{
+			DontShowMessageNewGraphicMode = Ans;
+	}
+
+	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
+
+	if (DontShowMessageNewGraphicMode == 0)
+	{
+		DialogBox(hdllInstance, "IDD_MESSAGE_NEW_GRAPHIC", NULL,MessageBoxNewGraphicModeDlgProc);
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam)
+{
+   switch(Message)
+   {
+      case WM_INITDIALOG:
+         CheckDlgButton(hwnd, IDC_CHECKNEWGRAPHIC, BST_UNCHECKED);
+		 switch (LanguageCode)
+		{
+    		case 1:
+			SetWindowText(hwnd,"Remarque Importante");
+			SetDlgItemText(hwnd,IDC_NEWGRAPHICMESSAGE,"texte FR");
+    		SetDlgItemText(hwnd,IDC_CHECKNEWGRAPHIC,"Ne plus afficher ce message à chaque démarrage");
+    		break;
+
+    		case 0:default:
+			SetWindowText(hwnd,"Important remark");
+			SetDlgItemText(hwnd,IDC_NEWGRAPHICMESSAGE,"text ENG");
+			SetDlgItemText(hwnd,IDC_CHECKNEWGRAPHIC,"Don't Show this screen at startup");
+    		break;
+		}
+      return TRUE;
+
+      case WM_COMMAND:
+         switch(LOWORD(wParam))
+         {
+            case IDOK:
+				{
+					HKEY key;
+					DWORD result,dwsize=4;
+					char Clef[MAX_PATH];
+					int DontShowMessageNewGraphicMode;
+	
+				  	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);  	
+  					RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
+
+					if(IsDlgButtonChecked(hwnd, IDC_CHECKNEWGRAPHIC) == BST_CHECKED)
+					{
+						//The Box is CHECKED!
+						DontShowMessageNewGraphicMode=1;
+						RegSetValueEx(key, "DontShowMessageNewGraphicMode", 0, REG_DWORD, (LPBYTE)&DontShowMessageNewGraphicMode, dwsize);
+                     
+					}
+					else
+					{
+						//The Box is NOT checked!
+						DontShowMessageNewGraphicMode=0;
+						RegSetValueEx(key, "DontShowMessageNewGraphicMode", 0, REG_DWORD, (LPBYTE)&DontShowMessageNewGraphicMode, dwsize);
+					}
+
+					RegCloseKey(key);
+				}
+				
+               EndDialog(hwnd, IDOK);
+            return TRUE;
+         }
+      break;
+   }
+   return FALSE;
+}
+/*-----------------------------------------------------------------------------------*/

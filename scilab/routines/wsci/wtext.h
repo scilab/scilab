@@ -286,3 +286,6 @@ DWORD WINAPI WriteTextThread(LPVOID lpParam);
 /*--------------------------*/
 int ShowWindowFunction _PARAMS((char *fname));
 /*--------------------------*/
+void MessageBoxNewGraphicMode(void);
+BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam);
+/*--------------------------*/
