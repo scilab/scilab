@@ -10,6 +10,10 @@ extern void cerro();
 
 #include "../machine.h"
 
+#if WIN32
+extern int F2C(arbor)();
+#endif
+
 void C2F(dmtree)(i0,la1,lp1,ls1,m,n,pred,w)
 int *i0,*la1,*lp1,*ls1,*m,*n,*pred,*w;
 {

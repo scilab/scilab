@@ -10,7 +10,7 @@
 
 #ifdef WIN32
 extern void cerro __PARAMS((char *str));
-
+extern int F2C(frmtrs) ();
 #endif
 
 void C2F(transc)(lp1,lpft,ls1,lsft,m,lsftdim,lpftdim,n)
