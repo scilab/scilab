@@ -57,13 +57,13 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
 	 sci_isletter.sci sci_islogical.sci sci_isnan.sci sci_isnumeric.sci sci_ispc.sci\
          sci_isreal.sci sci_isscalar.sci \
 	 sci_isspace.sci sci_issparse.sci sci_isstr.sci sci_isstruct.sci sci_isunix.sci \
-	 sci_isvector.sci sci_keyboard.sci \
-	 sci_length.sci sci_load.sci sci_log2.sci \
+	 sci_isvector.sci sci_keyboard.sci sci_kron.sci \
+	 sci_length.sci sci_linspace.sci sci_load.sci sci_log2.sci \
          sci_logical.sci sci_lookfor.sci sci_lu.sci sci_makecell.sci sci_mod.sci \
 	 sci_more.sci \
          sci_ndims.sci sci_norm.sci sci_num2str.sci \
 	 sci_pause.sci sci_pow2.sci sci_qr.sci \
-	 sci_quit.sci sci_rcond.sci sci_rem.sci \
+	 sci_quit.sci sci_rcond.sci sci_rem.sci sci_repmat.sci\
          sci_reshape.sci sci_return.sci sci_save.sci sci_schur.sci sci_setstr.sci \
 	 sci_size.sci sci_sort.sci sci_sparse.sci \
          sci_strcmpi.sci sci_strcmp.sci sci_strfind.sci sci_strrep.sci sci_struct.sci \
@@ -71,8 +71,10 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
          sci_home.sci sci_type.sci sci_uigetdir.sci sci_vertcat.sci \
 	 sci_waitforbuttonpress.sci sci_warning.sci
 
-PLOT =  sci_axis.sci sci_box.sci sci_cla.sci sci_clf.sci sci_close.sci sci_closereq.sci sci_colordef.sci \
-	sci_graymon.sci sci_grid.sci sci_hold.sci sci_ishold.sci sci_plot.sci
+PLOT =  sci_axis.sci sci_box.sci sci_cla.sci sci_clf.sci sci_close.sci \
+	sci_closereq.sci sci_colordef.sci \
+	sci_graymon.sci sci_grid.sci sci_hold.sci \
+	sci_ishold.sci sci_plot.sci 
 
 MACROS = $(PROTO0) $(PROTO1) $(PROTO2) $(PROTO3) $(PROTO4) \
          $(PROTO5) $(PROTO6) $(PROTO7) $(PROTO8) $(PROTO9) \
