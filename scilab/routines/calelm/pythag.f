@@ -67,6 +67,9 @@
       parameter (  r2 = 1.41421356237309504d0, 
      $           r2p1 = 2.41421356237309504d0,
      $           t2p1 = 1.25371671790502177d-16)
+*     LOCAL VARIABLES
+      double precision x, y
+      double precision s, t, temp
 
 *     STATIC VARIABLES
       double precision rmax
@@ -76,9 +79,6 @@
       save             first
       data             first /.true./
 
-*     LOCAL VARIABLES
-      double precision x, y
-      double precision s, t, temp
 
 *     TEXT
 *     Initialize rmax with computed largest non-overflowing number

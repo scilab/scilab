@@ -27,17 +27,18 @@
       external         dlamch
       integer          isanan
       external         isanan
-
-*     STATIC VARIABLES
-      double precision RMAX, RMIN, ULP, BASE, LNB, TINY
-      save             RMAX, RMIN, ULP, BASE, LNB, TINY
-      logical          first, DENORM
-      save             first, DENORM
-      data             first /.true./
-
 *     LOCAL VARIABLES
       double precision sign_x, ep, xa, d, m
       integer          e, i, p
+
+*     STATIC VARIABLES
+ 	logical          first, DENORM
+
+      double precision RMAX, RMIN, ULP, BASE, LNB, TINY
+      save             RMAX, RMIN, ULP, BASE, LNB, TINY
+           save             first, DENORM
+      data             first /.true./
+
 
 *     TEXT
 *     got f.p. parameters used by the algorithm

@@ -32,14 +32,6 @@
 
 *     LOCAL VAR
       double precision a, b, t, r
-
-*     STATIC VAR
-      logical first
-      save    first
-      data    first /.true./
-      double precision RMAX, LSUP, LINF
-      save             RMAX, LSUP, LINF
-      
 *     CONSTANTS
       double precision R2
       parameter (R2 =  1.41421356237309504d0)
@@ -48,6 +40,15 @@
       double precision dlamch, logp1, pythag
       external         dlamch, logp1, pythag
 
+
+*     STATIC VAR
+      logical first
+	double precision RMAX, LSUP, LINF
+
+      save    first
+      data    first /.true./
+           save             RMAX, LSUP, LINF
+      
       if (first) then
          RMAX = dlamch('O')
          LINF = sqrt(dlamch('U'))

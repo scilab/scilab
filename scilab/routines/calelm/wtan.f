@@ -75,17 +75,18 @@
 
 *     LOCAL VAR
       double precision sr, si, d
-
-*     STATIC VAR
-      logical first
-      save    first
-      data    first /.true./
-      double precision LIM
-      save             LIM
-      
 *     EXTERNAL
       double precision dlamch
       external         dlamch
+
+*     STATIC VAR
+      logical first
+	double precision LIM
+
+      save    first
+      data    first /.true./
+            save             LIM
+      
 
       if (first) then
 *        epsm is gotten with dlamch('e')

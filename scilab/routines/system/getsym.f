@@ -63,11 +63,12 @@
       double precision syv
       integer namecd(nlgh), chcnt, io
       integer blank,    dot,    percen,    name,   num
-      data    blank/40/,dot/51/,percen/56/,name/1/,num/0/
 
 *     STATEMENTS FUNCTIONS
       integer c
       logical isDigit, isAlphaNum, isBlank
+      data    blank/40/,dot/51/,percen/56/,name/1/,num/0/
+
       isDigit(c)    = abs(c) .le. 9
       isAlphaNum(c) = abs(c) .lt. blank
       isBlank(c)    = abs(c) .eq. blank

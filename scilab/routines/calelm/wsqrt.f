@@ -60,19 +60,19 @@
 
 *     LOCAL VAR
       double precision a, b, t
-
-*     STATIC VAR
-      logical first
-      save    first
-      data    first /.true./
-      double precision RMAX, BRMIN
-      save             RMAX, BRMIN
-      
 *     EXTERNAL
       double precision pythag, dlamch
       external         pythag, dlamch 
       integer          isanan
       external         isanan
+
+*     STATIC VAR
+      logical first
+ 	double precision RMAX, BRMIN
+      save    first
+      data    first /.true./
+      save             RMAX, BRMIN
+      
 
       if (first) then
          RMAX = dlamch('O')

@@ -96,7 +96,7 @@
       character*(ndgmax+6) string
       double precision toto
       save             toto
-      data             toto /0.d0/
+
 *
 *     detdot : a var to put the value of the argument dotdet
 *              (this is because at the call, dotdet is a constant 
@@ -151,11 +151,16 @@
 
 *     SOME CHAR SYMBOLS (scilab char are integers)
       integer dot,    d,    e,    plus,    minus
-      data    dot/51/,d/13/,e/14/,plus/45/,minus/46/
 
 *     STATEMENT FUNCTION
       integer c
       logical isDigit
+
+*     DATA 
+      data    dot/51/,d/13/,e/14/,plus/45/,minus/46/
+      data             toto /0.d0/
+
+
       isDigit(c) = abs(c) .le. 9
 
 *     this is from the original getval code... don't know the reason

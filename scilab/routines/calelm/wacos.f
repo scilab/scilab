@@ -43,6 +43,9 @@
      $                     PI = 3.1415926535897932384626433d0,
      $                 Across = 1.5d0,
      $                 Bcross = 0.6417d0)  
+*     LOCAL VARIABLES
+      double precision x, y, A, B, R, S, Am1, szr, szi
+
 
 *     STATIC VARIABLES
       double precision LSUP, LINF, EPSM
@@ -50,9 +53,6 @@
       logical          first
       save             first
       data             first /.true./
-
-*     LOCAL VARIABLES
-      double precision x, y, A, B, R, S, Am1, szr, szi
 
 *     TEXT
 *     got f.p. parameters used by the algorithm

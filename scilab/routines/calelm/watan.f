@@ -151,10 +151,11 @@ c
 
 c     STATIC VAR
       logical first
+      double precision RMAX, HALFPI
+      
       save    first
       data    first /.true./
-      double precision RMAX, HALFPI
-      save             RMAX, HALFPI
+	save             RMAX, HALFPI
 
       if (first) then
          RMAX = dlamch('O')

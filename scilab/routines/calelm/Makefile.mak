@@ -4,7 +4,7 @@
 # Generated automatically from Makefile.in by configure.
 SHELL = /bin/sh
 SCIDIR=../..
-SCIDIR1=..\..
+SCIDIR1=..\.. 
 
 LIBRARY = $(SCIDIR)/libs/calelm.lib
 
@@ -27,6 +27,7 @@ OBJSF = coshin.obj arcosh.obj  dad.obj dadd.obj  ccopy.obj  rcopy.obj ddif.obj \
 	dmsum.obj wmsum.obj dmprod.obj wmprod.obj drdiv.obj dcabs1.obj infinity.obj \
 	unsfdcopy.obj idmax.obj idmin.obj wacos.obj wasin.obj  wtan.obj nearfloat.obj
 
+
 include ../../Makefile.incl.mak
 
 CFLAGS = $(CC_OPTIONS)
@@ -44,13 +45,6 @@ Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
 
 # according to compiler, do not optimize the following files
-
-icopy.obj: icopy.f
-	$(FC) -g -c icopy.f -o icopy.obj
-
-unsfdcopy.obj: unsfdcopy.f
-	$(FC) -g -c unsfdcopy.f -o unsfdcopy.obj
-
 
 finite.obj: ../machine.h
 
