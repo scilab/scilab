@@ -96,6 +96,23 @@ void  sciprint(char *fmt,...)
 }
 
 /* 
+ * sciprint(format,arg1,....)
+ * no diary record 
+ */
+
+void  sciprint_nd(char *fmt,...) 
+{
+  integer lstr;
+  va_list ap;
+  char s_buf[1024];
+  va_start(ap,fmt);
+  /* next three lines added for diary SS*/
+  (void ) vsprintf(s_buf, fmt, ap );
+  printf("%s",s_buf); 
+  va_end(ap);
+}
+
+/* 
  * as sciprint but with an added first argument 
  * which is ignored (used in do_printf) 
  */

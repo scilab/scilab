@@ -685,6 +685,37 @@ void sciprint (char *fmt,...)
 }
 
 /*---------------------------------------------------
+ * the same but no diary record 
+ *---------------------------------------------------*/
+
+void sciprint (char *fmt,...)
+{
+  int i, count, lstr;
+  char buf[MAXPRINTF];
+  va_list args;
+  va_start (args, fmt);
+
+  /* next three lines added for diary SS */
+  count = vsprintf (buf, fmt, args);
+  lstr = strlen (buf);
+
+  C2F (xscion) (&i);
+  if (i == 0)
+    {
+      /*count = vfprintf(stdout, fmt, args ); */
+      printf ("%s", buf);
+
+    }
+  else
+    {
+      /*count = vsprintf(buf,fmt,args); SS */
+      TextPutS (&textwin, buf);
+    }
+  va_end (args);
+  /** return count; **/
+}
+
+/*---------------------------------------------------
  * as sciprint but with an added first argument 
  * which is ignored (used in do_printf) 
  *---------------------------------------------------*/

@@ -61,6 +61,7 @@ void C2F(setprlev)(int *pause) ;
 /* xxx */
 
 extern void sciprint(char *fmt, ...);
+extern void sciprint_nd(char *fmt, ...);
 extern int sciprint2(int v,char *fmt,...);
 extern void Scistring(char *str);
 extern int  Scierror(int iv,char *fmt,...);

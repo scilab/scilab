@@ -610,11 +610,10 @@ void Scistring(str)
 #include <varargs.h>
 #endif 
 
-/* 
-  Fonction de type print(format,args,....) 
-  qui imprime dans la fenetre Scilab
-*/
-
+/*---------------------------------------------------
+ * functions similar to print(format,arg1,...,argn) 
+ * but with output redirected to scilab window 
+ *-------------------------------------------------*/
 
 #ifdef __STDC__ 
 void  sciprint(char *fmt,...) 
@@ -657,6 +656,43 @@ void sciprint(va_alist) va_dcl
     }
   C2F(diary)(s_buf,&lstr,0L);
 
+  va_end(ap);
+}
+
+/* almost the same but no diary record */ 
+/* usefull for automatic tests */ 
+
+#ifdef __STDC__ 
+void  sciprint_nd(char *fmt,...) 
+#else 
+/*VARARGS0*/
+void sciprint_nd(va_alist) va_dcl
+#endif 
+{
+  int i;
+  integer lstr;
+  va_list ap;
+  char s_buf[1024];
+#ifdef __STDC__
+  va_start(ap,fmt);
+#else
+  char *fmt;
+  va_start(ap);
+  fmt = va_arg(ap, char *);
+#endif
+
+  (void ) vsprintf(s_buf, fmt, ap );
+  lstr=strlen(s_buf);
+
+  C2F(xscion)(&i);
+  if (i == 0) 
+    {
+      printf("%s",s_buf); 
+    }
+  else 
+    {
+      C2F(xscisncr)(s_buf,&lstr,0L);
+    }
   va_end(ap);
 }
 

@@ -104,6 +104,7 @@ extern int winsystem(char *,int );
 /* winmain.c */
 
 extern void sciprint(char *fmt, ...);
+extern void sciprint_nd(char *fmt, ...);
 extern int sciprint2(int v,char *fmt,...);
 
 extern int Pause(LPSTR mess); 
