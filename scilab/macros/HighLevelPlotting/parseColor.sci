@@ -25,6 +25,10 @@ case 10 // a string
 		if parseList(2)~="none"
 			error(sprintf('%s : %s is an unknown edgecolor specification',funcName,parseList(2)));
 		end
+    elseif colName=="backfacecolor"	
+	 if parseList(2)~="none"
+        error(sprintf('%s : %s is an unknown backfacecolor specification',funcName,parseList(2)));
+	 end
 	end	
 	col=parseList(2);
 else

@@ -7,19 +7,18 @@ function mainPlot3d(typeOfPlot,argList)
 // (tri)mesh
 // (tri)surf
 // (tri)surfl
-// (tri)pcolor
+// (tri)pcolor
 // triplot
 
 hidden=%T;
 numberOfVertices=4;     // default type of polygons
 lightVect=[1;1;1];      // default position of light source (at infinity)
-BackFaceLighting="lit";
+BackFaceColor="none";
 azimuth=45;             // default azimuth
 elevation=54.7;         // default elevation
 facecolor=[];           // default facecolor for 'mesh'
 edgecolor=[];           // default edgecolor for 'mesh'
 markersize=1;
-shadingType='faceted';
 dejavu=0;
 surfaceIsParam=%F;
 colorBar='off'
@@ -64,6 +63,8 @@ end
 winH=gcf();
 imm_draw = winH.immediate_drawing;
 winH.immediate_drawing='off';
+
+state=loadGraphicState(win)
 
 while length(argList)
 
@@ -213,7 +214,10 @@ while length(argList)
          lightVect=parseLight(typeOfPlot,argList);
 	 argList(1)=null(); argList(1)=null();
       case 'backfacelighting'
-         BackFaceLighting=parseBackFaceLighting(typeOfPlot,argList);
+         BackFaceColor=parseBackFaceLighting(typeOfPlot,argList);
+	 argList(1)=null(); argList(1)=null();
+      case 'backfacecolor'
+         BackFaceColor=parseColor(typeOfPlot,'backfacecolor',argList);
 	 argList(1)=null(); argList(1)=null();
       case 'view'
          [azimuth,elevation]=parseView(typeOfPlot,argList,azimuth,elevation);
@@ -225,7 +229,7 @@ while length(argList)
          edgecolor = parseColor(typeOfPlot,'edgecolor',argList);
          argList(1)=null(); argList(1)=null();
       case 'shading'
-         [shadingType,facecolor,edgecolor]=parseShading(typeOfPlot,argList);
+         [facecolor,edgecolor]=parseShading(typeOfPlot,argList);
  	 argList(1)=null(); argList(1)=null();
       case 'axis'
          [axisStyle,axisRatio,axisVect,axisTightX,axisTightY] = ...
@@ -274,6 +278,8 @@ end // while length(argList)
 
 [foreground,background]=processSFB(foreground,background,win,typeOfPlot)
 
+state=loadGraphicState(win)
+
 if edgecolor==[]
    edgecolor=foreground;
 end
@@ -289,8 +295,6 @@ else
 end
 
 labels=Xlabel+'@'+Ylabel+'@'+Zlabel;
-
-state=loadGraphicState(win)
 
 // Now we process the list of plots to do
 
@@ -558,13 +562,14 @@ else
 
 			end
 
-			C=matrix(tab(C),size(Z));
+			   C=matrix(tab(C),size(Z));
 
 		else
 			C=zeros(1,size(X,2));
 			if facecolor ~= 'none'
 				C=C+addcolor(facecolor);
 			end
+            facecolor="flat";
 		end
 
 		if typeOfPlot=='pcolor' | typeOfPlot=='tripcolor' | typeOfPlot=='triplot'
@@ -578,7 +583,7 @@ else
 			// plot the axis and all the stuff
 			process2DAxis(state,nTicksX,nTicksY,foreground,background,modeStart,modeScale,gridFlag,gridColor)
 			
-			xclip('clipgrf')
+//			xclip('clipgrf')
 
 			if typeOfPlot=='tripcolor' & facecolor=='interp'			
 				fec(X,Y,[1:ntri;triang;zeros(1,ntri)]',Z,colminmax=[tab(1) tab($)],zminmax=[minC maxC])
@@ -593,7 +598,7 @@ else
 				end
 			end
 						
-			xclip()
+//			xclip()
 
 			// Now draw the axis and grid (2nd part of process2DAxis)
 
@@ -630,10 +635,10 @@ else
 				h.foreground=color(ec(1),ec(2),ec(3));				
 			end
 			
-			if (typeOfPlot=="surfl" | typeOfPlot=="trisurfl") &  BackFaceLighting=="unlit"
-					h.hiddencolor=mean(tab);
-			else
-					h.hiddencolor=-1;
+			if BackFaceColor=="auto";
+				h.hiddencolor=mean(tab);		
+			elseif BackFaceColor=="none";
+				h.hiddencolor=-1;
 			end
 			
 			if colorBar~='off'

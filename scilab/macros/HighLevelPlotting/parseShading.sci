@@ -1,17 +1,14 @@
-function [shad,facec,edgec]=parseShading(typeOfPlot,argList)
+function [facec,edgec]=parseShading(typeOfPlot,argList)
 if length(argList)>=2
 if type(argList(2))==10
    select argList(2)
    case 'flat'
-      shad='flat';
       facec="flat';
 	  edgec="none";
    case 'faceted'
-      shad='faceted';
       facec="flat';
       edgec=[];
    case 'interp'
-      shad='interp';
       facec="interp';
       edgec="none";
    else
