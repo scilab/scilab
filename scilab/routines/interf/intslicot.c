@@ -14,22 +14,25 @@ extern Gatefunc C2F(intmucomp);
 extern Gatefunc C2F(intricc2);
 extern Gatefunc C2F(inthinf);
 extern Gatefunc C2F(intdhinf);
+extern Gatefunc C2F(intlinmeq);
+extern int C2F(intmb03od) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzb03od) __PARAMS((char *fname, unsigned long fname_len));
 
 int intrankqr(fname)
      char* fname;
 {
-  int *header1;int *header2;
+  int *header1;
   int Cmplx;int ret;
 
   header1 = (int *) GetData(1);
   Cmplx=header1[3];
   if (Cmplx==0) {
     ret = C2F(intmb03od)("rankqr",6L);
-    return; } 
+    return 0; } 
   else
     {
       ret = C2F(intzb03od)("rankqr",6L);
-      return; } 
+      return 0; } 
 }
 
 int intab01od(fname)
@@ -102,6 +105,7 @@ static GenericTable Tab[]={
   {(Myinterfun) sci_gateway, C2F(intricc2),"pet_ricc"},
   {(Myinterfun) sci_gateway, C2F(inthinf),"hinf"},
   {(Myinterfun) sci_gateway, C2F(intdhinf),"dhinf"},
+  {(Myinterfun) sci_gateway, C2F(intlinmeq),"linmeq"},
 };
  
 int C2F(intslicot)()
