@@ -16,20 +16,31 @@ case 'set' then
   model=arg1.model;
   while %t do
     [ok,in,exprs]=getvalue('Set MUX block parameters',..
-	'number of input ports',list('vec',1),exprs)
+	'number of input ports or vector of sizes',list('vec',-1),exprs)
     if ~ok then break,end
-    if in<2|in>8then
-      message('Block must have at least two input ports and at most eight')
+    if size(in,'*')==1 then
+      if in<2|in>8then
+	message('Block must have at least two input ports and at most eight')
+	ok=%f
+      else
+	[model,graphics,ok]=check_io(model,graphics,-[1:in]',0,[],[])
+      end
     else
-      [model,graphics,ok]=check_io(model,graphics,-[1:in]',0,[],[])
-      if ok then
-	graphics.exprs=exprs;model.ipar=in
-	x.graphics=graphics;x.model=model
-	break
+      if size(in,'*')<2| size(in,'*')>8 then
+	message('Block must have at least two input ports and at most eight')
+	ok=%f
+      else
+	[model,graphics,ok]=check_io(model,graphics,in(:),0,[],[])
+	if ok then in=size(in,'*'),end
       end
     end
+    if ok then
+      graphics.exprs=exprs;model.ipar=in
+      x.graphics=graphics;x.model=model
+      break
+    end
   end
-case 'define' then
+ case 'define' then
   in=2
   model=scicos_model()
   model.sim=list('mux',1)
