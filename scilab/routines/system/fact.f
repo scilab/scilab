@@ -347,7 +347,6 @@ c     .     (.. ,) syntax
 c     next lines to manage named arguments (..,a=..)
 
       fun=fun1
-
       lpt4=lpt(4)
       call getch
       if(char1.eq.equal) then
@@ -356,9 +355,12 @@ c     check for a==
          goto 42
       endif
       if(ids(1,pt).eq.blank) then 
-         call error(2)
-         return
+c     .  (x=2) syntax for a a factor ->(x==2)
+         lpt(4)=lpt4
+         char1=equal
+         goto 42
       endif
+c     it is really a named argument
       if ( eptover(1,psiz-1))  return
       ids(1,pt)=rhs
       ids(2,pt)=lhs
@@ -383,7 +385,6 @@ c     end of special code to manage named argument
       goto 44
 c
  42   continue
-
 c     argument is a standard expression
       if ( eptover(1,psiz-1))  return
       pstk(pt) = excnt
