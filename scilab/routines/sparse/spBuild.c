@@ -48,7 +48,7 @@
 static char copyright[] =
     "Sparse1.3: Copyright (c) 1985,86,87,88 by Kenneth S. Kundert";
 static char RCSid[] =
-    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spBuild.c,v 1.1 2001/04/26 07:48:07 scilab Exp $";
+    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spBuild.c,v 1.2 2004/02/28 16:43:21 cornet Exp $";
 #endif
 
 
@@ -887,7 +887,7 @@ register  int  Col;
         }
     }
     Matrix->RowsLinked = YES;
-    return;
+    return 0;
 }
 
 
@@ -925,31 +925,31 @@ register int I, OldAllocatedSize = Matrix->AllocatedSize;
     Matrix->Size = NewSize;
 
     if (NewSize <= OldAllocatedSize)
-        return;
+        return 0;
 
 /* Expand the matrix frame. */
-    NewSize = MAX( NewSize, EXPANSION_FACTOR * OldAllocatedSize );
+    NewSize = (int) MAX( NewSize, EXPANSION_FACTOR * OldAllocatedSize );
     Matrix->AllocatedSize = NewSize;
 
     if (( REALLOC(Matrix->IntToExtColMap, int, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
-        return;
+        return 0;
     }
     if (( REALLOC(Matrix->IntToExtRowMap, int, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
-        return;
+        return 0;
     }
     if (( REALLOC(Matrix->Diag, ElementPtr, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
-        return;
+        return 0;
     }
     if (( REALLOC(Matrix->FirstInCol, ElementPtr, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
-        return;
+        return 0;
     }
     if (( REALLOC(Matrix->FirstInRow, ElementPtr, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
-        return;
+        return 0;
     }
 
 /*
@@ -973,7 +973,7 @@ register int I, OldAllocatedSize = Matrix->AllocatedSize;
         Matrix->FirstInCol[I] = NULL;
     }
 
-    return;
+    return 0;
 }
 
 
@@ -1014,19 +1014,19 @@ register int I, OldAllocatedSize = Matrix->AllocatedExtSize;
     Matrix->ExtSize = NewSize;
 
     if (NewSize <= OldAllocatedSize)
-        return;
+        return 0;
 
 /* Expand the translation arrays ExtToIntRowMap and ExtToIntColMap. */
-    NewSize = MAX( NewSize, EXPANSION_FACTOR * OldAllocatedSize );
+    NewSize = (int) MAX( NewSize, EXPANSION_FACTOR * OldAllocatedSize );
     Matrix->AllocatedExtSize = NewSize;
 
     if (( REALLOC(Matrix->ExtToIntRowMap, int, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
-        return;
+        return 0;
     }
     if (( REALLOC(Matrix->ExtToIntColMap, int, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
-        return;
+        return 0;
     }
 
 /* Initialize the new portion of the vectors. */
@@ -1035,7 +1035,7 @@ register int I, OldAllocatedSize = Matrix->AllocatedExtSize;
         Matrix->ExtToIntColMap[I] = -1;
     }
 
-    return;
+    return 0;
 }
 #endif
 

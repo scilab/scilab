@@ -27,7 +27,6 @@
  *  WriteStatus
  */
 
-
 /*
  *  Revision and copyright information.
  *
@@ -48,7 +47,7 @@
 static char copyright[] =
     "Sparse1.3: Copyright (c) 1985,86,87,88 by Kenneth S. Kundert";
 static char RCSid[] =
-    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spFactor.c,v 1.1 2001/04/26 07:48:07 scilab Exp $";
+    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spFactor.c,v 1.2 2004/02/28 16:43:21 cornet Exp $";
 #endif
 
 
@@ -94,7 +93,7 @@ static ZeroPivot();
 
 
 
-
+
 /*
  *  ORDER AND FACTOR MATRIX
  *
@@ -188,6 +187,7 @@ static ZeroPivot();
  *  spSMALL_PIVOT
  *  Error is cleared in this function.
  */
+extern void spcLinkRows(MatrixPtr Matrix);
 
 int
 spOrderAndFactor( eMatrix, RHS, RelThreshold, AbsThreshold, DiagPivoting )
@@ -809,7 +809,7 @@ int  Size;
 
     if (Matrix->Error != spNO_MEMORY)
         Matrix->InternalVectorsAllocated = YES;
-    return;
+    return 0;
 }
 
 
@@ -915,7 +915,7 @@ int  ExtRow;
         }
         Matrix->MarkowitzCol[I] = Count;
     }
-    return;
+    return 0;
 }
 
 
@@ -982,7 +982,7 @@ double fProduct;
             if (fProduct >= LARGEST_LONG_INTEGER)
                 *pMarkowitzProduct++ = LARGEST_LONG_INTEGER;
             else
-                *pMarkowitzProduct++ = fProduct;
+                *pMarkowitzProduct++ = (long) fProduct;
         }
         else
         {   Product = *pMarkowitzRow++ * *pMarkowitzCol++;
@@ -990,7 +990,7 @@ double fProduct;
                 Matrix->Singletons++;
         }
     }
-    return;
+    return 0;
 }
 
 
@@ -2079,138 +2079,6 @@ RealNumber  Largest, Magnitude;
 
 
 /*
- *  EXCHANGE ROWS AND COLUMNS
- *
- *  Exchanges two rows and two columns so that the selected pivot is moved to
- *  the upper left corner of the remaining submatrix.
- *
- *  >>> Arguments:
- *  Matrix  <input>  (MatrixPtr)
- *      Pointer to the matrix.
- *  pPivot  <input>  (ElementPtr)
- *      Pointer to the current pivot.
- *  Step  <input>  (int)
- *      Index of the diagonal currently being eliminated.
- *
- *  >>> Local variables:
- *  Col  (int)
- *      Column where the pivot was found.
- *  Row  (int)
- *      Row where the pivot was found.
- *  OldMarkowitzProd_Col  (long)
- *      Markowitz product associated with the diagonal element in the row
- *      the pivot was found in.
- *  OldMarkowitzProd_Row  (long)
- *      Markowitz product associated with the diagonal element in the column
- *      the pivot was found in.
- *  OldMarkowitzProd_Step  (long)
- *      Markowitz product associated with the diagonal element that is being
- *      moved so that the pivot can be placed in the upper left-hand corner
- *      of the reduced submatrix.
- */
-
-static
-ExchangeRowsAndCols( Matrix, pPivot, Step )
-
-MatrixPtr Matrix;
-ElementPtr  pPivot;
-register int Step;
-{
-register  int   Row, Col;
-long  OldMarkowitzProd_Step, OldMarkowitzProd_Row, OldMarkowitzProd_Col;
-ElementPtr spcFindElementInCol();
-
-/* Begin `ExchangeRowsAndCols'. */
-    Row = pPivot->Row;
-    Col = pPivot->Col;
-    Matrix->PivotsOriginalRow = Row;
-    Matrix->PivotsOriginalCol = Col;
-
-    if ((Row == Step) AND (Col == Step)) return;
-
-/* Exchange rows and columns. */
-    if (Row == Col)
-    {   spcRowExchange( Matrix, Step, Row );
-        spcColExchange( Matrix, Step, Col );
-        SWAP( long, Matrix->MarkowitzProd[Step], Matrix->MarkowitzProd[Row] );
-        SWAP( ElementPtr, Matrix->Diag[Row], Matrix->Diag[Step] );
-    }
-    else
-    {
-
-/* Initialize variables that hold old Markowitz products. */
-        OldMarkowitzProd_Step = Matrix->MarkowitzProd[Step];
-        OldMarkowitzProd_Row = Matrix->MarkowitzProd[Row];
-        OldMarkowitzProd_Col = Matrix->MarkowitzProd[Col];
-
-/* Exchange rows. */
-        if (Row != Step)
-        {   spcRowExchange( Matrix, Step, Row );
-            Matrix->NumberOfInterchangesIsOdd =
-                                       NOT Matrix->NumberOfInterchangesIsOdd;
-            Matrix->MarkowitzProd[Row] = Matrix->MarkowitzRow[Row] *
-                                                   Matrix->MarkowitzCol[Row];
-
-/* Update singleton count. */
-            if ((Matrix->MarkowitzProd[Row]==0) != (OldMarkowitzProd_Row==0))
-            {   if (OldMarkowitzProd_Row == 0)
-                    Matrix->Singletons--;
-                else
-                    Matrix->Singletons++;
-            }
-        }
-
-/* Exchange columns. */
-        if (Col != Step)
-        {   spcColExchange( Matrix, Step, Col );
-            Matrix->NumberOfInterchangesIsOdd =
-                                       NOT Matrix->NumberOfInterchangesIsOdd;
-            Matrix->MarkowitzProd[Col] = Matrix->MarkowitzCol[Col] *
-                                                   Matrix->MarkowitzRow[Col];
-
-/* Update singleton count. */
-            if ((Matrix->MarkowitzProd[Col]==0) != (OldMarkowitzProd_Col==0))
-            {   if (OldMarkowitzProd_Col == 0)
-                    Matrix->Singletons--;
-                else
-                    Matrix->Singletons++;
-            }
-
-            Matrix->Diag[Col] = spcFindElementInCol( Matrix,
-                                                     Matrix->FirstInCol+Col,
-                                                     Col, Col, NO );
-        }
-        if (Row != Step)
-        {   Matrix->Diag[Row] = spcFindElementInCol( Matrix,
-                                                     Matrix->FirstInCol+Row,
-                                                     Row, Row, NO );
-        }
-        Matrix->Diag[Step] = spcFindElementInCol( Matrix,
-                                                  Matrix->FirstInCol+Step,
-                                                  Step, Step, NO );
-
-/* Update singleton count. */
-        Matrix->MarkowitzProd[Step] = Matrix->MarkowitzCol[Step] *
-                                                    Matrix->MarkowitzRow[Step];
-        if ((Matrix->MarkowitzProd[Step]==0) != (OldMarkowitzProd_Step==0))
-        {   if (OldMarkowitzProd_Step == 0)
-                Matrix->Singletons--;
-            else
-                Matrix->Singletons++;
-        }
-    }
-    return;
-}
-
-
-
-
-
-
-
-
-
-/*
  *  EXCHANGE ROWS
  *
  *  Performs all required operations to exchange two rows. Those operations
@@ -2300,7 +2168,7 @@ ElementPtr  Element1, Element2;
     Matrix->ExtToIntRowMap[ Matrix->IntToExtRowMap[Row2] ] = Row2;
 #endif
 
-    return;
+    return 0;
 }
 
 
@@ -2401,8 +2269,140 @@ ElementPtr  Element1, Element2;
     Matrix->ExtToIntColMap[ Matrix->IntToExtColMap[Col2] ] = Col2;
 #endif
 
-    return;
+    return 0;
 }
+
+
+
+
+
+
+
+/*
+ *  EXCHANGE ROWS AND COLUMNS
+ *
+ *  Exchanges two rows and two columns so that the selected pivot is moved to
+ *  the upper left corner of the remaining submatrix.
+ *
+ *  >>> Arguments:
+ *  Matrix  <input>  (MatrixPtr)
+ *      Pointer to the matrix.
+ *  pPivot  <input>  (ElementPtr)
+ *      Pointer to the current pivot.
+ *  Step  <input>  (int)
+ *      Index of the diagonal currently being eliminated.
+ *
+ *  >>> Local variables:
+ *  Col  (int)
+ *      Column where the pivot was found.
+ *  Row  (int)
+ *      Row where the pivot was found.
+ *  OldMarkowitzProd_Col  (long)
+ *      Markowitz product associated with the diagonal element in the row
+ *      the pivot was found in.
+ *  OldMarkowitzProd_Row  (long)
+ *      Markowitz product associated with the diagonal element in the column
+ *      the pivot was found in.
+ *  OldMarkowitzProd_Step  (long)
+ *      Markowitz product associated with the diagonal element that is being
+ *      moved so that the pivot can be placed in the upper left-hand corner
+ *      of the reduced submatrix.
+ */
+
+static
+ExchangeRowsAndCols( Matrix, pPivot, Step )
+
+MatrixPtr Matrix;
+ElementPtr  pPivot;
+register int Step;
+{
+register  int   Row, Col;
+long  OldMarkowitzProd_Step, OldMarkowitzProd_Row, OldMarkowitzProd_Col;
+ElementPtr spcFindElementInCol();
+
+/* Begin `ExchangeRowsAndCols'. */
+    Row = pPivot->Row;
+    Col = pPivot->Col;
+    Matrix->PivotsOriginalRow = Row;
+    Matrix->PivotsOriginalCol = Col;
+
+    if ((Row == Step) AND (Col == Step)) return 0;
+
+/* Exchange rows and columns. */
+    if (Row == Col)
+    {   spcRowExchange( Matrix, Step, Row );
+        spcColExchange( Matrix, Step, Col );
+        SWAP( long, Matrix->MarkowitzProd[Step], Matrix->MarkowitzProd[Row] );
+        SWAP( ElementPtr, Matrix->Diag[Row], Matrix->Diag[Step] );
+    }
+    else
+    {
+
+/* Initialize variables that hold old Markowitz products. */
+        OldMarkowitzProd_Step = Matrix->MarkowitzProd[Step];
+        OldMarkowitzProd_Row = Matrix->MarkowitzProd[Row];
+        OldMarkowitzProd_Col = Matrix->MarkowitzProd[Col];
+
+/* Exchange rows. */
+        if (Row != Step)
+        {   spcRowExchange( Matrix, Step, Row );
+            Matrix->NumberOfInterchangesIsOdd =
+                                       NOT Matrix->NumberOfInterchangesIsOdd;
+            Matrix->MarkowitzProd[Row] = Matrix->MarkowitzRow[Row] *
+                                                   Matrix->MarkowitzCol[Row];
+
+/* Update singleton count. */
+            if ((Matrix->MarkowitzProd[Row]==0) != (OldMarkowitzProd_Row==0))
+            {   if (OldMarkowitzProd_Row == 0)
+                    Matrix->Singletons--;
+                else
+                    Matrix->Singletons++;
+            }
+        }
+
+/* Exchange columns. */
+        if (Col != Step)
+        {   spcColExchange( Matrix, Step, Col );
+            Matrix->NumberOfInterchangesIsOdd =
+                                       NOT Matrix->NumberOfInterchangesIsOdd;
+            Matrix->MarkowitzProd[Col] = Matrix->MarkowitzCol[Col] *
+                                                   Matrix->MarkowitzRow[Col];
+
+/* Update singleton count. */
+            if ((Matrix->MarkowitzProd[Col]==0) != (OldMarkowitzProd_Col==0))
+            {   if (OldMarkowitzProd_Col == 0)
+                    Matrix->Singletons--;
+                else
+                    Matrix->Singletons++;
+            }
+
+            Matrix->Diag[Col] = spcFindElementInCol( Matrix,
+                                                     Matrix->FirstInCol+Col,
+                                                     Col, Col, NO );
+        }
+        if (Row != Step)
+        {   Matrix->Diag[Row] = spcFindElementInCol( Matrix,
+                                                     Matrix->FirstInCol+Row,
+                                                     Row, Row, NO );
+        }
+        Matrix->Diag[Step] = spcFindElementInCol( Matrix,
+                                                  Matrix->FirstInCol+Step,
+                                                  Step, Step, NO );
+
+/* Update singleton count. */
+        Matrix->MarkowitzProd[Step] = Matrix->MarkowitzCol[Step] *
+                                                    Matrix->MarkowitzRow[Step];
+        if ((Matrix->MarkowitzProd[Step]==0) != (OldMarkowitzProd_Step==0))
+        {   if (OldMarkowitzProd_Step == 0)
+                Matrix->Singletons--;
+            else
+                Matrix->Singletons++;
+        }
+    }
+    return 0;
+}
+
+
 
 
 
@@ -2541,7 +2541,7 @@ register  ElementPtr  pElement;
         }
         Element2->Row = Row1;
     }
-    return;
+    return 0;
 }
 
 
@@ -2683,7 +2683,7 @@ register   ElementPtr  pElement;
         }
         Element2->Col = Col1;
     }
-    return;
+    return 0;
 }
 
 
@@ -2740,7 +2740,7 @@ register  ElementPtr  pLower, pUpper;
 /* Test for zero pivot. */
     if (ABS(pPivot->Real) == 0.0)
     {   (void)MatrixIsSingular( Matrix, pPivot->Row );
-        return;
+        return 0; 
     }
 /*jpc    pPivot->Real = 1.0 / pPivot->Real; */
 
@@ -2765,7 +2765,7 @@ register  ElementPtr  pLower, pUpper;
             {   pSub = CreateFillin( Matrix, Row, pUpper->Col );
                 if (pSub == NULL)
                 {   Matrix->Error = spNO_MEMORY;
-                    return;
+                    return 0;
                 }
             }
             pSub->Real -= pUpper->Real * pLower->Real;
@@ -2774,7 +2774,7 @@ register  ElementPtr  pLower, pUpper;
         }
         pUpper = pUpper->NextInRow;
     }
-    return;
+    return 0;
 #endif /* REAL */
 }
 
@@ -2829,7 +2829,7 @@ register  ElementPtr  pLower, pUpper;
 /* Test for zero pivot. */
     if (ELEMENT_MAG(pPivot) == 0.0)
     {   (void)MatrixIsSingular( Matrix, pPivot->Row );
-        return;
+        return 0;
     }
     CMPLX_RECIPROCAL(*pPivot, *pPivot);
 
@@ -2854,7 +2854,7 @@ register  ElementPtr  pLower, pUpper;
             {   pSub = CreateFillin( Matrix, Row, pUpper->Col );
                 if (pSub == NULL)
                 {   Matrix->Error = spNO_MEMORY;
-                    return;
+                    return 0;
                 }
             }
 
@@ -2865,7 +2865,7 @@ register  ElementPtr  pLower, pUpper;
         }
         pUpper = pUpper->NextInRow;
     }
-    return;
+    return 0;
 #endif /* spCOMPLEX */
 }
 
@@ -2921,7 +2921,7 @@ double Product;
             if (Product >= LARGEST_LONG_INTEGER)
                 Matrix->MarkowitzProd[Row] = LARGEST_LONG_INTEGER;
             else
-                Matrix->MarkowitzProd[Row] = Product;
+                Matrix->MarkowitzProd[Row] = (long)Product;
         }
         else Matrix->MarkowitzProd[Row] = MarkoRow[Row] * MarkoCol[Row];
         if (MarkoRow[Row] == 0)
@@ -2939,13 +2939,13 @@ double Product;
             if (Product >= LARGEST_LONG_INTEGER)
                 Matrix->MarkowitzProd[Col] = LARGEST_LONG_INTEGER;
             else
-                Matrix->MarkowitzProd[Col] = Product;
+                Matrix->MarkowitzProd[Col] = (long)Product;
         }
         else Matrix->MarkowitzProd[Col] = MarkoRow[Col] * MarkoCol[Col];
         if ((MarkoCol[Col] == 0) AND (MarkoRow[Col] != 0))
             Matrix->Singletons++;
     }
-    return;
+    return 0;
 }
 
 

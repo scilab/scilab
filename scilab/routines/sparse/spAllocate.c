@@ -50,7 +50,7 @@
 static char copyright[] =
     "Sparse1.3: Copyright (c) 1985,86,87,88 by Kenneth S. Kundert";
 static char RCSid[] =
-    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spAllocate.c,v 1.1 2001/04/26 07:48:07 scilab Exp $";
+    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spAllocate.c,v 1.2 2004/02/28 16:43:21 cornet Exp $";
 #endif
 
 
@@ -384,28 +384,28 @@ ElementPtr  pElement;
 /* Allocate block of MatrixElements for elements. */
     pElement = ALLOC(struct MatrixElement, InitialNumberOfElements);
     RecordAllocation( Matrix, (char *)pElement );
-    if (Matrix->Error == spNO_MEMORY) return;
+    if (Matrix->Error == spNO_MEMORY) return 0;
     Matrix->ElementsRemaining = InitialNumberOfElements;
     Matrix->NextAvailElement = pElement;
 
 /* Allocate block of MatrixElements for fill-ins. */
     pElement = ALLOC(struct MatrixElement, NumberOfFillinsExpected);
     RecordAllocation( Matrix, (char *)pElement );
-    if (Matrix->Error == spNO_MEMORY) return;
+    if (Matrix->Error == spNO_MEMORY) return 0;
     Matrix->FillinsRemaining = NumberOfFillinsExpected;
     Matrix->NextAvailFillin = pElement;
 
 /* Allocate a fill-in list structure. */
     Matrix->FirstFillinListNode = ALLOC(struct FillinListNodeStruct,1);
     RecordAllocation( Matrix, (char *)Matrix->FirstFillinListNode );
-    if (Matrix->Error == spNO_MEMORY) return;
+    if (Matrix->Error == spNO_MEMORY) return 0;
     Matrix->LastFillinListNode = Matrix->FirstFillinListNode;
 
     Matrix->FirstFillinListNode->pFillinList = pElement;
     Matrix->FirstFillinListNode->NumberOfFillinsInList =NumberOfFillinsExpected;
     Matrix->FirstFillinListNode->Next = NULL;
 
-    return;
+    return 0;
 }
 
 
@@ -526,7 +526,7 @@ char  *AllocatedPtr;
  */
     if (AllocatedPtr == NULL)
     {   Matrix->Error = spNO_MEMORY;
-        return;
+        return 0;
     }
 
 /* Allocate block of MatrixElements if necessary. */
@@ -534,14 +534,14 @@ char  *AllocatedPtr;
     {   AllocateBlockOfAllocationList( Matrix );
         if (Matrix->Error == spNO_MEMORY)
         {   FREE(AllocatedPtr);
-            return;
+            return 0;
         }
     }
 
 /* Add Allocated pointer to Allocation List. */
     (++Matrix->TopOfAllocationList)->AllocatedPtr = AllocatedPtr;
     Matrix->RecordsRemaining--;
-    return;
+    return 0;
 
 }
 
@@ -583,7 +583,7 @@ register  AllocationListPtr  ListPtr;
     ListPtr = ALLOC(struct AllocationRecord, (ELEMENTS_PER_ALLOCATION+1));
     if (ListPtr == NULL)
     {   Matrix->Error = spNO_MEMORY;
-        return;
+        return 0;
     }
 
 /* String entries of allocation list into singly linked list.  List is linked
@@ -601,7 +601,7 @@ register  AllocationListPtr  ListPtr;
     Matrix->TopOfAllocationList->AllocatedPtr = (char *)ListPtr;
     Matrix->RecordsRemaining = ELEMENTS_PER_ALLOCATION;
 
-    return;
+    return 0;
 }
 
 

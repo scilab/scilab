@@ -50,7 +50,7 @@
 static char copyright[] =
     "Sparse1.3: Copyright (c) 1985,86,87,88 by Kenneth S. Kundert";
 static char RCSid[] =
-    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spUtils.c,v 1.1 2001/04/26 07:48:07 scilab Exp $";
+    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spUtils.c,v 1.2 2004/02/28 16:43:21 cornet Exp $";
 #endif
 
 
@@ -296,7 +296,7 @@ int Col1 = pTwin1->Col, Col2 = pTwin2->Col;
     Matrix->Diag[Col1] = pTwin2;
     Matrix->Diag[Col2] = pTwin1;
     Matrix->NumberOfInterchangesIsOdd = NOT Matrix->NumberOfInterchangesIsOdd;
-    return;
+    return 0;
 }
 #endif /* MODIFIED_NODAL */
 
@@ -364,6 +364,9 @@ int Col1 = pTwin1->Col, Col2 = pTwin2->Col;
  *  ScaleFactor  (RealNumber)
  *      The scale factor being used on the current row or column.
  */
+
+extern void spcLinkRows(MatrixPtr Matrix);
+
 
 void
 spScale( eMatrix, RHS_ScaleFactors, SolutionScaleFactors )
@@ -1235,6 +1238,9 @@ struct FillinListNodeStruct  *pListNode;
  *  Size  (int)
  *      The local version Matrix->Size, the size of the matrix.
  */
+
+extern void spcRowExchange(MatrixPtr Matrix,int  Row1,int Row2);
+extern void spcColExchange(MatrixPtr Matrix,int  Col1,int Col2);
 
 void
 spDeleteRowAndCol( eMatrix, Row, Col )

@@ -72,6 +72,8 @@ int *n;
   *n = Matrix->NumRank;
 }
 
+extern void cerro();
+
 void 
 C2F(lufact1)(val,lln,col,n,nel,fmat,eps,releps,nrank,ierr)
 double *val,*eps,*releps;
@@ -134,7 +136,7 @@ int *n,*nel,*nrank,*lln,*col,*ierr;
  *   b,v 
  *      two arrays of size n the matrix size 
  */
-
+extern void Cout(char *str);
 
 static int 
 spSolveCheck(eMatrix)
@@ -350,7 +352,7 @@ spLusiz(eMatrix,lsize,usize)
 char *eMatrix;
 int *lsize,*usize;
 {
-int I,J;
+int J;
 MatrixPtr Matrix = (MatrixPtr) eMatrix;
 ElementPtr  pElement;
 int Size;
