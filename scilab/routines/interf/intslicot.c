@@ -7,6 +7,7 @@
 extern Gatefunc C2F(sident);
 extern Gatefunc C2F(sorder);
 extern Gatefunc C2F(findbd);
+extern Gatefunc C2F(intmucomp);
 
 int intrankqr(fname)
      char* fname;
@@ -89,6 +90,7 @@ static GenericTable Tab[]={
   {(Myinterfun) fortran_mex_gateway, C2F(findbd),"findbd"},
   {(Myinterfun) sci_gateway, intrankqr,"rankqr"},
   {(Myinterfun) sci_gateway, intab01od,"contr"},
+  {(Myinterfun) sci_gateway, C2F(intmucomp),"mucomp"},
 };
  
 int C2F(intslicot)()

@@ -11,7 +11,7 @@ c
       double precision ZERO
       parameter ( ZERO = 0.0D0)
 
-c     [Q,R,JPVT,RANK,SVAL]=mb03od(A,[RCOND,JPVT])
+c     [Q,R,JPVT,RANK,SVAL]=rankqr(A,[RCOND,JPVT])
 
       minrhs=1
       maxrhs=3
@@ -38,14 +38,14 @@ c     [Q,R,JPVT,RANK,SVAL]=mb03od(A,[RCOND,JPVT])
       if(.not.getrhsvar(A,'d',M,N,ptrA)) return
 
       if(rhs.eq.1) then
-c                 mb03od(A)
+c                 rankqr(A)
 c     create RCOND=0.0,JPVT=[0,..,0]
          if(.not.createvar(RCOND,'d',1,1,ptrRCOND)) return
          stk(ptrRCOND)=RCONDdef
          if(.not.createvar(JPVT,'i',1,N,ptrJPVT)) return
          call icopy(N,0,0,istk(ptrJPVT),1)
       elseif(rhs.eq.2) then
-c                 mb03od(A,RCOND)
+c                 rankqr(A,RCOND)
 c     get RCOND, create JPVT=[0,..,0]
          if(.not.getrhsvar(RCOND,'d',mR,nR,ptrRCOND)) return
          if(mR*nR.ne.1) then 
@@ -56,7 +56,7 @@ c     get RCOND, create JPVT=[0,..,0]
          if(.not.createvar(JPVT,'i',1,N,ptrJPVT)) return
          call icopy(N,0,0,istk(ptrJPVT),1)
       elseif(rhs.eq.3) then
-c                 mb03od(A,RCOND,JPVT)
+c                 rankqr(A,RCOND,JPVT)
 c     get  RCOND, JPVT
          if(.not.getrhsvar(RCOND,'d',mR,nR,ptrRCOND)) return
          if(mR*nR.ne.1) then 
@@ -137,7 +137,7 @@ c     A is tall => Q=[A,0]
          return
       endif
 
-c     [Q,R,JPVT,RANK,SVAL]=mb03od(A,[RCOND,JPVT])
+c     [Q,R,JPVT,RANK,SVAL]=rankqr(A,[RCOND,JPVT])
 
       lhsvar(1)=Q
       lhsvar(2)=R
@@ -160,7 +160,7 @@ c
       complex*16 ZERO
       parameter( ZERO=(0.0D0,0.0D0) )
 
-c     [Q,R,JPVT,RANK,SVAL]=zb03od(A,[RCOND,JPVT])
+c     [Q,R,JPVT,RANK,SVAL]=rankqr(A,[RCOND,JPVT])
 
       minrhs=1
       maxrhs=3
@@ -187,14 +187,14 @@ c     [Q,R,JPVT,RANK,SVAL]=zb03od(A,[RCOND,JPVT])
       if(.not.getrhsvar(A,'z',M,N,ptrA)) return
 
       if(rhs.eq.1) then
-c                 zb03od(A)
+c                 rankqr(A)
 c     create RCOND=0.0,JPVT=[0,..,0]
          if(.not.createvar(RCOND,'d',1,1,ptrRCOND)) return
          stk(ptrRCOND)=RCONDdef;
          if(.not.createvar(JPVT,'i',1,N,ptrJPVT)) return
          call icopy(N,0,0,istk(ptrJPVT),1)
       elseif(rhs.eq.2) then
-c                 zb03od(A,RCOND)
+c                 rankqr(A,RCOND)
 c     get RCOND, create JPVT=[0,..,0]
          if(.not.getrhsvar(RCOND,'d',mR,nR,ptrRCOND)) return
          if(mR*nR.ne.1) then 
@@ -205,7 +205,7 @@ c     get RCOND, create JPVT=[0,..,0]
          if(.not.createvar(JPVT,'i',1,N,ptrJPVT)) return 
          call icopy(N,0,0,istk(ptrJPVT),1)
       elseif(rhs.eq.3) then
-c                 zb03od(A,RCOND,JPVT)
+c                 rankqr(A,RCOND,JPVT)
 c     get  RCOND, JPVT
          if(.not.getrhsvar(RCOND,'d',mR,nR,ptrRCOND)) return
          if(mR*nR.ne.1) then 
@@ -287,7 +287,7 @@ c     A is tall => Q=[A,0]
          return
       endif
 
-c     [Q,R,JPVT,RANK,SVAL]=zb03od(A,[RCOND,JPVT])
+c     [Q,R,JPVT,RANK,SVAL]=rankqr(A,[RCOND,JPVT])
 
       lhsvar(1)=Q
       lhsvar(2)=R
@@ -296,6 +296,103 @@ c     [Q,R,JPVT,RANK,SVAL]=zb03od(A,[RCOND,JPVT])
       lhsvar(5)=SVAL
 
       end
+
+      subroutine intmucomp(fname)
+
+c     [bound,D,G] = mucomp(Z,K,T)
+c     [bound,D] = mucomp(Z,K,T)
+c     bound = mucomp(Z,K,T)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+      character fname*(*)
+
+       minrhs=3
+       maxrhs=3
+       minlhs=1
+       maxlhs=3
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'z', M, N, lA)) return
+       if(M.ne.N) then
+         buf='mucomp'//': the matrix must be square'
+         call error(998)
+         return
+       endif
+       if(N.eq.0) then
+         if(lhs.eq.1) then
+           if(.not.createvar(2,'d', 1, 1, lBOUND)) return
+           lhsvar(1) = 2
+           return
+         else if(lhs.eq.2) then
+           if(.not.createvar(2,'d', 1, 1, lBOUND)) return
+           if(.not.createvar(3,'d', N, 1,lD)) return
+           lhsvar(1)=2
+           lhsvar(2)=3
+           return
+         else if(lhs.eq.3) then
+           if(.not.createvar(2,'d', 1, 1, lBOUND)) return
+           if(.not.createvar(3,'d', N, 1, lD)) return
+           if(.not.createvar(4,'d', N, 1, lG)) return 
+           lhsvar(1)=2
+           lhsvar(2)=3
+           lhsvar(3)=4
+           return
+         endif
+       endif
+       if(.not.getrhsvar(2,'i', M1, N1, lK)) return
+       if(.not.getrhsvar(3,'i', M2, N2, lT)) return
+       if(M1*N1.ne.M2*N2) then
+         buf='mucomp'//': K and T must have equal lengths'
+         call error(998)
+         return
+       endif
+       M = max(M1,N1)
+       if(.not.createvar(4,'d', 1, 1, lBOUND)) return
+       if(.not.createvar(5,'d', N, 1, lD)) return
+       if(.not.createvar(6,'d', N, 1, lG)) return 
+       if(.not.createvar(7,'z', 2*N-1, 1, lX)) return
+       if(.not.createvar(8,'i', 4*N-2, 1, lIWORK)) return 
+       LRWRK = 2*N*N*N + 9*N*N +  44*N - 11
+       if(.not.createvar(9,'d', LRWRK, 1, lRWORK)) return
+       LZWRKMIN  = 6*N*N*N + 12*N*N + 12*N - 3
+       LZWRK=maxvol(10,'z')
+       if(LZWRK.le.LZWRKMIN) then
+         buf='mucomp'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+       endif
+       if(.not.createvar(10,'z',1,LZWRK,lZWORK)) return     
+
+       call AB13MD( 'N', N, zstk(lZ), N, M, istk(lK), istk(lT),
+     $    stk(lX), stk(lBOUND), stk(lD), stk(lG), istk(lIWORK),
+     $    stk(lRWORK), LRWRK, zstk(lZWORK), LZWRK, INFO )
+c       SUBROUTINE AB13MD( 'N', N, Z, N, M, NBLOCK, ITYPE, X,
+c     $    BOUND, D, G, IWORK, DWORK, LDWORK, ZWORK, LZWORK,
+c     $    INFO )
+      if(info.ne.0) then
+        call errorinfo("mucomp",info)
+        return
+      endif
+    
+      if(lhs.eq.1) then
+        lhsvar(1) = 4
+      else if(lhs.eq.2) then
+        lhsvar(1)=4
+        lhsvar(2)=5
+      else if(lhs.eq.3) then
+        lhsvar(1)=4
+        lhsvar(2)=5
+        lhsvar(3)=6
+      endif
+c
+       end
+
+
+
 
       SUBROUTINE ZB03OD( JOBQR, M, N, A, LDA, JPVT, RCOND, SVLMAX, TAU,
      $                   RANK, SVAL, WORK, LWORK, RWORK, INFO )

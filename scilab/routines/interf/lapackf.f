@@ -486,3 +486,400 @@ c       SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
 c
       end
  
+      subroutine intdgesvd1(fname)
+
+c     [U,S,V]=dgesvd(A)
+c     s = dgesvd(A)
+
+      include 'stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+
+      character fname*(*)
+      character JOBU, JOBVT
+      double precision ZERO
+      parameter ( ZERO=0.0D0 )
+
+       minrhs=1
+       maxrhs=1
+       minlhs=1
+       maxlhs=3
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'d', M, N, lA)) return
+       if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
+       k = 3              
+       if(lhs.gt.1) then
+         if(.not.createvar(3,'d', M, M, lU)) return
+         if(.not.createvar(4,'d', M, N, lS)) return
+         if(.not.createvar(5,'d', N, N, lV)) return
+         if(.not.createvar(6,'d', N, N, lVT)) return
+         k = 7
+       endif
+       LWORKMIN = max(3*min(M,N)+max(M,N),5*min(M,N)-4)
+       LWORK=maxvol(k,'d')
+       if(LWORK.le.LWORKMIN) then
+         buf='dgesvd'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(k,'d',1,LWORK,lDWORK)) return
+
+      JOBU = 'N'
+      JOBVT = 'N'
+      if(lhs.gt.1) then
+        JOBU = 'A'
+        JOBVT = 'A'
+      endif
+      if(lhs.eq.1) then
+        call DGESVD( JOBU, JOBVT, M, N, stk(lA), M, stk(lSV), stk(lA),
+     $       M, stk(lA), N, stk(lDWORK), LWORK, INFO )
+c        SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, INFO )
+      else
+        call DGESVD( JOBU, JOBVT, M, N, stk(lA), M, stk(lSV), stk(lU),
+     $       M, stk(lVT), N, stk(lDWORK), LWORK, INFO )
+c        SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, INFO )
+      endif  
+       if(info.ne.0) then
+         call errorinfo("dgesvd",info)
+         return
+       endif
+
+      if(lhs.gt.1) then
+        call DLASET( 'F', M, N, ZERO, ZERO, stk(lS), M )
+c       SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+
+        do 10 i = 1, min(M,N)
+           ii = i+(i-1)*M
+           stk(lS+ii-1) = stk(lSV+i-1)
+   10   continue        
+        do 30 j = 1, N
+           do 20 i = j, N
+              ij = i+(j-1)*N
+              ji = j+(i-1)*N
+              stk(lV+ij-1) = stk(lVT+ji-1)
+              stk(lV+ji-1) = stk(lVT+ij-1)
+   20      continue
+   30   continue     
+      endif
+     
+      if(lhs.eq.1) then
+        lhsvar(1) = 2
+      else 
+        lhsvar(1)=3
+        lhsvar(2)=4
+        lhsvar(3)=5
+      endif
+c
+       end
+
+      subroutine intdgesvd2(fname)
+
+c     [U,S,V]=dgesvd(A)
+c     s = dgesvd(A)
+
+      include 'stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+
+      character fname*(*)
+      character JOBU, JOBVT
+      double precision ZERO
+      parameter ( ZERO=0.0D0 )
+
+       minrhs=1
+       maxrhs=1
+       minlhs=1
+       maxlhs=3
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'d', M, N, lA)) return
+       if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
+       k = 3              
+       if(lhs.gt.1) then
+         if(.not.createvar(3,'d', M, min(M,N), lU)) return
+         if(.not.createvar(4,'d', min(M,N), min(M,N), lS)) return
+         if(.not.createvar(5,'d', N, min(M,N), lV)) return
+         if(.not.createvar(6,'d', min(M,N), N, lVT)) return
+         k = 7
+       endif
+       LWORKMIN = max(3*min(M,N)+max(M,N),5*min(M,N)-4)
+       LWORK=maxvol(k,'d')
+       if(LWORK.le.LWORKMIN) then
+         buf='dgesvd'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(k,'d',1,LWORK,lDWORK)) return
+
+      JOBU = 'N'
+      JOBVT = 'N'
+      if(lhs.gt.1) then
+        JOBU = 'S'
+        JOBVT = 'S'
+      endif
+      if(lhs.eq.1) then
+        call DGESVD( JOBU, JOBVT, M, N, stk(lA), M, stk(lSV), stk(lA),
+     $       M, stk(lA), N, stk(lDWORK), LWORK, INFO )
+c        SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, INFO )
+      else
+        call DGESVD( JOBU, JOBVT, M, N, stk(lA), M, stk(lSV), stk(lU),
+     $       M, stk(lVT), min(M,N), stk(lDWORK), LWORK, INFO )
+c        SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, INFO )
+      endif  
+       if(info.ne.0) then
+         call errorinfo("dgesvd",info)
+         return
+       endif
+
+      if(lhs.gt.1) then
+        call DLASET( 'F', min(M,N), min(M,N), ZERO, ZERO, stk(lS),
+     $       min(M,N) )
+c       SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+
+        do 10 i = 1, min(M,N)
+           ii = i+(i-1)*min(M,N)
+           stk(lS+ii-1) = stk(lSV+i-1)
+   10   continue        
+        do 30 j = 1, min(M,N)
+           do 20 i = 1, N
+              ij = i+(j-1)*N
+              ji = j+(i-1)*min(M,N)
+              stk(lV+ij-1) = stk(lVT+ji-1)
+   20      continue
+   30   continue     
+      endif
+     
+      if(lhs.eq.1) then
+        lhsvar(1) = 2
+      else 
+        lhsvar(1)=3
+        lhsvar(2)=4
+        lhsvar(3)=5
+      endif
+c
+       end
+
+      subroutine intzgesvd1(fname)
+
+c     [U,S,V]=zgesvd(A)
+c     s = zgesvd(A)
+
+      include 'stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+ 
+      character fname*(*)
+      character JOBU, JOBVT
+      double precision ZERO
+      parameter ( ZERO=0.0D0 )
+      intrinsic conjg
+
+       minrhs=1
+       maxrhs=1
+       minlhs=1
+       maxlhs=3
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'z', M, N, lA)) return
+       if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
+       k = 3              
+       if(lhs.gt.1) then
+         if(.not.createvar(3,'z', M, M, lU)) return
+         if(.not.createvar(4,'d', M, N, lS)) return
+         if(.not.createvar(5,'z', N, N, lV)) return
+         if(.not.createvar(6,'z', N, N, lVT)) return
+         k = 7
+       endif
+       LRWRK = max(3*min(M,N),5*min(M,N)-4)
+       if(.not.createvar(k,'d',1,LRWRK,lRWORK)) return
+       LWORKMIN = 2*min(M,N)+max(M,N)
+       LWORK=maxvol(k+1,'z')
+       if(LWORK.le.LWORKMIN) then
+         buf='zgesvd'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(k+1,'z',1,LWORK,lDWORK)) return
+
+      JOBU = 'N'
+      JOBVT = 'N'
+      if(lhs.gt.1) then
+        JOBU = 'A'
+        JOBVT = 'A'
+      endif
+      if(lhs.eq.1) then
+        call ZGESVD( JOBU, JOBVT, M, N, zstk(lA), M, stk(lSV), zstk(lA),
+     $       M, zstk(lA), N, zstk(lDWORK), LWORK, stk(lRWORK), INFO )
+c        SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, RWORK, INFO )
+      else
+        call ZGESVD( JOBU, JOBVT, M, N, zstk(lA), M, stk(lSV), zstk(lU),
+     $       M, zstk(lVT), N, zstk(lDWORK), LWORK, stk(lRWORK), INFO )
+c        SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, RWORK, INFO )
+      endif  
+       if(info.ne.0) then
+         call errorinfo("zgesvd",info)
+         return
+       endif
+
+      if(lhs.gt.1) then
+        call DLASET( 'F', M, N, ZERO, ZERO, stk(lS), M )
+c       SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+
+        do 10 i = 1, min(M,N)
+           ii = i+(i-1)*M
+           stk(lS+ii-1) = stk(lSV+i-1)
+   10   continue        
+        do 30 j = 1, N
+           do 20 i = j, N
+              ij = i+(j-1)*N
+              ji = j+(i-1)*N
+              zstk(lV+ij-1) = conjg(zstk(lVT+ji-1))
+              zstk(lV+ji-1) = conjg(zstk(lVT+ij-1))
+   20      continue
+   30   continue     
+      endif
+     
+      if(lhs.eq.1) then
+        lhsvar(1) = 2
+      else 
+        lhsvar(1)=3
+        lhsvar(2)=4
+        lhsvar(3)=5
+      endif
+c
+       end
+
+      subroutine intzgesvd2(fname)
+
+c     [U,S,V]=zgesvd(A)
+c     s = zgesvd(A)
+
+      include 'stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+ 
+      character fname*(*)
+      character JOBU, JOBVT
+      double precision ZERO
+      parameter ( ZERO=0.0D0 )
+      intrinsic conjg
+
+       minrhs=1
+       maxrhs=1
+       minlhs=1
+       maxlhs=3
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'z', M, N, lA)) return
+       if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
+       k = 3              
+       if(lhs.gt.1) then
+         if(.not.createvar(3,'z', M, min(M,N), lU)) return
+         if(.not.createvar(4,'d', min(M,N), min(M,N), lS)) return
+         if(.not.createvar(5,'z', N, min(M,N), lV)) return
+         if(.not.createvar(6,'z', min(M,N), N, lVT)) return
+         k = 7
+       endif
+       LRWRK = 5*min(M,N)
+       if(.not.createvar(k,'d',1,LRWRK,lRWORK)) return
+       LWORKMIN = 2*min(M,N)+max(M,N)
+       LWORK=maxvol(k+1,'z')
+       if(LWORK.le.LWORKMIN) then
+         buf='zgesvd'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(k+1,'z',1,LWORK,lDWORK)) return
+
+      JOBU = 'N'
+      JOBVT = 'N'
+      if(lhs.gt.1) then
+        JOBU = 'S'
+        JOBVT = 'S'
+      endif
+      if(lhs.eq.1) then
+        call ZGESVD( JOBU, JOBVT, M, N, zstk(lA), M, stk(lSV), zstk(lA),
+     $       M, zstk(lA), N, zstk(lDWORK), LWORK, stk(lRWORK), INFO )
+c        SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, RWORK, INFO )
+      else
+        call ZGESVD( JOBU, JOBVT, M, N, zstk(lA), M, stk(lSV), zstk(lU),
+     $       M, zstk(lVT), min(M,N), zstk(lDWORK), LWORK, stk(lRWORK),
+     $     INFO )
+c        SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, RWORK, INFO )
+      endif  
+       if(info.ne.0) then
+         call errorinfo("zgesvd",info)
+         return
+       endif
+
+      if(lhs.gt.1) then
+        call DLASET( 'F', min(M,N), min(M,N), ZERO, ZERO, stk(lS),
+     $               min(M,N) )
+c       SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+
+        do 10 i = 1, min(M,N)
+           ii = i+(i-1)*min(M,N)
+           stk(lS+ii-1) = stk(lSV+i-1)
+   10   continue        
+        do 30 j = 1, min(M,N)
+           do 20 i = 1, N
+              ij = i+(j-1)*N
+              ji = j+(i-1)*min(M,N)
+              zstk(lV+ij-1) = conjg(zstk(lVT+ji-1))
+   20      continue
+   30   continue     
+      endif
+     
+      if(lhs.eq.1) then
+        lhsvar(1) = 2
+      else 
+        lhsvar(1)=3
+        lhsvar(2)=4
+        lhsvar(3)=5
+      endif
+c
+       end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

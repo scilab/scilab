@@ -49,6 +49,47 @@ int intqr()
   }
 }
 
+int intsvd()
+{
+  int *header1;int *header2;
+  int Cmplx;int ret;
+
+  header1 = (int *) GetData(1);
+  Cmplx=header1[3];
+
+  switch (Rhs) {
+  case 1:   /* ...=svd(A)   */
+    if (Cmplx==0) {
+      ret = C2F(intdgesvd1)("svd",3L);
+      return; }
+    if (Cmplx==1) {
+      ret = C2F(intzgesvd1)("svd",3L);
+      return; } 
+    break;
+  case 2 :   /* ...=svd(A, something)   */
+    header2 = (int *) GetData(2);
+    switch (header2[0]) {
+    case DOUBLE :
+      /*  old svd, tolerance is passed: [U,S,V,rk]=svd(A,tol)  */
+      /*   ret = C2F(intsvdold)("svd",2L);  */
+      return;
+      break;
+    case STRING  :
+      /* Economy size:  [U,S,V]=svd(A,"e")  */
+      if (Cmplx==0) {
+	ret = C2F(intdgesvd2)("svd",3L);  
+	return;}
+      if (Cmplx==1) {
+	ret = C2F(intzgesvd2)("svd",3L);  
+	return;} 
+      break;
+    }
+    break;
+  default :   /*  rhs > 2 */
+    break;
+  }
+}
+
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct {
@@ -59,6 +100,7 @@ typedef struct table_struct {
  
 static LapackTable Tab[]={
   {intqr,"qr"},
+  {intsvd,"svd"},
 };
 
 int C2F(intlapack)()
