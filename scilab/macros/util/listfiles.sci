@@ -22,7 +22,7 @@ function files= listfiles(paths,flag,flagexpand)
   paths= strcat(paths,' ');
   
   if MSDOS then
-    files=unix_g('dir /B /OD '""+paths);
+    files=unix_g('dir /B /OD '+paths);
     files=files($:-1:1)
   else
     files=unix_g('ls  -t1 '+paths);
