@@ -164,7 +164,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        C2F(mgetnc) (fd, (void*) &indsst , &one, typ_int, err);
        if (*err > 0) goto ErrL;
        /*Allocation dans le tableau final*/
-       (*chainesind)[(labelsst1[1])*(hauteur)+labelsst1[0]]=indsst;
+       (*chainesind)[(labelsst1[1])*(hauteur)+labelsst1[0]]=indsst+1;
        break;
      case 512:/* DIMENSIONS*/
        C2F(mgetnc) (fd, (void*) &f_row, &one, typ_int, err);
