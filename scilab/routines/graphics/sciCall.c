@@ -281,9 +281,9 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
     psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
     if (sciGetSurface(psubwin) != (sciPointObj *) NULL)
       ok=1;
-     if ((sciGetGraphicMode (psubwin)->autoscaling))
-       update_3dbounds(psubwin,isfac,x,y,z,*m,*n,*theta, *alpha);
-    if ( typeof3d != SCI_PARAM3D1 )
+    if ((sciGetGraphicMode (psubwin)->autoscaling))
+      update_3dbounds(psubwin,isfac,x,y,z,*m,*n,*theta, *alpha);
+    if ( typeof3d != SCI_PARAM3D1 ) //Distinction here between SCI_PARAM3D1 and others
       sciSetCurrentObj (ConstructSurface
 			((sciPointObj *)
 			 psubwin, typeof3d,
@@ -294,7 +294,12 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
 	  Scierror(999,"%s: No more memory available\r\n",fname);
 	  return; 
 	}
-	for (i = 0; i < *n; ++i) {
+	for (i = 0; i < *n; ++i) { 
+	  // F.Leray Pb here: In fact we do not create a Surface but one or several 3D Polylines
+	  // Pb comes when wanting to access the fields "surface_color" or "flag" for example
+	  // in function sciSet (cf. matdes.c). 
+	  // Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
+	  // Question 2: Is "flag" obsolete and replaced by "color_mode"?
 	  sciSetCurrentObj (ConstructPolyline
 			    ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,0));  
