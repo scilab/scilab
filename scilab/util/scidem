@@ -14,7 +14,7 @@ sed     -e "s/pause,end/bugmes();quit;end/" \
         -e "s/halt()//" \
         $2 >> /tmp/$2.$$ ;
 echo "diary(0);xend();exit;" >> /tmp/$2.$$ ;
-($SCI1/bin/scilab -nw < /tmp/$2.$$ > /tmp/$2.$$.res ) 2> /tmp/$2.$$.err ;
+($SCI1/bin/scilab -nwni < /tmp/$2.$$ > /tmp/$2.$$.res ) 2> /tmp/$2.$$.err ;
 sed -e "s/ \./0\./g" -e "s/E+/D+/g" -e "s/E-/D-/g" -e "s/-\./-0\./g" -e "s/^-->//g" -e "s/^-1->//g" $3 > $3.n
 grep -v "xinit(" $3.n | grep -v "diary(" | grep -v "exec("  > $3
 rm -f $3.n
