@@ -272,14 +272,14 @@ c   To be removed latter on!
        lDWORK = sadr(lDWORK)
 c -------------------------------------------------------------
       if(lhs.le.2) then
-c        call ZGEQRF( M, N, zstk(lA), M, zstk(lTAU), zstk(lDWORK),
-c     $       LWORK, INFO )
+        call ZGEQRF( M, N, zstk(lA), M, zstk(lTAU), zstk(lDWORK),
+     $       LWORK, INFO )
 c       SUBROUTINE ZGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
       else
         do 5 i = 1, N
    5    istk(lJPVT+i-1) = 0     
-c        call ZGEQPF( M, N, zstk(lA), M, istk(lJPVT), zstk(lTAU),
-c     $       zstk(lDWORK), stk(lRWORK), INFO )
+        call ZGEQPF( M, N, zstk(lA), M, istk(lJPVT), zstk(lTAU),
+     $       zstk(lDWORK), stk(lRWORK), INFO )
 c       SUBROUTINE ZGEQPF( M, N, A, LDA, JPVT, TAU, WORK, RWORK, INFO )
       endif
       if(info.ne.0) then
@@ -320,8 +320,8 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )
         call ZLACPY( 'F', M, M, zstk(lA), M, zstk(lQ), M ) 
 c       SUBROUTINE ZLACPY( UPLO, M, N, A, B, LDB )
       endif
-c      call ZUNGQR( M, M, min(M,N), zstk(lQ), M, zstk(lTAU),
-c     $     zstk(lDWORK), LWORK, INFO )
+      call ZUNGQR( M, M, min(M,N), zstk(lQ), M, zstk(lTAU),
+     $     zstk(lDWORK), LWORK, INFO )
 c     SUBROUTINE ZUNGQR( M, N, K, A, LDA, TAU, WORK, LWORK, INFO )
 
       if(lhs.gt.2) then
@@ -407,14 +407,14 @@ c   To be removed latter on!
        lDWORK = sadr(lDWORK)
 c -------------------------------------------------------------
       if(lhs.le.2) then
-c        call ZGEQRF( M, N, zstk(lA), M, zstk(lTAU), zstk(lDWORK),
-c     $       LWORK, INFO )
+        call ZGEQRF( M, N, zstk(lA), M, zstk(lTAU), zstk(lDWORK),
+     $       LWORK, INFO )
 c       SUBROUTINE ZGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )      
       else
         do 5 i = 1, N
    5    istk(lJPVT+i-1) = 0     
-c        call ZGEQPF( M, N, zstk(lA), M, istk(lJPVT), zstk(lTAU),
-c     $       zstk(lDWORK), stk(lRWORK), INFO )
+        call ZGEQPF( M, N, zstk(lA), M, istk(lJPVT), zstk(lTAU),
+     $       zstk(lDWORK), stk(lRWORK), INFO )
 c       SUBROUTINE ZGEQPF( M, N, A, LDA, JPVT, TAU, WORK, RWORK, INFO )
       endif
       if(info.ne.0) then
@@ -437,8 +437,8 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, B, LDB )
 
       call ZLACPY( 'F', M, min(M,N), zstk(lA), M, zstk(lQ), M ) 
 c     SUBROUTINE ZLACPY( UPLO, M, N, A, B, LDB )
-c      call ZUNGQR( M, min(M,N), min(M,N), zstk(lQ), M, zstk(lTAU),
-c     $     zstk(lDWORK), LWORK, INFO )
+      call ZUNGQR( M, min(M,N), min(M,N), zstk(lQ), M, zstk(lTAU),
+     $     zstk(lDWORK), LWORK, INFO )
 c     SUBROUTINE ZUNGQR( M, N, K, A, LDA, TAU, WORK, LWORK, INFO )
 
       if(lhs.gt.2) then
