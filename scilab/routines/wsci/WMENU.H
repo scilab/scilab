@@ -265,3 +265,9 @@ void ConfigureScilabStar(int LangCode);
 int ModifyFile(char *fichier,char *motclef,char *chaine);
 /*--------------------------------*/
 extern void reset_history(void); /* see Console\history.h*/
+/*--------------------------------*/
+int HideToolBarWin32(int WinNum);
+/*--------------------------------*/
+extern void HideGraphToolBar(struct BCG * ScilabGC);
+extern void ShowGraphToolBar(struct BCG * ScilabGC);
+/*--------------------------------*/

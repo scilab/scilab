@@ -1510,3 +1510,79 @@ void C2F(seteventhandler)(int *win_num,char *name,int *ierr)
   strncpy(SciGc->EventHandler,name,24);
 }
 /*-----------------------------------------------------------------------------------*/
+void HideGraphToolBar(struct BCG * ScilabGC)
+{
+	RECT rect,rect1;
+
+	ScilabGC->lpmw.ShowToolBar=FALSE;	
+	/* ToolBar */
+	ShowWindow(ScilabGC->hWndToolBar,SW_HIDE);
+	
+	/* Parent */
+	GetWindowRect(ScilabGC->hWndParent, &rect);
+	SetWindowPos(ScilabGC->hWndParent,NULL,
+				 rect.left,rect.top,
+				 rect.right-rect.left,(rect.bottom-rect.top)-ToolBarHeight,
+				 SWP_NOZORDER | SWP_NOACTIVATE);
+
+	/*Graphic window */
+	GetClientRect (ScilabGC->CWindow, &rect);
+    SetWindowPos (ScilabGC->CWindow, (HWND) NULL,
+				  0,0,
+				  rect.right-rect.left,(rect.bottom-rect.top),
+				  SWP_NOZORDER | SWP_NOACTIVATE);
+
+	/*StatusBar*/
+	GetClientRect(ScilabGC->hWndParent, &rect1);
+	GetClientRect (ScilabGC->Statusbar, &rect);
+	
+    SetWindowPos (ScilabGC->Statusbar, (HWND) NULL,
+				  0,(rect1.bottom-rect1.top)- (rect.bottom - rect.top),
+				  rect.right-rect.left,(rect.bottom-rect.top),
+				  SWP_NOZORDER | SWP_NOACTIVATE);
+
+	GetClientRect (ScilabGC->CWindow, &rect);
+    scig_replay_hdc ('C', ScilabGC->CurWindow, GetDC (ScilabGC->CWindow),rect.right - rect.left, rect.bottom - rect.top, 1);	
+}
+/*-----------------------------------------------------------------------------------*/
+void ShowGraphToolBar(struct BCG * ScilabGC)
+{
+	RECT rect,rect1,rect2;
+	ScilabGC->lpmw.ShowToolBar=TRUE;	
+
+    /* Parent */
+	GetWindowRect(ScilabGC->hWndParent, &rect);
+	SetWindowPos(ScilabGC->hWndParent,NULL,
+				 rect.left,rect.top,
+				 rect.right-rect.left,(rect.bottom-rect.top)+ToolBarHeight,SWP_NOZORDER | SWP_NOACTIVATE);
+
+
+	/*Graphic window */
+	GetClientRect (ScilabGC->CWindow, &rect);
+    SetWindowPos (ScilabGC->CWindow, (HWND) NULL,
+				  0,ToolBarHeight,
+				  rect.right-rect.left,(rect.bottom-rect.top),
+				  SWP_NOZORDER | SWP_NOACTIVATE);
+	
+	/* ToolBar */
+	ShowWindow(ScilabGC->hWndToolBar,SW_SHOWNORMAL);
+	GetClientRect (ScilabGC->hWndToolBar, &rect);
+    SetWindowPos (ScilabGC->hWndToolBar, (HWND) NULL,
+				  0,0,
+				  rect.right-rect.left,(rect.bottom-rect.top),
+				  SWP_NOZORDER | SWP_NOACTIVATE);
+
+	/* StatusBar*/
+	GetClientRect(ScilabGC->hWndParent, &rect);
+	GetWindowRect (ScilabGC->Statusbar, &rect1) ;
+
+	
+	SetWindowPos (ScilabGC->Statusbar, (HWND) NULL,
+				  0,	(rect.bottom-rect.top) - (rect1.bottom - rect1.top),
+				  (rect.right-rect.left), (rect1.bottom - rect1.top),
+						SWP_NOZORDER | SWP_NOACTIVATE);
+
+	
+
+}
+/*-----------------------------------------------------------------------------------*/

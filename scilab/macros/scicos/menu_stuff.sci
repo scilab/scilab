@@ -6,6 +6,7 @@ if ~MSDOS then
   delmenu(curwin,'Zoom')
   delmenu(curwin,'File')
 else
+  hidetoolbar(curwin)
  // French
   delmenu(curwin,'&Fichier')
   delmenu(curwin,'&Editer')

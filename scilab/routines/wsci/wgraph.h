@@ -142,6 +142,10 @@ static int emulate_backing_store = 1; /* to use  ScilabPaintWithBitmap*/
 /* static COLORREF DefaultBackground = RGB(255,255,255); define in periwin.c */
 
 extern BOOL GraphToolBarDefault;
+#define ToolBarHeight 24
+void HideGraphToolBar(struct BCG * ScilabGC);
+void ShowGraphToolBar(struct BCG * ScilabGC);
+
 
 #endif /* __WGRAPH__ */
 /*-----------------------------------------------------------------------------------*/

@@ -2156,3 +2156,34 @@ int ModifyFile(char *fichier,char *motclef,char *chaine)
 		return Retour;
 }
 /*-----------------------------------------------------------------------------------*/
+int HideToolBarWin32(int WinNum)
+{
+   	if (WinNum == -1)
+ 		{
+			if (IsWindowInterface())
+			{
+				extern char ScilexWindowName[MAX_PATH];
+				LPTW lptw;
+				lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+				HideToolBar(lptw);
+				lptw->lpmw->ShowToolBar=FALSE;
+  			}
+			else
+			{
+ 				sciprint("Not in Console mode\n");
+			}
+		}
+	else
+		{
+			struct BCG *ScilabGC=NULL;
+			ScilabGC = GetWindowXgcNumber (WinNum);
+			if (ScilabGC != (struct BCG *) 0)
+			{
+				HideGraphToolBar(ScilabGC);
+  			}
+		}
+
+ return 0;
+}
+/*-----------------------------------------------------------------------------------*/

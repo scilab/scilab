@@ -247,6 +247,7 @@
 {"resethistory",	IN_matsys,	58,	2},
 {"openbrowser",	IN_matsys,	59,	2},
 {"macr2tree",	IN_matsys,	60,	2},
+{"hidetoolbar",	IN_matsys,	61,	2},
 #define  IN_matusr  14  
 {"user",		IN_matusr,	1,	1},	
 #define  IN_metane  15  

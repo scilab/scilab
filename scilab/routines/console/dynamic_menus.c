@@ -33,6 +33,9 @@
  *           int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)  
  *---------------------------------------------------------------------*/
 
+#ifdef WIN32
+extern int HideToolBarWin32(int WinNum); /* see "wsci/wmenu.c" */
+#endif /*WIN32*/
 
 extern void write_scilab  __PARAMS((char *s));
 extern int get_is_reading  __PARAMS((void));
@@ -220,8 +223,7 @@ int iswaitingforinputend()
   wait_for_input_end=0;
   return iwait;
 }
-
-
+/*-----------------------------------------------------------------------------------*/
 /* Open Web Browser Allan CORNET*/
 int C2F(openbrowser) _PARAMS((char *fname))
 {
@@ -251,3 +253,29 @@ int C2F(openbrowser) _PARAMS((char *fname))
 	C2F(putlhsvar)();
 return 0;
 }
+/*-----------------------------------------------------------------------------------*/
+int C2F(hidetoolbar) _PARAMS((char *fname))
+{
+ static int l1, m1, n1;	
+ if (Rhs == 0)
+ {
+ 	sciprint("Error no window num.\n");
+ }
+ else
+ {
+ 	int num_win=-2;
+ 	CheckLhs(1,1);
+ 	GetRhsVar(1,"i",&m1,&n1,&l1);
+ 	num_win=*istk(l1);
+ 	LhsVar(1)=0;
+
+	#ifdef WIN32
+		HideToolBarWin32(num_win); /* see "wsci/wmenu.c" */
+	#endif /*WIN32*/
+
+	LhsVar(0)=0;
+	C2F(putlhsvar)();
+ }
+ return 0;
+}
+/*-----------------------------------------------------------------------------------*/

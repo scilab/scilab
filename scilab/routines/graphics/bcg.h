@@ -102,6 +102,7 @@ typedef struct BCG
 #ifdef WIN32
   /** windows specific objects **/
   HWND	hWndParent;     /* parent window handle */
+  HWND	hWndToolBar;
   HWND CWindow ;   /** window of the top level widget of the graphic window **/
   HWND Statusbar;    /* status window */
   HDC hdcCompat ;  /** for pixmap version */

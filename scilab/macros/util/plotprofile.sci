@@ -110,6 +110,7 @@ function [h,M]=dispfuntxt(txt,k,h,M)
       delmenu(curwin,'Zoom')
       delmenu(curwin,'File')
     else
+        hidetoolbar(curwin)
  	// French
   	delmenu(curwin,'&Fichier')
   	delmenu(curwin,'&Editer')

@@ -34,6 +34,7 @@ function [palettes,windows]=do_palettes(palettes,windows)
     delmenu(curwin,'Zoom')
     //  delmenu(curwin,'File')
   else
+        hidetoolbar(curwin)
      // French
   	// delmenu(curwin,'&Fichier')
   	delmenu(curwin,'&Editer')

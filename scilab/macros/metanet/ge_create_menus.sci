@@ -8,7 +8,8 @@ if ~MSDOS then
   delmenu(win,'UnZoom')
   delmenu(win,'2D Zoom')
   delmenu(win,'File')
-else
+else 
+  hidetoolbar(win)
   // French
   delmenu(win,'&Fichier')
   delmenu(win,'&Editer')
