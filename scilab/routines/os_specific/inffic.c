@@ -13,7 +13,11 @@ static char *dataStrings[] = {
   "$MANCHAPTERS",
   "exec('SCI/scilab.star',-1);",         /* start_up instructions file   */
   "exec('SCI/demos/alldems.dem');",	 /* demos instructions file      */
-  "home/scilab.hist",			 /* history file                */
+#ifdef WIN32
+  "home/history.scilab",		 /* history file                */
+#else 
+  "home/.history.scilab",		 /* history file                */
+#endif
   "home/scilab.save",			 /* on crash save file          */
   "exec('SCI/scilab.quit',-1);quit;"	 /* exit instructions file      */
 };
