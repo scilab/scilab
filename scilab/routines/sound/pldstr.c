@@ -733,7 +733,7 @@ char *PLD_dprintf(const char *format, ...)
 	  /* Attempt to print out string out into the allocated space*/
 		va_start(ap, format);
 		#if WIN32
-		n = _snprintf (p, size, format, ap); 
+		n = _vsnprintf (p, size, format, ap); 
 		#else
 		n = vsnprintf (p, size, format, ap); 
 		#endif
