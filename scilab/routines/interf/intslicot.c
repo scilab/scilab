@@ -60,7 +60,11 @@ int intab01od(fname)
     { Scierror(999,"Invalid A,B matrices \r\n");  return 0; }
   if (Rhs == 3) {
     /*    TOL is given:   ab01od(A,B,tol)   */
-    GetRhsVar(3,"d",&mtol,&ntol,&ptrTOL);  theTOL=*stk(ptrTOL);    /*     TOL */ }
+    GetRhsVar(3,"d",&mtol,&ntol,&ptrTOL);  theTOL=*stk(ptrTOL);    /*     TOL */
+    if (theTOL>1.0||theTOL<0.0) {
+      Scierror(999,"TOL must be in [0 1]\r\n");  return 0; 
+    }
+  }
 
   /*     dimensions...    */
   LDA=MAX(1,N);  LDB=LDA;  LDU=LDA; LDV=MAX(1,M);
@@ -81,7 +85,10 @@ int intab01od(fname)
                stk(ptrB), &LDB, stk(ptrU), &LDU, stk(ptrV), &LDV, 
 	       istk(ptrNCONT), &INDCON, istk(ptrKSTAIR), &theTOL,  
                istk(ptrIWORK), stk(ptrDWORK), &LDWORK, &INFO );
-  if (INFO != 0) C2F(errorinfo)("ab01od", &INFO, 6L);
+  if (INFO != 0) {
+    C2F(errorinfo)("ab01od", &INFO, 6L);
+    return 0;
+  }
   if (Lhs >= 3) {
     /*     resizing KSTAIR      */
     CreateVar(Rhs+7,"i",(un=1,&un),&INDCON,&ptrJUNK); 
