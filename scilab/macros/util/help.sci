@@ -7,6 +7,9 @@ function help(key,flag)
   if rhs==0 then
     browsehelp(INDEX,"index");
     return
+  elseif type(key)==1 then //called by the menu
+    browsehelp(INDEX,"index");
+    return
   end
  
   if rhs> 2 then error(39),return; end
@@ -21,6 +24,9 @@ function help(key,flag)
   else
      help_apropos(key)
   end
+endfunction
+function help_menu(i)
+  browsehelp(INDEX,"index");
 endfunction
 
 function path=gethelpfile(key)
@@ -174,6 +180,8 @@ function run_help(path,key)
     unix_s(%browsehelp + " file://" +path+ '&');
    case 'quanta' then
     unix_s(%browsehelp + " --unique file://" +path+ '&');
+   case 'browsehelp' then
+    unix_s(SCI+'tcl/'+%browsehelp + " " +path+ '&');
    case 'tcltk' then 
     tcltk_help(path,key);
   else
