@@ -1,7 +1,7 @@
 include ../Path.incl
 
 #
-# $Id: Makefile.in,v 1.1 2002/10/15 15:57:00 chanceli Exp $
+# $Id: Makefile.in,v 1.2 2002/10/15 16:25:53 chanceli Exp $
 #
 # top-level PVM3 makefile
 #
@@ -14,12 +14,12 @@ all: default
 
 default:
 	@PVM_ROOT=$(SCIDIR)/pvm3; export PVM_ROOT;\
-		PVM_ARCH=@PVMARCH@; export PVM_ARCH \
+		PVM_ARCH=@PVMARCH@; export PVM_ARCH ;\
 		./lib/aimk $(AIMKSTR) default
 
 clean:
 	@PVM_ROOT=$(SCIDIR)/pvm3; export PVM_ROOT;\
-		PVM_ARCH=@PVMARCH@; export PVM_ARCH \
+		PVM_ARCH=@PVMARCH@; export PVM_ARCH ;\
 		./lib/aimk $(AIMKSTR) clean
 
 # distclean clean removes *.o and other remaining executables 
