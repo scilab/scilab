@@ -20,7 +20,7 @@ function  H=build_sliding_pendulum ()
   xbasc();
   //set the figure
   set figure_style new;xselect(),
-  f=gcf();a=gca();drawlater()
+  f=gcf();f.pixmap='on';a=gca();drawlater()
   f.figure_size=[610,676] //mode isoview does not work
   
   xmin=-1.5; xmax=1.5; ymin=-1.1; ymax=2.25;
@@ -56,4 +56,5 @@ function  draw_sliding_pendulum (H,state)
   p = H.children(2);p.data=[x, y; xp1, yp1];
   b = H.children(1); b.data=[xp-r,yp+r,2*r,2*r,0,360*64];
   drawnow();
+  show_pixmap()
 endfunction
