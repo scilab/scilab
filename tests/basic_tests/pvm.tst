@@ -110,6 +110,32 @@ a='1';
 pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
 a=[],a(40,30)='1';
 pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
+
+//sparse
+a=sparse(1);
+pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
+a=sprand(100,100,0.01);
+pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
+a=sprand(100,99,0.01)+%i*sprand(100,99,0.01);
+pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
+
+//boolean sparse
+a=a<>0;
+pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
+a=sparse(1==0);
+pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
+
+// lib 
+a=autolib;
+pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
+
+//functions
+a=bode;
+pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
+deff('x=a(y)','x=y','n')
+pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
+
+
 // lists
 a=list();
 pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
@@ -119,30 +145,70 @@ a=list(1,2,3);
 pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
 a=list(rand(10,20),rand(20,10),'s',[]);
 pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
+
+// tlist 
+
 a=1/%s;
 pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
-//sparse
-a=sparse(1);
-pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
-a=sprand(100,100,0.01);
-pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
-a=sprand(100,99,0.01)+%i*sprand(100,99,0.01);
-pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
-//boolean sparse
-a=a<>0;
-pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
-a=sparse(1==0);
+
+// mlist 
+
+a=hypermat([1,2,3],rand(1,6));
+pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a.entries==a1.entries) then pause,end
+
+// lists of lists 
+a=list(rand(2,2),list(rand(2,2),[%t,%f]));
+a(4)= 10 ;
 pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
 
-//a=autolib;
-//pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
-a=bode;
-//functions
+function y=f(x) 
+ y=sin(x)
+endfunction 
+a(5)=f ;
 pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
-deff('x=a(y)','x=y','n')
-pvm_send(task_id,a,0);a1=pvm_recv(task_id,0);if ~and(a==a1) then pause,end
+
+// stop the slave 
 pvm_send(task_id,'exit',0)
-pvm_halt( );
-a = [1+%i, 2+2*%i,3+3*%i];
-a77=pvm_f772sci(a);if or(a77<>[1+2*%i,3+%i,2+3*%i]) then pause,end
+
 [tids, numt] = pvm_spawn_independent(SCI+'/bin/scilex',1);
+if numt<>1 then pause,end
+if size(task_id,'*')<>1 then pause,end
+
+// halt pvm
+pvm_halt( );
+
+// data conversion 
+
+a=[1:10]; 
+a_sci=a(1:2:10)+%i*a(2:2:10); 
+a_f77=a(1:5)+%i*a(6:10); 
+
+// argument transmited by value 
+if or(a_sci<>pvm_f772sci(a(1:5)+%i*a(6:10))) then pause,end
+if or(a_f77<>pvm_sci2f77(a(1:2:10)+%i*a(2:2:10))) then pause,end
+
+// reference transmited 
+b=a_sci ; 
+pvm_sci2f77(b) 
+// b now has changed 
+if  or(b<>a_f77)  then pause,end
+
+b=a_f77 ; 
+pvm_f772sci(b) 
+// b now has changed 
+if  or(b<>a_sci)  then pause,end
+
+// more complex example 
+
+b =list(a_f77,list(a_f77,a_f77)) ;
+c =list(a_sci,list(a_sci,a_sci)) ;
+pvm_f772sci(b) 
+// b now has changed 
+if  or(b<>c)  then pause,end
+
+b =list(a_f77,list(a_f77,a_f77)) ;
+c =list(a_sci,list(a_sci,a_sci)) ;
+pvm_sci2f77(c) 
+// b now has changed 
+if  or(b<>c)  then pause,end
+
