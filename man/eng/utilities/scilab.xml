@@ -8,55 +8,71 @@
   <DATE>May 199</DATE>
   <SHORT_DESCRIPTION name="scilab"> Major unix script to execute Scilab and miscellaneous tools  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>scilab [-ns -nw -display display -f file -args arguments]  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>scilab -help [ &lt;key&gt; ]  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>scilab -k &lt;key&gt;  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>scilab -xk &lt;key&gt;  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>scilab &lt;Options&gt; </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>scilab -link &lt;objects&gt;  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="scilab [-ns -nw -display display -f path -args arguments]">
+      <DESCRIPTION_ITEM label="scilab &lt;Options&gt; ">
         <SP>: run scilab.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="-ns">
-        <SP>:if this option is  present the startup file <VERB>SCI/scilab.star</VERB> is not executed.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="-nw">
-        <SP>:if this option is present then  scilab is not run in an X window.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="-f file">
-        <SP>: if this option is present then Scilab script <VERB>file</VERB> is executed first into Scilab.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="-args arguments">
-        <SP>: if this option is present arguments are passed to Scilab. They can then be got by sciargs function. For multi arguments passing use a quoted, blank separated sequence of words like:  <VERB>scilab -args 'foo1 foo2'</VERB></SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="scilab -help &lt;key&gt;">
-        <SP>: write on-line documentation about &lt;key&gt; (usually automatically called  by scilab command &quot;help &lt;key&gt;&quot;). Example:</SP>
-        <VERBATIM>
-<![CDATA[
-scilab -help plot3d
-   ]]>
-        </VERBATIM>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="scilab -k &lt;key&gt;">
-        <SP>: gives the list of Scilab commands containing the  keyword &lt;key&gt; in their description (usually automatically called  by scilab command &quot;apropos &lt;key&gt;&quot;)</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="scilab -xk &lt;key&gt;">
-        <SP>: gives the list of Scilab commands containing the  keyword &lt;key&gt; in their description in a X window.</SP>
+	<DESCRIPTION_INDENT>
+	  <DESCRIPTION_ITEM label="-ns">
+	    <SP>:if this option is  present the startup file <VERB>SCI/scilab.star</VERB> is not executed.</SP>
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="-nw">
+	    <SP>:if this option is present then  scilab is not run in an X window.</SP>
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="-nb">
+	    <SP>:if this option is present then  the scilab welcome banner
+                 is not displayed.</SP>
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="-l lang">
+	    <SP>:if this option is present it fixes the user
+             language. The possible <VERB>lang</VERB> values are
+             <VERB>'fr'</VERB> for french and <VERB>'eng'</VERB> for
+             english. The default language is english. This default
+             value is fixed the <VERB>scilab.star</VERB> file.</SP>
+          </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="-f file">
+	    <SP>: if this option is present then Scilab script
+	    <VERB>file</VERB> is executed first into Scilab.</SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="-e instruction">
+	    <SP>: if this option is present then Scilab instruction
+	    <VERB>instruction</VERB> is executed first into
+	    Scilab.</SP>
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="-args arguments">
+	    <SP>: if this option is present arguments are passed to
+	    Scilab. They can then be got by <VERB>sciargs</VERB> function. For
+	    multi arguments passing use a quoted, blank separated
+	    sequence of words like: 
+            <VERB>scilab -args 'foo1 foo2'</VERB></SP>
+	  </DESCRIPTION_ITEM>
+	</DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="scilab -link &lt;objects&gt;">
-        <SP>: Is used to produce a local <VERB>scilex</VERB> (executable code of Scilab) linked with the  additional files given by the  user in <VERB>&lt;objects&gt;</VERB>.  If, in the list of object files, some names are known from  <VERB>SCIDIR/routines/default</VERB>, then the <VERB>scilex</VERB> default  files are omitted and replaced with the given ones .  This command also produces a <VERB>xscilab</VERB> script, which when called  will ran the new generated scilex file.</SP>
+        <SP>: Is used to produce a local <VERB>scilex</VERB>
+        (executable code of Scilab) linked with the additional files
+        given by the user in <VERB>&lt;objects&gt;</VERB>.  If, in the
+        list of object files, some names are known from
+        <VERB>SCIDIR/routines/default</VERB>, then the
+        <VERB>scilex</VERB> default files are omitted and replaced
+        with the given ones .  This command also produces a
+        <VERB>xscilab</VERB> script, which when called will ran the
+        new generated scilex file.</SP>
         <P>
-    For example:</P>
+         For example:</P>
         <VERBATIM>
-<![CDATA[
+        <![CDATA[
 scilab -link  C/interf.o C/evol.o C/bib.a
-   ]]>
+         ]]>
         </VERBATIM>
         <P>
-    will create a new <VERB>scilex</VERB> file in which the default <VERB>interf.o</VERB> 
-    file will be replaced by <VERB>C/interf.o</VERB>.</P>
+         will create a new <VERB>scilex</VERB> file in which the default <VERB>interf.o</VERB> 
+         file will be replaced by <VERB>C/interf.o</VERB>.</P>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

@@ -7,16 +7,14 @@
   <DATE>May 1994  </DATE>
   <SHORT_DESCRIPTION name="scilab "> script principal d&apos;exécution de Scilab et de divers outils  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>scilab [-ns -nw -display display -f file -args arguments]  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>scilab -help [ &lt;key&gt; ]  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>scilab -k &lt;key&gt;  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>scilab -xk &lt;key&gt;  </CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>scilab &lt;Options&gt; </CALLING_SEQUENCE_ITEM>
   <CALLING_SEQUENCE_ITEM>scilab -link &lt;objects&gt;  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
  
+    <DESCRIPTION_INDENT>
 
-  <DESCRIPTION_ITEM  label='scilab [-ns -nw -display display -f path -args arguments]'> 
+  <DESCRIPTION_ITEM  label='scilab &lt;Options&gt;'> 
     : exécution de Scilab
   </DESCRIPTION_ITEM>
  
@@ -28,30 +26,30 @@
   <DESCRIPTION_ITEM  label='-nw'> 
     : si cette option est présente Scilab n&apos;est pas exécuté dans une fenêtre spécifique mais sur la ligne de commande.  
   </DESCRIPTION_ITEM>
+  <DESCRIPTION_ITEM label="-nb">
+   :  si cette option est présente la bannière d'acceuil de Scilab
+                 n'est pas affichée.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM label="-l lang">
+    : Cette option permet de selectionner la langue de
+    l'utilisateur. Les valeurs possible pour sont <VERB>-l fr</VERB>
+    pour selectionner le francais et <VERB>-l eng</VERB>
+    pour selectionner l'anglais. La langue par defaut est l'anglais,
+    ce défaut est fixé dans le fichier <VERB>scilab.star</VERB>.
+  </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='-f file'> 
     : si cette option est présente le script <VERB>file</VERB> est exécuté en premier dans Scilab. 
   </DESCRIPTION_ITEM>
-
+  <DESCRIPTION_ITEM label="-e instruction">
+    : si cette option est présente l'instruction <VERB>instruction</VERB> est exécutée en premier dans Scilab. 
+  </DESCRIPTION_ITEM>
   <DESCRIPTION_ITEM  label='-args arguments'> 
     : si cette option est présente des arguments sont passés à Scilab. Ils peuvent être récupérés par la fonction <VERB>sciargs</VERB>. Les arguments multiples doivent être passés dans chaîne de caractères les contenant, séparés par des espaces  <VERB>scilab -args &apos;foo1 foo2&apos;</VERB>
   </DESCRIPTION_ITEM>
- 
+ </DESCRIPTION_INDENT>
 
-  <DESCRIPTION_ITEM  label='scilab -help &lt;mot-clé&gt;'> 
-    : affiche le help sur &lt;mot-clé&gt; (produit le même résultat que <VERB>help &lt;mot-clé&gt;</VERB> exécuté dans Scilab). Exemple:
-  </DESCRIPTION_ITEM>
-  <VERBATIM><![CDATA[
-scilab -help plot3d
-   ]]></VERBATIM>
-
-  <DESCRIPTION_ITEM  label='scilab -k &lt;mot-clé&gt;'> 
-    : donne la liste des fonctions Scilab contenant &lt;mot-clé&gt; dans leur description (produit le même résultat que <VERB>apropos &lt;mot-clé&gt;</VERB> exécuté dans Scilab) 
-  </DESCRIPTION_ITEM>
-
-  <DESCRIPTION_ITEM  label='scilab -xk &lt;mot-clé&gt;'> 
-    : donne dans une fenêtre graphique la liste des fonctions Scilab contenant &lt;mot-clé&gt; dans leur description (produit le même résultat que <VERB>apropos &lt;mot-clé&gt;</VERB> exécuté dans Scilab) 
-  </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='scilab -link &lt;objects&gt;'> 
     : est utilisé pour générer un <VERB>scilex</VERB> local (exécutable de Scilab) lié avec les fichiers additionnels donnés dans <VERB>&lt;objects&gt;</VERB>.  Si, dans la liste des fichiers objets, certains noms sont connus dans  <VERB>SCIDIR/routines/default</VERB>, les fichiers objets par utilisés par défaut par <VERB>scilex</VERB> sont omis et remplacés par les fichiers précisés.  Cette commande produit aussi un script <VERB>xscilab</VERB>, qui lance l&apos;exécution du nouveau <VERB>scilex</VERB>.
