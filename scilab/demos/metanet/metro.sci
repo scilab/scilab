@@ -247,6 +247,8 @@ function []=metro()
       iter=x_choose(['yes','no'],'Another travel?');
       TTT=[];routef=[];road=[];
     end
+    seteventhandler("")
+    ge_do_quit(%f)
     xdel(win)
 endfunction
 
