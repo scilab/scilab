@@ -27,9 +27,9 @@
     perform tasks just like any other serial process.
   </P>
   <P>
-    pvm_exit should be called by all PVM processes before
+    <VERB>pvm_exit</VERB> should be called by all PVM processes before
     they stop or exit for good. It <VERB>must</VERB> be called
-    by processes that were not started with pvm_spawn.
+    by processes that were not started with <VERB>pvm_spawn</VERB>.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

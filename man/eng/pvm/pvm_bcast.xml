@@ -20,7 +20,7 @@
   <PARAM_ITEM>
   <PARAM_NAME>buff  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    :  data to be send.
+    :  data to be send (any Scilab object).
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
@@ -40,20 +40,17 @@
   <DESCRIPTION>
   <P>
     <VERB>pvm_bcast</VERB> broadcasts a message to all the members of
+    the group named <VERB>group</VERB>.
   </P>
   <P>
     In PVM 3.2 and later the broadcast message is not sent back to the sender.
-    Any PVM task can call pvm_bcast(), it need not be a member of the group.
-    The content of the message can be distinguished by
+    Any PVM task can call <VERB>pvm_bcast()</VERB>, it need not be a member of the group.
+    The content of the message can be distinguished by its tag <VERB>msgtag</VERB>
   </P>
   <P>
-    If pvm_bcast is successful,
-  </P>
-  <P>
-    will be 0. If some error occurs then
-  </P>
-  <P>
-    will be &lt; 0.
+    The returned value <VERB>info</VERB>will be zero if 
+    <VERB>pvm_bcast</VERB> is successful and will be 
+    will be &lt; 0 if some error occurs. 
   </P>
   <P>
     pvm_bcast is asynchronous.

@@ -12,14 +12,15 @@
   <PARAM>
  <PARAM_INDENT>
   <PARAM_ITEM>
-  <PARAM_NAME>err : integer, error code returned by a pvm function.  </PARAM_NAME>
+  <PARAM_NAME>err </PARAM_NAME>
   <PARAM_DESCRIPTION>
+ : integer, error code returned by a pvm function. 
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
-  <PARAM_NAME>errmsg : string, the error message corresponding to the error code  </PARAM_NAME>
+  <PARAM_NAME>errmsg</PARAM_NAME>
   <PARAM_DESCRIPTION>
-    err.  
+     : string, the error message corresponding to the error code <VERB>err</VERB>.  
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -28,10 +29,6 @@
   <P>
     <VERB>pvm_error</VERB> returns the error message corresponding to an PVM error
     code returned by a PVM call.
-  </P>
-  <P>
-  </P>
-  <P>
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

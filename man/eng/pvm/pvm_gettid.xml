@@ -35,22 +35,13 @@
   <P>
     <VERB>pvm_gettid</VERB> 
     returns the tid of the PVM process
-    identified by the group name
+    identified by the group name <VERB>group</VERB> 
+    and the instance number <VERB>inum</VERB> 
   </P>
   <P>
-    and the instance number
-  </P>
-  <P>
-    If pvm_gettid is successful,
-  </P>
-  <P>
-    will be &gt; 0.
-    If some error occurs then
-  </P>
-  <P>
-    will be &lt; 0.
-  </P>
-  <P>
+    The returned value <VERB>tid</VERB>will be &gt;= 0 if 
+    the call is successful and will be 
+    will be &lt; 0 if some error occurs. 
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

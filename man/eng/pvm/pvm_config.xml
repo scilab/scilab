@@ -41,21 +41,16 @@
   <P>
     <VERB>pvm_config</VERB> returns information about
     the present virtual machine. The information returned is
-    similar to that available from the console command
+    similar to that available from the console command.
   </P>
   <P>
     The <VERB>pvm_config</VERB> function returns information about the entire
     virtual machine in one call.
   </P>
   <P>
-    If pvm_config is successful,
-  </P>
-  <P>
-    will be 0.
-    If some error occurs then
-  </P>
-  <P>
-    will be &lt; 0.
+    The returned value <VERB>res(7)</VERB>will be zero if 
+    the call is successful and will be 
+    will be &lt; 0 if some error occurs. 
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

@@ -27,9 +27,10 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    <VERB>pvm_f772sci</VERB>   converts all the  complex    of a scilab  variable
-    represented  in teh F77  way into in  a  scilab representation. May be
-    useful if  an   application  is receiving  data  from  a   non  scilab
+    <VERB>pvm_f772sci</VERB> converts all the complex matrices
+    contained in the representation of a scilab  variable 
+    form a f77 coding to the Scilab complex matrix coding scheme. 
+    This can be  useful if Scilab is receiving  data  from  a   non  scilab
     application (directly from a C or F77 program for example).
   </P>
   <P>

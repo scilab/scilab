@@ -33,26 +33,15 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    <VERB>pvm_getinst</VERB> 
-    takes a group name
-  </P>
-  <P>
-    and a PVM task identifier
-  </P>
-  <P>
-    and returns the unique
-    instance number that corresponds to the input.
+    <VERB>pvm_getinst</VERB> takes a group name <VERB>group</VERB> and
+    a PVM task identifier <VERB>tid</VERB>
+    and returns the unique instance number that corresponds to the input.
     It can be called by any task whether in the group or not.
-    If pvm_getinst is successful,
   </P>
   <P>
-    will be &gt;= 0.
-    If some error occurs then
-  </P>
-  <P>
-    will be &lt; 0.
-  </P>
-  <P>
+    The returned value <VERB>inum</VERB>will be &gt;= 0 if 
+    the call is successful and will be 
+    will be &lt; 0 if some error occurs. 
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

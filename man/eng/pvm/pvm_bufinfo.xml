@@ -12,31 +12,34 @@
   <PARAM>
  <PARAM_INDENT>
   <PARAM_ITEM>
-  <PARAM_NAME>bufid  :   integer, specifying   a  particular  message buffer  </PARAM_NAME>
+  <PARAM_NAME>bufid  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    identifier.
+  :   integer, specifying   a  particular  message buffer  identifier.
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
-  <PARAM_NAME>bytes : integer, size of the message in bytes  (non very useful inside  </PARAM_NAME>
+  <PARAM_NAME>bytes</PARAM_NAME>
   <PARAM_DESCRIPTION>
-    scilab).
+ : integer, size of the message in bytes  (not very useful inside scilab).
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
-  <PARAM_NAME>msgtag : integer,  label of the  message.  Useful when the message was  </PARAM_NAME>
+  <PARAM_NAME>msgtag </PARAM_NAME>
   <PARAM_DESCRIPTION>
+ : integer,  label of the  message.  Useful when the message was 
     received with a wildcard msgtag.
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
-  <PARAM_NAME>tid : integer, task ID of the source of the message.  </PARAM_NAME>
+  <PARAM_NAME>tid </PARAM_NAME>
   <PARAM_DESCRIPTION>
+ : integer, task ID of the source of the message. 
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
-  <PARAM_NAME>info : integer, status code returned by  the routine. Values less than  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
+  <PARAM_NAME>info  </PARAM_NAME>
+  <PARAM_DESCRIPTION> 
+: integer, status code returned by  the routine. Values less than 
     zero indicate an error. 
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
@@ -46,12 +49,15 @@
   <P>
     <VERB>pvm_bufinfo</VERB> returns information   about  the requested   message
     buffer.  Typically it is  used   to determine  facts  about the   last
-    received   message  such  as   its size  or   source.  pvm_bufinfo  is
+    received   message  such  as   its size  or   source. <VERB>pvm_bufinfo</VERB> is
     especially useful when an application is  able to receive any incoming
     message, and the action taken depends on the source tid and the msgtag
-    associated  with the message that comes  in first.   If pvm_bufinfo is
-    successful, info will be 0.  If some error  occurs then info will be &lt;
-    0.
+    associated  with the message that comes  in first.
+  </P>
+  <P>
+    The returned value <VERB>info</VERB>will be zero if 
+    <VERB>pvm_bufinfo</VERB> is successful and will be 
+    will be &lt; 0 if some error occurs. 
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
