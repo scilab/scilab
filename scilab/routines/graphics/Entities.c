@@ -10718,7 +10718,8 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
 	if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
-	n=2*(pSEGS_FEATURE (pobj)->Nbr1)*(pSEGS_FEATURE (pobj)->Nbr2); 
+      //n=2*(pSEGS_FEATURE (pobj)->Nbr1)*(pSEGS_FEATURE (pobj)->Nbr2); F.Leray 17.02.04
+	n=2*(pSEGS_FEATURE (pobj)->Nbr1)*((pSEGS_FEATURE (pobj)->Nbr2)+1);
 	xm = graphic_alloc(0,n,sizeof(int));
 	ym = graphic_alloc(1,n,sizeof(int));
 	zm=0;/* SS 02/04 */
