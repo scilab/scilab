@@ -87,7 +87,7 @@
       </TABLE_NEW_ROW>
 
       <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>&lt;Control mouse-button1&gt;</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>&lt;Shift-Control-mouse-button1&gt;</TABLE_NEW_COLUMN>
 
         <TABLE_NEW_COLUMN>Open the source of the library function under the
         pointer</TABLE_NEW_COLUMN>
@@ -291,19 +291,23 @@
         files from an explorer and dropping to Scipad will open the file(s) in
         Scipad.</SP>
 
+        <P>There is also a drag and drop feature for selected text within the
+        Scipad window. Possible actions are move (just use mouse button-1) and
+        copy (Control button-1).</P>
+
         <P>TkDnD installation for Windows platforms: Download the full package
         (currently tkdnd-1.0a2.tar.gz), and uncompress it somewhere. Copy the
         content of lib\tkdnd and paste it into SCI\tcl\tk8.4\tkdnd. That's
         all!</P>
 
-        <P>TkDnD installation for linux i386 platforms: Download the rpm package
-        (currently tkdnd-1.0-b2.i386.rpm). Install it with rpm -U (may have to
-        force --nodeps if it doesn't recognize an existing tcl installation). 
-        If you have a source version of Scilab and an installation of tcl-tk,
-        check where they are installed (e.g. /usr/share/). and move the newly 
-        created directory /usr/lib/tkdnd1.0/ to there. If you have a binary version
-        of Scilab, move tkdnd1.0/ to SCI/tcl/, where the supplied tcl-tk binaries are.
-        </P>
+        <P>TkDnD installation for linux i386 platforms: Download the rpm
+        package (currently tkdnd-1.0-b2.i386.rpm). Install it with rpm -U (may
+        have to force --nodeps if it doesn't recognize an existing tcl
+        installation). If you have a source version of Scilab and an
+        installation of tcl-tk, check where they are installed (e.g.
+        /usr/share/). and move the newly created directory /usr/lib/tkdnd1.0/
+        to there. If you have a binary version of Scilab, move tkdnd1.0/ to
+        SCI/tcl/, where the supplied tcl-tk binaries are.</P>
 
         <P></P>
       </ITEM>
