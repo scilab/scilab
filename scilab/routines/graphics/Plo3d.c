@@ -1269,6 +1269,9 @@ void I3dRotation(void)
   static integer iflag[]={0,0,0,0};
   double xx,yy;
   double theta0,alpha0;
+  static integer modes[]={1,0};/* for xgemouse only get mouse mouvement*/ 
+
+
   C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ( Check3DPlots("v",&ww) == 0) 
     {
@@ -1317,7 +1320,7 @@ void I3dRotation(void)
 	  if ( pixmode == 1) C2F(dr1)("xset","wwpc",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  dbox();
 	  if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    C2F(dr1)("xgetmouse","one",&ibutton,&iwait,PI0,PI0,PI0,PI0,&xl, &yl,PD0,PD0,0L,0L);
+	    C2F(dr1)("xgetmouse","one",&ibutton,&iwait,PI0,PI0,modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
 	    /* effacement du rectangle */
 	    dbox();
 	    xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
