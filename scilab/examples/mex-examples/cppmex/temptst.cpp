@@ -1,4 +1,4 @@
-#include <mex.h>
+#include "mex.h"
 #include "temptst.h"
 
 extern N1<double> callsquare(N1<double> n1);
