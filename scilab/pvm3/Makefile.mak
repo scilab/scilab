@@ -3,7 +3,7 @@ SHELL = /bin/sh
 
 include ../Makefile.incl.mak
 
-all	:: message libs pvmtracer pvmconsole gslib
+all	:: message libs pvmtracer pvmconsole gslib pvmhoster
 
 message	:: 
 	@echo ====================================
@@ -34,6 +34,16 @@ pvmtracer:
 pvmconsole:
 	@echo making all in console
 	@cd $(PVM_ROOT)\console
+	@SET PVM_ROOT=$(PVM_ROOT)
+	@SET PVM_ARCH=$(PVM_ARCH)
+	@SET PVM_CCOMPILER=$(PVM_CCOMPILER)
+	@SET PVM_CINCLUDE=.
+	@nmake /C /f makefile.mak
+	@cd $(PVM_ROOT)
+
+pvmhoster:
+	@echo making all in hoster
+	@cd $(PVM_ROOT)\hoster
 	@SET PVM_ROOT=$(PVM_ROOT)
 	@SET PVM_ARCH=$(PVM_ARCH)
 	@SET PVM_CCOMPILER=$(PVM_CCOMPILER)
