@@ -53,7 +53,6 @@ case 10 then //strings
 
 case 16 then 
   a1=a(1)//transfer and linear systems
-  pause
   select a1(1)
   case 'r' then //rationals
     num=a('num');a=a('den')

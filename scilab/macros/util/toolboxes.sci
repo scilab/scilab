@@ -96,7 +96,6 @@ function []=distrib_zip (op,name)
     find_contribs('./');
   end
   contribs=%toolboxes;
-  pause
   for k= 1:size(contribs,'*') 
     flag = fileinfo(contribs(k)+'/loader.sce')<>[] 
     job="find . \( -name ''*.o'' -o -name ''*.la'' -o -name ''*.lo'' -o"+...
