@@ -222,9 +222,11 @@ c This test is retained for obsolete syntax eye rand ones
         goto 53
       endif
       if (fun .gt. 0) then
-         call putid(ids(1,pt+1),id)
-         call error(25)
-         if (err .gt. 0) return
+         call varfunptr(id,fun,fin)
+         goto 60
+c         call putid(ids(1,pt+1),id)
+c         call error(25)
+c         if (err .gt. 0) return
       endif
 c     this should never happen???
       if (eqid(id,eye).or.eqid(id,rand)) then
@@ -238,10 +240,8 @@ c      fin=0
       if (err .gt. 0) return
       if (fin .eq. 0) then
          if(err1.ne.0) goto 60
-         if(rstk(pt).eq.311) goto 65
          call  putid(ids(1,pt+1),id)
          call error(4)
-         if(err1.ne.0) goto 60
          if (err .gt. 0) return
       endif
       go to 60
@@ -532,6 +532,14 @@ c     .  id is not a standard variable
       endif
       if(fin.gt.0) goto 50
       if(rhs.eq.0) goto 60
+
+      call isafunptr(top,id,ifun,ifin)
+      if(ifun.ne.0) then
+         top=top-1
+         fun=ifun
+         fin=ifin
+         goto 53
+      endif
 c     
 c     --- variable is a matrix or list :extraction
 c     

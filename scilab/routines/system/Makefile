@@ -24,7 +24,7 @@ OBJSF = allops.o  banier.o sascii.o diary.o\
 	mrknmd.o mkindx.o mklist.o cmdstr.o setgetmode.o\
 	typ2cod.o israt.o funnam.o dspdsp.o lspdsp.o wspdsp.o \
 	xerbla.o algebre.o storeglobal.o setippty.o allowptr.o copyvar.o \
-	lst2vars.o createref.o getfunction.o
+	lst2vars.o createref.o getfunction.o varfunptr.o
 
 include ../../Makefile.incl
 

@@ -119,6 +119,10 @@ c     type 128 : ptr (lu pointer)
 c     type 129 : ip
       call addtypename(129,'ip',ierr)
       if(ierr.ne.0) goto 99
+c     type 130 : fptr
+      call addtypename(130,'fptr',ierr)
+      if(ierr.ne.0) goto 99
+
       return
  99   if(ierr.eq.1) then
          call error(224)

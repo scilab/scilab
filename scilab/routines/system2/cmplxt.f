@@ -119,6 +119,10 @@ c     vector of strings
             nc=istk(lc+4+n)-1
             lc=lc+5+n+nc
             goto 10
+         elseif(op.eq.27) then
+c     varfun
+            lc=lc+3+nsiz
+            goto 10
          elseif(op.ge.100) then
 c     matfns
             lc=lc+4

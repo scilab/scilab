@@ -147,7 +147,7 @@ c     nouvelle 'operation'
 c     
       if(ddt.lt.-1) write(6,'(i7)') op
       goto(20,25,40,42,30,41,45,50,50,60,15,90,90,90,90,100,
-     &     12,101,102,90,103,104,105,106,107,108) ,op
+     &     12,101,102,90,103,104,105,106,107,108,110) ,op
 c     
 c     
 c     matfns
@@ -1207,6 +1207,44 @@ c     m
 c
       lc=lc+5+n+nc
       goto 10
+
+ 110  continue
+c     varfunptr
+      il=iadr(lr)
+      istk(il)=10
+      istk(il+1)=1
+      istk(il+2)=4
+      istk(il+3)=0
+      istk(il+4)=1
+      l=il+9
+c     type 27
+      istk(l)=2
+      istk(l+1)=7
+      istk(il+5)=3
+      l=l+2
+
+c     fun
+      call intstr(istk(lc+1),istk(l),ni,1)
+      istk(il+6)=istk(il+5)+ni
+      l=l+ni
+c     fin
+      call intstr(istk(lc+2),istk(l),ni,1)
+      istk(il+7)=istk(il+6)+ni
+      l=l+ni
+c
+c     nom de la variable
+      call namstr(istk(lc+3),istk(l),ni,1)
+      istk(il+8)=istk(il+7)+ni
+      l=l+ni
+
+      l=sadr(l)
+      istk(ilr)=istk(ilr-1)+l-lr
+      lr=l
+      ilr=ilr+1
+c
+      lc=lc+3+nsiz
+      goto 10
+c
 
 
   120 format('(f',i2,'.',i2,')')

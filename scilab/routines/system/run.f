@@ -70,7 +70,7 @@ c     nouvelle 'operation'
       op=istk(lc)
       goto(20, 25, 40, 42, 30, 41, 45, 49, 49, 55,
      &     15, 90, 95, 100,105,110,120,130,140,150,
-     &     160,170,180,190,200,210) ,op
+     &     160,170,180,190,200,210,220) ,op
 c     matfns
       if(op.ge.100) goto 80
 c     return
@@ -152,17 +152,20 @@ c     allops
       rhs=istk(lc+2)
       lhs=istk(lc+3)
       lc=lc+4
-      
+      if(fin.eq.extrac) then
+         call isafunptr(top,id,ifun,ifin)
+         if(ifun.ne.0) then
+            top=top-1
+            rhs=rhs-1
+            fun=ifun
+            fin=ifin
+            goto 81
+         endif
+      endif
       if(fin.eq.extrac.or.fin.eq.insert) call adjustrhs
       pt=pt+1
       rstk(pt)=601
       ids(1,pt)=tref
-c     following lines have been suppressed accordint to a modifiction in
-c     intl_i  22/08/00
-c      if(istk(lc).eq.1) then 
-c     .  if next op is stackp put name in ids for insertion
-c         call putid(ids(1,pt),istk(lc+1))
-c      endif
       icall=4
       pstk(pt)=lc
 c     *call* allops
@@ -744,6 +747,14 @@ c     character string vector
       endif
       lc=lc+5+n+nc
       goto 10
+
+
+ 220  continue
+c     varfun
+      call varfunptr(istk(lc+3),istk(lc+1),istk(lc+2))
+      lc=lc+3+nsiz
+      goto 10
+
 c
  998  continue
       lhs=0
