@@ -7,7 +7,7 @@ C     ending  (flag 5)
       integer xptr(*),zptr(*),iz(*),izptr(*)
       integer inpptr(*),inplnk(*),outptr(*),outlnk(*),lnkptr(*)
       integer cord(*)
-      integer rpptr(*),ipar(*),ipptr(*),funptr(*),funtyp,ierr
+      integer rpptr(*),ipar(*),ipptr(*),funptr(*),funtyp(*),ierr
 c
       integer flag,nclock,ntvec
       double precision tvec(1)
@@ -30,7 +30,7 @@ C     loop on blocks
       ntvec=0
       do 5 kfun=1,nblk
          flag=5
-         call callf(kfun,nclock,funptr,funtyp,told,x(xptr(nblk+1))
+         call callf(kfun,ntvec,funptr,funtyp,told,x(xptr(nblk+1))
      $        ,x,x,xptr,z,zptr,iz,
      $        izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk,
      $        outptr,outlnk,lnkptr,outtb,flag) 
