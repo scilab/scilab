@@ -17,8 +17,11 @@ while %t then
   num=x_choose(demolist(:,1),'Choose a demo');
   if num==0 then break;
   else
-    xdel(0);xset('window',0)
+    sty=get("old_style");set("old_style","on")
+    xdel(0);xset('window',0);
+    set("figure_style","old")
     demoexc('anim'+string(num)+'.dem');
+    set("old_style",sty)
   end,
 end
 
