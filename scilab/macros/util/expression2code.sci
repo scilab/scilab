@@ -112,7 +112,7 @@ case "operation" then
     C($)=C($)+"]"
   // Extraction
   elseif operator=="ext" then
-    if typeof(e.operands(2))=="list" then // Recursive extraction
+    if type(e.operands(2))==15 then // Recursive extraction
       C=operands(1)+operands(2)
     else
       // Deal with : 
@@ -143,6 +143,10 @@ case "operation" then
     end
   // Insertion  
   elseif operator=="ins" then
+    if type(e.operands(2))==15 then // Recursive insertion
+      C=operands(1)+operands(2)
+      return
+    end
     C=operands(1)
     opened=%f
     for k=2:size(operands,"*")
@@ -249,7 +253,7 @@ case "list"
   C=[]
   for k=1:lstsize(e)
     ind=expression2code(e(k))
-    if typeof(e(k))=="list" then // Recursive extraction in recursive extraction
+    if type(e(k))==15 then // Recursive extraction in recursive extraction
       ind=strsubst(ind,")(",",")
       ind=strsubst(ind,"(","")
       ind=strsubst(ind,")","")
