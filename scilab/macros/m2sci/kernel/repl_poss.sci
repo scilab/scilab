@@ -25,7 +25,7 @@ for k=1:3:nposs
   end
   txt=[
       txt
-      "   "+string(fix(k/3)+1)+") "+expression2code(varargin(k))+" if "+vars+" "+varargin(k+2)]
+      "   --> "+expression2code(varargin(k))+" if "+vars+" "+varargin(k+2)]
 end
 
 set_infos(txt,1)
