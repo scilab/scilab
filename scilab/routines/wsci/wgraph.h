@@ -35,7 +35,7 @@
 #endif
 
 #define MaxCB 50
-#define MAXPRINTF 1024
+#define MAXPRINTF 512
 
 /*-----------------------------------------------------------------------------------*/
 #include <windows.h>

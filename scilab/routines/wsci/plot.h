@@ -3,7 +3,7 @@
 #define TRUE 1
 #define FALSE 0
 
-#define MAX_LINE_LEN 1024	/* maximum number of chars allowed on line */
+#define MAX_LINE_LEN 512	/* maximum number of chars allowed on line */
 #define MAX_ID_LEN 50		/* max length of an identifier */
 #define NO_CARET (-1)
 

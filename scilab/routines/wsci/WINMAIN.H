@@ -29,7 +29,8 @@
 
 /* limits */
 //#define MAXSTR 255
-#define MAXPRINTF 1024
+#define MAXPRINTF 512
+
 
 #define MENUNAME "wscilabE.mnu"
 #define GRAPHMENUNAME "wgscilab.mnu"
