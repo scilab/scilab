@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="BuildMacros"
+	ProjectGUID="{66F2FB48-5D68-4445-A856-119F685A371B}"
+	SccProjectName=""
+	SccLocalPath=""
+	Keyword="MakeFileProj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory=".\Debug"
+			IntermediateDirectory=".\Debug"
+			ConfigurationType="0"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				Output="BuildMacros.exe"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory=".\Release"
+			IntermediateDirectory=".\Release"
+			ConfigurationType="0"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; /a"
+				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				Output="BuildMacros.exe"/>
+		</Configuration>
+		<Configuration
+			Name="PIV_Release|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; /a"
+				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				Output="BuildMacros.exe"/>
+		</Configuration>
+		<Configuration
+			Name="Pentium_Release|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; /a"
+				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				Output="BuildMacros.exe"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
+			<File
+				RelativePath="BuildMacros.mak">
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl">
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

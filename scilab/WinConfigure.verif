@@ -1,0 +1,12 @@
+Makefile.incl.mak
+Scilab.sln
+.\routines\machine-h.vc
+.\routines\version-h.vc
+.\routines\scicos\blocks-vc.h
+.\PVM3\Make-PVM3.mak
+.\bin\TCL83.DLL
+.\bin\TK83.DLL
+.\TCLLIB\LIB\TCL83.LIB
+.\TCLLIB\LIB\TK83.LIB
+.\TCLLIB\INCLUDE\TCL.H
+.\TCLLIB\INCLUDE\TK.H
