@@ -202,10 +202,10 @@ gtk_plug_set_is_child (GtkPlug  *plug,
 	gtk_window_set_focus (GTK_WINDOW (plug), NULL);
       if (GTK_WINDOW (plug)->default_widget)
 	gtk_window_set_default (GTK_WINDOW (plug), NULL);
-	  
+
       plug->modality_group = gtk_window_group_new ();
       gtk_window_group_add_window (plug->modality_group, GTK_WINDOW (plug));
-      
+
       GTK_WIDGET_SET_FLAGS (plug, GTK_TOPLEVEL);
       gtk_container_set_resize_mode (GTK_CONTAINER (plug), GTK_RESIZE_QUEUE);
 
@@ -554,8 +554,6 @@ gtk_plug_realize (GtkWidget *widget)
       
       gdk_window_add_filter (widget->window, gtk_plug_filter_func, widget);
 
-      plug->modality_group = gtk_window_group_new ();
-      gtk_window_group_add_window (plug->modality_group, window);
       
       xembed_set_info (widget->window, 0);
     }
