@@ -11,12 +11,12 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <unistd.h>
-#include <gtk/gtk.h>
 #include "../graphics/Math.h"
-#include "../graphics/periGtk-bcg.h" 
+#include "../graphics/bcg.h" 
 #include "../graphics/Graphics.h" 
 #include "../sun/Sun.h" 
-#include "../menusX/men_scilab.h"
+#include "../sun/men_Sutils.h"
+//#include "../menusX/men_scilab.h"
 #include "All-extern.h"
 
 
@@ -25,6 +25,8 @@
 
 void menu_entry_show(menu_entry *m);  /* only used for debug */ 
 extern void create_scilab_about(void); 
+extern int prtdlg  __PARAMS((integer *flag, char *printer, integer *colored, integer *orientation, char *file, integer *ok));
+extern int sci_get_file_window __PARAMS((char *, char **, char *, int,int, int *,char *));
 
 extern char GetDriver();
 static void *sci_window_initial_menu() ;
