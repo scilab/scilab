@@ -5107,7 +5107,7 @@ c     Interface for isequal:
       INCLUDE '../stack.h'
 
       integer id(nsiz)
-      integer typ,m,n,l,il,il1,ilk,k,topk,top1,srhs
+      integer typ,m,n,l,il,il1,ilk,k,topk,top1,srhs,k1
 
 c     EXTERNAL API FUNCTIONS
       logical  checkrhs, checklhs
@@ -5161,24 +5161,28 @@ c first check the dimensions
       srhs=rhs
 
  30   do 40 k=2,srhs
-      call createref(iadr(lstk(top1)),top1,lstk(top1+1)-lstk(top1))
-      topk=top1+k-1
-      call createref(iadr(lstk(topk)),topk,lstk(topk+1)-lstk(topk))
-      fin=equal
-      rhs=2
-      call allops()
-      if(err.gt.0.or.err1.gt.0) return
-      if(icall.ne.0) then
+         call createref(iadr(lstk(top1)),top1,lstk(top1+1)-lstk(top1))
+         topk=top1+k-1
+         call createref(iadr(lstk(topk)),topk,lstk(topk+1)-lstk(topk))
+         fin=equal
+         rhs=2
+         call allops()
+         if(err.gt.0.or.err1.gt.0) return
+         if(icall.ne.0) then
 c     should not happen
-         rhs=srhs
-         top=top1-1+rhs
-         call funnam(ids(1,pt+1),'isequal',iadr(lstk(top-rhs+1)))
-         fun=-1
-         return
-      endif
-      il=iadr(lstk(top))
-      if(istk(il+3).eq.0) goto 60
-      top=top-1
+            rhs=srhs
+            top=top1-1+rhs
+            call funnam(ids(1,pt+1),'isequal',iadr(lstk(top-rhs+1)))
+            fun=-1
+            return
+         endif
+c     
+         il=iadr(lstk(top))
+         do 35  k1=1,istk(il+1)*istk(il+2)
+            if(istk(il+2+k1).eq.0) goto 60
+ 35      continue
+
+         top=top-1
  40   continue
 c variables are equal
       top=top1
