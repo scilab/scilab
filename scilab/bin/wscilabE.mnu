@@ -165,10 +165,44 @@
  
 [EndMenu]
 
-[Button]
+;Example add a button with a icon file
+;[Button]
+;	|Scicos|c:\icones\Scicos.ico|
+;		scicos();
 
-	Scicos
+[Button]
+	|New Scilab|SCILAB_ICON|
+		[NEWSCILAB]
+[Button]
+	--
+		--				
+[Button]
+	|Scicos|SCICOS_ICON|
 		scicos();	
 [Button]
-	Metanet
+	|Metanet|METANET_ICON|
 		edit_graph();
+[Button]
+	--
+		--				
+[Button]
+	|Change Directory|DIRECTORY_ICON|
+		[CHDIR]
+[Button]
+	|Console|CONSOLE_ICON|
+		[CONSOLE]				
+[Button]
+	|Choose Font...|FONT_ICON|
+		[CHOOSETHEFONT]
+[Button]
+	|Print|PRINT_ICON|
+		[PRINT]
+[Button]
+	|Help|HELP_ICON|
+		[HELP]
+[Button]
+	--
+		--							
+[Button]
+	|Exit|EXIT_ICON|
+		[EXIT]

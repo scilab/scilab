@@ -153,16 +153,47 @@ E&diteur
 ;			[EMAIL]
 ;		--
 
- 	
- 
 [EndMenu]
 
-[Button]
+;Exemple de bouton avec chemin de l'icone 
+;[Button]
+;	|Scicos|c:\icones\Scicos.ico|
+;		scicos();
 
-	Scicos
-		scicos();	
 [Button]
-	Metanet
+	|Nouveau Scilab|SCILAB_ICON|
+		[NEWSCILAB]
+[Button]
+	--
+		--	
+[Button]
+	|Scicos|SCICOS_ICON|
+		scicos();		
+[Button]
+	|Metanet|METANET_ICON|
 		edit_graph();
-
+[Button]
+	--
+		--	
+[Button]
+	|Changer de Répertoire|DIRECTORY_ICON|
+		[CHDIR]					
+[Button]
+	|Console|CONSOLE_ICON|
+		[CONSOLE]
+[Button]
+	|Changer la police|FONT_ICON|
+		[CHOOSETHEFONT]
+[Button]
+	|Imprimer|PRINT_ICON|
+		[PRINT]
+[Button]
+	|Aide|HELP_ICON|
+		[HELP]
+[Button]
+	--
+		--							
+[Button]
+	|Sortir|EXIT_ICON|
+		[EXIT]
 		
