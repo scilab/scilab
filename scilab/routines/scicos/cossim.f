@@ -62,7 +62,8 @@ c
 c
       save otimer
       data otimer/0/
-c    
+c
+      halt=0
       ierr = 0
       hot = .false.
       stuck=.false.
@@ -112,11 +113,12 @@ C     main loop on time
          if (ntimer.ne.otimer) then
             call sxevents()
             otimer=ntimer
-            if (halt.ne.0) then
-               halt=0
-               return
-            endif
+c     .     sxevents can modify halt            
          endif
+      endif
+      if (halt.ne.0) then
+         halt=0
+         return
       endif
       if (pointi.eq.0) then
          t = tf
@@ -396,6 +398,7 @@ c
       save otimer
       data otimer/0/
 c    
+      halt=0
       ierr = 0
 c     hot = .false.
       info(1)=0
@@ -472,11 +475,13 @@ C     main loop on time
          if (ntimer.ne.otimer) then
             call sxevents()
             otimer=ntimer
-            if (halt.ne.0) then
-               halt=0
-               return
-            endif
+c     .     sxevents can modify halt
+            
          endif
+      endif
+      if (halt.ne.0) then
+         halt=0
+         return
       endif
       if (pointi.eq.0) then
          t = tf
@@ -697,5 +702,3 @@ C
 C     end of main loop on time
       goto 10
       end
-
- 
