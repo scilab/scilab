@@ -313,8 +313,8 @@ void Callback_FRENCH(void)
 			lptw->lpmw->CodeLanguage=1;
 			SwitchLanguage(lptw);
 			ConfigureScilabStar(lptw->lpmw->CodeLanguage);
+			StoreCommand1 ("exec(SCI+'/contrib/loader.sce');",0);
 		}
-	    		
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_ENGLISH(void)
@@ -329,8 +329,8 @@ void Callback_ENGLISH(void)
 			lptw->lpmw->CodeLanguage=0;
 			SwitchLanguage(lptw);
 			ConfigureScilabStar(lptw->lpmw->CodeLanguage);
+			StoreCommand1 ("exec(SCI+'/contrib/loader.sce');",0);
 		}
-
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_CHOOSETHEFONT(void)
