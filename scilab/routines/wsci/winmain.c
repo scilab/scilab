@@ -33,6 +33,54 @@
 #include "winmain.h"
 
 BOOL WindowMode;
+
+
+/*-----------------------------------------------------------------------------------*/
+void InitWindowGraphDll(void)
+/* Modification Allan CORNET*/
+/* Novembre 2003 */
+/* Permet l'affichage des menus graphiques lors d'un appel de la DLL Scilab*/
+{
+  
+  HINSTANCE hdllInstanceTmp=NULL;
+  char *p1 = (char*)getenv ("SCI");
+  hdllInstanceTmp=(HINSTANCE)GetModuleHandle("libScilab");
+
+  if (hdllInstanceTmp==NULL) 
+  {
+  	MessageBox(NULL,"Do not find LibScilab.dll","Error",MB_ICONWARNING|MB_OK);
+  	exit(1);
+  }
+  hdllInstance=hdllInstanceTmp;
+  szModuleName = (LPSTR) malloc (MAXSTR + 1);
+  CheckMemory (szModuleName);
+
+  strcpy(szModuleName,p1);
+  strcat(szModuleName,"\\bin\\");
+
+  if (CheckWScilabVersion (WSCILABVERSION))
+    {
+      MessageBox (NULL, "Wrong version of WSCILAB.DLL", szModuleName, MB_ICONSTOP | MB_OK);
+      exit (1);
+    }
+
+   szGraphMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (GRAPHMENUNAME) + 1);
+   CheckMemory (szGraphMenuName);
+   strcpy (szGraphMenuName, szModuleName);
+   strcat (szGraphMenuName, GRAPHMENUNAME);
+    
+   InitCommonControls ();
+  
+   graphwin.hInstance = hdllInstance;
+   graphwin.hPrevInstance = NULL;
+   graphwin.Title = "Scilab Graph";
+   graphwin.szMenuName = szGraphMenuName;
+   graphwin.lptw = &textwin;
+   graphwin.IniFile = "scilab.ini";
+   graphwin.IniSection = "SCILAB";
+    
+}
+/*-----------------------------------------------------------------------------------*/
 /*---------------------------------------------------
 * The WinMain function
 *---------------------------------------------------*/
