@@ -144,13 +144,16 @@ clear fd ierr
 // load history file ==================================================
 loadhistory()
 
-// LCC initialization =========================================
+// LCC initialization =================================================
 global LCC
 if MSDOS then
 	LCC=%f;
 else
 	LCC=%f
 end
+// Graphic mode and Startup info ======================================
+set old_style off
+show_startupinfo()
 
 // calling user initialization =========================================
 // Home dir startup (if any)
