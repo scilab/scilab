@@ -1,13 +1,19 @@
-function [shad]=parseShading(typeOfPlot,argList)
+function [shad,facec,edgec]=parseShading(typeOfPlot,argList)
 if length(argList)>=2
 if type(argList(2))==10
    select argList(2)
    case 'flat'
       shad='flat';
+      facec="flat';
+	  edgec="none";
    case 'faceted'
       shad='faceted';
+      facec="flat';
+      edgec=[];
    case 'interp'
       shad='interp';
+      facec="interp';
+      edgec="none";
    else
      error(sprintf('%s : unknown shading specification ''%s''',typeOfPlot,argList(2)))
    end

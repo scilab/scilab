@@ -13,6 +13,7 @@ function mainPlot3d(typeOfPlot,argList)
 hidden=%T;
 numberOfVertices=4;     // default type of polygons
 lightVect=[1;1;1];      // default position of light source (at infinity)
+BackFaceLighting="lit";
 azimuth=45;             // default azimuth
 elevation=54.7;         // default elevation
 facecolor=[];           // default facecolor for 'mesh'
@@ -203,13 +204,16 @@ while length(argList)
       
    elseif (type(argList(1))==10) // If this argument is a string
 
-      select argList(1) // Try to identify a property name
+      select convstr(argList(1),'l') // Try to identify a property name
 
       case 'colorbar'
          colorBar=parseColorBar(typeOfPlot,argList);
 	 argList(1)=null(); argList(1)=null();
       case 'light'
          lightVect=parseLight(typeOfPlot,argList);
+	 argList(1)=null(); argList(1)=null();
+      case 'backfacelighting'
+         BackFaceLighting=parseBackFaceLighting(typeOfPlot,argList);
 	 argList(1)=null(); argList(1)=null();
       case 'view'
          [azimuth,elevation]=parseView(typeOfPlot,argList,azimuth,elevation);
@@ -221,8 +225,8 @@ while length(argList)
          edgecolor = parseColor(typeOfPlot,'edgecolor',argList);
          argList(1)=null(); argList(1)=null();
       case 'shading'
-         shadingType=parseShading(typeOfPlot,argList);
-	 argList(1)=null(); argList(1)=null();
+         [shadingType,facecolor,edgecolor]=parseShading(typeOfPlot,argList);
+ 	 argList(1)=null(); argList(1)=null();
       case 'axis'
          [axisStyle,axisRatio,axisVect,axisTightX,axisTightY] = ...
 	 parseAxis(typeOfPlot,argList,axisStyle,axisRatio,axisVect,axisTightX,axisTightY);
@@ -251,7 +255,7 @@ while length(argList)
       case 'grid'
          [gridFlag,gridColor]=parseGrid(typeOfPlot,argList);
 	 argList(1)=null(); argList(1)=null();
-      case 'fontSize'
+      case 'fontsize'
            fontSize = parseFontSize(typeOfPlot,argList);
 	 argList(1)=null(); argList(1)=null();
 
@@ -269,12 +273,19 @@ end // while length(argList)
 // Common 2D/3D stuff
 
 [foreground,background]=processSFB(foreground,background,win,typeOfPlot)
+
 if edgecolor==[]
    edgecolor=foreground;
 end
 
-if facecolor==[]
-   facecolor=background;
+if typeOfPlot=='mesh' | typeOfPlot=='trimesh' | typeOfPlot=='triplot'
+	if facecolor==[]
+	   facecolor=background;
+	end
+else
+	if facecolor==[]
+	   facecolor="flat";
+	end
 end
 
 labels=Xlabel+'@'+Ylabel+'@'+Zlabel;
@@ -331,7 +342,7 @@ else
 			if typeOfPlot=='tripcolor'
 				if length(Z)~=length(X) // when color is given for triangles, not nodes
 					Z=Z(:)';
-					if shadingType=='interp' // Averaging of value for each node
+					if facecolor=='interp' // Averaging of value for each node
 						C=zeros(nnodes,1);
 						nV=zeros(nnodes,1);
 						t=zeros(3,1);
@@ -350,7 +361,7 @@ else
 //						Z=matrix(Z(triang),3,ntri);
 					end
 				end
-				if shadingType~="interp"
+				if facecolor~="interp"
 					X=matrix(X(triang),3,ntri); 
 					Y=matrix(Y(triang),3,ntri);
 					Z=matrix(Z(triang),3,ntri);
@@ -372,7 +383,7 @@ else
 
 				N=N*sparse([1:ntri;1:ntri]',1../(%eps+sqrt(sum(N.^2,'r'))));
 
-				if shadingType=='interp' // Averaging of illumination for each node
+				if facecolor=='interp' // Averaging of illumination for each node
 
 					L=computeLight(N,lightVect);
 					clear N;
@@ -402,7 +413,7 @@ else
 				[zx,zy]=nonParametricDiffData(X,Y,Z');
 				Z=Z+%i*matrix(computeLight(nonParametricNormals(zx,zy),lightVect),ny,nx)';
 			end
-			if typeOfPlot=='pcolor' & shadingType=='interp'
+			if typeOfPlot=='pcolor' & facecolor=='interp'
 					p=prod(size(X));
 					q=prod(size(Y));
 					_X = ones(Y).*.X;
@@ -428,7 +439,7 @@ else
 							xv,yv,zv),lightVect),nv,nu);
     	     end
 
-			if typeOfPlot=='pcolor' & shadingType=='interp'
+			if typeOfPlot=='pcolor' & facecolor=='interp'
 					p=nu;
 					q=nv;
 					X = matrix(X,p*q,1);
@@ -495,13 +506,13 @@ else
 	  		typeOfPlot=='surfl' | ...
 	  		typeOfPlot=='trisurf' | ...
 	  		typeOfPlot=='trisurfl' | ...
-			typeOfPlot=="triplot"
+			typeOfPlot=='triplot'
 
 		if typeOfPlot~="triplot"
 
 			if typeOfPlot=='trisurfl'
 
-				if shadingType=='interp'
+				if facecolor=='interp'
 					C=imag(Z);
 					Z=real(Z);
 				end
@@ -512,11 +523,6 @@ else
 					C=Z;
 				else
 					C=imag(Z); Z=real(Z);   
-				end
-
-				if shadingType~='interp'
-//					C=sum(C,'r')/size(C,1);
-					C=C(1,:);
 				end
 
 			end
@@ -552,25 +558,13 @@ else
 
 			end
 
-
-			if shadingType=='faceted'
-				flag=1;
-			else
-				flag=-1;
-			end
-
-			if shadingType=='interp'
-				C=matrix(tab(C),size(Z));
-			else
-				C=tab(C);
-			end
+			C=matrix(tab(C),size(Z));
 
 		else
 			C=zeros(1,size(X,2));
 			if facecolor ~= 'none'
 				C=C+addcolor(facecolor);
 			end
-			shadingType="faceted";
 		end
 
 		if typeOfPlot=='pcolor' | typeOfPlot=='tripcolor' | typeOfPlot=='triplot'
@@ -586,17 +580,15 @@ else
 			
 			xclip('clipgrf')
 
-			if typeOfPlot=='tripcolor' & shadingType=='interp'			
+			if typeOfPlot=='tripcolor' & facecolor=='interp'			
 				fec(X,Y,[1:ntri;triang;zeros(1,ntri)]',Z,colminmax=[tab(1) tab($)],zminmax=[minC maxC])
-			elseif typeOfPlot=='pcolor' & shadingType=='interp'
+			elseif typeOfPlot=='pcolor' & facecolor=='interp'
 				fec(X,Y,[1:ntri;triang;zeros(1,ntri)]',Z,colminmax=[tab(1) tab($)],zminmax=[minC maxC])
 			else
-				if shadingType=='flat'
+				if facecolor=="flat"  & edgecolor=="none"
 					xfpolys(X,Y,-C)
-				elseif shadingType=='faceted'
-					xset('dashes',addcolor(edgecolor));
-					xfpolys(X,Y,C)
-				elseif shadingType=='interp'
+				elseif facecolor=="flat" & edgecolor~="none"
+					xset('color',addcolor(edgecolor));
 					xfpolys(X,Y,C)
 				end
 			end
@@ -619,11 +611,31 @@ else
 			if colorBar~='off'
 			   processColorBar(tab,colorBar,state);
 			end
-		else
+
+		else // surf, trisurf, surfl, trisurfl
+		
 			[modeStart]=process3DPrelim(win,axisVect,axisRatio,axisStyle,colorBar,tab,fontSize);
 			state=loadGraphicState(win);
-			plot3d1(X,Y,list(Z,C),azimuth,elevation,labels,[flag modeStart],axis());
-
+			plot3d1(X,Y,list(Z,C),azimuth,elevation,labels,[1 modeStart],axis());
+			h=gce();
+			
+			if facecolor=="flat"
+				h.data.color=-h.data.color;
+				h.color_flag=2;
+            end
+			if edgecolor=="none"
+				h.color_mode=-1;
+			else
+				ec=edgecolor*255;
+				h.foreground=color(ec(1),ec(2),ec(3));				
+			end
+			
+			if (typeOfPlot=="surfl" | typeOfPlot=="trisurfl") &  BackFaceLighting=="unlit"
+					h.hiddencolor=mean(tab);
+			else
+					h.hiddencolor=-1;
+			end
+			
 			if colorBar~='off'
 				processColorBar(tab,colorBar,state);
 			end
