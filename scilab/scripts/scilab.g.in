@@ -238,6 +238,9 @@ if test "$rest" = "yes"; then
           now="-nw"
 	  sci_args="$sci_args -nw"
           ;;
+      --texmacs)
+          sci_args="$sci_args --texmacs"
+          ;;
       -nwni)
           now="-nw"
 	  sci_args="$sci_args -nw"

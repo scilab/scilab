@@ -65,6 +65,7 @@ load('SCI/macros/elem/lib')
 load('SCI/macros/int/lib')
 load('SCI/macros/calpol/lib')
 load('SCI/macros/percent/lib')
+if or(sciargs()=="--texmacs") then load('SCI/macros/texmacs/lib'),end
 load('SCI/macros/xdess/lib')
 
 // Create a temporary directory
@@ -112,7 +113,7 @@ demolist=initial_demos_tables()
 clear initial_demos_tables
 
 // Menu for Help 
-if (sciargs()<>"-nw")&(sciargs()<>"-nwni") then
+if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"--texmacs") then
   if MSDOS then
     delmenu("Help")
     addmenu("Help",list(0,"helpcommand"))
@@ -151,7 +152,7 @@ end
 clear initial_scicos_tables
 
 //Start TCL interpretor if required
-if (sciargs()<>"-nw")&(sciargs()<>"-nwni") then
+if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"--texmacs") then
   if MSDOS then
     if funptr("TK_EvalStr")<>0 then
       // Create Scipad TCL interpretor

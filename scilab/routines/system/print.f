@@ -50,12 +50,16 @@ C     topk : free stack zone for working areas
       mactop=0
       if (abs(itype).eq.11.or.abs(itype).eq.13) mactop=1
 c     
+
+
  05   goto (20,10,06,55,25,26,06,06,75,30,60,06,60,70,40,40,40)
      $     ,abs(itype)
  06   goto 75
 c     
 c     ----polynomial matrices
- 10   ilog=getpoly("print",lk,lk,it,m,n,name,namel,ilp,lr,lc)
+ 10   continue
+      if (lunit.eq.wte.and.intexmacs().ne.0) goto 75
+      ilog=getpoly("print",lk,lk,it,m,n,name,namel,ilp,lr,lc)
 C     working area (see dmpdsp)
       iwl = istk(ilp + m*n)-istk(ilp) + m*n+1
       if (.not.crewimat("print",topk,1,iwl,lw)) return
@@ -77,7 +81,9 @@ C     working area (see dmpdsp)
       goto 48
 c     
 c     -------scalar matrices 
- 20   ilog=getmat("print",lk,lk,it,m,n,lr,lc)
+ 20   continue
+      if (lunit.eq.wte.and.intexmacs().ne.0) goto 75
+      ilog=getmat("print",lk,lk,it,m,n,lr,lc)
 C     working area 
       if (.not.crewimat("print",topk,1,m*n+2*n,lw)) return
       if(m*n.eq.0) then
@@ -117,7 +123,9 @@ c     -------sparse boolean matrices
      $     lineln,lunit,buf)
       goto 48 
 c     -------matrices of string 
- 30   ilog=getsimat("print",lk,lk,m,n,1,1,lr,nlr)
+ 30   continue
+      if (lunit.eq.wte.and.intexmacs().ne.0) goto 75
+      ilog=getsimat("print",lk,lk,m,n,1,1,lr,nlr)
 C     working area 
       if (.not.crewimat("print",topk,1,n,lw)) return
       call strdsp(istk(lr),istk(lr-m*n-1),m,n,lineln,lunit,istk(lw),buf)
@@ -133,9 +141,15 @@ c     -------lists
  40   continue
       itype=gettype(lk)
       call listtype(lk,itypel)
-      if (itypel.eq.1) goto 50
+      if (itypel.eq.1) then
+         if (lunit.eq.wte.and.intexmacs().ne.0) goto 41
+         goto 50
+      endif
       islss=itypel.eq.2
-      if (islss) goto 45
+      if (islss) then
+         if (lunit.eq.wte.and.intexmacs().ne.0) goto 41
+         goto 45
+      endif
 c      if(islss.or.itype.eq.15) goto 45
 
  41   continue
@@ -190,7 +204,8 @@ c     copy tlist to top of stack
       goto 95
 c     
 c     check for typed lists 
- 45   ilog=getilist("print",lk,lk,nl,1,ilt)
+ 45   continue
+      ilog=getilist("print",lk,lk,nl,1,ilt)
       illist=lstk(lk)
 C     list ( we must deal with recursion ) 
       nlist=nlist+1
@@ -304,6 +319,7 @@ c     end for list
 c     
 c     -----fractions rationnelles <=> list('r',matpoly,matpoly)
  50   continue
+      if (lunit.eq.wte.and.intexmacs().ne.0) goto 75
 c     Numerateur ( 2ieme elt de la liste )
       ilog=getilist("print",lk,lk,nel,2,iln)
 c     ---local change of lstk(topk)
@@ -372,7 +388,9 @@ C     of requested size iws
       goto 48
 c     
 c     -----------boolean matrix
- 55   ilog= getbmat("print",lk,lk,m,n,lr)
+ 55   continue
+      if (lunit.eq.wte.and.intexmacs().ne.0) goto 75
+      ilog= getbmat("print",lk,lk,m,n,lr)
       if(m*n.eq.0) then
          call basout(io,lunit,'     []')
       else
