@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.22 $)dnl
+AC_REVISION($Revision: 1.23 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -873,7 +873,7 @@ case "$host" in
     FC_OPTIONS="-O -mno-cygwin"
     FC_OPTIONS_O0="-mno-cygwin"
       if test "$enable_debug" = yes; then 
-        FC_OPTIONS=-g
+        FC_OPTIONS="-g -mno-cygwin"
       fi
     FC_LDFLAGS=
     if test "$with_f2c" = yes; then
