@@ -2729,12 +2729,9 @@ C     If Ri has a zero at T0+, but not at T0, return valid root. -----------
           ENDIF
  250   CONTINUE
 
-       IF (IRT .EQ. 1)  GO TO 265
+       IF (IRT .EQ. 1)  RETURN
 C     R0 has no zero components.  Proceed to check relevant interval. ------
- 260   IF (TN .EQ. RWORK(LTLAST)) GO TO 265
-
- 265   CONTINUE
-       RETURN
+ 260   IF (TN .EQ. RWORK(LTLAST)) RETURN
 C     
  300   CONTINUE
 C     AT THE BEGINING OF THE PREVIOUS STEP THERE WERE A MASK-LIFTING
