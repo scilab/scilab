@@ -130,6 +130,7 @@ c     return error number
          errct=ids(2,pt)
          err2=ids(3,pt)
          err1=ids(4,pt)
+         errpt=ids(5,pt)
          fun=0
       else
          if(errct.ne.0.and.err1.gt.0) then
