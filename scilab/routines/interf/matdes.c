@@ -5916,16 +5916,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
     }
   else if (strncmp(marker,"grid", 4) == 0) {/**DJ.Abdemouche 2003**/
-    if ((*numcol!= 3) && (*numcol != 2)) 
-      { strcpy(error_message,"Value must have two elements (three if 3D universe) ");return -1;}
-    else
-      for (i = 0; i < *numcol; i++ )
-	{
-	  if (stk(*value)[i] < -1)
-	    {strcpy(error_message,"Argument must be -1 (no grid)  or number of color");return -1;}
-	  else
-	    {pSUBWIN_FEATURE (pobj)->grid[i]=(int) stk(*value)[i];}
-	}   
+    for (i = 0; i < *numcol; i++ )
+      {
+	if (stk(*value)[i] < -1)
+	  {strcpy(error_message,"Argument must be -1 (no grid)  or number of color");return -1;}
+	else
+	  {pSUBWIN_FEATURE (pobj)->grid[i]=(int) stk(*value)[i];}
+      }   
   }
   else if  (strncmp(marker,"axes_visible", 12) == 0) 
     {
