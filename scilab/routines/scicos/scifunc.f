@@ -40,6 +40,7 @@ C
       rhs = ids(2,pt)
       pt = pt - 1
       niv = niv - 1
+      return
 C+    
  9999 continue
       iero=1
