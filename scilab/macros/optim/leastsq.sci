@@ -24,19 +24,19 @@ if type(Dfun)==10 then //the 'b' keyword or the jacobian entry point name
     if type(varargin(2))==1 & type(varargin(3))==1 then
       J=%f //bounds specification
     else
-      J=%t //jacobian 
+      J=%t //jacobian
     end 
   else
     J=%t //jacobian 
   end
 elseif type(Dfun)==11|type(Dfun)==13 then
   J=%t  //Jacobian provided
-  varargin(1)=null()
 elseif type(Dfun)==15 then 
   error('Jacobian cannot be a list, parameters must be set in fun')
 else
   J=%f
 end
+if J then, varargin(1)=null(), end  // to correct bug 1219 (bruno, 22 feb 2005)
 kr=1
 
 if varargin(kr)=='b' then kr=kr+3,end
@@ -49,9 +49,10 @@ if type(fn)==10 then //hard coded function given by its name
   m=params(1);params(1)=null()
   n=size(x0,'*')
   // foo(m,nx,x,params,f)
-  deff('f=fn(x,p)','f=call('''+fn+''','+..
+  deff('f=fn(x)','f=call('''+fn+''','+..
       'm,1,''i'',n,2,''i'',x,3,''d'','+..
       'pars,4,''d'',''out'',['+string(m)+',1],5,''d'')')
+   
   pars=[];
   for k=1:size(params)
     p=params(k)
@@ -66,17 +67,17 @@ if J then //jacobian given
     // dfoo(m,nx,x,params,g)
     deff('g=Dfun(x)','g=call('''+Dfun+''','+..
 	'm,1,''i'',n,2,''i'',x,3,''d'','+..
-	'pars,4,''out'',['+string(m)+','+string(n)+'],5,''d'')')
+	'pars,4,''d'',''out'',['+string(m)+','+string(n)+'],5,''d'')')
   end
 else
-  if params==list()
+  if params==list() then
     deff('g=Dfun(x)','g=numdiff(fn,x)')
   else
     deff('g=Dfun(x,varargin)','g=numdiff(list(fn,varargin(:)),x)')
   end
 end
 
-if params==list()
+if params==list() then
   deff('[f,g,ind]=%opt(x,ind)',[
       'ff=fn(x);gf=Dfun(x)'
       'f=sum(ff.^2)'
