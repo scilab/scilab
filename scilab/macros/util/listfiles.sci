@@ -19,12 +19,12 @@ function files= listfiles(paths,flag,flagexpand)
     paths = pathconvert(paths,%f,flagexpand); 
   end 
   
-  paths= strcat(paths,' ');
-  
   if MSDOS then
+    paths= '""'+ strcat(paths,'"" ""')+'""';
     files=unix_g('dir /B /OD '+paths);
     files=files($:-1:1)
   else
+    paths=  strcat(paths,' ');
     files=unix_g('ls  -t1 '+paths);
   end
 endfunction
