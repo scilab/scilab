@@ -576,7 +576,7 @@ void mxSetM(mxArray *ptr, int M)
     break;
   case DOUBLEMATRIX: case INTMATRIX: 
     /* make ptr a reference */
-    size=2+M*header[2];  /*  oldN=header[2] */
+    size=2+M*header[2]*(header[3]+1);  /*  oldN=header[2] */
     mxNew = mxCreateData(size);   /* performs Nbvars++ */
     headernew = (int *) stkptr((long int) mxNew);
     headernew[0]=header[0];
@@ -584,7 +584,7 @@ void mxSetM(mxArray *ptr, int M)
     headernew[2]=header[2];
     headernew[3]=header[3];
     valueold = (double *) &header[4]; valuenew = (double *) &headernew[4];
-    memcpy(valuenew, valueold, M*header[2]*sizeof(double));
+    memcpy(valuenew, valueold, M*header[2]*(header[3]+1)*sizeof(double));
     ChangeToRef(arr2num(ptr),Nbvars);
     break;
   default:
@@ -708,7 +708,7 @@ void mxSetN(mxArray *ptr, int N)
     break;
   case DOUBLEMATRIX: case INTMATRIX: 
     /* make ptr a reference */
-    size=2+header[1]*N;  /*  oldM=header[1] */
+    size=2+header[1]*N*(header[3]+1);  /*  oldM=header[1] */
     mxNew = mxCreateData(size);
     headernew = (int *) stkptr((long int) mxNew);
     headernew[0]=header[0];
@@ -717,7 +717,7 @@ void mxSetN(mxArray *ptr, int N)
     headernew[3]=header[3];
     new = Nbvars;
     valueold = (double *) &header[4]; valuenew = (double *) &headernew[4];
-    memcpy(valuenew, valueold, header[1]*N*sizeof(double));
+    memcpy(valuenew, valueold, header[1]*N*(header[3]+1)*sizeof(double));
     ChangeToRef(arr2num(ptr),new);
     break;
   case SPARSEMATRIX:
@@ -2016,6 +2016,8 @@ void mxSetPi(mxArray *array_ptr, double *pi)
 {
   /* TO BE DONE */
   int size;
+  double *value;
+  value = mxGetPi(array_ptr);
   size=mxGetM(array_ptr)*mxGetN(array_ptr);
   memcpy(mxGetPi(array_ptr), pi, size*sizeof(double));
 }
