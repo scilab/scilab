@@ -47,7 +47,9 @@ c     intn to intm or double
             istk(il)=8
             istk(il+3)=it
             lr=l
-            call tpconv(is1,it,mn,istk(l),-1,istk(lr),-1)
+            inc=-1
+            if (mod(is1,10).gt.(mod(it,10)))  inc=1
+            call tpconv(is1,it,mn,istk(l),inc,istk(lr),inc)
             lstk(top+1)=sadr(lr+memused(it,mn))
          endif
       else
