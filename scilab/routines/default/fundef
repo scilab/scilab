@@ -31,6 +31,8 @@
 {"fileinfo",     	IN_matio,       27,	1},
 {"getio",       	IN_matio,       28,	1},
 {"setenv",       	IN_matio,       29,	1},
+{"xls_open",       	IN_matio,       30,	1},
+{"xls_read",       	IN_matio,       31,	1},
 #define  IN_matelm  6  
 {"abs",			IN_matelm,	1,	0},	
 {"atan",		IN_matelm,	25,	0},	
@@ -486,10 +488,10 @@
 {"var2vec",		IN_coselm,	1,	2},	
 {"vec2var",		IN_coselm,	2,	2},
 #define  IN_specfun  36  
-{"besseli",		IN_specfun,	1,	3},	
-{"besselj",		IN_specfun,	2,	3},	
-{"besselk",		IN_specfun,	3,	3},	
-{"bessely",		IN_specfun,	4,	3},	
+{"oldbesseli",		IN_specfun,	1,	3},	
+{"oldbesselj",		IN_specfun,	2,	3},	
+{"oldbesselk",		IN_specfun,	3,	3},	
+{"oldbessely",		IN_specfun,	4,	3},	
 {"gamma",		IN_specfun,	5,	3},	
 {"gammaln",		IN_specfun,	6,	3},	
 {"dlgamma",		IN_specfun,	7,	3},	
@@ -511,6 +513,10 @@
 #define  IN_otherspecfun  39  
 {"legendre",		IN_otherspecfun,	1,	3},	
 {"beta",		IN_otherspecfun,	2,	3},	
+{"besseli",		IN_otherspecfun,	3,	3},	
+{"besselj",		IN_otherspecfun,	4,	3},	
+{"besselk",		IN_otherspecfun,	5,	3},	
+{"bessely",		IN_otherspecfun,	6,	3},	
 
 #define  IN_tksci  40
 #ifdef WITH_TK

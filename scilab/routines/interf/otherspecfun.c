@@ -10,10 +10,7 @@
  *      Bruno Pincon <Bruno.Pincon@iecn.u-nancu.fr>
  *             
  */
-#ifdef WIN32
 #include <string.h> /*pour strcmp */
-#endif
-
 #include <math.h>
 #include "../stack-c.h"
 
@@ -30,6 +27,27 @@ extern int F2C(dxlegf)();
 /* fortran functions headers */
 double F2C(dgamma)(double *);
 double F2C(betaln)(double *, double *);
+extern void  C2F(dbeskv) (double *x,int* nx, double *alpha, int *na, int *kode, 
+			  double *r, double *w, int *ierr);
+extern void  C2F(zbeskv) (double *xr,double *xi,int* nx, double *alpha, int *na, 
+			  int *kode, double *rr,double *ri, double *wr, double *wi, int *ierr);
+extern void  C2F(dbesiv) (double *x,int* nx, double *alpha, int *na, int *kode, 
+			  double *r, double *w, int *ierr);
+extern void  C2F(zbesiv) (double *xr,double *xi,int* nx, double *alpha, int *na, 
+			  int *kode, double *rr,double *ri, double *wr, double *wi, int *ierr);
+extern void  C2F(dbesjv) (double *x,int* nx, double *alpha, int *na, int *kode, 
+			  double *r, double *w, int *ierr);
+extern void  C2F(zbesjv) (double *xr,double *xi,int* nx, double *alpha, int *na, 
+			  int *kode, double *rr,double *ri, double *wr, double *wi, int *ierr);
+extern void  C2F(dbesyv) (double *x,int* nx, double *alpha, int *na, int *kode, 
+			  double *r, double *w, int *ierr);
+extern void  C2F(zbesyv) (double *xr,double *xi,int* nx, double *alpha, int *na, 
+			  int *kode, double *rr,double *ri, double *wr, double *wi, int *ierr);
+
+extern void  C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2, double *x, 
+			int *id, double *pqa, int *ipqa, int *ierror);
+extern void C2F(msgs)(int *n, int* ierr);
+extern void C2F(dset)(int *n, double *a,double *x,int *ix);
 
 
 static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax)
@@ -64,7 +82,7 @@ static double return_an_inf()
   return (inf);
 }
 
-static intlegendre(char *fname)
+static int intlegendre(char *fname)
 {
   /*
    *   Interface onto the (Slatec) dxleg.f code. 
@@ -182,21 +200,24 @@ static intlegendre(char *fname)
     }
 
   /* complete the result by odd/even symmetry for negative x */
-  for ( i = 0 ; i < mnx ; i++ )
-    if ( x[i] < 0.0 )
-      if ( (n1+m1) % 2 == 1 )
+  for ( i = 0 ; i < mnx ; i++ ) {
+    if ( x[i] < 0.0 ) {
+      if ( (n1+m1) % 2 == 1 ) {
 	for ( j = 0 ; j < MNp1 ; j+=2 )
 	  pqa[i*MNp1 + j] = -pqa[i*MNp1 + j];
-      else
+      }
+      else {
 	for ( j = 1 ; j < MNp1 ; j+=2 )
 	  pqa[i*MNp1 + j] = -pqa[i*MNp1 + j];
-  
+      }
+    }
+  }
   LhsVar(1) = Rhs+1;
   PutLhsVar();
   return 0;
 }
 
-static intbeta(char *fname)
+static int intbeta(char *fname)
 {
   /*
    *   z = beta(x, y)
@@ -244,14 +265,678 @@ static intbeta(char *fname)
   return 0;
 }
 
+
+int intbesselk(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;
+  int r1,r2,na,nx,kode,lpos;
+  int ispos ,i;
+  int un=1,nl2,ierr;
+  double zero=0.0;
+
+  static int *Lstk    = C2F(vstk).lstk-1;
+
+  CheckRhs(2,3);
+
+  kode = 1;
+  if (Rhs==3) { /* normalized bessel required */
+    GetRhsVar(3,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
+    kode = *stk(l1)+1;
+  }
+
+  GetRhsVar(1,"d",&m1,&n1,&l1); /* get alpha */
+  r1=l1>Lstk[Bot]; /* true if the variable has been passed by reference */
+
+  GetRhsCVar(2,"d",&it2,&m2,&n2,&l2,&l2i); /* get x */
+  r2=l2>Lstk[Bot];/* true if the variable has been passed by reference */
+  
+  if (m1*n1 == 0) { /*besseli([],x) */
+    LhsVar(1)=1;
+    return 0;
+  }
+  if (m2*n2 == 0) { /*besseli(alpha,[]) */
+    LhsVar(1)=2;
+    return 0;
+  }
+  /* determine if the result is real or complex */
+  itr=it2;
+  if (itr==0) {
+    ispos=1;
+    for (i=0;i<m2*n2;i++) {
+      if (*stk(l2+i) < 0.0) {ispos=0;break;}
+    }
+    if (ispos==0) itr=1;
+  }
+
+  if (itr==1&&it2==0) { /* transform to complex */
+    nl2=m2*n2;
+    CreateCVar(3,"d",&itr,&m2,&n2,&l2r,&l2i);
+    C2F(dcopy)(&nl2,stk(l2),&un,stk(l2r),&un);
+    l2=l2r;
+    C2F(dset)(&nl2,&zero,stk(l2i),&un);
+    lpos=3;
+    r2=0;
+  }
+  else {
+    l2i=l2+m2*n2;
+    lpos=2;
+  }
+
+  if (m1*n1 == 1) { /*besseli(scalar,matrix) */
+    double wr[2],wi[2];
+    mr=m2;
+    nr=n2;    
+    if (r2) { 
+      CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+      LhsVar(1)=lpos+1;
+    }
+    else { 
+      lr=l2;
+      li=l2i;
+      LhsVar(1)=lpos;
+    }
+    nx=m2*n2;
+    na=1;
+    if (itr==0)
+      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),wr,&ierr);
+    else
+      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),wr,wi,&ierr);
+  }
+  else if (m2*n2 == 1) { /* besseli(matrix,scalar) */
+    int lwr,lwi;
+    mr=m1;
+    nr=n1;   
+    CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+    nx=1;
+    na=m1*n1;
+    CreateCVar(lpos+2,"d",&itr,&nx,&na,&lwr,&lwi);
+    if (itr==0)
+      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(lwr),&ierr);
+    else
+      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+
+    LhsVar(1)=lpos+1;
+  }
+  else if ((m1==1 && n2==1)|| (n1==1 && m2==1)) { /* besseli(row,col) or besseli(col,row) */
+    int un=1;
+    mr=m2*n2;
+    nr=m1*n1;
+    CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+    nx=m2*n2;
+    na=m1*n1;
+    CreateCVar(lpos+2,"d",&itr,&un,&na,&lwr,&lwi);
+    if (itr==0)
+      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(lwr),&ierr);
+    else
+      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+
+    LhsVar(1)=lpos+1;
+  }
+  else { /* element wise case */
+    double wr[2],wi[2];
+    CheckDimProp(1,2,m1*n1!=m2*n2) 
+    mr=m2;
+    nr=n2;  
+    if (r2) {
+      CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+      LhsVar(1)=lpos+1;
+    }
+    else {
+      lr=l2;
+      li=l2i;
+      LhsVar(1)=lpos;
+    }
+    nx=mr*nr;
+    na=-1;
+    if (itr==0)
+      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),wr,&ierr);
+    else
+      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),wr,wi,&ierr);
+ 
+  }
+  if (ierr==2) {
+    if ( C2F(errgst).ieee==0) { 
+      ierr=69;
+      C2F(error)(&ierr);
+    }
+    else if ( C2F(errgst).ieee==1) {
+     ierr=63;
+     C2F(msgs)(&ierr,&un);
+ 
+    }
+  }
+  else if (ierr==3) {/* inacurate result */
+    ierr=4;
+    C2F(msgs)(&ierr,&un);
+  }
+  else if (ierr==4||ierr==5) {
+    if ( C2F(errgst).ieee==0) { 
+      ierr=69;
+      C2F(error)(&ierr);
+    }
+    else if ( C2F(errgst).ieee==1) {
+     ierr=107;
+     C2F(msgs)(&ierr,&un);
+    }
+ }
+ 
+
+  return 0;
+}  
+int intbesseli(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;
+  int r1,r2,na,nx,kode,lpos;
+  int isint, ispos ,i,t;
+  int un=1,nl2,ierr;
+  double zero=0.0;
+
+  static int *Lstk    = C2F(vstk).lstk-1;
+
+  CheckRhs(2,3);
+
+  kode = 1;
+  if (Rhs==3) { /* normalized bessel required */
+    GetRhsVar(3,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
+    kode = *stk(l1)+1;
+  }
+
+  GetRhsVar(1,"d",&m1,&n1,&l1); /* get alpha */
+  r1=l1>Lstk[Bot]; /* true if the variable has been passed by reference */
+
+  GetRhsCVar(2,"d",&it2,&m2,&n2,&l2,&l2i); /* get x */
+  r2=l2>Lstk[Bot];/* true if the variable has been passed by reference */
+  
+  if (m1*n1 == 0) { /*besseli([],x) */
+    LhsVar(1)=1;
+    return 0;
+  }
+  if (m2*n2 == 0) { /*besseli(alpha,[]) */
+    LhsVar(1)=2;
+    return 0;
+  }
+  /* determine if the result is real or complex */
+  itr=it2;
+  if (itr==0) {
+    isint=1; ispos=1;
+    for (i=0;i<m1*n1;i++) {
+      t=*stk(l1+i);
+      if (t != *stk(l1+i)) {isint=0;break;}
+    }
+    if (isint==0) {
+      for (i=0;i<m2*n2;i++) {
+	if (*stk(l2+i) < 0.0) {ispos=0;break;}
+      }
+    }
+    if (ispos==0) itr=1;
+  }
+
+  if (itr==1&&it2==0) { /* transform to complex */
+    nl2=m2*n2;
+    CreateCVar(3,"d",&itr,&m2,&n2,&l2r,&l2i);
+    C2F(dcopy)(&nl2,stk(l2),&un,stk(l2r),&un);
+    l2=l2r;
+    C2F(dset)(&nl2,&zero,stk(l2i),&un);
+    lpos=3;
+    r2=0;
+  }
+  else {
+    l2i=l2+m2*n2;
+    lpos=2;
+  }
+
+  if (m1*n1 == 1) { /*besseli(scalar,matrix) */
+    double wr[2],wi[2];
+    mr=m2;
+    nr=n2;    
+    if (r2) { 
+      CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+      LhsVar(1)=lpos+1;
+    }
+    else { 
+      lr=l2;
+      li=l2i;
+      LhsVar(1)=lpos;
+    }
+    nx=m2*n2;
+    na=1;
+    if (itr==0)
+      C2F(dbesiv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),wr,&ierr);
+    else
+      C2F(zbesiv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),wr,wi,&ierr);
+  }
+  else if (m2*n2 == 1) { /* besseli(matrix,scalar) */
+    int lwr,lwi,nw;
+    mr=m1;
+    nr=n1;   
+    CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+    nx=1;
+    na=m1*n1;
+    nw=2*na;
+    CreateCVar(lpos+2,"d",&itr,&nx,&nw,&lwr,&lwi);
+    if (itr==0)
+      C2F(dbesiv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(lwr),&ierr);
+    else
+      C2F(zbesiv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+
+    LhsVar(1)=lpos+1;
+  }
+  else if ((m1==1 && n2==1)|| (n1==1 && m2==1)) { /* besseli(row,col) or besseli(col,row) */
+    int un=1,nw;
+    mr=m2*n2;
+    nr=m1*n1;
+    CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+    nx=m2*n2;
+    na=m1*n1;
+    nw=2*na;
+    CreateCVar(lpos+2,"d",&itr,&un,&nw,&lwr,&lwi);
+    if (itr==0)
+      C2F(dbesiv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(lwr),&ierr);
+    else
+      C2F(zbesiv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+
+    LhsVar(1)=lpos+1;
+  }
+  else { /* element wise case */
+    double wr[2],wi[2];
+    CheckDimProp(1,2,m1*n1!=m2*n2) 
+    mr=m2;
+    nr=n2;  
+    if (r2) {
+      CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+      LhsVar(1)=lpos+1;
+    }
+    else {
+      lr=l2;
+      li=l2i;
+      LhsVar(1)=lpos;
+    }
+    nx=mr*nr;
+    na=-1;
+    if (itr==0)
+      C2F(dbesiv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),wr,&ierr);
+    else
+      C2F(zbesiv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),wr,wi,&ierr);
+ 
+  }
+  if (ierr==2) {
+    if ( C2F(errgst).ieee==0) { 
+      ierr=69;
+      C2F(error)(&ierr);
+    }
+    else if ( C2F(errgst).ieee==1) {
+     ierr=63;
+     C2F(msgs)(&ierr,&un);
+ 
+    }
+  }
+  else if (ierr==3) {/* inacurate result */
+    ierr=4;
+    C2F(msgs)(&ierr,&un);
+  }
+  else if (ierr==4||ierr==5) {
+    if ( C2F(errgst).ieee==0) { 
+      ierr=69;
+      C2F(error)(&ierr);
+    }
+    else if ( C2F(errgst).ieee==1) {
+     ierr=107;
+     C2F(msgs)(&ierr,&un);
+    }
+ }
+ 
+
+  return 0;
+}  
+
+int intbesselj(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;
+  int r1,r2,na,nx,kode,lpos;
+  int isint, ispos ,i,t;
+  int un=1,nl2,ierr;
+  double zero=0.0;
+
+  static int *Lstk    = C2F(vstk).lstk-1;
+
+  CheckRhs(2,3);
+  kode = 1; /* ignored for real cases */
+  if (Rhs==3) { /* normalized bessel required */
+    GetRhsVar(3,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
+    kode = *stk(l1)+1;
+  }
+
+  GetRhsVar(1,"d",&m1,&n1,&l1); /* get alpha */
+  r1=l1>Lstk[Bot]; /* true if the variable has been passed by reference */
+
+  GetRhsCVar(2,"d",&it2,&m2,&n2,&l2,&l2i); /* get x */
+  r2=l2>Lstk[Bot];/* true if the variable has been passed by reference */
+  
+  if (m1*n1 == 0) { /*besselj([],x) */
+    LhsVar(1)=1;
+    return 0;
+  }
+  if (m2*n2 == 0) { /*besselj(alpha,[]) */
+    LhsVar(1)=2;
+    return 0;
+  }
+  /* determine if the result is real or complex */
+  itr=it2;
+  if (itr==0) {
+    isint=1;ispos=1;
+    for (i=0;i<m1*n1;i++) {
+      t=*stk(l1+i);
+      if (t != *stk(l1+i)) {isint=0;break;}
+    }
+    if (isint==0) {
+      for (i=0;i<m2*n2;i++) {
+	if (*stk(l2+i) < 0.0) {ispos=0;break;}
+      }
+    }
+    if (ispos==0) itr=1;
+  }
+
+  if (itr==1&&it2==0) { /* transform to complex */
+    nl2=m2*n2;
+    CreateCVar(3,"d",&itr,&m2,&n2,&l2r,&l2i);
+    C2F(dcopy)(&nl2,stk(l2),&un,stk(l2r),&un);
+    l2=l2r;
+    C2F(dset)(&nl2,&zero,stk(l2i),&un);
+    lpos=3;
+    r2=0;
+  }
+  else {
+    l2i=l2+m2*n2;
+    lpos=2;
+  }
+
+  if (m1*n1 == 1) { /*besselj(scalar,matrix) */
+    double wr[3],wi[3];
+    mr=m2;
+    nr=n2;    
+    if (r2) { 
+      CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+      LhsVar(1)=lpos+1;
+    }
+    else { 
+      lr=l2;
+      li=l2i;
+      LhsVar(1)=lpos;
+    }
+    nx=m2*n2;
+    na=1;
+    if (itr==0)
+      C2F(dbesjv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),wr,&ierr);
+    else
+      C2F(zbesjv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),wr,wi,&ierr);
+  }
+  else if (m2*n2 == 1) { /* besselj(matrix,scalar) */
+    int lwr,lwi,nw;
+    mr=m1;
+    nr=n1;   
+    CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+    nx=1;
+    na=m1*n1;
+    nw=3*na;
+    CreateCVar(lpos+2,"d",&itr,&nx,&nw,&lwr,&lwi);
+    if (itr==0)
+      C2F(dbesjv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),stk(lwr),&ierr);
+    else
+      C2F(zbesjv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+
+    LhsVar(1)=lpos+1;
+  }
+  else if ((m1==1 && n2==1)|| (n1==1 && m2==1)) { /* besselj(row,col) or besselj(col,row) */
+    int un=1,nw;
+    mr=m2*n2;
+    nr=m1*n1;
+    CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+    nx=m2*n2;
+    na=m1*n1;
+    nw=3*na;
+    CreateCVar(lpos+2,"d",&itr,&un,&nw,&lwr,&lwi);
+    if (itr==0)
+      C2F(dbesjv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),stk(lwr),&ierr);
+    else
+      C2F(zbesjv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode, stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+
+    LhsVar(1)=lpos+1;
+  }
+  else { /* element wise case */
+    double wr[2],wi[2];
+    CheckDimProp(1,2,m1*n1!=m2*n2) 
+    mr=m2;
+    nr=n2;  
+    if (r2) {
+      CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+      LhsVar(1)=lpos+1;
+    }
+    else {
+      lr=l2;
+      li=l2i;
+      LhsVar(1)=lpos;
+    }
+    nx=mr*nr;
+    na=-1;
+    if (itr==0)
+      C2F(dbesjv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),wr,&ierr);
+    else
+      C2F(zbesjv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),wr,wi,&ierr);
+ 
+  }
+  if (ierr==2) {
+    if ( C2F(errgst).ieee==0) { 
+      ierr=69;
+      C2F(error)(&ierr);
+    }
+    else if ( C2F(errgst).ieee==1) {
+     ierr=63;
+     C2F(msgs)(&ierr,&un);
+ 
+    }
+  }
+  else if (ierr==3) {/* inacurate result */
+    ierr=4;
+    C2F(msgs)(&ierr,&un);
+  }
+  else if (ierr==4||ierr==5) {
+    if ( C2F(errgst).ieee==0) { 
+      ierr=69;
+      C2F(error)(&ierr);
+    }
+    else if ( C2F(errgst).ieee==1) {
+     ierr=107;
+     C2F(msgs)(&ierr,&un);
+    }
+ }
+ 
+
+  return 0;
+}  
+
+int intbessely(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;
+  int r1,r2,na,nx,kode,lpos;
+  int ispos ,i;
+  int un=1,nl2,ierr;
+  double zero=0.0;
+
+  static int *Lstk    = C2F(vstk).lstk-1;
+
+ 
+  CheckRhs(2,3);
+  kode = 1; /* ignored for real cases */
+  if (Rhs==3) { /* normalized bessel required */
+    GetRhsVar(3,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
+    kode = *stk(l1)+1;
+  }
+
+
+  GetRhsVar(1,"d",&m1,&n1,&l1); /* get alpha */
+  r1=l1>Lstk[Bot]; /* true if the variable has been passed by reference */
+
+  GetRhsCVar(2,"d",&it2,&m2,&n2,&l2,&l2i); /* get x */
+  r2=l2>Lstk[Bot];/* true if the variable has been passed by reference */
+  
+  if (m1*n1 == 0) { /*bessely([],x) */
+    LhsVar(1)=1;
+    return 0;
+  }
+  if (m2*n2 == 0) { /*bessely(alpha,[]) */
+    LhsVar(1)=2;
+    return 0;
+  }
+  /* determine if the result is real or complex */
+  itr=it2;
+  if (itr==0) {
+    ispos=1;
+    for (i=0;i<m2*n2;i++) {
+      if (*stk(l2+i) < 0.0) {ispos=0;break;}
+    }
+    if (ispos==0) itr=1;
+  }
+
+  if (itr==1&&it2==0) { /* transform to complex */
+    nl2=m2*n2;
+    CreateCVar(3,"d",&itr,&m2,&n2,&l2r,&l2i);
+    C2F(dcopy)(&nl2,stk(l2),&un,stk(l2r),&un);
+    l2=l2r;
+    C2F(dset)(&nl2,&zero,stk(l2i),&un);
+    lpos=3;
+    r2=0;
+  }
+  else {
+    l2i=l2+m2*n2;
+    lpos=2;
+  }
+
+  if (m1*n1 == 1) { /*bessely(scalar,matrix) */
+    double wr[3],wi[3];
+    mr=m2;
+    nr=n2;    
+    if (r2) { 
+      CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+      LhsVar(1)=lpos+1;
+    }
+    else { 
+      lr=l2;
+      li=l2i;
+      LhsVar(1)=lpos;
+    }
+    nx=m2*n2;
+    na=1;
+    if (itr==0)
+      C2F(dbesyv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),wr,&ierr);
+    else
+      C2F(zbesyv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),wr,wi,&ierr);
+  }
+  else if (m2*n2 == 1) { /* bessely(matrix,scalar) */
+    int lwr,lwi,nw;
+    mr=m1;
+    nr=n1;   
+    CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+    nx=1;
+    na=m1*n1;
+    nw=3*na;
+    CreateCVar(lpos+2,"d",&itr,&nx,&nw,&lwr,&lwi);
+    if (itr==0)
+      C2F(dbesyv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),stk(lwr),&ierr);
+    else
+      C2F(zbesyv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+
+    LhsVar(1)=lpos+1;
+  }
+  else if ((m1==1 && n2==1)|| (n1==1 && m2==1)) { /* bessely(row,col) or bessely(col,row) */
+    int un=1,nw;
+    mr=m2*n2;
+    nr=m1*n1;
+    CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+    nx=m2*n2;
+    na=m1*n1;
+    nw=3*na;
+    CreateCVar(lpos+2,"d",&itr,&un,&nw,&lwr,&lwi);
+    if (itr==0)
+      C2F(dbesyv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),stk(lwr),&ierr);
+    else
+      C2F(zbesyv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode, stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+
+    LhsVar(1)=lpos+1;
+  }
+  else { /* element wise case */
+    double wr[2],wi[2];
+    CheckDimProp(1,2,m1*n1!=m2*n2) 
+    mr=m2;
+    nr=n2;  
+    if (r2) {
+      CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
+      LhsVar(1)=lpos+1;
+    }
+    else {
+      lr=l2;
+      li=l2i;
+      LhsVar(1)=lpos;
+    }
+    nx=mr*nr;
+    na=-1;
+    if (itr==0)
+      C2F(dbesyv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),wr,&ierr);
+    else
+      C2F(zbesyv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),wr,wi,&ierr);
+ 
+  }
+  if (ierr==2) {
+    if ( C2F(errgst).ieee==0) { 
+      ierr=69;
+      C2F(error)(&ierr);
+    }
+    else if ( C2F(errgst).ieee==1) {
+     ierr=63;
+     C2F(msgs)(&ierr,&un);
+ 
+    }
+  }
+  else if (ierr==3) {/* inacurate result */
+    ierr=4;
+    C2F(msgs)(&ierr,&un);
+  }
+  else if (ierr==4||ierr==5) {
+    if ( C2F(errgst).ieee==0) { 
+      ierr=69;
+      C2F(error)(&ierr);
+    }
+    else if ( C2F(errgst).ieee==1) {
+     ierr=107;
+     C2F(msgs)(&ierr,&un);
+    }
+ }
+ 
+
+  return 0;
+}  
+
+
 static TabF Tab[]={ 
   {intlegendre, "legendre"},
-  {intbeta, "beta"}
+  {intbeta, "beta"},
+  {intbesseli,"besseli"},
+  {intbesselj,"besselj"},
+  {intbesselk,"besselk"},
+  {intbessely,"bessely"}
 };
 
 int C2F(otherspfunlib)(void)
 {
   Rhs = Max(0, Rhs);
   (*(Tab[Fin-1].f))(Tab[Fin-1].name);
+  C2F(putlhsvar)();
   return 0;
 }
