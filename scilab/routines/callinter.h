@@ -66,7 +66,7 @@ c
       call callinterf(k,iflagint)
       
       if(fun.ge.0) then
-         if (top-lhs+1.gt.0) call iset(lhs,0,infstk(top-lhs+1),1)
+         if (top-lhs+1.gt.0) call iset(rhs,0,infstk(top-lhs+1),1)
          goto 90
       endif
 c     called interface ask for a scilab function to perform the function (fun=-1)
