@@ -174,7 +174,9 @@ void C2F(isciulink)(i)
 #ifdef WLU
 #ifndef DLDLINK
 #ifndef WIN32
-#define WLU1 /* dld will add the leading _ itself, win32 too*/
+#ifndef __APPLE_CC__
+#define WLU1 /* dld will add the leading _ itself, win32 too, dlcompat too */
+#endif
 #endif 
 #endif
 #endif 
