@@ -150,7 +150,6 @@ c     ==============================Matrix case
                   call dcopy(mn,stk(lr1),1,stk(lw),1)
                   lr1=lw
                endif
-               lr1=lw
                call vpythag(mn,stk(lr1),stk(lc1))
             endif
             dres=0.0d+0
