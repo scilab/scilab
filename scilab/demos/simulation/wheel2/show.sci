@@ -1,4 +1,4 @@
-function []=show(xx,t,p,slowflag)
+function []=show(xx,t,p)
 //[]=show(xx,t,p)
 // Just show the wheel evolution 
 // t ans p are the spherical angles of the observation point
@@ -59,50 +59,52 @@ function []=show(xx,t,p,slowflag)
   //[5] animation 
   xset("alufunction",6)
   [n1,n2]=size(xu);
+  get_wheel_rti(%t);
+  if ~isdef('wheel_rti') then wheel_rti=0.03;end 
+  realtimeinit(wheel_rti);
+  realtime(0)
   for i=1:1:n2-1,
     wheeld(i);
-    xpause(slowflag);
+    realtime(i);
     wheeld(i);
     ww=i:i+1;
     xpoly(xu(1,ww)',yu(1,ww)',"lines");
   end
   wheeld(n2-1);
   xset("alufunction",3);
+  [wheel_rti]=resume(wheel_rti);  
 endfunction 
 
 function []=wheeld(i)
-// Copyright INRIA
+// Copyright ENPC
   xpoly(xu(:,i),yu(:,i),"lines");
   xpoly(matrix(xr(:,i),2,4),matrix(yr(:,i),2,4),"lines");
 endfunction 
 
 
 function []=wheeld(i)
-// Copyright INRIA
+// Copyright ENPC
   xfpoly(xu(:,i),yu(:,i),1);
   xpoly(matrix(xr(:,i),2,4),matrix(yr(:,i),2,4),"lines");
 endfunction 
 
 
 function [xxu,yyu,zzu]=wheelgf(n,t,xu,yu,zu,xx)
-// Copyright INRIA
+// Copyright ENPC
 //
   [xxu,yyu,zzu]=fort('wheelg',n,1,'i',t,2,'i',xu,3,'d',yu,4,'d',zu,5,'d',...
 		     xx,6,'d','sort',3,4,5);
 endfunction 
 
 function [y]=test_wheel(n,t,x)
-// Copyright INRIA
+// Copyright ENPC
 //
   y=x
   [y]=fort('wheel',n,1,'i',t,2,'d',x,3,'d',y,4,'d','sort',4);
 endfunction 
 
-
-
-
 function [xxu,yyu,zzu]=wheelgs(n,t,xu,yu,zu,xx)
-// Copyright INRIA
+// Copyright ENPC
 // slower version without dynamic link 
   r=1.0
   [n,p]=size(xu);
@@ -136,4 +138,31 @@ function []=wheel_build_and_load()
     chdir(cd) 
   end
 endfunction 
+
+function get_wheel_rti(d_mode) 
+  data_rti=['timeunit for realtimeinit','wheel_rti','0.05'];
+  [d_r,d_c]=size(data_rti);
+  for i=1:d_r, 
+    if isdef(data_rti(i,2)) then 
+      data_rti(i,3)= string(evstr(data_rti(i,2)));
+    else 
+      execstr(data_rti(i,2)+'='+data_rti(i,3));
+    end
+  end
+  
+  if d_mode then 
+    ddd= data_rti(:,1);
+    data_rti_mdial=x_mdialog('time unit for graphics',ddd, data_rti(:,3));
+    
+    if data_rti_mdial <> [] then 
+      for i=1:d_r, 
+	execstr(data_rti(i,2)+'='+data_rti_mdial(i));
+      end
+    end
+  end
+  [wheel_rti]=resume(wheel_rti);
+endfunction 
+
+
+
 
