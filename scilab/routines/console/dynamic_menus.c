@@ -180,7 +180,7 @@ int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
   if (C2F(ismenu)()==1) 
     {
       GetCommand(btn_cmd);
-      *lb=strlen(btn_cmd);
+      *lb=(integer)strlen(btn_cmd);
     }
   else
     { 

@@ -1037,7 +1037,8 @@ void ShowWindowFunction _PARAMS((char *fname))
 
 
 #endif /* The win32 version is defined in the wsci directory **/
-
+#include <stdio.h>
+#include <string.h>
 /************************************************************************
  * setprlev : set the current prompt string
  ***********************************************************************/

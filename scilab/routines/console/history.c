@@ -100,7 +100,7 @@ sci_hist * SearchBackwardInHistory(char *line)
 	
 	while (Parcours->prev)
 	{
-		int len=strlen(line);
+		int len=(int)strlen(line);
 		strncpy(LineComp,Parcours->line,len);
 		LineComp[len]='\0';
 		
@@ -139,7 +139,7 @@ sci_hist * SearchForwardInHistory(char *line)
 	
 	while (Parcours->next)
 	{
-		int len=strlen(line);
+		int len=(int)strlen(line);
 		strncpy(LineComp,Parcours->line,len);
 		LineComp[len]='\0';
 		
@@ -203,7 +203,7 @@ int C2F(savehistory) _PARAMS((char *fname))
   }
   if (history) {
     lout=MAXBUF;
-    C2F(cluni0)(Path, line, &out_n,strlen(Path),lout);
+    C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),lout);
     pFile = fopen (line,"wt");
     if (pFile)
       {
@@ -279,7 +279,7 @@ int C2F(loadhistory) _PARAMS((char *fname))
   }
 
   lout=MAXBUF;
-  C2F(cluni0)(Path, line, &out_n,strlen(Path),lout);
+  C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),lout);
   pFile = fopen (line,"rt");
 
   if (pFile)
@@ -373,7 +373,7 @@ int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
   indice=0;nnchar = 0;
   while  ( Parcours->next ) {	
     indice++;
-    nnchar =nnchar + strlen(Parcours->line);
+    nnchar =nnchar + (int)strlen(Parcours->line);
     Parcours=GoNextKnot(Parcours);
   }
   
@@ -399,7 +399,7 @@ int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
   Parcours=Htop;
   kij = ilp + 1;
   while  ( Parcours->next ) {
-    int l = strlen(Parcours->line);
+    int l = (int)strlen(Parcours->line);
      *istk(kij ) = *istk(kij - 1) + l;
      C2F(cvstr)(&l, istk(pos), Parcours->line, &cx0, l);
     Parcours=GoNextKnot(Parcours);
