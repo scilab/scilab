@@ -63,11 +63,7 @@ c
      $ k(lw20),stk(lw21),stk(lw22),stk(lw23),stk(lw24),stk(lw25),stk(lw2
      $ 6),stk(lw27),stk(lw28),stk(lw29),stk(lw30),stk(lw31),stk(lw32),st
      $ k(lw33),stk(lw34),ne13,ne7)
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+31
@@ -407,11 +403,7 @@ c
      $ r1e22),stk(lr1e23),stk(lr1e24),stk(lr1e25),stk(lr1e26),stk(lr1e27
      $ ),istk(iadr(lr1e28)),istk(iadr(lr1e29)),istk(iadr(lr1e30)),istk(i
      $ adr(lr1e31)),istk(iadr(lr1e32)),istk(iadr(lr3)))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+2
@@ -474,11 +466,7 @@ c
        call prevn2p(istk(iadr(lr1)),istk(iadr(lr2)),n4,n3,istk(iadr(lr4)
      $ ),istk(iadr(lr5)),istk(iadr(lr6)),istk(iadr(lr7)),istk(iadr(lr3))
      $ ,stk(lw10),ne11)
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+1
@@ -541,11 +529,7 @@ c
        call entier(1,stk(lr5),istk(iadr(lr5)))
        call ns2p(istk(iadr(lr1)),n1,stk(lw3),ne9,istk(iadr(lr2)),istk(ia
      $ dr(lr3)),istk(iadr(lr4)),istk(iadr(lr5)))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+1
@@ -612,11 +596,7 @@ c
        call entier(1,stk(lr6),istk(iadr(lr6)))
        call p2ns(istk(iadr(lr1)),n1,stk(lw3),ne10,istk(iadr(lr2)),istk(i
      $ adr(lr3)),istk(iadr(lr4)),istk(iadr(lr5)),n2,istk(iadr(lr6)))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+1
@@ -661,11 +641,7 @@ c
        call entier(n1,stk(lr1),istk(iadr(lr1)))
        if(.not.cremat(fname,top+1,0,1,1,lw3,loc3)) return
        call edge2st(n1,istk(iadr(lr1)),stk(lw3),ne3)
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+1
@@ -724,11 +700,7 @@ c
        call entier(n4,stk(lr4),istk(iadr(lr4)))
        call prevn2st(n1,istk(iadr(lr1)),stk(lw3),ne8,istk(iadr(lr2)),ist
      $ k(iadr(lr3)),istk(iadr(lr4)))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+1
@@ -785,11 +757,7 @@ c
        if(.not.cremat(fname,top+4,0,istk(iadr(lr3)),1,lw8,loc8)) return
        call compc(stk(lw1),istk(iadr(lr1)),istk(iadr(lr2)),n2,istk(iadr(
      $ lr3)),stk(lw6),stk(lw7),stk(lw8))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+4
@@ -848,11 +816,7 @@ c
        call entier(n2,stk(lr2),istk(iadr(lr2)))
        if(.not.cremat(fname,top+1,0,1,1,lw4,loc4)) return
        call concom(istk(iadr(lr1)),n2,istk(iadr(lr2)),stk(lw4),ne4)
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+1
@@ -915,11 +879,7 @@ c
      $ n
        call compfc(stk(lw1),istk(iadr(lr1)),istk(iadr(lr2)),n2,istk(iadr
      $ (lr3)),stk(lw6),stk(lw7),stk(lw8),stk(lw9),stk(lw10),stk(lw11))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+7
@@ -978,11 +938,7 @@ c
        call entier(n2,stk(lr2),istk(iadr(lr2)))
        if(.not.cremat(fname,top+1,0,1,1,lw4,loc4)) return
        call sconcom(istk(iadr(lr1)),n2,istk(iadr(lr2)),stk(lw4),ne4)
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+1
@@ -1042,11 +998,7 @@ c
        if(.not.cremat(fname,top+3,0,istk(iadr(lr4)),1,lw8,loc8)) return
        call pcchna(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),n3,is
      $ tk(iadr(lr4)),stk(lw6),stk(lw7),stk(lw8))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+3
@@ -1148,11 +1100,7 @@ c
      $ k(iadr(lr4)),istk(iadr(lr5)),stk(lw6),istk(iadr(lr6)),istk(iadr(l
      $ r7)),stk(lw9),stk(lw10),stk(lw11),stk(lw12),stk(lw13),stk(lw14),s
      $ tk(lw15),stk(lw16),stk(lw17),stk(lw18),stk(lw19))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+12
@@ -1245,11 +1193,7 @@ c
        call johns(stk(lw1),istk(iadr(lr1)),stk(lw3),istk(iadr(lr2)),stk(
      $ lr3),istk(iadr(lr4)),istk(iadr(lr5)),n2,istk(iadr(lr6)),stk(lw10)
      $ ,stk(lw11))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+4
@@ -1326,11 +1270,7 @@ c
        if(.not.cremat(fname,top+2,0,istk(iadr(lr6)),1,lw9,loc9)) return
        call dijkst(istk(iadr(lr1)),istk(iadr(lr2)),stk(lr3),istk(iadr(lr
      $ 4)),istk(iadr(lr5)),n2,istk(iadr(lr6)),stk(lw8),stk(lw9))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+2
@@ -1397,11 +1337,7 @@ c
        if(.not.cremat(fname,top+4,0,istk(iadr(lr3)),1,lw8,loc8)) return
        call frang(stk(lw1),istk(iadr(lr1)),istk(iadr(lr2)),n2,istk(iadr(
      $ lr3)),stk(lw6),stk(lw7),stk(lw8))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+4
@@ -1478,11 +1414,7 @@ c
        if(.not.cremat(fname,top+2,0,istk(iadr(lr5)),1,lw9,loc9)) return
        call chcm(stk(lr6),istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)
      $ ),istk(iadr(lr4)),n2,istk(iadr(lr5)),stk(lw8),stk(lw9))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+2
@@ -1547,11 +1479,7 @@ c
        call entier(1,stk(lr3),istk(iadr(lr3)))
        call transc(istk(iadr(lr1)),stk(lw2),istk(iadr(lr2)),stk(lw4),n2,
      $ ne8,ne6,istk(iadr(lr3)))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+2
@@ -1621,11 +1549,7 @@ c
        if(.not.cremat(fname,top+3,0,istk(iadr(lr4)),1,lw8,loc8)) return
        call dfs(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),n3,istk(
      $ iadr(lr4)),stk(lw6),stk(lw7),stk(lw8))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+3
@@ -1699,11 +1623,7 @@ c
        if(.not.cremat(fname,top+2,0,istk(iadr(lr4)),1,lw8,loc8)) return
        call prim(stk(lw1),istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)
      $ ),n5,n1,istk(iadr(lr4)),stk(lw8),stk(lr5))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+2
@@ -1770,11 +1690,7 @@ c
      $ n
        call prim1(stk(lw1),stk(lw2),stk(lw3),istk(iadr(lr1)),istk(iadr(l
      $ r2)),istk(iadr(lr3)),n5,n1,istk(iadr(lr4)),stk(lw10),stk(lr5))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+4
@@ -1840,11 +1756,7 @@ c
        if(.not.cremat(fname,top+1,0,istk(iadr(lr5)),1,lw7,loc7)) return
        call dmtree(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),istk(
      $ iadr(lr4)),n2,istk(iadr(lr5)),stk(lw7),stk(lr6))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+1
@@ -1906,11 +1818,7 @@ c
        if(.not.cremat(fname,top+3,0,istk(iadr(lr4)),1,lw8,loc8)) return
        call tconex(stk(lw1),stk(lw2),istk(iadr(lr1)),istk(iadr(lr2)),ist
      $ k(iadr(lr3)),n1,istk(iadr(lr4)),stk(lw8))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+3
@@ -2003,11 +1911,7 @@ c
      $ iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),istk(iadr(lr4)),n5,stk
      $ (lw9),n3,istk(iadr(lr9)),istk(iadr(lr6)),istk(iadr(lr10)),stk(lw1
      $ 4),stk(lw15))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+3
@@ -2106,11 +2010,7 @@ c
      $ r8),istk(iadr(lr5)),istk(iadr(lr6)),n1,n5,istk(iadr(lr7)),istk(ia
      $ dr(lr4)),stk(lw11),stk(lw12),stk(lw13),stk(lw14),stk(lw15),stk(lw
      $ 16),stk(lw17))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+7
@@ -2215,11 +2115,7 @@ c
      $ r1)),istk(iadr(lr2)),istk(iadr(lr7)),istk(iadr(lr8)),n4,stk(lw9),
      $ n7,istk(iadr(lr9)),istk(iadr(lr6)),stk(lw13),stk(lw14),stk(lw15),
      $ istk(iadr(lr3)),stk(lw17),stk(lw18))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+6
@@ -2338,11 +2234,7 @@ c
      $ (lr1),istk(iadr(lr4)),istk(iadr(lr6)),istk(iadr(lr7)),n2,n6,istk(
      $ iadr(lr8)),istk(iadr(lr5)),stk(lr9),stk(lw14),stk(lw15),stk(lw16)
      $ ,stk(lw17),stk(lw18),stk(lw19),stk(lr10),stk(lw21))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+9
@@ -2461,11 +2353,7 @@ c
      $ ),stk(lw9),stk(lw10),stk(lw11),stk(lw12),stk(lw13),stk(lw14),stk(
      $ lw15),stk(lw16),stk(lw17),stk(lw18),stk(lw19),stk(lw20),stk(lw21)
      $ ,stk(lw22),stk(lw23),stk(lw24),stk(lw25),stk(lw26))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+19
@@ -2540,11 +2428,7 @@ c
        if(.not.cremat(fname,top+1,0,istk(iadr(lr3)),1,lw5,loc5)) return
        call findiso(istk(iadr(lr1)),istk(iadr(lr2)),n1,istk(iadr(lr3)),s
      $ tk(lw5))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+1
@@ -2605,11 +2489,7 @@ c
        if(.not.cremat(fname,top+3,0,n1,1,lw7,loc7)) return
        call ta2lpd(istk(iadr(lr1)),istk(iadr(lr2)),n1,istk(iadr(lr4)),st
      $ k(lw5),stk(lw6),stk(lw7))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+3
@@ -2694,11 +2574,7 @@ c
        if(.not.cremat(fname,top+3,0,nn6,1,lw7,loc7)) return
        call ta2lpu(istk(iadr(lr1)),istk(iadr(lr2)),n1,istk(iadr(lr4)),st
      $ k(lw5),stk(lw6),stk(lw7))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+3
@@ -2778,11 +2654,7 @@ c
        if(.not.cremat(fname,top+2,0,n2,1,lw6,loc6)) return
        call lp2tad(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),istk(
      $ iadr(lr4)),stk(lw5),stk(lw6))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+2
@@ -2856,11 +2728,7 @@ c
        if(.not.cremat(fname,top+2,0,nn5,1,lw6,loc6)) return
        call lp2tau(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),istk(
      $ iadr(lr4)),stk(lw5),stk(lw6))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+2
@@ -2935,11 +2803,7 @@ c
        call dfs2(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),n3,istk
      $ (iadr(lr4)),stk(lw6),stk(lw7),stk(lw8),stk(lw9),stk(lw10),stk(lw1
      $ 1))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+6
@@ -3018,11 +2882,7 @@ c
        call diam(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),istk(ia
      $ dr(lr4)),n1,stk(lw6),stk(lw7),stk(lw8),stk(lw9),stk(lw10),stk(lw1
      $ 1))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+6
@@ -3121,11 +2981,7 @@ c
        call cent(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),istk(ia
      $ dr(lr4)),n1,stk(lw6),stk(lw7),stk(lw8),stk(lw9),stk(lw10),stk(lw1
      $ 1))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+6
@@ -3193,11 +3049,7 @@ c
        if(.not.cremat(fname,top+5,0,istk(iadr(lr2)),1,lw8,loc8)) return
        call hullcvex(istk(iadr(lr1)),istk(iadr(lr2)),stk(lr3),stk(lw4),s
      $ tk(lw5),stk(lw6),stk(lw7),stk(lw8))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+5
@@ -3273,11 +3125,7 @@ c
        if(.not.cremat(fname,top+7,0,nn10,1,lw10,loc10)) return
        call clique(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr4)),stk(l
      $ w4),stk(lw5),stk(lw6),stk(lw7),stk(lw8),stk(lw9),stk(lw10))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+7
@@ -3371,11 +3219,7 @@ c
        call clique1(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),istk
      $ (iadr(lr4)),istk(iadr(lr5)),istk(iadr(lr6)),istk(iadr(lr7)),stk(l
      $ w8),stk(lw9),stk(lw10))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+3
@@ -3462,11 +3306,7 @@ c
      $ adr(lr4)),istk(iadr(lr5)),stk(lw6),istk(iadr(lr6)),istk(iadr(lr7)
      $ ),stk(lw9),stk(lw10),stk(lw11),stk(lw12),stk(lw13),stk(lw14),stk(
      $ lw15),stk(lw16))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+9
@@ -3524,11 +3364,7 @@ c
        if(.not.cremat(fname,top+3,0,istk(iadr(lr1)),1,lw6,loc6)) return
        call visitor(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),stk(
      $ lw4),stk(lw5),stk(lw6))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+3
@@ -3700,11 +3536,7 @@ c
      $ ),stk(lw32),stk(lw33),stk(lw34),stk(lw35),stk(lw36),stk(lw37),stk
      $ (lw38),stk(lw39),stk(lw40),stk(lw41),stk(lw42),stk(lw43),stk(lw44
      $ ),stk(lw45))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+34
@@ -3836,11 +3668,7 @@ c
      $ (lw15),stk(lw16),stk(lw17),stk(lw18),stk(lw19),stk(lw20),stk(lw21
      $ ),stk(lw22),stk(lw23),stk(lw24),stk(lw25),stk(lw26),stk(lw27),stk
      $ (lw28),stk(lw29),stk(lw30))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+23
@@ -3946,11 +3774,7 @@ c
      $ k(iadr(lr4)),istk(iadr(lr5)),istk(iadr(lr6)),istk(iadr(lr7)),stk(
      $ lw8),stk(lw9),stk(lw10),stk(lw11),stk(lw12),stk(lw13),stk(lw14),s
      $ tk(lw15),stk(lw16),stk(lw17),stk(lw18),stk(lw19),stk(lw20))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+13
@@ -4033,11 +3857,7 @@ c
        if(.not.cremat(fname,top+3,0,istk(iadr(lr3)),1,lw9,loc9)) return
        call permuto(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),stk(
      $ lr4),stk(lr5),stk(lr6),stk(lw7),stk(lw8),stk(lw9))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+3
@@ -4122,11 +3942,7 @@ c
        call mesh2b(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),istk(
      $ iadr(lr4)),stk(lr5),stk(lw6),stk(lw7),istk(iadr(lr6)),istk(iadr(l
      $ r7)),stk(lw10),stk(lw11))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+4
@@ -4223,11 +4039,7 @@ c
        if(.not.cremat(fname,top+5,0,1,1,lw10,loc10)) return
        call deumesh(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),stk(
      $ lr4),stk(lr5),stk(lw6),stk(lw7),stk(lw8),stk(lw9),stk(lw10))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+5
@@ -4342,11 +4154,7 @@ c
        call bandred(istk(iadr(lr1)),istk(iadr(lr2)),istk(iadr(lr3)),istk
      $ (iadr(lr4)),istk(iadr(lr5)),stk(lr6),istk(iadr(lr7)),stk(lw8),stk
      $ (lw9),stk(lw10),stk(lw11))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+4
@@ -4525,11 +4333,7 @@ c
      $ w19),stk(lw20),istk(iadr(lr13)),istk(iadr(lr15)),istk(iadr(lr17))
      $ ,istk(iadr(lr16)),stk(lw25),stk(lw26),stk(lw27),stk(lw28),stk(lw2
      $ 9),stk(lw30),stk(lw31),stk(lw32),stk(lw33))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+17
@@ -4666,11 +4470,7 @@ c
        if(.not.cremat(fname,top+2,0,istk(iadr(lr6)),1,lw9,loc9)) return
        call ford(istk(iadr(lr1)),istk(iadr(lr2)),stk(lr3),istk(iadr(lr4)
      $ ),istk(iadr(lr5)),n2,istk(iadr(lr6)),stk(lw8),stk(lw9))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+       if(err .gt. 0 .or. err1 .gt. 0) return 
 c
        topk=top-rhs
        topl=top+2
