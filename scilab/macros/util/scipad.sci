@@ -1,6 +1,6 @@
 function scipad(varargin)
 // start scipad editor
-//global %scipad_fontsize;
+global %scipad_language;
 global LANGUAGE
 global TMPDIR
   if with_tk() then
@@ -18,9 +18,14 @@ global TMPDIR
         TK_EvalStr("scipad eval { set env(HOME) """+pathconvert(home,%f,%t)+""" }")
       end
     end
-    if exists("LANGUAGE") then 
-      TK_EvalStr("scipad eval { set lang """+LANGUAGE+""" }")
+    if ~exists("%scipad_language") then 
+      if exists("LANGUAGE") then
+        %scipad_language=LANGUAGE
+      else
+        %scipad_language="eng"
+      end
     end
+    TK_EvalStr("scipad eval { set lang """+%scipad_language+""" }")
     if MSDOS then
       TK_EvalStr("scipad eval { set tmpdir """+strsubst(TMPDIR,"\","/")+""" }")
     else
