@@ -87,9 +87,6 @@ show_comment=%f
       end
     end 
     
-    
-    [clkptr,cliptr,typ_l,dep_ut,typ_m]=make_ptr(bllst,clkptr,cliptr,typ_l,..
-	dep_ut,typ_m)
     [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
      cliptr,critev]=paksazi1(typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev)
     
@@ -182,8 +179,7 @@ show_comment=%f
   // to compute execution table and its pointer.
 
   
-  [ordptr1,execlk,execlk0,execlk_cons]=..
-      discard(clkptr,cliptr,clkconnect,exe_cons)
+  [execlk_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
 
   clkconnect=[];exe_cons=[]
 
@@ -194,7 +190,7 @@ show_comment=%f
    typ_z,ok]=scheduler(inpptr,outptr,clkptr,..
 			execlk_cons,outoin,outoinptr,..
 			evoutoin,evoutoinptr,typ_z,typ_x,typ_s,..
-			bexe,boptr,blnk,blptr,ordclk,ordptr1,cord);
+			bexe,boptr,blnk,blptr,ordclk,ordptr,cord);
 		    
 		    
   	
@@ -236,7 +232,7 @@ show_comment=%f
   sim=scicos_sim(funs=funs,xptr=xptr,zptr=zptr,zcptr=zcptr,..
 		 inpptr=inpptr,outptr=outptr,inplnk=inplnk,outlnk=outlnk,..
 		 lnkptr=lnkptr,rpar=rpar,rpptr=rpptr,ipar=ipar,ipptr=ipptr,..
-		 clkptr=clkptr,ordptr=ordptr1,execlk=execlk,ordclk=ordclk,..
+		 clkptr=clkptr,ordptr=ordptr,execlk=ordclk,ordclk=ordclk,..
 		 cord=cord,oord=oord,zord=zord,critev=critev(:),..
 		 nb=nb,ztyp=ztyp,nblk=nblk,ndcblk=ndcblk,..
 		 subscr=subscr,funtyp=funtyp,iord=iord,labels=labels,modptr=modptr);
@@ -336,7 +332,7 @@ function vec_clk0=set_primary_clkport(vec_clk,primary,i)
     vec_clk1=vec_clk(i+1:size(vec_clk,1),:)
     for k=1:size(primary,1)
       f=find(primary(k,1)==vec_clk0(:,1))
-      if f==[] | (f~=[] & vec_clk0(f,2)~=primary(k,2)) then
+      if f==[] then
 	vec_clk0=[vec_clk0;primary(k,:)]
       end
     end
@@ -344,7 +340,7 @@ function vec_clk0=set_primary_clkport(vec_clk,primary,i)
     if n_vc1>0 then
       for k=1:n_vc1
 	f=find(vec_clk1(k,1)==vec_clk0(:,1))
-	if f==[] | (f~=[] & vec_clk0(f,2)~=vec_clk1(k,2)) then
+	if f==[] then
 	  vec_clk0=[vec_clk0;vec_clk1(k,:)]
 	end
       end
@@ -2624,9 +2620,7 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
   ord(find(k==1))=[];
 endfunction
 
-
-function [ordptr1,execlk,clkconnectj0,clkconnectj_cons]=..
-      discard(clkptr,cliptr,clkconnect,exe_cons)
+function [clkconnectj_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
 
   if exe_cons<>[] then
     clkconnectj=exe_cons
@@ -2656,90 +2650,6 @@ function [ordptr1,execlk,clkconnectj0,clkconnectj_cons]=..
     clkconnectj_cons=[]
   end
 
-  clkconnecttmp=clkconnect
-  clkconnect=clkconnecttmp(find(clkconnecttmp(:,1)<>0),:)
-  clkconnect0=clkconnecttmp(find(clkconnecttmp(:,1)==0),:)
-  if clkconnect0<>[] then
-    clkconnectj=[clkconnect0(:,3),clkconnect0(:,4)]
-    mma=maxi(clkconnectj(:,2))+1
-    con=mma*clkconnectj(:,1)+clkconnectj(:,2)
-    //
-    [junk,ind]=sort(-con);con=-junk
-    clkconnectj=clkconnectj(ind,:)
-    // discard duplicate calls to the same block port
-    if size(con,'*')>=2 then
-      clkconnectj(find(con(2:$)-con(1:$-1)==0),:)=[]
-    end
-    // group calls to different ports of the same block.
-    clkconnectj=[clkconnectj(:,1),2^(clkconnectj(:,2)-ones(clkconnectj(:,2)))]
-    clkconnectj=int(clkconnectj)
-    con=clkconnectj(:,1)
-    clkconnectj0=[]
-    if size(con,'*')>=2 then 
-      iini=[find(con(2:$)-con(1:$-1)<>0),size(clkconnectj,1)]
-    else
-      iini=1
-    end
-    for ii=iini
-      clkconnectj0=[clkconnectj0;[clkconnectj(ii,1),..
-		    mysum(clkconnectj(find(clkconnectj(:,1)==clkconnectj(ii,1)),2))]]
-    end
-  else
-    clkconnectj0=[]
-  end
-
-  con=clkptr(clkconnect(:,1))+clkconnect(:,2)-1
-  [junk,ind]=sort(-con);con=-junk
-  clkconnect=clkconnect(ind,:)
-  //
-  ordptr1=1
-  for i=1:clkptr($)-1
-    tmp=find(con<=i)
-    if tmp==[] then 
-      ordptr1(i+1)=ordptr1(i)
-    else
-      ordptr1(i+1)=max(tmp)+1
-    end
-  end
-  execlk=[]
-  new_ordptr1=1
-
-  if show_trace then disp('c_pass50001:'+string(timer())),end
-
-  for j=1:clkptr($)-1
-    if ordptr1(j)<>ordptr1(j+1) then
-      clkconnectj=[clkconnect(ordptr1(j):ordptr1(j+1)-ones(ordptr1(j+1)),3),..
-		   clkconnect(ordptr1(j):ordptr1(j+1)-1,4)]
-      mma=maxi(clkconnectj(:,2))+1
-      con=mma*clkconnectj(:,1)+clkconnectj(:,2)
-      [junk,ind]=sort(-con);con=-junk
-      clkconnectj=clkconnectj(ind,:)
-      // discard duplicate calls to the same block port
-      if size(con,'*')>=2 then
-	clkconnectj(find(con(2:$)-con(1:$-1)==0),:)=[]
-      end
-      // group calls to different ports of the same block.
-      clkconnectj=[clkconnectj(:,1),2^(clkconnectj(:,2)-ones(clkconnectj(:,2)))]
-      clkconnectj=int(clkconnectj)
-      con=clkconnectj(:,1)
-      clkconnectjj=[]
-      if size(con,'*')>=2 then 
-	iini=[find(con(2:$)-con(1:$-1)<>0),size(clkconnectj,1)]
-      else
-	iini=1
-      end
-      for ii=iini
-	clkconnectjj=[clkconnectjj;[clkconnectj(ii,1),..
-		    mysum(clkconnectj(find(clkconnectj(:,1)==clkconnectj(ii,1)),2))]]
-      end
-    else
-      clkconnectjj=[]
-    end
-
-    execlk=[execlk;clkconnectjj]
-    new_ordptr1=[new_ordptr1;new_ordptr1($)+size(clkconnectjj,1)]
-  end
-  ordptr1=new_ordptr1
 endfunction
 
 function a=mysum(b)
@@ -2981,35 +2891,6 @@ function [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
     outoinptr=[outoinptr;outoinptr($)+jj]
     outoin=[outoin;outoini]
   end
-endfunction
-
-function [clkptr,cliptr,typ_l,dep_ut,typ_m]=..
-      make_ptr(bllst,clkptr,cliptr,typ_l,dep_ut,typ_m)
-  nblk0=size(clkptr,'*')
-  nbl=size(bllst)
-  if nbl<nblk0 then return; end
-
-  i=nblk0;ll=bllst(i)
-  cliptr1=zeros(nbl-nblk0,1);clkptr1=cliptr1;
-  cliptr1(1)=cliptr($)+sum(ll.evtin)
-  clkptr1(1)=clkptr($)+sum(ll.evtout)
-  typ_l1=cliptr1==1;dep_ut1=[typ_l1,typ_l1];
-  typ_l1(1)=ll.blocktype=='l';typ_m1(1)=ll.blocktype=='m';dep_ut1(1,:)=ll.dep_ut;
-  j=1
-  for i=nblk0+1:nbl
-    j=j+1
-    ll=bllst(i)
-    cliptr1(j)=cliptr1(j-1)+sum(ll.evtin)
-    clkptr1(j)=clkptr1(j-1)+sum(ll.evtout)
-    typ_l1(j)=ll.blocktype=='l'
-    typ_m1(j)=ll.blocktype=='m'
-    dep_ut1(j,:)=ll.dep_ut
-  end
-  cliptr=[cliptr;cliptr1]
-  clkptr=[clkptr;clkptr1]
-  typ_l=[typ_l;typ_l1]
-  typ_m=[typ_m;typ_m1]
-  dep_ut=[dep_ut;dep_ut1];
 endfunction
 
 function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
