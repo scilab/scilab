@@ -56,6 +56,6 @@
 files=listfiles(['SCI/macros/util/*.sci';'SCI/macros/util/*.bin']);
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>basename</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pathexpand</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>basename</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pathconvert</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
