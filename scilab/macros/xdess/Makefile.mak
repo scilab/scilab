@@ -28,6 +28,6 @@ MACROS = errbar.sci fchamp.sci fcontour.sci fplot2d.sci fplot3d.sci \
 	hotcolormap.sci graycolormap.sci getsymbol.sci getcolor.sci \
 	sd2sci.sci contourf.sci polarplot.sci graypolarplot.sci \
 	legends.sci dragrect.sci subplot.sci getlinestyle.sci getmark.sci \
-	getfont.sci loadplots.sci rubberbox.sci
+	getfont.sci loadplots.sci rubberbox.sci xclear.sci
 
 include ../Make.lib.mak
