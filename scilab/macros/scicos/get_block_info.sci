@@ -1,7 +1,9 @@
-function txt=get_block_info(scs_m,k)
+function txt=get_block_info(scs_m,k,ksave)
 // Copyright INRIA
+  if argn(2)>2 then super_path;super_path($+1)=ksave,end
 txt=[]
 o=scs_m.objs(k)
+ksave=k //pour creer super_path
 //select o(1)
 select typeof(o)
 case 'Block' then
@@ -51,7 +53,7 @@ case 'Block' then
           ok=((typeof(o1)=='Link')&filtre(2))|((typeof(o1)=='Text')&filtre(4))
 	end
 	if ok then
-	  txt=[txt;indent(get_block_info(objet,k))]
+	  txt=[txt;indent(get_block_info(objet,k,ksave))]
 	end
       end
     end
