@@ -5164,6 +5164,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) /**DJ.Abdemouche 2003**/
        pSUBWIN_FEATURE (pobj)->cubecolor=(integer)stk(*value)[0];
+      /* I add this line under:*/
+      sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
       else  
 	sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
     }
@@ -6358,9 +6360,11 @@ if ((pobj == (sciPointObj *)NULL) &&
     {
       numrow   = 1;numcol   = 1;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      if (sciGetEntityType (pobj) == SCI_SUBWIN)
+
+       /* F.Leray 30.03.04 No need anymore*/
+      /*  if (sciGetEntityType (pobj) == SCI_SUBWIN)
 	*stk(outindex) = pSUBWIN_FEATURE (pobj)->cubecolor;
-      else
+	else*/
 	*stk(outindex) = sciGetBackground((sciPointObj *) pobj);
     }
   else if (strncmp(marker,"foreground", 10) == 0) 
