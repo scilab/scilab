@@ -90,7 +90,7 @@ c     de boucle
          goto 998
       endif
 c     
-      if(op.eq.0) then
+      if(op.le.0) then
 c     nop
          lc=lc+istk(lc+1)
          goto 11
