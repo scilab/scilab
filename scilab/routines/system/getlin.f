@@ -290,7 +290,7 @@ c     .          quote marks a tranposition
             endif
          else
 c     .     a quote in a string
-            if(lin(il+1).eq.quote) then
+            if(abs(lin(il+1)).eq.quote) then
                il=il+1
             else
 c     .        end of string
