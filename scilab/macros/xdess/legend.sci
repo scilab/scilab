@@ -148,14 +148,17 @@ function R=legend(varargin)
 endfunction
 function h=getvalidchildren(A)
   h=[]
-  select A.type
-    case "Polyline" then
-    h=[h;A]
-    case 'Axes'
-    h=[h;getvalidchildren(A.children)]
-    case 'Agregation'
-    for k=1:size(A.children,'*')
-      h=[h;getvalidchildren(A.children(k))]
+  for k=1:size(A,'*')
+    a=A(k)
+    select a.type
+      case "Polyline" then
+      h=[h;a]
+      case 'Axes'
+      h=[h;getvalidchildren(a.children)]
+      case 'Agregation'
+      for k=1:size(a.children,'*')
+	h=[h;getvalidchildren(a.children(k))]
+      end
     end
   end
 endfunction
