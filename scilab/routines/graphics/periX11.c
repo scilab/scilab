@@ -48,6 +48,9 @@ extern int IsCloseSGWindow __PARAMS((XEvent *));
 extern void SciViewportMove __PARAMS((struct BCG *,int,int));
 extern void SciViewportGet __PARAMS((struct BCG *,int *,int*));
 extern void SciViewportClipGetSize __PARAMS((struct BCG *,int *,int*));
+extern  int C2F(realtime)  __PARAMS((double *t));
+extern  int C2F(realtimeinit) __PARAMS( (double *t,double *scale));
+
 #ifdef WITH_TK
 extern void flushTKEvents();
 #endif
@@ -615,7 +618,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 {
   XEvent event;
   integer buttons = 0,win;
-  double t,scale;
+  double t,scale=0.00001;
   if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
     {
       *ibutton = -100;     return;
@@ -686,7 +689,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	    break;
 	  }
       }
-      t=t+1.;C2F(realtime)(&t); /* wait a little not to use all the CPU*/
+      t=t+1.;C2F(realtime)(&t);/* wait a little not to use all the CPU*/
     }
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
     XDefineCursor(dpy, ScilabXgc->CWindow ,arrowcursor);
@@ -1982,7 +1985,6 @@ static void xset_gccolormap(v1,v2,a,XGC)
 extern void setcolormapg(struct BCG *XGC,integer *v1, integer *v2, double *a)
 {
   int m;
-  char merror[128];
   /* 2 colors reserved for black and white */
   if (*v2 != 3 || *v1 < 0 || *v1 > maxcol - 2) {
     sciprint("Colormap must be a m x 3 array with m <= %ld, previous one kept\r\n",maxcol-2);
