@@ -798,18 +798,17 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
   struct BCG *ScilabGC;
   int deltax = 0;
   int deltay = 0;
-  int x,y,iwin;
-
+  
   SCROLLINFO vertsi;
   SCROLLINFO horzsi;
 
   ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
-  
+
+  GetEventKeyboardAndMouse(message,wParam,lParam,ScilabGC);
+
   switch (message)
     {
-   
-
-    case WM_SYSCOMMAND:
+      case WM_SYSCOMMAND:
       switch (LOWORD (wParam))
 		{
 			case M_GRAPH_TO_TOP: case M_COLOR:  case M_COPY_CLIP: case M_PRINT:
@@ -874,52 +873,7 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
 		}
 	 return 0;
 	 
-	 GetEventKeyboardAndMouse(message,wParam,lParam );
-
-     case WM_CHAR:
-		check_pointer_win(&x,&y,&iwin);
-		PushClickQueue (ScilabGC->CurWindow, x,y,wParam,0,0);
-     return (0);
-	 case WM_MOUSEMOVE:
-		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, -1, 1, 0);
-     return 0;
-     case WM_LBUTTONDOWN:
-		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		ScilabGC->horzsi.nPos,
-		HIWORD (lParam) + ScilabGC->vertsi.nPos, 0, 0, 0);
-      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-     return (0);
-     case WM_MBUTTONDOWN:
-		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		ScilabGC->horzsi.nPos,
-		HIWORD (lParam) + ScilabGC->vertsi.nPos, 1, 0, 0);
-		/*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-     return (0);
-	 case WM_RBUTTONDOWN:
-		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		ScilabGC->horzsi.nPos,
-		HIWORD (lParam) + ScilabGC->vertsi.nPos, 2, 0, 0);
-		/*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-     return (0);
-     case WM_LBUTTONUP:
-		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		ScilabGC->horzsi.nPos
-		,HIWORD (lParam) + ScilabGC->vertsi.nPos, -5, 0, 1);
-		/*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-		return (0);
-     case WM_MBUTTONUP:
-		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		ScilabGC->horzsi.nPos,
-		HIWORD (lParam) + ScilabGC->vertsi.nPos, -4, 0, 1);
-		/*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-     return (0);
-     case WM_RBUTTONUP:
-		PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-		ScilabGC->horzsi.nPos,
-		HIWORD (lParam) + ScilabGC->vertsi.nPos, -3, 0, 1);
-		/*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
-     return (0);
+	 
      case WM_CREATE:
 		ScilabGC = ((CREATESTRUCT *) lParam)->lpCreateParams;
 		SetWindowLong (hwnd, 0, (LONG) ScilabGC);
