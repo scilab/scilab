@@ -50,6 +50,7 @@ global dbxmin dbxmax dbymin dbymax dbzmin dbzmax
 global msdos
 
 global Xlabelfontstyle Ylabelfontstyle Zlabelfontstyle TITLEfontstyle fontstyle
+global RED GREEN BLUE
 
 # add for XF init only : to remove after...
 
