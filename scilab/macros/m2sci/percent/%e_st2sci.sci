@@ -100,7 +100,11 @@ if rhs==1 then
     end
     if typeof(ind)=="cste" | (typeof(ind)<>"list" & is_a_scalar(ind)) then 
       if ind.vtype<>String then
-	ind=list(Cste(1),ind)
+	if var.dims(1)==1 then // row vector
+	  ind=list(Cste(1),ind)
+	elseif var.dims(2)==1 then // column vector
+	  ind=list(ind,Cste(1))
+	else	  
       end
     end
     if typeof(ind)<>"list" then
