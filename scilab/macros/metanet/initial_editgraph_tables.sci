@@ -8,7 +8,8 @@ function [Menus,Shorts]=initial_editgraph_tables()
 	     ['Edit','NewNode','NewArc','Move','Move Region',..
 	      'Copy Region To ClipBoard','Paste','Delete',..
 	      'Delete Region','Properties','Default names','Undo'],..
-	     ["Compute","Shortest path"])
+	     ["Compute","Shortest path"],..
+	     ["Help"])
   Shorts=['d','Delete'; 
 	  'x','Delete Region'
 	  'c',"Copy Region To ClipBoard"
