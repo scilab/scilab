@@ -10,7 +10,7 @@ OBJSC = wf_w_dir.o wf_w_file.o wf_w_util.o wf_w_cursor.o \
 	wf_f_util.o wf_f_read.o \
 	wf_w_msgpanel.o wf_w_setup.o wf_e_edit.o wf_w_init.o \
 	jpc_windows.o jpc_command.o  jpc_utils.o jpc_inter.o   \
-	jpc_SGraph.o  jpc_xwidgets.o \
+	jpc_SGraph.o jpc_xwidgets.o \
 	jpc_coloredit.o \
 	x_button.o x_charproc.o x_cursor.o \
 	x_data.o x_input.o \
@@ -111,7 +111,7 @@ wf_w_setup.o: wf_w_util.h
 wf_e_edit.o: wf_fig.h wf_figx.h wf_resources.h wf_mode.h wf_w_drawprim.h \
 	wf_w_util.h
 wf_w_init.o: wf_fig.h wf_figx.h wf_resources.h
-jpc_Xloop.o: ../graphics/Math.h ../machine.h
+
 jpc_windows.o: x_ptyx.h x_data.h jpc_global.h jpc_defs.h x_xbas.icon.X \
 	version.h
 jpc_command.o: ../machine.h jpc_global.h jpc_defs.h ../sun/h_help.h
