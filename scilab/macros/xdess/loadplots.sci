@@ -760,13 +760,13 @@ function txt=%xcall1_string(rec)
       txt=txt+',???)'
     end
     case 'xrect' then
-    txt='xrect('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
-	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
-	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
+    txt='xrect('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+','+..
+	sci2exp(rec.dx3,0)+','+sci2exp(rec.dx4,0)+')'
+	sci2exp(rec.dx3,0)+','+sci2exp(rec.dx4,0)+')'
     case 'xfrect' then
-    txt='xfrect('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
-	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
-	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
+    txt='xfrect('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+','+..
+	sci2exp(rec.dx3,0)+','+sci2exp(rec.dx4,0)+')'
+	sci2exp(rec.dx3,0)+','+sci2exp(rec.dx4,0)+')'
     case 'xpolys' then
     dr=sci2exp(rec.x3)
     m=rec.ndx1
@@ -774,53 +774,53 @@ function txt=%xcall1_string(rec)
 	 sci2exp(matrix(rec.dx2,m,-1),'y')
 	 'xpolys(x,y,'+dr+')']
     case 'xstring' then
-    txt='xstring('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
-	sci2exp(rec.string)+','+sci2exp(rec.dx3)+')'
+    txt='xstring('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+','+..
+	sci2exp(rec.string,0)+','+sci2exp(rec.dx3,0)+')'
     case 'xstringb' then
-    txt='xstringb('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
-	sci2exp(rec.string)+','+sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
+    txt='xstringb('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+','+..
+	sci2exp(rec.string,0)+','+sci2exp(rec.dx3,0)+','+sci2exp(rec.dx4,0)+')'
 
     case 'xsegs' then
     m=rec.ndx1
-    style=sci2exp(rec.x1)
-    txt=[sci2exp(matrix(rec.dx1,m,-1),'x')
-	 sci2exp(matrix(rec.dx2,m,-1),'y')
+    style=sci2exp(rec.x1,0)
+    txt=[sci2exp(matrix(rec.dx1,m,-1),'x',0)
+	 sci2exp(matrix(rec.dx2,m,-1),'y',0)
 	 'xsegs(x,y,'+style+')']
     case 'xarrow' then
     txt=[]
     case 'xarc' then
-    txt='xarc('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
-	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+','+..
-	sci2exp(rec.x5)+','+sci2exp(rec.x6)+')'
+    txt='xarc('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+','+..
+	sci2exp(rec.dx3,0)+','+sci2exp(rec.dx4,0)+','+..
+	sci2exp(rec.x5,0)+','+sci2exp(rec.x6,0)+')'
     case 'xarcs' then
     n=rec.n3
-    txt=[sci2exp(matrix(rec.dx1,6,-1),'arcs')
-	 'xarcs(arcs,'+sci2exp(rec.x2)+')']
+    txt=[sci2exp(matrix(rec.dx1,6,-1),'arcs',0)
+	 'xarcs(arcs,'+sci2exp(rec.x2,0)+')']
     case 'xfarc' then
-        txt='xfarc('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
-	    sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+','+..
-	    sci2exp(rec.x5)+','+sci2exp(rec.x6)+')'
+        txt='xfarc('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+','+..
+	    sci2exp(rec.dx3)+','+sci2exp(rec.dx4,0)+','+..
+	    sci2exp(rec.x5,0)+','+sci2exp(rec.x6,0)+')'
     case 'xfarcs' then 
-        txt=[sci2exp(matrix(rec.dx1,6,-1),'arcs')
-	 'xfarcs(arcs,'+sci2exp(rec.x2)+')']
+        txt=[sci2exp(matrix(rec.dx1,6,-1),'arcs',0)
+	 'xfarcs(arcs,'+sci2exp(rec.x2,0)+')']
     case 'xaxis' then
-        txt=['xaxis('+sci2exp(rec.dx1)+','+sci2exp(rec.x2)+','+..
-	     sci2exp(rec.dx2)+','+sci2exp(rec.dx3)+')']
+        txt=['xaxis('+sci2exp(rec.dx1,0)+','+sci2exp(rec.x2,0)+','+..
+	     sci2exp(rec.dx2,0)+','+sci2exp(rec.dx3,0)+')']
     case 'xlines' then
-        txt=['xpoly('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+..
-	     ',''lines'','+sci2exp(rec.x4)+')']
+        txt=['xpoly('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+..
+	     ',''lines'','+sci2exp(rec.x4,0)+')']
     case 'xarea' then
-        txt=['xfpoly('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+..
-	     ','+sci2exp(rec.x4)+')']
+        txt=['xfpoly('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+..
+	     ','+sci2exp(rec.x4,0)+')']
 	    
 
     case 'xliness' then
-    txt=['xpoly('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+..
-	     ',''lines'','+sci2exp(rec.x4)+')']
+    txt=['xpoly('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+..
+	     ',''lines'','+sci2exp(rec.x4,0)+')']
 	
     case 'xmarks' then
-        txt=['xpoly('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+..
-	     ',''marks'','+sci2exp(rec.x4)+')']
+        txt=['xpoly('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+..
+	     ',''marks'','+sci2exp(rec.x4,0)+')']
   else
     error('%xcall1_string, unknown keyword: '+rec.fname)
   end
