@@ -45,7 +45,7 @@ if RHS==3 then flag='ge';end
 if RHS==4 then 
 if type(flag)~=10 then error('abinv: flag must be a string');end
 end
-timedomain=Sl('dt');
+timedomain=Sl.dt;
 if timedomain==[] then warning('abinv: time domain not given =>Sl assumed continuous (default)');timedomain='c';end
 [A,B,C,D]=abcd(Sl);
 [nx,nu]=size(B);
@@ -57,6 +57,7 @@ while %t,
 if dimV==n1 then break;end
 dimV=n1;Vi1=X(:,1:n1);
 end
+
 //V=X(:,1:dimV);    // V subspace
 // Fast return if V=[];
 if dimV==0 then 
@@ -68,16 +69,18 @@ if dimV==0 then
 	if flag=='st' then dims=[0,0,nc,ns];end
 	if flag=='pp' then dims=[0,nc,ns];end
 	Z=syslin(timedomain,A+B*F,B*U,F,U);
+        return;
 end
 Anew=X'*A*X;Bnew=X'*B;Cnew=C*X;
 //   Determining dimR and dimVg
 B1V=Bnew(1:dimV,:);B2V=Bnew(dimV+1:nx,:);
 [U,k]=colcomp([B2V;D]);   //U is nu x nu
 Uker=U(:,1:nu-k);Urange=U(:,nu-k+1:nu);
-slV=syslin(timedomain,Anew(1:dimV,1:dimV),B1V*Uker,[]);    //
+slV=syslin(timedomain,Anew(1:dimV,1:dimV),B1V*Uker,[]);
 [dimVg,dimR,Ur]=st_ility(slV);
 X(:,1:dimV)=X(:,1:dimV)*Ur;
 Anew=X'*A*X;Bnew=X'*B;Cnew=C*X;
+//Bnew=Bnew*U;
 //   Cut appropriate subspace  
 dim=dimVg;   //dim=dimVg   //dim=dimR
 select flag
@@ -105,21 +108,22 @@ Z=[A21,B2bar;C1,Dbar]; //Z is (nx-dim)+ny x dim+k
 W1=W(:,1:dim)*inv(W(1:dim,1:dim));
 F1bar=W1(dim+1:dim+k,:);  
 //[A21,B2bar;C1,Dbar]*[eye(dim,dim);F1bar]=zeros(nx-dim+ny,dim)
+//
 A11=A11+B1bar*F1bar;  //add B1bar*F1bar is not necessary.
-
 if B1t ~= [] then
 	voidB1t=%f;
        if RHS==1 then
          warning('abinv: needs alfa =>use default value alfa=-1')
          alfa=-1;
        end
-	F1t=stabil(sl1('A'),sl1('B'),alfa); //nu-k rows, dimV columns
+	F1t_tmp=0*sl1('B')'; //nu-k rows, dimV columns
 else
-	voidB1t=%t;F1t=[];dimR=0;
-end     
+	voidB1t=%t;F1t_tmp=[];dimR=0;
+end
+     
 if ~voidB1t then
 if norm(B1t,1)<1.d-10 then
-   F1t=zeros(nu-k,dim);dimR=0;
+   F1t_tmp=zeros(nu-k,dim);dimR=0;
 end       
 end     
 
@@ -129,6 +133,13 @@ if (nc2~=0)&(RHS==1|RHS==2) then
   warning('abinv: needs beta => use default value beta=-1');
 end
 F2=Urange*stabil(sl2('A'),sl2('B'),beta);
+
+//final patch
+Ftmp=[U*[F1t_tmp;F1bar],F2]*X';
+An=X'*(A+B*Ftmp)*X;Bn=X'*B*U;
+[m,n]=size(F1t_tmp);
+A11=An(1:n,1:n);B11=Bn(1:n,1:m);
+F1t=stabil(A11,B11,alfa);
 
 F=[U*[F1t;F1bar],F2]*X';
 X=X*sysdiag(eye(Ur),U2);
@@ -140,5 +151,6 @@ case 'st'
 case 'pp'
 	dims=[dimR,dimR+nc2,dimR+ns2];
 end
+
 Z=syslin(timedomain,A+B*F,B*U,F,U);
 endfunction
