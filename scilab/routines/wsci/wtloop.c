@@ -1,4 +1,4 @@
-
+/*-----------------------------------------------------------------------------------*/
 /*
  * Copyright (C) 1986 - 1993   Thomas Williams, Colin Kelley
  *
@@ -23,49 +23,46 @@
  *       Gershon Elber and many others.
  *   
  * Modified for Scilab (1996) : Jean-Philippe Chancelier 
+ * (2005) Allan CORNET
  *        
  */
+/*-----------------------------------------------------------------------------------*/
+#ifndef STRICT
+  #define STRICT
+#endif
 
 #include <stdio.h>
 #include <setjmp.h>
 #include <signal.h>
 #ifdef XPG3_LOCALE
-#include <locale.h>
+  #include <locale.h>
 #endif
 #include <signal.h>
 #include <string.h>
 #include <stdlib.h>
 
 #include "plot.h"
-
-#ifndef STRICT
-#define STRICT
-#endif
-/*#include <windows.h>
-#include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
 #include "../sun/Sun.h"
 #include "../stack-c.h" 
-
-extern char input_line[];
-
-jmp_buf env;
-
+/*-----------------------------------------------------------------------------------*/
 extern int C2F (stimer) (void);
 extern void C2F (settmpdir) (void);
 extern void C2F (tmpdirc) (void);
 extern void C2F (getenvc) (int *ierr, char *var, char *buf, int *buflen, int *iflag);
 extern char *get_sci_data_strings (int n);
-static void interrupt_setup ();
-static void realmain (int nos,char *initial_script,int pathtype,
-		      int lpath,int memory);
-static int sci_exit(int n) ;
 extern int C2F(sciquit)(void );
 extern int C2F(scirun)(char * startup, int lstartup);
 extern int C2F(inisci)(int *,int *,int *);
-
-
+static void interrupt_setup ();
+static void realmain(int nos,char *initial_script,int initial_script_type,int lpath,int memory);
+static int sci_exit(int n) ;
+/*-----------------------------------------------------------------------------------*/
+static int  no_startup_flag=0;
+jmp_buf env;
+extern char input_line[];
+/*-----------------------------------------------------------------------------------*/
 /***********************************************
  * SIGINT is not used up to now 
  * CtrC are detected in readline or in jpc_Xloop 
@@ -73,7 +70,6 @@ extern int C2F(inisci)(int *,int *,int *);
  * the function SignalCtrC set a flag 
  * for scilab 
  ***********************************************/
-
 void SignalCtrC (void)
 {
   int j = 2;
@@ -81,7 +77,7 @@ void SignalCtrC (void)
   C2F (sigbas) (&j);
 
 }
-
+/*-----------------------------------------------------------------------------------*/
 void inter (int an_int)
 {
   (void) signal (SIGINT, inter);
@@ -90,17 +86,14 @@ void inter (int an_int)
   sciprint ("\n");
   longjmp (env, TRUE);		/* return to prompt  */
 }
-
+/*-----------------------------------------------------------------------------------*/
 /* Set up to catch interrupts */
-
-static void 
-interrupt_setup (void)
+static void interrupt_setup (void)
 {
   (void) signal (SIGINT, inter);
 }
-
-void sci_windows_main (int nowin, int *nos, char *path,int pathtype,
-		  int *lpath,int memory)
+/*-----------------------------------------------------------------------------------*/
+void sci_windows_main (int nowin, int *nos, char *path,int pathtype,int *lpath,int memory)
 {
 #ifdef XPG3_LOCALE
   (void) setlocale (LC_CTYPE, "");
@@ -118,30 +111,66 @@ void sci_windows_main (int nowin, int *nos, char *path,int pathtype,
 	SetCursor (LoadCursor ((HINSTANCE) NULL, IDC_ARROW));
     }
   /* take commands from stdin */
-  realmain (*nos, path,pathtype,*lpath,memory);
-
+	realmain (*nos, path,pathtype,*lpath,memory);
 }
-
-static int  no_startup_flag=0;
-
-static void realmain(int nos,char *initial_script,int initial_script_type,
-		     int lpath,int memory)
+/*-----------------------------------------------------------------------------------*/
+void sci_clear_and_exit(int n) /* used with handlers */ 
+{
+#ifdef _DEBUG
+  char Message[256];
+  switch (n)
+  {
+	  case SIGINT:
+		  wsprintf(Message,"SIGINT Signal detected");
+		  break;
+	  case SIGILL:
+		  wsprintf(Message,"SIGILL Signal detected");
+		  break;
+	  case SIGFPE:
+		  wsprintf(Message,"SIGFPE Signal detected");
+		  break;
+	  case SIGSEGV:
+		  wsprintf(Message,"SIGSEGV Signal detected");
+		  break;
+	  case SIGTERM:
+		  wsprintf(Message,"SIGTERM Signal detected");
+		  break;
+	  case SIGBREAK:
+		  wsprintf(Message,"SIGBREAK Signal detected");
+		  break;
+	  case SIGABRT:
+		  wsprintf(Message,"SIGABRT Signal detected");
+		  break;
+	  default:
+		  wsprintf(Message,"Unknow Signal detected");
+		  break;
+  }
+  MessageBox(NULL,Message,"Error",MB_ICONWARNING);
+#else
+  MessageBox(NULL,"Scilab has performed a illegal operation\nand will be shutdown.\n Please save your work ...","Error",MB_ICONWARNING);
+#endif
+  WinExit();
+  C2F(sciquit)();
+}
+/*-----------------------------------------------------------------------------------*/
+static void realmain(int nos,char *initial_script,int initial_script_type,int lpath,int memory)
 {
   int ierr;
   static int ini=-1;
   char startup[256];
   /* create temp directory */
   C2F(settmpdir)();
-  /* signals */
-  /* 
-  signal(SIGINT,sci_clear_and_exit);
-  signal(SIGBUS,sci_clear_and_exit);
-  signal(SIGSEGV,sci_clear_and_exit);
-  signal(SIGQUIT,sci_clear_and_exit);
-  signal(SIGHUP,sci_clear_and_exit);
-  */
-  /*  prepare startup script  */
 
+  /* signals */
+  signal(SIGINT,sci_clear_and_exit);
+  signal(SIGILL,sci_clear_and_exit);
+  signal(SIGFPE,sci_clear_and_exit);
+  signal(SIGSEGV,sci_clear_and_exit);
+  signal(SIGTERM,sci_clear_and_exit);
+  signal(SIGBREAK,sci_clear_and_exit);
+  signal(SIGABRT,sci_clear_and_exit);
+
+  /*  prepare startup script  */
   if ( nos != 1 ) 
     {
       /* execute a startup */
@@ -191,13 +220,12 @@ static void realmain(int nos,char *initial_script,int initial_script_type,
   C2F(sciquit)(); 
   return ;
 }
-
+/*-----------------------------------------------------------------------------------*/
 /*-------------------------------------------------------
  * Exit function called by some 
  * X11 functions 
  * call sciquit which call clear_exit
  *-------------------------------------------------------*/
-
 int C2F(sciquit)()            /* used at Fortran level */
 {
   int status = 0;
@@ -209,13 +237,7 @@ int C2F(sciquit)()            /* used at Fortran level */
     }
   return sci_exit(status) ;
 } 
-
-void sci_clear_and_exit(int n) /* used with handlers */ 
-{
-  /* fprintf(stderr,"I Quit Scilab through sci_clear_and_exit\n"); */
-  C2F(sciquit)();
-}
-
+/*-----------------------------------------------------------------------------------*/
 int sci_exit(int n) 
 {
   /* fprintf(stderr,"I Quit Scilab through sci_exit\n");*/
@@ -225,23 +247,22 @@ int sci_exit(int n)
   exit(n);
   return(0);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /*-------------------------------------------------------
  * usr1 signal : used to transmit a Control C to 
  * scilab 
  *-------------------------------------------------------*/
-
 void sci_usr1_signal(int n) 
 {
   controlC_handler(n);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /*-------------------------------------------------------
  * Ctrl-Z : stops the current computation 
  *          or the current interface call 
  *-------------------------------------------------------*/
-
 void  sci_sig_tstp(int n)
 {
   Scierror(999,"SIGSTP: aborting current computation\r\n");
 }
+/*-----------------------------------------------------------------------------------*/
