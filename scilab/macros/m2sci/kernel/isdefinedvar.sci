@@ -38,18 +38,11 @@ end
 // Compare with all existing variables in varslist
 for k=1:size(varslist)
   if varslist(k).matname==varname then
-    if level(1)<=0 then
+    if level(1)<=0 | varslist(k).level<=level(1) then
       boolval=%T
       index=k
-    else
-      if varslist(k).level<=level(1) then
-	boolval=%T
-	index=k
-      else	
-	return
-      end
+      return
     end
-    return
   end
 end
 endfunction
