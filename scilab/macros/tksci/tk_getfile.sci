@@ -6,7 +6,7 @@ function p=tk_getfile(file_mask,dir,title,foo)
     arg=arg+' -filetypes $ftypes',
   end
   if exists('dir','local')==1 then arg=arg+' -initialdir '+dir,end
-  if exists('title','local')==1 then arg=arg+' -title '+title,end
+    if exists('title','local')==1 then arg=arg+' -title ""'+title+'""',end
   TK_EvalStr('set scifilepath [tk_getOpenFile'+arg+']')
   p=TK_GetVar('scifilepath')
 endfunction
