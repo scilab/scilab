@@ -10134,6 +10134,10 @@ sciDrawObj (sciPointObj * pobj)
       if ((xm = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
       if ((ym = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
       sciClip(sciGetIsClipping(pobj));
+#ifdef WIN32 
+      SetWinhdc ();
+#endif
+
       switch (pPOLYLINE_FEATURE (pobj)->plot)
         {
         case 0:
@@ -10182,6 +10186,9 @@ sciDrawObj (sciPointObj * pobj)
 	C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
       else
 	C2F (dr) ("xmarks", "xv", &n1, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
+#ifdef WIN32 
+      ReleaseWinHdc ();
+#endif  
       sciUnClip(sciGetIsClipping(pobj));
      
 
