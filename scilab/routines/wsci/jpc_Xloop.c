@@ -88,6 +88,9 @@ TextMessage2()
       /*sciprint("tcl event %l\r\n",msg.hwnd);*/
     }
 #else 
+  GetMessage(&msg, 0, 0, 0);
+  TranslateMessage(&msg);
+  DispatchMessage(&msg);
   while (  PeekMessage(&msg, 0, 0, 0,PM_REMOVE) ) 
     {
       TranslateMessage(&msg);
