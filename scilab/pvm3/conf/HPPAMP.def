@@ -7,9 +7,11 @@
 ARCHCFLAGS	=	-DSHMEM -DSYSVSIGNAL -DNOWAIT3 -DNOGETDTBLSIZ \
 				-DRSHCOMMAND=\"/usr/bin/remsh\" -DNOUNIXDOM \
 				-DCLUMP_ALLOC -DHASSTDLIB -DFDSETISINT
+# remove -DFDSETISINT above for HP-UX 11.0...?
 ARCHDLIB	=
+# ARCHDLIB	=	-lnsl	# for HP-UX 11.0
 ARCHDOBJ	=
-ARCHLIB		=
+# ARCHLIB	=	-lnsl	# for HP-UX 11.0
 HASRANLIB	=	f
 PVM_ARCH	=	HPPAMP
 #AR			=	/usr/bin/ar
@@ -17,3 +19,4 @@ AR			=	ar
 FC			=	fort77
 NEEDF2M4	=	t
 AMEMOBJ		=	amem.o
+MAKE		=	make

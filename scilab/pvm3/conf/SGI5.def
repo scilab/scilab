@@ -3,5 +3,6 @@ ARCHDLIB	=	-lsun
 ARCHDOBJ	=
 ARCHLIB		=	-lsun
 HASRANLIB	=	f
-AR			= 	ar
+AR			=	ar
 PVM_ARCH	=	SGI5
+MAKE		=	make

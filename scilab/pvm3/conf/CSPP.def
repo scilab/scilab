@@ -53,3 +53,5 @@ PVM_ARCH	=	CSPP
 AR			=	ar
 LOPT		=	-Wl,-aarchive
 NEEDF2M4	=	t
+AMEMOBJ		=	amem.o
+MAKE		=	make

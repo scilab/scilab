@@ -1,8 +1,9 @@
-ARCHCFLAGS	= -no -fi -DNOUNIXDOM
-ARCHFFLAGS	= -no -fi
+ARCHCFLAGS	=	-no -fi -DNOUNIXDOM
+ARCHFFLAGS	=	-no -fi
 ARCHDLIB	=
 ARCHDOBJ	=
-ARCHLIB	=
+ARCHLIB		=
 HASRANLIB	=	t
-AR			= 	ar
+AR			=	ar
 PVM_ARCH	=	CNVX
+MAKE		=	make

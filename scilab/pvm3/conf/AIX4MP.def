@@ -5,4 +5,5 @@ ARCHDOBJ	=
 ARCHLIB		=	-lbsd -lpthreads 
 HASRANLIB	=	t
 PVM_ARCH	=	AIX4MP
-AR			= 	ar
+AR			=	ar
+MAKE		=	make

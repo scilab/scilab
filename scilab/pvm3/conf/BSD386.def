@@ -4,5 +4,6 @@ ARCHDLIB	=
 ARCHDOBJ	=
 ARCHLIB		=	-lrpc
 HASRANLIB	=	t
-AR			= 	ar
+AR			=	ar
 PVM_ARCH	=	BSD386
+MAKE		=	gmake

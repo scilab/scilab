@@ -8,3 +8,4 @@ HASRANLIB	=	t
 AR			=	ar
 PVM_ARCH	=	AIX46K
 NEEDF2M4	=	t
+MAKE		=	make

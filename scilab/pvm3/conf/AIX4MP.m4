@@ -1,9 +1,13 @@
 divert(-1)
 undefine(`len')
 #
-# append an underscore to FORTRAN function names
-#
-define(`FUNCTION',`$1_')
+#   This generates two copies of each libfpvm function, one with
+#   a trailing underscore and one without, so the resulting libfpvm
+#   works whether or not you use -qextname.
+#   For more comments, see the HPPA m4 file.
+define(`FUNCTION',ifdef(`USCORYES',`$1_',`$1'))
+
+#define(`FUNCTION',`$1')
 #
 # FORTRAN character strings are passed as follows:
 # a pointer to the base of the string is passed in the normal
