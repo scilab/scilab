@@ -1,0 +1,7 @@
+#ifndef SCI_VERSION_H 
+#define SCI_VERSION_H 
+
+#define VERSION "@SCIVERSION@"
+#define DEFAULT_MES "@SCIVERSION@ Scilab Group (Inria, Enpc)"
+
+#endif 
