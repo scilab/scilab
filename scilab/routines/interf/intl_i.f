@@ -260,7 +260,6 @@ c     .  variables at the top of the stack
          if(err.gt.0) return
          rhs=2+m1i
       endif
-
       if(k+1.lt.m1) then
 c     put (ik+2)..(in) in the stack for further use
          ll=sadr(il1+3+m1)+istk(il1+1+(k+2))-1
@@ -315,7 +314,6 @@ c     - save context for recursion
       if (ptover(1,psiz)) return
       pstk(pt)=ilrec
       istk(ilrec)=2
-
       fun=0
       fin=-5
       rstk(pt)=406
@@ -343,10 +341,15 @@ c     save context for recursion
       istk(ilrec)=4
       rstk(pt)=407
       rhs=3
+      fin=2
+      if (istk(iadr(lstk(top))).eq.1) then
+c     *call* matops insertion in an empty matrix
+         icall=4
+         return
+      endif
 c     *call* intl_i
       goto 05
  55   continue
-
 c     top variable  contains new Temp2 value
       pt=pt-1
 c     put Temp1=A3(i1)..(ik)  at the top of the stack
