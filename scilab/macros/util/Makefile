@@ -10,7 +10,7 @@ include ../../Makefile.incl
 NAME = utillib
 NAM = SCI/macros/util
 
-MACROS = calendar.sci datevec.sci \ 
+MACROS = mkdir.sci rmdir.sci calendar.sci datevec.sci \ 
         datenum.sci perl.sci clipboard.sci with_atlas.sci \
         setlanguage.sci with_lcc.sci VCtoLCCLib.sci \
 	sysconv.sci  lin.sci halt.sci bloc2exp.sci \
