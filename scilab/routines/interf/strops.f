@@ -339,13 +339,21 @@ c     .  reshape arg2 according to arg3
 c     .  arg3([])=arg2
          if(mn2.eq.1) then
 c     .  arg3([])=c  --> arg3 
-            istk(ilrs)=10
-            istk(ilrs+1)=m3
-            istk(ilrs+2)=n3
-            istk(ilrs+3)=0
-            volr=istk(id3+mn3)-1
-            call icopy(mn3+1+volr,istk(id3),1,istk(ilrs+4),1)
-            lstk(top+1)=sadr(ilrs+5+mn3+volr)
+            if(mn3.eq.0) then
+               istk(ilrs)=1
+               istk(ilrs+1)=0
+               istk(ilrs+2)=0
+               istk(ilrs+3)=0
+               lstk(top+1)=sadr(ilrs+4)
+            else
+               istk(ilrs)=10
+               istk(ilrs+1)=m3
+               istk(ilrs+2)=n3
+               istk(ilrs+3)=0
+               volr=istk(id3+mn3)-1
+               call icopy(mn3+1+volr,istk(id3),1,istk(ilrs+4),1)
+               lstk(top+1)=sadr(ilrs+5+mn3+volr)
+            endif
             goto 999
          else
             call error(15)
