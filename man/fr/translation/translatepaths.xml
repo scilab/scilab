@@ -5,7 +5,7 @@
   <TITLE>translatepaths</TITLE>
   <TYPE>Fonction Scilab</TYPE>
   <DATE>March 2004</DATE>
-  <SHORT_DESCRIPTION name="translatepaths"> convertit un emsemble de répertoires contenant des M-files vers Scilab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="translatepaths"> convertit un ensemble de répertoires contenant des M-files vers Scilab</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>translatepaths(dirs_path [,res_path])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -14,7 +14,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>dirs_path</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: un vecteur de chaînes de caractères qui donne les chemains des répertoires à convertir</SP>
+          <SP>: un vecteur de chaînes de caractères qui donne les chemins des répertoires à convertir</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
