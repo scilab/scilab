@@ -164,6 +164,9 @@ TCL_INC_PATH		:@TCL_INC_PATH@
 TCLTK_LIBS		:@TCLTK_LIBS@
 TKSCILIB		:@TKSCILIB@
 TKSCIDIR		:@TKSCIDIR@
+TK_MINOR_VERSION	:@TK_MINOR_VERSION@
+TK_MAJOR_VERSION	:@TK_MAJOR_VERSION@
+
 ------------------------------------------------------------
 Blas Variables
 ------------------------------------------------------------
