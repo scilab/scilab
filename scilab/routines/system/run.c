@@ -71,6 +71,8 @@ extern int C2F(objvide)();
 extern int C2F(gettype)();
 extern int C2F(sciquit)();
 extern int C2F(adjustrhs)();
+extern int C2F(clunit)();
+
 extern logical Eptover(int n);
 extern logical Ptover(int n);
 extern void Msgs(int n,int ierr);
@@ -843,7 +845,25 @@ int C2F(run)()
     Lct[4] = Lin[6 + k ];
     Lpt[6] = k;
     if (Rstk[Pt] <= 502) {
-      C2F(vstk).bot = Lin[5 + k];
+      if (Pt>1) {
+	if (Rstk[Pt-1] != 903 && Rstk[Pt-1] != 909 && Rstk[Pt-1] != 706)
+	  C2F(vstk).bot = Lin[5 + k];}
+      else
+	C2F(vstk).bot = Lin[5 + k];
+    }
+    else if (Rstk[Pt] == 503) {
+      if (C2F(iop).rio == C2F(iop).rte) {
+	    /* abort dans une pause*/
+	C2F(iop).rio = Pstk[Pt-1];
+	C2F(recu).paus--;
+	C2F(vstk).bot = Lin[5 + k];}
+      else {
+	int mode[3];
+	/*  abort dans un exec*/
+	mode[0]=0;
+	C2F(clunit)(-C2F(iop).rio,C2F(cha1).buf,mode);
+	C2F(iop).rio = Pstk[Pt-1];
+      }
     }
   }
   goto L101;
