@@ -40,6 +40,9 @@ scilex-lib::
 @OCAMLTARGET@::
 	@cd ocaml; echo "making all in ocaml..."; $(MAKE) $(MFLAGS) ;
 
+@JAVASCITARGET@::
+	@cd routines/Javasci; echo "making all in routines/Javasci..."; $(MAKE) $(MFLAGS) ;
+
 all::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
 	for i in $(SUBDIRS) ;\
