@@ -46,6 +46,13 @@
   <DESCRIPTION>
     <P>
     computes :</P>
+    <VERBATIM><![CDATA[
+                       /x1
+                      [
+                  x = I  f(v)dv
+                      ]
+                     /x0
+      ]]></VERBATIM>
     <P>
     The evaluation hopefully satisfies following claim for accuracy:
     <VERB>abs(I-x)&lt;= max(ea,er*abs(I))</VERB> where I stands for the
