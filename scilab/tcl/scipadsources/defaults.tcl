@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.29"
+set version "Version 3.30"
 
 # all one needs in order to add a new retriavable preference is:
 #  -add the variable name to $listofpref below
@@ -11,7 +11,7 @@ set version "Version 3.29"
 set listofpref {wordWrap BGCOLOR FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
        BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR TXTCOLOR QTXTCOLOR \
        REMCOLOR XMLCOLOR NUMCOLOR SELCOLOR BREAKPOINTCOLOR FontSize \
-       LFUNCOLOR PDEFCOLOR WMGEOMETRY printCommand actbptextFont}
+       LFUNCOLOR PDEFCOLOR WMGEOMETRY printCommand actbptextFont indentspaces}
 
 
 ##ES: default options which can be overriden
@@ -38,6 +38,7 @@ set FontSize 12
 set WMGEOMETRY 600x480
 set printCommand lpr
 set actbptextFont "-Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*"
+set indentspaces 2
 
 #other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }

@@ -73,8 +73,12 @@ proc UnCommentSel {} {
 
 proc IndentSel {} {
 # just copied from CommentSel
-    global textareacur
+    global textareacur indentspaces
     if {[IsBufferEditable] == "No"} {return}
+    set skip ""
+    for {set x 0} {$x<$indentspaces} {incr x} {
+    append skip " "
+    }
     set seltexts [selection own]
     if {$seltexts != "" } {
 	if [catch {selection get -selection PRIMARY} sel] {	    
@@ -84,23 +88,23 @@ proc IndentSel {} {
             set i1 [$textareacur index sel.first]
             set i2 [$textareacur index sel.last]
 #I thought this shouldn't match a newline as last character of the string...
-            regsub -all -line "(?!.\Z)^" $uctext "  " ctext
+            regsub -all -line "(?!.\Z)^" $uctext $skip ctext
 #glitches: are they because of my misunderstanding or bugs in regsub? 
 #this fixes the trailing "\n  "
-            if {[string range $ctext end-1 end]=="  "} {
-                   set ctext [string range $ctext 0 end-2]
-                   set i2 $i2-2c }
+            if {[string range $ctext end-1 end]==$skip} {
+                   set ctext [string range $ctext 0 end-$indentspaces]
+                   set i2 "$i2-$indentspaces c" }
 #this fixes another glitch - missing "  " at the second line if the first is
 #  empty
-              if {[string range $ctext 0 2]=="  \n"} {
-                     set ctext1 [string range $ctext 3 end]
-  	             set ctext "  \n  "
+              if {[string range $ctext 0 $indentspaces]=="$skip\n"} {
+		  set ctext1 [string range $ctext [expr $indentspaces+1] end]
+  	             set ctext "$skip\n  "
                      append ctext $ctext1
                  }
 #clean up lines which contain only spaces
             regsub -all -line "\ *\n" $ctext "\n" ctext1
             puttext $textareacur $ctext1
-            $textareacur tag add sel $i1 $i2+2c
+            $textareacur tag add sel $i1 "$i2+$indentspaces c"
          }
     } else {
        if {[selectline] != ""} IndentSel
@@ -109,7 +113,7 @@ proc IndentSel {} {
 
 proc UnIndentSel {} {
 # just copied from UncommentSel
-    global textareacur
+    global textareacur indentspaces
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {$seltexts != ""} {
@@ -122,7 +126,7 @@ proc UnIndentSel {} {
             if { $i2<$i1 } {
  		set i3 $i2; set i2 $i1; set i1 $i3
 	    }
-            regsub -all -line "^ {1,2}" $ctext  "" uctext
+            regsub -all -line "^ {1,$indentspaces}" $ctext  "" uctext
             puttext $textareacur $uctext
  # as above in UnCommentSel
             $textareacur tag add sel $i1 [$textareacur index insert]

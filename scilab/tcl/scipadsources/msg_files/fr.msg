@@ -172,7 +172,7 @@
     ::msgcat::mcset fr "Print Se&tup" "Mise en pa&ge"
     ::msgcat::mcset fr "&Print" "&Imprimer"
     ::msgcat::mcset fr "&Close" "&Fermer"
-    ::msgcat::mcset fr "&Exit" "&Quitter"
+    ::msgcat::mcset fr "E&xit" "&Quitter"
 
     # menues.tcl - Edit menu
     ::msgcat::mcset fr "&Undo" "&Annuler"

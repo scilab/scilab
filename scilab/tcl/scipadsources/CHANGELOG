@@ -711,3 +711,10 @@ Francois VOGEL, 16/02/05
  * Cosmetic: Aligned strings in the About box
              Translated message for fake ScilabEval
  * version --> 3.29
+
+ES 16/02/05
+ * indent/unindent supports a fixed arbitrary number of spaces, set by
+   the preference variable indentspaces
+ * localization to italian (proof of the concept)
+ * typo corrected in fr.msg
+ * version --> 3.30
