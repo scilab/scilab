@@ -17,19 +17,17 @@ Important Note: This demo will not work with a binary scilab
 To make it run you have to: 
 
  1) Edit the Makefile 
-    and change the SCIDIR variable to fit your local Scilab installation 
-    or this demo will only work when run from  this current directory 
+    change the SCIDIR variable to fit your local Scilab installation 
+    change JAVAINC to the proper jav include directory /usr/java/j2sdk1.4.2_03/include
+   (on my local installation it was 
+   -I/usr/local/jdk1.3/include -I/usr/local/jdk1.3/include/linux ) 
 
     On some Linux distributions you will have to add fix.c 
     in the Makefile (it is here by default) 
     see file bug.txt 
 
- 2) You also have to edit the file config/Makefile.all 
-    and change in CFLAGS the include path associated to java 
-   (on my local installation it was 
-   -I/usr/local/jdk1.3/include -I/usr/local/jdk1.3/include/linux ) 
-
  3) Edit javasci/Makefile if you want to change the classpath 
+    Edit example/Makefile if you want to change the classpath 
 
 Then type 
 	make distclean 

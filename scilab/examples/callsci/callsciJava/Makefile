@@ -2,7 +2,10 @@
 # To be customized 
 #--------------------------------------------------------
 
-SCIDIR=/usr/local/scilab 
+SCIDIR=/usr/local/scilab
+
+JAVAID=/usr/java/j2sdk1.4.2_03/include
+JAVAINC=-I$(JAVAID) -I$(JAVAID)/linux
 
 #--------------------------------------------------------
 # do not modify below 
@@ -11,8 +14,9 @@ SCIDIR=/usr/local/scilab
 PROG= libjavasci.so 
 OBJS= javasci_Matrix.o fix.o
 
-all	:: .init 
-	make -f config/Makefile.all  FC="g77 -Wl,-shared" PROG=$(PROG) OBJS="$(OBJS)" SCIDIR=$(SCIDIR)
+all	:: .init  
+	make -f config/Makefile.all  FC="g77 -Wl,-shared" PROG=$(PROG) OBJS="$(OBJS)" SCIDIR=$(SCIDIR) \
+		JAVAINC="$(JAVAINC)"
 	cd javasci; make all SCIDIR=$(SCIDIR)
 
 .init 	: Makefile 
