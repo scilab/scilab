@@ -96,8 +96,8 @@
 
 [Menu]
 &Contrôle
-		Re&démarrer
-			[RESTART]
+;		Re&démarrer
+;			[RESTART]
 		&Reprendre
 			[RESUME]
 		&Terminer
@@ -195,7 +195,7 @@ E&diteur
 	|Changer de Répertoire|DIRECTORY_ICON|
 		[CHDIR]
 [Button]
-	|Console|CONSOLE_ICON|
+	|Sortie Console|CONSOLE_ICON|
 		[CONSOLE]
 [Button]
 	|Changer la police|FONT_ICON|

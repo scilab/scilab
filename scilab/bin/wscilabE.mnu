@@ -100,8 +100,8 @@
 
 [Menu]
  &Control
-		Re&start
-			[RESTART]
+;		Re&start
+;			[RESTART]
 		&Resume
 			[RESUME]
 		&Abort
@@ -203,7 +203,7 @@
 	|Change Directory|DIRECTORY_ICON|
 		[CHDIR]
 [Button]
-	|Console|CONSOLE_ICON|
+	|Scilab Output|CONSOLE_ICON|
 		[CONSOLE]
 [Button]
 	|Choose Font ...|FONT_ICON|
