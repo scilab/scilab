@@ -717,4 +717,5 @@ ES 16/02/05
    the preference variable indentspaces
  * localization to italian (proof of the concept)
  * typo corrected in fr.msg
+ * fake ScilabEval also puts to stdout
  * version --> 3.30
