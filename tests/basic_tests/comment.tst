@@ -396,3 +396,4 @@ endfunction
 deff('[y]=u(t)','if t==0 then y=0;else y=1,end') //step qsdqsqsd
 function y=foo(a),y=a,endfunction//test qsdqsd
 foo(2)  //zeros=0
+foo("f//");
