@@ -7,7 +7,7 @@
 #define MAX_MSG_LINES  20
 
 static char* msg_buff[MAX_MSG_LINES];
-static char funname[25];    // Francois VOGEL August 2004 - Replaced 24 by 25 (bug 803)
+static char funname[25];    /* Francois VOGEL August 2004 - Replaced 24 by 25 (bug 803)*/
 static int where = 0;
 static int err_n = 0;
 static int msg_line_counter=0;
@@ -28,6 +28,7 @@ int C2F(funnamestore)(str,n)
      char *str;
      int *n;
 {
+  memset(funname,'\0',25);    /* Francois VOGEL August 2004 (bug 803)*/
   strncpy(funname, str, (size_t)*n);
   return 0;
 }
@@ -77,8 +78,8 @@ int C2F(lasterror)(fname,fname_len)
       *stk(l1) = (double)0.0;
       LhsVar(2)=2;
     }
-// Francois VOGEL August 2004 - Added initialization of missing lhs vars in case
-// there is no current 'last error' (bug 955)
+    /* Francois VOGEL August 2004 - Added initialization of missing lhs vars in case
+       there is no current 'last error' (bug 955)*/
     if (Lhs >= 3) {
       CreateVar(3,"d",&one,&one,&l1);
       *stk(l1) = (double)0.0;
