@@ -60,7 +60,7 @@ function [x,y,typ]=MAXMIN(job,arg1,arg2)
     model.blocktype='c'
     model.dep_ut=[%t %f]
     model.ipar=0;
-    exprs=[string([2,1,1])]
+    exprs=[string([2,1,1]')]
     gr_i=['txt=[CCC];';
 	  'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
     
