@@ -197,4 +197,8 @@ void ExtensionFileIntoLowerCase(char *fichier);
 
 void CreateScilabConsole(BOOL ShowBanner);
 void CloseScilabConsole(void);
+
+extern BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowNameDestination,char *CommandLine);
+extern BOOL HaveAnotherWindowScilab(void);
+extern char * ChooseAnotherWindowScilab(void);
 /*-----------------------------------------------------------------------------------*/

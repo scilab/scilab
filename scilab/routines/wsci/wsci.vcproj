@@ -335,6 +335,9 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\FindScilab.c">
+			</File>
+			<File
 				RelativePath="gvwprn.c">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -1075,6 +1078,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath="errno.h">
+			</File>
+			<File
+				RelativePath=".\FindScilab.h">
 			</File>
 			<File
 				RelativePath="gvwin.h">

@@ -44,7 +44,7 @@ BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowN
    hWndSource=FindWindow(NULL,ScilabWindowNameSource);
    hWndDestination=FindWindow(NULL, ScilabWindowNameDestination);
 
-   if ( (hWndSource != NULL) && (hWndDestination != NULL) )
+   if ( (hWndDestination != NULL) )
    {
 	     SendMessage( hWndDestination,
 					  WM_COPYDATA,
@@ -71,12 +71,9 @@ BOOL ReceiveFromAnotherScilab(WPARAM wParam, LPARAM lParam)
 
    hWndSend=(HWND) wParam;
    
-   if ( GetWindowText(hWndSend,TitleScilabSend,MAX_PATH) )
-   {
-	   ReceiveDatafromAnotherScilab=TRUE;
-	   Retour=TRUE;
-   }
-   else Retour=FALSE;
+   GetWindowText(hWndSend,TitleScilabSend,MAX_PATH);
+   ReceiveDatafromAnotherScilab=TRUE;
+   Retour=TRUE;
 
    return Retour;
 }

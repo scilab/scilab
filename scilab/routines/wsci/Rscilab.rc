@@ -408,6 +408,17 @@ BEGIN
     LTEXT           "Static",IDC_NEWGRAPHICMESSAGE,10,6,168,102
 END
 
+IDD_CHOOSEASCILAB DIALOGEX 0, 0, 136, 143
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Open in ..."
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         IDC_LISTCHOOSEASCILAB,6,6,123,115,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "OK",IDC_OK,42,126,50,14
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -506,6 +517,14 @@ BEGIN
         RIGHTMARGIN, 180
         TOPMARGIN, 7
         BOTTOMMARGIN, 154
+    END
+
+    IDD_CHOOSEASCILAB, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 129
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 136
     END
 END
 #endif    // APSTUDIO_INVOKED

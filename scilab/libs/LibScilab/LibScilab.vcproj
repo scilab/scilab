@@ -423,6 +423,9 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\Icones Scilab\NEW.ico">
 			</File>
 			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\OPEN.ico">
+			</File>
+			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\PASTE.ico">
 			</File>
 			<File
@@ -478,10 +481,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\Icones Scilab\scicos24.ico">
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\scilab.ico">
+				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico">
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico">
+				RelativePath="..\..\routines\wsci\scilab.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\scilab24.ico">
