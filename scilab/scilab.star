@@ -85,7 +85,8 @@ end
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 global LANGUAGE
-LANGUAGE="eng"
+global %scipad_language
+LANGUAGE="fr"
 %scipad_language=LANGUAGE
 args=sciargs(); larg=find(args=="-l")
 if larg<>[] & larg<=size(args,"*") then
