@@ -267,7 +267,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
      int *blnk,*blptr,**ordptr2,*ok,*ordptr1,*bllst12,*nzcross;
      int *execlk,*execlk0,*execlk_cons,*outoin,**ordclk,**cord,**iord,**oord,**zord;
 {
-  int i,iii,k,l,j,jj,hh,o,fl,fz,maX,n,nblk=typ_x[0];
+  int i,iii,k,l,j,jj,hh,o,fl,fz,maX,n,nblk=typ_x[0],f=0;
   int *vec,*wec,*ii,*ii1,*ii2,*r,*ext_cord1,*pp,*ppget,*ext_cord2;
   int *orddif,*cordX,*ext_cord,*ext_cord_old,*oordii,*ind,a,val=0;
   Mat2C ordclki,ext_cord1i;
@@ -446,28 +446,22 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
      if (j > ext_cord1[0]/2) break;
    }
  }
- /* ext_cord=unique(ext_cord1(:,1)') */
- ext_cord_old=VecEg1(ext_cord1);
- if ((ind=(int*)malloc(sizeof(int)*(ext_cord_old[0]/2+1))) == NULL ) return 0;
- ind[0]=ext_cord_old[0]/2;
- C2F(isort)(&ext_cord_old[1],&ind[0],&ind[1]);
- free(ind);
- if ((ext_cord=(int*)malloc(sizeof(int)*(ext_cord_old[0]/2+1))) == NULL ) return 0;
- ext_cord[0]=ext_cord_old[0]/2;
- for (i=1; i<=ext_cord_old[0]/2; i++){
-   ext_cord[i]=ext_cord_old[ext_cord_old[0]/2-i+1];
- }
- free(ext_cord_old);
- for (i=1; i<ext_cord[0]; i++){
-   if ( ext_cord[i+1]-ext_cord[i] == 0 )  ext_cord[i]=-4321;
- }
- for (i=1; i<ext_cord[0]+1; i++)
-   {
-     if ( ext_cord[i] != -4321 )  ext_cord[i-val]=ext_cord[i];
-     else
-       val++;
+ /* ext_cord=unique(ext_cord1(:,1)') */ 
+ if ((ext_cord=(int*)malloc(sizeof(int)*(ext_cord1[0]/2+1))) == NULL ) return 0;
+ ext_cord[0]=ext_cord1[0]/2;  
+ for (i=1; i<ext_cord[0]+1; i++){
+   for (j=1; j<=val; j++){
+     if ((ext_cord[j]-ext_cord1[i])==0){
+       f=1;
+       break;
+     }
    }
- ext_cord[0]=ext_cord[0]-val;
+   if ( !f ){
+     val++;
+     ext_cord[val]=ext_cord1[i];
+   }
+ }
+ ext_cord[0]=val;
  /* adding zero crossing surfaces to cont. time synchros */
  for (i=1; i<ext_cord[0]+1; i++){
    if (typ_s[ext_cord[i]]) (*typ_z)[ext_cord[i]]=bllst5ptr[ext_cord[i]+1]-bllst5ptr[ext_cord[i]]-1;
