@@ -699,8 +699,8 @@ sciInitGraphicContext (sciPointObj * pobj)
     case SCI_SUBWIN:
       if (pobj == paxesmdl)
 	{
-	  (sciGetGraphicContext(pobj))->backgroundcolor =	-3; /*33;*/
-	  (sciGetGraphicContext(pobj))->foregroundcolor =	-2; /*sciGetForeground (sciGetParent (pobj)) - 1;*/
+	  (sciGetGraphicContext(pobj))->backgroundcolor =	-3;  /* F.Leray 09.04.04 POSSIBLE DISCUSSION HERE : may it be (sciGetGraphicContext(sciGetParent(pobj)))->backgroundcolor ??*/
+	  (sciGetGraphicContext(pobj))->foregroundcolor =	-2;  /* HERE too : may it be  (sciGetGraphicContext(sciGetParent(pobj)))->foregroundcolor ??*/
 	  (sciGetGraphicContext(pobj))->fillstyle =	sciGetFillStyle (sciGetParent (pobj));
 	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
 	  (sciGetGraphicContext(pobj))->linewidth =	sciGetLineWidth (sciGetParent (pobj));
@@ -961,25 +961,28 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
      (sciGetEntityType(pobj) == SCI_AXES)        ||
      (sciGetEntityType(pobj) == SCI_MENU)        ||
      (sciGetEntityType(pobj) == SCI_MENUCONTEXT) ||
-     (sciGetEntityType(pobj) == SCI_STATUSB)){
+     (sciGetEntityType(pobj) == SCI_STATUSB)     ||
+     (sciGetEntityType(pobj) == SCI_SUBWIN)      ||
+     (sciGetEntityType(pobj) == SCI_FIGURE))
+    {
     
-    if(old_m +1 == sciGetForeground(pobj))   {      /* 2 => deals with FontForeground */
+    if(old_m +1 == sciGetFontForeground(pobj))   {      /* 2 => deals with FontForeground */
       sciSetNumColors (pobj,m);
       sciUpdateBaW (pobj,2,-1);   
       sciSetNumColors (pobj,old_m);
     }
-    else  if(old_m +2 == sciGetForeground(pobj)) {
+    else  if(old_m +2 == sciGetFontForeground(pobj)) {
       sciSetNumColors (pobj,m);
       sciUpdateBaW (pobj,2,-2);
       sciSetNumColors (pobj,old_m);
     }
 
-    if(old_m +1 == sciGetBackground(pobj))  {  /* 3 => deals with FontBackground */
+    if(old_m +1 == sciGetFontBackground(pobj))  {  /* 3 => deals with FontBackground */
       sciSetNumColors (pobj,m);
       sciUpdateBaW (pobj,3,-1);
       sciSetNumColors (pobj,old_m);
     }
-    else if(old_m +2 == sciGetBackground(pobj)) {
+    else if(old_m +2 == sciGetFontBackground(pobj)) {
       sciSetNumColors (pobj,m);
       sciUpdateBaW (pobj,3,-2);
       sciSetNumColors (pobj,old_m);
@@ -1076,6 +1079,8 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LEGEND:
+	case SCI_FIGURE:
+	case SCI_SUBWIN:
 	  sciSetFontForeground(pobj,value);
 	  break;
 	default:
@@ -1093,6 +1098,8 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LEGEND:
+	case SCI_FIGURE:
+	case SCI_SUBWIN:
 	  sciSetFontBackground(pobj,value);
 	  break;
 	default:
@@ -1598,12 +1605,6 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
     case SCI_AXES:
       colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
-    case SCI_PANNER:		/* pas de context graphics */
-      break;
-    case SCI_SBH:		/* pas de context graphics */
-      break;
-    case SCI_SBV:		/* pas de context graphics */
-      break;
     case SCI_MENU:
       colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
@@ -1613,11 +1614,16 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
     case SCI_STATUSB:
       colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;  
+    case SCI_PANNER:	/* pas de context graphics */
+    case SCI_SBH:	/* pas de context graphics */
+    case SCI_SBV:	/* pas de context graphics */
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_AGREG:
     default:
+      sciprint ("\r\nNo Background is associated with this Entity");
+      return -1;
       break;
     }
   
@@ -1692,6 +1698,8 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     default:
+      sciprint ("\r\nNo Foreground is associated with this Entity");
+      return -1;
       break;
     }
 
@@ -5263,10 +5271,14 @@ sciGetFontDeciWidth (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      return -1;
+      /* return -1*/
+      /* Adding F.Leray 08.04.04 */
+      return (sciGetFontContext(pobj))->fontdeciwidth;
       break;
     case SCI_SUBWIN:
-      return -1;
+      /* return -1;*/
+      /* Adding F.Leray 08.04.04 */
+      return (sciGetFontContext(pobj))->fontdeciwidth;
       break;
     case SCI_TEXT:
       return (sciGetFontContext(pobj))->fontdeciwidth;
@@ -5340,15 +5352,20 @@ sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth)
     {
       switch (sciGetEntityType (pobj))
 	{
-	case SCI_FIGURE:
+	  case SCI_FIGURE: /* Adding F.Leray 08.04.04 */
 	  /* pas de context graphics */
-	  sciprint ("This object have no  Font width \n");
-	  return -1;
+	  /*  sciprint ("This object have no  Font width \n");
+	      return -1;*/
+	  (sciGetFontContext(pobj))->fontdeciwidth = fontdeciwidth;
+	  return 0;
 	  break;
 	case SCI_SUBWIN:
 	  /* pas de context graphics */
-	  sciprint ("This object have no  Font width \n");
-	  return -1;
+	  /*sciprint ("This object have no  Font width \n");
+	    return -1;*/
+	  /* Adding F.Leray 08.04.04 */
+	  (sciGetFontContext(pobj))->fontdeciwidth = fontdeciwidth;
+	  return 0;
 	  break;
 	case SCI_TEXT:
 	  (sciGetFontContext(pobj))->fontdeciwidth = fontdeciwidth;
@@ -5468,8 +5485,15 @@ sciGetFontOrientation (sciPointObj * pobj)
     case SCI_STATUSB:
       return (sciGetFontContext(pobj))->textorientation;
       break;
-    case SCI_FIGURE:
     case SCI_SUBWIN:
+      /* Adding F.Leray 08.04.04 */
+      /* Is text orientation usefull with Axes ??*/
+      return (sciGetFontContext(pobj))->textorientation;
+      break;
+    case SCI_FIGURE:
+      /* Adding F.Leray 08.04.04 */
+      return (sciGetFontContext(pobj))->textorientation;
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -5538,6 +5562,15 @@ sciSetFontOrientation (sciPointObj * pobj, int textorientation)
 	case SCI_STATUSB:
 	  (sciGetFontContext(pobj))->textorientation =	    textorientation;
 	  break;
+	case SCI_SUBWIN: /* F.Leray 08.04.04*/
+	  /* Is text orientation usefull with Axes ?? */
+	  (sciGetFontContext(pobj))->textorientation = textorientation;
+	  return 0;
+	  break;
+	case SCI_FIGURE: /* F.Leray 08.04.04*/
+	  (sciGetFontContext(pobj))->textorientation = textorientation;
+	  return 0;
+	  break;
 	case SCI_ARC:
 	case SCI_SEGS: 
 	case SCI_FEC: 
@@ -5546,8 +5579,6 @@ sciSetFontOrientation (sciPointObj * pobj, int textorientation)
 	case SCI_RECTANGLE:
 	case SCI_SURFACE:
 	case SCI_LIGHT:
-	case SCI_FIGURE:
-	case SCI_SUBWIN:
 	case SCI_PANNER:
 	case SCI_SBH:
 	case SCI_SBV:
@@ -6015,10 +6046,10 @@ sciGetFontBackground (sciPointObj * pobj)
       /*   case SCI_AXIS*/
     case SCI_AXES:
     case SCI_STATUSB:
+    case SCI_SUBWIN: /* F.Leray 08.04.04 */
+    case SCI_FIGURE: /* F.Leray 08.04.04 */
       colorindex = (sciGetFontContext(pobj))->backgroundcolor;
       break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -6040,6 +6071,54 @@ sciGetFontBackground (sciPointObj * pobj)
   return colorindex; 
 }
 
+
+/**sciGetFontBackgroundToDisplay
+ */
+int
+sciGetFontBackgroundToDisplay (sciPointObj * pobj)
+{
+
+  int colorindex = -999;
+  int m = sciGetNumColors(pobj);
+  
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_TEXT:
+    case SCI_TITLE:
+    case SCI_LEGEND:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+      /*   case SCI_AXIS*/
+    case SCI_AXES:
+    case SCI_STATUSB:
+    case SCI_SUBWIN: /* F.Leray 08.04.04 */
+    case SCI_FIGURE: /* F.Leray 08.04.04 */
+      colorindex = (sciGetFontContext(pobj))->backgroundcolor;
+      break;
+    case SCI_ARC:
+    case SCI_SEGS: 
+    case SCI_FEC: 
+    case SCI_GRAYPLOT: 
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_SURFACE:
+    case SCI_LIGHT:
+    case SCI_PANNER:
+    case SCI_SBH:
+    case SCI_SBV:
+    case SCI_AGREG:
+    default:
+       sciprint ("\r\nNo FontBackground is associated with this Entity");
+      return -1;
+      break;
+    }
+  
+  colorindex = sciGetGoodIndex(pobj, colorindex); /* Adding F.Leray 31.03.04*/
+  
+  if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
+  
+  return colorindex; 
+}
 
 
 
@@ -6089,8 +6168,14 @@ sciSetFontBackground (sciPointObj * pobj, int colorindex)
       (sciGetFontContext(pobj))->backgroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
+    case SCI_SUBWIN: /* F.Leray 08.04.04 */
+      (sciGetFontContext(pobj))->backgroundcolor =
+	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      break;
+    case SCI_FIGURE: /* F.Leray 08.04.04 */
+      (sciGetFontContext(pobj))->backgroundcolor =
+	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -6133,10 +6218,10 @@ sciGetFontForeground (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+    case SCI_SUBWIN:  /* F.Leray 08.04.04 */
+    case SCI_FIGURE:  /* F.Leray 08.04.04 */
       colorindex =  (sciGetFontContext(pobj))->foregroundcolor+ 1 ; /* Modif. F.Leray 31.03.04*/
       break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -6157,6 +6242,56 @@ sciGetFontForeground (sciPointObj * pobj)
   colorindex = sciGetGoodIndex(pobj, colorindex); /* Adding F.Leray 31.03.04*/
   return colorindex;
 }
+
+
+/**sciGetFontForegroundToDisplay
+ */
+int
+sciGetFontForegroundToDisplay (sciPointObj * pobj)
+{
+
+  int colorindex = -999;
+  int m = sciGetNumColors(pobj);
+  
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_TEXT:
+    case SCI_TITLE:
+    case SCI_LEGEND:
+      /*   case SCI_AXIS  */
+    case SCI_AXES:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_SUBWIN:  /* F.Leray 08.04.04 */
+    case SCI_FIGURE:  /* F.Leray 08.04.04 */
+      colorindex =  (sciGetFontContext(pobj))->foregroundcolor+ 1 ; /* Modif. F.Leray 31.03.04*/
+      break;
+    case SCI_ARC:
+    case SCI_SEGS: 
+    case SCI_FEC: 
+    case SCI_GRAYPLOT: 
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_SURFACE:
+    case SCI_LIGHT:
+    case SCI_PANNER:
+    case SCI_SBH:
+    case SCI_SBV:
+    case SCI_AGREG:
+    default:
+      sciprint ("\r\nNo FontForeground is associated with this Entity");
+      return -1;
+      break;
+    }
+
+  colorindex = sciGetGoodIndex(pobj, colorindex); /* Adding F.Leray 31.03.04*/
+  
+  if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
+  
+  return colorindex;
+}
+
 
 
 
@@ -6205,8 +6340,14 @@ sciSetFontForeground (sciPointObj * pobj, int colorindex)
       (sciGetFontContext(pobj))->foregroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
+    case SCI_SUBWIN: /* F.Leray 08.04.04 */
+      (sciGetFontContext(pobj))->foregroundcolor =
+	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      break;
+    case SCI_FIGURE: /* F.Leray 08.04.04 */
+      (sciGetFontContext(pobj))->foregroundcolor =
+	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -6273,8 +6414,26 @@ sciGetFontStyle (sciPointObj * pobj)
 	(sciGetFontContext(pobj))->fontstrikeout ? (iAttributes | SCI_ATTR_STRIKEOUT) : iAttributes;
       return iAttributes;
       break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
+    case SCI_SUBWIN: /* F.Leray 08.04.04 */
+      (sciGetFontContext(pobj))->fontbold ? (iAttributes | SCI_ATTR_BOLD) : iAttributes;
+      iAttributes =
+	(sciGetFontContext(pobj))->fontitalic ? (iAttributes | SCI_ATTR_ITALIC) : iAttributes;
+      iAttributes =
+	(sciGetFontContext(pobj))->fontunderline ? (iAttributes | SCI_ATTR_UNDERLINE) : iAttributes;
+      iAttributes =
+	(sciGetFontContext(pobj))->fontstrikeout ? (iAttributes | SCI_ATTR_STRIKEOUT) : iAttributes;
+      return iAttributes;
+      break;
+    case SCI_FIGURE: /* F.Leray 08.04.04 */
+      (sciGetFontContext(pobj))->fontbold ? (iAttributes | SCI_ATTR_BOLD) : iAttributes;
+      iAttributes =
+	(sciGetFontContext(pobj))->fontitalic ? (iAttributes | SCI_ATTR_ITALIC) : iAttributes;
+      iAttributes =
+	(sciGetFontContext(pobj))->fontunderline ? (iAttributes | SCI_ATTR_UNDERLINE) : iAttributes;
+      iAttributes =
+	(sciGetFontContext(pobj))->fontstrikeout ? (iAttributes | SCI_ATTR_STRIKEOUT) : iAttributes;
+      return iAttributes;
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC:
@@ -6341,8 +6500,26 @@ sciSetFontStyle (sciPointObj * pobj, int iAttributes)
       (sciGetFontContext(pobj))->fontstrikeout =
 	iAttributes & SCI_ATTR_STRIKEOUT ? 1 : 0;
       break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
+    case SCI_SUBWIN: /* F.Leray 08.04.04 */
+      (sciGetFontContext(pobj))->fontbold =
+	iAttributes & SCI_ATTR_BOLD ? 700 : 0;
+      (sciGetFontContext(pobj))->fontitalic =
+	iAttributes & SCI_ATTR_ITALIC ? 1 : 0;
+      (sciGetFontContext(pobj))->fontunderline =
+	iAttributes & SCI_ATTR_UNDERLINE ? 1 : 0;
+      (sciGetFontContext(pobj))->fontstrikeout =
+	iAttributes & SCI_ATTR_STRIKEOUT ? 1 : 0;
+      break;
+    case SCI_FIGURE: /* F.Leray 08.04.04 */
+      (sciGetFontContext(pobj))->fontbold =
+	iAttributes & SCI_ATTR_BOLD ? 700 : 0;
+      (sciGetFontContext(pobj))->fontitalic =
+	iAttributes & SCI_ATTR_ITALIC ? 1 : 0;
+      (sciGetFontContext(pobj))->fontunderline =
+	iAttributes & SCI_ATTR_UNDERLINE ? 1 : 0;
+      (sciGetFontContext(pobj))->fontstrikeout =
+	iAttributes & SCI_ATTR_STRIKEOUT ? 1 : 0;
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -6455,8 +6632,12 @@ sciGetFontName (sciPointObj * pobj)
     case SCI_LEGEND:
       return 	(sciGetFontContext(pobj))->pfontname;
       break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
+    case SCI_SUBWIN: /* F.Leray 08.04.04 */
+      return 	(sciGetFontContext(pobj))->pfontname;
+      break;
+    case SCI_FIGURE: /* F.Leray 08.04.04 */
+      return 	(sciGetFontContext(pobj))->pfontname;
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -6502,8 +6683,12 @@ sciGetFontNameLength (sciPointObj * pobj)
     case SCI_LEGEND:
       return 	(sciGetFontContext(pobj))->fontnamelen;
       break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
+    case SCI_SUBWIN: /* F.Leray 08.04.04 */
+      return 	(sciGetFontContext(pobj))->fontnamelen;
+      break;
+    case SCI_FIGURE: /* F.Leray 08.04.04 */
+      return 	(sciGetFontContext(pobj))->fontnamelen;
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -6773,8 +6958,12 @@ sciGetFontContext (sciPointObj * pobj)
     case SCI_LEGEND:
       return  &(pLEGEND_FEATURE (pobj)->text.fontcontext);
       break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
+    case SCI_SUBWIN: /* F.Leray 08.04.04 THE MOST IMPORTANT*/
+      return &(pSUBWIN_FEATURE (pobj)->axes.fontcontext);
+      break;
+    case SCI_FIGURE: /* F.Leray 08.04.04 THE MOST IMPORTANT*/
+      return &(pFIGURE_FEATURE (pobj)->fontcontext);
+      break;
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -6815,16 +7004,21 @@ sciInitFontContext (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-      (sciGetFontContext(pobj))->backgroundcolor = sciGetBackground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->foregroundcolor = sciGetForeground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->fontbold        =  FALSE;	/* Normal font in windows */
-      (sciGetFontContext(pobj))->fontdeciwidth   = 100;	/* je ne fais pas le mask */
-      (sciGetFontContext(pobj))->fontitalic      = FALSE;	/* tout de suite pour */
-      (sciGetFontContext(pobj))->fontunderline   = FALSE;	/* garder la facilite */
-      (sciGetFontContext(pobj))->fontstrikeout   = FALSE;	/*d'utilisation sur les differents OS */
-      (sciGetFontContext(pobj))->textorientation = 0;
-      /**/
-      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
+    case SCI_TITLE:
+    case SCI_LEGEND:
+    case SCI_AXES:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+      (sciGetFontContext(pobj))->backgroundcolor = sciGetFontBackground (sciGetParent (pobj)) - 1;
+      (sciGetFontContext(pobj))->foregroundcolor = sciGetFontForeground (sciGetParent (pobj)) - 1;
+      (sciGetFontContext(pobj))->fontbold        = (sciGetFontContext(sciGetParent(pobj)))->fontbold; 
+      (sciGetFontContext(pobj))->fontdeciwidth   = (sciGetFontContext(sciGetParent(pobj)))->fontdeciwidth;
+      (sciGetFontContext(pobj))->fontitalic      = (sciGetFontContext(sciGetParent(pobj)))->fontitalic;	
+      (sciGetFontContext(pobj))->fontunderline   = (sciGetFontContext(sciGetParent(pobj)))->fontunderline;
+      (sciGetFontContext(pobj))->fontstrikeout   = (sciGetFontContext(sciGetParent(pobj)))->fontstrikeout;	
+      (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(sciGetParent(pobj)))->textorientation;
+      (sciGetFontContext(pobj))->fontnamelen     = (sciGetFontContext(sciGetParent(pobj)))->fontnamelen; 
       if (((sciGetFontContext(pobj))->pfontname =
 	   calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 		   sizeof (char))) == NULL)
@@ -6832,172 +7026,103 @@ sciInitFontContext (sciPointObj * pobj)
 	  sciprint ("No more Memory for fontname\n"); 
 	  return 0;
 	}
-      /* unknown function initfontname "Win-stand"!!  */ 
-      /* strncpy ((sciGetFontContext(pobj))->pfontname, inifontname,  
-	 (sciGetFontContext(pobj))->fontnamelen);*/ 
       break;
-    case SCI_TITLE:
-      (sciGetFontContext(pobj))->backgroundcolor =	sciGetBackground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->fontbold = FALSE;
-      (sciGetFontContext(pobj))->fontdeciwidth = 100;
-      (sciGetFontContext(pobj))->fontitalic = FALSE;
-      (sciGetFontContext(pobj))->fontunderline = FALSE;
-      (sciGetFontContext(pobj))->fontstrikeout = FALSE;
-      (sciGetFontContext(pobj))->textorientation = 0;
-      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-      /* Unknown Function "WIN" */
-      /*     (sciGetFontContext(pobj))->fontnamelen =lstrlen (inifontname);*/    
-      if (
-	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
-							  sizeof (char))) == NULL)
-	{
-	  sciprint ("No more Memory for fontname\n");
-	  return 0;
-	}
-      /* Unknown Function "WIN" */
-      /*     strncpy ((sciGetFontContext(pobj))->pfontname, inifontname, 
-	     (sciGetFontContext(pobj))->fontnamelen);*/
-      break;
-    case SCI_LEGEND:
-      (sciGetFontContext(pobj))->backgroundcolor = sciGetBackground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->fontbold = FALSE;
-      (sciGetFontContext(pobj))->fontdeciwidth = 100;
-      (sciGetFontContext(pobj))->fontitalic = FALSE;
-      (sciGetFontContext(pobj))->fontunderline = FALSE;
-      (sciGetFontContext(pobj))->fontstrikeout = FALSE;
-      (sciGetFontContext(pobj))->textorientation = 0;
-      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-      /* Unknown Function "WIN" */
-      /*     (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname);     */
-      if (
-	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
-							  sizeof (char))) == NULL)
-	{
-	  sciprint ("No more Memory for fontname\n");
-	  return 0;
-	}
-      /* Unknown Function "WIN" */
-      /*      strncpy ((sciGetFontContext(pobj))->pfontname,
-	      inifontname,                       
-	      (sciGetFontContext(pobj))->fontnamelen);*/
-      break;
-      /*   case SCI_AXIS
-	   (sciGetFontContext(pobj))->backgroundcolor = sciGetBackground (sciGetParent (pobj)) - 1;
-	   (sciGetFontContext(pobj))->foregroundcolor = sciGetForeground (sciGetParent (pobj)) - 1;
-	   (sciGetFontContext(pobj))->fontbold = FALSE;
-	   (sciGetFontContext(pobj))->fontdeciwidth = 100;
-	   (sciGetFontContext(pobj))->fontitalic = FALSE;
-	   (sciGetFontContext(pobj))->fontunderline = FALSE;
-	   (sciGetFontContext(pobj))->fontstrikeout = FALSE;
-	   (sciGetFontContext(pobj))->textorientation = 0;
-	   (sciGetFontContext(pobj))->fontnamelen=1; */ /*fontname not used */
-      /* Unknown Function "WIN" */
-      /*(sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname); */
-      /*
-      if (
- 	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
- 							  sizeof (char))) == NULL)
- 	{
- 	  sciprint ("No more Memory for fontname\n");
- 	  return 0;
- 	} 
-	break;*/
-    case SCI_AXES:
-      (sciGetFontContext(pobj))->backgroundcolor = sciGetBackground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->foregroundcolor = sciGetForeground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->fontbold = FALSE;
-      (sciGetFontContext(pobj))->fontdeciwidth = 100;
-      (sciGetFontContext(pobj))->fontitalic = FALSE;
-      (sciGetFontContext(pobj))->fontunderline = FALSE;
-      (sciGetFontContext(pobj))->fontstrikeout = FALSE;
-      (sciGetFontContext(pobj))->textorientation = 0;
-      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-      /* Unknown Function "WIN" */
-      /*      (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname); */
-      if (
-	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
-							  sizeof (char))) == NULL)
-	{
-	  sciprint ("No more Memory for fontname\n");
-	  return 0;
-	}
-      /* Unknown Function "WIN" */
-      /*     strncpy ((sciGetFontContext(pobj))->pfontname, inifontname, 
-	     (sciGetFontContext(pobj))->fontnamelen);*/
-      break;
-    case SCI_MENU:
-      (sciGetFontContext(pobj))->backgroundcolor = sciGetBackground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->foregroundcolor = sciGetForeground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->fontbold = FALSE;
-      (sciGetFontContext(pobj))->fontdeciwidth = 100;
-      (sciGetFontContext(pobj))->fontitalic = FALSE;
-      (sciGetFontContext(pobj))->fontunderline = FALSE;
-      (sciGetFontContext(pobj))->fontstrikeout = FALSE;
-      (sciGetFontContext(pobj))->textorientation = 0;
-      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-      /* Unknown Function "WIN" */
-      /*      (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname);  */
-      if (
-	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
-							  sizeof (char))) == NULL)
-	{
-	  sciprint ("No more Memory for fontname\n");
-	  return 0;
-	}
-      /* Unknown Function "WIN" */
-      /*     strncpy ((sciGetFontContext(pobj))->pfontname, inifontname,  
-	     (sciGetFontContext(pobj))->fontnamelen); */
-      break;
-    case SCI_MENUCONTEXT:
-      (sciGetFontContext(pobj))->backgroundcolor =	sciGetBackground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->fontbold = FALSE;
-      (sciGetFontContext(pobj))->fontdeciwidth = 100;
-      (sciGetFontContext(pobj))->fontitalic = FALSE;
-      (sciGetFontContext(pobj))->fontunderline = FALSE;
-      (sciGetFontContext(pobj))->fontstrikeout = FALSE;
-      (sciGetFontContext(pobj))->textorientation = 0;
-      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-      /* Unknown Function "WIN" */
-      /*(sciGetFontContext(pobj))->fontnamelen =	lstrlen (inifontname);   */
-      if (
-	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
-							  sizeof (char))) == NULL)
-	{
-	  sciprint ("No more Memory for fontname\n");
-	  return 0;
-	}
-      /* Unknown Function "WIN" */
-      /*      strncpy ((sciGetFontContext(pobj))->pfontname,
-	      inifontname,                                 
-	      (sciGetFontContext(pobj))->fontnamelen);*/
-      break;
-    case SCI_STATUSB:
-      (sciGetFontContext(pobj))->backgroundcolor =	sciGetBackground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->fontbold = FALSE;
-      (sciGetFontContext(pobj))->fontdeciwidth = 100;
-      (sciGetFontContext(pobj))->fontitalic = FALSE;
-      (sciGetFontContext(pobj))->fontunderline = FALSE;
-      (sciGetFontContext(pobj))->fontstrikeout = FALSE;
-      (sciGetFontContext(pobj))->textorientation = 0;
-      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-      /* Unknown Function "WIN" */
-      /*     (sciGetFontContext(pobj))->fontnamelen =	lstrlen (inifontname);*/
-      if (
-	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
-							  sizeof (char))) == NULL)
-	{
-	  sciprint ("No more Memory for fontname\n");
-	  return 0;
-	}
-      /* Unknown Function "WIN" */
-      /*strncpy ((sciGetFontContext(pobj))->pfontname,inifontname, 15);*/
-      break;   
-    case SCI_FIGURE:     
     case SCI_SUBWIN: 
+      if (pobj == paxesmdl)
+	{
+	  /* START ADDING F.Leray 08.04.04*/ 
+	  /* F.Leray 08.04.04 : I create a  sciFont fontcontext; to act on Axes font*/
+	  (sciGetFontContext(pobj))->backgroundcolor = -3; /* F.Leray SAME DISCUSSION as in sciInitGraphicContext: may it be (sciGetFontContext(sciGetParent(pobj)))->backgroundcolor ?? */
+	  (sciGetFontContext(pobj))->foregroundcolor = -2; /* HERE too: may it be  (sciGetFontContext(sciGetParent(pobj)))->foregroundcolor ?? */
+	  (sciGetFontContext(pobj))->fontbold = FALSE;
+	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
+	  (sciGetFontContext(pobj))->fontitalic = FALSE;
+	  (sciGetFontContext(pobj))->fontunderline = FALSE;
+	  (sciGetFontContext(pobj))->fontstrikeout = FALSE;
+	  (sciGetFontContext(pobj))->textorientation = 0;
+	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
+	  
+	  if (
+	      ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
+							      sizeof (char))) == NULL)
+	    {
+	      sciprint ("No more Memory for fontname\n");
+	      return 0;
+	    }
+	  /* END ADDING F.Leray 08.04.04*/ 
+	}
+      else
+	{
+	  /* START ADDING F.Leray 08.04.04*/ 
+	  /* F.Leray 08.04.04 : I create a  sciFont fontcontext; to act on Axes font*/
+	  (sciGetFontContext(pobj))->backgroundcolor = (sciGetFontContext(paxesmdl))->backgroundcolor;
+	  (sciGetFontContext(pobj))->foregroundcolor = (sciGetFontContext(paxesmdl))->foregroundcolor;
+	  (sciGetFontContext(pobj))->fontbold =        (sciGetFontContext(paxesmdl))->fontbold;
+	  (sciGetFontContext(pobj))->fontdeciwidth =   (sciGetFontContext(paxesmdl))->fontdeciwidth;
+	  (sciGetFontContext(pobj))->fontitalic =      (sciGetFontContext(paxesmdl))->fontitalic;
+	  (sciGetFontContext(pobj))->fontunderline =   (sciGetFontContext(paxesmdl))->fontunderline;
+	  (sciGetFontContext(pobj))->fontstrikeout =   (sciGetFontContext(paxesmdl))->fontstrikeout;
+	  (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(paxesmdl))->textorientation;
+	  (sciGetFontContext(pobj))->fontnamelen =     (sciGetFontContext(paxesmdl))->fontnamelen; /*fontname not used */
+	  
+	  if (
+	      ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
+							      sizeof (char))) == NULL)
+	    {
+	      sciprint ("No more Memory for fontname\n");
+	      return 0;
+	    }
+	  /* END ADDING F.Leray 08.04.04*/ 
+	} 
+      break;
+    case SCI_FIGURE:
+      if (pobj == pfiguremdl)
+	{
+	  /* START ADDING F.Leray 08.04.04*/ 
+	  /* F.Leray 08.04.04 : I create a  sciFont fontcontext; to act on Axes font*/
+	  (sciGetFontContext(pobj))->backgroundcolor = -3;
+	  (sciGetFontContext(pobj))->foregroundcolor = -2;
+	  (sciGetFontContext(pobj))->fontbold = FALSE;
+	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
+	  (sciGetFontContext(pobj))->fontitalic = FALSE;
+	  (sciGetFontContext(pobj))->fontunderline = FALSE;
+	  (sciGetFontContext(pobj))->fontstrikeout = FALSE;
+	  (sciGetFontContext(pobj))->textorientation = 0;
+	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
+	  
+	  if (
+	      ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
+							      sizeof (char))) == NULL)
+	    {
+	      sciprint ("No more Memory for fontname\n");
+	      return 0;
+	    }
+	  /* END ADDING F.Leray 08.04.04*/ 
+	}
+      else
+	{
+	  /* START ADDING F.Leray 08.04.04*/ 
+	  /* F.Leray 08.04.04 : I create a  sciFont fontcontext; to act on Axes font*/
+	  (sciGetFontContext(pobj))->backgroundcolor = (sciGetFontContext(pfiguremdl))->backgroundcolor;	
+	  (sciGetFontContext(pobj))->foregroundcolor = (sciGetFontContext(pfiguremdl))->foregroundcolor;
+	  (sciGetFontContext(pobj))->fontbold =        (sciGetFontContext(pfiguremdl))->fontbold;
+	  (sciGetFontContext(pobj))->fontdeciwidth =   (sciGetFontContext(pfiguremdl))->fontdeciwidth;
+	  (sciGetFontContext(pobj))->fontitalic =      (sciGetFontContext(pfiguremdl))->fontitalic;
+	  (sciGetFontContext(pobj))->fontunderline =   (sciGetFontContext(pfiguremdl))->fontunderline;
+	  (sciGetFontContext(pobj))->fontstrikeout =   (sciGetFontContext(pfiguremdl))->fontstrikeout;
+	  (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(pfiguremdl))->textorientation;
+	  (sciGetFontContext(pobj))->fontnamelen =     (sciGetFontContext(pfiguremdl))->fontnamelen; /*fontname not used */
+	  
+	  if (
+	      ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
+							      sizeof (char))) == NULL)
+	    {
+	      sciprint ("No more Memory for fontname\n");
+	      return 0;
+	    }
+	  /* END ADDING F.Leray 08.04.04*/  
+	}
+      break;
     case SCI_PANNER:		/* pas de context graphics */
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
@@ -7501,6 +7626,16 @@ ConstructFigure (XGC)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }   
+
+  /* F.Leray 08.04.04 */
+  if (sciInitFontContext (pobj) == -1)
+    {
+      sciDelHandle (pobj);
+      FREE(pobj->pfeatures);	  
+      FREE(pobj);
+      return (sciPointObj *) NULL;
+    }
+  
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciSetNum (pobj, &(XGC->CurWindow));		   
   sciSetResize((sciPointObj *) pobj,sciGetResize(pobj));
@@ -7696,6 +7831,16 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	} 
+      
+      /* F.Leray 08.04.04 */
+      if (sciInitFontContext (pobj) == -1)
+	{
+	  /* sciDelThisToItsParent (pobj, sciGetParent (pobj));*/
+	  sciDelHandle (pobj);
+	  FREE(pobj->pfeatures);	  
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
 
       dir= pSUBWIN_FEATURE (paxesmdl)->logflags[0];
       pSUBWIN_FEATURE (pobj)->logflags[0] = dir;
@@ -7703,8 +7848,10 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       pSUBWIN_FEATURE (pobj)->logflags[1] = dir;
 
       pSUBWIN_FEATURE (pobj)->axes.ticscolor  = pSUBWIN_FEATURE (paxesmdl)->axes.ticscolor;
-      pSUBWIN_FEATURE (pobj)->axes.textcolor  = pSUBWIN_FEATURE (paxesmdl)->axes.textcolor;
-      pSUBWIN_FEATURE (pobj)->axes.fontsize   = pSUBWIN_FEATURE (paxesmdl)->axes.fontsize;  
+      /*pSUBWIN_FEATURE (pobj)->axes.textcolor  = pSUBWIN_FEATURE (paxesmdl)->axes.textcolor;
+	pSUBWIN_FEATURE (pobj)->axes.fontsize   = pSUBWIN_FEATURE (paxesmdl)->axes.fontsize;  */
+      /* F.Leray 08.04.04 */
+      /* The FontContext is inherited when doing sciInitFontContext: see above...*/
       pSUBWIN_FEATURE (pobj)->axes.subint[0]  = pSUBWIN_FEATURE (paxesmdl)->axes.subint[0];   
       pSUBWIN_FEATURE (pobj)->axes.subint[1]  = pSUBWIN_FEATURE (paxesmdl)->axes.subint[1]; 
       pSUBWIN_FEATURE (pobj)->axes.subint[2]  = pSUBWIN_FEATURE (paxesmdl)->axes.subint[2];
@@ -7893,6 +8040,16 @@ int C2F(graphicsmodels) ()
       return 0;
     }   
 
+  /* F.Leray 09.04.04 */
+  if (sciInitFontContext (pfiguremdl) == -1)
+    {
+      sciDelHandle (pfiguremdl);
+      FREE(pfiguremdl->pfeatures);	  
+      FREE(pfiguremdl);
+      strcpy(error_message,"Default figure cannot be create");
+      return 0;
+    }
+  
   strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic", sizeof ("Scilab Graphic") + 4);
   pFIGURE_FEATURE (pfiguremdl)->namelen = Min (sizeof ("Scilab Graphic") + 4, 14); 
   pFIGURE_FEATURE (pfiguremdl)->number=0;
@@ -7909,6 +8066,9 @@ int C2F(graphicsmodels) ()
   pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0; 
   pFIGURE_FEATURE (pfiguremdl)->pixmap = 0; 
   pFIGURE_FEATURE (pfiguremdl)->wshow = 0; 
+
+  /* F.Leray Adding some FontContext Info for InitFontContext function */
+  //  pFIGURE_FEATURE (pfiguremdl)->fontcontext.backgroundcolor = 
 
   
   if ((paxesmdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
@@ -7969,14 +8129,27 @@ int C2F(graphicsmodels) ()
       return 0;
     } 
   
+  
+  /* F.Leray 09.04.04 */
+  if (sciInitFontContext (paxesmdl) == -1)
+    {
+      sciDelThisToItsParent (paxesmdl, sciGetParent (paxesmdl));
+      sciDelHandle (paxesmdl);
+      FREE(paxesmdl->pfeatures);	  
+      FREE(paxesmdl);
+      strcpy(error_message,"Default axes cannot be create");
+      return 0;
+    }
+  
   pSUBWIN_FEATURE (paxesmdl)->logflags[0] = 'n';
   pSUBWIN_FEATURE (paxesmdl)->logflags[1] = 'n';
   
   
   /* axes labelling values*/
   pSUBWIN_FEATURE (paxesmdl)->axes.ticscolor  = -1;
-  pSUBWIN_FEATURE (paxesmdl)->axes.textcolor  = -1;
-  pSUBWIN_FEATURE (paxesmdl)->axes.fontsize  = -1;  
+  /* F.Leray 08.04.04 : No need anymore:  */
+  /*pSUBWIN_FEATURE (paxesmdl)->axes.textcolor  = -1;
+    pSUBWIN_FEATURE (paxesmdl)->axes.fontsize  = -1;  */
   pSUBWIN_FEATURE (paxesmdl)->axes.subint[0]  = 1;   
   pSUBWIN_FEATURE (paxesmdl)->axes.subint[1]  = 1; 
   pSUBWIN_FEATURE (paxesmdl)->axes.subint[2]  = 1;
@@ -10756,7 +10929,8 @@ sciDrawObj (sciPointObj * pobj)
   	
   /* Adding F.Leray */
   integer xxx[6];
-  
+  int fontstyle_zero = 0; /* F.Leray 08.04.04 : To fill Sci_Axis for Axes objects */
+
   /* variables declarations for debugg:*/
     sciAxes *paxes = (sciAxes *) NULL;
     sciSubWindow *ppsubwin = NULL; /* F.Leray 02.04.04 */
@@ -11875,14 +12049,20 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 /* Prototype Sci_Axis: 
 void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag)
 */
+      
+/* Prototype Sci_Axis HAS CHANGED:  ************* F.Leray 08.04.04
+   void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag)
+   For the moment, for a simple axes ( coming from a scilab command as 'drawaxis'), we set the fontstyle to 0.
+*/
+
 /* variable tmpAxes init. for debugging: */
-	  paxes = pAXES_FEATURE(pobj);
+      paxes = pAXES_FEATURE(pobj);
 
 
       Sci_Axis(pAXES_FEATURE(pobj)->dir,pAXES_FEATURE (pobj)->tics,pAXES_FEATURE(pobj)->vx,
                &pAXES_FEATURE (pobj)->nx,pAXES_FEATURE(pobj)->vy,&pAXES_FEATURE (pobj)->ny,
                pAXES_FEATURE(pobj)->str,pAXES_FEATURE (pobj)->subint,pAXES_FEATURE (pobj)->format,
-               pAXES_FEATURE (pobj)->fontsize,pAXES_FEATURE (pobj)->textcolor,
+               pAXES_FEATURE (pobj)->fontsize,pAXES_FEATURE (pobj)->textcolor,fontstyle_zero, /* F.Leray 08.04.04 : Adding here fontstyle_zero*/
                pAXES_FEATURE (pobj)->ticscolor,(char)(pAXES_FEATURE (pobj)->logscale),pAXES_FEATURE (pobj)->seg); 
 #ifdef WIN32 
       if ( flag_DO == 1) ReleaseWinHdc ();
@@ -13569,7 +13749,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_LIGHT:
     case SCI_AGREG:
     default:
-      sciprint ("\r\n No Callback is associeted with this Entity");
+      sciprint ("\r\n No Callback is associated with this Entity");
       return -1;
       break;
     }
@@ -13631,7 +13811,7 @@ char *sciGetCallback(sciPointObj * pthis)
     case SCI_LIGHT:
     case SCI_AGREG:
     default:
-      sciprint ("\r\nNo Callback is associeted with this Entity");
+      sciprint ("\r\nNo Callback is associetad with this Entity");
       return (char *)NULL;
       break;
     }
@@ -13691,7 +13871,7 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
     case SCI_LIGHT:
     case SCI_AGREG:
     default:
-      sciprint ("\r\nNo Callback is associeted with this Entity");
+      sciprint ("\r\nNo Callback is associated with this Entity");
       return 100;
       break;
     }
@@ -13748,7 +13928,7 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
     case SCI_LIGHT:
     case SCI_AGREG:
     default:
-      sciprint ("\r\nNo Callback is associeted with this Entity");
+      sciprint ("\r\nNo Callback is associated with this Entity");
       return 100;
       break;
     }
@@ -13803,7 +13983,7 @@ sciGetCallbackLen (sciPointObj * pthis)
     case SCI_LIGHT:
     case SCI_AGREG:
     default:
-      sciprint ("\r\nNo Callback is associeted with this Entity");
+      sciprint ("\r\nNo Callback is associated with this Entity");
       return -1;
       break;
     }
@@ -13878,7 +14058,7 @@ sciDelCallback (sciPointObj * pthis)
     case SCI_LIGHT:
     case SCI_AGREG:
     default:
-      sciprint ("\r\nNo Callback is associeted with this Entity");
+      sciprint ("\r\nNo Callback is associated with this Entity");
       return -1;
       break;
     }
@@ -13915,7 +14095,7 @@ sciExecCallback (sciPointObj * pthis)
 	  LhsVar(1) = 0; 
 	  return 0;
 	}
-      else sciprint ("\r\nNo Callback is associeted with this Entity");
+      else sciprint ("\r\nNo Callback is associated with this Entity");
       return 0;
       break;
     case SCI_TEXT:
@@ -13934,7 +14114,7 @@ sciExecCallback (sciPointObj * pthis)
     case SCI_LIGHT:
     case SCI_AGREG:
     default:
-      sciprint ("\r\nNo Callback is associeted with this Entity");
+      sciprint ("\r\nNo Callback is associated with this Entity");
       return -1;
       break;
     }
@@ -14459,7 +14639,8 @@ int sciType (marker, pobj)
   else if (strncmp(marker,"polyline_style", 14) == 0){return 1;} 
   else if (strncmp(marker,"font_size", 9) == 0)   {return 1;}	
   else if (strncmp(marker,"font_angle", 10) == 0) {return 1;}		
-  else if (strncmp(marker,"font_foreground", 15) == 0){return 1;}	
+  else if (strncmp(marker,"font_foreground", 15) == 0){return 1;}
+  else if (strncmp(marker,"font_color", 10) == 0)   {return 1;} /* F.Leray 09.04.04 : Adding to support font_color user interface */
   else if (strncmp(marker,"font_style", 10) == 0) {return 1;}	      
   else if (strncmp(marker,"font_name", 9) == 0)   {return 10;}
   else if (strncmp(marker,"textcolor", 9) == 0)   {return 1;}
@@ -14582,8 +14763,9 @@ void initsubwin()
   pSUBWIN_FEATURE (psubwin)->isaxes  = FALSE;
   pSUBWIN_FEATURE (psubwin)->axes.rect = 1;  
   pSUBWIN_FEATURE (psubwin)->axes.ticscolor = -1;
-  pSUBWIN_FEATURE (psubwin)->axes.textcolor = -1;
-  pSUBWIN_FEATURE (psubwin)->axes.fontsize  = -1;
+   /* F.Leray 08.04.04 Missing Init??*/
+  /*  pSUBWIN_FEATURE (psubwin)->axes.textcolor = -1;
+      pSUBWIN_FEATURE (psubwin)->axes.fontsize  = -1;*/
   pSUBWIN_FEATURE (psubwin)->axes.subint[0] =  1;
   pSUBWIN_FEATURE (psubwin)->axes.subint[1] =  1;
   pSUBWIN_FEATURE (psubwin)->axes.subint[2] =  1;
@@ -15191,9 +15373,10 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	    }
 	  /**  l'enveloppe cvxe*/
 	  x[0] = sciGetForeground (pobj);	 /* F.Leray 05.03.04 Useless or not?? because we used set pattern instead of set foreground (because Windows uses BRUSH and PEN...)*/
+	  /* Wrong explanation: We use sciGetForeground in NG mode and used set foreground in old graphic mode*/
 	  x[2] = sciGetLineWidth (pobj); /* Adding this line 05.03.04*/
 	  x[3] = sciGetLineStyle (pobj);
-	  /* x[4] = 0; */ /* BUG supprime ici F. Leray 05.03.04 Useless too*/
+	  x[4] = 0; 
 	  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
 	  C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  /* We are in axis_3ddraw() and sciGetEntityType (pobj) == SCI_SUBWIN*/
@@ -15291,6 +15474,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
   integer rect[4],flag=0,x=0,y=0;
   double ang=0.0, bbox[6];
   int fontsize=-1,textcolor=-1,ticscolor=-1, doublesize ;
+  int fontstyle=0; /* F.Leray 08.04.04 */
   sciPointObj *psubwin;
   int ns=2,style=0,iflag=0,gstyle,trois=3,dash[6];
   double xx[4],yy[4],zz[4],vxx,vxx1,vyy,vyy1,vzz,vzz1,dx;
@@ -15311,9 +15495,13 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
   
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
   ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
-  textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
-  fontsize=pSUBWIN_FEATURE (psubwin)->axes.fontsize;
-
+  /*  textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
+      fontsize=pSUBWIN_FEATURE (psubwin)->axes.fontsize;*/
+  textcolor=sciGetFontForeground(psubwin);
+  fontsize=sciGetFontDeciWidth(psubwin)/100;
+  /* F.Leray 08.04.04 New data for Axes Font*/
+  fontstyle=sciGetFontStyle(psubwin);
+  
   bbox[0] =  pSUBWIN_FEATURE (psubwin)->FRect[0]; 
   bbox[1] =  pSUBWIN_FEATURE (psubwin)->FRect[2];
   bbox[2] =  pSUBWIN_FEATURE (psubwin)->FRect[1];
@@ -15322,9 +15510,13 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
   bbox[5] =  pSUBWIN_FEATURE (psubwin)->FRect[5];
 
   C2F(dr)("xget","font",&verbose,fontid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  /* F.Leray 09.04.04 Force the fontstyle knowledge :*/
+  fontid[0]= fontstyle;
+
   fontsize_kp = fontid[1] ;
   if( fontsize == -1 ){ 
-    fontid[0]= 0; fontid[1]= 1; doublesize = 2;
+    /*fontid[0]= 0;*/ fontid[1]= 1; doublesize = 2;
     C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   }
   else{
@@ -15420,6 +15612,10 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	}
       if (legz != 0)
 	{
+	  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+	  /* legend to be the same as those used for the numbers for the axes*/
+	  
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xset","font",fontid,&doublesize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xstringl",legz,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xstring",legz,(x=x - rect[3],&x),&y,PI0,&flag
@@ -15525,6 +15721,10 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	    } 
 	  if (legx != 0)
 	    {
+	      /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+	      /* legend to be the same as those used for the numbers for the axes*/
+	      
+	      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xset","font",fontid,&doublesize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xstringl",legx,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xstring",legx,(x=x-rect[2],&x),&y,PI0,&flag
@@ -15627,8 +15827,13 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	      }
 	    }
 	  if (legy != 0) 
-	    {
+	    { 
+	      /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+	      /* legend to be the same as those used for the numbers for the axes*/
+	      
+	      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xset","font",fontid,&doublesize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xstringl",legy,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* Adding F.Leray too */
 	      C2F(dr)("xstring",legy,&x,&y,PI0,&flag,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
 	    }
 	}
@@ -15728,7 +15933,10 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	      }
 	    }
 	  if (legx != 0)
-	    {
+	    { /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+	      /* legend to be the same as those used for the numbers for the axes*/
+	      
+	      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xset","font",fontid,&doublesize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xstringl",legx,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xstring",legx,(x=x-rect[2],&x),&y,PI0,&flag
@@ -15830,7 +16038,10 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	      }
 	    }
 	  if (legy != 0)
-	    {
+	    {  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+	      /* legend to be the same as those used for the numbers for the axes*/
+	      
+	      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xset","font",fontid,&doublesize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xstringl",legy,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xstring",legy,(x=x-rect[2],&x),&y,PI0,&flag
@@ -16869,8 +17080,9 @@ int InitAxesModel()
   pSUBWIN_FEATURE (paxesmdl)->logflags[0] = 'n';
   pSUBWIN_FEATURE (paxesmdl)->logflags[1] = 'n';
   pSUBWIN_FEATURE (paxesmdl)->axes.ticscolor  = -1;
-  pSUBWIN_FEATURE (paxesmdl)->axes.textcolor  = -1;
-  pSUBWIN_FEATURE (paxesmdl)->axes.fontsize  = -1;  
+  /* F.Leray 08.04.04 : Missing Init ?? */
+  /*  pSUBWIN_FEATURE (paxesmdl)->axes.textcolor  = -1;
+      pSUBWIN_FEATURE (paxesmdl)->axes.fontsize  = -1;  */
   pSUBWIN_FEATURE (paxesmdl)->axes.subint[0]  = 1;   
   pSUBWIN_FEATURE (paxesmdl)->axes.subint[1]  = 1; 
   pSUBWIN_FEATURE (paxesmdl)->axes.subint[2]  = 1;

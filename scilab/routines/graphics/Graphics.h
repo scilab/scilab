@@ -44,9 +44,9 @@ void graphic_alloc_free __PARAMS((void));
 /* Axes.c */
 
 extern void Sci_Axis __PARAMS((char,char,double *,int *,double *,int*,char *str[],int subtics,char *format,
-			      int fontsize,int textcolor,int ticscolor,char logflag,int seg_flag ));
+			      int fontsize,int textcolor,int fontstyle,int ticscolor,char logflag,int seg_flag ));
 extern void sci_axis __PARAMS((char,char,double *,int *,double *,int*,char *str[],int subtics,char *format,
-			      int fontsize,int textcolor,int ticscolor,char logflag,int seg_flag));
+			      int fontsize,int textcolor,int fontstyle,int ticscolor,char logflag,int seg_flag));
 extern void axis_draw  __PARAMS(( char strflag[]));
 extern void ChoixFormatE  __PARAMS((char *fmt,double xmin,double xmax,double xpas)); 
 extern void ChoixFormatE1  __PARAMS((char *fmt,double *x,integer nx)); 
@@ -211,7 +211,7 @@ extern void Tape_ReplayNewScale1  __PARAMS((char *unused,integer *winnumber,inte
  extern void StoreGray2  __PARAMS((char *,double *,integer *,integer *,double *)); 
  extern void StoreChamp  __PARAMS((char *,double *,double *,double *,double *,integer *,integer *,char *,double *,double *)); 
  extern void StoreXgc  __PARAMS((integer )); 
-extern void StoreSciAxis __PARAMS((char *name,char pos,char xy_type,double *x,int *nx,double *y,int *ny,char **str,int subtics,char *format,int fontsize,int textcolor,int ticscolor,char logflag,int seg_flag));
+extern void StoreSciAxis __PARAMS((char *name,char pos,char xy_type,double *x,int *nx,double *y,int *ny,char **str,int subtics,char *format,int fontsize,int textcolor, int fontstyle,int ticscolor,char logflag,int seg_flag));
 
 /* RecLoad.c  */
 

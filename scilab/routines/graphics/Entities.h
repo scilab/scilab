@@ -285,7 +285,7 @@ typedef struct
 {
   /** currently not used in this version */
   /** pointe sur un ID de la table des couleur Scilab */
-  int backgroundcolor;	    /*F.Leray 05.03.04: Question: Has each object a back/foreground color or do we use one back/foreground defined in the FIGURE Object??*/
+  int backgroundcolor;	    
   /** pointe sur un ID de la table des couleur Scilab */
   int foregroundcolor;
   /** */
@@ -438,8 +438,10 @@ typedef struct
   int numsubwinselected;
   /** specifies the current pixmap status         */
   int pixmap; /* DJ.A 30/12 */
-  int wshow ; 
-    
+  int wshow ;
+  
+  sciFont fontcontext; /* F.Leray 08.04.04 */
+  
 }/** */
 sciFigure;  
 
@@ -572,9 +574,11 @@ sciTitle;
 
 typedef struct 
 {  
-  int  fontsize;
-  int  textcolor;
   int  ticscolor;
+  /*  int  fontsize;
+      int  textcolor;*/
+  sciFont fontcontext;
+  
   int  subint[3]; /* Dj.A 17/12/03 */
   int  rect;
   char xdir;   /**  xdir  = 'u' | 'd'  : gives the xy-axes positions **/ 
@@ -1249,6 +1253,10 @@ extern unsigned int sciGetTextLength (sciPointObj * pobj);
 extern int sciGetFontBackground (sciPointObj * pobj);
 extern int sciSetFontBackground (sciPointObj * pobj, int color);
 extern int sciGetFontForeground (sciPointObj * pobj);
+/* F.Leray 09.04.04*/
+extern int sciGetFontForegroundToDisplay (sciPointObj * pobj);
+extern int sciGetFontBackgroundToDisplay (sciPointObj * pobj);
+
 extern int sciSetFontForeground (sciPointObj * pobj, int color);
 extern int sciGetFontStyle (sciPointObj * pobj);
 extern int sciSetFontStyle (sciPointObj * pobj, int fontdeciwidth);

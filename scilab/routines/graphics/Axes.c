@@ -97,6 +97,7 @@ static void aplotv2(strflag)
   char dir = 'l'; /* F.Leray Note: by default the position of y-axis is 'left'*/
   int nx,ny;
   int fontsize=-1,textcolor=-1,ticscolor=-1 ; /*==> use default values  */
+  int fontstyle= 0; /* F.Leray 08.04.04 : New data for Axes Font*/
   int seg =0;
   double x[3],y[3],x1,y1;
   /*** Ajout D.ABDEMOUCHE ****/
@@ -207,17 +208,22 @@ static void aplotv2(strflag)
     /*        Number of subtics on y-axis: Cscale.Waaint1[3]*/
 
     ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
-    textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
-    fontsize=pSUBWIN_FEATURE (psubwin)->axes.fontsize;
+    /*textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
+      fontsize=pSUBWIN_FEATURE (psubwin)->axes.fontsize;*/
+    textcolor=sciGetFontForeground(psubwin);
+    fontsize=sciGetFontDeciWidth(psubwin)/100;
+    /* F.Leray 08.04.04 New data for Axes Font*/
+    fontstyle=sciGetFontStyle(psubwin);
+    
   }
 
  
   /** x-axis **/
   ny=1,nx=3;
-  Sci_Axis(dirx,'r',x,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],NULL,fontsize,textcolor,ticscolor,Cscale.logflag[0],seg);
+  Sci_Axis(dirx,'r',x,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg);
   /** y-axis **/
   ny=3,nx=1;
-  Sci_Axis(dir,'r',&x1,&nx,y,&ny,NULL,Cscale.Waaint1[2],NULL,fontsize,textcolor,ticscolor,Cscale.logflag[1],seg);
+  Sci_Axis(dir,'r',&x1,&nx,y,&ny,NULL,Cscale.Waaint1[2],NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[1],seg);
 }
 
 static void aplotv1(strflag)
@@ -227,6 +233,7 @@ static void aplotv1(strflag)
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   int nx,ny,seg=0,i;
   int fontsize = -1 ,textcolor = -1 ,ticscolor = -1 ; /* default values */
+  int fontstyle= 0; /* F.Leray 08.04.04 : New data for Axes Font*/
   double  x1,y1;
   /*** Ajout D.ABDEMOUCHE ****/  
   char xstr,ystr; 
@@ -329,20 +336,23 @@ static void aplotv1(strflag)
     Cscale.Waaint1[3]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.ylim[3]);/*SS 02/01/03 */
 
     ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
-    textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
-    fontsize=pSUBWIN_FEATURE (psubwin)->axes.fontsize;
-  
+    /*textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
+      fontsize=pSUBWIN_FEATURE (psubwin)->axes.fontsize;*/
+    textcolor=sciGetFontForeground(psubwin);
+    fontsize=sciGetFontDeciWidth(psubwin)/100;
+    /* F.Leray 08.04.04 New data for Axes Font*/
+    fontstyle=sciGetFontStyle(psubwin);
   }
  
   /** x-axis **/
   ny=1,nx=4;
   Sci_Axis(dirx,'i',Cscale.xtics,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],
-	   NULL,fontsize,textcolor,ticscolor,Cscale.logflag[0],seg);
+	   NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg);
   
   /** y-axis **/
   ny=4,nx=1;
   Sci_Axis(dir,'i',&x1,&nx,Cscale.ytics,&ny,NULL,Cscale.Waaint1[2],
-	   NULL,fontsize,textcolor,ticscolor,Cscale.logflag[1],seg);
+	   NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[1],seg);
 }
 
 
@@ -383,30 +393,30 @@ static void aplotv1(strflag)
  *-------------------------------------------------------------*/
 
 
-void sci_axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag)
+void sci_axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag)
      char pos,xy_type;        
      double x[],y[];  
      int *nx,*ny;
      char *str[];
      int  subtics;
      char *format; 
-     int fontsize,textcolor,ticscolor;
+     int fontsize,textcolor,ticscolor,fontstyle;
      char logflag;
      int seg_flag;
 {
   if (GetDriver()=='R') 
-    StoreSciAxis("axis",pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag);
-  Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag);
+    StoreSciAxis("axis",pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag);
+  Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag);
 }
 
-void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag)
+void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag)
      char pos,xy_type;        
      double x[],y[];  
      int *nx,*ny;
      char *str[];
      int  subtics;
      char *format; 
-     int fontsize,textcolor,ticscolor;
+     int fontsize,textcolor,ticscolor,fontstyle;
      char logflag;
      int seg_flag;
 {
@@ -423,7 +433,9 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
   /*** MAJ Djalel A 21/01/2003 ***/
   integer pstyle;
 
-
+  /* F.Leray 08.04.04 Force the fontstyle knowledge :*/
+  fontid[0]= fontstyle;
+  
   if (version_flag() == 0)
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
   
@@ -432,11 +444,15 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
   /** 28/10/2002 **/
   if ((version_flag() == 0) && ( fontsize == -1 ))
     { fontid[0]= 0; fontid[1]= 1;  fontsize_kp = fontid[1] ;
+    /* F.Leray 08.04.04 Adding following line :*/
+    fontid[0]= fontstyle;
     C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);}
   
   if ( fontsize != -1 ) 
     {
       fontid[1] = fontsize ;
+      /* F.Leray 08.04.04 Adding following line :*/
+      fontid[0]= fontstyle;
       C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
   if ( textcolor != -1 || ticscolor != -1 ) 

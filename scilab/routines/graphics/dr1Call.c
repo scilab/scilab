@@ -201,8 +201,8 @@ void Xdrawaxis (dir,tics,x,nx,y,ny,val,sub_int,format,fontsize,textcolor,ticscol
      int *nx,*ny,sub_int;
      int fontsize,textcolor,ticscolor,seg_flag;
 { 
-  
-     sci_axis(dir,tics,x,nx,y,ny,val,sub_int,format,fontsize,textcolor,ticscolor,flag,seg_flag); 
+  int fontstyle = 0;
+     sci_axis(dir,tics,x,nx,y,ny,val,sub_int,format,fontsize,textcolor,fontstyle,ticscolor,flag,seg_flag); 
      
 }
 

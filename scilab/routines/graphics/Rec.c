@@ -218,7 +218,7 @@ void StorePlot(char *name, char *xf, double *x, double *y, integer *n1, integer 
  * axis  
  *---------------------------------------------------------------------------*/
 
-void StoreSciAxis(char *name, char pos, char xy_type, double *x, int *nx, double *y, int *ny, char **str, int subtics, char *format, int fontsize, int textcolor, int ticscolor, char logflag, int seg_flag)
+void StoreSciAxis(char *name, char pos, char xy_type, double *x, int *nx, double *y, int *ny, char **str, int subtics, char *format, int fontsize, int textcolor, int fontstyle, int ticscolor, char logflag, int seg_flag)
 {
   struct sciaxis_rec *lplot = ((struct sciaxis_rec *) MALLOC(sizeof(struct sciaxis_rec)));
   if (lplot == NULL)
@@ -2508,8 +2508,9 @@ static void Replay2D(char *theplot)
 static void ReplaySciAxis(char *theplot)
 {
   struct sciaxis_rec *p = (struct sciaxis_rec *) theplot;
+  int fontstyle = 0;
   sci_axis(p->pos,p->xy_type,p->x,&p->nx,p->y,&p->ny,p->str,p->subtics,p->format,p->fontsize,p->textcolor,
-	   p->ticscolor,p->logflag,p->seg_flag);
+	   fontstyle,p->ticscolor,p->logflag,p->seg_flag);
 
 }
 
