@@ -948,6 +948,19 @@ c form state output
          if(istk(ile).eq.2) ly=sadr(ile+9+nel*nn)
          inc=1
          if(ly.gt.lyp) inc=-1
+
+         if(iadr(ly+ny*nn).gt.ilroot) then
+c     preserve jroot table
+            ilr1=iadr(lyp+ny*nn)
+            err=sadr(ilr1)-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            call icopy(nsurf,istk(ilroot),1,istk(ilr1),1)
+            ilroot=ilr1
+         endif
+
          call unsfdcopy(ny*nn,stk(lyp),inc,stk(ly),inc)
          lstk(top+1)=ly+ny*nn
          if(istk(ile).eq.2) then
