@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync with v3.48
+# in sync with v3.49
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -243,7 +243,7 @@
     ::msgcat::mcset fr "&Tabs and indentation" "Tabs et &indentation"
         ::msgcat::mcset fr "Tab inserts &spaces" "Tab insère des &espaces"
         ::msgcat::mcset fr "&Indentation spaces" "&Dimension de l'indentation"
-    ::msgcat::mcset fr "Colorize \'&strings\'" "Colora \'&stringhe\'"
+    ::msgcat::mcset fr "Colorize \'&strings\'" "C&olorer \'chaîne\'"
     ::msgcat::mcset fr "Word &Wrap" "&Retour à la ligne automatique"
     ::msgcat::mcset fr "File&names" "&Noms de fichiers"
         ::msgcat::mcset fr "&Full path" "&Complets"
