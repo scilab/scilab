@@ -6,12 +6,12 @@ if version<>'scicos2.2'&version<>'scicos2.3'&version<>'scicos2.3.1'&..
 error('No version update defined to '+version+' version')
 end
 
-if version=='scicos2.2' then scs_m=do_version22(scs_m);end
-if version=='scicos2.3' then scs_m=do_version23(scs_m);end
-if version=='scicos2.3.1' then scs_m=do_version231(scs_m);end
-if version=='scicos2.4' then scs_m=do_version251(scs_m),end
+if version=='scicos2.2' then scs_m=do_version22(scs_m);version='scicos2.3';end
+if version=='scicos2.3' then scs_m=do_version23(scs_m);version='scicos2.3.1';end
+if version=='scicos2.3.1' then scs_m=do_version231(scs_m); version='scicos2.4';end
+if version=='scicos2.4' then scs_m=do_version251(scs_m),version='scicos2.5.1';end
 if version=='scicos2.5.1' then 
-  scs_m=do_versionxx(scs_m);scs_m=do_version27(scs_m),
+  scs_m=do_versionxx(scs_m);scs_m=do_version27(scs_m);version='scicos2.7';
 end
 endfunction
 
@@ -1023,7 +1023,7 @@ function scs_m_new=do_version27(scs_m)
       
       if mdl(1)(1)=='super'|mdl(1)(1)=='csuper' then
 	if type(mdl(8))==15 then
-	  mdl(8)=do_version26(mdl(8))
+	  mdl(8)=do_version27(mdl(8))
 	end
       end
       
