@@ -4445,10 +4445,14 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      strncpy (pFIGURE_FEATURE (pobj)->name, pvalue, Min ((int)sizeof ("ScilabGraphic") + 4, length));
-      pFIGURE_FEATURE (pobj)->namelen = Min ((int) sizeof ("ScilabGraphic") + 4, length); 
-      if (pobj != pfiguremdl) 
-	C2F(dr)("xname",pvalue,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,(long) length);
+      /*sprintf(pFIGURE_FEATURE (pobj)->name,pvalue,pFIGURE_FEATURE (pobj)->number);*/
+      strncpy (pFIGURE_FEATURE (pobj)->name, pvalue, Min (60, length));
+      pFIGURE_FEATURE (pobj)->namelen = Min (60, length); 
+      if (pobj != pfiguremdl) {
+	char str[80];
+	sprintf(str,pvalue,sciGetNum(pobj));
+	C2F(dr)("xname",str,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,(long) length);
+      }
       break;
     case SCI_SUBWIN:
     case SCI_AGREG:
@@ -7555,9 +7559,8 @@ ConstructFigure (XGC)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
-  
-  sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciSetNum (pobj, &(XGC->CurWindow));		   
+  sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciSetResize((sciPointObj *) pobj,sciGetResize(pobj));
   pFIGURE_FEATURE(pobj)->windowdimwidth=pFIGURE_FEATURE(pfiguremdl)->windowdimwidth;  
   pFIGURE_FEATURE(pobj)->windowdimheight=pFIGURE_FEATURE(pfiguremdl)->windowdimheight;
@@ -7986,8 +7989,8 @@ int C2F(graphicsmodels) ()
       return 0;
     }
   
-  strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic", sizeof ("Scilab Graphic") + 4);
-  pFIGURE_FEATURE (pfiguremdl)->namelen = Min (sizeof ("Scilab Graphic") + 4, 14); 
+  strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic (%d)", sizeof ("Scilab Graphic (%d)") + 4);
+  pFIGURE_FEATURE (pfiguremdl)->namelen = Min (60, 19); 
   pFIGURE_FEATURE (pfiguremdl)->number=0;
   pFIGURE_FEATURE (pfiguremdl)->figuredimwidth = 610;
   pFIGURE_FEATURE (pfiguremdl)->figuredimheight = 461;

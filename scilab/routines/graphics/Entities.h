@@ -409,7 +409,7 @@ typedef struct
   sciGraphicContext graphiccontext;
   sciPointObj * originalsubwin0011;
   /** specifies the title for this window  */
-  char name[sizeof ("ScilabGraphic") + 4];	 
+  char name[80];	 
   /** specifies le length of the string name */
   int namelen;
   /** specifies the number of this window            */
