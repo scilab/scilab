@@ -1,12 +1,9 @@
-function d=%b_tril(a,k)
-// Copyright INRIA
-[lhs,rhs]=argn(0)
-if rhs==1 then k=0,end
-
-[m,n]=size(a)
-i=find(tril(ones(a),k))
-a=matrix(a,m*n,1)
-d(m*n,1)=%f
-d(i)=a(i)
-d=matrix(d,m,n)
+function [d]=%b_tril(a,k)
+// Copyright INRIA (modified by bruno, June 10 2004)
+   [lhs,rhs] = argn()
+   if rhs==1 then k=0,end
+   [m,n] = size(a)
+   d(m,n) = %f  // create an m x n boolean mat with %f elts
+   i = find(tril(ones(a),k))
+   d(i) = a(i)
 endfunction
