@@ -31,8 +31,6 @@
     elements of <VERB>x</VERB>, avoiding underflow and overflow. 
     <VERB>x</VERB> must be real.
   </P>
-  <P>
-  </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 gammaln(0.5)
@@ -41,4 +39,5 @@ gammaln(0.5)
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>gamma</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>dlgamma</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+  <AUTHOR>W. J. Cody and L. Stoltz (code from Netlib (specfun))</AUTHOR>
 </MAN>

@@ -27,10 +27,24 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-     <VERB>erfcx</VERB> calcule la fonction erreur complémentaire normalisée.
+     <VERB>erfcx</VERB> calcule la fonction erreur complémentaire
+     normalisée.
+   <VERBATIM><![CDATA[
+               2
+      y = exp(x ) * erfc(x)
+
+                 1
+      y  -->  ---------    when x --> +oo
+              x sqrt(pi)
+    ]]></VERBATIM>
+
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>erf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>erfc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>calerf</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>erf</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>erfc</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>calerf</LINK></SEE_ALSO_ITEM>
   </SEE_ALSO>
+<AUTHOR>W. J. Cody (code from Netlib (specfun))</AUTHOR>
+
 </MAN>

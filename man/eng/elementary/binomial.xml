@@ -5,7 +5,7 @@
   <TITLE>binomial  </TITLE>
   <TYPE>Scilab Function  </TYPE>
   <DATE>April 1993  </DATE>
-  <SHORT_DESCRIPTION name="binomial"> binomial distribution  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="binomial"> binomial distribution probabilities </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>pr=binomial(p,n)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -14,7 +14,7 @@
   <PARAM_ITEM>
   <PARAM_NAME>pr  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : a row vector with N+1 components 
+    : row vector with n+1 components 
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
@@ -26,36 +26,42 @@
   <PARAM_ITEM>
   <PARAM_NAME>n  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : an integer &gt;= 0
+    : an integer &gt;= 1
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
+  <DESCRIPTION_INDENT>
   <P>
-    <VERB>pr=binomial(p,n)</VERB> return the binomial probability vector. i.e the
-    probability of k success in n independent trials, (where p is the probability of one
-    success).
-  </P>
-  <P>
-    pr(k) = probability(X=k) , with X=B(n,p) 
+    <VERB>pr=binomial(p,n)</VERB> returns the binomial probability vector, i.e. 
+    <VERB>pr(k+1)</VERB> is the probability of <VERB>k</VERB> success in <VERB>n</VERB> independent 
+    Bernouilli trials with probability of success <VERB>p</VERB>. In other words :
+    pr(k+1) = probability(X=k) , with X a random variable following the B(n,p) 
+    distribution, and numerically :
   </P>
   <VERBATIM><![CDATA[
- pr(k) = C(n,k) p^k (1-p)^(n-k)
- with
- C(n,k)= n!/(k!(n-k)!) = prod(1:n)/(prod(1:k)*prod(1:n-k)).
+            / n \  k      n-k       / n \       n!
+ pr(k+1) =  |   | p  (1-p)    with  |   |  = ---------
+            \ k /                   \ k /    k! (n-k)!
    ]]></VERBATIM>
+  </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-n=10;p=0.3;plot2d3(0:n,binomial(p,n));
-n=100;p=0.3;
-mea=n*p;sigma=sqrt(n*p*(1-p));
+// first example
+n=10;p=0.3; xbasc(); plot2d3(0:n,binomial(p,n));
+
+// second example 
+n=50;p=0.4;
+mea=n*p; sigma=sqrt(n*p*(1-p));
 x=( (0:n)-mea )/sigma;
-plot2d(x,sigma*binomial(p,n));
+xbasc()
+plot2d(x, sigma*binomial(p,n));
 deff('y=Gauss(x)','y=1/sqrt(2*%pi)*exp(-(x.^2)/2)')
-plot2d(x,Gauss(x));
+plot2d(x, Gauss(x), style=2);
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>cdfbin</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>cdfbin</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>grand</LINK></SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

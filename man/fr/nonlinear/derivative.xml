@@ -15,7 +15,8 @@
   <PARAM_ITEM>
   <PARAM_NAME>F  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : a Scilab function F: R^n --&gt; R^m or a list(F,p1,...,pk), where F is a scilab function in the form y=F(x,p1,...,pk), p1, ..., pk being any scilab objects (matrices, lists,...).
+    : a Scilab function F: R^n --&gt; R^m or a list(F,p1,...,pk), where F is a scilab function 
+      in the form y=F(x,p1,...,pk), p1, ..., pk being any scilab objects (matrices, lists,...).
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
@@ -33,7 +34,8 @@
   <PARAM_ITEM>
   <PARAM_NAME>order  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : (optional) integer, the order of the finite difference formula used to approximate the derivatives (order = 1,2 or 4, default is order=2 ).
+    : (optional) integer, the order of the finite difference formula used to approximate 
+      the derivatives (order = 1,2 or 4, default is order=2 ).
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
@@ -46,27 +48,26 @@
   <PARAM_ITEM>
   <PARAM_NAME>H_form=&apos;default&apos;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : H is a m x (n^2) matrix ; in this form, the k-th row of H  corresponds to the Hessean of the k-th component of F, given  as the following row vector :
+    : H is a m x (n^2) matrix ; in this form, the k-th row of H  corresponds to the Hessean of 
+      the k-th component of F, given  as the following row vector :
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <VERBATIM><![CDATA[
-
   [ d(grad(F_k))/dx_1 | ..... | d(grad(F_k))/dx_n ] 
-
    ]]></VERBATIM>
-  <P>
     ((grad(F_k) being a row vector).
-  </P>
   <PARAM_ITEM>
   <PARAM_NAME>H_form=&apos;blockmat&apos; :  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    H is a m x (nxn) block matrix : the classic Hessean matrices (of each component of F) are stacked by row (H = [H1 ; H2 ; ... ; Hm] in scilab syntax).
+    H is a (mxn) x n block matrix : the classic Hessean matrices (of each component of F) are 
+    stacked by row (H = [H1 ; H2 ; ... ; Hm] in scilab syntax).
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>H_form=&apos;hypermat&apos; :  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    H is a n x n matrix for m=1, and a n x n x m hypermatrix otherwise.  H(:,:,k) is the classic Hessean matrix of the k-th component of F.
+    H is a n x n matrix for m=1, and a n x n x m hypermatrix otherwise.  H(:,:,k) is the 
+    classic Hessean matrix of the k-th component of F.
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -90,17 +91,22 @@
     order is given by :
   </P>
   <VERBATIM><![CDATA[
-
   F(x+dx) = F(x) + J(x)*dx + 1/2*H(x)*(dx .*. dx) + ...
-
    ]]></VERBATIM>
   <P>
     (([J,H]=derivative(F,x,H_form=&apos;default&apos;), J=J(x), H=H(x).) 
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='REMARKS'>
+  <ITEMIZE label='Remarks'>
   <P>
-    Numerical approximation of derivatives is generally an unstable process.  The step size h must be small to get a low error but if it is too small floating  point errors will dominate by cancellation. As a rule of thumb don&apos;t change the  default step size.  To work around numerical difficulties one may also change the order and/or choose different orthogonal matrices Q (the default is eye(n,n)), especially if the  approximate derivatives are used in optimization routines. All the optional arguments may also be passed as named arguments, so that one can use calls in the form :
+    Numerical approximation of derivatives is generally an unstable process.  
+The step size h must be small to get a low error but if it is too small floating  
+point errors will dominate by cancellation. As a rule of thumb don&apos;t change 
+the  default step size.  To work around numerical difficulties one may also change 
+the order and/or choose different orthogonal matrices Q (the default is eye(n,n)), 
+especially if the  approximate derivatives are used in optimization routines. All 
+the optional arguments may also be passed as named arguments, so that one can use 
+calls in the form :
   </P>
   <VERBATIM><![CDATA[
 derivative(F, x, H_form = "hypermat")
@@ -108,11 +114,9 @@ derivative(F, x, order = 4) etc.
 
    ]]></VERBATIM>
   </ITEMIZE>
-  <ITEMIZE label='AUTHORS'>
-  <P>
-    Rainer von Seggern, Bruno Pincon
-  </P>
-  </ITEMIZE>
+
+  <AUTHORS> Rainer von Seggern, Bruno Pincon </AUTHORS>
+
   <EXAMPLE><![CDATA[
   function y=F(x)
    y=[sin(x(1)*x(2))+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
@@ -163,9 +167,10 @@ derivative(F, x, order = 4) etc.
  clean(Je - J)
  clean(He - H)
    ]]></EXAMPLE>
+
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>numdiff</LINK>
-    </SEE_ALSO_ITEM> <SEE_ALSO_ITEM> <LINK>derivat</LINK>
-    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>numdiff</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>derivat</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+
 </MAN>

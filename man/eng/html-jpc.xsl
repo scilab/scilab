@@ -13,7 +13,7 @@
         <CENTER><xsl:value-of select="./TYPE"/></CENTER>
 	<P></P>
 <xsl:for-each select="./SHORT_DESCRIPTION">
-	<table width="100%" bgcolor="lightblue"><tr><td><b><tt><xsl:value-of select="@name"/></tt></b>- <xsl:value-of select="text()"/></td></tr></table>
+	<table width="100%" bgcolor="lightblue"><tr><td><b><tt><xsl:value-of select="@name"/></tt></b> - <xsl:value-of select="text()"/></td></tr></table>
 </xsl:for-each>
 
 <xsl:if test="./CALLING_SEQUENCE">
@@ -93,11 +93,11 @@
 </xsl:template>
 
 <xsl:template match="PARAM_DESCRIPTION">
-	<xsl:apply-templates select="P|VERBATIM|TABLE|VERB|PARAM_INDENT|text()"/>
+	<xsl:apply-templates select="P|VERBATIM|TABLE|VERB|EM|BD|TT|PARAM_INDENT|text()"/>
 </xsl:template>
 
 <xsl:template match="PARAM_INDENT">
-	<ul><xsl:apply-templates select="PARAM_ITEM|PARAM_INDENT|P|VERBATIM|TABLE|VERB|text()"/></ul>
+	<ul><xsl:apply-templates select="PARAM_ITEM|PARAM_INDENT|P|VERBATIM|TABLE|VERB|EM|BD|TT|text()"/></ul>
 </xsl:template>
 
 
@@ -111,22 +111,23 @@
 </xsl:template>
 
 <xsl:template match="CALLING_SEQUENCE_ITEM">
-	<dd><xsl:value-of select="text()"/></dd>
+	<dd><tt><xsl:value-of select="text()"/></tt></dd>
 </xsl:template>
 
 <xsl:template match="ITEM">
-	<li><xsl:value-of select="@label"/><xsl:apply-templates select="ITEMIZE|TABLE|P|VERBATIM|VERB|text()"/></li>
+	<li><b><font color="maroon"><xsl:value-of select="@label"/></font></b><xsl:apply-templates select="ITEMIZE|TABLE|P|VERBATIM|VERB|EM|BD|TT|A|text()"/></li>
 </xsl:template>
 
 <xsl:template match="ITEMIZE">
 	<H3><font color="blue"><xsl:value-of select="@label"/></font></H3>
-	<ul><xsl:apply-templates select="ITEM|ITEMIZE|TABLE|P|VERBATIM|VERB"/></ul>
+	<ul><xsl:apply-templates select="ITEM|ITEMIZE|TABLE|P|VERBATIM|VERB|EM|BD|TT|A"/></ul>
 </xsl:template>
 
 <xsl:template match="TABLE">
-	<table border="1">
+        <div align="center">
+	<table border="2">
 	<xsl:for-each select="./TABLE_NEW_ROW">
-	<tr>
+	<tr align="center">
 		<xsl:for-each select="./TABLE_NEW_COLUMN">
 			<td>
 			<xsl:value-of select="./text()"/>
@@ -135,10 +136,23 @@
         </tr>
 	</xsl:for-each>
         </table>
+        </div>
 </xsl:template>
 
 <xsl:template match="VERB">
 	<tt><b><xsl:value-of select="./text()"/></b></tt>
+</xsl:template>
+
+<xsl:template match="EM">
+	<em><xsl:value-of select="./text()"/></em>
+</xsl:template>
+
+<xsl:template match="TT">
+	<tt><xsl:value-of select="./text()"/></tt>
+</xsl:template>
+
+<xsl:template match="BD">
+	<b><xsl:value-of select="./text()"/></b>
 </xsl:template>
 
 <xsl:template match="A">
@@ -146,15 +160,15 @@
 </xsl:template>
 
 <xsl:template match="DESCRIPTION">
-	<dl><xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|VERB|TABLE|A|text()"/></dl>
+	<dl><xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|VERB|EM|BD|TT|TABLE|A|text()"/></dl>
 </xsl:template>
 
 <xsl:template match="DESCRIPTION_ITEM">
-	<li><xsl:value-of select="@label"/><xsl:apply-templates select="DESCRIPTION_INDENT|DESCRIPTION_ITEM|P|VERBATIM|VERB|TABLE|ITEMIZE|A|text()"/></li>
+	<li><b><xsl:value-of select="@label"/></b><xsl:apply-templates select="DESCRIPTION_INDENT|DESCRIPTION_ITEM|P|VERBATIM|VERB|EM|BD|TT|TABLE|ITEMIZE|A|text()"/></li>
 </xsl:template>
 
 <xsl:template match="P">
-	<p><xsl:apply-templates select="VERB|A|text()"/></p>
+	<p><xsl:apply-templates select="VERB|EM|BD|TT|A|text()"/></p>
 </xsl:template>
 
 <xsl:template match="VERBATIM">
@@ -170,7 +184,7 @@
 <xsl:template match="AUTHORS_ITEM">
 <li>
 <b><xsl:value-of select="@label"/>  </b>,
-<xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|VERB|TABLE|ITEMIZE|A|LINK|text()"/>
+<xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|VERB|EM|BD|TT|TABLE|ITEMIZE|A|text()"/>
 </li>
 </xsl:template>
 

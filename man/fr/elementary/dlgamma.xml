@@ -5,20 +5,21 @@
   <TITLE>dlgamma  </TITLE>
   <TYPE>Scilab Function  </TYPE>
   <DATE>September 1997  </DATE>
-  <SHORT_DESCRIPTION name="dlgamma">  dérivée de la fonction gammaln.  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="dlgamma">  dérivée de la fonction gammaln
+  ou fonction psi.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM> y = dlgamma(x)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
  <PARAM_INDENT>
   <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_NAME>x</PARAM_NAME>
   <PARAM_DESCRIPTION>
     : vecteur réel.
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
-  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_NAME>y</PARAM_NAME>
   <PARAM_DESCRIPTION>
     : vecteur réel de même taille.
   </PARAM_DESCRIPTION> 
@@ -27,8 +28,16 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    <VERB>dlgamma(x)</VERB> calcule la dérivée de la fonction gammaln pour chaque composante de <VERB>x</VERB>. 
-    <VERB>x</VERB> doit être réel.
+    <VERB>dlgamma(x)</VERB> calcule la dérivée de la fonction gammaln
+    pour chaque composante de <VERB>x</VERB>. 
+
+      <VERBATIM><![CDATA[
+          d/dx (gamma(x)) / gamma(x) = d/dx (ln gamma(x))
+      ]]></VERBATIM>
+
+    <VERB>x</VERB> doit être réel. Cette fonction est aussi conuue
+    sius le nom de fonction psi
+
   </P>
   <P>
   </P>
@@ -40,4 +49,6 @@ dlgamma(0.5)
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>gamma</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>gammaln</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+<AUTHOR>W. J. Cody (code from Netlib (specfun))</AUTHOR>
+
 </MAN>

@@ -13,7 +13,7 @@
         <CENTER><xsl:value-of select="./TYPE"/></CENTER>
 	<P></P>
 <xsl:for-each select="./SHORT_DESCRIPTION">
-	<table width="100%" bgcolor="lightblue"><tr><td><b><tt><xsl:value-of select="@name"/></tt></b>- <xsl:value-of select="text()"/></td></tr></table>
+	<table width="100%" bgcolor="lightblue"><tr><td><b><tt><xsl:value-of select="@name"/></tt></b> - <xsl:value-of select="text()"/></td></tr></table>
 </xsl:for-each>
 
 <xsl:if test="./CALLING_SEQUENCE">
@@ -37,14 +37,14 @@
 
 <xsl:if test="./EXAMPLE">
 	<H3><font color="blue"><a><xsl:attribute name="href">toscilab.html</xsl:attribute>
-	<xsl:attribute name="title"><xsl:value-of select="./EXAMPLE/self::node()"/></xsl:attribute>Exemples</a>
+	<xsl:attribute name="title"><xsl:value-of select="./EXAMPLE/self::node()"/></xsl:attribute>Examples</a>
 	</font></H3>
 	<dl><table bgcolor="lightblue"><tr><td><pre><xsl:value-of select="./EXAMPLE/self::node()"/></pre></td></tr></table></dl>
 </xsl:if>
 
 <xsl:if test="./SEE_ALSO/SEE_ALSO_ITEM">
 	<H3><font color="blue">Voir aussi</font></H3>
-	<p><ul><xsl:for-each select="./SEE_ALSO/SEE_ALSO_ITEM"><xsl:apply-templates select="A"/>&#160;&#160;&#160;</xsl:for-each></ul></p>
+	<p><ul><xsl:for-each  select="./SEE_ALSO/SEE_ALSO_ITEM"><xsl:apply-templates select="A"/><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text></xsl:for-each></ul></p>
 </xsl:if>
 
 <xsl:if test="./AUTHOR">
@@ -56,7 +56,6 @@
 	<H3><font color="blue">Auteurs</font></H3>
 	<p><ul><xsl:value-of select="./AUTHORS"/></ul></p>
 </xsl:if>
-
 
 <xsl:if test="./USED_FUNCTION">
 	<H3><font color="blue">Fonction utilisee</font></H3>
@@ -94,11 +93,11 @@
 </xsl:template>
 
 <xsl:template match="PARAM_DESCRIPTION">
-	<xsl:apply-templates select="P|VERBATIM|TABLE|VERB|PARAM_INDENT|text()"/>
+	<xsl:apply-templates select="P|VERBATIM|TABLE|VERB|EM|BD|TT|PARAM_INDENT|text()"/>
 </xsl:template>
 
 <xsl:template match="PARAM_INDENT">
-	<ul><xsl:apply-templates select="PARAM_ITEM|PARAM_INDENT|P|VERBATIM|TABLE|VERB|text()"/></ul>
+	<ul><xsl:apply-templates select="PARAM_ITEM|PARAM_INDENT|P|VERBATIM|TABLE|VERB|EM|BD|TT|text()"/></ul>
 </xsl:template>
 
 
@@ -112,22 +111,23 @@
 </xsl:template>
 
 <xsl:template match="CALLING_SEQUENCE_ITEM">
-	<dd><xsl:value-of select="text()"/></dd>
+	<dd><tt><xsl:value-of select="text()"/></tt></dd>
 </xsl:template>
 
 <xsl:template match="ITEM">
-	<li><xsl:value-of select="@label"/><xsl:apply-templates select="ITEMIZE|TABLE|P|VERBATIM|VERB|text()"/></li>
+	<li><b><font color="maroon"><xsl:value-of select="@label"/></font></b><xsl:apply-templates select="ITEMIZE|TABLE|P|VERBATIM|VERB|EM|BD|TT|A|text()"/></li>
 </xsl:template>
 
 <xsl:template match="ITEMIZE">
 	<H3><font color="blue"><xsl:value-of select="@label"/></font></H3>
-	<ul><xsl:apply-templates select="ITEM|ITEMIZE|TABLE|P|VERBATIM|VERB"/></ul>
+	<ul><xsl:apply-templates select="ITEM|ITEMIZE|TABLE|P|VERBATIM|VERB|EM|BD|TT|A"/></ul>
 </xsl:template>
 
 <xsl:template match="TABLE">
-	<table border="1">
+        <div align="center">
+	<table border="2">
 	<xsl:for-each select="./TABLE_NEW_ROW">
-	<tr>
+	<tr align="center">
 		<xsl:for-each select="./TABLE_NEW_COLUMN">
 			<td>
 			<xsl:value-of select="./text()"/>
@@ -136,29 +136,39 @@
         </tr>
 	</xsl:for-each>
         </table>
+        </div>
 </xsl:template>
 
 <xsl:template match="VERB">
 	<tt><b><xsl:value-of select="./text()"/></b></tt>
 </xsl:template>
 
+<xsl:template match="EM">
+	<em><xsl:value-of select="./text()"/></em>
+</xsl:template>
+
+<xsl:template match="TT">
+	<tt><xsl:value-of select="./text()"/></tt>
+</xsl:template>
+
+<xsl:template match="BD">
+	<b><xsl:value-of select="./text()"/></b>
+</xsl:template>
+
 <xsl:template match="A">
-	<a>
-	<xsl:attribute name="href"><xsl:value-of select='@href'/></xsl:attribute>
-	<xsl:apply-templates select="VERB|text()"/>
-	</a>
+	<a><xsl:attribute name="href"><xsl:value-of select='@href'/></xsl:attribute><xsl:apply-templates select="VERB|text()"/></a>
 </xsl:template>
 
 <xsl:template match="DESCRIPTION">
-	<ul><xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|VERB|TABLE|A|text()"/></ul>
+	<dl><xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|VERB|EM|BD|TT|TABLE|A|text()"/></dl>
 </xsl:template>
 
 <xsl:template match="DESCRIPTION_ITEM">
-	<li><xsl:value-of select="@label"/><xsl:apply-templates select="DESCRIPTION_INDENT|DESCRIPTION_ITEM|P|VERBATIM|VERB|TABLE|ITEMIZE|A|text()"/></li>
+	<li><b><xsl:value-of select="@label"/></b><xsl:apply-templates select="DESCRIPTION_INDENT|DESCRIPTION_ITEM|P|VERBATIM|VERB|EM|BD|TT|TABLE|ITEMIZE|A|text()"/></li>
 </xsl:template>
 
 <xsl:template match="P">
-	<p><xsl:apply-templates select="VERB|A|text()"/></p>
+	<p><xsl:apply-templates select="VERB|EM|BD|TT|A|text()"/></p>
 </xsl:template>
 
 <xsl:template match="VERBATIM">
@@ -173,10 +183,9 @@
 
 <xsl:template match="AUTHORS_ITEM">
 <li>
-<xsl:value-of select="@label"/>  
-<xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|VERB|TABLE|ITEMIZE|A|text()"/>
+<b><xsl:value-of select="@label"/>  </b>,
+<xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|VERB|EM|BD|TT|TABLE|ITEMIZE|A|text()"/>
 </li>
 </xsl:template>
-
 
 </xsl:stylesheet>

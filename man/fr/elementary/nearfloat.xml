@@ -7,7 +7,7 @@
   <DATE>April 2001  </DATE>
   <SHORT_DESCRIPTION name="nearfloat"> get previous or next floating-point number  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>xnear = number_properties(dir, x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>xnear = nearfloat(dir, x)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
  <PARAM_INDENT>
@@ -34,22 +34,19 @@
   <DESCRIPTION>
   <P>
     This function computes, in the element wise meaning, the corresponding neighbours 
-    of the elements of x (in the underlying floating point set, see number_properties), 
-    the successors if dir = &quot;succ&quot; and the predecessors if dir = &quot;pred&quot;
-  </P>
-  <P>
+    of the elements of <VERB>x</VERB> (in the underlying floating point set, see number_properties), 
+    the successors if <VERB>dir = &quot;succ&quot;</VERB> and the predecessors if 
+    <VERB>dir = &quot;pred&quot;</VERB>
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='EXAMPLES'>
-  <VERBATIM><![CDATA[
+  <EXAMPLE><![CDATA[
 format("e",22)
 nearfloat("succ",1) - 1
 1 - nearfloat("pred",1)
 format("v") //reset default format
-   ]]></VERBATIM>
-  </ITEMIZE>
+   ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>number_properties</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>frexp</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>B.P.;   </AUTHOR>
+  <AUTHOR>B.P.</AUTHOR>
 </MAN>
