@@ -1414,7 +1414,6 @@ KillButton(w, client_data, call_data)
     FREE(datas->fname);
   FREE(datas);
 }
-
 /****************************************************
  * callBack associated to a user defined menu 
  ****************************************************/
@@ -1440,7 +1439,20 @@ SelMenu(w, client_data, call_data)
 	}
       StoreCommand(buf);
     }
-  else 
+  else if (datas->type == 2) 
+    { 
+      /* Interpreted mode : we store the action on a queue */
+      if ( datas->win_num < 0 ) 
+	{
+	  sprintf(buf,"%s(%d)",datas->fname,datas->entry+1);
+	}
+      else 
+	{
+	  sprintf(buf,"%s(%d,%d)",datas->fname,datas->entry+1,datas->win_num);
+	}
+      StoreCommand(buf);
+    }
+  else
     { 
       /* hard coded mode */
       int rep ;
@@ -1449,6 +1461,7 @@ SelMenu(w, client_data, call_data)
 	F2C(fbutn)((datas->fname),&(datas->win_num),&(datas->entry));
     }
 }
+
 
 /****************************************************
  *Delete the button named button_name in window 
