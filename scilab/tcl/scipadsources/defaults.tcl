@@ -59,6 +59,6 @@ if { [catch {package require tkdnd}] == 0 } {
     # package is present and loaded
     set TkDnDloaded "true"
 } else {
-    ScilabEval "mprintf(\"Warning: TkDnD package is not present (please get it from http://sourceforge.net/projects/tkdnd)\\n         Drag''n''drop to Scipad will not be available\\n\")"
+#    ScilabEval "mprintf(\"Warning: TkDnD package is not present (please get it from http://sourceforge.net/projects/tkdnd)\\n         Drag''n''drop to Scipad will not be available\\n\")"
     set TkDnDloaded "false"
 }
