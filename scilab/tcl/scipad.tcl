@@ -717,6 +717,7 @@ proc closefile {textarea} {
 	    montretext [lindex $listoftextarea end]
 	} else {
 	    killwin $pad 
+	    unset pad
 	}   
     }
     #### end of bye bye
