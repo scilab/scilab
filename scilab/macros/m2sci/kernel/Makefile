@@ -28,8 +28,8 @@ KERNEL = allunknown.sci clause2sci.sci convert2double.sci \
 	 getoperands.sci getrhs.sci gettempvar.sci get_unknown.sci infer2txt.sci insert.sci instruction2sci.sci \
 	 isacomment.sci isanmfile.sci is_a_scalar.sci is_a_vector.sci is_complex.sci \
 	 isdefinedvar.sci is_empty.sci isinstring.sci is_real.sci m2sci_info.sci \
-	 m2sci.sci m2sci_syntax.sci mtlbtree2sci.sci no_equiv.sci \
-	 not_a_scalar.sci not_a_vector.sci not_empty.sci operation2sci.sci readmfile.sci \
+	 m2sci.sci m2sci_syntax.sci mtlbtree2sci.sci multi_fun_file.sci no_equiv.sci \
+	 not_a_scalar.sci not_a_vector.sci not_empty.sci operation2sci.sci \
 	 repl_poss.sci replace_brackets.sci sci_gener.sci sci_m2scideclare.sci sciparam.sci set_infos.sci \
 	 update_instr_list.sci updatevarslist.sci
 
