@@ -1,13 +1,27 @@
-function a=%sp_i_s(i,j,b,a)
+function M=%sp_i_s(varargin)
 // %sp_i_s(i,j,b,a) insert sparse matrix b into full matrix a
-// a(i,j)=b
+// M(i,j)=b
 //!
 // Copyright INRIA
 [lhs,rhs]=argn(0)
+
+M=varargin(rhs)
+N=varargin(rhs-1)//inserted matrix
+index=varargin(1) //
+
+if rhs==3&(type(index)==10|type(index)==15) then
+  M=createstruct(index,N)
+  return
+end
+
+i=varargin(1);
+j=varargin(2);
+M=varargin(4);
+b=varargin(3);
 if rhs==4 then
-  a(i,j)=full(b)
+  M(i,j)=full(b)
 else
-  a=b;//b=j
-  a(i)=full(j)
+  M=b;//b=j
+  M(i)=full(j)
 end
 endfunction
