@@ -423,8 +423,10 @@ static int LoadFec()
       if (LoadVectC(&(lplot->legend))  == 0) return(0);
       if ((lplot->zminmax = (double *)  MALLOC(2*sizeof(double))) == 0) return (0);
       if ((lplot->colminmax = (int *)  MALLOC(2*sizeof(int))) == 0) return (0);
+      if ((lplot->extremes_col = (int *)  MALLOC(2*sizeof(int))) == 0) return (0);
       lplot->zminmax[0] = lplot->zminmax[1]= 0.0;
       lplot->colminmax[0] = lplot->colminmax[1]=1;
+      lplot->extremes_col[0] = lplot->extremes_col[1]=-1;
       if (Store(lplot->name,(char *) lplot) == 0) return(0);
     }
   else 
@@ -452,6 +454,7 @@ static int LoadFec_n()
       if (LoadVectF(&(lplot->brect_kp)) == 0) return(0);
       if (LoadVectF(&(lplot->zminmax)) == 0) return(0);    /* added by bruno */
       if (LoadVectLI(&(lplot->colminmax)) == 0) return(0); /* added by bruno */
+      if (LoadVectLI(&(lplot->extremes_col)) == 0) return(0); /* added by bruno */
       if (LoadVectLI(&(lplot->aaint)) == 0) return(0);
       if (LoadVectLI(&(lplot->aaint_kp)) == 0) return(0);
       if (LoadVectC(&(lplot->strflag)) == 0) return(0);

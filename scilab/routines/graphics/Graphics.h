@@ -67,7 +67,7 @@ extern int C2F(contourif)  __PARAMS((double *,double *,double *,integer *,intege
 
 	/* FeC.c */
 
-extern int C2F(fec)  __PARAMS((double *,double *,double *triangles,double *func,integer *Nnode,integer *Ntr,char *,char *,double *,integer *, double *, integer *, integer flagNax, integer,integer)); 
+extern int C2F(fec)  __PARAMS((double *,double *,double *triangles,double *func,integer *Nnode,integer *Ntr,char *,char *,double *,integer *, double *, integer *, integer *, integer flagNax, integer,integer)); 
 
 /* extern int C2F(fec)  __PARAMS((double *,double *,double *triangles,double *func,integer *Nnode,integer *Ntr,char *,char *,double *,integer *,integer,integer));  */
 
@@ -208,7 +208,7 @@ extern void Tape_ReplayNewScale1  __PARAMS((char *unused,integer *winnumber,inte
  extern void StorePlot3D  __PARAMS((char *,double *,double *,double *,integer *p,integer *q,double *teta,double *,char *,integer *,double *)); 
  extern void StoreFac3D  __PARAMS((char *,double *,double *,double *,integer *cvect,integer *p,integer *q,double *teta,double *,char *,integer *,double *)); 
 
- extern void StoreFec  __PARAMS((char *,double *,double *,double *triangles,double *func,integer *Nnode,integer *Ntr,char *,char *,double *,integer *, double *, integer *)); 
+ extern void StoreFec  __PARAMS((char *,double *,double *,double *triangles,double *func,integer *Nnode,integer *Ntr,char *,char *,double *,integer *, double *, integer *, integer *)); 
 
 /* old  extern void StoreFec  __PARAMS((char *,double *,double *,double *triangles,double *func,integer *Nnode,integer *Ntr,char *,char *,double *,integer *)); */
  extern void StoreContour  __PARAMS((char *,double *,double *,double *,integer *,integer *,integer *,integer *,double *,double *teta,double *,char *,integer *,double *,double *zlev)); 

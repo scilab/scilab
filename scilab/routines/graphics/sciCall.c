@@ -525,13 +525,13 @@ void Objnumb(fname,fname_len,n,flag,x,y,angle,box)
 /*------------------------------------------------
  * fec
  *-----------------------------------------------*/   
-void Objfec (x,y,noeud,fun,n,m,strflag,legend,brect,aaint,Zminmax,Colminmax,flagNax)
+void Objfec (x,y,noeud,fun,n,m,strflag,legend,brect,aaint,Zminmax,Colminmax,ExtremesCol,flagNax)
      double x[],y[],brect[],noeud[],Zminmax[];
-     integer *n,*m,aaint[],Colminmax[];
+     integer *n,*m,aaint[],Colminmax[],ExtremesCol[];
      char legend[],strflag[];
      double *fun;
      BOOL flagNax;
 { 
   C2F(fec)(x,y,noeud,fun,n,m,strflag,legend,brect,aaint,
-	   Zminmax,Colminmax,flagNax,4L,bsiz);
+	   Zminmax,Colminmax,ExtremesCol,flagNax,4L,bsiz);
 }

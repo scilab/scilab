@@ -52,7 +52,7 @@ sciPointObj *paxesmdl = (sciPointObj *) NULL;/* DJ.A 08/01/04 */
 extern int versionflag;
 int xinitxend_flag;
 extern void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
-			     integer *Ntr,double *zminmax,integer *colminmax));
+			     integer *Ntr,double *zminmax, integer *colminmax, integer *extremes_col));
 extern void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2);
 extern void GraySquare(integer *x, integer *y, double *z, integer n1, integer n2);
 extern void Plo2d1RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf);
@@ -9833,7 +9833,7 @@ DestroyGrayplot (sciPointObj * pthis)
  */
 sciPointObj *
 ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pnoeud, 
-	      double *pfun, int Nnode, int Ntr, double *zminmax, integer *colminmax)
+	      double *pfun, int Nnode, int Ntr, double *zminmax, integer *colminmax, integer *extremes_col)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciFec *pfec = (sciFec *) NULL;
@@ -9940,6 +9940,20 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+      if ((pfec->extremes_col = MALLOC (2 * sizeof (integer))) == NULL)
+	{
+	  FREE(pFEC_FEATURE (pobj)->pvecx);
+	  FREE(pFEC_FEATURE (pobj)->pvecy);
+	  FREE(pFEC_FEATURE (pobj)->pnoeud); 
+	  FREE(pFEC_FEATURE (pobj)->pfun); 
+	  FREE(pFEC_FEATURE (pobj)->zminmax);
+	  FREE(pFEC_FEATURE (pobj)->colminmax);
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pFEC_FEATURE(pobj));
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
 
       for (i = 0; i < Nnode; i++)
 	{
@@ -9955,6 +9969,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	{
 	  pfec->zminmax[i] = zminmax[i];
 	  pfec->colminmax[i] = colminmax[i];
+	  pfec->extremes_col[i] = extremes_col[i];
 	}
 	   
       pfec->Nnode = Nnode;	      
@@ -11629,7 +11644,7 @@ sciDrawObj (sciPointObj * pobj)
 	 if (isaxes) {
 	   char STRFLAG[4];
 	   rebuild_strflag(pobj,STRFLAG);
-	   axis_draw (STRFLAG); 
+	   axis_draw (STRFLAG);
 	 }
 	 
 	 labels2D_draw(pobj); /* F.Leray 18.10.04 : move here to allow labels drawing with isaxes==FALSE */
@@ -11640,7 +11655,7 @@ sciDrawObj (sciPointObj * pobj)
 	   sciDrawObj (psonstmp->pointobj);
 	   psonstmp = psonstmp->pprev;
 	 }
-	 
+
 #ifdef WIN32
 	 if ( flag_DO == 1) ReleaseWinHdc();
 #endif
@@ -11743,7 +11758,8 @@ sciDrawObj (sciPointObj * pobj)
 #endif   
       newfec(xm,ym,pFEC_FEATURE (pobj)->pnoeud,pFEC_FEATURE (pobj)->pfun,
 	     &pFEC_FEATURE (pobj)->Nnode,&pFEC_FEATURE (pobj)->Ntr,
-	     pFEC_FEATURE (pobj)->zminmax,pFEC_FEATURE (pobj)->colminmax);
+	     pFEC_FEATURE (pobj)->zminmax,pFEC_FEATURE (pobj)->colminmax,
+	     pFEC_FEATURE (pobj)->extremes_col);
 #ifdef WIN32
       if ( flag_DO == 1) ReleaseWinHdc();
 #endif

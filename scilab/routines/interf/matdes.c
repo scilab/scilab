@@ -434,7 +434,7 @@ static int get_zminmax(fname,pos,opts)
 /* added by bruno 1/02/2001 on the model of get_nax */
 #define GetColminmax(pos,opts) if ( get_colminmax(fname,pos,opts)==0 ) return 0;
 
-static int def_colminmax[]={1,1};
+static int def_colminmax[]={0,0};
 static int *Colminmax;
 static int get_colminmax(fname,pos,opts) 
      char *fname;
@@ -454,7 +454,7 @@ static int get_colminmax(fname,pos,opts)
       else
 	{
 	  /** global value can be modified  **/
-	  def_colminmax[0] = def_colminmax[1] = 1;
+	  def_colminmax[0] = def_colminmax[1] = 0;
 	  Colminmax=def_colminmax;
 	}
     }
@@ -467,8 +467,50 @@ static int get_colminmax(fname,pos,opts)
   else 
     {
       /** global value can be modified  **/
-      def_colminmax[0] = def_colminmax[1] = 1;
+      def_colminmax[0] = def_colminmax[1] = 0;
       Colminmax=def_colminmax;
+    } 
+  return 1;
+}
+
+/* added by bruno 04 Nov 2004 on the model of get_nax */
+#define GetExtremesCol(pos,opts) if ( get_extremes_col(fname,pos,opts)==0 ) return 0;
+
+static int def_extremes_col[]={-1,-1};
+static int *ExtremesCol;
+static int get_extremes_col(fname,pos,opts) 
+     char *fname;
+     int pos;
+     rhs_opts opts[];
+{
+  int m,n,l,first_opt=FirstOpt(),kopt;
+
+  if (pos < first_opt) 
+    {
+      if (VarType(pos)) 
+	{
+	  GetRhsVar(pos, "i", &m, &n, &l);
+	  CheckLength(pos,m*n,2);
+	  ExtremesCol = istk(l);
+	}
+      else
+	{
+	  /** global value can be modified  **/
+	  def_extremes_col[0] = def_extremes_col[1] = -1;
+	  ExtremesCol = def_extremes_col;
+	}
+    }
+  else if ((kopt=FindOpt("extremes_col",opts))) 
+    {
+      GetRhsVar(kopt, "i", &m, &n, &l);
+      CheckLength(kopt,m*n,2);
+       ExtremesCol=istk(l);
+    }
+  else 
+    {
+      /** global value can be modified  **/
+      def_extremes_col[0] = def_extremes_col[1] = -1;
+      ExtremesCol = def_extremes_col;
     } 
   return 1;
 }
@@ -3578,7 +3620,8 @@ int scifec(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,  mn1;
 
   static rhs_opts opts[]= { {-1,"colminmax","?",0,0,0},
-                            {-1,"leg","?",0,0,0},
+                            {-1,"extremes_col","?",0,0,0},
+			    {-1,"leg","?",0,0,0},
 		            {-1,"nax","?",0,0,0},
 			    {-1,"rect","?",0,0,0},
 			    {-1,"strf","?",0,0,0},
@@ -3590,7 +3633,7 @@ int scifec(fname,fname_len)
     return 0;
   }
 
-  CheckRhs(4,10);
+  CheckRhs(4,11);
 
   if ( get_optionals(fname,opts) == 0) return 0;
    if ( FirstOpt() < 5) {
@@ -3619,6 +3662,7 @@ int scifec(fname,fname_len)
   GetNax(8,opts);
   GetZminmax(9,opts);
   GetColminmax(10,opts);
+  GetExtremesCol(11,opts);
 
   SciWin();
   C2F(scigerase)();
@@ -3643,9 +3687,9 @@ int scifec(fname,fname_len)
   
   /* NG beg */
   if (version_flag() == 0)
-    Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax,flagNax);
+    Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax,ExtremesCol,flagNax);
   else
-    Xfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax);
+    Xfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax,ExtremesCol);
   /* NG end */
   LhsVar(1)=0;
   return 0;

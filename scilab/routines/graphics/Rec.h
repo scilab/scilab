@@ -111,7 +111,7 @@ struct fec_rec {char *name;
 		double *x,*y,*triangles,*func;
 		integer   Nnode,Ntr;
                 double *brect, *zminmax;      /* zminmax added by bruno */
-                integer  *aaint, *colminmax;  /* colminmax added by bruno */
+                integer  *aaint, *colminmax, *extremes_col;  /* colminmax, extremes_col added by bruno */
 		char  *legend,*strflag;
 		char *strflag_kp;
 		double *brect_kp;
