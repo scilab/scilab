@@ -71,6 +71,8 @@ extern void F2C(gain) __PARAMS((ARGS_scicos));
 extern void F2C(cdummy) __PARAMS((ARGS_scicos));
 extern void F2C(dband) __PARAMS((ARGS_scicos));
 extern void F2C(cosblk) __PARAMS((ARGS_scicos));
+extern void F2C(ifthel) __PARAMS((ARGS_scicos));
+extern void F2C(eselect) __PARAMS((ARGS_scicos));
 extern void selector __PARAMS((ARGS_scicos));
 extern void sum __PARAMS((ARGS_scicos));
 extern void prod __PARAMS((ARGS_scicos));
@@ -102,6 +104,7 @@ OpTab tabsim[] ={
 {"dlradp",(ScicosF) F2C(dlradp)},
 {"dollar",(ScicosF) F2C(dollar)},
 {"dsslti",(ScicosF) F2C(dsslti)},
+{"eselect",(ScicosF) F2C(eselect)},
 {"evscpe",(ScicosF) F2C(evscpe)},
 {"evtdly",(ScicosF) F2C(evtdly)},
 {"expblk",(ScicosF) F2C(expblk)},
@@ -112,6 +115,7 @@ OpTab tabsim[] ={
 {"gensin",(ScicosF) F2C(gensin)},
 {"gensqr",(ScicosF) F2C(gensqr)},
 {"hltblk",(ScicosF) F2C(hltblk)},
+{"ifthel",(ScicosF) F2C(ifthel)},
 {"integr",(ScicosF) F2C(integr)},
 {"intplt",(ScicosF) F2C(intplt)},
 {"intpol",(ScicosF) F2C(intpol)},
@@ -168,6 +172,6 @@ OpTab tabsim[] ={
 {"zcross2",(ScicosF) zcross2},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 81 ;
+int ntabsim= 83 ;
 #endif 
 /***********************************/

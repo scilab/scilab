@@ -19,7 +19,7 @@ BLOCKSF=evtdly.obj cstblk.obj \
 	intpol.obj intplt.obj minblk.obj maxblk.obj dlradp.obj  iocopy.obj \
 	sum2.obj sum3.obj delayv.obj mux.obj demux.obj samphold.obj dollar.obj mscope.obj \
 	intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj diffblk.obj constraint.obj \
-	absblk.obj andlog.obj bidon.obj gain.obj cdummy.obj dband.obj cosblk.obj 
+	absblk.obj andlog.obj bidon.obj gain.obj cdummy.obj dband.obj cosblk.obj ifthel.obj eselect.obj
 
 
 BLOCKS_CODE=evtdly.obj cstblk.obj \
@@ -33,7 +33,7 @@ BLOCKS_CODE=evtdly.obj cstblk.obj \
 	intpol.obj intplt.obj minblk.obj maxblk.obj dlradp.obj  iocopy.obj \
 	sum2.obj sum3.obj delayv.obj mux.obj demux.obj samphold.obj dollar.obj mscope.obj \
 	intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj \
-	diffblk.obj constraint.obj
+	diffblk.obj constraint.obj ifthel.obj eselect.obj
 
 
 BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj writeau.obj \
@@ -99,7 +99,7 @@ writef.obj: ../stack.h
 writeau.obj: ../stack.h ../machine.h
 readau.obj: ../machine.h
 grblk.obj: ../machine.h import.h
-scicos.obj: ../machine.h import.h blocks.h ../sun/link.h scicos.h
+scicos.obj: ../machine.h import.h blocks.h ../sun/link.h scicos.h scicos_block.h
 coselm.obj : ../stack.h
 intcos.obj : ../stack.h
 cpass2.obj: ../machine.h cc_pass2.h

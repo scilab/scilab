@@ -16,7 +16,7 @@ BLOCKSF=evtdly.o cstblk.o \
 	intpol.o intplt.o minblk.o maxblk.o dlradp.o  iocopy.o \
 	sum2.o sum3.o delayv.o mux.o demux.o samphold.o dollar.o mscope.o \
 	intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o diffblk.o constraint.o \
-	absblk.o andlog.o bidon.o gain.o cdummy.o dband.o cosblk.o 
+	absblk.o andlog.o bidon.o gain.o cdummy.o dband.o cosblk.o ifthel.o eselect.o
 
 
 BLOCKS_CODE=evtdly.o cstblk.o \
@@ -30,7 +30,7 @@ BLOCKS_CODE=evtdly.o cstblk.o \
 	intpol.o intplt.o minblk.o maxblk.o dlradp.o  iocopy.o \
 	sum2.o sum3.o delayv.o mux.o demux.o samphold.o dollar.o mscope.o \
 	intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o \
-	diffblk.o constraint.o
+	diffblk.o constraint.o ifthel.o eselect.o
 
 
 BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \

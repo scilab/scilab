@@ -1,6 +1,6 @@
 #ifndef __SCICOS_H 
 #define __SCICOS_H 
-
+#include "scicos_block.h"
 /* maximum value for sum of number of inputs and outputs ports of a given 
 block of type 2 */
 #define SZ_SIZE 60
@@ -27,6 +27,7 @@ typedef void (*voidf)();
 #define IP integer*
 #define DP double*
 #define DPP double**
+#define DB scicos_block*
 
 /*                    flag  nclock ntvec  rpar  nrpar ipar  nipar  u  nu */
 #define ARGS_scicosm1 IP,    IP,    IP,    DP,   IP,  IP,   IP,   DP, IP
@@ -53,6 +54,9 @@ typedef void (*voidf)();
 /*        flag   nclockf t   residual xd   x    nx   z   nz   tvec   ntvec  rpar  nrpar ipar  nipar   args_in sz_in, n_in  args_out sz_out, n_out g ng */
 #define ARGS_scicosi2z IP,IP,DP,DP,DP,DP,IP,DP,IP,DP,IP,DP,IP,IP,IP,DPP,IP,IP,DPP,IP,IP,DP,IP
 
+/*        flag   nclockf t block*/
+#define ARGS_scicos4 IP,IP,DP,DB
+
 
 typedef void (*ScicosFm1) __PARAMS((ARGS_scicosm1));
 typedef void (*ScicosF0) __PARAMS((ARGS_scicos0));
@@ -62,6 +66,7 @@ typedef void (*ScicosF2z) __PARAMS((ARGS_scicos2z));
 typedef void (*ScicosFi) __PARAMS((ARGS_scicosi));
 typedef void (*ScicosFi2) __PARAMS((ARGS_scicosi2));
 typedef void (*ScicosFi2z) __PARAMS((ARGS_scicosi2z));
+typedef void (*ScicosF4) __PARAMS((ARGS_scicos4));
 
 typedef  struct  {
   char *name;

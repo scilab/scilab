@@ -6,7 +6,7 @@
 #include "scicos.h"
 #include "import.h"
 #include "blocks.h"
-#include "scicos_block.h"
+/*#include "scicos_block.h"*/
 
 
 #ifdef FORDLL 
@@ -388,6 +388,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
        return 0;
      }
    }
+   Blocks[kf].ztyp=ztyp[kf+1];
    Blocks[kf].nx=xptr[kf+2]-xptr[kf+1];
    Blocks[kf].ng=zcptr[kf+2]-zcptr[kf+1];
    Blocks[kf].nz=zptr[kf+2]-zptr[kf+1];
@@ -1835,24 +1836,70 @@ callf(t,xtd,xt,residual,g,flag)
   ScicosFi loci1;
   ScicosFi2 loci2;
   ScicosFi2z loci2z;
-  integer kfun,typz;
+  ScicosF4 loc4;
+  integer typz;
 
   
-  kfun=C2F(curblk).kfun;
+  kf=C2F(curblk).kfun;
   if ( cosd > 1){
-    sciprint("block %d is called ",kfun);
+    sciprint("block %d is called ",kf);
     sciprint("with flag %d ",*flag);
     sciprint("at time %f \r\n",*t);
   }
-  kf=kfun;
   flagi=*flag; /* flag 7 implicit initialization */
+
+
+
   if(flagi==7 && funtype<10000) *flag=0;
+
+
   loc=Blocks[kf-1].funpt;
   funtype=Blocks[kf-1].type;
+  if (funtype==4||funtype==10004) {
+    loc4 = (ScicosF4) loc;
+    if(nx==0){
+      (*loc4)(flag,&nclock,t,&Blocks[kf-1]);
+    } 
+    else {
+      nzc=Blocks[kf-1].ng;
+      if(nzc>0){
+	Blocks[kf-1].g=&g[zcptr[kf]-1];
+      }
+      Blocks[kf-1].x=&xt[xptr[kf]-1];
+      if(funtype==4) {
+	if(*flag==0 && solver==100) {
+	  Blocks[kf-1].xd=&residual[xptr[kf]-1];
+	  (*loc4)(flag,&nclock,t,&Blocks[kf-1]);
+	  if(flagi!=7) {
+	    for (k=0;k<nx;k++) {
+	      Blocks[kf-1].res[k]=Blocks[kf-1].res[k]-Blocks[kf-1].xd[k];
+	    }
+	  }
+	  else {
+	    for (k=0;k<nx;k++) {
+	      Blocks[kf-1].xd[k]=Blocks[kf-1].res[k];
+	    } 
+	  }
+	}
+	else {
+	  Blocks[kf-1].xd=&xtd[xptr[kf]-1];
+	  (*loc4)(flag,&nclock,t,&Blocks[kf-1]);
+	}
+      }
+      else {
+	Blocks[kf-1].xd=&xtd[xptr[kf]-1];
+	Blocks[kf-1].res=&residual[xptr[kf]-1];
+	(*loc4)(flag,&nclock,t,&Blocks[kf-1]);
+      }
+    }
+    return;
+  }
   
   C2F(scsptr).ptr=Blocks[kf-1].scsptr; /* set scilab function adress for sciblk */
 
-  typz=ztyp[kf];
+  
+
+  typz=Blocks[kf-1].ztyp;
   nx=Blocks[kf-1].nx;
   nzc=Blocks[kf-1].ng;
   nz=Blocks[kf-1].nz;
@@ -1861,6 +1908,18 @@ callf(t,xtd,xt,residual,g,flag)
   nin=Blocks[kf-1].nin;
   noutc=Blocks[kf-1].nout;
   ntvec=Blocks[kf-1].nevout;
+
+  if(typz>0){
+    Blocks[kf-1].g=&g[zcptr[kf]-1];
+  }
+  if(nx>0){
+    Blocks[kf-1].x=&xt[xptr[kf]-1];
+    Blocks[kf-1].xd=&xtd[xptr[kf]-1];
+    if(solver==100) {
+      Blocks[kf-1].res=&residual[xptr[kf]-1];
+    }
+  }
+
   switch (funtype) {
 
   case 1 :			
@@ -1881,7 +1940,7 @@ callf(t,xtd,xt,residual,g,flag)
     }
     loc1 = (ScicosF) loc;
     if (solver==100) {
-      (*loc1)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+      (*loc1)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&nx,
 	      Blocks[kf-1].z,&nz,
 	      tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
 	      Blocks[kf-1].ipar,&nipar,
@@ -1897,7 +1956,7 @@ callf(t,xtd,xt,residual,g,flag)
 	      (double *)args[17],&sz[17]); 
     }
     else {
-      (*loc1)(flag,&nclock,t,&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+      (*loc1)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&nx,
 	      Blocks[kf-1].z,&nz,
 	      tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
 	      Blocks[kf-1].ipar,&nipar,
@@ -1969,13 +2028,13 @@ callf(t,xtd,xt,residual,g,flag)
 
     loc0 = (ScicosF0) loc;
     if (solver==100) {
-      (*loc0)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,&(z__[zptr[kf]-1]),&nz,
+      (*loc0)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&nx,&(z__[zptr[kf]-1]),&nz,
 	      tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
 	      &(ipar[ipptr[kf]-1]),&nipar,(double *)args[0],&ni,
 	      (double *)args[1],&no);
     }
     else {
-      (*loc0)(flag,&nclock,t,&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,&(z__[zptr[kf]-1]),&nz,
+      (*loc0)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&nx,&(z__[zptr[kf]-1]),&nz,
 	      tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
 	      &(ipar[ipptr[kf]-1]),&nipar,(double *)args[0],&ni,
 	      (double *)args[1],&no);
@@ -1998,7 +2057,7 @@ callf(t,xtd,xt,residual,g,flag)
     if (solver==100) {
       if (typz==0){
 	loc2 = (ScicosF2) loc;
-	(*loc2)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+	(*loc2)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&nx,
 		Blocks[kf-1].z,&nz,
 		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
 		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
@@ -2006,7 +2065,7 @@ callf(t,xtd,xt,residual,g,flag)
       }
       else{
 	loc2z = (ScicosF2z) loc;
-	(*loc2z)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+	(*loc2z)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&nx,
 		Blocks[kf-1].z,&nz,
 		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
 		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
@@ -2016,7 +2075,7 @@ callf(t,xtd,xt,residual,g,flag)
     else {
       if (typz==0){
 	loc2 = (ScicosF2) loc;
-	(*loc2)(flag,&nclock,t,&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+	(*loc2)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&nx,
 		Blocks[kf-1].z,&nz,
 		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
 		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
@@ -2024,7 +2083,7 @@ callf(t,xtd,xt,residual,g,flag)
       }
       else{
 	loc2z = (ScicosF2z) loc;
-	(*loc2z)(flag,&nclock,t,&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+	(*loc2z)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&nx,
 		 Blocks[kf-1].z,&nz,
 		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
 		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
@@ -2035,68 +2094,59 @@ callf(t,xtd,xt,residual,g,flag)
   case 10001 :			
     /* implicit block one entry for each input or output */
     for (in = 0 ; in < nin ; in++) 
+      for (in = 0 ; in < nin ; in++) 
       {
-	lprt=inplnk[inpptr[kf]+in];
-	args[in]=&(outtb[lnkptr[lprt]-1]);
-	sz[in]=lnkptr[lprt+1]-lnkptr[lprt];
+	args[in]=Blocks[kf-1].inptr[in];
+	sz[in]=Blocks[kf-1].insz[in];
       }
     for (out=0;out<noutc;out++) {
-      lprt=outlnk[outptr[kf]+out];
-      args[in+out]=&(outtb[lnkptr[lprt]-1]);
-      sz[in+out]=lnkptr[lprt+1]-lnkptr[lprt];
+      args[in+out]=Blocks[kf-1].outptr[out];
+      sz[in+out]=Blocks[kf-1].outsz[out];
     }
     if(typz>0){
-      args[nin+noutc]=&(g[zcptr[kf]-1]);
-      sz[nin+noutc]=nzc;
+      Blocks[kf-1].g=&g[zcptr[kf]-1];
+      args[nin+noutc]=Blocks[kf-1].g;
+      sz[nin+noutc]=Blocks[kf-1].ng;
     }
     loci1 = (ScicosFi) loc;
 
-    (*loci1)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),
-	     &nx,&(z__[zptr[kf]-1]),&nz,
-	     tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-	     &(ipar[ipptr[kf]-1]),&nipar,
-	     (double *)args[0],&sz[0],
-	     (double *)args[1],&sz[1],(double *)args[2],&sz[2],
-	     (double *)args[3],&sz[3],(double *)args[4],&sz[4],
-	     (double *)args[5],&sz[5],(double *)args[6],&sz[6],
-	     (double *)args[7],&sz[7],(double *)args[8],&sz[8],
-	     (double *)args[9],&sz[9],(double *)args[10],&sz[10],
-	     (double *)args[11],&sz[11],(double *)args[12],&sz[12],
-	     (double *)args[13],&sz[13],(double *)args[14],&sz[14],
-	     (double *)args[15],&sz[15],(double *)args[16],&sz[16],
-	     (double *)args[17],&sz[17]); 
+    (*loci1)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].xd,Blocks[kf-1].x,
+	     &nx,Blocks[kf-1].z,&nz,
+	      tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
+	      Blocks[kf-1].ipar,&nipar,
+	      (double *)args[0],&sz[0],
+	      (double *)args[1],&sz[1],(double *)args[2],&sz[2],
+	      (double *)args[3],&sz[3],(double *)args[4],&sz[4],
+	      (double *)args[5],&sz[5],(double *)args[6],&sz[6],
+	      (double *)args[7],&sz[7],(double *)args[8],&sz[8],
+	      (double *)args[9],&sz[9],(double *)args[10],&sz[10],
+	      (double *)args[11],&sz[11],(double *)args[12],&sz[12],
+	      (double *)args[13],&sz[13],(double *)args[14],&sz[14],
+	      (double *)args[15],&sz[15],(double *)args[16],&sz[16],
+	      (double *)args[17],&sz[17]); 
     break; 
   case 10002 :			
     /* implicit block, inputs and outputs given by a table of pointers */
-    for (in=0;in<nin;in++) {
-      lprt=inplnk[inpptr[kf]+in];
-      args[in]=&(outtb[lnkptr[lprt]-1]);
-      sz[in]=lnkptr[lprt+1]-lnkptr[lprt];
-    }
-    for (out=0;out<noutc;out++) {
-      lprt=outlnk[outptr[kf]+out];
-      args[in+out]=&(outtb[lnkptr[lprt]-1]);
-      sz[in+out]=lnkptr[lprt+1]-lnkptr[lprt];
-    }
+   
     if(typz==0) {
       loci2 = (ScicosFi2) loc;
       
-      (*loci2)(flag,&nclock,t,&(residual[xptr[kf]-1]),
-	       &(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
-	       &(z__[zptr[kf]-1]),&nz,
-	       tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-	       &(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
-	       &(args[in]),&(sz[in]),&noutc);
+      (*loci2)(flag,&nclock,t,Blocks[kf-1].res,
+	       Blocks[kf-1].xd,Blocks[kf-1].x,&nx,
+	       Blocks[kf-1].z,&nz,
+		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
+		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
+		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc);
     }
     else {
       loci2z = (ScicosFi2z) loc;
       
-      (*loci2z)(flag,&nclock,t,&(residual[xptr[kf]-1]),
-		&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
-		&(z__[zptr[kf]-1]),&nz,
-		tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-		&(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
-		&(args[in]),&(sz[in]),&noutc,&(g[zcptr[kf]-1]),&nzc);
+      (*loci2z)(flag,&nclock,t,Blocks[kf-1].res,
+		Blocks[kf-1].xd,Blocks[kf-1].x,&nx,
+		Blocks[kf-1].z,&nz,
+		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
+		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
+		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc,&(g[zcptr[kf]-1]),&nzc);
     }
     break;  
   default:
@@ -2108,12 +2158,12 @@ callf(t,xtd,xt,residual,g,flag)
 
     if(flagi!=7) {
       for (k=0;k<nx;k++) {
-	residual[xptr[kf]-1+k]=residual[xptr[kf]-1+k]-xtd[xptr[kf]-1+k];
+	Blocks[kf-1].res[k]=Blocks[kf-1].res[k]-Blocks[kf-1].xd[k];
       }
     }
     else {
       for (k=0;k<nx;k++) {
-	xtd[xptr[kf]-1+k]=residual[xptr[kf]-1+k];
+	Blocks[kf-1].xd[k]=Blocks[kf-1].res[k];
       } 
     }
   }

@@ -1,5 +1,7 @@
+typedef void (*voidg)();
+
 typedef struct {
-  voidf funpt ;
+  voidg funpt ;
   int type;
   int scsptr;
   int nz;
@@ -21,4 +23,5 @@ typedef struct {
   int *ipar;
   int ng;
   double *g;
+  int ztyp;
 } scicos_block;
