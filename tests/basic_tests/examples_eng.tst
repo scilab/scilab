@@ -3501,7 +3501,8 @@ file('close',u)
 u1=file('open',TMPDIR+'/foo','unknown')
 u2=mopen(TMPDIR+'/foo1','wb')
 [units,typs,nams]=file()
-
+file('close',u1);
+mclose(u2);
 xdel(winsid())
 
 //====================================================
@@ -4565,7 +4566,7 @@ clear;lines(0);
    set("figure_style","new") //create a figure
    a=get("current_axes")//get the handle of the newly created axes
    a.axes_visible="on"; // makes the axes visible
-   a.tics_textsize=3; //set the tics label font size
+   a.font_size=3; //set the tics label font size
    a.x_location="top"; //set the x axis position
    a.data_bounds=[-100,100,-2,2,-1,1]; //set the boundary values for the x, y and z coordinates.
    a.sub_tics=[5,0];
@@ -5108,7 +5109,8 @@ clear;lines(0);
    a=get("current_axes");
    f=a.children.children(2)
    f.data(:,3)=(1:size(f.data,1))';
-   a.parent.color_map=hotcolormap(64);
+   fig=a.parent;
+   fig.color_map=hotcolormap(64);
 
 
 xdel(winsid())
@@ -5755,12 +5757,13 @@ clear;lines(0);
    param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
  
    h=a.children //get the handle of the param3d entity
-   h.rotation_angles=[65,75];
-   h.surface_color=[3 5];
-   h.flag=[1,2,3];
-   h.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
-   h.flag=[2 5 0];
-   h.thickness = 2;
+   hh=h.parent;
+   hh.rotation_angles=[65,75];
+   //h.surface_color=[3 5];
+   //hh.flag=[1,2,3];
+   hh.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
+   //hh.flag=[2 5 0];
+   hh.thickness = 2;
   
 
 xdel(winsid())
@@ -6740,7 +6743,7 @@ xdel(winsid())
 // ../man/eng/graphics/xinit.xml
 //====================================================
 clear;lines(0);
-
+set old_style on
 driver("Pos")
 xinit("foo.ps")
 plot2d()
@@ -6748,6 +6751,7 @@ xend()
 driver("X11")
 
 xdel(winsid())
+set old_style off
 
 //====================================================
 // ../man/eng/graphics/xlfont.xml
@@ -14515,7 +14519,7 @@ xdel(winsid())
 clear;lines(0);
  
    scipad SCI/scilab.star 
-]]>
+
 xdel(winsid())
 
 //====================================================
