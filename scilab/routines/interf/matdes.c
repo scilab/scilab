@@ -3077,7 +3077,7 @@ int scixset(fname,fname_len)
       Scierror(999,"%s: It was not possible to create the requested figure",fname);
     }
 
-  if (version_flag() == 0)
+  if (version_flag() == 0&&strcmp(cstk(l1),"wshow")!=0)
     {
       subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
       if (( strncmp(cstk(l1),"foreground",10) == 0) || (strcmp(cstk(l1),"color") == 0) ||( strncmp(cstk(l1),"pattern",7) == 0) ) {
