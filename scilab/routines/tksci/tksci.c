@@ -42,9 +42,6 @@ void flushTKEvents()
 {
   while (Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT)==1)
   {
-	  #if WIN32
-	  Sleep(1);
-	  #endif
   }
 }
 
