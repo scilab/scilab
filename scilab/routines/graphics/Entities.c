@@ -855,12 +855,14 @@ sciCloneColormap (sciPointObj * pobj)
 int
 sciSetBackground (sciPointObj * pobj, int colorindex)
 {
+  int zero = 0;
   /* code taken in void C2F(setbackground)(num, v2, v3, v4) from JPC */
   if (sciGetScilabXgc (pobj)->CurColorStatus == 1)
     {
       /* COLORREF px;                           COLORREF ? "periWin-bgc"*/
       sciGetScilabXgc (pobj)->NumBackground =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      C2F (dr) ("xset", "background",&colorindex,&colorindex,&zero,&zero,&zero,PI0,PD0,PD0,PD0,PD0,0L,0L);/* DJ.A 07/01/2004 */
       C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
 	      PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
@@ -10078,7 +10080,6 @@ sciDrawObj (sciPointObj * pobj)
        flag=MaybeSetWinhdc();
 #endif
       C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
-      C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
       C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
 #ifdef WIN32
       if ( flag == 1) ReleaseWinHdc();
