@@ -59,8 +59,8 @@ for k=1:macrhs
 end
 
 // Add predefined variables in the defined variables
-varslist($+1)=M2scivar("%i","i",Infer(list(1,1),Type(Double,Complex)))
-varslist($+1)=M2scivar("%i","j",Infer(list(1,1),Type(Double,Complex)))
+varslist($+1)=M2scivar("%i","%i",Infer(list(1,1),Type(Double,Complex)))
+varslist($+1)=M2scivar("%i","%j",Infer(list(1,1),Type(Double,Complex)))
 varslist($+1)=M2scivar("%nan","NaN",Infer(list(1,1),Type(Double,Real)))
 varslist($+1)=M2scivar("%nan","nan",Infer(list(1,1),Type(Double,Real)))
 varslist($+1)=M2scivar("%inf","Inf",Infer(list(1,1),Type(Double,Real)))
