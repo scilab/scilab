@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_logical</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_logical">Matlab logical emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>There is no Scilab equivalent function for Matlab <VERB>logical</VERB> but its behavior can be easyly reproduced.</P>
+    <P>
+    The function <VERB>mtlb_logical(A)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>logical(A)</VERB> when it was not
+    possible to know what was the input while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_logical</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is a boolean matrix
+        <VERB>mtlb_logical(A)</VERB> may be replaced by <VERB>A</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is not an empty matrix
+        <VERB>mtlb_logical(A)</VERB> may be replaced by <VERB>A&lt;&gt;[]</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is an empty matrix
+        <VERB>mtlb_logical(A)</VERB> may be replaced by <VERB>[]</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_logical</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!-- When this file is modified please also modify mtlb_upper.xml -->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_lower</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_lower">Matlab lower emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab <VERB>lower(A)</VERB> and Scilab <VERB>convstr(A,&quot;l&quot;)</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is not a chacarter string matrix: Matlab <VERB>lower</VERB> can be used with a
+	not-character-string <VERB>A</VERB> but not Scilab <VERB>convstr</VERB>.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_lower(A)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>lower(A)</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_lower</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is a character string matrix
+        <VERB>mtlb_lower(A)</VERB> may be replaced by <VERB>convstr(A,&quot;l&quot;)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is not a character string matrix
+        <VERB>mtlb_lower(A)</VERB> may be replaced by <VERB>A</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_lower</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>convstr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

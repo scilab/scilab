@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_isspace</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Avril 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_isspace">Fonction d'émulation de la fonction Matlab isspace</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Il n'y a pas de fonction Scilab équivalente à la fonction Matlab <VERB>isspace</VERB>
+    mais son comportement peut être reproduit.</P>
+
+    <P>
+    La fonction <VERB>mtlb_isspace(A)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>isspace(A)</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_isspace</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> est une matrice de chaînes de caractères
+        <VERB>mtlb_isspace(A)</VERB> peut être remplacé par <VERB>asciimat(A)==32</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> n'est pas une matrice de chaînes de caractères
+        <VERB>mtlb_isspace(A)</VERB> peut être remplacé par <VERB>zeros(A)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_isspace</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>asciimat</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!-- When this file is modified please also modify mtlb_uint16.xml and mtlb_uint32.xml-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_uint8</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_uint8">Matlab uint8 emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>uint8</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With complex input: Matlab <VERB>uint8</VERB> can be used with complex values what Scilab function can not.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With <VERB>%inf</VERB>: Matlab <VERB>uint8</VERB> returns 255 and Scilab returns 0.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_uint8(A)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>uint8(A)</VERB> when it was not
+    possible to know what was the input while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_uint8</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> does not contain <VERB>%inf</VERB> values
+        <VERB>mtlb_uint8(A)</VERB> may be replaced by <VERB>uint8(A)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_uint8</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!-- When this file is modified please also modify mtlb_upper.xml -->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_lower</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Avril 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_lower">Fonction d'émulation de la fonction Matlab lower</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Dans plusieurs cas particuliers, la fonction Matlab <VERB>lower(A)</VERB> et la fonction Scilab
+    <VERB>convstr(A,&quot;l&quot;)</VERB> se comportent différemment :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> n'est pas une chaîne de caractères : la fonction Matlab <VERB>lower</VERB> peut être utilisée
+	avec <VERB>A</VERB> n'étant pas une chaîne de caractères mais pas la fonction Scilab <VERB>convstr</VERB>.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_lower(A)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>lower(A)</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_lower</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> est une matrice de chaînes de caractères
+        <VERB>mtlb_lower(A)</VERB> peut être remplacé par <VERB>convstr(A,&quot;l&quot;)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> n'est pas une matrice de chaînes de caractères
+        <VERB>mtlb_lower(A)</VERB> peut être remplacé par <VERB>A</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_lower</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>convstr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
