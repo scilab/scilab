@@ -31,8 +31,8 @@ for k=newparameters
     [fun,statek,dstatek,rpark,ipark]=(om.sim,om.state,om.dstate,om.rpar,om.ipar);
     if type(fun)==15 then
       if fun(2)==3 then 
-        rpark=var2vec(rpark),
-        dstatek=var2vec(dstatek),
+	if rpark<>[] then rpark=var2vec(rpark); end
+        if dstatek<>[] then dstatek=var2vec(dstatek),end
       elseif fun(2)>10000 then
 	statekd=statek($/2+1:$)
 	statek=statek(1:$/2)
