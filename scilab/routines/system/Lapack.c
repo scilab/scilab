@@ -224,6 +224,8 @@ Lapack_contents(x)
 	C2F(zlatrz)();
 	C2F(zunmr3)();
 	C2F(zlarz)();
+	C2F(dgeev)();
+	C2F(zgeev)();
 }
 }
 
