@@ -291,20 +291,20 @@ function t=mytest(Alpha,Beta),t=real(Alpha)<0,endfunction
 [As,Es,Z,dim] = schur(A,E,mytest)
 
 //the same function in Fortran (a Compiler is required)
-ftn=['integer function mytest(ar,ai,b)' //the fortran code
+ftn=['integer function mytestf(ar,ai,b)' //the fortran code
       'double precision ar,ai,b'
-      'mytest=0'
-      'if(ar.lt.0.0d0) mytest=1'
+      'mytestf=0'
+      'if(ar.lt.0.0d0) mytestf=1'
       'end']
-mputl('      '+ftn,TMPDIR+'/mytest.f')
+mputl('      '+ftn,TMPDIR+'/mytestf.f')
 
 //build and link
-lp=ilib_for_link('mytest','mytest.o',[],'F',TMPDIR+'/Makefile');
-link(lp,'mytest','f'); 
+lp=ilib_for_link('mytestf','mytestf.o',[],'F',TMPDIR+'/Makefile');
+link(lp,'mytestf','f'); 
 
 //run it
 
-[As,Es,Z,dim] = schur(A,E,'mytest')
+[As,Es,Z,dim] = schur(A,E,'mytestf')
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM><LINK>spec</LINK></SEE_ALSO_ITEM>
