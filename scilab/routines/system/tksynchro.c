@@ -19,16 +19,15 @@ void C2F(tksynchro)(l)
 
 
   if (TK_Started) {
-#ifdef WIN32 
     int RET;
 
     sprintf(str,"scipad eval {set sciprompt %d}",*l);
     RET=Tcl_Eval(TKinterp,str);
-#else
-    if (!Tcl_SetVar(TKinterp, "sciprompt", str, 0)) {
+
+    /*    if (!Tcl_SetVar(TKinterp, "sciprompt", str, 0)) {
       InterfError("TK_SetVar : Could set Tcl Var \n");
-    }
-#endif
+      }*/
+
   }
 #endif
 }
