@@ -1839,7 +1839,7 @@ c
 c     U = chol(A)
 
       include '../stack.h'
-      logical getrhsvar,createvar
+      logical getrhsvar
       logical checklhs,checkrhs
       character fname*(*)
 c     
@@ -1885,7 +1885,7 @@ c
 c     U = chol(A)
 
       include '../stack.h'
-      logical getrhsvar,createvar
+      logical getrhsvar
       logical checklhs,checkrhs
       complex*16 ZERO
       parameter ( ZERO = (0.0d0,0.0d0) )
@@ -2648,7 +2648,7 @@ c     [VS,T]=schur(A)
       character fname*(*)
       character*4 JOBVS, SORT
       integer SDIM
-      logical lsame, voiddummy
+      logical voiddummy
       external voiddummy
 
        minrhs=1
@@ -2736,7 +2736,7 @@ c     type is r or c
      
       character TYPE, JOBVS, SORT
       integer SDIM
-      logical lsame, voiddummy, WANTD, WANTZ
+      logical  voiddummy, WANTD, WANTZ
       double precision ZERO
       parameter (ZERO = 0.0D0)
       complex*16 complex
@@ -2994,7 +2994,6 @@ c     stk(lx)=fct([re,im])  evaluated by scilab fct pointed to by lf
 c    checks fct passed to schur
       INCLUDE '../stack.h'
       logical scifunction, createvar
-      double precision re, im
 c     
       integer iadr
       common/ierinv/iero
@@ -3036,7 +3035,6 @@ c     [VS,T]=schur(A)
       character fname*(*)
       character  JOBVS, SORT
       integer SDIM
-      logical lsame
       logical voiddummy
       external voiddummy
 
@@ -3120,7 +3118,7 @@ c     type is complex
       character fname*(*)
       character  TYPE, JOBVS, SORT
       integer SDIM
-      logical lsame, voiddummy, WANTZ
+      logical voiddummy, WANTZ
       external voiddummy
 
        minrhs=2
@@ -3734,7 +3732,6 @@ c     stk(lx)=fct([alphar,alphai,beta])  evaluated by scilab fct pointed to by l
 c    checks fct passed to gschur
       INCLUDE '../stack.h'
       logical scifunction, createvar
-      double precision alphar, alphai, beta
 c     
       integer iadr
       common/ierinv/iero
