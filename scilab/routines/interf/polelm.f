@@ -276,15 +276,14 @@ c     polynome defini par ses coefficients
          call error(53)
          return
       endif
+      if(mn1.eq.0) return
+
       if(n1.ne.1.and.m1.ne.1) then
          err=1
          call error(89)
          return
       endif
-      if(mn1.le.0) then
-         call error(42)
-         return
-      endif
+
       lr=sadr(ilr+10)
       err=lr+mn1*(it1+1)-lstk(bot)
       if(err.gt.0) then
