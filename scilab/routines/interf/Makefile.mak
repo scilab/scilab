@@ -55,8 +55,8 @@ Makefile.amk	: Makefile
 
 # some versions of g77 on sparc will compile intmgetl.f
 # but the code does not execute properly.
-intmgetl.obj: intmgetl.f ../stack.h
-	$(FC) -g -c intmgetl.f -o intmgetl.obj
+# intmgetl.obj: intmgetl.f ../stack.h
+# 	$(FC) -g -c intmgetl.f -o intmgetl.obj
 
 bva.obj: ../stack.h
 comm.obj: ../stack.h
