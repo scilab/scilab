@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.63 $)dnl
+AC_REVISION($Revision: 1.64 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -568,6 +568,58 @@ case "$host" in
     FC_LDFLAGS="$LIEEELIB -ldl -rdynamic"
     LD=ld
     LD_LDFLAGS=$LIEEELIB
+    if test "$enable_debug" = yes; then 
+      CC_OPTIONS='-g -Wall -Dlinux -fwritable-strings -DNARROWPROTO'
+      FC_OPTIONS=-g
+    fi
+    MAKEFILE_TARGET=Makefile.linux
+   ;;
+# Linux gnu: ia64 distributions 
+  ia64-*-linux-gnu)
+    LIEEELIB=
+    AC_CHECK_LIB(ieee,main,
+      [LIEEELIB=-lieee])
+    MALLOC= malloc.o
+    GCC=yes
+    CC=cc
+    CC_OPTIONS='-O -Dlinux -fwritable-strings -DNARROWPROTO'
+    CC_LDFLAGS=$LIEEELIB
+    CC_PICFLAGS=-fPIC
+    # find Fortran compiler
+    # g77 already asked and found: good
+    if test "$WITH_G77" = yes; then
+      FC=g77
+      FC_PICFLAGS=-fPIC
+    # option with-f2c
+    elif test "$with_f2c" = yes; then
+      AC_CHECK_PROG(F2C,f2c,yes,no)
+      if test "$F2C" = no; then
+        AC_MSG_ERROR([Unable to configure: f2c compiler not found])
+      fi
+      # script shell f77 have bugs, get ours
+      FC='${SCIDIR}/bin/f77-linux'
+    else
+      # first find g77
+      AC_CHECK_PROG(WITH_G77,g77,yes,no)
+      if test "$WITH_G77" = yes; then
+        FC=g77
+        FC_PICFLAGS=-fPIC
+      else
+      # otherwise find f2c
+        AC_CHECK_PROG(F2C,f2c,yes,no)
+        if test "$F2C" = yes; then
+          # script shell f77 have bugs, get ours
+          FC='${SCIDIR}/bin/f77-linux'
+        else
+          AC_MSG_ERROR([Unable to configure: no Fortran compiler found])    
+        fi
+      fi
+    fi
+    FC_OPTIONS=-O
+    FC_OPTIONS_O0=
+    FC_LDFLAGS="$LIEEELIB -ldl -rdynamic -Wl,-relax"
+    LD=ld
+    LD_LDFLAGS=$LIEEELIB  -Wl,-relax
     if test "$enable_debug" = yes; then 
       CC_OPTIONS='-g -Wall -Dlinux -fwritable-strings -DNARROWPROTO'
       FC_OPTIONS=-g
