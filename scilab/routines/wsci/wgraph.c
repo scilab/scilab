@@ -1188,9 +1188,7 @@ static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int he
   C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
   if (version_flag() == 0)
     {
-      sciSetReplay (TRUE);
       sciRedrawF(&win_num); /* NG */
-      sciSetReplay (FALSE);
     }
   else
     C2F (dr) ("xreplay", "v", &win_num, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
