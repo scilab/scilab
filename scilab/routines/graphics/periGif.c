@@ -816,15 +816,15 @@ void setcolormapgGif(struct  BCG *Xgc,integer *v1,integer *v2, double *a);/* NG 
 
 void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
 {
-  int i,r,g,b,c,ierr,m1;
+  int i,j,r,g,b,c,ierr,m1;
   double *cmap;
   int *ind,i1;
-
+  int old_white,old_black;
   if (GifIm == (gdImagePtr)0 ) {
     sciprint(" xinit must be called before any action \r\n");
     return;
   }
-
+  
   /* Checking RGB values */
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
@@ -833,8 +833,8 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
       return;
     }
   }
-
-   
+  old_white=col_index[Xgc->Numcolors+1];
+  old_black=col_index[Xgc->Numcolors];
   /* deallocate old colors*/
   for ( i=0; i < GifIm->colorsTotal; i++) 
     gdImageColorDeallocate(GifIm, i);
@@ -864,8 +864,8 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
 	if (r==255 && g==255 && b==255) {
 	/* move white a little to distinguish it from the background */
 	r=254;g=254;b=254; }
-      c = gdImageColorExact(GifIm, r,g,b);
-      if (c == -1)
+	/*c = gdImageColorExact(GifIm, r,g,b);
+	  if (c == -1)*/
 	c = gdImageColorAllocate(GifIm,r,g,b);
       col_index[i] = c;
       }
@@ -882,20 +882,20 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
       if (r==255&&g==255&&b==255) {
 	/* move white a little to distinguish it from the background */
 	r=254;g=254;b=254; }
-      c = gdImageColorExact(GifIm, r,g,b);
-      if (c == -1)
+      /*c = gdImageColorExact(GifIm, r,g,b);
+	if (c == -1)*/
 	c = gdImageColorAllocate(GifIm,r,g,b);
       col_index[i] = c;
     }
   }
   /* adding white and black color at the end */
-  c = gdImageColorExact(GifIm, 0,0,0);
-  if (c == -1) 
-    c = gdImageColorAllocate(GifIm,0,0,0);
+  /*c = gdImageColorExact(GifIm, 0,0,0);
+  if (c == -1) */
+  c = gdImageColorAllocate(GifIm,0,0,0);
   col_index[m]=c;
-  c = gdImageColorExact(GifIm, 255,255,255);
-  if (c == -1) 
-    c = gdImageColorAllocate(GifIm,255,255,255);
+  /*c = gdImageColorExact(GifIm, 255,255,255);
+  if (c == -1) */
+  c = gdImageColorAllocate(GifIm,255,255,255);
   col_index[m+1]=c;
   col_white=c;
 
@@ -908,8 +908,20 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
   C2F(setalufunction1Gif)((i=3,&i),PI0,PI0,PI0);
   C2F(setpatternGif)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);  
 
+  /* next line added to change the pixel color index for pixel painted with 
+     the default white and black*/
+
+  for (i=0;i<Xgc->CWindowWidth-1;i++) {
+    for (j=0;j<Xgc->CWindowHeight-1;j++) {
+      c=gdImageGetPixel(GifIm, i, j);
+      if(c==old_white)
+	gdImageSetPixel(GifIm, i, j,col_index[m+1]);
+      else if (c==old_black)
+	gdImageSetPixel(GifIm, i, j,col_index[m]);
+    }
+  }
   /* next line added by bruno (7 dec 2004) to (badly) correct the bug 1112 */
-  gdImageFilledRectangle(GifIm, 0, 0, Xgc->CWindowWidth-1, Xgc->CWindowHeight-1, col_white);
+   /* gdImageFilledRectangle(GifIm, 0, 0, Xgc->CWindowWidth-1, Xgc->CWindowHeight-1, col_white);*/
   /* Note: Fabrice has also added some code in clearwindowgif function but this doesn't */
   /* correct the problem for the old graphic mode (rmk: this added line seems to correct  */
   /* the bug for both mode) */
@@ -963,13 +975,13 @@ static void ColorInitGif(void)
     col_index[i] = gdImageColorAllocate(GifIm,r,g,b);
   }
   /* add black and white at the end of the colormap */
-  c = gdImageColorExact(GifIm, 0,0,0);
-  if (c == -1) 
-    c = gdImageColorAllocate(GifIm,0,0,0);
+  /*c = gdImageColorExact(GifIm, 0,0,0);
+    if (c == -1) */
+  c = gdImageColorAllocate(GifIm,0,0,0);
   col_index[m]=c;
-  c = gdImageColorExact(GifIm, 255,255,255);
-  if (c == -1) 
-    c = gdImageColorAllocate(GifIm,255,255,255);
+  /*c = gdImageColorExact(GifIm, 255,255,255);
+    if (c == -1) */
+  c = gdImageColorAllocate(GifIm,255,255,255);
   col_index[m+1]=c;
   col_white=col_index[m+1];
   ScilabGCGif.NumForeground = m;
@@ -1853,9 +1865,9 @@ static void FileInitGif(void)
 	if (r==255&&g==255&&b==255) {
 	  /* move white a little to distinguish it from the background */
 	  r=254;g=254;b=254; }
-	c = gdImageColorExact(GifIm, r,g,b);
-	if (c == -1)
-	  c = gdImageColorAllocate(GifIm,r,g,b);
+	/*	c = gdImageColorExact(GifIm, r,g,b);
+		if (c == -1)*/
+	c = gdImageColorAllocate(GifIm,r,g,b);
 	col_index[i] = c;
       }
       free(ind);
@@ -1872,20 +1884,20 @@ static void FileInitGif(void)
 	r = (int)(R*255);
 	g = (int)(G*255);
 	b = (int)(B*255);
-	c = gdImageColorExact(GifIm, r,g,b);
-	if (c == -1)
-	  c = gdImageColorAllocate(GifIm,r,g,b);
+	/*c = gdImageColorExact(GifIm, r,g,b);
+	  if (c == -1)*/
+	c = gdImageColorAllocate(GifIm,r,g,b);
 	col_index[i] = c;
       }
     }
     /* add black and white at the end of the colormap */
-    c = gdImageColorExact(GifIm, 0,0,0);
-    if (c == -1) 
+    /*c = gdImageColorExact(GifIm, 0,0,0);
+      if (c == -1) */
       c = gdImageColorAllocate(GifIm,0,0,0);
     col_index[m]=c;
-    c = gdImageColorExact(GifIm, 255,255,255);
-    if (c == -1) 
-      c = gdImageColorAllocate(GifIm,255,255,255);
+    /*c = gdImageColorExact(GifIm, 255,255,255);
+      if (c == -1) */
+    c = gdImageColorAllocate(GifIm,255,255,255);
     col_index[m+1]=c;
     col_white=col_index[m+1];
     ScilabGCGif.NumForeground = m;
