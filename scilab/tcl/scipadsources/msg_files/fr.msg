@@ -168,8 +168,9 @@
 ::msgcat::mcset fr "&Search" "&Rechercher"
 ::msgcat::mcset fr "E&xecute" "E&xécuter"
 ::msgcat::mcset fr "&Debug" "&Débug"
+::msgcat::mcset fr "S&cheme" "&Schéma"
 ::msgcat::mcset fr "&Options" "&Options"
-::msgcat::mcset fr "&Windows" "&Fenêtres"
+::msgcat::mcset fr "&Windows" "Fe&nêtres"
 ::msgcat::mcset fr "&Help" "&Aide"
 
     # menues.tcl - File menu
@@ -200,7 +201,6 @@
     ::msgcat::mcset fr "U&ncomment selection" "&Décommenter la sélection"
     ::msgcat::mcset fr "&Indent selection" "&Indenter la sélection"
     ::msgcat::mcset fr "Unin&dent selection" "Dé&sindenter la sélection"
-    ::msgcat::mcset fr "Word &Wrap" "Ret&our à la ligne automatique"
 
     # menues.tcl - Search menu
     ::msgcat::mcset fr "&Find..." "&Rechercher..."
@@ -227,16 +227,20 @@
     ::msgcat::mcset fr "&Break" "&Stop"
     ::msgcat::mcset fr "Cance&l debug" "&Annuler le débug"
 
+#    ::msgcat::mcset fr "language scheme" "schéma langage"
+    # menues.tcl - Scheme menu
+    ::msgcat::mcset fr "S&cilab" "S&cilab"
+    ::msgcat::mcset fr "&XML" "&XML"
+    ::msgcat::mcset fr "&none" "&aucun"
+
     # menues.tcl - Options menu
-    ::msgcat::mcset fr "font size" "taille de police"
+    ::msgcat::mcset fr "&font size" "&taille de police"
     ::msgcat::mcset fr "&micro" "&micro"
     ::msgcat::mcset fr "&small" "&petit"
     ::msgcat::mcset fr "m&edium" "m&oyen"
     ::msgcat::mcset fr "&large" "&grand"
-    ::msgcat::mcset fr "language scheme" "schéma langage"
-    ::msgcat::mcset fr "S&cilab" "S&cilab"
-    ::msgcat::mcset fr "&XML" "&XML"
-    ::msgcat::mcset fr "&none" "&aucun"
+    ::msgcat::mcset fr "&Colors" "&Coleurs"
+    ::msgcat::mcset fr "Word &Wrap" "Ret&our à la ligne automatique"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset fr "Opened Files" "Fichiers ouverts"
@@ -300,3 +304,23 @@
     ::msgcat::mcset fr "line" "ligne"
 ::msgcat::mcset fr "The cursor is not currently inside a function body." "Le curseur ne se trouve pas à l'intérieur d'une fonction."
 ::msgcat::mcset fr "Which function?" "Quelle fonction ?"
+
+#except for "expanded" text, like preference variables description
+::msgcat::mcset fr "BGCOLOR" "Background"
+::msgcat::mcset fr "FGCOLOR" "Plain text"
+::msgcat::mcset fr "CURCOLOR" "Cursor"
+::msgcat::mcset fr "PARCOLOR" "Parentheses ()"
+::msgcat::mcset fr "BRAKCOLOR" "Brackets \[\]"
+::msgcat::mcset fr "BRACCOLOR" "Braces {}"
+::msgcat::mcset fr "PUNCOLOR"  "Punctuation"
+::msgcat::mcset fr "KEYWCOLOR" "Scilab internals"
+::msgcat::mcset fr "OPCOLOR"   "Operators"
+::msgcat::mcset fr "QTXTCOLOR"  "String text"
+::msgcat::mcset fr "REMCOLOR" "Comments"
+::msgcat::mcset fr "XMLCOLOR" "XML tags"
+::msgcat::mcset fr "NUMCOLOR" "Numbers"
+::msgcat::mcset fr "SELCOLOR" "Selection"
+::msgcat::mcset fr "BREAKPOINTCOLOR" "Breakpoint background"
+::msgcat::mcset fr "LFUNCOLOR" "Library functions"
+::msgcat::mcset fr "PDEFCOLOR" "Predefined variables"
+::msgcat::mcset fr "FOUNDTEXTCOLOR" "Matched text"
