@@ -313,6 +313,10 @@ void  SetWinhdc()
 /*-----------------------------------------------------------------------------------*/
 int MaybeSetWinhdc()
 {
+  int DiD = GetDriverId(); 	/* F.Leray 26.07.04 */
+  if(  DiD != 0)
+    return 0;
+
   /** a clarifier XXXX faut-il aussi un test **/
   if ( hdc == (HDC) 0)  
     {
@@ -341,12 +345,19 @@ int MaybeSetWinhdc()
 /*-----------------------------------------------------------------------------------*/
 void  ReleaseWinHdc()
 {
+  int DiD = GetDriverId(); 	/* F.Leray 26.07.04 */
+  if(  DiD != 0)
+  { /* Nothing to do */
+  }
+  else
+  {
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
     {
       if ( sciGetPixmapStatus() != 1) 
 	ReleaseDC(ScilabXgc->CWindow,hdc);
       hdc = (HDC) 0;
     }
+  }
 }
 /*-----------------------------------------------------------------------------------*/
 /****************************
