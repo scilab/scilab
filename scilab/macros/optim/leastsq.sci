@@ -88,5 +88,5 @@ else
       'g=2*(gf''*ff(:))'])
 end
 
-[f,x,g]=optim(%opt,varargin(kr:$),imp=imp)
+[f,x,g]=optim(%opt,varargin(:),imp=imp)
 endfunction
