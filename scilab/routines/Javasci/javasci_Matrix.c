@@ -318,9 +318,32 @@ static void Initialize()
   #if WIN32 
     if ( p1== NULL )
     {
-	    set_sci_env(SCI,NULL);
+		/* Detection Scilab path */
+		char modname[MAX_PATH+1];
+		if (!GetModuleFileName (GetModuleHandle("javasci.dll"), modname, MAX_PATH))
+		{
+			MessageBox(NULL,"javasci.dll not found","Warning",MB_ICONWARNING);
+		}
+		else
+		{
+			char *p;
+			if ((p = strrchr (modname, '\\')) == NULL) exit(1); /* remove \javasci.dll from modname */
+			else
+			{
+				*p='\0';
+				if ((p = strrchr (modname, '\\')) == NULL) exit(1); /* remove \bin from modname */
+				else
+				{
+					*p='\0';
+					set_sci_env(modname,NULL);
+				}
+			}
+		}
     }
-    else set_sci_env(p1,NULL);
+    else 
+	{
+		set_sci_env(p1,NULL);
+	}
   #else
     setenv("SCI",SCI,1);
   #endif
