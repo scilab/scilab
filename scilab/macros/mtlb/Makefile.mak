@@ -28,7 +28,16 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 	%s_m_b.sci %b_m_s.sci %s_x_b.sci %b_x_s.sci %b_g_s.sci %b_h_s.sci \
 	%s_a_b.sci %b_a_s.sci %s_s_b.sci %b_s_s.sci \
 	%b_c_s.sci %b_f_s.sci %s_c_b.sci %s_f_b.sci %s_g_b.sci %s_h_b.sci \
-	%b_sum.sci %b_prod.sci
+	%b_sum.sci %b_prod.sci \
+	mtlb_0.sci mtlb_a.sci mtlb_diag.sci mtlb_double.sci mtlb_diag.sci \
+	mtlb_dir.sci mtlb_e.sci mtlb_eig.sci mtlb_false.sci mtlb_fopen.sci mtlb_format.sci \
+	mtlb_full.sci mtlb_imp.sci mtlb_int8.sci mtlb_int16.sci mtlb_int32.sci \
+	mtlb_isletter.sci mtlb_isspace.sci mtlb_logical.sci mtlb_logic.sci \
+	mtlb_lower.sci mtlb_l.sci mtlb_more.sci mtlb_norm.sci mtlb_qr.sci \
+mtlb_randn.sci mtlb_rcond.sci mtlb_rem.sci mtlb_setstr.sci mtlb_size.sci \
+	mtlb_sort.sci mtlb_s.sci mtlb_strcmp.sci mtlb_strcmpi.sci \
+	mtlb_strfind.sci mtlb_strrep.sci mtlb_tril.sci mtlb_triu.sci mtlb_true.sci mtlb_t.sci \
+	mtlb_type.sci mtlb_uint8.sci mtlb_uint16.sci mtlb_uint32.sci mtlb_upper.sci
 
 M5 = mtlb_cell.sci  cell.sci struct.sci  \
 	%ce_string.sci %st_string.sci generic_i_st.sci\
@@ -43,9 +52,6 @@ M5 = mtlb_cell.sci  cell.sci struct.sci  \
 	%s_i_ce.sci %spb_i_ce.sci %c_i_ce.sci %hm_i_ce.sci \
 	%lss_i_ce.sci  %r_i_ce.sci  %sp_i_ce.sci \
 	%ce_c_ce.sci %ce_f_ce.sci \
-	%ce_c_s.sci %ce_f_s.sci %s_f_ce.sci %s_c_ce.sci \
-	%c_c_ce.sci %c_f_ce.sci %ce_f_c.sci %ce_c_c.sci \
-	%i_c_ce.sci %i_f_ce.sci %ce_f_i.sci %ce_c_i.sci \
 	createstruct.sci %st_6.sci %ce_6.sci \
 	%st_i_b.sci  %st_i_fptr.sci  %st_i_i.sci   %st_i_msp.sci\
 	%st_i_s.sci %st_i_spb.sci %st_i_c.sci %st_i_h.sci %st_i_ip.sci\
@@ -56,7 +62,7 @@ M5 = mtlb_cell.sci  cell.sci struct.sci  \
 PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci \
 	mtlb_hold.sci mtlb_ishold.sci mtlb_mesh.sci mtlb_meshdom.sci \
 	mtlb_semilogx.sci mtlb_semilogy.sci mtlb_loglog.sci \
-	mtlb_image.sci mtlb_pcolor.sci 
+	mtlb_image.sci mtlb_pcolor.sci mtlb_axes.sci
 
 UTIL=enlarge_shape.sci
 
