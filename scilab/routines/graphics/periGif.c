@@ -908,11 +908,11 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
   C2F(setalufunction1Gif)((i=3,&i),PI0,PI0,PI0);
   C2F(setpatternGif)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);  
 
- /*  /\* Rajout F.Leray 06.12.04 *\/ */
-/*   C2F(setforegroundGif)((i=ScilabGCGif.NumForeground+1,&i),PI0,PI0,PI0); */
-/*   C2F(setbackgroundGif)((i=ScilabGCGif.NumForeground+2,&i),PI0,PI0,PI0); */
-
-
+  /* next line added by bruno (7 dec 2004) to (badly) correct the bug 1112 */
+  gdImageFilledRectangle(GifIm, 0, 0, Xgc->CWindowWidth-1, Xgc->CWindowHeight-1, col_white);
+  /* Note: Fabrice has also added some code in clearwindowgif function but this doesn't */
+  /* correct the problem for the old graphic mode (rmk: this added line seems to correct  */
+  /* the bug for both mode) */
 }
 
 void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
