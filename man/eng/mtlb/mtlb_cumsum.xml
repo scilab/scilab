@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!-- When this file is modified please also modify mtlb_cumsum.xml -->
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_cumsum</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>Fev 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_cumsum">Matlab cumsum emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>cumsum</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+	When used with one input (<VERB>cumsum(A)</VERB>), Matlab <VERB>cumsum</VERB>
+	treats the values along the first non-singleton dimension of A as vectors while
+	Scilab <VERB>cumsum</VERB> treats all A values.
+        </SP>
+       </ITEM>
+
+       <ITEM>
+        <SP>
+	When used with two inputs (<VERB>cumsum(A,dim)</VERB>), Matlab tolerates <VERB>dim</VERB>
+	to be greater than the number of dimensions of A while Scilab returns an error message in this case.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>    
+    The function <VERB>R = mtlb_cumsum(A[,dim])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>cumsum(A[,dim])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_cumsum</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+	If <VERB>dim</VERB> is less equal to the number of dimensions of A
+	<VERB>R = mtlb_cumsum(A,dim)</VERB> may be replaced by <VERB>R = cumsum(A,dim)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+	If <VERB>dim</VERB> is greater than then number of dimensions of A
+	<VERB>R = mtlb_cumsum(A,dim)</VERB> may be replaced by <VERB>R = A</VERB>.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_cumsum</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>firstnonsingleton</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!-- When this file is modified please also modify mtlb_all.xml -->
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_any</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>Mars 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_any">Matlab any emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab <VERB>any</VERB> and Scilab <VERB>or</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+	When used with one input (<VERB>any(A)</VERB>), Matlab <VERB>any</VERB> treats the values along the first
+	non-singleton dimension of A as vectors while Scilab <VERB>or</VERB> treats all A values.
+	</SP>
+      </ITEM>
+	
+      <ITEM>
+        <SP>
+	When used with two inputs (<VERB>any(A,dim)</VERB>), Matlab tolerates <VERB>dim</VERB> to be greater than
+	the number of dimensions of A while Scilab returns an error message in this case.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>R = mtlb_any(A[,dim])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>any(A[,dim])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_any</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>    
+	If <VERB>A</VERB> is a scalar or a vector
+	<VERB>R = mtlb_any(A)</VERB> may be replaced by <VERB>R = or(A)</VERB>
+	</SP>      
+      </ITEM>
+
+      <ITEM>
+        <SP>
+	If <VERB>A</VERB> is a matrix
+	<VERB>R = mtlb_any(A)</VERB> may be replaced by <VERB>R = or(A,1)</VERB>
+	</SP>      
+      </ITEM>
+
+      <ITEM>
+        <SP>
+	If <VERB>A</VERB> is an hypermatrix
+	<VERB>R = mtlb_any(A)</VERB> may be replaced by <VERB>R = or(A,firstnonsingleton(A))</VERB>
+	or by <VERB>R = or(A,user_defined_value)</VERB> if the first non-singleton dimensions of A is known.
+	</SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+	If <VERB>dim</VERB> is less equal to the number of dimensions of A
+	<VERB>R = mtlb_any(A,dim)</VERB> may be replaced by <VERB>R = or(A,dim)</VERB>
+	</SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+	If <VERB>dim</VERB> is greater than then number of dimensions of A
+	<VERB>R = mtlb_any(A,dim)</VERB> may be replaced by <VERB>R = A&lt;&gt;0</VERB> if A is not an empty matrix or by <VERB>R = A</VERB> if A is an empty matrix.
+	</SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_any</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>firstnonsingleton</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

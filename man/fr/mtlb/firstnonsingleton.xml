@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>firstnonsingleton</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Mars 2004</DATE>
+
+  <SHORT_DESCRIPTION name="firstnonsingleton">Trouve la première dimension qui n'est pas 1</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[dim]=firstnonsingleton(A[,opt])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>dim</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: première dimension de A qui n'est pas 1</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: une variable de n'importe quel type de donnée Scilab</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>opt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: une chaîne de caractères qui précise le type de la variable de sortie que l'on veut</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>"num"</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: la valeur retournée est une valeur numérique</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>"str"</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: la valeur retournée est une chaîne de caractères si possible ("r" au lieu de 1 et "c" au lieu de 2)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+     </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Cette fonction est utilisée par <VERB>mfile2sci</VERB> pour émuler le comportement de Matlab sous Scilab,
+    en particulier pour les fonctions qui traitent les valeurs suivant la première dimension de A qui n'est pas 1
+    en Matlab alors que dans Scilab elles traitent toutes les valeurs de A.
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A = [1 2 3;4 5 6];
+// max Scilab
+M = max(A)
+// Emulation du max Matlab
+M = max(A,firstnonsingleton(A))
+ ]]>
+  </EXAMPLE>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

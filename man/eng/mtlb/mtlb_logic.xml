@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_logic</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>March 2004</DATE>
+  
+  <SHORT_DESCRIPTION name="mtlb_logic">Matlab logical operators emulation function</SHORT_DESCRIPTION>
+  
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab logical operator behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+	With complex operands: The <VERB>&lt;</VERB>, <VERB>&lt;=</VERB>, <VERB>&gt;</VERB> and <VERB>&gt;=</VERB> 
+	operators can not be used into Scilab with complex operands, while
+	in Matlab they can. And in this case, only real part of complex operands is compared.
+	</SP>
+      </ITEM>
+      
+      <ITEM>
+        <SP>
+	With empty matrices: If both operands of <VERB>&lt;</VERB>, <VERB>&lt;=</VERB>,
+	<VERB>&gt;</VERB> and <VERB>&gt;=</VERB> 
+	operators are empty matrices, Scilab returns an error message, while
+	Matlab returns an empty matrix. For operators <VERB>==</VERB> and <VERB>~=</VERB>,
+	if at least one operand is an empty matrix, Matlab returns [] while Scilab returns a boolean value %T or %F.
+	</SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    
+    <P>
+    The function <VERB>mtlb_logic(A,symbol,B)</VERB> (with "symbol" a character string
+    containing the operator symbol) is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>A symbol B</VERB> when it was not
+    possible to know what were the operands while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_logic</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>    
+	If both <VERB>A</VERB> and <VERB>B</VERB> are not complex values nor empty matrices
+	<VERB>mtlb_logic(A,symbol,B)</VERB> may be replaced by <VERB>A symbol B</VERB>.
+	</SP>      
+      </ITEM>
+    </ITEMIZE>  
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_logic</VERB> has not to be used for hand coded functions.</P>
+ 
+  </DESCRIPTION>
+  
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

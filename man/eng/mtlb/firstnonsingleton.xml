@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>firstnonsingleton</TITLE>
+  <TYPE>M2SCI Function</TYPE>
+  <DATE>March 2004</DATE>
+
+  <SHORT_DESCRIPTION name="firstnonsingleton">Finds first dimension which is not 1</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[dim]=firstnonsingleton(A[,opt])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>dim</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: first dimension of A which is not 1</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a variable of any Scilab data type</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>opt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string giving the type of output we want</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>"num"</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: returned value is a numerical value</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>"str"</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: returned value is a character string if possible ("r" instead of 1 and "c" instead of 2)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+     </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function is used by <VERB>mfile2sci</VERB> to emulate Matlab behavior under Scilab, particularly
+    for functions which treat the values along the first non-singleton dimension of A in Matlab
+    while in Scilab they treat all values of A.
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A = [1 2 3;4 5 6];
+// Scilab max
+M = max(A)
+// Matlab max emulation
+M = max(A,firstnonsingleton(A))
+ ]]>
+  </EXAMPLE>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

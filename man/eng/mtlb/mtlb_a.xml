@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_a</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>March 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_a">Matlab addition emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+   
+    <P>Matlab and Scilab addition behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With character string operands: The <VERB>+</VERB> 
+        operator is used into Scilab to catenate character strings, while
+        Matlab realizes the sum of the operands ASCII codes.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+	With empty matrix: In Scilab, if one of the
+      	operands is an empty matrix the result of the addition is the
+      	other operand. In Matlab if one of the operand is an empty
+      	matrix the result of the addition should be an error or an empty
+      	matrix.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_a(A,B)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>A+B</VERB> when it was not
+    possible to know what were the operands while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_a</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+	If <VERB>A</VERB> and <VERB>B</VERB> are character strings, 
+	<VERB>mtlb_a(A,B)</VERB> may be replaced by <VERB>asciimat(A)+asciimat(B)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+	If both <VERB>A</VERB> and <VERB>B</VERB> are not empty matrices
+	<VERB>mtlb_a(A,B)</VERB> may be replaced by <VERB>A+B</VERB>,
+	else <VERB>mtlb_a(A,B)</VERB> may be replaced by
+	<VERB>[]</VERB>.
+        </SP>
+      </ITEM>
+	
+      <ITEM>
+        <SP>
+	If mtlb_mode==%T, then <VERB>mtlb_a(A,B)</VERB>
+	may be replaced by <VERB>A+B</VERB> in any case where
+	<VERB>A</VERB> and <VERB>B</VERB> are not character string matrices.
+         </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_a</VERB> has not to be used for hand coded functions.</P>
+ 
+  </DESCRIPTION>
+  
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mtlb_mode</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_i</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>March 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_i">Matlab insertion emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+  
+    <P>Matlab and Scilab insertion behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+	When inserting a matrix in a variable: Matlab automaticaly adjusts output
+	variable to fit with matrix to insert but not Scilab.
+	For example, with A=1, A([1,2,3,4])=[1,2;3,4]) returns an error in Scilab
+	while in Matlab we get A=[1,2,3,4]. If values miss comparing to indexes,
+	Matlab fills output value with 0.
+	</SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+	When inserting data into a character string matrix: due to the fact that character string matrices
+	in Matlab can be adressed as any other matrix (each character can be adressed), insertion in such a type of
+	matrix does not differ from other. But in Scilab it can't be done so...<VERB>mtlb_is</VERB> is an alternative.
+ 	</SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>A=mtlb_i(A,k,B)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>A(k)=B</VERB> when it was not
+    possible to know what were the operands while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_i</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>    
+	If <VERB>A</VERB> is not a vector
+        <VERB>A=mtlb_i(A,k,B)</VERB> may be replaced by <VERB>A(k)=B</VERB>
+	</SP>
+      </ITEM>	
+
+      <ITEM>
+        <SP>    
+	If <VERB>A</VERB> and <VERB>B</VERB> are both row or column vectors
+	<VERB>A=mtlb_i(A,k,B)</VERB> may be replaced by <VERB>A(k)=B</VERB>
+        </SP>    
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_i</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>Matlab-Scilab_character_strings</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>mtlb_is</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

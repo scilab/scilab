@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_e</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>March 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_e">Matlab extraction emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+  
+    <P>Matlab and Scilab extraction behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+	When extracting data from a matrix with a vector as index: Matlab returns
+	a row vector and Scilab returns a column vector.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+	When extracting data from a character string matrix: due to the fact that character string matrices
+	in Matlab can be adressed as any other matrix (each character can be adressed), extraction in such a type of
+	matrix does not differ from other. But in Scilab it can't be done so and <VERB>part</VERB>
+	function has to be used. 
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_e(B,k)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>A=B(k)</VERB> when it was not
+    possible to know what were the operands while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_e</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>    
+      <ITEM>
+        <SP>    
+	If <VERB>B</VERB> is a vector
+	<VERB>A=mtlb_e(B,k)</VERB> may be replaced by <VERB>A=B(k)</VERB>
+	</SP>
+      </ITEM>
+      
+      <ITEM>
+        <SP>    
+	If <VERB>B</VERB> is a matrix
+	<VERB>A=mtlb_e(B,k)</VERB> may be replaced by <VERB>A=B(k).'</VERB>
+ 	</SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>    
+	If <VERB>B</VERB> is a character string matrix and
+	k is a scalar or a vector
+	<VERB>A=mtlb_e(B,k)</VERB> may be replaced by <VERB>A=part(B,k)</VERB>
+ 	</SP>
+      </ITEM>
+    </ITEMIZE>  
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_e</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>Matlab-Scilab_character_strings</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>part</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

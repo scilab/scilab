@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_a</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Mars 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_a">Fonction d'émulation de l'addition Matlab</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Dans plusieurs cas particuliers, l'addition se comporte différemment dans Matlab et dans Scilab :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Avec des opérandes de type chaîne de caractères : L'opérateur <VERB>+</VERB>
+	est utilisé dans Scilab pour concaténer des chaînes de caractères alors que
+	Matlab calcule la somme des codes ASCII des opérandes.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+	Avec une matrice vide : Dans Scilab, si une des
+	opérandes est une matrice vide alors le résultat de l'addition est
+	l'autre opérande. Dans Matlab si une des opérandes est une matrice
+	vide alors le résultat de l'addition est soit une erreur (la seconde opérande n'est pas un scalaire)
+	soit une matrice vide.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_a(A,B)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>A+B</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_a</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> et <VERB>B</VERB> sont des chaînes de caractères,
+        <VERB>mtlb_a(A,B)</VERB> peut être remplacé par <VERB>asciimat(A)+asciimat(B)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+	<SP>
+	Si <VERB>A</VERB> et <VERB>B</VERB> ne sont pas des matrices vides
+	<VERB>mtlb_a(A,B)</VERB> peut être remplacé par <VERB>A+B</VERB>,
+	sinon <VERB>mtlb_a(A,B)</VERB> peut être remplacé par
+	<VERB>[]</VERB>.
+	</SP>
+      </ITEM>
+
+      <ITEM>
+	<SP>
+	Si mtlb_mode()==%T, alors <VERB>mtlb_a(A,B)</VERB>
+	peut être remplacé par <VERB>A+B</VERB> dans tous les cas où
+	<VERB>A</VERB> et <VERB>B</VERB> ne sont pas des chaînes de caractères.
+	</SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_a</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mtlb_mode</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_is</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>Mars 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_is">Matlab string insertion emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>
+    Matlab and Scilab insertion behave differently for strings due to the fact
+    that they do not consider character strings in the same way.
+    </P>
+    
+    <P> 
+    The function <VERB>str = mtlb_is(sto,sfrom,i,j)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace insertion operations for character strings. This function will
+    determine the correct semantic at run time. There is no replacement possibility for it.
+    </P>
+
+    <P>Caution: <VERB>mtlb_is</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>Matlab-Scilab_character_strings</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>  <LINK>mtlb_i</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

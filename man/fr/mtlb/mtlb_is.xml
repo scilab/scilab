@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_is</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Mars 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_is">Fonction d'émulation de l'insertion dans une chaîne de caractères de Matlab</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>
+    L'insertion se comporte différemment dans Matlab et dans Scilab pour les chaînes de caractères
+    étant donné que celles-ci ne sont pas considérées de la même façon.
+    </P>
+
+    <P>
+    La fonction <VERB>str = mtlb_is(sto,sfrom,i,j)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer les opérations d'insertion dans des 
+    chaînes de caractères. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Elle ne peut être remplacée.
+    </P>
+
+    <P>Attention : <VERB>mtlb_is</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>Chaines_de_caracteres_Matlab-Scilab</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>  <LINK>mtlb_i</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
