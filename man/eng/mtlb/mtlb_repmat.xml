@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_repmat</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>August 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_repmat">Matlab repmat emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>There is no Scilab equivalent function for Matlab <VERB>repmat</VERB> but there are equivalent instructions.</P>
+
+    <P>
+    The function <VERB>mtlb_repmat(M,m[,n])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>repmat(M,m[,n])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_repmat</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is of Double type and <VERB>m</VERB> is a scalar,
+        <VERB>mtlb_repmat(M,m)</VERB> may be replaced by <VERB>ones(m,m).*.M</VERB> and 
+        <VERB>mtlb_repmat(M,m,n)</VERB> may be replaced by <VERB>ones(m,n).*.M</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is of Boolean type and <VERB>m</VERB> is a scalar,
+        <VERB>mtlb_repmat(M,m)</VERB> may be replaced by <VERB>ones(m,m).*.bool2s(M)</VERB> and 
+        <VERB>mtlb_repmat(M,m,n)</VERB> may be replaced by <VERB>ones(m,n).*.bool2s(M)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is of String type and <VERB>m</VERB> is a scalar,
+        <VERB>mtlb_repmat(M,m)</VERB> may be replaced by <VERB>asciimat(ones(m,m).*.asciimat(M))</VERB> and 
+        <VERB>mtlb_repmat(M,m,n)</VERB> may be replaced by <VERB>asciimat(ones(m,n).*.asciimat(M))</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is of Double type and <VERB>m</VERB> is a vector,
+        <VERB>mtlb_repmat(M,m)</VERB> may be replaced by <VERB>ones(m(1),m(2),...).*.M</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is of Boolean type and <VERB>m</VERB> is a vector,
+        <VERB>mtlb_repmat(M,m)</VERB> may be replaced by <VERB>ones(m(1),m(2),...).*.bool2s(M)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is of String type and <VERB>m</VERB> is a vector,
+        <VERB>mtlb_repmat(M,m)</VERB> may be replaced by <VERB>asciimat(ones(m(1),m(2),...).*.asciimat(M))</VERB>
+        </SP>
+      </ITEM>
+   </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_repmat</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ones</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>kron</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

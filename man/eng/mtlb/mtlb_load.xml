@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_load</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>August 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_load">Matlab load emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>
+    The function <VERB>mtlb_load</VERB> was used by old versions of 
+    <VERB>mfile2sci</VERB> to replace <VERB>load</VERB> but is now obsolete,
+    use <VERB>loadmatfile</VERB> instead.
+    </P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>loadmatfile</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
