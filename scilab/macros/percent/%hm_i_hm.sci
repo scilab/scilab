@@ -16,7 +16,7 @@ else
 end
 Ndims=rhs-2
 nd=size(dims,'*')
-if Ndims>nd then dims(nd+1:Ndims)=0;end  
+if Ndims>nd then dims(nd+1:Ndims)=1;end  
 count=[]
 dims1=[]
 I=0;I1=0
