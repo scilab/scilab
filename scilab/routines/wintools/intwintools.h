@@ -1,9 +1,13 @@
-#ifndef __intwintools__
-#define  __intwintools__
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2005 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/ 
+#ifndef __INTWINTOOLS__
+#define __INTWINTOOLS__
 
 #ifdef WIN32
-#include <windows.h>
-#include <stdio.h>
+  #include <windows.h>
+  #include <stdio.h>
 #endif
 
 #include "../machine.h"
@@ -17,4 +21,6 @@ typedef struct table_struct {
 } WintoolsTable;
 
 
-#endif /*  __intwintools__ */
+#endif /*  __INTWINTOOLS__ */
+/*-----------------------------------------------------------------------------------*/
+

@@ -5,7 +5,10 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/wintools.lib
 
-OBJSC = intwintools.obj
+OBJSC = intwintools.obj intabout.obj intclipboard.obj intconsoledos.obj intdde.obj \
+        intpathname.obj intsetlanguagemenu.obj inttoolbar.obj \
+        intwinopen.obj intwinqueryreg.obj
+
 
 OBJSF = 
 
@@ -30,4 +33,14 @@ Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
 
 
-intwintools.obj: ../stack.h
+intwintools.obj: ../stack.h intwintools.h
+intabout.obj: ../stack.h intabout.h
+intclipboard.obj: ../stack.h intclipboard.h
+intconsoledos.obj: ../stack.h intconsoledos.h
+intdde.obj: ../stack.h intdde.h
+intpathname.obj: ../stack.h intpathname.h
+intsetlanguagemenu.obj: ../stack.h intsetlanguagemenu.h
+inttoolbar.obj: ../stack.h inttoolbar.h
+intwinopen.obj: ../stack.h intwinopen.h
+intwinqueryreg.obj: ../stack.h intwinqueryreg.h
+

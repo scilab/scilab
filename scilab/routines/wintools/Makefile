@@ -5,7 +5,9 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/wintools.a
 
-OBJSC = intwintools.o
+OBJSC = intwintools.o intabout.o intclipboard.o intconsoledos.o intdde.o \
+        intpathname.o insetlanguagemenu.o inttoolbar.o \
+        intwinopen.o intwinqueryreg.o
 
 OBJSF =
 
@@ -31,4 +33,13 @@ Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
 
 
-intwintools.o: ../stack.h
+intwintools.o: ../stack.h intwintools.h
+intabout.o: ../stack.h intabout.h
+intclipboard.o: ../stack.h intclipboard.h
+intconsoledos.o: ../stack.h intconsoledos.h
+intdde.o: ../stack.h intdde.h
+intpathname.o: ../stack.h intpathname.h
+intsetlanguagemenu.o: ../stack.h intsetlanguagemenu.h
+inttoolbar.o: ../stack.h inttoolbar.h
+intwinopen.o: ../stack.h intwinopen.h
+intwinqueryreg.o: ../stack.h intwinqueryreg.h

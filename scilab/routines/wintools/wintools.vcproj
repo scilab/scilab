@@ -679,14 +679,68 @@ cd .. &gt;nul
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
-				RelativePath=".\intwintools.h">
+				RelativePath=".\intabout.c">
+			</File>
+			<File
+				RelativePath=".\intclipboard.c">
+			</File>
+			<File
+				RelativePath=".\intconsoledos.c">
+			</File>
+			<File
+				RelativePath=".\intdde.c">
+			</File>
+			<File
+				RelativePath=".\intpathname.c">
+			</File>
+			<File
+				RelativePath=".\intsetlanguagemenu.c">
+			</File>
+			<File
+				RelativePath=".\inttoolbar.c">
+			</File>
+			<File
+				RelativePath=".\intwinopen.c">
+			</File>
+			<File
+				RelativePath=".\intwinqueryreg.c">
+			</File>
+			<File
+				RelativePath=".\intwintools.c">
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath=".\intwintools.c">
+				RelativePath=".\intabout.h">
+			</File>
+			<File
+				RelativePath=".\intclipboard.h">
+			</File>
+			<File
+				RelativePath=".\intconsoledos.h">
+			</File>
+			<File
+				RelativePath=".\intdde.h">
+			</File>
+			<File
+				RelativePath=".\intpathname.h">
+			</File>
+			<File
+				RelativePath=".\intsetlanguagemenu.h">
+			</File>
+			<File
+				RelativePath=".\inttoolbar.h">
+			</File>
+			<File
+				RelativePath=".\intwinopen.h">
+			</File>
+			<File
+				RelativePath=".\intwinqueryreg.h">
+			</File>
+			<File
+				RelativePath=".\intwintools.h">
 			</File>
 		</Filter>
 	</Files>

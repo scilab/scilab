@@ -1,22 +1,44 @@
 #include "intwintools.h"
-
-
-int inttestwintools _PARAMS((char *fname, unsigned long fname_len))
-{
-	sciprint("\nIntroduce Wintools Interface\n");
-	LhsVar(0)=0;
-	C2F(putlhsvar)();
-	return 0;
-}
-
-
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2005 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/
+extern int C2F(intwinopen) _PARAMS((char *fname));
+extern int C2F(intwinqueryreg) _PARAMS((char *fname));
+extern int C2F(intgetlongpathname) _PARAMS((char *fname));
+extern int C2F(intgetshortpathname) _PARAMS((char *fname));
+extern int C2F(intddeopen) _PARAMS((char *fname));
+extern int C2F(intddeclose) _PARAMS((char *fname));
+extern int C2F(intddeexec) _PARAMS((char *fname));
+extern int C2F(intddepoke) _PARAMS((char *fname));
+extern int C2F(intddereq) _PARAMS((char *fname));
+extern int C2F(intddeisopen) _PARAMS((char *fname));
+extern int C2F(intclipboard) _PARAMS((char *fname));
+extern int C2F(inthidetoolbar) _PARAMS((char *fname));
+extern int C2F(inttoolbar) _PARAMS((char *fname));
+extern int C2F(intsetlanguagemenu) _PARAMS((char *fname));
+extern int C2F(intconsoledos) _PARAMS((char *fname));
+extern int C2F(intabout) _PARAMS((char *fname));
+/*-----------------------------------------------------------------------------------*/
  static WintoolsTable Tab[]=
  {
-  {inttestwintools,"testwintools"}
+  {C2F(intwinopen),"winopen"},
+  {C2F(intwinqueryreg),"winqueryreg"},
+  {C2F(intgetlongpathname),"getlongpathname"},
+  {C2F(intgetshortpathname),"getshortpathname"},
+  {C2F(intddeopen),"ddeopen"},
+  {C2F(intddeclose),"ddeclose"},
+  {C2F(intddeexec),"ddeexec"},
+  {C2F(intddepoke),"ddepoke"},
+  {C2F(intddereq),"ddereq"},
+  {C2F(intddeisopen),"ddeisopen"},
+  {C2F(intclipboard),"ClipBoard"},
+  {C2F(inthidetoolbar),"hidetoolbar"},
+  {C2F(inttoolbar),"toolbar"},
+  {C2F(intsetlanguagemenu),"setlanguagemenu"},
+  {C2F(intconsoledos),"console"},
+  {C2F(intabout),"about"}
  };
-
-
-/* interface for the previous function Table */ 
 /*-----------------------------------------------------------------------------------*/
 int C2F(intwintools)()
 {  

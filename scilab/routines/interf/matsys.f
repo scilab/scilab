@@ -58,14 +58,14 @@ c     fclear    what    sciargs  chdir getwd ieee typename
 c     40         41       42     43     44     45    46
 c     global   clearglobal isglobal gstacksize getdate intppty
 c     47         48          49        50        51       52
-c     lasterror version loadhistory savehistory gethistory resethistory sendtobrowser macr2tree
-c     53         54        55          56         57          58        59            60
-c     hidetoolbar use_as_command  setlanguagemenu  winqueryreg ClipBoard ddeopen ddeclose
-c     61             62           63               64           65       66     67
-c     ddeexec   ddepoke ddereq ddeisopen sleep getos getlongpathname getshortpathname
-c     68        69      70      71      72      73   74              75
-c     toolbar banier console about
-c     76       77     78    79
+c     lasterror version loadhistory savehistory gethistory resethistory macr2tree
+c     53         54        55          56         57          58        60
+c     use_as_command 
+c     62          
+c     sleep getos
+c     72    73 
+c     banner
+c     77
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
          call basout(io,wte,' matsys '//buf(1:4))
@@ -79,9 +79,8 @@ c
      +      251,300,320,350,370,380,390,400,410,420,
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
-     +      694,695,697,698,699,700,701,702,703,704,
-     +      705,706,707,708,709,710,711,712,713,714,
-     +      715,716,717,718,719,720,721,722,723),fin
+     +      694,695,697,698,699,700,701,702,703,
+     +      705,706,707),fin
 c     
 c     debug
  10   call intdebug()
@@ -264,47 +263,13 @@ c     mtlb_mode
       goto 999
  702  call resethistory('resethistory')
       goto 999
- 703  call winopen('winopen')
-      goto 999    
- 704  call macr2tree('macr2tree')
+ 703  call macr2tree('macr2tree')
       goto 999
- 705  call hidetoolbar('hidetoolbar')
-      goto 999             
- 706  call useascommand('use_as_command')
-      goto 999
- 707  call setlanguagemenu('setlanguagemenu')         
-      goto 999
- 708  call winqueryreg('winqueryreg')         
-      goto 999     
- 709  call clipboard('clipboard')         
-      goto 999
- 710  call intddeopen('ddeopen')         
-      goto 999
- 711  call intddeclose('ddeclose')         
-      goto 999
- 712  call intddeexec('ddeexec')         
-      goto 999
- 713  call intddepoke('ddepoke')         
-      goto 999
- 714  call intddereq('ddereq')         
+ 705  call intsleep('sleep')
       goto 999 
- 715  call intddeisopen('ddeisopen')         
-      goto 999      
- 716  call intsleep('sleep')
+ 706  call intgetos('getos')
       goto 999 
- 717  call intgetos('getos')
-      goto 999 
- 718  call intgetlongpathname('getlongpathname')
-      goto 999 
- 719  call intgetshortpathname('getshortpathname')
-      goto 999           
- 720  call inttoolbar('toolbar')
-      goto 999                
- 721  call intbanner('banner')
-      goto 999     
- 722  call intconsole('console')
-      goto 999     
- 723  call intabout('about')
+ 707  call intbanner('banner')
       goto 999     
  998  continue
 c     fake calls : only to force the 
