@@ -2,7 +2,7 @@
 SCIDIR=.
 include Makefile.incl.mak 
 
-all ::  routines-pvm  bin/scilex.exe macros  imp intersci
+all ::  routines-pvm  bin/scilex.exe macros  imp intersci tcl
 
 !IF "$(DLPVM)" == "YES"
 routines-pvm :: routines pvm 
@@ -29,6 +29,9 @@ intersci::
 
 man::
 	Makesubdirs.bat man 
+
+tcl:: 
+	Makesubdirs.bat tcl 
 
 clean::
 	Makesubdirs.bat routines-clean
