@@ -5488,6 +5488,37 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       return -1;
     } 
   }
+  else if (strcmp(marker,"triangles") == 0) {
+    if (sciGetEntityType (pobj) == SCI_FEC) { 
+      double *pnoeud;
+      if (*numcol != 5)
+	{strcpy(error_message,"Second argument must have 5 columns ");return -1;}
+      if (*numrow !=pFEC_FEATURE (pobj)->Ntr) {
+	pnoeud=pFEC_FEATURE(pobj)->pnoeud;
+	if ((pFEC_FEATURE(pobj)->pnoeud = malloc (*numrow * 5* sizeof (int))) == NULL){
+	  strcpy(error_message,"Not enough memory");
+	  pFEC_FEATURE(pobj)->pnoeud=pnoeud;
+	  return -1;
+	}
+      }
+      for (i=0;i<*numrow*5;i++) 
+	pFEC_FEATURE (pobj)->pnoeud[i]=stk(*value)[i];
+    }
+    else
+      {strcpy(error_message,"triangles property does not exist for this handle");return -1;}
+  }
+  else if (strcmp(marker,"z_bounds") == 0) {
+    if (sciGetEntityType (pobj) == SCI_FEC) { 
+      if (*numcol *  *numrow!= 2)
+	{strcpy(error_message,"Second argument must have 2 elements ");return -1;}
+
+      for (i=0;i<2;i++) 
+	pFEC_FEATURE (pobj)->zminmax[i]=stk(*value)[i];
+    }
+    else
+      {strcpy(error_message,"z_bounds property does not exist for this handle");return -1;}
+  }
+
   else 
     {sprintf(error_message,"Unknown  property %s",marker);return -1;}
   return 0;
@@ -6329,6 +6360,30 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"surface_color property does not exist for this handle");return -1;}
   } 
+  /*  ===================================== FEC ======================================== */
+ else if (strcmp(marker,"triangles") == 0) {
+   if (sciGetEntityType (pobj) == SCI_FEC) { 
+     numrow=pFEC_FEATURE (pobj)->Ntr;
+     numcol=5;
+     CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+     for (i=0;i<numcol*numrow;i++) 
+       stk(outindex)[i] = (double)pFEC_FEATURE (pobj)->pnoeud[i];
+   }
+   else
+     {strcpy(error_message,"triangles property does not exist for this handle");return -1;}
+ }
+ else if (strcmp(marker,"z_bounds") == 0) {
+   if (sciGetEntityType (pobj) == SCI_FEC) { 
+     numrow=1;
+     numcol=2;
+     CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+     for (i=0;i<2;i++) 
+       stk(outindex)[i] = (double)pFEC_FEATURE (pobj)->zminmax[i];
+   }
+   else
+     {strcpy(error_message,"z_bounds property does not exist for this handle");return -1;}
+ }
+
   else 
     {sprintf(error_message,"Unknown  property %s",marker);return -1;}
 
