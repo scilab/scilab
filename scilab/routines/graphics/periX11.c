@@ -821,7 +821,7 @@ static void xset_curwin(integer *intnum, integer *v2, integer *v3, integer *v4)
   struct BCG *bcgk;
   bcgk =  ScilabXgc ;
   /** send info to menu **/
-  MenuFixCurrentWin(*intnum);
+  if (v2 != (integer *) 0) MenuFixCurrentWin(*intnum);
   if ( ScilabXgc == (struct BCG *) 0 ) 
     {
       /** First entry or no more graphic window **/
@@ -838,7 +838,7 @@ static void xset_curwin(integer *intnum, integer *v2, integer *v3, integer *v4)
     {
       /** back to previous value **/
       ScilabXgc = bcgk ;
-      MenuFixCurrentWin(bcgk->CurWindow);
+      if (v2 != (integer *) 0) MenuFixCurrentWin(bcgk->CurWindow);
     }
   else 
     {

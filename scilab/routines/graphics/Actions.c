@@ -394,9 +394,10 @@ void scig_3drot(integer win_num)
 void scig_sel(integer win_num)
 {
   char c ;
+  int v=1;
   if ((c=GetDriver())=='R' || c == 'X' || c == 'W')
     {
-      C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","window",&win_num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       if (versionflag==0) sciSwitchWindow(&win_num);
     }
 }

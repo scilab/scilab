@@ -2073,7 +2073,7 @@ int scixclear(fname,fname_len)
      unsigned long fname_len;
 {
   integer verb=0,wid,cur,win,na;
-  integer ix,m1,n1,l1,v;
+  integer ix,m1,n1,l1,v=0;
   double dv;
 
 
@@ -2083,20 +2083,20 @@ int scixclear(fname,fname_len)
   if (Rhs == 1) 
     {
       GetRhsVar(1,"d",&m1,&n1,&l1);
-      C2F(dr1)("xget","window",&verb,&cur,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
+      C2F(dr1)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
       for (ix = 0 ; ix < m1*n1 ; ++ix) 
 	{
 	  wid = (integer) *stk(l1 +ix );
-	  C2F(dr1)("xset","window",&wid,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
-	  C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
+	  C2F(dr1)("xset","window",&wid,PI0,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
+	  C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,7L,2L);
 	}
-      C2F(dr1)("xset","window",&cur,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
+      C2F(dr1)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
     }
   else 
     {
-      C2F(dr1)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
-      C2F(dr1)("xset","window",&win,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
-      C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L); 
+      C2F(dr1)("xget","window",&verb,&win,&na,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
+      C2F(dr1)("xset","window",&win,PI0,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
+      C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,7L,2L); 
     } 
   if (version_flag() == 0) sciXclear();   /* NG */
   LhsVar(1)=0;
@@ -3402,10 +3402,10 @@ int scixgetech(fname,fname_len)
 
 int C2F(sciwin)()
 {
-  integer verb=0,win=0,v,na;
+  integer verb=0,win=0,v=1,na;
   double dv;
-  C2F(dr)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
-  C2F(dr)("xset","window",&win,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
+  C2F(dr)("xget","window",&verb,&win,&na,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
+  C2F(dr)("xset","window",&win,&v,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
   if (versionflag == 0) sciSwitchWindow(&win);  /* NG */
   return 0;
 } 
@@ -3573,7 +3573,7 @@ int scixload(fname,fname_len)
      unsigned long fname_len;
 {
   double dv;
-  integer m1,n1,l1,m2,n2,l2,wid,v;
+  integer m1,n1,l1,m2,n2,l2,wid,v=1;
 
   CheckRhs(1,2);
   if (version_flag() == 0) {
@@ -3584,7 +3584,7 @@ int scixload(fname,fname_len)
   GetRhsVar(1,"c",&m1,&n1,&l1);
   if (Rhs == 2) {
     GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2); wid = (integer) *stk(l2 );
-    C2F(dr)("xset","window",&wid,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
+    C2F(dr)("xset","window",&wid,&v,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
   }
   C2F(sciwin)();
   C2F(xloadplots)(cstk(l1),m1);
@@ -4975,7 +4975,7 @@ int gget(fname,fname_len)
 int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol)
 {
   int xtmp;
-  int  i,num,v=0,na,id;
+  int  i,num,v=1,na,id;
   double dtmp,dv=0.0; 
   char  **str, **ptr, ctmp[10];    
   sciPointObj *psubwin, *figure, *tmpobj;
@@ -5137,7 +5137,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	num=stk(*value)[0];
 
-      C2F(dr1)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
+      C2F(dr1)("xset","window",&num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
       sciSwitchWindow(&num);
     }
 	
@@ -5169,7 +5169,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     id = (int)stk(*value)[0];
     if ((sciPointObj *)pobj != pfiguremdl)
       {
-	C2F(dr)("xset","window",&id,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
+	C2F(dr)("xset","window",&id,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
 	sciSwitchWindow(&id);
       }
     else
