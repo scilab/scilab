@@ -556,7 +556,7 @@ void SciViewportMove (ScilabGC, x, y)
 	  sciSetScrollInfo (ScilabGC, SB_HORZ, &horzsi, TRUE);
 	  vertsi.nPos = min (vertsi.nMax, max (vertsi.nMin, y));
 	  sciSetScrollInfo (ScilabGC, SB_VERT, &vertsi, TRUE);
-	  InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL, TRUE);
+	  InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL, 0);
 	  UpdateWindow (ScilabGC->CWindow);
 	}
     }
@@ -855,6 +855,8 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
 {
   /* static paint = 0; */
   HDC hdc;
+  HDC hdc1;
+
   PAINTSTRUCT ps;
   RECT rect;
   /* paint++; */
@@ -887,15 +889,73 @@ ScilabGC->CWindowHeight, NULL);
 	}
       else
 	{
+     
 		  /* MAJ D.ABDEMOUCHE*/
 	  if (ScilabGC->CurResizeStatus == 0)
 	    SetViewportOrgEx (hdc, -ScilabGC->horzsi.nPos, 
 -ScilabGC->vertsi.nPos, NULL);
-	  scig_replay_hdc ('U', ScilabGC->CurWindow, hdc, 
-ScilabGC->CWindowWidth,
-			   ScilabGC->CWindowHeight, 1);
+
+if ((  ScilabGC->hdcCompat = CreateCompatibleDC (hdc)) == NULL)
+	{
+	  sciprint("Setting pixmap on is impossible \r\n");
+	  return;
+	}
+      else
+	{
+	  HBITMAP hbmTemp ;
+	  SetMapMode(ScilabGC->hdcCompat, MM_TEXT);
+	  SetBkMode(ScilabGC->hdcCompat,TRANSPARENT);
+	  SetTextAlign(ScilabGC->hdcCompat, TA_LEFT|TA_BOTTOM);
+	  hbmTemp =CreateCompatibleBitmap (hdc,
+						    ScilabGC->CWindowWidth,
+						    ScilabGC->CWindowHeight);
+	  /* ajout */
+	  if (!hbmTemp)
+	    {
+	      sciprint("Seeting pixmap on is impossible \r\n");
+	      return;
+	    }
+	  else
+{
+	      HBITMAP  hbmSave;
+	      hbmSave = SelectObject ( ScilabGC->hdcCompat, hbmTemp);
+
+          ScilabGC->hbmCompat = hbmTemp;
+	      ScilabGC->CurPixmapStatus = 1;
+	      C2F(pixmapclear)(PI0,PI0,PI0,PI0); /* background color */
+	      /** the create default font/brush etc... in hdc */ 
+	      SetGHdc(ScilabGC->hdcCompat,ScilabGC->CWindowWidth,
+		       ScilabGC->CWindowHeight);
+	      
+	      SetGHdc((HDC)0,ScilabGC->CWindowWidth,
+		       ScilabGC->CWindowHeight);
+          scig_replay_hdc('W',ScilabGC->CurWindow,ScilabGC->hdcCompat,ScilabGC->CWindowWidth, ScilabGC->CWindowHeight,1);
+          
+		  hdc1=GetDC(ScilabGC->CWindow);
+      BitBlt (hdc1,0,0,ScilabGC->CWindowWidth,ScilabGC->CWindowHeight,
+	      ScilabGC->hdcCompat,0,0,SRCCOPY);
+      ReleaseDC(ScilabGC->CWindow,hdc1);
+		  
+		  
+	/** 	  C2F (show) (PI0, PI0, PI0, PI0);**/
+               ScilabGC->CurPixmapStatus = 0;
+      /** XXXX **/
+      if ( ScilabGC->hdcCompat)
+	SelectObject (ScilabGC->hdcCompat, NULL) ;
+      if ( ScilabGC->hbmCompat)
+	DeleteObject (ScilabGC->hbmCompat);
+      if ( ScilabGC->hdcCompat)
+	{
+	  if ( hdc == ScilabGC->hdcCompat)
+	    hdc=GetDC(ScilabGC->CWindow);
+	  DeleteDC(ScilabGC->hdcCompat);
+	}
+      ScilabGC->hbmCompat = (HBITMAP) 0;
+      ScilabGC->hdcCompat = (HDC) 0;
+	  }
 	}
     }
+  }
   EndPaint(hwnd, &ps);
 
   scig_buzy = 0;
@@ -989,7 +1049,7 @@ EXPORT LRESULT CALLBACK
 	    DebugGW ("rebuild tools \r\n");
 /** wininfo("rebuild tools \r\n"); **/
 	    GetClientRect (hwnd, &rect);
-	    InvalidateRect (hwnd, (LPRECT) & rect, 1);
+	    InvalidateRect (hwnd, (LPRECT) & rect, 0);
 	    UpdateWindow (hwnd);
 	    return 0;
 	  }
@@ -1127,7 +1187,7 @@ ScilabGC->horzsi.nPos,
 	    break;
 	  }
 	sciSetScrollInfo (ScilabGC, SB_HORZ, &horzsi, TRUE);
-	InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL, TRUE);
+	InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL, 0);
 	UpdateWindow (ScilabGC->CWindow);
       }
       break;
@@ -1171,7 +1231,7 @@ ScilabGC->horzsi.nPos,
 	    break;
 	  }
 	sciSetScrollInfo (ScilabGC, SB_VERT, &vertsi, TRUE);
-	InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL, TRUE);
+	InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL, 0);
 	UpdateWindow (ScilabGC->CWindow);
       }
       break;
@@ -1230,6 +1290,8 @@ PI0, PD0, PD0, PD0, PD0, 0L, 0L);
 /** the create default font/brush etc... in hdc */
   ResetScilabXgc ();
 /** xclear will properly upgrade background if necessary **/
+sciprint("scig_replay_hdc %d\n",sciGetPixmapStatus());
+if (sciGetPixmapStatus() != 1)
   C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
 PD0, 0L, 0L);
   if (version_flag() == 0)
