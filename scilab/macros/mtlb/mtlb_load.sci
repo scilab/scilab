@@ -1,6 +1,8 @@
 function mtlb_load(thefile,opt)
 //loads matlab 4.x  binary (.mat) or ascii files
 //
+warning("This function is obsolete, use loadmatfile instead");
+
 l_flags=['dl','fl','ll','sl','uls','uc']
 b_flags=['db','fb','lb','sb','ubs','uc']
 deff('Error(msg)',['mclose(fd)' ;'error(msg)'])
