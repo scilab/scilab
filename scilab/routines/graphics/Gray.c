@@ -15,6 +15,12 @@
 #include "Entities.h" /* NG */
 extern int version_flag(void); /* NG */
 
+extern void fill_grid_rectangles __PARAMS(( integer *x,  integer *y, 
+					    double *z, integer n1, integer n2));
+
+extern void fill_grid_rectangles1 __PARAMS(( integer *x,  integer *y,  
+					     double *z, integer n1, integer n2));
+
 extern void GraySquare __PARAMS((integer *x,integer *y,double *z,
 				integer n1,integer n2));
 extern void GraySquare1 __PARAMS((integer *x,integer *y,double *z,
