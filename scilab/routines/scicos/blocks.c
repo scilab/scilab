@@ -31,8 +31,6 @@ void C2F(absblk)(flag, nevprt, t, xd, x, nx, z, nz, tvec,
      double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
 {
   int i;
-  if ( C2F(dbcos).idb == 1) 
-    fprintf(stderr,"absblt t=%f, flag=%d\n", *t,*flag);
   for (i = 0 ; i <  *nu ; ++i ) y[i] = Abs(u[i]);
 } 
 
@@ -48,8 +46,6 @@ void C2F(andlog)(flag, nevprt, t, xd, x, nx, z, nz, tvec,
      integer *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
      double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
 {
-  if ( C2F(dbcos).idb == 1) 
-    fprintf(stderr,"Andlog t=%f, flag=%d\n", *t,*flag);
   if ( *flag == 1)  y[0] = ( *nevprt != 3 ) ? -1.00 :  1.00; 
 }
 
@@ -64,8 +60,6 @@ void C2F(bidon)(flag, nevprt, t, xd, x, nx, z, nz, tvec,
      integer *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
      double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
 {
-  if ( C2F(dbcos).idb == 1) 
-    fprintf(stderr,"Bidon \n");
 }
 
 
@@ -82,8 +76,6 @@ void C2F(gain)(flag, nevprt, t, xd, x, nx, z, nz, tvec,
      double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
 {
   integer un=1;
-  if ( C2F(dbcos).idb == 1) 
-    fprintf(stderr,"Gain t=%f, flag=%d\n", *t,*flag);
   C2F(dmmul)(rpar,ny,u,nu,y,ny,ny,nu,&un);
 }
 
@@ -97,8 +89,6 @@ void C2F(cdummy)(flag, nevprt, t, xd, x, nx, z, nz, tvec,
      integer *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
      double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
 {
-  if ( C2F(dbcos).idb == 1) 
-    fprintf(stderr,"Cdummy t=%f, flag=%d\n", *t,*flag);
   if ( *flag == 0 ) xd[0]=0.00;
 }
 
