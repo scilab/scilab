@@ -4,10 +4,10 @@
  *    Changed: steer, jpc 2004 
  *--------------------------------------------------------------------------*/
 
-#include <malloc.h>
 #include <string.h>
-
 #include "../machine.h"
+#include "../graphics/Math.h"  /* malloc */
+
 #ifndef NULL
 #define NULL 0
 #endif
