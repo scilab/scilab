@@ -92,12 +92,12 @@ pt(2)=yp(k)
 if k>np then ind=ki(k-np),else ind=-k,end
 endfunction
 
-
 function ged_eventhandler(win,x,y,ibut)
 //Copyright INRIA
 //Author : Serge Steer 2002
 
   if or(win==winsid()) then //does the windows still exists
+
 //    seteventhandler("")  
   else //window has been deleted by an asynchronous xdel()
     return
@@ -117,6 +117,8 @@ function ged_eventhandler(win,x,y,ibut)
   scf(cur)
 
   if ged_handle~=[] then
+
+
     if ibut==0 then
       //Set(h)
       tkged()
@@ -233,12 +235,16 @@ function GetSetValue(h)
     end
   end
 endfunction
+
+
+
 function tkged()
   global ged_handle
   h=ged_handle
+
   //color_map array for color sample display
-  f=gcf();
-  for i=1:size(get(gcf(),'color_map'),1)
+  f=getparfig(h);
+  for i=1:size(f.color_map,1)
     redname= "RED("+string(i)+")";
     TK_EvalStr('set '+redname+" "+string(int(255*f.color_map(i,1))));
     grename= "GREEN("+string(i)+")";
@@ -249,14 +255,34 @@ function tkged()
 
   select h.type
     case "Polyline"
-    TK_SetVar("ncolors",string(size(get(gcf(),'color_map'),1)))
+    TK_SetVar("ncolors",string(size(f.color_map,1)))
     TK_SetVar("curcolor",string(h.foreground))
     TK_SetVar("curthick",string(h.thickness))
     TK_SetVar("curvis",h.visible)
     TK_SetVar("curstyle",string(h.polyline_style))
+    TK_SetVar("nbrow",string(size(h.data,1)))
+
+    // pass the data matrix
+    for i=1:size(h.data,1)
+     val= "polyVAL("+string(i)+",1)";
+     TK_EvalStr('set '+val+" "+string(h.data(i,1)));
+      val= "polyVAL("+string(i)+",2)";
+     TK_EvalStr('set '+val+" "+string(h.data(i,2)));
+     if(get(getparaxe(h),'view') == '3d')
+      val= "polyVAL("+string(i)+",3)";
+      TK_EvalStr('set '+val+" "+string(h.data(i,3)));
+     end
+    end
+    select get(getparaxe(h),'view')
+     case "2d"
+      TK_SetVar("nbcol",string(2));
+     case "3d"
+      TK_SetVar("nbcol",string(3));
+    end
+
     TK_EvalFile(SCI+'/tcl/ged/Polyline.tcl')
     case "Rectangle"
-    TK_SetVar("ncolors",string(size(get(gcf(),'color_map'),1)))
+    TK_SetVar("ncolors",string(size(f.color_map,1)))
     TK_SetVar("curcolor",string(h.foreground))
     TK_SetVar("curthick",string(h.thickness))
     TK_SetVar("curvis",h.visible)
@@ -266,6 +292,7 @@ function tkged()
     TK_SetVar("xlabel",h.x_label.text)
     TK_SetVar("ylabel",h.y_label.text)
     TK_SetVar("zlabel",h.z_label.text)
+    TK_SetVar("tlabel",h.title_label.text)
     TK_SetVar("xlabel_foreground",string(h.x_label.foreground))
     TK_SetVar("ylabel_foreground",string(h.y_label.foreground))
     TK_SetVar("zlabel_foreground",string(h.z_label.foreground))
@@ -274,7 +301,7 @@ function tkged()
     TK_SetVar("ylabel_fontsize",string(h.y_label.font_size))
     TK_SetVar("zlabel_fontsize",string(h.z_label.font_size))
     TK_SetVar("titlelabel_fontsize",string(h.title.font_size))
-    TK_SetVar("ncolors",string(size(get(gcf(),'color_map'),1)))
+    TK_SetVar("ncolors",string(size(f.color_map,1)))
     TK_SetVar("fcolor",string(h.foreground))
     TK_SetVar("bcolor",string(h.background))
     TK_SetVar("curthick",string(h.thickness))
@@ -291,12 +318,27 @@ function tkged()
     TK_SetVar("yToggle",part(h.log_flags,2))
     TK_SetVar("xGrid",string(h.grid(1)))
     TK_SetVar("yGrid",string(h.grid(2)))
+
+   
     select h.view
-     case "2d"
-    TK_SetVar("zGrid","-1")
+     case "2d" 
+    h.view='3d'
+    TK_SetVar("zGrid",string(h.grid(3)))
+    TK_SetVar("dbxmin",string(h.data_bounds(1,1)))
+    TK_SetVar("dbymin",string(h.data_bounds(1,2)))
+    TK_SetVar("dbzmin",string(h.data_bounds(1,3)))
+    TK_SetVar("dbxmax",string(h.data_bounds(2,1)))
+    TK_SetVar("dbymax",string(h.data_bounds(2,2)))
+    TK_SetVar("dbzmax",string(h.data_bounds(2,3)))
+    h.view='2d'
      case "3d"
     TK_SetVar("zGrid",string(h.grid(3)))
-   end
+    TK_SetVar("dbxmin",string(h.data_bounds(1,1)))
+    TK_SetVar("dbymin",string(h.data_bounds(1,2)))
+    TK_SetVar("dbxmax",string(h.data_bounds(2,1)))
+    TK_SetVar("dbymax",string(h.data_bounds(2,2)))
+    TK_SetVar("dbzmax",string(h.data_bounds(2,3)))
+    end
     TK_EvalFile(SCI+'/tcl/ged/Axes.tcl')
   end
 endfunction
@@ -322,7 +364,7 @@ endfunction
 
 
 function setLabelsFontStyle(label,ftn)
-  global ged_handle; h=ged_handle
+   global ged_handle; h=ged_handle
 select label
 case "t"
   h.title.font_style=find(ftn==["Courier" "Symbol" "Times",..
@@ -348,16 +390,97 @@ end;
 endfunction
 
 
-function updatecolor(index)
+function setXdb(xmin, xmax)
+  global ged_handle; h=ged_handle
+  tmp=h.data_bounds;
+  tmp(1,1)=xmin;
+  tmp(2,1)=xmax;
+  tst=execstr('h.data_bounds=tmp','errcatch','n');
+  if tst<>0 then
+   disp 'Warning: X data_bounds must contain double'
+  end
+endfunction
 
-fcol=get(gcf(),'color_map');
-COL= int(255*fcol(index,1)) ;
-TK_SetVar("RED",string(COL));
 
-COL= int(255*fcol(index,2)) ;
-TK_SetVar("GREEN",string(COL));
+function setYdb(ymin, ymax)
+  global ged_handle; h=ged_handle
+  tmp=h.data_bounds;
+  tmp(1,2)=ymin;
+  tmp(2,2)=ymax;
+  tst=execstr('h.data_bounds=tmp','errcatch','n');
+  if tst<>0 then
+   disp 'Warning: Y data_bounds must contain double'
+  end
+endfunction
 
-COL= int(255*fcol(index,3)) ;
-TK_SetVar("BLUE",string(COL));
+function setZdb(zmin, zmax)
+  global ged_handle; h=ged_handle
+ select h.view
+     case "2d"
+      h.view='3d';
+      tmp=h.data_bounds;
+      tmp(1,3)=zmin;
+      tmp(2,3)=zmax;
+      tst=execstr('h.data_bounds=tmp','errcatch','n');
+      h.view='2d';
+      if tst<>0 then
+       disp 'Warning: Z data_bounds must contain double'
+      end
+     case "3d"
+      tmp=h.data_bounds;
+      tmp(1,3)=zmin;
+      tmp(2,3)=zmax;
+      tst=execstr('h.data_bounds=tmp','errcatch',n');
+      if tst<>0 then
+        disp 'Warning: Z data_bounds must contain double'
+      end
+     end
+endfunction
+
+
+function LogtoggleX( tog)
+ global ged_handle; h=ged_handle
+tst=execstr("global h;h.log_flags=tog+part(h.log_flags,2)",'errcatch','n');
+
+if tst<>0 then
+   disp 'Warning: X bounds must be strictly positive'
+end
 
 endfunction
+
+function LogtoggleY( tog)
+ global ged_handle; h=ged_handle
+tst=execstr("global h;h.log_flags=part(h.log_flags,1)+tog",'errcatch','n');
+
+if tst<>0 then
+   disp 'Warning: Y bounds must be strictly positive'
+end
+
+endfunction
+
+
+
+function  hfig= getparfig( h )
+
+htmp = h;
+hfig= []
+while htmp.type<>'Figure' do
+  htmp=htmp.parent
+end
+
+hfig = htmp;
+endfunction
+
+
+
+function [haxe] = getparaxe( h )
+
+htmp = h;
+haxe = [];
+while htmp.type<>'Axes' do
+  htmp = htmp.parent
+end
+
+haxe = htmp;
+endfunction
+
