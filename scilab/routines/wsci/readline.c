@@ -287,7 +287,7 @@ char * readline_nw (char *prompt, int interrupt)
   cur_line[0] = '\0';
   cur_pos = 0;
   max_pos = 0;
-  //cur_entry = NULL;
+  cur_entry = NULL;
 
   /* get characters */
   for (;;)
