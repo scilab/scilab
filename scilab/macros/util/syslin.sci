@@ -46,14 +46,22 @@ elseif rhs==3 then // syslin(domaine,num,den)
   if type(num)>2 | type(den)>2 then
     error('syslin : N and D must be matrix of numbers or of polynomials')
   end
+  if or(size(num)<>size(den)) then
+    error('syslin : N and D have inconsistent dimensions')
+  end
+
   if type(num)==2 & type(den)==2 then
     if varn(num)<>varn(den) then 
       error('syslin : N and D have inconsistent formal variable names')
     end
   end
-  if or(size(num)<>size(den)) then
-    error('syslin : N and D have inconsistent dimensions')
+  if type(num)==1 then
+    num=num*poly(1,z,'c')
   end
+   if type(den)==1 then
+    den=den*poly(1,z,'c')
+  end
+  
   sl=rlist(varn(num,z),varn(den,z),domain)
 //============================================================================
 elseif rhs>3 then // syslin(domaine,A,B,C [,D [X0]])
