@@ -1,6 +1,8 @@
 #include <string.h> 
 
 #include "../stack-c.h"
+#include "../graphics/Math.h" /* Abs */ 
+
 #include "matdsr.h"
 
 static integer cx1 = 1;
@@ -56,7 +58,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 	    t = 0.;
 	    ix2 = n;
 	    for (ix = 1; ix <= ix2; ++ix) {
-		t += (dx1 = *stk(lj + ix ), abs(dx1));
+		t += (dx1 = *stk(lj + ix ), Abs(dx1));
 	    }
 	    if (t > rMax) {
 		rMax = t;
