@@ -1,25 +1,28 @@
-% Copyright INRIA
-
 \documentclass[11pt]{report}
 
-\usepackage{makeidx}
-             \textheight=660pt 
-             \textwidth=15cm
-             \topmargin=-27pt 
-             \oddsidemargin=0.7cm
-             \evensidemargin=0.7cm
-             \marginparwidth=60pt
+\usepackage{scilab}
 
+\usepackage{amsmath,amssymb,times,subfigure,epsfig,fancyheadings,verbatim,moreverb,makeidx}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
 \def\Figdir{figures/}
 
 \makeindex
+            \textheight=21cm
+      %       \textwidth=15cm
+             \textwidth=15cm
+      %       \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+       %      \marginparwidth=60pt
+
 
 \begin{document}
 
 \include{chap0}
 
 \pagenumbering{roman}
-\tableofcontents
+%\tableofcontents
 \pagestyle{headings}
 \pagenumbering{arabic}
 
@@ -34,8 +37,6 @@
 \include{chap5} %graphics
 
 \include{chap6} %interfacing
-
-%\include{appendices}
 
 \listoffigures
 

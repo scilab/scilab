@@ -4,46 +4,48 @@
 
 \section{What is Scilab}
 
-Developed at INRIA, Scilab has been developed for system control and
-signal processing applications. It 
-is freely distributed in source code format (see the copyright file). 
+Developed at INRIA and ENPC, Scilab has been developed for engineering 
+applications. It is freely distributed (see the copyright file) and the source
+code is available.
 
 Scilab is made of three distinct parts: an interpreter, 
-libraries of functions (Scilab procedures) and libraries of Fortran 
-and C routines. 
-These routines (which, strictly speaking, do not belong to Scilab but
+a set of libraries of Fortran and C routines linked with Scilab
+and a number of toolboxes written in Scilab language.
+The numerical librairies (which, strictly speaking, do not belong to Scilab but
 are interactively called by the interpreter) are of 
-independent interest and most of them are available through Netlib. 
-A few of them have been slightly modified for better compatibility
-with Scilab's interpreter.
+independent interest and most of them are available through the Web. 
  
 A key feature of the Scilab syntax is its ability to handle matrices: 
 basic matrix manipulations such as concatenation, 
 extraction or transpose are immediately performed as well as basic operations
-such as addition or multiplication. Scilab also aims at handling more complex
-objects than numerical matrices. For instance, control people may want
-to manipulate rational or polynomial transfer matrices. This is
-done in Scilab by manipulating lists and typed lists which allows a 
+such as addition or multiplication. The syntax for manipulating
+matrices is mostly compatible with Matlab. 
+Scilab also aims at handling more complex
+objects than numerical matrices. This is
+done in Scilab by manipulating structures which allows a 
 natural symbolic representation of complicated
-mathematical objects such as transfer functions, linear systems or graphs
+objects such as transfer functions, linear systems or graphs
 (see Section~\ref{s2.5}).
 
-        Polynomials, polynomials matrices and transfer matrices 
-are also defined and the syntax used for manipulating these matrices
-is identical to that used for manipulating constant vectors and matrices.
+ Mathematical objects such as polynomials, polynomials matrices 
+and rational polynomial matrices are also defined and the syntax 
+used for manipulating these matrices is identical to that used for 
+manipulating numerical vectors and matrices.
 
         Scilab provides a variety of powerful primitives for
 the analysis of non-linear systems.  
 Integration of explicit and implicit dynamic systems can be accomplished 
 numerically.  The {\tt scicos} toolbox allows the graphic definition
-and simulation of complex interconnected hybrid systems.
+and simulation of complex interconnected hybrid systems. Documentation
+about {\tt scicos} can be found at its the Web page 
+\href{http://www.scicos.org}{scicos.org}.
 
- There exist numerical optimization 
-facilities for non linear optimization (including
-non differentiable optimization), quadratic optimization and 
-linear optimization.
+ There exist numerical optimization facilities for non linear 
+optimization (including non differentiable optimization), quadratic 
+optimization and linear optimization (see also the contribution 
+directory on the Scilab Web page).
 
-        Scilab has an open programming environment where the
+  Scilab has an open programming environment where the
 creation of functions and libraries of functions is completely in the
 hands of the user (see Chapter~\ref{ch4}).    
 Functions are recognized as data objects in Scilab and, thus, can be 
@@ -68,11 +70,7 @@ a syntax which is natural and easy to use.
    \item To provide a reasonable set of primitives which serve
            as a basis for a wide variety of calculations.
    \item To have an open programming environment where new
-           primitives are easily added. A useful tool distributed with
- Scilab is {\tt intersci} which
-is a tool for building interface programs to add new primitives 
-i.e. to add new modules of Fortran or C code into Scilab.
-
+           primitives are easily added. 
    \item To support library development through ``toolboxes'' of
          functions devoted to specific
            applications (linear control, signal processing, 
@@ -80,7 +78,7 @@ i.e. to add new modules of Fortran or C code into Scilab.
 \end{itemize}
 
         The objective of this introduction manual is to give the user 
-an idea of what Scilab can do. On line documentation on all
+an idea of what Scilab can do. On line documentation about all
 functions is available ({\tt help} command).
 
 
@@ -90,11 +88,13 @@ Scilab is divided into a set of directories. The main directory
 \verb!SCIDIR! contains the following files: {\tt scilab.star} (startup file), the
 copyright file {\tt notice.tex}, and the \verb!configure! files
 (see(\ref{install})).
-The subdirectories are the following:
+The main subdirectories are the following:
 \begin{itemize}
 
 \item{{\tt bin} is the directory of the executable files.
-The starting script {\tt scilab} on Unix/Linux systems and {\tt runscilab.exe} on Windows95/NT, The executable code of Scilab: {\tt scilex} on Unix/Linux systems and {\tt scilex.exe} on Windows95/NT are there. 
+The starting script {\tt scilab} on Unix/Linux systems and {\tt runscilab.exe} on Windows.
+The executable code of Scilab: {\tt scilex} on Unix/Linux systems and {\tt scilex.exe} on 
+Windows are there. 
 This directory also contains Shell scripts 
 for managing or printing Postscript/\LaTeX\  files produced by Scilab.}
 
@@ -108,75 +108,6 @@ Note that running a graphic function without input parameter
 provides an example of use for this function (for instance {\tt
 plot2d()} displays an example for using {\tt plot2d}  function). }
 
-\item{{\tt examples} contains useful examples of how to link
-external programs to scilab, using dynamic link or {\tt intersci}}
-
-\item{{\tt doc} is the directory of the Scilab documentation: \LaTeX\ , dvi 
-and Postscript files. 
-This documentation is {\tt SCIDIR/doc/intro/intro.tex}. }
-
-\item{{\tt geci} contains source code and binaries for GeCI which is an 
-interactive communication manager created in order to
-manage remote executions of softwares and allow exchanges of messages
-beetwen those programs. It offers the possibility to exploit numerous
-machines on a network, as a virtual computer, by creating a
-distributed group of independent softwares 
-(\verb!help communications! for a detailed description).
-GeCI is used for the link of Xmetanet with Scilab.}
-
-\item{\tt pvm3} contains source code and binaries of the PVM version
-3 which is another interactive communication manager. 
-
-\item{{\tt imp} is the directory of the routines managing the Postscript files
-for print.}
-
-\item{{\tt libs} contains the Scilab libraries (compiled code).}
-
-\item{{\tt macros} contains the libraries of functions
-which are available on-line. New libraries can easily be added 
-(see the Makefile). This directory is divided into a number of subdirectories
-which contain ``Toolboxes'' for control, signal processing, etc... Strictly
-speaking Scilab is not organized in toolboxes : functions of a specific
-subdirectory can call functions of other directories; so, for example, the 
-subdirectory {\tt signal} is not self-contained but its functions are all devoted
-to signal processing.}
-
-\item{{\tt man} is the directory containing the manual divided 
-into submanuals, corresponding to the on-line help and to 
-a \LaTeX\  format of the reference manual. 
-The \LaTeX\  code is produced by a 
-translation of the Unix format Scilab manual (see the subdirectory
-{\tt SCIDIR/man}).}
-To get information about an item, one should enter 
-{\tt help item}\index{help@{\tt help}} 
-in Scilab or use the help window facility obtained with help button.
-To get information corresponding to a key-word, one should  enter 
-{\tt apropos key-word} or use 
-{\tt apropos}\index{apropos@{\tt apropos}} in the help window. 
-All the {\tt item}s and {\tt key-words} known by the {\tt help} and 
-{\tt apropos} commands are in {\tt .cat} and {\tt whatis} files 
-located in the {\tt man} subdirectories.
-
-To add new items to the {\verb!help!} and {\tt apropos} commands 
-the user can extend the list of directories available to the help 
-browser by adapting the variable \verb!%helps!. 
-See the README file in the \verb!man! directory and the example
-given in \verb!examples/man-examples! directory
-
-\item{{\tt maple} is the directory which contains the source code of Maple
-functions which allow the transfer of Maple objects
-into Scilab functions. For efficiency, the transfer
-is made through Fortran code generation which is dynamically linked
-to Scilab.}
-
-\item{{\tt routines} is a directory which contains the source code of all
-the numerical routines. The subdirectory {\tt default} is important
-since it contains the
-source code of routines which are necessary to customize Scilab.}
-In particular user's C or Fortran routines for ODE/DAE simulation 
-or optimization can be included here (they can be also dynamically
-linked).
-
 \item{{\tt examples} contains examples of specific topics. It is shown
 in appropriate subdirectories how to add new C or Fortran program
 to Scilab (see \verb!addinter-tutorial!). More complex examples are given
@@ -186,45 +117,66 @@ mexfiles. The directory \verb!link-examples! illustrates the use of
 the \verb!call! function which allows to call external function within
 Scilab.}
 
-\item{{\tt intersci} contains a program which can be used to build
-interface programs for adding new Fortran or C 
-primitives to Scilab. This program is executed by the {\tt intersci}
-script in the {\tt bin/intersci} directory.}
+\item{{\tt macros} contains the libraries of functions
+which are available on-line. New libraries can easily be added 
+(see the Makefile). This directory is divided into a number of subdirectories
+which contain ``Toolboxes'' for control, signal processing, etc... Strictly
+speaking Scilab is not organized in toolboxes : functions of a specific
+subdirectory can call functions of other directories; so, for example, the 
+subdirectory {\tt signal} is not self-contained but all the functions there 
+are devoted to signal processing.}
 
-\item{{\tt scripts} is the directory which contains the source code of 
-shell scripts files. Note that the list of printers \index{printers} 
-names known by Scilab is defined there by an environment variable.}
+\item{{\tt man} is the directory containing the manual divided 
+into submanuals, corresponding to the on-line help.}
+
+To get information about an item, one should enter 
+{\tt help item}\index{help@{\tt help}} 
+in Scilab or use the help window facility obtained with help button.
+To get information corresponding to a key-word, one should  enter 
+{\tt apropos key-word} or use 
+{\tt apropos}\index{apropos@{\tt apropos}} in the help window. 
+All the {\tt item}s and {\tt key-words} known by the {\tt help} and 
+{\tt apropos} commands are in {\tt .html} and {\tt whatis} files 
+located in the {\tt man} subdirectories.
+
+To add new items to the {\verb!help!} and {\tt apropos} commands 
+the user can extend the list of directories available to the help 
+browser by adapting the variable \verb!%helps!. 
+
+\item{{\tt routines} is a directory which contains the source code of all
+the numerical routines. The subdirectory {\tt default} is important
+since it contains the
+source code of routines which are necessary to customize Scilab.
+In particular user's C or Fortran routines for ODE/DAE simulation 
+or optimization can be included here (they can be also dynamically
+linked)}
 
 \item{{\tt tests} : this directory contains evaluation programs for testing 
 Scilab's installation on a machine. The file ``demos.tst'' tests all the 
 demos.}
 
-\item{{\tt wless, xless} is the Berkeley file browsing tool}
-
-\item{{\tt xmetanet} is the directory which contains {\tt xmetanet}, a 
-graphic display for networks. Type {\tt metanet()} in Scilab to use it.}
+\item{{\tt intersci} contains a program which can be used to build
+interface programs for adding new Fortran or C 
+primitives to Scilab. This program is executed by the {\tt intersci}
+script in the {\tt bin/intersci} directory.}
 
 \end{itemize}
 
 \section{Installing Scilab. System Requirements}
 \label{install}
-Scilab is distributed in source code format; binaries for Windows95/NT
+Scilab is distributed in source code format; binaries for Windows98/NT/XP
 systems and several popular Unix/Linux-XWindow systems are also
-available: Dec Alpha (OSF V4), Dec Mips (ULTRIX 4.2), Sun Sparc
-stations (Sun OS), Sun Sparc stations (Sun Solaris), HP9000 (HP-UX
-V10), SGI Mips Irix, PC Linux. All of these binaries versions include
-tk/tcl interface.
+available. See the Scilab Web page and the contributions for specific
+ports. All of these binaries versions include tk/tcl interface.
 
 The installation requirements are the following :
 
 - for the source version: Scilab requires approximately 130Mb of disk
-storage to unpack and install (all sources included).  You need X
-Window (X11R4, X11R5 or X11R6, C compiler and Fortran compiler
-(e.g. f2c or g77 or Visual C++ for Windows systems). 
+storage to unpack and install (all sources included).  You a C 
+compiler and a Fortran compiler.
   
 - for the binary version: the minimum for running Scilab (without
 sources) is about 40 Mb when decompressed.
-These versions  are partially statically linked and in principle do not require a fortran compiler.
 
 \label{stks}
 Scilab uses a large internal stack for its calculations. This size
@@ -234,7 +186,7 @@ command. The default dimension of the internal stack can be adapted
 by modifying the variable {\tt newstacksize} in the {\tt scilab.star}
 script.
 
-- For more information on the installation, please look at the README files
+- For more information on the installation, please look at the README files.
 
 \section{Documentation}
 
@@ -244,21 +196,16 @@ reports devoted to specific toolboxes: Scicos (graphic system builder
 and simulator), Signal (Signal processing toolbox), Lmitool (interface for 
 LMI problems), Metanet (graph and network toolbox). An FAQ is
 available at Scilab home page:\\
-(\verb!http://www-rocq.inria.fr/scilab!)\index{home page}.
+(\verb!http://www.scilab.org!)\index{home page}.
+
+Several documents are available in French, German, Spanish, Chinese etc. 
+See the Scilab Web page.
 
 \section{Scilab at a Glance. A Tutorial}
 
 \subsection{Getting Started}
 
-Scilab is called by running the {\tt scilab} script in the 
-directory {\tt SCIDIR/bin} ({\tt SCIDIR} denotes the directory 
-where Scilab is installed).
-This shell script  runs Scilab in an Xwindow environment (this 
-script file can be invoked with
-specific parameters such as \verb!-nw! for ``no-window'').
-You will immediatly get the Scilab window with the following banner and 
-prompt represented by the {\tt -->} : 
-
+After starting Scilab, you get:
 
 \bigskip
 
@@ -268,8 +215,8 @@ prompt represented by the {\tt -->} :
                            ===========
  
  
-                  Scilab-2.x  ( 12 July 1998 ) 
-                  Copyright (C) 1989-98 INRIA 
+                          Scilab-x.y.z
+                  Copyright (C) 1989-xx INRIA/ENPC 
  
  
 Startup execution:
@@ -332,65 +279,6 @@ useful if you type your commands in an editor. Another way to
 ``load'' files containing Scilab statements
 is available with the {\tt File/File Operations} button.
 
-\subsection{Buttons}
-The Scilab window has the following {\bf Control} buttons.\\
-
-%
-\begin{itemize}
-\item Stop     interrupts execution of Scilab and enters in 
-{\tt pause} mode
-\item Resume    continues execution after a {\tt pause}
-entered as a command in a function or generated by the {\tt Stop}
-button or Control C.
-\item Abort     aborts execution after one (or several) {\tt pause}, 
-and returns to top-level prompt
-\item Restart   clears all variables and executes startup files
-\item Quit      quits Scilab
-\item Kill      kills Scilab shell script
-\item Demos     for interactive run of some demos
-\item File Operations   facility for loading functions or data into
-Scilab, or executing script files. 
-\item Help : invokes on-line help with the tree of the man and the 
-names of the corresponding items. It is possible to type directly 
-{\tt help <item>} in the Scilab window.
-\item Graphic Window : select active graphic window
-\end{itemize}
-%
-New buttons can be added by the 
-{\tt addmenu}\index{addmenu@{\tt addmenu}} command.
-Note that the command:\\
-{\tt SCIDIR/bin/scilab -nw} \\
-invokes Scilab in the ``no-window'' mode.
-
-\subsection{Customizing your Scilab - Unix only}
-
-
-The parameters of the different windows opened by 
-Scilab can be easily changed. The way for doing that is to edit the files 
-contained in the directory {\tt X11-defaults}. The first possibility is 
-to directly customize these files. Another way is to copy 
-the right lines with the modifications in the {\tt .Xdefaults} 
-file of the home directory.
-These modifications are activated by starting again Xwindow or with the
-command {\tt xrdb .Xdefaults}. Scilab will read the {\tt .Xdefaults} file: 
-the lines of this
-file will cancel and replace the corresponding lines of X11-defaults.
-
-A simple example : 
-
-\begin{verbatim}
-Xscilab.color*Scrollbar.background:red
-Xscilab*vpane.height: 500
-Xscilab*vpane.width:  500
-\end{verbatim}
-
-in {\tt .Xdefaults} will change the 500x650 window to a square window of 
-500x500 and the  
-scrollbar background color changes from green to red.
-
-An important parameter for customizing Scilab is \verb!stacksize!
-discussed in \ref{install}.
-
 \subsection{Sample Session for Beginners}
 
 We present now some simple commands. At the carriage return all the 
@@ -446,10 +334,16 @@ A  more complicated command which creates a polynomial.
 
 \noindent\dotfill
 
+\input{diary/d1p41.dia}
+
+Definition of a structure variable. 
+
+\noindent\dotfill
+
 \input{diary/d1p5.dia}
 
 Definition of a polynomial matrix. The syntax for polynomial matrices
-is the same as for constant matrices. Calculation of the
+is the same as for numerical matrices. Calculation of the
 determinant of the polynomial matrix by the {\tt det} function. 
 
 
@@ -562,16 +456,18 @@ by {\tt exec} or by {\tt getf} ).
 
 \input{diary/d1p15.dia}
 
-Relation with the Unix environment.
+Relation with the host environment.
 
 \noindent\dotfill
 
 \input{diary/d1p16.dia}
 
 Definition of a column vector of character strings used for defining a C
-function file. The routine is compiled (needs a compiler), dynamically 
+function file. The routine is compiled (needs a compiler), 
+and a shared library is done. The libary is dynamically 
 linked to Scilab by the {\tt link} command, and interactively called
-by the function {\tt myplus}.
+by the function {\tt myplus}. {\tt myplus} passes variables from Scilab
+to C and conversely.
 
 \noindent\dotfill
 

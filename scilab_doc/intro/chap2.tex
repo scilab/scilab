@@ -3,13 +3,11 @@
 \chapter{Data Types}
 \label{ch2}
 \index{data types}
-
 Scilab recognizes several data types.
- Scalar objects are constants, booleans, polynomials, strings and 
+ Scalar objects are numerical constants, booleans, polynomials, strings and 
 rationals (quotients of polynomials). These objects in turn allow to 
 define matrices which admit these scalars as entries.
-Other basic objects are lists, typed-lists and functions. Only
-constant and boolean sparse matrices are defined.
+Other basic objects are lists, typed-lists and functions.
 %
 The objective of this chapter is to describe the use of each of 
 these data types.
@@ -55,7 +53,7 @@ of these objects are revealed in the following Scilab sessions.
 Scalars are either real or complex numbers.  The values of
 scalars can be assigned to variable names chosen by the user.
 \begin{verbatim}
---> a=5+2*%i
+--> a=5+2*%i   //a complex number
  a         =
  
     5. + 2.i  
@@ -317,10 +315,10 @@ manipulated as full matrices.
 \index{data types!character strings}
 \index{character strings}
 
-	Character strings can be created by using single or double quotes.
+Character strings can be created by using single or double quotes.
 Concatenation of strings is performed by the {\tt +} operation.
 Matrices of character strings are constructed as ordinary matrices,
-e.g. using brackets.  A very important feature of matrices of
+e.g. using brackets.  An important feature of matrices of
 character strings is the capacity to manipulate and create functions.
 Furthermore, symbolic manipulation of mathematical objects can be
 implemented using matrices of character strings.  The following
@@ -354,10 +352,46 @@ Note that in the above Scilab session the function
 {\tt trianfml}\index{trianfml@{\tt trianfml}}\index{symbolic triangularization}
 performs the symbolic triangularization of the matrix {\tt A}.
 The value of the resulting symbolic matrix can be obtained by
-using {\tt evstr}.  
+using {\tt evstr}.
 
-	A very important aspect of character strings is that they
-can be used to automatically create new functions (for more on functions
+The following table gives the list of some useful functions:
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\verb!ascii! & ascii code of strings\\ \hline
+
+\verb!execstr! & executes the string\\ \hline
+
+\verb!grep ! & looks for a chain into a matrix \\ \hline
+
+\verb!sort, gsort ! & sorting (lexicographic,...) \\ \hline
+
+\verb!part! & extract a subchain  \\ \hline
+
+\verb!mmscanf! & formated read into a chain \\ \hline
+
+\verb!msprintf! & construct a chain/vector   \\ \hline
+
+\verb!strindex! & location of a subchain \\ \hline
+
+\verb!string ! & convert into a string \\ \hline
+
+\verb!stripblanks! & remove blank characters \\ \hline
+
+\verb!strsubst! & chain replacement \\ \hline
+
+\verb!tokens! &  cuts a chain \\ \hline
+
+\verb!strcat! & catenates chains  \\ \hline
+
+\verb!length! &  chain length  \\ \hline
+\end{tabular}
+\end{center}
+
+
+	A string matrices can be used to create new 
+functions (for more on functions
 see Section~\ref{s4.2}).  An example of automatically creating a 
 function is illustrated in the following Scilab session where it is
 desired to study a polynomial of two variables {\tt s} and {\tt t}.
@@ -366,13 +400,12 @@ supported in Scilab, we can construct a new data structure using
 a list (see Section~\ref{s2.5}).
 The polynomial to be studied is $(t^2+2t^3)-(t+t^2)s+ts^2+s^3$.
 \begin{verbatim}
--->getf("macros/make_macro.sci");
- 
 -->s=poly(0,'s');t=poly(0,'t');
  
 -->p=list(t^2+2*t^3,-t-t^2,t,1+0*t);
  
--->pst=makefunction(p) //pst is a function t->p (number->polynomial)
+-->pst=makefunction(p) //pst is a function 
+//                t->p (number->polynomial)
  pst       =
  
 [p]=pst(t)
@@ -414,7 +447,7 @@ evaluates to the polynomial in two variables.
 
 	Polynomials are easily created and manipulated in Scilab.
 Manipulation of polynomial matrices is essentially identical
-to that of constant matrices.
+to that of constant numerical matrices.
 The {\tt poly}\index{poly@{\tt poly}} 
 primitive in Scilab can be used to specify the coefficients
 of a polynomial or the roots of a polynomial.
@@ -476,13 +509,7 @@ for systems theory.
  
 -->s=poly(0,'s');
  
--->A=[1 s;s 1+s^2]
- A         =
- 
-!   1     s      !
-!                !
-!              2 !
-!   s     1 + s  !
+-->A=[1 s;s 1+s^2];   //Polynomial matrix
  
 --> B=[1/s 1/(1+s);1/(1+s) 1/s^2]
  B         =
@@ -691,154 +718,6 @@ AND, OR and NOT bit-wise operations.
  253
 \end{verbatim}
 %%%%%
-
-\section{Lists}
-\label{s2.5}
-\index{data types!lists}
-\index{lists}
-
-	Scilab has a list data type.  The list is a collection of data
-objects not necessarily of the same type.  A list can contain any of
-the already discussed data types (including functions) as well as
-other lists.  Lists are useful for defining structured data objects.
-
-There are two kinds of lists, ordinary lists and typed-lists.
-A list is defined by the {\tt list} function. Here is a simple
-example:
-
-\begin{verbatim}
--->L=list(1,'w',ones(2,2))  //L is a list made of 3 entries
- L  =
- 
- 
-       L(1)
- 
-    1.  
- 
-       L(2)
- 
- w   
- 
-       L(3)
- 
-!   1.    1. !
-!   1.    1. !
-
--->L(3)   //extracting entry 3 of list L
- ans  =
- 
-!   1.    1. !
-!   1.    1. !
-
--->L(3)(2,2)  //entry 2,2 of matrix L(3)
- ans  =
- 
-    1.  
-
--->L(2)=list('w',rand(2,2)) //nested list: L(2) is now a list
- L  =
- 
- 
-       L(1)
- 
-    1.  
- 
-       L(2)
- 
- 
-        L(2)(1)
- 
- w   
- 
-        L(2)(2)
- 
-!   0.6653811    0.8497452 !
-!   0.6283918    0.6857310 !
- 
-       L(3)
- 
-!   1.    1. !
-!   1.    1. !
-
--->L(2)(2)(1,2)  //extracting entry 1,2 of entry 2 of L(2)
- ans  =
- 
-    0.8497452  
-
--->L(2)(2)(1,2)=5; //assigning a new value to this entry.
-
-\end{verbatim}
-
-Typed lists have a specific first entry. This first entry must be a 
-character string (the type) or a vector of character string (the first
-component is then the type, and the following elements the names given
-to the entries of the list). Typed lists entries can be manipulated
-by using character strings (the names) as shown below.
-
-\begin{verbatim}
--->L=tlist(['Car';'Name';'Dimensions'],'Nevada',[2,3])
- L  =
- 
- 
-       L(1)
- 
-!Car         !
-!            !
-!Name        !
-!            !
-!Dimensions  !
- 
-       L(2)
- 
- Nevada   
- 
-       L(3)
- 
-!   2.    3. !
-
--->L.Name    //same as L(2)
- ans  =
- 
- Nevada   
- 
--->L.Dimensions(1,2)=2.3
-
- L  =
- 
- 
-       L(1)
- 
-!Car         !
-!            !
-!Name        !
-!            !
-!Dimensions  !
- 
-       L(2)
- 
- Nevada   
- 
-       L(3)
- 
-!   2.    2.3 !
- 
-
--->L(3)(1,2)
- ans  =
- 
-    2.3  
-
--->L(1)(1)
- ans  =
- 
- Car
-\end{verbatim}
-An important feature of typed-lists is that it is possible to define
-operators acting on them (overloading), i.e., it is possible
-to define e.g. the multiplication \verb!L1*L2! of the two typed lists 
-\verb!L1! and \verb!L2!. An example of use is given below, where
-linear systems manipulations (concatenation, addition,
-multiplication,...) are done by such operations.
 \section{N-dimensionnal arrays}
 N-dimensionnal array can be defined and handled in simple way:
 \begin{verbatim}
@@ -906,194 +785,138 @@ They can be created from a vector of data and a vector of dimension
 
 N-dimensionnal matrices are coded as {\tt mlists} with 2 fields~:
 \begin{verbatim}
--->M=hypermat([2 3,2],1:12);
+-->M=hypermat([2,3,2],1:12);
 -->M.dims
  ans  =
  
 !   2.    3.    2. !
--->M.entries
- ans  =
+-->M.entries'
+ans  =
+         column  1 to 11
  
-!   1.  !
-!   2.  !
-!   3.  !
-!   4.  !
-!   5.  !
-!   6.  !
-!   7.  !
-!   8.  !
-!   9.  !
-!   10. !
-!   11. !
+!   1.    2.    3.    4.    5.    6.    7.    8.    9.    10.    11. !
+ 
+         column 12
+ 
 !   12. !
 \end{verbatim}
 
-\section{Linear system representation}
-Linear systems are treated as specific typed lists {\tt tlist}.
-The basic function which is used for defining linear systems is {\tt syslin}.
-This function receives as parameters the constant matrices which
-define a linear system in state-space form or, in the case of
-system in transfer form, its input must be a rational matrix.
-To be more specific, the calling sequence of {\tt syslin} is
-either {\tt Sl=syslin('dom',A,B,C,D,x0)} or {\tt Sl=syslin('dom',trmat)}.
-{\tt dom} is one of the character strings {\tt 'c'} or {\tt 'd'}
-for continuous time or discrete time systems respectively.
-It is useful to note that {\tt D} can be a polynomial matrix 
-(improper systems); {\tt D} and {\tt x0} are optional arguments.
-{\tt trmat} is a rational matrix i.e. it is defined as a matrix
-of rationals (ratios of polynomials). {\tt syslin} just converts
-its arguments (e.g. the four matrices A,B,C,D) into a typed
-list {\tt Sl}. For state space representation {\tt Sl} is 
-the {\tt tlist(['lss','A','B','C','D'],A,B,C,D,'dom')}. This tlist
-representation allows to access the A-matrix i.e. the second entry of
-{\tt Sl} by the syntax {\tt Sl('A')} (equivalent to {\tt Sl(2)}).
-Conversion from a representation to another is done by {\tt ss2tf}
-or {\tt tf2ss}. Improper systems are also treated. {\tt syslin} 
-defines linear systems as specific {\tt tlist}. ({\tt help syslin}).
 
-\input{diary/syslin.dia}
+\section{Lists}
+\label{s2.5}
+\index{data types!lists}
+\index{lists}
 
-	The list representation allows manipulating linear systems as
-abstract data objects.  For example, the linear system can be combined
-with other linear systems or the transfer function representation of
-the linear system can be obtained as was done above using {\tt ss2tf}.
-Note that the transfer function representation of the linear system
-is itself a tlist. 
-	A very useful aspect of the manipulation of systems 
-is that a system can be handled as a data object.
-Linear systems can be 
-inter-connected\index{linear systems!inter-connection of},
-their representation
-can easily be changed from state-space to transfer function
-and vice versa.
+	Scilab has a list data type.  The list is a collection of data
+objects not necessarily of the same type.  A list can contain any of
+the already discussed data types (including functions) as well as
+other lists.  Lists are useful for defining structured data objects.
 
-	The inter-connection of linear systems can be made
-as illustrated in Figure~\ref{f3.2}.
-%
-\begin{figure}
+There are two kinds of lists, ordinary lists and typed-lists.
+A list is defined by the {\tt list} function. Here is a simple
+example:
 
-%BEGIN IMAGE
-\begin{center}
-\begin{picture}(200,330)(0,-60)
+\begin{verbatim}
+-->L=list(1,'w',ones(2,2))  //L is a list made of 3 entries
+ L  =
+       L(1)
+ 
+    1.  
+       L(2)
+ w   
+       L(3)
+ !   1.    1. !
+!   1.    1. !
 
-\put(180,280){\makebox(0,0)[lb]{\tt S2*S1}}
-\put(9,280){\circle{2}}
-\put(10,280){\vector(1,0){20}}
-\put(30,270){\framebox(30,20){$S_1$}}
-\put(60,280){\vector(1,0){30}}
-\put(90,270){\framebox(30,20){$S_2$}}
-\put(120,280){\vector(1,0){20}}
-\put(141,280){\circle{2}}
+-->L(3);   //extracting entry 3 of list L
 
-\put(180,220){\makebox(0,0)[lb]{\tt S1+S2}}
-\put(29,220){\circle{2}}
-\put(30,220){\line(1,0){20}}
-\put(50,220){\circle*{2}}
-\put(50,200){\line(0,1){40}}
-\put(50,200){\vector(1,0){20}}
-\put(50,240){\vector(1,0){20}}
-\put(70,190){\framebox(30,20){$S_2$}}
-\put(70,230){\framebox(30,20){$S_1$}}
-\put(100,200){\line(1,0){20}}
-\put(100,240){\line(1,0){20}}
-\put(120,240){\vector(0,-1){15}}
-\put(120,200){\vector(0,1){15}}
-\put(120,220){\circle{10}}
-\put(120,220){\framebox(0,0){$+$}}
-\put(125,220){\vector(1,0){15}}
-\put(141,220){\circle{2}}
+-->L(3)(2,2)  //entry 2,2 of matrix L(3)
+ ans  =
+ 
+    1.  
 
-\put(180,140){\makebox(0,0)[lb]{\tt [S1,S2]}}
-\put(49,160){\circle{2}}
-\put(49,120){\circle{2}}
-\put(50,120){\vector(1,0){20}}
-\put(50,160){\vector(1,0){20}}
-\put(70,110){\framebox(30,20){$S_2$}}
-\put(70,150){\framebox(30,20){$S_1$}}
-\put(100,120){\line(1,0){20}}
-\put(100,160){\line(1,0){20}}
-\put(120,160){\vector(0,-1){15}}
-\put(120,120){\vector(0,1){15}}
-\put(120,140){\circle{10}}
-\put(120,140){\framebox(0,0){$+$}}
-\put(125,140){\vector(1,0){15}}
-\put(141,140){\circle{2}}
+-->L(2)=list('w',rand(2,2)) //nested list: L(2) is now a list
+ L  =
+       L(1)
+ 
+    1.  
+       L(2)
+        L(2)(1)
+ w   
+        L(2)(2)
+!   0.6653811    0.8497452 !
+!   0.6283918    0.6857310 !
+       L(3)
+!   1.    1. !
+!   1.    1. !
 
-\put(180,50){\makebox(0,0)[lb]{\tt [S1 ; S2]}}
-\put(49,50){\circle{2}}
-\put(50,50){\line(1,0){20}}
-\put(70,50){\circle*{2}}
-\put(70,30){\line(0,1){40}}
-\put(70,30){\vector(1,0){20}}
-\put(70,70){\vector(1,0){20}}
-\put(90,20){\framebox(30,20){$S_2$}}
-\put(90,60){\framebox(30,20){$S_1$}}
-\put(120,30){\vector(1,0){20}}
-\put(120,70){\vector(1,0){20}}
-\put(141,30){\circle{2}}
-\put(141,70){\circle{2}}
+-->L(2)(2)(1,2)  //extracting entry 1,2 of entry 2 of L(2)
+ ans  =
+ 
+    0.8497452  
 
-\put(180,-40){\makebox(0,0)[lb]{\tt S1/.S2}}
-\put(70,-20){\circle{10}}
-\put(70,-20){\framebox(0,0){$+$}}
-\put(34,-20){\vector(1,0){30}}
-\put(33,-20){\circle{2}}
-\put(70,-60){\line(0,1){40}}
-\put(70,-60){\line(1,0){20}}
-\put(70,-20){\vector(1,0){20}}
-\put(90,-70){\framebox(30,20){$S_2$}}
-\put(90,-30){\framebox(30,20){$S_1$}}
-\put(140,-60){\vector(-1,0){20}}
-\put(120,-20){\line(1,0){20}}
-\put(141,-20){\circle{2}}
-\put(140,-60){\line(0,1){40}}
-\end{picture}
-\end{center}
-%END  IMAGE
-%HEVEA\imageflush
+-->L(2)(2)(1,2)=5; //assigning a new value to this entry.
 
-\caption{Inter-Connection of Linear Systems}
-\label{f3.2}
-\end{figure}
-%
-For each of the possible inter-connections of two systems
-{\tt S1} and {\tt S2} the command which makes the inter-connection
-is shown on the right side of the corresponding block diagram in
-Figure~\ref{f3.2}. Note that feedback interconnection is performed by
-\verb!S1/.S2!. 
+\end{verbatim}
 
-	The representation of linear systems can be in state-space
-form or in transfer function form.  These two representations can
-be interchanged by using the functions 
-{\tt tf2ss}\index{linear systems!{\tt tf2ss}}\index{tf2ss@{\tt tf2ss}} and 
-{\tt ss2tf}\index{linear systems!{\tt ss2tf}}\index{ss2tf@{\tt ss2tf}}
-which change the representations of systems from transfer function
-to state-space and from state-space to transfer function, respectively.
-An example of the creation, the change in representation, and the
-inter-connection of linear systems is demonstrated in the following
-Scilab session.
+Typed lists have a specific first entry. This first entry must be a 
+character string (the type) or a vector of character string (the first
+component is then the type, and the following elements the names given
+to the entries of the list). Typed lists entries can be manipulated
+by using character strings (the names) as shown below.
 
-\input{diary/connect.dia}
+\begin{verbatim}
+-->L=tlist(['Car';'Name';'Dimensions'],'Nevada',[2,3])
+ L  =
+       L(1)
+!Car         !
+!            !
+!Name        !
+!            !
+!Dimensions  !
+ 
+       L(2)
+ Nevada   
+       L(3)
+!   2.    3. !
 
-The above session is a bit long but illustrates some very important
-aspects of the handling of linear systems.  First, two linear systems
-are created in transfer function form using the function called 
-{\tt syslin}\index{linear systems!{\tt syslin}}\index{syslin@{\tt syslin}}.
-This function was used to label the systems in this example 
-as being continuous (as opposed to discrete).  
-The primitive {\tt tf2ss} is used to convert one of the
-two transfer functions to its equivalent state-space representation
-which is in list form (note that the function {\tt ssprint} creates a more
-readable format for the state-space linear system).
-The following multiplication of the two systems yields their
-series inter-connection.  Notice that the inter-connection 
-of the two systems is effected even though one of the systems is
-in state-space form and the other is in transfer function form.
-The resulting inter-connection is given in state-space form.
-Finally, the function {\tt ss2tf} is used to convert the resulting
-inter-connected systems to the equivalent transfer function representation.
+-->L.Name    //same as L(2)
+ ans  =
+ Nevada   
+-->L.Dimensions(1,2)=2.3
 
-\section{Functions (Macros)}
+ L  =
+       L(1)
+ 
+!Car         !
+!            !
+!Name        !
+!            !
+!Dimensions  !
+ 
+       L(2)
+ Nevada   
+       L(3)
+ 
+!   2.    2.3 !
+
+-->L(3)(1,2)
+ ans  =
+ 
+    2.3  
+
+-->L(1)(1)
+ ans  =
+ 
+ Car
+\end{verbatim}
+An important feature of typed-lists is that it is possible to define
+operators acting on them (overloading), i.e., it is possible
+to define e.g. the multiplication \verb!L1*L2! of the two typed lists 
+\verb!L1! and \verb!L2!. 
+
+
+\section{Functions}
 \label{s2.6}
 \index{data types!functions}
 \index{functions}
@@ -1114,8 +937,6 @@ can be created directly in the Scilab environment using the syntax
 --> function [x]=foo(y)
 -->    if y>0 then, x=1; else, x=-1; end
 --> endfunction
- 
---> deff('[x]=foo(y)','if y>0 then, x=1; else, x=-1; end')
  
 --> foo(5)
  ans       =
@@ -1202,7 +1023,9 @@ SYMBOL & OPERATION
 
 \verb!( )! & insertion:  \verb!a(k)=m!  \\ \hline
 
-\verb!'! & transpose \\ \hline
+\verb!.'! & transpose \\ \hline
+
+\verb!'! & conjugate transpose \\ \hline
 
 \verb!+! & addition  \\ \hline
 
@@ -1241,10 +1064,82 @@ or \verb!help insertion!.
 \subsection{Indexing in matrices}
 Indexing in matrices can be done by giving the indices of selected
 rows and columns or by boolean indices or by using the \verb!$! symbol.
+Here is a sample of commands: 
 \input{diary/extract.dia}
 
 \subsection{Indexing in lists}
 The following session illustrates how to create lists and
 insert/extract entries in {\tt list} and {\tt tlist} or {\tt mlist}.
 Enter {\tt help insertion} and {\tt help extraction} for additinal examples.
+Below is a sample of commands:
 \input{diary/list.dia}
+
+\subsection{Structs and Cells \`a la Matlab}
+The command {\tt X=tlist(...)} or {\tt Y=mlist(...)} creates a
+Scilab variable X of type {\tt tlist} or {\tt mlist}.
+The entries of {\tt X} are obtained by the names of their fields.
+
+For instance, if {\tt X=tlist(['mytype','a','b'],A,B)} the command
+X.a returns A. If A is a matrix the command X.a(2,3) returns the 
+entry at row 2 and column 3 of X;a, i.e. {\tt A(2,3)}.
+Similarly, if {\tt Y=mlist(['mytype','a','b'],A,B)}, we can use the
+syntax Y(2,3), once the extraction function \verb! %mytype_e(varargin)!
+has been defined. 
+
+Also the syntax {\tt Y(2,3)=33} can be given a meaning
+through the function \verb!%s_i_mytype(varargin)!. 
+This powerful overloading mechanism allows to define complex objects
+with a general indexing where indices can be fields (string) or a set
+of integers.
+
+If the variable X is not defined in the Scilab workspace, then
+the command X.a=A creates a particular mlist which behaves as 
+a Matlab struct. Its internal representation is similar to
+{\tt X=mlist(['st','dims','a'],int32([1,1]),A)}.
+It is a one dimensional {\tt struct} with one field called 'a' and 
+the value of X.a is A.
+Multidimensional structs are created and manipulated in a similar way.
+For instance {\tt X(2,3).a.b(2)=4} creates a 2 x 3 struct with one field
+a. It is represented as
+\begin{verbatim}
+mlist(['st','dims','a'],int32([2,3]),list([],[],[],[],[],w))
+\end{verbatim}
+where w is a struct with one field 'b', and w.b is the vector [0,4].
+A particular display is done for structs. Here, we have:
+\begin{verbatim}
+-->X(2,3)
+ ans  =
+ 
+   a: [1x1 struct]
+ 
+-->X(2,3).a
+ ans  =
+ 
+   b: [0;4]
+\end{verbatim}
+
+All the struct manipulations are implemented by soft coded operations
+i.e. Scilab overloaded functions. As structs are not basic data types
+some operations are slow. They have been implemented for a better 
+Matlab compatibility.
+
+The Matlab cells are also easily emulated. A cell is seen as a particular
+struct with one field called 'entries'. We just show a simple example:
+
+\begin{verbatim}
+
+-->X=cell(1,2)
+ X  =
+ 
+!{}  {}  !
+
+-->X(2).entries=11
+ X  =
+ 
+!{}  !
+!    !
+!11  !
+\end{verbatim}
+
+Note that Matlab uses braces \verb!X{2}! for extracting entries from
+a cell. 

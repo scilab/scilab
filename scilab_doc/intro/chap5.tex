@@ -1,1081 +1,329 @@
-% Copyright INRIA
-
-\chapter{Graphics}
-This section introduces graphics in Scilab. 
-
-\section{The Graphics Window}
-It is possible to use several graphics windows {\tt ScilabGraphicx} x being
-the number used for the management of the windows, but at any time only
-one window is active. On the main Scilab window the button
- {\tt Graphic Window x} is used to manage the windows : x denotes the
-number of the active window, and we can set (create), raise or delete 
-the window numbered x : in particular we can directly create the 
-graphics window numbered 10.
-The execution of a plotting command automatically creates a window if 
-necessary.
-
-We will see later that Scilab uses a {\tt graphics environment}
-defining some parameters of the plot, these parameters have default
-values and can be changed by the user; every graphics window has its
-specific context so the same plotting command van give different
-results on different windows.
-
-There are 4 buttons on the graphics window:
-\begin{itemize}
-	\item \verb+3D Rot.+: for applying a rotation with the mouse to a
-3D plot. This button is inhibited for a 2D plot. For the help of
-manipulations (rotation with specific angles ...) the rotation angles 
-are given at the top of the window.
-	\item \verb+2D Zoom+: zooming on a 2D plot. This command can be
-recursively invoked. For a 3D plot this button is not inhibited but it
-has no effect.
-	\item \verb+UnZoom+: return to the initial plot (not to the plot
-corresponding to the previous zoom in case of multiple zooms).
-
-These 3 buttons affecting the plot in the window are not always in
-use; we will see later that there are different choices for the 
-underlying device and zoom and rotation need the record of the
-plotting commands which is one of the possible choices (this is the
-default).
-
-	
-	\item \verb+File+: this button opens different commands and menus.
-
-The first one is simple : {\tt Clear} simply rubs out the window
-(without affecting the graphics context of the window).
-
-The command {\tt Print...} opens a selection panel for printing. 
-Under Unix, the printers are defined in the main scilab script 
-{\tt SCIDIR/bin/scilab} (obtained by ``make all'' from the origin 
-file {\tt SCIDIR/bin/scilab.g}).
-
-The {\tt Export} command opens a panel selection for getting a copy of the 
-plot on a file with a specified format (Postscript, Postscript-Latex, Xfig).
-
-The {\tt save} command directly saves the plot on a file with a
-specified name. This file can be loaded later in Scilab for replotting.
-
-The {\tt Close} is the same command than the previous {\tt Delete
-Graphic Window} of the menu of the main window, but simply 
-applied to its window (the graphic context is, of course deleted). 
-
-\end{itemize}
-
- 
-\section{The Media}
-There are different graphics devices in Scilab which can be used to send
-graphics to windows or paper. The default for the output is 
-\verb+ScilabGraphic0+ window .
-
-\noindent The different drivers are:
-
-%
-\begin{itemize}
-	\item \verb+X11+	: memoryless screen graphics driver
-	\item \verb+Rec+	: a screen driver  which also
-	records all the graphic commands. This is the default
-	(required for the zoom and rotate).
-	\item \verb+Wdp+	: a screen driver without recorded
-	graphics; the graphics are done on a pixmap and are send to
-	the graphic window with the command  {\tt xset("wshow")}. The 
-	pixmap is cleared with the command {\tt xset("wwpc")} or with the
-	usual command {\tt xbasc()}
-	\item \verb+Pos+	: graphics driver for Postscript printers 
-	\item \verb+Fig+	: graphics driver for the Xfig system
-	\item \verb+GIF+	: graphics driver for the GIF file format
-\end{itemize}
-%
-
-In the 3 first cases the 'implicit' device is a graphics window
-(existing or created by the plot). For the 2 last cases we will see
-later how to affect a specific device to the plot : a file where the
-plot will be recorded in the Postscript or Xfig format.
-
-The basic Scilab graphics commands are :
-%
-\begin{itemize}
-	\item \verb+driver+: selects a graphic driver
-
-The next 3 commands are specific of the screen drivers :
-
-	\item \verb+xclear+: clears one or more graphic windows; does
-	not affect the graphics context of these windows.
-	\item \verb+xbasc+: clears a graphic window and erase the
-	recorded graphics; does not affect the graphics context of  
-	the window.
-	\item \verb+xpause+: a pause in milliseconds
-	\item \verb+xselect+: raises the current graphic window
-	(for X-drivers)
-	\item \verb+xclick+: waits for a mouse click
-	\item \verb+xbasr+: redraws the plot of a graphic window
-	\item \verb+xdel+: deletes a graphic window (equivalent to the
-	{\tt Close} button
-
-The following commands are specific of the Postscript, Xfig and GIF drivers
-drivers :
-	
-	\item \verb+xinit+: initializes a graphic device (file).
-	\item \verb+xend+: closes a graphic session (and the
-	associated device).
-\end{itemize}
-%
-
-In fact, the regular driver for a common use is {\tt Rec} and there
-are special commands in order to avoid a change of driver; in many
-cases, one can ignore the existence of drivers and use the
-functions \verb+xbasimp+, \verb+xs2fig+ in order to send a graphic 
-to a printer or in a file for the \verb+Xfig+ system. For example with
-:
-
-\begin{verbatim}
--->driver('Pos')
- 
--->xinit('foo.ps')
- 
--->plot(1:10)
- 
--->xend()
- 
--->driver('Rec')
- 
--->plot(1:10)
- 
--->xbasimp(0,'foo1.ps')
-
-\end{verbatim}
-
-\noindent we get two identical Postscript files : {\tt 'foo.ps'} and {\tt 'foo1.ps.0'}
-(the appending 0 is the number of the active window where the plot has been 
-done).
-
-The default for plotting is the superposition; this means that between
-2 different plots one of the 2 following command is needed:
-{\tt xbasc(window-number)} which clears the window and erase the
-recorded Scilab graphics command associated with the window 
-\verb+window-number+ or {\tt xclear}) which simply clears the window.
-
-If you enlarge a graphic window, the command \verb+xbasr(window-number)+
-is executed by Scilab. This command clears the graphic window
-\verb+window-number+ and replays the graphic commands associated with it. One 
-can call this function manually, in order to verify the associated
-recorded graphics commands. 
-
-Any number of graphics windows can be created with buttons 
-or with the commands \verb+xset+ or \verb+xselect+. The environment 
-variable DISPLAY can be used to specify an X11 Display or one can use
-the \verb+xinit+ function in order to open a graphic window on a
-specific display. 
-
-\section{Global Parameters of a Plot}
-\subsubsection{Graphics Context}
-
-Some parameters of the graphics are controlled by a graphic context 
-( for example the line thickness) and others are controlled through
-graphics arguments of a plotting command.
-The graphics context has a default definition and can be change by the
-command {\tt xset} : the command without argument i.e. {\tt xset()}
-opens the {\tt Scilab Toggles Panel} and the user can changes the
-parameters by simple mouse clickings. We give here different
-parameters controlled by this command :
-%
-\begin{itemize}
-	\item  {\tt xset}		: set graphic context values.
-
-(i)-{\tt xset("font",fontid,fontsize)} 	: fix the current font and 
-its current size.
-
-(ii)-{\tt xset("mark",markid,marksize)}	: set the current mark 
-and current mark size.
-
-(iii)-{\tt xset("use color",flag)} 	: change to color or gray plot according to 
-the values (1 or 0) of {\tt flag}.
-
-(iv)-{\tt xset("colormap",cmap)} 	: set the colormap as a m x 3
-matrix. m is the number of colors.  Color number i is given as a
-3-uple cmap[i,1],cmap[i,2], cmap[i,3] corresponding respectively to Red,
-Green and Blue intensity between 0 and 1. Calling again {\tt xset()} 
-shows the colormap with the indices of the colors.
-
-(v)-{\tt xset("window",window-number)}	: sets the current window to the window \\
-{\tt window-number} and creates the window if it doesn't exist.
-
-(vi)-{\tt xset("wpos",x,y)}	: fixes the position of the upper left point of 
-the graphic window.
-
-Many other choices are done by {\tt xset} :
- 
--use of a pixmap : the plot can be directly displayed on the screen or
-executed on a pixmap and then expose by the command 
-{\tt xset("wshow")}; this is the usual way for animation effect.
-
--logical function for drawing : this parameter can be changed for 
-specific effects (superposition or adding or substracting of colors).
-Looking at the successive plots of the following simple commands give
-an example of 2 possible effects of this parameter :
-
-\begin{verbatim}
-xset('default');
-plot3d();
-plot3d();
-xset('alufunction',7);
-xset('window',0);
-plot3d();
-xset('default');
-plot3d();
-xset('alufunction',6);
-xset('window',0);
-plot3d();
-\end{verbatim} 
-
-We have seen that some choices exist for the fonts and this choice can
-be extended by the command:
-        \item  {\tt xlfont}	: to load a new family of fonts 
-
-
-There exists the function ``reciprocal'' to {\tt xset} :
-
-	\item  {\tt xget}	: to get informations about the
-	current graphic context.
-
-All the values of the parameters fixed by {\tt xset} can be obtained by 
-{\tt xget}. An example :
-
-\begin{verbatim}
-
--->pos=xget("wpos")
- pos  =
- 
-!   105.    121. !
-
-\end{verbatim}
-
-{\tt pos} is the position of the upper left point of the graphic window.
-\end{itemize}
-%
-
-\subsubsection{Some Manipulations}
-
-Coordinates transforms:
-\begin{itemize}
-
-\item \verb+isoview+	: isometric scale without window change 
-
-allows an isometric scale in the window of previous plots without changing
-the window size:
-
-\begin{verbatim}
-
-t=(0:0.1:2*%pi)';
-plot2d(sin(t),cos(t));
-xbasc()
-isoview(-1,1,-1,1);
-plot2d(sin(t),cos(t));
-
-\end{verbatim}
-
-\item \verb+square+	: isometric scale with resizing the window
-
-the window is resized according to the parameters of the command.
-
-\item \verb+scaling+	: scaling on data
-\item \verb+rotate+	: rotation
-
-\verb+scaling+ and \verb+rotate+ executes respectively an affine transform and
-a geometric rotation of a 2-lines-matrix corresponding to the {\tt (x,y) }
-values of a set of points.
-\item \verb+xgetech, xsetech+	: change of scale inside the graphic window
-
-The current graphic scale can be fixed by a high level plot command. You may
-want to get this parameter or to fix it directly : this is the role of 
-\verb+xgetech, xsetech+ . {\tt xsetech } is a simple way to cut the
-window in differents parts for different plots :
-
-\begin{verbatim}
-
-t=(0:0.1:2*%pi)';
-xsetech(wrect=[0.,0.,0.6,0.3],frect=[-1,1,-1,1]);
-plot2d(sin(t),cos(t));
-xsetech(wrect=[0.5,0.3,0.4,0.6],frect=[-1,1,-1,1]);
-plot2d(sin(t),cos(t));
-
-\end{verbatim}
-
-\end{itemize}
-%
-
-
-\section{2D Plotting}
-
-\subsection{Basic 2D Plotting}
-
-The simplest 2D plot is {\tt plot(x,y)} or {\tt plot(y)}: this is the plot of 
-{\tt y} as function of {\tt x} where {\tt x} and {\tt y} are 2 vectors; if 
-{\tt x} is missing, it is replaced by the vector {\tt (1,size(y,'*')))}.
-If {\tt y} is a matrix, its rows are plotted. There are optional arguments.
-
-
-A first example is given by the following commands and one of the results is
-represented on figure \ref{d7-1}:
-
-\begin{verbatim}
-
-t=(0:0.05:1)';
-ct=cos(2*%pi*t);
-// plot the cosine
-plot(t,ct);
-// xset() opens the toggle panel and 
-// some parameters can be changed with mouse clicks
-// given by commands for the demo here 
-xset("font",5,4);xset("thickness",3);
-// plot with captions for the axis and a title for the plot
-// if a caption is empty the argument ' ' is needed
-plot(t,ct,'Time','Cosine','Simple Plot');
-// click on a color of the xset toggle panel and do the previous plot again
-// to get the title in the chosen color
-
-\end{verbatim}
-
-\input{figures/d7-1.tex}
-\caption{\label{d7-1}First example of plotting}
-%\dessin{First example of plotting}{d7-1}
-\end{figure}
-
-\noindent The generic 2D multiple plot is 
-
-
-\noindent {\tt  plot2di(x,y,<options>)}
- 
-\begin{itemize}
-
-\item index of \verb+plot2d+	: {\tt i=missing,2,3,4}.
-
-For the different values of {\tt i} we have:
-
-	{\tt i=missing}	: piecewise linear/logarithmic plotting
-
-	{\tt i=2}	: piecewise constant drawing style
-
-	{\tt i=3}	: vertical bars
-
-	{\tt i=4}	: arrows style (e.g. ode in a phase space)
-
-\end{itemize}
-
-\begin{verbatim}
-t=(1:0.1:8)';xset("font",2,3);
-subplot(2,2,1)
-plot2d([t t],[1.5+0.2*sin(t) 2+cos(t)]);
-xtitle('Plot2d-Piecewise linear');
-//
-subplot(2,2,2)
-plot2d(t,[1.5+0.2*sin(t) 2+cos(t)],logflag='ll');
-xtitle('Plot2d1-Logarithmic scales');
-//
-subplot(2,2,3)
-plot2d2(t,[1.5+0.2*sin(t) 2+cos(t)]);
-xtitle('Plot2d2-Piecewise constant');
-//
-subplot(2,2,4)
-plot2d3(t,[1.5+0.2*sin(t) 2+cos(t)]);
-xtitle('Plot2d3-Vertical bar plot')
-\end{verbatim}
-
-\input{figures/nouv1.tex}
-
-\begin{itemize}
-
-
-\item Parameters {\tt x,y} : two matrices of the same size {\tt [nl,nc]} ({\tt nc} 
-is the number of curves and {\tt nl} is the number of points of each
-curve).
-
-For a single curve the vector can be row or column: \\
-{\tt plot2d(t',cos(t)')  plot2d(t,cos(t))} are equivalent.
-
-
-\item option {\tt style}  	:it is a real vector of size {\tt
-(1,nc)}; the style 
-to use for curve j is defined by {\tt size(j)} (when only one curve is drawn 
-{\tt style} can specify the style and a position to use for the
-caption).
-
-\begin{verbatim}
-xmax=5.;x=0:0.1:xmax;
-u=[-0.8+sin(x);-0.6+sin(x);-0.4+sin(x);-0.2+sin(x);sin(x)];
-u=[u;0.2+sin(x);0.4+sin(x);0.6+sin(x);0.8+sin(x)]';   
-//start trying the symbols (negative values for the style)
-
-plot2d(x,u,style=[-9,-8,-7,-6,-5,-4,-3,-2,-1,0])
-
-x=0:0.2:xmax; 
-v=[1.4+sin(x);1.8+sin(x)]'; 
-xset("mark size",5);
-plot2d(x,v,style=[-7,-8])
-xset('default');
-\end{verbatim}
-
-\input{figures/nouv2.tex}
-
-\item Option {\tt frameflag} : is a scalar corresponding to :
-
-\begin{tabular}{|l|l|l|l|}                               \hline
-   requirements&ranges       &ranges    &ranges       \\    
-               &of a previous&given by  &computed from\\
-actual         &plot         &rect arg  &x and y      \\ \hline
-requested      &             &          &             \\
-one            &        0    &      1   &        2    \\ \hline
-Computed       &             &          &             \\
-for isometric  &             &      3   &        4    \\
-view           &             &          &             \\ \hline
-Enlarged       &             &          &             \\  
-For pretty     &             &      5   &        6    \\
-axes           &             &          &             \\ \hline
-Previous and   &             &          &             \\
-current        &             &      7   &        8    \\
-plots merged   &             &          &             \\ \hline
-\end{tabular}
-\item Option {\tt axesflag} controls the display of information on the frame around the plot :
-\begin{itemize}
-\item 0
-: 
-nothing is drawn around the plot.
-\item 1 
-: 
-axes are drawn, the y=axis is displayed on the left. 
-\item 2
-: 
-the plot is surrounded by a box without tics.
-\item 3 
-: 
-axes are drawn, the y=axis is displayed on the right. 
-\item 4
-: 
-axes are drawn centred in the middle of the frame box. 
-
-\item 5 
-: 
-axes are drawn so as to cross at point {\tt (0,0)}.  If point
-{\tt (0,0)} does not lie inside the frame, axes will not appear on the graph.
-\end{itemize}
-
-\item Option {\tt leg } 	 : it is the string of the captions for the different 
-plotted curves . This string is composed of fields separated by the {\tt @} 
-symbol: for example  {\tt ``module@phase''} (see example below). These 
-strings are
-displayed under the plot with  small segments recalling the styles of the 
-corresponding curves.
-
-\item Option {\tt rect } 	: it is a vector of 4 values specifying the boundaries 
-of the plot {\tt rect=[xmin,ymin,xmax,ymax]}.
-
-\item Option {\tt nax }  	: it is a vector [nx,Nx,ny,Ny] where nx (ny) is 
-the number of subgrads on the x (y) axis and Nx (Ny) is the number of 
-graduations  on the x (y) axis.
-
-\end{itemize}
-
-\begin{verbatim}
-
-//captions for identifying the curves
-//controlling the boundaries of the plot and the tics on axes
-x=-5:0.1:5;
-y1=sin(x);y2=cos(x);
-X=[x;x]; Y=[y1;y2];
-plot2d(X',Y',style=[-1 -3]',leg="caption1@caption2",...
-rect=[-5,-1,5,1],nax=[2,10,5,5]);
-
-\end{verbatim}
-
-\input{figures/nouv3.tex}
-
-
-For different plots the simple commands without any argument show a demo 
-(e.g {\tt plot2d3()} ).
-
-\subsection{Captions and Presentation}
-%
-\begin{itemize}
-\item \verb+xgrid+	: adds a grid on a 2D graphic; the
-calling parameter is the number of the color.
-\item \verb+xtitle+	: adds	title above the plot and axis 
-names on a 2D graphic
-\item \verb+titlepage+	: graphic title page in the middle of
-the plot
-
-\begin{verbatim}
-
-//Presentation
-x=-%pi:0.1:%pi;
-y1=sin(x);y2=cos(x);y3=x;
-X=[x;x;x]; Y=[y1;y2;y3];
-plot2d(X',Y',style=[-1 -2 -3],leg="caption1@caption2@caption3",...
-rect=[-3,-3,3,2],nax=[2,10,2,5]);
-xtitle(["General Title";"(with xtitle command)"],...
-"x-axis title","y-axis title (with xtitle command)");
-xgrid();
-xclea(-2.7,1.5,1.5,1.5);
-titlepage("Titlepage");
-xstring(0.6,.45,"(with titlepage command)");
-xstring(0.05,.7,["xstring command after";"xclea command"],0,1);
-plot2d(X',Y',style=[-1 -2 -3],leg="caption1@caption2@caption3",...
-rect=[-3,-3,3,2],nax=[2,10,2,5]);
-
-\end{verbatim}
-
-\input{figures/nouv4.tex}
-
-
-	\item \verb+plotframe+	: graphic frame with scaling and grid
-\end{itemize}
-%
-
-We have seen that it is possible to control the tics on the axes,
-choose the size of the rectangle for the plotand add a grid.
-This operation can be prepared once and then used for a sequence of
-different plots. One of the most useful aspect is to get  graduations 
-by choosing the number of graduations and getting rounded numbers.
-
-\begin{verbatim}
-
-rect=[-%pi,-1,%pi,1];
-tics=[2,10,4,10];
-plotframe(rect,tics,[%t,%t],...
-['Plot with grids and automatic bounds','angle','velocity']);
-
-\end{verbatim}
-
-\begin{itemize}
-	\item \verb+graduate+	: a simple tool for computing pretty
-axis graduations before a plot.
-\end{itemize}
-%
-
-\subsection{Specialized 2D Plottings}
-%
-\begin{itemize}
-        \item \verb+champ+	: vector field in $R^{2}$
-
-\begin{verbatim}
-//try champ
-x=[-1:0.1:1];y=x;u=ones(x);
-fx=x.*.u';fy=u.*.y';
-champ(x,y,fx,fy);
-xset("font",2,3);
-xtitle(['Vector field plot';'(with champ command)']);
-//with the color (and a large stacksize)
-x=[-1:0.004:1];y=x;u=ones(x);
-fx=x.*.u';fy=u.*.y';
-champ1(x,y,fx,fy);
-\end{verbatim}
-
-\input{figures/nouv5.tex}
-
-
-
-	\item \verb+fchamp+	: for a vector field in $R^{2}$ defined by a 
-function. The same plot than {\tt champ} for a vector field defined
-for example by a scilab program.
-
-	\item \verb+fplot2d+	: 2D plotting of a curve described by a 
-function. This function plays the same role for {\tt plot2d} than the 
-previous for {\tt champ}.
-
-	\item \verb+grayplot+	: 2D plot of a surface using gray
-levels; the surface being defined by the matrix of the values
-for a grid.
-
-	\item \verb+fgrayplot+	: the same than the previous for a
-surface defined by a function (scilab program).
-
-In fact these 2 functions can be replaced by a usual color plot with
-an appropriate colormap where the 3 RGB components are the same.
-
-\begin{verbatim}
-R=[1:256]/256;RGB=[R' R' R'];
-xset('colormap',RGB);
-deff('[z]=surf(x,y)','z=-((abs(x)-1)**2+(abs(y)-1)**2)');
-fgrayplot(-1.8:0.02:1.8,-1.8:0.02:1.8,surf,rect=[-2,-2,2,2]);
-xset('font',2,3);
-xtitle(["Grayplot";"(with fgrayplot command)"]);
-//the same plot can be done with a ``unique'' given color
-R=[1:256]/256;
-G=0.1*ones(R);
-RGB=[R' G' G'];
-xset('colormap',RGB);
-fgrayplot(-1.8:0.02:1.8,-1.8:0.02:1.8,surf,rect=[-2,-2,2,2]);
-\end{verbatim}
-
-%\input{figures/nouv6.tex}
-%\dessin{Gray plot with a gray colormap}{nouv6}
-
-	\item \verb+errbar+	: creates a plot with error bars
-\end{itemize}
-%
-
-
-\subsection{Plotting Some Geometric Figures}
-\subsubsection{Polylines Plotting}
-\begin{itemize}
-	\item \verb+xsegs+	: draws	a set of unconnected segments 
-	\item \verb+xrect+	: draws	a single rectangle
-	\item \verb+xfrect+	: fills a single rectangle
-	\item \verb+xrects+	: fills or draws a set	of rectangles
-	\item \verb+xpoly+	: draws	a polyline
-	\item \verb+xpolys+	: draws a set of polylines
-	\item \verb+xfpoly+	: fills a polygon
-	\item \verb+xfpolys+	: fills a set of polygons
-	\item \verb+xarrows+	: draws a set of unconnected arrows
-	\item \verb+xfrect+	: fills a single rectangle
-	\item \verb+xclea+	: erases a rectangle on a graphic window
-\end{itemize}
-%
-
-\subsubsection{Curves Plotting}
-\begin{itemize}
-	\item \verb+xarc+	: draws	an ellipsis
-	\item \verb+xfarc+	: fills	an ellipsis
-	\item \verb+xarcs+	: fills	or draws a set of ellipsis
-\end{itemize}
-%
-
-\subsection{ Writting by Plotting}
-%
-\begin{itemize}
-	\item  \verb+xstring+	: draws a string or a matrix of strings
-        \item  \verb+xstringl+	: computes a rectangle which surrounds
-        a string
-	\item  \verb+xstringb+	: draws a string in a specified box
-	\item  \verb+xnumb+	: draws a set of numbers
-\end{itemize}
-%
-
-We give now the sequence of the commands for obtaining the 
-figure~ \ref{fgeom}.
-
-\begin{verbatim}
-//	initialize default environment variables
-xset('default');
-xset("use color",0);
-xset("font",4,3)
-xsetech(frect=[1,1,10,10]);
-xrect(0,1,3,1)
-xfrect(3.1,1,3,1)
-xstring(0.5,0.5,"xrect(0,1,3,1)")
-xstring(4.,0.5,"xfrect(3.1,1,3,1)")
-xset("alufunction",6)
-xstring(4.,0.5,"xfrect(3.1,1,3,1)")
-xset("alufunction",3)
-xv=[0 1 2 3 4]
-yv=[2.5 1.5 1.8 1.3 2.5]
-xpoly(xv,yv,"lines",1)
-xstring(0.5,2.,"xpoly(xv,yv,""lines"",1)")
-xa=[5 6 6 7 7 8 8 9 9 5]
-ya=[2.5 1.5 1.5 1.8 1.8 1.3 1.3 2.5 2.5 2.5]
-xarrows(xa,ya)
-xstring(5.5,2.,"xarrows(xa,ya)")
-xarc(0.,5.,4.,2.,0.,64*300.)
-xstring(0.5,4,"xarc(0.,5.,4.,2.,0.,64*300.)")
-xfarc(5.,5.,4.,2.,0.,64*360.)
-//xset("alufunction",6)
-xclea(5.6,4.4,2.8,0.8);
-xstring(5.8,4.,"xfarc  and then  xclea")
-//xset("alufunction",3)
-xstring(0.,4.5,"WRITING-BY-XSTRING()",-22.5) 
-xnumb([5.5 6.2 6.9],[5.5 5.5 5.5],[3 14 15],1)
-isoview(0,12,0,12)
-xarc(-5.,12.,5.,5.,0.,64*360.)
-xstring(-4.5,9.25,"isoview + xarc",0.)
-A=["  1" "       2" "  3";"  4" "       5" "  6";"68" "  17.2" "  9"];
-xstring(7.,10.,A);
-rect=xstringl(7,10,A);
-xrect(rect(1),rect(2),rect(3),rect(4));
-\end{verbatim}
-
-\input{figures/nouv7.tex}
-
-
-e have seen that some parameters of the graphics are controlled by a 
-graphic context 
-( for example the line thickness) and others are controlled through
-graphics arguments . 
-%
-\begin{itemize}
-	\item  {\tt xset}	: to set graphic context values.
-Some examples of the use of {\tt xset} : 
-
-(i)-{\tt xset("use color",flag)} changes to color or black and white plot according to 
-the values (1 or 0) of {\tt flag}.
-
-(ii)-{\tt xset("window",window-number)} sets the current window to the window \\
-{\tt window-number} and creates the window if it doesn't exist.
-
-(iii)-{\tt xset("wpos",x,y)} fixes the position of the upper left point of 
-the graphic window.
-
-The choice of the font, the width and height of the window, the driver...
-can be done by {\tt xset}.
-
-	\item  {\tt xget}	: to get informations about the current graphic context.
-All the values of the parameters fixed by {\tt xset} can be obtained by 
-{\tt xget}.
-
-        \item  {\tt xlfont}	: to load a new family of fonts
-\end{itemize}
-%
-\subsection{Some Classical Graphics for Automatic Control}
-
-\begin{itemize}
-
-	\item  \verb+bode+	: plot magnitude and phase of the 
-frequency response of a linear system.
-
-	\item  \verb+gainplot+	: same as bode but plots only the 
-magnitude of the frequency response.
-
-	\item  \verb+nyquist+	: plot of imaginary part versus real 
-part of the frequency response of a linear system.
-
-	\item  \verb+m_circle+	: M-circle plot used with nyquist plot.
-
-	\item  \verb+chart+	: plot the Nichols'chart 
-
-	\item  \verb+black+	: plot the Black's diagram (Nichols'chart)
-for a linear system.  
-
-	\item  \verb+evans+	: plot the Evans root locus for a
-linear system.
-
-	\item  \verb+plzr+	: pole-zero plot of the linear system
-
-\end{itemize}
-
-\begin{verbatim}
-s=poly(0,'s');
-h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
-h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225));
-//bode
-subplot(2,2,1)
-gainplot([h1;h],0.01,100);
-//nyquist
-subplot(2,2,2)
-nyquist([h1;h])
-
-//chart and black 
-subplot(2,2,3)
-black([h1;h],0.01,100,['h1';'h'])
-chart([-8 -6 -4],[80 120],list(1,0));
-//evans
-subplot(2,2,4)
-H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
-evans(H,100)
-\end{verbatim}
-
-\input{figures/nouv8.tex}
-
-
-%
-\subsection{Miscellaneous}
-%
-\begin{itemize}
-	\item  \verb+edit_curv+ : interactive graphic curve editor.
-
-	\item  \verb+gr_menu+ 	: simple interactive graphic editor. It
-is a Xfig-like simple editor with a flexible use for a nice
-presentation of graphics : the user can superpose the elements of
-\verb+gr_menu+ and use it with the usual possibilities of {\tt xset}.
-
-	\item  \verb+locate+ 	: to get the coordinates of one or more 
-points selected with the mouse on a graphic window.
-
-\end{itemize}
-% 
-
-\begin{verbatim}
-
-\end{verbatim}
-\input{figures/scifi2.tex}
-
-
-
-\section{3D Plotting}
-\subsection{Generic 3D Plotting}
-%
-\begin{itemize}
-	\item  \verb+plot3d+ : 3D plotting of a matrix of points : plot3d(x,y,z) with x,y,z 3 matrices, z being the values for the points with coordinates x,y. Other
-arguments are optional
-	\item   \verb+plot3d1+ : 3d plotting	of a matrix of points with gray levels
-	\item   \verb+fplot3d+ : 3d plotting	of a surface described by a function; z is given by an external z=f(x,y)
-	\item   \verb+fplot3d1+ : 3d	plotting of a surface described	by a function with gray	levels
-\end{itemize}
-%
- 
-\subsection{Specialized 3D Plotting}
-\begin{itemize}
-	\item \verb+param3d+	: plots parametric curves in 3d space
-	\item \verb+contour+	: level curves for a 3d function given by a 
-matrix
-	\item \verb+grayplot10+ : gray level on a 2d plot
-	\item \verb+fcontour10+ : level curves for a 3d function given by a 
-function
-	\item \verb+hist3d+	: 3d histogram
-	\item \verb+secto3d+	: conversion of a surface description from 
-sector to plot3d compatible data
-	\item \verb+eval3d+	: evaluates a function on a regular grid. 
-(see also feval)
-\end{itemize}
-%
- 
-
-\subsection{Mixing 2D and 3D graphics}
-
-When one uses 3D plotting function, default graphic boundaries are
-fixed, but in $R^3$. If one wants to use graphic primitives 
-to add informations on 3D graphics, the \verb+geom3d+ function can be
-used to convert 3D coordinates to 2D-graphics coordinates. The
-figure~ \ref{d710} illustrates this feature.
-
-%\def\exemple{d710}
-\input{figures/d7-10.vtex}
-
-\input{figures/d710.tex}
-
-
-\subsection{Sub-windows}
-%\def\exemple{d7-8}
-
-It is also possible to make multiple plotting in the same 
-graphic window (Figure~\ref{d7-8}).
-
-\input{figures/d7-8.vtex}
-
-\input{figures/d7-8.tex}
-\caption{\label{d7-8}Use of subplot}
-\end{figure}
-
-
-\subsection{A Set of Figures}
-%\def\exemple{d7a11}
-
-In this next example we give a brief summary of different plotting
-functions for 2D or 3D graphics. The figure~ \ref{d7a11} is 
-obtained and inserted in this document with the help of the command 
-\verb+Blatexprs+.
- 
-\input{figures/d7a11.vtex}
-
-\input{figures/d7a11.tex}
-\caption{\label{d7a11}Group of figures}
-\end{figure}
-
-\section{Printing and Inserting Scilab Graphics in \LaTeX}
-
-We describe here the use of programs (Unix shells) for handling Scilab 
-graphics and printing the results. These programs are located in the
-sub-directory {\tt bin} of Scilab.
-
-\subsection{Window to Paper}
-The simplest command to get a paper copy of a plot is to click on the
-{\tt print} button of the ScilabGraphic window.
-
-\subsection{Creating a Postscript File}
-We have seen at the beginning of this chapter that the simplest way to get 
-a Postscript file containing a Scilab plot is :
-
-\begin{verbatim}
--->driver('Pos')
- 
--->xinit('foo.ps')
- 
--->plot3d1();
- 
--->xend()
- 
--->driver('Rec')
- 
--->plot3d1()
- 
--->xbasimp(0,'foo1.ps')
-
-\end{verbatim}
-
-
-The Postscript files ({\tt foo.ps } or {\tt foo1.ps }) generated by Scilab 
-cannot be directly sent to a
-Postscript printer, they need a preamble. Therefore, printing is done
-through the use of Unix scripts or programs which are provided with
-Scilab. The program \verb+Blpr+ is used to print a set of Scilab Graphics 
-on a single sheet of paper and is used as follows~:
-
-\begin{verbatim}
- Blpr string-title file1.ps file2.ps > result
-\end{verbatim}
-
-You can then print the file  {\tt result} with the classical Unix command :
-
-\begin{verbatim}
-lpr -Pprinter-name result
-\end{verbatim}
-
-\noindent or use the \verb+ghostview+ Postscript interpreter on your Unix
-workstation to see the result.
-
-You can avoid the file {\tt result} with a pipe, replacing {\tt  > result}
-by the printing command {\tt | lpr} or the previewing command 
-{\tt | ghostview -}.
-
-The best result (best sized figures) is obtained when printing two 
-pictures on a single page. 
-
-
-\subsection{Including a Postscript File in \LaTeX}
-
-The \verb|Blatexpr| Unix shell and the programs \verb+Batexpr2+ and 
-\verb+Blatexprs+ are provided in order to help inserting Scilab graphics 
-in \LaTeX .
-
-Taking the previous file {\tt foo.ps} and  typing the following statement 
-under a Unix shell~:
-\begin{verbatim}
-Blatexpr 1.0 1.0 foo.ps
-\end{verbatim}
-creates two files \verb+foo.epsf+ and \verb+foo.tex+. The original
-Postscript file is left unchanged. 
-To include the figure in a \LaTeX~ document you should insert the following 
-\LaTeX~ code in your \LaTeX~ document~:
-
-\begin{verbatim}
-\input foo.tex
-\dessin{The caption of your picture}{The-label}
-\end{verbatim}
-
-You can also see your figure by using  the  Postscript
-previewer \verb+ghostview+.
-
-The program \verb+Blatexprs+ does the same thing: it is used to insert
-a set of Postscript figures in one \LaTeX picture.
-
-In the following example, we begin by using the Postscript driver {\tt Pos}
-and then initialize successively 4 Postscript files 
-{\tt fig1.ps, ..., fig4.ps} for
-4 different plots and at the end return to the driver {\tt Rec} (X11 driver
-with record).
-
-\input{diary/mulplot.dia}
-
-Then we execute the command :
-
-\begin{verbatim}
-  Blatexprs multi fig1.ps fig2.ps fig3.ps fig4.ps
-\end{verbatim}
-
-\noindent and we get 2 files {\tt multi.tex} and  {\tt multi.ps} and you can 
-include the result in a \LaTeX~ source file by :
-
-\begin{verbatim}
-\input multi.tex
-\dessin{The caption of your picture}{The-label}
-\end{verbatim}
-
-Note that the second line {\tt dessin...} is absolutely necessary and you
-have of course to give the absolute path for the input file if you are 
-working in another directory (see below). The file {\tt  multi.tex} is only 
-the definition of the command {\tt dessin} with 2 parameters : the caption 
-and the label; the command {\tt dessin} can be used with one or two
-empty arguments {\tt `` ``} if you want to avoid the caption or the label.   
-
-The Postscipt files are inserted in \LaTeX~ with the help of the
-\verb+\special+ command and with a syntax that works with the
-\verb+dvips+ program.
-
-The program \verb+Blatexpr2+ is used when you want two pictures side
-by side.
-\begin{verbatim}
-  Blatexpr2 Fileres file1.ps file2.ps 
-\end{verbatim}
-
-%\def\exemple{d7-12}
-\input{figures/d7-12.tex}
-\caption{\label{d7-12}Blatexp2 Example}
-%\dessin{Blatexpr2 Example}{d7-12}
-\end{figure}
-
-It is sometimes convenient to have a main \LaTeX~ document in a directory
-and to store all the figures in a subdirectory. The proper way to
-insert a  picture file in the main document, when the picture 
-is stored in the subdirectory \verb+figures+, is the following~:
-
-\begin{verbatim}
-\def\Figdir{figures/} % My figures are in the {\tt figures/ } subdirectory.
-\input{figures/fig.tex}
-\dessin{The caption of you picture}{The-label}
-\end{verbatim}
-
-The declaration \verb+\def\Figdir{figures/}+ is used twice, first to
-find the file {\tt fig.tex} (when you use \verb+latex+), and
- second to produce a correct pathname for the
-\verb+special+ \LaTeX~ command  found in \verb+fig.tex+. (used at
-dvips level).
-
--WARNING : the default driver is {\tt Rec}, i.e. all the graphic commands are
-recorded, one record corresponding to one window. The {\tt xbasc()} command
-erases the plot on the active window and all the records corresponding to
-this window. The {\tt  clear} button has the same effect; the {\tt xclear}
-command erases the plot but the record is preserved. So you almost never need
-to use the {\tt xbasc()} or {\tt  clear} commands. If you use such a command 
-and if you re-do a plot you may have a surprising result (if you forget
-that the environment is wiped out); the scale only is preserved and so you 
-may have the ``window-plot'' and the ``paper-plot'' completely different.
-
-
-\subsection{Postscript by Using Xfig}
-
-Another useful way to get a Postscript file for a plot is to use Xfig.
-By the simple command {\tt xs2fig(active-window-number,file-name)} you get
-a file in Xfig syntax. 
-
-This command needs the use of the driver {\tt Rec}.
-
-The window ScilabGraphic0 being  active, if you enter :
-
-\begin{verbatim}
-
--->t=-%pi:0.3:%pi;
- 
--->plot3d1(t,t,sin(t)'*cos(t),theta=35,alpha=45,flag=[2,2,4]);
- 
--->xs2fig(0,'demo.fig');   
-
-\end{verbatim}
-
-you get the file {\tt demo.fig} which contains the plot 
-of window 0. 
-
-Then you can use Xfig and after the modifications you want, get a Postscript 
-file that you can insert in a \LaTeX~ file. The following figure is the result
-of Xfig after adding some comments.
-
+\chapter{Graphics}\label{Graphics}
+The graphics primitives in Scilab release 3.0 accept two graphic ``styles'',
+the ``old'' style which is based on a pre-processing treatment 
+and the ``new'' style, used by default, which is based on an object 
+oriented environment.
+
+These two styles are not fully compatible. To switch to the old style,
+use the command \verb!set old_style on!.
+
+The old style mode is essentially based on two functions, 
+{\tt xset} and {\tt xsetech} which act on the graphic environment.
+Once the graphic environment parameters are set, the graphic commands
+are used for plotting.
+
+In the new style mode, once the plotting command is issued, it is 
+possible to act on the graphic environment by changing the
+properties of the graphic objects made by the plot command.
+The graphic environment is post-processed.
+
+%Nouvelles primitives
+%set get draw drawlater drawnow move copy delete glue unglue
+%Nouvelles macros
+%gcf gca gdf gda sdf sda clearpixmap showpixmap
+
+%primitives obsolete pour le nouveau graphique
+%xset (sauf 'window' et 'alufunction')
+%xget (sauf 'window' et 'alufunction')
+%xtape xname xgrid replot isoview
+
+Scilab graphics are based on a set a graphics functions such as {\tt plot2d},
+{\tt plot3d} \ldots and an object oriented graphic environment.
+The properties of the graphic objects (color, thickness, ...) are manipulated
+with the functions {\tt get} and {\tt set}. The main graphic objects
+are the figure entity and the axes entity. 
+We give here a description of the most useful functions illustrated by
+simple examples. For more sophisticated examples, it is necessary to read
+the on-line help pages. The graphic demos are also useful and it is
+a good way to start.
+
+\section{Function plot2d}
+The basic graphic function \index{plot2d@\scilab{plot2d}} used
+for plotting one or several 2D curves is \scifun{plot2d}.
+The simplest graphic command is \scilab{plot2d(x,y)} where 
+x and y are two vectors with same dimension.
+This command gives the graph of the polyline which links each
+point with  coordinates \scilab{(x(i),y(i))} with the next point
+with coordinates \scilab{(x(i+1),y(i+1))}. The vectors
+\scilab{x} et \scilab{y} must have at least two components. 
+The vector \scilab{x} can be omitted, its default value being 
+\scilab{1:n} where \scilab{n} is the size of \scilab{y}. 
 \begin{figure}
-%BEGIN IMAGE
-\fbox{\hspace*{0.cm} \begin{picture}(400.0,350.0)(100.0,200.0)
-\hspace{-0.8cm}
-\special{psfile=figures/demo.ps}
-\end{picture}}
-%END IMAGE
-%HEVEA\imageflush
-
-\caption{Encapsulated Postscript by Using Xfig}
-\label{xfig2ps}
+\begin{center}
+%\includegraphics[width=10cm]{figures/graphique0.eps}
+\includegraphics[width=10cm,height=7.6cm]{figures/f0.eps}
+\end{center}
+\caption{A simple graph}
+\label{f0}
 \end{figure}
 
+Let us start with a simple example. Entering the commands 
+\begin{verbatim}
+-->x=linspace(0,2*%pi,100);plot2d(x,sin(x))
+\end{verbatim}
+opens a graphic window and produces a graph of the sine function
+for 100 values of x equally spaced between 0 and $2 \pi$.
+ The  \scilab{plot2d} command opens a graphic window
+(see figure \ref{f0}) in which the plot appears. 
+The graph is plotted in a rectangular frame and the bottom and left
+sides are used for axes with ticks.
 
-\subsection{Encapsulated Postscript Files}
-As it was said before, the use of {\tt Blatexpr} creates 2 files : a 
-{\tt .tex} file to be inserted in the \LaTeX~ file and a {\tt .epsf} file.
+By default, \scifun{plot2d} does not erase the graphic window, but
+the plot is made in the current windows, which possibly contains older
+plots. Thus, if after the preceding command the following is entered~:
+\begin{verbatim}
+t=linspace(0,4*%pi,100);plot2d(t,0.5*cos(t))
+\end{verbatim}
+\noindent we get figure \ref{g0}) in which the graph of th
+two functions, sine and cosine, appear with a common x axis.
+(note that the x-axis goes from  $0$ to $4\pi$ after the second
+plot command).
+\begin{figure}
+\begin{center}
+%\includegraphics[width=10cm]{figures/graphique0.eps}
+%\includegraphics[width=10cm]{figures/gg.eps}
+\includegraphics[width=10cm]{figures/f1.eps}
+\end{center}
+\caption{Two plots: superposing curves}\label{g0}
+\end{figure}
 
-It is possible to get the encapsulated Postscript file corresponding to a 
-{\tt .ps} file by using the command {\tt BEpsf}.
+To clear the graphic window, the command \scifun{xbasc()} should be
+used or just click the \scifun{Clear} button of the  \scifun{File} menu.
 
-Notice that the {\tt .epsf} file generated by {\tt Blatexpr} is not an 
-encapsulated Postscript file : it has no bounding box and {\tt BEpsf}
-generates a {\tt .eps} file which is an encapsulated Postscript file with 
-a bounding box.
+Using the standard menus, it is possible to zoom a part of the graph or
+to export the graphic window into a file or to see the 2D plot in a
+3D figure. Menus can be interactively 
+added or removed, using \scifun{delmenu}  \scifun{addmenu} functions.
+
+Parameters such as the color or the thickness of the frame can be
+given to the {\tt plot2d} function. Note that the graphic parameters are 
+given to {\tt plot2d} with a particular syntax. For instance to select a 
+color or a line style we can use the ``style'' keyword inside the plot2d
+command as follows:
+\begin{verbatim}
+-->plot2d(x,y,style=5) //5 means ``red''
+\end{verbatim}
+
+The basic properties of a figure can be accessed by clicking on the {\tt Edit}
+button of the graphic window. For instance to select a particular color
+(as done with style=5 before) we can use the command
+\begin{verbatim}
+-->plot2d(x,y)
+\end{verbatim}
+and select the {\tt Start entity picker} item of the {\tt Edit} button, then
+click on the curve, select a particular color and finally select the 
+{\tt Stop entity picker} item. 
+
+\section{Figure, axes, etc}
+Once a graphic command has been issued, the properties of the figure
+obtained are retrieved by the command 
+\begin{verbatim}
+-->f=gcf()
+\end{verbatim}
+Here {\tt f} is a handle which describes the figure properties.
+It has many fields which can be modified to change the properties
+of the figure.
+For instance, issuing
+\begin{verbatim}
+-->f.figure_name='My figure'
+\end{verbatim}
+will modify the \verb!figure_name! field and change the name of the 
+figure which appears in the current graphic window.
+
+The handle {\tt f} has a field called ``children'' which is an handle
+descrining the properties of the axes of the figure.
+
+Assume now that we have plotted a graph by the 
+{\tt plot2d(x,y)} command want add a title to the graph obtained.
+The handle associated with the figure is \verb!f=gcf()!.
+To access to the properties of the axes of the figure one can enter
+\begin{verbatim}
+-->a=f.children
+\end{verbatim}
+and we see that the handle {\tt a} has a field named ``title''.
+Now if we enter 
+\begin{verbatim}
+-->l=a.title
+\end{verbatim}
+we see that {\tt l} is itself a handle with a field named ``text''.
+We can give a title to the plot by the command \verb!l.text=My plot'!
+Of course it is possible to obtain the same result by
+the command
+\begin{verbatim}
+f.children.title.text='My plot'
+\end{verbatim}
+This simple example illustrates how to manipulate graphics within Scilab.
+
+\section{Graphic objects properties}
+Help on the graphics objects can obtained by the command
+\begin{verbatim}
+-->help graphics_entities
+\end{verbatim}
+The properties of the various graphic objects are obtained by the command 
+\begin{verbatim}
+-->help object_properties
+\end{verbatim}
+where {\verb!object_properties!} is in the following table.
+\begin{center}
+\begin{tabular}{|c|}
+\hline
+{\verb!agregation_properties!} \\ \hline
+{\verb!arc_properties!} \\ \hline
+{\verb!axes_properties!} \\ \hline
+{\verb!axis_properties! }  \\ \hline
+{\verb!champ_properties! } \\ \hline
+{\verb!fec_properties!} \\
+{\verb!figure_properties!} \\ \hline
+{\verb!grayplot_properties!} \\ \hline
+{\verb!label_properties! } \\ \hline
+{\verb!legend_properties! } \\ \hline
+{\verb!param3d_properties !} \\ \hline
+{\verb!polyline_properties! } \\ \hline
+{\verb!rectangle_properties !} \\ \hline
+{\verb!segs_properties! } \\ \hline
+{\verb!text_properties! } \\ \hline
+{\verb!title_properties! } \\ \hline
+\end{tabular}
+\end{center}
+
+To get a handle associated with a graphic object, one can use the 
+functions {\tt gcf()} (current Figure), {\tt gca()} (current Axes),
+or {\tt gce()} (current Entity). From the top figure handle, one 
+can access the complete tree of (sub)handles by selecting the various
+children and parents of a given handle.
+
+\section{Some useful plotting functions}
+\subsection{2D plots}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt plot2d }  & basic plot function \\ \hline
+{\tt plot3d } & plot surface \\ \hline
+{\tt param3d } &  parametric plot \\ \hline
+{\tt (f)champ} & vector field plot \\ \hline
+{\tt contour}, {\tt fcontour}, {\tt (f)contour2d}, \\
+{\tt contourf}, {\tt fcontour2d} & level curve plot \\ \hline
+{\tt errbar  }  & add error bar \\ \hline
+{\tt Matplot }  & 2D plot of a matrix using colors \\ \hline
+{\tt histplot}  & histogram \\ \hline
+{\tt errbar}  & vertical bars \\ \hline
+{\tt S(f)grayplot}  & smooth 2D plot of surface \\ \hline
+{\tt (f)grayplot}  & 2D plot of surface \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{3D plots}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt (f)plot3d } & plot surface \\ \hline
+{\tt param3d(1) } &  parametric plot \\ \hline
+{\tt contour} & level curve plot \\ \hline
+{\tt hist3d}  & 3D histogram\\ \hline
+{\tt genfac3d, eval3dp }  & compute factes \\ \hline
+{\tt hist3d}  & histogram \\ \hline
+{\tt geom3d}  & 3D projection \\ \hline
+{\tt S(f)grayplot}  & smooth 2D plot of surface \\ \hline
+{\tt (f)grayplot}  & 2D plot of surface \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Low level 2D plots}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt xpoly} & polyline plot \\ \hline
+{\tt xpolys } &  multi-polyline plot \\ \hline
+{\tt xrpoly} & regular polygon plot \\ \hline
+{\tt xsegs}  & draw unconnected segments\\ \hline
+{\tt xfpoly(s) }  & filled polygon(s) \\ \hline
+{\tt xrect }  & rectangle plot \\ \hline
+{\tt xfrect }  & filled rectangle plot \\ \hline
+{\tt xrects }  & draw or fill rectangles \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Strings, ...}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt xstring, xstringl, xstringb} & string plots \\ \hline
+{\tt xarrows} & arrows plot \\ \hline
+{\tt xarc(s), xfarc, xfarcs} & arcs plot \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Colors}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt colormap} & set colormap \\ \hline
+{\tt getcolor} & select color \\ \hline
+{\tt addcolor} & add color to colormap \\ \hline
+{\tt graycolormap} & gray colormap \\ \hline
+{\tt hotcolormap} & red to yellow colormap \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Mouse position}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\tt xclick} & wait for a mouse click \\ \hline
+{\tt locate } & mouse selection of a set of points \\ \hline
+{\tt xgetmouse} & add color to colormap \\ \hline
+{\tt graycolormap} & get the current position of the mouse\\ \hline
+\end{tabular}
+\end{center}
+
+\section{Animated plot}\label{Animation}
+\index{animated plot}
+\subsection{pixmap mode}
+To run the pixmap mode, get the handle of the current figure
+\verb!f=gcf();! and activate the pixmap mode \verb!f.pixmap='on'!.
+
+When the pixmap mode is on, the pixels of the graphic window
+are stored into a temporary buffer which is displayed upon request.
+The various steps corresponding to the creation of the image are not
+displayed. 
+
+An animated plot using this mode is generally obtained by a 
+a for or while loop which produces a new image at each iteration.
+
+When the image is ready, the screen display is realized by
+the \scifun{show\_pixmap()} command.
+
+In the animation mode, it is often necessary to set a frame 
+with given dimensions in which the animated plotting command will take place.
+
+To fix an appropriate frame with extremal values 
+\scilab{rect=[xmin,ymin,xmax,ymax]} one can set properties of the axes
+(\verb!data_bounds! field obtained by \verb!gca()!) or alternaltively 
+enter the command 
+\noindent
+\begin{verbatim}
+plot2d([],[],rect=[xmin,ymin,xmax,ymax]). 
+\end{verbatim}
+
+Assume that \scilab{y=phi(x,t)} is a vector with the same 
+dimension as \scilab{x}
+and depending on the parameter \scilab{t}. The animated graph of \scilab{y} 
+as a function of \scilab{t} (for a fixed \scilab{x} vector), is seen by
+the following code~:
+\begin{verbatim}
+f.pixmap='on';     //The data is sent into a pixmap
+plot2d(x,phi(x,theta(1)));   //First y for t=theta(1)
+w=gce();     //The current entity
+for t=theta
+ w.children.data(:,2)=phi(x,t)';  //update y
+ show_pixmap(); //display the pixmap content
+end
+\end{verbatim}
+The role of pixmap mode is to avoid image blinking. Any modification
+of a graphic property implies a complete display of the new graph
+(including axes, titles etc). In the pixmap mode the new image is
+built and displayed afterwards by the  \scifun{show\_pixmap()} command.
+
+Function \scifun{xpause} can be used to slow down the graphic display.
+
+%\end{center}

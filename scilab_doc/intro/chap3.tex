@@ -4,22 +4,22 @@
 \label{ch4}
 \index{programming}
 
-	One of the most useful features of Scilab is its ability
+        One of the most useful features of Scilab is its ability
 to create and use functions.  This allows the development of specialized
 programs which can be integrated into the Scilab package in a simple and
 modular way through, for example, the use of libraries.  In this chapter we 
 treat the following subjects:
 \begin{itemize}
-	\item Programming Tools
-	\item Defining and Using Functions
+        \item Programming Tools
+        \item Defining and Using Functions
         \item Definition of Operators for New Data Types
-	\item{Debbuging}
-\end{itemize}	
+        \item{Debbuging}
+\end{itemize}   
 Creation of libraries is discussed in a later chapter.
 
 \section{Programming Tools}
 
-	Scilab supports a full list of programming tools
+        Scilab supports a full list of programming tools
 including loops, conditionals, case selection,
 and creation of new environments.  Most programming tasks
 should be accomplished in the environment of a function.
@@ -98,7 +98,7 @@ matrices. The index takes as values the entries of the list.
  str
 \end{verbatim}
 
-	The {\tt while} loop repeatedly performs a sequence of commands 
+        The {\tt while} loop repeatedly performs a sequence of commands 
 until a condition is satisfied.
 \begin{verbatim}
 --> x=1; while x<14,x=2*x,end
@@ -182,7 +182,7 @@ has the usual meaning and is a also a keyword recognized by the interpreter.
 \end{verbatim}
 
 
-	The {\tt select}-{\tt case} conditional
+        The {\tt select}-{\tt case} conditional
 compares an expression to several possible expressions and performs the
 instructions following the first case which equals the initial expression.
 \begin{verbatim}
@@ -206,7 +206,7 @@ where none of the cases are satisfied.
 \index{functions}
 \index{functions!definition}
 
-	It is possible to define a function directly in
+        It is possible to define a function directly in
 the Scilab environment, however, the most convenient way
 is to create a file containing the function
 with a text editor.  In this section we describe the
@@ -380,16 +380,16 @@ Scilab has several special commands which are used almost exclusively
 in functions.  These are the commands 
 
 \begin{itemize}
-	\item {\tt argn}\index{argn@{\tt argn}}: returns the number of input
+        \item {\tt argn}\index{argn@{\tt argn}}: returns the number of input
 and output arguments for the function
-	\item {\tt error}\index{error@{\tt error}}: used to suspend the 
+        \item {\tt error}\index{error@{\tt error}}: used to suspend the 
 operation of a function, to print an error message, and to return to the
 previous level of environment when an error is detected.  
-	\item {\tt warning}\index{warning@{\tt warning}}, 
-	\item {\tt pause}\index{pause@{\tt pause}}: temporarily suspends the 
+        \item {\tt warning}\index{warning@{\tt warning}}, 
+        \item {\tt pause}\index{pause@{\tt pause}}: temporarily suspends the 
 operation of a function.
-	\item {\tt break}\index{break@{\tt break}}: forces the end of a loop 
-	\item {\tt return}\index{return@{\tt return}} or {\tt resume} : used 
+        \item {\tt break}\index{break@{\tt break}}: forces the end of a loop 
+        \item {\tt return}\index{return@{\tt return}} or {\tt resume} : used 
 to return to the calling environment and to pass local
 variables from the function environment to the calling environment.  
 \end{itemize}
@@ -455,7 +455,7 @@ the global environment.
 \label{s4.3}
 \index{operations!for new data types}
 
-	It is possible to transparently define fundamental operations 
+        It is possible to transparently define fundamental operations 
 for new data types in Scilab (enter {\tt help overloading} for 
 a full description of this feature).
 That is, the user can give a sense to multiplication, division, addition, etc.
@@ -467,7 +467,7 @@ Scilab performs these user defined operations by searching for functions
 (written by the user) which follow a special naming convention described
 below.
 
-	The naming convention Scilab uses to recognize operators 
+        The naming convention Scilab uses to recognize operators 
 defined by the user is determined by the following conventions.  The name
 of the user defined function is composed of four (or possibly three)
 fields.  The first field is always the symbol {\tt \%}.  
@@ -593,7 +593,7 @@ representing a linear system has the form: \\
  and, thus, the {\tt xxx}
 above is {\tt lss}.
 
-	An example of the function name which multiplies two
+        An example of the function name which multiplies two
 linear systems together (to represent their series inter-connection)
 is {\tt \%lss\_m\_lss}.  Here the first field is \%, the second field is 
 {\tt lss} (linear state-space), the third field is {\tt m} ``multiply''
