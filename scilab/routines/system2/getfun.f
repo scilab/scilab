@@ -15,11 +15,15 @@ c
       integer first,ierr
       integer iadr,sadr
       logical maj,isinstring
+
+      external getfastcode
+      integer  getfastcode
 c     
       data slash/48/,dot/51/,blank/40/,equal/50/,lparen/41/,rparen/42/
       data comma/52/,semi/43/,less/59/,great/60/,left/54/,right/55/
       data name/1/,eol/99/,lrecl/512/
       data retu/27,14,29,30,27,23/
+
 c     ennd/14,23,13/
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -102,26 +106,9 @@ c     boucle de conversion des caracteres de la ligne
  17   j=j+1
       if(j.gt.n) goto 27
 c     
- 18   do 20 k = 1, csiz
-         if (buf(j:j).eq.alfa(k)) then
-            maj=.false.
-            goto 21
-         elseif(buf(j:j).eq.alfb(k)) then
-            maj=.true.
-            go to 21
-         endif
- 20   continue
-      k = eol+1
-      call xchar(buf(j:j),k)
+*     modif Bruno : appel a getfastcode au lieu de la boucle
+      k = getfastcode(buf(j:j))
       if (k .eq. eol) go to 11
-      if (k .eq. 0) then
-         call basout(io,wte,
-     +        buf(j:j)//' is not a scilab character')
-         go to 24
-      endif
-      maj=.false.
-c     
- 21   k = k-1
 
       if(buf(j+1:j+1).ne.buf(j:j)) goto 23
       if(k.eq.slash) then
@@ -172,7 +159,6 @@ c     ce n'est pas une carte suite
       if(first.eq.1) goto 24
       istk(l) = k
 c     
-      if(maj) istk(l)=-k
       l = l + 1
       if(l.gt.lmax) then
          ierr=5
@@ -195,7 +181,6 @@ c     premiere ligne
       l=l+1
       goto 17
  26   lin(l)=k
-      if(maj) lin(l)=-k
       l=l+1
       if(l.gt.lsiz) then
         ierr=3
@@ -468,3 +453,4 @@ c     invalid syntaxe
 c     
  
       end
+

@@ -16,9 +16,10 @@ c
       integer lrecl,eol,slash,dot,blank,comma
       integer retu(6)
       integer r,quit(4),lnblnk
-      logical maj,isinstring,eof
+      logical isinstring,eof
       character*20 tmp
-      external isinstring,lnblnk
+      external isinstring,lnblnk, getfastcode
+      integer getfastcode
 
       data eol/99/,dot/51/,blank/40/,comma/52/
       data retu/27,14,29,30,27,23/
@@ -92,82 +93,65 @@ c     loop on read characters
       j=0
  17   j=j+1
       if(j.gt.n) goto 45
-c      do 40 j = 1, n
-         do 21 k = 1, csiz
-         if (buf(j:j).eq.alfa(k)) then
-            maj=.false.
-            goto 25
-         elseif(buf(j:j).eq.alfb(k)) then
-            maj=.true.
-            goto 25
-         endif
- 21   continue
-         k = eol+1
-         call xchar(buf(j:j),k)
-         if (k .eq. eol) go to 45
-         if (k .eq. 0) then
-            call basout(io,wte,
-     +           buf(j:j)//' is not a scilab character')
-            go to 40
-         endif
-         maj=.false.
- 25      k=k-1
-c
-c     special cases        //    ..
-        if(buf(j+1:j+1).ne.buf(j:j)) goto 31
 
-        if(k.eq.slash) then
-c     .    check if // occurs in a string
-           if(isinstring(lin(l0),l-l0+1)) then
-c     .       // is part of a string
-              if (l+1.ge.lsiz) then
-                 call error(108)
-                 return
-              endif
-              lin(l)=slash
-              lin(l+1)=slash
-              j=j+1
-              l=l+2
-              goto 40
-           else
-c     .       // marks beginning of a comment
-              goto 45
-           endif
-        endif
+*     modif bruno : appel a getfastcode au lieu de la boucle
+      k = getfastcode(buf(j:j))
+      if (k .eq. eol) go to 45
+
+c     special cases        //    ..
+      if(buf(j+1:j+1).ne.buf(j:j)) goto 31
+
+      if(k.eq.slash) then
+c     .  check if // occurs in a string
+         if(isinstring(lin(l0),l-l0+1)) then
+c     .     // is part of a string
+            if (l+1.ge.lsiz) then
+               call error(108)
+               return
+            endif
+            lin(l)=slash
+            lin(l+1)=slash
+            j=j+1
+            l=l+2
+            goto 40
+         else
+c     .     // marks beginning of a comment
+            goto 45
+         endif
+      endif
 c
-        if(k.ne.dot) goto 31
-        if(j.eq.1) goto 70
+      if(k.ne.dot) goto 31
+      if(j.eq.1) goto 70
 c     . .. find
 c     check if .. is followed by more dots or //
-        jj=j
- 28     continue
-        if(jj.eq.n)goto 29
-        jj=jj+1
-        if(buf(jj:jj).eq.buf(j:j)) goto 28
-        if(buf(jj:jj).eq.' ') goto 28
-        if(buf(jj:jj).ne.'/') goto 31
-        if(jj.eq.n) goto 31
-        if(buf(jj+1:jj+1).eq.'/') goto 29
-        goto 31
+      jj=j
+ 28   continue
+      if(jj.eq.n)goto 29
+      jj=jj+1
+      if(buf(jj:jj).eq.buf(j:j)) goto 28
+      if(buf(jj:jj).eq.' ') goto 28
+      if(buf(jj:jj).ne.'/') goto 31
+      if(jj.eq.n) goto 31
+      if(buf(jj+1:jj+1).eq.'/') goto 29
+      goto 31
 c
- 29     continue
+ 29   continue
 c     next line is a continuation line
-        if(job.ne.-1) goto 11
+      if(job.ne.-1) goto 11
 c     handle continuation lines when scilab is call as a procedure
-        fin=-1
-        lpt(6)=-l
-        return
+      fin=-1
+      lpt(6)=-l
+      return
 c     There is no continuation line or syntax error
- 31     continue
+ 31   continue
 
-         lin(l) = k
-         if(maj) lin(l)=-k
-         if (l.lt.lsiz) l = l+1
-         if (l.ge.lsiz) then
-            call error(108)
-            return
-         endif
-   40 goto 17
+      lin(l) = k
+      if (l.lt.lsiz) l = l+1
+      if (l.ge.lsiz) then
+         call error(108)
+         return
+      endif
+ 40   goto 17
 c
  45   continue
       if(l.eq.l0) then
