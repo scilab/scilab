@@ -47,8 +47,6 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
     //scs_m=list()
     return
   end
-  scs_m=do_versionxx(scs_m);//TEMPORAIRE A SUPPRIMER
-  scs_m=do_version26(scs_m);
   scs_m.props.title=[scs_m.props.title(1),path]
 
   if typ=='diagram' then
@@ -81,22 +79,3 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
   end
 endfunction
 
-function scs_m_new=do_versionxx(scs_m)
-//A SUPPRIMER CF ci dessus
-  if typeof(scs_m)=='diagram' then scs_m_new=scs_m,return,end
-  if typeof(scs_m(1))<>'params' then scs_m_new=scs_m,return,end
-  scs_m_new=scicos_diagram()
-  scs_m_new.props=scs_m(1)
-  scs_m_new.objs(1)=mlist('Deleted') // not to change the internal numbering
-  n=size(scs_m)
-  for i=2:n //loop on objects
-    o=scs_m(i)
-    scs_m_new.objs(i)=o
-    if typeof(o)=='Block' then
-      if o.model.sim(1)=='super'| o.model.sim(1)=='csuper' then
-	scs_m_new.objs(i).model.rpar=do_versionxx(o.model.rpar)
-      end
-    end
-  end
-  edited=resume(%t)
-endfunction
