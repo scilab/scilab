@@ -1161,7 +1161,7 @@ int C2F(scicos)
   uround = 1.0;
   do{
     uround = uround*0.5;
-  }while ( 1.0 + uround == 1.0);
+  }while ( 1.0 + uround != 1.0);
   uround = uround*2.0;
   SQuround=sqrt(uround);
   /* Function Body */
