@@ -12,8 +12,8 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);rpar=model(8);
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;rpar=model.rpar;
   n=size(rpar,'*')/2
   xx=rpar(1:n);yy=rpar(n+1:2*n)
   while %t do
@@ -30,15 +30,21 @@ case 'set' then
       ok=%f
     end
     if ok then
-      model(8)=[xx(:);yy(:)]
-      x(2)=graphics;x(3)=model
+      model.rpar=[xx(:);yy(:)]
+      x.graphics=graphics;x.model=model
       break
     end
   end
-  x(3)(11)=[] //compatibility
 case 'define' then
-  model=list('lookup',1,1,[],[],[],[],[-2;-1;1;2;-1;1;-1;1],[],'c',[],[%t %f],' ',list())
-  gr_i=['rpar=model(8);n=size(rpar,''*'')/2;';
+  model=scicos_model()
+  model.sim='lookup'
+  model.in=1
+  model.out=1
+  model.rpar=[-2;-1;1;2;-1;1;-1;1]
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+
+  gr_i=['rpar=model.rpar;n=size(rpar,''*'')/2;';
     'thick=xget(''thickness'');xset(''thickness'',2);';
     'xx=rpar(1:n);yy=rpar(n+1:2*n);';
     'mnx=mini(xx);xx=xx-mnx*ones(xx);mxx=maxi(xx);';

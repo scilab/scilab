@@ -34,13 +34,13 @@ end
 
 IN=[];OUT=[];
 for i=2:length(scs_m)
-  if scs_m(i)(1)=='Block' then  
-    if scs_m(i)(5)=='IN_f' then
-      scs_m(i)(5)='INPUTPORT';
-      IN=[IN scs_m(i)(3)(9)]
-    elseif scs_m(i)(5)=='OUT_f' then
-      scs_m(i)(5)='OUTPUTPORT';
-      OUT=[OUT  scs_m(i)(3)(9)]
+  if typeof(scs_m(i))=='Block' then  
+    if scs_m(i).gui=='IN_f' then
+      scs_m(i).gui='INPUTPORT';
+      IN=[IN scs_m(i).model.ipar]
+    elseif scs_m(i).gui=='OUT_f' then
+      scs_m(i).gui='OUTPUTPORT';
+      OUT=[OUT  scs_m(i).model.ipar]
     end
   end
 end
@@ -66,20 +66,20 @@ end
 if ~ok then
   error('Diagram does not compile in pass 2');
 end 
-sim=%cpr(2);state=%cpr(1);
+sim=%cpr.sim;state=%cpr.state;
 //
-lnkptr=sim('lnkptr');inplnk=sim('inplnk');inpptr=sim('inpptr');
-outlnk=sim('outlnk');outptr=sim('outptr');ipptr=sim('ipptr');
+lnkptr=sim.lnkptr;inplnk=sim.inplnk;inpptr=sim.inpptr;
+outlnk=sim.outlnk;outptr=sim.outptr;ipptr=sim.ipptr;
 
 ki=[];ko=[];nyptr=1;
-for kfun=1:length(sim('funs'))
-  if sim('funs')(kfun)=='output' then
-    sim('funs')(kfun)='bidon'
-    ko=[ko;[kfun,sim('ipar')(ipptr(kfun))]];
+for kfun=1:length(sim.funs)
+  if sim.funs(kfun)=='output' then
+    sim.funs(kfun)='bidon'
+    ko=[ko;[kfun,sim.ipar(ipptr(kfun))]];
 
-  elseif sim('funs')(kfun)=='input' then
-    sim('funs')(kfun)='bidon'
-    ki=[ki;[kfun,sim('ipar')(ipptr(kfun))]];
+  elseif sim.funs(kfun)=='input' then
+    sim.funs(kfun)='bidon'
+    ki=[ki;[kfun,sim.ipar(ipptr(kfun))]];
     
   end
 end
@@ -105,15 +105,15 @@ if param(1)==0 then param(1)=1.d-6;end
 t=param(2)
 
 ux0=[U(Indu);X(Indx)];
-sindu=size(Indu,'*');sindx=size(Indx,'*');
+sindu=size(U(Indu),'*');sindx=size(X(Indx),'*');
 [err,uxopt,gopt]=optim(cost,ux0)
 U(Indu)=uxopt(1:sindu);
 X(Indx)=uxopt(sindu+1:sindx+sindu);
-state('x')=X;
-state('outtb')(pointi)=U;
+state.x=X;
+state.outtb(pointi)=U;
 [state,t]=scicosim(state,t,t,sim,'linear',[.1,.1,.1,.1]);
-XP=state('x');
-Y=state('outtb')(pointo);
+XP=state.x;
+Y=state.outtb(pointo);
 
 endfunction
 
@@ -123,15 +123,15 @@ X;
 U;
 X(Indx)=ux(sindu+1:sindx+sindu);
 U(Indu)=ux(1:sindu);
-state('x')=X;
-state('outtb')(pointi)=U;
+state.x=X;
+state.outtb(pointi)=U;
 [state,t]=scicosim(state,t,t,sim,'linear',[.1,.1,.1,.1]);
-zer=ones(X);zer(Indxp)=0;xp=zer.*state('x');
-y=state('outtb')(pointo);
+zer=ones(X);zer(Indxp)=0;xp=zer.*state.x;
+y=state.outtb(pointo);
 zer=ones(y);zer(Indy)=0;err=zer.*(Y-y);
 f=.5*(norm(xp,2)+norm(err,2));
 
 sys=lincos(scs_m,X,U,param)
-g=xp'*[sys('B')(:,Indu) sys('A')(:,Indx)]-..
-    err'*[sys('D')(:,Indu) sys('C')(:,Indx)];
+g=xp'*[sys.B(:,Indu) sys.A(:,Indx)]-..
+    err'*[sys.D(:,Indu) sys.C(:,Indx)];
 endfunction

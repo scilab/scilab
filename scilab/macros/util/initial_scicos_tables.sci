@@ -17,7 +17,7 @@ scicos_pal=['Inputs_Outputs','SCI/macros/scicos/Inputs_Outputs.cosf'
 	'Replace','Align','Link','Delete','Delete Region','Add new block',..
 	'Flip','Undo','Pal editor'],..
 ['Simulate','Setup','Compile','Eval','Run'],..
-['Object','Open/Set','Resize','Icon','Icon Editor','Color','Label','Get Info','Identification','Documentation'],..
+['Object','Open/Set','Resize','Icon','Icon Editor','Color','Label','Get Info','Identification','Documentation','Code Generation'],..
 ['Misc','Background color','Default link colors','ID fonts','Aspect',..
 	'Add color','Shortcuts','Zoom in','Zoom out','Help','Calc']);
 
@@ -32,7 +32,7 @@ scicos_pal=['Inputs_Outputs','SCI/macros/scicos/Inputs_Outputs.cosf'
  'Add new block','Flip','Undo','Setup','Compile','Eval','Run','Replot','New',..
  'Region to Super Block','Purge','Rename','Save','Save As','Load','Load as Palette',..
  'Save as Palette','Save as Interf. Func.','Set Diagram Info','Navigator','Quit','Open/Set',..
- 'Resize','Icon','Color','Label','Get Info','Identification','Documentation'],..
+ 'Resize','Icon','Color','Label','Get Info','Identification','Documentation','Code Generation'],..
  [' In the active editor Scicos window, clicking on the ';
  ' Window menu item invokes a dialog box that allows you to change ';
  ' window dimensions'],..
@@ -327,5 +327,19 @@ scicos_pal=['Inputs_Outputs','SCI/macros/scicos/Inputs_Outputs.cosf'
  [' This menu allows to set or get documentation for a block ';
  ' ';
  ' Selecting this menu and clicking on a block  opens an';
- ' editable dialog box'])
+ ' editable dialog box'],..
+ [' This menu allows to generate the simulation code associated with' 
+  ' a discrete time Superblock'
+  ''
+  ' The code generation is obtained simply by selecting this menu and  '
+  ' then the desired superblock.'
+  ' '
+  ' If the superblock statisfies the required conditions, a dialog box'
+  ' pops up to ask for a block name, a directory where to put the'
+  ' generated files and for optional libraries requested by the linker.'
+  ' '
+  ' Given this informations the code is generated, compiled and linked with '
+  ' Scilab. The superblock is automatically replaced by a new block which '
+  ' implements the generated code. It is then possible to run the modified '
+  ' diagram.'])
 endfunction

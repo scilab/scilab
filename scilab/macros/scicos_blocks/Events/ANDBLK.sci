@@ -12,34 +12,73 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
 case 'define' then
-  model = list('csuper',[],[],[1;1],1,[],[],..
-  list(list([600,400,0,0],'ANDBLK',[],[]),..
-  list('Block',..
-  list([194,133],[60,60],%t,[],[],10,[5;12],[],..
-  ['txt=[''LOGICAL'';'' '';'' AND ''];';
-  'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
-  list('andlog',[],1,[1;1],[],[],[],[],[],'d',[],[%f,%f],' ',list()),' ','ANDLOG_f'),..
-  list('Block',list([149,287],[20,20],%t,'1',[],[],[],5,[]),..
-  list('input',[],[],[],1,[],[],[],1,'d',-1,[%f,%f],' ',list()),' ','CLKIN_f'),..
-  list('Block',list([450,83],[20,20],%t,'1',[],[],9,[],[]),..
-  list('output',[],[],1,[],[],[],[],1,'d',[],[%f,%f],' ',list()),' ','CLKOUT_f'),..
-  list('Link',[169;214;214],[297;297;198.71429],'drawlink',' ',[0,0],[5,-1],[3,1],[2,1]),..
-  list('Block',list([141,330],[20,20],%t,'2',[],[],[],7,[]),..
-  list('input',[],[],[],1,[],[],[],2,'d',%t,[-1,-1],' ',list()),' ','CLKIN_f'),..
-  list('Link',[161;234;234],[340;340;275.78348],'drawlink',' ',[0,0],[5,-1],[6,1],[11,1]),..
-  list('Block',..
-  list([331,137],[60,60],%t,[],10,[],13,[9;0],..
-  ['txt=[''If in>=0'';'' '';'' then    else''];';
-  'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
-  list('ifthel',1,[],1,[1;1],[],[],[],[],'l',[-1,-1],[%f,%f],' ',list()),' ','IFTHEL_f'),..
-  list('Link',[351;351;450],[131.28571;93;93],'drawlink',' ',[0,0],[5,-1],[8,1],[4,1]),..
-  list('Link',[262.57143;322.42857],[163;167],'drawlink',' ',[0,0],[1,1],[2,1],[8,1]),..
-  list('Block',list([234;275.78348],[1,1],%t,' ',[],[],7,[12;13]),..
-  list('lsplit',[],[],1,[1;1],[],[],[],[],'d',[-1,-1],[%t,%f],' ',list()),' ','CLKSPLIT_f'),..
-  list('Link',[234;234],[275.78348;198.71429],'drawlink',' ',[0,0],[5,-1],[11,1],[2,2]),..
-  list('Link',[234;361;361],[275.78348;275.78348;202.71429],'drawlink',' ',[0,0],[5,-1],..
-  [11,2],[8,1])),[],'h',%f,[%f,%f])
-  gr_i='xstringb(orig(1),orig(2),''ANDBLK'',sz(1),sz(2),''fill'')';
-  x=standard_define([3 2],model,[],gr_i)
+  andlog=ANDLOG_f('define')
+    andlog.graphics.orig=[194,133]
+    andlog.graphics.sz=[60,60]
+    andlog.graphics.flip=%t
+    andlog.graphics.pout=10
+    andlog.graphics.pein=[5;12]
+  input_port1=CLKIN_f('define')
+    input_port1.graphics.orig=[149,287]
+    input_port1.graphics.sz=[20,20]
+    input_port1.graphics.flip=%t
+    input_port1.graphics.exprs='1'
+    input_port1.graphics.peout=5
+    input_port1.model.ipar=1
+  output_port=CLKOUT_f('define')
+    output_port.graphics.orig=[450,83]
+    output_port.graphics.sz=[20,20]
+    output_port.graphics.flip=%t
+    output_port.graphics.exprs='1'
+    output_port.graphics.pein=6
+    output_port.model.ipar=1
+  input_port2=CLKIN_f('define')
+    input_port2.graphics.orig=[141,330]
+    input_port2.graphics.sz=[20,20]
+    input_port2.graphics.flip=%t
+    input_port2.graphics.exprs='2'
+    input_port2.graphics.peout=5  
+    input_port2.model.ipar=2
+  ifthel=IFTHEL_f('define')
+    ifthel.graphics.orig=[331,137]
+    ifthel.graphics.sz=[60,60]
+    ifthel.graphics.flip=%t
+    ifthel.graphics.pin=10
+    ifthel.graphics.pein=13
+    ifthel.graphics.peout=[9;0]
+  split=CLKSPLIT_f('define')
+    split.graphics.orig=[234;275.78348]
+    output_port.graphics.pein=7,
+    output_port.graphics.peout=[12;13]
+  
+  x=scicos_block()
+  x.gui='ANDBLK'
+  x.graphics.sz=[2,2]
+  x.graphics.gr_i='xstringb(orig(1),orig(2),''ANDBLK'',sz(1),sz(2),''fill'')';
+  x.model.sim='csuper'
+  x.model.clkin=[1;1]
+  x.model.clkout=1
+  x.model.blocktype='h'
+  x.model.firing=%f
+  x.model.dep_ut=[%f %f]
+  x.model.rpar=empty_diagram();
+  x.model.rpar(2)=andlog
+  x.model.rpar(3)=input_port1
+  x.model.rpar(4)=output_port
+  x.model.rpar(5)=scicos_link(xx=[169;214;214],yy=[297;297;198.71],..
+			      ct=[5,-1],from=[3,1],to=[2,1])  
+  x.model.rpar(6)=input_port2
+  x.model.rpar(7)=scicos_link(xx=[161;234;234],yy=[340;340;275.78],..
+			      ct=[5,-1],from=[6,1],to=[11,1])  
+  x.model.rpar(8)=ifthel
+  x.model.rpar(9)=scicos_link(xx=[351;351;450],yy=[131.29;93;93],..
+			      ct=[5,-1],from=[8,1],to=[4,1])  
+  x.model.rpar(10)=scicos_link(xx=[262.57;322.43],yy=[163;167],..
+			      ct=[1,1],from=[2,1],to=[8,1])  
+  x.model.rpar(11)=split
+  x.model.rpar(12)=scicos_link(xx=[234;234],yy=[275.78;198.71],..
+			      ct=[5,-1],from=[11,1],to=[2,2])   
+  x.model.rpar(13)=scicos_link(xx=[234;361;361],yy=[275.78;275.78;202.71],..
+			      ct=[5,-1],from=[11,2],to=[8,1])   
 end
 endfunction

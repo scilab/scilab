@@ -4,33 +4,42 @@ function path=save_super(scs_m,fpath)
 // Copyright INRIA
 path=[]
 scs_m=do_purge(scs_m)
-x1=scs_m(1);nam=x1(2)(1);
+nam=scs_m(1).title(1);
 nam=strsubst(nam,' ','_')
 in=[];out=[];clkin=[];clkout=[];
 bl='  '
 com='/'+'/'
 for k=2:size(scs_m)
   o=scs_m(k)
-  if o(1)=='Block' then
-    model=o(3)
-    select o(5)
+  if typeof(o)=='Block' then
+    model=o.model
+    select o.gui
     case 'IN_f' then
-      in=[in;model(3)]
+      in=[in;model.out]
     case 'OUT_f' then
-      out=[out;model(2)]
+      out=[out;model.in]
     case 'CLKIN_f' then
-      clkin=[clkin;model(5)]
+      clkin=[clkin;model.evtout]
     case 'CLKOUT_f' then
-      clkout=[clkout;model(4)];
+      clkout=[clkout;model.evtin];
     case 'CLKINV_f' then
-      clkin=[clkin;model(5)]
+      clkin=[clkin;model.evtout]
     case 'CLKOUTV_f' then
-      clkout=[clkout;model(4)];  
+      clkout=[clkout;model.evtin]; 
     end
   end
 end
-model=list('super',in,out,clkin,clkout,[],[],..
-      scs_m,[],'h',%f,[%f %f])
+model=scicos_model()
+  model.sim='super'
+  model.in=in
+  model.out=out
+  model.evtin=clkin
+  model.evtout=clkout
+  model.rpar=scs_m
+  model.blocktype='h'
+  model.dep_ut=[%f %f]
+  
+
 ppath=getparpath(scs_m,[])
 
 
@@ -49,8 +58,8 @@ txt=[
 '  [x,y]=standard_origin(arg1)';
 'case ''set'' then'
 '  while %t do'
-'    [x,newparameters,needcompile]=scicos(arg1(3)(8))'
-'    arg1(3)(8)=x'
+'    [x,newparameters,needcompile]=scicos(arg1.model.rpar)'
+'    arg1.model.rpar=x'
 '    [ok,arg1]=adjust_s_ports(arg1)'
 '    if ok then'
 '      x=arg1'
@@ -60,7 +69,6 @@ txt=[
 '    end'
 '  end']
 
-model(1)='super'
 t1=sci2exp(model,'model');
 txt=[
     txt;

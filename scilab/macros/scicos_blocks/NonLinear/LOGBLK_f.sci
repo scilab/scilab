@@ -12,31 +12,37 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
-  if size(label,'*')==2 then label=label(2),end //compatibility
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  if size(exprs,'*')==2 then exprs=exprs(2),end //compatibility
   while %t do
-    [ok,a,label]=getvalue('Set log block parameters',..
-	'Basis (>1)',list('vec',1),label)
+    [ok,a,exprs]=getvalue('Set log block parameters',..
+	'Basis (>1)',list('vec',1),exprs)
     if ~ok then break,end
     if a<=1 then
       message('Basis must be larger than 1')
     else
       if ok then
-	graphics(4)=label
-	model(8)=a
-	x(2)=graphics;x(3)=model
+	graphics.exprs=exprs
+	model.rpar=a
+	x.graphics=graphics;x.model=model
 	break
       end
     end
   end
-  x(3)(11)=[] //compatibility
 case 'define' then
   in=1
   a=%e
-  model=list('logblk',-1,-1,[],[],[],[],a,[],'c',[],[%t %f],' ',list())
-  label='%e'
+  model=scicos_model()
+  model.sim='logblk'
+  model.in=-1
+  model.out=-1
+  model.rpar=a
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+
+  exprs='%e'
   gr_i=['xstringb(orig(1),orig(2),''Log'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

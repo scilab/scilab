@@ -12,22 +12,22 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
-  ipar=model(9);
-  state=model(7)
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  ipar=model.ipar;
+  state=model.state
   lunit=state(2)
-  fname=label(2)
-  frmt=label(3)
+  fname=exprs(2)
+  frmt=exprs(3)
   while %t do
-    [ok,in,fname1,frmt1,N,swap,label]=getvalue(..
+    [ok,in,fname1,frmt1,N,swap,exprs]=getvalue(..
 	'Set WRITEC block parameters',..
 	['Input size';
 	'Output file name';
 	'Output Format';
 	'Buffer size';
 	'Swap mode 0/1'],..
-	 list('vec',1,'str',1,'str',1,'vec',1,'vec',1),label)
+	 list('vec',1,'str',1,'str',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end //user cancel modification
 
     in=int(in)
@@ -73,12 +73,12 @@ case 'set' then
       if prod(size(state))<>(nin+1)*N+2 then
 	state=[-1;lunit;zeros((nin+1)*N,1)]
       end
-      model(2)=nin
-      model(7)=state;model(9)=ipar
-//      model(11)=[] //compatibility
-//      model(12)=[%t %f] //compatibility
-      graphics(4)=label;
-      x(2)=graphics;x(3)=model
+      model.in=nin
+      model.state=state;model.ipar=ipar
+//      model.firing=[] //compatibility
+//      model.dep_ut=[%t %f] //compatibility
+      graphics.exprs=exprs;
+      x.graphics=graphics;x.model=model
       break
     end
     
@@ -90,17 +90,22 @@ case 'define' then
   swap=0
   lunit=0
   N=2;
-  rpar=[]
-  ipar=[length(fname);str2code(frmt);N;swap;str2code(fname)]
-  state=[-1;lunit;zeros((nin+1)*N,1)]
-  model=list(list('writec',2),in,[],1,[],[],state,rpar,ipar,'d',[],[%t %f],' ',list())
-  label=[sci2exp(in);
+  model=scicos_model()
+  model.sim=list('writec',2)
+  model.in=in
+  model.evtin=1
+  model.dstate=[-1;lunit;zeros((nin+1)*N,1)]
+  model.ipar=[length(fname);str2code(frmt);N;swap;str2code(fname)]
+  model.blocktype='d'
+  model.dep_ut=[%t %f]
+  
+  exprs=[sci2exp(in);
 	fname;
 	frmt;
 	string(N)
 	string(swap)]
   gr_i=['txt=[''write to'';''C binary file''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
-  x=standard_define([3 2],model,label,gr_i)
+  x=standard_define([3 2],model,exprs,gr_i)
 end
 endfunction

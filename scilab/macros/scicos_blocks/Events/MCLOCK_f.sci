@@ -31,10 +31,10 @@ case 'set' then
 case 'define' then
   nn=2
   dt=0.1
-  label=[string(dt);string(nn)]
+  exprs=[string(dt);string(nn)]
   model = list('csuper',[],[],[],[1;1],[],[],..
   list(list([600,400],' ',[],[],[]),..
-  list('Block',list([334,199],[40,40],%t,label,[],[],13,[5;4]),..
+  list('Block',list([334,199],[40,40],%t,exprs,[],[],13,[5;4]),..
   list('mfclck',[],[],1,[1;1],[],0, .1,5,'d',[-1 0],[%f,%f],' ',list()),' ','MFCLCK_f'),..
   list('Block',list([457,161],[16.666667,16.666667],%t,' ',[],[],[5;10;0],6),..
   list('sum',[],[],[1;1;1],1,[],[],[],[],'d',[],[%f,%f],' ',list()),' ','CLKSOM_f'),..

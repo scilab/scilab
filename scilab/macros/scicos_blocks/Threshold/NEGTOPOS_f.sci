@@ -12,10 +12,17 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  x(3)(11)=[-1] //compatibility
+  x.model.firing=-1 //compatibility
 case 'define' then
-  rpar=[-1;-1;0;-1]
-  model=list('zcross',1,[],[],1,[],[],rpar,[],'z',-1,[%t %f],' ',list())
+  model=scicos_model()
+  model.sim='zcross'
+  model.in=1
+  model.evtout=1
+  model.rpar=[-1;-1;0;-1]
+  model.blocktype='z'
+  model.firing=-1
+  model.dep_ut=[%t %f]
+
   gr_i=['xstringb(orig(1),orig(2),'' - to + '',sz(1),sz(2),''fill'');']
   x=standard_define([2 2],model,[],gr_i)
 end

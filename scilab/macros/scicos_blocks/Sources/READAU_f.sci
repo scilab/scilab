@@ -12,22 +12,26 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);[out,state,ipar]=model([3 7 9])
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  out=model.out
+  state=model.dstate
+  ipar=model.ipar
+
   imask=9+ipar(1)
   tmask=ipar(imask)
   lunit=state(3)
-  fname=label(1)
+  fname=exprs(1)
 
   while %t do
-    [ok,fname1,N,swap,label]=getvalue(..
+    [ok,fname1,N,swap,exprs]=getvalue(..
 	['Set READAU block parameters';
 	 'Read is done on a binary .au file'],..
 	['Input file name';
 	 'Buffer size';
 	 'Swap mode 0/1'],..
 	 list('str',1,'vec',1,'vec',1),..
-	 label)
+	 exprs)
      tmask1=[];outmask=1;frmt1='uc';M=1;offset=1;
     if ~ok then break,end //user cancel modification
     fname1=stripblanks(fname1)
@@ -59,9 +63,9 @@ case 'set' then
 	if prod(size(state))<>(N*M)+3 then
 	  state=[-1;-1;lunit;zeros(N*M,1)]
 	end
-	model(7)=state;model(9)=ipar
-	graphics(4)=label;
-	x(2)=graphics;x(3)=model
+	model.state=state;model.ipar=ipar
+	graphics.exprs=exprs;
+	x.graphics=graphics;x.model=model
 	break
       end
     end
@@ -72,22 +76,28 @@ case 'define' then
   lunit=0
   N=20;
   M=1
-  rpar=[]
   tmask=[]
   swap=0
   offset=1
   outmask=1
   ievt=0
   nout=size(outmask,'*')
-  ipar=[length(fname);str2code(frmt);ievt;N;M;swap;offset;str2code(fname);
-      tmask;outmask]
-  state=[1;1;lunit;zeros(N*M,1)]
-  model=list(list('readau',2),[],nout,1,[],[],state,rpar,ipar,'d',[],[%f %f],' ',list())
-  label=[fname;
+
+  model=scicos_model()
+  model.sim=list('readau',2)
+  model.out=nout
+  model.evtin=1
+  model.dstate=[1;1;lunit;zeros(N*M,1)]
+  model.ipar=[length(fname);str2code(frmt);ievt;N;M;swap;offset;str2code(fname);
+	      tmask;outmask]
+  model.blocktype='d'
+  model.dep_ut=[%f %f]
+
+  exprs=[fname;
 	string(N);
 	string(swap)]
   gr_i=['txt=[''read from .au'';'' sound binary file''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
-  x=standard_define([4 2],model,label,gr_i)
+  x=standard_define([4 2],model,exprs,gr_i)
 end
 endfunction

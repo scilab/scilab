@@ -15,7 +15,7 @@ function syst=analyse(scs_m)
 //		 [downstream_box_1,downstream_box_1_portnumber],
 //		 [downstream_box_2,downstream_box_2_portnumber],
 //		 ...)
-//  The strings 'transfer' and 'links' are keywords which	indicate the type of
+//  The strings 'transfer' and 'links' are keywords which indicate the type of
 //  element in the block diagram.
 nx=size(scs_m)
 nb=0
@@ -24,17 +24,23 @@ corresp=0*ones(nx,1)
 links=[]
 for k=2:nx
   o=scs_m(k)
-  if o(1)=='Block' then
-    model=o(3)
-    if model(1)=='super'|model(1)=='csuper' then
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    //if o(1)=='Block' then
+ // if r==is_a_block(o) then
+   if typeof(o)=='Block' then
+//model=blk.mode meme chose pour le reste
+    //model=o(3)
+    //if model(1)=='super'|model(1)=='csuper' then
+    if o.model.sim=='super'|o.model.sim=='csuper' then	
       nb=nb+1
-      syst(nb)=analyse(model)
+      syst(nb)=analyse(o.model)
       corresp(k)=nb
     else
       nb=nb+1
-      select o(5)
+      //select o(5)
+      select o.gui_name
       case 'GAIN_f' then
-        syst(nb)=list('transfer',model)
+        syst(nb)=list('transfer',o.model)
         corresp(k)=nb
       case 'ECLAT_f' then
         syst(nb)=list('transfer',ones(3,1))
@@ -54,7 +60,7 @@ for k=2:nx
          nb=nb-1
       else
         message('Non linear systems are not implemented yet')
-        syst(nb)=list('transfer',o(5))
+        syst(nb)=list('transfer',o.gui_name)
         corresp(k)=nb
       end
     end
@@ -65,18 +71,20 @@ end
 for k=links
   o=scs_m(k)
   nb=nb+1
-  [from,to]=o(8:9)
-  o1=scs_m(from(1))
-  o2=scs_m(to(1))
-  from(1)=corresp(from(1))+1
-  to(1)=corresp(to(1))+1
+  //[from,to]=o(8:9)
+  //o1=scs_m(from(1))
+  o1=o.from(1)
+  o2=o.to(1)
+  o.from(1)=corresp(o.from(1))+1
+  o.to(1)=corresp(o.to(1))+1
   if o1(4)=='IN_f' then
-    syst(nb)=list('link','l'+string(nb),-1,to)
+    syst(nb)=list('link','l'+string(nb),-1,o.to)
   elseif o2(4)=='OUT_f' then
-    syst(nb)=list('link','l'+string(nb),from,-1)
+    syst(nb)=list('link','l'+string(nb),o.from,-1)
   else
-    syst(nb)=list('link','l'+string(nb),from,to)
+    syst(nb)=list('link','l'+string(nb),o.from,o.to)
   end
 end
 syst(0)='blocd'
 endfunction
+//*******************************************************************************  

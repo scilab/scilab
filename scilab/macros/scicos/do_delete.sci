@@ -29,7 +29,7 @@ if DEL<>[] then
   needcompile=4,
 
   //suppress right-most deleted elements
-  while scs_m($)==list('Deleted') then
+  while getfield(1,scs_m($))=='Deleted' then
     scs_m($)=null();
   end
   [scs_m_save,nc_save,enable_undo,edited,needreplay]=resume(scs_m_save,nc_save,%t,%t,needreplay)

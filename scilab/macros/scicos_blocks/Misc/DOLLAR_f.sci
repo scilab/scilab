@@ -12,28 +12,35 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
   while %t do
-    [ok,a,label]=getvalue('Set dollar block parameters',..
-	'initial condition',list('vec',-1),label)
+    [ok,a,exprs]=getvalue('Set dollar block parameters',..
+	'initial condition',list('vec',-1),exprs)
     if ~ok then break,end
     out=size(a,'*');if out==0 then out=[],end
     in=out
     if ok then
-      graphics(4)=label;
-      model(7)=a;model(2)=in;model(3)=out
-      x(2)=graphics;x(3)=model
+      graphics.exprs=exprs;
+      model.state=a;model.in=in;model.out=out
+      x.graphics=graphics;x.model=model
       break
     end
   end
-  x(3)(11)=[] //compatibility
 case 'define' then
   z=0
   in=1
-  label=string(z)
-  model=list('dollar',in,in,1,[],[],z,[],[],'d',[],[%f %f],' ',list())
+  exprs=string(z)
+  model=scicos_model()
+  model.sim='dollar'
+  model.in=in
+  model.out=in
+  model.evtin=1
+  model.dstate=z
+  model.blocktype='d'
+  model.dep_ut=[%f %f]
+
   gr_i='xstringb(orig(1),orig(2),''1/z'',sz(1),sz(2),''fill'')'
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

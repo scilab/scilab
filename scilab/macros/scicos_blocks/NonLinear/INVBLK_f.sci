@@ -12,12 +12,17 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  x(3)(11)=[] //compatibility
 case 'define' then
   in=-1
-  model=list('invblk',in,in,[],[],[],[],[],[],'c',[],[%t %f],' ',list())
-  label=' '
+  model=scicos_model()
+  model.sim='invblk'
+  model.in=in
+  model.out=in
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+
+  exprs=' '
   gr_i=['xstringb(orig(1),orig(2),''1/u'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

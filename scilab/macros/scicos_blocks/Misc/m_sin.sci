@@ -10,28 +10,33 @@ case 2 then
 case 3 then 
   message('?')
 case -1 then //initialisation
-  model=t
-  label='Sin'
-  state=[]
-  dstate=[]
-  rpar=[1;0]
-  model=list(model(1),[],1,[],[],state,dstate,rpar,[],'c',-1,[%f %t],' ',list())
-  out1=list(model,label)
+  exprs='Sin'
+
+  model=scicos_model()
+  model.sim=t(1)
+  model.out=1
+
+  model.rpar=[1;0]
+  model.blocktype='c'
+  model.firing=-1
+  model.dep_ut=[%f %t]
+
+  out1=list(model,exprs)
 case -2 then //update
   model=t
-  label=x
-  if label==[] then
-    [ok,gain,phase,label1]=getvalue('Set Sin block parameters',..
+  exprs=x
+  if exprs==[] then
+    [ok,gain,phase,exprs1]=getvalue('Set Sin block parameters',..
 	['Frequency';'Phase'],list('vec',1,'vec',1))
   else
   
-    [ok,gain,phase,label1]=getvalue('Set Sin block parameters',..
-	['Frequency';'Phase'],list('vec',1,'vec',1),label)
+    [ok,gain,phase,exprs1]=getvalue('Set Sin block parameters',..
+	['Frequency';'Phase'],list('vec',1,'vec',1),exprs)
   end
   if ok then
-    model(8)=[gain;phase]
-    label=label1
+    model.rpar=[gain;phase]
+    exprs=exprs1
   end
-  out1=list(model,label)
+  out1=list(model,exprs)
 end
 endfunction

@@ -47,8 +47,11 @@ if iserror(-1) then
 end
 xinfo('Choose block position in the window')
 rep(3)=-1
-blk(2)(2)=20*blk(2)(2);
-[xy,sz]=blk(2)(1:2)
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//blk(2)(2)=20*blk(2)(2);
+blk.graphics.sz=20*blk.graphics.sz;
+//[xy,sz]=blk(2)(1:2)
+[xy,sz]=(blk.graphics.orig,blk.graphics.sz)
 // clear block
 // draw block shape
   dr=driver()
@@ -73,7 +76,9 @@ xinfo(' ')
 xrect(%xc,%yc+sz(2),sz(1),sz(2))
 if pixmap then xset('wshow'),end
 // update and draw block
-blk(2)(1)=xy
+//blk(2)(1)=xy
+blk.graphics.orig=xy
+//****************************
 driver(dr)
 
 drawobj(blk)

@@ -12,26 +12,32 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
   while %t do
-    [ok,tt,label]=getvalue('Set Event time',..
-	['Event Time'],list('vec',1),label)
+    [ok,tt,exprs]=getvalue('Set Event time',..
+	['Event Time'],list('vec',1),exprs)
     if ~ok then break,end
-    graphics(4)=label
-    if model(11)<>tt then
-      model(11)=tt
+    graphics.exprs=exprs
+    if model.firing<>tt then
+      model.firing=tt
     end
-    x(2)=graphics;x(3)=model
+    x.graphics=graphics;x.model=model
     break
   end
 case 'define' then
   tt=0
-  model=list('trash',[],[],[],1,[],[],[],[],'d',tt,[%f %f],' ',list())
-  label=string(tt)
-  gr_i=['tt=model(11);';
+  model=scicos_model()
+  model.sim='trash'
+  model.evtout=1
+  model.blocktype='d'
+  model.firing=tt
+  model.dep_ut=[%f %f]
+  
+  exprs=string(tt)
+  gr_i=['tt=model.firing;';
     'txt=[''Event at'';''time ''+string(tt)];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

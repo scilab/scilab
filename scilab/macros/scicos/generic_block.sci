@@ -12,8 +12,9 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
-  x=arg1
+//  x=arg1
   model=arg1(3);graphics=arg1(2);label=graphics(4)
+  model=arg1.model;graphics=arg1.graphics;label=graphics.label
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
     [ok,junction_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,auto0,depu,dept,lab]=..
@@ -57,18 +58,28 @@ case 'set' then
       // AVERIFIER
       if funtyp==3 then needcompile=4;end
       //
-      model(1)=list(junction_name,funtyp);
-      model(6)=xx
-	model(7)=z
-	model(8)=rpar
-	model(9)=ipar
+//      model(1)=list(junction_name,funtyp);
+//      model(6)=xx
+//	model(7)=z
+//	model(8)=rpar
+//	model(9)=ipar
+      model.sim=list(junction_name,funtyp);
+      model.state=xx
+	model.dstate=z
+	model.rpar=rpar
+	model.ipar=ipar
 //      needcompile=4     AVERIFIER CANEMARCHEQUAVECFORTRAN
 //      model(10)=type_
-      model(11)=auto0
-      model(12)=dep_ut
-      x(3)=model
-      graphics(4)=label
-      x(2)=graphics
+//      model(11)=auto0
+//      model(12)=dep_ut
+//      x(3)=model
+//      graphics(4)=label
+//      x(2)=graphics
+      model.firing=auto0
+      model.dep_ut=dep_ut
+      arg1.model=model
+      graphics.exprs=label
+      arg1.graphics=graphics
       break
     end
   end

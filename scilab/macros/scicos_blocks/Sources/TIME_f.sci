@@ -12,9 +12,14 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1
-  x(3)(11)=[] //compatibility
 case 'define' then
-  model=list('timblk',[],1,[],[],[],[],[],[],'c',[],[%f %t],' ',list())
+
+  model=scicos_model()
+  model.sim='timblk'
+  model.out=1
+  model.blocktype='c'
+  model.dep_ut=[%f %t]
+  
   gr_i=['wd=xget(''wdim'').*[1.016,1.12];';
     'thick=xget(''thickness'');xset(''thickness'',2);';
     'p=wd(2)/wd(1);p=1;';

@@ -1,76 +1,79 @@
 function [palettes,windows]=do_palettes(palettes,windows)
-kpal=x_choose(scicos_pal(:,1),'Choose a Palette')
-if kpal==0 then return,end
-
-lastwin=curwin
-winpal=find(windows(:,1)==-kpal) 
-if winpal<>[] then
-  if ~or(windows(winpal,2)==winsid()) then
-    windows(winpal,:)=[]
-    winpal=[]
-  end
-end
-
 // Copyright INRIA
 
-if winpal==[] then  //selected palettes isnt loaded yet
-  curwin=get_new_window(windows)
-  if or(curwin==winsid()) then
-    xdel(curwin);xset('window',curwin)
+  kpal=x_choose(scicos_pal(:,1),'Choose a Palette')
+  if kpal==0 then return,end
+
+  lastwin=curwin
+  winpal=find(windows(:,1)==-kpal) 
+  if winpal<>[] then
+    if ~or(windows(winpal,2)==winsid()) then
+      windows(winpal,:)=[]
+      winpal=[]
+    end
   end
-  windows=[windows;[-kpal curwin]]
-  palettes=add_palette(palettes,scicos_pal(kpal,2),kpal)
-//palettes=do_version(palettes,scicos_ver)
-else //selected palettes is already loaded 
-  curwin=windows(winpal,2)
-end
-//
-xset('window',curwin),xselect();
-xset('alufunction',3)
-if pixmap then xset('pixmap',1),end,xbasc();
 
-wsiz=palettes(kpal)(1)(1)
+  if winpal==[] then  //selected palettes isnt loaded yet
+    curwin=get_new_window(windows)
+    if or(curwin==winsid()) then
+      xdel(curwin);xset('window',curwin)
+    end
+    windows=[windows;[-kpal curwin]]
+    palettes=add_palette(palettes,scicos_pal(kpal,2),kpal)
+    if palettes(kpal)==list() then return,end
+  else //selected palettes is already loaded 
+    curwin=windows(winpal,2)
+  end
+  //
+  xset('window',curwin),xselect();
+  xset('alufunction',3)
+  if pixmap then xset('pixmap',1),end,xbasc();
+  rect=dig_bound(palettes(kpal));
+  if rect==[] then rect=[0 0 400,600],end
+  %wsiz=[rect(3)-rect(1),rect(4)-rect(2)];
+  //window size is limited to 400 x 300 ajust dimensions
+  //to remain isometric.
+  if %wsiz(1)<400 then 
+    rect(1)=rect(1)-(400-%wsiz(1))/2
+    rect(3)=rect(3)+(400-%wsiz(1))/2
+    %wsiz(1)=400 
+  end
+  if %wsiz(2)<300 then 
+    rect(2)=rect(2)-(300-%wsiz(2))/2
+    rect(4)=rect(4)+(300-%wsiz(2))/2
+    %wsiz(2)=300 
+  end
 
-rect=dig_bound(palettes(kpal))
-wsiz=palettes(kpal)(1)(1)
-xset('wdim',wsiz(5),wsiz(6))
-xset('wresize',0)
+  %zoom=1.2
+  h=%zoom*%wsiz(2)
+  w=%zoom*%wsiz(1)
 
-Xshift=wsiz(3);Yshift=wsiz(4);
-xsetech([-1 -1 8 8]/6,[Xshift,Yshift,Xshift+wsiz(5),Yshift+wsiz(6)])
+  if ~MSDOS then h1=h+50,else h1=h,end
+  xset('wresize',0)
+  xset('wpdim',w,h1)
+  xset('wdim',w,h)
+
+  xsetech(wrect=[0 0 1 1],frect=rect,arect=[1 1 1 1]/32)
 
 
-graph=TMPDIR+'/'+scicos_pal(kpal,1)+'.pal'
-//fname=scicos_pal(kpal,2)
-//lf=length(fname)
-//if part(fname,lf-3:lf)=='.cos' then
-//  graph=part(fname,1:lf-4)+'.pal'
-//elseif part(fname,lf-4:lf)=='.cosf' then
-//  graph=part(fname,1:lf-5)+'.pal'
-//else
-//  graph=fname+'.pal'
-//end
-//
-//if part(graph,1:4)=='SCI/' then 
-//  graph=getenv('SCI')+'/'+part(graph,5:length(graph))
-//end
+  graph=TMPDIR+'/'+scicos_pal(kpal,1)+'.pal'
 
-//Check if the graph file exists
-[u,ierr]=file('open',graph,'old')
-if u<>[] then file('close',u);end
+  //Check if the graph file exists
+  [u,ierr]=file('open',graph,'old')
+  if u<>[] then file('close',u);end
 
-if ierr<>0 then
-  options=default_options()
-  set_background()
-  drawobjs(palettes(kpal))
+  if ierr<>0 then
+    options=default_options()
+    set_background()
+    drawobjs(palettes(kpal))
+    if pixmap then xset('wshow'),end
+
+    xsave(graph)
+  else
+    xload(graph)
+    xname(palettes(kpal)(1).title(1))
+  end
+  xinfo('Palette: may be used to copy  blocks or regions')  
   if pixmap then xset('wshow'),end
-
-xsave(graph)
-else
-  xload(graph)
-  xname(palettes(kpal)(1)(2)(1))
-end
-xinfo('Palette: may be used to copy  blocks or regions')  
-if pixmap then xset('wshow'),end
-xset('window',lastwin)
+  xset('window',lastwin)
 endfunction

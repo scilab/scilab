@@ -12,27 +12,33 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
-  if size(label,'*')==2 then label=label(2),end //compatibility
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  if size(exprs,'*')==2 then exprs=exprs(2),end //compatibility
   while %t do
-    [ok,Amplitude,label]=getvalue([
+    [ok,Amplitude,exprs]=getvalue([
 	'Set Square generator block parameters'],..
 	['Amplitude'],..
-	list('vec',1),label)
+	list('vec',1),exprs)
     if ~ok then break,end
-    graphics(4)=label
-    model(7)=Amplitude
-    x(2)=graphics;x(3)=model
+    graphics.exprs=exprs
+    model.state=Amplitude
+    x.graphics=graphics;x.model=model
     break
   end
-  x(3)(11)=[] //comptibility
 case 'define' then
   Amplitude=1
-  model=list('gensqr',[],1,1,[],[],1,[],[],'d',[],[%f %f],' ',list())
-  label=string(Amplitude)
+  model=scicos_model()
+  model.sim='gensqr'
+  model.out=1
+  model.evtin=1
+  model.rpar=Amplitude
+  model.blocktype='d'
+  model.dep_ut=[%f %f]
+  
+  exprs=string(Amplitude)
   gr_i=['txt=[''square wave'';''generator''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
-  x=standard_define([3 2],model,label,gr_i)
+  x=standard_define([3 2],model,exprs,gr_i)
 end
 endfunction

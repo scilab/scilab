@@ -2,22 +2,24 @@ function txt=get_block_info(scs_m,k)
 // Copyright INRIA
 txt=[]
 o=scs_m(k)
-select o(1)
+//select o(1)
+select typeof(o)
 case 'Block' then
   txt = standard_document(o,k)
   txt=[txt;' ']
   
-  if o(3)(1)=='super'|o(3)(1)=='csuper' then
-    objet=o(3)(8)
+  if o.model.sim=='super'|o.model.sim=='csuper' then
+    objet=o.model.rpar
     infos = objet(1)
-    if size(infos(2),'*')==2 then 
-      txt = [txt;'Super Block Documentation: '+infos(2)(2)+'/'+infos(2)(1)]
+    if size(infos.title,'*')==2 then 
+      txt = [txt;
+	     'Super Block Documentation: '+infos.title(2)+'/'+..
+	     infos.title(1)]
     else
-      txt = [txt;'Super Block Documentation: '+infos(2)(1)]
+      txt = [txt;'Super Block Documentation: '+infos.title(1)]
     end
-    if size(infos)>=10 then 
-      txt=[txt;get_info(infos(10))],
-    end
+    txt=[txt;get_info(infos.doc)],
+
     // information on components
     boutons = ['Yes', 'No']
     ligne_1 = list('Blocks', 2, boutons)
@@ -40,12 +42,13 @@ case 'Block' then
       for k = 2 : size(objet)
 	o1=objet(k)
 	ok=%f
-	if o1(1)=='Block' then
+	if typeof(o1)=='Block' then
 	  ok=filtre(1)|..
-	     filtre(5)&(o1(3)(1)=='super'|o1(3)(1)=='csuper')|..
+             filtre(5)&(o1.model.sim=='super'|o1.model.sim=='csuper')|..
 	     filtre(4)&is_split(o1)
+           
 	else  
-	  ok=((o1(1)=='Link')&filtre(2))|((o1(1)=='Text')&filtre(4))
+          ok=((typeof(o1)=='Link')&filtre(2))|((typeof(o1)=='Text')&filtre(4))
 	end
 	if ok then
 	  txt=[txt;indent(get_block_info(objet,k))]
@@ -53,7 +56,7 @@ case 'Block' then
       end
     end
   else
-    execstr('texte_2 = '+o(5)+'(''show'', o)')
+    execstr('texte_2 = '+o.gui+'(''show'', o)')
     if texte_2==[] then
       texte_2='No  documentation available for the parameters of this block'
     end

@@ -12,28 +12,36 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
-  if label==[] then label=string(1);end
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  if exprs==[] then exprs=string(1);end
   while %t do
-    [ok,inh,label]=getvalue('Set parameters',..
-	['Inherit (1: no, 0: yes)'],list('vec',1),label)
+    [ok,inh,exprs]=getvalue('Set parameters',..
+	['Inherit (1: no, 0: yes)'],list('vec',1),exprs)
     if ~ok then break,end
     if inh==0 then inh=[]; else inh=1;end
     [model,graphics,ok]=check_io(model,graphics,1,[],inh,[1;1])
       if ok then
-	graphics(4)=label;
-	model(4)=inh;
-	model(1)(2)=-1
-	x(2)=graphics;x(3)=model
+	graphics.exprs=exprs;
+	model.evtin=inh;
+	model.sim(2)=-1
+	x.graphics=graphics;x.model=model
 	break
       end
   end
 case 'define' then
-  model=list(list('ifthel',-1),1,[],1,[1;1],[],[],[],[],'l',[-1 -1],[%t %f],' ',list())
+  model=scicos_model()
+  model.sim=list('ifthel',-1)
+  model.in=1
+  model.evtin=1
+  model.evtout=[1;1]
+  model.blocktype='l'
+  model.firing=[-1 -1]
+  model.dep_ut=[%t %f]
+  
   gr_i=['txt=[''If in>0'';'' '';'' then    else''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
-label=string(1);
-  x=standard_define([3 3],model,label,gr_i)
+  exprs=string(1);
+  x=standard_define([3 3],model,exprs,gr_i)
 end
 endfunction

@@ -7,19 +7,23 @@ while %t
   end
   K=getblocklink(scs_m,[xc;yc])
   if K<>[] then 
-    if scs_m(K)(1)=='Block' then
+    //if scs_m(K)(1)=='Block' then
+    if typeof(scs_m(K))=='Block' then
       break,
     else
       //
-      [pos,ct]=scs_m(K)(6:7)
+    //  [pos,ct]=scs_m(K)(6:7)
+      [pos,ct]=(scs_m(K).void,scs_m(K).ct)
       Thick=pos(1)
       Type=pos(2)
       [ok,Thick,Type]=getvalue('Link parameters',['Thickness';'Type'],..
 	  list('vec','1','vec',1),[string(Thick);string(Type)])
       if ok then
 	drawobj(scs_m(K))
-	edited=or(scs_m(K)(6)<>[Thick,Type]);
-	scs_m(K)(6)=[Thick,Type];
+	//edited=or(scs_m(K)(6)<>[Thick,Type]);
+	edited=or(scs_m(K).void<>[Thick,Type]);
+	//scs_m(K)(6)=[Thick,Type];
+	scs_m(K).void=[Thick,Type];
 	drawobj(scs_m(K))
       end
       return
@@ -28,9 +32,12 @@ while %t
 end
 o=scs_m(K)
 
-graphics=o(2)
-sz=graphics(2)
-orig=graphics(1)
+//graphics=o(2)
+//sz=graphics(2)
+//orig=graphics(1)
+graphics=o.graphics
+sz=graphics.sz
+orig=graphics.orig
 [ok,w,h]=getvalue('Set Block sizes',['width';'height'],..
     list('vec',1,'vec',1),string(sz(:)))
 if ok  then
@@ -55,10 +62,14 @@ if ok  then
       return
     end
   end
-  graphics(2)=[w;h]
-  graphics(1)=orig
+  //graphics(2)=[w;h]
+  graphics.sz=[w;h]
+ // graphics(1)=orig
+  graphics.orig=orig
+ 
   drawblock(o)
-  o(2)=graphics
+  //o(2)=graphics
+  o.graphics=graphics
   scs_m(K)=o
   drawblock(o)
 end

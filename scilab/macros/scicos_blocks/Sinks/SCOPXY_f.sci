@@ -12,11 +12,11 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
-  state=model(7);
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  state=model.state;
   while %t do
-    [ok,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,label]=getvalue(..
+    [ok,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=getvalue(..
 	'Set Scope parameters',..
 	['color (>0) or mark (<0)';
 	'line or mark size';
@@ -29,7 +29,7 @@ case 'set' then
 	'Ymax';
 	'Buffer size'],..
 	 list('vec',1,'vec',1,'vec',1,'vec',-1,'vec',-1,'vec',1,'vec',1,..
-	 'vec',1,'vec',1,'vec',1),label)
+	 'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end //user cancel modification
     mess=[];
     if size(wpos,'*')<>0 &size(wpos,'*')<>2 then
@@ -66,10 +66,9 @@ case 'set' then
       rpar=[xmin;xmax;ymin;ymax]
       ipar=[win;1;N;clrs;siz;1;wpos(:);wdim(:)]
       if prod(size(state))<>2*N+1 then state=-eye(2*N+1,1),end
-      model(7)=state;model(8)=rpar;model(9)=ipar
-      model(11)=[] //compatibility
-      graphics(4)=label;
-      x(2)=graphics;x(3)=model
+      model.state=state;model.rpar=rpar;model.ipar=ipar
+      graphics.exprs=exprs;
+      x.graphics=graphics;x.model=model
       break
     end
   end
@@ -78,12 +77,19 @@ case 'define' then
   wdim=[600;400]
   wpos=[-1;-1]
   N=2;
-  ipar=[win;1;N;clrs;siz;1;wpos(:);wdim(:)]
   xmin=-15;xmax=15;ymin=-15;ymax=+15
-  rpar=[xmin;xmax;ymin;ymax]
-  state=-eye(2*N+1,1)
-  model=list('scoxy',[1;1],[],1,[],[],state,rpar,ipar,'d',[],[%f %f],' ',list())
-  label=[sci2exp(clrs);
+
+  model=scicos_model()
+  model.sim='scoxy'
+  model.in=[1;1]
+  model.evtin=1
+  model.dstate=-eye(2*N+1,1)
+  model.rpar=[xmin;xmax;ymin;ymax]
+  model.ipar=[win;1;N;clrs;siz;1;wpos(:);wdim(:)]
+  model.blocktype='d'
+  model.dep_ut=[%f %f]
+  
+  exprs=[sci2exp(clrs);
 	sci2exp(siz);
 	string(win);
 	sci2exp([]);
@@ -99,6 +105,6 @@ case 'define' then
     'yy=orig(2)+(1/4.3+(sin(t+1)+1)*3/10)*sz(2);';
     'xpoly(xx,yy,''lines'');';
     'xset(''thickness'',thick)']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

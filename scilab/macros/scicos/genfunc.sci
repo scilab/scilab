@@ -27,11 +27,11 @@ deff('[%_1,%_2]=mac(%_model,%_x,%_z,u,%_clock,%_flag,%_rpar,%_ipar)',..
       '  %_model=list(%_model(1),1,1,[],[],[],[],[],[],''c'',%f,[%t %f])';
       '  %_1=list(%_model,'' '')';
       'case -2 then ';
-      '  txt=%_model(9)';
+      '  txt=%_model.ipar';
       '  [ok,mac,txt]=genfunc(txt)';
       '  if ok then '
-      '    %_model(1)=mac'
-      '    %_model(9)=txt'
+      '    %_model.sim=mac'
+      '    %_model.ipar=txt'
       '    %_1=list(model,%_x)'
       '  end'
       'end'])

@@ -3,8 +3,12 @@ function Replot_()
     %pt=[];
     disablemenus()
     xbasc()
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+   // %wdm=scs_m(1)(1)
 
-    %wdm=scs_m(1)(1)
+    %wdm=scs_m(1).wpar
+//*****************************************
+
     window_set_size()
     drawobjs(scs_m),
     if pixmap then xset('wshow'),end

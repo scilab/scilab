@@ -16,14 +16,14 @@ if rhs<2 then bpath=[],end
 if rhs<3 then ppath=list(),end
 for k=2:size(scs_m)
   o=scs_m(k)
-  if o(1)=='Block' then
-    if and(o(5)<>excluded) then
-      model=o(3)
-      if model(1)=='super'|model(1)=='csuper' then
-	o=get_tree_elt(scs_m,[k,3,8])
+  if typeof(o)=='Block' then
+    if and(o.gui<>excluded) then
+      model=o.model
+      if model.sim=='super'| model.sim=='csuper' then
+	o=get_tree_elt(scs_m,list(k,'model','rpar'))
 	ppath=getparpath(o,[bpath k],ppath)
       else
-	if model(6)<>[]|model(7)<>[]|model(8)<>[]|model(9)<>[] then
+        if model.state<>[] | model.dstate<>[] | model.rpar<>[] | model.ipar<>[] then
 	  ppath(size(ppath)+1)=[bpath k],
 	end
       end

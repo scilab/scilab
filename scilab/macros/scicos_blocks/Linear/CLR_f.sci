@@ -12,16 +12,17 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
-  [x0,rpar]=model([6 8])
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  x0=model.state
+  rpar=model.rpar
   ns=prod(size(x0));nin=1;nout=1
   s=poly(0,'s');z=poly(0,'s')
   while %t do
-    [ok,num,den,label]=getvalue('Set continuous SISO transfer parameters',..
+    [ok,num,den,exprs]=getvalue('Set continuous SISO transfer parameters',..
 	['Numerator (s)';
 	 'Denominator (s)'],..
-	list('pol',1,'pol',1),label)
+	list('pol',1,'pol',1),exprs)
 
 
     if ~ok then break,end
@@ -32,7 +33,7 @@ case 'set' then
     if ok then
       H=cont_frm(num,den)
       [A,B,C,D]=H(2:5);
-      graphics(4)=label;
+      graphics.exprs=exprs;
       [ns1,ns1]=size(A)
       rpar=[matrix(A,ns1*ns1,1);
 	    matrix(B,ns1,1);
@@ -43,25 +44,32 @@ case 'set' then
       else
 	mmm=[%f %t];
       end
-      if or(model(12)<>mmm) then 
-	  model(12)=mmm,end
+      if or(model.dep_ut<>mmm) then 
+	  model.dep_ut=mmm,end
       if ns1<=ns then
 	x0=x0(1:ns1)
       else
 	x0(ns1,1)=0
       end
-      model(6)=x0
-      model(8)=rpar
-      x(2)=graphics;x(3)=model
+      model.state=x0
+      model.rpar=rpar
+      x.graphics=graphics;x.model=model
       break
     end
   end
-  x(3)(11)=[] //compatibility
 case 'define' then
   x0=0;A=-1;B=1;C=1;D=0;
-  label=['1';'1+s']
-  model=list(list('csslti',1),1,1,[],[],x0,[],[A;B;C;D],[],'c',[],[%f %t],' ',list())
+  exprs=['1';'1+s']
+  model=scicos_model()
+  model.sim=list('csslti',1)
+  model.in=1
+  model.out=1
+  model.state=x0
+  model.rpar=[A(:);B(:);C(:);D(:)]
+  model.blocktype='c'
+  model.dep_ut=[%f %t]
+
   gr_i=['xstringb(orig(1),orig(2),[''Num(s)'';''-----'';''Den(s)''],sz(1),sz(2),''fill'');']
-  x=standard_define([2.5 2.5],model,label,gr_i)
+  x=standard_define([2.5 2.5],model,exprs,gr_i)
 end
 endfunction

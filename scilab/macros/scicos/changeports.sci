@@ -5,11 +5,14 @@ function scs_m=changeports(scs_m,k,o_n)
 // Copyright INRIA
 connected=[];dx=[];dy=[]
 o=scs_m(k)
-[nin_n,nout_n,ncin_n,ncout_n]=o_n(3)(2:5)
-
-[sz,orient,ip,op,cip,cop]=o(2)([2:3,5:8])
-[nin,nout,ncin,ncout]=o(3)(2:5)
-
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//[nin_n,nout_n,ncin_n,ncout_n]=o_n(3)(2:5)
+[nin_n,nout_n,ncin_n,ncout_n]=(o_n.model.in,o_n.model.out,o_n.model.evtin,o_n.model.evtout)
+//[sz,orient,ip,op,cip,cop]=o(2)([2:3,5:8])
+[sz,orient,ip,op,cip,cop]=(o.graphics.sz,o.graphics.flip,o.graphics.pin,o.graphics.pout,..
+o.graphics.pein,o.graphics.peout)
+//[nin,nout,ncin,ncout]=o(3)(2:5)
+[nin,nout,ncin,ncout]=(o_n.model.in,o_n.model.out,o_n.model.evtin,o_n.model.evtout)
 //standard inputs
 nip=size(ip,'*')
 nipn=size(nin_n,'*')
@@ -103,15 +106,24 @@ if ncop<>ncopn then
   dy=[dy,0*kc]
 end
 // update  block
-o_n(2)(5)=ipn
-o_n(2)(6)=opn
-o_n(2)(7)=cipn
-o_n(2)(8)=copn
-o_n(3)(2)=nin_n
-o_n(3)(3)=nout_n
-o_n(3)(4)=ncin_n
-o_n(3)(5)=ncout_n
+//o_n(2)(5)=ipn
+//o_n(2)(6)=opn
+//o_n(2)(7)=cipn
+//o_n(2)(8)=copn
+//o_n(3)(2)=nin_n
+//o_n(3)(3)=nout_n
+//o_n(3)(4)=ncin_n
+//o_n(3)(5)=ncout_n
 
+o_n.graphics.pin=ipn
+o_n.graphics.pout=opn
+o_n.graphics.pein=cipn
+o_n.graphics.peout=copn
+o_n.model.in=nin_n
+o_n.model.out=nout_n
+o_n.model.evtin=ncin_n
+o_n.model.evtout=ncout_n
+//*********************************
 if nip<>nipn|nop<>nopn|ncip<>ncipn|ncop<>ncopn then
   // build movable segments for all connected links
   //===============================================
@@ -120,7 +132,8 @@ if nip<>nipn|nop<>nopn|ncip<>ncipn|ncop<>ncopn then
   for i1=1:size(connected,'*')
     i=connected(i1)
     oi=scs_m(i)
-    [xl,yl,ct,from,to]=oi([2,3,7:9])
+    //[xl,yl,ct,from,to]=oi([2,3,7:9])
+    [xl,yl,ct,from,to]=(oi.xx,oi.yy,oi.ct,oi.from,oi.to)
     clr=[clr ct(1)]
     nl=prod(size(xl))
     if from(1)==k then
@@ -219,7 +232,8 @@ if nip<>nipn|nop<>nopn|ncip<>ncipn|ncop<>ncopn then
     //udate moved links in scicos structure
     for i=1:prod(size(ii))
       oi=scs_m(abs(ii(i)))
-      xl=oi(2);yl=oi(3);nl=prod(size(xl))
+     // xl=oi(2);yl=oi(3);nl=prod(size(xl))
+      xl=oi.xx;yl=oi.yy;nl=prod(size(xl))
       if ii(i)>0 then
 	if nl>=4 then
 	  xl(1:4)=xx(:,i)
@@ -248,7 +262,8 @@ if nip<>nipn|nop<>nopn|ncip<>ncipn|ncop<>ncopn then
       kz=find((xl(2:nl)-xl(1:nl-1))^2+(yl(2:nl)-yl(1:nl-1))^2==0)
       xl(kz)=[];yl(kz)=[]
       //store
-      oi(2)=xl;oi(3)=yl;
+     // oi(2)=xl;oi(3)=yl;
+      oi.xx=xl;oi.yy=yl;
       scs_m(abs(ii(i)))=oi;
     end
   end

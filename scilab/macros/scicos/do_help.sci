@@ -11,7 +11,7 @@ while %t do
     k=getobj(scs_m,[xc;yc])
     if k<>[] then
       o=scs_m(k)
-      name=o(5)
+      name=o.gui
       nm=0
       break
     end
@@ -21,7 +21,7 @@ while %t do
     k=getobj(pal,[xc;yc])
     if k<>[] then
       o=pal(k)
-      name=o(5)
+      name=o.gui
       nm=0
       break
     end

@@ -27,6 +27,7 @@ end
 [ox,oy,w,h,ok]=get_rectangle(xc,yc)
 if ~ok then prt=[];rect=[];return;end
 [keep,del]=get_blocks_in_rect(scs_m,ox,oy,w,h)
+
 //preserve information on splitted links
 prt=splitted_links(scs_m,keep,del)
 
@@ -42,13 +43,14 @@ nin=0
 nout=0
 ncin=0
 ncout=0
+
 //add input and output ports
 
 for k=1:size(prt,1)
   nreg=size(reg)
   k1=prt(k,2)
   o1=reg(k1)
-  orient=o1(2)(3)
+  orient=o1.graphics.flip
   if prt(k,1)==1 then //input port
     [x,y,vtyp]=getinputs(o1)
     typ=prt(k,4)
@@ -59,19 +61,20 @@ for k=1:size(prt,1)
       y=y(prt(k,3))
       nin=nin+1
       sp=IN_f('define')
-      sz=20*sp(2)(2)
-      sp(2)(2)=sz; //sz
-      sp(2)(3)=orient; //flip
-      sp(2)(4)=string(nin); //expr
-      sp(2)(6)=nreg+2;//pout
-      sp(3)(9)=nin; //port number
-      o1(2)(5)(prt(k,3))=nreg+2
+        sz=20*sp.graphics.sz
+	sp.graphics.sz=sz; //sz
+	sp.graphics.flip=orient; //flip
+	sp.graphics.exprs=string(nin); //expr
+	sp.graphics.pout=nreg+2;//pout
+	sp.model.ipar=nin; //port number
+	
+      o1.graphics.pin(prt(k,3))=nreg+2
       if orient then  //not flipped
-	sp(2)(1)=[x-2*sz(1),y-sz(2)/2]; //orig
+	sp.graphics.orig=[x-2*sz(1),y-sz(2)/2]; //orig
 	xl=[x-sz(1);x]
 	yl=[y;y]
       else // flipped
-	sp(2)(1)=[x+sz(1),y-sz(2)/2]; //orig
+	sp.graphics.orig=[x+sz(1),y-sz(2)/2]; //orig
 	xl=[x+sz(1);x]
 	yl=[y;y]
       end
@@ -82,13 +85,13 @@ for k=1:size(prt,1)
       y=y(p)
       ncin=ncin+1
       sp=CLKINV_f('define')
-      sz=20*sp(2)(2)
-      sp(2)(1)=[x-sz(1)/2,y+sz(2)]; //orig
-      sp(2)(2)=sz; //sz
-      sp(2)(4)=string(ncin); //expr
-      sp(2)(8)=nreg+2;//peout
-      sp(3)(9)=ncin; //port number
-      o1(2)(7)(prt(k,3))=nreg+2
+        sp.graphics.orig=[x-sz(1)/2,y+sz(2)]; //orig
+	sp.graphics.sz=20*sp.graphics.sz; //sz
+	sp.graphics.exprs=string(ncin); //expr
+	sp.graphics.peout=nreg+2;//peout
+	sp.model.ipar=ncin; //port number
+	
+      o1.graphics.pein(prt(k,3))=nreg+2
       xl=[x;x]
       yl=[y+sz(2);y]
       prt(k,1:2)=[3,ncin]
@@ -101,19 +104,18 @@ for k=1:size(prt,1)
       y=y(prt(k,3))
       nout=nout+1
       sp=OUT_f('define')
-      sz=20*sp(2)(2)
-      sp(2)(2)=sz; //sz
-      sp(2)(3)=orient; //flip
-      sp(2)(4)=string(nout); //expr
-      sp(2)(5)=nreg+2;//pin
-      sp(3)(9)=nout; //port number
-      o1(2)(6)(prt(k,3))=nreg+2
+        sp.graphics.sz=20*sp.graphics.sz; //sz
+	sp.graphics.flip=orient; //flip
+	sp.graphics.exprs=string(nout); //expr
+	sp.graphics.pin=nreg+2;//pin
+	sp.model.ipar=nout; //port number
+      o1.graphics.pout(prt(k,3))=nreg+2
       if orient then  //not flipped 
-	sp(2)(1)=[x+sz(1),y-sz(2)/2]; //orig
+        sp.graphics.orig=[x+sz(1),y-sz(2)/2]; //orig
 	xl=[x;x+sz(1)]
 	yl=[y;y]
       else //flipped
-	sp(2)(1)=[x-2*sz(1),y-sz(2)/2]; //orig
+        sp.graphics.orig=[x-2*sz(1),y-sz(2)/2]; //orig
 	xl=[x;x-sz(1)]
 	yl=[y;y]
       end
@@ -126,13 +128,12 @@ for k=1:size(prt,1)
       y=y(p)
       ncout=ncout+1
       sp=CLKOUTV_f('define')
-      sz=20*sp(2)(2)
-      sp(2)(1)=[x-sz(1)/2,y-2*sz(2)]; //orig
-      sp(2)(2)=sz; //sz
-      sp(2)(4)=string(ncout); //expr
-      sp(2)(7)=nreg+2;//pein
-      sp(3)(9)=ncout; //port number
-      o1(2)(8)(prt(k,3))=nreg+2
+        sp.graphics.sz=[x-sz(1)/2,y-2*sz(2)]; //orig
+	sp.graphics.sz=20*sp.graphics.sz; //sz
+	sp.graphics.exprs=string(ncout); //expr
+	sp.graphics.pein=nreg+2;//pein
+	sp.model.ipar=ncout; //port number
+      o1.graphics.peout(prt(k,3))=nreg+2
       to=[nreg+1,1]
       from=[prt(k,2),prt(k,3)]
       xl=[x;x]
@@ -140,7 +141,7 @@ for k=1:size(prt,1)
       prt(k,1:2)=[4,ncout]
     end
   end
-  lk=list('Link',xl,yl,'drawlink',' ',[0,0],[prt(k,5),typ],from,to)
+  lk=scicos_link(xx=xl,yy=yl,ct=[prt(k,5),typ],from=from,to=to)
   reg(nreg+1)=sp
   reg(nreg+2)=lk
   reg(k1)=o1

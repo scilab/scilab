@@ -59,10 +59,10 @@ case 'getorigin' then
 case 'set' then
   needcompile=0
   x=arg1
-  model=arg1(3);graphics=arg1(2);
-  label=graphics(4)
+  model=arg1.model;graphics=arg1.graphics;
+  exprs=graphics.exprs
 
-  if size(label(1),'*')==8 then label(1)(9)='0';end
+  if size(exprs(1),'*')==8 then exprs(1)(9)='0';end
   while %t do
     [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=getvalue(..
 	['Set scifunc_block parameters';'only regular blocks supported'],..
@@ -76,9 +76,9 @@ case 'set' then
 	  'initial firing vector (<0 for no firing)';
 	  'is block always active (0:no, 1:yes)'  ],..
 	  list('vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec',-1,..
-	  'vec',-1,'vec','sum(x4)','vec',1),label(1))
+	  'vec',-1,'vec','sum(x4)','vec',1),exprs(1))
     if ~ok then break,end
-    label(1)=lab
+    exprs(1)=lab
     xx=xx(:);z=z(:);rpar=rpar(:)
     nrp=prod(size(rpar))
     // create simulator
@@ -86,24 +86,24 @@ case 'set' then
     o=int(o(:));no=size(o,1);
     ci=int(ci(:));nci=size(ci,1);
     co=int(co(:));nco=size(co,1);
-    [ok,tt,dep_ut]=genfunc1(label(2),i,o,nci,nco,size(xx,1),size(z,1),..
+    [ok,tt,dep_ut]=genfunc1(exprs(2),i,o,nci,nco,size(xx,1),size(z,1),..
 	nrp,'c')
     dep_ut(2)=(1==deptime)
     if ~ok then break,end
     [model,graphics,ok]=check_io(model,graphics,i,o,ci,co)
     if ok then
       auto=auto0
-      model(6)=xx
-      model(7)=z
-      model(8)=rpar
-      if or(model(9)<>tt) then needcompile=4,end
-      model(9)=tt
-      model(11)=auto
-      model(12)=dep_ut
-      x(3)=model
-      label(2)=tt
-      graphics(4)=label
-      x(2)=graphics
+      model.state=xx
+      model.state=z
+      model.rpar=rpar
+      if or(model.ipar<>tt) then needcompile=4,end
+      model.ipar=tt
+      model.firing=auto
+      model.dep_ut=dep_ut
+      x.model=model
+      exprs(2)=tt
+      graphics.exprs=exprs
+      x.graphics=graphics
       break
     end
   end
@@ -118,13 +118,26 @@ case 'define' then
   typ='c'
   auto=[]
   rpar=[]
-  model=list(list('scifunc',3),in,out,clkin,clkout,x0,z0,rpar,0,typ,auto,[%t %f],..
-      ' ',list());
-  label=list([sci2exp(in);sci2exp(out);sci2exp(clkin);sci2exp(clkout);
+
+  model=scicos_model()
+  model.sim=list('scifunc',3)
+  model.in=in
+  model.out=out
+  model.evtin=clkin
+  model.evtout=clkout
+  model.state=x0
+  model.dstate=z0
+  model.rpar=rpar
+  model.ipar=0
+  model.blocktype=typ
+  model.firing=auto
+  model.dep_ut=[%t %f]
+  
+  exprs=list([sci2exp(in);sci2exp(out);sci2exp(clkin);sci2exp(clkout);
 	strcat(sci2exp(x0));strcat(sci2exp(z0));
 	strcat(sci2exp(rpar));sci2exp(auto)],..
 	    list('y=sin(u)',' ',' ','y=sin(u)',' ',' ',' '))
   gr_i=['xstringb(orig(1),orig(2),''Scifunc'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

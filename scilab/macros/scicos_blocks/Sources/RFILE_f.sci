@@ -12,18 +12,21 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);[out,state,ipar]=model([3 7 9])
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  out=model.out
+  dstate=model.dstate
+  ipar=model.ipar
   nout=sum(out)
   ievt=ipar(3);N=ipar(4);
   imask=5+ipar(1)+ipar(2)
   tmask=ipar(imask)
   outmask=ipar(imask+1:imask+nout)
   lunit=state(3)
-  fname=label(3)
-  frmt=label(4)
+  fname=exprs(3)
+  frmt=exprs(4)
   while %t do
-    [ok,tmask1,outmask,fname1,frmt1,N,out,label]=getvalue(..
+    [ok,tmask1,outmask,fname1,frmt1,N,out,exprs]=getvalue(..
 	['Set RFILE block parameters';
 	 'Read is done on';
 	 '  -  a binary file if no format given';
@@ -35,7 +38,7 @@ case 'set' then
 	 'Buffer size';
 	 'Output size'],..
 	 list('vec',-1,'vec',-1,'str',1,'str',1,'vec',1,'vec',1),..
-	 label)
+	 exprs)
     if ~ok then break,end //user cancel modification
     fname1=stripblanks(fname1)
     frmt1=stripblanks(frmt1)
@@ -59,9 +62,9 @@ case 'set' then
       [model,graphics,ok]=check_io(model,graphics,[],out,1,cout)
       if ok then
 	if ievt==0 then
-	  model(11)=[]
+	  model.firing=[]
 	else
-	  model(11)=0
+	  model.firing=0
 	end
 	ipar=[length(fname1);
 	    length(frmt1);
@@ -74,9 +77,9 @@ case 'set' then
 	if prod(size(state))<>(nout+ievt)*N+3 then
 	  state=[-1;-1;lunit;zeros((nout+ievt)*N,1)]
 	end
-	model(7)=state;model(9)=ipar
-	graphics(4)=label;
-	x(2)=graphics;x(3)=model
+	model.state=state;model.ipar=ipar
+	graphics.exprs=exprs;
+	x.graphics=graphics;x.model=model
 	break
       end
     end
@@ -93,8 +96,17 @@ case 'define' then
   ipar=[length(fname);length(frmt);0;N;str2code(fname);str2code(frmt);
       tmask;outmask]
   state=[1;1;lunit;zeros((nout)*N,1)]
-  model=list('readf',[],nout,1,[],[],state,rpar,ipar,'d',[],[%f %f],' ',list())
-  label=[sci2exp([]);
+  model=scicos_model()
+  model.sim='readf'
+  model.out=nout
+  model.evtin=1
+  model.dstate=[1;1;lunit;zeros((nout)*N,1)]
+  model.ipar=[length(fname);length(frmt);0;N;str2code(fname);str2code(frmt);
+	      tmask;outmask]
+  model.blocktype='d'
+  model.dep_ut=[%f %f]
+  
+  exprs=[sci2exp([]);
 	sci2exp(outmask);
 	fname;
 	frmt;
@@ -102,6 +114,6 @@ case 'define' then
 	sci2exp(out)]
   gr_i=['txt=[''read from'';''input file''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
-  x=standard_define([3 2],model,label,gr_i)
+  x=standard_define([3 2],model,exprs,gr_i)
 end
 endfunction

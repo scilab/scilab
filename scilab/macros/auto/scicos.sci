@@ -37,7 +37,7 @@ edited=%f
 needreplay=%f
 %path='./'
 %exp_dir=PWD
-global %tableau  //a remettre qd le bug de global est corrige
+global %tableau  
 
 if ~super_block then // global variables
   %zoom=1.8
@@ -79,7 +79,7 @@ if rhs>=1 then
       needcompile=4
       %state0=list()
     else
-      %state0=%cpr(1);
+      %state0=%cpr.state;
       needcompile=0
     end
   else //diagram is given by its data structure
@@ -142,9 +142,7 @@ end
 
 
 //viewport
-%wpar=scs_m(1)
-
-options=%wpar(7)
+options=scs_m(1).options
 
 if ~super_block then
   xset('window',Main_Scicos_window);
@@ -179,13 +177,14 @@ xbasc();xselect()
 set_background()
 
 rect=dig_bound(scs_m);
+
 if rect<>[] then 
   %wsiz=[rect(3)-rect(1),rect(4)-rect(2)];
 else
   %wsiz=[600/%zoom,400/%zoom]
 end
 // 1.3 to correct for X version
-xset('wpdim',min(1000,%zoom*%wsiz(1)),min(800,%zoom*%wsiz(2)*1.5))
+xset('wpdim',min(1000,%zoom*%wsiz(1)),min(800,%zoom*%wsiz(2)))
 
 window_set_size()
 
@@ -207,18 +206,16 @@ else
 end
 
 //set context (variable definition...)
-if size(scs_m(1))>4 then 
-  if type(scs_m(1)(5))==10 then
-    errcatch(-1,'continue','nomessage')
-    execstr(scs_m(1)(5)) 
-    errcatch(-1)
-    if iserror(-1) then   
-      message('Cannot evaluate context')
-      errclear(-1)
-    end
-  else
-    scs_m(1)(5)=' ' 
+if type(scs_m(1).context)==10 then
+  errcatch(-1,'continue','nomessage')
+  execstr(scs_m(1).context) 
+  errcatch(-1)
+  if iserror(-1) then   
+    message('Cannot evaluate context')
+    errclear(-1)
   end
+else
+  scs_m(1).context=' ' 
 end
 drawobjs(scs_m)
 

@@ -8,17 +8,18 @@ K0=K
 while K<>[] do
   k=K(1);K(1)=[]
   o=scs_m(k);
-  if find(DEL==k)==[] then typ=o(1);else typ='Deleted',end
+  if find(DEL==k)==[] then typ=typeof(o);else typ='Deleted',end
+   
   DEL=[DEL k]
 
   if typ=='Link' then
-    [ct,from,to]=o(7:9)
+    [ct,from,to]=(o.ct,o.from,o.to)
     tokill=[%t,%t]
 
+    //disconnect to block
     scs_m(to(1))=mark_prt(scs_m(to(1)),to(2),'in',ct(2),0)
-
+    //disconnect from block
     scs_m(from(1))=mark_prt(scs_m(from(1)),from(2),'out',ct(2),0)
-    
     // erase and delete link
     if gr==%t then drawobj(o),end
   elseif typ=='Block' then
@@ -38,5 +39,5 @@ end
 if gr==%t then 
   if pixmap then xset('wshow'),end,
 end
-for k=DEL,scs_m(k)=list('Deleted'),end
+for k=DEL,scs_m(k)=mlist('Deleted'),end
 endfunction

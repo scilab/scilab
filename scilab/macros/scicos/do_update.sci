@@ -7,21 +7,21 @@ ok=%t
 select needcompile
 case 0 then  // only parameter changes 
   if size(newparameters)<>0 then
-    cor=%cpr(3)
-    [%state0,state,sim]=modipar(newparameters,%state0,%cpr(1),%cpr(2))
-    %cpr(1)=state,%cpr(2)=sim
+    cor=%cpr.cor
+    [%state0,state,sim]=modipar(newparameters,%state0,%cpr.state,%cpr.sim)
+    %cpr.state=state,%cpr.sim=sim
   end
 case 1 then // parameter changes and/or port sizes changes
   if size(newparameters)<>0 then
     // update parameters or states
-    cor=%cpr(3)
-    [%state0,state,sim]=modipar(newparameters,%state0,%cpr(1),%cpr(2))
-    %cpr(1)=state,%cpr(2)=sim
+    cor=%cpr.cor
+    [%state0,state,sim]=modipar(newparameters,%state0,%cpr.state,%cpr.sim)
+    %cpr.state=state,%cpr.sim=sim
   end
   //update port sizes
   bllst=list();
-  corinv=%cpr(4)
-  sim=%cpr(2)
+  corinv=%cpr.corinv
+  sim=%cpr.sim
   for k=1:size(corinv)
     if size(corinv(k),'*')==1 then
       bllst(k)=scs_m(corinv(k))(3);
@@ -36,13 +36,13 @@ case 1 then // parameter changes and/or port sizes changes
   [ok,bllst]=adjust(bllst,sim('inpptr'),sim('outptr'),sim('inplnk'),..
       sim('outlnk'))
   if ok then
-    %cpr(2)('lnkptr')=lnkptrcomp(bllst,sim('inpptr'),sim('outptr'),..
+    %cpr.sim('lnkptr')=lnkptrcomp(bllst,sim('inpptr'),sim('outptr'),..
 	sim('inplnk'),sim('outlnk'))
     needcompile=0
   end
 case 2 then // partial recompilation
   [%cpr,ok]=c_pass3(scs_m,%cpr)
-  %state0=%cpr(1)
+  %state0=%cpr.state
   if ~ok then return,end
   needcompile=0
   alreadyran=%f
@@ -50,7 +50,7 @@ case 4 then  // full compilation
   needstart=%t
   [%cpr,ok]=do_compile(scs_m)
   if ok then
-    %state0=%cpr(1)
+    %state0=%cpr.state
     newparameters=list()
     %tcur=0 //temps courant de la simulation
     alreadyran=%f
@@ -58,7 +58,7 @@ case 4 then  // full compilation
   else
     alreadyran=%f
     %tcur=0
-    //%state0=%cpr(1)
+    //%state0=%cpr.state
   end
 end
 endfunction

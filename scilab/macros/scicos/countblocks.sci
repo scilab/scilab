@@ -6,10 +6,13 @@ function n=countblocks(scs_m)
 nx=size(scs_m)
 n=0
 for o=scs_m
-  if o(1)=='Block' then
-    model=o(3)
-    if model(1)=='super'|model(1)=='csuper' then
-      n=n+countblocks(model(8))
+  //if o(1)=='Block' then
+    if typeof(o)=='Block' then
+   // model=o(3)
+   // if model(1)=='super'|model(1)=='csuper' then
+    if o.model.sim=='super'|o.model.sim=='csuper' then
+     // n=n+countblocks(model(8))
+      n=n+countblocks(o.model.rpar)
     else
       n=n+1
     end

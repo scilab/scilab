@@ -26,17 +26,18 @@ MENU=	Documentation_.sci Addcolor_.sci Addnewblock_.sci Aspect_.sci \
 	Replace_.sci Replot_.sci Resize_.sci Run_.sci \
 	SaveAs_.sci Save_.sci SaveasInterfFunc_.sci SaveasPalette_.sci \
 	SetDiagramInfo_.sci Setup_.sci Shortcuts_.sci SmartMove_.sci \
-	Undo_.sci Window_.sci Zoomin_.sci Zoomout_.sci  menu_stuff.sci 
+	Undo_.sci Window_.sci Zoomin_.sci Zoomout_.sci  CodeGeneration_.sci \
+	menu_stuff.sci 
 
 
 
 MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci \
-	drawpal.sci getblock.sci getinputs.sci getlink.sci getobj.sci \
+	getblock.sci getinputs.sci getlink.sci getobj.sci \
 	getorigin.sci getoutputs.sci gridpoint.sci \
 	standard_draw.sci standard_inputs.sci standard_origin.sci \
 	standard_outputs.sci systshow.sci \
 	analyse.sci default_color.sci do_move.sci do_compile.sci \
-	prt_align.sci standard_block.sci mark_prt.sci get_connected.sci \
+	prt_align.sci  mark_prt.sci get_connected.sci \
 	c_pass1.sci c_pass2.sci modipar.sci do_setup.sci \
 	standard_define.sci get_tree_elt.sci \
 	change_tree_elt.sci choosefile.sci lstfiles.sci \
@@ -70,7 +71,12 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
 	do_focus.sci do_xsetech.sci is_split.sci dist2polyline.sci \
 	do_stupidmove.sci do_navigator.sci build_scs_tree.sci whereintree.sci \
 	do_icon_edit.sci CFORTR.sci FORTR.sci getblocktext.sci getblocklink.sci \
-	do_export.sci systexport.sci do_doc.sci dig_bound.sci \
-	cosclick.sci window_set_size.sci replayifnecessary.sci getgeom.sci $(MENU)
+	do_export.sci systexport.sci do_doc.sci dig_bound.sci  \
+	cosclick.sci window_set_size.sci replayifnecessary.sci getgeom.sci \
+        convert_gri.sci traductor.sci scicos_block.sci scicos_graphics.sci \
+	scicos_model.sci scicos_link.sci  %model_p.sci  %graphics_p.sci \
+	%Block_p.sci %Block_n_Block.sci %params_n_params.sci %params_o_params.sci\
+	%graphics_n_graphics.sci %model_n_model.sci %params_p.sci \
+	scicos_params.sci scicos_cpr.sci scicos_sim.sci scicos_state.sci $(MENU)
 
 include ../Make.lib.amk

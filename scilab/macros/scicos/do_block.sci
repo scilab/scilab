@@ -9,7 +9,8 @@ while %t
   K=getblock(scs_m,[xc;yc])
   if K<>[] then break,end
 end
-gr_i=scs_m(K)(2)(9)
+//gr_i=scs_m(K)(2)(9)
+gr_i=scs_m(K).graphics.gr_i
 if type(gr_i)==15 then
   [gr_i,coli]=gr_i(1:2)
 else
@@ -28,7 +29,8 @@ while %t do
   if check_mac(mac) then
     o=scs_m(K)
     drawblock(o)
-    o(2)(9)=list(gr_i,coli)
+    //o(2)(9)=list(gr_i,coli)
+    o.graphics.gr_i=list(gr_i,coli)
     drawblock(o)
     scs_m(K)=o
     break

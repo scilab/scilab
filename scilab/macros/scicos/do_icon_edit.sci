@@ -11,7 +11,7 @@ while %t
   if K<>[] then break,end
 end
 
-gr_i=scs_m(K)(2)(9)
+gr_i=scs_m(K).graphics.gr_i
 
 if type(gr_i)<>15 then
   gr_i=list(gr_i,[],list('sd',[0 0 1 1]))
@@ -51,7 +51,7 @@ mac=null();deff('[]=mac()',gr_i,'n')
 if check_mac(mac) then
   o=scs_m(K)
   drawblock(o)
-  o(2)(9)=list(gr_i,coli,sd)
+  o.graphics.gr_i=list(gr_i,coli,sd)
   drawblock(o)
   scs_m(K)=o
 end

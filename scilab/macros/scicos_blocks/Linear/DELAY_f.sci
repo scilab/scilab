@@ -15,17 +15,19 @@ case 'set' then
   x=arg1
   ppath = list(4,5)
   newpar=list();
-  register_label=x(3)(8)(4)(2)(4)
-  evtdly_label=x(3)(8)(5)(2)(4)
-  label=[evtdly_label(1);register_label]
+  register=x.model.rpar(4) //data structure of register block
+  evtdly=x.model.rpar(5) //data structure of evtdly block
+  register_exprs=register.graphics.exprs
+  evtdly_exprs=evtdly.graphics.exprs
+  exprs=[evtdly_exprs(1);register_exprs]
   while %t do
-    [ok,dt,z0,label]=getvalue(['This block implements as a discretised delay';
-	'it is consist of a shift register and a clock';
-	'value of the delay is given by;'
-	'the discretisation time step multiplied by the';
-	'number-1 of state of the register'],..
-	    ['Discretisation time step';
-	    'Register initial state'],list('vec',1,'vec',-1),label)
+    [ok,dt,z0,exprs]=getvalue(['This block implements as a discretised delay';
+		    'it is consist of a shift register and a clock';
+		    'value of the delay is given by;'
+		    'the discretisation time step multiplied by the';
+		    'number-1 of state of the register'],..
+			      ['Discretisation time step';
+		    'Register initial state'],list('vec',1,'vec',-1),exprs)
     if ~ok then break,end
     mess=[]
     if prod(size(z0))<2 then
@@ -36,52 +38,93 @@ case 'set' then
       mess=[mess;'Discretisation time step must be positive';' ']
       ok=%f
     end
-    if ~ok then message(mess);end
-    if ok then
+    if ~ok then
+      message(mess);
+    else
       //Change the clock
-      x(3)(8)(5)(2)(4)(1)=label(1);
-      x(3)(8)(5)(3)(11)=0; //initial delay firing date
-      if x(3)(8)(5)(3)(8)<>dt then //Discretisation time step
-	x(3)(8)(5)(3)(8)=dt
+      evtdly.graphics.exprs(1)=exprs(1);
+      evtdly.model.firing=0; //initial delay firing date
+
+      if evtdly.model.rpar<>dt then //Discretisation time step
+	evtdly.model.rpar=dt
 	newpar($+1)=5 // notify clock changes
       end
+      x.model.rpar(5)=evtdly
       //Change the register
-      x(3)(8)(4)(2)(4)=label(2)
-      if or(x(3)(8)(4)(3)(7)<>z0(:)) then //Register initial state
-	x(3)(8)(4)(3)(7)=z0(:)
+      register.graphics.exprs=exprs(2)
+      if or(register.model.dstate<>z0(:)) then //Register initial state
+	register.model.dstate=z0(:)
 	newpar($+1)=4 // notify register changes
       end
+      x.model.rpar(4)=register
       break
     end
   end
-
   needcompile=0
   y=needcompile
   typ=newpar
 case 'define' then
-  model = list('csuper',1,1,[],[],[],[],..
-  list(list([600,400],'DELAY_f',[],[]),..
-  list('Block',list([92,210],[20,20],%t,['1';'1'],[],7,[],[],[]),..
-  list('input',[],1,[],[],[],[],[],1,'c',[],[%f,%f],' ',list()),' ','IN_f'),..
-  list('Block',list([440,210],[20,20],%t,['1';'1'],6,[],[],[],[]),..
-  list('output',1,[],[],[],[],[],[],1,'c',[],[%f,%f],' ',list()),' ','OUT_f'),..
-  list('Block',list([238,195],[50,50],%t,'0;0;0;0;0;0;0;0;0;0',7,6,10,[],..
-  ['dly=model(8);';'txt=[''Shift'';''Register'';string(dly)];';
-  'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']),..
-  list('delay',1,1,1,[],[],zeros(10,1),[],[],'d',[],[%f,%f],' ',list()),' ','REGISTER_f'),..
-  list('Block',list([243,296],[40,40],%t,['0.1';'1'],[],[],11,8,..
-  ['dt=model(8);';'txt=[''Delay'';string(dt)];';
-  'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
-  list('evtdly',[],[],1,1,[],[],0.1,[],'d',1,[%f,%f],' ',list()),' ','EVTDLY_f'),..
-  list('Link',[296.6;440],[220;220],'drawlink',' ',[0,0],[1,1],[4,1],[3,1]),..
-  list('Link',[112;229.4],[220;220],'drawlink',' ',[0,0],[1,1],[2,1],[4,1]),..
-  list('Link',[263;263],[290.3;271.2],'drawlink',' ',[0,0],[5,-1],[5,1],[9,1]),..
-  list('Block',list([263;271.2],[1,1],%t,' ',[],[],8,[10;11]),..
-  list('lsplit',[],[],1,[1;1],[],[],[],[],'d',[-1,-1],[%t,%f],' ',list()),' ','CLKSPLIT_f'),..
-  list('Link',[263;263],[271.2;250.7],'drawlink',' ',[0,0],[5,-1],[9,1],[4,1]),..
-  list('Link',[263;308.6;308.6;263;263],[271.2;271.2;367;367;341.7],'drawlink',..
-  ' ',[0,0],[5,-1],[9,2],[5,1])),[],'h',%f,[%f,%f])
-  gr_i='xstringb(orig(1),orig(2),''Delay'',sz(1),sz(2),''fill'')'
-  x=standard_define([2 2],model,'DELAY_f',gr_i)
+  evtdly=EVTDLY_f('define')
+    evtdly.graphics.orig=[243,296]
+    evtdly.graphics.sz=[40,40]
+    evtdly.graphics.flip=%t
+    evtdly.graphics.exprs=['0.1';'1']
+    evtdly.graphics.pein=11
+    evtdly.graphics.peout=8
+    evtdly.model.rpar=0.1
+    evtdly.model.firing=1
+  register=REGISTER_f('define')
+    register.graphics.orig=[238,195]
+    register.graphics.sz=[50,50]
+    register.graphics.flip=%t
+    register.graphics.exprs='0;0;0;0;0;0;0;0;0;0'
+    register.graphics.pin=7
+    register.graphics.pout=6
+    register.graphics.pein=10
+  input_port=IN_f('define')
+    input_port.graphics.orig=[92,210]
+    input_port.graphics.sz=[20,20]
+    input_port.graphics.flip=%t
+    input_port.graphics.exprs=['1';'1']
+    input_port.graphics.pout=7
+    input_port.model.ipar=1
+  output_port=OUT_f('define')
+    output_port.graphics.orig=[440,210]
+    output_port.graphics.sz=[20,20]
+    output_port.graphics.flip=%t
+    output_port.graphics.exprs=['1';'1']
+    output_port.graphics.pin=6
+    output_port.model.ipar=1
+  
+  split=CLKSPLIT_f('define')
+    split.graphics.orig=[263;271.2]
+    output_port.graphics.pein=8,
+    output_port.graphics.peout=[10;11]
+   
+  x=scicos_block()
+  x.gui='DELAY_f'
+  x.graphics.sz=[2,2]
+  x.graphics.gr_i='xstringb(orig(1),orig(2),''Delay'',sz(1),sz(2),''fill'')'
+  x.model.sim='csuper'
+  x.model.in=1
+  x.model.out=1
+  x.model.blocktype='h'
+  x.model.firing=%f
+  x.model.dep_ut=[%f %f]
+  x.model.rpar=empty_diagram();
+  x.model.rpar(2)=input_port
+  x.model.rpar(3)=output_port
+  x.model.rpar(4)=register
+  x.model.rpar(5)=evtdly
+  x.model.rpar(6)=scicos_link(xx=[296.6;440],yy=[220;220],from=[4,1],to=[3,1])
+  x.model.rpar(7)=scicos_link(xx=[112;229.4],yy=[220;220],from=[2,1],to=[4,1])
+  x.model.rpar(8)=scicos_link(xx=[263;263],yy=[290.3;271.2],ct=[5,-1],..
+			       from=[5,1],to=[9,1])
+  x.model.rpar(9)=split
+  x.model.rpar(10)=scicos_link(xx=[263;263],yy=[271.2;250.7],ct=[5,-1],..
+			       from=[9,1],to=[4,1])
+  x.model.rpar(11)=scicos_link(xx=[263;308.6;308.6;263;263],..
+			       yy=[271.2;271.2;367;367;341.7],..
+			       ct=[5,-1],from=[9,2],to=[5,1])
 end
 endfunction

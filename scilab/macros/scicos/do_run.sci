@@ -10,11 +10,6 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
 // define user possible choices
 
 // Copyright INRIA
-if size(scs_m(1)(3),'*')<6 then solver =0,else solver=scs_m(1)(3)(6),end
-wpar=scs_m(1);tolerances=wpar(3)
-if size(tolerances,'*')<6 then tolerances(6) =0,end
-solver=tolerances(6)
-
 
 if needcompile==4 then 
 do_terminate(),alreadyran=%f
@@ -27,31 +22,29 @@ elseif alreadyran then
 else
   choix=[]
 end
-
+tolerances=scs_m(1).tol
+solver=tolerances(6)
 
 // update parameters or compilation results
 [%cpr,%state0_n,needcompile,ok]=do_update(%cpr,%state0,needcompile)
 if ~ok then %tcur=[],alreadyran=%f,return,end
 if or(%state0_n<>%state0) then //initial state has been changed
   %state0=%state0_n
-//  %cpr(1)=%state0
+//  %cpr.state=%state0
   if choix(1)=='Continue' then choix(1)=[],end
 end
-
-if %cpr(2).xptr($)-1<size(%cpr(1).x,'*') & solver<100 then
+if %cpr.sim.xptr($)-1<size(%cpr.state.x,'*') & solver<100 then
   message(['Diagram has been compiled for implicit solver'
 	   'switching to implicit Solver'])
   solver=100
   tolerances(6)=solver
-elseif %cpr(2).xptr($)-1==size(%cpr(1).x,'*') & solver==100 &..
-      size(%cpr(1).x,'*')<>0 then
+elseif (%cpr.sim.xptr($)-1==size(%cpr.state.x,'*')) & ..
+      ( solver==100 & size(%cpr.state.x,'*')<>0) then
   message(['Diagram has been compiled for explicit solver'
 	   'switching to explicit Solver'])
   solver=0
   tolerances(6)=solver
 end
-
-
   
 // ask user what to do
 if choix<>[] then
@@ -60,24 +53,23 @@ if choix<>[] then
   select choix(to_do)
   case 'Continue' then 
     needstart=%f
-    state=%cpr(1)
+    state=%cpr.state
   case 'Restart' then 
     needstart=%t
     state=%state0
   case 'End' then 
     errcatch(-1,'continue')
-    state=%cpr(1)
+    state=%cpr.state
     needstart=%t
-    wpar=scs_m(1);tf=wpar(4);
-
-    [state,t]=scicosim(%cpr(1),%tcur,tf,%cpr(2),'finish',tolerances)
-    %cpr(1)=state
+    tf=scs_m(1).tf;
+    [state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'finish',tolerances)
+    %cpr.state=state
     alreadyran=%f
     errcatch(-1)
     if iserror(-1)==1 then
       errclear(-1)
       kfun=curblock()
-      corinv=%cpr(4)
+      corinv=%cpr.corinv
       if kfun<>0 then
 	path=corinv(kfun)
 	//if size(path)==1 then path=path(1),end
@@ -107,20 +99,21 @@ if needstart then //scicos initialisation
     alreadyran=%f
   end
   %tcur=0
-  %cpr(1)=%state0
-  wpar=scs_m(1);tf=wpar(4);
+  %cpr.state=%state0
+  tf=scs_m(1).tf;
   if tf*tolerances==[] then 
     x_message(['Simulation parameters not set';'use setup button']);
     return;
   end
+
   errcatch(-1,'continue')
-  [state,t]=scicosim(%cpr(1),%tcur,tf,%cpr(2),'start',tolerances)
-  %cpr(1)=state
+  [state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'start',tolerances)
+  %cpr.state=state
   errcatch(-1)
   if iserror(-1)==1 then
     errclear(-1)
     kfun=curblock()
-    corinv=%cpr(4)
+    corinv=%cpr.corinv
     if kfun<>0 then
       //path=get_subobj_path(corinv(kfun))
       //if size(path)==1 then path=path(1),end
@@ -143,15 +136,16 @@ end
 needreplay=%t
 
 // simulation
-wpar=scs_m(1);tf=wpar(4);
+
+  tf=scs_m(1).tf;
 disablemenus()
 setmenu(curwin,'stop')
 timer()
 needreplay=%t
 errcatch(-1,'continue')
-[state,t]=scicosim(%cpr(1),%tcur,tf,%cpr(2),'run',tolerances)
+[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'run',tolerances)
 
-%cpr(1)=state
+%cpr.state=state
 errcatch(-1)
 if iserror(-1)==0 then
   alreadyran=%t
@@ -165,7 +159,7 @@ if iserror(-1)==0 then
 else
   errclear(-1)
   kfun=curblock()
-   corinv=%cpr(4)
+   corinv=%cpr.corinv
   if kfun<>0 then
     //path=get_subobj_path(corinv(kfun))
     //if size(path)==1 then path=path(1),end

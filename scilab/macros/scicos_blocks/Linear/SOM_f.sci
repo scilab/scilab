@@ -5,12 +5,15 @@ p=1 //pixel sizes ratio
 select job
 case 'plot' then
   wd=xget('wdim')
-  graphics=arg1(2); [orig,sz,orient]=graphics(1:3)
+  orig=arg1.graphics.orig;
+  sz=arg1.graphics.sz;
+  orient=arg1.graphics.flip;
+
   thick=xget('thickness');xset('thickness',2)
   patt=xget('dashes');xset('dashes',27)
   rx=sz(1)*p/2
   ry=sz(2)/2
-  gr_i=arg1(2)(9);
+  gr_i=arg1.graphics.gr_i;
   if type(gr_i)==15 then 
     xfarcs([orig(1);orig(2)+sz(2);sz(1)*p;sz(2);0;360*64],gr_i(2))
   end
@@ -30,8 +33,10 @@ case 'plot' then
   end
   xset('dashes',patt)
 case 'getinputs' then
-  graphics=arg1(2)
-  [orig,sz,orient]=graphics(1:3)
+  orig=arg1.graphics.orig;
+  sz=arg1.graphics.sz;
+  orient=arg1.graphics.flip;
+
   wd=xget('wdim');
   if orient then
     t=[%pi -%pi/2 0]
@@ -44,8 +49,10 @@ case 'getinputs' then
   y=r*cos(t)+(orig(2)+r)*ones(t)
   typ=ones(x)
 case 'getoutputs' then
-  graphics=arg1(2)
-  [orig,sz,orient]=graphics(1:3)
+  orig=arg1.graphics.orig;
+  sz=arg1.graphics.sz;
+  orient=arg1.graphics.flip;
+
   wd=xget('wdim');
   if orient then
     t=%pi/2
@@ -63,10 +70,11 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  [graphics,model]=arg1(2:3);
-  label=graphics(4)
-  if size(label,'*')==2 then label=label(2),end
-  if size(label,'*')<>3 then label=string(model(8)),end
+  graphics=arg1.graphics;
+  model=arg1.model;
+  exprs=graphics.exprs
+  if size(exprs,'*')==2 then exprs=exprs(2),end
+  if size(exprs,'*')<>3 then exprs=string(model.rpar),end
   if graphics(3) then
     labs=['down','left','up']
   else
@@ -79,15 +87,23 @@ case 'set' then
       ' '
       'Input ports are located at up, side and  down positions.'
       'Current gains are:' 
-      part(labs(:),1:7)+'  '+label(:)])
+      part(labs(:),1:7)+'  '+exprs(:)])
 case 'define' then
   sgn=[1;1;1]
-  model=list(list('sum',2),[-1;-1;-1],-1,[],[],[],[],sgn,[],'c',[],[%t %f],' ',list())
-  label=[sci2exp(1);sci2exp(sgn)]
+
+  model=scicos_model()
+  model.sim=list('sum',2)
+  model.in=[-1;-1;-1]
+  model.out=-1
+  model.rpar=sgn
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+
+  exprs=[sci2exp(1);sci2exp(sgn)]
   
   gr_i=['rx=sz(1)*p/2;ry=sz(2)/2'
   'xsegs(orig(1)+rx*[1/2.3 1;2-1/2.3 1],orig(2)+ry*[1 2-1/2.3;1,1/2.3],0)']
   
-  x=standard_define([1 1]/1.2,model,label,gr_i)
+  x=standard_define([1 1]/1.2,model,exprs,gr_i)
 end
 endfunction

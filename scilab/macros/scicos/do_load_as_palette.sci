@@ -1,41 +1,56 @@
 function [palettes,windows]=do_load_as_palette(palettes,windows)
 // Copyright INRIA
-[ok,scs_m,cpr,edited]=do_load()
-if ~ok then return,end
+  [ok,scs_m,cpr,edited]=do_load()
+  if ~ok then return,end
 
 
-maxpal=-mini([-200;windows(:,1)]) 
-kpal=maxpal+1
+  maxpal=-mini([-200;windows(:,1)]) 
+  kpal=maxpal+1
 
-lastwin=curwin
+  lastwin=curwin
 
-curwin=get_new_window(windows)
-if or(curwin==winsid()) then
-  
-  xdel(curwin);
-end
-windows=[windows;[-kpal curwin]]
-palettes(kpal)=scs_m
-//
-xset('window',curwin),xselect();
-xset('alufunction',3)
-set_background()
-if pixmap then xset('pixmap',1),end,xbasc();
-rect=dig_bound(scs_m);
-  if rect<>[] then
-    %wsiz=[rect(3)-rect(1),rect(4)-rect(2)];
-  else
-    %wsiz=[400,600]
+  curwin=get_new_window(windows)
+  if or(curwin==winsid()) then
+    xdel(curwin);
+  end
+  windows=[windows;[-kpal curwin]]
+  palettes(kpal)=scs_m
+  //
+  xset('window',curwin),xselect();
+  xset('alufunction',3)
+  set_background()
+  if pixmap then xset('pixmap',1),end,xbasc();
+  rect=dig_bound(scs_m);
+
+  if rect==[] then rect=[0 0 400,600],end
+  %wsiz=[rect(3)-rect(1),rect(4)-rect(2)];
+  //window size is limited to 400 x 300 ajust dimensions
+  //to remain isometric.
+  if %wsiz(1)<400 then 
+    rect(1)=rect(1)-(400-%wsiz(1))/2
+    rect(3)=rect(3)+(400-%wsiz(1))/2
+    %wsiz(1)=400 
+  end
+  if %wsiz(2)<300 then 
+    rect(2)=rect(2)-(300-%wsiz(2))/2
+    rect(4)=rect(4)+(300-%wsiz(2))/2
+    %wsiz(2)=300 
   end
 
-  xset('wpdim',%zoom*%wsiz(1),%zoom*%wsiz(2))
-xset('wresize',0)
-window_set_size(1)
+  %zoom=1.2
+  h=%zoom*%wsiz(2)
+  w=%zoom*%wsiz(1)
 
+  if ~MSDOS then h1=h+50,else h1=h,end
+  xset('wresize',0)
+  xset('wpdim',w,h1)
+  xset('wdim',w,h)
 
-options=default_options()
-drawobjs(palettes(kpal))
-if pixmap then xset('wshow'),end
-xinfo('Palette: may be used to copy  blocks or regions')
-xset('window',lastwin)
+  xsetech(wrect=[0 0 1 1],frect=rect,arect=[1 1 1 1]/32)
+
+  options=default_options()
+  drawobjs(palettes(kpal))
+  if pixmap then xset('wshow'),end
+  xinfo('Palette: may be used to copy  blocks or regions')
+  xset('window',lastwin)
 endfunction

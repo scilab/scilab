@@ -35,6 +35,7 @@ if or(winsid()==curwin) then
   if ~super_block then
     delmenu(curwin,'stop'),
     xset('window',curwin),xsetech([0 0 1 1])
+    clearglobal %tableau;clear %tableau
   end
 end
 

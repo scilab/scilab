@@ -26,7 +26,10 @@ if rhs==6 then  //two connected blocks
     mxwin=maxi(winsid())
     for k=1:size(path,'*')
       hilite_obj(scs_m(path(k)))
-      scs_m=scs_m(path(k))(3)(8);
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+      //scs_m=scs_m(path(k))(3)(8);
+      scs_m=scs_m(path(k)).model.rpar;
+//*********************************************
       scs_show(scs_m,mxwin+k)
     end
     hilite_obj(scs_m(path_out))
@@ -58,7 +61,8 @@ else // connected links do not verify block contraints
     mxwin=maxi(winsid())
     for k=1:size(path,'*')
       hilite_obj(scs_m(path(k)))
-      scs_m=scs_m(path(k))(3)(8);
+      //scs_m=scs_m(path(k))(3)(8);
+      scs_m=scs_m(path(k)).model.rpar;
       scs_show(scs_m,mxwin+k)
     end
     hilite_obj(scs_m(path_out))

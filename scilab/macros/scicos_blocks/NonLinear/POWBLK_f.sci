@@ -12,31 +12,38 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
-  if size(label,'*')==2 then label=label(2),end //compatibility
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  if size(exprs,'*')==2 then exprs=exprs(2),end //compatibility
   while %t do
-    [ok,a,label]=getvalue('Set u^a block parameters',..
-	'to the power of',list('vec',1),label)
+    [ok,a,exprs]=getvalue('Set u^a block parameters',..
+	'to the power of',list('vec',1),exprs)
     if ~ok then break,end
-    graphics(4)=label
+    graphics.exprs=exprs
     if a==int(a) then
-      model(9)=a;
-      model(8)=[]
+      model.ipar=a;
+      model.rpar=[]
     else
-      model(8)=a;
-      model(9)=[]
+      model.rpar=a;
+      model.ipar=[]
     end
-    model(11)=[] //compatibility
-    x(2)=graphics;x(3)=model
+    model.firing=[] //compatibility
+    x.graphics=graphics;x.model=model
     break
   end
 case 'define' then
   in=1
   a=1.5
-  model=list('powblk',-1,-1,[],[],[],[],a,[],'c',[],[%t %f],' ',list())
-  label=string(a)
+  model=scicos_model()
+  model.sim='powblk'
+  model.in=-1
+  model.out=-1
+  model.rpar=a
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+
+  exprs=string(a)
   gr_i=['xstringb(orig(1),orig(2),''u^a'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

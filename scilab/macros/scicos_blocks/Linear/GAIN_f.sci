@@ -12,11 +12,11 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
   while %t do
-    [ok,gain,label]=getvalue('Set gain block parameters',..
-	['Gain'],list('mat',[-1,-1]),label)
+    [ok,gain,exprs]=getvalue('Set gain block parameters',..
+	['Gain'],list('mat',[-1,-1]),exprs(1))
     if ~ok then break,end
     if gain==[] then
       message('Gain must have at least one element')
@@ -24,20 +24,38 @@ case 'set' then
       [out,in]=size(gain)
       [model,graphics,ok]=check_io(model,graphics,in,out,[],[])
       if ok then
-	graphics(4)=label
-	model(8)=gain(:);
-	x(2)=graphics;x(3)=model
+	graphics.exprs=exprs
+	model.rpar=gain(:);
+	x.graphics=graphics;x.model=model
 	break
       end
     end
   end
-  x(3)(11)=[] //compatibility
 case 'define' then
+<<<<<<< GAIN_f.sci
+  gain=1
+  model=scicos_model()
+  model.sim='gain'
+  model.in=1
+  model.out=1
+  model.rpar=gain
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+  
+  exprs=[strcat(sci2exp(gain));strcat(sci2exp(in));strcat(sci2exp(out))]
+  gr_i=['nin=model.in;nout=model.out;';
+      'if =model.in*model.out==1 then '
+      '  gain=string(model.rpar),'
+      'else'
+      '  gain=''Gain'','
+      'end';
+=======
   in=1;out=1;gain=1
   model=list('gain',in,out,[],[],[],[],gain,[],'c',[],[%t %f],' ',list())
   label=strcat(sci2exp(gain))
   gr_i=['[nin,nout]=model(2:3);';
       'if nin*nout==1 then gain=string(model(8)),else gain=''Gain'',end';
+>>>>>>> 1.3
       'dx=sz(1)/5;';
       'dy=sz(2)/10;';
       'xx=orig(1)+      [1 4 1 1]*dx;';
@@ -45,6 +63,6 @@ case 'define' then
       'xpoly(xx,yy,''lines'');';
       'w=sz(1)-2*dx;h=sz(2)-2*dy;';
       'xstringb(orig(1)+dx,orig(2)+dy,gain,w,h,''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

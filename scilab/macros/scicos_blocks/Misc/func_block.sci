@@ -24,13 +24,13 @@ function [x,y,typ]=func_block(job,arg1,arg2)
 //                    x   : block data structure
 //%Block data-structure definition
 // bl=list('Block',graphics,model,init,'standard_block')
-//  graphics=list([xo,yo],[l,h],orient,label)
+//  graphics=list([xo,yo],[l,h],orient,exprs)
 //          xo          - x coordinate of block origin
 //          yo          - y coordinate of block origin
 //          l           - block width
 //          h           - block height
 //          orient      - boolean, specifies if block is tilded
-//          label       - string block label
+//          exprs       - string block exprs
 //  model=list(eqns,#input,#output,#clk_input,#clk_output,state,..
 //             rpar,ipar,typ [,firing])
 //          eqns        - function name (in string form if fortran routine)
@@ -57,20 +57,26 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
-  model=arg1(3);graphics=arg1(2);label=graphics(4)
+  model=arg1.model;graphics=arg1.graphics;exprs=graphics.exprs
   x=arg1
-  model=x(3)
-  [ok,mac,label]=genfunc(txt)
+  model=x.model
+  [ok,mac,exprs]=genfunc(txt)
   if ok then
     model(1)=mac
-    graphics(4)=label
-    x(3)=model
-    x(2)=graphics
+    graphics.exprs=exprs
+    x.model=model
+    x.graphics=graphics
   end
 case 'define' then
-  model=list(' ',1,1,[],[],[],[],[],[],'c',%f,[%t,%f])
-  label='v=sin(u);y=u*v'
+  model=scicos_model()
+  model.sim=' '
+  model.in=1
+  model.out=1
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+  
+  exprs='v=sin(u);y=u*v'
   gr_i=['xstringb(orig(1),orig(2),''Func'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

@@ -5,12 +5,15 @@ p=1 //pixel sizes ratio
 select job
 case 'plot' then
   wd=xget('wdim')
-  graphics=arg1(2); [orig,sz,orient]=graphics(1:3)
+  graphics=arg1.graphics; 
+  orig=graphics.orig,
+  sz=graphics.sz
+  orient=graphics.flip
   thick=xget('thickness');xset('thickness',2)
   patt=xget('dashes');xset('dashes',default_color(1))
   rx=sz(1)*p/2
   ry=sz(2)/2
-  gr_i=arg1(2)(9);
+  gr_i=arg1.graphics.gr_i
   if type(gr_i)==15 then 
     xfarcs([orig(1);orig(2)+sz(2);sz(1)*p;sz(2);0;360*64],gr_i(2))
   end
@@ -30,8 +33,10 @@ case 'plot' then
   end
   xset('dashes',patt)
 case 'getinputs' then
-  graphics=arg1(2)
-  [orig,sz,orient]=graphics(1:3)
+  graphics=arg1.graphics; 
+  orig=graphics.orig,
+  sz=graphics.sz
+  orient=graphics.flip
   wd=xget('wdim');
   if orient then
     t=[%pi -%pi/2 0]
@@ -43,9 +48,12 @@ case 'getinputs' then
   x=(rx*sin(t)+(orig(1)+rx)*ones(t))
   y=r*cos(t)+(orig(2)+r)*ones(t)
   typ=ones(x)
-case 'getoutputs' then
-  graphics=arg1(2)
-  [orig,sz,orient]=graphics(1:3)
+  case 'getoutputs' then
+  graphics=arg1.graphics; 
+  orig=graphics.orig,
+  sz=graphics.sz
+  orient=graphics.flip
+  graphics=arg1.graphics
   wd=xget('wdim');
   if orient then
     t=%pi/2
@@ -64,11 +72,17 @@ case 'getorigin' then
 case 'set' then
   x=arg1;
 case 'define' then
-  model=list(list('plusblk',2),[-1;-1;-1],-1,[],[],[],[],[],[],'c',[],[%t %f],' ',list())
-  label=[]
+  model=scicos_model()
+  model.sim=list('plusblk',2)
+  model.in=[-1;-1;-1]
+  model.out=-1
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+
   gr_i=['rx=sz(1)*p/2;ry=sz(2)/2'
-  'xsegs(orig(1)+rx*[1/2.3 1;2-1/2.3 1],orig(2)+ry*[1 2-1/2.3;1,1/2.3],0)']
-  
-  x=standard_define([1 1]/1.2,model,label,gr_i)
+	'xsegs(orig(1)+rx*[1/2.3 1;2-1/2.3 1],orig(2)+ry*[1 2-1/2.3;1,1/2"+...
+	" .3],0)']
+  exprs=[]
+  x=standard_define([1 1]/1.2,model,exprs,gr_i)
 end
 endfunction

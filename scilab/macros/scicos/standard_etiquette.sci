@@ -26,9 +26,10 @@ function standard_etiquette(bloc, legende, job)
 
 // Copyright INRIA
 //= Initialisations ==
-GRAPHIQUE = 2;ORIGINE = 1;TAILLE = 2
+//GRAPHIQUE = 2;ORIGINE = 1;TAILLE = 2
 
-macro = bloc(5)
+//macro = bloc(5)
+macro = bloc.gui
 
 select job
 case 'in' then //= Ports d'entree ==
@@ -64,12 +65,16 @@ case 'clkout' then //= Ports de sortie evenement ==
     xstring(x(i)-rect(3), y(i)-i*rect(4)*1.2,legende(i))
   end
 case 'centre' then //= Centre du bloc ==
-  origine = bloc(GRAPHIQUE)(ORIGINE)
-  taille = bloc(GRAPHIQUE)(TAILLE)
+  //origine = bloc(GRAPHIQUE)(ORIGINE)
+ // taille = bloc(GRAPHIQUE)(TAILLE)
+  origine = bloc.graphics.orig
+  taille = bloc.graphics.sz
   xstringb(origine(1), origine(2), legende, taille(1), taille(2), 'fill')
 case 'croix' then //= Identification des bases de donnees ==
-  origine = bloc(GRAPHIQUE)(ORIGINE)
-  taille = bloc(GRAPHIQUE)(TAILLE)
+ // origine = bloc(GRAPHIQUE)(ORIGINE)
+  //taille = bloc(GRAPHIQUE)(TAILLE)
+  origine = bloc.graphics.orig
+  taille = bloc.graphics.sz
   nx = [origine(1), origine(1)+taille(1); origine(1), origine(1)+taille(1)] 
   ny = [origine(2), origine(2)+taille(2); origine(2)+taille(2), origine(2)]
   dashes = xget('dashes')

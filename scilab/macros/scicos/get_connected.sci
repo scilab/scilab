@@ -5,20 +5,36 @@ function connected=get_connected(scs_m,k,typ)
 //   typ        :   'in','out','clkin','clkout'
 //   connected  :   vector of connected link numbers
 // Copyright INRIA
-[lhs,rhs]=argn(0)
-o=scs_m(k)
-graphics=o(2)
-[ip,op,cip,cop]=graphics(5:8)
-connected=[]
-if rhs<=2 then // all connected links
-  if ip<>[] then connected=[connected ip(find(ip>0))'],end
-  if op<>[] then connected=[connected op(find(op>0))'],end
-  if cip<>[] then connected=[connected cip(find(cip>0))'],end
-  if cop<>[] then connected=[connected cop(find(cop>0))'],end
-else
-  if typ=='in' then connected=[connected ip(find(ip>0))'],end
-  if typ=='out' then connected=[connected op(find(op>0))'],end
-  if typ=='clkin' then connected=[connected cip(find(cip>0))'],end
-  if typ=='clkout' then connected=[connected cop(find(cop>0))'],end
-end
+  [lhs,rhs]=argn(0)
+
+  connected=[]
+  if rhs<=2 then // all connected links
+    graphics=scs_m(k).graphics
+    
+    ip=graphics.pin
+    connected=[connected ip(find(ip>0))']
+    
+    op=graphics.pout
+    connected=[connected op(find(op>0))']
+    
+    cip=graphics.pein
+    connected=[connected cip(find(cip>0))']
+    
+    cop=graphics.peout
+    connected=[connected cop(find(cop>0))']
+  else
+    if typ=='in' then 
+      ip=scs_m(k).graphics.pin
+      connected=[connected ip(find(ip>0))'],
+    elseif typ=='out' then 
+      op=scs_m(k).graphics.pout
+      connected=[connected op(find(op>0))'],
+    elseif typ=='clkin' then 
+      cip=scs_m(k).graphics.pein
+      connected=[connected cip(find(cip>0))'],
+    elseif typ=='clkout' then 
+      cop=scs_m(k).graphics.peout
+      connected=[connected cop(find(cop>0))'],
+    end
+  end
 endfunction

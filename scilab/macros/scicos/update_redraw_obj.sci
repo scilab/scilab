@@ -1,7 +1,8 @@
 function scs_m=update_redraw_obj(scs_m,k,o)
 // Copyright INRIA
 if size(k)==1 then
-  if o(1)=='Link'|o(1)=='Text' then
+  //if o(1)=='Link'|o(1)=='Text' then
+  if typeof(o)=='Link'|typeof(o)=='Text' then
     drawobj(scs_m(k))
     scs_m(k)=o
     drawobj(scs_m(k))

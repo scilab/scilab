@@ -13,8 +13,11 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1
-  model=arg1(3);graphics=arg1(2);
-  label=graphics(4);
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//  model=arg1(3);graphics=arg1(2);
+//  label=graphics(4);
+ model=arg1.model;graphics=arg1.graphics;
+ label=graphics.exprs;
   while %t do
     [ok,i,o,rpar,funam,lab]=..
 	getvalue('Set C_block parameters',..
@@ -30,20 +33,27 @@ case 'set' then
     i=int(i(:));ni=size(i,1);
     o=int(o(:));no=size(o,1);
     tt=label(2);
-    if model(1)(1)<>funam|size(model(2),'*')<>size(i,'*')..
-	|size(model(3),'*')<>size(o,'*') then
+    //if model(1)(1)<>funam|size(model(2),'*')<>size(i,'*')..
+    //	|size(model(3),'*')<>size(o,'*') then
+      if model.sim(1)<>funam|size(model.in,'*')<>size(i,'*')..
+    	|size(model.out,'*')<>size(o,'*') then
       tt=[]
     end
     [ok,tt]=CFORTR(funam,tt,i,o)
     if ~ok then break,end
     [model,graphics,ok]=check_io(model,graphics,i,o,[],[])
     if ok then
-      model(1)(1)=funam
-      model(8)=rpar
+  //    model(1)(1)=funam
+  //    model(8)=rpar
+      model.sim(1)=funam
+      model.rpar=rpar
       label(2)=tt
-      x(3)=model
-      graphics(4)=label
-      x(2)=graphics
+      //x(3)=model
+      x.model=model
+     // graphics(4)=label
+      graphics.exprs=label
+      //x(2)=graphics
+      x.graphics=graphics
       break
     end
   end
@@ -58,9 +68,27 @@ case 'define' then
   auto=[]
   rpar=[]
   funam='toto'
-  model=list(list(' ',2001),in,out,clkin,clkout,x0,z0,rpar,0,typ,auto,[%t %f],..
-      ' ',list());
-  label=list([sci2exp(in);sci2exp(out);	strcat(sci2exp(rpar));funam],..
+//chek
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  
+//model=list(list(' ',2001),in,out,clkin,clkout,x0,z0,rpar,0,typ,auto,[%t %f],..
+//      ' ',list());
+
+model=scicos_model()
+model.sim=list(' ',2001)
+model.in=in
+model.out=out
+model.evtin=clkin
+model.evtout=clkout
+model.state=x0
+model.dstate=z0
+model.rpar=rpar
+model.ipar=0
+model.blocktype=typ
+model.firing=auto
+model.dep_ut=[%t %f]
+//**********************************************************************************
+label=list([sci2exp(in);sci2exp(out);	strcat(sci2exp(rpar));funam],..
 	    list([]))
   gr_i=['xstringb(orig(1),orig(2),''C block'',sz(1),sz(2),''fill'');']
   x=standard_define([2 2],model,label,gr_i)

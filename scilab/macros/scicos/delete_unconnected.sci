@@ -8,9 +8,12 @@ n=size(scs_m)
 DEL=[]
 DELL=[]
 for k=2:n  //loop on scs_m objects
-  if scs_m(k)(1)=='Block' then
-    if scs_m(k)(5)<>'SUM_f'&scs_m(k)(5)<>'SOM_f' then
-    if find(scs_m(k)(2)(5)==0)<>[] then
+ // if scs_m(k)(1)=='Block' then
+  if typeof(scs_m(k))=='Block' then
+    //if scs_m(k)(5)<>'SUM_f'&scs_m(k)(5)<>'SOM_f' then
+    if scs_m(k).gui<>'SUM_f'&scs_m(k).gui<>'SOM_f' then
+   // if find(scs_m(k)(2)(5)==0)<>[] then
+    if find(scs_m(k).graphics.pin==0)<>[] then
       // at least one  input port is not connected
       // delete the block
       [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
@@ -22,7 +25,7 @@ for k=2:n  //loop on scs_m objects
 end 
 
 //suppress rigth-most deleted elements
-while scs_m($)==list('Deleted') then
+while getfield(1,scs_m($))=='Deleted' then
   scs_m($)=null();
 end
 
@@ -34,7 +37,8 @@ if DEL<>[] then
     mxwin=maxi(winsid())
     for k=1:size(path,'*')
       hilite_obj(scs_m_s(path(k)))
-      scs_m_s=scs_m_s(path(k))(3)(8);
+      //scs_m_s=scs_m_s(path(k))(3)(8);
+      scs_m_s=scs_m_s(path(k)).model.rpar;
       scs_show(scs_m_s,mxwin+k)
     end
   end

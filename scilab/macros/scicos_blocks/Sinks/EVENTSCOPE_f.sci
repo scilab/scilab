@@ -12,10 +12,10 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
   while %t do
-    [ok,nclock,clrs,win,wpos,wdim,per,label]=getvalue(..
+    [ok,nclock,clrs,win,wpos,wdim,per,exprs]=getvalue(..
 	'Set Scope parameters',..
 	['Number of event inputs';
 	'colors c (>0) or mark (<0)';
@@ -23,7 +23,7 @@ case 'set' then
 	'Output window position';
 	'Output window sizes';	
 	'Refresh period'],..
-	 list('vec',1,'vec',-1,'vec',1,'vec',-1,'vec',-1,'vec',1),label);
+	 list('vec',1,'vec',-1,'vec',1,'vec',-1,'vec',-1,'vec',1),exprs);
     nclock=int(nclock)
     clrs=int(clrs)
     win=int(win)
@@ -65,24 +65,29 @@ case 'set' then
       if wdim==[] then wdim=[-1;-1];end
       rpar=per
       ipar=[win;1;clrs(:);wpos(:);wdim(:)]
-      model(8)=rpar;model(9)=ipar
-      graphics(4)=label;
-      x(2)=graphics;x(3)=model
+      model.rpar=rpar;model.ipar=ipar
+      graphics.exprs=exprs;
+      x.graphics=graphics;x.model=model
       break
     end
   end
-  x(3)(11)=[] //comptibility
 case 'define' then
   nclock=1
   win=1; clrs=[1;3;5;7;9;11;13;15];
   wdim=[600;400]
   wpos=[-1;-1]
-  ipar=[win;1;clrs(nclock);wpos(:);wdim(:)]
   per=30;
-  rpar=per
-  state=-1
-  model=list('evscpe',[],[],1,[],[],state,rpar,ipar,'d',[],[%f %f],' ',list())
-  label=[sci2exp(nclock);
+
+  model=scicos_model()
+  model.sim='evscpe'
+  model.evtin=1
+  model.dstate=-1
+  model.rpar=per
+  model.ipar=[win;1;clrs(nclock);wpos(:);wdim(:)]
+  model.blocktype='d'
+  model.dep_ut=[%f %f]
+  
+  exprs=[sci2exp(nclock);
 	strcat(sci2exp(clrs(nclock)),' ');
 	string(win);
 	sci2exp([]);
@@ -100,6 +105,6 @@ case 'define' then
     'yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);';
     'xpoly(xx,yy,''lines'');';
     'xset(''thickness'',thick);']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

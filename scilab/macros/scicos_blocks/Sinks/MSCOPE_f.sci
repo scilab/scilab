@@ -12,12 +12,12 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  if size(label)<10 then label(10)='0',end // compatibility
-  model=arg1(3);
-  state=model(2)
+  graphics=arg1.graphics;exprs=graphics.exprs
+  if size(exprs)<10 then exprs(10)='0',end // compatibility
+  model=arg1.model;
+  state=model.in
   while %t do
-    [ok,in,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,label]=getvalue(..
+    [ok,in,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,exprs]=getvalue(..
 	'Set Scope parameters',..
 	['Input ports sizes';
 	'Drawing colors (>0) or mark (<0)';
@@ -31,7 +31,7 @@ case 'set' then
         'Accept herited events 0/1'],..
 	 list('vec',-1,'vec',-1,'vec',1,'vec',-1,'vec',-1,..
 	 'vec','size(x1,''*'')','vec','size(x1,''*'')','vec',1,..
-         'vec',1,'vec',1),label)
+         'vec',1,'vec',1),exprs)
     if ~ok then break,end //user cancel modification
     mess=[]
     if size(in,'*')<=0 then
@@ -84,7 +84,6 @@ case 'set' then
     if ok then
       if wpos==[] then wpos=[-1;-1];end
       if wdim==[] then wdim=[-1;-1];end
-//      [model,graphics,ok]=check_io(model,graphics,in,[],1,[])
       if ok then
 	yy=[ymin(:)';ymax(:)']
 	rpar=[0;per;yy(:)]
@@ -93,12 +92,11 @@ case 'set' then
 	if prod(size(state))<>(sum(in)+1)*N+1 then 
 	  state=-eye((sum(in)+1)*N+1,1),
 	end
-        model(4)=ones(1-heritance,1)
-	model(7)=state;model(8)=rpar;model(9)=ipar
-	model(11)=[] //compatibility
-        model(12)=[%t %f] //compatibility
-	graphics(4)=label;
-	x(2)=graphics;x(3)=model
+        model.evtin=ones(1-heritance,1)
+	model.state=state;model.rpar=rpar;model.ipar=ipar
+        model.dep_ut=[%t %f] //compatibility
+	graphics.exprs=exprs;
+	x.graphics=graphics;x.model=model
 	break
       end
     end
@@ -110,14 +108,21 @@ case 'define' then
   wpos=[-1;-1]
   clrs=[1;3;5;7;9;11;13;15];
   N=2;
-  ipar=[win;size(in,'*');N;wpos(:);wdim(:);in(:);clrs(1:sum(in));0]
+
   ymin=[-1;-5];ymax=[1;5];per=30;
   yy=[ymin(:)';ymax(:)']
-  rpar=[0;per;yy(:)]
-  state=-eye((sum(in)+1)*N+1,1)
-  model=list('mscope',[1;1],[],1,[],[],state,rpar,ipar,'c',..
-      [],[%t %f],' ',list())
-  label=[strcat(string(in),' ');
+
+  model=scicos_model()
+  model.sim='mscope'
+  model.in=in
+  model.evtin=1
+  model.dstate=-eye((sum(in)+1)*N+1,1)
+  model.rpar=[0;per;yy(:)]
+  model.ipar=[win;size(in,'*');N;wpos(:);wdim(:);in(:);clrs(1:sum(in));0]
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+  
+  exprs=[strcat(string(in),' ');
          strcat(string(clrs),' ');
 	 string(win);
 	 sci2exp([]);
@@ -128,6 +133,6 @@ case 'define' then
 	 string(N);
          string(0)];
    gr_i='xstringb(orig(1),orig(2),''MScope'',sz(1),sz(2),''fill'')'
-   x=standard_define([2 2],model,label,gr_i)
+   x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

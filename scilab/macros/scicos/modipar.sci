@@ -27,7 +27,8 @@ nb=prod(size(rpptr))-1
 for k=newparameters
   if prod(size(k))==1 then //parameter of a sImple block
     statekd=[]
-    [fun,statek,dstatek,rpark,ipark]=scs_m(k)(3)([1 6:9]);
+    om=scs_m(k).model
+    [fun,statek,dstatek,rpark,ipark]=(om.sim,om.state,om.dstate,om.rpar,om.ipar);
     if type(fun)==15 then
       if fun(2)==3 then 
         rpark=var2vec(rpark),
@@ -43,7 +44,7 @@ for k=newparameters
     nk=size(k,2)
     o=scs_m(get_subobj_path(k))
     statekd=[]
-    [fun,statek,dstatek,rpark,ipark]=o(3)([1 6:9])
+    [fun,statek,dstatek,rpark,ipark]=(o.model.sim,o.model.state,o.model.dstate,o.model.rpar,o.model.ipar);
     if type(fun)==15 then
       if fun(2)==3 then 
         rpark=var2vec(rpark),

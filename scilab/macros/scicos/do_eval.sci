@@ -7,14 +7,14 @@ needcompile1=max(2,needcompile)
 funcprot(0) 
 getvalue=setvalue;
 
-deff('message(txt)','x_message(''In block ''+o(5)+'': ''+txt);%scicos_prob=resume(%t)')
+deff('message(txt)','x_message(''In block ''+o.gui+'': ''+txt);%scicos_prob=resume(%t)')
 
 %scicos_prob=%f
 deff('[ok,tt]=FORTR(funam,tt,i,o)','ok=%t')
 deff('[ok,tt]=CFORTR(funam,tt,i,o)','ok=%t')
 deff('[x,y,ok,gc]=edit_curv(x,y,job,tit,gc)','ok=%t')
 deff('[ok,tt,dep_ut]=genfunc1(tt,ni,no,nci,nco,nx,nz,nrp,type_)',..
-    'dep_ut=model(12);ok=%t')
+    'dep_ut=model.dep_ut;ok=%t')
 funcprot(%mprt)
 %nx=size(scs_m)
 
@@ -22,12 +22,12 @@ funcprot(%mprt)
 
 for %kk=2:%nx
   o=scs_m(%kk)
-  if o(1)=='Block' then
-    model=o(3)
-    if model(1)=='super'|model(1)=='csuper' then
-      sblock=model(8)
+  if typeof(o)=='Block' then
+    model=o.model
+    if model.sim=='super'|model.sim=='csuper' then
+      sblock=model.rpar
             errcatch(-1,'continue')
-      context=sblock(1)(5)
+      context=sblock(1).context
       execstr(context)
       errcatch(-1)
       if iserror(-1) then
@@ -37,16 +37,16 @@ for %kk=2:%nx
         [sblock,%w,needcompile2,ok]=do_eval(sblock,list())
         needcompile1=max(needcompile1,needcompile2)
         if ok then
-          scs_m(%kk)(3)(8)=sblock
+          scs_m(%kk).model.rpar=sblock
         end
       end        
     else
-      model=o(3)
-      execstr('o='+o(5)+'(''set'',o)')
+      model=o.model
+      execstr('o='+o.gui+'(''set'',o)')
       needcompile1=max(needcompile1,needcompile) // for scifunc_block
-      model_n=o(3)
-      if or(model(10)<>model_n(10))|.. // type 'c','d','z','l'
-	        or(model(12)<>model_n(12)) then 
+      model_n=o.model
+      if or(model.blocktype<>model_n.blocktype)|.. // type 'c','d','z','l'
+	        or(model.dep_ut<>model_n.dep_ut) then 
 	needcompile1=4
       end
       scs_m(%kk)=o

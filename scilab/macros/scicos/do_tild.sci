@@ -24,7 +24,8 @@ end
 o=scs_m(k)
 drawobj(o)
 if pixmap then xset('wshow'),end
-geom=o(2);geom(3)=~geom(3);o(2)=geom;
+//geom=o(2);geom(3)=~geom(3);o(2)=geom;
+geom=o.graphics;geom.flip=~geom.flip;o.graphics=geom;
 drawobj(o)
 scs_m_save=scs_m
 scs_m(k)=o

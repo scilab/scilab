@@ -47,9 +47,9 @@ for k=1:size(xx,1)
   if k==1 then path=[]; else path=lp(k-1);end
   Path=list();
   for pk=path
-    Path=lstcat(Path,pk,3,8);
+    Path=lstcat(Path,pk,'model','rpar');
   end
-  Path=lstcat(Path,1,2,1);
+  Path=lstcat(Path,1,'title',1);
   xstring(x0(kx),y0,string(k)+': '+scs_m(Path))
   y0=y0-h;
   if k==20 then 

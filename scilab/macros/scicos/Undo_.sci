@@ -4,8 +4,12 @@ function Undo_()
     if enable_undo then
       disablemenus()
       scs_m=scs_m_save;needcompile=nc_save
-      %wpar=scs_m(1)
-      %wdm=%wpar(1)
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//      %wpar=scs_m(1)
+//      %wdm=%wpar(1)
+        scs_m(1).wpar=scs_m(1)
+        %wdm=scs_m(1).wpar
+//**********************************
       xbasc()
       window_set_size()
       drawobjs(scs_m),

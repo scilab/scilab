@@ -13,8 +13,8 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   while %t do
-    [x,newparameters,needcompile,edited]=scicos(arg1(3)(8))
-    arg1(3)(8)=x
+    [x,newparameters,needcompile,edited]=scicos(arg1.model.rpar)
+    arg1.model.rpar=x
     [ok,arg1]=adjust_s_ports(arg1)
     if ok then
       x=arg1
@@ -25,8 +25,16 @@ case 'set' then
   end
   edited=resume(edited)
 case 'define' then
-  model=list('super',1,1,[],[],[],' ',..
-      list(list([600,450,0,0],'Super Block',[],[],[])),[],'h',[],[%f %f])
+  scs=empty_diagram()
+  scs(1).title='Super Block'
+  model=scicos_model()
+  model.sim='super'
+  model.in=1
+  model.out=1
+  model.rpar=scs
+  model.blocktype='h'
+  model.dep_ut=[%f %f]
+
   gr_i=['thick=xget(''thickness'');xset(''thickness'',2);';
     'xx=orig(1)+      [2 4 4]*(sz(1)/7);';
     'yy=orig(2)+sz(2)-[2 2 6]*(sz(2)/10);';

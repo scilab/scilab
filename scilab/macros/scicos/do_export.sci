@@ -2,7 +2,7 @@ function do_export(scs_m,fname)
 [lhs,rhs]=argn(0)
 driv='Pos';num=1
 dr=driver()
-wpar=scs_m(1)(1)
+wpar=scs_m(1).wpar
 winc=xget('window');
 if rhs==1 then
 
@@ -26,7 +26,7 @@ end
 driver(driv)
 if num<>2 then xinit(fname);end
 
-options=scs_m(1)(7)
+options=scs_m(1).options
 
 set_background()
 
@@ -70,9 +70,11 @@ width=(rect(3)-rect(1))/3;
 height=(rect(4)-rect(2))/12;
 alu=xget('alufunction')
 xset('alufunction',3)
-xstringb(rect(1)+width,rect(4),scs_m(1)(2)(1),width,height,'fill')
+//xstringb(rect(1)+width,rect(4),scs_m(1)(2)(1),width,height,'fill')
+xstringb(rect(1)+width,rect(4),scs_m(1).title(1),width,height,'fill')
 xset('pattern',pat)
-scs_m(1)(2)(1)='Scilab Graphics of '+scs_m(1)(2)(1)
+//scs_m(1)(2)(1)='Scilab Graphics of '+scs_m(1)(2)(1)
+scs_m(1).title(1)='Scilab Graphics of '+scs_m(1).title(1)
 drawobjs(scs_m),
 if pixmap then xset('wshow'),end
 

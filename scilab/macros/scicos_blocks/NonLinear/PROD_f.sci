@@ -3,12 +3,12 @@ function [x,y,typ]=PROD_f(job,arg1,arg2)
 x=[];y=[];typ=[];
 p=1 //pixel sizes ratio
 select job
-
-
 case 'plot' then
-  [orig,sz]=arg1(1:2)
   wd=xget('wdim')
-  graphics=arg1(2); [orig,sz,orient]=graphics(1:3)
+  graphics=arg1.graphics; 
+  orig=graphics.orig,
+  sz=graphics.sz
+  orient=graphics.flip
   thick=xget('thickness');xset('thickness',2)
   patt=xget('dashes');xset('dashes',default_color(1))
   rx=sz(1)*p/2
@@ -39,7 +39,7 @@ case 'plot' then
   end
     xset('dashes',patt)
 case 'getinputs' then
-  graphics=arg1(2)
+  graphics=arg1.graphics
   [orig,sz,orient]=graphics(1:3)
   wd=xget('wdim');
   if orient then
@@ -52,9 +52,11 @@ case 'getinputs' then
   x=(rx*sin(t)+(orig(1)+rx)*ones(t))
   y=r*cos(t)+(orig(2)+r)*ones(t)
   typ=ones(x)
-case 'getoutputs' then
-  graphics=arg1(2)
-  [orig,sz,orient]=graphics(1:3)
+  case 'getoutputs' then
+  graphics=arg1.graphics; 
+  orig=graphics.orig,
+  sz=graphics.sz
+  orient=graphics.flip
   wd=xget('wdim');
   if orient then
     t=%pi/2
@@ -72,9 +74,14 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  x(3)(11)=[] //compatibility
 case 'define' then
-  model=list(list('prod',2),[-1;-1],-1,[],[],[],[],[],[],'c',[],[%t %f],' ',list())
+  model=scicos_model()
+  model.sim=list('prod',2)
+  model.in=[-1;-1]
+  model.out=-1
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+
   x=standard_define([1 1]/1.2,model,[],[])
 end
 endfunction

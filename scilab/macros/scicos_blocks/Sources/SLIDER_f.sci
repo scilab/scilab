@@ -3,8 +3,8 @@ function [x,y,typ]=SLIDER_f(job,arg1,arg2)
 x=[];y=[];typ=[]
 select job
 case 'plot' then
-  ipar=arg1(3)(9)
-  dpar=arg1(3)(8)
+  ipar=arg1.model.ipar
+  dpar=arg1.model.rpar
   standard_draw(arg1)
 case 'getinputs' then
     [x,y,typ]=standard_inputs(arg1)
@@ -14,17 +14,17 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
   while %t do
-    [ok,min_r,max_r,sl_type,color,herit,label]=getvalue(..
+    [ok,min_r,max_r,sl_type,color,herit,exprs]=getvalue(..
 	'Set  parameters',..
 	['Min range';
 	 'Max range';
 	 'Type';
 	 'Color';
 	 'Block inherits (1) or not (0)'],..
-	 list('vec',1,'vec',1,'vec',1,'vec',1,'vec',1),label)
+	 list('vec',1,'vec',1,'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end //user cancel modification
     mess=[]
     if max_r <= min_r then
@@ -49,11 +49,11 @@ case 'set' then
     if ok then
       ipar=[sl_type;color;xget('window')];
       dpar=[min_r;max_r];
-      model(9)=ipar;
-      model(8)=dpar;
-      model(4)=ones(1-herit,1)
-      graphics(4)=label;
-      x(2)=graphics;x(3)=model
+      model.ipar=ipar;
+      model.rpar=dpar;
+      model.evtin=ones(1-herit,1)
+      graphics.exprs=exprs;
+      x.graphics=graphics;x.model=model
       break
     end
   end
@@ -62,15 +62,24 @@ case 'define' then
   max_r= 1
   color= 1
   sl_type = 1
-  label=[string(min_r);
-      string(max_r);
-      string(sl_type);
-      string(color);
-      string(0)]
-  ipar=[sl_type;color;0]
-  dpar=[min_r;max_r]
-  model=list('slider',1,[],1,[],[],[0;-1;1;2;3;4],dpar,ipar,'d',[],[%t %f],' ',list())
-  gr_i=[' ']
-  x=standard_define([3 1],model,label,gr_i)
+
+  model=scicos_model()
+  model.sim='slider'
+  model.in=1
+  model.evtin=1
+  model.dstate=[0;-1;1;2;3;4]
+  model.rpar=[min_r;max_r]
+  model.ipar=[sl_type;color;0]
+  model.blocktype='d'
+  model.dep_ut=[%t %f]
+ 
+  exprs=[string(min_r);
+	 string(max_r);
+	 string(sl_type);
+	 string(color);
+	 string(0)]
+
+  gr_i=' '
+  x=standard_define([3 1],model,exprs,gr_i)
 end
 

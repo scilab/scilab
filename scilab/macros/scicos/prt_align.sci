@@ -42,8 +42,11 @@ yy1=[yout,yin]
 xx2=[xout xin]
 yy2=[yout,yin]
 if xx2==[]|yy2==[] then //one block has no port
-  graphics2=o2(2);orig2=graphics2(1)
-  graphics1=o1(2);orig1=graphics1(1)
+
+//  graphics2=o2(2);orig2=graphics2(1)
+//  graphics1=o1(2);orig1=graphics1(1)
+  graphics2=o2.graphics;orig2=graphics2.orig
+  graphics1=o1.graphics;orig1=graphics1.orig
   if abs(xc1-xc2)<abs(yc1-yc2) then //align vertically
     orig2(1)=orig1(1)
   else
@@ -59,16 +62,19 @@ else
   xx2=xx2(kp2);yy2=yy2(kp2)
 
 
-  graphics2=o2(2);orig2=graphics2(1)
+//  graphics2=o2(2);orig2=graphics2(1)
+  graphics2=o2.graphics;orig2=graphics2.orig
   if abs(xx1-xx2)<abs(yy1-yy2) then //align vertically
     orig2(1)=orig2(1)-xx2+xx1
   else //align horizontally
     orig2(2)=orig2(2)-yy2+yy1
   end
 end
-graphics2(1)=orig2
+//graphics2(1)=orig2
+graphics2.orig=orig2
 drawobj(o2) // rubbout block
-o2(2)=graphics2
+//o2(2)=graphics2
+o2.graphics=graphics2
 drawobj(o2)
 scs_m_save=scs_m
 scs_m(k2)=o2

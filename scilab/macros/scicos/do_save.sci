@@ -4,10 +4,10 @@ function ok=do_save(scs_m)
 // Copyright INRIA
 if pal_mode then scs_m=do_purge(scs_m),end
 //file path
-if size(scs_m(1)(2),'*')<2 then 
+if size(scs_m(1).title,'*')<2 then 
   path='./'
 else
-  path=scs_m(1)(2)(2)
+  path=scs_m(1).title(2)
 end
 //open file
 if ~super_block&~pal_mode then
@@ -17,12 +17,12 @@ if ~super_block&~pal_mode then
   else
     [%cpr,%state0,needcompile,ok]=do_update(%cpr,%state0,needcompile)
     if ~ok then return,end
-    %cpr(1)=%state0
+    %cpr.state=%state0
   end
 else
   %cpr=list()
 end
-fname=path+scs_m(1)(2)(1)+'.cos'
+fname=path+scs_m(1).title(1)+'.cos'
 [u,err]=mopen(fname,'wb')
 if err<>0 then
   message('Directory write access denied')
@@ -41,6 +41,6 @@ if iserror(49)==1 then
   return
 end
 mclose(u)
-if pal_mode then update_scicos_pal(path,scs_m(1)(2)(1),fname),end
+if pal_mode then update_scicos_pal(path,scs_m(1).title(1),fname),end
 ok=%t
 endfunction

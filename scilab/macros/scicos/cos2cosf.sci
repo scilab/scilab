@@ -21,32 +21,44 @@ write(u,t,'(a)');t=[]
 for k=2:size(scs_m)
 
   o=scs_m(k)
-  if o(1)=='Block' then
-    model=o(3)
+   if typeof(o)=='Block' then
     lhs=lname+'('+string(k)+')='
     bl1=' ';bl1=part(bl1,1:length(lhs))
-    
-    if model(1)=='super'| model(1)=='csuper' then  //Super blocks
-      cos2cosf(u,o(3)(8),count);//t=[t;t1]
-	    
-      tt=lname+'('+string(k)+')=list('+sci2exp(o(1),lmax-count*2) //"Block"
-      t1=sci2exp(o(2),lmax-count*2) //"Graphic"
-      tt=catinstr(tt,t1,length(lhs)) 
-      //generate code for 7 first entries of model
-      tt=catinstr(tt,'list('+sci2exp(o(3)(1),lmax-count*2),length(lhs))
-      for k=2:7
-	tt=catinstr(tt,sci2exp(o(3)(k),lmax-count*2),length(lhs))
-      end
-      //add referece for eigth entries of model
-      tt=catinstr(tt,'scs_m_'+string(count+1),0)
-      //generate code for last  entries of model
-      for k=9:size(o(3))
-	tt=catinstr(tt,sci2exp(o(3)(k),lmax-count*2),length(lhs))
+    if o.model.sim=='super'| o.model.sim=='csuper' then  //Super blocks
+      
+      //generate code for model.rpar
+      cos2cosf(u,o.model.rpar,count);//model.rpar
+
+      //open a block
+      tt= lname+'('+string(k)+')=mlist(..'
+      //add the type field
+      
+      tt=[tt;
+	  bl1+sci2exp(getfield(1,o),lmax-count*2)]
+
+      //add graphics code
+      tt=catinstr(tt,sci2exp(o.graphics,lmax-count*2),length(lhs))
+								   
+      //open the model data structure and write code for type 
+      tt=catinstr(tt,'mlist(..',length(lhs))
+      //add the type field
+      fn=getfield(1,o.model)
+      tt=[tt;bl1+sci2exp(fn,lmax-count*2)]
+
+      for k=2:size(fn,'*')
+	if o.model(fn(k))<>'rpar' then
+	  tt=catinstr(tt,sci2exp(o.model(fn(k)),lmax-count*2),length(lhs))
+	else
+	  //introduce model.rpar generated above
+	  tt=catinstr(tt,'scs_m_'+string(count+1),0) 
+	end
       end
       tt($)=tt($)+')' // close model list
+      
       //generate code for last  entries of block
-      for k=4:size(o)
-	tt=catinstr(tt,sci2exp(o(k),lmax-count*2),length(lhs))
+      fn=getfield(1,o)
+      for k=4:size(fn,'*')
+	tt=catinstr(tt,sci2exp(o(fn(k)),lmax-count*2),length(lhs))
       end
       tt($)=tt($)+')' // close block list
       write(u,tt,'(a)');tt=[];

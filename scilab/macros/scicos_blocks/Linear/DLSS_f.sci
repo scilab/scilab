@@ -12,11 +12,11 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1
-  graphics=arg1(2);label=graphics(4)
-  if size(label,'*')==7 then label=label([1:4 7]),end //compatibility
-  model=arg1(3);
+  graphics=arg1.graphics;exprs=graphics.exprs
+  if size(exprs,'*')==7 then exprs=exprs([1:4 7]),end //compatibility
+  model=arg1.model;
   while %t do
-   [ok,A,B,C,D,x0,label]=getvalue('Set discrete linear system parameters',..
+   [ok,A,B,C,D,x0,exprs]=getvalue('Set discrete linear system parameters',..
 	['A matrix';
 	'B matrix';
 	'C matrix';
@@ -27,7 +27,7 @@ case 'set' then
 	 'mat',['-1','size(x1,2)'],..
 	 'mat',[-1 -1],..
 	 'vec','size(x1,2)'),..
-	label)
+	exprs)
     if ~ok then break,end
     out=size(C,1);if out==0 then out=[],end
     in=size(B,2);if in==0 then in=[],end
@@ -37,7 +37,7 @@ case 'set' then
     else
       [model,graphics,ok]=check_io(model,graphics,in,out,1,[])
       if ok then
-	graphics(4)=label;
+	graphics.exprs=exprs;
 	rpar=[A(:);B(:);C(:);D(:)];
 	if D<>[] then	
 	  if norm(D,1)<>0 then
@@ -45,28 +45,36 @@ case 'set' then
 	  else
 	    mmm=[%f %f];
 	  end
-	  if or(model(12)<>mmm) then 
-	      model(12)=mmm,end
+	  if or(model.dep_ut<>mmm) then 
+	      model.dep_ut=mmm,end
 	else
-	  model(12)=[%f %f];
+	  model.dep_ut=[%f %f];
 	end
-	model(7)=x0(:);model(8)=rpar
-	x(2)=graphics;x(3)=model
+	model.state=x0(:);model.rpar=rpar
+	x.graphics=graphics;x.model=model
 	break
       end
     end
   end
-  x(3)(11)=[] //comaptibility
 case 'define' then
-  x0=0;A=-1;B=1;C=1;D=0;in=1;out=1
-  model=list(list('dsslti',1),in,out,1,[],[],x0,[A;B;C;D],[],'d',[],[%f %f],' ',list())
-  label=[strcat(sci2exp(A));
+  x0=0;A=-1;B=1;C=1;D=0;
+  model=scicos_model()
+  model.sim=list('dsslti',1)
+  model.in=1
+  model.out=1
+  model.evtin=1
+  model.dstate=x0(:)
+  model.rpar=[A(:);B(:);C(:);D(:)]
+  model.blocktype='d'
+  model.dep_ut=[%f %f]
+  
+  exprs=[strcat(sci2exp(A));
       strcat(sci2exp(B));
       strcat(sci2exp(C));
       strcat(sci2exp(D));
       strcat(sci2exp(x0))]
   gr_i=['txt=[''x+=Ax+Bu'';''y=Cx+Du''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
-  x=standard_define([3 2],model,label,gr_i)
+  x=standard_define([3 2],model,exprs,gr_i)
 end
 endfunction

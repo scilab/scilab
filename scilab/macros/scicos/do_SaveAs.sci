@@ -26,7 +26,7 @@ if ~super_block&~pal_mode then
   else
     [%cpr,%state0,needcompile,ok]=do_update(%cpr,%state0,needcompile)
     if ~ok then return,end
-    %cpr(1)=%state0
+    %cpr.state=%state0
   end
 else
   %cpr=list()
@@ -45,8 +45,7 @@ end
 
 
 scs_m;
-scs_m(1)(2)=[name,path] // Change the title
-
+scs_m(1).title=[name,path] // Change the title
 // save
 if ext=='cos' then
   save(u,scicos_ver,scs_m,%cpr)
@@ -72,10 +71,7 @@ drawtitle(scs_m(1))  // draw the new title
 
 edited=%f
 if pal_mode then 
-  scicos_pal=update_scicos_pal(path,scs_m(1)(2)(1),fname),
+  scicos_pal=update_scicos_pal(path,scs_m(1).title(1),fname),
   scicos_pal=resume(scicos_pal)
 end
-
-
-    
 endfunction

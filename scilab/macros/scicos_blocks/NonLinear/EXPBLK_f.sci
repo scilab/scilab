@@ -12,29 +12,35 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
-  if size(label,'*')==2 then label=label(2),end
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  if size(exprs,'*')==2 then exprs=exprs(2),end
   while %t do
-    [ok,a,label]=getvalue('Set a^u  block parameters',..
-	'a (>0)',list('vec',1),label)
+    [ok,a,exprs]=getvalue('Set a^u  block parameters',..
+	'a (>0)',list('vec',1),exprs)
     if ~ok then break,end
     if or(a<=0) then
       message('a^u : a must be positive')
     else
-      graphics(4)=label
-      model(8)=a;
-      x(2)=graphics;x(3)=model
+      graphics.exprs=exprs
+      model.rpar=a;
+      x.graphics=graphics;x.model=model
       break
     end
   end
-  x(3)(11)=[] //compatibility
 case 'define' then
   in=1
   a=%e
-  model=list('expblk',-1,-1,[],[],[],[],%e,[],'c',[],[%t %f],' ',list())
-  label=[string(in);'%e']
+  model=scicos_model()
+  model.sim='expblk'
+  model.in=-1
+  model.out=-1
+  model.rpar=a
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+
+  exprs=[string(in);'%e']
   gr_i=['xstringb(orig(1),orig(2),''a^u'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

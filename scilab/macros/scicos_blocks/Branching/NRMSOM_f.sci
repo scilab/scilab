@@ -12,25 +12,31 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
   while %t do
-    [ok,nin,label]=getvalue('Set parameters',..
-	['number of inputs'],list('vec',1),label)
+    [ok,nin,exprs]=getvalue('Set parameters',..
+	['number of inputs'],list('vec',1),exprs)
     if ~ok then break,end
     [model,graphics,ok]=check_io(model,graphics,-ones(nin,1),-1,[],[])
     if ok then
-      graphics(4)=label;
-      x(2)=graphics;x(3)=model
+      graphics.exprs=exprs;
+      x.graphics=graphics;x.model=model
       break;
     end
   end
 case 'define' then
   in=[-1;-1]
   nin=2
-  model=list('junk',in,-1,[],[],[],[],[],[],'c',[],[%t %f],' ',list())
-  label=[string(nin)]
+  model=scicos_model()
+  model.sim='junk'
+  model.in=in
+  model.out=-1
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+  
+  exprs=[string(nin)]
   gr_i=' '
-  x=standard_define([.2 2],model,label,gr_i)
+  x=standard_define([.2 2],model,exprs,gr_i)
 end
 endfunction

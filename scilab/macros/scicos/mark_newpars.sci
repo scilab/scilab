@@ -3,8 +3,10 @@ function newparameters=mark_newpars(k,newparametersb,newparameters)
 //
 // Copyright INRIA
 o=scs_m(k)
-model=o(3)
-if model(1)=='super'|model(1)=='csuper'
+//model=o(3)
+model=o.model
+//if model(1)=='super'|model(1)=='csuper'
+if model.sim=='super'|model.sim=='csuper'
   for npb=newparametersb
     ok=%t;
     for np=newparameters

@@ -13,9 +13,10 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1
-  model=arg1(3)
-  graphics=arg1(2)
-  [rpar,ipar]=model(8:9)
+  model=arg1.model
+  graphics=arg1.graphics
+  rpar=model.rpar
+  ipar=model.ipar
   n=ipar(1)
   xx=rpar(1:n);yy=rpar(n+1:2*n)
   curwin=xget('window')
@@ -37,13 +38,13 @@ case 'set' then
       ok=%f
     end
     if ok then
-      model(1)='intplt'
-      model(11)=[] //compatibility
+      model.sim='intplt'
+      model.firing=[] //compatibility
       rect=gc(1)
-      model(8)=[xx(:);yy(:);rect(:)]
+      model.rpar=[xx(:);yy(:);rect(:)]
       axisdata=gc(2)
-      model(9)=[size(xx,'*');axisdata(:)]
-      x(2)=graphics;x(3)=model
+      model.ipar=[size(xx,'*');axisdata(:)]
+      x.graphics=graphics;x.model=model
       break
     end
   end
@@ -55,8 +56,16 @@ case 'define' then
   axisdata=[2;10;2;10]
   ipar=[size(xx,1);axisdata(:)]
   rpar=[xx;yy;rect(:)]
-  model=list('intplt',[],1,[],[],[],[],rpar,ipar,'c',[],[%f %t],' ',list())
-  gr_i=['model=arg1(3);rpar=model(8);ipar=model(9);n=ipar(1);';
+  model=scicos_model()
+  model.sim='intplt'
+  model.in=[]
+  model.out=1
+  model.rpar=[xx;yy;rect(:)]
+  model.ipar=[size(xx,1);axisdata(:)]
+  model.blocktype='c'
+  model.dep_ut=[%f %t]
+
+  gr_i=['rpar=arg1.model.rpar;n=model.ipar(1);';
     'thick=xget(''thickness'');xset(''thickness'',2);';
     'xx=rpar(1:n);yy=rpar(n+1:2*n);';
     'rect=rpar(2*n+1:2*n+4);';

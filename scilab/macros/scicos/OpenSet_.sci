@@ -4,7 +4,6 @@ xinfo('Click to open block or make a link')
 while %t 
   if %pt==[] then
     [btn,%xc,%yc,%win_1,Cmenu]=cosclick()
-
     if Cmenu<>[] then
       %pt=[];break
     elseif btn>31 then
@@ -20,11 +19,13 @@ while %t
   
   disablemenus()
   if windows(find(%win_1==windows(:,2)),1)==100000 then
+
     //click in navigator
     [%Path,%kk,ok]=whereintree(%Tree,%xc,%yc)
     if ok&%kk<>[] then %Path($)=null();%Path($)=null();end
       if ~ok then %kk=[],end
   else
+
     %kk=getobj(scs_m,[%xc;%yc])
     %Path=%kk
   end
@@ -44,8 +45,10 @@ while %t
       if pixmap then xset('pixmap',1); end
       xset('pattern',1)
       xset('dashes',1)
-      if ~set_cmap(options('Cmap')) then // add colors if required
-	options('3D')(1)=%f //disable 3D block shape
+      //if ~set_cmap(options('Cmap')) then // add colors if required
+	//options('3D')(1)=%f //disable 3D block shape
+      if ~set_cmap(scs_m(1).options('Cmap')) then // add colors if required
+	scs_m(1).options('3D')(1)=%f //disable 3D block shape
       end
       if pixmap then xset('wwpc');end
       xbasc();xselect()

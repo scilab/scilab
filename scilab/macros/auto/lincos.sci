@@ -40,13 +40,13 @@ function sys=lincos(scs_m,x0,u0,param)
 [lhs,rhs]=argn(0)
 IN=[];OUT=[];
 for i=2:length(scs_m)
-  if scs_m(i)(1)=='Block' then  
-    if scs_m(i)(5)=='IN_f' then
-      scs_m(i)(5)='INPUTPORT';
-      IN=[IN scs_m(i)(3)(9)]
-    elseif scs_m(i)(5)=='OUT_f' then
-      scs_m(i)(5)='OUTPUTPORT';
-      OUT=[OUT  scs_m(i)(3)(9)]
+  if typeof(scs_m(i))=='Block' then  
+    if scs_m(i).gui=='IN_f' then
+      scs_m(i).gui='INPUTPORT';
+      IN=[IN scs_m(i).model.ipar]
+    elseif scs_m(i).gui=='OUT_f' then
+      scs_m(i).gui='OUTPUTPORT';
+      OUT=[OUT  scs_m(i).model.ipar]
     end
   end
 end
@@ -72,20 +72,20 @@ end
 if ~ok then
   error('Diagram does not compile in pass 2');
 end 
-sim=%cpr(2);state=%cpr(1);
+sim=%cpr.sim;state=%cpr.state;
 //
-lnkptr=sim('lnkptr');inplnk=sim('inplnk');inpptr=sim('inpptr');
-outlnk=sim('outlnk');outptr=sim('outptr');ipptr=sim('ipptr');
+lnkptr=sim.lnkptr;inplnk=sim.inplnk;inpptr=sim.inpptr;
+outlnk=sim.outlnk;outptr=sim.outptr;ipptr=sim.ipptr;
 
 ki=[];ko=[];nyptr=1;
-for kfun=1:length(sim('funs'))
-  if sim('funs')(kfun)=='output' then
-    sim('funs')(kfun)='bidon'
-    ko=[ko;[kfun,sim('ipar')(ipptr(kfun))]];
+for kfun=1:length(sim.funs)
+  if sim.funs(kfun)=='output' then
+    sim.funs(kfun)='bidon'
+    ko=[ko;[kfun,sim.ipar(ipptr(kfun))]];
 
-  elseif sim('funs')(kfun)=='input' then
-    sim('funs')(kfun)='bidon'
-    ki=[ki;[kfun,sim('ipar')(ipptr(kfun))]];
+  elseif sim.funs(kfun)=='input' then
+    sim.funs(kfun)='bidon'
+    ki=[ki;[kfun,sim.ipar(ipptr(kfun))]];
     
   end
 end
@@ -121,11 +121,11 @@ end
   
 x0=x0(:);u0=u0(:)
   
-state('x')=x0;
-state('outtb')(pointi)=u0;
+state.x=x0;
+state.outtb(pointi)=u0;
 [state,t]=scicosim(state,t,t,sim,'linear',[.1,.1,.1,.1]);
-y0=state('outtb')(pointo);
-xp0=state('x');
+y0=state.outtb(pointo);
+xp0=state.x;
 zo0=[xp0;y0];
 
 F=zeros(nx+ny,nx+nu);
@@ -135,10 +135,10 @@ zer=zeros(nx+nu,1);
 for i=1:nx+nu
   dz=zer;dz(i)=del(i);
   z=z0+dz;
-  state('x')=z(1:nx);
-  state('outtb')(pointi)=z(nx+1:nx+nu);
+  state.x=z(1:nx);
+  state.outtb(pointi)=z(nx+1:nx+nu);
   [state,t]=scicosim(state,t,t,sim,'linear',[.1,.1,.1,.1]);
-  zo=[state('x');state('outtb')(pointo)];
+  zo=[state.x;state.outtb(pointo)];
   F(:,i)=(zo-zo0)/del(i);
 end  
 sys=syslin('c',F(1:nx,1:nx),F(1:nx,nx+1:nx+nu),F(nx+1:nx+ny,1:nx),F(nx+1:nx+ny,nx+1:nx+nu));

@@ -12,15 +12,15 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);rpar=model(8)
-  in=model(2);out=model(5)
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;rpar=model.rpar
+  in=model.in;out=model.evtout
   nin=sum(in)
   nout=sum(out)
-    [ok,in,out,label]=getvalue('Set General Zero-Crossing parameters',..
+    [ok,in,out,exprs]=getvalue('Set General Zero-Crossing parameters',..
       ['Input size';
        'Number of event output'],..
-      list('vec',1,'vec',1),label)
+      list('vec',1,'vec',1),exprs)
   if ok then
     [model,graphics,ok]=check_io(model,graphics,in,[],[],ones(out,1))
     if ok then
@@ -36,19 +36,27 @@ case 'set' then
 	  string(1:2^(2*nin1)),string(rp(:,:)))
       if result<>[] then
 	rp(1:nout1,1:2*n)=evstr(result)
-	model(8)=rp(:)
-	model(11)=-ones(out,1)
-	graphics(4)=label
-	x(2)=graphics;x(3)=model
+	model.rpar=rp(:)
+	model.firing=-ones(out,1)
+	graphics.exprs=exprs
+	x.graphics=graphics;x.model=model
       end
     end
   end
 case 'define' then
   rpar=[0;0;0;0]
   in=1;out=1;
-  model=list('zcross',in,[],[],ones(out,1),[],[],rpar,[],'z',-ones(out,1),[%t %f],' ',list())
-  label=[strcat(sci2exp(in));strcat(sci2exp(out))]
+  model=scicos_model()
+  model.sim='zcross'
+  model.in=in
+  model.evtout=ones(out,1)
+  model.rpar=[0;0;0;0]
+  model.blocktype='z'
+  model.firing=-ones(out,1),
+  model.dep_ut=[%t %f]
+
+  exprs=[strcat(sci2exp(in));strcat(sci2exp(out))]
   gr_i=['xstringb(orig(1),orig(2),''GENERAL'',sz(1),sz(2),''fill'');']
-  x=standard_define([3 2],model,label, gr_i)
+  x=standard_define([3 2],model,exprs, gr_i)
 end
 endfunction

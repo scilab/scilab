@@ -3,23 +3,23 @@ function [x,y,typ]=AFFICH_f(job,arg1,arg2)
 x=[];y=[];typ=[]
 select job
 case 'plot' then
-  ipar=arg1(3)(9)
+  ipar=arg1.model.ipar
   standard_draw(arg1)
 case 'getinputs' then
-    [x,y,typ]=standard_inputs(arg1)
+  [x,y,typ]=standard_inputs(arg1)
 case 'getoutputs' then
   x=[];y=[];typ=[];
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);
-  if size(label,'*')==5 then label(6)='0';end //compatibility
-  if size(label,'*')==4 then label(4)=' ';label(5)=' ';end //compatibility
-  if size(model(7),'*')<>6 then model(7)=[0;-1;0;0;1;1];end //compatibility
+  graphics=arg1.graphics;exprs=graphics.exprs
+  model=arg1.model;
+  if size(exprs,'*')==5 then exprs(6)='0';end //compatibility
+  if size(exprs,'*')==4 then exprs(4)=' ';exprs(5)=' ';end //compatibility
+  if size(model.dstate,'*')<>6 then model.dstate=[0;-1;0;0;1;1];end //compatibility
   while %t do
-    [ok,font,fontsize,color,nt,nd,herit,label]=getvalue(..
+    [ok,font,fontsize,color,nt,nd,herit,exprs]=getvalue(..
 	'Set  parameters',..
 	['Font number';
 	 'Font size';
@@ -27,7 +27,7 @@ case 'set' then
 	 'Total number of digits';
 	 'Number of rational part digits';
 	 'Block inherits (1) or not (0)'],..
-	 list('vec',1,'vec',1,'vec',1,'vec',1,'vec',1,'vec',1),label)
+	 list('vec',1,'vec',1,'vec',1,'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end //user cancel modification
     mess=[]
 
@@ -65,31 +65,38 @@ case 'set' then
       [model,graphics,ok]=check_io(model,graphics,-1,[],ones(1-herit,1),[])
     end
     if ok then
-      ipar=[font;fontsize;color;xget('window');nt;nd]
-      model(9)=ipar;model(4)=ones(1-herit,1)
-      graphics(4)=label;
-      x(2)=graphics;x(3)=model
+      model.ipar=[font;fontsize;color;xget('window');nt;nd];
+      model.evtin=ones(1-herit,1)
+      graphics.exprs=exprs;
+      x.graphics=graphics;x.model=model
       break
     end
   end
 case 'define' then
-  font=1
-  fontsize=1
-  color=1
-  nt=9
-  nd=2
-  label=[string(font);
+  font=1;fontsize=1;color=1;nt=9;nd=2;
+  exprs=[string(font);
       string(fontsize);
       string(color);
       string(nt);
       string(nd)]
-  ipar=[font;fontsize;color;0;nt;nd]
-  model=list('affich',1,[],1,[],[],[0;-1;0;0;1;1],[],ipar,'d',[],[%t %f],' ',list())
-      
+  model=scicos_model()
+  model.sim='affich'
+  model.in=1
+  model.out=[]
+  model.evtin=[]
+  model.evtout=[]
+  model.state=[]
+  model.dstate=[0;-1;0;0;1;1]
+  model.rpar=[]
+  model.ipar=[font;fontsize;color;0;nt;nd]
+  model.blocktype='c'
+  model.firing=[]
+  model.dep_ut=[%t %f]
+  model.label=''
   gr_i=['xset(''font'',ipar(1),ipar(2))';
 	'str='' ''+part(''0'',ones(1,ipar(5)-ipar(6)-2))+''.''+part(''0'',ones(1,ipar(6)))'
 	'rr=xstringl(orig(1),orig(2),str)'
         'xstring(orig(1)+max(0,(sz(1)-rr(3))/2),orig(2)+max(0,(sz(2)-rr(4))/2),str)']
-  x=standard_define([3 2],model,label,gr_i)
+  x=standard_define([3 2],model,exprs,gr_i)
 end
 endfunction

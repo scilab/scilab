@@ -3,8 +3,12 @@ function [x,y,typ]=IN_f(job,arg1,arg2)
 x=[];y=[];typ=[]
 select job
 case 'plot' then
-  graphics=arg1(2); [orig,sz,orient]=graphics(1:3)
-  model=arg1(3);prt=model(9)
+
+  orig=arg1.graphics.orig;
+  sz=arg1.graphics.sz;
+  orient=arg1.graphics.flip;
+
+  prt=arg1.model.ipar
   pat=xget('pattern');xset('pattern',default_color(1))
   thick=xget('thickness');xset('thickness',2)
   if orient then
@@ -16,7 +20,7 @@ case 'plot' then
     y=orig(2)+sz(2)*[1/2;1;1;0;0]
     xo=orig(1)+sz(1)/3;yo=orig(2)
   end
-  gr_i=arg1(2)(9);
+  gr_i=arg1.graphics.gr_i;
   if type(gr_i)==15 then 
     coli=gr_i(2);pcoli=xget('pattern')
     xfpolys(x,y,coli);
@@ -31,14 +35,11 @@ case 'plot' then
   xset('thickness',thick)
   xset('pattern',pat)
   
-  if size(arg1(3)) >= 15 then
-    ident = arg1(3)(15)
-  else
-    ident = []
-  end
+  ident = arg1.graphics.id
+
   if ident <> [] then
     font=xget('font')
-    xset('font', options('ID')(1)(1), options('ID')(1)(2))
+    xset('font', options.ID(1)(1), options.ID(1)(2))
     rectangle = xstringl(orig(1)+3/2*sz(1), orig(2), ident)
     w = rectangle(3)
     h = rectangle(4)
@@ -48,9 +49,11 @@ case 'plot' then
   x=[];y=[]
 case 'getinputs' then
   x=[];y=[];typ=[]
-case 'getoutputs' then
-  graphics=arg1(2)
-  [orig,sz,orient]=graphics(1:3)
+  case 'getoutputs' then
+  orig=arg1.graphics.orig;
+  sz=arg1.graphics.sz;
+  orient=arg1.graphics.flip;
+
   if orient then
     x=orig(1)+sz(1)
     y=orig(2)+sz(2)/2
@@ -63,32 +66,40 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  [graphics,model]=arg1(2:3);
-  label=graphics(4);
-  if size(label,'*')==2 then label=label(1),end //compatibility
+  graphics=arg1.graphics;
+  model=arg1.model;
+  exprs=graphics.exprs;
+  
+  if size(exprs,'*')==2 then exprs=exprs(1),end //compatibility
   while %t do
-    [ok,prt,label]=getvalue('Set Input block parameters',..
-	'Port number',list('vec',1),label)
+    [ok,prt,exprs]=getvalue('Set Input block parameters',..
+	'Port number',list('vec',1),exprs)
     if ~ok then break,end
     prt=int(prt)
     if prt<=0 then
       message('Port number must be a positive integer')
     else
-      if model(9)<>prt then needcompile=4;y=needcompile,end
-      model(9)=prt
-      model(11)=[];model(3)=-1//compatibility
-      graphics(4)=label
-      x(2)=graphics
-      x(3)=model
+      if model.ipar<>prt then needcompile=4;y=needcompile,end
+      model.ipar=prt
+      model.firing=[];model.out=-1//compatibility
+      graphics.exprs=exprs
+      x.graphics=graphics
+      x.model=model
       break
     end
   end
 case 'define' then
   in=-1
   prt=1
-  model=list('input',[],-1,[],[],[],[],[],[1],'c',[],[%f %f],' ',list())
-  label='1'
+  model=scicos_model()
+  model.sim='input'
+  model.out=-1
+  model.ipar=prt
+  model.blocktype='c'
+  model.dep_ut=[%f %f]
+
+  exprs=sci2exp(prt)
   gr_i=' '
-  x=standard_define([1 1],model,label,gr_i)
+  x=standard_define([1 1],model,exprs,gr_i)
 end
 endfunction

@@ -10,15 +10,15 @@ timer()
 disablemenus()
 IN=[];OUT=[];
 for i=2:length(scs_m)
-  if scs_m(i)(1)=='Block' then  
-    if scs_m(i)(5)=='IN_f' then
-      scs_m(i)(5)='INPUTPORT';
-      scs_m(i)(3)(1)='bidon'
-      IN=[IN scs_m(i)(3)(9)]
-    elseif scs_m(i)(5)=='OUT_f' then
-      scs_m(i)(5)='OUTPUTPORT';
-      scs_m(i)(3)(1)='bidon'
-      OUT=[OUT  scs_m(i)(3)(9)]
+  if typeof(scs_m(i))=='Block' then  
+    if scs_m(i).gui=='IN_f' then
+      scs_m(i).gui='INPUTPORT';
+      scs_m(i).model.sim='bidon'
+      IN=[IN scs_m(i).model.ipar]
+     elseif scs_m(i).gui=='OUT_f' then
+      scs_m(i).gui='OUTPUTPORT';
+      scs_m(i).model.sim='bidon'
+      OUT=[OUT  scs_m(i).model.ipar]
     end
   end
 end

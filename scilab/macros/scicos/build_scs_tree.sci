@@ -9,15 +9,31 @@ n=size(scs_m)
 blks=[]
 if flag=='super' then
   for k=2:n
-    if scs_m(k)(1)=='Block' then 
-      if scs_m(k)(3)(1)=='super' then blks=[blks,k],end
+//chek
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    //if scs_m(k)(1)=='Block' then 
+     if typeof(scs_m(k))=='Block' then 
+      //if scs_m(k)(3)(1)=='super' then blks=[blks,k],end
+     
+//r=is_a_block(scs_m(k))
+    //if r then
+//****************************************************************
+      if scs_m(k).model.sim=='super' then blks=[blks,k],end
+
     end
   end
 else
   for k=2:n
-    if scs_m(k)(1)=='Block' then blks=[blks,k],end
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    //if scs_m(k)(1)=='Block' then blks=[blks,k],end
+    
+    if typeof(scs_m(k))=='Block' then blks=[blks,k],end
+   // r=is_a_block(scs_m(k)) 
+        //  if r then blks=[blks,k],end
+//****************************************************************
   end
 end
+
 //
 nl=size(blks,2)
 xlk=x0
@@ -27,10 +43,16 @@ for k=blks
 //  xsegs([x0;xlk],[y0;y0-1],1)
   larg=maxi(xlk,larg)
   lp($+1)=path
-  if scs_m(k)(3)(1)=='super' then
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  //if scs_m(k)(3)(1)=='super' then
+  if scs_m(k).model.sim=='super' then
+//****************************************************************
     y0s=y0;x0s=x0;x0=xlk;y0=y0-1
     largs=larg;
-    [xxl,yyl,lpl,larg]=build_scs_tree(scs_m(k)(3)(8))
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    //[xxl,yyl,lpl,larg]=build_scs_tree(scs_m(k)(3)(8))
+    [xxl,yyl,lpl,larg]=build_scs_tree(scs_m(k).model.rpar)
+//****************************************************************
     xx=[xx,xxl];yy=[yy,yyl]
     lp=lstcat(lp,lpl)
 

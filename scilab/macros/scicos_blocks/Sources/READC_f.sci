@@ -12,15 +12,17 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  model=arg1(3);[out,state,ipar]=model([3 7 9])
+  graphics=arg1.graphics;exprs=graphics.exprs
+  out=model.out
+  state=model.dstate
+  ipar=model.ipar
   imask=9+ipar(1)
   tmask=ipar(imask)
   lunit=state(3)
-  fname=label(3)
-  frmt=label(4)
+  fname=exprs(3)
+  frmt=exprs(4)
   while %t do
-    [ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,label]=getvalue(..
+    [ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs]=getvalue(..
 	['Set READC block parameters';
 	 'Read is done on a binary file'],..
 	['Time record selection';
@@ -32,7 +34,7 @@ case 'set' then
 	 'Initial record index';
 	 'Swap mode 0/1'],..
 	 list('vec',-1,'vec',-1,'str',1,'str',1,'vec',1,'vec',1,'vec',1,'vec',1),..
-	 label)
+	 exprs)
     if ~ok then break,end //user cancel modification
     fname1=stripblanks(fname1)
     frmt1=stripblanks(frmt1)
@@ -60,9 +62,9 @@ case 'set' then
       frmt1=part(frmt1,1:3);
       if ok then
 	if ievt==0 then
-	  model(11)=-1
+	  model.firing=-1
 	else
-	  model(11)=0
+	  model.firing=0
 	end
 	ipar=[length(fname1);
 	    str2code(frmt1);
@@ -77,9 +79,9 @@ case 'set' then
 	if prod(size(state))<>(N*M)+3 then
 	  state=[-1;-1;lunit;zeros(N*M,1)]
 	end
-	model(7)=state;model(9)=ipar
-	graphics(4)=label;
-	x(2)=graphics;x(3)=model
+	model.state=state;model.ipar=ipar
+	graphics.exprs=exprs;
+	x.graphics=graphics;x.model=model
 	break
       end
     end
@@ -99,9 +101,19 @@ case 'define' then
   nout=size(outmask,'*')
   ipar=[length(fname);str2code(frmt);ievt;N;M;swap;offset;str2code(fname);
       tmask;outmask]
-  state=[1;1;lunit;zeros(N*M,1)]
-  model=list(list('readc',2),[],nout,1,[1],[],state,rpar,ipar,'d',-1,[%f %f],' ',list())
-  label=['[]';
+  model=scicos_model()
+  model.sim=list('readc',2)
+  model.out=nout
+  model.evtin=1
+  model.evtout=1
+  model.dstate=[1;1;lunit;zeros(N*M,1)]
+  model.ipar=[length(fname);str2code(frmt);ievt;N;M;swap;offset;str2code(fname);
+	      tmask;outmask]
+  model.blocktype='d'
+  model.firing=-1
+  model.dep_ut=[%f %f]
+
+  exprs=['[]';
 	sci2exp(outmask);
 	fname;
 	frmt;
@@ -111,6 +123,6 @@ case 'define' then
 	string(swap)]
   gr_i=['txt=[''read from'';''C binary file''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
-  x=standard_define([3 2],model,label,gr_i)
+  x=standard_define([3 2],model,exprs,gr_i)
 end
 endfunction

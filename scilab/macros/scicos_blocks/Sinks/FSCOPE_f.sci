@@ -12,12 +12,12 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1;
-  graphics=arg1(2);label=graphics(4)
-  if size(label)<9 then label(9)='0',end // compatibility
-  model=arg1(3);
-  state=model(2)
+  graphics=arg1.graphics;exprs=graphics.exprs
+  if size(exprs)<9 then exprs(9)='0',end // compatibility
+  model=arg1.model;
+  state=model.in
   while %t do
-    [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,wu,label]=getvalue(..
+    [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,wu,exprs]=getvalue(..
 	'Set Scope parameters',..
 	['Color (>0) or mark (<0) vector (8 entries)';
 	'Output window number';
@@ -30,7 +30,7 @@ case 'set' then
         'Links to view'],..
 	 list('vec',8,'vec',1,'vec',-1,'vec',-1,'vec',1,..
 	 'vec',1,'vec',1,'vec',1,'vec',-1),..
-	 label)
+	 exprs)
      if ~ok then break,end //user cancel modification
     mess=[]
     if size(wpos,'*')<>0 &size(wpos,'*')<>2 then
@@ -73,11 +73,11 @@ case 'set' then
       if size(clrs,'*')<8 then clrs(8)=0;end
       ipar=[win;1;N;clrs(:);wpos(:);wdim(:);size(wu,'*');wu(:)]
       if prod(size(state))<>(8+1)*N+1 then state=-eye((8+1)*N+1,1),end
-      model(7)=state;model(8)=rpar;model(9)=ipar
-      model(11)=[] //compatibility
-      model(12)=[%t %f] //compatibility
-      graphics(4)=label;
-      x(2)=graphics;x(3)=model
+      model.state=state;model.rpar=rpar;model.ipar=ipar
+      model.firing=[] //compatibility
+      model.dep_ut=[%t %f] //compatibility
+      graphics.exprs=exprs;
+      x.graphics=graphics;x.model=model
       break
     end
   end
@@ -87,13 +87,17 @@ case 'define' then
   wpos=[-1;-1]
   clrs=[1;3;5;7;9;11;13;15];
   N=2;
-  ipar=[win;1;N;clrs;wpos;wdim;1;1]
   ymin=-15;ymax=+15;per=30;
-  rpar=[0;ymin;ymax;per]
-  state=-eye((8+1)*N+1,1)
-  model=list(list('fscope',1),[],[],1,[],[],state,rpar,ipar,'c',..
-      [],[%t %f],' ',list())
-  label=[strcat(string(clrs),' ');
+  model=scicos_model()
+  model.sim=list('fscope',1)
+  model.evtin=1
+  model.dstate=-eye((8+1)*N+1,1)
+  model.rpar=[0;ymin;ymax;per]
+  model.ipar=[win;1;N;clrs;wpos;wdim;1;1]
+  model.blocktype='c'
+  model.dep_ut=[%t %f]
+
+  exprs=[strcat(string(clrs),' ');
 	string(win);
 	sci2exp([]);
 	sci2exp(wdim);
@@ -114,6 +118,6 @@ case 'define' then
     'yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);';
     'xpoly(xx,yy,''lines'');';
     'xset(''thickness'',thick)']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

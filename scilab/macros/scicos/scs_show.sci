@@ -2,10 +2,13 @@ function scs_show(scs_m,win)
 // Copyright INRIA
 oldwin=xget('window')
 xset('window',win);xbasc()
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 wpar=scs_m(1)
-wsiz=wpar(1)
 
-options=scs_m(1)(7)
+//wsiz=wpar(1)
+wsiz=wpar.w
+//options=scs_m(1)(7)
+options=wpar.options
 set_background()
 
   xset('wdim',wsiz(1),wsiz(2))
@@ -30,9 +33,10 @@ rect(2)=rect(2)-dyy;rect(4)=rect(4)+dyy;
 xsetech([-1 -1 8 8]/6,rect)
 
 xset('alufunction',3)
-scs_m(1)(2)(1)='Scilab Graphics of '+scs_m(1)(2)(1)
+//scs_m(1)(2)(1)='Scilab Graphics of '+scs_m(1)(2)(1)
+wpar.title(1)='Scilab Graphics of '+wpar.title(1)
 drawobjs(scs_m),
-
+//***********************************************************
 
 if pixmap then xset('wshow'),end
 endfunction
