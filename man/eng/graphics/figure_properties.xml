@@ -207,6 +207,12 @@
       clip_state is <VERB>"off"</VERB> or the vector
       <VERB>[x,y,w,h]</VERB> (upper-left point, width, height) 
      </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM label='rotation_style: '>
+      This field is related to the "3D Rot" button. If its value is
+      <VERB>unary</VERB> (default) and there is many sub_windows
+      containing 3D plots only selected  3D plot is rotated.  If its value is
+      <VERB>multiple</VERB> all 3D plots are rotated.
+     </DESCRIPTION_ITEM>
 
   </DESCRIPTION_INDENT>
 </DESCRIPTION_ITEM>
