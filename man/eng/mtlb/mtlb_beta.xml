@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_beta</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>June 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_beta">Matlab beta emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>beta</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With inputs having different sizes: Matlab <VERB>beta</VERB> input parameters must have
+	the same size unless one of them is a scalar. In Scilab <VERB>beta</VERB> input parameters
+	must have the same size even if one of them is a scalar.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_beta(A,B)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>beta(A,B)</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_beta</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is a scalar but not <VERB>B</VERB>
+        <VERB>Y = mtlb_beta(A,B)</VERB> may be replaced by <VERB>C=B;C(:)=A;Y = mtlb_beta(C,B);</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>B</VERB> is a scalar but not <VERB>A</VERB>
+        <VERB>Y = mtlb_beta(A,B)</VERB> may be replaced by <VERB>C=A;C(:)=B;Y = mtlb_beta(A,C);</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_beta</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
