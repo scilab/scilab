@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>unzoom</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>November 2004</DATE>
+  <SHORT_DESCRIPTION name="unzoom"> unzoom graphics</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>unzoom()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>unzoom(H)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+   <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>H</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: A handle on an axes or a vector of handle on axes.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>unzoom()</VERB> is used to remove the zoom effect for all the axes of the
+      current graphic figure: </P> 
+    <P><VERB>unzoom(H)</VERB> is used to remove the zoom effect for all the
+      axes given by the vector of handles on axes <VERB>H</VERB>.</P> 
+
+  
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+    clf()
+    x=0:0.01:6*%pi;
+    plot2d(x,sin(x^2))
+    zoom_rect([16,-1,18,1])
+    unzoom()
+
+
+    //subplots accordingly
+    clf()
+    x=0:0.01:6*%pi;
+    subplot(211)
+    plot2d(x,cos(x))
+    a1=gca();
+    subplot(212)
+    plot2d(x,cos(2*x))
+    a2=gca();
+    rect=[3 -2 7 10]; //a rectangle specified in the current axes (last one) coordinates
+    zoom_rect(rect) 
+    unzoom(a1) //unzoom first plot only
+    unzoom(a2) //unzoom second plot only
+    zoom_rect(rect) //zoom again
+    unzoom() //unzoom all the axes
+
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>zoom_rect</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>axes_properties</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Serge Steer INRIA </AUTHOR>
+</MAN>

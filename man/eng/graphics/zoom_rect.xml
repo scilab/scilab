@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>zoom_rect</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>November 2004</DATE>
+  <SHORT_DESCRIPTION name="zoom_rect"> zoom a selection of the current graphic figure</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>zoom_rect()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>zoom_rect(rect)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>rect</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of size 4 <VERB>[xmin,ymin,xmax,ymax]</VERB> give the
+	    rectangle to be zoomed.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>zoom_rect</VERB> is used to zoom a given rectangle of the current graphic
+      figure: the rectangle(s) formed by the intersection of the given
+      rectangle with the axes boxe(s) are zoomed, i.e. the rectangle(s) content
+      are enlarged to fill the axes boxe(s). The selected rectangle  for each
+      axes is stored in the <VERB>zoom_box</VERB> property of associated the
+      axes entity (see  <LINK>axes_properties</LINK>).</P> 
+    <P>Without argument, the user is required to select the rectangle
+      with the mouse. If specified, the  <VERB>rect</VERB> argument  should
+      contain the coordinates ( using the current graphics scale) of two
+      opposite corner of the rectangle.</P>
+    <P>The <VERB>zoom_rect</VERB> function corresponds to the <VERB>Zoom</VERB>
+    menu.</P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+    clf()
+    x=0:0.01:6*%pi;
+    plot2d(x,sin(x^2))
+    zoom_rect([16,-1,18,1])
+    //more zoom
+    zoom_rect([16,0,16.2,1])
+    //back to the original
+    unzoom()
+    // zooming using axes_properties
+    a=gca();
+    a.zoom_box=[16,0,16.2,1];
+    a.zoom_box=[];
+
+    //zooming subplots accordingly
+    clf()
+    x=0:0.01:6*%pi;
+    subplot(211)
+    plot2d(x,cos(x))
+    subplot(212)
+    plot2d(x,cos(2*x))
+    rect=[3 -2 7 10]; //a rectangle specified in the current axes (last one) coordinates
+    zoom_rect(rect) 
+    unzoom()
+    //set the global underlying axes as current
+    f=gcf();set('current_axes',f.children($)) 
+    rect=[0.4 0 0.6 1] //a rectangle specified in ratio of the window size
+    zoom_rect(rect) 
+    rect=[0.4 0.2 0.6 0.8]; //a rectangle specified in ratio of the window size
+    zoom_rect(rect) 
+ 
+
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>unzoom</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>axes_properties</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Serge Steer INRIA </AUTHOR>
+</MAN>
