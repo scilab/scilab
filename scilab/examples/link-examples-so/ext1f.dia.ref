@@ -23,6 +23,7 @@ ilib_for_link(link_name,files,libs,flag);
    generate a Makefile: Makelib
    running the makefile
    compilation of ext1f
+   building shared library (be patient)
  
  
 // load new function code in the scope of call
