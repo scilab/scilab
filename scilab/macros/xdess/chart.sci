@@ -53,6 +53,7 @@ else
 end
 [r1,r2]=xgetech();
 //
+if get('figure_style')<>'old') then drawlater(),end
 if flags(2) then xtitle(titre,'phase(y) - degree','magnitude(y) - db'),end
 llrect=xstringl(0,0,'1')
 //contours de gain constant
@@ -103,4 +104,5 @@ for teta=angl,
     plot2d(360+[w,-360*ones(w)-w(n:-1:1)],[module,module(n:-1:1)],[flags(4),flags(4)],"000");
   end
 end;
+if get('figure_style')<>'old') then drawnow(),end
 endfunction
