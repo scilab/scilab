@@ -3076,3 +3076,28 @@ void gdImageChangeColor(im, old, new)
     }
   }
 }
+void gdImagePPM(im, out)
+     gdImagePtr im;
+     FILE *out;
+{
+  int x,y,k;
+  int interlace, transparent, background, BitsPerPixel;
+  interlace = im->interlace;
+  transparent = im->transparent;
+  background = im->background;
+  BitsPerPixel = colorstobpp(im->colorsTotal);
+
+               
+  /*    Write the 'header' information  */
+  fprintf(out,"P6\n%d %d\n255\n",im->sx,im->sy);
+  for (y=0; (y < im->sy); y++) {	
+    for (x=0; (x < im->sx); x++) {	
+      k=im->pixels[y][x];
+      putc(im->red[k],out);
+      putc(im->green[k],out);
+      putc(im->blue[k],out);
+    }
+  }
+}
+
+
