@@ -1,18 +1,10 @@
 # Copyright ENPC
+# Jean-Philippe Chancelier 
+
 with(share):
 
-if SearchText(`Release 3`,interface(version))<>0 then
-	matadd:=add;
-	readshare(tex):
-	readshare(macrofor,numerics):
-elif SearchText(`Release 4`,interface(version))<>0 then
-	readshare(tex,system):
-	readshare(macrofor,numerics):
-else
-  ERROR(`Unknown Release`)
-fi;
-
-
+readshare(tex,system):
+readshare(macrofor,numerics):
 
 #----------------------------------------------------------------------------
 #     GENERAL PART

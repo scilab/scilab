@@ -1,14 +1,7 @@
 # Copyright ENPC
-if SearchText(`Release 3`,interface(version))<>0 then
-	matadd:=add;
-elif SearchText(`Release 4`,interface(version))<>0 then
-	1;
-else
-  ERROR(`Unknown Release`)
-fi;
+# Jean-Philippe Chancelier 
 
 read(`Euler.map`);
-
 
 #----------------------------------------------------------------------------
 # AND NOW THE N-LINK PNDULUM
