@@ -64,7 +64,7 @@ void AddHistory (char *line)
   }
  
   entry = (sci_hist *) malloc ((unsigned long) sizeof (sci_hist));
-  entry->line = malloc ((unsigned long) (strlen (line) + 1)); 
+  entry->line = (char *) malloc ((strlen (line) + 1)*sizeof(char));  
   strcpy (entry->line, line);
 
   entry->prev = history;
