@@ -3242,6 +3242,8 @@ u1=file('open',TMPDIR+'/foo','unknown')
 u2=mopen(TMPDIR+'/foo1','wb')
 [units,typs,nams]=file()
 
+file('close',u1)
+mclose(u2)
 xdel(winsid())
 
 //====================================================
