@@ -15,7 +15,8 @@ OBJSF = fmttyp.o getfun.o chkvar.o\
 	matz.o matc.o matzs.o \
 	expsum.o termf.o bsurf.o bsurfd.o tradsl.o \
 	dldsp.o istrue.o isnum.o namstr.o basnms.o cmplxt.o \
-	intstr.o extlarg.o bcol.o bsolv.o bjsolv.o\
+	intstr.o extlarg.o bcol.o bsolv.o bjsolv.o \
+	blsqrsolv.o bjlsqrsolv.o \
 	bydot2.o bint2d.o bint3d.o 
 
 include ../../Makefile.incl
@@ -55,6 +56,8 @@ bresd.o: ../stack.h ../callinter.h
 bresid.o: ../stack.h ../callinter.h
 bschur.o: ../stack.h ../callinter.h
 bsolv.o: ../stack.h ../callinter.h
+blsqrsolv.o: ../stack.h ../callinter.h
+bjlsqrsolv.o: ../stack.h ../callinter.h
 bsurf.o: ../stack.h ../callinter.h
 bsurfd.o: ../stack.h ../callinter.h
 btof.o: ../stack.h

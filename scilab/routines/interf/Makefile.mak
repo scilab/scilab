@@ -19,7 +19,7 @@ OBJSF = lstelm.obj lstelmi.obj matelm.obj matold.obj\
 	intgetpid.obj inthost.obj intlib.obj intprint.obj intrat.obj intread.obj intread4b.obj \
 	intreadb.obj intwritb.obj intwrite.obj intwrite4b.obj oldloadsave.obj intfile.obj \
 	intgetenv.obj intmgetl.obj intgetio.obj\
-	matimp.obj  matnew.obj matode.obj matops.obj matopt.obj\
+	matimp.obj  matnew.obj matode.obj matops.obj matopt.obj intlsqrsolve.obj\
 	 matqz.obj matric.obj  matsys.obj \
 	polaut.obj polelm.obj polops.obj strelm.obj strops.obj fmlelm.obj\
 	logic.obj logelm.obj xawelm.obj misops.obj stack0.obj \
@@ -120,3 +120,16 @@ getdate.obj: ../machine.h
 intlapack.obj: ../machine.h ../stack-c.h
 intslicot.obj: ../machine.h ../stack-c.h ../mex.h
 intarpack.obj: ../machine.h ../stack-c.h ../mex.h
+
+
+
+Makefile.mak	: Makefile
+	$(SCIDIR)/util/Mak2VCMak Makefile
+
+Makefile.amk	: Makefile
+	$(SCIDIR)/util/Mak2ABSMak Makefile
+
+# some versions of g77 on sparc will compile intmgetl.f
+# but the code does not execute properly.
+intmgetl.obj: intmgetl.f ../stack.h
+	$(FC) $(FC_OPTIONS_O0) -c intmgetl.f -o intmgetl.obj

@@ -16,7 +16,7 @@ OBJSF = lstelm.o lstelmi.o matelm.o matold.o\
 	intgetpid.o inthost.o intlib.o intprint.o intrat.o intread.o intread4b.o \
 	intreadb.o intwritb.o intwrite.o intwrite4b.o oldloadsave.o intfile.o \
 	intgetenv.o intmgetl.o intgetio.o\
-	matimp.o  matnew.o matode.o matops.o matopt.o\
+	matimp.o  matnew.o matode.o matops.o matopt.o intlsqrsolve.o\
 	 matqz.o matric.o  matsys.o \
 	polaut.o polelm.o polops.o strelm.o strops.o fmlelm.o\
 	logic.o logelm.o xawelm.o misops.o stack0.o \

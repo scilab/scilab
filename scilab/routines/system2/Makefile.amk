@@ -18,7 +18,8 @@ OBJSF = fmttyp.obj getfun.obj chkvar.obj\
 	matz.obj matc.obj matzs.obj \
 	expsum.obj termf.obj bsurf.obj bsurfd.obj tradsl.obj \
 	dldsp.obj istrue.obj isnum.obj namstr.obj basnms.obj cmplxt.obj \
-	intstr.obj extlarg.obj bcol.obj bsolv.obj bjsolv.obj\
+	intstr.obj extlarg.obj bcol.obj bsolv.obj bjsolv.obj \
+	blsqrsolv.obj bjlsqrsolv.obj \
 	bydot2.obj bint2d.obj bint3d.obj 
 
 include ../../Makefile.incl.amk
@@ -58,6 +59,8 @@ bresd.obj: ../stack.h ../callinter.h
 bresid.obj: ../stack.h ../callinter.h
 bschur.obj: ../stack.h ../callinter.h
 bsolv.obj: ../stack.h ../callinter.h
+blsqrsolv.obj: ../stack.h ../callinter.h
+bjlsqrsolv.obj: ../stack.h ../callinter.h
 bsurf.obj: ../stack.h ../callinter.h
 bsurfd.obj: ../stack.h ../callinter.h
 btof.obj: ../stack.h

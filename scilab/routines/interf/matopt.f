@@ -35,10 +35,10 @@ c
          call basout(io,wte,' matopt '//buf(1:4))
       endif
 c     
-c     optim   quapro   semidef fsolve
-c     1        2        3        4
+c     optim   quapro   semidef fsolve lsqrsolve
+c     1        2        3        4       5
 c     
-      goto(01,400,500,600 ) fin
+      goto(01,400,500,600,700 ) fin
 c     
       
 c     optim
@@ -1525,6 +1525,13 @@ c     fsolve
 c     
  600  call scisolv("fsolve")
       return
+c
+c     lsqrsolve
+c     
+ 700  call intlsqrsolve("lsqrsolve")
+      return
+
+
       end
 
 
