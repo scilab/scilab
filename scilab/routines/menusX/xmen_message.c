@@ -94,6 +94,7 @@ void MessageOk1(Widget w, XtPointer client_data, caddr_t callData)
 
 int ExposeMessageWindow1(void)
 {
+  Atom	 wmDeleteWindow;
   Arg args[10];
   Cardinal iargs = 0;
   Widget shell,dialog,mpanned,mviewport,okbutton,cform;
@@ -116,6 +117,11 @@ int ExposeMessageWindow1(void)
   ButtonCreate(cform,&okbutton,(XtCallbackProc)MessageOk1,(XtPointer) Mdatas,
 	       ScilabMessage.pButName[0],"ok");
   XtPopup(shell,XtGrabNone); 
+
+  wmDeleteWindow = XInternAtom(XtDisplay(shell),"WM_DELETE_WINDOW", False);
+  XSetWMProtocols(XtDisplay(shell),XtWindow(shell), &wmDeleteWindow, 1);
+
+
   XFlush(dpy);
   XSync(dpy,0);
   return 0;
