@@ -141,13 +141,13 @@ C     -------------------------------------------
          call lmder(bjlsqrsolv,m,n,stk(lr1),stk(lfvec),stk(lfjac),m,ftol
      $        ,xtol,gtol,maxfev,stk(ldiag),mode,factor,nprint,info,nfev
      $        ,njev,istk(ilpvt),stk(lqtf),stk(lwa1),stk(lwa2),stk(lwa3)
-     $        ,stk(wa4))
+     $        ,stk(lwa4))
 
       else
          call lmdif(blsqrsolv,m,n,stk(lr1),stk(lfvec),ftol,xtol,gtol
      $        ,maxfev,epsfcn,stk(ldiag),mode,factor,nprint,info,nfev
      $        ,stk(lfjac),m,istk(ilpvt),stk(lqtf),stk(lwa1),stk(lwa2)
-     $        ,stk(lwa3),stk(wa4))
+     $        ,stk(lwa3),stk(lwa4))
 
       endif 
       if(err.gt.0) return
