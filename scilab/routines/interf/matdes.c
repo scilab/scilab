@@ -2539,7 +2539,7 @@ int scixlfont(fname,fname_len)
 }
 
 /*-----------------------------------------------------------
- * scixnumb(x,y,nums,[box,angles]) : 
+ * scixnumb(x,y,nums,[box,angles]) : NO MORE USED
  *-----------------------------------------------------------*/
 
 int scixnumb(fname,fname_len)
@@ -2991,7 +2991,7 @@ int scixstring(fname,fname_len)
 	ib += strlen(Str[i+ m3*j]);
 	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
       }
-      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,0,&hdlstr);
+      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,-1,&hdlstr);
       hdltab[m3-1-i]=hdlstr;   
       wc = Max(wc,rect[2]);
       if (i != 0 ) 
@@ -3362,12 +3362,6 @@ int scixsetech(fname, fname_len)
       if (Rhs >= 3) { GetRhsVar(3,"c", &m3, &n3, &l3); CheckLength(3,m3,2); logflag = cstk(l3);}
       else
 	logflag = logflag_def ; /* compatibility with old version */
-      /* 
-      if (wrect != 0) sciprint("wrect = [%5.2f,%5.2f,%5.2f,%5.2f]\r\n",wrect[0],wrect[1],wrect[2],wrect[3]);
-      if (arect != 0) sciprint("arect = [%5.2f,%5.2f,%5.2f,%5.2f]\r\n",arect[0],arect[1],arect[2],arect[3]);
-      if (frect != 0) sciprint("frect = [%5.2f,%5.2f,%5.2f,%5.2f]\r\n",frect[0],frect[1],frect[2],frect[3]);
-      if (logflag != 0) sciprint("logflag = \"%s\"\r\n",logflag);
-      */
     }
   else 
     {
@@ -3390,12 +3384,6 @@ int scixsetech(fname, fname_len)
       if ( opts[3].position != -1 ) { 
 	wrect = stk(opts[3].l);	CheckLength(opts[3].position,opts[3].m*opts[3].n,4);
       } 
-      /* 
-      if (wrect != 0) sciprint("wrect = [%5.2f,%5.2f,%5.2f,%5.2f]\r\n",wrect[0],wrect[1],wrect[2],wrect[3]);
-      if (arect != 0) sciprint("arect = [%5.2f,%5.2f,%5.2f,%5.2f]\r\n",arect[0],arect[1],arect[2],arect[3]);
-      if (frect != 0) sciprint("frect = [%5.2f,%5.2f,%5.2f,%5.2f]\r\n",frect[0],frect[1],frect[2],frect[3]);
-      if (logflag != 0) sciprint("logflag = \"%s\"\r\n",logflag);
-      */
     }
   C2F(sciwin)();
   C2F(Nsetscale2d)(wrect,arect,frect,logflag,0L);

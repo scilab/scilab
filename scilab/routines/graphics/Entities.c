@@ -11874,7 +11874,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #endif
       sciClip(sciGetIsClipping(pobj));
 
-      if (pTEXT_FEATURE (pobj)->wh==(double *)NULL) {
+      if (pTEXT_FEATURE (pobj)->fill==-1) {
 	if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 	  {trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,
 		   &pTEXT_FEATURE (pobj)->x,&pTEXT_FEATURE (pobj)->y,&pTEXT_FEATURE (pobj)->z);}
@@ -11888,11 +11888,10 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L);
       }
       else { /* SS for xstringb should be improved*/
-	integer fill =0;
 	integer w1, h1;
 	w1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->wh[0]);
 	h1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->wh[1]);
-        C2F(dr1)("xstringb",sciGetText (pobj),&fill,&v,&v,&v,&v,&v,
+        C2F(dr1)("xstringb",sciGetText (pobj),&(pTEXT_FEATURE (pobj)->fill),&v,&v,&v,&v,&v,
 		 &(pTEXT_FEATURE (pobj)->x),&(pTEXT_FEATURE (pobj)->y),
 		 &(pTEXT_FEATURE (pobj)->wh[0]),&(pTEXT_FEATURE (pobj)->wh[1]),9L,0L);
       } 
