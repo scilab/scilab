@@ -6393,49 +6393,12 @@ sciGetFontStyle (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-      iAttributes =
-	(sciGetFontContext(pobj))->fontbold ? (iAttributes | SCI_ATTR_BOLD) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontitalic ? (iAttributes | SCI_ATTR_ITALIC) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontunderline ? (iAttributes | SCI_ATTR_UNDERLINE) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontstrikeout ? (iAttributes | SCI_ATTR_STRIKEOUT) : iAttributes;
-      return iAttributes;
-      break;
     case SCI_TITLE:
+    case SCI_LEGEND:
+    case SCI_SUBWIN: /* F.Leray 08.04.04 */
+    case SCI_FIGURE: /* F.Leray 08.04.04 */
       iAttributes =
 	(sciGetFontContext(pobj))->fontbold ? (iAttributes | SCI_ATTR_BOLD) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontitalic ? (iAttributes | SCI_ATTR_ITALIC) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontunderline ? (iAttributes | SCI_ATTR_UNDERLINE) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontstrikeout ? (iAttributes | SCI_ATTR_STRIKEOUT) : iAttributes;
-      return iAttributes;
-      break;
-    case SCI_LEGEND:
-      (sciGetFontContext(pobj))->fontbold ? (iAttributes | SCI_ATTR_BOLD) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontitalic ? (iAttributes | SCI_ATTR_ITALIC) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontunderline ? (iAttributes | SCI_ATTR_UNDERLINE) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontstrikeout ? (iAttributes | SCI_ATTR_STRIKEOUT) : iAttributes;
-      return iAttributes;
-      break;
-    case SCI_SUBWIN: /* F.Leray 08.04.04 */
-      (sciGetFontContext(pobj))->fontbold ? (iAttributes | SCI_ATTR_BOLD) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontitalic ? (iAttributes | SCI_ATTR_ITALIC) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontunderline ? (iAttributes | SCI_ATTR_UNDERLINE) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontstrikeout ? (iAttributes | SCI_ATTR_STRIKEOUT) : iAttributes;
-      return iAttributes;
-      break;
-    case SCI_FIGURE: /* F.Leray 08.04.04 */
-      (sciGetFontContext(pobj))->fontbold ? (iAttributes | SCI_ATTR_BOLD) : iAttributes;
       iAttributes =
 	(sciGetFontContext(pobj))->fontitalic ? (iAttributes | SCI_ATTR_ITALIC) : iAttributes;
       iAttributes =
@@ -6481,45 +6444,9 @@ sciSetFontStyle (sciPointObj * pobj, int iAttributes)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-      (sciGetFontContext(pobj))->fontbold =
-	iAttributes & SCI_ATTR_BOLD ? 700 : 0;
-      (sciGetFontContext(pobj))->fontitalic =
-	iAttributes & SCI_ATTR_ITALIC ? 1 : 0;
-      (sciGetFontContext(pobj))->fontunderline =
-	iAttributes & SCI_ATTR_UNDERLINE ? 1 : 0;
-      (sciGetFontContext(pobj))->fontstrikeout =
-	iAttributes & SCI_ATTR_STRIKEOUT ? 1 : 0;
-      break;
     case SCI_TITLE:
-      (sciGetFontContext(pobj))->fontbold =
-	iAttributes & SCI_ATTR_BOLD ? 700 : 0;
-      (sciGetFontContext(pobj))->fontitalic =
-	iAttributes & SCI_ATTR_ITALIC ? 1 : 0;
-      (sciGetFontContext(pobj))->fontunderline =
-	iAttributes & SCI_ATTR_UNDERLINE ? 1 : 0;
-      (sciGetFontContext(pobj))->fontstrikeout =
-	iAttributes & SCI_ATTR_STRIKEOUT ? 1 : 0;
-      break;
     case SCI_LEGEND:
-      (sciGetFontContext(pobj))->fontbold =
-	iAttributes & SCI_ATTR_BOLD ? 700 : 0;
-      (sciGetFontContext(pobj))->fontitalic =
-	iAttributes & SCI_ATTR_ITALIC ? 1 : 0;
-      (sciGetFontContext(pobj))->fontunderline =
-	iAttributes & SCI_ATTR_UNDERLINE ? 1 : 0;
-      (sciGetFontContext(pobj))->fontstrikeout =
-	iAttributes & SCI_ATTR_STRIKEOUT ? 1 : 0;
-      break;
     case SCI_SUBWIN: /* F.Leray 08.04.04 */
-      (sciGetFontContext(pobj))->fontbold =
-	iAttributes & SCI_ATTR_BOLD ? 700 : 0;
-      (sciGetFontContext(pobj))->fontitalic =
-	iAttributes & SCI_ATTR_ITALIC ? 1 : 0;
-      (sciGetFontContext(pobj))->fontunderline =
-	iAttributes & SCI_ATTR_UNDERLINE ? 1 : 0;
-      (sciGetFontContext(pobj))->fontstrikeout =
-	iAttributes & SCI_ATTR_STRIKEOUT ? 1 : 0;
-      break;
     case SCI_FIGURE: /* F.Leray 08.04.04 */
       (sciGetFontContext(pobj))->fontbold =
 	iAttributes & SCI_ATTR_BOLD ? 700 : 0;
@@ -7044,11 +6971,13 @@ sciInitFontContext (sciPointObj * pobj)
 	  /* F.Leray 08.04.04 : I create a  sciFont fontcontext; to act on Axes font*/
 	  (sciGetFontContext(pobj))->backgroundcolor = -3; /* F.Leray SAME DISCUSSION as in sciInitGraphicContext: may it be (sciGetFontContext(sciGetParent(pobj)))->backgroundcolor ?? */
 	  (sciGetFontContext(pobj))->foregroundcolor = -2; /* HERE too: may it be  (sciGetFontContext(sciGetParent(pobj)))->foregroundcolor ?? */
-	  (sciGetFontContext(pobj))->fontbold = FALSE;
-	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
+
+	  sciSetFontStyle(pobj,6); /* SS to replace next four lines */
+/* 	  (sciGetFontContext(pobj))->fontbold = FALSE;
 	  (sciGetFontContext(pobj))->fontitalic = FALSE;
 	  (sciGetFontContext(pobj))->fontunderline = FALSE;
-	  (sciGetFontContext(pobj))->fontstrikeout = FALSE;
+	  (sciGetFontContext(pobj))->fontstrikeout = FALSE;*/
+	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
 	  (sciGetFontContext(pobj))->textorientation = 0;
 	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
 	  
@@ -7092,11 +7021,13 @@ sciInitFontContext (sciPointObj * pobj)
 	  /* F.Leray 08.04.04 : I create a  sciFont fontcontext; to act on Axes font*/
 	  (sciGetFontContext(pobj))->backgroundcolor = -3;
 	  (sciGetFontContext(pobj))->foregroundcolor = -2;
-	  (sciGetFontContext(pobj))->fontbold = FALSE;
-	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
+	  
+	  sciSetFontStyle(pobj,6); /* SS to replace next four lines */
+/* 	  (sciGetFontContext(pobj))->fontbold = FALSE;
 	  (sciGetFontContext(pobj))->fontitalic = FALSE;
 	  (sciGetFontContext(pobj))->fontunderline = FALSE;
-	  (sciGetFontContext(pobj))->fontstrikeout = FALSE;
+	  (sciGetFontContext(pobj))->fontstrikeout = FALSE;*/
+	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
 	  (sciGetFontContext(pobj))->textorientation = 0;
 	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
 	  
