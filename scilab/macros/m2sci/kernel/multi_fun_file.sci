@@ -59,7 +59,7 @@ else
   bval= %t
   
   // First split file into as many files as function declared
-  funcdecl=[funcdecl size(txt,"*")] 
+  funcdecl=[funcdecl size(txt,"*")+1] 
   
   tmpfiles=[]
   for k=1:size(funcdecl,"*")-1
@@ -70,14 +70,15 @@ else
       funcname=stripblanks(part(funcname,keq+1:length(funcname)))
     end
     tmpfiles=[tmpfiles;funcname]
-    mputl(functxt,res_path+tmpfiles($)+".m")
+    mputl(functxt,pathconvert(TMPDIR)+tmpfiles($)+".m")
   end
   
   write(%io(2)," -- Each function converted separately: "+strcat(tmpfiles," ")+" -- ");
+  write(%io(2)," -- Temporary files put in: "+pathconvert(TMPDIR));
 
   // Conversion of each file
   for k=1:size(tmpfiles,"*")
-    mfile2sci(res_path+tmpfiles(k)+".m",res_path,Recmode,only_double,verbose_mode,prettyprint)
+    mfile2sci(pathconvert(TMPDIR)+tmpfiles(k)+".m",res_path,Recmode,only_double,verbose_mode,prettyprint)
   end
   
   // Catenation of all .sci files to have only one output file
@@ -110,7 +111,7 @@ else
   
   // Delete useless .m files
   for k=1:size(tmpfiles,"*")
-    mdelete(res_path+tmpfiles(k)+".m")
+    mdelete(pathconvert(TMPDIR)+tmpfiles(k)+".m")
   end
   
   
