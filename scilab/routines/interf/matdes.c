@@ -608,6 +608,9 @@ int scichamp_G(fname, func, fname_len)
   GetRect(6,opts);
   GetStrf(7,opts);
 
+  C2F(sciwin)();
+  C2F(scigerase)();
+
   if (Strf == def_strf) {
     char strfl[4];
     if (version_flag() == 0)
@@ -618,8 +621,7 @@ int scichamp_G(fname, func, fname_len)
     if (Rect != &(def_rect[0])) {Strf[1]='5';} 
   }
 
-  C2F(sciwin)();
-  C2F(scigerase)();
+
   (*func)(stk(l1 ),stk(l2 ),stk(l3 ),stk(l4 ),&m3,&n3,Strf,Rect, arfact, 4L);
   LhsVar(1)=0;
   return 0;
@@ -770,6 +772,10 @@ int scicontour2d_G(fname, func, fname_len)
   GetLegend(7,opts);
   GetRect(8,opts);
   GetNax(9,opts);
+
+  C2F(sciwin)();
+  C2F(scigerase)();
+
   if (Strf == def_strf) {
     char strfl[4];
     if (version_flag() == 0)
@@ -791,8 +797,7 @@ int scicontour2d_G(fname, func, fname_len)
       strfl[2] = (char)(*axes+48);
   }
 
-  C2F(sciwin)();
-  C2F(scigerase)();
+
   (*func)(stk(l1),stk(l2),stk(l3),&m3,&n3,&flagx,&nz,znz,Style,Strf,Legend,Rect,Nax,4L,bsiz);
   LhsVar(1)=0;
   return 0;
@@ -1328,6 +1333,9 @@ int sciplot2d(fname, fname_len)
   GetNax(7+iskip,opts);
   if (iskip==0) GetLogflags(8,opts);
 
+  C2F(sciwin)(); /* required here to make version_flag() known */
+  C2F(scigerase)();
+
   if (Strf == def_strf) {
     char strfl[4];
     if (version_flag() == 0)
@@ -1348,8 +1356,6 @@ int sciplot2d(fname, fname_len)
     if(axes != &axes_def) 
       strfl[2] = (char)(*axes+48);
   }
-  C2F(sciwin)();
-  C2F(scigerase)();
 
   /* NG beg */
   if (version_flag() == 0){
@@ -1533,6 +1539,9 @@ int sciplot2d1_G(fname, ptype, func, fname_len)
   GetNax(7+iskip,opts);
   if (iskip==0) GetLogflags(8,opts);
 
+  C2F(sciwin)();
+  C2F(scigerase)();
+
   if (Strf == def_strf) {
     char strfl[4];
   if (version_flag() == 0)
@@ -1552,8 +1561,7 @@ int sciplot2d1_G(fname, ptype, func, fname_len)
       strfl[2] = (char)(*axes+48);
   }
 
-  C2F(sciwin)();
-  C2F(scigerase)();
+
   /* NG beg */
   if (version_flag() == 0)
     Objplot2d (ptype,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend,Rect, Nax);
@@ -1613,6 +1621,9 @@ int scigrayplot(fname, fname_len)
   GetRect(5,opts);
   GetNax(6,opts);
 
+  C2F(sciwin)();
+  C2F(scigerase)();
+
   if (Strf == def_strf) {
     char strfl[4];
     if (version_flag() == 0)
@@ -1632,8 +1643,7 @@ int scigrayplot(fname, fname_len)
       strfl[2] = (char)(*axes+48);
   }
 
-  C2F(sciwin)();
-  C2F(scigerase)();
+
 
   /* NG beg */
   if (version_flag() == 0)
@@ -1683,6 +1693,9 @@ int scimatplot(fname, fname_len)
   GetRect(3,opts);
   GetNax(4,opts);
 
+  C2F(sciwin)();
+  C2F(scigerase)();
+
   if (Strf == def_strf) {
     char strfl[4];
     if (version_flag() == 0)
@@ -1702,8 +1715,7 @@ int scimatplot(fname, fname_len)
       strfl[2] = (char)(*axes+48);
   }
 
-  C2F(sciwin)();
-  C2F(scigerase)();
+
   /* NG beg */
   if (version_flag() == 0)
     Objmatplot (stk(l1), &m1, &n1, Strf, Rect, Nax);
@@ -3519,6 +3531,9 @@ int scifec(fname,fname_len)
   GetZminmax(9,opts);
   GetColminmax(10,opts);
 
+  C2F(sciwin)();
+  C2F(scigerase)();
+
   if (Strf == def_strf) {
     char strfl[4];
     if (version_flag() == 0)
@@ -3533,8 +3548,6 @@ int scifec(fname,fname_len)
     if (Nax != def_nax)
       strfl[1]='1';
   }
-  C2F(sciwin)();
-  C2F(scigerase)();
   mn1 = m1 * n1;
   
   /* NG beg */
