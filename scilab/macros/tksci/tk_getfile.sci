@@ -3,11 +3,10 @@ function p=tk_getfile(file_mask,path,title,foo)
   arg=''
   if exists('file_mask','local')==1 then 
     TK_SetVar("ftypes",'{""Requested Extensions"" {'+file_mask+'} }')
-    arg=arg+' -filetypes $ftypes',
+    arg=arg+' -filetypes $ftypes'
   end
-   if exists('path','local')==1 then 
-   	path=pathconvert(path,%f,%t,'w')
-    	if MSDOS then
+  if exists('path','local')==1 then 
+   	if MSDOS then
     		path=pathconvert(path,%f,%t,'w')
     		path=strsubst(path,"\","/")
     		if strindex(path,' ')<>[] then
@@ -21,7 +20,7 @@ function p=tk_getfile(file_mask,path,title,foo)
     		if strindex(path,' ')<>[] then path='""'+path+'""',end
     		arg=arg+' -initialdir  ""'+path +'""'
     	end
-    else
+  else
       	if MSDOS then
     		global %tk_getfile_defaultpath
     		if exists('%tk_getfile_defaultpath','global') == 1 then
@@ -29,7 +28,7 @@ function p=tk_getfile(file_mask,path,title,foo)
     			arg=arg+' -initialdir  ""'+%tk_getfile_defaultpath +'""'
     		end
     	end
-    end
+  end
   if exists('title','local')==1 then 
     arg=arg+' -title ""'+title+'""',
   end
