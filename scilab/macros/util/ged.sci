@@ -37,6 +37,8 @@ function ged(k,win)
       TK_EvalStr('set '+bluname+" "+string(int(255*f.color_map(i,3))));
     end
     
+    //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
+
     ged_figure(gcf())
     case 5 then //edit current axes
     //color_map array for color sample display
@@ -73,7 +75,16 @@ endfunction
 
 function ged_axes(h)
   global ged_handle;ged_handle=h;
- 
+  ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic"...
+	 "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica  Italic"...
+	 "Helvetica Bold" "Helvetica Bold Italic"];
+  TK_SetVar("Xlabelpos",h.x_location)
+  TK_SetVar("Ylabelpos",h.y_location)
+  TK_SetVar("Xlabelfontstyle",ged_fontarray(h.x_label.font_style+1))
+  TK_SetVar("Ylabelfontstyle",ged_fontarray(h.y_label.font_style+1))
+  TK_SetVar("Zlabelfontstyle",ged_fontarray(h.z_label.font_style+1))
+  TK_SetVar("TITLEfontstyle",ged_fontarray(h.title.font_style+1))
+  TK_SetVar("fontstyle",ged_fontarray(h.font_style+1))
   TK_SetVar("msdos",string(MSDOS))
   TK_SetVar("xlabel",h.x_label.text)
   TK_SetVar("ylabel",h.y_label.text)
@@ -121,6 +132,7 @@ function ged_axes(h)
     TK_SetVar("zGrid",string(h.grid(3)))
     TK_SetVar("dbxmin",string(h.data_bounds(1,1)))
     TK_SetVar("dbymin",string(h.data_bounds(1,2)))
+    TK_SetVar("dbzmin",string(h.data_bounds(1,3)))
     TK_SetVar("dbxmax",string(h.data_bounds(2,1)))
     TK_SetVar("dbymax",string(h.data_bounds(2,2)))
     TK_SetVar("dbzmax",string(h.data_bounds(2,3)))
@@ -132,11 +144,33 @@ function ged_rectangle(h)
   global ged_handle; ged_handle=h
 
   f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
+  ax=h;while stripblanks(ax.type)<>"Axes" then ax=ax.parent,end
   TK_SetVar("ncolors",string(size(f.color_map,1)))
   TK_SetVar("curcolor",string(h.foreground))
   TK_SetVar("curthick",string(h.thickness))
   TK_SetVar("curvis",h.visible)
-  TK_SetVar("curstyle",string(h.line_style))
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
+  TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+  ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" "diamond" "triangle up" "triangle down" "trefle" "circle"];
+  TK_SetVar("curmarkstyle",ged_markstylearray(h.mark_style+1))
+  TK_SetVar("curmarkmode",h.mark_mode)
+  // Rectangle data
+   select ax.view
+    case "2d" 
+    ax.view='3d'
+    TK_SetVar("Xval",string(h.data(1)))
+    TK_SetVar("Yval",string(h.data(2)))
+    TK_SetVar("Zval",string(h.data(3)))
+    TK_SetVar("Wval",string(h.data(4)))
+    TK_SetVar("Hval",string(h.data(5)))
+    ax.view='2d'
+    case "3d"
+    TK_SetVar("Xval",string(h.data(1)))
+    TK_SetVar("Yval",string(h.data(2)))
+    TK_SetVar("Zval",string(h.data(3)))
+    TK_SetVar("Wval",string(h.data(4)))
+    TK_SetVar("Hval",string(h.data(5)))
+  end
   TK_EvalFile(SCI+'/tcl/ged/Rectangle.tcl')
 endfunction
 
@@ -147,7 +181,14 @@ function ged_polyline(h)
     TK_SetVar("curcolor",string(h.foreground))
     TK_SetVar("curthick",string(h.thickness))
     TK_SetVar("curvis",h.visible)
-    TK_SetVar("curstyle",string(h.polyline_style))
+
+    ged_polylinestylearray=["interpolated" "staircase" "barplot" "arrowed" "filled"];
+    TK_SetVar("curpolylinestyle",ged_polylinestylearray(max(h.polyline_style,1)))
+    ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"];
+    TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+    ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" "diamond" "triangle up" "triangle down" "trefle" "circle"];
+    TK_SetVar("curmarkstyle",ged_markstylearray(h.mark_style+1))
+    TK_SetVar("curmarkmode",h.mark_mode)
     TK_SetVar("nbrow",string(size(h.data,1)))
     // pass the data matrix
     for i=1:size(h.data,1)
@@ -382,7 +423,12 @@ function setLineStyle(sty)
 		    "bigdash dot" "bigdash longdash"])
   
 endfunction
-
+function setMarkStyle(sty)
+  global ged_handle; h=ged_handle
+  h.mark_style=find(sty==["dot" "plus" "cross" "star" "diamond fill" ..
+                    "diamond" "triangle up" "triangle down" "trefle" "circle"])-1
+   
+endfunction
 function setFontStyle(ftn)
   global ged_handle; h=ged_handle
   h.font_style=find(ftn==["Courier" "Symbol" "Times",..
@@ -419,6 +465,7 @@ end;
 endfunction
 
 
+// Axes data (data_bounds)
 function setXdb(xmin, xmax)
   global ged_handle; h=ged_handle
   tmp=h.data_bounds;
@@ -513,3 +560,97 @@ end
 haxe = htmp;
 endfunction
 
+
+
+
+// Rectangle data
+function setXval(val)
+  global ged_handle; h=ged_handle
+  tmp=h.data;
+  tmp(1)=val;
+  tst=execstr('h.data=tmp','errcatch','n');
+  if tst<>0 then
+   disp 'Warning: Y data must contain double'
+  end
+endfunction
+
+function setYval(val)
+  global ged_handle; h=ged_handle
+  tmp=h.data;
+  tmp(2)=val;
+  tst=execstr('h.data=tmp','errcatch','n');
+  if tst<>0 then
+   disp 'Warning: Y data must contain double'
+  end
+endfunction
+
+function setZval(val)
+  global ged_handle; h=ged_handle
+  ax=getparaxe(h);
+ select ax.view
+     case "2d"
+      ax.view='3d';
+      tmp=h.data;
+      tmp(3)=val;
+      tst=execstr('h.data=tmp','errcatch','n');
+      ax.view='2d';
+      if tst<>0 then
+       disp 'Warning: Z data must contain double'
+      end
+     case "3d"
+      tmp=h.data;
+      tmp(3)=val;
+      tst=execstr('h.data=tmp','errcatch',n');
+      if tst<>0 then
+        disp 'Warning: Z data must contain double'
+      end
+     end
+endfunction
+
+
+function setWval(val)
+  global ged_handle; h=ged_handle
+ ax=getparaxe(h);
+ select ax.view
+     case "2d"
+      ax.view='3d';
+      tmp=h.data;
+      tmp(4)=val;
+      tst=execstr('h.data=tmp','errcatch','n');
+      ax.view='2d';
+      if tst<>0 then
+       disp 'Warning: Width data must contain double'
+      end
+     case "3d"
+      tmp=h.data;
+      tmp(4)=val;
+      tst=execstr('h.data=tmp','errcatch',n');
+      if tst<>0 then
+        disp 'Warning: Width data must contain double'
+      end
+     end
+endfunction
+
+
+function setHval(val)
+  global ged_handle; h=ged_handle
+ ax=getparaxe(h);
+ select ax.view
+     case "2d"
+      ax.view='3d';
+      tmp=h.data;
+      tmp(5)=val;
+      tst=execstr('h.data=tmp','errcatch','n');
+      ax.view='2d';
+      if tst<>0 then
+       disp 'Warning: Height data must contain double'
+      end
+     case "3d"
+      tmp=h.data;
+      tmp(5)=val;
+      tst=execstr('h.data=tmp','errcatch',n');
+      if tst<>0 then
+        disp 'Warning: Height data must contain double'
+      end
+     end
+endfunction
