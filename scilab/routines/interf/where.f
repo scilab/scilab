@@ -2,9 +2,10 @@
 c     extrait l'arbre d'appel de l'instruction courante
 c     cette routine est issue de la fin du sous programme error
 c     Copyright INRIA
+c     Revised and corrected by Francois VOGEL, July 2004 (bug 908)
       include '../stack.h'
       integer iadr,sadr
-      integer p,lpts(6),lcts,r,vol
+      integer p,lpts(6),lcts,r,vol,rios
       logical first
 
       iadr(l)=l+l-1
@@ -23,6 +24,7 @@ c     preserve datas
       call icopy(6,lpt,1,lpts,1)
       lcts=lct(8)
       p=pt
+      rios=rio
 
 c     initialize
       
@@ -118,6 +120,7 @@ c
 c
  1005    p=p-1
          if(rstk(p).ne.902) goto 1005
+         rio=pstk(p)
          goto 1001
       else
 c     pause
@@ -145,6 +148,7 @@ c     pause
 c     restaure datas
  1010 call icopy(6,lpts,1,lpt,1)
       lct(8)=lcts
+      rio=rios
 c     create return variables
       ill=il0
       ll=sadr(ill+4)
