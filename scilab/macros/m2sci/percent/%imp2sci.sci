@@ -20,6 +20,9 @@ if size(tree.operands)==2 then
     set_infos("One operand is an empty matrix in : "+expression2code(tree)+", result set to []",1);
     tree=Cste([])
     tree.dims=list(1,0)
+  elseif not_empty(A) & not_empty(B) then
+    tree.out(1).dims=list(1,Unknown)
+    tree.out(1).type=Type(Double,Real)
   else
     tree=Funcall("mtlb_imp",1,list(A,B),tree.out)
     tree.lhs(1).dims=list(1,Unknown)
@@ -39,6 +42,9 @@ else
     set_infos("One operand is an empty matrix in : "+expression2code(tree)+", result set to []",1);
     tree=Cste([])
     tree.dims=list(1,0)
+  elseif not_empty(A) & not_empty(B) & not_empty(inc) then
+    tree.out(1).dims=list(1,Unknown)
+    tree.out(1).type=Type(Double,Real)
   else
     tree=Funcall("mtlb_imp",1,list(A,inc,B),tree.out)
     tree.lhs(1).dims=list(1,Unknown)
