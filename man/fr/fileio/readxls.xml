@@ -48,8 +48,17 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-   // Add here scilab instructions and comments
-  ]]></EXAMPLE>
+    Sheets = readxls('SCI/demos/excel/t1.xls')
+    // some basic operations on Sheets
+    typeof(Sheets)
+    s1=Sheets(1) //get the first sheet
+    typeof(s1)
+    s1.value //get the first sheet value field
+    s1.text  //get the first sheet text field
+    s1(2,:)  //get the 2 row of the sheet
+    typeof(s1(2,:))
+
+ ]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>xls_open</LINK> </SEE_ALSO_ITEM>

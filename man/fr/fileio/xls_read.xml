@@ -70,9 +70,15 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-   // Add here scilab instructions and comments
+   //Decode ole file, extract and open Excel stream
+    [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/demos/excel/Test1.xls')
+    //Read first data sheet
+    [Value,TextInd] = xls_read(fd,Sheetpos(1))
+    //close the excel stream
+    mclose(fd)
   ]]></EXAMPLE>
 
+ 
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>xls_open</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>readxls</LINK> </SEE_ALSO_ITEM>
