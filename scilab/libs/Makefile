@@ -32,7 +32,8 @@ sun.def \
 system.def \
 system2.def \
 wsci.def \
-xdr.def 
+xdr.def \
+slicot.def 
 
 all : $(DEFS)
 
