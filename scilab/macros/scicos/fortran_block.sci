@@ -41,9 +41,9 @@ case 'set' then
       model.sim(1)=funam
       model.rpar=rpar
       label(2)=tt
-      arg1.model=model
+      x.model=model
       graphics.exprs=label
-      arg1.graphics=graphics
+      x.graphics=graphics
       break
     end
   end

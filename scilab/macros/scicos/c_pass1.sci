@@ -214,13 +214,13 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 	  funam=o.model.sim(1)
 	  if ~c_link(funam) then
 	    tt=o.graphics.exprs(2);
-	    [ok]=do_forcomlink(funam,tt)
+	    [ok]=scicos_block_link(funam,tt,'f')
 	  end
         elseif int(o.model.sim(2)/1000)==2 then   //C block
 	  funam=o.model.sim(1)
 	  if ~c_link(funam) then
 	    tt=o.graphics.exprs(2);
-	    [ok]=do_ccomlink(funam,tt)
+	    [ok]=scicos_block_link(funam,tt,'c')
 	  end
 	end
       end

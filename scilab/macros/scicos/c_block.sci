@@ -13,9 +13,6 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1
-//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-//  model=arg1(3);graphics=arg1(2);
-//  label=graphics(4);
  model=arg1.model;graphics=arg1.graphics;
  label=graphics.exprs;
   while %t do
@@ -33,26 +30,19 @@ case 'set' then
     i=int(i(:));ni=size(i,1);
     o=int(o(:));no=size(o,1);
     tt=label(2);
-    //if model(1)(1)<>funam|size(model(2),'*')<>size(i,'*')..
-    //	|size(model(3),'*')<>size(o,'*') then
-      if model.sim(1)<>funam|size(model.in,'*')<>size(i,'*')..
-    	|size(model.out,'*')<>size(o,'*') then
+    if model.sim(1)<>funam|size(model.in,'*')<>size(i,'*')..
+	  |size(model.out,'*')<>size(o,'*') then
       tt=[]
     end
     [ok,tt]=CFORTR(funam,tt,i,o)
     if ~ok then break,end
     [model,graphics,ok]=check_io(model,graphics,i,o,[],[])
     if ok then
-  //    model(1)(1)=funam
-  //    model(8)=rpar
       model.sim(1)=funam
       model.rpar=rpar
       label(2)=tt
-      //x(3)=model
       x.model=model
-     // graphics(4)=label
       graphics.exprs=label
-      //x(2)=graphics
       x.graphics=graphics
       break
     end

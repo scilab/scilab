@@ -41,7 +41,7 @@ if tt==[] then
 
       if txt<>[] then
 	tt=txt
-	[ok]=do_forcomlink(funam,tt)
+	[ok]=scicos_block_link(funam,tt,'f')
 	if ok then
 	  textmp=txt;
 	end

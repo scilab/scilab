@@ -65,7 +65,7 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
 	cos2cosf.sci changeports.sci update_redraw_obj.sci do_copy_region.sci\
 	do_delete_region.sci do_context.sci scs_show.sci generic_block.sci \
 	do_rename.sci message.sci dialog.sci fortran_block.sci\
-	do_forcomlink.sci do_zoomin.sci do_zoomout.sci do_ccomlink.sci\
+	scicos_block_link.sci do_zoomin.sci do_zoomout.sci \
 	c_block.sci do_load_as_palette.sci do_options.sci \
 	enablemenus.sci disablemenus.sci \
 	get_region.sci do_region2block.sci get_rectangle.sci \

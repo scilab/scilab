@@ -4,7 +4,7 @@ ni=size(inp,'*')
 no=size(out,'*')
 if tt==[] then
 
-  tete1=['#include <machine.h>';...
+  tete1=['#include <machine.h>';'#include <math.h>';...
 	  'void '+funam+'(flag,nevprt,t,xd,x,nx,z,nz,tvec,';..
       '             ntvec,rpar,nrpar,ipar,nipar']
 
@@ -49,7 +49,7 @@ if tt==[] then
 
       if txt<>[] then
 	tt=txt
-	[ok]=do_ccomlink(funam,tt)
+	[ok]=scicos_block_link(funam,tt,'c')
 	if ok then
 	  textmp=txt;
 	end
