@@ -17,10 +17,10 @@
 
 #define csiz 63  
 #define bsiz 4096  
-#define isizt 2048
-#define psiz 256  
+#define isizt 4096
+#define psiz 2048
 #define nsiz 6  
-#define lsiz 16384 
+#define lsiz 65536
 #define nlgh nsiz*4  
 #define vsiz 2 
 #define intersiz 60
