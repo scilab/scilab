@@ -46,6 +46,7 @@ extern int getpid();
 #include "All-extern-x1.h"
 #include "../graphics/bcg.h"
 
+
 extern Widget initColors  __PARAMS((Widget));  
 extern Window GetBGWindowNumber __PARAMS((int));
 extern void DisplayInit __PARAMS((char *string,Display **dpy,Widget *toplevel));
@@ -147,9 +148,7 @@ int IsCloseSGWindow(event)
 
 #define DEFAULT_MES "graphic window"
 
-static int AddNewWin( popupc, ScilabXgc)
-     int popupc;
-     struct BCG *ScilabXgc;
+static int AddNewWin( int popupc,   struct BCG *ScilabXgc)
 {
   Widget bbox,color;
   Widget outer,zoom,rot3d,unzoom,sel,menuform;
@@ -361,9 +360,8 @@ extern void sci_pixmap_resize(struct BCG *Xgc,int x,int y);
 
 /* ARGSUSED */
 
-void ViewportCallback(w, scigc_ptr, report_ptr)
-     Widget w;
-     XtPointer scigc_ptr, report_ptr;
+
+void ViewportCallback(Widget w,XtPointer scigc_ptr, XtPointer report_ptr)
 {
   Dimension cwidth,cheight,clwidth,clheight,gwidth,gheight;
   ViewportWidget viewpw = (  ViewportWidget ) w;
@@ -375,8 +373,10 @@ void ViewportCallback(w, scigc_ptr, report_ptr)
   struct BCG *ScilabXgc = ((struct BCG *) scigc_ptr);
   Widget panner = ScilabXgc->Panner;
   
+
   if ( ScilabXgc->CurResizeStatus  == 0) 
     {
+
       XtSetArg (args[n], XtNsliderX, report->slider_x); n++;
       XtSetArg (args[n], XtNsliderY, report->slider_y); n++;
       if (report->changed != (XawPRSliderX | XawPRSliderY)) {
@@ -427,6 +427,7 @@ void ViewportCallback(w, scigc_ptr, report_ptr)
       /** here the graphic window must follow the window size **/
       /** try to resize the child region if necessary **/
       /** Hope this won't create a loop in ViewportCallback **/
+
       iargs = 0 ;
       XtSetArg (args[iargs], XtNwidth, &cwidth ); iargs++;
       XtSetArg (args[iargs], XtNheight, &cheight); iargs++;
@@ -441,14 +442,24 @@ void ViewportCallback(w, scigc_ptr, report_ptr)
 	  XtResizeWidget(ScilabXgc->drawbox,clwidth,clheight,0);
 	  ScilabXgc->CWindowWidth  = clwidth;
 	  ScilabXgc->CWindowHeight = clheight;
-	  /* if necessary we must resize the pixmap */
-	  if (ScilabXgc->Cdrawable != (Drawable) ScilabXgc->CWindow ) 
-	    {
-	      /* sci_pixmap_resize(ScilabXgc,ScilabXgc->CWindowWidth, ScilabXgc->CWindowHeight);*/
-	      scig_resize(ScilabXgc->CurWindow); 
-
-	    }
 	  XtResizeWidget(child,clwidth,clheight,0);
+	  /* if necessary we must resize the pixmap */
+	  if (ScilabXgc->Cdrawable != (Drawable) NULL) /* ScilabXgc->CWindow ) */
+	    {
+	      /* here the best stuff to do is a scig_resize 
+	       * scig_resize(ScilabXgc->CurWindow); 
+	       * unfortunately this callback is called too 
+	       * frequently when resizing and scig_resize can be slow 
+	       * thus we just resize the window pixmap 
+	       * and set a flag.
+	       * Thus the last expose will have to properly redraw the window
+	       */
+	      /* will be done by expose 
+		 sci_pixmap_resize(ScilabXgc,ScilabXgc->CWindowWidth, 
+		 ScilabXgc->CWindowHeight);
+	      */
+	      ScilabXgc->Cdrawable_flag=1;
+	    }
 	  n=0;
 	  XtSetArg (args[n], XtNsliderWidth, clwidth); n++;
 	  XtSetArg (args[n], XtNsliderHeight,clheight); n++;
@@ -532,7 +543,7 @@ void GViewportResize(ScilabXgc,width,height)
       /** Resizing the widget used for graphics **/
       XtResizeWidget(ScilabXgc->drawbox ,Width,Height,0);
       /** and if necessary its associated pixmap **/
-      if (ScilabXgc->Cdrawable != (Drawable) ScilabXgc->CWindow ) 
+      if (ScilabXgc->Cdrawable != (Drawable) 0 ) /* ScilabXgc->CWindow ) */
 	{
 	  sci_pixmap_resize(ScilabXgc,Width,Height);
 	}
@@ -597,7 +608,7 @@ void GViewportResize(ScilabXgc,width,height)
       XtSetArg (args[iargs], XtNheight,clheight); iargs++;
       XtSetValues (ScilabXgc->popup, args, iargs);
       /** And now if necessary resize the pixmap associated to the drawbox **/
-      if (ScilabXgc->Cdrawable != (Drawable) ScilabXgc->CWindow ) 
+      if (ScilabXgc->Cdrawable != (Drawable) 0 ) /* ScilabXgc->CWindow ) */
 	{
 	  /** get new sizes of the drawbox **/
 	  iargs =0;
@@ -632,6 +643,24 @@ void GPopupResize(ScilabXgc,width,height)
  * xclick wants them ( xclick(1)) 
  */
 
+
+#ifdef  EPDEBUG
+#define FDEBUG(x) fprintf x 
+#else 
+#define FDEBUG(x) 
+#endif 
+
+
+static void ignore_events( Widget widget, XEvent *event2,long mask )
+{
+  while (XCheckWindowEvent(XtDisplay(widget),XtWindow(widget),mask ,event2)==True)
+    { 
+      FDEBUG((stderr,"inside ignore_events count = %d\n",((XExposeEvent *) event2)->count));
+    }
+}
+
+
+
 typedef struct but {
   int win,x,y,ibutton,motion,release;
 } But;
@@ -641,10 +670,7 @@ static But ClickBuf[MaxCB];
 static int lastc = 0;
 
 static XtEventHandler
-EventProc(widget, number, event)
-     Widget widget;
-     XtPointer number;
-     XEvent *event;
+EventProc( Widget widget, XtPointer number, XEvent *event)
 {
   XEvent event2;
 
@@ -657,13 +683,8 @@ EventProc(widget, number, event)
   switch (event->type) 
     {
     case  MotionNotify:
-      /* printf("XXXJe suis ds EventProc Motion Notify, fenetre %d\r\n",(integer) number); */
-      /* is the next while requested ? */
-      while (XCheckWindowEvent(XtDisplay(widget),XtWindow(widget),
-			       ExposureMask,&event2)==True)
-	{ 
-	  /* fprintf(stderr,"Expose qui suivent le ConfigureNotify : count = %d\n", ((XExposeEvent *) &event2)->count); */
-	}
+      FDEBUG((stderr,"EventProc: MotionNotify window=%d\n",(integer) number));
+      ignore_events(widget,&event2, ExposureMask) ;
       PushClickQueue((int) number,event->xbutton.x,
 		     event->xbutton.y,
 		     -1,1,0);
@@ -693,7 +714,6 @@ EventProc(widget, number, event)
 
 		     break;*/
     default:
-      /* printf("XXXJe suis ds EventProc defaut, fenetre %d\r\n",(integer) number);*/
       return(0);
     }
   return(0);
@@ -844,81 +864,73 @@ int ClearClickQueue(win)
 /*******************************************************
  * StructureNotifyMask | ExposureMask  Handler for graphic windows
  *******************************************************/
-#ifdef DEBUG
-#define FDEBUG(x) fprintf x 
+
+#ifdef  EP1DEBUG
+#define FDEBUG_EP1(x) fprintf x 
 #else 
-#define FDEBUG(x) 
+#define FDEBUG_EP1(x) 
 #endif 
 
-void ignore_expose(widget,event2) 
-     Widget widget;
-     XEvent *event2;
-{
-  while (XCheckWindowEvent(XtDisplay(widget),XtWindow(widget), ExposureMask,event2)==True)
-    { 
-      FDEBUG((stderr,"Expose ignores : count = %d\n",((XExposeEvent *) event2)->count));
-    }
-}
-void ignore_StructureNotify(widget,event2) 
-     Widget widget;
-     XEvent *event2;
-{
-  while (XCheckWindowEvent(XtDisplay(widget),XtWindow(widget), StructureNotifyMask,event2)==True)
-    { 
-      FDEBUG((stderr,"StructureNotify ignores : count = %d\n",((XExposeEvent *) event2)->count));
-    }
-}
 
-static XtEventHandler
-EventProc1(widget, number, event)
-     Widget widget;
-     XtPointer number;
-     XEvent *event;
+static XtEventHandler 
+EventProc1( Widget widget,  XtPointer number,  XEvent *event)
 {
   XEvent event2;
   integer win_num= (integer) number;
   XExposeEvent *event1;
+#ifdef EP1DEBUG
+  static int counter=0;
+  counter++;
+#endif 
   switch (event->type) 
     {
     case Expose :
       /** Expose events **/
       event1= (XExposeEvent *) event;
-      FDEBUG((stderr,"Expose Event : count %d x %d y %d width %d height %d\n",
-	      event1->count ,event1->x,event1->y,event1->width,event1->height));
+      /* 
+	 FDEBUG_EP1((stderr,"EventProc1: Expose: count %d x %d y %d width %d height %d\n",
+	 event1->count ,event1->x,event1->y,event1->width,event1->height));
+      */
       if ( event1->count == 0) 
 	{
-	  FDEBUG((stderr,"Expose--> scig_replay or wshow \r\n")); 
-	  scig_expose(win_num);
-	  ignore_expose(widget,&event2);
-	}
+	  struct BCG *SciGc =  GetWindowXgcNumber(win_num );
+	  if ( SciGc->Cdrawable_flag ==  1) 
+	    {
+	      FDEBUG_EP1((stderr,"EventProc1: Expose: --> scig_resize %d \r\n",counter)); 
+	      SciGc->Cdrawable_flag = 0;
+	      scig_resize(win_num);
+	    }
+	  else 
+	    {
+	      FDEBUG_EP1((stderr,"EventProc1: Expose: --> scig_expose %d \r\n",counter)); 
+	      scig_expose(win_num);
+	    }
+	  ignore_events(widget,&event2, ExposureMask | StructureNotifyMask) ;
+      	}
       break;
     case VisibilityNotify :
       /* We should get there only if server does not performs save_under */
-      FDEBUG((stderr,"XXX Visibility change\n"));
+      FDEBUG_EP1((stderr,"EventProc1: VisibilityNotify\n"));
       break;
     case ConfigureNotify :
-      FDEBUG((stderr,"XXX Configure\n"));
-      if (version_flag() == 0) /* NG */
-       sciRedrawF(&win_num); /* NG */
-      else /* NG */
-      scig_replay(win_num);
+      FDEBUG_EP1((stderr,"EventProc1: ConfigureNotify %d \n",counter));
+      scig_resize(win_num);
       /** I ignore the following expose events **/
-      ignore_expose(widget,&event2);
-      ignore_StructureNotify(widget,&event2);
+      ignore_events(widget,&event2, ExposureMask | StructureNotifyMask);
       break; 
     case CreateNotify  :
-      FDEBUG((stderr,"XXX: CreateNotify\r\n"));
+      FDEBUG_EP1((stderr,"EventProc1: CreateNotify\r\n",counter));
       break ;
     case MapNotify : 
-      FDEBUG((stderr,"XXX: MapNotify\r\n")); 
+      FDEBUG_EP1((stderr,"EventProc1: MapNotify\r\n",counter)); 
       /** I ignore the Expose after MapNotify **/
-      ignore_expose(widget,&event2);
+      ignore_events(widget,&event2, ExposureMask );
       break;
     case ReparentNotify :
-      FDEBUG((stderr,"XXX: ReparentNotify\r\n"));
+      FDEBUG_EP1((stderr,"EventProc1: ReparentNotify\r\n"));
       break;
     default:
-      FDEBUG((stderr,"XXX: defautl,Je suis ds EventProc1 fenetre %d %d\r\n",event->type,(int) win_num));
+      FDEBUG_EP1((stderr,"EventProc1: default, event=%d window=%d\r\n",event->type,(int) win_num));
       return(0);
     }
   return(0);

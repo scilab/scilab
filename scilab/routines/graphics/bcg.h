@@ -146,6 +146,7 @@ typedef struct BCG
 #else 
   /** Xwindow specific objects **/
   Drawable Cdrawable ; /** The drawable = CWindow or a Pixmap */
+  int  Cdrawable_flag ; /** Cdrawable is not synchronized with graphics when == 1  */
   Widget CinfoW ;  /** info widget of graphic window **/
   Widget Viewport; /** Viewport for graphic window **/
   Widget Panner ;  /** Panner widget **/

@@ -156,7 +156,7 @@ static int ReallocVector  __PARAMS((int));
 static void DrawMark(integer *x, integer *y),LoadFonts(void), LoadSymbFonts(void), C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore);
 static void DrawMark(integer *x, integer *y), My2draw(integer j, integer *vx, integer *vy), MyDraw(integer iib, integer iif, integer *vx, integer *vy), change_points(integer i, integer x, integer y);
 static void C2F(loadfamily_n)(char *name, integer *j);
-static void PixmapClear   __PARAMS((int x,int y,int w,int h));
+static void PixmapClear   __PARAMS((struct BCG *Xgc,int x,int y,int w,int h));
 static void xset_colormap __PARAMS((integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *a));
 static void xset_dashstyle __PARAMS((integer *v1,integer *v2,integer *v3));
 
@@ -168,6 +168,8 @@ static xset_f xset_pixmapOn,xset_wresize,xset_background,xset_foreground,xset_hi
 static xset_f xset_unclip,xset_font,xset_usecolor,xset_mark,xset_pixmapclear,xset_show,xset_dash_or_color;
 static xset_f xset_scilabxgc,xset_scilabVersion;/* NG */
 static void xset_scilabFigure(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure);
+static void xset_alufunction2(struct BCG *Xgc,integer *num, integer *v2, integer *v3, integer *v4);
+
 /* declaration for xget('name',...) functions */
 typedef void (xget_f) __PARAMS((integer *verbose, integer *x,integer *narg, double *dummy));
 static xget_f xget_windowpos,xget_windowdim,xget_popupdim,xget_viewport,xget_curwin ,xget_clip;
@@ -225,7 +227,7 @@ static void xset_pixmapclear(integer *v1, integer *v2, integer *v3, integer *v4)
   /** Un clip zone (rectangle ) **/
   XSetClipMask(dpy,gc,None);
   XGetWindowAttributes(dpy,ScilabXgc->CWindow,&war); 
-  PixmapClear(0,0,war.width,war.height);
+  PixmapClear(ScilabXgc,0,0,war.width,war.height);
   /** Restore the  clip zone (rectangle ) **/
   if ( ScilabXgc->ClipRegionSet == 1) 
     {
@@ -270,7 +272,7 @@ void sci_pixmap_resize(struct BCG *Xgc,int x,int y)
     sciprint("No more space to create Pixmaps\r\n");
   else
     {
-      PixmapClear(0,0,x,y);
+      PixmapClear(Xgc,0,0,x,y);
       XSetWindowBackgroundPixmap(dpy, Xgc->CWindow,(Pixmap) Xgc->Cdrawable);
     }
   /*}*/
@@ -287,18 +289,15 @@ void CPixmapResize(int x, int y)
  * Pixmap clear : 
  */
 
-static void PixmapClear(int x, int y, int w, int h)
+static void PixmapClear(struct BCG *Xgc,int x, int y, int w, int h)
 {
   /* switch to a clear gc */
-  int cur_alu = ScilabXgc->CurDrawFunction;
+  int cur_alu = Xgc->CurDrawFunction;
   int clear = GXclear;
-  xset_alufunction1(&clear,PI0,PI0,PI0);
-  if (ScilabXgc->Cdrawable != (Drawable) 0) XFillRectangle(dpy, ScilabXgc->Cdrawable, gc, x,y,w,h);
-  /*  if (ScilabXgc->CurPixmapStatus != 1) 
-      XFillRectangle(dpy, (Drawable) ScilabXgc->CWindow, gc, x,y,w,h);*/
-
+  xset_alufunction2(Xgc,&clear,PI0,PI0,PI0);
+  if (Xgc->Cdrawable != (Drawable) 0) XFillRectangle(dpy, Xgc->Cdrawable, gc, x,y,w,h);
   /* back to standard value */
-  xset_alufunction1(&cur_alu,PI0,PI0,PI0);
+  xset_alufunction2(Xgc,&cur_alu,PI0,PI0,PI0);
 }
 
 /* 
@@ -690,7 +689,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 void C2F(cleararea)(char *str, integer *x, integer *y, integer *w, integer *h, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   if (ScilabXgc->Cdrawable != (Drawable) 0 ) 
-      PixmapClear(*x,*y,*w,*h);
+      PixmapClear(ScilabXgc,*x,*y,*w,*h);
   if (ScilabXgc->CurPixmapStatus != 1) 
     XClearArea(dpy,ScilabXgc->CWindow,(int)*x,(int) *y,(unsigned) *w,
 	       (unsigned) *h,False);
@@ -1075,25 +1074,34 @@ void xset_alufunction(char *string)
   XGCValues gcvalues;
   idfromname(string,&value);
   if ( value != -1)
-    {ScilabXgc->CurDrawFunction = value;
-    gcvalues.function = value;
-    XChangeGC(dpy, gc, GCFunction, &gcvalues);
+    {
+      ScilabXgc->CurDrawFunction = value;
+      gcvalues.function = value;
+      XChangeGC(dpy, gc, GCFunction, &gcvalues);
     }
 }
 
+
 static void xset_alufunction1(integer *num, integer *v2, integer *v3, integer *v4)
+{
+  xset_alufunction2(ScilabXgc,num,v2,v3,v4);
+}
+
+
+
+static void xset_alufunction2(struct BCG *Xgc,integer *num, integer *v2, integer *v3, integer *v4)
 {     
   integer value;
   XGCValues gcvalues;
   static Pixel pxb,pxf;
-  pxb = (ScilabXgc->Colors == NULL)? DefaultBackground 
-    :  ScilabXgc->Colors[ScilabXgc->NumBackground];
-  pxf = (ScilabXgc->Colors == NULL)? DefaultForeground 
-    :  ScilabXgc->Colors[ScilabXgc->NumForeground];
+  pxb = (Xgc->Colors == NULL)? DefaultBackground 
+    :  Xgc->Colors[Xgc->NumBackground];
+  pxf = (Xgc->Colors == NULL)? DefaultForeground 
+    :  Xgc->Colors[Xgc->NumForeground];
   value=AluStruc_[Min(15,Max(0,*num))].id;
   if ( value != -1)
     {
-      ScilabXgc->CurDrawFunction = value;
+      Xgc->CurDrawFunction = value;
       /* XChangeGC(dpy, gc, GCFunction, &gcvalues); */
       /** Using diff gc **/
       switch (value) 
@@ -1115,11 +1123,11 @@ static void xset_alufunction1(integer *num, integer *v2, integer *v3, integer *v
 	  break;
 	}
       XChangeGC(dpy,gc,(GCFunction|GCForeground|GCBackground), &gcvalues);
-      if ( value == GXxor  && ScilabXgc->CurColorStatus == 1 )
+      if ( value == GXxor  && Xgc->CurColorStatus == 1 )
 	{
 	  /** the way colors are computed changes if we are in Xor mode **/
 	  /** so we force here the computation of current color  **/
-	  set_c(ScilabXgc->CurColor);
+	  set_c(Xgc->CurColor);
 	}
     }
 }
@@ -1444,7 +1452,7 @@ static void xset_pixmapOn(integer *num, integer *v2, integer *v3, integer *v4)
     XGetWindowAttributes(dpy,ScilabXgc->CWindow,&war); 
     ScilabXgc->Cdrawable = (Drawable) XCreatePixmap(dpy,root,war.width,war.height,depth);
     if (ScilabXgc->Cdrawable != (Drawable) 0) {
-      PixmapClear(0,0,war.width,war.height);
+      PixmapClear(ScilabXgc,0,0,war.width,war.height);
       XSetWindowBackgroundPixmap(dpy, ScilabXgc->CWindow, (Pixmap) ScilabXgc->Cdrawable);
     }
     else {
@@ -1466,7 +1474,7 @@ static void xset_pixmapOn(integer *num, integer *v2, integer *v3, integer *v4)
 	XGetWindowAttributes(dpy,ScilabXgc->CWindow,&war); 	
 
 	ScilabXgc->CurPixmapStatus = 1;
-	PixmapClear(0,0,war.width,war.height);
+	PixmapClear(ScilabXgc,0,0,war.width,war.height);
       }
       else /*no pixmap */
 	ScilabXgc->CurPixmapStatus = 0;
@@ -3233,6 +3241,7 @@ static struct BCG *AddNewWindow(WindowList **listptr)
 	  (*listptr)->winxgc.Colors = (Pixel *) 0;
 	  (*listptr)->winxgc.Cmap = (Colormap) 0 ;
 	  (*listptr)->winxgc.CmapFlag  = 1;
+	  (*listptr)->winxgc.Cdrawable_flag = 0; 
 	  (*listptr)->winxgc.EventHandler[0] = '\0';
 	  (*listptr)->next = (struct WindowList *) NULL ;
 	  return(&((*listptr)->winxgc));
