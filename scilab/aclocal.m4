@@ -291,7 +291,7 @@ dirs="$USER_TK_LIB_PATH /lib /usr/lib /usr/lib/tk /usr/lib/tk8.* /shlib /shlib/t
 libexts="so so.1.0 sl dylib a"
 libnames="tk$CHK_TK_MAJ.$CHK_TK_MIN tk.$CHK_TK_MAJ.$CHK_TK_MIN tk$CHK_TK_MAJ$CHK_TK_MIN tk.$CHK_TK_MAJ$CHK_TK_MIN"
 
-TK_PLUS=  $TCL_LIB -lX11
+TK_PLUS="-l$NAME_LIB_TCL -lX11"
 
 case $host_os in
   darwin* | rhapsody*) 
