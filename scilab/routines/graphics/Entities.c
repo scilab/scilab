@@ -7491,7 +7491,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       if (sciSetSelectedSubWin(pobj) != 1) 
 	return (sciPointObj *)NULL; 
       pSUBWIN_FEATURE (pobj)->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
-      /*14/03/2002*/ sciSetCurrentObj (pobj);
+      /*14/03/2002*/ /*sciSetCurrentObj (pobj); */
       return (sciPointObj *)pobj;
     }
   else
@@ -10678,7 +10678,7 @@ sciDrawObj (sciPointObj * pobj)
 	{
 	  if (pSUBWIN_FEATURE (pobj)->isaxes)
 	    {
-	      sciSetCurrentObj (sciGetParent(pobj));
+	      /*  sciSetCurrentObj (sciGetParent(pobj)); F.Leray 25.03.04*/
 	      /* load the object foreground and dashes color */
 	      x[0] = sciGetForeground (pobj);
 	      x[2] = sciGetLineWidth (pobj);
@@ -10734,7 +10734,7 @@ sciDrawObj (sciPointObj * pobj)
       
     case SCI_LEGEND: 
       if (!sciGetVisibility(pobj)) break;
-      sciSetCurrentObj (pobj);	
+      /* sciSetCurrentObj (pobj);	F.Leray 25.03.04*/
       C2F (dr1) ("xget", "dashes", &flagx, &xold[0], &vold, &vold, &vold,
 		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr1) ("xget", "foreground", &flagx, &xold[1], &vold, &vold, &vold,
@@ -10781,7 +10781,7 @@ sciDrawObj (sciPointObj * pobj)
 	    pLEGEND_FEATURE (pobj)->pstyle[i] = 
 	      sciGetForeground(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
 	}
-      sciSetCurrentObj(pobj);
+      /*sciSetCurrentObj(pobj); F.Leray 25.03.04*/
       Legends(pLEGEND_FEATURE (pobj)->pstyle, &(pLEGEND_FEATURE (pobj)->nblegends), sciGetText(pobj));
        
           
@@ -11084,7 +11084,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
     case SCI_POLYLINE: 
       if (!sciGetVisibility(pobj)) break;
 
-      sciSetCurrentObj (pobj);	  
+      /*sciSetCurrentObj (pobj);	  F.Leray 25.03.04 */
       
       itmp[0] = 0;		/* verbose*/
       itmp[1] = 0;		/* thickness value*/
@@ -11225,7 +11225,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       break;
     case SCI_PATCH: 
       if (!sciGetVisibility(pobj)) break;
-      sciSetCurrentObj (pobj);	     
+      /*sciSetCurrentObj (pobj);	     F.Leray 25.03.04 */
 
       itmp[0] = 0;		/* verbose*/
       itmp[1] = 0;		/* thickness value*/
@@ -11283,7 +11283,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       break;
     case SCI_ARC: 
       if (!sciGetVisibility(pobj)) break;
-      sciSetCurrentObj (pobj);	
+      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
       n = 1;
       
      
@@ -11356,7 +11356,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
     case SCI_RECTANGLE:  
       if (!sciGetVisibility(pobj)) break;
 
-      sciSetCurrentObj (pobj);
+      /*sciSetCurrentObj (pobj); F.Leray 25.03.04 */
       n = 1;
       if (sciGetFillStyle(pobj) != 0)
 	{       x[0] = 64;	/*la dash est de la meme couleur que le foreground*/
@@ -11495,7 +11495,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       break;
     case SCI_TEXT: 
       if (!sciGetVisibility(pobj)) break;
-      sciSetCurrentObj (pobj);	
+      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
       n = 1;
       /* load the object foreground and dashes color */
       x[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
@@ -11544,7 +11544,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       break; */
     case SCI_TITLE:
       if (!sciGetVisibility(pobj)) break;
-      sciSetCurrentObj (pobj);       
+      /*sciSetCurrentObj (pobj);       F.Leray 25.03.04*/
       /* load the object foreground and dashes color */
       x[0] = sciGetFontForeground (pobj);
       x[2] = sciGetFontDeciWidth (pobj)/100;
@@ -11641,7 +11641,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 
     case SCI_AXES:
       if (!sciGetVisibility(pobj)) break;
-      sciSetCurrentObj (pobj);	
+      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
     
       /* load the object foreground and dashes color */
       
@@ -11688,7 +11688,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
     case SCI_SURFACE:
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
       if (!sciGetVisibility(pobj)) break;
-      sciSetCurrentObj (pobj);	
+      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04*/
       itmp[0] = 0;		/* verbose*/
       itmp[1] = 0;		/* thickness value*/
       itmp[2] = 1;		/* narg*/
@@ -11882,11 +11882,11 @@ int
 sciSetCurrentObj (sciPointObj * pobj)
 {
   /* pcurrentobj is a static variable */
-  /*if(pcurrentpobj != NULL){
-    sciprint (" \nIN sciSetCurrentObj, BEF setting, *pcurrentpobj = %d\r\n",&(*pcurrentpobj));
-    sciprint (" IN sciSetCurrentObj, BEF setting, *pcurrentpobj->EntityType = %s\r\n\n",sciGetCharEntityType(pcurrentpobj));}
-    else
-    sciprint ("\npcurrentpobj is NULL (Only at the beginning normally)\n");*/
+  /* if(pcurrentpobj != NULL){
+     sciprint (" \nIN sciSetCurrentObj, BEF setting, *pcurrentpobj = %d\r\n",&(*pcurrentpobj));
+     sciprint (" IN sciSetCurrentObj, BEF setting, *pcurrentpobj->EntityType = %s\r\n\n",sciGetCharEntityType(pcurrentpobj));}
+     else
+     sciprint ("\npcurrentpobj is NULL (Only at the beginning normally)\n");*/
   
   pcurrentpobj = pobj;
   /*
@@ -14077,9 +14077,11 @@ void sciSwitchWindow(winnum)
       /*    if ((mafigure = ConstructFigure (CurXGC)) != NULL)*/ /*F.Leray 24.03.04 */
        if ((mafigure = ConstructFigure (CurXGC)) != NULL)
 	{
+	  sciSetCurrentObj (mafigure); /* F.Leray 25.03.04*/
 	  CurXGC->mafigure = mafigure;
           CurXGC->graphicsversion = 1;
 	  if ((masousfen = ConstructSubWin (mafigure, CurXGC->CurWindow)) != NULL) {
+	    sciSetCurrentObj (masousfen);
 	    sciSetOriginalSubWin (mafigure, masousfen);
 	    cf_type=1;/* current figure is a graphic one */
 	  }
@@ -14108,7 +14110,7 @@ void sciRedrawF(value)
   figure= (sciPointObj *) sciIsExistingFigure(value); 
   C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
   C2F (dr) ("xset", "window",value,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
-  sciSetCurrentObj(figure);
+  /*sciSetCurrentObj(figure); F.Leray 25.03.04*/
   sciSetReplay (TRUE);
   sciDrawObj (figure);
   sciSetReplay (FALSE);
@@ -14209,7 +14211,7 @@ int Objmove (hdl,x,y,opt)
   int i;
 
   pobj = (sciPointObj *)sciGetPointerFromHandle(*hdl);
-  sciSetCurrentObj (pobj);
+  /*sciSetCurrentObj (pobj); */ /* Useless*/
   switch (sciGetEntityType (pobj))
     {    
     case SCI_SUBWIN:
@@ -14290,7 +14292,9 @@ int Objmove (hdl,x,y,opt)
   if (opt)
     sciDrawObj(pobj);
   else
-    sciDrawObj(sciGetParentFigure(sciGetCurrentObj ()));
+    sciDrawObj(sciGetParentFigure(pobj));
+    /* sciDrawObj(sciGetParentFigure(sciGetCurrentObj ()));*/
+    
   return 0;
 }
 
