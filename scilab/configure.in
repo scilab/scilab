@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.108 $)dnl
+AC_REVISION($Revision: 1.109 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -222,6 +222,8 @@ echo "end of configuration of libtool"
 
 # suffix of dynamic libraries
 SONAME=so
+
+GCCFIX=
 
 case "$host" in
 # Dec Alpha OSF 4
@@ -567,6 +569,7 @@ case "$host" in
        LD_LDFLAGS="$LIEEELIB"
     else
        GCC=yes
+       GCCFIX=fix.o
        CC=gcc
        CC_OPTIONS='-O -Dlinux -fwritable-strings -DNARROWPROTO'
        CC_LDFLAGS=$LIEEELIB
@@ -1052,8 +1055,8 @@ case "$host" in
     LD=ld
     LD_LDFLAGS=
     if test "$enable_debug" = yes; then 
-      CC_OPTIONS='-g -DSYSV -Dhpux'
-      FC_OPTIONS='-g'
+      CC_OPTIONS='-g -DSYSV -Dhpuxx -Dhppa +Z +DAportable'
+      FC_OPTIONS='-g  +Z +DAportable'
     fi
     # GNU compilers
     if test "$WITH_GCC" = yes; then
@@ -2106,6 +2109,7 @@ AC_SUBST(TERM_NAME)
 AC_SUBST(TERM_LDFLAGS)
 AC_SUBST(JAVASCITARGET)
 AC_SUBST(JAVA_INCL)
+AC_SUBST(GCCFIX)
 AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/sun/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/control/Makefile routines/calelm/Makefile routines/xsci/jpc_SGraph.c  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci  macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile) 
  
 
