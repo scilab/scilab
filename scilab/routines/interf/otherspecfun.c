@@ -1,14 +1,15 @@
 /*
  *   PURPOSE  
  *      Scilab interface onto some special mathematical 
- *      functions, currently only :
+ *      functions, currently:
  *
  *        1/ legendre associated function
  *        2/ beta function (real positive case)
+ *        3/ bessels functions
  *
  *   AUTHOR
- *      Bruno Pincon <Bruno.Pincon@iecn.u-nancu.fr>
- *      Serge Steer Serge.Steer@inria.fr (bessel functions)
+ *      Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr> (legendre, beta)
+ *      Serge Steer <Serge.Steer@inria.fr> (bessel)
  *             
  */
 #include <string.h> /*pour strcmp */
@@ -21,9 +22,9 @@
 #define max(a,b) ((a) < (b) ? (b) : (a))
 
 
-#if WIN32
-extern int F2C(dxlegf)();
-#endif
+/* #if WIN32 */
+/* extern int F2C(dxlegf)(); */
+/* #endif */
 
 /* fortran functions headers */
 double F2C(dgamma)(double *);
@@ -57,6 +58,9 @@ static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax)
    *       regularly spaced with increment equal to 1 (if yes return 1
    *       if not return 0)
    *    2/ computes the min and the max
+   *
+   *    AUTHOR 
+   *       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
    */
   int i;
   if ( ! (floor(x[0]) == x[0]  &&  x[0] >= 0 ))
@@ -72,6 +76,9 @@ static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax)
 
 static double return_an_inf()
 {
+   /*    AUTHOR 
+    *       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
+    */
   static int first = 1;
   static double inf = 1.0;
 
@@ -102,10 +109,12 @@ static int intlegendre(char *fname)
    *
    *      norm_flag : optionnal. When it is present and equal to "norm"
    *                  it is a normalised version which is computed
-    */
+   *    AUTHOR 
+   *       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
+   */
   int it, lc, mM, nM, lM, m1, m2, mN, nN, lN, n1, n2, mx, nx, lx, mnx, ms, ns, ls;
   int M_is_scalar = 0, N_is_scalar = 0, normalised, MNp1, lpqa, lipqa, *ipqa;
-  double *x,/* theta,*/ xx, dnu1, *pqa;
+  double *x, xx, dnu1, *pqa;
   int id, ierror, i, j, nudiff;
 
   CheckLhs(1,1); CheckRhs(3,4);
@@ -230,6 +239,9 @@ static int intbeta(char *fname)
    *
    *   The switch limit have been set by using the gp-pari software.
    *
+   *    AUTHOR 
+   *       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
+   *
    */
   int mx, nx, itx, lx, lxc, my, ny, ity, ly, lyc,/* it,*/ lz, i;
   double *x, *y, *z, xpy;
@@ -241,7 +253,7 @@ static int intbeta(char *fname)
   CheckSameDims(1,2,mx,nx,my,ny);
   if ( itx == 1  ||  ity == 1 )
     {
-      Scierror(999,"%s: beta doesn't work for complex arguments \r\n", fname);
+      Scierror(999,"%s don't work for complex arguments \r\n", fname);
       return 0;
     };
 
@@ -251,7 +263,7 @@ static int intbeta(char *fname)
     {
       if ( x[i] <= 0.0  ||  y[i] <= 0.0 )
 	{
-	  Scierror(999,"%s: arguments must be positive");
+	  Scierror(999,"%s: arguments must be positive \r\n", fname);
 	  return 0;
 	}
       xpy = x[i] + y[i];
