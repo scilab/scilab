@@ -3,7 +3,11 @@
      *   RT, NRT, JROOT)
 C
 C***BEGIN PROLOGUE  DDASKR
-C***DATE WRITTEN   020815   (YYMMDD)
+C***REVISION HISTORY  (YYMMDD)
+C   020815  DATE WRITTEN   
+C   021105  Changed yprime argument in DRCHEK calls to YPRIME.
+C   021217  Modified error return for zeros found too close together.
+C   021217  Added root direction output in JROOT.
 C***CATEGORY NO.  I1A2
 C***KEYWORDS  DIFFERENTIAL/ALGEBRAIC, BACKWARD DIFFERENTIATION FORMULAS,
 C             IMPLICIT DIFFERENTIAL SYSTEMS, KRYLOV ITERATION
@@ -622,7 +626,7 @@ C                       set INFO(18) = 2 for full printing.
 C                       If you have specified INFO(18) .ge. 1, data
 C                       will be printed with the error handler routines.
 C                       To print to a non-default unit number L, include
-C                       the line  CALL XSETUN1(L)  in your program.  ****
+C                       the line  CALL XSETUN(L)  in your program.  ****
 C
 C   RTOL, ATOL -- You must assign relative (RTOL) and absolute (ATOL)
 C               error tolerances to tell the code how accurately you
@@ -798,7 +802,7 @@ C           The array WK is work space of length NEQ.
 C           H is the step size.  CJ is a scalar, input to JAC, that is
 C           normally proportional to 1/H.  REWT is an array of 
 C           reciprocal error weights, 1/EWT(i), where EWT(i) is
-C           RTOL*abs(Y(i)) + ATOL (unless you supplied routine DDAWTS1
+C           RTOL*abs(Y(i)) + ATOL (unless you supplied routine DDAWTS
 C           instead), for use in JAC if needed.  For example, if JAC
 C           computes difference quotient approximations to partial
 C           derivatives, the REWT array may be useful in setting the
@@ -923,9 +927,12 @@ C NRT --  The number of constraint functions Ri(T,Y,Y').  If there are
 C         no constraints, set NRT = 0 and pass a dummy name for RT.
 C
 C JROOT -- This is an integer array of length NRT, used only for output.
-C         On a return where one or more roots have been found
-C         (IDID = 5), JROOT(i) = 1 if Ri(T,Y,Y') has a root at T, and
-C         JROOT(i) = 0 if not.
+C         On a return where one or more roots were found (IDID = 5),
+C         JROOT(i) = 1 or -1 if Ri(T,Y,Y') has a root at T, and
+C         JROOT(i) = 0 if not.  If nonzero, JROOT(i) shows the direction
+C         of the sign change in Ri in the direction of integration: 
+C         JROOT(i) = 1  means Ri changed from negative to positive.
+C         JROOT(i) = -1 means Ri changed from positive to negative.
 C
 C
 C  OPTIONALLY REPLACEABLE SUBROUTINE:
@@ -937,14 +944,14 @@ C
 C    SUBROUTINE DDAWTS1 (NEQ, IWT, RTOL, ATOL, Y, EWT, RPAR, IPAR)
 C    DIMENSION RTOL(*), ATOL(*), Y(*), EWT(*), RPAR(*), IPAR(*)
 C
-C  A DDAWTS1 routine has been included with DDASKR which sets the
+C  A DDAWTS routine has been included with DDASKR which sets the
 C  weights according to
 C    EWT(I) = RTOL*ABS(Y(I)) + ATOL
 C  in the case of scalar tolerances (IWT = 0) or
 C    EWT(I) = RTOL(I)*ABS(Y(I)) + ATOL(I)
 C  in the case of array tolerances (IWT = 1).  (IWT is INFO(2).)
 C  In some special cases, it may be appropriate for you to define
-C  your own error weights by writing a subroutine DDAWTS1 to be 
+C  your own error weights by writing a subroutine DDAWTS to be 
 C  called instead of the version supplied.  However, this should 
 C  be attempted only after careful thought and consideration. 
 C  If you supply this routine, you may use the tolerances and Y 
@@ -1323,20 +1330,20 @@ C***ROUTINES CALLED
 C
 C   The following are all the subordinate routines used by DDASKR.
 C
-C   DRCHEK1 does preliminary checking for roots, and serves as an
-C          interface between Subroutine DDASKR and Subroutine DROOTS1.
-C   DROOTS1 finds the leftmost root of a set of functions.
+C   DRCHEK does preliminary checking for roots, and serves as an
+C          interface between Subroutine DDASKR and Subroutine DROOTS.
+C   DROOTS finds the leftmost root of a set of functions.
 C   DDASIC computes consistent initial conditions.
 C   DYYPNW updates Y and YPRIME in linesearch for initial condition
 C          calculation.
 C   DDSTP  carries out one step of the integration.
 C   DCNSTR/DCNST0 check the current solution for constraint violations.
-C   DDAWTS1 sets error weight quantities.
+C   DDAWTS sets error weight quantities.
 C   DINVWT tests and inverts the error weights.
-C   DDATRP1 performs interpolation to get an output solution.
+C   DDATRP performs interpolation to get an output solution.
 C   DDWNRM computes the weighted root-mean-square norm of a vector.
 C   D1MACH provides the unit roundoff of the computer.
-C   XERRWD/XSETF1/XSETUN1/IXSAV is a package to handle error messages. 
+C   XERRWD/XSETF/XSETUN/IXSAV is a package to handle error messages. 
 C   DDASID nonlinear equation driver to initialize Y and YPRIME using
 C          direct linear system solver methods.  Interfaces to Newton
 C          solver (direct case).
@@ -1377,8 +1384,8 @@ C   DAXPY, DCOPY, DDOT, DNRM2, DSCAL are Basic Linear Algebra (BLAS)
 C          routines.
 C
 C The routines called directly by DDASKR are:
-C   DCNST0, DDAWTS1, DINVWT, D1MACH, DDWNRM, DDASIC, DDATRP1, DDSTP,
-C   DRCHEK1, XERRWD
+C   DCNST0, DDAWTS, DINVWT, D1MACH, DDWNRM, DDASIC, DDATRP, DDSTP,
+C   DRCHEK, XERRWD
 C
 C***END PROLOGUE DDASKR
 C
@@ -1911,11 +1918,11 @@ C
       RWORK(LPSI+1)=2.0D0*H
       IWORK(LKOLD)=1
       IF (NRT .EQ. 0) GO TO 390
-      CALL DRCHEK1(1,RT,NRT,NEQ,T,TOUT,Y,RWORK(LE),RWORK(LPHI),
+      CALL DRCHEK1(1,RT,NRT,NEQ,T,TOUT,Y,YPRIME,RWORK(LPHI),
      *   RWORK(LPSI),IWORK(LKOLD),RWORK(LR0),RWORK(LR1),
      *   RWORK(LRX),JROOT,IRT,RWORK(LROUND),INFO(3),
      *   RWORK,IWORK,RPAR,IPAR)
-      IF(IRT .NE. 0) GO TO 731
+      IF (IRT .LT. 0) GO TO 731
 C
  390  GO TO 500
 C
@@ -1934,11 +1941,12 @@ C
 C
 C     Check for a zero of R near TN.
 C
-      CALL DRCHEK1(2,RT,NRT,NEQ,TN,TOUT,Y,RWORK(LE),RWORK(LPHI),
+      CALL DRCHEK1(2,RT,NRT,NEQ,TN,TOUT,Y,YPRIME,RWORK(LPHI),
      *   RWORK(LPSI),IWORK(LKOLD),RWORK(LR0),RWORK(LR1),
      *   RWORK(LRX),JROOT,IRT,RWORK(LROUND),INFO(3),
      *   RWORK,IWORK,RPAR,IPAR)
-      IF(IRT .NE. 1) GO TO 405
+      IF (IRT .LT. 0) GO TO 731
+      IF (IRT .NE. 1) GO TO 405
       IWORK(LIRFND) = 1
       IDID = 5
       T = RWORK(LT0)
@@ -2161,7 +2169,7 @@ C
 C
 C     Check for a zero of R near TN.
 C
-      CALL DRCHEK1(3,RT,NRT,NEQ,TN,TOUT,Y,RWORK(LE),RWORK(LPHI),
+      CALL DRCHEK1(3,RT,NRT,NEQ,TN,TOUT,Y,YPRIME,RWORK(LPHI),
      *   RWORK(LPSI),IWORK(LKOLD),RWORK(LR0),RWORK(LR1),
      *   RWORK(LRX),JROOT,IRT,RWORK(LROUND),INFO(3),
      *   RWORK,IWORK,RPAR,IPAR)
@@ -2452,10 +2460,10 @@ C
 730   MSG = 'DASKR--  NRT (=I1) .LT. 0'
       CALL XERRWD(MSG,25,30,1,1,NRT,0,0,0.0D0,0.0D0)
       GO TO 750
-731   MSG = 'DASKR--  ONE OR MORE COMPONENTS OF R HAS A ROOT'
-      CALL XERRWD(MSG,47,31,1,0,0,0,0,0.0D0,0.0D0)
-      MSG = '         TOO NEAR TO THE INITIAL POINT'
-      CALL XERRWD(MSG,38,31,1,0,0,0,0,0.0D0,0.0D0)
+731   MSG = 'DASKR--  R IS ILL-DEFINED.  ZERO VALUES WERE FOUND AT TWO'
+      CALL XERRWD(MSG,57,31,1,0,0,0,0,0.0D0,0.0D0)
+      MSG = '         VERY CLOSE T VALUES, AT T = R1'
+      CALL XERRWD(MSG,39,31,1,0,0,0,1,RWORK(LT0),0.0D0)
 C
 750   IF(INFO(1).EQ.-1) GO TO 760
       INFO(1)=-1
@@ -2473,11 +2481,13 @@ C------END OF SUBROUTINE DDASKR-----------------------------------------
      *   KOLD, R0, R1, RX, JROOT, IRT, UROUND, INFO3, RWORK, IWORK,
      *   RPAR, IPAR)
 C
-C***BEGIN PROLOGUE  DRCHEK1
+C***BEGIN PROLOGUE  DRCHEK
 C***REFER TO DDASKR
-C***ROUTINES CALLED  DDATRP1, DROOTS1, DCOPY, RT
-C***DATE WRITTEN   020813   (YYMMDD)
-C***END PROLOGUE  DRCHEK1
+C***ROUTINES CALLED  DDATRP, DROOTS, DCOPY, RT
+C***REVISION HISTORY  (YYMMDD)
+C   020815  DATE WRITTEN   
+C   021217  Added test for roots close when JOB = 2.
+C***END PROLOGUE  DRCHEK
 C
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
 C Pointers into IWORK:
@@ -2492,37 +2502,41 @@ C Pointers into RWORK:
      *          R0(*), R1(*), RX(*), JROOT(*), RWORK(*), IWORK(*)
       INTEGER I, JFLAG
       DOUBLE PRECISION H
-      DOUBLE PRECISION HMINR, T1, TEMP1, TEMP2, X
+      DOUBLE PRECISION HMINR, T1, TEMP1, TEMP2, X, ZERO
       LOGICAL ZROOT
+      DATA ZERO/0.0D0/
 C-----------------------------------------------------------------------
 C This routine checks for the presence of a root of R(T,Y,Y') in the
 C vicinity of the current T, in a manner depending on the
-C input flag JOB.  It calls subroutine DROOTS1 to locate the root
+C input flag JOB.  It calls subroutine DROOTS to locate the root
 C as precisely as possible.
 C
-C In addition to variables described previously, DRCHEK1
+C In addition to variables described previously, DRCHEK
 C uses the following for communication..
 C JOB    = integer flag indicating type of call..
-C          JOB = 1 means the problem is being initialized, and DRCHEK1
+C          JOB = 1 means the problem is being initialized, and DRCHEK
 C                  is to look for a root at or very near the initial T.
 C          JOB = 2 means a continuation call to the solver was just
-C                  made, and DRCHEK1 is to check for a root in the
+C                  made, and DRCHEK is to check for a root in the
 C                  relevant part of the step last taken.
-C          JOB = 3 means a successful step was just taken, and DRCHEK1
+C          JOB = 3 means a successful step was just taken, and DRCHEK
 C                  is to look for a root in the interval of the step.
 C R0     = array of length NRT, containing the value of R at T = T0.
 C          R0 is input for JOB .ge. 2 and on output in all cases.
 C R1,RX  = arrays of length NRT for work space.
 C IRT    = completion flag..
 C          IRT = 0  means no root was found.
-C          IRT = -1 means JOB = 1 and a root was found too near to T.
+C          IRT = -1 means JOB = 1 and a zero was found both at T0 and
+C                   and very close to T0.
+C          IRT = -2 means JOB = 2 and some Ri was found to have a zero
+C                   both at T0 and very close to T0.
 C          IRT = 1  means a legitimate root was found (JOB = 2 or 3).
-C                   on return, T0 is the root location, and Y is the
+C                   On return, T0 is the root location, and Y is the
 C                   corresponding solution vector.
 C T0     = value of T at one endpoint of interval of interest.  Only
 C          roots beyond T0 in the direction of integration are sought.
 C          T0 is input if JOB .ge. 2, and output in all cases.
-C          T0 is updated by DRCHEK1, whether a root is found or not.
+C          T0 is updated by DRCHEK, whether a root is found or not.
 C          Stored in the global array RWORK.
 C TLAST  = last value of T returned by the solver (input only).
 C          Stored in the global array RWORK.
@@ -2548,7 +2562,7 @@ C Evaluate R at initial T (= RWORK(LT0)); check for zero values.--------
       IWORK(LNRTE) = 1
       ZROOT = .FALSE.
       DO 110 I = 1,NRT
- 110    IF (ABS(R0(I)) .LE. 0.0D0) ZROOT = .TRUE.
+ 110    IF (ABS(R0(I)) .EQ. ZERO) ZROOT = .TRUE.
       IF (.NOT. ZROOT) GO TO 190
 C R has a zero at T.  Look at R at T + (small increment). --------------
       TEMP1 = SIGN(HMINR,H)
@@ -2560,7 +2574,7 @@ C R has a zero at T.  Look at R at T + (small increment). --------------
       IWORK(LNRTE) = IWORK(LNRTE) + 1
       ZROOT = .FALSE.
       DO 130 I = 1,NRT
- 130    IF (ABS(R0(I)) .LE. 0.0D0) ZROOT = .TRUE.
+ 130    IF (ABS(R0(I)) .EQ. ZERO) ZROOT = .TRUE.
       IF (.NOT. ZROOT) GO TO 190
 C R has a zero at T and also close to T.  Take error return. -----------
       IRT = -1
@@ -2577,12 +2591,16 @@ C If a root was found on the previous step, evaluate R0 = R(T0). -------
       IWORK(LNRTE) = IWORK(LNRTE) + 1
       ZROOT = .FALSE.
       DO 210 I = 1,NRT
- 210    IF (ABS(R0(I)) .LE. 0.0D0) ZROOT = .TRUE.
+        IF (ABS(R0(I)) .EQ. ZERO) THEN
+          ZROOT = .TRUE.
+          JROOT(I) = 1
+        ENDIF
+ 210    CONTINUE
       IF (.NOT. ZROOT) GO TO 260
-C R has a zero at T0.  Look at R at T + (small increment). -------------
+C R has a zero at T0.  Look at R at T0+ = T0 + (small increment). ------
       TEMP1 = SIGN(HMINR,H)
       RWORK(LT0) = RWORK(LT0) + TEMP1
-      IF ((RWORK(LT0) - TN)*H .LT. 0.0D0) GO TO 230
+      IF ((RWORK(LT0) - TN)*H .LT. ZERO) GO TO 230
       TEMP2 = TEMP1/H
       DO 220 I = 1,NEQ
  220    Y(I) = Y(I) + TEMP2*PHI(I,2)
@@ -2590,35 +2608,37 @@ C R has a zero at T0.  Look at R at T + (small increment). -------------
  230  CALL DDATRP1 (TN, RWORK(LT0), Y, YP, NEQ, KOLD, PHI, PSI)
  240  CALL RT (NEQ, RWORK(LT0), Y, YP, NRT, R0, RPAR, IPAR)
       IWORK(LNRTE) = IWORK(LNRTE) + 1
-      ZROOT = .FALSE.
       DO 250 I = 1,NRT
-        IF (ABS(R0(I)) .GT. 0.0D0) GO TO 250
-        JROOT(I) = 1
-        ZROOT = .TRUE.
+        IF (ABS(R0(I)) .GT. ZERO) GO TO 250
+C If Ri has a zero at both T0+ and T0, return an error flag. -----------
+        IF (JROOT(I) .EQ. 1) THEN
+          IRT = -2
+          RETURN
+        ELSE
+C If Ri has a zero at T0+, but not at T0, return valid root. -----------
+          JROOT(I) = -SIGN(1.0D0,R0(I))
+          IRT = 1
+        ENDIF
  250    CONTINUE
-      IF (.NOT. ZROOT) GO TO 260
-C R has a zero at T0 and also close to T0.  Return root. ---------------
-      IRT = 1
-      RETURN
-C     Here, R0 does not have a root
+      IF (IRT .EQ. 1) RETURN
 C R0 has no zero components.  Proceed to check relevant interval. ------
- 260  IF (TN .EQ. RWORK(LTLAST)) GO TO 390
+ 260  IF (TN .EQ. RWORK(LTLAST)) RETURN
 C
  300  CONTINUE
 C Set T1 to TN or TOUT, whichever comes first, and get R at T1. --------
-      IF (INFO3 .EQ. 1 .OR. (TOUT - TN)*H .GE. 0.0D0) THEN
+      IF (INFO3 .EQ. 1 .OR. (TOUT - TN)*H .GE. ZERO) THEN
          T1 = TN
          GO TO 330
          ENDIF
       T1 = TOUT
-      IF ((T1 - RWORK(LT0))*H .LE. 0.0D0) GO TO 390
+      IF ((T1 - RWORK(LT0))*H .LE. ZERO) GO TO 390
  330  CALL DDATRP1 (TN, T1, Y, YP, NEQ, KOLD, PHI, PSI)
       CALL RT (NEQ, T1, Y, YP, NRT, R1, RPAR, IPAR)
       IWORK(LNRTE) = IWORK(LNRTE) + 1
-C Call DROOTS1 to search for root in interval from T0 to T1. -----------
+C Call DROOTS to search for root in interval from T0 to T1. ------------
       JFLAG = 0
  350  CONTINUE
-      CALL DROOTS1(NRT, HMINR, JFLAG, RWORK(LT0),T1, R0,R1,RX, X,JROOT)
+      CALL DROOTS1(NRT, HMINR, JFLAG,RWORK(LT0),T1, R0,R1,RX, X, JROOT)
       IF (JFLAG .GT. 1) GO TO 360
       CALL DDATRP1 (TN, X, Y, YP, NEQ, KOLD, PHI, PSI)
       CALL RT (NEQ, X, Y, YP, NRT, RX, RPAR, IPAR)
@@ -2634,15 +2654,17 @@ C Found a root.  Interpolate to X and return. --------------------------
 C
  390  CONTINUE
       RETURN
-C---------------------- END OF SUBROUTINE DRCHEK1 ----------------------
+C---------------------- END OF SUBROUTINE DRCHEK -----------------------
       END
-      SUBROUTINE DROOTS1(NRT, HMIN, JFLAG, X0, X1, R0, R1, RX, X,JROOT)
+      SUBROUTINE DROOTS1(NRT, HMIN, JFLAG, X0, X1, R0, R1, RX, X, JROOT)
 C
-C***BEGIN PROLOGUE  DROOTS1
-C***REFER TO DRCHEK1 
+C***BEGIN PROLOGUE  DROOTS
+C***REFER TO DRCHEK
 C***ROUTINES CALLED DCOPY
-C***DATE WRITTEN   020813   (YYMMDD)
-C***END PROLOGUE  DROOTS1
+C***REVISION HISTORY  (YYMMDD)
+C   020815  DATE WRITTEN   
+C   021217  Added root direction information in JROOT.
+C***END PROLOGUE  DROOTS
 C
       INTEGER NRT, JFLAG, JROOT
       DOUBLE PRECISION HMIN, X0, X1, R0, R1, RX, X
@@ -2654,7 +2676,7 @@ C of odd multiplicity (i.e. changes of sign of the Ri) are found.
 C Here the sign of X1 - X0 is arbitrary, but is constant for a given
 C problem, and -leftmost- means nearest to X0.
 C The values of the vector-valued function R(x) = (Ri, i=1...NRT)
-C are communicated through the call sequence of DROOTS1.
+C are communicated through the call sequence of DROOTS.
 C The method used is the Illinois algorithm.
 C
 C Reference:
@@ -2680,8 +2702,8 @@ C          and leave it unchanged until the problem is completed.
 C          (The problem is completed when JFLAG .ge. 2 on return.)
 C
 C          On output, JFLAG has the following values and meanings:
-C          JFLAG = 1 means DROOTS1 needs a value of R(x).  Set RX = R(X)
-C                    and call DROOTS1 again.
+C          JFLAG = 1 means DROOTS needs a value of R(x).  Set RX = R(X)
+C                    and call DROOTS again.
 C          JFLAG = 2 means a root has been found.  The root is
 C                    at X, and RX contains R(X).  (Actually, X is the
 C                    rightmost approximation to the root on an interval
@@ -2717,8 +2739,11 @@ C          When JFLAG = 4, X is the right endpoint of the interval, X1.
 C
 C JROOT  = integer array of length NRT.  Output only.
 C          When JFLAG = 2 or 3, JROOT indicates which components
-C          of R(x) have a root at X.  JROOT(i) is 1 if the i-th
-C          component has a root, and JROOT(i) = 0 otherwise.
+C          of R(x) have a root at X, and the direction of the sign
+C          change across the root in the direction of integration.
+C          JROOT(i) =  1 if Ri has a root and changes from - to +.
+C          JROOT(i) = -1 if Ri has a root and changes from + to -.
+C          Otherwise JROOT(i) = 0.
 C-----------------------------------------------------------------------
       INTEGER I, IMAX, IMXOLD, LAST, NXLAST
       DOUBLE PRECISION ALPHA, T2, TMAX, X2, ZERO
@@ -2819,33 +2844,24 @@ C Return with X1 as the root.  Set JROOT.  Set X = X1 and RX = R1. -----
       CALL DCOPY (NRT, R1, 1, RX, 1)
       DO 320 I = 1,NRT
         JROOT(I) = 0
-        IF (ABS(R1(I)) .GT. ZERO) GO TO 310
-c     MMMMMMMMMMMM     
-c     JROOT(I) = 1
-c     MMMMMMMMMMMMM
-        JROOT(I)=SIGN(1.0D0,-R0(I)) 
-        GO TO 320
-c     MMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-C     IF (SIGN(1.0D0,R0(I)) .NE. SIGN(1.0D0,R1(I))) JROOT(I) = 1
-c     MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
- 310    IF (SIGN(1.0D0,R0(I)) .GT. SIGN(1.0D0,R1(I))) JROOT(I) = -1
-        IF (SIGN(1.0D0,R0(I)) .LT. SIGN(1.0D0,R1(I))) JROOT(I) = 1
-c     MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM 
- 320  CONTINUE
+        IF (ABS(R1(I)) .EQ. ZERO) THEN
+          JROOT(I) = -SIGN(1.0D0,R0(I))
+          GO TO 320
+          ENDIF
+        IF (SIGN(1.0D0,R0(I)) .NE. SIGN(1.0D0,R1(I)))
+     1     JROOT(I) = SIGN(1.0D0,R1(I) - R0(I))
+ 320    CONTINUE
       RETURN
-C     
-C     No sign change in the interval.  Check for zero at right endpoint. ---
+C
+C No sign change in the interval.  Check for zero at right endpoint. ---
  400  IF (.NOT. ZROOT) GO TO 420
-C     
+C
 C Zero value at X1 and no sign change in (X0,X1).  Return JFLAG = 3. ---
       X = X1
       CALL DCOPY (NRT, R1, 1, RX, 1)
       DO 410 I = 1,NRT
         JROOT(I) = 0
-c     MMMMMMMMMMMMMM
-c        IF (ABS(R1(I)) .LE. ZERO) JROOT (I) = 1
-        IF (ABS(R1(I)) .LE. ZERO) JROOT(I)=SIGN(1.0D0,-R0(I))
-c     MMMMMMMMMMMMMMMM
+        IF (ABS(R1(I)) .EQ. ZERO) JROOT(I) = -SIGN(1.0D0,R0(I))
  410  CONTINUE
       JFLAG = 3
       RETURN
@@ -2855,7 +2871,7 @@ C No sign changes in this interval.  Set X = X1, return JFLAG = 4. -----
       X = X1
       JFLAG = 4
       RETURN
-C----------------------- END OF SUBROUTINE DROOTS1 ---------------------
+C----------------------- END OF SUBROUTINE DROOTS ----------------------
       END
       SUBROUTINE DDASIC (X, Y, YPRIME, NEQ, ICOPT, ID, RES, JAC, PSOL,
      *   H, TSCALE, WT, NIC, IDID, RPAR, IPAR, PHI, SAVR, DELTA, E,
@@ -3145,7 +3161,7 @@ C     continue from step to step.
 C
 C-----------------------------------------------------------------------
 C***ROUTINES CALLED
-C   NLS, DDWNRM, DDATRP1
+C   NLS, DDWNRM, DDATRP
 C
 C***END PROLOGUE  DDSTP
 C
@@ -3732,12 +3748,12 @@ C----------------------- END OF SUBROUTINE DCNST0 ----------------------
       END
       SUBROUTINE DDAWTS1(NEQ,IWT,RTOL,ATOL,Y,WT,RPAR,IPAR)
 C
-C***BEGIN PROLOGUE  DDAWTS1
+C***BEGIN PROLOGUE  DDAWTS
 C***REFER TO  DDASPK
 C***ROUTINES CALLED  (NONE)
 C***DATE WRITTEN   890101   (YYMMDD)
-C***REVISION DATE  900926   (YYMMDD)
-C***END PROLOGUE  DDAWTS1
+C***REVISION DATE  900926   (YYMMDD) 
+C***END PROLOGUE  DDAWTS
 C-----------------------------------------------------------------------
 C     This subroutine sets the error weight vector,
 C     WT, according to WT(I)=RTOL(I)*ABS(Y(I))+ATOL(I),
@@ -3759,7 +3775,7 @@ C
 20         CONTINUE
       RETURN
 C
-C------END OF SUBROUTINE DDAWTS1----------------------------------------
+C------END OF SUBROUTINE DDAWTS-----------------------------------------
       END
       SUBROUTINE DINVWT(NEQ,WT,IER)
 C
@@ -3795,20 +3811,20 @@ C------END OF SUBROUTINE DINVWT-----------------------------------------
       END
       SUBROUTINE DDATRP1(X,XOUT,YOUT,YPOUT,NEQ,KOLD,PHI,PSI)
 C
-C***BEGIN PROLOGUE  DDATRP1
+C***BEGIN PROLOGUE  DDATRP
 C***REFER TO  DDASPK
 C***ROUTINES CALLED  (NONE)
 C***DATE WRITTEN   890101   (YYMMDD)
 C***REVISION DATE  900926   (YYMMDD)
-C***END PROLOGUE  DDATRP1
+C***END PROLOGUE  DDATRP
 C
 C-----------------------------------------------------------------------
 C     The methods in subroutine DDSTP use polynomials
-C     to approximate the solution.  DDATRP1 approximates the
+C     to approximate the solution.  DDATRP approximates the
 C     solution and its derivative at time XOUT by evaluating
 C     one of these polynomials, and its derivative, there.
 C     Information defining this polynomial is passed from
-C     DDSTP, so DDATRP1 cannot be used alone.
+C     DDSTP, so DDATRP cannot be used alone.
 C
 C     The parameters are
 C
@@ -3845,7 +3861,7 @@ C
 30       CONTINUE
       RETURN
 C
-C------END OF SUBROUTINE DDATRP1----------------------------------------
+C------END OF SUBROUTINE DDATRP-----------------------------------------
       END
       DOUBLE PRECISION FUNCTION DDWNRM(NEQ,V,RWT,RPAR,IPAR)
 C
