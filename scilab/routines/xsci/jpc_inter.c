@@ -296,15 +296,17 @@ int StoreCommand(command)
 {
   CommandRec *p, *q, *r;
   int i;
+
+
   /** first check if we have a special handler set for commands **/
   if ( scig_command_handler(command) == 1) return 0;
-  if (get_is_reading()) 
+  /*  if (get_is_reading()) 
     { 
       write_scilab(command);
       C2F(xscion)(&i);
       if (i) write_scilab("\n");
       return 0;
-    }
+      }*/
   p = (CommandRec *) malloc( sizeof(CommandRec));
   if ( p == (CommandRec *) 0 ) 
     {
@@ -328,6 +330,11 @@ int StoreCommand(command)
 	q = r;
       q->next = p;
     }
+  if (get_is_reading()) 
+    { 
+      C2F(xscion)(&i);
+      if (i) write_scilab(" ");
+      }
   return(0);
 }
 
