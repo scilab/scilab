@@ -94,7 +94,7 @@ static integer nblk, nordptr, nout, ng, ncord, noord, nzord,niord,
 
 static integer *neq;
 
-static  double Atol, rtol, ttol, deltat;
+static  double Atol, rtol, ttol, deltat,hmax;
 static integer hot;
 
 extern struct {
@@ -120,6 +120,7 @@ static integer c__0 = 0;
 static integer c__91 = 91;
 static double c_b14 = 0.;
 static integer c__1 = 1;
+static integer panj=5;
 
 static integer *iwa;
 
@@ -229,6 +230,7 @@ int C2F(scicos)
   deltat = simpar[4];
   C2F(rtfactor).scale = simpar[5];
   C2F(cmsolver).solver = (integer) simpar[6];
+  hmax=simpar[7];
 
   nordptr = *nordptr1;
   nblk = *nblk1;
@@ -763,7 +765,7 @@ int C2F(scicos)
   phase=1;
   hot = 0;
   itask = 4;
-  iopt = 0;
+
   jt = 2;
 
   jj = 0;
@@ -873,6 +875,15 @@ int C2F(scicos)
 	}
 	if (C2F(cosdebug).cosd >= 1) {
 	  sciprint("****lsodar from: %f to %f hot= %d  \r\n", *told,t,hot);
+	}
+
+	if(hmax==0){
+	  iopt = 0;
+	}else{
+	  iopt=1;
+	  C2F(iset)(&panj, &c__0, &ihot[5], &c__1);
+	  C2F(dset)(&panj, &c_b14, &rhot[5], &c__1);
+	  rhot[6]=hmax;
 	}
 	phase=2;
 	C2F(lsodar2)(C2F(simblk), neq, x, told, &t, &c__1, &rtol, 
@@ -1020,7 +1031,7 @@ int C2F(scicos)
 
   /* Local variables */
   static integer flag__, jdum;
-  static integer iopt, info[20];
+  static integer info[20];
 
   static integer ierr1;
   static integer j, k;
@@ -1107,7 +1118,7 @@ int C2F(scicos)
   /*     hot = .false. */
   phase=1;
   hot = 0;
-  iopt = 0;
+
   jt = 2;
 
   /*      stuck=.false. */
@@ -1127,8 +1138,7 @@ int C2F(scicos)
   /*     full jac matrx */
   info[5] = 0;
 
-  /*     max step size not given (handled by deltat) */
-  info[6] = 0;
+
   /*     code determines initial step size */
   info[7] = 0;
   /*     MAXORD=5 */
@@ -1261,6 +1271,14 @@ int C2F(scicos)
 	    info[0]=0;  /* cold start */
 	    info[10]=1; /* inconsistent IC */
 	    info[13]=1; /* return after CIC calculation */
+	    /*     max step size  */
+	    if(hmax==0){
+	      info[6] = 0;
+	    }else{
+	      info[6] = 1;
+	      rhot[2]=hmax;
+	    }
+
 	    reinitdoit(told,scicos_xproperty);/* filling up the scicos_xproperties */
 	    if(*ierr >0){
 	      freeallx;
@@ -1298,6 +1316,12 @@ int C2F(scicos)
 	  info[0]=0;  /* cold restart */
 	  info[10]=1; /* to reevaluate CIC when info[0]==0*/
 	  info[13]=0; /* continue after CIC calculation */
+	  if(hmax==0){
+	    info[6] = 0;
+	  }else{
+	    info[6] = 1;
+	    rhot[2]=hmax;
+	  }
 	} /* CIC calculation when hot==0 */
 	info[0]=hot;  
 	/*     Warning rpar and ipar are used here as dummy pointers */

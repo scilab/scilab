@@ -6,7 +6,7 @@ c     Copyright INRIA
       integer start,run,finish,flag,linear
       parameter (start=28,run=27,finish=15,linear=21)
       integer id(nsiz)
-      double precision simpar(6)
+      double precision simpar(7)
       integer pointi
       integer funnum
       external funnum
@@ -342,7 +342,7 @@ c       checking variable flag (number 5)
 
         if(rhs.ge.6) then
 c     checking variable simpar (number 6) 
-c      [atol  rtol ttol, deltat, scale, impl]
+c      [atol  rtol ttol, deltat, scale, impl, hmax]
 c     
            il6 = iadr(lstk(top-rhs+6))
            if (istk(il6) .ne. 1) then
@@ -351,7 +351,7 @@ c
               return
            endif
            m6 = istk(il6+1)*istk(il6+2)
-           if (m6 .ne. 5.and. m6.ne.4.and. m6.ne.6) then
+           if (m6 .ne. 5.and. m6.ne.4.and. m6.ne.6.and. m6.ne.7) then
               err = 6
               call error(89)
               return
@@ -462,11 +462,16 @@ c
            call dcopy(4,stk(l6),1,simpar,1)
            simpar(5)=  0.d0
            simpar(6)=  0.d0
+           simpar(7)=  0.d0
         elseif(m6.eq.5) then
            call dcopy(5,stk(l6),1,simpar,1)
            simpar(6)=  0.d0
-        else
+           simpar(7)=  0.d0
+        elseif(m6.eq.6) then
            call dcopy(6,stk(l6),1,simpar,1)
+           simpar(7)=  0.d0
+        else
+           call dcopy(7,stk(l6),1,simpar,1)
         endif
         solver=simpar(6)
 c
