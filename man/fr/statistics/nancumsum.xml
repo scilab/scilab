@@ -41,9 +41,11 @@
   </PARAM>
  
   <DESCRIPTION>
+<P>
    This function returns in scalar or vector s the cumulative
    sum  of the  values (ignoring  the  NANs) of  a vector  or
    matrix (real or complex) x.
+</P>
 <P>
    This function  for a vector or a  matrix x, s=nancumsum(x)
    (or, equivalently  s=nancumsum(x,'*') returns in  scalar s
@@ -79,7 +81,6 @@ s=nancumsum(a,'c')
 
  ]]>
   </EXAMPLE>
-
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK> nansum</LINK> </SEE_ALSO_ITEM>

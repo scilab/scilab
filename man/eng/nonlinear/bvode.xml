@@ -86,6 +86,7 @@
                 </P>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+
             <PARAM_ITEM>
               <PARAM_NAME>ipar(3)  </PARAM_NAME>
               <PARAM_DESCRIPTION>
@@ -101,32 +102,32 @@
                 </P>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+
             <PARAM_ITEM>
               <PARAM_NAME>ipar(5)</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>= dimension of <VERB>fspace</VERB> ( = ndimf ) a
                 real work array. its size provides a constraint on
-                nmax. choose ipar(5) according to the formula:
+                nmax. choose ipar(5) according to the formula:</SP>
                 <P> <VERB>ipar(5)>=nmax*nsizef</VERB> </P>
-                where
+                <P>where</P>
                 <P> <VERB>nsizef=4+3*mstar+(5+kd)*kdm+(2*mstar-nrec)*2*mstar</VERB>.</P>
-                </SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
+
             <PARAM_ITEM>
               <PARAM_NAME>ipar(6)</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>= dimension of ispace ( = ndimi )an integer work
                  array. its size provides a constraint on nmax, the
                  maximum number of subintervals. choose
-                 <VERB>ipar(6)</VERB> according to the formula:
+                 <VERB>ipar(6)</VERB> according to the formula:</SP>
                  <P> <VERB>ipar(6)>=nmax*nsizei</VERB></P>
-                  where
-                 <VERB>nsizei=3 + kdm</VERB> with
+                  <P>where</P>
+                 <P><VERB>nsizei=3 + kdm</VERB> with
                  <VERB>kdm=kd+mstar</VERB> ; <VERB>kd=k*ncomp </VERB>;
                  <VERB>nrec</VERB>=number of right end boundary
-                 conditions.
-               </SP>
+                 conditions.</P>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
@@ -275,12 +276,12 @@
           <SP>an array of dimension <VERB>ipar(4)</VERB>.
           <VERB>ltol(j) = l</VERB> specifies that the j-th tolerance
           in tol controls the error in the l-th component of
-          <VERB>z(u)</VERB>.  also require that:
+          <VERB>z(u)</VERB>.  also require that:</SP>
           <P>
           <VERB>1 &lt;= ltol(1) &lt; ltol(2) &lt; ... &lt; ltol(ntol)
           &lt;= mstar</VERB> 
           </P>
-          </SP>
+          
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -290,12 +291,12 @@
           <VERB>ipar(4)</VERB>. <VERB>tol(j)</VERB> is the error
           tolerance on the <VERB>ltol(j)</VERB> -th component of
           <VERB>z(u)</VERB>. thus, the code attempts to satisfy for
-          <VERB>j=1:ntol</VERB>  on each subinterval
+          <VERB>j=1:ntol</VERB>  on each subinterval</SP>
 <VERBATIM>
         abs(z(v)-z(u))       &lt;=     tol(j)*abs(z(u))     +tol(j)
                      ltol(j)                       ltol(j)
 </VERBATIM>
-          </SP>
+          
           <P>
     if <VERB>v(x)</VERB> is the approximate solution vector.
   </P>
@@ -348,13 +349,13 @@
                 <VERB>fsub</VERB> and the (<VERB>ncomp</VERB>) by
                 (<VERB>mstar</VERB>) array df should be filled by the
                 partial derivatives of  f, viz, for a particular call
-                one calculates
+                one calculates</SP>
 
  <VERBATIM>
                     df(i,j) = dfi / dzj, i=1,...,ncomp
                                          j=1,...,mstar.
 </VERBATIM>
-</SP>
+
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
@@ -422,13 +423,13 @@
         j
       mstar = m(1)+m(2)+...+m(ncomp),
 </VERBATIM>
- where
+<P> where</P>
 <VERBATIM>
                                         t
              u = (u , u , ... ,u     )   
                    1   2        ncomp    
 </VERBATIM>
-is the exact solution vector
+<P>is the exact solution vector</P>
 <VERBATIM>
               (mi)
              u     is the mi=m(i) th  derivative of u
@@ -444,12 +445,12 @@ is the exact solution vector
               f (x,z(u))   
                i
 </VERBATIM>
-    is a (generally) nonlinear function of <VERB>z(u)=z(u(x))</VERB>.
+    <P> is a (generally) nonlinear function of <VERB>z(u)=z(u(x))</VERB>.</P>
 <VERBATIM> 
               g (zeta(j);z(u))  
                j
 </VERBATIM>
-       is a (generally) nonlinear function   used to represent a boundary condition.
+      <P>  is a (generally) nonlinear function   used to represent a boundary condition.</P>
 
     <P> the boundary points satisfy</P>
 

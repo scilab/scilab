@@ -183,17 +183,17 @@ nonlinear functions, levenberg-marquardt algorithm</SHORT_DESCRIPTION>
      minimize <VERB>sum(fct(x,m).^2)</VERB> where
     <VERB>fct</VERB> is function from <VERB>R^n</VERB> to <VERB>R^m</VERB>
     </P>
-<P>
+    <P>
     <VERB>fct</VERB> should be :
-  </P> 
+    </P> 
     <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM label="a Scilab function">  
-    <SP>whose calling sequence is <VERB>v=fct(x,m)</VERB> given <VERB>x</VERB> and
+    <DESCRIPTION_ITEM>  
+    <SP>a Scilab function whose calling sequence is <VERB>v=fct(x,m)</VERB> given <VERB>x</VERB> and
     <VERB>m</VERB>.</SP>
     </DESCRIPTION_ITEM> 
 
-    <DESCRIPTION_ITEM label="a character string"> 
-     <SP>it refers to a C or Fortran routine  which must be linked to Scilab. 
+    <DESCRIPTION_ITEM> 
+     <SP>a character string which  refers to a C or Fortran routine  which must be linked to Scilab. </SP>
 
     <P>
     Fortran calling sequence should be
@@ -206,19 +206,19 @@ nonlinear functions, levenberg-marquardt algorithm</SHORT_DESCRIPTION>
     C calling sequence should be
     <VERB>fct(int *m, int *n, double x[],double v[],int *iflag)</VERB>
     </P>
-</SP>
+
     </DESCRIPTION_ITEM> 
      </DESCRIPTION_INDENT>
 
-     <VERB>fjac</VERB> is an external which returns <VERB>v=d(fct)/dx (x)</VERB>.
-     it should be :
+     <P>  <VERB>fjac</VERB> is an external which returns <VERB>v=d(fct)/dx (x)</VERB>.
+     it should be :</P>
     <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM label="a Scilab function"> whose calling
+    <DESCRIPTION_ITEM label="a Scilab function"> <SP>whose calling
     sequence is <VERB>J=fjac(x,m)</VERB> given <VERB>x</VERB> and
-    <VERB>m</VERB>.
+    <VERB>m</VERB>.</SP>
     </DESCRIPTION_ITEM> 
-    <DESCRIPTION_ITEM label="a character string">  it refers to a C or Fortran routine
-    which must be linked to Scilab. 
+    <DESCRIPTION_ITEM label="a character string">  <SP>it refers to a C or Fortran routine
+    which must be linked to Scilab. </SP>
     <P>
     Fortran calling sequence should be
    <VERB>fjac(m,n,x,jac,iflag)</VERB>  where <VERB>m</VERB>,
@@ -232,8 +232,8 @@ nonlinear functions, levenberg-marquardt algorithm</SHORT_DESCRIPTION>
     </P>
  </DESCRIPTION_ITEM> 
  </DESCRIPTION_INDENT>
-   return -1 in iflag to stop the algoritm if the function
-   or jacobian could not be evaluated.
+   <P> return -1 in iflag to stop the algoritm if the function
+   or jacobian could not be evaluated.</P>
   
 
   </DESCRIPTION>

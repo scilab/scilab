@@ -73,11 +73,13 @@
   </PARAM>
  
   <DESCRIPTION>
+<P>
    This  function  performs  several  computations  known  as
    "principal  component analysis".  It  includes drawing  of
 "correlations  circle", i.e.  in the  horizontal  axis the
 correlation   values   r(c1;xj)   and  in   the   vertical
 r(c2;xj). It is an extension of the pca function.
+</P>
 <P>
 The  idea  behind this  method  is  to  represent in  an
 approximative  manner a  cluster of  n individuals  in a
@@ -94,14 +96,14 @@ maximal.
 </P>
   </DESCRIPTION>
 
-
-
-  <BIBLIO>
-    Saporta, Gilbert, Probabilites,  Analyse des
-Donnees et Statistique, Editions Technip, Paris, 1990.
-  </BIBLIO>
-
   <AUTHOR>
     Carlos Klimann
   </AUTHOR>
+
+  <BIBLIO>
+    <P>Saporta, Gilbert, Probabilites,  Analyse des
+Donnees et Statistique, Editions Technip, Paris, 1990.</P>
+  </BIBLIO>
+
+
 </MAN>

@@ -50,7 +50,7 @@
   </PARAM>
  
   <DESCRIPTION>
-   Gives samples without replacement from a column vector.
+   <P>Gives samples without replacement from a column vector.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
@@ -62,9 +62,9 @@
     <SEE_ALSO_ITEM> <LINK> sample</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK> samplef</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-
-
   <AUTHOR>
     Carlos Klimann
   </AUTHOR>
+
+
 </MAN>

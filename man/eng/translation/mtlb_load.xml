@@ -46,7 +46,7 @@
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
        <P>
-    <VERB>mtlb_load</VERB>   is superseeded by <link>loadmatfile</link> for
+    <VERB>mtlb_load</VERB>   is superseeded by loadmatfile for
       binary files.
   </P>
   </DESCRIPTION>
@@ -64,11 +64,12 @@
       <LINK>load</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-<BIBLIO> 
-www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf
-</BIBLIO> 
  <AUTHOR>
   Serge Steer, INRIA
  </AUTHOR>
+<BIBLIO> 
+<P>www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf</P>
+</BIBLIO> 
+
 
 </MAN>

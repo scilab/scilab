@@ -71,10 +71,11 @@
       <LINK>load</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-<BIBLIO> 
-www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf
-</BIBLIO> 
  <AUTHOR>
   Serge Steer, INRIA
  </AUTHOR>
+<BIBLIO> 
+<P>www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf</P>
+</BIBLIO> 
+
 </MAN>
