@@ -100,7 +100,9 @@
         --with-tk-library=DIR: Tk library files are in DIR
         --with-tk-include=DIR: Tk include files are in DIR
 
-         --prefix=DIR: scilab will install itself in DIR/scilab-2.7
+        --with-atlas-library=DIR: use the optimized version of BLAS (ATLAS)
+
+        --prefix=DIR: scilab will install itself in DIR/scilab-2.7
            and create 3 symlinks in DIR/bin
         By default prefix=/usr
         	 
@@ -169,7 +171,11 @@
  
   D - CUSTOMIZING YOUR SCILAB
   ---------------------------
-    1 - If you want to recompile Scilab after modifications, execute only 
+    1 - By default Scilab includes its own browser written in TCL/TK.
+        But it is possible to choose another one. See the section
+        "Browser choice" of "man" help to do it.
+
+    2 - If you want to recompile Scilab after modifications, execute only 
         the "make all" command in Scilab directory (source version only).
  
         If you want to clean all executable, object files and libraries 
@@ -178,20 +184,20 @@
  	make distclean
  	make all
  
-    2 - To print your postscript figures, the list of printers is defined
+    3 - To print your postscript figures, the list of printers is defined
         in the environment variable "PRINTERS" or in the beginning of 
         the shell script "bin/scilab".
  
-    3 - Note that the functions "macros/util/edit" and
+    4 - Note that the functions "macros/util/edit" and
         "macros/util/manedit" assume that your default editor 
         is emacs. You may change this in the corresponding function (or 
         explicitly specify your editor when you invoke these functions).
  
-    4 - Icons for windows managers: icons for Scilab, Scilab graphics windows
+    5 - Icons for windows managers: icons for Scilab, Scilab graphics windows
         are given in the X11_defaults subdirectory. See the README in
         this subdirectory.
  
-    5 - COLOR RESOURCES: if you want to change the colors of your 
+    6 - COLOR RESOURCES: if you want to change the colors of your 
         customization you need to modify the files in the X11_defaults
         subdirectory (essentially the Xscilab file) or to copy the same
         color resources in your personal resource file (home directory).

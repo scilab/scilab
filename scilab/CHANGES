@@ -16,7 +16,7 @@ to identification functions, lyapunov, sylvester and riccati equation solvers.
 
 Interface with TeXmacs (www.texmacs.org) a high level scientific text editor. 
 The editor allows you to write structured documents via a wysiwyg interface 
-including Scilab sessions ans results.
+including Scilab sessions and results.
 
 An embedded text editor scipad derived from TkNotepad 
 (www.mindspring.com/~joeja/programs.html) as been developped.
@@ -27,9 +27,10 @@ Blocks defining DAE are now usable in Scicos.
 
 Statistic toolbox added (labostat).
 
-An Entity oriented graphics mode has been developped. It allows to edit 
-the drawn graphics properties in a easy to use way (see help
-of graphics_entities).
+A new graphics version based on objects and entities has been developped
+(beta version). It allows to edit the properties of graphics
+objects. By default, the old graphics version is used. Tu use the new graphics
+version see the help of "graphics_entities".
 
 OTHERS IMPROVEMENTS
 ===================
@@ -301,3 +302,4 @@ Some old Scicos diagrams may not be translated properly into Scilab 2.4.
 Binary files created by "save" in Scilab 2.4 cannot be read by Scilab 2.3.
 
 Scicos diagrams created by "save" in Scilab 2.4 cannot be read by Scilab 2.3.
+
