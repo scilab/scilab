@@ -25,24 +25,23 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 	%s_m_b.sci %b_m_s.sci %s_x_b.sci %b_x_s.sci %b_g_s.sci %b_h_s.sci \
 	%s_a_b.sci %b_a_s.sci %s_s_b.sci %b_s_s.sci \
 	%b_c_s.sci %b_f_s.sci %s_c_b.sci %s_f_b.sci %s_g_b.sci %s_h_b.sci \
-	%b_sum.sci %b_prod.sci %s_i_struct.sci 
+	%b_sum.sci %b_prod.sci
 
-M5 = mtlb_cell.sci struct.sci  \
-	%s_i_struct.sci %b_i_struct.sci %i_i_struct.sci %sp_i_struct.sci \
-	%c_i_struct.sci %s_i_struct.sci %cell_i_struct.sci %p_i_struct.sci \
-	%l_i_struct.sci %struct_i_struct.sci %r_i_struct.sci %lss_i_struct.sci\
-	%spb_i_struct.sci %mc_i_struct.sci %hm_i_struct.sci\
-	%struct_p.sci %struct_e.sci %struct_string.sci\
-        %cell_e.sci %cell_p.sci %cell_size.sci cell.sci \
-	%b_i_cell.sci %cell_i_cell.sci %i_i_cell.sci %p_i_cell.sci  \
-	%s_i_cell.sci %spb_i_cell.sci %c_i_cell.sci %hm_i_cell.sci \
-	%lss_i_cell.sci  %r_i_cell.sci  %sp_i_cell.sci \
-	%cell_c_cell.sci %cell_f_cell.sci \
-	%cell_c_s.sci %cell_f_s.sci %s_f_cell.sci %s_c_cell.sci \
-	%c_c_cell.sci %c_f_cell.sci %cell_f_c.sci %cell_c_c.sci \
-	%i_c_cell.sci %i_f_cell.sci %cell_f_i.sci %cell_c_i.sci \
-	%cell_string.sci 
-
+M5 = mtlb_cell.sci  cell.sci struct.sci  \
+	%cell_string.sci %struct_string.sci \
+	%s_i_st.sci %b_i_st.sci %i_i_st.sci %sp_i_st.sci \
+	%c_i_st.sci %ce_i_st.sci %p_i_st.sci \
+	%l_i_st.sci %st_i_st.sci %r_i_st.sci %lss_i_st.sci\
+	%spb_i_st.sci %mc_i_st.sci %hm_i_st.sci\
+	%st_p.sci %st_e.sci \
+        %ce_e.sci %ce_p.sci %ce_size.sci  \
+	%b_i_ce.sci %ce_i_ce.sci %i_i_ce.sci %p_i_ce.sci  \
+	%s_i_ce.sci %spb_i_ce.sci %c_i_ce.sci %hm_i_ce.sci \
+	%lss_i_ce.sci  %r_i_ce.sci  %sp_i_ce.sci \
+	%ce_c_ce.sci %ce_f_ce.sci \
+	%ce_c_s.sci %ce_f_s.sci %s_f_ce.sci %s_c_ce.sci \
+	%c_c_ce.sci %c_f_ce.sci %ce_f_c.sci %ce_c_c.sci \
+	%i_c_ce.sci %i_f_ce.sci %ce_f_i.sci %ce_c_i.sci
 
 PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci \
 	mtlb_hold.sci mtlb_ishold.sci mtlb_mesh.sci mtlb_meshdom.sci \
