@@ -23,11 +23,11 @@ c
       endif
 c
 c     functions/fin
-c     var2vec  vec2var get_import set_import get_curblk getlabel
-c       1          2       3         4         5          6
+c     var2vec  vec2var get_import set_import get_curblk getlabel duplicate
+c       1          2       3         4         5          6         7
 c
 c     
-      goto(10,20,30,40,50,60) fin
+      goto(10,20,30,40,50,60,70) fin
 
 c     var2vec
  10   continue
@@ -93,6 +93,12 @@ c     curblock
 c     getblocklabel
  60   continue
       call intgetlabel
+      goto 999
+c
+c     duplicate
+ 70   continue
+      call intduplicate('duplicate')
+      call putlhsvar
       goto 999
 c
  999  return
