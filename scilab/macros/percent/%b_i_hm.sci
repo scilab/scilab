@@ -36,7 +36,7 @@ function M=%b_i_hm(varargin)
   end
 
   //insert the elements
-  v(I+1)=N(:)
+  v(I)=N(:)
 
   //reduce the dimensionality if possible
   while  ndims($)==1 then ndims($)=[],end

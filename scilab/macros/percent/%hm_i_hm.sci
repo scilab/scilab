@@ -47,7 +47,7 @@ function M=%hm_i_hm(varargin)
     v1(I1+1)=v;v=v1
   end
 
-  v(I+1)=N.entries(:)
+  v(I)=N.entries(:)
 
   while  ndims($)==1 then ndims($)=[],end
   select size(ndims,'*')
