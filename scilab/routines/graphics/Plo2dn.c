@@ -114,25 +114,25 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
   }
 
-  /* F.Leray In case of switching to 2D view, I copy the flag[1] value in strflag[1] to keep the 
-     scaling */
-  /* MARCHE MAL car confusion/absence entre arg nommes ebox et rect cas 2D/ 3D */
-  /*  if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '1')
-    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  1;
-  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '2')
-    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  2;
-  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '3')
-    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  3;
-  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '4')
-    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  4;
-  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '5')
-    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  5;
-  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '6')
-    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  6;
-  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '7')
-    pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 1;
-  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '8')
-  pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 2;*/
+/*   F.Leray In case of switching to 2D view, I copy the flag[1] value in strflag[1] to keep the  */
+/*      scaling */
+/*   MARCHE MAL car confusion/absence entre arg nommes ebox et rect cas 2D/ 3D */
+  /*  if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '1') */
+/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  1; */
+/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '2') */
+/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  2; */
+/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '3') */
+/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  3; */
+/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '4') */
+/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  4; */
+/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '5') */
+/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  1; /\* change here *\/ */
+/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '6') */
+/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  6; */
+/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '7') */
+/*     pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 1; */
+/*   else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '8') */
+/*   pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 2; */
   
 
   /* MODIF HERE: I comment SS Modif*/
