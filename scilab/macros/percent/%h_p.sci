@@ -274,7 +274,7 @@ function %h_p(h)
 	 "data.x = "+dx
 	 "data.y = "+dy
 	 "data.z "+dz  
-	 "data_color USELESS = "+dcolor
+	 "data.color (not used) = "+dcolor
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "color_mode = "+string(h.color_mode)
