@@ -263,6 +263,15 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   double drect[6];
   char *loc,*legx,*legy,*legz;
   sciSubWindow * ppsubwin = NULL;
+	
+  /* Initialisation drect A.C pour debuggueur */
+  drect[0]=0;
+  drect[1]=0;
+  drect[2]=0;
+  drect[3]=0;
+  drect[4]=0;
+  drect[5]=0;
+
 
   if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
     sciXbasc(); 
