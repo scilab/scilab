@@ -2,3 +2,25 @@ intersci-n intersci Slatexpr SEpsf
 Slatexpr2  Slatexprs  Slpr BEpsf Blpr Blatexprs Blatexpr2 Blatexpr 
 scilab scilex 
 wscilabE.mnu
+Scilex.ilk
+WScilex.ilk
+LibScilab.def
+LibScilab.lib
+LibScilab.exp
+BEpsf.exe
+Blatexpr2.exe
+Blatexpr.exe
+Blatexprs.exe
+Blpr.exe
+Dumpexts.exe
+f2c.exe
+intersci.exe
+intersci-n.exe
+lpr.exe
+modelicac.exe
+tcl84.dll
+LibScilab.exp
+LibScilab.dll
+Scilex.exe
+WScilex.exe
+tk84.dll
