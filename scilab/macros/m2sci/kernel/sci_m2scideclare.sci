@@ -133,7 +133,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     evstr("contents"+part(name,length(name))+"=Infer(dims,Type(vtype,property))");
     varslist($+1)=M2scivar(varname,varname,Infer(vardims,Type(vartype,Unknown,contents)))
   else
-    inferreddims=varslist(index).dims
+    infereddims=varslist(index).dims
     
     err=%F
     for kd=1:min([lstsize(vardims) lstsize(infereddims)])
@@ -150,7 +150,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
 	  "   Current dimension: "+dims2str(infereddims)
 	  "   m2scideclare IGNORED"],2)
     else
-      varslist(index).dims=dims
+	varslist(index)=M2scivar(varslist(index).matname,varslist(index).matname,Infer(dims,Type(varslist(index).type.vtype,property)))
     end
     
     // Update vtype
@@ -165,8 +165,10 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
 
     // Update property
     if varslist(index).type.property==Unknown then
+      varslist(index).type.property=property
+    elseif property==Unknown then
       varslist(index).type.property=Unknown
-    else
+    elseif varslist(index).type.property~=property then
       set_infos(["Property current value and m2scideclare statements conflict for: "+name
 	  "   m2scideclare given type: "+prop2str(Unknown)
 	  "   current type: "+prop2str(varslist(index).type.property)
@@ -177,13 +179,14 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     contents=varslist(index).contents
     if vartype==Cell & typeof(contents)<>"ce" then
       contents=makecell()
-      evstr("contents"+part(name,length(name))+"=1"); // should be removed is no more Scilab bug for it
+      execstr("contents"+part(name,endofname+1:length(name))+"=1"); // should be removed is no more Scilab bug for it
     elseif vartype==Struct & typeof(contents)<>"st" then
       contents=struct()
-      evstr("contents"+part(name,length(name))+"=1"); // should be removed is no more Scilab bug for it
+      execstr("contents"+part(name,endofname+1:length(name))+"=1"); // should be removed is no more Scilab bug for it
     end
-    evstr("contents"+part(name,length(name))+"=Infer(dims,Type(vtype,property))");
-    varslist(index).contents=M2scivar(varname,varname,Infer(vardims,Type(vartype,Unknown,contents)))
+    disp("contents"+part(name,endofname+1:length(name))+"=Infer(dims,Type(vtype,property))");
+    execstr("contents"+part(name,endofname+1:length(name))+"=Infer(dims,Type(vtype,property))");
+    varslist(index)=M2scivar(varname,varname,Infer(vardims,Type(vartype,Unknown),contents))
     
     
   end
