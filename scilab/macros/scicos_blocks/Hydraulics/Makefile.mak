@@ -1,14 +1,9 @@
-#-----------------------------
-# generated from Makefile: DO NOT EDIT
-# -----------------------------
 SHELL = /bin/sh
 
 SCIDIR=../../..
 SCIDIR1=..\..\..
 
-include ../../../Makefile.incl.mak
-
-.SUFFIXES: .sci .bin .mo .moc $(SUFFIXES)
+include ../../../Makefile.incl
 
 NAME = scshydraulicslib
 NAM = SCI/macros/scicos_blocks/Hydraulics
@@ -21,11 +16,14 @@ MACROS= Bache.sci VanneReglante.sci  vanne_draw_ports.sci \
 MODELS=Bache.mo PortPHQ1.mo Puits.mo  ThermoCarre.mo \
 	PerteDP.mo PortPHQ2.mo Source.mo VanneReglante.mo
 
-include ../../Make.lib.mak
 
-all :: $(MODELS)
-	@ls $(MODELS) >models
-	@echo $(SCIDIR)/bin/scilab -f $(SCIDIR)/util/genmoc.sce
+all  :: $(MACROS) $(MODELS)
+	@dir /B $(MACROS) >names
+	@$(SCIDIR1)\bin\scilex.exe -nb -nwni -f $(SCIDIR1)\util\genlib.sce -args "$(NAME) $(NAM)"
+	@dir /B $(MODELS) >models
+	@$(SCIDIR1)\bin\scilex.exe -nb -nwni -f $(SCIDIR1)\util\genmoc.sce
+clean::
 
 distclean::
-	@$(RM) *.moc
+	@del *.moc models
+	@del *.bin lib names 

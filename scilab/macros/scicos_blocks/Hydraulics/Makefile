@@ -5,8 +5,6 @@ SCIDIR1=..\..\..
 
 include ../../../Makefile.incl
 
-.SUFFIXES: .sci .bin .mo .moc $(SUFFIXES)
-
 NAME = scshydraulicslib
 NAM = SCI/macros/scicos_blocks/Hydraulics
 
@@ -18,11 +16,14 @@ MACROS= Bache.sci VanneReglante.sci  vanne_draw_ports.sci \
 MODELS=Bache.mo PortPHQ1.mo Puits.mo  ThermoCarre.mo \
 	PerteDP.mo PortPHQ2.mo Source.mo VanneReglante.mo
 
-include ../../Make.lib
 
-all :: $(MODELS)
+all  :: $(MACROS) $(MODELS)
+	@ls $(MACROS) >names
+	@$(SCIDIR)/bin/scilab -nb -nw -f $(SCIDIR)/util/genlib.sce -args "$(NAME) $(NAM)"
 	@ls $(MODELS) >models
-	@echo $(SCIDIR)/bin/scilab -f $(SCIDIR)/util/genmoc.sce
+	@$(SCIDIR)/bin/scilab -nb -nw -f $(SCIDIR)/util/genmoc.sce
+clean::
 
 distclean::
-	@$(RM) *.moc
+	@$(RM) *.moc models
+	$(RM) *.bin lib names 
