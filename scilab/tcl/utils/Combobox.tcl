@@ -377,7 +377,7 @@ proc ::combobox::SetBindings {w} {
     # these events need to be passed from the entry widget
     # to the listbox, or otherwise need some sort of special
     # handling. 
-    foreach event [list <Up> <Down> <Tab> <Return> <Escape> \
+    foreach event [list <Up> <Down> <Tab> <Return> <KP_Enter> <Escape> \
 	    <Next> <Prior> <Double-1> <1> <Any-KeyPress> \
 	    <FocusIn> <FocusOut>] {
 	bind $widgets(entry) $event \
@@ -680,8 +680,23 @@ proc ::combobox::HandleEvent {w event args} {
 		return -code break;
 	    }
 	}
-
+	
 	"<Return>" {
+	    # did the value change?
+	    set newValue [$widgets(entry) get]
+	    if {$oldValue != $newValue} {
+		CallCommand $widgets(this) $newValue
+	    }
+
+	    if {[winfo ismapped $widgets(dropdown)]} {
+		::combobox::Select $widgets(this) \
+			[$widgets(listbox) curselection]
+		return -code break;
+	    } 
+
+	}
+
+	"<KP_Enter>" {
 	    # did the value change?
 	    set newValue [$widgets(entry) get]
 	    if {$oldValue != $newValue} {
