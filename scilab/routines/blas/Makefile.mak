@@ -18,7 +18,7 @@ OBJSF = dasum.obj daxpy.obj dcopy.obj ddot.obj dgbmv.obj dgemm.obj dgemv.obj\
 	zgemv.obj zgerc.obj zgeru.obj zhbmv.obj zhemm.obj zhemv.obj zher.obj \
 	zher2.obj zher2k.obj zherk.obj zhpmv.obj zhpr.obj zhpr2.obj zrotg.obj \
 	zscal.obj zswap.obj zsymm.obj zsyr2k.obj zsyrk.obj ztbmv.obj ztbsv.obj \
-	ztpmv.obj ztpsv.obj ztrmm.obj ztrmv.obj ztrsm.obj ztrsv.obj
+	ztpmv.obj ztpsv.obj ztrmm.obj ztrmv.obj ztrsm.obj ztrsv.obj izamax.obj
 
 include ../../Makefile.incl.mak
 
