@@ -1,3 +1,4 @@
+
       subroutine coselm
 c ====================================================================
 c
@@ -25,9 +26,9 @@ c
 c     functions/fin
 c     var2vec  vec2var get_import set_import get_curblk getlabel duplicate
 c       1          2       3         4         5          6         7
-c     scicos_cpass2 
-c           8
-      goto(10,20,30,40,50,60,70,80) fin
+c     scicos_cpass2  diffobjs
+c           8            9
+      goto(10,20,30,40,50,60,70,80,90) fin
 
 c     var2vec
  10   continue
@@ -103,6 +104,11 @@ c     duplicate
 c     cpass2
  80   continue
       call intcpass2('scicos_cpass2')
+      call putlhsvar
+      goto 999
+c     cpass2
+ 90   continue
+      call intdiffobjs('diffobjs')
       call putlhsvar
       goto 999
 c     

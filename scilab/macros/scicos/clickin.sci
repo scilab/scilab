@@ -31,7 +31,7 @@ if typeof(o)=='Block' then
     execstr('scs_m_'+string(slevel)+'=scs_m')
     execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)')
     //edited variable is returned by SUPER_f -- NO LONGER TRUE
-    edited=or(var2vec(o)<>var2vec(o_n))
+    edited=diffobjs(o,o_n)
     if edited then
       o=o_n
       modified=prod(size(newparameters))>0

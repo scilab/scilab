@@ -439,6 +439,7 @@
 {"var2vec",		IN_coselm,	1,	2},	
 {"vec2var",		IN_coselm,	2,	2},
 {"scicos_cpass2",       IN_coselm,      8,      2},	
+{"diffobjs",		IN_coselm,      9,      2},	
 #define  IN_specfun  36  
 {"besseli",		IN_specfun,	1,	3},	
 {"besselj",		IN_specfun,	2,	3},	
@@ -554,4 +555,3 @@
 {"hinf",		IN_intslicot,	8,	3},
 {"dhinf",		IN_intslicot,	9,	3},
 {"linmeq",		IN_intslicot,	10,	3},
-

@@ -1,3 +1,4 @@
+
 #include <string.h>
 #include "../stack-c.h"
 #include "../machine.h"
@@ -30,6 +31,37 @@ double *v;
   for (i=0;i<n;i++) {
     if (v[i]>0) *nw=*nw+(int) v[i];
   }
+}
+
+int C2F(intdiffobjs)(fname)
+     /*   diffobjs(A,B) returns 0 if A==B and 1 if A and B differ */
+     char *fname;
+{
+  int un,l3,k;
+  int size1;int size2;
+  int *header1;int *header2;
+  CheckRhs(2,2);
+  CheckLhs(1,1);
+  header1 = GetData(1);
+  header2 = GetData(2);
+  CreateVar(3,"d",(un=1,&un),(un=1,&un),&l3);
+  LhsVar(1) = 3;
+  size1=2*(*lstk(Top-Rhs+2)-*lstk(Top-Rhs+1)); 
+  size2=2*(*lstk(Top-Rhs+3)-*lstk(Top-Rhs+2));
+
+  if (size1 != size2) {
+    *stk(l3)=1;
+    return 0;
+  }
+  for (k=0; k<size1; k++) {
+    if (header1[k] != header2[k]) {
+      *stk(l3)=1;
+      return 0;
+    }
+    *stk(l3)=0;
+
+  }    
+  return 0;
 }
 
 int C2F(intduplicate)(fname)
@@ -798,3 +830,6 @@ int Message(char* code)
   SciString(&ibegin,name,&mlhs,&mrhs);
   return 0;
 }
+
+
+
