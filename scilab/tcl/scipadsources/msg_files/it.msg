@@ -1,4 +1,5 @@
 # Scipad texts in Italian
+# in sync with v 3.31
 
 
 # commons
@@ -8,12 +9,12 @@
 ::msgcat::mcset it "Scilab working" "Scilab occupato"
 ::msgcat::mcset it "All files" "Tutti i files"
 ::msgcat::mcset it "Add/Change" "Aggiungi/modifica"
-::msgcat::mcset it "Untitled" "Senza_titolo"
+::msgcat::mcset it "Untitled" "SenzaTitolo"
 
 
 # buffernavigation.tcl
-::msgcat::mcset it "Goto Line?" "Andare alla linea?"
-::msgcat::mcset it "Goto Line: " "Andare alla linea: "
+::msgcat::mcset it "Goto Line?" "Vai alla linea?"
+::msgcat::mcset it "Goto Line: " "Vai alla linea: "
 
 
 # colorize.tcl
@@ -45,8 +46,8 @@
                         col mouse."
 ::msgcat::mcset it "Error in selected function name or arguments" \
         "Errore nella funzione selezionata o nei suoi argomenti"
-# <TODO> Translate it!
-#::msgcat::mcset it "Debugger is not yet developed for sce scripts!" ""
+::msgcat::mcset it "Debugger is not yet developed for sce scripts!"\
+         "Il debugger non funziona, per ora, su programmi *.sce!"
 
 
 # db_debugsession.tcl
@@ -101,7 +102,7 @@
  "è già aperto! Salvarlo eventualmente con un altro nome e riaprirlo dal disco"
 ::msgcat::mcset it "File" "File"
     ::msgcat::mcset it "saved" "salvato"
-::msgcat::mcset it "cannot be written!" "in sola lettura!"
+::msgcat::mcset it "cannot be written!" "non è scrivibile!"
 ::msgcat::mcset it "The contents of " "Il contenuto di"
     ::msgcat::mcset it "has changed on disk, save it anyway?" \
        "è cambiato sul disco, salvare comunque?"
