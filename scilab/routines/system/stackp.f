@@ -170,7 +170,7 @@ c     list and update "reference" variables on the top of the stack
          do 21 kt=1,top-1
             ilt=iadr(lstk(kt))
             if (istk(ilt).lt.0) then
-               if(istk(ilt+2).lt.k) then
+               if(istk(ilt+2).ge.bot.and.istk(ilt+2).lt.k) then
                   istk(ilt+2)=istk(ilt+2)+1
                   istk(ilt+1)=istk(ilt+1)+vk
                endif
