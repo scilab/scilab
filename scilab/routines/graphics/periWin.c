@@ -4911,14 +4911,7 @@ static void DrawMark(lhdc,x, y)
     {
       TextOut(hdc,*x+C2F(CurSymbXOffset)(),*y+C2F(CurSymbYOffset)(),str,1); 
     }
-#ifdef DEBUG
-  GetTextExtentPoint32(hdc,str,1,&size);
-  sciprint("valeurs %d %d %d %d\r\n",size.cx,size.cy,C2F(CurSymbXOffset)(),
-	   C2F(CurSymbYOffset)());
-  TextOut(hdc,*x,*y,str,1);
-  Rectangle(hdc,(int) *x+30,(int) *y - size.cy,(int) *x+size.cx+30 ,
-	    (int) *y);
-#endif
+
 }
 /*-----------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------

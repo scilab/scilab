@@ -393,7 +393,7 @@ PrintAbortProc);
 extern void DebugGW (char *fmt,...)
 {
 #ifdef DEBUG
-  int i, count;
+  int count;
   char buf[MAXPRINTF];
   va_list args;
   va_start (args, fmt);
@@ -1232,14 +1232,11 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
       break;
     case WM_DESTROY:
       PostQuitMessage (0);
-      DebugGW ("Je fais un destroy \n");
       DragAcceptFiles (hwnd, FALSE);
 	  
 
       return 0;
     case WM_CLOSE:
-      DebugGW ("Je fais un close \n");
-	  
       
       PostQuitMessage (0);
       C2F (deletewin) (&(ScilabGC->CurWindow));
