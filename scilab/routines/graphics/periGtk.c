@@ -445,7 +445,7 @@ gint timeout_test (BCG *gc)
   if ( info.getmen  == 1 &&  C2F(ismenu)()==1 ) 
     {
       int entry;
-      sciprint("je suis ds le timeout un menu est active");
+      /*sciprint("je suis ds le timeout un menu est active");*/
       C2F(getmen)(info.str,&info.lstr,&entry);
       info.ok = 1 ; info.x = 0 ; info.y =0 ; info.button =  -2;
       info.win = gc->CurWindow;
