@@ -14,7 +14,7 @@ function xmltohtml(dirs,titles,xsl,step)
   change_old_man() //this is required to produce the whatis.htm files
                    //associated with old style manuals
   
-  global LANGUAGE 
+  global LANGUAGE %helps
   select LANGUAGE 
    case 'eng' then H= 'Help chapter' 
    case 'fr'  then H= 'Chapitre de help'

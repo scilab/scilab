@@ -3,10 +3,10 @@ function xmlfiletohtml(path,xsl)
 //given a path on a Scilab help xml file  (assumed to respect 
 //SCI/man/man-rev.dtd ) this function generates the corresponding htm
 //file using the /man/<LANGUAGE>/html-rev.xsl xsl file
-  generate_cmd='xsltproc';
+  generate_cmd='sabcmd';
   [lhs,rhs]=argn(0);
-  if rhs < 1 then xsl= 'html-rev.xsl' ;end //the xsl file name;
-  global LANGUAGE 
+  if rhs < 1 then xsl= 'html-rev.xsl';end //the xsl file name;
+  global LANGUAGE %helps
   path=pathconvert(path,%f,%t) // convert path to host convention
   
   //proceed if xml file is newest than htm file
