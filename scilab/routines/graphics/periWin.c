@@ -34,9 +34,9 @@
 #include "../machine.h"
 
 #ifdef WITH_TK
-#include "../../tcl/include/tcl.h"
-#include "../../tcl/include/tk.h"
-#include "../../tcl/include/tkPlatDecls.h"
+#include "tcl.h"
+#include "tk.h"
+#include "tkPlatDecls.h"
 
 extern Tcl_Interp *TKinterp;
 extern Tk_Window TKmainWindow;
