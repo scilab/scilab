@@ -183,7 +183,7 @@ IFUNS =  %i_and.sci %i_or.sci %i_round.sci %i_prod.sci %i_length.sci %i_ascii.sc
 
 HFUNS = %h_delete.sci %h_draw.sci %h_get.sci %h_set.sci
 
-FUNS =   %cblock_p.sci %choose.sci    
+FUNS =   %cblock_p.sci %choose.sci %l_isequal.sci
 
 MACROS =$(O0) $(O1) $(O2) $(O3) $(O4) $(O5) $(A) $(B) $(C) $(D) \
 	$(E) $(F) $(G) $(H) $(I) $(J) $(K) $(L) $(M) $(N) \
