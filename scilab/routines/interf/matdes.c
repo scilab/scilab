@@ -5745,7 +5745,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if ((strncmp(marker,"zoom_box", 8) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN)) { 
     /* On doit avoir avoir une matrice 4x1 */
     if (*numcol * *numrow == 4)
-      scizoom(stk(*value));  
+      scizoom(stk(*value),pobj);  
     else if (*numcol * *numrow == 0)
       unzoom();
     else
