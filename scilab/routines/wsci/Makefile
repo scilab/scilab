@@ -55,7 +55,7 @@ test	: $(RESOURCES) wtest.o ../../libs/wsci.a
 	$(CC) $(CFLAGS) $(LINKEROPT) -o ../../bin/test.exe wtest.o \
 	$(RESOURCES) ../../libs/wsci.a ../../libs/graphics.a \
 	../../libs/wsci.a ../../libs/menusX.a \
-	../../libs/sun.a ../../libs/system.a ../../libs/xdr.a -Wl,-subsystem,console $(WINLIBS)
+	../../libs/sun.a ../../libs/system.a ../../libs/xdr.a -Wl,-subsystem,console -lg2c $(WINLIBS)
 
 wtest.o : wtloop.c 
 
