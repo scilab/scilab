@@ -31,11 +31,11 @@ c
       character*(4) logf
       character*4 name
 
-      data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
-      data cur/0/,verb/0/
       integer kfun
       common /curblk/ kfun
 
+      data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
+      data cur/0/,verb/0/
 
 c     
 c   
