@@ -2,19 +2,27 @@ function translatepaths(Paths,res_path)
 // Copyright INRIA
 if exists('m2scilib')==0 then load('SCI/macros/m2sci/lib'),end
 //logfile=%io(2)
-
+ if MSDOS then 
+  sep='\'
+  Paths=strsubst(Paths,'/',sep)
+  res_path=strsubst(res_path,'/',sep)
+else
+  sep='/'
+  Paths=strsubst(Paths,'\',sep)
+  res_path=strsubst(res_path,'\',sep)
+end
 
 res_path=stripblanks(res_path)
-if part(res_path,length(res_path))<>'/' then
-  res_path=res_path+'/'
+if part(res_path,length(res_path))<>sep then
+  res_path=res_path+sep
 end
 Paths=stripblanks(Paths)
 logfile=file('open',res_path+'log','unknown')
 whsfil_unit=file('open',res_path+'whatis','unknown')
 
 for k=1:size(Paths,'*')
-  if part(Paths(k),length(Paths(k)))<>'/' then 
-    Paths(k)=Paths(k)+'/',
+  if part(Paths(k),length(Paths(k)))<>sep then 
+    Paths(k)=Paths(k)+sep,
   end
 end
 mfiles=[]
@@ -22,10 +30,8 @@ for k=1:size(Paths,'*')
   path=Paths(k)
   if MSDOS then 
     mfiles=[mfiles;unix_g('dir /b '+path+'*.m')]
-    sep='\'
   else
     mfiles=[mfiles;unix_g('ls '+path+'*.m')]
-    sep='/'
   end
 end
 for k1=1:size(mfiles,1)
