@@ -19,6 +19,9 @@ function files= listfiles(paths,flag,flagexpand)
     paths = pathconvert(paths,%f,flagexpand); 
   end 
   
+  //redefining  disp to avoid message when no file are found
+  prot=funcprot();funcprot(0);deff('disp(txt)',' ');funcprot(prot)
+  
   if MSDOS then
     files=[];
     for i=1:size(paths,'*') 
