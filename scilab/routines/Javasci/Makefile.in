@@ -12,7 +12,7 @@ JAVAINC=@JAVA_INCL@
 LIBRARY= $(SCIDIR)/bin/libjavasci.so 
 JAVAC=javac
 SOURCESJ=*.java
-OBJSC= javasci_Matrix.o fix.o
+OBJSC= javasci_Matrix.o @GCCFIX@
 
 OBJSF = 
 

@@ -6,7 +6,7 @@ SCIDIR=../..
 SCIDIR1=..\..
 
 
-JAVAINC= -I/usr/bin/../java/include -I/usr/bin/../java/include/solaris
+JAVAINC= -I/usr/lib/SunJava2-1.4.1/include -I/usr/lib/SunJava2-1.4.1/include/linux
 
 #--------------------------------------------------------
 LIBRARY= $(SCIDIR)/bin/libjavasci.so 
