@@ -6,6 +6,10 @@ N=varargin(rhs-1)//inserted matrix
 index=varargin(1) //
 
 if rhs==3&(type(index)==10|type(index)==15) then
+  if type(index)==15 then
+     INDX=index($);
+     [index,N]=pre_trait(index,N);
+  end
   M=createstruct(index,N)
   return
 end
@@ -68,5 +72,36 @@ case 2
   M=matrix(v,dims1(1),dims1(2))
 else
   M=mlist(['hm','dims','entries'],matrix(dims1,1,-1),v)
+end
+endfunction
+
+
+function [index,N]=pre_trait(index,N)
+//St.h....  .f(i1,i2,...in)=A <=> St.h....  .f=B
+//with B(i1,...,in)=A
+if type(INDX)==1 then
+//  INDX<-> (i1,i2,  ,in) = i1 ,  numeric index (integer) 
+ xxx(INDX)=N;N=xxx;index($)=null();
+ if size(index)==1 then index=index(1);end
+ return;
+end
+
+if type(INDX)==15 then
+// INDX<-> (i1,i2, in) =list(i1,i2,  in) , list index (all integers)
+  numeric=1
+  for kk=INDX
+    if type(kk)~=1 
+      numeric=0;break;
+    end
+  end
+  if numeric==1 then
+  xxx(INDX(:))=N;N=xxx;index($)=null();
+  if size(index)==1 then
+  index=index(1);
+  end
+  return;
+  else
+  error('invalid struct indexing');
+  end
 end
 endfunction
