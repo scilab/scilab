@@ -1,8 +1,10 @@
 #include "../machine.h" 
 #include "../sun/Sun.h" 
+
 /*-------------------------------------------
  *  get configure options used for compilation 
  *  used in inisci.f
+ *  Copyright ENPC/ Jean-Philipe Chancelier 
  *-------------------------------------------*/
 
 int C2F(withtk)(int *rep) { 
