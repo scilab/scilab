@@ -243,7 +243,7 @@ c       --   subvariable critev(sim) --
         n4e22 = istk(il4e22+1)
         l4e22 = sadr(il4e22+4)
 c      
-c       --   subvariable nblk(sim) --
+c       --   subvariable nb(sim) --
         il4e23=iadr(l4+istk(il4+24)-1)
         l4e23 = sadr(il4e23+4)
 c

@@ -131,9 +131,14 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
       (*bllst11ptr)[0]=(*bllst11ptr)[0]+nombr-nblk1;
       if (((*bllst11)=(double*)realloc((*bllst11),sizeof(double)*(((int*) (*bllst11))[0]+2*(nombr-nblk1)+1))) == NULL ) return 0;
       ((int*)(*bllst11))[0]=((int*)(*bllst11))[0]+2*(nombr-nblk1);
+      if (((*nzcross)=(int*)realloc((*nzcross),sizeof(int)*(nombr+1))) == NULL ) return 0;
+      (*nzcross)[0]=nombr;
+      if (((*bllst13)=(char**)realloc((*bllst13),sizeof(char*)*(nombr+1))) == NULL )  return 0;
+      ((int*) (*bllst13))[0]=nombr;
       for(i=nblk1+1;i<nombr+1;i++)
 	{	  
 	  (*typ_x)[i]=0;
+	  (*nzcross)[i]=0;
 	  (*bllst4)[(*bllst4ptr)[i]]=1;
 	  for(l=(*bllst5ptr)[i];l<=(*bllst5ptr)[i+1]-1;l++)
 	    {
@@ -144,13 +149,16 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
 	    {
 	      (*bllst11)[l]=-1;
 	    }
+	  if (((char*) (*bllst13)[i]=(char*) malloc(sizeof(char)*(2))) ==NULL )  return 0;
+	  ((char*) (*bllst13)[i])[1]='\0';
+	  *((*bllst13)[i])=' ';
 	}      
 
     }
   free(typ_m);
   free(*inplnk);
   free(*outlnk);
-  extract_info(*bllst2,*bllst3,*bllst5,*bllst10,*bllst11,*bllst12,*bllst13,*bllst2ptr,*bllst3ptr,*bllst4ptr,*bllst5ptr,
+  extract_info(*bllst2,*bllst3,*bllst5,*bllst10,*bllst11,*bllst12,*bllst2ptr,*bllst3ptr,*bllst4ptr,*bllst5ptr,
                *bllst11ptr,*connectmat,*clkconnect,lnkptr,inplnk,outlnk,
 	       &typ_s,&typ_m,&initexe,&bexe,&boptr,&blnk,&blptr,ok,*corinvec,*corinvptr);
   free(typ_m);
@@ -208,10 +216,10 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   execlk_cons=NULL;
   
   if(!(*ok)) return 0;
-  if (((*zcptr)=malloc(sizeof(int)*((*nblk+2))))== NULL ) return 0;
-  (*zcptr)[0]=*nblk+1;
+  if (((*zcptr)=malloc(sizeof(int)*((nombr+2))))== NULL ) return 0;
+  (*zcptr)[0]=nombr+1;
   (*zcptr)[1]=1;
-  for (i=1; i<= *nblk; i++)
+  for (i=1; i<= nombr; i++)
     {
       (*zcptr)[i+1]=(*zcptr)[i] + typ_z[i];
     }
@@ -234,7 +242,8 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
     }
 
   ncblk=0;nxblk=0;ndblk=0;*ndcblk=0;
-  *nb=typ_z[0];
+  //*nb=typ_z[0];
+  *nb=nombr;
   
   init_agenda(initexe,*bllst5ptr,tevts,evtspt,pointi);
   free(initexe);
@@ -1936,7 +1945,7 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 
 /* ======================================= endfunction discard =============================================== */
 /* *************************************** function extract_info ******************************************** */
-int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,char** bllst13,int* bllst2ptr,
+int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,int* bllst2ptr,
 		 int* bllst3ptr,int* bllst4ptr,int* bllst5ptr,int* bllst11ptr,int* connectmat,int* clkconnect,
 		 int** lnkptr,int** inplnk,int** outlnk,int** typ_s,int** typ_m,double** initexe,
 		 int** bexe,int** boptr,int** blnk,int** blptr,int* ok,int* corinvec,int* corinvptr)
