@@ -179,7 +179,8 @@ c
 c     .  update new data structure pointers recursively 
          call updptr(iln,ind,nind-1,dvol)
 c     .  copy the rest of data structure
-         ind(nind-1)=ind(nind-1)+n-mto
+c???         ind(nind-1)=ind(nind-1)+n-mto
+         ind(nind-1)=ind(nind-1)+1
          ltto=sadr(subptr(iltos,ind,nind-1))
          if(ltos+voltos-ltto.gt.0) then
             err=(lr+ltos+voltos-ltto)-lstk(bot)
