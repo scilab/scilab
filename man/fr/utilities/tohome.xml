@@ -15,6 +15,7 @@
   <DESCRIPTION>
     <P><VERB>tohome()</VERB> déplace le curseur en haut à gauche de la fenêtre de commande et efface l'écran.</P>
     <P>Vous pouvez utiliser la barre de défilement pour voir l'historique des fonctions.</P>
+    <P>Notez que <VERB>tohome()</VERB> ne peut être utilisé sous Windows quand Scilab est utilisé en mode sans fenêtre.</P>
   </DESCRIPTION>
 
   <SEE_ALSO>

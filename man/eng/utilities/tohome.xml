@@ -15,6 +15,7 @@
   <DESCRIPTION>
     <P><VERB>tohome()</VERB> moves the cursor to the upper-left corner of the Command Window and clears the screen.</P>
     <P>You can use the scroll bar to see the history of previous functions.</P>
+    <P>Note that <VERB>tohome()</VERB> cannot be used under Windows platforms when Scilab used in no window mode.</P>
   </DESCRIPTION>
 
   <SEE_ALSO>
