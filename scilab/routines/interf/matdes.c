@@ -5390,9 +5390,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"font_style", 10) == 0)
     {
       xtmp = (int) *stk(*value);
-      if ( (xtmp > (SCI_DONT_CARE + SCI_ATTR_BOLD + SCI_ATTR_ITALIC
-		    + SCI_ATTR_UNDERLINE + SCI_ATTR_STRIKEOUT)) || xtmp < 0)
-	{strcpy(error_message,"The value must be a sum of 0, 1, 2, 4, 8");return -1;}
+      if ( (xtmp > 9) || xtmp < 0)
+	{strcpy(error_message,"The value must be in [0 10]");return -1;}
       else
 	sciSetFontStyle((sciPointObj *) pobj, xtmp);
     }
