@@ -55,14 +55,11 @@ end
 //exec('SCI/tests/demos/demolist.sce',-1)
 if MSDOS then
 // Windows
-  sel=[1:31] 
+  sel=[1:8] 
 else
 // UNIX
-  sel=[1:31] 
+  sel=[1:8] 
 end
-sel(29:30)=[]//suppression de pvm et tk
-
-sel(find(sel==16))=[] // do not execute demo 16 (Dialog)
 
 dialogs='demo'+string(sel)+'.dialogs'
 for dia=dialogs

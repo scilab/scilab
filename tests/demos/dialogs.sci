@@ -265,7 +265,7 @@ while %t do
   k=strindex(rep,comm)
   if k<>[] then
     k=k(1)
-    if part(rep,1:k)<>part(blank,1:k) then 
+    if k>1&part(rep,1:k)<>part(blank,1:k) then 
       str=stripblanks(part(rep,1:k-1))
       com=part(rep,k+1:length(rep))
       if part(str,1:3)=='-->' then
