@@ -31,7 +31,7 @@ distclean::
 	intro_pdf.* *.tmp Intro_pdf.ps *.hind *.haux *.html intro-html*.gif\
 	intro-html.image.tex *_motif.gif
 
-SUBDIRS = diary figures fort macros
+SUBDIRS = diary figures macros
 
 subs:
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \

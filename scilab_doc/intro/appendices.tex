@@ -1,286 +1,354 @@
 % Copyright INRIA
 
 \appendix
-\chapter{Demo session}
-We give here the Scilab session corresponding to the first demo.
 
-\input{diary/demo1.dia}
+\chapter{Linear system representation}
+Linear systems are treated as specific typed lists {\tt tlist}.
+The basic function which is used for defining linear systems is {\tt syslin}.
+This function receives as parameters the constant matrices which
+define a linear system in state-space form or, in the case of
+system in transfer form, its input must be a rational matrix.
+To be more specific, the calling sequence of {\tt syslin} is
+either {\tt Sl=syslin('dom',A,B,C,D,x0)} or {\tt Sl=syslin('dom',trmat)}.
+{\tt dom} is one of the character strings {\tt 'c'} or {\tt 'd'}
+for continuous time or discrete time systems respectively.
+It is useful to note that {\tt D} can be a polynomial matrix 
+(improper systems); {\tt D} and {\tt x0} are optional arguments.
+{\tt trmat} is a rational matrix i.e. it is defined as a matrix
+of rationals (ratios of polynomials). {\tt syslin} just converts
+its arguments (e.g. the four matrices A,B,C,D) into a typed
+list {\tt Sl}. For state space representation {\tt Sl} is 
+the {\tt tlist(['lss','A','B','C','D'],A,B,C,D,'dom')}. This tlist
+representation allows to access the A-matrix i.e. the second entry of
+{\tt Sl} by the syntax {\tt Sl('A')} (equivalent to {\tt Sl(2)}).
+Conversion from a representation to another is done by {\tt ss2tf}
+or {\tt tf2ss}. Improper systems are also treated. {\tt syslin} 
+defines linear systems as specific {\tt tlist}. ({\tt help syslin}).
 
-\chapter{System interconnexion}
+\input{diary/syslin.dia}
 
-%\section{System Interconnection}
-	The purpose of this appendix is to illustrate some
-of the more sophisticated aspects of Scilab by the way of an example.
-The example shows how Scilab can be used to symbolically represent
-the inter-connection of multiple systems which in turn can 
-then be used to numerically evaluate the performance of the
-inter-connected systems.  The symbolic representation of the
-inter-connected systems is done with a function called {\tt bloc2exp}
-\index{bloc2exp@{\tt bloc2exp}}
-and the evaluation of the resulting system is done with
-{\tt evstr}\index{evstr@{\tt evstr}}.
+	The list representation allows manipulating linear systems as
+abstract data objects.  For example, the linear system can be combined
+with other linear systems or the transfer function representation of
+the linear system can be obtained as was done above using {\tt ss2tf}.
+Note that the transfer function representation of the linear system
+is itself a tlist. 
+	A very useful aspect of the manipulation of systems 
+is that a system can be handled as a data object.
+Linear systems can be 
+inter-connected\index{linear systems!inter-connection of},
+their representation
+can easily be changed from state-space to transfer function
+and vice versa.
 
-	The example illustrates the symbolic inter-connection of the 
-systems shown in Figure~\ref{fa.1}\index{linear systems!inter-connection of}.  
+	The inter-connection of linear systems can be made
+as illustrated in Figure~\ref{f3.2}.
 %
 \begin{figure}
+
+%BEGIN IMAGE
 \begin{center}
-\begin{picture}(360,204)
+\begin{picture}(200,330)(0,-60)
 
-\put(80,85){\framebox(40,30){\tt Model}}
-\put(150,85){\framebox(40,30){\tt Reg}}
-\put(240,85){\framebox(40,30){\tt Proc}}
-\put(120,140){\framebox(40,30){\tt FF}}
-\put(190,30){\framebox(40,30){\tt Sensor}}
-\put(210,100){\framebox(0,0){\tt +}}
+\put(180,280){\makebox(0,0)[lb]{\tt S2*S1}}
+\put(9,280){\circle{2}}
+\put(10,280){\vector(1,0){20}}
+\put(30,270){\framebox(30,20){$S_1$}}
+\put(60,280){\vector(1,0){30}}
+\put(90,270){\framebox(30,20){$S_2$}}
+\put(120,280){\vector(1,0){20}}
+\put(141,280){\circle{2}}
 
-\put(35,95){\tt U}
-\put(315,95){\tt Y}
-\put(315,125){\tt UP}
+\put(180,220){\makebox(0,0)[lb]{\tt S1+S2}}
+\put(29,220){\circle{2}}
+\put(30,220){\line(1,0){20}}
+\put(50,220){\circle*{2}}
+\put(50,200){\line(0,1){40}}
+\put(50,200){\vector(1,0){20}}
+\put(50,240){\vector(1,0){20}}
+\put(70,190){\framebox(30,20){$S_2$}}
+\put(70,230){\framebox(30,20){$S_1$}}
+\put(100,200){\line(1,0){20}}
+\put(100,240){\line(1,0){20}}
+\put(120,240){\vector(0,-1){15}}
+\put(120,200){\vector(0,1){15}}
+\put(120,220){\circle{10}}
+\put(120,220){\framebox(0,0){$+$}}
+\put(125,220){\vector(1,0){15}}
+\put(141,220){\circle{2}}
 
-\put(50,100){\vector(1,0){30}}
-\put(120,100){\vector(1,0){30}}
-\put(190,100){\vector(1,0){15}}
-\put(215,100){\vector(1,0){25}}
-\put(210,155){\vector(0,-1){50}}
-\put(295,45){\vector(-1,0){65}}
-\put(65,155){\vector(1,0){55}}
-\put(170,45){\vector(0,1){40}}
-\put(225,130){\vector(1,0){85}}
-\put(280,100){\vector(1,0){30}}
+\put(180,140){\makebox(0,0)[lb]{\tt [S1,S2]}}
+\put(49,160){\circle{2}}
+\put(49,120){\circle{2}}
+\put(50,120){\vector(1,0){20}}
+\put(50,160){\vector(1,0){20}}
+\put(70,110){\framebox(30,20){$S_2$}}
+\put(70,150){\framebox(30,20){$S_1$}}
+\put(100,120){\line(1,0){20}}
+\put(100,160){\line(1,0){20}}
+\put(120,160){\vector(0,-1){15}}
+\put(120,120){\vector(0,1){15}}
+\put(120,140){\circle{10}}
+\put(120,140){\framebox(0,0){$+$}}
+\put(125,140){\vector(1,0){15}}
+\put(141,140){\circle{2}}
 
-\put(65,100){\line(0,1){55}}
-\put(160,155){\line(1,0){50}}
-\put(170,45){\line(1,0){20}}
-\put(225,100){\line(0,1){30}}
-\put(295,100){\line(0,-1){55}}
+\put(180,50){\makebox(0,0)[lb]{\tt [S1 ; S2]}}
+\put(49,50){\circle{2}}
+\put(50,50){\line(1,0){20}}
+\put(70,50){\circle*{2}}
+\put(70,30){\line(0,1){40}}
+\put(70,30){\vector(1,0){20}}
+\put(70,70){\vector(1,0){20}}
+\put(90,20){\framebox(30,20){$S_2$}}
+\put(90,60){\framebox(30,20){$S_1$}}
+\put(120,30){\vector(1,0){20}}
+\put(120,70){\vector(1,0){20}}
+\put(141,30){\circle{2}}
+\put(141,70){\circle{2}}
 
-\put(210,100){\circle{10}}
-\put(48,100){\circle{2}}
-\put(310,100){\circle{2}}
-\put(310,130){\circle{2}}
-\put(65,100){\circle*{2}}
-\put(225,100){\circle*{2}}
-\put(295,100){\circle*{2}}
-
+\put(180,-40){\makebox(0,0)[lb]{\tt S1/.S2}}
+\put(70,-20){\circle{10}}
+\put(70,-20){\framebox(0,0){$+$}}
+\put(34,-20){\vector(1,0){30}}
+\put(33,-20){\circle{2}}
+\put(70,-60){\line(0,1){40}}
+\put(70,-60){\line(1,0){20}}
+\put(70,-20){\vector(1,0){20}}
+\put(90,-70){\framebox(30,20){$S_2$}}
+\put(90,-30){\framebox(30,20){$S_1$}}
+\put(140,-60){\vector(-1,0){20}}
+\put(120,-20){\line(1,0){20}}
+\put(141,-20){\circle{2}}
+\put(140,-60){\line(0,1){40}}
 \end{picture}
 \end{center}
-\caption{Inter-Connected Systems}
-\label{fa.1}
+%END  IMAGE
+%HEVEA\imageflush
+
+\caption{Inter-Connection of Linear Systems}
+\label{f3.2}
 \end{figure}
 %
-Figure~\ref{fa.1} illustrates the classic regulator problem\index{regulator}
-where the block labeled {\tt Proc} is to be controlled
-using feedback from the {\tt Sensor} block and {\tt Reg} block.
-The {\tt Reg} block compares the output from the {\tt Model}
-block to the output from the {\tt Sensor} block to decide how to
-regulate the {\tt Proc} block.  There is also a feed-forward
-block which filters the input signal {\tt U} to the {\tt Proc}
-block.  The outputs of the system are {\tt Y} and {\tt UP}.
+For each of the possible inter-connections of two systems
+{\tt S1} and {\tt S2} the command which makes the inter-connection
+is shown on the right side of the corresponding block diagram in
+Figure~\ref{f3.2}. Note that feedback interconnection is performed by
+\verb!S1/.S2!. 
 
-	The system illustrated in Figure~\ref{fa.1} can
-be represented in Scilab by using the function {\tt bloc2exp}.
-The use of {\tt bloc2exp} is illustrated in the following Scilab
-session.
-There a two kinds of objects: ``transfer'' and ``links''. The example
-considered here admits 5 transfers and 7 links.
-First the transfer are defined in a symbolic manner. Then links
-are defined and an ``interconnected system'' is defined as
-a specific list. The function {\tt bloc2exp} evaluates symbolically
-the global transfer and {\tt evstr} evaluates numerically
-the global transfer function once the systems are given ``values'', i.e.
-are defined as Scilab linear systems.
-%
+	The representation of linear systems can be in state-space
+form or in transfer function form.  These two representations can
+be interchanged by using the functions 
+{\tt tf2ss}\index{linear systems!{\tt tf2ss}}\index{tf2ss@{\tt tf2ss}} and 
+{\tt ss2tf}\index{linear systems!{\tt ss2tf}}\index{ss2tf@{\tt ss2tf}}
+which change the representations of systems from transfer function
+to state-space and from state-space to transfer function, respectively.
+An example of the creation, the change in representation, and the
+inter-connection of linear systems is demonstrated in the following
+Scilab session.
+
+\input{diary/connect.dia}
+
+The above session is a bit long but illustrates some very important
+aspects of the handling of linear systems.  First, two linear systems
+are created in transfer function form using the function called 
+{\tt syslin}\index{linear systems!{\tt syslin}}\index{syslin@{\tt syslin}}.
+This function was used to label the systems in this example 
+as being continuous (as opposed to discrete).  
+The primitive {\tt tf2ss} is used to convert one of the
+two transfer functions to its equivalent state-space representation
+which is in list form (note that the function {\tt ssprint} creates a more
+readable format for the state-space linear system).
+The following multiplication of the two systems yields their
+series inter-connection.  Notice that the inter-connection 
+of the two systems is effected even though one of the systems is
+in state-space form and the other is in transfer function form.
+The resulting inter-connection is given in state-space form.
+Finally, the function {\tt ss2tf} is used to convert the resulting
+inter-connected systems to the equivalent transfer function representation.
+
+
+\chapter{A Maple to Scilab Interface}
+To combine symbolic computation of the computer algebra system Maple with the 
+numerical facilities
+of Scilab, Maple objects can be transformed into Scilab functions. To assure 
+efficient numerical evaluation this is done through numerical evaluation in 
+Fortran. The whole process is done by a Maple procedure called 
+\verb/maple2scilab/.
+\section{Maple2scilab}
+\index{maple2scilab@{\tt maple2scilab}}
+The procedure \verb!maple2scilab! converts a Maple object, 
+either a scalar function or a matrix into a Fortran subroutine 
+and writes the associated Scilab function. The code of \verb!maple2scilab!
+is in the directory \verb!SCIDIR/maple!.
+
+The calling sequence of \verb!maple2scilab! is as follows:\\
+\verb!maple2scilab(function-name,object,args)!
+\begin{itemize}
+\item
+The first argument, \verb!function-name! is a name indicating the 
+function-name in Scilab.
+\item
+The second argument \verb!object! is the Maple name of the expression 
+to be transferred to Scilab.
+\item
+The third argument is a list of arguments containing the formal parameters of
+the Maple-object \verb!object!.
+\end{itemize}
+When \verb!maple2scilab! is invoked in Maple, two files are generated,
+one which contains the Fortran code and another which contains the 
+associated Scilab function. Aside their existence, the user has not to
+know about their contents.
+
+The Fortran routine which is generated has the following calling sequence:\\
+{\tt <Scilab-name>(x1,x2,\ldots,xn,matrix)} \\
+and this subroutine computes matrix(i,j) as a function of
+the arguments {\tt x1,x2,\ldots,xn}.
+Each argument can be a Maple scalar or array which should be
+in the argument list. 
+The Fortran subroutine is put into a file named {\tt <Scilab-name>.f}, the
+Scilab-function into a file named {\tt <Scilab-name>.sci}.
+For numerical evaluation in Scilab the user has to compile the Fortran 
+subroutine, to link it with Scilab (e.g. Menu-bar option '\verb!link!')
+and to load the associated function (Menu-bar option '\verb!getf!').
+Information about \verb!link! operation is given in Scilab's manual: 
+Fortran routines can be incorporated into Scilab by dynamic
+link or through the \verb!Ex-fort.f! file in the \verb!default! directory.
+ Of course, this two-step procedure can be automatized using a shell-script 
+(or using \verb!unix! in Scilab).
+Maple2scilab uses the ``Macrofort'' library which is in the share 
+library of Maple.
+\subsection{Simple Scalar Example}
+\paragraph{Maple-Session}
 \begin{verbatim}
- 
--->model=2;reg=3;proc=4;sensor=5;ff=6;somm=7;
- 
--->tm=list('transfer','model');tr=list('transfer',['reg(:,1)','reg(:,2)']);
- 
--->tp=list('transfer','proc');ts=list('transfer','s
-ensor');
- 
--->tf=list('transfer','ff');tsum=list('transfer',['1','1']);
- 
--->lum=list('link','input',[-1],[model,1],[ff,1]);
- 
--->lmr=list('link','model output',[model,1],[reg,1]);
- 
--->lrs=list('link','regulator output',[reg,1],[somm,1]);
- 
--->lfs=list('link','feed-forward output',[ff,1],[somm,2]);
- 
--->lsp=list('link','proc input',[somm,1],[proc,1],[-2]);
- 
--->lpy=list('link','proc output',[proc,1],[sensor,1],[-1]);
- 
--->lsup=list('link','sensor output',[sensor,1],[reg,2]);
- 
--->syst=...
- list('blocd',tm,tr,tp,ts,tf,tsum,lum,lmr,lrs,lfs,lsp,lpy,lsup);
- 
--->[sysf,names]=bloc2exp(syst)
- names     =
- 
- 
-       names>1
- 
- input   
- 
-       names>2
- 
-!proc output  !
-!             !
-!proc input   !
- sysf      =
- 
-!proc*((eye()-reg(:,2)*sensor*proc)\(-(-ff-reg(:,1)*model)))  !
-!                                                           !
-!(eye()-reg(:,2)*sensor*proc)\(-(-ff-reg(:,1)*model))         !
+> read(`maple2scilab.maple`):
+> f:=b+a*sin(x);
+
+                               f := b + a sin(x)
+
+> maple2scilab('f_m',f,[x,a,b]);
 \end{verbatim}
-%
-Note that the argument to {\tt bloc2exp} is a list of lists.  The 
-first element of the list {\tt syst} is (actually) the character string
-{\tt 'blocd'} which indicates that the list represents a block-diagram
-inter-connection of systems.  Each list entry in the list {\tt syst}
-represents a block or an inter-connection in Figure~\ref{fa.1}.
-The form of a list which represents a block begins with a character
-string {\tt 'transfer'} followed by a matrix of character strings
-which gives the symbolic name of the block.  If the block is multi-input
-multi-output the matrix of character strings must be represented as
-is illustrated by the block {\tt Reg}.  
+Here the Maple variable \verb!f! is a scalar expression but it could be also
+a Maple vector or matrix.
+\verb/ 'f_m'/ will be the name of \verb!f! in Scilab 
+(note that the Scilab name is restricted to contain at most 6 characters).
+The procedure \verb/maple2scilab/ creates two files: \verb/f_m.f/ 
+and  \verb/f_m.sci/ in the directory where Maple is started.
+To specify another directory just define in Maple the path : 
+\verb/rpath:=`//\verb/work//` ; then all files are written in 
+the sub-directory \verb/work/.
+The file \verb!f_m.f! contains the source code of a stand alone Fortran
+routine which is dynamically linked to Scilab by the function \verb!f_m! in
+defined in the file \verb!f_m.sci!.
 
-	The inter-connections between blocks is also represented by lists.  
-The first element of the list is the character string {\tt 'link'}.
-The second element of the inter-connection is its symbolic name.
-The third element of the inter-connection is the input to the connection.
-The remaining elements are all the outputs of the connection.
-Each input and output to an inter-connection is a vector which
-contains as its first element the block number (for instance the {\tt model}
-block is assigned the number $2$).  The second element of the vector
-is the port number for the block (for the case of multi-input multi-output
-blocks).  If an inter-connection is not attached to anything the value
-of the block number is negative (as for example the inter-connection
-labeled {\tt 'input'} or is omitted.
-
-	The result of the {\tt bloc2exp} function is a list of names
-which give the unassigned inputs and outputs of the system and
-the symbolic transfer function of the system given by {\tt sysf}.
-The symbolic names in {\tt sysf} can be associated to polynomials
-and evaluated using the function {\tt evstr}.  This is illustrated in the
-following Scilab session.
-%
+\paragraph{Scilab Session}
 \begin{verbatim}
+-->unix('make f_m.o');
  
--->s=poly(0,'s');ff=1;sensor=1;model=1;proc=s/(s^2+3*s+2);
- 
--->reg=[1/s 1/s];sys=evstr(sysf)
- sys       =
- 
-!     1 + s          !
-!   ----------       !
-!             2      !
-!   1 + 3s + s       !
-!                    !
-!              2   3 !
-!   2 + 5s + 4s + s  !
-!   ---------------- !
-!           2   3    !
-!     s + 3s + s     !
+-->link('f_m.o','f_m');
 
+linking  _f_m_ defined in f_m.o  
+ 
+-->getf('f_m.sci','c')
+ 
+-->f_m(%pi,1,2)
+ ans       =
+ 
+    2.  
 \end{verbatim}
-%
-The resulting polynomial transfer function links the input
-of the block system to the two outputs.  Note that the output
-of {\tt evstr} is the rational polynomial matrix {\tt sys}
-whereas the output of {\tt bloc2exp} is a matrix of character strings.
 
-The symbolic evaluation which is given here is not very efficient
-with large interconnected systems. The function {\tt bloc2ss}
-performs the previous calculation in state-space format.
-Each system is given now in state-space 
-as a {\tt syslin} list or simply as a gain (constant matrix). 
-Note {\tt bloc2ss} performs the necessary conversions if this 
-is not done by the user. Each system must be given a value before
-bloc2ss is called. All the calculations are made in state-space
-representation even if the linear systems are given in transfer form.
-
-\chapter{Converting Scilab functions to Fortran}
-
-\section{Converting Scilab Functions to Fortran Routines}
-
-Scilab provides a compiler (under development) to transform some Scilab 
-functions
-into Fortran subroutines. The routines which are thus obtained
-make use of the routines which are in the Fortran libraries.
-All the basic matrix operations are available.
-
-Let us consider the following Scilab function:
+\subsection{Matrix Example}
+This is an example of transferring a Maple matrix into Scilab.
+\paragraph{Maple Session}
 \begin{verbatim}
+> with(linalg):read(`maple2scilab.maple`):
 
-function [x]=macr(a,b,n)
-z=n+m+n,
-c(1,1)=z,
-c(2,1)=z+1,
-c(1,2)=2,
-c(2,2)=0,
-if n=1 then,
- x=a+b+a,
-else,
-x=a+b-a'+b,
-end,
-y=a(3,z+1)-x(z,5),
-x=2*x*x*2.21,
-sel=1:5,
-t=a*b,
-for k=1:n,
- z1=z*a(k+1,k)+3,
-end,
-t(sel,5)=a(2:4,7),
-x=[a b;-b' a']
+> x:=vector(2):par:=vector(2):
+
+> mat:=matrix(2,2,[x[1]^2+par[1],x[1]*x[2],par[2],x[2]]);
+
+                            [     2                     ]
+                            [ x[1]  + par[1]  x[1] x[2] ]
+                    mat :=  [                           ]
+                            [     par[2]         x[2]   ]
+
+> maple2scilab('mat',mat,[x,par]);
 
 \end{verbatim}
 
-which can be translated into Fortran by using the function {\tt mac2for}.
-Each input parameter of the subroutine is described by a list
-which contains its type and its dimensions. Here, we have three
-input variables {\tt a,b,c} which are, say, {\tt 
-double precision, double precision, integer} with dimensions
-{\tt (m,m), (m,m), (1,1)}. This information is gathered
-in the following list:
+\paragraph{Scilab Session}
 \begin{verbatim}
-l=list();
-l(1)=list('1','m','m');
-l(2)=list('1','m','m');
-l(3)=list('0','1','1');
-\end{verbatim}
-The call to {\tt mac2for} is made as follows:
-\begin{verbatim}
-comp(macr);
-mac2for(macr2lst(macr),l)
-\end{verbatim}
-The output of this command is a string containing a stand-alone Fortran 
-subroutine.
-\begin{verbatim}
-       subroutine macr(a,b,n,x,m,work,iwork)
-c!
-c  automatic translation
-.
-.
-.
-       double precision a(m,m),b(m,m),x(m+m,m+m),y,z1,24(m,m),work(*)
-       integer n,m,z,c(2,2),sel(5),k,iwork(*)
-.
-.
-.      
-       call dmcopy(b,m,x(1,m+1),m+m,m,m)
-       call dmcopy(work(iw1),m,x(m+1,1),m+m,m,m)
-       call dmcopy(work(iw1),m,x(m+1,m+1),m+m,m,m)
-       return
-c
-       end
+-->unix('make mat.o');
 
+-->link('mat.o','mat') 
 
+linking  _mat_ defined in mat.o  
+ 
+-->getf('mat.sci','c')
+
+-->par=[50;60];x=[1;2];
+ 
+-->mat(x,par)
+ ans       =
+ 
+!   51.    2. !
+!   60.    2. !
+ 
 \end{verbatim}
-This routine can be linked to Scilab and interactively called.
+
+{\small
+\paragraph{Generated code}
+Below is the code (Fortran subroutines and Scilab functions) which is 
+automatically generated by {\tt maple2scilab} in the two preceding  examples.
+\paragraph{Fortran routines}
+\begin{verbatim}
+c      
+c     SUBROUTINE f_m
+c      
+      subroutine f_m(x,a,b,fmat)
+      doubleprecision x,a,b
+      implicit doubleprecision (t)
+      doubleprecision fmat(1,1)
+         fmat(1,1) = b+a*sin(x)
+      end
+\end{verbatim}
+\begin{verbatim}
+c      
+c     SUBROUTINE mat
+c      
+      subroutine mat(x,par,fmat)
+      doubleprecision x,par(2)
+      implicit doubleprecision (t)
+      doubleprecision fmat(2,2)
+         t2 = x(1)**2
+         fmat(2,2) = x(2)
+         fmat(2,1) = par(2)
+         fmat(1,2) = x(1)*x(2)
+         fmat(1,1) = t2+par(1)
+      end
+\end{verbatim}
+\paragraph{Scilab functions}
+\begin{verbatim}
+function [var]=f_m(x,a,b)
+var=call('f_m',x,1,'d',a,2,'d',b,3,'d','out',[1,1],4,'d')
+\end{verbatim}
+\begin{verbatim}
+function [var]=fmat(x,par)
+var=call('fmat',x,1,'d',par,2,'d','out',[2,2],3,'d')
+\end{verbatim}
+}
+
+\subsection{The {\tt addinter} command}
+Once the interface program is written, it must be compiled to produce 
+an object file. It is then linked to Scilab by the addinter command.
+
+The syntax of addinter is the following:
+
+{\tt addinter([`interface.o', 'userfiles.o'],'entrypt',['scifcts'])}
+
+Here {\tt interface.o} is the object file of the interface, 
+{\tt userfiles.o} is the set of user's routines to be linked, 
+{\tt entrypt} is the entry point of the interface routine and 
+{'scifcts'} is the set of Scilab functions to be interfaced.
+
 
