@@ -357,10 +357,15 @@ c      return
       logical function ifexpr()
       INCLUDE '../stack.h'
       integer p
+      integer blank
+      data blank/40/
       if(err1.ne.0) goto 20
       p=pt
  10   p=p-1
-      if (p.eq.0.or.rstk(p).eq.307) goto 20
+c     the test rstk(p).eq.307.and.ids(1,p-1).ne.blank) checks if we are
+c     evaluating the argument of a function. ids(1,p-1).ne.blank
+C     excludes the case of a parenthesized if expression
+      if (p.eq.0.or.(rstk(p).eq.307.and.ids(1,p-1).ne.blank)) goto 20
       if (rstk(p).ne.803) goto 10
       ifexpr=.true.
       return
