@@ -37,7 +37,7 @@ D =      %hm_d_hm.sci %hm_d_s.sci %p_d_p.sci %p_d_r.sci \
 	 %p_d_s.sci %r_d_p.sci %r_d_r.sci %r_d_s.sci %s_d_p.sci \
 	 %s_d_r.sci %s_d_sp.sci %sp_d_s.sci %sp_d_sp.sci %i_d_i.sci
 
-E =      %c_e.sci %hm_e.sci %lss_e.sci %p_e.sci %r_e.sci %s_e.sci \
+E =      %hm_e.sci %lss_e.sci %p_e.sci %r_e.sci %s_e.sci \
 	 %sp_e.sci %spb_e.sci %cblock_e.sci %h_e.sci
 
 F =      %b_f_spb.sci %c_f_s.sci %hm_f_hm.sci %lss_f_lss.sci \
