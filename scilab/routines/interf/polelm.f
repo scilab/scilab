@@ -339,6 +339,8 @@ c
 c
       m1=istk(il1+1)
       n1=istk(il1+2)
+      if(m1*n1.eq.0) return
+
       it1=istk(il1+3)
       mn1=m1*n1
       if(mn1.ne.1) then
