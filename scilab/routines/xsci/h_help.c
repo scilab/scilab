@@ -87,24 +87,15 @@ void popupHelpPanel(void)
       XRaiseWindow(XtDisplay(helpShell), XtWindow(helpShell));
       return;
     }
-  if (helpShell == NULL) 
+  if ( Help_Init() == 1) 
     {
-      if ( Help_Init() == 1) 
-	{
-	  sciprint("can't use man\r\n");
-	  return;
-	}
-      initHelpWidgets();
-      isPoppedUp = True;
-      using_menu_help =1;
-      XtPopup(helpShell, XtGrabNone);
+      sciprint("can't use man\r\n");
+      return;
     }
-  else 
-    {
-      isPoppedUp = True;
-      using_menu_help = 1;
-      XtPopup(helpShell, XtGrabNone);
-    }
+  initHelpWidgets();
+  isPoppedUp = True;
+  using_menu_help =1;
+  XtPopup(helpShell, XtGrabNone);
 }
 
 int help_popped_status(void)

@@ -250,6 +250,7 @@ int Help_Init(void)
 {
   static int first = 0;
   static int Erstatus = 0 ;
+  static int i;
   if ( first == 0 ) 
     {
       if (( Erstatus=initHelpDatas()) == 1)  return(1);
@@ -260,7 +261,15 @@ int Help_Init(void)
   else
     {
       if ( Erstatus == 1 ) return(1);
-      if ((Erstatus = setHelpTopicInfo(1)) == 1) return(1);
+      for ( i = 0 ; i < nInfo; i++) {
+	FREE(helpInfo[i]);
+	FREE(helpPaths[i]);
+      }
+      nInfo = 0;
+      CurrentTopicInfo = -1;
+      if (( Erstatus=initHelpDatas()) == 1)  return(1);
+      if (( Erstatus=setHelpTopicInfo(1)) == 1) return(1);
+      AP.name[0] ='\0' ; /** Apropos topic initial name **/
     }
   return(0);
 }
@@ -428,8 +437,6 @@ int InitHelpDatas_FromScilabVar(void)
   return 0;
 }
 
-
-    
 /************************************
  * Parses a line as 
  * $SCI/man/graphics	Graphic Library
