@@ -13,7 +13,7 @@ NAM = SCI/macros/xdess
 MACROS = errbar.sci fchamp.sci fcontour.sci fplot2d.sci fplot3d.sci \
 	fgrayplot.sci fplot3d1.sci  locate.sci xbasc.sci \
 	xbasimp.sci xbasr.sci plot3d2.sci plot3d3.sci nf3d.sci  \
-	xclip.sci xstringb.sci histplot.sci plot.sci eval3d.sci \
+	xclip.sci histplot.sci plot.sci eval3d.sci \
 	gr_menu.sci hist3d.sci scaling.sci isoview.sci \
 	milk_drop.sci xrpoly.sci rotate.sci secto3d.sci square.sci \
 	titlepage.sci nyquist.sci m_circle.sci bode.sci \

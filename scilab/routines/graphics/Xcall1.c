@@ -768,7 +768,7 @@ void xstringb_1(char *fname, char *str, integer *fflag, integer *v2, integer *v3
  * and the string is Drawn if Dflag ==1 ;
  **********************************/
 
-void GSciString(int Dflag, integer *x, integer *y, char *StrMat, integer *w, integer *h)
+static void GSciString(int Dflag, integer *x, integer *y, char *StrMat, integer *w, integer *h)
 {
   char *p = StrMat,*p1,*p2,*plast;
   integer yi=*y;
@@ -780,17 +780,15 @@ void GSciString(int Dflag, integer *x, integer *y, char *StrMat, integer *w, int
     {
       integer logrect[4];
       double angle=0.0;
-      integer flag=1;
+      integer flag=0;
       p2 =p1 ; *p1 = '\0';
       while ( p1 != p && *p1 != '\n' ) 
 	p1--;
       if ( Dflag == 1) 
 	C2F(dr)("xstring",( p1 == p ) ? p1 : p1 +1,
 		x,&yi,PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
-      C2F(dr)("xstringl",
-	      ( p1 == p ) ? p1 : p1 +1,
-	      x,&yi,logrect,PI0,PI0,PI0,
-	      PD0,PD0,PD0,PD0,0L,0L);	
+      C2F(dr)("xstringl", ( p1 == p ) ? p1 : p1 +1,
+	      x,&yi,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
       if ( p2 != plast) 	*p2 = '\n';
       wc = Max( wc , logrect[2]);
       if ( p == p1 ) 
