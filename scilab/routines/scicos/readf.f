@@ -88,6 +88,9 @@ c     buffer initialisation
          N=ipar(4)
          K=int(z(1))
          lunit=int(z(3))
+         if(lunit.eq.0) then
+            return
+         endif
          call clunit(-lunit,buf(1:lfil),mode)
          if(err.gt.0) goto 100
          z(3)=0.0d0

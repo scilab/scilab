@@ -70,6 +70,9 @@ c     file opening
          z(3)=t
          call dset(nu*N,0.0d0,z(4),1)
       elseif(flag.eq.5) then
+         if(lunit.eq.0) then
+            return
+         endif
          if(K.ge.1) then
 c     write on the file
             lfmt=ipar(2)
