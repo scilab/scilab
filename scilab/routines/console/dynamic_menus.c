@@ -148,6 +148,9 @@ int StoreCommand1 (char *command,int flag)
 		if (flag==2&& get_is_reading ()) write_scilab ("\n");
 	#endif
     }
+#ifdef WIN32
+	if (flag==0 ) write_scilab ("\n");
+#endif
   return (0);
 }
 

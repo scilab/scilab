@@ -9,10 +9,10 @@ extern int StoreCommand1 (char *command,int flag);
 
 int TK_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int  objc,char ** argv)
 {
-  #if WIN32
-		StoreCommand1 (argv[1],2);
+  #ifdef WIN32
+	StoreCommand1 (argv[1],0);
   #else
-		StoreCommand(argv[1]);  
+	StoreCommand(argv[1]);  
   #endif
   Tcl_SetResult(theinterp,NULL,NULL);
   return TCL_OK;
