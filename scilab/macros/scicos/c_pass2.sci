@@ -2971,20 +2971,17 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
 
 
   //store unconnected outputs, if any, at the end of outtb
-  unco=find(outlnk==0);
-  if unco==[] then return;end
-  siz_unco=0
+    unco=find(outlnk==0);
   for j=unco
     m=maxi(find(outptr<=j))
     n=j-outptr(m)+1
     nm=bllst(m).out(n)
     if nm<1 then 
-      
-      under_connection(corinv(m),n,nm,-1,0,0),ok=%f,return,end
-    siz_unco=maxi(siz_unco,nm)
+      under_connection(corinv(m),n,nm,-1,0,0),ok=%f,return,
+    end
+    lnkptr=[lnkptr;lnkptr($)+nm]
+    outlnk(j)=maxi(outlnk)+1
   end
-  lnkptr=[lnkptr;lnkptr($)+siz_unco]
-  outlnk(unco)=maxi(outlnk)+1
 endfunction
 
 function [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
@@ -3468,9 +3465,9 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   end
 
   //store unconnected outputs, if any, at the end of outtb
-  unco=find(outlnk==0);
-  if unco==[] then return;end
-  outlnk(unco)=maxi(outlnk)+1
+  for unco=find(outlnk==0);
+    outlnk(unco)=maxi(outlnk)+1  
+  end
 endfunction
 
 function [evoutoin,evoutoinptr]=synch_clkconnect(typ_s,clkconnect)
