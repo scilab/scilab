@@ -84,6 +84,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
     fill[i] = dc;
   polysize = 5;
 
+
   /** The 3d plot **/
   /** Choix de l'ordre de parcourt **/
   switch (cache)
@@ -677,6 +678,14 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                 col[k] = cvect[locindex[i]];
 
             }
+	  else if (color_flag == 4)
+            {
+              /* flat shading "a la Matlab" */
+	      
+              for (k = 0; k < *p; k++)
+                col[k] = cvect[locindex[i]];
+	      
+            }
           else if (color_flag == 1)
             {
               /* Z-level flat shading. Computing of color has been moved here for clarity. */
@@ -734,7 +743,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                 continue;
             }
 
-          if (color_flag == 1 || color_flag == 2)
+          if ((color_flag == 1) || (color_flag == 2) || (color_flag == 4))
             {
               /* Flat shading. This is the case where the color index is constant for a facet */
 
