@@ -217,12 +217,13 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       if ( (int)strlen(xf) < 1) c='g' ; else c=xf[0];
       switch ( c )
 	{
-	case 'e' : xmin= 1.0 ; xmax = (*n2);break;
-	case 'o' : xmax= Maxi(x,(*n2)); xmin= Mini(x,(*n2)); break;
-	case 'g' :
-	default: xmax= Maxi(x, size_x); xmin= Mini(x, size_x); break;
+	case 'e' : xmin= 1.0 ; xmax = (*n2);break; /* F.Leray obsolete ??*/
+	case 'o' : xmax= Maxi(x,(*n2)); xmin= Mini(x,(*n2)); break; /* F.Leray obsolete ??*/
+	case 'g' : /* F.Leray obsolete ??*/
+	  /* F.Leray : look for the min/max inside the x/y vector of size size_x/size-y*/
+	default: xmax= Maxi(x, size_x); xmin= Mini(x, size_x); break; /* for x*/
 	}
-      ymin=  Mini(y, size_y); ymax=  Maxi(y,size_y);
+      ymin=  Mini(y, size_y); ymax=  Maxi(y,size_y); /* for y*/
       /* back to default values for  x=[] and y = [] */
       if ( ymin == LARGEST_REAL ) { ymin = 0; ymax = 10.0 ;} 
       if ( xmin == LARGEST_REAL ) { xmin = 0; xmax = 10.0 ;} 
@@ -237,7 +238,8 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
     {
       /* code added by S. Mottelet 11/7/2000 */
       double FRect[4],WRect[4],ARect[4];
-      char logscale[4];      
+      /*char logscale[4]; */ /*   F.Leray 24.03.04      */
+      char logscale[2]; 
       /* end of added code by S. Mottelet 11/7/2000 */
       
       int verbose=0,wdim[2],narg;

@@ -586,7 +586,7 @@ void get_frame_in_pixel(integer WIRect[])
 
 void set_scale(flag,subwin,frame_values,aaint,logflag,axis_values)
      char flag[6];            /* flag[i] = 't' or 'f' */
-     double  subwin[4];       /* subwindow specification */
+     double  subwin[4];       /* subwindow specification */ /* <=> WRect*/
      double  frame_values[4]; /* [xmin,ymin,xmax,ymax] */
      integer aaint[4];        /* [xint,x_subint,y_int,y_subint]*/
      char logflag[2];         /* [xlogflag,ylogflag] */
