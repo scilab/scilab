@@ -4,83 +4,102 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>scipad</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>27-May-2003</DATE>
+  <DATE>19-Oct-2003</DATE>
   <SHORT_DESCRIPTION name="scipad"> Embedded Scilab text editor</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>scipad(f)</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>scipad()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>scipad() </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>scipad(f) </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>scipad([f1,f2,...]) </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>scipad f1 f2, ... </CALLING_SEQUENCE_ITEM>
+   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_NAME>f, f1, f2...</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: file path</SP>
+          <SP>: file pathnames</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
-    </PARAM_INDENT>
+   </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P> 
-   Scipad is an embedded Scilab text editor written in TCL/TK. It can be started with the &quot;Editor&quot; menu or 
-   from Scilab command line with the instruction <VERB>scipad()</VERB> or scipad(f). It allows Windows 
-   like edition modes. The &quot;Load Into Scilab&quot; menu can be used to <VERB>exec</VERB> the file contents 
-   into Scilab.  The following shortcuts are defined</P>
-    <ITEMIZE>
-      <ITEM label="&lt;Control-o&gt;">
-        <SP>open file</SP>
+  <P>
+   Scipad is an embedded Scilab text editor written in TCL/TK. 
+   It can be started with the &quot;Editor&quot; 
+   menu or from Scilab command line with the instruction <VERB>scipad()</VERB> 
+   or <VERB>scipad f</VERB>. 
+  </P>
+  <P>
+   The same invocation adds further files to an already opened scipad session.
+   Scipad allows Windows like edition modes. Keyboard shortcuts are defined for most possible 
+   editing actions and reported by the menu entries.
+  </P>
+  <P>
+   Additionally, the following shortcuts are defined:
+  </P>
+    <ITEMIZE label="shortcuts">
+      <ITEM label="&lt;F2&gt;">
+        <SP> Save file </SP>
       </ITEM>
-      <ITEM label="&lt;Control-z&gt;">
-        <SP>undo</SP>
+      <ITEM label="&lt;F5&gt;">
+        <SP> Save file and run it into Scilab</SP>
       </ITEM>
-      <ITEM label="&lt;Control-y&gt;">
-        <SP>redo</SP>
+      <ITEM label="&lt;double-click mouse-button1&gt;">
+        <SP> Select word</SP>
       </ITEM>
-      <ITEM label="&lt;Control-f&gt;">
-        <SP>find</SP>
+      <ITEM label="&lt;triple-click mouse-button1&gt;">
+        <SP> Select line</SP>
       </ITEM>
-      <ITEM label="&lt;Control-r&gt;">
-        <SP>find and replace</SP>
+      <ITEM label="&lt;mouse-button2&gt;">
+        <SP> Paste selection (unix)</SP>
       </ITEM>
-      <ITEM label="&lt;Control-x&gt;">
-        <SP>cut</SP>
+      <ITEM label="&lt;mouse-button3&gt;">
+        <SP> popup edit menu</SP>
       </ITEM>
-      <ITEM label="&lt;Control-v&gt;">
-        <SP>paste</SP>
+      <ITEM label="&lt;Shift-mouse-button3&gt;">
+        <SP> popup Execute menu</SP>
       </ITEM>
-      <ITEM label="&lt;Control-w&gt;">
-        <SP>close current file</SP>
+      <ITEM label="&lt;Control-mouse-button3&gt;">
+        <SP> popup Options menu</SP>
       </ITEM>
-      <ITEM label="&lt;Control-n&gt;">
-        <SP>new file</SP>
-      </ITEM>
-      <ITEM label="&lt;Control-q&gt;">
-        <SP>exit scipad file</SP>
-      </ITEM>
-      <ITEM label="&lt;Control-g&gt;">
-        <SP>goto line</SP>
-      </ITEM>
-      <ITEM label="&lt;Control-p&gt;">
-        <SP>print selection</SP>
-      </ITEM>
-      <ITEM label="&lt;Control-P&gt;">
-        <SP>print</SP>
-      </ITEM>
-      <ITEM label="&lt;Control-S&gt;">
-        <SP>Save As</SP>
-      </ITEM>
-    </ITEMIZE>
+     </ITEMIZE>
+  <P>
+      The &quot;Load Into Scilab&quot; (Ctrl-lowercase-l) menu entry can be used to
+      <LINK>exec</LINK> the file contents into Scilab, while &quot;Execute selection&quot; (Ctrl-lowercase-y)
+      passes the selected lines to the scilab shell using <LINK>ScilabEval</LINK>
+      (i.e. <LINK>execstr</LINK>).
+  </P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-scipad SCI/scilab.star
 
-  ]]>
+  <SECTION label="Remarks">
+  <ITEMIZE>
+  <ITEM label="Known Issues:">
+      <ITEMIZE>
+      <ITEM label="Execute Selection">
+         <SP> gets confused if the selection contains a 
+         <VERB>function</VERB> 
+          not terminated by an <VERB>endfunction</VERB>. The commands passed are output on the Scilab
+          window, but are not recorded in the history. </SP>
+      </ITEM>
+      </ITEMIZE>
+   </ITEM>
+  <ITEM label="Bugs:"> <SP> There are still a few... </SP>
+     </ITEM>
+   </ITEMIZE>
+  </SECTION>
+
+  <EXAMPLE>
+<![CDATA[ 
+   scipad SCI/scilab.star 
+]]>
   </EXAMPLE>
-  <AUTHOR>
-    Mathieu Philippe, INRIA
-  </AUTHOR>
-  <BIBLIO>
-    <P> Scipad is derived from the tknotepad written by Joseph Acosta</P>
-  </BIBLIO>
+
+  <AUTHORS>
+  <AUTHORS_ITEM>
+    Scipad is derived from <VERB>tknotepad</VERB> written by Joseph Acosta;
+  </AUTHORS_ITEM>
+  <AUTHORS_ITEM>
+   Mathieu Philippe, INRIA; revised by Enrico Segre, Weizmann Institute
+  </AUTHORS_ITEM>
+  </AUTHORS>
 </MAN>
