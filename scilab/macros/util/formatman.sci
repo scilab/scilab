@@ -77,8 +77,7 @@ for k1=1:size(man,'*')  // loop on .man files
   if cat==[]| cat>k then
     modified=%t
     write(%io(2),'Processing '+fl+' to '+to)
-    absolute_path=get_absolute_file_path(fl)+fl
-    mputl(convert(getman(fl,to),absolute_path),strsubst(fl,'.man',ext))
+    mputl(convert(getman(fl,to)),strsubst(fl,'.man',ext))
   end
 end
 
@@ -102,8 +101,8 @@ if to<>"xml" then
 end
 
 
-function txt=man2ascii(man,absolute_path,ind)
-if argn(2)<3 then ind=1,end
+function txt=man2ascii(man,ind)
+if argn(2)<2 then ind=1,end
 ll=75
 txt=[];k=0
 n=size(man)
@@ -127,7 +126,7 @@ while k<n
     item=mk(2)
   case 'latex' then
   case 'latex_ignore' then
-    txt=[txt;man2ascii(mk(2),absolute_path,ind)]
+    txt=[txt;man2ascii(mk(2),ind)]
   case 'table' then
     txt=[txt;maketable(mk(2),ind)]
   case 'fill' then
@@ -262,7 +261,7 @@ while k<n
   end
 end
 
-function txt=man2xml(man,absolute_path)
+function txt=man2xml(man)
 k=0;txt=[];lang="eng";
 n=size(man)
 bl=' '
@@ -398,12 +397,6 @@ while k<n
         	if (k+1 < n) then
 			k=k+1;
 	        	mk = man(k);
-
-			//if mk(1) == 'fill' then
- 	  		  //txt=[txt; "    " + strcat(xmlsubstitute(mk(2))," ")];
-			//else
-        	  	  //k=k-1;
-			//end
 			select(mk(1))
 			  case 'fill' then
 			    txt=[txt; "    " + strcat(xmlsubstitute(mk(2))," ")];
@@ -422,7 +415,6 @@ while k<n
 		recurse=%f
   	    case 'verbatim' then
     		mk(2)=xmlsubstituteforcdata(mk(2))
-    		//txt=[txt;'  <P><VERB>'+strsubst(mk(2),' ',' ')+'  </VERB>'+'  </P>']
 		txt=[txt;'  <VERBATIM><![CDATA[' ; strsubst(mk(2),' ',' ') ; '   ]]></VERBATIM>'];
   	    case 'font' then
   	    else
@@ -906,7 +898,8 @@ while ~and(ok)&k<nh
   k=k+1
   for l=1:size(nm,'*')
     if ~ok(l) then
-      if find(part(mgetl(%helps(k,1)+del+'whatis'),1:length(nm(l)))==nm(l))<>[] then
+      //if find(part(mgetl(%helps(k,1)+del+'whatis'),1:length(nm(l)))==nm(l))<>[] then
+      if grep(mgetl(%helps(k,1)+del+'whatis.htm'),'>'+nm(l)+'<')<>[] then
 	t(l)=%helps(k,1)+del+nm(l)
 	ok(l)=%t
       end
