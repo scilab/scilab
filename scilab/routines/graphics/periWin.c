@@ -4406,8 +4406,8 @@ void C2F(bitmap)(string, w, h)
  * Fonts for the graphic windows 
  ***********************************/
 
-//#define FONTNUMBER 11 // F.Leray Pb here I set FONTNUMBER to 10 instead of 11
-#define FONTNUMBER 10
+#define FONTNUMBER 11 // F.Leray FONTNUMBER re-set to 11
+
 #define FONTMAXSIZE 6
 #define SYMBOLNUMBER 10
 
@@ -4615,13 +4615,14 @@ void C2F(queryfamily)(name, j, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   name[0]='\0';
  // for (i=0;i<FONTNUMBER;i++) { //Pb here: fonttab size is 10 and i goes from 0 to 10 included 
  // fonttab[10] is "{(char *) NULL,( char *) NULL}" F.Leray 24.02.04
- // By-pass FONTNUMBER set to 10 temporarily
+ // Pb fixed by applying the same correction as in periX11.c (see below)
   
   for (i=0;i<FONTNUMBER;i++) {
     v3[i]=strlen((*FontTab)[i].fname);
     if (v3[i] > 0)
       strcat(name,(*FontTab)[i].fname);
-    else {
+    else 
+      if(i< FONTNUMBER-1) { // here I put the same correction as in periX11.c to avoid fonttab[10] F.Leray 25.02.04
       v3[i]=strlen(fonttab[i].Winname);
        strcat(name,fonttab[i].Winname);
     }
