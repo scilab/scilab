@@ -26,7 +26,7 @@ include ../../Makefile.incl.mak
 
 CFLAGS = $(CC_OPTIONS)
 
-FFLAGS = $(FC_OPTIONS) -Wall
+FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.mak
 
