@@ -51,8 +51,9 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>intg(a,b,f)</VERB> evaluates the definite integral  from <VERB>a</VERB> to
-    <VERB>b</VERB> of <VERB>f(t)dt</VERB>.
-    The evaluation hopefully satisfies following claim for accuracy:
+    <VERB>b</VERB> of <VERB>f(t)dt</VERB>. The function <VERB>f(t)</VERB>
+      should be continuous.</P>
+    <P>The evaluation hopefully satisfies following claim for accuracy:
     <VERB>abs(I-v)&lt;= max(ea,er*abs(I))</VERB> where I stands for the
     exact value of the integral.</P>
     <P><VERB>f</VERB> is an external :</P>
@@ -63,17 +64,66 @@
     If <VERB>f</VERB> is a list the list must be as follows:
     <VERB> list(f,x1,x2,...)</VERB> where <VERB>f</VERB> is a function with calling
     sequence <VERB>f(t,x1,x2,...)</VERB>.</P>
-    <P>
-    If <VERB>f</VERB> is a string it refers to a the name
-    of a Fortran subroutine (see source code of <VERB>fintg.f</VERB>)</P>
+
+    <P>If <VERB>f</VERB> is a string it refers to a the name
+    of a Fortran function or a C prodedure with a given calling sequence: </P>
+
+    <P>In the fortran case the calling sequence should be 
+	<VERB>double precision function f(x)</VERB> where <VERB>x</VERB> is
+      also a double precision number. </P>
+    <P>In the C case the calling sequence should be 
+	<VERB>double f(double *x)</VERB>. </P>
+
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-deff('[y]=f(x)','y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2))')
+//Scilab function case
+function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 exact=-2.5432596188;
-abs(exact-intg(0,2*%pi,f))
-// See file routines/default/Ex-intg.f 
-abs(exact-intg(0,2*%pi,'intgex'))
+I=intg(0,2*%pi,f)
+abs(exact-I)
+
+//Scilab function case with parameter
+function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
+I=intg(0,2*%pi,list(f1,30))
+abs(exact-I)
+
+
+// Fortran code case (Fortran compiler required)
+// write down the fortran code
+F=['      double precision function ffun(x)'
+   '      double precision x,pi'
+   '      pi=3.14159265358979312d+0'
+   '      ffun=x*sin(30.0d+0*x)/sqrt(1.0d+0-(x/(2.0d+0*pi))**2)'
+   '      return'
+   '      end'];
+mputl(F,TMPDIR+'/ffun.f')
+// compile the fortran code
+l=ilib_for_link('ffun','ffun.o',[],'f',TMPDIR+'/Makefile');
+// incremental linking
+link(l,'ffun','f')
+//integrate the function
+I=intg(0,2*%pi,'ffun')
+abs(exact-I)
+
+// C code case (C compiler required)
+// write down the C code
+C=['#include <math.h>'
+   'double cfun(double *x)'
+   '{'
+   '  double y,pi=3.14159265358979312;'
+   '  y=*x/(2.0e0*pi);'
+   '  return *x*sin(30.0e0**x)/sqrt(1.0e0-y*y);'
+   '}'];
+mputl(C,TMPDIR+'/cfun.c')
+// compile the C code
+l=ilib_for_link('cfun','cfun.o',[],'c',TMPDIR+'/Makefile');
+// incremental linking
+link(l,'cfun','c')
+//integrate the function
+I=intg(0,2*%pi,'cfun')
+abs(exact-I)
+
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
