@@ -8,56 +8,66 @@ function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
   end
   
   ng=0
-  fil=pathconvert(fil,%f,%t)
+	fil=pathconvert(fil,%f,%t)
   mlibs=pathconvert(modelica_libs,%f,%t)
-  if MSDOS then
-    modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)
-    if strindex(modelicac,' ')<>[] then modelicac='""'+modelicac+'""',end
-    modelicac=modelicac+strcat(' -L ""'+mlibs+'""')
-  else
-    modelicac=pathconvert(SCI+'/bin/modelicac',%f,%t)+strcat(' -L '+mlibs)
-  end
   
   name=basename(fil)
   path=strsubst(stripblanks(fil),name+'.mo','')
+
   //do not update C code if needcompile==0 this allows C code
   //modifications for debugging purposes  
   updateC=needcompile <>0|fileinfo(path+name+'.c')==[]
+
   if updateC then
-    //disp(modelicac+' '+fil+' -o '+path+name+'.c')
-    if execstr('unix_s(modelicac+'' ''+fil+'' -o ''+path+name+''.c'')','errcatch')<>0 then
-      
+    if MSDOS then
+      modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)
+      if strindex(modelicac,' ')<>[] then modelicac='""'+modelicac+'""',end
+      modelicac=modelicac+strcat(' -L ""'+mlibs+'""')
+      instr=modelicac+' '+fil+' -o '+path+name+'.c'
+      mputl(instr,path+'genc.bat')
+      instr=path+'genc.bat'
+    else
+       modelicac=pathconvert(SCI+'/bin/modelicac',%f,%t)
+       modelicac=modelicac+strcat(' -L '+mlibs)
+       instr=modelicac+' '+fil+' -o '+path+name+'.c'
+    end
+  
+    if execstr('unix_s(instr)','errcatch')<>0 then
       x_message(['Modelica compiler error:'
-		 mgetl(TMPDIR+'/unix.err');
+		  mgetl(TMPDIR+'/unix.err');
 		 'sorry ']);
       ok=%f,nx=0,nin=0,nout=0,ng=0;return
     end
+    mprintf('   C code generated at '+path+name+'.c\n')
   end
-  mprintf('   C code generated at '+path+name+'.c\n')
-   //adding trace info
-  txt=mgetl(path+name+'.c')
-  [nx,nin,nout,ng,nm]=analyze_c_code(txt) //to get the dimension of the state
-					  
-  //if updateC then txt=modify1(txt,nx); mputl(txt,path+name+'.c');end
   
-  //unlink if necessary
-  [a,b]=c_link(name); while a ; ulink(b);[a,b]=c_link(name);end
+  Cfile=path+name+'.c'
+  if MSDOS then Ofile=path+name+'.obj', else Ofile=path+name+'.o', end
+  
+  //get the Genetrated block properties
+  [nx,nin,nout,ng,nm]=analyze_c_code(mgetl(Cfile)) 
 
- 
-  // build shared library with the C code
-  files=name+'.o';Make=path+'Make'+name;loader=path+name+'.sce'
+  pause
+  //below newest(Cfile,Ofile) is used instead of  updateC in case where
+  //Cfile has been manually modified (debug,...)
+  if newest(Cfile,Ofile)==1 then 
+    //unlink if necessary
+    [a,b]=c_link(name); while a ; ulink(b);[a,b]=c_link(name);end
+    // build shared library with the C code
+    files=name+'.o';Make=path+'Make'+name;loader=path+name+'.sce'
+    disp(files,Make)
+    ierr=execstr('libn=ilib_for_link(name,files,[],''c'',Make,loader)','errcatch')
+    if ierr<>0 then 
+      ok=%f;x_message(['sorry compilation problem';lasterror()]);
+      return;
+    end
 
-  ierr=execstr('libn=ilib_for_link(name,files,[],''c'',Make,loader)','errcatch')
-  if ierr<>0 then 
-    ok=%f;x_message(['sorry compilation problem';lasterror()]);
+    // link the generated C code
+    if execstr('link(libn,name,''c'')','errcatch')<>0 then 
+      ok=%f;
+      x_message(['Problem while linking generated code';lasterror()]);
     return;
-  end
-
-  // link the generated C code
-  if execstr('link(libn,name,''c'')','errcatch')<>0 then 
-    ok=%f;
-    x_message(['Problem while linking generated code';lasterror()]);
-    return;
+    end
   end
 endfunction
 
