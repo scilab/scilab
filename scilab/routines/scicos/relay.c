@@ -24,7 +24,7 @@ double *inptr[],*outptr[],*t;
 	  nev=nev/2;
 	}
       }
-      if ((*flag)==2) {z[0]=ic;return 0;}
+      if ((*flag)==2) {z[0]=ic;return ;}
       if (*nin>1) {
 	y=(double *)outptr[0];
 	u=(double *)inptr[ic];
