@@ -52,7 +52,7 @@ int ReadbdfFont(f,FontPtr,FontName)
   int height,hei,wid, gobitmap, bot;
   char *Data, *data;
   int i, j, nrow, nbytes,k ;
-  int c,fixed;
+  int c;
 
   FontPtr->fixed =0;
   gobitmap =0;
