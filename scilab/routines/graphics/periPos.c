@@ -62,8 +62,8 @@ void C2F(setbackgroundPos)(integer *num, integer *v2, integer *v3, integer *v4);
 void C2F(set_cPos)(integer i);
 void C2F(idfromnamePos) (char *name1, integer *num);
 void C2F(getdashPos)(integer *verbose, integer *value, integer *narg, double *dummy);
-
-
+static double ascentPos(void);
+static int fontsizePos (void);
 static int C2F(PosQueryFont)(char *name);
 static void C2F(displaysymbolsPos)(char *str, integer *n, integer *vx, integer *vy);
 static void WriteColorRGB(char *str, double *tab, int ind);
@@ -123,6 +123,7 @@ void C2F(xselgraphicPos)(char *v1, integer *v2, integer *v3, integer *v4, intege
 void C2F(xendgraphicPos)(void)
 {
   if (file != stdout && file != (FILE*) 0) {
+    FPRINTF((file,"\n%%Latex:\\end{picture}"));
     FPRINTF((file,"\n showpage\n"));
     FPRINTF((file,"\n end saved restore \n"));
     fclose(file);
@@ -196,12 +197,14 @@ void C2F(setwindowposPos)(integer *x, integer *y, integer *v3, integer *v4)
 /** for line thickness etc \ldots **/
 
 static integer prec_fact =10;
+static integer def_width =600;
+static integer def_height =424;
 
 void C2F(getwindowdimPos)(integer *verbose, integer *x, integer *narg, double *dummy)
 {     
   *narg = 2;
-  x[0]= 600*prec_fact;
-  x[1]= 424*prec_fact;
+  x[0]= def_width*prec_fact;
+  x[1]= def_height*prec_fact;
   if (*verbose == 1) 
     sciprint("\n CWindow dim :%d,%d\r\n",(int)x[0],(int)x[1]);
 } 
@@ -987,7 +990,8 @@ void C2F(ScilabGCGetorSetPos)(char *str, integer flag, integer *verbose, integer
 void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, integer *flag, integer *v6, integer *v7, double *angle, double *dv2, double *dv3, double *dv4)
 {     
   integer i,rect[4] ;
-  C2F(boundingboxPos)(string,x,y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+  int yn = (int) (*y + ascentPos());
+  C2F(boundingboxPos)(string,x,&yn,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   FPRINTF((file,"\n("));
   for ( i=0; i < (int)strlen(string);i++)
     {
@@ -997,10 +1001,15 @@ void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, in
 	FPRINTF((file,"%c",string[i]));
     }
   FPRINTF((file,") %d %d %d %5.2f [%d %d %d %d] Show",
-	  (int)*x,(int)*y,(int)*flag,*angle,(int)rect[0],
-	  (int)rect[1],(int)rect[2],(int)rect[3]));
+	   (int)*x,yn ,
+	   (int)*flag,*angle,(int)rect[0],
+	   (int)rect[1],(int)rect[2],(int)rect[3]));
+  
+  FPRINTF((file,"\n%%Latex:\\myput{%d}{%d}{%d}{%s}",
+	   (int)*x,def_height*prec_fact - yn, 
+	   fontsizePos (),
+	   string));
  }
-
 
 double bsizePos[6][4]= {{ 0.0,-7.0,4.63,9.0  },
 		{ 0.0,-9.0,5.74,12.0 },
@@ -1015,13 +1024,23 @@ double bsizePos[6][4]= {{ 0.0,-7.0,4.63,9.0  },
 /** with the same current font to have a good result **/
 
 void C2F(boundingboxPos)(char *string, integer *x, integer *y, integer *rect, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
-{integer verbose,nargs,font[2];
- verbose=0;
- C2F(xgetfontPos)(&verbose,font,&nargs,vdouble);
- rect[0]= (int)(*x+bsizePos[font[1]][0]*((double) prec_fact));
- rect[1]= (int)(*y+bsizePos[font[1]][1]*((double) prec_fact));
- rect[2]= (int)(bsizePos[font[1]][2]*((double)prec_fact)*(int)strlen(string));
- rect[3]= (int)(bsizePos[font[1]][3]*((double)prec_fact));
+{
+  integer verbose,nargs,font[2];
+  verbose=0;
+  C2F(xgetfontPos)(&verbose,font,&nargs,vdouble);
+  rect[0]= (int)(*x+bsizePos[font[1]][0]*((double) prec_fact));
+  rect[1]= (int)(*y+bsizePos[font[1]][1]*((double) prec_fact));
+  rect[2]= (int)(bsizePos[font[1]][2]*((double)prec_fact)*(int)strlen(string));
+  rect[3]= (int)(bsizePos[font[1]][3]*((double)prec_fact));
+}
+
+/* approximation of ascent using (asc + dsc) /2  */ 
+
+static double ascentPos() 
+{ 
+  static integer verbose=0,nargs,font[2];
+  C2F(xgetfontPos)(&verbose,font,&nargs,vdouble);
+  return ((bsizePos[font[1]][1] +(bsizePos[font[1]][3]/2.0) ))*((double) prec_fact);
 }
 
 /** Draw a single line in current style **/
@@ -1388,6 +1407,9 @@ void FileInit(void)
 	}
       FPRINTF((file,"0.0 1.0] def"));
     }
+  FPRINTF((file,"\n%%Latex:\\begin{picture}(%d,%d)(0,0)",
+	   def_width*prec_fact,
+	   def_height*prec_fact));
 }
 
 /*--------------------------------------------------------
@@ -1625,6 +1647,13 @@ static char *sizePos[] = { "08" ,"10","12","14","18","24"};
 static int  isizePos[] = { 8 ,10,12,14,18,24};
 
 /** To set the current font id of font and size **/
+
+static int fontsizePos (void)
+{ 
+  return isizePos[ScilabGCPos.FontSize];
+}
+	 
+
 
 void C2F(xsetfontPos)(integer *fontid, integer *fontsize, integer *v3, integer *v4)
 { integer i,fsiz;
