@@ -70,16 +70,16 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int**bllst
 	    int* typ_m,int* done,int* ok,int* need_newblk,int** corinvec,int** corinvptr);
 int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,char** bllst13,int* bllst2ptr,
 		 int* bllst3ptr,int* bllst4ptr,int* bllst5ptr,int* bllst11ptr,int* connectmat,
-                 int* clkconnect,int** lnkptr,int** inplnk,int** outlnk,int** typ_z,int** typ_s,int** typ_m,
+                 int* clkconnect,int** lnkptr,int** inplnk,int** outlnk,int** typ_s,int** typ_m,
 		 double** initexe,int** bexe,int** boptr,int** blnk,int** blptr,int* ok,int* corinvec,int* corinvptr);
 int conn_mat(int* inplnk,int* outlnk,int* bllst2ptr,int* bllst3ptr,int** outoin,int** outoinptr,int* nblk);
 int synch_clkconnect(int* typ_s,int* clkconnect,int** evoutoin,int** evoutoinptr);
 void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** execlk,int** clkconectj0,
 	      int** clkconnectj_cons );
 int scheduler(int* bllst12,int* bllst5ptr,int* execlk,int* execlk0,int* execlk_cons,int* ordptr1,
-               int* outoin,int* outoinptr,int* evoutoin,int* evoutoinptr,int* typ_z,int* typ_x,int* typ_s,int* bexe,
+               int* outoin,int* outoinptr,int* evoutoin,int* evoutoinptr,int** typ_z,int* typ_x,int* typ_s,int* bexe,
                int* boptr,int* blnk,int* blptr,int** ordptr2,int** ordclk,int** cord,int** iord,int** oord,int** zord,
-               int** critev,int* ok);
+               int** critev,int* ok,int* nzcross);
 int init_agenda(double* initexe,int* bllst5ptr,double** tevts,int** evtspt,int* pointi);
 int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* connectmat,int* ok,int* corinvec,int* corinvptr,int nblk1);
 int tree4(int* vec,int *nd,int nnd,int* outoin,int* outoinptr,int* typ_r,int** r);

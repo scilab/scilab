@@ -834,7 +834,7 @@ function [Code,proto]=callf(i)
       CodeC=CodeC+', (double *)args[0], &nrd_'+string(nuk)+..
 	    ', (double *)args[1], &nrd_'+string(nyk)+');';
        proto=proto+", double *u, int *nu, double *y, int *ny);"
-    elseif ftyp==1
+    elseif ftyp==1 
       if nin>=1 then
 	for k=1:nin
 	  lprt=inplnk(inpptr(i)-1+k);
@@ -1129,6 +1129,10 @@ cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv);
   evtspt=cpr.state.evtspt;
   pointi=cpr.state.pointi;outtb=cpr.state.outtb;
   
+  
+//RN
+zcptr=cpr.sim.zcptr;
+//
   rpptr=cpr.sim.rpptr;
   ipptr=cpr.sim.ipptr;funs=cpr.sim.funs;xptr=cpr.sim.xptr;
   zptr=cpr.sim.zptr;inpptr=cpr.sim.inpptr;inplnk=cpr.sim.inplnk;
@@ -1149,7 +1153,9 @@ cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv);
   for i=1:length(funs)-1
     if funtyp(i)==3 then
       msg=[msg;'Type 3 block''s not allowed']
-    elseif ztyp(i)<>0 then
+//RN   elseif ztyp(i)<>0 then
+    elseif (zcptr(i+1)-zcptr(i))<>0 then
+//
       msg=[msg;'Zero crossing block''s not allowed']
     elseif (xptr(i+1)-xptr(i))<>0 then
       msg=[msg;'Continuous state block''s not allowed']

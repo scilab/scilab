@@ -112,28 +112,28 @@ int C2F(intcpass2)(fname)
   static int n33,n34,n35,n36,n37,n38,n1111,n1313,n41,n42,*y40,l40,l39;
   int m31=8,n31=1,l31,n32=8;
   static int *header,*li,*le1,*le11,*le2,*le3,*le4,*le5,*le6,*le7,*le8,*le9;
-  static int *le10,*le12,*le13,*header1,*lii;
+  static int *le10,*le12,*le13,*header1,*lii,*le14;
   static int m,me12,ne2,ne3,ne4,ne5,ne6,ne7,ne8,ne9,ne11,ne12;
   static double *le66,*le77,*le88,*le1111,*le121,*le22,*le33,*le44,*le55,*le71;
-  static double *le81,*le99,*xd0k,*lc1,*rpark;
+  static double *le81,*le99,*xd0k,*lc1,*rpark,*le1414;
   static int *le1010,*le111,*le1313,nc1,mc1,l33,l3,m4,*vecnull;
   static char *Str1[]={ "xcs","x","z","iz","tevts","evtspt","pointi","outtb"};
   double *y1,*y2,*y4,*y17;
   int *y3,*y5,*y6,*y7,*y9,*y10,*y11,*y12,*y13,*y14,*y15,*y16,*y18,*y19,*y20,*y38,*y39;
   int *y21,*y22,*y23,*y24,*y25,*y26,*y27,*y28,*y29,*y30,*y31,*y32,*y33,*y34,*y35;
-  static char *Str2[]={ "scs","funs","xptr","zptr","izptr","inpptr","outptr","inplnk",
+  static char *Str2[]={ "scs","funs","xptr","zptr","zcptr","inpptr","outptr","inplnk",
 			"outlnk","lnkptr","rpar","rpptr","ipar","ipptr","clkptr","ordptr",
 			"execlk","ordclk","cord","oord","zord","critev","nb","ztyp",
 			"nblk","ndcblk","subscr","funtyp","iord","labels"};
   int m33=30,n39=1,l32,n40=30;
   char **y36,**y8,*y37;
   int i,j,k,ok,zeros=0;
-  int *bllst2,*bllst3,*bllst4,*bllst5,*bllst12,*bllst9;
+  int *bllst2,*bllst3,*bllst4,*bllst5,*bllst12,*bllst9,*nzcross;
   int *bllst2ptr,*bllst3ptr,*bllst4ptr,*bllst112,*bllst6ptr,*bllst7ptr;
   int *bllst5ptr,*typ_x,*bllst8ptr,*bllst9ptr;
   int *bllst11ptr,*connectmat,*clkconnect;
   int *corinvec,*corinvptr,*evtspt,pointi,*outtb,*pointiptr;
-  int *izptr,*nbptr,*nblkptr,*ndcblkptr; 
+  int *zcptr,*nbptr,*nblkptr,*ndcblkptr; 
   int *inplnk,*outlnk,*lnkptr,*ordptr;
   int *execlk,*ordclk,*cord,*oord,*zord,*iz0,*subscr;
   int *critev,nb,*ztyp,nblk,ndcblk,*iord,solver,*solverptr;
@@ -197,6 +197,8 @@ int C2F(intcpass2)(fname)
   bllst9ptr[1]=1;
   if ((bllst9=malloc(sizeof(int))) ==NULL )  return 0;		  
   bllst9[0]=0;
+  if ((nzcross=malloc(sizeof(int)*(m+1))) ==NULL )  return 0;		  
+  nzcross[0]=m;
   if ((bllst10=(char**) malloc(sizeof(char *)*(m+1))) ==NULL )  return 0;		  
   ((int*) bllst10)[0]=m;
   if ((bllst11ptr=malloc(sizeof(int)*(m+2))) ==NULL )  return 0;		  
@@ -456,6 +458,10 @@ int C2F(intcpass2)(fname)
       if ((bllst13[k]=(char*) malloc(sizeof(char)*(n1313+1))) ==NULL )  return 0;
       ((char*) bllst13[k])[n1313]='\0'; 
       C2F(cvstr)(&n1313,le1313,bllst13[k],&one,str_len);
+     /* 14ieme element de la list nzcross*/
+      le14=(int*) listentry(li,15);
+      le1414=((double *) (le14+4));
+      nzcross[k]=le1414[0];
     }
   
   GetRhsVar(2, "i", &m1, &n1, &l1);
@@ -506,9 +512,9 @@ int C2F(intcpass2)(fname)
   solver=*istk(l3);
   
   cpass2(&bllst111,&bllst112,&bllst2,&bllst3,&bllst4,&bllst5,&bllst9,&bllst10,&bllst11,
-	 &bllst12,&bllst13,&bllst2ptr,&bllst3ptr,&bllst4ptr,&bllst5ptr,&bllst9ptr,&typ_x,
+	 &bllst12,&bllst13,&nzcross,&bllst2ptr,&bllst3ptr,&bllst4ptr,&bllst5ptr,&bllst9ptr,&typ_x,
 	 &bllst11ptr,&connectmat,&clkconnect,&corinvec,&corinvptr,
-	 &iz0,&tevts,&evtspt,&pointi,&outtb,&izptr,&outlnk,&inplnk,
+	 &iz0,&tevts,&evtspt,&pointi,&outtb,&zcptr,&outlnk,&inplnk,
 	 &lnkptr,&ordptr,&execlk,&ordclk,&cord,&oord,&zord,&critev,&nb,&ztyp,
 	 &nblk,&ndcblk,&subscr,&iord,&ok);
   if (!ok) 
@@ -600,8 +606,8 @@ int C2F(intcpass2)(fname)
   n11=bllst6ptr[0];
   y10=(int*) (bllst7ptr+1);
   n12=bllst7ptr[0];
-  y11=(int*) (izptr+1);
-  n13=izptr[0];
+  y11=(int*) (zcptr+1);
+  n13=zcptr[0];
   y12=(int*) (bllst2ptr+1);
   n14=bllst2ptr[0];
   y13=(int*) (bllst3ptr+1);
@@ -716,7 +722,7 @@ int C2F(intcpass2)(fname)
   
   LhsVar(2) = 7;
   
-  free(izptr);
+  free(zcptr);
   free(inplnk);
   free(outlnk);
   free(lnkptr);
@@ -756,6 +762,7 @@ int C2F(intcpass2)(fname)
   for(i = 1; i < ((int*) bllst13)[0]+1; i++)
     free(bllst13[i]);
   free(bllst13);
+  free(nzcross);
   if(ndcblkptr) free(ndcblkptr);
   if (pointiptr) free(pointiptr);
   if (nbptr) free(nbptr);

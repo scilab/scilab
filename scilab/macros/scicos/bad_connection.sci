@@ -12,8 +12,8 @@ if path_in==-1 then
   hilite_obj(scs_m.objs(path_out));
   return;
 end
-[lhs,rhs]=argn(0)
-if rhs==6 then  //two connected blocks
+//[lhs,rhs]=argn(0)
+if prt_in <> -1 then  //two connected blocks
   lp=mini(size(path_out,'*'),size(path_in,'*'))
   k=find(path_out(1:lp)<>path_in(1:lp))
   path=path_out(1:k(1)-1) // common superbloc path
@@ -48,10 +48,9 @@ if rhs==6 then  //two connected blocks
     unhilite_obj(scs_m.objs(path(1)))
   end
 else // connected links do not verify block contraints
-  if rhs==2 then 
-    mess=prt_out;
+ 
+  mess=prt_out;
   
-  end
   path=path_out(1:$-1) // superbloc path
   path_out=path_out($) //  block number
   
