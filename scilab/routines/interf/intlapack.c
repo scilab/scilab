@@ -99,7 +99,7 @@ int intlsq(fname)
 
   /*   lsq(A,b)  */
   header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
-  CmplxA=header1[3];   Cmplxb=header1[3];
+  CmplxA=header1[3];   Cmplxb=header2[3];
   switch (CmplxA) {
   case 0:   
     switch (Cmplxb) {
