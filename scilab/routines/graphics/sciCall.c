@@ -274,11 +274,11 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
    * Force SubWindow properties according to arguments 
    * ================================================= */
 
+  psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  
   /* Force psubwin->is3d to TRUE: we are in 3D mode */
   pSUBWIN_FEATURE (psubwin)->is3d = TRUE;
 
-  psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
-  
   ppsubwin = pSUBWIN_FEATURE(psubwin);
   /* F.Leray 25.04.05 replace the default labels by the user labels if specified */
   loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
