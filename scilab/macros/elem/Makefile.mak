@@ -23,7 +23,7 @@ MACROS = acos.sci acosm.sci acosh.sci acoshm.sci asin.sci asinm.sci \
 	modulo.sci pmodulo.sci interpln.sci \
 	intl.sci intc.sci integrate.sci \
 	erf.sci erfc.sci erfcx.sci binomial.sci \
-	speye.sci spzeros.sci sprand.sci spones.sci \
+	speye.sci spzeros.sci sprand.sci \
 	intsplin.sci inttrap.sci GLoad.sci \
 	isinf.sci isnan.sci \
 	lex_sort.sci unique.sci union.sci setdiff.sci intersect.sci \
