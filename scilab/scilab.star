@@ -91,7 +91,6 @@ if larg<>[] & larg<=size(args,"*") then
   L=args(larg+1)
   if L=="eng" | L=="fr" then
     LANGUAGE=L
-    %scipad_language=L
   else
     write(%io(2),[" "
 		  "Unsupported language """+L+"""."+..
