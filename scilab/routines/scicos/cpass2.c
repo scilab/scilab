@@ -220,7 +220,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   *iz0=NULL;
   *subscr=NULL;
   return 0;
-} //endfuncton cpass
+} /*endfuncton cpass*/
 
 /***************************************** fin de c_pass2 ************************************/
 /***************************************** fonction scheduler*********************************/
@@ -233,7 +233,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
 {
   int i,iii,k,l,j,jj,hh,o,fl,fz,maX,n,nblk=typ_x[0];
   int *vec,*wec,*ii,*ii1,*ii2,*r,*ext_cord1,*pp,*ppget;
-  int *orddif,*cordX,*ext_cord,*oordii,*ind;//,*kk,nord;
+  int *orddif,*cordX,*ext_cord,*oordii,*ind;
   Mat2C ordclki;
   
   vec=NULL;
@@ -255,11 +255,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
       if ((vec=(int*)calloc(ind[0]+1,sizeof(int)))== NULL ) return 0;
       vec[0]=ind[0];
       wec=GetPartVect(execlk0,execlk0[0]/2+1,execlk0[0]/2);
-      // //if ((*cord=(int*)malloc(sizeof(int)*(2*ind[0]+1)))== NULL ) return 0;
-      // //(*cord)[0]=2*ind[0];
-      
       tree2(vec,vec[0],wec,ind,bllst12,outoin,outoinptr,cord,ok);
-      // //C2F(ftree2)(&vec[1],&vec[0],&wec[1],&ind[1],&bllst12[1],&outoin[1],&outoinptr[1],&(*cord)[1],&nord,ok);
       if (ind) free(ind);
       if(vec) free(vec);
       vec=NULL;
@@ -279,9 +275,6 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
       vec[0]=ind[0];
       wec=GetPartVect(execlk_cons,execlk_cons[0]/2+1,execlk_cons[0]/2);
       tree2(vec,vec[0],wec,ind,bllst12,outoin,outoinptr,iord,ok);
-      // //if (((*iord)=(int*)malloc(sizeof(int)*(2*ind[0]+1)))== NULL ) return 0;
-      // //(*iord)[0]=2*ind[0];
-      // //C2F(ftree2)(&vec[1],&vec[0],&wec[1],&ind[1],&bllst12[1],&outoin[1],&outoinptr[1],&(*iord)[1],&nord,ok);
       if (ind) free(ind);
       if(vec) free(vec);
       vec=NULL;
@@ -311,9 +304,6 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
 	 if ((vec=(int*)calloc(ind[0]+1,sizeof(int)))== NULL ) return 0;
 	 vec[0]=ind[0];
 	 wec=GetPartVect(execlk,ordptr1[o]+execlk[0]/2,ordptr1[o+1]-ordptr1[o]);
-	 // //if ((r=(int*)malloc(sizeof(int)*(2*ind[0]+1)))== NULL ) return 0;
-	 // //r[0]=2*ind[0];
-	 // //C2F(ftree2)(&vec[1],&vec[0],&wec[1],&ind[1],&bllst12[1],&outoin[1],&outoinptr[1],&r[1],&nord,ok);
 	 tree2(vec,vec[0],wec,ind,bllst12,outoin,outoinptr,&r,ok);
 	 if (ind) free(ind);
 	 if(vec) free(vec);
@@ -381,11 +371,6 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
          vec[(*cord)[i]]=0;
        }
      tree3(vec,vec[0],bllst12,typ_s,bexe,boptr,blnk,blptr,&ext_cord,ok);
-     // //if ((ext_cord=(int*)malloc(sizeof(int)*(10000))) == NULL ) return 0;
-     // //if ((kk=(int*)malloc(sizeof(int)*(10000))) == NULL ) return 0;
-     
-     // //F2C(ftree3)(&vec[1],&vec[0],&bllst12[1],&typ_s[1],&bexe[1],&boptr[1],&blnk[1],&blptr[1],kk,&ext_cord[1],&nord,ok);
-     // //ext_cord[0]=nord;
      if(vec) free(vec);
      vec=NULL; 
      if (!(*ok)) 
@@ -596,12 +581,11 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
 		     if ((typ_x[ii1[j]]) || (typ_z[ii1[j]]) )
 		       {
 			 fl=true;
-			 //free(ii);
 			 break;
 		       }
 		   }
 		 if(ii1) free(ii1);	       
-	       } // fin de if !OR()
+	       } /* fin de if !OR()*/
 	     if(ii) free(ii);
 	     if (fl)  break;
 	   } /* fin de for hh */
@@ -612,7 +596,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
        } /* fin de for i */
      if(cordX) free(cordX);
      cordX=NULL;
-   } // fin de if *cord
+   } /* fin de if *cord*/
  else
    {
      if (((*critev)=(int*)malloc(sizeof(int)*(2))) == NULL ) return 0;
@@ -635,7 +619,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
   int i,j=1,k,l,o,leng,ki,sbb,m1,a;
   int *vectconnect,*iVect,*id,*dl,*ltmp,*idl,*lb,*indx,*tmpvect,*indxo,*indy,*bexe,*blnk;
   int *tmp,*clkconnecttmp,*clkconnect0,*texeclk0,*ind,*w2,*w1,*boptr,*blptr,*tclkconnect,*tcon,*ordptr1,*texeclki;
-  int *b1,*typ_lm,*pointer,*r,*w3,*pointer1,*con,*vec,*clkconnectind,*connectmatind,*con1;//,*kk,nord;
+  int *b1,*typ_lm,*pointer,*r,*w3,*pointer1,*con,*vec,*clkconnectind,*connectmatind,*con1;
   int okk,nn,nblk=((int*) (*bllst10))[0];
   int nblkorg=nblk;
   int change=false;  
@@ -733,16 +717,9 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
                   free(ppget);
                   if (indy[0] > 1) sciprint("Synchro block cannot have more than 1 input");
 		  if (((*bllst2ptr)=(int*)realloc((*bllst2ptr),sizeof(int)*((*bllst2ptr)[0]+nn))) == NULL ) return 0;
-		  //<<<<<<< cpass2.c
 		  if (((*bllst3ptr)=(int*)realloc((*bllst3ptr),sizeof(int)*((*bllst3ptr)[0]+nn))) == NULL ) return 0;		  
 		  if (((*bllst9ptr)=(int*)realloc((*bllst9ptr),sizeof(int)*((*bllst9ptr)[0]+nn))) == NULL ) return 0;
-		  //if (((*bllst9)=(int*)realloc((*bllst9),sizeof(int)*(nn+nblk))) == NULL ) return 0;
                   if ((*bllst10=(char**)realloc(*bllst10,(nblk+nn)*sizeof(char*))) ==NULL )  return 0;
-		  //=======
-		  if (((*bllst3ptr)=(int*)realloc((*bllst3ptr),sizeof(int)*((*bllst3ptr)[0]+nn))) == NULL ) return 0;		  
-		  if (((*bllst9ptr)=(int*)realloc((*bllst9ptr),sizeof(int)*((*bllst9ptr)[0]+nn))) == NULL ) return 0;
-		  if ((*bllst10=(char**)realloc(*bllst10,(nblk+nn)*sizeof(char*))) ==NULL )  return 0;
-		  //>>>>>>> 1.4
                   ((int*)(*bllst10))[0]=nblk+nn-1;
 		  if ((*bllst111=(char**)realloc(*bllst111,sizeof(char*)*(nblk+nn))) == NULL )  return 0;
 		  ((int*) (*bllst111))[0]=nblk+nn-1;
@@ -761,18 +738,12 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
                   for(k=2;k<nn+1;k++)
                     {
                       (*clkconnect)[indx[k]+(*clkconnect)[0]/2]=nblk+1;
-		      //<<<<<<< cpass2.c
-		      if (((*bllst111)[nblk+1]=(char*) malloc(sizeof(char)*(strlen((*bllst111)[lb[i]])+1))) ==NULL )  return 0;
-		      ((char*) (*bllst111)[nblk+1])[strlen((*bllst111)[lb[i]])]='\0';
-		      strcpy((*bllst111)[nblk+1],(*bllst111)[lb[i]]);
-		      //(*bllst111)[nblk+1]=(*bllst111)[lb[i]];
-		      (*bllst112)[nblk+1]=(*bllst112)[lb[i]];
-		      //=======
+		     
 		      if (((*bllst111)[nblk+1]=(char*) malloc(sizeof(char)*(strlen((*bllst111)[lb[i]])+1))) ==NULL )  return 0;
 		      ((char*) (*bllst111)[nblk+1])[strlen((*bllst111)[lb[i]])]='\0';
 		      strcpy((*bllst111)[nblk+1],(*bllst111)[lb[i]]);
 		      (*bllst112)[nblk+1]=(*bllst112)[lb[i]];
-		      //>>>>>>> 1.4
+
                       (*bllst2ptr)[(*bllst2ptr)[0]+1]=(*bllst2ptr)[(*bllst2ptr)[0]]+(*bllst2ptr)[lb[i]+1]-(*bllst2ptr)[lb[i]];
                       (*bllst2ptr)[0]++;
                       if (((*bllst2)=(int*)realloc((*bllst2),sizeof(int)*((*bllst2)[0]+(*bllst2ptr)[nblk+2]-(*bllst2ptr)[nblk+1]+1))) == NULL ) return 0;
@@ -881,7 +852,6 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
                       free(clkconnecti.col4);
                       clkconnecti.col4=NULL;
 		    } /* end for k */
-		  //(*bllst2ptr)[0]=(*bllst2ptr)[0]+nn;
 		  free(bllst12i.col1);
 		  free(bllst12i.col2);
                   leng=(*connectmat)[0]/4;
@@ -935,7 +905,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		}
 	      free(indx);
 	      indx=NULL;
-	    } //fin de for i
+	    } /*fin de for i*/
           if (change) 
             {
               *done=false;
@@ -948,7 +918,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 	  if (idl) {free(idl);
 	  idl=NULL;}
 	 free(id);  
-	} // fin de if (id)
+	} /* fin de if (id)*/
     }
 
   clkconnecttmp=VecEg1(*clkconnect);
@@ -1275,11 +1245,6 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
                 }
             }
 	  tree3(vec,vec[0],*bllst12,typ_lm,bexe,boptr,blnk,blptr,&r,ok);
-          // //if ((r=(int*)malloc(sizeof(int)*(10000))) == NULL ) return 0;
-          // //if ((kk=(int*)malloc(sizeof(int)*(10000))) == NULL ) return 0;
-       
-          // //F2C(ftree3)(&vec[1],&vec[0],&(*bllst12)[1],&typ_lm[1],&bexe[1],&boptr[1],&blnk[1],&blptr[1],kk,&r[1],&nord,ok);
-          // //r[0]=nord;
           free(typ_lm);
           free(vec);
           okk=*ok;
@@ -1405,7 +1370,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		  free(pointer1);
 		  if (w2) free(w2);
 		}
-            } //fin de for bl=r
+            } /*fin de for bl=r*/
 	  free(r);
 	}  /* fin de test */
       if (pointer && pointer[0] != 0) 
@@ -2258,7 +2223,7 @@ int extract_info(int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bll
     }
   free(unco);unco=NULL; 
   return 0;
-} // end funct
+} /* end funct*/
      
 /* ======================================= endfunction extract_info ========================================== */
 
@@ -2768,7 +2733,7 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 		  *ok=false;
 		  return 0;
 		}
-	      //modifes
+	      /*modifes*/
 	      wwi=GetPartVect(bllst3,bllst3ptr[connectmat[jj]],bllst3ptr[connectmat[jj]+1]-bllst3ptr[connectmat[jj]]);
 	      ww=FindEg(wwi,nout);
 	      for (j=1;j<ww[0]+1;j++)
@@ -2900,7 +2865,7 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
               int* tblock,int* typ_cons,int* bllst5ptr,int** exe_cons,int nblk)
 {
   int *all_out,*ind,*ind1,*vec,*cll,*ii,*oo,*r,*clkconnectind,*cllind,*nd,*pp,*ppget;
-  int mm,j,l,k,a,nnd,max1;//,*r1,*r2,nr,*kk;
+  int mm,j,l,k,a,nnd,max1;
   Mat4C clkconnecti;
   Mat2C exe_consi;
   Mat2C all_outi;
@@ -3053,23 +3018,8 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
       tree4(vec,nd,nnd,outoin,outoinptr,typ_r,&r);
       if(nd) free(nd);
       if(vec) free(vec); vec=NULL;
-      // //if ((r1=(int*)malloc(sizeof(int)*(vec[0]+1))) == NULL ) return 0;
-      // //r1[0]=vec[0];
-      // //if ((r2=(int*)malloc(sizeof(int)*(vec[0]+1))) == NULL ) return 0;
-      // //r2[0]=vec[0];
-      // //C2F(ftree4)(&vec[1],&vec[0],&nd[1],&nnd,&typ_r[1],&outoin[1],&outoinptr[1],&r1[1],&r2[1],&nr);
-      // //if(nd) free(nd);
      if (r)
        {  
-	  // //if ((r=(int*)malloc(sizeof(int)*(2*nr+1))) == NULL ) return 0;
-	  // //r[0]=2*nr;
-	  // //for (j=1; j<nr+1; j++)
-	    // //{
-	     // // r[j]=r1[j];
-	      // //r[j+nr]=r2[j];
-	   // // }
-	  // //free(r1);
-	  // //free(r2);
           if ((exe_consi.col1=(int*)malloc(sizeof(int)*((*exe_cons)[0]/2+r[0]/2+1))) == NULL) return 0;
           
           if ((exe_consi.col2=(int*)malloc(sizeof(int)*(r[0]/2+(*exe_cons)[0]/2+1))) == NULL) return 0;
@@ -3174,25 +3124,11 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
       
       tree4(vec,nd,nnd,outoin,outoinptr,typ_r,&r);
       
-      // //if ((r1=(int*)malloc(sizeof(int)*(vec[0]+1))) == NULL ) return 0;
-      // //r1[0]=vec[0];
-      // //if ((r2=(int*)malloc(sizeof(int)*(vec[0]+1))) == NULL ) return 0;
-      // //r2[0]=vec[0];      
-      // //C2F(ftree4)(&vec[1],&vec[0],&nd[1],&nnd,&typ_r[1],&outoin[1],&outoinptr[1],&r1[1],&r2[1],&nr);
       if (nd) free(nd); nd=NULL;
       if(vec) free(vec); vec=NULL;
 
       if (r)
         {
-	  // //if ((r=(int*)malloc(sizeof(int)*(2*nr+1))) == NULL ) return 0;
-	  // //r[0]=2*nr;
-	  // //for (j=1; j<nr+1; j++)
-	    // //{
-	      // //r[j]=r1[j];
-	      // //r[j+nr]=r2[j];
-	    // //}
-	  // //free(r1);
-	  // //free(r2);
           if ((clkconnecti.col1=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+r[0]/2+1))) == NULL ) return 0;
           clkconnecti.col1[0]=(*clkconnect)[0]/4+r[0]/2;
           if ((clkconnecti.col2=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+r[0]/2+1))) == NULL ) return 0;
@@ -3645,12 +3581,12 @@ int tree4(int* vec,int* nd,int nnd,int* outoin,int* outoinptr,int* typ_r,int** r
                       fini=0;
                       nd[ind1[k]+1+(ii-1)*nnd]=1;
                       }
-		    } // fin de if(typ_r)                 
-                } // fin de for k
-              } //fin de if
-            } // fin de if vec(i)
-        } // fin de for i
-    } // fin de for j
+		    } /* fin de if(typ_r)                 */
+                } /* fin de for k*/
+              } /*fin de if*/
+            } /* fin de if vec(i)*/
+        } /* fin de for i*/
+    } /* fin de for j*/
   if ((*r)[0]==0) 
     {
       free(*r);
@@ -3662,7 +3598,7 @@ int tree4(int* vec,int* nd,int nnd,int* outoin,int* outoinptr,int* typ_r,int** r
   ind=NULL;
   
   return 0;
-} // end function
+} /* end function*/
 
 /* =================== endfunction tree4 ========================================== */
 /************************* function tree2 *********************************/
@@ -3681,7 +3617,6 @@ int *vect,nb,*wec,*ind,*deput,*outoin,*outoinptr,**ord,*ok;
             {
               if (j == nb + 2) 
                 {
-                  //Message("algebric loop detected");
                   *ok = 0;
                   *ord=NULL;
                   return 0;

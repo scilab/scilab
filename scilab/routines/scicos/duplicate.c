@@ -182,14 +182,14 @@ int C2F(intcpass2)(fname)
   
   for (k=1; k <= m; k++)
     {
-      li=(int*) listentry(header,k); //le pointeur sur la kieme sous list (mlists)
+      li=(int*) listentry(header,k); /*le pointeur sur la kieme sous list (mlists)*/
 
-      // 1ier element de la list sim
+      /* 1ier element de la list sim*/
       le1=(int*) listentry(li,2);
-      //si sim est une list
+      /*si sim est une list*/
       if (le1[0] == 15)
 	{
-	  le11=(int*) listentry(le1,1); //sim(1)
+	  le11=(int*) listentry(le1,1); /*sim(1)*/
 	  if (le11[0] == 13)
 	    {
 	      if ((bllst111[k]=(char*) malloc(sizeof(char)*9)) ==NULL )  return 0;
@@ -205,7 +205,7 @@ int C2F(intcpass2)(fname)
 	      ((char*) bllst111[k])[n1111]='\0';
 	      C2F(cvstr)(&n1111,le111,bllst111[k],&one,str_len);
 	      
-	      le12=(int*) listentry(le1,2); //sim(2)
+	      le12=(int*) listentry(le1,2); /*sim(2)*/
 	      le121=((double *) (le12+4));
 	      bllst112[k]=le121[0];
 	    }
@@ -220,7 +220,7 @@ int C2F(intcpass2)(fname)
 	  C2F(cvstr)(&n1111,le111,bllst111[k],&one,str_len);
 	  
 	}
-      // 2ieme element de la list in 
+      /* 2ieme element de la list in */
       le2=(int*) listentry(li,3);
       ne2=le2[1];
       le22=((double *) (le2+4));
@@ -231,7 +231,7 @@ int C2F(intcpass2)(fname)
 	  bllst2[bllst2[0]+j+1]=le22[j];
 	}
       bllst2[0]=bllst2[0]+ne2;
-      // 3ieme element de la list out
+      /* 3ieme element de la list out*/
       le3=(int*) listentry(li,4);
       ne3=le3[1];
       le33=((double *) (le3+4));
@@ -242,7 +242,7 @@ int C2F(intcpass2)(fname)
 	  bllst3[bllst3[0]+j+1]=le33[j];
 	}
       bllst3[0]=bllst3[0]+ne3;
-      // 4ieme element de la list evtin
+      /* 4ieme element de la list evtin*/
       le4=(int*) listentry(li,5);
       ne4=le4[1];
       le44=((double *) (le4+4));
@@ -253,7 +253,7 @@ int C2F(intcpass2)(fname)
 	  bllst4[bllst4[0]+j+1]=le44[j];
 	}
       bllst4[0]=bllst4[0]+ne4;
-      // 5ieme element de la list evtout
+      /* 5ieme element de la list evtout*/
       le5=(int*) listentry(li,6);
       ne5=le5[1];
       le55=((double *) (le5+4));
@@ -264,7 +264,7 @@ int C2F(intcpass2)(fname)
 	  bllst5[bllst5[0]+j+1]=le55[j];
 	}
       bllst5[0]=bllst5[0]+ne5;
-      // 6ieme element de la list state
+      /* 6ieme element de la list state*/
       le6=(int*) listentry(li,7);
       ne6=le6[1];
       le66=((double *) (le6+4));
@@ -295,7 +295,7 @@ int C2F(intcpass2)(fname)
 	  bllst6ptr[k+1]=bllst6ptr[k]+ne6/2;
 	}
       if ( ne6 != 0 ) typ_x[k]=1;
-      // 7ieme element de la list dstate et le 8ieme element de la list rpar
+      /* 7ieme element de la list dstate et le 8ieme element de la list rpar*/
       le71=listentry(li,8);
       le7=(int*) listentry(li,8);
       ne7= le7[1];
@@ -373,7 +373,7 @@ int C2F(intcpass2)(fname)
 	    }
 	  ((int *) bllst8)[0]=((int *) bllst8)[0]+ne8;
 	}
-      // 9ieme element de la list ipar
+      /* 9ieme element de la list ipar*/
       le9=(int*) listentry(li,10);
       if (le9[0] == 1)
 	{
@@ -391,13 +391,13 @@ int C2F(intcpass2)(fname)
 	{
 	  bllst9ptr[k+1]=bllst9ptr[k];
 	}
-      // 10ieme element de la list typeblock
+      /* 10ieme element de la list typeblock*/
       le10=(int*) listentry(li,11);
       le1010=((int *) (le10+6));      
       if ((bllst10[k]=(char*) malloc(sizeof(char)*2)) ==NULL )  return 0;
       ((char*) bllst10[k])[1]='\0';
       C2F(cvstr)(&one,le1010,bllst10[k],&one,str_len);
-      // 11ieme element de la list firing
+      /* 11ieme element de la list firing*/
       le11=(int*) listentry(li,12);
       ne11=le11[2];
       le1111=((double *) (le11+4));
@@ -408,14 +408,14 @@ int C2F(intcpass2)(fname)
 	  bllst11[((int *) bllst11)[0]+j+1]=le1111[j];
 	}
       ((int *) bllst11)[0]=((int *) bllst11)[0]+ne11;
-      // 12ieme element de la list dep_ut
+      /* 12ieme element de la list dep_ut*/
       le12=(int*) listentry(li,13);
       ne12=le12[1];
       me12=le12[2];
-      //le1212=((double *) (le12+3));
+      /*le1212=((double *) (le12+3));*/
       bllst12[k]=le12[3];
       bllst12[k+m]=le12[4];
-      // 13ieme element de la list labels
+      /* 13ieme element de la list labels*/
       le13=(int*) listentry(li,14);
       le1313=((int *) (le13+6));
       if ((bllst13[k]=(char*) malloc(sizeof(char)*2)) ==NULL )  return 0;
@@ -453,7 +453,7 @@ int C2F(intcpass2)(fname)
   corinvptr[1]=1;
   for (k=1; k <= m3; k++)
     {
-      lii=(int*) listentry(header1,k); //le pointeur sur la kieme vecteur
+      lii=(int*) listentry(header1,k); /*le pointeur sur la kieme vecteur*/
       lc1=((double *) (lii+4));
       nc1=lii[1];
       mc1=lii[2];
@@ -492,15 +492,7 @@ int C2F(intcpass2)(fname)
     }
   if (nb > nblk)
     {
-      //<<<<<<< duplicate.c
-      /*if ((bllst111=(char**)realloc(bllst111,sizeof(char*)*(nb+1))) == NULL )  return 0;
-      ((int*) bllst111)[0]=nb;
-      if ((bllst112=realloc(bllst112,sizeof(int)*(nb+1))) ==NULL )  return 0;		  
-      bllst112[0]=nb;
-      if ((bllst9ptr=realloc(bllst9ptr,sizeof(int)*(nb+2))) ==NULL )  return 0;		  
-      bllst9ptr[0]=nb+1;*/
-//=======
-//>>>>>>> 1.6
+
       if ((bllst8ptr=realloc(bllst8ptr,sizeof(int)*(nb+2))) ==NULL )  return 0;		  
       bllst8ptr[0]=nb+1;
       if ((bllst7ptr=realloc(bllst7ptr,sizeof(int)*(nb+2))) ==NULL )  return 0;		  
@@ -509,14 +501,7 @@ int C2F(intcpass2)(fname)
       bllst6ptr[0]=nb+1;
       for (i=nblk+1; i<nb+1; i++)
 	{
-//<<<<<<< duplicate.c
-	  /*if ((bllst111[i]=(char*) malloc(sizeof(char)*7)) ==NULL )  return 0;
-	  ((char*) bllst111[k])[6]='\0';
-	  strcpy(bllst111[i],"ifthel");
-	  bllst112[i]=-1;
-	  bllst9ptr[i+1]=bllst9ptr[i];*/
-//=======
-//>>>>>>> 1.6
+
 	  bllst8ptr[i+1]=bllst8ptr[i];
 	  bllst7ptr[i+1]=bllst7ptr[i];
 	  bllst6ptr[i+1]=bllst6ptr[i];
@@ -571,7 +556,7 @@ int C2F(intcpass2)(fname)
   free(tevts);
   free(evtspt);
   free(outtb);
-  //********************** sim *****************
+  /********************** sim *****************
   CreateVar(7,"t", &m33, &n39, &l32);
   CreateListVarFromPtr(7,1,"S", &one, &n40, Str2);
   y8=(char**) (bllst111+1);
