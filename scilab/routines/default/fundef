@@ -635,3 +635,13 @@
 {"setlanguagemenu",		IN_intwintools,	14,	2},
 {"console",				IN_intwintools,	15,	2},
 {"about",				IN_intwintools,	16,	2},
+#ifdef WIN32
+
+#define  IN_intTCLsci 49
+{"TCL_DoOneEvent",      IN_intTCLsci, 1,	2},
+{"TCL_EvalFile",        IN_intTCLsci, 2,	2}, 
+{"TCL_EvalStr",         IN_intTCLsci, 3,	2},
+{"TCL_GetVar",          IN_intTCLsci, 4,	2},
+{"TCL_SetVar",          IN_intTCLsci, 5,	2},
+
+#endif

@@ -1,9 +1,18 @@
 {"uicontrol",		IN_tksci,	1,	3},
+#if WIN32
+#define  IN_intTCLsci 49
+{"TK_DoOneEvent",      IN_intTCLsci, 1,	2},
+{"TK_EvalFile",        IN_intTCLsci, 2,	2}, 
+{"TK_EvalStr",         IN_intTCLsci, 3,	2},
+{"TK_GetVar",          IN_intTCLsci, 4,	2},
+{"TK_SetVar",          IN_intTCLsci, 5,	2},
+#else
 {"TK_DoOneEvent",	IN_tksci,	2,	3},
 {"TK_EvalStr",		IN_tksci,	3,	3},
 {"TK_EvalFile",		IN_tksci,	4,	3},
 {"TK_GetVar",		IN_tksci,	5,	3},
 {"TK_SetVar",		IN_tksci,	6,	3},
+#endif
 {"opentk",		IN_tksci,	7,	3},
 {"findobj",		IN_tksci,	8,	3},
 {"%s_set",		IN_tksci,	9,	3},

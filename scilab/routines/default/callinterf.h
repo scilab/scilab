@@ -69,6 +69,9 @@ extern void    /* 45  */ C2F(intslicot)();
 extern void    /* 46  */ C2F(intarpack)();
 extern void    /* 47  */ C2F(intcscicos)();
 extern void    /* 48  */ C2F(intwintools)();
+#if WIN32
+extern void    /* 49  */ C2F(inttclsci)();
+#endif
 
 static OpTab Interfaces[] ={
     /* 01  */ {C2F(matlu)},
@@ -119,6 +122,9 @@ static OpTab Interfaces[] ={
     /* 46  */ {C2F(intarpack)},
  	/* 47  */ {C2F(intcscicos)},
 	/* 48  */ {C2F(intwintools)}
+#if WIN32
+	/* 49  */ ,{C2F(inttclsci)}
+#endif
 
 };
 

@@ -32,7 +32,9 @@ int XTKsocket=0;
 Matrix *UserData[MAX_HANDLE];
 
 extern void Cout(char *str);
-
+#if WIN32
+int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
+#endif
 int TK_Wait=0;
 int TK_NbEv=10;
 int TK_Started=0;
@@ -129,7 +131,13 @@ int OpenTksci()
 
       sprintf(MyCommand, "set SciPath \"%s\";",SciPath); 
       Tcl_Eval(TKinterp,MyCommand);
-      Tcl_CreateCommand(TKinterp,"ScilabEval",TK_EvalScilabCmd,(ClientData)1,NULL);
+      
+#if WIN32
+	  Tcl_CreateCommand(TKinterp,"ScilabEval",TCL_EvalScilabCmd,(ClientData)1,NULL);
+#else
+	  Tcl_CreateCommand(TKinterp,"ScilabEval",TK_EvalScilabCmd,(ClientData)1,NULL);
+#endif
+
       for (i=0; i<MAX_HANDLE; i++) UserData[i]=0;
     }
    
