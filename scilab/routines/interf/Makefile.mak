@@ -9,7 +9,7 @@ SCIDIR1=..\..
 LIBRARY = $(SCIDIR)/libs/interf.lib
 
 OBJSC = Interf.obj ctest.obj  cs2st.obj getdate.obj stack1.obj stack2.obj stack3.obj \
-	intlapack.obj intslicot.obj matdes.obj intorand.obj stcreate.obj intfilestat.obj \
+	intlapack.obj intslicot.obj intarpack.obj matdes.obj intorand.obj stcreate.obj intfilestat.obj \
 	strelm-c.obj  matdsr.obj
 
 
@@ -119,4 +119,17 @@ stack0.obj stack1.obj stack2.obj: ../stack.h
 getdate.obj: ../machine.h
 intlapack.obj: ../machine.h ../stack-c.h
 intslicot.obj: ../machine.h ../stack-c.h ../mex.h
-intmgetl.obj:  ../stack.h
+intarpack.obj: ../machine.h ../stack-c.h ../mex.h
+
+
+
+Makefile.mak	: Makefile
+	$(SCIDIR)/util/Mak2VCMak Makefile
+
+Makefile.amk	: Makefile
+	$(SCIDIR)/util/Mak2ABSMak Makefile
+
+# some versions of g77 on sparc will compile intmgetl.f
+# but the code does not execute properly.
+intmgetl.obj: intmgetl.f ../stack.h
+	$(FC) $(FC_OPTIONS_O0) -c intmgetl.f -o intmgetl.obj

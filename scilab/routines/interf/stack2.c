@@ -1195,9 +1195,9 @@ int C2F(setworksize)(number,size)
     return FALSE_ ;
   }
   *lstk(lw1+1) = *lstk(lw1) + *size ;
-  C2F(intersci).ntypes[lw1 - 1] = '$';
-  C2F(intersci).iwhere[lw1 - 1] = *lstk(lw1);
-  C2F(intersci).lad[lw1 - 1] = 0; /* not to be used XXXX */ 
+  C2F(intersci).ntypes[*number - 1] = '$';
+  C2F(intersci).iwhere[*number - 1] = *lstk(lw1);
+  C2F(intersci).lad[*number - 1] = 0; /* not to be used XXXX */ 
   return TRUE_; 
 }
 
@@ -2638,7 +2638,8 @@ int C2F(putlhsvar)()
 static int C2F(mvfromto)(itopl, ix)
      integer *itopl, *ix;
 {
-  integer ix1, m,n,it,lcs,lrs,l,ilp,size,pointed;
+  integer ix1, m,n,it,lcs,lrs,l,size,pointed;
+  unsigned long int ilp;
   unsigned char Type ;
   double wsave;
 
