@@ -26,7 +26,7 @@ C =      %b_c_spb.sci %c_i_c.sci %hm_c_hm.sci %l_n_c.sci \
 	 %lss_c_s.sci %p_c_lss.sci %p_c_r.sci %r_c_lss.sci \
 	 %r_c_p.sci %r_c_r.sci %r_c_s.sci %s_c_lss.sci \
 	 %s_c_r.sci %s_c_sp.sci %s_i_c.sci %sp_c_s.sci \
-	 %c_c_cblock.sci %cblock_c_cblock.sci %s_c_cblock.sci \
+	 %cblock_c_cblock.sci %s_c_cblock.sci \
 	 %cblock_c_s.sci
 
 D =      %hm_d_hm.sci %hm_d_s.sci %p_d_p.sci %p_d_r.sci \
