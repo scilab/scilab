@@ -39,12 +39,40 @@ extern void   set_no_delete_win_mode()  {  sci_graphic_protect = 1 ;}
 /*-----------------------------------------------------------------------------------*/
 int C2F (deletewin) (integer * number)
 {
+  int v_flag = 1;
   /* destroying recorded graphic commands */
   scig_erase (*number);
   /* delete the windows and resources */
-  if (version_flag()==0) DeleteObjs(*number);
+  if (version_flag()==0) {DeleteObjs(*number); v_flag = 0;}
   scig_deletegwin_handler (*number);
-  DeleteSGWin (*number);
+  DeleteSGWin (*number); /* Here we 1) destroy the ScilabXgc (set to NULL) if it is the last window in the list */
+                        /*         2) or reset the ScilabXgc to the next one see DeleteSGWin*/
+
+  /* That's why we can not use version_flag below because this function uses ScilabXgc->graphicsversion 
+     that could have been possibly previously deleted !! */
+  
+  /* So, we use another flag named v_flag :*/
+  if(v_flag == 0)
+    {
+      /* Need to reset the new current figure returned by sciGetCurrentFigure */
+      sciHandleTab *hdl;
+      sciPointObj  *pobj;
+      
+      hdl = sciGetpendofhandletab();  
+      
+      while (hdl != NULL)
+	{ 
+	  pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
+	  if (sciGetEntityType(pobj) == SCI_FIGURE)
+	    {
+	      sciSetCurrentFigure(pobj);
+	      sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
+	      break;
+	      
+	    } 
+	  hdl = hdl->pprev;
+	}
+    }
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/
