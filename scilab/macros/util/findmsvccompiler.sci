@@ -9,7 +9,7 @@ if (ierr == 0) then
   MSCompiler='msvc71'; // Microsoft Visual Studio .NET 2003
   return;
 else
-  ierr=execstr("MSVS70=winqueryreg(''HKEY_LOCAL_MACHINE'',''SOFTWARE\Microsoft\VisualStudio\\7.0\Setup\VC'',''ProductDir'');","errcatch");
+  ierr=execstr("MSVS70=winqueryreg(''HKEY_LOCAL_MACHINE'',''SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VC'',''ProductDir'');","errcatch");
   if (ierr == 0) then
     MSCompiler='msvc70';  // Microsoft Visual Studio .NET 2002
     return;
