@@ -127,6 +127,8 @@ static scicos_block *Blocks;
 
 static integer phase;
 
+static integer *pointer_xproperty;
+
 /* Subroutine */ 
 int C2F(scicos)
      (x_in, xptr_in, z__, work,zptr, iz, izptr, t0_in, tf_in, tevts_in, 
@@ -1295,6 +1297,7 @@ int C2F(scicos)
 	    if (Blocks[C2F(curblk).kfun-1].nx  > 0) {
 	      flag__ = 7;
 	      nclock = 0;
+	      pointer_xproperty=&ihot[40+xptr[C2F(curblk).kfun]];
 	      callf(told, xd, x, xd,W,&flag__);
 
 	      if (flag__ < 0) {
@@ -2705,6 +2708,12 @@ int get_phase_simulation()
 
 {
   return phase;
+}
+
+int* get_pointer_xproperty()
+
+{
+  return pointer_xproperty;
 }
 
 void do_cold_restart()

@@ -35,3 +35,4 @@ typedef struct {
 
 void do_cold_restart();
 int get_phase_simulation();
+int* get_pointer_xproperty();
