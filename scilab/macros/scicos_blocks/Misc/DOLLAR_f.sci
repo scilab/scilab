@@ -22,7 +22,7 @@ case 'set' then
     in=out
     if ok then
       graphics.exprs=exprs;
-      model.state=a;model.in=in;model.out=out
+      model.dstate=a;model.in=in;model.out=out
       x.graphics=graphics;x.model=model
       break
     end

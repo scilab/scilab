@@ -15,8 +15,8 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   ipar=model.ipar;
-  state=model.state
-  lunit=state(2)
+  dstate=model.dstate
+  lunit=dstate(2)
   fname=exprs(2)
   frmt=exprs(3)
   while %t do
@@ -70,11 +70,11 @@ case 'set' then
 
     if ok then
       ipar=[length(fname1);str2code(frmt1);N;swap;str2code(fname1)]
-      if prod(size(state))<>(nin+1)*N+2 then
-	state=[-1;lunit;zeros((nin+1)*N,1)]
+      if prod(size(dstate))<>(nin+1)*N+2 then
+	dstate=[-1;lunit;zeros((nin+1)*N,1)]
       end
       model.in=nin
-      model.state=state;model.ipar=ipar
+      model.dstate=dstate;model.ipar=ipar
 //      model.firing=[] //compatibility
 //      model.dep_ut=[%t %f] //compatibility
       graphics.exprs=exprs;

@@ -14,7 +14,7 @@ case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
-  state=model.state;
+  dstate=model.dstate;
   while %t do
     [ok,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=getvalue(..
 	'Set Scope parameters',..
@@ -65,8 +65,8 @@ case 'set' then
       if wdim==[] then wdim=[-1;-1];end
       rpar=[xmin;xmax;ymin;ymax]
       ipar=[win;1;N;clrs;siz;1;wpos(:);wdim(:)]
-      if prod(size(state))<>2*N+1 then state=-eye(2*N+1,1),end
-      model.state=state;model.rpar=rpar;model.ipar=ipar
+      if prod(size(dstate))<>2*N+1 then dstate=-eye(2*N+1,1),end
+      model.dstate=dstate;model.rpar=rpar;model.ipar=ipar
       graphics.exprs=exprs;
       x.graphics=graphics;x.model=model
       break

@@ -22,7 +22,7 @@ case 'set' then
   imask=5+ipar(1)+ipar(2)
   tmask=ipar(imask)
   outmask=ipar(imask+1:imask+nout)
-  lunit=state(3)
+  lunit=dstate(3)
   fname=exprs(3)
   frmt=exprs(4)
   while %t do
@@ -74,10 +74,10 @@ case 'set' then
 	    str2code(frmt1);
 	    tmask1
 	    outmask(:)]
-	if prod(size(state))<>(nout+ievt)*N+3 then
-	  state=[-1;-1;lunit;zeros((nout+ievt)*N,1)]
+	if prod(size(dstate))<>(nout+ievt)*N+3 then
+	  dstate=[-1;-1;lunit;zeros((nout+ievt)*N,1)]
 	end
-	model.state=state;model.ipar=ipar
+	model.dstate=dstate;model.ipar=ipar
 	graphics.exprs=exprs;
 	x.graphics=graphics;x.model=model
 	break
@@ -95,12 +95,12 @@ case 'define' then
   outmask=1
   ipar=[length(fname);length(frmt);0;N;str2code(fname);str2code(frmt);
       tmask;outmask]
-  state=[1;1;lunit;zeros((nout)*N,1)]
+  dstate=[1;1;lunit;zeros((nout)*N,1)]
   model=scicos_model()
   model.sim='readf'
   model.out=nout
   model.evtin=1
-  model.dstate=[1;1;lunit;zeros((nout)*N,1)]
+  model.dstate=dstate
   model.ipar=[length(fname);length(frmt);0;N;str2code(fname);str2code(frmt);
 	      tmask;outmask]
   model.blocktype='d'

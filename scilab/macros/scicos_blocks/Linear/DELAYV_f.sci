@@ -14,7 +14,7 @@ case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;nin=model.in(1)
-  z0=model.state;zz0=z0(1:$-1);told=z0($);
+  z0=model.dstate;zz0=z0(1:$-1);told=z0($);
  
    while %t do
     [ok,nin,zz0,T,exprs]=getvalue('Set delay parameters',..
@@ -38,7 +38,7 @@ case 'set' then
    end	   
     if ok then
       graphics.exprs=exprs;
-      model.state=[zz0;told];model.rpar=T/(size(zz0,'*'));
+      model.dstate=[zz0;told];model.rpar=T/(size(zz0,'*'));
       x.graphics=graphics;x.model=model
       break
     end

@@ -33,16 +33,10 @@ case 'define' then
   model.sim=list('sum',2)
   model.in=[-1;-1]
   model.out=-1
-  model.evtin=[]
-  model.evtout=[]
-  model.state=[]
-  model.dstate=[]
   model.rpar=sgn
-  model.ipar=[]
   model.blocktype='c'
-  model.firing=[]
   model.dep_ut=[%t %f]
-  model.label=''
+
   
   exprs=sci2exp(sgn)
   gr_i=['[x,y,typ]=standard_inputs(o) ';

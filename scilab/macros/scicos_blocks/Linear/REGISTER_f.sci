@@ -24,7 +24,7 @@ case 'set' then
     end
     if ok then
       graphics.exprs=exprs;
-      model.state=z0
+      model.dstate=z0
       x.graphics=graphics;x.model=model
       break
     end

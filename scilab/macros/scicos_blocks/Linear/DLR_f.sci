@@ -14,7 +14,7 @@ case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
-  x0=model.state;ns=prod(size(x0));
+  x0=model.dstate;ns=prod(size(x0));
   z=poly(0,'z')
   while %t do
     [ok,num,den,exprs]=getvalue('Set discrete SISO transfer parameters',..
@@ -40,7 +40,7 @@ case 'set' then
 	    B(:);
 	    C(:);
 	    D(:)]
-      model.state=x0
+      model.dstate=x0
       model.rpar=rpar
       if norm(D,1)<>0 then
 	mmm=[%t %f];

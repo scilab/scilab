@@ -50,7 +50,7 @@ case 'set' then
 	else
 	  model.dep_ut=[%f %f];
 	end
-	model.state=x0(:);model.rpar=rpar
+	model.dstate=x0(:);model.rpar=rpar
 	x.graphics=graphics;x.model=model
 	break
       end

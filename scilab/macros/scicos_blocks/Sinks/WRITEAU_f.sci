@@ -15,8 +15,8 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   ipar=model.ipar;
-  state=model.state
-  lunit=state(2)
+  dstate=model.dstate
+  lunit=dstate(2)
   while %t do
     [ok,N,swap,exprs]=getvalue(..
 	'Set WRITEC block parameters',..
@@ -48,11 +48,11 @@ case 'set' then
 
     if ok then
       ipar=[length(fname1);str2code(frmt1);N;swap;str2code(fname1)]
-      if prod(size(state))<>(nin+1)*N+2 then
-	state=[-1;lunit;zeros((nin+1)*N,1)]
+      if prod(size(dstate))<>(nin+1)*N+2 then
+	dstate=[-1;lunit;zeros((nin+1)*N,1)]
       end
       model.in=1
-      model.state=state;model.ipar=ipar
+      model.dstate=dstate;model.ipar=ipar
       graphics.exprs=exprs;
       x.graphics=graphics;x.model=model
       break

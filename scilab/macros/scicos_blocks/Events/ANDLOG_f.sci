@@ -15,19 +15,12 @@ case 'set' then
 case 'define' then
   model=scicos_model()
   model.sim='andlog'
-  model.in=[]
   model.out=1
   model.evtin=[1;1]
-  model.evtout=[]
-  model.state=[]
-  model.dstate=[]
-  model.rpar=[]
-  model.ipar=[]
   model.blocktype='d'
   model.firing=[]
   model.dep_ut=[%f %f]
-  model.label=''
-
+  
   gr_i=['txt=[''LOGICAL'';'' '';'' AND ''];';
 	'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
   x=standard_define([3 3],model,[],gr_i)

@@ -14,11 +14,11 @@ case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
   out=model.out
-  state=model.dstate
+  dstate=model.dstate
   ipar=model.ipar
   imask=9+ipar(1)
   tmask=ipar(imask)
-  lunit=state(3)
+  lunit=dstate(3)
   fname=exprs(3)
   frmt=exprs(4)
   while %t do
@@ -76,10 +76,10 @@ case 'set' then
 	    str2code(fname1);
 	    tmask1
 	    outmask(:)]
-	if prod(size(state))<>(N*M)+3 then
-	  state=[-1;-1;lunit;zeros(N*M,1)]
+	if prod(size(dstate))<>(N*M)+3 then
+	  dstate=[-1;-1;lunit;zeros(N*M,1)]
 	end
-	model.state=state;model.ipar=ipar
+	model.dstate=dstate;model.ipar=ipar
 	graphics.exprs=exprs;
 	x.graphics=graphics;x.model=model
 	break

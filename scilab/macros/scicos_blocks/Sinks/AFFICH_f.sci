@@ -82,12 +82,7 @@ case 'define' then
   model=scicos_model()
   model.sim='affich'
   model.in=1
-  model.out=[]
-  model.evtin=[]
-  model.evtout=[]
-  model.state=[]
   model.dstate=[0;-1;0;0;1;1]
-  model.rpar=[]
   model.ipar=[font;fontsize;color;0;nt;nd]
   model.blocktype='c'
   model.firing=[]

@@ -94,7 +94,7 @@ case 'set' then
     if ok then
       auto=auto0
       model.state=xx
-      model.state=z
+      model.dstate=z
       model.rpar=rpar
       if or(model.ipar<>tt) then needcompile=4,end
       model.ipar=tt

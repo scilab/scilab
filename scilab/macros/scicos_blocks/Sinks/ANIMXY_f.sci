@@ -14,7 +14,7 @@ case 'getorigin' then
 case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
-  model=arg1.model;state=model.state
+  model=arg1.model;dstate=model.dstate
   if size(exprs,'*')==8 then exprs=[exprs(1:3);'[]';'[]';exprs(4:8)],end
   while %t do
     [ok,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=getvalue(..
@@ -69,8 +69,8 @@ case 'set' then
       if wdim==[] then wdim=[-1;-1];end
       rpar=[xmin;xmax;ymin;ymax]
       ipar=[win;1;N;clrs;siz;0;wpos(:);wdim(:)]
-      if prod(size(state))<>2*N+1 then state=zeros(2*N+1,1),end
-      model.state=state;model.rpar=rpar;model.ipar=ipar
+      if prod(size(dstate))<>2*N+1 then dstate=zeros(2*N+1,1),end
+      model.dstate=dstate;model.rpar=rpar;model.ipar=ipar
       graphics.exprs=exprs;
       x.graphics=graphics;x.model=model
       break
@@ -85,17 +85,13 @@ case 'define' then
   model=scicos_model()
   model.sim='scopxy'
   model.in=[1;1]
-  model.out=[]
   model.evtin=1
-  model.evtout=[]
-  model.state=[]
   model.dstate=zeros(2*N+1,1)
   model.rpar=[xmin;xmax;ymin;ymax]
   model.ipar=[win;1;N;clrs;siz;0;wpos(:);wdim(:)]
   model.blocktype='d'
   model.firing=[]
   model.dep_ut=[%f %f]
-  model.label=''
  
   exprs=[string(clrs);
       string(siz);

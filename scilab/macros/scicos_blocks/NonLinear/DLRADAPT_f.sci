@@ -37,7 +37,7 @@ case 'set' then
     else
       rpar=[p(:);real(rn(:));imag(rn(:));real(rd(:));imag(rd(:));g(:)]
       ipar=[m;n;npt]
-      model.state=[last_u(:);last_y(:)]
+      model.dstate=[last_u(:);last_y(:)]
       model.rpar=rpar
       model.ipar=ipar
       graphics.exprs=exprs

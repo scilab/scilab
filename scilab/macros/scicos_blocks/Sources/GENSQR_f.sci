@@ -22,7 +22,7 @@ case 'set' then
 	list('vec',1),exprs)
     if ~ok then break,end
     graphics.exprs=exprs
-    model.state=Amplitude
+    model.rpar=Amplitude
     x.graphics=graphics;x.model=model
     break
   end
