@@ -12,9 +12,11 @@ function t=sci2exp(a,nom,lmax)
 //  sci2exp(a,'aa')
 //!
 // Copyright INRIA
-deff('x=String(a)',['x=string(a)'
-  'x(find(x==''Inf''))=''%inf'' '
-  'x(find(x==''Nan''))=''%nan'' '])
+  deff('x=String(a)',['x=string(a)'
+		      'x(find(x==''Inf''))=''%inf'' '
+		      'x(find(x==''-Inf''))=''-%inf'' '
+		      'x(find(x==''Nan''))=''%nan'' '])
+
   
 [lhs,rhs]=argn(0)
 $ // import global variable $ in sci2exp context for efficiency
