@@ -413,7 +413,7 @@ void StoreFac3D(char *name, double *x, double *y, double *z, integer *cvect, int
  *fec 
  *---------------------------------------------------------------------------*/
 
-void StoreFec(char *name, double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, integer *colminmax, integer *extremes_col)
+void StoreFec(char *name, double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, integer *colminmax, integer *extremes_col, int with_mesh)
 {
   struct fec_rec *lplot;
   lplot= ((struct fec_rec *) MALLOC(sizeof(struct fec_rec)));
@@ -421,6 +421,7 @@ void StoreFec(char *name, double *x, double *y, double *triangles, double *func,
     {
       lplot->Nnode= *Nnode;
       lplot->Ntr= *Ntr;
+      lplot->with_mesh = with_mesh;
       if ( 
 	  CopyVectC(&(lplot->name), name,((int)strlen(name))+1) &&
 	  CopyVectF(&(lplot->x), x,*Nnode) &&
@@ -2397,8 +2398,8 @@ static void ReplayFec(char *theplot)
   C2F(fec)(plfec->x,plfec->y,plfec->triangles,plfec->func,
 	   &plfec->Nnode,&plfec->Ntr,
 	   plfec->strflag,plfec->legend,plfec->brect,plfec->aaint,
-	   plfec->zminmax, plfec->colminmax, plfec->extremes_col,0,    /* added by bruno */
-	   0L,0L);
+	   plfec->zminmax, plfec->colminmax, plfec->extremes_col, plfec->with_mesh,    /* added by bruno */
+	   0, 0L,0L);
 }
 
 static void ReplayContour(char *theplot)

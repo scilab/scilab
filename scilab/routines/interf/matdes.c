@@ -514,6 +514,47 @@ static int get_extremes_col(fname,pos,opts)
     } 
   return 1;
 }
+/* added by bruno 08 Nov 2004 on the model of get_nax */
+#define GetWithMesh(pos,opts) if ( get_with_mesh(fname,pos,opts)==0 ) return 0;
+
+static BOOL def_with_mesh=FALSE;
+static BOOL WithMesh;
+static int get_with_mesh(fname,pos,opts) 
+     char *fname;
+     int pos;
+     rhs_opts opts[];
+{
+  int m,n,l,first_opt=FirstOpt(),kopt;
+
+  if (pos < first_opt) 
+    {
+      if (VarType(pos)) 
+	{
+	  GetRhsVar(pos, "b", &m, &n, &l);
+	  CheckLength(pos,m*n,1);
+	  WithMesh = *(istk(l));
+	}
+      else
+	{
+	  /** global value can be modified  **/
+	  def_with_mesh = FALSE;
+	  WithMesh = def_with_mesh;
+	}
+    }
+  else if ((kopt=FindOpt("mesh",opts))) 
+    {
+      GetRhsVar(kopt, "b", &m, &n, &l);
+      CheckLength(kopt,m*n,1);
+      WithMesh = *(istk(l));
+    }
+  else 
+    {
+      /** global value can be modified  **/
+      def_with_mesh = FALSE;
+      WithMesh = def_with_mesh;
+    } 
+  return 1;
+}
 
 #define DEFLOGFLAGS "gnn" 
 static char def_logflags[]  = DEFLOGFLAGS;
@@ -3617,11 +3658,12 @@ int scifec(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,  mn1;
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4, mn1;
 
   static rhs_opts opts[]= { {-1,"colminmax","?",0,0,0},
                             {-1,"extremes_col","?",0,0,0},
 			    {-1,"leg","?",0,0,0},
+		            {-1,"mesh","?",0,0,0},
 		            {-1,"nax","?",0,0,0},
 			    {-1,"rect","?",0,0,0},
 			    {-1,"strf","?",0,0,0},
@@ -3633,7 +3675,7 @@ int scifec(fname,fname_len)
     return 0;
   }
 
-  CheckRhs(4,11);
+  CheckRhs(4,12);
 
   if ( get_optionals(fname,opts) == 0) return 0;
    if ( FirstOpt() < 5) {
@@ -3663,6 +3705,7 @@ int scifec(fname,fname_len)
   GetZminmax(9,opts);
   GetColminmax(10,opts);
   GetExtremesCol(11,opts);
+  GetWithMesh(12,opts);
 
   SciWin();
   C2F(scigerase)();
@@ -3687,9 +3730,9 @@ int scifec(fname,fname_len)
   
   /* NG beg */
   if (version_flag() == 0)
-    Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax,ExtremesCol,flagNax);
+    Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax,ExtremesCol,WithMesh,flagNax);
   else
-    Xfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax,ExtremesCol);
+    Xfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax,ExtremesCol,WithMesh);
   /* NG end */
   LhsVar(1)=0;
   return 0;

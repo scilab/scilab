@@ -108,10 +108,11 @@ struct fac3d_rec {char *name;
 
 
 struct fec_rec {char *name;
-		double *x,*y,*triangles,*func;
-		integer   Nnode,Ntr;
+                double *x,*y,*triangles,*func;
+                integer   Nnode,Ntr;
                 double *brect, *zminmax;      /* zminmax added by bruno */
                 integer  *aaint, *colminmax, *extremes_col;  /* colminmax, extremes_col added by bruno */
+                int with_mesh;            /* added by bruno */
 		char  *legend,*strflag;
 		char *strflag_kp;
 		double *brect_kp;
@@ -127,7 +128,7 @@ struct contour_rec {char *name;
 		    integer   n1,n2,nz,flagnz;
 		    double *bbox;
 		    double teta,alpha;
-		    integer *flag;
+                    integer *flag;
 		    char  *legend;
 		 } ;
 

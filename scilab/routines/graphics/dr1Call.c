@@ -307,16 +307,17 @@ void Xnumb (fname,n,flag,x,y,angle,box)
 }
 
 /*------------------------------------------------
- * fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,extremes_col]);
+ * fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,extremes_col, with_mesh]);
  *-----------------------------------------------*/   
-void Xfec (x,y,noeud,fun,n,m,strflag,legend,brect,aaint,Zminmax,Colminmax,ExtremesCol)
+void Xfec (x,y,noeud,fun,n,m,strflag,legend,brect,aaint,Zminmax,Colminmax,ExtremesCol,WithMesh)
      double x[],y[],brect[],noeud[],Zminmax[]; 
      integer *n,*m,aaint[],Colminmax[],ExtremesCol[];
+     int WithMesh;
      double *fun;
      char legend[],strflag[];
 { 
     
      C2F(fec)(x,y,noeud,fun,n,m,strflag,legend,brect,aaint,
-         Zminmax,Colminmax,ExtremesCol,0,4L,bsiz);
+         Zminmax,Colminmax,ExtremesCol,WithMesh,0,4L,bsiz);
      
 }

@@ -1113,6 +1113,7 @@ typedef struct
   double *zminmax; 
   integer *colminmax;
   integer *extremes_col;
+  BOOL with_mesh;
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */ 
@@ -1461,7 +1462,7 @@ extern int DestroyAxes (sciPointObj * pthis);
 
 extern sciPointObj *ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pnoeud, 
 				  double *pfun, int Nnode, int Ntr, double *zminmax, 
-				  integer *colminmax, integer *extremes_col);
+				  integer *colminmax, integer *extremes_col, BOOL with_mesh);
 extern int DestroyFec (sciPointObj * pthis);
 extern sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy, integer Nbr1, 
                integer Nbr2, double *vfx, double *vfy, integer flag, 

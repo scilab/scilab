@@ -52,7 +52,7 @@ sciPointObj *paxesmdl = (sciPointObj *) NULL;/* DJ.A 08/01/04 */
 extern int versionflag;
 int xinitxend_flag;
 extern void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
-			     integer *Ntr,double *zminmax, integer *colminmax, integer *extremes_col));
+			     integer *Ntr,double *zminmax, integer *colminmax, integer *extremes_col, BOOL with_mesh));
 extern void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2);
 extern void GraySquare(integer *x, integer *y, double *z, integer n1, integer n2);
 extern void Plo2d1RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf);
@@ -9833,7 +9833,8 @@ DestroyGrayplot (sciPointObj * pthis)
  */
 sciPointObj *
 ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pnoeud, 
-	      double *pfun, int Nnode, int Ntr, double *zminmax, integer *colminmax, integer *extremes_col)
+	      double *pfun, int Nnode, int Ntr, double *zminmax, integer *colminmax, 
+	      integer *extremes_col, BOOL with_mesh)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciFec *pfec = (sciFec *) NULL;
@@ -9940,6 +9941,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+
       if ((pfec->extremes_col = MALLOC (2 * sizeof (integer))) == NULL)
 	{
 	  FREE(pFEC_FEATURE (pobj)->pvecx);
@@ -9971,7 +9973,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	  pfec->colminmax[i] = colminmax[i];
 	  pfec->extremes_col[i] = extremes_col[i];
 	}
-	   
+      pfec->with_mesh = with_mesh;
       pfec->Nnode = Nnode;	      
       pfec->Ntr = Ntr;		
       if (sciInitGraphicContext (pobj) == -1)
@@ -10009,6 +10011,7 @@ DestroyFec (sciPointObj * pthis)
   FREE (pFEC_FEATURE (pthis)->pfun); 
   FREE (pFEC_FEATURE (pthis)->zminmax);  
   FREE (pFEC_FEATURE (pthis)->colminmax);
+  FREE (pFEC_FEATURE (pthis)->extremes_col);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
@@ -11759,7 +11762,7 @@ sciDrawObj (sciPointObj * pobj)
       newfec(xm,ym,pFEC_FEATURE (pobj)->pnoeud,pFEC_FEATURE (pobj)->pfun,
 	     &pFEC_FEATURE (pobj)->Nnode,&pFEC_FEATURE (pobj)->Ntr,
 	     pFEC_FEATURE (pobj)->zminmax,pFEC_FEATURE (pobj)->colminmax,
-	     pFEC_FEATURE (pobj)->extremes_col);
+	     pFEC_FEATURE (pobj)->extremes_col, pFEC_FEATURE (pobj)->with_mesh);
 #ifdef WIN32
       if ( flag_DO == 1) ReleaseWinHdc();
 #endif

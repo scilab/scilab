@@ -22,13 +22,13 @@ extern int version_flag(void); /* NG */
 /* functions used by the modified version : */
 static void PaintTriangle __PARAMS((double sx[], double sy[], double fxy[], 
 				    int zxy[], 
-				    double zlevel[], int fill[]));
+				    double zlevel[], int fill[], BOOL with_mesh));
 static void PermutOfSort __PARAMS((int tab[], int perm[]));
 static void FindIntersection __PARAMS((double sx[], double sy[], double fxy[],
 				       double z, int inda, int indb, 
 				       integer *xint, integer *yint));
 void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
-		      integer *Ntr,double *zminmax,integer *colminmax, integer *extremes_col));
+		      integer *Ntr,double *zminmax,integer *colminmax, integer *extremes_col, BOOL with_mesh));
 extern void initsubwin();
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
@@ -64,7 +64,7 @@ void get_frame_in_pixel(integer WIRect[]);
 
 int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, 
 	     char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, 
-	     integer *colminmax, integer *extremes_col, BOOL flagNax, integer lstr1, integer lstr2)
+	     integer *colminmax, integer *extremes_col, BOOL with_mesh, BOOL flagNax, integer lstr1, integer lstr2)
 {
   integer *xm,*ym,n1=1/*,i*/;
 
@@ -160,7 +160,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
      sciSetCurrentObj (ConstructFec 
 		       ((sciPointObj *)
 	                sciGetSelectedSubWin (sciGetCurrentFigure ()),
-	                x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax,extremes_col)); 
+	                x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax,extremes_col, with_mesh)); 
      pptabofpointobj = sciGetCurrentObj();
      hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
      cmpt++;   
@@ -185,8 +185,9 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 
      /* Storing values if using the Record driver */
      if ((GetDriver()=='R') && (version_flag() != 0)) /* NG */
-       /* added zminmax and colminmax (bruno) then extremes_col */
-       StoreFec("fec_n",x,y,triangles,func,Nnode,Ntr,strflag,legend,brect,aaint,zminmax,colminmax,extremes_col);
+       /* added zminmax and colminmax (bruno) then extremes_col, then with_mesh */
+       StoreFec("fec_n",x,y,triangles,func,Nnode,Ntr,strflag,legend,brect,aaint,
+		zminmax,colminmax,extremes_col,with_mesh);
 
      /** Allocation **/
      xm = graphic_alloc(0,*Nnode,sizeof(int));
@@ -196,7 +197,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
   
      C2F(echelle2d)(x,y,xm,ym,Nnode,&n1,"f2i",3L);
 
-     newfec(xm,ym,triangles,func,Nnode,Ntr,zminmax,colminmax,extremes_col);
+     newfec(xm,ym,triangles,func,Nnode,Ntr,zminmax,colminmax,extremes_col,with_mesh);
      axis_draw(strflag); 
 
      /** Drawing the Legends **/
@@ -213,12 +214,13 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 }
 
 void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
-	    integer *Ntr,double *zminmax,integer *colminmax, integer *extremes_col)
+	    integer *Ntr,double *zminmax,integer *colminmax, integer *extremes_col, BOOL with_mesh)
 {
   /*   code modified by Bruno 01/02/2001
-   *   a new modif (Bruno 04 nov 2004 from an idea of Jpc) : adding the 
+   *   a new modif (Bruno 04 nov 2004 from an idea of Jpc): adding the 
    *   extremes_col to choose the colors when the zminmax levels are 
    *   crossed (and the color 0 correspond to no painting at all these zones)
+   *   a new modif (Bruno 08 nov 2004 from an idea of Jpc): adding with_mesh to see or not the mesh  
    */
     
   integer nz,i,j,k;
@@ -392,7 +394,7 @@ void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnod
       
       if ( xmax > Fxmin  &&  ymax > Fymin  &&  xmin < Fxmax  &&  ymin < Fymax ) 
 	/* call the "painting" function */
-	PaintTriangle(sx, sy, fxy, zxy, zlevel, fill);
+	PaintTriangle(sx, sy, fxy, zxy, zlevel, fill, with_mesh);
     }
 
   frame_clip_off();
@@ -427,7 +429,8 @@ static void PermutOfSort (int *tab, int *perm)
 }
 
 
-static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy, double *zlevel, int *fill)
+static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy, 
+			   double *zlevel, int *fill, BOOL with_mesh)
 {
   /* 
      arguments :
@@ -446,20 +449,19 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy, double
   */
 
   int nb0, edge, izone, color;
-  integer ncont,nr, resx[5],resy[5];
+  integer ncont,nr, zero, resx[5],resy[5];
   integer xEdge2, yEdge2, xEdge, yEdge; 
 
-  /* 
-     case of only one color for the triangle : 
-  */
-
-  if ( zxy[0] == zxy[2] ) 
+  if ( zxy[0] == zxy[2] )   /*  case of only one color for the triangle : */
     {
       resx[0]=inint(sx[0]); resx[1]=inint(sx[1]);  resx[2]=inint(sx[2]);
       resy[0]=inint(sy[0]); resy[1]=inint(sy[1]);  resy[2]=inint(sy[2]);
       color = fill[zxy[0]]; nr = 3;
       if ( color != 0 )
 	C2F(dr)("xliness","str",resx,resy,&color,(ncont=1,&ncont),&nr, 
+		PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ( with_mesh )
+	C2F(dr)("xliness","str",resx,resy,&zero,(ncont=1,&ncont),&nr, 
 		PI0,PD0,PD0,PD0,PD0,0L,0L);
       return;
     }
@@ -551,6 +553,15 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy, double
   if ( color != 0 )
     C2F(dr)("xliness","str",resx,resy,&color,(ncont=1,&ncont),&nr, 
 	    PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  if ( with_mesh )
+    {
+      resx[0]=inint(sx[0]); resx[1]=inint(sx[1]);  resx[2]=inint(sx[2]);
+      resy[0]=inint(sy[0]); resy[1]=inint(sy[1]);  resy[2]=inint(sy[2]);
+      nr = 3;
+      C2F(dr)("xliness","str",resx,resy,&zero,(ncont=1,&ncont),&nr, 
+	      PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
 }
 
 static void FindIntersection(double *sx, double *sy, double *fxy, double z, 
