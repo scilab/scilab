@@ -2,7 +2,7 @@ function s=%st_6(varargin)
 // Authors: F. Delebecque, S. Steer, Copyright INRIA
 // called in the context of complex struct insertion 
 // to realize partial extraction
-  
+
   nind=size(varargin)-1; //the number of indexes
   s=varargin($); // the struct
   
@@ -20,7 +20,11 @@ function s=%st_6(varargin)
     //check if indexes are in the dimension bounds
     dims=s.dims
     if size(dims,'*')<nind then dims($:nind)=1;end
-    indmax=ones(1,nind);
+    if nind==1 then
+      indmax=[1 1]
+    else
+      indmax=ones(1,nind);
+    end
     for k=1:nind,indmax(k)=max(varargin(k));end
     
     if and(indmax<=dims) then //Yes
