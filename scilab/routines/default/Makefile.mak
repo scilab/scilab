@@ -26,7 +26,6 @@ all:: $(OBJS)
 FTables.obj : FTables.h 
 
 FTables.h : Flist 
-	./FCreate
 
 Funtab.obj : fundef 
 

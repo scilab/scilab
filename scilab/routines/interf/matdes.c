@@ -19,8 +19,15 @@
 #define SciWin() if(C2F(sciwin)() !=0)\
         {Scierror(999,"%s :Requested figure cannot be created \r\n",fname);return 0;  }
 
-#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
-
+#if WIN32
+  #if _MSC_VER <=1200
+    #define hstk(x) ((C2F(stack).Stk) + x-1 ) 	
+  #else
+    #define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+  #endif
+#else
+  #define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+#endif
 
 
 /* The following NUMSETFONC and KeyTab_ definition should be coherent

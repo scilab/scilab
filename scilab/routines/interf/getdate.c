@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #if WIN32
+	#include <sys/types.h> 
 	#include <sys/timeb.h>
 #else
 	#include <sys/time.h> 
@@ -17,12 +18,14 @@ static int week_number __PARAMS ((struct tm *tp));
 void C2F(scigetdate) __PARAMS ((time_t *dt, int *ierr));
 void C2F(convertdate) __PARAMS ((time_t *dt, int w[]));
 
-
-
 #if WIN32
-static struct __timeb64 timebufferW;
+  #if _MSC_VER <=1200 	
+    static struct _timeb timebufferW;
+  #else
+    static struct __timeb64 timebufferW;
+  #endif
 #else
-static struct timeval timebufferU;
+  static struct timeval timebufferU;
 #endif
 
 static int ChronoFlag=0;
@@ -37,8 +40,14 @@ void  C2F(scigetdate)(dt,ierr)
     *ierr=1;
   }
   ChronoFlag=1;
+  
   #if WIN32
-	_ftime64( &timebufferW );
+  #if _MSC_VER <=1200 	
+    _ftime( &timebufferW );
+  #else
+    _ftime64( &timebufferW );
+  #endif
+	
   #else
 	gettimeofday(&timebufferU,NULL);
   #endif
