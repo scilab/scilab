@@ -10214,6 +10214,7 @@ sciDrawObj (sciPointObj * pobj)
 	      iflag=0; nn1= n1*2;
 	      C2F(dr)("xsegs","v",&xm[2*n1*j],&ym[2*n1*j],&nn1,&lstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
+	  n1=n2;
 	  break;
         case 4: 
           Plo2d4RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  
