@@ -96,21 +96,29 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
   end
 
   I='E';
+
   in_impl=I(ones(ip1)); in_impl(in_implicit)='I';
-  k=find(ip1<>0) //connected links
-  
-  if graphics.in_implicit<>[]&or(graphics.in_implicit(k)<>in_impl(k)) then
-    message('Connected ports types cannot be changed')
-    ok=%f
-    return
+  if ip1<>[] then
+    kk=size(graphics.in_implicit,'*')
+    k=find(ip1<>0) //connected links
+    k=k(find(k<=kk));
+    if or(graphics.in_implicit(k)<>in_impl(k)) then
+      message('Connected ports types cannot be changed')
+      ok=%f
+      return
+    end
   end
-  
+
   out_impl=I(ones(op1));  out_impl(out_implicit)='I';
-  k=find(op1<>0) //connected links
-  if graphics.out_implicit<>[]&or(graphics.out_implicit(k)<>out_impl(k)) then
-    message('Connected ports types cannot be changed')
-    ok=%f
-    return
+  if op1<>[] then
+    kk=size(graphics.out_implicit,'*')
+    k=find(op1<>0) //connected links
+    k=k(find(k<=kk));
+    if or(graphics.out_implicit(k)<>out_impl(k)) then
+      message('Connected ports types cannot be changed')
+      ok=%f
+      return
+    end
   end
   
   ok=%t
@@ -140,3 +148,4 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
 
 endfunction
+
