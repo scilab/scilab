@@ -187,10 +187,45 @@ deff('[a]=foo()','a=1','n')
 comp(foo)
 if foo()<>1 then pause,end
 
-// stacksize (cannot be tested here)
-//stacksize(3d6)
-//sz=stacksize(); 
-//if sz(1)<>3d6 then pause,end
+// stacksize 
+
+a=stacksize();a=a(1);
+stacksize(a+1000)
+y=stacksize();if y(1)<>a+1000 then pause,end
+
+//non compiled functions
+deff('y=foo(a)','x=a+1000,stacksize(x),y=stacksize();y=y(1)','n')
+a=stacksize();a=a(1);
+y=foo(a);
+if y<>a+1000 then pause,end
+a=y;
+deff('y=toto()','a=stacksize();a=a(1);y=foo(a)','n')
+y=toto();
+if y<>a+1000 then pause,end
+a=y;
+exec(toto)
+if y<>a+1000 then pause,end
+a=y;
+
+// compiled functions
+deff('y=foo(a)','x=a+1000,stacksize(x),y=stacksize();y=y(1)')
+y=foo(a);
+if y<>a+1000 then pause,end
+a=y;
+deff('y=toto()','a=stacksize();a=a(1);y=foo(a)')
+y=toto();
+if y<>a+1000 then pause,end
+a=y;
+exec(toto)
+if y<>a+1000 then pause,end
+a=y;
+
+//in a loop
+for k=1:3,
+  y=toto();
+  if y<>a+1000 then pause,end
+  a=y;
+end
 
 
 //mtlb_mode
