@@ -1,0 +1,17 @@
+SHELL = /bin/sh
+
+SCIDIR=../../..
+SCIDIR1=..\..\..
+
+include ../../../Makefile.incl
+
+.SUFFIXES: .sci .bin $(SUFFIXES)
+
+NAME = scslinearlib
+NAM = SCI/macros/scicos_blocks/Linear
+
+MACROS=BIGSOM_f.sci CLINDUMMY_f.sci CLR_f.sci CLSS_f.sci DELAYV_f.sci DELAY_f.sci \
+	DLR_f.sci DLSS_f.sci GAINBLK_f.sci GAIN_f.sci INTEGRAL_f.sci REGISTER_f.sci \
+	SAMPLEHOLD_f.sci SOM_f.sci SUM_f.sci TCLSS_f.sci
+
+include ../../Make.lib

@@ -1,0 +1,17 @@
+SHELL = /bin/sh
+
+SCIDIR=../../..
+SCIDIR1=..\..\..
+
+include ../../../Makefile.incl
+
+.SUFFIXES: .sci .bin $(SUFFIXES)
+
+NAME = scsmisclib
+NAM = SCI/macros/scicos_blocks/Misc
+
+MACROS= CLKSPLIT_f.sci DIFF_f.sci MEMORY_f.sci TEXT_f.sci scifunc_block.sci \
+	CONSTRAINT_f.sci DOLLAR_f.sci SPLIT_f.sci func_block.sci \
+	IMPSPLIT_f.sci SUPER_f.sci m_sin.sci
+
+include ../../Make.lib

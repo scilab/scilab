@@ -1,0 +1,22 @@
+#-----------------------------
+# generated from Makefile: DO NOT EDIT
+# -----------------------------
+SHELL = /bin/sh
+
+SCIDIR=../../..
+SCIDIR1=..\..\..
+
+include ../../../Makefile.incl.amk
+
+.SUFFIXES: .sci .bin $(SUFFIXES)
+
+NAME = scsnonlinearlib
+NAM = SCI/macros/scicos_blocks/NonLinear
+
+MACROS= ABSBLK_f.sci EXPBLK_f.sci INVBLK_f.sci MIN_f.sci QUANT_f.sci \
+	COSBLK_f.sci FSV_f.sci LOGBLK_f.sci SAT_f.sci \
+	INTRP2BLK_f.sci LOOKUP_f.sci POWBLK_f.sci SINBLK_f.sci \
+	DLRADAPT_f.sci INTRPLBLK_f.sci MAX_f.sci PROD_f.sci TANBLK_f.sci
+
+
+include ../../Make.lib.amk
