@@ -1,5 +1,6 @@
 mode(-1)
 path=get_absolute_file_path('control.dem');
+oldln=lines();lines(0)
 
 demolist=['LQG',               'lqg/lqg.dem'
 	  'Mixed-sensitivity', 'mixed.dem'
