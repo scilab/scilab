@@ -223,6 +223,10 @@ c      if -nw mode main window does not exists - error
          endif
        iwin=-1
       endif
+c     next two lines for compatibility "2D Zoom" button renamed in "Zoom"
+      if (buf(1:7).eq.'2D Zoom') buf='Zoom'//char(0)
+      if (buf(1:8).eq.'2D &Zoom') buf='&Zoom'//char(0)
+
       call delbtn(iwin,buf)
       call objvide(fname,top)
       return
