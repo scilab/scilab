@@ -3044,6 +3044,12 @@ int scixset(fname,fname_len)
   }
   else if ( strncmp(cstk(l1),"mark size",9) == 0) {
     C2F(dr1)("xget","mark",&verb,mark,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
+    
+    if(version_flag() == 0){
+      subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
+    }
+    
     mark[1]=(int)xx[0];
     C2F(dr1)("xset","mark",&(mark[0]),&(mark[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
   }
@@ -5726,7 +5732,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     sciSetIsMark((sciPointObj *) pobj,0);
     else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
   }
-
+  else if (strncmp(marker,"mark_size_unit", 14) == 0) {
+    if (strncmp(cstk(*value),"point",5)==0 )
+      sciSetMarkSizeUnit((sciPointObj *) pobj, 1); /* 1 : points, 2 : tabulated */
+    else if (strncmp(cstk(*value),"tabulated",9)==0 )
+      sciSetMarkSizeUnit((sciPointObj *) pobj, 2);
+    else  {strcpy(error_message,"Value must be 'point/tabulated'"); return -1;}
+  }
   else if (strncmp(marker,"mark_size", 9) == 0) {
     /* sciSetIsMark((sciPointObj *) pobj, TRUE); */ 
     /* F.Leray 27.01.05 commented because mark_size is automatically launched */
@@ -7377,6 +7389,20 @@ if ((pobj == (sciPointObj *)NULL) &&
 	strncpy(cstk(outindex),"on", numrow*(numcol-1));
       else
 	strncpy(cstk(outindex),"off", numrow*numcol);
+    }
+  else if (strcmp(marker,"mark_size_unit") == 0)
+    {
+      numrow   = 1;
+      if (sciGetMarkSizeUnit((sciPointObj *)pobj) == 1){
+	numcol = 5;
+	CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+	strncpy(cstk(outindex),"point", numrow*numcol);
+      }
+      else if(sciGetMarkSizeUnit((sciPointObj *)pobj) == 2){
+	numcol = 9;
+	CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+	strncpy(cstk(outindex),"tabulated", numrow*numcol);
+      }
     }
   else if (strcmp(marker,"mark_size") == 0)
     {
