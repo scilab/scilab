@@ -207,23 +207,13 @@ else
       if boolval then
 	dims(k)=varslist(index).dims
 	
-	select varslist(index).vtype
-	case Double  then vtype=[vtype;"Double"]
-	case Boolean then vtype=[vtype;"Boolean"]
-	case String  then vtype=[vtype;"String"]
-	case Struct  then vtype=[vtype;"Struct"]
-	case Cell    then vtype=[vtype;"Cell"]
-	case Unknown then vtype=[vtype;"Unknown"]
-	case Sparse  then vtype=[vtype;"Sparse"]
-	end
+	vtype=[vtype;varslist(index).vtype]
 	
-	select varslist(index).property
-	case Unknown then prop=[prop;"Unknown"]
-	end
+	prop=[prop;varslist(index).property]
       else
-	dims(k)=list("Unknown","Unknown")
-	vtype=[vtype;"Unknown"]
-	prop=[prop;"Unknown"]
+	dims(k)=list(Unknown,Unknown)
+	vtype=[vtype;Unknown]
+	prop=[prop;Unknown]
       end
     end
     dims="dims="+sci2exp(dims)
