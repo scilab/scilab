@@ -1074,15 +1074,6 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 			lptw->CharSize.x = tm.tmAveCharWidth;
 			lptw->CharAscent = tm.tmAscent;
 			ReleaseDC (hwnd, hdc);
-			GetClientRect (hwnd, &crect);
-			if ((lptw->CharSize.y * lptw->ScreenSize.y < crect.bottom) || (lptw->CharSize.x * lptw->ScreenSize.x < crect.right))
-			{
-				/* shrink size */
-				GetWindowRect (lptw->hWndParent, &wrect);
-				MoveWindow (lptw->hWndParent, wrect.left, wrect.top,
-						    wrect.right - wrect.left + (lptw->CharSize.x * lptw->ScreenSize.x - crect.right),
-							wrect.bottom - wrect.top + (lptw->CharSize.y * lptw->ScreenSize.y + lptw->ButtonHeight - crect.bottom),	TRUE);
-			}
 			if ((lptw->DragPre != (LPSTR) NULL) && (lptw->DragPost != (LPSTR) NULL)) DragAcceptFiles (hwnd, TRUE);
 	
 			/* Modification Allan CORNET 15/07/03 */
