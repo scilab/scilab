@@ -509,7 +509,7 @@ void Panic(s, a)
 
 /* #include "wf_fig.h" */ /** for sys_errlist **/
 #ifndef linux 
-#if !defined(__bsdi__) && !defined(__NetBSD__)
+#if !defined(__bsdi__) && !defined(__NetBSD__) && !defined(__APPLE__)
 extern int	errno;
 extern int	sys_nerr;
 #if (! (defined(BSD) && (BSD >= 199306))) && !defined(freebsd)  && !defined(__APPLE__)
@@ -523,7 +523,6 @@ static char UE[]="unknown error";
 char *SysErrorMsg(n)
   int n;
 {
-  extern int sys_nerr;
   return ((n >= 0 && n < sys_nerr) ? sys_errlist[n] : UE );
 }
 

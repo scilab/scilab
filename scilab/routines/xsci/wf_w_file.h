@@ -29,9 +29,16 @@
 #include <ctype.h>
 #include <errno.h>
 
-extern int      errno;
-extern int      sys_nerr;
+
+#ifndef linux 
+#if !defined(__bsdi__) && !defined(__NetBSD__) && !defined(__APPLE__)
+extern int	errno;
+extern int	sys_nerr;
+#if (! (defined(BSD) && (BSD >= 199306))) && !defined(freebsd)  && !defined(__APPLE__)
 extern char    *sys_errlist[];
+#endif
+#endif
+#endif 
 
 #include <X11/Xlib.h>
 #include <X11/cursorfont.h>
