@@ -58,7 +58,22 @@
     vector as [samples channels].
   </P>
   </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+  wavread('SCI/demos/sound/chimes.wav','size')
+
+  [y,Fs,bits]=wavread('SCI/demos/sound/chimes.wav');Fs,bits
+  subplot(2,1,1)
+  plot2d(y(:,1))
+  subplot(2,1,2)
+  plot2d(y(:,2))
+  
+  y=wavread('SCI/demos/sound/chimes.wav',[1 5]) //the first five samples
+
+ ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>auread</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>savewave</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>analyze</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mapsound</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>auread</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>savewave</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>analyze</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>mapsound</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
