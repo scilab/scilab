@@ -1,30 +1,41 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>getversion  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 2000  </DATE>
-  <SHORT_DESCRIPTION name="getversion"> renvoie le numéro de version de Scilab  </SHORT_DESCRIPTION>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>getversion</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 2000</DATE>
+  <SHORT_DESCRIPTION name="getversion"> get Scilab version name</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>version=getversion()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>version=getversion()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[version,opts]=getversion()  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>version  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : une chaîne de caractères
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>version</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>opts</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a vector of string with four entries :<VERB>[compiler,pvm,tk,ocaml]</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
-    Renvoie dans <VERB>version</VERB> le numéro de version de Scilab.
-  </P>
+    <P>
+    return in <VERB>version</VERB> the Scilab version name</P> and in
+    <VERB>opts</VERB> build options which can be used to determine if scilab
+    has been build with pvm, tk or ocaml.
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 getversion()
- ]]></EXAMPLE>
+[version,opts]=getversion()
+ ]]>
+  </EXAMPLE>
 </MAN>
