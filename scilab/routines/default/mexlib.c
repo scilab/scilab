@@ -65,7 +65,7 @@ extern int arr2num __PARAMS(( mxArray  *ptr ));
 extern int C2F(changetoref) __PARAMS((int number, int pointed));
 
 extern int IsReference  __PARAMS((mxArray *array_ptr));
-
+mxLOGICAL *mxGetLogicals(mxArray *array_ptr);
 #define DOUBLEMATRIX 1
 #define INTMATRIX 8
 #define STRINGMATRIX  10
@@ -229,7 +229,7 @@ int theMLIST(int *header)
  *----------------------------------------------------------------------
  **************************************************************************/
 
-mxClassID mxGetClassID(mxArray *ptr)
+mxClassID mxGetClassID(const mxArray *ptr)
 {
   int *header = Header(ptr);
   switch (header[0]) {
@@ -1700,7 +1700,7 @@ mxArray *mxCreateLogicalScalar(mxLOGICAL *value)
 bool mxIsLogicalScalarTrue(mxArray *pa)
 {
   bool retval;
-  retval = mxIsLogical(pa) && mxGetNumberOfElements(pa) == 1 && mxGetLogicals(pa)[0] == 1;
+  retval = mxIsLogical(pa) && mxGetNumberOfElements(pa) == 1 && *mxGetLogicals(pa) == 1;
   return retval;
 }
 
