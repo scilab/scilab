@@ -3030,7 +3030,7 @@ c     Copyright INRIA
       include '../stack.h'
       parameter (nf=10)
       integer w(nf),dt
-      logical checkrhs,checklhs,cremat,getscalar
+      logical checkrhs,checklhs,cremat,getscalar,getrmat
       integer gettype
 c
       rhs=max(0,rhs)
@@ -3043,14 +3043,20 @@ c
             top=top-1
             n=1
          else 
-            if(.not.getscalar('getdate', top,top, lr)) return
-            dt=stk(lr)
-            call convertdate(dt,w)
-c dt contains a number of seconds, number of milliseconds w(10) must be 0
-            w(10)=0
-            n=nf
+            if(.not.getrmat('getdate', top, top, m1, n1, lr)) return
+            top=top+1
+            if(.not.cremat('getdate',top,0,m1*n1,nf,l,lc)) return
+            do 05 i=0,m1*n1-1
+               dt=stk(lr+i)
+               call convertdate(dt,w)
+c     .         dt contains a number of seconds, number of milliseconds
+C     .         w(10) must be 0
+               w(10)=0
+               call int2db(nf,w,1,stk(l+i),m1*n1)
+ 05         continue
+            call copyobj('getdate',top,top-1)
             top=top-1
-            goto 10
+            return
          endif
       else
          job=1
