@@ -1305,6 +1305,8 @@ int C2F(cresmat)(fname, lw, m, n, nchar, fname_len)
   ilast = lr - 1;
   ix1 = ilast + *istk(ilast );
   *lstk(*lw +1) = sadr(ix1);
+  /* empty strings */
+  if ( *nchar == 0)   *lstk(*lw +1) += 1;
   return TRUE_;
 }
 
@@ -1360,6 +1362,8 @@ int C2F(cresmat2)(fname, lw, nchar, lr, fname_len)
   ilast = *lr - 1;
   ix1 = ilast + *istk(ilast );
   *lstk(*lw +1) = sadr(ix1);
+  /* empty strings */
+  if ( *nchar == 0)   *lstk(*lw +1) += 1;
   *lr = ilast + *istk(ilast - 1);
   return TRUE_;
 } 
@@ -1734,6 +1738,8 @@ int C2F(crestring)(fname, spos, nchar, ilrs, fname_len)
     return FALSE_;
   ix1 = *ilrs + *nchar;
   *lstk(*spos +1) = sadr(ix1);
+  /* empty strings */
+  if ( *nchar == 0)   *lstk(*spos +1) += 1;
   return TRUE_;
 }
 
