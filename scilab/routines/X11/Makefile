@@ -2,7 +2,7 @@ SHELL = /bin/sh
 
 include ../../Makefile.incl
 
-SUBDIRS = Xaw Xmu
+SUBDIRS = Xaw3d Xmu
 
 all::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
