@@ -14809,7 +14809,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
            /**  l'enveloppe cvxe*/
 	   x[0] = sciGetForeground (pobj);	
 	   x[3] = sciGetLineStyle (pobj);
-	   x[4] = 0;
+	   x[4] = 0; // BUG ICI dimension de X << 4 F. Leray
 	   C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	   C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	   C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096);
