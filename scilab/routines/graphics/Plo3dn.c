@@ -153,7 +153,6 @@ void C2F(fac3dn)(int iflag, double *x, double *y, double *z, integer *cvect, int
   zmax= pSUBWIN_FEATURE (psubwin)->FRect[5];
   fg1=pSUBWIN_FEATURE (psubwin)->hiddencolor; 
   if (fg1<=0) fg1= flag[0];
-  sciprint("\r\n %d * %d", *p, *q);
    /** le tri des facettes **/
   for ( i =0 ; i < *q ; i++)
     {
