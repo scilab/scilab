@@ -43,6 +43,15 @@ for k=2:nx
 	  'str='' ''+part(''0'',ones(1,ipar(5)-ipar(6)-2))+''.''+part(''0'',ones(1,ipar(6)))'
 	  'rr=xstringl(orig(1),orig(2),str)'
 	  'xstring(orig(1)+max(0,(sz(1)-rr(3))/2),orig(2)+max(0,(sz(2)-rr(4))/2),str)']
+    elseif o(5)=='c_block' then
+      model(1)(2)=model(1)(2)-int(model(1)(2)/1000)*1000+2000
+      scs_m(k)(3)=model
+      tt=scs_m(k)(2)(4)(2)
+      ii=grep(tt,'machine.h')
+      if size(ii,'*')==1 then 
+	tt(ii)='#include <machine.h>',
+        scs_m(k)(2)(4)(2)=tt
+      end
     end
   elseif o(1)=="Link" then
     if size(o(2),'*')==1 then
