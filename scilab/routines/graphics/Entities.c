@@ -20481,6 +20481,8 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	Y[0]=Y[3]=ytmp[l];
 	Y[1]=Y[2]=ytmp[l+1];
 
+	Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]);
+	
 	p=4;
 	x=X;y=Y;z=Z;
 	
@@ -20853,10 +20855,12 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	  
 	  Y[0]=Y[3]=ytmp[l];
 	  Y[1]=Y[2]=ytmp[l+1];
-
+	  
+	  Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]);
+	  
 	  p=4;
 	  x=X;y=Y;z=Z;
-	
+	  
 	}
 	else{ /* facets */
 	  p=pSURFACE_FEATURE (pobj)->dimzx;
