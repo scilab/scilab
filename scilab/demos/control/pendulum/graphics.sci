@@ -10,9 +10,10 @@ rect=[minx,-l,maxx,l]
 xset("thickness",2);
 [m,n]=size(x);
 isoview(minx,maxx,-l,l+hc);
+realtimeinit(0.06)
 if driver()<>'Pos' then
   xset("alufunction",6);
-  for k=1:n,dpnd1(x(k),teta(k));dpnd1(x(k),teta(k));end;
+  for k=1:n, dpnd1(x(k),teta(k));realtime(k);dpnd1(x(k),teta(k));end;
   xset("alufunction",3);
 else
   xset('pixmap',1)

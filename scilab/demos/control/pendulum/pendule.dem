@@ -1,10 +1,14 @@
+mode(-1)
+path=get_absolute_file_path('pendule.dem');
+grps=get('old_style')
+set('old_style','on')
+//
+getf(path+'simulation.sci')
+getf(path+'graphics.sci')
+//
 xselect();xbasc();wdim=xget('wdim')
 mode(1)
 
-//
-getf('SCI/demos/pendulum/simulation.sci')
-getf('SCI/demos/pendulum/graphics.sci')
-//
 x_message('the cart')
 // ----------------
 //
@@ -20,8 +24,8 @@ x_message('the cart')
 x_message('open loop simulation');
 //
  y0=[0;0;0.1;0];
-// y=ode(y0,0,0.03*(1:180),ivpd);
- y=read('SCI/demos/pendulum/yy',4,180,'(e12.6)');
+ y=ode(y0,0,0.03*(1:180),ivpd);
+// y=read('SCI/demos/pendulum/yy',4,180,'(e12.6)');
  xbasc();
  anim(y(1,:),y(3,:));
 //
@@ -132,3 +136,4 @@ mode(0)
 x_message('The end')
 xbasc()
 xset('wdim',wdim(1),wdim(2))
+set('old_style',grps)
