@@ -742,8 +742,9 @@ mxArray *mxCreateStructArray(int ndim, int *dims, int nfields, char **field_name
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
-/* int C2F(structcreate)(lw, nz, sz, nf, fnames,retval) */
-  /* C2F(structcreate)(&lw1, &ndim, dims, &nfields, field_names, &retval); */
+  /* int C2F(structcreate)(lw, nz, sz, nf, fnames,retval) */
+  /*  C2F(hmcreate)(&lw1, &ndim, dims, &CLASS, &cmplx,&retval); */
+  C2F(structcreate)(&lw1, &ndim, dims, &nfields, field_names, &retval);
   if( !retval) {
     return (Matrix *) 0;
   }
@@ -751,14 +752,14 @@ mxArray *mxCreateStructArray(int ndim, int *dims, int nfields, char **field_name
   return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
 }
 
-Matrix *mxCreateNumericArray(int ND, int *size, int CLASS, int cmplx)
+Matrix *mxCreateNumericArray(int ndim, int *dims, int CLASS, int cmplx)
 {
   static int lw,lw1;
   int retval;
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
-  C2F(hmcreate)(&lw1, &ND, size, &CLASS, &cmplx,&retval);
+  C2F(hmcreate)(&lw1, &ndim, dims, &CLASS, &cmplx,&retval);
   if( !retval) {
     return (Matrix *) 0;
   }
@@ -766,14 +767,14 @@ Matrix *mxCreateNumericArray(int ND, int *size, int CLASS, int cmplx)
   return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
-Matrix *mxCreateCharArray(int ND, int *size)
+Matrix *mxCreateCharArray(int ndim, int *dims)
 {
   static int lw,lw1, CLASS, cmplx;
   int retval;
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
-  C2F(hmcreate)(&lw1, &ND, size, (CLASS=4, &CLASS),(cmplx=0, &cmplx),&retval);
+  C2F(hmcreate)(&lw1, &ndim, dims, (CLASS=4, &CLASS),(cmplx=0, &cmplx),&retval);
   if( !retval) {
     return (Matrix *) 0;
   }
@@ -781,15 +782,15 @@ Matrix *mxCreateCharArray(int ND, int *size)
   return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
-Matrix *mxCreateCellArray(int ND, int *size)
+Matrix *mxCreateCellArray(int ndim, int *dims)
 {
   Matrix *ppr[1];Matrix *ppl[1];
   int k, nlhs, nrhs;
   double  *start_of_pr;
-  ppr[0] = mxCreateDoubleMatrix( ND , 1, 0);
+  ppr[0] = mxCreateDoubleMatrix( ndim , 1, 0);
   start_of_pr = (double *) mxGetPr(ppr[0]);
-  for ( k=0; k<ND; k++ ) {
-    start_of_pr[k]= (double) size[k];
+  for ( k=0; k<ndim; k++ ) {
+    start_of_pr[k]= (double) dims[k];
   }
   nrhs=1;nlhs=1;
   /* cell = mlist(["ce","dims","entries"],[dim1,...,dimk],list([],...,[])) */
