@@ -1,3 +1,4 @@
+#include <string.h>
 #include "../stack-c.h"
  
 int F2C(intsrealtimeinit)(fname)

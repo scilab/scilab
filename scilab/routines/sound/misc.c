@@ -295,14 +295,24 @@ swapf(float uf)
      float uf;
 #endif
 {
-  union {
-    unsigned long l;  /** we assume here long i s4 bytes **/
-    float f;
-  } u;
-
-  u.f= uf;
-  u.l= (u.l>>24) | ((u.l>>8)&0xff00) | ((u.l<<8)&0xff0000) | (u.l<<24);
-  return u.f;
+  if (sizeof(long) == sizeof(float)){
+    union {
+      unsigned long l;  /** we assume here long is 4 bytes **/
+      float f;
+    } u;
+    u.f= uf;
+    u.l= (u.l>>24) | ((u.l>>8)&0xff00) | ((u.l<<8)&0xff0000) | (u.l<<24);
+    return u.f;
+  }
+  else {
+    union {
+      unsigned int l;  /** we assume here int is 4 bytes **/
+      float f;
+    } u;
+    u.f= uf;
+    u.l= (u.l>>24) | ((u.l>>8)&0xff00) | ((u.l<<8)&0xff0000) | (u.l<<24);
+    return u.f;
+  }
 }
 
 double

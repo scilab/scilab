@@ -1,6 +1,6 @@
 /* Copyright Jean-Philippe Chancelier 
    ENPC */
-
+#include <string.h>
 #include "../../routines/stack-c.h"
 
 /** external functions to be called through this interface **/

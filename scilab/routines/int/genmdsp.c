@@ -1,5 +1,7 @@
 #include "../machine.h"
 #include <math.h>
+#include <string.h>
+
 typedef signed char integer1;
 typedef short integer2;
 #define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )

@@ -3,6 +3,8 @@
  --------------------------------------------------------------------------*/
 
 #include "../stack-c.h"
+#include <string.h>
+
 void vect_or __PARAMS((int *v,int m,int n,int *r,int opt));
 void vect_and __PARAMS((int *v,int m,int n,int *r,int opt));
 /******************************************
