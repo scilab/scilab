@@ -33,13 +33,17 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    input(message) gives the user the prompt in the text string and 
-    then waits for input from the keyboard.</P>
-    <P>
-    The input can be expression which is evaluated by <VERB>evstr</VERB>.</P>
+    <VERB>input(message)</VERB> gives the user the prompt in the text string and 
+    then waits for input from the keyboard. 
+    The input can be expression which is evaluated by <LINK>evstr</LINK>.
+    If nothing but a carriage return is
+    entered at the prompt <VERB>input(message)</VERB> returns an empty matrix
+    </P>
     <P>
     Invoked with two arguments, the output is a character string which is the
-    expression entered at keyboard.</P>
+    expression entered at keyboard.  If nothing but a carriage return is
+    entered at the prompt <VERB>input(message)</VERB> returns an empty string
+    </P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -48,15 +52,6 @@
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>file</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>read</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>write</LINK>
-    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>evstr</LINK>
     </SEE_ALSO_ITEM>
