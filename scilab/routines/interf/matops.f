@@ -3093,6 +3093,10 @@ c     .  eye op b
             endif
             return
          endif
+         if (.true.) then 
+c           add explicit nan tests when requested 
+            call idcmp(stk(l1),stk(l2),mn1,istk(il1+3),op)
+         else
          do 132 i=0,mn1-1
             e1=stk(l1+i)
             e2=stk(l2+i)
@@ -3114,6 +3118,7 @@ c     for vc++ we add an explicit test for nan
                istk(il1+3+i)=0
             endif
  132     continue
+         endif
          lstk(top+1)=sadr(il1+3+mn1)
       endif
       return
