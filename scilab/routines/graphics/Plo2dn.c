@@ -183,7 +183,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
         sciSetForeground (sciGetCurrentObj(), style[jj]);
       }
       else {
-        sciSetIsMark(sciGetCurrentObj(),  (style[jj] < 0 ? TRUE : FALSE));
+        sciSetIsMark(sciGetCurrentObj(),  (style[jj] <= 0 ? TRUE : FALSE));
         sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
       } 
       if (with_leg) pptabofpointobj[jj] = sciGetCurrentObj();
