@@ -28,6 +28,12 @@ exec `which wish` "$0" "$@"
 # "Scilab specials" in colorize -- added code to distinguish {} [], () from ;: 
 # [external but connected: new list of keywords "words"]
 
+#ES 4/9/2003
+# * added colorization pattern for "number"; separated pattern "xmltag" from "rem2"; 
+# * xmltags colorized only if filename contains ".xml"
+# *corrected bug - scipad(newfilename) began in an unnamed buffer
+#   [connected in scipad.sci: scipad(filename) does not open an additional "Untitled.sce"]
+
 # default global values
 #global .
 
@@ -68,7 +74,11 @@ set radiobuttonvalue 0
 eval destroy [winfo child $pad]
 wm title $pad "$winTitle - $listoffile("$pad.textarea",filename)"
 wm iconname $pad $winTitle
-##wm geometry $pad 80x25
+##ES 4/9/2003
+##set taille [font measure $textFont " "]
+##wm grid $pad 20 60 20 60 
+#boh. "text $pad.textarea -height 1 -width 1" below
+wm geometry $pad 55x25
 wm minsize $pad 25 1 
 
 #create main menu
@@ -406,6 +416,8 @@ proc TextStyles { t } {
     $t tag configure text -foreground $FGCOLOR
     $t tag configure textquoted -foreground darkred
     $t tag configure rem2 -foreground green4
+    $t tag configure xmltag -foreground orange
+    $t tag configure number -foreground yellow4
     scipadindent $t .8
 }
 TextStyles $textareacur
@@ -587,7 +599,7 @@ proc openoninit {textarea thefile} {
 tkTextSetCursor $textareacur "1.0"
 keyposn $textareacur
 ##geometry in what units? The width is more than 65 columns, though it's resized proportionally
-wm geometry $pad 65x24 
+#wm geometry $pad 65x24 
 
 
 
@@ -885,6 +897,10 @@ proc openfile {file} {
 	    } else {
 		set listoffile("$pad.new$winopened",thetime) 0
 		setTextTitleAsNew $pad.new$winopened
+##added ES 4/9/2003
+                lappend listoftextarea $pad.new$winopened
+		montretext $pad.new$winopened
+#
 		update
 	    }
 	    set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
@@ -1489,6 +1505,10 @@ if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
 	# more bindings
 	bind Text <Control-v> {}
 	bind $textareacur <Control-v> {pastetext}
+##
+## added by ES 30/8/2003 (to be improved --- copies at the present cursor position)
+##	bind Text <2> {copytext ; pastetext}
+##
     } else {
 	#events
 	set tk_strictMotif 0
@@ -1854,7 +1874,12 @@ proc load_words {} {
 
 proc colorize {w cpos iend} {
 	global	words chset
+        global listoffile 
         set num 0
+## ES: xml colorization only for xml files
+        set textarea [gettextareacur]
+        set xmlcolor [string first "\.xml" $listoffile("$textarea",filename)]
+###
 	$w mark set begin "$cpos linestart"
 	$w mark set ende "$iend+1l linestart"
 #order matters here - for instance textquoted has to be after operator, so operators are
@@ -1864,9 +1889,12 @@ proc colorize {w cpos iend} {
 	$w tag remove brace begin ende
 	$w tag remove punct begin ende
 	$w tag remove operator begin ende
+#number can contain +-. so follows operator (?)
+	$w tag remove number begin ende
 	$w tag remove keywords begin ende
 	$w tag remove text begin ende
 	$w tag remove rem2 begin ende
+        $w tag remove xmltag begin ende
 	$w tag remove textquoted begin ende  
 ##still, "//" textquoted becomes rem2 
         $w tag remove indentation begin ende
@@ -1900,6 +1928,14 @@ proc colorize {w cpos iend} {
 			$w tag add brace $ind last
 		} else break
 	}
+##ES: numbers (the regexp can be perfectioned -- it matches e.g. single e6)
+	$w mark set last begin
+	while {[set ind [$w search -regexp {\m\d*\.?\d*[deDE]?\-?\d{1,3}\M} last ende]] != {}} {
+		if {[$w compare $ind >= last]} {
+			$w mark set last $ind+1c
+			$w tag add number $ind last
+		} else break
+	}
 	$w mark set last begin
 	while {[set ind [$w search -regexp {['\.+\-*\/\\\^=\~$|&<>]} last ende]] != {}} {
 		if {[$w compare $ind >= last]} {
@@ -1923,20 +1959,22 @@ proc colorize {w cpos iend} {
 		$w mark set last next-1c
 	    } else break
 	  }
-# XML (this is a problem as <> are also operators)
+# XML (#ES this is a problem as <> are also operators)
+        if {$xmlcolor > 0} {
 	$w mark set last begin
-	while {[set ind [$w search  -regexp "<" last ende]] != {}} {
-	    if {[$w compare $ind >= last]} {
-		set res ""
+	  while {[set ind [$w search  -regexp "<" last ende]] != {}} {
+	      if {[$w compare $ind >= last]} {
+	   	set res ""
 		regexp ">" [$w get $ind end] res
 		set num [string length $res]
 		$w mark set last "$ind + $num c"
 		$w mark set next {last+1c wordend}
-		$w tag add rem2 last-1c next+1c
-#		$w tag add rem2 $ind last
+		$w tag add xmltag last-1c next+1c
+#		$w tag add xmltag $ind last
 		$w mark set last next+1c
-	    } else break
-	  }
+	      } else break
+	    }
+          }
 # Text
 	  $w mark set last begin
 	  while { [set ind [$w search -count num -regexp {"[^"]*("|$)} last ende]] != {}} {
@@ -1985,14 +2023,16 @@ proc puttext {w text} {
     if {$i1 != $i2 || $rem} {
 	colorize $w $i1 [$w index "$i2+1l linestart"]
     }
-#    modifiedtitle $w ###added by ES
+###added by ES
+#    modifiedtitle $w
     $w see insert
 }
 
 ###added by ES 28/7/2003
 proc modifiedtitle {w} {
+    global winTitle pad listoffile
     if  [ expr [string compare [getccount $w] 1] == 0 ] {
-                    settitle "modified"}
+                    settitle "$winTitle - $listoffile("$pad.textarea",filename) (modified)"}
 }
 
 
