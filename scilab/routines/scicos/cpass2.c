@@ -168,7 +168,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
       for(i=nblk1+1;i<nombr+1;i++)
 	{	  
 	  (*typ_x)[i]=0;
-	  (*nzcross)[i]=1;
+	  (*nzcross)[i]=0;
 	  (*nmode)[i]=1;
 	  (*bllst4)[(*bllst4ptr)[i]]=1;
 	  for(l=(*bllst5ptr)[i];l<=(*bllst5ptr)[i+1]-1;l++)
@@ -302,7 +302,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
      int *blnk,*blptr,**ordptr2,*ok,*ordptr1,*bllst12,*nzcross;
      int *execlk,*execlk0,*execlk_cons,*outoin,**ordclk,**cord,**iord,**oord,**zord;
 {
-  int i,iii,k,l,j,jj,hh,o,maX,n,nblk=(*typ_x)[0],f=0,fin=0;
+  int i,iii,k,l,j,jj,hh,o,maX,n,nblk=(*typ_x)[0],f,fin=0;
   int *vec,*wec,*ii,*ii1,*ii2,*r,*ext_cord1,*pp,*ppget,*ppget1,*ext_cord2,*typ_z_save;
   int *orddif,*cordX,*ext_cord,*ext_cord_old,*oordii,*ind,a,val=0;
   Mat2C ordclki,ext_cord1i;
@@ -484,6 +484,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
  if ((ext_cord=(int*)malloc(sizeof(int)*(ext_cord1[0]/2+1))) == NULL ) return 0;
  ext_cord[0]=ext_cord1[0]/2;  
  for (i=1; i<ext_cord[0]+1; i++){
+   f=0;
    for (j=1; j<=val; j++){
      if ((ext_cord[j]-ext_cord1[i])==0){
        f=1;
@@ -4381,4 +4382,5 @@ void Incr1(int* vect,int j)
     }
   vect[0]--;
 }
+
 
