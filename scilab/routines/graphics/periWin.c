@@ -71,7 +71,7 @@ extern BOOL IsTKGraphicalMode(void);
 
 LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndParentGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a);
+void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a, integer *v3);
 static void C2F(setscilabFigure)(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure);
 static void C2F(getscilabFigure)(integer *verbose, integer *x,integer *narg, double *figure);
 static void C2F(setscilabVersion)(integer *vers, integer *v2, integer *v3, integer *v4);
@@ -2352,6 +2352,7 @@ void C2F(setgccolormap)(v1,v2,a,XGC,v3)
      integer *v1,*v2;
      double *a;
      struct BCG *XGC;
+	 integer *v3;
 {
 
   setcolormapg(XGC,v1,v2,a,v3);
