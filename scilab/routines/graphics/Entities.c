@@ -11105,13 +11105,16 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32
       flag_DO = MaybeSetWinhdc();
 #endif
-      C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
-      /*(sciGetScilabXgc (pobj))->NumBackground = Max (0, Min (x[1] - 1, sciGetNumColors (pobj) + 1)); */  /*F.Leray 02.04.04:  No need here...*/
-      /*With a colormap of 32 colors,NumBackground is between 1 and 34 */
-      /*(or in C value between 0 and 33 = (sciGetNumColors (pobj) + 1), so it was OK!! */
-      C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
-      C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
+      C2F(dr)("xset","pixmap",&(pFIGURE_FEATURE (pobj)->pixmap),PI0,PI0,PI0,PI0,PI0,PD0,
+	      PD0,PD0,PD0,0L,0L);
+      if (pFIGURE_FEATURE (pobj)->pixmap == 0)
+	C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
+      else
+	C2F (dr) ("xset","wwpc", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
+      C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
+      C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),PI0,PI0,PI0,
+	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #ifdef WIN32
       if ( flag_DO == 1) ReleaseWinHdc();
 #endif
@@ -11125,9 +11128,6 @@ sciDrawObj (sciPointObj * pobj)
 	    }
 	  psonstmp = psonstmp->pprev;
 	}
-      if(pFIGURE_FEATURE (pobj)->wshow == 1) /*Ajout A.Djalel*/
-	C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      /**/ 
       break;
     case SCI_SUBWIN: 
      
