@@ -1710,7 +1710,7 @@ int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integ
           psize=3;
           col=fills[0];
           C2F(dr)("xliness","str",polyxs,polyys,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
-          return(0);
+/*          return(0);*/
      }
      
      if (n[0]) {
