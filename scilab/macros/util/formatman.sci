@@ -99,6 +99,7 @@ end
 
 
 endfunction
+
 function txt=man2ascii(man,ind)
 if argn(2)<2 then ind=1,end
 ll=75

@@ -18,6 +18,7 @@ function ilib_gen_loader(name,tables,libs)
     select comp_target
      case 'VC++'   then lib_suf='dll';
      case 'ABSOFT' then lib_suf='dll';
+     case 'gcc' then lib_suf='dll';
     else lib_suf='dll';
     end
   else
