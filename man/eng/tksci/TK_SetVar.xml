@@ -41,6 +41,11 @@ TK_EvalStr('label .tst2.l -textvariable tvar');
 TK_EvalStr('pack .tst2.l');
 // pack the label widget. It appears on the screen.
 TK_SetVar('tvar','This text has been set directly within scilab');
+
+//destroy toplevel  TK window. 
+TK_EvalStr('destroy .tst2')
+
+
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

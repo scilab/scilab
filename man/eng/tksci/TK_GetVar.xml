@@ -40,6 +40,10 @@ TK_EvalStr('pack .tst1.e');
 text=TK_GetVar('tvar')
 // retrieve the variable value
 // change the entry text and repeat the last command ...
+
+//delete the toplevel TK window.
+TK_EvalStr('destroy .tst1')
+
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

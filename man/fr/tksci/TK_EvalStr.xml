@@ -49,6 +49,10 @@ TK_EvalStr('pack .foo2.l');
 text='button .foo2.b -text close -command {destroy .foo2}';
 TK_EvalStr(text);
 TK_EvalStr('pack .foo2.b');
+
+//kill the windows by program
+TK_EvalStr('destroy .foo1');
+TK_EvalStr('destroy .foo2');
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
