@@ -60,10 +60,20 @@ function M=%st_i_st(varargin)
 	end
 	setfield(kf+2,v2,R);
       end
-
+    else //the dimension agree
+      R=M
+      //does the fields agree?
+      if or(FR<>FM) then //no
+	//add new fields
+	setfield(1,['st','dims',FR],R)
+	v1=list();for k=1:prod(Ndims),v1(k)=[];end
+	for k=nFM+1:size(FR,'*')
+	  setfield($+1,v1,R)
+	end
+      end
     end
-    
-    //insert N entries into result
+	  
+    //insert N entries into result  
     for k=1:nFN
       kf=find(FR==FN(k))
       v2=getfield(kf+2,R)

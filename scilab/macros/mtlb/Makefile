@@ -28,10 +28,10 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 	%b_sum.sci %b_prod.sci
 
 M5 = mtlb_cell.sci  cell.sci struct.sci  \
-	%ce_string.sci %st_string.sci \
+	%ce_string.sci %st_string.sci generic_i_st.sci\
 	%s_i_st.sci %b_i_st.sci %i_i_st.sci %sp_i_st.sci \
 	%c_i_st.sci %ce_i_st.sci %p_i_st.sci \
-	%l_i_st.sci %st_i_st.sci %r_i_st.sci %lss_i_st.sci\
+	%l_i_st.sci %st_i_st.sci %lss_i_st.sci\
 	%spb_i_st.sci %mc_i_st.sci %hm_i_st.sci\
 	%fptr_i_st.sci %h_i_st.sci %ip_i_st.sci %msp_i_st.sci \
 	%st_p.sci %st_e.sci %st_size.sci \
