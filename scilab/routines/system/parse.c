@@ -52,6 +52,7 @@ extern int C2F(getsym)();
 
 extern int C2F(putid)(); 
 extern logical C2F(eqid)();
+extern logical C2F(ptover)();
 extern int C2F(funs)();
 
 extern int C2F(sxevents)();
@@ -845,6 +846,7 @@ int C2F(parse)()
   Ids[2 + (Pt - 1) * nsiz] = lastindpos;
   Rstk[Pt] = 704;
   Rhs += 2;
+  Lhs = 1;
   C2F(com).fin = insert;
   /*     *call* allops(insert) */
   goto L91;
