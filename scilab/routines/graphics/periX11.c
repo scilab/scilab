@@ -548,7 +548,7 @@ void C2F(xclick)(char *str, integer *ibutton, integer *x1, integer *yy1, integer
 
 void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
-  SciClick(ibutton,x1, yy1,iflag,1,0,0,(char *) 0,(integer *)0);
+  SciClick(ibutton,x1, yy1,iflag,1,1,0,(char *) 0,(integer *)0);
 }
 
 /*****************************************
