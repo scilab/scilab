@@ -40,10 +40,7 @@ c
          call error(39)
          return
       endif
-      if(lhs.gt.2) then
-         call error(39)
-         return
-      endif
+
       if(rhs.eq.2) then
 c     max number of index to find
          call getrmat('find', top, top, m2, n2, l2)
@@ -55,8 +52,16 @@ c     max number of index to find
 
       vt=gettype(top)
       if(vt.eq.1.or.vt.eq.4) then
+         if(lhs.gt.2) then
+            call error(39)
+            return
+         endif
          call intsfind(nmax)
       elseif(vt.eq.5.or.vt.eq.6) then
+         if(lhs.gt.2) then
+            call error(39)
+            return
+         endif
          call intspfind(nmax)
       else
 c     .  overloaded find
