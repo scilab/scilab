@@ -238,8 +238,10 @@ c      fin=0
       if (err .gt. 0) return
       if (fin .eq. 0) then
          if(err1.ne.0) goto 60
+         if(rstk(pt).eq.311) goto 65
          call  putid(ids(1,pt+1),id)
          call error(4)
+         if(err1.ne.0) goto 60
          if (err .gt. 0) return
       endif
       go to 60
