@@ -11316,9 +11316,8 @@ sciDrawObj (sciPointObj * pobj)
   framevalues[1] = 0;
   framevalues[2] = 1;
   framevalues[3] = 1;
-
-
-currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+ 
+  currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
  switch (sciGetEntityType (pobj))
    {
@@ -11351,104 +11350,105 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
        psonstmp = psonstmp->pprev;
      }
      break;
-    case SCI_SUBWIN: 
-      if (!sciGetVisibility(pobj)) break;
-      sciSetSelectedSubWin(pobj); 
-
-      set_scale ("tttttt", pSUBWIN_FEATURE (pobj)->WRect, pSUBWIN_FEATURE (pobj)->FRect,
-		 pSUBWIN_FEATURE (pobj)->axes.aaint, pSUBWIN_FEATURE (pobj)->logflags, 
-		 pSUBWIN_FEATURE (pobj)->ARect); 
-
-      
-      if (pSUBWIN_FEATURE (pobj)->is3d) {  /* 3D Coordinates */ /* verifier si c'est encore utile SS */
-	/*To have directly all the possible ISOVIEW Modes*/
-	isoflag = (long)(pSUBWIN_FEATURE (pobj)->axes.flag[1]+1)/2; 
-
-	if(pSUBWIN_FEATURE (pobj)->isoview == TRUE) {
-	  if(isoflag ==2 || isoflag == 3){		}
-	  else {
-	    if((pSUBWIN_FEATURE (pobj)->axes.flag[1] == 0)
-	       || (pSUBWIN_FEATURE (pobj)->axes.flag[1] == 2))
-	      /* The default isoview mode is type=4 3d isometric bounds 
-		 derived from the data, to similarily type=2  */
-	      pSUBWIN_FEATURE (pobj)->axes.flag[1] = 4; 
-	    else if(pSUBWIN_FEATURE (pobj)->axes.flag[1] == 1)
-	      pSUBWIN_FEATURE (pobj)->axes.flag[1] = 3;
-	  }
-	}
-	else {
-	  if((pSUBWIN_FEATURE (pobj)->axes.flag[1] == 3) 
-	     || (pSUBWIN_FEATURE (pobj)->axes.flag[1] == 5))
-	    pSUBWIN_FEATURE (pobj)->axes.flag[1] = 1; /* computed from ebox*/
-	  else if((pSUBWIN_FEATURE (pobj)->axes.flag[1] == 4) 
-		  || (pSUBWIN_FEATURE (pobj)->axes.flag[1] == 6))
-	    /* The default NON-isoview mode is 2 computed from data*/
-	    pSUBWIN_FEATURE (pobj)->axes.flag[1] = 2; 
-	}
-
-	axis_3ddraw(pobj,xbox,ybox,zbox,InsideU,InsideD); 
-	psonstmp = sciGetLastSons (pobj);
-	while (psonstmp != (sciSons *) NULL) {
-	  sciDrawObj (psonstmp->pointobj);
-	  psonstmp = psonstmp->pprev;
-	}
-	triedre(pobj,xbox,ybox,zbox,InsideU,InsideD);
-	wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (pobj)->alpha,pSUBWIN_FEATURE (pobj)->theta); 
-      }/***/
-      else /* we are in 2D mode...*/
-	{
+   case SCI_SUBWIN: 
+     if (!sciGetVisibility(pobj)) break;
+     sciSetSelectedSubWin(pobj); 
      
-	  x[0] = sciGetForeground (pobj);
-	  x[2] = sciGetLineWidth (pobj);
-	  x[3] = sciGetLineStyle (pobj);
-	  markidsizenew[0] = sciGetMarkStyle(pobj);
-	  markidsizenew[1] = sciGetLineWidth (pobj);x[4] = 0;v = 0;dv = 0;
-	      
+     set_scale ("tttttt", pSUBWIN_FEATURE (pobj)->WRect, pSUBWIN_FEATURE (pobj)->FRect,
+		pSUBWIN_FEATURE (pobj)->axes.aaint, pSUBWIN_FEATURE (pobj)->logflags, 
+		pSUBWIN_FEATURE (pobj)->ARect); 
+     
+     
+     if (pSUBWIN_FEATURE (pobj)->is3d) 
+       {  /* 3D Coordinates */ /* verifier si c'est encore utile SS */
+	 /*To have directly all the possible ISOVIEW Modes*/
+	 isoflag = (long)(pSUBWIN_FEATURE (pobj)->axes.flag[1]+1)/2; 
+	 
+	 if(pSUBWIN_FEATURE (pobj)->isoview == TRUE) {
+	   if(isoflag ==2 || isoflag == 3){		}
+	   else {
+	     if((pSUBWIN_FEATURE (pobj)->axes.flag[1] == 0)
+		|| (pSUBWIN_FEATURE (pobj)->axes.flag[1] == 2))
+	       /* The default isoview mode is type=4 3d isometric bounds 
+		  derived from the data, to similarily type=2  */
+	       pSUBWIN_FEATURE (pobj)->axes.flag[1] = 4; 
+	     else if(pSUBWIN_FEATURE (pobj)->axes.flag[1] == 1)
+	       pSUBWIN_FEATURE (pobj)->axes.flag[1] = 3;
+	   }
+	 }
+	 else {
+	   if((pSUBWIN_FEATURE (pobj)->axes.flag[1] == 3) 
+	      || (pSUBWIN_FEATURE (pobj)->axes.flag[1] == 5))
+	     pSUBWIN_FEATURE (pobj)->axes.flag[1] = 1; /* computed from ebox*/
+	   else if((pSUBWIN_FEATURE (pobj)->axes.flag[1] == 4) 
+		   || (pSUBWIN_FEATURE (pobj)->axes.flag[1] == 6))
+	     /* The default NON-isoview mode is 2 computed from data*/
+	     pSUBWIN_FEATURE (pobj)->axes.flag[1] = 2; 
+	 }
+	 
+	 axis_3ddraw(pobj,xbox,ybox,zbox,InsideU,InsideD); 
+	 
+	 psonstmp = sciGetLastSons (pobj);
+	 while (psonstmp != (sciSons *) NULL) {
+	   sciDrawObj (psonstmp->pointobj);
+	   psonstmp = psonstmp->pprev;
+	 }
+	 triedre(pobj,xbox,ybox,zbox,InsideU,InsideD);
+	 wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (pobj)->alpha,pSUBWIN_FEATURE (pobj)->theta); 
+       }/***/
+     else /* we are in 2D mode...*/
+       {
+	 x[0] = sciGetForeground (pobj);
+	 x[2] = sciGetLineWidth (pobj);
+	 x[3] = sciGetLineStyle (pobj);
+	 markidsizenew[0] = sciGetMarkStyle(pobj);
+	 markidsizenew[1] = sciGetLineWidth (pobj);x[4] = 0;v = 0;dv = 0;
+	 
 #ifdef WIN32
-	  flag_DO=MaybeSetWinhdc();
+	 flag_DO=MaybeSetWinhdc();
 #endif
-	  C2F (dr) ("xset","dashes",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
-	  C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
-	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      
-	  sci_update_frame_bounds(0);
-
-	  if (pSUBWIN_FEATURE (pobj)->isaxes) {
-	    char STRFLAG[4];
-	    rebuild_strflag(pobj,STRFLAG);
-
-	    
+	 C2F (dr) ("xset","dashes",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
+	 C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
+	 C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	 C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	 
+	 sci_update_frame_bounds(0);
+	 
+	 if (pSUBWIN_FEATURE (pobj)->isaxes) {
+	   char STRFLAG[4];
+	   rebuild_strflag(pobj,STRFLAG);
+	   
+	   
 	   /*  sciprint("JUSTE AVANT axis_draw...\n"); */
-/* 	    sciprint("Cscale.ytics[0] = %f\n",Cscale.ytics[0]); */
-/* 	    sciprint("Cscale.ytics[1] = %f\n",Cscale.ytics[1]); */
-/* 	    sciprint("Cscale.ytics[2] = %f\n",Cscale.ytics[2]); */
-/* 	    sciprint("Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
-  
-
-	    axis_draw (STRFLAG); 
-	    labels2D_draw(pobj);
+	   /* 	    sciprint("Cscale.ytics[0] = %f\n",Cscale.ytics[0]); */
+	   /* 	    sciprint("Cscale.ytics[1] = %f\n",Cscale.ytics[1]); */
+	   /* 	    sciprint("Cscale.ytics[2] = %f\n",Cscale.ytics[2]); */
+	   /* 	    sciprint("Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
+	   
+	   
+	   axis_draw (STRFLAG); 
+	   labels2D_draw(pobj);
 	   /*  sciprint("JUSTE APRES axis_draw...\n"); */
-/* 	    sciprint("Cscale.ytics[0] = %f\n",Cscale.ytics[0]); */
-/* 	    sciprint("Cscale.ytics[1] = %f\n",Cscale.ytics[1]); */
-/* 	    sciprint("Cscale.ytics[2] = %f\n",Cscale.ytics[2]); */
-/* 	    sciprint("Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
-  
-	  }
-	  /** walk subtree **/
-	  psonstmp = sciGetLastSons (pobj);
-	  while (psonstmp != (sciSons *) NULL) {
-	    sciDrawObj (psonstmp->pointobj);
-	    psonstmp = psonstmp->pprev;
-	  }
-
+	   /* 	    sciprint("Cscale.ytics[0] = %f\n",Cscale.ytics[0]); */
+	   /* 	    sciprint("Cscale.ytics[1] = %f\n",Cscale.ytics[1]); */
+	   /* 	    sciprint("Cscale.ytics[2] = %f\n",Cscale.ytics[2]); */
+	   /* 	    sciprint("Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
+	   
+	 }
+	 /** walk subtree **/
+	 psonstmp = sciGetLastSons (pobj);
+	 while (psonstmp != (sciSons *) NULL) {
+	   sciDrawObj (psonstmp->pointobj);
+	   psonstmp = psonstmp->pprev;
+	 }
+	 
 #ifdef WIN32
-	  if ( flag_DO == 1) ReleaseWinHdc();
+	 if ( flag_DO == 1) ReleaseWinHdc();
 #endif
-	  wininfo("");  
-	}
-      break;                      
-      /******************/
+	 wininfo("");  
+       }
+     break;                      
+     /******************/
 	  
    case SCI_AGREG: 
      
