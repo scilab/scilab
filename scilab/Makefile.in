@@ -156,7 +156,7 @@ BINDISTFILES = \
 
 tarbindist:
 	touch .binary
-	strip bin/scilex
+	@STRIP@ bin/scilex
 	cd tests; make distclean
 	cd examples; make distclean
 	cd .. ; tar cvf $(SCIBASE)/$(SCIBASE)-bin.tar $(BINDISTFILES) $(PVMBINDISTFILES)
@@ -167,7 +167,7 @@ LIBPREFIX = @prefix@
 install:
 	@if test `pwd` != ${LIBPREFIX}/$(SCIBASE); then \
 		touch .binary; \
-		strip $(SCIDIR)/bin/scilex; \
+		@STRIP@ $(SCIDIR)/bin/scilex; \
 		(cd tests; make distclean); \
 		(cd examples; make distclean); \
 		(cd .. ; tar cf - $(BINDISTFILES) @PVMINST@ | (cd ${LIBPREFIX}; tar xf -)); \
