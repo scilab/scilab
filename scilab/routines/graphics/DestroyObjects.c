@@ -659,18 +659,21 @@ sciUnAgregation (sciPointObj * pobj)
   if (sciGetEntityType(pobj) != SCI_AGREG)
     return -1;
 
-  psons = sciGetSons(pobj);
+  psons = sciGetLastSons(pobj);
   pobjson = psons->pointobj;
   pparent = sciGetParent(pobj);
   while ((psons != (sciSons *) NULL) && (pobjson != (sciPointObj *) NULL))
     {
       /* we delete this son to this */ 
       pobjson = psons->pointobj;
-      psons = psons->pnext;
       sciDelThisToItsParent (pobjson, pobj);
       /* and link to its old parent */
       sciAddThisToItsParent (pobjson, pparent);
+      psons = psons->pprev;
     }
+
+  sciSetCurrentObj(pparent); /* pparent is the new current object */
+
   DestroyAgregation(pobj);
   return 0;
 }
