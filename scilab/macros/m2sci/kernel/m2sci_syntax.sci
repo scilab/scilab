@@ -28,6 +28,7 @@ first_ncl=[]
 n=size(txt,'r')
 
 eoltoinsert=0
+firstctm=[]
 
 while k<size(txt,'r')
   k=k+1
@@ -47,14 +48,16 @@ while k<size(txt,'r')
 	  break
 	end
       else // Not a comment line
+	if isempty(firstctm) then firstctm=k;end
 	txt(k)=part(txt(k),1:kck-1)+txt(k+1)
 	txt(k+1)=[]
 	eoltoinsert=eoltoinsert+1
 	if isempty(strindex(txt(k),ctm)) then // If no ctm in txt(k), insert all necessary EOL to keep nblines unchanged
 	  for l=0:eoltoinsert-1
-	    txt=[txt(1:k+l);"";txt(k+l+1:$)]
+	    txt=[txt(1:firstctm-1+l);"";txt(firstctm-1+l+1:$)]
 	  end
 	  eoltoinsert=0
+	  firstctm=[]
 	end
 	k=k-1
 	break
