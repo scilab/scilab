@@ -501,10 +501,10 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
   if (version_flag() == 0)
     if (FRect != NULL)
 	    { masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
-	      pSUBWIN_FEATURE (masousfen)->FRect[0]   = FRect[0];
-	      pSUBWIN_FEATURE (masousfen)->FRect[1]   = FRect[1];
-	      pSUBWIN_FEATURE (masousfen)->FRect[2]   = FRect[2];
-	      pSUBWIN_FEATURE (masousfen)->FRect[3]   = FRect[3];
+	      pSUBWIN_FEATURE (masousfen)->SRect[0]   = FRect[0];
+	      pSUBWIN_FEATURE (masousfen)->SRect[2]   = FRect[1];
+	      pSUBWIN_FEATURE (masousfen)->SRect[1]   = FRect[2];
+	      pSUBWIN_FEATURE (masousfen)->SRect[3]   = FRect[3];
 	    }
   if ( FRect != NULL) flag[2]='t'; else FRect = Cscale.frect;
 
