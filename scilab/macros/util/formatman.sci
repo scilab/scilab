@@ -88,7 +88,13 @@ if modified then //create whatis file
     end
     WH=[WH;getwhatis(fl,strsubst(fnam,'.man',''))]
   end
-  mputl(gsort(WH,'g','i'),path+whatis)
+  WH=gsort(WH,'g','i')
+  if getwhatis == htmlwhatis then 
+    WH=['<HTML><HEAD><TITLE>Section '+part(path,1:ks-1)+'</TITLE></HEAD><BODY>';
+	WH;
+      '</BODY></HTML>']
+  end 
+  mputl(WH,path+whatis)
 end
 
 
@@ -205,6 +211,7 @@ while k<n
   k=k+1;mk=man(k)
   select mk(1)
   case 'TH' then
+    title = mk(2);
     txt=[txt;
 	'<body>'
 	mk(2)+bl10+mk(3)+bl10+mk(4)+bl10+mk(5)]
@@ -260,6 +267,11 @@ while k<n
   else
   end
 end
+// add the top 
+txt=['<HTML><HEAD><TITLE>'+title+' manual </TITLE></HEAD><BODY>';
+	txt;
+      '</BODY></HTML>']
+
 
 function man=getman(path)
 //partial groff analyser. See /usr/lib/groff/tmac/tmac.an
@@ -484,9 +496,12 @@ for k=1:size(wh,1)
     p=strindex(wh(k),' ')
   end
   p=p(1)
-
-  whk=part(whk,1:p-1)+'</a>'+part(whk,p:length(whk))
-  wh(k)='<br><a href=""'+fnam+'"">'+whk+'<br>'
+  if p==[] then 
+	whk='<br><a href=""'+fnam+'"">'+'BUG' +'<br>'
+  else 
+        whk=part(whk,1:p-1)+'</a>'+part(whk,p:length(whk))
+        wh(k)='<br><a href=""'+fnam+'"">'+whk+'<br>'
+  end
 end
 
 function txt=replacefonts(txt)
