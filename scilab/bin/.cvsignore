@@ -35,3 +35,9 @@ Javasci.ilk
 Javasci.exp
 javasci
 *.class
+atlas.dll
+atlas.lib
+atlas.def
+libmx.ilk
+libmex.ilk
+libmat.ilk
