@@ -10,16 +10,16 @@ while %t
     if typeof(scs_m.objs(K))=='Block' then
       break,
     else
-      [pos,ct]=(scs_m.objs(K).void,scs_m.objs(K).ct)
+      [pos,ct]=(scs_m.objs(K).thick,scs_m.objs(K).ct)
       Thick=pos(1)
       Type=pos(2)
       [ok,Thick,Type]=getvalue('Link parameters',['Thickness';'Type'],..
 	  list('vec','1','vec',1),[string(Thick);string(Type)])
       if ok then
 	drawobj(scs_m.objs(K))
-	edited=or(scs_m.objs(K).void<>[Thick,Type]);
+	edited=or(scs_m.objs(K).thick<>[Thick,Type]);
 
-	scs_m.objs(K).void=[Thick,Type];
+	scs_m.objs(K).thick=[Thick,Type];
 	drawobj(scs_m.objs(K))
       end
       return
