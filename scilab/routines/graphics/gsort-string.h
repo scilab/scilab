@@ -6,7 +6,8 @@
 static void CNAME(ColSort,char)(char ** a, int * ind, int flag, int n, int p,char dir);
 static void CNAME(RowSort,char)(char ** a, int * ind, int flag, int n, int p,char dir);
 static void CNAME(GlobalSort,char)(char ** a, int * ind, int flag, int n, int p,char dir);
-static void CNAME(LexiRow,char)(char ** a, int * ind, int flag, int n, int p,char dir);
+/* Warning : a is int** here */
+static void CNAME(LexiRow,char)(int ** a, int * ind, int flag, int n, int p,char dir);
 static void CNAME(LexiCol,char)(char ** a, int * ind, int flag, int n, int p,char dir);
 
 
@@ -166,7 +167,7 @@ static int CNAME(LexiRowswapcode,char)( char ** parmi, char ** parmj,int n)
 }
 
 
-static void CNAME(LexiRow,char)(char ** a, int * ind, int flag, int n, int p,char dir)
+static void CNAME(LexiRow,char)(int ** a, int * ind, int flag, int n, int p,char dir)
 {
   int i;
   CNAME(setLexiSize,char)(n,p);
@@ -335,7 +336,7 @@ static void CNAME(sorttest,char)()
 
   /** Lexicographic Row sort **/
   CNAME(inita,char)(a,n,p) ;
-  CNAME(LexiRow,char)(a,ind,flag,n,p,'c');
+  CNAME(LexiRow,char)((int **) a,ind,flag,n,p,'c');
   CNAME(afficher,char)(a,"lexico Row a",n,p);
   afficherint(ind,"lexico Row ind",n,1);
 }

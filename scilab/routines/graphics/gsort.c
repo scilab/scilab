@@ -80,7 +80,7 @@ void C2F(gsorts_old)(int *value, int *ptrv, int *m, int *n, int *res, int *ptrre
     case 'c' :  CNAME(RowSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
     case 'l' :  
       if ( type[1] == 'r' ) 
-	CNAME(LexiRow,char)(data,ind,*iflag,*m,*n,iord[0]);
+	CNAME(LexiRow,char)((int **)data,ind,*iflag,*m,*n,iord[0]);
       else
 	CNAME(LexiCol,char)(data,ind,*iflag,*m,*n,iord[0]);
       break;
@@ -110,7 +110,7 @@ void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, 
     case 'c' :  CNAME(RowSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
     case 'l' :  
       if ( type[1] == 'r' ) 
-	CNAME(LexiRow,char)(data,ind,*iflag,*m,*n,iord[0]);
+	CNAME(LexiRow,char)((int **)data,ind,*iflag,*m,*n,iord[0]);
       else
 	CNAME(LexiCol,char)(data,ind,*iflag,*m,*n,iord[0]);
       break;

@@ -103,6 +103,12 @@ static String bgfallback_resources[] = {
  * the scilab display 
  *-------------------------------------------------------*/
 
+static XtActionsRec actionProcs[] = {
+  {"DeleteWindow", DeleteWindow},
+  {"SGDeleteWindow", SGDeleteWindow},
+  {"KeyboardMapping", KeyboardMapping}
+};
+
 void DisplayInit(string, dpy, toplevel)
      char *string;
      Display **dpy;
@@ -133,6 +139,7 @@ void DisplayInit(string, dpy, toplevel)
       *toplevel=toplevel1=XtAppInitialize (&app_con,"Xscilab",optionDescList,
 					   0,&argc, (String *)argv,
 					   bgfallback_resources,(ArgList) NULL,(Cardinal) 0);
+      XtAppAddActions(app_con, actionProcs, XtNumber(actionProcs));
       the_dpy = *dpy=dpy1=XtDisplay(toplevel1);
       BasicScilab = 0;
       Xsocket = ConnectionNumber(dpy1);

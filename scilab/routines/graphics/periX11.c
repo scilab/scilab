@@ -383,6 +383,12 @@ static int GraphicWinEvent(XEvent *event, int wincount, int flag)
   return -1;
 }
 
+static int client_message=0;
+static void set_client_message_on() { client_message=1;};
+static void set_client_message_off() { client_message=0;};
+int get_xclick_client_message_flag () { return client_message;}
+
+
 void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iwin, integer *iflag, integer *istr, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   int nowin;
@@ -418,12 +424,17 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
     }
   if ( *iflag ==0 )  ClearClickQueue(-1);
 
+  /* ignore the first event if it is a ClientMessage */ 
+
+  set_client_message_on();
+  
   while (buttons == 0) {
     wincount =  GetWinsMaxId()+1;
     if ( wincount == 0) 
       {
 	*istr = *x1= *yy1 = *iwin = 0;
 	*ibutton = -100;
+	set_client_message_off();
 	return ;
       }
     XNextEvent (dpy, &event);
@@ -502,6 +513,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
 	break;
       }
   }
+  set_client_message_off();
 
   /** Cleanup **/
 

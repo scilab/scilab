@@ -333,7 +333,7 @@ KeyboardMapping(w, event, params, num_params)
 
 /** extern void  SGDeleteWindow(); **/
 
-XtActionsRec actionProcs[] = {
+static XtActionsRec actionProcs[] = {
   {"DeleteWindow", DeleteWindow},
   {"SGDeleteWindow", SGDeleteWindow},
   {"KeyboardMapping", KeyboardMapping}
