@@ -6218,7 +6218,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"tics_labels property does not exist for this handle");return -1;}
     }
-  else if ((strncmp(marker,"box", 3) == 0) && (sciGetEntityType (pobj) == SCI_AXIS)) {
+  else if ((strncmp(marker,"box", 3) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN)) {
     numrow   = 1;
     numcol   = 3;
     CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
