@@ -258,8 +258,10 @@ proc sciGUIBrowseHelp { {winId -1} update filelist {toFind ""} } {
 		set sciGUITable(browsehelp,filelist) $filelist
 		set myIni [file join $sciGUITable(internal,path) "tcl" "sciGUI" "data" "initial.help"]
 		help::init $myIni initial $w.r 350 350		
-	} 
-		
+	} else {
+	    # Deiconify help browser 
+	    wm deiconify [sciGUIName $winId2]
+	}
 	if { $update==1 } { sciGUIBrowseHelpParseFile }
 	if { $toFind!="" } {
 		set sciGUITable(win,$winId2,data,labFind) $toFind
