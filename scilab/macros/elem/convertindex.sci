@@ -3,6 +3,19 @@ function [Newdims,I]=convertindex(dims,varargin)
 //if indexes exceed matrix dimensions given in dims, dimensions are
 //extented and new dimensions are returned in Newdims
 // Copyright INRIA
+
+// if dims is a list (INSERTION) it contains:
+//  1) dims: vector of dimensions of matrix where data are inserted
+//  2) Ndims: vector of dimensions of matrix to insert
+// else (EXTRACTION) is is a vector (vector of dimensions)
+
+if type(dims)==15 then // insertion
+  Ndims=dims(2)
+  dims=dims(1)
+else // extraction
+  Ndims=[]
+end
+
   Newdims=[]
   I=0
   iimp=0
@@ -18,7 +31,11 @@ function [Newdims,I]=convertindex(dims,varargin)
       else
 	iimp=iimp+1
 	if iimp<=2 then
-	  ik=1:size(N,3-iimp)
+	  if isempty(Ndims) then // extraction
+	    ik=[]
+	  else // insertion
+	    ik=1:Ndims(3-iimp)
+	  end
 	else
 	  ik=1
 	end
