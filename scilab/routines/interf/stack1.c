@@ -1617,7 +1617,7 @@ int cre_sparse_from_ptr_i(fname, lw, m, n, S, fname_len ,rep)
      unsigned long fname_len;
      integer *rep;
 {
-  double size = ((double) *m) * ((double) *n) * ((double) (S->it + 1));
+  double size = (double) ( (S->nel)*(S->it + 1) + (S->nel + S->m + 6)/2 );
   integer ix1,  il, lr, lc;
   integer cx1=1;
   il = iadr(*lw);
@@ -2881,6 +2881,7 @@ int C2F(realmat)()
 *     pas de verification 
 *      implicit undefined (a-z) 
 *------------------------------------------------------------------ */
+
 int C2F(copyobj)(fname, lw, lwd, fname_len)
      char *fname;
      integer *lw, *lwd;
