@@ -146,7 +146,7 @@
 </xsl:template>
 
 <xsl:template match="DESCRIPTION">
-	<ul><xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|TABLE|A|text()"/></ul>
+	<dl><xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|TABLE|A|text()"/></dl>
 </xsl:template>
 
 <xsl:template match="DESCRIPTION_ITEM">
