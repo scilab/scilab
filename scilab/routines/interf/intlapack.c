@@ -8,7 +8,8 @@
 extern int C2F(intlapack)  __PARAMS((void));
 
 
-int intqr()
+int intqr(fname)
+     char *fname;
 {
   int *header1;int *header2;
   int Cmplx;int ret;
@@ -17,39 +18,51 @@ int intqr()
   Cmplx=header1[3];
 
   switch (Rhs) {
-  case 1:   /* ...=qr(A)   */
-    if (Cmplx==0) {
+  case 1:   /* qr(A)   */
+    switch (Cmplx) {
+    case 0 :
       ret = C2F(intdgeqpf3)("qr",2L);
-      return; }
-    if (Cmplx==1) {
-      ret = C2F(intzgeqpf3)("qr",2L);
-      return; } 
-    break;
-  case 2 :   /* ...=qr(A, something)   */
-    header2 = (int *) GetData(2);
-    switch (header2[0]) {
-    case DOUBLE :
-      /*  old qr, tolerance is passed: [Q,R,rk,E]=qr(A,tol)  */
-      /*   ret = C2F(intqrold)("qr",2L);  */
-      return;
       break;
-    case STRING  :
-      /* Economy size:  ...=qr(A,"e")  */
-      if (Cmplx==0) {
-	ret = C2F(intdgeqpf4)("qr",2L);  
-	return;}
-      if (Cmplx==1) {
-	ret = C2F(intzgeqpf4)("qr",2L);  
-	return;} 
+    case 1 :
+      ret = C2F(intzgeqpf3)("qr",2L);
+      break;
+    default :
+      Scierror(999,"%s: Invalid input! \r\n",fname);
       break;
     }
     break;
-  default :   /*  rhs > 2 */
+  case 2 :   /* qr(A, something)   */
+    header2 = (int *) GetData(2);
+    switch (header2[0]) {
+    case DOUBLE :
+      /*  old qr, tolerance is passed: [Q,R,rk,E]=qr(A,tol)  *
+       *   ret = C2F(intqrold)("qr",2L);  */
+      break;
+    case STRING  :
+      /* Economy size:  ...=qr(A,"e")  */
+      switch (Cmplx) {
+      case 0 :
+	ret = C2F(intdgeqpf4)("qr",2L);
+	break;
+      case 1 :
+	ret = C2F(intzgeqpf4)("qr",2L);  
+	break;
+      default :
+	Scierror(999,"%s: Invalid input! \r\n",fname);
+	break;
+      }
+      break;
+    }
+    break;
+  default :
+    Scierror(999,"%s: Invalid call! \r\n",fname);
     break;
   }
+  return 0;
 }
 
-int intsvd()
+int intsvd(fname)
+     char *fname;
 {
   int *header1;int *header2;
   int Cmplx;int ret;
@@ -58,7 +71,7 @@ int intsvd()
   Cmplx=header1[3];
 
   switch (Rhs) {
-  case 1:   /* ...=svd(A)   */
+  case 1:   /* svd(A)   */
     if (Cmplx==0) {
       ret = C2F(intdgesvd1)("svd",3L);
       return; }
@@ -66,7 +79,7 @@ int intsvd()
       ret = C2F(intzgesvd1)("svd",3L);
       return; } 
     break;
-  case 2 :   /* ...=svd(A, something)   */
+  case 2 :   /* svd(A, something)   */
     header2 = (int *) GetData(2);
     switch (header2[0]) {
     case DOUBLE :
@@ -86,6 +99,7 @@ int intsvd()
     }
     break;
   default :   /*  rhs > 2 */
+    Scierror(999,"%s: Invalid call! \r\n",fname);
     break;
   }
 }
@@ -95,7 +109,7 @@ int intlsq(fname)
   char *fname;
 {
   int *header1;int *header2;
-  int CmplxA;int Cmplxb;int ret;
+  int CmplxA;int Cmplxb;int ret;int I2;
 
   /*   lsq(A,b)  */
   header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
@@ -104,35 +118,34 @@ int intlsq(fname)
   case 0:   
     switch (Cmplxb) {
     case 0 :
-      /* A real, breal */
+      /* A real, b real */
       ret = C2F(intdgelsy)("lsq",3L);
-      return;
       break;
     case 1 :
-      /* A real, b complex : to be done */
-      Scierror(999,"%s: Invalid input! \r\n",fname);
-      return;
+      /* A real, b complex */
+      C2F(complexify)((I2=1,&I2));
+      ret = C2F(intzgelsy)("lsq",3L);
       break;
     default:
-      return;
       break;
     }
+    return;
   case 1 :
     switch (Cmplxb) {
     case 0 :
-      /* A complex, b real : to be done */
-      Scierror(999,"%s: Invalid input! \r\n",fname);
-      return;
+      /* A complex, b real */
+      C2F(complexify)((I2=2,&I2));
+      ret = C2F(intzgelsy)("lsq",3L);
       break;
     case 1 :
       /* A complex, b complex */
       ret = C2F(intzgelsy)("lsq",3L);
-      return;
       break;
     default:
-      return;
+      Scierror(999,"%s: Invalid input! \r\n",fname);
       break;
     }
+    return;
     break;
   default :
     Scierror(999,"%s: Invalid input! \r\n",fname);
@@ -140,9 +153,6 @@ int intlsq(fname)
     break;
   }
 }
-
-
-
 
 int inteig(fname)
   char *fname;
@@ -250,7 +260,7 @@ int intlu(fname)
   int *header1;
   int CmplxA;int ret;
 
-  /*   chol(A)  */
+  /*   lu(A)  */
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
@@ -273,7 +283,7 @@ int intslash(fname)
   char *fname;
 {
   int *header1;int *header2;
-  int CmplxA;int CmplxB;int ret;
+  int CmplxA;int CmplxB;int ret;int X;
 
   /*   X = slash(A,B) <=> X = B / A */
   header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
@@ -287,19 +297,22 @@ int intslash(fname)
       return;
       break;
     case 1 :
-      /* A real, B complex : to be done */
-      Scierror(999,"%s: Invalid input! \r\n",fname);
+      /* A real, B complex : complexify A */
+      C2F(complexify)((X=1,&X));
+      ret = C2F(intzgesv4)("slash",5L);
       return;
       break;
     default:
+      Scierror(999,"%s: Invalid input! \r\n",fname);
       return;
       break;
     }
   case 1 :
     switch (CmplxB) {
     case 0 :
-      /* A complex, B real : to be done */
-      Scierror(999,"%s: Invalid input! \r\n",fname);
+      /* A complex, B real : complexify B */
+      C2F(complexify)((X=2,&X));
+      ret = C2F(intzgesv4)("slash",5L);
       return;
       break;
     case 1 :
@@ -308,6 +321,7 @@ int intslash(fname)
       return;
       break;
     default:
+      Scierror(999,"%s: Invalid input! \r\n",fname);
       return;
       break;
     }
@@ -324,9 +338,9 @@ int intbackslash(fname)
   char *fname;
 {
   int *header1;int *header2;
-  int CmplxA;int CmplxB;int ret;
+  int CmplxA;int CmplxB;int ret;int X;
 
-  /*   lsq(A,b)  */
+  /*   backslash(A,B)  */
   header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
   CmplxA=header1[3];   CmplxB=header2[3];
   switch (CmplxA) {
@@ -338,19 +352,21 @@ int intbackslash(fname)
       return;
       break;
     case 1 :
-      /* A real, B complex : to be done */
-      Scierror(999,"%s: Invalid input! \r\n",fname);
+      /* A real, B complex : complexify A */
+      C2F(complexify)((X=1,&X));
+      ret = C2F(intzgesv3)("lsq",3L);
       return;
       break;
     default:
+      Scierror(999,"%s: Invalid input! \r\n",fname);
       return;
       break;
     }
   case 1 :
     switch (CmplxB) {
     case 0 :
-      /* A complex, B real : to be done */
-      Scierror(999,"%s: Invalid input! \r\n",fname);
+      /* A complex, B real : complexify B */
+      C2F(complexify)((X=2,&X));
       return;
       break;
     case 1 :
@@ -359,6 +375,7 @@ int intbackslash(fname)
       return;
       break;
     default:
+      Scierror(999,"%s: Invalid input! \r\n",fname);
       return;
       break;
     }
