@@ -2062,10 +2062,6 @@ void C2F(drawarrows)(char *str, integer *vx, integer *vy, integer *n, integer *a
 	  if (*style >= 1)
 	    xset_line_style(style,PI0,PI0,PI0);
 	}
-      /* xset_pattern(&NDvalue,PI0,PI0,PI0); commented out 13/09/00 ss */
-      if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
-	gdk_draw_line(ScilabXgc->pixmap,ScilabXgc->wgc,vx[2*i],vy[2*i],vx[2*i+1],vy[2*i+1]);
-      gdk_draw_line(ScilabXgc->Cdrawable,ScilabXgc->wgc,vx[2*i],vy[2*i],vx[2*i+1],vy[2*i+1]);
 
       dx=( vx[2*i+1]-vx[2*i]);
       dy=( vy[2*i+1]-vy[2*i]);
@@ -2081,6 +2077,12 @@ void C2F(drawarrows)(char *str, integer *vx, integer *vy, integer *n, integer *a
 	polyy[2]= inint(polyy[0] - sin20*dx - cos20*dy) ;
 	C2F(fillpolylines)("v",polyx,polyy,&NDvalue,&nn,&p,PI0,PD0,PD0,PD0,PD0);
 	}
+      /* xset_pattern(&NDvalue,PI0,PI0,PI0); commented out 13/09/00 ss */
+      if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
+	gdk_draw_line(ScilabXgc->pixmap,ScilabXgc->wgc,vx[2*i],vy[2*i],vx[2*i+1]-dx*cos20,vy[2*i+1]-dy*cos20);
+      gdk_draw_line(ScilabXgc->Cdrawable,ScilabXgc->wgc,vx[2*i],vy[2*i],vx[2*i+1]-dx*cos20,vy[2*i+1]-dy*cos20);
+
+
     }
   xset_dash_and_color( Dvalue,PI0,PI0,PI0);
 }

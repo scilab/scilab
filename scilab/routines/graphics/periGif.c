@@ -1378,10 +1378,7 @@ void C2F(drawarrowsGif)(char *str, integer *vx, integer *vy, integer *n, integer
 	NDvalue=(*style < 1) ?  Dvalue[0] : *style;
       C2F(set_line_style_Gif)(&NDvalue,PI0,PI0,PI0);
 
-      gdImageThickLine(GifIm, vx[2*i], vy[2*i],
-		       vx[2*i + 1], vy[2*i + 1],
-		       GifLineColor(),Max(1,ScilabGCGif.CurLineWidth));
-      dx=( vx[2*i+1]-vx[2*i]);
+     dx=( vx[2*i+1]-vx[2*i]);
       dy=( vy[2*i+1]-vy[2*i]);
       norm = sqrt(dx*dx+dy*dy);
       if ( Abs(norm) >  SMDOUBLE ) 
@@ -1395,6 +1392,11 @@ void C2F(drawarrowsGif)(char *str, integer *vx, integer *vy, integer *n, integer
 	  polyy[2]= inint(polyy[0] - sin20*dx - cos20*dy) ;
 	  C2F(fillpolylinesGif)("v",polyx,polyy,&NDvalue, &nn,&p,PI0,PD0,PD0,PD0,PD0);
 	  }
+
+      gdImageThickLine(GifIm, vx[2*i], vy[2*i],
+		       vx[2*i + 1]-dx*cos20, vy[2*i + 1]-dy*cos20),
+		       GifLineColor(),Max(1,ScilabGCGif.CurLineWidth));
+ 
     }
   C2F(set_dash_and_color_Gif)( Dvalue,PI0,PI0,PI0);
 }

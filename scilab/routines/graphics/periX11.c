@@ -2765,27 +2765,28 @@ void C2F(drawarrows)(char *str, integer *vx, integer *vy, integer *n, integer *a
 	xset_line_style(&NDvalue,PI0,PI0,PI0);}
       else if (*style >= 1)
 	xset_line_style(style,PI0,PI0,PI0);
-      
-      if (ScilabXgc->Cdrawable != (Drawable) 0)
-	XDrawLine(dpy,ScilabXgc->Cdrawable,gc,(int) vx[2*i],(int)vy[2*i],
-		  (int)vx[2*i+1],(int)vy[2*i+1]);
-      if (ScilabXgc->CurPixmapStatus != 1) 
-	XDrawLine(dpy,(Drawable) ScilabXgc->CWindow,gc,(int) vx[2*i],(int)vy[2*i],
-		  (int)vx[2*i+1],(int)vy[2*i+1]);
+
       dx=( vx[2*i+1]-vx[2*i]);
       dy=( vy[2*i+1]-vy[2*i]);
       norm = sqrt(dx*dx+dy*dy);
       if ( Abs(norm) >  SMDOUBLE ) 
 	{ integer nn=1,p=3;
 	dx=(*as/10.0)*dx/norm;dy=(*as/10.0)*dy/norm;
-	polyx[0]= polyx[3]=vx[2*i+1]+dx*cos20;
+	polyx[0]= polyx[3]=vx[2*i+1];
 	polyx[1]= inint(polyx[0]  - cos20*dx -sin20*dy );
 	polyx[2]= inint(polyx[0]  - cos20*dx + sin20*dy);
-	polyy[0]= polyy[3]=vy[2*i+1]+dy*cos20;
+	polyy[0]= polyy[3]=vy[2*i+1];
 	polyy[1]= inint(polyy[0] + sin20*dx -cos20*dy) ;
 	polyy[2]= inint(polyy[0] - sin20*dx - cos20*dy) ;
 	C2F(fillpolylines)("v",polyx,polyy,&NDvalue,&nn,&p,PI0,PD0,PD0,PD0,PD0);
 	}
+      if (ScilabXgc->Cdrawable != (Drawable) 0)
+	XDrawLine(dpy,ScilabXgc->Cdrawable,gc,(int) vx[2*i],(int)vy[2*i],
+		  (int)(vx[2*i+1]-dx*cos20),(int)(vy[2*i+1]-dy*cos20));
+      if (ScilabXgc->CurPixmapStatus != 1) 
+	XDrawLine(dpy,(Drawable) ScilabXgc->CWindow,gc,(int) vx[2*i],(int)vy[2*i],
+		   (int)(vx[2*i+1]-dx*cos20),(int)(vy[2*i+1]-dy*cos20));
+      
     }
   xset_dash_and_color( Dvalue,PI0,PI0,PI0);
   XFlush(dpy);
