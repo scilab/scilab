@@ -3318,7 +3318,8 @@ int C2F(credata)(fname, lw, m, fname_len)
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
   };
-  *lstk(*lw +1) = lr + 1 + m/sizeof(double);
+  /*  *lstk(*lw +1) = lr + 1 + m/sizeof(double);  */
+  *lstk(*lw +1) = lr + (m+sizeof(double)-1)/sizeof(double);
   return TRUE_;
 } 
 /* ==============================================================
