@@ -9,9 +9,7 @@ from=tree.operands($)
 to=tree.operands(1)
 ind=tree.operands(2)
 
-tree.operands(4)=from
-tree.operands(3)=ind
-tree.operands(2)=Cste(1)
+tree.operands(2)=list(Cste(1),ind)
 if is_a_scalar(from) then
 elseif from.dims(1)==1 then
 elseif from.dims(1)<>Unknown & froms.dims(2)<>Unknown then

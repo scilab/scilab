@@ -74,11 +74,6 @@ if rhs==1 then
     if iscste then
       iscolon=ind.value==":"
     end
-
-    // A 1 is inserted to be sure to create a row vector
-    tree.operands(4)=tree.operands(3)
-    tree.operands(3)=ind
-    tree.operands(2)=Cste(1)
     
     // --- Insertion with just one index which is not : ---
     if ~iscolon then
@@ -89,6 +84,7 @@ if rhs==1 then
 	  tree.out(1).dims=list(1,Unknown)
 	end
 	tree.out(1).type=to.type
+	tree=%i2sci_s(tree)
       else
 	if is_a_scalar(to) then
 	  tree=%i2sci_s(tree)
