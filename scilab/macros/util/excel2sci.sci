@@ -4,16 +4,25 @@ function mat=excel2sci(fname,sep)
 // Copyright INRIA
 
 if argn(2)<2 then sep=',',end
-v=mgetl(fname)';
+v=mgetl(fname);
 ns=length(sep);
 mat=[];ki=1;
-for line=v
+for i=1:size(v,'*')
+  line=v(i)
   K=[strindex(line,sep)];
   ki=1;row=[];
   for k=K
     row=[row,part(line,ki:k-1)];
     ki=k+ns;
   end
-  mat=[mat;[row,part(line,ki:length(line))]];
+  row=[row,part(line,ki:length(line))]
+  if i>1 then
+    if size(row,2)>size(mat,2) then
+      mat($,size(row,2))=''
+    elseif size(row,2)<size(mat,2) then
+      row(size(mat,2))=''
+    end
+  end
+  mat=[mat;row];
 end
 endfunction
