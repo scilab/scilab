@@ -41,7 +41,6 @@ c     .     0 is between alpha and alpha+n
             nn=n
          endif
          call zbesi(xr,xi,a1,kode,n,wr,wi,nz,ierr)
-         print *,xr,xi,a1,wr,wi,ierr
          if (ierr.eq.2) then
             call dset(n,inf,yr,1)
             call dset(n,inf,yi,1)
