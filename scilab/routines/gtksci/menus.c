@@ -487,13 +487,16 @@ static int sci_menu_add(menu_entry **m,int winid,char *name,char** entries,int n
 			int action_type,char *fname)
 {  
   int i;
+  char *entry=NULL;
   /* here we must find the menu_entry associated to win_num */
   menu_entry *me1=NULL,*me2,*top,*subs=NULL;
   /* first build the sub_menus */
   for (i=0 ; i < ne ;i++) 
     {
       char *accel;
-      accel = strchr(entries[i],'|');
+      entry=strdup(entries[i]);
+      accel = strchr(entry,'|');
+
       if (accel != NULL) 
 	{
 	  char * action =  strchr(accel+1,'|');
@@ -502,28 +505,29 @@ static int sci_menu_add(menu_entry **m,int winid,char *name,char** entries,int n
 	    { 
 	      *action = '\0';
 	      if ( action == accel + 1 ) 
-		me2 = new_menu_entry(entries[i],NULL,1,i+1,NULL,winid,
+		me2 = new_menu_entry(entry,NULL,1,i+1,NULL,winid,
 				     action_type,action+1);
 	      else 
-		me2 = new_menu_entry(entries[i],accel+1,1,i+1,NULL,winid,
+		me2 = new_menu_entry(entry,accel+1,1,i+1,NULL,winid,
 				     action_type,action+1);
 	      *action = '|';
 	    }
 	  else 
 	    {
-	      me2 = new_menu_entry(entries[i],accel+1,1,i+1,NULL,winid,
+	      me2 = new_menu_entry(entry,accel+1,1,i+1,NULL,winid,
 				   action_type,fname);
 	    }
 	  *accel='|';
 	}
       else 
 	{
-	  me2 = new_menu_entry(entries[i],NULL,1,i+1,NULL,winid,
+	  me2 = new_menu_entry(entry,NULL,1,i+1,NULL,winid,
 			       action_type,fname);
 	}
       if ( me2 == NULL) 
 	{
 	  /* XXXXX clean and return */
+	  if(entry != NULL) free(entry);
 	  return 1;
 	}
       if ( i != 0) me1->next = me2;
@@ -535,6 +539,7 @@ static int sci_menu_add(menu_entry **m,int winid,char *name,char** entries,int n
   if ( top == NULL) 
     {
       /* XXXXX clean and return */
+      if(entry != NULL) free(entry);
       return 1;
     }
   if ( *m == NULL) *m = top ;
