@@ -1,5 +1,5 @@
-                Scilab version 3.0 for Windows (95/98/NT/2000/XP)
-                *************************************************
+                Scilab version 3.1-rc1 for Windows (95/98/NT/2000/XP)
+                ***************************************************
  
 ******************************************************************************
 0 - COPYRIGHT NOTICE
@@ -13,21 +13,21 @@
 I - TO RUN SCILAB (BINARY VERSION)
 ******************************************************************************
  
-    1 - You have already installed Scilab by executing "scilab-3.0.exe".
-        By default Scilab is in "C:\Program Files\scilab-3.0" directory.
+    1 - You have already installed Scilab by executing "scilab-3.1-rc1.exe".
+        By default Scilab is in "C:\Program Files\scilab-3.1-rc1" directory.
  
-    2 - Run Scilab by executing "Scilab 3.0" from the startup menu.
+    2 - Run Scilab by executing "Scilab 3.1-rc1" from the startup menu.
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin", 
         so you can run Scilab by executing directly "wscilex.exe".
-	If you want use Visual Studio (6,.NET) with Scilab 3.0,
-	execute "Scilab 3.0 (requires Visual Studio)" from the startup menu.
+	If you want use Visual Studio (6,.NET) with Scilab 3.1-rc1,
+	execute "Scilab 3.1-rc1 (requires Visual Studio)" from the startup menu.
  
     3 - Scilab has been compiled with Visual C++ .NET 2003
 	(Intel C 8.0 & Fortran 8.0, see IV below).
         All examples of incremental link given with Scilab are prepared
         for Visual C++.
  
-    4 - If you want use LCC-Win32 (C compiler) with Scilab 3.0
+    4 - If you want use LCC-Win32 (C compiler) with Scilab 3.1-rc1
         See Readme_LCC.txt in lcc directory.
         You can download at http://www.cs.virginia.edu/~lcc-win32/
     
@@ -42,7 +42,7 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 ******************************************************************************
  
     To uninstall Scilab you can use the unintaller. You will find it in the 
-    "Scilab 3.0" item of the Program Group.
+    "Scilab 3.1-rc1" item of the Program Group.
     You can also use the Add/Remove Programs of the Control Panel.
  
 ******************************************************************************
