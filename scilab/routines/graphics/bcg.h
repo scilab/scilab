@@ -12,9 +12,12 @@
 #endif 
 #endif 
 
-#ifdef WITH_GTK
+#ifndef CoordModePrevious 
 #define CoordModePrevious 0
 #define CoordModeOrigin 1
+#endif 
+
+#ifndef GXclear 
 #define GXclear 0
 #define GXand 1
 #define GXandReverse 2
@@ -32,6 +35,7 @@
 #define GXnand 14
 #define GXset 15
 #endif 
+
 
 /** Structure to keep the graphic state  **/
 
