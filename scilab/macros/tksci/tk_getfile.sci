@@ -5,8 +5,14 @@ function p=tk_getfile(file_mask,dir,title,foo)
     TK_SetVar("ftypes",'{""Requested Extensions"" {'+file_mask+'} }')
     arg=arg+' -filetypes $ftypes',
   end
-  if exists('dir','local')==1 then arg=arg+' -initialdir  ""'+dir+'""',end
-    if exists('title','local')==1 then arg=arg+' -title ""'+title+'""',end
+  if exists('dir','local')==1 then 
+    dir=pathconvert(dir,%f,%t)
+    if strindex(dir,' ')<>[] then dir='""'+dir+'""',end
+    arg=arg+' -initialdir  ""'+dir+'""',
+  end
+  if exists('title','local')==1 then 
+    arg=arg+' -title ""'+title+'""',
+  end
   TK_EvalStr('set scifilepath [tk_getOpenFile'+arg+']')
   p=TK_GetVar('scifilepath')
 endfunction
