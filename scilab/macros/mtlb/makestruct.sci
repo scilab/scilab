@@ -4,13 +4,21 @@ function s=makestruct(varargin)
 // Author: V. Couvert
 
 rhs=argn(2)
-if rhs<2 then
+
+fields=["st","dims"]
+
+if rhs==0 then
+  // No Matlab equivalent
+  s=mlist(fields,int32([0,0]))
+  return
+end 
+
+if floor(rhs/2)*2<>rhs then
   error("Wrong number of inputs");
 end
 
 nbfields=size(varargin)/2
 
-fields=["st","dims"]
 dims=[]
 for kf=1:2:size(varargin)
   fields=[fields varargin(kf)]
