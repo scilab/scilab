@@ -2,37 +2,58 @@
                      ==============================
 NEW FUNCTIONALITIES
 ===================
-- continue instruction added
-- [a(i,j),b(..),..]=foo(..) syntax is now handled
-- arpack algorithms for sparse matrix eigenvalues/eigenvectors computation added 
-- Levenberg-Marquardt algorithm of Minpack used to define function lsqrsolve
-- New graphics mode improved
-- beta and legendre function added (thanks to B Pincon)
-- Scicos has been extended to handle non causal systems description (supported by RNTL)
-- Matlab to Scilab translator has been re-written, and extended to current Matlab syntax.
-
+ NUMERICAL ALGORITHMS
+  - arpack algorithms for sparse matrix eigenvalues/eigenvectors computation added 
+  - Levenberg-Marquardt algorithm of Minpack used to define function lsqrsolve
+  - beta and legendre function added (thanks to Bruno Pincon)
+  - New 1D 2D 3D interpolation functions  (thanks to Bruno Pincon)
+ GRAPHICS and GUI
+  - graphical editor available
+  - demoplayer, variable browser, variable editor GUI added (thanks to Jaime Urzua Grez)
+ MISC
+  - Scicos has been extended to handle non causal systems description (supported by RNTL)
+  - Matlab to Scilab translator has been re-written, and extended to current Matlab syntax.
 OTHERS IMPROVEMENTS
 ===================
-- Better discontinuities handling in Scicos
-- More efficient number parsing (thanks to B Pincon)
-- More efficient 3D Zoom (thanks to E Segre)
-- Improved scipad, shortcuts, language handling, colorization, bug fixes.. (thanks to E Segre)
-- for loop variable is no more removed at the end of the loops
-- figure sizes are now taken into account in Postscript export 
-- Windows GUI improved
-- Graphic windows refresh improved under Windows
-- Scilab has been adapated to IA64 architecture
-- Helvetica (Arial on Windows) fonts added (corresponding font identifiers are
-  from 6 to 9) (thanks to B Pincon)
-- N dimensionnal matrices efficiency improved (thanks to B Pincon)
-- logical expressions shortcuts handled in if
-- cd, ls, clc, clf, tohome functions added
-- functions with no argument can be called without () if called as a command
+ SCICOS
+  - Better discontinuities handling in Scicos
+  - An enlarged set of blocks
+  - A new API for simulation functions
+ GRAPHICS
+  - New graphic mode has been debugged and extended. It is now the default mode
+  - More efficient 3D Zoom (thanks to E Segre)
+  - Helvetica (Arial on Windows) fonts added (corresponding font identifiers are
+    from 6 to 9) (thanks to B Pincon)
+  - Graphic windows refresh improved under Windows
+  - figure sizes can now be taken into account in Postscript export 
+ GUI
+  - Improved scipad, shortcuts, language handling, colorization, bug fixes.. 
+    (thanks to Enrico Segre and Francois Vogel)
+   - New imbedded help and html browser  (thanks to Jaime Urzua Grez)
+   - Main Scilab window improvedunder  Windows (standard editing facilities, menus,...)
+ SYNTAX
+  - continue instruction added
+  - [a(i,j),b(..),..]=foo(..) syntax is now handled
+  - for loop variable is no more removed at the end of the loops
+  - logical expressions shortcuts handled in if and while
+  - functions with no argument can be called without () if called as a command
+  - More efficient number parsing (thanks to Bruno Pincon)
+ MISC
+  - N dimensionnal matrices efficiency improved (thanks to Bruno Pincon)
+  - cd, ls, clc, clf, tohome functions added
+  - Elementary functions evaluation in the complex plane revisited  (thanks to Bruno Pincon)
+  - History of commands rewritten to make it persistant between calls to Scilab
 
+
+ PORTS
+ - Scilab has been adapated to IA64 architecture
 
 INCOMPATIBLITIES
 ================
 - returned arguments f1 f2 f3 of interp have been transposed
+- variable named cd, ls, color,... should be renamed  to avoid run time warnings
+- The instructions <function_name>; used to load the sub-functions of the file 
+  <function_name>.sci within a function have to be rewritten <function_name>=<function_name>;
 
 		     Main Changes Scilab 2.6 -> 2.7
 		     ==============================
