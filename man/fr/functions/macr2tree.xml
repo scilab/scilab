@@ -5,7 +5,7 @@
   <TITLE>macr2tree</TITLE>
   <TYPE>Fonction Scilab</TYPE>
   <DATE>Mars 2004</DATE>
-  <SHORT_DESCRIPTION name="macr2tree">convertion d'une fonction en arbre</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="macr2tree">conversion d'une fonction en arbre</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>t=macr2tree(nom-de-fonction)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
