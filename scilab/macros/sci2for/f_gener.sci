@@ -68,6 +68,7 @@ if s2(4)=='1'&s2(5)=='1' then
   stk=list(nam+'('+s2(1)+')','0',tout,s2(4),s2(5))
   return
 end
+
 if s2(3)<>tin then cnv=%t,else cnv=%f,end
 if part(s2(1),1:5)=='work(' then
   pti=part(s2(1),6:length(s2(1))-1)
@@ -79,7 +80,7 @@ elseif part(s2(1),1:6)=='iwork(' then
   in='iwork'
 else
   pti='0'
-  outn=s2(1)
+  [outn,nwrk,txt]=outname(nwrk,tout,s2(4),s2(5))
   in=s2(1)
 end
 if part(outn,1:5)=='work(' then 
@@ -92,6 +93,7 @@ else
   out=outn
   pto1='0'
 end
+
 if s2(4)=='1'|s2(5)=='1' then
   [lbl,nwrk]=newlab(nwrk)
   tl1=string(10*lbl);
