@@ -6,11 +6,6 @@ Bugs:
  . the regexp for the new class "numbers" is not perfect, e123 or d1 are caught as number
  . multiple matrix transposes in the same line are colorized as textquoted, e.g. A=A'+B'
 
--scipad resizes (in wrong grid units) upon font change only the first 
- Untitled.sce (if still open, i.e. not destroyed). But, as now scipad 
- remembers both fontsize and geometry across quit, a restart triggers 
- nevertheless a resize, so the restart produces a geometry different than 
- the one of the previous session.
 
 -Find in selection does not work correctly on unix.
 
@@ -61,12 +56,11 @@ Old bugs/whishes which have been hacked but could have been done better:
   Note: Using tcl/tk8.4.6 the cursor never disappears, therefore blinking restored
   for that revision for Windows. For Unix, cursor blinking is disabled.
 
--the row width of the window is wrong. As it is now it is hacked to [55], but
- it seems to be in wrong width units. This leads to disproportions when 
- changing font size. Btw in my WM the window size is seen in a tooltip when
- resizing it.
- -- Explanation: wm geometry in "grid" units - which are defined in an 
-  arbitrary way.
+-the window geometry is now managed in pixels. This is fine for restoring
+ exactly the same window geometry as in the previous session, but loses
+ some advantages of the previously broken grid management, such as resize
+ of the window upon font size changes.
+
 
 -added  "evaluate selection",  i.e.  send to  scilab  only the  selected
  text. It is  done, but: a) I  had has to translate \n  in commas (a very
@@ -112,8 +106,7 @@ interpreter.
 Wishes:
 -------
 
--default colors, fonts, options are user-modifiable (currently, it is necessary to
- edit SCI/tcl/scipadsources/defaults.tcl)
+-default colors, fonts, modifiable within the program 
 
 -parentheses and brackets get colorized in colors according to their level
  of nesting

@@ -73,9 +73,11 @@ set taille [expr [font measure $textFont " "] *3]
 ##  insertontime 500
 ## FV 13/05/04: added test with tk_version on ES request
 ## FV 07/07/04: changed test to adapt blinking to the platform rather to the tk version
+## ES 15/11/04: setgrid 0: fixes WMGEOMETRY across sessions, doesn't resize
+##  anymore when changing font (which was too approximate anyway)
 text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
 	-yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
-        -fg $FGCOLOR -bg $BGCOLOR  -setgrid 1 -font $textFont -tabs $taille \
+        -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont -tabs $taille \
         -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
         -selectbackground $SELCOLOR -exportselection 1
 set textareacur $pad.textarea  
@@ -113,9 +115,10 @@ pack $pad.statusmes -in $pad.bottombottommenu -side bottom -expand 0 -fill x
 
 ##ES 13/6/2004
 wm minsize $pad 1 1 
-#strange: this on corrects reopen size
+#strange: this on corrects reopen size when in setgrid 1 mode
 #tk_messageBox -message $WMGEOMETRY;
 wm geometry $pad $WMGEOMETRY
+
 
 #the following comes from undoredo.tcl v2.5
 ###################################################################

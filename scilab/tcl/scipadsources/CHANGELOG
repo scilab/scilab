@@ -581,3 +581,12 @@ Francois VOGEL, 10/11/04
    stop.
  * Added ES' changes for addition of the Revert to saved command in the file menu.
  * version --> 3.12
+
+
+ES 15/11/04:
+ * added support for user preference file $env(HOME)/.SciPadPreferences.tcl,
+   loaded  at startup by defaults.tcl and saved on exit
+ * wm geometry in strict pixels (avoids cross-session shrinking due to wm decorations
+ * outside of Scipad: removed %scipad_fontsize from SCI/scilab.star and 
+   SCI/macros/util/scipad.sci: overridden by the user preferences file
+ * version --> 3.13

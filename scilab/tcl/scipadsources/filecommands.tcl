@@ -44,7 +44,9 @@ proc setTextTitleAsNew {textarea} {
 
 # kill main window
 proc killwin {widget} {
-        destroy $widget
+#ES 12/11/04: save preferences on exit
+    catch [savepreferences]        
+    destroy $widget
 }
 
 # close app
@@ -94,6 +96,8 @@ proc byebye {textarea} {
         set WMGEOMETRY [eval {wm geometry $pad}] 
 #        set WMGEOMETRY [winfo geometry $pad] 
 #        tk_messageBox -message $WMGEOMETRY
+#        set PADWIDTH [eval {winfo width $pad}]
+#        set PADHEIGHT [eval {winfo height $pad}]
         killwin $pad 
         unset pad
      }   
@@ -560,4 +564,15 @@ proc revertsaved {} {
             colorize $textarea 1.0 end
 	}
    }
+}
+
+proc savepreferences {} {
+  global env listofpref
+  set preffilename $env(HOME)/.SciPadPreferences.tcl
+  set preffile [open $preffilename w]
+  foreach opt $listofpref {
+      global $opt  
+      puts $preffile [concat "set $opt" [set $opt]] 
+  }
+  close $preffile
 }

@@ -1,27 +1,48 @@
 set winTitle "SciPad"
-set version "Version 3.12"
-set wordWrap none
-##ES: default options which can be overridden
-if { ![info exists BGCOLOR] } {set BGCOLOR "snow1"}
-if { ![info exists FGCOLOR] } {set FGCOLOR "black"}
-if { ![info exists CURCOLOR] } {set CURCOLOR "red"}
-if { ![info exists PARCOLOR] } {set PARCOLOR "magenta3"}
-if { ![info exists BRAKCOLOR] } {set BRAKCOLOR "DarkGoldenrod4"}
-if { ![info exists BRACCOLOR] } {set BRACCOLOR "red"}
-if { ![info exists PUNCOLOR] } {set PUNCOLOR "turquoise4"}
-if { ![info exists KEYWCOLOR] } {set KEYWCOLOR "blue2"}
-if { ![info exists OPCOLOR] } {set OPCOLOR "blue4"}
-if { ![info exists TXTCOLOR] } {set TXTCOLOR $FGCOLOR}
-if { ![info exists QTXTCOLOR] } {set QTXTCOLOR "darkred"}
-if { ![info exists REMCOLOR] } {set REMCOLOR "green4"}
-if { ![info exists XMLCOLOR] } {set XMLCOLOR "orange"}
-if { ![info exists NUMCOLOR] } {set NUMCOLOR "yellow4"}
-if { ![info exists SELCOLOR] } {set SELCOLOR "PaleGreen"}
-if { ![info exists BREAKPOINTCOLOR] } {set BREAKPOINTCOLOR "pink"}
-##ES: remember fontsize, pad geometry
-if { ![info exists FontSize] } {set FontSize 12 }
-if { ![info exists WMGEOMETRY] } { set WMGEOMETRY 32x36 }
-if { ![info exists printCommand] } { set printCommand lpr }
-set Scheme scilab
-if { ![info exists actbptextFont] } { set actbptextFont -Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-* }
+set version "Version 3.13"
+
+# all one needs in order to add a new retriavable preference is:
+#  -add the variable name to $listofpref below
+#  -use the variable when needed in the program, such that 
+#    it is visible at main level (i.e. globalize it)
+#  -if needed, assign an initial fallback value here
+
+#ES 11/10/04: those are the preferences which are going to be saved
+set listofpref {wordWrap BGCOLOR FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
+       BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR TXTCOLOR QTXTCOLOR \
+       REMCOLOR XMLCOLOR NUMCOLOR SELCOLOR BREAKPOINTCOLOR FontSize \
+	  WMGEOMETRY printCommand actbptextFont}
+
+
+##ES: default options which can be overriden
+set wordWrap "none"
+set BGCOLOR "snow1"
+set FGCOLOR "black"
+set CURCOLOR "red"
+set PARCOLOR "magenta3"
+set BRAKCOLOR "DarkGoldenrod4"
+set BRACCOLOR "red"
+set PUNCOLOR "turquoise4"
+set KEYWCOLOR "blue2"
+set OPCOLOR "blue4"
+set TXTCOLOR $FGCOLOR
+set QTXTCOLOR "darkred"
+set REMCOLOR "green4"
+set XMLCOLOR "orange"
+set NUMCOLOR "yellow4"
+set SELCOLOR "PaleGreen"
+set BREAKPOINTCOLOR "pink"
+set FontSize 12 
+set WMGEOMETRY 600x480
+set printCommand lpr
+set actbptextFont "-Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*"
+
+#other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }
+set Scheme scilab
+
+#ES 12/11/04: source the user preferences file if any
+set preffilename $env(HOME)/.SciPadPreferences.tcl
+catch {source $preffilename}
+
+
