@@ -14,7 +14,6 @@
  *  modifications pour le champs dim en int32 maintenant
  */
 
-
 #include "../stack-c.h"
 #include <math.h>
 #include <stdlib.h>

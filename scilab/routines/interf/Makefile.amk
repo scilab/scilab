@@ -10,7 +10,7 @@ LIBRARY = $(SCIDIR)/libs/interf.lib
 
 OBJSC = Interf.obj ctest.obj  cs2st.obj getdate.obj stack1.obj stack2.obj stack3.obj \
 	intlapack.obj intslicot.obj intarpack.obj matdes.obj intorand.obj stcreate.obj \
-	intfilestat.obj strelm-c.obj  matdsr.obj otherspecfun.obj hmops.c
+	intfilestat.obj strelm-c.obj  matdsr.obj otherspecfun.obj hmops.obj
 
 OBJSF = lstelm.obj lstelmi.obj matelm.obj matold.obj lstops.obj intl_e.obj intl_i.obj \
 	matio.obj intdeff.obj intdiary.obj intdisp.obj intexec.obj intexecstr.obj \
@@ -25,7 +25,7 @@ OBJSF = lstelm.obj lstelmi.obj matelm.obj matold.obj lstops.obj intl_e.obj intl_
 	logic.obj logelm.obj xawelm.obj misops.obj stack0.obj \
 	where.obj indxg.obj defint.obj \
 	matodc.obj dasrti.obj \
-	intg.obj int2d.obj int3d.obj feval.obj bva.obj comm.obj specfun.obj\
+	intg.obj int2d.obj int3d.obj feval.obj bva.obj comm.obj specfun.obj \
 	isany.obj complexify.obj issymmetric.obj \
 	followpath.obj newsave.obj insertfield.obj v2unit.obj v2cunit.obj \
 	hmcreate.obj lapackf.obj lapackf2.obj fmexslicot.obj fscislicot.obj \
