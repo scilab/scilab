@@ -1093,17 +1093,10 @@ void NewFigure(struct BCG * ScilabGC)
 	char Command[MAX_PATH];
 	int FreeWindow=0;
 
-	if (ScilabGC->graphicsversion == 0)
-	{
-		wsprintf(Command,"xset(\"window\",-1);");
-		StoreCommand1(Command,2);
-	}
-	else
-	{
-		FreeWindow=FindFreeGraphicWindow(ScilabGC);
-		wsprintf(Command,"xset(\"window\",%d);",FreeWindow);
-		StoreCommand1(Command,2);
-	}
+	FreeWindow=FindFreeGraphicWindow(ScilabGC);
+	wsprintf(Command,"xset(\"window\",%d);",FreeWindow);
+	StoreCommand1(Command,2);
+	
 }
 	
 /*-----------------------------------------------------------------------------------*/
@@ -1125,7 +1118,7 @@ int FindFreeGraphicWindow(struct BCG * ScilabGC)
 			Num++;
 			wsprintf(NameWindow,"%s%d","ScilabGraphic",Num);
 		}
-		FreeNumber=Num-1;
+		FreeNumber=Num;
 	}
 	else
 	{
