@@ -3254,6 +3254,8 @@ void fill_grid_rectangles(x, y, z, n1, n2)
 {
   double zmoy,zmax,zmin,zmaxmin;
   integer i,j,verbose=0,whiteid,narg,fill[1],cpat,xz[2];
+  int flag;
+
   zmin=Mini(z,(n1)*(n2));
   zmax=Maxi(z,(n1)*(n2));
   zmaxmin=zmax-zmin;
@@ -3263,7 +3265,7 @@ void fill_grid_rectangles(x, y, z, n1, n2)
    * since it is not called the usual way i.e through 
    * dr we must add here SetWinhdc and ReleaseWinHdc 
    */ 
-  /* SetWinhdc();*/
+  flag=MaybeSetWinhdc();
   C2F(getlast)(&verbose,&whiteid,&narg,vdouble);
   C2F(getpattern)(&verbose,&cpat,&narg,vdouble);
   C2F(getwindowdim)(&verbose,xz,&narg,vdouble);
@@ -3281,7 +3283,7 @@ void fill_grid_rectangles(x, y, z, n1, n2)
 	  Rectangle(hdc,(int) x[i],(int) y[j+1],(int) w + x[i]+1 ,(int) h + y[j+1]+1 );
       }
   C2F(setpattern)(&cpat,PI0,PI0,PI0);
-  /*ReleaseWinHdc();*/
+  if ( flag == 1) ReleaseWinHdc();
 }
 
 /*----------------------------------------------------------------------------------
@@ -3302,12 +3304,14 @@ void fill_grid_rectangles1(x, y, z, n1, n2)
      integer n2;
 {
   integer i,j,verbose=0,narg,fill[1],cpat,xz[2];
+  int flag;
+
   /* WARNING: this routine is provided here to accelerate 
    * multiple rectangles drawing 
    * since it is not called the usual way i.e through 
    * dr we must add here SetWinhdc and ReleaseWinHdc 
    */ 
-  /* SetWinhdc();*/
+  flag=MaybeSetWinhdc();
   C2F(getpattern)(&verbose,&cpat,&narg,vdouble);
   C2F(getwindowdim)(&verbose,xz,&narg,vdouble);
   for (i = 0 ; i < (n1)-1 ; i++)
@@ -3323,7 +3327,7 @@ void fill_grid_rectangles1(x, y, z, n1, n2)
 	  Rectangle(hdc,(int) x[j],(int) y[i],(int) w + x[j]+1 ,(int) h + y[i]+1 );
       }
   C2F(setpattern)(&cpat,PI0,PI0,PI0);
-  /*  ReleaseWinHdc();*/
+  if ( flag == 1) ReleaseWinHdc();
 }
 
 /*----------------------

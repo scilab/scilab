@@ -65,6 +65,8 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       x,y,z,*n1,*n2,0));
+    sciDrawObj(sciGetCurrentObj ()); 
+
   }
   else { /* NG end  */
     /** Boundaries of the frame **/
@@ -175,6 +177,7 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       &x,&y,z,*n1+1,*n2+1,1)); 
+    sciDrawObj(sciGetCurrentObj ()); 
   }
   else { /* NG end */
     /** Boundaries of the frame **/
