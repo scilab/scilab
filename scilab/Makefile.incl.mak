@@ -41,7 +41,9 @@ PVM=libs/pvm.lib
 PVM_ROOT=c:\softs\scilab\scilab-cvs\pvm3
 PVM_ARCH=WIN32
 PVMLIB=$(PVM_ROOT)\lib\WIN32\libpvm3.lib $(PVM_ROOT)\lib\WIN32\libgpvm3.lib 
-PVM_INCLUDES=-I"$(PVM_ROOT)\include" -I"$(PVM_ROOT)\src"
+PVM_CINCLUDE="."
+PVM_INCLUDES=-I$(PVM_ROOT)\include -I$(PVM_ROOT)\src
+PVM_CCOMPILER=VISUALC++
 !ENDIF 
 
 #
@@ -67,7 +69,7 @@ LINKER_FLAGS=/NOLOGO /DEBUG /Debugtype:cv /machine:ix86
 # standard option for the linker 
 LINKER_FLAGS=/NOLOGO /machine:ix86 
 # include options 
-INCLUDES=-I"$(SCIDIR)/routines/f2c" $(TCL_INCLUDES) $(PVM_INCLUDES)
+INCLUDES=-I"$(SCIDIR)/routines/f2c" $(TCL_INCLUDES) 
 
 CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
 # debug 
