@@ -183,6 +183,7 @@ DLD_SUBDIR		:@DLD_SUBDIR@
 DLLTOOL			:@DLLTOOL@
 LIBM			:@LIBM@
 LIBTOOL_DEPS		:@LIBTOOL_DEPS@
+CXX                     :@CXX@
 ------------------------------------------------------------
 Ocaml Variables
 ------------------------------------------------------------
