@@ -2116,6 +2116,12 @@ char symb_listGif[] = {
 static void C2F(displaysymbolsGif)(char *str, integer *n, integer *vx, integer *vy)
 {
   int col, i, c;
+  /*
+   if (GifIm == (gdImagePtr)0 ) {
+      sciprint("xinit must be called before any action \r\n");
+      return 0;
+    }
+	*/ /* Normally, this part should stand here too no?? F.Leray 26.07.04 */
   col = ( ScilabGCGif.CurColorStatus ==1) ? ScilabGCGif.CurColor : ScilabGCGif.CurPattern ;
   for (i = 0; i < *n; i++) {
       c = Char2Int(symb_listGif[ScilabGCGif.CurHardSymb]);
