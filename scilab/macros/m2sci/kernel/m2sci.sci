@@ -96,8 +96,10 @@ if isdefinedvar("%nargin") | isdefinedvar("%nargout") then
   dcl=["";"// Number of arguments in function call";"[%nargout,%nargin] = argn(0)"]
 end
 
+// Set display mode equivalent to Matlab echo off
+dcl=[dcl;"";"// Display mode";"mode(0);"]
 // Set flotting point exception mode
-dcl=[dcl;"";"// Display warning for floating point exception";"ieee(1)"]
+dcl=[dcl;"";"// Display warning for floating point exception";"ieee(1);"]
 
 // Initial value of lhs arguments
 // If they are not initialized by input value, they are initialized with []
