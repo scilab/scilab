@@ -27,7 +27,7 @@ MENU=	Documentation_.sci Addcolor_.sci Addnewblock_.sci Aspect_.sci \
 	SaveAs_.sci Save_.sci SaveasInterfFunc_.sci SaveasPalette_.sci \
 	SetDiagramInfo_.sci Setup_.sci Shortcuts_.sci SmartMove_.sci \
 	Undo_.sci Window_.sci Zoomin_.sci Zoomout_.sci  CodeGeneration_.sci \
-	menu_stuff.sci Displaymode_.sci
+	menu_stuff.sci Displaymode_.sci DebugLevel_.sci
 
 COMPAT= %Block_e.sci %graphics_e.sci %model_e.sci %model_e.sci \
 	%b_i_graphics.sci %s_i_graphics.sci %c_i_graphics.sci \

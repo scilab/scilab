@@ -1692,15 +1692,15 @@ function [bouclalg,vec,primary]=ordo2(blk,port,clkconnect,connectmat,primary)
   vec(primary(:,1))=1
 
   //on enlève blk de primary (cas des clk)
-  f1=find(primary(:,1)==blk)
-  n_f1=size(f1,2)
-  if n_f1>0 then
-    for i1=1:n_f1
-      if primary(f1(i1),2)==port then
-	primary(f1(i1),:)=[]
-      end
-    end
-  end
+  //f1=find(primary(:,1)==blk)
+  //n_f1=size(f1,2)
+  //if n_f1>0 then
+    //for i1=1:n_f1
+      //if primary(f1(i1),2)==port then
+	//primary(f1(i1),:)=[]
+     // end
+    //end
+  //end
   n_p=size(primary,1)
   
   if n_p>1 then
@@ -1769,16 +1769,6 @@ function [bouclalg,vec,primary]=ordo3(blk,port,clkconnect,connectmat)
   //on met les enfants à 1
   vec(primary(:,1))=1
 
-  //on enlève blk de primary (cas des clk)
-  //f1=find(primary(:,1)==blk)
-  //n_f1=size(f1,2)
-  //if n_f1>0 then
-    //for i1=1:n_f1
-      //if primary(f1(i1),2)==port then
-	//primary(f1(i1),:)=[]
-      //end
-    //end
-  //end
   n_p=size(primary,1)
   
   if n_p>1 then
@@ -1786,54 +1776,14 @@ function [bouclalg,vec,primary]=ordo3(blk,port,clkconnect,connectmat)
 
     while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
       for i=1:n_p
-	w0=primary(i,:)
-if typ_l(primary(i,1)) then   //RN
-	w=get_allchildren2port(primary(i,1))
-else
-  w=[]
-end
-	//on enleve les blocs du primary qui se trouve dans w
-	n_w=size(w,1)
-	if n_w>0 then
-	  del1=[]
-	  for k1=1:n_p
-	    f=find(primary(k1,1)==w(:,1))
-	    del1=[del1,f]
-	  end
-	  w(del1',:)=[]
-	end
-	w=[w0;w]
-	//on cherche d'où vient l'entrée des blocs: g
-	n_w=size(w,1)
-	for k=1:n_w
-	  if dep_ut(w(k,1),1) then
-	    g=get_from([],w(k,1))
+	w=primary(i)
+	if dep_ut(w,1) then
+	    //g=get_from([],w)
+	    g=connectmat(find(connectmat(:,3)==w),1)
 	    if (g ~= []) then
-	      //on garde les blocs de g qui ne sont pas dans w  
-	      h=setdiff(g,w(:,1))
-	      if h==[] then
-	        //si aucun bloc ne vient d'en dehors du faisceau
-	        vec(w(k,1))=max(vec(g))
-	      else 
-	        //on garde dans h les termes >-1
-	        //i.e. les blocs activés par l'horloge clk
-	        h=h(find(vec(h)>-1))
-	        if h~=[] then
-	       	  vec(w(k,1))=max(vec(w(k,1)),max(vec(h))+1)
-	        else 
-		  vec(w(k,1))=max(vec(w(:,1)))
-	        end
-	      end
-            end
-	  else
-	    //si le bloc w(k) n'est pas dep_ut
-	    vec(w(k,1))=vec(primary(i,1))
-	  end
-	  //if k==1 & counter2==0 then
-	  if k==1 then
-	    //si w(k) est primary(i) on descend son n° à ses enfants
-	    vec(w(:,1))=vec(w(k,1))
-	  end
+	      vec(w)=vec(w)-1
+	      vec(w)=max(vec(w),max(vec(g)))+1
+	    end
 	end
       end
       if vec==oldvec2 then
