@@ -2,10 +2,9 @@
 SCIDIR=../../..
 
 include $(SCIDIR)/Makefile.incl
-# XXXX a finir 
 
 CC=gcc
-# CFLAGS =  -mno-cygwin -DMSDOS
+CFLAGS = $(CC_OPTIONS) -DMSDOS 
 SHELL = /bin/sh
 
 OBJECTSd = main.o init.o gram.o lex.o proc.o equiv.o data.o format.o \
