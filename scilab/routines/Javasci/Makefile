@@ -6,12 +6,12 @@ SCIDIR=../..
 SCIDIR1=..\..
 
 
-JAVAINC= -I/usr/lib/SunJava2-1.4.1/include -I/usr/lib/SunJava2-1.4.1/include/linux
+JAVAINC= -I/usr/bin/../java/include -I/usr/bin/../java/include/solaris
 
 #--------------------------------------------------------
 LIBRARY= $(SCIDIR)/bin/libjavasci.so 
-
-
+JAVAC=javac
+SOURCESJ=*.java
 OBJSC= javasci_Matrix.o fix.o
 
 OBJSF = 
@@ -23,7 +23,7 @@ CFLAGS = $(CC_OPTIONS) $(JAVAINC)
 
 OBJS = $(OBJSC)
 
-all::
+all:: class
 
 all1:: $(LIBRARY)
 
@@ -33,11 +33,14 @@ $(LIBRARY): $(OBJS)
 	@echo "linking";
 	@$(FC) -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);
 
+class::	
+	$(JAVAC) -d $(SCIDIR)/bin $(SOURCESJ)
 clean::
 	$(RM) *.o
 
 cleanC :
 	$(RM) $(OBJSC)
+	$(RM) $(SCIDIR)/bin/javasci/*.class
 
 distclean::
 	$(RM) *.o $(LIBRARY)
