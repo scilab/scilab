@@ -523,7 +523,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	  else {
 	    sciSetIsMark(sciGetCurrentObj(),TRUE);
 	    sciSetIsLine(sciGetCurrentObj(),FALSE);
-	    sciSetMarkStyle(sciGetCurrentObj(),-zcol[i]+1);
+	    sciSetMarkStyle(sciGetCurrentObj(),-zcol[i]);
 	  }
 	}
 	hdltab[i]=sciGetHandle(sciGetCurrentObj ()); 
