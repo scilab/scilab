@@ -1090,7 +1090,9 @@ void xstringb_1(char *fname, char *str, integer *fflag, integer *v2, integer *v3
   C2F(sciwin)();
   C2F(dr)("xget","font",&verbose,fontid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   size = FONTMAXSIZE;
-  w = wbox +1;
+  w = wbox + 1;
+  h = hbox + 1;
+
   if ( *fflag == 1 ) 
     {
       while ( (w > wbox || h > hbox) && size >=0  ) 
