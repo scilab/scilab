@@ -26,7 +26,7 @@ c     --------------------------------
 c     
       fun = 0
 c     
-c        cconc  extrac insert rconc
+c        cconc   insert extrac rconc
       goto(75  ,  95  ,  78   ,76) op
 c     
 c           :  +  -  * /  \  =          '
