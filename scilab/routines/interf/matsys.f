@@ -1423,6 +1423,8 @@ c     Copyright INRIA
       integer cmode,topk,p
       logical checkrhs,checklhs,getscalar,cremat
       integer iadr,sadr
+      integer semi
+      data semi/43/
 c    
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -1474,7 +1476,7 @@ c
       ids(1,pt)=l
       pstk(pt)=fin
       fin=lstk(top)
-
+      sym=semi
       comp(1)=iadr(lstk(top+1))
       comp(2)=0
       comp(3)=cmode
