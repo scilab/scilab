@@ -77,5 +77,8 @@ if ierr>0 then disp(lasterror()),end
     <SEE_ALSO_ITEM>
       <LINK>errclear</LINK>
     </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>edit_error</LINK>
+    </SEE_ALSO_ITEM>
+   </SEE_ALSO>
 </MAN>
