@@ -115,7 +115,7 @@
      mtlb_&lt;function_name&gt;.
     </P>
     <P>
-    Quand la conversion peut être incorrecte oou améliorée, mfile2sci ajoute
+    Quand la conversion peut être incorrecte ou améliorée, mfile2sci ajoute
     des commentaires qui commencent par &quot;//!&quot; (suivant verbose-mode).
   </P>
   <P>
