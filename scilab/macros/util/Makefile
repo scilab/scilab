@@ -35,6 +35,7 @@ MACROS = sysconv.sci readc_.sci lin.sci halt.sci bloc2exp.sci \
 	mputl.sci dispfiles.sci fun2string.sci \
 	profile.sci get_profile.sci showprofile.sci plotprofile.sci \
 	ilib_for_link.sci ilib_unix_soname.sci scitest.sci sci2excel.sci\
-	maxindex.sci justify.sci ndims.sci oct2dec.sci base2dec.sci
+	maxindex.sci justify.sci ndims.sci oct2dec.sci base2dec.sci\
+	tokenpos.sci tokens.sci
 
 include ../Make.lib
