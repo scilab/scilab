@@ -10,7 +10,7 @@ OBJSC = tpconv.o \
 	gencusum.o genmcusum.o genmdsp.o genbitops.o mgeti.o mputi.o \
 	genabs.o gendiag.o genmdiag.o gentril.o gentriu.o genkron.o \
 	genmmax.o genmmin.o genmax2.o genmin2.o gifimg.o \
-	genconcatrow.o genconcatcol.o
+	genconcatrow.o genconcatcol.o genisany.o
 
 
 OBJSF = intelm.o intops.o  memused.o uppertype.o \
