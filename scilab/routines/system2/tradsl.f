@@ -342,7 +342,7 @@ c
       endif
 
 
-      maxc=17
+      maxc=18
       isign=1
       if(x.lt.0)  isign=-1
       call fmt(abs(x),maxc,ifmt,n1,n2)
@@ -363,10 +363,10 @@ c     Nan
             if(ie.lt.0) ie=ie-1
             xx=x/(10.0d0**ie)
             nf=2
-            write(form,120) maxc,0
+            write(form,120) maxc,15
             write(strg,form) xx
             ls=lnblnk(strg)
-            write(strg(ls+1:),'(''D'',i4)') ie
+            write(strg(ls+1:),'(''D'',i3)') ie
          else
             write(form,130) maxc,maxc-7
             write(strg,form) x
