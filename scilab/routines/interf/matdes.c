@@ -2925,14 +2925,16 @@ int scixset(fname,fname_len)
       else if ( strncmp(cstk(l1),"colormap",8) == 0) {
         sciSetColormap(sciGetParent(subwin), stk(lr),xm[0], xn[0]);
       }
-      else if ( strncmp(cstk(l1),"font",4) == 0) {
-        sciSetFontStyle(subwin, font[0]); 
-        sciSetFontStyle(sciGetParent(subwin), font[0]);   
-      } 
       else if ( strncmp(cstk(l1),"font size",9) == 0) {
         sciSetFontDeciWidth(subwin, font[1]); 
         sciSetFontDeciWidth(sciGetParent(subwin), font[1]);   
       }  
+      else if ( strncmp(cstk(l1),"font",4) == 0) {
+        sciSetFontStyle(subwin, x[0]); 
+	sciSetFontDeciWidth(subwin,  x[1]*100);  
+        sciSetFontStyle(sciGetParent(subwin), x[0]); 
+	sciSetFontDeciWidth(sciGetParent(subwin),x[1]*100);  
+      } 
       else if ( strncmp(cstk(l1),"alufunction",11) == 0) {
         sciSetXorMode(subwin, x[0]); 
         sciSetXorMode(sciGetParent(subwin), x[0]);   
