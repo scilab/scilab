@@ -1,3 +1,3 @@
 function s=struct()
-  s=mlist('struct')
+  s=mlist('st')
 endfunction
