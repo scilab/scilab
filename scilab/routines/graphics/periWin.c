@@ -848,11 +848,12 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
   while ( 1 ) 
     {
 #ifdef WITH_TK
+      Sleep(1);
       if (  tcl_check_one_event() == 1) 
 	{
 	}
 #else 
-      PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
+      GetMessage(&msg, 0, 0, 0);
       TranslateMessage(&msg);
       DispatchMessage(&msg);
 #endif
@@ -1121,11 +1122,12 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   while ( 1 ) 
     {
 #ifdef WITH_TK
+      Sleep(1);
       if (  tcl_check_one_event() == 1) 
 	{
 	}
 #else 
-      PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
+      GetMessage(&msg, 0, 0, 0); 
       TranslateMessage(&msg);
       DispatchMessage(&msg);
 #endif
