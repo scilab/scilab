@@ -4,19 +4,19 @@ function [btn,xc,yc,win,Cmenu]=cosclick(flag)
 Cmenu=[]
 if ~or(winsid()==curwin) then  Cmenu='Quit',return,end    
 
-while %t
+//while %t    //SS
   if rhs==1 then
     [btn,xc,yc,win,str]=xclick(flag)
   else
     [btn,xc,yc,win,str]=xclick()
   end
-  if btn==-2 then 
-    //determine if selected menu is a scicos menu
-    //It should be better if xclick return the proper win value here
-    if strindex(str,'execstr('+menus(1)(2:$)+'_')<>[] then break,end
-    execstr(str,'errcatch'),
-  end
-end
+//  if btn==-2 then //SS
+//    //determine if selected menu is a scicos menu//SS
+//    //It should be better if xclick return the proper win value here//SS
+//    if strindex(str,'execstr('+menus(1)(2:$)+'_')<>[] then break,end//SS
+//    execstr(str,'errcatch'),//SS
+//  end//SS
+//end//SS
 if btn==-100 then  
   if win==curwin then
     Cmenu='Quit',
