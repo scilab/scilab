@@ -163,10 +163,10 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
                      // utiliser pour la generation de code
 		     
   if xptr($)==1 & zcptr($)>1 then
-    message(['No continuous-time state. Thresholds are ignored; this ';
-	     'may be OK if you don't generate external events with them.';
-	     'If you want to reactivate the thresholds, the you need';
-	     'to include a block with continuous-time state in your diagram.';
+    message(['No continuous-time state. Thresholds are ignored; this '; ..
+	     'may be OK if you don''t generate external events with them.'; ..
+	     'If you want to reactivate the thresholds, the you need'; ..
+	     'to include a block with continuous-time state in your diagram.'; ..
 	     'You can for example include DUMMY CLSS block (linear palette).']);
   end
 
