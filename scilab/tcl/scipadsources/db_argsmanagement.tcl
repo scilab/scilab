@@ -99,7 +99,7 @@ proc OKadda_bp {w pos leftwin rightwin} {
                 if {$argvalue == $unklabel} {
                     set filename [creategetfromshellcomm]
                     if {$filename != "emptyfile"} {
-                        ScilabEval "     exec(\"$filename\");"
+                        ScilabEval "     exec(\"$filename\");" "seq"
                     }
                 }
             }

@@ -68,18 +68,18 @@ proc execfile_bp {} {
                 set commnvars [createsetinscishellcomm]
                 set watchsetcomm [lindex $commnvars 0]
                 if {$watchsetcomm != ""} {
-                    ScilabEval "     $watchsetcomm"
+                    ScilabEval "     $watchsetcomm"  "seq"
                 }
                 while {[checkscilabbusy "nomessage"] == "busy"} {}
-                ScilabEval "     $setbpcomm; $funnameargs,$removecomm"
+                ScilabEval "     $setbpcomm; $funnameargs,$removecomm"  "seq"
                 set filename [creategetfromshellcomm]
                 if {$filename != "emptyfile"} {
-                    ScilabEval "     exec(\"$filename\");"
+                    ScilabEval "     exec(\"$filename\");"  "seq"
                 }
                 while {[checkscilabbusy "nomessage"] == "busy"} {}
                 updateactivebreakpoint
             } else {
-                ScilabEval "     $funnameargs"
+                ScilabEval "     $funnameargs"  "seq"
             }
         } else {
             # <TODO> .sce case
@@ -114,21 +114,21 @@ proc resume_bp {} {
             set commnvars [createsetinscishellcomm]
             set watchsetcomm [lindex $commnvars 0]
             if {$watchsetcomm != ""} {
-                ScilabEval "     $watchsetcomm"
+                ScilabEval "     $watchsetcomm"  "seq"
                 set returnwithvars [lindex $commnvars 1]
                 while {[checkscilabbusy "nomessage"] == "busy"} {}
     # [..]=resume(..) was bugged (see bug 818)
     # The changes made by the user in the watch window were not reflected in the calling
     # workspace in Scilab. The correction is part of CVS from 18/06/04 or later, and
     # it will be included in Scilab 3.0
-                ScilabEval "     $returnwithvars"
+                ScilabEval "     $returnwithvars"  "seq"
             } else {
                 while {[checkscilabbusy "nomessage"] == "busy"} {}
-                ScilabEval "     resume"
+                ScilabEval "     resume(0)"
             }
             set filename [creategetfromshellcomm]
             if {$filename != "emptyfile"} {
-                ScilabEval "     exec(\"$filename\");"
+                ScilabEval "     exec(\"$filename\");"  "seq"
             }
             while {[checkscilabbusy "nomessage"] == "busy"} {}
             updateactivebreakpoint
@@ -151,11 +151,11 @@ proc goonwo_bp {} {
         if {$funnameargs != ""} {
             [gettextareacur] tag remove activebreakpoint 1.0 end
             removescilab_bp "with_output"
-            ScilabEval "     resume"
+            ScilabEval "     resume(0)" 
             while {[checkscilabbusy "nomessage"] == "busy"} {}
             set filename [creategetfromshellcomm]
             if {$filename != "emptyfile"} {
-                ScilabEval "     exec(\"$filename\");"
+                ScilabEval "     exec(\"$filename\");"  "seq"
             }
         }
         setdbstate "ReadyForDebug"
@@ -180,7 +180,7 @@ proc canceldebug_bp {} {
             while {[checkscilabbusy "nomessage"] == "busy"} {}
             set filename [creategetfromshellcomm]
             if {$filename != "emptyfile"} {
-                ScilabEval "     exec(\"$filename\");"
+                ScilabEval "     exec(\"$filename\");"  "seq"
             }
         }
         setdbstate "NoDebug"

@@ -129,7 +129,7 @@ proc setdbmenuentriesstates_bp {} {
 
 proc getdebuggersciancillaries_bp {} {
     global env
-    ScilabEval "     getf \"$env(SCIPATH)/tcl/scipadsources/FormatStringsForDebugWatch.sci\""
+    ScilabEval "     getf \"$env(SCIPATH)/tcl/scipadsources/FormatStringsForDebugWatch.sci\""   "seq"
 }
 
 proc setdbstatevisualhint_hp {} {
@@ -165,5 +165,5 @@ proc checkendofdebug_bp {} {
     set comm3 "TK_EvalStr(\"scipad eval {setdbstate \"\"ReadyForDebug\"\" }\");"
     set comm4 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4]
-    ScilabEval "     $fullcomm"
+    ScilabEval "     $fullcomm"   "seq"
 }

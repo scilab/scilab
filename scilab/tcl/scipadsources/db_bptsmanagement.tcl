@@ -40,7 +40,7 @@ proc insertremovedebug_bp {{buf "current"}} {
                 set funname [lindex $infun 0]
                 set lineinfun [expr [lindex $infun 1] - 1]
                 set setbpcomm " setbpt(\"$funname\",$lineinfun);"
-                ScilabEval $setbpcomm
+                ScilabEval $setbpcomm  "seq"
             } else {
                 # <TODO> .sce case
             }
@@ -60,7 +60,7 @@ proc insertremovedebug_bp {{buf "current"}} {
                 set funname [lindex $infun 0]
                 set lineinfun [expr [lindex $infun 1] - 1]
                 set delbpcomm " delbpt(\"$funname\",$lineinfun);"
-                ScilabEval $delbpcomm
+                ScilabEval $delbpcomm  "seq"
             } else {
                 # <TODO> .sce case
             }
@@ -105,7 +105,7 @@ proc removescilab_bp {outp} {
                 }
             }
             if {$outp != "no_output"} {
-                ScilabEval " $delbpcomm"
+                ScilabEval " $delbpcomm"  "seq"
             }
         } else {
             # <TODO> .sce case

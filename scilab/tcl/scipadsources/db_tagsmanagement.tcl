@@ -38,7 +38,7 @@ proc insertremovedebug_bp {} {
                 set funname [lindex $infun 0]
                 set lineinfun [expr [lindex $infun 1] - 1]
                 set setbpcomm " setbpt(\"$funname\",$lineinfun);"
-                ScilabEval $setbpcomm
+                ScilabEval $setbpcomm   
             } else {
                 # <TODO> .sce case
             }
@@ -58,7 +58,7 @@ proc insertremovedebug_bp {} {
                 set funname [lindex $infun 0]
                 set lineinfun [expr [lindex $infun 1] - 1]
                 set delbpcomm " delbpt(\"$funname\",$lineinfun);"
-                ScilabEval $delbpcomm
+                ScilabEval $delbpcomm  
             } else {
                 # <TODO> .sce case
             }
