@@ -11,12 +11,16 @@ function sciGUIhelp(key)
 //(at your option) any later version.
   
   update='0';
-  if execstr('TK_GetVar(''sciGUITable(browsehelp,nchap)'')','errcatch')<>0 then
-    TK_EvalFile('/tmp/sciGUI/tcl/sciGUI/sciGUI.tcl');
-    TK_EvalFile(SCI+"/tcl/sciGUI/sciBrowseHelp.tcl');
-    TK_EvalFile('/tmp/sciGUI/tcl/sciGUI/sciBar.tcl');
+  
+
+  if execstr('TK_GetVar(''tcl_platform'')','errcatch')<>0 then
+    path=SCI+"/tcl/sciGUI/'
+    TK_EvalFile(path+'sciGUI.tcl');
+    TK_EvalFile(path+'sciBrowseHelp.tcl');
+    TK_EvalFile(path+'sciBar.tcl');
     TK_EvalStr('sciGUIDoInit ""'+SCI+'/"";sciGUIBrowseHelpINI');
   end
+   
   nch=eval(TK_GetVar('sciGUITable(browsehelp,nchap)'));
   if (size(%helps,1)~=nch) then	
     rescan_helps()
