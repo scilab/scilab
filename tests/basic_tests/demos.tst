@@ -52,13 +52,13 @@ if MSDOS then
 else
   O=file('open','/dev/null','unknown')
 end
-exec('SCI/tests/demos/demolist.sce',-1)
+//exec('SCI/tests/demos/demolist.sce',-1)
 if MSDOS then
 // Windows
-  sel=[1:28 30 31] // 29=PVM
+  sel=[1:31] 
 else
 // UNIX
-  sel=[1:31] ;sel(29)=[]
+  sel=[1:31] 
 end
 
 sel(find(sel==16))=[] // do not execute demo 16 (Dialog)
