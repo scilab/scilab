@@ -7,8 +7,8 @@ c     Copyright INRIA
       parameter (nz1=nsiz-1,nz2=nsiz-2)
 c     
       integer op,r,blank,sign,plus,minus,name,colon,eye(nsiz),ou,et
-      integer equal,less,great,not,eol
-      logical eptover
+      integer equal,less,great,not,eol,p
+      logical eptover, istrue,skip, compil,ifexpr
       data colon/44/,blank/40/,plus/45/,minus/46/,ou/57/,et/58/
       data equal/50/,less/59/,great/60/,not/61/
       data eye/672014862,nz1*673720360/,name/1/,eol/99/
@@ -124,9 +124,26 @@ c     in-line lexpr
       endif
  72   continue
       if (eptover(1,psiz-1)) return
+      ids(1,pt)=0
+      ids(2,pt)=err1
       if(sym.eq.ou) then
 c     call getsym
          pstk(pt)=ou
+         if(ifexpr()) then
+c     .     checking for possible logical 'if expression' 
+c     .     evaluation shortcut
+            if(comp(1).ne.0) then
+               if (compil(30,1,0,0,0)) then 
+                  if (err.gt.0) return
+                  ids(1,pt)=comp(1)
+               endif
+            elseif (istrue(0)) then
+c     .        first term is true there is no use to evaluate the other
+               ids(1,pt)=1
+c     .        err1 <>0 sets interpretation without evaluation
+               err1=1
+            endif
+         endif
       else
          pstk(pt)=0
       endif
@@ -139,6 +156,11 @@ c     *call* lterm
       kount = pstk(pt)/256
       pt=pt-1
       if(op.eq.0) goto 75
+      if(comp(1).eq.0.and.ids(1,pt+1).eq.1) then
+c     . term has not been evaluated
+         err1=ids(2,pt+1)
+         goto 75
+      endif
       icall=4
       fin=ou
       rhs=2
@@ -149,6 +171,11 @@ c     *call* allops(ou)
       return
  74   continue
       kount=pstk(pt)
+      if(comp(1).ne.0) then
+         if (compil(30,0,ids(1,pt)-1,0,0)) then 
+            if (err.gt.0) return
+         endif
+      endif
       pt=pt-1
  75   if(sym.eq.ou) goto 72
       goto 50
@@ -162,8 +189,25 @@ c     in-line lterm
       endif
  81   continue
       if (eptover(1,psiz-1))  return
+      ids(1,pt)=0
+      ids(2,pt)=err1
       if(sym.eq.et) then
          pstk(pt)=et
+         if(ifexpr()) then
+c          . if expression evaluation, checking for possible
+c          . logical expression evaluation shortcut
+            if(comp(1).ne.0) then
+               if (compil(30,0,0,0,0)) then 
+                  if (err.gt.0) return
+                  ids(1,pt)=comp(1)
+               endif
+            elseif (.not.istrue(0)) then
+c     .        first term is false there is no use to evaluate the other
+               ids(1,pt)=1
+c     .        err1 <>0 sets interpretation without evaluation
+               err1=1
+            endif
+         endif
       else
          pstk(pt)=0
       endif
@@ -176,6 +220,12 @@ c     *call* lfact
       kount = pstk(pt)/256
       pt=pt-1
       if(op.eq.0) goto 84
+      if(comp(1).eq.0.and.ids(1,pt+1).eq.1) then
+c     . term has not been evaluated
+         err1=ids(2,pt+1)
+         goto 84
+      endif
+
       icall=4
       fin=et
       rhs=2
@@ -186,6 +236,11 @@ c     *call* allops(et)
       return
  83   continue
       kount=pstk(pt)
+      if(comp(1).ne.0) then
+         if (compil(30,0,ids(1,pt)-1,0,0)) then 
+            if (err.gt.0) return
+         endif
+      endif
       pt=pt-1
  84   if(sym.ne.et) goto 73
       goto 81
@@ -280,4 +335,18 @@ c
 c 999  call error(22)
 c      if (err .gt. 0) return
 c      return
+      end
+
+      logical function ifexpr()
+      INCLUDE '../stack.h'
+      integer p
+      if(err1.ne.0) goto 20
+      p=pt
+ 10   p=p-1
+      if (p.eq.0) goto 20
+      if (rstk(p).ne.803) goto 10
+      ifexpr=.true.
+      return
+ 20   ifexpr=.false.
+      return
       end
