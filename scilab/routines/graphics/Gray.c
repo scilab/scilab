@@ -45,10 +45,11 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
   int N = Max((*n1),(*n2));
   double xx[2],yy[2];
   integer *xm,*ym,j,nn1=1,nn2=2,i;   
+  sciPointObj  *psubwin = NULL;
 
   xx[0]=Mini(x,*n1);xx[1]=Maxi(x,*n1);
   yy[0]=Mini(y,*n2);yy[1]=Maxi(y,*n2);
-  sciPointObj  *psubwin = NULL;
+  
 
   /* NG beg */
   if (version_flag() == 0){
