@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>oldbessel</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September 1997</DATE>
+  <SHORT_DESCRIPTION name="oldbesseli">Modified Bessel functions of the first kind
+    (I sub alpha).</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="oldbesselj">Modified Bessel functions of the first kind
+    (J sub alpha).</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="oldbesselk">Modified Bessel functions of the second kind
+    (K sub alpha).</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="oldbessely">Modified Bessel functions of the second kind
+    (Y sub alpha).</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM> y = oldbesseli(alpha,x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = oldbesseli(alpha,x,ice)    </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = oldbesselj(alpha,x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = oldbesselj(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = oldbesselk(alpha,x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = oldbesselk(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = oldbessely(alpha,x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = oldbessely(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
+
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector with non negative entries</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>alpha</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector with non negative entries regularly spaced with 
+                increment equal to one <VERB>alpha=alpha0+(n1:n2)</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ice</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer flag, with default value 1</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>these functions  are obsolete, use <VERB>besseli</VERB>,
+      <VERB>besselj</VERB>, <VERB>besselk</VERB>, <VERB>bessely</VERB>
+      instead. Note however that the semantics of these two functions are
+      different.</P>
+
+    <P><VERB>oldbesseli(alpha,x)</VERB> computes modified Bessel functions of the
+    first kind (I sub alpha), for real, non-negative order <VERB>alpha</VERB> 
+    and real  argument <VERB>x</VERB>. </P> 
+
+    <P><VERB>oldbesselj(alpha,x)</VERB> computes modified Bessel functions of the
+    first kind (J sub alpha), for real, non-negative order <VERB>alpha</VERB> 
+    and real argument <VERB>x</VERB>. </P> 
+
+    <P><VERB>oldbesselk(alpha,x)</VERB> computes modified Bessel functions of the
+    second kind (K sub alpha), for real, non-negative order <VERB>alpha</VERB> 
+    and real argument <VERB>x</VERB>. </P> 
+
+    <P><VERB>oldbessely(alpha,x)</VERB> computes modified Bessel functions of the
+    second kind (Y sub alpha), for real, non-negative order <VERB>alpha</VERB> 
+    and real argument <VERB>x</VERB>. </P> 
+
+
+
+    <P><VERB>alpha</VERB>  and <VERB>x</VERB> may be vectors.
+    The output is <VERB>m</VERB>-by-<VERB>n</VERB> with <VERB>m = size(x,'*')</VERB>,
+    <VERB>n = size(alpha,'*')</VERB> whose <VERB>(i,j)</VERB> entry is
+    <VERB>oldbesseli(alpha(j),x(i))</VERB>.</P>
+
+
+    <P>
+    If <VERB>ice</VERB> is equal to 2 exponentialy scaled Bessel functions is
+    computed (<TT>I_alpha_scaled(x) = exp(-x) I_alpha(x)</TT>).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// example : display some I bessel functions
+x = linspace(0.01,10,5000)';
+y = oldbesseli(0:4,x);
+ys = oldbesseli(0:4,x,2);
+xbasc()
+subplot(2,1,1)
+   plot2d(x,y, style=2:6, leg="I0@I1@I2@I3@I4", rect=[0,0,6,10])
+   xtitle("Some modified bessel functions of the first kind")
+subplot(2,1,2)
+   plot2d(x,ys, style=2:6, leg="I0s@I1s@I2s@I3s@I4s", rect=[0,0,6,1])
+   xtitle("Some modified scaled bessel functions of the first kind")
+ ]]>
+  </EXAMPLE>
+
+  <AUTHOR>W. J. Cody, L. Stoltz (code from Netlib (specfun))</AUTHOR>
+</MAN>
+

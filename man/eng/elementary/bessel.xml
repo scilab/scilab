@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>bessel</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September 1997</DATE>
+  <SHORT_DESCRIPTION name="besseli">Modified Bessel functions of the first kind
+    (I sub alpha).</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="besselj">Modified Bessel functions of the first kind
+    (J sub alpha).</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="besselk">Modified Bessel functions of the second kind
+    (K sub alpha).</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="bessely">Modified Bessel functions of the second kind
+    (Y sub alpha).</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM> y = besseli(alpha,x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = besseli(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = besselj(alpha,x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = besselj(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = besselk(alpha,x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = besselk(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = bessely(alpha,x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = bessely(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>alpha</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ice</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer flag, with default value 0</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <SP> Warning: the semantics of these function changes between Scilab-3.0
+      and Scilab-3.1. The old semantics is available for compatibility using
+      the oldbesseli, oldbesselj, oldbesselk, oldbessely functions.</SP> 
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM>
+	<SP>
+	  <VERB>besseli(alpha,x)</VERB> computes modified Bessel functions of the
+	  first kind (I sub alpha), for real order <VERB>alpha</VERB>  and argument
+	  <VERB>x</VERB>.  <VERB>besseli(alpha,x,1)</VERB> computes 
+	  <VERB>besseli(alpha,x).*exp(-abs(real(x)))</VERB>.
+	</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP>
+	  <VERB>besselj(alpha,x)</VERB> computes modified Bessel functions of the
+	  first kind (J sub alpha), for real order <VERB>alpha</VERB>  and argument
+	  <VERB>x</VERB>.   <VERB>besselj(alpha,x,1)</VERB> computes
+	  <VERB>besselj(alpha,x).*exp(-abs(imag(x)))</VERB>.
+	</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP>
+	  <VERB>besselk(alpha,x)</VERB> computes modified Bessel functions of the
+	  second kind (K sub alpha), for real order <VERB>alpha</VERB>  and argument
+	  <VERB>x</VERB>.    <VERB>besselk(alpha,x,1)</VERB> computes
+	  <VERB>besselk(alpha,x).*exp(x)</VERB>.
+	</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP>
+	  <VERB>bessely(alpha,x)</VERB> computes modified Bessel functions of the
+	  second kind (Y sub alpha), for real order <VERB>alpha</VERB>  and argument
+	  <VERB>x</VERB>.   <VERB>bessely(alpha,x,1)</VERB> computes
+	  <VERB>bessely(alpha,x).*exp(-abs(imag(x)))</VERB>.
+	</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+      If <VERB>alpha</VERB> and <VERB>x</VERB> are arrays of the same size, the
+      result <VERB>y</VERB> is also that size. If either input is a scalar, it is expanded to
+      the other input's size. If one input is a row vector and the other is a
+      column vector, the result<VERB>y</VERB> is a two-dimensional table of function values.
+    </P>
+
+   <P> I_alpha and K_alpha  (J_alpha and Y_alpha) modified Bessel functions are 2 independant 
+        solutions of the modified Bessel 's differential equation :</P>
+    <VERBATIM>
+<![CDATA[
+          2               2        2
+         x  y(x)" + x y(x)' - (x  + alpha ) y(x) = 0 , 
+     ]]>
+    </VERBATIM>
+
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// example : display some I bessel functions
+x = linspace(0.01,10,5000)';
+y = besseli(0:4,x);
+ys = besseli(0:4,x,1);
+xbasc()
+subplot(2,1,1)
+   plot2d(x,y, style=2:6)
+   legend('I'+string(0:4),2);
+   xtitle("Some modified bessel functions of the first kind")
+subplot(2,1,2)
+   plot2d(x,ys, style=2:6)
+   legend('I'+string(0:4),1);
+   xtitle("Some modified scaled bessel functions of the first kind")
+ ]]>
+  </EXAMPLE>
+  <AUTHORS> 
+    <AUTHORS_ITEM> <SP>Amos, D. E., (SNLA)</SP></AUTHORS_ITEM> 
+    <AUTHORS_ITEM> <SP>Daniel, S. L., (SNLA)</SP></AUTHORS_ITEM> 
+ </AUTHORS> 
+<USED_FUNCTIONS>
+    <SP>The source codes can be found in routines/calelm </SP>
+    <P>
+    Slatec : dbesi.f, zbesi.f,  dbesj.f, zbesj.f,  dbesk.f, zbesk.f, dbesy.f, zbesy.f
+    </P>
+    <P>
+    Drivers to extend definition area (Serge Steer INRIA): 
+    dbesig.f, zbesig.f,  dbesjg.f, zbesjg.f,  dbeskg.f, zbeskg.f, dbesyg.f,
+      zbesyg.f
+    </P>
+</USED_FUNCTIONS>
+
+</MAN>
+
