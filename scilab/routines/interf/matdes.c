@@ -20,13 +20,13 @@
         {Scierror(999,"%s :Requested figure cannot be created \r\n",fname);return 0;  }
 
 #if WIN32
-  #if _MSC_VER <=1200
-    #define hstk(x) ((C2F(stack).Stk) + x-1 ) 	
-  #else
-    #define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
-  #endif
+#if _MSC_VER <=1200
+#define hstk(x) ((C2F(stack).Stk) + x-1 ) 	
 #else
-  #define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+#endif
+#else
+#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
 #endif
 
 
@@ -346,6 +346,7 @@ static int get_legend(fname,pos,opts)
 
 static int def_nax[]={2,10,2,10};
 static int *Nax;
+static BOOL flagNax = FALSE; /* F.Leray : to know weither or not we use Nax */
 static int get_nax(pos,opts) 
      int pos;
      rhs_opts opts[];
@@ -358,10 +359,12 @@ static int get_nax(pos,opts)
       CheckLength(pos,m*n,4);
       for (i = 0 ; i < 4; ++i) *istk(l+i) = Max((integer) *istk(l+i),0); /*POLPOTH09042001*/
       Nax=istk(l);
+      flagNax = TRUE;
     }
     else
       {
 	Nax=def_nax;
+	flagNax = FALSE;
       }
   }
   else if ((kopt=FindOpt("nax",opts))) {
@@ -369,10 +372,12 @@ static int get_nax(pos,opts)
     CheckLength(kopt,m*n,4);
     for (i = 0 ; i < 4; ++i) *istk(l+i) = Max((integer) *istk(l+i),0); /*POLPOTH09042001*/
     Nax=istk(l);
+    flagNax = TRUE;
   }
   else 
     {
       Nax=def_nax;
+      flagNax = FALSE;
     } 
   return 1;
 }
@@ -424,6 +429,7 @@ static int get_zminmax(fname,pos,opts)
     
   return 1;
 }
+
 
 /* added by bruno 1/02/2001 on the model of get_nax */
 #define GetColminmax(pos,opts) if ( get_colminmax(fname,pos,opts)==0 ) return 0;
@@ -479,8 +485,7 @@ static int get_logflags(fname,pos,opts)
      rhs_opts opts[];
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
-
-
+  
   if (pos < first_opt) /* regular argument  */
     { 
       if (VarType(pos)) {
@@ -530,12 +535,12 @@ static int get_logflags(fname,pos,opts)
     else {
       if (((*cstk(l)!='g')&&(*cstk(l)!='e')&&(*cstk(l)!='o')) || 
 	  (*cstk(l+1)!='l'&&*cstk(l+1)!='n') || 
-	      (*cstk(l+2)!='l'&&*cstk(l+2)!='n')){
+	  (*cstk(l+2)!='l'&&*cstk(l+2)!='n')){
 	Err=kopt;
 	Error(116);
 	return 0;
       }
-    
+      
       Logflags=cstk(l);
     }
   }
@@ -545,8 +550,6 @@ static int get_logflags(fname,pos,opts)
     }
   return 1;
 }
-
-
 
 #define GetOptionalDoubleArg(pos,name,value,sz,opts) if ( get_optional_double_arg(fname,pos,name,value,sz,opts) == 0) return 0;
 static int get_optional_double_arg(fname,pos,name,value,sz,opts) 
@@ -1391,9 +1394,11 @@ int sciplot2d(fname, fname_len)
       strfl[1] = '7';
     if (Legend != def_legend)
       strfl[0] = '1';
-    if (Nax != def_nax)
-      strfl[1] = '1';
-    GetOptionalIntArg(9,"frameflag",&frame,1,opts);
+    if(version_flag() != 0){
+      if (Nax != def_nax) /* F.Leray 12.10.04 1. If rect does not exist, there is a pb here... */
+	strfl[1] = '1';   /*                  2. Where is the link between Nax and Rect ??? */
+    }
+      GetOptionalIntArg(9,"frameflag",&frame,1,opts);
     if(frame != &frame_def) 
       strfl[1] = (char)(*frame+48);
     GetOptionalIntArg(9,"axesflag",&axes,1,opts);
@@ -1457,7 +1462,7 @@ int sciplot2d(fname, fname_len)
       break;
     }
 
-    Objplot2d (0,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect,Nax);
+    Objplot2d (0,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect,Nax,flagNax);
     /*sciSetCurrentObj (sciGetSelectedSubWin(sciGetCurrentFigure())); F.Leray 25.03.04 */
   } 
   else { /* NG end */
@@ -1608,7 +1613,7 @@ int sciplot2d1_G(fname, ptype, func, fname_len)
 
   /* NG beg */
   if (version_flag() == 0)
-    Objplot2d (ptype,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend,Rect, Nax);
+    Objplot2d (ptype,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend,Rect, Nax, flagNax);
   else /* NG end */
     (*func)(Logflags,stk(l1),stk(l2),&n1,&m1,Style,Strf,Legend,Rect,Nax,
 	    4L,strlen(Strf),strlen(Legend));
@@ -1677,8 +1682,10 @@ int scigrayplot(fname, fname_len)
     Strf = strfl;
     if (Rect != def_rect)
       strfl[1]='7';
-    if (Nax != def_nax)
-      strfl[1]='1';
+    if(version_flag() != 0){
+      if (Nax != def_nax)
+	strfl[1]='1';
+    }
     GetOptionalIntArg(7,"frameflag",&frame,1,opts);
     if(frame != &frame_def) 
       strfl[1] = (char)(*frame+48);
@@ -1691,7 +1698,7 @@ int scigrayplot(fname, fname_len)
 
   /* NG beg */
   if (version_flag() == 0)
-    Objgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, Strf, Rect, Nax);
+    Objgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, Strf, Rect, Nax, flagNax);
   else /* NG end */
      Xgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, Strf, Rect, Nax);
   LhsVar(1)=0;
@@ -1749,8 +1756,10 @@ int scimatplot(fname, fname_len)
     Strf = strfl;
     if (Rect != def_rect)
       strfl[1]='7';
-    if (Nax != def_nax)
-      strfl[1]='1';
+    if(version_flag() != 0){
+      if (Nax != def_nax)
+	strfl[1]='1';
+    }
     GetOptionalIntArg(5,"frameflag",&frame,1,opts);
     if(frame != &frame_def) 
       strfl[1] = (char)(*frame+48);
@@ -1762,7 +1771,7 @@ int scimatplot(fname, fname_len)
 
   /* NG beg */
   if (version_flag() == 0)
-    Objmatplot (stk(l1), &m1, &n1, Strf, Rect, Nax);
+    Objmatplot (stk(l1), &m1, &n1, Strf, Rect, Nax, flagNax);
   else 
     Xmatplot (stk(l1), &m1, &n1, Strf, Rect, Nax);
   /* NG end */
@@ -2951,6 +2960,14 @@ int scixset(fname,fname_len)
     else
       Scierror(999,"%s: Value must be 1 or 0",fname);
   }/* NG end */
+  else if((strcmp(cstk(l1),"default")==0) && (version_flag()==0)) {
+    sciPointObj * pfigure = sciGetCurrentFigure();
+    ResetFigureToDefaultValues(pfigure);
+
+    /*special treatement for xset default and old_style off F.Leray 23.09.04 */
+    /* mimic clf(gcf(),'reset') behaviour here */
+    sciXbasc();
+  }
   else 
     C2F(dr1)("xset",cstk(l1),&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
   /* NG beg */
@@ -3567,6 +3584,7 @@ int scifec(fname,fname_len)
 			    {-1,"strf","?",0,0,0},
 			    {-1,"zminmax","?",0,0,0},
 			    {-1,NULL,NULL,0,0}};
+
   if (Rhs <= 0) {
     sci_demo (fname," exec(\"SCI/demos/graphics/fec/fec.ex1\");",&one);
     return 0;
@@ -3616,16 +3634,18 @@ int scifec(fname,fname_len)
       strfl[1]='7';
     if (Legend != def_legend)
       strfl[0]='1';
-    if (Nax != def_nax)
-      strfl[1]='1';
+    if(version_flag() != 0){
+      if (Nax != def_nax)
+	strfl[1]='1';
+    }
   }
   mn1 = m1 * n1;
   
   /* NG beg */
   if (version_flag() == 0)
-     Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax);
+    Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax,flagNax);
   else
-     Xfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax);
+    Xfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax);
   /* NG end */
   LhsVar(1)=0;
   return 0;
@@ -4817,6 +4837,7 @@ int gset(fname,fname_len)
   integer m3tl, n3tl, l3tl;
   int numrow[4],i;
   int numcol[4], lxyzcol[4];
+  int ptrindex[2];
   int flagc = -1;
 
 
@@ -4826,6 +4847,9 @@ int gset(fname,fname_len)
     numcol[i] = 0;
     lxyzcol[i] = 0;
   }
+  ptrindex[0] = 0;
+  ptrindex[1] = 0;
+  
 
   CheckRhs(2,3);
   CheckLhs(0,1);
@@ -4882,7 +4906,9 @@ int gset(fname,fname_len)
       if (VarType(3) == 1)  GetRhsVar(3,"d",&numrow3,&numcol3,&l3);
       if (VarType(3) == 9)  GetRhsVar(3,"h",&numrow3,&numcol3,&l3);
       if (VarType(3) == 10) 
-	{ if (strncmp(cstk(l2),"tics_labels",11) !=0)
+	{ if ((strncmp(cstk(l2),"tics_labels",11) !=0)
+	      && ((strncmp(cstk(l2),"auto_ticks",10)) !=0)
+	      && ((strncmp(cstk(l2),"axes_visible",12)) !=0))
 	  {GetRhsVar(3,"c",&numrow3,&numcol3,&l3);} 
 	else
 	  GetRhsVar(3,"S",&numrow3,&numcol3,&l3); }
@@ -4929,7 +4955,9 @@ int gset(fname,fname_len)
       if ( (VarType(2) == 1) )   {GetRhsVar(2,"d",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 9) )   {GetRhsVar(2,"h",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 10) ) {
-	if (strncmp(cstk(l2),"tics_labels",11) !=0) 
+	if ((strncmp(cstk(l2),"tics_labels",11) !=0)
+	    && ((strncmp(cstk(l2),"auto_ticks",10)) !=0)
+	    && ((strncmp(cstk(l2),"axes_visible",12)) !=0))
 	  {GetRhsVar(2,"c",&numrow3,&numcol3,&l3);} 
 	else 
 	  GetRhsVar(2,"S",&numrow3,&numcol3,&l3);
@@ -4948,8 +4976,24 @@ int gset(fname,fname_len)
       return 0;
     }
     vis_save=sciGetVisibility(pobj); /*used not to redraw the figure is object remains invisible SS 20.04.04*/
+    if(sciGetEntityType(pobj) == SCI_SUBWIN && (strcmp(cstk(l2),"x_ticks")==0 ||
+						strcmp(cstk(l2),"y_ticks")==0 ||
+						strcmp(cstk(l2),"z_ticks")==0))
+      {
+	if(VarType(3) != 16){
+	  Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
+	  return -1;
+	}
+	
+	GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
+	GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&ptrindex[0]);
+	GetListRhsVar(3,3,"S",&numrow[1],&numcol[1],&ptrindex[1]);
+
+	if(setticks(cstk(l2),pobj, ptrindex, numrow, numcol) != 0) return 0;
+
+      }
     /* make a test on SCI_SURFACE here*/
-    if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
+    else if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
       {
 	if (sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
 	  Scierror(999,"%s: %s\r\n",fname,error_message);
@@ -5118,8 +5162,16 @@ int gget(fname,fname_len)
   }
   else {
     if ((pobj = sciGetPointerFromHandle(hdl))){
+
+      if(sciGetEntityType(pobj) == SCI_SUBWIN && (strcmp(cstk(l2),"x_ticks")==0 ||
+						  strcmp(cstk(l2),"y_ticks")==0 ||
+						  strcmp(cstk(l2),"z_ticks")==0))
+	{
+	  if(getticks(cstk(l2),pobj)!=0)
+	    return 0;
+	}
       /* make a test on SCI_SURFACE here*/
-      if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
+      else if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
 	{
 	  if (sciGet(pobj, cstk(l2))!=0)
 	    {
@@ -5699,7 +5751,46 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
     }
-  /**DJ.Abdemouche 2003**/
+  /* F.Leray adding auto_ticks flags */
+  else if (strncmp(marker,"auto_ticks", 10) == 0) 
+    {
+      if(*numcol == 1){
+	
+	ptr= *(char ***)value;
+	
+	if ((strncmp(ptr[0],"off", 3) == 0)) 
+	  {
+	    pSUBWIN_FEATURE (pobj)->axes.auto_ticks[0]=FALSE;
+	    pSUBWIN_FEATURE (pobj)->axes.auto_ticks[1]=FALSE;
+	    pSUBWIN_FEATURE (pobj)->axes.auto_ticks[2]=FALSE;
+	  }
+	else if ((strncmp(ptr[0],"on", 2) == 0))
+	  {
+	    pSUBWIN_FEATURE (pobj)->axes.auto_ticks[0]=TRUE;
+	    pSUBWIN_FEATURE (pobj)->axes.auto_ticks[1]=TRUE;
+	    pSUBWIN_FEATURE (pobj)->axes.auto_ticks[2]=TRUE;
+	  }
+	else
+	  {strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
+      }
+      else if (*numcol == 2 || *numcol == 3){
+
+	ptr= *(char ***)value;
+	
+	for (i = 0; i < *numcol; i++ )
+	  {
+	    if ((strncmp(ptr[i],"off", 3) == 0)) 
+	      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i]=FALSE;
+	    else if ((strncmp(ptr[i],"on", 2) == 0))
+	      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i]=TRUE;
+	    else
+	      {strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
+	  }	
+      }
+      else
+	{strcpy(error_message,"Number of the second argument must be taken between 1 to 3");return -1;}
+    }
+
   else if (strncmp(marker,"view", 4) == 0) 
     { 
       /* DJ.A 2003 */
@@ -5832,17 +5923,30 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
   }
   /*Dj.A 17/12/2003*/
-  else if (strncmp(marker,"sub_tics", 8) == 0) {
+  else if ((strncmp(marker,"sub_tics", 8) == 0) || (strncmp(marker,"sub_ticks", 9) == 0)) {
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->subint= (int) *stk(*value);
     else if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       if ((*numcol != 3 )&& (*numcol != 2)) {
 	strcpy(error_message,"Value must have two elements (three if 3D universe) ");return -1;}
-      for (i = 0; i < *numcol;i++)
-	pSUBWIN_FEATURE (pobj)->axes.subint[i]=(int) *stk(*value+i); 
+      pSUBWIN_FEATURE (pobj)->flagNax = TRUE;
+      for (i = 0; i < *numcol;i++){
+	/* temp test here while z has no logflag flag ; F.Leray 12.10.04 */
+	char logflag = (i!=2)?pSUBWIN_FEATURE (pobj)->logflags[i]:'n';
+	
+	if(logflag == 'l') {
+	  /* 	  sciprint("Subtics number can not be set while using logarithmic scaling\n"); */
+	  continue;
+	}
+	
+	if((int) *stk(*value+i)>=0)
+	  pSUBWIN_FEATURE (pobj)->axes.nbsubtics[i]=(int) *stk(*value+i) +1; 
+	else
+	  pSUBWIN_FEATURE (pobj)->axes.nbsubtics[i]= 1;
+      }
     }
     else
-      {strcpy(error_message,"sub_tics property does not exist for this handle");return -1;}
+      {strcpy(error_message,"sub_ticks property does not exist for this handle");return -1;}
     
   }
   /* F.Leray 08.04.04 */
@@ -5994,13 +6098,61 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   }
   else if  (strncmp(marker,"axes_visible", 12) == 0) 
     {
-      if ((strncmp(cstk(*value),"on", 2) == 0)) 
-	pSUBWIN_FEATURE (pobj)->isaxes= TRUE; 
-      else if ((strncmp(cstk(*value),"off", 3) == 0))  
-	pSUBWIN_FEATURE (pobj)->isaxes= FALSE;
+      if(*numcol == 1){
+	
+	ptr= *(char ***)value;
+	
+	if ((strncmp(ptr[0],"off", 3) == 0)) 
+	  {
+	    pSUBWIN_FEATURE (pobj)->axes.axes_visible[0]=FALSE;
+	    pSUBWIN_FEATURE (pobj)->axes.axes_visible[1]=FALSE;
+	    pSUBWIN_FEATURE (pobj)->axes.axes_visible[2]=FALSE;
+/* 	    pSUBWIN_FEATURE (pobj)->isaxes= FALSE; */
+	  }
+	else if ((strncmp(ptr[0],"on", 2) == 0))
+	  {
+	    pSUBWIN_FEATURE (pobj)->axes.axes_visible[0]=TRUE;
+	    pSUBWIN_FEATURE (pobj)->axes.axes_visible[1]=TRUE;
+	    pSUBWIN_FEATURE (pobj)->axes.axes_visible[2]=TRUE;
+/* 	    pSUBWIN_FEATURE (pobj)->isaxes= TRUE; */
+	  }
+	else
+	  {strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
+      }
+      else if (*numcol == 2 || *numcol == 3){
+
+	ptr= *(char ***)value;
+	
+	for (i = 0; i < *numcol; i++ )
+	  {
+	    if ((strncmp(ptr[i],"off", 3) == 0)) {
+	      pSUBWIN_FEATURE (pobj)->axes.axes_visible[i]=FALSE;
+	      /*   pSUBWIN_FEATURE (pobj)->isaxes= FALSE; */ /* DO NOT PUT at all !*/
+	    }
+	    else if ((strncmp(ptr[i],"on", 2) == 0)){
+	      pSUBWIN_FEATURE (pobj)->axes.axes_visible[i]=TRUE;
+/* 	      pSUBWIN_FEATURE (pobj)->isaxes= TRUE; */
+	    }
+	    else
+	      {strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
+	  }	
+      }
       else
-	{strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
-    } 
+	{strcpy(error_message,"Number of the second argument must be taken between 1 to 3");return -1;}
+    }
+
+
+
+
+
+/*     { */
+/*       if ((strncmp(cstk(*value),"on", 2) == 0))  */
+/* 	pSUBWIN_FEATURE (pobj)->isaxes= TRUE;  */
+/*       else if ((strncmp(cstk(*value),"off", 3) == 0))   */
+/* 	pSUBWIN_FEATURE (pobj)->isaxes= FALSE; */
+/*       else */
+/* 	{strcpy(error_message,"Value must be 'on' or 'off'");return -1;} */
+/*     }  */
   /* DJ.A 2003 */
   else if (strncmp(marker,"hiddencolor", 11) == 0)
     {
@@ -6060,13 +6212,26 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      && flags[0] == 'l')
 	    {strcpy(error_message,"Error: data_bounds on x axis must be strictly positive to switch to logarithmic mode");return -1;}
 	  else
-	    pSUBWIN_FEATURE (pobj)->logflags[0]=flags[0];
-
+	    {
+	      sciSubWindow * pppsubwin = pSUBWIN_FEATURE (pobj);
+	      pSUBWIN_FEATURE (pobj)->axes.u_xlabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[0], flags[0],  pSUBWIN_FEATURE (pobj)->axes.u_xgrads, 
+				&pSUBWIN_FEATURE (pobj)->axes.u_nxgrads, pSUBWIN_FEATURE (pobj)->axes.u_xlabels);
+	      
+	     /*  ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[0], flags[0],'x'); */
+	      pSUBWIN_FEATURE (pobj)->logflags[0]=flags[0];
+	    }
+	  
 	  if((pSUBWIN_FEATURE (pobj)->SRect[2] <= 0. || pSUBWIN_FEATURE (pobj)->SRect[3] <= 0.) 
-	      && flags[1] == 'l')
+	     && flags[1] == 'l')
 	    {strcpy(error_message,"Error: data_bounds on y axis must be strictly positive to switch to logarithmic mode");return -1;}
 	  else
-	    pSUBWIN_FEATURE (pobj)->logflags[1]=flags[1];
+	    {
+	      pSUBWIN_FEATURE (pobj)->axes.u_ylabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[1], flags[1],  pSUBWIN_FEATURE (pobj)->axes.u_ygrads, 
+				&pSUBWIN_FEATURE (pobj)->axes.u_nygrads, pSUBWIN_FEATURE (pobj)->axes.u_ylabels);
+	      
+/* 	      ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[1], flags[1],'y'); */
+	      pSUBWIN_FEATURE (pobj)->logflags[1]=flags[1];
+	    }
 	}
 	else 
 	  {strcpy(error_message,"incorrect log_flags value");return -1;}
@@ -6670,10 +6835,12 @@ if ((pobj == (sciPointObj *)NULL) &&
     }
   else if (strncmp(marker,"current_axes", 12) == 0)
     {
+      sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
       numrow   = 1;
       numcol   = 1;
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      /**DJ.Abdemouche 2003**/
+      	  
       *hstk(outindex) = sciGetHandle(sciGetSelectedSubWin(sciGetCurrentFigure()));
     }
   
@@ -7207,7 +7374,65 @@ if ((pobj == (sciPointObj *)NULL) &&
       else
 	{strcpy(error_message,"tight_limits property does not exist for this handle");return -1;}
     }
-  /**DJ.Abdemouche 2003**/
+  else if (strncmp(marker,"auto_ticks", 10) == 0)
+    {
+      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
+	char ** foo = (char **) NULL;
+	int i;
+	sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj); /* debug */
+	numrow   = 1;numcol   = 3;
+	
+	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
+	  strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
+	
+	
+	for(i=0;i<numcol;i++)
+	  if( pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i] == TRUE)
+	    {
+	      if((foo[i]=malloc(3*(sizeof(char))))==NULL){
+		strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
+	      strcpy(foo[i],"on");
+	    }
+	  else
+	    {
+	      if((foo[i]=malloc(4*(sizeof(char))))==NULL){
+		strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
+	      strcpy(foo[i],"off");
+	    }    
+      	
+	CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
+	
+      }
+      else
+	{strcpy(error_message,"auto_ticks property does not exist for this handle");return -1;}
+    }
+/*   else if (strncmp(marker,"y_auto_ticks", 12) == 0) */
+/*     { */
+/*       if (sciGetEntityType (pobj) == SCI_SUBWIN) { */
+/* 	numrow   = 1;numcol   = 3; */
+/* 	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex); */
+/* 	if (pSUBWIN_FEATURE (pobj)->axes.yauto_ticks == TRUE) */
+/* 	  strncpy(cstk(outindex),"on", numrow*(numcol-1));  */
+/* 	else  */
+/* 	  strncpy(cstk(outindex),"off", numrow*numcol);       */
+/*       } */
+/*       else */
+/* 	{strcpy(error_message,"y_auto_ticks property does not exist for this handle");return -1;} */
+/*     } */
+/*    else if (strncmp(marker,"z_auto_ticks", 12) == 0) */
+/*     { */
+/*       if (sciGetEntityType (pobj) == SCI_SUBWIN) { */
+/* 	numrow   = 1;numcol   = 3; */
+/* 	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex); */
+/* 	if (pSUBWIN_FEATURE (pobj)->axes.zauto_ticks == TRUE) */
+/* 	  strncpy(cstk(outindex),"on", numrow*(numcol-1));  */
+/* 	else  */
+/* 	  strncpy(cstk(outindex),"off", numrow*numcol);       */
+/*       } */
+/*       else */
+/* 	{strcpy(error_message,"z_auto_ticks property does not exist for this handle");return -1;} */
+/*     } */
+    /**DJ.Abdemouche 2003**/
   else if (strncmp(marker,"view", 4) == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
@@ -7290,7 +7515,7 @@ if ((pobj == (sciPointObj *)NULL) &&
       strncpy(cstk(outindex), &pAXES_FEATURE (pobj)->tics , numrow*numcol);
     }
    /*Dj.A 17/12/2003*/
-  else if (strncmp(marker,"sub_tics", 8) == 0)
+  else if ((strncmp(marker,"sub_tics", 8) == 0) || (strncmp(marker,"sub_ticks", 9) == 0))
     {
       numrow   = 1;
       numcol   = (sciGetEntityType (pobj) == SCI_AXES) ? 1:2;
@@ -7302,10 +7527,10 @@ if ((pobj == (sciPointObj *)NULL) &&
 	  numcol=(pSUBWIN_FEATURE (pobj)->is3d)? 3 : 2;
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	  for (i=0;i<numcol;i++)
-	    stk(outindex)[i] = pSUBWIN_FEATURE (pobj)->axes.subint[i];
+	    stk(outindex)[i] = pSUBWIN_FEATURE (pobj)->axes.nbsubtics[i] -1;
 	}
       else
-	{strcpy(error_message,"sub_tics property does not exist for this handle");return -1;}
+	{strcpy(error_message,"sub_ticks property does not exist for this handle");return -1;}
     }
 /* F.Leray 08.04.04 */
 /* Obsolete property "tics_textsize"*/
@@ -7407,10 +7632,10 @@ if ((pobj == (sciPointObj *)NULL) &&
 	 if (str==NULL){
 	   
 	   if((foo=malloc(numcol*(sizeof(char *))))==NULL){
-	     strcpy(error_message,"No memory left for allocating tempory tics_labels");return -1;}
+	     strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 	   for(i=0;i<numcol;i++){
 	     if((foo[i]=malloc(100*(sizeof(char)+1)))==NULL){
-	       strcpy(error_message,"No memory left for allocating tempory tics_labels");return -1;}
+	       strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 	   }
 	   for (i=0;i<numcol;i++){
 	     if(pAXES_FEATURE (pobj)->format==NULL)
@@ -7469,16 +7694,48 @@ if ((pobj == (sciPointObj *)NULL) &&
     }
   else if (strncmp(marker,"axes_visible", 12) == 0) {
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
+      char ** foo = (char **) NULL;
+      int i;
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj); /* debug */
       numrow   = 1;numcol   = 3;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      if (pSUBWIN_FEATURE (pobj)->isaxes)
-	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-      else 
-	strncpy(cstk(outindex),"off", numrow*numcol);  
+	
+      if((foo=malloc(numcol*(sizeof(char *))))==NULL){
+	strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
+	
+	
+      for(i=0;i<numcol;i++)
+	if( pSUBWIN_FEATURE (pobj)->axes.axes_visible[i] == TRUE)
+	  {
+	    if((foo[i]=malloc(3*(sizeof(char))))==NULL){
+	      strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
+	    strcpy(foo[i],"on");
+	  }
+	else
+	  {
+	    if((foo[i]=malloc(4*(sizeof(char))))==NULL){
+	      strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
+	    strcpy(foo[i],"off");
+	  }    
+      	
+      CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
+	
     }
     else
       {strcpy(error_message,"axes_visible property does not exist for this handle");return -1;}
   }
+
+
+/*     if (sciGetEntityType (pobj) == SCI_SUBWIN) { */
+/*       numrow   = 1;numcol   = 3; */
+/*       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex); */
+/*       if (pSUBWIN_FEATURE (pobj)->isaxes) */
+/* 	strncpy(cstk(outindex),"on", numrow*(numcol-1));  */
+/*       else  */
+/* 	strncpy(cstk(outindex),"off", numrow*numcol);   */
+/*     } */
+/*     else */
+/*       {strcpy(error_message,"axes_visible property does not exist for this handle");return -1;} */
+/*   } */
    /* DJ.A 2003 */
    else if (strncmp(marker,"hiddencolor", 11) == 0) 
     {
@@ -8874,4 +9131,477 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   
   return 0;
   
+}
+
+
+int BuildTListForTicks(double * locations, char ** labels, int nbtics)
+{
+  int un=1, trois=3,l;
+  char *variable_tlist[] = {"ticks","locations","labels"};
+  
+  CreateVar(Rhs+1,"t",&trois,&un,&l);
+  CreateListVarFromPtr(Rhs+1, 1, "S", &un, &trois, variable_tlist);
+  
+  CreateListVarFromPtr(Rhs+1, 2, "d", &nbtics, &un, &locations);
+  CreateListVarFromPtr(Rhs+1, 3, "S", &nbtics, &un, labels);
+  
+  
+  return 0;
+  
+}
+
+
+
+int getticks(char * xyztick, sciPointObj* psubwin)
+{
+  int i,nbtics;
+  char c_format[5]; 
+  char **  ticklabel = (char**) NULL;
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  double *tmp= NULL;
+  int lastzindex = 0; /* TO REMOVE when z has a logflag : see below */
+  
+  /* x */
+  if(strcmp(xyztick,"x_ticks")==0)
+    {
+      /* compute the c_format used for convert double to char (for labels) */
+      ChooseGoodFormat(c_format,ppsubwin->logflags[0],ppsubwin->axes.xgrads,ppsubwin->axes.nxgrads);
+
+      if(ppsubwin->axes.auto_ticks[0] == TRUE)
+	{
+	  nbtics = ppsubwin->axes.nxgrads;
+	  
+	  if((ticklabel=(char **)MALLOC(nbtics*sizeof(char *)))==NULL){
+	    sciprint("No more place for allocating ticklabel");
+	    return -1;
+	  }
+	  
+	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[0],nbtics,ppsubwin->axes.xgrads);
+
+	  for(i=0;i<nbtics;i++)
+	    {  
+	      char foo[100];
+	      	      
+	      sprintf(foo,c_format,tmp[i]);
+	      
+	      if((ticklabel[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
+		sciprint("No more place for allocating ticklabel");
+		return -1;
+	      }
+	      
+	      strcpy(ticklabel[i],foo);
+	    }
+	  
+	  /* construction de la tlist */
+	  
+	  BuildTListForTicks(tmp,ticklabel, nbtics);
+
+	  FREE(ticklabel); ticklabel = (char **) NULL;
+	  FREE(tmp); tmp = (double *) NULL;
+	}
+      else /* we display the x tics specified by the user*/
+	{
+	  nbtics = ppsubwin->axes.u_nxgrads;
+	  
+	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[0],nbtics,ppsubwin->axes.u_xgrads);
+
+
+	  BuildTListForTicks(tmp,ppsubwin->axes.u_xlabels, nbtics);
+
+	  FREE(tmp); tmp = (double *) NULL;
+	}
+    }
+  
+  /* y */
+  else if(strcmp(xyztick,"y_ticks")==0)
+    {
+      /* compute the c_format used for convert double to char (for labels) */
+      ChooseGoodFormat(c_format,ppsubwin->logflags[1],ppsubwin->axes.ygrads,ppsubwin->axes.nygrads);
+      
+      if(ppsubwin->axes.auto_ticks[1] == TRUE)
+	{
+	  nbtics = ppsubwin->axes.nygrads;
+	  	  
+	  if((ticklabel=(char **)MALLOC(nbtics*sizeof(char *)))==NULL){
+	    sciprint("No more place for allocating ticklabel");
+	    return -1;
+	  }
+	  
+	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[1],nbtics,ppsubwin->axes.ygrads);
+	  
+	  for(i=0;i<nbtics;i++)
+	    {  
+	      char foo[100];
+	      	     
+	      sprintf(foo,c_format,ppsubwin->axes.ygrads[i]);
+	      
+	      if((ticklabel[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
+		sciprint("No more place for allocating ticklabel");
+		return -1;
+	      }
+	      
+	      strcpy(ticklabel[i],foo);
+	    }
+	  
+	  /* construction de la tlist */
+	  BuildTListForTicks(tmp,ticklabel, nbtics);
+
+	  FREE(ticklabel); ticklabel = (char **) NULL;
+	  FREE(tmp); tmp = (double *) NULL;
+	}
+      else /* we display the y tics specified by the user*/
+	{
+	  nbtics = ppsubwin->axes.u_nygrads;
+	  
+	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[1],nbtics,ppsubwin->axes.u_ygrads);
+	  
+	  BuildTListForTicks(tmp,ppsubwin->axes.u_ylabels, nbtics);
+
+	  FREE(tmp); tmp = (double *) NULL;
+	}
+    }
+
+  /* z */
+  else if(strcmp(xyztick,"z_ticks")==0)
+    {
+      int tmp = (ppsubwin->axes.auto_ticks[2] == TRUE)?ppsubwin->axes.nzgrads:ppsubwin->axes.u_nzgrads;
+      
+      if(tmp == 0) 
+	{
+	  int zero = 0;
+	  BuildTListForTicks(NULL,NULL, zero);
+
+	  
+	  return 0;
+	}
+      /* compute the c_format used for convert double to char (for labels) */
+      lastzindex = ppsubwin->axes.nzgrads - 1;
+
+      /* TO PUT when z has a logflag */ /* F.Leray 05.01.04 */
+/*       ChooseGoodFormat(c_format,ppsubwin->logflags[2],ppsubwin->axes.zgrads,ppsubwin->axes.nzgrads); */
+      
+      ChoixFormatE(c_format,
+		   ppsubwin->axes.zgrads[0],
+		   ppsubwin->axes.zgrads[lastzindex],
+		   ((ppsubwin->axes.zgrads[lastzindex])-(ppsubwin->axes.zgrads[0]))/(lastzindex)); /* Adding F.Leray 06.05.04 */
+      
+      if(ppsubwin->axes.auto_ticks[2] == TRUE)
+	{
+	  nbtics = ppsubwin->axes.nzgrads;
+	  	  
+	  if((ticklabel=(char **)MALLOC(nbtics*sizeof(char *)))==NULL){
+	    sciprint("No more place for allocating ticklabel");
+	    return -1;
+	  }
+	  
+
+/* 	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[2],nbtics,ppsubwin->axes.zgrads); */
+	  
+
+	  for(i=0;i<nbtics;i++)
+	    {  
+	      char foo[100];
+	      	     
+	      sprintf(foo,c_format,ppsubwin->axes.zgrads[i]);
+	      
+	      if((ticklabel[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
+		sciprint("No more place for allocating ticklabel");
+		return -1;
+	      }
+	      
+	      strcpy(ticklabel[i],foo);
+	    }
+	  
+	  /* construction de la tlist */
+	  BuildTListForTicks(ppsubwin->axes.zgrads,ticklabel, nbtics);
+
+	  FREE(ticklabel); ticklabel = (char **) NULL;
+	 /*  FREE(tmp); tmp = (double *) NULL; */
+	}
+      else /* we display the z tics specified by the user*/
+	{
+	  nbtics = ppsubwin->axes.u_nzgrads;
+
+/* 	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[2],nbtics,ppsubwin->axes.u_zgrads); */
+	  
+
+	  BuildTListForTicks(ppsubwin->axes.u_zgrads,ppsubwin->axes.u_zlabels, nbtics);
+
+	  /*  FREE(tmp); tmp = (double *) NULL; */
+	}
+    }
+  else
+    {
+      sciprint("Impossible case xyztick must be equal to x_, y_ or z_tick");
+      return -1;
+    }
+  
+  return 0;
+}
+
+
+
+
+int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow, int * numcol)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+
+  int i,row,col,prod,old_prod;
+
+  row = *numrow;
+  col = *numcol; 
+  prod = row * col;
+
+  if(strcmp(xyztick,"x_ticks")==0)
+    {
+
+      old_prod = ppsubwin->axes.u_nxgrads; /* old size of the locations/labels vectors*/
+
+      ppsubwin->axes.auto_ticks[0] = FALSE;
+      ppsubwin->axes.u_nxgrads = prod;
+
+      FREE(ppsubwin->axes.u_xgrads); ppsubwin->axes.u_xgrads = NULL;
+      if((ppsubwin->axes.u_xgrads=(double *) MALLOC(prod*sizeof(double)))==NULL) return -1;
+      
+
+      if(ppsubwin->logflags[0]=='l')
+	{
+	  for(i=0;i< prod;i++)
+	    ppsubwin->axes.u_xgrads[i] = log10(stk(ptrindex[0])[i]);
+	}
+      else
+	{
+	  for(i=0;i< prod;i++)
+	    ppsubwin->axes.u_xgrads[i] = stk(ptrindex[0])[i];
+	  ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(psubwin,ppsubwin->axes.u_nxgrads,'n',NULL,ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+	}
+
+      if(ppsubwin->axes.u_xlabels != NULL)
+	for(i=0;i<old_prod;i++) { /* we free the old vector components (size == old_prod) */
+	  FREE(ppsubwin->axes.u_xlabels[i]); 
+	  ppsubwin->axes.u_xlabels[i] = NULL;}
+      
+      FREE(ppsubwin->axes.u_xlabels); ppsubwin->axes.u_xlabels = NULL;
+      
+      ppsubwin->axes.u_xlabels = *(char ***) &ptrindex[1];
+    }
+  else if(strcmp(xyztick,"y_ticks")==0)
+    {
+      
+      old_prod = ppsubwin->axes.u_nygrads; /* old size of the locations/labels vectors*/
+
+      ppsubwin->axes.auto_ticks[1] = FALSE;
+      ppsubwin->axes.u_nygrads = prod;
+
+      FREE(ppsubwin->axes.u_ygrads); ppsubwin->axes.u_ygrads = NULL;
+      if((ppsubwin->axes.u_ygrads=(double *) MALLOC(prod*sizeof(double)))==NULL) return -1;
+      
+
+      if(ppsubwin->logflags[1]=='l')
+	{
+	  for(i=0;i< prod;i++)
+	    ppsubwin->axes.u_ygrads[i] = log10(stk(ptrindex[0])[i]);
+	}
+      else
+	{
+	  for(i=0;i< prod;i++)
+	    ppsubwin->axes.u_ygrads[i] = stk(ptrindex[0])[i];
+	  ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(psubwin,ppsubwin->axes.u_nygrads,'n',NULL,ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+	}
+
+      if(ppsubwin->axes.u_ylabels != NULL)
+	for(i=0;i<old_prod;i++) {  /* we free the old vector components (size == old_prod) */
+	  FREE(ppsubwin->axes.u_ylabels[i]);
+	  ppsubwin->axes.u_ylabels[i] = NULL;}
+      
+      FREE(ppsubwin->axes.u_ylabels); ppsubwin->axes.u_ylabels = NULL;
+      
+      ppsubwin->axes.u_ylabels = *(char ***) &ptrindex[1];
+    }
+  else if(strcmp(xyztick,"z_ticks")==0)
+    {
+      
+      old_prod = ppsubwin->axes.u_nzgrads; /* old size of the locations/labels vectors*/
+      
+      ppsubwin->axes.auto_ticks[2] = FALSE;
+      ppsubwin->axes.u_nzgrads = prod;
+
+      FREE(ppsubwin->axes.u_zgrads); ppsubwin->axes.u_zgrads = NULL;
+      if((ppsubwin->axes.u_zgrads=(double *) MALLOC(prod*sizeof(double)))==NULL) return -1;
+      
+
+   /*    if(ppsubwin->logflags[2]=='l') /\* Not for now: y logscale does not exist F.Leray 29.09.4 *\/ */
+/* 	{ */
+/* 	  for(i=0;i< prod;i++) */
+/* 	    ppsubwin->axes.u_zgrads[i] = log10(stk(ptrindex[0])[i]); */
+/* 	} */
+/*       else */
+      for(i=0;i< prod;i++)
+	ppsubwin->axes.u_zgrads[i] = stk(ptrindex[0])[i];
+      ppsubwin->axes.nbsubtics[2] = ComputeNbSubTics(psubwin,ppsubwin->axes.u_nzgrads,'n',NULL,ppsubwin->axes.nbsubtics[2]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+      
+      if(ppsubwin->axes.u_zlabels != NULL)
+	for(i=0;i<old_prod;i++) { /* we free the old vector components (size == old_prod) */
+	  FREE(ppsubwin->axes.u_zlabels[i]);
+	  ppsubwin->axes.u_zlabels[i] = NULL;}
+      
+      FREE(ppsubwin->axes.u_zlabels); ppsubwin->axes.u_zlabels = NULL;
+      
+      ppsubwin->axes.u_zlabels = *(char ***) &ptrindex[1];
+    }
+  return 0;
+}
+
+
+
+
+/* Called by a.log_flags='nn','ln','nl', or 'll'*/
+/* For the moment, z has no logflag F.Leray 05.10.04 */
+char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads, int *u_nxgrads, char ** u_xlabels)
+{
+  
+  if(old_logflag==new_logflag) return u_xlabels; /* nothing to do l->l or n->n */
+  
+  if(u_xgrads!=NULL)
+    {
+      if(old_logflag=='n' && new_logflag=='l') /* n->l */ /* 10-> 1, 100->2 ...*/
+	{
+	  
+	  u_xlabels=CaseLogflagN2L(u_nxgrads,u_xgrads,u_xlabels);
+	  
+	}
+      else if(old_logflag=='l' && new_logflag=='n')
+	{
+	  int nbtics = *u_nxgrads;
+	  int i;
+	  
+	  for(i=0;i<nbtics;i++) u_xgrads[i] = exp10(u_xgrads[i]);
+	  
+	}
+    }
+
+  return  u_xlabels;
+}
+
+
+/* Remove negative graduations when switching from N (linear) to L (logarithmic) scale */
+char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
+{
+  int nbtics = *u_nxgrads;
+  int i;
+  char ** ticklabel = (char **) NULL;
+  int cmpteur = 0, cmpteur2 = 0, offset = 0;
+  
+  
+  for(i=0;i<nbtics;i++) 
+    {
+      if(u_xgrads[i]<=0){
+	sciprint("Warning: graduation number %d is ignored : when switching to logarithmic scale, we must have strictly positive graduations!\n",i);
+      }
+      else
+	{
+	  u_xgrads[cmpteur] = log10(u_xgrads[i]);
+	  cmpteur++;
+	}
+    }
+  
+  if(cmpteur != nbtics)
+    {
+      if((ticklabel=(char **)MALLOC(cmpteur*sizeof(char *)))==NULL){
+	sciprint("No more place for allocating ticklabel");
+      }
+      
+      cmpteur2 = 0;
+      offset = nbtics - cmpteur;
+      for(i=0;i<cmpteur;i++){
+	if((ticklabel[cmpteur2]=(char *)MALLOC((strlen(u_xlabels[i+offset])+1)*sizeof(char )))==NULL){
+	  sciprint("No more place for allocating ticklabel");
+	}
+	strcpy(ticklabel[cmpteur2],u_xlabels[i+offset]);
+	cmpteur2++;
+      }
+      
+      for(i=0;i<nbtics;i++){ FREE(u_xlabels[i]); u_xlabels[i] = NULL;}
+      
+      FREE(u_xlabels); u_xlabels = NULL;
+      u_xlabels = ticklabel;
+    }
+    
+  *u_nxgrads = cmpteur;
+  cmpteur = 0;
+  cmpteur2 = 0;
+
+  return u_xlabels;
+}
+
+
+
+
+
+double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads)
+{
+  int flag_limit = 0,i;
+  double * tmp = NULL;
+  
+  tmp=(double *)MALLOC(nbtics*sizeof(double));
+  
+  if(logflag=='l')
+    {
+      for(i=0;i<nbtics;i++)
+	{
+	  flag_limit = 0;
+	  
+	  /* 10^(-307) == -Inf */
+	  flag_limit = flag_limit + ((grads[i])<-307)?-1:0;
+	  /* 10^(+307) == +Inf */
+	  flag_limit = flag_limit + ((grads[i])>307)?1:0;
+	  
+	  if( flag_limit == -1)
+	    {
+	      tmp[i] = 0.;
+	    }
+	  else if ( flag_limit == 1)
+	    {
+	      tmp[i] = exp10(307);
+	    }
+	  else  if ( flag_limit == 0) /* general case */
+	    {
+	      tmp[i]=exp10(grads[i]);
+	    }
+	}
+    }
+  else
+    {
+      for(i=0;i<nbtics;i++)
+	tmp[i] = grads[i];
+    }
+  
+  return tmp;
+}
+
+
+
+/* compute the c_format used for convert double to char (for labels) */
+  
+int ChooseGoodFormat(char * c_format,char logflag, double *_grads,int n_grads)
+{
+  int last_index = n_grads - 1;
+
+  if(logflag == 'l')
+    {
+      ChoixFormatE(c_format,
+		   exp10(_grads[0]),
+		   exp10(_grads[last_index]),
+		   (( exp10(_grads[last_index]))-( exp10(_grads[0])))/(last_index));
+    }
+  else
+    {
+      ChoixFormatE(c_format,
+		   _grads[0],
+		   _grads[last_index],
+		   ((_grads[last_index])-(_grads[0]))/(last_index)); /* Adding F.Leray 06.05.04 */
+    }
+
+  return 0;
+
 }
