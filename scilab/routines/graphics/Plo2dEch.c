@@ -16,6 +16,8 @@
  * A List for storing Window scaling information 
  *----------------------------------------------*/
 
+extern int versionflag; // Test for NG F.Leray 03.03.04
+
 static void scale_copy __PARAMS((WCScaleList *s1, WCScaleList *s2));
 static integer curwin __PARAMS((void));
 static void zoom_rect __PARAMS((double,double,double,double));
@@ -989,7 +991,7 @@ void C2F(axis2d)(alpha, initpoint, size, initpoint1, size1)
 
 extern int EchCheckSCPlots();
 
-/** get a rectangle interactively **/ 
+/** get a rectangle interactively **/
 
 void zoom_get_rectangle(bbox)
      double bbox[4];
@@ -1001,7 +1003,7 @@ void zoom_get_rectangle(bbox)
   integer modes[2];
   double x0,yy0,x,y,xl,yl;
 
-  modes[0]=1;modes[1]=0; /* for xgemouse only get mouse mouvement*/ 
+  modes[0]=1;modes[1]=0; /* for xgemouse only get mouse mouvement*/
 
   C2F(dr)("xget","pixmap",&verbose,&pixmode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1041,8 +1043,10 @@ void zoom_get_rectangle(bbox)
   C2F(dr1)("xset","alufunction",(in=3,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #endif
   /* Back to the default driver which must be Rec and redraw the recorded
-   * graphics with the new scales 
+   * graphics with the new scales
    */
+// F.Leray With the nez graphic standard, driver has not to be Rec
+
   bbox[0]=Min(x0,x);
   bbox[1]=Min(yy0,y);
   bbox[2]=Max(x0,x);
@@ -1055,7 +1059,7 @@ void zoom_get_rectangle(bbox)
 #ifdef WIN32
   ReleaseWinHdc();
   SciMouseRelease();
-#endif 
+#endif
 
 }
 
@@ -1065,60 +1069,60 @@ void zoom()
 {
   char driver[4];
   integer aaint[4],flag[2]; /* ansi : ={1,0};*/
-  integer verbose=0,narg,ww; 
+  integer verbose=0,narg,ww;
   /** 01/07/2002 ***/
   sciPointObj *psousfen,*tmpsousfen;
-  sciSons *psonstmp;  
+  sciSons *psonstmp;
 
-  double fmin,fmax,lmin,lmax;  
+  double fmin,fmax,lmin,lmax;
   integer min,max,puiss,deux=2,dix=10,box1[4],section[4];
- 
- 
+
+
   flag[0] =1 ; flag[1]=0;
   C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if (strcmp("Rec",driver) != 0) 
+  if (strcmp("Rec",driver) != 0 && versionflag !=0 ) // F.Leray 03.03.04
     {
       Scistring("\n Use the Rec driver to zoom " );
       return;
     }
-  else 
+  else
     {
       double bbox[4];
- 
-      zoom_get_rectangle(bbox);   
+
+      zoom_get_rectangle(bbox);
       C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-      C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-      if (version_flag() == 0){  
+      C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if (version_flag() == 0){
 	/***** 02/10/2002 ****/
         integer box[4];
-       
-        box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2])); 
+
+        box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
         box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
-        box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3])); 
+        box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
         box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
-       
-        
+
+
         tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure());
         psonstmp = sciGetSons (sciGetCurrentFigure());
-        while (psonstmp != (sciSons *) NULL)	
-          {  
+        while (psonstmp != (sciSons *) NULL)
+          {
            if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
              {
                 psousfen= (sciPointObj *)psonstmp->pointobj;
                  sciSetSelectedSubWin(psousfen);
-                 box1[0]= Cscale.WIRect1[0]; 
+                 box1[0]= Cscale.WIRect1[0];
 		 box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
-		 box1[1]= Cscale.WIRect1[1]; 
+		 box1[1]= Cscale.WIRect1[1];
 		 box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
-                 
+
                  if (sciIsAreaZoom(box,box1,section))
-                   { 
-                 bbox[0]= Min(XPixel2Double(section[0]),XPixel2Double(section[2])); 
+                   {
+                 bbox[0]= Min(XPixel2Double(section[0]),XPixel2Double(section[2]));
                  bbox[2]= Max(XPixel2Double(section[0]),XPixel2Double(section[2]));
-                 bbox[1]= Min(YPixel2Double(section[1]),YPixel2Double(section[3])); 
-                 bbox[3]= Max(YPixel2Double(section[1]),YPixel2Double(section[3])); 
-                 
+                 bbox[1]= Min(YPixel2Double(section[1]),YPixel2Double(section[3]));
+                 bbox[3]= Max(YPixel2Double(section[1]),YPixel2Double(section[3]));
+
                      if (!(sciGetZooming(psousfen)))
 	               {
 		       sciSetZooming(psousfen, 1);
@@ -1127,24 +1131,24 @@ void zoom()
 		       pSUBWIN_FEATURE (psousfen)->FRect_kp[2]   = pSUBWIN_FEATURE (psousfen)->FRect[2];
 		       pSUBWIN_FEATURE (psousfen)->FRect_kp[3]   = pSUBWIN_FEATURE (psousfen)->FRect[3];
                        }
-		      
- 
+
+
 		     /** regraduation de l'axe des axes ***/
-		     fmin=  bbox[0]; 
+		     fmin=  bbox[0];
 		     fmax=  bbox[2];
 		     C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-                     pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss; 
-                     pSUBWIN_FEATURE (psousfen)->FRect[0]=lmin;  
-                     pSUBWIN_FEATURE (psousfen)->FRect[2]=lmax; 
-		     
-          
-		     fmin= bbox[1]; fmax= bbox[3];   
+                     pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
+                     pSUBWIN_FEATURE (psousfen)->FRect[0]=lmin;
+                     pSUBWIN_FEATURE (psousfen)->FRect[2]=lmax;
+
+
+		     fmin= bbox[1]; fmax= bbox[3];
 		     C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
 		     pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-                     pSUBWIN_FEATURE (psousfen)->FRect[1]=lmin;  
-                     pSUBWIN_FEATURE (psousfen)->FRect[3]=lmax; 
+                     pSUBWIN_FEATURE (psousfen)->FRect[1]=lmin;
+                     pSUBWIN_FEATURE (psousfen)->FRect[3]=lmax;
 		 }
-	     }     
+	     }
            psonstmp = psonstmp->pnext;
           }
           sciSetSelectedSubWin(tmpsousfen);
@@ -1152,9 +1156,9 @@ void zoom()
 	  sciDrawObj(sciGetCurrentFigure());
 	  sciSetReplay(0);
          }
-        else 
+        else
            Tape_ReplayNewScale(" ",&ww,flag,PI0,aaint,PI0,PI0,bbox,PD0,PD0,PD0);
-	  
+
     }
 }
 
@@ -1162,29 +1166,29 @@ void zoom()
 extern void unzoom()
 {
   char driver[4];
-  integer ww,verbose=0,narg; 
-  /** 17/09/2002 ***/  
-  double fmin,fmax,lmin,lmax;  
+  integer ww,verbose=0,narg;
+  /** 17/09/2002 ***/
+  double fmin,fmax,lmin,lmax;
   integer min,max,puiss,deux=2,dix=10;
   sciPointObj *psousfen;
-  sciSons *psonstmp;  
+  sciSons *psonstmp;
 
-  
+
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if (strcmp("Rec",driver) != 0) 
+  if (strcmp("Rec",driver) != 0 && versionflag !=0)  // F.Leray 03.03.04
     {
       Scistring("\n Use the Rec driver to unzoom " );
       return;
     }
-  else 
+  else
     {
       C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      if (version_flag() == 0){ 
+      if (version_flag() == 0){
          /***** 02/10/2002 ****/
         psonstmp = sciGetSons (sciGetCurrentFigure());
-        while (psonstmp != (sciSons *) NULL)	
-          {  
+        while (psonstmp != (sciSons *) NULL)
+          {
            if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
              {
                 psousfen= (sciPointObj *)psonstmp->pointobj;
@@ -1196,22 +1200,22 @@ extern void unzoom()
 		      pSUBWIN_FEATURE (psousfen)->FRect[2]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[2];
 		      pSUBWIN_FEATURE (psousfen)->FRect[3]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[3];
 		    }
-	  
+
 		/** regraduation de l'axe des axes ***/
 		fmin= pSUBWIN_FEATURE (psousfen)->FRect[0];
-		fmax= pSUBWIN_FEATURE (psousfen)->FRect[2]; 
+		fmax= pSUBWIN_FEATURE (psousfen)->FRect[2];
 		C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-		pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss; 
-          
+		pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
+
 		fmin= pSUBWIN_FEATURE (psousfen)->FRect[1];
-		fmax= pSUBWIN_FEATURE (psousfen)->FRect[3]; 
+		fmax= pSUBWIN_FEATURE (psousfen)->FRect[3];
 		C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
 		pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-		/*****/  
-               }     
+		/*****/
+               }
               psonstmp = psonstmp->pnext;
-            } 
-        
+            }
+
           sciSetReplay(1);
 	  sciDrawObj(sciGetCurrentFigure());
 	  sciSetReplay(0);
