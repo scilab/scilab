@@ -23,7 +23,7 @@ distclean  	:
 	del libtutorial.pdb 
 
 tests	: all
-	$(SCIDIR1)\bin\scilex.exe  -f zall.sce
+	$(SCIDIR1)\bin\scilex.exe  -f libtutorial.tst
 
 message:
 	@echo ------------------------------------------;
