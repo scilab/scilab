@@ -87,7 +87,7 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
   set_is_reading (FALSE);
   C2F (sxevents) ();
 
-  /* see savehistoryafterncommands */
+  /* see savehistory */
   NumberOfCommands++;
   if ( ( GetSaveHistoryAfterNcommands() == NumberOfCommands ) && ( GetSaveHistoryAfterNcommands() > 0) )
   {

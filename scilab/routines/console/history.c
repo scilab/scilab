@@ -206,16 +206,27 @@ int C2F(savehistory) _PARAMS((char *fname))
   if (Rhs == 0)
   {
     Path=get_sci_data_strings(HISTORY_ID);
+	C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
+	write_history (line);
   }
   else
   {
-    GetRhsVar(1,"c",&m1,&n1,&l1);
-    Path=cstk(l1);
+    
+	if ( GetType(1) == 1 ) 
+	{
+		GetRhsVar(1,"i",&m1,&n1,&l1);
+		savehistoryafterncommands(*istk(l1));
+	}
+	else if ( GetType(1) == 10 )
+	{
+		GetRhsVar(1,"c",&m1,&n1,&l1);
+		Path=cstk(l1);
+
+		C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
+		write_history (line);
+		
+	}
   }
-
-  C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
-
-  write_history (line);
 
   LhsVar(1)=0;
   C2F(putlhsvar)();

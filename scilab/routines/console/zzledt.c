@@ -651,7 +651,7 @@ extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   *eof = FALSE;
   set_is_reading(FALSE);
   
-  /* see savehistoryafterncommands */
+  /* see savehistory */
   NumberOfCommands++;
   if ( ( GetSaveHistoryAfterNcommands() == NumberOfCommands ) && ( GetSaveHistoryAfterNcommands() > 0) )
   {

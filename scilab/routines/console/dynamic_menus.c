@@ -341,32 +341,19 @@ int C2F(setlanguagemenu) _PARAMS((char *fname))
 	return 0;
 }
  /*-----------------------------------------------------------------------------------*/
-int C2F(savehistoryafterncommands) _PARAMS((char *fname))
+int savehistoryafterncommands(int N)
 {
-	if (Rhs == 0) /* aucun parametre */
-	{
-	}
-	else
-	{
-		int SaveHistoryAfterNcommandsTemp=0;
-		int m1,n1,l1;
+	int SaveHistoryAfterNcommandsTemp=0;
 
-		CheckRhs(1,1);
-  		CheckLhs(1,1);
-  		GetRhsVar(1,"i",&m1,&n1,&l1);
-  		SaveHistoryAfterNcommandsTemp=*istk(l1);
+  	SaveHistoryAfterNcommandsTemp=N;
 		
-		if (SaveHistoryAfterNcommandsTemp>=0)
-		{
-			SaveHistoryAfterNcommands=SaveHistoryAfterNcommandsTemp;
-			NumberOfCommands=0;
-		}
+	if (SaveHistoryAfterNcommandsTemp>=0)
+	{
+		SaveHistoryAfterNcommands=SaveHistoryAfterNcommandsTemp;
+		NumberOfCommands=0;
 	}
 
-	LhsVar(0)=0;
-	C2F(putlhsvar)();
-
-	return 0;
+	return 0;	
 }
  /*-----------------------------------------------------------------------------------*/
 int GetSaveHistoryAfterNcommands(void)
