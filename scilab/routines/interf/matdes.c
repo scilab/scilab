@@ -6923,8 +6923,8 @@ if ((pobj == (sciPointObj *)NULL) &&
     {    
       if (sciGetEntityType (pobj) == SCI_SEGS) {
 	numrow = 1;numcol = 1;
-	CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
-	*istk(outindex) = (int) pSEGS_FEATURE (pobj)->arrowsize ;
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	*stk(outindex) = pSEGS_FEATURE (pobj)->arrowsize ;
       }
       else
 	{strcpy(error_message,"arrow_size property does not exist for this handle");return -1;}
