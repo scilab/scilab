@@ -1,4 +1,4 @@
-function %g=numdiff(%f,%x,tol)
+function %g=numdiff(%f,%x,%dx)
 // given a function %f from R^n to R^p
 //computes the matrix g such as 
 //    [   d f    ]
@@ -7,20 +7,21 @@ function %g=numdiff(%f,%x,tol)
 // ij [   d x    ]
 //    [      j   ]
 // using finite difference methods
-[lhs,rhs]=argn(0)
-if rhs<3 then
-  tol=sqrt(%eps)*[1 1d-3]
-end
 if type(%f)==15 then
   params=%f;params(1)=null();
   %f=%f(1)
 else
   params=list()
 end
+if %f==10 then //hard coded function given by its name
+  error('hard coded function not allowed, create a Scilab function using call""')
+end
 
 %x=%x(:);
 %n=size(%x,'*')
-%dx=sqrt(%eps)*(1+1d-3*abs(%x))
+if argn(2)<3 then
+  %dx=sqrt(%eps)*(1+1d-3*abs(%x))
+end
 if size(params)==0 then
   %y0=%f(%x)
   %g(size(%y0,1),%n)=0
