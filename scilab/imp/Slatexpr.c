@@ -263,12 +263,12 @@ int ScilabPsToTeX(char orientation, char *filein, char *fileout, double xs, doub
 	  base,wide,high);
 #else
   fprintf(fo,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
-  fprintf(fo,"%% If you want to use epsfig, uncomment the following line \n");
-  fprintf(fo,"%% and comment the \\special line \n");
-  fprintf(fo,"%%\\epsfig{file=\\Figdir %s.eps,width=%.2fpt,height=%.2fpt}\n",
+  fprintf(fo,"%% If you want do not want to use epsfig ,comment the following line \n");
+  fprintf(fo,"%% and uncomment the \\special line \n");
+  fprintf(fo,"\\epsfig{file=\\Figdir %s.eps,width=%.2fpt,height=%.2fpt}\n",
 	  base,wide,high);
   fprintf(fo,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
-  fprintf(fo,"\\special{psfile=\\Figdir %s.eps hscale=%.2f vscale=%.2f}\n",
+  fprintf(fo,"%%\\special{psfile=\\Figdir %s.eps hscale=%.2f vscale=%.2f}\n",
 	  base,hscale,vscale);
 #endif
   fprintf(fo,"\\end{picture}}\n");

@@ -67,11 +67,12 @@ void WriteTeX(char *filename, double wide, double height)
 #ifdef EPSFIG
   fprintf(fdo,"\\epsfig{file=\\Figdir %s.ps}\n",filename);
 #else
-  fprintf(fdo,"%% if you want to use epsfig uncomment the following line \n");
-  fprintf(fdo,"%% and comment the special line \n");
-  fprintf(fdo,"%%\\epsfig{file=\\Figdir %s.ps}\n",filename);
+  fprintf(fdo,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
+  fprintf(fdo,"%% If you want do not want to use epsfig ,comment the following line \n");
+  fprintf(fdo,"%% and uncomment the \\special line \n");
+  fprintf(fdo,"\\epsfig{file=\\Figdir %s.ps}\n",filename);
+  fprintf(fdo,"%%\\special{psfile=\\Figdir %s.ps}\n", filename);
 #endif
-  fprintf(fdo,"\\special{psfile=\\Figdir %s.ps}\n", filename);
   fprintf(fdo,"\\end{picture}}\n");
   fprintf(fdo,"\\end{center}\n");
 #ifndef DOC 
