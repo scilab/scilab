@@ -22,11 +22,15 @@ end
 if part(res_path,length(res_path))<>"/" then 
   res_path=res_path+"/"
 end
-
 // Loads libraries related to m2sci
 if exists("m2skernellib")==0 then load("SCI/macros/m2sci/kernel/lib"),end
 if exists('m2spercentlib')==0 then load("SCI/macros/m2sci/percent/lib"),end
 if exists("m2ssci_fileslib")==0 then load("SCI/macros/m2sci/sci_files/lib"),end
+
+if multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprint) then
+  res=1
+  return
+end
 
 // Get context
 global("m2sci_infos")
@@ -35,6 +39,10 @@ Reclevel=size(find(mac=="mfile2sci"),"*")
 if size(find(mac=="m2sci_gui"),"*")==1 & size(find(mac=="translatepaths"),"*")<>1 then // Bug 679
   Reclevel=Reclevel-1
 end
+if size(find(mac=="multi_fun_file"),"*")==1 then
+  Reclevel=Reclevel-1
+end
+
 if Reclevel==1 then
   nametbl=[]
 else
