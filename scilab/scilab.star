@@ -50,6 +50,7 @@ clear verbose
 load('SCI/macros/mtlb/lib')
 load('SCI/macros/sci2for/lib')
 load('SCI/macros/tdcs/lib')
+load('SCI/macros/tksci/lib')
 load('SCI/macros/arma/lib')
 load('SCI/macros/metanet/lib')
 load('SCI/macros/sound/lib')
@@ -65,8 +66,6 @@ load('SCI/macros/int/lib')
 load('SCI/macros/calpol/lib')
 load('SCI/macros/percent/lib')
 load('SCI/macros/xdess/lib')
-
-
 
 // Create a temporary directory
 TMPDIR=getenv('TMPDIR')
