@@ -144,6 +144,13 @@ clear fd ierr
 // load history file ==================================================
 loadhistory()
 
+// LCC initialization =========================================
+if MSDOS then
+	LCC=%f;
+else
+	LCC=%f
+end
+
 // calling user initialization =========================================
 // Home dir startup (if any)
 [startup,ierr]=mopen('home/.scilab','r')
