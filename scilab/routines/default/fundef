@@ -58,7 +58,6 @@
 {"min",			IN_matelm,	17,	0},	
 {"mini",		IN_matelm,	17,	0},	
 {"number_properties",	IN_matelm,      46,     0},
-{"norm",		IN_matelm,	47,	0},	
 {"ones",		IN_matelm,	15,	0},	
 {"prod",		IN_matelm,	9,	0},	
 {"rand",		IN_matelm,	14,	0},	

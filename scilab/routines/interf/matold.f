@@ -70,8 +70,9 @@ c     svd      pinv     cond     norm     rank   sva
       goto 2000
  340  continue
       fnam='norm'
-      call intnorm(fnam)
-      goto 1000
+      call cvname(ids(1,pt+1),fnam,0)
+      fun=-1
+      goto 2000
  350  continue
       fnam='rank'
       call cvname(ids(1,pt+1),fnam,0)

@@ -28,15 +28,14 @@ c     sqrt log   ^  sign clean floor ceil expm cumsum  cumprod testmatrix
 c      27   28   29  30   31     32   33   34    35      36      37
 c     isreal frexp zeross tan  log1p imult  asin acos number_properties
 c       38     39    40   41     42    43   44   45      46
-c     norm
-c       47
+
 c!
 c
       goto (10 ,15 ,20 ,25 ,30 ,35 ,40 ,45 ,50 ,60,
      1      61 ,62 ,70 ,72 ,71 ,90 ,91 ,105,110,110,
      2      110,130,140,150,160,170,180,190,200,210,
      3      220,37 ,39 ,173,46 ,47, 230,240,250,260,
-     4      165,195,196,152,154,300,310                 ),fin
+     4      165,195,196,152,154,300                 ),fin
 
  10   continue
       call intabs(id)
@@ -276,9 +275,6 @@ c
 c     number_properties
 c
  300  call  intnbprop(id)
-      go to 900
-c
- 310  call intnorm('norm')
       go to 900
 
  900  return

@@ -18,6 +18,6 @@ MACROS = coff.sci colcomp.sci companion.sci rref.sci cond.sci pinv.sci sva.sci\
 	rowshuff.sci polar.sci orth.sci pencan.sci linsolve.sci \
 	pbig.sci psmall.sci range.sci nlev.sci spantwo.sci aff2ab.sci\
 	householder.sci chfact.sci chsolve.sci genmarkov.sci classmarkov.sci \
-	eigenmarkov.sci \
-	gspec.sci gschur.sci
+	eigenmarkov.sci norm.sci\
+	gspec.sci gschur.sci 
 include ../Make.lib
