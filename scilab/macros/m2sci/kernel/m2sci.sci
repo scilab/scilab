@@ -91,33 +91,35 @@ dcl=[dcl;"";"// Display warning for floating point exception";"ieee(1)"]
 
 // Initial value of lhs arguments
 // If they are not initialized by input value, they are initialized with []
-ini=["";"// Ouput variables initialisation (not found in input variables)"]
+ini=[]
 for k=1:size(mtlbtree.outputs)
-  found=%t
+  found=%F
   for l=1:size(mtlbtree.inputs)
     if mtlbtree.inputs(l).name==mtlbtree.outputs(k).name then
-      found=%t
+      found=%T
     end
   end
   if ~found then
     ini=[ini;mtlbtree.outputs(k).name+"=[];"]
   end
 end
+if ini<>[] then
+  ini=["";"// Ouput variables initialisation (not found in input variables)";ini]
+end
 
-// Info on macros variables (if variable m2scitests exists)
-if exists("m2scitests")==1 then
+// Info on macros variables 
+if verbose_mode<0 then
   write(%io(2),"TESTING M2SCI: creating varslist file...")
   n=size(varslist)
   info=[]
 
   for k=1:n
-    varname=varslist(k).sciname
-    //if strindex(varname,"res")
-      info=[info;"//"+varname+infer2txt(varslist(k).infer)];
-    //end
+    info=[info;"//"+varslist(k).sciname+infer2txt(varslist(k).infer)];
   end
   infofilename=res_path+nam+"_varslist.dia.ref";
-  write(%io(2),info)
+  if verbose_mode==-2 then
+    write(%io(2),info)
+  end
   infofile=mopen(infofilename,"w");
   mputl(info,infofile);
   mclose(infofile);
