@@ -252,6 +252,8 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
      integer *isfac,*n,*m,*iflag,*izcol,*zcol;
      integer * m1, *n1, *m2, *n2, *m3, *n3, *m3n, *n3n;/*Adding F.Leray 12.03.04 and 19.03.04*/
      char *fname,*legend; 
+     /* F.Leray 25.04.05 : warning here legends means "X@Y@Z": it is labels writings!! */
+     /* legends has not the same meaning than inside plot2dn (there it really the legends of the plotted curves)*/
 {  
   sciTypeOf3D typeof3d;
   integer flagcolor;  
@@ -259,7 +261,9 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   int i, ok, mn;
   sciPointObj *psubwin;
   double drect[6];
-      
+  char *loc,*legx,*legy,*legz;
+  sciSubWindow * ppsubwin = NULL;
+
   if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
     sciXbasc(); 
     initsubwin();
@@ -269,11 +273,29 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   /* =================================================
    * Force SubWindow properties according to arguments 
    * ================================================= */
-  psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
   /* Force psubwin->is3d to TRUE: we are in 3D mode */
   pSUBWIN_FEATURE (psubwin)->is3d = TRUE;
+
+  psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   
+  ppsubwin = pSUBWIN_FEATURE(psubwin);
+  /* F.Leray 25.04.05 replace the default labels by the user labels if specified */
+  loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
+  if ( loc == NULL)    
+    Scistring("Objplot3d : No more Place to store all the labels\n");
+  
+  strcpy(loc,legend);
+  
+  legx=strtok(loc,"@");
+  sciSetText(ppsubwin->mon_x_label, legx , strlen(legx));
+   
+  legy=strtok((char *)0,"@");
+  sciSetText(ppsubwin->mon_y_label, legy , strlen(legy));
+ 
+  legz=strtok((char *)0,"@");
+  sciSetText(ppsubwin->mon_z_label, legz , strlen(legz));
+   
   /* Force psubwin->logflags to linear */
   pSUBWIN_FEATURE (psubwin)->logflags[0]='n';
   pSUBWIN_FEATURE (psubwin)->logflags[1]='n';
@@ -285,12 +307,13 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
     else
       pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1]-6; /* type: scaling (no more useful)  */
   }
-
+  
   if( pSUBWIN_FEATURE (psubwin)->FirstPlot == FALSE && (iflag[2] == 0 || iflag[2] == 1))
     { /* Nothing to do: we leave as before */}
   else
     pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2]; /* box: frame around the plot      */
   
+
   pSUBWIN_FEATURE (psubwin)->alpha  = *alpha;
   pSUBWIN_FEATURE (psubwin)->theta  = *theta; 
 
@@ -328,7 +351,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
       drect[5] = (double) Maxi(z, mn); /*zmax*/
       break;
     }
-    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot ) { /* merge psubwin->Srect and drect */
+   if (!pSUBWIN_FEATURE(psubwin)->FirstPlot ) { /* merge psubwin->Srect and drect */
       drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
       drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
       drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
@@ -338,7 +361,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
     }
     if (iflag[1] != 0) update_specification_bounds(psubwin, drect,3);
   } 
-
+  
   if(iflag[1] != 0)
     pSUBWIN_FEATURE(psubwin)->isoview = (BOOL)( iflag[1] == 3 || iflag[1] == 4 ||
 						iflag[1] == 5 || iflag[1] == 6);
@@ -415,6 +438,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   sciDrawObj(sciGetCurrentFigure ());
   pSUBWIN_FEATURE(psubwin)->FirstPlot=FALSE;
    
+  FREE(loc); loc = NULL;
        
 }
 /*-----------------------------------------------------------

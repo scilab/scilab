@@ -700,10 +700,45 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
  
   static integer InsideU[4],InsideD[4],flag[]={1,1,3},verbose=0,fg,narg,fg1;
   static integer ixbox[4],iybox[4], n=2, m=1;
+  char * legends = NULL;
+  sciPointObj * psubwin = NULL;
+  sciSubWindow * ppsubwin =  NULL;
+
+  char * legx = NULL;
+  char * legy = NULL;
+  char * legz = NULL;
   /** Calcule l' Enveloppe Convexe de la boite **/
   /** ainsi que les triedres caches ou non **/
-       
-  Convex_Box(xbox,ybox,InsideU,InsideD,"X@Y@Z",flag,Cscale.bbox1);
+
+
+  if (version_flag() != 0)
+    Convex_Box(xbox,ybox,InsideU,InsideD,"X@Y@Z",flag,Cscale.bbox1);
+  else
+    {
+      psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+      ppsubwin = pSUBWIN_FEATURE (psubwin);
+
+      legx = sciGetText(ppsubwin->mon_x_label);
+      legy = sciGetText(ppsubwin->mon_y_label);
+      legz = sciGetText(ppsubwin->mon_z_label);
+                  
+      if ((legends = MALLOC ((strlen(legx)+
+			      strlen(legy)+
+			      strlen(legz)+
+			      7)*sizeof (char))) == NULL)
+	Scistring("box3d : No more Place to store legends (3D labels)\n");
+
+      strcpy(legends,legx);
+      strcat(legends,"@"); 
+      strcat(legends,legy);
+      strcat(legends,"@"); 
+      strcat(legends,legz);
+      
+      Convex_Box(xbox,ybox,InsideU,InsideD,legends,flag,Cscale.bbox1);
+      FREE(legends); legends = NULL;
+    }
+
+
   /**DJ.Abdemouche 2003**/
    if (version_flag() != 0) {
      /** le triedre vu **/
