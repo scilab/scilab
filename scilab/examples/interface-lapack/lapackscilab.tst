@@ -1,7 +1,7 @@
 exec("lapackscilab.sce",-1);
-alfa=2;beta=3;m=3;n=4;C=ones(m,n);k=2;A=ones(m,k);B=ones(k,n);
-C1=dgemm(alfa,A,B,beta,C);
-if norm(C1-(alfa*A*B+beta*C)) > %eps then pause,end
+Alfa=2;Beta=3;m=3;n=4;C=ones(m,n);k=2;A=ones(m,k);B=ones(k,n);
+C1=dgemm(Alfa,A,B,Beta,C);
+if norm(C1-(Alfa*A*B+Beta*C)) > %eps then pause,end
 A=[1/2^10,1/2^10;2^10,2^10];
 [SCALE, ILOW, IHI]=xxdgebal('S', A);
 if norm(SCALE-[0.001;1]) > %eps then pause,end
