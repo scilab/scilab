@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="pvm3-make"
+	ProjectGUID="{7C349E84-E25E-496F-93EC-14C0F42FDE3B}"
+	RootNamespace="pvm3-make"
+	Keyword="MakeFileProj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="Debug"
+			IntermediateDirectory="Debug"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f ..\Make-PVM3.mak all"
+				ReBuildCommandLine="nmake /f ..\Make-PVM3.mak all"
+				CleanCommandLine="nmake /f ..\Make-PVM3.mak clean"
+				Output="pvm3-make.exe"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="Release"
+			IntermediateDirectory="Release"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;../Make-pvm3.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;../Make-pvm3.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;../Make-pvm3.mak&quot; clean /a"
+				Output="pvm3-make.exe"/>
+		</Configuration>
+		<Configuration
+			Name="PIV_Release|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;../Make-pvm3.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;../Make-pvm3.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;../Make-pvm3.mak&quot; clean /a"
+				Output="pvm3-make.exe"/>
+		</Configuration>
+		<Configuration
+			Name="Pentium_Release|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;../Make-pvm3.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;../Make-pvm3.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;../Make-pvm3.mak&quot; clean /a"
+				Output="pvm3-make.exe"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
