@@ -53,7 +53,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
   //        done later, the sequel assumes that the split block is added
   //        at the end of scs_m
   ks=kfrom;
-  kfrom=size(scs_m.objs)+1;port_number=2;
+  kfrom=lstsize(scs_m.objs)+1;port_number=2;
   xo=d(1);yo=d(2)
   fromsplit=%t
   else //connection comes from a block
@@ -273,7 +273,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
   //----------- update objects structure -----------------------------
   //------------------------------------------------------------------
   if fromsplit then //link comes from a split
-    nx=size(scs_m.objs)+1
+    nx=lstsize(scs_m.objs)+1
     //split old link
     from1=o1.from
     to1=o1.to
@@ -312,7 +312,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
   end
   
   //add new link in objects structure
-  nx=size(scs_m.objs)+1
+  nx=lstsize(scs_m.objs)+1
   scs_m.objs($+1)=lk
   //update connected blocks
   scs_m.objs(kfrom)=mark_prt(scs_m.objs(kfrom),from(2),'out',typ,nx)

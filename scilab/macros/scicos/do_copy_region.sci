@@ -35,7 +35,7 @@ function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
   if rep(3)==2 then enablemenus();return,end
 
   scs_m_save=scs_m,nc_save=needcompile
-  n=size(scs_m.objs)
+  n=lstsize(scs_m.objs)
   for k=1:size(reg.objs)
     o=reg.objs(k)
     // translate blocks and update connection index 

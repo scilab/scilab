@@ -10,7 +10,7 @@ function [ok,sbloc]=adjust_s_ports(sbloc)
 
 
   scs_m=model.rpar
-  for k=1:size(scs_m.objs)
+  for k=1:lstsize(scs_m.objs)
     o=scs_m.objs(k)
     if typeof(o)=='Block' then
       modelb=o.model

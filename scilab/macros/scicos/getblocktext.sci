@@ -1,6 +1,6 @@
 function k=getblocktext(scs_m,pt)
 // Copyright INRIA
-n=size(scs_m.objs)
+n=lstsize(scs_m.objs)
 xf=60;
 yf=40;
 x=pt(1);y=pt(2)

@@ -16,7 +16,7 @@ deff('[x,y,ok,gc]=edit_curv(x,y,job,tit,gc)','ok=%t')
 deff('[ok,tt,dep_ut]=genfunc1(tt,ni,no,nci,nco,nx,nz,nrp,type_)',..
     'dep_ut=model.dep_ut;ok=%t')
 funcprot(%mprt)
-%nx=size(scs_m.objs)
+%nx=lstsize(scs_m.objs)
 
 
 

@@ -225,7 +225,7 @@ function scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
 endfunction
 
 function [k,wh,scs_m]=stupid_getobj(scs_m,pt)
-  n=size(scs_m.objs)
+  n=lstsize(scs_m.objs)
   wh=[];
   x=pt(1);y=pt(2)
   data=[]

@@ -14,7 +14,7 @@ function ppath=getparpath(scs_m,bpath,ppath)
   [lhs,rhs]=argn(0)
   if rhs<2 then bpath=[],end
   if rhs<3 then ppath=list(),end
-  for k=1:size(scs_m.objs)
+  for k=1:lstsize(scs_m.objs)
     o=scs_m.objs(k)
     if typeof(o)=='Block' then
       if and(o.gui<>excluded) then

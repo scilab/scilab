@@ -18,7 +18,7 @@ t1=sci2exp(scs_m.props,lmax);
 t=[t;lname+'.props='+t1(1);t1(2:$)]
 write(u,t,'(a)');t=[]
 
-for k=1:size(scs_m.objs)
+for k=1:lstsize(scs_m.objs)
 
   o=scs_m.objs(k)
    if typeof(o)=='Block' then

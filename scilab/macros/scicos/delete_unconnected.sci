@@ -2,7 +2,7 @@ function scs_m=delete_unconnected(scs_m);
 //delete unconnected blocks and all relevant parts of a diagram
 //may be used before compilation
 // Copyright INRIA
-n=size(scs_m.objs)
+n=lstsize(scs_m.objs)
 DEL=[]
 DELL=[]
 for k=1:n  //loop on scs_m objects
@@ -22,7 +22,7 @@ end
 //suppress rigth-most deleted elements
 while getfield(1,scs_m.objs($))=='Deleted' then
   scs_m.objs($)=null();
-  if size(scs_m.objs)==0 then break,end
+  if lstsize(scs_m.objs)==0 then break,end
 end
 
 // Notify by hiliting and message edition

@@ -18,7 +18,7 @@ function win=systshow(scs_m,win)
 
   drawobjs(scs_m)
 
-  for k=1:size(scs_m.objs)
+  for k=1:lstsize(scs_m.objs)
     o=scs_m.objs(k)
     if typeof(o)=='Block' then
       model=o.model

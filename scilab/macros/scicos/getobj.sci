@@ -1,6 +1,6 @@
 function [k,wh]=getobj(scs_m,pt)
 // Copyright INRIA
-n=size(scs_m.objs)
+n=lstsize(scs_m.objs)
 wh=[];
 x=pt(1);y=pt(2)
 data=[]

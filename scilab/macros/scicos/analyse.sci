@@ -17,7 +17,7 @@ function syst=analyse(scs_m)
 //		 ...)
 //  The strings 'transfer' and 'links' are keywords which indicate the type of
 //  element in the block diagram.
-  nx=size(scs_m.objs)
+  nx=lstsize(scs_m.objs)
   nb=0
   syst=list()
   corresp=0*ones(nx,1)

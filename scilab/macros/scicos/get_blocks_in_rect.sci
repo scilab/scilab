@@ -1,7 +1,7 @@
 function [in,out]=get_blocks_in_rect(scs_m,ox,oy,w,h)
 // Copyright INRIA
   in=[];out=[]
-  for k=1:size(scs_m.objs)
+  for k=1:lstsize(scs_m.objs)
     o=scs_m.objs(k)
     if typeof(o)=='Block'|typeof(o)=='Text' then
       x=[0 1 1 0]*o.graphics.sz(1)+o.graphics.orig(1)

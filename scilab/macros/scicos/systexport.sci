@@ -6,7 +6,7 @@ function systexport(scs_m,exp_dir)
     do_export(scs_m,exp_dir+'/'+scs_m.props.title(1))
   end
 
-  for k=1:size(scs_m.objs)
+  for k=1:lstsize(scs_m.objs)
     o=scs_m.objs(k)
     if typeof(o)=='Block' then
       model=o.model

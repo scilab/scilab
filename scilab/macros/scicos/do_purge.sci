@@ -2,7 +2,7 @@ function scs_m_new=do_purge(scs_m)
 // Copyright INRIA
 
 //suppress deleted elements in a scicos data structure
-  nx=size(scs_m.objs);
+  nx=lstsize(scs_m.objs);
 
   //get index of deleted blocks
   deleted=[];

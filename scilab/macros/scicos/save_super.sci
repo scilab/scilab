@@ -9,7 +9,7 @@ nam=strsubst(nam,' ','_')
 in=[];out=[];clkin=[];clkout=[];
 bl='  '
 com='/'+'/'
-for k=1:size(scs_m.objs)
+for k=1:lstsize(scs_m.objs)
   o=scs_m.objs(k)
   if typeof(o)=='Block' then
     model=o.model

@@ -7,7 +7,7 @@ function scs_m=do_region2block(scs_m)
   scs_m_save=scs_m,nc_save=needcompile
   [scs_mb,rect,prt]=get_region2(xc,yc,win)
   if rect==[] then return,end
-  if size(scs_mb.objs)==0 then return, end
+  if lstsize(scs_mb.objs)==0 then return, end
   //superblock should not inherit the context nor the name
   scs_mb.props.context=' ' 
   scs_mb.props.title(1)='Untitled'
@@ -30,7 +30,7 @@ function scs_m=do_region2block(scs_m)
   [ok,sup]=adjust_s_ports(sup)
   // detruire la region
   del=[]
-  for k=1:size(scs_m.objs)
+  for k=1:lstsize(scs_m.objs)
     o=scs_m.objs(k)
     if typeof(o)=='Block'| typeof(o)=='Text' then
       // check if block is outside rectangle
@@ -53,7 +53,7 @@ function scs_m=do_region2block(scs_m)
   
   scs_m.objs($+1)=sup
   // connect it
-  nn=size(scs_m.objs)
+  nn=lstsize(scs_m.objs)
   nnk=nn
   for k=1:size(prt,1)
     k1=prt(k,6)

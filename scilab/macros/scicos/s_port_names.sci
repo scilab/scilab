@@ -11,7 +11,7 @@ function s_port_names(sbloc)
 
   xset('font',options.ID(2)(1),options.ID(2)(2))
   inp=[],outp=[],cinp=[],coutp=[]
-  for k=1:size(scs_m.objs)
+  for k=1:lstsize(scs_m.objs)
     o=scs_m.objs(k);
 
     if typeof(o)=='Block' then

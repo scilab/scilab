@@ -1,6 +1,6 @@
 function draw(scs_m)
 // Copyright INRIA
-  nx=size(scs_m.objs)
+  nx=lstsize(scs_m.objs)
   for k=1:nx
     o=scs_m.objs(k)
     if typeof(o)<>'Link' then

@@ -35,7 +35,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
   //initialize outputs
   blklst=list(),nb=0,cor=list(),corinv=list(),cmat=[],ccmat=[];ok=%t
   labels=[];
-  n=size(scs_m.objs)
+  n=lstsize(scs_m.objs)
   for k=1:n, cor(k)=0;end
 
 

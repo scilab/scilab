@@ -31,7 +31,7 @@ if DEL<>[] then
   //suppress right-most deleted elements
   while getfield(1,scs_m.objs($))=='Deleted' then
     scs_m.objs($)=null();
-    if size(scs_m.objs)==0 then break,end
+    if lstsize(scs_m.objs)==0 then break,end
   end
   [scs_m_save,nc_save,enable_undo,edited,needreplay]=resume(scs_m_save,nc_save,%t,%t,needreplay)
 end

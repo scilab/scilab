@@ -5,7 +5,7 @@ function [xx,yy,lp,larg]=build_scs_tree(scs_m,flag)
   end
   xx=[];yy=[];
   lp=list()
-  n=size(scs_m.objs)
+  n=lstsize(scs_m.objs)
   blks=[]
   if flag=='super' then
     for k=1:n
