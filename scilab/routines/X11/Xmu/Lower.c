@@ -35,11 +35,13 @@ in this Software without prior written authorization from The Open Group.
 
 #include <stdio.h>
 
-#ifndef HAS_SNPRINTF
-#undef SCOPE
-#define SCOPE static
-#include "snprintf.c"
-#endif
+/*
+  #ifndef HAS_SNPRINTF
+  #undef SCOPE
+  #define SCOPE static
+  #include "snprintf.c"
+  #endif
+*/
 
 #include <stdarg.h>
 
@@ -143,7 +145,7 @@ XmuSnprintf(char *str, int size, _Xconst char *fmt, ...)
 
   va_start(ap, fmt);
 
-#if 0
+#if 1
   retval = vsprintf(str, fmt, ap);
   if (retval >= size)
     {
