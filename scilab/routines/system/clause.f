@@ -271,6 +271,7 @@ c     *call* allops(==)
          call parsecomment
          sym = semi
       elseif(lin(lpt(3)-2).eq.blank) then
+c     .  added for matlab compatibility (then or , is not mandatory)
          sym=semi
          lpt(4)=lpt(3)-1
          char1=blank
