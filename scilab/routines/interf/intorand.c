@@ -129,7 +129,7 @@ int C2F(intand)(fname,l)
 }
 
 
-void vect_or __PARAMS((int *v,int m,int n,int *r,int opt))
+void vect_or(int *v,int m,int n,int *r,int opt)
 {
   int k,l,i;
   
@@ -166,7 +166,7 @@ void vect_or __PARAMS((int *v,int m,int n,int *r,int opt))
   }
 }
 
-void vect_and __PARAMS((int *v,int m, int n,int *r,int opt))
+void vect_and(int *v,int m, int n,int *r,int opt)
 {
   int k,l,i;
   
