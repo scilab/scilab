@@ -1699,9 +1699,12 @@ int complexity(int *data,int *index,int *lgth)
 	  break;
 	case 29: /* Affectation */
 	  nbop = 0;
-	  //cur_ind = cur_ind + 3 + (data[cur_ind+1])*(nsiz) + 1;
 	  cur_ind = cur_ind + 2 + (data[cur_ind+1])*(nsiz+1) + 1;
 	  count++;
+	  break;
+	case 30: /* Expression evaluation short circuiting */
+	  /* This code is ignored */
+	  cur_ind = cur_ind + 3;
 	  break;
 	case 99: /* return */
 	  cur_ind++;
