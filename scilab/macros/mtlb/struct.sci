@@ -34,7 +34,7 @@ for kf=2:2:size(varargin)
     end
   end
 end
-s=mlist(fields,dims)
+s=mlist(fields,int32(dims))
 
 // Search if one value is a scalar cell
 fnb=3
