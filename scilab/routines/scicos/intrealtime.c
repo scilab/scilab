@@ -1,6 +1,11 @@
 #include <string.h>
 #include "../stack-c.h"
- 
+
+#if WIN32
+int C2F(realtime)(double *t);
+int C2F(realtimeinit)(double *t,double *scale); 
+#endif
+
 int F2C(intsrealtimeinit)(fname)
    char *fname;
 {
