@@ -15,7 +15,7 @@ MODELS=Bache.mo PortPHQ1.mo Puits.mo  ThermoCarre.mo \
 	PerteDP.mo PortPHQ2.mo Source.mo VanneReglante.mo
 
 #for Modelica extern functions
-OBJECTS  =
+OBJS  =
 LIBRARY = libHydrau
 CFLAGS = $(CC_OPTIONS) -DmexFunction=mex_$*
 EXTRA_LDFLAGS =

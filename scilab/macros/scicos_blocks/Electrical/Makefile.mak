@@ -22,7 +22,7 @@ MODELS=Capacitor.mo Ground.mo OutPutPort.mo VariableResistor.mo \
 	OutPort.mo VVsourceAC.mo 
 
 #for Modelica extern functions
-OBJECTS  =
+OBJS  =
 LIBRARY = libElectrical
 CFLAGS = $(CC_OPTIONS) -DmexFunction=mex_$*
 EXTRA_LDFLAGS =
