@@ -4093,6 +4093,7 @@ int sciType (marker, pobj)
   else if (strncmp(marker,"thickness", 9) == 0)   {return 1;}
   else if (strncmp(marker,"line_style", 10) == 0) {return 1;}
   else if (strncmp(marker,"line_mode", 9) == 0) {return 10;}
+  else if (strncmp(marker,"surface_mode", 12) == 0) {return 10;}
   else if (strncmp(marker,"mark_style", 10) == 0) {return 1;}	
   else if (strcmp(marker,"mark_size") == 0) {return 1;}	
   else if (strncmp(marker,"mark_mode", 9) == 0)   {return 10;}
