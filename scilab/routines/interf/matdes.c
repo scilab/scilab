@@ -6266,8 +6266,13 @@ if ((pobj == (sciPointObj *)NULL) &&
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
       if ((sciPointObj *) pobj != pfiguremdl)
 	{
-	  stk(outindex)[0] = sciGetFigurePosX ((sciPointObj *) pobj)-4; 
-	  stk(outindex)[1] = sciGetFigurePosY ((sciPointObj *) pobj)-20;
+	#if WIN32 /* Correction pour figure_position (Windows) Allan CORNET Mai 2004 */
+		stk(outindex)[0] = sciGetFigurePosX ((sciPointObj *) pobj); 
+		stk(outindex)[1] = sciGetFigurePosY ((sciPointObj *) pobj);
+	#else
+		stk(outindex)[0] = sciGetFigurePosX ((sciPointObj *) pobj)-4; 
+		stk(outindex)[1] = sciGetFigurePosY ((sciPointObj *) pobj)-20;
+	#endif
 	}
       else
 	{
