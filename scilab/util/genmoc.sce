@@ -2,7 +2,17 @@ mode(-1)
 //this script is used to compile Modelica models of scicos implicit
 //blocks
 //mprintf('Compiling Modelica models in '+pwd()')
-if ~with_modelica_compiler()then quit,end
+load SCI/macros/util/lib
+load('SCI/macros/elem/lib')
+load('SCI/macros/int/lib')
+load('SCI/macros/calpol/lib')
+load('SCI/macros/percent/lib')
+
+SCI=getenv('SCI')  
+MSDOS = getenv('WIN32','NO')=='OK' & ..
+	or(COMPILER==['VC++' 'ABSOFT' 'gcc'])
+
+if ~with_modelica_compiler() then quit,end
 models=stripblanks(mgetl('models'))
 if MSDOS then
   compilerpath=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)

@@ -19,9 +19,9 @@ MODELS=Bache.mo PortPHQ1.mo Puits.mo  ThermoCarre.mo \
 
 all  :: $(MACROS) $(MODELS)
 	@ls $(MACROS) >names
-	@$(SCIDIR)/bin/scilab -nb -nw -f $(SCIDIR)/util/genlib.sce -args "$(NAME) $(NAM)"
+	@$(SCIDIR)/bin/scilab -ns -nb -nw -f $(SCIDIR)/util/genlib.sce -args "$(NAME) $(NAM)"
 	@ls $(MODELS) >models
-	@$(SCIDIR)/bin/scilab -nb -nw -f $(SCIDIR)/util/genmoc.sce
+	@$(SCIDIR)/bin/scilab -ns -nb -nw -f $(SCIDIR)/util/genmoc.sce
 clean::
 
 distclean::
