@@ -196,7 +196,10 @@ static char **scilab_completion (const char *, int, int);
 static void initialize_readline ()
 {
   /* Tell the completer that we want a crack first. */
-  rl_attempted_completion_function = scilab_completion;
+  /* I remove the completion since it troubles the cup and paste 
+   * of data with tabs 
+   */
+  /*  rl_attempted_completion_function = scilab_completion; */
 }
 
 static char **scilab_completion (const char * text,int start,int end)
