@@ -1,3 +1,4 @@
+-->xdel(winsid())
 26 //scicos
  1  //Thermostat
      -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
@@ -92,3 +93,4 @@
   //13 sound demo 
   0 //Exit scicos demo
 0 // Exit
+

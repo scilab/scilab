@@ -1,3 +1,4 @@
+-->xdel(winsid())
 6 //graphics : more surfaces
  1   // surface with holes 1
  2   // surface with holes 2
@@ -13,3 +14,4 @@
  12  // Rieman surface
  0   //exit
 0 // Exit
+

@@ -1,3 +1,4 @@
+-->xdel(winsid())
 15  //Signal Processing
   1    // Spectral Estimation
   2    // IIR filter Design
@@ -19,3 +20,4 @@
   5  // Bode plots
   0 //Exit Signal Processing
 0 // Exit
+

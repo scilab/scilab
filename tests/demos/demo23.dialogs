@@ -1,3 +1,4 @@
+-->xdel(winsid())
 23 //LMITOOL
   1  // H_infinity gain
   default
@@ -23,3 +24,4 @@
   o
   0 // Exit
 0 // Exit
+

@@ -1,3 +1,4 @@
+-->xdel(winsid())
 17 //Fortran translator
   1 // Clauses,loops and operations
   2 // matrix concatenation
@@ -7,3 +8,4 @@
   6 // matrix division
   0    //Exit
 0 // Exit
+

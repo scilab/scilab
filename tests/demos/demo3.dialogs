@@ -1,3 +1,4 @@
+-->xdel(winsid())
 3 //Graphics : Xprimitives
  1   //Graphics X11 1
  2   //Graphics X11 2
@@ -10,3 +11,4 @@
  9   //Draw the bike
  0   //exit
 0 // Exit
+

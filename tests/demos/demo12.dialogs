@@ -1,3 +1,4 @@
+-->xdel(winsid())
 12  //Wheel Simulation 
   1   //reading a precomputed trajectory
 12  //Wheel Simulation 
@@ -14,3 +15,4 @@
         o         //Ok
     1  //Stop
 0 // Exit
+

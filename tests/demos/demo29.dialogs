@@ -1,3 +1,4 @@
+-->xdel(winsid())
 29  // Communication with PVM
   o // start daemon
   o // start another scilab
@@ -7,3 +8,4 @@
   o // send back the eigenvalues
   o // receive the eigenvalues
 0 // Exit
+

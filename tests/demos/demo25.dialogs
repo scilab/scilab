@@ -1,3 +1,4 @@
+-->xdel(winsid())
 25 //Control Examples
   1 // LQG
     1  // Continuous time
@@ -82,3 +83,4 @@
          0                // Cancel
   0 //Exit Control examples
 0 // Exit
+
