@@ -102,11 +102,10 @@ if ~ok then
   return,
 end
 
-if ~or(typ_x) & or(typ_z) & %scicos_solver<>100 then
+if ~or(typ_x) & or(typ_z)  then
   message(['For using treshold with explicit solver (0),';
 	   'you need a block with continuous-time state in your diagram.';
-      'You can include DUMMY CLSS block (linear palette)'
-      'in your diagram, or switch to implicit solver (100).']);
+      'You can include DUMMY CLSS block (linear palette).']);
   cpr=list()
   ok=%f;
   return
