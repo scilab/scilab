@@ -72,6 +72,7 @@ extern int C2F(cresparsei)  __PARAMS((char *fname, integer *stlw, integer *it, i
 extern int C2F(getlistvect)  __PARAMS((char *fname, integer *topk, integer *spos, integer *lnum, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long fname_len));
 extern int C2F(getvect)  __PARAMS((char *fname, integer *topk, integer *lw, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long fname_len));
 extern int C2F(getrmat)  __PARAMS((char *fname, integer *topk, integer *lw, integer *m, integer *n, integer *lr, unsigned long fname_len));
+extern int C2F(getcmat)  __PARAMS((char *fname, integer *topk, integer *lw, integer *m, integer *n, integer *lr, unsigned long fname_len));
 extern int C2F(getrvect)  __PARAMS((char *fname, integer *topk, integer *lw, integer *m, integer *n, integer *lr, unsigned long fname_len));
 extern int C2F(getscalar)  __PARAMS((char *fname, integer *topk, integer *lw, integer *lr, unsigned long fname_len));
 extern int C2F(matsize)  __PARAMS((char *fname, integer *topk, integer *lw, integer *m, integer *n, unsigned long fname_len));

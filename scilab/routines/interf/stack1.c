@@ -106,6 +106,27 @@ int C2F(getrmat)(fname, topk, lw, m, n, lr, fname_len)
   }
   return TRUE_;
 }
+/* ------------------------------------------------------------------
+ * getcmat like getmat but we check for a complex matrix
+ *------------------------------------------------------------------ */
+
+int C2F(getcmat)(fname, topk, lw, m, n, lr, fname_len)
+     char *fname;
+     integer *topk, *lw, *m, *n, *lr;
+     unsigned long fname_len;
+{
+  integer lc, it;
+
+  if ( C2F(getmat)(fname, topk, lw, &it, m, n, lr, &lc, fname_len) == FALSE_ )
+    return FALSE_;
+
+  if (it != 1) {
+    Scierror(202,"%s: Argument %d: wrong type argument expecting a complex matrix\r\n",
+           get_fname(fname,fname_len), Rhs + (*lw - *topk));
+    return FALSE_;
+  }
+  return TRUE_;
+}
 
 /*------------------------------------------------------------------ 
  * matsize :
