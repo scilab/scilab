@@ -1,77 +1,94 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>fec_properties</TITLE>
+
   <TYPE>Scilab Data type</TYPE>
-  <DATE> 2002</DATE>
-  <SHORT_DESCRIPTION name="fec_properties"> description of the
-   fec entities properties</SHORT_DESCRIPTION>
+
+  <DATE>2002</DATE>
+
+  <SHORT_DESCRIPTION name="fec_properties">description of the fec entities
+  properties</SHORT_DESCRIPTION>
+
   <DESCRIPTION>
-    <P>
-  The Fec entity is a leaf of the graphics entities hierarchy. It
-  represents 2D finite elements plots  (see
-  <VERB>fec</VERB>, <VERB>Sgrayplot</VERB>).
-  </P>
+    <P>The Fec entity is a leaf of the graphics entities hierarchy. It
+    represents 2D finite elements plots (see <VERB>fec</VERB>,
+    <VERB>Sgrayplot</VERB>).</P>
+
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="visible: ">
-        <SP>This field contains the  <VERB>visible</VERB> property value
-   for the entity . It should
-   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  . By default, 
-   the plot is visible, the value's property is  <VERB>&quot;on&quot;
-   </VERB>. If <VERB>&quot;off&quot;</VERB> the plot is not drawn on the screen.</SP>
+        <SP>This field contains the <VERB>visible</VERB> property value for
+        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
+        By default, the plot is visible, the value's property is <VERB>"on"
+        </VERB>. If <VERB>"off"</VERB> the plot is not drawn on the
+        screen.</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="data: ">
-        <SP>This is a three column matrix <VERB>[x,y,f]</VERB>, where <VERB>x(i)</VERB>
-    and <VERB>y(i)</VERB> are the coordinates of the  <VERB>i</VERB>'th
-    node. <VERB>f(i)</VERB> is the value associated to the node <VERB>i</VERB>.</SP>
+        <SP>This is a three column matrix <VERB>[x,y,f]</VERB>, where
+        <VERB>x(i)</VERB> and <VERB>y(i)</VERB> are the coordinates of the
+        <VERB>i</VERB>'th node. <VERB>f(i)</VERB> is the value associated to
+        the node <VERB>i</VERB>.</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="triangles: ">
-        <SP>This is a five column matrix
-    <VERB>[tn,n1,n2,n3,flag]</VERB>. <VERB>tn(j)</VERB> is the
-    triangle number. <VERB>n1(j)</VERB>, <VERB>n2(j)</VERB> and
-    <VERB>n3(j)</VERB> are the index of the nodes which constitute
-    the triangle.   (<VERB>flag(j)</VERB> is not used).</SP>
+        <SP>This is a five column matrix <VERB>[tn,n1,n2,n3,flag]</VERB>.
+        <VERB>tn(j)</VERB> is the triangle number. <VERB>n1(j)</VERB>,
+        <VERB>n2(j)</VERB> and <VERB>n3(j)</VERB> are the index of the nodes
+        which constitute the triangle. (<VERB>flag(j)</VERB> is not
+        used).</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the fec
-      entity should be of the type <VERB>&quot;Axes&quot;</VERB> or <VERB>&quot;Agregation&quot;</VERB>.</SP>
+        <SP>This property contains the handle of the parent. The parent of the
+        fec entity should be of the type <VERB>"Axes"</VERB> or
+        <VERB>"Agregation"</VERB>.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+
+  <EXAMPLE><![CDATA[
+
 
    set("figure_style","new"); //create a figure
 
    x=-10:10; y=-10:10;m =rand(21,21);
    Sgrayplot(x,y,m);
    a=get("current_axes");
-   f=a.children.children(2)
+   f=a.children.children(1)
    f.data(:,3)=(1:size(f.data,1))';
    a.parent.color_map=hotcolormap(64);
 
- ]]>
-  </EXAMPLE>
+ 
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>set</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>get</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>delete</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>fec</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>Sgrayplot</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
+
   <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>
