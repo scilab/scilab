@@ -105,7 +105,7 @@ if mtlb_opts==[] then //binary save
       P=5
       T=1
     else
-      error('Attempt to write an unsupported data type to an ASCII file'
+      error('Attempt to write an unsupported data type to an ASCII file')
     end
     [m,n]=size(x)
   
