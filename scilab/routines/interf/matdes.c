@@ -4663,6 +4663,7 @@ int gset(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2,numrow3,numcol3,l3,num,cur,na,verb=0;
   unsigned long hdl; 
   int lw;
+  BOOL vis_save;
   sciPointObj *pobj;
 
   /* F.Leray Adding some tmp variable for SCI_SURFACE / data case*/
@@ -4776,41 +4777,32 @@ int gset(fname,fname_len)
     }
   if ( (hdl != (unsigned long)0) ) {/**DJ.Abdemouche 2003**/  /* F.Leray 16.03.04*/
     pobj = sciGetPointerFromHandle(hdl);
+    vis_save=sciGetVisibility(pobj); /*used not to redraw the figure is object remains invisible SS 20.04.04*/
     /* make a test on SCI_SURFACE here*/
     if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
       {
-	
 	if (sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
 	  Scierror(999,"%s: %s\r\n",fname,error_message);
 	  return 0;
 	}
       }
     else
-      {
-	/* F.Leray Work here*/
+      {	/* F.Leray Work here*/
 	if (strncmp(cstk(l2),"data",4) !=0) {
 	  sciprint("Impossible case: Handle must be a SCI_SURFACE one and marker must be data\n");
 	  return -1;
 	}
-	
 	if(VarType(3) != 16){
 	  Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
 	  return -1;
 	}
-	
 	GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
 	
-	/* GetListRhsVar(3,1,"d",&numrow[0],&numcol[0],&lxyzcol[0]); Not good because 3,1 is the string character "3d x y z [en option col]"*/
+	/* GetListRhsVar(3,1,"d",&numrow[0],&numcol[0],&lxyzcol[0]); 
+	   Not good because 3,1 is the string character "3d x y z [en option col]"*/
 	GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&lxyzcol[0]);
 	GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&lxyzcol[1]);
-	/*
-	GetListRhsVar(3,3,"l",&m3l,&n3l,&l3l);
-	if ( m3l > 2 ) 
-	{
-	  sciprint("Error third argument must be a matrix or a list of 2 matrices [zz zcol]\r\n");
-	    return 0;
-	  }
-	*/
+
 	if(m3tl == 4)
 	  {
 	    GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
@@ -4830,18 +4822,19 @@ int gset(fname,fname_len)
 	
 	if (set3ddata(pobj, lxyzcol, numrow, numcol,flagc,fname)!=0)  return 0;
       }
-    
-    if ((strncmp(cstk(l2),"figure_style",12) !=0) &&
-	(strncmp(cstk(l2),"old_style",9) !=0 ) && 
-	(strncmp(cstk(l2),"current_axes",12) !=0) &&
-	(strncmp(cstk(l2),"default_figure",14) !=0) && 
-	(strncmp(cstk(l2),"default_axes",12) !=0) &&
-	(pobj != pfiguremdl) && (pobj != paxesmdl)) { 
-      num= sciGetNumFigure (pobj);    
-      C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-      sciDrawObj(sciGetParentFigure(pobj)); /* F.Leray we redraw here*/
-      C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    if (!(vis_save==0&&sciGetVisibility(pobj)==0)) {/* do not redraw figure if object remains invisible */
+      if ((strncmp(cstk(l2),"figure_style",12) !=0) &&
+	  (strncmp(cstk(l2),"old_style",9) !=0 ) && 
+	  (strncmp(cstk(l2),"current_axes",12) !=0) &&
+	  (strncmp(cstk(l2),"default_figure",14) !=0) && 
+	  (strncmp(cstk(l2),"default_axes",12) !=0) &&
+	  (pobj != pfiguremdl) && (pobj != paxesmdl)) { 
+	num= sciGetNumFigure (pobj);    
+	C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+	sciDrawObj(sciGetParentFigure(pobj)); /* F.Leray we redraw here*/
+	C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
     }
   }
   else if (sciSet((sciPointObj *) NULL, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
@@ -7631,7 +7624,7 @@ int draw(fname,fname_len)
   unsigned long hdl;
   sciPointObj *pobj, *psubwin, *tmpsubwin;
   integer m,n,l,lw;
-  BOOL tmpmode;
+/*  BOOL tmpmode; SS 20.04.04*/
    
  
   C2F(sciwin)();
@@ -7654,11 +7647,11 @@ int draw(fname,fname_len)
       psubwin = (sciPointObj *) sciGetParentSubwin(pobj);
       if (psubwin != ( sciPointObj *)NULL )  {  
 	sciSetSelectedSubWin(psubwin); 
-	tmpmode = pSUBWIN_FEATURE(psubwin)->visible;
-	pSUBWIN_FEATURE(psubwin)->visible = TRUE ;
+	/*	tmpmode = pSUBWIN_FEATURE(psubwin)->visible;
+		pSUBWIN_FEATURE(psubwin)->visible = TRUE ;SS 20.04.04*/
 	sciSetVisibility(pobj,TRUE) ;
 	sciDrawObj(pobj);
-	pSUBWIN_FEATURE(psubwin)->visible = tmpmode;
+	/*pSUBWIN_FEATURE(psubwin)->visible = tmpmode;SS 20.04.04*/
 	sciSetSelectedSubWin(tmpsubwin);
       }
       else {
