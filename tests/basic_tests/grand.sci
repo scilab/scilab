@@ -9,7 +9,7 @@ NR=1000
 answer=ones(NB,NR);
 genlst=[1,5,10,20,32]
 nbad = 0
-str=['For five virual generators of the 32';...
+str=['For five virtual generators of the 101';...
      ' This test generates'+string(NB)+' numbers then resets the block';...
       '      and does it again';...
       ' Any disagreements are reported -- there should be none'];
@@ -17,7 +17,7 @@ write (%io(2),str)
 //
 //     Set up Generators
 //
-grand('setall',12345,54321);
+grand('setall',12345,54321,6789,9876);
 //
 //     For a selected set of generators
 //
