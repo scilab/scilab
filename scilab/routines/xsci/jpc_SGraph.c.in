@@ -237,7 +237,7 @@ static int AddNewWin( popupc, ScilabXgc)
 
   XtAddEventHandler(ScilabXgc->drawbox, 
 		    ButtonPressMask|PointerMotionMask|ButtonReleaseMask|
-		    KeyPressMask|KeyReleaseMask,False,
+		    KeyPressMask,False,
 		    (XtEventHandler) EventProc, (XtPointer) popupc);
 
   /** Communication between panner and viewport **/
@@ -676,13 +676,13 @@ EventProc(widget, number, event)
 		     event->xkey.y,(int)keysym,0,0);
 
       break;
-    case  KeyRelease :
+      /*    case  KeyRelease :
       XLookupString((XKeyEvent *)&(event->xkey), buf, 
 		    cent, &keysym,&compose_status);
       PushClickQueue((int) number,event->xkey.x,
 		     event->xkey.y,-(int)keysym,0,0);
 
-      break;
+		     break;*/
     default:
       /* printf("XXXJe suis ds EventProc defaut, fenetre %d\r\n",(integer) number);*/
       return(0);
