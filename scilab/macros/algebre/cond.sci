@@ -11,13 +11,18 @@ function c=cond(A)
       c=s(1)/s($)
     end
   else
-    [t,n]=typename()
-    n=stripblanks(n(find(t==type(A))))
+    if type(A)==16|type(A)==17 then
+      n=getfield(1,A);n=n(1)
+    else
+      [t,n]=typename()
+      n=stripblanks(n(find(t==type(A))))
+    end
     fun='%'+n+'_cond'
     if exists(fun)==1 then
-      execstr('c='+fun+'(A)')
+      execstr('y='+fun+'(A,flag)')
+      
     else
-      error('cond not defined for type ""'+n+'"" .'+..
+       error('cond not defined for type ""'+n+'"" .'+..
 	     'Check argument or define function '+fun)
     end
   end
