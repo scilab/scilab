@@ -28,9 +28,9 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    return in <VERB>version</VERB> the Scilab version name</P> and in
+    return in <VERB>version</VERB> the Scilab version name and in
     <VERB>opts</VERB> build options which can be used to determine if scilab
-    has been build with pvm, tk or ocaml.
+    has been build with pvm, tk or ocaml.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
