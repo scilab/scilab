@@ -16,9 +16,10 @@ c
          write(6,'(''sawtth     t='',e10.3,'' flag='',i1)') t,flag
       endif
 c
-      if (flag.eq.1) then
+      if (flag.eq.1.and.nevprt.eq.0) then
          y(1)=t-z(1)
-
+      elseif (flag.eq.1.and.nevprt.eq.1) then
+         y(1)=0.0d0
       elseif (flag.eq.2.and.nevprt.eq.1) then
          z(1)=t
       elseif (flag.eq.4) then

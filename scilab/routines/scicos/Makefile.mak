@@ -8,8 +8,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/scicos.lib
 
-BLOCKSF=intcos.obj coselm.obj \
-	evtdly.obj cstblk.obj \
+BLOCKSF=evtdly.obj cstblk.obj \
 	lusat.obj pload.obj qzcel.obj qzflr.obj\
 	qzrnd.obj qztrn.obj scope.obj lsplit.obj csslti.obj\
 	dsslti.obj trash.obj zcross.obj \
@@ -19,11 +18,11 @@ BLOCKSF=intcos.obj coselm.obj \
 	sawtth.obj tcslti.obj tcsltj.obj scopxy.obj evscpe.obj integr.obj readf.obj affich.obj\
 	intpol.obj intplt.obj minblk.obj maxblk.obj dlradp.obj  iocopy.obj \
 	sum2.obj sum3.obj delayv.obj mux.obj demux.obj samphold.obj dollar.obj mscope.obj \
-	eselect.obj intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj \
-	absblk.obj andlog.obj bidon.obj gain.obj cdummy.obj dband.obj cosblk.obj
+	eselect.obj intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj diffblk.obj\
+	absblk.obj andlog.obj bidon.obj gain.obj cdummy.obj dband.obj cosblk.obj 
 
-BLOCKS_CODE=intcos.obj coselm.obj \
-	evtdly.obj cstblk.obj \
+
+BLOCKS_CODE=evtdly.obj cstblk.obj \
 	lusat.obj pload.obj qzcel.obj qzflr.obj\
 	qzrnd.obj qztrn.obj scope.obj lsplit.obj csslti.obj\
 	dsslti.obj trash.obj zcross.obj \
@@ -33,18 +32,19 @@ BLOCKS_CODE=intcos.obj coselm.obj \
 	sawtth.obj tcslti.obj tcsltj.obj scopxy.obj evscpe.obj integr.obj readf.obj affich.obj\
 	intpol.obj intplt.obj minblk.obj maxblk.obj dlradp.obj  iocopy.obj \
 	sum2.obj sum3.obj delayv.obj mux.obj demux.obj samphold.obj dollar.obj mscope.obj \
-	eselect.obj intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj \
+	eselect.obj intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj diffblk.obj\
 	blocks.obj 
 
 BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj writeau.obj \
 	readau.obj plusblk.obj slider.obj
 
-OBJSF=sciblk.obj  addevt.obj doit.obj odoit.obj zdoit.obj scicos.obj cosini.obj cossim.obj cosend.obj \
-	 sctree.obj ftree2.obj ftree3.obj ftree4.obj skipvars.obj scierr.obj scifunc.obj \
+OBJSF=intcos.obj coselm.obj sciblk.obj  addevt.obj doit.obj odoit.obj zdoit.obj scicos.obj \
+	cosini.obj cossim.obj cosend.obj \
+	sctree.obj ftree2.obj ftree3.obj ftree4.obj skipvars.obj scierr.obj scifunc.obj \
 	list2vars.obj dtosci.obj itosci.obj scitoi.obj scitod.obj vvtosci.obj \
 	scitovv.obj cosiord.obj $(BLOCKS_CODE)
 
-OBJSC=callf.obj import.obj sciblk2.obj simblk.obj grblk.obj realtime.obj intrealtime.obj $(BLOCKSC)
+OBJSC=callf.obj import.obj sciblk2.obj sciblk2i.obj simblk.obj grblk.obj realtime.obj intrealtime.obj $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
 

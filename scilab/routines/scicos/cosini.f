@@ -102,21 +102,21 @@ c
             if(outtb(jj).ne.outt(jj)) goto 30
  20     continue
 c     
-        if(solver.eq.100) then
-           do 25 kfun=1,nblk
-              if(xptr(kfun+1)-xptr(kfun).gt.0) then
-                 flag=7
-                 call callf(kfun,nclock,funptr,funtyp,told,
-     $                w,x,xptr,z,zptr,iz,izptr,rpar,
-     $                rpptr,ipar,ipptr,tvec,ntvec,inpptr,
-     $                inplnk,outptr,outlnk,lnkptr,outtb,flag) 
-                 if (flag .lt. 0) then
-                    ierr = 5 - flag
-                    return
-                 endif
-              endif
- 25        continue
-        endif
+c        if(solver.eq.100) then
+c           do 25 kfun=1,nblk
+c              if(xptr(kfun+1)-xptr(kfun).gt.0) then
+c                 flag=7
+c                 call callf(kfun,nclock,funptr,funtyp,told,
+c     $                w,x,xptr,z,zptr,iz,izptr,rpar,
+c     $                rpptr,ipar,ipptr,tvec,ntvec,inpptr,
+c     $                inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+c                 if (flag .lt. 0) then
+c                    ierr = 5 - flag
+c                    return
+c                 endif
+c              endif
+c 25        continue
+c        endif
         return
  30     continue
         call dcopy(nout,outtb,1,outt,1)

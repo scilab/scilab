@@ -24,7 +24,7 @@ c
          do 11 i=1,nu
             y(i)=xd(i)
  11      continue
-      elseif(flag.eq.6) then
+      elseif(flag.eq.6.or.flag.eq.7) then
          do 12 i=1,nu
             x(i)=u(i)
  12      continue

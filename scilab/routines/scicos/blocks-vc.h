@@ -2,8 +2,6 @@
 #define __SCICOS_BLOCKS__ 
 /******* Copyright INRIA *************/
 /******* Please do not edit *************/
-extern void F2C(intcos) __PARAMS((ARGS_scicos));
-extern void F2C(coselm) __PARAMS((ARGS_scicos));
 extern void F2C(evtdly) __PARAMS((ARGS_scicos));
 extern void F2C(cstblk) __PARAMS((ARGS_scicos));
 extern void F2C(lusat) __PARAMS((ARGS_scicos));
@@ -66,6 +64,7 @@ extern void F2C(fsv) __PARAMS((ARGS_scicos));
 extern void F2C(memo) __PARAMS((ARGS_scicos));
 extern void F2C(fscope) __PARAMS((ARGS_scicos));
 extern void F2C(scoxy) __PARAMS((ARGS_scicos));
+extern void F2C(diffblk) __PARAMS((ARGS_scicos));
 extern void F2C(absblk) __PARAMS((ARGS_scicos));
 extern void F2C(andlog) __PARAMS((ARGS_scicos));
 extern void F2C(bidon) __PARAMS((ARGS_scicos));
@@ -92,13 +91,13 @@ OpTab tabsim[] ={
 {"bidon",(ScicosF) F2C(bidon)},
 {"cdummy",(ScicosF) F2C(cdummy)},
 {"cosblk",(ScicosF) F2C(cosblk)},
-{"coselm",(ScicosF) F2C(coselm)},
 {"csslti",(ScicosF) F2C(csslti)},
 {"cstblk",(ScicosF) F2C(cstblk)},
 {"dband",(ScicosF) F2C(dband)},
 {"delay",(ScicosF) F2C(delay)},
 {"delayv",(ScicosF) F2C(delayv)},
 {"demux",(ScicosF) F2C(demux)},
+{"diffblk",(ScicosF) F2C(diffblk)},
 {"dlradp",(ScicosF) F2C(dlradp)},
 {"dollar",(ScicosF) F2C(dollar)},
 {"dsslti",(ScicosF) F2C(dsslti)},
@@ -114,7 +113,6 @@ OpTab tabsim[] ={
 {"gensqr",(ScicosF) F2C(gensqr)},
 {"hltblk",(ScicosF) F2C(hltblk)},
 {"ifthel",(ScicosF) F2C(ifthel)},
-{"intcos",(ScicosF) F2C(intcos)},
 {"integr",(ScicosF) F2C(integr)},
 {"intplt",(ScicosF) F2C(intplt)},
 {"intpol",(ScicosF) F2C(intpol)},
@@ -155,9 +153,9 @@ OpTab tabsim[] ={
 {"sinblk",(ScicosF) F2C(sinblk)},
 {"slider",(ScicosF) slider},
 {"sqrblk",(ScicosF) F2C(sqrblk)},
+{"sum",(ScicosF) sum},
 {"sum2",(ScicosF) F2C(sum2)},
 {"sum3",(ScicosF) F2C(sum3)},
-{"sum",(ScicosF) sum},
 {"switchn",(ScicosF) switchn},
 {"tanblk",(ScicosF) F2C(tanblk)},
 {"tcslti",(ScicosF) F2C(tcslti)},
@@ -170,6 +168,6 @@ OpTab tabsim[] ={
 {"zcross",(ScicosF) F2C(zcross)},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 82 ;
+int ntabsim= 81 ;
 #endif 
 /***********************************/

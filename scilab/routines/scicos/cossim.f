@@ -443,14 +443,6 @@ c     .     update outputs of 'c' type blocks with no continuous state
  343        continue
 C     
          else
-C     integrate
-c            if (hot) then
-c               istate = 2
-c            else
-c               istate = 1
-c            endif
-            
-c            itask = 4
             info(4)=1
             info(3)=0
 C     Compute tcrit (rhot(1))
@@ -498,6 +490,24 @@ c
                nng=ng
                info(3)=0
             endif
+
+            if(info(1).eq.0) then
+               do 36 kfun=1,nblk
+                  if(xptr(kfun+1)-xptr(kfun).gt.0) then
+                     flag=7
+                     nclock=0
+                     call callf(kfun,nclock,funptr,funtyp,told,
+     $                    w,x,xptr,z,zptr,iz,izptr,rpar,
+     $                    rpptr,ipar,ipptr,tvec,ntvec,inpptr,
+     $                    inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+                     if (flag .lt. 0) then
+                        ierr = 5 - flag
+                        return
+                     endif
+                  endif
+ 36            continue
+            endif
+
 c     
 c            write(6,'(''told='',e10.3,'' t='',e10.3,'' neq='',i3)') 
 c     $           told,t,neq(1)
