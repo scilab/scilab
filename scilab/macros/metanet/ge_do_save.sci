@@ -45,7 +45,6 @@ function ok=ge_do_save(GraphList,path)
     end
     
   end
-pause
   fname=path
   if fileinfo(fname)<>[] then
     if MSDOS then

@@ -32,10 +32,14 @@ function [k]=dist2polylines(xp,yp,pt)
     dx=x(:,2)-x(:,1);
     dy=y(:,2)-y(:,1);
     d_d=dx.^2+dy.^2;
-    if find(d_d==0)<>[] then pause,end
+
+    kz=find(d_d==0);d_d(kz)=1
+
     d_x=( dy.*(-x(:,2).*y(:,1)+x(:,1).*y(:,2))+dx.*(dx*pt(1)+dy*pt(2)))./d_d;
-    d_y=(-dx.*(-x(:,2).*y(:,1)+x(:,1).*y(:,2))+dy.*(dx*pt(1)+dy*pt(2)))./d_d;
-    [d,k]=min((d_x-pt(1)).^2+(d_y-pt(2)).^2) //distance with all points
+    d_y=(-dx.*(-x(:,2).*y(:,1)+x(:,1).*y(:,2))+dy.*(dx*pt(1)+dy*pt(2)))./ d_d;
+    D=(d_x-pt(1)).^2+(d_y-pt(2)).^2 //distance with all points
+    D(kz)=%inf
+    [d,k]=min(D) //distance with all points
     if d<2 then
       k=floor((ki(k)-1)/size(xp,1))+1
     else
