@@ -20,7 +20,7 @@
 #include <X11/Xaw/Viewport.h>
 #include <X11/Xaw/Panner.h>	
 #include <X11/IntrinsicP.h>
-#include <X11/Xaw/ViewportP.h>
+#include <X11/Xaw3d/ViewportP.h>
 
 #include <string.h>
 #include <malloc.h>

@@ -63,5 +63,5 @@ spops.o:       ../stack.h
 # according to compiler, do not optimize the following files
 
 intreadmps.o: intreadmps.f
-	$(FC)  -c intreadmps.f -o intreadmps.o
+	$(FC) -g -c intreadmps.f -o intreadmps.o
 

@@ -50,22 +50,22 @@ include ../Make.lib
 # according to compiler, do not optimize the following files
 
 hqror2.o: hqror2.f
-	$(FC)  -c hqror2.f -o hqror2.o
+	$(FC) -g -c hqror2.f -o hqror2.o
 
 comqr3.o: comqr3.f
-	$(FC)  -c comqr3.f -o comqr3.o
+	$(FC) -g -c comqr3.f -o comqr3.o
 
 tql2.o: tql2.f
-	$(FC)  -c tql2.f -o tql2.o
+	$(FC) -g -c tql2.f -o tql2.o
 
 imtql3.o: imtql3.f
-	$(FC)  -c imtql3.f -o imtql3.o
+	$(FC) -g -c imtql3.f -o imtql3.o
 
 dsvdc.o: dsvdc.f
-	$(FC)  -c dsvdc.f -o dsvdc.o
+	$(FC) -g -c dsvdc.f -o dsvdc.o
 
 wsvdc.o: wsvdc.f
-	$(FC)  -c wsvdc.f -o wsvdc.o
+	$(FC) -g -c wsvdc.f -o wsvdc.o
 
 pade.o: pade.f
-	$(FC)  -c pade.f -o pade.o
+	$(FC) -g -c pade.f -o pade.o

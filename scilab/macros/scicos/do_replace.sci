@@ -162,8 +162,10 @@ o(2)(8)=cop
 drawobj(o_n)
 drawobj(o)
 scs_m(k_n)=o
+if pixmap then xset('wshow'),end
+scs_m_save=scs_m,nc_save=needcompile
 needcompile=4
-
+[scs_m_save,nc_save,enable_undo,edited]=resume(scs_m_save,nc_save,%t,%t)
 
 
 

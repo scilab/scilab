@@ -34,9 +34,9 @@ Xsed="sed -e s/^X//"
 if test "${CDPATH+set}" = set; then CDPATH=; export CDPATH; fi
 
 ### BEGIN LIBTOOL CONFIG
-# Libtool was configured as follows, on host riobravo.inria.fr:
+# Libtool was configured as follows, on host scicos.inria.fr:
 #
-# CC="cc" CFLAGS="-O -Dlinux -fwritable-strings -DNARROWPROTO" CPPFLAGS="" \
+# CC="cc" CFLAGS="-g -Dlinux -fwritable-strings -DNARROWPROTO" CPPFLAGS="" \
 # LD="ld" LDFLAGS="" LIBS="-lm " \
 # NM="/usr/bin/nm -B" RANLIB="ranlib" LN_S="ln -s" \
 # DLLTOOL="" OBJDUMP="" AS="" \
@@ -138,7 +138,7 @@ dlopen_self_static=unknown
 link_static_flag="-static"
 
 # Compiler flag to turn off builtin functions.
-no_builtin_flag=" -fno-builtin -fno-rtti -fno-exceptions"
+no_builtin_flag=" -fno-builtin"
 
 # Compiler flag to allow reflexive dlopens.
 export_dynamic_flag_spec="\${wl}--export-dynamic"

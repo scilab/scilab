@@ -78,7 +78,7 @@ predef('all')
 %helps=initial_help_chapters()
 
 // Define scicos palettes of blocks, scicos_menus and shortcuts
-[scicos_pal,%scicos_menu,%scicos_short]=initial_scicos_tables()
+[scicos_pal,%scicos_menu,%scicos_short,%scicos_help]=initial_scicos_tables()
 %scicos_display_mode=0  // =1 if pixmap to be used for display
 
 //Define Initial demo tables, demolist is a two column matrix of strings

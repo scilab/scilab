@@ -27,7 +27,7 @@ TERMCAPLIB = -ltermcap
 # and for linking: $(CC) -o $(PROGRAM) $(OBJS) $(CC_LDFLAGS)
 ###########
 CC = cc
-CC_OPTIONS = -O -Dlinux -fwritable-strings -DNARROWPROTO
+CC_OPTIONS = -g -Dlinux -fwritable-strings -DNARROWPROTO
 CC_LDFLAGS = -lieee
 CC_PICFLAGS = 
 
@@ -37,7 +37,7 @@ CC_PICFLAGS =
 # and for linking: $(FC) -o $(PROGRAM) $(OBJS) $(FC_LDFLAGS)
 ##################
 FC = g77
-FC_OPTIONS = -O
+FC_OPTIONS = -g
 FC_LDFLAGS = -lieee -ldl -rdynamic
 FC_PICFLAGS = 
 
@@ -59,10 +59,10 @@ LD_LDFLAGS = -lieee
 ##########
 DLDLIB = 
 DLD_SUBDIR = 
-PVMLIB = /home/gomez/tmp/scilab-2.6/pvm3/lib/LINUX/libpvm3.a
-PVMGLIB = /home/gomez/tmp/scilab-2.6/pvm3/lib/LINUX/libgpvm3.a
-PVMROOT = /home/gomez/tmp/scilab-2.6/pvm3
-XAWLIB = -lXaw
+PVMLIB = /usr/src/local/scilab/pvm3/lib/LINUX/libpvm3.a
+PVMGLIB = /usr/src/local/scilab/pvm3/lib/LINUX/libgpvm3.a
+PVMROOT = /usr/src/local/scilab/pvm3
+XAWLIB = -lXaw3d
 XMULIB = -lXmu
 XAW_LOCAL_SUBDIR = 
 XAW_LOCAL_LIB = 
@@ -75,7 +75,7 @@ XLIBS =  -L/usr/X11R6/lib $(XAWLIB) $(XMULIB) -lXt -lXext  -lSM -lICE -lX11 $(X_
 #####################
 TK_INC_PATH = -I/usr/include
 TCL_INC_PATH = -I/usr/include
-TCLTK_LIBS =   -ltk8.3    -ltcl8.3  -ldl
+TCLTK_LIBS =   -ltk8.0    -ltcl8.0  -ldl
 
 #####################
 # for WIN32 version 
