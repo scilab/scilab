@@ -2755,8 +2755,8 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
 		      double *dv2, double *dv3, double *dv4)
 { 
   struct BCG *NewXgc ;
-  integer ne=4, menutyp=2, ierr;
-  char *EditMenus[]={"Figure","Current Axes","Start Entity Picker","Stop  Entity Picker"};
+  integer ne=7, menutyp=2, ierr;
+  char *EditMenus[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties","Start Entity Picker","Stop  Entity Picker"};
   static integer EntryCounter = 0;
   integer WinNum;
   if ( v2 != (integer *) NULL && *v2 != -1 )
