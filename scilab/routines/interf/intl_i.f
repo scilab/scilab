@@ -170,8 +170,14 @@ c     .  variables at the top of the stack
          call lst2vars(il1i,m1i)
          if(err.gt.0) return
          rhs=2+m1i
-      else
-c     .  a matrix single  index 
+      else 
+c     .  a matrix  index 
+         if(m1.gt.icount) then
+c     .     arg3(...)(i,j,..)(...)=arg1 :too many indices in index list
+            call error(21)
+            return
+         endif
+c     .  arg3(...)(i,j,..)=arg1: a matrix single  index 
 c     .  copy it at the top of the stack (may possible to put a pointer)
          call copyvar(il1ir,vol1)
          if(err.gt.0) return
