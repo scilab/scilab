@@ -5043,7 +5043,7 @@ c     go on for the computation
 c     int2db ... (normalement ca doit passer avec -1 sans copie supplementaire)
       call int2db(mX*nX,     istk(iadr(lind)), -1, stk(lind), -1) 
       call int2db(mocc*nocc, istk(iadr(locc)), -1, stk(locc), -1) 
-      call int2db(mX*nX,     istk(iadr(linfo)),-1, stk(linfo),-1) 
+      call int2db(1,     istk(iadr(linfo)),-1, stk(linfo),-1) 
 
 *     copie en "haut" 
       topl = topk - rhs
