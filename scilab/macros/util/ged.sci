@@ -99,6 +99,7 @@ iSeg = 0;
 iCha = 0; // Champ
 iFec = 0;
 iGra = 0;
+iMat = 0; // forgotten object F.Leray 22.10.04
 iAxi = 0; // axis : entity created when using drawaxis method for example
 
 f=getparfig(h);
@@ -166,6 +167,10 @@ for i=1:size(handles,1)
     iGra = iGra+1;
     Graname= "Grayplot("+string(iGra)+")";
     TK_EvalStr('set '+SelObject+" "+Graname);
+   case "Matplot"
+    iMat = iMat+1;
+    Matname= "Matplot("+string(iMat)+")";
+    TK_EvalStr('set '+SelObject+" "+Matname);
    case "Axis"
     iAxi = iAxi+1;
     Axiname= "Axis("+string(iAxi)+")";
@@ -272,8 +277,28 @@ function ged_figure(h)
   TK_EvalFile(SCI+'/tcl/ged/Figure.tcl')
 endfunction
 
+
 function ged_axes(h)
   global ged_handle;ged_handle=h;
+
+  LoadTicks2TCL(h);
+
+// forgotten axes bounds info.
+  TK_SetVar("axes_boundsL",string(h.axes_bounds(1,1)))
+  TK_SetVar("axes_boundsU",string(h.axes_bounds(1,2)))
+  TK_SetVar("axes_boundsW",string(h.axes_bounds(1,3)))
+  TK_SetVar("axes_boundsH",string(h.axes_bounds(1,4)))
+
+  TK_SetVar("Xaxes_visibleToggle",h.axes_visible(1))
+  TK_SetVar("Yaxes_visibleToggle",h.axes_visible(2))
+  TK_SetVar("Zaxes_visibleToggle",h.axes_visible(3))
+
+ // forgotten visibilty info.
+  TK_SetVar("xlabel_visibility",string(h.x_label.visible))
+  TK_SetVar("ylabel_visibility",string(h.y_label.visible))
+  TK_SetVar("zlabel_visibility",string(h.z_label.visible))
+  TK_SetVar("titlelabel_visibility",string(h.title.visible))
+
   TK_SetVar("Lmargins",string(h.margins(1)));
   TK_SetVar("Rmargins",string(h.margins(2)));
   TK_SetVar("Tmargins",string(h.margins(3)));
@@ -337,7 +362,6 @@ function ged_axes(h)
   TK_SetVar("curvis",h.visible)
   TK_SetVar("curfontsize",string(h.font_size))
   TK_SetVar("curfontcolor",string(h.font_color))
-  TK_SetVar("visToggle",h.axes_visible)
   TK_SetVar("limToggle",h.tight_limits)
   TK_SetVar("isoToggle",h.isoview)
   TK_SetVar("cubToggle",h.cube_scaling)
@@ -841,6 +865,18 @@ function ged_grayplot(h)
 
 endfunction
 
+function ged_matplot(h)
+  global ged_handle; ged_handle=h
+  TK_SetVar("curvis",h.visible)
+  TK_SetVar("curdatamapping",h.data_mapping)
+
+  d="["+strcat(string(size(h.data)),'x')+" double array]"
+  TK_SetVar("curdata",d);
+
+  TK_EvalFile(SCI+'/tcl/ged/Matplot.tcl')
+
+endfunction
+
 
 function ged_axis(h)
   global ged_handle; ged_handle=h
@@ -1108,6 +1144,8 @@ function tkged()
      ged_fec(h)
     case "Grayplot"
      ged_grayplot(h)
+    case "Matplot"
+     ged_matplot(h)
     case "Axis"
      ged_axis(h)
   end
@@ -1170,10 +1208,11 @@ function setXdb(xmin, xmax)
   tmp=h.data_bounds;
   tmp(1,1)=xmin;
   tmp(2,1)=xmax;
-  tst=execstr('h.data_bounds=tmp','errcatch','n');
-  if tst<>0 then
-   disp 'Warning: X data_bounds must contain double'
-  end
+  h.data_bounds=tmp;
+//  tst=execstr('h.data_bounds=tmp','errcatch','n');
+//  if tst<>0 then
+//   disp 'Warning: X data_bounds must contain double'
+//  end
 endfunction
 
 
@@ -1182,10 +1221,11 @@ function setYdb(ymin, ymax)
   tmp=h.data_bounds;
   tmp(1,2)=ymin;
   tmp(2,2)=ymax;
-  tst=execstr('h.data_bounds=tmp','errcatch','n');
-  if tst<>0 then
-   disp 'Warning: Y data_bounds must contain double'
-  end
+  h.data_bounds=tmp;
+//  tst=execstr('h.data_bounds=tmp','errcatch','n');
+//  if tst<>0 then
+//   disp 'Warning: Y data_bounds must contain double'
+//  end
 endfunction
 
 function setZdb(zmin, zmax)
@@ -1196,31 +1236,33 @@ function setZdb(zmin, zmax)
       tmp=h.data_bounds;
       tmp(1,3)=zmin;
       tmp(2,3)=zmax;
-      tst=execstr('h.data_bounds=tmp','errcatch','n');
-      h.view='2d';
-      if tst<>0 then
-       disp 'Warning: Z data_bounds must contain double'
-      end
+      h.data_bounds=tmp;
+//      tst=execstr('h.data_bounds=tmp','errcatch','n');
+//      h.view='2d';
+//      if tst<>0 then
+//       disp 'Warning: Z data_bounds must contain double'
+//      end
      case "3d"
       tmp=h.data_bounds;
       tmp(1,3)=zmin;
       tmp(2,3)=zmax;
-      tst=execstr('h.data_bounds=tmp','errcatch','n');
-      if tst<>0 then
-        disp 'Warning: Z data_bounds must contain double'
-      end
+      h.data_bounds=tmp;
+//      tst=execstr('h.data_bounds=tmp','errcatch','n');
+//      if tst<>0 then
+//        disp 'Warning: Z data_bounds must contain double'
+//      end
      end
 endfunction
 
 
 function LogtoggleX( tog)
  global ged_handle; h=ged_handle
+
 tst=execstr("global h;h.log_flags=tog+part(h.log_flags,2)",'errcatch','n');
 
 if tst<>0 then
    disp 'Warning: X bounds must be strictly positive'
 end
-
 endfunction
 
 function LogtoggleY( tog)
@@ -1608,3 +1650,110 @@ function GEDeditvar(varargin)
   TK_EvalStr("GEDsciGUIEditVarDrawGrid "+%_winId)
  
 endfunction
+
+
+// for the ticks arrays Locations and Labels (inside TLIST)
+
+function ged_tablo=GetTab(val,index)
+//disp("ICI")
+ged_tablo(index) =val
+endfunction
+
+
+function ged_tablo=GetTab2(val,index,ged_tablo)
+//disp("ICI")
+ged_tablo(index) =val
+endfunction
+
+
+function setTicksTList(XYZ,locations,labels)
+global ged_handle;h= ged_handle;
+
+TL=tlist(['ticks','locations','labels'],locations,labels);
+
+if XYZ=='X'
+ h.x_ticks=TL;
+elseif XYZ=='Y'
+ h.y_ticks=TL;
+elseif XYZ=='Z'
+ h.z_ticks=TL;
+end
+
+endfunction
+
+
+// Is called by ged_axes and when clicking on Ticks button
+
+function LoadTicks2TCL(h)
+  global ged_handle;ged_handle=h;
+
+  TK_SetVar("SubticksEntryX",string(h.sub_ticks(1)))
+  TK_GetVar("SubticksEntryX")
+ 
+ // disp("h.sub_ticks(1) =")
+ // disp(h.sub_ticks(1));
+
+  TK_SetVar("SubticksEntryY",string(h.sub_ticks(2)))
+
+  select h.view
+   case "2d" 
+    h.view='3d'
+    TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
+    h.view='2d'
+   case "3d"
+     TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
+   end
+
+  TK_SetVar("XautoticksToggle",h.auto_ticks(1))
+  TK_SetVar("YautoticksToggle",h.auto_ticks(2))
+  TK_SetVar("ZautoticksToggle",h.auto_ticks(3))
+
+  //ticks value: X axis
+  ticks = h.x_ticks;
+  sizeticks = size(ticks.locations,1);
+  TK_SetVar("nbticks_x",string(sizeticks));
+  for i=1:sizeticks
+    val= "LOCATIONS_X("+string(i)+")";
+      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+    val= "LABELS_X("+string(i)+")";
+      TK_EvalStr('set '+val+" "+ticks.labels(i));
+  end
+
+  //ticks value: Y axis
+  ticks = h.y_ticks;
+  sizeticks = size(ticks.locations,1);
+  TK_SetVar("nbticks_y",string(sizeticks));
+  for i=1:sizeticks
+    val= "LOCATIONS_Y("+string(i)+")";
+      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+    val= "LABELS_Y("+string(i)+")";
+      TK_EvalStr('set '+val+" "+ticks.labels(i));
+  end
+
+ //ticks value: Z axis
+  ticks = h.z_ticks;
+  sizeticks = size(ticks.locations,1);
+  TK_SetVar("nbticks_z",string(sizeticks));
+  for i=1:sizeticks
+    val= "LOCATIONS_Z("+string(i)+")";
+      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+    val= "LABELS_Z("+string(i)+")";
+      TK_EvalStr('set '+val+" "+ticks.labels(i));
+  end
+
+endfunction
+
+
+
+function Subtickstoggle( tog, index)
+ global ged_handle; h=ged_handle
+
+ subticks=h.sub_ticks;
+ subticks(index)=tog;
+//disp("subticks vaut:")
+//disp(subticks)
+
+ h.sub_ticks = subticks;
+endfunction
+
+
