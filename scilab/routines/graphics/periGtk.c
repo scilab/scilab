@@ -466,7 +466,7 @@ static gint timeout_test (BCG *gc)
       /*sciprint("je suis ds le timeout un menu est active");*/
       C2F(getmen)(info.str,&info.lstr,&entry);
       info.ok = 1 ; info.x = 0 ; info.y =0 ; info.button =  -2;
-      info.win = gc->CurWindow;
+      info.win = gc->CurWindow; /* XXXX à revoir */
       gtk_main_quit();
     }
   return TRUE;
@@ -2047,32 +2047,18 @@ void C2F(drawarrows)(char *str, integer *vx, integer *vy, integer *n, integer *a
   for (i=0 ; i < *n/2 ; i++)
     { 
       double dx,dy,norm;
-      if ( (int) *iflag == 1) {
-	NDvalue = style[i];
-	xset_line_style(&NDvalue,PI0,PI0,PI0);}
-      else
-	{
-	  /* modif bruno : dans ce cas la variable NDvalue n'etait pas
-             definie => je l'ai mise a 1 (du quick & dirty) mais il y
-             a certainement mieux a faire. D'autre part il y a le meme
-             probleme avec le driver X11 pur (cette variable n'est pas
-             initialisee dans ce cas) mais le bug ne se reproduit pas !!!)
-           */
-	  NDvalue = 1;
-	  if (*style >= 1)
-	    xset_line_style(style,PI0,PI0,PI0);
-	}
-
+      NDvalue = ( (int) *iflag == 1) ? style[i] : ((*style >= 1) ?  *style : Dvalue[0]);
+      xset_line_style(&NDvalue,PI0,PI0,PI0);
       dx=( vx[2*i+1]-vx[2*i]);
       dy=( vy[2*i+1]-vy[2*i]);
       norm = sqrt(dx*dx+dy*dy);
       if ( Abs(norm) >  SMDOUBLE ) 
 	{ integer nn=1,p=3;
 	dx=(*as/10.0)*dx/norm;dy=(*as/10.0)*dy/norm;
-	polyx[0]= polyx[3]=vx[2*i+1]+dx*cos20;
+	polyx[0]= polyx[3]=vx[2*i+1];/* +dx*cos20;*/
 	polyx[1]= inint(polyx[0]  - cos20*dx -sin20*dy );
 	polyx[2]= inint(polyx[0]  - cos20*dx + sin20*dy);
-	polyy[0]= polyy[3]=vy[2*i+1]+dy*cos20;
+	polyy[0]= polyy[3]=vy[2*i+1];/*+dy*cos20;*/
 	polyy[1]= inint(polyy[0] + sin20*dx -cos20*dy) ;
 	polyy[2]= inint(polyy[0] - sin20*dx - cos20*dy) ;
 	C2F(fillpolylines)("v",polyx,polyy,&NDvalue,&nn,&p,PI0,PD0,PD0,PD0,PD0);
@@ -2081,8 +2067,6 @@ void C2F(drawarrows)(char *str, integer *vx, integer *vy, integer *n, integer *a
       if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
 	gdk_draw_line(ScilabXgc->pixmap,ScilabXgc->wgc,vx[2*i],vy[2*i],vx[2*i+1]-dx*cos20,vy[2*i+1]-dy*cos20);
       gdk_draw_line(ScilabXgc->Cdrawable,ScilabXgc->wgc,vx[2*i],vy[2*i],vx[2*i+1]-dx*cos20,vy[2*i+1]-dy*cos20);
-
-
     }
   xset_dash_and_color( Dvalue,PI0,PI0,PI0);
 }
