@@ -13,15 +13,16 @@ function libn=ilib_compile(lib_name,makename,files)
     return ;
   end
   oldpath=getcwd();
+  files=files(:)';
+  files1=strsubst(strsubst(files,'.obj','') ,'.o','');
   [make_command,lib_name_make,lib_name,path,makename,files]= ...
       ilib_compile_get_names(lib_name,makename,files)  
   if path<> '';  chdir(path);  end 
-
   // first try to build each file step by step 
-  if files<>[] then 
-    for x = files(:)'; 
-      unix_w(make_command+makename + ' '+ x); 
-    end
+  nf = size(files,'*');
+  for i=1:nf 
+    write(%io(2),'   compilation of '+files1(i));
+    unix_s(make_command+makename + ' '+ files(i)); 
   end
   // then the shared library 
   unix_s(make_command+makename + ' '+ lib_name); 
