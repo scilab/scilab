@@ -62,7 +62,7 @@ function create_palette(bidon)
 	lisf=['ABS_VALUE.sci'; 'COSBLK_f.sci';   'DLRADAPT_f.sci';  
 	      'EXPBLK_f.sci';  INTRP2BLK_f.sci'; INTRPLBLK_f.sci'; INVBLK_f.sci'; 
 	      'LOGBLK_f.sci'; 'LOOKUP_f.sci'; MAXMIN.sci'; 
-	      'POWBLK_f.sci'; 
+	      'POWBLK_f.sci'; 'PROD_f.sci';
 	      'PRODUCT.sci';  'QUANT_f.sci'; 
 	      'SATURATION.sci'; 'SIGNUM.sci';
 	      'SINBLK_f.sci'; 'TANBLK_f.sci']
@@ -89,7 +89,7 @@ function create_palette(bidon)
 	
       elseif txt=='OldBlocks' then
 	lisf=['ABSBLK_f.sci'; 'MSCOPE_f.sci';'SCOPE_f.sci';    
-	      'MAX_f.sci'; 'MIN_f.sci';'PROD_f.sci';'SAT_f.sci'; 
+	      'MAX_f.sci'; 'MIN_f.sci';'SAT_f.sci'; 
 	      'CLKSOM_f.sci';'TRASH_f.sci';'GENERAL_f.sci';
 	      'BIGSOM_f.sci';'INTEGRAL_f.sci';'GAINBLK_f.sci';
 	      'DELAYV_f.sci';'DELAY_f.sci']
