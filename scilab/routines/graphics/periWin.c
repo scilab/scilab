@@ -4201,7 +4201,7 @@ static void CreateGraphClass()
 {
   static WNDCLASS wndclass;
   /** each Graphic window owns is DC : CS_OWNDC **/
-  wndclass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+  wndclass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC |CS_DBLCLKS ;
   wndclass.lpfnWndProc = WndGraphProc;
   wndclass.cbClsExtra = 0;
   wndclass.cbWndExtra = 4 * sizeof(void *);
