@@ -13,13 +13,13 @@ BLOCKSF=evtdly.obj cstblk.obj \
 	qzrnd.obj qztrn.obj scope.obj lsplit.obj csslti.obj\
 	dsslti.obj trash.obj zcross.obj \
 	expblk.obj logblk.obj sinblk.obj tanblk.obj powblk.obj\
-	sqrblk.obj delay.obj selblk.obj forblk.obj ifthel.obj writef.obj invblk.obj hltblk.obj\
+	sqrblk.obj delay.obj selblk.obj forblk.obj writef.obj invblk.obj hltblk.obj\
 	gensin.obj rndblk.obj lookup.obj timblk.obj gensqr.obj mfclck.obj\
 	sawtth.obj tcslti.obj tcsltj.obj scopxy.obj evscpe.obj integr.obj readf.obj affich.obj\
 	intpol.obj intplt.obj minblk.obj maxblk.obj dlradp.obj  iocopy.obj \
 	sum2.obj sum3.obj delayv.obj mux.obj demux.obj samphold.obj dollar.obj mscope.obj \
-	eselect.obj intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj diffblk.obj constraint.obj \
-	absblk.obj andlog.obj bidon.obj gain.obj cdummy.obj dband.obj cosblk.obj 
+	intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj diffblk.obj constraint.obj \
+	absblk.obj andlog.obj bidon.obj gain.obj cdummy.obj dband.obj cosblk.obj zcross2.obj
 
 
 BLOCKS_CODE=evtdly.obj cstblk.obj \
@@ -27,13 +27,13 @@ BLOCKS_CODE=evtdly.obj cstblk.obj \
 	qzrnd.obj qztrn.obj scope.obj lsplit.obj csslti.obj\
 	dsslti.obj trash.obj zcross.obj \
 	expblk.obj logblk.obj sinblk.obj tanblk.obj powblk.obj\
-	sqrblk.obj delay.obj selblk.obj forblk.obj ifthel.obj writef.obj invblk.obj hltblk.obj\
+	sqrblk.obj delay.obj selblk.obj forblk.obj  writef.obj invblk.obj hltblk.obj\
 	gensin.obj rndblk.obj lookup.obj timblk.obj gensqr.obj mfclck.obj\
 	sawtth.obj tcslti.obj tcsltj.obj scopxy.obj evscpe.obj integr.obj readf.obj affich.obj\
 	intpol.obj intplt.obj minblk.obj maxblk.obj dlradp.obj  iocopy.obj \
 	sum2.obj sum3.obj delayv.obj mux.obj demux.obj samphold.obj dollar.obj mscope.obj \
-	eselect.obj intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj \
-	diffblk.obj constraint.obj 
+	intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj \
+	diffblk.obj constraint.obj zcross2.obj
 
 
 BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj writeau.obj \

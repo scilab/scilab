@@ -10,13 +10,13 @@ BLOCKSF=evtdly.o cstblk.o \
 	qzrnd.o qztrn.o scope.o lsplit.o csslti.o\
 	dsslti.o trash.o zcross.o \
 	expblk.o logblk.o sinblk.o tanblk.o powblk.o\
-	sqrblk.o delay.o selblk.o forblk.o ifthel.o writef.o invblk.o hltblk.o\
+	sqrblk.o delay.o selblk.o forblk.o writef.o invblk.o hltblk.o\
 	gensin.o rndblk.o lookup.o timblk.o gensqr.o mfclck.o\
 	sawtth.o tcslti.o tcsltj.o scopxy.o evscpe.o integr.o readf.o affich.o\
 	intpol.o intplt.o minblk.o maxblk.o dlradp.o  iocopy.o \
 	sum2.o sum3.o delayv.o mux.o demux.o samphold.o dollar.o mscope.o \
-	eselect.o intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o diffblk.o constraint.o \
-	absblk.o andlog.o bidon.o gain.o cdummy.o dband.o cosblk.o 
+	intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o diffblk.o constraint.o \
+	absblk.o andlog.o bidon.o gain.o cdummy.o dband.o cosblk.o zcross2.o
 
 
 BLOCKS_CODE=evtdly.o cstblk.o \
@@ -24,13 +24,13 @@ BLOCKS_CODE=evtdly.o cstblk.o \
 	qzrnd.o qztrn.o scope.o lsplit.o csslti.o\
 	dsslti.o trash.o zcross.o \
 	expblk.o logblk.o sinblk.o tanblk.o powblk.o\
-	sqrblk.o delay.o selblk.o forblk.o ifthel.o writef.o invblk.o hltblk.o\
+	sqrblk.o delay.o selblk.o forblk.o  writef.o invblk.o hltblk.o\
 	gensin.o rndblk.o lookup.o timblk.o gensqr.o mfclck.o\
 	sawtth.o tcslti.o tcsltj.o scopxy.o evscpe.o integr.o readf.o affich.o\
 	intpol.o intplt.o minblk.o maxblk.o dlradp.o  iocopy.o \
 	sum2.o sum3.o delayv.o mux.o demux.o samphold.o dollar.o mscope.o \
-	eselect.o intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o \
-	diffblk.o constraint.o 
+	intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o \
+	diffblk.o constraint.o zcross2.o
 
 
 BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \

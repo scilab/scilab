@@ -1742,9 +1742,11 @@ callf(t,xtd,xt,residual,g,flag)
   ScicosF loc1;
   /*  ScicosFm1 loc3;*/
   ScicosF2 loc2;
+  ScicosF2z loc2z;
   ScicosFi loci1;
   ScicosFi2 loci2;
-  integer kfun;
+  ScicosFi2z loci2z;
+  integer kfun,typz;
 
   
   kfun=C2F(curblk).kfun;
@@ -1802,7 +1804,7 @@ callf(t,xtd,xt,residual,g,flag)
 	return;
       }
   }
-  
+  typz=ztyp[kf];
   nx=xptr[kf+1]-xptr[kf];
   nzc=zcptr[kf+1]-zcptr[kf];
   nz=zptr[kf+1]-zptr[kf];
@@ -1825,7 +1827,7 @@ callf(t,xtd,xt,residual,g,flag)
       args[in+out]=&(outtb[lnkptr[lprt]-1]);
       sz[in+out]=lnkptr[lprt+1]-lnkptr[lprt];
     }
-    if(nzc>0){
+    if(typz>0){
       args[nin+noutc]=&(g[zcptr[kf]-1]);
       sz[nin+noutc]=nzc;
     }
@@ -1952,20 +1954,42 @@ callf(t,xtd,xt,residual,g,flag)
       args[in+out]=&(outtb[lnkptr[lprt]-1]);
       sz[in+out]=lnkptr[lprt+1]-lnkptr[lprt];
     }
-    loc2 = (ScicosF2) loc;
+    
     if (solver==100) {
-      (*loc2)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
-	      &(z__[zptr[kf]-1]),&nz,
-	      tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-	      &(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
-	      &(args[in]),&(sz[in]),&noutc);
+      if (typz==0){
+	loc2 = (ScicosF2) loc;
+	(*loc2)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+		&(z__[zptr[kf]-1]),&nz,
+		tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
+		&(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
+		&(args[in]),&(sz[in]),&noutc);
+      }
+      else{
+	loc2z = (ScicosF2z) loc;
+	(*loc2z)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+		&(z__[zptr[kf]-1]),&nz,
+		tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
+		&(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
+		&(args[in]),&(sz[in]),&noutc,&(g[zcptr[kf]-1]),&nzc);
+      }
     }
     else {
-      (*loc2)(flag,&nclock,t,&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
-	      &(z__[zptr[kf]-1]),&nz,
-	      tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-	      &(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
-	      &(args[in]),&(sz[in]),&noutc);
+      if (typz==0){
+	loc2 = (ScicosF2) loc;
+	(*loc2)(flag,&nclock,t,&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+		&(z__[zptr[kf]-1]),&nz,
+		tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
+		&(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
+		&(args[in]),&(sz[in]),&noutc);
+      }
+      else{
+	loc2z = (ScicosF2z) loc;
+	(*loc2z)(flag,&nclock,t,&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+		 &(z__[zptr[kf]-1]),&nz,
+		 tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
+		 &(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
+		 &(args[in]),&(sz[in]),&noutc,&(g[zcptr[kf]-1]),&nzc);
+      }
     }
     break;
   case 10001 :			
@@ -1981,7 +2005,7 @@ callf(t,xtd,xt,residual,g,flag)
       args[in+out]=&(outtb[lnkptr[lprt]-1]);
       sz[in+out]=lnkptr[lprt+1]-lnkptr[lprt];
     }
-    if(nzc>0){
+    if(typz>0){
       args[nin+noutc]=&(g[zcptr[kf]-1]);
       sz[nin+noutc]=nzc;
     }
@@ -2014,13 +2038,26 @@ callf(t,xtd,xt,residual,g,flag)
       args[in+out]=&(outtb[lnkptr[lprt]-1]);
       sz[in+out]=lnkptr[lprt+1]-lnkptr[lprt];
     }
-    loci2 = (ScicosFi2) loc;
-
-    (*loci2)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
-	     &(z__[zptr[kf]-1]),&nz,
-	     tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-	     &(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
-	     &(args[in]),&(sz[in]),&noutc);
+    if(typz==0) {
+      loci2 = (ScicosFi2) loc;
+      
+      (*loci2)(flag,&nclock,t,&(residual[xptr[kf]-1]),
+	       &(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+	       &(z__[zptr[kf]-1]),&nz,
+	       tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
+	       &(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
+	       &(args[in]),&(sz[in]),&noutc);
+    }
+    else {
+      loci2z = (ScicosFi2z) loc;
+      
+      (*loci2z)(flag,&nclock,t,&(residual[xptr[kf]-1]),
+		&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+		&(z__[zptr[kf]-1]),&nz,
+		tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
+		&(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
+		&(args[in]),&(sz[in]),&noutc,&(g[zcptr[kf]-1]),&nzc);
+    }
     break;  
   default:
     sciprint("Undefined Function type\r\n");

@@ -25,7 +25,6 @@ extern void F2C(sqrblk) __PARAMS((ARGS_scicos));
 extern void F2C(delay) __PARAMS((ARGS_scicos));
 extern void F2C(selblk) __PARAMS((ARGS_scicos));
 extern void F2C(forblk) __PARAMS((ARGS_scicos));
-extern void F2C(ifthel) __PARAMS((ARGS_scicos));
 extern void F2C(writef) __PARAMS((ARGS_scicos));
 extern void F2C(invblk) __PARAMS((ARGS_scicos));
 extern void F2C(hltblk) __PARAMS((ARGS_scicos));
@@ -57,7 +56,6 @@ extern void F2C(demux) __PARAMS((ARGS_scicos));
 extern void F2C(samphold) __PARAMS((ARGS_scicos));
 extern void F2C(dollar) __PARAMS((ARGS_scicos));
 extern void F2C(mscope) __PARAMS((ARGS_scicos));
-extern void F2C(eselect) __PARAMS((ARGS_scicos));
 extern void F2C(intrp2) __PARAMS((ARGS_scicos));
 extern void F2C(intrpl) __PARAMS((ARGS_scicos));
 extern void F2C(fsv) __PARAMS((ARGS_scicos));
@@ -73,6 +71,7 @@ extern void F2C(gain) __PARAMS((ARGS_scicos));
 extern void F2C(cdummy) __PARAMS((ARGS_scicos));
 extern void F2C(dband) __PARAMS((ARGS_scicos));
 extern void F2C(cosblk) __PARAMS((ARGS_scicos));
+extern void F2C(zcross2) __PARAMS((ARGS_scicos));
 extern void selector __PARAMS((ARGS_scicos));
 extern void sum __PARAMS((ARGS_scicos));
 extern void prod __PARAMS((ARGS_scicos));
@@ -103,7 +102,6 @@ OpTab tabsim[] ={
 {"dlradp",(ScicosF) F2C(dlradp)},
 {"dollar",(ScicosF) F2C(dollar)},
 {"dsslti",(ScicosF) F2C(dsslti)},
-{"eselect",(ScicosF) F2C(eselect)},
 {"evscpe",(ScicosF) F2C(evscpe)},
 {"evtdly",(ScicosF) F2C(evtdly)},
 {"expblk",(ScicosF) F2C(expblk)},
@@ -114,7 +112,6 @@ OpTab tabsim[] ={
 {"gensin",(ScicosF) F2C(gensin)},
 {"gensqr",(ScicosF) F2C(gensqr)},
 {"hltblk",(ScicosF) F2C(hltblk)},
-{"ifthel",(ScicosF) F2C(ifthel)},
 {"integr",(ScicosF) F2C(integr)},
 {"intplt",(ScicosF) F2C(intplt)},
 {"intpol",(ScicosF) F2C(intpol)},
@@ -168,8 +165,9 @@ OpTab tabsim[] ={
 {"writec",(ScicosF) writec},
 {"writef",(ScicosF) F2C(writef)},
 {"zcross",(ScicosF) F2C(zcross)},
+{"zcross2",(ScicosF) F2C(zcross2)},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 82 ;
+int ntabsim= 81 ;
 #endif 
 /***********************************/
