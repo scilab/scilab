@@ -22,9 +22,9 @@ FFUNCTIONS = fdgemm dgebal dgebak dgels dgeqrf
 OTHERFOBJS = 
 ################ do not edit below this line #############################
 DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
-SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
+SCIIMPLIB="$(SCIDIR)/bin/LibScilab.lib"
 
-!include $(SCIDIR1)\Makefile.incl.mak
+!include "$(SCIDIR1)\Makefile.incl.mak"
 
 FFLAGS = $(FC_OPTIONS) -DFORDLL -I"$(SCIDIR1)\routines"
 CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"

@@ -47,7 +47,7 @@ LINKER_FLAGS=/NOLOGO /DEBUG /Debugtype:cv /machine:ix86
 # standard option for the linker 
 LINKER_FLAGS=/NOLOGO /machine:ix86
 # include options 
-INCLUDES=-I$(SCIDIR)/routines/f2c $(TCL_INCLUDES) $(PVM_INCLUDES)
+INCLUDES=-I"$(SCIDIR)/routines/f2c" $(TCL_INCLUDES) $(PVM_INCLUDES)
 # compiler flags: -MT is only needed if tcl/tk is used 
 #USE_MT=-MT
 CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
@@ -98,7 +98,7 @@ XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS)
 !IF "$(USE_F2C)" == "YES"
 .f.obj	:
 	@echo ----------- Compile file $*.f (using f2c) -------------
-	@$(SCIDIR1)\bin\f2c.exe $(FFLAGS) $*.f 
+	@"$(SCIDIR1)\bin\f2c.exe" $(FFLAGS) $*.f 
 	@$(CC) $(CFLAGS) $*.c 
 	@del $*.c 
 !ELSE 
