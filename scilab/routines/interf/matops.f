@@ -2373,8 +2373,6 @@ c
       it1=istk(il1+3)
       l1=sadr(il1+4)
       mn1=m1*n1
-
-
 c     arg3(arg1)=arg2
 c     
       if (istk(il2)*istk(il1).eq.0) then
@@ -2559,7 +2557,7 @@ c
          l1=sadr(ilrs+4)
          call unsfdcopy(mnr*(itr+1),stk(lr),1,stk(l1),1)
          istk(ilrs)=1
-         if(mmode.eq.1.and.nr.eq.1) then
+         if(mmode.eq.1.and.nr.eq.1.and.m3.eq.0) then
          istk(ilrs+1)=nr
          istk(ilrs+2)=mr
          else
