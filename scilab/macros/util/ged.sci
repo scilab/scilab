@@ -34,11 +34,11 @@ function ged(k,win)
     f=gcf();
     for i=1:size(f.color_map,1)
       redname= "RED("+string(i)+")";
-      TK_EvalStr('set '+redname+" "+string(int(255*f.color_map(i,1))));
+      TK_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
       grename= "GREEN("+string(i)+")";
-      TK_EvalStr('set '+grename+" "+string(int(255*f.color_map(i,2))));
+      TK_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
       bluname= "BLUE("+string(i)+")";
-      TK_EvalStr('set '+bluname+" "+string(int(255*f.color_map(i,3))));
+      TK_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
     end
     
     //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
@@ -53,11 +53,11 @@ function ged(k,win)
     f=gcf();
     for i=1:size(f.color_map,1)
       redname= "RED("+string(i)+")";
-      TK_EvalStr('set '+redname+" "+string(int(255*f.color_map(i,1))));
+      TK_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
       grename= "GREEN("+string(i)+")";
-      TK_EvalStr('set '+grename+" "+string(int(255*f.color_map(i,2))));
+      TK_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
       bluname= "BLUE("+string(i)+")";
-      TK_EvalStr('set '+bluname+" "+string(int(255*f.color_map(i,3))));
+      TK_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
     end
 
     ged_axes(gca())
@@ -211,6 +211,20 @@ function ged_figure(h)
   TK_SetVar("background",string(h.background))
   TK_SetVar("rotation_style",h.rotation_style)
   TK_SetVar("figure_name",h.figure_name)
+  TK_SetVar("figure_id",string(h.figure_id))
+  TK_SetVar("figure_xposition",string(h.figure_position(1)))
+  TK_SetVar("figure_yposition",string(h.figure_position(2)))
+  TK_SetVar("figure_xsiz",string(h.figure_size(1)))
+  TK_SetVar("figure_ysiz",string(h.figure_size(2)))
+  TK_SetVar("figure_xaxesiz",string(h.axes_size(1)))
+  TK_SetVar("figure_yaxesiz",string(h.axes_size(2)))
+  TK_SetVar("bcolor",string(h.background))
+  TK_SetVar("ncolors",string(size(h.color_map,1)))
+  TK_SetVar("curvis",h.visible)
+  TK_SetVar("curpix",h.pixmap)
+  TK_SetVar("curpdm",h.pixel_drawing_mode)
+  TK_SetVar("curautoresize",h.auto_resize)
+  TK_SetVar("currotation_style",h.rotation_style)
   TK_EvalFile(SCI+'/tcl/ged/Figure.tcl')
 endfunction
 
@@ -540,11 +554,11 @@ function tkged()
   f=getparfig(h);
   for i=1:size(f.color_map,1)
     redname= "RED("+string(i)+")";
-    TK_EvalStr('set '+redname+" "+string(int(255*f.color_map(i,1))));
+    TK_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
     grename= "GREEN("+string(i)+")";
-    TK_EvalStr('set '+grename+" "+string(int(255*f.color_map(i,2))));
+    TK_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
     bluname= "BLUE("+string(i)+")";
-    TK_EvalStr('set '+bluname+" "+string(int(255*f.color_map(i,3))));
+    TK_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
   end
 
   select h.type
@@ -801,3 +815,4 @@ function setHval(val)
       end
      end
 endfunction
+
