@@ -23,7 +23,7 @@
 #define lsiz 65536
 #define nlgh nsiz*4  
 #define vsiz 2 
-#define intersiz 60
+#define intersiz 1024
 
 IMPORT struct {
     double Stk[vsiz];
