@@ -59,7 +59,7 @@ OBJSF = dgelqf.obj dgels.obj  dgeqrf.obj dlae2.obj dlaev2.obj \
 
 include ../../Makefile.incl.mak
 
-CFLAGS = $(CC_OPTIONS)
+CFLAGS = -D__MSC__ -DWIN32 -c -DSTRICT -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT) -Z7 -W3 -Os -G5 -Gd
 
 FFLAGS = $(FC_OPTIONS)
 

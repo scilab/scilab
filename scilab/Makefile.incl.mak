@@ -73,18 +73,13 @@ DLPVM=YES
 #---------------------
 CC=cl
 LINKER=link
-# debug option for the linker 
-LINKER_FLAGS=/NOLOGO /DEBUG /Debugtype:cv /machine:ix86
 # standard option for the linker 
 LINKER_FLAGS=/NOLOGO /machine:ix86 
 # include options 
 INCLUDES=-I"$(SCIDIR)/routines/f2c" $(TCL_INCLUDES) 
 
 CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
-# debug 
-CC_OPTIONS =  $(CC_COMMON) -Z7 -W3 -Od 
-# standard option ( replace Od->O2 for optimization but note that optimization does not work )
-CC_OPTIONS = $(CC_COMMON) -Od  -GB -Gd -W3
+CC_OPTIONS = $(CC_COMMON) -Z7 -W3 -O2 -G5 -Gd
 CC_LDFLAGS = 
 #---------------------
 # Fortran Compiler 
