@@ -21,7 +21,6 @@ static sciPointObj *psubwin;/* NG */
 static double  x_convert __PARAMS((char xy_type,double x[] ,int i));
 static double  y_convert __PARAMS((char xy_type,double x[] ,int i));
 extern void NumberFormat __PARAMS((char *str,integer k,integer a));
-/*extern void NumberFormat __PARAMS((char *str,double k,integer a));*/
 static void aplotv1 __PARAMS((char*));
 static void aplotv2 __PARAMS((char*));
 extern int version_flag();
@@ -245,10 +244,10 @@ static void aplotv2(strflag)
  
   /** x-axis **/
   ny=1,nx=3;
-  Sci_Axis(dirx,'r',x,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg);
+  Sci_Axis(dirx,'r',x,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg,0);
   /** y-axis **/
   ny=3,nx=1;
-  Sci_Axis(dir,'r',&x1,&nx,y,&ny,NULL,Cscale.Waaint1[2],NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[1],seg);
+  Sci_Axis(dir,'r',&x1,&nx,y,&ny,NULL,Cscale.Waaint1[2],NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[1],seg,0);
 }
 
 static void aplotv1(strflag)
@@ -278,7 +277,13 @@ static void aplotv1(strflag)
     Cscale.xtics[3]= floor(Cscale.xtics[1])-ceil(Cscale.xtics[0]);  
     Cscale.ytics[1]= (Cscale.frect[3] / (exp10( Cscale.ytics[2]))) ; 
     Cscale.ytics[0]  = (Cscale.frect[1]  / (exp10( Cscale.ytics[2]))) ;
+
+    /* HARD BUG HERE in relesae mode : memory overwritten 40 -> 39 (why -1??) 
+       run plot2d() and observe the y axis graduations... */
     Cscale.ytics[3]= floor(Cscale.ytics[1])-ceil(Cscale.ytics[0]); 
+    /* sciprint("----->Changement ?? aplotv1 APRES Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
+
+
 
   }       
      
@@ -370,12 +375,12 @@ static void aplotv1(strflag)
   /** x-axis **/
   ny=1,nx=4;
   Sci_Axis(dirx,'i',Cscale.xtics,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],
-	   NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg);
+	   NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg,0);
   
   /** y-axis **/
   ny=4,nx=1;
   Sci_Axis(dir,'i',&x1,&nx,Cscale.ytics,&ny,NULL,Cscale.Waaint1[2],
-	   NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[1],seg);
+	   NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[1],seg,0);
 }
 
 
@@ -429,10 +434,10 @@ void sci_axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 {
   if (GetDriver()=='R') 
     StoreSciAxis("axis",pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag);
-  Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag);
+  Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag,0);
 }
 
-void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag)
+void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag,axisbuild_flag)
      char pos,xy_type;        
      double *x, *y; 
      int *nx,*ny;
@@ -442,6 +447,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
      int fontsize,textcolor,ticscolor,fontstyle;
      char logflag;
      int seg_flag;
+     int axisbuild_flag; /* specifies if axis is built from a call to axis_draw or drawaxis method */
 {
   int Nx,Ny,debug;
   double angle=0.0,vxx,vxx1;
@@ -543,10 +549,11 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	switch (xy_type ) {
 	case 'v' : ChoixFormatE1(c_format,x,Nx);break;
 	case 'r' : ChoixFormatE (c_format,x[0],x[1],(x[1]-x[0])/x[2]);break;
-	case 'i' : ChoixFormatE (c_format,
-				 (x[0] * exp10(x[2])),
-				 (x[1] * exp10(x[2])),
-				 ((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]); break; /* Adding F.Leray 06.05.04 */
+	case 'i' : 
+	  ChoixFormatE (c_format,
+			(x[0] * exp10(x[2])),
+			(x[1] * exp10(x[2])),
+			((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]); break; /* Adding F.Leray 06.05.04 */
 	}
       /** the horizontal segment **/
 
@@ -566,7 +573,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
       if (version_flag() == 0) psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
       if ((version_flag() == 0) 
 	  && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
-	  && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){  
+	  && axisbuild_flag == 0){  
 	xmax=Cscale.frect[2];
 	xmin=Cscale.frect[0];
 
@@ -578,17 +585,20 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    while (x[3]>10)  x[3]=floor(x[3]/2);
 	    Nx=x[3]+1;
 	  }
-	else if (xy_type == 'r')
+	/* THESE 2 last cases are unreachable because we use the condition : */
+	/* axisbuild_flag == 0 */
+	else if (xy_type == 'r') /* normally unreachable */
 	  {
-	    x[1] = floor(Cscale.frect[2]) ;  
-	    x[0] =  ceil(Cscale.frect[0]) ; 
-	    x[2]=inint(x[1]-x[0]);
-	    while (x[2]>10)  x[2]=floor(x[2]/2);
-	    Nx=x[2]+1; 
+	    sciprint(" Normally, unreachable case \n");
+	  /*   x[1] = floor(Cscale.frect[2]) ;   */
+/* 	    x[0] =  ceil(Cscale.frect[0]) ;  */
+/* 	    x[2]=inint(x[1]-x[0]); */
+/* 	    while (x[2]>10)  x[2]=floor(x[2]/2); */
+/* 	    Nx=x[2]+1;  */
 	  }
-	else if(xy_type == 'v')
+	else if(xy_type == 'v') /* normally unreachable */
 	  {
-	    sciprint(" Normally, unavailable case \n");
+	    sciprint(" Normally, unavailable case  AAA \n");
 	  }
       }
       /**********************/
@@ -603,31 +613,16 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  else if ( format == NULL) 
 	    {
 	      /* defaults format */
-	     /*  if  ( xy_type == 'i') */
-/* 		NumberFormat(foo,( (x[0] + i*(x[1]-x[0])/x[3])), */
-/* 			     ((integer) x[2])); */
-/* 	      else */
-/* 		sprintf(foo,c_format,vxx); */
-	      if ((version_flag() == 0) 
-		  && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
-		  && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){
-		if(xy_type == 'i')
-		  {
-		    NumberFormat(foo,( (x[0] + i*(x[1]-x[0])/x[3])),
-				 ((integer) x[2]));
-		  }
-		else if(xy_type == 'r')
-		  {
-		    NumberFormat(foo,( (x[0] + i*(x[1]-x[0])/x[2])),
-				 0);
-		  }
-	      }
-	      else
-		sprintf(foo,c_format,vxx);
-	      
+	      /*F.Leray 19.05.04 */
+	      /* When Sci_Axis is called by aplotv1, format is NULL : it can not be something else...*/
+	      /* format can also be NULL if non specified and coming from ConstructAxes method called in Objdrawaxis (see matdes.c) */
+	      sprintf(foo,c_format,vxx);
 	    }
-	  else 
+	  else {
 	    sprintf(foo,format,vxx);
+	  }
+	  
+
 	  C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 	  /* tick is computed in vx,vy and string is displayed at posi[0],posi[1] position */
@@ -693,7 +688,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  if (version_flag() == 0) psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
 	  if ((version_flag() == 0) 
 	      && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
-	      && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){  
+	      && axisbuild_flag == 0){  
 	    if ( i == 0 ) 
 	      {
 		int j;
@@ -732,16 +727,18 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
       break;
     case 'r' : 
     case 'l' :
+
       /** Vertical axes **/
       barlength =  (integer) (Cscale.WIRect1[2]/75.0);
       if (str == NULL &&  format == NULL )  
 	switch (xy_type ) {
 	case 'v' : ChoixFormatE1(c_format,y,Ny);break;
 	case 'r' : ChoixFormatE(c_format,y[0],y[1],(y[1]-y[0])/y[2]);break;
-	case 'i' : ChoixFormatE (c_format,
-				 (y[0] * exp10(y[2])),
-				 (y[1] * exp10(y[2])),
-				 ((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]); break; /* Adding F.Leray 06.05.04 */
+	case 'i' : 
+	  ChoixFormatE (c_format,
+			(y[0] * exp10(y[2])),
+			(y[1] * exp10(y[2])),
+			((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]); break; /* Adding F.Leray 06.05.04 */
 	}
       /** the vertical segment **/
       vy[0] =  YScale(y_convert(xy_type, y , 0));
@@ -758,7 +755,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
       if (version_flag() == 0) psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
       if ((version_flag() == 0) 
 	  && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
-	  && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){  
+	  && axisbuild_flag == 0){  
 	ymax=Cscale.frect[3];
 	ymin=Cscale.frect[1];
 
@@ -770,17 +767,20 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    while (y[3]>10)  y[3]=floor(y[3]/2);
 	    Ny=y[3]+1;
 	  }
-	else if (xy_type == 'r')
+	/* THESE 2 last cases are unreachable because we use the condition : */
+	/* axisbuild_flag == 0 */
+	else if (xy_type == 'r') /* normally unreachable */
 	  {
-	    y[1] = floor(Cscale.frect[3]) ;  
-	    y[0] =  ceil(Cscale.frect[1]) ; 
-	    y[2]=inint(y[1]-y[0]);
-	    while (y[2]>10)  y[2]=floor(y[2]/2);
-	    Ny=y[2]+1; 
+	    sciprint(" Normally, unreachable case \n");
+	   /*  y[1] = floor(Cscale.frect[3]) ;   */
+/* 	    y[0] =  ceil(Cscale.frect[1]) ;  */
+/* 	    y[2]=inint(y[1]-y[0]); */
+/* 	    while (y[2]>10)  y[2]=floor(y[2]/2); */
+/* 	    Ny=y[2]+1;  */
 	  }
-	else if(xy_type == 'v')
+	else if(xy_type == 'v')  /* normally unreachable */
 	  {
-	    sciprint(" Normally, unavailable case \n");
+	    sciprint(" Normally, unreachable case \n");
 	  }
       }
       /** loop on the ticks **/
@@ -792,33 +792,20 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  if ( str != NULL)  
 	    sprintf(foo,"%s",str[i]);
 	  else if ( format == NULL)
-	    {
-	      /* if ( xy_type == 'i') */
-/* 		NumberFormat(foo,( (y[0] + i*(y[1]-y[0])/y[3])), */
-/* 			     ((integer) y[2])); */
-/* 	      else */
-	      if ((version_flag() == 0) 
-		  && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
-		  && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){
-		if(xy_type == 'i')
-		  {
-		    NumberFormat(foo,( (y[0] + i*(y[1]-y[0])/y[3])),
-				 ((integer) y[2]));
-		  }
-		else if(xy_type == 'r')
-		  {
-		    NumberFormat(foo,( (y[0] + i*(y[1]-y[0])/y[2])),
-				 0);
-		  }
-	      }
-	      else
-		sprintf(foo,c_format,vxx);
+	    { 
+	      /* defaults format */
+	      /*F.Leray 19.05.04 */
+	      /* When Sci_Axis is called by aplotv1, format is NULL : it can not be something else...*/
+	      /* format can also be NULL if non specified and coming from ConstructAxes method called in Objdrawaxis (see matdes.c) */
+	      sprintf(foo,c_format,vxx);
 	    }
-	  else 
+	  else{ 
 	    sprintf(foo,format,vxx);
-
+	  }
+	  
+	  
 	  C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
+	  
 	  /* tick is computed in vx,vy and string is displayed at posi[0],posi[1] position */
 
 	  vy[0]= vy[1] = ym[0] = YScale(vxx);
@@ -881,7 +868,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  if (version_flag() == 0) psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
 	  if ((version_flag() == 0) 
 	      && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
-	      && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){
+	      && axisbuild_flag == 0){
 	    if ( i == 0 )  
 	      {
 		int j;
@@ -987,39 +974,8 @@ extern void NumberFormat(str, k, a)
 
 	}
     }
+
 }
-
-
-
-/* extern void NumberFormat(str, k, a) */
-/*      char *str; */
-/*      double k; */
-/*      integer a; */
-/* { */
-/*   if ( k==0)  */
-/*     { */
-/*       sprintf(str,"0"); */
-/*     } */
-/*   else */
-/*     { */
-/*       switch (a)  */
-/* 	{ */
-/* 	case -1: sprintf(str,"%.1f",(double)k/10.0);break; */
-/* 	case -2: sprintf(str,"%.2f",(double)k/100.0);break; */
-/* 	case 0 : sprintf(str,"%f",(double)k);break; */
-/* 	case 1 : sprintf(str,"%f0",(double)k);break; */
-/* 	case 2 : sprintf(str,"%f00",(double)k);break; */
-/* 	default: sprintf(str,"%fe%d",(double)k,(integer)a) ;break; */
-
-/* 	} */
-/*     } */
-/* } */
-
-
-
-
-
-
 
 /*---------------------------------------------------------------------
  *Trace l'enveloppe convexe de la boite contenant le dessin 
