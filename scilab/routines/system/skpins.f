@@ -59,6 +59,10 @@ c     get the following line
             bcount=bcount+1
          else if (sym.eq.right) then
             bcount=bcount-1
+            if(bcount.lt.0) then
+               call error(46)
+               return
+            endif
          else if (sym.eq.quote) then
 c     .  check if transpose or beginning of a string
             pchar=lin(lpt(3)-2)
