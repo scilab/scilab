@@ -606,7 +606,7 @@ c     *call* allops(quote) or allops(dot+quote)
       elseif(sym.eq.name.and.psym.eq.num) then
          i = lpt(3) - 2
          if (abs(lin(i)) .ne. blank) then
-            ok=.true.
+            ok=.false.
 c     .     next line to restrict to mfile2sci compilation only
 c     .     ok=(comp(1).ne.0.and.comp(3).eq.2) 
             if (ok) then
