@@ -1,5 +1,5 @@
 function flag=find_links(filein,fileout)
-  // return %t if a new file was generated 
+  // return %t if a LINK were found
   [lhs,rhs]=argn(0)
   flag=%f;
   if rhs<>2 then error(39), end

@@ -215,8 +215,8 @@ function flag = gener_links()
     path=xml(k1)
     //write(%io(2),path)
     if newest(path,strsubst(path,".xml",".htm"))==1 then
-      flag1= find_links(path,path+"2")
-      flag = flag1 | flag
+      find_links(path,path+"2")
+      flag = %t
     end
   end
 endfunction 
