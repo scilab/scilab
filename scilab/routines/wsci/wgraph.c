@@ -1,4 +1,5 @@
 #include "wgraph.h"
+#include "resource.h"
 /*-----------------------------------------------------------------------------------*/
 /* add handlers for delete action */
 void scig_deletegwin_handler_none (int win)
@@ -468,13 +469,14 @@ void ReadGraphIni (struct BCG *ScilabGC)
 
 	if ( RegQueryValueEx(key, "ToolBar", 0, NULL, (LPBYTE)&Toolbar, &size) !=  ERROR_SUCCESS )
   	{
-		ScilabGC->lpmw.ShowToolBar = FALSE;
+		ScilabGC->lpmw.ShowToolBar = TRUE;
 	}
 	else
 	{
 		ScilabGC->lpmw.ShowToolBar  = Toolbar;
 	}
 
+    DefaultShowToolBar=ScilabGC->lpmw.ShowToolBar;
 	ScilabGC->lpmw.LockToolBar=FALSE;
 
 	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
@@ -1436,11 +1438,12 @@ EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wPar
 		    HIWORD (lParam) - (rect.bottom - rect.top),
 		    LOWORD (lParam), (rect.bottom - rect.top),
 		    SWP_NOZORDER | SWP_NOACTIVATE);
+	  
       SetWindowPos (ScilabGC->CWindow, (HWND) NULL, 0,
-		    ScilabGC->lpgw->ButtonHeight,
-		    LOWORD (lParam), HIWORD (lParam) - ScilabGC->lpgw->ButtonHeight
-		    - (rect.bottom - rect.top),
+		    0,
+		    LOWORD (lParam), HIWORD (lParam) - (rect.bottom - rect.top),
 		    SWP_NOZORDER | SWP_NOACTIVATE);
+	
       GetWindowRect (ScilabGC->Statusbar, &rect1);
       GetClientRect (ScilabGC->hWndParent, &rect);
       ScilabGC->CWindowWidthView = rect.right;
@@ -1460,18 +1463,6 @@ EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wPar
       return (0);
     case WM_PAINT:
       hdc = BeginPaint (hwnd, &ps);
-      if (ScilabGC->lpgw->ButtonHeight)
-	{
-	  HBRUSH hbrush;
-	  GetClientRect (hwnd, &rect);
-	  hbrush = CreateSolidBrush (GetSysColor (COLOR_BTNSHADOW));
-	  rect.bottom = ScilabGC->lpgw->ButtonHeight - 1;
-	  FillRect (hdc, &rect, hbrush);
-	  DeleteBrush (hbrush);
-	  SelectPen (hdc, GetStockPen (BLACK_PEN));
-	  MoveToEx (hdc, rect.left, ScilabGC->lpgw->ButtonHeight - 1, NULL);
-	  LineTo (hdc, rect.right, ScilabGC->lpgw->ButtonHeight - 1);
-	}
       EndPaint (hwnd, &ps);
       return 0;
       break;
@@ -1517,77 +1508,80 @@ void C2F(seteventhandler)(int *win_num,char *name,int *ierr)
 /*-----------------------------------------------------------------------------------*/
 void HideGraphToolBar(struct BCG * ScilabGC)
 {
-	RECT rect,rect1;
-
-	ScilabGC->lpmw.ShowToolBar=FALSE;	
-	/* ToolBar */
-	ShowWindow(ScilabGC->hWndToolBar,SW_HIDE);
-	
-	/* Parent */
-	GetWindowRect(ScilabGC->hWndParent, &rect);
-	SetWindowPos(ScilabGC->hWndParent,NULL,
-				 rect.left,rect.top,
-				 rect.right-rect.left,(rect.bottom-rect.top)-ToolBarHeight,
-				 SWP_NOZORDER | SWP_NOACTIVATE);
-
-	/*Graphic window */
-	GetClientRect (ScilabGC->CWindow, &rect);
-    SetWindowPos (ScilabGC->CWindow, (HWND) NULL,
-				  0,0,
-				  rect.right-rect.left,(rect.bottom-rect.top),
-				  SWP_NOZORDER | SWP_NOACTIVATE);
-
-	/*StatusBar*/
-	GetClientRect(ScilabGC->hWndParent, &rect1);
-	GetClientRect (ScilabGC->Statusbar, &rect);
-	
-    SetWindowPos (ScilabGC->Statusbar, (HWND) NULL,
-				  0,(rect1.bottom-rect1.top)- (rect.bottom - rect.top),
-				  rect.right-rect.left,(rect.bottom-rect.top),
-				  SWP_NOZORDER | SWP_NOACTIVATE);
-
-	GetClientRect (ScilabGC->CWindow, &rect);
-    scig_replay_hdc ('C', ScilabGC->CurWindow, GetDC (ScilabGC->CWindow),rect.right - rect.left, rect.bottom - rect.top, 1);	
+	int i=0;
+	ScilabGC->lpmw.ShowToolBar=FALSE;
+	for (i=0;i<ScilabGC->lpmw.nButton;i++)
+		{
+		ShowWindow(ScilabGC->lpmw.hButton[i],SW_HIDE);
+		}
 }
 /*-----------------------------------------------------------------------------------*/
 void ShowGraphToolBar(struct BCG * ScilabGC)
 {
-	RECT rect,rect1/*,rect2*/;
-	ScilabGC->lpmw.ShowToolBar=TRUE;	
+	int i=0;
+	ScilabGC->lpmw.ShowToolBar=TRUE;
+	for (i=0;i<ScilabGC->lpmw.nButton;i++)
+		{
+		ShowWindow(ScilabGC->lpmw.hButton[i],SW_SHOWNORMAL);
+		}
+}
+/*-----------------------------------------------------------------------------------*/
+void CreateGraphToolBar(struct BCG * ScilabGC) 
+{
+#define HMENUIndiceZOOM 15
+#define HMENUIndiceUNZOOM 16
+#define HMENUIndice3DROT 17
 
-    /* Parent */
-	GetWindowRect(ScilabGC->hWndParent, &rect);
-	SetWindowPos(ScilabGC->hWndParent,NULL,
-				 rect.left,rect.top,
-				 rect.right-rect.left,(rect.bottom-rect.top)+ToolBarHeight,SWP_NOZORDER | SWP_NOACTIVATE);
+  HICON IconButton;
+  ScilabGC->lpmw.nButton=0;
 
+  ScilabGC->lpmw.hButton[0]= CreateWindow("button","Zoom",WS_CHILD|WS_VISIBLE|BS_ICON ,
+										  0, 0,
+										  ButtonToolBarWeight, ToolBarHeight,
+                                          ScilabGC->CWindow,(HMENU)HMENUIndiceZOOM,
+                                          graphwin.hInstance, NULL);
+  IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_ZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+  SendMessage(ScilabGC->lpmw.hButton[0],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+  CreateMyTooltip (ScilabGC->lpmw.hButton[0], "Zoom"); 
 
-	/*Graphic window */
-	GetClientRect (ScilabGC->CWindow, &rect);
-    SetWindowPos (ScilabGC->CWindow, (HWND) NULL,
-				  0,ToolBarHeight,
-				  rect.right-rect.left,(rect.bottom-rect.top),
-				  SWP_NOZORDER | SWP_NOACTIVATE);
-	
-	/* ToolBar */
-	ShowWindow(ScilabGC->hWndToolBar,SW_SHOWNORMAL);
-	GetClientRect (ScilabGC->hWndToolBar, &rect);
-    SetWindowPos (ScilabGC->hWndToolBar, (HWND) NULL,
-				  0,0,
-				  rect.right-rect.left,(rect.bottom-rect.top),
-				  SWP_NOZORDER | SWP_NOACTIVATE);
+  ScilabGC->lpmw.nButton++;
+  ScilabGC->lpmw.hButton[1]= CreateWindow("button","UnZoom",WS_CHILD|WS_VISIBLE|BS_ICON ,
+										  ButtonToolBarWeight, 0,
+										  ButtonToolBarWeight, ToolBarHeight,
+                                          ScilabGC->CWindow,(HMENU)HMENUIndiceUNZOOM,
+                                          graphwin.hInstance, NULL);
+  IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_UNZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+  SendMessage(ScilabGC->lpmw.hButton[1],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+  CreateMyTooltip (ScilabGC->lpmw.hButton[1], "UnZoom"); 
 
-	/* StatusBar*/
-	GetClientRect(ScilabGC->hWndParent, &rect);
-	GetWindowRect (ScilabGC->Statusbar, &rect1) ;
+  ScilabGC->lpmw.nButton++;
+  ScilabGC->lpmw.hButton[2]= CreateWindow("button","2D/3D Rotation",WS_CHILD|WS_VISIBLE|BS_ICON ,
+										  ButtonToolBarWeight*2, 0,
+										  ButtonToolBarWeight, ToolBarHeight,
+                                          ScilabGC->CWindow,(HMENU)HMENUIndice3DROT,
+                                          graphwin.hInstance, NULL);
+  IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_3DROT,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+  SendMessage(ScilabGC->lpmw.hButton[2],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+  CreateMyTooltip (ScilabGC->lpmw.hButton[2], "2D/3D Rotation"); 
 
-	
-	SetWindowPos (ScilabGC->Statusbar, (HWND) NULL,
-				  0,	(rect.bottom-rect.top) - (rect1.bottom - rect1.top),
-				  (rect.right-rect.left), (rect1.bottom - rect1.top),
-						SWP_NOZORDER | SWP_NOACTIVATE);
+  ScilabGC->lpmw.nButton++;
+  ScilabGC->lpmw.LockToolBar=FALSE;
 
-	
+  if (DefaultShowToolBar == FALSE) HideGraphToolBar(ScilabGC);
+  else
+  {
+	  ScilabGC->lpmw.ShowToolBar=TRUE;
+  }
+  
+}
+/*-----------------------------------------------------------------------------------*/
+void RefreshGraphToolBar(struct BCG * ScilabGC) 
+{
+int i=0;
 
+for (i=0;i<ScilabGC->lpmw.nButton;i++)
+	{
+	InvalidateRect(ScilabGC->lpmw.hButton[i],NULL,TRUE);
+	}
 }
 /*-----------------------------------------------------------------------------------*/

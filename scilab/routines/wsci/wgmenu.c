@@ -23,6 +23,7 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
       if (*s >= CMDMIN && *s <= CMDMAX)
 	{
 	  int ierr = 0;
+	  
 /** Special cases **/
 	  switch (*s)
 	    {
@@ -35,19 +36,23 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 			  s++;
 	      break;
 		case NEWFIG:
+			SaveCurrentLine();
 			NewFigure(ScilabGC);
 			s++;
 	      break;
 	    case ZOOM:
 	      scig_2dzoom (ScilabGC->CurWindow);
+		  
 	      s++;
 	      break;
 	    case UNZOOM:
 	      scig_unzoom (ScilabGC->CurWindow);
+		  
 	      s++;
 	      break;
 	    case ROT3D:
 	      scig_3drot (ScilabGC->CurWindow);
+		  
 	      s++;
 	      break;
 	    case PRINT:
@@ -132,6 +137,7 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
     added menu **/
   ScilabMenuAction (buf);
   LocalFree (buf);
+
 }
 /*-----------------------------------------------------------------------------------*/
 /******************************

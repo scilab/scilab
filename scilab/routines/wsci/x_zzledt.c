@@ -108,9 +108,11 @@ void SaveCurrentLine(void)
 {
 	extern char cur_line[1024];
 
-	
-	strcpy(copycur_line,cur_line);
-	PutLineInBuffer=TRUE;
+	if ( (get_is_reading ()) && (PutLineInBuffer == FALSE) )
+	{
+		strcpy(copycur_line,cur_line);
+		PutLineInBuffer=TRUE;
+	}
 
 }
 /*-----------------------------------------------------------------------------------*/

@@ -136,7 +136,6 @@ static char *Print_Formats[] =
   "PPM",
 };
 
-BOOL GraphToolBarDefault=TRUE;
 
 static void dos2win32 (char *filename, char *filename1);
 static void ExploreMenu (HMENU hmen, BYTE ** macro);
@@ -159,7 +158,7 @@ extern void ResetMenu(void);
 extern struct BCG *GetWindowXgcNumber (integer i);
 extern void HideGraphToolBar(struct BCG * ScilabGC);
 extern void ShowGraphToolBar(struct BCG * ScilabGC);
-
+extern void SaveCurrentLine(void);
 
 
 void SendGraphMacro (struct BCG *ScilabGC, UINT m);

@@ -141,11 +141,16 @@ But SciClickInfo; /* for xclick and xclick_any */
 static int emulate_backing_store = 1; /* to use  ScilabPaintWithBitmap*/
 /* static COLORREF DefaultBackground = RGB(255,255,255); define in periwin.c */
 
-extern BOOL GraphToolBarDefault;
+extern void CreateMyTooltip (HWND hwnd,char ToolTipString[30]);
+
+
 #define ToolBarHeight 24
+#define ButtonToolBarWeight 24
+void CreateGraphToolBar(struct BCG * ScilabGC); 
 void HideGraphToolBar(struct BCG * ScilabGC);
 void ShowGraphToolBar(struct BCG * ScilabGC);
-
+void RefreshGraphToolBar(struct BCG * ScilabGC) ;
+static BOOL DefaultShowToolBar=TRUE;
 
 #endif /* __WGRAPH__ */
 /*-----------------------------------------------------------------------------------*/
