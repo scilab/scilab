@@ -12,20 +12,20 @@ void SciEnv ()
 	char *p;
 	char modname[MAX_PATH + 1];
 
-	if (!GetModuleFileName ((HANDLE)GetModuleHandle(NULL), modname + 1, MAX_PATH)) return;
-	if ((p = strrchr (modname + 1, '\\')) == NULL)return;
+	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), modname, MAX_PATH)) return;
+	if ((p = strrchr (modname, '\\')) == NULL)return;
 	*p = 0;
 
 	/* Set SCI variable */
-	if ((p = strrchr (modname + 1, '\\')))
+	if ((p = strrchr (modname, '\\')))
 	{
 		*p = 0;
-		for (p = modname + 1; *p; p++)
+		for (p = modname ; *p; p++)
 		{
 			if (*p == '\\')	*p = '/';
 		}
 
-		p = modname + 1;
+		p = modname;
 
 		set_sci_env(p);
 	}
@@ -71,7 +71,7 @@ void set_sci_env(char *p)
 			sprintf (env, "SCI=%s",CopyOfp);
 		}
 
-		putenv (env);
+		_putenv (env);
 	}
 
 	/* HOME variable Environment */
