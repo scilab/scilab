@@ -14,13 +14,13 @@
   <PARAM_ITEM>
   <PARAM_NAME>function  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : une fonction non &quot;compilée&quot; (type 11)
+    <SP>: une fonction non &quot;compilée&quot; (type 11)</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>opt  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : un entier valant 0 (par défaut) ou 1. 
+    <SP>: un entier valant 0 (par défaut) ou 1. </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

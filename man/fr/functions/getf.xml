@@ -10,42 +10,23 @@
   <CALLING_SEQUENCE_ITEM>getf(file-name [,opt])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
+   <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>filename  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : chaîne de caractères
+    <SP>: chaîne de caractères</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>opt  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : chaîne de caractères optionnelle
+     <SP>: chaîne de caractères optionnelle. Si opt==&quot;c&quot;, les
+	    fonctions sont &quot;compilées&quot; pour accélérer leur exécution
+	    (par défaut). Si opt==&quot;n&quot;, les fonctions ne sont pas
+	    &quot;compilées&quot;. Si opt==&quot;p&quot;,les fonctions sont &quot;compilées&quot; et préparées pour les statistiques d&apos;appel (voir <VERB>profile</VERB>) </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>&quot;c&quot;  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : les fonctions sont &quot;compilées&quot; pour accélérer leur exécution (par défaut)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>&quot;n&quot;  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : les fonctions ne sont pas &quot;compilées&quot;
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>&quot;p&quot;  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : les fonctions sont &quot;compilées&quot; et préparées pour les statistiques d&apos;appel (voir <VERB>profile</VERB>)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  <P>
-    
-  </P>
+
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
