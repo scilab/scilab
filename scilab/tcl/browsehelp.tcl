@@ -7,7 +7,7 @@
 #
 # This REQUIRES Tk4.0 -- make sure "wish" on the next line is a 4.0 version
 # The next line is a TK comment, but a shell command \
-  exec wish80 "$0" "$@" & exit 0
+  exec wish "$0" "$@" & exit 0
 
 
 ### modified by Matthieu 16/11/2001
@@ -17,6 +17,10 @@ if { ![info exists sciw] } {
 if { ![info exists lang] } {
     set lang "eng"
 }
+if { ![info exists manpath] } {
+    set manpath "/usr/local/lib/scilab/man"
+}
+
 catch {destroy $sciw}
 toplevel $sciw
 wm title $sciw "Scilab Help"
@@ -34,8 +38,8 @@ if {[catch {array get env *}]} {
 	exit 1
 }
 
-if {[info exists SciPath]} { set env(SCIPATH) $SciPath };
-source "$env(SCIPATH)/tcl/html_library.tcl"
+if {[info exists SciPath]} { set env(SCI) $SciPath };
+source "$env(SCI)/tcl/html_library.tcl"
 
 # construct a simple user interface
 proc quitapp {widget} {
@@ -162,6 +166,7 @@ proc setup {} {
 	bind Text <Key-BackSpace> {}
 	bind Text <Key> {}
 	bind Text <Key-Return> {}
+        bind Text <ButtonPress-2> {}
 	bind Text <Key-Tab> {}
 	bind Text <Key-Delete> {}
         bind Text <<Cut>> {}
