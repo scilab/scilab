@@ -26,5 +26,7 @@ end
 funcprot(prot)
 new=who('get')
 new=new(1:(size(new,'*')-nold-2))
-execstr('['+strcat(new,',')+']=resume('+strcat(new,',')+')')
+if new<>[] then
+  execstr('['+strcat(new,',')+']=resume('+strcat(new,',')+')')
+end
 endfunction
