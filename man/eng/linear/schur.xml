@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="html.xsl" ?>
+
 <!DOCTYPE MAN SYSTEM "../../man.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -97,153 +99,148 @@
   <P>
     Schur forms, ordered Schur forms of matrices and pencils
   </P>
-  </DESCRIPTION>
 
-  <ITEMIZE  label='Matrix and pencils'> 
-  <ITEM  label='MATRIX SCHUR FORM'> 
-    <ITEMIZE  label='Usual and ordered factorisations'> 
-    <ITEM  label='Usual schur form:'> 
-<P>
-    <VERB>[U,T] = schur(A)</VERB> produces a Schur matrix <VERB>T</VERB>
-    and a unitary matrix <VERB>U</VERB> so that <VERB>A =
-    U*T*U&apos;</VERB> and <VERB>U&apos;*U = eye(U)</VERB>. By itself,
-    schur(<VERB>A</VERB>) returns <VERB>T</VERB>. If <VERB>A</VERB> is
-    complex, the Complex Schur Form is returned in matrix
-    <VERB>T</VERB>. The Complex Schur Form is upper triangular with
-    the eigenvalues of <VERB>A</VERB> on the diagonal. If
-    <VERB>A</VERB> is real, the Real Schur Form is returned.  The Real
-    Schur Form has the real eigenvalues on the diagonal and the
-    complex eigenvalues in 2-by-2 blocks on the diagonal.
- </P>
-    </ITEM>
-     <ITEM  label='Ordered Schur forms'> 
+  <DESCRIPTION_ITEM  label='MATRIX SCHUR FORM'> 
+  <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM  label='Usual schur form:'> 
+      <P>
+       <VERB>[U,T] = schur(A)</VERB> produces a Schur matrix
+        <VERB>T</VERB> and a unitary matrix <VERB>U</VERB> so that
+        <VERB>A = U*T*U&apos;</VERB> and <VERB>U&apos;*U =
+        eye(U)</VERB>. By itself, schur(<VERB>A</VERB>) returns
+        <VERB>T</VERB>. If <VERB>A</VERB> is complex, the Complex
+        Schur Form is returned in matrix
+	<VERB>T</VERB>. The Complex Schur Form is upper triangular with
+	the eigenvalues of <VERB>A</VERB> on the diagonal. If
+	<VERB>A</VERB> is real, the Real Schur Form is returned.  The Real
+	Schur Form has the real eigenvalues on the diagonal and the
+	complex eigenvalues in 2-by-2 blocks on the diagonal.
+      </P>
+      </DESCRIPTION_ITEM>
 
-     <P>
-    <VERB>[U,dim]=schur(A,&apos;c&apos;)</VERB>
-    returns an unitary matrix <VERB>U</VERB> which transforms <VERB>A</VERB> into schur form.
-    In addition, the dim first columns of <VERB>U</VERB>  make a basis of the 
-    eigenspace of <VERB>A</VERB> associated with eigenvalues with negative 
-    real parts (stable &quot;continuous time&quot; eigenspace).
-    </P>
-    <P>
-    <VERB>[U,dim]=schur(A,&apos;d&apos;)</VERB>
-    returns an unitary matrix <VERB>U</VERB> which transforms <VERB>A</VERB> into schur form.
-    In addition, the <VERB>dim</VERB> first columns of <VERB>U</VERB> span a basis of the 
-    eigenspace of <VERB>A</VERB> associated with eigenvalues with magnitude
-    lower than 1 (stable &quot;discrete time&quot; eigenspace).
-    </P>
-    <P>
-     <VERB>[U,dim]=schur(A,extern1)</VERB>
-    returns an unitary matrix <VERB>U</VERB> which transforms <VERB>A</VERB> into schur form. 
-    In addition, the <VERB>dim</VERB> first columns of <VERB>U</VERB> span a basis of the 
-    eigenspace of <VERB>A</VERB> associated with the eigenvalues which are 
-    selected by the external function <VERB>extern1</VERB> (see external for details). 
-    </P>
- 
+      <DESCRIPTION_ITEM  label='Ordered Schur forms'> 
+      <P>
+      <VERB>[U,dim]=schur(A,&apos;c&apos;)</VERB> returns an unitary
+      matrix <VERB>U</VERB> which transforms <VERB>A</VERB> into schur
+      form.  In addition, the dim first columns of <VERB>U</VERB> make
+      a basis of the eigenspace of <VERB>A</VERB> associated with
+      eigenvalues with negative real parts (stable &quot;continuous
+      time&quot; eigenspace).
+      </P>
+      <P>
+      <VERB>[U,dim]=schur(A,&apos;d&apos;)</VERB> returns an unitary
+      matrix <VERB>U</VERB> which transforms <VERB>A</VERB> into schur
+      form.  In addition, the <VERB>dim</VERB> first columns of
+      <VERB>U</VERB> span a basis of the eigenspace of <VERB>A</VERB>
+      associated with eigenvalues with magnitude lower than 1 (stable
+      &quot;discrete time&quot; eigenspace).
+      </P>
+      <P>
+      <VERB>[U,dim]=schur(A,extern1)</VERB> returns an unitary matrix
+      <VERB>U</VERB> which transforms <VERB>A</VERB> into schur form.
+      In addition, the <VERB>dim</VERB> first columns of
+      <VERB>U</VERB> span a basis of the eigenspace of <VERB>A</VERB>
+      associated with the eigenvalues which are selected by the
+      external function <VERB>extern1</VERB> (see external for
+      details).  This external can be described by a Scilab function
+      or by C or Fortran procedure: </P>
 
-    <ITEMIZE  label='External definitions'> 
-      <ITEM label='if'> <P>
-       <VERB>extern1</VERB> is described by a Scilab function, it
-       should have the following calling sequence:
-       <VERB>s=extern1(Ev)</VERB>, where <VERB>Ev</VERB> is an eigenvalue and
-       <VERB>s</VERB> a boolean.</P>
-      </ITEM>
+      <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label='a Scilab function'><P>
+	   If <VERB>extern1</VERB> is described by a Scilab function, it
+	  should have the following calling sequence:
+	  <VERB>s=extern1(Ev)</VERB>, where <VERB>Ev</VERB> is an eigenvalue and
+	  <VERB>s</VERB> a boolean.</P>
+          </DESCRIPTION_ITEM>
 
-      <ITEM  label='if'> <P>
-       <VERB>extern1</VERB> is described by a C or Fortran function it
-       should have the following calling sequence:
-       <VERB>int extern1(double *EvR, double *EvI)</VERB></P>
-       <P>
-       where <VERB>EvR</VERB> and <VERB>EvI</VERB> are  eigenvalue real and complex parts.
-       </P>
-       <P>
-       a true or non zero returned value stands for selected eigenvalue.
-       </P>
-      </ITEM>
-    </ITEMIZE>
-  </ITEM>
-  </ITEMIZE>
-  </ITEM>
-  <ITEM  label='PENCIL SCHUR FORMS'> 
- 
-   <ITEMIZE  label='Usual and ordered factorisations'> 
-     <ITEM  label='Usual Pencil Schur form'> <P>
-     <VERB>[As,Es] = schur(A,E)</VERB> produces a quasi triangular
-     <VERB>As</VERB> matrix and a triangular <VERB>Es</VERB> matrix
-     which are the generalized Schur form of the pair <VERB>A,
-     E</VERB>.</P>
+          <DESCRIPTION_ITEM label='a C or Fortran procedure'><P>
+	   If <VERB>extern1</VERB> is described by a C or Fortran function it
+	  should have the following calling sequence:
+	  <VERB>int extern1(double *EvR, double *EvI)</VERB>
+	  where <VERB>EvR</VERB> and <VERB>EvI</VERB> are  eigenvalue real and complex parts.
+	  a true or non zero returned value stands for selected eigenvalue.</P>
+          </DESCRIPTION_ITEM>
+      </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+  </DESCRIPTION_ITEM>
 
-    <P>
-     <VERB>[As,Es,Q,Z] = schur(A,E)</VERB>
+  <DESCRIPTION_ITEM  label='PENCIL SCHUR FORMS'> 
+  <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM  label='Usual Pencil Schur form'> <P>
+      <VERB>[As,Es] = schur(A,E)</VERB> produces a quasi triangular
+      <VERB>As</VERB> matrix and a triangular <VERB>Es</VERB> matrix
+      which are the generalized Schur form of the pair <VERB>A,
+      E</VERB>.</P>
+      <P>
+      <VERB>[As,Es,Q,Z] = schur(A,E)</VERB>
       returns in addition two unitary matrices
       <VERB>Q</VERB> and <VERB>Z</VERB> such that
       <VERB>As=Q&apos;*A*Z</VERB> and <VERB>Es=Q&apos;*E*Z</VERB>.
-    </P>
-    </ITEM>
-    <ITEM  label='Ordered Schur forms:'> 
-    <P>
-    <VERB>[As,Es,Z,dim] = schur(A,E,&apos;c&apos;)</VERB>
-    returns the real generalized
-    Schur form of the pencil <VERB>s*E-A</VERB>. In addition, the dim first columns 
-    of <VERB>Z</VERB> span a basis of the right eigenspace  associated with 
-    eigenvalues with negative real parts (stable &quot;continuous
-    time&quot; generalized eigenspace).
-  </P>
-  <P>
-    <VERB>[As,Es,Z,dim] = schur(A,E,&apos;d&apos;)</VERB>
-    </P>
-    <P>
-    returns the real generalized
-    Schur form of the pencil <VERB>s*E-A</VERB>. In addition, the dim first columns 
-    of <VERB>Z</VERB> make a basis of the right eigenspace  associated with 
-    eigenvalues with magnitude lower than 1 (stable &quot;discrete
-    time&quot; generalized eigenspace).
-    </P>
-    <P>
-    <VERB>[As,Es,Z,dim] = schur(A,E,extern2)</VERB>
-    </P>
-    <P>
-    returns the real generalized Schur form of the pencil <VERB>s*E-A</VERB>. 
-    In addition, the dim first columns 
-    of <VERB>Z</VERB> make a basis of the right eigenspace  associated with 
-    eigenvalues of the pencil which are selected according to a
-    rule which is given by the function <VERB>extern2</VERB>. (see external
-    for details)
-    </P>
- 
-    <ITEMIZE  label='External definitions'>
-     <ITEM label='if'> <P>
-    <VERB>extern2</VERB> is described by a Scilab function, it should
-    have the following calling sequence:
-    <VERB>s=extern2(Alpha,Beta)</VERB>, where <VERB>Alpha</VERB> and
-    <VERB>Beta</VERB> defines a generalized eigenvalue and
-    <VERB>s</VERB> a boolean. </P>
-    </ITEM>
+      </P>
+      </DESCRIPTION_ITEM>
 
-    <ITEM  label='if'> <P>
-    <VERB>extern2</VERB> is described by a C or Fortran function it
-    should have the following calling sequence:</P>
-
-     <VERB>int extern2(double *AlphaR, double *AlphaI, double *Beta)</VERB>
-      <P>
-	 if <VERB>A</VERB> and <VERB>E</VERB> are real and
-      </P>
-      <VERB>int extern2(double *AlphaR, double *AlphaI, double *BetaR, double *BetaI)</VERB>
-      <P>
-      if <VERB>A</VERB> or <VERB>E</VERB> are complex.
-      </P>
-      <P>
-      <VERB>Alpha</VERB>, and <VERB>Beta</VERB> defines the generalized eigenvalue.
-      </P>
+      <DESCRIPTION_ITEM  label='Ordered Schur forms:'><P>
+      <VERB>[As,Es,Z,dim] = schur(A,E,&apos;c&apos;)</VERB>
+      returns the real generalized
+      Schur form of the pencil <VERB>s*E-A</VERB>. In addition, the dim first columns 
+      of <VERB>Z</VERB> span a basis of the right eigenspace  associated with 
+      eigenvalues with negative real parts (stable &quot;continuous
+      time&quot; generalized eigenspace).
+       </P>
        <P>
-        a true or non zero returned value stands for selected generalized eigenvalue.
-	</P>
-	</ITEM>
-     </ITEMIZE>
-     </ITEM>
-    </ITEMIZE>
-  </ITEM>
- </ITEMIZE>
+      <VERB>[As,Es,Z,dim] = schur(A,E,&apos;d&apos;)</VERB>
+      </P>
+      <P>
+      returns the real generalized
+      Schur form of the pencil <VERB>s*E-A</VERB>. In addition, the dim first columns 
+      of <VERB>Z</VERB> make a basis of the right eigenspace  associated with 
+      eigenvalues with magnitude lower than 1 (stable &quot;discrete
+      time&quot; generalized eigenspace).
+      </P>
+      <P>
+      <VERB>[As,Es,Z,dim] = schur(A,E,extern2)</VERB>
+      </P>
+      <P>
+      returns the real generalized Schur form of the pencil <VERB>s*E-A</VERB>. 
+      In addition, the dim first columns 
+      of <VERB>Z</VERB> make a basis of the right eigenspace  associated with 
+      eigenvalues of the pencil which are selected according to a
+      rule which is given by the function <VERB>extern2</VERB>. (see external
+      for details). This external can be described by a Scilab
+      function or by C or Fortran procedure:      </P>
+ 
+      <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label='A Scilab function'> <P>
+	  If <VERB>extern2</VERB> is described by a Scilab function, it should
+	  have the following calling sequence:
+	  <VERB>s=extern2(Alpha,Beta)</VERB>, where <VERB>Alpha</VERB> and
+	  <VERB>Beta</VERB> defines a generalized eigenvalue and
+	  <VERB>s</VERB> a boolean. </P>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label='C or Fortran procedure'> <P>
+	  if external <VERB>extern2</VERB> is described by a C or a
+	  Fortran procedure, it should have the following calling
+	  sequence:
+	  </P><P>
+	  <VERB>int extern2(double *AlphaR, double *AlphaI, double *Beta)</VERB>
+	  </P><P>
+	  if <VERB>A</VERB> and <VERB>E</VERB> are real and
+	  </P><P></P><P>
+	  <VERB>int extern2(double *AlphaR, double *AlphaI, double *BetaR, double *BetaI)</VERB>
+	  </P><P>
+	  if <VERB>A</VERB> or <VERB>E</VERB> are complex.
+	  <VERB>Alpha</VERB>, and <VERB>Beta</VERB> defines the generalized eigenvalue.
+	  a true or non zero returned value stands for selected generalized eigenvalue.
+	  </P>
+          </DESCRIPTION_ITEM>
+      </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+   </DESCRIPTION_INDENT>
+   </DESCRIPTION_ITEM>
+
+  </DESCRIPTION>
   <ITEMIZE label='REFERENCES'>
   <P>
     Matrix schur form computations are based on the Lapack routines DGEES and ZGEES.
@@ -301,4 +298,7 @@ link(G_make(TMPDIR+'/mytest.o'), 'mytest',"F")
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>bdiag</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ricc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pbig</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>psmall</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+
 </MAN>
+
+
