@@ -249,6 +249,7 @@ void cscope(scicos_block *block,int flag)
     n = ipar[3];
     k = (int) z__[1];
     if (k <= 1) {
+      scicos_free(*block->work);
       return ;
     }
     C2F(dr1)("xget\000", "window\000", &verb, &cur, &na, &v, &v, &v, &dv, &dv,
