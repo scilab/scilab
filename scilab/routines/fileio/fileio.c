@@ -605,9 +605,13 @@ int int_objfprintfMat(char *fname)
 	       fname,cstk(l1));
       return 0;
     }
-  for ( i=0 ; i < mS*nS ; i++) 
-    fprintf(f,"%s\n",Str2[i]);
-  
+
+  if ( Rhs >= 4 )
+    {
+      for ( i=0 ; i < mS*nS ; i++) 
+	fprintf(f,"%s\n",Str2[i]);
+    }
+
   for (i = 0 ; i < m2 ; i++ ) 
     {
       for ( j = 0 ; j < n2 ; j++) 
