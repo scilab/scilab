@@ -513,7 +513,7 @@ S.a=11
 S.a(2,2)=12
  S  =
  
-   a: {2x2 entries constant}
+   a: [2x2 constant]
  
 if or(S.a<>diag([11,12])) bugmes();quit;end
  
@@ -559,7 +559,8 @@ S2.a=-5;
  
 S2.c=8;
  
-S(2,2,2)=S2;
+ 
+ S(2,2,2)=S2;
  
 Sr=mlist(['st','dims','a','b','c'],int32([2,2,2]),..
 	 list(33,[],[],33,[],[],[],-5),..
@@ -611,8 +612,9 @@ if or(S1<>Sr) bugmes();quit;end
  
 S1=S(:,:);
  
-Sr=mlist(['st','dims','a','b','c'],int32([2,2]),list(33,[],[],33),0...
-	 list('toto',12,[],'toto'),list([],[],[],[]));
+Sr=mlist(['st','dims','a','b','c'],int32([2,4]),list(33,[],[],33,[],[],[],-5),..
+	 list('toto',12,[],'toto',[],[],[],[]),..
+	 list([],[],[],[],[],[],[],8));
  
 if or(S1<>Sr) bugmes();quit;end
  
