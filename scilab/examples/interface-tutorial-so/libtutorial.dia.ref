@@ -1,8 +1,6 @@
  
 tutorial_path=get_file_path('libtutorial.tst');
  
-Loading shared executable0.///libtutorial.so
-
 shared archive loaded
 
 Linking libtutorial 
