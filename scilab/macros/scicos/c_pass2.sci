@@ -57,7 +57,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   // heritage block !
   [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
   
-  [critev,typ_c]=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
+  [critev]=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
 				 typ_l,typ_zx,outoin,outoinptr,clkptr)
   
   [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,dep_ut,typ_r,..
@@ -78,9 +78,9 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     
     if show_trace then disp('c_pass3011:'+string(timer())),end
     
-    [ok,done,bllst,connectmat,clkconnect,typ_l,typ_m,typ_c,critev,..
+    [ok,done,bllst,connectmat,clkconnect,typ_l,typ_m,critev,..
      corinv]=paksazi(bllst,connectmat,clkconnect,corinv,clkptr,cliptr,typ_l,..
-		     typ_m,typ_c,critev,dep_ut)
+		     typ_m,critev,dep_ut)
     
     if show_trace then disp('c_pass300011:'+string(timer())),end
     if ~ok then
@@ -98,12 +98,6 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
    typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
    bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect);
   typ_z0=typ_z;
-  
-  for ii=find(typ_c)
-    for i=[clkptr(ii):clkptr(ii+1)-1]
-      critev(i)=0
-    end
-  end
   
 
   if ~ok then
@@ -294,10 +288,10 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
     if j>size(ext_cord1,1) then break;end
   end
 
-  ext_cord=ext_cord1(:,1);
+  ext_cord=ext_cord1(:,1)';
   //a supprimer
   [ext_cord_old,ok]=new_tree3(vec,dep_ut,typp);
-  if or(sort(ext_cord)<>sort(ext_cord1(:,1))) then pause,end
+  if or(sort(ext_cord_old)<>sort(ext_cord)) then pause,end
   //
   //pour mettre a zero les typ_z qui ne sont pas dans ext_cord
   //noter que typ_z contient les tailles des nzcross (peut etre >1)
@@ -353,26 +347,13 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
   //a priori tous les evenemets sont non-importants
   //critev=zeros(n,1)
   for i=1:n
-    fl=%f
     for hh=ordptr1(i):ordptr1(i+1)-1
       jj= ordclk(hh,1) //block excite par evenement i
-      
       //Following line is not correct because of ever active synchros
-      if ~or(jj*maX+ordclk(hh,2)==cordX)
-	// if a bloc with internal state is excited then it is critical
-	if typ_x(jj)| typ_z(jj)  then fl=%t; end
-	for ii=[outoin(outoinptr(jj):outoinptr(jj+1)-1,1)'],..
-//		evoutoin(evoutoinptr(jj):evoutoinptr(jj+1)-1,1)']
-	  //block excite par block excite par evenement i
-	  //si il est integre, i est important
-	  if typ_x(ii) | typ_z(ii) then fl=%t; end
-	end
-      else
+      if or(jj*maX+ordclk(hh,2)==cordX) then
 	ordclk(hh,2)=-ordclk(hh,2)
       end
-//      if fl then break;end
     end
-//    if fl then critev(i,1)=1; end
   end
 endfunction
 
@@ -408,9 +389,9 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
   ord(find(k==1))=[];
 endfunction
 
-function [okk,done,bllst,connectmat,clkconnect,typ_l,typ_m,typ_c,critev,corinv]=..
+function [okk,done,bllst,connectmat,clkconnect,typ_l,typ_m,critev,corinv]=..
       paksazi(bllst,connectmat,clkconnect,corinv,clkptr,cliptr,..
-	      typ_l,typ_m,typ_c,critev,dep_ut)
+	      typ_l,typ_m,critev,dep_ut)
   global need_newblk  
   okk=%t
   nblk=length(bllst)
@@ -453,7 +434,6 @@ function [okk,done,bllst,connectmat,clkconnect,typ_l,typ_m,typ_c,critev,corinv]=
 	end
 	for k=2:nn
 	  critev=[critev;critev(clkptr(lb):clkptr(lb+1)-1)]
-	  typ_c($+1)=typ_c(lb)
 	  clkconnect(indx(k),3)=nblk+1;
 	  bllst(nblk+1)=bllst(lb);
 	  corinv(nblk+1)=corinv(lb);
@@ -1385,7 +1365,7 @@ endfunction
 
 
 
-function [critev,typ_c]=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
+function [critev]=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
 				 typ_l,typ_zx,outoin,outoinptr,clkptr)
 
  typ_c=typ_l<>typ_l;
