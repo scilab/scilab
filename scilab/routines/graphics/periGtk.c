@@ -367,7 +367,7 @@ static gboolean locator_button_motion(GtkWidget *widget,
 				      GdkEventMotion *event,
 				      BCG *gc)
 {
-  int x,y; 
+  gint x,y; 
   GdkModifierType state;
   if (event->is_hint)
     { 
@@ -398,8 +398,11 @@ static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
       /* since Alt-keys and Ctrl-keys are stored in menus I want to ignore them here */
       if ( event->state != GDK_CONTROL_MASK && event->state != GDK_MOD1_MASK ) 
 	{
-	  fprintf(stderr,"key accepted %d %d\r\n",event->keyval,event->state);
-	  info.ok =1 ;  info.win=  gc->CurWindow; info.x = 0;  info.y = 0;
+	  gint x,y;
+	  GdkModifierType state;
+	  gdk_window_get_pointer (gc->drawing->window, &x, &y, &state);
+	  info.x=x ; info.y=y;
+	  info.ok =1 ;  info.win=  gc->CurWindow; 
 	  info.button = event->keyval;
 	  gtk_main_quit();
 	}
@@ -3013,7 +3016,7 @@ int fontidscale(int fontsize)
   int isiz = i_size_[fontsize];
   double d = Min(ScilabXgc->CWindowHeight,ScilabXgc->CWindowWidth);
   nnsiz = (ScilabXgc != NULL) ? inint((isiz*d/400.0)) : isiz; 
-  fprintf(stderr,"Scaling by -->%d %d \n",isiz,nnsiz);
+  /* fprintf(stderr,"Scaling by -->%d %d \n",isiz,nnsiz); */
   for ( i=0; i < FONTMAXSIZE ; i++) 
     {
       if (i_size_[i] >= nnsiz ) return Max(i-1,0);
