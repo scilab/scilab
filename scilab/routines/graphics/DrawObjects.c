@@ -8187,16 +8187,35 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
   C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /* end of default*/
 
-
-  switch(style){
-  case 0:
-    /* represents a simple dot with editable foreground */
+  if(size < 2){
+    /* represents a . (pixel) with editable foreground */
     for(i=0;i<n1;i++)
       {
-	int x1 = xm[i] - size;
-	int yy1= ym[i] - size;
-	int w1 = 2*size;
-	int h1 = 2*size;
+	int deux = 2;
+	int xmasterix[2];
+	int ymasterix[2];
+	
+	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+		  &dv, &dv, &dv, &dv, 5L, 4096);
+	
+	xmasterix[0] = xm[i];
+	xmasterix[1] = xm[i] +1;
+	ymasterix[0] = 	ymasterix[1] = ym[i];
+	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+      }
+    return 0;
+  }
+  
+  
+  switch(style){
+  case 0:
+    /* represents a simple full dot with editable foreground */
+    for(i=0;i<n1;i++)
+      {
+	int x1 = xm[i] - size/2;
+	int yy1= ym[i] - size/2;
+	int w1 = size;
+	int h1 = size;
 	char str[2] = "xv";
 	
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
@@ -8209,7 +8228,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
     break;
   case 1:
     /* represents a plus with editable foreground */
-    size = 0.75*size;
+    size = size/2;
     for(i=0;i<n1;i++)
       {
 	int deux = 2;
@@ -8236,6 +8255,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
     break;
   case 2:
     /* represents a cross with editable foreground */
+    size = (size-1)/2;
     for(i=0;i<n1;i++)
       {
 	int deux = 2;
@@ -8249,18 +8269,18 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	
 	
 	/* the "/" */
-	xmasterix[0] = xm[i] - ceil(size/2);
-	xmasterix[1] = xm[i] + ceil(size/2)+1;
-	ymasterix[0] = ym[i] + ceil(size/2);
-	ymasterix[1] = ym[i] - ceil(size/2)-1;
+	xmasterix[0] = xm[i] - ceil(size);
+	xmasterix[1] = xm[i] + ceil(size)+1;
+	ymasterix[0] = ym[i] + ceil(size);
+	ymasterix[1] = ym[i] - ceil(size)-1;
 	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	/* end */
 	
 	/* the "\" */
-	xmasterix[0] = xm[i] - ceil(size/2);
-	xmasterix[1] = xm[i] + ceil(size/2)+1;
-	ymasterix[0] = ym[i] - ceil(size/2);
-	ymasterix[1] = ym[i] + ceil(size/2)+1;
+	xmasterix[0] = xm[i] - ceil(size);
+	xmasterix[1] = xm[i] + ceil(size)+1;
+	ymasterix[0] = ym[i] - ceil(size);
+	ymasterix[1] = ym[i] + ceil(size)+1;
 	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	/* end */
       }
@@ -8270,10 +8290,10 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
     /* represents a circle AND a plus within this circle with editable foreground and background */
     for(i=0;i<n1;i++)
       {
-	int x1 = xm[i] - size;
-	int yy1= ym[i] - size;
-	int w1 = 2*size;
-	int h1 = 2*size;
+	int x1 = xm[i] - size/2;
+	int yy1= ym[i] - size/2;
+	int w1 = size;
+	int h1 = size;
 	int deux = 2;
 	int xmasterix[2];
 	int ymasterix[2];
@@ -8295,7 +8315,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
 	
-	sizeplus = 0.75*size;
+	sizeplus = size/2;
 	/* the "+" */
 	xmasterix[0] = xm[i] - sizeplus;
 	xmasterix[1] = xm[i] + sizeplus +1;
@@ -8308,17 +8328,16 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	/* end */
       }
-
     break;
   case 4:
+    size = size/2;
     /* represents a diamond with background == foreground  */
     for(i=0;i<n1;i++)
       {	
 	int quatre = 4, un=1;
 	int xmdiamond[4];
 	int ymdiamond[4];
-	
-	
+		
 	xmdiamond[0] = xm[i] - size;
 	xmdiamond[1] = xm[i];
 	xmdiamond[2] = xm[i] + size;
@@ -8339,6 +8358,7 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
       }
     break;
   case 5:
+    size = size/2;
     /* represents a diamond with both editable foreground and background  */
     for(i=0;i<n1;i++)
       {	
@@ -8375,29 +8395,26 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
     for(i=0;i<n1;i++)
       {	
 	int trois = 3, un=1;
-	int xmdiamond[4];
-	int ymdiamond[4];
-	int sprime = 1.7321*size;
+	int xmtriangle[3];
+	int ymtriangle[3];
+
+	xmtriangle[0] = (int) (xm[i] - size/2);
+	xmtriangle[1] = (int) (xm[i] + size/2);
+	xmtriangle[2] = xm[i];
 	
-	xmdiamond[0] = xm[i] - sprime;
-	xmdiamond[1] = xm[i] + sprime;
-	xmdiamond[2] = xm[i];
-	
-	ymdiamond[0] = ym[i] + size;
-	ymdiamond[1] = ym[i] + size;
-	ymdiamond[2] = ym[i] - 2*size;
-	
-/*  	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	
+	ymtriangle[0] = (int) (ym[i] + size/3);
+	ymtriangle[1] = (int) (ym[i] + size/3);
+	ymtriangle[2] = (int) (ym[i] - 2*size/3);
+		
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
 	
-	C2F (dr) ("xarea", "v", &trois, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+	C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
 	
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
 
-	C2F (dr) ("xlines", "xv", &trois, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
       }
     break;
   case 7:
@@ -8405,32 +8422,30 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
     for(i=0;i<n1;i++)
       {	
 	int trois = 3, un=1;
-	int xmdiamond[4];
-	int ymdiamond[4];
-	int sprime = 1.7321*size;
+	int xmtriangle[3];
+	int ymtriangle[3];
 	
-	xmdiamond[0] = xm[i] - sprime;
-	xmdiamond[1] = xm[i] + sprime;
-	xmdiamond[2] = xm[i];
+	xmtriangle[0] = (int) (xm[i] - size/2);
+	xmtriangle[1] = (int) (xm[i] + size/2);
+	xmtriangle[2] = (int) (xm[i]);
 	
-	ymdiamond[0] = ym[i] - size;
-	ymdiamond[1] = ym[i] - size;
-	ymdiamond[2] = ym[i] + 2*size;
-	
- /* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+	ymtriangle[0] = (int) (ym[i] - size/3);
+	ymtriangle[1] = (int) (ym[i] - size/3);
+	ymtriangle[2] = (int) (ym[i] + 2*size/3);
 	
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
 	
-	C2F (dr) ("xarea", "v", &trois, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+	C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
 	
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
 
-	C2F (dr) ("xlines", "xv", &trois, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
       }
     break;
   case 8:
+    size = size/2;
     /* represents a diamond with a plus inside with both editable foreground and background  */
     for(i=0;i<n1;i++)
       {	
@@ -8440,7 +8455,6 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	int deux = 2;
 	int xmasterix[2];
 	int ymasterix[2];
-	int sizeplus;
 	
 	xmdiamond[0] = xm[i] - size;
 	xmdiamond[1] = xm[i];
@@ -8464,16 +8478,15 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	
 	C2F (dr) ("xlines", "xv", &quatre, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	
-	sizeplus = 0.75*size;
 	/* the "+" */
-	xmasterix[0] = xm[i] - sizeplus;
-	xmasterix[1] = xm[i] + sizeplus +1;
+	xmasterix[0] = xm[i] - size;
+	xmasterix[1] = xm[i] + size +1;
 	ymasterix[0] = 	ymasterix[1] = ym[i];
 	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	
 	xmasterix[0] = xmasterix[1] = xm[i];
-	ymasterix[0] = ym[i] - sizeplus;
-	ymasterix[1] = ym[i] + sizeplus +1;
+	ymasterix[0] = ym[i] - size;
+	ymasterix[1] = ym[i] + size +1;
 	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	/* end */
       }
@@ -8482,10 +8495,10 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
     /* represents a circle with editable foreground and background */
     for(i=0;i<n1;i++)
       {
-	int x1 = xm[i] - size;
-	int yy1= ym[i] - size;
-	int w1 = 2*size;
-	int h1 = 2*size;
+	int x1 = xm[i] - size/2;
+	int yy1= ym[i] - size/2;
+	int w1 = size;
+	int h1 = size;
 	char str[2] = "xv";
 
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
@@ -8502,13 +8515,13 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
     break;
   case 10:
     /* Asterix case : we can modify aonly the foreground (background changes have no impact) */
-    size = 0.75*size;
+    size = size/2;
     for(i=0;i<n1;i++)
       {
 	int deux = 2;
 	int xmasterix[2];
 	int ymasterix[2];
-
+	int sizecross = 0.8*size;
 /*  	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
@@ -8527,18 +8540,18 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	/* end */
 
 	/* the "/" */
-	xmasterix[0] = xm[i] - ceil(size/2);
-	xmasterix[1] = xm[i] + ceil(size/2)+1;
-	ymasterix[0] = ym[i] + ceil(size/2);
-	ymasterix[1] = ym[i] - ceil(size/2)-1;
+	xmasterix[0] = xm[i] - ceil(sizecross);
+	xmasterix[1] = xm[i] + ceil(sizecross)+1;
+	ymasterix[0] = ym[i] + ceil(sizecross);
+	ymasterix[1] = ym[i] - ceil(sizecross)-1;
 	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	/* end */
 	
 	/* the "\" */
-	xmasterix[0] = xm[i] - ceil(size/2);
-	xmasterix[1] = xm[i] + ceil(size/2)+1;
-	ymasterix[0] = ym[i] - ceil(size/2);
-	ymasterix[1] = ym[i] + ceil(size/2)+1;
+	xmasterix[0] = xm[i] - ceil(sizecross);
+	xmasterix[1] = xm[i] + ceil(sizecross)+1;
+	ymasterix[0] = ym[i] - ceil(sizecross);
+	ymasterix[1] = ym[i] + ceil(sizecross)+1;
 	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	/* end */
 		
@@ -8548,10 +8561,10 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
     /* represents a square with editable foreground and background */
     for(i=0;i<n1;i++)
       {
-	int x1 = xm[i] - size;
-	int yy1= ym[i] - size;
-	int w1 = 2*size;
-	int h1 = 2*size;
+	int x1 = xm[i] - size/2;
+	int yy1= ym[i] - size/2;
+	int w1 = size;
+	int h1 = size;
 	char str[2] = "xv";
 
 /* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
@@ -8573,29 +8586,26 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
     for(i=0;i<n1;i++)
       {	
 	int trois = 3, un=1;
-	int xmdiamond[4];
-	int ymdiamond[4];
-	int sprime = 1.7321*size;
+	int xmtriangle[3];
+	int ymtriangle[3];
+
+	xmtriangle[0] = (int) (xm[i] - size/3);
+	xmtriangle[1] = (int) (xm[i] - size/3);
+	xmtriangle[2] = (int) (xm[i] + 2*size/3);
 	
-	xmdiamond[0] = xm[i] - size;
-	xmdiamond[1] = xm[i] - size;
-	xmdiamond[2] = xm[i] + 2*size;
-	
-	ymdiamond[0] = ym[i] - sprime;
-	ymdiamond[1] = ym[i] + sprime;
-	ymdiamond[2] = ym[i] ;
-	
-/*  	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+	ymtriangle[0] = (int) (ym[i] - size/2);
+	ymtriangle[1] = (int) (ym[i] + size/2);
+	ymtriangle[2] = ym[i] ;
 	
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
 	
-	C2F (dr) ("xarea", "v", &trois, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+	C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
 	
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
 
-	C2F (dr) ("xlines", "xv", &trois, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
       }
     break;
   case 13:
@@ -8603,32 +8613,32 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
     for(i=0;i<n1;i++)
       {	
 	int trois = 3, un=1;
-	int xmdiamond[4];
-	int ymdiamond[4];
-	int sprime = 1.7321*size;
+	int xmtriangle[3];
+	int ymtriangle[3];
 	
-	xmdiamond[0] = xm[i] + size;
-	xmdiamond[1] = xm[i] + size;
-	xmdiamond[2] = xm[i] - 2*size;
+	xmtriangle[0] = (int) (xm[i] + size/3);
+	xmtriangle[1] = (int) (xm[i] + size/3);
+	xmtriangle[2] = (int) (xm[i] - 2*size/3);
 	
-	ymdiamond[0] = ym[i] - sprime;
-	ymdiamond[1] = ym[i] + sprime;
-	ymdiamond[2] = ym[i] ;
+	ymtriangle[0] = (int) (ym[i] - size/2);
+	ymtriangle[1] = (int) (ym[i] + size/2);
+	ymtriangle[2] = ym[i] ;
 	
  /* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	
 	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
 	
-	C2F (dr) ("xarea", "v", &trois, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+	C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
 	
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
 
-	C2F (dr) ("xlines", "xv", &trois, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
       }
     break;
   case 14:
+    size = size/2;
     /* represents a pentagram with both editable foreground and background  */
     for(i=0;i<n1;i++)
       {	
