@@ -98,7 +98,7 @@ cd ..
 goto end
 
 :MakeMexLib
-cd routines/default
+cd routines\default
  echo making all Mexlib
  nmake /C /f makemex.mak all /a
  @copy /Y mexlib.dll ..\..\bin\libmex.dll 
