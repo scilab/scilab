@@ -850,8 +850,8 @@ c
       SORT = 'N' 
       call DGGES( JOBVSL, JOBVSR, SORT, voiddummy, N, stk(lA), N, 
      $     stk(lB),
-     $     N, istk(SDIM), stk(lALPHAR), stk(lALPHAI), stk(lBETA),
-     $     stk(lVSL), N, stk(lVSR), N, stk(lDWORK), LWORK, istk(BWORK),
+     $     N, istk(lSDIM), stk(lALPHAR), stk(lALPHAI), stk(lBETA),
+     $     stk(lVSL), N, stk(lVSR), N, stk(lDWORK), LWORK, istk(lBWORK),
      $     INFO )
 c      SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
 c     $     SDIM, ALPHAR, ALPHAI, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
@@ -938,6 +938,8 @@ c
          k = 8
        endif
        if(.not.createvar(k,'d', 8*N, 1, lRWORK)) return
+       k=k+1
+       if(.not.createvar(k,'i', 2*N, 1, lBWORK)) return
        LWORKMIN = 2*N
        LWORK=maxvol(k+1,'z')
        if(LWORK.le.LWORKMIN) then
