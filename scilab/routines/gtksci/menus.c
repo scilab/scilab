@@ -1221,7 +1221,7 @@ extern int call_graphics_predefined_callbacks(char *name, int winid);
 
 static int call_predefined_callbacks(char *name, int winid)
 {
-  if ( call_graphics_predefined_callbacks(name,winid) == 1 ) return 1;
+  /* if ( call_graphics_predefined_callbacks(name,winid) == 1 ) return 1;*/
   if      (strcmp(name,"$clear")== 0)  scig_menu_erase(winid) ;
   else if (strcmp(name,"$select")== 0) scig_menu_select(winid) ;
   else if (strcmp(name,"$print")== 0)  scig_menu_print(winid);
