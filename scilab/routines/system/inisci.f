@@ -209,7 +209,7 @@ c     .  Stack
 c     .  -----
 c     
 c     . initial values for number of local and global variables
-      isiz=isizt-256
+      isiz=isizt-768
 
 c     .  memory allocation
       stk(1)=1.0d0
