@@ -1,4 +1,4 @@
-function [s]=wcentrer(x,orient)
+function [s]=wcenter(x,orient)
 //
 //This function computes  s, the centered weighted version
 //of the numerical matrix x.
