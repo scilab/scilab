@@ -959,7 +959,6 @@ int sciparam3d(fname, fname_len)
      unsigned long fname_len;
 {
   integer izcol, isfac;
-  double  *zcol=NULL;
   static double  ebox_def[6]= { 0,1,0,1,0,1};
   double *ebox = ebox_def ;
   static integer iflag_def[3]= {1,2,4};
@@ -1018,9 +1017,10 @@ int sciparam3d(fname, fname_len)
   isfac=-1;
   izcol=0;
   if (version_flag() == 0)
-    Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);/*Adding F.Leray 12.03.04 */
+    Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),(double *) NULL,&ix1,&one,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);/*Adding F.Leray 12.03.04 */
   else
-    Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3), (int* )zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox);
+    Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),(integer *) NULL,&ix1,&one,theta,alpha,Legend,iflag,ebox);
+  
   /* NG end */
   LhsVar(1)=0;
   return 0;
@@ -1036,7 +1036,7 @@ int sciparam3d1(fname, fname_len)
      unsigned long fname_len;
 {
   integer izcol, isfac;
-  double  *zcol=NULL;
+  double *zcol=NULL;
   static double  ebox_def [6]= { 0,1,0,1,0,1};
   double *ebox = ebox_def ;
   static integer iflag_def[3]={1,2,4};
@@ -1126,8 +1126,18 @@ int sciparam3d1(fname, fname_len)
   isfac=-1;
   if (version_flag() == 0)
     Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m1,&n1,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n); /*Adding F.Leray 12.03.04*/
-  else
-    Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),(int *) zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
+  else{
+    integer *cvect = NULL,i;
+    if((cvect=MALLOC((m3n)*(n3n)*sizeof(integer)))==NULL){
+      Scierror(999,"Allocation failed for color matrix in %s\r\n",fname);
+      return 0;
+    }    
+    
+    for(i=0;i<m3n*n3n;i++) cvect[i] = (int) zcol[i];
+    
+    Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),cvect,&m3,&n3,theta,alpha,Legend,iflag,ebox);
+    FREE(cvect); cvect = (integer *)NULL;
+  }
   /* NG end */
   LhsVar(1)=0;
   return 0;
@@ -1344,8 +1354,18 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
 
   if (version_flag() == 0)
     Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);/*Adding F.Leray 12.03.04 and 19.03.04*/
-  else
-    Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),(int *) zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
+  else{
+    integer *cvect = NULL,i;
+    if((cvect=MALLOC((m3n)*(n3n)*sizeof(integer)))==NULL){
+      Scierror(999,"Allocation failed for color matrix in %s\r\n",fname);
+      return 0;
+    }
+    
+    for(i=0;i<m3n*n3n;i++) cvect[i] = (int) zcol[i];
+
+    Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),cvect,&m3,&n3,theta,alpha,Legend,iflag,ebox);
+    FREE(cvect); cvect = (integer *)NULL;
+  }
   /* NG end */
   LhsVar(1)=0;
   return 0;
