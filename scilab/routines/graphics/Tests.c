@@ -48,7 +48,7 @@ static void test2DD()
 #define XN2DD 2
 #define NCURVES2DD  1
 
-static void test2D()
+void test2D()
 {
   integer style[NCURVES2DD],aaint[4],n1,n2;
   double x[NCURVES2DD*XN2DD],y[NCURVES2DD*XN2DD],brect[4];
@@ -230,13 +230,11 @@ static void test2DN3()
 }
 
 
-
-
 #define XN3D 21
 #define YN3D 21
 #define VX3D 10
 
-static void test3D()
+void test3D()
 {
   double z[XN3D*YN3D],x[XN3D],y[YN3D],bbox[6];
   integer flag[3],p,q;
@@ -258,7 +256,7 @@ static void test3D()
 #define YN3DA 21
 #define VX3DA 10
 
-static void test3DA()
+void test3DA()
 {
   double z[XN3DA*YN3DA],x[XN3DA],y[YN3DA],bbox[6];
   integer flag[3],p,q,k,c=1;
@@ -544,7 +542,7 @@ static void corps()
   double x[7],y[7],boxes[7*4],arcs[7*6],xpols[7*7],ypols[7*7],arsize;
   integer pats[7],n,i,j,iflag;
   integer verbose=0,narg,whiteid,style=0,xiflag=0;
-  C2F(dr)("xset","default",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /* C2F(dr)("xset","default",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
   n=7;
   C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   for (i=0; i < 7; i++) x[i]=i*40.00;
@@ -589,16 +587,16 @@ static void corps()
 	  ypols[i+j*7]=y[i];
 	}
     }
-  C2F(dr1)("xliness","v",PI0,PI0,pats,&n,&n,PI0,xpols,ypols,PD0,PD0,0L,0L);
+  /* C2F(dr1)("xliness","v",PI0,PI0,pats,&n,&n,PI0,xpols,ypols,PD0,PD0,0L,0L); */
   pats[0]=0;pats[1]=4;pats[2]=8;pats[3]=12;
   pats[4]=15;pats[5]=whiteid;pats[6]=0;
   for (j=0;j<7;j++)
       for (i=0;i< 7 ; i++) 
 	  ypols[i+j*7]=ypols[i+j*7]+60;
-  C2F(dr1)("xliness","v",PI0,PI0,pats,&n,&n,PI0,xpols,ypols,PD0,PD0,0L,0L);
+  /* C2F(dr1)("xliness","v",PI0,PI0,pats,&n,&n,PI0,xpols,ypols,PD0,PD0,0L,0L); */
   for (j=0;j<7;j++)
-      for (i=0;i< 7 ; i++) 
-	  ypols[i+j*7]=ypols[i+j*7]+60;
+    for (i=0;i< 7 ; i++) 
+      ypols[i+j*7]=ypols[i+j*7]+60;
   for (j=0;j<7;j++) pats[j]=j;
   C2F(dr1)("xpolys","v",PI0,PI0,pats,&n,&n,PI0,xpols,ypols,PD0,PD0,0L,0L);
   for (j=0;j<7;j++)
@@ -813,4 +811,41 @@ TestOpTab GraphicTestTab[] ={
  {"testMark", testMarks},
  {(char *) NULL,vide}
 };
+
+
+int call_graphics_predefined_callbacks(char *name, int winid)
+{
+  if (strcmp(name,"$test2DD")==0) test2DD();
+  else if (strcmp(name,"$test2D")==0) test2D();
+  else if (strcmp(name,"$test2D2")==0) test2D2();
+  else if (strcmp(name,"$test2D3")==0) test2D3();
+  else if (strcmp(name,"$test2D4")==0) test2D4();
+  else if (strcmp(name,"$test2DN1")==0) test2DN1();
+  else if (strcmp(name,"$test2DN2")==0) test2DN2();
+  else if (strcmp(name,"$test2DN3")==0) test2DN3();
+  else if (strcmp(name,"$test3D")==0) test3D();
+  else if (strcmp(name,"$test3DA")==0) test3DA();
+  else if (strcmp(name,"$test3D1")==0) test3D1();
+  else if (strcmp(name,"$test3D2")==0) test3D2();
+  else if (strcmp(name,"$testArrows")==0) testArrows();
+  else if (strcmp(name,"$testC1")==0) testC1();
+  else if (strcmp(name,"$testC2")==0) testC2();
+  else if (strcmp(name,"$testC3")==0) testC3();
+  else if (strcmp(name,"$TestC2d")==0) TestC2d();
+  else if (strcmp(name,"$testCh")==0) testCh();
+  else if (strcmp(name,"$testG")==0) testG();
+  else if (strcmp(name,"$testP3D")==0) testP3D();
+  else if (strcmp(name,"$testPattern")==0) testPattern();
+  else if (strcmp(name,"$testColor")==0) testColor();
+  else if (strcmp(name,"$testPrim")==0) testPrim();
+  else if (strcmp(name,"$testString")==0) testString();
+  else if (strcmp(name,"$testXormode")==0) testXormode();
+  else if (strcmp(name,"$testXliness")==0) testXliness();
+  else if (strcmp(name,"$testXrects")==0) testXrects();
+  else if (strcmp(name,"$testPoly")==0) testPoly();
+  else if (strcmp(name,"$testMarks")==0) testMarks();
+  else if (strcmp(name,"$gtk_main_quit")==0) gtk_main_quit();
+  else return 0;
+  return 1;
+}
 
