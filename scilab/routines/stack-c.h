@@ -152,7 +152,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define FreePtr(lx) C2F(freeptr)((double **) lx)
 
-#define FreeRhsSVar(S) { c_local =0; while ( S[c_local] != 0) { FREE(S[c_local]);c_local++;}; FREE(S)} 
+#define FreeRhsSVar(S) { c_local =0; while ( S[c_local] != 0) { FREE(S[c_local]);c_local++;}; FREE(S);} 
 
 #define GetType(n)   C2F(gettype)((c_local = n +Top - Rhs, &c_local))
 
