@@ -17,16 +17,15 @@ MACROS= Bache.sci VanneReglante.sci  vanne_draw_ports.sci \
 	PerteDP.sci bache_draw_ports.sci puit_inputs.sci vanne_inputs.sci \
 	PuitsP.sci bache_inputs.sci source_draw_ports.sci vanne_outputs.sci \
 	SourceP.sci bache_outputs.sci source_inputs.sci
-MODELS = Bache.moc PortPHQ1.moc Puits.moc  ThermoCarre.moc \
-	PerteDP.moc PortPHQ2.moc Source.moc VanneReglante.moc
+
+MODELS=Bache.mo PortPHQ1.mo Puits.mo  ThermoCarre.mo \
+	PerteDP.mo PortPHQ2.mo Source.mo VanneReglante.mo
 
 include ../../Make.lib.mak
 
-.mo.moc: $(SCIDIR)/bin/modelicac
-	$(SCIDIR)/bin/modelicac -c $(<) -o $(@)
-
 all :: $(MODELS)
-
+	@ls $(MODELS) >models
+	@echo $(SCIDIR)/bin/scilab -f $(SCIDIR)/util/genmoc.sce
 
 distclean::
 	@$(RM) *.moc

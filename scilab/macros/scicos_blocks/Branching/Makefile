@@ -10,8 +10,10 @@ include ../../../Makefile.incl
 NAME = scsbranchinglib
 NAM = SCI/macros/scicos_blocks/Branching
 
-MACROS= MUX_f.sci SWITCH_f.sci DEMUX_f.sci IFTHEL_f.sci  RELAY_f.sci \
-	ESELECT_f.sci ISELECT_f.sci NRMSOM_f.sci SELECT_f.sci
+MACROS= DEMUX.sci      EXTRACTOR.sci  MUX.sci       NRMSOM_f.sci       SELECT_f.sci\
+	DEMUX_f.sci    IFTHEL_f.sci   MUX_f.sci     RELAY_f.sci        SWITCH2.sci\
+	ESELECT_f.sci  ISELECT_f.sci  M_SWITCH.sci  SCALAR2VECTOR.sci  SWITCH_f.sci
+
 
 
 include ../../Make.lib
