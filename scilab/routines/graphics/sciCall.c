@@ -291,7 +291,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
      integer * m1, *n1, *m2, *n2, *m3, *n3, *m3n, *n3n;/*Adding F.Leray 12.03.04 and 19.03.04*/
      char *fname,*legend; 
      /* F.Leray 25.04.05 : warning here legends means "X@Y@Z": it is labels writings!! */
-     /* legends has not the same meaning than inside plot2dn (there it really the legends of the plotted curves)*/
+     /* legends has not the same meaning than inside plot2dn (there, it is really the legends of the plotted curves)*/
 {  
   sciTypeOf3D typeof3d;
   integer flagcolor;  
@@ -482,10 +482,14 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			   &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,0));  
 	if ((*n > 0) && (zcol != (integer *)NULL)) {
-	  if (zcol[i] >= 0)
+	  if (zcol[i] >= 0){
 	    sciSetForeground (sciGetCurrentObj(), zcol[i]);
+	    sciSetIsMark(sciGetCurrentObj(), FALSE);
+	    sciSetIsLine(sciGetCurrentObj(),  TRUE);
+	  }
 	  else {
-	    sciSetIsMark(sciGetCurrentObj(),1);
+	    sciSetIsMark(sciGetCurrentObj(),TRUE);
+	    sciSetIsLine(sciGetCurrentObj(),FALSE);
 	    sciSetMarkStyle(sciGetCurrentObj(),-zcol[i]+1);
 	  }
 	}
