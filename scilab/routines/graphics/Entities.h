@@ -440,6 +440,7 @@ typedef struct
   int wshow ;
   
   BOOL allredraw;
+/*   BOOL force_draw; /\* exclusively used with draw command to force the drawing of the object *\/ */
 
   sciFont fontcontext; /* F.Leray 08.04.04 */
   
