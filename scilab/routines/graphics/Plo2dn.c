@@ -92,6 +92,19 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
   } 
   
+  
+  /* Force psubwin->is3d to FALSE: we are in 2D mode */
+  if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+    {
+      pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+      pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+    }
+  pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+  pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+  pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
+  pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
+
+
   /* Force psubwin->axes.aaint to those given by argument aaint*/
   for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; 
 
@@ -131,33 +144,6 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
       drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
       
-    /*   if(pSUBWIN_FEATURE(psubwin)->logflags[0] != 'l'){ */
-/* 	drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /\*xmin*\/ */
-/* 	drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /\*xmax*\/ */
-/*       } */
-/*       else { */
-/* 	if(pSUBWIN_FEATURE(psubwin)->SRect[0] > 0.) */
-/* 	  drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /\*xmin*\/ */
-/* 	/\*else drect[0] = drect[0] PAS de changement/extension de drect en fonction des donnees precedentes*\/ */
-
-/* 	if(pSUBWIN_FEATURE(psubwin)->SRect[1] > 0.) */
-/* 	  drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /\*xmax*\/ */
-/* 	/\*else drect[1] = drect[1] PAS de changement/extension de drect en fonction des donnees precedentes*\/ */
-/*       } */
-      
-/*       if(pSUBWIN_FEATURE(psubwin)->logflags[1] != 'l'){ */
-/* 	drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /\*ymin*\/ */
-/* 	drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /\*ymax*\/ */
-/*       } */
-/*       else{ */
-/* 	if(pSUBWIN_FEATURE(psubwin)->SRect[2] > 0.) */
-/* 	  drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /\*ymin*\/ */
-/* 	/\*else drect[2] = drect[2] PAS de changement/extension de drect en fonction des donnees precedentes*\/ */
-	
-/* 	if(pSUBWIN_FEATURE(psubwin)->SRect[3] > 0.) */
-/* 	  drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /\*ymax*\/ */
-/* 	/\*else drect[3] = drect[3] PAS de changement/extension de drect en fonction des donnees precedentes*\/ */
-/*       } */
     }
     if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
 
