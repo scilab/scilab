@@ -9,6 +9,7 @@ function xmltohtml(dirs,titles,xsl,step)
 // standard scilab man are assumed and titles 
 // are searched in %helps 
 // updated by HUYNH Olivier on the 9/03/2004
+  generate_cmd='sabcmd';
   help=utillib.help; //to load the subfunction change_old_man
   change_old_man() //this is required to produce the whatis.htm files
                    //associated with old style manuals
@@ -93,13 +94,17 @@ function xmltohtml(dirs,titles,xsl,step)
 	    mprintf('  Processing file %s.xml\n',fb);
 	    xslpath=xslprefix+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
 
-  	if  MSDOS then 
-	// Il a ete décidé que Sablotron etait "embarqué" avec Scilab sous Windows
-	// Don't forget to put sabcmd in Win95-util\sablotron directory
-	// Allan CORNET Juin 2004
-	    ierr=execstr('unix_s(WSCI+''\Win95-util\sablotron\sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
-	    else
-	    ierr=execstr('unix_s(''sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm'');','errcatch')
+	    if  MSDOS then 
+	      // Il a ete décidé que Sablotron etait "embarqué" avec Scilab sous Windows
+	      // Don't forget to put sabcmd in Win95-util\sablotron directory
+	      // Allan CORNET Juin 2004
+	      ierr=execstr('unix_s(WSCI+''\Win95-util\sablotron\sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
+	    else 
+	      if generate_cmd=='sabcmd' then 
+		ierr=execstr('unix_s(''sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm'');','errcatch')
+	      else
+		ierr=execstr('unix_s(''xsltproc -o '+fb+'.htm '+xslpath+' '+fb+'.xml2 '');','errcatch')
+	      end
 	    end
 	    if ierr<>0 then 
 	      write(%io(2),'     Warning '+fb+'.xml does not follow dtd','(a)')
