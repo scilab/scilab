@@ -32,7 +32,10 @@ int C2F(intqr)(fname)
   extern int C2F(doldqr) __PARAMS((double *tol,char *fname, unsigned long fname_len));
   extern int C2F(zoldqr) __PARAMS((double *tol,char *fname, unsigned long fname_len));
 
-
+  if (GetType(1)!=1) {
+    OverLoad(1);
+    return 0;
+  }
   header1 = (int *) GetData(1);
   Cmplx=header1[3];
 
@@ -115,7 +118,10 @@ int C2F(intsvd)(fname)
   extern int C2F(intzgesvd2) __PARAMS((char *fname, unsigned long fname_len));
   extern int C2F(intdoldsvd) __PARAMS((double *tol, char *fname, unsigned long fname_len));
   extern int C2F(intzoldsvd) __PARAMS((double *tol, char *fname, unsigned long fname_len));
-
+  if (GetType(1)!=1) {
+    OverLoad(1);
+    return 0;
+  }
   header1 = (int *) GetData(1);
   Cmplx=header1[3];
 
@@ -194,6 +200,14 @@ int C2F(intlsq)(fname)
   extern int C2F(intzgelsy) __PARAMS((char *fname, unsigned long fname_len));
 
   /*   lsq(A,b)  */
+  if (GetType(1)!=1) {
+    OverLoad(1);
+    return 0;
+  }
+  if (GetType(2)!=1) {
+    OverLoad(2);
+    return 0;
+  }
   header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
   CmplxA=header1[3];   Cmplxb=header2[3];
   switch (CmplxA) {
@@ -253,6 +267,10 @@ int C2F(inteig)(fname)
 
   switch (Rhs) {
   case 1:   /* spec(A)   */
+    if (GetType(1)!=1) {
+      OverLoad(1);
+      return 0;
+    }
     header1 = (int *) GetData(1);    
     CmplxA=header1[3];
     Symmetric = C2F(issymmetric)((X=1,&X));
@@ -283,6 +301,14 @@ int C2F(inteig)(fname)
     } /* end switch  (CmplxA) */
     break; /* end case 1 */
   case 2: /* gspec(A,B) */
+    if (GetType(1)!=1) {
+      OverLoad(1);
+      return 0;
+    }
+    if (GetType(2)!=1) {
+      OverLoad(2);
+      return 0;
+    }
     header1 = (int *) GetData(1);    
     header2 = (int *) GetData(2);
     CmplxA=header1[3];   
@@ -339,6 +365,10 @@ int C2F(intinv)(fname)
   extern int C2F(intzgetri) __PARAMS((char *fname, unsigned long fname_len));
 
   /*   inv(A)  */
+  if (GetType(1)!=1) {
+    OverLoad(1);
+    return 0;
+  }
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
@@ -368,6 +398,10 @@ int C2F(intrcond)(fname)
   extern int C2F(intzgecon) __PARAMS((char *fname, unsigned long fname_len));
 
   /*   rcond(A)  */
+  if (GetType(1)!=1) {
+    OverLoad(1);
+    return 0;
+  }
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
@@ -396,6 +430,10 @@ int C2F(intchol)(fname)
   extern int C2F(intzpotrf) __PARAMS((char *fname, unsigned long fname_len));
 
   /*   chol(A)  */
+  if (GetType(1)!=1) {
+    OverLoad(1);
+    return 0;
+  }
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
@@ -424,6 +462,10 @@ int C2F(inthess)(fname)
   extern int C2F(intzgehrd) __PARAMS((char *fname, unsigned long fname_len));
 
   /*   hess(A)  */
+  if (GetType(1)!=1) {
+    OverLoad(1);
+    return 0;
+  }
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
@@ -452,6 +494,10 @@ int C2F(intlu)(fname)
   extern int C2F(intzgetrf) __PARAMS((char *fname, unsigned long fname_len));
 
   /*   lu(A)  */
+  if (GetType(1)!=1) {
+    OverLoad(1);
+    return 0;
+  }
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
@@ -480,6 +526,10 @@ int C2F(intdet)(fname)
 
 
   /*   det(A)  */
+  if (GetType(1)!=1) {
+    OverLoad(1);
+    return 0;
+  }
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
@@ -639,7 +689,10 @@ int C2F(intschur)(fname)
   extern int C2F(intgschur) __PARAMS((char *fname, unsigned long fname_len));
 
   extern int schtst __PARAMS((int longueur, int *header));
-
+  if (GetType(1)!=1) {
+    OverLoad(1);
+    return 0;
+  }
   header1 = (int *) GetData(1);   CmplxA=header1[3];
   switch (Rhs) {
   case 1:   /* schur(A)   */
@@ -708,6 +761,10 @@ int C2F(intschur)(fname)
       }
       break;
     case DOUBLE: /*schur(A,B)*/
+      if (GetType(2)!=1) {
+	OverLoad(2);
+	return 0;
+      }
       CmplxB=header2[3];
       if ((CmplxA == 0) && (CmplxB ==0))  Cmplx =0; 
       else if ((CmplxA == 1) && (CmplxB ==0)) {
@@ -733,6 +790,10 @@ int C2F(intschur)(fname)
     } /* end of switch (something) */
     break;
   case 3: /* schur(A,B,something) */
+    if (GetType(2)!=1) {
+      OverLoad(2);
+      return 0;
+    }
     header2 = (int *) GetData(2); something=header2[0];
     CmplxB=header2[3];
     if ((CmplxA == 0) && (CmplxB ==0))  Cmplx =0; 
@@ -796,6 +857,10 @@ int C2F(intbalanc)(fname)
 
   switch (Rhs) {
   case 1:   /* balanc(A)   */
+    if (GetType(1)!=1) {
+      OverLoad(1);
+      return 0;
+    }
     header1 = (int *) GetData(1);    
     CmplxA=header1[3];
     switch (CmplxA) {
@@ -811,6 +876,14 @@ int C2F(intbalanc)(fname)
     } /* end switch  (CmplxA) */
     break; /* end case 1 */
   case 2: /* balanc(A,B) */
+    if (GetType(1)!=1) {
+      OverLoad(1);
+      return 0;
+    }
+    if (GetType(2)!=1) {
+      OverLoad(2);
+      return 0;
+    }
     header1 = (int *) GetData(1);    
     header2 = (int *) GetData(2);
     CmplxA=header1[3];   
