@@ -39,9 +39,9 @@ int C2F(cvstr1)(integer *n,integer * line,char * str,integer * job,
 		unsigned long  str_len)
 {
   if (*job == 0) 
-    C2F(asciitocode)(n, &line[1], str, &c_n1, str_len);
+    C2F(asciitocode)(n, line, str, &c_n1, str_len);
   else 
-    C2F(codetoascii)(n, &line[1], str, str_len);
+    C2F(codetoascii)(n, line, str, str_len);
   return 0;
 } 
 
