@@ -80,6 +80,8 @@ int TK_UiSet( int  Handle,Matrix * Mfield,Matrix * Mvalue)
       sprintf(MyCommand,"SetField %d \"%s\" \"%s\"",Handle,StrField,StrValue);
       Tcl_Eval(TKinterp,MyCommand);
     }
+  free(StrField);
+  free(StrValue);
   return(0);
 
 }
@@ -112,10 +114,10 @@ int TK_UiGet(int Handle,Matrix * Mfield,Matrix ** Mvalue)
     }
 
     
-  if (!strcmp(StrField,"position")) {Str2MatReal(MyAnswer, Mvalue); return(0); }
-  if (!strcmp(StrField,"value"))    {Str2MatReal(MyAnswer, Mvalue); return(0); }
-  if (!strcmp(StrField,"min"))      {Str2MatReal(MyAnswer, Mvalue); return(0); }
-  if (!strcmp(StrField,"max"))      {Str2MatReal(MyAnswer, Mvalue); return(0); }
+  if (!strcmp(StrField,"position")) {Str2MatReal(MyAnswer, Mvalue); goto fin; }
+  if (!strcmp(StrField,"value"))    {Str2MatReal(MyAnswer, Mvalue); goto fin; }
+  if (!strcmp(StrField,"min"))      {Str2MatReal(MyAnswer, Mvalue); goto fin; }
+  if (!strcmp(StrField,"max"))      {Str2MatReal(MyAnswer, Mvalue); goto fin; }
   if (!strcmp(StrField,"userdata")) 
     {
       if (UserData[Handle]!=NULL) 
@@ -127,10 +129,12 @@ int TK_UiGet(int Handle,Matrix * Mfield,Matrix ** Mvalue)
 	}
       else
 	*Mvalue = MatrixCreate(0,0,"real");
-      return(0);
+      goto fin;
     }
     
   Str2ListStr(MyAnswer, Mvalue);
+ fin:
+  free(StrField);
   return(0);
     
 }
@@ -246,6 +250,7 @@ int Str2MatReal(str, Mat)
 	  begin_elem = end_elem+1;
 	  end_elem = begin_elem;
 	}
+      free(tmpstr);
     }
   
   /* string was empty */
