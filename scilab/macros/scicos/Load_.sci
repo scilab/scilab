@@ -22,12 +22,9 @@ function Load_()
       xselect();
 
       if type(scs_m.props.context)==10 then
-	errcatch(-1,'continue')
-	execstr(scs_m.props.context) 
-	errcatch(-1)
-	if iserror(-1) then   
-	  message('Cannot evaluate context')
-	  errclear(-1)
+	if execstr(scs_m.props.context,'errcatch') <>0 then
+	  message(['Error occur when evaluating context:'
+		   lasterror() ])
 	end
       else
 	scs_m.props.context=' '

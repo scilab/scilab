@@ -29,13 +29,11 @@ function SaveasInterfFunc_()
 	else
 	  %path=save_super(scs_m,dir)
 	end
-	errcatch(-1,'continue')
-	pause
-	if %path<>[] then getf(%path),end
-	errcatch(-1)
-	if iserror(-1) then
-	  errclear(-1)
-	  message(name+': error. Perhaps bad name')
+	if %path<>[] then 
+	  if execstr('getf(%path)','errcatch')<>0 then
+	     message([name+': error:'
+		      lasterror()])
+	  end
 	end
       end
     end

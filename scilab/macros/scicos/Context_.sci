@@ -3,12 +3,9 @@ function Context_()
     while %t do
       [context,ok]=do_context(scs_m.props.context)
       if ~ok then break,end
-      errcatch(-1,'continue')
-      execstr(context) 
-      errcatch(-1)
-      if iserror(-1) then   
-	message('Cannot evaluate context')
-	errclear(-1)
+      if execstr(context,'errcatch') <>0 then
+	message(['Error occur when evaluating context:'
+		 lasterror() ])
       else
 	scs_m.props.context=context;
 	disablemenus()

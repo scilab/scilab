@@ -48,11 +48,7 @@ if Cmenu<>'Quit' then
       end
     end 
     if %okay then 
-      errcatch(-1,'continue')
-      save('.scicos_short',%scicos_short)
-      errcatch(-1)
-      if iserror(-1) then
-	errclear(-1)
+      if execstr('save(''.scicos_short'',%scicos_short)','errcatch') <>0 then
 	message('Cannot save .scicos_short in current directory')
       end
       %tableau=emptystr([1:100]);
