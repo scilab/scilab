@@ -27,7 +27,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>out_mode</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: (optionnal) string defining the evaluation of <VERB>s</VERB> outside the [x1,xn] interval</SP>
+          <SP>: (optional) string defining the evaluation of <VERB>s</VERB> outside the [x1,xn] interval</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>

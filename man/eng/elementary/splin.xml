@@ -28,13 +28,13 @@
      <PARAM_ITEM>
         <PARAM_NAME>spline_type </PARAM_NAME>
         <PARAM_DESCRIPTION>
-         <SP>: (optionnal) a string selecting the kind of spline to compute</SP>
+         <SP>: (optional) a string selecting the kind of spline to compute</SP>
         </PARAM_DESCRIPTION> 
      </PARAM_ITEM>
      <PARAM_ITEM>
         <PARAM_NAME>der </PARAM_NAME>
         <PARAM_DESCRIPTION>
-         <SP>: (optionnal) a vector with 2 components, with the end points derivatives (to 
+         <SP>: (optional) a vector with 2 components, with the end points derivatives (to 
                provide when spline_type=&quot;clamped&quot;)</SP>
         </PARAM_DESCRIPTION> 
      </PARAM_ITEM>

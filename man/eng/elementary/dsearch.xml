@@ -27,7 +27,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>ch</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: (optionnal) a character &quot;c&quot; or &quot;d&quot; (default value &quot;c&quot;)</SP>
+          <SP>: (optional) a character &quot;c&quot; or &quot;d&quot; (default value &quot;c&quot;)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>

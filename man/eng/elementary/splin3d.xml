@@ -30,7 +30,7 @@
      <PARAM_ITEM>
         <PARAM_NAME>order</PARAM_NAME>
         <PARAM_DESCRIPTION>
-         <SP>: (optionnal) a 1x3 vector [kx,ky,kz] given the order of the tensor 
+         <SP>: (optional) a 1x3 vector [kx,ky,kz] given the order of the tensor 
                spline in each direction (default [4,4,4], i.e. tricubic spline)</SP>
         </PARAM_DESCRIPTION> 
      </PARAM_ITEM>

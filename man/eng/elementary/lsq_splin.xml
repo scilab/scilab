@@ -22,7 +22,7 @@
      <PARAM_ITEM>
         <PARAM_NAME>wd</PARAM_NAME>
         <PARAM_DESCRIPTION>
-	 <SP>: (optionnal) a vector of same format than <VERB>xd</VERB> and  <VERB>yd</VERB>, 
+	 <SP>: (optional) a vector of same format than <VERB>xd</VERB> and  <VERB>yd</VERB>, 
                weights of the least square fit.</SP>
 	</PARAM_DESCRIPTION> 
      </PARAM_ITEM>
