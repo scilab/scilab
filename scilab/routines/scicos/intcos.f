@@ -865,4 +865,5 @@ c
 c
       if(.not.getrhsvar(1,'i',n,m,i)) return
       cosd=istk(i)
+      lhsvar(1)=0
       end
