@@ -3,10 +3,10 @@
 
 /* Allan CORNET 18/01/2004 */
 /* Gestion historique */
-//extern void LoadHistoryFunction(void); /*voir history.c (wsci) */
-//extern void SaveHistoryFunction(void); /*voir history.c (wsci) */
-//extern void ResetHistoryFunction(void); /*voir history.c (wsci) */
-//extern void HistoryFunction _PARAMS((char *fname)); /* voir history.c (wsci)*/
+/*extern void LoadHistoryFunction(void); */ /*voir history.c (wsci) */
+/*extern void SaveHistoryFunction(void); */ /*voir history.c (wsci) */
+/*extern void ResetHistoryFunction(void); */ /*voir history.c (wsci) */
+/*extern void HistoryFunction _PARAMS((char *fname)); */ /* voir history.c (wsci)*/
 /* Minimize or Restore a window */
 extern int ShowWindowFunction _PARAMS((char *fname)); /* wtext.c (wsci)*/
 /* Allan CORNET le 20/08/03 */
@@ -161,7 +161,7 @@ void Xsegs  _PARAMS((integer *style,integer flag,integer n,double *x,double *y, 
 void Xstring  _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,double angle,double *box));
 void Xtitle  _PARAMS((char *str,int n));
 /* NG beg */
-static int get3ddata(sciPointObj *pthis); // F.Leray Declaration here
+static int get3ddata(sciPointObj *pthis); /* F.Leray Declaration here*/
 static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int colorflag, char *fname);
 #endif 
 
