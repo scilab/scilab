@@ -451,7 +451,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1,
 		     double *dv3, double *dv4)
 {
   GTK_locator_info rec_info ; 
-  int win = -1;
+  int win = -1,i;
   int wincount = GetWinsMaxId()+1;
   if (wincount == 0) 
     {
@@ -459,13 +459,6 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1,
       return; 
     }
   
-  /* XXX 
-  for (i=0; i < wincount ; i++ ) 
-    {
-      if (( CW=GetWindowNumber(i)) != (Window ) NULL)
-	XDefineCursor(dpy, CW ,crosscursor);
-    }
-  */
   
   /* checks  if we already have something on the queue **/  
 
@@ -474,6 +467,15 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1,
       *iwin = win ; return;
     }
   if ( *iflag ==0 )   ClearClickQueue(-1);
+
+  /* change the cursors */ 
+
+  for (i=0; i < wincount ; i++ ) 
+    {
+      struct BCG *bcg =  GetWindowXgcNumber(i);
+      if ( bcg  != NULL)
+	gdk_window_set_cursor(bcg->drawing->window,bcg->gcursor);
+    }
 
   /* save info in local variable  */
   rec_info = info;
@@ -512,15 +514,12 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1,
   /* take care of recursive calls i.e restore info  */
   info = rec_info ; 
 
-  /* XXXXX 
-  for (i=0;i < wincount;i++) {
-    CW=GetWindowNumber(i);
-    if (CW!=(Window ) NULL) 
-      XDefineCursor(dpy, CW ,arrowcursor);
-  }
-  XSync (dpy, 0);
-  */
-  
+  for (i=0; i < wincount ; i++ ) 
+    {
+      struct BCG *bcg =  GetWindowXgcNumber(i);
+      if ( bcg  != NULL) 
+	gdk_window_set_cursor(bcg->drawing->window,bcg->ccursor);
+    }
 }
 
 void C2F(xclick)(char *str, integer *ibutton, integer *x1,
@@ -567,10 +566,7 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1,
  *------------------------------------------------------------------------------*/
 
 /* XXXX
- * A finir pour tenir compte du reste i.e button move etc.... 
- * et des click stockes ....
- * Il faut aussi tenir compte de la recursion sur les options 
- */
+ * A finir pour tenir compte des control C de l'utilisateur  */
 
 void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, 
 	      int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
@@ -588,15 +584,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag,
     }
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
 
-  /* XXXX 
-     XDefineCursor(dpy, ScilabXgc->CWindow ,crosscursor);
-     / ** maybe someone decided to destroy scilab Graphic window ** /
-     if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
-     {
-     *ibutton = -100;
-     return;
-     }
-  */
+  gdk_window_set_cursor (ScilabXgc->drawing->window,ScilabXgc->gcursor);
   
   /* save info in local variable  */
   rec_info = info;
@@ -631,12 +619,10 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag,
 
   /* take care of recursive calls i.e restore info  */
   info = rec_info ; 
-  
-  /* XXXX a finir 
-     if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
-     XDefineCursor(dpy, ScilabXgc->CWindow ,arrowcursor);
-     XSync (dpy, 0);
-  */
+
+  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->Cdrawable != NULL ) {
+    gdk_window_set_cursor (ScilabXgc->drawing->window,ScilabXgc->ccursor);
+  }
 
 }
 
@@ -1660,9 +1646,9 @@ static void xget_hidden3d(integer *verbose, integer *num, integer *narg, double 
 
 int IsPrivateCmap(void) { return 0 ;} 
 
-void set_cmap(__builtin_va_list w)
+void set_cmap(void * w)
 {
-  /* 
+  /* XXX
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->Cmap != (Colormap)0)
     XSetWindowColormap(dpy,w,ScilabXgc->Cmap);
   */
@@ -1670,7 +1656,7 @@ void set_cmap(__builtin_va_list w)
 
 int get_pixel(int i)
 {
-  /* 
+  /* XXX
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->Cmap != (Colormap)0)
     return(ScilabXgc->Colors[Max(Min(i,ScilabXgc->Numcolors + 1),0)]);
   else 
@@ -2394,10 +2380,11 @@ void C2F(drawpolymark)(char *str, integer *n, integer *vx, integer *vy,
     {
       if (gtk_store_points(*n, vx, vy,(integer)0L))
 	{
-	  /* XXXXXXX
-	     XDrawPoints (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), *n,CoordModeOrigin);
-	     gdk_flush();
-	  */
+	  gdk_draw_points(ScilabXgc->Cdrawable,
+			  ScilabXgc->wgc,gtk_get_xpoints(), *n);
+	  if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
+	    gdk_draw_points(ScilabXgc->pixmap, 
+			    ScilabXgc->wgc,gtk_get_xpoints(), *n); 
 	}
     }
   else 
@@ -3650,16 +3637,13 @@ int CheckScilabXgc(void)
  * Create Graphic widget 
  *--------------------------------------------------------------------------*/
 
-#define CURSOR		GDK_CROSSHAIR		/* Default cursor */
-#define MM_PER_INCH	25.4			/* mm -> inch conversion */
-
 /* Infos 
  *  width = gdk_screen_width();
  *  gdk_screen_width_mm();
- *   height = gdk_screen_height();
- *   heightMM = gdk_screen_height_mm();
- *   gtk_widget_destroy(dd->window);
- *   gdk_pixmap_unref(dd->pixmap);
+ *  height = gdk_screen_height();
+ *  heightMM = gdk_screen_height_mm();
+ *  gtk_widget_destroy(dd->window);
+ *  gdk_pixmap_unref(dd->pixmap);
  *
  */
 
@@ -3679,14 +3663,14 @@ void SetRgBColor(BCG *dd,int red,int green,int blue)
 
 static void SetColor(GdkColor *gcol, int color)
 {
-    int red, green, blue;
-    red = R_RED(color);
-    green = R_GREEN(color);
-    blue = R_BLUE(color);
-    gcol->red = 0;
-    gcol->green = 0;
-    gcol->blue = 0;
-    gcol->pixel = gdk_rgb_xpixel_from_rgb((red << 16)|(green << 8)|(blue));
+  int red, green, blue;
+  red = R_RED(color);
+  green = R_GREEN(color);
+  blue = R_BLUE(color);
+  gcol->red = 0;
+  gcol->green = 0;
+  gcol->blue = 0;
+  gcol->pixel = gdk_rgb_xpixel_from_rgb((red << 16)|(green << 8)|(blue));
 }
 
 
@@ -3705,7 +3689,8 @@ static gint realize_event(GtkWidget *widget, gpointer data)
   dd->stdgc = gdk_gc_new(dd->drawing->window);
   /* set the cursor */
   dd->gcursor = gdk_cursor_new(GDK_CROSSHAIR);
-  gdk_window_set_cursor(dd->drawing->window, dd->gcursor);
+  dd->ccursor = gdk_cursor_new(GDK_TOP_LEFT_ARROW);
+  gdk_window_set_cursor(dd->drawing->window, dd->ccursor);
   /* set window bg */
   gdk_window_set_background(dd->drawing->window, &dd->gcol_bg);
   return FALSE;
@@ -3775,6 +3760,7 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
   dd->drawing = NULL;
   dd->wgc = NULL;
   dd->gcursor = NULL;
+  dd->ccursor = NULL;
   gdk_rgb_init();
   gtk_widget_push_visual(gdk_rgb_get_visual());
   gtk_widget_push_colormap(gdk_rgb_get_cmap());
