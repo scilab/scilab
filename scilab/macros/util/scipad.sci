@@ -1,6 +1,6 @@
 function scipad(varargin)
 // start scipad editor
-global %scipad_fontsize;
+global %scipad_fontsize LANGUAGE;
 global TMPDIR
   if with_tk() then
     TK_EvalStr("set isscipadinterp [interp exists scipad]")
