@@ -233,7 +233,10 @@ int  sci_input_char_buffer_count = 0;
 
 #define SELECT_DEBUG(x)
 
-/* send string s as if it was typed in scilab window */ 
+/*
+ * send string s as if it was typed in scilab window 
+ * 
+ */ 
 
 void write_scilab(char *s)
 {
@@ -301,6 +304,13 @@ int Xorgetchar(void)
       { 
 	gtk_main_iteration(); 
       }
+    /* maybe a  handler to be executed  
+     * note that if more than one menu were activated they will 
+     * all be evaluated 
+     */
+
+    if ( C2F (ismenu) () == 1) return 0;
+
     /* maybe a new string to execute */
     if ( sci_input_char_buffer_count > 0) 
       {

@@ -47,6 +47,7 @@ extern integer C2F (ismenu) (void);
 extern int C2F (getmen) (char *btn_cmd, integer *lb, integer *entry);  
 extern void MenuFixCurrentWin  (int ivalue);  
 extern void write_scilab  (char *s);  
+extern void menu_command  ();  
 extern int C2F(scirun)(char * startup, int lstartup);
 extern int C2F(inisci)(int *,int *,int *);
 

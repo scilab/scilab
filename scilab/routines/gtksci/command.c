@@ -50,11 +50,10 @@ void reset_scig_command_handler()
 /*---------------------------------------------------------------
  * try to execute a command or add it to the end of command queue 
  *----------------------------------------------------------------*/
-int
-StoreCommand (command)
-     char *command;
+
+int StoreCommand ( char *command)
 {
-  return (StoreCommand1 (command, 1));
+  return (StoreCommand1 (command, 0)); /* jpc 1->0 */
 }
 
 int StoreCommand1( char *command, int flag)
@@ -64,14 +63,12 @@ int StoreCommand1( char *command, int flag)
   /** first check if we have a special handler set for commands **/
   if ( scig_command_handler(command) == 1) return 0;
 
-  if (flag==1&& get_is_reading ())
+  if (flag==1 && get_is_reading ())
     {
       write_scilab (command);
-      /*      if (flag == 1)
-	      write_scilab ("\n");*/
       return 0;
     }
-
+ 
   p = (CommandRec *) malloc( sizeof(CommandRec));
   if ( p == (CommandRec *) 0 ) 
     {
@@ -95,17 +92,6 @@ int StoreCommand1( char *command, int flag)
 	q = r;
       q->next = p;
     }
-
-  /* this is important: to quit Xorgetchar */
-  if (flag==2&& get_is_reading ())
-    write_scilab ("");
-     
-  /*  if (get_is_reading()) 
-    { 
-      int i;
-      C2F(xscion)(&i);
-      if (i) write_scilab("");
-      }*/
 
   return(0);
 }

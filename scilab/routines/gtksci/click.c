@@ -49,7 +49,6 @@ int scig_click_handler_none (int win,int x,int y,int ibut,
 {return 0;};
 
 int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
-
 {
   static char buf[256];
   struct BCG *SciGc;
