@@ -3143,20 +3143,20 @@ if (x ==[]) then
 	'    set_nevprt(nevprt);'
 	'    '+rdnom+'main1(block_'+rdnom+',z,&t);']
 else
-  //typ='%lf ';
-  //for i=1:size(capt,1)
-   // typ=typ+'%lf ';
-  //end
-  Code1='    /*fscanf( fprr, '" \n'",&temps, input pointers...);*/' 
-  //for i=1:size(capt,1)
-   //ni=capt(i,3) // dimension of ith input
-   //Code1=Code1+ ' , &(block_outtb['+string(capt(i,2)-1+(0:ni-1)')+'])'; 
-  //end
-  //Code=[Code;Code1+');*/'];
-       	//'    /*fscanf( fprr, '"%lf %lf %lf \n'",&temps, &(z[1]),&(z[3]));*/']
+  typ='%lf ';
+  for i=1:sum(capt(:,3))
+    typ=typ+'%lf ';
+  end
+  Code1='    /*fscanf( fprr, '"'+typ+' \n'",&temps' 
+  for i=1:size(capt,1)
+   ni=capt(i,3) // dimension of ith input
+   for j=1:ni
+     Code1=Code1+ ' , &(block_outtb['+string(capt(i,2)-1+j-1')+'])';
+   end 
+  end
   Code=[Code
-        Code1	
-	'    '+rdnom+'main1(block_'+rdnom+',z,&t);'
+        Code1+');*/'       	
+  	'    '+rdnom+'main1(block_'+rdnom+',z,&t);'
         '    neq= '+string(nX)+'; '
         '    tout=t;'
         '     while (tout<t+0.1){'
@@ -3170,17 +3170,19 @@ else
 end
   Code=[Code	
 	'    '+rdnom+'main2(block_'+rdnom+',z,&t);']
-  //typ='%f ';
-  //for i=1:size(actt,1)
-    //typ=typ+'%f ';
-  //end
-  Code1='    /*fprintf(fprw, '" \n'",t, outpt pointers...);*/'
-  //for i=1:size(actt,1)
-    //ni=actt(i,3) // dimension of ith output
-    //Code1= Code1+ ' ,block_outtb['+string(actt(i,2)-1+(0:ni-1)')+']'
-  //end
+  typ='%f ';
+  for i=1:sum(actt(:,3))
+    typ=typ+'%f ';
+  end
+  Code1='    /*fprintf(fprw, '"'+typ+' \n'",t' 
+  for i=1:size(actt,1)
+    ni=actt(i,3) // dimension of ith output
+    for j=1:ni
+      Code1= Code1+ ' ,block_outtb['+string(actt(i,2)-1+j-1')+']'
+    end
+  end
   Code=[Code;
-        Code1//+');*/';
+        Code1+');*/';
 	'    t=t+0.1;'
 	'  }'
 	'  '+rdnom+'_end(block_'+rdnom+',z,&t);'
