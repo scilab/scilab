@@ -3,16 +3,38 @@ function [cpr,ok]=c_pass3(scs_m,cpr)
 // Copyright INRIA
 bllst=list();
 corinv=cpr.corinv
+sim=cpr.sim
 for k=1:size(corinv)
-  if size(corinv(k),'*')==1 then
-    bllst(k)=scs_m.objs(corinv(k)).model;
+  if type(corinv(k))==1 then
+    if size(corinv(k),'*')==1 then
+      bllst(k)=scs_m.objs(corinv(k)).model;
+    else
+      path=get_subobj_path(corinv(k));path($+1)='model';
+      bllst(k)=scs_m(path);
+    end
   else
-    path=get_subobj_path(corinv(k));path($+1)='model';
-    bllst(k)=scs_m(path);
+    m=scicos_model();
+    pause
+    //here it is assumed that modelica blocs have only scalar inputs/outputs
+    m.in=ones(1,sim.inpptr(k+1)-sim.inpptr(k))
+    m.out=ones(1,sim.outptr(k+1)-sim.outptr(k))
+    if sim.funtyp(k)<10000 then
+      n=(sim.xptr(k+1)-sim.xptr(k))
+    else
+      n=2*(sim.xptr(k+1)-sim.xptr(k))
+    end
+    m.state=cpr.state.x(sim.xptr(k)+(0:n-1))
+    m.dstate=cpr.state.z(sim.zptr(k):sim.zptr(k+1)-1)
+    m.rpar=sim.rpar(sim.rpptr(k):sim.rpptr(k+1)-1)
+    m.ipar=sim.ipar(sim.ipptr(k):sim.ipptr(k+1)-1)
+    m.label=''
+    m.sim=list(sim.funs(k),sim.funtyp(k))
+    //here it is assumed that modelica blocs does not have output events
+    bllst(k)=m;
   end
 end
 //
-sim=cpr.sim
+
 [inpptr,outptr,inplnk,outlnk,clkptr]=..
     sim(['inpptr','outptr','inplnk','outlnk','clkptr'])
 // computes undetermined port sizes
