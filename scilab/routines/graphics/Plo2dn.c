@@ -458,6 +458,7 @@ void strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       /*       pSUBWIN_FEATURE (psubwin)->isaxes = FALSE; */
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = FALSE; /* also trigger z axis */
     }
     /*else no changes : the isaxes properties is driven by the previous plot */
     break;
@@ -465,30 +466,35 @@ void strflag2axes_properties(sciPointObj * psubwin, char * strflag)
  /*    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
     pSUBWIN_FEATURE (psubwin)->axes.ydir ='l';
     break;
   case '2' : 
   /*   pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
     /* Case not implemented yet : the plot is surrounded by a box without tics. */
     break;
   case '3' : 
  /*    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
     pSUBWIN_FEATURE (psubwin)->axes.ydir ='r';
     break;
   case '4' :
 /*     pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
     /* Case not implemented yet : axes are drawn centred in the middle of the frame box. */
     break;
   case '5' :
  /*    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
     pSUBWIN_FEATURE (psubwin)->axes.xdir ='c';
     pSUBWIN_FEATURE (psubwin)->axes.ydir ='c';
     break;
@@ -496,6 +502,7 @@ void strflag2axes_properties(sciPointObj * psubwin, char * strflag)
     /*     pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
   }
 }
 

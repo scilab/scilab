@@ -1590,5 +1590,7 @@ extern int FindGrads(double *grads,int * n_grads);
 extern int CheckIfiisNan(int j, int dim, int * tab);
 extern int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * psubwin, int * nb_curves, double *** xvect, double *** yvect, double *** zvect, int ** curves_size);
 extern int ComputeGoodTrans3d( sciPointObj * psubwin, int n, int *xm, int *ym, double * fx, double *fy, double *fz);
+extern double InvAxis(double min, double max, double u);
+extern int ReverseDataFor3D(sciPointObj * psubwin, double * xvect, double * yvect, double * zvect, int n1);
 
 #endif /*__SCI_ENTITIES__*/

@@ -617,7 +617,7 @@ void set_scale(flag,subwin,frame_values,aaint,logflag,axis_values)
      double  subwin[4];       /* subwindow specification */ /* <=> WRect*/
      double  frame_values[4]; /* [xmin,ymin,xmax,ymax] */
      integer aaint[4];        /* [xint,x_subint,y_int,y_subint]*/
-     char logflag[2];         /* [xlogflag,ylogflag] */
+     char logflag[3];         /* [xlogflag,ylogflag,zlogflag (NOT USED HERE)] */
      double axis_values[4];   /* [mfact_xl, mfact_xr,mfact_yu,mfact_yd]; */
 {
   char c;
@@ -1692,3 +1692,5 @@ double YPi2R(int y)
   sciprint("Error in YScale\n");
   return -9000;
 }
+
+

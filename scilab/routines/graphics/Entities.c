@@ -8560,7 +8560,7 @@ int C2F(graphicsmodels) ()
   /* F.Leray 22.09.04 */
   (ppaxesmdl->axes).axes_visible[0] = FALSE;
   (ppaxesmdl->axes).axes_visible[1] = FALSE;
-  (ppaxesmdl->axes).axes_visible[2] = TRUE;
+  (ppaxesmdl->axes).axes_visible[2] = FALSE;
   (ppaxesmdl->axes).reverse[0] = FALSE;
   (ppaxesmdl->axes).reverse[1] = FALSE;
   (ppaxesmdl->axes).reverse[2] = FALSE;
@@ -10140,7 +10140,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  psegs->iflag = flag; 
 	  psegs->Nbr1 = Nbr1;
 	}	
-      else /* attention ici type = 1 donc...*/
+      else /* Warning here type = 1 so... building comes from champg */
 	{ 
 	  /* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
 	  psegs->arrowsize = arsize /* * 100 */;
@@ -11512,6 +11512,7 @@ sciDrawObj (sciPointObj * pobj)
   int fontstyle_zero = 0; /*To fill Sci_Axis for Axes objects */
   integer isoflag =0;     /*  for 3d isoview mode*/
 
+  sciSurface * ppsurface = NULL; /* debug */
   sciAxes *paxes = (sciAxes *) NULL; /* debug */
 /*   sciPointObj * pfigure = NULL;  sciPointObj * psubwin = NULL;/\* debug *\/  */
   sciSubWindow * ppsubwin = NULL; /* debug */
@@ -11809,7 +11810,7 @@ sciDrawObj (sciPointObj * pobj)
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
 
-      if (pSEGS_FEATURE (pobj)->ptype == 0) /* ptype == 0 */
+      if (pSEGS_FEATURE (pobj)->ptype == 0) /* ptype == 0 F.Leray : This is NOT A champ */
         {  
 	  n=pSEGS_FEATURE (pobj)->Nbr1;
 	  /* F.Leray 18.02.04 Correction suivante ANNULEE:
@@ -11830,8 +11831,31 @@ sciDrawObj (sciPointObj * pobj)
 	    pstyle[0]=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[0]);
 	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 	    {
-	      trans3d(sciGetParentSubwin(pobj),n,xm,ym,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,pSEGS_FEATURE (pobj)->vz);
-	   
+	      double * xvect = NULL;
+	      double * yvect = NULL;
+	      double * zvect = NULL;
+
+	      if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+	      if ((yvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+	      if ((zvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+
+	      for(i=0;i<n;i++){
+		xvect[i] = pSEGS_FEATURE (pobj)->vx[i];
+		yvect[i] = pSEGS_FEATURE (pobj)->vy[i];
+
+		if(pSEGS_FEATURE (pobj)->vz!= NULL)
+		  zvect[i] = pSEGS_FEATURE (pobj)->vz[i];
+		else
+		  zvect = (double *) NULL;
+	      }
+	      
+	      ReverseDataFor3D(sciGetParentSubwin(pobj),xvect,yvect,zvect,n);
+	      
+	      trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect,yvect,zvect);
+	      
+	      FREE(xvect); xvect = NULL;
+	      FREE(yvect); yvect = NULL;
+	      FREE(zvect); zvect = NULL;
 	    }
 	  else
 	    {
@@ -11859,8 +11883,9 @@ sciDrawObj (sciPointObj * pobj)
 	    else
 	      C2F(dr1)("xarrow","v",pstyle,&pSEGS_FEATURE (pobj)->iflag
 		       ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,&pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
-	    /* F.Leray appel bizarre ci dessus a dr1 pour le NG??!! A voir... 19.02.04*/
-	    /* TEST 13.05.04 avec C2F(dr)("xarrow",... ne marche pas: pourquoi? Que fait dr1 en plus que ne fait pas dr en nouveau graphique ?? */
+	    /* with C2F(dr)("xarrow",... does not work: why? What does (dr1) routine make more than (dr) in New Graphics mode ?? */
+	    /* Answer : dr deals with pixels value (data: xm and ym are integers!!) whereas dr1 deals with double value coming from the user */
+	    /* This is true for old and new graphics mode. */
 	  } /***/
 #ifdef WIN32 
 	  if ( flag_DO == 1) ReleaseWinHdc ();
@@ -11869,7 +11894,7 @@ sciDrawObj (sciPointObj * pobj)
 	  FREE(ym);         ym = (integer *) NULL; 
 	  FREE(pstyle); pstyle = (integer *) NULL; /* SS 19.04*/
 	}
-      else    /*ptype == 1*/
+      else    /*ptype == 1*/ /* ptype == 1 F.Leray : This IS A champ */
         {
 #ifdef WIN32 
 	  flag_DO = MaybeSetWinhdc();
@@ -11884,8 +11909,7 @@ sciDrawObj (sciPointObj * pobj)
 	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
 
-	  /*n=2*(pSEGS_FEATURE (pobj)->Nbr1)*(pSEGS_FEATURE (pobj)->Nbr2); F.Leray 17.02.04*/
-	  n=2*(pSEGS_FEATURE (pobj)->Nbr1)*((pSEGS_FEATURE (pobj)->Nbr2)+1);
+	  n=2*(pSEGS_FEATURE (pobj)->Nbr1)*((pSEGS_FEATURE (pobj)->Nbr2));
 	 
 
 	  /* On laisse tomber le graphic_alloc ICI F.Leray 20.02.04*/
@@ -11912,13 +11936,13 @@ sciDrawObj (sciPointObj * pobj)
 	      }      
 	  }
 	  /* Prototype de Champ2DRealToPixel:
-extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact)
-
-     integer *xm,*ym,*zm;
-     integer *na,*arsize,*colored;
-     integer *n1,*n2;
-     double *x, *y, *fx, *fy;
-     double *arfact;
+	     extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact)
+	     
+	     integer *xm,*ym,*zm;
+	     integer *na,*arsize,*colored;
+	     integer *n1,*n2;
+	     double *x, *y, *fx, *fy;
+	     double *arfact;
 	  */
 
 	  Champ2DRealToPixel(xm,ym,zm,&na,&arssize,&(pSEGS_FEATURE (pobj)->pcolored),
@@ -11941,7 +11965,45 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	    arssize = (int)((arssize)*(pSEGS_FEATURE (pobj)->arrowsize));
 	  }
 	  
-	  if ( pSEGS_FEATURE (pobj)->pcolored ==0)
+	  /* test if we are in 3d HERE */
+	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+	    {
+	      double * xvect = NULL;
+	      double * yvect = NULL;
+	      double * zvect = NULL;
+	      
+	      if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+	      if ((yvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+	      if ((zvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+	      
+	      for(i=0;i<n;i++){
+		xvect[i] = XPi2R(xm[i]);
+		yvect[i] = YPi2R(ym[i]);
+	      }
+	      
+	 /*      for(i=0;i<n;i++) sciprint("xm[%d] =%d\n",i,xm[i]); */
+/* 	      for(i=0;i<n;i++) sciprint("ym[%d] =%d\n",i,ym[i]); */
+
+
+/* 	      for(i=0;i<n;i++) sciprint("xvect[%d] =%lf\n",i,xvect[i]); */
+/* 	      for(i=0;i<n;i++) sciprint("yvect[%d] =%lf\n",i,yvect[i]); */
+/* 	      sciprint("na = %d\n",na); */
+/* 	      sciprint("\n"); */
+
+	      /* F.Leray 06.12.04 */
+	      /* A REVOIR : ne marche pas en 3D */
+
+
+	      ReverseDataFor3D(sciGetParentSubwin(pobj),xvect,yvect,NULL,n);
+	      
+	      trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect,yvect,NULL);
+	      
+	      FREE(xvect); xvect = NULL;
+	      FREE(yvect); yvect = NULL;
+	      FREE(zvect); zvect = NULL;
+	    }
+
+	  if (pSEGS_FEATURE (pobj)->pcolored ==0)
 		C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,(sflag=0,&sflag),&dv,&dv,&dv,&dv,0L,0L);
 	  else
 	    C2F(dr)("xarrow","v",xm,ym,&na,&arssize,zm,(sflag=1,&sflag),&dv,&dv,&dv,&dv,0L,0L);   
@@ -12108,6 +12170,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       
       /***/
       sciClip(sciGetIsClipping(pobj));
+
+
 #ifdef WIN32 
       flag_DO = MaybeSetWinhdc ();
 #endif
@@ -12118,6 +12182,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       for(jk=0;jk<nb_curves;jk++)
 	{
 	  n1 = curves_size[jk];
+
+	  if(n1==0) continue;
 	  
 	  if ((xm = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
 	  if ((ym = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
@@ -12129,23 +12195,34 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  switch (pPOLYLINE_FEATURE (pobj)->plot)
 	    {
 	    case 0:
-	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
 		/* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
+		
+		/* axes reverse is tested and xvect, yvect are changed if needed here */
+		
+		ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+		
 		result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
-
+	      }
 	      else
+		
+		/* In 2d, the axes reverse is done inside XScale, YScale... routines. */
 		/* 	C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L);  */
 		C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &n2, "f2i",3L); 
-	   
+	      
 	      /**DJ.Abdemouche 2003**/
 	      break; 
 	    case 1:
-	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-/* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
+	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
+		/* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
+		
+		ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+		
 		result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
-
+		
+	      }
 	      else
-/* 		Plo2d1RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);   */
+		/* 		Plo2d1RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);   */
 		Plo2d1RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
 	      break;
 	    case 2:
@@ -12155,6 +12232,9 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 		    FREE(zzz); zzz = (double *) NULL;
 		  
 /* 		  Plo2dTo3d(2,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
+		  
+		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+		  
 		  Plo2dTo3d(2,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
 		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
 		}
@@ -12171,7 +12251,10 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
 		    FREE(zzz); zzz = (double *) NULL;
 		  
-	/* 	  Plo2dTo3d(3,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
+		  /* 	  Plo2dTo3d(3,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
+		  
+		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+		  
 		  Plo2dTo3d(3,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
 		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
 		}
@@ -12195,8 +12278,11 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 		{
 		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
 		    FREE(zzz); zzz = (double *) NULL;
-			  
-/* 		  Plo2dTo3d(4,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
+		  
+		  /* 		  Plo2dTo3d(4,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
+		  
+		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+		  
 		  Plo2dTo3d(4,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
 		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
 		}
@@ -12217,11 +12303,15 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 		  } 
 	      break;
 	    case 5:
-	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
 		
 		/* 	trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx, */
 		/* 			pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
+		
+		ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+		
 		result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
+	      }
 	      else
 		
 		/* 	C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx, */
@@ -12249,11 +12339,6 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	      else
 		C2F (dr) ("xmarks", "xv", &n1, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
 	    }
-#ifdef WIN32 
-	  if ( flag_DO == 1) ReleaseWinHdc ();
-#endif  
-	  sciUnClip(sciGetIsClipping(pobj));
-
 
 	  FREE(xzz); xzz = (double *) NULL;
 	  FREE(yzz); yzz = (double *) NULL;
@@ -12264,7 +12349,14 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  
 	}
       
+
+      
       for(i=0;i<nb_curves;i++){
+	int nn;
+	nn = curves_size[i];
+	
+	if(nn==0) continue;
+	
 	FREE(xvect[i]); xvect[i] = (double *) NULL;
 	FREE(yvect[i]); yvect[i] = (double *) NULL;
 	FREE(zvect[i]); zvect[i] = (double *) NULL;
@@ -12276,6 +12368,13 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       
       FREE(curves_size); curves_size = NULL;
 
+#ifdef WIN32 
+      if ( flag_DO == 1) ReleaseWinHdc ();
+#endif  
+      
+      sciUnClip(sciGetIsClipping(pobj));
+      
+      
       break;
     case SCI_ARC: 
    
@@ -12319,9 +12418,18 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 	{
-	  trans3d(sciGetParentSubwin(pobj),un,&x1,&yy1,&pARC_FEATURE(pobj)->x,
-		  &pARC_FEATURE (pobj)->y,&pARC_FEATURE (pobj)->z);
-
+	  
+	  double xvect;
+	  double yvect;
+	  double zvect;
+	  
+	  xvect = pARC_FEATURE(pobj)->x;
+	  yvect = pARC_FEATURE(pobj)->y;
+	  zvect = pARC_FEATURE(pobj)->z;
+	  
+	  ReverseDataFor3D(sciGetParentSubwin(pobj),&xvect,&yvect,&zvect,un);
+	  
+	  trans3d(sciGetParentSubwin(pobj),un,&x1,&yy1,&xvect,&yvect,&zvect);
 	}
       else
 	{
@@ -12379,7 +12487,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
       break;
-    case SCI_RECTANGLE:  
+    case SCI_RECTANGLE:
      
       if (!sciGetVisibility(pobj)) break;
 
@@ -12492,6 +12600,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	    ytmp[1] = yy1;
 	    ytmp[2] = yy1+height;
 	    ytmp[3] = yy1+height;
+
 	    C2F (dr) ("xmarks", str, &n, xtmp, ytmp, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 6L, 0L);
 	  }
 	  sciUnClip(sciGetIsClipping(pobj));
@@ -12499,7 +12608,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
 	}
-      else
+      else /* Rect. in 3D */
 	{ 
 	  double rectx[4],recty[4],rectz[4];
 	  int close=1;
@@ -12511,6 +12620,9 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
 	  recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
 	  rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
+
+	  ReverseDataFor3D(sciGetParentSubwin(pobj), rectx, recty, rectz, n);
+
 	  trans3d(sciGetParentSubwin(pobj),n,xm,ym,rectx,recty,rectz);
 #ifdef WIN32 
 	  flag_DO = MaybeSetWinhdc ();
@@ -12566,14 +12678,26 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 
       if (pTEXT_FEATURE (pobj)->fill==-1) {
 	if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	  {trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,
-		   &pTEXT_FEATURE (pobj)->x,&pTEXT_FEATURE (pobj)->y,&pTEXT_FEATURE (pobj)->z);}
+	  {
+	    
+	    double xvect;
+	    double yvect;
+	    double zvect;
+	    
+	    xvect = pTEXT_FEATURE (pobj)->x;
+	    yvect = pTEXT_FEATURE (pobj)->y;
+	    zvect = pTEXT_FEATURE (pobj)->z;
+	    
+	    ReverseDataFor3D(sciGetParentSubwin(pobj),&xvect,&yvect,&zvect,n);
+	    
+	    trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,&xvect,&yvect,&zvect);
+	  }
 	else {
 	  x1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->x);
 	  yy1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->y);
 	}
 	anglestr = (sciGetFontOrientation (pobj)/10); 	
-	/* *10 parce que l'angle est concerve en 1/10eme de degre*/
+	/* *10 parce que l'angle est conserve en 1/10eme de degre*/
 
 	C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L);
       }
@@ -12591,125 +12715,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       break;
-      /*   case SCI_AXIS 
-      break; */
-/*     case SCI_TITLE: */
-     
-/*       if (!sciGetVisibility(pobj)) break; */
-/*       /\*sciSetCurrentObj (pobj);       F.Leray 25.03.04*\/ */
-/*       /\* load the object foreground and dashes color *\/ */
-/*       x[0] = sciGetFontForeground (pobj); */
-/*       x[2] = sciGetFontDeciWidth (pobj)/100; */
-/*       x[3] = 0; */
-/*       x[4] = sciGetFontStyle(pobj); */
-/*       v = 0; */
-/*       dv = 0; */
-/* #ifdef WIN32 */
-/*       flag_DO = MaybeSetWinhdc (); */
-/* #endif */
-/*       C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L); */
-/*       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L); */
-/*       C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L); */
-/* #ifdef WIN32 */
-/*       if ( flag_DO == 1) ReleaseWinHdc (); */
-/* #endif */
-/*       sciClip(sciGetIsClipping(pobj)); */
-/*       flagx = 0; */
-/*       anglestr = 0; */
-/*       psubwin = sciGetParentSubwin(pobj); */
-/*       if (sciGetEntityType(psubwin) == SCI_SUBWIN) */
-/* 	{ */
-/* 	  locstr=pSUBWIN_FEATURE(psubwin)->axes.xdir; */
-/* 	  switch (locstr) */
-/* 	    { */
-/* 	    case 'd': */
-/* 	      locy=pSUBWIN_FEATURE (psubwin)->FRect[1]; */
-/* 	      //loctit=pSUBWIN_FEATURE (psubwin)->FRect[3]; */
-/* 	      break; */
-/* 	    case 'c': */
-/* 	      locy=(pSUBWIN_FEATURE (psubwin)->FRect[1]>0.0)?pSUBWIN_FEATURE (psubwin)->FRect[1]: 0.0; */
-/* 	      locy=(pSUBWIN_FEATURE (psubwin)->FRect[3]<0.0)?pSUBWIN_FEATURE (psubwin)->FRect[1]: locy; */
-/* 	      //loctit=pSUBWIN_FEATURE (psubwin)->FRect[3]; */
-/* 	      break; */
-/* 	    case 'u': */
-/* 	      locy=pSUBWIN_FEATURE (psubwin)->FRect[3]; */
-/* 	      //loctit=pSUBWIN_FEATURE (psubwin)->FRect[1]; */
-/* 	      break; */
-/* 	    default: */
-/* 	      locy=pSUBWIN_FEATURE (psubwin)->FRect[1]; */
-/* 	      //loctit=pSUBWIN_FEATURE (psubwin)->FRect[3]; */
-/* 	      break; */
-/* 	    } */
-/* 	  locstr=pSUBWIN_FEATURE(psubwin)->axes.ydir; */
-/* 	  switch (locstr) */
-/* 	    { */
-/* 	    case 'l': */
-/* 	      locx=pSUBWIN_FEATURE (psubwin)->FRect[0]; */
-/* 	      break; */
-/* 	    case 'c': */
-/* 	      locx=(pSUBWIN_FEATURE (psubwin)->FRect[0]>0.0)?pSUBWIN_FEATURE (psubwin)->FRect[0]: 0.0; */
-/* 	      locx=(pSUBWIN_FEATURE (psubwin)->FRect[2]<0.0)?pSUBWIN_FEATURE (psubwin)->FRect[0]: locx; */
-/* 	      //loctit=pSUBWIN_FEATURE (psubwin)->FRect[1]; */
-/* 	      break; */
-/* 	    case 'r': */
-/* 	      locx=pSUBWIN_FEATURE (psubwin)->FRect[2]; */
-/* 	      break; */
-/* 	    default: */
-/* 	      locx=pSUBWIN_FEATURE (psubwin)->FRect[0]; */
-/* 	      break; */
-/* 	    } */
-/* 	} */
-/*       switch (pTITLE_FEATURE (pobj)->ptype) */
-/* 	{ */
-/* 	case 1: /\* main title *\/ /\* We fix the title always at the top *\/ */
-/* 	  rect1[0]= Cscale.WIRect1[0]; //XScale(pSUBWIN_FEATURE (psubwin)->FRect[0]); */
-/* 	  rect1[1]= Cscale.WIRect1[1]; //(loctit==pSUBWIN_FEATURE (psubwin)->FRect[1])?(YScale(loctit)+Cscale.WIRect1[3]/6):YScale(loctit); */
-/* 	  rect1[2]= Cscale.WIRect1[2]; */
-/* 	  rect1[3]= Cscale.WIRect1[3]/6; */
-/* #ifdef WIN32 */
-/* 	  flag_DO = MaybeSetWinhdc (); */
-/* #endif */
-/* 	  C2F(dr1)("xstringtt",sciGetText (pobj),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); */
-/* #ifdef WIN32 */
-/* 	  if ( flag_DO == 1) ReleaseWinHdc (); */
-/* #endif */
-/* 	  break; */
-/* 	case 2: /\* x label *\/ */
-/* 	  if(!pSUBWIN_FEATURE (psubwin)->is3d){ /\* display for 2D mode only *\/ */
-/* 	    rect1[0]= Cscale.WIRect1[0]+Cscale.WIRect1[2]; */
-/* 	    rect1[1]= Cscale.WIRect1[1]+ Cscale.WIRect1[3];//YScale(locy-(pSUBWIN_FEATURE (psubwin)->FRect[3]-pSUBWIN_FEATURE (psubwin)->FRect[1])/12); */
-/* 	    rect1[2]= Cscale.WIRect1[2]/6; */
-/* 	    rect1[3]= Cscale.WIRect1[3]/6; */
-/* #ifdef WIN32 */
-/* 	    flag_DO = MaybeSetWinhdc (); */
-/* #endif */
-/* 	    C2F(dr1)("xstringtt",sciGetText (pobj),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); */
-/* #ifdef WIN32 */
-/* 	    if ( flag_DO == 1) ReleaseWinHdc (); */
-/* #endif */
-/* 	  } */
-/* 	  break; */
-/* 	case 3: /\* y label *\/ */
-/* /\* 	  if(!pSUBWIN_FEATURE (psubwin)->is3d){ /\\* display for 2D mode only *\\/ *\/ */
-/* /\* 	    rect1[0]= XScale(locx-(pSUBWIN_FEATURE (psubwin)->FRect[2]-pSUBWIN_FEATURE (psubwin)->FRect[0])/12); *\/ */
-/* /\* 	    rect1[1]= Cscale.WIRect1[1]-Cscale.WIRect1[3]/24; *\/ */
-/* /\* 	    rect1[2]= Cscale.WIRect1[2]/6; *\/ */
-/* /\* 	    rect1[3]= Cscale.WIRect1[3]/12; *\/ */
-/* /\* #ifdef WIN32 *\/ */
-/* /\* 	  flag_DO = MaybeSetWinhdc (); *\/ */
-/* /\* #endif *\/ */
-/* /\* 	  C2F(dr1)("xstringtt",sciGetText (pobj),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); *\/ */
-/* /\* #ifdef WIN32 *\/ */
-/* /\* 	  if ( flag_DO == 1) ReleaseWinHdc (); *\/ */
-/* /\* #endif *\/ */
-/* /\* 	  } *\/ */
-/* 	  break; */
-/* 	} */
-
-/*       sciUnClip(sciGetIsClipping(pobj)); */
-/*       break; */
-
-    case SCI_AXES:
+   case SCI_AXES:
       if (!sciGetVisibility(pobj)) break;
       /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
     
@@ -12758,7 +12764,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       DrawMerge3d(sciGetParentSubwin(pobj), pobj);
       break;
     case SCI_SURFACE:
-      
+      ppsurface = pSURFACE_FEATURE (pobj);
+
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
       if (!sciGetVisibility(pobj)) break;
       itmp[0] = 0;		/* verbose*/
@@ -15183,7 +15190,7 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
   dir= 'l'; pSUBWIN_FEATURE (psubwin)->axes.ydir=dir;
   (pSUBWIN_FEATURE (psubwin)->axes).axes_visible[0] = FALSE;
   (pSUBWIN_FEATURE (psubwin)->axes).axes_visible[1] = FALSE;
-  (pSUBWIN_FEATURE (psubwin)->axes).axes_visible[2] = TRUE;
+  (pSUBWIN_FEATURE (psubwin)->axes).axes_visible[2] = FALSE;
   (pSUBWIN_FEATURE (psubwin)->axes).reverse[0] = FALSE;
   (pSUBWIN_FEATURE (psubwin)->axes).reverse[1] = FALSE;
   (pSUBWIN_FEATURE (psubwin)->axes).reverse[2] = FALSE;
@@ -16107,7 +16114,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 
 
       integer Ticsdir[2];
-      Ticsdir[0]=ixbox[3]-ixbox[4]; /* <=> en pixel direction/vecteur non normÂŽée des tics en x */
+      Ticsdir[0]=ixbox[3]-ixbox[4]; /* <=> en pixel direction/vecteur non norme(e)s des tics en x */
       Ticsdir[1]=iybox[3]-iybox[4]; /* <=> idem pour y */
       BBoxToval(&fx,&fy,&fz,xind[3],bbox); /* xind[3] <=> en bas a gauche <=> zmin */
       x=ixbox[2]-(xz[0]+xz[1])/20;
@@ -16129,7 +16136,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      if(ztmp<zminval || ztmp>zmaxval) 
 		{
 		  /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-		  continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		  continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon */
 		  /* donc autant ne pas aller plus loin dans l'algo... */
 		}
 	      	  
@@ -16137,7 +16144,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      /***************************************************************/
 	      /************************* COMMON PART *************************/
 	      /***************************************************************/
-
+	      
+	      if(ppsubwin->axes.reverse[2] == TRUE)
+		ztmp = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],ztmp);
+	      	      
 	      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp);
 	      /* 	      trans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp); */
 
@@ -16193,6 +16203,9 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			  
 			  if(vzz1<=zminval || vzz1>=zmaxval) continue;	 
 			  
+			  if(ppsubwin->axes.reverse[2] == TRUE)
+			    vzz1 = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],vzz1);
+	   			  
 			  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1);
 			  
 			  /*  if ((ym != iybox[3]) && (ym != iybox[2])) */
@@ -16260,7 +16273,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			{
 			  vzz1 = tmp_log_grads[j];
 			  
-			  if(vzz1<zminval || vzz1>zmaxval) continue;	 
+			  if(vzz1<zminval || vzz1>zmaxval) continue;
+			  
+			  if(ppsubwin->axes.reverse[2] == TRUE)
+			    vzz1 = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],vzz1);
 			  
 			  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1);
 			  
@@ -16283,6 +16299,8 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			  
 			  if(vzz1<zminval || vzz1>zmaxval) continue;	 
 			  
+			  if(ppsubwin->axes.reverse[2] == TRUE)
+			    vzz1 = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],vzz1);
 			  
 			  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1);
 			  /* 		      trans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1); */
@@ -16329,7 +16347,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      if(ztmp<zminval || ztmp>zmaxval) 
 		{
 		  /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-		  continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		  continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon */
 		  /* donc autant ne pas aller plus loin dans l'algo... */
 		}
 	      
@@ -16338,7 +16356,9 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      /***************************************************************/
 	      /************************* COMMON PART *************************/
 	      /***************************************************************/
-
+	      if(ppsubwin->axes.reverse[2] == TRUE)
+		ztmp = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],ztmp);
+  
 	      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp);
 
 	      /* 	      trans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp); */
@@ -16405,6 +16425,9 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			  vzz1 = tmp_log_grads[j];
 			  
 			  if(vzz1<=zminval || vzz1>=zmaxval) continue;	 
+
+			  if(ppsubwin->axes.reverse[2] == TRUE)
+			    vzz1 = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],vzz1);
 			  
 			  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1);
 			  
@@ -16473,7 +16496,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			{
 			  vzz1 = tmp_log_grads[j];
 			  
-			  if(vzz1<zminval || vzz1>zmaxval) continue;	 
+			  if(vzz1<zminval || vzz1>zmaxval) continue;
+			  
+			  if(ppsubwin->axes.reverse[2] == TRUE)
+			    vzz1 = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],vzz1);
 			  
 			  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1);
 			  
@@ -16494,7 +16520,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			{
 			  vzz1=ztmp+dz*j;
 			  
-			  if(vzz1<zminval || vzz1>zmaxval) continue;	 
+			  if(vzz1<zminval || vzz1>zmaxval) continue;
+			  
+			  if(ppsubwin->axes.reverse[2] == TRUE)
+			    vzz1 = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],vzz1);
 			  
 			  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1);
 			  /* 		      trans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1); */
@@ -16577,7 +16606,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  if(xtmp<xminval || xtmp>xmaxval) 
 		    {
 		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon */
 		      /* donc autant ne pas aller plus loin dans l'algo... */
 		    }
 
@@ -16585,6 +16614,9 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /************************* COMMON PART *************************/
 		  /***************************************************************/
 		  
+		  if(ppsubwin->axes.reverse[0] == TRUE)
+		    xtmp = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp);
+		  		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
 		  /*   trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
 
@@ -16642,7 +16674,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vxx1 = tmp_log_grads[j];
 			      
-			      if(vxx1<=xminval || vxx1>=xmaxval) continue;	 
+			      if(vxx1<=xminval || vxx1>=xmaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      
@@ -16714,7 +16749,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vxx1 = tmp_log_grads[j];
 			      
-			      if(vxx1<xminval || vxx1>xmaxval) continue;	 
+			      if(vxx1<xminval || vxx1>xmaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      
@@ -16746,8 +16784,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {  
 			      vxx1=xtmp+dx*j;
 			      
-			      if(vxx1<xminval || vxx1>xmaxval) continue;	 
-			  
+			      if(vxx1<xminval || vxx1>xmaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
+			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      /* 			  trans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz); */
 
@@ -16798,7 +16839,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  if(xtmp<xminval || xtmp>xmaxval) 
 		    {
 		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon */
 		      /* donc autant ne pas aller plus loin dans l'algo... */
 		    }
 		  
@@ -16813,6 +16854,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /* re-do a log10() (that is needed for data computations) */
 
 		  /* 	  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
+		  
+		  if(ppsubwin->axes.reverse[0] == TRUE)
+		    xtmp = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp);
+		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
 		  
 		  vx[0]=xm;vy[0]=ym; 
@@ -16880,7 +16925,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vxx1 = tmp_log_grads[j];
 			      
-			      if(vxx1<=xminval || vxx1>=xmaxval) continue;	 
+			      if(vxx1<=xminval || vxx1>=xmaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      
@@ -16953,7 +17001,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vxx1 = tmp_log_grads[j];
 			      
-			      if(vxx1<xminval || vxx1>xmaxval) continue;	 
+			      if(vxx1<xminval || vxx1>xmaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      
@@ -16985,10 +17036,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {  
 			      vxx1=xtmp+dx*j;
 			      
-			      if(vxx1<xminval || vxx1>xmaxval) continue;	 
-			  
-			      /* 			  trans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz); */
-
+			      if(vxx1<xminval || vxx1>xmaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
+			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 
 			      if (IsDownAxes(psubwin))
@@ -17073,7 +17125,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  if(ytmp<yminval || ytmp>ymaxval) 
 		    {
 		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon */
 		      /* donc autant ne pas aller plus loin dans l'algo... */
 		    }
 	      	  
@@ -17081,7 +17133,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /***************************************************************/
 		  /************************* COMMON PART *************************/
 		  /***************************************************************/
-
+		  
+		  if(ppsubwin->axes.reverse[1] == TRUE)
+		    ytmp = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp);
+  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
 		  /* 		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
 		  
@@ -17141,7 +17196,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1 = tmp_log_grads[j];
 			      
-			      if(vyy1<=yminval || vyy1>=ymaxval) continue;	 
+			      if(vyy1<=yminval || vyy1>=ymaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 
@@ -17212,7 +17270,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1 = tmp_log_grads[j];
 			      
-			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
+			      if(vyy1<yminval || vyy1>ymaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 			      
@@ -17243,12 +17304,13 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1=ytmp+dy*j;
 			      
-			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
+			      if(vyy1<yminval || vyy1>ymaxval) continue;
 			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
-			      /* 			  trans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz); */
-			      
+			      			      
 			      if (IsDownAxes(psubwin))
 				{
 				  vx[1]=vx[0]=xm;
@@ -17295,7 +17357,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  if(ytmp<yminval || ytmp>ymaxval) 
 		    {
 		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon */
 		      /* donc autant ne pas aller plus loin dans l'algo... */
 		    }
 	      
@@ -17308,7 +17370,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /* F.Leray 03.11.04 Test if log scale to perform a : exp10(x) because trans3d will */
 		  /* re-do a log10() (that is needed for data computations) */
 
-		  /*   trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
+
+		  if(ppsubwin->axes.reverse[1] == TRUE)
+		    ytmp = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp);
+		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
 		  
 		  
@@ -17378,10 +17443,13 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1 = tmp_log_grads[j];
 			      
-			      if(vyy1<=yminval || vyy1>=ymaxval) continue;	 
+			      if(vyy1<=yminval || vyy1>=ymaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
-
+			      
 			      /*  if ((xm != ixbox[5]) && (xm != ixbox[4])) */
 			      /* 				{  */
 			      xg[0]= xm;  yg[0]= ym;  
@@ -17449,7 +17517,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1 = tmp_log_grads[j];
 			      
-			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
+			      if(vyy1<yminval || vyy1>ymaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 			      
@@ -17480,9 +17551,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1=ytmp+dy*j;
 			  
-			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
-			  
-
+			      if(vyy1<yminval || vyy1>ymaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
+			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 			      /*   trans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz); */
 			  
@@ -17570,13 +17643,16 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  if(xtmp<xminval || xtmp>xmaxval) 
 		    {
 		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon */
 		      /* donc autant ne pas aller plus loin dans l'algo... */
 		    }
 		  
 		  /***************************************************************/
 		  /************************* COMMON PART *************************/
 		  /***************************************************************/
+
+		  if(ppsubwin->axes.reverse[0] == TRUE)
+		    xtmp = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp);
 		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
 		  /* 		  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
@@ -17635,7 +17711,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vxx1 = tmp_log_grads[j];
 			      
-			      if(vxx1<=xminval || vxx1>=xmaxval) continue;	 
+			      if(vxx1<=xminval || vxx1>=xmaxval) continue;
+
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 
@@ -17704,7 +17783,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vxx1 = tmp_log_grads[j];
 			      
-			      if(vxx1<xminval || vxx1>xmaxval) continue;	 
+			      if(vxx1<xminval || vxx1>xmaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      
@@ -17738,6 +17820,9 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      
 			      if(vxx1<xminval || vxx1>xmaxval) continue;
 
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
+			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      /* 		  trans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz); */
 
@@ -17790,7 +17875,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  if(xtmp<xminval || xtmp>xmaxval) 
 		    {
 		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon */
 		      /* donc autant ne pas aller plus loin dans l'algo... */
 		    }
 		  
@@ -17800,6 +17885,9 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /************************* COMMON PART *************************/
 		  /***************************************************************/
 
+		  if(ppsubwin->axes.reverse[0] == TRUE)
+		    xtmp = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp);
+		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
 		  /* 		  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
 
@@ -17869,7 +17957,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vxx1 = tmp_log_grads[j];
 			      
-			      if(vxx1<=xminval || vxx1>=xmaxval) continue;	 
+			      if(vxx1<=xminval || vxx1>=xmaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      
@@ -17938,7 +18029,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vxx1 = tmp_log_grads[j];
 			      
-			      if(vxx1<xminval || vxx1>xmaxval) continue;	 
+			      if(vxx1<xminval || vxx1>xmaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      
@@ -17969,7 +18063,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {  
 			      vxx1=xtmp+dx*j;
 			      
-			      if(vxx1<xminval || vxx1>xmaxval) continue;	 
+			      if(vxx1<xminval || vxx1>xmaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[0] == TRUE)
+				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      /* 		  trans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz); */
@@ -18054,13 +18151,16 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  if(ytmp<yminval || ytmp>ymaxval) 
 		    {
 		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon */
 		      /* donc autant ne pas aller plus loin dans l'algo... */
 		    }
 	      	  
 		  /***************************************************************/
 		  /************************* COMMON PART *************************/
 		  /***************************************************************/
+
+		  if(ppsubwin->axes.reverse[1] == TRUE)
+		    ytmp = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp);
 		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
 		  /* 		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
@@ -18120,7 +18220,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1 = tmp_log_grads[j];
 			      
-			      if(vyy1<=yminval || vyy1>=ymaxval) continue;	 
+			      if(vyy1<=yminval || vyy1>=ymaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 			      
@@ -18189,7 +18292,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1 = tmp_log_grads[j];
 			      
-			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
+			      if(vyy1<yminval || vyy1>ymaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 			      
@@ -18221,7 +18327,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1=ytmp+dy*j;
 			      
-			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
+			      if(vyy1<yminval || vyy1>ymaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 			      /* 		  trans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz); */
@@ -18274,7 +18383,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  if(ytmp<yminval || ytmp>ymaxval) 
 		    {
 		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon */
 		      /* donc autant ne pas aller plus loin dans l'algo... */
 		    }
 		  
@@ -18283,6 +18392,9 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /***************************************************************/
 		  /************************* COMMON PART *************************/
 		  /***************************************************************/
+
+		  if(ppsubwin->axes.reverse[1] == TRUE)
+		    ytmp = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp);
 		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
 		  /* 		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
@@ -18352,7 +18464,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1 = tmp_log_grads[j];
 			      
-			      if(vyy1<=yminval || vyy1>=ymaxval) continue;	 
+			      if(vyy1<=yminval || vyy1>=ymaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 			      
@@ -18421,7 +18536,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1 = tmp_log_grads[j];
 			      
-			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
+			      if(vyy1<yminval || vyy1>ymaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 			      
@@ -18453,12 +18571,13 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			    {
 			      vyy1=ytmp+dy*j;
 			      
-			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
+			      if(vyy1<yminval || vyy1>ymaxval) continue;
+			      
+			      if(ppsubwin->axes.reverse[1] == TRUE)
+				vyy1 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],vyy1);
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
-			      /* 			  trans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz); */
-			      
-			      
+			      			      
 			      if (IsDownAxes(psubwin))
 				{
 				  vx[1]=vx[0]=xm;
@@ -18608,13 +18727,17 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 	      if(ppsubwin->logflags[2] == 'l'){
 		sciprint("Warning: Value on z data is negative or zero while logarithmic scale enabled\n");
 		sciprint("Object not drawn\n");
+		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
 		return 0;
 	      }
 
 	      xm[i]= TX3D(tmpx,tmpy,0.0);
 	      ym[i]= TY3D(tmpx,tmpy,0.0);
 
-	      if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
+	      if ( finite(xz1)==0||finite(yz1)==0 ){
+		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
+		return(0);
+	      }
 	    }
 	else /* z != NULL */
 	  for ( i=0 ; i < n ; i++)
@@ -18647,7 +18770,10 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 		
 /* 		  xm[i]= TX3D(xtmp[i],y[i],z[i]); */
 /* 		  ym[i]= TY3D(xtmp[i],y[i],z[i]); */
-/* 		  if ( finite(xz1)==0||finite(yz1)==0 ) return(0); */
+/* 		  if ( finite(xz1)==0||finite(yz1)==0 ){
+		  FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
+		  return(0);
+		  } */
 		  
 /* 		} */
 /* 	      else */
@@ -18655,7 +18781,10 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 		  
 		  xm[i]= TX3D(tmpx,tmpy,tmpz);
 		  ym[i]= TY3D(tmpx,tmpy,tmpz);
-		  if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
+		  if ( finite(xz1)==0||finite(yz1)==0 ){
+		    FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
+		    return(0);
+		  }
 	/* 	} */
 	    }
 	FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
@@ -18682,6 +18811,7 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 	      if(ppsubwin->logflags[2] == 'l'){
 		sciprint("Warning: Value on z data is negative or zero while logarithmic scale enabled\n");
 		sciprint("Object not drawn\n");
+		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
 		return 0;
 	      }
 
@@ -18691,7 +18821,10 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 
 	      xm[i]= TX3D(tmpx,tmpy,tmpz);
 	      ym[i]= TY3D(tmpx,tmpy,tmpz);
-	      if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
+	      if ( finite(xz1)==0||finite(yz1)==0 ){
+		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
+		return(0);
+	      }
 	    }
 	else /* z != NULL */
 	  for ( i=0 ; i < n ; i++)
@@ -18724,10 +18857,15 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 
 	   /*    xm[i]= TX3D(tmpx,tmpy,tmpz); */
 /* 	      ym[i]= TY3D(tmpx,tmpy,tmpz); */
-	      if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
+	      if ( finite(xz1)==0||finite(yz1)==0 ){
+		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
+		return(0);
+	      }
 	    }
       }
+    FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
   }
+  FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
   return(1);
 }
 
@@ -18751,7 +18889,6 @@ BOOL Ishidden(sciPointObj *pobj)
 BOOL IsDownAxes(sciPointObj *pobj)
 {
   double alpha,cof;
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
   
   if (sciGetEntityType(pobj) == SCI_SUBWIN){
     alpha = pSUBWIN_FEATURE (pobj)->alpha;   
@@ -19326,7 +19463,11 @@ void update_graduation(sciPointObj *pobj)
 int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, integer whiteid, double zmin, double zmax, double *x, double *y, double *z, integer i, integer j, integer jj1, integer *p, integer dc, integer fg)
 {
   sciPointObj *pobj;
+  int facteur = 1;
 
+  sciPointObj *psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  
   pobj = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
   if (trans3d(pobj ,1, &(polyx[  5*jj1]),&(polyy[  5*jj1]),&(x[i]),&(y[j]),&(z[i+(*p)*j]))==0) return 0; 
   if (trans3d(pobj ,1, &(polyx[1+  5*jj1]),&(polyy[1+  5*jj1]),&(x[i]),&(y[j+1]),&(z[i+(*p)*(j+1)]))==0) return 0; 
@@ -19334,8 +19475,13 @@ int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, inte
   if (trans3d(pobj ,1, &(polyx[3+  5*jj1]),&(polyy[3+  5*jj1]),&(x[i+1]),&(y[j]),&(z[(i+1)+(*p)*j]))==0) return 0;   
   if (trans3d(pobj ,1, &(polyx[4+  5*jj1]),&(polyy[4+  5*jj1]),&(x[i]),&(y[j]),&(z[i+(*p)*j]))==0) return 0; 
   
+  
+  if(ppsubwin->axes.reverse[0] == TRUE) facteur = -facteur;
+  if(ppsubwin->axes.reverse[1] == TRUE) facteur = -facteur;
+  if(ppsubwin->axes.reverse[2] == TRUE) facteur = -facteur;
+  
   if ((((polyx[1+5*jj1]-polyx[0+5*jj1])*(polyy[2+5*jj1]-polyy[0+5*jj1])-
-	(polyy[1+5*jj1]-polyy[0+5*jj1])*(polyx[2+5*jj1]-polyx[0+5*jj1])) <  0) && (fg >=0 )) 
+	(polyy[1+5*jj1]-polyy[0+5*jj1])*(polyx[2+5*jj1]-polyx[0+5*jj1]))*facteur <  0) && (fg >=0 )) 
     if (type != 0)
       fill[jj1]= (dc < 0 ) ? -fg : fg ;
     else
@@ -19460,7 +19606,7 @@ int InitAxesModel()
   /* F.Leray 22.09.04 */
   (ppaxesmdl->axes).axes_visible[0] = FALSE;
   (ppaxesmdl->axes).axes_visible[1] = FALSE;
-  (ppaxesmdl->axes).axes_visible[2] = TRUE;
+  (ppaxesmdl->axes).axes_visible[2] = FALSE;
   (ppaxesmdl->axes).reverse[0] = FALSE;
   (ppaxesmdl->axes).reverse[1] = FALSE;
   (ppaxesmdl->axes).reverse[2] = FALSE;
@@ -20073,6 +20219,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
   int N,i,j,index,p,max_p,n1,npoly;
   double * dist;
   double X[5],Y[5],Z[5];
+  double * Zoriginal = NULL; /* used to conserve Z wether or not z axis is reversed ! (see plo3dn.c) */
   double *x,*y,*z;
   sciPointObj *pobj; 
   int *locindex;
@@ -20081,6 +20228,14 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
   int whiteid,verbose=0,narg;
   static double zmin,zmax,xmoy,ymoy,zmoy,zl;
   int context[6];
+  
+
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+  int u;
+  double *xtmp = NULL;
+  double *ytmp = NULL;
+  double *ztmp = NULL;
+  
 #ifdef WIN32 
   int hdcflag;
 #endif
@@ -20111,52 +20266,178 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
     case SCI_SURFACE:
       if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D) { /* x,y,Z */
 	int l,k,n1,n2;
+
 	n1= pSURFACE_FEATURE (pobj)->dimzx;
 	n2= pSURFACE_FEATURE (pobj)->dimzy;
 	l=(int)(index/(n1-1));
 	k=index-l*(n1-1);
 
+
+	if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
+	if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
+	if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+	
+	xtmp = MALLOC(n1*sizeof(double)); /* I create tmp array to deal with reverse axes possibility (see Plo3dn.c) */
+	ytmp = MALLOC(n2*sizeof(double));
+	ztmp = MALLOC(n1*n2*sizeof(double));
+	
+	
+	/* I didn't useReverseDataFor3D because dim n1 is not the same for x, y and z  */
+	if(ppsubwin->axes.reverse[0] == TRUE){ 
+	  /* agir sur x */
+	  if(ppsubwin->logflags[0]=='l'){
+	    for(u=0;u<n1;u++){
+	      xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
+	      xtmp[u] = log10(xtmp[u]);
+	      xtmp[u] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp[u]);
+	      xtmp[u] = exp10(xtmp[u]);
+	    }
+	  }
+	  else
+	    for(u=0;u<n1;u++)
+	      xtmp[u] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],pSURFACE_FEATURE (pobj)->pvecx[u]);
+	}
+	else{
+	  for(u=0;u<n1;u++)
+	    xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
+	}
+  
+	if(ppsubwin->axes.reverse[1] == TRUE){ 
+	  /* agir sur y */
+	  if(ppsubwin->logflags[1]=='l'){
+	    for(u=0;u<n2;u++){
+	      ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
+	      ytmp[u] = log10(ytmp[u]);
+	      ytmp[u] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp[u]);
+	      ytmp[u] = exp10(ytmp[u]);
+	    }
+	  }
+	  else
+	    for(u=0;u<n2;u++)
+	      ytmp[u] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],pSURFACE_FEATURE (pobj)->pvecy[u]);
+	}
+	else{
+	  for(u=0;u<n2;u++)
+	    ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
+	}
+  
+	if(ppsubwin->axes.reverse[2] == TRUE){ 
+	  /* agir sur z */
+	  if(ppsubwin->logflags[2]=='l'){
+	    for(u=0;u<n1*n2;u++){
+	      ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
+	      ztmp[u] = log10(ztmp[u]);
+	      ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],ztmp[u]);
+	      ztmp[u] = exp10(ztmp[u]);
+	    }
+	  }
+	  else
+	    for(u=0;u<n1*n2;u++)
+	      ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],pSURFACE_FEATURE (pobj)->pvecz[u]);
+	}
+	else{
+	  for(u=0;u<n1*n2;u++)
+	    ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
+	}
+  
+	
+
+/* 	n2= pSURFACE_FEATURE (pobj)->dimzy; */
+/* 	X[0]=X[1]=pSURFACE_FEATURE (pobj)->pvecx[k]; */
+/* 	X[2]=X[3]=pSURFACE_FEATURE (pobj)->pvecx[k+1]; */
+/* 	Z[0]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]; */
+/* 	Z[1]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1]; */
+/* 	Z[2]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1]; */
+/* 	Z[3]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1]; */
+/* 	Y[0]=Y[3]=pSURFACE_FEATURE (pobj)->pvecy[l]; */
+/* 	Y[1]=Y[2]=pSURFACE_FEATURE (pobj)->pvecy[l+1]; */
+
+
 	n2= pSURFACE_FEATURE (pobj)->dimzy;
-	X[0]=X[1]=pSURFACE_FEATURE (pobj)->pvecx[k];
-	X[2]=X[3]=pSURFACE_FEATURE (pobj)->pvecx[k+1];
-	Z[0]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1];
-	Z[1]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1];
-	Z[2]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1];
-	Z[3]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1];
-	Y[0]=Y[3]=pSURFACE_FEATURE (pobj)->pvecy[l];
-	Y[1]=Y[2]=pSURFACE_FEATURE (pobj)->pvecy[l+1];
+	X[0]=X[1]=xtmp[k];
+	X[2]=X[3]=xtmp[k+1];
+	Z[0]=ztmp[k+l*n1];
+	Z[1]=ztmp[k+l*n1+n1];
+	Z[2]=ztmp[k+l*n1+n1+1];
+	Z[3]=ztmp[k+l*n1+1];
+
+	Y[0]=Y[3]=ytmp[l];
+	Y[1]=Y[2]=ytmp[l+1];
+
 	p=4;
 	x=X;y=Y;z=Z;
+	
       }
       else{ /* facets */
 	p=pSURFACE_FEATURE (pobj)->dimzx;
-	x=&(pSURFACE_FEATURE (pobj)->pvecx[index*p]);
-	y=&(pSURFACE_FEATURE (pobj)->pvecy[index*p]);
-	z=&(pSURFACE_FEATURE (pobj)->pvecz[index*p]);
+	
+	if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
+	if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
+	if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+	
+	xtmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
+	ytmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
+	ztmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
+	
+	for(u=0;u<pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy;u++){
+	  xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
+	  ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
+	  ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
+	}
+	
+	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy);
+	
+	x=&(xtmp[index*p]);
+	y=&(ytmp[index*p]);
+	z=&(ztmp[index*p]);
+
+	Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[index*p]);
+
       }
       break;
     case  SCI_POLYLINE:
       n1= pPOLYLINE_FEATURE (pobj)->n1;
       p=2;
       if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1;
+
+      if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
+      if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
+      if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+      
+      xtmp = MALLOC(n1*sizeof(double));
+      ytmp = MALLOC(n1*sizeof(double));
+      if(pPOLYLINE_FEATURE (pobj)->pvz != NULL)
+	ztmp = MALLOC(n1*sizeof(double));
+      else
+	ztmp=(double *)NULL;
+
+      for(u=0;u<n1;u++){
+	xtmp[u] = pPOLYLINE_FEATURE (pobj)->pvx[u];
+	ytmp[u] = pPOLYLINE_FEATURE (pobj)->pvy[u];
+	if(ztmp != NULL)
+	  ztmp[u] = pPOLYLINE_FEATURE (pobj)->pvz[u];
+      }
+      
+      ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,n1);
+	     
       switch (pPOLYLINE_FEATURE (pobj)->plot) {
       case 0: case 1: case 4: /*linear interpolation */
-	x=&(pPOLYLINE_FEATURE (pobj)->pvx[index]);
-	y=&(pPOLYLINE_FEATURE (pobj)->pvy[index]);
-	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) 
-	  z=&(pPOLYLINE_FEATURE (pobj)->pvz[index]);
+	x=&(xtmp[index]);
+	y=&(ytmp[index]);
+	if (ztmp != (double *) NULL) 
+	  z=&(ztmp[index]);
 	else
 	  z=(double *)NULL;
 	break;
       case 2: /* staircase */ /* just for completion  */
 	p=2;
-	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index];
-	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index+1];
-	Y[0]=pPOLYLINE_FEATURE (pobj)->pvy[index];
-	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index];
-	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
-	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index];
-	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	X[0]=xtmp[index];
+	X[1]=xtmp[index+1];
+	Y[0]=ytmp[index];
+	Y[1]=ytmp[index];
+	if (ztmp != (double *) NULL) {
+	  Z[0]=ztmp[index];
+	  Z[1]=ztmp[index];
 	  z=Z;
 	}
 	else 
@@ -20164,13 +20445,15 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	x=X;y=Y;
 	break;
       case 3 : /* vertical bar */ /* just for completion  */
-	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index];
-	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index];
+	X[0]=xtmp[index];
+	X[1]=xtmp[index];
 	Y[0]=0.0;
-	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index];
-	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
-	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index];
-	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	if(ppsubwin->logflags[1]=='l') /* when logscale on Y, special treatment because we can not have Y == 0 */
+	  Y[0] = ppsubwin->FRect[1];
+	Y[1]=ytmp[index];
+	if (ztmp != (double *) NULL) {
+	  Z[0]=ztmp[index];
+	  Z[1]=ztmp[index];
 	  z=Z;
 	}
 	else 
@@ -20178,37 +20461,119 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	x=X;y=Y;
 	break;
       case 5: /* patch*/
-	x=pPOLYLINE_FEATURE (pobj)->pvx;
-	y=pPOLYLINE_FEATURE (pobj)->pvy;
-	z=pPOLYLINE_FEATURE (pobj)->pvz;
+	x=xtmp;
+	y=ytmp;
+	z=ztmp;
 	p=n1;
 	break;
       }
+
+
+   /*    switch (pPOLYLINE_FEATURE (pobj)->plot) { */
+/*       case 0: case 1: case 4: /\*linear interpolation *\/ */
+/* 	x=&(pPOLYLINE_FEATURE (pobj)->pvx[index]); */
+/* 	y=&(pPOLYLINE_FEATURE (pobj)->pvy[index]); */
+/* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL)  */
+/* 	  z=&(pPOLYLINE_FEATURE (pobj)->pvz[index]); */
+/* 	else */
+/* 	  z=(double *)NULL; */
+/* 	break; */
+/*       case 2: /\* staircase *\/ /\* just for completion  *\/ */
+/* 	p=2; */
+/* 	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
+/* 	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index+1]; */
+/* 	Y[0]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
+/* 	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
+/* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) { */
+/* 	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+/* 	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+/* 	  z=Z; */
+/* 	} */
+/* 	else  */
+/* 	  z=(double *)NULL; */
+/* 	x=X;y=Y; */
+/* 	break; */
+/*       case 3 : /\* vertical bar *\/ /\* just for completion  *\/ */
+/* 	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
+/* 	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
+/* 	Y[0]=0.0; */
+/* 	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
+/* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) { */
+/* 	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+/* 	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+/* 	  z=Z; */
+/* 	} */
+/* 	else  */
+/* 	  z=(double *)NULL; */
+/* 	x=X;y=Y; */
+/* 	break; */
+/*       case 5: /\* patch*\/ */
+/* 	x=pPOLYLINE_FEATURE (pobj)->pvx; */
+/* 	y=pPOLYLINE_FEATURE (pobj)->pvy; */
+/* 	z=pPOLYLINE_FEATURE (pobj)->pvz; */
+/* 	p=n1; */
+/* 	break; */
+/*       } */
+      
       break;
     case  SCI_SEGS: 
       p = 2;
-      X[0]=pSEGS_FEATURE (pobj)->vx[2*index];
-      X[1]=pSEGS_FEATURE (pobj)->vx[2*index+1];
-      Y[0]=pSEGS_FEATURE (pobj)->vy[2*index];
-      Y[1]=pSEGS_FEATURE (pobj)->vy[2*index+1];
-      if (pSEGS_FEATURE (pobj)->vz != (double *) NULL) {
-	Z[0]=pSEGS_FEATURE (pobj)->vz[2*index];
-	Z[1]=pSEGS_FEATURE (pobj)->vz[2*index+1];
+      /***************/
+      if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
+      if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
+      if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+      
+      xtmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
+      ytmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
+      if(pSEGS_FEATURE (pobj)->vz != NULL)
+	ztmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
+      else
+	ztmp=(double *)NULL;
+      
+      for(u=0;u<(pSEGS_FEATURE (pobj)->Nbr1);u++){
+	xtmp[u] = pSEGS_FEATURE (pobj)->vx[u];
+	ytmp[u] = pSEGS_FEATURE (pobj)->vy[u];
+	if(ztmp != NULL)
+	  ztmp[u] = pSEGS_FEATURE (pobj)->vz[u];
+      }
+      
+      ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,pSEGS_FEATURE (pobj)->Nbr1);
+      /**************/
+
+      X[0]=xtmp[2*index];
+      X[1]=xtmp[2*index+1];
+      Y[0]=ytmp[2*index];
+      Y[1]=ytmp[2*index+1];
+      if (ztmp != (double *) NULL) {
+	Z[0]=ztmp[2*index];
+	Z[1]=ztmp[2*index+1];
 	z=Z;
       }
       else
 	z=(double *)NULL;
       x=X;y=Y;
+      
       break;
     case  SCI_RECTANGLE: 
       p = 5;
+      double rectx[4],recty[4],rectz[4];
+
       pstyle=0; /* arevoir */
       iflag=0; /* arevoir */
-      X[0]=X[1]=X[4]=pRECTANGLE_FEATURE (pobj)->x;
-      Y[0]=Y[3]=Y[4]=pRECTANGLE_FEATURE (pobj)->y;
-      X[2]=X[3]=pRECTANGLE_FEATURE (pobj)->x + pRECTANGLE_FEATURE (pobj)->width;
-      Y[1]=Y[2]=pRECTANGLE_FEATURE (pobj)->y - pRECTANGLE_FEATURE (pobj)->height;
-      Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=pRECTANGLE_FEATURE (pobj)->z;
+      
+      rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
+      rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
+      recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
+      recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
+      rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
+      
+      ReverseDataFor3D(psubwin, rectx, recty, rectz, 4);
+      
+      X[0]=X[1]=X[4]=rectx[0];
+      Y[0]=Y[3]=Y[4]=recty[0];
+      X[2]=X[3]=rectx[1];
+      Y[1]=Y[2]=recty[2];
+      Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=rectz[0];
       x=X;y=Y;z=Z; 
       break;
     default:
@@ -20229,7 +20594,13 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
     /* Compute the distance from the observer */
     dist[i]=  TRZ(xmoy/p,ymoy/p,zmoy/p);
     max_p=Max(max_p,p);
-  }
+
+
+    FREE(ztmp); ztmp = NULL;
+    FREE(xtmp); xtmp = NULL;
+    FREE(ytmp); ytmp = NULL;
+    
+  } /* END of FOR here F.Leray 01.12.04 */
 
   /* sort the distance in decreasing order */
   C2F(dsort)(dist,&N,locindex); 
@@ -20239,8 +20610,8 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
    * ========================================================================*/
   C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
-  zmin=  pSUBWIN_FEATURE (psubwin)->FRect[4];
-  zmax= pSUBWIN_FEATURE (psubwin)->FRect[5];
+  zmin = pSUBWIN_FEATURE (psubwin)->SRect[4];
+  zmax = pSUBWIN_FEATURE (psubwin)->SRect[5];
   if ((polyx=(int *)MALLOC((max_p+1)*sizeof(int)))==(int *) NULL) {
     FREE(dist);FREE(locindex);
     Scistring("DrawMerge3d : malloc No more Place\n");
@@ -20265,108 +20636,314 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
       case SCI_SURFACE:
 	if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D) { /* x,y,Z */
 	  int l,k,n1,n2;
+
 	  n1= pSURFACE_FEATURE (pobj)->dimzx;
+	  n2= pSURFACE_FEATURE (pobj)->dimzy;
 	  l=(int)(index/(n1-1));
 	  k=index-l*(n1-1);
+
+
+	  if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
+	  if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
+	  if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+	
+	  xtmp = MALLOC(n1*sizeof(double)); /* I create tmp array to deal with reverse axes possibility (see Plo3dn.c) */
+	  ytmp = MALLOC(n2*sizeof(double));
+	  ztmp = MALLOC(n1*n2*sizeof(double));
+	
+	
+	  /* I didn't useReverseDataFor3D because dim n1 is not the same for x, y and z  */
+	  if(ppsubwin->axes.reverse[0] == TRUE){ 
+	    /* agir sur x */
+	    if(ppsubwin->logflags[0]=='l'){
+	      for(u=0;u<n1;u++){
+		xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
+		xtmp[u] = log10(xtmp[u]);
+		xtmp[u] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp[u]);
+		xtmp[u] = exp10(xtmp[u]);
+	      }
+	    }
+	    else
+	      for(u=0;u<n1;u++)
+		xtmp[u] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],pSURFACE_FEATURE (pobj)->pvecx[u]);
+	  }
+	  else{
+	    for(u=0;u<n1;u++)
+	      xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
+	  }
+  
+	  if(ppsubwin->axes.reverse[1] == TRUE){ 
+	    /* agir sur y */
+	    if(ppsubwin->logflags[1]=='l'){
+	      for(u=0;u<n2;u++){
+		ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
+		ytmp[u] = log10(ytmp[u]);
+		ytmp[u] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp[u]);
+		ytmp[u] = exp10(ytmp[u]);
+	      }
+	    }
+	    else
+	      for(u=0;u<n2;u++)
+		ytmp[u] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],pSURFACE_FEATURE (pobj)->pvecy[u]);
+	  }
+	  else{
+	    for(u=0;u<n2;u++)
+	      ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
+	  }
+  
+	  if(ppsubwin->axes.reverse[2] == TRUE){ 
+	    /* agir sur z */
+	    if(ppsubwin->logflags[2]=='l'){
+	      for(u=0;u<n1*n2;u++){
+		ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
+		ztmp[u] = log10(ztmp[u]);
+		ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],ztmp[u]);
+		ztmp[u] = exp10(ztmp[u]);
+	      }
+	    }
+	    else
+	      for(u=0;u<n1*n2;u++)
+		ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],pSURFACE_FEATURE (pobj)->pvecz[u]);
+	  }
+	  else{
+	    for(u=0;u<n1*n2;u++)
+	      ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
+	  }
+  
+	
+
+	  /* 	n2= pSURFACE_FEATURE (pobj)->dimzy; */
+	  /* 	X[0]=X[1]=pSURFACE_FEATURE (pobj)->pvecx[k]; */
+	  /* 	X[2]=X[3]=pSURFACE_FEATURE (pobj)->pvecx[k+1]; */
+	  /* 	Z[0]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]; */
+	  /* 	Z[1]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1]; */
+	  /* 	Z[2]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1]; */
+	  /* 	Z[3]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1]; */
+	  /* 	Y[0]=Y[3]=pSURFACE_FEATURE (pobj)->pvecy[l]; */
+	  /* 	Y[1]=Y[2]=pSURFACE_FEATURE (pobj)->pvecy[l+1]; */
+
+
 	  n2= pSURFACE_FEATURE (pobj)->dimzy;
-	  X[0]=X[1]=pSURFACE_FEATURE (pobj)->pvecx[k];
-	  X[2]=X[3]=pSURFACE_FEATURE (pobj)->pvecx[k+1];
-	  Z[0]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1];
-	  Z[1]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1];
-	  Z[2]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1];
-	  Z[3]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1];
-	  Y[0]=Y[3]=pSURFACE_FEATURE (pobj)->pvecy[l];
-	  Y[1]=Y[2]=pSURFACE_FEATURE (pobj)->pvecy[l+1];
+	  X[0]=X[1]=xtmp[k];
+	  X[2]=X[3]=xtmp[k+1];
+	  Z[0]=ztmp[k+l*n1];
+	  Z[1]=ztmp[k+l*n1+n1];
+	  Z[2]=ztmp[k+l*n1+n1+1];
+	  Z[3]=ztmp[k+l*n1+1];
+	  
+	  Y[0]=Y[3]=ytmp[l];
+	  Y[1]=Y[2]=ytmp[l+1];
+
 	  p=4;
 	  x=X;y=Y;z=Z;
- 	}
+	
+	}
 	else{ /* facets */
 	  p=pSURFACE_FEATURE (pobj)->dimzx;
-	  x=&(pSURFACE_FEATURE (pobj)->pvecx[index*p]);
-	  y=&(pSURFACE_FEATURE (pobj)->pvecy[index*p]);
-	  z=&(pSURFACE_FEATURE (pobj)->pvecz[index*p]);
+	
+	  if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
+	  if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
+	  if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+	
+	  xtmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
+	  ytmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
+	  ztmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
+	
+	  for(u=0;u<pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy;u++){
+	    xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
+	    ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
+	    ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
+	  }
+	
+	  ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy);
+	
+	  x=&(xtmp[index*p]);
+	  y=&(ytmp[index*p]);
+	  z=&(ztmp[index*p]);
+
+	  Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[index*p]);
+
 	}
 	break;
       case  SCI_POLYLINE:
 	n1= pPOLYLINE_FEATURE (pobj)->n1;
 	p=2;
 	if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1;
-	pstyle=0; /* arevoir */
-	iflag=0; /* arevoir */
+
+	if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
+	if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
+	if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+      
+	xtmp = MALLOC(n1*sizeof(double));
+	ytmp = MALLOC(n1*sizeof(double));
+	if(pPOLYLINE_FEATURE (pobj)->pvz != NULL)
+	  ztmp = MALLOC(n1*sizeof(double));
+	else
+	  ztmp=(double *)NULL;
+
+	for(u=0;u<n1;u++){
+	  xtmp[u] = pPOLYLINE_FEATURE (pobj)->pvx[u];
+	  ytmp[u] = pPOLYLINE_FEATURE (pobj)->pvy[u];
+	  if(ztmp != NULL)
+	    ztmp[u] = pPOLYLINE_FEATURE (pobj)->pvz[u];
+	}
+      
+	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,n1);
+	     
 	switch (pPOLYLINE_FEATURE (pobj)->plot) {
 	case 0: case 1: case 4: /*linear interpolation */
-	  x=&(pPOLYLINE_FEATURE (pobj)->pvx[index]);
-	  y=&(pPOLYLINE_FEATURE (pobj)->pvy[index]);
-	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) 
-	    z=&(pPOLYLINE_FEATURE (pobj)->pvz[index]);
+	  x=&(xtmp[index]);
+	  y=&(ytmp[index]);
+	  if (ztmp != (double *) NULL) 
+	    z=&(ztmp[index]);
 	  else
 	    z=(double *)NULL;
 	  break;
 	case 2: /* staircase */ /* just for completion  */
-	  X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index];
-	  X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index+1];
-	  Y[0]=pPOLYLINE_FEATURE (pobj)->pvy[index];
-	  Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index];
-	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
-	    Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index];
-	    Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	  p=2;
+	  X[0]=xtmp[index];
+	  X[1]=xtmp[index+1];
+	  Y[0]=ytmp[index];
+	  Y[1]=ytmp[index];
+	  if (ztmp != (double *) NULL) {
+	    Z[0]=ztmp[index];
+	    Z[1]=ztmp[index];
 	    z=Z;
 	  }
 	  else 
-	    z=(double *) NULL;
-	  x=X;y=Y;z=Z;
+	    z=(double *)NULL;
+	  x=X;y=Y;
 	  break;
 	case 3 : /* vertical bar */ /* just for completion  */
-	  X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index];
-	  X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index];
+	  X[0]=xtmp[index];
+	  X[1]=xtmp[index];
 	  Y[0]=0.0;
-	  Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index];
-	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
-	    Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index];
-	    Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	  if(ppsubwin->logflags[1]=='l') /* when logscale on Y, special treatment because we can not have Y == 0 */
+	    Y[0] = ppsubwin->FRect[1];
+	  Y[1]=ytmp[index];
+	  if (ztmp != (double *) NULL) {
+	    Z[0]=ztmp[index];
+	    Z[1]=ztmp[index];
 	    z=Z;
 	  }
 	  else 
-	    z=(double *) NULL;
-	  x=X;y=Y;z=Z;
+	    z=(double *)NULL;
+	  x=X;y=Y;
 	  break;
 	case 5: /* patch*/
-	  x=pPOLYLINE_FEATURE (pobj)->pvx;
-	  y=pPOLYLINE_FEATURE (pobj)->pvy;
-	  z=pPOLYLINE_FEATURE (pobj)->pvz;
+	  x=xtmp;
+	  y=ytmp;
+	  z=ztmp;
 	  p=n1;
-	break;
+	  break;
 	}
+
+
+	/*    switch (pPOLYLINE_FEATURE (pobj)->plot) { */
+	/*       case 0: case 1: case 4: /\*linear interpolation *\/ */
+	/* 	x=&(pPOLYLINE_FEATURE (pobj)->pvx[index]); */
+	/* 	y=&(pPOLYLINE_FEATURE (pobj)->pvy[index]); */
+	/* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL)  */
+	/* 	  z=&(pPOLYLINE_FEATURE (pobj)->pvz[index]); */
+	/* 	else */
+	/* 	  z=(double *)NULL; */
+	/* 	break; */
+	/*       case 2: /\* staircase *\/ /\* just for completion  *\/ */
+	/* 	p=2; */
+	/* 	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
+	/* 	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index+1]; */
+	/* 	Y[0]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
+	/* 	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
+	/* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) { */
+	/* 	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+	/* 	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+	/* 	  z=Z; */
+	/* 	} */
+	/* 	else  */
+	/* 	  z=(double *)NULL; */
+	/* 	x=X;y=Y; */
+	/* 	break; */
+	/*       case 3 : /\* vertical bar *\/ /\* just for completion  *\/ */
+	/* 	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
+	/* 	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
+	/* 	Y[0]=0.0; */
+	/* 	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
+	/* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) { */
+	/* 	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+	/* 	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+	/* 	  z=Z; */
+	/* 	} */
+	/* 	else  */
+	/* 	  z=(double *)NULL; */
+	/* 	x=X;y=Y; */
+	/* 	break; */
+	/*       case 5: /\* patch*\/ */
+	/* 	x=pPOLYLINE_FEATURE (pobj)->pvx; */
+	/* 	y=pPOLYLINE_FEATURE (pobj)->pvy; */
+	/* 	z=pPOLYLINE_FEATURE (pobj)->pvz; */
+	/* 	p=n1; */
+	/* 	break; */
+	/*       } */
+      
 	break;
       case  SCI_SEGS: 
-	if (pSEGS_FEATURE (pobj)->iflag == 1) 
-	  pstyle=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[index]);
-	else
-	  pstyle=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[0]);
-	iflag=pSEGS_FEATURE (pobj)->iflag;
 	p = 2;
-	X[0]=pSEGS_FEATURE (pobj)->vx[2*index];
-	X[1]=pSEGS_FEATURE (pobj)->vx[2*index+1];
-	Y[0]=pSEGS_FEATURE (pobj)->vy[2*index];
-	Y[1]=pSEGS_FEATURE (pobj)->vy[2*index+1];
-	if (pSEGS_FEATURE (pobj)->vz != (double *) NULL) {
-	  Z[0]=pSEGS_FEATURE (pobj)->vz[2*index];
-	  Z[1]=pSEGS_FEATURE (pobj)->vz[2*index+1];
+	/***************/
+	if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
+	if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
+	if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+      
+	xtmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
+	ytmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
+	if(pSEGS_FEATURE (pobj)->vz != NULL)
+	  ztmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
+	else
+	  ztmp=(double *)NULL;
+      
+	for(u=0;u<(pSEGS_FEATURE (pobj)->Nbr1);u++){
+	  xtmp[u] = pSEGS_FEATURE (pobj)->vx[u];
+	  ytmp[u] = pSEGS_FEATURE (pobj)->vy[u];
+	  if(ztmp != NULL)
+	    ztmp[u] = pSEGS_FEATURE (pobj)->vz[u];
+	}
+      
+	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,pSEGS_FEATURE (pobj)->Nbr1);
+	/**************/
+
+	X[0]=xtmp[2*index];
+	X[1]=xtmp[2*index+1];
+	Y[0]=ytmp[2*index];
+	Y[1]=ytmp[2*index+1];
+	if (ztmp != (double *) NULL) {
+	  Z[0]=ztmp[2*index];
+	  Z[1]=ztmp[2*index+1];
 	  z=Z;
 	}
-	else 
-	  z=(double *) NULL;
+	else
+	  z=(double *)NULL;
 	x=X;y=Y;
+      
 	break;
       case  SCI_RECTANGLE: 
 	p = 5;
+	double rectx[4],recty[4],rectz[4];
+
 	pstyle=0; /* arevoir */
 	iflag=0; /* arevoir */
-	X[0]=X[1]=X[4]=pRECTANGLE_FEATURE (pobj)->x;
-	Y[0]=Y[3]=Y[4]=pRECTANGLE_FEATURE (pobj)->y;
-	X[2]=X[3]=pRECTANGLE_FEATURE (pobj)->x + pRECTANGLE_FEATURE (pobj)->width;
-	Y[1]=Y[2]=pRECTANGLE_FEATURE (pobj)->y - pRECTANGLE_FEATURE (pobj)->height;
-	Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=pRECTANGLE_FEATURE (pobj)->z;
+      
+	rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
+	rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
+	recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
+	recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
+	rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
+      
+	ReverseDataFor3D(psubwin, rectx, recty, rectz, 4);
+      
+	X[0]=X[1]=X[4]=rectx[0];
+	Y[0]=Y[3]=Y[4]=recty[0];
+	X[2]=X[3]=rectx[1];
+	Y[1]=Y[2]=recty[2];
+	Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=rectz[0];
 	x=X;y=Y;z=Z; 
 	break;
       default:
@@ -20412,12 +20989,19 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	if ( hdcflag == 1) ReleaseWinHdc ();
 #endif	  
 
-	if (sciGetEntityType (pobj)==SCI_SURFACE) { 
+	if (sciGetEntityType (pobj)==SCI_SURFACE) {
 	  int fg1  = pSURFACE_FEATURE (pobj)->hiddencolor;
 	  int flag = pSURFACE_FEATURE (pobj)->flag[0];
+	  int facteur = 1;
+	  
 	  polyx[p]=polyx[0];polyy[p]=polyy[0];p++; /*close the facet*/
 
-	  if ((((polyx[1]-polyx[0])*(polyy[2]-polyy[0])-(polyy[1]-polyy[0])*(polyx[2]-polyx[0])) <  0) &&
+	  /* facteur is used below */
+	  if(ppsubwin->axes.reverse[0] == TRUE) facteur = -facteur;
+	  if(ppsubwin->axes.reverse[1] == TRUE) facteur = -facteur;
+	  if(ppsubwin->axes.reverse[2] == TRUE) facteur = -facteur;
+	  
+	  if ((((polyx[1]-polyx[0])*(polyy[2]-polyy[0])-(polyy[1]-polyy[0])*(polyx[2]-polyx[0]))*facteur <  0) &&
 	      (fg1 >= 0)) { /* hidden face */
 
 	    if ( pSURFACE_FEATURE (pobj)->flagcolor != 0)
@@ -20434,8 +21018,19 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	      break;
 	    case 1:
 	      zl=0;
-	      for ( k1= 0 ; k1 < p ; k1++) zl+= z[k1];
+/* 	      for ( k1= 0 ; k1 < p ; k1++) zl+= z[k1]; */
+	      for ( k1= 0 ; k1 < p ; k1++) zl+= Zoriginal[k1]; /* F.Leray 01.12.04 : DO NOT REPLACE z by ztmp here : zmin & zmax are computed to work with z ! */
 	      fill[0]=inint((whiteid-1)*((zl/p)-zmin)/(zmax-zmin))+1;
+
+/* 	      sciprint("whiteid-1 = %d\n",whiteid-1); */
+/* 	      sciprint("zl = %lf\n",zl); */
+/* 	      sciprint("zmin = %lf zmax = %lf\n",zmin,zmax); */
+/* 	      sciprint("pSUBWIN_FEATURE(psubwin)->SRect[4]= %lf\n",pSUBWIN_FEATURE(psubwin)->SRect[4]); */
+/* 	      sciprint("pSUBWIN_FEATURE(psubwin)->FRect[4]= %lf\n",pSUBWIN_FEATURE(psubwin)->FRect[4]); */
+/* 	      sciprint("pSUBWIN_FEATURE(psubwin)->SRect[5]= %lf\n",pSUBWIN_FEATURE(psubwin)->SRect[5]); */
+/* 	      sciprint("pSUBWIN_FEATURE(psubwin)->FRect[5]= %lf\n",pSUBWIN_FEATURE(psubwin)->FRect[5]); */
+/* 	      sciprint("fill[0] = %d\n\n",fill[0]); */
+	     
 	      if ( flag  < 0 ) fill[0]=-fill[0];
 	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      break;
@@ -20470,6 +21065,9 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	}
       }
     }
+    FREE(ztmp); ztmp = NULL;
+    FREE(xtmp); xtmp = NULL;
+    FREE(ytmp); ytmp = NULL;
   }
   FREE(dist);FREE(locindex);FREE(polyx);FREE(polyy);
 }
@@ -21383,6 +21981,15 @@ int ComputeGoodTrans3d( sciPointObj * psubwin, int n, int *xm, int *ym, double *
   double tmp_fy = *fy;
   double tmp_fz = *fz;
   
+ /*  if(ppsubwin->axes.reverse[0] == TRUE) */
+/*     tmp_fx = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],tmp_fx); */
+  
+/*   if(ppsubwin->axes.reverse[1] == TRUE) */
+/*     tmp_fy = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],tmp_fy); */
+  
+/*   if(ppsubwin->axes.reverse[2] == TRUE) */
+/*     tmp_fz = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],tmp_fz); */
+  
   if(ppsubwin->logflags[0] == 'l')
     tmp_fx = exp10(tmp_fx);
   
@@ -21393,6 +22000,69 @@ int ComputeGoodTrans3d( sciPointObj * psubwin, int n, int *xm, int *ym, double *
     tmp_fz = exp10(tmp_fz);
   
   trans3d(psubwin, n, xm, ym, &tmp_fx, &tmp_fy, &tmp_fz);
+  
+  return 0;
+}
+
+
+double InvAxis(double min, double max, double u)
+{
+  return (u-min)/(max-min)*min + (u-max)/(min-max)*max;
+}
+
+
+int ReverseDataFor3D(sciPointObj * psubwin, double * xvect, double * yvect, double * zvect, int n1)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  int cmp;
+
+  if(ppsubwin->axes.reverse[0] == TRUE){
+    /* agir sur x */
+    if(ppsubwin->logflags[0]=='l'){
+      for(cmp=0;cmp<n1;cmp++)
+	{
+	  xvect[cmp] = log10(xvect[cmp]);
+	  xvect[cmp] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xvect[cmp]);
+	  xvect[cmp] = exp10(xvect[cmp]);
+	}
+    }
+    else
+      for(cmp=0;cmp<n1;cmp++) 
+	xvect[cmp] =  InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xvect[cmp]);
+  }
+  
+  if(ppsubwin->axes.reverse[1] == TRUE){
+  /* agir sur y */
+    if(ppsubwin->logflags[1]=='l'){
+      for(cmp=0;cmp<n1;cmp++)
+	{
+	  yvect[cmp] = log10(yvect[cmp]);
+	  yvect[cmp] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],yvect[cmp]);
+	  yvect[cmp] = exp10(yvect[cmp]);
+	}
+    }
+    else
+      for(cmp=0;cmp<n1;cmp++)
+	yvect[cmp] =  InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],yvect[cmp]);
+  }
+  
+
+  if(zvect != NULL){
+    if(ppsubwin->axes.reverse[2] == TRUE){
+      /* agir sur z */
+      if(ppsubwin->logflags[2]=='l'){
+	for(cmp=0;cmp<n1;cmp++)
+	  {
+	    zvect[cmp] = log10(zvect[cmp]);
+	    zvect[cmp] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],zvect[cmp]);
+	    zvect[cmp] = exp10(zvect[cmp]);
+	  }
+      }
+      else
+	for(cmp=0;cmp<n1;cmp++)
+	  zvect[cmp] =  InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],zvect[cmp]);
+    }
+  }
   
   return 0;
 }

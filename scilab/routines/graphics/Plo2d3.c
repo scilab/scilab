@@ -9,7 +9,7 @@
 #include <math.h>
 #include "Math.h"
 #include "PloEch.h"
-
+#include "Entities.h"
 
 extern void Plo2d3RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 
@@ -82,12 +82,26 @@ extern void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, in
 {
   integer i,j;
   /** Computing y-values **/
+  int y_zero = 0.;
+
+  if(version_flag()==0)
+    {
+      sciPointObj *  psubwin =  sciGetSelectedSubWin (sciGetCurrentFigure ());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+
+      if(ppsubwin->logflags[1]=='l')
+	y_zero = ppsubwin->FRect[1];
+    }
+  
+
+
+
   if ((int)strlen(xf) >= 3 && xf[2]=='l')	  
     {
       for ( i=0 ; i < (*n2) ; i++)
 	for (j=0 ; j< (*n1) ; j++)
 	  {
-	    ym[2*i+1+2*(*n2)*j]= YScale(0);
+	    ym[2*i+1+2*(*n2)*j]= YScale(y_zero);
 	    ym[2*i+2*(*n2)*j]= YLogScale(y[i+(*n2)*j]);
 	  }
     }
@@ -96,7 +110,7 @@ extern void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, in
       for ( i=0 ; i < (*n2) ; i++)
 	for (j=0 ; j< (*n1) ; j++)
 	  {
-	    ym[2*i+1+2*(*n2)*j]= YScale(0);
+	    ym[2*i+1+2*(*n2)*j]= YScale(y_zero);
 	    ym[2*i+2*(*n2)*j]= YScale(y[i+(*n2)*j]);
 	  }
     }

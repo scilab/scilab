@@ -233,6 +233,18 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
   double  arsize1=0.5,arsize2=0.5;
   /* get default dash for arrows **/
   integer verbose=0,narg;
+  int xfacteur = 1;
+  int yfacteur = 1;
+  
+  if(version_flag()==0)
+    {
+      sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+
+      if(ppsubwin->axes.reverse[0] == TRUE) xfacteur = -1;
+      if(ppsubwin->axes.reverse[1] == TRUE) yfacteur = -1;
+    }
+
 
   /* From double to pixels */
   for ( i = 0 ; i < *n1 ; i++)
@@ -241,6 +253,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	xm[2*(i +(*n1)*j)]= XScale(x[i]);
 	ym[2*(i +(*n1)*j)]= YScale(y[j]);
       }
+
   /** Scaling **/
   nx=MiniD(x,*n1)*Cscale.Wscx1;
   ny=MiniD(y,*n2)*Cscale.Wscy1;
@@ -279,9 +292,9 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  /* 	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]); */
 	  /* 	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]); */
 	  /* 	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]); */
-	  xm[1+2*j]= (int)(sfx*fx[i]+xm[2*i]);
+	  xm[1+2*j]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
 	  xm[2*j]  = (int)(xm[2*i]);
- 	  ym[1+2*j]= (int)(-sfy*fy[i]+ym[2*i]);
+ 	  ym[1+2*j]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
 	  ym[2*j]  = (int)(ym[2*i]);
 	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
 	  if (flag1 !=0)
@@ -319,9 +332,9 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	   *
 	   *        the new code :
 	   */
-	  xm[1+2*j]= (int)(sfx*(fx[i])/(nor)+xm[2*i]);
+	  xm[1+2*j]= (int)(xfacteur*sfx*(fx[i])/(nor)+xm[2*i]);
 	  xm[2*j]  = (int)(xm[2*i]);
-	  ym[1+2*j]= (int)(-sfy*(fy[i])/(nor)+ym[2*i]);
+	  ym[1+2*j]= (int)(-yfacteur*sfy*(fy[i])/(nor)+ym[2*i]);
 	  ym[2*j]  = (int)(ym[2*i]);
 	  /* end of the modif */
 
