@@ -142,7 +142,7 @@
 	 		edit_graph()
 	 	--	
 	 	m&2sci
-	 		m2sci()	
+	 		mfile2sci()	
 [EndMenu]
 
 [Menu]
