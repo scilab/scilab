@@ -8,7 +8,9 @@ function show_arcs(p,sup)
   if type(EGcurrent)<>1|size(EGcurrent,'*')<>1 then
     error('No current edit_graph window defined, use netwindow')
   end
-  win=EGcurrent;w=string(win)
+  win=EGcurrent;
+  old=xget('window');
+  xset('window',win);w=string(win)
   execstr(['global EGdata_'+w
 	   'if typeof(EGdata_'+w+')==''egdata'' then';
 	   'EGdata=EGdata_'+w
@@ -20,5 +22,6 @@ function show_arcs(p,sup)
 	   'GraphList.edge_width(p)=b'
 	   'ge_drawarcs(p)'
 	   'end'])
+  xset('window',old)
 endfunction
 
