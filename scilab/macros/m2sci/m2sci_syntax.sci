@@ -62,6 +62,7 @@ for k=1:n
     com=';comment('+quote+com+quote+')'
     txt(k)=part(tk,1:kc-1)+com
   else // current line is not a comment line
+    
     if first then //function keyword not yet found
       tk=stripblanks(tk)
       if tk<>'' then //current line is not a blank line
@@ -76,6 +77,7 @@ for k=1:n
       end
     else //current line is not a comment line after function
       endofhelp=%t
+      txt(k)=tk
     end
   end
 end    
@@ -112,8 +114,6 @@ else
     txt=[txt(first_ncl);txt(1:first_ncl(1)-1);txt(first_ncl($)+1:$)]
   end
 end
-
-
 
 endfunction
 function txt=i_notation(txt)
