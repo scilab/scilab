@@ -178,6 +178,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   
   if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
   
+  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just before strflag2axes_properties */
+  
   axes_properties_changed = strflag2axes_properties(psubwin, strflag);
   
   with_leg= (strflag[0] == '1');
@@ -265,8 +267,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     return(0);
   }
   
-  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
-  
+
   /*  sciDrawObj(sciGetCurrentFigure ());*/
   return(0);
 }

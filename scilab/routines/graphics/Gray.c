@@ -123,6 +123,8 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
     } 
 
     if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+
+    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just before strflag2axes_properties */
     
     axes_properties_changed = strflag2axes_properties(psubwin, strflag);
    
@@ -154,7 +156,6 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       x,y,z,*n1,*n2,0));
     sciDrawObj(sciGetCurrentObj ()); 
-    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
   }
 
   else { 
@@ -311,6 +312,8 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
   
     if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
     
+    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just before strflag2axes_properties */
+    
     axes_properties_changed = strflag2axes_properties(psubwin, strflag);
  
     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
@@ -344,7 +347,6 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       NULL,NULL,z,*n1 + 1,*n2 + 1,1)); 
     sciDrawObj(sciGetCurrentObj ()); 
-    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
   }
   else { /* NG end */
     /** Boundaries of the frame **/

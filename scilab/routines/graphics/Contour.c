@@ -317,10 +317,10 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
       } 
 
       if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+
+      pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just before strflag2axes_properties */
       
       axes_properties_changed = strflag2axes_properties(psubwin, strflag);
-
-      pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
     }
   
   /** If Record is on **/

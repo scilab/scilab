@@ -141,7 +141,9 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
     } 
 
     if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
-     
+    
+    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just before strflag2axes_properties */
+    
     axes_properties_changed = strflag2axes_properties(psubwin, strflag);
      
     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
@@ -188,7 +190,6 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
       cmpt++;
     } 
     sciSetCurrentObj(ConstructAgregation (hdltab, cmpt));  /** construct agregation **/
-    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
   }
   else { /* NG end */
     /** Boundaries of the frame **/

@@ -131,9 +131,11 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       }
       
       if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
-     
+      
+      pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just before strflag2axes_properties */
+      
       axes_properties_changed = strflag2axes_properties(psubwin, strflag);
-
+      
       if(bounds_changed == TRUE || axes_properties_changed == TRUE)
 	sciDrawObj(sciGetCurrentFigure ());
       /* F.Leray 10.12.04 : we are obliged to apply the redraw on the figure  */
@@ -157,7 +159,6 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       sciDrawObj(sciGetCurrentObj ()); 
       /* F.Leray Libération de style[dim = Nbr1]*/
       if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
-      pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
   }
   else {
     update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
