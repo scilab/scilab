@@ -103,7 +103,7 @@ function R=legend(varargin)
   if with_box then xrect(pos(1),pos(2),width,height),R=gce();end
   for k=1:nleg
     if k<=size(H,'*') then
-      h=H(k)
+      h=H($+1-k)
       select h.type
 	case "Polyline"
 	if h.polyline_style==5 then //patch
@@ -119,7 +119,7 @@ function R=legend(varargin)
 	    xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines');r=gce();
 	    r.foreground=h.foreground;
 	    r.thickness=h.thickness;
-	    r.polyline_style=st;
+	    r.polyline_style=max(1,st);
 	    r.line_style=h.line_style;
 	  else
 	    xpoly(x+drx/2,y-bbx(k,2)/2);r=gce();
