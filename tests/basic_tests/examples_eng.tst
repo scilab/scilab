@@ -4586,8 +4586,8 @@ clear;lines(0);
 
   set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
-   a.data_bounds=[-1,-1,10,10];
-
+  // a.data_bounds=[-1,-1,10,10]; // Bug ICI A CORRIGER
+  plot2d(1:10,1:10,1,"020")  //By pass en attendant: F.Leray 22.03.04
   drawaxis(x=2:7,y=4,dir='u');
   a1=a.children(1)
   a1.xtics_coord=[1 4 5  8 10];
@@ -6215,13 +6215,21 @@ clear;lines(0);
    h.color_mode=-2;  //remove the facets boundary
 
    h.color_flag=2; //color according to given colors
-   h.surface_color=[modulo(1:400,64),modulo(1:400,64)];
+   //h.surface_color=[modulo(1:400,64),modulo(1:400,64)]; 
+   //F.Leray 24.03.04 the surface_color property is redondant with
+   // data_color field. I replace this line by:
+   TL = h.data;
+   TL.color = [modulo(1:400,64),modulo(1:400,64),1]; 
+   h.data = TL;
+
 
    f.color_map=hotcolormap(512);
    h.color_flag=3; //shaded
    c=[1:400,1:400];
-   h.surface_color=[c;c+1;c+2;c+3];
-
+   // h.surface_color=[c;c+1;c+2;c+3]; // idem here
+   TL.color = [c;c+1;c+2;c+3];
+   h.data = TL;
+  
 
 
 xdel(winsid())
