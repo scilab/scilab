@@ -58,7 +58,7 @@ if LHS==1 then X1=X1/X2;end
 if RHS==2 then
    [n2,n2]=size(H);n1=n2/2;
    n1=n2/2;
-   [UV,n]=gschur(H,E,'d');
+   [UV,n]=schur(H,E,'d');
    X2=UV(1:n,1:n);X1=UV(n+1:2*n,1:n);
 if LHS==3 then
    A=H(1:n1,1:n1);G=E(1:n,n+1:2*n);C=-H(n+1:2*n,1:n);B=real(sqrtm(G));R=eye(A);
