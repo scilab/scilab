@@ -505,7 +505,7 @@ proc writesave {textarea nametosave} {
 
 proc savepreferences {} {
   global env listofpref listofpref_list
-  set preffilename [file join $env(HOME) .SciPadPreferences.tcl]
+  set preffilename [file join $env(SCIHOME) .SciPadPreferences.tcl]
   catch {
     set preffile [open $preffilename w]
     foreach opt $listofpref {

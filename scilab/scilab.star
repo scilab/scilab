@@ -70,8 +70,8 @@ SCI=getenv('SCI');
 MSDOS = (getos() == "Windows")
 TMPDIR=getenv('TMPDIR')
 PWD = getcwd()
-home=sethomedirectory();
-clear sethomedirectory CreateHomeSciDir CreateHomeSciDirVer ExistHomeSciDirVer ExistHomeSciDir
+[home,SCIHOME]=sethomedirectory();
+clear sethomedirectory ExistScilabHomeDirectory CreateScilabHomeDirectory
 if MSDOS then
   SCI=getshortpathname(SCI)
   // path of scilab main directory for Windows
@@ -187,7 +187,12 @@ end
 clear fd ierr
 
 // load history file ==================================================
-loadhistory()
+if MSDOS then
+  loadhistory(SCIHOME+'\history.scilab')
+else
+  loadhistory(SCIHOME+'/.history.scilab')
+end
+
 
 // Configure Environment Variables for Ms Visual C ====================
 if MSDOS then
@@ -198,9 +203,9 @@ end
 // calling user initialization =========================================
 // Home dir startup (if any)
 if MSDOS then
-  startup_path='home\Scilab\'+getversion()+'\'
+  startup_path=SCIHOME+'\'
 else
-  startup_path='home/.Scilab/'+getversion()+'/'
+  startup_path=SCIHOME+'/'
 end
 
 [startup,ierr]=mopen(startup_path+'.scilab','r')

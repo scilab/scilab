@@ -62,7 +62,7 @@ if {$tcl_platform(platform) != "unix"} {
 }
 
 # source the user preferences file if any
-set preffilename $env(HOME)/.SciPadPreferences.tcl
+set preffilename $env(SCIHOME)/.SciPadPreferences.tcl
 catch {source $preffilename}
 
 set REPLACEDTEXTCOLOR $FOUNDTEXTCOLOR

@@ -14,8 +14,10 @@ global TMPDIR
     if exists("home") then
       if MSDOS then
         TCL_EvalStr("scipad eval { set env(HOME) """+strsubst(home,"\","/")+""" }")
+        TCL_EvalStr("scipad eval { set env(SCIHOME) """+strsubst(SCIHOME,"\","/")+""" }")
       else
         TCL_EvalStr("scipad eval { set env(HOME) """+pathconvert(home,%f,%t)+""" }")
+        TCL_EvalStr("scipad eval { set env(SCIHOME) """+pathconvert(SCIHOME,%f,%t)+""" }")
       end
     end
     if %scipad_language==[] then 

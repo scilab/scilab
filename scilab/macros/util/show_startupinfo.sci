@@ -6,7 +6,7 @@ function show_startupinfo()
     return
   end
   
-  settings_file=pathconvert('~/.scilab_settings',%f,%t)
+  settings_file=pathconvert(SCIHOME+'/.scilab_settings',%f,%t)
   w=fileinfo(settings_file);
   global LANGUAGE
   if  LANGUAGE=='fr' then
@@ -51,11 +51,11 @@ function show_startupinfo()
   if ~MSDOS  then
     show=%t
     if w <> [] then
-      show=grep(mgetl('~/.scilab_settings'),'displayDialogNewGraphic=no')==[]
+      show=grep(mgetl(SCIHOME+'/.scilab_settings'),'displayDialogNewGraphic=no')==[]
     end
     if show
       if x_message(DialogNewGraphic, Buttons) == 1 then
-	mputl('displayDialogNewGraphic=no','~/.scilab_settings')
+	mputl('displayDialogNewGraphic=no','SCIHOME+'/.scilab_settings')
       end
     end
   end
