@@ -13,21 +13,31 @@ while ~finish
     x=getfield(1,scs_m.objs(k))
     if x(1)=='Block' then
       if scs_m.objs(k).gui<>'SUM_f'&scs_m.objs(k).gui<>'SOM_f' then
-	kk=find(scs_m.objs(k).graphics.pin==0)
-	if kk<>[] then // at least one  input port is not connected delete the block
-		       
-	  if or(getfield(1,scs_m.objs(k).graphics)=="in_implicit") then
-	    if or(scs_m.objs(k).graphics.in_implicit(kk)<>"I") then 
+	if find(scs_m.objs(k).gui==['IFTHEL_f','ESELECT_f']) then
+	  kk=[find(scs_m.objs(k).graphics.pein==0),find(scs_m.objs(k).graphics.pin==0)]
+	  if kk<> [] 	// a synchro block is not active, remove it
+	    [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
+	    DEL=[DEL DEL1]
+	    DELL=[DELL DELL1]
+	    finish=%f
+	  end
+	else
+	  kk=[find(scs_m.objs(k).graphics.pin==0)]
+	  if kk<>[] then // at least one  input port is not connected delete the block
+	    
+	    if or(getfield(1,scs_m.objs(k).graphics)=="in_implicit") then
+	      if or(scs_m.objs(k).graphics.in_implicit(kk)<>"I") then 
+		[scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
+		DEL=[DEL DEL1]
+		DELL=[DELL DELL1]
+		finish=%f
+	      end
+	    else
 	      [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
 	      DEL=[DEL DEL1]
 	      DELL=[DELL DELL1]
 	      finish=%f
 	    end
-	  else
-	    [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
-	    DEL=[DEL DEL1]
-	    DELL=[DELL DELL1]
-	    finish=%f
 	  end
 	end
       end
