@@ -123,8 +123,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       return ;
     }      
   if ( colored != 0) {
-    // zm = graphic_alloc(2,n/2,sizeof(int)); // F.Leray 19.02.04
-    zm = graphic_alloc(2,n,sizeof(int));
+    zm = graphic_alloc(2,n/2,sizeof(int)); // F.Leray 19.02.04 OK one norm by vector => dim(zm) = n1*n2
     if (  zm == 0 ) 
       {
 	sciprint("Running out of memory \n");
@@ -190,7 +189,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
   double  maxx;
   double  nx,ny,sc,sfx,sfy,sfx2,sfy2;
   double  arsize1=0.5,arsize2=0.5;
-  /* get default dash fo rarrows **/
+  /* get default dash for arrows **/
   integer verbose=0,narg;
 
   /* From double to pixels */
