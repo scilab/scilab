@@ -11,7 +11,7 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
-  path = 2
+  path = 3
   newpar=list();
   xx=arg1.model.rpar.objs(path)// get the evtdly block
   exprs=xx.graphics.exprs
