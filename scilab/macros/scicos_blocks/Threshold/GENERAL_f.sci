@@ -53,7 +53,7 @@ case 'define' then
   model.rpar=[0;0;0;0]
   model.blocktype='z'
   model.firing=-ones(out,1),
-  model.dep_ut=[%t %f]
+  model.dep_ut=[%t;%f]
 
   exprs=[strcat(sci2exp(in));strcat(sci2exp(out))]
   gr_i=['xstringb(orig(1),orig(2),''GENERAL'',sz(1),sz(2),''fill'');']
