@@ -31,6 +31,7 @@ typedef struct table_struct {
 } GenericTable;
 
 #define mxLOGICAL int
+#define mxLogical int
 
 #define REAL 0
 #define COMPLEX 1
@@ -130,6 +131,7 @@ int mxGetElementSize __PARAMS((const mxArray *ptr));
 int mxGetM __PARAMS((const mxArray *ptr));
 int mxGetN __PARAMS((const mxArray *ptr));
 int mxGetString __PARAMS((const mxArray *ptr, char *str, int strl));
+char *mxArrayToString __PARAMS((const mxArray *array_ptr));
 bool mxIsComplex __PARAMS((const mxArray *ptr));
 bool mxIsDouble __PARAMS((const mxArray *ptr));
 bool mxIsSingle __PARAMS((const mxArray *ptr));
@@ -137,6 +139,7 @@ bool mxIsFull __PARAMS((const mxArray *ptr));
 bool mxIsNumeric __PARAMS((const mxArray *ptr));
 bool mxIsSparse __PARAMS((const mxArray *ptr));
 bool mxIsLogical __PARAMS((const mxArray *ptr));
+bool mexIsGloball __PARAMS((const mxArray *ptr));
 void mxSetLogical __PARAMS((mxArray *ptr));
 void mxClearLogical __PARAMS((mxArray *ptr));
 bool mxIsString __PARAMS((const mxArray *ptr));
@@ -162,6 +165,9 @@ void mxSetCell __PARAMS((mxArray *pa, int i, mxArray *value));
 
 int sci_gateway __PARAMS((char *fname, GatefuncS F));
 mxArray *mexGetArray __PARAMS((char *name, char *workspace));
+
+mxArray *mexGetVariable __PARAMS((const char *workspace, const char *name));
+const mxArray *mexGetVariablePtr __PARAMS((const char *workspace, const char *name));
 
 unsigned long int C2F(mxcalloc)  __PARAMS((unsigned int *n, unsigned int *size));
 /*void  C2F(mexprintf)   __PARAMS((char *fmt,...) );*/
@@ -224,7 +230,7 @@ mxClassID mxGetClassID __PARAMS((const mxArray *ptr));
 const char *mxGetName __PARAMS((const mxArray *array_ptr));
 void mxSetName __PARAMS(( mxArray    *pa,    const char *s ));
 void mxSetPr __PARAMS((mxArray *array_ptr, double *pr));
-void mxSetPi __PARAMS((mxArray *array_ptr, double *pr));
+void mxSetPi __PARAMS((mxArray *array_ptr, double *pi));
 void mxSetData __PARAMS((mxArray *array_ptr, void *pr));
 mxArray *mxCreateNumericArray __PARAMS((int ndim, const int *dims, mxClassID classid, mxComplexity flag));
 mxArray *mxCreateNumericMatrix __PARAMS((int m, int n, mxClassID classid, int cmplx_flag));
