@@ -87,9 +87,8 @@ itosci.o: ../stack.h
 list2vars.o: ../stack.h
 readf.o: ../stack.h
 readf.o: ../stack.h
-sciblk.o: ../stack.h
+sciblk.o: ../stack.h ../callinter.h
 scierr.o: ../stack.h
-scifunc.o: ../stack.h ../callinter.h
 scitod.o: ../stack.h
 scitoi.o: ../stack.h
 scitovv.o: ../stack.h

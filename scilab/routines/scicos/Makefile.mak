@@ -90,9 +90,8 @@ itosci.obj: ../stack.h
 list2vars.obj: ../stack.h
 readf.obj: ../stack.h
 readf.obj: ../stack.h
-sciblk.obj: ../stack.h
+sciblk.obj: ../stack.h ../callinter.h
 scierr.obj: ../stack.h
-scifunc.obj: ../stack.h ../callinter.h
 scitod.obj: ../stack.h
 scitoi.obj: ../stack.h
 scitovv.obj: ../stack.h
