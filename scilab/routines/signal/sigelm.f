@@ -134,8 +134,18 @@ c
  22   continue
 c     rhs=4
       ilinc=iadr(lstk(top))
+      if (istk(ilinc).ne.1) then  
+         err=4
+         call error(53)
+         return
+      endif
       linc=sadr(ilinc+4)
       nspn=int(stk(linc))
+      if (nspn.eq.0) then  
+         err=4
+         call error(36)
+         return
+      endif
       top=top-1
       iln=iadr(lstk(top))
       ln=sadr(iln+4)
