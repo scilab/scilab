@@ -21,16 +21,24 @@ if ~ok then return; end
 
 lnkptr=lnkptrcomp(bllst,inpptr,outptr,inplnk,outlnk)
 //
-xptr=1;zptr=1;rpptr=1;ipptr=1;xc0=[];xd0=[];
+xptr=1;zptr=1;rpptr=1;ipptr=1;xc0=[];xcd0=[];xd0=[];
 rpar=[];ipar=[];initexe=[];funtyp=[];
 //
 for i=1:length(bllst)
   ll=bllst(i)
   if type(ll(1))==15 then funtyp(i,1)=ll(1)(2); else funtyp(i,1)=0;end
   //
-  xc0=[xc0;ll(6)(:)];
-  xptr=[xptr;xptr($)+size(ll(6),'*')]
-  
+  X0=ll(6)(:)
+  if funtyp(i,1)<10000 then
+    xcd0=[xcd0;0*X0]
+    xc0=[xc0;X0]
+    xptr(i+1)=xptr(i)+size(ll(6),'*')
+  else
+    xcd0=[xcd0;X0($/2+1:$)]
+    xc0=[xc0;X0(1:$/2)]
+     xptr(i+1)=xptr(i)+size(ll(6),'*')/2
+  end
+
   
   if funtyp(i,1)==3 then //sciblocks
     xd0k=var2vec(ll(7))
@@ -87,6 +95,16 @@ sim('clkptr')=clkptr
 cpr(2)=sim;
 
 outtb=0*ones(lnkptr($)-1,1)
+
+if exists('%scicos_solver')==0 then %scicos_solver=0,end
+if max(funtyp)>10000 &%scicos_solver==0 then
+  message(['Diagram contains Implicit blocks,'
+	   'Compiling for implicit Solver'])
+  %scicos_solver=100
+end
+if %scicos_solver==100 then xc0=[xc0;xcd0],end
+
+
 iz0=[];
 state=cpr(1)
 state('x')=xc0;

@@ -51,31 +51,28 @@ end
 if typ=='diagram' then
   if %cpr<>list() then
     for jj=1:size(%cpr(2)('funtyp'),'*')
-      if %cpr(2)('funtyp')(jj)>999 then
-	funam=%cpr(2)('funs')(jj)
-	if ~c_link(funam) then
-	  qqq=%cpr(4)(jj)
-	  path=list(qqq(1))
-	  for kkk=qqq(2:$)
-	    path($+1)=3
-	    path($+1)=8
-	    path($+1)=kkk
+      if %cpr(2)('funtyp')(jj)<10000 then
+	if %cpr(2)('funtyp')(jj)>999 then
+	  funam=%cpr(2)('funs')(jj)
+	  if ~c_link(funam) then
+	    qqq=%cpr(4)(jj)
+	    path=list(qqq(1))
+	    for kkk=qqq(2:$)
+	      path($+1)=3
+	      path($+1)=8
+	      path($+1)=kkk
+	    end
+	    path($+1)=2;path($+1)=4;path($+1)=2;
+	    tt=scs_m(path)
+	    if %cpr(2)('funtyp')(jj)>1999 then
+	      [ok]=do_ccomlink(funam,tt)
+	    else
+	      [ok]=do_forcomlink(funam,tt)
+	    end 
 	  end
-	  path($+1)=2;path($+1)=4;path($+1)=2;
-	  tt=scs_m(path)
-	  if %cpr(2)('funtyp')(jj)>1999 then
-	    [ok]=do_ccomlink(funam,tt)
-	  else
-	    [ok]=do_forcomlink(funam,tt)
-	  end 
 	end
       end
     end
   end
 end
-
-      
-      
-      
-    
 endfunction

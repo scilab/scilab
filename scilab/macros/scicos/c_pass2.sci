@@ -167,6 +167,11 @@ statetp=['xcs','x','z','iz','tevts','evtspt','pointi','outtb']
 outtb=0*ones(lnkptr($)-1,1)
 iz0=[]
 if exists('%scicos_solver')==0 then %scicos_solver=0,end
+if max(funtyp)>10000 &%scicos_solver==0 then
+  message(['Diagram contains implicit blocks,'
+	   'compiling for implicit Solver'])
+  %scicos_solver=100
+end
 if %scicos_solver==100 then xc0=[xc0;xcd0],end
 state=tlist(statetp,xc0,xd0,iz0,tevts,evtspt,pointi,outtb);
 cpr=list(state,sim,cor,corinv)
@@ -655,7 +660,7 @@ for i=1:nbl
     funs(i)=ll(1);
     funtyp(i,1)=0;
   end
-  if funtyp(i,1)>999 then
+  if funtyp(i,1)>999&funtyp(i,1)<10000 then
     if ~c_link(funs(i)) then
       x_message(['A C or Fortran block is used but not linked';
 	  'You can save your compiled diagram and load it';
@@ -669,15 +674,17 @@ for i=1:nbl
   cliptr(i+1)=cliptr(i)+size(cinpnum,'*')
   clkptr(i+1)=clkptr(i)+size(coutnum,'*')
   //
-  xc0=[xc0;ll(6)(:)]
+  X0=ll(6)(:)
   if funtyp(i,1)<10000 then
-    xcd0=[xcd0;0*ll(6)(:)]
+    xcd0=[xcd0;0*X0]
+    xc0=[xc0;X0]
+    xptr(i+1)=xptr(i)+size(ll(6),'*')
   else
-    xcd0=[xcd0;0*ll(6)(:)] //faux
+    xcd0=[xcd0;X0($/2+1:$)]
+    xc0=[xc0;X0(1:$/2)]
+     xptr(i+1)=xptr(i)+size(ll(6),'*')/2
   end
     
-  xptr(i+1)=xptr(i)+size(ll(6),'*')
-  
   if funtyp(i,1)==3 then //sciblocks
     if ll(7)==[] then xd0k=[]; else xd0k=var2vec(ll(7));end
   else

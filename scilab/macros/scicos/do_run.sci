@@ -92,7 +92,15 @@ if needstart then //scicos initialisation
     x_message(['Simulation parameters not set';'use setup button']);
     return;
   end
-
+  if size(tolerances,'*')<6 then tolerances(6) =0,end
+  end
+  solver=tolerances(6)
+  if %cpr(1).xptr($)-1<size(%cpr(2).x,'*') & solver<100 then
+      message(['Diagram has been compiled for implicit solver'
+	   'switching to implicit Solver'])
+      tolerances(6)=100
+  end
+  
   errcatch(-1,'continue')
   [state,t]=scicosim(%cpr(1),%tcur,tf,%cpr(2),'start',tolerances)
   %cpr(1)=state
