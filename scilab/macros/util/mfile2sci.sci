@@ -1,6 +1,5 @@
 function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint)
 // Copyright INRIA
-
 // This function performs translation of a single M-file
 // - fil: file name
 // - res_path: path to write translated file in (default value is fil path)
@@ -34,6 +33,9 @@ end
 
 // Get context
 global("m2sci_infos")
+global("mtlbref_fun")
+global("mtlbtool_fun")
+global("not_mtlb_fun")
 [l,mac]=where()
 Reclevel=size(find(mac=="mfile2sci"),"*")
 tpcallpos=min(find(mac=="translatepaths"));
@@ -101,6 +103,7 @@ if exists("logfile")==0 then
   logfile=file('open',res_path+"m2sci_"+fnam+'.log','unknown')
 end
 
+
 // Output beginning message
 mss=["****** Beginning of mfile2sci() session ******";
     "File to convert: "+fil;
@@ -116,11 +119,11 @@ m2sci_info("M-file reading...",-1);
 txt=mgetl(fil);
 m2sci_info("M-file reading: Done",-1);
 
-// Replace TAB by SPACE
-txt=strsubst(txt,code2str(-40)," ")
+//Replace TAB by SPACE
+txt=strsubst(txt,code2str(-40),"")
 
 if txt==[] then
-  m2sci_info("File "+fil+"is an empty file ! Nothing done...",-1);
+  m2sci_infos("File "+fil+"is an empty file ! Nothing done...",-1);
   return
 end
 
@@ -194,11 +197,60 @@ if txt~=[] then
     mtlbtree.name=mname;
   else
     mtlbtree.name="";
-  end    
-  m2sci_info("Macro to tree conversion: Done",-1);
-
+  end
+  
+  //Transfom a equal instructions(if lhs are multi_operation insert and expression is a funcall) in the matlab tree to sup_equal instructions
+  global("tmpvarnb")
+  tmpvarnb=0;
+  level=[0,0];
+  ninstr=1;
+  while ninstr<=size(mtlbtree.statements)-3
+    mtlbtree.statements(ninstr)=transformtree(mtlbtree.statements(ninstr))
+    ninstr=ninstr+1
+  end
+  mtlbtree=transformtree(mtlbtree)
+  
   // Perform the translation
   [scitree,trad,hdr,crp]=m2sci(mtlbtree,w(1),Recmode,prettyprint)
+  
+  //Creation of fname_resume.log file
+  if mtlbref_fun<>[]|not_mtlb_fun<>[]|mtlbtool_fun<>[] then
+    //resume_logfile initialisation
+    if exists("resume_logfile")==0 then
+      resume_logfile=file('open',res_path+"m2sci_"+fnam+'_resume.log','unknown')
+    end
+    //number of matlab reference functions, matlab toolboxes functions, not matlab functions
+    size1=size(mtlbref_fun,1)
+    size2=size(mtlbtool_fun,1)
+    size3=size(not_mtlb_fun,1)
+    
+    if size(mtlbref_fun,"*")<>0 then
+      mtlbref_fun(:,1)=""""+mtlbref_fun(:,1)+""""
+    end
+    if size(mtlbtool_fun,"*")<>0 then
+      mtlbtool_fun(:,1)=""""+mtlbtool_fun(:,1)+""""
+    end
+    if size(not_mtlb_fun,"*")<>0 then
+      not_mtlb_fun(:,1)=""""+not_mtlb_fun(:,1)+""""
+    end
+
+    info_resume=["****** Functions of mfile2sci() session ******";
+	"*";
+	string(size1)+" Matlab Function(s) not yet converted, original calling sequence used : ";
+	mtlbref_fun(:,1)+mtlbref_fun(:,2);
+	"*";
+	string(size2)+" Matlab Toolbox(es) Functions, original calling sequence used :";
+	mtlbtool_fun(:,1)+mtlbtool_fun(:,2);
+	"*";
+	string(size3)+" Unknown Function(s), original calling sequence used :";
+	not_mtlb_fun(:,1)+not_mtlb_fun(:,2);
+	"*"]
+
+    write(resume_logfile,margin+info_resume)
+    file("close",resume_logfile)
+  end
+  
+  m2sci_info("Macro to tree conversion: Done",-1);
 
   crp(1)=""; // Delete function prototype
   if isempty(firstline) then
@@ -236,7 +288,7 @@ if txt~=[] then
     infos=["Translation may be improved: see the //! comments and for all mtlb_<funname> function call"
 	"  Type help mtlb_<funname> in Scilab command window to get information about improvements"]
   end
-if m2sci_infos(2) then
+  if m2sci_infos(2) then
     infos=[infos;"Translation may be wrong (see the //!! comments)"]
   end
 
@@ -251,14 +303,16 @@ mss="****** End of mfile2sci() session ******"
 
 m2sci_info([infos;mss],-1);
 
+
 if Reclevel>1 then
   m2sci_infos=m2sci_infos_save
 end
 
 file("close",logfile)
-
 clearglobal m2sci_infos
- 
+clearglobal mtlbref_fun
+clearglobal mtlbtool_fun
+clearglobal not_mtlb_fun
 // For execution called by translatepaths()
 nametbl=resume(nametbl)
 endfunction
