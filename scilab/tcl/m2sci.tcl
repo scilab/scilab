@@ -93,6 +93,8 @@ proc cancelConversionCross {} {
 ######################################################################
 # Window creation
 ######################################################################
+global rFlagWhatToConvert
+
 frame .m2sci.mainframe
 
 # FILES SELECTION
@@ -109,6 +111,7 @@ grid .m2sci.mainframe.lDir -column 1 -columnspan 3 -row 2 -sticky w
 
 label .m2sci.mainframe.lDirName -text "Directory name: "
 entry .m2sci.mainframe.eDirName -textvariable ePathToConvert -width 50
+bind .m2sci.mainframe.eDirName <FocusIn> {set rFlagWhatToConvert 0}
 button .m2sci.mainframe.bBrowseDir -text "Browse" -command {setPathToConvert}
 
 grid .m2sci.mainframe.lDirName -column 1 -row 3
@@ -124,6 +127,7 @@ grid .m2sci.mainframe.lFile -column 1 -columnspan 3 -row 4 -sticky w
 
 label .m2sci.mainframe.lFileName -text "File name:"
 entry .m2sci.mainframe.eFileName -textvariable eFileToConvert -width 50
+bind .m2sci.mainframe.eFileName <FocusIn> {set rFlagWhatToConvert 1}
 button .m2sci.mainframe.bBrowseFile -text "Browse" -command {setFileToConvert} 
 
 grid .m2sci.mainframe.lFileName -column 1 -row 5
