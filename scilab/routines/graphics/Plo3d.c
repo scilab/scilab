@@ -1317,12 +1317,16 @@ void I3dRotation(void)
       if (version_flag() != 0)
 	C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 #endif
-      if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+   
       C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L);
-#ifndef WIN32
-      if (version_flag() != 0) /* commente sous windows ???? */
-	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+#ifdef WIN32
+      ReleaseWinHdc();
+      SciMouseRelease();
 #endif
+
+      if (version_flag() != 0)
+	     C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
       theta=Cscale.theta ;
       alpha=Cscale.alpha ;
 
@@ -1332,6 +1336,7 @@ void I3dRotation(void)
       theta0=theta;
       alpha0=alpha;
       ibutton=-1;
+
       if (version_flag() == 0)
 	{
 	  tmpsubwin = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ());          
@@ -1372,17 +1377,28 @@ void I3dRotation(void)
 		} 
 	      sciSetSelectedSubWin (psonstmp->pointobj);
 	    } 
-	}
+	  }
+#ifdef WIN32
+      SetWinhdc();
+      SciMouseCapture();
+#endif
+	  if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
       while ( ibutton == -1 ) 
 	{
 	  /* dessin d'un rectangle */
 	  theta= ((int)(theta0 - 180.0*(x-x0)) % 360);
 	  alpha= ((int)(alpha0 + 180.0*(y-yy0)) % 360);
 	  wininfo("alpha=%.1f,theta=%.1f",alpha,theta); 
+
 	  if ( pixmode == 1) C2F(dr1)("xset","wwpc",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
 	  dbox();
+
 	  if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
 	    C2F(dr1)("xgetmouse","one",&ibutton,&iwait,PI0,PI0,modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
+
 	    /* effacement du rectangle */
 	    dbox();
 	    xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
