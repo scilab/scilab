@@ -1,4 +1,3 @@
-# Generated automatically from Makefile.aix.in by configure.
 # Copyright INRIA
 LLD = ld -bh:4 -T512 -H512 -o /tmp/scilex-1 -bnodelcsect /lib/crt0.o
 LLD1 = ld -bh:4 -T512 -H512 -o $@ -bnodelcsect -bE:bin/scilex.exp /lib/crt0.o
@@ -15,7 +14,7 @@ bin/scilex: scilex-lib
 		$(RM) /tmp/scilex-1;\
 		$(LLD) $(DEFAULTS) $(LIBR) $(LD_LDFLAGS) $(TCLTK_LIBS) \
 			$(XLIBS) $(TERMCAPLIB) $(LLDLF);\
-		(echo "#!$(SCIDIR)/bin/scilex"; /usr/bin/nm -B -gp /tmp/scilex-1\
+		(echo "#!$(SCIDIR)/bin/scilex"; $(NM) -gp /tmp/scilex-1\
 			| sed -n -e '/.* T \./s///p' -e '/.* [DB] /s///p' \
 			| sort -u) > bin/scilex.exp ;\
 		$(RM) /tmp/scilex-1 ;\

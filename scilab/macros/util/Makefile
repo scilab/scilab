@@ -46,6 +46,6 @@ MACROS = sysconv.sci readc_.sci lin.sci halt.sci bloc2exp.sci \
 	get_absolute_file_path.sci get_function_path.sci\
 	%c_mclose.sci mputl.sci dispfiles.sci fun2string.sci %cblock_p.sci\
 	profile.sci get_profile.sci showprofile.sci plotprofile.sci \
-	ilib_for_link.sci ilib_unix_soname.sci scitest.sci
+	ilib_for_link.sci ilib_unix_soname.sci scitest.sci sci2excel.sci
 
 include ../Make.lib

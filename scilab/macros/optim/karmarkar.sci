@@ -32,7 +32,7 @@ count=0
 while test>eps&count<=maxiter
     count=count+1;
 //    ax=a*diag(x1);
-    ax=a.*(ones(size(a),1)*x1');
+    ax=a.*(ones(size(a,1),1)*x1');
     xc=x1.*c;
     y=ax'\xc;
 //    y=(ax*ax')\(ax*xc)
@@ -45,3 +45,4 @@ while test>eps&count<=maxiter
     crit=tc*x1;
     write(%io(2),[count,crit,test],'(f3.0,3x,e10.3,3x,e10.3)')
 end
+  

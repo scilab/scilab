@@ -140,7 +140,7 @@ c     .        it not the same
  19            call  putid(ids(1,pt+1),id)
                if(macprt.eq.2) then  
                   call error(111)
-                  if(err.gt.0) return
+                  return
                elseif(macprt.eq.1) then  
                   call msgs(42,vt)
                endif
@@ -196,7 +196,7 @@ c     create new variable
             if(macprt.eq.2) then
                call putid(ids(1,pt+1),id)
                call  error(111)
-               if(err.gt.0) return
+               return
             elseif(macprt.eq.1) then
                call putid(ids(1,pt+1),id)
                call msgs(42,vt)

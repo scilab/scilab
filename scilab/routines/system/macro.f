@@ -196,6 +196,8 @@ c     and not 0
          endif
       endif
 c     
+      ids(6,pt)=toperr
+
       toperr=top
       if(istk(ilk).eq.13) then
          lct(8)=1
@@ -217,13 +219,14 @@ c
 c     fin de l'execution d'une macro
 c-----------------------------------
 c     handle errcatch
-      if(errct.ne.0.and.errpt.ge.pt.and.rstk(pt-1).ne.903) then
+      exec=rstk(pt-1).eq.909.or.rstk(pt-1).eq.903
+      if(errct.ne.0.and.errpt.ge.pt.and..not.exec) then
          errct=0
          errpt=0
          err1=0
          err2=0
       endif
-      exec=rstk(pt-1).eq.909.or.rstk(pt-1).eq.903
+
 c     restaure  pointers
       k = lpt(1) - (13+nsiz)
       ilk=lin(k+6)
@@ -237,6 +240,8 @@ c
       lhs=ids(2,pt)
       lct(4)=pstk(pt)
       vargout=ids(4,pt).eq.1
+      toperr=ids(6,pt)
+
 c     
       if(comp(1).ne.0) then
          comp(2)=comp(1)
