@@ -342,6 +342,7 @@ c
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
       ref=ilr.ne.il1
       mn1=istk(il1+1)*istk(il1+2)
+      if (mn1.eq.0) return
 
       if(istk(il1).eq.4) then
 
