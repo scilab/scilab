@@ -47,7 +47,15 @@
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt; nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def ..\libmattemp.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+copy *.def libmat.def &gt;nul
+del libmattemp.def &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"/>
 			<Tool
@@ -97,7 +105,15 @@
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt; nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def ..\libmattemp.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+copy *.def libmat.def &gt;nul
+del libmattemp.def &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"/>
 			<Tool
@@ -158,7 +174,8 @@ copy *.def ..\libmattemp.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 copy *.def libmat.def &gt;nul
-del libmattemp.def &gt;nul"/>
+del libmattemp.def &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"/>
 			<Tool
@@ -208,7 +225,15 @@ del libmattemp.def &gt;nul"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt; nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def ..\libmattemp.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+copy *.def libmat.def &gt;nul
+del libmattemp.def &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"/>
 			<Tool
@@ -258,7 +283,15 @@ del libmattemp.def &gt;nul"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt; nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def ..\libmattemp.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+copy *.def libmat.def &gt;nul
+del libmattemp.def &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"/>
 			<Tool
