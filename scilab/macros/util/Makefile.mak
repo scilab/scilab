@@ -44,7 +44,8 @@ MACROS = with_lcc.sci VCtoLCCLib.sci \
 	profile.sci get_profile.sci showprofile.sci plotprofile.sci \
 	ilib_mex_build.sci listfiles.sci pathconvert.sci basename.sci \
 	dirname.sci \
-	apropos.sci help.sci gethelpfile.sci browsehelp.sci help_menu.sci change_old_man.sci \
+	apropos.sci help.sci gethelpfile.sci browsehelp.sci \
+	help_menu.sci change_old_man.sci \
 	make_help_index.sci find_links.sci editor.sci \
 	xmltohtml.sci help_skeleton.sci\
 	loadmatfile.sci matfile2sci.sci ReadmiMatrix.sci toolboxes.sci\
@@ -52,6 +53,8 @@ MACROS = with_lcc.sci VCtoLCCLib.sci \
 	with_texmacs.sci with_modelica_compiler.sci\
 	scipad.sci\
 	add_help_chapter.sci add_demo.sci add_palette.sci fileparts.sci head_comments.sci OS_Version.sci \
-	tree2code.sci expression2code.sci instruction2code.sci cat_code.sci format_txt.sci rhs2code.sci
+	tree2code.sci expression2code.sci instruction2code.sci cat_code.sci format_txt.sci \
+	rhs2code.sci create_palette.sci
+
 
 include ../Make.lib.mak
