@@ -7,5 +7,5 @@ function [tree]=sci_drawnow(tree)
 // V.C.
 
 set_infos("Drawing events are not queued in Scilab",0);
-tree=Funcall("comment",1,list(Cste(tree.name)),list())
+tree=Funcall("%comment",1,list(Cste(tree.name)),list())
 endfunction

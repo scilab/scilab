@@ -41,7 +41,7 @@ case "funcall"
     sci_m2scideclare(mtlb_expr)
   
   // Particular case if expression is a call to 'comment'
-  elseif mtlb_expr.name=="comment" then
+  elseif mtlb_expr.name=="%comment" then
     // Add inference fields to funcall
     sci_expr=Funcall(mtlb_expr.name,mtlb_expr.lhsnb,mtlb_expr.rhs,lhslist)
   // All other 'funcall' expressions  

@@ -207,7 +207,7 @@ for k=1:n
       end
       com=";m2scideclare("+quote+part(com,13:length(com))+quote+")"
     else
-      com=";comment("+quote+com+quote+")"
+      com=";%comment("+quote+com+quote+")"
     end
     tkbeg=part(tk,1:kc-1)
     
@@ -249,7 +249,7 @@ for k=1:n
 	end
       else
 	if ~endofhelp then helppart=[helppart;' '],end
-	txt(k)='comment('+quote+' '+quote+')'
+	txt(k)='%comment('+quote+' '+quote+')'
       end
     else // Current line is a line after function keyword
       endofhelp=%t

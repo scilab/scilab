@@ -162,7 +162,7 @@ if typeof(I)=="equal" then
   
   // Comments
   if typeof(I.expression)=="funcall" then
-    if I.expression.name=="comment" then
+    if I.expression.name=="%comment" then
       I.expression.rhs(1).value=strsubst(I.expression.rhs(1).value,"""""","""")
       I.expression.rhs(1).value=strsubst(I.expression.rhs(1).value,"''''","''")
       C="//"+I.expression.rhs(1).value
