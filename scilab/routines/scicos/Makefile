@@ -68,7 +68,7 @@ Makefile.amk	: Makefile
 include Make.Blocks
 
 distclean::
-	$(RM) $(LIBRARY) Fblocknames Cblocknames blocks.h
+	$(RM) Fblocknames Cblocknames blocks.h
 
 #--------------dependencies 
 
