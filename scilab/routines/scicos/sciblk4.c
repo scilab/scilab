@@ -27,9 +27,9 @@ integer flag;
 
 {
   int k,j,i;
-  double *u;
+  double *u,*y;
   int one=1,*header,ne1,ne3,ne8;
-  int nu,l5,l,moinsun=-1;
+  int nu,ny,l5,l,moinsun=-1;
   int mlhs=1,mrhs=2;
   int n27=31,zero=0;
   int *le1,*le2,ne2,*le3,*le4,ne4,ne7,*le33,*le5,*le6,ne6,*le7,*le8;
@@ -74,14 +74,20 @@ integer flag;
     C2F(dtosci)(u,&nu,&one);
     if (C2F(scierr)()!=0) goto err;
   }
-  C2F(mklist)(&Blocks[0].nin);
+  C2F(mklist)(&Blocks[0].nin); 
   
-  C2F(itosci)(&Blocks[0].nout,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
   C2F(itosci)(Blocks[0].outsz,&Blocks[0].nout,&one);
   if (C2F(scierr)()!=0) goto err;
-  C2F(dtosci)(*Blocks[0].outptr,&Blocks[0].nout,&one);
-  if (C2F(scierr)()!=0) goto err; 
+  C2F(itosci)(&Blocks[0].nout,&one,&one);
+  if (C2F(scierr)()!=0) goto err;
+  for (k=0;k<Blocks[0].nout;k++) {
+    y=(double *)Blocks[0].outptr[k];
+    ny=Blocks[0].outsz[k];
+    C2F(dtosci)(y,&ny,&one);
+    if (C2F(scierr)()!=0) goto err;
+  }
+  C2F(mklist)(&Blocks[0].nout);
+  
   C2F(itosci)(&Blocks[0].nevout,&one,&one);
   if (C2F(scierr)()!=0) goto err;
   C2F(dtosci)(Blocks[0].evout,&Blocks[0].nevout,&one);
@@ -194,7 +200,7 @@ integer flag;
 	le444=((double *) (le4+4));
 	C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
       }
-      /* 29 ieme element de la tlist mode */
+      /* 30 ieme element de la tlist mode */
       le7=(int*) listentry(header,31);
       le77=(double*) (le7+4);
       ne7=le7[1];

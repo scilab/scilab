@@ -47,7 +47,7 @@ case 'define' then
   model.blocktype='c'
   model.dep_ut=[%t %f]
   
-  exprs=[string(minp);string(maxp);string(model.nmode)]
+  exprs=[string(maxp);string(minp);string(model.nmode)]
   gr_i=['thick=xget(''thickness'');xset(''thickness'',2);';
     'xx=orig(1)+[4/5;1/2+1/5;1/2-1/5;1/5]*sz(1);';
     'yy=orig(2)+[1-1/5;1-1/5;1/5;1/5]*sz(2);';

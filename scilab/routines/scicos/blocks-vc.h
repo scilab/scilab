@@ -106,6 +106,8 @@ extern void product __PARAMS((ARGS_scicos));
 extern void summation __PARAMS((ARGS_scicos));
 extern void multiplex __PARAMS((ARGS_scicos));
 extern void gainblk __PARAMS((ARGS_scicos));
+extern void relationalop __PARAMS((ARGS_scicos));
+extern void modulo_count __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
@@ -138,14 +140,14 @@ OpTab tabsim[] ={
 {"forblk",(ScicosF) F2C(forblk)},
 {"fscope",(ScicosF) F2C(fscope)},
 {"fsv",(ScicosF) F2C(fsv)},
-{"gainblk",(ScicosF) gainblk},
 {"gain",(ScicosF) F2C(gain)},
+{"gainblk",(ScicosF) gainblk},
 {"gensin",(ScicosF) F2C(gensin)},
 {"gensqr",(ScicosF) F2C(gensqr)},
 {"hltblk",(ScicosF) F2C(hltblk)},
 {"ifthel",(ScicosF) F2C(ifthel)},
-{"integral_func",(ScicosF) integral_func},
 {"integr",(ScicosF) F2C(integr)},
+{"integral_func",(ScicosF) integral_func},
 {"intplt",(ScicosF) F2C(intplt)},
 {"intpol",(ScicosF) F2C(intpol)},
 {"intrp2",(ScicosF) F2C(intrp2)},
@@ -162,6 +164,7 @@ OpTab tabsim[] ={
 {"mfclck",(ScicosF) F2C(mfclck)},
 {"minblk",(ScicosF) F2C(minblk)},
 {"minmax",(ScicosF) minmax},
+{"modulo_count",(ScicosF) modulo_count},
 {"mscope",(ScicosF) F2C(mscope)},
 {"mswitch",(ScicosF) mswitch},
 {"multiplex",(ScicosF) multiplex},
@@ -178,6 +181,7 @@ OpTab tabsim[] ={
 {"readau",(ScicosF) readau},
 {"readc",(ScicosF) readc},
 {"readf",(ScicosF) F2C(readf)},
+{"relationalop",(ScicosF) relationalop},
 {"relay",(ScicosF) relay},
 {"rndblk",(ScicosF) F2C(rndblk)},
 {"samphold",(ScicosF) F2C(samphold)},
@@ -194,10 +198,10 @@ OpTab tabsim[] ={
 {"slider",(ScicosF) slider},
 {"sqrblk",(ScicosF) F2C(sqrblk)},
 {"step_func",(ScicosF) step_func},
+{"sum",(ScicosF) sum},
 {"sum2",(ScicosF) F2C(sum2)},
 {"sum3",(ScicosF) F2C(sum3)},
 {"summation",(ScicosF) summation},
-{"sum",(ScicosF) sum},
 {"switch2",(ScicosF) switch2},
 {"switchn",(ScicosF) switchn},
 {"tanblk",(ScicosF) F2C(tanblk)},
@@ -210,10 +214,10 @@ OpTab tabsim[] ={
 {"writeau",(ScicosF) writeau},
 {"writec",(ScicosF) writec},
 {"writef",(ScicosF) F2C(writef)},
-{"zcross2",(ScicosF) zcross2},
 {"zcross",(ScicosF) F2C(zcross)},
+{"zcross2",(ScicosF) zcross2},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 104 ;
+int ntabsim= 106 ;
 #endif 
 /***********************************/

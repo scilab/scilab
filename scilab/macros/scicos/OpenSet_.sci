@@ -44,7 +44,11 @@ while %t
       end
       if pixmap then xset('wwpc');end
       xbasc();xselect()
-      %dr=driver();driver('Rec');
+      if pixmap then
+	driver('X11')
+      else
+	driver('Rec');
+      end
       set_background()
       rect=dig_bound(scs_m);
 

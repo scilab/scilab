@@ -34,11 +34,11 @@ function create_palette(bidon)
       disp('Constructing '+txt)
       if txt=='Sources' then
 	lisf=['CONST_f.sci';'GENSQR_f.sci';  
-	      'RAND_f.sci';'RFILE_f.sci';'STEP.sci';
+	      'RAND_f.sci';'RFILE_f.sci';
 	      'CLKINV_f.sci'; 'CURV_f.sci';  'INIMPL_f.sci'; ' READAU_f.sci';
 	      'SAWTOOTH_f.sci'; 'STEP_FUNCTION.sci';
 	      'CLOCK_f.sci'; 'GENSIN_f.sci'; 'IN_f.sci';   'READC_f.sci';
-	      'TIME_f.sci']
+	      'TIME_f.sci'; 'Modulo_Count.sci']
 	
       elseif txt=='Sinks' then
 	lisf=['AFFICH_f.sci';   'CMSCOPE.sci';       
@@ -78,7 +78,7 @@ function create_palette(bidon)
       elseif txt=='Others' then
 	lisf=['DIFF_f.sci';
 	      'DOLLAR_f.sci';'SUPER_f.sci';'scifunc_block.sci';
-	      'TEXT_f.sci';
+	      'TEXT_f.sci';'CBLOCK.sci'
 	      'CONSTRAINT_f.sci';'MEMORY_f.sci';
 	      'func_block.sci';'LOGICAL_OP.sci';'RELATIONALOP.sci']
 	
@@ -117,7 +117,7 @@ function build_palette(lisf,path,fname)
   for fil=lisf'
     name= part(fil,1:length(fil)-4)
     ierror=execstr('blk='+name+'(''define'')','errcatch')
-    if ierror <>0 & ierror <>4 then
+    if ierror <>0 then
       message(['Error in GUI function';lasterror()] )
       fct=[]
       return

@@ -74,7 +74,8 @@ int make_ptr(char** bllst10,int** bllst4ptr,int** bllst5ptr,int** typ_l,int** ty
 int cleanup(int** clkconnect);
 int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int**bllst9,char*** bllst10,int** bllst12,
 	    int** bllst2ptr,int** bllst3ptr,int* bllst5ptr,int** bllst9ptr,int** connectmat,int** clkconnect,int* typ_l,
-	    int* typ_m,int* done,int* ok,int* need_newblk,int** corinvec,int** corinvptr,int** critev);
+	    int* typ_m,int* done,int* ok,int* need_newblk,int** corinvec,int** corinvptr,int** critev,int* prime_pointer,
+	    int** prime_act);
 int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,int* bllst2ptr,
 		 int* bllst3ptr,int* bllst4ptr,int* bllst5ptr,int* bllst11ptr,int* connectmat,
                  int* clkconnect,int** lnkptr,int** inplnk,int** outlnk,int* nzcross,int* nmode,int** typ_s,int** typ_m,

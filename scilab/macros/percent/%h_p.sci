@@ -21,7 +21,7 @@ function %h_p(h)
 	 "visible= "+sci2exp(h.visible)
 	 "data= "+d
 	 "line_style= "+string(h.line_style)
-	 "thickness: "+string(h.thickness)
+	 "thickness= "+string(h.thickness)
 	 "polyline_style= "+string(h.polyline_style)
 	 "mark_mode= "+sci2exp(h.mark_mode)
 	 "mark_style= "+sci2exp(h.mark_style)
@@ -88,7 +88,9 @@ function %h_p(h)
 	 "children: "+fmtchildren(h.children)
 	 "foreground= "+string(h.foreground)
 	 "visible= "+sci2exp(h.visible)
-	 "text= "+sci2exp(h.text)]
+	 "text= "+sci2exp(h.text)
+	 "font_style= "+string(h.font_style)
+	 "font_size= "+string(h.font_size)]
       case "Rectangle"
       t=[t;
 	 "parent: "+h.parent.type
@@ -129,7 +131,6 @@ function %h_p(h)
 	 "figure_name= "+h.figure_name
 	 "figure_id= "+sci2exp(h.figure_id,0)
          "color_map= matrix "+strcat(string(size(h.color_map)),'x')
-	 "background= "+string(h.background)
 	 "pixmap= "+string(h.pixmap)
 	 "pixel_drawing_mode= "+sci2exp(h.pixel_drawing_mode,0)
 	 " "
@@ -142,6 +143,7 @@ function %h_p(h)
 	 "mark_mode= "+sci2exp(h.mark_mode)
 	 "mark_style= "+sci2exp(h.mark_style,0)
 	 "mark_size= "+sci2exp(h.mark_size,0)
+	 "background= "+string(h.background)
 	 "foreground= "+sci2exp(h.foreground,0)
 	 "clip_state= "+sci2exp(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
@@ -208,6 +210,7 @@ function %h_p(h)
 	 "line_style= "+string(h.line_style)
 	 "thickness= "+string(h.thickness)
 	 "colored= "+sci2exp(h.colored)
+	 "arrow_size= "+string(h.arrow_size)
 	 "clip_state= "+sci2exp(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)]
       case "Text"

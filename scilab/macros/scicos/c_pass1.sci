@@ -42,7 +42,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m)
     else
       [model,ok]=build_block(o);
       if ~ok then return,end
-      if or(model.sim(1)==['plusblk';'sum']) then
+      if or(model.sim(1)==['plusblk']) then
 	[model,links_table]=adjust_sum(model,links_table,kb);
       end
       kr=kr+1;blklst(kr)=model;

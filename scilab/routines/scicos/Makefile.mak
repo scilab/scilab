@@ -41,7 +41,7 @@ BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj
 	switch2.obj variable_delay.obj time_delay.obj cscope.obj cmscope.obj \
 	satur.obj step_func.obj integral_func.obj absolute_value.obj bounce_ball.obj \
 	bouncexy.obj extractor.obj scalar2vector.obj minmax.obj signum.obj product.obj \
-	summation.obj multiplex.obj gainblk.obj 
+	summation.obj multiplex.obj gainblk.obj relationalop.obj
 
 OBJSF=intcos.obj coselm.obj sciblk.obj  \
 	sctree.obj ftree2.obj ftree3.obj ftree4.obj skipvars.obj scierr.obj scifunc.obj \
@@ -125,3 +125,4 @@ product.obj : scicos_block.h ../machine.h
 summation.obj : scicos_block.h ../machine.h
 multiplex.obj : scicos_block.h ../machine.h
 gainblk.obj: scicos_block.h ../machine.h
+relationalop.obj: scicos_block.h ../machine.h

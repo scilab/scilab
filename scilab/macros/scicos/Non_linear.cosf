@@ -165,7 +165,7 @@ scs_m.objs(11)=mlist(['Block','graphics','model','gui','doc'],..
                mlist(..
                ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
                'gr_i','id','in_implicit','out_implicit'],[256.66667,70],[40,40],..
-               %t,['-1';'1';'1'],0,0,[],[],..
+               %t,['1';'-1';'1'],0,0,[],[],..
                list(..
                ['thick=xget(''thickness'');xset(''thickness'',2);';
                'xx=orig(1)+[4/5;1/2+1/5;1/2-1/5;1/5]*sz(1);';
