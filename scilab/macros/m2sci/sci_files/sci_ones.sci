@@ -53,7 +53,7 @@ end
 if tree.name=="randn" |tree.name=="rand" then
   if tree.rhs(1).vtype==String then // State
     if rhs==1 then // Get the state
-      if tree.name=="rand"then
+      if tree.name=="rand" then
 	onescall=Funcall("ones",1,Rhs(35,1),list())
 	randcall=Funcall("rand",1,Rhs("seed"),list())
 	tree=Operation("*",list(onescall,randcall),tree.lhs)
@@ -67,7 +67,7 @@ if tree.name=="randn" |tree.name=="rand" then
 	tree.out(1).type=Type(Double,Real)
       end
     else // Set the state
-      tree=Funcall("rand",1,list("seed",tree.rhs(2)),tree.lhs)
+      tree=Funcall("rand",1,Rhs("seed",tree.rhs(2)),tree.lhs)
       tree.lhs(1).dims=list(0,0)
       tree.lhs(1).type=Type(Unknown,Unknown)
     end
@@ -80,6 +80,7 @@ opt=list(),if tree.name=="randn" then opt=Cste("normal"),end
 // ones(n)
 if rhs==1 then
   n = getrhs(tree)
+  n=convert2double(n)
   if is_complex(n) then
     n=Funcall("real",1,list(n),list(Variable("",n.infer)))
   elseif ~is_real(n) then
@@ -136,6 +137,7 @@ if rhs==1 then
 // ones(n1,n2,..)
 else
   for k=1:size(tree.rhs)
+    tree.rhs(k)=convert2double(tree.rhs(k))
     if is_complex(tree.rhs(k)) then
       tree.rhs(k)=Funcall("real",1,list(tree.rhs(k)),list()) 
     elseif ~is_real(tree.rhs(k)) then
