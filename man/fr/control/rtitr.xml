@@ -1,92 +1,96 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>rtitr  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
+  <TITLE>rtitr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="rtitr"> discrete time response (transfer matrix)  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[y]=rtitr(Num,Den,u [,up,yp])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[y]=rtitr(Num,Den,u [,up,yp])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>Num,Den  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : polynomial  matrices (resp. dimensions : <VERB>n</VERB>x<VERB>m</VERB> and <VERB>n</VERB>x<VERB>n</VERB>)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>u  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : real matrix (dimension <VERB>m</VERB>x<VERB>(t+1)</VERB>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>up,yp  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : real matrices (<VERB>up</VERB> dimension <VERB>m</VERB>x<VERB> (maxi(degree(Den)))</VERB> (default values=<VERB>0</VERB>) , <VERB>yp</VERB> dimension <VERB>n</VERB>x<VERB> (maxi(degree(Den)))</VERB>)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>y  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : real matrix 
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Num,Den</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial  matrices (resp. dimensions : <VERB>n</VERB>x<VERB>m</VERB> and <VERB>n</VERB>x<VERB>n</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>u</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix (dimension <VERB>m</VERB>x<VERB>(t+1)</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>up,yp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrices (<VERB>up</VERB> dimension <VERB>m</VERB>x<VERB>
+  (maxi(degree(Den)))</VERB> (default values=<VERB>0</VERB>) ,
+  <VERB>yp</VERB> dimension <VERB>n</VERB>x<VERB>
+  (maxi(degree(Den)))</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
-    <VERB>y=rtitr(Num,Den,u [,up,yp])</VERB> returns the time response of
+    <P><VERB>y=rtitr(Num,Den,u [,up,yp])</VERB> returns the time response of
     the discrete time linear system with transfer matrix <VERB>Den^-1 Num</VERB> 
-    for the input <VERB>u</VERB>, i.e <VERB>y</VERB> and <VERB>u</VERB> are such that <VERB>Den y = Num u</VERB> at t=0,1,...
-  </P>
-  <P>
+    for the input <VERB>u</VERB>, i.e <VERB>y</VERB> and <VERB>u</VERB> are such that <VERB>Den y = Num u</VERB> at t=0,1,...</P>
+    <P>
     If <VERB>d1=maxi(degree(Den))</VERB>, and <VERB>d2=maxi(degree(Num))</VERB> the polynomial 
-    matrices  <VERB>Den(z)</VERB> and <VERB>Num(z)</VERB> may be written respectively as:
-  </P>
-  <VERBATIM><![CDATA[
+    matrices  <VERB>Den(z)</VERB> and <VERB>Num(z)</VERB> may be written respectively as:</P>
+    <VERBATIM>
+<![CDATA[
   D(z)= D_0  + D_1  z + ... + D_d1   z^d1
   N(z)= N_0  + N_1  z + ... + N_d2   z^d2
-   ]]></VERBATIM>
-  <P>
-    and <VERB>Den y = Num u</VERB> is interpreted as the recursion:
-  </P>
-  <VERBATIM><![CDATA[
+   ]]>
+    </VERBATIM>
+    <P>
+    and <VERB>Den y = Num u</VERB> is interpreted as the recursion:</P>
+    <VERBATIM>
+<![CDATA[
   D(0)y(t)+D(1)y(t+1)+...+ D(d1)y(t+d1)= N(0) u(t) +....+ N(d2) u(t+d2)
-   ]]></VERBATIM>
-  <P>
-    It is assumed that <VERB>D(d1)</VERB> is non singular. 
-  </P>
-  <P>
-    The columns of u are the inputs of the system at t=0,1,...,T:
-  </P>
-  <VERBATIM><![CDATA[
+   ]]>
+    </VERBATIM>
+    <P>
+    It is assumed that <VERB>D(d1)</VERB> is non singular.</P>
+    <P>
+    The columns of u are the inputs of the system at t=0,1,...,T:</P>
+    <VERBATIM>
+<![CDATA[
   u=[u(0) , u(1),...,u(T)]
-   ]]></VERBATIM>
-  <P>
-    The outputs at <VERB>t=0,1,...,T+d1-d2</VERB> are the columns of the matrix <VERB>y</VERB>:
-  </P>
-  <VERBATIM><![CDATA[
+   ]]>
+    </VERBATIM>
+    <P>
+    The outputs at <VERB>t=0,1,...,T+d1-d2</VERB> are the columns of the matrix <VERB>y</VERB>:</P>
+    <VERBATIM>
+<![CDATA[
   y=[y(0), y(1),  .... y(T+d1-d2)]
-   ]]></VERBATIM>
-  <P>
-    <VERB>up</VERB> and <VERB>yp</VERB> define the initial conditions for t &lt; 0 i.e
-  </P>
-  <VERBATIM><![CDATA[
+   ]]>
+    </VERBATIM>
+    <P><VERB>up</VERB> and <VERB>yp</VERB> define the initial conditions for t &lt; 0 i.e</P>
+    <VERBATIM>
+<![CDATA[
   up=[u(-d1), ..., u(-1)  ]
   yp=[y(-d1), ...  y(-1)  ]
-   ]]></VERBATIM>
-  <P>
+   ]]>
+    </VERBATIM>
+    <P>
     Depending on the relative values of <VERB>d1</VERB> and <VERB>d2</VERB>, some of the
     leftmost components of <VERB>up</VERB>, <VERB>yp</VERB> are ignored.
     The default values of <VERB>up</VERB> and <VERB>yp</VERB> are zero:
-    <VERB>up = 0*ones(m,d1), yp=0*ones(n,d1)</VERB>
-  </P>
+    <VERB>up = 0*ones(m,d1), yp=0*ones(n,d1)</VERB></P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 z=poly(0,'z');
 Num=1+z;Den=1+z;u=[1,2,3,4,5];
 rtitr(Num,Den,u)-u
@@ -143,8 +147,17 @@ s=syslin('d',a,b,c,d);
 h=ss2tf(s);num=h('num');den=h('den');den=den(1,1)*eye(2,2);
 u=1;u(3,10)=0;r3=flts(u,s);
 r=rtitr(num,den,u);norm(r3-r,1)
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>ltitr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>exp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>flts</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ltitr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>exp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>flts</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

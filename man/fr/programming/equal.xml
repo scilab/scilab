@@ -1,77 +1,67 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>1  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
-  <SHORT_DESCRIPTION name="equal (=)"> affectation, comparison equal sign  </SHORT_DESCRIPTION>
+  <TITLE>1</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="equal"> (=) affectation, comparison equal sign</SHORT_DESCRIPTION>
   <DESCRIPTION>
- 
-
-  <DESCRIPTION_ITEM  label='-'> 
-    Equal sign is used to denote a value affectation to a variable.
-  </DESCRIPTION_ITEM>
-
-  <DESCRIPTION_ITEM  label='-'> 
-     <VERB> a == b</VERB>  denotes equality comparison between  expressions <VERB> a</VERB> and <VERB> b</VERB>:
-  </DESCRIPTION_ITEM>
- 
-
-  <DESCRIPTION_ITEM  label='With'> 
-    matrix objects,
-  </DESCRIPTION_ITEM>
- 
-
-  <DESCRIPTION_ITEM  label='If'> 
-    <VERB> a</VERB> and <VERB> b</VERB> are matrices with same types and identical dimensions, the comparison is performed element by element and the result is a matrix of booleans.
-  </DESCRIPTION_ITEM>
-
-  <DESCRIPTION_ITEM  label='If'> 
-    <VERB> a</VERB> and <VERB> b</VERB> are matrices with same types, but <VERB> a</VERB> or <VERB> b</VERB> is a 1 by 1 matrix the scalar is compared with each element of the matrix. The result is a matrix of booleans. 
-  </DESCRIPTION_ITEM>
-
-  <DESCRIPTION_ITEM  label='In'> 
-    The others cases the result is the boolean <VERB> %f</VERB> 
-  </DESCRIPTION_ITEM>
- 
-
-  <DESCRIPTION_ITEM  label='With'> 
-    list objects,
-  </DESCRIPTION_ITEM>
- 
-
-  <DESCRIPTION_ITEM  label='If'> 
-    <VERB> a</VERB> and <VERB> b</VERB> are lists with  identical sizes, the comparison is performed element by element and and recursively. The result is a row vector of booleans.
-  </DESCRIPTION_ITEM>
-
-  <DESCRIPTION_ITEM  label='If'> 
-    <VERB> a</VERB> and <VERB> b</VERB> are lists with non equal sizes the result is the boolean <VERB> %f</VERB>.
-  </DESCRIPTION_ITEM>
- 
-
-  <DESCRIPTION_ITEM  label='With'> 
-    tlist and mlist object. If no overloading function is defined the <VERB> list</VERB> comparison method is used.
-  </DESCRIPTION_ITEM>
-
-  <DESCRIPTION_ITEM  label='With'> 
-    other data types (functions, libraries,...) , the result is <VERB> %t</VERB> if the objects are identical and <VERB> %f</VERB> in the other case.
-  </DESCRIPTION_ITEM>
- 
-  <P>
-    Comparison between different data types returns <VERB> %f</VERB>.
-  </P>
- 
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="-">
+        <SP>Equal sign is used to denote a value affectation to a variable.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP><VERB> a == b</VERB>  denotes equality comparison between  expressions <VERB> a</VERB> and <VERB> b</VERB>:</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="With">
+        <SP>matrix objects,</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="If">
+        <SP><VERB> a</VERB> and <VERB> b</VERB> are matrices with same types and identical dimensions, the comparison is performed element by element and the result is a matrix of booleans.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="If">
+        <SP><VERB> a</VERB> and <VERB> b</VERB> are matrices with same types, but <VERB> a</VERB> or <VERB> b</VERB> is a 1 by 1 matrix the scalar is compared with each element of the matrix. The result is a matrix of booleans.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="In">
+        <SP>The others cases the result is the boolean <VERB> %f</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="With">
+        <SP>list objects,</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="If">
+        <SP><VERB> a</VERB> and <VERB> b</VERB> are lists with  identical sizes, the comparison is performed element by element and and recursively. The result is a row vector of booleans.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="If">
+        <SP><VERB> a</VERB> and <VERB> b</VERB> are lists with non equal sizes the result is the boolean <VERB> %f</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="With">
+        <SP>tlist and mlist object. If no overloading function is defined the <VERB> list</VERB> comparison method is used.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="With">
+        <SP>other data types (functions, libraries,...) , the result is <VERB> %t</VERB> if the objects are identical and <VERB> %f</VERB> in the other case.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    Comparison between different data types returns <VERB> %f</VERB>.</P>
   </DESCRIPTION>
-  <ITEMIZE label='EXAMPLES'>
-  <VERBATIM><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 a=sin(3.2)
 [u,s]=schur(rand(3,3))
 [1:10]==4
 1~=2
-   ]]></VERBATIM>
-  </ITEMIZE>
+   ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>less</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>boolean</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>isequal</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>less</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>boolean</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>isequal</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

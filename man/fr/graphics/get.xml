@@ -1,76 +1,69 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>get  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 04 June 1998  </DATE>
+  <TITLE>get</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 04 June 1998</DATE>
   <SHORT_DESCRIPTION name="get"> Retrieve a property value from a
   graphics entity or an User Interface object.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>h=get(prop) </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>val=get(h,prop)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>val=h.prop  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>val=get(n,prop)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>h=get(prop) </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>val=get(h,prop)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>val=h.prop</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>val=get(n,prop)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
-
-
   <PARAM>
-  <PARAM_INDENT>
-
-  <PARAM_ITEM>
-  <PARAM_NAME>h </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-     : handle, the handle of the entity to retrieve a property. <VERB>h</VERB> can be a vector of
-     handles, in which case get returns the property's value for all objects identified by h(i).
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-
-  <PARAM_ITEM>
-  <PARAM_NAME>n  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : integer, the handle of the  User Interface object to retrieve a property.
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-
-
-  <PARAM_ITEM>
-  <PARAM_NAME>prop  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : character string name of the property.
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-
-  <PARAM_ITEM>
-  <PARAM_NAME> val</PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : scilab object value of the property.
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: handle, the handle of the entity to retrieve a property. <VERB>h</VERB> can be a vector of
+     handles, in which case get returns the property's value for all objects identified by h(i).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, the handle of the  User Interface object to retrieve a property.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>prop</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string name of the property.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME> val</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scilab object value of the property.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
+    <P>
     This routine can be used to retrieve the value of a specified property 
     graphics entity or a GUI object. 
      If the handle is not specified, the current object is taken as the default handle. 
     It is also used to return a list of all children, parent, or type  for the 
     input handle if this one is specified. Otherwise, the current axes object 
-    is taken as the default input. 
- </P> <P>
-    Property name are character strings. 
-</P> <P>
+    is taken as the default input.</P>
+    <P>
+    Property name are character strings.</P>
+    <P>
   See <LINK>graphics_entities</LINK> for details about properties' names and
-    values for graphics entities.
-  </P><P>
+    values for graphics entities.</P>
+    <P>
   See <LINK>uicontrol</LINK> for details about properties' names and
-    values for User Interface objects.
- </P><P>
+    values for User Interface objects.</P>
+    <P>
     For graphics entities handle it is possible to use a dot notation
-    like <VERB>h.background</VERB> instead of <VERB>get</VERB>. 
-  </P>
+    like <VERB>h.background</VERB> instead of <VERB>get</VERB>.</P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 
   // for graphics entities
     xbasc()
@@ -111,10 +104,15 @@
    disp('Button width: ' + string(p(3))); // print the width of the button
    close(); // close figure
 
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>uicontrol</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>uicontrol</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>set</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Djalel ABDEMOUCHE  </AUTHOR>
+  <AUTHOR> Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

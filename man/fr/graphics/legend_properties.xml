@@ -1,48 +1,43 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>legend_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 2002 </DATE>
+  <TYPE>Scilab Data type</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="legend_properties"> description of the
-   Legend entity properties </SHORT_DESCRIPTION>
- 
+   Legend entity properties</SHORT_DESCRIPTION>
   <DESCRIPTION>
+    <P>
   The Legend entity is a leaf of the graphics entities
   hierarchy. This entity defines the parameters for legends drawn 
   below <VERB>plot2dx</VERB> graphs. For each line plotted, 
   the legend shows a sample of the line type, marker  symbol, and color. 
-
-  
-   <DESCRIPTION_ITEM label='visible: '>
-    This field contains the  <VERB>visible</VERB> property value
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="visible: ">
+        <SP>This field contains the  <VERB>visible</VERB> property value
    for the entity . It should
-   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
+   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  . If <VERB>&quot;on&quot;
    </VERB> the legend is drawn , If
-   <VERB>"off"</VERB> the legend is not displayed on the screen.
-   </DESCRIPTION_ITEM>
-
-
-     <DESCRIPTION_ITEM label='foreground: '>
-      This field contains the color index used to draw legend.
-        Its value should be a color index (relative to the current colormap)
-     </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label='text: '>
-    This field is the character string vector which contains the legend.
-   </DESCRIPTION_ITEM>
-
-   <DESCRIPTION_ITEM label='parent: '> 
-      This property contains the handle of the parent. The parent of the legend
-      entity should be of the type <VERB>"Agregation"</VERB>. This agregation entity 
-      contains also the remainder of the graph's entities.
-     </DESCRIPTION_ITEM>
-
- 
+   <VERB>&quot;off&quot;</VERB> the legend is not displayed on the screen.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="foreground: ">
+        <SP>This field contains the color index used to draw legend.
+        Its value should be a color index (relative to the current colormap)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="text: ">
+        <SP>This field is the character string vector which contains the legend.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This property contains the handle of the parent. The parent of the legend
+      entity should be of the type <VERB>&quot;Agregation&quot;</VERB>. This agregation entity 
+      contains also the remainder of the graph's entities.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
   </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[   
+  <EXAMPLE>
+<![CDATA[   
 
   set("figure_style","new") //create a figure
    plot2d();
@@ -52,13 +47,15 @@
    l.visible="off";
     
 
- ]]></EXAMPLE>
- 
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
-
+    <SEE_ALSO_ITEM>
+      <LINK>plot2d</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>graphics_entities</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
-<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>
-

@@ -253,6 +253,12 @@
       <SP>This property controls the axes background color. IT takes as value
       an index relative to the current colormap. </SP>
      </DESCRIPTION_ITEM>
+     
+      <DESCRIPTION_ITEM label="hiddencolor: ">
+      <SP>This property controls the hidden parts' color. IT takes as value
+      an index relative to the current colormap. In another case, if it is a 
+      negative value, the hidden parts take the same colors as the surface </SP>
+     </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label="clip_state: ">
       <SP>This field contains the default <VERB>clip_state</VERB> property

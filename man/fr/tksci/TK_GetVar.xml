@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>TK_GetVar  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 04 June 1998  </DATE>
-  <SHORT_DESCRIPTION name="TK_GetVar"> Get a tcl/tk variable value  </SHORT_DESCRIPTION>
+  <TITLE>TK_GetVar</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 04 June 1998</DATE>
+  <SHORT_DESCRIPTION name="TK_GetVar"> Get a tcl/tk variable value</SHORT_DESCRIPTION>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>o  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    varname : string character Contains the name of the tcl/tk variable.
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>o  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    value : string character Contains the value of the tcl/tk variable &apos;varname&apos;.
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>varname : string character Contains the name of the tcl/tk variable.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>value : string character Contains the value of the tcl/tk variable 'varname'.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
+    <P>
     When tcl/tk support is enabled in scilab, this routine can be used to retreive
-    the value of a tcl/tk variable. 
-  </P>
+    the value of a tcl/tk variable.</P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 TK_EvalStr('toplevel .tst1');
 // creates a toplevel TK window. 
 TK_EvalStr('entry .tst1.e -textvariable tvar');
@@ -40,9 +40,21 @@ TK_EvalStr('pack .tst1.e');
 text=TK_GetVar('tvar')
 // retrieve the variable value
 // change the entry text and repeat the last command ...
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>ScilabEval</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_EvalFile</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_EvalStr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_SetVar</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ScilabEval</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>TK_EvalFile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>TK_EvalStr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>TK_SetVar</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+  <AUTHOR>Bertrand Guiheneuf</AUTHOR>
 </MAN>

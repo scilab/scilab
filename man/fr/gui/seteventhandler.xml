@@ -1,70 +1,87 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>seteventhandler </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>2002  </DATE>
+  <TITLE>seteventhandler</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2002</DATE>
   <SHORT_DESCRIPTION name="seteventhandler"> set an event handler for
-  the current graphic window </SHORT_DESCRIPTION>
+  the current graphic window</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>seteventhandler(sfun_name)   </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>seteventhandler('')   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>seteventhandler(sfun_name)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>seteventhandler('')   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
-  <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>sfun_name</PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : a character string. The name of the Scilab function which is
-  intended to handle the events
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sfun_name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string. The name of the Scilab function which is
+  intended to handle the events</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-
+    <P>
     The function allows the user to set a particular event handler for
     the current graphic window. <VERB>seteventhandler('') </VERB>
     removes the handler.
-
+    </P>
+    <P>
     The event handler is defined by a Scilab function whose calling
     sequence must be <VERB>function sfun_name(win,x,y,ibut)</VERB>, where
-
-   <DESCRIPTION_INDENT>
-
-    <DESCRIPTION_ITEM>
-    <VERB>win</VERB> represents the number of the window where the
+    </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM>
+        <P><VERB>win</VERB> represents the number of the window where the
     event had occured.
-   </DESCRIPTION_ITEM>
-
-    <DESCRIPTION_ITEM >
-    <VERB>x,y</VERB> are the coordinates of the pointer (in pixels), when the event
+   </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+        <P><VERB>x,y</VERB> are the coordinates of the pointer (in pixels), when the event
     has occured
-    </DESCRIPTION_ITEM>
-    
-    <DESCRIPTION_ITEM>
-     <VERB>ibut</VERB>is the event type:
-     <P></P><VERB>ibut==0</VERB> : Left mouse button has been pressed
-     <P></P><VERB>ibut==-5</VERB> : Left mouse button has been released
-     <P></P><VERB>ibut==1</VERB> : Middle mouse button has been pressed
-     <P></P><VERB>ibut==-4</VERB> : Middle mouse button has been released
-     <P></P><VERB>ibut==2</VERB> : Right mouse button has been pressed
-     <P></P><VERB>ibut==-3</VERB> : Right mouse button has been released
-     <P></P>
-     <P></P><VERB>ibut==-1</VERB> : pointer has moved
-     <P></P>
-     <P></P><VERB>ibut &gt; =32</VERB> : key with ascii code ascii(ibut) has been pressed
-     <P></P><VERB>ibut &lt; =-32</VERB> : key with ascii code ascii(-ibut)
-     has been released
-     <P></P>
-     <P></P><VERB>ibut==-1000</VERB> : graphic window has been closed
-    </DESCRIPTION_ITEM>
-  
+    </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+        <P><VERB>ibut</VERB>is the event type:</P>
+        <ITEMIZE>
+          <ITEM label="ibut==0">
+            <SP>: Left mouse button has been pressed</SP>
+          </ITEM>
+          <ITEM label="ibut==-5">
+            <SP>: Left mouse button has been released</SP>
+          </ITEM>
+          <ITEM label="ibut==1">
+            <SP>: Middle mouse button has been pressed</SP>
+          </ITEM>
+          <ITEM label="ibut==-4">
+            <SP>: Middle mouse button has been released</SP>
+          </ITEM>
+          <ITEM label="ibut==2">
+            <SP>: Right mouse button has been pressed</SP>
+          </ITEM>
+          <ITEM label="ibut==-3">
+            <SP>: Right mouse button has been released</SP>
+          </ITEM>
+          <ITEM label="ibut==-1">
+            <SP>: pointer has moved</SP>
+          </ITEM>
+          <ITEM label="ibut &gt; =32">
+            <SP>: key with ascii code ascii(ibut) has been pressed</SP>
+          </ITEM>
+          <ITEM label="ibut &lt; =-32">
+            <SP>: key with ascii code ascii(-ibut)   has been released</SP>
+          </ITEM>
+          <ITEM label="ibut==-1000">
+            <SP>: graphic window has been closed</SP>
+          </ITEM>
+        </ITEMIZE>
+      </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
-
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
    function my_eventhandler(win,x,y,ibut)
        if ibut==-1 then 
          [x,y]=xchange(x,y,'i2f')
@@ -75,11 +92,20 @@
    seteventhandler('my_eventhandler')
    //now move the mouse over the graphic window/
    seteventhandler('') //suppress the event handler
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>addmenu</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>xgetmouse</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>xclick</LINK> </SEE_ALSO_ITEM>
-  <SEE_ALSO_ITEM> <LINK>xchange</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>addmenu</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>xgetmouse</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>xclick</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>xchange</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

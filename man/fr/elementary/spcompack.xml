@@ -1,46 +1,49 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>spcompack  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>JUN 1997  </DATE>
-  <SHORT_DESCRIPTION name="spcompack "> converts a compressed adjacency representation  </SHORT_DESCRIPTION>
+  <TITLE>spcompack</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>JUN 1997</DATE>
+  <SHORT_DESCRIPTION name="spcompack"> converts a compressed adjacency representation</SHORT_DESCRIPTION>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>xadj  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    :  integer vector of length (n+1).
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>xlindx  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    :  integer vector of length n+1 (pointers).
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>lindx  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    :  integer vector
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>adjncy  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    :  integer vector
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>xadj</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer vector of length (n+1).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xlindx</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer vector of length n+1 (pointers).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>lindx</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>adjncy</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <VERBATIM><![CDATA[
+    <VERBATIM>
+<![CDATA[
 Utility fonction spcompak is used to convert a compressed adjacency
 representation into standard adjacency representation.
-   ]]></VERBATIM>
+   ]]>
+    </VERBATIM>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 // A is the sparse matrix:
 A=[1,0,0,0,0,0,0;
    0,1,0,0,0,0,0;
@@ -75,8 +78,17 @@ xlindx=[1,2,3,8,9,11];
 //A can be reconstructed from (xadj,xlindx,lindx).
 [xadj,adjncy,anz]= sp2adj(A);
 adjncy -  spcompack(xadj,xlindx,lindx)
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sp2adj</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>adj2sp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>spget</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sp2adj</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>adj2sp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>spget</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
