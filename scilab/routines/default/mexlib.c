@@ -983,10 +983,18 @@ mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_name
 
 void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray *value)
 {
-  int pointed, point_ed;
+  int pointed, point_ed;int proddims,k;int is1x1;
   int *headerobj; int *headervalue;
   int *header = Header(array_ptr);
-  if (Is1x1(array_ptr)) {
+  int *headerdims = listentry(header,2);
+
+  proddims=1;
+  for (k=0; k<headerdims[1]*headerdims[2]; k++) {
+    proddims=proddims*headerdims[4+k];
+  }
+  is1x1= (int) proddims==1;
+
+  if (is1x1) {
     headerobj = listentry( header, field_number+3);}
   else {
     headerobj = listentry( listentry(header, field_number+3)  ,index+1);}
@@ -1145,10 +1153,18 @@ mxArray *mxCreateCellMatrix(int nrows, int ncols)
 
 mxArray *mxGetCell(const mxArray *ptr, int index)
 {
-  int kk,lw,isize;
+  int kk,lw,isize;int proddims,k;int is1x1;
   int *headerlist,*headerobj,*headerobjcopy;
   int *header = Header(ptr);
-  if (Is1x1(ptr)) {
+  int *headerdims = listentry(header,2);
+  
+  proddims=1;
+  for (k=0; k<headerdims[1]*headerdims[2]; k++) {
+    proddims=proddims*headerdims[4+k];
+  }
+  is1x1= (int) proddims==1;
+
+  if (is1x1) {
     headerobj = listentry( header, index+1);
     isize = header[5]- header[4];
   }
@@ -1190,13 +1206,21 @@ int mxGetFieldNumber(const mxArray *ptr, const char *string)
 
 mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
 {
-  int kk,lw,isize,fieldnum;
+  int kk,lw,isize,fieldnum;int proddims,k;int is1x1;
   int *headerlist, *headerobj, *headerobjcopy;
   int *header = Header(ptr);
+  int *headerdims = listentry(header,2);
+
   fieldnum=mxGetFieldNumber(ptr, string);
   if (fieldnum==-1) return (mxArray *) 0;
+  
+  proddims=1;
+  for (k=0; k<headerdims[1]*headerdims[2]; k++) {
+    proddims=proddims*headerdims[4+k];
+  }
+  is1x1= (int) proddims==1;
 
-  if (Is1x1(ptr)) {
+  if (is1x1) {
     headerobj = listentry( header, 3+fieldnum);
     isize = header[5+fieldnum]- header[4+fieldnum];
   }
@@ -1217,18 +1241,25 @@ mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
 
 mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
 {
-  int kk,lw,isize,fieldnum; 
+  int kk,lw,isize,fieldnum;int proddims,k;int is1x1;
   int maxfieldnum, maxindex;
   int *headerlist, *headerobj, *headerobjcopy;
   int *header = Header(ptr);
+  int *headerdims = listentry(header,2);
+
   fieldnum = field_number;
   maxfieldnum = mxGetNumberOfFields(ptr)-1;
   maxindex = mxGetNumberOfElements(ptr)-1;
   if (maxfieldnum < fieldnum) return (mxArray *) NULL;
   if (maxindex < index) return (mxArray *) NULL; 
 
+  proddims=1;
+  for (k=0; k<headerdims[1]*headerdims[2]; k++) {
+    proddims=proddims*headerdims[4+k];
+  }
+  is1x1= (int) proddims==1;
 
-  if (Is1x1(ptr)) {
+  if (is1x1) {
     headerobj = listentry( header, 3+fieldnum);
     isize = header[5+fieldnum]- header[4+fieldnum];
   }
@@ -1635,13 +1666,20 @@ mxArray *mxDuplicateArray(const mxArray *ptr)
   int lw, number, size, k;
   double *old , *data;
   start_in = (int) ptr;
-  old = stk(start_in);
+  if ( istk( iadr(start_in) )[0] < 0 ) {
+    /*   variable is a reference : the reference is copied */
+    size = istk( iadr(start_in) )[2]; 
+    old = stk( istk(iadr(start_in))[1] );
+  }
+  else {
+    numberandsize(ptr, &number, &size);  
+    old = stk(start_in);
+  }
   Nbvars++; lw = Nbvars;
-  numberandsize( ptr, &number, &size);
   CreateData(lw, size*sizeof(double));
-  data = (double *) GetRawData(lw);
+  data = (double *) GetRawData(lw); 
   for (k = 0; k <size; ++k)
-  data[k]=old[k];
+    data[k]=old[k];
   return (mxArray *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];
 }
 
@@ -1660,9 +1698,9 @@ mxArray *UnrefStruct(mxArray *ptr)
   int *headerdims; int proddims;int obj;
 
   mxArray *mxNew;
-  header = RawHeader(ptr);
+  header = Header(ptr);   /* RawHeader ?  */
   mxNew = mxDuplicateArray(ptr);
-  headernew = RawHeader(mxNew);
+  headernew = Header(mxNew);   /* RawHeader ?  */
   
   offset = Top - Rhs;
   newsize=header[4];   /* Initialize */
@@ -1910,6 +1948,26 @@ void  C2F(mexprintf)(va_alist) va_dcl
 }
 */
 
+void  mexPrintf(char *fmt,...) 
+{
+  int i, lstr;
+  va_list args;
+  char buf[2048];
+  va_start(args,fmt);
+  (void ) vsprintf(buf, fmt, args );
+  lstr=strlen(buf);
+  C2F(xscion)(&i);
+  if (i == 0) 
+    {
+      printf("%s",buf); 
+    }
+  else 
+    {
+      C2F(xscisrn)(buf,&lstr,0L);
+    }
+  if (getdiary()) diary_nnl(buf,&lstr);
+  va_end(args);
+}
 
 void mexWarnMsgTxt(char *error_msg)
 {
@@ -1961,6 +2019,10 @@ static int mexCallSCI(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *
 
 
 int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name) {
+  return mexCallSCI(nlhs,plhs,nrhs,prhs,(char *) name,1); 
+}
+
+int mexCallMATLAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name) {
   return mexCallSCI(nlhs,plhs,nrhs,prhs,(char *) name,1); 
 }
 
