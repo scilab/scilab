@@ -1,4 +1,4 @@
-function [sci_equiv]=get_unknown(varname)
+function [sci_equiv]=get_unknown(varname,lhslist)
 // Copyright INRIA
 // Handle cases where varname appear in an expression while it is not known.
 
@@ -10,7 +10,7 @@ function [sci_equiv]=get_unknown(varname)
 // Check clause !!!
 
 // Other cases: I am not able to determine what is nam
-set_infos("mtlb("+varname+") can be replaced by "+varname+"() or "+varname+" whether "+varname+" is an m-file or not",1)
+set_infos("mtlb("+varname+") can be replaced by "+varname+"() or "+varname+" whether "+varname+" is an M-file or not",1)
 tmpvar=Variable(varname,Infer())
-sci_equiv=Funcall("mtlb",1,Rhs(tmpvar),list(Variable("ans",Infer())))
+sci_equiv=Funcall("mtlb",1,Rhs(tmpvar),lhslist)
 endfunction
