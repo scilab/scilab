@@ -289,7 +289,7 @@ typedef struct
 {
   /** currently not used in this version */
   /** pointe sur un ID de la table des couleur Scilab */
-  int backgroundcolor;	    
+  int backgroundcolor;	    //F.Leray 05.03.04: Question: Has each object a back/foreground color or do we use one back/foreground defined in the FIGURE Object??
   /** pointe sur un ID de la table des couleur Scilab */
   int foregroundcolor;
   /** */
