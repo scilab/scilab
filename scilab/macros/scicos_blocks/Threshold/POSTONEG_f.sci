@@ -22,7 +22,7 @@ case 'define' then
   model.rpar=[-1;-1;-1;0]
   model.blocktype='z'
   model.dep_ut=[%t %f]
-
+  model.firing=[-1]
   gr_i=['xstringb(orig(1),orig(2),'' + to - '',sz(1),sz(2),''fill'')']
   x=standard_define([2 2],model,[],gr_i)
 end

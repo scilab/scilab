@@ -11,7 +11,7 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
-  x=arg1;
+  x=arg1;model=x.model;
   graphics=arg1.graphics;exprs=graphics.exprs
   out=model.out
   dstate=model.dstate
@@ -99,6 +99,7 @@ case 'define' then
   outmask=1
   ievt=0
   nout=size(outmask,'*')
+
   ipar=[length(fname);str2code(frmt);ievt;N;M;swap;offset;str2code(fname);
       tmask;outmask]
   model=scicos_model()

@@ -29,7 +29,7 @@ case 'set' then
       break
     end
   end
-  x.model.firing=[] //compatibility
+
 case 'define' then
   z0=zeros(10,1)
   model=scicos_model()
@@ -39,7 +39,6 @@ case 'define' then
   model.evtin=1
   model.dstate=z0
   model.blocktype='d'
-  model.firing=-1
   model.dep_ut=[%f %f]
 
   exprs=strcat(string(z0),';')

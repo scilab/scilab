@@ -45,7 +45,7 @@ case 'set' then
   end
 case 'define' then
   nin=1
-  z0=zeros(11,1);
+  z0=zeros(11,1);;zz0=z0(1:$-1)
   T=1
   
   model=scicos_model()
@@ -55,7 +55,7 @@ case 'define' then
   model.evtin=1
   model.evtout=[1;1]
   model.dstate=z0
-  model.rpar=T
+  model.rpar=T/(size(zz0,'*'))
   model.blocktype='d'
   model.firing=[0 -1]
   model.dep_ut=[%t %f]

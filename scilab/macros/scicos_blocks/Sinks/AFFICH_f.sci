@@ -62,7 +62,7 @@ case 'set' then
 	  ' ';mess])
     end
     if ok then
-      [model,graphics,ok]=check_io(model,graphics,-1,[],ones(1-herit,1),[])
+      [model,graphics,ok]=check_io(model,graphics,1,[],ones(1-herit,1),[])
     end
     if ok then
       model.ipar=[font;fontsize;color;xget('window');nt;nd];
@@ -78,12 +78,13 @@ case 'define' then
       string(fontsize);
       string(color);
       string(nt);
-      string(nd)]
+      string(nd);string(0)]
   model=scicos_model()
   model.sim='affich'
   model.in=1
+  model.evtin=1
   model.dstate=[0;-1;0;0;1;1]
-  model.ipar=[font;fontsize;color;0;nt;nd]
+  model.ipar=[font;fontsize;color;1000;nt;nd]
   model.blocktype='c'
   model.firing=[]
   model.dep_ut=[%t %f]

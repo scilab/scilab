@@ -43,7 +43,7 @@ case 'set' then
     else
       //Change the clock
       evtdly.graphics.exprs(1)=exprs(1);
-      evtdly.model.firing=0; //initial delay firing date
+//      evtdly.model.firing=0; //initial delay firing date
 
       if evtdly.model.rpar<>dt then //Discretisation time step
 	evtdly.model.rpar=dt
@@ -126,12 +126,11 @@ case 'define' then
     x.gui='DELAY_f'
     x.graphics.sz=[2,2]
     x.graphics.gr_i=list('xstringb(orig(1),orig(2),''Delay'',sz(1),s"+...
-			 " z(2),''fill'')',8)
+			 "z(2),''fill'')',8) 
     x.model.sim='csuper'
     x.model.in=1
     x.model.out=1
     x.model.blocktype='h'
-    x.model.firing=%f
     x.model.dep_ut=[%f %f]
     x.model.rpar=diagram
 end

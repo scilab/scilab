@@ -60,9 +60,9 @@ case 'set' then
   model=arg1.model;graphics=arg1.graphics;exprs=graphics.exprs
   x=arg1
   model=x.model
-  [ok,mac,exprs]=genfunc(txt)
+  [ok,mac,exprs]=genfunc(exprs)
   if ok then
-    model(1)=mac
+    model.sim=mac
     graphics.exprs=exprs
     x.model=model
     x.graphics=graphics

@@ -22,7 +22,7 @@ case 'set' then
     if z0>nin|z0<=0 then
       message('initial connected input is not a valid input port number')
     else
-      [model,graphics,ok]=check_io(model,graphics,-ones(nin,1),1,[],[])
+      [model,graphics,ok]=check_io(model,graphics,-ones(nin,1),-1,[],[])
       if ok then
 	graphics.exprs=exprs;
 	model.ipar=z0-1

@@ -136,7 +136,7 @@ case 'define' then
   exprs=list([sci2exp(in);sci2exp(out);sci2exp(clkin);sci2exp(clkout);
 	strcat(sci2exp(x0));strcat(sci2exp(z0));
 	strcat(sci2exp(rpar));sci2exp(auto)],..
-	    list('y=sin(u)',' ',' ','y=sin(u)',' ',' ',' '))
+	    list('y1=sin(u1)',' ',' ','y1=sin(u1)',' ',' ',' '))
   gr_i=['xstringb(orig(1),orig(2),''Scifunc'',sz(1),sz(2),''fill'');']
   x=standard_define([2 2],model,exprs,gr_i)
 end
