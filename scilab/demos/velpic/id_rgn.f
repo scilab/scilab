@@ -1,4 +1,4 @@
-      subroutine id_rgn(indexlist,linelist,seed,ind,nol,nolt,
+      subroutine idrgn(indexlist,linelist,seed,ind,nol,nolt,
      +                  ic,icount,noe,newlist,bav,lln,ncount)
       
 c Macro which determines all the indices of a matrix of dimension
