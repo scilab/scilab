@@ -102,7 +102,8 @@ PVMBINDISTFILES = \
 	$(SCIBASE)/pvm3/lib/pvmtmparch \
 	$(SCIBASE)/pvm3/lib/pvmgetarch \
 	$(SCIBASE)/pvm3/lib/@PVMARCH@/pvmd3 \
-	$(SCIBASE)/pvm3/lib/@PVMARCH@/pvmgs
+	$(SCIBASE)/pvm3/lib/@PVMARCH@/pvmgs \
+	$(SCIBASE)/pvm3/bin/@PVMARCH@/*
 
 BINDISTFILES = \
 	$(SCIBASE)/.binary \
