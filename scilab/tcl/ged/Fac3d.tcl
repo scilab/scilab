@@ -210,12 +210,14 @@ radiobutton $w.frame.scalesw.radio0 -text "0" -variable colorflagToggle -value 0
 radiobutton $w.frame.scalesw.radio1 -text "1" -variable colorflagToggle -value 1    -command "toggleColorFlag"
 radiobutton $w.frame.scalesw.radio2 -text "2" -variable colorflagToggle -value 2    -command "toggleColorFlag" 
 radiobutton $w.frame.scalesw.radio3 -text "3" -variable colorflagToggle -value 3    -command "toggleColorFlag"
+radiobutton $w.frame.scalesw.radio4 -text "4" -variable colorflagToggle -value 4    -command "toggleColorFlag"
 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left
 pack $w.frame.scalesw.radio0 -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radio1 -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radio2 -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radio3 -in  $w.frame.scalesw -side left 
+pack $w.frame.scalesw.radio4 -in  $w.frame.scalesw -side left 
 
 
 
@@ -611,9 +613,9 @@ proc setHiddenColor {w index} {
     } else { 
 	ScilabEval "global ged_handle; ged_handle.hiddencolor=$index;"
 	
-	set REDCOL $RED($index) 
-	set GRECOL $GREEN($index) 
-	set BLUCOL $BLUE($index) 
+	set REDCOL $RED($index)
+	set GRECOL $GREEN($index)
+	set BLUCOL $BLUE($index)
 	
 	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
