@@ -199,10 +199,10 @@ INSTPVMBINDISTFILES = \
 	pvm3/lib/pvmd \
 	pvm3/lib/pvmtmparch \
 	pvm3/lib/pvmgetarch \
-	pvm3/lib/`pvm3/lib/pvmgetarch`/pvmd3 \
-	pvm3/lib/`pvm3/lib/pvmgetarch`/pvmgs \
-	pvm3/lib/`pvm3/lib/pvmgetarch`/pvm \
-	pvm3/bin/`pvm3/lib/pvmgetarch`/*
+	pvm3/lib/@PVMARCH@/pvmd3 \
+	pvm3/lib/@PVMARCH@/pvmgs \
+	pvm3/lib/@PVMARCH@/pvm \
+	pvm3/bin/@PVMARCH@/*
 
 INSTBINDISTFILES = \
 	.pvmd.conf \
@@ -258,11 +258,11 @@ INSTBINDISTFILES = \
 
 install:
 	@if test `pwd`/..  != ${PREFIX}/lib ; then \
-		mkdir ${PREFIX}/lib; \
-		mkdir ${PREFIX}/lib/$(SCIBASE); \
+		install -d ${PREFIX}/lib/$(SCIBASE); \
 		( tar cf - $(INSTBINDISTFILES) @PVMINST1@  | (cd ${PREFIX}/lib/$(SCIBASE) ; tar xf -)); \
-		(cd ${PREFIX}/lib/$(SCIBASE);touch .binary; make postinstall ) \
+		(cd ${PREFIX}/lib/$(SCIBASE);touch .binary; make postinstall PREFIX=$(PREFIX) ) \
 	fi
+	install -d ${PREFIX}/bin 
 	$(RM)  $(PREFIX)/bin/scilab
 	ln -fs ${PREFIX}/lib/$(SCIBASE)/bin/scilab $(PREFIX)/bin/scilab
 	$(RM)  $(PREFIX)$/bin/intersci
@@ -270,9 +270,15 @@ install:
 	$(RM)  $(PREFIX)$/bin/intersci-n
 	ln -fs ${PREFIX}/lib/$(SCIBASE)/bin/intersci-n $(PREFIX)/bin/intersci-n
 
+# DESTDIR is the final destination of the file 
+# it can be different from $(PREFIX)/lib
+# when we use package builders for rpm or deb files 
+
+DESTDIR=$(PREFIX)/lib
+
 postinstall: 
-	@echo "creating Path.incl"
-	@echo "SCIDIR=$(PREFIX)/lib/$(SCIBASE)"  > Path.incl
+	@echo "creating Path.incl SCIDIR=$(DESTDIR)/lib/$(SCIBASE)"
+	@echo "SCIDIR=$(DESTDIR)/lib/$(SCIBASE)"  > Path.incl
 	@cd scripts; make 
 	@cd tests ; make distclean > /dev/null
 	@cd examples ; make distclean > /dev/null
@@ -282,7 +288,6 @@ postinstall:
 	@mv contrib-loader.sce contrib/loader.sce
 	@$(RM) man/*/*/*.xml 
 	@@STRIP@ bin/scilex;
-
 
 uninstall:
 	$(RM) -r ${PREFIX}/$(SCIBASE)
