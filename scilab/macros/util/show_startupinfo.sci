@@ -1,5 +1,11 @@
 function show_startupinfo()
   //used to inform users 
+  
+  // In in No Window mode then returns...
+  if ~isempty(grep(sciargs(),["-nw","-nwni"])) then
+    return
+  end
+  
   settings_file=pathconvert('~/.scilab_settings',%f,%t)
   w=fileinfo(settings_file);
   global LANGUAGE
