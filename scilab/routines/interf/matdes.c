@@ -9324,17 +9324,17 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
 	  
 	}
 
-      if(psurf->flagcolor == 2)
+      if(psurf->flagcolor == 2 || psurf->flagcolor == 4)
 	{ /* case of SCI_PLOT3D avoid */
 	  nc = psurf->dimzy;
 	}
       else if(psurf->flagcolor == 3)
 	{
 	  nc = psurf->dimzx * psurf->dimzy;
-	}
+	}  
       else
 	nc=0;
-
+      
       if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL) {
 	FREE(pvecx); pvecx = (double *) NULL;
 	FREE(pvecy); pvecy = (double *) NULL;
@@ -9379,23 +9379,39 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
 	  /* We have just enough information to fill the psurf->zcol array*/
 	  for (j = 0;j < nc; j++)   /* nc value is dimzy*/
 	    psurf->zcol[j]= psurf->inputCMoV[j];
+	}  
+      /* case flagcolor == 4*/
+      else if(psurf->flagcolor==4 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
+	{
+	  /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
+	  /* We repeat the data:*/
+	  for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+	    psurf->zcol[j] = psurf->inputCMoV[j];
+	  
+	}
+      else if(psurf->flagcolor==4 && !( m3n==1 || n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
+	{
+	  /* input : color matrix , we use 1 color per facet with Matlab selection mode (no average computed) */
+	  /* HERE is the difference with case 2 */
+	  for (j = 0;j < nc; j++)   /* nc value is dimzy*/
+	    psurf->zcol[j] = psurf->inputCMoV[j*m3n];
 	}
      
     }
   else /* else we put the value of the color_mode flag[0]*/
     {
       
-      if(psurf->flagcolor == 2)
+      if(psurf->flagcolor == 2 || psurf->flagcolor == 4)
 	{ /* case of SCI_PLOT3D avoid */
 	  nc = psurf->dimzy;
 	}
       else if(psurf->flagcolor == 3)
 	{
 	  nc = psurf->dimzx *  psurf->dimzy;
-	}
+	} 
       else
 	nc=0;
-
+      
       if(nc>0){
 	if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL) {
 	  FREE(pvecx); pvecx = (double *) NULL;
@@ -9406,7 +9422,7 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
       }
 
       /* case flagcolor == 2*/
-      if(psurf->flagcolor==2) /* we have to fill a Color vector */
+      if(psurf->flagcolor==2 || psurf->flagcolor==4) /* we have to fill a Color vector */
 	{
 	  for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
 	    psurf->zcol[j] = abs(psurf->flag[0]);
@@ -9441,6 +9457,30 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
   psurf->m3n = m3n; /* If m3n and n3n are 0, then it means that no color matrix/vector was in input*/
   psurf->n3n = n3n;
       
+
+  /* We need to rebuild ...->color matrix */
+  if(psurf->flagcolor != 0 && psurf->flagcolor !=1){ 
+    if(psurf->cdatamapping == 0){ /* scaled */
+      FREE(psurf->color);
+      LinearScaling2Colormap(pobj);
+    }
+    else{
+      int nc = psurf->nc;
+      
+      FREE(psurf->color);
+      
+      if(nc>0){
+	if ((psurf->color = MALLOC (nc * sizeof (double))) == NULL)
+	  return -1;
+      }
+      
+      for(i=0;i<nc;i++)
+	psurf->color[i] = psurf->zcol[i];
+      /* copy zcol that has just been freed and re-alloc + filled in */
+    }
+  }
+
+
 
   return 0;
 }
