@@ -75,7 +75,7 @@
                     <PARAM_NAME>type=0</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP> the plot is made using the current 3D scaling (set
+                      <SP>the plot is made using the current 3D scaling (set
                       by a previous call to <VERB>param3d</VERB>,
                       <VERB>plot3d</VERB>, <VERB>contour</VERB> or
                       <VERB>plot3d1</VERB>).</SP>
@@ -86,7 +86,7 @@
                     <PARAM_NAME>type=1</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP> rescales automatically 3d boxes with extreme aspect
+                      <SP>rescales automatically 3d boxes with extreme aspect
                       ratios, the boundaries are specified by the value of the
                       optional argument <VERB>ebox</VERB>.</SP>
                     </PARAM_DESCRIPTION>
@@ -96,14 +96,14 @@
                     <PARAM_NAME>type=2</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP> rescales automatically 3d boxes with extreme aspect
+                      <SP>rescales automatically 3d boxes with extreme aspect
                       ratios, the boundaries are computed using the given
                       data.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=3 </PARAM_NAME>
+                    <PARAM_NAME>type=3</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d isometric with box bounds given by optional
@@ -113,7 +113,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=4 </PARAM_NAME>
+                    <PARAM_NAME>type=4</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d isometric bounds derived from the data, to
@@ -122,7 +122,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=5 </PARAM_NAME>
+                    <PARAM_NAME>type=5</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d expanded isometric bounds with box bounds given
@@ -132,7 +132,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=6 </PARAM_NAME>
+                    <PARAM_NAME>type=6</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d expanded isometric bounds derived from the data,
@@ -156,7 +156,7 @@
                     <PARAM_NAME>box=0</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP> nothing is drawn around the plot.</SP>
+                      <SP>nothing is drawn around the plot.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 
@@ -164,7 +164,7 @@
                     <PARAM_NAME>box=1</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP> unimplemented (like box=0).</SP>
+                      <SP>unimplemented (like box=0).</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 
@@ -172,12 +172,12 @@
                     <PARAM_NAME>box=2</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP> only the axes behind the surface are drawn.</SP>
+                      <SP>only the axes behind the surface are drawn.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=3 </PARAM_NAME>
+                    <PARAM_NAME>box=3</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>a box surrounding the surface is drawn and captions
@@ -189,8 +189,8 @@
                     <PARAM_NAME>box=4</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP> a box surrounding the surface is drawn, captions
-                      and axes are added.Note that axes aspect can also be
+                      <SP>a box surrounding the surface is drawn, captions and
+                      axes are added.Note that axes aspect can also be
                       customized through the axes entity properties (see
                       <LINK>axes_properties</LINK>).</SP>
                     </PARAM_DESCRIPTION>
@@ -235,7 +235,6 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-
 t=[0:0.1:5*%pi]';
 param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
   list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
@@ -248,11 +247,10 @@ param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
  a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
  a.thickness = 2;
  h=a.children //get the handle of the param3d entity: an agregation composed of 2 curves
- h.children(1).foreground = 3 // first curve
- curve2 = h.children(2);
+ h(1).children(1).foreground = 3 // first curve
+ curve2 = h(2).children(2);
  curve2.foreground = 6;
  curve2.mark_style = 2;
-
  ]]></EXAMPLE>
 
   <SEE_ALSO>
