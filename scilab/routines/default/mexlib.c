@@ -1214,7 +1214,9 @@ int mxGetNumberOfFields(const mxArray *ptr)
  * but what does it means since size can be anythink 
  * we initialize to zero for double and int data types 
  *----------------------------------------------------*/
+
 /*  void *mxRealloc(void *ptr, size_t size);  */
+
 void *mxCalloc(size_t n, size_t size)
 {
   int m;  vraiptrst lrd; 
@@ -1553,7 +1555,7 @@ mxArray *UnrefStruct(mxArray *ptr)
     }
     numberandsize( mxNew, &number, &oldsize);
     newsize += 3;   /* taking account begining of list */
-    newbot=*lstk(number+offset)+newsize;
+    newbot=*lstk(number+offset)+newsize+1;
     if( (newbot - *lstk(Bot)) > 0) 
       {Error(17); return 0;}
     *lstk(number+offset+1)=newbot;
@@ -1591,7 +1593,6 @@ mxArray *UnrefStruct(mxArray *ptr)
 	      sizeobj=headerlist[index+3]-headerlist[index+2];
 	    }
 	  for (k=0; k<2*sizeobj; k++)
-	    /*  printf("%i\n", headerobj[k]);  */
 	    headerobjnew[k]=headerobj[k];  /* OUF! */
 	}
     }
@@ -1612,7 +1613,7 @@ mxArray *UnrefStruct(mxArray *ptr)
     }
     numberandsize( mxNew, &number, &oldsize);
     newsize +=3;
-    newbot = *lstk(number+offset)+newsize;
+    newbot = *lstk(number+offset)+newsize+1;
     if ( (newbot - *lstk(Bot)) > 0)
       {Error(17); return 0;}
     *lstk(number+offset+1)=newbot;
