@@ -215,7 +215,15 @@ case "operation" then
 	end
       end
     end
-    C=strcat(operands,operator)
+    if part(operator,1)=="." & part(operator,length(operator))=="." then
+      C=strcat(operands," "+operator+" ")
+    elseif part(operator,1)=="." then
+      C=strcat(operands," "+operator)
+    elseif part(operator,length(operator))=="." then
+      C=strcat(operands,operator+" ")
+    else
+      C=strcat(operands,operator)
+    end
   end
   // --------
   // CONSTANT
