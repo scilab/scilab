@@ -71,6 +71,7 @@ MSDOS = (getos() == "Windows")
 TMPDIR=getenv('TMPDIR')
 PWD = getcwd()
 home=sethomedirectory();
+clear sethomedirectory CreateHomeSciDir CreateHomeSciDirVer ExistHomeSciDirVer ExistHomeSciDir
 if MSDOS then
   SCI=getshortpathname(SCI)
   // path of scilab main directory for Windows
@@ -80,12 +81,13 @@ if MSDOS then
     setenv("PVM_ARCH","WIN32")
     setenv("PVM_TMP",getenv("TEMP"))
   end
+  clear pathconvert
 else
   if getenv('PRINTERS','ndef')=="ndef" then
     setenv("PRINTERS","lp")
   end
 end
- setenv("VERSION",getversion())
+setenv("VERSION",getversion())
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 global LANGUAGE
@@ -190,6 +192,7 @@ loadhistory()
 // Configure Environment Variables for Ms Visual C ====================
 if MSDOS then
   configure_msvc()
+  clear configure_msvc setmsvc71 setmsvc70 setmsvc60 setmsvc50
 end
 
 // calling user initialization =========================================
