@@ -100,6 +100,11 @@ c     .  unspecified number of lines
             istk(il+3)=0
             lstk(top+1)=sadr(il+4)
          else
+            err=sadr(li+2+li-ili+1)-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               goto 996
+            endif
             call icopy(li-ili+1,istk(ili),-1,istk(li+2),-1)
             lis=li+2
             istk(il)=10
