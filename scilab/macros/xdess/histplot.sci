@@ -47,12 +47,11 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
    end
    
    if rhs < 2 then
-      write(%io(2),'histplot : Wrong number of arguments');
-      return;
-   end;
+      error("wrong number of input arguments")
+   end
    
-   if type(n) ~= 1 | type(data) ~= 1 then
-      error("first and second argument must be real") 
+   if ~(type(n) == 1 & isreal(n) & type(data) == 1 & isreal(data)) then
+      error("first and second input arguments must be real") 
    end
    
    // this is the only specific optionnal argument for histplot
@@ -82,12 +81,12 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
    else                    // the classes are provided
       x = matrix(n,1,-1)   // force row form
       if min(diff(x)) <= 0 then
-	 error("x components must be in increasing order")
+	 error("first input arg must have its components in increasing order")
       end
       n = length(x)-1
    end
    
-   [ind , y] = dsearch(data, x);
+   [ind , y] = dsearch(data, x)
    
    if normalization then y=y ./ (p*(x(2:$)-x(1:$-1))),end 
    
