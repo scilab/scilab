@@ -1,7 +1,15 @@
 #!/bin/sh
 RM='rm -f'
 SCI=..
-FILE='examples.tst'
+
+if test -n "$1"
+then
+	Lang=$1
+else
+	Lang=eng
+fi
+
+FILE=examples_$Lang.tst
 LOGFILE='get_examples.log'
 
 $RM prov $LOGFILE
@@ -23,7 +31,7 @@ then
 	sed -e '1,/<EXAMPLE>/d' $1 |sed -e '/<\/EXAMPLE>/,$d'| \
 	    sed -e 's/<\!\[CDATA\[//'|sed -e 's/ \]\]>//' >>prov
 	echo "$1" PROCESSED >> $LOGFILE
-	echo "for k=winsid(),xdel(k);end" >> prov
+	echo "xdel(winsid())" >> prov
 else
 	echo "$1" NO EXAMPLE >> $LOGFILE
 fi
@@ -32,10 +40,10 @@ echo '' >> prov
 }
 
 
-for j in arma control dcd elementary fileio functions graphics gui linear metanet nonlinear polynomials programming robust scicos signal sound strings tdcs translation tksci utilities
+for j in arma control dcd elementary fileio functions graphics gui linear metanet nonlinear polynomials programming robust scicos signal sound strings tdcs translation tksci utilities statistics
 do
-	echo -n "Processing man/$j "
-	for f in $SCI/man/eng/$j/*.xml
+	echo -n "Processing man/$Lang/$j "
+	for f in $SCI/man/$Lang/$j/*.xml
 	do
 		echo -n '.'
 		do_example $f
