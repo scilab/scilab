@@ -103,7 +103,7 @@ int TK_UiGet(int Handle,Matrix * Mfield,Matrix ** Mvalue)
   sprintf(MyCommand,"set MyTmpBertrand [GetField %d \"%s\"]", Handle, StrField);
    
   Tcl_Eval(TKinterp,MyCommand);
-  MyAnswer = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+  MyAnswer = (char*)Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
 
   if ( MyAnswer == NULL) 
     {

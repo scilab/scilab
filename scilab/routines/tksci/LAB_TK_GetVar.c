@@ -24,7 +24,7 @@ void LAB_TK_GetVar()
   MVarName = (Matrix *)Interf.Param[0];
   VarName = (char *)MatrixReadString(MVarName);
   
-  RetStr=Tcl_GetVar(TKinterp, VarName, 0);
+  RetStr= (char*)Tcl_GetVar(TKinterp, VarName, 0);
 
   if ( RetStr )
     {

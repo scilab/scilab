@@ -85,7 +85,7 @@ void LAB_uimenu()
   sprintf(MyCommand, "set MyTmpBertrand [CreateUIMenu %d ];", FigureHandle); 
 
   Tcl_Eval(TKinterp,MyCommand);
-  StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+  StrHandle = (char *)Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
   Handle = (int)atoi(StrHandle);
 
   /* Now let's set all propoerties for the uicontrol */

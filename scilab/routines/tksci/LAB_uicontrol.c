@@ -111,7 +111,7 @@ void LAB_uicontrol()
   sprintf(MyCommand, "set MyTmpBertrand [CreateUIControl %d %s];", FigureHandle, UiStyleName[Style]); 
 
   Tcl_Eval(TKinterp,MyCommand);
-  StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+  StrHandle = (char*)Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
   Handle = (int)atoi(StrHandle);
 
   /* Now let's set all propoerties for the uicontrol */

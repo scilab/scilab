@@ -42,14 +42,14 @@ void LAB_figure()
       FirstField = 1;
       sprintf(MyCommand, "set MyTmpBertrand [FigureSelect %d];", FigureHandle);
       Tcl_Eval(TKinterp,MyCommand);
-      StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+      StrHandle = (char*)Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
       Handle = (int)atoi(StrHandle);
 
     } else {
       /* creation of a figure */
       sprintf(MyCommand, "set MyTmpBertrand [CreateFigure 0];"); 
       Tcl_Eval(TKinterp,MyCommand);
-      StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+      StrHandle = (char*) Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
       Handle = (int)atoi(StrHandle);
     }
 

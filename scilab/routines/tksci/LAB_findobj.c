@@ -37,7 +37,7 @@ void LAB_findobj()
   sprintf(MyCommand, "set MyTmpBertrand [FindObj \"%s\" \"%s\"];", field, value);
   
   Tcl_Eval(TKinterp,MyCommand);
-  StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+  StrHandle = (char*)Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
   Handle = (int)atoi(StrHandle);
   if (Handle == -1)  
     /* object not found */

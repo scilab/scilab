@@ -34,7 +34,7 @@ int LAB_gcf()
 
 
   Tcl_Eval(TKinterp,MyCommand);
-  StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+  StrHandle = (char *) Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
   return (int)atoi(StrHandle);
 }
 
