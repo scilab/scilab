@@ -208,3 +208,8 @@ uninstall:
 	$(RM) @prefix@/bin/intersci
 	$(RM) @prefix@/bin/intersci-n
 
+
+cvsclean::
+	@$(RM) -f -r  xless wless xmetanet routines/comm routines/libcomm
+	@cd man; $(RM) -f -r arma comm control dcd elementary fileio functions graphics gui identification linear metanet nonlinear polynomials programming pvm robust scicos signal sound strings tdcs time-date tksci translation utilities
+
