@@ -599,8 +599,8 @@ IDB_LOGO                BITMAP                  "scilab_logo.bmp"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,0,0,0
- PRODUCTVERSION 3,0,0,0
+ FILEVERSION 3,1,0,0
+ PRODUCTVERSION 3,1,0,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -618,11 +618,11 @@ BEGIN
             VALUE "Comments", "http://www.scilab.org"
             VALUE "CompanyName", "INRIA"
             VALUE "FileDescription", "scilab"
-            VALUE "FileVersion", "3, 0, 0, 0"
-            VALUE "LegalCopyright", "Copyright (C) 2004"
+            VALUE "FileVersion", "3, 1, 0, 0"
+            VALUE "LegalCopyright", "Copyright (C) 2005"
             VALUE "LegalTrademarks", "INRIA"
             VALUE "ProductName", "scilab"
-            VALUE "ProductVersion", "3, 0, 0, 0"
+            VALUE "ProductVersion", "3, 1, 0, 0"
         END
     END
     BLOCK "VarFileInfo"
