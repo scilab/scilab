@@ -8527,7 +8527,7 @@ int drawnow(fname,fname_len)
   if (version_flag() == 0)
     {
       if (Rhs <= 0) {
-	sciSetVisibility (sciGetSelectedSubWin(sciGetCurrentFigure ()), TRUE);  
+	sciSetDrawLater (sciGetSelectedSubWin(sciGetCurrentFigure ()),FALSE);
 	sciDrawObj(sciGetCurrentFigure ());
 	LhsVar(1) = 0;
 	return 0;}
@@ -8549,7 +8549,7 @@ int drawnow(fname,fname_len)
 		}
 		else 
 		  {	
-		    sciSetVisibility (subwin,TRUE);
+		    sciSetDrawLater (subwin,FALSE);
 		    sciDrawObj(sciGetCurrentFigure ());
 		  }
 	      }
@@ -8557,7 +8557,7 @@ int drawnow(fname,fname_len)
 	  case 10:/* first is a string argument so it's a drawnow('all') */
 	    GetRhsVar(1,"c",&m,&n,&l);
 	    if (strncmp(cstk(l),"all", 3) == 0){ 
-	      sciSetVisibility (sciGetCurrentFigure (),TRUE);  
+	      sciSetDrawLater (sciGetCurrentFigure (),FALSE);  
 	      sciDrawObj(sciGetCurrentFigure ());
 	      LhsVar(1) = 0;
 	      return 0;}
@@ -8596,7 +8596,7 @@ int drawlater(fname,fname_len)
   if (version_flag() == 0)
     {
       if (Rhs <= 0) {
-	sciSetVisibility (sciGetSelectedSubWin(sciGetCurrentFigure ()), FALSE);  
+	sciSetDrawLater (sciGetSelectedSubWin(sciGetCurrentFigure ()), TRUE);  
 	sciDrawObj(sciGetCurrentFigure ());
 	LhsVar(1) = 0;
 	return 0;}
@@ -8618,7 +8618,7 @@ int drawlater(fname,fname_len)
 		}
 		else 
 		  {	
-		    sciSetVisibility (subwin,FALSE);
+		    sciSetDrawLater (subwin,TRUE);
 		    sciDrawObj(sciGetCurrentFigure ());
 		  }
 	      }
@@ -8626,7 +8626,7 @@ int drawlater(fname,fname_len)
 	  case 10:/* first is a string argument so it's a drawnow('all') */
 	    GetRhsVar(1,"c",&m,&n,&l);
 	    if (strncmp(cstk(l),"all", 3) == 0){ 
-	      sciSetVisibility (sciGetCurrentFigure (),FALSE);  
+	      sciSetDrawLater (sciGetCurrentFigure (),TRUE);  
 	      sciDrawObj(sciGetCurrentFigure ());
 	      LhsVar(1) = 0;
 	      return 0;}
@@ -8832,7 +8832,10 @@ int draw(fname,fname_len)
 	sciSetSelectedSubWin(psubwin); 
 	/*	tmpmode = pSUBWIN_FEATURE(psubwin)->visible;
 		pSUBWIN_FEATURE(psubwin)->visible = TRUE ;SS 20.04.04*/
-	sciSetVisibility(pobj,TRUE) ;
+
+       
+
+	sciSetDrawLater(pobj,FALSE); /* force the drawing HERE*/ /* F.Leray 29.12.04 */
 	sciDrawObj(pobj);
 	/*pSUBWIN_FEATURE(psubwin)->visible = tmpmode;SS 20.04.04*/
 	sciSetSelectedSubWin(tmpsubwin);
