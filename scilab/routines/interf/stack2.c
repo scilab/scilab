@@ -3125,6 +3125,28 @@ void *GetRawData(lw)
   return loci;
 }
 
+int C2F(createreffromname)(number, name)
+     int number; char *name;
+     /* variable number is created as a reference pointing to variable "name" */
+     /* name must be an existing Scilab variable */
+{
+  int *header; int lw; int fin;
+  CreateData(number, 4*sizeof(int));
+  header = (int *) GetData(number);
+  if (C2F(objptr)(name,&lw,&fin,strlen(name))) {
+    header[0]= - *istk( iadr(*lstk(fin))); /* type of reference = - type of pointed variable */
+    header[1]= lw; /* pointed adress */
+    header[2]= fin; /* pointed variable */
+    header[3]= *lstk(fin+1)- *lstk(fin);  /*size of pointed variable */
+    return 1;
+  }
+  else
+    {  
+      Scierror(999,"CreateRefFromName: variable %s not found\r\n",name);
+      return 0;
+    }
+}
+
 /*-------------------------------------------------------
  * protect the intersci common during recursive calls 
  *-------------------------------------------------------*/ 

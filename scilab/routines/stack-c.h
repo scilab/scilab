@@ -143,6 +143,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define CreateCVarFromPtr(n,ct,it,mx,nx,lrx,lcx) if ( ! C2F(createcvarfromptr)((c_local=n,&c_local),ct,it,mx,nx,(double *)lrx,(double *) lcx,1L)) \
 					     { return 0;} 
+#define CreateRefFromName(n,nx) if(! C2F(createreffromname)(n,nx)){return 0;}
 
 #define FreePtr(lx) C2F(freeptr)((double **) lx)
 
