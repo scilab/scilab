@@ -21,7 +21,15 @@ OBJSF = ib01py.o mb01sd.o mb03od.o sb02ms.o sb02rd.o ib01bd.o \
 	ib01my.o ma02fd.o \
 	ab01od.o ab01nd.o mb01pd.o mb03oy.o mb01qd.o \
 	ab13md.o sb10fd.o sb10dd.o sb10pd.o sb10qd.o \
-	sb10rd.o sb02od.o sb02oy.o sb02ov.o sb02ou.o
+	sb10rd.o sb02od.o sb02oy.o sb02ov.o sb02ou.o \
+	\
+	sb04pd.o sb04md.o sb04qd.o sb04py.o sb04nd.o \
+	sb04rd.o sb03md.o sb03od.o sb03ov.o\
+	mb01rd.o sb03ou.o sb04mu.o sb04my.o sb04nv.o \
+	sb04nw.o sb04nx.o sb04ny.o sb04qu.o sb04qy.o \
+	sb04rv.o sb04rw.o sb04rx.o sb04ry.o \
+	sb03ot.o sb04mr.o sb04mw.o sb04qr.o \
+	sb03oy.o sb03or.o mb04nd.o mb04ny.o
 
 include ../../Makefile.incl
 
