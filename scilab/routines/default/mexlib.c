@@ -61,12 +61,13 @@ Matrix *loci2ptr(loci)
 int *listentry(loci,i)
      int *loci; int i;
 {
-  int n;int *ptr;int lll;int l1;
+  int n, *ptr; /* , lll;*/
   n = loci[1]; 
   if (i <= n) {
     if ( n%2 == 0 ) n++;
-    lll=loci + 3 + n + 2*( loci[2 + (i - 1) ] -1); 
-     ptr = (int *) (lll);
+    /* jpc lll = loci + 3 + n + 2*( loci[2 + (i - 1) ] -1); 
+       ptr = (int *) (lll); */
+    ptr = (int *) loci + 3 + n + 2*( loci[2 + (i - 1) ] -1);
   return ptr;
   } else {
     return NULL;
@@ -463,6 +464,7 @@ int *mxGetDimensions(ptr)
     return 0;
     }
   }
+  return 0;
 }
 
 int mxGetM(ptr)
@@ -540,7 +542,7 @@ int mxGetN(ptr)
   int ret;int j;
   int *loci1;
   int *loci= (int *) stkptr(ptr);
-  int numberofdim; Matrix *ptr1;
+  int numberofdim;
 
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
@@ -824,7 +826,7 @@ int mxIsClass( ptr, name)
 Matrix *mxCreateNumericArray(ND, size, CLASS, cmplx) 
      int ND; int *size; int CLASS; int cmplx;
 {
-  static int lw,lw1,w;
+  static int lw,lw1;
   int retval;
   Nbvars++;
   lw = Nbvars;
@@ -879,7 +881,6 @@ Matrix *mxGetCell(ptr, index)
      Matrix *ptr; int index;
 {
   int *locilist,*lociobj;
-  double * loc=(double *)stkptr(ptr);
   int *loci = (int *) stkptr(ptr);
   int k;
   locilist = listentry(loci,3);

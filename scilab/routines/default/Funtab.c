@@ -242,7 +242,7 @@ static int FindStr(str,data,level)
 
 static void  Init() 
 {
-  static firstentry = 0;
+  static int firstentry = 0;
   int j=0;
   if ( firstentry != 0 ) return;
   if ( myhcreate(MAXTAB) == 0 ) 
@@ -470,12 +470,11 @@ static int myhsearch(key,data,level, action)
      int key[],*data,*level;
      ACTION action;
 {
-  int k;
-    register unsigned hval;
-    register unsigned hval2;
-    register unsigned count;
-    register unsigned len = NAMECODE;
-    register unsigned idx;
+  register unsigned hval;
+  register unsigned hval2;
+  register unsigned count;
+  register unsigned len = NAMECODE;
+  register unsigned idx;
 
     /*
      * If table is full and another entry should be entered return with 

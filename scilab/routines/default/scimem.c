@@ -17,6 +17,8 @@
 #include <floatingpoint.h>
 #endif
 
+extern void sciprint __PARAMS((char *fmt,...));
+
 #if defined(netbsd) || defined(freebsd)
 void C2F(nofpex)()
 {

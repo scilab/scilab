@@ -16,12 +16,12 @@ extern int  C2F(matdsr) __PARAMS((void));
 extern int  C2F(userlk) __PARAMS((int *));
 extern int  C2F(error) __PARAMS((int *));
 extern void sciprint __PARAMS((char* ,...));
+extern int  Scierror __PARAMS((int iv,char *fmt,...));
 
 extern void  errjump(int n);
 extern void  sci_sig_tstp(int n);
 extern void  controlC_handler(int n);
-
-static void  sci_sigint_addinter(int n); /*
+static void  sci_sigint_addinter(int n);
 
 /***********************************************************
  * interface function 
@@ -29,7 +29,7 @@ static void  sci_sigint_addinter(int n); /*
 
 static int Iflag=0; /* special flag for matdsr matdsc */
 
-void C2F(MatdsRC)()
+void C2F(MatdsRC)(void)
 {
   if (Iflag == 1) 
     C2F(matdsc)();
@@ -39,14 +39,14 @@ void C2F(MatdsRC)()
 
 static int c_local = 9999;
 
-void C2F(NoTksci)()
+void C2F(NoTksci)(void)
 {
   sciprint("tksci interface not loaded \n");
   C2F(error)(&c_local);
   return;
 }
 
-void C2F(NoPvm)()
+void C2F(NoPvm)(void)
 {
   sciprint("pvm interface not loaded \n");
   C2F(error)(&c_local);
@@ -71,8 +71,7 @@ typedef  struct  {
 
 static int sig_ok = 0;
 
-int C2F(callinterf)(k,iflagint)
-      int *k,*iflagint;
+int C2F(callinterf) ( int *k, int * iflagint)
 {
   int returned_from_longjump ;
   static int count = 0;
