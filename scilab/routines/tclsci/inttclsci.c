@@ -22,6 +22,8 @@ extern int C2F(intTclGet) _PARAMS((char *fname));
 extern int C2F(intTclGcf) _PARAMS((char *fname));
 extern int C2F(intTclScf) _PARAMS((char *fname));
 extern int C2F(intTclGetVersion) _PARAMS((char *fname));
+extern int C2F(intTclUnsetVar) _PARAMS((char *fname));
+extern int C2F(intTclExistVar) _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
  static TCLSCITable Tab[]=
  {
@@ -38,6 +40,8 @@ extern int C2F(intTclGetVersion) _PARAMS((char *fname));
   {C2F(intTclGcf),"TCL_gcf"},
   {C2F(intTclScf),"TCL_scf"},
   {C2F(intTclGetVersion),"TCL_GetVersion"},
+  {C2F(intTclUnsetVar),"TCL_UnsetVar"},
+  {C2F(intTclExistVar),"TCL_ExistVar"}
  };
 /*-----------------------------------------------------------------------------------*/
 int C2F(inttclsci)()

@@ -42,7 +42,7 @@ int GetTclCurrentFigure(void)
 		return 0;
 	}
 
-	StrHandle = (char *) Tcl_GetVar(TCLinterp, "TclScilabTmpVar", 0);
+	StrHandle = (char *) Tcl_GetVar(TCLinterp, "TclScilabTmpVar",TCL_GLOBAL_ONLY);
 
 	if ( StrHandle == NULL  )
     {
@@ -102,7 +102,7 @@ int SetTclCurrentFigure(int num)
 		return 0;
 	}
 
-	StrHandle = (char *) Tcl_GetVar(TCLinterp, "TclScilabTmpVar", 0);
+	StrHandle = (char *) Tcl_GetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 
 	if ( StrHandle == NULL  )
     {

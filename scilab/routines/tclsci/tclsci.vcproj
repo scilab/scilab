@@ -700,6 +700,9 @@ cd .. &gt;nul
 				RelativePath=".\intTclEvalStr.c">
 			</File>
 			<File
+				RelativePath=".\intTclExistVar.c">
+			</File>
+			<File
 				RelativePath=".\intTclGcf.c">
 			</File>
 			<File
@@ -719,6 +722,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intTclSetVar.c">
+			</File>
+			<File
+				RelativePath=".\intTclUnsetVar.c">
 			</File>
 			<File
 				RelativePath=".\ScilabEval.c">
@@ -761,6 +767,9 @@ cd .. &gt;nul
 				RelativePath=".\intTclEvalStr.h">
 			</File>
 			<File
+				RelativePath=".\intTclExistVar.h">
+			</File>
+			<File
 				RelativePath=".\intTclGcf.h">
 			</File>
 			<File
@@ -780,6 +789,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intTclSetVar.h">
+			</File>
+			<File
+				RelativePath=".\intTclUnsetVar.h">
 			</File>
 			<File
 				RelativePath=".\intUIMenu.h">

@@ -11,4 +11,6 @@
 {"TCL_gcf",             IN_tclsci, 11,	2},
 {"TCL_scf",             IN_tclsci, 12,	2},
 {"TCL_GetVersion",      IN_tclsci, 13,	2},
+{"TCL_UnsetVar",        IN_tclsci, 14,	2},
+{"TCL_ExistVar",        IN_tclsci, 15,	2},
 

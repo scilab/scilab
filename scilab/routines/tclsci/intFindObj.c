@@ -35,7 +35,7 @@ int C2F(intFindObj) _PARAMS((char *fname))
 			Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
 			return 0;
 		}
-		StrHandle = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", 0);
+		StrHandle = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 
 		Handle = (int)atoi(StrHandle);
 

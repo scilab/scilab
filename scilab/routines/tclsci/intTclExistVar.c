@@ -2,9 +2,9 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intTclGetVar.h"
+#include "intTclExistVar.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(intTclGetVar) _PARAMS((char *fname))
+int C2F(intTclExistVar) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int TypeVar1=GetType(1);
@@ -14,6 +14,8 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 	
 	if (TypeVar1 == sci_strings)
 	{
+		int *paramoutINT=(int*)malloc(sizeof(int));
+
 		char *VarName=NULL;
 		char *RetStr=NULL;
 
@@ -22,33 +24,29 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 
 		if (TCLinterp == NULL)
 		{
-			Scierror(999,"TCL_GetVar : Error TCLinterp not Initialize\r\n");
+			Scierror(999,"TCL_ExistVar : Error TCLinterp not Initialize\r\n");
 			return 0;
 		}
 
-		RetStr= (char*)Tcl_GetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
-
-		if ( RetStr )
+		if ( Tcl_GetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY) )
 		{
-			char *output=NULL ;
-			output=(char*)malloc((strlen(RetStr)+1)*sizeof(char));
-			sprintf(output,"%s",RetStr);
-			CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
-			
-			LhsVar(1) = 1;
-			C2F(putlhsvar)();
-
-			if (output) {free(output);output=NULL;}
-	  	}
+			*paramoutINT=(int)(TRUE);
+		}
 		else
 		{
-			Scierror(999,"TCL_GetVar : Could not read Tcl Var \r\n");
-			return 0;
+			*paramoutINT=(int)(FALSE);
 		}
+
+		n1=1;
+		CreateVarFromPtr(1, "b", &n1, &n1, &paramoutINT);
+		LhsVar(1)=1;
+		C2F(putlhsvar)();
+		if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+
 	}
 	else
 	{
-		 Scierror(999,"TCL_GetVar : Argument type must be character string \r\n");
+		 Scierror(999,"TCL_ExistVar : Argument type must be character string \r\n");
 		 return 0;
 	}
 	

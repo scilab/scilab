@@ -10,7 +10,8 @@ OBJSC  = InitTclTk.obj intClose.obj intFindObj.obj intOpenTk.obj \
 	 intTclDoOneEvent.obj intTclEvalFile.obj intTclEvalStr.obj \
 	 intTclGcf.obj intTclGet.obj intTclGetVar.obj inttclsci.obj \
 	 intTclSet.obj intTclSetVar.obj ScilabEval.obj TclEvents.obj \
-	 TclUiGet.obj TclUiSet.obj TCL_Global.obj intTclGetVersion.obj
+	 TclUiGet.obj TclUiSet.obj TCL_Global.obj intTclGetVersion.obj \
+	 intTclUnsetVar.obj intTclExistVar.obj
 
 include ../../Makefile.incl.mak
 
