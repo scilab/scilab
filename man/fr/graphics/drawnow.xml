@@ -6,7 +6,7 @@
   <TYPE>Scilab Function  </TYPE>
   <DATE> 2002 </DATE>
   <SHORT_DESCRIPTION name="drawnow"> 
-   draw axes entity  children.
+   draw hidden graphics entities.
   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>drawnow() </CALLING_SEQUENCE_ITEM>
@@ -19,31 +19,50 @@
   <PARAM_ITEM>
   <PARAM_NAME>h  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-     : a handle, the handle on an axes entity
+     : a handle, the handle of an axes entity.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+  <PARAM_ITEM>
+  <PARAM_NAME>"all"  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string keyword (optional).
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    This function can be used to draw a graphics entity and all its
-    chidren. It can specially be used with the  <VERB>drawlater</VERB> function.
+    This function can be used to draw the hidden graphics entities and all its
+    chidren,their Visibility property is set to <VERB>"on" </VERB>.
+    The handle given as argument correspond to an axes entity.  
     Without any argument <VERB>drawnow</VERB> draws the
-    current axes children visible. With a handle argument on a axes entity it makes the
-    corresponding axes children visible. With <VERB>"all"</VERB> makes
-    all the current figure axes children visible. Note that if a
-    children as its visibility property equal to "off" il will not be
-    drawn. 
-  <P>  </P>
-    If <VERB>a</VERB> is a handle on axes <VERB>drawnow(h)</VERB> is equivalent to <VERB>f.visible="on"</VERB>
+    current axes and makes all its children visibles. 
+    With the option <VERB>"all"</VERB>, the current figure and all its children 
+    graphics entities will be visibles.
+    <p></p>
+    It can specially be used with the  <VERB>drawlater</VERB> function.
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 
   set("figure_style","new") // select entity based graphics
-
-  h=get("current_figure") //gets handle on the current figure
-  drawlater()
+  f=get("current_figure") // handle of the current figure
+  
+  drawlater();
+  subplot(221);
   t=1:10;plot2d(t,t.^2)
-  drawnow()
+  subplot(222);
+  x=0:1:7;plot2d(x,cos(x),2) 
+  subplot(234);
+  plot2d(t,cos(t),3);
+  subplot(235);
+  plot2d(x,sin(2*x),5); 
+  subplot(236);
+  plot2d(t,tan(2*t));  
+ 
+  drawnow();
+  drawnow(f.children());
+  drawnow(f.children([3 4]));
+  drawnow("all");
 
  ]]></EXAMPLE>
   <SEE_ALSO>
@@ -52,5 +71,5 @@
     <SEE_ALSO_ITEM> <LINK>drawlater</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djamel Abdemouche  </AUTHOR>
+  <AUTHOR> Djalel ABDEMOUCHE </AUTHOR>
 </MAN>
