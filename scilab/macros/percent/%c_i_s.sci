@@ -3,6 +3,7 @@ function M=%c_i_s(varargin)
 M=varargin(rhs)
 N=varargin(rhs-1)//inserted matrix
 index=varargin(1) //
+
 if rhs==3&(type(index)==10|type(index)==15) then
   M=createstruct(index,N)
   if type(index(1))<>10 & index(2)=="entries" then
@@ -11,6 +12,10 @@ if rhs==3&(type(index)==10|type(index)==15) then
     setfield(1,f,M)
   end
   return
+end
+
+if size(M,'*')<>0 then
+  error('affection of a string  in a matrix of numbers is not implemented')
 end
 //X(i,j,k)=n  hypermatrix
 M=mlist(['hm','dims','entries'],size(M),M(:))
