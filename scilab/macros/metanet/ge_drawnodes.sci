@@ -169,5 +169,6 @@ function Ids=ge_get_nodes_id(sel)
     case 1 then Ids=string(sel)
     case 2 then Ids=GraphList.node_name(sel)
     case 3 then Ids=string(GraphList.node_demand(sel))
+    case 4 then Ids=string(GraphList.node_label(sel))
   end
 endfunction

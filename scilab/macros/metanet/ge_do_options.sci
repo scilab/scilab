@@ -3,7 +3,7 @@ function ge_do_options()
 //Author : Serge Steer 2002
 
   execstr('global EGdata_'+w+';EGdata=EGdata_'+w)
-  node=list('Nodes',EGdata.NodeId+1,['Nothing','Number','Name','Demand'])
+  node=list('Nodes',EGdata.NodeId+1,['Nothing','Number','Name','Demand','Label'])
   arc=list('Arcs',EGdata.ArcId+1,['Nothing','Number','Name','Cost','Min cap','Max cap',..
 		     'Length', 'Quadratic weight','Quadratic origin', ...
 		    'Weight'])
