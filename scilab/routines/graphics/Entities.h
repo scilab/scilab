@@ -1553,3 +1553,4 @@ extern void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG);
 extern int labels2D_draw(sciPointObj * psubwin);
 extern sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type);
 extern int DestroyLabel (sciPointObj * pthis);
+extern int ComputeC_format(sciPointObj * pobj, char * c_format);
