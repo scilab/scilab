@@ -13,7 +13,6 @@ function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprint)
 global("m2sci_to_insert_b") // To insert before current instruction
 global("m2sci_to_insert_a") // To insert after current instruction
 global("tmpvarnb") // Index for temporary variables
-
 m2sci_to_insert_b=list()
 m2sci_to_insert_a=list()
 tmpvarnb=0
@@ -59,20 +58,37 @@ if scitree.name<>"" then // Not a batch file
   crp=lhsstr+" = "+scitree.name+rhsstr;
 end
 
+// Convert Matlab instruction tree to Scilab
 while ninstr<=size(mtlbtree.statements)-3
-  // Convert Matlab instruction tree to Scilab
-  [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr),nblines)
-
+  //Case : sup_equal instruction
   // Add converted tree to scitree and also inserted instructions
-  scitree.statements=update_instr_list(scitree.statements,converted_tree)
+  if typeof(mtlbtree.statements(ninstr))=="sup_equal"
 
-  // Generate code corresponding to scitree.statements
+    sci_stat=list()
+    for i=1:size(mtlbtree.statements(ninstr).sup_instr) 
+      [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr).sup_instr(i),nblines)
+      
+      sci_stat=update_instr_list(sci_stat,converted_tree)
+    end
+    
+    scitree.statements($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat,mtlbtree.statements(ninstr).nb_opr)  
+  else
+    
+    [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr),nblines)
+    
+    // Add converted tree to scitree and also inserted instructions
+    
+    scitree.statements=update_instr_list(scitree.statements,converted_tree)
+    
+    // Generate code corresponding to scitree.statements
+  end    
   for k=1:size(scitree.statements)
     if k<size(scitree.statements)
-      crp = cat_code(crp,instruction2code(scitree.statements(k),prettyprint));
+      crp = cat_code(crp,instruction2code(scitree.statements(k),prettyprint));  
       crp = format_txt(crp,scitree.statements(k),prettyprint,scitree.statements(k+1));
     end
   end
+  
   scitree.statements=list(scitree.statements($))
   
   // Disp percentage of conversion done
