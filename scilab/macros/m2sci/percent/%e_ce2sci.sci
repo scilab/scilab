@@ -170,9 +170,13 @@ else
       end
     end
     indexes=strcat(indexes,",")
-    
     if cste_nb==size(tree.operands)-1 then // Inference can be done
-      ierr=execstr("CONT=var.contents("+indexes+")","errcatch")
+      if ~isempty(indexes) then
+	ierr=execstr("CONT=var.contents("+indexes+")","errcatch")
+      else
+	ierr=0;
+	CONT=var.contents;
+      end
       if ierr<>0 then // Unknown index in contents
 	tree.out(1).contents=list()
       else
