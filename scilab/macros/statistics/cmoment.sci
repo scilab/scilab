@@ -35,7 +35,7 @@ function mom= cmoment(x,ord,orien)
     mom=sum((x-m).^ord)/(le-1)
     return
   elseif rhs==3 then
-    le=size(b,orien)
+    le=size(x,orien)
     m=mean(x,orien)
     if orien=='r'|orien==1 then
       m=m(ones(le,1),:)

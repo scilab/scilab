@@ -1,4 +1,4 @@
-function [q]=quart(x,orien)
+function q=quart(x,orien)
 //
 //This function computes the quartiles of a vector or a matrix x.
 //
@@ -21,8 +21,20 @@ function [q]=quart(x,orien)
   [lhs,rhs]=argn(0)
   if rhs==0 then error('quart requires at least one input.'), end
   if rhs==1 then
-    q=pctl(x,[25 50 75])
+    q=perctl(x,[25 50 75])
+    q=q(:,1)
   else
-    q=pctl(x,[25 50 75],orien)
+    q=[]
+    if orien=='r'|orien==1 then
+      for i=x
+	p=perctl(i,[25 50 75])
+	q=[q p(:,1)]
+      end
+    else
+      for i=x'
+	p=perctl(i,[25 50 75])
+	q=[q;p(:,1)']
+      end
+    end
   end
 endfunction

@@ -50,9 +50,9 @@
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
-m=nanmedianf(x,fre)
-m=nanmedianf(x,fre,1)
-m=nanmedianf(x,fre,2)
+m=nanmedian(x)
+m=nanmedian(x,1)
+m=nanmedian(x,2)
  ]]></EXAMPLE>
   <AUTHOR>
  Carlos Klimann

@@ -8,8 +8,8 @@
   <SHORT_DESCRIPTION name="nanmax">  max  (ignoring Nan's) </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>[m,index]=nanmax(x)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>[m,index]=nanmax(x,&apos;r&apos;) (or [m,index]=nanmax(x,1))  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>[m,index]=nanmax(x,&apos;c&apos;) (or [m,index]=nanmax(x,2))  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[m,index]=nanmax(x,&apos;r&apos;) </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[m,index]=nanmax(x,&apos;c&apos;) </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
   <P>
@@ -56,8 +56,8 @@
   <EXAMPLE><![CDATA[
 x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
 m=nanmax(x)
-m=nanmax(x,1)
-m=nanmax(x,2)
+m=nanmax(x,'r')
+m=nanmax(x,'c')
  ]]></EXAMPLE>
 
   <AUTHOR>

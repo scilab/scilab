@@ -20,14 +20,21 @@ function [m]=nanmedian(x,orient)
   if type(x)<>1 then error('first entry to nanmedian must be numeric'), end
   if rhs<1|rhs>2 then error('nanmedian requires one or two inputs.'), end
   if x==[] then m=[], return,end
-  if rhs==1 then m=pctl(x(~isnan(x)),[50])
+  if rhs==1 then 
+    p=perctl(x(~isnan(x)),50)
+    m=p(1)
   elseif orient=='r'|orient==1 then
     m=[]
-    for i=x do
-      m=[m pctl(i(~isnan(i)),[50])], end
+    for i=x 
+      p=perctl(i(~isnan(i)),50)
+      m=[m p(1)]
+    end
   elseif orient=='c'|orient==2 then
+    m=[]
     for i=x' do
-      m=[m ; pctl(i(~isnan(i)),[50])], end
-  else ('Third parameter for nansum must be r, c, 1 or 2')
+      p=perctl(i(~isnan(i)),50)
+      m=[m;p(1)];
+    end
+  else ('Third parameter must be r, c, 1 or 2')
   end
 endfunction

@@ -8,8 +8,8 @@
   <SHORT_DESCRIPTION name="nanmin">  min  (ignoring Nan's) </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>[m,index]=nanmin(x)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>[m,index]=nanmin(x,&apos;r&apos;) (or [m,index]=nanmin(x,1))  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>[m,index]=nanmin(x,&apos;c&apos;) (or [m,index]=nanmin(x,2))  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[m,index]=nanmin(x,&apos;r&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[m,index]=nanmin(x,&apos;c&apos;)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
  <PARAM_INDENT>
@@ -62,8 +62,8 @@
   <EXAMPLE><![CDATA[
 x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
 m=nanmin(x)
-m=nanmin(x,1)
-m=nanmin(x,2)
+m=nanmin(x,'r')
+m=nanmin(x,'c')
  ]]></EXAMPLE>
 
   <AUTHOR>
