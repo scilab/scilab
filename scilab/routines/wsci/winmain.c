@@ -1183,15 +1183,15 @@ void CreateThreadSplashscreen(void)
 DWORD WINAPI ThreadSplashscreen(LPVOID lpParam )
 {
 	HWND hdlg;
-	char *buffer=NULL;
+	char buffer[MAX_PATH];
 
-	buffer=(char*)malloc(strlen("Copyright ® ")+strlen(DEFAULT_MES)+1);
+	
 	wsprintf(buffer,"%s %s","Copyright ® ",DEFAULT_MES);
 
 	hdlg = CreateDialog(hdllInstance, "IDD_SPLASH", NULL,NULL);
 	SetDlgItemText(hdlg,IDC_VERSION_SPLASH,VERSION);
 	SetDlgItemText(hdlg,IDC_COPYRIGHT_SPLASH,buffer);
-	free(buffer);
+	
 	ShowWindow(hdlg, SW_SHOWDEFAULT);
 	UpdateWindow(hdlg);
 	Sleep(1500);

@@ -1051,6 +1051,9 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath=".\x_zzledt.c">
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

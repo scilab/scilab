@@ -41,7 +41,8 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
      int *buf_size;
      int *len_line;
      int *eof;
-     int* interrupt, int *modex;
+     int *interrupt;
+     int *modex;
      long int dummy1;		/* added by FORTRAN to give buffer length */
 #endif
 {
@@ -61,5 +62,8 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
   /** fprintf(stderr,"[%s,%d]\n",buffer,*len_line); **/
   *eof = (i == 1) ? TRUE : FALSE;
   set_is_reading (FALSE);
+
+  
+
   return;
 }

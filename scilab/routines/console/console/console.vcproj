@@ -20,7 +20,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcllib/include/X11,../../../tcllib/include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;WIN32;__STDC__;WITH_READLINE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
@@ -70,7 +70,7 @@ cd .. &gt;nul
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcllib/include/X11,../../../tcllib/include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;WIN32;__STDC__"
 				RuntimeLibrary="4"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -118,7 +118,7 @@ cd .. &gt;nul
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcllib/include/X11,../../../tcllib/include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;WIN32;__STDC__"
 				RuntimeLibrary="4"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -166,7 +166,7 @@ cd .. &gt;nul
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="3"
 				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcllib/include/X11,../../../tcllib/include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;WIN32;__STDC__"
 				RuntimeLibrary="4"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -219,9 +219,6 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath="..\history.h">
-			</File>
-			<File
-				RelativePath="..\Screen.c">
 			</File>
 			<File
 				RelativePath="..\zzledt.c">
