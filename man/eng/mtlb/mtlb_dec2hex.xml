@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_dec2hex</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>June 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_dec2hex">Matlab dec2hex emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>dec2hex</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With empty matrix: Matlab <VERB>dec2hex</VERB> returns "" but in Scilab you get [].
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With complex inputs: Matlab <VERB>dec2hex</VERB> automatically removes complex part of inputs but not Scilab one.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Matlab <VERB>dec2hex</VERB> always returns a row vector but in Scilab <VERB>dec2hex</VERB>
+	returns a value which have the same size as the input.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Matlab <VERB>dec2hex</VERB> can have two inputs but not Scilab one.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_dec2hex(D[,N])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>dec2hex(D[,N])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_dec2hex</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>D</VERB> is not an empty matrix,
+        <VERB>mtlb_dec2hex(D)</VERB> may be replaced by
+	<VERB>matrix(dec2hex(real(D)),-1,1)</VERB> if <VERB>D</VERB> is complex and by
+	<VERB>matrix(dec2hex(D),-1,1)</VERB> else.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_dec2hex</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
