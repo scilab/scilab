@@ -31,9 +31,8 @@ ft_t ft;
 static void checkformat __PARAMS((ft_t ft));
 static void cleanup  __PARAMS((void));
 static void init  __PARAMS((void));
-#if defined(unix) || defined(AMIGA) || defined(ARM) || defined(aix)
 static int filetype __PARAMS((int fd));
-#endif
+
 
 
 /************************************************************
@@ -249,7 +248,9 @@ void init(void) {
  * Process input file -> effect table -> output file
  *	one buffer at a time
  */
-#if defined(netbsd) || defined(freebsd) || defined(unix) || defined(AMIGA) || defined(ARM) || defined(aix) || (!defined(hppa_old) && defined(hppa))
+#if defined(DOS) || defined(__OS2__) || defined(WIN32) || defined (__MWERKS__)
+int filetype(int fd) { return 0;}
+#else 
 int filetype(int fd)
 {
   struct stat st;
