@@ -5,14 +5,21 @@ c
 c     Copyright INRIA
       INCLUDE '../stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2)
+      integer iadr,sadr
 c     
       integer op,r,blank,sign,plus,minus,name,colon,eye(nsiz),ou,et
-      integer equal,less,great,not,eol,p,gettype
-      logical eptover, istrue,skip, compil,ifexpr
+      integer equal,less,great,not,eol,p,temp
+      logical eptover, skip, compil,ifexpr
+      
+      external gettype,istrue
+      
       data colon/44/,blank/40/,plus/45/,minus/46/,ou/57/,et/58/
       data equal/50/,less/59/,great/60/,not/61/
       data eye/672014862,nz1*673720360/,name/1/,eol/99/
 c     
+
+      sadr(l)=(l/2)+1
+      iadr(l)=l+l-1
       if (ddt .eq. 4) then
          write(buf(1:8),'(2i4)') pt,rstk(pt)
          call basout(io,wte,' expr   pt:'//buf(1:4)//' rstk(pt):'
@@ -137,11 +144,16 @@ c     .     evaluation shortcut
                   if (err.gt.0) return
                   ids(1,pt)=comp(1)
                endif
-            elseif (gettype(top).ne.8 .and. istrue(0)) then
-c     .        first term is true there is no use to evaluate the other
-               ids(1,pt)=1
-c     .        err1 <>0 sets interpretation without evaluation
-               err1=1
+            else
+           temp=abs(istk(iadr(lstk(top))))
+                 if (temp .ne.8 ) then
+                   if ( istrue(0)) then
+c     .             first term is true there is no use to evaluate the other
+                    ids(1,pt)=1
+c     .             err1 <>0 sets interpretation without evaluation
+                    err1=1
+                    endif
+                 endif
             endif
          endif
       else
@@ -201,11 +213,16 @@ c          . logical expression evaluation shortcut
                   if (err.gt.0) return
                   ids(1,pt)=comp(1)
                endif
-            elseif (gettype(top).ne.8 .and. .not.istrue(0)) then
-c     .        first term is false there is no use to evaluate the other
-               ids(1,pt)=1
-c     .        err1 <>0 sets interpretation without evaluation
-               err1=1
+            else
+                temp=abs(istk(iadr(lstk(top))))
+                if (temp .ne.8) then
+                  if (.not.istrue(0)) then
+c     .             first term is false there is no use to evaluate the other
+                    ids(1,pt)=1
+c     .             err1 <>0 sets interpretation without evaluation
+                    err1=1
+                  endif
+                endif
             endif
          endif
       else
