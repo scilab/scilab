@@ -7,7 +7,6 @@ function state=scicos_state(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11)
   if exists('evtspt','local')==0 then evtspt=[],end
   if exists('pointi','local')==0 then pointi=1,end
   if exists('outtb','local')==0 then outtb=[],end
-  if exists('mod','local')==0 then mod=[],end
-  state=tlist(['xcs','x','z','iz','tevts','evtspt','pointi','outtb','mod'],..
-	    x,z,iz,tevts,evtspt,pointi,outtb,mod)
+  state=tlist(['xcs','x','z','iz','tevts','evtspt','pointi','outtb'],..
+	    x,z,iz,tevts,evtspt,pointi,outtb)
 endfunction
