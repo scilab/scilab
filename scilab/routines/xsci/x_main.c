@@ -750,4 +750,10 @@ static void Syntax (badOption)
   exit (1);
 }
 
-
+/* V.C 04/2004 */
+/* Function used to know if we are in window mode (returned value is 1) */
+/* or in console mode (returned value is 0) */
+int IsConsoleMode(void)
+{
+  return no_window;
+}
