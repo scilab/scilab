@@ -19,7 +19,7 @@ global TMPDIR
       end
     end
     if %scipad_language==[] then 
-      if "LANGUAGE"<>[] then
+      if LANGUAGE<>[] then
         %scipad_language=LANGUAGE
       else
         %scipad_language="eng"
