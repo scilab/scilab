@@ -1174,11 +1174,6 @@ c
          ilr=il
          if(istk(il).lt.0) il=iadr(istk(il+1))
          ref=ilr.ne.il
-         if(istk(il+3).ne.0) then
-            err=1
-            call error(52)
-            return
-         endif
          m=istk(il+1)
          n=istk(il+2)
          if(m*n.eq.0) then
