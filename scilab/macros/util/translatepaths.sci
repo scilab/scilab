@@ -6,6 +6,11 @@ function translatepaths(Paths,res_path)
 // M2SCI kernel functions called:
 //  - mfile2sci
 
+// Get default arguments
+[lhs,rhs]=argn(0)
+if rhs<2 then res_path="./",end
+if rhs<1 then m2sci_gui();return;end
+
 // Loads libraries related to m2sci
 if exists("m2skernellib")==0 then load("SCI/macros/m2sci/kernel/lib"),end
 if exists('m2spercentlib')==0 then load("SCI/macros/m2sci/percent/lib"),end
