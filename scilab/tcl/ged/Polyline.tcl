@@ -38,8 +38,6 @@ global curgedobject
 global curclipstate Xclipbox Yclipbox Wclipbox Hclipbox letext
 global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox ncolors
 
-global datastring
-
 # set ncolors 32
 # set nbcol 2
 # set nbrow 6

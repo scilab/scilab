@@ -39,7 +39,6 @@ global curcolormode curthick colorflagToggle curforeground curhiddencolor
 global nbrowX nbrowY plot3dXVAL plot3dYVAL plot3dZVAL plot3dCOLORVAL flagCOLOR
 global nbrowZ nbcolZ nbrowCOLOR nbcolCOLOR ncolors
 
-global datastring
 global scicomint_dataX scicomint_dataY scicomint_dataZ scicomint_dataCOLOR
 
 set ww .axes
