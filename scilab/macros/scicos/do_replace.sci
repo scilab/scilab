@@ -101,7 +101,7 @@ if wasconnected then
 	'different number of clock inputs'])
     ok=%f
     return
-  elseif norm(xx(t==-1)-x_n(t==-1),1)>0.1|norm(yy(t==-1)-y_n(t==-1),1)>0.1 then
+  elseif norm(xx(t==-1)-x_n(t_n==-1),1)>0.1|norm(yy(t==-1)-y_n(t_n==-1),1)>0.1 then
     message(['It is not yet possible to replace a block with'
 	'connected clock inputs with an other block with clock inputs '
 	'not relatively located in the same position'])
@@ -145,7 +145,7 @@ if wasconnected then
 	'different number of clock outputs'])
     ok=%f
     return
-  elseif norm(xx(t==-1)-x_n(t==-1),1)>0.1|norm(yy(t==-1)-y_n(t==-1),1)>0.1 then
+  elseif norm(xx(t==-1)-x_n(t_n==-1),1)>0.1|norm(yy(t==-1)-y_n(t_n==-1),1)>0.1 then
     message(['It is not yet possible to replace a block with'
 	'connected clock outputs with an other block with clock outputs '
 	'not relatively located in the same position'])
