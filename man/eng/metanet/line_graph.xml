@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>line_graph  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="line_graph"> graph with nodes corresponding to edges  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>g1 = line_graph(g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list of the old graph
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list of the new graph 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>line_graph</VERB> returns the graph <VERB>g1</VERB> with the nodes corresponding 
+    to the edges of the graph <VERB>g</VERB>.
+    <VERB>g1</VERB> is defined in the following way:
+     - its nodes correspond to the edges of <VERB>g</VERB>
+     - 2 nodes of the new graph are adjacent if and only if the corresponding
+    edges of the graph <VERB>g</VERB> are adjacent.
+  </P>
+  <P>
+    The coordinates of the nodes of <VERB>g1</VERB> are given by the middle points of the 
+    corresponding edges of <VERB>g</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 4 4 5 6 7 2 3 5 1];
+he=[2 6 3 6 7 8 8 8 4 7 3 5];
+g=make_graph('foo',0,8,ta,he);
+g('node_x')=[281  284  360  185  405  182  118  45];
+g('node_y')=[262  179  130  154  368  248  64  309];
+show_graph(g);
+g1=line_graph(g);
+show_graph(g1,'new');
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>arc_graph</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xgetech  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xgetech"> get the current graphics scale  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[wrect,frect,logflag,arect]=xgetech()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>wrect,frect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vectors.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>logflag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string of size 2 &quot;xy&quot;.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xgetech</VERB> returns the current graphics scale (of the current window). 
+    The rectangle [xmin,ymin,xmax,ymax] given by
+    <VERB>frect</VERB> is the size of the whole graphics window. 
+    The plotting will be made in the region of the current graphics window specified by <VERB>wrect</VERB>.
+  </P>
+  <P>
+    <VERB>wrect=[x,y,w,h]</VERB> (upper-left point, width, height) describes a region 
+    inside the graphics window. The values in <VERB>wrect</VERB> are specified using proportion
+    of the width and height of the graphics window:
+  </P>
+  <P>
+    <VERB>wrect=[0 0 1 1]</VERB> means that the whole graphics window is used.
+  </P>
+  <P>
+    <VERB>wrect=[0.5 0 0.5 1]</VERB> means that the graphics region is the right 
+    half of the graphics window.
+  </P>
+  <P>
+    <VERB>logflag</VERB> is a string of size 2 &quot;xy&quot;, where x and y can be &quot;n&quot; or &quot;l&quot;. 
+    &quot;n&quot; stands for normal (linear) scale and &quot;l&quot; stands for logscale. x stands for the x-axis and y stands
+    for the y-axis.
+  </P>
+  <P>
+    <VERB>arect=[x_left, x_right,y_up,y_down]</VERB> gives the frame size
+    inside the subwindow. The graphic frame is specified (like <VERB>wrect</VERB>) 
+    using proportion of the width or height of the current graphic subwindow. 
+    Default value is <VERB>1/8*[1,1,1,1]</VERB>. If <VERB>arect</VERB> is not given, 
+    current value remains unchanged. 
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// first subwindow 
+xsetech([0,0,1.0,0.5])
+plot2d()
+// then xsetech is used to set the second sub window 
+xsetech([0,0.5,1.0,0.5])
+grayplot()
+// get the graphic scales of first subwindow 
+xsetech([0,0,1.0,0.5])
+[wrect,frect,logflag,arect]=xgetech();
+// get the graphic scales of second subwindow 
+xsetech([0,0.5,1.0,0.5])
+[wrect,frect,logflag,arect]=xgetech();
+xbasc();
+xset('default')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xsetech</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.;   </AUTHOR>
+</MAN>

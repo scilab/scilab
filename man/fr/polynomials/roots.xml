@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>ROOTS  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="roots"> racines d&apos;un polynôme  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x]=roots(p)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>p  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : polynôme à coefficients réels ou complexes
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>x=roots(p)</VERB> renvoie dans le vecteur complexe <VERB>x</VERB> les racines du 
+    polynôme <VERB>p</VERB>. Le degré de <VERB>p</VERB> doit être &lt;=100.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+p=poly([0,10,1+%i,1-%i],'x');
+roots(p)
+A=rand(3,3);roots(poly(A,'x'))    // comparaison via le polynôme caractéristique
+spec(A) 
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

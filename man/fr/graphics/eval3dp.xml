@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>eval3dp  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September 1994  </DATE>
+  <SHORT_DESCRIPTION name="eval3dp"> calcule les facettes d&apos;une surface 3D paramétrique  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[Xf,Yf,Zf]=eval3dp(fun,p1,p2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>Xf,Yf,Zf  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrices de taille (4,n-1*m-1). <VERB>Xf(:,i)</VERB> ,<VERB>Yf(:,i)</VERB> et <VERB>Zf(:,i)</VERB>  sont respectivement les coordonnées sur les axes x,y, et z des 4 points de la facette numéro i.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fun  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une fonction Scilab. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>p1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un vecteur de taille <VERB>n</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>p2  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un vecteur de taille <VERB>m</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>eval3dp</VERB> calcule la représentation sous forme de facettes à 4 points de la surface 
+    définie par la fonction <VERB>fun</VERB>. <VERB>fun(p1,p2)</VERB> calcule les coordonnées 
+    x,y et z des points correspondant sur la surface paramétrique définie par
+    [x(i),y(i),z(i)]=fun(p1(i),p2(i)). 
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+p1=linspace(0,2*%pi,10);
+p2=linspace(0,2*%pi,10);
+deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
+                            "y=p1.*cos(p1).*cos(p2)";..
+                            "z=p1.*sin(p2)"])
+[Xf,Yf,Zf]=eval3dp(scp,p1,p2);
+plot3d(Xf,Yf,Zf)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>genfac3d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot3d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

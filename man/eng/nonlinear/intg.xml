@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>intg  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="intg"> definite integral  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[v,err]=intg(a,b,f [,ea [,er])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>a,b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real numbers
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>f  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : external (function or list or string)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ea, er  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real numbers
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ea  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : absolute error required on the result. Default value: 0
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>er  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : relative error required on the result. Default value: 1.d-8
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>err  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : estimated absolute error on the result.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>intg(a,b,f)</VERB> evaluates the definite integral  from <VERB>a</VERB> to
+    <VERB>b</VERB> of <VERB>f(t)dt</VERB>.
+    The evaluation hopefully satisfies following claim for accuracy:
+    <VERB>abs(I-v)&lt;= max(ea,er*abs(I))</VERB> where I stands for the
+    exact value of the integral.
+  </P>
+  <P>
+    <VERB>f</VERB> is an external :
+  </P>
+  <P>
+    If <VERB>f</VERB> is function its definition must be as follows
+    <VERB> y = f(t) </VERB>
+  </P>
+  <P>
+    If <VERB>f</VERB> is a list the list must be as follows:
+    <VERB> list(f,x1,x2,...)</VERB> where <VERB>f</VERB> is a function with calling
+    sequence <VERB>f(t,x1,x2,...)</VERB>.
+  </P>
+  <P>
+    If <VERB>f</VERB> is a string it refers to a the name
+    of a Fortran subroutine (see source code of <VERB>fintg.f</VERB>)
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+deff('[y]=f(x)','y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2))')
+exact=-2.5432596188;
+abs(exact-intg(0,2*%pi,f))
+// See file routines/default/Ex-intg.f 
+abs(exact-intg(0,2*%pi,'intgex'))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>intc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>inttrap</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intsplin</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ode</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

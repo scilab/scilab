@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>Sfgrayplot  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="Sfgrayplot"> représentation 2D en pseudo-couleurs lissées d&apos;une surface définie par une fonction  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>Sfgrayplot(x,y,f,[strf,rect,nax])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>Sfgrayplot</VERB> est identique à <VERB>fgrayplot</VERB> mais le dessin est lissé.
+    La fonction <VERB>fec</VERB> est utilisée pour cela.
+    La surface est représentée en supposant que la hauteur varie linéairement sur un ensemble de triangles construits à partir de la grille :
+  </P>
+  <VERBATIM><![CDATA[
+    ______ 
+    | /| /| 
+    |/_|/_|  
+    | /| /|
+    |/_|/_|
+   ]]></VERBATIM>
+  <P>
+  </P>
+  <P>
+    Taper <VERB>Sfgrayplot()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+t=-1:0.1:1;
+deff("[z]=surf(x,y)","z=x**2+y**2")
+Sfgrayplot(t,t,surf,"111",[-2,-2,2,2])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>fec</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fgrayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>grayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Sgrayplot</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>EVENTSCOPE_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="EVENTSCOPE_f"> Scicos event visualization block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes the visualization of  the input event signals.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Number of event inputs'>
+: an integer giving the number of event input ports colors : a vector of integers. The i-th element is the color number (&gt;=0) or dash type (&lt;0) used to draw the evolution of the i-th  input port signal. See <VERB>xset</VERB> for color (dash type) definitions.
+
+  </ITEM>
+  <ITEM label='Output window number'>
+: The number of graphic window used for the display. It is often good to use high values to avoid conflict with palettes and Super Block windows. If you have more than one scope, make sure they don&apos;t have the same window numbers (unless superposition of the curves is desired). Output window position : a 2 vector specifying the coordinates of the upper left corner of the graphic window. Answer [] for default window position.
+
+  </ITEM>
+  <ITEM label='Output window size'>
+: a 2 vector specifying the width and height  of  the graphic window. Answer [] for default window dimensions.
+
+  </ITEM>
+  <ITEM label='Refresh period'>
+: Maximum value on the X-axis (time). The plot is redrawn when time reaches a multiple of this value.
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='REMARKS'>
+  <P>
+    Output window number, Output window size, Output window position are only taken into account at the initialisation time of the simulation. 
+  </P>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>SCOPXY_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>SCOPE_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ANIMXY_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

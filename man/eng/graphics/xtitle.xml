@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xtitle  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xtitle"> add titles on a graphics window  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xtitle(xtit,[xax,yax,encad])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xtit,xax,yax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrices of strings.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>encad  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer value. If it is 1, a box is drawn around each title.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xtitle</VERB> add titles on a 2D or 3D plot. 
+    <VERB>xtit</VERB> is the general title,
+    <VERB>xax</VERB> is the title on the x-axis and <VERB>yax</VERB> is the title on the y-axis.
+    <VERB>xtitle</VERB> must be called after 
+    a call to a high level plotting function (<VERB>plot2d</VERB>, <VERB>plot3d</VERB>, ...). 
+    If the arguments are matrices,
+    each line of the matrices is displayed on a different
+    line.
+  </P>
+  <P>
+    Enter the command <VERB>xtitle()</VERB> to see a demo.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>titlepage</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

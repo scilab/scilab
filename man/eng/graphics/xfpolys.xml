@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xfpolys  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xfpolys"> fill a set of polygons  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xfpolys(xpols,ypols,[fill])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xpols,ypols  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrices of the same size (p,n) (points of the polygons).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fill  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of size n.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xfpolys</VERB> fills a set of polygons of the same size defined by 
+    the two matrices <VERB>xpols</VERB> and <VERB>ypols</VERB>. 
+    The coordinates of each polygon
+    are stored in a column of <VERB>xpols</VERB> and <VERB>ypols</VERB>.
+  </P>
+  <P>
+    The pattern for filling polygon number i is given by <VERB>fill(i)</VERB>:
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    if <VERB>fill(i)&lt;0</VERB>, the polygon is filled with pattern id <VERB>-fill(i)</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    if <VERB>fill(i)=0</VERB>, the polygon is drawn with the current dash style (or current color).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    if <VERB>fill(i)&gt;0</VERB>, the polygon is filled with pattern id <VERB>fill(i)</VERB>.  Then its contour is drawn with the current dash (or color) and closed if necessary.
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+plot2d(0,0,[-1],"012"," ",[0,-10,210,40])
+x1=[0,10,20,30,20,10,0]';
+y1=[15,30,30,15,0,0,15]';
+xpols=[x1 x1 x1 x1]; xpols=xpols+[0,60,120,180].*.ones(x1);
+ypols=[y1 y1 y1 y1];
+// setting the current dash (or line color)
+xset("color",5)
+xfpolys(xpols,ypols,[-1,0,1,2])
+xset("default")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xfpoly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xpoly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xpolys</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

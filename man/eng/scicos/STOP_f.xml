@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>STOP_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="STOP_f"> Scicos Stop block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block has a unique input event port. Upon the arrival of an
+    event,
+    the simulation is stopped and the main Scicos window is activated.
+    Simulation can be restarted or continued (Run button).
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='State on halt'>
+: scalar. A value to be placed in the state of the block. For debugging purposes this allows to distinguish between different halts.
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xgetmouse  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September  1994  </DATE>
+  <SHORT_DESCRIPTION name="xgetmouse"> get the current position of the mouse  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>rep=xgetmouse([flag])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>rep  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of size 3, [x,y,ibutton].
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer. If present, the mouse click event queue is not cleared when entering  xgetmouse.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    If the mouse pointer is located in the current graphics window, <VERB>xgetmouse</VERB> returns
+    in <VERB>rep</VERB> the current pointer position (x,y) and the value <VERB>ibutton</VERB>.
+     
+    The <VERB>ibutton</VERB> value indicates the action of the button at this point:
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='- if ibutton is -1 then no button was clicked.'> 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='- if ibutton is -5 -4 or -2 then left , middle or right button'> 
+    was released
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='- if ibutton is 0, 1 or 2, then the left, middle or right button'> 
+    was pressed.  If the mouse is not located in the current graphics window, <VERB>xgetmouse</VERB> waits. Moreover, xgetmouse works in a synchonous way, i.e. waits for a mouse event (click or pointer movement) to occur before exiting.
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+xselect(); xbasc(); xsetech([0 0 1 1],[0 0 100 100])
+xset("alufunction",6)
+xtitle(" drawing a rectangle ")
+[b,x0,y0]=xclick(); rep=[x0,y0,-1]; x=x0; y=y0;
+xrect(x0,y0,x-x0,y-y0)
+while rep(3)==-1 then
+    rep=xgetmouse(0)
+    xrect(x0,y0,x-x0,y0-y)
+    x=rep(1); y=rep(2);
+    xrect(x0,y0,x-x0,y0-y)
+end
+xset("alufunction",3)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>locate</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xclick</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. Steer  </AUTHOR>
+</MAN>

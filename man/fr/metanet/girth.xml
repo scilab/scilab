@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>girth  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="girth"> circonférence d&apos;un graphe orienté  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>d = girth(g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graphe (liste) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>d  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>girth</VERB> calcule la longueur (nombre d&apos;arcs) du cycle le plus petit dans 
+    un graphe orienté non pondéré <VERB>g</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 6 2 4 7 5 6 8 4 3 5 1];
+he=[2 1 3 6 4 8 8 7 2 7 3 5];
+g=make_graph('foo',1,8,ta,he);
+g('node_x')=[285  284  335  160  405  189  118  45];
+g('node_y')=[266  179   83  176  368  252  64  309];
+show_graph(g);
+d=girth(g)
+ ]]></EXAMPLE>
+</MAN>

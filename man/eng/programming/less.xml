@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>less  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="less (&lt;)"> lower than comparison  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    logical comparison symbol
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='&lt;&gt;'> 
+    means &quot;different&quot; (same as <VERB>~=</VERB>)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='&lt;'> 
+    means &quot;lower than&quot;
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='&gt;'> 
+    means &quot;larger than&quot;
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='&lt;='> 
+    means lower than or equal to.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='&gt;='> 
+    means larger than or equal to
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>if</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

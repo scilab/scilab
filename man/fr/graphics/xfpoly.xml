@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xfpoly  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xfpoly"> remplit un polygone  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xfpoly(xv,yv,[close])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xv,yv  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : deux vecteurs de même taille (les points du polygone).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>close  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier. Si close=1, la ligne brisée est fermée (valeur par défaut : 0).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xfpoly</VERB> remplit un polygone avec la couleur courante. 
+    Si <VERB>close</VERB> est égal à 1, un point est ajouté à la ligne brisée 
+    <VERB>xv,yv</VERB> pour définir un polygone.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=sin(2*%pi*(0:5)/5);
+y=cos(2*%pi*(0:5)/5);
+plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+xset("color",5)
+xfpoly(x,y)
+xset("default")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xfpolys</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xpoly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xpolys</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

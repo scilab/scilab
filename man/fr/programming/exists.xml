@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>exists  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="exists"> teste l&apos;existence d&apos;une variable  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>exists(name [,where])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>where  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une chaîne de caractères optionnelle valant par défaut <VERB>&apos;all&apos;</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>exists(name)</VERB> renvoie <VERB>1</VERB> si la variable nommée <VERB>name</VERB>
+    existe et <VERB>0</VERB> sinon. 
+  </P>
+  <P>
+    Mise en garde : une fonction utilisant <VERB>exists</VERB> peut renvoyer un résultat dépendant de l&apos;environnement courant !
+  </P>
+  <P>
+    <VERB>exists(name,&apos;local&apos;)</VERB> renvoie <VERB>1</VERB> si la variable nommée
+    <VERB>name</VERB> existe dans l&apos;environnement de la fonction courante et
+    <VERB>0</VERB> sinon.  
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+deff('foo(x)',..
+['disp([exists(''a12''),exists(''a12'',''local'')])'
+ 'disp([exists(''x''),exists(''x'',''local'')])'])
+foo(1)
+a12=[];foo(1)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>isdef</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>whereis</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>type</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>typeof</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>macrovar</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

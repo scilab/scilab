@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>gamma  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September 1997  </DATE>
+  <SHORT_DESCRIPTION name="gamma">  The gamma function.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM> y = gamma(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector with same size.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>gamma(x)</VERB> evaluates the gamma function at all the elements of <VERB>x</VERB>.
+    <VERB>x</VERB> must be real.
+  </P>
+  <P>
+  </P>
+  <P>
+    <VERB>gamma(n+1) = n!</VERB>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+gamma(0.5)
+gamma(6)-prod(1:5)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>gammaln</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>dlgamma</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

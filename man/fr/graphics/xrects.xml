@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xrects  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xrects"> dessine ou remplit un ensemble de rectangles  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xrects(rects,[fill])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>rects  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice de taille (4,n).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fill  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur de taille n.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xrects</VERB> dessine ou remplit un ensemble de rectangles. 
+    Chaque colonne de <VERB>rects</VERB> décrit un 
+    rectangle (point en haut à gauche, largeur, hauteur):
+    <VERB>rects=[x1 y1 w1 h1;x2 y2 w2 h2;...]&apos;</VERB>.
+  </P>
+  <P>
+    <VERB>fill(i)</VERB> définit le motif utilisé pour dessiner ou remplir le rectangle i:
+  </P>
+  <P>
+    si <VERB>fill(i)&lt;0</VERB>, le rectangle <VERB>i</VERB> est dessiné avec la couleur
+    <VERB>-fill(i)</VERB>.
+  </P>
+  <P>
+    si <VERB>fill(i)&gt;0</VERB>, le rectangle <VERB>i</VERB> est rempli avec la couleur
+    <VERB>fill(i)</VERB>.
+  </P>
+  <P>
+    si <VERB>fill(i)=0</VERB>, le rectangle <VERB>i</VERB> est dessiné avec le style de ligne courant.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+plot2d([-100,500],[-50,50],[-1,-1],"022")
+cols=[-34,-33,-32,-20:5:20,32,33,34];
+x=400*(0:14)/14; step=20;
+rects=[x;10*ones(x);step*ones(x);30*ones(x)];
+xrects(rects,cols)
+xnumb(x,15*ones(x),cols)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xfrect</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xrect</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>INTRPLBLK_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="INTRPLBLK_f"> Scicos linear interpolation block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    The output of this block is a function of the input obtained
+    by linear interpolation. This block has a single scalar input 
+    and a single scalar output port. The X coord. and Y coord. give
+    respectively the X coordinate and the Y coordinate of the data
+    points to be interpolated. X coord must be strictly increasing.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='X coord.'>
+: a vector (strictly increasing)
+
+  </ITEM>
+  <ITEM label='Y coord.'>
+: a vector (same size as X coord)
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

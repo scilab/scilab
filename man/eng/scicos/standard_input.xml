@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>standard_input  </TITLE>
+  <TYPE>Scicos function  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="standard_input"> get Scicos block input port positions  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x,y,typ]=standard_input(o)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>o  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Scicos block data structure (see scicos_block)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of x coordinates of the block regular and event input ports
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of y coordinates of the block regular and event output ports
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>typ  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of input ports types (+1 : regular port; -1:event port) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>standard_input</VERB> is the Scilab function used to get
+    standard blocks input port position and types in interfacing
+    functions. 
+  </P>
+  <P>
+    Port positions are computed, each time they are required, as a
+    function of block dimensions.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos_block</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>TRASH_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="TRASH_f"> Scicos Trash block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block does nothing. It simply allows to safely connect the outputs
+    of other blocks which should be ignored. Useful for sinking outputs of
+    no interest. The input size is determined by the compiler.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <P>
+    None
+  </P>
+  </ITEMIZE>
+</MAN>

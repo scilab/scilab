@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>list  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="list"> Objet Scilab, Définition d&apos;une liste  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>list(a1,....an)    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Crée une <VERB>liste</VERB> avec les éléments <VERB>ai</VERB> qui sont des objets Scilab 
+    arbitraires (<VERB>matrice, liste, ...</VERB>). Le type des objets de type liste (renvoyé par la fonction <VERB>type</VERB>) est égal à 15.
+  </P>
+  <P>
+    <VERB>list()</VERB> est une liste vide (0 élément).
+  </P>
+  <P>
+    Opérations sur les listes :
+  </P>
+ 
+  <P>
+     extraction
+    : <VERB>[x,y,z...]=l(v)</VERB> où <VERB>v</VERB> est un vecteur d&apos;indices; 
+    <VERB>[x,y,z]=l(:)</VERB> extrait tous les éléments.
+  </P>
+  <P>
+      insertion
+    : <VERB>l(i)=a</VERB>
+  </P>
+  <P>
+     suppression
+    : <VERB>l(i)=null()</VERB> supprime le i-ème élément de la liste <VERB>l</VERB>.
+  </P>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=list(1,2,3);
+x(4)=10;
+x(10)='a'
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>null</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>tlist</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>insertion</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>extraction</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>size</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>length</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

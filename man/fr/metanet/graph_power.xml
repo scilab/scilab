@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>graph_power  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="graph_power"> puissance k-ième d&apos;un 1-graphe orienté  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>g1 = graph_power(g,k)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graphe (liste)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>k  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : nouveau graphe (liste)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>graph_power</VERB> calcule le graphe orienté <VERB>g1</VERB> qui est la puissance 
+    k-ième du 1-graphe orienté <VERB>g</VERB>.
+    Il y a un arc entre deux sommets dans <VERB>g1</VERB> s&apos;il existe un chemin entre 
+    ces sommets de longueur au plus k dans <VERB>g</VERB>.
+    <VERB>graph_power(g,1)</VERB> est le graphe <VERB>g</VERB>.
+  </P>
+  <P>
+    Si un tel graphe n&apos;existe pas, un vecteur vide est renvoyé.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 4 4 5 6 7 2 3 5 1];
+he=[2 6 3 6 7 8 8 8 4 7 3 5];
+g=make_graph('foo',1,8,ta,he);
+g('node_x')=[285  284  335  160  405  189  118  45];
+g('node_y')=[266  179   83  176  368  252  64  309];
+show_graph(g);
+g1=graph_power(g,2);
+show_graph(g1,'new');
+ ]]></EXAMPLE>
+</MAN>

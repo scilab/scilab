@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>chart  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="chart"> diagramme de Nichols  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>chart([flags])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>chart(gain [,flags])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>chart(gain,phase [,flags])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>gain  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : valeurs réelles ( gains (en DB))
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>phase  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : valeurs réelles (phases (en degrés))
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flags  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une liste de 4 termes list(sup [,leg [,cm [,cphi]]])
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>sup  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 1 -&gt; superposition sur le dessin précédent   0 -&gt; pas de superposition
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>leg  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 1 indique que les légendes sont dessinées, 0 : pas de légendes
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>cm  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : numéro de couleur (voir plot2d) pour les courbes de gain
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>cphi  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : numéro de couleur (voir plot2d) pour les courbes de phase
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Dessine un diagramme de Nichols
+  </P>
+  <P>
+    Les valeurs par défaut pour <VERB>gain</VERB> et <VERB>phase</VERB> sont respectivement :
+  </P>
+  <P>
+    <VERB>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</VERB>
+  </P>
+  <P>
+    <VERB>[-(1:10) , -(20:10:160)]</VERB>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+black(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+chart(list(1,0,2,3));
+
+// Un autre exemple :
+
+xbasc()
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+black([h1;h],0.01,100,['h1';'h'])
+chart([-8 -6 -4],[80 120],list(1,0));
+ ]]></EXAMPLE>
+</MAN>

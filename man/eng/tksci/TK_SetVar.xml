@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>TK_SetVar  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE> 04 June 1998  </DATE>
+  <SHORT_DESCRIPTION name="TK_SetVar"> Set a tcl/tk variable value  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>TK_SetVar(varname, value)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>varname  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string character Contains the name of the tcl/tk variable to set.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>value  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string character Contains the value to set up in the tcl/tk variable 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This routine allows to set a variable within the tcl/tk interpreter. 
+    When tcl/tk support is enabled in scilab, this routine can be used to set up
+    the value of a tcl/tk variable. This can be useful to change some value
+    in the tcl/tk without having to build a tcl/tk instruction (and use TK_EvalStr).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+TK_EvalStr('toplevel .tst2');
+// creates a toplevel TK window. 
+TK_EvalStr('label .tst2.l -textvariable tvar');
+// create a static label
+TK_EvalStr('pack .tst2.l');
+// pack the label widget. It appears on the screen.
+TK_SetVar('tvar','This text has been set directly within scilab');
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ScilabEval</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_EvalFile</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_EvalStr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_GetVar</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+</MAN>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>wigner  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="wigner"> &apos;time-frequency&apos; wigner spectrum  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[tab]=wigner(x,h,deltat,zp)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>tab  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : wigner spectrum (lines correspond to the time variable)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : analyzed signal
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>h  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : data window
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>deltat  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : analysis time increment (in samples)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>zp  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : length of FFT&apos;s. <VERB>%pi/zp</VERB> gives the frequency increment.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    function which computes the &apos;time-frequency&apos; wigner
+    spectrum of a signal.
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+</MAN>

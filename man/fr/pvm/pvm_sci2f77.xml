@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pvm_sci2f77  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>May 1998  </DATE>
+  <SHORT_DESCRIPTION name="pvm_sci2f77"> Convert complex scalar into F77   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[res] = pvm_sci2f77(var)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>var : local scilab variable.  On  return, the  variable will  be  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    overwritten with the result  of conversion operation.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>res  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : if the parameter var is not a variable, the result of the conversion  is returned in res.  
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pvm_sci2f77</VERB>  converts all the complex of a scilab variable
+    (array, list...) in the F77 representation. MAy be useful if an
+    application is sendind data to a non scilab application (direcvtly to
+    a C or F77 program for example).
+  </P>
+  <P>
+    Note that the parameter is passed by adress. It means that if the
+    parameter is a variable, this variable will be overwritten with the
+    result  of conversion operation. On the other case, if the parameter
+    is not a variable, the result will be returned in res.
+  </P>
+  <P>
+    For example:
+  </P>
+  <VERBATIM><![CDATA[
+-->a = [1+%i, 2+2*%i,3+3*%i]
+ a  =
+ 
+!   1. + i      2. + 2.i    3. + 3.i !
+ 
+-->pvm_sci2f77(a)           
+ 
+-->a
+ a  =
+ 
+!   1. + 2.i    1. + 3.i    2. + 3.i !
+-->b = pvm_sci2f77([1+%i, 2+2*%i,3+3*%i])
+ b  =
+ 
+!   1. + 2.i    1. + 3.i    2. + 3.i !
+   ]]></VERBATIM>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pvm_f772sci</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>steadycos  </TITLE>
+  <TYPE>Scicos function  </TYPE>
+  <DATE>May 2000  </DATE>
+  <SHORT_DESCRIPTION name="steadycos"> Finds an equilibrium state of a system described by a scicos diagram  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>scs_m  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a Scicos data structure
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector. Continuous state. Can be set to [] if zero.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>U  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector. Input. Can be set to [] if zero.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector. Output. Can be set to [] if zero.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Indx  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :vector,  index of entries of X that are not fixed. If all can vary, set to 1:$
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Indu  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector, index of entries of U that are not fixed. If all can vary, set to 1:$
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Indy  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :vector,  index of entries of Y that are not fixed. If all can vary, set to 1:$
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Indxp  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :vector, index of entries of XP (derivative of X) that need not be zero. If all can vary, set to <VERB>1:$</VERB>. Default [].
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>param  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : list with two elements (default <VERB>list(1.d-6,0)</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>param(1)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scalar. Perturbation level for linearization; the following variation is used   <VERB>del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>param(2)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scalar. Time t
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Finds an equilibrium state of a general
+    dynamical system described by a scicos diagram.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_main</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lincos</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>R. Nikoukhah  </AUTHOR>
+</MAN>

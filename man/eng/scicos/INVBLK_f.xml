@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>INVBLK_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="INVBLK_f"> Scicos inversion block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block computes <VERB>y(i)=1/u(i)</VERB>. The input (output) size is
+    determined by the context
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <P>
+    None.
+  </P>
+  </ITEMIZE>
+</MAN>

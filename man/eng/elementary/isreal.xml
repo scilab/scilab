@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>isreal  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1998  </DATE>
+  <SHORT_DESCRIPTION name="isreal">  check if a variable as real or complex entries  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>t=isreal(x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>t=isreal(x,eps)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector or matrix with floating point entries or coefficients
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>t  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a boolean
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>isreal(x)</VERB> returns true if x is stored as a real variable and
+    false if x is stored with an (eventually zero) imaginary part.
+  </P>
+  <P>
+    <VERB>isreal(x,eps)</VERB> returns true if x is stored as a real variable or
+    if maximum absolute value of imaginary floating points if less or equal
+    than eps. 
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+isreal([1 2])
+isreal(1+0*%i)
+isreal(1+0*%i,0)
+isreal(1+%s)
+isreal(sprand(3,3,0.1))
+ ]]></EXAMPLE>
+</MAN>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>EVTDLY_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="EVTDLY_f"> Scicos event delay block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    One event is generated <VERB>Delay</VERB> after an event enters the unique input
+    event port. Block may also generate an initial output event.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Delay'>
+: scalar. Time delay between input and output event.
+
+  </ITEM>
+  <ITEM label='Auto-exec'>
+:  scalar. If <VERB>Auto-exec&gt;=0</VERB>  block initially generates an output event at date <VERB>Auto-exec</VERB>.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>CLOCK_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

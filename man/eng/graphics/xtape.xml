@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xtape  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xtape"> set up the record process of graphics  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xtape(str,[num,rect])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>str  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string, &quot;on&quot;, &quot;clear&quot;, &quot;replay&quot; or &quot;replaysc&quot;.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>num  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : row vector of size 4.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xtape</VERB> is used to set up the record process of graphics:
+  </P>
+  <P>
+    xtape(&quot;on&quot;) 
+    just selects the driver &quot;Rec&quot; which records all the 
+    graphics operations.
+  </P>
+  <P>
+    xtape(&quot;clear&quot;,num) 
+    clears the graphics window <VERB>num</VERB> and clears the recorded 
+    graphics associated with window <VERB>num</VERB>.
+  </P>
+  <P>
+    xtape(&quot;replay&quot;,num) 
+    redisplays all the recorded
+    graphics in the window <VERB>num</VERB>.
+  </P>
+  <P>
+    xtape(&quot;replaysc&quot;,num,rect) replots the graphics window <VERB>num</VERB>
+    using <VERB>rect=[xmin,ymin,xmax,ymax]</VERB> as x and y bounds.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>driver</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>replot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xbasc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xbasr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

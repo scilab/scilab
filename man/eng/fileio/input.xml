@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>input  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="input"> prompt for user input  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x]=input(message,[&quot;string&quot;])     </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>message  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : character string 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&quot;string&quot;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : the character string <VERB>&quot;string&quot;</VERB> (may be abbreviated to <VERB>&quot;s&quot;</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real number (or character string if <VERB>&quot;string&quot;</VERB> is in the calling sequence)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    input(message) gives the user the prompt in the text string and 
+    then waits for input from the keyboard.
+  </P>
+  <P>
+    The input can be expression which is evaluated by <VERB>evstr</VERB>.
+  </P>
+  <P>
+    Invoked with two arguments, the output is a character string which is the
+    expression entered at keyboard.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+//x=input("How many iterations?")
+//x=input("What is your name?","string")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>file</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>read</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>write</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>x_dialog</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>x_mdialog</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

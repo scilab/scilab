@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>DELAY_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="DELAY_f"> Scicos  delay block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block implements as a discretized delay. It is in fact a Scicos
+    super block formed by a shift register and a clock.
+  </P>
+  <P>
+    value of the delay is given by  the discretization time step multiplied by the
+    number of states of the register minus one 
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Discretization time step'>
+: positive scalar, delay discretization time step
+
+  </ITEM>
+  <ITEM label='Register initial state'>
+: register initial state vector. Dimension must be greater than  or equal to 2
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>DELAYV_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>EVTDLY_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>REGISTER_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

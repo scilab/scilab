@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ScilabEval  </TITLE>
+  <TYPE>TCL Function  </TYPE>
+  <DATE> 04 June 1998  </DATE>
+  <SHORT_DESCRIPTION name="ScilabEval"> tcl instruction : Evaluate a string with scilab interpreter  </SHORT_DESCRIPTION>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>o  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    str : tcl string character Contains the string to evaluate with the current scilab interpreter.  
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function must be called in a tcl/tk script executed from scilab.
+    It allows to associate scilab actions to tcl/tk widgets (graphic
+    objects).  The string str is put in the scilab interpreter buffer
+    which then evaluates it.  This has in general no border effect in the
+    tcl/tk interpreter.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+//Create a Tcl script using ScilabEval
+tcl_script=['toplevel .w1'
+'button .w1.b -text ""Click here to see a new Scilab Graphic Window""\'
+'  -command {ScilabEval ""xselect()""}'
+'pack .w1.b ']
+mputl(tcl_script,TMPDIR+'/test.tcl')
+// Execute the tcl script
+TK_EvalFile(TMPDIR+'/test.tcl')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>TK_EvalFile</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_EvalStr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_GetVar</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_SetVar</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+</MAN>

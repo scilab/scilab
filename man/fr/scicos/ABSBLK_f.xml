@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ABSBLK_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="ABSBLK_f"> Scicos abs block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes element-wise vector absolute value operation. 
+    This block has a single input and a single output port.
+    Port dimension is determined by the context.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <P>
+    None.
+  </P>
+  </ITEMIZE>
+</MAN>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>CLOCK_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="CLOCK_f"> Scicos periodic event generator  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is a Super Block constructed by feeding back the output
+    of an event delay block into its input event port. The unique
+    output of this block generates a regular train of events.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Period'>
+: scalar. One over the frequency of the clock. Period is the time that separates two output events.
+
+  </ITEM>
+  <ITEM label='Init time'>
+: scalar. Starting date. if negative the clock never starts. 
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>EVTDLY_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

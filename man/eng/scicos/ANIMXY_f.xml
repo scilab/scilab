@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ANIMXY_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="ANIMXY_f"> Scicos 2D animated visualization block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes the visualization of the evolution of the two
+    regular input signals by drawing the second input as a function of
+    the first at instants of events on the event input port.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Curve colors'>
+: an integer. It is the color number (&gt;=0) or marker type (&lt;0) used to draw the evolution of the input port signal. See <VERB>xset()</VERB> for color (dash type) definitions.
+
+  </ITEM>
+  <ITEM label='Line or mark size'>
+: an integer. 
+
+  </ITEM>
+  <ITEM label='Output window number'>
+: The number of graphic window used for the display. It is often good to use high values to avoid conflict with palettes and Super Block windows. If you have more than one scope, make sure they don&apos;t have the same window numbers (unless superposition of the curves is desired).
+
+  </ITEM>
+  <ITEM label='Output window position'>
+: a 2 vector specifying the coordinates of the upper left corner of the graphic window. Answer [] for default window position.
+
+  </ITEM>
+  <ITEM label='Output window size'>
+: a 2 vector specifying the width and height  of  the graphic window. Answer [] for default window dimensions.
+
+  </ITEM>
+  <ITEM label='Xmin, Xmax'>
+: Minimum and maximum values of the first input; used to set up the X-axis of the plot in the graphics window.
+
+  </ITEM>
+  <ITEM label='Ymin, Ymax'>
+: Minimum and maximum values of the second input; used to set up the  Y-axis of the plot in the graphics window.
+
+  </ITEM>
+  <ITEM label='Buffer size'>
+: an integer. In order to minimize the number of graphics outputs, data may buffered.
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='REMARKS'>
+  <P>
+    Output window number, Output window size, Output window position are only taken into account at the initialisation time of the simulation.   
+  </P>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>SCOPE_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>EVENTSCOPE_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>SCOPXY_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

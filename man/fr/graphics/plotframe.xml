@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>plotframe  </TITLE>
+  <TYPE>  </TYPE>
+  <DATE>October 1994  </DATE>
+  <SHORT_DESCRIPTION name="plotframe"> dessine un cadre avec graduations et définition de l&apos;échelle  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>plotframe(rect,tics,[arg_opt1,arg_opt2,arg_opt3])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur du type <VERB>[xmin,ymin,xmax,ymax]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>tics  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur du type <VERB>[nx,mx,ny,my]</VERB> où <VERB>mx, nx</VERB> (resp. <VERB>my, ny</VERB>) sont le nombre d&apos;intervalles et de sous-intervalle pour les graduations de l&apos;axe Ox (resp. Oy).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>arg_optX  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : arguments optionnels choisi parmi :
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>flags  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur booléen <VERB>[wantgrids,findbounds]</VERB> (<VERB>%t</VERB> ou <VERB>%f</VERB>) indiquant si l&apos;on désire une grille. Si <VERB>findbounds</VERB> vaut <VERB>%t</VERB>, les bornes données dans <VERB>rect</VERB> sont éventuellement modifiées  (en fait légèrement augmentées) pour simplifier les graduations : dans ce cas <VERB>tics(2)</VERB> et  <VERB>tics(4)</VERB> sont ignorés.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>captions  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur de 3 chaînes de caractères <VERB>[title,x-leg,y-leg]</VERB> correspondant au titre du dessin et aux légendes des axes x et y.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>subwin  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur de taille 4 définissant la sous-fenêtre. La sous-fenêtre est spécifiée avec le paramètre <VERB>subwin=[x,y,w,h]</VERB> (point en haut à gauche, largeur, hauteur).  Les valeurs dans <VERB>subwin</VERB> sont spécifiées sous la forme d&apos;une proportion de la largeur ou de la hauteur de la fenêtre graphique courante (voir <VERB>xsetech</VERB>).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>plotframe</VERB> est utilisée avec les fonctions de dessin 2D <VERB>plot2d</VERB>,... 
+    pour dessiner le cadre. Elle doit être utilisée avant <VERB>plot2d</VERB> qui doit être ensuite appelée avec le mode de superposition &quot;000&quot;.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=[-0.3:0.8:27.3]';
+y=rand(x);
+rect=[min(x),min(y),max(x),max(y)];
+tics=[4,10,2,5];    // 4 x-intervalles et 2 y-intervalles
+plotframe(rect,tics,[%f,%f],["My plot","x","y"],[0,0,0.5,0.5])
+plot2d(x,y,2,"000")
+plotframe(rect,tics,[%t,%f],["My plot avec grille","x","y"],[0.5,0,0.5,0.5])
+plot2d(x,y,3,"000")
+plotframe(rect,tics,[%t,%t],..
+["plot avec grille et bornes automatiques","x","y"],[0,0.5,0.5,0.5])
+plot2d(x,y,4,"000")
+plotframe(rect,tics,[%f,%t],..
+ ["plot sans grille mais avec bornes automatiques ","x","y"],..
+ [0.5,0.5,0.5,0.5])
+plot2d(x,y,5,"000")
+xset("default")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>graduate</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xsetech</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

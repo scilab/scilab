@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>drawaxis  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 2000  </DATE>
+  <SHORT_DESCRIPTION name="drawaxis"> dessine un axe  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>drawaxis([options])   </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>// options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>dir=chaîne  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : utilisé pour spécifier la direction des graduations. <VERB>chaîne</VERB> peut être choisi parmi  &apos;u&apos;,&apos;r&apos;,&apos;d&apos;,&apos;l&apos; (&apos;l&apos; est la valeur par défaut). Les valeurs &apos;u&apos;,&apos;r&apos;,&apos;d&apos;,&apos;l&apos; signifient up (en haut), right (à droite) , down (en bas) , left (à gauche).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>tics=chaîne  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : valeur décrivant comment sont données les graduations.   <VERB>chaîne</VERB> peut être choisi parmi &apos;v&apos;,&apos;r&apos;, et &apos;i&apos; (&apos;v&apos; est la valeur par défaut).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : deux vecteurs donnant les positions des graduations.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>val=chaîne  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une matrice de chaînes de caractères donnant les labels à dessiner en face des graduations.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fontsize=int  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : spécifie la taille de la police utilisée pour dessiner les labels des graduations. La valeur par défaut est  <VERB>-1</VERB> (taille courante de police).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>format_n=chaîne  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : format utilisé pour afficher les nombres au dessus des graduations.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>seg= 1 ou 0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : valeur contrôlant l&apos;affichage du segment de base de l&apos;axe (1 par défaut).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>sub_int=entier  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un entier donnant le nombre de sous-graduations
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>textcolor=entier  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : spécifie la couleur à utiliser pour afficher les valeurs sur l&apos;axe. La valeur par défaut est <VERB>-1</VERB> (couleur courante).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ticscolor=entier  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : spécifie la couleur à utiliser pour dessiner les graduations. La valeur par défaut est <VERB>-1</VERB> (couleur courante).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>drawaxis</VERB> est utilisée pour dessiner un axe vertical ou horizontal. La direction de l&apos;axe est donnée par dir <VERB>dir = &apos;u&apos;</VERB> ou <VERB>&apos;d&apos;</VERB> donne un axe horizontal avec des graduations 
+    dirigées vers le haut (<VERB>&apos;u&apos;</VERB>) ou le bas (<VERB>&apos;d&apos;</VERB>). 
+    <VERB>dir = &apos;r&apos;</VERB> ou <VERB>&apos;l&apos;</VERB> donne un axe vertical avec des graduations allant vers la droite (<VERB>&apos;r&apos;</VERB>) ou vers la gauche (<VERB>&apos;l&apos;</VERB>). 
+  </P>
+  <P>
+    <VERB>x</VERB> et <VERB>y</VERB> donnent les positions des graduations. 
+    Si l&apos;axe est horizontal alors <VERB>y</VERB> 
+    doit être un scalaire ou peut être omis et <VERB>x</VERB> 
+    est un vecteur. La signification de <VERB>x</VERB> 
+    est contrôlée par <VERB>tics</VERB>. 
+  </P>
+  <P>
+    Si <VERB>tics=&apos;v&apos;</VERB> alors <VERB>x</VERB> donne les positions des graduations sur l&apos;axe des x. 
+  </P>
+  <P>
+    Si <VERB>tics=&apos;r&apos;</VERB> alors <VERB>x</VERB> doit être de taille 3. <VERB>x=[xmin,xmax,n]</VERB> et 
+    <VERB>n</VERB> donne le nombre d&apos;intervalles.
+  </P>
+  <P>
+    Si <VERB>tics=&apos;i&apos;</VERB> alors <VERB>x</VERB> doit être de taille 4, <VERB>x=[k1,k2,a,n]</VERB>. 
+    Dans ce cas <VERB>xmin=k1*10^a</VERB>, <VERB>xmax=k2*10^a</VERB> et <VERB>n</VERB> donne le nombre d&apos;intervalles.
+  </P>
+ 
+  <P>
+    Si <VERB>y</VERB> est omis alors l&apos;axe est positionné en haut du cadre si <VERB>dir=&apos;u&apos;</VERB> ou en bas si <VERB>dir=&apos;d&apos;</VERB>
+  </P>
+  <P>
+    Par défaut, les nombres sont dessinés sur l&apos;axe. Ils sont dessinés en utilisant un format par défaut qui peut être changé avec <VERB>format_n</VERB>. 
+    Il est aussi possible d&apos;afficher des chaînes de caractères données au lieu des nombres, 
+    si <VERB>val</VERB> est fourni en argument. La taille de <VERB>val</VERB> doit alors
+    être égale au nombre de graduations. 
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+plot2d(1:10,1:10,1,"020")
+// axe horizontal
+drawaxis(x=2:7,y=4,dir='u',tics='v')
+// axe horizontal en haut du cadre
+drawaxis(x=2:7,dir='u',tics='v') 
+// axe horizontal en bas du cadre
+drawaxis(x=2:7,dir='d',tics='v') 
+
+// axe horizontal donné par une plage de variation 
+drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
+
+// axe vertical
+drawaxis(x=4,y=2:7,dir='r',tics='v')
+drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
+drawaxis(y=2:7,dir='r',tics='v')
+drawaxis(y=2:7,dir='l',tics='v')
+
+// axe horizontal avec chaînes de caractères au dessus des graduations
+drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
+// axe vertical avec chaînes de caractères au dessus des graduations
+drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
+
+// axe horizontal avec 'i' 
+drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
+drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
+
+// encore un axe horizontal
+drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
+ ]]></EXAMPLE>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

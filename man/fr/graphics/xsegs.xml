@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xsegs  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xsegs"> dessine des segments non connectés  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xsegs(xv,yv,[style])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xv,yv  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrices de la même taille.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>style  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ou scalaire. Si <VERB>style</VERB> est un scalaire positif, il donne la couleur pour tous les segments. Si <VERB>style</VERB> est négatif  la couleur courante est utilisé. Si <VERB>style</VERB> est un vecteur,  alors <VERB>style(i)</VERB> donne la couleur du segment <VERB>i</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xsegs</VERB> dessine un ensemble de segments déconnectés donnés par <VERB>xv</VERB>
+    et <VERB>yv</VERB>. Si <VERB>xv</VERB> et <VERB>yv</VERB> sont des matrices 
+    elles sont considérées comme des vecteurs (par concaténation de leurs colonnes).
+    Les coordonnées des deux points définissant un segment
+    sont données par les valeurs consécutives des termes de <VERB>xv</VERB> et <VERB>yv</VERB>:
+  </P>
+  <P>
+    <VERB>(xv(i),yv(i))--&gt;(xv(i+1),yv(i+1))</VERB>.
+  </P>
+  <P>
+    Par exemple, en utilisant des matrices de taille (2,n) :
+  </P>
+  <VERBATIM><![CDATA[
+xv=[xi_1 xi_2 ...;
+    xf_1 xf_2 ...]
+
+yv=[yi_1 yi_2 ...;
+    yf_1 yf_2 ...]
+   ]]></VERBATIM>
+  <P>
+    le segment numéro k est défini par : <VERB>(xi_k,yi_k)--&gt;(xf_k,yf_k)</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=2*%pi*(0:9)/8;
+xv=[sin(x);9*sin(x)];
+yv=[cos(x);9*cos(x)];
+plot2d([-10,10],[-10,10],[-1,-1],"022")
+xsegs(xv,yv,1:10)
+ ]]></EXAMPLE>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

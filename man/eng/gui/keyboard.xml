@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>keyboard  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="keyboard"> keyboard commands  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Let <VERB>C-</VERB> stands for the control key. The following keyboard commands are available:
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='C-l'> 
+    clears the Scilab window
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='C-d'> 
+    deletes the current character
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='C-p'> 
+    calls back the preceding command
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='C-n'> 
+    go to next command line
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='C-a'> 
+    moves the cursor to the beginning of command line.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='C-b'> 
+    backspace, moves the cursor one character to the left
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='C-f'> 
+    forwards, moves the cursor one character to the right
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='C-k'> 
+    kills command line from cursor to the end.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='C-y'> 
+    yank, retrieves killed line.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='!beg'> 
+    looks for last command line which begins by <VERB>beg</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='C-c'> 
+    interrupts Scilab and pause after carriage return. (Only functions can be interrupted). Clicking on the stop button enters a <VERB>C-C</VERB>.
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pause</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>read</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>input</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

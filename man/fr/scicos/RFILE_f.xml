@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>RFILE_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="RFILE_f"> Scicos &quot;read from file&quot; block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block allows user to read  datas in a file, in formatted or binary
+    mode. <VERB>Output record selection</VERB> and <VERB>Time record Selection</VERB>
+    allows the user to select data among file records.
+  </P>
+  <P>
+    Each call to the block advance one record in the file. 
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Time record Selection'>
+: an empty matrix or a positive integer. If an integer <VERB>i</VERB> is given the  <VERB>i</VERB>th element of the read record is assumed to be the date of the output event. If empty no output event exists.
+
+  </ITEM>
+  <ITEM label='Output record selection'>
+: a vector of positive integer. <VERB>[k1,..,kn]</VERB>,The <VERB>ki</VERB>th element of  the read record gives the value of <VERB>i</VERB>th output.
+
+  </ITEM>
+  <ITEM label='Input file name'>
+: a character string defining the path of the file 
+
+  </ITEM>
+  <ITEM label='Input Format'>
+: a character string defining the Fortran format to use or nothing for an unformatted (binary) write. If given, the format must began by a left parenthesis and end by a right  parenthesis. example: (e10.3).
+
+  </ITEM>
+  <ITEM label='Buffer size'>
+: To improve efficiency it is possible to buffer the input data. read on the file is only done after each <VERB>Buffer size</VERB> call to the block.
+
+  </ITEM>
+  <ITEM label='size of output'>
+: a scalar. This fixes the number of &quot;value&quot; read.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>WFILE_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

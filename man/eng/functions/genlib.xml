@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>genlib  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Nov 2000  </DATE>
+  <SHORT_DESCRIPTION name="genlib"> build library from all functions in given directory  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>genlib(lib-name [,dir-name, [ force [,verbose]]])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>lib-name:  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Scilab string.  The variable name of the library to (re)create.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>dir-name:  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Scilab string.  The name of the directory to look for <VERB>.bin</VERB>-files; default value is the current directory.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>force,verbose  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : boolean values (default values <VERB>%f</VERB>). 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    For each <VERB>.sci</VERB> file in <VERB>dir-name</VERB>, <VERB>genlib</VERB> executes a
+    <VERB>getf</VERB> and saves the functions to the corresponding <VERB>.bin</VERB>
+    file.  The <VERB>.sci</VERB> file must not contain anything but Scilab
+    functions.  If a <VERB>.bin</VERB> file is newer than the associated
+    <VERB>.sci</VERB> file, <VERB>genlib</VERB> does not translate and save the file. 
+  </P>
+  <P>
+    This default behaviour can be changed if <VERB>force</VERB> is given and 
+    set to <VERB>%t</VERB>. In this latter case the recompilation iis always 
+    performed for each <VERB>.sci</VERB> file. 
+  </P>
+  <P>
+    When all <VERB>.sci</VERB> files have been processed, <VERB>genlib</VERB> creates a
+    library variable named <VERB>lib-name</VERB> and saves it in the file
+    <VERB>lib</VERB> in <VERB>dir-name</VERB>.
+  </P>
+  <P>
+    If <VERB>verbose</VERB> is et to <VERB>%t</VERB> informations are displayed during 
+    the build process.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='RESTRICTIONS'>
+  <P>
+    Scilab tacitly assumes that file <VERB>foo.sci</VERB> defines only a single function named <VERB>foo</VERB>. 
+  </P>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>save</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lib</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

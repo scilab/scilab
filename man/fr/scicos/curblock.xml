@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>curblock  </TITLE>
+  <TYPE>Scicos function  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="curblock"> get current block index in a Scicos simulation function  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>k=curblock()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>k  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, index of the block corresponding to the Scilab simulation function where this function is called.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    During simulation it may be interesting to get the index of the current
+    block to trace execution, to get its label, to animate the block icon
+    according to simulation...
+  </P>
+  <P>
+    For block with a computational function written in Scilab, Scilab
+    primitive function <VERB>curblock()</VERB>  allows to get the index of the
+    current block in the compiled data structure.
+  </P>
+  <P>
+    To obtain path to the block in the Scicos main structure user may uses
+    the <VERB>corinv</VERB> table (see scicos_cpr).
+  </P>
+  <P>
+    For block with a computational function written in C user may uses the
+    C function  <VERB>k=C2F(getcurblock)()</VERB>. Where <VERB>C2F</VERB> is the C
+    compilation macro defined in <VERB>&lt;SCIDIR&gt;/routines/machine.h</VERB>
+  </P>
+  <P>
+    For block with a computational function written in Fortran user may uses the
+    integer  function  <VERB>k=getcurblock()</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>getblocklabel</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getscicosvars</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>setscicosvars</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_cpr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_main</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

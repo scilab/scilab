@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scicos  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="scicos"> Block diagram editor and GUI for the hybrid simulator scicosim  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>sys=scicos()  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>sys=scicos(sys,[menus])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>sys=scicos(file,[menus])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>sys  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a Scicos data structure
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>file  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string. The path of a file containing the  image of a Scicos data structure. These files may have <VERB>.cos</VERB> or <VERB>.cosf</VERB> extensions.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>menus  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a vector of character strings. It allows to select some of the Scicos menus. If <VERB>menus==[]</VERB>  Scicos draws the diagram and the contents of each super blocks in separate windows without menu bar. This option is useful to print diagrams. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Scicos is a visual editor for constructing models of hybrid dynamical
+    systems. Invoking Scicos with no argument opens up an empty Scicos
+    window. Models can then be assembled, loaded, saved, compiled,
+    simulated, using GUI of Scicos. The input and ouput arguments are only
+    useful for debugging purposes. Scicos serves as an interface to the
+    various block diagram compilers and the hybrid simulator scicosim.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicosim</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_main</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_menus</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

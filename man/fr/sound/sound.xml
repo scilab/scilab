@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sound  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="sound">  sound player facility  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>sound(y)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>sound(y,fs)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>sound(y,fs,bits)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fs  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real number, sampling frequency
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>bits  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real number, number of bits (usually 8 or 16)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>sound(y,fs)</VERB> sends the signal in vector y (with sample frequency
+    fs) out to the speaker. Values in y are assumed to be in the 
+    range -1.0 &lt;= y &lt;= 1.0. Values outside that range are ugnored.  
+    Stereo sounds are played, on platforms that support it, when y is 
+    an N-by-2 matrix. 
+    <VERB>sound(y)</VERB> plays the sound at the default sample rate of 8192 Hz.
+    <VERB>sound(y,fs,nbits)</VERB> plays the sound using nbits bits/sample if
+    possible.  Most platforms support bits=8 or 16.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>playsnd</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>REGISTER_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="REGISTER_f"> Scicos shift register block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes a shift register. At every input event, the
+    register is shifted one step.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Initial condition'>
+: a column vector. It contains the initial state of the register.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>DELAY_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>DELAYV_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>EVTDLY_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

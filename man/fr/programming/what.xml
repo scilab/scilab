@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>what  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="what"> liste des primitives Scilab  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Liste des primitives et commandes de bas niveau.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+</MAN>

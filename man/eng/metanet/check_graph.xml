@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>check_graph  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1995  </DATE>
+  <SHORT_DESCRIPTION name="check_graph"> checks a Scilab graph list  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>check_graph(g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list to check
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>check_graph</VERB> checks its argument <VERB>g</VERB> to see if it is a
+    graph list. The checking is not only syntactic (number of elements of the
+    list, compatible sizes of the vectors), but also semantic in the sense that 
+    <VERB>check_graph</VERB> checks that <VERB>node_number</VERB>, <VERB>tail</VERB> and
+    <VERB>head</VERB> elements of the list can really represent a graph.
+  </P>
+  <P>
+    Moreover, the names of the node must be different. In fact, this
+    do not give errors in Scilab, but strange behaviour can appear when using the 
+    Metanet window. So, this is not checked by <VERB>check_graph</VERB> 
+    because it is time consuming. It is only checked when loading, saving
+    or showing a graph.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>graph-list</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

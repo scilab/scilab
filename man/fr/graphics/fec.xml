@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>fec  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="fec"> dessin en pseudo-couleurs d&apos;une surface définie sur une triangulation  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : deux vecteurs de taille <VERB>n</VERB>, <VERB>(x(i),y(i))</VERB> donne les coordonnées du sommet <VERB>i</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>func  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un vecteur de taille <VERB>n</VERB> : <VERB>func(i)</VERB> donne la valeur de la fonction à représenter
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>triangles  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une matrice <VERB>[Ntr,5]</VERB>. Chaque ligne de <VERB>triangles</VERB> représente un triangle du maillage <VERB>triangle(j) = [number,node1,node2,node3,flag]</VERB>. <VERB>node1,node2,node3</VERB> sont les numéros des sommets qui constituent le triangle j. number est le numéro du triangle et flag est un entier qui n&apos;est pas utilisé par fec. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>strf,leg,rect,nax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : voir plot2d
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>zminmax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : parfait pour faire des animations avec fec. zminmax est un vecteur de  taille 2 [zmin zmax] qui donne les z associés à  la première et la dernière couleur (de la table des couleurs courante). Plus exactement si la table des couleurs a nc couleurs et si on note dz = (zmax-zmin)/nc, alors la partie de la triangulation où   zmin + (i-1)dz &lt;= z &lt; zmin + i dz est remplie avec la couleur i). Par défaut zmin = min(func) et zmax = max(func). Si vous voulez faire une animation avec des valeurs de func changeant en fonction du temps, prenez zmin et zmax égaux au minimum et maximum globaux.  ATTENTION : pour les valeurs de func plus grandes que zmax la dernière couleur est utilisée, et pour les valeurs plus petites que zmin la première couleur est utilisée (on ne voit donc pas que les niveaux de zminmax sont franchis).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>colminmax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un vecteur de 2 entiers positifs colminmax=[colmin colmax] avec 1 &lt;= colmin &lt; colmax &lt;= nc (où nc est la taille de la table des couleurs). Permet de définir un sous-ensemble de la table des couleurs à utiliser, ici cmap(colmin:colmax). Par défaut toute la table des couleurs est utilisée.     
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Voir les fonctions de démonstration dans le répertoire <VERB>demos/fec</VERB>.
+  </P>
+  <P>
+    <VERB>fec.ex1</VERB> est une simple démo dans laquelle le maillage et la fonction 
+    sont construits en langage Scilab. 
+  </P>
+  <P>
+    <VERB>fec.ex2</VERB> est un exemple où le maillage est construit avec un mailleur externe (type amdba).
+    Un ensemble de macros (<VERB>macros.sci</VERB>) peut être utilisé pour lire les fichiers de données correspondants. 
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>Sfgrayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Sgrayplot</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

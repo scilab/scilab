@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>champ  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="champ"> représentation d&apos;un champ de vecteurs dans le plan  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>champ(x,y,fx,fy,[arfact,rect,strf])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>champ(x,y,fx,fy,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : deux vecteurs définissant la grille
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fx  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une matrice décrivant la composante x du champ de vecteurs. <VERB>fx(i,j)</VERB> est la composante x du champ de vecteurs au point <VERB>(x(i),y(j))</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fy  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une matrice décrivant la composante y du champ de vecteurs. <VERB>fy(i,j)</VERB> est la composante y du champ de vecteurs au point <VERB>(x(i),y(j))</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une suite d&apos;affectations <VERB>key1=value1, key2=value2</VERB>, ... où key1,key2, ... peuvent prendre les valeurs : afact, rect, strf (voir ci-dessous).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>arfact  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un argument optionnel de type réel donnant le facteur d&apos;échelle pour l&apos;affichage des flèches (1.0 par défaut).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un vecteur <VERB>rect=[xmin,ymin,xmax,ymax]</VERB>, les limites du dessin.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>strf  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une chaîne de caractères de longueur 3 &quot;xyz&quot; ayant la même signification que le paramètre <VERB>strf</VERB> de <VERB>plot2d</VERB>. Le premier caractère x n&apos;a pas d&apos;effet avec <VERB>champ</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>champ</VERB> dessine un champ de vecteurs dans le plan avec des flèches colorées. La longueur des flèches dépend de l&apos;intensité du champ.
+  </P>
+  <P>
+    Si la couleur des flèches doit être proportionnelle à l&apos;intensité du champ, utiliser <VERB>champ1</VERB>.
+  </P>
+  <P>
+    Taper <VERB>champ()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// utilisation de rect pour les limites du dessin
+champ(-5:5,-5:5,rand(11,11),rand(11,11),1,[-10,-10,10,10],"011")
+// utilisation de  (x,y) pour récuperer les limites 
+xbasc()
+champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>champ1</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fchamp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

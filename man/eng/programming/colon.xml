@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>colon  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="colon (:)"> colon operator  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+ 
+
+  <DESCRIPTION_ITEM  label=':'> 
+    : Colon. Used in subscripts and loops.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='j:k'> 
+    is the vector 
+  </DESCRIPTION_ITEM>
+  <P>
+    (empty if <VERB>J&gt;K</VERB>).
+  </P>
+
+  <DESCRIPTION_ITEM  label='j:d:k'> 
+    is the vector 
+  </DESCRIPTION_ITEM>
+  <P>
+    The colon notation can also be used to pick out selected rows,
+    columns and elements of vectors and matrices.
+  </P>
+
+  <DESCRIPTION_ITEM  label='A(:)'> 
+    is the vector of all the elements of <VERB>A</VERB>  regarded as a single column. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='A(:,j)'> 
+    is the <VERB>j</VERB>-th column of <VERB>A</VERB>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='A(j:k)'> 
+    is 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='A(:,j:k)'> 
+    is 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='A(:)=w'> 
+    fills the matrix <VERB>A</VERB> with entries of <VERB>w</VERB> (taken column by column if <VERB>w</VERB> is a matrix).
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>matrix</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

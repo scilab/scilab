@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>LOGBLK_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="LOGBLK_f"> Scicos logarithm  block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes <VERB>y(i)=log(u(i))/log(a)</VERB>. The input and output port sizes
+    are determined by the context.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='a : real scalar greater than 1'>
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

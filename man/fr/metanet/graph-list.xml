@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>graph-list  </TITLE>
+  <TYPE>Scilab type  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="graph-list"> description d&apos;un graphe (sous forme de liste)  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Un graphe dans Scilab est représenté par une liste typée.
+  </P>
+  <P>
+    Voir ci-dessous la description complète de cette liste.
+    Chaque élément est décrit par une ou plusieurs lignes.
+    La première ligne donne
+    le nom de l&apos;élément et sa définition. Des informations supplémentaires, 
+    telles que les valeurs par défaut des éléments pouvant en avoir une, sont 
+    données sur les autres lignes.
+    En fait, seul les 5 premiers éléments doivent avoir une valeur, les 
+    autres pouvant être définis comme un vecteur vide <VERB>[]</VERB>, la valeur par 
+    défaut étant utilisée par les fonctions ou la fenêtre de Metanet.
+    Par exemple, il est possible de définir un graphe par :
+  </P>
+  <VERBATIM><![CDATA[
+g=make_graph('min',1,1,[1],[1]);
+   ]]></VERBATIM>
+  <P>
+    qui est le graphe le plus simple que l&apos;on puisse créer avec Metanet (il est orienté, 
+    possède un sommet et une boucle sur ce sommet).
+  </P>
+  <P>
+    Le nom des élément dans la liste est très important car il est utilisé 
+    pour y accéder. Par exemple si <VERB>g</VERB> est un graphe, pour obtenir le nom du graphe, 
+    il suffit de taper :
+  </P>
+  <VERBATIM><![CDATA[
+g('name')
+   ]]></VERBATIM>
+  <P>
+    ou 
+  </P>
+  <VERBATIM><![CDATA[
+g.name
+   ]]></VERBATIM>
+  <P>
+    et pour changer le nom du graphe en <VERB>&apos;toto&apos;</VERB> :
+  </P>
+  <VERBATIM><![CDATA[
+g('name')='toto'; 
+   ]]></VERBATIM>
+  <P>
+    ou 
+  </P>
+  <VERBATIM><![CDATA[
+g.name='toto';
+   ]]></VERBATIM>
+  <P>
+  </P>
+  <P>
+    On peut obtenir le nombre d&apos;arêtes et le nombre d&apos;arcs du graphe
+    avec <VERB>edge_number(g)</VERB> et <VERB>arc_number(g)</VERB> (ces noms ne sont pas 
+    ceux des éléments de la liste). Pour raisons de compatibilité <VERB>node_number(g)</VERB> 
+    peut être utilisé à la place de <VERB>g(&apos;node_number&apos;)</VERB> ou <VERB>g.node_number</VERB>.
+  </P>
+  <P>
+    Un graphe peut être syntaxiquement correct mais ne pas représenter un 
+    graphe valide.
+    Utiliser la fonction <VERB>check_graph</VERB> pour le vérifier.
+    De plus, les noms des sommets doivent être différents. En fait, cela ne donne pas d&apos;erreur dans Scilab, mais un comportement étrange peut en résulter dans la
+    fenêtre Metanet. Ceci n&apos;est pas vérifié par <VERB>check_graph</VERB> 
+    car cela prendrait trop de temps. Cela est seulement vérifié lors de sa visualisation, sauvegarde ou chargement.
+  </P>
+  <P>
+  </P>
+  <P>
+    Les éléments d&apos;un graphe sont les suivants :
+  </P>
+  <P>
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='name :'> 
+    - le nom du graphe
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    c&apos;est une chaîne de caractères (longueur &lt; 80)
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='oriented :'> 
+    - flag donnant le type du graphe
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    il est égal à 1 (graphe orienté) ou égal à 0 (graphe non-orienté)
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_number :'> 
+    - nombre de sommets 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='tail :'> 
+    - vecteur ligne des numéros des sommets origines
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='head :'> 
+    - vecteur ligne des numéros des sommets extrémités 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='node_name :'> 
+    - vecteur ligne des noms des sommets
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    les noms des sommets doivent être différents 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    par défaut les noms des sommets sont égaux à leurs numéros
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_type :'> 
+    - vecteur ligne des types des sommets
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    le type est un entier entre 0 et 2, 0 par défaut (sommet normal) :
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 = sommet normal
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    1 = puits
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    2 = source
+  </DESCRIPTION_ITEM>
+ 
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_x :'> 
+    - vecteur ligne des coordonnées x des sommets
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    valeur par défaut calculée
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_y :'> 
+    - vecteur ligne des coordonnées y des sommets
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    valeur par défaut calculée
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_color :'> 
+    - vecteur ligne des couleurs des sommets
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    La couleur est un entier entre 0 et 16, 0 par défaut :
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 = couleur de premier plan par défaut
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    1 = navyblue
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    2 = blue
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    3 = skyblue
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    4 = aquamarine
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    5 = forestgreen
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    6 = green
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    7 = lightcyan
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    8 = cyan
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    9 = orange
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    10 = red
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    11 = magenta
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    12 = violet
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    13 = yellow
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    14 = gold
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    15 = beige
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    16 = background
+  </DESCRIPTION_ITEM>
+ 
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_diam :'> 
+    - vecteur ligne des diamètres des sommets en pixels
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    un sommet est dessiné sous forme d&apos;un cercle
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    par défaut, valeur de l&apos;élément <VERB>default_node_diam</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_border :'> 
+    - vecteur ligne de l&apos;épaisseur des bords des sommets
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    un sommet est dessiné sous forme d&apos;un cercle
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    par défaut, valeur de l&apos;élément  <VERB>default_node_border</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_font_size :'> 
+    - vecteur ligne de la taille de la police utilisée pour afficher le nom du sommet
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    8, 10, 12, 14, 18 ou 24, au choix
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    par défaut, valeur de l&apos;élément  <VERB>default_font_size</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_demand :'> 
+    - vecteur ligne des demandes des sommets
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_name :'> 
+    - vecteur ligne des noms d&apos;arêtes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    il est souhaitable que les noms des arêtes soient différents, mais c&apos;est n&apos;est pas  obligatoire 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    par défaut les noms des arêtes sont leur numéros
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_color:'> 
+    - vecteur ligne des couleurs des arêtes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    la couleur est un entier entre 0 et 16 (voir <VERB>node_color</VERB>)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 = couleur de premier plan (par défaut)
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_width:'> 
+    - vecteur ligne des épaisseurs des arêtes en pixels
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    par défaut, valeur de l&apos;élément <VERB>default_edge_width</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_hi_width :'> 
+    - vecteur ligne des épaisseurs des arêtes mises en évidence (en pixels)
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    par défaut, valeur de l&apos;élément <VERB>default_edge_hi_width</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_font_size:'> 
+    -  vecteur ligne de la taille de la police utilisée pour afficher le nom  des arêtes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    8, 10, 12, 14, 18 ou 24
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    par défaut, valeur de l&apos;élément <VERB>default_font_size</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_length :'> 
+    - vecteur ligne des longueurs des arêtes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_cost :'> 
+    - vecteur ligne des coûts des arêtes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_min_cap :'> 
+    - vecteur ligne des capacités minimum des arêtes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_max_cap :'> 
+    - vecteur ligne des capacités maximum des arêtes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_q_weight :'> 
+    - vecteur ligne des poids quadratiques des arêtes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_q_orig :'> 
+    - vecteur ligne des origines quadratiques des arêtes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_weight :'> 
+    - vecteur ligne des poids des arêtes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='default_node_diam :'> 
+    - diamètre par défaut des sommets du graphe
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    20 pixels par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='default_node_border :'> 
+    - épaisseur du bord des sommets
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    2 pixels par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='default_edge_width :'> 
+    - épaisseur par défaut des arêtes du graphe
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    1 pixel par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='default_edge_hi_width :'> 
+    - taille par défaut des arêtes mises en évidence (en pixels)
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    3 pixels par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='default_font_size :'> 
+    - taille par défaut de la police utilisée pour afficher le nom des sommets  et arêtes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    12 par défaut
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_label :'> 
+    - vecteur ligne des noms des sommets 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='edge_label :'> 
+    - vecteur ligne des noms des arêtes
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+g=load_graph(SCI+'/demos/metanet/mesh100');
+g('node_color')=int(rand(1:g('node_number'))*16);
+g('edge_color')=int(rand(1:edge_number(g))*16);
+show_graph(g)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>arc_number</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>check_graph</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>edge_number</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>glist</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>make_graph</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>node_number</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

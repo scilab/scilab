@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>CURV_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="CURV_f"> Scicos block, tabulated function of time  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block defines a tabulated function of time. Between mesh
+    points block performs a linear interpolation. Outside tabulation block
+    outputs last tabulated value.
+  </P>
+  <P>
+    User may define the tabulation of the function using a curve editor.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <P>
+    Tabulated function is entered using a graphics curve editor (see edit_curv in Scilab documentation)
+  </P>
+  </ITEMIZE>
+</MAN>

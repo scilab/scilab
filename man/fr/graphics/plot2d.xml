@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>plot2d  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="plot2d"> représentation de courbes dans le plan  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>plot2d([x],y)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot2d([x],y,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot2d([logflag],x,y,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : deux matrices ou vecteurs.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Si <VERB>y</VERB> est un vecteur, <VERB>x</VERB> doit être un vecteur de même taille. Si <VERB>x</VERB> n&apos;est pas donné, il est supposé être égal au vecteur 1:&lt;taille de <VERB>y</VERB>&gt;.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Si <VERB>y</VERB> est une matrice, <VERB>x</VERB> peut être :
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>+  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    un vecteur de taille égale au nombre de lignes de <VERB>y</VERB> (chaque colonne de <VERB>y</VERB> est représentée par rapport à <VERB>x</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>+  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    une matrice de mêmes dimensions que <VERB>y</VERB> (chaque colonne de <VERB>y</VERB> est représentée par rapport à la colonne correspondante de <VERB>x</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>+  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Si <VERB>x</VERB> n&apos;est pas donné, il est supposé être égal au vecteur  1:&lt;nombre de lignes de <VERB>y</VERB>&gt;
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Représente une suite d&apos;affectations <VERB>key1=value1, key2=value2</VERB>,... où <VERB>key1</VERB>, <VERB>key2,...</VERB> peut prendre les valeurs :
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>style  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : donne le style de chaque courbe (voir ci-dessous)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>leg  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : donne la légende de chaque courbe. Si ce paramètre est spécifié et que <VERB>strf</VERB> n&apos;est pas donné alors le caractère <VERB>x</VERB> de <VERB>strf</VERB> est supposé être <VERB>1</VERB> (voir ci-dessous)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : définit les bornes du dessin. Si ce paramètre est donné et que ni <VERB>frameflag</VERB> ni <VERB>strf</VERB> ne sont donnés alors le caractère <VERB>y</VERB> de <VERB>strf</VERB> est supposé être <VERB>7</VERB> (voir ci-dessous)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>nax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : définition des graduations. Si ce paramètre est donné et que ni <VERB>axesflag</VERB> ni <VERB>strf</VERB> ne sont donnés alors le caractère <VERB>z</VERB> de <VERB>strf</VERB> est supposé être <VERB>1</VERB> (voir ci-dessous)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>logflag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : définit le type d&apos;échelle (linéaire ou logarithmique) des axes (voir ci-dessous)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>frameflag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : spécifie comment est calculé le cadre du dessin. Cette valeur est un entier entre 0 et 8. Il correspond au caractère <VERB>y</VERB> de <VERB>strf</VERB> (voir ci-dessous)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>axesflag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : spécifie le type d&apos;axe dessiné autour du dessin. Cette valeur est un entier entre 0 et 5. Il correspond au caractère <VERB>z</VERB> de <VERB>strf</VERB> (voir ci-dessous)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>style  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : est un vecteur ligne de taille nc. Le style à utiliser pour la courbe <VERB>i</VERB> est défini par <VERB>style(i)</VERB>.  Le style par défaut est <VERB>1:nc</VERB> (1 pour la première courbe, 2 pour la deuxième ...)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    si <VERB>style(i)</VERB> est négatif ou nul, la courbe est dessinée en utilisant le marqueur de code  <VERB>abs(style(i))</VERB>; utiliser <VERB>xset()</VERB> pour voir les codes des marqueurs et xget(&apos;mark&apos;) pour avoir le code du marqueur courant.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    si <VERB>style(i)</VERB> &gt; 0, une ligne de couleur d&apos;indice <VERB>style(i)</VERB> ou en pointillés de code <VERB>style(i)</VERB> est utilisée;  utiliser <VERB>xset()</VERB> pour voir les indices des couleurs.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Quand une seule courbe est dessinée, <VERB>style</VERB> peut être le vecteur ligne  de taille 2 <VERB>[sty,pos]</VERB> où <VERB>sty</VERB> est utilisé pour spécifier le style et <VERB>pos</VERB> est un entier entre 1 et 6 spécifiant la position à utiliser pour les légendes.  Cela peut être utile si l&apos;utilisateur veut dessiner des courbes multiples en  appelant la fonction <VERB>plot2d</VERB> plusieurs fois et veut avoir une légende différente à chaque fois.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>strf  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : est une chaîne de caractères de longueur 3 <VERB>&quot;xyz&quot;</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>La valeur par défaut est <VERB>&quot;081&quot;</VERB>.  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : contrôle l&apos;affichage des légendes
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x=0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : pas de légende.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x=1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Les légendes sont affichées. Elles sont données par l&apos;argument optionnel <VERB>leg</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Contrôle le calcul des bornes du dessin :
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <P>  </P>
+<TABLE>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>               </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>bornes du    </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>bornes    </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>bornes</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>               </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>dessin       </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>données   </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>calculées</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>               </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>précédent    </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>dans rect </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>à partir de x et y</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>-------------- </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>------------ </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>--------- </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>------------------</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>Échelle        </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>          </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>standard       </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>      y=0    </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>    y=1   </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>      y=2</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>               </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>          </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>-------------- </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>------------ </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>--------- </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>------------------</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>Échelle        </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>          </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN> </TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>isométrique    </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>    y=3   </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>      y=4</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>en X et Y      </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>          </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>-------------- </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>------------ </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>--------- </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>------------------</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>Échelle        </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>          </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>élargie pour   </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>    y=5   </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>      y=6</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>graduations    </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>          </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>simplifiées    </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>          </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>-------------- </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>------------ </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>--------- </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>------------------</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>Superposition  </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>          </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>avec le dessin </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>    y=7   </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>      y=8</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>courant        </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>          </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN>-------------- </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>------------ </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>--------- </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN>------------------</TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+<TABLE_NEW_ROW>
+<TABLE_NEW_COLUMN></TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN> </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN> </TABLE_NEW_COLUMN>
+<TABLE_NEW_COLUMN> </TABLE_NEW_COLUMN>
+</TABLE_NEW_ROW>
+</TABLE>
+  <P>
+    
+  </P>
+  <P>
+    
+  </P>
+  <PARAM_ITEM>
+  <PARAM_NAME>z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : contrôle l&apos;affichage des informations sur le cadre autour du dessin. Si les axes sont requis, le nombre de graduations peut être spécifié par le paramètre optionnel <VERB>nax</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>z=0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  rien n&apos;est dessiné autour du dessin
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z=1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  les axes sont dessinés, l&apos;axe y est dessiné à gauche. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z=2  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  le dessin est entouré d&apos;une boîte sans graduations.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z=3  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  les axes sont dessinés, l&apos;axe y est dessiné à droite
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z=4  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  les axes sont dessinés au milieu du cadre
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z=5  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  les axes sont dessinés de manière à se croiser au point <VERB>(0,0)</VERB>.  Si ce point <VERB>(0,0)</VERB> ne se situe pas dans le cadre, les axes n&apos;apparaissent pas.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>leg  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  une chaîne de caractères. Elle est utilisée quand le caractère x de l&apos;argument <VERB>strf</VERB> vaut 1. <VERB>leg</VERB> a la forme <VERB>&quot;leg1@leg2@....&quot;</VERB> où <VERB>leg1</VERB>, <VERB>leg2</VERB>,  etc. sont respectivement la légende de la première courbe, de la deuxième, etc.  La valeur par défaut est <VERB>&quot; &quot;</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  Cet argument est utilisé quand le caractère y de l&apos;argument <VERB>strf</VERB> vaut 1, 3 ou 5. C&apos;est un vecteur ligne de taille 4 donnant les bornes du cadre :  <VERB>rect=[xmin,ymin,xmax,ymax]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>nax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  Cet argument est utilisé quand le caractère z de l&apos;argument <VERB>strf</VERB> vaut 1. C&apos;est un vecteur ligne de taille 4 donnant les graduations <VERB>[nx,Nx,ny,Ny]</VERB> où <VERB>nx</VERB> (<VERB>ny</VERB>) est le nombre de sous-graduations sur l&apos;axe x (y) et <VERB>Nx</VERB> (<VERB>Ny</VERB>) est le nombre de graduations sur l&apos;axe x (y).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>logflag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  une chaîne de caractères formée par deux caractères h (pour horizontal) et v (pour vertical). Chacun de ces deux caractères peut prendre les valeurs &quot;n&quot; ou &quot;l&quot;. &quot;l&quot;  pour avoir une échelle logarithmique et  &quot;n&quot; pour une échelle linéaire. Par exemple &quot;ll&quot; sera utilisé pour un graphe en échelle log-log. La valeur par défaut est &quot;nn&quot;.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>plot2d</VERB> dessine dans le plan un ensemble de courbes linéaires par morceaux.
+  </P>
+  <P>
+    Par défaut, les dessins successifs sont superposés. Pour effacer le dessin précédent, utiliser 
+    <VERB>xbasc()</VERB>.
+  </P>
+  <P>
+    Voir les définitions des paramètres ci-dessus pour une description complète.
+  </P>
+  <P>
+    Taper <VERB>plot2d()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  <P>
+    D&apos;autres fonctions de haut niveau du type plot2d existent :
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='plot2d2'> 
+    : comme <VERB>plot2d</VERB> mais la fonction est supposée constante par morceaux
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='plot2d3'> 
+    : comme <VERB>plot2d</VERB> mais la courbe est dessinée avec des barres verticales
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='plot2d4'> 
+    : comme <VERB>plot2d</VERB> mais la courbe est dessinée avec des flèches.
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// dessin tout bête
+x=[0:0.1:2*%pi]';
+plot2d(sin(x))
+xbasc()
+plot2d(x,sin(x))
+// plusieurs courbes
+xbasc()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+// plusieurs courbes en fixant les bornes
+// ancienne et nouvelle syntaxe
+xbasc()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)],1:3,"011"," ",[0,0,6,0.5])
+xbasc()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5])
+// plusieurs courbes avec légendes et graduations
+// ancienne et nouvelle syntaxe 
+xbasc()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
+  [1,2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10])
+xbasc()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
+  [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2])
+// échelle isométrique
+xbasc()
+plot2d(x,sin(x),1,"041")
+//
+xbasc()
+plot2d(x,sin(x),1,"061") 
+// mise à l'échelle avec les dessins précédents 
+xbasc()
+plot2d(x,sin(x),1)
+plot2d(x,2*sin(x),2)
+plot2d(2*x,cos(x),3)
+// axe à droite
+xbasc()
+plot2d(x,sin(x),1,"183","sin(x)")
+// axe centré
+xbasc()
+plot2d(x,sin(x),1,"184","sin(x)")
+// axe centré en (0,0)
+xbasc()
+plot2d(x-4,sin(x),1,"185","sin(x)")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot2d1</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d2</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d3</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d4</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xbasc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xend  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xend"> termine la session graphique courante  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xend()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>xend</VERB> est utilisée pour terminer une session graphique. Avec les pilotes PostScript, XFig ou Gif,  <VERB>xend</VERB> ferme le fichier qui a été ouvert par <VERB>xinit</VERB>. 
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+driver("Pos")
+xinit("foo.ps")
+plot2d()
+xend()
+driver("X11")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xbasimp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xend</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

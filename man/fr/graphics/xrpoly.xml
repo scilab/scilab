@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xrpoly  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xrpoly">  dessine un polygone régulier  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xrpoly(orig,n,r,[theta])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>orig  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur de taille 2.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>n  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier, nombre de faces.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>r  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scalaire.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>theta  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : réel, angle en radians (0 par défaut).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xrpoly</VERB> dessine un polygone régulier à <VERB>n</VERB> faces contenu dans le disque de 
+    diamètre <VERB>r</VERB> et avec l&apos;origine au point <VERB>orig</VERB>. 
+    <VERB>theta</VERB>  spécifie un angle de rotation en radians. Cette fonction utilise
+    l&apos;échelle graphique courante. 
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+plot2d(0,0,-1,"012"," ",[0,0,10,10])
+xrpoly([5,5],5,5)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xrect</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

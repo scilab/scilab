@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>contourf  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="contourf"> courbes de niveaux 2D remplies d&apos;une surface 3D  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>contourf(x,y,z,nz,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : deux vecteurs lignes de taille n1 et n2.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice réelle de taille (n1,n2), les valeurs de la fonction.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>nz  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : valeurs des niveaux ou nombre de niveaux
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Si <VERB>nz</VERB> est un entier, sa valeur définit le nombre de courbes de niveaux espacées régulièrement entre zmin et zmax :
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <VERBATIM><![CDATA[
+ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+   ]]></VERBATIM>
+  <P>
+    Noter que les niveaux <VERB>zmin</VERB> et <VERB>zmax</VERB> ne sont pas dessinés (génériquement ils sont réduits à des points) mais peuvent être ajoutés avec
+  </P>
+  <VERBATIM><![CDATA[
+ [im,jm] = find(z == zmin);     // ou zmax 
+ plot2d(x(im)',y(jm)',-9,"000")
+   ]]></VERBATIM>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Si <VERB>nz</VERB> est un vecteur, <VERB>nz(i)</VERB> donne la valeur du ième niveau.  Noter qu&apos;il peut être utile pour voir les niveaux <VERB>zmin</VERB> et   <VERB>zmax</VERB> d&apos;ajouter une tolérance de l&apos;ordre de %eps : <VERB>nz=[ zmin+%eps,..,zmax-%eps]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>style,strf,leg,rect,nax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : voir <VERB>plot2d</VERB>. L&apos;argument <VERB>style</VERB> définit les styles de pointillés ou les couleurs utilisés pour dessiner les courbes. Il doit être de même taille que le nombre de niveaux.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>contourf</VERB> remplit l&apos;espace entre deux courbes de niveaux consécutives d&apos;une surface <VERB>z=f(x,y)</VERB> sur un dessin 2D.
+    Les valeurs de <VERB>f(x,y)</VERB> sont données par la matrice <VERB>z</VERB> aux points du plan définis dans <VERB>x</VERB> et <VERB>y</VERB>.
+  </P>
+  <P>
+    Il est possible de changer le format des nombres affichés sur les courbes de niveau en utilisant <VERB>xset(&quot;fpf&quot;,string)</VERB> où <VERB>string</VERB> précise le
+    format comme en langage C (par exemple <VERB>string=&quot;%.3f&quot;</VERB>). Utiliser 
+    <VERB>string=&quot;&quot;</VERB> pour revenir au format par défaut.
+  </P>
+  <P>
+    Taper <VERB>contour2d()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>contour</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fcontour</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fcontour2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>contour2di</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

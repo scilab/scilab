@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>WFILE_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="WFILE_f"> Scicos &quot;write to file&quot; block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block allows user to save data in a file, in formatted and binary
+    mode.
+    Each call to the block corresponds to a record in the file. Each
+    record has the following form:
+    <VERB>[t,V1,...,Vn]</VERB> where <VERB>t</VERB> is the value of time when block is
+    called  and <VERB>Vi</VERB> is the ith input value
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='input size'>
+: a scalar. This fixes the input size
+
+  </ITEM>
+  <ITEM label='Output file name'>
+: a character string defining the path of the file 
+
+  </ITEM>
+  <ITEM label='Output Format'>
+: a character string defining the Fortran format to use or nothing for an unformatted (binary) write. If given, the format must began by a left parenthesis and end by a right  parenthesis. example: (e10.3).
+
+  </ITEM>
+  <ITEM label='Buffer size'>
+: To improve efficiency it is possible to buffer the input data. write on the file is only done after each <VERB>Buffer size</VERB> calls to the block.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>RFILE_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>iconvert  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>October 99  </DATE>
+  <SHORT_DESCRIPTION name="iconvert "> conversion to 1 or 4 byte integer representation  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=iconvert(X,itype)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrix of floats or integers
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrix of integers coded on one, two or four bytes.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    converts and stores data two one, two or four bytes integers. 
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='itype=0'> 
+    : return floating point numbers
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='itype=1'> 
+    : return int8 numbers in the range [-128,127] 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='itype=11'> 
+    : return uint8 numbers in the range [0,255] 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='itype=2'> 
+    : return int16 numbers in the range [-32768,32767] 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='itype=12'> 
+    : return uint16 numbers in the range [0, 65535] 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='itype=4'> 
+    : return int32 numbers in the range [-2147483648,2147483647] 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='itype=14'> 
+    : return uint32 numbers in the range [0, 4294967295] 
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+b=int32([1 -120 127 312])
+y=iconvert(b,8)
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>double</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>inttype</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>rand  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="rand"> random number generator  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>rand(m1,m2,.. [,key])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>rand(x [, key])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>rand()  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>rand(key)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>rand(&quot;seed&quot; [,n])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>rand(&quot;info&quot;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>mi  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integers
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>key  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : character string with value in <VERB>&quot;uniform&quot;</VERB>, <VERB>&quot;normal&quot;</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a matrix. Only its dimensions are taken into account. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    random matrix generator.
+  </P>
+  <P>
+    Without key argument the syntaxes below produce  random matrices with
+    the current random generator (default is &quot;uniform&quot;)
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='rand(m1,m2)'> 
+    is a random matrix of dimension <VERB>m1</VERB> by <VERB>m2</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='rand(m1,m2,..,mn)'> 
+    is a random matrix of dimension <VERB>m1</VERB> by <VERB>m2</VERB>,.. by <VERB>mn</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='rand(a)'> 
+    is a random matrix of same size as a. <VERB>rand(a)</VERB> is complex if  <VERB>a</VERB> is a complex matrix
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='rand() : with no arguments gives a scalar whose value changes'> 
+    each time it is referenced.
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+    If present, the key argument allows to specifie an other random
+    generator.
+  </P>
+
+  <DESCRIPTION_ITEM  label='rand(&apos;uniform&apos;)'> 
+    The current random generator is set to a uniform random number generator. Random numbers are uniformly distributed in the interval (0,1). 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='rand(&apos;normal&apos;)'> 
+    The current random generator is set to a Gaussian (with mean 0 and variance 1) random number generator . 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='str=rand(&apos;info&apos;)'> 
+    return the type of the default random generator (&apos;uniform&apos; or &apos;normal&apos;)
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+    IT is possible to (re-)initialize the seed of the rand generator:
+  </P>
+
+  <DESCRIPTION_ITEM  label='rand(&apos;seed&apos;)'> 
+    returns the current value of the seed.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='rand(&apos;seed&apos;,n)'> 
+    puts the seed to <VERB>n</VERB>. (<VERB>n=0</VERB> at first call).
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=rand(10,10,'uniform')
+rand('normal')
+rand('info')
+y=rand(x,'normal');
+x=rand(2,2,2)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ssrand</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

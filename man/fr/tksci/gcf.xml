@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>gcf  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE> 04 June 1998  </DATE>
+  <SHORT_DESCRIPTION name="gcf"> gets the current active tksci figure  </SHORT_DESCRIPTION>
+  <PARAM>
+  <P>
+    h : handle of the current figure.
+  </P>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    The current figure is the last created (and still existent) figure.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+figure(5);
+figure();
+figure();
+gcf()
+// returns 2
+close(gcf());
+// close figure 2
+gcf()
+// returns 1
+close(1);
+gcf()
+// returns 5
+close(5);
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>figure</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>close</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+</MAN>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>linpro  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="linpro"> linear programming solver  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x,lagr,f]=linpro(p,C,b [,x0])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[x,lagr,f]=linpro(p,C,b,ci,cs [,x0])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[x,lagr,f]=linpro(p,C,b,ci,cs,me [,x0])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[x,lagr,f]=linpro(p,C,b,ci,cs,me,x0 [,imp])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>p  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real column vector (dimension <VERB> n</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>C  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real matrix (dimension <VERB> (me + md) x n</VERB>) (If no constraints are given, you can set <VERB>C = []</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : RHS column vector (dimension <VERB>(me + md)</VERB>) (If no constraints are given, you can set <VERB>b = []</VERB>) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ci  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of lower-bounds (dimension <VERB> n</VERB>). If there are no lower bound constraints, put <VERB>ci = []</VERB>. If some components of <VERB>x</VERB> are bounded from below, set the other (unconstrained) values of <VERB>ci</VERB> to a very  large negative  number (e.g. <VERB>ci(j) = -number_properties(&apos;huge&apos;)</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>cs  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of upper-bounds. (Same remarks as above).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>me  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : number of equality constraints (i.e. <VERB>C(1:me,:)*x = b(1:me)</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : either an initial guess for <VERB>x</VERB>    or one of the character strings <VERB>&apos;v&apos;</VERB> or <VERB>&apos;g&apos;</VERB>. If <VERB>x0=&apos;v&apos;</VERB> the calculated initial feasible point is a vertex. If <VERB>x0=&apos;g&apos;</VERB> the calculated initial feasible point is arbitrary.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>imp  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : verbose option (optional parameter)  (Try <VERB>imp=7,8,...</VERB>) warning the message are output in the window where scilab has been started.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : optimal solution found.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>f  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : optimal value of the cost function (i.e. <VERB>f=p&apos;*x</VERB>).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>lagr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of Lagrange multipliers.  If lower and upper-bounds <VERB>ci,cs</VERB> are provided, <VERB>lagr</VERB> has  <VERB>n + me + md</VERB> components and <VERB>lagr(1:n)</VERB> is the Lagrange  vector associated with the bound constraints and  <VERB>lagr (n+1 : n + me + md)</VERB> is the Lagrange vector associated  with the linear constraints. (If an upper-bound (resp. lower-bound) constraint <VERB>i</VERB> is active  <VERB>lagr(i)</VERB> is &gt; 0 (resp. &lt;0). If no bounds are provided, <VERB>lagr</VERB> has only <VERB>me + md</VERB> components.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Minimize <VERB>p&apos;*x</VERB>
+    under the constraints  <VERB>C*x &lt;= b</VERB>
+  </P>
+  <P>
+  </P>
+  <P>
+    Minimize <VERB>p&apos;*x</VERB> under the constraints  <VERB>C*x &lt;= b </VERB>, <VERB>ci &lt;= x &lt;= cs</VERB>
+  </P>
+  <P>
+    Minimize <VERB>p&apos;*x</VERB>
+    under the constraints 
+  </P>
+  <VERBATIM><![CDATA[
+ C(j,:) x = b(j),  j=1,...,me
+ C(j,:) x <= b(j), j=me+1,...,me+md
+ ci <= x <= cs
+   ]]></VERBATIM>
+  <P>
+    If no initial point is given the
+    program computes a feasible initial point
+    which is a vertex of the region of feasible points if
+    <VERB>x0=&apos;v&apos;</VERB>.
+  </P>
+  <P>
+    If <VERB>x0=&apos;g&apos;</VERB>, the program computes a feasible initial 
+    point which is not necessarily a vertex. This mode is
+    advisable when the quadratic form is positive
+    definite and there are a few constraints in
+    the problem or when there are large bounds
+    on the variables that are security bounds and
+    very likely not active at the optimal solution.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+//Find x in R^6 such that:
+//C1*x = b1  (3 equality constraints i.e me=3)
+C1= [1,-1,1,0,3,1;
+    -1,0,-3,-4,5,6;
+     2,5,3,0,1,0];
+b1=[1;2;3];
+//C2*x <= b2  (2 inequality constraints)
+C2=[0,1,0,1,2,-1;
+    -1,0,2,1,1,0];
+b2=[-1;2.5];
+//with  x between ci and cs:
+ci=[-1000;-10000;0;-1000;-1000;-1000];cs=[10000;100;1.5;100;100;1000];
+//and minimize p'*x with
+p=[1;2;3;4;5;6]
+//No initial point is given: x0='v';
+C=[C1;C2]; b=[b1;b2] ; me=3; x0='v';
+[x,lagr,f]=linpro(p,C,b,ci,cs,me,x0)
+// Lower bound constraints 3 and 4 are active and upper bound
+// constraint 5 is active --> lagr(3:4) < 0 and lagr(5) > 0.
+// Linear (equality) constraints 1 to 3 are active --> lagr(7:9) <> 0
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>quapro</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>E. Casas, C. Pola Mendez;   </AUTHOR>
+</MAN>

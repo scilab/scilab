@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>CLR_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="CLR_f"> Scicos continuous-time linear system (SISO transfer function)  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes a SISO linear system represented by its rational
+    transfer function <VERB>Numerator/Denominator</VERB>.
+    The rational function must be proper.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Numerator'>
+: a polynomial in s.
+
+  </ITEM>
+  <ITEM label='Denominator'>
+: a polynomial in s.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>CLSS_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>INTEGRAL_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

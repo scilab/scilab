@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>demos  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1994  </DATE>
+  <SHORT_DESCRIPTION name="demos">  menu des démonstrations de Scilab  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>demos()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>demos()</VERB> lance un menu interactif pour exécuter diverses démonstrations de Scilab. Le code source des démonstrations se trouve dans le répertoire SCIDIR/demos/...
+  </P>
+  </DESCRIPTION>
+</MAN>

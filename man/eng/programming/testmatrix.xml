@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>testmatrix  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="testmatrix"> generate some particular matrices  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[y]=testmatrix(name,n)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>n  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integers, matrix size
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : <VERB>n</VERB> x <VERB>m</VERB> matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Create some particular matrices
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='testmatrix(&apos;magi&apos;,n)'> 
+    : returns a magic square of size <VERB>n</VERB> .
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='testmatrix(&apos;frk&apos;,n)'> 
+    : returns the Franck matrix :
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='testmatrix(&apos;hilb&apos;,n)'> 
+    : is the inverse of the nxn Hilbert matrix  <VERB> (Hij= 1/(i+j-1))</VERB>.
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+</MAN>

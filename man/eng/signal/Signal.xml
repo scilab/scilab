@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>Signal  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="Signal"> Signal manual description  </SHORT_DESCRIPTION>
+  <ITEMIZE label='FILTERS'>
+  <ITEM label='analpf'>
+: analog low-pass filter
+
+  </ITEM>
+  <ITEM label='buttmag'>
+: squared magnitude response of a Butterworth filter
+
+  </ITEM>
+  <ITEM label='casc'>
+: creates cascade realization of filter
+
+  </ITEM>
+  <ITEM label='cheb1mag'>
+: square magnitude response of a type 1 Chebyshev filter
+
+  </ITEM>
+  <ITEM label='cheb2mag'>
+: square magnitude response of a type 1 Chebyshev filter
+
+  </ITEM>
+  <ITEM label='chepol'>
+: recursive implementation of Chebychev polynomial
+
+  </ITEM>
+  <ITEM label='convol'>
+: convolution of 2 discrete series
+
+  </ITEM>
+  <ITEM label='ell1 mag'>
+: squared magnitude of an elliptic filter
+
+  </ITEM>
+  <ITEM label='eqfir'>
+: minimax multi-band, linear phase, FIR filter
+
+  </ITEM>
+  <ITEM label='eqiir'>
+: design of iir filter
+
+  </ITEM>
+  <ITEM label='faurre'>
+: optimal lqg filter.
+
+  </ITEM>
+  <ITEM label='lindquis'>
+: optimal lqg filter lindquist algorithm
+
+  </ITEM>
+  <ITEM label='ffilt'>
+: FIR low-pass,high-pass, band-pass, or stop-band filter
+
+  </ITEM>
+  <ITEM label='filter'>
+: compute the filter model
+
+  </ITEM>
+  <ITEM label='find_freq'>
+: parameter compatibility for elliptic filter design
+
+  </ITEM>
+  <ITEM label='findm'>
+: for elliptic filter design
+
+  </ITEM>
+  <ITEM label='frmag'>
+: magnitude of the frequency responses of FIR and IIR filters.
+
+  </ITEM>
+  <ITEM label='fsfirlin'>
+: design of FIR, linear phase (frequency sampling technique)
+
+  </ITEM>
+  <ITEM label='fwiir'>
+: optimum design of IIR filters in cascade realization,
+
+  </ITEM>
+  <ITEM label='iir'>
+: designs an iir digital filter using analog filter designs.
+
+  </ITEM>
+  <ITEM label='iirgroup'>
+: group delay of iir filter
+
+  </ITEM>
+  <ITEM label='iirlp'>
+: Lp IIR filters optimization
+
+  </ITEM>
+  <ITEM label='group'>
+: calculate the group delay of a digital filter
+
+  </ITEM>
+  <ITEM label='optfir'>
+: optimal design of linear phase filters using linear programming
+
+  </ITEM>
+  <ITEM label='remezb'>
+: minimax approximation of a frequency domain magnitude response.
+
+  </ITEM>
+  <ITEM label='kalm'>
+: Kalman update and error variance
+
+  </ITEM>
+  <ITEM label='lev'>
+: resolve the Yule-Walker equations :
+
+  </ITEM>
+  <ITEM label='levin'>
+: solve recursively Toeplitz system (normal equations)
+
+  </ITEM>
+  <ITEM label='srfaur'>
+: square-root algorithm for the algebraic Riccati equation.
+
+  </ITEM>
+  <ITEM label='srkf'>
+: square-root Kalman filter algorithm
+
+  </ITEM>
+  <ITEM label='sskf'>
+: steady-state Kalman filter
+
+  </ITEM>
+  <ITEM label='system'>
+: generates the next observation given the old state
+
+  </ITEM>
+  <ITEM label='trans'>
+: transformation of standardized low-pass filter into low-pass, high-pass, band-pass, stop-band.
+
+  </ITEM>
+  <ITEM label='wfir'>
+: linear-phase windowed FIR low-pass, band-pass, high-pass, stop-band
+
+  </ITEM>
+  <ITEM label='wiener'>
+: Wiener estimate (forward-backward Kalman filter formulation)
+
+  </ITEM>
+  <ITEM label='wigner'>
+: time-frequency wigner spectrum of a signal.
+
+  </ITEM>
+  <ITEM label='window'>
+: calculate symmetric window
+
+  </ITEM>
+  <ITEM label='zpbutt'>
+: Butterworth analog filter
+
+  </ITEM>
+  <ITEM label='zpch1'>
+: poles of a type 1 Chebyshev analog filter
+
+  </ITEM>
+  <ITEM label='zpch2'>
+: poles and zeros of a type 2 Chebyshev analog filter
+
+  </ITEM>
+  <ITEM label='zpell'>
+: poles and zeros of prototype lowpass elliptic filter
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='Spectral estimation'>
+  <ITEM label='corr'>
+: correlation coefficients
+
+  </ITEM>
+  <ITEM label='cspect'>
+: spectral estimation using the modified periodogram method.
+
+  </ITEM>
+  <ITEM label='czt'>
+: chirp z-transform algorithm
+
+  </ITEM>
+  <ITEM label='intdec'>
+: change the sampling rate of a 1D or 2D signal
+
+  </ITEM>
+  <ITEM label='mese'>
+: calculate the maximum entropy spectral estimate
+
+  </ITEM>
+  <ITEM label='pspect'>
+: auto and cross-spectral estimate
+
+  </ITEM>
+  <ITEM label='wigner'>
+: Wigner-Ville time/frequency spectral estimation 
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='Transforms'>
+  <ITEM label='dft'>
+: discrete Fourier transform
+
+  </ITEM>
+  <ITEM label='fft'>
+: fast flourier transform
+
+  </ITEM>
+  <ITEM label='hilb'>
+: Hilbert transform centred around the origin.
+
+  </ITEM>
+  <ITEM label='hank'>
+: hankel matrix of the covariance sequence of a vector process
+
+  </ITEM>
+  <ITEM label='mfft'>
+: fft for a multi-dimensional signal
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='identification'>
+  <ITEM label='lattn,lattp'>
+: recursive solution of normal equations
+
+  </ITEM>
+  <ITEM label='phc'>
+: State space realisation by the principal hankel component  approximation method,
+
+  </ITEM>
+  <ITEM label='rpem'>
+: identification by the recursive prediction error method
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='MISCELLANEOUS'>
+  <ITEM label='lgfft'>
+: computes p = ceil (log_2(x))
+
+  </ITEM>
+  <ITEM label='sinc'>
+: calculate the function sin(2*pi*fl*t)/(pi*t)
+
+  </ITEM>
+  <ITEM label='sincd'>
+: calculates the function Sin(N*x)/Sin(x)
+
+  </ITEM>
+  <ITEM label='%k'>
+: Jacobi&apos;s complete elliptic integral
+
+  </ITEM>
+  <ITEM label='%asn'>
+: .TP the elliptic integral :
+
+  </ITEM>
+  <ITEM label='%sn'>
+: Jacobi &apos;s elliptic function with parameter m
+
+  </ITEM>
+  <ITEM label='bilt'>
+: bilinear transform or biquadratic transform.
+
+  </ITEM>
+  <ITEM label='jmat'>
+: permutes block rows or block columns of a matrix
+
+  </ITEM>
+  <P>
+     
+  </P>
+  </ITEMIZE>
+</MAN>

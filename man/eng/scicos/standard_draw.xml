@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>standard_draw  </TITLE>
+  <TYPE>Scicos function  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="standard_draw"> Scicos block drawing function  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>standard_draw(o)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>o  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Scicos block data structure (see scicos_block)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>standard_draw</VERB> is the Scilab function used to display
+    standard blocks in interfacing functions. 
+  </P>
+  <P>
+    It draws a block with a rectangular shape with any number of regular
+    or event input respectively on the left and right faces of the block
+    (if not flipped), event input or output respectively on the top and
+    bottom faces of the block. Number of ports, size, origin, orientation,
+    background color, icon of the block are taken from the block data
+    structure <VERB>o</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos_block</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

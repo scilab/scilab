@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>DLR_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="DLR_f"> Scicos discrete-time linear system (transfer function)  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes a SISO linear system represented by its rational
+    transfer function (in the symbolic variable z).
+    The rational function must be proper.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Numerator'>
+: a polynomial in z.
+
+  </ITEM>
+  <ITEM label='Denominator'>
+: a polynomial in z.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>DLSS_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>DLRADAPT_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

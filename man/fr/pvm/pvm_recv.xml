@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pvm_recv  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>May 1998  </DATE>
+  <SHORT_DESCRIPTION name="pvm_recv"> receive a message.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[buff, info, msgtid, tag] = pvm_recv(tid, msgtag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>tid  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, task identifier of sending process supplied by the user.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>msgtag : integer, message tag supplied by the user.  msgtag should be  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    &gt;= 0.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>buff  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scilab variable, where the received message will be stored.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>info  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, status code returned by the routine. Values less than zero indicate an error.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>msgtid : integer, returning  the source of the  message.  Useful when the  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    message was received with a wildcard tid.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>tag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, returning the  message label.  Useful when the message was received with a wildcard msgtag. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pvm_recv</VERB> 
+    blocks the process until a message with label
+  </P>
+  <P>
+    has arrived from
+  </P>
+  <P>
+    pvm_recv then places the message in <VERB>buff</VERB>. 
+  </P>
+  <P>
+    A -1 in
+  </P>
+  <P>
+    or
+  </P>
+  <P>
+    matches anything.  This allows the user the following options.  If tid
+    = -1 and msgtag is defined by the user, then pvm_recv will accept a
+    message from any process which has a matching msgtag.  If msgtag = -1
+    and tid is defined by the user, then pvm_recv will accept any message
+    that is sent from process tid.  If tid = -1 and msgtag = -1, then
+    pvm_recv will accept any message from any process.
+  </P>
+  <P>
+    When wildcard  are used,   the  application is   able to  receive  any
+    incoming message. If  the action taken depends on  the source tid  and
+    the msgtag associated with the message that comes in first, the
+    information given by msgtid and tag can be very usefull.
+  </P>
+  <P>
+    The PVM model guarantees the following about message order.  If task 1
+    sends message A to task 2, then task 1 sends message B to task 2,
+    message A will arrive at task 2 before message B.  Moreover, if both
+    messages arrive before task 2 does a receive, then a wildcard receive
+    will always return message A.
+  </P>
+  <P>
+    will be the status code returned by the routine. 
+    If some error occurs then
+  </P>
+  <P>
+    will be &lt; 0.
+  </P>
+  <P>
+    pvm_recv is blocking which means the routine waits until a message
+    matching the user specified tid and msgtag values arrives at the local
+    pvmd. If the message has already arrived then pvm_recv returns
+    immediately with the message.
+  </P>
+  <P>
+    Once pvm_recv returns, the data in the message can be unpacked
+    into the user&apos;s memory using the unpack routines.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[b, info, msgtid, tag] = pvm_recv(pvm_parent(),100)
+g = pvm_recv(pvm_parent(),200)
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pvm_send</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_bcast</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

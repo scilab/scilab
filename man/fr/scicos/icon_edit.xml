@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>icon_edit  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1998  </DATE>
+  <SHORT_DESCRIPTION name="icon_edit"> simple interactive graphic block icon editor   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>txt=icon_edit()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>txt  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a vector of strings
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>icon_edit</VERB> is a simple interactive graphic icon editor based on <VERB>gr_menu</VERB>
+    <VERB>txt</VERB> contains the scilab instructions necessary to draw the
+    icon. These instructions may be entered in the scicos icon dialog.
+  </P>
+  </DESCRIPTION>
+  <AUTHOR>Serge Steer INRIA 1998; ; ; ; ; ;   </AUTHOR>
+</MAN>

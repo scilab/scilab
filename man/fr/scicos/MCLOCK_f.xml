@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>MCLOCK_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="MCLOCK_f"> Scicos 2 frequency event clock  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is a Super Block constructed by feeding back the outputs
+    of an MFCLCK block into its input event port. The two
+    outputs of this block generate regular train of events, the frequency
+    of the first input being equal to that of the second output divided
+    by an integer n. The two outputs are synchronized (this is impossible
+    for standard blocks; this is a Super Block).
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Basic period'>
+: scalar. equals 1/f, f being the highest frequency.
+
+  </ITEM>
+  <ITEM label='n'>
+: an intger &gt;1. the frequency of the first output event is f/n.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>MFCLCK_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>CLOCK_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

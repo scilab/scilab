@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mapsound  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="mapsound"> Plots a sound map   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>mapsound (w,dt,fmin,fmax,simpl,rate)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+  <P>
+    dt,fmin,fmax,simpl,rate: : scalars. default values dt=0.1,fmin=100,fmax=1500,simpl=1,rate=22050;
+  </P>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Plots a sound map for a sound. It does FFT at time increments dt.
+    <VERB>rate</VERB> is the sampling rate. <VERB>simpl</VERB> points are collected for
+    speed reasons. <VERB>fmin</VERB> and <VERB>fmax</VERB> are used for graphic
+    boundaries.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// At first we create 0.5 seconds of sound parameters.
+t=soundsec(0.5);
+// Then we generate the sound.
+s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
+[nr,nc]=size(t);
+s(nc/2:nc)=sin(330*t(nc/2:nc));
+mapsound(s);
+ ]]></EXAMPLE>
+</MAN>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>POSTONEG_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="POSTONEG_f"> Scicos positive to negative detector  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    An output event is generated when the unique input crosses zero
+    with a negative slope.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>NEGTOPOS_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ZCROSS_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>GENERAL_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>besselk  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September 1997  </DATE>
+  <SHORT_DESCRIPTION name="besselk">  Modified K sub ALPHA Bessel functions of the second kind.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM> y = besselk(alpha,x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM> y = besselk(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector with non negative entries
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>alpha  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector with non negative entries regularly spaced with increment equal to one <VERB>alpha=alpha0+(n1:n2)</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ice  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer flag, with default value 1
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+  </P>
+  <P>
+    <VERB>besselk(alpha,x)</VERB> computes K sub ALPHA modified Bessel functions of the
+    second kind, for real, non-negative order <VERB>alpha</VERB> 
+    and argument <VERB>x</VERB>.  <VERB>alpha</VERB>  and <VERB>x</VERB> may be vectors.
+    The output is <VERB>m</VERB>-by-<VERB>n</VERB> with <VERB>m = size(x,&apos;*&apos;)</VERB>,
+    <VERB>n = size(alpha,&apos;*&apos;)</VERB> whose <VERB>(i,j)</VERB> entry is
+    <VERB>besselk(alpha(j),x(i))</VERB>.
+  </P>
+  <P>
+    If <VERB>ice</VERB> is equal to 2 exponentialy scaled Bessel functions is
+    computed 
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+besselk(0.5:3,1:4)
+besselk(0.5:3,1:4,2)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>besselj</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>besseli</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>bessely</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

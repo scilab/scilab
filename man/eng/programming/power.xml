@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>power  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="power"> power operation  (^,.^)   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>t=A^b  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>t=A**b  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>t=A.^b  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A,t  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scalar, polynomial or rational matrix.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :a scalar, a vector or a scalar matrix.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+ 
+
+  <DESCRIPTION_ITEM  label='(A:square)^(b:scalar)'> 
+    : If <VERB>A</VERB> is a square matrix and <VERB>b</VERB> is a scalar then  <VERB>A^b</VERB> is the matrix <VERB>A</VERB> to the power <VERB>b</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='(A:matrix).^(b:scalar)'> 
+    : If <VERB>b</VERB> is a scalar and <VERB>A</VERB> a matrix then <VERB>A.^b</VERB>  is the matrix formed by the element of <VERB>A</VERB> to the power <VERB>b</VERB> (elementwise power). If <VERB>A</VERB> is a vector and <VERB>b</VERB> is a scalar then  <VERB>A^b</VERB> and <VERB>A.^b</VERB> performs the same operation (i.e elementwise power).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='(A:scalar).^(b:matrix)'> 
+    If <VERB>A</VERB> is a scalar  and <VERB>b</VERB> is a matrix (or vector) <VERB>A^b</VERB> and <VERB>A.^b</VERB> are the matrices (or vectors) formed by  <VERB> a^(b(i,j))</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='(A:matrix).^(b:matrix)'> 
+    If <VERB>A</VERB> and <VERB>b</VERB>  are vectors (matrices) of the same size <VERB>A.^b</VERB> is the  <VERB>A(i)^b(i)</VERB> vector (<VERB>A(i,j)^b(i,j)</VERB> matrix).
+  </DESCRIPTION_ITEM>
+  <P>
+    Notes:
+  </P>
+  <P>
+     -
+    For square matrices <VERB>A^p</VERB> is computed through successive
+    matrices multiplications if <VERB>p</VERB> is a positive integer, and by
+    diagonalization if not.
+  </P>
+  <P>
+     -
+    <VERB>**</VERB> and <VERB>^</VERB> operators are synonyms.
+  </P>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=[1 2;3 4];
+A^2.5,
+A.^2.5
+(1:10)^2
+(1:10).^2
+
+s=poly(0,'s')
+s^(1:10)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>exp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>CLKSOM_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="CLKSOM_f"> Scicos event addition block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is an event addition block with up to three inputs. The
+    output reproduces 
+    the events on all the input ports. Strictly speaking, CLKSOM is not a
+    Scicos block because it is discarded at the compilation phase. The
+    inputs and output of CLKSOM are synchronized. 
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <P>
+    None.
+  </P>
+  </ITEMIZE>
+</MAN>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>DLSS_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="DLSS_f"> Scicos discrete-time linear state-space system  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes a discrete-time linear state-space system.
+    The system is defined by the (A,B,C,D) matrices and the initial
+    state x0. The dimensions must be compatible. At the arrival of
+    an input event on the unique input event port, the state is
+    updated. 
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='A'>
+: square matrix. The A matrix
+
+  </ITEM>
+  <ITEM label='B'>
+: the B matrix
+
+  </ITEM>
+  <ITEM label='C'>
+: the C matrix
+
+  </ITEM>
+  <ITEM label='x0'>
+: vector. The initial state of the system.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>DLR_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>INTEGRAL_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>CLSS_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>DLSS_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>Sgrayplot  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="Sgrayplot"> smooth 2D plot of a surface using colors  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z,[strf,rect,nax])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>Sgrayplot</VERB> is the same as <VERB>grayplot</VERB> but the plot is smoothed.
+    The function <VERB>fec</VERB> is used for smoothing.
+    The surface is plotted assuming that it is linear on a set of
+    triangles built from the grid:
+  </P>
+  <VERBATIM><![CDATA[
+    ______ 
+    | /| /| 
+    |/_|/_|  
+    | /| /|
+    |/_|/_|
+   ]]></VERBATIM>
+  <P>
+  </P>
+  <P>
+    Enter the command <VERB>Sgrayplot()</VERB> to see a demo.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=-10:10; y=-10:10;m =rand(21,21);
+Sgrayplot(x,y,m,"111",[-20,-20,20,20])
+t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
+xbasc()
+Sgrayplot(t,t,m)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>fec</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fgrayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>grayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Sfgrayplot</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

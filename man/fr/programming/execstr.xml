@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>execstr  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="execstr"> exécution d&apos;instructions Scilab contenues dans des chaînes de caractères  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>execstr(instr)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>ierr=execstr(instr,&apos;errcatch&apos; [,msg])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>instr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur de chaînes de caractères
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ierr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier, 0 ou numéro de l&apos;erreur
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>msg  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères (<VERB>&apos;m&apos;</VERB> ou <VERB>&apos;n&apos;</VERB>). La valeur par défaut est <VERB>&apos;n&apos;</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Exécute les instructions Scilab données dans l&apos;argument <VERB>instr</VERB>.
+  </P>
+  <P>
+    Si &apos;errcatch&apos; n&apos;est pas présent dans les arguments, les erreurs sont contrôlées comme d&apos;habitude.
+  </P>
+  <P>
+    Si &apos;errcatch&apos; est présent dans les arguments, et qu&apos;une erreur est rencontrée lors de l&apos;évaluation d&apos;un élément de <VERB>instr</VERB>, <VERB>execstr</VERB>
+    ne produit aucun message d&apos;erreur, mais stoppe l&apos;exécution des instructions stockées dans <VERB>instr</VERB> (au point où l&apos;erreur s&apos;est produite), et renvoie dans
+    <VERB>ierr</VERB> le numéro de l&apos;erreur. Dans ce cas l&apos;affichage du message d&apos;erreur est contrôlé par l&apos;option <VERB>msg</VERB> :
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='&quot;m&quot;'> 
+    : le message d&apos;erreur est affiché et enregistré
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='&quot;n&quot;'> 
+    : le message d&apos;erreur n&apos;est pas affiché mais il est enregistré (voir <VERB>lasterror</VERB>). Il s&apos;agit du comportement par défaut. 
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+execstr('a=1') // affecte a=1.
+execstr('1+1') // ne fait rien de particulier (alors que evstr('1+1') renvoie 2)
+
+execstr(['if %t then';
+         '  a=1';
+         '  b=a+1';
+         'else'
+         ' b=0'
+         'end'])
+
+execstr('a=zzzzzzz','errcatch')
+execstr('a=zzzzzzz','errcatch','m')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lasterror</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>error</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>alufunctions  </TITLE>
+  <TYPE>Scilab keyword  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="alufunctions"> description and number of pixel drawing modes.  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    src is the source ie the &quot;value of the pixel&quot; which we want to draw.
+    dst is the destination ie &quot;value of the pixel&quot; which is already drawn.
+  </P>
+  <P>
+  </P>
+  <P>
+     0: clear ie &quot;0&quot;
+  </P>
+ 
+  <P>
+     1: and ie &quot;src AND dst&quot;
+  </P>
+ 
+  <P>
+     2: and reverse ie &quot;src AND NOT dst&quot;
+  </P>
+ 
+  <P>
+     3: copy ie &quot;src&quot;
+  </P>
+ 
+  <P>
+     4: and inverted ie &quot;(NOT src) AND dst&quot;
+  </P>
+ 
+  <P>
+     5: noop ie &quot;dst&quot;
+  </P>
+ 
+  <P>
+     6: xor ie &quot;src XOR dst&quot;
+  </P>
+ 
+  <P>
+     7: or ie &quot;src OR dst&quot;
+  </P>
+ 
+  <P>
+     8: nor ie &quot;(NOT src) AND (NOT dst)&quot;
+  </P>
+ 
+  <P>
+     9: equiv ie &quot;(NOT src) XOR dst&quot;
+  </P>
+ 
+  <P>
+    10: invert ie &quot;NOT dst&quot;
+  </P>
+ 
+  <P>
+    11: or reverse ie &quot;src OR (NOT dst)&quot;
+  </P>
+ 
+  <P>
+    12: copy inverted ie &quot;NOT src&quot;
+  </P>
+ 
+  <P>
+    13: or inverted ie &quot;(NOT src) OR dst&quot;
+  </P>
+ 
+  <P>
+    14: nand ie &quot;(NOT src) OR (NOT dst)&quot;
+  </P>
+ 
+  <P>
+    15: set ie &quot;1&quot;
+  </P>
+ 
+  </DESCRIPTION>
+</MAN>

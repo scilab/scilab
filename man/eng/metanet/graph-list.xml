@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>graph-list  </TITLE>
+  <TYPE>Scilab type  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="graph-list"> description of graph list  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    A graph in Scilab is represented by a Scilab typed list. 
+    We call it a graph list.
+  </P>
+  <P>
+    You will find below the complete description of the list.
+    Each element is described by one or more lines.
+    The first line gives
+    the name of the element and its definition. Additional informations, such as
+    the default for elements that can have one, are given in the other lines.
+    Indeed, only the 5 first elements must have a value in the list, all the 
+    others can be given the empty vector <VERB>[]</VERB> as a value, and then the default 
+    is used when it is needed by functions or by the Metanet window.
+    For instance, you can define a graph list by
+  </P>
+  <VERBATIM><![CDATA[
+g=make_graph('min',1,1,[1],[1]);
+   ]]></VERBATIM>
+  <P>
+    which is the simplest graph you can create in Metanet (it is directed, has 
+    one node and one loop arc on this node).
+  </P>
+  <P>
+    The name of the element in the list is very important because it is used to 
+    access the elements of the list. For instance, if <VERB>g</VERB> is a graph list, 
+    to get the name of the graph, you only have to do:
+  </P>
+  <VERBATIM><![CDATA[
+g('name')
+   ]]></VERBATIM>
+  <P>
+    or
+  </P>
+  <VERBATIM><![CDATA[
+g.name
+   ]]></VERBATIM>
+  <P>
+    and if you want to change the name of the graph to <VERB>&apos;toto&apos;</VERB>, 
+    you have to do: 
+  </P>
+  <VERBATIM><![CDATA[
+g('name')='toto';
+   ]]></VERBATIM>
+  <P>
+    or
+  </P>
+  <VERBATIM><![CDATA[
+g.name='toto';
+   ]]></VERBATIM>
+  <P>
+    Moreover, you can get the number of edges and the number of arcs of the graph
+    by using <VERB>edge_number(g)</VERB> and <VERB>arc_number(g)</VERB> (these names do not
+    correspond to elements of the list). For compatibility, <VERB>node_number(g)</VERB> 
+    can also be used instead of <VERB>g(&apos;node_number&apos;)</VERB> or <VERB>g.node_number</VERB>.
+  </P>
+  <P>
+    A graph list can be syntactically correct but not represent a good graph. 
+    You can use the function <VERB>check_graph</VERB> to check it.
+    Moreover it is a good idea to give nodes different names. In fact, this
+    does not give errors in Scilab, but strange behaviour can appear when using 
+    the 
+    Metanet window. This is not checked by <VERB>check_graph</VERB> 
+    because it is time consuming. It is only checked when loading, saving
+    or showing a graph.
+  </P>
+  <P>
+    The elements of a graph list are given below:
+  </P>
+  <P>
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='name:'> 
+    - the name of the graph
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    it is a string with a maximum of 80 characters
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='directed:'> 
+    - flag giving the type of the graph
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    it is equal to 1 (graph directed) or equal to 0 (graph undirected)
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_number:'> 
+    - number of nodes 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='tail:'> 
+    - row vector of the tail node numbers 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='head:'> 
+    - row vector of the head node numbers 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='node_name:'> 
+    - row vector of node names
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    the names of the nodes must be different
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is the node numbers as node names
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_type:'> 
+    - row vector of the node types
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    the type is an integer from 0 to 2, default is 0 (plain node):
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 = plain node
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    1 = sink node
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    2 = source node
+  </DESCRIPTION_ITEM>
+ 
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_x:'> 
+    - row vector of the x coordinate of the nodes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is computed
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_y:'> 
+    - row vector of the y coordinate of the nodes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is computed
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_color:'> 
+    - row vector of the node colors
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    the color is an integer from 0 to 16, default is 0 (default foreground):
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    0 = default foreground
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    1 = navyblue
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    2 = blue
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    3 = skyblue
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    4 = aquamarine
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    5 = forestgreen
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    6 = green
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    7 = lightcyan
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    8 = cyan
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    9 = orange
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    10 = red
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    11 = magenta
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    12 = violet
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    13 = yellow
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    14 = gold
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    15 = beige
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    16 = background
+  </DESCRIPTION_ITEM>
+ 
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_diam:'> 
+    - row vector of the size of the node diameters in pixels
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    a node is drawn as a circle
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is the value of element <VERB>default_node_diam</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_border:'> 
+    - row vector of the size of the node borders in pixels
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    a node is drawn as a circle
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is the value of element <VERB>default_node_border</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_font_size:'> 
+    - row vector of the size of the font used to draw the name of the node
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    you can choose 8, 10, 12, 14, 18 or 24
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is the value of element <VERB>default_font_size</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_demand:'> 
+    - row vector of the node demands
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 0
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_name:'> 
+    - row vector of the edge names
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    it is better that the names of the edges are different, but this is not an error
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is the edge numbers as edge names
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_color:'> 
+    - row vector of the edge colors
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    the color is an integer from 0 to 16 (see <VERB>node_color</VERB>)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 0 (default foreground)
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_width:'> 
+    - row vector of the size of the edge widths in pixels
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is the value of element <VERB>default_edge_width</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_hi_width:'> 
+    - row vector of the size of the highlighted edge widths in pixels
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is the value of element <VERB>default_edge_hi_width</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_font_size:'> 
+    - row vector of the size of the fonts used to draw the name of the edge
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    you can choose 8, 10, 12, 14, 18 or 24
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is the value of element <VERB>default_font_size</VERB>
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_length:'> 
+    - row vector of the edge lengths
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 0
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_cost:'> 
+    - row vector of the edge costs
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 0
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_min_cap:'> 
+    - row vector of the edge minimum capacities
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 0
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_max_cap:'> 
+    - row vector of the edge maximum capacities
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 0
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_q_weight:'> 
+    - row vector of the edge quadratic weights
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 0
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_q_orig:'> 
+    - row vector of the edge quadratic origins
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 0
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='edge_weight:'> 
+    - row vector of the edge weights
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 0
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='default_node_diam:'> 
+    - default size of the node diameters of the graph
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 20 pixels
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='default_node_border:'> 
+    - default size of the node borders of the graph
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 2 pixels
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='default_edge_width:'> 
+    - default size of the edge widths of the graph
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 1 pixel
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='default_edge_hi_width:'> 
+    - default size of the highlighted edge widths of the graph
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 3 pixels
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='default_font_size:'> 
+    - default size of the font used to draw the names of nodes and edges
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    default is 12
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+  </P>
+  <P>
+  </P>
+
+  <DESCRIPTION_ITEM  label='node_label:'> 
+    - row vector of node labels 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='edge_label:'> 
+    - row vector of edge labels
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+g=load_graph(SCI+'/demos/metanet/mesh100');
+g('node_color')=int(rand(1:g('node_number'))*16);
+g('edge_color')=int(rand(1:edge_number(g))*16);
+show_graph(g)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>arc_number</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>check_graph</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>edge_number</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>glist</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>make_graph</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>node_number</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

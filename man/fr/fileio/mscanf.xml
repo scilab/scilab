@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mscanf  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Aug 1999  </DATE>
+  <SHORT_DESCRIPTION name=" mfscanf"> scan data from  file   </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name=" mscanf"> scan data from input   </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name=" msscanf"> scan data from string  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[n,a1,...,am]=mfscanf(fd,format);  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>data=mfscanf(fd,format);  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[n,a1,...,am]=mscanf(format);  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>data=mscanf(format);  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[n,a1,...,am]=msscanf(str,format);  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>data=msscanf(str,format);  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>fd : scalar, file descriptor given by <VERB>mopen</VERB> (it&apos;s a positive  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    integer). The value <VERB>-1</VERB> refers to the default file ( i.e the last opened file).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>format  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string, a C like format.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>str  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string, string to be scanned.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>n  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a scalar integer, the number or data really read.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>a1,...,am  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Output variables. if <VERB>m&gt;n</VERB> the <VERB>n+1:n</VERB> last <VERB>ai&apos;</VERB> are set to <VERB>[]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>data  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a list formed by the data really read.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    The mscanf(), mfscanf(), and msscanf() functions are interface for
+    C-coded version of <VERB>fscanf</VERB>, <VERB>sscanf</VERB> and <VERB>scanf</VERB>
+    functions.
+  </P>
+  <P>
+    The mscanf(), mfscanf(), and msscanf() functions read character data,
+    interpret it according to a format (see cformat), and store the
+    converted results into variables. The format parameter contains
+    conversion specifications used to interpret the input.
+  </P>
+  <P>
+    These functions read their input from the following sources:
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='mscanf()'> 
+    :  Reads from the Scilab input.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='mfscanf()'> 
+    : Reads from the file given by the file descriptor <VERB>fd</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='msscanf()'> 
+    : Reads from the character string specified by the <VERB>str</VERB> parameter.
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[n,a1,a2]=msscanf('123 456','%i %s')
+[n,a1,a2,a3]=msscanf('123 456','%i %s')
+data=msscanf('123 456','%i %s')
+
+fd=mopen(SCI+'/scilab.star','r')
+mfscanf(fd,'%s %s %s')
+mclose(fd)
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mclose</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>meof</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mfprintf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fprintfMat</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mfscanf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fscanfMat</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mget</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mgetstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mopen</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mprintf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mput</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mputstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mscanf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mseek</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mtell</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

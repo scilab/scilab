@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pvm_spawn  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>January 1998  </DATE>
+  <SHORT_DESCRIPTION name="pvm_spawn"> Starts new Scilab processes.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[tids, numt] = pvm_spawn(task,  ntask, [nw], [where])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>task : string, which is the file name of the scilab script (see exec) to be  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    started. The Scilab script must already reside on the host on which it is to be started.  The name must an absolute path.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ntask  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, specifying the number of copies of the  scilab script to start.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>win  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string (optional). If win is  equal to ``nw&apos;&apos; the Scilab process will be spawned in background with out any window coming up.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>where  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string (optional), can be a host name such as ``tequila.ens-lyon.fr&apos;&apos; or a PVM architecture class such as ``SUN4&apos;&apos;. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>numt  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, the actual number of tasks started. Values less than zero indicate a system error.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <P>
+    tids : row of integers, array of the tids of the PVM processes started  by this pvm_spawn call.
+  </P>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pvm_spawn</VERB> 
+    starts
+  </P>
+  <P>
+    copies of the scilab script
+  </P>
+  <P>
+    On systems that support environment,
+    spawn passes selected variables from parent environment to children tasks.
+    If set, the envar <VERB>PVM_EXPORT</VERB> is passed.
+    If PVM_EXPORT contains other names (separated by &apos;:&apos;) they will
+    be passed too.  This is useful for e.g.:
+  </P>
+  <VERBATIM><![CDATA[
+
+ setenv DISPLAY myworkstation:0.0
+ setenv MYSTERYVAR 13
+ setenv PVM_EXPORT DISPLAY:MYSTERYVAR
+   ]]></VERBATIM>
+  <P>
+    The hosts on which
+    the PVM processes are started are determined by 
+    the
+  </P>
+  <P>
+    arguments. On return the array
+  </P>
+  <P>
+    contains the PVM task identifiers for each process started.
+  </P>
+  <P>
+    If pvm_spawn starts one or more tasks,
+  </P>
+  <P>
+    will be the actual number of tasks started.
+    If a system error occurs then
+  </P>
+  <P>
+    will be &lt; 0.
+    If
+  </P>
+  <P>
+    is less than
+  </P>
+  <P>
+    then some executables
+    have failed to start and the user should check the last
+  </P>
+  <P>
+    locations in the
+  </P>
+  <P>
+    array which will contain error codes
+    (see below for meaning).
+    The first
+  </P>
+  <P>
+    tids in the array are always valid.
+  </P>
+  <P>
+    When
+    the argument
+  </P>
+  <P>
+    is omitted a heuristic (round-robin assignment) is used to distribute the
+  </P>
+  <P>
+    processes across the virtual machine.
+  </P>
+  <P>
+    In the special case where a multiprocessor is specified by
+  </P>
+  <P>
+    pvm_spawn will start all
+  </P>
+  <P>
+    copies on this
+    single machine using the vendor&apos;s underlying routines.
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// create an exec file (script)
+write(TMPDIR+'/foo.sce',['a=1';'plot2d()'])
+// start a new Scilab on the same host to execute the script
+[tids, numt] = pvm_spawn(TMPDIR+'/foo.sce',1)
+pvm_kill(tids) //terminate the new scilab
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pvm</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_spawn_independent</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>knapsack  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="knapsack"> résout un problème du sac à dos 0-1 multiple   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[earn,ind] = knapsack(profit,weight,capa,[bck])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>profit  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne d&apos;entiers 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>weight  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne d&apos;entiers 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>capa  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne d&apos;entiers
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>bck  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>earn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ind  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne d&apos;entiers 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>knapsack</VERB> résout un problème du sac à dos 0-1 multiple avec n (n &gt;= 2)
+    objets et m sacs à dos (m &gt;= 1).
+    <VERB>profit</VERB> est le vecteur des profits (entiers) des n objets et
+    <VERB>weight</VERB> est le vecteur des poids correspondants (entiers).
+    <VERB>capa</VERB> est le vecteur des capacités (entières) des m sacs à dos. 
+    <VERB>bck</VERB> est un entier optionnel : le nombre maximum de backtrackings à 
+    effectuer, si une solution heuristique est exigée. Si la solution 
+    exacte est exigée <VERB>bck</VERB> peut être omis ou avoir une valeur négative.
+    <VERB>earn</VERB> est la valeur du critère pour la solution &quot;optimale&quot; et 
+    <VERB>ind</VERB> est un vecteur donnant les positions optimales : <VERB>ind(i)</VERB> 
+    donne le numéro du sac à dos où l&apos;objet i est mis et cette valeur est 0 si 
+    l&apos;objet i n&apos;est pas dans la solution optimale.
+  </P>
+  <P>
+    Rappelons que le problème à résoudre est le suivant :
+    <VERB>p(i)</VERB> et <VERB>w</VERB> désignent respectivement le profit et le poids de
+    l&apos;objet <VERB>i</VERB> 1=1,...,n; 
+    <VERB>c(j)</VERB> désigne la capacité du sac à dos <VERB>j</VERB> j=1,...,m;  
+    <VERB>q(j,i)</VERB> désigne la quantité d&apos;objets <VERB>i</VERB> dans le sac à dos <VERB>j</VERB> 
+    (en fait 0 ou 1).
+  </P>
+  <P>
+    On cherche à maximiser le profit global <VERB>E</VERB> :
+     <VERB>E=p(1)*[x(1,1)+...+x(m,1)]+...+p(n)*[x(1,n)+...+x(m,n)]</VERB>
+  </P>
+  <P>
+    sous les contraintes :
+     <VERB>[w(1)*x(j,1)+...+w(n)*x(j,m)] &lt;= c(j) ; j=1,...,m</VERB>
+     <VERB>[x(1,i)+...+x(m,i)] &lt;= 1 ; i=1,...,n</VERB>
+     <VERB>x(j,i)= 0 ou 1 </VERB>
+     <VERB>p(),w(),c()</VERB> sont des entiers positifs.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+weight=ones(1,15).*.[1:4];
+profit=ones(1,60);
+capa=[15 45 30 60];
+[earn,ind]=knapsack(profit,weight,capa)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>qassign</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

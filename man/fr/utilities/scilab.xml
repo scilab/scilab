@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>scilab  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>May 1994  </DATE>
+  <SHORT_DESCRIPTION name="scilab "> script principal d&apos;exécution de Scilab et de divers outils  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>scilab [-ns -nw -display display -f file -args arguments]  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>scilab -help [ &lt;key&gt; ]  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>scilab -k &lt;key&gt;  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>scilab -xk &lt;key&gt;  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>scilab -link &lt;objects&gt;  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+ 
+
+  <DESCRIPTION_ITEM  label='scilab [-ns -nw -display display -f path -args arguments]'> 
+    : exécution de Scilab
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-ns'> 
+    : si cette option est présente le script de démarrage <VERB>SCI/scilab.star</VERB> n&apos;est pas exécuté.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-nw'> 
+    : si cette option est présente Scilab n&apos;est pas exécuté dans une fenêtre spécifique mais sur la ligne de commande.  
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-f file'> 
+    : si cette option est présente le script <VERB>file</VERB> est exécuté en premier dans Scilab. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-args arguments'> 
+    : si cette option est présente des arguments sont passés à Scilab. Ils peuvent être récupérés par la fonction <VERB>sciargs</VERB>. Les arguments multiples doivent être passés dans chaîne de caractères les contenant, séparés par des espaces  <VERB>scilab -args &apos;foo1 foo2&apos;</VERB>
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='scilab -help &lt;mot-clé&gt;'> 
+    : affiche le help sur &lt;mot-clé&gt; (produit le même résultat que <VERB>help &lt;mot-clé&gt;</VERB> exécuté dans Scilab). Exemple:
+  </DESCRIPTION_ITEM>
+  <VERBATIM><![CDATA[
+scilab -help plot3d
+   ]]></VERBATIM>
+
+  <DESCRIPTION_ITEM  label='scilab -k &lt;mot-clé&gt;'> 
+    : donne la liste des fonctions Scilab contenant &lt;mot-clé&gt; dans leur description (produit le même résultat que <VERB>apropos &lt;mot-clé&gt;</VERB> exécuté dans Scilab) 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='scilab -xk &lt;mot-clé&gt;'> 
+    : donne dans une fenêtre graphique la liste des fonctions Scilab contenant &lt;mot-clé&gt; dans leur description (produit le même résultat que <VERB>apropos &lt;mot-clé&gt;</VERB> exécuté dans Scilab) 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='scilab -link &lt;objects&gt;'> 
+    : est utilisé pour générer un <VERB>scilex</VERB> local (exécutable de Scilab) lié avec les fichiers additionnels donnés dans <VERB>&lt;objects&gt;</VERB>.  Si, dans la liste des fichiers objets, certains noms sont connus dans  <VERB>SCIDIR/routines/default</VERB>, les fichiers objets par utilisés par défaut par <VERB>scilex</VERB> sont omis et remplacés par les fichiers précisés.  Cette commande produit aussi un script <VERB>xscilab</VERB>, qui lance l&apos;exécution du nouveau <VERB>scilex</VERB>.
+  </DESCRIPTION_ITEM>
+  <P>
+    Par exemple :
+  </P>
+  <VERBATIM><![CDATA[
+scilab -link  C/interf.o C/evol.o C/bib.a
+   ]]></VERBATIM>
+  <P>
+    crée un nouveau <VERB>scilex</VERB> dans le quel le fichier <VERB>interf.o</VERB> par défaut 
+    sera remplacé par <VERB>C/interf.o</VERB>.
+  </P>
+ 
+  </DESCRIPTION>
+</MAN>

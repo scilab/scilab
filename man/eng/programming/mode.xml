@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mode  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="mode"> select a mode in exec file  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>mode(k)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>k=mode()   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Used exclusively inside an exec-file or a scilab function <VERB>mode(k)</VERB> allows to change the information displayed during the execution, depending on
+    the value of <VERB>k</VERB>:
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='k=0'> 
+    : The new variable values are displayed if required (see help on semi or comma).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='k=-1'> 
+    : the exec file or scilab function executes silently. (this is the default value for scilab functions)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='k=1 or k=3'> 
+    : each line of instructions is echoed preceded of the prompt. The new variable values are displayed if required. This is the default for exec files.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='k=7'> 
+    : The new variable values are displayed if required, each line of instructions is echoed (if possible) and a prompt (&gt;&gt;) is issued after each line waiting for a carriage return.
+  </DESCRIPTION_ITEM>
+  <P>
+    line display is disable for compiled scilab function (see getf or comp)
+  </P>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>exec</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>semi</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>comma</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

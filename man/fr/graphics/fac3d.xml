@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>fac3d  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September 1994  </DATE>
+  <SHORT_DESCRIPTION name="fac3d"> dessin en 3D d&apos;une surface (obsolète)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>fac3d(x,y,z,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>fac3d1(x,y,z,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Ces fonctions sont obsolètes et ont été remplacées par
+    <VERB>plot3d</VERB> et <VERB>plot3d1</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot3d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot3d1</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

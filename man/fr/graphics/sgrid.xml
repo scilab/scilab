@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sgrid  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Jun 1997  </DATE>
+  <SHORT_DESCRIPTION name="sgrid"> s-plane grid lines.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>sgrid()  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>sgrid(&apos;new&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>sgrid(zeta,wn [,color])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Used in conjonction with evans, 
+    plots lines of constant damping ratio (<VERB>zeta</VERB>)
+    and natural frequency (<VERB>wn</VERB>).
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='sgrid()'> 
+    : add a grid over an existing continuous s-plane root with default values for <VERB>zeta</VERB> and <VERB>wn</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='sgrid(&apos;new&apos;)'> 
+    : clears the graphic screen and then plots a default  s-plane grid 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='sgrid(zeta,wn [,color])'> 
+    : same as <VERB>sgrid()</VERB> but uses the provided damping ratio and  natural frequency.
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+evans(H,100)
+sgrid()
+sgrid(0.6,2,7)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>evans</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

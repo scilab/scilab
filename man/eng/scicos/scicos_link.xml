@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scicos_link  </TITLE>
+  <TYPE>Scicos data structure  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="scicos_link"> Scicos link data structure  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>lnk=list(&apos;Link&apos;,xx,yy,&apos;drawlink&apos;,id,[0,0],ct,from,to)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>&quot;Link&quot;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : keyword used to define list as a Scicos link representation
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>xx  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of x coordinates of the link path.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>yy  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of y coordinates of the link path.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>id  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Character string, the link id
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ct  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 2 x 1 vector, <VERB>[color,typ]</VERB> where <VERB>color</VERB> defines the color used for the link drawing and <VERB>typ</VERB> defines its type (0 for regular link ,1 for event link).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>from  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 2 x 1 vector, <VERB>[block,port]</VERB> where <VERB>block</VERB> is the index of the block at the origin of the link and <VERB>port</VERB> is the index of the port.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>to  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 2 x 1 vector, <VERB>[block,port]</VERB> where <VERB>block</VERB> is the index of the block at the end of the link and <VERB>port</VERB> is the index of the port.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Scicos editor creates and uses for each link a data structure
+    containing all information relative to the graphic interface and
+    interconnection information. Each of them are stored in the Scicos
+    editor main data structure. Index of these in Scicos
+    editor main data structure is given by the creation order.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_main</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_graphics</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

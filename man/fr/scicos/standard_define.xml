@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>standard_define  </TITLE>
+  <TYPE>Scicos function  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="standard_define"> Scicos block initial definition  function  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>o=standard_define(sz,model,dlg,gr_i)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>o  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Scicos block data structure (see scicos_block)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>sz  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 2 vector, giving the initial block width and height 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>model  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : initial model data structure definition (see scicos_model)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>dlg  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of character strings,initial parameters expressions
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>gr_i  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of character strings, initial icon definition instructions 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function creates the initial block data structure given the
+    initial size <VERB> sz</VERB>, this initial model definition <VERB> model</VERB>, the
+    initial parameters expressions <VERB> dlg</VERB> and initial icon definition
+    instructions <VERB> gr_i</VERB>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

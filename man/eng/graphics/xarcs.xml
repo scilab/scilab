@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xarcs  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xarcs"> draw parts of a set of ellipses  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xarcs(arcs,[style])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>arcs  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrix of size (6,n) describing the ellipses.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>style  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : row vector of size n giving the style to use.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xarcs</VERB> draws parts of a set of ellipses described by <VERB>arcs</VERB>: 
+    <VERB>arcs=[x y w h a1 a2;x y w h a1 a2;...]&apos;</VERB> where each ellipse is defined 
+    by the 6 parameters <VERB>(x,y,w,h,a1,a2)</VERB> (see <VERB>xarc</VERB>).
+  </P>
+  <P>
+    <VERB>style(i)</VERB> gives the color used to draw ellipse number <VERB>i</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
+arcs=[-1.0 0.0 0.5; // upper left x
+       1.0 0.0 0.5; // upper left y
+       0.5 1.0 0.5; // width
+       0.5 0.5 1.0; // height
+       0.0 0.0 0.0; // angle 1
+       180*64 360*64 90*64]; // angle 2
+xarcs(arcs,[1,2,3])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xarc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xfarc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xfarcs</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.;   </AUTHOR>
+</MAN>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>splin  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="splin"> spline function  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>d=splin(x,f [,&quot;periodic&quot;])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>f  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector of same size as <VERB>x</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&quot;periodic&quot;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string flag (a periodic spline is looked for)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Given values <VERB>fi</VERB> of a function f at given points <VERB>xi</VERB>
+    (<VERB>fi=f(xi)</VERB>) this primitive computes a third order spline
+    function S which interpolates the function <VERB>f</VERB>.
+    The components of <VERB>x</VERB> must be in increasing order.
+    For a periodic spline <VERB>f(1)</VERB> must equal <VERB>f(n)</VERB>;
+    S is defined through the triple <VERB>(x,f,d)</VERB> where <VERB>d=spline(x,f)</VERB>
+    is the vector of the estimated derivatives of S at <VERB>xi</VERB>
+    (<VERB>fi=S(xi),di=S&apos;(xi)</VERB>).
+    This function should be used in conjunction with <VERB>interp</VERB>.
+  </P>
+  <P>
+    In the case &quot;periodic&quot; n must be choosen &gt;= 3. In the non periodic 
+    case, n must be &gt;= 4 (but n=3 gives some kind of results) and the
+    boundary/end conditions for the spline are of type 
+    &quot;not-a-knot conditions&quot; and prescribe  (if x1, x2, ..., xn are the 
+    interpolation nodes) :
+  </P>
+  <VERBATIM><![CDATA[
+    S'''(x2-) = S'''(x2+)
+    S'''(x{n-1}-) = S'''(x{n-1}+)
+   ]]></VERBATIM>
+  <P>
+    so the first cubic polynomial p1 is equal to the second p2 and the
+    same is valid for the 2 last ones : p{n-2}=p{n-1}.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=0:0.5:10;f=sin(x);
+d=splin(x,f);
+S=interp(0:0.1:10,x,f,d);
+plot2d(x',f',-1);
+plot2d((0:0.1:10)',S',2,'000')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>interp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>smooth</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

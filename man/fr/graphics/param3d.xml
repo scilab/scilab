@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>param3d  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="param3d"> représentation d&apos;une courbe paramétrique dans l&apos;espace  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>param3d(x,y,z,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y,z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : trois vecteurs de même taille (points de la courbe paramétrique).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>theta, alpha  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : valeurs réelles donnant (en degrés) les coordonnées sphériques du point d&apos;observation.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>leg  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères définissant la légende pour chaque axe avec @ comme séparateur, par exemple &quot;X@Y@Z&quot;.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag=[type,box]  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : <VERB>type</VERB> et <VERB>box</VERB> ont la même signification que dans <VERB>plot3d</VERB>:
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ebox  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : utilisé quand <VERB>type</VERB> dans <VERB>flag</VERB> vaut 1. Spécifie les limites de la boîte 3D du dessin sous forme du vecteur <VERB>[xmin,xmax,ymin,ymax,zmin,zmax]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>param3d</VERB> est utilisée pour dessiner dans l&apos;espace une courbe paramétrique donnée par les points de coordonnées contenues dans les vecteurs <VERB>x</VERB>, <VERB>y</VERB> et <VERB>z</VERB>.
+  </P>
+  <P>
+    Utiliser <VERB>param3d1</VERB> pour dessiner plusieurs courbes en même temps.
+  </P>
+  <P>
+    Taper <VERB>param3d()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+t=0:0.1:5*%pi;
+param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>param3d1</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot3d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fchamp  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="fchamp"> direction field of a 2D first order ODE  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>fchamp(f,t,xr,yr,[arfact,rect,strf])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>fchamp(f,t,xr,yr,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>f  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : An external (function or character string) or a list which describes the ODE. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    It can be a function name <VERB>f</VERB>, where <VERB>f</VERB> is supposed to be a function of type <VERB>y=f(t,xy [p1,..pn])</VERB>. <VERB>f</VERB> returns  a column vector of size 2, <VERB>y</VERB>, which gives the value of the  direction field <VERB>f</VERB> at point <VERB>xy=[x,y]</VERB> and at time <VERB>t</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    It can also be an object of type list, <VERB>list(f,P1,..Pn)</VERB> where <VERB>f</VERB> is a function of type <VERB>y=f(t,xy,p1,..pn)</VERB> and <VERB>Pi</VERB> gives the value of the parameter <VERB>pi</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>t  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : The selected time.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>xr,yr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Two row vectors of size n1 and n2 which define the grid on which the direction field is computed. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : This represents a sequence of statements <VERB>key1=value1, key2=value2</VERB>,... where <VERB>key1</VERB>, <VERB>key2,...</VERB> can be one of the following: arfact, rect, strf (see below).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>arfact,rect,strf  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Optional arguments, see <VERB>champ</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>fchamp</VERB> is used to draw the direction field of a 2D first order ODE
+    defined by the external function <VERB>f</VERB>. Note that if the ODE is autonomous,
+    argument <VERB>t</VERB> is useless, but it must be given.
+  </P>
+  <P>
+    Enter the command <VERB>fchamp()</VERB> to see a demo.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+deff("[xdot] = derpol(t,x)",..
+        ["xd1 = x(2)";..
+         "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+         "xdot = [ xd1 ; xd2 ]"])
+xf= -1:0.1:1;
+yf= -1:0.1:1;
+fchamp(derpol,0,xf,yf)
+xbasc()
+fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>champ</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>champ1</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

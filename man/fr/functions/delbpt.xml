@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>delbpt  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="delbpt"> delete breakpoint  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>delbpt(&apos;macroname&apos; [,linenumb])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    deletes the breakpoint at line 
+    <VERB>linenumb</VERB> in the function <VERB>macroname</VERB>.
+    If <VERB>linenumb</VERB> is omitted all the breakpoints in the function are
+    deleted.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+setbpt('foo',1),setbpt('foo',10),delbpt('foo',10),dispbpt()
+delbpt('foo',1)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>setbpt</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>dispbpt</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pause</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>resume</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

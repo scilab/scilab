@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xaxis  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xaxis"> dessine un axe  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xaxis(alpha,nsteps,size,init)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>alpha  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : réel, angle en degrés de l&apos;axe
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>nsteps  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur réel de taille 2, nombre d&apos;intervalles et de sous-intervalles
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>size  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur réel de taille 3, taille des sous-intervalles, des petites et grandes graduations
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>init  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur réel de taille 2, origine de l&apos;axe.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xaxis</VERB> dessine un axe. 
+  </P>
+  <P>
+    La direction de l&apos;axe est donnée par <VERB>alpha</VERB> en degrés. 
+  </P>
+  <P>
+    <VERB>init=[x0 y0]</VERB> est l&apos;origine de l&apos;axe.
+  </P>
+  <P>
+    <VERB>nsteps=[n1,n2]</VERB> donne le nombre d&apos;intervalles et de sous-intervalles séparés par des graduations.
+  </P>
+  <P>
+    <VERB>size=[s1,s2,c1]</VERB> 
+    où <VERB>s1</VERB> donne la taille des sous-intervalles, <VERB>s2</VERB> donne la taille des sous-graduations et
+    <VERB>s2*c1</VERB> donne la taille des grandes graduations. Les tailles sont données dans l&apos;échelle courante du dessin.
+  </P>
+  <VERBATIM><![CDATA[
+            exemple : n1=3, n2=2, alpha=0
+                    (s2*c1) 
+            |     (s2)   |            |           |
+            |______|_____|_____|______|_____|_____|
+               s1
+   ]]></VERBATIM>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=[-%pi:0.1:%pi]';
+// dessin avec axe
+plot2d(x,sin(x),1,"010"," ",[-4 -1 4 1])
+// l'axe des x
+xpoly([-4 4],[0 0],"lines")
+xaxis(0,[2 2],[2 0.1 3],[-4 0])
+xstring(-4.1,-0.25,"-4"); xstring(-0.2,-0.1,"0"); xstring(4,-0.25,"4")
+//  l'axe des y
+xpoly([0 0],[-1 1],"lines")
+xaxis(90,[2 2],[0.5 0.025 3],[0 1])
+xstring(-0.5,-1.05,"-1"); xstring(-0.35,0.95,"1")
+ ]]></EXAMPLE>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>execstr  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="execstr"> execute Scilab code in strings  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>execstr(instr)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>ierr=execstr(instr,&apos;errcatch&apos; [,msg])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>instr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of character strings, Scilab instruction to be executed.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ierr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, 0 or error number.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>msg  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : character string with values <VERB>&apos;m&apos;</VERB> or <VERB>&apos;n&apos;</VERB>.  Default value is <VERB>&apos;n&apos;</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Executes the Scilab instructions given in argument <VERB>instr</VERB>.
+  </P>
+  <P>
+    If the &apos;errcatch&apos; flag is not present, error handling works as usual.
+  </P>
+  <P>
+    If the &apos;errcatch&apos; flag is set, and an error is encountered while
+    executing the instructions defined in <VERB>instr</VERB>, <VERB>execstr</VERB>
+    issues no error message, but aborts execution of the <VERB>instr</VERB>
+    instructions (at the point where the error occurred), and resumes with
+    <VERB>ierr</VERB> equal to the error number.  In this case the display of the
+    error message is controlled by the <VERB>msg</VERB> option:
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='&quot;m&quot;'> 
+    : error message is displayed and recorded.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='&quot;n&quot;'> 
+    : no error message is displayed, but the error message is recorded (see <VERB>lasterror</VERB>).  This is the default. 
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+execstr('a=1') // sets a=1.
+execstr('1+1') // does nothing (while evstr('1+1') returns 2)
+
+execstr(['if %t then';
+         '  a=1';
+         '  b=a+1';
+         'else'
+         ' b=0'
+         'end'])
+
+execstr('a=zzzzzzz','errcatch')
+execstr('a=zzzzzzz','errcatch','m')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lasterror</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>error</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

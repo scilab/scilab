@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>CLSS_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="CLSS_f"> Scicos continuous-time linear state-space system  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes a continuous-time linear state-space system.
+  </P>
+  <VERBATIM><![CDATA[
+xdot=A*x+B*u
+y   =C*x+D*u
+   ]]></VERBATIM>
+  <P>
+    The system is defined by the (A,B,C,D) matrices and the initial
+    state x0. The dimensions must be compatible.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='A'>
+: square matrix. The A matrix
+
+  </ITEM>
+  <ITEM label='B'>
+: the <VERB>B</VERB> matrix, <VERB>[]</VERB> if system has no input
+
+  </ITEM>
+  <ITEM label='C'>
+: the <VERB>C</VERB> matrix , <VERB>[]</VERB> if system has no output
+
+  </ITEM>
+  <ITEM label='D'>
+: the <VERB>D</VERB> matrix, <VERB>[]</VERB> if system has no <VERB>D</VERB> term.
+
+  </ITEM>
+  <ITEM label='x0'>
+: vector. The initial state of the system.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>CLR_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>INTEGRAL_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

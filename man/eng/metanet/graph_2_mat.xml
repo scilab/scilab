@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>graph_2_mat  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1995  </DATE>
+  <SHORT_DESCRIPTION name="graph_2_mat"> node-arc or node-node incidence matrix of a graph  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>a = graph_2_mat(g,mat)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>mat  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : optional string, &apos;node-arc&apos; or &apos;node-node&apos; matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>a  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : sparse node-arc or node-node incidence matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>graph_2_mat</VERB> computes the node-arc or the node-node incidence matrix 
+    corresponding
+    to the graph <VERB>g</VERB>. 
+  </P>
+  <P>
+    If the optional argument <VERB>mat</VERB> is omitted or is the string 
+    <VERB>&apos;node-arc&apos;</VERB>, the node-arc matrix is computed. If <VERB>mat</VERB> is the string
+    <VERB>&apos;node-node&apos;</VERB>, the node-node matrix is computed.
+  </P>
+  <P>
+    If <VERB>n</VERB> is the number of nodes of the graph and 
+    <VERB>m</VERB> is the number of edges of the graph, the node-arc matrix is a Scilab 
+    sparse matrix of size <VERB>(n,m)</VERB>.
+  </P>
+  <P>
+    It is defined as follows. If the graph is directed:
+  </P>
+  <P>
+    <VERB>a(i,j) = +1</VERB> if node <VERB>i</VERB> is the tail of arc <VERB>j</VERB>
+  </P>
+  <P>
+    <VERB>a(i,j) = -1</VERB> if node <VERB>i</VERB> is the head of arc <VERB>j</VERB>
+  </P>
+  <P>
+    If the graph is undirected:
+  </P>
+  <P>
+    <VERB>a(i,j) = 1</VERB> if node <VERB>i</VERB> is the tail or the head of arc <VERB>j</VERB>
+  </P>
+  <P>
+    If <VERB>n</VERB> is the number of nodes of the graph, the node-node matrix is a 
+    Scilab sparse matrix of size <VERB>(n,n)</VERB>.
+  </P>
+  <P>
+    It is defined as follows:
+  </P>
+  <P>
+    <VERB>a(i,j) = 1</VERB> if there is an arc from node <VERB>i</VERB> to node <VERB>j</VERB>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+g=load_graph(SCI+'/demos/metanet/colored');
+a=graph_2_mat(g)
+a=graph_2_mat(g,'node-node')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mat_2_graph</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

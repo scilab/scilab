@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>while  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="while"> while keyword   </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    <VERB>while</VERB> clause. Must be terminated by <VERB>&quot;end&quot;</VERB>
+  </P>
+  <P>
+    Notes:
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    The only constraint is that each &quot;then&quot; or &quot;do&quot; keyword  must be on  the same line line as &quot;while&quot; keyword.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    The &quot;keyword &quot;then&quot; or &quot;do&quot; can be replaced by a carriage return or a comma.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    The optional <VERB>,else instructions</VERB> construction allows to gives instructions which are executed when expr expression becomes false. 
+  </DESCRIPTION_ITEM>
+  <P>
+    Warning: the number of characters used to define the body of any
+    conditionnal instruction (if while for or select/case) must be limited to
+    16k.
+  </P>
+  <P>
+  </P>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+e=1; a=1; k=1;
+while norm(a-(a+e),1) > %eps, e=e/2; k=k+1; end
+e,k
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>for</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>select</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>break</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>return</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pause</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

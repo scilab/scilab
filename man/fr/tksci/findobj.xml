@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>findobj  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE> 04 June 1998  </DATE>
+  <SHORT_DESCRIPTION name="findobj"> find an object with specified property  </SHORT_DESCRIPTION>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>o  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    prop : string character Name of the property to test.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>o  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    value : string character specify the value the tested propoerty should be equal to. o  h : handle of the found object.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This routine is currentlyt used to find objects knowing their &apos;tag&apos;
+    property.  It returns handle of the first found object which property
+    &apos;prop&apos; is equal to &apos;value&apos;. If such an object does not exist, the
+    function returns a void matrix.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+h=figure();
+// creates  figure number 1.
+uicontrol( h, 'style','text', ...
+ 'string','This is a figure', ...
+ 'position',[50 70 100 100], ...
+ 'fontsize',15, ...
+ 'tag','Alabel');
+// put a  text in figure 1
+lab=findobj('tag','Alabel');
+// find the object which 'tag' value is 'Alabel'
+disp('the handle of the label is '+string(lab));
+close();
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>uicontrol</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>uimenu</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+</MAN>

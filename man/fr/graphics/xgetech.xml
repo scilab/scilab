@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xgetech  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xgetech"> récupération de l&apos;échelle graphique courante   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[wrect,frect,logflag,arect]=xgetech()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>wrect,frect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : valeurs réelles.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>logflag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères de taille 2 &quot;xy&quot;.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xgetech</VERB> renvoie l&apos;échelle graphique de la fenêtre courante.
+    Le rectangle [xmin,ymin,xmax,ymax] donné par
+    <VERB>frect</VERB> est la taille de toute la fenêtre graphique. 
+    Le dessin est fait dans la région définie par <VERB>wrect</VERB>.
+  </P>
+  <P>
+    <VERB>wrect=[x,y,w,h]</VERB> (point en haut à gauche, largeur, hauteur) décrit 
+    la région de la fenêtre graphique. 
+  </P>
+  <P>
+    <VERB>wrect=[0,0,1,1]</VERB> signifie que toute la fenêtre graphique est utilisée, 
+    et <VERB>wrect=[0.5,0,0.5,1]</VERB> signifie que seule la
+    moitié droite de la fenêtre graphique est utilisée.
+  </P>
+  <P>
+    <VERB>logflag</VERB> : chaîne de caractères de taille 2 &quot;xy&quot;, où x et y peuvent être &quot;n&quot; ou &quot;l&quot;. &quot;n&quot; pour échelle normale et &quot;l&quot; pour échelle logarithmique. x  pour axe des x et y pour axe des y.
+  </P>
+  <P>
+    <VERB>arect=[x_gauche, x_droite,y_haut,y_bas]</VERB> définit le cadre
+    dans la sous-fenêtre. Le cadre est spécifié (comme <VERB>wrect</VERB>) en utilisant des 
+    proportions de la largeur et de la hauteur de la sous-fenêtre courante.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// première sous-fenêtre
+xsetech([0,0,1.0,0.5])
+plot2d()
+// deuxième sous-fenêtre activée 
+xsetech([0,0.5,1.0,0.5])
+grayplot()
+// recupération de l'échelle 
+xsetech([0,0,1.0,0.5])
+[wrect,frect,logflag,arect]=xgetech();
+// recupération de l'échelle 
+xsetech([0,0.5,1.0,0.5])
+[wrect,frect,logflag,arect]=xgetech();
+xbasc();
+xset('default')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xsetech</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.;   </AUTHOR>
+</MAN>

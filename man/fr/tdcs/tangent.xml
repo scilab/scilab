@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>tangent  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="tangent"> linearization of a dynamical system at an equilibrium point   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[f,g,newm]=tangent(ff,xe,[ue])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>ff  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a string which gives the name of the Scilab macro which  codes  the system 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>xe  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector which gives the equilibrium point for the value ue of the parameter
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ue  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real value.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>f, g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : two matrices for the linearised  system  <VERB>dxdot=f.dx + g.du</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>newm  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : A new macro of type [y]=newm(t,x,u) which computes the field of the linearised system  (newm(t,xe,ue)=0)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    linearises around the equilibrium point <VERB>(xe,ue)</VERB> the vector field of 
+    the dynamical system given by a Scilab macro <VERB>ff</VERB>, <VERB>xdot=ff(t,x,[u])</VERB>.
+    The dynamical system is supposed to be autonomous.
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+</MAN>

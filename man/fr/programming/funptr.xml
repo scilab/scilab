@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>funptr  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="funptr"> coding of  primitives ( wizard stuff )  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Utility function (for experts only) 
+  </P>
+  <P>
+    returns 
+  </P>
+  <P>
+    where <VERB>(fun,fin)</VERB> is the internal coding of the primitive <VERB>&apos;name&apos;</VERB> .
+    <VERB>fun</VERB> is the interface number and <VERB>fin</VERB> the routine number
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>clearfun</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>newfun</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

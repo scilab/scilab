@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>DELAYV_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="DELAYV_f"> Scicos time varying delay block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block implements a time varying discretized delay. The value of
+    the delay is given by the second input port. The delayed signal enters
+    the first input port and leaves the unique output prot. 
+  </P>
+  <P>
+    The first event output port must be connected to unique input event port if
+    auto clocking is desired. But the input event port can also be driven
+    by outside clock. In that case, the max delay is size of initial
+    condition times the period of the incoming clock.
+  </P>
+  <P>
+    The second output event port generates an event if the second input
+    goes above the maximum delay specified. This signal can be ignored. In
+    that case the output will be delayed by max delay.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Number inputs'>
+: size of the delayed vector (-1 not allowed)
+
+  </ITEM>
+  <ITEM label='Register initial state'>
+: register initial state vector. Dimension must be greater than  or equal to 2
+
+  </ITEM>
+  <ITEM label='Max delay'>
+: Maximum delay that can be produced by this block
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>DELAY_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>EVTDLY_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>REGISTER_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

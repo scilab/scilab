@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pipe_network  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>August 1997  </DATE>
+  <SHORT_DESCRIPTION name="pipe_network"> solves the pipe network problem  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x,pi] = pipe_network(g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : row vector of the value of the flow on the arcs
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>pi  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : row vector of the value of the potential on the nodes
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pipe_network</VERB> returns the value of the flows and of the potentials
+    for the pipe network problem: flow problem with two Kirchhoff laws.
+    The graph must be directed. The problem must be feasible (the sum of
+    the node demands must be equal to 0). The resistances on the arcs must
+    be strictly positive and are given as the values of the element
+    &apos;edge_weight&apos; of the graph list.
+  </P>
+  <P>
+    The problem is solved by using sparse matrices LU factorization.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15];
+ta=[ta, 15 8 9 10 11 12 13 14];
+he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4];
+he=[he, 5 6 7 16 16 16 16 16 16 16];
+n=16;
+g=make_graph('foo',1,n,ta,he);
+g('node_x')=[42 615 231 505 145 312 403 233 506 34 400 312 142 614 260 257];
+g('node_y')=[143 145 154 154 147 152 157 270 273 279 269 273 273 274 50 376];
+show_graph(g);
+g('node_demand')=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 -100 100];
+w = [1 3 2 6 4 7 8 1 2 2 2 4 7 8 9 2 3 5 7 3 2 5 8 2 5 8];
+g('edge_weight')=[w, 6 4 3 5 6];
+[x,pi] = pipe_network(g)
+ ]]></EXAMPLE>
+</MAN>

@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>graphiques  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="Graphics"> contenu de la librairie graphique  </SHORT_DESCRIPTION>
+  <ITEMIZE label='DESSINS 2D'>
+  <ITEM label='plot2d'>
+: représentation de courbes dans le plan
+
+  </ITEM>
+  <ITEM label='plot2d2'>
+: représentation d&apos;une fonction constante par morceaux
+
+  </ITEM>
+  <ITEM label='plot2d3'>
+: représentation de courbes dans le plan sous forme de barres verticales
+
+  </ITEM>
+  <ITEM label='plot2d4'>
+: représentation de courbes dans le plan sous forme de flèches
+
+  </ITEM>
+  <ITEM label='fplot2d'>
+: représentation d&apos;une courbe définie par une fonction
+
+  </ITEM>
+  <ITEM label='champ'>
+: champ de vecteur 2D
+
+  </ITEM>
+  <ITEM label='champ1'>
+: champ de vecteur 2D. Flèches colorées
+
+  </ITEM>
+  <ITEM label='fchamp'>
+: champ défini par une équation différentielle du premier ordre
+
+  </ITEM>
+  <ITEM label='contour2d'>
+: courbes de niveau d&apos;une surface
+
+  </ITEM>
+  <ITEM label='fcontour2d'>
+: courbes de niveau d&apos;une surface (définie par une fonction)
+
+  </ITEM>
+  <ITEM label='grayplot'>
+: représentation d&apos;une surface en 2D sous forme de couleurs
+
+  </ITEM>
+  <ITEM label='fgrayplot'>
+: représentation d&apos;une surface (définie par une fonction) en 2D sous forme de couleurs
+
+  </ITEM>
+  <ITEM label='Sgrayplot'>
+: représentation d&apos;une surface en 2D sous forme de couleurs interpolées
+
+  </ITEM>
+  <ITEM label='Sfgrayplot'>
+: représentation d&apos;une surface (définie par une fonction) en 2D sous forme de couleurs interpolées
+
+  </ITEM>
+  <ITEM label='xgrid'>
+: ajoute une grille sur un dessin 2D
+
+  </ITEM>
+  <ITEM label='errbar'>
+: ajoute des barres d&apos;erreur sur un dessin 2D
+
+  </ITEM>
+  <ITEM label='histplot'>
+: dessine un histogramme
+
+  </ITEM>
+  <ITEM label='Matplot'>
+: dessin en 2D d&apos;une matrice en pseudo-couleurs 
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='DESSINS 3D'>
+  <ITEM label='plot3d'>
+: représentation en en couleurs d&apos;une surface
+
+  </ITEM>
+  <ITEM label='plot3d1'>
+: représentation en en couleurs d&apos;une surface
+
+  </ITEM>
+  <ITEM label='fplot3d'>
+: représente une surface non paramétrique définie par une fonction
+
+  </ITEM>
+  <ITEM label='fplot3d1'>
+: représente une surface non paramétrique définie par une fonction
+
+  </ITEM>
+  <ITEM label='param3d'>
+: représente une courbe paramétrique en 3D
+
+  </ITEM>
+  <ITEM label='param3d1'>
+: représente des courbes paramétriques en 3D
+
+  </ITEM>
+  <ITEM label='contour'>
+: courbes de niveau sur une surface en 3D
+
+  </ITEM>
+  <ITEM label='fcontour'>
+: courbes de niveau sur une surface en 3D définie par une fonction
+
+  </ITEM>
+  <ITEM label='hist3d'>
+: représentation d&apos;un histogramme en 3D
+
+  </ITEM>
+  <ITEM label='genfac3d'>
+: calcule les facettes d&apos;une surface non paramétrique
+
+  </ITEM>
+  <ITEM label='eval3dp'>
+: calcule les facettes d&apos;une surface paramétrique 
+
+  </ITEM>
+  <ITEM label='geom3d'>
+: projection 3D vers 2D après un dessin 3D
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='DESSINS DE POLYGONES ET DE LIGNES'>
+  <ITEM label='xpoly'>
+: dessine une ligne brisée ou un polygone
+
+  </ITEM>
+  <ITEM label='xpolys'>
+: dessine un ensemble de lignes brisées ou de polygones
+
+  </ITEM>
+  <ITEM label='xrpoly'>
+: dessine un polygone régulier
+
+  </ITEM>
+  <ITEM label='xsegs'>
+: dessine des segments déconnectés
+
+  </ITEM>
+  <ITEM label='xfpoly'>
+: remplit un polygone
+
+  </ITEM>
+  <ITEM label='xfpolys'>
+: remplit un ensemble de polygones
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='DESSINS DE RECTANGLES'>
+  <ITEM label='xrect'>
+: dessine un rectangle
+
+  </ITEM>
+  <ITEM label='xfrect'>
+: remplit un rectangle
+
+  </ITEM>
+  <ITEM label='xrects'>
+: dessine ou remplit un ensemble de rectangles
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='DESSINS DES ARCS'>
+  <ITEM label='xarc'>
+: dessine un arc d&apos;ellipse
+
+  </ITEM>
+  <ITEM label='xarcs'>
+: dessine des arcs d&apos;ellipses
+
+  </ITEM>
+  <ITEM label='xfarc'>
+: remplit un secteur angulaire d&apos;ellipse
+
+  </ITEM>
+  <ITEM label='xfarcs'>
+: remplit des secteurs angulaires d&apos;ellipses
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='DESSINS DE FLÈCHES'>
+  <ITEM label='xarrows'>
+: dessine un ensemble de flèches
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='DESSINS DE TEXTES'>
+  <ITEM label='xstring'>
+: dessine des chaînes de caractères
+
+  </ITEM>
+  <ITEM label='xstringl'>
+: calcule une boîte contenant des chaînes de caractères
+
+  </ITEM>
+  <ITEM label='xstringb'>
+: dessine des chaînes de caractères dans une boîte
+
+  </ITEM>
+  <ITEM label='xtitle'>
+: ajoute des titres et légendes sur une fenêtre graphique
+
+  </ITEM>
+  <ITEM label='titlepage'>
+: ajoute un titre au milieu  d&apos;une fenêtre graphique
+
+  </ITEM>
+  <ITEM label='xinfo'>
+: affiche une chaîne de caractères dans la sous-fenêtre des messages
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='CADRES ET AXES'>
+  <ITEM label='xaxis'>
+: dessine un axe 
+
+  </ITEM>
+  <ITEM label='graduate'>
+: graduations simplifiées
+
+  </ITEM>
+  <ITEM label='plotframe'>
+: dessine un cadre avec axes et mise à l&apos;échelle
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='TRANSFORMATIONS DE COORDONNÉES'>
+  <ITEM label='isoview'>
+: échelle isométrique (fonction obsolète)
+
+  </ITEM>
+  <ITEM label='square'>
+: échelle isométrique (par changement de la taille de la fenêtre)
+
+  </ITEM>
+  <ITEM label='scaling'>
+: transformation affine d&apos;un ensemble de points
+
+  </ITEM>
+  <ITEM label='rotate'>
+: rotation d&apos;un ensemble de points  
+
+  </ITEM>
+  <ITEM label='xsetech'>
+: choix d&apos;une sous-fenêtre graphique
+
+  </ITEM>
+  <ITEM label='subplot'>
+: divise la fenêtre graphique en sous-fenêtres
+
+  </ITEM>
+  <ITEM label='xgetech'>
+: donne l&apos;échelle graphique courante 
+
+  </ITEM>
+  <ITEM label='xchange'>
+: transformation de coordonnées réelles vers pixels
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='COULEURS'>
+  <ITEM label='colormap'>
+:  utilisation des tables de couleurs
+
+  </ITEM>
+  <ITEM label='getcolor'>
+: boîte de dialogue pour sélectionner des couleurs dans la table des couleurs
+
+  </ITEM>
+  <ITEM label='addcolor'>
+: ajout de nouvelles couleurs à la tables des couleurs
+
+  </ITEM>
+  <ITEM label='graycolormap'>
+: table de couleurs du noir au blanc
+
+  </ITEM>
+  <ITEM label='hotcolormap'>
+: table de couleurs &quot;chaude&quot; du rouge au jaune
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='CONTEXTE GRAPHIQUE'>
+  <ITEM label='xset'>
+: change des valeurs du contexte graphique
+
+  </ITEM>
+  <ITEM label='xget'>
+: récupère des valeurs du contexte graphique
+
+  </ITEM>
+  <ITEM label='xlfont'>
+: charge une police dans le contexte graphique ou donne la liste des polices
+
+  </ITEM>
+  <ITEM label='getsymbol'>
+: boîte de dialogue pour choisir un marqueur (ou symbole)
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='SAUVEGARDE ET CHARGEMENT'>
+  <ITEM label='xsave'>
+: sauve les graphiques dans un fichier
+
+  </ITEM>
+  <ITEM label='xload'>
+: charge des graphiques sauvés
+
+  </ITEM>
+  <ITEM label='xbasimp'>
+: envoie des graphiques à une imprimante Postscript ou un fichier
+
+  </ITEM>
+  <ITEM label='xs2fig'>
+: envoie des graphiques dans un fichier au format XFig
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='PRIMITIVES GRAPHIQUES'>
+  <ITEM label='xbasc'>
+: efface une fenêtre graphique et les graphiques enregistrés
+
+  </ITEM>
+  <ITEM label='xclear'>
+:  efface une fenêtre graphique
+
+  </ITEM>
+  <ITEM label='driver'>
+: choisit un pilote graphique
+
+  </ITEM>
+  <ITEM label='xinit'>
+: initialisation d&apos;un pilote graphique
+
+  </ITEM>
+  <ITEM label='xend'>
+: termine une session graphique
+
+  </ITEM>
+  <ITEM label='xbasr'>
+: redessine une fenêtre graphique
+
+  </ITEM>
+  <ITEM label='replot'>
+: redessine une fenêtre graphique avec de nouvelles bornes
+
+  </ITEM>
+  <ITEM label='xpause'>
+: suspend l&apos;exécution de Scilab 
+
+  </ITEM>
+  <ITEM label='xselect'>
+: met une fenêtre graphique au premier plan
+
+  </ITEM>
+  <ITEM label='xclea'>
+: effacement d&apos;un rectangle
+
+  </ITEM>
+  <ITEM label='xclip'>
+:  définit une zone de clipping 
+
+  </ITEM>
+  <ITEM label='xdel'>
+: supprime une fenêtre graphique
+
+  </ITEM>
+  <ITEM label='winsid'>
+: renvoie la liste des fenêtre graphiques
+
+  </ITEM>
+  <ITEM label='xname'>
+: change le nom d&apos;une fenêtre graphique
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='POSITION DE LA SOURIS'>
+  <ITEM label='xclick'>
+: attend un clic de souris
+
+  </ITEM>
+  <ITEM label='locate'>
+: sélection d&apos;un ensemble de points
+
+  </ITEM>
+  <ITEM label='xgetmouse'>
+: renvoie la position courante du pointeur de la souris
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='ÉDITEUR INTERACTIF'>
+  <ITEM label='edit_curv'>
+: éditeur graphique interactif
+
+  </ITEM>
+  <ITEM label='gr_menu'>
+: éditeur graphique élémentaire
+
+  </ITEM>
+  <ITEM label='sd2sci'>
+: conversion d&apos;objets gr_menu en instructions Scilab 
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='FONCTIONS GRAPHIQUES EN AUTOMATIQUE'>
+  <ITEM label='bode'>
+: diagramme de Bode
+
+  </ITEM>
+  <ITEM label='gainplot'>
+: magnitude plot
+
+  </ITEM>
+  <ITEM label='nyquist'>
+: Nyquist plot
+
+  </ITEM>
+  <ITEM label='m_circle'>
+: M-circle plot
+
+  </ITEM>
+  <ITEM label='chart'>
+: Nichols chart
+
+  </ITEM>
+  <ITEM label='black'>
+: Black&apos;s diagram
+
+  </ITEM>
+  <ITEM label='evans'>
+: Evans root locus
+
+  </ITEM>
+  <ITEM label='sgrid'>
+: s-plane grid lignes
+
+  </ITEM>
+  <ITEM label='plzr'>
+: pole-zero plot
+
+  </ITEM>
+  <ITEM label='zgrid'>
+: zgrid plot
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>NEGTOPOS_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="NEGTOPOS_f"> Scicos negative to positive detector  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    An output event is generated when the unique input crosses zero
+    with a positive slope.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>POSTONEG_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ZCROSS_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>GENERAL_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

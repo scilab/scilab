@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xstringb  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xstringb"> dessine des chaînes de caractères dans une boîte  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xstringb(x,y,str,w,h,[option])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y,w,h  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur de 4 scalaires définissant la boîte
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>str  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice de chaînes de caractères.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>option  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xstringb</VERB> dessine la matrice de chaînes de caractères <VERB>str</VERB> centrée dans le 
+    le rectangle <VERB>rect=[x,y,w,h]</VERB> (point en haut à gauche, largeur, hauteur) dans l&apos;échelle graphique courante.
+    Si <VERB>option</VERB> est donné avec la valeur <VERB>&quot;fill&quot;</VERB>, la taille de la police est calculée 
+    de manière à remplir le rectangle au maximum.
+  </P>
+  <P>
+    Taper <VERB>xstringb()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+str=["Scilab" "n''est ";"pas" "Matlab"];
+plot2d(0,0,[-1,1],"010"," ",[0,0,1,1]);
+r=[0,0,1,0.5];
+xstringb(r(1),r(2),str,r(3),r(4),"fill");
+xrect(r(1),r(2)+r(4),r(3),r(4))
+r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
+xrect(r(1),r(2)+r(4),r(3),r(4))
+xstringb(r(1),r(2),str,r(3),r(4),"fill");
+r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
+xrect(r(1),r(2)+r(4),r(3),r(4))
+xstringb(r(1),r(2),str,r(3),r(4),"fill");
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>titlepage</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xstring</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xstringl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xtitle</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

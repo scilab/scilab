@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>colnew  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>June 1993  </DATE>
+  <SHORT_DESCRIPTION name="colnew"> boundary value problems for ODE  </SHORT_DESCRIPTION>
+</MAN>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>GENSQR_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="GENSQR_f"> Scicos square wave generator  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is a square wave generator: output takes values
+    <VERB>-M</VERB> and <VERB>M</VERB>. Every time an event is received on the input event port,
+    the output switches from <VERB>-M</VERB> to <VERB>M</VERB>, or <VERB>M</VERB> to <VERB>-M</VERB>.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Amplitude'>
+: a scalar <VERB>M</VERB>.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>GENSIN_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>SAWTOOTH_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>RAND_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>graypolarplot  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 2000  </DATE>
+  <SHORT_DESCRIPTION name="graypolarplot"> Polar 2D plot of a surface using colors  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>graypolarplot(theta,rho,z,[strf,rect])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>rho  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a vector with  size n1, the discretization of the radius 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>theta  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a vector with  size n2, the discretization of the the angle.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real matrix of size (n1,n2). <VERB>z(i,j)</VERB> is the value of the surface at  the point (rho(i),theta(j)). 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>strf  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : is a string of length 3 <VERB>&quot;xy0&quot;</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>The default is <VERB>&quot;030&quot;</VERB>.  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : controls the display of captions.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x=0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : no captions.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x=1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : captions are displayed. They are given by the optional argument <VERB>leg</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : controls the computation of the frame.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>y=0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : the current boundaries (set by a previous call to another high level plotting function) are used. Useful when superposing multiple plots.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y=1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : the optional argument <VERB>rect</VERB> is used to specify the boundaries of  the plot.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y=2  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : the boundaries of the plot are computed using min and max values of <VERB>x</VERB> and <VERB>y</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y=3  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : like <VERB>y=1</VERB> but produces isoview scaling.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y=4  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : like <VERB>y=2</VERB> but produces isoview scaling.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y=5  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : like <VERB>y=1</VERB> but <VERB>plot2d</VERB> can change the boundaries of the plot and  the ticks of the axes to produce pretty graduations. When the zoom button  is activated, this mode is used.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y=6  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : like <VERB>y=2</VERB> but <VERB>plot2d</VERB> can change the boundaries of the plot and  the ticks of the axes to produce pretty graduations. When the zoom button  is activated, this mode is used.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y=7  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : like <VERB>y=5</VERB> but the scale of the new plot is merged with the  current scale.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y=8  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : like <VERB>y=6</VERB> but the scale of the new plot is merged with the  current scale.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>leg  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a string. It is used when the first character x of argument <VERB>strf</VERB> is 1. <VERB>leg</VERB> has the form <VERB>&quot;leg1@leg2@....&quot;</VERB> where <VERB>leg1</VERB>, <VERB>leg2</VERB>,  etc. are respectively the captions of the first curve, of the second curve, etc.  The default is <VERB>&quot; &quot;</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : This argument is used when the second character y of argument <VERB>strf</VERB> is 1, 3 or 5. It is a row vector of size 4 and gives the dimension of the frame:  <VERB>rect=[xmin,ymin,xmax,ymax]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <P>
+    
+  </P>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Takes a 2D plot of the surface given by <VERB>z</VERB> on a polar coordinate
+    grid defined by <VERB>rho</VERB> and <VERB>theta</VERB>. Each grid region if filled
+    with a gray or color level depending on the average value of <VERB>z</VERB>
+    on the corners of the grid.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+
+  rho=1:0.1:4;theta=(0:0.02:1)*2*%pi;
+  z=30+round(theta'*(1+rho^2));
+  xset('colormap',hotcolormap(128))
+  xset('background',xget('white'))
+  xbasc();graypolarplot(theta,rho,z)
+ ]]></EXAMPLE>
+</MAN>

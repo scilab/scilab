@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scilab  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>May 1994  </DATE>
+  <SHORT_DESCRIPTION name="scilab "> Major unix script to execute Scilab and miscellaneous tools  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>scilab [-ns -nw -display display -f file -args arguments]  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>scilab -help [ &lt;key&gt; ]  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>scilab -k &lt;key&gt;  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>scilab -xk &lt;key&gt;  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>scilab -link &lt;objects&gt;  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+ 
+
+  <DESCRIPTION_ITEM  label='scilab [-ns -nw -display display -f path -args arguments]'> 
+    : run scilab. 
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-ns'> 
+    :if this option is  present the startup file <VERB>SCI/scilab.star</VERB> is not executed. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-nw'> 
+    :if this option is present then  scilab is not run in an X window. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-f file'> 
+    : if this option is present then Scilab script <VERB>file</VERB> is executed first into Scilab. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-args arguments'> 
+    : if this option is present arguments are passed to Scilab. They can then be got by sciargs function. For multi arguments passing use a quoted, blank separated sequence of words like:  <VERB>scilab -args &apos;foo1 foo2&apos;</VERB>
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='scilab -help &lt;key&gt;'> 
+    : write on-line documentation about &lt;key&gt; (usually automatically called  by scilab command &quot;help &lt;key&gt;&quot;). Example:
+  </DESCRIPTION_ITEM>
+  <VERBATIM><![CDATA[
+scilab -help plot3d
+   ]]></VERBATIM>
+
+  <DESCRIPTION_ITEM  label='scilab -k &lt;key&gt;'> 
+    : gives the list of Scilab commands containing the  keyword &lt;key&gt; in their description (usually automatically called  by scilab command &quot;apropos &lt;key&gt;&quot;) 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='scilab -xk &lt;key&gt;'> 
+    : gives the list of Scilab commands containing the  keyword &lt;key&gt; in their description in a X window.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='scilab -link &lt;objects&gt;'> 
+    : Is used to produce a local <VERB>scilex</VERB> (executable code of Scilab) linked with the  additional files given by the  user in <VERB>&lt;objects&gt;</VERB>.  If, in the list of object files, some names are known from  <VERB>SCIDIR/routines/default</VERB>, then the <VERB>scilex</VERB> default  files are omitted and replaced with the given ones .  This command also produces a <VERB>xscilab</VERB> script, which when called  will ran the new generated scilex file.
+  </DESCRIPTION_ITEM>
+  <P>
+    For example:
+  </P>
+  <VERBATIM><![CDATA[
+scilab -link  C/interf.o C/evol.o C/bib.a
+   ]]></VERBATIM>
+  <P>
+    will create a new <VERB>scilex</VERB> file in which the default <VERB>interf.o</VERB> 
+    file will be replaced by <VERB>C/interf.o</VERB>.
+  </P>
+ 
+  </DESCRIPTION>
+</MAN>

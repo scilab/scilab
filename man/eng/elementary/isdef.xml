@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>isdef  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="isdef"> check variable  existence  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>isdef(name [,where])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>where  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : an optional character string with default value &apos;all&apos;
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>isdef(name)</VERB> returns <VERB>%T</VERB> if the variable <VERB>&apos;var-name&apos;</VERB> exists 
+    and <VERB>%F</VERB> otherwise.
+  </P>
+  <P>
+    <VERB>isdef(name,&apos;local&apos;)</VERB> returns <VERB>%T</VERB> if the variable <VERB>&apos;var-name&apos;</VERB> exists 
+    in the
+      local environment of the current function and <VERB>%F</VERB> otherwise.
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=1;
+isdef('A')
+clear A
+isdef('A')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>exists</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>whereis</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>type</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>typeof</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>clear</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>IFTHEL_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="IFTHEL_f"> Scicos if then else block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    One event is generated on one of the output event ports when an
+    input event arrives. Depending on the sign of the regular input, 
+    the event is generated on the first or second output.
+  </P>
+  <P>
+    This is a synchro block, i.e., input and output event are synchronized.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <P>
+    None.
+  </P>
+  </ITEMIZE>
+</MAN>

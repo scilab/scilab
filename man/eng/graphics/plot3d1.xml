@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>plot3d1  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="plot3d1"> 3D gray or color level plot of a surface  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>plot3d1(x,y,z,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot3d1(xf,yf,zf,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+  <P>
+    See <VERB>plot3d</VERB> for a full description. There is just a slight difference, only the sign of the <VERB>flag(1)=mode</VERB> parameter is used: if it is negative the grid is not drawn. 
+  </P>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>plot3d1</VERB> plots a surface with colors depending on the z-level of the surface.
+  </P>
+  <P>
+    Enter the command <VERB>plot3d1()</VERB> to see a demo.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// simple plot using z=f(x,y)
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+plot3d1(t,t,z)
+// same plot using facets computed by genfac3d
+[xx,yy,zz]=genfac3d(t,t,z);
+xbasc()
+plot3d1(xx,yy,zz)
+// multiple plots
+xbasc()
+plot3d1([xx xx],[yy yy],[zz 4+zz])
+// simple plot with viewpoint and captions
+xbasc()
+plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
+// same plot without grid
+xbasc()
+plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[-2,2,3])
+// plot of a sphere using facets computed by eval3dp
+deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";..
+  "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";..
+  "z=r*sin(alp)+orig(3)*ones(tet)"]);
+r=1; orig=[0 0 0];
+[xx,yy,zz]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
+xbasc()
+plot3d1(xx,yy,zz)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot3d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

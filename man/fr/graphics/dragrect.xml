@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>dragrect  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 2000  </DATE>
+  <SHORT_DESCRIPTION name="dragrect"> déplace un ou plusieurs rectangles avec la souris  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>final_rect=dragrect(initial_rect)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>initial_rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice 4xn contenant les définitions initiales des rectangles. Chaque colonne contient [x_gauche; y_haut; largeur; hauteur]. Si un seul rectangle est présent initial_rect peut être un rectangle. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>final_rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un rectangle défini par [x_gauche, y_haut, largeur, hauteur] 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>dragrect</VERB> permet de déplacer un ou plusieurs rectangles à l&apos;écran. La matrice 4xn
+    initial_rect définit les rectangles. Chaque colonne de <VERB>initial_rect</VERB>
+    contient  les définitions initiales des rectangles. Chaque colonne contient [x_gauche; y_haut; largeur; hauteur]. Quand un bouton de la souris est actionné <VERB>dragrect</VERB> renvoie les rectangles finaux dans <VERB>final_Rect</VERB>.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+xsetech(frect=[0,0,100,100])
+r=dragrect([10;10;30;10])
+xrect(r)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xrect</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xrects</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xclick</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xgetmouse</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>CONST_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="CONST_f"> Scicos constant value(s) generator  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is a constant value(s) generator.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='constants'>
+: a real vector. The vector size gives the size of the output port. The value <VERB>constants(i)</VERB> is assigned to the ith component of the output.
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

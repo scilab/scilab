@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pvm_halt  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>May 1998  </DATE>
+  <SHORT_DESCRIPTION name="pvm_halt"> stops the PVM daemon  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[info] = pvm_halt()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>info  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, status code returned by the routine. Values less than zero indicate an error. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pvm_halt</VERB> kills all PVM tasks, all the remote daemons, and the
+    local daemon.  If the master pvmd is killed manually it should be
+    sent a SIGTERM signal to allow it to kill the remote pvmds and clean
+    up various files.
+     
+    The pvmd can be killed in a manner that  leaves the file /tmp/pvmd.uid
+    behind on one  or more  hosts.   Uid  is  the  numeric  user ID  (from
+    /etc/passwd) of  the user.  This  will prevent PVM  from restarting on
+    that host.  Deletion of this file will fix this problem:
+     
+             rm `( grep $user /etc/passwd || ypmatch $user passwd )
+                  | awk -F: &apos;{print &quot;/tmp/pvmd.&quot;$3; exit}&apos;`
+  </P>
+  <P>
+    For example:
+  </P>
+  <VERBATIM><![CDATA[
+-->pvm_halt()
+ ans  =
+ 
+    0.  
+ 
+-->pvm_halt()
+ ans  =
+ 
+  - 14.  
+   ]]></VERBATIM>
+  <P>
+    Error -14 means: pvm_halt(): Can&apos;t contact local daemon
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pvm_start</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_addhosts</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_config</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xs2fig  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xs2fig"> sauve le contenu d&apos;une fenêtre graphique au format XFig  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xs2fig(win_num,filen,[color])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>win_num  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier ou vecteur d&apos;entiers
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>filen  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères, nom de fichier
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>color  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier optionnel. 0 (mode noir et blanc) ou 1 (mode en couleurs). La valeur par défaut dépend du statut courant de l&apos;écran.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xs2fig</VERB> sauve les graphiques enregistrés dans la fenêtre <VERB>win_num</VERB> dans le fichier <VERB>filen</VERB> au format XFig.
+    Cette fonction ne marche que si le pilote courant est le pilote <VERB>&quot;Rec&quot;</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xbasimp</LINK> <LINK>xs2gif</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

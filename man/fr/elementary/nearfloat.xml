@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>nearfloat  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 2001  </DATE>
+  <SHORT_DESCRIPTION name="nearfloat"> get previous or next floating-point number  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xnear = number_properties(dir, x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>dir  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string (&quot;succ&quot; or &quot;pred&quot;)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real scalar, vector or matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>xnear  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real scalar, vector or matrix 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function computes, in the element wise meaning, the corresponding neighbours 
+    of the elements of x (in the underlying floating point set, see number_properties), 
+    the successors if dir = &quot;succ&quot; and the predecessors if dir = &quot;pred&quot;
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='EXAMPLES'>
+  <VERBATIM><![CDATA[
+format("e",22)
+nearfloat("succ",1) - 1
+1 - nearfloat("pred",1)
+format("v") //reset default format
+   ]]></VERBATIM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>number_properties</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>frexp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>B.P.;   </AUTHOR>
+</MAN>

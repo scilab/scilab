@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>plotframe  </TITLE>
+  <TYPE>  </TYPE>
+  <DATE>October 1994  </DATE>
+  <SHORT_DESCRIPTION name="plotframe"> plot a frame with scaling and grids  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>plotframe(rect,tics,[arg_opt1,arg_opt2,arg_opt3])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector <VERB>[xmin,ymin,xmax,ymax]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>tics  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector <VERB>[nx,mx,ny,my]</VERB> where <VERB>mx, nx</VERB> (resp. <VERB>my, ny</VERB>) are the number of x-axis (resp. y-axis) intervals and subintervals.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>arg_optX  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : optional arguments up to three and choosen among.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>flags  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector <VERB>[wantgrids,findbounds]</VERB> where <VERB>wantgrids</VERB> is a boolean variable (<VERB>%t</VERB> or <VERB>%f</VERB>) which indicates gridding. <VERB>findbounds</VERB> is a boolean variable. If <VERB>findbounds</VERB> is <VERB>%t</VERB>, the bounds given in <VERB>rect</VERB> are allowed to be slightly modified  (in fact always increased) in order to have simpler graduations: then <VERB>tics(2)</VERB> and  <VERB>tics(4)</VERB> are ignored.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>captions  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of 3 strings <VERB>[title,x-leg,y-leg]</VERB> corresponding respectively to the title of the plot and the captions on the x-axis and the y-axis.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>subwin  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a vector of size 4 defining the sub window. The sub window is specified with the  parameter <VERB>subwin=[x,y,w,h]</VERB> (upper-left, width, height).  The values in <VERB>subwin</VERB> are specified using proportion of the width  or height of the current graphics window (see <VERB>xsetech</VERB>).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>plotframe</VERB> is used with 2D plotting functions <VERB>plot2d</VERB>,
+    <VERB>plot2d1</VERB>,... to set a graphics frame. It must be
+    used before <VERB>plot2d</VERB> which should be invoked with
+    the &quot;000&quot; superposition mode.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=[-0.3:0.8:27.3]';
+y=rand(x);
+rect=[min(x),min(y),max(x),max(y)];
+tics=[4,10,2,5];    //4 x-intervals and 2 y-intervals
+plotframe(rect,tics,[%f,%f],["My plot","x","y"],[0,0,0.5,0.5])
+plot2d(x,y,2,"000")
+plotframe(rect,tics,[%t,%f],["My plot with grids","x","y"],[0.5,0,0.5,0.5])
+plot2d(x,y,3,"000")
+plotframe(rect,tics,[%t,%t],..
+["My plot with grids and automatic bounds","x","y"],[0,0.5,0.5,0.5])
+plot2d(x,y,4,"000")
+plotframe(rect,tics,[%f,%t],..
+ ["My plot without grids but with automatic bounds","x","y"],..
+ [0.5,0.5,0.5,0.5])
+plot2d(x,y,5,"000")
+xset("default")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>graduate</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xsetech</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

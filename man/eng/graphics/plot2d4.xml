@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>plot2d4  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="plot2d4"> 2D plot (arrows style)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>plot2d4([logflag,] x,y,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot2d4(y)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot2d4(x,y &lt;,opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+  <P>
+    [ ] : see <VERB>plot2d</VERB> for a description of parameters.
+  </P>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>plot2d4</VERB> is the same as <VERB>plot2d</VERB> but curves are plotted using arrows
+    style. This can be useful when plotting solutions of an ODE in a phase
+    space.
+  </P>
+  <P>
+    By default, successive plots are superposed. To clear the previous plot, 
+    use <VERB>xbasc()</VERB>.
+  </P>
+  <P>
+    Enter the command <VERB>plot2d4()</VERB> to see a demo.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// compare the following with plot2d1
+x=[0:0.1:2*%pi]';
+plot2d4(x,[sin(x) sin(2*x) sin(3*x)])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>fchamp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d2</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d3</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>subplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xbasc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>graph_power  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="graph_power"> kth power of a directed 1-graph  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>g1 = graph_power(g,k)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list of the graph
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>k  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list of the new graph
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>graph_power</VERB> computes the directed graph <VERB>g1</VERB> which is the kth power 
+    of directed 1-graph <VERB>g</VERB>.
+    There is an arc between two nodes in <VERB>g1</VERB> if there exists a path between 
+    these nodes of length at most k in <VERB>g</VERB>.
+    <VERB>graph_power(g,1)</VERB> is graph <VERB>g</VERB>.
+  </P>
+  <P>
+    If such a graph does not exist, an empty vector is returned.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 4 4 5 6 7 2 3 5 1];
+he=[2 6 3 6 7 8 8 8 4 7 3 5];
+g=make_graph('foo',1,8,ta,he);
+g('node_x')=[285  284  335  160  405  189  118  45];
+g('node_y')=[266  179   83  176  368  252  64  309];
+show_graph(g);
+g1=graph_power(g,2);
+show_graph(g1,'new');
+ ]]></EXAMPLE>
+</MAN>

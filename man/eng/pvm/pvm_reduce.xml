@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pvm_reduce  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>May 1998  </DATE>
+  <SHORT_DESCRIPTION name="pvm_reduce"> Performs a reduce operation over members of the specified group  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[buff, info] = pvm_reduce(func, buff, msgtag, group, rootginst)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>func :  string, defines the  operation performed  on  the global  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    data. Should be : Max, Min, Sum or Pro.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>buff : scalar,  local scilab variable.  On  return, the  data array on  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    the root will  be overwritten with the result  of the reduce operation over the group.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>msgtag : integer, message tag supplied by the user.  msgtag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+                 should  be  &gt;=  0.   It allows the user&apos;s program to              distinguish between different kinds of messages.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>group : string, group name of an existing group.  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rootginst  :  integer, instance number  of  group member who  gets the  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    result.   
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>info : integer, status code returned by the routine.  Values  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+                 less than zero indicate an error. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pvm_reduce</VERB> performs global operations such as max, min,
+         sum or product over  all  the tasks in a group. All group members
+         call pvm_reduce with their local data, and the  result  of
+         the  reduction  operation appears on the user specified root
+         task root. The root  task  is  identified  by  its  instance
+         number in the group.
+  </P>
+  <P>
+    Max and Min are implemented for scalar datatypes (double, complex). 
+         For complex values the minimum  [maximum]  is  that  complex
+         pair with  the  minimum [maximum] modulus.    Sum and Product are
+    implemented for scalar datatypes. 
+  </P>
+  <P>
+  </P>
+  <P>
+    Note:  pvm_reduce  does  not  block.   If  a  task   calls
+         pvm_reduce  and  then  leaves  the group before the root has
+         called pvm_reduce an error may occur.
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A = rand(5,5); msgtag=1
+[buff, info] = pvm_reduce("Max", A, msgtag, "Workers", 0)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pvm_bcast</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_barrier</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_send</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_getinst</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_gsize</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_joingroup</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_lvgroup</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

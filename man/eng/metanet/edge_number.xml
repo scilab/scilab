@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>edge_number  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="edge_number"> number of edges of a graph  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>ma = edge_number(g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>m  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, number of edges
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>edge_number</VERB> returns the number <VERB>m</VERB> of edges of the graph.
+    If the graph is directed, it is the number of arcs.
+    If the graph is undirected, it is half the number of edges.
+    It is always equal to the dimension of <VERB>g(&apos;tail&apos;)</VERB> and <VERB>g(&apos;head&apos;)</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>arc_number</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>node_number</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

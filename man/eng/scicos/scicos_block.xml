@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scicos_block  </TITLE>
+  <TYPE>Scicos data structure  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="scicos_block"> Scicos block data structure  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>blk=list(&apos;Block&apos;,graphics,model,void,gui)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>&quot;Block&quot;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : keyword used to define list as a Scicos block representation
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>graphics  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Scilab list, graphic properties data structure
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>model  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Scilab list, system properties data structure.  
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>void  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : unused, reserved for future use.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>gui  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : character string, the name of the graphic user interface function (generally written in Scilab) associated with the block.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>blk  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Scilab list, Scicos block data structure
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Scicos editor creates and uses for each block a data structure
+    containing all information relative to the graphic interface and
+    simulation part of the block. Each of them are stored in the Scicos
+    editor main data structure. Index of these in Scicos
+    editor main data structure is given by the creation order.
+  </P>
+  <P>
+  </P>
+  <P>
+    For Super blocks <VERB>model(8)</VERB> contains a data structure
+    similar to the <VERB>scicos_main</VERB> data structure.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos_graphics</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

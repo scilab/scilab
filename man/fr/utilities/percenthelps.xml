@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>%helps  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="%helps"> variable contenant les noms des répertoires des chapitres d&apos;aide  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    <VERB>%helps</VERB> est une matrice de chaînes de caractères à deux colonnes. Chaque ligne est formée comme ceci
+  </P>
+  <VERBATIM><![CDATA[
+répertoire_du_chapitre    titre_du_chapitre
+   ]]></VERBATIM>
+  <P>
+    Par exemple, nous avons le chapitre &quot;graphics&quot;. 
+    <VERB>%helps(2,:)</VERB>.
+  </P>
+  <P>
+    La valeur par défaut de <VERB>%helps</VERB> est initialisée dans le fichier <VERB>SCI+&quot;scilab.star&quot;</VERB>.
+  </P>
+  <P>
+    Pour ajouter de nouveaux chapitres d&apos;aide il suffit d&apos;ajouter des lignes à la variable <VERB>%helps</VERB>, par exemple dans le fichier utilisateur de démarrage <VERB>.scilab</VERB>.
+  </P>
+  <P>
+    Par exemple, 
+    <VERB>%helps=[%helps; &quot;répertoire_du_chapitre&quot;,  &quot;titre_du_chapitre&quot;];</VERB>
+  </P>
+  <P>
+    &quot;titre_du_chapitre&quot; devient le titre d&apos;un nouveau chapitre.
+  </P>
+  <P>
+    Chaque répertoire d&apos;aide contient des fichiers <VERB>*.html</VERB>,
+    généralement généré à partir d&apos;un fichier XML, et un fichier
+    <VERB>whatis.html</VERB> contenant une ligne pour chaque mot-clé documenté
+    dans le chapitre correspondant. Chaque ligne doit avoir le format :
+  </P>
+  <P>
+  </P>
+  <VERBATIM><![CDATA[
+<BR><A HREF="item.html">item</A> - description rapide
+   ]]></VERBATIM>
+  <P>
+    <VERB>item</VERB> est l&apos;article de la liste d&apos;aide, c&apos;est-à-dire que la commande <VERB>help item</VERB> affiche le contenu du fichier <VERB>item.html</VERB>.
+  </P>
+  <P>
+      
+    La commande <VERB>apropos mot-clé</VERB> renvoie les lignes de tous les fichiers
+    <VERB>whatis</VERB> dans lesquels <VERB>mot-clé</VERB> apparaît.
+  </P>
+  <P>
+  </P>
+  <P>
+    Sur les plates-formes Linux, Scilab dispose d&apos;un Makefile pour transformer les fichiers <VERB>.xml</VERB> en <VERB>.html</VERB> (voir SCIDIR/examples/man-examples).
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>help</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>apropos</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

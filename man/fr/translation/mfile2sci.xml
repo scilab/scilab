@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mfile2sci  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1998  </DATE>
+  <SHORT_DESCRIPTION name="mfile2sci"> Matlab M_file to scilab translation function  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>mfile2sci(M_file_path [,result_path [,Imode [,Recmode]]])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>M_file_path  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string which gives the path of Matlab M_file to translate
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>result_path  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string which gives the directory where the result has to be written. Default value is current directory.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Imode  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Boolean flag, If true mfile2sci ask user for variable type and sizes when he cannot infer them. Default value : %f 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Recmode  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Boolean flag, used by translatepaths function. Must be %f to translate a single mfile. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    mfile2sci, is Matlab M-file to Scilab function traduction tools. It
+    tries whenever possible to replace call to Matlab functions by the
+    equivalent scilab primitives and functions.
+  </P>
+  <P>
+     
+    To translate a Matlab M-file just enter the scilab instruction:
+    mfile2sci(file)
+  </P>
+  <P>
+    where file is a character string giving the path name of the M-file
+    mfile2sci will generate three files in the same directory
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='&lt;function_name&gt;.sci'> 
+    : the scilab equivalent of the m_file
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='&lt;function_name&gt;.cat'> 
+    : the scilab help file associated to the function
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='sci_&lt;function_name&gt;.sci'> 
+     : the scilab function required to translate the calls to this  Matlab M_file in other Matlab M_files. This function may be improved &quot;by hand&quot;. This function only useful for translation not for use of translated functions.
+  </DESCRIPTION_ITEM>
+ 
+  <P>
+    Some functions like eye, ones, size, sum,... behave differently
+    according to the dimension of their arguments. When mfile2sci cannot
+    infer dimensions it replaces these function call by a call to an
+    emulation function named mtlb_&lt;function_name&gt;. For efficiency these
+    functions may be replaced by the proper scilab equivalent instructions.
+  </P>
+  <P>
+    Some other functions like plot, has no straightforward translation in
+    scilab. They are also replaced by an emulation function named
+    mtlb_&lt;function_name&gt;.
+  </P>
+  <P>
+    When translation may be incorrect or may be improved mfile2sci adds a
+    comment which began by &quot;//!&quot;
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='REMARKS'>
+  <P>
+    This function is a still under developpement and is delivered as beta test.  Some Matlab4 basic functions are not yet translated. It is quite simple to add it. See &lt;SCIDIR&gt;/macros/m2sci/README for more details. 
+  </P>
+  </ITEMIZE>
+  <ITEMIZE label='KNOWN BUGS'>
+  <ITEM label='1-'>
+: eval function instructions passed as strings are not translated.
+
+  </ITEM>
+  <ITEM label='2-'>
+: most of plot function are not yet translated
+
+  </ITEM>
+  <ITEM label='3-'>
+: if, for, endded by the end of file produce an error, add the closing end&apos;s 
+
+  </ITEM>
+  <ITEM label='4-'>
+: Loop variable of for clause is available afterwards if loops terminates     normally in matlab; it is cleared  in Scilab generated code.
+
+  </ITEM>
+  <ITEM label='5-'>
+: inequality comparison which implies complex numbers produce a run time error such as &quot;undefined variable : %s_2_s&quot;. User can define these operation with Matlab meaning with the following function definition:  deff(&apos;r=%s_1_s(a,b)&apos;,&apos;r=real(a)&lt;real(b)&apos;)   deff(&apos;r=%s_2_s(a,b)&apos;,&apos;r=real(a)&gt;real(b)&apos;)    deff(&apos;r=%s_3_s(a,b)&apos;,&apos;r=real(a)&lt;=real(b)&apos;)   deff(&apos;r=%s_4_s(a,b)&apos;,&apos;r=real(a)&gt;=real(b)&apos;)  
+
+  </ITEM>
+  <ITEM label='6-'>
+: When i is a vector, Matlab allows insertions like a(i)=v for any v. In scilab v must have the same shape as a(i). This produces run time errors &quot;submatrix incorrectly defined&quot;. Rewrite them as  a(i)=v.&apos; .
+
+  </ITEM>
+  </ITEMIZE>
+  <EXAMPLE><![CDATA[
+//create a simple m_file
+write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
+ '[m,n] = size(A);'
+ 'if nargin == 1'
+ '    k = 1;'
+ 'else'
+ '    k = rem(k,4);'
+ '    if k < 0'
+ '        k = k + 4;'
+ '    end'
+ 'end'
+ 'if k == 1'
+ '    A = A.'';'
+ '    B = A(n:-1:1,:);'
+ 'elseif k == 2'
+ '    B = A(m:-1:1,n:-1:1);'
+ 'elseif k == 3'
+ '    B = A(m:-1:1,:);'
+ '    B = B.'';'
+ 'else'
+ '    B = A;'
+ 'end']);
+// translate it dor scilab
+mfile2sci(TMPDIR+'/rot90.m',TMPDIR)
+// show the new code
+write(%io(2),read(TMPDIR+'/rot90.sci',-1,1,'(a)'))
+// get it into scilab
+getf(TMPDIR+'/rot90.sci')
+//execute it
+m=rand(4,2);rot90(m,1)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>translatepaths</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Serge Steer, INRIA  </AUTHOR>
+</MAN>

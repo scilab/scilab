@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>auread  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="auread"> load .au sound file  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=auread(aufile)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=auread(aufile,ext)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[y,Fs,bits]=auread(aufile)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[y,Fs,bits]=auread(aufile,ext)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>aufile  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string (The .au extension is appended if no extension is given)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Fs  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>: integer, frequency sampling in Hz.  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ext  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string (<VERB>&apos;size&apos;</VERB> or <VERB>&apos;snd&apos;</VERB>) or integer (to read n samples) or 1 x 2 integer vector [n1,n2] (to read from n1 to n2).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Utility function to read <VERB>.au</VERB> sound file.
+    <VERB>auread(aufile)</VERB> loads a sound file specified by the string aufile,
+    returning the sampled data in y. Amplitude values are in the range
+    [-1,+1].
+  </P>
+  <P>
+    Supports multi-channel data in the following formats:
+    8-bit mu-law, 8-, 16-, and 32-bit linear, and floating point.
+  </P>
+  <P>
+    <VERB>[y,Fs,bits]=auread(aufile)</VERB> returns the sample rate (Fs) in Hertz
+    and the number of bits per sample used to encode the data in the file.
+  </P>
+  <P>
+    <VERB>auread(aufile,n)</VERB> returns the first n samples from each channel.
+  </P>
+  <P>
+    <VERB>auread(aufile,[n1,n2])</VERB> returns samples n1 to n2.
+  </P>
+  <P>
+    <VERB>auread(aufile,&apos;size&apos;)</VERB> returns the size of the audio data contained
+    in the file in place of the actual audio data, returning the
+    vector as [samples channels].
+  </P>
+  <P>
+    <VERB>auread(aufile,&apos;snd&apos;)</VERB> returns information about the sample and data
+    as a tlist.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>savewave</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>analyze</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mapsound</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>list  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="list"> Scilab object and list function definition  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>list(a1,....an)    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Creates a <VERB>list</VERB> with elements <VERB>ai</VERB>&apos;s which are arbitrary Scilab 
+    objects (<VERB>matrix, list,...</VERB>). Type of  <VERB>list</VERB> objects is 15.
+  </P>
+  <P>
+    <VERB>list()</VERB> is the empty <VERB>list</VERB> (0 element).
+  </P>
+  <P>
+    Operations on lists:
+  </P>
+ 
+  <P>
+     extraction 12
+    : <VERB>[x,y,z...]=l(v)</VERB> where <VERB>v</VERB> is a vector of indices; 
+    <VERB>[x,y,z]=l(:)</VERB> extracts all the elements.
+  </P>
+  <P>
+      insertion
+    : <VERB>l(i)=a</VERB>
+  </P>
+  <P>
+     deletion
+    : <VERB>l(i)=null()</VERB> removes the i-th element of the <VERB>list l</VERB>.
+  </P>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=list(1,2,3);
+x(4)=10;
+x(10)='a'
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>null</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>tlist</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>insertion</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>extraction</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>size</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>length</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pvm_exit  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>May 1998  </DATE>
+  <SHORT_DESCRIPTION name="pvm_exit"> tells the local pvmd that this process is leaving PVM.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[info] = pvm_exit()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>info  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pvm_exit</VERB> tells the local pvmd
+    that this process is leaving PVM.
+    This routine does not kill the process, which can continue to
+    perform tasks just like any other serial process.
+  </P>
+  <P>
+    pvm_exit should be called by all PVM processes before
+    they stop or exit for good. It <VERB>must</VERB> be called
+    by processes that were not started with pvm_spawn.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+pvm_exit()
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pvm</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

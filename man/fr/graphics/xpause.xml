@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xpause  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xpause"> interrompt Scilab pendant une durée donnée   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xpause(microsecs)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>xpause</VERB> interrompt Scilab pendant un temps donné en microsecondes
+    spécifié par l&apos;argument. Le temps de pause peut être plus long que prévu
+    à cause de l&apos;activité du système, ou bien tout simplement à cause du temps passé pendant l&apos;appel lui même.
+  </P>
+  </DESCRIPTION>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

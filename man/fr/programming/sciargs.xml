@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>sciargs  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>January 1998  </DATE>
+  <SHORT_DESCRIPTION name="sciargs"> arguments sur la ligne de commande Scilab  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>args=sciargs()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Cette fonction renvoie un vecteur de chaînes de caractères contenant les
+    arguments de la commande de lancement de Scilab. Le premier terme du vecteur <VERB>args</VERB> contient le nom complet (avec le chemin) du fichier exécutable de Scilab. 
+  </P>
+  <P>
+    Cette fonction correspond à la fonction <VERB>getarg</VERB> en langage C.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>getenv</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

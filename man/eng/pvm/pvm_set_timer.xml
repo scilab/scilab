@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pvm_set_timer  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>January 1998  </DATE>
+  <SHORT_DESCRIPTION name="pvm_set_timer"> Sets the  system&apos;s notion  of  the current time.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[info] = pvm_set_timer()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>info  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scalar
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pvm_set_timer</VERB> initialized the timer. 
+  </P>
+  <P>
+    will be 0.
+    If some error occurs then
+  </P>
+  <P>
+    will be -1.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+pvm_set_timer()
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pvm_get_timer</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

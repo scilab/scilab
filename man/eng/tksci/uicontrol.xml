@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>uicontrol  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE> 04 June 1998  </DATE>
+  <SHORT_DESCRIPTION name="uicontrol"> create a Graphic User Interface object  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>h=uicontrol([prop1,val1] [,prop2, val2] ...)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>h=uicontrol(f,[prop1, val1] [,prop2, val2] ...)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>o  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    f : integer handle of the figure which will contain the control
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>o  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    prop{1, 2 ...} : character string name of a property to set
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>o  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    val{1, 2 ...} : scilab object value to give to the corresponding property
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>o  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    h : handle of the created object
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    this routine creates an object in a figure. If the handle of the figure
+    is given (as the first parameter), the uicontrol is created in this figure.
+    If no handle is given, the uicontrol is created in the current figure
+    ( which may be obtained with a call to gcf() ). If there is no current 
+    figure, then one is created before the creation of the uicontrol.
+    Then when the control is created, the properties given as parameters
+    are set with the coresponding values. It is equivalent to create the uicontrol,
+    and then set its properties with the set() command. Nevertheless, it generally
+    more efficient to set the properties in the call to uicontrol(). This is particularly true coincerning the &apos;style&apos; field. Indeed, the default value for
+    this property is &apos;pushbutton&apos;. So if you do not set it at creation time,
+    a button will be created, and will be transformed to another uicontrol
+    when you call the get(h,&apos;style&apos;, ... ) instruction.
+    Scilab and all the graphic objects communicate through the property
+    mechanism. Thus, to create adapted uicontrol, one has to know the
+    use of the property fields. Those are descibed under:
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='PROPERTIES'>
+  <ITEM label='BackgroundColor'>
+[1,3] real vector or string Background color of the uicontrol. A color is specified as Red, Green and Blue values. Those values are real in [ 0,1]. The color can be given as a real vector, ie [R,G,B] or a string where each value is separated by a |, ie &quot;R|G|B&quot;
+
+  </ITEM>
+  <ITEM label='callback'>
+string String evaluated by the  scilab interpreter when an usicontrol is activated. (for example when you click on a button).
+
+  </ITEM>
+  <ITEM label='fontangle'>
+string : {&apos;normal&apos;} | italic | oblique For a control containing some text, this property sets the slant of the  font.
+
+  </ITEM>
+  <ITEM label='fontsize'>
+real  For a control containing some text, this property sets the size  of the  font in FontUnits.
+
+  </ITEM>
+  <ITEM label='fontunits'>
+string : {points} | pixels | normalized For a control containing some text, this property sets the units with  which the fontsize is specified.
+
+  </ITEM>
+  <ITEM label='fontweight'>
+string : light | {normal} | demi | bold For a control containing some text, this property sets the weight of the used font
+
+  </ITEM>
+  <ITEM label='ListboxTop'>
+integer  For a ListBox, this property tells which item of the list appears on the first line of the visible area of the list.
+
+  </ITEM>
+  <ITEM label='Max'>
+scalar  Specifies the largest value the &apos;value&apos; property can be set to.  It has however differnet meaning on each uicontrol:
+
+  </ITEM>
+  <ITEM label='o'>
+ Check Boxes : Max is the value the &apos;value&apos; property take when  control is checked
+
+  </ITEM>
+  <ITEM label='o'>
+ Silders  : Maximinum value of the slider 
+
+  </ITEM>
+  <ITEM label='o'>
+ List boxes : if (Max-Min)&gt;1 the list allows multiple selection, Otherwise not. 
+
+  </ITEM>
+  <ITEM label='Min'>
+scalar  Specifies the lowest value the &apos;value&apos; property can be set to.  It has however differnet meaning on each uicontrol:
+
+  </ITEM>
+  <ITEM label='o'>
+ Check Boxes : Min is the value the &apos;value&apos; property take when  control is unchecked
+
+  </ITEM>
+  <ITEM label='o'>
+ Silders  : Mininum value of the slider 
+
+  </ITEM>
+  <ITEM label='o'>
+ List boxes : if (Max-Min)&gt;1 the list allows multiple selection, Otherwise not. 
+
+  </ITEM>
+  <ITEM label='Parent'>
+integer  Handle of the control parent. Changing this property allows to move a control from a figure to another.
+
+  </ITEM>
+  <ITEM label='Position'>
+[1,4] real vector or string This property is used to set or get the geometrical configuration of a control. It is a real; vector : x y w h where the letters stand for the x location of the left bottom corner, the y location of the left bottom corner, the width and the height of the uicontrol. The unit is determined by the &apos;Unit&apos; property.  One can also set this property by giving a string where the fields are separated by a &apos;|&apos;, ie &quot;x|y|w|h&quot;.
+
+  </ITEM>
+  <ITEM label='SliderStep'>
+[1,2] real vector or string small big This property represents the step a slider is moved when the user click on the arrow (small step) or on the slide bar (big step). 
+
+  </ITEM>
+  <ITEM label='String'>
+string  Generally, this property represents the text appearing in a uicontrol. Its exact meaning sometimes depends on the uicontrol style:
+
+  </ITEM>
+  <ITEM label='o'>
+ List Boxes, Popup Menu the value can be a vector of string or a string where the items are separated by a &apos;|&apos;. 
+
+  </ITEM>
+  <ITEM label='Style'>
+string : {pushbutton} | radiobutton | checkbox | edit | text | slider | frame |listbox | popupmenu  Style of the uicontrol. Here is a short description of each one:
+
+  </ITEM>
+  <ITEM label='o'>
+ pushbutton  A rectangular button generally used to run a callback. 
+
+  </ITEM>
+  <ITEM label='o'>
+ radiobutton A button whith to states : on or off.
+
+  </ITEM>
+  <ITEM label='o'>
+ checkbox a small uicontrol that have to state : on or off
+
+  </ITEM>
+  <ITEM label='o'>
+ edit  an editable string control
+
+  </ITEM>
+  <ITEM label='o'>
+ text a text control (generally static).
+
+  </ITEM>
+  <ITEM label='o'>
+ slider a scale control, that is a scrollbar use to set values between in  range with the mouse.
+
+  </ITEM>
+  <ITEM label='o'>
+ frame a control representing a zone used to group of related controls.
+
+  </ITEM>
+  <ITEM label='o'>
+ listbox a control representing a list of item that can be scrolled. The item can be selected with the mouse.
+
+  </ITEM>
+  <ITEM label='o'>
+ popupmenu a button which make a menu appear when clicked.
+
+  </ITEM>
+  <ITEM label='Tag'>
+string  this property is generally used to identify the control. It allows to give it a &quot;name&quot;. Mainly used in conjontion with findobj().
+
+  </ITEM>
+  <ITEM label='Units'>
+string :  {points} | pixels | normalized Set the units used to specify the &apos;position&apos; property.
+
+  </ITEM>
+  <ITEM label='Userdata'>
+scilab object this can be used to associate any scilab object to an uicontrol.
+
+  </ITEM>
+  <ITEM label='Value'>
+Value of the uicontrol. The eact meaning depends on the style of the uicontrol.
+
+  </ITEM>
+  <ITEM label='o'>
+ Check boxes, Radio buttons value is set to Max (see above) when on and Min when off.
+
+  </ITEM>
+  <ITEM label='o'>
+ List Boxes, Popu Menu value is a vector of indexes corresponding to the index of the selected entry in the list. 1 is the first item of the list. 
+
+  </ITEM>
+  <ITEM label='o'>
+ Sliders value indicated by the slider bar.
+
+  </ITEM>
+  </ITEMIZE>
+  <EXAMPLE><![CDATA[
+f=figure();
+// create a figure
+h=uicontrol(f,'style','listbox', ...
+ 'position', [10 10 150 160]);
+// create a listbox
+set(h, 'string', "item 1|item 2|item3");
+// fill the list
+set(h, 'value', [1 3]);
+// select item 1 and 3 in the list
+close();
+// close the figure
+f=figure();
+// create a figure
+h=uicontrol(f,'style','listbox', ...
+ 'position', [10 10 150 160]);
+// create a listbox
+set(h, 'string', "item 1|item 2|item3");
+// fill the list
+set(h, 'value', [1 3]);
+// select (highlight) the item 1 and 3 in the list
+close();
+//close the figure
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>figure</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>uimenu</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+</MAN>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>min_lcost_flow1  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1995  </DATE>
+  <SHORT_DESCRIPTION name="min_lcost_flow1"> flot de coût linéaire minimum  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[c,phi,flag] = min_lcost_flow1(g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graphe (liste)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>c  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : valeur du coût
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>phi  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne des valeurs des flots sur les arcs
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : problème soluble ou pas (0 ou 1)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>min_lcost_flow1</VERB> calcule flot de coût linéaire minimum dans un réseau 
+    <VERB>g</VERB>. Elle renvoie le coût total du flot sur les arcs <VERB>c</VERB> et
+    le vecteur ligne des flots sur les arcs <VERB>phi</VERB>. Si le problème n&apos;est pas soluble (impossible de trouver un flot compatible), <VERB>flag</VERB> est égal à 0, sinon il est égal à 1.
+  </P>
+  <P>
+    Les bornes sur les flots sont données par les éléments <VERB>edge_min_cap</VERB> et
+    <VERB>edge_max_cap</VERB> du graphe. 
+    Les valeurs des capacités maximum et minimum doivent être entières et positives.
+    La valeur de la capacité maximum doit être supérieure ou égale à la valeur de la capacité minimum.
+    Si la valeur de <VERB>edge_cost</VERB> n&apos;est pas donnée (vecteur vide <VERB>[]</VERB>), 
+    elle est supposé nulle sur chaque arête.
+  </P>
+  <P>
+    Les coûts sur les arêtes sont donnés par les éléments <VERB>edge_cost</VERB> du graphe.
+    Les coûts doivent être positifs.
+    Si la valeur de <VERB>edge_cost</VERB> n&apos;est pas donnée (vecteur vide <VERB>[]</VERB>), 
+    elle est supposé nulle sur chaque arête.
+  </P>
+  <P>
+    Les demandes, i.e. les élément <VERB>node_demand</VERB> du graphe, doivent être
+    égales à zéro.
+  </P>
+  <P>
+    Cette fonction utilise l&apos;algorithme out-of-kilter.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10 1 8];
+he=[2 6 3 4 5 1 3 5 1 7 10 11 5 8 9 5 8 11 10 11 9 11 15 13 14 4 6 9 1 12 14];
+g=make_graph('foo',1,15,ta,he);
+g('node_x')=[194 191 106 194 296 305 305 418 422 432 552 550 549 416 548];
+g('node_y')=[56 221 316 318 316 143 214 321 217 126 215 80 330 437 439];
+show_graph(g);
+g1=g;ma=arc_number(g1);
+rand('uniform');
+while %T then
+  g1('edge_min_cap')=round(20*rand(1,ma));
+  g1('edge_max_cap')=round(20*rand(1,ma))+g1('edge_min_cap')+33*ones(1,ma);
+  g1('edge_cost')=round(10*rand(1,ma))+ones(1,ma);
+  [c,phi,flag]=min_lcost_flow1(g1);
+  if flag==1 then break; end;
+end;  
+x_message(['Le cout est: '+string(c);
+           'Flots sur les arcs ']);
+ii=find(phi<>0); edgecolor=phi; edgecolor(ii)=11*ones(ii);
+g1('edge_color')=edgecolor;
+edgefontsize=8*ones(1,ma); edgefontsize(ii)=18*ones(ii);
+g1('edge_font_size')=edgefontsize;
+g1('edge_label')=string(phi);
+show_graph(g1);
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>min_lcost_cflow</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>min_lcost_flow2</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>min_qcost_flow</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>path_2_nodes  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1995  </DATE>
+  <SHORT_DESCRIPTION name="path_2_nodes"> ensemble de sommets d&apos;un chemin  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>ns = path_2_nodes(p,g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>p  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne des numéros des arcs formant le chemin
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graphe (liste)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ns  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne des numéros des sommets
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>path_2_nodes</VERB> renvoie le vecteur des numéros des sommets <VERB>ns</VERB> correspondant au 
+    chemin <VERB>p</VERB> donné par les numéros des arcs le composant; si <VERB>p</VERB> n&apos;est pas un chemin, le
+    vecteur vide <VERB>[]</VERB> est renvoyé.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
+g=make_graph('foo',1,17,ta,he);
+g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+show_graph(g);
+p=[2 16 23 25 26 22 17 18 19 13 10 11];
+g1=g; edgecolor=1*ones(ta); edgecolor(p)=11*ones(p);
+g1('edge_color')=edgecolor;
+show_graph(g1); show_arcs(p);
+ns=path_2_nodes(p,g);
+g1=g; nodecolor=1*ones(g1('node_number')); nodecolor(ns)=11*ones(ns);
+g1('node_color')=nodecolor;
+show_graph(g1);show_nodes(ns);
+show_arcs(p,'sup');
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>nodes_2_path</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

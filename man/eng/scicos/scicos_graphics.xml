@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scicos_graphics  </TITLE>
+  <TYPE>Scicos data structure  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="scicos_graphics"> Scicos block graphics data structure  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>graphics=list(orig,sz,flip,exprs,pin,pout,pein,peout,gr_i)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>orig  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 2 x 1 vector, the coordinate of down-left point of the block shape.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>sz  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector <VERB>[w,h]</VERB>, where <VERB>w</VERB> is the width and <VERB>h</VERB> the height of the block shape.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flip  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : boolean, the block orientation. if true the input ports are on the left of the box and output ports are on the right. if false  the input ports are on the right of the box and output ports are on the left.  
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>exprs  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of strings,  contains expressions answered by the user at block set time.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>pin  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of integers. If <VERB>pin(k)&lt;&gt;0</VERB> then  <VERB>k</VERB>th input port is connected to the <VERB>pin(k)&lt;&gt;0</VERB> block, else the port is unconnected. If no input port exist <VERB>pin==[]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>pout  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of integers.  If <VERB>pout(k)&lt;&gt;0</VERB> then  <VERB>k</VERB>th output port is connected to the <VERB>pout(k)&lt;&gt;0</VERB> block, else the port is unconnected. If no output port exist <VERB>pout==[]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>pein  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of ones. If <VERB>pein(k)&lt;&gt;0</VERB> then  <VERB>k</VERB>th event input port is connected to the <VERB>pein(k)&lt;&gt;0</VERB> block, else the port is unconnected. If no event input port exist <VERB>pein==[]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>peout  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of integers.  If <VERB>peout(k)&lt;&gt;0</VERB> then  <VERB>k</VERB>th event output port is connected to the <VERB>epout(k)&lt;&gt;0</VERB> block, else the port is unconnected. If no event  output port exist <VERB>peout==[]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>gr_i  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of strings,  contains Scilab instructions used to customize the block graphical aspect. This field may be set with <VERB>&quot;Icon&quot;</VERB> sub_menu.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>graphics  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Scilab list, Scicos block graphics data structure.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Scicos block graphics data structure contains all information relative
+    to graphical display of the block and to user dialogue. Fields may be
+    fixed by block definition or set as a result of user dialogue or connections. 
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_main</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

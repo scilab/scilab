@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xpoly  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xpoly"> draw a polyline or a polygon  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xpoly(xv,yv [,dtype [,close]])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xv,yv  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrices of the same size (points of the polyline).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>dtype  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string (drawing style). default value is &quot;lines&quot;.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>close  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer. If close=1, the polyline is closed; default value is 0.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xpoly</VERB> draws a single polyline described by the vectors of coordinates 
+    <VERB>xv</VERB> 
+    and <VERB>yv</VERB>. If <VERB>xv</VERB> and <VERB>yv</VERB> are matrices 
+    they are considered as vectors by concatenating their columns.
+    <VERB>dtype</VERB> can be <VERB>&quot;lines&quot;</VERB> for using the current line style or 
+    <VERB>&quot;marks&quot;</VERB> for using 
+    the current mark to draw the polyline.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=sin(2*%pi*(0:5)/5);
+y=cos(2*%pi*(0:5)/5);
+plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+xset("color",5)
+xpoly(x,y,"lines",1)
+xset("default")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xfpoly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xfpolys</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xpolys</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

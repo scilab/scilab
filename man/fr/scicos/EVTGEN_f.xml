@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>EVTGEN_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="EVTGEN_f"> Scicos event firing block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    One event is generated on the unique output event port if <VERB>Event
+    time</VERB> is larger than equal to zero, if not, no event is generated.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <P>
+    
+  </P>
+  <ITEM label='Event time'>
+: scalar. date of the initial event
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>CLOCK_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>EVTDLY_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xbasimp  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xbasimp"> envoie des graphiques vers une imprimante ou un fichier Postscript   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xbasimp(win_num,[filen,printer])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>win_num  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier ou vecteur d&apos;entiers 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>filen  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères, nom du fichier Postscript (la valeur par défaut est &quot;file&quot;). Le numéro de fenêtre  est ajouté à <VERB>filen</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>printer  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères, nom de l&apos;imprimante. Si <VERB>printer</VERB> est présent ou s&apos;il n&apos;y a qu&apos;un seul argument d&apos;entrée dans la séquence d&apos;appel, le fichier est directement imprimé sur l&apos;imprimante <VERB>printer</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xbasimp</VERB> envoie les graphiques enregistrés dans la fenêtre <VERB>win_num</VERB> dans le fichier Postscript <VERB>filen</VERB> et imprime le fichier Postscript avec la commande <VERB>Blpr</VERB>. Cette fonction n&apos;est utilisable qu&apos;avec le pilote <VERB>&quot;Rec&quot;</VERB>.
+  </P>
+  <P>
+    Si <VERB>win_num</VERB> est un vecteur, plusieurs fichiers sont générés, un pour 
+    chaque fenêtre (avec les noms <VERB>filenxx</VERB>), et les fichiers sont imprimés sur une seule page avec 
+    la commande <VERB>Blpr</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>printing</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xs2fig</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

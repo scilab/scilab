@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xget  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xget"> récupère des valeurs du contexte graphique de la fenêtre courante  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x1]=xget(str,[flag])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>xget()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>str  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : optionnel. Choisir 1 pour le mode &quot;bavard&quot;.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Cette fonction est utilisée pour récupérer des valeurs du contexte graphique de la fenêtre courante, sur le
+    sujet précisé par la chaîne de caractères <VERB>str</VERB>. Sans argument, cette fonction affiche une boîte de dialogue montrant les valeurs courantes et des changements peuvent être effectués à l&apos;aide de boutons.
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='number=xget(&quot;alufunction&quot;)'> 
+    : Opérateur logique utilisé pour les dessins Voir <VERB>xset</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='str=xset(&quot;auto clear&quot;)'> 
+    : donne le mode d&apos;effacement automatique (<VERB>&quot;on&quot;</VERB> ou <VERB>&quot;off&quot;</VERB>).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='color=xget(&quot;background&quot;)'> 
+    : donne la couleur d&apos;arrière plan
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='rect=xget(&quot;clipping&quot;)'> 
+    : donne la zone de clipping sous forme d&apos;un rectangle rect=[x,y,w,h]  (point en haut à gauche, largeur, hauteur).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='c=xget(&quot;color&quot;)'> 
+    : donne la couleur par défaut pour le tracé de ligne, le texte ou le remplissage. <VERB>c</VERB> est l&apos;indice de la couleur dans la table de couleurs de la fenêtre.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='cmap=xget(&quot;colormap&quot;)'> 
+    : donne la table de couleurs de la fenêtre graphique (matrice m x 3 d&apos;intensités R,V,B)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dash=xget(&quot;dashes&quot;)'> 
+    : obsolète
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='font=xget(&quot;font&quot;)'> 
+    : donne le code et la taille de la police par défaut font=[fontid,fontsize], 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='fontsize=xget(&quot;font size&quot;)'> 
+    : donne la taille par défaut des polices
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='color=xget(&quot;foreground&quot;)'> 
+    : donne la couleur de premier plan
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='str=xget(&quot;fpf&quot;)'> 
+    : donne le format d&apos;affichage des nombres pour les fonctions dessinant des courbes de niveau  (voir contour). <VERB>str=&quot;&quot;</VERB> désigne le format par défaut. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='color=xget(&quot;hidden3d&quot;)'> 
+    : donne la couleur du dessous des facettes pour le dessin des surfaces en 3D.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='pat=xget(&quot;lastpattern&quot;)'> 
+    : donne le dernier indice de couleur disponible dans la table des couleurs. En fait <VERB>pat+1</VERB> et <VERB>pat+2</VERB> sont toujours disponibles et correspondent toujours au noir et au blanc. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='type=xget(&quot;line mode&quot;)'> 
+    : donne le mode de tracé des lignes.  type=1 : absolu, type=0 : relatif (le mode type=0 est buggé)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xget(&quot;line style&quot;)'> 
+    : donne le style de ligne par défaut (1 : plein, &gt;1 : pointillés).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='mark=xget(&quot;mark&quot;)'> 
+    : donne le numéro et la taille du marqueur par défaut <VERB>mark=[markid,marksize]</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='marksize=xget(&quot;mark size&quot;)'> 
+    : donne la taille de marqueur par défaut 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='pat=xget(&quot;pattern&quot;)'> 
+    : obsolète
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='value=xget(&quot;thickness&quot;)'> 
+    : donne la largeur des lignes en pixels (0 et 1 = 1 pixel d&apos;épaisseur).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='flag=xget(&quot;use color&quot;)'> 
+    : 0 (mode noir et blanc) ou 1 (mode en couleurs). Voir <VERB>xset</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='[x,y]=xget(&quot;viewport&quot;)'> 
+    : donne la position de la partie visible des graphiques dans la fenêtre glissante.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dim=xget(&quot;wdim&quot;)'> 
+    : donne la largeur et la hauteur de la fenêtre graphique dim=[width,height].
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='win=xget(&quot;window&quot;)'> 
+    : donne le numéro de la fenêtre <VERB>win</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='pos=xget(&quot;wpos&quot;,x,y);'> 
+    : donne la position du point en haut à gauche de la fenêtre graphique pos=[x,y].
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>colormap</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

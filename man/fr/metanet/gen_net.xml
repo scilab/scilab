@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>gen_net  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="gen_net"> génération aléatoire ou interactive d&apos;un réseau  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>g = gen_net(name,oriented,v)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>g = gen_net()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères, le nom du graphe
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>oriented  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  entier, 0 (graphe non-orienté) ou 1 (graphe orienté)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>v  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne avec 12 valeurs pour définir le réseau
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graphe (liste)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>gen_net</VERB> génère un réseau <VERB>g</VERB>.
+    Les arguments sont le nom du graphe, un flag égal à 0
+    (graphe non-orienté) ou 1 (graphe orienté) et un vecteur décrivant
+    le réseau (voir ci-dessous).
+  </P>
+  <P>
+    Si aucun argument n&apos;est donné, une boîte de dialogue pour la définition
+    de tous les arguments est ouverte.
+  </P>
+  <P>
+    <VERB>v</VERB> doit être un vecteur ligne avec 12 valeurs.
+    La signification de ces valeurs est :
+  </P>
+  <P>
+    Graine pour random : utilisé pour l&apos;initialisation du générateur aléatoire
+  </P>
+  <P>
+    Nombre de sommets
+  </P>
+  <P>
+    Nombre de sources
+  </P>
+  <P>
+    Nombre de puits
+  </P>
+  <P>
+    Coût Minimum
+  </P>
+  <P>
+    Coût Maximum
+  </P>
+  <P>
+    Ressources d&apos;entrée
+  </P>
+  <P>
+    Ressources de sortie
+  </P>
+  <P>
+    Capacité Minimum
+  </P>
+  <P>
+    Capacité Maximum
+  </P>
+  <P>
+    Pourcentage d&apos;arêtes avec coûts : entre 0 et 100
+    Pourcentage d&apos;arêtes avec capacités : entre 0 et 100
+  </P>
+  <P>
+    Le coût des arêtes sans coût est fixé au coût minimum.
+    La capacité maximum des arêtes sans capacité est fixée aux ressources 
+    d&apos;entrée.
+  </P>
+  <P>
+    Le résultat est un réseau <VERB>g</VERB> construit sur un graphe planaire connecté, 
+    en utilisant une méthode de triangulation. De plus, les calculs sont faits 
+    de manière à obtenir un réseau cohérent. Les valeurs des coûts et des 
+    capacités maximum sont affectées aux arêtes. Les capacités minimum sont 
+    réduites à 0.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+v=[1,10,2,1,0,10,100,100,0,100,50,50];
+g=gen_net('foo',1,v);
+show_graph(g)
+// génération interactive
+g=gen_net();
+show_graph(g)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mesh2d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

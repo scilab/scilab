@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>%helps  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="%helps"> Variable defining the path of help directories  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    The global variable <VERB>%helps</VERB> is an N x 2 matrix of strings. 
+    The kth row of <VERB>%helps</VERB>, <VERB>%helps(k,:)</VERB> represents
+    the kth chapter of the manual and is made of two strings:
+  </P>
+  <P>
+    <VERB>%helps(k,1)</VERB> is the absolute pathname for a help directory.
+  </P>
+  <P>
+    <VERB>%helps(k,2)</VERB> is a title for this help directory.
+    For instance, for k=2, we have the graphics chapter 
+    <VERB>%helps(2,:)</VERB>.
+  </P>
+  <P>
+    The variable <VERB>%helps</VERB> is defined in the Scilab startup
+    file <VERB>SCI+&quot;/scilab.star&quot;</VERB>.
+  </P>
+  <P>
+    To add a new help directory, the user should add a row to
+    the variable <VERB>%helps</VERB>. (One row for each directory).
+  </P>
+  <P>
+    For instance, <VERB>%helps=[%helps; &quot;Path-Of-My-Help-Dir&quot;,&quot;My-Title&quot;];</VERB>
+    enables the Scilab help browser to look for help manual items
+    in the directory with pathname &quot;Path-Of-My-Help-Dir&quot;.
+  </P>
+  <P>
+    &quot;My-Title&quot; is then the title of a new help chapter.
+  </P>
+  <P>
+    A valid help directory must contain:
+  </P>
+  <P>
+    1- A set of <VERB>.html</VERB> files (e.g. <VERB>item1.html, item2.html</VERB> etc).
+    The <VERB>.html</VERB> files are usually built from XML files.
+  </P>
+  <P>
+    2- A <VERB>whatis.html</VERB> file, which must have a special format. Each row
+    of the <VERB>whatis</VERB> must be as follows:
+  </P>
+  <VERBATIM><![CDATA[
+<BR><A HREF="item.html">item</A> - quick description
+   ]]></VERBATIM>
+  <P>
+    <VERB>item</VERB> is the item of the help, i.e. the command <VERB>help item</VERB>
+    displays the contents of the file <VERB>item.html</VERB>.
+  </P>
+  <P>
+  </P>
+  <P>
+    The command <VERB>apropos keyword</VERB> returns the row(s) of all
+    the <VERB>whatis.html</VERB> file(s) in which the keyword appears.
+  </P>
+  <P>
+  </P>
+  <P>
+    On Linux platforms Scilab provides a Makefile for transforming
+    <VERB>.xml</VERB> pages into <VERB>.html</VERB> pages (see SCIDIR/examples/man-examples).
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>apropos</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>help</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>man</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

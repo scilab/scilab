@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xlfont  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xlfont"> charge une police ou donne la liste des polices chargées dans le contexte graphique  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xlfont(font-name,font-id)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>fonts=xlfont()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>font-name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères, nom de famille de la police
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>font-id  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier entre 0 et 6.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fonts  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur colonne des noms des polices déjà présentes
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Sans argument, <VERB>xlfont()</VERB> renvoie la liste des polices déjà présentes.
+  </P>
+  <P>
+    Avec ses arguments d&apos;entrée, <VERB>xlfont</VERB> est utilisée pour charger une police à différentes tailles 
+    dans le contexte graphique. La police doit être disponible en tailles 8,
+    10, 12, 14, 18 et 24.
+  </P>
+  <P>
+    Les polices par défaut sont &quot;Courier Roman&quot; (0), &quot;Symbol&quot; (1), &quot;Times Roman&quot; (2), &quot;Times
+    Italic&quot; (3), &quot;Times Bold&quot; (4) et &quot;Times Bold Italic&quot; (5).
+  </P>
+  <P>
+    font-name peut être de 2 types :
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    si il contient le caractère &quot;%&quot;, la police est supposée être un nom de police  X11 avec %s dans le champ de taille du nom de la police, par exemple <VERB>&quot;-b&amp;h-lucidabright-demibold-r-normal--%s-*-75-75-p-*-iso8859-1&quot;</VERB>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    s&apos;il ne contient pas le caractère &quot;%&quot;, il est supposé être un alias et les polices d&apos;alias <VERB>font-name08,...,font-name24</VERB> sont chargées.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='font-id'> 
+    : donne le code <VERB>font-id</VERB> à la police chargée <VERB>font-name</VERB>.
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>graypolarplot  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 2000  </DATE>
+  <SHORT_DESCRIPTION name="graypolarplot"> représentation 2D en coordonnées polaires et en pseudo-couleurs d&apos;une surface   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>graypolarplot(theta,rho,z,[strf,rect])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>rho  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur de taille n1, valeurs du rayon 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>theta  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur de taille n2, valeurs de l&apos;angle
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice réelle de taille (n1,n2). <VERB>z(i,j)</VERB> est la hauteur de la surface au  point (rho(i),theta(j)). 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>strf  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : est une chaîne de caractères de longueur 3 <VERB>&quot;xyz&quot;</VERB>. Voir <VERB>plot2d</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>leg  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  une chaîne de caractères. Elle est utilisée quand le caractère x de l&apos;argument <VERB>strf</VERB> vaut 1. <VERB>leg</VERB> a la forme <VERB>&quot;leg1@leg2@....&quot;</VERB> où <VERB>leg1</VERB>, <VERB>leg2</VERB>, ... sont respectivement  la légende de la première courbe, de la deuxième, etc.  La valeur par défaut est <VERB>&quot; &quot;</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  Cet argument est utilisé quand le caractère y de l&apos;argument <VERB>strf</VERB> vaut 1, 3 ou 5. C&apos;est un vecteur ligne de taille 4 donnant les bornes du cadre :  <VERB>rect=[xmin,ymin,xmax,ymax]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <P>
+    
+  </P>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Représentation 2D en pseudo-couleurs d&apos;une surface <VERB>z</VERB> où le plan est repéré en coordonnées polaires, sur une grille définie par <VERB>rho</VERB> et <VERB>theta</VERB>. Chaque rectangle sur la grille est rempli avec une couleur dépendant de la moyenne des valeurs de <VERB>z</VERB> aux coins du rectangle.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+
+  rho=1:0.1:4;theta=(0:0.02:1)*2*%pi;
+  z=30+round(theta'*(1+rho^2));
+  xset('colormap',hotcolormap(128))
+  xset('background',xget('white'))
+  xbasc();graypolarplot(theta,rho,z)
+ ]]></EXAMPLE>
+</MAN>

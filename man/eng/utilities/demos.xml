@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>demos  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1994  </DATE>
+  <SHORT_DESCRIPTION name="demos">  guide for scilab demos  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>demos()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>demos()</VERB> is an interactive guide to execute various scilab demonstrations
+    The source code of each demo is in the directory SCIDIR/demos/...
+  </P>
+  </DESCRIPTION>
+</MAN>

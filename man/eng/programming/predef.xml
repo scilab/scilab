@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>predef  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="predef"> variable protection  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>n=predef()  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>oldnew=predef(n)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>oldnew=predef(&apos;all&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>oldnew=predef(&apos;clear&apos;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Utility function used for defining &quot;oldest&quot; variables as &quot;protected&quot;.
+    Protected variables  cannot be killed. They are not saved 
+    by the <VERB>&apos;save&apos;</VERB> command. The &quot;oldest&quot; are those appearing last in
+    the <VERB>who(&apos;get&apos;)</VERB>.
+  </P>
+  <P>
+    <VERB>predef()</VERB> gets the number of protected variables
+  </P>
+  <P>
+    <VERB>predef(&apos;a[ll]&apos;)</VERB> sets all the  variables protected, it also return
+    the old and new value of protected variables number.
+  </P>
+  <P>
+    <VERB>predef(&apos;c[lear]&apos;)</VERB> unprotect all but the last 7 variables, it also return
+    the old and new value of protected variables number.
+  </P>
+  <P>
+    <VERB>predef(n)</VERB> sets the <VERB>max(n,7)</VERB> last defined variables as protected, it also return
+    the old and new value of protected variables number.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='REMARK'>
+  <P>
+    A number of protected variables are set in the start-up file <VERB>SCIDIR/scilab.star</VERB>.  User may in particular set its own predefined variables in user&apos;s startup file <VERB>home/.scilab</VERB> 
+  </P>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>clear</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>save</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

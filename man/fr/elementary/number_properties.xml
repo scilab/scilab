@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>number_properties  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 2001  </DATE>
+
+  <SHORT_DESCRIPTION name="number_properties"> determine floating-point parameters  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="">   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>pr = number_properties(prop)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>prop  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>pr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real or boolean scalar 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function may be used to get the characteristic
+    numbers/properties of the floating point set denoted here by
+    F(b,p,emin,emax) (usually the 64 bits float numbers set prescribe 
+    by IEEE 754). Numbers of F are of the form :
+  </P>
+  <VERBATIM><![CDATA[
+
+     sign * m * b^e
+
+   ]]></VERBATIM>
+  <P>
+    e is the exponent and m the mantissa :
+  </P>
+  <VERBATIM><![CDATA[
+
+     m = d_1 b^(-1) + d_2 b^(-2) + .... + d_p b^(-p)
+
+   ]]></VERBATIM>
+  <P>
+    d_i the digits are in [0, b-1] and e in [emin, emax], the number
+    is said &quot;normalised&quot; if d_1 ~= 0. The following may be gotten : 
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='prop = &quot;radix&quot;'> 
+    -&gt; pr is the radix b of the set F
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='prop = &quot;digits&quot;'> 
+    -&gt; pr is the number of digits p
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='prop = &quot;huge&quot;'> 
+    -&gt; pr is the max positive float of F
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='prop = &quot;tiny&quot;'> 
+    -&gt; pr is the min positive normalised float of F
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='prop = &quot;denorm&quot;'> 
+    -&gt; pr is a boolean : %t if denormalised numbers are used
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='prop = &quot;tiniest&quot;'> 
+    -&gt; if denorm = %t, pr is the min positive denormalised number else pr = tiny
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='prop = &quot;eps&quot;'> 
+    -&gt; pr is the epsilon machine ( generally (b^(1-p))/2 ) which is the relative max  error between a real x (such than |x| in [tiny, huge]) and fl(x), its floating  point approximation in F.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='prop = &quot;minexp&quot;'> 
+    -&gt; pr is emin
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='prop = &quot;maxexp&quot;'> 
+    -&gt; pr is emax 
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <ITEMIZE label='DETAILS'>
+  <P>
+    This function uses the lapack routine dlamch to get the machine parameters (the names (radix, digit, huge, etc...) are those recommended  by the LIA 1 standard and are different from the corresponding lapack&apos;s  ones) ; CAUTION : sometimes you can see the following definition for the epsilon machine : eps =  b^(1-p) but in this function we use the traditionnal one (see prop = &quot;eps&quot; before) and so eps = (b^(1-p))/2 if  normal rounding occurs and eps = b^(1-p) if not. 
+  </P>
+  </ITEMIZE>
+  <EXAMPLE><![CDATA[
+b = number_properties("radix")
+eps = number_properties("eps")
+   ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>nearfloat</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>frexp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bruno Pincon;   </AUTHOR>
+</MAN>

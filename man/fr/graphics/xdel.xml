@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xdel  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xdel"> supprime des fenêtres graphiques  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xdel([win-nums])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>win-nums  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier ou vecteur d&apos;entiers
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xdel</VERB> supprime les fenêtres graphiques dont les numéros sont donnés dans le vecteur <VERB>win-nums</VERB> ou supprime la 
+    fenêtre graphique courante si aucun argument n&apos;est donné.
+  </P>
+  </DESCRIPTION>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

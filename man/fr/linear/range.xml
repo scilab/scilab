@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>range  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="range"> Image de A^k  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[X,dim]=range(A,k)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice réelle carrée
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>k  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice réelle régulière
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>dim  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier (dimension du sous-espace)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Calcul de l&apos;image de <VERB>A^k</VERB>; les dim premières colonnes de <VERB>X</VERB> forment une base de <VERB>A^k</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>fullrfk</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.; ;   </AUTHOR>
+</MAN>

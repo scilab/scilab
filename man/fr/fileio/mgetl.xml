@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mgetl  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 2000  </DATE>
+  <SHORT_DESCRIPTION name="mgetl"> read lines from an ascii file  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>txt=mgetl(file_desc [,m])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>file_desc  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :a character string giving the file name or a logical unit returned by mopen
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>m  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : an integer scalar. Default value is -1.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>txt  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a column vector of string
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>mgetl</VERB> function allows to read a lines from an ascii file. 
+  </P>
+  <P>
+    If <VERB>m</VERB> is
+    omitted or is <VERB>-1</VERB> all lines till end of file occurs are read.
+  </P>
+  <P>
+    If <VERB>m</VERB> is given <VERB>mgetl</VERB> tries to read exactly m lines, if an
+    end of file occurs before <VERB>m</VERB> lines are read an error is
+    issued. This option is useful to sequentialy read part of a file
+    as follow
+  </P>
+  <P>
+  </P>
+  <P>
+    <VERB>mgetl</VERB> allows to read files coming from Unix, Windows, or Mac
+    operating systems.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+mgetl('SCI/scilab.star',5)
+
+mgetl SCI/macros/elem/and.sci
+
+fd=mopen('SCI/scilab.star','r')
+mgetl(fd,10)
+mclose(fd)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mputl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mclose</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mfscanf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mget</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mgetstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mopen</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>read</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. Steer  </AUTHOR>
+</MAN>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>SUPER_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="SUPER_f"> Scicos Super block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block opens up a new Scicos window for editing a new block
+    diagram. This diagram describes the internal functions of the
+    super block. 
+  </P>
+  <P>
+    Super block  inputs and outputs (regular or event) are designated by
+    special (input or output)  blocks.
+  </P>
+  <P>
+    Regular input blocks must be numbered from 1 to the number of regular
+    input ports. Regular input ports of the super block are numbered from
+    the top of the block shape to the bottom.
+  </P>
+  <P>
+  </P>
+  <P>
+    Regular output portss must be numbered from 1 to the number of regular
+    output ports. Regular output ports of the super block are numbered
+    from the top of the block shape to the bottom.
+  </P>
+  <P>
+  </P>
+  <P>
+    Event input blocks must be numbered from 1 to the number of event
+    input ports. Event input ports of the super block are numbered from
+    the left of the block shape to the right.
+  </P>
+  <P>
+    Event output ports must be numbered from 1 to the number of event
+    output ports. Event output ports of the super block are numbered from
+    the left of the block shape to the right.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>CLKIN_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>OUT_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>CLKOUT_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>IN_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>circuit  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1995  </DATE>
+  <SHORT_DESCRIPTION name="circuit"> finds a circuit or the rank function in a directed graph  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[p,r] = circuit(g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>p  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : row vector of integer numbers of the arcs of the circuit if it exists
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>r  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : row vector of rank function if there is no circuit
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>circuit</VERB> tries to find a circuit for the directed graph <VERB>g</VERB>.
+    It returns the circuit <VERB>p</VERB> as a row vector of the
+    corresponding arc numbers if it exists and it returns the empty vector <VERB>[]</VERB>
+    otherwise.
+    If the graph has no circuit, the rank function is returned in <VERB>r</VERB>, 
+    otherwise its value is the empty vector <VERB>[]</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// graph with circuit
+ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
+he=[2 3 5 4 6 6 7 4 3 2 8 1 7 4];
+g=make_graph('foo',1,8,ta,he);
+g('node_x')=[116 231 192 323 354 454 305 155];
+g('node_y')=[ 118 116 212 219 117 185 334 316];
+show_graph(g);
+p=circuit(g)
+show_arcs(p)
+// graph without circuit
+g=make_graph('foo',1,4,[1 2 2 3],[2 3 4 4]);
+[p,r]=circuit(g)
+ ]]></EXAMPLE>
+</MAN>

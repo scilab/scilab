@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fec  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="fec"> pseudo-color plot of a function defined on a triangular mesh   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : two vectors of size <VERB>n</VERB>, <VERB>(x(i),y(i))</VERB> gives the coordinates of node  <VERB>i</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>func  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a vector of size <VERB>n</VERB> : <VERB>func(i)</VERB> gives the value of the function for which we want the pseudo-color plot.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>triangles  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : is a <VERB>[Ntr,5]</VERB> matrix. Each line of <VERB>triangles</VERB> specifies a triangle of the  mesh <VERB>triangle(j) = [number,node1,node2,node3,flag]</VERB>. <VERB>node1,node2,node3</VERB> are the number of the nodes which constitutes the triangle. number is the number of the triangle and flag is an integer not used in the fec function 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>strf,leg,rect,nax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : see plot2d
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>zminmax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : useful only for animation with fec, zminmax is a vector of  size 2 [zmin zmax] which gives the z values associated with  the first and the last color (of the current colormap).  (More exactly if the colormap have nc colors and if we note dz = (zmax-zmin)/nc, then the part of the triangulation where  zmin + (i-1)dz &lt;= z &lt; zmin + i dz is filled with the color i). By default zmin = min(func) and zmax = max(func). If you want to do an animation with func values that varie in time, take for zmin and zmax the global minimum and maximum or something close.  CAUTION : for func values greather than zmax the last color  is used and for func values less than zmin this is the first color  (so you don&apos;t see that the zminmax levels are crossed).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>colminmax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a vector of 2 positives integers colminmax=[colmin colmax] with 1 &lt;= colmin &lt; colmax &lt;= nc (where nc is the number of colors of the current colormap). By default all the colors of the colormap are used but with colminmax you may choose a sub-part of the (current) colormap.     
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    See the demo files <VERB>demos/fec</VERB>.
+  </P>
+  <P>
+    <VERB>fec.ex1</VERB> is a simple demo file in which a mesh and a function 
+    on that mesh is completely built in Scilab syntax 
+  </P>
+  <P>
+    <VERB>fec.ex2</VERB> is an example for which the mesh and the function value where 
+    computed by an external mesh builder (amdba type mesh) and an external program.
+    A set of macros ( provided in file <VERB>macros.sci</VERB>) can be used to read the 
+    data files in Scilab and plot the results. 
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>Sfgrayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Sgrayplot</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

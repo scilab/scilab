@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xchange  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xchange"> transformation de coordonnées de l&apos;échelle courante en pixels et inversement  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x1,y1,rect]=xchange(x,y,dir)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : deux matrices de taille (n1,n2) (coordonnées d&apos;un ensemble de points).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x1,y1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : deux matrices de taille (n1,n2) (coordonnées transformées).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un vecteur de taille 4.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Après l&apos;appel à une fonction graphique de haut niveau, <VERB>xchange</VERB> calcule des coordonnées en pixels à partir des coordonnées &quot;réelles&quot; à l&apos;échelle du dessin courant, et inversement, suivant la valeur du paramètre <VERB>dir</VERB> :
+    &quot;f2i&quot; (float to int) signifie réel vers pixel et &quot;i2f&quot; (int to float)
+    signifie pixel vers réel.
+    <VERB>x1</VERB> et <VERB>y1</VERB> sont les nouvelles coordonnées de l&apos;ensemble de points 
+    définis par les anciennes coordonnées <VERB>x</VERB> et <VERB>y</VERB>.
+  </P>
+  <P>
+    <VERB>rect</VERB> sont les coordonnées en pixels
+    du rectangle du cadre courant : [point en haut à gauche, largeur, hauteur].
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+t=[0:0.1:2*%pi]';
+plot2d(t,sin(t))
+[x,y,rect]=xchange(1,1,"f2i")
+[x,y,rect]=xchange(0,0,"i2f")
+ ]]></EXAMPLE>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

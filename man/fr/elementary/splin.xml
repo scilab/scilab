@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>splin  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="splin"> spline cubique  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>d=splin(x,f [,&quot;periodic&quot;])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur réel
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>f  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur réel de même taille que <VERB>x</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&quot;periodic&quot;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères (recherche d&apos;une spline périodique)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Etant donné les valeurs <VERB>fi</VERB> d&apos;une fonction f en des points <VERB>xi</VERB>
+    (<VERB>fi=f(xi)</VERB>) cette primitive calcule une spline cubique d&apos;interpolation
+    S interpolant la fonction <VERB>f</VERB>.
+    Les composantes de <VERB>x</VERB> doivent être classées par ordre croissant.
+    Pour une spline périodique <VERB>f(1)</VERB> doit être égal à <VERB>f(n)</VERB>;
+    S est définie par le triplet <VERB>(x,f,d)</VERB> où <VERB>d=spline(x,f)</VERB>
+    est le vecteur des dérivées estimées de S en <VERB>xi</VERB>
+    (<VERB>fi=S(xi),di=S&apos;(xi)</VERB>).
+    Cette fonction doit être utilisée conjointement avec la fonction <VERB>interp</VERB>.
+  </P>
+  <P>
+    Dans le cas périodique n doit être &gt;= 3. Dans le cas non-périodique, n doit être &gt;= 4 et les conditions aux limites de la spline, qui sont de type 
+    &quot;not-a-knot&quot;, imposent (si x1, x2, ..., xn sont les noeuds d&apos;interpolation) :
+  </P>
+  <VERBATIM><![CDATA[
+    S'''(x2-) = S'''(x2+)
+    S'''(x{n-1}-) = S'''(x{n-1}+)
+   ]]></VERBATIM>
+  <P>
+    de telle manière que le premier polynôme p1 soit égal à p2, et de même pour les deux derniers : p{n-2}=p{n-1}.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=0:0.5:10;f=sin(x);
+d=splin(x,f);
+S=interp(0:0.1:10,x,f,d);
+plot2d(x',f',-1);
+plot2d((0:0.1:10)',S',2,'000')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>interp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>smooth</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

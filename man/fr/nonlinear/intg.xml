@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>intg  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="intg"> intégration numérique adaptative  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[v,err]=intg(a,b,f [,ea [,er])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>a,b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : nombres réels
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>f  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : fonction externe (fonction Scilab ou chaîne de caractères ou liste).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ea, er  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : nombres réels
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ea  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : erreur absolue désirée (0 par défaut)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>er  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : erreur relative (1.d-8 par défaut)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>err  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : estimation de l&apos;erreur absolue sur le résultat
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>intg(a,b,f)</VERB> approche l&apos;intégrale de <VERB>a</VERB> à
+    <VERB>b</VERB> de <VERB>f(t)dt</VERB>.
+    L&apos;évaluation satisfait si possible
+    <VERB>abs(I-v)&lt;= max(ea,er*abs(I))</VERB> où I représente la valeur exacte de l&apos;intégrale.
+  </P>
+  <P>
+    <VERB>f</VERB> est une fonction externe :
+  </P>
+  <P>
+    Si <VERB>f</VERB>  est une fonction Scilab elle doit avoir la liste d&apos;appel :
+    <VERB> y = f(t) </VERB>
+  </P>
+  <P>
+    Si <VERB>f</VERB> est une liste, cette liste doit avoir la structure suivante :
+    <VERB> list(f,x1,x2,...)</VERB> où <VERB>f</VERB> est une fonction Scilab avec la liste d&apos;appel :
+    <VERB>f(t,x1,x2,...)</VERB>.
+  </P>
+  <P>
+    Si <VERB>f</VERB> <VERB>f</VERB> est une chaîne de caractères, elle désigne le nom d&apos;une subroutine Fortran
+    ou C (voir le code source de <VERB>fintg.f</VERB>)
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+deff('[y]=f(x)','y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2))')
+exact=-2.5432596188;
+abs(exact-intg(0,2*%pi,f))
+// voir routines/default/Ex-intg.f 
+abs(exact-intg(0,2*%pi,'intgex'))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>intc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>inttrap</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intsplin</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ode</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

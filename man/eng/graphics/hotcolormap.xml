@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>hotcolormap  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>November 1997  </DATE>
+  <SHORT_DESCRIPTION name="hotcolormap"> red to yellow colormap  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>cmap=hotcolormap(n)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>n  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer &gt;= 3, the colormap size.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>cmap  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrix with 3 columns <VERB>[R,G,B]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>hotcolormap</VERB> computes a colormap with <VERB>n</VERB> hot colors
+    varying from red to yellow.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+xset("colormap",hotcolormap(32))
+plot3d1() 
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>colormap</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>graycolormap</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

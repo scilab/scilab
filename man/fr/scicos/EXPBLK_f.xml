@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>EXPBLK_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="EXPBLK_f"> Scicos a^u block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes <VERB>y(i)=a^u(i)</VERB>. The input and output port sizes
+    are determined by the compiler.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='a :'>
+real positive scalar
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>GENERIC_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="GENERIC_f"> Scicos generic interfacing function  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block can realize any type of block. The computational function
+    must already be defined in Scilab, Fortran or C code.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='simulation function'>
+: a character string, the name of the computational  function
+
+  </ITEM>
+  <ITEM label='function type'>
+: a non negative integer, the type of the computational  function
+
+  </ITEM>
+  <ITEM label='input port sizes'>
+: a vector of integers, size of regular input ports.
+
+  </ITEM>
+  <ITEM label='output port sizes'>
+: a vector of integers, size of regular output ports.
+
+  </ITEM>
+  <ITEM label='input event port sizes'>
+: a vector of ones, size of event input ports. The size of the vector gives the number of event input ports.
+
+  </ITEM>
+  <ITEM label='output event port sizes'>
+: a vector of ones, size of event output ports. The size of the vector gives the number of of event output ports.
+
+  </ITEM>
+  <ITEM label='Initial continuous state'>
+: a column vector.
+
+  </ITEM>
+  <ITEM label='Initial discrete state'>
+: a column vector.
+
+  </ITEM>
+  <ITEM label='System type'>
+: a string: c,d, z or l (CBB, DBB, zero crossing or synchro).
+
+  </ITEM>
+  <ITEM label='Real parameter vector'>
+: column vector. Any parameters used in the block can be defined here as a column vector.
+
+  </ITEM>
+  <ITEM label='Integer parameter vector'>
+: column vector. Any integer parameters used in the block can be defined here as a column vector.
+
+  </ITEM>
+  <ITEM label='initial firing'>
+: vector. Size of this vector corresponds to the number of event outputs. The value of the i-th entry specifies the time of the preprogrammed event firing on the i-th output event port. If less than zero, no event is preprogrammed.
+
+  </ITEM>
+  <ITEM label='direct feedthrough'>
+: character &quot;y&quot; or &quot;n&quot;, specifies if block has a direct input to output feedthrough.
+
+  </ITEM>
+  <ITEM label='Time dependance'>
+: character &quot;y&quot; or &quot;n&quot;, specifies if block output depends explicitly on time.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scifunc_block</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>eval3d  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="eval3d"> values of a function on a grid  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[z]=eval3d(fun,x,[y])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>fun  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : function accepting vectors as arguments.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 2 vectors of size (1,n1) and (1,n2). (default value for <VERB>y</VERB> : <VERB>y=x</VERB>).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrix of size (n1,n2).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function returns a matrix <VERB>z(n1,n2)</VERB>. <VERB>z(i,j)=fun(x(i),y(j))</VERB>. 
+    If the function <VERB>fun</VERB> doesn&apos;t accept arguments of type vector use the
+    primitive <VERB>feval</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+  x=-5:5;y=x;
+  deff('[z]=f(x,y)',['z= x.*y']);
+  z=eval3d(f,x,y);
+  plot3d(x,y,z);
+// 
+  deff('[z]=f(x,y)',['z= x*y']);
+  z=feval(x,y,f);
+  plot3d(x,y,z);
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>feval</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Steer S.; ; ;   </AUTHOR>
+</MAN>

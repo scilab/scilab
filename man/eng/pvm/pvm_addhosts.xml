@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pvm_addhosts  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>May 1998  </DATE>
+  <SHORT_DESCRIPTION name="pvm_addhosts"> add hosts to the virtual machine.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[infos] = pvm_addhosts(hosts)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>hosts  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : row of strings, naming the hosts to be added.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>infos  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : row of integer,  corresponding to the status for each host. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pvm_addhosts</VERB>
+    adds the computers named in
+  </P>
+  <P>
+    to the configuration of computers making up the virtual machine.
+    The names should have the same syntax as lines of a pvmd hostfile
+    (see man page for pvmd3):
+    A hostname followed by options of the form xx=y.
+  </P>
+  <P>
+    The array
+  </P>
+  <P>
+    can be checked to determine the status for each host.
+    Values less than zero indicate an error,
+    while positive values are TIDs of the new hosts.
+  </P>
+  <P>
+    The status of hosts can be requested by the application using
+     <VERB>pvm_config</VERB>.
+    If a host fails it will be automatically deleted from the configuration.
+    Using pvm_addhosts a replacement host can be added by the application,
+    however
+    it is the responsibility of the
+    application developer to make his application tolerant of host failure.
+    Another use of this feature would be to add more hosts
+    as they become available, for example on a weekend, or if the
+    application dynamically determines it could use more computational power.
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+info = pvm_addhosts(["isostar","loop"])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pvm_delhosts</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_config</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

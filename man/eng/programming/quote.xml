@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>quote  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="quote (&apos;)"> transpose operator, string delimiter  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    quote (<VERB>&apos;</VERB>)is used for (Conjugate) Transpose of matrix.
+  </P>
+  <P>
+    quote (<VERB>.&apos;</VERB>)is used for (non Conjugate) Transpose of matrix.
+  </P>
+  <P>
+    Simple (&apos;) or double (&quot;) quotes are also used to define character strings.
+    (Character strings are defined between two quotes). A Quote within a
+    character string is denoted by two quotes.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[1+%i, 2]'
+[1+%i, 2].'
+x='This is a character string'
+'He said:''Good'''
+ ]]></EXAMPLE>
+</MAN>

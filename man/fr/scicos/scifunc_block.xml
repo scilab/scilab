@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scifunc_block  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="scifunc_block"> Scicos block defined interactively  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block can realize any type of Scicos block. The function of the
+    block is defined interactively using dialogue boxes and in Scilab
+    language. During simulation, these instructions are interpreted by
+    Scilab; the simulation of diagrams that include these types of blocks 
+    is slower. For more information see Scicos reference manual.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='number of inputs'>
+: a scalar. Number of regular input ports
+
+  </ITEM>
+  <ITEM label='number of outputs'>
+: a scalar. Number of regular output ports
+
+  </ITEM>
+  <ITEM label='number of input events'>
+: a scalar. Number of input event ports
+
+  </ITEM>
+  <ITEM label='number of output events'>
+: a scalar. Number of output event ports
+
+  </ITEM>
+  <ITEM label='Initial continuous state'>
+: a column vector.
+
+  </ITEM>
+  <ITEM label='Initial discrete state'>
+: a column vector.
+
+  </ITEM>
+  <ITEM label='System type'>
+: a string: c or d (CBB or DBB, other types are not supported).
+
+  </ITEM>
+  <ITEM label='System parameter'>
+: column vector. Any parameters used in the block can be defined here a column vector.
+
+  </ITEM>
+  <ITEM label='initial firing'>
+: vector. Size of this vector corresponds to the number of event outputs. The value of the i-th entry specifies the time of the preprogrammed event firing on the i-th output event port. If less than zero, no event is preprogrammed. 
+
+  </ITEM>
+  <ITEM label='Instructions'>
+: other dialogues are opened consecutively where used may input Scilab code associated with the computations needed (block initialization, outputs, continuous and  discrete state, output events date, block ending), 
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>GENERIC_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

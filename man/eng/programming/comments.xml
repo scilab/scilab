@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>comments  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="comments"> comments  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Command lines which begin by <VERB> // </VERB> are not interpreted
+    by Scilab.
+  </P>
+  <P>
+    Comments must not begin with <VERB> //end </VERB> !
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+</MAN>

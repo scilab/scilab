@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>MFCLCK_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="MFCLCK_f"> Scicos basic block for frequency division of event clock  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is used in the Super Block MCLOCK. The input event is
+    directed once every n times to output 1 and the rest of the time
+    to output 2. There is a delay of &quot;Basic period&quot; in the transmission
+    of the event. If this period &gt;0 then the second output is initially
+    fired. It is not if this period=0. In the latter case, the input
+    is driven by an event clock and in the former case, feedback can
+    be used.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Basic period'>
+: positive scalar.
+
+  </ITEM>
+  <ITEM label='n'>
+: an integer greater than 1. 
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>MCLOCK_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>CLOCK_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

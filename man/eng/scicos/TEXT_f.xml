@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>TEXT_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="TEXT_f"> Scicos  text drawing block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This special block is only use to add text at any point of the diagram
+    window. It has no effect on the simulation.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='txt'>
+: a character string, Text to be displayed
+
+  </ITEM>
+  <ITEM label='font'>
+: a positive integer less than 6, number of selected font (see xset)
+
+  </ITEM>
+  <ITEM label='siz'>
+: a positive integer, selected font size (see xset)
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

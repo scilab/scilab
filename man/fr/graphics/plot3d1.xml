@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>plot3d1  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="plot3d1"> représentation en couleurs d&apos;une surface en 3D  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>plot3d1(x,y,z,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot3d1(xf,yf,zf,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+  <P>
+    Voir <VERB>plot3d</VERB> pour une description complète. Il y a juste une petite différence, uniquement le signe de <VERB>flag(1)=mode</VERB> est utilisé : s&apos;il est négatif la grille n&apos;est pas dessinée. 
+  </P>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>plot3d</VERB> dessine une surface <VERB>z=f(x,y)</VERB>
+    dont la couleur en un point dépend de la hauteur.
+  </P>
+  <P>
+    Taper <VERB>plot3d1()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// simple surface z=f(x,y)
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+plot3d1(t,t,z)
+// même surface en utilisant genfac3d au préalable
+[xx,yy,zz]=genfac3d(t,t,z);
+xbasc()
+plot3d1(xx,yy,zz)
+// surfaces multiples
+xbasc()
+plot3d1([xx xx],[yy yy],[zz 4+zz])
+// changement du point de vue et des légendes
+xbasc()
+plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
+// changement du point de vue et des légendes
+xbasc()
+plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[-2,2,3])
+// une sphère
+deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";..
+  "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";..
+  "z=r*sin(alp)+orig(3)*ones(tet)"]);
+r=1; orig=[0 0 0];
+[xx,yy,zz]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
+xbasc()
+plot3d1(xx,yy,zz)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot3d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

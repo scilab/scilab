@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>READC_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1999  </DATE>
+  <SHORT_DESCRIPTION name="READC_f"> Scicos &quot;read from C binary file&quot; block   </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block allows user to read datas in a C file.  <VERB>Output record
+    selection</VERB> and <VERB>Time record Selection</VERB> allows the user to select
+    data among file records.
+  </P>
+  <P>
+    Each call to the block advance one record in the file. 
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Time record Selection'>
+: an empty matrix or a positive integer. If an integer <VERB>i</VERB> is given the  <VERB>i</VERB>th element of the read record is assumed to be the date of the output event. If empty no output event exists.
+
+  </ITEM>
+  <ITEM label='Output record selection'>
+: a vector of positive integer. <VERB>[k1,..,kn]</VERB>,The <VERB>ki</VERB>th element of  the read record gives the value of <VERB>i</VERB>th output.
+
+  </ITEM>
+  <ITEM label='Input file name'>
+: a character string defining the path of the file 
+
+  </ITEM>
+  <ITEM label='Input Format'>
+: a character string defining the  format to use 
+
+  </ITEM>
+  <ITEM label='&quot;l&quot;,&quot;s&quot;,&quot;ul&quot;,&quot;us&quot;,&quot;d&quot;,&quot;f&quot;,&quot;c&quot;,&quot;uc&quot;'>
+: for reading  respectively  long, ashort, unsigned long,  unsigned short, double,  float,  char and  unsigned char. If required by the <VERB>swap mode</VERB>, the bytes which are read are automatically swapped if necessary (by checking little-endian status) in order to produce machine independent binary files ( in little-endian mode).
+
+  </ITEM>
+  <ITEM label='&quot;ull&quot;,&quot;uls&quot;,&quot;ubl&quot;,&quot;ubs&quot;,'>
+: can be used for reading respectively unsigned little-endian long or short and unsigned big-endian long or short. 
+
+  </ITEM>
+  <ITEM label='&quot;dx&quot;,&quot;fx&quot;,&quot;lx&quot;,&quot;sx&quot;'>
+: with <VERB>x=b</VERB> or <VERB>x=l</VERB> can be used for reading double, float, long or short as big or little endian.
+
+  </ITEM>
+  <ITEM label='Record size'>
+: The file is supposed to be formed by a sequence  of data with same format. these data are organized in a sequence of record each of them containing <VERB>Record size</VERB> data.
+
+  </ITEM>
+  <ITEM label='Buffer size'>
+: To improve efficiency it is possible to buffer the input data. read on the file is only done after each <VERB>Buffer size</VERB> call to the block.
+
+  </ITEM>
+  <ITEM label='Initial record index'>
+: a scalar. This fixes the first record of the file to use.
+
+  </ITEM>
+  <ITEM label='Swap mode'>
+: With <VERB>Swap mode=1</VERB>  the file is supposed to be coded in &quot;little endian IEEE format&quot; and data are swaped if necessary to match the IEEE format of the processor. If <VERB>Swap mode=0</VERB>  then automatic bytes swap is disabled.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>RFILE_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mget</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

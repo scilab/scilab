@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>spzeros  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>January 1995  </DATE>
+  <SHORT_DESCRIPTION name="spzeros">  matrice creuse nulle  </SHORT_DESCRIPTION>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>nrows  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier (nombre de lignes)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ncols  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier (nombre de colonnes)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice creuse
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>sp  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice creuse nulle
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>sp=spzeros(nrows,ncols,fill)</VERB> renvoie une matrice creuse nulle <VERB>sp</VERB> 
+    avec <VERB>nrows</VERB> lignes et <VERB>ncols</VERB> colonnes (Équivalent à <VERB>sparse([],[],[nrow,ncols])</VERB>).
+  </P>
+  <P>
+    <VERB>sp=spzeros(A)</VERB> renvoie une matrice creuse nulle de mêmes dimensions que <VERB>A</VERB>. Si <VERB>[m,n]=size(A)</VERB>, les commandes <VERB>spzeros(m,n)</VERB> et <VERB>spzeros(A)</VERB> sont équivalentes. En particulier <VERB>spzeros(3)</VERB> n&apos;est pas équivalent à <VERB>spzeros(3,3)</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+sum(spzeros(1000,1000))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>sparse</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>full</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>eye</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>speye</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>spones</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

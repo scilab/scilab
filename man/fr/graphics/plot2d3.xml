@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>plot2d3  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="plot2d3"> représentation d&apos;une courbe sous forme de barres verticales.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>plot2d3([logflags,] x,y,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot232(y)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot2d3(x,y &lt;,opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+  <P>
+    [ ] : voir <VERB>plot2d</VERB>  pour une description des paramètres.
+  </P>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>plot2d3</VERB> est identique à <VERB>plot2d</VERB> mais les courbes sont dessinées 
+    sous forme de barres verticales.
+  </P>
+  <P>
+    Par défaut, les dessins successifs sont superposés. Pour effacer le dessin précédent, utiliser 
+    <VERB>xbasc()</VERB>.
+  </P>
+  <P>
+    Taper <VERB>plot2d3()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// à comparer avec plot2d
+x=[0:0.1:2*%pi]';
+plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d2</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d4</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xbasc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

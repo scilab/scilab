@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>TK_EvalStr  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE> 04 June 1998  </DATE>
+  <SHORT_DESCRIPTION name="TK_EvalStr"> Evaluate a string whithin the  tcl/tk interpreter  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>TK_EvalStr(str)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>str  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string or vector of strings, contains the tcl/tk instructions 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This routine allows to evaluate tcl/tk  instructions with the tcl/tk
+    interpreter launched with scilab. 
+  </P>
+  <P>
+    When tcl/tk support is enabled in scilab, you can evaluate tcl/tk expression
+    from scilab interpreter. In fact, scilab launches a slave tcl/tk interpreter.
+    The scilab instruction <VERB>TK_EvalStr()</VERB> can be used to evaluate expression 
+    without having to write a tcl/tk in a separated file (this is done using 
+    TK_EvalFile). 
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+//with one call
+TK_EvalStr(['toplevel .foo1'
+   'label .foo1.l -text ""TK married Scilab !!!""'
+   'pack .foo1.l'
+   'button .foo1.b -text close -command {destroy .foo1}'
+   'pack .foo1.b'])
+
+//step by step (debugging)
+TK_EvalStr('toplevel .foo2');
+// creates a toplevel TK window. 
+TK_EvalStr('label .foo2.l -text ""TK married Scilab !!!""');
+// create a static label
+TK_EvalStr('pack .foo2.l');
+// pack the label widget. It appears on the screen.
+text='button .foo2.b -text close -command {destroy .foo2}';
+TK_EvalStr(text);
+TK_EvalStr('pack .foo2.b');
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ScilabEval</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_EvalFile</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_GetVar</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_SetVar</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+</MAN>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>max_flow  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1995  </DATE>
+  <SHORT_DESCRIPTION name="max_flow"> flot maximum entre deux sommets  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[v,phi,flag] = max_flow(i,j,g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>i  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier, numéro du sommet de départ
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>j  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier,  numéro du sommet d&apos;arrivée
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graphe (liste)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>v  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : valeur du flot maximum, si elle existe
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>phi  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne des valeurs des flots sur les arcs
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : problème soluble ou non (0 ou 1)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>max_flow</VERB> renvoie la valeur du flot maximum <VERB>v</VERB> du sommet
+    <VERB>i</VERB> au sommet <VERB>j</VERB> si elle existe, et la valeur des flots 
+    sur chaque arc sous forme d&apos;un vecteur ligne <VERB>phi</VERB>. Les calculs sont 
+    faits en nombres entiers. Le graphe doit être orienté. Si le problème n&apos;est 
+    pas soluble, <VERB>flag</VERB> est égal à 0, sinon il est égal à 1.
+  </P>
+  <P>
+    Les bornes sur le flot sont données par les éléments <VERB>edge_min_cap</VERB> et
+    <VERB>edge_max_cap</VERB> du graphe. 
+    La valeur de la capacité maximum doit être supérieure ou égale à 
+    la capacité minimum.
+    Si la valeur de <VERB>edge_min_cap</VERB> ou <VERB>edge_max_cap</VERB> n&apos;est pas donnée 
+    (vecteur ligne vide <VERB>[]</VERB>), elle est supposée égale à 0 sur chaque arête.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15];
+ta=[ta, 15 8 9 10 11 12 13 14];
+he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4];
+he=[he, 5 6 7 16 16 16 16 16 16 16];
+n=16;
+g=make_graph('foo',1,n,ta,he);
+g('node_x')=[42 615 231 505 145 312 403 233 506 34 400 312 142 614 260 257];
+g('node_y')=[143 145 154 154 147 152 157 270 273 279 269 273 273 274 50 376];
+ma=edge_number(g);
+g('edge_max_cap')=ones(1,ma);
+g('edge_min_cap')=zeros(1,ma);
+source=15; sink=16;
+nodetype=0*ones(1,n); nodetype(source)=2; nodetype(sink)=1;
+g('node_type')=nodetype;
+nodecolor=0*ones(1,n); nodecolor(source)=11; nodecolor(sink)=11;
+g('node_color')=nodecolor;
+show_graph(g);
+[v,phi,ierr]=max_flow(source,sink,g);
+ii=find(phi<>0); edgecolor=phi; edgecolor(ii)=11*ones(ii);
+g('edge_color')=edgecolor;
+edgefontsize=8*ones(1,ma); edgefontsize(ii)=18*ones(ii);
+g('edge_font_size')=edgefontsize;
+g('edge_label')=string(phi);
+show_graph(g);
+ ]]></EXAMPLE>
+</MAN>

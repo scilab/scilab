@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>MIN_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="MIN_f"> Scicos min block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    The block outputs the minimum of the input vector:
+    <VERB>y=min(u1,...un)</VERB>.
+    The input vector size is determined by the compiler according to the
+    connected blocks port sizes.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <P>
+    None.
+  </P>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>MAX_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

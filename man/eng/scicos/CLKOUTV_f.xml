@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>CLKOUTV_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="CLKOUTV_f"> Scicos Super Block event output port  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block must only be used inside Scicos Super Blocks to represent
+    an event output port. 
+  </P>
+  <P>
+    In a Super_Block, the event output ports must be numbered from 1 to the
+    number of event output ports.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Port number'>
+: an integer giving the port number.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>IN_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>OUT_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>CLKINV_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

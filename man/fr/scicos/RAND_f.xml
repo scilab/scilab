@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>RAND_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="RAND_f"> Scicos random wave generator  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is a random wave generator: each output component takes piecewise
+    constant random values. Every time an event is received on the 
+    input event port, the outputs take  new independent random values.
+  </P>
+  <P>
+    output port size is given by the size of <VERB>A</VERB> and <VERB>B</VERB> vectors
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='flag'>
+: 0 or 1. 0 for uniform distribution on <VERB>[A,A+B</VERB>] and 1 for normal distribution <VERB>N(A,B*B)</VERB>.
+
+  </ITEM>
+  <ITEM label='A'>
+: scalar
+
+  </ITEM>
+  <ITEM label='B'>
+: scalar
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>GENSIN_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>SAWTOOTH_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>GENSQR_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

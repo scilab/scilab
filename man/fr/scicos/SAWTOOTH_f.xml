@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>SAWTOOTH_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="SAWTOOTH_f"> Scicos sawtooth wave generator  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is a sawtooth wave generator: output is (t-t_i)
+    from ti to t_(i+1) where t_i and t_(i+1) denote the times of
+    two successive input events.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <P>
+    None.
+  </P>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>GENSIN_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>GENSQR_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>RAND_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

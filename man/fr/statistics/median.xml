@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>median  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>January 1998  </DATE>
+  <SHORT_DESCRIPTION name="median"> médiane des termes d&apos;une matrice  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=median(x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=median(x,&apos;r&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=median(x,&apos;c&apos;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ou matrice réelle 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scalaire ou vecteur
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Pour un vecteur ou une matrice <VERB>x</VERB>, <VERB>y=median(x)</VERB> renvoie un scalaire <VERB>y</VERB> égal à la médiane des termes de <VERB>x</VERB>.
+  </P>
+  <P>
+    <VERB>y=median(x,&apos;r&apos;)</VERB> (ou <VERB>y=median(x,1)</VERB>) est la médiane selon l&apos;indice de  lignes. Chaque composante du vecteur ligne <VERB>y</VERB> contient la médiane de chaque colonne de <VERB>x</VERB>.
+  </P>
+  <P>
+    <VERB>y=median(x,&apos;c&apos;)</VERB> (ou <VERB>y=median(x,2)</VERB>) est la médiane selon l&apos;indice de colonne. Chaque composante du vecteur colonne <VERB>y</VERB> contient la médiane de chaque ligne de <VERB>x</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=[1,2,10;7,7.1,7.01];
+median(A)
+median(A,'r')
+median(A,'c')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mean</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>st_deviation</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>check_io  </TITLE>
+  <TYPE>Scicos function  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="check_io"> Checks and sets Scicos block port numbers.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>model  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Scicos model data structure (see scicos_model)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>graphics  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Scicos graphics data structure (see scicos_graphics)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>in  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of regular input port sizes. Set <VERB>in=[]</VERB> in no regular input port
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>out  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of regular output port sizes. Set <VERB>out=[]</VERB> in no regular output port
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>clkin  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of event input port sizes. Set <VERB>clkin=[]</VERB> in no event input port
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>clkout  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of event output port sizes. Set <VERB>clkout=[]</VERB> in no event output port
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ok  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : boolean, <VERB>%t</VERB> if specified input/output have been correctly set. <VERB>%f</VERB> if specified input/output cannot be taken into account. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function is to be called when number of regular or event input or
+    output ports is modified. It check if it is possible (connected ports
+    cannot suppressed) and updates <VERB> model</VERB> and <VERB> graphics</VERB> block
+    substructures. <VERB> in</VERB>,<VERB> out</VERB>,<VERB> clkin</VERB>,<VERB> clkout</VERB> are
+    the vectors of port sizes for respectively the regular inputs, regular
+    outputs, event inputs and event outputs.
+  </P>
+  <P>
+    Negative values in <VERB> in</VERB> or <VERB> out</VERB> vector means that
+    corresponding ports dimension are to be determined by the context. Two
+    equal negative values means that corresponding ports have same size.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos_block</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_graphics</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

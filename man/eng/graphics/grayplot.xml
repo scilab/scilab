@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>grayplot  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="grayplot"> 2D plot of a surface using colors  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>grayplot(x,y,z,[strf,rect,nax])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>grayplot(x,y,z,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real row vectors of size n1 and n2.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real matrix of size (n1,n2). <VERB>z(i,j)</VERB> is the value of the surface at  the point (x(i),y(j)).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : This represents a sequence of statements <VERB>key1=value1, key2=value2</VERB>,... where <VERB>key1</VERB>, <VERB>key2,...</VERB> can be one of the following: rect, nax, strf or axesflag and frameflag (see <VERB>plot2d</VERB>).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>strf,rect,nax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : see <VERB>plot2d</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>grayplot</VERB> makes a 2D plot of the surface given by <VERB>z</VERB> on a grid 
+    defined by <VERB>x</VERB> and <VERB>y</VERB>.
+    Each rectangle on the grid is filled with a gray or color level depending 
+    on the average value of <VERB>z</VERB> on the corners of the rectangle.
+  </P>
+  <P>
+  </P>
+  <P>
+    Enter the command <VERB>grayplot()</VERB> to see a demo.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=-10:10; y=-10:10;m =rand(21,21);
+grayplot(x,y,m,rect=[-20,-20,20,20])
+t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
+xbasc()
+grayplot(t,t,m)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>fgrayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Sgrayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Sfgrayplot</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

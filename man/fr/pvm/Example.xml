@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>Example  </TITLE>
+  <TYPE>Scilab description  </TYPE>
+  <DATE>January 1998  </DATE>
+  <SHORT_DESCRIPTION name="Example"> just to test the environment  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+  </P>
+  <P>
+    We are the knights who say ni!
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+</MAN>

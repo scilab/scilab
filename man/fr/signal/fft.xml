@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>FFT  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="fft"> fast Fourier transform.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x]=fft(a,-1)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[x]=fft(a,1)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>x=fft(a,-1,dim,incr)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>x=fft(a,1,dim,incr)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real or complex vector. Real or complex matrix (2-dim fft)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>a  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real or complex vector.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>dim  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>incr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Short syntax (one or two dimensional fft):
+  </P>
+  <P>
+    gives a direct transform (the <VERB>-1</VERB> refers to
+    the sign of the exponent..., NOT to &quot;inverse&quot;), that is
+  </P>
+  <P>
+    x(k)=sum over m from 1 to n  of a(m)*exp(-2i*pi*(m-1)*(k-1)/n)
+  </P>
+  <P>
+    for k varying from 1 to n (n=size of vector <VERB>a</VERB>).
+  </P>
+  <P>
+    performs the inverse transform normalized by <VERB>1/n</VERB>.
+  </P>
+  <P>
+    (<VERB>fft(fft(.,-1),1)</VERB> is identity).
+  </P>
+  <P>
+    When the first argument given to <VERB>fft</VERB> is a matrix
+    a two-dimensional FFT is performed.
+  </P>
+  <P>
+    Long syntax (multidimensional FFT):
+  </P>
+  <P>
+    allows to perform an multidimensional fft.
+  </P>
+  <P>
+    If a is a real or complex vector implicitly indexed by
+    <VERB>x1,x2,..,xp</VERB> i.e. <VERB>a(x1,x2,..,xp)</VERB> where <VERB>x</VERB>1 lies in 
+    <VERB>1..dim1,</VERB> <VERB>x2</VERB> in <VERB>1.. dim2,...</VERB> one gets 
+    a p-dimensional FFT p by calling p times <VERB>fft</VERB> as follows
+  </P>
+  <VERBATIM><![CDATA[
+ a1=fft(a ,-1,dim1,incr1)
+ a2=fft(a1,-1,dim2,incr2) ...
+   ]]></VERBATIM>
+  <P>
+    where <VERB>dimi</VERB> is the dimension of the current variable w.r.t which
+    one is integrating and incri is the increment which separates
+    two successive <VERB>xi</VERB> elements in <VERB>a</VERB>.
+  </P>
+  <P>
+    In particular,if <VERB>a</VERB> is an nxm matrix,
+    <VERB>x=fft(a,-1)</VERB> is equivalent to the two instructions:
+  </P>
+  <P>
+    <VERB>a1=fft(a,-1,m,1)</VERB> and <VERB>x=fft(a1,-1,n,m)</VERB>.
+  </P>
+  <P>
+    if a is an hypermatrix (see hypermat) fft(a,flag) performs the N
+    dimensional fft of a.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+a=[1;2;3];n=size(a,'*');
+norm(1/n*exp(2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,1))
+norm(exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,-1))  
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>corr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

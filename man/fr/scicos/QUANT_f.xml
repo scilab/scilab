@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>QUANT_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="QUANT_f"> Scicos Quantization block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block outputs the quantization of the input according to a choice
+    of methods
+  </P>
+  <P>
+    for <VERB>Round</VERB> method 
+  </P>
+  <P>
+    <VERB>y(i)=Step*(int(u(i)/Step+0.5)-0.5)</VERB> if <VERB>u(i)&lt;0</VERB>.
+  </P>
+  <P>
+    <VERB>y(i)=Step*(int(u(i)/Step-0.5)+0.5)</VERB>. if <VERB>u(i)&gt;=0</VERB>.
+  </P>
+  <P>
+  </P>
+  <P>
+    For truncation method
+  </P>
+  <P>
+    <VERB>y(i)=Step*(int(u(i)/Step+0.5))</VERB> if <VERB>u(i)&lt;0</VERB>.
+  </P>
+  <P>
+    <VERB>y(i)=Step*(int(u(i)/Step-0.5))</VERB> if <VERB>u(i)&gt;=0</VERB>.
+  </P>
+  <P>
+  </P>
+  <P>
+    For floor method
+  </P>
+  <P>
+    <VERB>y(i)=Step*(int(u(i)/Step+0.5))</VERB> .
+  </P>
+  <P>
+  </P>
+  <P>
+    For ceil method
+  </P>
+  <P>
+    <VERB>y(i)=Step*(int(u(i)/Step-0.5))</VERB> .
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Step'>
+: scalar, Quantization step
+
+  </ITEM>
+  <ITEM label='Quantization method'>
+: scalar with possible values 1,2,3 or 4
+
+  </ITEM>
+  <ITEM label='1'>
+: Round method
+
+  </ITEM>
+  <ITEM label='2'>
+: Truncation method
+
+  </ITEM>
+  <ITEM label='3'>
+: Floor method
+
+  </ITEM>
+  <ITEM label='4'>
+: Ceil method
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

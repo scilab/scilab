@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>isdir  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>2001  </DATE>
+  <SHORT_DESCRIPTION name="isdir"> checks if argument is a directory path  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>r=isdir(path)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>path  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string, the file pathname
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>r  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a boolean, true if <VERB>path</VERB> is a path to a directory.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>r=isdir(path)</VERB> checks if <VERB>path</VERB> is a path to a directory.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='REFERENCE'>
+  <P>
+    This function is based on the C function stat. The <VERB>SCI</VERB> and <VERB>~</VERB> shortcuts for Scilab directory and home directory are handled.
+  </P>
+  </ITEMIZE>
+  <EXAMPLE><![CDATA[
+isdir(TMPDIR)
+isdir SCI/scilab.star
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>fileinfo</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. Steer INRIA  </AUTHOR>
+</MAN>

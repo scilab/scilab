@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>plot3d3  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="plot3d3"> représentation &quot;fil de fer&quot; d&apos;une surface définie par des facettes rectangulaires  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>plot3d3(X,Y,Z [,vect,theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot3d3(X,Y,Z, &lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>X,Y,Z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 3 matrices réelles
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>vect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : valeurs réelles
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une suite d&apos;affectations <VERB>key1=value1, key2=value2</VERB>,... où <VERB>key1</VERB>, <VERB>key2,...</VERB> peut prendre les valeurs : vect (voir ci-dessous), theta, alpha ,leg,flag,ebox (voir <VERB>plot3d</VERB>) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>plot3d3</VERB> dessine en mode &quot;fil de fer&quot; une surface définie par des facettes rectangulaires.
+    (X,Y,Z) sont 3 matrices décrivant la surface.
+    Les coordonnées de chaque facette sur l&apos;axe des x sont définies par  X(i,j),X(i+1,j),X(i,j+1),X(i+1,j+1), et de même pour les coordonnées Y et Z.
+    Le vecteur <VERB>vect</VERB> est utilisé quand plusieurs surfaces sont définies dans le même triplet de matrices (X,Y,Z). <VERB>vect(j)</VERB> définit la ligne à laquelle commence la surface j. 
+    Voir <VERB>plot3d2</VERB> pour plus de détails.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+u = linspace(-%pi/2,%pi/2,40);
+v = linspace(0,2*%pi,20);
+X = cos(u)'*cos(v);
+Y = cos(u)'*sin(v);
+Z = sin(u)'*ones(v);
+plot3d3(X,Y,Z);
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot3d2</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot3d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>param3d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>fplot2d  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="fplot2d "> dessin 2D d&apos;une courbe définie par une fonction  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>fplot2d(xr,f,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>fplot2d(xr,f,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>f  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : fonction Scilab du type <VERB>y=f(x)</VERB> ou routine liée dynamiquement donnée sous forme d&apos;une chaîne de caractères.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>style,strf,leg,rect,nax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : voir <VERB>plot2d</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : voir <VERB>plot2d</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>fplot2d</VERB> dessine une courbe définie par la fonction <VERB>f</VERB>.
+    La courbe est approchée par interpolation linéaire entre les points
+    <VERB>(xr(i),f(xr(i))</VERB>. Les valeurs de f(x) sont obtenues par <VERB>feval(xr,f)</VERB>.
+  </P>
+  <P>
+    Taper <VERB>fplot2d()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+deff("[y]=f(x)","y=sin(x)+cos(x)")
+x=[0:0.1:10]*%pi/10;
+fplot2d(x,f)
+xbasc();
+fplot2d(1:10,'parab')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>feval</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>paramfplot2d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>GENSIN_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="GENSIN_f"> Scicos sinusoid generator  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is a sine wave generator: M*sin(F*t+P)
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Magnitude'>
+: a scalar. The magnitude M.
+
+  </ITEM>
+  <ITEM label='Frequency'>
+: a scalar. The frequency F.
+
+  </ITEM>
+  <ITEM label='Phase'>
+: a scalar. The phase P.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>GENSQR_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>RAND_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>SAWTOOTH_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

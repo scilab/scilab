@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>check_graph  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1995  </DATE>
+  <SHORT_DESCRIPTION name="check_graph"> vérifie un graphe Scilab  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>check_graph(g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graphe (liste) à vérifier
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>check_graph</VERB> vérifie si <VERB>g</VERB> est un
+    graphe. La vérification est non seulement syntaxique (nombre d&apos;éléments de la liste, tailles compatibles des vecteurs), mais aussi sémantique au sens où
+    <VERB>check_graph</VERB> vérifie que les éléments <VERB>node_number</VERB>, <VERB>tail</VERB> et
+    <VERB>head</VERB> de la liste représentent vraiment un graphe.
+  </P>
+  <P>
+    De plus, les noms des sommets doivent être différents. En fait, cela ne donne pas d&apos;erreur dans Scilab, mais un comportement étrange peut en résulter dans la fenêtre Metanet. Ceci n&apos;est pas vérifié par <VERB>check_graph</VERB> 
+    car cela prendrait trop de temps. Cela est seulement vérifié lors de la visualisation, sauvegarde ou chargement du graphe.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>graph-list</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>INTRP2BLK_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="INTRP2BLK_f"> Scicos 2D linear interpolation block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    The output of this block is a function of the inputs obtained
+    by bilinear interpolation. This block has two scalar inputs
+    and a single scalar output. The X(i) and Y(i) give respectively 
+    the X coordinate and the Y coordinate of the i-th data
+    point to be interpolated and Z(Y(i),X(i)) its value.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='X coord.'>
+: an n-vector (strictly increasing)
+
+  </ITEM>
+  <ITEM label='Y coord.'>
+: an m-vector (strictly increasing)
+
+  </ITEM>
+  <ITEM label='Z values'>
+: an mxn matrix 
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>errbar  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="errbar"> add vertical error bars on a 2D plot  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>errbar(x,y,em,ep)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y,em,ep  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : four matrices of the same size.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>errbar</VERB> adds vertical error bars on a 2D plot. 
+    <VERB>x</VERB> and <VERB>y</VERB> have the same meaning as in <VERB>plot2d</VERB>.
+    <VERB>em(i,j)</VERB> and <VERB>ep(i,j)</VERB> stands for the error interval on the 
+    value <VERB>y(i,j)</VERB>: <VERB>[y(i,j)-em(i,j),y(i,j)+ep(i,j)]</VERB>.
+  </P>
+  <P>
+    Enter the command <VERB>errbar()</VERB> to see a demo.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+t=[0:0.1:2*%pi]';
+y=[sin(t) cos(t)]; x=[t t];
+plot2d(x,y)
+errbar(x,y,0.05*ones(x),0.03*ones(x))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

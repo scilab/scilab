@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>auwrite  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="auwrite"> writes .au sound file  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>auwrite(y,aufile)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>auwrite(y,Fs,aufile)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>auwrite(y,Fs,bits,aufile)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>auwrite(y,Fs,bits,method,aufile)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector or matrix with entries in [-1,1].
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>aufile  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string (The .au extension is appended if no extension is given)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Fs  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, frequency sampling in Hz.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>bits  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, number of bits in the encoding.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>method  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string , <VERB>&apos;mu&apos;</VERB> (default) or <VERB>&apos;linear&apos;</VERB>, encoding method.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Utility function to save <VERB>.au</VERB> sound file.
+    <VERB>auwrite(y,aufile)</VERB> writes a sound file specified by the
+    string aufile.  The data should be arranged with one channel
+    per column.  Amplitude values outside the range [-1,+1] are
+    ignored.
+    Supports multi-channel data for 8-bit mu-law, and 8- and 16-bit linear formats.
+  </P>
+  <P>
+    <VERB>auwrite(y,Fs,aufile)</VERB> specifies in <VERB>Fs</VERB> the sample rate of the data
+    in Hertz.
+  </P>
+  <P>
+    <VERB>auwrite(y,Fs,bits,aufile)</VERB> selects the number of bits in
+    the encoder.  Allowable settings are bits=8 and bits=16.
+     
+    <VERB>auwrite(y,Fs,bits,method,aufile)</VERB> allows selection of the
+    encoding method, which can be either &apos;mu&apos; or &apos;linear&apos;.
+    Note that mu-law files must be 8-bit. By default, method=&apos;mu&apos;.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>auread</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>wavread</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>savewave</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>analyze</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mapsound</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

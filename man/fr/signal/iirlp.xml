@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>iirlp  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="iirlp"> Lp IIR filter optimization  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[cost,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 1X2 vector of the module and argument of the poles and the zeros of the filters
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string : <VERB>&apos;a&apos;</VERB>  for amplitude, &apos;gd&apos; for group delay; default case for amplitude and group delay.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>omega  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : frequencies where the filter specifications are given
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>wa,wt  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : weighting functions for the amplitude and the group delay
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>lambda  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : weighting (with <VERB>1-lambda</VERB>) of the costs (<VERB>&apos;a&apos;</VERB> and <VERB>&apos;gd&apos;</VERB> for getting the global cost.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ad, td  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : desired amplitude and group delay
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>cost, grad  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : criterium and gradient values
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    optimization of IIR filters for the Lp criterium for the
+    amplitude and/or the group delay. (Rabiner &amp; Gold pp270-273).
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+</MAN>

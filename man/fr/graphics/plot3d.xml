@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>plot3d  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="plot3d"> représentation d&apos;une surface en 3D  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>plot3d(x,y,z,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot3d(x,y,z,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot3d(xf,yf,zf,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot3d(xf,yf,zf,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot3d(xf,yf,list(zf,colors),[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>plot3d(xf,yf,list(zf,colors),&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteurs lignes de taille n1 et n2 (coordonnées sur les axes x et y). Ces coordonnées doivent être monotones.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice de taille (n1,n2). <VERB>z(i,j)</VERB> est la hauteur d&apos;une surface non paramétrique au point (x(i),y(j)).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>xf,yf,zf  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrices de taille (nf,n).  Elles définissent les facettes utilisées pour dessiner la surface. Chaque facette <VERB>i</VERB> est définie par un polygone à <VERB>nf</VERB> points.  Les coordonnées x, y et z des points de la facette numéro i sont donnés par <VERB>xf(:,i)</VERB>, <VERB>yf(:,i)</VERB> et <VERB>zf(:,i)</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>colors  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un vecteur de taille n donnant la couleur de chaque facette ou une matrice de taille (nf,n) donnant la couleur de chaque point de la facette (dans ce cas la couleur est interpolée dans la facette) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une suite d&apos;affectations <VERB>key1=value1, key2=value2</VERB>, ... où key1,key2, ... peuvent prendre les valeurs <VERB>theta</VERB>,<VERB>alpha</VERB>,<VERB>leg</VERB>,<VERB> flag</VERB>, <VERB>ebox</VERB>,<VERB>zlev</VERB> (voir ci-dessous). Dans ce cas, l&apos;ordre n&apos;a pas de signification particulière.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>theta, alpha  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : valeurs réelles donnant (en degrés) les coordonnées sphériques du point d&apos;observation.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>leg  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères définissant la légende pour chaque axe avec @ comme séparateur, par exemple &quot;X@Y@Z&quot;.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un vecteur réel de taille 3 <VERB>flag=[mode,type,box]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>mode  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères (traitement des parties cachées).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>mode&gt;0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Les parties cachées de la surface sont enlevées et le &quot;dessous&quot; de la surface est d&apos;une couleur uniforme d&apos;indice <VERB>mode</VERB> dans la table de couleurs courante.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>mode=0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Les parties cachées de la surface sont dessinées.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>mode&lt;0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Uniquement le &quot;dessous&quot; de la surface est dessiné et rempli avec une couleur ou un motif uniforme d&apos;indice <VERB>-mode</VERB>. Voir xset() pour la signification des indices. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>type  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un entier (type d&apos;échelle).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>type=0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Le dessin est fait avec l&apos;échelle 3D courante (définie par un appel précédent à <VERB>param3d</VERB>, <VERB>plot3d</VERB>, <VERB>contour</VERB> ou <VERB>plot3d1</VERB>).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>type=1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Échelle où la boîte 3D est utilisée en totalité, les limites sont éventuellement spécifiées par l&apos;argument optionnel <VERB>ebox</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>type=2  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Échelle où la boîte 3D est utilisée en totalité, les limites sont calculées à partir des données.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>type=3  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Échelle isométrique 3D où les bornes de la boîte 3D sont données par l&apos;argument <VERB>ebox</VERB>, mode similaire à <VERB>type=1</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>type=4  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Échelle isométrique 3D où les bornes de la boîte 3D sont calculées à partir des données, mode similaire à <VERB>type=2</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>type=5  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Échelle isométrique 3D &quot;étendue&quot; (occupation maximum de l&apos;espace), les bornes de la boîte 3D sont données par l&apos;argument <VERB>ebox</VERB>, mode similaire à <VERB>type=1</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>type=6  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Échelle isométrique 3D &quot;étendue&quot; (occupation maximum de l&apos;espace), les bornes de la boîte 3D sont calculées à partir des données, mode similaire à <VERB>type=2</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>box  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un entier (cadre autour du dessin).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>box=0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Pas de cadre autour du dessin.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>box=1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Pas implémenté pour l&apos;instant (identique à box=0).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>box=2  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Uniquement les axes (trièdre i,j,k) sont dessinés derrière la surface
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>box=3  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Une boîte est dessinée autour du dessin et les légendes des axes sont ajoutées.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>box=4  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    Sont dessinés, une boîte autour du dessin, les légendes des axes et le trièdre derrière la surface (identique à mode=3 + mode=2) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>ebox  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : utilisé quand <VERB>type</VERB> dans <VERB>flag</VERB> vaut 1. Spécifie les limites de la boîte 3D du dessin sous forme du vecteur <VERB>[xmin,xmax,ymin,ymax,zmin,zmax]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>plot3d(x,y,z,[theta,alpha,leg,flag,ebox])</VERB> dessine la surface non-paramétrique
+    <VERB>z=f(x,y)</VERB>.
+  </P>
+  <P>
+    <VERB>plot3d(xf,yf,zf,[theta,alpha,leg ,flag,ebox])</VERB> dessine une surface
+    définie par un ensemble de facettes. On peut représenter des surfaces multiples
+    <VERB>xf</VERB>, <VERB>yf</VERB> et <VERB>zf</VERB> en assemblant les matrices sous la forme
+    <VERB>[xf1 xf2 ...]</VERB>, <VERB>[yf1 yf2 ...]</VERB> et <VERB>[zf1 zf2 ...]</VERB>.
+  </P>
+  <P>
+    On peut donner une couleur individuelle à chaque facette en mettant <VERB>list(zf,colors)</VERB> à la place de <VERB>zf</VERB>, où <VERB>colors</VERB> est un vecteur de taille <VERB>n</VERB>. Si <VERB>colors(i)</VERB> est
+    positif il donne la couleur de la facette <VERB>i</VERB> et le contour de la facette est dessiné avec le style courant de ligne et de couleur.
+    Si <VERB>colors(i)</VERB> est négatif, la couleur d&apos;indice <VERB>-colors(i)</VERB> est utilisée et
+    la frontière de la facette n&apos;est pas dessinée. Utiliser <VERB>xset()</VERB> pour voir les indices des couleurs.
+  </P>
+  <P>
+    Il est aussi possible d&apos;avoir des couleurs interpolées sur les facettes. Pour cela remplacer <VERB>colors</VERB> par une matrice de taille nfxn donnant la couleur de chaque point des facettes.
+    Dans ce cas les valeurs positives signifient que le contour des facettes n&apos;est pas dessiné.
+  </P>
+  <P>
+    Les arguments optionnels <VERB>theta,alpha,leg ,flag,ebox</VERB>, peuvent être passés
+    sous la forme <VERB>key1=value1,
+    key2=value2</VERB>, ... Dans ce cas, l&apos;ordre n&apos;a pas de signification.
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+    Utiliser éventuellement la fonction <VERB>genfac3d</VERB> pour calculer les facettes (à 4 points)
+    de la surface non-paramétrique <VERB>z=f(x,y)</VERB>. <VERB>eval3dp</VERB> peut être utilisée pour les surfaces
+    paramétriques. 
+  </P>
+  <P>
+    Taper <VERB>plot3d()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// simple surface z=f(x,y)
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+plot3d(t,t,z)
+// même surface en utilisant genfac3d au préalable
+[xx,yy,zz]=genfac3d(t,t,z);
+xbasc()
+plot3d(xx,yy,zz)
+// surfaces multiples
+xbasc()
+plot3d([xx xx],[yy yy],[zz 4+zz])
+// surfaces multiples utilisant des couleurs
+xbasc()
+plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
+// changement du point de vue et des légendes
+xbasc()
+plot3d(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
+// une sphère
+deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";..
+  "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";..
+  "z=r*sin(alp)+orig(3)*ones(tet)"]);
+r=1; orig=[0 0 0];
+[xx,yy,zz]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
+xbasc();plot3d(xx,yy,zz)
+
+xbasc();xset('colormap',hotcolormap(128));
+r=0.3;orig=[1.5 0 0];
+[xx1,yy1,zz1]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
+cc=(xx+zz+2)*32;cc1=(xx1-orig(1)+zz1/r+2)*32;   
+xbasc();plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),70,80)
+
+xbasc();plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),theta=70,alpha=80,flag=[5,6,3])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>eval3dp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>genfac3d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>geom3d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>param3d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot3d1</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

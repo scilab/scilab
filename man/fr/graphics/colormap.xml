@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>colormap  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>August 1996  </DATE>
+  <SHORT_DESCRIPTION name="colormap"> utilisation des tables de couleurs  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Une colormap <VERB>cmap</VERB> est définie par une matrice m x 3, où m est le nombre de couleurs.
+    La couleur numéro i est donnée par un triplet <VERB>cmap(i,1)</VERB>, <VERB>cmap(i,2)</VERB> 
+    <VERB>cmap(i,3)</VERB>
+    correspondant aux intensités de rouge, vert et bleu, entre 0 et 1.
+  </P>
+  <P>
+    Au lancement de Scilab, 32 couleurs sont définies dans la table des couleurs. On peut la changer avec la commande <VERB>xset(&quot;colormap&quot;,cmap)</VERB>.
+  </P>
+  <P>
+    Chaque couleur dans la table des couleurs a un indice qui est utilisé pour désigner cette couleur dans la plupart
+    des fonctions graphiques. Pour voir les indices, utiliser <VERB>xset()</VERB> ou
+    <VERB>xgetcolor()</VERB>.
+  </P>
+  <P>
+    On peut revenir à la table des couleurs par défaut en tapant <VERB>xset(&quot;default&quot;)</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+m=228;
+n= fix(3/8*m);
+r=[(1:n)'/n; ones(m-n,1)];
+g=[zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
+b=[zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
+h=[r g b];
+xset("colormap",h)
+plot3d1()
+xset("default")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>addcolor</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getcolor</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

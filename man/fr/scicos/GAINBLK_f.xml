@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>GAINBLK_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="GAINBLK_f"> Scicos gain block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is a gain block. The output is the Gain times the
+    regular input (vector). The dimensions of Gain determines the
+    input (number of columns) and output (number of rows) port sizes.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Gain'>
+: a real matrix. 
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

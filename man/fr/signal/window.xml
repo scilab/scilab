@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>window  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="window"> symmetric window  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[win_l,cwp]=window(wtype,n,par)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>wtype  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : window type (<VERB>re,tr,hn,hm,kr,ch</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>n  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : window length
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>par  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : parameter 2-vector (kaiser window: <VERB>par(1)=beta&gt;0</VERB>) (Chebychev window <VERB>par =[dp,df])</VERB>, <VERB>dp</VERB> =main lobe  width (<VERB>0&lt;dp&lt;.5</VERB>), <VERB>df</VERB>=side lobe height (<VERB>df&gt;0</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>win  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : window
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>cwp  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : unspecified Chebyshev window parameter
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    function which calculates symmetric window
+  </P>
+  </DESCRIPTION>
+  <AUTHOR>C. B.  </AUTHOR>
+</MAN>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>fplot3d  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="fplot3d"> représentation d&apos;une surface non paramétrique définie par une fonction  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>fplot3d(xr,yr,f,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>fplot3d(xr,yr,f,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne de taille n1.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>yr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne de taille n2.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>f  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : fonction externe du type z=f(x,y).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>theta,alpha,leg,flag,ebox  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : voir <VERB>plot3d1</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : voir <VERB>plot3d</VERB>. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>fplot3d</VERB> dessine la surface non paramétrique
+    <VERB>z=f(x,y)</VERB> où f est définie par la fonction externe <VERB>f</VERB>
+    sur la grille définie par <VERB>xr</VERB> et <VERB>yr</VERB>.
+  </P>
+  <P>
+    Taper <VERB>fplot3d()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+deff('z=f(x,y)','z=x^4-y^4')
+x=-3:0.2:3 ;y=x ;
+xbasc() ;fplot3d(x,y,f,alpha=5,theta=31)  
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot3d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>glist  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Jan 1997  </DATE>
+  <SHORT_DESCRIPTION name="glist"> graph list creation  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>g = glist(a1, ... ,a34)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>glist(a1,....a34)</VERB> is a shortcut to  to
+    <VERB>tlist([&apos;graph&apos;,&apos;name&apos;,&apos;directed&apos;,&apos;node_number&apos;,&apos;tail&apos;,&apos;head&apos;,..
+              &apos;node_name&apos;,&apos;node_type&apos;,&apos;node_x&apos;,&apos;node_y&apos;,&apos;node_color&apos;,..
+              &apos;node_diam&apos;,&apos;node_border&apos;,&apos;node_font_size&apos;,&apos;node_demand&apos;,..
+              &apos;edge_name&apos;,&apos;edge_color&apos;,&apos;edge_width&apos;,&apos;edge_hi_width&apos;,..
+              &apos;edge_font_size&apos;,&apos;edge_length&apos;,&apos;edge_cost&apos;,..
+              &apos;edge_min_cap&apos;,&apos;edge_max_cap&apos;,&apos;edge_q_weight&apos;,&apos;edge_q_orig&apos;,..
+              &apos;edge_weight&apos;,&apos;default_node_diam&apos;,&apos;default_node_border&apos;,..
+              &apos;default_edge_width&apos;,&apos;default_edge_hi_width&apos;,..
+              &apos;default_font_size&apos;,&apos;node_label&apos;,&apos;edge_label&apos;],a1, ... ,a34)</VERB>
+    It is a low level function to create graph lists, mainly used by programmers. 
+    No checking is done.
+    For standard creation of graph lists, use <VERB>make_graph</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>check_graph</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>graph-list</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>make_graph</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

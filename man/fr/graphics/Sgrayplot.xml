@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>Sgrayplot  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="Sgrayplot"> représentation 2D en pseudo-couleurs lissées d&apos;une surface  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z,[strf,rect,nax])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>Sgrayplot</VERB> est identique à <VERB>grayplot</VERB> mais le dessin est lissé.
+    La fonction <VERB>fec</VERB> est utilisée pour cela.
+    La surface est représentée en supposant que la hauteur varie linéairement sur un ensemble de triangles construits à partir de la grille :
+  </P>
+  <VERBATIM><![CDATA[
+    ______ 
+    | /| /| 
+    |/_|/_|  
+    | /| /|
+    |/_|/_|
+   ]]></VERBATIM>
+  <P>
+  </P>
+  <P>
+    Taper <VERB>Sgrayplot()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=-10:10; y=-10:10;m =rand(21,21);
+Sgrayplot(x,y,m,"111",[-20,-20,20,20])
+t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
+xbasc()
+Sgrayplot(t,t,m)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>fec</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fgrayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>grayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Sfgrayplot</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

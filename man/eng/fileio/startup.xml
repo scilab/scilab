@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>startup  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="startup"> startup file   </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    The startup files <VERB>.scilab</VERB> (in your home directory) and 
+    <VERB>.scilab</VERB> in your working directory are 
+    automatically executed (if present) when Scilab is invoked, in 
+    addition with the file <VERB>scilab.star</VERB> in the Scilab directory.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='REMARK'>
+  <P>
+    Last line of startup file must be terminated by a newline to be taken into account.
+  </P>
+  </ITEMIZE>
+</MAN>

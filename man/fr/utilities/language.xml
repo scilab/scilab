@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>LANGUAGE</TITLE>
+  <TYPE>Scilab Variable</TYPE>
+  <DATE>January 2002 </DATE>
+  <SHORT_DESCRIPTION name="LANGUAGE"> Variable qui définit la langue  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    La variable globale <VERB>LANGUAGE</VERB> est une chaîne de
+    caractères.  Elle définit la langue pour l'aide en ligne et divers
+    menus. Actuellement, les valeurs de <VERB>LANGUAGE</VERB> peuvent
+    être <VERB>"fr"</VERB> pour le français, c'est le défaut, ou
+    <VERB>"eng"</VERB> pour l'anglais.
+  </P>
+  <P>
+    Cette variable est définie dans le fichier d'initialisation
+    <VERB>scilab.star</VERB>. On peut la changer là.
+  </P>
+  <P>
+    Quand on lance Scilab, on peut donner la valeur de la langue comme
+    argument : <VERB>scilab -l &lt;language&gt;</VERB> pour Unix et
+    <VERB>runscilab.exe -l &lt;language&gt;</VERB> pour Windows.
+  </P>
+  </DESCRIPTION>
+</MAN>

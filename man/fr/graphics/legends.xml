@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>legends  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="legends"> dessine des légendes de courbes 2D  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>legends(strings,style [,opt])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>legends(strings,style,xy)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>strings  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur de chaînes de caractères, strings(i) est la légende de la ième courbe
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>style :  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    vecteur ligne entier de taille n (les styles de dessin de chaque courbe, troisième paramètre de plot2d) ou une matrice d&apos;entiers 2 x n, style(1,k) contenant le style pour la k-ième courbe et style(2,k) contient le style de ligne (si style(1,k)&gt;0) ou la couleur du marqueur (si style(1,k)&lt;0).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>opt  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    = coin en haut à droite  2  = coin en haut à gauche
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>3  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    = coin en bas à gauche
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>4  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    = coin en bas à droite
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>5  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    = placement interactif avec la souris (par défaut)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xy  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un vecteur [x,y] donnant les coordonnées du coin en haut à gauche de la boîte contenant la légende 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Dessine des légendes sur le dessin courant en utilisant des chaînes de caractères données.
+  </P>
+  <P>
+    En cas de placement interactif (opt=5) déplacer la boîte de la légende avec la souris
+    et presser bouton de gauche pour la fixer.
+  </P>
+  <P>
+    Cette fonction permet de placer les légendes avec plus de liberté que l&apos;argument leg de plot2d.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+t=0:0.1:2*%pi;
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3],4)
+xset("style de ligne",2);plot2d(t,cos(t),style=5);
+xset("style de ligne",4);plot2d(t,sin(t),style=3);
+legends(["sin(t)";"cos(t)"],[[5;2],[3;4]])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xstring</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xtitle</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>strong_con_nodes  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1995  </DATE>
+  <SHORT_DESCRIPTION name="strong_con_nodes"> set of nodes of a strong connected component  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>ns = strong_con_nodes(i,g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>i  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, number of the strong connected component
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ns  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : row vector, node numbers of the strong connected component
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>strong_con_nodes</VERB> returns the row vector <VERB>ns</VERB> of the numbers of the
+    nodes which belong to the strong connected component number <VERB>i</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15];
+he=[2 6 3 4 5 1 3 5 1 7 10 11 5 8 9 5 8 11 10 11 9 11 15 13 14];
+g=make_graph('foo',1,15,ta,he);
+g('node_x')=[197 191 106 194 296 305 305 418 422 432 552 550 549 416 548]; 
+g('node_y')=[76 181 276 278 276 83 174 281 177 86 175 90 290 397 399];
+show_graph(g);
+ncomp=strong_con_nodes(3,g);
+n=g('node_number');
+nodecolor=0*ones(1,n); nodecolor(ncomp)=11*ones(ncomp);
+g('node_color')=nodecolor;
+nodediam=20*ones(1,n); nodediam(ncomp)=40*ones(ncomp);
+g('node_diam')=nodediam;
+x_message('Set of nodes of the strong connected component #3');
+show_graph(g);
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>connex</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>con_nodes</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>strong_connex</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

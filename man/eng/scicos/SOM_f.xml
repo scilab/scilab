@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>SOM_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="SOM_f"> Scicos addition block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is a sum. The output is the element-wise sum of the inputs.
+  </P>
+  <P>
+    Input ports are located at up, left or right and down position.
+    You must specify 3 gain numbers but if only two links are 
+    connected only the first values are used, ports are numbered  anti-clock wise.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Input signs'>
+: a (1x3) vector of +1 and -1. If -1, the corresponding input is multiplied by -1 before addition.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>GAIN_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

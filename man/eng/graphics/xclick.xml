@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xclick  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xclick"> wait for a mouse click  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[c_i,c_x,c_y,c_w,c_m]=xclick([flag])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>c_i  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, mouse button number.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>c_x,c_y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real scalars, position of the mouse.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>c_w  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, window number.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>c_m  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string, menu callback.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer. If present, the click event queue is not cleared when entering  xclick.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xclick</VERB> waits for a mouse click in the graphics window.
+  </P>
+  <P>
+    If it is called with 3 left hand side arguments, it waits for a mouse click 
+    in the current graphics window.
+  </P>
+  <P>
+    If it is called with 4 or 5 left hand side arguments, it waits for a mouse 
+    click in any graphics window.
+  </P>
+  <P>
+    The returned values are described below.
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='c_i'> 
+    : an integer which gives the number of the mouse button that was pressed  0, 1 or 2 (for left, middle and right) or -1 in case of problems with xclick.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='c_x,c_y'> 
+    : the coordinates of the position of the mouse click in the current graphics  scale.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='c_w'> 
+    : the window number where the click has occurred.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='c_m'> 
+    : string associated with a dynamic menu. If xclick returns due to a click on a menu, <VERB>c_i</VERB>, <VERB>c_x</VERB>, <VERB>c_y,</VERB> and <VERB>c_w</VERB> take arbitrary values.
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <ITEMIZE label='KNOWN TROUBLES'>
+  <P>
+    <VERB>xclick</VERB> can return the message  &quot;Can&apos;t grab the pointer&quot; if the graphics window is iconified when  calling it.
+  </P>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>locate</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xgetmouse</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

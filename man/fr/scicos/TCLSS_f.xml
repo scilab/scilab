@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>TCLSS_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="TCLSS_f"> Scicos jump continuous-time linear state-space system  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes a continuous-time linear state-space system
+    with the possibility of jumps in the state. The number of inputs
+    to this block is two. The first input is the regular input of the
+    linear system, the second carries the new value of the state which
+    is copied into the state when an event arrives at the unique event 
+    input port of this block. That means the state of the system jumps 
+    to the value present on the second input (of size equal to that of
+    the state).
+    The system is defined by the (A,B,C,D) matrices and the initial
+    state x0. The dimensions must be compatible. The sizes of inputs
+    and outputs are adjusted automatically.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='A'>
+: square matrix. The A matrix
+
+  </ITEM>
+  <ITEM label='B'>
+: the B matrix
+
+  </ITEM>
+  <ITEM label='C'>
+: the C matrix
+
+  </ITEM>
+  <ITEM label='D'>
+: the D matrix
+
+  </ITEM>
+  <ITEM label='x0'>
+: vector. The initial state of the system.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>CLSS_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>CLR_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

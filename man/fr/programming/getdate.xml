@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>getdate  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Jun 1999  </DATE>
+  <SHORT_DESCRIPTION name="getdate"> renvoie la date et l&apos;heure  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>dt=getdate()  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>x=getdate(&apos;s&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>dt=getdate(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>dt  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un vecteur entier à 8 composantes (voir plus bas)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un entier contenant la date en secondes écoulées depuis le 1er Janvier 1970 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+ 
+
+  <DESCRIPTION_ITEM  label='dt'> 
+    =getdate() renvoie la date courante au format expliqué ci-dessous :
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='dt(1)'> 
+    : l&apos;année (entier compris entre 0000 et 9999).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(2)'> 
+    : le mois (entier compris entre 01 et 12).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(3)'> 
+    : le numéro de semaine à la norme ISO 8601 (entier compris entre 01 et 53).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(4)'> 
+    : le jour du calendrier Julien (entier compris entre 000 et 366).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(5)'> 
+    : le jour de la semaine (entier compris entre 1 (dimanche) et 7)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(6)'> 
+    : le jour dans le mois (entier compris entre 01 et 31).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(7)'> 
+    : l&apos;heure du jour (entier compris entre 00 et 23).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(8)'> 
+    : les minutes (entier compris entre 00 et 59).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(9)'> 
+    : les secondes (entier compris entre 00 et 59).
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='x = getdate(&apos;s&apos;), renvoie un entier contenant le nombre de secondes écoulées depuis le'> 
+    1/1/1970, 00:00 UTC (unix time convention)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt = getdate(x), renvoie dt au format ci-dessus, a partir de x (nombre de secondes depuis le 1/1/1970)'> 
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+w=getdate()
+mprintf("Annee:%d,mois:%d,jour:%d",w(1),w(2),w(6));
+
+x=getdate('s')
+getdate(x)
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>date</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>timer</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

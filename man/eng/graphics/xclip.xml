@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xclip  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xclip"> set a clipping zone   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xclip([x,y,w,h])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>xclip(rect)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>xclip(&quot;clipgrf&quot;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y,w,h  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real values.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : row vector of size 4.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xclip</VERB> set a clipping zone given by the coordinates, in the current
+    graphics scale, of the rectangle <VERB>x,y,w,h</VERB> 
+    (upper-left point, width, height). If only one argument is given, it stands
+    for a rectangle specification <VERB>rect=[x,y,w,h]</VERB>.
+  </P>
+  <P>
+    <VERB>xclip(&quot;clipgrf&quot;)</VERB> is used to clip the usual rectangle boundaries.
+  </P>
+  <P>
+    To unclip a region use the command <VERB>xclip()</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=0:0.2:2*%pi;
+x1=[sin(x);100*sin(x)];
+y1=[cos(x);100*cos(x)];
+y1=y1+20*ones(y1);
+// No clip 
+plot2d([-100,500],[-100,600],[-1,-1],"022")
+xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1))
+// rectangle clipping zone 
+xbasc(); plot2d([-100,500],[-100,600],[-1,-1],"022")
+xrect(150,460,100,150)
+xclip(150,460,100,150)
+xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1))
+// usual rectangle boundaries clipping zone 
+xbasc(); plot2d([-100,500],[-100,600],[-1,-1],"022")
+xclip("clipgrf")
+xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));
+// clipping of
+xclip()
+ ]]></EXAMPLE>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

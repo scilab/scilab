@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>INTERP  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="interp"> interpolation  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[f0 [,f1 [,f2 [,f3]]]]=interp(xd,x,f,d)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xd  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,f,d  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vectors from spline
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fi  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vectors (derivatives)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    given three vectors <VERB>(x,f,d)</VERB> defining a spline function
+    (see <VERB>splin</VERB>) with <VERB>fi=S(xi), di = S&apos;(xi)</VERB> this function
+    evaluates <VERB>S</VERB> (resp. <VERB>S&apos;, S&apos;&apos;, S&apos;&apos;&apos;</VERB>) at <VERB>xd(i)</VERB>.
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='x'> 
+    : vector of <VERB>xi  (x(1) &lt; x(2) &lt; ...)</VERB>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='f'> 
+    : vector of <VERB>S(xi)</VERB>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='d'> 
+    : vector of <VERB>S&apos;(xi)</VERB>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='f0'> 
+    : vector <VERB>[S(xd(1),S(xd(2)),S(xd(3)),...]</VERB>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='f(1 2 3)'> 
+    : vector of first, second, third derivative of <VERB>S</VERB> at <VERB>xd=[xd(1),xd(2),...]</VERB> i.e.
+  </DESCRIPTION_ITEM>
+  <P>
+    <VERB>f1 = [S&apos;(xd(1)),S&apos;(xd(2)),...]</VERB>
+  </P>
+  <P>
+    <VERB>f2 = [S&apos;&apos;(xd(1)),S&apos;&apos;(xd(2)),...]</VERB>
+  </P>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>splin</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>smooth</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>interpln</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

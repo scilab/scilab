@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>predef  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="predef"> protection de variables  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>n=predef()  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>oldnew=predef(n)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>oldnew=predef(&apos;all&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>oldnew=predef(&apos;clear&apos;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Function utilitaire permettant de déclarer comme &quot;protégées&quot; les variables &quot;les plus anciennes&quot;. Les variables protégées ne peuvent pas être effacées. Elles ne sont pas non plus sauvées par la commande <VERB>&apos;save&apos;</VERB>. Les variables &quot;les plus anciennes&quot; sont celles qui apparaissent avec la commande <VERB>who(&apos;get&apos;)</VERB>.
+  </P>
+  <P>
+    <VERB>predef()</VERB> renvoie le nombre de variables protégées.
+  </P>
+  <P>
+    <VERB>predef(&apos;a[ll]&apos;)</VERB> protège toutes les variables et renvoie l&apos;ancien et le nouveau nombre de variables protégées.
+  </P>
+  <P>
+    <VERB>predef(&apos;c[lear]&apos;)</VERB> enlève la protection de toutes les variables sauf les 7 définies dernièrement. Renvoie l&apos;ancien et le nouveau nombre de variables protégées.
+  </P>
+  <P>
+    <VERB>predef(n)</VERB> protège les <VERB>max(n,7)</VERB> variables définies dernièrement. Renvoie l&apos;ancien et le nouveau nombre de variables protégées.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='REMARQUE'>
+  <P>
+    Le nombre de variables protégées est défini dans le fichier de démarrage <VERB>SCIDIR/scilab.star</VERB>.  L&apos;utilisateur a la possibilité de définir ses propres variables protégées dans le fichier de démarrage <VERB>home/.scilab</VERB> 
+  </P>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>clear</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>save</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

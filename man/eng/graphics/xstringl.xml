@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xstringl  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xstringl"> compute a box which surrounds strings  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>rect=xstringl(x,y,str)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of 4 real scalars defining the box.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real scalars, coordinates of the lower-left point of the strings.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>str  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrix of strings.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xstringl</VERB> returns in <VERB>rect=[x,y,w,h]</VERB> 
+    (upper-left point, width, height)
+    the size of a rectangle in the current graphic scale which
+    would surround the strings <VERB>str</VERB> drawn at location <VERB>x,y</VERB>
+    (lower-left point).
+  </P>
+  <P>
+    The result can be approximative when using the Postscript driver.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+plot2d([0;1],[0;1],0)
+str=["Scilab" "is";"not" "elisaB"];
+r=xstringl(0.5,0.5,str)
+xrects([r(1) r(2)+r(4) r(3) r(4)]')
+xstring(r(1),r(2),str)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>titlepage</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xstring</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xstringl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xtitle</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

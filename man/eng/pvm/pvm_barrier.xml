@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pvm_barrier  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>May 1998  </DATE>
+  <SHORT_DESCRIPTION name="pvm_barrier"> blocks the calling process until all processes in a group have called it.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[info] = pvm_barrier(group,count)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>type  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string,  name of an existing group. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>count  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, specifying the number of group members that must call pvm_barrier before they are all released.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>info  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, status code returned by the routine.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pvm_barrier</VERB> blocks the calling process until <VERB>count</VERB>
+    members of the <VERB>group</VERB> have called pvm_barrier.
+    The count argument is required because processes could be
+    joining the given group after other processes have called
+    pvm_barrier. Thus PVM doesn&apos;t know how many group members
+    to wait for at any given instant. Although count can be set less,
+    it is typically the total number of members of the group.
+    So the logical function of the pvm_barrier call
+    is to provide a group synchronization.
+    During any given barrier call all participating group members
+    must call barrier with the same count value.
+    Once a given barrier has been successfully passed,
+    pvm_barrier can be called again by the same group using the same
+    group name.
+  </P>
+  <P>
+    If pvm_barrier is successful,
+  </P>
+  <P>
+    will be 0. If some error occurs then
+  </P>
+  <P>
+    will be &lt; 0.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+info = pvm_barrier( "worker", pvm_gsize("worker") )
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pvm_joingroup</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

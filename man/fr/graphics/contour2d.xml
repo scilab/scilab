@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>contour2d  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="contour2d"> level curves of a surface on a 2D plot  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>contour2d(x,y,z,nz,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>contour2d(x,y,z,nz,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : two real row vectors of size n1 and n2: the grid.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real matrix of size (n1,n2), the values of the function.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>nz  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : the level values or the number of levels.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    If <VERB>nz</VERB> is an integer, its value gives the number of level curves  equally spaced from zmin to zmax as follows:
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <VERBATIM><![CDATA[
+ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+   ]]></VERBATIM>
+  <P>
+    Note that the <VERB>zmin</VERB> and <VERB>zmax</VERB> levels are not drawn  (generically they are reduced to points) but they can be added  with 
+  </P>
+  <VERBATIM><![CDATA[
+ [im,jm] = find(z == zmin);     // or zmax 
+ plot2d(x(im)',y(jm)',-9,"000")
+   ]]></VERBATIM>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    If <VERB>nz</VERB> is a vector, <VERB>nz(i)</VERB> gives the value of the ith level curve.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <P>
+    &lt;opt_args&gt; : This represents a sequence of statements <VERB>key1=value1, key2=value2</VERB>,... where <VERB>key1</VERB>, <VERB>key2,...</VERB> can be one of the following: style, leg, rect, nax, strf or axesflag and frameflag (see plot2d)
+  </P>
+  <PARAM_ITEM>
+  <PARAM_NAME>style,strf,leg,rect,nax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : see <VERB>plot2d</VERB>. The argument <VERB>style</VERB> gives the dash styles or colors which are to be used for level curves. It must have the same size as the number of levels.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>contour2d</VERB> draws level curves of a surface <VERB>z=f(x,y)</VERB> on a 2D plot.
+    The values of <VERB>f(x,y)</VERB> are given by the matrix <VERB>z</VERB> at the
+    grid points defined by <VERB>x</VERB> and <VERB>y</VERB>.
+  </P>
+  <P>
+  </P>
+  <P>
+    You can change the format of the floating point number printed on the levels
+    by using <VERB>xset(&quot;fpf&quot;,string)</VERB> where <VERB>string</VERB> gives the 
+    format in C format syntax (for example <VERB>string=&quot;%.3f&quot;</VERB>). Use 
+    <VERB>string=&quot;&quot;</VERB> to switch back to default format and Use 
+    <VERB>string=&quot; &quot;</VERB> to suppress printing.
+  </P>
+  <P>
+  </P>
+  <P>
+    The optional arguments <VERB>style,strf,leg,rect,nax</VERB>, can be passed by
+    a sequence of statements <VERB>key1=value1, key2=value2</VERB>, ... where
+    keys may be <VERB>style</VERB>,<VERB>strf</VERB>,<VERB>leg</VERB>,<VERB>rect</VERB>,<VERB>nax</VERB>. In
+    this case, the order has no special meaning.
+  </P>
+  <P>
+  </P>
+  <P>
+    Use <VERB>contour</VERB> to draw levels curves on a 3D surface.
+  </P>
+  <P>
+    Enter the command <VERB>contour2d()</VERB> to see a demo.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
+// changing the format of the printing of the levels
+xset("fpf","%.2f")
+xbasc()
+contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>contour</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fcontour</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fcontour2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>contour2di</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

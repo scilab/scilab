@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lib  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Nov 2000  </DATE>
+  <SHORT_DESCRIPTION name="lib"> library definition  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xlib = lib(&apos;lib-dir&apos;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+  <P>
+    lib-dir: character string
+  </P>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>lib-dir</VERB> is a character string defining a directory that contains
+    compiled Scilab function (<VERB>.bin</VERB>) files.  In addition to these
+    files <VERB>lib-dir</VERB> must have a file called <VERB>names</VERB>, that contains
+    the names of the functions defined in <VERB>lib-dir</VERB>.  On success, all
+    functions in <VERB>lib-dir</VERB> are available from within Scilab.  They are
+    loaded on demand when called for the first time.
+  </P>
+  <P>
+    Binary files can be created from within Scilab with the command
+    <VERB>save</VERB>.
+  </P>
+  <P>
+    Scilab&apos;s standard libraries are defined using <VERB>lib</VERB> on the
+    <VERB>SCIDIR/macros/*</VERB> subdirectories.
+  </P>
+  <P>
+    As an example, given the following definitions
+  </P>
+  <VERBATIM><![CDATA[
+    deff('z = myplus(x, y)', 'z = x + y')
+    deff('z = yourplus(x, y)', 'x = x - y')
+    lib_dir = '/home/joeuser/myscidir'
+   ]]></VERBATIM>
+  <P>
+    <VERB>myplus</VERB> and <VERB>yourplus</VERB> are compiled into <VERB>lib_dir</VERB> with
+    the commands
+  </P>
+  <VERBATIM><![CDATA[
+    save(lib_dir + '/myplus.bin', myplus)
+    save(lib_dir + '/yourplus.bin', yourplus)
+   ]]></VERBATIM>
+  <P>
+    A library can now be created from the two <VERB>.bin</VERB> files with the
+    command
+  </P>
+  <VERBATIM><![CDATA[
+        xlib = lib(lib_path + '/')
+   ]]></VERBATIM>
+  <P>
+    <VERB>xlib</VERB> is a Scilab variable of type &quot;library&quot;.  A library variable
+    usually is saved for later loading, either on-line or from the
+    user-specific startup file (<VERB>$HOME/.scilab</VERB>).
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='RESTRICTIONS'>
+  <P>
+    Scilab tacitly assumes that file <VERB>foo.bin</VERB> defines only a single function named <VERB>foo</VERB>. 
+  </P>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>genlib</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>save</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>deff</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>whereis</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>apropos  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="apropos"> searches keywords in Scilab help   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>apropos word  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Looks for keywords in  <VERB>man/&lt;language&gt;/*/whatis.html</VERB> files.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+apropos "+"
+apropos ode 
+apropos "list of"
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>help</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fcontour  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="fcontour"> level curves on a 3D surface defined by a function  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>fcontour(xr,yr,f,nz,[theta,alpha,leg,flag,ebox,zlev])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>fcontour(xr,yr,f,nz,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xr,yr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : two real row vectors of size n1 and n2.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>f  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : is an external which defines the surface <VERB>z=f(x,y)</VERB>. It is first computed on the grid specified by <VERB>xr,yr</VERB>. Then, control is passed to the routine <VERB>contour</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>nz,  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : see <VERB>contour</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>theta,alpha,leg,flag,ebox,zlev  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : see <VERB>contour</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : see <VERB>contour</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Draws level curves of a surface <VERB>z=f(x,y)</VERB>. The level curves are
+    drawn on a 3D surface. The surface is given by the external function
+    <VERB>f</VERB>. See <VERB>contour</VERB>.
+  </P>
+  <P>
+  </P>
+  <P>
+    The optional arguments <VERB>theta,alpha,leg ,flag,ebox, zlev</VERB>, can be
+    passed by a sequence of statements <VERB>key1=value1, key2=value2</VERB>,
+  </P>
+  <P>
+    <VERB>flag</VERB>,<VERB>ebox</VERB>,<VERB>zlev</VERB>. In this case, the order has no special
+    meaning.
+  </P>
+  <P>
+    You can change the format of the floating point number printed on the levels
+    by using <VERB>xset(&quot;fpf&quot;,string)</VERB> where <VERB>string</VERB> gives the 
+    format in C format syntax (for example <VERB>string=&quot;%.3f&quot;</VERB>). Use 
+    <VERB>string=&quot;&quot;</VERB> to switch back to default format and Use 
+    <VERB>string=&quot; &quot;</VERB> to suppress printing.
+  </P>
+  <P>
+  </P>
+  <P>
+    Enter the command <VERB>fcontour()</VERB> to see a demo.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+deff("[z]=surf(x,y)","z=sin(x)*cos(y)");
+t=%pi*[-10:10]/10;
+
+fcontour(t,t,surf,10)
+
+xbasc();fcontour(t,t,surf,10,ebox=[-4 4 -4 4 -1 1],zlev=-1,flag=[0 1 4])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>contour</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>contour2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fcontour2d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

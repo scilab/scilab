@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>chdir  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="chdir"> changes Scilab current directory  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>ierr=chdir(&apos;path-name&apos;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>ierr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : an integer, 1 if <VERB>chdir</VERB> failed to change directory and <VERB>0</VERB> elsewhere.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Change the current Scilab directory to <VERB>&apos;path-name&apos;</VERB>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+chdir(TMPDIR);
+if MSDOS then
+  unix_w("dir");
+else
+  unix_w("ls");
+end
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>getcwd</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

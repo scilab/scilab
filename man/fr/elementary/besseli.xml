@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>besseli  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September 1997  </DATE>
+  <SHORT_DESCRIPTION name="besseli">  Fonction I de Bessel modifiée de première espèce.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM> y = besseli(alpha,x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM> y = besseli(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur réel à composantes non-négatives
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>alpha  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur réel à composantes non-négatives régulièrement espacées d&apos;incrément égal à un <VERB>alpha=alpha0+(n1:n2)</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ice  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un entier valant un par défaut.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+  </P>
+  <P>
+    <VERB>besseli(alpha,x)</VERB> Calcule la fonction I de Bessel modifiée de première espèce d&apos;indice réel et non négatif<VERB>alpha</VERB> et  d&apos;argument <VERB>x</VERB>.  <VERB>alpha</VERB>  et <VERB>x</VERB> peuvent être des vecteurs.
+    Cette fonction renvoie une matrice de taille <VERB>m</VERB>-par-<VERB>n</VERB> avec <VERB>m = size(x,&apos;*&apos;)</VERB>,
+    <VERB>n = size(alpha,&apos;*&apos;)</VERB> dont la composante <VERB>(i,j)</VERB> vaut
+    <VERB>besseli(alpha(j),x(i))</VERB>.
+  </P>
+  <P>
+    Si <VERB>ice</VERB> est égal à 2 la fonction de Bessel est exponentiellement 
+    normalisée.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+besseli(0.5:3,1:4)
+besseli(0.5:3,1:4,2)
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>besselj</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>besselk</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>bessely</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

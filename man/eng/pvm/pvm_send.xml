@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pvm_send  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>May 1998  </DATE>
+  <SHORT_DESCRIPTION name="pvm_send"> immediately sends (or multicast) data.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[info] = pvm_send(tids,buff,msgtag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>tids  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : row of integers, contains the task IDs of the tasks to be sent to.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>buff  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scilab variable.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>msgtag : integer, message tag supplied by the user.  msgtag should be  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    &gt;= 0.  It allows the user&apos;s program to distinguish between different kinds of messages .
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>info  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, status code returned by the routine. Values less than zero indicate an error. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pvm_send</VERB> 
+    sends (or multicasts) a message 
+    to the PVM process identified in the 
+  </P>
+  <P>
+    array. Note that the message is not sent to the caller even if listed
+    in the array of tids.
+  </P>
+  <P>
+    is used to label the content of the message.
+    If pvm_send is successful,
+  </P>
+  <P>
+    will be 0. If some error occurs then
+  </P>
+  <P>
+    will be &lt; 0.
+  </P>
+  <P>
+    The pvm_send routine is asynchronous.  Computation on the sending
+    processor resumes as soon as the message is safely on its way to the
+    receiving processor.  This is in contrast to synchronous
+    communication, during which computation on the sending processor halts
+    until the matching receive is executed by the receiving processor.
+  </P>
+  <P>
+    If a multicast is performed, pvm_send first determines which other
+    pvmds contain the specified tasks.  Then passes the message to these
+    pvmds which in turn distribute the message to their local tasks
+    without further network traffic.
+  </P>
+  <P>
+    The PVM model guarantees the following about message order.  If task 1
+    sends message A to task 2, then task 1 sends message B to task 2,
+    message A will arrive at task 2 before message B.  Moreover, if both
+    messages arrive before task 2 does a receive, then a wildcard receive
+    will always return message A.
+  </P>
+  <P>
+    Terminating a PVM task immediately after sending a message or messages
+    from it may result in those messages being lost.  To be sure, always
+    call pvm_exit() before stopping.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A = rand(5,5)*(1+%i);
+deff('[x]=f(y)','x = 1/y')                       
+info = pvm_send([262150, 262152], A(1:2:5,:), 100)      
+pvm_send(262146,f,200)          
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pvm_recv</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pvm_bcast</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

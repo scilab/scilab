@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>error  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="error"> génération d&apos;un message d&apos;erreur  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>error(&apos;string&apos; [,n])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>error(m)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    affiche la chaîne de caractères <VERB>&apos;string&apos;</VERB> dans un message d&apos;erreur et
+    stoppe l&apos;instruction courante.
+  </P>
+  <P>
+    Si <VERB>n</VERB> est donné, il précise le numéro de l&apos;erreur. <VERB>n</VERB> doit être supérieur à <VERB>10000</VERB> (valeur par défaut).
+  </P>
+  <P>
+    <VERB>error(m) </VERB> affiche le message d&apos;erreur numéro <VERB>m</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>warning</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>CLKSPLIT_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="CLKSPLIT_f"> Scicos event split block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block is an event split block with an input and two outputs. The
+    outputs reproduces the event the input port on each output ports. 
+    Strictly speaking, CLKSPLIT is not a Scicos block because it is
+    discarded at the compilation phase. This block is automatically
+    created when creating a new link issued from a link.
+  </P>
+  <P>
+    The inputs and output of CLKSPLIT are synchronized. 
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <P>
+    None.
+  </P>
+  </ITEMIZE>
+</MAN>

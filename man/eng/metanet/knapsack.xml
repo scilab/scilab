@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>knapsack  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="knapsack"> solves a 0-1 multiple knapsack problem  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[earn,ind] = knapsack(profit,weight,capa,[bck])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>profit  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer row vector 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>weight  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer row vector 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>capa  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer row vector
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>bck  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>earn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ind  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer row vector 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>knapsack</VERB> solve a 0-1 multiple knapsack problem with  n (n &gt;= 2)
+    items and  m  knapsacks (m &gt;= 1).
+    <VERB>profit</VERB> is the vector of the (integer) profits of the n items and
+    <VERB>weight</VERB> is the vector of the corresponding (integer) weights.
+    <VERB>capa</VERB> is the vector of the (integer) capacities of the m 
+    knapsacks. 
+    <VERB>bck</VERB> is an optional integer: the maximum number of backtrackings to be 
+    performed, if heuristic solution is required. If the exact solution is 
+    required <VERB>bck</VERB> can be omitted or can have a negative value.
+    <VERB>earn</VERB> is the value of the criterium for the &quot;optimal&quot; solution and 
+    <VERB>ind</VERB> is a vector giving the optimal location:  <VERB>ind(i)</VERB> gives the 
+    number of the knapsack where item i is inserted and this value is 0 if the
+    item i is not in the optimal solution.
+  </P>
+  <P>
+    We recall that the problem to be solved is the following:
+    <VERB>p(i)</VERB> and <VERB>w</VERB> denote respectively the profit and the weight of the 
+    item <VERB>i</VERB> 1=1,...,n; 
+    <VERB>c(j)</VERB> denotes the capacity of the knapsack <VERB>j</VERB> j=1,...,m;  
+    <VERB>q(j,i)</VERB> denotes the quantity of item <VERB>i</VERB> in knapsack <VERB>j</VERB> (in fact 
+    0 or 1).
+  </P>
+  <P>
+    We want to maximize the global profit <VERB>E</VERB>:
+     <VERB>E=p(1)*[x(1,1)+...+x(m,1)]+...+p(n)*[x(1,n)+...+x(m,n)]</VERB>
+  </P>
+  <P>
+    under the constraints:
+     <VERB>[w(1)*x(j,1)+...+w(n)*x(j,m)] &lt;= c(j) ; j=1,...,m</VERB>
+     <VERB>[x(1,i)+...+x(m,i)] &lt;= 1 ; i=1,...,n</VERB>
+     <VERB>x(j,i)= 0 or 1 </VERB>
+     <VERB>p(),w(),c()</VERB> are positive integers.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+weight=ones(1,15).*.[1:4];
+profit=ones(1,60);
+capa=[15 45 30 60];
+[earn,ind]=knapsack(profit,weight,capa)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>qassign</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

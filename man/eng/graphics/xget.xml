@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xget  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xget"> get current values of the graphics context  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x1]=xget(str,[flag])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>xget()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>str  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : optional. Set to 1 gives a verbose mode.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function is used to get values from the graphics context
+    on the topic specified by the string <VERB>str</VERB>. When called with
+    no argument, a choice menu is created showing the current values and 
+    changes can be performed through toggle buttons.
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='number=xget(&quot;alufunction&quot;)'> 
+    : Get the logical function number used for drawing. See <VERB>xset</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='str=xset(&quot;auto clear&quot;)'> 
+    : Get the auto clear status (<VERB>&quot;on&quot;</VERB> or <VERB>&quot;off&quot;</VERB>).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='color=xget(&quot;background&quot;)'> 
+    : Get the background color of the current graphics window.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='rect=xget(&quot;clipping&quot;)'> 
+    :  Get the clipping zone as a rectangle rect=[x,y,w,h] (Upper-Left point Width Height).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='c=xget(&quot;color&quot;)'> 
+    : Get the default color for filling, line or text drawing functions.  <VERB>c</VERB> is an integer projected in the interval [0,whiteid]. 0 stands for black filling and whiteid for white. The value of whiteid can be obtained with <VERB>xget(&quot;white&quot;)</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='cmap=xget(&quot;colormap&quot;)'> 
+    : Get the colormap used for the current graphics window as a m x 3 RGB matrix.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dash=xget(&quot;dashes&quot;)'> 
+    : Get the dash style dash=[dash_number] where dash_number is the id of the dash. This keyword is obsolete, please use <VERB>xget(&quot;color&quot;)</VERB> or  <VERB>xget(&quot;line style&quot;)</VERB> instead.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='font=xget(&quot;font&quot;)'> 
+    : Get font=[fontid,fontsize], the default font and the default size for fonts. size.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='fontsize=xget(&quot;font size&quot;)'> 
+    : Get the default size for fonts size.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='color=xget(&quot;foreground&quot;)'> 
+    : Get the foreground color of the current graphics window.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='str=xget(&quot;fpf&quot;)'> 
+    : Get the floating point format for number display in contour functions. Note that <VERB>str</VERB> is <VERB>&quot;&quot;</VERB> when default format is used.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='color=xget(&quot;hidden3d&quot;)'> 
+    : Get the color number for hidden faces in plot3d.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='pat=xget(&quot;lastpattern&quot;)'> 
+    : Get the id of the last available pattern or color, with the current  colormap of  the current window. In fact <VERB>pat+1</VERB> and <VERB>pat+2</VERB> are also available and stand respectively for black and white pattern. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='type=xget(&quot;line mode&quot;)'> 
+    : Get the line drawing mode.  type=1 is absolute mode and type=0 is relative mode. (Warning: the mode type=0 is has bugs)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xget(&quot;line style&quot;)'> 
+    : Get the default line style (1: solid, &gt;1 for dashed lines).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='mark=xget(&quot;mark&quot;)'> 
+    : Get the default mark id and the default marks size. <VERB>mark=[markid,marksize]</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='marksize=xget(&quot;mark size&quot;)'> 
+    : Get the default marks size. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='pat=xget(&quot;pattern&quot;)'> 
+    : Get the current pattern or the current color. <VERB>pat</VERB> is an integer  in the range <VERB>[1,last]</VERB>. When one uses black and white,  0 is used for black filling and  <VERB>last</VERB> for white. The value of <VERB>last</VERB> can be obtained with  <VERB>xget(&quot;lastpattern&quot;)</VERB>. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='value=xget(&quot;thickness&quot;)'> 
+    : Get the thickness of lines in pixel (0 and 1 have the same meaning: 1 pixel thick).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='flag=xget(&quot;use color&quot;)'> 
+    : Get the flag 0 (use black and white) or 1 (use colors). See <VERB>xset</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='[x,y]=xget(&quot;viewport&quot;)'> 
+    : Get the current postion of the visible part of graphics in the panner.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dim=xget(&quot;wdim&quot;)'> 
+    : Get the width and the height of the current graphics window dim=[width,height].
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='win=xget(&quot;window&quot;)'> 
+    : Get the current window number <VERB>win</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='pos=xget(&quot;wpos&quot;,x,y);'> 
+    : Get the position of the upper left point of the graphics window pos=[x,y].
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>colormap</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

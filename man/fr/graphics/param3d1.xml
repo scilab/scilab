@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>param3d1  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="param3d1"> représentation de courbes paramétriques dans l&apos;espace  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>param3d1(x,y,z,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>param3d1(x,y,list(z,colors),[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y,z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrices de même taille (nl,nc). Chaque colonne i des matrices  correspond aux coordonnées des points de la courbe numéro i.  On peut donner une couleur à chaque courbe en utilisant <VERB>list(z,colors)</VERB> au lieu de l&apos;argument <VERB>z</VERB>, où <VERB>colors</VERB> est un vecteur de taille <VERB>nc</VERB>. Si <VERB>color(i)</VERB> est négatif la courbe est dessinée en utilisant le marqueur de numéro  <VERB>abs(style(i))+1</VERB>; si <VERB>style(i)</VERB> est strictement positif, une ligne de couleur <VERB>style(i)</VERB> ou de code de pointillé <VERB>style(i)</VERB> est  utilisée. Utiliser <VERB>xset()</VERB> pour voir les codes de couleurs et de marqueurs.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Pour les autres paramètres : voir <VERB>param3d</VERB>  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>param3d1</VERB> est utilisée pour dessiner dans l&apos;espace des courbes paramétriques données par les points de coordonnées contenues dans les vecteurs <VERB>x</VERB>, <VERB>y</VERB> et <VERB>z</VERB>.
+  </P>
+  <P>
+    Taper <VERB>param3d1()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+t=[0:0.1:5*%pi]';
+param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
+  list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>param3d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot3d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

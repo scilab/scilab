@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>max_clique  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="max_clique"> maximum clique of a graph  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[size,nodes] = max_clique(g,[ind])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ind  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer (optional) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>size  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>nodes  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer row vector
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>max_clique</VERB> computes the maximum clique of the graph <VERB>g</VERB> i.e. the 
+    complete subgraph of maximum size. <VERB>ind</VERB> is a parameter for the choice
+    of the method: if <VERB>ind</VERB> is 0 the method is a partial enumerative 
+    algorithm and if <VERB>ind</VERB> is 1 the algorithm is based on quadratic 
+    zero-one programming. The default is 0.
+    The output <VERB>size</VERB> is the number of the nodes of the clique found by the
+    algorithm and <VERB>nodes</VERB> is the vector of the corresponding nodes.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 2 3 4 5 6 6 7 8  9 10 16 16 10 11 11 12 12 11 14 15 15 13 7 13 13];
+he=[2 3 4 5 6 7 8 8 9 10 16  2  3 11 12 13  1 14 14 15  5  9 12 4 14 15];
+g=make_graph('foo',0,16,ta,he);
+g('node_x')=[106 199 369 467 470 403 399 347 308 269 184 108 199 268 345 272];
+g('node_y')=[341 420 422 321 180 212 286 246 193 244 243 209  59 134  51 348];
+g('node_diam')=[1:(g('node_number'))]+20;
+show_graph(g);
+[ns,no] = max_clique(g);
+show_nodes(no);
+g1=graph_complement(g);
+[ns,no] = max_clique(g1);
+show_nodes(no);
+ ]]></EXAMPLE>
+</MAN>

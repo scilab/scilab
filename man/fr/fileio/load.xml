@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>load  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="load"> load saved variable  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>load(filename [,x1,...,xn])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>load(fd [,x1,...,xn])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>filename  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : character string containing the path of the file
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fd  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a file descriptor given by a call to mopen
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>xi  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : arbitrary Scilab variable name(s) given as strings.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    The <VERB>load</VERB> command can be used to reload in the Scilab session
+    variables previously saved in a file with the <VERB>save</VERB> command.
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+    <VERB>load(filename)</VERB> loads the variables saved in file given by its
+    path <VERB>filename</VERB>. 
+  </P>
+  <P>
+    <VERB>load(fd)</VERB> loads the variables saved in file given by its
+    descriptor <VERB>fd</VERB>. 
+  </P>
+  <P>
+  </P>
+  <P>
+    <VERB>load(filename,&apos;x&apos;,&apos;y&apos;)</VERB> or <VERB>load(fd,&apos;x&apos;,&apos;y&apos;)</VERB> loads only
+    variables <VERB>x,y</VERB>. 
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='COMPATIBLITY'>
+  <P>
+    Even if the binary file format has changed with 2.5 version, <VERB>load(filename,...)</VERB> is able to read old format files. Previous file format can be accessed for a while using function oldsave ans oldload.  
+  </P>
+  </ITEMIZE>
+  <EXAMPLE><![CDATA[
+a=eye(2,2);b=ones(a);
+save('vals.dat',a,b);
+clear a
+clear b
+load('vals.dat','a','b');
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>save</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mopen</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

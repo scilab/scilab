@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xtape  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xtape"> détermine le processus d&apos;enregistrement des graphiques  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xtape(str,[num,rect])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>str  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères, &quot;on&quot;, &quot;clear&quot;, &quot;replay&quot; ou &quot;replaysc&quot;.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>num  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne de taille 4.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xtape</VERB> est utilisée pour déterminer le processus d&apos;enregistrement des graphiques :
+  </P>
+  <P>
+    xtape(&quot;on&quot;) 
+    sélectionne le pilote &quot;Rec&quot; qui enregistre toutes les opérations
+    graphiques.
+  </P>
+  <P>
+    xtape(&quot;clear&quot;,num) 
+    efface la fenêtre graphique <VERB>num</VERB> ainsi que les graphiques enregistrés.
+  </P>
+  <P>
+    xtape(&quot;replay&quot;,num) 
+    ré-exécute les ordres graphiques enregistrés
+    dans la fenêtre <VERB>num</VERB>.
+  </P>
+  <P>
+    xtape(&quot;replaysc&quot;,num,rect) redessine le contenu de la fenêtre graphique <VERB>num</VERB> en utilisant <VERB>rect=[xmin,ymin,xmax,ymax]</VERB> comme bornes.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>driver</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>replot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xbasc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xbasr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

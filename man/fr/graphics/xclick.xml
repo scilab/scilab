@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xclick  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xclick"> attend un appui sur un bouton de la souris  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[c_i,c_x,c_y,c_w,c_m]=xclick([flag])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>c_i  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier, numéro de bouton
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>c_x,c_y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scalaire réel, position du pointeur de la souris
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>c_w  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier, numéro de fenêtre.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>c_m  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères, callback de menu
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier. S&apos;il est présent, la queue d&apos;évènements des clics de souris n&apos;est pas vidée préalablement. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xclick</VERB> attend l&apos;appui sur un bouton de la souris.
+  </P>
+  <P>
+    Appelée avec 3 arguments en sortie, cette fonction attend qu&apos;un bouton de la souris soit pressé avec le pointeur dans la fenêtre graphique courante.
+  </P>
+  <P>
+    Avec 4 ou 5 arguments en sortie, l&apos;appui sur un bouton de la souris est attendu dans toutes les fenêtres graphiques.
+  </P>
+  <P>
+    Les valeurs renvoyées par xclick sont décrites ci-dessous :
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='c_i'> 
+    : un entier donnant le numéro du bouton pressé 0, 1 ou 2 (gauche, milieu, droite) ou -1 en cas de problème avec xclick.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='c_x,c_y'> 
+    : les coordonnées de la position du curseur au moment du clic, à l&apos;échelle graphique courante. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='c_w'> 
+    : le numéro de la fenêtre ou le clic s&apos;est produit.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='c_m'> 
+    : chaîne de caractères associée à un menu dynamique. Si xclick se termine à cause d&apos;un clic sur l&apos;article d&apos;un menu, <VERB>c_i</VERB>, <VERB>c_x</VERB>, <VERB>c_y,</VERB> et <VERB>c_w</VERB> prennent des valeurs arbitraires
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <ITEMIZE label='PROBLÈMES CONNUS'>
+  <P>
+    <VERB>xclick</VERB> peut renvoyer le message  &quot;Can&apos;t grab the pointer&quot; si la fenêtre graphique courante est iconifiée au moment de l&apos;appel.
+  </P>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>locate</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xgetmouse</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

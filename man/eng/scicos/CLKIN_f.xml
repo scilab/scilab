@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>CLKIN_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="CLKIN_f"> Scicos Super Block event input port  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block must only be used inside Scicos Super Blocks to represent
+    an event input port. 
+  </P>
+  <P>
+    In a Super Block, the event input ports must be numbered from 1 to the
+    number of event input ports.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Port number'>
+: an integer defining the port number.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>IN_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>OUT_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>CLKOUT_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

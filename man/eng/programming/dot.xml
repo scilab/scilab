@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>dot  </TITLE>
+  <TYPE>Scilab Symbol  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="dot (.)">  symbol  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>123.33  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>a.*b  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[123,..  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM> 456]  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+ 
+
+  <DESCRIPTION_ITEM  label='.'> 
+    Dot is used to mark decimal point for numbers : 3.25 and 0.001
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='.&lt;op&gt;'> 
+    used in cunjunction with other operator symbols (* / \ ^ &apos;) to form other operators.  Element-by-element multiplicative operations are obtained using .* , .^ , ./ , .\ or .&apos;.  For example, C = A ./ B is the matrix with elements c(i,j) = a(i,j)/b(i,j). Kronecker product is noted .*. .  Note that when dot follows a number it is alway prt of the number so 2.*x is evaluated as 2.0*x and 2 .*x is evaluated as (2).*x
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='..'> 
+    Continuation.  Two or more decimal points at the end of a line causes the following line to be a continuation.
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+1.345
+x=[1 2 3];x.^2 .*x // a space is required between 2 and dot
+[123,..
+ 456]
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>star</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>hat</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>slash</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>backslash</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>isreal  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1998  </DATE>
+  <SHORT_DESCRIPTION name="isreal">  vérifie si une matrice a des éléments complexes  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>t=isreal(x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>t=isreal(x,eps)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ou matrice réelle ou complexe.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>eps  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : nombre réel positif.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>t  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un booléen.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>isreal(x)</VERB> renvoie %T (vrai) si x est stockée comme une matrice réelle ou %F (faux) si x est stockée avec une partie imaginaire (même nulle).
+  </P>
+  <P>
+    <VERB>isreal(x,eps)</VERB> renvoie %T (vrai) si x est stockée comme une matrice réelle ou si les valeurs absolues des parties imaginaires des éléments de x sont plus petites que eps.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+isreal([1 2])
+isreal(1+0*%i)
+isreal(1+0*%i,0)
+isreal(1+%s)
+isreal(sprand(3,3,0.1))
+ ]]></EXAMPLE>
+</MAN>

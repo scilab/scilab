@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xgetmouse  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September  1994  </DATE>
+  <SHORT_DESCRIPTION name="xgetmouse"> récupère la position courante du pointeur de la souris  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>rep=xgetmouse([flag])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>rep  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur de taille 3, [x,y,ibutton].
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier. S&apos;il est présent, la queue d&apos;évènements des clics de la souris n&apos;est pas vidée préalablement.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Si le pointeur est dans la fenêtre graphique courante, <VERB>xgetmouse</VERB> renvoie
+    dans <VERB>rep</VERB> sa position (x,y) et la valeur <VERB>ibutton</VERB>.
+  </P>
+  <P>
+    <VERB>ibutton</VERB> indique l&apos;état du bouton :
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='- si ibutton = -1 aucun bouton n&apos;a été pressé'> 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='- si ibutton = -5, -4 ou -2 un des 3 boutons a été relaché'> 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='- si ibutton = 0, 1 ou 2, l&apos;un des trois boutons a été pressé'> 
+     Si le curseur n&apos;est pas positionné dans la fenêtre graphique courante, <VERB>xgetmouse</VERB> se met en état d&apos;attente.  Attention : <VERB>xgetmouse</VERB> renvoie son résultat de façon synchrone avec les mouvements du curseur, i.e. s&apos;il n&apos;y a aucun mouvement du curseur <VERB>xgetmouse</VERB> attend. 
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+xselect(); xbasc(); xsetech([0 0 1 1],[0 0 100 100])
+xset("alufunction",6)
+xtitle(" On dessine un rectangle ")
+[b,x0,y0]=xclick(); rep=[x0,y0,-1]; x=x0; y=y0;
+xrect(x0,y0,x-x0,y-y0)
+while rep(3)==-1 then
+    rep=xgetmouse(0)
+    xrect(x0,y0,x-x0,y0-y)
+    x=rep(1); y=rep(2);
+    xrect(x0,y0,x-x0,y0-y)
+end
+xset("alufunction",3)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>locate</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xclick</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. Steer  </AUTHOR>
+</MAN>

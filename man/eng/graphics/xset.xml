@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xset  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xset"> set values of the graphics context  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xset(choice-name,x1,x2,x3,x4,x5)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>xset()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>choice-name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x1,...,x5  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : depending on <VERB>choice-name</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xset</VERB> is used to set default values of the current window graphic
+    context. 
+  </P>
+  <P>
+    When called no argument, a choice menu is created showing the
+    current values and changes can be performed through toggle buttons.
+  </P>
+  <P>
+    Use <VERB>xset()</VERB> to display or set the current color, mark and fonts used.
+  </P>
+  <P>
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='xset(&quot;alufunction&quot;,number)'> 
+    : Used to set the logical function for drawing.  The logical function used is set by <VERB>x1</VERB>. Usual values are: 3 for copying (default), 6 for animation and 0 for clearing. See alufunctions for more details.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;auto clear&quot;,&quot;on&quot;|&quot;off&quot;)'> 
+    : Switch &quot;on&quot; or &quot;off&quot; the auto clear mode for graphics. When the auto clear mode is &quot;on&quot;, successive plots are not superposed, ie an <VERB>xbasc()</VERB> operation (the graphics window is cleared and the associated recorded graphics is erased) is  performed before each high level graphics function. Default value is &quot;off&quot;.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;background&quot;,color)'> 
+    : Set the background color of the current graphics window.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;clipping&quot;,x,y,w,h)'> 
+    : Set the clipping zone (the zone of the graphics window where plots can be drawn) to the rectangle (x,y,w,h) (Upper-Left point Width Height). This function uses the current coordinates of the plot.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;color&quot;,value)'> 
+    : Set the default color for filling, line or text drawing functions. <VERB>value</VERB> is an integer projected in the interval [0,whiteid]. 0 is used for black filling and whiteid for white. The value of whiteid can be obtained with <VERB>xget(&quot;white&quot;)</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;colormap&quot;,cmap)'> 
+    : Set the colormap as a m x 3 matrix. m is the number of colors. Color number i is given as a 3-uple cmap(i,1), cmap(i,2), cmap(i,3) corresponding respectively to red, green and blue intensity between 0 and 1.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;dashes&quot;,i)'> 
+    : In black and white mode (<VERB>xset(&quot;use color&quot;,0)</VERB>), set the dash style to style i (0 for solid line). In color mode (<VERB>xset(&quot;use color&quot;,1 )</VERB>) this is used to set line, mark and text color. This keyword is obsolete, please use <VERB>xset(&apos;color&apos;,i)</VERB> or  <VERB>xset(&apos;line style&apos;,i)</VERB> instead.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;default&quot;)'> 
+    : Reset the graphics context to default values.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;font&quot;,fontid,fontsize) : Set the current font and its current'> 
+    size.  Note that <VERB>fontsize</VERB> applies to all fonts not only  <VERB>fontid</VERB> . 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;font size&quot;,fontsize)'> 
+    : Set the  fonts  size.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;foreground&quot;,color)'> 
+    : Set the foreground color of the current graphics window.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;fpf&quot;,string)'> 
+    : Set the floating point format for number display in  contour functions. <VERB>string</VERB> is a string giving the format  in C format syntax (for example <VERB>string=&quot;%.3f&quot;</VERB>). Use  <VERB>string=&quot;&quot;</VERB> to switch back to default format.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;hidden3d&quot;,colorid) : Set the color number for backward facing faces in'> 
+    <VERB>plot3d</VERB>.   <VERB>colorid=0</VERB> zero suppress the drawing of backward facing faces of 3d objects. This is technically called &apos;culling&apos; and speeds up the rendering of closed surfaces.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;line mode&quot;,type)'> 
+    : This function is used to set the line drawing mode. Absolute mode is set  with type=1 and relative mode with type=0. (Warning: the mode type=0 has bugs)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;line style&quot;,value)'> 
+    : Set the current line style (1: solid, &gt;1 for dashed lines).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;mark&quot;,markid,marksize)'> 
+    : Set the current mark and the current mark size. Use <VERB>xset()</VERB> to see the marks. Note that  <VERB>marksize</VERB> applies to all marks not only  <VERB>markid</VERB> . 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;mark size&quot;,marksize)'> 
+    : Set the marks size. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;pattern&quot;,value)'> 
+    : Set the current pattern for filling functions. value is an integer  projected in the interval [0,whiteid]. 0 is used for black filling and  whiteid for white. The value of whiteid can be obtained with  <VERB>xget(&quot;white&quot;)</VERB>. &quot;pattern&quot; is equivalent to &quot;color&quot;.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;pixmap&quot;,flag)'> 
+     If flag=0 the graphics are directly displayed on the screen.  If flag=1 the graphics are done on a pixmap and are sent to the graphics window with the command <VERB>xset(&quot;wshow&quot;)</VERB>. The pixmap is cleared with the  command <VERB>xset(&quot;wwpc&quot;)</VERB>. Note that the usual command <VERB>xbasc()</VERB> also clears the pixmap.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;thickness&quot;,value)'> 
+    : Set the thickness of lines in pixel  (0 and 1 have the same meaning: 1 pixel thick).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;use color&quot;,flag)'> 
+     If flag=1 then <VERB>xset(&quot;pattern&quot;,.)</VERB> or <VERB>xset(&quot;dashes&quot;,.)</VERB> will be  used so as to change the default color for drawing or for filling patterns.  If flag=0 then we switch back to the gray and dashes mode.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;viewport&quot;,x,y)'> 
+    : Set the position of the panner.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;wdim&quot;,width,height)'> 
+    : Set the width and the height of the current graphics window. This option is not used by the postscript driver.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;wpdim&quot;,width,height)'> 
+    : Sets the width and the height of the current physical graphic window (which can be different from the actual size in mode wresize 1). This option is not used by the postscript driver.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;window&quot;,window-number)'> 
+    : Set the current window to the window <VERB>window-number</VERB> and creates the window if it does not exist.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;wpos&quot;,x,y)'> 
+    : Set the position of the upper left point of the graphics window.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;wresize&quot;,flag)'> 
+     If flag=1 then the graphic is automatically resized to fill the graphics window.
+  </DESCRIPTION_ITEM>
+  <VERBATIM><![CDATA[
+xdel();xset("wresize",1);plot2d();xset("wdim",1000,500)
+   ]]></VERBATIM>
+  <P>
+  </P>
+  <P>
+    If flag=0 the scale of the graphic is left unchanged when the graphics
+    window is resized. Top left panner or keyboard arrows may be used to
+    scroll over the graphic.
+  </P>
+  <VERBATIM><![CDATA[
+xdel();plot2d();xset("wresize",0);xset("wdim",1000,500)
+   ]]></VERBATIM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;wshow&quot;)'> 
+    : See <VERB>xset(&quot;pixmap&quot;,1)</VERB> above.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='xset(&quot;wwpc&quot;)'> 
+    : See <VERB>xset(&quot;pixmap&quot;,1)</VERB> above. 
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>colormap</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xget</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getcolor</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getsymbol</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

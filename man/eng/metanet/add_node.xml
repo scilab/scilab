@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>add_node  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="add_node"> adds a disconnected node to a graph  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>g1 = add_node(g,[xy,name])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>xy  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : optional row vector of coordinates of new node
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : optional name of the added node
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list of the new graph with the added node
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>add_node</VERB> adds a disconnected node to graph <VERB>g</VERB> and returns the new
+    graph <VERB>g1</VERB>.
+  </P>
+  <P>
+    The coordinates of the new node can be given as a row vector of
+    coordinates in <VERB>xy</VERB>. If the nodes of graph <VERB>g</VERB> have no
+    coordinates (elements <VERB>node_x</VERB> and <VERB>node_y</VERB> are <VERB>[]</VERB>), to
+    give <VERB>xy</VERB> has no effect. If the nodes of graph <VERB>g</VERB> have
+    coordinates and <VERB>xy</VERB> is not given, the new node has <VERB>(0,0)</VERB> as
+    coordinates.
+  </P>
+  <P>
+    If <VERB>name</VERB> is given, it is the name of the new node, otherwise the number
+    of nodes plus 1 is taken as the name of the new node.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
+g=make_graph('foo',1,17,ta,he);
+g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+show_graph(g);
+n=g('node_number');
+g1=add_node(g,[270 140]);
+g1('node_color')=[ones(1,n) 11];
+show_graph(g1);
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>add_edge</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>delete_arcs</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>delete_nodes</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>getdate  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Jun 1999  </DATE>
+  <SHORT_DESCRIPTION name="getdate"> get date and time information  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>dt=getdate()  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>x=getdate(&apos;s&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>dt=getdate(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>dt  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : an integer vector with 8 entries (see below)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : an integer containing a date coded in second from 1 Jan 1970 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+ 
+
+  <DESCRIPTION_ITEM  label='dt'> 
+    =getdate() returns the current date in format given below:
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='dt(1)'> 
+    : The year  as a number (with the century) between 0000 and 9999.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(2)'> 
+    : The month of the year as a number between 01 and 12.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(3)'> 
+    : The ISO 8601  week  number  as  a   number between 01 and 53.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(4)'> 
+    : The Julian day of the year  as a number between 001 and 366.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(5)'> 
+    : Specifies the weekday as a decimal number [1,7], with 1 representing Sunday. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(6)'> 
+    : The day of the month as a number between 01 and 31.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(7)'> 
+    : The hour of the day  as a number between 00 and 23.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(8)'> 
+    : The minute  as a number between 00 and 59.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt(9)'> 
+    : The second is output as a number between 00 and 59.
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='x =getdate(&apos;s&apos;), returns a scalar with the number of seconds since Jan'> 
+    1, 1970, 00:00 UTC (unix time convention)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='dt'> 
+    =getdate(x) ,format the date given by x (number of seconds since Jan 1, 1970, 00:00 UTC) in format given above:
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+w=getdate()
+mprintf("Year:%d,Month:%d,Day:%d",w(1),w(2),w(6));
+
+x=getdate('s')
+getdate(x)
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>date</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>timer</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

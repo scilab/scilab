@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>gsort  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="gsort"> tri par ordre décroissant  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[s, [k]]=gsort(v )  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[s, [k]]=gsort(v,flag1)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[s, [k]]=gsort(v,flag1,flag2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>v,s  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ou matrice de nombres réels ou de chaînes de caractères.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : la chaîne de caractères <VERB>&apos;r&apos;</VERB>, <VERB>&apos;c&apos;</VERB>,<VERB>&apos;g&apos;</VERB>,<VERB>&apos;lr&apos;</VERB> et <VERB>&apos;lc&apos;</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag2  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : la chaîne de caractères <VERB>&apos;i&apos;</VERB> pour l&apos;ordre croissant et <VERB>&apos;d&apos;</VERB> pour l&apos;ordre décroissant. k : vecteur ou matrice de nombres entiers.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>gsort</VERB> est similaire à <VERB>sort</VERB> avec des propriétés supplémentaires.
+    Le troisième argument peut être utilisé pour choisir entre tri croissant ou décroissant. Le deuxième argument est utilisé pour l&apos;ordre lexical.
+  </P>
+  <P>
+    <VERB>[s,k]=gsort(a,&apos;g&apos;)</VERB> et <VERB>[s,k]=gsort(a,&apos;g&apos;,&apos;d&apos;)</VERB> produisent le même résultat que <VERB>[s,k]=gsort(a)</VERB>. Ces instructions produisent un tri de la 
+    matrice <VERB>a</VERB>, <VERB>a</VERB> vue comme un vecteur <VERB>a(:)</VERB>
+    (les colonnes sont empilées). <VERB>[s,k]=gsort(a,&apos;g&apos;,&apos;i&apos;)</VERB> fonctionne de la même manière pour l&apos;ordre croissant.
+  </P>
+  <P>
+    <VERB>[s,k]=gsort(a,&apos;lr&apos;)</VERB> trie les lignes de la matrice <VERB>int(a)</VERB> 
+    (si <VERB>a</VERB> est une matrice réelle ou une matrice de chaînes de caractères)
+    dans l&apos;ordre lexical décroissant. <VERB>s</VERB> est obtenue par une permutation 
+    des lignes de la matrice <VERB>int(a)</VERB> (ou <VERB>a</VERB>) donnée par le vecteur <VERB>k</VERB>)
+    de telle manière que les lignes de <VERB>s</VERB> vérifient <VERB>s(i,:) &gt; s(j,:)</VERB> si
+    <VERB>i&lt;j</VERB>. <VERB>[s,k]=gsort(a,&apos;lr&apos;,&apos;i&apos;)</VERB> fonctionne de la même manière 
+    pour l&apos;ordre lexical croissant. 
+  </P>
+  <P>
+    <VERB>[s,k]=gsort(a,&apos;lc&apos;)</VERB> trie les colonnes de la matrice <VERB>int(a)</VERB> 
+    (si <VERB>a</VERB> est une matrice réelle ou une matrice de chaînes de caractères)
+    dans l&apos;ordre lexical décroissant. <VERB>s</VERB> est obtenue par une permutation  
+    des colonnes de la matrice <VERB>int(a)</VERB> (ou <VERB>a</VERB>) donnée par le vecteur <VERB>k</VERB>)
+    de telle manière que les colonnes de <VERB>s</VERB> vérifient <VERB>s(:,i) &gt; s(:,j)</VERB> si
+    <VERB>i&lt;j</VERB>. <VERB>[s,k]=gsort(a,&apos;lc&apos;,&apos;i&apos;)</VERB> fonctionne de la même manière 
+    pour l&apos;ordre lexical croissant. 
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+alr=[1,2,2;
+     1,2,1;
+     1,1,2;
+     1,1,1];
+[alr1,k]=gsort(alr,'lr','i')
+[alr1,k]=gsort(alr,'lc','i')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>find</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

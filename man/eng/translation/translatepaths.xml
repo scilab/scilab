@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>translatepaths  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1998  </DATE>
+  <SHORT_DESCRIPTION name="translatepaths"> translate a set of Matlab M_file directories to scilab   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>translatepaths(dirs_path ,res_path)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>dir_path  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string vector which gives the paths of Matlab M_file directories  to translate
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>res_path  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string  which gives the path of the directory  where the scilab functions are written to. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+     <VERB>translatepaths</VERB>, translate all Matlab M-file contained in a set of directories to
+    Scilab functions. Each function is translated by  <VERB>mfile2sci</VERB>.
+  </P>
+  <P>
+    Trace of translation informations are stored in a file named  <VERB>&quot;log&quot;</VERB> in
+    the <VERB>res_path</VERB> directory
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mfile2sci</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Serge Steer, INRIA  </AUTHOR>
+</MAN>

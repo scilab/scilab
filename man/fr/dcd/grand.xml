@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>grand  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Dec 1997  </DATE>
+  <SHORT_DESCRIPTION name="grand"> Random number generator(s)   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>Y=grand(m,n,&apos;option&apos; [,arg1,..,argn])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>Y=grand(x,&apos;option&apos; [,arg1,....,argn])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>Y=grand(&apos;option&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>Y=grand(&apos;option&apos;  [,arg1,....,argn])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <ITEMIZE label='PARAMETERS#1 (generating randoms numbers following a given law)'>
+  <ITEM label='Y=grand(m,n,&apos;bet&apos;,A,B), Y=grand(x,&apos;bet&apos;,A,B)'>
+: Returns random deviates from the beta distribution with  parameters A and B. The density of the beta is  <VERB>x^(a-1) * (1-x)^(b-1) / B(a,b)</VERB> for <VERB>0 &lt; x &lt; 1</VERB>.  For details see [1].
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;bin&apos;,N,P), Y=grand(x,&apos;bin&apos;,N,P)'>
+: Generates random deviates from a binomial distribution whose number of  trials is N and whose  probability of an event in each trial is P.  N is the number of trials in the binomial distribution  from which a random deviate is to be generated.  P is the probability of an event in each trial of the  binomial distribution from which a random deviate is to be generated.  (0.0 &lt;= P &lt;= 1.0). For details see [2].
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;chi&apos;,Df), Y=grand(x,&apos;chi&apos;,Df)'>
+: Generates random deviates from the distribution of a chisquare  with DF degrees of freedom random variable.  Uses relation between chisquare and gamma.
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;def&apos;), Y=grand(x,&apos;def&apos;)'>
+: Returns random floating point numbers from a uniform distribution  over [0,1) (1 is never returned) using the current generator
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;exp&apos;,Av), Y=grand(x,&apos;exp&apos;,Av)'>
+: Generates random deviates from an exponential  distribution with mean AV.  For details see [3].
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;f&apos;,Dfn,Dfd), Y=grand(x,&apos;f&apos;,Dfn,Dfd)'>
+: Generates random deviates from the F (variance ratio)  distribution with DFN degrees of freedom in the numerator and DFD degrees of freedom in the denominator.  Method: Directly generates ratio of chisquare variates
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;gam&apos;,Shape,Scale), Y=grand(x,&apos;gam&apos;,Shape,Scale)'>
+: Generates random deviates from the gamma distribution whose  density is  (Scale**Shape)/Gamma(Shape) * X**(Shape-1) * Exp(-Scale*X) For details see [4] (Case R &gt;= 1.0) and [5] (Case 0.0 &lt; R &lt; 1.0).
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;geom&apos;,p), Y=grand(x,&apos;geom&apos;,p)'>
+: Generates random deviates from a geometric distribution (number of Bernouilli trials (with probability succes of p) until a succes is met). p must be in [pmin,1] (with pmin = 1.3 10^(-307)).
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;lgi&apos;),Y=grand(x,&apos;lgi&apos;)'>
+: Returns the basic output of the current generator : random integers  following a uniform distribution over [0, 2^32 - 1] for mt, kiss and fsultra, [0, 2147483561] for clcg2, [0, 2^31 - 2] for clcg4 and [0, 2^31 - 1] for urand.
+
+  </ITEM>
+  <ITEM label='Y=grand(M,&apos;mn&apos;,Mean,Cov)'>
+:Generate M Multivariate Normal random deviates Mean must be a Nx1 matrix and Cov a NxN positive definite matrix Y is a NxM matrix 
+
+  </ITEM>
+  <ITEM label='Y=grand(n,&apos;markov&apos;,P,x0)'>
+Generates <VERB>n</VERB> successive states of a Markov chain described  by the transition matrix <VERB>P</VERB>. Initial state is  given by <VERB>x0</VERB>. If <VERB>x0</VERB> is a matrix of size <VERB>m=size(x0,&apos;*&apos;)</VERB> then <VERB>Y</VERB> is a matrix of size <VERB>m*n</VERB>. <VERB>Y(i,:)</VERB> is the sample path  obtained from initial state <VERB>x0(i)</VERB>.
+
+  </ITEM>
+  <ITEM label='Y=grand(M,&apos;mul&apos;,N,P)'>
+Generates <VERB>M</VERB> observations from the Multinomial distribution.  <VERB>N</VERB> is the number of events (put randomly <VERB>N</VERB> &quot;balls&quot; into <VERB>Ncat</VERB> &quot;urns&quot;) <VERB>P</VERB> is the vector of probabilities. <VERB>P(i)</VERB> is the probability that an event will be classified into category i. Thus,<VERB>P(i)</VERB> must be in <VERB>[0,1]</VERB>. <VERB>P</VERB> is of size <VERB>Ncat-1</VERB>,  (the probability of category <VERB>Ncat</VERB> is <VERB>1-sum(P)</VERB>).  <VERB>Y(:,i)</VERB> is an observation from multinomial distribution. All <VERB>Y(:,i)</VERB>  will be nonnegative and their sum will be <VERB>N</VERB>. <VERB>Y</VERB> is of size <VERB>NxM</VERB>. For details see Algorithm from page 559 of [6].
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;nbn&apos;,N,P),Y=grand(x,&apos;nbn&apos;,N,P)'>
+: Generates random deviates from a negative binomial  distribution.  N is the required number of events (N &gt; 0).  P is The probability of an event during a Bernoulli trial (0.0 &lt; P &lt; 1.0). For details see Algorithm from page 480 of [6].
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;nch&apos;,Df,Xnon), Y=grand(x,&apos;nch&apos;,Df,Xnon)'>
+: Generates random deviates from the distribution of a noncentral  chisquare with DF degrees of freedom and noncentrality parameter XNONC.  DF is he degrees of freedom of the chisquare (Must be &gt;= 1.0) XNON the Noncentrality parameter of the chisquare  (Must be &gt;= 0.0)  Uses fact that noncentral chisquare is the sum of a chisquare  deviate with DF-1 degrees of freedom plus the square of a normal  deviate with mean XNONand standard deviation 1. 
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;nf&apos;,Dfn,Dfd,Xnon), Y=grand(x,&apos;nf&apos;,Dfn,Dfd,Xnon)'>
+: Generates random deviates from the noncentral F (variance ratio)  distribution with DFN degrees of freedom in the numerator, and DFD  degrees of freedom in the denominator, and noncentrality parameter XNONC.  DFN is the numerator degrees of freedom  (Must be &gt;= 1.0)  DFD is the Denominator degrees of freedom (Must be positive)  XNON is the Noncentrality parameter (Must be nonnegative)  Method:  Directly generates ratio of noncentral numerator chisquare variate   to central denominator chisquare variate. 
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;nor&apos;,Av,Sd), Y=grand(x,&apos;nor&apos;,Av,Sd)'>
+: Generates random deviates from a normal distribution  with mean, AV, and standard deviation, SD. AV is the mean of the normal distribution.  SD is the standard deviation of the normal distribution.  For details see [7]. 
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;poi&apos;,mu), Y=grand(x,&apos;poi&apos;,mu)'>
+: Generates random deviates from a Poisson distribution with mean MU.  MU is the mean of the Poisson distribution from which random deviates are to be generated (MU &gt;= 0.0). For details see [8].
+
+  </ITEM>
+  <ITEM label='Mat=grand(M,&apos;prm&apos;,vect)'>
+: Generate M random permutation of column vector <VERB>vect</VERB>. Mat is of size <VERB>(size(vect)xM)</VERB>
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;uin&apos;,Low,High), Y=grand(x,&apos;uin&apos;,Low,High)'>
+: Generates integers uniformly distributed between Low and High (included). High and Low must be integers such that   (High-Low+1) &gt; 2,147,483,561.
+
+  </ITEM>
+  <ITEM label='Y=grand(m,n,&apos;unf&apos;,Low,High),Y=grand(x,&apos;unf&apos;,Low,High)'>
+: Generates reals uniformly distributed between Low and high.  Low is the  low bound on real value to be generated  High is the high bound (exclusive) on real value to be generated  
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='PARAMETERS#2 (set/get the current generator and its state)'>
+  <P>
+     Since Scilab-2.6.x you have the possibility to choose between  the following 5 different base generators (which give random  numbers following the &apos;lgi&apos; law, the other laws being gotten from it) : 
+  </P>
+  <ITEM label='mt'>
+The Mersenne-Twister of M. Matsumoto and T. Nishimura, period  about 2^19937, state given by an array of 624 integers ; this  is the default generator.
+
+  </ITEM>
+  <ITEM label='kiss'>
+The Keep It Simple Stupid of G. Marsaglia,  period about 2^123, state given by 4 integers.
+
+  </ITEM>
+  <ITEM label='clcg2'>
+a Combined 2 Linear Congruential Generator of P. L&apos;Ecuyer, period about 2^61, state given by 2 integers ; this is  the generator previously used by grand.
+
+  </ITEM>
+  <ITEM label='clcg4'>
+a Combined 4 Linear Congruential Generator of P. L&apos;Ecuyer, period about 2^121, state given by 4 integers ; this one is  splitting in 101 different virtual (non over-lapping) generators  which may be useful for different tasks (see TEST EXAMPLE FOR CLCG4).
+
+  </ITEM>
+  <ITEM label='urand'>
+a uniform random number generator based  on  theory  and suggestions  given  in  d.e. knuth (1969),  vol  2. State given by 1 integer, period of 2^31. urand is the generator  used by the scilab <VERB>rand</VERB> function
+
+  </ITEM>
+  <ITEM label='fsultra'>
+Arif Zaman (arif@stat.fsu.edu) and George Marsaglia (geo@stat.fsu.edu).
+
+  </ITEM>
+  <ITEM label='gen=grand(&apos;getgen&apos;)'>
+: Gets the current generator (&apos;mt&apos;, &apos;kiss&apos;, &apos;clcg2&apos;, &apos;clcg4&apos;, &apos;urand&apos; or &apos;fsultra&apos;)
+
+  </ITEM>
+  <ITEM label='grand(&apos;setgen&apos;,gen)'>
+: Sets the current generator to be gen (= &apos;mt&apos;, &apos;kiss&apos;, &apos;clcg2&apos;, &apos;clcg4&apos;, &apos;urand&apos;, &apos;fsultra&apos;)
+
+  </ITEM>
+  <ITEM label='S = grand(&apos;getsd&apos;)'>
+: Gets the current state (the current seeds) of the current generator ; S is given as a column vector (of integers) of dimension 624 for mt, 4 for kiss, 2 for clcg2 and fsultra, 4 for clcg4 (for this last one you get the current state of the current virtual generator) and 1 for urand.
+
+  </ITEM>
+  <ITEM label='grand(&apos;setsd&apos;,S), grand(&apos;setsd&apos;,s1[,s2,s3,s4])'>
+: Sets the state of the current generator (the new seeds) :
+
+  </ITEM>
+  <ITEM label='for mt'>
+S is a vector of integers of dim 624, but a simpler initialisation may be done with only one integer s1 (s1 must be in [1,2^32[) ;
+
+  </ITEM>
+  <ITEM label='for kiss'>
+4 integers s1,s2, s3,s4 in [0,2^32[ must be provided ;
+
+  </ITEM>
+  <ITEM label='for clcg2'>
+2 integers s1 in [1,2147483562] and s2 in [1,2147483398] must be given ;
+
+  </ITEM>
+  <ITEM label='for clcg4'>
+4 integers with s1 in [1,2147483646], s2 in [1,2147483542], s3 in [1,2147483422] and s4 in [1,2147483322] are required ; CAUTION : with clcg4 you set the seeds of the current virtual generator but you may lost the synchronisation between this one and the others virtuals generators (ie the sequence generated is not warranty to be non over-lapping with a sequence generated by another virtual generator)=&gt; use instead the &apos;setall&apos; option.
+
+  </ITEM>
+  <ITEM label='for urand'>
+one integer in [0,2^31[. 
+
+  </ITEM>
+  <ITEM label='for fsultra'>
+2 integers s1,s2 in [0,2^32[ must be provided ;
+
+  </ITEM>
+  <ITEM label='Sd=grand(&apos;phr2sd&apos;,&apos;string&apos;)'>
+: Uses a phrase (character string) to generate two seeds for the  RGN random number generator. Sd is an integer vector of size  2 <VERB>Sd=[Sd1,Sd2]</VERB> 
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='OPTIONS SPECIFIC TO CLCG4'>
+  <P>
+    The clcg4 generator may be used as the others generators but it offers the advantage to be split in several (101) virtual generators with non over-lapping sequences (when you use a classic generator you may change the initial state (seeds) in order to get another sequence but you are not warranty to get a complete  different one). Each virtual generator corresponds to a sequence of 2^72 values which is further split into V=2^31 segments (or blocks) of length W=2^41. For a given virtual generator you have the possibility to return at the beginning of the sequence or at the beginning of the current segment or to go directly at the next segment. You may also change the initial state (seed) of the generator 0 with the &apos;setall&apos; option which then change also the initial state of the other virtual generators so as to get synchronisation (ie in function of the new initial state of gen 0 the initial state of gen 1..100 are recomputed so as to get 101 non over-lapping sequences.   
+  </P>
+  <ITEM label='grand(&apos;setcgn&apos;,G)'>
+: Sets the current virtual generator for clcg4 (when clcg4 is set, this is the virtual (clcg4) generator number G which is used);  the virtual clcg4 generators are numbered from 0,1,..,100 (and so G must be an integer in  [0,100]) ; by default the current virtual generator is 0.
+
+  </ITEM>
+  <ITEM label='G=grand(&apos;getcgn&apos;)'>
+: Returns in G the number of the current virtual clcg4 generator.
+
+  </ITEM>
+  <ITEM label='grand(&apos;initgn&apos;,I)'>
+: Reinitializes the state of the current virtual generator 
+
+  </ITEM>
+  <ITEM label='I = -1'>
+: sets the state to its initial seed 
+
+  </ITEM>
+  <ITEM label='I = 0'>
+: sets the state to its last (previous) seed (i.e. to the beginning  of the current segment) 
+
+  </ITEM>
+  <ITEM label='I = 1'>
+: sets the state to a new seed W values from its last seed (i.e. to the beginning of the next segment) 
+
+  </ITEM>
+  <ITEM label='grand(&apos;setall&apos;,s1, s2, s3, s4)'>
+: Sets the initial state of generator 0 to s1,s2,s3,s4. The initial seeds of the other generators are set accordingly to have synchronisation. For constraints on s1, s2, s3, s4  see &apos;setsd&apos; option. 
+
+  </ITEM>
+  <ITEM label='grand(&apos;advnst&apos;,K)'>
+: Advances the state of the current generator by 2^K values and  resets the initial seed to that value.  
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='TEST EXAMPLE FOR CLCG4'>
+  <P>
+    An example of  the  need of the splitting capabilities of clcg4 is as  follows.  Two statistical techniques are being compared on  data of  different sizes. The first  technique uses   bootstrapping  and is   thought to   be  as accurate using less data   than the second method   which  employs only brute force.  For the first method, a data set of size uniformly distributed between 25 and 50 will be generated.  Then the data set  of the specified size will be generated and alalyzed.  The second method will  choose a data set size between 100 and 200, generate the data  and alalyze it.  This process will be repeated 1000 times.  For  variance reduction, we  want the  random numbers  used in the two methods to be the  same for each of  the 1000 comparisons.  But method two will  use more random  numbers than   method one and  without this package, synchronization might be difficult.  With clcg4, it is a snap.  Use generator 0 to obtain  the sample size for  method one and generator 1  to obtain the  data.  Then reset the state to the beginning  of the current  block and do the same  for the second method.  This assures that the initial data  for method two is that used by  method  one.  When both  have concluded,  advance the block for both generators. 
+  </P>
+  </ITEMIZE>
+  <ITEMIZE label='REFERENCES'>
+  <ITEM label='randlib'>
+The codes to generate sequences following other laws than def, unf, lgi,  uin and geom are from &quot;Library of Fortran Routines for Random Number  Generation&quot;, by Barry W. Brown and James Lovato, Department of Biomathematics, The University of Texas, Houston.  References used by randlib :
+
+  </ITEM>
+  <ITEM label='[1]'>
+R. C. H. Cheng &quot;Generating Beta Variables with Nonintegral Shape Parameters&quot;  Communications of the ACM, 21:317-322 (1978) (Algorithms BB and BC)
+
+  </ITEM>
+  <ITEM label='[2]'>
+algorithm BTPE from:  Kachitvichyanukul, V. and Schmeiser, B. W. &quot;Binomial Random Variate Generation&quot;. Communications of the ACM, 31, 2 (February, 1988) 216. 
+
+  </ITEM>
+  <ITEM label='[3]'>
+Ahrens, J.H. and Dieter, U. &quot;Computer Methods for Sampling From the Exponential and Normal Distributions&quot;. Comm. ACM, 15,10 (Oct. 1972), 873 - 882. 
+
+  </ITEM>
+  <ITEM label='[4]'>
+Ahrens, J.H. and Dieter, U. &quot;Generating Gamma Variates by a Modified Rejection Technique&quot;.  Comm. ACM, 25,1 (Jan. 1982), 47 - 54. Algorithm GD
+
+  </ITEM>
+  <ITEM label='[5]'>
+Ahrens, J.H. and Dieter, U. &quot;Computer Methods for Sampling from Gamma, Beta, Poisson and  Binomial Distributions&quot;. Computing, 12 (1974), 223-246/ Adapted algorithm GS.
+
+  </ITEM>
+  <ITEM label='[6]'>
+Devroye, Luc. &quot;Non-Uniform Random Variate Generation&quot;.  Springer-Verlag, New York, 1986.
+
+  </ITEM>
+  <ITEM label='[7]'>
+Ahrens, J.H. and Dieter, U. &quot;Extensions of Forsythe&apos;s Method for Random Sampling from the Normal Distribution&quot;. Math. Comput., 27,124 (Oct. 1973), 927 - 937. 
+
+  </ITEM>
+  <ITEM label='[8]'>
+Ahrens, J.H. and Dieter, U. &quot;Computer Generation of Poisson Deviates From Modified Normal Distributions&quot;.  ACM Trans. Math. Software, 8, 2 (June 1982),163-179 
+
+  </ITEM>
+  <ITEM label='mt'>
+The code is the mt19937int.c by M. Matsumoto and  T. Nishimura, &quot;Mersenne Twister: A 623-dimensionally equidistributed  uniform pseudorandom number generator&quot;, ACM Trans. on Modeling and  Computer Simulation Vol. 8, No. 1, January, pp.3-30 1998.
+
+  </ITEM>
+  <ITEM label='kiss'>
+The code was given by G. Marsaglia at the end of a thread concerning RNG in C in several newsgroups (whom sci.math.num-analysis) &quot;My offer of  RNG&apos;s for C was an invitation to dance...&quot; only kiss have been included in Scilab (kiss is made of a combinaison of severals others which are not visible at the scilab level).
+
+  </ITEM>
+  <ITEM label='clcg2'>
+The method is from P. L&apos;Ecuyer but the C code is provided at the Luc  Devroye home page (http://cgm.cs.mcgill.ca/~luc/rng.html). This one have been slighty modified to recover the generator uses previously  by grand (but clcg2 don&apos;t provide the virtual generators stuff)
+
+  </ITEM>
+  <ITEM label='clcg4'>
+The code is from P. L&apos;Ecuyer and Terry H.Andres and provided at the P. L&apos;Ecuyer home page ( http://www.iro.umontreal.ca/~lecuyer/papers.html) A paper is also provided and this new package is the logical successor of an old &apos;s one from : P.  L&apos;Ecuyer and S. Cote.   Implementing a Random   Number Package with Splitting Facilities.  ACM Transactions on Mathematical  Software 17:1,pp 98-111.
+
+  </ITEM>
+  <ITEM label='fsultra'>
+code from Arif Zaman (arif@stat.fsu.edu) and George Marsaglia (geo@stat.fsu.edu)
+
+  </ITEM>
+  <ITEM label='scilab packaging'>
+By Jean-Philippe Chancelier and Bruno Pincon  
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>rotate  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="rotate"> rotation of a set of points    </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xy1=rotate(xy,[theta,orig])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xy  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice of size (2,.).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>xy1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice of size (2,.).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>theta  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real, angle en radian; default value is 0.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>orig  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : center of the rotation; default value is [0;0].
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>rotate</VERB> performs a rotation with angle <VERB>theta</VERB>:
+  </P>
+  <P>
+    <VERB>xy1(:,i) = M(theta) *xy (:,i) + orig</VERB>
+  </P>
+  <P>
+    where <VERB>M</VERB> stands for the corresponding rotation matrix.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+xsetech([0,0,1,1],[-1,-1,1,1])
+xy=[(0:0.1:10);sin(0:0.1:10)]/10;
+for i=2*%pi*(0:10)/10,
+  [xy1]=rotate(xy,i);
+  xpoly(xy1(1,:),xy1(2,:),"lines")
+end
+ ]]></EXAMPLE>
+</MAN>

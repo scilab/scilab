@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>savewave  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="savewave"> save data into a sound &lt;&lt;wav&gt;&gt; file.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>savewave(&apos;file-name&apos;,x [, rate ]);  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rate  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a scalar. 22050 is the default value.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    save x into a  wav sound file. you can transform other sound files
+    into wav file with the <VERB>sox</VERB> program.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// At first we create 0.5 seconds of sound parameters.
+t=soundsec(0.5);
+// Then we generate the sound.
+s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
+[nr,nc]=size(t);
+s(nc/2:nc)=sin(330*t(nc/2:nc));
+savewave(TMPDIR+'/foo.wav',s);
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>loadwave</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>analyze</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mapsound</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

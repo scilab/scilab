@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>GENERAL_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="GENERAL_f"> Scicos general zero crossing detector  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Depending on the sign (just before the crossing) of the inputs and
+    the input numbers of the inputs that have crossed zero, an event is
+    programmed (or not) with a given delay, for each output. The number
+    of combinations grows so fast that this becomes unusable for blocks
+    having more than 2 or 3 inputs. For the moment this block is not
+    documented.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Size of regular input'>
+: integer.
+
+  </ITEM>
+  <ITEM label='Number of output events'>
+: integer.
+
+  </ITEM>
+  <ITEM label='the routing matrix'>
+: matrix. number of rows is the number of output events. The columns correspond to each possible combination of signs and zero crossings of the inputs. The entries of the matrix give the delay for generating the output event (&lt;0 no event is generated).
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>NEGTOPOS_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>POSTONEG_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ZCROSS_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

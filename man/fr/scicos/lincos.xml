@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lincos  </TITLE>
+  <TYPE>Scicos function  </TYPE>
+  <DATE>May 2000  </DATE>
+  <SHORT_DESCRIPTION name="lincos"> linearizes a system described by a scicos diagram  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>sys= lincos(scs_m [,x0,u0 [,param] ])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>scs_m  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a Scicos data structure
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector. Continuous state around which linearization to be done (default 0)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>u0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector. Input around which linearization to be done (default 0)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>state  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : state of scicos diagram
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>param  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : list with two elements (default <VERB>list(1.d-6,0)</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>param(1)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scalar. Perturbation level for linearization; the following variation is used   <VERB>del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>param(2)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scalar. Time t
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>sys  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : state-space linear model
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Constructs by linearization a linear state-space model from a general
+    dynamical system described by a scicos diagram.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_main</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>steadycos</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>R. Nikoukhah  </AUTHOR>
+</MAN>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>SELECT_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="SELECT_f"> Scicos selector block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block routes one of the regular inputs to the unique regular
+    output. the choice of which input is to be routed is done, initially
+    by the &quot;initial connected input&quot; parameter. Then, every time the block
+    is activated through its i-th input activation  port, the i-th regular
+    input value port is put to the regular output.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='number of inputs'>
+: a scalar. Number of regular and event inputs.
+
+  </ITEM>
+  <ITEM label='initial connected input'>
+: an integer. It must be between 1 and the number of inputs.
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

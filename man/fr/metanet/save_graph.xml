@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>save_graph  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1995  </DATE>
+  <SHORT_DESCRIPTION name="save_graph"> sauve un graphe  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>save_graph(g,chemin)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graphe (liste)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>chemin  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères, nom de fichier
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>save_graph</VERB> sauve le graphe <VERB>g</VERB> dans un fichier.
+    <VERB>chemin</VERB> est le nom du fichier où le graphe est sauvé.
+    <VERB>chemin</VERB> peut être le nom du fichier ou le nom d&apos;un répertoire; si l&apos;extension
+    <VERB>&quot;graph&quot;</VERB> est omise dans <VERB>name</VERB>, elle est ajoutée.
+    Si <VERB>chemin</VERB> est le nom d&apos;un répertoire, le nom du graphe est
+    utilisé comme nom de fichier.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+g=load_graph(SCI+'/demos/metanet/mesh100');
+show_graph(g);
+unix('rm mymesh100.graph')
+save_graph(g,'mymesh100.graph');
+g=load_graph('mymesh100');
+show_graph(g,'new');
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>load_graph</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>edit_curv  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="edit_curv"> interactive graphic curve editor  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x,y,ok,gc] = edit_curv(y)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[x,y,ok,gc] = edit_curv(x,y)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[x,y,ok,gc] = edit_curv(x,y,job)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[x,y,ok,gc] = edit_curv(x,y,job,tit)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[x,y,ok,gc] = edit_curv(x,y,job,tit,gc)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of x coordinates
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of y coordinates 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>job  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string formed by one to three of the characters &apos;a&apos;,&apos;x&apos;,&apos;y&apos;
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>&apos;a&apos; : to add points to the edited curve  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&apos;x&apos; : to modify x coordinates of the edited curve points  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>&apos;y&apos; : to modify y coordinates of the edited curve points  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>tit  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a vector of three character strings which give the curve legend
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>gc  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a list of graphic window parameters: <VERB>gc=list(rect,nax)</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>rect : bounds of the graphics (see plot2d for details)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>nax  : graduation parameters (see plot2d for details)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>ok  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : indicator if ok==%t user as returned with &apos;ok&apos; menu else user as returned with &apos;abort&apos; menu  : list (graphical objects created under <VERB>edit_curv</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>edit_curv</VERB> is an interactive graphic curve editor. To add a new point
+    simply click at the desired location, the added point will be
+    connected to the nearest end-point. to move a point click on it, drag
+    the mouse to the new position and click to set the new position
+  </P>
+  </DESCRIPTION>
+  <AUTHOR>Serge Steer ; ; ; ; ;   </AUTHOR>
+</MAN>

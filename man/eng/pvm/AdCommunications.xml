@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>Advanced  </TITLE>
+  <TYPE>Scilab description  </TYPE>
+  <DATE>January 1998  </DATE>
+  <SHORT_DESCRIPTION name="AdCommunications"> advanced communication toolbox for parallel programming  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This the beta version of the Advanced Communications Toolbox (ACT).
+  </P>
+  <P>
+    This toolbox is based on existing libraries, such as 
+  </P>
+  <P>
+    PVM - Parallel Vitual Machine
+  </P>
+  <P>
+    PBLAS - Message Passing Library dedicated to Matrix
+  </P>
+  <P>
+    ScaLapack - Parallel linear algebra Library
+  </P>
+  <P>
+    ACT manage remote executions of softwares and allow efficient
+    exchanges of messages between those softwares. It offers the
+    possibility to exploit numerous machines on a network, as a virtual
+    computer, by creating a distributed group of independent softwares.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>Example</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

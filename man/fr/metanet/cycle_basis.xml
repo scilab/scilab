@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>cycle_basis  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="cycle_basis"> base des cycles d&apos;un graphe simple non-orienté  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>spc = cycle_basis(g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graphe (liste)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>spc  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrice creuse
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Tout d&apos;abord un arbre couvrant est trouvé avec <VERB>min_weight_tree</VERB> et est 
+    ensuite utilisé pour trouver tous les cycles fondamentaux par rapport à 
+    cet arbre. Ils sont renvoyés sous forme d&apos;un 
+    ensemble de cycles, chaque cycle étant représenté par un ensemble d&apos;arêtes.
+    Ces cycles sont renvoyés dans une matrice creuse<VERB>spc</VERB> : chaque ligne 
+    de cette matrice correspond à un cycle.
+  </P>
+  <P>
+    Le graphe <VERB>g</VERB> est supposé simple, non-orienté et connecté
+    (<VERB>cycle_basis</VERB> ne vérifie pas que le graphe est simple, utiliser 
+    <VERB>graph_simp</VERB>m avant l&apos;appel si nécessaire).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
+gt=make_graph('foo',1,17,ta,he);
+gt('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+gt('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+gt('edge_color')=modulo([1:(edge_number(gt))],15)+1;
+gt('node_diam')=[1:(gt('node_number'))]+20;
+show_graph(gt);
+g=graph_simp(gt);
+g('edge_color')=modulo([1:(edge_number(g))],15)+1;
+g('node_diam')=gt('node_diam');
+g('default_edge_hi_width')=12;
+show_graph(g);
+spc=cycle_basis(g);
+for kk=1:(size(spc,1)),
+  aaa=spc(kk,:);aaa=full(aaa);aaa(aaa==0)=[];
+  show_arcs(aaa);
+end;
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>min_weight_tree</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>graph_simp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

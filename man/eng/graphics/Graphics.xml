@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>graphics  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="Graphics"> graphics library overview  </SHORT_DESCRIPTION>
+  <ITEMIZE label='2D PLOTTING'>
+  <ITEM label='plot2d'>
+: plot a curve
+
+  </ITEM>
+  <ITEM label='plot2d2'>
+: plot a curve as step function
+
+  </ITEM>
+  <ITEM label='plot2d3'>
+: plot a curve with vertical bars
+
+  </ITEM>
+  <ITEM label='plot2d4'>
+: plot a curve with arrows
+
+  </ITEM>
+  <ITEM label='fplot2d'>
+: plot a curve defined by a function
+
+  </ITEM>
+  <ITEM label='champ'>
+: 2D vector field 
+
+  </ITEM>
+  <ITEM label='champ1'>
+: 2D vector field with colored arrows
+
+  </ITEM>
+  <ITEM label='fchamp'>
+: direction field of a 2D first order ODE
+
+  </ITEM>
+  <ITEM label='contour2d'>
+: level curves of a surface on a 2D plot
+
+  </ITEM>
+  <ITEM label='fcontour2d'>
+: level curves of a surface defined by a function on a 2D plot
+
+  </ITEM>
+  <ITEM label='grayplot'>
+: 2D plot of a surface using colors
+
+  </ITEM>
+  <ITEM label='fgrayplot'>
+: 2D plot of a surface defined by a function using colors
+
+  </ITEM>
+  <ITEM label='Sgrayplot'>
+: smooth 2D plot of a surface using colors
+
+  </ITEM>
+  <ITEM label='Sfgrayplot'>
+: smooth 2D plot of a surface defined by a function using colors
+
+  </ITEM>
+  <ITEM label='xgrid'>
+: add a grid on a 2D plot
+
+  </ITEM>
+  <ITEM label='errbar'>
+: add vertical error bars on a 2D plot
+
+  </ITEM>
+  <ITEM label='histplot'>
+: plot a histogram
+
+  </ITEM>
+  <ITEM label='Matplot'>
+: 2D plot of a matrix using colors 
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='3D PLOTTING'>
+  <ITEM label='plot3d'>
+: plot a surface
+
+  </ITEM>
+  <ITEM label='plot3d1'>
+: plot a surface with gray or color level
+
+  </ITEM>
+  <ITEM label='fplot3d'>
+: plot a surface defined by a function
+
+  </ITEM>
+  <ITEM label='fplot3d1'>
+: plot a surface defined by a function with gray or color level
+
+  </ITEM>
+  <ITEM label='param3d'>
+: plot one curve
+
+  </ITEM>
+  <ITEM label='param3d1'>
+: plots curves
+
+  </ITEM>
+  <ITEM label='contour'>
+: level curves on a 3D surface
+
+  </ITEM>
+  <ITEM label='fcontour'>
+: level curves on a 3D surface defined by a function
+
+  </ITEM>
+  <ITEM label='hist3d'>
+: 3D representation of a histogram
+
+  </ITEM>
+  <ITEM label='genfac3d'>
+: compute facets of a 3D surface
+
+  </ITEM>
+  <ITEM label='eval3dp'>
+: compute facets of a 3D surface
+
+  </ITEM>
+  <ITEM label='geom3d'>
+: projection from 3D on 2D after a 3D plot
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='LINE AND POLYGON PLOTTING'>
+  <ITEM label='xpoly'>
+: draw a polyline or a polygon
+
+  </ITEM>
+  <ITEM label='xpolys'>
+: draw a set of polylines or polygons
+
+  </ITEM>
+  <ITEM label='xrpoly'>
+: draw a regular polygon
+
+  </ITEM>
+  <ITEM label='xsegs'>
+: draw unconnected segments
+
+  </ITEM>
+  <ITEM label='xfpoly'>
+: fill a polygon
+
+  </ITEM>
+  <ITEM label='xfpolys'>
+: fill a set of polygons
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='RECTANGLE PLOTTING'>
+  <ITEM label='xrect'>
+: draw a rectangle
+
+  </ITEM>
+  <ITEM label='xfrect'>
+: fill a rectangle
+
+  </ITEM>
+  <ITEM label='xrects'>
+: draw or fill a set of rectangles
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='ARC PLOTTING'>
+  <ITEM label='xarc'>
+: draw a part of an ellipse
+
+  </ITEM>
+  <ITEM label='xarcs'>
+: draw parts of a set of ellipses
+
+  </ITEM>
+  <ITEM label='xfarc'>
+: fill a part of an ellipse
+
+  </ITEM>
+  <ITEM label='xfarcs'>
+: fill parts of a set of ellipses
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='ARROW PLOTTING'>
+  <ITEM label='xarrows'>
+: draw a set of arrows
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='STRINGS'>
+  <ITEM label='xstring'>
+: draw strings
+
+  </ITEM>
+  <ITEM label='xstringl'>
+: compute a box which surrounds strings
+
+  </ITEM>
+  <ITEM label='xstringb'>
+: draw strings into a box
+
+  </ITEM>
+  <ITEM label='xtitle'>
+: add titles on a graphics window
+
+  </ITEM>
+  <ITEM label='titlepage'>
+: add a title in the middle of a graphics window
+
+  </ITEM>
+  <ITEM label='xinfo'>
+: draw an info string in the message subwindow
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='FRAMES AND AXES'>
+  <ITEM label='xaxis'>
+: draw an axis 
+
+  </ITEM>
+  <ITEM label='graduate'>
+: pretty axis graduations
+
+  </ITEM>
+  <ITEM label='plotframe'>
+: plot a frame with scaling and grids
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='COORDINATES TRANSFORMATIONS'>
+  <ITEM label='isoview'>
+: set scales for isometric plot (do not change the size of the window)
+
+  </ITEM>
+  <ITEM label='square'>
+: set scales for isometric plot (change the size of the window)
+
+  </ITEM>
+  <ITEM label='scaling'>
+: affine transformation of a set of points
+
+  </ITEM>
+  <ITEM label='rotate'>
+: rotation of a set of points  
+
+  </ITEM>
+  <ITEM label='xsetech'>
+: set the sub-window of a graphics window for plotting
+
+  </ITEM>
+  <ITEM label='subplot'>
+: divide a graphics window into a matrix of sub-windows
+
+  </ITEM>
+  <ITEM label='xgetech'>
+: get the current graphics scale
+
+  </ITEM>
+  <ITEM label='xchange'>
+: transform real to pixel coordinates
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='COLORS'>
+  <ITEM label='colormap'>
+: using colormaps
+
+  </ITEM>
+  <ITEM label='getcolor'>
+: dialog to select colors in the current colormap
+
+  </ITEM>
+  <ITEM label='addcolor'>
+: add new colors to the current colormap
+
+  </ITEM>
+  <ITEM label='graycolormap'>
+: linear gray colormap
+
+  </ITEM>
+  <ITEM label='hotcolormap'>
+: red to yellow colormap
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='GRAPHICS CONTEXT'>
+  <ITEM label='xset'>
+: set values of the graphics context
+
+  </ITEM>
+  <ITEM label='xget'>
+: get current values of the graphics context
+
+  </ITEM>
+  <ITEM label='xlfont'>
+: load a font in the graphics context or query loaded font
+
+  </ITEM>
+  <ITEM label='getsymbol'>
+: dialog to select a symbol and its size
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='SAVE AND LOAD'>
+  <ITEM label='xsave'>
+: save graphics into a file
+
+  </ITEM>
+  <ITEM label='xload'>
+: load a saved graphics
+
+  </ITEM>
+  <ITEM label='xbasimp'>
+: send graphics to a Postscript printer or in a file
+
+  </ITEM>
+  <ITEM label='xs2fig'>
+: send graphics to a file in Xfig syntax
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='GRAPHICS PRIMITIVES'>
+  <ITEM label='xbasc'>
+: clear a graphics window and erase the associated recorded graphics
+
+  </ITEM>
+  <ITEM label='xclear'>
+: clear a graphics window
+
+  </ITEM>
+  <ITEM label='driver'>
+: select a graphics driver
+
+  </ITEM>
+  <ITEM label='xinit'>
+: initialisation of a graphics driver
+
+  </ITEM>
+  <ITEM label='xend'>
+: close a graphics session
+
+  </ITEM>
+  <ITEM label='xbasr'>
+: redraw a graphics window
+
+  </ITEM>
+  <ITEM label='replot'>
+: redraw the current graphics window with new boundaries
+
+  </ITEM>
+  <ITEM label='xpause'>
+: suspend Scilab 
+
+  </ITEM>
+  <ITEM label='xselect'>
+: raise the current graphics window
+
+  </ITEM>
+  <ITEM label='xclea'>
+: erase a rectangle
+
+  </ITEM>
+  <ITEM label='xclip'>
+: set a clipping zone 
+
+  </ITEM>
+  <ITEM label='xdel'>
+: delete a graphics window
+
+  </ITEM>
+  <ITEM label='winsid'>
+: return the list of graphics windows
+
+  </ITEM>
+  <ITEM label='xname'>
+: change the name of the current graphics window
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='MOUSE POSITION'>
+  <ITEM label='xclick'>
+: wait for a mouse click
+
+  </ITEM>
+  <ITEM label='locate'>
+: mouse selection of a set of points
+
+  </ITEM>
+  <ITEM label='xgetmouse'>
+: get the current position of the mouse
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='INTERACTIVE EDITOR'>
+  <ITEM label='edit_curv'>
+: interactive graphics curve editor
+
+  </ITEM>
+  <ITEM label='gr_menu'>
+: simple interactives graphic editor
+
+  </ITEM>
+  <ITEM label='sd2sci'>
+: gr_menu structure to scilab instruction convertor
+
+  </ITEM>
+  </ITEMIZE>
+  <ITEMIZE label='GRAPHICS FUNCTIONS FOR AUTOMATIC CONTROL'>
+  <ITEM label='bode'>
+: Bode plot
+
+  </ITEM>
+  <ITEM label='gainplot'>
+: magnitude plot
+
+  </ITEM>
+  <ITEM label='nyquist'>
+: Nyquist plot
+
+  </ITEM>
+  <ITEM label='m_circle'>
+: M-circle plot
+
+  </ITEM>
+  <ITEM label='chart'>
+: Nichols chart
+
+  </ITEM>
+  <ITEM label='black'>
+: Black&apos;s diagram
+
+  </ITEM>
+  <ITEM label='evans'>
+: Evans root locus
+
+  </ITEM>
+  <ITEM label='sgrid'>
+: s-plane grid lines
+
+  </ITEM>
+  <ITEM label='plzr'>
+: pole-zero plot
+
+  </ITEM>
+  <ITEM label='zgrid'>
+: zgrid plot
+
+  </ITEM>
+  </ITEMIZE>
+</MAN>

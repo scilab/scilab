@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>TK_EvalFile  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE> 02 June 1998  </DATE>
+  <SHORT_DESCRIPTION name="TK_EvalFile"> Reads and evaluate a tcl/tk file  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>TK_EvalFile(filename)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>filename  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string character Contains the name of the file to read and evaluate.  
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    With this routine, one can read and evaluate the content of a file
+    containing tcl/tk scripts. This allows to create powerful tk
+    interfaces.
+  </P>
+  <P>
+    The filename might be relative or absolute.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='Advantages and drawbacks of this functionality'>
+  <P>
+    This routines allows to use directly tcl/tk scripts. This thus allows, for instance to use Interface Builders such as SpecTcl to design the interface. The interfaces built directly with tcl/tk scripts are much faster than th ones built with the Scilab Graphic Object library provided with tksci (see uicontrol for example). Indeed, those Objects are warpings around tk graphic widgets.  Nevertheless, this way of creating graphic user interface sould only be used when one aims at adressing directly specific tk/tcl features.  There are two main reasons for this.  First of all, there is no simple way to manipulate scilab objects from within a tcl/tk script. Thus, the interface designer has to write two sets of callbacks routines. One to describe the changes occuring in the interface when the user acts on the widgets.  The second set of call routines will perform the (pure) scilab reactions to the user actions.  
+  </P>
+  <P>
+    Here is an example: Suppose you design a scrollbar corresponding to a spline tension value. You want the spline to be displayed in a graphic windows and updated each time the user moves the scrollbar. At the same time, you want the value of this tension parameter to be displayed within the Interface. You will have to write a first tcl/tk (callback) function which will be automatically called by the tk scrollbar (&apos;-command&apos; option). This callback function will update the displayed value of the parameter in the interface and will then call the scilab routine (&apos;ScilabEval&apos; command) to update the graph.
+  </P>
+  </ITEMIZE>
+  <ITEMIZE label='Remarks on the tcl/tk script style'>
+  <P>
+    Because Scilab manages the tcl/tk events, it creates the root window  &quot;.&quot;, this window should not be destroyed nor directly used by your tcl/tk scripts. You should thus always create your own toplevel windows.  Moreover, since this module was written at a time when namespaces didn&apos;t exist, some variables defined by scilab tcl/tk scripts could bother your code. 
+  </P>
+  </ITEMIZE>
+  <EXAMPLE><![CDATA[
+TK_EvalFile(SCI+'/demos/tk/puzzle')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ScilabEval</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_EvalStr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_GetVar</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>TK_SetVar</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+</MAN>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>varn  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="varn"> symbolic variable of a polynomial  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[symb]=varn(p)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[pm]=varn(x,var)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>p  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : polynomial (or matrix polynomial)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>symb  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : character string
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : polynomial or polynomial matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>var  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : symbolic variable (character string)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>pm  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrix or polynomial matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>symb=varn(p)</VERB> returns in <VERB>symb</VERB> the symbolic variable of the polynomial <VERB>p</VERB>
+    (i.e. <VERB>varn(poly(0,&apos;x&apos;))</VERB> is <VERB>&apos;x&apos;</VERB>).
+  </P>
+  <P>
+    <VERB>varn(x,&apos;s&apos;)</VERB> returns a polynomial matrix with same coefficients
+    as <VERB>x</VERB> but with <VERB>&apos;s&apos;</VERB> as symbolic variable (change of variable name).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// 
+s=poly(0,'s');p=[s^2+1,s];
+varn(p)
+varn(p,'x')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>horner</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pvm_bufinfo  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>May 1998  </DATE>
+  <SHORT_DESCRIPTION name="pvm_bufinfo"> Returns information about a message buffer.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[bytes, msgtag, tid, info] = pvm_bufinfo(bufid)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>bufid  :   integer, specifying   a  particular  message buffer  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    identifier.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>bytes : integer, size of the message in bytes  (non very useful inside  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    scilab).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>msgtag : integer,  label of the  message.  Useful when the message was  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    received with a wildcard msgtag.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>tid : integer, task ID of the source of the message.  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>info : integer, status code returned by  the routine. Values less than  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    zero indicate an error. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>pvm_bufinfo</VERB> returns information   about  the requested   message
+    buffer.  Typically it is  used   to determine  facts  about the   last
+    received   message  such  as   its size  or   source.  pvm_bufinfo  is
+    especially useful when an application is  able to receive any incoming
+    message, and the action taken depends on the source tid and the msgtag
+    associated  with the message that comes  in first.   If pvm_bufinfo is
+    successful, info will be 0.  If some error  occurs then info will be &lt;
+    0.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pvm_recv</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

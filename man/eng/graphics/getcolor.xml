@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>getcolor  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="getcolor"> dialog to select colors in the current colormap  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>c=getcolor(title,[cini])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>c=getcolor()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>title  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string, dialog title.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>cini  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of initial selected color ids. Default value is current color
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>c  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of selected color ids, or [] if the user has clicked on the &quot;Cancel&quot; button.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>getcolor</VERB> opens a dialog choice box with as many palettes as
+    <VERB>cini</VERB> vector size. Palettes depend on the current colormap.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xset</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getmark</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getfont</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scicos_menus  </TITLE>
+  <TYPE>Scicos GUI  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="scicos_menus"> Scicos menus description  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Here is a list of operations available in Scicos:
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='Main menus'> 
+    : 
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label=''> 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Edit'> 
+    : Opens the diagram/palette edition menu.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Simulate'> 
+    : Opens the compilation/execution menu.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Diagram'> 
+    : Opens the diagram/file management menu.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Block'> 
+    : Opens the block management menu.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Misc'> 
+    : Opens miscellaneous menu items.
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='Diagram/palette edition menu.'> 
+    : This menu allows to edit diagram and palettes
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='Palettes'> 
+    : opens up a selection dialog where user may select a desired palette among all defined palettes.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Context'> 
+    : opens up a dialog where user may enter and modify Scilab instructions to be executed  when diagram is loaded (<VERB>Edit../Load</VERB> menu) or evaluated (<VERB>Simulate../Eval</VERB> menu) (of course instructions are also evaluated when dialog returns).These instructions may be used to define Scilab variables whose names are used in the block parameters definition expressions.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Move'> 
+    : To move a block in main Scicos window, select first the Move menu item, then click on the selected block, drag the mouse to the desired block position and click again to fix the position.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Copy :'> 
+    To copy a block in main Scicos window, select first the Copy menu item, then click left on the to-be-copied block (in Scicos window or in a palette) , and finally click where you want the copy to be placed in Scicos window. This menu item remains active until user choose an other one
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Copy Region:'> 
+    To copy a region in main Scicos window, select first the Copy menu item, then click right on a corner of the desired region (in Scicos window or in a palette) , drag to select the desired region, click to fix the selected region and finally click where you want the copy to be placed in Scicos window. If source diagram is a big region, selection may take a while.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Replace :'> 
+    To replace a block in the active editor Scicos window select first the Replace menu item, then select the replacement block (in Scicos window or in a palette) ,  and finally click on the to-be-replaced block. It is not possible to replace a connected block with another block with different port locations. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Align'> 
+    : To obtain nice diagrams, you can align ports of different blocks, vertically and horizontally.  select first the Align menu item, then on the first port and finally on the second port.  The block corresponding to the second port is moved. Connected blocks cannot be aligned.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='AddNew'> 
+    :To add a newly defined block to the current palette or diagram select first this menu item, a dialog box will pop up asking for the name of the GUI function associated with the block. If this function is not already loaded it is searched in the current directory. The user may then click at the desired position of the block in the palette or diagram .
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Link'> 
+    : This menu item is defined only in diagram edition mode.  To connect an output port to an input port, select first the Link menu item, then on the intermediate points, if necessary, and finally on the input port. Scicos tries to draw horizontal and vertical lines to form links.  To split a link, select first the Link menu item, then on the link where the split should be placed, and finally on an input port.  Only one link can go from and to a port.  Link color can be changed directly by clicking on the link.  This menu item remains active until user choose an other one
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Delete'> 
+    : To delete a block or a link, select first the Delete menu item, then click left on the selected object.  If you delete a block all links connected to it are deleted as well. This menu item remains active until user choose an other one. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Delete Region'> 
+    :To delete a region in main Scicos window select first the Delete Region menu item, then click right on a corner of the desired region (in Scicos window or in a palette), drag to select de desired region, click to fix the selected region. If source diagram is a big region, selection may take a while. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Flip'> 
+    : To reverse the positions of the (regular) inputs and outputs of a block placed on its sides, click on the Flip menu item first and then on the selected block. This does not affect the order, nor the position of the input and output event ports which are numbered from left to right. A connected block cannot be flipped.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Undo'> 
+    : Click on the Undo menu item to undo the last edit operation. 
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='Simulation menu'> 
+    : 
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='Setup'> 
+    : In the main Scicos window, clicking on the Setup menu item invokes a dialog box that allows you to change integration parameters: absolute and relative error tolerances for the ode solver, the time tolerance (the smallest time interval for which the ode solver is used to update continuous states), and the maximum time increase realized by a single call to the ode solver. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Compile'> 
+    : This menu item need never be used since compilation is performed automatically, if necessary, before the beginning of every simulation (<VERB>Run</VERB> menu item).    Normally, a new compilation is not needed if only system parameters and internal states are modified.  In some cases however modifications are not correctly updated and a manual compilation may be needed before a Restart or a Continue. Click on this menu item to compile the block diagram.  Please report if you encounter such a case.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Eval'> 
+    : blocks dialogs answers can be defined using  Scilab expressions. These expressions  are evaluated immediately and they are also stored as character strings. Click on the Eval menu item to have them re-evaluated according to the new values of underlying Scilab variables defined by context for example.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Run'> 
+    : To start the simulation.  If the system has already been simulated, a dialog box appears where you can choose to Continue, Restart or End the simulation. You may interrupt the simulation by clicking on the &quot;stop&quot; button, change any of the block parameters and continue or restart the simulation with the new values.
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='Diagram menu'> 
+    : 
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='Replot'> 
+    : Scicos window stores the complete history of the editing session. Click on the Replot menu item to erase the history and replot the diagram or palette. Replot diagram before printing or exporting Scicos diagrams.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='New'> 
+    : Clicking on the New menu item creates an empty diagram in the main Scicos window. If the previous content of the    window is not saved, it will be lost.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Purge'> 
+    : Suppress deleted blocks out of Scicos data structure. This menu changes block indexing and implies compilation of the diagram before compilation.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Rename'> 
+    : Click on this menu item to change the diagram or palette&apos;s name. A dialog window will pop up.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Make block'> 
+    : Click on this menu item to save the Super Block as a new Scicos block. A Scilab function is generated and saved in &lt;window_name&gt;.sci file in the desired directory. &lt;window_name&gt; is the name of the Super Block appearing on top of the window.  A dialog allows choosing the directory. This block may be added  to a palette using <VERB>Edit/AddNew</VERB> menu item.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Save'> 
+    : Saves the block diagram in the current binary file selected by a previous call to <VERB>SaveAs</VERB> or <VERB>Load</VERB> menu item. If no current binary file, diagram is saved in the current directory as <VERB>&lt;window_name&gt;.cos</VERB>.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Save As'> 
+    : Saves the block diagram in a binary file. A file selection dialog will pop up.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='FSave'> 
+    : Save the diagram in a formatted ascii file. A dialog box allows choosing the file name which must have a .cosf extension.     Formatted save is slower than regular save but has the advantage that the generated file is system independent (usefull for exchanging data on different computers.      
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Load :'> 
+    Loads an ascii or binary file containing a saved block diagram. A file selection dialog will pop up.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Save as Palette'> 
+    : select the Save as Palette menu item to save the block diagram as a palette in a binary file. A dialog box allows choosing  the file which must have a .cos extension. The palette takes the name of the file (without the extension).  <VERB>.scilab</VERB> user file is updated.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='FSave as Palette'> 
+    : select the FSave as Palette menu item to save the block diagram as a palette in an ascii formatted file. A dialog box allows choosing  the file which must have a .cosf extension. The palette takes the name of the file (without the extension).
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Load as Palette'> 
+    :select the Load menu item to load an ascii or binary file containing a saved block diagram as a palette. A dialog box allows user choosing the file.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Exit'> 
+    : Click on the Exit menu item to close current diagram.  If current diagram is not a Super block Exit menu item  leave Scicos and return to Scilab session. Save your diagram or palette before leaving.
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='Object menu'> 
+    : 
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='Set'> 
+    :To change the parameters of a regular block or link, to open a super block, select first this menu item, click next on the desired object.  A dialog or edition window appear that allows you to modify object
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Resize'> 
+    :  To change the size of a block , select first this menu item, click next on the desired block. A dialog appears that allows  you to change the width and/or height of the block shape.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Icon'> 
+    : To change the icon of a block drawn by <VERB>standard_draw</VERB>, select first this menu item, click next on the desired block. A dialog appears that allows you to enter Scilab instructions used to draw the icon. These instructions may refer to <VERB>orig</VERB> and <VERB>sz</VERB> variables and more generaly to the block data structure named <VERB>o</VERB> in this context (see <VERB>scicos_block</VERB>). If Icon description selects colors for drawing, it is necessary to get it through <VERB>scs_color</VERB> function to have <VERB>Color</VERB> menu item work properly. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Color'> 
+    : To change the background  of a block drawn by <VERB>standard_draw</VERB>, or color of a link select first this menu item, click next on the selected object. A color palette appears where user may select the block background color.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Label'> 
+    : To change or define the blocks label, select first this menu item, click next on the desired block. A dialog appears that allows you to enter  the desired label. Labels may be used within blocks computational functions as an identification (see <VERB>getlabel</VERB> function).
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='Miscellaneous menu'> 
+    : 
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='Window'> 
+    : Clicking on the  Window menu item invokes a dialog box that allows you to change  the editor window dimensions.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Shift'> 
+    :To shift the diagram to left, right, up or down, select this menu item, then click on the point you want  to appear in the middle of the graphics window. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Zoom in'> 
+    : When you select this menu item the diagram is zoomed in        by a factor of 10%
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Zoom out'> 
+    : When you select this menu item the diagram is zoomed out       by a factor of 10%
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Options'> 
+    : Select this menu item to set display options.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Help'> 
+    : To get help on an object or menu menu items, select first Help menu item and then on the selected object or menu item.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Calc:'> 
+    : When you click on this menu item you switch Scilab to  the pause mode (see the help on pause). In the Scilab main window and you may enter Scilab instructions to compute whatever you want. to go back to Scicos you need to enter &quot;&quot;return&quot;&quot; or &quot;[...]=return(...)&quot; Scilab instruction. &apos; If you use &quot;[...]=return(...)&quot; Scilab instruction take care not to modify Scicos variables such as &quot;scs_m&quot;,&quot;scs_gc&quot;, &quot;menus&quot;,&quot;datam&quot;,... &apos; If you have modified Scicos graphic window you may restore it  using the Scicos &quot;Replot&quot; menu. 
+  </DESCRIPTION_ITEM>
+ 
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

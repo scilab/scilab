@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scicos_model  </TITLE>
+  <TYPE>Scicos data structure  </TYPE>
+  <DATE>Janvier 1997  </DATE>
+  <SHORT_DESCRIPTION name="scicos_model"> Scicos block functionality  data structure  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>model=list(sim,in,out,evtin,evtout,state,dstate,..  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>      rpar,ipar,blocktype,firing,dep_ut,label,import,ID)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>sim  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : list(fun,typ) or fun. In the latest case typ is supposed to be 0.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>fun  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : character string, the name of the block simulation function (a  linked C or Fortran procedure  or a Scilab function).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>typ  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, calling sequence type of simulation function (see documentation for more precision).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>in  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of integers, input port sizes indexed from top to bottom of the block. If no input port exist <VERB>in==[]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>out  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of integers, output port sizes indexed from top to bottom of the block. If no output port exist <VERB>in==[]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>evtin  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of ones, the size of <VERB>evtin</VERB> gives the number of event input ports. If no event input port exists <VERB>evtin</VERB> must be equal to <VERB>[]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>evtout  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector of ones, the size of <VERB>evtout</VERB> gives the number of event output ports. If no event output port exists <VERB>evtout</VERB> must be equal to <VERB>[]</VERB>.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>state  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector, the initial continuous state of the block. Must be <VERB>[]</VERB> if no continuous state.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>dstate  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector, the initial discrete state of the block. Must be <VERB>[]</VERB> if no discrete state.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rpar  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector, the vector of floating point block parameters. Must be <VERB>[]</VERB> if no floating point parameters.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ipar  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector, the vector of integer  block parameters. Must be <VERB>[]</VERB> if no integer parameters.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>blocktype  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character with possible values:
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>:  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    &apos;c&apos;  block output depend continuously of the time.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>:  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    &apos;d&apos; block output changes only on input events.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>:  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    &apos;z&apos; zero crossing block
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>:  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    &apos;l&apos; logical block
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>firing  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a vector whose size is equal to the size of <VERB>evtout</VERB>&gt; It contains output initial event dates (Events generated before any input event arises). Negative values stands for no initial event on the corresponding port.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>dep_ut  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 1x 2 vector of boolean <VERB>[dep_u, dep_t]</VERB>, <VERB>dep_u</VERB> must be true if output depends continuously of the input, <VERB>dep_t</VERB> must be true if output depends continuously of the time.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>label  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string, used as a label
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>import  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Unused.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ID  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string, used as an identifier.  
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>model  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Scilab list, Scicos block model data structure.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Scicos block model data structure contains all information relative
+    to the simulation functionality of the block. Fields may be
+    fixed by block definition or set. 
+  </P>
+  <P>
+    If block is a super block, the fields
+    <VERB>state</VERB>,<VERB>dstate</VERB>,<VERB>ipar</VERB>,<VERB>blocktype</VERB>,<VERB>firing</VERB>,
+    <VERB>dep_ut</VERB>, are unused. 
+  </P>
+  <P>
+    The <VERB>rpar</VERB> field contains a
+    data structure similar to the <VERB>scicos_main</VERB> data structure.
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>scicos</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_model</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>scicos_main</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

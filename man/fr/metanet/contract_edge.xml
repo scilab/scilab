@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>contract_edge  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="contract_edge"> contracte des arêtes entre deux sommets  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>g1 = contract_edge(i,j,g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>i  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier, numéros des sommets origines ou extrémités des arêtes
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>j  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier, numéros des sommets origines ou extrémités des arêtes
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graphe (liste)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : nouveau graphe (liste)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>contract_edge</VERB> renvoie le graphe <VERB>g1</VERB>, les arêtes entre les sommets
+    numéros <VERB>i</VERB> et <VERB>j</VERB> étant détruits, les sommets étant réduits à un seul sommet avec le même nom que le sommet <VERB>i</VERB> et placé au milieu des deux sommets précédents.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
+g=make_graph('foo',1,17,ta,he);
+g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+show_graph(g);
+g1=contract_edge(10,13,g);
+show_graph(g1,'new');
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>add_edge</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>add_node</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>delete_arcs</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>delete_nodes</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>trans  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="trans"> low-pass to other filter transform  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>hzt=trans(pd,zd,gd,tr_type,frq)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>hz  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : input polynomial
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>tr_type  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : type of transformation
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>frq  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : frequency values
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>hzt  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : output polynomial
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    function for transforming standardized low-pass filter into
+    one of the following filters:
+    low-pass, high-pass, band-pass, stop-band.
+  </P>
+  </DESCRIPTION>
+  <AUTHOR>C. Bunks ;   </AUTHOR>
+</MAN>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>bessely  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September 1997  </DATE>
+  <SHORT_DESCRIPTION name="bessely">  Modified Y sub ALPHA Bessel functions of the second kind.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM> y = bessely(alpha,x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector with non negative entries
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>alpha  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector with non negative entries regularly spaced with increment equal to one <VERB>alpha=alpha0+(n1:n2)</VERB> 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>bessely(alpha,x)</VERB> computes K sub ALPHA modified Bessel functions of the
+    second kind, for real, non-negative order <VERB>alpha</VERB> 
+    and argument <VERB>x</VERB>.  <VERB>alpha</VERB>  and <VERB>x</VERB> may be vectors.
+    The output is <VERB>m</VERB>-by-<VERB>n</VERB> with <VERB>m = size(x,&apos;*&apos;)</VERB>,
+    <VERB>n = size(alpha,&apos;*&apos;)</VERB> whose <VERB>(i,j)</VERB> entry is
+    <VERB>bessely(alpha(j),x(i))</VERB>.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+bessely(0.5:3,1:4)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>besselj</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>besseli</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>besselk</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

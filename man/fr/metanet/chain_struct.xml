@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>chain_struct  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="chain_struct"> structure chaînée à partir d&apos;une liste d&apos;adjacence d&apos;un graphe  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[fe,che,fn,chn] = chain_struct(g)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[fe,che,fn,chn] = chain_struct(lp,la,ls)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graphe (liste)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>lp  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne de pointeurs de la description du graphe sous  forme de liste d&apos;adjacence (sa taille est le nombre de sommets du graphe +  1) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>la  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne, tableau d&apos;arcs de la description du graphe sous forme de  liste d&apos;adjacence (sa taille est le nombre d&apos;arêtes du graphe) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ls  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne, tableau de sommets de la description du graphe sous forme  de liste d&apos;adjacence (sa taille est le nombre d&apos;arêtes du graphe)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fe  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne des numéros des premières arêtes partant des sommets (sa taille est le nombre de sommets du graphe)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>che  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne des numéros des arêtes chaînées (sa taille est le nombre d&apos;arêtes du graphe)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne des numéros des premiers sommets atteints par les arêtes  de  <VERB>fe</VERB> (sa taille est le nombre de sommets du graphe)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>chn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur ligne des sommets atteints par les arêtes de <VERB>che</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>chain_struct</VERB> calcule les vecteurs lignes de la description par 
+    structure chaînée d&apos;arêtes du graphe <VERB>g</VERB>.
+    Il est aussi possible de donner directement <VERB>chain_struct</VERB>, la liste 
+    d&apos;adjacence du graphe. Ceci est plus efficace si la liste d&apos;adjacence est 
+    déjà disponible puisque <VERB>chain_struct</VERB> l&apos;utilise pour faire les 
+    calculs.
+  </P>
+  <P>
+    Les vecteurs <VERB>fe</VERB>, <VERB>che</VERB>, <VERB>fn</VERB> et <VERB>chn</VERB> décrivent la
+    structure chaînée de la manière suivante :
+  </P>
+  <P>
+    <VERB>fe(i))</VERB> est le numéro de la première arête partant du sommet i,
+  </P>
+  <P>
+    <VERB>che(fe(i))</VERB> est le numéro de la deuxième arête partant du sommet i, 
+    <VERB>che(che(fe(i)))</VERB> est le numéro de la troisième arête partant du 
+    sommet i et ainsi de suite jusqu&apos;à ce que la valeur soit égale à 0.
+  </P>
+  <P>
+    <VERB>fn(i)</VERB> est le numéro du premier sommet atteint à partir du sommet i
+  </P>
+  <P>
+    <VERB>ch(i)</VERB> est le numéro du sommet atteint par l&apos;arête <VERB>che(i)</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
+he=[2 3 5 4 6 6 7 4 3 2 8 1 7 4];
+g=make_graph('foo',1,8,ta,he);
+g('node_x')=[116 231 192 323 354 454 305 155];
+g('node_y')=[118 116 212 219 117 185 334 316];
+show_graph(g);
+[fe,che,fn,chn] = chain_struct(g)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>adj_lists</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>graph_2_mat</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

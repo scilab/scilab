@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>numdiff  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>August 1993  </DATE>
+  <SHORT_DESCRIPTION name="numdiff"> numerical gradient estimation  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>g=numdiff(fun,x [,dx])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>fun  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : an external, Scilab function or list. See below for calling sequence, see also external for details about external functions.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector, the argument of the function  <VERB>fun</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>dx  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector, the finite difference step. Default value is  <VERB>dx=sqrt(%eps)*(1+1d-3*abs(x))</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector, the estimated gradient
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    given a function <VERB>fun(x)</VERB> from R^n to R^p
+    computes the matrix <VERB>g</VERB> such as 
+  </P>
+  <VERBATIM><![CDATA[
+    [   d f    ]
+    [      i   ]
+g = [   ----   ]
+ ij [   d x    ]
+    [      j   ]
+   ]]></VERBATIM>
+  <P>
+     using finite difference methods.
+  </P>
+  <P>
+    The function fun calling sequence must be <VERB>y=fun(x,p1,p2,..pn)</VERB>.If
+    parameters <VERB>p1,p2,..pn</VERB> exist then <VERB>numdiff </VERB> can be called as
+    follow g=numdiff(list(fun,p1,p2,..pn),x).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+function  f=myfun(x,y,z,t)
+f=(x+y)^t+z
+endfunction
+
+y=3;z=4;t=2;
+g=numdiff(list(myfun,3,4,2),1)
+
+x=1;
+exact=t*(x+y)^(t-1)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>optim</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

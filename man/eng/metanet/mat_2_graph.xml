@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mat_2_graph  </TITLE>
+  <TYPE>Scilab function  </TYPE>
+  <DATE>September 1995  </DATE>
+  <SHORT_DESCRIPTION name="mat_2_graph"> graph from node-arc or node-node incidence matrix  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>g = mat_2_graph(a,directed,[mat])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>a  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : sparse node-arc or node-node incidence matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>directed  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer, 0 (undirected graph) or 1 (directed graph)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>mat  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : optional string, &apos;node-arc&apos; or &apos;node-node&apos; matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph list
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>mat_2_graph</VERB> computes the graph <VERB>g</VERB> corresponding to the node-arc 
+    or the node-node incidence matrix <VERB>a</VERB>.
+    Note that a checking is made to insure that <VERB>a</VERB> is a sparse node-arc 
+    or node-node incidence matrix of a directed (<VERB>directed = 1</VERB>) or undirected 
+    (<VERB>directed = 0</VERB>) graph.
+    If the optional argument <VERB>mat</VERB> is omitted or is the string 
+    <VERB>&apos;node-arc&apos;</VERB>, a must be a node-arc matrix. If <VERB>mat</VERB> is the string
+    <VERB>&apos;node-node&apos;</VERB>, a must be a node-node matrix.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+g=load_graph(SCI+'/demos/metanet/colored');
+show_graph(g);
+a=graph_2_mat(g);
+g1=mat_2_graph(a,1);
+g1('node_x')=g('node_x'); g1('node_y')=g('node_y');
+show_graph(g1,'new');
+a=graph_2_mat(g,'node-node');
+g1=mat_2_graph(a,1,'node-node');
+g1('node_x')=g('node_x'); g1('node_y')=g('node_y');
+show_graph(g1,'new');
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>adj_lists</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>chain_struct</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>graph_2_mat</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

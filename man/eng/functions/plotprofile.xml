@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>plotprofile  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>july 2000  </DATE>
+  <SHORT_DESCRIPTION name="plotprofile"> extracts and displays execution profiles of a Scilab function   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>plotprofile(fun)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>fun  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a Scilab function 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    To use <VERB>plotprofile</VERB> the Scilab function must have been prepared for
+    profiling (see getf).
+  </P>
+  <P>
+    For such functions, When such a function is executed the systems
+    counts how many time each line is executed and how may cpu time is
+    spend for each line execution. These data are stored within the
+    function data structure.  The <VERB>plotprofile</VERB> in an interactive
+    function which displays this results in a graphic window. When a line
+    is clicked text of the function is displayed with the selected line
+    hilited.
+  </P>
+  <P>
+    NOTE: you have to click on the &quot;Exit&quot; item in the graphics windows to
+    exit from &quot;plotprofile&quot;.
+  </P>
+  <P>
+    Function text is rebuild with <VERB>fun2string</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+//define function and prepare it for profiling
+deff('x=foo(n)',['if n==0 then'
+                 '  x=[]'
+                 'else'
+                 '  x=0'
+                 '  for k=1:n'
+                 '    s=svd(rand(n+10,n+10))'
+                 '    x=x+s(1)'
+                 '  end'
+                 'end'],'p')
+//call the function
+foo(30)
+//get execution profiles
+plotprofile(foo) // click on Exit to exit
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>profile</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>showprofile</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fun2string</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

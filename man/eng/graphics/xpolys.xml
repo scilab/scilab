@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xpolys  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xpolys"> draw a set of polylines or polygons  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xpolys(xpols,ypols,[draw])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xpols,ypols  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrices of the same size (p,n) (points of the polylines).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>draw  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of size n.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xpolys</VERB> draws a set of polylinse using marks or dashed lines. 
+    The coordinates of each polyline
+    are stored in a column of <VERB>xpols</VERB> and <VERB>ypols</VERB>.
+  </P>
+  <P>
+    The style of polyline i is given by <VERB>draw(i)</VERB>:
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    If <VERB>draw(i)</VERB> is negative, the mark with id <VERB>-draw(i)</VERB> is used to draw polyline i (marks are drawn using the current pattern). Use <VERB>xset()</VERB> to see the meaning of the ids.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    If <VERB>draw(i)</VERB> is strictly positive, the line style (or color) with id  <VERB>draw(i)</VERB> is used to draw polyline i. Use <VERB>xset()</VERB> to see the meaning of the ids.
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+plot2d(0,0,-1,"012"," ",[0,0,1,1])
+rand("uniform")
+xset("color",3)
+xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
+xset("default")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xfpoly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xfpolys</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xpoly</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sci2map  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="sci2map"> Scilab to Maple variable conversion  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>txt=sci2map(a,Map-name)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>a  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Scilab object (matrix, polynomial, list, string)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Map-name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string (name of the Maple variable)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>txt  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vector of strings containing the corresponding Maple code
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Makes Maple code necessary to send 
+    the Scilab variable <VERB>a</VERB> to Maple : the name of the variable
+    in Maple is <VERB>Map-name</VERB>.
+    A Maple procedure <VERB>maple2scilab</VERB> can be found in <VERB>SCIDIR/maple</VERB>
+    directory.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+txt=[sci2map([1 2;3 4],'a');
+     sci2map(%s^2+3*%s+4,'p')]
+ ]]></EXAMPLE>
+</MAN>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>isoview  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="isoview"> set scales for isometric plot (do not change the size of the window)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>isoview(xmin,xmax,ymin,ymax)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xmin,xmax,ymin,ymax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : four real values
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function is obsolete, use preferably the <VERB>frameflag=4</VERB> plot2d
+    option which enable window resizing.
+  </P>
+  <P>
+    <VERB>isoview</VERB> is used to have isometric scales on the x and y axes. 
+    It does not change the size of the graphics window. The rectangle
+    <VERB>xmin, xmax, ymin, ymax</VERB> will be contained in the computed frame of 
+    the graphics window. <VERB>isoview</VERB> set the current graphics scales 
+    and can be used in conjunction with graphics routines which request
+    the current graphics scale (for instance <VERB>strf=&quot;x0z&quot;</VERB> in <VERB>plot2d</VERB>).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+t=[0:0.1:2*%pi]';
+plot2d(sin(t),cos(t))
+xbasc()
+isoview(-1,1,-1,1)
+plot2d(sin(t),cos(t),1,"001")
+xset("default")
+
+plot2d(sin(t),cos(t),frameflag=4)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>square</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xsetech</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Steer S.  </AUTHOR>
+</MAN>

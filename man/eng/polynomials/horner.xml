@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>horner  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="horner"> polynomial/rational evaluation  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>horner(P,x)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>P  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : polynomial or rational matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real number or polynomial or rational
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    evaluates the polynomial or rational 
+    matrix <VERB>P = P(s)</VERB> when the variable <VERB>s</VERB> of the 
+    polynomial is replaced by <VERB>x</VERB>:
+  </P>
+  <P>
+    <VERB>horner(P,x)</VERB>=<VERB>P(x)</VERB>
+  </P>
+  <P>
+    Example (Bilinear transform): Assume <VERB>P = P(s)</VERB> is 
+    a rational matrix  then the rational matrix 
+    <VERB>P((1+s)/(1-s))</VERB> is obtained by <VERB>horner(P,(1+s)/(1-s))</VERB>.
+  </P>
+  <P>
+    To evaluate a rational matrix at given frequencies use 
+    preferably the <VERB>freq</VERB> primitive.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+s=poly(0,'s');M=[s,1/s];
+horner(M,1)
+horner(M,%i)
+horner(M,1/s)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>freq</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>repfreq</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>xtitle  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="xtitle"> ajoute des titres et légendes sur une fenêtre graphique  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>xtitle(xtit,[xax,yax,encad])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>xtit,xax,yax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : matrices de chaînes de caractères.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>encad  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier. S&apos;il est égal à 1, une boîte est dessinée autour de chaque titre.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>xtitle</VERB>  ajoute des titres sur une fenêtre graphique 2D ou 3D.
+    <VERB>xtit</VERB> est le titre général,
+    <VERB>xax</VERB> est la légende sur l&apos;axe des x et <VERB>yax</VERB> est la légende sur l&apos;axe des y.
+    <VERB>xtitle</VERB> doit être appelée après un appel à une fonction graphique de haut niveau (<VERB>plot2d</VERB>, <VERB>plot3d</VERB>, ...). 
+    Si les arguments sont des matrices,
+    chaque ligne des matrices est dessinée sur une ligne différente.
+  </P>
+  <P>
+    Taper <VERB>xtitle()</VERB> pour voir une démonstration de la fonction.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>titlepage</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J.Ph.C.  </AUTHOR>
+</MAN>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>SAT_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="SAT_f"> Scicos Saturation block  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block realizes the non-linear function: saturation.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='DIALOGUE PARAMETERS'>
+  <ITEM label='Min'>
+: a scalar. Lower saturation bound
+
+  </ITEM>
+  <ITEM label='Max'>
+: a scalar. Upper saturation bound
+
+  </ITEM>
+  <ITEM label='Slope'>
+: a scalar. The slope of the line going through the origin  and describing the behaviour of the function around zero.
+
+  </ITEM>
+  </ITEMIZE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>LOOKUP_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

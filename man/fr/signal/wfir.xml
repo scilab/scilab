@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>wfir  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="wfir"> linear-phase FIR filters  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>ftype  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string : <VERB>&apos;lp&apos;,&apos;hp&apos;,&apos;bp&apos;,&apos;sb&apos;</VERB> (filter type)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>forder  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Filter order (pos integer)(odd for <VERB>ftype=&apos;hp&apos;</VERB> or <VERB>&apos;sb&apos;</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>cfreq  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 2-vector of cutoff frequencies (<VERB>0&lt;cfreq(1),cfreq(2)&lt;.5</VERB>)  only <VERB>cfreq(1)</VERB> is used when <VERB>ftype=&apos;lp&apos;</VERB> or <VERB>&apos;hp&apos;</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>wtype  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Window type (<VERB>&apos;re&apos;,&apos;tr&apos;,&apos;hm&apos;,&apos;hn&apos;,&apos;kr&apos;,&apos;ch&apos;</VERB>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fpar  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : 2-vector of window parameters. Kaiser window <VERB>fpar(1)&gt;0 fpar(2)=0</VERB>. Chebyshev window  <VERB>fpar(1)&gt;0, fpar(2)&lt;0</VERB> or <VERB>fpar(1)&lt;0, 0&lt;fpar(2)&lt;.5</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>wft  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : time domain filter coefficients
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>wfm  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : frequency domain filter response on the grid fr
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>fr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Frequency grid
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Function which makes linear-phase, FIR low-pass, band-pass,
+    high-pass, and stop-band filters
+    using the windowing technique.
+    Works interactively if called with no arguments.
+  </P>
+  </DESCRIPTION>
+  <AUTHOR>C. Bunks  </AUTHOR>
+</MAN>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>setbpt  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="setbpt"> setting breakpoints   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>setbpt(macro-name [,line-num])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>macro-name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>line-num  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : integer
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>setbpt</VERB> interactively inserts a breakpoint in the line number <VERB>line-num</VERB> 
+    (default value is 1) of the function  <VERB>macro-name</VERB> 
+  </P>
+  <P>
+    When reaching the breakpoint, Scilab evaluates the specified line 
+    , prints the number of the line and the name of the function. If the 
+    function is not compiled ( see <VERB>comp</VERB> ) the line is printed on the screen.
+    Then Scilab goes into a <VERB>pause</VERB> mode in which the user can check 
+    current values. The <VERB>pause</VERB> is exited with <VERB>resume</VERB> or <VERB>abort</VERB>.
+    Redefining the function does not clear the breakpoints, the user must explicitly
+    delete breakpoints using <VERB>delbpt</VERB>. The maximum number of functions with 
+    breakpoints enabled must be less than 20 and the maximum number of breakpoints
+    is set to 100.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>delbpt</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>dispbpt</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pause</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>resume</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

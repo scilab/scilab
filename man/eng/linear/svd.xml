@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>svd  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="svd ">  singular value decomposition  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>s=svd(X)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[U,S,V]=svd(X)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[U,S,V]=svd(X,0) (obsolete)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[U,S,V]=svd(X,&quot;e&quot;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[U,S,V,rk]=svd(X [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a real or complex matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>s  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real vector (singular values)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>S  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real diagonal matrix (singular values)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>U,V  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : orthogonal or unitary square matrices (singular vectors).
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>tol  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real number
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    produces a diagonal matrix <VERB>S</VERB> , of the same 
+    dimension as <VERB>X</VERB> and with nonnegative diagonal elements in 
+    decreasing order, and unitary matrices <VERB>U</VERB> and <VERB>V</VERB> so that 
+    <VERB>X = U*S*V&apos;</VERB>.
+  </P>
+  <P>
+    or 
+  </P>
+  <P>
+     produces the &quot;economy size&quot;
+    decomposition. If <VERB>X</VERB> is m-by-n with m &gt; n, then only the
+    first n columns of <VERB>U</VERB> are computed and <VERB>S</VERB> is n-by-n.
+  </P>
+  <P>
+    by itself, returns a vector <VERB>s</VERB> containing the singular values.
+  </P>
+  <P>
+    gives in addition <VERB>rk</VERB>, the numerical rank of <VERB>X</VERB> i.e. the number of 
+    singular values larger than <VERB>tol</VERB>.
+  </P>
+  <P>
+    The default value of <VERB>tol</VERB> is the same as in <VERB>rank</VERB>.
+  </P>
+  </DESCRIPTION>
+  <ITEMIZE label='REFERENCES'>
+  <P>
+    svd decompositions are based on  the Lapack routines DGESVD for  real matrices and  ZGESVD for the complex case. 
+  </P>
+  </ITEMIZE>
+  <EXAMPLE><![CDATA[
+X=rand(4,2)*rand(2,4)
+svd(X)
+sqrt(spec(X*X'))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>sva</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

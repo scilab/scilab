@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>CLINDUMMY_f  </TITLE>
+  <TYPE>Scicos Block  </TYPE>
+  <DATE>Janvier 1996  </DATE>
+  <SHORT_DESCRIPTION name="CLINDUMMY_f"> Scicos dummy continuous system with state  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    This block should be placed in any block diagram that contains a
+    zero-crossing block but no continuous system with state. The reason 
+    for that is that it is the ode solver that find zero crossing
+    surfaces.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ZCROSS_f</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
