@@ -175,6 +175,7 @@ endfunction
 function value=ReadSimpleElement(fd,NumberOfValues,Class)
 //Copyright INRIA  
 //Author Serge Steer  
+  pse=mtell(fd)
   [DataType,NumberOfBytes,Compressed]=ReadTag(fd) 
   
   select DataType
@@ -196,12 +197,22 @@ function value=ReadSimpleElement(fd,NumberOfValues,Class)
   case miUINT16
     if argn(2)==1 then NumberOfValues=NumberOfBytes/2,end
     value=mget(NumberOfValues,"u"+md_s,fd)
-   case miUINT32
+  case miUINT32
     if argn(2)==1 then NumberOfValues=NumberOfBytes/4,end
     value=mgeti(NumberOfValues,"u"+md_i,fd)
   case miINT32
     if argn(2)==1 then NumberOfValues=NumberOfBytes/4,end
     value=mgeti(NumberOfValues,md_i,fd)
+  case miUINT64
+    if argn(2)==1 then NumberOfValues=NumberOfBytes/8,end
+    value=mget(NumberOfValues,"u"+md_l,fd)
+  case miINT64
+    if argn(2)==1 then NumberOfValues=NumberOfBytes/8,end
+    value=mget(NumberOfValues,md_l,fd)
+  case miMatrix
+    pause
+  else
+    pause
   end
   padding()
 
@@ -295,7 +306,7 @@ function LoadMatConstants()
   Uint32Class=13
   
   //--set various reading format
-  md_i='i'+endian;md_d='d'+endian;md_s='s'+endian
+  md_i='i'+endian;md_d='d'+endian;md_s='s'+endian;md_l='l'+endian
 
 endfunction
 
