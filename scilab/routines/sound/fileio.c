@@ -105,7 +105,7 @@ int int_objprintf(char *fname)
     }
 
   for (k=2;k<=Rhs;k++) {
-    if (VarType(k) !=1) {OverLoad(k);return 0;}
+    if (VarType(k) !=1 && VarType(k) !=10) {OverLoad(k);return 0;}
   }
 
   GetRhsVar(1,"c",&m1,&n1,&l1);
@@ -151,7 +151,7 @@ int int_objfprintf(char *fname)
       return 0;
     }
   for (k=3;k<=Rhs;k++) {
-    if (VarType(k) !=1) {OverLoad(k);return 0;}
+    if (VarType(k) !=1 && VarType(k) !=10) {OverLoad(k);return 0;}
   }
   GetRhsVar(1,"i",&m1,&n1,&l1); /* file id */
   GetRhsVar(2,"c",&m2,&n2,&l2); /* format */
@@ -205,7 +205,7 @@ int int_objsprintf(char *fname)
       return 0;
     }
   for (k=2;k<=Rhs;k++) {
-    if (VarType(k) !=1) {OverLoad(k);return 0;}
+    if (VarType(k) !=1 && VarType(k) !=10) {OverLoad(k);return 0;}
   }
   GetRhsVar(1,"c",&m1,&n1,&l1);
   n=0; /* output line counter */
@@ -1624,7 +1624,7 @@ static int GetScalarInt(char *fname, int *previous_t, int *arg, int narg, int *i
 
 static int GetScalarDouble(char *fname, int *previous_t, int *arg, int narg, int *ic, int ir, double *dval)
 {
-  int mx,nx,lx,typ;
+  int mx,nx,lx;
 
   if (*previous_t != 1) {
     *arg = *arg+1;
