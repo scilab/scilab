@@ -463,7 +463,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL F2C FLIBS X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS GTK_CONFIG GNOME_CONFIG with_ocamlc with_ocamlopt with_ocamldep RM AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB GTKCFLAGS GTKLIBS GNOMECFLAGS TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE GUILIB GZVT XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMROOT PVMROOTR PVMINST PVMINCLUDE PVMHOSTERFILES PVMHOSTER TKBASE TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TKSCILIB TKSCIDIR TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS OCAMLTARGET WITH_OCAML DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION FC_USE_CDEC FC_SUBDIR BLPR_SCRIPTS SED_CYGDRIVE F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS GTKPLUGBUG XXTXEXT XX11 LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL F2C FLIBS X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS GTK_CONFIG GNOME_CONFIG PKG_CONFIG with_ocamlc with_ocamlopt with_ocamldep RM AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB GTKCFLAGS GTKLIBS GNOMECFLAGS TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE GUILIB GZVT XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMROOT PVMROOTR PVMINST PVMINCLUDE PVMHOSTERFILES PVMHOSTER TKBASE TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TKSCILIB TKSCIDIR TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS OCAMLTARGET WITH_OCAML DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION FC_USE_CDEC FC_SUBDIR BLPR_SCRIPTS SED_CYGDRIVE F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS GTKPLUGBUG XXTXEXT XX11 LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -25440,92 +25440,103 @@ fi
 #################
 
 if test "$with_gtk2" = yes; then
-  # Extract the first word of "gtk-config", so it can be a program name with args.
-set dummy gtk-config; ac_word=$2
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_GTK_CONFIG+set}" = set; then
+if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
-  if test -n "$GTK_CONFIG"; then
-  ac_cv_prog_GTK_CONFIG="$GTK_CONFIG" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
 for as_dir in $PATH
 do
   IFS=$as_save_IFS
   test -z "$as_dir" && as_dir=.
   for ac_exec_ext in '' $ac_executable_extensions; do
   if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_GTK_CONFIG="yes"
+    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
     echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
     break 2
   fi
 done
 done
 
-  test -z "$ac_cv_prog_GTK_CONFIG" && ac_cv_prog_GTK_CONFIG="no"
+  ;;
+esac
 fi
-fi
-GTK_CONFIG=$ac_cv_prog_GTK_CONFIG
-if test -n "$GTK_CONFIG"; then
-  echo "$as_me:$LINENO: result: $GTK_CONFIG" >&5
-echo "${ECHO_T}$GTK_CONFIG" >&6
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+
+if test -n "$PKG_CONFIG"; then
+  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
+echo "${ECHO_T}$PKG_CONFIG" >&6
 else
   echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6
 fi
 
-  if test "$GTK_CONFIG" = no; then
-    { echo "$as_me:$LINENO: WARNING: gtk-config not found: I will not use -with-gtk" >&5
-echo "$as_me: WARNING: gtk-config not found: I will not use -with-gtk" >&2;}
-    with_gtk2="no"
-  fi
-  # Extract the first word of "gnome-config", so it can be a program name with args.
-set dummy gnome-config; ac_word=$2
+  if test "x$PKG_CONFIG" = x; then
+    # @*%&$ Ximian programmers renamed this application
+    # Extract the first word of "pkgconfig", so it can be a program name with args.
+set dummy pkgconfig; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_GNOME_CONFIG+set}" = set; then
+if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
-  if test -n "$GNOME_CONFIG"; then
-  ac_cv_prog_GNOME_CONFIG="$GNOME_CONFIG" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in no
 do
   IFS=$as_save_IFS
   test -z "$as_dir" && as_dir=.
   for ac_exec_ext in '' $ac_executable_extensions; do
   if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_GNOME_CONFIG="yes"
+    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
     echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
     break 2
   fi
 done
 done
 
-  test -z "$ac_cv_prog_GNOME_CONFIG" && ac_cv_prog_GNOME_CONFIG="no"
+  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="yes"
+  ;;
+esac
 fi
-fi
-GNOME_CONFIG=$ac_cv_prog_GNOME_CONFIG
-if test -n "$GNOME_CONFIG"; then
-  echo "$as_me:$LINENO: result: $GNOME_CONFIG" >&5
-echo "${ECHO_T}$GNOME_CONFIG" >&6
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+
+if test -n "$PKG_CONFIG"; then
+  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
+echo "${ECHO_T}$PKG_CONFIG" >&6
 else
   echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6
 fi
 
-  if test "$GNOME_CONFIG" = no; then
-    { echo "$as_me:$LINENO: WARNING: gnome-config not found: I will not use -with-gtk" >&5
-echo "$as_me: WARNING: gnome-config not found: I will not use -with-gtk" >&2;}
-    with_gtk2="no"
+    if test "x$PKG_CONFIG" = x; then
+    	{ { echo "$as_me:$LINENO: error: Could not find the pkg-config (or pkgconfig) program." >&5
+echo "$as_me: error: Could not find the pkg-config (or pkgconfig) program." >&2;}
+   { (exit 1); exit 1; }; }
+	with_gtk2="no"
+    fi
   fi
+  #  AC_CHECK_PROG(GNOME_CONFIG,gnome-config,yes,no)
+  #if test "$GNOME_CONFIG" = no; then
+  #  AC_MSG_WARN([gnome-config not found: I will not use -with-gtk])
+  #  with_gtk2="no"
+  # fi
   if test "$with_gtk2" = yes; then
     echo "$as_me:$LINENO: checking if gtk is version 2.1 or later" >&5
 echo $ECHO_N "checking if gtk is version 2.1 or later... $ECHO_C" >&6
-    GTK_VER=`pkg-config --modversion gtk+-2.0`
+    GTK_VER=`$PKG_CONFIG --modversion gtk+-2.0`
     case $GTK_VER in
       2.2.* | 2.3.0 | 2.3.1| 2.3.2| 2.3.4 )
         GTKPLUGBUG=gtkmenu.o
@@ -25555,6 +25566,142 @@ _ACEOF
     # gtk 1 HTMLFLAGS=`gnome-config --cflags gnome`
     # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
     HTMLFLAGS='`pkg-config libgtkhtml-2.0 --cflags`'
+    # check for libgtkhtml-2.0
+    ac_save_LIBS="$LIBS"
+    LIBS=`pkg-config libgtkhtml-2.0 --cflags --libs`
+    GTKHTML=no
+    echo "$as_me:$LINENO: checking for html_document_open_stream in -lgtkhtml-2" >&5
+echo $ECHO_N "checking for html_document_open_stream in -lgtkhtml-2... $ECHO_C" >&6
+if test "${ac_cv_lib_gtkhtml_2_html_document_open_stream+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lgtkhtml-2  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+#line $LINENO "configure"
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any gcc2 internal prototype to avoid an error.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+/* We use char because int might match the return type of a gcc2
+   builtin and then its argument prototype would still apply.  */
+char html_document_open_stream ();
+int
+main ()
+{
+html_document_open_stream ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+         { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  ac_cv_lib_gtkhtml_2_html_document_open_stream=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+ac_cv_lib_gtkhtml_2_html_document_open_stream=no
+fi
+rm -f conftest.$ac_objext conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+echo "$as_me:$LINENO: result: $ac_cv_lib_gtkhtml_2_html_document_open_stream" >&5
+echo "${ECHO_T}$ac_cv_lib_gtkhtml_2_html_document_open_stream" >&6
+if test $ac_cv_lib_gtkhtml_2_html_document_open_stream = yes; then
+  GTKHTML=yes
+fi
+
+    if test "$GTKHTML" = no; then
+    	{ { echo "$as_me:$LINENO: error: Could not find the libgtkhtml-2.0 package." >&5
+echo "$as_me: error: Could not find the libgtkhtml-2.0 package." >&2;}
+   { (exit 1); exit 1; }; }
+    fi
+    LIBS=$ac_save_LIBS
+    # check for zzledt
+    ac_save_LIBS="$LIBS"
+    LIBS=`pkg-config libzvt-2.0 --cflags --libs`
+    GZVT2=no
+    echo "$as_me:$LINENO: checking for zvt_term_new_with_size in -lzvt-2.0" >&5
+echo $ECHO_N "checking for zvt_term_new_with_size in -lzvt-2.0... $ECHO_C" >&6
+if test "${ac_cv_lib_zvt_2_0_zvt_term_new_with_size+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lzvt-2.0  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+#line $LINENO "configure"
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any gcc2 internal prototype to avoid an error.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+/* We use char because int might match the return type of a gcc2
+   builtin and then its argument prototype would still apply.  */
+char zvt_term_new_with_size ();
+int
+main ()
+{
+zvt_term_new_with_size ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+         { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  ac_cv_lib_zvt_2_0_zvt_term_new_with_size=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+ac_cv_lib_zvt_2_0_zvt_term_new_with_size=no
+fi
+rm -f conftest.$ac_objext conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+echo "$as_me:$LINENO: result: $ac_cv_lib_zvt_2_0_zvt_term_new_with_size" >&5
+echo "${ECHO_T}$ac_cv_lib_zvt_2_0_zvt_term_new_with_size" >&6
+if test $ac_cv_lib_zvt_2_0_zvt_term_new_with_size = yes; then
+  GZVT2=yes
+fi
+
+    if test "$GZVT2" = no; then
+    	{ { echo "$as_me:$LINENO: error: Could not find the libzvt-2.0  package." >&5
+echo "$as_me: error: Could not find the libzvt-2.0  package." >&2;}
+   { (exit 1); exit 1; }; }
+    fi
+    LIBS=$ac_save_LIBS
   fi
   # try to use readline with the gtk version
   ac_save_LIBS="$LIBS"
@@ -25627,7 +25774,6 @@ _ACEOF
 
   fi
 fi
-
 
 
 #################
@@ -25759,7 +25905,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 25762 "configure"
+#line 25908 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -26048,7 +26194,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 26051 "configure"
+#line 26197 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -27319,6 +27465,7 @@ s,@X_LIBS@,$X_LIBS,;t t
 s,@X_EXTRA_LIBS@,$X_EXTRA_LIBS,;t t
 s,@GTK_CONFIG@,$GTK_CONFIG,;t t
 s,@GNOME_CONFIG@,$GNOME_CONFIG,;t t
+s,@PKG_CONFIG@,$PKG_CONFIG,;t t
 s,@with_ocamlc@,$with_ocamlc,;t t
 s,@with_ocamlopt@,$with_ocamlopt,;t t
 s,@with_ocamldep@,$with_ocamldep,;t t
