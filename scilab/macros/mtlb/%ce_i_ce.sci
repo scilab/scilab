@@ -1,9 +1,9 @@
 function M=%ce_i_ce(varargin)
-// Authors: F. Delebecque, S. Steer, Copyright INRIA 
-//insert the struct varargin($-1) into the struct varargin($)
+// Authors: F. Delebecque, S. Steer, V. Couvert, Copyright INRIA 
+//insert the cell varargin($-1) into the cell varargin($)
 //at position varargin(1), varargin(2),varargin(3),...
-//insert the struct varargin($-1) as the field varargin(1)
-//of the struct varargin($)
+//insert the cell varargin($-1) as the field varargin(1)
+//of the cell varargin($)
   [lhs,rhs]=argn(0)
   M=varargin($)
   N=varargin($-1)//inserted matrix
@@ -47,7 +47,7 @@ function M=%ce_i_ce(varargin)
       end
       v1=list();for k=1:prod(Ndims),v1(k)=[];end
       // create the resulting matrix
-      R=mlist(['ce','dims',matrix(FR,1,-1)],int32(Ndims));
+      R=mlist(["ce",'dims',matrix(FR,1,-1)],int32(Ndims));
       for k=1:size(FR,'*'),setfield(2+k,v1,R),end
       // populate it with M entries
       for k=1:nFM
@@ -55,10 +55,10 @@ function M=%ce_i_ce(varargin)
 	kf=find(FR==FM(k));
 	w=getfield(k+2,M);if type(w)<>15 then w=list(w),end
 	for i=1:size(I1,'*'), 
-	  if w==list() then
-	    v2(I1(i)+1)=[]
-	  else
+	  if w<>list() then
 	    v2(I1(i)+1)=w(i)
+	  else
+	    v2(I1(i)+1)=[]
 	  end
 	end
 	setfield(kf+2,v2,R);
@@ -68,7 +68,7 @@ function M=%ce_i_ce(varargin)
       //does the fields agree?
       if or(FR<>FM) then //no
 	//add new fields
-	setfield(1,['ce','dims',FR],R)
+	setfield(1,["ce",'dims',FR],R)
 	v1=list();for k=1:prod(Ndims),v1(k)=[];end
 	for k=nFM+1:size(FR,'*')
 	  setfield($+1,v1,R)
@@ -83,12 +83,12 @@ function M=%ce_i_ce(varargin)
       w=getfield(k+2,N);
       if type(w)<>15 then w=list(w),end
       for i=1:size(I,'*'), 
-	if w==list() then
-	  v2(I1(i))=[]
+	if w<>list() then
+	  v2(I(i))=w(i)
 	else
-	  v2(I1(i))=w(i)
+	  v2(I(i))=[]
 	end
-      end 
+       end 
       if length(v2)==1 then v2=v2(1);end
       setfield(kf+2,v2,R);
     end
