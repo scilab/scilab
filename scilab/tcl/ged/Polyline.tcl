@@ -1,3 +1,7 @@
+#Copyright INRIA
+#2004
+#Author: F.Leray
+
 set pwd [pwd]
 cd [file dirname [info script]]
 variable DEMODIR [pwd]
@@ -241,7 +245,7 @@ $w.frame.thickness set $curthick
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 30m  
+pack $w.sep -fill both -pady 20m  
 
 #exit button
 frame $w.buttons
@@ -261,7 +265,7 @@ frame $w.frame.fdata -borderwidth 0
 pack $w.frame.fdata  -in $w.frame -side top   -fill x
 
 scrollbar $w.frame.ysbar -orient vertical -command   {$w.frame.c yview}
-canvas $w.frame.c -width 8i -height 6i  -yscrollcommand {$w.frame.ysbar set}
+canvas $w.frame.c -width 8i -height 3.5i  -yscrollcommand {$w.frame.ysbar set}
 
 $w.frame.c create text 160 10 -anchor c -text "X"
 $w.frame.c create text 310 10 -anchor c -text "Y"
@@ -291,6 +295,10 @@ $w.frame.c configure -scrollregion [$w.frame.c bbox all] -yscrollincrement 0.1i
 pack  $w.frame.ysbar -side right -fill y
 pack  $w.frame.c
 
+
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both -pady 10m
 
 #exit button
 frame $w.buttons

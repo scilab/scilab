@@ -1,3 +1,7 @@
+#Copyright INRIA
+#2004
+#Author: F.Leray
+
 set pwd [pwd]
 cd [file dirname [info script]]
 variable DEMODIR [pwd]
@@ -183,7 +187,7 @@ $w.frame.fontangle set $curfontangle
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 6m
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
@@ -232,7 +236,7 @@ pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 2m -padx 2m
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 32m
+pack $w.sep -fill both  -pady 20m
 
 #exit button
 frame $w.buttons
@@ -327,13 +331,14 @@ pack $w9.frame.warning -in $w9.frame
 
 #sep bar
 frame $w9.sep -height 2 -borderwidth 1 -relief sunken
-pack $w9.sep -fill both  -pady 30m
+pack $w9.sep -fill both  -pady 10m
 
 
 #exit button
 frame $w9.buttons
-button $w9.b -text Quit -command "destroy $ww"
-pack $w9.b -side bottom 
+pack $w9.buttons -side bottom -fill x -pady 2m
+button $w9.buttons.dismiss -text Quit -command "destroy $ww"
+pack $w9.buttons.dismiss -side bottom 
 
 
 

@@ -1,3 +1,7 @@
+#Copyright INRIA
+#2004
+#Author: F.Leray
+
 set pwd [pwd]
 cd [file dirname [info script]]
 variable DEMODIR [pwd]
@@ -286,7 +290,7 @@ pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 25m  
+pack $w.sep -fill both -pady 10m  
 
 #exit button
 frame $w.buttons
@@ -417,7 +421,7 @@ pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 25m  
+pack $w.sep -fill both -pady 10m  
 
 #exit button
 frame $w.buttons
@@ -545,7 +549,7 @@ bind  $w.frame.databmax <Return> {setZdb}
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 37m  
+pack $w.sep -fill both -pady 20m  
 
 #exit button
 frame $w.buttons
@@ -617,7 +621,7 @@ pack $w.frame.style -in $w.frame.fontsst  -expand 1 -fill x -pady 2m -padx 2m
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 50m  
+pack $w.sep -fill both -pady 35m  
 
 #exit button
 frame $w.buttons
@@ -752,7 +756,7 @@ pack $w.frame.linestyle   -in $w.frame.linest   -expand 1 -fill x -pady 2m -padx
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 20m  
+pack $w.sep -fill both -pady 5m  
 
 #exit button
 frame $w.buttons

@@ -1,3 +1,7 @@
+#Copyright INRIA
+#2004
+#Author: F.Leray
+
 set pwd [pwd]
 cd [file dirname [info script]]
 variable DEMODIR [pwd]
@@ -143,10 +147,8 @@ frame $w.sep -height 2 -borderwidth 1 -relief sunken
 pack $w.sep -fill both  -pady 50m
 
 #exit button
-frame $w.buttons
-pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "destroy $ww" 
-pack $w.buttons.dismiss  -side bottom -expand 1
+button $w.buttons -text Quit -command "destroy $ww" 
+pack $w.buttons -side bottom
 
 
 
@@ -162,7 +164,7 @@ pack $w.buttons.dismiss  -side bottom -expand 1
  pack $w.frame.fdata  -in $w.frame -side top   -fill x
 
  scrollbar $w.frame.ysbar -orient vertical -command   {$w.frame.c yview}
- canvas $w.frame.c -width 8i -height 6i  -yscrollcommand {$w.frame.ysbar set}
+ canvas $w.frame.c -width 8i -height 4i  -yscrollcommand {$w.frame.ysbar set}
 
  #$w.frame.c create text 160 10 -anchor c -text "X vector"
 
@@ -183,6 +185,10 @@ pack $w.buttons.dismiss  -side bottom -expand 1
  pack  $w.frame.c
 
 
+#sep bar
+ frame $w.sep -height 2 -borderwidth 1 -relief sunken
+ pack $w.sep -fill both  -pady 10m
+
 
  #exit button
  frame $w.buttons
@@ -202,7 +208,7 @@ pack $w.buttons.dismiss  -side bottom -expand 1
   pack $w2.frame2.fdata  -in $w2.frame2 -side top   -fill x
 
 
-  canvas $w2.frame2.c1 -width 8i -height 6i  -yscrollcommand {$w2.frame2.ysbar set}
+  canvas $w2.frame2.c1 -width 8i -height 4i  -yscrollcommand {$w2.frame2.ysbar set}
  scrollbar $w2.frame2.ysbar -orient vertical -command   {$w2.frame2.c1 yview}
 
  #$w2.frame2.c1 create text 160 10 -anchor c -text "Y vector"
@@ -223,6 +229,10 @@ pack $w.buttons.dismiss  -side bottom -expand 1
   pack  $w2.frame2.ysbar -side right -fill y
   pack  $w2.frame2.c1
 
+#sep bar
+ frame $w2.sep -height 2 -borderwidth 1 -relief sunken
+ pack $w2.sep -fill both  -pady 10m
+
 
   #exit button
   frame $w2.buttons
@@ -242,7 +252,7 @@ pack $w.buttons.dismiss  -side bottom -expand 1
   pack $w3.frame2.fdata  -in $w3.frame2 -side top   -fill x
 
 
- canvas $w3.frame2.c1 -width 8i -height 6i  -yscrollcommand {$w3.frame2.ysbar set} -xscrollcommand {$w3.frame2.xsbar set}
+ canvas $w3.frame2.c1 -width 8i -height 4i  -yscrollcommand {$w3.frame2.ysbar set} -xscrollcommand {$w3.frame2.xsbar set}
  scrollbar $w3.frame2.ysbar -orient vertical -command   {$w3.frame2.c1 yview}
  scrollbar $w3.frame2.xsbar -orient horizontal -command   {$w3.frame2.c1 xview}
  #scrollbar $w3.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
@@ -275,6 +285,9 @@ pack $w.buttons.dismiss  -side bottom -expand 1
   pack  $w3.frame2.xsbar -side bottom -fill x
   pack  $w3.frame2.c1
 
+#sep bar
+ frame $w3.sep -height 2 -borderwidth 1 -relief sunken
+ pack $w3.sep -fill both  -pady 10m
 
   #exit button
   frame $w3.buttons

@@ -1,3 +1,7 @@
+#Copyright INRIA
+#2004
+#Author: F.Leray
+
 set pwd [pwd]
 cd [file dirname [info script]]
 variable DEMODIR [pwd]
@@ -118,7 +122,7 @@ pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 35m
+pack $w.sep -fill both  -pady 25m
 
 #exit button
 frame $w.buttons

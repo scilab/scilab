@@ -1,3 +1,7 @@
+#Copyright INRIA
+#2004
+#Author: F.Leray
+
 set pwd [pwd]
 cd [file dirname [info script]]
 variable DEMODIR [pwd]
@@ -190,10 +194,8 @@ frame $w.sep -height 2 -borderwidth 1 -relief sunken
 pack $w.sep -fill both  -pady 15m
 
 #exit button
-frame $w.buttons
-pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "destroy $ww" 
-pack $w.buttons.dismiss  -side bottom -expand 1
+button $w.buttons -text Quit -command "destroy $ww" 
+pack $w.buttons  -side bottom
 
 
 

@@ -1,3 +1,7 @@
+#Copyright INRIA
+#2004
+#Author: F.Leray
+
 set pwd [pwd]
 cd [file dirname [info script]]
 variable DEMODIR [pwd]
@@ -194,7 +198,7 @@ pack $w.frame.scalesw.radio3 -in  $w.frame.scalesw -side left
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 30m
+pack $w.sep -fill both  -pady 25m
 
 #exit button
 frame $w.buttons
@@ -216,7 +220,7 @@ frame $w.frame.fdata -borderwidth 0
 pack $w.frame.fdata  -in $w.frame -side top   -fill x
 
 scrollbar $w.frame.xsbar -orient horizontal -command   {$w.frame.c xview}
-canvas $w.frame.c -width 8i -height 6i  -xscrollcommand {$w.frame.xsbar set}
+canvas $w.frame.c -width 8i -height 4i  -xscrollcommand {$w.frame.xsbar set}
 
 #$w.frame.c create text 160 10 -anchor c -text "X matrix"
 
@@ -259,6 +263,11 @@ pack  $w.frame.c
 
 
 
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both  -pady 10m
+
+
 #exit button
 frame $w.buttons
 button $w.b -text Quit -command "destroy $ww"
@@ -277,7 +286,7 @@ pack $w.b -side bottom
   pack $w2.frame2.fdata  -in $w2.frame2 -side top   -fill x
 
 
-  canvas $w2.frame2.c1 -width 8i -height 6i  -xscrollcommand {$w2.frame2.xsbar set}
+  canvas $w2.frame2.c1 -width 8i -height 4i  -xscrollcommand {$w2.frame2.xsbar set}
  scrollbar $w2.frame2.xsbar -orient horizontal -command   {$w2.frame2.c1 xview}
 
  #$w2.frame2.c1 create text 160 10 -anchor c -text "Y matrix"
@@ -316,6 +325,11 @@ pack $w.b -side bottom
   pack  $w2.frame2.xsbar -side bottom -fill x
   pack  $w2.frame2.c1
 
+#sep bar
+  frame $w2.sep -height 2 -borderwidth 1 -relief sunken
+  pack $w2.sep -fill both  -pady 10m
+
+
 
   #exit button
   frame $w2.buttons
@@ -335,7 +349,7 @@ pack $w.b -side bottom
   pack $w3.frame2.fdata  -in $w3.frame2 -side top   -fill x
 
 
- canvas $w3.frame2.c1 -width 8i -height 6i -xscrollcommand {$w3.frame2.xsbar set}
+ canvas $w3.frame2.c1 -width 8i -height 4i -xscrollcommand {$w3.frame2.xsbar set}
 # scrollbar $w3.frame2.ysbar -orient vertical -command   {$w3.frame2.c1 yview}
  scrollbar $w3.frame2.xsbar -orient horizontal -command   {$w3.frame2.c1 xview}
  #scrollbar $w3.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
@@ -370,6 +384,11 @@ pack $w.b -side bottom
   pack  $w3.frame2.c1
 
 
+#sep bar
+  frame $w3.sep -height 2 -borderwidth 1 -relief sunken
+  pack $w3.sep -fill both  -pady 10m
+
+
   #exit button
   frame $w3.buttons
   button $w3.b -text Quit -command "destroy $ww"
@@ -387,7 +406,7 @@ pack $w.b -side bottom
   frame $w4.frame2.fdata -borderwidth 0
   pack $w4.frame2.fdata  -in $w4.frame2 -side top   -fill x
 
- canvas $w4.frame2.c1 -width 8i -height 6i   -xscrollcommand {$w4.frame2.xsbar set}
+ canvas $w4.frame2.c1 -width 8i -height 4i   -xscrollcommand {$w4.frame2.xsbar set}
  scrollbar $w4.frame2.xsbar -orient horizontal -command   {$w4.frame2.c1 xview}
  #scrollbar $w4.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
  #pack configure $w4.frame2.ysbar.scrollh -side bottom -fill x -expand 1 
@@ -419,6 +438,9 @@ pack $w.b -side bottom
   pack  $w4.frame2.xsbar -side bottom -fill x
   pack  $w4.frame2.c1
 
+#sep bar
+  frame $w4.sep -height 2 -borderwidth 1 -relief sunken
+  pack $w4.sep -fill both  -pady 10m
 
   #exit button
   frame $w4.buttons

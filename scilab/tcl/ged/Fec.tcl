@@ -1,3 +1,7 @@
+#Copyright INRIA
+#2004
+#Author: F.Leray
+
 set pwd [pwd]
 cd [file dirname [info script]]
 variable DEMODIR [pwd]
@@ -118,7 +122,7 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "          Visibility:   "
+label $w.frame.vislabel  -text "            Visibility:     "
 checkbutton $w.frame.visib  -textvariable curvis  \
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis" 
@@ -145,10 +149,8 @@ frame $w.sep -height 2 -borderwidth 1 -relief sunken
 pack $w.sep -fill both  -pady 50m
 
 #exit button
-frame $w.buttons
-pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "destroy $ww" 
-pack $w.buttons.dismiss  -side bottom -expand 1
+button $w.buttons -text Quit -command "destroy $ww" 
+pack $w.buttons -side bottom
 
 
 ########### Data onglet ###########################################
@@ -162,7 +164,7 @@ pack $w.buttons.dismiss  -side bottom -expand 1
  pack $w3.frame2.fdata  -in $w3.frame2 -side top   -fill x
 
 
-canvas $w3.frame2.c1 -width 8i -height 6i  -yscrollcommand {$w3.frame2.ysbar set} -xscrollcommand {$w3.frame2.xsbar set}
+canvas $w3.frame2.c1 -width 8i -height 4i  -yscrollcommand {$w3.frame2.ysbar set} -xscrollcommand {$w3.frame2.xsbar set}
 scrollbar $w3.frame2.ysbar -orient vertical -command   {$w3.frame2.c1 yview}
 scrollbar $w3.frame2.xsbar -orient horizontal -command   {$w3.frame2.c1 xview}
 #scrollbar $w3.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
@@ -195,6 +197,10 @@ for {set i 1} {$i<=$nbrow} {incr i} {
  pack  $w3.frame2.xsbar -side bottom -fill x
  pack  $w3.frame2.c1
 
+#sep bar
+frame $w3.sep -height 2 -borderwidth 1 -relief sunken
+pack $w3.sep -fill both  -pady 10m
+
 
 #exit button
 frame $w3.buttons
@@ -212,7 +218,7 @@ pack $w4.frame2 -anchor w -fill both
 frame $w4.frame2.fdata -borderwidth 0
 pack $w4.frame2.fdata  -in $w4.frame2 -side top   -fill x
 
-canvas $w4.frame2.c1 -width 8i -height 6i  -yscrollcommand {$w4.frame2.ysbar set} -xscrollcommand {$w4.frame2.xsbar set}
+canvas $w4.frame2.c1 -width 8i -height 4i  -yscrollcommand {$w4.frame2.ysbar set} -xscrollcommand {$w4.frame2.xsbar set}
 scrollbar $w4.frame2.ysbar -orient vertical -command   {$w4.frame2.c1 yview}
 scrollbar $w4.frame2.xsbar -orient horizontal -command   {$w4.frame2.c1 xview}
 #scrollbar $w4.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
@@ -245,8 +251,9 @@ for {set i 1} {$i<=$nbrowTri} {incr i} {
  pack  $w4.frame2.xsbar -side bottom -fill x
  pack  $w4.frame2.c1
 
-
-
+#sep bar
+frame $w4.sep -height 2 -borderwidth 1 -relief sunken
+pack $w4.sep -fill both  -pady 10m
 
 
 #exit button

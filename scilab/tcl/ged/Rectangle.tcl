@@ -1,3 +1,7 @@
+#Copyright INRIA
+#2004
+#Author: F.Leray
+
 set pwd [pwd]
 cd [file dirname [info script]]
 variable DEMODIR [pwd]
@@ -210,7 +214,7 @@ $w.frame.thickness set $curthick
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 10m  
+pack $w.sep -fill both -pady 5m  
 
 #exit button
 frame $w.buttons
@@ -277,7 +281,7 @@ bind  $w.frame.datah <Return> {SelectHval}
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 23m  
+pack $w.sep -fill both -pady 20m  
 
 #exit button
 frame $w.buttons
@@ -371,7 +375,7 @@ pack $w9.frame.warning -in $w9.frame
 
 #sep bar
 frame $w9.sep -height 2 -borderwidth 1 -relief sunken
-pack $w9.sep -fill both  -pady 30m
+pack $w9.sep -fill both  -pady 20m
 
 
 #exit button

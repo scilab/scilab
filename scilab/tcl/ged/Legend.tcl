@@ -1,3 +1,7 @@
+#Copyright INRIA
+#2004
+#Author: F.Leray
+
 set pwd [pwd]
 cd [file dirname [info script]]
 variable DEMODIR [pwd]
@@ -180,7 +184,7 @@ pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 2m -padx 2m
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 6m
+pack $w.sep -fill both  -pady 2m
 
 #exit button
 frame $w.buttons
