@@ -10,9 +10,14 @@ function [p]=perctl(x,y)
 //column  are the places  of the computed percentiles in the
 //input matrix x.
 //
+//References:  HYNDMAN,Rob  J.   and  FAN  Yanan,  Sample
+//Quantiles   in  Statistical   Packages,   The  American
+//Statistician, Nov.1996, Vol 50, No.4
+//
 //author: carlos klimann
 //
 //date: 1999-04-14
+//fixed: 2004-03-28
 //
   [lhs,rhs]=argn(0)
   if rhs<>2 then
@@ -34,5 +39,8 @@ function [p]=perctl(x,y)
     y=y(ly-[0:ly-1])
     p=x1(floor(y),:)
     w=find(ceil(y)-floor(y)<>0)
-    p(w,1)=((x1(ceil(y),1)-x1(floor(y),1)).*(y-floor(y))+x1(floor(y),1))
+    if w<>[]
+      p(w,1)=((x1(ceil(y),1)-x1(floor(y),1)).*(y-floor(y))+x1(floor(y),1))
+    end
 endfunction
+
