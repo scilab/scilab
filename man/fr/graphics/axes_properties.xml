@@ -1,303 +1,392 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>axes_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 2002 </DATE>
-  <SHORT_DESCRIPTION name="axes_properties"> description of the
-   axes entity properties </SHORT_DESCRIPTION>
- 
+
+  <TYPE>Scilab Data type</TYPE>
+
+  <DATE>2002</DATE>
+
+  <SHORT_DESCRIPTION name="axes_properties">description of the axes entity
+  properties</SHORT_DESCRIPTION>
+
   <DESCRIPTION>
-   <P>
-   The Axes entity is the second level of the graphics entities
-  hierarchy. This entity defines the parameters allowing the change of
-  coordinates and the axes drawing as well as the  parameters' default 
-  values for the children creation.
-   </P>
+    <P>The Axes entity is the second level of the graphics entities hierarchy.
+    This entity defines the parameters allowing the change of coordinates and
+    the axes drawing as well as the parameters' default values for the
+    children creation.</P>
+
     <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Axes properties">
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label="visible: ">
+            <SP>This field contains the <VERB>visible</VERB> property value
+            for axes . Its value should be <VERB>"on" </VERB> or
+            <VERB>"off"</VERB> . By default, axes is visible <VERB>"on"
+            </VERB> in case all "visible" chidren are displayed on the screen,
+            If <VERB>"off"</VERB> the axes and all its chidren are not
+            drawn.</SP>
+          </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM label="Axes properties">
-  <DESCRIPTION_INDENT> 
-     <DESCRIPTION_ITEM label="visible: ">
-      <SP>This field contains the  <VERB>visible</VERB> property value
-     for axes . It's value should
-     be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  . By default, 
-     axes is visible <VERB>&quot;on&quot;
-     </VERB> in case all &quot;visible&quot; chidren are displayed on the screen, If
-     <VERB>&quot;off&quot;</VERB> the axes and all its chidren are not drawn.</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="axes_visible: ">
+            <SP>This property specifies whether the axes are drawn or not. Its
+            value should be <VERB>"on" </VERB> or <VERB>"off"</VERB>. The
+            scaling data and if required the grids are drawn if the value is
+            <VERB>"on"</VERB>. Note that when creating a simple axes entity
+            using the <VERB>gca()</VERB> (shorcut for
+            <VERB>get"current_axes")</VERB>) or <VERB>gcf()</VERB> (shortcut
+            for <VERB>get(current_figure)</VERB>) commands, the axes
+            visiblibilty is set to <VERB>"off"</VERB>.</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="axes_visible: ">
-      <SP>This property specifies whether the axes are drawn or not. It's value should
-      be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>. The scaling data and if
-      required the grids are drawn if the value is <VERB>&quot;on&quot;</VERB> </SP>
-     </DESCRIPTION_ITEM>
-     
-     <DESCRIPTION_ITEM label="view: ">
-      <SP>This field is related to the graphics universe. It takes  <VERB>&quot;3d&quot;</VERB>
-      as value corresponding to the three-dimensional views. In the other case its value ca be 
-      <VERB>&quot;2d&quot;</VERB> for initial 2d plotting.
-   </SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="view: ">
+            <SP>This field is related to the graphics universe. It takes
+            <VERB>"3d"</VERB> as value corresponding to the three-dimensional
+            views. In the other case its value can be <VERB>"2d"</VERB> for
+            initial 2d plotting (default value). This flag also depends on the
+            plots the user enters : a <VERB>plot3d </VERB>command, for
+            example, will switch the <VERB>view</VERB> flag from
+            <VERB>"2d"</VERB> to <VERB>"3d"</VERB>.</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="rotation_angles: ">
-      <SP>This field is the vector <VERB>[alpha,theta]</VERB>. These two
-      values give  the spherical coordinates of the observation points (in degree).  </SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="rotation_angles: ">
+            <SP>This field is the vector <VERB>[alpha,theta]</VERB>. These two
+            values give the spherical coordinates of the observation points
+            (in degree).</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="isoview: ">
-      <SP>This property is used to have isometric scales on the x, y and z axes. 
-      It's value should be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>. If the value 
-      is &quot;on&quot; data limits (xmin, xmax, ymin, ymax, zmin, zmax) do not change the 
-      size of the graphics window and its will be contained in the computed frame 
-      of the graphics window.  </SP>
+          <DESCRIPTION_ITEM label="isoview: ">
+            <SP>This property is used to have isometric scales on the x, y and
+            z axes (for exemple to make the display of the curve sin(x) versus
+            cos(x) be a circle not an ellipse). Its value should be
+            <VERB>"on"</VERB> or <VERB>"off"</VERB>. If the value is
+            <VERB>"on"</VERB>, the axes <VERB>data_bounds</VERB> automatically
+            change according to the corresponding figure
+            <VERB>figure_size</VERB> property values.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="cube_scaling:">
+            <SP>This property is used in <VERB>3d mode</VERB> to have a
+            rescaling of the x, y and z axes. Indeed, it allows the
+            <VERB>data</VERB> to fit into a 1x1x1 cube ; the goal is to better
+            display 3d graphics in case axes scales are very different from
+            one to another. Its value should be <VERB>"on" </VERB> or
+            <VERB>"off"</VERB> (which is the default value). In most cases, it
+            helps generating Matlab-like 3d view.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="box: ">
+            <SP>This property specifies whether to enclose the axes in a box.
+            Take as value <VERB>"off" </VERB> is to not display the box. The
+            default is <VERB>"on" </VERB>.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="grid: ">
+            <SP>The field value is a vector <VERB>[x-grid y-grid,
+            z-grid]</VERB> where <VERB>x-grid</VERB> controls a grid drawning
+            for the x-axis and <VERB>y-grid, z-grid</VERB> respecting to the
+            y-axis, z-axis. The default values is <VERB>-1</VERB> grids are
+            not drawn, else the grids are drawn using the color given indexed
+            by the grid value.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="log_flags: ">
+            <SP>Property defines a linear or logarithmic scaling axes. The
+            field value is a 2 characters string, each of them can take the
+            value <VERB>n</VERB> for linear (normal) or <VERB>l</VERB> for
+            logarithmic scales for the respective X and Y axis.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="x_location: ">
+            <SP>Specify the location of the x-axis. The possible values
+            are:</SP>
+
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM>
+                <SP><VERB>"bottom"</VERB>. In this case the x axis is drawn at
+                the bottom of the axes rectangle.</SP>
+              </DESCRIPTION_ITEM>
+
+              <DESCRIPTION_ITEM>
+                <SP><VERB>"top"</VERB>. In this case the x axis is drawn at
+                the top of the axes rectangle.</SP>
+              </DESCRIPTION_ITEM>
+
+              <DESCRIPTION_ITEM>
+                <SP><VERB>"middle"</VERB> . In this case the x axis is drawn
+                at the position nearest to the 0 y coordinates.</SP>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="y_location: ">
+            <SP>Specify the location of the y-axis. The possible values
+            are:</SP>
+
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM>
+                <SP><VERB>"left"</VERB>. In this case the y axis is drawn at
+                the left of the axes rectangle.</SP>
+              </DESCRIPTION_ITEM>
+
+              <DESCRIPTION_ITEM>
+                <SP><VERB>"right"</VERB>. In this case the y axis is drawn at
+                the right of the axes rectangle.</SP>
+              </DESCRIPTION_ITEM>
+
+              <DESCRIPTION_ITEM>
+                <SP><VERB>"middle"</VERB>. In this case the y axis is drawn at
+                the position nearest to the 0 x coordinates.</SP>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="tics_color: ">
+            <SP>The value of this properties is index of the color used to
+            draw axis lines and tics.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="font_color: ">
+            <SP>This property determines the color of the tics labels.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="font_size: ">
+            <SP>An integer specifying the font size used to draw the tics
+            labels.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="sub_tics: ">
+            <SP>This field sets the number of tics to draw between two main
+            tics. The field value is the vector <VERB>[nx,ny]</VERB> where
+            <VERB>nx</VERB> is the number of sub tics for the x-axis and
+            <VERB>ny</VERB> respecting to the y-axis.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="tight_limits: ">
+            <SP>If this property value is <VERB>"on"</VERB> axes adapt to fit
+            exactly with the minima and maxima values of the
+            <VERB>data_bounds</VERB>. If this field value is
+            <VERB>"off"</VERB>, axes may enlarge boundaries such as to produce
+            pretty tics labels.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="data_bounds: ">
+            <SP>This field contains the boundary values for the x,y and z
+            coordinates. It is the matrix
+            <VERB>[xmin,ymin,zmin;xmax,ymax,zmax]</VERB>or
+            <VERB>[xmin,ymin;xmax,ymax]</VERB></SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="axes_bounds: ">
+            <SP>A vector <VERB>[x_left,y_up,width,height]</VERB> specifying
+            the portion of figure used by this axes. Where
+            <VERB>x_left</VERB>, <VERB>y_up</VERB>, <VERB>width</VERB> and
+            <VERB>height</VERB> are numbers in [0 1] give respectively the
+            position of the upper-left corner and the dimension of the axes
+            (these numbers are ratio relative to the corresponding figure
+            <VERB>figure_size</VERB> property values).</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="margins: ">
+            <SP>A vector <VERB>[margin_left,margin_right, margin_top,
+            margin_bottom]</VERB> specifying the margins portion for this
+            axes. This vector is composed of numbers between [0 1] with
+            default: [0.125 0.125 0.125 0.125] (these numbers are ratio
+            relatives to the corresponding figure <VERB>figure_size</VERB>
+            property values).</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="title: ">
+            <SP>An object attached to the Axes entity and returning a graphic
+            handle on a Label structure (see <LINK>label_properties</LINK>).
+            This field defines a title with options on this label.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="x_label: ">
+            <SP>An object attached to the Axes entity and returning a graphic
+            handle on a Label structure (see <LINK>label_properties</LINK>).
+            This field defines a label on x axis with options on this
+            label.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="y_label: ">
+            <SP>An object attached to the Axes entity and returning a graphic
+            handle on a Label structure (see <LINK>label_properties</LINK>).
+            This field defines a label on y axis with options on this
+            label.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="z_label: ">
+            <SP>An object attached to the Axes entity and returning a graphic
+            handle on a Label structure (see <LINK>label_properties</LINK>).
+            This field defines a label on z axis with options on this
+            label.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="children: ">
+            <SP>A vector containing the handles of all graphics objects
+            children of the axes These graphics objects are of type
+            <VERB>"Agregation"</VERB>, <VERB>"Rectangle"</VERB>,
+            <VERB>"Polyline"</VERB>, <VERB>"Segs"</VERB>, <VERB>"Arc"</VERB>,
+            <VERB>"Grayplot"</VERB>,.. (see
+            <LINK>agregation_properties</LINK>,
+            <LINK>rectangle_properties</LINK>, <LINK>champ_properties</LINK>,
+            <LINK>axis_properties</LINK>, <LINK>polyline_properties</LINK>,
+            <LINK>segs_properties</LINK>, <LINK>grayplot_properties</LINK>,
+            <LINK>surface_properties</LINK>, <LINK>param3d_properties</LINK>,
+            <LINK>fec_properties</LINK>, <LINK>text_properties</LINK>,
+            <LINK>legend_properties</LINK>)</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="parent: ">
+            <SP>This field contains the handle of the parent figure.</SP>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="box: ">
-     <SP>This property specifies whether to enclose the axes in a box.
-      Take as value <VERB>&quot;off&quot; </VERB> is to not display the box. 
-      The default is <VERB>&quot;on&quot; </VERB>.</SP>
-     </DESCRIPTION_ITEM> 
+      <DESCRIPTION_ITEM label="Properties for high level functions">
+        <P>The <VERB>plot2dx</VERB> <VERB>grayplot</VERB> <VERB>matplot</VERB>
+        functions use the following properties to decide how to merge
+        consecutive plots if this is not stated by the <VERB>frameflag</VERB>
+        calling argument. The result of the merge is decided through these two
+        following properties:</P>
 
-     <DESCRIPTION_ITEM label="grid: "> 
-      <SP>The field value is a vector <VERB>[x-grid -grid, z-grid]</VERB> 
-      where <VERB>x-grid</VERB> controls a grid drawning for the x-axis and
-      <VERB>y-grid, z-grid</VERB> respecting to the y-axis, z-axis. 
-      The default values is <VERB>-1</VERB> grids are not drawn, else the grids are
-      drawn using the color given indexed by the grid value.</SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label="auto_clear: ">
+            <SP>If this property value is equal to <VERB>"on"</VERB>, a call
+            to a high level graphic will re-ininitialize the current axes and
+            erase all its children before preforming the drawing. If the value
+            is <VERB>"off"</VERB> the drawings will be added to current axes
+            according to <VERB>"auto_scale"</VERB> property.</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="log_flags: ">
-      <SP>Property defines is linear or logarithmic scaling axes. 
-      The field value is a 2 character string, each of them can take the
-      value <VERB>n</VERB> for linear  (normal) or <VERB>l</VERB>
-      for logarithmic scales for the respective X and Y axis.</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="auto_scale: ">
+            <SP>A property to update the axes data boundary. If value is
+            <VERB>"on"</VERB>, a new plot will adapt the current axes
+            properties to fit with previous and current plots. If its value is
+            <VERB>"off"</VERB> the new plot will be drawn in the current axes
+            data boundary.</SP>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="x_location: ">
-      <SP>Specify the location of the x-axis. The possible
-      values are:</SP>
-      <DESCRIPTION_INDENT>
-         <DESCRIPTION_ITEM>
-         <SP><VERB>&quot;bottom&quot;</VERB>. In this case the x axis is drawn at
-         the bottom of the axes rectangle.</SP>
-         </DESCRIPTION_ITEM>
-         <DESCRIPTION_ITEM>
-         <SP><VERB>&quot;top&quot;</VERB>. In this case the x axis is drawn at
-         the top of the axes rectangle.</SP>
-         </DESCRIPTION_ITEM>
-         <DESCRIPTION_ITEM>
-         <SP><VERB>&quot;middle&quot;</VERB> . In this case the x axis is drawn at
-         the position nearest to the 0 y coordinates.</SP>
-         </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
-     </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="Children s default values: ">
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label="line_style: ">
+            <SP>This field contains the default <VERB>line_style</VERB>
+            property value for Segs, Arcs, Rectangle and Polyline objects.
+            <VERB>line_style</VERB> selects the type of line to be used to
+            draw lines . Its value should be an integer in [0 9]. 0 stands for
+            solid, the other values stand for a selection of dashes (see
+            <LINK>getlinestyle</LINK>).</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="y_location: ">
-      <SP>Specify the location of the y-axis. The possible
-      values are:</SP>
-      <DESCRIPTION_INDENT>
-         <DESCRIPTION_ITEM>
-         <SP><VERB>&quot;left&quot;</VERB>. In this case the y axis is drawn at
-         the left of the axes rectangle.</SP>
-         </DESCRIPTION_ITEM>
-         <DESCRIPTION_ITEM>
-         <SP><VERB>&quot;right&quot;</VERB>. In this case the y axis is drawn at
-         the right of the axes rectangle.</SP>
-         </DESCRIPTION_ITEM>
-         <DESCRIPTION_ITEM>
-         <SP><VERB>&quot;middle&quot;</VERB>. In this case the y axis is drawn at
-         the position nearest to the 0 x coordinates.</SP>
-         </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="thickness: ">
+            <SP>This field contains the default <VERB>thickness</VERB>
+            property value for all objects using line drawing. Its value
+            should be positive integer.</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="tics_color: ">
-      <SP>The value of this properties is index of the color used to draw axis'lines and tics.</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="mark_mode: ">
+            <SP>This field contains the default <VERB>mark_mode</VERB>
+            property value for Segs Rectangle and Polyline objects. Its value
+            should be <VERB>"on" </VERB> or <VERB>"off"</VERB>.</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="labels_font_color: ">
-      <SP>This property determines the color of the tics labels.</SP>
-     </DESCRIPTION_ITEM>
-     <DESCRIPTION_ITEM label="labels_font_size: ">
-      <SP>An integer specifying the font size used to draw the tics labels.</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="mark_style: ">
+            <SP>This field contains the default <VERB>mark_style</VERB>
+            property value for Segs Rectangle and Polyline objects.
+            <VERB>mark_style</VERB> selects the type of mark to be displayed.
+            Its value should be an integer in [0 9] which stands for: dot,
+            plus, cross, star, diamond fill, diamond, triangle up, triangle
+            down, trefle and circle.</SP>
+          </DESCRIPTION_ITEM>
 
-    <DESCRIPTION_ITEM label="sub_tics: ">
-      <SP>This field sets the number of tics to draw between two main
-      tics. The field value is the vector <VERB>[nx,ny]</VERB> where
-      <VERB>nx</VERB> is the number of sub tics for the x-axis and
-      <VERB>ny</VERB> respecting to the y-axis. </SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="mark_size: ">
+            <SP>This field contains the default <VERB>mark_size</VERB>
+            property value for Segs Rectangle and Polyline objects.
+            <VERB>mark_size</VERB> selects the font size of mark to be
+            displayed. Its value should be an integer in [0 5] whith stands
+            for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt (see
+            <LINK>getmark</LINK>).</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="tight_limits: ">
-      <SP>If this property value is <VERB>&quot;on&quot;</VERB>  axes adapt to
-      fit exactly with the minima and maxima values of the data_bounds.
-      
-      If this field value is <VERB>&quot;off&quot;</VERB> a  axes may enlarge
-      boundary such as to produce pretty tics labels.</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="foreground: ">
+            <SP>This field contains the default <VERB>foreground</VERB>
+            property value for all objects. Its value should be a color index
+            (relative to the current color_map). Note that the default value
+            is <VERB>-1</VERB> (default black) and, even if you change the
+            color_map, this <VERB>-1</VERB> value will always point onto the
+            default black color.</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="data_bounds: ">
-      <SP>This field contains the boundary values for the x,y and z
-      coordinates. It is the vector
-	      <VERB>[xmin,ymin,zmin;xmax,ymax,zmax]</VERB>or <VERB>[xmin,ymin;xmax,ymax]</VERB></SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="background: ">
+            <SP>This property controls the axes <VERB>background</VERB> color.
+            It takes as value an index relative to the current colormap.Note
+            that the default value is <VERB>-2</VERB> (default white) and,
+            even if you change the color_map, this <VERB>-2</VERB> value will
+            always point onto the default white color.</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="axes_bounds: ">
-      <SP>A vector <VERB>[x_left,y_up,width,height]</VERB> specifying 
-      the portion of figure used by this axes. Where
-      <VERB>x_left</VERB>, <VERB>y_up</VERB>, <VERB>width</VERB> and
-      <VERB>height</VERB> are numbers in [0 1] give respectively the 
-      position of the upper-left corner and the dimension of the axes.</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="hiddencolor: ">
+            <SP>This property controls the hidden parts' color. It takes as
+            value an index relative to the current colormap. In another case,
+            if it is a negative value, the hidden parts take the same colors
+            as the surface</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="margins: ">
-      <SP>A vector <VERB>[x_left,y_up,width,height]</VERB> specifying 
-      the portion of figure used by this axes. Where
-      <VERB>x_left</VERB>, <VERB>y_up</VERB>, <VERB>width</VERB> and
-      <VERB>height</VERB> are numbers in [0 1] give respectively the 
-      position of the upper-left corner and the dimension of the axes.</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="clip_state: ">
+            <SP>This field contains the default <VERB>clip_state</VERB>
+            property value for all objects. Its value should be :</SP>
 
-     <DESCRIPTION_ITEM label="children: "> 
-      <SP>A vector containing the handles of all graphics objects children of the axes 
-      These graphics objects are of type  <VERB>&quot;Agregation&quot;</VERB>,
-      <VERB>&quot;Rectangle&quot;</VERB>, <VERB>&quot;Polyline&quot;</VERB>, <VERB>&quot;Patch&quot;</VERB>,
-     <VERB>&quot;Segs&quot;</VERB>, <VERB>&quot;Arc&quot;</VERB>, <VERB>&quot;Grayplot&quot;</VERB>,..</SP>
-     </DESCRIPTION_ITEM>    
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM>
+                <SP><VERB>"off"</VERB> this means that all objects created
+                after that are not clipped (default value).</SP>
+              </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="parent: "> 
-      <SP>This field contains the handle of the parent figure.</SP>
-     </DESCRIPTION_ITEM>
-  </DESCRIPTION_INDENT>
-  </DESCRIPTION_ITEM>
-   <DESCRIPTION_ITEM label="Properties for high level functions">
-   <P>The <VERB>plot2dx</VERB> <VERB>grayplot</VERB> <VERB>matplot</VERB>
-   functions use the following properties to decide how to merge
-   consecutive plots if this is not stated by the <VERB>frameflag</VERB> calling argument.
-   
-   The result of the merge is decided through these two following properties:</P>
-   
-  <DESCRIPTION_INDENT>
-  
-     <DESCRIPTION_ITEM label="auto_clear: ">
-     <SP>This property allows a new plot to erase the current axes and its children 
-     if value is equal to <VERB>&quot;on&quot;</VERB>. The plot creates a new axes entity. 
-     If the value is <VERB>&quot;off&quot;</VERB> it will be added to current axes according 
-     to <VERB>&quot;auto_scale&quot;</VERB> property.</SP>
-     </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <SP><VERB>"clipgrf"</VERB> this means that all objects created
+                after that are clipped outside the Axes boundaries.</SP>
+              </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="auto_scale: ">
-      <SP>A property to uptate a data boundary. If value is <VERB>&quot;on&quot;</VERB> a new plot 
-      will adapt the current axes properties to fit with  previous an current plots.</SP>
-      <P></P>
-      <SP>If its  value is <VERB>&quot;off&quot;</VERB> the new plot will be drawing under the current 
-      axes properties.</SP>
-     </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <SP><VERB>"on"</VERB> this means that all objects created
+                after that are clipped outside the rectangle given by property
+                clip_box.</SP>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="clip_box: ">
+            <SP>This field contains the default <VERB>clip_box</VERB> property
+            value for all objects. Its value should be an empty matrix if
+            clip_state is <VERB>"off"</VERB>. Other case the clipping is given
+            by the vector <VERB>[x,y,w,h]</VERB> (upper-left point width
+            height).</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="Note on default values :">
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM label="">
+                <SP>All these listed properties and fields inherit from
+                default values stored in an axes model. These default values
+                can be seen and changed. To do so, use the
+                <VERB>get("default_axes")</VERB> command : it returns a
+                graphic handle on the axes model. Note that no graphic window
+                is created by this command. The next created axes will inherit
+                from this model (see "Example on axes model" below).</SP>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
-   </DESCRIPTION_ITEM>
-  
-  <DESCRIPTION_ITEM label="Children s default values: ">
-     <DESCRIPTION_INDENT>
-
-
-     <DESCRIPTION_ITEM label="line_style: ">
-      <SP>This field contains the default <VERB>line_style</VERB> property
-       value for Segs, Arcs, Rectangle and Polyline objects.
-       <VERB>line_style</VERB> selects the type of line to be
-       used to draw lines . It's value should be an integer in [0 9].
-       0 stands for solid the other value stands for a selection of
-       dashes.</SP>
-     </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label="thickness: ">
-       <SP>This field contains the default <VERB>thickness</VERB> property
-       value for all objects using line drawing. It's value should
-       be positive integer.</SP>
-     </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="fill_mode: ">
-      <SP>This field contains the default state of <VERB>fill_mode</VERB> property
-       for  Rectangle, Arcs and Polyline objects.
-       It's value should be <VERB>&quot;on&quot; </VERB> or
-       <VERB>&quot;off&quot;</VERB>. if it is &quot;on&quot; the object is filled
-       with  the color given by it's &quot;foreground&quot; property value.</SP>
-     </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label="mark_mode: ">
-      <SP>This field contains the default <VERB>mark_mode</VERB> property
-       value for Segs Rectangle and Polyline objects. It's value should
-       be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>.</SP>
-     </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label="mark_style: ">
-      <SP>This field contains the default <VERB>mark_style</VERB> property
-       value for Segs Rectangle and Polyline
-       objects. <VERB>mark_style</VERB> selects the type of mark to be
-       displayed. It's value should be an integer in [0 9] which
-       stands for: dot, plus, cross, star, diamond fill, diamond,
-       triangle up, triangle down, trefle and circle.</SP>
-     </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label="mark_size: ">
-      <SP>This field contains the default <VERB>mark_size</VERB> property
-       value for Segs Rectangle and Polyline objects. 
-       <VERB>mark_size</VERB> selects the font size of mark to be
-       displayed. It's value should be an integer in  [0 5]
-       whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
-     </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label="foreground: ">
-      <SP>This field contains the default <VERB>foreground</VERB> property
-      value for all objects.  It's value should be a color index
-      (relative to the current color_map).</SP>
-     </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label="background: ">
-      <SP>This property controls the axes background color. IT takes as value
-      an index relative to the current colormap. </SP>
-     </DESCRIPTION_ITEM>
-     
-      <DESCRIPTION_ITEM label="hiddencolor: ">
-      <SP>This property controls the hidden parts' color. IT takes as value
-      an index relative to the current colormap. In another case, if it is a 
-      negative value, the hidden parts take the same colors as the surface </SP>
-     </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label="clip_state: ">
-      <SP>This field contains the default <VERB>clip_state</VERB> property
-      value for all objects.  It's value should be :</SP>
-      <DESCRIPTION_INDENT>
-         <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;off&quot;</VERB> this means that all  objects created after
-         that are not clipped (default value).</SP>
-         </DESCRIPTION_ITEM>
-
-         <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;clipgrf&quot;</VERB> this means that all  objects created after
-         that are clipped outside the Axes boundaries.</SP>
-         </DESCRIPTION_ITEM>
-
-        <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;on&quot;</VERB> this means that all  objects created after
-         that are clipped outside the rectangle given by property clip_box.</SP>
-         </DESCRIPTION_ITEM>
-      </DESCRIPTION_INDENT>
-     </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label="clip_box: ">
-      <SP>This field contains the default <VERB>clip_box</VERB> property
-      value for all objects.  Its value should be an empty matrix if
-      clip_state is &quot;off&quot;. Other case the clipping is given by 
-       the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height).</SP>
-      </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
-    </DESCRIPTION_ITEM> 
-   </DESCRIPTION_INDENT>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+
+  <EXAMPLE><![CDATA[   lines(0) // disables vertical paging 
    set("figure_style","new") //create a figure
    a=get("current_axes")//get the handle of the newly created axes
    a.axes_visible="on"; // makes the axes visible
@@ -309,7 +398,7 @@
    a.grid=[2,2];
    a.box="off";
    // Example with 3D axes
-   xbasc(); //clear the graphics window
+   clf(); //clear the graphics window
    x=0.1:0.1:2*%pi;plot2d(x-.3,sin(x)*7+.2);
    a=gca(); // get the handle of the current axes
    a.grid=[1 -1 -1]; //make x-grid
@@ -362,19 +451,61 @@
    a.data_bounds //the boundary values for the x,y and z coordinates
    a.view="2d";
    a.data_bounds=[-10,-1; 10,1]; // set the boundary values for the two-dimensional views
+   // Example on axes model
+   da=gda() // get the handle on axes model to view and edit the fields
+   // title by default
+   da.title.text="My Default@Title"
+   da.title.foreground = 12;
+   da.title.font_size = 4;
+   // x labels default
+   da.x_label.text="x";
+   da.x_label.font_style = 8;
+   da.x_label.font_size = 2;
+   da.x_label.foreground = 5;
+   da.x_location = "middle";
+   // y labels default
+   da.y_label.text="y";
+   da.y_label.font_style = 3;
+   da.y_label.font_size = 5;
+   da.y_label.foreground = 3;
+   da.y_location = "right";
+   da.thickness = 2;
+   da.foreground = 7;
+   // the plot
+   x=(0:0.1:2*%pi)';
+   plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
 
  ]]></EXAMPLE>
+
   <SEE_ALSO>
-   <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>gca</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>gda</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lines</LINK>
+    </SEE_ALSO_ITEM>
 
+    <SEE_ALSO_ITEM>
+      <LINK>set</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>get</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>gca</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>gda</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>gcf</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>graphics_entities</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
-<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
+
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>
-
-
-
-

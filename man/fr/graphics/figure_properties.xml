@@ -1,234 +1,236 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>figure_properties</TITLE>
+
   <TYPE>Scilab Data type</TYPE>
-  <DATE> 2002</DATE>
-  <SHORT_DESCRIPTION name="figure_properties"> description of the
-   graphics figure entity properties</SHORT_DESCRIPTION>
+
+  <DATE>2002</DATE>
+
+  <SHORT_DESCRIPTION name="figure_properties">description of the graphics
+  figure entity properties</SHORT_DESCRIPTION>
+
   <DESCRIPTION>
-    <P>
-  The figure entity is the top level of the graphics entities
-  hierarchy. This entity contain a number of properties designed to control 
-  many aspects of displaying Scilab graphics objects.
-  These properties fall into two categories. Properties that contain information 
-  about figure itself and others related to set default values for the children creation.
-  </P>
+    <P>The figure entity is the top level of the graphics entities hierarchy.
+    This entity contain a number of properties designed to control many
+    aspects of displaying Scilab graphics objects. These properties fall into
+    two categories. Properties that contain information about figure itself
+    and others related to set default values for the children creation.</P>
+
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="Figure properties: ">
         <DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM label="figure_style: ">
-            <SP>The value of this field difines the figure style, it
-      should be <VERB>&quot;old&quot;</VERB> or <VERB>&quot;new&quot;</VERB>.  The
-      <VERB>&quot;new&quot;</VERB> value sets the entity based style. The
-      <VERB>&quot;old&quot;</VERB> value represents the old Scilab graphic mode. In
-      this case <VERB>figure_style</VERB> is the only defined property.</SP>
+            <SP>The value of this field defines the figure style, it should be
+            <VERB>"old"</VERB> or <VERB>"new"</VERB>. The <VERB>"new"</VERB>
+            value sets the entity based style. The <VERB>"old"</VERB> value
+            represents the old Scilab graphic mode. In this case
+            <VERB>figure_style</VERB> is the only defined property.</SP>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="figure_position: ">
-            <SP>This field contains the position in pixel of the  graphic
-     window  on the screen. The size is the vector 
-     <VERB>[x,y]</VERB>. The point <VERB>[0,0]</VERB> if the
-     upper-left corner of the screen.</SP>
+            <SP>This field contains the position in pixel of the graphic
+            window on the screen. The size is the vector <VERB>[x,y]</VERB>.
+            The point <VERB>[0,0]</VERB> if the upper-left corner of the
+            screen.</SP>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="figure_size: ">
-            <SP>This property controls the size in pixel of the screen's graphics
-     window. The size is the vector <VERB>[width,height] </VERB>.</SP>
+            <SP>This property controls the size in pixel of the screen's
+            graphics window. The size is the vector <VERB>[width,height]
+            </VERB>.</SP>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="axes_size: ">
-            <SP>Used to Specifies  the size in pixel of the virtual graphics
-     window. The size is the vector <VERB>[width,height] </VERB>.
-     The  virtual graphic window should be bigger than the part really
-     visible on the screen.</SP>
+            <SP>Used to Specifies the size in pixel of the virtual graphics
+            window. The size is the vector <VERB>[width,height] </VERB>. The
+            virtual graphic window should be bigger than the part really
+            visible on the screen.</SP>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="auto_resize: ">
-            <SP>This property determines if graphics window is resized.
-     If the value is <VERB>&quot;on&quot;</VERB> then the <VERB>axes_size</VERB> 
-     property is equaled to the <VERB>figure_size</VERB> and the axes 
-     children are zoomed accordingly. If the value is <VERB>&quot;off&quot;</VERB> that indicate 
-     that <VERB>axes_size</VERB> cannot be resized when <VERB>figure_size</VERB>
-     is changed.</SP>
+            <SP>This property determines if graphics window is resized. If the
+            value is <VERB>"on"</VERB> then the <VERB>axes_size</VERB>
+            property is equaled to the <VERB>figure_size</VERB> and the axes
+            children are zoomed accordingly. If the value is
+            <VERB>"off"</VERB> that indicate that <VERB>axes_size</VERB>
+            cannot be resized when <VERB>figure_size</VERB> is changed.</SP>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="figure_name: ">
             <SP>This field contains the name of the figure. This name is a
-	      character string displayed at the top of the graphics_window. If this name
-	    contains the substring  %d, this substring will be replaced by the
-	      <VERB>figure_id</VERB>.</SP>
+            character string displayed at the top of the graphics_window. If
+            this name contains the substring %d, this substring will be
+            replaced by the <VERB>figure_id</VERB>.</SP>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="figure_id: ">
-            <SP>This field contains the identifier of the figure. This  is a
-     integer number which is prefexed to the figure_window, set at 
-     figure creation and cannot be changed after .</SP>
+            <SP>This field contains the identifier of the figure. This is an
+            integer number which is set at figure creation and cannot be
+            changed after.</SP>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="color_map: ">
             <SP>Property which defines the colormap used by this figure. The
-     colormap is a <VERB>m</VERB> by <VERB>3</VERB> matrix.
-     <VERB>m</VERB> is the number of colors. Color number i is given
-     as a 3-uple <VERB>R</VERB>, <VERB>G</VERB>, <VERB>B</VERB> corresponding
-     respectively to red, green and blue intensity between 0 and 1</SP>
+            colormap is a <VERB>m</VERB> by <VERB>3</VERB> matrix.
+            <VERB>m</VERB> is the number of colors. Color number i is given as
+            a 3-uple <VERB>R</VERB>, <VERB>G</VERB>, <VERB>B</VERB>
+            corresponding respectively to red, green and blue intensity
+            between 0 and 1.</SP>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="background: ">
-            <SP>This property controls the figure window background color. IT takes as value
-     an index relative to the current colormap.</SP>
+            <SP>This property controls the figure window background color. It
+            takes as value an index relative to the current colormap.</SP>
           </DESCRIPTION_ITEM>
-            <DESCRIPTION_ITEM label="pixmap: ">
-            <SP>This property controlst the pixmap status of a Graphic Window.
-	    If this property value is <VERB>&quot;off&quot;</VERB> the graphics 
-	    are directly displayed on the screen. If it is <VERB>&quot;on&quot;</VERB> 
-	    the graphics are done on a pixmap and are sent to the graphics window with 
-	    the command xset("wshow"). </SP>
+
+          <DESCRIPTION_ITEM label="pixmap: ">
+            <SP>This property controls the pixmap status of a Graphic Window.
+            If this property value is <VERB>"off"</VERB> the graphics are
+            directly displayed on the screen. If it is <VERB>"on"</VERB> the
+            graphics are done on a pixmap and are sent to the graphics window
+            with the command <VERB>show_pixmap()</VERB>.</SP>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="pixel_drawing_mode: ">
-            <P>
-     This field defines the bitwise operation used to draw the pixel
-     on the screen. The default mode is <VERB>copy</VERB> what is to
-     say the pixel is drawn as required. More generally the bitwise
-     operation is performed between the color of the source pixel and
-     the color of the pixel already present on the screen. 
-     operations are :   
-    <VERB>&quot;clear&quot;</VERB>, 
-    <VERB>&quot;and&quot;</VERB>, 
-    <VERB>&quot;andReverse&quot;</VERB> , 
-    <VERB>&quot;copy&quot;</VERB>,  src
-    <VERB>&quot;andInverted&quot;</VERB> , 
-    <VERB>&quot;noop&quot;</VERB> , 
-    <VERB>&quot;xor&quot;</VERB> , 
-    <VERB>&quot;or&quot;</VERB> , 
-    <VERB>&quot;nor&quot;</VERB> , 
-    <VERB>&quot;equiv&quot;</VERB> , 
-    <VERB>&quot;invert&quot;</VERB> , 
-    <VERB>&quot;orReverse&quot;</VERB> , 
-    <VERB>&quot;copyInverted&quot;</VERB> , 
-    <VERB>&quot;orInverted&quot;</VERB> , 
-    <VERB>&quot;nand&quot;</VERB> , 
-    <VERB>&quot;set&quot;</VERB> , 
-    </P>
+            <P>This field defines the bitwise operation used to draw the pixel
+            on the screen. The default mode is <VERB>copy</VERB> what is to
+            say the pixel is drawn as required. More generally the bitwise
+            operation is performed between the color of the source pixel and
+            the color of the pixel already present on the screen. Operations
+            are : <VERB>"clear"</VERB>, <VERB>"and"</VERB>,
+            <VERB>"andReverse"</VERB> , <VERB>"copy"</VERB>,
+            <VERB>"andInverted"</VERB> , <VERB>"noop"</VERB> ,
+            <VERB>"xor"</VERB> , <VERB>"or"</VERB> , <VERB>"nor"</VERB> ,
+            <VERB>"equiv"</VERB> , <VERB>"invert"</VERB> ,
+            <VERB>"orReverse"</VERB> , <VERB>"copyInverted"</VERB> ,
+            <VERB>"orInverted"</VERB> , <VERB>"nand"</VERB> ,
+            <VERB>"set"</VERB> ,</P>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="children: ">
-            <SP>This handles represent 
-     the vector of the figure's children . Note that all figure children are of type <VERB>&quot;Axes&quot;</VERB></SP>
+            <SP>This handles represent the vector of the figure's children .
+            Note that all figure children are of type <VERB>"Axes"</VERB>.
+            Also keep in mind that, when creating a figure entity (using
+            <VERB>scf</VERB> command), an <VERB>Axes</VERB> entity is
+            simultaneously built too.</SP>
           </DESCRIPTION_ITEM>
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="Children s default values: ">
+
+      <DESCRIPTION_ITEM label="Children's default values: ">
         <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM label="auto_scale: ">
-            <SP>This field contains the default <VERB>auto_scale</VERB> property value
-     for axes creation. It's value should
-     be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB></SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="auto_clear: ">
-            <SP>This field contains the default <VERB>auto_clear</VERB> property value
-     for axes creation. It's value should
-     be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB></SP>
-          </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM label="visible: ">
-            <SP>This field contains the default <VERB>visible</VERB> property value
-     for axes creation. It's value should
-     be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB></SP>
+            <SP>This field rules if the contents of the figure as to be
+            redrawn when descendants change. Its value should be
+            <VERB>"on"</VERB> or <VERB>"off"</VERB>.</SP>
           </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="line_style: ">
-            <SP>This field contains the default <VERB>line_style</VERB> property
-       value for Segs, Arcs, Rectangle and Polyline objects.
-       <VERB>line_style</VERB> selects the type of line to be
-       used to draw lines . It's value should be an integer in [0 9].
-       0 stands for solid the other value stands for a selection of
-       dashes.</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="thickness: ">
-            <SP>This field contains the default <VERB>thickness</VERB> property
-       value for all objects using line drawing. It's value should
-       be a non negative integer.</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="fill_mode: ">
-            <SP>This field contains the default <VERB>fill_mode</VERB> property
-       value for  Rectangle, Arcs and Polyline objects.
-       It's value should be <VERB>&quot;on&quot; </VERB> or
-       <VERB>&quot;off&quot;</VERB>. if the value is &quot;on&quot; the object is filled
-       with  the color given by it's &quot;foreground&quot; property value.</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="mark_mode: ">
-            <SP>This field contains the default <VERB>mark_mode</VERB> property
-       value for Segs Rectangle and Polyline objects. It's value should
-       be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>.</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="mark_style: ">
-            <SP>This field contains the default <VERB>mark_style</VERB> property
-       value for Segs Rectangle and Polyline
-       objects. <VERB>mark_style</VERB> selects the type of mark to be
-       displayed. It's value should be an integer in [0 9].</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="mark_size: ">
-            <SP>This field contains the default <VERB>mark_size</VERB> property
-       value for Segs Rectangle and Polyline objects. 
-       <VERB>mark_style</VERB> selects the font size of mark to be
-       displayed. It's value should be an integer in [0 9].</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="foreground: ">
-            <SP>This field contains the default <VERB>foreground</VERB> property
-      value for all objects.  It's value should be a color index
-      (relative to the current colormap).</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="clip_state: ">
-            <SP>This field contains the default <VERB>clip_state</VERB> property
-      value for all objects.  It's value should be :</SP>
-            <DESCRIPTION_INDENT>
-              <DESCRIPTION_ITEM>
-                <P><VERB>&quot;off&quot;</VERB> under this state all objects created are not clipped
-         </P>
-              </DESCRIPTION_ITEM>
-              <DESCRIPTION_ITEM>
-                <P><VERB>&quot;clipgrf&quot;</VERB> this means that all objects created after
-         that are clipped outside the Axes rectangle.
-         </P>
-              </DESCRIPTION_ITEM>
-              <DESCRIPTION_ITEM>
-                <P><VERB>&quot;on&quot;</VERB> objects created are clipped outside the rectangle given 
-	 by the determinate property clip_box.
-         </P>
-              </DESCRIPTION_ITEM>
-            </DESCRIPTION_INDENT>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="clip_box: ">
-            <SP>This field contains the default <VERB>clip_box</VERB> property
-      value for all objects.  Its value should be an empty matrix if
-      clip_state is <VERB>&quot;off&quot;</VERB>. If not objects are clipped to 
-      the bounding box <VERB>[x,y,w,h]</VERB> (upper-left point, width, height)</SP>
-          </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="rotation_style: ">
-            <SP>This field is related to the &quot;3D Rot&quot; button. It takes  <VERB>unary</VERB> 
-      as value (default) in the aim to rotate only selected 3D plot.
-      In the other case its value ca be <VERB>multiple</VERB> all 3D plots are rotated.</SP>
+            <SP>This field is related to the "3D Rot" button. It takes
+            <VERB>unary</VERB> as value (default) in the aim to rotate only
+            selected 3D plot. In the other case its value can be
+            <VERB>multiple</VERB> : all 3D plots are rotated.</SP>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Note on default values :">
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label="">
+            <SP>All these listed properties and fields inherit from default
+            values stored in a figure model. These default values can be seen
+            and changed. To do so, use the <VERB>get("default_figure")</VERB>
+            command : it returns a graphic handle on the figure model. Note
+            that no graphic window is created by this command. The next
+            created figures will inherit from this model (see example 2
+            below).</SP>
           </DESCRIPTION_ITEM>
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-   set("figure_style","new") //create a figure
-   f=get("current_figure") //get the handle of the newly created figure
+
+  <EXAMPLE><![CDATA[
+   lines(0) // disables vertical paging 
+  //Example 1
+   set("figure_style","new") //create a figure and set the figure as the current selected one
+   f=get("current_figure") //get the handle of the current figure : 
+                                           //if none exists, create a figure and return the corresponding handle
    f.figure_position
    f.figure_size=[200,200]
    f.background=2
- ]]>
-  </EXAMPLE>
+   f.children  // man can see that an Axes entity already exists
+   delete(f);
+   f=gcf(); // macro shortcut <=> f=get("current_figure")
+   f.pixmap = "on" // set pixmap status to on
+   plot2d() // nothing happens on the screen...
+   show_pixmap() // ...display the pixmap on screen
+   //Example 2 : default_figure settings
+   df=get("default_figure") // get the default values (shortcut is gdf() )
+   // Let's change the defaults...
+   df.color_map=hotcolormap(128)
+   df.background= 110 // set background toa kind of yellow (Note that we are using a color index inside the color_map previously redefined)
+   scf(122); // creates new figure number 122 with the new default
+   plot2d()
+   scf(214);
+   t=-%pi:0.3:%pi;
+   plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
+     ]]></EXAMPLE>
+
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lines</LINK>
+    </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>set</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>get</LINK>
     </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>scf</LINK>
+    </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>gcf</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>gdf</LINK>
     </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>gca</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>gda</LINK>
+    </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>axes_properties</LINK>
     </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>show_pixmap</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>clear_pixmap</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM></SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>hotcolormap</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
+
   <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

@@ -44,7 +44,6 @@
      <DESCRIPTION_ITEM label="polyline_style: ">
       <SP>This property sets several polyline drawing mode:</SP>
      <DESCRIPTION_INDENT>
-
         <DESCRIPTION_ITEM> 
         <SP>If the value is 0 or 1 lines are drawn between two consecutives points.</SP>
         </DESCRIPTION_ITEM>
@@ -60,8 +59,8 @@
         <DESCRIPTION_ITEM>
          <SP>If the value is 4 arrows are drawn between two consecutives points.</SP>
         </DESCRIPTION_ITEM>
-       <DESCRIPTION_ITEM>
-         <SP>If the value is 5 the polyline is filled.</SP>
+	  <DESCRIPTION_ITEM>
+         <SP>If the value is 5 the polyline is filled (patch).</SP>
         </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
@@ -134,7 +133,7 @@
 
    set("figure_style","new") //create a figure
    a=get("current_axes")//get the handle of the newly created axes
-   a.data_bounds=[-2,2,-2,2];
+   a.data_bounds=[-2,2;-2,2];
 
    xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
    p=get("hdl"); //get handle on current entity (here the polyline entity)

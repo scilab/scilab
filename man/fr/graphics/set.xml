@@ -1,69 +1,89 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>set</TITLE>
+
   <TYPE>Scilab Function</TYPE>
-  <DATE> 2002</DATE>
-  <SHORT_DESCRIPTION name="set"> 
-   set a property value of a graphic entity object or of a User Interface object.  
-  </SHORT_DESCRIPTION>
+
+  <DATE>2002</DATE>
+
+  <SHORT_DESCRIPTION name="set">set a property value of a graphic entity
+  object or of a User Interface object.</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>set(prop,val) </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>set(h,prop,val)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>set(prop,val)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>set(h,prop,val)</CALLING_SEQUENCE_ITEM>
+
     <CALLING_SEQUENCE_ITEM>h.prop=val</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>set(n,prop,val)  </CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>set(n,prop,val)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>h</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>: a handle, the handle of the entity which to set the named property, <VERB>h</VERB> can be a vector of
-handles, in which case set sets the property's value for all objects identified by h(i).</SP>
+          <SP>: a handle, the handle of the entity which to set the named
+          property, <VERB>h</VERB> can be a vector of handles, in which case
+          set sets the property's value for all objects identified by
+          h(i).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>n</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>n : an integer, the handle of User Interface object which to set the named property.</SP>
+          <SP>n : an integer, the handle of User Interface object which to set
+          the named property.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>prop</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
           <SP>: character string name of the property to set.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>val</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <P>
-     : value to give to the property (see <LINK>graphics_entities</LINK>).</P>
+          <P>: value to give to the property (see
+          <LINK>graphics_entities</LINK>).</P>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
-  <DESCRIPTION>
-    <P>
-    This routine can be used to set a graphics entity specified property. 
-    This graphics entity is identified by its handle <VERB>h</VERB>.If the handle is 
-    not specified, the current object is taken as the default handle.
-    The type of the value to set property depends on the type of the graphics entity.</P>
-    <P>
-   See <LINK>graphics_entities</LINK> for details about properties' names and
-    values for graphics entities.</P>
-    <P>
-  See <LINK>uicontrol</LINK> for details about properties' names and
-    values for User Interface objects.</P>
-    <P>
-    For graphics entities handle it is possible to use equivalently a dot notation
-    like <VERB>h.background</VERB> instead of <VERB>set</VERB>.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 
-   xbasc()
+  <DESCRIPTION>
+    <P>This routine can be used to set a graphics entity specified property.
+    This graphics entity is identified by its handle <VERB>h</VERB>.If the
+    handle is not specified, the current object is taken as the default
+    handle. The type of the value to set property depends on the type of the
+    graphics entity.</P>
+
+    <P>See <LINK>graphics_entities</LINK> for details about properties' names
+    and values for graphics entities.</P>
+
+    <P>See <LINK>uicontrol</LINK> for details about properties' names and
+    values for User Interface objects.</P>
+
+    <P>For graphics entities handle it is possible to use equivalently a dot
+    notation like <VERB>h.background</VERB> instead of <VERB>set</VERB>.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+
+   clf()
    set("figure_style","new") //create a figure
    set("auto_clear","off") ;
    // Exemple of a Plot 2D
@@ -86,27 +106,34 @@ handles, in which case set sets the property's value for all objects identified 
    p3= a.children(1).children;
    set([a p1 p2 p3],"foreground",5)
 
- ]]>
-  </EXAMPLE>
+ 
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>get</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>delete</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>copy</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>move</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>uicontrol</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Djalel ABDEMOUCHE</AUTHOR>
+
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>
