@@ -128,8 +128,8 @@ int StoreCommand1 (char *command,int flag)
     }
   if (get_is_reading ())
     { 
-#ifdef MSDOS
-      else if (flag==2) { /* for windows ?????*/
+#ifdef WIN32
+      if (flag==2) { /* for windows */
 	write_scilab ("\n");
       }
 #endif
