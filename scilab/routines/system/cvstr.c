@@ -130,9 +130,9 @@ integer C2F(getcode)(unsigned char * mc,unsigned long mc_len)
   }
   /*     special characters */
   switch ( *mc ) {
-  case 0:  return  eol; break; 
-  case 9:  return blank+1; break; 
-  case 10: return eol ; break; 
+  case 0:  return  100; break; 
+  case 9:  return 109; break; 
+  case 10: return 110 ; break; 
   default : 
     return  *mc + eol + 1;
   }
@@ -142,8 +142,8 @@ integer C2F(getcode)(unsigned char * mc,unsigned long mc_len)
 #include "../machine.h" 
 
 static integer taba2s[128] = 
-{ 99,101,102,103,104,105,106,107,108,-40,
-  99,111,112,113,114,115,116,117,118,119,
+{ 100,101,102,103,104,105,106,107,108,-40,
+  110,111,112,113,114,115,116,117,118,119,
  120,121,122,123,124,125,126,127,128,129,
  130,131, 40, 38,-53, 37, 39, 56, 58, 53,
   41, 42, 47, 45, 52, 46, 51, 48,  0,  1,
