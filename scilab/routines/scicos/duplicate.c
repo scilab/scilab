@@ -177,7 +177,7 @@ int C2F(intcpass2)(fname)
   ((int*) bllst13)[0]=m;
   if ((xcd0=(double*)malloc(sizeof(double))) == NULL) return 0;
   ((int*) xcd0)[0]=0;
-  if ((typ_x=malloc(sizeof(int *)*(m+1))) ==NULL )  return 0;		  
+  if ((typ_x=calloc(m+1,sizeof(int))) ==NULL )  return 0;		  
   typ_x[0]=m;
   
   for (k=1; k <= m; k++)
