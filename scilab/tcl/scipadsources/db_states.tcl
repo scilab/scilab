@@ -59,6 +59,7 @@ proc getdbstate {} {
 
 proc setdbmenuentriesstates_bp {} {
     global pad watch watchwinicons
+    global Shift_F12
 global dev_debug
 
     set errmess "Unknown debugstate in proc setdbmenuentriesstates_bp: please report"
@@ -78,7 +79,7 @@ global dev_debug
         $dm entryconfigure  8 -state disabled
         bind all <Control-F11> {}
         $dm entryconfigure  9 -state disabled
-        bind all <Shift-F12> {}
+        bind all <$Shift_F12> {}
         $dm entryconfigure 11 -state disabled
         bind all <Control-F12> {}
         $dm entryconfigure 13 -state disabled
@@ -101,7 +102,7 @@ if {$dev_debug=="true"} {
         bind all <Control-F11> {runtocursor_bp}
 }
         $dm entryconfigure  9 -state disabled
-        bind all <Shift-F12> {}
+        bind all <$Shift_F12> {}
         $dm entryconfigure 11 -state normal
         bind all <Control-F12> {showwatch_bp}
         $dm entryconfigure 13 -state disabled
@@ -125,7 +126,7 @@ if {$dev_debug=="true"} {
         bind all <Control-F11> {runtocursor_bp}
 }
         $dm entryconfigure  9 -state normal
-        bind all <Shift-F12> {goonwo_bp}
+        bind all <$Shift_F12> {goonwo_bp}
         $dm entryconfigure 11 -state normal
         bind all <Control-F12> {showwatch_bp}
 if {$dev_debug=="true"} {

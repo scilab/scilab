@@ -33,8 +33,8 @@ if { [info exists pad] } {
     source [file join $sourcedir defaults.tcl]
     source [file join $sourcedir mainwindow.tcl]
     source [file join $sourcedir db_init.tcl]
-    source [file join $sourcedir menues.tcl]
     source [file join $sourcedir bindings.tcl]
+    source [file join $sourcedir menues.tcl]
 
     #define ScilabEval to a void function, if it is unknown. This is
     # useful in order to run scipad outside of scilab (e.g. to debug it)

@@ -872,3 +872,8 @@ Francois VOGEL, 16/03/05
  * Several minor glitches corrected for Find/Replace, in selection or full
    text, related to changing search direction between searches
  * version --> 3.50
+
+Francois VOGEL, 16/03/05
+ * Differences of keysyms between Linux and Windows platforms are now fully
+   handled
+ * version --> 3.51

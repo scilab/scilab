@@ -9,10 +9,6 @@ bind Text <Delete> { deletetext}
 bind Text <BackSpace> { backspacetext}
 bind Text <Return> {insertnewline %W}
 bind Text <Tab> {inserttab %W}
-bind Text <Shift-Tab> {UnIndentSel}
-#XF86 4.3 modmap has the following instead of Shift-Tab
-#catched not to cause trouble on other platforms
-catch {bind Text <ISO_Left_Tab> {UnIndentSel}}
 
 bind Text <parenright> { if {{%A} != {{}}} {insblinkbrace %W %A}}
 bind Text <bracketright> { if {{%A} != {{}}} {insblinkbrace %W %A}} 
@@ -48,8 +44,10 @@ bind $pad <Control-w> {closecur}
 bind $pad <Control-n> {filesetasnew}
 bind $pad <Control-q> {exitapp}
 bind $pad <Control-g> {gotoline}
-bind $pad <Control-p> {selectprint $textareacur}
-bind $pad <Control-P> {printseupselection}
+if {"$tcl_platform(platform)" == "unix"} {
+    bind $pad <Control-p> {selectprint $textareacur}
+    bind $pad <Control-P> {printseupselection}
+}
 bind $pad <Control-s> {filetosave %W}
 bind $pad <Control-S> {filesaveascur}
 
@@ -72,10 +70,6 @@ bind $pad <F2> {filetosave %W}
 
 bind $pad <F1> {helpme}
 bind $pad <Control-F1> {helpword}
-bind $pad <Shift-F1> {aboutme}
-#XF86 4.3 modmap has the following instead of Shift-F1
-#catched not to cause trouble on other platforms
-catch {bind $pad <XF86_Switch_VT_1> {aboutme}}
 
 # remove the default bind ctrl-d=delete char
 bind Text <Control-d> ""
@@ -102,3 +96,22 @@ bind $pad <Control-a> {selectall}
 
 bind Text <Control-slash> {set ind [%W index insert]; openlibfunsource $ind}
 bind Text <Control-Button-1> {set ind [%W index current]; showpopupsource $ind}
+
+# The folowing are (unfortunately) platform-dependent keysyms
+if {"$tcl_platform(platform)" == "unix"} {
+    #XF86 4.3 modmap has the following keysyms
+    set Shift_Tab   "ISO_Left_Tab"
+    set Shift_F1    "XF86_Switch_VT_1"
+    set Shift_F8    "XF86_Switch_VT_8"
+    set Shift_F11   "XF86_Switch_VT_11"
+    set Shift_F12   "XF86_Switch_VT_12"
+} else {
+    # should be windows (tested) or macintosh (untested)
+    set Shift_Tab   "Shift-Tab"
+    set Shift_F1    "Shift-F1"
+    set Shift_F8    "Shift-F8"
+    set Shift_F11   "Shift-F11"
+    set Shift_F12   "Shift-F12"
+}
+bind Text <$Shift_Tab> {UnIndentSel}
+bind $pad <$Shift_F1> {aboutme}

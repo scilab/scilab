@@ -259,6 +259,7 @@ proc changelanguage {newlanguage} {
 
 proc schememenus {textarea} {
     global pad listoffile
+    global Shift_F11 Shift_F12
     set dm $pad.filemenu.debug
     if {$listoffile("$textarea",language) == "scilab"} {
         #enable "Load into scilab"
@@ -289,8 +290,8 @@ proc schememenus {textarea} {
         bind $pad <F10> {}
         bind $pad <Control-F11> {}
         bind $pad <F11> {}
-#       bind $pad <Shift-F11> {}
-        bind $pad <Shift-F12> {}
+#       bind $pad <$Shift_F11> {}
+        bind $pad <$Shift_F12> {}
         bind $pad <F12> {}
         bind $pad <Control-F12> {}
     }
