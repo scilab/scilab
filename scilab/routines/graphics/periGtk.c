@@ -2799,8 +2799,11 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
   /** Default value is without Pixmap **/
   ScilabXgc->Cdrawable = (GdkDrawable *) ScilabXgc->drawing->window;
   InitMissileXgc(PI0,PI0,PI0,PI0);
+  /* to be sure that current values are recorded */
+  StoreXgc(WinNum);
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
+
   gdk_flush();
 }
 

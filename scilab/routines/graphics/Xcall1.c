@@ -1,5 +1,35 @@
-/* C code produced by gperf version 2.7.1 (19981006 egcs) */
-/* Command-line: gperf -C -t -k 2,3,4,$ Xcall1.gperf  */
+/* C code produced by gperf version 3.0.1 */
+/* Command-line: gperf -C -t -k '2,3,4,$' Xcall1.gperf  */
+
+#if !((' ' == 32) && ('!' == 33) && ('"' == 34) && ('#' == 35) \
+      && ('%' == 37) && ('&' == 38) && ('\'' == 39) && ('(' == 40) \
+      && (')' == 41) && ('*' == 42) && ('+' == 43) && (',' == 44) \
+      && ('-' == 45) && ('.' == 46) && ('/' == 47) && ('0' == 48) \
+      && ('1' == 49) && ('2' == 50) && ('3' == 51) && ('4' == 52) \
+      && ('5' == 53) && ('6' == 54) && ('7' == 55) && ('8' == 56) \
+      && ('9' == 57) && (':' == 58) && (';' == 59) && ('<' == 60) \
+      && ('=' == 61) && ('>' == 62) && ('?' == 63) && ('A' == 65) \
+      && ('B' == 66) && ('C' == 67) && ('D' == 68) && ('E' == 69) \
+      && ('F' == 70) && ('G' == 71) && ('H' == 72) && ('I' == 73) \
+      && ('J' == 74) && ('K' == 75) && ('L' == 76) && ('M' == 77) \
+      && ('N' == 78) && ('O' == 79) && ('P' == 80) && ('Q' == 81) \
+      && ('R' == 82) && ('S' == 83) && ('T' == 84) && ('U' == 85) \
+      && ('V' == 86) && ('W' == 87) && ('X' == 88) && ('Y' == 89) \
+      && ('Z' == 90) && ('[' == 91) && ('\\' == 92) && (']' == 93) \
+      && ('^' == 94) && ('_' == 95) && ('a' == 97) && ('b' == 98) \
+      && ('c' == 99) && ('d' == 100) && ('e' == 101) && ('f' == 102) \
+      && ('g' == 103) && ('h' == 104) && ('i' == 105) && ('j' == 106) \
+      && ('k' == 107) && ('l' == 108) && ('m' == 109) && ('n' == 110) \
+      && ('o' == 111) && ('p' == 112) && ('q' == 113) && ('r' == 114) \
+      && ('s' == 115) && ('t' == 116) && ('u' == 117) && ('v' == 118) \
+      && ('w' == 119) && ('x' == 120) && ('y' == 121) && ('z' == 122) \
+      && ('{' == 123) && ('|' == 124) && ('}' == 125) && ('~' == 126))
+/* The character set is not based on ISO-646.  */
+error "gperf generated tables don't work with this execution character set. Please report a bug to <bug-gnu-gperf@gnu.org>."
+#endif
+
+#line 1 "Xcall1.gperf"
+
 /*------------------------------------------------------------------------
  *   Graphic library for 2D and 3D plotting 
  *   Copyright (C) 1998-2001 Chancelier Jean-Philippe 
@@ -12,24 +42,23 @@
 #include "Math.h"
 #include "PloEch.h"
 
-typedef void (f_xcall1) __PARAMS((char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,
-			       double *,double *,double *,double *,integer,integer ));
-typedef void (*func) __PARAMS((char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,
-			       double *,double *,double *,double *,integer,integer ));
-extern int C2F(sciwin) __PARAMS((void));
+typedef void (f_xcall1) (char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,
+			       double *,double *,double *,double *,integer,integer );
+typedef void (*func) (char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,
+			       double *,double *,double *,double *,integer,integer );
+extern int C2F(sciwin) (void);
 extern int version_flag();
-
-
-static void GSciString __PARAMS((int,integer *x,integer *y,char *StrMat,integer *w,integer *h));
-static void Myalloc1 __PARAMS((integer **xm,integer n,integer *err));
-static void Myalloc __PARAMS((integer **xm,integer **ym, integer n, integer *err));
-static void xstringb __PARAMS(( char *string,integer x, integer y, integer w, integer h));
+static void GSciString (int,integer *x,integer *y,char *StrMat,integer *w,integer *h);
+static void Myalloc1 (integer **xm,integer n,integer *err);
+static void Myalloc (integer **xm,integer **ym, integer n, integer *err);
+static void xstringb ( char *string,integer x, integer y, integer w, integer h);
 
 static f_xcall1 xset_1, drawarc_1, fillarcs_1  ,drawarcs_1  ,fillpolyline_1  ,drawarrows_1  ;
 static f_xcall1 drawaxis_1  ,cleararea_1  ,xclick_1  ,xclick_any_1  ,xgetmouse_1  ,fillarc_1  ;
 static f_xcall1 fillrectangle_1  ,drawpolyline_1  ,fillpolylines_1  ,drawpolymark_1  ,displaynumbers_1  ;
 static f_xcall1 drawpolylines_1  ,drawrectangle_1  ,drawrectangles_1  ,drawsegments_1  ,displaystring_1  ;
 static f_xcall1 displaystringa_1  ,boundingbox_1  ,xstringb_1  ,displaystringt;
+static f_xcall1 xinit_1;
 
 static integer Ivide=0;
 static double  Dvide;
@@ -38,17 +67,22 @@ static double  Dvide;
 #define const 
 #endif 
 
+#line 40 "Xcall1.gperf"
 struct funreplace { char *name; f_xcall1 *action; };
 
-#define TOTAL_KEYWORDS 38
+#define TOTAL_KEYWORDS 39
 #define MIN_WORD_LENGTH 4
 #define MAX_WORD_LENGTH 9
-#define MIN_HASH_VALUE 4
-#define MAX_HASH_VALUE 120
-/* maximum key range = 117, duplicates = 0 */
+#define MIN_HASH_VALUE 10
+#define MAX_HASH_VALUE 114
+/* maximum key range = 105, duplicates = 0 */
 
 #ifdef __GNUC__
 __inline
+#else
+#ifdef __cplusplus
+inline
+#endif
 #endif
 static unsigned int
 hash (str, len)
@@ -57,32 +91,32 @@ hash (str, len)
 {
   static const unsigned char asso_values[] =
     {
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121,  35,   0,   5,
-        5,   0,  25,  30, 121,   0, 121,   5,  10,  20,
-       60,  30,   0, 121,   0,   0,   0,  15, 121,  10,
-       10,   0, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121, 121, 121, 121, 121,
-      121, 121, 121, 121, 121, 121
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115,   0,   5,   5,
+       10,   0,  20,  25, 115,   0, 115,  35,  35,  35,
+       15,  10,  15, 115,   5,  10,   0,  25, 115,   1,
+       15,   0, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+      115, 115, 115, 115, 115, 115
     };
   return len + asso_values[(unsigned char)str[3]] + asso_values[(unsigned char)str[2]] + asso_values[(unsigned char)str[1]] + asso_values[(unsigned char)str[len - 1]];
 }
@@ -97,69 +131,105 @@ in_word_set (str, len)
 {
   static const struct funreplace wordlist[] =
     {
-      {""}, {""}, {""}, {""},
+      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
+      {""},
+#line 45 "Xcall1.gperf"
+      {"xarea",		fillpolyline_1},
+      {""}, {""}, {""},
+#line 74 "Xcall1.gperf"
       {"xset",		xset_1},
-      {""},
-      {"xsetdr",		(func) C2F(dr)},
-      {"xreplay",	(func) C2F(dr)},
-      {"xstringb",	xstringb_1},
-      /*{""},*/ 
-      {"xstringtt",	displaystringt},
+#line 69 "Xcall1.gperf"
       {"xrect",		drawrectangle_1},
-      {"xrects",		drawrectangles_1},
-      {""}, {""}, {""}, {""}, {""},
-      {"xselect",	(func) C2F(dr)},
-      {"xstringl",	boundingbox_1},
-      {""}, {""},
-      {"xclear",		(func) C2F(dr)},
-      {""}, {""},
-      {"xclickany",	xclick_any_1},
+#line 76 "Xcall1.gperf"
+      {"xstart",		(func) C2F(dr)},
+#line 46 "Xcall1.gperf"
+      {"xarrow",		drawarrows_1},
       {""},
-      {"xclick",		xclick_1},
-      {""}, {""}, {""}, {""},
+#line 43 "Xcall1.gperf"
+      {"xarc",		drawarc_1},
+#line 60 "Xcall1.gperf"
+      {"xinit",		xinit_1},
+#line 75 "Xcall1.gperf"
+      {"xsetdr",		(func) C2F(dr)},
+      {""},
+#line 78 "Xcall1.gperf"
+      {"xstringa",	displaystringa_1},
+#line 81 "Xcall1.gperf"
+      {"xstringtt",	displaystringt},
+#line 44 "Xcall1.gperf"
+      {"xarcs",		drawarcs_1},
+#line 70 "Xcall1.gperf"
+      {"xrects",		drawrectangles_1},
+#line 71 "Xcall1.gperf"
+      {"xreplay",	(func) C2F(dr)},
+#line 79 "Xcall1.gperf"
+      {"xstringb",	xstringb_1},
+#line 56 "Xcall1.gperf"
+      {"xget",		(func) C2F(dr)},
+#line 47 "Xcall1.gperf"
+      {"xaxis",		drawaxis_1},
+#line 55 "Xcall1.gperf"
       {"xfrect",		fillrectangle_1},
       {""}, {""},
-      {"xget",		(func) C2F(dr)},
-      {"xsegs",		drawsegments_1},
-      {"xgetdr",		(func) C2F(dr)},
-      {"xstring",	displaystring_1},
-      {""},
+#line 58 "Xcall1.gperf"
       {"xgetmouse",	xgetmouse_1},
-      {""},
-      {"xstart",		(func) C2F(dr)},
-      {""},
-      {"xstringa",	displaystringa_1},
-      {""},     
-      {"xarcs",		drawarcs_1},
-      {"xpolys",		drawpolylines_1},
+#line 53 "Xcall1.gperf"
+      {"xfarc",		fillarc_1},
+#line 57 "Xcall1.gperf"
+      {"xgetdr",		(func) C2F(dr)},
       {""}, {""},
-      {"xarc",		drawarc_1},
-      {"xaxis",		drawaxis_1},
-      {"xarrow",		drawarrows_1},
-      {""}, {""}, {""},
-      {"xclea",		cleararea_1},
-      {"xpause",		(func) C2F(dr)},
-      {""}, {""}, {""}, {""},
-      {"xmarks",		drawpolymark_1},
-      {""}, {""}, {""},
-      {"xinit",		(func) C2F(dr)},
+#line 52 "Xcall1.gperf"
+      {"xend",		(func) C2F(dr)},
+      {""},
+#line 54 "Xcall1.gperf"
       {"xfarcs",		fillarcs_1},
       {""}, {""}, {""},
-      {"xfarc",		fillarc_1},
-      {"xlfont",		(func) C2F(dr)},
+#line 48 "Xcall1.gperf"
+      {"xclea",		cleararea_1},
+#line 67 "Xcall1.gperf"
+      {"xpause",		(func) C2F(dr)},
+#line 77 "Xcall1.gperf"
+      {"xstring",	displaystring_1},
+      {""},
+#line 51 "Xcall1.gperf"
+      {"xclickany",	xclick_any_1},
+#line 72 "Xcall1.gperf"
+      {"xsegs",		drawsegments_1},
+#line 49 "Xcall1.gperf"
+      {"xclear",		(func) C2F(dr)},
+#line 73 "Xcall1.gperf"
+      {"xselect",	(func) C2F(dr)},
       {""}, {""},
-      {"xend",		(func) C2F(dr)},
-      {"xarea",		fillpolyline_1},
-      {"xlines",		drawpolyline_1},
-      {"xliness",	fillpolylines_1},
-      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
-      {""}, {""}, {""}, {""},
+#line 65 "Xcall1.gperf"
+      {"xname",		(func) C2F(dr)},
+#line 64 "Xcall1.gperf"
+      {"xmarks",		drawpolymark_1},
+      {""},
+#line 80 "Xcall1.gperf"
+      {"xstringl",	boundingbox_1},
+      {""}, {""},
+#line 59 "Xcall1.gperf"
       {"xgfont",		(func) C2F(dr)},
+      {""}, {""}, {""}, {""},
+#line 62 "Xcall1.gperf"
+      {"xlines",		drawpolyline_1},
+#line 63 "Xcall1.gperf"
+      {"xliness",	fillpolylines_1},
+      {""}, {""}, {""},
+#line 61 "Xcall1.gperf"
+      {"xlfont",		(func) C2F(dr)},
+      {""}, {""}, {""}, {""},
+#line 68 "Xcall1.gperf"
+      {"xpolys",		drawpolylines_1},
+      {""}, {""}, {""}, {""},
+#line 50 "Xcall1.gperf"
+      {"xclick",		xclick_1},
       {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
-      {"xnum",		displaynumbers_1},
-      {"xname",		(func) C2F(dr)}
+      {""}, {""}, {""}, {""}, {""},
+#line 66 "Xcall1.gperf"
+      {"xnum",		displaynumbers_1}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
@@ -176,6 +246,7 @@ in_word_set (str, len)
     }
   return 0;
 }
+#line 82 "Xcall1.gperf"
 
 
 int C2F(dr1)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
@@ -267,6 +338,15 @@ int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1)
 	}
     }
   return 0;
+}
+
+/*-----------------------------------------------------------------------------
+ *  xset_1 
+ *-----------------------------------------------------------------------------*/
+
+void xinit_1(char *fname, char *str, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
+{
+   C2F(dr)(fname,str,x1,x2,x3,x4,x5,x6,dx1,dx2,dx3,dx4,lx0,lx1);
 }
 
 
@@ -855,6 +935,13 @@ static void Myalloc1(integer **xm, integer n, integer *err)
 	}
     }
 }
+
+
+
+
+
+
+
 
 
 

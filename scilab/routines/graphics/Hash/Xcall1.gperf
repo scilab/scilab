@@ -11,22 +11,23 @@
 #include "Math.h"
 #include "PloEch.h"
 
-typedef void (f_xcall1) __PARAMS((char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,
-			       double *,double *,double *,double *,integer,integer ));
-typedef void (*func) __PARAMS((char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,
-			       double *,double *,double *,double *,integer,integer ));
-extern int C2F(sciwin) __PARAMS((void));
-
-static void GSciString __PARAMS((int,integer *x,integer *y,char *StrMat,integer *w,integer *h));
-static void Myalloc1 __PARAMS((integer **xm,integer n,integer *err));
-static void Myalloc __PARAMS((integer **xm,integer **ym, integer n, integer *err));
-static void xstringb __PARAMS(( char *string,integer x, integer y, integer w, integer h));
+typedef void (f_xcall1) (char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,
+			       double *,double *,double *,double *,integer,integer );
+typedef void (*func) (char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,
+			       double *,double *,double *,double *,integer,integer );
+extern int C2F(sciwin) (void);
+extern int version_flag();
+static void GSciString (int,integer *x,integer *y,char *StrMat,integer *w,integer *h);
+static void Myalloc1 (integer **xm,integer n,integer *err);
+static void Myalloc (integer **xm,integer **ym, integer n, integer *err);
+static void xstringb ( char *string,integer x, integer y, integer w, integer h);
 
 static f_xcall1 xset_1, drawarc_1, fillarcs_1  ,drawarcs_1  ,fillpolyline_1  ,drawarrows_1  ;
 static f_xcall1 drawaxis_1  ,cleararea_1  ,xclick_1  ,xclick_any_1  ,xgetmouse_1  ,fillarc_1  ;
 static f_xcall1 fillrectangle_1  ,drawpolyline_1  ,fillpolylines_1  ,drawpolymark_1  ,displaynumbers_1  ;
 static f_xcall1 drawpolylines_1  ,drawrectangle_1  ,drawrectangles_1  ,drawsegments_1  ,displaystring_1  ;
-static f_xcall1 displaystringa_1  ,boundingbox_1  ,xstringb_1  ;
+static f_xcall1 displaystringa_1  ,boundingbox_1  ,xstringb_1  ,displaystringt;
+static f_xcall1 xinit_1;
 
 static integer Ivide=0;
 static double  Dvide;
@@ -56,7 +57,7 @@ xget,		(func) C2F(dr)
 xgetdr,		(func) C2F(dr)
 xgetmouse,	xgetmouse_1
 xgfont,		(func) C2F(dr)
-xinit,		(func) C2F(dr)
+xinit,		xinit_1
 xlfont,		(func) C2F(dr)
 xlines,		drawpolyline_1
 xliness,	fillpolylines_1
@@ -77,8 +78,8 @@ xstring,	displaystring_1
 xstringa,	displaystringa_1
 xstringb,	xstringb_1
 xstringl,	boundingbox_1
+xstringtt,	displaystringt
 %%
-
 
 int C2F(dr1)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
 	    integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
@@ -169,6 +170,15 @@ int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1)
 	}
     }
   return 0;
+}
+
+/*-----------------------------------------------------------------------------
+ *  xset_1 
+ *-----------------------------------------------------------------------------*/
+
+void xinit_1(char *fname, char *str, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
+{
+   C2F(dr)(fname,str,x1,x2,x3,x4,x5,x6,dx1,dx2,dx3,dx4,lx0,lx1);
 }
 
 
@@ -572,19 +582,34 @@ void displaystringa_1(char *fname, char *string, integer *ipos, integer *v2, int
     }
 }
 /*-----------------------------------------------------------------------------
+ * MAJ D.A
+ *-----------------------------------------------------------------------------*/
+void displaystringt(char *fname,char *string, integer *v1, integer *v2, integer *v3, integer *v4 , integer *x7, integer *x8, double *dx1, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
+{
+  integer x, y, w, h;
+  x=*v1; 
+  y=*v2; 
+  w=*v3; 
+  h=*v4;
+  xstringb (string,x,y,w,h);
+}
+/*-----------------------------------------------------------------------------
  * display a set of lines coded with 'line1@line2@.....@'
  *   centred in the rectangle [x,y,w=wide,h=height] 
  *-----------------------------------------------------------------------------*/
 
-static void xstringb(char *string, integer x, integer y, integer w, integer h)
+static void xstringb (char *string, integer x, integer y, integer w, integer h)
 {
   char *loc,*loc1;
   loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
   if ( loc != 0)
     {
-      integer wmax=0,htot=0,x1=0,yy1=0,rect[4];
+      integer wmax=0,htot=0,x1=0,yy1=0,rect[4],i;
       strcpy(loc,string);
       loc1=strtok(loc,"@");
+
+	  for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0. for preventing Windows RunTime 'error' in debug mode F.Leray 06.04.04 */
+
       while ( loc1 != ( char * ) 0) 
 	{  
 	  C2F(dr)("xstringl",loc1,&x1,&yy1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -638,7 +663,7 @@ void xstringb_1(char *fname, char *str, integer *fflag, integer *v2, integer *v3
 {
   integer x,y,w,h,wbox,hbox,size,n=1;
   integer fontid[2],narg,verbose=0;
-  if (GetDriver()=='R') 
+  if (GetDriver()=='R' && (version_flag() != 0)) 
     StoreXcall1(fname,str,fflag,1L,v2,1L,v3,1L,v4,1L,
 		&Ivide,1L,&Ivide,1L,xd,1L,yd,1L,wd,1L,hd,1L);
   x = XDouble2Pixel(*xd);
@@ -659,8 +684,8 @@ void xstringb_1(char *fname, char *str, integer *fflag, integer *v2, integer *v3
     }
   else 
     GSciString(0,&x,&y,str,&w,&h);
-  x = x +  (wbox - w)/2.0;
-  y = y -  (hbox - h)/2.0; 
+  x = (int) (x +  (wbox - w)/2.0);
+  y = (int) (y -  (hbox - h)/2.0); 
   GSciString(1,&x,&y,str,&w,&h);
   C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
@@ -685,7 +710,8 @@ void GSciString(int Dflag, integer *x, integer *y, char *StrMat, integer *w, int
     {
       integer logrect[4];
       double angle=0.0;
-      integer flag=1;
+      /* integer flag=1; SS 10/1/03*/
+      integer flag=0;
       p2 =p1 ; *p1 = '\0';
       while ( p1 != p && *p1 != '\n' ) 
 	p1--;
@@ -705,7 +731,7 @@ void GSciString(int Dflag, integer *x, integer *y, char *StrMat, integer *w, int
 	}	
       else 
 	{
-	  yi=yi-1.2*logrect[3];
+	  yi=(int) (yi-1.2*logrect[3]);
 	}
     }
   *w = wc ;
@@ -741,6 +767,13 @@ static void Myalloc1(integer **xm, integer n, integer *err)
 	}
     }
 }
+
+
+
+
+
+
+
 
 
 

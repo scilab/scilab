@@ -4085,6 +4085,8 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
       LoadFonts();
     } 
   InitMissileXgc(PI0,PI0,PI0,PI0);/* a laisser ici */
+  /* to be sure that current values are recorded */
+  StoreXgc(WinNum);
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
 

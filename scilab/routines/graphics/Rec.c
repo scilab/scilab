@@ -2640,7 +2640,7 @@ static void GReplay(char *type, char *plot)
 
 
 /*---------------------------------------------------------------------
- * Add a new graphics record in the graphic recorder lisy 
+ * Add a new graphics record in the graphic recorder list 
  *---------------------------------------------------------------------------*/
 
 int Store(char *type, char *plot)
