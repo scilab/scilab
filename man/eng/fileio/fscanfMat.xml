@@ -8,19 +8,26 @@
   <SHORT_DESCRIPTION name="fscanfMat"> Reads a Matrix from a text file.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>M=fscanfMat(filename);  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[M,text]=fscanfMat(filename);  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
  <PARAM_INDENT>
   <PARAM_ITEM>
-  <PARAM_NAME>filename : a character string giving the name of the  file  to  be  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    scanned.
+  <PARAM_NAME>filename</PARAM_NAME>
+  <PARAM_DESCRIPTION> 
+    : a character string giving the name of the  file  to  be scanned.
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
-  <PARAM_NAME>M  </PARAM_NAME>
+  <PARAM_NAME>M</PARAM_NAME>
   <PARAM_DESCRIPTION>
     : Output variable. A matrix of real numbers.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>text</PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Output variable. A string matrix. 
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -28,7 +35,8 @@
   <DESCRIPTION>
   <P>
     The <VERB>fscanfMat</VERB> function is used to read a scalar matrix from a
-    text file.  The first non-numeric lines of the file are ignored and
+    text file.  The first non-numeric lines of the file are returned
+    in <VERB>text</VERB> if requested and
     all the remaining lines must have the same number of columns (column 
     separator are assumed to be white spaces or tab characters). The
     number of columns of the matrix will  follow the number 
