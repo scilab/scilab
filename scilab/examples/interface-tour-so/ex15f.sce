@@ -32,7 +32,7 @@ if norm(Z2 - Zref2) > %eps then pause,end
 if ~c_link('f3f') then 
   // see link-examples-so for link examples 
   ilib_for_link('f3f','f3f.o',[],'f','f3fmake','f3floader.sce');
-  exec f3floader.sce
+  exec f3floader.sce;
 end
 
 
