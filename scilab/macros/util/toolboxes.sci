@@ -22,9 +22,9 @@ function [y]=toolboxes(dir,flag,force)
   if rhs <= 2 then 
     force = %f 
   end
-  files= listfiles(dir);
   cur_wd= getcwd();
   chdir(dir);
+  files= listfiles('.');
   contribs=[]
   for k=1:size(files,'*') 
     if fileinfo(files(k)+'/builder.sce')<>[] then 
