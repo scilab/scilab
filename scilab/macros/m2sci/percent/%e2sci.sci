@@ -20,6 +20,8 @@ if or(var.name==["varargin","varargout"]) then
   else
     if type(ind(1))==15 | ind(1).vtype<>String then
       tree.operands(2)(2)=null() // Del 'entries'
+    elseif typeof(ind(1))=="cste" then 
+      tree.operands(2)(2)=null() // Del 'entries'
     else
       tree.operands(2)(1)=null() // Del 'entries'
     end
