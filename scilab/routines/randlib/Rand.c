@@ -16,17 +16,19 @@
 #include "others_generators.h"
 #include <math.h>
 
-enum {MT, KISS, CLCG4, CLCG2};
+enum {MT, KISS, CLCG4, CLCG2, URAND};
 
 static int current_gen = MT;   /* the current generator */
 static int current_clcg4 = 0;  /* for clcg4 : the current virtual gen */
-                               /* 0 <= current_clcg4 <= Maxgen = 100 defined in clcg4.h */ 
+/* 0 <= current_clcg4 <= Maxgen = 100 defined in clcg4.h */ 
 double clcg4_with_gen();
 
-#define NbGenInScilab 4
+#define NbGenInScilab 5
 
-double  (*gen[NbGenInScilab])() = { randmt, kiss, clcg4_with_gen, clcg2 };
-static char *names_gen[]= { "mt", "kiss","clcg4", "clcg2"};
+double sci_urand() { return C2F(urand)(&C2F(com).ran[0]);};
+
+double  (*gen[NbGenInScilab])() = { randmt, kiss, clcg4_with_gen, clcg2 ,sci_urand };
+static char *names_gen[]= { "mt", "kiss","clcg4", "clcg2", "urand" };
 
 double  clcg4_with_gen(void)
 {
@@ -80,62 +82,66 @@ int RandI( char* fname)
 	{
 	  if ( Rhs != 1) 
 	    {
-	      sciprint("Rhs should be 1 for 'getsd' option\n\r");
-	      Error(999);return 0;
+	      Scierror(999,"Rhs should be 1 for 'getsd' option\n\r");
+	      return 0;
 	    }
-	  switch(current_gen)
-	    {
-	    case(MT) :
-	      CreateVar(2,"d",&dim_state_mt,&un,&lr);
-	      get_state_mt(stk(lr));
-	      break;
-	    case(KISS) :
-	      CreateVar(2,"d",&dim_state_4,&un,&lr);
-	      get_state_kiss(stk(lr));
-	      break;
-	    case(CLCG4) :
-	      CreateVar(2,"d",&dim_state_4,&un,&lr);
-	      get_state_clcg4(current_clcg4, stk(lr));
-	      break;
-	    case(CLCG2) :
-	      CreateVar(2,"d",&deux,&un,&lr);
-	      get_state_clcg2(stk(lr));
-	      break;
-	    };
-	  LhsVar(1) = 2;
-	  PutLhsVar();
-	  return 0;
-	}
-      else if ( strcmp(cstk(ls),"setall")==0 ) 
-	{
-	  if ( current_gen != CLCG4 )
-	    sciprint("the setall option affect only the clcg4 generator !\n\r");
-	  if ( Rhs != 5 ) 
-	    {
-	      sciprint("Rhs should be 5 for 'setall'  option\n\r");
-	      Error(999);return 0;
+	      switch(current_gen)
+		{
+		case(MT) :
+		  CreateVar(2,"d",&dim_state_mt,&un,&lr);
+		  get_state_mt(stk(lr));
+		  break;
+		case(KISS) :
+		  CreateVar(2,"d",&dim_state_4,&un,&lr);
+		  get_state_kiss(stk(lr));
+		  break;
+		case(CLCG4) :
+		  CreateVar(2,"d",&dim_state_4,&un,&lr);
+		  get_state_clcg4(current_clcg4, stk(lr));
+		  break;
+		case(CLCG2) :
+		  CreateVar(2,"d",&deux,&un,&lr);
+		  get_state_clcg2(stk(lr));
+		  break;
+		case(URAND) : 
+		  CreateVar(2,"d",&un,&un,&lr);
+		  *stk(lr) = C2F(com).ran[0]; 
+		  break;
+		};
+	      LhsVar(1) = 2;
+	      PutLhsVar();
+	      return 0;
 	    }
-	  GetRhsVar(2,"d",&m1,&n1,&l1);
-	  if ( m1*n1 != 1) { sciprint("second argument must be scalar\r\n");
-	  Error(999);return 0;}
-	  GetRhsVar(3,"d",&m1,&n1,&l2);
-	  if ( m1*n1 != 1) { sciprint("third argument must be scalar\r\n");
-	  Error(999);return 0;}
-	  GetRhsVar(4,"d",&m1,&n1,&l3);
-	  if ( m1*n1 != 1) { sciprint("fourth argument must be scalar\r\n");
-	  Error(999);return 0;}
-	  GetRhsVar(5,"d",&m1,&n1,&l4);
-	  if ( m1*n1 != 1) { sciprint("fifth argument must be scalar\r\n");
-	  Error(999);return 0;}
+	  else if ( strcmp(cstk(ls),"setall")==0 ) 
+	    {
+	      if ( current_gen != CLCG4 )
+		sciprint("the setall option affect only the clcg4 generator !\n\r");
+	      if ( Rhs != 5 ) 
+		{
+		  Scierror(999,"Rhs should be 5 for 'setall'  option\n\r");
+		  return 0;
+		}
+	      GetRhsVar(2,"d",&m1,&n1,&l1);
+	      if ( m1*n1 != 1) { Scierror(999,"second argument must be scalar\r\n");
+	      return 0;}
+	      GetRhsVar(3,"d",&m1,&n1,&l2);
+	      if ( m1*n1 != 1) { Scierror(999,"third argument must be scalar\r\n");
+	      return 0;}
+	      GetRhsVar(4,"d",&m1,&n1,&l3);
+	      if ( m1*n1 != 1) { Scierror(999,"fourth argument must be scalar\r\n");
+	      return 0;}
+	      GetRhsVar(5,"d",&m1,&n1,&l4);
+	      if ( m1*n1 != 1) { Scierror(999,"fifth argument must be scalar\r\n");
+	      return 0;}
 
-	  if (! set_initial_seed_clcg4(*stk(l1),*stk(l2), *stk(l3), *stk(l4)) )
-	    {   /* => seeds were not good  (info is display by the function) */
-	      Error(999);return 0;
+	      if (! set_initial_seed_clcg4(*stk(l1),*stk(l2), *stk(l3), *stk(l4)) )
+		{   /* => seeds were not good  (info is display by the function) */
+		  Error(999);return 0;
+		}
+	      LhsVar(1) = 1;
+	      PutLhsVar();
+	      return(0);
 	    }
-	  LhsVar(1) = 1;
-	  PutLhsVar();
-	  return(0);
-	}
       else if ( strcmp(cstk(ls),"setsd")==0 ) 
 	{
 	  switch(current_gen)
@@ -143,8 +149,8 @@ int RandI( char* fname)
 	    case(MT) :
 	      if ( Rhs != 2 ) 
 		{
-		  sciprint("Rhs should be 2 for 'setsd' option with the mt generator\n\r");
-		  Error(999);return 0;
+		  Scierror(999,"Rhs should be 2 for 'setsd' option with the mt generator\n\r");
+		  return 0;
 		}
 	      GetRhsVar(2,"d",&m1,&n1,&l1);
 	      if ( m1*n1 == 1)  /* simple init of mt */
@@ -153,29 +159,29 @@ int RandI( char* fname)
 		{ if (! set_state_mt(stk(l1))) {Error(999); return(0);}; }
 	      else
 		{
-		  sciprint("for mt you must init the state with a vector of 1 or 624 values !\n\r");
-		  Error(999);return 0;
+		  Scierror(999,"for mt you must init the state with a vector of 1 or 624 values !\n\r");
+		  return 0;
 		};
 	      break;
 	    case(KISS) :
 	    case(CLCG4) :
 	      if ( Rhs != 5 ) 
 		{
-		  sciprint("Rhs should be 5 for 'setsd'  option with the kiss or clcg4 generator\n\r");
-		  Error(999);return 0;
+		  Scierror(999,"Rhs should be 5 for 'setsd'  option with the kiss or clcg4 generator\n\r");
+		  return 0;
 		}
 	      GetRhsVar(2,"d",&m1,&n1,&l1);
 	      if ( m1*n1 != 1) 
-		{ sciprint("second argument must be scalar\r\n"); Error(999);return 0;}
+		{ Scierror(999,"second argument must be scalar\r\n"); return 0;}
 	      GetRhsVar(3,"d",&m1,&n1,&l2);
 	      if ( m1*n1 != 1) 
-		{ sciprint("third argument must be scalar\r\n"); Error(999);return 0;}
+		{ Scierror(999,"third argument must be scalar\r\n"); return 0;}
 	      GetRhsVar(4,"d",&m1,&n1,&l3);
 	      if ( m1*n1 != 1) 
-		{ sciprint("fourth argument must be scalar\r\n"); Error(999);return 0;}
+		{ Scierror(999,"fourth argument must be scalar\r\n"); return 0;}
 	      GetRhsVar(5,"d",&m1,&n1,&l4);
 	      if ( m1*n1 != 1) 
-		{ sciprint("fifth argument must be scalar\r\n"); Error(999);return 0;}
+		{ Scierror(999,"fifth argument must be scalar\r\n"); return 0;}
 	      if (current_gen == KISS) 
 		{if (! set_state_kiss(*stk(l1),*stk(l2),*stk(l3),*stk(l4))) {Error(999); return 0;};}
 	      else
@@ -185,20 +191,30 @@ int RandI( char* fname)
 	    case(CLCG2) :
 	      if ( Rhs != 3 ) 
 		{
-		  sciprint("Rhs should be 3 for 'setsd'  option with the clcg2 generator\n\r");
-		  Error(999);return 0;
+		  Scierror(999,"Rhs should be 3 for 'setsd'  option with the clcg2 generator\n\r");
+		  return 0;
 		}
 	      GetRhsVar(2,"d",&m1,&n1,&l1);
 	      if ( m1*n1 != 1) 
-		{ sciprint("second argument must be scalar\r\n"); Error(999);return 0;};
+		{ Scierror(999,"second argument must be scalar\r\n"); return 0;};
 	      GetRhsVar(3,"d",&m1,&n1,&l2);
 	      if ( m1*n1 != 1) 
-		{ sciprint("third argument must be scalar\r\n"); Error(999);return 0;};
+		{ Scierror(999,"third argument must be scalar\r\n"); return 0;};
 	      if (! set_state_clcg2(*stk(l1),*stk(l2))) 
 		{Error(999); return 0;};
 	      break;
+	    case(URAND) :
+	      if ( Rhs != 2 ) 
+		{
+		  Scierror(999,"Rhs should be 2 for 'setsd' option with the urand generator\n\r");
+		  return 0;
+		}
+	      GetRhsVar(2,"d",&m1,&n1,&l1);
+	      CheckScalar(2,m1,n1); 
+	      C2F(com).ran[0]= (int) *stk(l1);
+	      break;
 	    };
-	  LhsVar(1) = 1;
+	  LhsVar(1) = 0;
 	  PutLhsVar();
 	  return(0);
 	}
@@ -206,8 +222,8 @@ int RandI( char* fname)
 	{
 	  if ( Rhs != 2) 
 	    {
-	      sciprint("Rhs should be 2 for 'phr2sd' option\n\r");
-	      Error(999);return 0;
+	      Scierror(999,"Rhs should be 2 for 'phr2sd' option\n\r");
+	      return 0;
 	    }
 	  GetRhsVar(2,"c",&m1,&n1,&l1);
 	  CreateVar(3,"i",&un,&deux,&l2);
@@ -225,14 +241,14 @@ int RandI( char* fname)
 	    sciprint("this option affect only the clcg4 generator\n\r");
 	  if ( Rhs != 2) 
 	    {
-	      sciprint("Rhs should be 2 for 'initgn' option\n\r");
-	      Error(999);return 0;
+	      Scierror(999,"Rhs should be 2 for 'initgn' option\n\r");
+	      return 0;
 	    }
 	  GetRhsVar(2,"i",&m1,&n1,&l1);
 	  if ( *istk(l1) != 0 && *istk(l1)!= -1 && *istk(l1) != 1)
 	    {
-	      sciprint("for initgn option argument must be -1,0 or 1\r\n");
-	      Error(999);return 0;
+	      Scierror(999,"for initgn option argument must be -1,0 or 1\r\n");
+	      return 0;
 	    }
 	  Where = (SeedType) (*istk(l1) + 1);
 	  init_generator_clcg4(current_clcg4, Where);	  
@@ -246,14 +262,14 @@ int RandI( char* fname)
 	    sciprint("the setcgn option affect only the clcg4 generator\n\r");
 	  if ( Rhs != 2) 
 	    {
-	      sciprint("Rhs should be 2 for 'setcgn' option\n\r");
-	      Error(999);return 0;
+	      Scierror(999,"Rhs should be 2 for 'setcgn' option\n\r");
+	      return 0;
 	    }
 	  GetRhsVar(2,"i",&m1,&n1,&l1);
 	  if ( *istk(l1) < 0 || *istk(l1) > Maxgen )
 	    {
-	      sciprint("bad virtual number generator (must be in [0,%d])\n\r",Maxgen);
-	      Error(999);return 0;
+	      Scierror(999,"bad virtual number generator (must be in [0,%d])\n\r",Maxgen);
+	      return 0;
 	    }
 	  current_clcg4 = *istk(l1);
 	  LhsVar(1) = 2;
@@ -265,8 +281,8 @@ int RandI( char* fname)
 	  /* A VOIR ca fait rien pour le moment */
 	  if ( Rhs != 2) 
 	    {
-	      sciprint("Rhs should be 2 for 'advnst' option\n\r");
-	      Error(999);return 0;
+	      Scierror(999,"Rhs should be 2 for 'advnst' option\n\r");
+	      return 0;
 	    }
 	  GetRhsVar(2,"i",&m1,&n1,&l1);
 	  sciprint(" grand('advnst',k) ne fait rien pour le moment ... \n\r");
@@ -278,8 +294,8 @@ int RandI( char* fname)
 	{
 	  if ( Rhs != 1) 
 	    {
-	      sciprint("Rhs should be 1 for 'getcgn' option\n\r");
-	      Error(999);return 0;
+	      Scierror(999,"Rhs should be 1 for 'getcgn' option\n\r");
+	      return 0;
 	    }
 	  if ( current_gen != CLCG4 )
 	    sciprint("this information concerns only the clcg4 generator\n\r");
@@ -294,8 +310,8 @@ int RandI( char* fname)
 	  int msb, nsb, lsb;
 	  if ( Rhs != 2) 
 	    {
-	      sciprint("Rhs should be 2 for 'setgen' option\n\r");
-	      Error(999);return 0;
+	      Scierror(999,"Rhs should be 2 for 'setgen' option\n\r");
+	      return 0;
 	    }
 	  GetRhsVar(2,"c",&msb,&nsb,&lsb);
 	  if (strcmp("mt",cstk(lsb))==0) 	  
@@ -306,10 +322,12 @@ int RandI( char* fname)
 	    current_gen = CLCG4;
 	  else if (strcmp("clcg2",cstk(lsb))==0)
 	    current_gen = CLCG2;
+	  else if (strcmp("urand",cstk(lsb))==0)
+	    current_gen = URAND;
 	  else
 	    {
-	      sciprint("this generator is unknown (possible generators are : mt,kiss,clcg4,clcg2)\n\r");
-	      Error(999);return 0;
+	      Scierror(999,"this generator is unknown (possible generators are : mt,kiss,clcg4,clcg2)\n\r");
+	      return 0;
 	    }
 	  LhsVar(1) = 2;
 	  PutLhsVar();
@@ -320,8 +338,8 @@ int RandI( char* fname)
 	  int un=1;
 	  if ( Rhs != 1) 
 	    {
-	      sciprint("Rhs should be 1 for 'getgen' option\n\r");
-	      Error(999);return 0;
+	      Scierror(999,"Rhs should be 1 for 'getgen' option\n\r");
+	      return 0;
 	    }
 	  CreateVarFromPtr( 2, "S", &un, &un, &names_gen[current_gen]);
 	  LhsVar(1) = 2;
@@ -330,8 +348,8 @@ int RandI( char* fname)
 	}
       else 
 	{
-	  sciprint("%s Wrong first argument %s\r\n",fname,cstk(ls));
-	  Error(999);
+	  Scierror(999,"%s Wrong first argument %s\r\n",fname,cstk(ls));
+	  
 	  return 0;
 	}      
     }
@@ -340,12 +358,12 @@ int RandI( char* fname)
   if ( GetType(2) == 1 ) /** m,n,'string' */
     {
       GetRhsVar(1, "i", &m1, &n1, &l1)
-      if ( m1*n1 != 1) 
-	{ sciprint("First argument must be scalar\r\n");Error(999);return 0;}
+	if ( m1*n1 != 1) 
+	  { Scierror(999,"First argument must be scalar\r\n");return 0;}
       ResL= *istk(l1);
       GetRhsVar(2, "i", &m2, &n2, &l2);
       if ( m2*n2 != 1) 
-	{ sciprint("First argument must be scalar\r\n");Error(999);return 0;}
+	{ Scierror(999,"First argument must be scalar\r\n");return 0;}
       ResC= *istk(l2);
       GetRhsVar(3, "c", &ms, &ns, &ls);
       suite=4;
@@ -360,16 +378,16 @@ int RandI( char* fname)
     {
       double minlog=1.e-37;
       if ( Rhs != suite + 1) 
-	{ sciprint("Missing A and B for beta law\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing A and B for beta law\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("A must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"A must be scalar\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
-      if ( m1*n1 != 1) { sciprint("B must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"B must be scalar\r\n");return 0;}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       if ( *stk(la) < minlog || *stk(lb) < minlog)
 	{
-	  sciprint("Rand(...,'bet',..): A or B < %f \r\b",minlog);
-	  Error(999);return 0;
+	  Scierror(999,"Rand(...,'bet',..): A or B < %f \r\b",minlog);
+	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -382,16 +400,16 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"f")==0) 
     {
       if ( Rhs != suite + 1) 
-	{ sciprint("Missing Dfn and Dfd for F law\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing Dfn and Dfd for F law\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("Dfn must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Dfn must be scalar\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
-      if ( m1*n1 != 1) { sciprint("Dfd must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Dfd must be scalar\r\n");return 0;}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       if ( *stk(la) <= 0.0 || *stk(lb) <= 0.0)
 	{
-	  sciprint("Degrees of freedom nonpositive \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"Degrees of freedom nonpositive \r\n");
+	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -406,51 +424,51 @@ int RandI( char* fname)
       int i,nn,ncat;
       double ptot;
       if ( suite != 3 || ResL*ResC != 1)
-	{ sciprint("First argument for 'mul' option must be the number of random deviate \r\n");
-	Error(999);return 0;
+	{ Scierror(999,"First argument for 'mul' option must be the number of random deviate \r\n");
+	return 0;
 	}
       nn= *istk(l1);
       if ( Rhs != suite + 1) 
-	{ sciprint("Missing N and P for MULtinomial law\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing N and P for MULtinomial law\r\n");return 0;}
       GetRhsVar(suite, "i", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("N must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"N must be scalar\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m2, &n2, &lb);
       if ( n2 != 1 ) 
 	{ 
-	  sciprint("P must be a column vector\r\n");
-	  Error(999);return 0;
+	  Scierror(999,"P must be a column vector\r\n");
+	  return 0;
 	}
       ncat = m2+1;
       CreateVar(suite+2,"i",&ncat,&nn,&lr);
       if ( *istk(la) < 0 ) 
 	{
-	  sciprint("N < 0 \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"N < 0 \r\n");
+	  return 0;
 	}
       if ( ncat <= 1) 
 	{
-	  sciprint("Ncat <= 1 \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"Ncat <= 1 \r\n");
+	  return 0;
 	}
       ptot = 0.0;
       for ( i= 0 ; i < ncat -1 ; i++ )
 	{
 	  if ( *stk(lb+i) < 0 ) 
 	    {
-	      sciprint("P(%d) < 0 \r\n",i+1);
-	      Error(999);return 0;
+	      Scierror(999,"P(%d) < 0 \r\n",i+1);
+	      return 0;
 	    }
 	  if ( *stk(lb+i) > 1 ) 
 	    {
-	      sciprint("P(%d) > 1 \r\n",i+1);
-	      Error(999);return 0;
+	      Scierror(999,"P(%d) > 1 \r\n",i+1);
+	      return 0;
 	    }
 	  ptot += *stk(lb+i);
 	}
       if ( ptot > 0.99999) 
 	{
-	  sciprint("Sum of P(i) > 1 \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"Sum of P(i) > 1 \r\n");
+	  return 0;
 	}
       for ( i=0 ; i < nn ; i++) 
 	{
@@ -463,15 +481,15 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"gam")==0) 
     {
       if ( Rhs != suite + 1) 
-	{ sciprint("Missing shape and scale for Gamma law\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing shape and scale for Gamma law\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("shape must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"shape must be scalar\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
-      if ( m1*n1 != 1) { sciprint("scale must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"scale must be scalar\r\n");return 0;}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       if ( (*stk(la)) <= 0.0 ||  (*stk(lb)) <= 0.0 )
 	{
-	  sciprint("Rand(..'gam',A,R) : A <= 0.0 or R <= 0.0 \r\n"); Error(999);return 0;
+	  Scierror(999,"Rand(..'gam',A,R) : A <= 0.0 or R <= 0.0 \r\n"); return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -488,15 +506,15 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"nor")==0) 
     {
       if ( Rhs != suite + 1) 
-	{ sciprint("Missing Av and Sd for Normal law\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing Av and Sd for Normal law\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("Av must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Av must be scalar\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
-      if ( m1*n1 != 1) { sciprint("Sd must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Sd must be scalar\r\n");return 0;}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       if ( *stk(lb) < 0 ) 
 	{
-	  sciprint("SD < 0.0 \r\n");Error(999);return 0;}
+	  Scierror(999,"SD < 0.0 \r\n");return 0;}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
 	  *stk(lr+i)= C2F(gennor)(stk(la),stk(lb));
@@ -509,17 +527,17 @@ int RandI( char* fname)
     {
       int low, high;
       if ( Rhs != suite + 1) 
-	{ sciprint("Missing Low and High for Uniform Real law\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing Low and High for Uniform Real law\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("Low must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Low must be scalar\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
-      if ( m1*n1 != 1) { sciprint("High must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"High must be scalar\r\n");return 0;}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       low = *stk(la) ; high =  *stk(lb);
       if ( low > high ) 
 	{
-	  sciprint("Low > High \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"Low > High \r\n");
+	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	*stk(lr+i)= low + (high - low)*gen[current_gen](); /* to avoid a call ... */
@@ -531,16 +549,16 @@ int RandI( char* fname)
     {
       double a, b;
       if ( Rhs != suite + 1) 
-	{ sciprint("Missing Low and High for Uniform integer law\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing Low and High for Uniform integer law\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("Low must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Low must be scalar\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
-      if ( m1*n1 != 1) { sciprint("High must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"High must be scalar\r\n");return 0;}
       a = *stk(la) ; b = *stk(lb);
       if ( a != floor(a) || b != floor(b) || (b-a+1) > 2147483562 )
 	{
-	  sciprint(" a and b must integers with (b-a+1) <= 2147483562");
-	  Error(999);return 0;
+	  Scierror(999," a and b must integers with (b-a+1) <= 2147483562");
+	  return 0;
 	}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       for ( i=0 ; i < ResL*ResC ; i++) 
@@ -553,8 +571,8 @@ int RandI( char* fname)
     {
       if ( Rhs != suite -1 ) 
 	{ 
-	  sciprint("Only %d arguments required for 'lgi' option",suite-1);
-	  Error(999);return 0;
+	  Scierror(999,"Only %d arguments required for 'lgi' option",suite-1);
+	  return 0;
 	}
       CreateVar(suite,"d",&ResL,&ResC,&lr);
       for ( i=0 ; i < ResL*ResC ; i++) 
@@ -568,17 +586,17 @@ int RandI( char* fname)
       int nn;
       if ( suite != 3 || ResL*ResC != 1)
 	{ 
-	  sciprint("First argument for 'prm' option must be the number of random simulation \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"First argument for 'prm' option must be the number of random simulation \r\n");
+	  return 0;
 	}
       nn= *istk(l1);
       if ( Rhs != suite) 
 	{ 
-	  sciprint("Missing vect for random permutation\r\n");
-	  Error(999);return 0;}
+	  Scierror(999,"Missing vect for random permutation\r\n");
+	  return 0;}
       GetRhsVar(suite, "i", &m1, &n1, &la);
-      if ( n1 != 1) { sciprint("vect must be column vector\r\n");
-      Error(999);return 0;}
+      if ( n1 != 1) { Scierror(999,"vect must be column vector\r\n");
+      return 0;}
       CreateVar(suite+1,"i",&m1,&nn,&lr);
       for ( i=0 ; i < nn ; i++) 
 	{
@@ -593,21 +611,21 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"nbn")==0) 
     {
       if ( Rhs != suite + 1) 
-	{ sciprint("Missing N and P for Negative Binomial law\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing N and P for Negative Binomial law\r\n");return 0;}
       GetRhsVar(suite, "i", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("N must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"N must be scalar\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
-      if ( m1*n1 != 1) { sciprint("P must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"P must be scalar\r\n");return 0;}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       if ( *stk(lb) < 0.0 || *stk(lb) > 1.0 ) 
 	{
-	  sciprint("P is not in [0,1] \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"P is not in [0,1] \r\n");
+	  return 0;
 	}
       if ( *istk(la) < 0 ) 
 	{
-	  sciprint("N < 0 \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"N < 0 \r\n");
+	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -620,21 +638,21 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"bin")==0) 
     {
       if ( Rhs != suite + 1) 
-	{ sciprint("Missing N and P for Binomial law\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing N and P for Binomial law\r\n");return 0;}
       GetRhsVar(suite, "i", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("N must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"N must be scalar\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
-      if ( m1*n1 != 1) { sciprint("P must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"P must be scalar\r\n");return 0;}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       if ( *stk(lb) < 0.0 || *stk(lb) > 1.0 ) 
 	{
-	  sciprint("P is not in [0,1] \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"P is not in [0,1] \r\n");
+	  return 0;
 	}
       if ( *istk(la) < 0 ) 
 	{
-	  sciprint("N < 0 \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"N < 0 \r\n");
+	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -649,16 +667,16 @@ int RandI( char* fname)
     {
       int nn,un=1,work,mp,parm,ierr;
       if ( suite != 3 || ResL*ResC != 1)
-	{ sciprint("First argument for 'mn' option must be the number of random simulation \r\n");Error(999);return 0;
+	{ Scierror(999,"First argument for 'mn' option must be the number of random simulation \r\n");return 0;
 	}
       nn= *istk(l1);
       if ( Rhs != suite + 1) 
-	{ sciprint("Missing Mean and Cov for Multivariate Normal law\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing Mean and Cov for Multivariate Normal law\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( n1 != 1) { sciprint("Mean must be column vector\r\n");Error(999);return 0;}
+      if ( n1 != 1) { Scierror(999,"Mean must be column vector\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m2, &n2, &lb);
-      if ( m2 != n2 ) { sciprint("Cov must be a square matrix\r\n");Error(999);return 0;}
-      if ( m2 != m1 ) { sciprint("Mean and Cov have incompatible dimensions\n");Error(999);return 0;}
+      if ( m2 != n2 ) { Scierror(999,"Cov must be a square matrix\r\n");return 0;}
+      if ( m2 != m1 ) { Scierror(999,"Mean and Cov have incompatible dimensions\n");return 0;}
       
       CreateVar(suite+2,"d",&m1,&nn,&lr);
       CreateVar(suite+3,"d",&m1,&un,&work);
@@ -666,13 +684,13 @@ int RandI( char* fname)
       CreateVar(suite+4,"d",&mp,&un,&parm);
       if ( m1 <= 0 ) 
 	{
-	  sciprint("Mean and Cov are of null size\r\n");Error(999);
+	  Scierror(999,"Mean and Cov are of null size\r\n");
 	  return 0;
 	}
       C2F(setgmn)(stk(la),stk(lb),&m2,&m1,stk(parm),&ierr);
       if ( ierr == 1) 
 	{
-	 Error(999);return 0;
+	  Error(999);return 0;
 	} 
       for ( i=0 ; i < nn ; i++) 
 	{
@@ -686,22 +704,22 @@ int RandI( char* fname)
     {
       int nn,n1p1,lr1,j,icur,mm,jj;
       if ( suite != 3 || ResL*ResC != 1)
-	{ sciprint("First argument for 'markov' option must be the number of random simulation \r\n");Error(999);return 0;
+	{ Scierror(999,"First argument for 'markov' option must be the number of random simulation \r\n");return 0;
 	}
       nn= *istk(l1);
       if ( Rhs != suite +1 )
-	{ sciprint("Missing P matrix and X0 for Markov chain\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing P matrix and X0 for Markov chain\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
       GetRhsVar(suite+1, "i", &m2, &n2, &lb);
-      if ( m1 != n1 ) { sciprint("P must be a square matrix\r\n");Error(999);return 0;}
+      if ( m1 != n1 ) { Scierror(999,"P must be a square matrix\r\n");return 0;}
 
-      if ( m2*n2 == 0 ) { sciprint("X0 is empty\r\n");Error(999);return 0;} 
+      if ( m2*n2 == 0 ) { Scierror(999,"X0 is empty\r\n");return 0;} 
       
       for ( i = 0 ; i < m2*n2 ; i++)
 	if ( *istk(lb+i)-1 < 0 || *istk(lb+i)-1 >= n1 ) 
 	  {
-	    sciprint("X0(%d) must be in the range [1,%d]\r\n",i,n1);
-	    Error(999);return 0;
+	    Scierror(999,"X0(%d) must be in the range [1,%d]\r\n",i,n1);
+	    return 0;
 	  }
       mm= m2*n2;
       CreateVar(suite+2,"i",&mm,&nn,&lr);
@@ -715,20 +733,20 @@ int RandI( char* fname)
 	    {
 	      if ( *stk(la+i+m1*j) < 0 ) 
 		{
-		  sciprint("P(%d,%d) < 0 \r\n",i+1,j+1);
-		  Error(999);return 0;
+		  Scierror(999,"P(%d,%d) < 0 \r\n",i+1,j+1);
+		  return 0;
 		}
 	      if ( *stk(la+i+m1*j) > 1 ) 
 		{
-		  sciprint("P(%d,%d) > 1 \r\n",i+1,j+1);
-		  Error(999);return 0;
+		  Scierror(999,"P(%d,%d) > 1 \r\n",i+1,j+1);
+		  return 0;
 		}
 	      ptot += *stk(la+i+m1*j) ;
 	    }
 	  if ( ptot -1.0 > 1.e-6 ) 
 	    {
-	      sciprint("Sum of P(%d,1:%d)=%f > 1 \r\n",i+1,n1,ptot);
-	      Error(999);return 0;
+	      Scierror(999,"Sum of P(%d,1:%d)=%f > 1 \r\n",i+1,n1,ptot);
+	      return 0;
 	    }
 	}
       /** Computing the cumulative sum of the P matrix **/
@@ -766,7 +784,7 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"def")==0) 
     {
       if ( Rhs != suite -1 ) 
-	{ sciprint("no argument required for 'def' option\r\n");Error(999);return 0;}
+	{ Scierror(999,"no argument required for 'def' option\r\n");return 0;}
       CreateVar(suite,"d",&ResL,&ResC,&lr);
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -780,16 +798,16 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"nch")==0) 
     {
       if ( Rhs != suite + 1) 
-	{ sciprint("Missing Df and Xnonc for non-central chi-square law\r\n");Error(999);return 0;}
+	{ Scierror(999,"Missing Df and Xnonc for non-central chi-square law\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("Df must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Df must be scalar\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
-      if ( m1*n1 != 1) { sciprint("Xnonc must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Xnonc must be scalar\r\n");return 0;}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       if ( *stk(la) < 1.0 || *stk(lb) < 0.0 )
 	{
-	  sciprint("DF < 1 or XNONC < 0 \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"DF < 1 or XNONC < 0 \r\n");
+	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -802,18 +820,20 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"nf")==0) 
     {
       if ( Rhs != suite + 2) 
-	{ sciprint("Missing Dfn, Dfd and Xnonc for non-central F law\r\n");Error(999);return 0;}
+	{ 
+	  Scierror(999,"Missing Dfn, Dfd and Xnonc for non-central F law\r\n");
+	  return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("Dfn must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Dfn must be scalar\r\n");return 0;}
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
-      if ( m1*n1 != 1) { sciprint("Dfd must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Dfd must be scalar\r\n");return 0;}
       GetRhsVar(suite+2, "d", &m1, &n1, &lc);
-      if ( m1*n1 != 1) { sciprint("Xnonc must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Xnonc must be scalar\r\n");return 0;}
       CreateVar(suite+3,"d",&ResL,&ResC,&lr);
       if ( *stk(la) < 1.0 || *stk(lb) < 0.0 || *stk(lc) < 0.0 ) 
 	{
-	  sciprint("DF < 1.0 or DF <= 0.0 or Xnonc < 0.0 \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"DF < 1.0 or DF <= 0.0 or Xnonc < 0.0 \r\n");
+	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -827,15 +847,15 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"chi")==0)
     {
       if ( Rhs != suite ) 
-	{ sciprint("Missing Df for chi-square law\r\n");
-	Error(999);return 0;
+	{ Scierror(999,"Missing Df for chi-square law\r\n");
+	return 0;
 	}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("Df must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Df must be scalar\r\n");return 0;}
       CreateVar(suite+1,"d",&ResL,&ResC,&lr);
       if  ( *stk(la) <= 0.0)
 	{
-	  sciprint("Rand: DF <= 0 \r\n");Error(999);return 0;
+	  Scierror(999,"Rand: DF <= 0 \r\n");return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -848,15 +868,15 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"poi")==0)
     {
       if ( Rhs != suite ) 
-	{ sciprint("Missing Av for Poisson law\r\n");
-	Error(999);return 0;}
+	{ Scierror(999,"Missing Av for Poisson law\r\n");
+	return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("Av must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Av must be scalar\r\n");return 0;}
       CreateVar(suite+1,"d",&ResL,&ResC,&lr);
       if ( *stk(la) < 0.0 )
 	{
-	  sciprint("Av < 0 \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"Av < 0 \r\n");
+	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -870,15 +890,15 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"exp")==0)
     {
       if ( Rhs != suite ) 
-	{ sciprint("Missing Av for exponential law\r\n");
-	Error(999);return 0;}
+	{ Scierror(999,"Missing Av for exponential law\r\n");
+	return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
-      if ( m1*n1 != 1) { sciprint("Av must be scalar\r\n");Error(999);return 0;}
+      if ( m1*n1 != 1) { Scierror(999,"Av must be scalar\r\n");return 0;}
       CreateVar(suite+1,"d",&ResL,&ResC,&lr);
       if ( *stk(la) < 0.0 ) 
 	{
-	  sciprint("Av < 0.0 \r\n");
-	  Error(999);return 0;
+	  Scierror(999,"Av < 0.0 \r\n");
+	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
@@ -891,8 +911,7 @@ int RandI( char* fname)
 
   else 
     {
-      sciprint("%s Wrong argument %s\r\n",fname,cstk(ls));
-      Error(999);
+      Scierror(999,"%s Wrong argument %s\r\n",fname,cstk(ls));
       return 0;
     }      
 }
