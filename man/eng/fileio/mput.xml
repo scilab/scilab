@@ -39,7 +39,7 @@
     advances the indicator appropriately. 
   </P>
   <P>
-    The <VERB>tye</VERB> parameter is a conversion specifier which may be set to any of the
+    The <VERB>type</VERB> parameter is a conversion specifier which may be set to any of the
     following flag characters (with default value &quot;l&quot;):
   </P>
  
