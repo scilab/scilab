@@ -176,7 +176,7 @@ for k=1:mn,
     dd=150*sqrt((dx/(rect(3)-rect(1))).^2+(dy/(rect(4)-rect(2))).^2);
     if dd>0 then
       dx=dx./dd;dy=dy./dd;
-      pause
+
       xarrows([repf(k,ks(1:last));repf(k,ks(1:last))+dx],..
           [repi(k,ks(1:last));repi(k,ks(1:last))+dy],mrksiz)
     end
