@@ -4739,7 +4739,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       return -1;
     }
   }  
-  else if (strncmp(marker,"xor_mode", 8) == 0) {
+  else if (strncmp(marker,"pixel_drawing_mode", 18) == 0) {
     sciSetXorMode((sciPointObj *) pobj, *stk(*value));
   }  
   else if (strncmp(marker,"default_values", 14) == 0) {
@@ -5262,7 +5262,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     else 
       strncpy(cstk(outindex),"off", numrow*numcol);
   }
-  else if (strncmp(marker,"xor_mode", 8) == 0)
+  else if (strncmp(marker,"pixel_drawing_mode", 18) == 0) 
     {
       numrow = 1;
       numcol = 1;

@@ -5,9 +5,12 @@ function %h_p(h)
     for k=1:size(h,2)
       t=t+part(T(:,k),1:max(length(T(:,k)))+1)
     end
-    t=[string(size(h,1))+' by '+string(size(h,2))+' matrix of handles:';t]
+    t1=string(size(h,1))+' by '+string(size(h,2))+' matrix of handles:'
+    t1=[t1;part('=',ones(1,length(t1)))]
+    t=[t1;t]
   else
-    t=h.type
+    t='Handle of type ""'+h.type+'"" with properties:'
+    t=[t;part('=',ones(1,length(t)))]
     select h.type
       case "Polyline"
       d=sci2exp(h.data,0)
@@ -69,7 +72,7 @@ function %h_p(h)
 	 "mark_style: "+string(h.mark_style)
 	 "line_style: "+string(h.line_style)
 	 "fill_mode: "+string(h.fill_mode)
-	 "xor_mode: "+string(h.xor_mode)
+	 "pixel_drawing_mode: "+string(h.pixel_drawing_mode)
 	]
       case "Legend"
       t=[t;
@@ -119,8 +122,15 @@ function %h_p(h)
       t=[t;
 	 "visible: "+string(h.visible) 
 	 "clip_state: "+string(h.clip_state)
-	 "clip_box: "+sci2exp(h.clip_box,0)]
-      
+	 "clip_box: "+sci2exp(h.clip_box,0)
+	 "data_mapping: "+h.data_mapping]
+      case "Matplot"
+      t=[t;
+	 "visible: "+string(h.visible) 
+	 "clip_state: "+string(h.clip_state)
+	 "clip_box: "+sci2exp(h.clip_box,0)
+	 "data_mapping: "+h.data_mapping]
+     
       case "Fec"
       t=[t;
 	 "visible: "+string(h.visible) 

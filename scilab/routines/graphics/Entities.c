@@ -8086,14 +8086,15 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	  return (sciPointObj *) NULL;
 	}
       cmpt = (type == 2)? 4:n2 ;
-      if ((pgray->pvecy = MALLOC (cmpt * sizeof (double))) == NULL)
-	{
-	  FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pGRAYPLOT_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
+      if (type != 2)
+	if ((pgray->pvecy = MALLOC (cmpt * sizeof (double))) == NULL)
+	  {
+	    FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
+	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	    sciDelHandle (pobj);
+	    FREE(pGRAYPLOT_FEATURE(pobj));
+	    FREE(pobj);
+	    return (sciPointObj *) NULL;
 	}
       if ((pgray->pvecz = MALLOC ((n1*n2) * sizeof (double))) == NULL)
 	{
@@ -8110,10 +8111,11 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	{
 	  pgray->pvecx[i] = pvecx[i];
 	}
-      for (i = 0; i < n2; i++)
-	{
-	  pgray->pvecy[i] = pvecy[i];
-	}
+      if (type != 2)
+	for (i = 0; i < n2; i++)
+	  {
+	    pgray->pvecy[i] = pvecy[i];
+	  }
       for (i = 0; i < (n1*n2); i++)
 	{
 	  pgray->pvecz[i] = pvecz[i];
@@ -8149,7 +8151,8 @@ int
 DestroyGrayplot (sciPointObj * pthis)
 {
   FREE (pGRAYPLOT_FEATURE (pthis)->pvecx);
-  FREE (pGRAYPLOT_FEATURE (pthis)->pvecy);
+  if (pGRAYPLOT_FEATURE (pthis)->type != 2)
+    FREE (pGRAYPLOT_FEATURE (pthis)->pvecy);
   FREE (pGRAYPLOT_FEATURE (pthis)->pvecz);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   //if (sciDelHandle (pthis) == -1)
@@ -12847,7 +12850,7 @@ int sciType (marker)
   else if (strncmp(marker,"figure_style", 12) == 0)   {return 10;}        
   else if (strncmp(marker,"visible", 7) == 0)     {return 10;} 
   else if (strncmp(marker,"auto_resize", 10) == 0){return 10;}
-  else if (strncmp(marker,"xor_mode", 8) == 0)    {return 1;}    
+  else if (strncmp(marker,"pixel_drawing_mode", 18) == 0)    {return 1;}    
   else if (strncmp(marker,"default_values", 14) == 0) {return 10;} 
   else if (strncmp(marker,"color_map", 9) == 0)   {return 1;}    
   else if (strncmp(marker,"x_location", 10) == 0) {return 10;} 
