@@ -3151,7 +3151,7 @@ int C2F(createdata)(lw, n)
   return TRUE_; 
 }
 
-
+ 
 void *GetData(lw)
      /* Usage: header = (int *) GetData(lw); header[0] = type of variable lw etc */
      int lw;
