@@ -15,7 +15,7 @@ function r=ge_shortcut(c)
       l=find(Menus(i)==ShortCuts(k,2))
       if l<>[] then m=i;break;end
     end
-    if m==[] then message('incoherent shortcut definitions'),r=%f,return,end
+    if m==[] then x_message('incoherent shortcut definitions'),r=%f,return,end
     execstr('r=ge_'+convstr(Menus(m)(1))+'(l-1,win)')
   end
   
