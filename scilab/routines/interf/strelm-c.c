@@ -818,7 +818,7 @@ static int intsort(char* fname)
 
     if (sel == 0) {
       /*     sort(a) <=> sort(a,'*') */
-      C2F(rcsort)(strord_, istk(lsz ), istk(id1 ), istk(ls ), &mn, istk(lind ));
+      C2F(rcsort)(C2F(strord), istk(lsz ), istk(id1 ), istk(ls ), &mn, istk(lind ));
     } else if (sel == 1) {
       /*     sort(a,'r')  <=>  sort(a,1) */
       lszi = lsz;
@@ -826,7 +826,7 @@ static int intsort(char* fname)
       lindi = lind;
       ix1 = n - 1;
       for (ix = 0; ix <= ix1; ++ix) {
-	C2F(rcsort)(strord_, istk(lszi ), istk(idi ), istk(ls ), &m, istk(lindi ));
+	C2F(rcsort)(C2F(strord), istk(lszi ), istk(idi ), istk(ls ), &m, istk(lindi ));
 	lszi += m;
 	idi += m;
 	lindi += m;

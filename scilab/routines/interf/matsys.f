@@ -433,7 +433,7 @@ c
 C     first argument 
 C     jpc on accepte un entier 
       itop = gettype(top)
-      if ( itop == 1 ) then 
+      if ( itop .eq. 1 ) then 
          if (.not.getscalar(fname,topk,top,il1)) return
          ilib=int(stk(il1))
          call addinter(ilib,iv,iv,iv,strf,
