@@ -102,7 +102,9 @@ int C2F(cwritemat)(namex, m, n, mat, name_len)
   integer l4, id[nsiz], lc, lr;
   
   C2F(str2name)(namex, id, name_len);
-  ++Top;
+  /* jpc april 2002 */ 
+  /* ++Top; */
+  Top = Top + Nbvars + 1; 
   if (! C2F(cremat)("cwritemat", &Top, &cx0, m, n, &lr, &lc, 9L)) return  FALSE_;
   C2F(dcopy)(&ix1, mat, &cx1, stk(lr ), &cx1);
   Rhs = 0;
@@ -115,6 +117,7 @@ int C2F(cwritemat)(namex, m, n, mat, name_len)
   if (Err > 0)  return FALSE_;
   return TRUE_;
 } 
+
 
 /*------------------------------------------------------
  *     see creadchain 
@@ -274,7 +277,9 @@ int C2F(cwritechain)(namex, m, chai, name_len, chai_len)
     integer id[nsiz], lr;
     C2F(str2name)(namex, id, name_len);
     Top_k = Top;
-    ++Top;
+    /* jpc april 2002 */ 
+    /* ++Top; */
+    Top = Top + Nbvars + 1; 
     if (! C2F(cresmat2)("cwritechain", &Top, m, &lr, 11L)) {
 	return FALSE_;
     }
