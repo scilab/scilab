@@ -96,7 +96,7 @@ function texte = standard_document(objet, k)
 	for kp=1:size(super_path,'*'),path(kp)=super_path(kp);end
 	path($+1)=k
 	ind=cor(path)
-	pause
+
 	if ind>0&ind<=size(corinv) then
 	  txt = ['Compiled structure Index   : '+string(cor(path)); ' ']
 	else
