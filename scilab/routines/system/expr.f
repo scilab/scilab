@@ -20,9 +20,10 @@ c
       endif
 c     
       r = rstk(pt)
+      if(r.eq.204) goto 85
       ir=r/100
       if(ir.ne.1) goto 01
-      goto(05,06,25,26,61,73,74,82,83,86,87,102,104,105),r-100
+      goto(05,06,25,26,61,73,74,82,83,86,87,102,104,105,22),r-100
 c     
  01   if(sym.ge.ou.and.sym.le.great) then
          call error(40)
@@ -68,9 +69,15 @@ c     blank or tab is delimiter inside angle brackets
       if (abs(lin(ls)).eq.blank.and.abs(lin(lpt(3))).ne.blank) go to 50
  21   op = sym
       call getsym
-      pt = pt+1
+      pt=pt+1
       pstk(pt) = op + 256*kount
-      rstk(pt) = 103
+      if(sym.ne.not) goto 23
+      rstk(pt)=115
+c     *call* lfact
+      goto 85
+ 22   goto 25
+c
+ 23   rstk(pt) = 103
       icall=2
 c     *call* term
       return
@@ -216,6 +223,9 @@ c     *call* allops(not)
       return
  87   kount=pstk(pt)
       pt=pt-1
+C     next two lines to handle a+~b and a*~b,...
+      if(rstk(pt).eq.115) goto 22
+      if(rstk(pt).eq.204) return
       goto 82
 c     
 c     in-line lprim
