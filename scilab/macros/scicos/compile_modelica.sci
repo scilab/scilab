@@ -23,15 +23,17 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
       modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)
       if strindex(modelicac,' ')<>[] then modelicac='""'+modelicac+'""',end
       modelicac=modelicac+strcat(' -L ""'+mlibs+'""')
-      instr=modelicac+' '+fil+' -o '+path+name+'.c'
+      instr=modelicac+' '+fil+' -o '+path+name+'.c -jac'
+      
       mputl(instr,path+'genc.bat')
       instr=path+'genc.bat'
     else
        modelicac=pathconvert(SCI+'/bin/modelicac',%f,%t)
        modelicac=modelicac+strcat(' -L '+mlibs)
-       instr=modelicac+' '+fil+' -o '+path+name+'.c'
+       instr=modelicac+' '+fil+' -o '+path+name+'.c -jac'
+       
     end
-  
+
     if execstr('unix_s(instr)','errcatch')<>0 then
       x_message(['Modelica compiler error:'
 		  mgetl(TMPDIR+'/unix.err');
