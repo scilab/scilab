@@ -360,7 +360,7 @@ c      return
       if(err1.ne.0) goto 20
       p=pt
  10   p=p-1
-      if (p.eq.0) goto 20
+      if (p.eq.0.or.rstk(p).eq.307) goto 20
       if (rstk(p).ne.803) goto 10
       ifexpr=.true.
       return
