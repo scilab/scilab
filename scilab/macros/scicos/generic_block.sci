@@ -88,7 +88,7 @@ case 'define' then
   model.blocktype='c' 
   model.firing=[]
   model.dep_ut=[%t %f]
-  model.label=[junction_name;sci2exp(funtype);
+  model.label=[junction_name;sci2exp(funtyp);
 	       sci2exp(model.in);sci2exp(model.out);
 	       sci2exp(model.evtin);sci2exp(model.evtout);
 	       sci2exp(model.state);sci2exp(model.dstate);
