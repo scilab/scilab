@@ -292,9 +292,9 @@ void evaluate_expr(scicos_block *block,int flag)
 	  if(block->ng>0) nzcr=nzcr+1;
 	  if (flag==9) {
 	    if (stack[bottom]>0) {
-	      i=floor(stack[bottom]);
+	      i=(int)floor(stack[bottom]);
 	    }else{
-	      i=ceil(stack[bottom]);
+	      i=(int)ceil(stack[bottom]);
 	    }
 	    if(i==0)  {
 	      block->g[nzcr]=(stack[bottom]-1)*(stack[bottom]+1);
@@ -327,9 +327,9 @@ void evaluate_expr(scicos_block *block,int flag)
 	  if(block->ng>0) nzcr=nzcr+1;
 	  if (flag==9) {
 	    if (stack[bottom]>0) {
-	      i=floor(stack[bottom]+.5);
+	      i=(int)floor(stack[bottom]+.5);
 	    }else{
-	      i=ceil(stack[bottom]-.5);
+	      i=(int)ceil(stack[bottom]-.5);
 	    }
 	    block->g[nzcr]=(stack[bottom]-i-.5)*(stack[bottom]-i+.5);
 	    if(i%2)  block->g[nzcr]=-block->g[nzcr];
@@ -353,7 +353,7 @@ void evaluate_expr(scicos_block *block,int flag)
 	case 111:
 	  if(block->ng>0) nzcr=nzcr+1;
 	  if (flag==9) {
-	    i=ceil(stack[bottom]);
+	    i=(int)ceil(stack[bottom]);
 	    block->g[nzcr]=(stack[bottom]-i)*(stack[bottom]-i+1);
 	    if(i%2)  block->g[nzcr]=-block->g[nzcr];
 	    if(phase==1) block->mode[nzcr]=i;
@@ -367,7 +367,7 @@ void evaluate_expr(scicos_block *block,int flag)
 	case 112:
 	  if(block->ng>0) nzcr=nzcr+1;
 	  if (flag==9) {
-	    i=floor(stack[bottom]);
+	    i=(int)floor(stack[bottom]);
 	    block->g[nzcr]=(stack[bottom]-i-1)*(stack[bottom]-i);
 	    if(i%2)  block->g[nzcr]=-block->g[nzcr];
 	    if(phase==1) block->mode[nzcr]=i;

@@ -10559,7 +10559,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 		  for(ii=0;ii<(*m3n);ii++)
 		    tmp = tmp +  pSURFACE_FEATURE (pobj)->inputCMoV[j*(*m3n) + ii];
 		  tmp = tmp / (*m3n);
-		  pSURFACE_FEATURE (pobj)->zcol[j]= tmp;
+		  pSURFACE_FEATURE (pobj)->zcol[j]= (integer)tmp;
 		}
 	    }
 	  /* case flagcolor == 3*/
@@ -16666,11 +16666,12 @@ BOOL IsDownAxes(sciPointObj *pobj)
     if (!(pSUBWIN_FEATURE (pobj)->isoview))
       cof=10.0;
     else
+		/* Correction Warnings Attention Precision*/
       cof= (double) (Min(5.0,ceil(Max(
-				    abs(pSUBWIN_FEATURE (pobj)->axes.xlim[1]-pSUBWIN_FEATURE (pobj)->axes.xlim[0])/
-				    abs(pSUBWIN_FEATURE (pobj)->axes.ylim[1]-pSUBWIN_FEATURE (pobj)->axes.ylim[0]),
-				    abs(pSUBWIN_FEATURE (pobj)->axes.ylim[1]-pSUBWIN_FEATURE (pobj)->axes.ylim[0])/
-				    abs(pSUBWIN_FEATURE (pobj)->axes.xlim[1]-pSUBWIN_FEATURE (pobj)->axes.xlim[0])))));
+				    abs((int)pSUBWIN_FEATURE (pobj)->axes.xlim[1]-(int)pSUBWIN_FEATURE (pobj)->axes.xlim[0])/
+				    abs((int)pSUBWIN_FEATURE (pobj)->axes.ylim[1]-(int)pSUBWIN_FEATURE (pobj)->axes.ylim[0]),
+				    abs((int)pSUBWIN_FEATURE (pobj)->axes.ylim[1]-(int)pSUBWIN_FEATURE (pobj)->axes.ylim[0])/
+				    abs((int)pSUBWIN_FEATURE (pobj)->axes.xlim[1]-(int)pSUBWIN_FEATURE (pobj)->axes.xlim[0])))));
     if (cof == 0 ) cof =5;
     if ((alpha <=(-90.0+cof) ) && (alpha >= (-90.0-cof))) 
       return TRUE;

@@ -62,6 +62,7 @@ typedef struct sci_bool_sparse {
 
 #if WIN32
 extern int C2F(ddmpev)();
+int C2F(createlistcvarfrom)();
 #endif
 
 

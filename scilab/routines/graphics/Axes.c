@@ -501,7 +501,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    while (x[3]>10)  x[3]=floor(x[3]/2); 
 	  else{
 	    if(x[3] > 12){ /* F.Leray arbitrary value=12 for the moment */
-	      x3=x[3];     /* if x[3]>12 algo is triggered to search a divisor */
+	      x3=(int)x[3];     /* if x[3]>12 algo is triggered to search a divisor */
 	      for(j=x3-1;j>1;j--)
 		if(x3%j == 0){
 		  x[3]=j; 
@@ -517,7 +517,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    while (y[3]>10)  y[3]=floor(y[3]/2);
 	  else{
 	    if(y[3] > 12){
-	      y3=y[3];
+	      y3=(int)y[3];
 	      for(j=y3-1;j>1;j--)
 		if(y3%j == 0){
 		  y[3]=j;
@@ -602,7 +602,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    x[0] =  ceil(  Cscale.xtics[0] );
 	    x[3]=inint(x[1]-x[0]);
 	    while (x[3]>10)  x[3]=floor(x[3]/2);
-	    Nx=x[3]+1;
+	    Nx=(int)(x[3]+1);
 
 	    /* re-compute a format when tight_limits or isoview == ON */
 	    ChoixFormatE (c_format,
@@ -760,9 +760,9 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 		  if ( vxx-dx*j > xmin){
 		    vx[0] = vx[1] = XScale(vxx-dx*j);
 		    if ( pos == 'd' ) 
-		      { vy[0]= ym[0];vy[1]= ym[0] + barlength/2.0 ; }
+		      { vy[0]= ym[0];vy[1]=(int) (ym[0] + barlength/2.0) ; }
 		    else 
-		      { vy[0]= ym[0];vy[1]= ym[0] - barlength/2.0; }
+		      { vy[0]= ym[0];vy[1]= (int)(ym[0] - barlength/2.0); }
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }}
 	      } 
@@ -776,9 +776,9 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 		  if ( vxx+dx*j < xmax){
 		    vx[0] = vx[1] = XScale(vxx+dx*j);
 		    if ( pos == 'd' ) 
-		      { vy[0]= ym[0];vy[1]= ym[0] + barlength/2.0 ; }
+		      { vy[0]= ym[0];vy[1]= (int)(ym[0] + barlength/2.0) ; }
 		    else 
-		      { vy[0]= ym[0];vy[1]= ym[0] - barlength/2.0; }
+		      { vy[0]= ym[0];vy[1]= (int)(ym[0] - barlength/2.0); }
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }}
 	      } 
@@ -830,7 +830,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 
 	    y[3]=inint(y[1]-y[0]);
 	    while (y[3]>10)  y[3]=floor(y[3]/2);
-	    Ny=y[3]+1;
+	    Ny=(int)(y[3]+1);
 
 	    /* re-compute a format when tight_limits or isoview == ON */
 	    ChoixFormatE (c_format,
@@ -986,9 +986,9 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 		  if ( vxx-dy*j > ymin){
 		    vy[0] = vy[1] = YScale(vxx-dy*j);
 		    if ( pos == 'r' ) 
-		      { vx[0]= xm[0];vx[1]= xm[0] + barlength/2.0 ; }
+		      { vx[0]= xm[0];vx[1]= (int)(xm[0] + barlength/2.0) ; }
 		    else 
-		      { vx[0]= xm[0];vx[1]= xm[0] - barlength/2.0; }
+		      { vx[0]= xm[0];vx[1]= (int) (xm[0] - barlength/2.0); }
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }}
 	      }
@@ -1002,9 +1002,9 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 		  if ( vxx+dy*j < ymax){
 		    vy[0] = vy[1] = YScale(vxx+dy*j);
 		    if ( pos == 'r' ) 
-		      { vx[0]= xm[0];vx[1]= xm[0] + barlength/2.0 ; }
+		      { vx[0]= xm[0];vx[1]= (int)(xm[0] + barlength/2.0) ; }
 		    else 
-		      { vx[0]= xm[0];vx[1]= xm[0] - barlength/2.0; }
+		      { vx[0]= xm[0];vx[1]= (int)(xm[0] - barlength/2.0); }
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }}
 	      }  

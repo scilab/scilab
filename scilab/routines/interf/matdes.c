@@ -90,6 +90,11 @@ static char *pmodes[] =
 #ifndef NULL
 #define NULL 0
 #endif 
+
+#if WIN32
+extern int C2F(dsort) _PARAMS((double *count, int *n, int *index));
+#endif
+
 extern void setposfig __PARAMS((integer *i,integer *j));
 extern int C2F (deletewin) __PARAMS((integer *number));  
 extern void C2F(gsorts)  __PARAMS((char **data,int *ind,int *iflag, int *m,int *n,
@@ -5287,7 +5292,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	num=pFIGURE_FEATURE(tmpobj)->number;
       }
       else
-	num=stk(*value)[0];
+	num=(int)stk(*value)[0];
 
       C2F(dr1)("xset","window",&num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
       sciSwitchWindow(&num);
@@ -6234,7 +6239,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 		      for(ii=0;ii<m3n;ii++)
 			tmp = tmp +  psurf->inputCMoV[j*m3n + ii];
 		      tmp = tmp / m3n;
-		      psurf->zcol[j]= tmp;
+		      psurf->zcol[j]= (integer)tmp;
 		    }
 		}
 	    }
@@ -8465,7 +8470,7 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
 	      for(ii=0;ii<m3n;ii++)
 		tmp = tmp +  psurf->inputCMoV[j*m3n + ii];
 	      tmp = tmp / m3n;
-	      psurf->zcol[j]= tmp;
+	      psurf->zcol[j]= (integer)tmp;
 	    }
 	}
       /* case flagcolor == 3*/

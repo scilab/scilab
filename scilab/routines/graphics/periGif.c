@@ -1393,8 +1393,8 @@ void C2F(drawarrowsGif)(char *str, integer *vx, integer *vy, integer *n, integer
 	  C2F(fillpolylinesGif)("v",polyx,polyy,&NDvalue, &nn,&p,PI0,PD0,PD0,PD0,PD0);
 	  }
 
-      gdImageThickLine(GifIm, vx[2*i], vy[2*i],
-		       vx[2*i + 1]-dx*cos20, vy[2*i + 1]-dy*cos20,
+      gdImageThickLine(GifIm, vx[2*i], vy[2*i],(int)
+		       (vx[2*i + 1]-dx*cos20), (int)(vy[2*i + 1]-dy*cos20),
 		       GifLineColor(),Max(1,ScilabGCGif.CurLineWidth));
  
     }

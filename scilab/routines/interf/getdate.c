@@ -9,7 +9,9 @@
 	#include <sys/time.h> 
 #endif
 
-
+#if WIN32
+extern void sciprint __PARAMS((char *fmt,...));
+#endif
 
 static int week_number __PARAMS ((struct tm *tp));
 void C2F(scigetdate) __PARAMS ((time_t *dt, int *ierr));

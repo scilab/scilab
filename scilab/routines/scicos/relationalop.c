@@ -74,52 +74,52 @@ void relationalop(scicos_block *block,int flag)
 	{
 	case 0:
 	  if(block->inptr[0][0]==block->inptr[1][0]) {
-	    block->mode[0]=2.0;
+	    block->mode[0]=(int)2.0;
 	  }else{
-	    block->mode[0]=1.0;
+	    block->mode[0]=(int)1.0;
 	  }
 	  break;
 	  
 	case 1:
 	  if(block->inptr[0][0]!=block->inptr[1][0]) {
-	    block->mode[0]=2.0;
+	    block->mode[0]=(int)2.0;
 	  }else{
-	    block->mode[0]=1.0;
+	    block->mode[0]=(int)1.0;
 	  }
 	  break;
 	case 2:
 	  if(block->inptr[0][0]<block->inptr[1][0]) {
-	    block->mode[0]=2.0;
+	    block->mode[0]=(int)2.0;
 	  }else{
-	    block->mode[0]=1.0;
+	    block->mode[0]=(int)1.0;
 	  }
 	  break;    
 	case 3:
 	  if(block->inptr[0][0]<block->inptr[1][0]) {
-	    block->mode[0]=2.0;
+	    block->mode[0]=(int)2.0;
 	  }else{
-	    block->mode[0]=1.0;
+	    block->mode[0]=(int)1.0;
 	  }
 	  break;    
 	case 4:
 	  if(block->inptr[0][0]<=block->inptr[1][0]) {
-	    block->mode[0]=2.0;
+	    block->mode[0]=(int)2.0;
 	  }else{
-	    block->mode[0]=1.0;
+	    block->mode[0]=(int)1.0;
 	  }
 	  break;   
 	case 5:
 	  if(block->inptr[0][0]>=block->inptr[1][0]) {
-	    block->mode[0]=2.0;
+	    block->mode[0]=(int)2.0;
 	  }else{
-	    block->mode[0]=1.0;
+	    block->mode[0]=(int)1.0;
 	  }
 	  break;   
 	case 6:
 	  if(block->inptr[0][0]>block->inptr[1][0]) {
-	    block->mode[0]=2.0;
+	    block->mode[0]=(int)2.0;
 	  }else{
-	    block->mode[0]=1.0;
+	    block->mode[0]=(int)1.0;
 	  }
 	  break;
 	}

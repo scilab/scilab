@@ -89,7 +89,7 @@ char * ChooseScilabBox(void)
 	
 	MyChooseScilabDlgProc = (DLGPROC) GetProcAddress((HINSTANCE)GetModuleHandle("LibScilab"),"ChooseScilabDlgProc");
 	
-	hWndChooseScilabBox= CreateDialog((HINSTANCE)GetModuleHandle(NULL),IDD_CHOOSEASCILAB,NULL,MyChooseScilabDlgProc) ;
+	hWndChooseScilabBox= CreateDialog((HINSTANCE)GetModuleHandle(NULL),(LPCSTR)IDD_CHOOSEASCILAB,NULL,MyChooseScilabDlgProc) ;
 
 	if (hWndChooseScilabBox)
 	{

@@ -475,6 +475,8 @@ static SaveTable SaveCTable[] ={
 #define __STDC__
 #endif 
 
+extern int version_flag(void); /* NG */
+
 int C2F(xsaveplots)(integer *winnumber, char *fname1, integer lxv)
 {
   static char endplots[]={"endplots"};

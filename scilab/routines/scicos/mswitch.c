@@ -10,20 +10,20 @@ void  mswitch(scicos_block *block,int flag)
   i=block->ipar[1];
   if (i==0) {
     if (*block->inptr[0]>0) {
-      j=floor(*block->inptr[0]);
+      j=(int)floor(*block->inptr[0]);
     }else{
-      j=ceil(*block->inptr[0]);
+      j=(int)ceil(*block->inptr[0]);
     }
   }else if (i==1) {
     if (*block->inptr[0]>0) {
-      j=floor(*block->inptr[0]+.5);
+      j=(int)floor(*block->inptr[0]+.5);
     }else{
-      j=ceil(*block->inptr[0]-.5);
+      j=(int)ceil(*block->inptr[0]-.5);
     }
   }else if (i==2) {
-    j=ceil(*block->inptr[0]);
+    j=(int)ceil(*block->inptr[0]);
   }else if (i==3) {
-    j=floor(*block->inptr[0]);
+    j=(int)floor(*block->inptr[0]);
   }
   j=j+1-block->ipar[0];
   j=max(j,1);
