@@ -494,6 +494,18 @@ extern void DebugGW (char *fmt,...)
 #endif
 }
 
+extern void DebugGW1 (char *fmt,...)
+{
+  int i, count;
+  char buf[MAXPRINTF];
+  va_list args;
+  va_start (args, fmt);
+  count = vsprintf (buf, fmt, args);
+  MessageBox (textwin.hWndParent, (LPSTR) buf,
+	      textwin.Title, MB_ICONEXCLAMATION);
+  va_end (args);
+}
+
 /**SciViewportMove
  *@description: used to move the panner and the viewport interactively 
  *              through scilab command.
@@ -818,8 +830,8 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
   PAINTSTRUCT ps;
   RECT rect;
   /* paint++; */
-/** wininfo("Painting %d",paint); **/
-/** if we are in pixmap mode ? **/
+  /** wininfo("Painting %d",paint); **/
+  /** if we are in pixmap mode ? **/
   if (scig_buzy == 1)
     return;
   scig_buzy = 1;
