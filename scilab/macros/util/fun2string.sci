@@ -232,7 +232,8 @@ while ilst<nlst&ok then
         [stk,top]=get2sci(op(2),stk,top)
       elseif (op(3)=='-2'&op(4)<>'0') then
          m=%t
-         if top>0 then
+	 rhs=maxi(0,abs(evstr(op(4)))-1)
+         if rhs>0&top>0 then
            if type(stk(top)(1))==1 then
              top=top+1
 	     stk(top)=list(op(2),'0')
@@ -758,6 +759,7 @@ if rhs==1 then
     stk=list(sn(1)+'('+s2(1)+')','0')
   end
 else
+  if top<=1 then pause,end
   s1=stk(top-1);top=top-1
   if s2(1)=='eye()' then s2(1)=':',end
   if s1(1)=='eye()' then s1(1)=':',end
