@@ -591,8 +591,8 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                    double * cvect, integer * p, integer * q, int *DPI)
 {
   integer polysize, npoly, whiteid, verbose = 0, narg, hiddencolor, front_size;
-  integer *polyx, *polyy, *locindex, fill[4], col[4], rear_col[4];
-  integer rear_x[4], rear_y[4], rear_size;
+  integer *polyx, *polyy, *locindex, fill[4], col[4], rear_col[5];
+  integer rear_x[5], rear_y[5], rear_size;
   static double zmin, zmax, *polyz;
   integer i, k, color_mode, color_flag;
   sciPointObj *psubwin = NULL;
@@ -757,7 +757,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
             }
           else
             {
-              /* No shading at all, fixed facecolor */
+	      /* No shading at all, fixed facecolor */
 
               for (k = 0; k < *p; k++)
                 col[k] = 0;
@@ -772,6 +772,10 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
           rear =
             facet_facing_rear (facteur, polyx, polyy, col, &front_size,
                                rear_x, rear_y, rear_col, &rear_size);
+
+	  rear_x[4] = rear_x[0];
+	  rear_y[4] = rear_y[0];
+	  rear_col[4] = rear_col[0];
 
           if (hiddencolor > 0 && rear)
             {
@@ -803,7 +807,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                 continue;
             }
 
-          if ((color_flag == 1) || (color_flag == 2) || (color_flag == 4))
+          if (color_flag == 1)
             {
               /* Flat shading. This is the case where the color index is constant for a facet */
 
@@ -829,6 +833,10 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
 
               if (color_mode > 0)       /* Force the drawing of the mesh */
                 col[0] = Abs (col[0]);
+	      else if (color_mode < 0)
+		col[0] = - Abs (col[0]);
+	      else
+		col[0] = 0;
               if (sciGetIsLine (pobj)){
 		C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
 		C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
@@ -840,6 +848,64 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                 DrawMarks3D (pobj, front_size, polyx, polyy,DPI);
 
             }
+
+
+	  /* NEW */
+	  
+          else if ((color_flag == 2) || (color_flag == 4))
+            {
+              /* Flat shading. This is the case where the color index is constant for a facet */
+
+              if (hiddencolor < 0 && rear)
+                {               /* draw the rear facing part of the facet */
+                  integer rear_fill = col[0];
+                  if (color_mode >= 0)  /* The edge of the facet is forcibly drawn if color_mode >= 0 */
+                    rear_fill = Abs (col[0]);
+                  if (sciGetIsLine (pobj)){
+		    C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+		    C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
+                    C2F (dr) ("xliness", "str", rear_x, rear_y, &rear_fill,
+                              &npoly, &rear_size, PI0, PD0, PD0, PD0, PD0, 0L,0L);
+		  }
+		  
+                  if (sciGetIsMark (pobj))
+                    DrawMarks3D (pobj, rear_size, rear_x, rear_y,DPI);
+
+                  if (rear_size == *p)
+                    continue;
+                }
+              /* Draw the remaining (front) part of the facet if applicable */
+	      
+	      if (color_mode > 0)       /* Force the drawing of the mesh */
+                col[0] = Abs (col[0]);
+	      else if (color_mode < 0)
+		col[0] = - Abs (col[0]);
+	      else
+		col[0] = 0;
+	      
+	      if (sciGetIsLine (pobj)){
+		C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+		C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
+                C2F (dr) ("xliness", "str", polyx, polyy, col, &npoly,
+                          &front_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+	      }
+	      
+              if (sciGetIsMark (pobj))
+                DrawMarks3D (pobj, front_size, polyx, polyy,DPI);
+
+            }
+
+
+
+	  /* END NEW */
+
+
+
+
+
+
+
+
           else if (color_flag == 3)
             {
               /* Interpolated shading */
@@ -861,10 +927,16 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
 
                           /* The edge of the facet is forcibly drawn if color_mode >= 0 */
 
-                          if (color_mode >= 0)
-                            shade (rear_x, rear_y, rear_col, rear_size, 1);
-                          else
-                            shade (rear_x, rear_y, rear_col, rear_size, -1);
+                          if (color_mode >= 0){	
+			    C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			    C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
+			    shade (rear_x, rear_y, rear_col, rear_size, 1);
+			  }
+                          else{
+			    C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			    C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
+			    shade (rear_x, rear_y, rear_col, rear_size, -1);
+			  }
                         }
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, rear_size, rear_x, rear_y,DPI);
@@ -873,8 +945,11 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   /* Draw the remaining (front) part of the facet if applicable */
 
-                  if (sciGetIsLine (pobj))
-                    shade (polyx, polyy, col, front_size, color_mode);
+                  if (sciGetIsLine (pobj)){
+		    C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+		    C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
+		    shade (polyx, polyy, col, front_size, color_mode);
+		  }
                   if (sciGetIsMark (pobj))
                     DrawMarks3D (pobj, front_size, polyx, polyy,DPI);
                 }
