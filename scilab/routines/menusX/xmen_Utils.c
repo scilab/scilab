@@ -15,9 +15,11 @@
 
 extern int set_cmap __PARAMS((Window w)); 
 extern void DisplayInit __PARAMS((char *string,Display **dpy,Widget *toplevel));
+extern void flushTKEvents();
 
 extern XtAppContext app_con;
 /** int ok_Flag_sci = 0; **/
+
 
 static   Arg args[10];
 static   Cardinal iargs = 0;
@@ -54,6 +56,9 @@ void XtMyLoop(Widget w, Display *dpy, int flag, int *ok_Flag)
   for (;;) {
     XtAppNextEvent(app_con,&event);
     XtDispatchEvent(&event);
+#ifdef WITH_TK
+    flushTKEvents();
+#endif
     if ( *ok_Flag != 0) break;
   }
   XtDestroyWidget(w);  
