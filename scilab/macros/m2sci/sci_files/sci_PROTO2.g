@@ -41,6 +41,11 @@ else
   
   if typeof(dim)=="cste" then
     if dim.value>size(A.dims) then
+      if typeof(A)=="funcall" then
+	A.lhs=tree.lhs
+      elseif typeof(A)=="operation" then
+	A.out=tree.lhs
+      end
       tree=A;
       set_infos("Scilab SFUN() does not work when dim input argument is greater than number of dims of first rhs...",1)
       return
