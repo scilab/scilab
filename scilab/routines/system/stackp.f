@@ -215,7 +215,8 @@ c     store
 c
 c     pop stack
    40 if (k .eq. bot-1) bot = bot-1
-   41 top =top - 1
+   41 infstk(top)=0
+      top =top - 1
       fin=0
       if(istk(il).ne.0) fin=k
       goto 99
