@@ -53,7 +53,8 @@
     <P>
     If format contains only  <VERB>a</VERB> descriptors the function tries to
     read character strings (the result is a character string column
-    vector). In this case n must be equal to 1.</P>
+    vector). In this case n must be equal to 1. Warning: The character strings are
+      truncated when they are longuer than 4093.</P>
     <P>
     Examples for <VERB>format</VERB>:</P>
     <VERBATIM>
