@@ -82,8 +82,8 @@ end
 dcl=[]
 // Add special code
 // If nargin or nargout function is used
-if isdefinedvar("nargin") | isdefinedvar("nargout") then
-  dcl=["";"// Number of arguments in function call";"[nargout,nargin] = argn(0)"]
+if isdefinedvar("%nargin") | isdefinedvar("%nargout") then
+  dcl=["";"// Number of arguments in function call";"[%nargout,%nargin] = argn(0)"]
 end
 
 // Set flotting point exception mode

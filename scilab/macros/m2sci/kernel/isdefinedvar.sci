@@ -21,7 +21,7 @@ index=[]
 
 // If input is a string
 if type(var)==10 then
-  if and(var<>["i","j","pi","eps","nargin","nargout"]) then
+  if and(var<>["i","j","pi","eps","%nargin","%nargout"]) then
     warning("Bad use of isdefinedvar() with input: "+var)
     return
   end
