@@ -9,7 +9,7 @@ if nv==0 then // no Argument by default
     if (HomeDirectory == 'ndef') then
       HomeDirectory=unix_g('cd; pwd');
     end
-    hometmp=HomeDirectory+'/Scilab/'+getversion();
+    hometmp=HomeDirectory+'/.Scilab/'+getversion();
   else // Windows
     homedrive=getenv('HOMEDRIVE','ndef');
     homepath=getenv('HOMEPATH','ndef');
@@ -24,16 +24,31 @@ if nv==0 then // no Argument by default
     end
   end
   
-  if ( ExistHomeScilabDirectory(HomeDirectory) == %F ) then
-    if (CreateHomeScilabDirectory(HomeDirectory) == %F) then
-      disp('No right to write in '+hometmp);
-      homeret=SCI;
-    else
-      homeret= hometmp
-    end
-  else
+  if (ExistHomeSciDirVer(HomeDirectory) == %T ) then
     homeret= hometmp
+  else
+    if (ExistHomeSciDir(HomeDirectory) == %T ) then
+      if (CreateHomeSciDirVer(HomeDirectory) == %T) then
+        homeret= hometmp
+      else
+        disp('No right to write in '+hometmp);
+        homeret=SCI;
+      end 
+    else
+      if (CreateHomeSciDir(HomeDirectory) == %T ) then
+        if (CreateHomeSciDirVer(HomeDirectory) == %T) then
+          homeret= hometmp
+        else
+          disp('No right to write in '+hometmp);
+          homeret=SCI;
+        end 
+      else
+        disp('No right to write in '+hometmp);
+        homeret=SCI;
+      end
+    end
   end
+  
 else
  if nv==1 then // to set home with a path
   UserHome=varargin(1);
@@ -53,29 +68,56 @@ end
   setenv('HOME',homeret); 
 endfunction
 //------------------------------------------------------------------------------
-function bOK=CreateHomeScilabDirectory(HomeDirectory)
+function bOK=CreateHomeSciDir(HomeDirectory)
 bOK=%F;
 CurrentDirectory=getcwd();
 chdir(HomeDirectory);
 if ( mkdir('Scilab') == 1) then
-  chdir('Scilab')
-  if (mkdir(getversion()) == 1) then
-    bOK=%T;
-  else
-    bOK=%F;
-  end
+  bOK=%T;
 else
   bOK=%F;
 end
 chdir(CurrentDirectory);
 endfunction
 //------------------------------------------------------------------------------
-function bOK=ExistHomeScilabDirectory(HomeDirectory)
+function bOK=CreateHomeSciDirVer(HomeDirectory)
+bOK=%F;
+CurrentDirectory=getcwd();
+
+if MSDOS then
+  chdir(HomeDirectory+'\Scilab');
+else
+  chdir(HomeDirectory+'/.Scilab');
+end
+
+if (mkdir(getversion()) == 1) then
+  bOK=%T;
+else
+  bOK=%F;
+end
+chdir(CurrentDirectory);
+endfunction
+//------------------------------------------------------------------------------
+function bOK=ExistHomeSciDirVer(HomeDirectory)
 bOK=%F;
 if MSDOS then
   HomeScilab=HomeDirectory+'\Scilab\'+getversion();
 else
-  HomeScilab=HomeDirectory+'/Scilab/'+getversion();
+  HomeScilab=HomeDirectory+'/.Scilab/'+getversion();
+end
+if ( fileinfo(HomeScilab) == [] ) then
+  bOK=%F;
+else
+  bOK=%T;
+end
+endfunction
+//------------------------------------------------------------------------------
+function bOK=ExistHomeSciDir(HomeDirectory)
+bOK=%F;
+if MSDOS then
+  HomeScilab=HomeDirectory+'\Scilab';
+else
+  HomeScilab=HomeDirectory+'/.Scilab';
 end
 if ( fileinfo(HomeScilab) == [] ) then
   bOK=%F;
