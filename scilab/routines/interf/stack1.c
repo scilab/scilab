@@ -893,9 +893,15 @@ int C2F(cresparsei)(fname, stlw, it, m, n, nel, mnel, icol, lr, lc, fname_len)
     return FALSE_;
   };
   *istk(il ) = 5;
-  /*   si m*n=0 les deux dimensions sont mises a zero. */
-  *istk(il + 1) = Min(*m , *m * *n);
-  *istk(il + 2) = Min(*n,*m * *n);
+  /*   if m*n=0 the 2 dims are set to zero */
+  if ( *m == 0  ||  *n == 0 )  /* use this new test in place of the product m * n (bruno) */
+    {
+      *istk(il + 1) = 0; *istk(il + 2) = 0;
+    }
+  else
+    {
+      *istk(il + 1) = *m; *istk(il + 2) = *n;
+    }
   *istk(il + 3) = *it;
   *istk(il + 4) = *nel;
   *mnel = il + 5;
@@ -1657,8 +1663,7 @@ int cre_sparse_from_ptr_i(fname, lw, m, n, S, fname_len ,rep)
   } ;
   *istk(il ) = 5;
   /* note: code sligtly modified (remark of C. Deroulers in the newsgroup) */
-  if ( *m == 0  |  *n == 0 )
-  {
+  if ( *m == 0  |  *n == 0 ) {
       *istk(il + 1) = 0; 
       *istk(il + 2) = 0;
   } else {

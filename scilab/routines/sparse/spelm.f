@@ -598,6 +598,30 @@ c
       m=istk(il+1)
       n=istk(il+2)
       it=istk(il+3)
+
+*     take care of the fact that m*n*(1+it) may be too big for
+*     integer arithmetic (and then can lead to stack corruption)
+*     (added by Bruno trapping the m x n problems ...)
+*     A solution is to do the following test:
+*      if ( dble( m*n*(1+it) ) .ne. dble(m)*dble(n)*dble(1+it) ) then
+*          raise an error
+*
+*      but further computations may also be corrupted for instance
+*      sadr(il+4)+m*n*(it+1) ...  (m*n*(1+it) may be just good in
+*      integer arithmetic but then adding with  sadr(il+4) may
+*      produce an integer overflow.
+*
+*     So a safer test is to limit to m*n <= 30000 x 30000 which
+*     represent in full format a very big matrix (7.2 Go in double
+*     precision) together with enough security for the other computations
+*      30000 x 30000 = 900 000 000 < 2 147 483 647 = 2^31-1 
+*
+      if ( dble(m)*dble(n) .gt. 900000000 ) then 
+         buf='not enough memory'
+         call error(9999)
+         return
+      endif
+
       ilr=il+5
       ilc=ilr+m
       if(istk(il).eq.5) then
