@@ -486,14 +486,17 @@ int C2F(xsaveplots)(integer *winnumber, char *fname1, integer lxv)
   struct listplot *list;
   int verb=0,cur,na;
 
-
+  if (version_flag() == 0) {
+    char temp[256];
+    integer ierr,seq=1;
+    sprintf(temp,"%%xsave('%s',%d)",fname1,*winnumber);
+    na=strlen(temp);
+    C2F(syncexec)(temp,&na,&ierr,&seq);
+    return 0;
+  }
   C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","window",winnumber,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if (version_flag() == 0) {
-    sciprint("New style plot save is not yet implemented\n");
-    C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  }
-  else {
+
 
 #ifdef lint 
   *unused;
@@ -527,7 +530,6 @@ int C2F(xsaveplots)(integer *winnumber, char *fname1, integer lxv)
   SaveVectC(endplots,((int)strlen(endplots))+1) ;
   assert(fflush((FILE *)xdrs->x_private) != EOF) ; 
   assert(fclose(F) != EOF) ;
-  }
   return(0);
 }
 

@@ -761,9 +761,19 @@ int C2F(xloadplots)(fname1,lvx)
       return(0);
     }
   xdrstdio_create(rxdrs, RF, XDR_DECODE) ;
-  if ( LoadVectC(&SciF_version) == 0 ) 
+
+  /*if ( LoadVectC(&SciF_version) == 0 )  replaced by the following line to avoid error message*/
+  xdr_vector(rxdrs,(char *) &rszof,(u_int)1,(u_int) sizeof(u_int), (xdrproc_t) xdr_u_int);
+  SciF_version = (char *)  MALLOC(rszof);
+  if (( SciF_version == NULL) || (~xdr_opaque(rxdrs, SciF_version,rszof)))
     {
-      sciprint("Wrong plot file : %s\n\n",fname1);
+      char temp[256];
+      integer ierr,seq=1;
+      fclose(RF);
+      sprintf(temp,"%%xload('%s')",fname1);
+      na=strlen(temp);
+      C2F(syncexec)(temp,&na,&ierr,&seq);
+      if(ierr != 0)  sciprint("Wrong plot file : %s\n\n",fname1);
       return(0);
     }
 
