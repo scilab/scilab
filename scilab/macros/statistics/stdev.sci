@@ -18,17 +18,30 @@ function [s]=stdev(x,orien)
 //
 //date: 1999-05-12
 //
-  if x==[] then s=%nan, return, end
-  [lhs,rhs]=argn(0)
-  if rhs==0 then error('stdev requires at least one input.'), end
-  [m n]=size(x);
-  if rhs==1
-    s=sqrt(sum((x-mean(x)).^2)/(m*n-1)) //fixed by Enrico Segre (Weizman, Israel) 01/02/07
-  elseif orien=='c'|orien==2 then
-    s=sqrt(sum((x-mean(x,'c')*ones(x(1,:))).^2,'c')/(n-1));
-  elseif orien=='r'|orien==1 then
-    s=sqrt(sum((x-ones(x(:,1))*mean(x,'r')).^2,'r')/(m-1));
+  if argn(2)<2 then cr='*',end
+  if x == [] then sd=%nan;return ;end 
+  [m,n]=size(x);
+  if cr=='*' then
+    n=m*n
+    select n
+      case 0 then sd=%nan
+      case 1 then sd=0
+    else 
+      sd=sqrt(sum((x-mean(x)).^2)/(n-1));
+    end
+  elseif cr=='c'|cr==2
+    if n==1 then
+      sd=zeros(m,1)
+    else
+      sd=sqrt(sum((x-mean(x,'c')*ones(x(1,:))).^2,'c')/(n-1));
+    end
+  elseif cr=='r'|cr==1
+    if m==1 then
+      sd=zeros(1,n)
+    else
+      sd=sqrt(sum((x-ones(x(:,1))*mean(x,'r')).^2,'r')/(m-1));
+    end
   else
-    error('2rd argument of stdev must be equal to c, r, 1 or 2');
+    error('2nd argument cr must be equal to ''e'', ''c'' or 2, ''r''or  1');
   end
 endfunction

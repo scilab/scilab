@@ -1,4 +1,4 @@
-function [m,index] = nanmin(x,orient)
+function [s,index] = nanmin(x,orient)
 //
 //This function gives for a real or a numerical matrix  x a his smallest
 //element m (but ignoring the NANs).
@@ -25,29 +25,14 @@ function [m,index] = nanmin(x,orient)
 //
 //date: 2000-01-14
 //
-  [lhs,rhs]=argn(0)
-  if rhs==0|rhs>2 then error('nanmin requires one or two inputs.'), end
-  if x==[] then m=[], return,end
-  x(isnan(x))=%inf
-  if lhs==0|lhs==1 then
-    if rhs==1 then
-      m=min(x)
-    else
-      if orient=='r'|orient=='c' then
-	m=min(x,orient),
-      else
-	error('second parameter for nanmin must be r or c'),
-      end
-    end
-  else
-    if rhs==0|rhs==1 then
-      [m,index]=min(x)
-    else
-      if orient=='r'|orient=='c' then
-	[m,index]=min(x,orient)
-      else
-	error('second parameter for nanmin must be r or c'),
-      end
-    end
-  end
+  
+  if argn(2)==1 then  orient='*',end
+  if orient==1 then orient='r',end
+  if orient==2 then orient='c',end
+  if x==[]|(size(x,'*')==1&isnan(x)) then s=[],index=[],return,end
+  isn=isnan(x)
+  x(isn)=%inf
+  [s,index]=min(x,orient)
+  s(find(and(isn,orient)))=%nan
+
 endfunction

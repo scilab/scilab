@@ -1,4 +1,4 @@
-function [s]=nansum(x,orient)
+function s=nansum(x,orient)
 //
 //This function returns in scalar or vector s the sum of the
 //values (ignoring the NANs) of a vector or matrix x.
@@ -25,28 +25,10 @@ function [s]=nansum(x,orient)
 //fixed: 2003/09/03
 //error texts and all NAN rows or columns
 //
-  [lhs,rhs]=argn(0)
-  if rhs<1|rhs>2 then error('nansum requires one or two inputs.'), end
-  if x==[] then s=[], return(s),end
-  if rhs==1 then 
-    if and(isnan(x)) then s=%nan, return, end
-    x(isnan(x))=0
-    s=sum(x)
-    return
-  end
-  if orient=='r'|orient==1 then
-    i=and(isnan(x),'r')
-    x(isnan(x))=0
-    s=sum(x,'r')
-    s(i)=%nan
-    return
-  end
-  if orient=='c'|orient==2 then
-    i=and(isnan(x),'c')
-    x(isnan(x))=0
-    s=sum(x,'c')
-    s(i)=%nan
-    return
-  end
-  error('Second parameter must be *, r or c')
+  if argn(2)==0 then error('nansum requires one or two inputs.'), end
+  if argn(2)==1 then  orient='*',end
+  isn=isnan(x)
+  x(isn)=0
+  s=sum(x,orient)
+  s(find(and(isn,orient)))=%nan
 endfunction

@@ -1,4 +1,4 @@
-function [s]=nanstdev(x,orien)
+function [s]=nanstdev(x,orient)
 //
 //This function    computes the standard  deviation of   the values of a
 //vector or matrix x (ignoring the NANs).
@@ -23,23 +23,25 @@ function [s]=nanstdev(x,orien)
 //
 
   if x==[] then s=%nan, return, end
-  [lhs,rhs]=argn(0)
-  if rhs==0|rhs>2 then error('nanstdev requires one or two inputs.'), end
-  if rhs==1 then 
-    s=sqrt((sum((x(~isnan(x))-nanmean(x)).^2))/(length(x(~isnan(x)))-1))
-  elseif orien=='*' then
-    s=sqrt((sum((x(~isnan(x))-nanmean(x)).^2))/(length(x(~isnan(x)))-1))
-  elseif orien=='r'|orien==1 then
-    isn=isnan(x)
-    y=nanmean(x,'r')
-    x(isn)=0
-    s=sqrt((sum((x-(ones(size(x,'r'),1)*y)).^2,'r'))./(sum(bool2s(~isn),'r')-1))
-  elseif orien=='c'|orien==2 then
-    isn=isnan(x)
-    y=nanmean(x,'c')
-    x(isn)=0
-    s=sqrt((sum((x-(y*ones(1,size(x,'c')))).^2,'c'))./(sum(bool2s(~isn),'c')-1))
+
+  if argn(2)==0 then error('nanstdev requires one or two inputs.'), end
+  if argn(2)==1 then  orient='*',end
+  if orient=='r' then orient=1,elseif orient=='c' then orient=2,end
+  
+  isn=isnan(x)
+  Mean=nanmean(x,orient);
+  if orient=='*' then
+    N=size(x,orient)-sum(bool2s(isn),orient)
+    x=x-Mean
   else
-    error('2rd argument of nanstdev must be equal to ''c'', ''r'', 1 or 2');
+    N=size(x,orient)-sum(bool2s(isn),orient)
+    ind=list();for k=size(x),ind($+1)=:;end
+    ind(orient)=ones(size(x,orient),1)
+    x=x-Mean(ind(:))
   end
+  x(isn)=0
+  allnans=find(N==0)
+  N(allnans)=1
+  s=sqrt(sum(x.*x,orient)./max(N-1,1));
+  s(allnans)=%nan
 endfunction

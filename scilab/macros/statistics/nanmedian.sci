@@ -22,17 +22,20 @@ function [m]=nanmedian(x,orient)
   if x==[] then m=[], return,end
   if rhs==1 then 
     p=perctl(x(~isnan(x)),50)
+    if p==[] then p=%nan,end
     m=p(1)
   elseif orient=='r'|orient==1 then
     m=[]
     for i=x 
       p=perctl(i(~isnan(i)),50)
+      if p==[] then p=%nan,end
       m=[m p(1)]
     end
   elseif orient=='c'|orient==2 then
     m=[]
     for i=x' do
       p=perctl(i(~isnan(i)),50)
+      if p==[] then p=%nan,end
       m=[m;p(1)];
     end
   else ('Third parameter must be r, c, 1 or 2')

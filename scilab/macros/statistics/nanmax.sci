@@ -1,4 +1,4 @@
-function [m,index] = nanmax(x,orient)
+function [s,index] = nanmax(x,orient)
 //
 //This function gives for a  real or a  numerical matrix x a his largest
 //element m (but ignoring the NANs).
@@ -25,23 +25,14 @@ function [m,index] = nanmax(x,orient)
 //
 //date: 2000-01-14
 //
-  [lhs,rhs]=argn(0)
-  if rhs==0|rhs>2 then error('nanmax requires one or two inputs.'), end
-  if x==[] then m=[], return,end
-  x(isnan(x))=-%inf
-  if lhs==0|lhs==1 then
-    if rhs==2 then
-      if orient=='r'|orient=='c', m=max(x,orient),
-      else  error('second parameter for nanmax must be r or c'),
-      end
-    else m=max(x),
-    end
-  elseif lhs==2 then 
-    if rhs==2 then
-      if orient=='r'|orient=='c', [m, index]=max(x,orient),
-      else  error('second parameter for nanmax must be r or c'),
-      end
-    else [m,index]=max(x),
-    end
-  end
+    
+  if argn(2)==1 then  orient='*',end
+  if orient==1 then orient='r',end
+  if orient==2 then orient='c',end
+  if x==[]|(size(x,'*')==1&isnan(x)) then s=[],index=[],return,end
+  isn=isnan(x)
+  x(isn)=%inf
+  [s,index]=max(x,orient)
+  s(find(and(isn,orient)))=%nan
+
 endfunction

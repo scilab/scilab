@@ -27,34 +27,11 @@ function [s]=nancumsum(x,orient)
 //
 //date: 2003-09-03
 //
-  [lhs,rhs]=argn(0)
-  if rhs<1|rhs>2 then error('nancumsum requires one or two inputs.'), end
-  if x==[] then s=[], return(s),end
-  if rhs==1 then 
-    orient='*'
-  end
-  if orient=='*' then
-    if and(isnan(x)) then s=%nan, return, end
-    x(isnan(x))=0
-    sizx=size(x,'*')
-    s=tril(ones(sizx,sizx))*matrix(x,sizx,1)
-    return
-  end
-  six=size(x)
-  if orient=='r'|orient==1 then
-    i=and(isnan(x),'r')
-    x(isnan(x))=0
-    s=tril(ones(six(1),six(1)))*x
-    s(i)=%nan
-    return
-  end
-  if orient=='c'|orient==2 then
-    i=and(isnan(x),'c')
-    x(isnan(x))=0
-    s=x*triu(ones(six(2),six(2)))
-    s(i)=%nan
-    return
-  end
-  error('Second parameter for nancumsum must be *, r, c, 1 or 2')
+  if argn(2)==1 then  orient='*',end
+  isn=isnan(x)
+  x(isn)=0
+  s=cumsum(x,orient)
+  s(find(and(isn,orient)))=%nan
+ 
 endfunction
 
