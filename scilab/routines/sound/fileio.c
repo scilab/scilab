@@ -103,6 +103,11 @@ int int_objprintf(char *fname)
       Scierror(999,"Error:\tRhs must be > 0\r\n");
       return 0;
     }
+
+  for (k=2;k<=Rhs;k++) {
+    if (VarType(k) !=1) {OverLoad(k);return 0;}
+  }
+
   GetRhsVar(1,"c",&m1,&n1,&l1);
 
   mx=0;
@@ -145,6 +150,9 @@ int int_objfprintf(char *fname)
       Scierror(999,"Error:\tRhs must be >= 2\r\n");
       return 0;
     }
+  for (k=3;k<=Rhs;k++) {
+    if (VarType(k) !=1) {OverLoad(k);return 0;}
+  }
   GetRhsVar(1,"i",&m1,&n1,&l1); /* file id */
   GetRhsVar(2,"c",&m2,&n2,&l2); /* format */
   if ((f= GetFile(istk(l1))) == (FILE *)0)
@@ -196,6 +204,9 @@ int int_objsprintf(char *fname)
       Scierror(999,"Error:\tRhs must be > 0\r\n");
       return 0;
     }
+  for (k=2;k<=Rhs;k++) {
+    if (VarType(k) !=1) {OverLoad(k);return 0;}
+  }
   GetRhsVar(1,"c",&m1,&n1,&l1);
   n=0; /* output line counter */
   nmax=0;
@@ -1613,14 +1624,13 @@ static int GetScalarInt(char *fname, int *previous_t, int *arg, int narg, int *i
 
 static int GetScalarDouble(char *fname, int *previous_t, int *arg, int narg, int *ic, int ir, double *dval)
 {
-  int mx,nx,lx;
+  int mx,nx,lx,typ;
 
   if (*previous_t != 1) {
     *arg = *arg+1;
     *ic=1;
     *previous_t = 1;
   }
-
   if (! C2F(getrhsvar)(arg,"d",&mx,&nx,&lx,1L))
     return RET_BUG;
   else {
@@ -1637,6 +1647,7 @@ static int GetScalarDouble(char *fname, int *previous_t, int *arg, int narg, int
   *ic=*ic+1;
   return OK;
 }
+
 
 static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 {
