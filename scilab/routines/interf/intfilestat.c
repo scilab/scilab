@@ -32,6 +32,7 @@ char * fname;
    else   {
      n1 = 13;
      CreateVar(2,"d",&one,&n1,&l2);
+
      *stk(l2+0) = (double) buf.st_size;/* total size, in bytes */
      *stk(l2+1) = (double) buf.st_mode;/* protection */
      *stk(l2+2) = (double) buf.st_uid;/* user ID of owner */
@@ -50,6 +51,7 @@ char * fname;
 #endif 
      *stk(l2+11) = (double) buf.st_ino;/* inode */
      *stk(l2+12) = (double) buf.st_nlink;/* number of hard links */
+
    }
   LhsVar(1) = 2;
   if (Lhs==2) {
