@@ -317,7 +317,7 @@ c     - save context for recursion
       istk(ilrec)=2
 
       fun=0
-      fin=-3
+      fin=-5
       rstk(pt)=406
 c     *call* allops
       return

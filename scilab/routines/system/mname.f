@@ -7,7 +7,7 @@ c     Copyright INRIA
       integer gettype
       logical ilog,getilist,getsmat,first
 c
-      parameter (nops=32)
+      parameter (nops=33)
       integer op,id(nsiz),name(nlgh),blank,percen,under,id1(nsiz)
       integer ops(nops),code(nops),top1,rhs1,codop
       integer compat
@@ -15,16 +15,16 @@ c
       data compat/1/
       data blank/40/,percen/56/,under/36/
       data ops /53,45,46,47,48,49,62, 1, 2, 3,4,98,99,100,200,201,202,
-     &          44,149,150,151,50,119,57,58,113,61,104,59,60,109,110/
+     &          44,149,150,151,50,119,57,58,113,61,104,59,60,109,110,5/
       data code/29,10,28,22,27,21,25,12,18,14,15,33,13,26,20, 34, 35, 
-     &          11,30, 31, 32, 24, 23, 16, 17,19,5,0,1,2,3,4/
+     &          11,30, 31, 32, 24, 23, 16, 17,19,5,0,1,2,3,4,-14/
 c
 c     operators codes
 c     ---------------
 c     '  +  -  *  /  \  **  []  ()  .*  ./  .\  .*.  ./.  .\.   :  *. /.
 c     t  a  s  m  r  l  p   c,f e,i  x   d    q   k    y    z   b  u   v
-c     w   ==  <>  |  &  .^  ~ .' <  >  <=  >= 
-c     \.   o  n   g  h   j  5 0  1  2  3   4
+c     w   ==  <>  |  &  .^  ~ .' <  >  <=  >= ()
+c     \.   o  n   g  h   j  5 0  1  2  3   4  E
 c
 c     type codes
 c     ----------
@@ -41,7 +41,7 @@ c
       rhs1=rhs
       first=.true.
 
-      if (op.eq.3) then
+      if (op.eq.3.or.op.eq.5) then
          rhs1=1
       elseif (op.eq.2) then
          rhs1=2
