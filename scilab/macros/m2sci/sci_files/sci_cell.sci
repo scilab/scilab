@@ -42,8 +42,6 @@ if rhs==1 then
     tree.lhs(1).type=Type(Cell,Unknown)
   // cell(n) or cell([n1,n2,...]) ?
   else 
-    tree.name="mtlb_cell"
-
     tree.lhs(1).dims=list(Unknown,Unknown)
     tree.lhs(1).type=Type(Cell,Unknown)
   end
