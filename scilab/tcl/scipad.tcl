@@ -18,9 +18,15 @@ exec `which wish` "$0" "$@"
 # - Recolorization of a cuted and pasted text
 # - Multiple opened files.
 
-# ES 23/7/2003: 
-# changed helvetica text font to courier
-# added accelerators Ctrl-w, Ctrl-n, Ctrl-q, Ctrl-p, Ctrl-P, Ctrl-S,  
+# ES 28/7/2003: 
+# changed text font from helvetica bold to courier medium
+# added accelerators Ctrl-w, Ctrl-n, Ctrl-q, Ctrl-p, Ctrl-P, Ctrl-S, Ctrl-g; Alt-L
+# fixed "unset pad" in closewin rather than exitapp - fixes a bug apparent when exiting
+#   scipad by closing the last active buffer and trying to relaunch it
+# colorization: added "punct", "operator"; changed colors of the colorization
+# corrected "parencesis" in blinkbrace - fixes highlighting of ()
+# "Scilab specials" in colorize -- added code to distinguish {} [], () from ;: 
+# [external but connected: new list of keywords "words"]
 
 # default global values
 #global .
@@ -40,7 +46,7 @@ set winTitle "SciPad"
 set version "Version 1.1"
 set wordWrap none
 set printCommand lpr
-set BGCOLOR "white"
+set BGCOLOR "snow1"
 set FGCOLOR "black"
 set BASENAME scipad5.tcl;#[string range $argv0 [expr [string last "/" $argv0] + 1] end]
 set argc 0
@@ -62,21 +68,22 @@ set radiobuttonvalue 0
 eval destroy [winfo child $pad]
 wm title $pad "$winTitle - $listoffile("$pad.textarea",filename)"
 wm iconname $pad $winTitle
-wm geometry $pad 80x25
+##wm geometry $pad 80x25
 wm minsize $pad 25 1 
 
 #create main menu
 menu $pad.filemenu -tearoff 0 
 
-# start by setting default font sizes 
+# start by setting default font sizes
 if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
-	set textFont -Adobe-Helvetica-*-R-Normal-*-14-*
+	set textFont -Adobe-courier-medium-r-Normal-*-14-*
 	set menuFont -adobe-helvetica-bold-r-normal--12-*-75-75-*-*-*-*
 } else {
-	set textFont -Adobe-Courier-*-R-Normal-*-14-*
+	set textFont -Adobe-Courier-medium-R-Normal-*-14-*
 	#set menuFont -adobe-helvetica-bold-r-normal--12-*-75-75-*-*-*-*
 	set menuFont [$pad.filemenu cget -font]
 }
+
 $pad.filemenu configure -font $menuFont
 
 # added by Matthieu PHILIPPE 18/12/2001
@@ -88,7 +95,7 @@ proc setfontscipad0 {} {
     global textFont
     global listoftextarea
 
-    set textFont -Adobe-Helvetica-*-R-Normal-*-12-*
+    set textFont -Adobe-courier-medium-R-Normal-*-12-*
     foreach textarea $listoftextarea {
 	$textarea configure -font $textFont
     }
@@ -98,7 +105,7 @@ proc setfontscipad4 {} {
     global textFont
     global listoftextarea
 
-    set textFont -Adobe-Helvetica-*-R-Normal-*-14-*
+    set textFont -Adobe-courier-medium-R-Normal-*-14-*
     foreach textarea $listoftextarea {
 	$textarea configure -font $textFont
     }
@@ -108,11 +115,12 @@ proc setfontscipad12 {} {
     global textFont
     global listoftextarea
 
-    set textFont -Adobe-Helvetica-*-R-Normal-*-18-*
+    set textFont -Adobe-courier-medium-R-Normal-*-18-*
     foreach textarea $listoftextarea {
 	$textarea configure -font $textFont
     }
 }
+
 
 # create frames for widget layout
 # this is for the text widget and the y scroll bar
@@ -132,32 +140,32 @@ pack $pad.bottombottommenu -side bottom -expand 0 -fill both
 menu $pad.filemenu.files -tearoff 0 -font $menuFont
 if {$lang == "eng"} {
     $pad.filemenu  add cascade -label "File" -underline 0 -menu $pad.filemenu.files
-    $pad.filemenu.files add command -label "New" -underline 0 -command "filesetasnewmat"
+    $pad.filemenu.files add command -label "New" -underline 0 -command "filesetasnewmat" -accelerator Ctrl+n
     $pad.filemenu.files add command -label "Open" -underline 0 -command "filetoopen $textareacur" -accelerator Ctrl+o
     $pad.filemenu.files add command -label "Save" -underline 0 -command "filetosavecur" -accelerator Ctrl+s
-    $pad.filemenu.files add command -label "Save As" -underline 5 -command "filesaveascur"
+    $pad.filemenu.files add command -label "Save As" -underline 5 -command "filesaveascur" -accelerator Ctrl+S
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
-	$pad.filemenu.files add command -label "Print Setup" -underline 8 -command "printseupselection"
-	$pad.filemenu.files add command -label "Print" -underline 0 -command "selectprint $textareacur"
+	$pad.filemenu.files add command -label "Print Setup" -underline 8 -command "printseupselection" -accelerator Ctrl+P
+	$pad.filemenu.files add command -label "Print" -underline 0 -command "selectprint $textareacur" -accelerator Ctrl+p
 	$pad.filemenu.files add separator
     }
-    $pad.filemenu.files add command -label "Close" -underline 0 -command "closecur"
-    $pad.filemenu.files add command -label "Exit" -underline 1 -command "exitapp"
+    $pad.filemenu.files add command -label "Close" -underline 0 -command "closecur" -accelerator Ctrl+w
+    $pad.filemenu.files add command -label "Exit" -underline 1 -command "exitapp" -accelerator Ctrl+q
 } else {
     $pad.filemenu  add cascade -label "Fichier" -underline 0 -menu $pad.filemenu.files
-    $pad.filemenu.files add command -label "Nouveau" -underline 0 -command "filesetasnewmat"
+    $pad.filemenu.files add command -label "Nouveau" -underline 0 -command "filesetasnewmat" -accelerator Ctrl+n
     $pad.filemenu.files add command -label "Ouvrir" -underline 0 -command "filetoopen $textareacur" -accelerator Ctrl+o
     $pad.filemenu.files add command -label "Enregistrer" -underline 0 -command "filetosavecur" -accelerator Ctrl+s
-    $pad.filemenu.files add command -label "Enregistrer sous" -underline 5 -command "filesaveascur"
+    $pad.filemenu.files add command -label "Enregistrer sous" -underline 5 -command "filesaveascur" -accelerator Ctrl+S
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
-	$pad.filemenu.files add command -label "Mise en page" -underline 8 -command "printseupselection"
-	$pad.filemenu.files add command -label "Imprimer" -underline 0 -command "selectprint $textareacur"
+	$pad.filemenu.files add command -label "Mise en page" -underline 8 -command "printseupselection" -accelerator Ctrl+P
+	$pad.filemenu.files add command -label "Imprimer" -underline 0 -command "selectprint $textareacur" -accelerator Ctrl+p
 	$pad.filemenu.files add separator
     }
-    $pad.filemenu.files add command -label "Fermer" -underline 0 -command "closecur"
-    $pad.filemenu.files add command -label "Quitter" -underline 1 -command "exitapp"   
+    $pad.filemenu.files add command -label "Fermer" -underline 0 -command "closecur" -accelerator Ctrl+w
+    $pad.filemenu.files add command -label "Quitter" -underline 1 -command "exitapp" -accelerator Ctrl+q 
 }
 
 #edit menu
@@ -179,7 +187,7 @@ if {$lang == "eng"} {
 } else {
     $pad.filemenu add cascade -label "Edition" -underline 0 -menu $pad.filemenu.edit
     $pad.filemenu.edit add command -label "Annuler" -underline 0 -command " undo_menu_proc" -accelerator Ctrl+z
-    $pad.filemenu.edit add command -label "Répéter" -underline 0 -command "redo_menu_proc" -accelerator Ctrl+y
+    $pad.filemenu.edit add command -label "RÃ©pÃ©ter" -underline 0 -command "redo_menu_proc" -accelerator Ctrl+y
     $pad.filemenu.edit add separator
     $pad.filemenu.edit add command -label "Couper" -underline 2 -command "cuttext" -accelerator Ctrl+x
     $pad.filemenu.edit add command -label "Copier" -underline 0 -command "copytext" -accelerator Ctrl+c
@@ -189,7 +197,7 @@ if {$lang == "eng"} {
     $pad.filemenu.edit add command -label "Selectionner tout" -underline 7 -command "selectall" -accelerator Ctrl+/
 #    $pad.filemenu.edit add command -label "Time/Date" -underline 5 -command "printtime"
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add check -label "Retour à la ligne automatique" -underline 5 -command "wraptext"
+    $pad.filemenu.edit add check -label "Retour Ã  la ligne automatique" -underline 5 -command "wraptext"
 } 
 
 #search menu
@@ -200,14 +208,14 @@ if {$lang == "eng"} {
     $pad.filemenu.search add command -label "Find Next" -underline 1 -command "findnext find" -accelerator F3
     $pad.filemenu.search add command -label "Replace" -underline 0 -command "findtext replace" -accelerator Ctrl+r
     # add new menu option include by Matthieu PHILIPPE from gotoline.pth 21/11/2001
-    $pad.filemenu.search add command -label "Goto Line" -underline 0 -command "gotoline"
+    $pad.filemenu.search add command -label "Goto Line" -underline 0 -command "gotoline" -accelerator Ctrl+g
 } else {
     $pad.filemenu add cascade -label "Rechercher" -underline 0 -menu $pad.filemenu.search 
     $pad.filemenu.search add command -label "Rechercher" -underline 0 -command "findtext find" -accelerator Ctrl+f
     $pad.filemenu.search add command -label "Rechercher suivant" -underline 1 -command "findnext find" -accelerator F3
     $pad.filemenu.search add command -label "Remplacer" -underline 0 -command "findtext replace" -accelerator Ctrl+r
     # add new menu option include by Matthieu PHILIPPE from gotoline.pth 21/11/2001
-    $pad.filemenu.search add command -label "Atteindre" -underline 0 -command "gotoline"
+    $pad.filemenu.search add command -label "Atteindre" -underline 0 -command "gotoline" -accelerator Ctrl+g
 } 
 
 # added by matthieu PHILIPPE dec 11th 2001
@@ -218,7 +226,7 @@ if {$lang == "eng"} {
     #$pad.filemenu.wind add command -label "$listoffile("$pad.textarea",filename)" -command "montretext $pad.textarea"
 } else {
     menu $pad.filemenu.wind -tearoff 1 -title "Fichiers ouverts" -font $menuFont
-    $pad.filemenu add cascade -label "Fenêtres" -underline 0 -menu $pad.filemenu.wind
+    $pad.filemenu add cascade -label "FenÃªtres" -underline 0 -menu $pad.filemenu.wind
     #$pad.filemenu.wind add command -label "$listoffile("$pad.textarea",filename)" -command "montretext $pad.textarea"
 }
 $pad.filemenu.wind add radiobutton -label "$listoffile("$pad.textarea",filename)"  -value 0 -variable radiobuttonvalue -command "montretext $pad.textarea"
@@ -241,9 +249,9 @@ if {$lang == "eng"} {
 set Size 2
 # exec menu
 if {$lang == "eng"} {
-    $pad.filemenu add command -label "Load into Scilab" -command "execfile"
+    $pad.filemenu add command -label "Load into Scilab" -underline 0 -command "execfile"
 } else {
-    $pad.filemenu add command -label "Charger dans Scilab" -command "execfile"
+    $pad.filemenu add command -label "Charger dans Scilab" -underline 0 -command "execfile"
 }
 
 proc execfile {} {
@@ -256,7 +264,7 @@ proc execfile {} {
 	if {$lang == "eng"} {
 	    set answer [tk_messageBox -message "The contents of $listoffile("$textarea",filename) may have changed, do you wish to to save your changes?" -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
-	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" -title "Confirmer sauver ?" -type yesnocancel -icon question]
+	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportÃ©es Ã  $listoffile("$textarea",filename) ?" -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
 	    yes { filetosave $textarea; set doexec 1 }
@@ -270,7 +278,7 @@ proc execfile {} {
 	    if {$lang == "eng"} {
 		tk_messageBox -message "Scilab is working, wait for the prompt to load file $listoffile("$textarea",filename)" -title "Scilab working" -type ok -icon info
 	    } else {
-		tk_messageBox -message "Scilab est occupé, attendez le prompt pour charger le fichier $listoffile("$textarea",filename)" -title "Scilab occupé" -type ok -icon info
+		tk_messageBox -message "Scilab est occupÃ©, attendez le prompt pour charger le fichier $listoffile("$textarea",filename)" -title "Scilab occupÃ©" -type ok -icon info
 	    }
 	} else {
 	    set f $listoffile("$textarea",filename)
@@ -300,8 +308,8 @@ set taille [expr [font measure $textFont " "] *3]
 # creates the default textarea 
 text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
 	-yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
-        -fg $FGCOLOR -bg $BGCOLOR -font $textFont -setgrid 1 -tabs $taille -insertwidth 3 -insertborderwidth 8 
-set textareacur $pad.textarea
+        -fg $FGCOLOR -bg $BGCOLOR  -setgrid 1 -font $textFont -tabs $taille -insertwidth 3 -insertborderwidth 8 
+set textareacur $pad.textarea  
 ####
 
 scrollbar $pad.yscroll -command "$textareacur yview"
@@ -389,13 +397,15 @@ proc scipadindent {textarea cm} {
 proc TextStyles { t } {
     global FGCOLOR
 
-    $t tag configure parenthesis -foreground red
-    $t tag configure bracket -foreground red
+    $t tag configure parenthesis -foreground magenta3
+    $t tag configure bracket -foreground DarkGoldenrod4
     $t tag configure brace -foreground red
-    $t tag configure keywords -foreground blue
+    $t tag configure punct -foreground turquoise4
+    $t tag configure keywords -foreground blue2
+    $t tag configure operator -foreground Blue4
     $t tag configure text -foreground $FGCOLOR
-    $t tag configure textquoted -foreground green
-    $t tag configure rem2 -foreground gray
+    $t tag configure textquoted -foreground darkred
+    $t tag configure rem2 -foreground green4
     scipadindent $t .8
 }
 TextStyles $textareacur
@@ -427,8 +437,8 @@ proc blinkbrace {w pos brace} {
 		\}	{ set findbs {[{}]}; set bs "\{"; set dir {-backwards}; set bn brace }
 		\[	{ set findbs {[][]}; set bs "\]"; set dir {-forwards}; set bn bracket }
 		\]	{ set findbs {[][]}; set bs "\["; set dir {-backwards}; set bn bracket }
-		(	{ set findbs {[()]}; set bs ")"; set dir {-forwards}; set bn parencesis }
-		)	{ set findbs {[()]}; set bs "("; set dir {-backwards}; set bn parencesis }
+		\(	{ set findbs {[()]}; set bs "\)"; set dir {-forwards}; set bn parenthesis }
+		\)	{ set findbs {[()]}; set bs "\("; set dir {-backwards}; set bn parenthesis }
 	}
 	set p [set i [$w index $pos-1c]]
 	set d 1
@@ -576,7 +586,8 @@ proc openoninit {textarea thefile} {
 #added by Matthieu PHILIPPE 21/11/2001 from linenum.pth
 tkTextSetCursor $textareacur "1.0"
 keyposn $textareacur
-wm geometry $pad 65x24
+##geometry in what units? The width is more than 65 columns, though it's resized proportionally
+wm geometry $pad 65x24 
 
 
 
@@ -584,10 +595,11 @@ wm geometry $pad 65x24
 # help menu
 proc helpme {} {
     global lang
+    global textFont
     if {$lang == "eng"} {
 	tk_messageBox -title "Basic Help" -type ok -message "This is a simple editor for Scilab."
     } else {
-	tk_messageBox -title "Aide de base" -type ok -message "C'est un simple éditeur pour Scilab."
+	tk_messageBox -title "Aide de base" -type ok -message "C'est un simple Ã©diteur pour Scilab."
     }
 }
 
@@ -599,9 +611,9 @@ proc aboutme {} {
 	    joeja@mindspring.com.\n\
             Modified by Scilab Group"
     } else {
-	tk_messageBox -title "Apropos" -type ok -message "$winTitle $version\n créé par Joseph Acosta,\n\
+	tk_messageBox -title "Apropos" -type ok -message "$winTitle $version\n crÃ©Ã© par Joseph Acosta,\n\
 	    joeja@mindspring.com.\n\
-            Modifié par le Groupe Scilab"
+            ModifiÃ© par le Groupe Scilab"
     }
 }
 
@@ -613,7 +625,7 @@ proc switchcase {yesfn argyesfn nofn argnofn} {
 	    set answer [tk_messageBox -message "The contents of this file may have changed, do you wish to save your changes?" \
 		    -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
-	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à ce fichier ?" \
+	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportÃ©es Ã  ce fichier ?" \
 		    -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
@@ -717,7 +729,7 @@ proc closefile {textarea} {
 	    montretext [lindex $listoftextarea end]
 	} else {
 	    killwin $pad 
-	    unset pad
+            unset pad
 	}   
     }
     #### end of bye bye
@@ -726,7 +738,7 @@ proc closefile {textarea} {
 	if {$lang == "eng"} {
 	    set answer [tk_messageBox -message "The contents of $listoffile("$textarea",filename) may have changed, do you wish to to save your changes?" -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
-	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" -title "Confirmer sauver ?" -type yesnocancel -icon question]
+	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportÃ©es Ã  $listoffile("$textarea",filename) ?" -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
 	    yes { filetosave $textarea; byebye $textarea }
@@ -748,7 +760,7 @@ proc exitapp {} {
 	#inccount $textarea
 	closefile $textarea
     }
-    unset pad
+#    unset pad  ## not needed if closefile unsets it
 }
 
 proc montretext {textarea} {
@@ -928,8 +940,8 @@ proc filetosave {textarea} {
 	set msgChanged "The contents of $listoffile("$textarea",filename) has changed on Disk, Save it anyway ?"
 	set msgTitle "File has changed !"
     } else {
-	set msgChanged "Le contenu de $listoffile("$textarea",filename) a changé sur le disque, étes-vous sur de vouloir le sauvegarder ?"
-	set msgTitle "Le fichier a changé"
+	set msgChanged "Le contenu de $listoffile("$textarea",filename) a changÃ¨ sur le disque, Ã©tes-vous sur de vouloir le sauvegarder ?"
+	set msgTitle "Le fichie a changÃ¨"
     }
 
     # save the opened file from disk, if not, user has to get a file name.
@@ -1358,7 +1370,7 @@ proc gotoline {} {
 	if {$lang == "eng"} {
 	    wm title $gotln "Goto Line?"
 	} else {
-	    wm title $gotln "Aller à la ligne"
+	    wm title $gotln "Aller Ã  la ligne"
 	}
 	setwingeom $gotln
 	frame $gotln.top 
@@ -1366,7 +1378,7 @@ proc gotoline {} {
 	if {$lang == "eng"} {
 	    label $gotln.top.label -text "Goto Line: "
 	} else {
-	    label $gotln.top.label -text "Aller à la ligne : "
+	    label $gotln.top.label -text "Aller Ã  la ligne : "
 	}
 	entry $gotln.top.gotln -textvariable gotlnsetupnew -width 10
 	$gotln.top.gotln delete 0 end 
@@ -1845,20 +1857,54 @@ proc colorize {w cpos iend} {
         set num 0
 	$w mark set begin "$cpos linestart"
 	$w mark set ende "$iend+1l linestart"
+#order matters here - for instance textquoted has to be after operator, so operators are
+# not colorized within strings
 	$w tag remove parenthesis begin ende
 	$w tag remove bracket begin ende
 	$w tag remove brace begin ende
-	$w tag remove text begin ende
-	$w tag remove textquoted begin ende
+	$w tag remove punct begin ende
+	$w tag remove operator begin ende
 	$w tag remove keywords begin ende
+	$w tag remove text begin ende
 	$w tag remove rem2 begin ende
+	$w tag remove textquoted begin ende  
+##still, "//" textquoted becomes rem2 
         $w tag remove indentation begin ende
 # Scilab specials
 	$w mark set last begin
-	while {[set ind [$w search -regexp {[][;:]} last ende]] != {}} {
+	while {[set ind [$w search -regexp {[;,]} last ende]] != {}} {
+		if {[$w compare $ind >= last]} {
+			$w mark set last $ind+1c
+			$w tag add punct $ind last
+		} else break
+        }
+	$w mark set last begin
+	while {[set ind [$w search -regexp {[()]} last ende]] != {}} {
+		if {[$w compare $ind >= last]} {
+			$w mark set last $ind+1c
+			$w tag add parenthesis $ind last
+		} else break
+	}
+	$w mark set last begin
+	while {[set ind [$w search -regexp {[\[\]]} last ende]] != {}} {
+		if {[$w compare $ind >= last]} {
+			$w mark set last $ind+1c
+			$w tag add bracket $ind last
+		} else break
+	}
+#ES: why at all call ":" a "brace? "{}" are anyway parsed above for matching pairs
+	$w mark set last begin
+	while {[set ind [$w search -regexp {[\{\}:]} last ende]] != {}} {
 		if {[$w compare $ind >= last]} {
 			$w mark set last $ind+1c
 			$w tag add brace $ind last
+		} else break
+	}
+	$w mark set last begin
+	while {[set ind [$w search -regexp {['\.+\-*\/\\\^=\~$|&<>]} last ende]] != {}} {
+		if {[$w compare $ind >= last]} {
+			$w mark set last $ind+1c
+			$w tag add operator $ind last
 		} else break
 	}
 # Scilab
@@ -1877,7 +1923,7 @@ proc colorize {w cpos iend} {
 		$w mark set last next-1c
 	    } else break
 	  }
-# XML
+# XML (this is a problem as <> are also operators)
 	$w mark set last begin
 	while {[set ind [$w search  -regexp "<" last ende]] != {}} {
 	    if {[$w compare $ind >= last]} {
@@ -1915,13 +1961,14 @@ proc colorize {w cpos iend} {
 		      $w mark set last "$ind+1l linestart"
 		  } else break
 		  }
-	      }
+}
 
 proc selectall {} {
 [gettextareacur] tag add sel 1.0 end
 }
 
 proc puttext {w text} {
+    global winTitle
     set rem 0
     set cuttexts [selection own]
     if {$cuttexts != "" } {
@@ -1938,8 +1985,16 @@ proc puttext {w text} {
     if {$i1 != $i2 || $rem} {
 	colorize $w $i1 [$w index "$i2+1l linestart"]
     }
+#    modifiedtitle $w ###added by ES
     $w see insert
 }
+
+###added by ES 28/7/2003
+proc modifiedtitle {w} {
+    if  [ expr [string compare [getccount $w] 1] == 0 ] {
+                    settitle "modified"}
+}
+
 
 proc bindtext {textarea} {
     bind $textarea <Control-v> {pastetext}
