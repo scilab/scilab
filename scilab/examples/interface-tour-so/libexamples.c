@@ -1,4 +1,5 @@
 #include <mex.h> 
+static int direct_gateway(char *fname,void F(void)) { F();return 0;};
 extern Gatefunc intex1c;
 extern Gatefunc C2F(intex1f);
 extern Gatefunc intex2c_1;
