@@ -190,7 +190,7 @@ c     [Q,R,JPVT,RANK,SVAL]=rankqr(A,[RCOND,JPVT])
 c                 rankqr(A)
 c     create RCOND=0.0,JPVT=[0,..,0]
          if(.not.createvar(RCOND,'d',1,1,ptrRCOND)) return
-         stk(ptrRCOND)=RCONDdef;
+         stk(ptrRCOND)=RCONDdef
          if(.not.createvar(JPVT,'i',1,N,ptrJPVT)) return
          call icopy(N,0,0,istk(ptrJPVT),1)
       elseif(rhs.eq.2) then
