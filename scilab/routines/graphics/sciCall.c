@@ -332,6 +332,8 @@ void Objdrawaxis (dir,tics,x,nx,y,ny,val,subint,format,font,textcol,ticscol,flag
                           dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg));  
      sciDrawObj(sciGetCurrentObj ());
      
+     // F.Leray 10.03.04: In fact we use ConstructAxes AND NOT ConstructAxis to draw
+     // one axis. ConstructAxis is apparently unused!!
      
 }
 
