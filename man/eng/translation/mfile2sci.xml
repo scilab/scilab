@@ -158,8 +158,8 @@ m=rand(4,2);rot90(m,1)
       <LINK>translatepaths</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>
-    <AUTHOR_ITEM>V. Couvert</AUTHOR_ITEM>
-    <AUTHOR_ITEM>S. Steer</AUTHOR_ITEM>
-  </AUTHOR>
+  <AUTHORS>
+    <AUTHORS_ITEM>V. Couvert</AUTHORS_ITEM>
+    <AUTHORS_ITEM>S. Steer</AUTHORS_ITEM>
+  </AUTHORS>
 </MAN>

@@ -68,7 +68,7 @@ write(%io(2),txt,'(a)')
       <LINK>macr2tree</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>
-    <AUTHOR_ITEM>V.C.</AUTHOR_ITEM>
-  </AUTHOR>
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
 </MAN>
