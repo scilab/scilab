@@ -135,29 +135,44 @@ function %h_p(h)
 	 "clip_box: "+sci2exp(h.clip_box,0)
 	 ]
       case "Grayplot"
+      d=sci2exp(h.data,0)
+      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       t=[t;
 	 "visible: "+string(h.visible) 
+	 "data: "+d
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)
-	 "data_mapping: "+h.data_mapping]
+	 "data_mapping: "+h.data_mapping
+	]
       case "Matplot"
+      d=sci2exp(h.data,0)
+      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       t=[t;
-	 "visible: "+string(h.visible) 
+	 "visible: "+string(h.visible)
+	 "data: "+d
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)
 	 "data_mapping: "+h.data_mapping]
      
       case "Fec"
+      d=sci2exp(h.data,0)
+      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'), end
+      f=sci2exp(h.triangles,0)
+      if length(f)>70 then f="matrix '+strcat(string(size(h.triangles)),'x'),end
       t=[t;
 	 "visible: "+string(h.visible) 
+	 "data: "+d
+	 "triangles: "+f
 	 "clip_state: "+string(h.clip_state)
-	 "clip_box: "+sci2exp(h.clip_box,0)]
+	 "clip_box: "+sci2exp(h.clip_box,0)
+	 "z_bounds: "+sci2exp(h.z_bounds,0)
+	]
+      
       case "Segs"
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       c=sci2exp(h.segs_color,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.segs_color)),'x'),end
-	
       t=[t;
 	 "visible: "+string(h.visible) 
 	 "data: "+d
