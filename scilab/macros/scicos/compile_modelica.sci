@@ -1,4 +1,4 @@
-function [ok,name,nx,nin,nout,ng]=compile_modelica(fil)
+function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
 // Serge Steer 2003, Copyright INRIA
   ng=0
   if exists('modelica_libs')==0 then 
@@ -27,18 +27,21 @@ function [ok,name,nx,nin,nout,ng]=compile_modelica(fil)
   updateC=needcompile <>0|fileinfo(path+name+'.c')==[]
   
   if updateC then
-    if unix(modelicac+' '+fil+' -o '+path+name+'.c')<>0 then
-      x_message('Modelica compiler error, sorry ');
+    
+    if execstr('unix_s(modelicac+'' ''+fil+'' -o ''+path+name+''.c'')','errcatch')<>0 then
+      
+      x_message(['Modelica compiler error:'
+		 mgetl(TMPDIR+'/unix.err');
+		 'sorry ']);
       ok=%f,nx=0,nin=0,nout=0,ng=0;return
     end
   end
    //adding trace info
   txt=mgetl(path+name+'.c')
-  [nx,nin,nout,ng]=analyze_c_code(txt) //to get the dimension of the state
-  if updateC then
-    txt=modify1(txt,nx)
-    mputl(txt,path+name+'.c')
-  end
+  [nx,nin,nout,ng,nm]=analyze_c_code(txt) //to get the dimension of the state
+					  
+  //if updateC then txt=modify1(txt,nx); mputl(txt,path+name+'.c');end
+  
   //unlink if necessary
   [a,b]=c_link(name); while a ; ulink(b);[a,b]=c_link(name);end
 
@@ -59,7 +62,7 @@ function [ok,name,nx,nin,nout,ng]=compile_modelica(fil)
   end
 endfunction
 
-function [nx,nin,nout,ng]=analyze_c_code(txt)
+function [nx,nin,nout,ng,nm]=analyze_c_code(txt)
 // Serge Steer 2003, Copyright INRIA
   match=  'number of variables = '
   T=txt(grep(txt(1:10),match))//look for match in the first 10 lines
@@ -77,50 +80,12 @@ function [nx,nin,nout,ng]=analyze_c_code(txt)
   T=txt(grep(txt(1:10),match))//look for match in the first 10 lines
   ng=evstr(strsubst(T,match,''))
 
+  match=  'number of modes = '
+  T=txt(grep(txt(1:10),match))//look for match in the first 10 lines
+  nm=evstr(strsubst(T,match,''))
+
 endfunction
 
 function txt=modify1(txt,nx)
-// Serge Steer 2003, Copyright INRIA
-  //handling includes for modelica external functions
-  I=grep(txt,'#include ""')
-  includes=strsubst(strsubst(txt(I),'#include ""',''),'""','')
-  if includes<>[] then
-    txt(I)=[]
-    mlibs=modelica_libs();
-    hfiles=listfiles(mlibs+'*.h')
-    del=[]
-    for k=1:size(hfiles,'*')
-      if strindex(hfiles(k),includes)==[] then del=[del k],end
-    end
-    hfiles(del)=[]
-  else
-    hfiles=[]
-  end
-  includes='#include <scicos/scicos_block.h>'
-  if hfiles<>[] then includes=[includes;'#include ""'+hfiles+'""'],end
-  k=grep(txt,'int* p')
-  txt(k:k+1)=[ascii(9)+'int p['+string(nx)+'];';' ']
-  T=txt(grep(txt,ascii(9)+'res['+string(0:9)));
-  T=T(grep(T,'xd['+string(0:9)));
-  I=[]
-  for k=1:size(T,1)
-    p=strindex(T(k),'xd[');
-    p1=strindex(T(k),']');
-    for i=p
-      ind=evstr(part(T(k),i+3:p1(min(find(p1>i+3)))-1));
-      I=[I,ind];
-    end
-  end
-  val=-ones(nx,1)
-  if I<>[] then val(I+1)=1,end
-
-  k=grep(txt,'(flag == 6 || flag == 7) ')
-  txt=[includes
-       ' '
-       txt(1:k-1)
-       ascii(9)+'} else if (flag == 7) {'
-       ascii(9)+ascii(9)+'p['+string(0:nx-1)'+']='+string(val)+';'
-       ascii(9)+ascii(9)+'set_pointer_xproperty(p);'
-       txt(k+1:$)]
 
 endfunction

@@ -11,7 +11,7 @@ name='imppart_'+stripblanks(name);
 path=stripblanks(path)
 [txt,rpar,ipar]=create_modelica1(blklstm,cmmat,name);
 mputl(txt,path+name+'.mo');
-[ok,name1,nx,nin,nout,ng]=compile_modelica(path+name+'.mo');
+[ok,name1,nx,nin,nout,ng,nm]=compile_modelica(path+name+'.mo');
 if ~ok then return,end
 //nx is the state dimension
 //ng is the number of surfaces
@@ -23,5 +23,5 @@ model=scicos_model(sim=list(name,10004),..
 		   state=zeros(nx*2,1),..
 		   rpar=rpar,..
 		   ipar=ipar,..
-		   dep_ut=[%f %t],nzcross=ng)
+		   dep_ut=[%f %t],nzcross=ng,nmode=nm)
 endfunction
