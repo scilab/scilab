@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: trcsort.c,v 1.1 2002/10/14 15:00:18 chanceli Exp $";
+	"$Id: trcsort.c,v 1.2 2002/10/15 12:09:48 chanceli Exp $";
 
 /*
  *         Trcsort version 1.0:  A Trace File Sorter for PVM
@@ -576,7 +576,8 @@ program_init()
 	/* Create Temp Directory for Subfiles */
 
 	sprintf( DIRNAME, "tmpsort.%d", (int) getpid() );
-
+	/* XXXXX */
+#ifndef __MINGW32__
 	if ( mkdir( DIRNAME, S_IRWXU | S_IRWXG | S_IRWXO ) )
 	{
 		printf( "\nError Creating Temporary Directory \"%s\".\n\n",
@@ -584,7 +585,7 @@ program_init()
 
 		exit( -1 );
 	}
-
+#endif 
 	/* Initialize Temporary File Ptrs */
 
 	LASTTF = (TMPFILE) NULL;
