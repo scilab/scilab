@@ -87,7 +87,7 @@ N =      %hm_n_hm.sci %hm_n_s.sci %ip_n_ip.sci %l_n_p.sci \
 	 %r_n_lss.sci %r_n_p.sci %r_n_r.sci %r_n_s.sci \
 	 %s_n_hm.sci %s_n_lss.sci %s_n_r.sci
 
-O =      %hm_o_hm.sci %hm_o_s.sci %ip_o_ip.sci %l_o_p.sci \
+O =      %hm_o_hm.sci %hm_o_s.sci %hm_o_i.sci %ip_o_ip.sci %l_o_p.sci \
 	 %l_o_s.sci %lss_o_lss.sci %lss_o_p.sci %lss_o_r.sci \
 	 %lss_o_s.sci %msp_o_msp.sci %p_o_lss.sci %p_o_r.sci \
 	 %r_o_lss.sci %r_o_p.sci %r_o_r.sci %r_o_s.sci \
