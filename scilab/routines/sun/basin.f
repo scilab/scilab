@@ -32,7 +32,7 @@ c
             string(1:1)=' '
             lline=1
 	 endif
-         if(fmt(1:1).ne.'*') then
+         if(fmt(1:1).ne.'*'.and.fmt(1:3).ne.'(a)') then
             read(string(1:lline),fmt,end=10,err=20) string
          else
            string(lline+1:)=' '
