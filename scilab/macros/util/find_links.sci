@@ -15,7 +15,11 @@ function flag=find_links(filein,fileout)
     for i=1:nlink
       name=part(tt,[l1(1)+6:l2(1)-1])
       path=get_absolute_file_path(filein)+filein
-      l=getlink(name,path)
+      if length(name)<>0 then 
+	l=getlink(name,path)
+      else
+	l="unknown";
+      end
       tt=part(tt,[1:l1(1)-1])+..
 	 "<A href="""+l+"""><VERB>"+name+"</VERB></A>"+..
 	 part(tt,[l2(1)+7:length(tt)])
