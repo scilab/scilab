@@ -255,12 +255,13 @@ static void aplotv1(strflag)
 {
   char dir = 'l';
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
-  int nx,ny,seg=0;
+  int nx,ny,seg=0,i;
   int fontsize = -1 ,textcolor = -1 ,ticscolor = -1 ; /* default values */
   int fontstyle= 0;
   double  x1,y1;
   char xstr,ystr; 
-  char dirx = 'd';  
+  char dirx = 'd';
+  double CSxtics[4], CSytics[4];
 
   seg=0; 
   
@@ -349,14 +350,21 @@ static void aplotv1(strflag)
     fontstyle=sciGetFontStyle(psubwin);
   }
  
+  /* Handle CSxtics and CSytics instead of directly overwrite */
+  /* Cscale.xtics and Cscale.ytics */
+
+  for (i=0;i<4;i++) CSxtics[i] = Cscale.xtics[i];
+  for (i=0;i<4;i++) CSytics[i] = Cscale.ytics[i];
+
+
   /** x-axis **/
   ny=1,nx=4;
-  Sci_Axis(dirx,'i',Cscale.xtics,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],
+  Sci_Axis(dirx,'i',CSxtics,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],
 	   NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg,0);
   
   /** y-axis **/
   ny=4,nx=1;
-  Sci_Axis(dir,'i',&x1,&nx,Cscale.ytics,&ny,NULL,Cscale.Waaint1[2],
+  Sci_Axis(dir,'i',&x1,&nx,CSytics,&ny,NULL,Cscale.Waaint1[2],
 	   NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[1],seg,0);
 }
 
@@ -564,6 +572,12 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    x[3]=inint(x[1]-x[0]);
 	    while (x[3]>10)  x[3]=floor(x[3]/2);
 	    Nx=x[3]+1;
+
+	    /* re-compute a format when tight_limits or isoview == ON */
+	    ChoixFormatE (c_format,
+			  (x[0] * exp10(x[2])),
+			  (x[1] * exp10(x[2])),
+			  ((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]); /* Adding F.Leray 15.05.04 */
 	  }
 	/* THESE 2 last cases are unreachable because we use the condition : */
 	/* axisbuild_flag == 0 */
@@ -786,6 +800,12 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    y[3]=inint(y[1]-y[0]);
 	    while (y[3]>10)  y[3]=floor(y[3]/2);
 	    Ny=y[3]+1;
+
+	    /* re-compute a format when tight_limits or isoview == ON */
+	    ChoixFormatE (c_format,
+			  (y[0] * exp10(y[2])),
+			  (y[1] * exp10(y[2])),
+			  ((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]);
 	  }
 	/* THESE 2 last cases are unreachable because we use the condition : */
 	/* axisbuild_flag == 0 */
