@@ -168,7 +168,11 @@ function ilib_gen_Make_lcc(name,table,files,libs,Makename,with_gateway,ldflags,c
   mfprintf(fd,"SCIDIR =%s\n",SCI);
   mfprintf(fd,"SCIDIR1 =%s\n",WSCI);
   mfprintf(fd,"DUMPEXTS=""$(SCIDIR1)\\bin\\dumpexts""\n");
-  mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib\n\n");
+  if ( with_atlas()==%T ) then
+  	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib $(SCIDIR1)\\bin\\atlaslcc.lib\n\n");
+  else
+  	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib\n\n");
+  end
   mfprintf(fd,"CC=lcc\n");
   mfprintf(fd,"LINKER=lcclnk\n");
   mfprintf(fd,"CFLAGS= -s -ansic -Z1 msvcrt.lib -I""$(SCIDIR)/routines"" -I""$(SCIDIR)/routines/f2c"" -Dmexfunction_=mex$*_ -DmexFunction=mex_$* -DWIN32 -DSTRICT -DFORDLL -D__STDC__ "+ cflags +" \n"); 

@@ -210,7 +210,11 @@ function ilib_link_gen_Make_lcc(names,files,libs,Makename,libname,ldflags,cflags
   mfprintf(fd,"SCIDIR =%s\n",SCI);
   mfprintf(fd,"SCIDIR1 =%s\n",WSCI);
   mfprintf(fd,"DUMPEXTS=""$(SCIDIR1)\\bin\\dumpexts""\n");
-  mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilablcc.lib\n\n");
+  if ( with_atlas()==%T ) then
+  	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib $(SCIDIR1)\\bin\\atlaslcc.lib\n\n");
+  else
+  	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib\n\n");
+  end
   mfprintf(fd,"CC=lcc\n");
   mfprintf(fd,"LINKER=lcclnk\n");
   //mfprintf(fd,"CFLAGS=-I""$(SCIDIR)/routines"" -Dmexfunction_=mex$*_  -DmexFunction=mex_$* "+ cflags +" \n"); 
