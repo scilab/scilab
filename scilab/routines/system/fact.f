@@ -650,7 +650,7 @@ c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
-
+      if (err1.gt.0) return
       top=top+1
       il=iadr(lstk(top))
       err=sadr(il+6+nlgh)-lstk(bot)
