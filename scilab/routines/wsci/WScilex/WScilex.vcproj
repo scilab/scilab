@@ -72,8 +72,8 @@
 				RuntimeLibrary="4"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="3"/>
+				Detect64BitPortabilityProblems="FALSE"
+				DebugInformationFormat="0"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -219,10 +219,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
 			<File
-				RelativePath="..\resource.h">
+				RelativePath=".\resource.h">
 			</File>
 			<File
-				RelativePath=".\resource.h">
+				RelativePath="..\resource.h">
 			</File>
 		</Filter>
 		<Filter
