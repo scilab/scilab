@@ -4,7 +4,7 @@ scs_m.props=tlist(..
 ['params','wpar','title','tol','tf','context','void1','options','void2','void3',..
 'doc'],[600,450,0,0,600,450],..
 ['Hydraulics','/usr/local/lib/scilab/demos/scicos/'],..
-[1.000E-09;1.000E-10;1.000E-10;1;0;100],30,' ',[],..
+[1.000E-08;1.000E-10;1.000E-10;1;0;100],50,' ',[],..
 tlist(['scsopt','3D','Background','Link','ID','Cmap'],list(%t,33),[8,1],[1,5],..
 list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],list())
 scs_m.objs(1)=mlist(['Block','graphics','model','gui','doc'],..
@@ -133,7 +133,7 @@ scs_m_1.objs(2)=mlist(['Block','graphics','model','gui','doc'],..
                 mlist(..
                 ['graphics','orig','sz','flip','exprs','pin','pout','pein',..
                 'peout','gr_i','id','in_implicit','out_implicit'],[320,232],..
-                [40,40],%t,['0.003';'0'],[],[],6,3,..
+                [40,40],%t,['0.03';'0'],[],[],6,3,..
                 list(..
                 ['dt=o.model.rpar;';
                 'txt=[''Delay'';string(dt)];';
@@ -142,7 +142,7 @@ scs_m_1.objs(2)=mlist(['Block','graphics','model','gui','doc'],..
                 mlist(..
                 ['model','sim','in','out','evtin','evtout','state','dstate',..
                 'rpar','ipar','blocktype','firing','dep_ut','label','nmode',..
-                'nzcross'],'evtdly',[],[],1,1,[],[],0.003,[],'d',0,[%f,%f],..
+                'nzcross'],'evtdly',[],[],1,1,[],[],0.03,[],'d',0,[%f,%f],..
                 emptystr(),0,0),'EVTDLY_f',list())
 scs_m_1.objs(3)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
                 [340;340;380.71],[226.29;172;172],'drawlink',[0,0],[5,-1],[2,1],..
@@ -328,25 +328,25 @@ scs_m.objs(29)=mlist(['Block','graphics','model','gui','doc'],..
                [40,40],%t,..
                ['1 2';
                ' 3 11 24 9 11 13 15 1';
-               '1';
+               '-1';
                '[]';
                '[]';
-               '0 10';
-               '1 29';
-               '30';
+               '-0.1 10';
+               '1 31';
+               '50';
                '20';
                '0';
-               emptystr()],[32;41],[],34,[],..
+               'Display'],[32;41],[],34,[],..
                list('xstringb(orig(1),orig(2),''MScope'',sz(1),sz(2),''fill'')',..
-               8),emptystr(),[],[]),..
+               8),'Display',[],[]),..
                mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
                'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
                'equations'],list('cmscope',4),[1;2],[],1,[],[],..
                [-1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
                0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
-               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0],[0;30;0;1;10;29],..
-               [1;2;20;-1;-1;-1;-1;1;2;3;11;24;0],'c',[],[%t,%f],emptystr(),0,0,..
+               0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0],[0;50;-0.1;1;10;31],..
+               [-1;2;20;-1;-1;-1;-1;1;2;3;11;24;0],'c',[],[%t,%f],'Display',0,0,..
                list()),'CMSCOPE',list())
 scs_m.objs(30)=mlist(['Block','graphics','model','gui','doc'],..
                mlist(..
@@ -392,10 +392,10 @@ scs_m.objs(35)=mlist(['Block','graphics','model','gui','doc'],..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
                'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
                'equations'],'intplt',[],1,[],[],[],[],..
-               [0;2.4666667;4.6666667;11.066667;11.466667;13.6;13.933333;20.2;
-               21;29.866667;20.35;20.35;19.25;19.25;17.3;17.3;19.35;19.3;23;23;
-               0;15;30;30],[10;2;10;2;10],'c',[],[%f,%t],emptystr(),0,0,list()),..
-               'CURV_f',list())
+               [0.7777778;11.333333;15.333333;24.777778;25.333333;27;28.222222;
+               34.555556;40.222222;49.888889;28.5;28.5;21.15;19.25;17.25;17.3;
+               19.35;19.35;23;23;0;15;50;30],[10;2;10;2;10],'c',[],[%f,%t],..
+               emptystr(),0,0,list()),'CURV_f',list())
 scs_m.objs(36)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
                [91.334041;103.53358],[260.90106;260.90106],'drawlink',[0,0],..
                [23,1],[35,1,0],[42,1,1])
