@@ -1,97 +1,126 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>segs_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 2002 </DATE>
-  <SHORT_DESCRIPTION name="segs_properties"> description of the
-   Segments entity properties </SHORT_DESCRIPTION>
- 
+
+  <TYPE>Scilab Data type</TYPE>
+
+  <DATE>2002</DATE>
+
+  <SHORT_DESCRIPTION name="segs_properties">description of the Segments entity
+  properties</SHORT_DESCRIPTION>
+
   <DESCRIPTION>
-  <P>
-  The Segs entity is a leaf of the graphics entities
-  hierarchy. This entity defines the parameters for a set of colored
-  segments or colored arrows.
-  </P>
-  <DESCRIPTION_INDENT>
-   <DESCRIPTION_ITEM label="visible: ">
-    <SP>This field contains the  <VERB>visible</VERB> property value
-   for the entity . It should
-   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  . By default, 
-   the segments are visibles, the value's property is  <VERB>&quot;on&quot;</VERB>. 
-   If <VERB>&quot;off&quot;</VERB> the segments are not drawn on the screen.</SP>
-   </DESCRIPTION_ITEM>
+    <P>The Segs entity is a leaf of the graphics entities hierarchy. This
+    entity defines the parameters for a set of colored segments or colored
+    arrows.</P>
 
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="visible: ">
+        <SP>This field contains the <VERB>visible</VERB> property value for
+        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
+        By default, the segments are visibles, the value's property is
+        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the segments are not drawn on
+        the screen.</SP>
+      </DESCRIPTION_ITEM>
 
-   <DESCRIPTION_ITEM label="data: ">
-    <SP>This field is two column matrix  <VERB>[x,y,[z]]</VERB> which gives
-    the coordinates of the segments boundary.
-    If  <VERB>xv=matrix(x,2,-1)</VERB> and
-    <VERB>yv=matrix(y,2,-1)</VERB> then <VERB>xv(:,k)</VERB> and
-    <VERB>yv(:,k)</VERB> are the boundary coordinates of the segment
-    numbered  <VERB>k</VERB>.</SP>
-   </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="data: ">
+        <SP>This field is two column matrix <VERB>[x,y,[z]]</VERB> which gives
+        the coordinates of the segments boundary. If
+        <VERB>xv=matrix(x,2,-1)</VERB> and <VERB>yv=matrix(y,2,-1)</VERB> then
+        <VERB>xv(:,k)</VERB> and <VERB>yv(:,k)</VERB> are the boundary
+        coordinates of the segment numbered <VERB>k</VERB>.</SP>
+      </DESCRIPTION_ITEM>
 
-    <DESCRIPTION_ITEM label="line_style: ">
-      <SP>The  <VERB>line_style</VERB> property value should be an integer in [0 9].
-       0 stands for solid the other value stands for a selection of
-       dashes. This property applies to all segments.</SP>
-     </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="line_style: ">
+        <SP>The <VERB>line_style</VERB> property value should be an integer in
+        [0 6]. 0 stands for solid the other value stands for a selection of
+        dashes. This property applies to all segments.</SP>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="thickness: ">
-       <SP>This field contains the  <VERB>thickness</VERB> property for
-       all segments. Its value should
-       be a non negative integer..</SP>
-     </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="thickness: ">
+        <SP>This field contains the <VERB>thickness</VERB> property for all
+        segments. Its value should be a non negative integer..</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="line_mode: ">
+        <SP>This field contains the default <VERB>line_mode</VERB> property
+        value for the segs. Its value should be <VERB>"on" </VERB>(line drawn)
+        or <VERB>"off"</VERB> (no line drawn).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_mode: ">
+        <SP>This field contains the default <VERB>mark_mode</VERB> property
+        value for the polyline. Its value should be <VERB>"on"</VERB> (marks
+        drawn) or <VERB>"off"</VERB> (no marks drawn).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_foreground: ">
+        <SP>This field contains the <VERB>mark_foreground</VERB> property
+        value which is the marks' edge color. Its value should be a color
+        index (relative to the current color_map).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_background: ">
+        <SP>This field contains the <VERB>mark_background</VERB> property
+        value which is the marks' face color. Its value should be a color
+        index (relative to the current color_map).</SP>
+      </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="arrow_size: ">
-       <SP>If the value of this property is 0, segments are drawn, else
-       arrows are drawn and the size of the arrows is given by the
-       absolute value of this property.</SP>
-     </DESCRIPTION_ITEM>
+        <SP>If the value of this property is 0, segments are drawn, else
+        arrows are drawn and the size of the arrows is given by the absolute
+        value of this property.</SP>
+      </DESCRIPTION_ITEM>
 
- 
-     <DESCRIPTION_ITEM label="segs_color: ">
-      <SP>This field contains the vector of colors to use to draw each
-      segment. Each element is a color index relative to the current colormap.</SP>
-     </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="segs_color: ">
+        <SP>This field contains the vector of colors to use to draw each
+        segment. Each element is a color index relative to the current
+        colormap.</SP>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="clip_state: ">
-      <SP>This field contains the <VERB>clip_state</VERB> property
-      value for the segments. It should be :</SP>
-      <DESCRIPTION_INDENT>
-         <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;off&quot;</VERB> this means that the segments is not clipped.</SP>
-         </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="clip_state: ">
+        <SP>This field contains the <VERB>clip_state</VERB> property value for
+        the segments. It should be :</SP>
 
-         <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;clipgrf&quot;</VERB> this means that the
-         segments is clipped outside the Axes box.</SP>
-         </DESCRIPTION_ITEM>
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM>
+            <SP><VERB>"off"</VERB> this means that the segments is not
+            clipped.</SP>
+          </DESCRIPTION_ITEM>
 
-        <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;on&quot;</VERB> this means that the
-         segments is clipped outside the rectangle given by the property  <VERB>clip_box</VERB>.</SP>
-         </DESCRIPTION_ITEM>
-      </DESCRIPTION_INDENT>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM>
+            <SP><VERB>"clipgrf"</VERB> this means that the segments is clipped
+            outside the Axes box.</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="clip_box: ">
-      <SP>This field contains the  <VERB>clip_box</VERB> property.
-      By default segment are not clipped, clip_state is &quot;off&quot;, so the value should be an empty 
-      matrix .Other cases the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height) 
-       defines the portions of the segments to display, however <VERB>clip_state</VERB> property 
-       value will be changed.</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM>
+            <SP><VERB>"on"</VERB> this means that the segments is clipped
+            outside the rectangle given by the property
+            <VERB>clip_box</VERB>.</SP>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="parent: "> 
-      <SP>This property contains the handle of the parent. The parent of the segment
-      entity should be of the type <VERB>&quot;Axes&quot;</VERB> or <VERB>&quot;Agregation&quot;</VERB>.</SP>
-     </DESCRIPTION_ITEM>
-  
-  </DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="clip_box: ">
+        <SP>This field contains the <VERB>clip_box</VERB> property. By default
+        segment are not clipped, clip_state is "off", so the value should be
+        an empty matrix .Other cases the vector <VERB>[x,y,w,h]</VERB>
+        (upper-left point width height) defines the portions of the segments
+        to display, however <VERB>clip_state</VERB> property value will be
+        changed.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This property contains the handle of the parent. The parent of the
+        segment entity should be of the type <VERB>"Axes"</VERB> or
+        <VERB>"Agregation"</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
   </DESCRIPTION>
+
   <EXAMPLE><![CDATA[
 
   set("figure_style","new") //create a figure
@@ -120,13 +149,28 @@
    xrect(s.clip_box);
 
  ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>xsegs</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-<AUTHOR>Djalel ABDMOUCHE  </AUTHOR>
-</MAN>
 
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>set</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>get</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>delete</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xsegs</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>graphics_entities</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Djalel ABDMOUCHE</AUTHOR>
+</MAN>

@@ -24,20 +24,20 @@
           <DESCRIPTION_ITEM label="visible: ">
             <SP>This field contains the <VERB>visible</VERB> property value
             for axes . Its value should be <VERB>"on" </VERB> or
-            <VERB>"off"</VERB> . By default, axes is visible <VERB>"on"
-            </VERB> in case all "visible" chidren are displayed on the screen,
-            If <VERB>"off"</VERB> the axes and all its chidren are not
+            <VERB>"off"</VERB> . By default, axes is visible <VERB>"on"</VERB>
+            in case all "visible" chidren are displayed on the screen, If
+            <VERB>"off"</VERB> the axes and all its chidren are not
             drawn.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="axes_visible: ">
             <SP>A <VERB>1x3</VERB> string vector. This property specifies
-            whether each axis is drawn or not. Its value should be <VERB>"on"
-            </VERB> or <VERB>"off"</VERB> for a global setting.To act on a
-            single axis, the syntax is <VERB>axes_visible(N)</VERB> where
-            <VERB>N</VERB> is <VERB>1,2</VERB> or <VERB>3</VERB> corresponding
-            to the <VERB> x,y</VERB> or <VERB>z</VERB> axis. The scaling data
-            and if required the grids are drawn if the value is
+            whether each axis is drawn or not. Its value should be
+            <VERB>"on"</VERB> or <VERB>"off"</VERB> for a global setting.To
+            act on a single axis, the syntax is <VERB>axes_visible(N)</VERB>
+            where <VERB>N</VERB> is <VERB>1,2</VERB> or <VERB>3</VERB>
+            corresponding to the <VERB> x,y</VERB> or <VERB>z</VERB> axis. The
+            scaling data and if required the grids are drawn if the value is
             <VERB>"on"</VERB>. Note that when creating a simple axes entity
             using the <VERB>gca()</VERB> (shorcut for
             <VERB>get"current_axes")</VERB>) or <VERB>gcf()</VERB> (shortcut
@@ -88,12 +88,12 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="grid: ">
-            <SP>The field value is a vector <VERB>[x-grid y-grid,
-            z-grid]</VERB> where <VERB>x-grid</VERB> controls a grid drawning
-            for the x-axis and <VERB>y-grid, z-grid</VERB> respecting to the
-            y-axis, z-axis. The default values is <VERB>-1</VERB> grids are
-            not drawn, else the grids are drawn using the color given indexed
-            by the grid value.</SP>
+            <SP>The field value is a vector <VERB>[x-grid
+            y-grid,z-grid]</VERB> where <VERB>x-grid</VERB> controls a grid
+            drawning for the x-axis and <VERB>y-grid, z-grid</VERB> respecting
+            to the y-axis, z-axis. The default values is <VERB>-1</VERB> grids
+            are not drawn, else the grids are drawn using the color given
+            indexed by the grid value.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="log_flags: ">
@@ -184,13 +184,11 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="zoom_box: ">
-            <SP>This field contains the current zoom box if any.
-            coordinates. It is an empty matrix (no zoom) or the vector
+            <SP>This field contains the current zoom box if any. coordinates.
+            It is an empty matrix (no zoom) or the vector
             <VERB>[xmin,ymin,xmax,ymax]</VERB> (defines a rectangle given by
-	      two opposite corners. </SP>
+            two opposite corners.</SP>
           </DESCRIPTION_ITEM>
-
-
 
           <DESCRIPTION_ITEM label="axes_bounds: ">
             <SP>A vector <VERB>[x_left,y_up,width,height]</VERB> specifying
@@ -203,10 +201,10 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="margins: ">
-            <SP>A vector <VERB>[margin_left,margin_right, margin_top,
-            margin_bottom]</VERB> specifying the margins portion for this
-            axes. This vector is composed of numbers between [0 1] with
-            default: [0.125 0.125 0.125 0.125] (these numbers are ratio
+            <SP>A vector <VERB>[margin_left,margin_right,
+            margin_top,margin_bottom]</VERB> specifying the margins portion
+            for this axes. This vector is composed of numbers between [0 1]
+            with default: [0.125 0.125 0.125 0.125] (these numbers are ratio
             relatives to the corresponding figure <VERB>figure_size</VERB>
             property values).</SP>
           </DESCRIPTION_ITEM>
@@ -245,9 +243,9 @@
             set by the user). Its value should be <VERB>"on"</VERB> or
             <VERB>"off"</VERB> for a global setting.To act on a single axis,
             the syntax is <VERB>auto_ticks(N)</VERB> where <VERB>N</VERB> is
-            <VERB>1,2</VERB> or <VERB>3</VERB> corresponding to the <VERB>x,
-            y</VERB> or <VERB>z</VERB> axis. Note that editing labels via
-            <VERB>x_ticks.labels, y_ticks.labels</VERB> or
+            <VERB>1,2</VERB> or <VERB>3</VERB> corresponding to the
+            <VERB>x,y</VERB> or <VERB>z</VERB> axis. Note that editing labels
+            via <VERB>x_ticks.labels, y_ticks.labels</VERB> or
             <VERB>z_ticks.labels</VERB> automatically set
             <VERB>auto_ticks</VERB> to <VERB>"on"</VERB> for the corresponding
             axes.</SP>
@@ -323,11 +321,11 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Properties for high level functions">
-        <P>The <VERB>plot2dx</VERB> <VERB>grayplot</VERB> <VERB>matplot</VERB>
-        functions use the following properties to decide how to merge
-        consecutive plots if this is not stated by the <VERB>frameflag</VERB>
-        calling argument. The result of the merge is decided through these two
-        following properties:</P>
+        <P>The <VERB>plot plot2dx</VERB> <VERB>grayplot</VERB>
+        <VERB>matplot</VERB> functions use the following properties to decide
+        how to merge consecutive plots if this is not stated by the
+        <VERB>frameflag</VERB> calling argument. The result of the merge is
+        decided through these two following properties:</P>
 
         <DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM label="auto_clear: ">
@@ -365,10 +363,18 @@
             should be positive integer.</SP>
           </DESCRIPTION_ITEM>
 
+          <DESCRIPTION_ITEM label="line_mode: ">
+            <SP>This field contains the default <VERB>line_mode</VERB>
+            property value for Segs Rectangle Legend Axis and Polyline
+            objects. Its value should be <VERB>"on" </VERB>(default) or
+            <VERB>"off"</VERB>.</SP>
+          </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="mark_mode: ">
             <SP>This field contains the default <VERB>mark_mode</VERB>
-            property value for Segs Rectangle and Polyline objects. Its value
-            should be <VERB>"on" </VERB> or <VERB>"off"</VERB>.</SP>
+            property value for Segs Rectangle Legend Axis and Polyline
+            objects. Its value should be <VERB>"on" </VERB> or
+            <VERB>"off"</VERB> (default).</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="mark_style: ">
@@ -391,19 +397,46 @@
 
           <DESCRIPTION_ITEM label="foreground: ">
             <SP>This field contains the default <VERB>foreground</VERB>
-            property value for all objects. Its value should be a color index
-            (relative to the current color_map). Note that the default value
-            is <VERB>-1</VERB> (default black) and, even if you change the
-            color_map, this <VERB>-1</VERB> value will always point onto the
-            default black color.</SP>
+            property value for axes and all objects created under this axes.
+            Its value should be a color index (relative to the current
+            color_map). Note that the default value is <VERB>-1</VERB>
+            (default black) and, even if you change the
+            <VERB>color_map</VERB>, this <VERB>-1</VERB> value will always
+            point onto the default black color.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="background: ">
-            <SP>This property controls the axes <VERB>background</VERB> color.
+            <SP>This property controls the default <VERB>background</VERB>
+            property value for axes and all objects created under this axes.
             It takes as value an index relative to the current colormap.Note
             that the default value is <VERB>-2</VERB> (default white) and,
-            even if you change the color_map, this <VERB>-2</VERB> value will
-            always point onto the default white color.</SP>
+            even if you change the <VERB>color_map</VERB>, this
+            <VERB>-2</VERB> value will always point onto the default white
+            color.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="mark_foreground: ">
+            <SP>This field contains the default <VERB>mark_foreground</VERB>
+            property value for all objects created under this axes. Polyline,
+            rectangle, legend, surface, segment and axis objects are using
+            this property to specify a foreground (edge) color for their
+            marks. Its value should be a color index (relative to the current
+            color_map). Note that the default value is <VERB>-1</VERB>
+            (default black) and, even if you change the
+            <VERB>color_map</VERB>, this <VERB>-1</VERB> value will always
+            point onto the default black color.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="mark_background: ">
+            <SP>This property controls the default
+            <VERB>mark_background</VERB> property value for all objects
+            created under this axes. Polyline, rectangle, legend, surface,
+            segment and axis objects are using this property to specify a
+            background (face) color for their marks. It takes as value an
+            index relative to the current colormap.Note that the default value
+            is <VERB>-2</VERB> (default white) and, even if you change the
+            <VERB>color_map</VERB>, this <VERB>-2</VERB> value will always
+            point onto the default white color.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="hiddencolor: ">

@@ -74,19 +74,25 @@
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="line_mode: ">
+        <SP>This field contains the default <VERB>line_mode</VERB> property
+        value for the polyline. Its value should be <VERB>"on" </VERB>(line
+        drawn) or <VERB>"off"</VERB> (no line drawn).</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="mark_mode: ">
-        <SP>If <VERB>mark_mode</VERB> property is <VERB>"on" </VERB> the
-        polyline is represented by a mark drawn at each given points. If is
-        the default value <VERB>"off"</VERB> the polyline is represented using
-        lines.</SP>
+        <SP>This field contains the default <VERB>mark_mode</VERB> property
+        value for the polyline. Its value should be <VERB>"on"</VERB> (marks
+        drawn) or <VERB>"off"</VERB> (no marks drawn).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="mark_style: ">
         <SP>The <VERB>mark_style</VERB> property value is used to select the
         type of mark to use when <VERB>mark_mode</VERB> property is
-        <VERB>"on"</VERB>. The value should be an integer in [0 9] which
+        <VERB>"on"</VERB>. The value should be an integer in [0 14] which
         stands for: dot, plus, cross, star, diamond fill, diamond, triangle
-        up, triangle down, trefle and circle.</SP>
+        up, triangle down, diamond plus, circle, asterisk, square, triangle
+        right, triangle left and pentagram.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="mark_size: ">
@@ -94,6 +100,18 @@
         size of the marks when <VERB>mark_mode</VERB> property is
         <VERB>"on"</VERB>. Its value should be an integer between 0 and 5
         whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_foreground: ">
+        <SP>This field contains the <VERB>mark_foreground</VERB> property
+        value which is the marks' edge color. Its value should be a color
+        index (relative to the current color_map).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_background: ">
+        <SP>This field contains the <VERB>mark_background</VERB> property
+        value which is the marks' face color. Its value should be a color
+        index (relative to the current color_map).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="foreground: ">
