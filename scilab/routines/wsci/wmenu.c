@@ -208,7 +208,8 @@ void Callback_CHDIR(void)
 	 	SHGetPathFromIDList(pidl, chemin); 
 	 	SendCTRLandAKey(CTRLU);
 		wsprintf(command,"chdir('%s');",chemin);
-		StoreCommand (command);
+		//StoreCommand (command);
+		WriteIntoScilab(lptw,command);
 	}
 
 }
@@ -433,8 +434,12 @@ void Callback_HELP(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_DEMOS(void)
 {
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
 	SendCTRLandAKey(CTRLU);
-	StoreCommand("exec('SCI/demos/alldems.dem');");
+	WriteIntoScilab(lptw,"exec('SCI/demos/alldems.dem');");
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_WEB(void)

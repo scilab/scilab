@@ -50,6 +50,7 @@ HANDLE hThreadWrite;
 CRITICAL_SECTION Sync; /* Section Critique pour Write_scilab */
 
 static BOOL ConsoleIsMinimized=FALSE;
+static BOOL WriteInKeyBuf=FALSE;
 /*-----------------------------------------------------------------------------------*/
 /*********************************************
  * message Loop 
@@ -1011,9 +1012,10 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 	case WM_EXITSIZEMOVE :
 		{
 		extern char copycur_line[1024];
-		SendCTRLandAKey(CTRLU); /* Scrollbar */
-		write_scilab(copycur_line);
 		WriteTextIni(lptw); /* Sauvegarde Position apres deplacement et redimensionnement */
+		SendCTRLandAKey(CTRLU); /* Scrollbar */
+		WriteIntoKeyBuffer(lptw,copycur_line);
+		
 		}
 	return (0);
 	case WM_COMMAND:
@@ -1059,7 +1061,7 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 		break;
 		case WM_CREATE:
 		{
-			RECT crect, wrect;
+
 			TEXTMETRIC tm;
 			lptw = ((CREATESTRUCT *) lParam)->lpCreateParams;
 	
@@ -1916,8 +1918,9 @@ EXPORT int WINAPI TextGetCh (LPTW lptw)
     properly. 
   **/
 
-  do {
-    if (!GetThreadPasteRunning()) Sleep(1); 
+  do 
+  {
+    if ( (!GetThreadPasteRunning()) || (!WriteInKeyBuf) ) Sleep(1); 
     TextMessage();
   } while (!TextKBHit(lptw));
 
@@ -3415,5 +3418,59 @@ void UnSelect(LPTW lptw)
 	   	/* EnableMenuItem(lptw->hPopMenu,M_CUT,MF_ENABLED); */
 	    	
 	  }
+}
+/*-----------------------------------------------------------------------------------*/
+/* Tente d'écrire dans la Console Graphique */
+/* Retourne FALSE si la commande a été envoyée mais pas affichée */
+/* La Commande ne doit etre constituée que d'une ligne */
+BOOL WriteIntoScilab(LPTW lptw,char *StringCommand)
+{
+	BOOL retour=FALSE;
+	
+	if  ( ( C2F (ismenu) () == 1 ) || ( lptw->bGetCh == FALSE ) )
+	{
+		StoreCommand(StringCommand);
+	}
+	else
+	{
+		int lg=0;
+		char *CommandLine=NULL;
+		
+		lg=strlen(StringCommand);
+		CommandLine=(char*)malloc( (lg+1)*sizeof(char) );
+		wsprintf(CommandLine,"%s\n",StringCommand);
+
+		WriteIntoKeyBuffer(lptw,CommandLine);
+		free(CommandLine);
+		retour=TRUE;
+	}
+
+	return retour;
+}
+/*-----------------------------------------------------------------------------------*/
+/* Ecrit des caracteres dans le Buffer Clavier */
+void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand)
+{
+	int lg=0;
+	int i=0;
+
+	lg=strlen(StringCommand);
+	WriteInKeyBuf=TRUE;
+	while(i<lg)
+		{
+			long count;
+			count = lptw->KeyBufIn - lptw->KeyBufOut;
+			
+			if (count < 0) count = count+lptw->KeyBufSize;
+			if (count < (long) (lptw->KeyBufSize-1)) 
+			{
+				if (StringCommand[i] == '\t') *lptw->KeyBufIn++ = ' ';
+				else *lptw->KeyBufIn++ = StringCommand[i];
+				if (lptw->KeyBufIn - lptw->KeyBuf >= (signed)lptw->KeyBufSize)
+				lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
+			}
+			i++;	
+		}
+	WriteInKeyBuf=FALSE;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -296,3 +296,6 @@ int ShowWindowFunction _PARAMS((char *fname));
 void MessageBoxNewGraphicMode(void);
 BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam);
 /*--------------------------*/
+BOOL WriteIntoScilab(LPTW lptw,char *StringCommand);
+void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand);
+/*--------------------------*/
