@@ -965,10 +965,10 @@ int C2F(parse)()
     if (C2F(errgst).err2 == 0) {
       C2F(errgst).err2 = C2F(errgst).err1;
     }
-    if (C2F(errgst).catch == 1) {
+    if (C2F(errgst).errcatch == 1) {
       /* running under errcatch(num,....) */
       C2F(errgst).err1 = 0;
-      if (Pt<C2F(errgst).errpt) C2F(errgst).catch = 0;
+      if (Pt<C2F(errgst).errpt) C2F(errgst).errcatch = 0;
     }
 
     imode = (i__2 = C2F(errgst).errct / 100000, abs(i__2));

@@ -48,7 +48,7 @@ IMPORT struct {
 } C2F(iop);
 
 IMPORT struct {
-    int err1, err2, errct, toperr, errpt, ieee ,catch;
+    int err1, err2, errct, toperr, errpt, ieee ,errcatch;
 } C2F(errgst); 
 
 IMPORT struct {
