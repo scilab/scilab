@@ -1385,6 +1385,7 @@ c
          call basout(io,lunit,line(1:max(m,1)))
       endif
  1000 line=' '
+      if(m1+15.gt.ll) m1=ll-16
       line(m1+1:m1+9)=mg
       write(line(m1+11:m1+15),'(i5)') n
       line(m1+16:m1+16)=bel
