@@ -559,6 +559,8 @@ x=5;y=6;[u,v,w]=myfct(x,y);
 if p<>u | q <> v | r <> w then bugmes();quit;end
  
 deff('p=mypoly(x)','p=poly(x,''z'',''coeffs'')')
+Warning :redefining function: mypoly                  
+ 
  
 c=[1,2,3];
  

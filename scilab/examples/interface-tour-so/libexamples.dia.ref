@@ -812,6 +812,8 @@ if P1<>poly(c*2,'z','coeffs') then pause,end
 //----------------------------
  
 deff('p=mypoly(x)','p=poly(x,''z'',''coeffs'')')
+Warning :redefining function: mypoly                  
+ 
  
 c=[1,2,3];
  
