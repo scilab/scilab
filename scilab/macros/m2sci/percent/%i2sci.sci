@@ -147,7 +147,7 @@ else
     end
     // dim can be infered when index is a constant and when index value is greater than older dim and this dim is not unknown
     for kdim=1:size(tree.operands)-2
-      if typeof(tree.operands(kdim+1))=="cste" then
+      if typeof(tree.operands(kdim+1))=="cste" & tree.operands(kdim+1).vtype<>String then
 	if to.dims(kdim)<>Unknown then
 	  if to.dims(kdim)<=tree.operands(kdim+1).value then
 	    tree.out(1).dims(kdim)=tree.operands(kdim+1).value;
