@@ -81,7 +81,8 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 		if (count < 0) count = count+lptw->KeyBufSize;
 		if (count < (long) (lptw->KeyBufSize-1)) 
 			{
-				*lptw->KeyBufIn++ = TextToSend[i];
+				if (TextToSend[i] == '\t') *lptw->KeyBufIn++ = ' ';
+				else *lptw->KeyBufIn++ = TextToSend[i];
 				if (lptw->KeyBufIn - lptw->KeyBuf >= (signed)lptw->KeyBufSize)
 				lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
 			}
