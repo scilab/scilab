@@ -185,6 +185,7 @@ c     and not 0
          if( mrhs.gt.0) then
              if(vargin.and.irhs.ge.mrhs-1) then
                call mklist(irhs-mrhs+1)
+               infstk(top)=0
                irhs=mrhs
                l1=l-nsiz-1
             endif
