@@ -57,7 +57,7 @@ c     an execstr
       else
 c     a macro
          exec=rstk(pt).eq.909.or.rstk(pt).eq.903
-         if(nmacs.gt.0) then
+         if(nmacs.gt.0.and.comp(1).eq.0) then
             if(rstk(pt).eq.602) then
 c     .        see run to explain the following
                lcn=pstk(pt)-4-(nsiz+3)+1
@@ -159,7 +159,7 @@ c
       else
          ids(4,pt)=0
       endif
-       ids(4,pt)=ids(4,pt)+2*wmac
+      ids(4,pt)=ids(4,pt)+2*wmac
       wmac=wmacn
       pstk(pt)=lct(4)
 c     
@@ -257,7 +257,6 @@ c
       lct(4)=pstk(pt)
       vargout=mod(ids(4,pt),2).eq.1
       wmac=ids(4,pt)/2
-
 c     restaure  pointers
       k = lpt(1) - (13+nsiz)
       ilk=lin(k+6)
