@@ -7985,8 +7985,11 @@ CloneText (sciPointObj * pthis)
   if (sciGetEntityType(subwinparent) == -1)
     return (sciPointObj *)NULL;
   if (!(pobj = ConstructText (subwinparent, sciGetText(pthis), sciGetTextLength(pthis), 
-			      sciGetTextPosX(pthis), sciGetTextPosY(pthis),0)))
+			      sciGetTextPosX(pthis), sciGetTextPosY(pthis),0))){
     return (sciPointObj *)NULL;
+  }
+  else{
+    sciSetCurrentObj(pobj);;} /* F.Leray Adding 26.03.04*/
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
@@ -8454,8 +8457,12 @@ ClonePolyline (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   /* DJ.A 2003 */
   if (!(pobj = ConstructPolyline (subwinparent, pPOLYLINE_FEATURE(pthis)->pvx, pPOLYLINE_FEATURE(pthis)->pvy,pPOLYLINE_FEATURE(pthis)->pvz,
-				  pPOLYLINE_FEATURE(pthis)->closed, pPOLYLINE_FEATURE(pthis)->n1,pPOLYLINE_FEATURE(pthis)->n2,pPOLYLINE_FEATURE(pthis)->plot)))
+				  pPOLYLINE_FEATURE(pthis)->closed, pPOLYLINE_FEATURE(pthis)->n1,pPOLYLINE_FEATURE(pthis)->n2,pPOLYLINE_FEATURE(pthis)->plot))){
     return (sciPointObj *)NULL;
+  }
+  else {
+    sciSetCurrenObj(pobj);}; /* F.Leray Adding 26.03.04*/
+
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
@@ -9160,8 +9167,11 @@ ClonePatch (sciPointObj * pthis)
   if (sciGetEntityType(subwinparent) == -1)
     return (sciPointObj *)NULL;
   if (!(pobj = ConstructPatch (subwinparent, pPATCH_FEATURE(pthis)->pvx, 
-			       pPATCH_FEATURE(pthis)->pvy, pPATCH_FEATURE(pthis)->n)))
+			       pPATCH_FEATURE(pthis)->pvy, pPATCH_FEATURE(pthis)->n))){
     return (sciPointObj *)NULL;
+  }
+  else {
+    sciSetCurrenObj(pobj);}; /* F.Leray Adding 26.03.04*/
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
@@ -9292,8 +9302,11 @@ CloneArc (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   if (!(pobj = ConstructArc (subwinparent, pARC_FEATURE(pthis)->x, 
 			     pARC_FEATURE(pthis)->y, pARC_FEATURE(pthis)->height,pARC_FEATURE(pthis)->width,
-			     pARC_FEATURE(pthis)->alphabegin, pARC_FEATURE(pthis)->alphaend,-1,0)))
+			     pARC_FEATURE(pthis)->alphabegin, pARC_FEATURE(pthis)->alphaend,-1,0))){
     return (sciPointObj *)NULL;
+  }
+  else {
+    sciSetCurrenObj(pobj);}; /* F.Leray Adding 26.03.04*/
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
@@ -9434,8 +9447,11 @@ CloneRectangle (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   if (!(pobj = ConstructRectangle (subwinparent, pRECTANGLE_FEATURE(pthis)->x, 
 				   pRECTANGLE_FEATURE(pthis)->y, pRECTANGLE_FEATURE(pthis)->height,pRECTANGLE_FEATURE(pthis)->width, 
-				   pRECTANGLE_FEATURE(pthis)->horzcurvature, pRECTANGLE_FEATURE(pthis)->vertcurvature,0,0,0)))
+				   pRECTANGLE_FEATURE(pthis)->horzcurvature, pRECTANGLE_FEATURE(pthis)->vertcurvature,0,0,0))){
     return (sciPointObj *)NULL;
+  }
+  else {
+    sciSetCurrenObj(pobj);}; /* F.Leray Adding 26.03.04*/
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
@@ -16163,7 +16179,7 @@ void MergeFac3d(sciPointObj *psubwin)
 	}
       psonstmp = psonstmp->pnext;
     }
-  if ((pobj=ConstructMerge ((sciPointObj *) psubwin,x,y,z,p,q,hdl)) == (sciPointObj *) NULL)
+  if ((pobj=ConstructMerge ((sciPointObj *) psubwin,x,y,z,p,q,hdl)) == (sciPointObj *) NULL) /* Need a sciSetCurrentObj ??? F.Leray 26.03.04*/
     sciprint ("\r\n No merge supported");
   else
     pSUBWIN_FEATURE (psubwin)->facetmerge = TRUE;
