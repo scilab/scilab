@@ -26,8 +26,9 @@ function [x,y,typ]=DEMUX_f(job,arg1,arg2)
 	  [model,graphics,ok]=check_io(model,graphics,0,-[1:out]',[],[])
 	end
       else
-        if size(out,'*')<2| size(out,'*')>8 then
-	  message('Block must have at least 2 and at most 8 output ports')
+        if size(out,'*')<2| size(out,'*')>8|or(out==0) then
+	  message(['Block must have at least 2 and at most 8 output ports';
+		'and size 0 is not allowed']   )
 	  ok=%f
 	else
 	  [model,graphics,ok]=check_io(model,graphics,0,out(:),[],[])

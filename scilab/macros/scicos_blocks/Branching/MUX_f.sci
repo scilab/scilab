@@ -19,15 +19,16 @@ case 'set' then
 	'number of input ports or vector of sizes',list('vec',-1),exprs)
     if ~ok then break,end
     if size(in,'*')==1 then
-      if in<2|in>8then
+      if in<2|in>8 then
 	message('Block must have at least two input ports and at most eight')
 	ok=%f
       else
 	[model,graphics,ok]=check_io(model,graphics,-[1:in]',0,[],[])
       end
     else
-      if size(in,'*')<2| size(in,'*')>8 then
-	message('Block must have at least two input ports and at most eight')
+      if size(in,'*')<2| size(in,'*')>8|or(in==0) then
+	message(['Block must have at least two input ports';
+		 'and at most eight, and size 0 is not allowed. '])
 	ok=%f
       else
 	[model,graphics,ok]=check_io(model,graphics,in(:),0,[],[])
