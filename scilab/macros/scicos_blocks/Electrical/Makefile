@@ -5,8 +5,6 @@ SCIDIR1=..\..\..
 
 include ../../../Makefile.incl
 
-.SUFFIXES: .sci .bin .mo .moc $(SUFFIXES)
-
 NAME = scselectricallib
 NAM = SCI/macros/scicos_blocks/Electrical
 
@@ -16,18 +14,21 @@ MACROS= Capacitor.sci Ground.sci NPN.sci VVsourceAC.sci \
 	Diode.sci  VsourceAC.sci 
 
 
-MODELS=Capacitor.moc Ground.moc OutPutPort.moc VariableResistor.moc \
-	ConstantVoltage.moc InPutPort.moc Pin.moc VoltageSensor.moc \
-	CurrentSensor.moc Inductor.moc PotentialSensor.moc VsourceAC.moc \
-	Diode.moc NPN.moc Resistor.moc VsourceDC.moc \
-	OutPort.moc VVsourceAC.moc \
+MODELS=Capacitor.mo Ground.mo OutPutPort.mo VariableResistor.mo \
+	ConstantVoltage.mo InPutPort.mo Pin.mo VoltageSensor.mo \
+	CurrentSensor.mo Inductor.mo PotentialSensor.mo VsourceAC.mo \
+	Diode.mo NPN.mo Resistor.mo VsourceDC.mo \
+	OutPort.mo VVsourceAC.mo 
 
-include ../../Make.lib
 
-all :: $(MODELS)
+all  :: $(MACROS) $(MODELS)
+	@ls $(MACROS) >names
+	@$(SCIDIR)/bin/scilab -nb -nw -f $(SCIDIR)/util/genlib.sce -args "$(NAME) $(NAM)"
 	@ls $(MODELS) >models
-	@echo $(SCIDIR)/bin/scilab -f $(SCIDIR)/util/genmoc.sce
+	@$(SCIDIR)/bin/scilab -nb -nw -f $(SCIDIR)/util/genmoc.sce
+
+clean::
 
 distclean::
 	@$(RM) *.moc models
-
+	$(RM) *.bin lib names 
