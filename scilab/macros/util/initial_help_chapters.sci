@@ -16,7 +16,7 @@ case "eng"
   %helps=[%helps,..
 	  ["Programming";"Graphics Library";"Elementary Functions";
 	   "Input/Output Functions";"Handling of functions and libraries";
-	   "Character string manipulations";"Dialogs";"Utilities";
+	   "Character string manipulations";"GUI and Dialogs";"Utilities";
 	   "Linear Algebra";"Polynomial calculations";
 	   "General System and Control";"Robust control toolbox";
 	   "Optimization and simulation";
@@ -34,7 +34,7 @@ case "eng"
   %helps=[%helps,..
 	  ["Programmation";"Librairie graphique";"Fonctions élémentaires";
 	   "Entrées-sorties";"Manipulation des fonctions et des librairies";
-	   "Manipulations de chaînes de caractères";"Dialogues";"Utilitaires";
+	   "Manipulations de chaînes de caractères";"IHM et Dialogues";"Utilitaires";
 	   "Algèbre linéaire";"Calculs sur les polynômes";
 	   "Contrôle et théorie des systèmes";"Contrôle robuste";
 	   "Optimisation et simulation";
