@@ -90,10 +90,10 @@ c-------------------
                   top=0
                endif
             endif
-            call tksynchro(paus)
          endif
       endif
  13   continue
+      call tksynchro(paus)
       call getlin(job)
       call tksynchro(-1)
       if(fin .eq. -3) then
