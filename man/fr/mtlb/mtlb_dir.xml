@@ -6,7 +6,7 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>Mars 2004</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_dir">Fonction d'émulation de la fonction dir de Matlab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_dir">Fonction d'émulation de la fonction Matlab dir</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!-- When this file is modified please also modify mtlb_cumsum.xml -->
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -6,7 +7,7 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>Mars 2004</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_cumprod">Fonction d'émulation de la fonction cumprod de Matlab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_cumprod">Fonction d'émulation de la fonction Matlab cumprod</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 

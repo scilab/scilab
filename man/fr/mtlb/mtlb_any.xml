@@ -7,7 +7,7 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>Mars 2004</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_any">Fonction d'émulation de la fonction any de Matlab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_any">Fonction d'émulation de la fonction Matlab any</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 

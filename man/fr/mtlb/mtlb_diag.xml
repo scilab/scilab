@@ -6,7 +6,7 @@
   <TYPE>Fonction M2SCI</TYPE>
   <DATE>Mars 2004</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_diag">Fonction d'émulation de la fonction diag[CUSTOM] de Matlab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_diag">Fonction d'émulation de la fonction Matlab diag</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
