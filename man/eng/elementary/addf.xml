@@ -22,7 +22,7 @@
   <DESCRIPTION>
     <P><VERB>addf(&quot;a&quot;,&quot;b&quot;)</VERB> returns the character string <VERB>&quot;a+b&quot;</VERB>.
     Trivial simplifications such as <VERB>addf(&quot;0&quot;,&quot;a&quot;)</VERB> or
-    <VERB>addf(&quot;1&quot;,2&quot;)</VERB> are performed.</P>
+    <VERB>addf(&quot;1&quot;,&quot;2&quot;)</VERB> are performed.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

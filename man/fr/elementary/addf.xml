@@ -23,7 +23,7 @@
   <P>
     <VERB>addf(&quot;a&quot;,&quot;b&quot;)</VERB> renvoie la chaîne de caractères <VERB>&quot;a+b&quot;</VERB>.
     Des simplifications triviales du type <VERB>addf(&quot;0&quot;,&quot;a&quot;)</VERB> ou
-    <VERB>addf(&quot;1&quot;,2&quot;)</VERB> sont effectuées.
+    <VERB>addf(&quot;1&quot;,&quot;2&quot;)</VERB> sont effectuées.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
