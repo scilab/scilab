@@ -17,7 +17,7 @@ case 'set' then
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
     [ok,junction_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,auto0,depu,dept,lab]=..
-        getvalue('Set scifunc_block parameters',..
+        getvalue('Set GENERIC block parameters',..
         ['simulation function';
         'function type (0,1,2,..)';
         'input ports sizes';
@@ -88,7 +88,7 @@ case 'define' then
   model.blocktype='c' 
   model.firing=[]
   model.dep_ut=[%t %f]
-  model.label=[junction_name;sci2exp(model.blocktype);
+  model.label=[junction_name;sci2exp(funtype);
 	       sci2exp(model.in);sci2exp(model.out);
 	       sci2exp(model.evtin);sci2exp(model.evtout);
 	       sci2exp(model.state);sci2exp(model.dstate);
