@@ -40,6 +40,16 @@ global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox ncolors
 
 global Hval Wval Xval Yval Zval A1val A2val
 
+#To update foreground color grey ("off"), black ("on") for checkbutton boxes
+proc OnOffForeground { frame flag } {
+    
+    if { $flag == "on" } {
+	$frame configure -foreground black
+    } else {
+	$frame configure -foreground grey
+    }
+}
+
 set ww .axes
 catch {destroy $ww}
 
@@ -125,9 +135,11 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
 label $w.frame.vislabel  -text "        Visibility:    "
-checkbutton $w.frame.visib  -textvariable curvis  \
+checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis" 
+    -command "toggleVis $w.frame.visib"
+OnOffForeground $w.frame.visib $curvis
+
 pack $w.frame.vislabel -in $w.frame.vis  -side left
 pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 
@@ -183,9 +195,10 @@ frame $w.frame.linefillmode  -borderwidth 0
 pack $w.frame.linefillmode  -in $w.frame  -side top  -fill x
 
 label $w.frame.fillmodelabel -height 0 -text "        Fill mode: " -width 0 
-checkbutton $w.frame.fillmode  -textvariable curfillmode -indicatoron 1 \
+checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
     -variable curfillmode -onvalue "on" -offvalue "off" \
-    -command "toggleFill" 
+    -command "toggleFill $w.frame.fillmode" 
+OnOffForeground $w.frame.fillmode $curfillmode
 
 pack $w.frame.fillmodelabel  -in $w.frame.linefillmode  -side left 
 pack $w.frame.fillmode   -in $w.frame.linefillmode   -side left  -fill x -pady 2m -padx 2m
@@ -412,9 +425,11 @@ pack $topf -fill both -pady 2 -expand yes
 
 
 #proc associes
-proc toggleVis {} {
-global curvis
-ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+proc toggleVis { frame } {
+    global curvis
+    ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+
+    OnOffForeground $frame $curvis
 }
 
 
@@ -485,9 +500,11 @@ proc setColor {w index} {
 
 
 
-proc toggleFill {} {
-global curfillmode
-ScilabEval "global ged_handle;ged_handle.fill_mode='$curfillmode'"
+proc toggleFill { frame } {
+    global curfillmode
+    ScilabEval "global ged_handle;ged_handle.fill_mode='$curfillmode'"
+
+    OnOffForeground $frame $curfillmode
 }
 
 

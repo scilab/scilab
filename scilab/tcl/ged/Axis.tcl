@@ -39,6 +39,16 @@ global curseg curcolor curticsstyle curfontcolor curfontsize
 global nbcolX nbcolY xticscoord yticscoord
 global cursubtics curticslabel curticsdir
 
+#To update foreground color grey ("off"), black ("on") for checkbutton boxes
+proc OnOffForeground { frame flag } {
+    
+    if { $flag == "on" } {
+	$frame configure -foreground black
+    } else {
+	$frame configure -foreground grey
+    }
+}
+
 set ww .axes
 catch {destroy $ww}
 
@@ -124,9 +134,11 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
 label $w.frame.vislabel  -text "            Visibility:    "
-checkbutton $w.frame.visib  -textvariable curvis  \
+checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis" 
+    -command "toggleVis $w.frame.visib"
+OnOffForeground $w.frame.visib $curvis
+
 pack $w.frame.vislabel -in $w.frame.vis  -side left
 pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 
@@ -134,9 +146,11 @@ pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 frame $w.frame.seg -borderwidth 0
 pack $w.frame.seg  -in $w.frame  -side top -fill x
 label $w.frame.seglabel  -text "    Tics segment:    "
-checkbutton $w.frame.segib  -textvariable curseg  \
+checkbutton $w.frame.segib  -text "on"\
     -variable curseg  -onvalue "on" -offvalue "off" \
-    -command "toggleSeg" 
+    -command "toggleSeg $w.frame.segib"
+OnOffForeground $w.frame.segib $curseg
+
 pack $w.frame.seglabel -in $w.frame.seg  -side left
 pack $w.frame.segib  -in $w.frame.seg    -side left -fill x
 
@@ -528,14 +542,18 @@ pack $topf -fill both -pady 2 -expand yes
 
 
 #proc associes
-proc toggleVis {} {
-global curvis
-ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+proc toggleVis { frame } {
+    global curvis
+    ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+
+    OnOffForeground $frame $curvis
 }
 
-proc toggleSeg {} {
-global curseg
-ScilabEval "global ged_handle;ged_handle.tics_segment='$curseg'"
+proc toggleSeg { frame } {
+    global curseg
+    ScilabEval "global ged_handle;ged_handle.tics_segment='$curseg'"
+
+    OnOffForeground $frame $curseg
 }
 
 proc SelectObject {w args} {

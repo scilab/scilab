@@ -42,6 +42,16 @@ global curcolored
 global scicomint_data
 global curdata
 
+#To update foreground color grey ("off"), black ("on") for checkbutton boxes
+proc OnOffForeground { frame flag } {
+    
+    if { $flag == "on" } {
+	$frame configure -foreground black
+    } else {
+	$frame configure -foreground grey
+    }
+}
+
 set ww .axes
 catch {destroy $ww}
 
@@ -128,9 +138,11 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
 label $w.frame.vislabel  -text "          Visibility:    "
-checkbutton $w.frame.visib  -textvariable curvis  \
+checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis" 
+    -command "toggleVis $w.frame.visib"
+OnOffForeground $w.frame.visib $curvis
+
 pack $w.frame.vislabel -in $w.frame.vis  -side left
 pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 
@@ -178,9 +190,11 @@ bind  $w.frame.arrow <KP_Enter> {SelectArrowSize}
 frame $w.frame.col -borderwidth 0
 pack $w.frame.col  -in $w.frame  -side top -fill x
 label $w.frame.collabel  -text "           Colored:   "
-checkbutton $w.frame.colored  -textvariable curcolored  \
+checkbutton $w.frame.colored  -text "on"\
     -variable curcolored  -onvalue "on" -offvalue "off" \
-    -command "toggleCol" 
+    -command "toggleCol $w.frame.colored"
+OnOffForeground $w.frame.colored $curcolored
+
 pack $w.frame.collabel -in $w.frame.col  -side left
 pack $w.frame.colored  -in $w.frame.col    -side left -fill x
 
@@ -391,14 +405,18 @@ pack $topf -fill both -pady 2 -expand yes
 
 
 #proc associes
-proc toggleVis {} {
-global curvis
-ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+proc toggleVis { frame } {
+    global curvis
+    ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+
+    OnOffForeground $frame $curvis
 }
 
-proc toggleCol {} {
-global curcolored
-ScilabEval "global ged_handle;ged_handle.colored='$curcolored'"
+proc toggleCol { frame } {
+    global curcolored
+    ScilabEval "global ged_handle;ged_handle.colored='$curcolored'"
+
+    OnOffForeground $frame $curcolored
 }
 
 proc SelectObject {w args} {

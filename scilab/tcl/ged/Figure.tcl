@@ -43,6 +43,18 @@ global curpix curpdm currotation_style
 
 global scicomint_colormap
 
+
+#To update foreground color grey ("off"), black ("on") for checkbutton boxes
+proc OnOffForeground { frame flag } {
+    
+    if { $flag == "on" } {
+	$frame configure -foreground black
+    } else {
+	$frame configure -foreground grey
+    }
+}
+
+
 set ww .axes
 catch {destroy $ww}
 toplevel $ww
@@ -58,7 +70,6 @@ set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
 set parent  [$titf1 getframe]
 set pw1  [PanedWindow $parent.pw -side top]
 set pane3  $pw1  
-
 
 
 # Make a frame scrollable
@@ -129,9 +140,11 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
 label $w.frame.vislabel  -text "       Visibility: "
-checkbutton $w.frame.visib  -textvariable curvis  \
+checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis" 
+    -command "toggleVis $w.frame.visib"
+OnOffForeground $w.frame.visib $curvis
+
 pack $w.frame.vislabel -in $w.frame.vis  -side left
 pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -pady 2m -padx 2m
 
@@ -258,9 +271,11 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.autorsz -borderwidth 0
 pack $w.frame.autorsz  -in $w.frame  -side top -fill x
 label $w.frame.autorszlabel  -text "            Auto resize: "
-checkbutton $w.frame.autorszib  -textvariable curautoresize  \
+checkbutton $w.frame.autorszib  -text "on"\
     -variable curautoresize -onvalue "on" -offvalue "off" \
-    -command "toggleResize" 
+    -command "toggleResize $w.frame.autorszib"
+OnOffForeground $w.frame.autorszib $curautoresize
+
 pack $w.frame.autorszlabel -in $w.frame.autorsz  -side left
 pack $w.frame.autorszib  -in $w.frame.autorsz    -side left -fill x -pady 2m -padx 2m
 
@@ -269,9 +284,11 @@ pack $w.frame.autorszib  -in $w.frame.autorsz    -side left -fill x -pady 2m -pa
 frame $w.frame.pix -borderwidth 0
 pack $w.frame.pix  -in $w.frame  -side top -fill x
 label $w.frame.pixlabel  -text "                  Pixmap: "
-checkbutton $w.frame.pixib  -textvariable curpix  \
+checkbutton $w.frame.pixib  -text "on"\
     -variable curpix  -onvalue "on" -offvalue "off" \
-    -command "togglePix" 
+    -command "togglePix $w.frame.pixib"
+OnOffForeground $w.frame.pixib $curpix
+
 pack $w.frame.pixlabel -in $w.frame.pix  -side left
 pack $w.frame.pixib  -in $w.frame.pix    -side left -fill x -pady 2m -padx 2m
 
@@ -452,9 +469,11 @@ ScilabEval "global ged_handle;ged_handle.figure_name='$figure_name'"
 }
 
 
-proc toggleVis {} {
-global curvis
-ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+proc toggleVis { frame } {
+    global curvis
+    ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+
+    OnOffForeground $frame $curvis
 }
 
 
@@ -519,14 +538,18 @@ proc setBackColor {w index} {
 
 
 
-proc togglePix {} {
-global curpix
-ScilabEval "global ged_handle;ged_handle.pixmap='$curpix'"
+proc togglePix { frame } {
+    global curpix
+    ScilabEval "global ged_handle;ged_handle.pixmap='$curpix'"
+
+    OnOffForeground $frame $curpix
 }
 
-proc toggleResize {} {
-global curautoresize
-ScilabEval "global ged_handle;ged_handle.auto_resize='$curautoresize'"
+proc toggleResize { frame } {
+    global curautoresize
+    ScilabEval "global ged_handle;ged_handle.auto_resize='$curautoresize'"
+
+    OnOffForeground $frame $curautoresize
 }
 
 

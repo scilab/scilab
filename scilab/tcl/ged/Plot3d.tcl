@@ -44,6 +44,16 @@ global ncolors flagCOLOR
 global scicomint_dataX scicomint_dataY scicomint_dataZ scicomint_dataCOLOR
 global curdata_x curdata_y curdata_z curdata_color
 
+#To update foreground color grey ("off"), black ("on") for checkbutton boxes
+proc OnOffForeground { frame flag } {
+    
+    if { $flag == "on" } {
+	$frame configure -foreground black
+    } else {
+	$frame configure -foreground grey
+    }
+}
+
 set ww .axes
 catch {destroy $ww}
 
@@ -129,9 +139,11 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
 label $w.frame.vislabel  -text "        Visibility:    "
-checkbutton $w.frame.visib  -textvariable curvis  \
+checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis" 
+    -command "toggleVis $w.frame.visib"
+OnOffForeground $w.frame.visib $curvis
+
 pack $w.frame.vislabel -in $w.frame.vis  -side left
 pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 
@@ -140,9 +152,10 @@ frame $w.frame.linelinemode  -borderwidth 0
 pack $w.frame.linelinemode  -in $w.frame  -side top  -fill x
 
 label $w.frame.linemodelabel -height 0 -text "Surface mode:  " -width 0 
-checkbutton $w.frame.linemode  -textvariable curlinemode -indicatoron 1 \
+checkbutton $w.frame.linemode  -text "on" -indicatoron 1 \
     -variable curlinemode -onvalue "on" -offvalue "off" \
-    -command "toggleLinemode" 
+    -command "toggleLinemode $w.frame.linemode"
+OnOffForeground $w.frame.linemode $curlinemode
 
 pack $w.frame.linemodelabel  -in $w.frame.linelinemode  -side left 
 pack $w.frame.linemode   -in $w.frame.linelinemode   -side left  -fill x -pady 2m -padx 2m
@@ -222,9 +235,10 @@ frame $w.frame.linemarkmode  -borderwidth 0
 pack $w.frame.linemarkmode  -in $w.frame  -side top  -fill x
 
 label $w.frame.markmodelabel -height 0 -text "    Mark mode:   " -width 0 
-checkbutton $w.frame.markmode  -textvariable curmarkmode -indicatoron 1 \
+checkbutton $w.frame.markmode  -text "on" -indicatoron 1 \
     -variable curmarkmode -onvalue "on" -offvalue "off" \
-    -command "toggleMarkmode" 
+    -command "toggleMarkmode $w.frame.markmode"
+OnOffForeground $w.frame.markmode $curmarkmode
 
 pack $w.frame.markmodelabel  -in $w.frame.linemarkmode  -side left 
 pack $w.frame.markmode   -in $w.frame.linemarkmode   -side left  -fill x -pady 2m -padx 2m
@@ -488,9 +502,11 @@ pack $topf -fill both -pady 2 -expand yes
 
 
 #proc associes
-proc toggleVis {} {
-global curvis
-ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+proc toggleVis { frame } {
+    global curvis
+    ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+
+    OnOffForeground $frame $curvis
 }
 
 
@@ -840,14 +856,18 @@ proc setMarkBackground {w index} {
 }
 
 
-proc toggleMarkmode {} {
-global curmarkmode
-ScilabEval "global ged_handle;ged_handle.mark_mode='$curmarkmode'"
+proc toggleMarkmode { frame } {
+    global curmarkmode
+    ScilabEval "global ged_handle;ged_handle.mark_mode='$curmarkmode'"
+    
+    OnOffForeground $frame $curmarkmode
 }
 
-proc toggleLinemode {} {
-global curlinemode
-ScilabEval "global ged_handle;ged_handle.surface_mode='$curlinemode'"
+proc toggleLinemode { frame } {
+    global curlinemode
+    ScilabEval "global ged_handle;ged_handle.surface_mode='$curlinemode'"
+    
+    OnOffForeground $frame $curlinemode
 }
 
 

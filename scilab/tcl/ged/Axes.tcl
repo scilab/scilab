@@ -118,6 +118,16 @@ global RED GREEN BLUE
 #      set visToggle "on"
 #      set curvis "on"
 
+#To update foreground color grey ("off"), black ("on") for checkbutton boxes
+proc OnOffForeground { frame flag } {
+    
+    if { $flag == "on" } {
+	$frame configure -foreground black
+    } else {
+	$frame configure -foreground grey
+    }
+}
+
 
 set ww .axes
 catch {destroy $ww}
@@ -137,7 +147,6 @@ set pw1  [PanedWindow $parent.pw -side top]
 set pane3  $pw1  
 
 
-
 # Make a frame scrollable
 
 set sw [ScrolledWindow $pane3.sw -relief sunken -borderwidth 2]
@@ -153,6 +162,7 @@ pack $fra  -anchor w -fill both
 #set w $ww
 #frame $w.frame -borderwidth 0
 #pack $w.frame -anchor w -fill both
+
 
 #Hierarchical selection
 set lalist ""
@@ -224,9 +234,11 @@ bind  $w.frame.xlabel1 <FocusOut> {setXlabel}
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
 label $w.frame.vislablabel  -text "  Visibility:   "
-checkbutton $w.frame.vislabb  -textvariable xlabel_visibility \
+checkbutton $w.frame.vislabb \
     -variable xlabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitylabx" 
+    -command "toggleVisibilitylabx $w.frame.vislabb" -text "on"
+OnOffForeground $w.frame.vislabb $xlabel_visibility
+
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
 pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
@@ -345,9 +357,11 @@ frame $w.frame.rev  -borderwidth 0
 pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 2m
 
 label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0
-checkbutton $w.frame.rev.revvalue  -textvariable Xaxes_reverseToggle \
+checkbutton $w.frame.rev.revvalue  -text "on"\
     -variable Xaxes_reverseToggle -onvalue "on" -offvalue "off" \
-    -command "toggleReverselabx" 
+    -command "toggleReverselabx $w.frame.rev.revvalue" 
+OnOffForeground $w.frame.rev.revvalue $Xaxes_reverseToggle
+
 pack $w.frame.rev.label -in $w.frame.rev -side left
 pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
 
@@ -385,9 +399,11 @@ bind  $w.frame.ylabel1 <FocusOut> {setYlabel}
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
 label $w.frame.vislablabel  -text "  Visibility:   "
-checkbutton $w.frame.vislabb  -textvariable ylabel_visibility \
+checkbutton $w.frame.vislabb  -text "on"\
     -variable ylabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitylaby" 
+    -command "toggleVisibilitylaby $w.frame.vislabb" 
+OnOffForeground $w.frame.vislabb $ylabel_visibility
+
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
 pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
@@ -508,9 +524,11 @@ frame $w.frame.rev  -borderwidth 0
 pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 2m
 
 label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0
-checkbutton $w.frame.rev.revvalue  -textvariable Yaxes_reverseToggle \
+checkbutton $w.frame.rev.revvalue  -text "on"\
     -variable Yaxes_reverseToggle -onvalue "on" -offvalue "off" \
-    -command "toggleReverselaby"
+    -command "toggleReverselaby $w.frame.rev.revvalue"
+OnOffForeground $w.frame.rev.revvalue $Yaxes_reverseToggle
+
 pack $w.frame.rev.label -in $w.frame.rev -side left
 pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
 
@@ -547,9 +565,11 @@ bind  $w.frame.zlabel1 <FocusOut> {setZlabel}
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
 label $w.frame.vislablabel  -text "  Visibility:   "
-checkbutton $w.frame.vislabb  -textvariable zlabel_visibility \
+checkbutton $w.frame.vislabb  -text "on"\
     -variable zlabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitylabz" 
+    -command "toggleVisibilitylabz $w.frame.vislabb" 
+OnOffForeground $w.frame.vislabb $zlabel_visibility
+
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
 pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
@@ -668,9 +688,11 @@ frame $w.frame.rev  -borderwidth 0
 pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 2m
 
 label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0
-checkbutton $w.frame.rev.revvalue  -textvariable Zaxes_reverseToggle \
+checkbutton $w.frame.rev.revvalue  -text "on"\
     -variable Zaxes_reverseToggle -onvalue "on" -offvalue "off" \
-    -command "toggleReverselabz"
+    -command "toggleReverselabz $w.frame.rev.revvalue"
+OnOffForeground $w.frame.rev.revvalue $Zaxes_reverseToggle
+
 pack $w.frame.rev.label -in $w.frame.rev -side left
 pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
 
@@ -707,9 +729,11 @@ bind  $w.frame.titlelabel1 <FocusOut> {setTitleLabel}
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
 label $w.frame.vislablabel  -text "  Visibility:   "
-checkbutton $w.frame.vislabb  -textvariable titlelabel_visibility \
+checkbutton $w.frame.vislabb  -text "on"\
     -variable titlelabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitytitle" 
+    -command "toggleVisibilitytitle $w.frame.vislabb"
+OnOffForeground $w.frame.vislabb $titlelabel_visibility
+
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
 pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
@@ -778,9 +802,11 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x -pady 2m
 label $w.frame.vislabel  -text "   Visibility:  "
-checkbutton $w.frame.visib  -textvariable curvis  \
+checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis" 
+    -command "toggleVis $w.frame.visib"
+OnOffForeground $w.frame.visib $curvis
+
 pack $w.frame.vislabel -in $w.frame.vis  -side left
 pack $w.frame.visib  -in $w.frame.vis    -side left  -fill x -pady 2m -padx 2m
 
@@ -913,9 +939,11 @@ pack $w.frame  -anchor w -fill both
 frame $w.frame.clear -borderwidth 0
 pack $w.frame.clear  -in $w.frame  -side top  -fill x -pady 1.m
 label $w.frame.clearlabel  -text "   Auto clear:  "
-checkbutton $w.frame.clearib  -textvariable curautoclear \
+checkbutton $w.frame.clearib  -text "on"\
     -variable curautoclear  -onvalue "on" -offvalue "off" \
-    -command "toggleClear" 
+    -command "toggleClear $w.frame.clearib"
+OnOffForeground $w.frame.clearib $curautoclear
+
 pack $w.frame.clearlabel -in $w.frame.clear   -side left
 pack $w.frame.clearib  -in $w.frame.clear    -side left -fill x -pady 1.m -padx 1.m
 
@@ -923,9 +951,11 @@ pack $w.frame.clearib  -in $w.frame.clear    -side left -fill x -pady 1.m -padx 
 frame $w.frame.scal -borderwidth 0
 pack $w.frame.scal  -in $w.frame  -side top -fill x -pady 1.m
 label $w.frame.scallabel  -text "   Auto scale:  "
-checkbutton $w.frame.scalib  -textvariable curautoscale \
+checkbutton $w.frame.scalib  -text "on"\
     -variable curautoscale  -onvalue "on" -offvalue "off" \
-    -command "toggleScale" 
+    -command "toggleScale $w.frame.scalib"
+OnOffForeground $w.frame.scalib $curautoscale
+
 pack $w.frame.scallabel -in $w.frame.scal  -side left
 pack $w.frame.scalib  -in $w.frame.scal    -side left  -fill x -pady 1.m -padx 1.m
 
@@ -933,9 +963,11 @@ pack $w.frame.scalib  -in $w.frame.scal    -side left  -fill x -pady 1.m -padx 1
 frame $w.frame.bxd -borderwidth 0
 pack $w.frame.bxd  -in $w.frame  -side top -fill x -pady 1.m
 label $w.frame.boxlabel  -text "         Boxed:  "
-checkbutton $w.frame.box  -textvariable boxToggle  \
+checkbutton $w.frame.box  -text "on"\
     -variable boxToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleBox" 
+    -command "toggleBox $w.frame.box"
+OnOffForeground $w.frame.box $boxToggle
+
 pack $w.frame.boxlabel -in $w.frame.bxd  -side left
 pack $w.frame.box  -in $w.frame.bxd    -side left -fill x -pady 1.m -padx 1.m
 
@@ -943,9 +975,11 @@ pack $w.frame.box  -in $w.frame.bxd    -side left -fill x -pady 1.m -padx 1.m
 frame $w.frame.iso -borderwidth 0
 pack $w.frame.iso  -in $w.frame -side top -fill x -pady 1.m
 label $w.frame.isolabel  -text "        Isoview: "
-checkbutton $w.frame.isob  -textvariable isoToggle  \
+checkbutton $w.frame.isob  -text "on"\
     -variable isoToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleIsoview" 
+    -command "toggleIsoview $w.frame.isob"
+OnOffForeground $w.frame.isob $isoToggle
+
 pack $w.frame.isolabel -in $w.frame.iso -side left
 pack $w.frame.isob  -in $w.frame.iso  -side left -fill x -pady 1.m -padx 1.m
 
@@ -953,9 +987,11 @@ pack $w.frame.isob  -in $w.frame.iso  -side left -fill x -pady 1.m -padx 1.m
 frame $w.frame.lim  -borderwidth 0
 pack $w.frame.lim  -in $w.frame -side top -fill x -pady 1.m
 label $w.frame.limitlabel -text "   Tight limits: "
-checkbutton $w.frame.limit  -textvariable limToggle  \
+checkbutton $w.frame.limit  -text "on"\
     -variable limToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleLimits" 
+    -command "toggleLimits $w.frame.limit"
+OnOffForeground $w.frame.limit $limToggle
+
 pack $w.frame.limitlabel -in $w.frame.lim -side left
 pack $w.frame.limit  -in $w.frame.lim  -side left  -fill x -pady 1.m -padx 1.m
 
@@ -964,9 +1000,11 @@ pack $w.frame.limit  -in $w.frame.lim  -side left  -fill x -pady 1.m -padx 1.m
 frame $w.frame.cub -borderwidth 0
 pack $w.frame.cub  -in $w.frame -side top -fill x -pady 1.m
 label $w.frame.cublabel  -text "Cube scaling: "
-checkbutton $w.frame.cubb  -textvariable cubToggle  \
+checkbutton $w.frame.cubb  -text "on"\
     -variable cubToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleCubview" 
+    -command "toggleCubview $w.frame.cubb"
+OnOffForeground $w.frame.cubb $cubToggle
+
 pack $w.frame.cublabel -in $w.frame.cub -side left
 pack $w.frame.cubb  -in $w.frame.cub  -side left -fill x -pady 1.m -padx 1.m
 
@@ -1467,67 +1505,91 @@ ScilabEval "global ged_handle;ged_handle.labels_font_size=$fs;"
 }
 
 
-proc toggleVisibilityX {} {
-global Xaxes_visibleToggle
-ScilabEval "global ged_handle;ged_handle.axes_visible(1)='$Xaxes_visibleToggle'"
+proc toggleVisibilityX { frame } {
+    global Xaxes_visibleToggle
+    ScilabEval "global ged_handle;ged_handle.axes_visible(1)='$Xaxes_visibleToggle'"
+
+    OnOffForeground $frame $Xaxes_visibleToggle
 }
 
-proc toggleVisibilityY {} {
-global Yaxes_visibleToggle
-ScilabEval "global ged_handle;ged_handle.axes_visible(2)='$Yaxes_visibleToggle'"
+proc toggleVisibilityY { frame } {
+    global Yaxes_visibleToggle
+    ScilabEval "global ged_handle;ged_handle.axes_visible(2)='$Yaxes_visibleToggle'"
+    
+    OnOffForeground $frame $Yaxes_visibleToggle
 }
 
-proc toggleVisibilityZ {} {
-global Zaxes_visibleToggle
-ScilabEval "global ged_handle;ged_handle.axes_visible(3)='$Zaxes_visibleToggle'"
-}
-
-
-proc toggleVisibilitylabx {} {
-global xlabel_visibility
-ScilabEval "global ged_handle;ged_handle.x_labels.visible='$xlabel_visibility'"
-}
-
-proc toggleVisibilitylaby {} {
-global ylabel_visibility
-ScilabEval "global ged_handle;ged_handle.y_labels.visible='$ylabel_visibility'"
-}
-
-proc toggleVisibilitylabz {} {
-global zlabel_visibility
-ScilabEval "global ged_handle;ged_handle.z_labels.visible='$zlabel_visibility'"
+proc toggleVisibilityZ { frame } {
+    global Zaxes_visibleToggle
+    ScilabEval "global ged_handle;ged_handle.axes_visible(3)='$Zaxes_visibleToggle'"
+    
+    OnOffForeground $frame $Zaxes_visibleToggle
 }
 
 
-proc toggleVisibilitytitle {} {
-global titlelabel_visibility
-ScilabEval "global ged_handle;ged_handle.title.visible='$titlelabel_visibility'"
+proc toggleVisibilitylabx { frame } {
+    global xlabel_visibility
+    ScilabEval "global ged_handle;ged_handle.x_labels.visible='$xlabel_visibility'"
+    
+    OnOffForeground $frame $xlabel_visibility
+}
+
+proc toggleVisibilitylaby { frame } {
+    global ylabel_visibility
+    ScilabEval "global ged_handle;ged_handle.y_labels.visible='$ylabel_visibility'"
+    
+    OnOffForeground $frame $ylabel_visibility
+}
+
+proc toggleVisibilitylabz { frame } {
+    global zlabel_visibility
+    ScilabEval "global ged_handle;ged_handle.z_labels.visible='$zlabel_visibility'"
+    
+    OnOffForeground $frame $zlabel_visibility
+}
+
+
+proc toggleVisibilitytitle { frame } {
+    global titlelabel_visibility
+    ScilabEval "global ged_handle;ged_handle.title.visible='$titlelabel_visibility'"
+
+    OnOffForeground $frame $titlelabel_visibility
 }
 
 
 
-proc toggleVis {} {
-global curvis
-ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+proc toggleVis { frame } {
+    global curvis
+    ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
+
+    OnOffForeground $frame $curvis
 }
 
-proc toggleIsoview {} {
-global isoToggle
-ScilabEval "global ged_handle;ged_handle.isoview='$isoToggle'"
+proc toggleIsoview { frame } {
+    global isoToggle
+    ScilabEval "global ged_handle;ged_handle.isoview='$isoToggle'"
+
+    OnOffForeground $frame $isoToggle
 }
 
-proc toggleCubview {} {
-global cubToggle
-ScilabEval "global ged_handle;ged_handle.cube_scaling='$cubToggle'"
+proc toggleCubview { frame } {
+    global cubToggle
+    ScilabEval "global ged_handle;ged_handle.cube_scaling='$cubToggle'"
+
+    OnOffForeground $frame $cubToggle
 }
 
-proc toggleBox {} {
-global boxToggle
-ScilabEval "global ged_handle;ged_handle.box='$boxToggle'"
+proc toggleBox { frame } {
+    global boxToggle
+    ScilabEval "global ged_handle;ged_handle.box='$boxToggle'"
+
+    OnOffForeground $frame $boxToggle
 }
 proc toggleX {} {
-global xToggle
-ScilabEval "LogtoggleX('$xToggle')"
+    global xToggle
+    ScilabEval "LogtoggleX('$xToggle')"
+    
+    OnOffForeground $frame $xToggle
 }
 proc toggleY {} {
 global yToggle
@@ -1538,8 +1600,10 @@ global zToggle
 ScilabEval "LogtoggleZ('$zToggle')"
 }
 proc toggleLimits {} {
-global limToggle
-ScilabEval "global ged_handle;ged_handle.tight_limits='$limToggle'"
+    global limToggle
+    ScilabEval "global ged_handle;ged_handle.tight_limits='$limToggle'"
+
+    OnOffForeground $frame $limToggle
 }
 
 
@@ -1948,15 +2012,19 @@ ScilabEval "setFontStyle('$fontstyle')"
 
 
 
-proc toggleClear {} {
-global curautoclear
-ScilabEval "global ged_handle;ged_handle.auto_clear='$curautoclear'"
+proc toggleClear { frame } {
+    global curautoclear
+    ScilabEval "global ged_handle;ged_handle.auto_clear='$curautoclear'"
+    
+    OnOffForeground $frame $curautoclear
 }
 
 
-proc toggleScale {} {
-global curautoscale
-ScilabEval "global ged_handle;ged_handle.auto_scale='$curautoscale'"
+proc toggleScale { frame } {
+    global curautoscale
+    ScilabEval "global ged_handle;ged_handle.auto_scale='$curautoscale'"
+
+     OnOffForeground $frame $curautoscale
 }
 
 
@@ -2043,18 +2111,22 @@ proc PopUp { w numpage} {
     frame $fen1.frame.vis -borderwidth 0
     pack $fen1.frame.vis  -in $fen1.frame -side top -fill x -pady 1.m
     label $fen1.frame.vislabel  -text "           Visibility:  "
-    checkbutton $fen1.frame.visb  -textvariable Xaxes_visibleToggle  \
+    checkbutton $fen1.frame.visb  -text "on"\
         -variable Xaxes_visibleToggle  -onvalue "on" -offvalue "off" \
-        -command "toggleVisibilityX" 
+        -command "toggleVisibilityX $fen1.frame.visb"
+    OnOffForeground $fen1.frame.visb $Xaxes_visibleToggle
+
     pack $fen1.frame.vislabel -in $fen1.frame.vis -side left
     pack $fen1.frame.visb  -in $fen1.frame.vis  -side left  -fill x
 
     frame $fen1.frame.xautoticks -borderwidth 0
     pack $fen1.frame.xautoticks  -in $fen1.frame -side top -fill x -pady 1.m
     label $fen1.frame.xautotickslabel  -text "        Auto ticks:  "
-    checkbutton $fen1.frame.xautoticksb  -textvariable  XautoticksToggle \
+    checkbutton $fen1.frame.xautoticksb  -text "on"\
 	-variable XautoticksToggle  -onvalue "on" -offvalue "off" \
-	-command "toggleXautoticks $frameaxes $numpage" 
+	-command "toggleXautoticks $frameaxes $numpage $fen1.frame.xautoticksb"
+    OnOffForeground $fen1.frame.xautoticksb $XautoticksToggle
+
     pack $fen1.frame.xautotickslabel -in $fen1.frame.xautoticks -side left
     pack $fen1.frame.xautoticksb  -in $fen1.frame.xautoticks  -side left  -fill x -pady 1.m -padx 1.m
 
@@ -2162,18 +2234,22 @@ proc PopUp { w numpage} {
     frame $fen2.frame.vis -borderwidth 0
     pack $fen2.frame.vis  -in $fen2.frame -side top -fill x -pady 1.m
     label $fen2.frame.vislabel  -text "           Visibility:  "
-    checkbutton $fen2.frame.visb  -textvariable Yaxes_visibleToggle  \
+    checkbutton $fen2.frame.visb  -text "on"\
         -variable Yaxes_visibleToggle  -onvalue "on" -offvalue "off" \
-        -command "toggleVisibilityY" 
+        -command "toggleVisibilityY $fen2.frame.visb" 
+    OnOffForeground $fen2.frame.visb $Yaxes_visibleToggle
+
     pack $fen2.frame.vislabel -in $fen2.frame.vis -side left
     pack $fen2.frame.visb  -in $fen2.frame.vis  -side left  -fill x
 
     frame $fen2.frame.yautoticks -borderwidth 0
     pack $fen2.frame.yautoticks  -in $fen2.frame -side top -fill x -pady 1.m
     label $fen2.frame.yautotickslabel  -text "        Auto ticks:  "
-    checkbutton $fen2.frame.yautoticksb  -textvariable  YautoticksToggle \
+    checkbutton $fen2.frame.yautoticksb  -text "on"\
 	-variable YautoticksToggle  -onvalue "on" -offvalue "off" \
-	-command "toggleYautoticks $frameaxes $numpage" 
+	-command "toggleYautoticks $frameaxes $numpage $fen2.frame.yautoticksb"
+    OnOffForeground $fen2.frame.yautoticksb $YautoticksToggle
+
     pack $fen2.frame.yautotickslabel -in $fen2.frame.yautoticks -side left
     pack $fen2.frame.yautoticksb  -in $fen2.frame.yautoticks  -side left  -fill x -pady 1.m -padx 1.m
 
@@ -2279,18 +2355,22 @@ proc PopUp { w numpage} {
     frame $fen3.frame.vis -borderwidth 0
     pack $fen3.frame.vis  -in $fen3.frame -side top -fill x -pady 1.m
     label $fen3.frame.vislabel  -text "           Visibility:  "
-    checkbutton $fen3.frame.visb  -textvariable Zaxes_visibleToggle  \
+    checkbutton $fen3.frame.visb  -text "on"\
         -variable Zaxes_visibleToggle  -onvalue "on" -offvalue "off" \
-        -command "toggleVisibilityZ" 
+        -command "toggleVisibilityZ $fen3.frame.visb"
+    OnOffForeground $fen3.frame.visb $Zaxes_visibleToggle
+
     pack $fen3.frame.vislabel -in $fen3.frame.vis -side left
     pack $fen3.frame.visb  -in $fen3.frame.vis  -side left  -fill x
 
     frame $fen3.frame.zautoticks -borderwidth 0
     pack $fen3.frame.zautoticks  -in $fen3.frame -side top -fill x -pady 1.m
     label $fen3.frame.zautotickslabel  -text "        Auto ticks:  "
-    checkbutton $fen3.frame.zautoticksb  -textvariable  ZautoticksToggle \
+    checkbutton $fen3.frame.zautoticksb  -text "on"\
 	-variable ZautoticksToggle  -onvalue "on" -offvalue "off" \
-	-command "toggleZautoticks $frameaxes $numpage" 
+	-command "toggleZautoticks $frameaxes $numpage $fen3.frame.zautoticksb"
+    OnOffForeground $fen3.frame.zautoticksb $ZautoticksToggle
+
     pack $fen3.frame.zautotickslabel -in $fen3.frame.zautoticks -side left
     pack $fen3.frame.zautoticksb  -in $fen3.frame.zautoticks  -side left  -fill x -pady 1.m -padx 1.m
 
@@ -2512,7 +2592,7 @@ proc TicksApplyX { w } {
     ScilabEval "setTicksTList('X',ged_tmp_LOCATIONS,ged_tmp_LABELS)" "seq"
     
     set XautoticksToggle "off"
-
+    OnOffForeground $w.frame.xautoticksb $XautoticksToggle
 }
 
 
@@ -2637,6 +2717,7 @@ proc TicksApplyY { w } {
     ScilabEval "setTicksTList('Y',ged_tmp_LOCATIONS,ged_tmp_LABELS)" "seq"
     
     set YautoticksToggle "off"
+    OnOffForeground $w.frame.yautoticksb $YautoticksToggle
 }
 
 
@@ -2760,8 +2841,9 @@ proc TicksApplyZ { w } {
     }
     
     ScilabEval "setTicksTList('Z',ged_tmp_LOCATIONS,ged_tmp_LABELS)" "seq"
-
+    
     set ZautoticksToggle "off"
+    OnOffForeground $w.frame.zautoticksb $ZautoticksToggle
 }
 
 
@@ -2788,28 +2870,31 @@ proc setLEI_z { i } {
 #    return $LEI
 }
 
-proc toggleXautoticks { win numpage } {
+proc toggleXautoticks { win numpage frame } {
     global XautoticksToggle
     
     ScilabEval "global ged_handle;ged_handle.auto_ticks(1)='$XautoticksToggle'" "seq"
     ScilabEval "TCL_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
-    #    PopUp $w $numpage
+
+    OnOffForeground $frame $XautoticksToggle
 }
 
-proc toggleYautoticks { win numpage } {
+proc toggleYautoticks { win numpage frame } {
     global YautoticksToggle
     
     ScilabEval "global ged_handle;ged_handle.auto_ticks(2)='$YautoticksToggle'" "seq"
     ScilabEval "TCL_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
-    #     PopUp $w $numpage
+
+    OnOffForeground $frame $YautoticksToggle
 }
 
-proc toggleZautoticks { win numpage } {
+proc toggleZautoticks { win numpage frame } {
     global ZautoticksToggle
     
     ScilabEval "global ged_handle;ged_handle.auto_ticks(3)='$ZautoticksToggle'" "seq"
     ScilabEval "TCL_EvalStr(\"Reload_and_popup \"+\"$win $numpage\")" "seq"
-    #     PopUp $w $numpage
+
+    OnOffForeground $frame $ZautoticksToggle
 }
 
 
@@ -2968,17 +3053,24 @@ proc Reload_and_popup { win numpage } {
 }
 
 
-proc toggleReverselabx {} {
-global Xaxes_reverseToggle
-ScilabEval "global ged_handle;ged_handle.axes_reverse(1)='$Xaxes_reverseToggle'"
+proc toggleReverselabx { frame } {
+    global Xaxes_reverseToggle
+    ScilabEval "global ged_handle;ged_handle.axes_reverse(1)='$Xaxes_reverseToggle'"
+
+    OnOffForeground $frame $Xaxes_reverseToggle
+
 }
 
-proc toggleReverselaby {} {
-global Yaxes_reverseToggle
-ScilabEval "global ged_handle;ged_handle.axes_reverse(2)='$Yaxes_reverseToggle'"
+proc toggleReverselaby { frame } {
+    global Yaxes_reverseToggle
+    ScilabEval "global ged_handle;ged_handle.axes_reverse(2)='$Yaxes_reverseToggle'"
+
+    OnOffForeground $frame $Yaxes_reverseToggle
 }
 
-proc toggleReverselabz {} {
-global Zaxes_reverseToggle
-ScilabEval "global ged_handle;ged_handle.axes_reverse(3)='$Zaxes_reverseToggle'"
+proc toggleReverselabz { frame } {
+    global Zaxes_reverseToggle
+    ScilabEval "global ged_handle;ged_handle.axes_reverse(3)='$Zaxes_reverseToggle'"
+
+    OnOffForeground $frame $Zaxes_reverseToggle
 }
