@@ -111,3 +111,8 @@ out=fooc8()
 
 exec('foos8.sci');
 out=foos8()
+
+// example 9
+
+exec('foos9.sci');
+out=foos9(1,1,1)

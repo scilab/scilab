@@ -143,4 +143,12 @@ compC(fooc8);
 
 maple2scilab('foos8',foos8,[],'s');
 
+################################################
+# example 9: problem when we cut at a point for Scilab code generation
+################################################
+
+v:=vector([xxxxxxx*expand((1+x)^8)+123.456,xxx*expand((1+x)^8)+12345.]);
+
+maple2scilab('foos9',v,[x,xxx,xxxxxxx],'s');
+
 quit
