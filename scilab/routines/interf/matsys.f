@@ -1545,9 +1545,17 @@ c     on supprime tous les points d'arret de la macro
      $           bptlg(lgptrs(kmac)),1)
             do 356 kk=kmac,nmacs-1
                call icopy(nsiz,macnms(1,kk+1),1,macnms(1,kk),1)
-               lgptrs(kk)=lgptrs(kk+1)
+c Francois VOGEL, May 2004
+c the following statement was wrong - replaced with the next line
+c               lgptrs(kk)=lgptrs(kk+1)
+               lgptrs(kk+1)=lgptrs(kk)+lgptrs(kk+2)-lgptrs(kk+1)
  356        continue
-            lgptrs(nmacs)=lgptrs(nmacs+1)
+c            lgptrs(nmacs)=lgptrs(nmacs+1)
+            lgptrs(nmacs+1)=0
+c FV, May 2004
+c else part (just these two lines) added to cure bugzilla #718
+         else
+            lgptrs(nmacs+1)=0
          endif
          nmacs=nmacs-1
       else
@@ -1561,15 +1569,22 @@ c     on supprime le point d'arret specifie
  357     continue
          if(kk.eq.kk1) goto 360
 
+         kk2=kk-kk1-1
          if(kmac.lt.nmacs) then
             l0=lgptrs(kmac+1)
             do 358 kk=kmac+1,nmacs
-               call icopy(lgptrs(kk+1)-l0,bptlg(l0),1,bptlg(l0-1),1)
+c FV, May 2004
+c changed to remove at once multiple breakpoints on a single line
+c               call icopy(lgptrs(kk+1)-l0,bptlg(l0),1,bptlg(l0-1),1)
+               call icopy(lgptrs(kk+1)-l0,bptlg(l0),1,bptlg(l0-kk2),1)
                l0=lgptrs(kk+1)
-               lgptrs(kk+1)=lgptrs(kk+1)-1
+c               lgptrs(kk+1)=lgptrs(kk+1)-1
+               lgptrs(kk)=lgptrs(kk)-kk2
  358        continue
          endif
-         lgptrs(kmac+1)=lgptrs(kmac+1)-1
+c         lgptrs(kmac+1)=lgptrs(kmac+1)-1
+         lgptrs(nmacs+1)=lgptrs(nmacs+1)-kk2
+         lgptrs(nmacs+2)=0
          if(lgptrs(kmac+1).eq.lgptrs(kmac)) then
             if(kmac.lt.nmacs) then
                do 359 kk=kmac,nmacs-1
@@ -1578,6 +1593,7 @@ c     on supprime le point d'arret specifie
  359           continue
             endif
             lgptrs(nmacs)=lgptrs(nmacs+1)
+            lgptrs(nmacs+1)=0
             nmacs=nmacs-1
          endif
       endif
@@ -2557,7 +2573,9 @@ c
 c      if(rhs.eq.1) lnb=1
       if(nmacs.gt.0) then
          do 323 kmac=1,nmacs
-            if(eqid(macnms(1,kmac),id)) goto 325
+c Francois VOGEL, May 2004
+c            if(eqid(macnms(1,kmac),id)) goto 325
+            if(eqid(macnms(1,kmac),id)) goto 324
  323     continue
       endif
       nmacs=nmacs+1
@@ -2565,6 +2583,11 @@ c      if(rhs.eq.1) lnb=1
       lgptrs(nmacs+1)=lgptrs(nmacs)+1
       bptlg(lgptrs(nmacs))=lnb
       goto 330
+c FV, May 2004
+c do statement added to avoid definition of duplicate bpts
+ 324  do 3241 kk=lgptrs(kmac),lgptrs(kmac+1)-1
+          if (bptlg(kk).eq.lnb) goto 330
+ 3241 continue
  325  if(kmac.eq.nmacs) then
          lgptrs(nmacs+1)=lgptrs(nmacs+1)+1
          bptlg(lgptrs(nmacs+1)-1)=lnb
@@ -2574,7 +2597,10 @@ c      if(rhs.eq.1) lnb=1
             call icopy(lgptrs(kk+1)-l0,bptlg(l0),-1,bptlg(l0+1),-1)
             lgptrs(kk+1)=lgptrs(kk+1)+1
  326     continue
-         bptlg(lgptrs(kmac+1)-1)=lnb
+c FV, May 2004
+c this statement was wrong - replaced with next line
+c         bptlg(lgptrs(kmac+1)-1)=lnb
+         bptlg(lgptrs(kmac))=lnb
       endif
  330  continue
       call objvide('setbpt',top)
