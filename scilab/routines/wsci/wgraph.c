@@ -1560,6 +1560,7 @@ int GetScreenProperty(char *prop, char *value)
     {
       return -1;
     }
+  ReleaseDC (NULL, hdc);
   return 0;
 }
 
@@ -1576,6 +1577,7 @@ int GetScreenDPI(int *ixres, int *iyres)
   *ixres = GetDeviceCaps(hdc, LOGPIXELSX);
   *iyres = GetDeviceCaps(hdc, LOGPIXELSY);
   
+  ReleaseDC (NULL, hdc);
   return 0;
 }
 
