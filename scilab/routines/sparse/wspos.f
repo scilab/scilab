@@ -77,6 +77,7 @@ c     compare all element of b with scalar a
       elseif(ma*na.gt.1.and.mb*nb.eq.1) then
 c     compare all elements of a with scalar b 
          tr=br(1,1)
+         ti=0.0d0
          if(itb.ne.0) ti=bi(1,1)
          z=wcompa(0.0d0,0.0d0,tr,ti,op) 
          do 20 i=1,nr
