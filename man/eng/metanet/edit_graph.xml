@@ -2,14 +2,14 @@
 <!DOCTYPE MAN SYSTEM "../../man.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>editgraph</TITLE>
+  <TITLE>edit_graph</TITLE>
   <TYPE>Scilab Function  </TYPE>
   <DATE>April 1993  </DATE>
-  <SHORT_DESCRIPTION name="editgraph"> graph and network graphical editor </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="edit_graph"> graph and network graphical editor </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>num=editgraph()  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>num=editgraph(file_name [,zoom [,wsize]])</CALLING_SEQUENCE_ITEM>
-   <CALLING_SEQUENCE_ITEM>num=editgraph(G [,zoom [,wsize]])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>num=edit_graph()  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>num=edit_graph(file_name [,zoom [,wsize]])</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>num=edit_graph(G [,zoom [,wsize]])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
  <PARAM_INDENT>
@@ -56,10 +56,10 @@
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-   This function starts a network graphical editor.   Each time <VERB>editgraph</VERB> is
+   This function starts a network graphical editor.   Each time <VERB>edit_graph</VERB> is
   executed, a new editor window  is created.
 
-  The editor capabilities and menus are described in <LINK>editgraph_menus</LINK>
+  The editor capabilities and menus are described in <LINK>edit_graph_menus</LINK>
 
 
   </DESCRIPTION>
@@ -69,14 +69,14 @@
  g=make_graph('foo',1,17,ta,he);
  g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
  g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
- editgraph(g)
+ edit_graph(g)
 
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>netclose</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>show_graph</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>netwindow</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>editgraph_menus</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>edit_graph_menus</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
 
