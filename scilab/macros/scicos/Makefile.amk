@@ -39,7 +39,7 @@ CONSTRUCTORS= scicos_params.sci scicos_cpr.sci scicos_sim.sci \
 	scicos_state.sci scicos_block.sci scicos_graphics.sci \
 	scicos_model.sci scicos_link.sci scicos_diagram.sci
 SIMPA = Modelica_.sci build_block.sci build_modelica_block.sci  \
-	buildmodelicac.sci compile_modelica.sci create_modelica.sci  \
+	compile_modelica.sci create_modelica.sci  \
 	create_modelica1.sci extract_implicit.sci gen_modelica.sci  \
 	genmoc.sci getoutputports.sci hilite_path.sci  \
 	is_modelica_block.sci modelica.sci  \
