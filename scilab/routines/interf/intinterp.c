@@ -7,12 +7,29 @@
  *     Bruno Pincon
  */
 
-#include "../stack-c.h"
+#if WIN32
+#include <string.h>
+#endif
 #include <math.h>
+#include "../stack-c.h"
 #include "interp.h"
+
+
 
 #define min(a,b) ((a) < (b) ? (a) : (b))
 #define max(a,b) ((a) < (b) ? (b) : (a))
+
+
+#if WIN32
+extern int C2F(dset)();
+extern int C2F(bicubicinterpwithgrad)();
+extern int C2F(bicubicinterpwithgradandhes)();
+extern int C2F(db3ink)();
+extern int C2F(driverdb3val)();
+extern int C2F(driverdb3valwithgrad)();
+#endif
+
+
 
 enum {NOT_A_KNOT, NATURAL, CLAMPED, PERIODIC, FAST, FAST_PERIODIC, 
       MONOTONE, BY_ZERO, C0, LINEAR, BY_NAN, UNDEFINED};
@@ -79,7 +96,7 @@ typedef struct realhypermat {
 
 static int get_rhs_real_hmat(int num, RealHyperMat *H)
 {
-  int il, il1, il2, il3, it, lw;
+  int il, il1, il2, il3,/* it, */lw;
 
   lw = num + Top - Rhs;
   il = iadr(*lstk( lw )); 
@@ -100,7 +117,7 @@ static int get_rhs_real_hmat(int num, RealHyperMat *H)
   /*  test if the first field is a matrix string with 3 components
    *  and that the first is "hm" (ie 17 22  in scilab char code)
    */
-  if ( *istk(il1) != 10  |  (*istk(il1+1))*(*istk(il1+2)) != 3  )
+  if ( (*istk(il1) != 10)  |  ((*istk(il1+1))*(*istk(il1+2)) != 3)  )
     goto err;
   else if ( *istk(il1+5)-1 != 2 )  /* 1 str must have 2 chars */
     goto err;
@@ -108,7 +125,7 @@ static int get_rhs_real_hmat(int num, RealHyperMat *H)
     goto err;
 
   /*  get the 2d field */
-  if ( *istk(il2) != 8  |  *istk(il2+3) != 4 )
+  if ( (*istk(il2) != 8)  |  (*istk(il2+3) != 4) )
     goto err;
   H->dimsize = (*istk(il2+1))*(*istk(il2+2));
   H->dims = istk(il2+4);
@@ -195,7 +212,7 @@ static int intsplin(char * fname)
 
   int mx, nx, lx, my, ny, ly, mc, nc, lc, n, spline_type;
   int *str_spline_type, ns;
-  int i, ld, flag;
+  int /*i,*/ ld/*, flag*/;
   int mwk1, nwk1, lwk1, mwk2, nwk2, lwk2, mwk3, nwk3, lwk3, mwk4, nwk4, lwk4;
   double *x, *y, *d, *c;
 
@@ -377,7 +394,7 @@ static int intinterp1(char * fname)
 
   int mt, nt, lt, mx, nx, lx, my, ny, ly, md, nd, ld, ns, *str_outmode;
   int n, m, outmode, lst, ldst, lddst, ldddst;
-  double *x;
+/*  double *x;*/
 
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
@@ -552,6 +569,9 @@ static int intlinear_interpn(char * fname)
 
   LhsVar(1) = Rhs+8;
   PutLhsVar();
+  /* correction Warning Allan CORNET */
+  /* warning C4715: 'intlinear_interpn' : not all control paths return a value */
+  return 0;
 }
 
 
@@ -566,7 +586,7 @@ static int intsplin2d(char * fname)
   int minrhs=3, maxrhs=4, minlhs=1, maxlhs=1;
 
   int mx, nx, lx, my, ny, ly, mz, nz, lz, ns, mc, nc, lc, lp, lq, lr;
-  int spline_type, *str_spline_type, i;
+  int spline_type, *str_spline_type/*, i*/;
   int one = 1;
   double *x, *y, *C;
 
@@ -1042,7 +1062,7 @@ static int intinterp3d(char * fname)  /* a suivre */
   int zero=0, one=1, kx, ky, kz;
   int nx, ny, nz, nxyz, mtx, mty, mtz, m, n, ltx, lty, ltz, lbcoef, mwork, lwork, lfp;
   int lxyzminmax, nsix, outmode, ns, *str_outmode;
-  int i, m1, n1, ldfpdx, ldfpdy, ldfpdz;
+  int /*i,*/ m1, n1, ldfpdx, ldfpdy, ldfpdz;
   double *fp, *xp, *yp, *zp, *dfpdx, *dfpdy, *dfpdz;
   double *xyzminmax, xmin, xmax, ymin, ymax, zmin, zmax;
   SciIntMat Order; int *order;

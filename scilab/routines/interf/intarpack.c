@@ -18,6 +18,10 @@ extern int C2F(dseupd) __PARAMS((int *rvec, char *howmny, int *select, double *d
 
 extern int C2F(dneupd) __PARAMS((int *rvec, char *howmny, int *select, double *dr, double *di, double *z, int *ldz, double *sigmar, double *sigmai, double *workev, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long howmany_length, unsigned long bmat_length, unsigned long which_length));
 
+#if WIN32
+extern int C2F(znaupd)();
+extern int C2F(zneupd)();
+#endif
 int intdsaupd(fname)
      char* fname;
 { 

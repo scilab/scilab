@@ -18,6 +18,9 @@ extern Gatefunc C2F(intdhinf);
 extern Gatefunc C2F(intlinmeq);
 extern int C2F(intmb03od) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzb03od) __PARAMS((char *fname, unsigned long fname_len));
+#if WIN32
+extern int C2F(ab01od)();
+#endif
 
 int intrankqr(fname)
      char* fname;

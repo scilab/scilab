@@ -60,6 +60,11 @@ typedef struct sci_bool_sparse {
 } SciBoolSparse;
 
 
+#if WIN32
+extern int C2F(ddmpev)();
+#endif
+
+
 static int get_length(int num)
 {
   int il;
@@ -100,7 +105,7 @@ static int get_hmat(int num, HyperMat *H)
   /*  test if the first field is a matrix string with 3 components
    *  and that the first is "hm" (ie 17 22  in scilab char code)
    */
-  if ( *istk(il1) != SCI_STRING  |  (*istk(il1+1))*(*istk(il1+2)) != 3  )
+  if ( (*istk(il1) != SCI_STRING)  |  ((*istk(il1+1))*(*istk(il1+2)) != 3)  )
     return 0;
   else if ( *istk(il1+5)-1 != 2 )  /* 1 str must have 2 chars */
     return 0;
@@ -118,7 +123,7 @@ static int get_hmat(int num, HyperMat *H)
       return 2;
     }
 
-  if ( *istk(il2) != SCI_INTEGER  |  *istk(il2+3) != SCI_INT32 )
+  if ( (*istk(il2) != SCI_INTEGER)  |  (*istk(il2+3) != SCI_INT32) )
     return 0;
 
 
@@ -186,7 +191,7 @@ int C2F(ishm)()
   /*  test if the first field is a matrix string with 3 components
    *  and that the first is "hm" (ie 17 22  in scilab char code)
    */
-  if ( *istk(il1) != SCI_STRING  |  (*istk(il1+1))*(*istk(il1+2)) != 3  )
+  if ( (*istk(il1) != SCI_STRING)  |  ((*istk(il1+1))*(*istk(il1+2)) != 3)  )
     return 0;
   else if ( *istk(il1+5)-1 != 2 )  /* 1 str must have 2 chars */
     return 0;
@@ -285,7 +290,11 @@ static int cre_hmat(int pos, HyperMat *H)
       return 1;
     }
 
+	/* Ajout Allan CORNET Correction Warning */
+	/* warning C4715: 'cre_hmat' : not all control paths return a value */
+	return 1;
 	
+
 }
 
 

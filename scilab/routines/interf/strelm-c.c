@@ -18,6 +18,15 @@
 
 static integer cx1 = 1;
 
+#if WIN32
+extern int C2F(getorient)( );
+extern int C2F(rcsort)( );
+extern int C2F(funnam)( );
+extern int C2F(cvdm)( );
+extern int C2F(cvwm)( );
+extern int C2F(namstr)( );
+#endif
+
 /**************************************************** 
  * [r,w]=grep(S1,S2) 
  ******************************************************/ 
