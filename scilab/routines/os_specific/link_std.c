@@ -120,7 +120,7 @@ void C2F(isciulink)(i)
 
 
 int C2F(dynload)(ii,ename1,loaded_files,err)
-     char ename1[], loaded_files[];
+     char ename1[], *loaded_files[];
      int *ii;
      int *err;
 {
@@ -157,7 +157,7 @@ int C2F(dynload)(ii,ename1,loaded_files,err)
    strcpy(prog,"");
    getpath(prog);/* prog est le pathname du fichier executable*/
    
-   sprintf (str,"\nlinking %s defined in %s with %s \n",ename1,loaded_files,prog);
+   sprintf (str,"\nlinking %s defined in %s with %s \n",ename1,*loaded_files,prog);
    Scistring(str);
 
    sprintf(tmp_file, "/tmp/SL_%d_XXXXXX",(int) getpid());
