@@ -746,7 +746,7 @@ void xstringb_1(char *fname, char *str, integer *fflag, integer *v2, integer *v3
 {
   integer x,y,w,h,wbox,hbox,size,n=1;
   integer fontid[2],narg,verbose=0;
-  if (GetDriver()=='R') 
+  if (GetDriver()=='R' && (version_flag() != 0)) 
     StoreXcall1(fname,str,fflag,1L,v2,1L,v3,1L,v4,1L,
 		&Ivide,1L,&Ivide,1L,xd,1L,yd,1L,wd,1L,hd,1L);
   x = XDouble2Pixel(*xd);
@@ -793,7 +793,8 @@ void GSciString(int Dflag, integer *x, integer *y, char *StrMat, integer *w, int
     {
       integer logrect[4];
       double angle=0.0;
-      integer flag=1;
+      /* integer flag=1; SS 10/1/03*/
+      integer flag=0;
       p2 =p1 ; *p1 = '\0';
       while ( p1 != p && *p1 != '\n' ) 
 	p1--;
