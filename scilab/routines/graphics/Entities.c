@@ -11486,6 +11486,18 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       return (double*)tab;
       break;
     case SCI_FEC: 
+      *numcol = 3;
+      *numrow = pFEC_FEATURE (pthis)->Nnode;
+      if ((tab = calloc(*numrow * 3,sizeof(double))) == NULL)
+	return (double*)NULL;
+
+      for (i=0;i < *numrow;i++) {
+	tab[i] = pFEC_FEATURE (pthis)->pvecx[i];
+	tab[*numrow+i] = pFEC_FEATURE (pthis)->pvecy[i];
+	tab[*numrow*2+i] = pFEC_FEATURE (pthis)->pfun[i];
+      }
+      return (double*)tab;
+      break;
     case SCI_LEGEND:
     case SCI_LIGHT:
     case SCI_AXIS:    
@@ -11853,7 +11865,37 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       }
       break;
     case SCI_FEC: 
-
+      {
+      double *pvecx,*pvecy,*pfun;
+      int Nnode;
+      if (*numcol != 3) {
+	sciprint ("The data must have 3 columns\n");
+	return -1;}
+      
+      Nnode = *numrow;
+      if (pFEC_FEATURE (pthis)->Nnode!=Nnode) {
+	if ((pvecx = calloc(Nnode,sizeof(double))) == NULL) {
+	  sciprint ("Not enough memory\n");
+	  return -1;}
+	if ((pvecy = calloc(Nnode,sizeof(double))) == NULL) {
+	  sciprint ("Not enough memory\n");
+	  FREE(pvecx);
+	  return -1;}
+	if ((pfun = calloc(Nnode,sizeof(double))) == NULL) {
+	  sciprint ("Not enough memory\n");
+	  FREE(pvecx);FREE(pvecy);
+	  return -1;}
+	FREE( pFEC_FEATURE (pthis)->pvecx); pFEC_FEATURE (pthis)->pvecx=pvecx;
+	FREE( pFEC_FEATURE (pthis)->pvecy); pFEC_FEATURE (pthis)->pvecy=pvecy;
+	FREE( pFEC_FEATURE (pthis)->pfun); pFEC_FEATURE (pthis)->pfun=pfun;
+      }
+      for (i=0;i < Nnode;i++) {
+	pFEC_FEATURE (pthis)->pvecx[i]=tab[i];
+	pFEC_FEATURE (pthis)->pvecy[i]=tab[Nnode+i];
+	pFEC_FEATURE (pthis)->pfun[i]=tab[2*Nnode+i];
+      }
+      }
+      break;
     case SCI_SBV:
     case SCI_SBH:
     case SCI_FIGURE:
@@ -13167,6 +13209,8 @@ int sciType (marker)
   else if (strcmp(marker,"data_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"surface_color") == 0)    {return 1;}
   else if (strcmp(marker,"rotation_style") == 0)    {return 10;}
+  else if (strcmp(marker,"triangles") == 0)    {return 1;}
+  else if (strcmp(marker,"z_bounds") == 0)    {return 1;}
   else { sciprint("\r\n Unknown property \r");return 0;}
 }
 /**sciGetAxes
@@ -13519,26 +13563,45 @@ extern void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
       pSURFACE_FEATURE (pobj)->alpha   = alpha;
     }
 }
-extern int Check3DObjs()
-{
+extern BOOL Check3DObjs()
+{  
   sciPointObj *pobj;
-  pobj=(sciPointObj *) sciGetSons(sciGetSelectedSubWin(sciGetCurrentFigure ()))->pointobj;
-  if(sciGetEntityType (pobj) == SCI_SURFACE) 
-    return 1;
-  else
-   return 0;
+  sciSons *psonstmp;
+
+  psonstmp = sciGetSons (sciGetCurrentFigure()); 
+  while (psonstmp != (sciSons *) NULL)	
+    {  
+      if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
+	{
+	  if ((pobj= sciGetSurface(psonstmp->pointobj)) != (sciPointObj *) NULL)
+	    return TRUE;
+	}
+      psonstmp = psonstmp->pnext;
+    } 
+  return FALSE;
 }
-extern BOOL CheckRotSubwin(sciPointObj *psubwin, integer x, integer y)
+extern sciPointObj *CheckClickedSubwin(integer x, integer y)
 { 
   integer box[4]; 
-  sciSetSelectedSubWin(psubwin); 
-  box[0]= Cscale.WIRect1[0]; 
-  box[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
-  box[1]= Cscale.WIRect1[1]; 
-  box[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
-  if ((x >= box[0]) && (x <= box[2]) && (y >= box[1]) && (y <= box[3])) 
-       return TRUE;
-  return FALSE;                
+  sciSons *psonstmp, *psubwin; 
+ 
+  psonstmp = sciGetSons (sciGetCurrentFigure());  
+  while (psonstmp != (sciSons *) NULL)	
+    {  
+      if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
+	{
+	  psubwin= (sciPointObj *) psonstmp->pointobj;
+	  sciSetSelectedSubWin(psubwin); 
+	  box[0]= Cscale.WIRect1[0]; 
+	  box[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
+	  box[1]= Cscale.WIRect1[1]; 
+	  box[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
+	  if ((x >= box[0]) && (x <= box[2]) && (y >= box[1]) && (y <= box[3])) 
+	    return (sciPointObj *) psubwin;                
+	}
+      psonstmp = psonstmp->pnext;
+    } 
+  return (sciPointObj *) NULL;                
 }
 
  

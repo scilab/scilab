@@ -1286,7 +1286,7 @@ void I3dRotation(void)
       }
   }
   else {
-    if ( Check3DObjs() == 0) 
+    if ( !Check3DObjs()) 
       {
 	wininfo("No 3d entities in your graphic window");
 	return;
@@ -1298,7 +1298,7 @@ void I3dRotation(void)
   C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if (strcmp("Rec",driver) != 0&& version_flag() !=0) 
+  if (strcmp("Rec",driver) != 0 && version_flag() !=0) 
     {
       Scistring("\n Use the Rec driver for 3f Rotation " );
       return;
@@ -1343,29 +1343,29 @@ void I3dRotation(void)
 		    + pSUBWIN_FEATURE(tmpsubwin)->WRect[1]*((double)Cscale.wdim[1])));
           if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0)    
 	    {
-	      psonstmp = sciGetSons (sciGetCurrentFigure());  
-	      while (psonstmp != (sciSons *) NULL)	
-		{  
-		  if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
-		    {
-		      psubwin= (sciPointObj *) psonstmp->pointobj;
-		      if (CheckRotSubwin(psubwin,xr,yr))
-			break;   
-		    }
-		  psonstmp = psonstmp->pnext;
-		} 
-	      sciSetSelectedSubWin (psubwin);
-              psurface = (sciPointObj *) sciGetSurface(psubwin);
-	      theta0 =  pSURFACE_FEATURE (psurface)-> theta; 
-	      alpha0 =  pSURFACE_FEATURE (psurface)-> alpha;
+	      psubwin = (sciPointObj *)CheckClickedSubwin(xr,yr);
+	      psurface = (sciPointObj *) sciGetSurface(psubwin); 
+	      if (psurface != (sciPointObj *)NULL)
+		{
+		  sciSetSelectedSubWin (psubwin);
+		  theta0 =  pSURFACE_FEATURE (psurface)-> theta; 
+		  alpha0 =  pSURFACE_FEATURE (psurface)-> alpha;
+		}
+	      else 
+		{
+		  wininfo("Is not a 3d Entity");
+		  if ( pixmode == 0) 
+		    C2F(dr1)("xset","alufunction",(in=3,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  return;
+		}
 	    }
           else
-	    { 
+	    {                  
 	      psonstmp = sciGetLastSons (sciGetCurrentFigure());  
-	      while (psonstmp != (sciSons *) NULL)	
+	      while (psonstmp != (sciSons *) NULL)
 		{  
 		  if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
-		    break;  
+		    break;   
 		  psonstmp = psonstmp->pnext;
 		} 
 	      sciSetSelectedSubWin (psonstmp->pointobj);
@@ -1374,7 +1374,8 @@ void I3dRotation(void)
       while ( ibutton == -1 ) 
 	{
 	  /* dessin d'un rectangle */
-	  theta= theta0 - 180.0*(x-x0);alpha=alpha0 + 180.0*(y-yy0);
+	  theta= ((int)(theta0 - 180.0*(x-x0)) % 360);
+	  alpha= ((int)(alpha0 + 180.0*(y-yy0)) % 360);
 	  wininfo("alpha=%.1f,theta=%.1f",alpha,theta); 
 	  if ( pixmode == 1) C2F(dr1)("xset","wwpc",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  dbox();

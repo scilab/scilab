@@ -1419,6 +1419,6 @@ extern HDC sciGetDC (sciPointObj * pobj);
 extern HDC sciGetHDC (sciPointObj * pobj);   
 #endif
 extern sciPointObj *sciGetSurface(sciPointObj *psubwin);
-extern BOOL CheckRotSubwin(sciPointObj *psubwin, integer x, integer y);
 extern void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha);
-extern int Check3DObjs();
+extern BOOL Check3DObjs();
+extern sciPointObj *CheckClickedSubwin(integer x, integer y);
