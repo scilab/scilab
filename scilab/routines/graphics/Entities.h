@@ -75,9 +75,9 @@
 #ifndef WIN32
 typedef unsigned short HMENU;
 typedef void *HFONT;                                         
+typedef int BOOL;                                       
+typedef unsigned long DWORD;
 #endif
-typedef long BOOL;                                       
-
 
 typedef struct tagPOINT2D
 {
@@ -86,7 +86,7 @@ typedef struct tagPOINT2D
 }
 POINT2D;
 
-typedef unsigned long DWORD;                           
+
 
 typedef struct tagPOINT3D
 {/** */
