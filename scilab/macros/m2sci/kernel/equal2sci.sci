@@ -107,9 +107,9 @@ else
       if ~bval then
 	// Variable added to varslist before insertion
 	if funptr(inservar.name)<>0 then
-	  varslist($+1)=M2scivar("%"+inservar.name,inservar.name,Infer())
+	  varslist($+1)=M2scivar("%"+inservar.name,inservar.name,Infer(list(0,0),Type(Double,Real)))
 	else
-	  varslist($+1)=M2scivar(inservar.name,inservar.name,Infer())
+	  varslist($+1)=M2scivar(inservar.name,inservar.name,Infer(list(0,0),Type(Double,Real)))
 	end
 	sci_instr.lhs(k).out(1).infer=Infer()
       else
