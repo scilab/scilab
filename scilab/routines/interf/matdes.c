@@ -4974,6 +4974,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   char  **str, **ptr, ctmp[10];    
   sciPointObj *psubwin, *figure, *tmpobj;
   struct BCG *XGC;
+
+  /* debug F.Leray 28.04.04 */
+  /* sciSubWindow * ppsubwin = NULL;*/
   
   if ((strncmp(marker,"figure_model",12) !=0) && (strncmp(marker,"axes_model",10) !=0)
       && (pobj  != pfiguremdl)  && (pobj  != paxesmdl))
@@ -5398,20 +5401,26 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    exp10( Cscale.xtics[2]) * (ceil(pSUBWIN_FEATURE (pobj)->axes.limits[3]/ (exp10( Cscale.xtics[2])))); 
 	  pSUBWIN_FEATURE (pobj)->FRect[3]=  
 	    exp10( Cscale.ytics[2]) * (ceil(pSUBWIN_FEATURE (pobj)->axes.limits[4]/ (exp10( Cscale.ytics[2])))); 
+	  
 	  /* We have pSUBWIN_FEATURE (paxesmdl)->axes.xlim[i]= Cscale.xtics[i] so what follows should be OK: */ 
 	  /* Adding F.Leray 21.04.04 */
 	  pSUBWIN_FEATURE (pobj)->FRect[4]=  
 	    exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2]) * (floor(pSUBWIN_FEATURE (pobj)->axes.limits[5]/ 
-								 (exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2])))); 
+								  (exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2])))); 
 	  pSUBWIN_FEATURE (pobj)->FRect[5]=  
 	    exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2]) * (ceil(pSUBWIN_FEATURE (pobj)->axes.limits[6]/ 
 								 (exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2])))); 
-
 	  pSUBWIN_FEATURE (pobj)->axes.limits[0] = 0;} 
       else if ((strncmp(cstk(*value),"on", 2) == 0)){
-	for (i=0;i<6 ; i++) /* F.Leray 21.04.04 : We have to go till 6 for z coord. too !! */
-	  pSUBWIN_FEATURE (pobj)->FRect[i]
-	    = pSUBWIN_FEATURE (pobj)->axes.limits[i+1];
+	
+	/*ppsubwin = pSUBWIN_FEATURE(pobj); */ /* F.Leray debug*/
+	
+	for (i=0;i<6 ; i++) 
+	  pSUBWIN_FEATURE (pobj)->FRect[i] = pSUBWIN_FEATURE (pobj)->axes.limits[i+1];
+	
+	pSUBWIN_FEATURE (pobj)->strflag[1]= '2'; /* F.Leray 28.04.04 : to force to take into account the FRect data min/max */
+	pSUBWIN_FEATURE (pobj)->axes.flag[1] = 2;
+	
 	pSUBWIN_FEATURE (pobj)->axes.limits[0] = 1; }            
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
