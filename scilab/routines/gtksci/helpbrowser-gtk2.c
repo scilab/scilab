@@ -426,7 +426,7 @@ request_url (HtmlDocument *doc,
              eek_png_tag,
              _("Could not locate help documentation"),
              name,
-             _("The requested document could not be found in your GIMP help "
+             _("The requested document could not be found in your Scilab help "
                "path as shown above. This means that the topic has not yet "
                "been written or your installation is not complete. Ensure "
                "that your installation is complete before reporting this "
@@ -573,8 +573,8 @@ open_browser_dialog (const gchar *help_path,
   g_signal_connect (window, "destroy",
                     G_CALLBACK (close_callback),
                     NULL);
-  gtk_window_set_wmclass (GTK_WINDOW (window), "helpbrowser", "Gimp");
-  gtk_window_set_title (GTK_WINDOW (window), _("GIMP Help Browser"));
+  gtk_window_set_wmclass (GTK_WINDOW (window), "helpbrowser", "Scilab");
+  gtk_window_set_title (GTK_WINDOW (window), _("Scilab Help Browser"));
 
   /* gimp_help_connect (window, gimp_standard_help_func, "dialogs/help.html"); */
 

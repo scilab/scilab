@@ -18,7 +18,7 @@ OBJSF  =
 
 include ../../Makefile.incl
 
-CFLAGS = $(CC_OPTIONS) $(TK_INC_PATH) $(TCL_INC_PATH)
+CFLAGS = $(CC_OPTIONS) $(TK_INC_PATH) $(TCL_INC_PATH) 
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
@@ -51,26 +51,32 @@ distclean::
 
 
 # generated with gcc -MMD 
-bout.o: about.c scilab-logo.xpm scilab-gw.xpm
-click.o: click.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  ../sun/men_Sutils.h ../menusX/men_scilab.h All-extern.h \
-  ../graphics/periGtk-bcg.h
+about.o: about.c 
+
+click.o: click.c ../sun/men_Sutils.h ../machine.h ../menusX/men_scilab.h \
+  ../graphics/Math.h ../graphics/Graphics.h \
+ ../graphics/Entities.h \
+  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+  ../interf/stack3.h All-extern.h
+
 command.o: command.c ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h All-extern.h ../sun/Sun.h
-helpbrowser.o: helpbrowser.c 
-io.o: io.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  ../sun/Sun.h All-extern.h ../tksci/tksci.h ../tksci/C-LAB_Interf.h \
-  ../stack-def.h
+
+helpbrowser.o: helpbrowser.c \
+  ../graphics/Math.h ../machine.h ../graphics/Graphics.h All-extern.h \
+  queue-gtk2.h uri.h
+
+io.o: io.c ../graphics/Math.h \
+  ../machine.h ../graphics/Graphics.h ../sun/Sun.h All-extern.h \
+  ../tksci/tksci.h ../tksci/C-LAB_Interf.h ../stack-def.h
+
 menus.o: menus.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  ../graphics/bcg.h ../graphics/Entities.h ../stack-c.h ../stack-def.h \
-  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h ../sun/Sun.h \
-  ../sun/men_Sutils.h All-extern.h
-queue.o: queue.c 
-readline.o: readline.c ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h
+  ../graphics/bcg.h  queue-gtk2.c queue-gtk2.h
+
+x_main.o: x_main.c  ../version.h ../machine.h \
+  ../graphics/Math.h ../graphics/Graphics.h All-extern.h 
+
 x_VTPrsTbl.o: x_VTPrsTbl.c x_VTparse.h
-x_main.o: x_main.c ../version.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h All-extern.h
+
 zzledt-rl.o: zzledt-rl.c ../machine.h zzledt.txt
-zzledt.o: zzledt.c ../machine.h x_VTparse.h
 
