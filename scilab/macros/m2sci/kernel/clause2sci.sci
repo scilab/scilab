@@ -151,15 +151,20 @@ case "while"
   for k=1:size(mtlb_clause.statements)
     [instr,nblines]=instruction2sci(mtlb_clause.statements(k),nblines)
     // If inserted instruction is an initialisation, it has to be done just one time and before loop
-    if m2sci_to_insert_b<>list() then
-      for l=1:lstsize(m2sci_to_insert_b)
-	if typeof(m2sci_to_insert_b(l))=="equal" & ..
+    l=1;
+    while l<=lstsize(m2sci_to_insert_b)
+      if typeof(m2sci_to_insert_b(l))=="equal" & ..
 	  (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
 	  and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
-	  and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) ) then
+	  and(m2sci_to_insert_b(l).expression==Funcall("cell",1,list(),list())) ) then
+        to_insert($+1)=m2sci_to_insert_b(l)
+        m2sci_to_insert_b(l)=null()
+        if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
 	  to_insert($+1)=m2sci_to_insert_b(l)
 	  m2sci_to_insert_b(l)=null()
 	end
+      else
+	l=l+1;
       end
     end
     sci_do=update_instr_list(sci_do,instr)
@@ -190,15 +195,20 @@ case "for"
   for k=1:size(mtlb_clause.statements)
     [instr,nblines]=instruction2sci(mtlb_clause.statements(k),nblines)
     // If inserted instruction is an initialisation, it has to be done just one time and before loop
-    if m2sci_to_insert_b<>list() then
-      for l=1:lstsize(m2sci_to_insert_b)
-	if typeof(m2sci_to_insert_b(l))=="equal" & ..
+    l=1;
+    while l<=lstsize(m2sci_to_insert_b)
+      if typeof(m2sci_to_insert_b(l))=="equal" & ..
 	  (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
 	  and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
-	  and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) ) then
+	  and(m2sci_to_insert_b(l).expression==Funcall("cell",1,list(),list())) ) then
+        to_insert($+1)=m2sci_to_insert_b(l)
+        m2sci_to_insert_b(l)=null()
+        if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
 	  to_insert($+1)=m2sci_to_insert_b(l)
 	  m2sci_to_insert_b(l)=null()
 	end
+      else
+	l=l+1;
       end
     end
     sci_instr=update_instr_list(sci_instr,instr)
