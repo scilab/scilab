@@ -4,6 +4,13 @@
 
 #define DOUBLE 1
 #define STRING  10
+#define REAL 0
+#define COMPLEX 1
+#define FUNCTION 13
+#define STRINGREAL 27
+#define STRINGCOMPLEX 12
+
+/* #define Abs(x) ( (x) > 0) ? (x) : -(x) */
 
 extern int C2F(intlapack)  __PARAMS((void));
 
@@ -20,10 +27,10 @@ int intqr(fname)
   switch (Rhs) {
   case 1:   /* qr(A)   */
     switch (Cmplx) {
-    case 0 :
+    case REAL :
       ret = C2F(intdgeqpf3)("qr",2L);
       break;
-    case 1 :
+    case COMPLEX :
       ret = C2F(intzgeqpf3)("qr",2L);
       break;
     default :
@@ -41,10 +48,10 @@ int intqr(fname)
     case STRING  :
       /* Economy size:  ...=qr(A,"e")  */
       switch (Cmplx) {
-      case 0 :
+      case REAL :
 	ret = C2F(intdgeqpf4)("qr",2L);
 	break;
-      case 1 :
+      case COMPLEX :
 	ret = C2F(intzgeqpf4)("qr",2L);  
 	break;
       default :
@@ -115,13 +122,13 @@ int intlsq(fname)
   header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
   CmplxA=header1[3];   Cmplxb=header2[3];
   switch (CmplxA) {
-  case 0:   
+  case REAL:   
     switch (Cmplxb) {
-    case 0 :
+    case REAL :
       /* A real, b real */
       ret = C2F(intdgelsy)("lsq",3L);
       break;
-    case 1 :
+    case COMPLEX :
       /* A real, b complex */
       C2F(complexify)((I2=1,&I2));
       ret = C2F(intzgelsy)("lsq",3L);
@@ -130,14 +137,14 @@ int intlsq(fname)
       break;
     }
     return;
-  case 1 :
+  case COMPLEX :
     switch (Cmplxb) {
-    case 0 :
+    case REAL :
       /* A complex, b real */
       C2F(complexify)((I2=2,&I2));
       ret = C2F(intzgelsy)("lsq",3L);
       break;
-    case 1 :
+    case COMPLEX :
       /* A complex, b complex */
       ret = C2F(intzgelsy)("lsq",3L);
       break;
@@ -164,11 +171,11 @@ int inteig(fname)
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
-  case 0:   
+  case REAL:   
     ret = C2F(intdgeev)("spec",4L);
     return;
     break;
-  case 1:
+  case COMPLEX:
     ret = C2F(intzgeev)("spec",4L);
     return;
     break;
@@ -189,11 +196,11 @@ int intinv(fname)
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
-  case 0:   
+  case REAL:   
     ret = C2F(intdgetri)("inv",3L);
     return;
     break;
-  case 1:
+  case COMPLEX:
     ret = C2F(intzgetri)("inv",3L);
     return;
     break;
@@ -214,11 +221,11 @@ int intrcond(fname)
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
-  case 0:   
+  case REAL:   
     ret = C2F(intdgecon)("rcond",5L);
     return;
     break;
-  case 1:
+  case COMPLEX:
     ret = C2F(intzgecon)("rcond",5L);
     return;
     break;
@@ -239,11 +246,11 @@ int intchol(fname)
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
-  case 0:   
+  case REAL:   
     ret = C2F(intdpotrf)("chol",4L);
     return;
     break;
-  case 1:
+  case COMPLEX:
     ret = C2F(intzpotrf)("chol",4L);
     return;
     break;
@@ -264,11 +271,11 @@ int intlu(fname)
   header1 = (int *) GetData(1);    
   CmplxA=header1[3];   
   switch (CmplxA) {
-  case 0:   
+  case REAL:   
     ret = C2F(intdgetrf)("lu",2L);
     return;
     break;
-  case 1:
+  case COMPLEX:
     ret = C2F(intzgetrf)("lu",2L);
     return;
     break;
@@ -289,14 +296,14 @@ int intslash(fname)
   header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
   CmplxA=header1[3];   CmplxB=header2[3];
   switch (CmplxA) {
-  case 0:   
+  case REAL:   
     switch (CmplxB) {
-    case 0 :
+    case REAL :
       /* A real, Breal */
       ret = C2F(intdgesv4)("slash",5L);
       return;
       break;
-    case 1 :
+    case COMPLEX :
       /* A real, B complex : complexify A */
       C2F(complexify)((X=1,&X));
       ret = C2F(intzgesv4)("slash",5L);
@@ -307,15 +314,15 @@ int intslash(fname)
       return;
       break;
     }
-  case 1 :
+  case COMPLEX :
     switch (CmplxB) {
-    case 0 :
+    case REAL :
       /* A complex, B real : complexify B */
       C2F(complexify)((X=2,&X));
       ret = C2F(intzgesv4)("slash",5L);
       return;
       break;
-    case 1 :
+    case COMPLEX :
       /* A complex, B complex */
       ret = C2F(intzgesv4)("slash",5L);
       return;
@@ -344,14 +351,14 @@ int intbackslash(fname)
   header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
   CmplxA=header1[3];   CmplxB=header2[3];
   switch (CmplxA) {
-  case 0:   
+  case REAL:   
     switch (CmplxB) {
-    case 0 :
+    case REAL :
       /* A real, B real */
       ret = C2F(intdgesv3)("lsq",3L);
       return;
       break;
-    case 1 :
+    case COMPLEX :
       /* A real, B complex : complexify A */
       C2F(complexify)((X=1,&X));
       ret = C2F(intzgesv3)("lsq",3L);
@@ -362,14 +369,15 @@ int intbackslash(fname)
       return;
       break;
     }
-  case 1 :
+  case COMPLEX :
     switch (CmplxB) {
-    case 0 :
+    case REAL :
       /* A complex, B real : complexify B */
       C2F(complexify)((X=2,&X));
+      ret = C2F(intzgesv3)("lsq",3L);
       return;
       break;
-    case 1 :
+    case COMPLEX :
       /* A complex, B complex */
       ret = C2F(intzgesv3)("lsq",3L);
       return;
@@ -385,6 +393,98 @@ int intbackslash(fname)
     return;
     break;
   }
+}
+
+int intschur(fname)
+     char *fname;
+
+{
+  int *header1;int *header2; int Cmplx;int ret; int something;
+  int which = 1; int i; int longueur;
+  header1 = (int *) GetData(1);   Cmplx=header1[3];
+  switch (Rhs) {
+  case 1:   /* schur(A)   */
+    switch (Cmplx) {
+    case REAL :
+      ret = C2F(intdgees0)("schur",5L);
+      break;
+    case COMPLEX :
+      ret = C2F(intzgees0)("schur",5L);
+      break;
+    default :
+      Scierror(999,"%s: Invalid input! \r\n",fname);
+      break;
+    }
+    return;
+  case 2 :   /* schur(A, something)   */
+    header2 = (int *) GetData(2); something=header2[0];
+    switch (something) {
+    case FUNCTION :
+      switch (Cmplx) {
+      case REAL :
+	ret = C2F(intoschur)("schur",5L);
+	break;
+      case COMPLEX :
+	ret = C2F(intzschur)("schur",5L);
+	break;
+      default :
+	Scierror(999,"%s: Invalid input! \r\n",fname);
+	break;
+      }
+      break;
+    case STRING  :
+      longueur=header2[5]-header2[4];
+      which = schtst(longueur, header2);
+      switch (which) {
+      case STRINGREAL:
+	switch (Cmplx) {
+	case REAL:
+	  ret = C2F(intdgees1)("schur",5L);
+	  break;
+	case COMPLEX:
+	  Scierror(999,"%s: Invalid call! \r\n",fname);
+	  break;
+	}
+	return;
+      case STRINGCOMPLEX:
+	switch (Cmplx) {
+	case REAL:
+	  ret = C2F(intdgees1)("schur",5L);
+	  break;
+	case COMPLEX:
+	  ret = C2F(intzgees1)("schur",5L);
+	  break;
+	}
+	return;
+      default:
+	/*   String is an external function  */
+	switch (Cmplx) {
+	case REAL:
+	  ret = C2F(intfschur)("schur",5L);
+	  break;
+	case COMPLEX:
+	  ret = C2F(intzfschur)("schur",5L);
+	  break;
+	}
+	return;
+      }
+    default :
+      Scierror(999,"%s: Invalid call! \r\n",fname);
+      break;
+    }
+  }
+  return 0;
+}
+
+int schtst (longueur, header)
+     int longueur;
+     int *header;
+{
+  if( (longueur==1) && ( Abs(header[6])==27 ) ) return STRINGREAL;  /* "r" */
+  if( (longueur==4) && ( Abs(header[6])==27 ) && (Abs(header[7])==14 ) && (Abs(header[6])==10 ) && ( Abs(header[6])==21 ) ) return STRINGREAL;  /* "real"  */
+  if( (longueur==4) && ( Abs(header[6])==12 ) && (Abs(header[7])==24 ) && (Abs(header[6])==22 ) && ( Abs(header[6])==25 ) ) return STRINGCOMPLEX;  /* "comp" */
+  if( (longueur==7) && ( Abs(header[6])==12 ) && (Abs(header[7])==24 ) && (Abs(header[8])==22 ) && ( Abs(header[9])==25 ) && ( Abs(header[10])==21) && ( Abs(header[11])==14) && ( Abs(header[12])==33) ) return STRINGCOMPLEX;  /* "complex" */
+return 0;
 }
 
 
@@ -407,6 +507,7 @@ static LapackTable Tab[]={
   {intlu,"lap_lu"},
   {intslash,"lap_slash"},
   {intbackslash,"lap_backslash"},
+  {intschur,"lap_schur"},
 };
 
 int C2F(intlapack)()

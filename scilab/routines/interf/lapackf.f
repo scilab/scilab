@@ -1,7 +1,7 @@
       subroutine intdgeqpf3(fname)
 
-c     [Q,R]=dgeqpf(A)
-c     [Q,R,E]=dgeqpf(A)
+c     [Q,R]=qr(A)
+c     [Q,R,E]=qr(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -131,8 +131,8 @@ c
 
       subroutine intdgeqpf4(fname)
 
-c     [Q,R]=dgeqpf(A,'e')
-c     [Q,R,E]=dgeqpf(A,'e')
+c     [Q,R]=qr(A,'e')
+c     [Q,R,E]=qr(A,'e')
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -243,8 +243,8 @@ c
 
       subroutine intzgeqpf3(fname)
 
-c     [Q,R]=zgeqpf(A)
-c     [Q,R,E]=zgeqpf(A)
+c     [Q,R]=qr(A)
+c     [Q,R,E]=qr(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -374,8 +374,8 @@ c
  
       subroutine intzgeqpf4(fname)
 
-c     [Q,R]=zgeqpf(A,'e')
-c     [Q,R,E]=zgeqpf(A,'e')
+c     [Q,R]=qr(A,'e')
+c     [Q,R,E]=qr(A,'e')
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -488,8 +488,8 @@ c
  
       subroutine intdgesvd1(fname)
 
-c     [U,S,V]=dgesvd(A)
-c     s = dgesvd(A)
+c     [U,S,V]=svd(A)
+c     s = svd(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -597,8 +597,8 @@ c
 
       subroutine intdgesvd2(fname)
 
-c     [U,S,V]=dgesvd(A)
-c     s = dgesvd(A)
+c     [U,S,V]=svd(A)
+c     s = svd(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -706,8 +706,8 @@ c
 
       subroutine intzgesvd1(fname)
 
-c     [U,S,V]=zgesvd(A)
-c     s = zgesvd(A)
+c     [U,S,V]=svd(A)
+c     s = svd(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -818,8 +818,8 @@ c
 
       subroutine intzgesvd2(fname)
 
-c     [U,S,V]=zgesvd(A)
-c     s = zgesvd(A)
+c     [U,S,V]=svd(A)
+c     s = svd(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -931,7 +931,7 @@ c
 
       subroutine intdgelsy(fname)
 
-c     [X,rank]=dgelsy(A,B,rcond)
+c     [X,rank]=lsq(A,B,rcond)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -1022,7 +1022,7 @@ c
 
       subroutine intzgelsy(fname)
 
-c     [X,rank]=zgelsy(A,B,rcond)
+c     [X,rank]=lsq(A,B,rcond)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -1109,8 +1109,8 @@ c
 
       subroutine intdgeev(fname)
 
-c     [V,D]=dgeev(A)
-c     d = dgeev(A)
+c     [V,D]=spec(A)
+c     d = spec(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -1232,7 +1232,7 @@ c
 
       subroutine intzgeev(fname)
 
-c     [V,D]=zgeev(A)
+c     [V,D]=spec(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -1326,7 +1326,7 @@ c
 
       subroutine intdgetri(fname)
 
-c     B = dgetri(A)
+c     B = inv(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -1378,7 +1378,7 @@ c
 
       subroutine intzgetri(fname)
 
-c     B = zgetri(A)
+c     B = inv(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -1556,7 +1556,7 @@ c
 
       subroutine intdpotrf(fname)
 
-c     U = dpotrf(A)
+c     U = chol(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -1602,7 +1602,7 @@ c
 
       subroutine intzpotrf(fname)
 
-c     U = zpotrf(A)
+c     U = chol(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -1649,7 +1649,7 @@ c
 
       subroutine intdgetrf(fname)
 
-c     [L,U,E] = dgetrf(A)
+c     [L,U,E] = lu(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -1725,7 +1725,7 @@ c
 
       subroutine intzgetrf(fname)
 
-c     [L,U,E] = zgetrf(A)
+c     [L,U,E] = lu(A)
 
       include '../stack.h'
       logical getrhsvar,createvar
@@ -2356,12 +2356,1006 @@ c       SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
 c
        end
 
+      subroutine intdsyev(fname)
+
+c     [D,V]=spec(A)   A=A'
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+
+      character fname*(*)
+      character JOBZ, UPLO
+      double precision ZERO
+      parameter ( ZERO=0.0D0 )
+c
+       minrhs=1
+       maxrhs=1
+       minlhs=1
+       maxlhs=2
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'d', M, N, lA)) return
+       if(M.ne.N) then
+         buf='dsyev'//': the matrix must be square'
+         call error(998)
+         return
+       endif
+       if(lhs.eq.1) then
+         if(.not.createvar(2,'d', N, 1, lD)) return              
+       else
+         if(.not.createvar(2,'d', N, N, lD)) return
+       endif
+       if(.not.createvar(3,'d', N, 1, lW)) return
+       LWORKMIN = 3*N - 1
+       LWORK=maxvol(4,'d')
+       if(LWORK.le.LWORKMIN) then
+         buf='dsyev'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(4,'d',1,LWORK,lDWORK)) return
+      if(lhs.eq.1) then
+        JOBZ = 'N'
+      else
+        JOBZ = 'V'
+      endif 
+      UPLO = 'U'
+      call DSYEV( JOBZ, UPLO, N, stk(lA), N, stk(lW),
+     $     stk(lDWORK), LWORK, INFO )
+c      SUBROUTINE DSYEV( JOBZ, UPLO, N, A, LDA, W, WORK, LWORK, INFO )
+       if(info.ne.0) then
+         call errorinfo("dsyev",info)
+         return
+       endif
+
+      if(lhs.eq.1) then
+        do 10 i = 1, N
+           stk(lD+i-1) = stk(lW+i-1)
+  10    continue     
+      else 
+        call DLASET( 'F', N, N, ZERO, ZERO, stk(lD), N ) 
+c       SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+
+        do 20 i = 1, N
+           ii = i+(i-1)*N
+           stk(lD+ii-1) = stk(lW+i-1)
+ 20     continue   
+      endif 
+      lhsvar(1)=2
+      lhsvar(2)=1
+c
+       end
+
+
+      subroutine intzheev(fname)
+
+c     [D,V]=spec(A)    A=A'
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+
+      character fname*(*)
+      character JOBZ, UPLO
+      double precision ZERO
+      parameter ( ZERO=0.0D0 )
+
+       minrhs=1
+       maxrhs=1
+       minlhs=1
+       maxlhs=2
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'z', M, N, lA)) return
+       if(M.ne.N) then
+         buf='zheev'//': the matrix must be square'
+         call error(998)
+         return
+       endif
+       if(lhs.eq.1) then
+         if(.not.createvar(2,'d', N, 1, lD)) return              
+       else
+         if(.not.createvar(2,'d', N, N, lD)) return
+       endif
+       if(.not.createvar(3,'d', N, 1, lW)) return
+       if(.not.createvar(4,'d', 3*N-2, 1, lRWORK)) return
+       LWORKMIN = 2*N - 1
+       LWORK=maxvol(5,'z')
+       if(LWORK.le.LWORKMIN) then
+         buf='zheev'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(5,'z',1,LWORK,lDWORK)) return
+
+      if(lhs.eq.1) then
+        JOBZ = 'N'
+      else
+        JOBZ = 'V'
+      endif 
+      UPLO = 'U'
+      call ZHEEV( JOBZ, UPLO, N, zstk(lA), N, stk(lW),
+     $     zstk(lDWORK), LWORK, stk(lRWORK), INFO )
+c      SUBROUTINE ZHEEV( JOBZ, UPLO, N, A, LDA, W, WORK, LWORK,
+c     $    stk(lROWK), INFO )
+       if(info.ne.0) then
+         call errorinfo("zheev",info)
+         return
+       endif
+
+      if(lhs.eq.1) then
+        do 10 i = 1, N
+           stk(lD+i-1) = stk(lW+i-1)
+  10    continue     
+      else 
+        call DLASET( 'F', N, N, ZERO, ZERO, stk(lD), N ) 
+c       SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+
+        do 20 i = 1, N
+           ii = i+(i-1)*N
+           stk(lD+ii-1) = stk(lW+i-1)
+ 20     continue   
+      endif 
+      lhsvar(1)=2
+      lhsvar(2)=1
+c
+       end
+
+      subroutine intdgees0(fname)
+
+c     [VS,T]=schur(A)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs 
+
+      character fname*(*)
+      character*4 JOBVS, SORT
+      integer SDIM
+      logical lsame, voiddummy
+      external voiddummy
+
+       minrhs=1
+       maxrhs=1
+       minlhs=1
+       maxlhs=2
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'d', M, N, lA)) return
+       if(M.ne.N) then
+         buf='dgees'//': the matrix must be square'
+         call error(998)
+         return
+       endif
+       if(N.eq.0) then
+         if(lhs.eq.1) then
+           lhsvar(1) = 1
+           return
+         else if(lhs.eq.2) then
+           if(.not.createvar(2,'d', N, N, lV)) return
+           lhsvar(1) = 2
+           lhsvar(2) = 1
+           return
+         endif
+       endif
+
+         if(.not.createvar(2,'d', N, 1, lWR)) return
+         if(.not.createvar(3,'d', N, 1, lWI)) return
+         k = 4
+         if(lhs.gt.1) then
+            if(.not.createvar(4,'d', N, N, lVS)) return
+            k = 5
+         endif
+         if(.not.createvar(k,'i', N, 1, lBWORK)) return
+         LWORKMIN = 3*N
+         LWORK=maxvol(k+1,'d')
+         if(LWORK.le.LWORKMIN) then
+           buf='dgees'//': not enough memory (use stacksize)'
+           call error(998)
+           return
+         endif
+         if(.not.createvar(k+1,'d',1,LWORK,lDWORK)) return
+
+
+      if(lhs.eq.1) then
+        JOBVS = 'N'
+      else
+        JOBVS = 'V'
+      endif 
+      SORT = 'N'
+
+         call DGEES( JOBVS, SORT, voiddummy, N, stk(lA), N, SDIM,
+     $     stk(lWR), stk(lWI), stk(lVS), N, stk(lDWORK), LWORK,
+     $     istk(lBWORK), INFO )
+c        SUBROUTINE DGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, WR, WI,
+c     $    VS, LDVS, WORK, LWORK, INFO )
+         if(info.ne.0) then
+           call errorinfo("dgees",info)
+           return
+         endif
+
+        if(lhs.eq.1) then
+          lhsvar(1) = 1
+        else
+          lhsvar(1)=4
+          lhsvar(2)=1
+        endif
+c
+       end
+
+
+
+      subroutine intdgees1(fname)
+
+c     [VS,T]=schur(A,'type')
+c     type is r or c
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs 
+
+      character fname*(*)
+     
+      character TYPE, JOBVS, SORT
+      integer SDIM
+      logical lsame, voiddummy, WANTD, WANTZ
+      double precision ZERO
+      parameter (ZERO = 0.0D0)
+      complex*16 complex
+      external voiddummy
+
+       minrhs=2
+       maxrhs=2
+       minlhs=1
+       maxlhs=2
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'d', M, N, lA)) return
+       if(M.ne.N) then
+         buf='dgees'//': the matrix must be square'
+         call error(998)
+         return
+       endif
+       if(N.eq.0) then
+         if(lhs.eq.1) then
+           lhsvar(1) = 1
+           return
+         else if(lhs.eq.2) then
+           if(.not.createvar(2,'d', N, N, lV)) return
+           lhsvar(1) = 2
+           lhsvar(2) = 1
+           return
+         endif
+       endif
+       if(.not.getrhsvar(2,'c', M1, N1, lTYPE)) return
+       TYPE = cstk(lTYPE:lTYPE)
+       WANTD = (TYPE.eq.'r' .or. TYPE.eq.'R')
+       WANTZ = (TYPE.eq.'c' .or. TYPE.eq.'C')
+
+       if(.not.WANTD .and. .not.WANTZ) then
+         buf='dgees'//': type must be real or complex'
+         call error(998)
+         return
+       endif
+       if(WANTD) then
+         if(.not.createvar(3,'d', N, 1, lWR)) return
+         if(.not.createvar(4,'d', N, 1, lWI)) return
+         k = 5
+         if(lhs.gt.1) then
+            if(.not.createvar(5,'d', N, N, lVS)) return
+            k = 6
+         endif
+         if(.not.createvar(k,'i', N, 1, lBWORK)) return
+         LWORKMIN = 3*N
+         LWORK=maxvol(k+1,'d')
+         if(LWORK.le.LWORKMIN) then
+           buf='dgees'//': not enough memory (use stacksize)'
+           call error(998)
+           return
+         endif
+         if(.not.createvar(k+1,'d',1,LWORK,lDWORK)) return
+      else
+         if(.not.createvar(3,'z', N, N, lT)) return
+         if(.not.createvar(4,'z', N, 1, lW)) return
+         k = 5
+         if(lhs.gt.1) then
+            if(.not.createvar(5,'z', N, N, lVS)) return
+            k = 6
+         endif
+         if(.not.createvar(k,'d', N, 1, lRWORK)) return
+         if(.not.createvar(k+1,'i', N, 1, lBWORK)) return
+         LWORKMIN = 2*N
+         LWORK=maxvol(k+2,'z')
+         if(LWORK.le.LWORKMIN) then
+           buf='zgees'//': not enough memory (use stacksize)'
+           call error(998)
+           return
+         endif
+         if(.not.createvar(k+2,'z',1,LWORK,lDWORK)) return     
+      endif
+
+      if(lhs.eq.1) then
+        JOBVS = 'N'
+      else
+        JOBVS = 'V'
+      endif 
+      SORT = 'N'
+
+      if(WANTD) then
+         call DGEES( JOBVS, SORT, voiddummy, N, stk(lA), N, SDIM, 
+     $        stk(lWR),
+     $     stk(lWI), stk(lVS), N, stk(lDWORK), LWORK, istk(lBWORK),
+     $     INFO )
+c        SUBROUTINE DGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, WR, WI,
+c     $    VS, LDVS, WORK, LWORK, INFO )
+         if(info.ne.0) then
+           call errorinfo("dgees",info)
+           return
+         endif
+      else
+         do 20 i = 1, N
+            do 10 j = 1, N
+               ij = i+(j-1)*N
+               zstk(lT+ij-1) = complex(stk(lA+ij-1),ZERO)
+   10       continue
+   20    continue     
+         call ZGEES( JOBVS, SORT, voiddummy, N, zstk(lT), N, SDIM,
+     $     zstk(lW), zstk(lVS), N, zstk(lDWORK), LWORK, stk(lRWORK),
+     $     istk(lBWORK), INFO )
+c        SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W,
+c     $    VS, LDVS, WORK, LWORK, RWORK, BWORK, INFO )
+         if(info.ne.0) then
+           call errorinfo("zgees",info)
+           return
+         endif
+      endif
+
+      if(WANTD) then
+        if(lhs.eq.1) then
+          lhsvar(1) = 1
+        else
+          lhsvar(1)=5
+          lhsvar(2)=1
+        endif
+      else
+        if(lhs.eq.1) then
+          lhsvar(1) = 3
+        else
+          lhsvar(1)=5
+          lhsvar(2)=3
+        endif
+      endif
+c
+       end
+
+ 
+      subroutine intoschur(fname)
+
+c     [VS,dim]=schur(A,function)
+c     [VS,dim,T]=oschur(A,function)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+
+      character fname*(*)
+      character*4  JOBVS, SORT
+      logical SCISCHUR,scichk
+      external SCISCHUR,scichk
+      common /scisch/ lf, nfree
+
+      minrhs=2
+      maxrhs=2
+      minlhs=1
+      maxlhs=3
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+      if(.not.getrhsvar(1,'d', M, N, lA)) return
+      if(M.ne.N) then
+         buf='dgees'//': the matrix must be square'
+         call error(998)
+         return
+      endif
+       if(N.eq.0) then
+         if(lhs.eq.1) then
+           lhsvar(1) = 1
+           return
+         else if(lhs.eq.2) then
+           if(.not.createvar(2,'d', 0, 0, lSDIM)) return
+           lhsvar(1)=1
+           lhsvar(2)=2
+           return
+         else if(lhs.eq.3) then
+           if(.not.createvar(2,'d', N, N, lVS)) return
+           if(.not.createvar(3,'i', 0, 0, lSDIM)) return 
+           lhsvar(1)=2
+           lhsvar(2)=3
+           lhsvar(3)=1
+           return
+         endif
+       endif
+      if(.not.getrhsvar(2,'f', mlhs, mrhs, lf)) return
+      if(mlhs.ne.1 .or. mrhs.ne.1) then
+         buf='invalid ordering function passed to schur' 
+         call error(999)
+         return
+      endif
+      if(.not.createvar(3,'d', N, 1, lWR)) return
+      if(.not.createvar(4,'d', N, 1, lWI)) return
+      k = 5
+      if(lhs.gt.1) then
+         if(.not.createvar(5,'d', N, N, lVS)) return
+         k = 6
+      endif
+      if(.not.createvar(k,'i', 1, 1, lSDIM)) return 
+      if(.not.createvar(k+1,'i', N, 1, lBWORK)) return
+      LWORKMIN = 3*N
+      LWORK = LWORKMIN
+      if(.not.createvar(k+2,'d',1,LWORKMIN,lDWORK)) return
+      nfree=k+3
+
+      if(lhs.eq.1) then
+         JOBVS = 'N'
+         lVS = lDWORK
+      else
+         JOBVS = 'V'
+      endif 
+      SORT = 'S'
+      if(.not.scichk()) return
+      call DGEES( JOBVS, SORT, SCISCHUR, N, stk(lA), N, istk(lSDIM),
+     $     stk(lWR), stk(lWI), stk(lVS), N, stk(lDWORK), LWORK,
+     $     istk(lBWORK), INFO )
+
+      if(info.ne.0) then
+         call errorinfo("dgees",info)
+         return
+      endif
+      
+      if(lhs.eq.1) then
+         lhsvar(1) = 1
+      else if(lhs.eq.2) then
+         lhsvar(1)=5
+         lhsvar(2)=6
+      else if(lhs.eq.3) then 
+         lhsvar(1)=5
+         lhsvar(2)=6
+         lhsvar(3)=1
+      endif
+c     
+      end
+      
+      logical function scischur(re,im)
+      INCLUDE '../stack.h'
+      logical scifunction, createvar
+      common /scisch/ lf, nx
+      integer iadr
+      double precision re, im
+c
+      iadr(l) = l+l-1
+c
+      scischur=.false.
+      if(.not.createvar(nx,'d',1,2,lx)) return
+      stk(lx)=re
+      stk(lx+1)=im
+      if(.not.scifunction(nx,lf,1,1)) return
+c     stk(lx)=fct([re,im])  evaluated by scilab fct pointed to by lf
+      ilx=iadr(lx-2)
+      if(istk(ilx).eq.1) then
+         scischur=(stk(lx).ne.0.0d0)
+      elseif (istk(ilx).eq.4) then
+         scischur=(istk(ilx+3).ne.0)
+      endif
+      return
+      end
+
+      logical function scichk()
+c    checks fct passed to schur
+      INCLUDE '../stack.h'
+      logical scifunction, createvar
+      double precision re, im
+c     
+      integer iadr
+      common/ierinv/iero
+      common /scisch/ lf, nx
+      iadr(l) = l+l-1
+      scichk=.false.
+      if(.not.createvar(nx,'d',1,2,lx)) return
+      stk(lx)=1.0d0
+      stk(lx+1)=1.0d0
+      if(.not.scifunction(nx,lf,1,1)) then
+c     error into fct passed to schur (schur(A,tst))
+         return
+      endif
+c     check return value of fct
+      ilx=iadr(lx-2)
+      if(istk(ilx).ne.1 .and. istk(ilx).ne.4) then
+         buf='invalid return value for function passed to schur!'
+         call error(999)
+      return
+      endif
+      if(istk(ilx+1)*istk(ilx+2).ne.1) then
+         buf='invalid return value for function passed to schur!'
+         call error(999)
+      return
+      endif
+      scichk=.true.
+      return
+      end
+
+
+      subroutine intzgees0(fname)
+
+c     [VS,T]=schur(A)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+
+      character fname*(*)
+      character  JOBVS, SORT
+      integer SDIM
+      logical lsame
+      logical voiddummy
+      external voiddummy
+
+       minrhs=1
+       maxrhs=1
+       minlhs=1
+       maxlhs=2
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'z', M, N, lA)) return
+       if(M.ne.N) then
+         buf='zgees'//': the matrix must be square'
+         call error(998)
+         return
+       endif
+       if(N.eq.0) then
+         if(lhs.eq.1) then
+           lhsvar(1) = 1
+           return
+         else if(lhs.eq.2) then
+           if(.not.createvar(2, 'z', N, N, lVS)) return
+           lhsvar(1) = 2
+           lhsvar(2) = 1
+           return
+         endif
+       endif  
+       if(.not.createvar(2,'z', N, 1, lW)) return
+       k = 3
+       if(lhs.gt.1) then
+          if(.not.createvar(3,'z', N, N, lVS)) return
+          k = 4
+       endif
+       if(.not.createvar(k,'d', N, 1, lRWORK)) return
+       if(.not.createvar(k+1,'i', N, 1, lBWORK)) return
+       LWORKMIN = 2*N
+       LWORK=maxvol(k+2,'z')
+       if(LWORK.le.LWORKMIN) then
+         buf='zgees'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+       endif
+       if(.not.createvar(k+2,'z',1,LWORK,lDWORK)) return     
+      if(lhs.eq.1) then
+        JOBVS = 'N'
+      else
+        JOBVS = 'V'
+      endif 
+      SORT = 'N'
+
+      call ZGEES( JOBVS, SORT, voiddummy, N, zstk(lA), N, SDIM,
+     $  zstk(lW), zstk(lVS), N, zstk(lDWORK), LWORK, stk(lRWORK),
+     $  istk(lBWORK), INFO )
+c      SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W,
+c     $  VS, LDVS, WORK, LWORK, RWORK, BWORK, INFO )
+      if(info.ne.0) then
+        call errorinfo("zgees",info)
+        return
+      endif
+    
+      if(lhs.eq.1) then
+        lhsvar(1) = 1
+      else
+        lhsvar(1)=3
+        lhsvar(2)=1
+      endif
+c
+       end
+
+
+      subroutine intzgees1(fname)
+
+c     [VS,T]=schur(A,'type')
+c     type is complex
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+
+      character fname*(*)
+      character  TYPE, JOBVS, SORT
+      integer SDIM
+      logical lsame, voiddummy, WANTZ
+      external voiddummy
+
+       minrhs=2
+       maxrhs=2
+       minlhs=1
+       maxlhs=2
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'z', M, N, lA)) return
+       if(M.ne.N) then
+         buf='zgees'//': the matrix must be square'
+         call error(998)
+         return
+       endif
+       if(N.eq.0) then
+         if(lhs.eq.1) then
+           lhsvar(1) = 1
+           return
+         else if(lhs.eq.2) then
+           if(.not.createvar(2, 'z', N, N, lVS)) return
+           lhsvar(1) = 2
+           lhsvar(2) = 1
+           return
+         endif
+       endif  
+
+       if(.not.getrhsvar(2,'c', M1, N1, lTYPE)) return
+       TYPE = cstk(lTYPE:lTYPE)
+       WANTZ = (TYPE.eq.'c' .or. TYPE.eq.'C')
+       if(.not.WANTZ) then
+         buf='zgees'//': type must be complex'
+         call error(998)
+         return
+       endif
+
+       if(.not.createvar(3,'z', N, 1, lW)) return
+       k = 4
+       if(lhs.gt.1) then
+          if(.not.createvar(4,'z', N, N, lVS)) return
+          k = 5
+       endif
+       if(.not.createvar(k,'d', N, 1, lRWORK)) return
+       if(.not.createvar(k+1,'i', N, 1, lBWORK)) return
+       LWORKMIN = 2*N
+       LWORK=maxvol(k+2,'z')
+       if(LWORK.le.LWORKMIN) then
+         buf='zgees'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+       endif
+       if(.not.createvar(k+2,'z',1,LWORK,lDWORK)) return     
+      if(lhs.eq.1) then
+        JOBVS = 'N'
+      else
+        JOBVS = 'V'
+      endif 
+      SORT = 'N'
+
+      call ZGEES( JOBVS, SORT, voiddummy, N, zstk(lA), N, SDIM,
+     $  zstk(lW), zstk(lVS), N, zstk(lDWORK), LWORK, stk(lRWORK),
+     $  istk(lBWORK), INFO )
+c      SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W,
+c     $  VS, LDVS, WORK, LWORK, RWORK, BWORK, INFO )
+      if(info.ne.0) then
+        call errorinfo("zgees",info)
+        return
+      endif
+    
+      if(lhs.eq.1) then
+        lhsvar(1) = 1
+      else
+        lhsvar(1)=4
+        lhsvar(2)=1
+      endif
+c
+       end
 
 
 
 
 
 
+
+      LOGICAL FUNCTION SELECTC( EIG )
+C
+C     RELEASE 4.0, WGS COPYRIGHT 2001.
+C
+C     PURPOSE
+C
+C     To select the stable eigenvalues in ordering the Schur form
+C     of a matrix.
+C
+C     ARGUMENTS
+C
+C     Input/Output Parameters
+C
+C     EIG    (input) COMPLEX*16
+C             The  current eigenvalue considered.
+C
+C     METHOD
+C
+C     The function value SELECTC is set to .TRUE. for a stable eigenvalue
+C     and to .FALSE., otherwise.
+C
+C     REFERENCES
+C
+C     None.
+C
+C     NUMERICAL ASPECTS
+C
+C     None.
+C
+C     CONTRIBUTOR
+C
+C    
+C
+C     REVISIONS
+C
+C     -
+C
+C     KEYWORDS
+C
+C     Algebraic Riccati equation, closed loop system, continuous-time
+C     system, optimal regulator, Schur form.
+C
+C     ******************************************************************
+C
+C     .. Parameters ..
+      DOUBLE PRECISION  ZERO
+      PARAMETER         ( ZERO = 0.0D0 )
+C     .. Scalar Arguments ..
+      COMPLEX*16        EIG
+C     .. Intrinsic Functions ..
+      INTRINSIC         DREAL
+C     .. Executable Statements ..
+C
+      SELECTC = DREAL(EIG).LT.ZERO
+C
+      RETURN
+C *** Last line of SELECTC ***
+      END
+
+
+      LOGICAL FUNCTION SELECTD( EIG )
+C
+C     RELEASE 4.0, WGS COPYRIGHT 2001.
+C
+C     PURPOSE
+C
+C     To select the eigenvalues inside the unit circle in ordering
+C     the Schur form of a matrix.
+C
+C     ARGUMENTS
+C
+C     Input/Output Parameters
+C
+C     EIG    (input) COMPLEX*16
+C             The  current eigenvalue considered.
+C
+C     METHOD
+C
+C     The function value SELECTC is set to .TRUE. for an eigenvalue which
+C     is inside the unit circle and to .FALSE., otherwise.
+C
+C     REFERENCES
+C
+C     None.
+C
+C     NUMERICAL ASPECTS
+C
+C     None.
+C
+C     CONTRIBUTOR
+C
+C    
+C
+C     REVISIONS
+C
+C     -
+C
+C     KEYWORDS
+C
+C     Algebraic Riccati equation, closed loop system, continuous-time
+C     system, optimal regulator, Schur form.
+C
+C     ******************************************************************
+C
+C     .. Parameters ..
+      DOUBLE PRECISION  ONE
+      PARAMETER         ( ONE = 1.0D0 )
+C     .. Scalar Arguments ..
+      COMPLEX*16        EIG
+C     .. Intrinsic Functions ..
+      INTRINSIC ABS
+C     .. Executable Statements ..
+C
+      SELECTD = ABS(EIG).LT.ONE
+C
+      RETURN
+C *** Last line of SELECTD ***
+      END
+
+
+      subroutine intzschur(fname)
+
+c     [VS,dim]=zschur(A,function)
+c     [VS,dim,T]=zschur(A,function)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+  
+      character fname*(*)
+      character*4  JOBVS, SORT
+      logical SCIZSCHUR,scizchk
+      external SCIZSCHUR,scizchk
+      common /scisch/ lf, nfree
+
+      minrhs=2
+      maxrhs=2
+      minlhs=1
+      maxlhs=3
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+      if(.not.getrhsvar(1,'z', M, N, lA)) return
+      if(M.ne.N) then
+         buf='zgees'//': the matrix must be square'
+         call error(998)
+         return
+      endif
+       if(N.eq.0) then
+         if(lhs.eq.1) then
+           lhsvar(1) = 1
+           return
+         else if(lhs.eq.2) then
+           if(.not.createvar(2,'z', 0, 0, lSDIM)) return
+           lhsvar(1)=1
+           lhsvar(2)=2
+           return
+         else if(lhs.eq.3) then
+           if(.not.createvar(2,'z', N, N, lVS)) return
+           if(.not.createvar(3,'i', 0, 0, lSDIM)) return 
+           lhsvar(1)=2
+           lhsvar(2)=3
+           lhsvar(3)=1
+           return
+         endif
+       endif
+
+      if(.not.getrhsvar(2,'f', mlhs, mrhs, lf)) return
+      if(mlhs.ne.1 .or. mrhs.ne.1) then
+         buf='invalid ordering function passed to schur' 
+         call error(999)
+         return
+      endif
+      if(.not.createvar(3,'z', N, 1, lW)) return
+      k = 4
+      if(lhs.gt.1) then
+         if(.not.createvar(4,'z', N, N, lVS)) return
+         k = 5
+      endif
+      if(.not.createvar(k,'i', 1, 1, lSDIM)) return 
+      if(.not.createvar(k+1,'i',N, 1, lBWORK)) return
+      if(.not.createvar(k+2,'d', N, 1, lRWORK)) return
+      LWORKMIN = 3*N
+      LWORK = LWORKMIN
+      if(.not.createvar(k+3,'z',1,LWORKMIN,lDWORK)) return
+      nfree=k+4
+
+      if(lhs.eq.1) then
+         JOBVS = 'N'
+         lVS = lDWORK
+      else
+         JOBVS = 'V'
+      endif 
+      SORT = 'S'
+
+      if(.not.scizchk()) return
+      call ZGEES( JOBVS, SORT, SCIZSCHUR, N, zstk(lA), N, istk(lSDIM),
+     $     zstk(lW), zstk(lVS), N, zstk(lDWORK), LWORK, stk(lRWORK),
+     $     istk(lBWORK), INFO )
+      if(info.ne.0) then
+         call errorinfo("zgees",info)
+         return
+      endif
+      
+      if(lhs.eq.1) then
+         lhsvar(1) = 1
+      else if(lhs.eq.2) then
+         lhsvar(1)=4
+         lhsvar(2)=5
+      else if(lhs.eq.3) then 
+         lhsvar(1)=4
+         lhsvar(2)=5
+         lhsvar(3)=1
+      endif
+c     
+      end
+      
+      logical function scizschur(w)
+      INCLUDE '../stack.h'
+      logical scifunction, createvar
+      common /scisch/ lf, nx
+      integer iadr
+      complex*16 w
+      intrinsic dreal, dimag
+c
+      iadr(l) = l+l-1
+c
+      scizschur=.false.
+      if(.not.createvar(nx,'d',1,2,lx)) return
+      stk(lx)=dreal(w)
+      stk(lx+1)=dimag(w)
+      if(.not.scifunction(nx,lf,1,1)) return
+c     stk(lx)=fct([re,im])  evaluated by scilab fct pointed to by lf
+      ilx=iadr(lx-2)
+      if(istk(ilx).eq.1) then
+         scizschur=(stk(lx).ne.0.0d0)
+      elseif (istk(ilx).eq.4) then
+         scizschur=(istk(ilx+3).ne.0)
+      endif
+      return
+      end
+
+      logical function scizchk()
+c    checks fct passed to schur
+      INCLUDE '../stack.h'
+      logical scifunction, createvar
+c     
+      integer iadr
+      common/ierinv/iero
+      common /scisch/ lf, nx
+      iadr(l) = l+l-1
+      scizchk=.false.
+      if(.not.createvar(nx,'d',1,2,lx)) return
+      stk(lx)=1.0d0
+      stk(lx+1)=1.0d0
+      if(.not.scifunction(nx,lf,1,1)) then
+c     error into fct passed to schur (schur(A,tst))
+         return
+      endif
+c     check return value of fct
+      ilx=iadr(lx-2)
+      if(istk(ilx).ne.1 .and. istk(ilx).ne.4) then
+         buf='invalid return value for function passed to schur!'
+         call error(999)
+      return
+      endif
+      if(istk(ilx+1)*istk(ilx+2).ne.1) then
+         buf='invalid return value for function passed to schur!'
+         call error(999)
+      return
+      endif
+      scizchk=.true.
+      return
+      end
+
+      logical function voiddummy(ar,ai)
+
+      voiddummy = .false.
+      return
+      end
 
 
 
