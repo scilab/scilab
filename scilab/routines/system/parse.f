@@ -225,7 +225,7 @@ c
 c     lhs begins with name
 c-------------------------
 c     check if it is a simple command like clear,...
- 20   call comand(syn)
+ 20   call comand(syn,0)
       if (err .gt. 0) goto 98
       if (fin.eq.0) goto 21
 
