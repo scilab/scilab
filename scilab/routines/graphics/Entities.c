@@ -373,6 +373,12 @@ sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
 }
 
 
+sciHandleTab *
+sciGetpendofhandletab()
+{
+  return pendofhandletab;
+}
+
 /**sciAddNewHandle
  * @memo Returns a generated handle for this object, and put the handle and the object in the handle table
  */
@@ -555,7 +561,7 @@ sciGetPointerFromHandle (long handle)
       
       if (phandletab == NULL)
 	{
-	  sciprint ("this is not a valid handle !!\n");
+	  sciprint ("this is not or no more a valid handle !!\n"); /* F.Leray Adding 'or no more' */
 	  return (sciPointObj *) NULL;
 	}  
       return (sciPointObj *) phandletab->pointobj;
@@ -566,7 +572,7 @@ sciGetPointerFromHandle (long handle)
     return (sciPointObj *) paxesmdl;
   else
     {
-      sciprint ("this is not a valid handle !!\n");
+      sciprint ("this is not or no more a valid handle !!\n"); /* F.Leray Adding 'or no more' */
       return (sciPointObj *) NULL;
     }
     
@@ -7487,7 +7493,9 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
 
 
 /**sciDelGraphicObj
- * This function delete only users graphics object and its dependency limited to SCI_TITLE SCI_LEGEND SCI_ARC case SCI_POLYLINE SCI_RECTANGLE SCI_SURFACE SCI_AXIS SCI_MENU SCI_MENUCONTEXT SCI_SUBWIN
+ * This function delete only users graphics object and its dependency limited to 
+ * SCI_TITLE SCI_LEGEND SCI_ARC SCI_POLYLINE SCI_RECTANGLE SCI_SURFACE 
+ * SCI_AXIS SCI_MENU SCI_MENUCONTEXT SCI_SUBWIN
  * @param sciPointObj * pthis: the pointer to the entity
  */
 int
@@ -8068,7 +8076,7 @@ int C2F(graphicsmodels) ()
   pFIGURE_FEATURE (pfiguremdl)->wshow = 0; 
 
   /* F.Leray Adding some FontContext Info for InitFontContext function */
-  //  pFIGURE_FEATURE (pfiguremdl)->fontcontext.backgroundcolor = 
+  /*  pFIGURE_FEATURE (pfiguremdl)->fontcontext.backgroundcolor = */
 
   
   if ((paxesmdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
@@ -14428,14 +14436,23 @@ void sciRedrawF(value)
   integer cur,na,verb=0;
  
   figure= (sciPointObj *) sciIsExistingFigure(value); 
-  C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
-  C2F (dr) ("xset", "window",value,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
-  /* sciSetCurrentObj(figure); */ /*F.Leray 25.03.04*/
-  sciSetReplay (TRUE);
-  sciDrawObj (figure);
-  sciSetReplay (FALSE);
-  C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
-   
+  /* F.Leray 13.04.04 : Test if returned sciPointObj* is NULL (means Figure has been destroyed) */
+
+  if(figure == (sciPointObj *)  NULL)
+    {
+      /* Do nothing */
+    }
+  else
+    {
+      C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
+      C2F (dr) ("xset", "window",value,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
+      /* sciSetCurrentObj(figure); */ /*F.Leray 25.03.04*/
+      sciSetReplay (TRUE);
+      sciDrawObj (figure);
+      sciSetReplay (FALSE);
+      C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
+    }
+  
 }
 
 void sciXbasc()
@@ -16379,8 +16396,8 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
 /*   sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]); */
 /*   sciprint("THEN WE DO THE Min(Xmin,pSUBWIN_FEATURE (subwindowtmp)->axes.limits[X]\n\n"); */
   
-  // if(pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag != 0) /* means : already set at least once*/
-  //  {
+  /* if(pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag != 0) */ /* means : already set at least once*/
+  /*  {*/
   /*
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1],xmin);
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3],xmax);
@@ -16391,10 +16408,14 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
   /*   } */
 /*   else */
 /*     { */
+
+  /*  F.Leray 13.04.04 
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin;
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax;
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin;
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax;
+  */
+
 	  
     /*   pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag = 1; /\* F.Leray 01.04.04*\/ */
 /*     } */
@@ -16409,7 +16430,7 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
 /*       sciprint("FRect[2]=xmax=  %.3f\r\n", FRect[2]); */
 /*       sciprint("FRect[1]=ymin=  %.3f\r\n", FRect[1]); */
 /*       sciprint("FRect[3]=ymax=  %.3f\r\n", FRect[3]); */
-//      FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax;
+/*      FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax;*/
   
      /*  sciprint("INSIDE----> sci_update_frame_bounds\n"); */
 /*       sciprint("BEFORE FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax; AFFECTATION\n"); */

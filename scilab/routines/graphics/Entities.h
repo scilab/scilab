@@ -1522,3 +1522,5 @@ extern sciPointObj *sciGetMerge(sciPointObj *psubwin);
 extern int C2F(CreateModels) ();
 extern int InitFigureModel();
 extern int InitAxesModel();
+
+extern sciHandleTab * sciGetpendofhandletab();
