@@ -1,7 +1,7 @@
 mode(0);
 // Copyright INRIA
 path='SCI/demos/bike/';
-xbasc();
+xbasc();set("figure_style","old");
 
 getf(path+'macros/'+'velo1.sci');
 getf(path+'macros/'+'velod.sci');

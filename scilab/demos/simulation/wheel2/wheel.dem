@@ -1,10 +1,10 @@
 mode(-1);
 // Copyright ENPC 
 path="SCI/demos/wheel2";
-
 getf(path+'/show.sci');
-xbasc();
 
+xbasc();
+set("figure_style","old")
 flag1=x_choose(['Reading a precomputed trajectory';
  'Simulation with ode (needs f77 and link. may fail, see help link)'],...
  'Simulation or Visualisation ? (click below)');
@@ -48,4 +48,3 @@ select flag1,
 	wheelg=wheelgs;
 	show(x);
 end
-

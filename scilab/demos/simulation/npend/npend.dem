@@ -6,7 +6,7 @@ path="SCI/demos/npend";
 getf(path+'/macros.sci');
 getf(path+'/dessin.sci');
 
-xbasc();
+xbasc();set("figure_style","old")
 flag1=x_choose(['Read a precomputed trajectory';
         'Simulation with ode (needs f77 and link. may fail. see help link)'],...
          'Simulation or Visualisation ? (click below)');

@@ -9,7 +9,7 @@ xbasc()
 titlepage(["Lotka-Volterra:";...
 	"dy1/dt= 3*y1 - 2*y1*y2";..
 	"dy2/dt=-2*y2 + y1*y2"]);
-halt(); xbasc()
+halt(); xbasc();set("figure_style","old")
 
 mode(1)
 oldln=lines();

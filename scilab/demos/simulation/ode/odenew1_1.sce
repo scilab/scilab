@@ -12,7 +12,7 @@ deff("z=g(t,y)","z=[y-ymin;y+ymax]")
 
 t=tmin:1:tmax; y=ymin:1:ymax;
 
-xbasc()
+xbasc();set("figure_style","old")
 xset("pixmap",1)
 nt=size(t,"*"); ny=size(y,"*");
 fx=ones(nt,ny);

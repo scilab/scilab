@@ -1,7 +1,5 @@
 mode(0);
 // Copyright INRIA
-sty=get("old_style");set("old_style","on")	
-xbasc();
 getf('SCI/demos/flat/fcts.sci')
 getf('SCI/demos/flat/car.sci')
 
@@ -27,7 +25,7 @@ while go_on then
 			string([0;4;%pi/3;-%pi/6]));
        if rep<>[] then 
 	     xstart=evstr(rep);
-	     xbasc();
+	     xbasc();set("figure_style","old")
 	     mvcr(xstart(1),xstart(2),xstart(3),xstart(4));
        end 
      case 2 then 
@@ -36,11 +34,11 @@ while go_on then
                  ystr,string([-2;3;%pi/6;0;0;1]));
        if rep<>[] then 
 	     xstart=evstr(rep);
-       	     xbasc();
+       	     xbasc();set("figure_style","old")
              mvcr2T(xstart(1),xstart(2),xstart(3),xstart(4),xstart(5),...
 		xstart(6));
        end
      end;
   end,
 end;
-set("old_style",sty)
+

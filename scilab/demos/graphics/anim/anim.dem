@@ -1,7 +1,6 @@
 mode(0);
 // Copyright INRIA
 xbasc();
-
 path='SCI/demos/anim/';
 deff('[]=demoexc(fil)','exec(path+fil)')
 demolist=['Rotation of a 3D Surface (plot3d1)';
@@ -17,11 +16,9 @@ while %t then
   num=x_choose(demolist(:,1),'Choose a demo');
   if num==0 then break;
   else
-    sty=get("old_style");set("old_style","on")
     xdel(0);xset('window',0);
     set("figure_style","old")
     demoexc('anim'+string(num)+'.dem');
-    set("old_style",sty)
   end,
 end
 

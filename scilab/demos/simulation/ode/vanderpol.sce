@@ -25,7 +25,7 @@ mu=5;
 xmin=-3; xmax=3; ymin=-8; ymax=8;
 xr=xmin:0.5:xmax; yr=ymin:1:ymax;
 
-xbasc()
+xbasc();set("figure_style","old")
 xset("pixmap",1)
 fchamp(f,1,xr,yr)
 xset("font",2,12) 

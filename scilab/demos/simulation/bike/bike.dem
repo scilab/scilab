@@ -27,12 +27,12 @@ while go_on then
   if num==0 then go_on=%f;
   else
      select num
-     case 1 then xbasc();show(x(:,300:368),1,1,velo1)
-     case 2 then xbasc();show(x(:,300:368),1,1,velo2)
-     case 3 then xbasc();show(x(:,300:368),1,1,velo3)
-     case 4 then xbasc();show(x(:,300:368),1,1,velo4)
-     case 5 then xbasc();show(x(:,300:368),1,1,velo4p)
-     case 6 then xbasc();show(x(:,300:368),1,1,velo5)
+     case 1 then xbasc();set("figure_style","old");show(x(:,300:368),1,1,velo1)
+     case 2 then xbasc();set("figure_style","old");show(x(:,300:368),1,1,velo2)
+     case 3 then xbasc();set("figure_style","old");show(x(:,300:368),1,1,velo3)
+     case 4 then xbasc();set("figure_style","old");show(x(:,300:368),1,1,velo4)
+     case 5 then xbasc();set("figure_style","old");show(x(:,300:368),1,1,velo4p)
+     case 6 then xbasc();set("figure_style","old");show(x(:,300:368),1,1,velo5)
      end;
   end,
 end
