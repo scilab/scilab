@@ -466,11 +466,13 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
 	    sciSetSelectedSubWin(masousfen);
 	  else if ((masousfen = ConstructSubWin (sciGetCurrentFigure(), 0)) != NULL)
 	    {
-	    sciSetSelectedSubWin(masousfen);
-            pSUBWIN_FEATURE (masousfen)->WRect[0]   = WRect[0];
-	    pSUBWIN_FEATURE (masousfen)->WRect[1]   = WRect[1];
-	    pSUBWIN_FEATURE (masousfen)->WRect[2]   = WRect[2];
-            pSUBWIN_FEATURE (masousfen)->WRect[3]   = WRect[3];
+	      /* F.Leray Adding here 26.03.04*/
+	      scSetCurrentObj(masousfen);
+	      sciSetSelectedSubWin(masousfen);
+	      pSUBWIN_FEATURE (masousfen)->WRect[0]   = WRect[0];
+	      pSUBWIN_FEATURE (masousfen)->WRect[1]   = WRect[1];
+	      pSUBWIN_FEATURE (masousfen)->WRect[2]   = WRect[2];
+	      pSUBWIN_FEATURE (masousfen)->WRect[3]   = WRect[3];
             }
 	} 
       /** */
