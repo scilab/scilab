@@ -90,7 +90,7 @@ int BasicScilab = 1;
 XtAppContext app_con;
 int IsClick_menu(void);
 void Click_menu(int n);
-static int charfromclick(void);
+int charfromclick(void);
 
 static String bgfallback_resources[] = {
 #include "../xsci/Xscilab.ad.h"
@@ -434,7 +434,7 @@ void Click_menu(int n)
   return;
 }
 
-static int charfromclick(void)
+int charfromclick(void)
 {
   if (posinbuff==lenbuffstring-1)
     {
