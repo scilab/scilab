@@ -652,6 +652,11 @@ c
       goto 99
 c     
  85   icall=0
+      if(fun.eq.krec) then
+         call error(22)
+         goto 98
+      endif
+      
       if(err1.ne.0) then
          if(int(rstk(pt)/100).eq.9) then
             if(rstk(pt).ge.901.and.rstk(pt).le.909) then
