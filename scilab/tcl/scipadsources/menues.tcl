@@ -112,15 +112,15 @@ if {$lang == "eng"} {
 #    $pad.filemenu.edit add command -label "Time/Date" -underline 5 \
 #      -command "printtime"
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Commenter la sélection" -underline 3 \
+    $pad.filemenu.edit add command -label "Commenter la sélection" -underline 3\
 	-command "CommentSel" -accelerator Ctrl+m
     $pad.filemenu.edit add command -label "Décommenter la sélection" -underline 0\
 	-command "UnCommentSel" -accelerator Ctrl+M
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Indenter la sélection" -underline 0 \
+    $pad.filemenu.edit add command -label "Indenter la sélection" -underline 0\
 	-command "IndentSel" -accelerator Ctrl+d
-    $pad.filemenu.edit add command -label "Désindenter la sélection" -underline 1 \
-	-command "UnIndentSel" -accelerator Ctrl+D
+    $pad.filemenu.edit add command -label "Désindenter la sélection" \
+        -underline 1 -command "UnIndentSel" -accelerator Ctrl+D
     $pad.filemenu.edit add separator
     $pad.filemenu.edit add check -label "Retour à la ligne automatique" \
 	-underline 12 -command "wraptext"
@@ -204,7 +204,7 @@ if {$lang == "eng"} {
     menu $pad.filemenu.options -tearoff 1 -font $menuFont
     $pad.filemenu add cascade -label "Options" -underline 0 \
 	-menu $pad.filemenu.options
-    $pad.filemenu.options add command -label "taille de fontes" -foreground red
+    $pad.filemenu.options add command -label "taille de police" -foreground red
     $pad.filemenu.options add radiobutton -label "micro" -value 10 \
 	-variable FontSize -command "setfontscipad 10" -underline 0
     $pad.filemenu.options add radiobutton -label "petit" -value 12 \
@@ -215,7 +215,7 @@ if {$lang == "eng"} {
 	-variable FontSize -command "setfontscipad 18" -underline 0
 #FV 27/05/04, changed for a submenu in cascade (nicer, isn't it?)
 #     menu $pad.filemenu.options.fontsize -tearoff 0 -font $menuFont
-#     $pad.filemenu.options add cascade -label "taille de fontes" -menu $pad.filemenu.options.fontsize
+#     $pad.filemenu.options add cascade -label "taille de police" -menu $pad.filemenu.options.fontsize
 #     $pad.filemenu.options.fontsize add radiobutton -label "micro" -value 10 \
 # 	-variable FontSize -command "setfontscipad 10" -underline 0
 #     $pad.filemenu.options.fontsize add radiobutton -label "petit" -value 12 \
@@ -288,6 +288,9 @@ if {$lang == "eng"} {
     $pad.filemenu.debug add command -label "Display call stack" \
       -underline 6 -command "dispcallstack_bp"
     $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Show watch" \
+      -underline 5 -command "showwatch_bp" -accelerator Ctrl+F12
+    $pad.filemenu.debug add separator
     $pad.filemenu.debug add command -label "Cancel debug" \
       -underline 5 -command "canceldebug_bp"
     $pad.filemenu.debug add command -label "Remove all breakpoints in Scilab" \
@@ -315,6 +318,9 @@ if {$lang == "eng"} {
       -underline 0 -command "goonwo_bp" -accelerator Shift+F12
     $pad.filemenu.debug add command -label "Montrer la pile des appels" \
       -underline 0 -command "dispcallstack_bp"
+    $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Fenêtre watch" \
+      -underline 8 -command "showwatch_bp" -accelerator Ctrl+F12
     $pad.filemenu.debug add separator
     $pad.filemenu.debug add command -label "Annuler le débug" \
       -underline 0 -command "canceldebug_bp"
@@ -347,51 +353,6 @@ if {$lang == "eng"} {
 
 # now make the menu visible
 $pad configure -menu $pad.filemenu 
-
-
-#ES,FV 27/5/04 
-proc schememenus {textarea} {
-  global pad listoffile
-  set dm $pad.filemenu.debug
-  if {$listoffile("$textarea",language) == "scilab"} {
-#enable "Load into scilab"
-        $pad.filemenu.exec entryconfigure 1 -state normal
-#enable all the Debug entries
-        for {set i 1} {$i<=[$dm index last]} {incr i} {
-            if {[$dm type $i] == "command"} {
-                $dm entryconfigure $i -state normal
-            }
-        }
-# restore their bindings
-        bind $pad <Control-l> {execfile}
-        bind $pad <F5> {filetosave %W; execfile}
-	bind $pad <F9> {insertremove_bp}
-	bind $pad <Control-F9> {removeall_bp}
-	bind $pad <F10> {configurefoo_bp}
-	bind $pad <Control-F11> {execfile_bp}
-	bind $pad <F11> {resume_bp}
-	bind $pad <Shift-F11> {insertremovedebug_bp}
-	bind $pad <Shift-F12> {goonwo_bp}
-	bind $pad <F12> {stepbystep_bp}
-  } else {
-#disable "Load into scilab"
-        $pad.filemenu.exec entryconfigure 1 -state disabled
-#disable all the Debug entries
-        for {set i 1} {$i<=[$dm index last]} {incr i} {
-            if {[$dm type $i] == "command"} {
-                $dm entryconfigure $i -state disabled
-            }
-        }
-# remove their bindings
-        bind $pad <Control-l> {}
-        bind $pad <F5> {}
-	bind $pad <F9> {}
-	bind $pad <Control-F9> {}
-	bind $pad <F10> {}
-	bind $pad <Control-F11> {}
-	bind $pad <F11> {}
-	bind $pad <Shift-F11> {}
-	bind $pad <Shift-F12> {}
-	bind $pad <F12> {}
-  }
-}
+####
+##ES: remember fontsize
+setfontscipad $FontSize

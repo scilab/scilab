@@ -1,0 +1,368 @@
+ Tk NotePad by Joseph Acosta
+ modified by Matthieu PHILIPPE 01/01/2003
+ Some bug corrected
+ - cut/paste with ctrl-x/ctrl-v
+ - select then unselect then type any key doesn't crash scipad any more !
+
+ modified by Matthieu PHILIPPE 03/01/2002
+ added
+ - Number line
+ - Goto Line
+ - Higlighting Braces
+ - Some Keys and Words Binding
+ - Colorization for Scilab syntaxes
+ - Recolorization of a cuted and pasted text
+ - Multiple opened files.
+
+ ES 28/7/2003: 
+ changed text font from helvetica bold to courier medium
+ added accelerators Ctrl-w, Ctrl-n, Ctrl-q, Ctrl-p, Ctrl-P, Ctrl-S, Ctrl-g; 
+  Alt-L
+ fixed "unset pad" in closewin rather than exitapp - fixes a bug apparent when
+   exiting scipad by closing the last active buffer and trying to relaunch it
+ colorization: added "punct", "operator"; changed colors of the colorization
+ corrected "parencesis" in blinkbrace - fixes highlighting of ()
+ "Scilab specials" in colorize -- added code to distinguish {} [], () from ;: 
+ [external but connected: new list of keywords "words"]
+
+ES 4/9/2003
+ * added colorization pattern for "number"; separated pattern "xmltag" from 
+   "rem2";
+ * xmltags colorized only if filename contains ".xml"
+ *corrected bug - scipad(newfilename) began in an unnamed buffer
+   [connected in scipad.sci: scipad(filename) does not open an additional 
+   "Untitled.sce"]
+
+ES 11/9/2003
+ closing/reopening scipad remembers previous font size
+ cursor doesn't disappear any more (it used to every second keypress or so or 
+  mouse move)
+ cursor is red
+ cursor is positioned at 1.1 when opening an existing file 
+
+ES 18/9/2003
+ *changed $Size to Size in the option menu entries - the correct radiobutton  
+   is tagged at startup
+ *commented destroy $textarea in proc closefile - seems to solve the shrink
+   bug (if the initial Untitled.sce is closed, then the next setfontscipadN,
+   openfile,newfile command causes the window to shrink to its minimal size).
+    Not sure it is the right thing to do. The bug is cured and the only 
+   apparent side effect is that the window does not resize upon font change
+   (was never exact anyway) 
+ *fixed tagging of radiobuttons in the windows menu when files are closed 
+ *added comment selection command (glitch - adds // after the last newline 
+  also when the selection ends there)
+ *added uncomment selection command (glitch - removes also the white space 
+  between beginning of line and //)
+
+ES 25/9/2003
+ *the code is now free of TKSetCursor's (even in FindIt)
+ *restored default mouseclicks actions (double-1=select word, triple-1=select 
+   line, 2=paste sel) 
+ *deglitched "\n//" in comment selection and restore selection in uncomment 
+   (not yet 100.0% ok)
+ *selection remains on after copytext
+ *accelerator Ctrl-Z for Undo (more standard)
+ *accelerator F1 for About
+ *Help opens the scipad page in the helpbrowser
+ *version -> 1.2
+ *button3 popsup the edit menu (not so useful but why not - perhaps in future 
+   I'll replace it with a tailored menu)
+ *"(modified)" appears on the titlebar, and the corresponding entry in the 
+   windows menu is colored (and of course things are reverted to normal when
+    the buffer is saved)
+ *translated to french (!!?) some "file already open"
+ *created the Execute menu; added the command execute selection and its 
+   accelerator Ctrl-y (inherits problems from ScilabEval/execstr() - most 
+   dangerous problem, goes amok when the selection contains a function without
+   endfunction) -- glitch: splits quoted strings containing // as if // starts
+   a comment
+ *bug solved: Esc or Ctrl-c on a find/replace dialog used to hang scipad
+ *copy/paste (Ctrl-{c,v}) possible on find/replace strings [but not cut nor 
+   replace-paste --why?]
+
+ES 2/10/2003
+ * $pad.statusind goes Salmon when the buffer is modified
+ * splitted long lines in the code for improved readability
+ * the popup menu doesn't pop on the bottom bar
+ * bug fixed: upon closing a buffer, the radiobutton of the one previously
+    opened (which becomes the current buffer) was not correctly checked
+ * shift-button3 and ctrl-button3 popup execute and options
+ * bug fixed: search and replace strings can begin with "-"
+ * copytext doesn't tag the buffer as modified
+ * glitch corrected: //..."string"... is all colorized as comment, "...//..."
+    as string
+ * glitch corrected: gotoline didn't scroll to make the target line visible
+ * begun proc whichfun
+
+ES 9/10/2003
+ * corrected bad continued line "Annuler"
+ * progress in whichfun, execselection, etc. 
+
+ES 19/10/2003
+ * F5 Save and Run
+ * cosmetic - compacted the command passed and displayed by execselection
+ * pad remembers its geometry when quitting/reopening 
+ * moved option stuff (colors, fontsize, geometry) at the top -- later I might
+   add that it is read from an options file
+ * the background color of found text is $SELCOLOR, as selection
+ * bug fixed: missing $textarea when printing with Ctrl-p
+
+ES 21/10/2003
+ * added font micro (ok on my laptop)
+ * rationalized setfontscipad procedures, font size changes also menu fonts
+ * accelerator F2=Save
+ * added catch to delinfo in proc showinfo - prevents a "missing variable
+   .pad" which appears ocasionally on reopening
+
+27/10/2003
+ * proc helpword
+ * message "file NNNN saved"
+
+around november: made colorization TIMES faster, by scanning only to
+ wordend (not end-of-text) for scilab keywords in proc colorize.
+
+28/12/2003
+ * added IndentSel, UnIndentSel (plain \s\s, no smart logical indent)
+ * little deglitch in CommentSel, UncommentSel
+ * rationalization of Alt-x-x keyboard menu activations
+ * fixed Ctrl-w cut selection AND close window
+ * text pasted with Button-2 is colorized
+
+4/1/2004
+ * bug fixed - to interfering bindings from Ctrl-v caused no or double paste.
+ * removed some "particular" bindings for Ctrl-c/v/x and transformed them
+   to All or Text: copy paste works better in find and filename dialogs
+ * fixed Ctrl-y bind, does not paste selection surretptitiously
+ * cursor position info (keyposn) updated when switching buffers
+
+15/2/2004
+ * file dialogs for "all files" show also * files 
+
+30/2/2004
+ * fixed remalltags for textquoted and rem2 (i.e., lines with "aaa//bbb",
+    "123456", //123 etc. should be colorized consistently 
+ * comment/uncomment, indent/unindent applies to the current line 
+    if unselected
+
+Francois VOGEL, 16/04/2004
+ * fixed silent clearing of selection in one buffer that occurred when another
+   buffer was modified
+ * added Ctrl-F6 binding and proc switchbuffer to switch opened buffers
+ * fixed bug that occurred when a copy-paste modification on a buffer was
+   undone once too much (a "lifo($id) pop error, empty" resulted)
+
+19/4/2004
+ * added "Import matlab file..."
+ * version --> 1.3
+ * switchbuffer --> prevbuffer (F6) and nextbuffer (F7); bug corrected, wrong 
+   buffer when one or more previously open buffers were closed
+ * added bindings Ctrl-+/- to increase/decrease fontsize
+
+Francois VOGEL, 21/04/2004
+ * fixed size/position bug of sliders when switching buffers or opening a new file
+ * corrected minor typos in french texts, added french text where was missing
+ * restored cursor blinking as I could not make it disappear any more while
+   moving it with the arrows - was probably a tcl bug, seems to work with 8.4.6
+ * many improvements in find/replace/replaceall:
+     - added forward and backward automatic wrap-around
+     - added message box in case of no match found
+     - added message box in case of find or replace with an empty string
+     - if text is selected, find or replace occurs inside that selection (for find,
+       if not found, then asks for extending the search to the entire buffer)
+     - starting from a saved file, doing stuff and then undoing all changes does
+       not report the file as modified any more
+ * added Ctrl-F6 (prevbuffer) and Ctrl-F7 (nextbuffer) bindings
+
+Francois VOGEL, 13/05/04
+ * breakpoint and debug tools added - type help scipad in Scilab for detailed
+   explanations
+   Note: matsys.f as provided under bug 718 correction should be used
+ * proc whichfun now can search in a buffer different from the current one (used
+   for breakpoint stuff)
+ * Find/Replace now can use a regexp mode
+ * cosmetic: replaced tab indents by 4 spaces in the code (e.g. in proc findtext)
+   Please use spaces instead of tabs for further updates of the code!
+ * cosmetic: harmonised accelerator names through menus (e.g. ctrl-x changed to
+   ctrl+x)
+ * rearranged bindings in find/replace dialogs - were not always consistent with
+   the underlines, especially for the french dialog
+ * cursor blinks only if tk version is >= 8.4
+ * message at the bottom of the Scipad window is cleared when colorization ends
+ * bugzilla bug 723 corrected - an error poped when trying to write text in
+   Scipad when a selection was active in another tcl/tk application such as the
+   Scilab help
+ * version --> 2.0
+
+Francois VOGEL, 18/05/04
+ * closing the find dialog using the cross at the upper right corner does not
+   produce an error any more (patch provided by ES)
+ * added display of the line number in function in the status bar (provided by ES)
+   note: this required moving proc whichfun before proc keyposn
+ * removed \n in ScilabEval as this hangs unix versions and does not cure the
+   loosing of first characters. Added 5 leading spaces trying to limit the issue.
+ * added quotes around strings tested in if conditions (used to hang unix versions)
+ * debug commands now check if scilab is busy before sending commands to scilab
+   shell
+ * version --> 2.1
+
+Francois VOGEL, 21/05/04
+ * fixed expose binding issue (100% CPU and edge blinking when find dialog was open)
+ * solved bug that occurred when trying to input an argument of a function when the
+   listbox was empty
+ * improved proc whichfun to treat some pathological cases:
+   - comments ended by ...
+   - continued lines without ... (therefore, check for unmatched brackets and braces
+     on any single line)
+   - also corrected slight bugs in that proc, but it is still not perfect
+ * added a second status indicator to display line number in function at the bottom
+   of the pad instead of displaying that information in the message area
+ * version --> 2.2
+
+ES 27/5/2004
+* split scipad.tcl in several sourcefiles, buried in the directory scipadsources. The
+  distribution now includes: $SCI/scipad.tcl, $SCI/words, $SCI/scipadsources/*
+* buffer dependent colorization: scilab/xml/none: added field listoffile($,language)
+  in the relevant places, override colorization entries in menu Options, extension-based
+  automatic selection when opening files; no line-in-function displayed in non-scilab
+  mode (TO DO: disabling menues in non-scilab mode)
+* minor editing in words: removed scilab, added macr2tree, tree2code, getcwd
+* version --> 2.3
+
+Francois VOGEL, 27/05/04
+ * Debug menu is disabled in non-scilab mode
+ * F9 doesn't pink lines any more if in non-scilab mode (partially done)
+ * Options/Font size and Options/Language scheme are now submenus in cascade
+ * version --> 2.4
+
+ES, 30/5/2004
+* version -> 2.4.1 
+* reverted the Options menu as in 2.3
+* underlines for language schemes
+* Execute/Load is disabled for non-scilab files
+* proc schememenus sets/deletes bindings
+* proc whichfun always returns "" for non-scilab
+* less color for the "none" and "xml" schemes (no punctuation, no operators)
+* added % to scichset if proc colorize - corrects colorization of %variables
+
+ES, 2/6/04
+* version 2.4.2
+* proc execselection disp's an echo only for unix - because in windows the
+  command is sent to the history, and there is no need. I do not know about
+  mac.
+* editing in words: removed demos, graph-list, ScilabEval, Example, 
+  AdCommunication; added xmltohtml, all the variables output by who at startup
+* replaced tabs with spaces in filecommands.tcl; added a few [] and ""
+  which allow openfile to open numeric filenames (except for 0, which
+  triggers still some other bug)
+* removed seminal listoffile(,language) tests in debugger.tcl, no longer
+  needed
+* bug corrected in  whichfun.tcl/proc checkcontbraceorbracket: check for
+  $ind2=={}, whose omission gave an error when typing [ or { within function
+  bodies
+
+Francois VOGEL, 07/06/04
+ * added support of special filenames such as those that evaluate to zero, or
+   those that evaluate to an index keyword of the menu widget. Any file name is
+   now legal
+ * reworked the debugger to add the watch window. This should still be improved:
+   - <TODO>: pass to Scilab the watch variables changed by the user in the watch
+     window (this relies on the correction of a bug in the resume function, see
+     bug 818)
+   - <TODO>: improve retrieval of the Scilab variables from Scipad:
+     . since the length of the command line is limited to ca 500 characters on
+       the 3.0 CVS version (June'04)
+     . since part of the information is lost by the current implementation if
+       string(var) returns a string matrix and not a single string
+ * reindented full cutcopypaste.tcl, and part of inputtext.tcl, getting rid of tabs
+ * improved test of the selection owner in deletetext, backspacetext and puttext
+   (see bug 723)
+ * removed a superfluous test and many globals in all the procs of cutcopypaste.tcl
+   note: the code in cutcopypaste.tcl requires improvement as it is inefficient
+ * version --> 2.5
+
+
+ES, 13/6/04
+*restructured the hyerarchy of the source files, for future maintainability.
+ Now scipad.tcl loads first sources which define procs only, then files
+ which contain main level code only. This should help a lot in avoiding
+ interdependencies and feedback within the whole code.
+ In particular: mainlevel code in textarea.tcl moved in mainwindow.tcl
+        and menues.tcl;
+      procs in mainwindow.tcl moved into textarea.tcl;
+      proc schememenus in menues.tcl moved to colorize.tcl;
+      proc extractindexfromlabel in menues.tcl moved to filecommands.tcl;
+      mainlevel code from infomessages.tcl to mainwindow.tcl;
+      mainlevel code from undoredo.tcl to mainwindow.tcl;
+      (TO DO: relocate also the mainlevel code of debugger.tcl)
+*filecommands.tcl restructured: detabbed, common code in subprocs; some calls
+ to extractindexoflabel replaced by simpler lookiffileisopen; proc byebye
+ extracted from proc closefile
+*infomessages.tcl: replaced entry objects with labels (same behavior in tcl 
+ 8.3 and 8.4); column numbers shown by keyposn start at 1
+*hopefully, scipad now remembers correctly the window geometry upon
+ closing/reopening (in RH9/gnome, there is still a quirk - the height decreases
+ by 2 gridlines at every reopening, but it is probably a WM quirk in 
+ repositioning the window) 
+*detabbed colorize.tcl
+*proc setfontscipad (mainwindow.tcl) reports on the statusmessage and 
+ resizes also menu entries and status labels (TO DO: also subwindows
+ like file dialogs, Find,... inherit the current font size)
+*systematically replaced [gettextareacur] with $textareacur in cutcopypaste.tcl
+ (rationalization)
+*proc helpword improved - trims white space, does not open help if the 
+ selection includes only spaces
+*hopefully, colorization of scilab buffers with extended chars does not hang
+ anymore (the bug was platform-dependent)  
+*version --> 2.6
+
+Francois VOGEL, 14/06/04
+ * the buffer is no more reported as modified if one paste from an empty clipboard
+ * relocated the mainlevel code of debugger.tcl in defaults.tcl
+ * fixed shrinking of the watch window in some cases
+ * .tst and .dem files get now colorized as .sci/.sce files
+ * debugger watch window: improved retrieval of the Scilab variables from Scipad:
+   - string(var) is no more used in creategetfromshellcomm but replaced by
+     FormatStringsForDebugWatch(var). This is a new Scilab command that is now part
+     of the Scipad package in SCI/tcl/scipadsources. This function is getf'd on
+     invoking the watch window
+   - the commands are no more passed directly to ScilabEval, but rather through
+     a .sce file built by Scipad and saved in SCI/tcl/scipadsources. This overcomes
+     any limitation in characters number of the Scilab command line
+ * saving a buffer for the first time, the proposed name is now the first function
+   name found in the buffer
+ * version --> 2.7
+
+ES, 17/06/04
+ * bugs corrected in filecommands.tcl/proposedname: for buffers containing
+   more than one function the proposed name is the first found, for buffers
+   containing no functions it remains the original one
+ * bug corrected in filecommands.tcl/openfile - the field listoffile($,new)
+   was not set
+ * enforced the use of fullpath in proc filecommands.tcl/lookiffileisopen
+ * common code for file types in procs filesaveas and showopenwin moved to
+   new proc knowntypes
+ * end-of-line homogeneously translated to unix (was mixed in several files)
+ * incorporated FV's correction to colorize.tcl mentioned in bug #749
+ * version --> 2.7.1
+
+Francois VOGEL, 17/06/04
+ * added quotes in the getf FormatStringsForDebugWatch so that it sleeps with paths
+   containing spaces
+ * active breakpoint is now displayed in raised relief instead of underlined (nicer)
+ * improvements in FormatStringsForDebugWatch:
+   - upgraded to full support for:
+     . polynomial matrices       (type= 2)
+     . integer matrices          (type= 8)
+     . character string matrices (type=10)
+   - added full support of:
+     . sparse matrices         (type= 5)
+     . boolean sparse matrices (type= 6)
+     . lists                   (type=15)
+     . tlists                  (type=16)
+     . mlists                  (type=17)
+ * the .sce file built by Scipad and containing the watch variable retrieving commands
+   is now saved in TMPDIR instead of in SCI/tcl/scipadsources - should better cope with
+   file permissions that way. TMPDIR is set for Scipad in scipad.sci
+ * splitted debugger.tcl in several sub-files to ease maintainability
+ * version --> 3.0 (submitted to the Scilab team under bug #559)

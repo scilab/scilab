@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 2.4.2"
+set version "Version 3.0"
 set wordWrap none
 ##ES: default options which can be overridden
 if { ![info exists BGCOLOR] } {set BGCOLOR "snow1"}
@@ -25,3 +25,14 @@ if { ![info exists WMGEOMETRY] } { set WMGEOMETRY 32x36 }
 if { ![info exists printCommand] } { set printCommand lpr }
 set Scheme scilab
 
+# FV 14/06/04, relocated here the mainlevel code of debugger.tcl
+set funnameargs ""
+set funnames ""
+set unklabel "<?>"
+set curdropind 0
+set dragndroplb ""
+set watchvars ""
+array set watchvarsvals {}
+set firsttimeinshowwatch "true"
+# FV, 17/06/04, better do it in scipad.sci
+#ScilabEval "     TK_EvalStr(\"scipad eval {set tmpdir \"+TMPDIR+\"}\");"

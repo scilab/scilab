@@ -1,32 +1,3 @@
-#create textarea
-set taille [expr [font measure $textFont " "] *3]
-
-# creates the default textarea 
-##ES was here: added insertofftime 0 and exportselection
-## Francois Vogel, 21/04/04: changed insertofftime to 500, and added insertontime 500
-## FV 13/05/04: added test with tk_version on ES request
-text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
-	-yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
-        -fg $FGCOLOR -bg $BGCOLOR  -setgrid 1 -font $textFont -tabs $taille \
-        -insertwidth 3 -insertborderwidth 2 \
-        -insertbackground $CURCOLOR -selectbackground $SELCOLOR -exportselection 1
-set textareacur $pad.textarea  
-if {[expr $tk_version] >= 8.4} {
-    $textareacur configure -insertofftime 500 -insertontime 500
-} else {
-    $textareacur configure -insertofftime 0
-}
-####
-##ES: remember fontsize
-setfontscipad $FontSize
-
-scrollbar $pad.yscroll -command "$textareacur yview"
-scrollbar $pad.xscroll -command "$textareacur xview" -orient horizontal
-pack $textareacur  -in  $pad.bottomleftmenu -side left -expand 1 -fill both
-pack $pad.yscroll -in $pad.bottomrightmenu -side right -expand 1 -fill both
-pack $pad.xscroll -in $pad.bottombottommenu -expand 1 -fill x 
-focus $textareacur
-
 # added by matthieu PHILIPPE 21/11/2001
 proc gettextareacur {} {
     global textareacur
@@ -123,8 +94,53 @@ proc TextStyles { t } {
     scipadindent $t .8
 # FV 13/05/04
     $t tag configure breakpoint -background $BREAKPOINTCOLOR
-    $t tag configure activebreakpoint -underline true
+    $t tag configure activebreakpoint -relief raised -borderwidth 1
 }
 
-TextStyles $textareacur
 
+#ES: instead of several setfontscipadN{}
+proc setfontscipad {FontSize} {
+    global textFont menuFont lang pad
+    global listoftextarea
+    set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
+    set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
+    $pad.filemenu configure -font $menuFont
+    $pad.filemenu.files configure -font $menuFont
+    $pad.filemenu.edit configure -font $menuFont
+    $pad.filemenu.search configure -font $menuFont
+    $pad.filemenu.wind configure -font $menuFont
+    $pad.filemenu.options configure -font $menuFont
+    $pad.filemenu.exec configure -font $menuFont
+    $pad.filemenu.debug configure -font $menuFont
+    $pad.filemenu.help configure -font $menuFont
+    foreach textarea $listoftextarea {$textarea configure -font $textFont}
+    $pad.statusind configure -font $menuFont
+    $pad.statusind2 configure -font $menuFont
+    $pad.statusmes configure -font $menuFont
+    if {$lang=="eng"} {showinfo "Font size $FontSize"
+    } else { showinfo "Police taille $FontSize"}   
+}
+
+
+# exit app
+proc exitapp {} {
+    global listoffile listoftextarea pad
+
+    foreach textarea $listoftextarea {
+	#inccount $textarea
+	closefile $textarea
+    }
+#    unset pad  ## not needed if closefile unsets it
+}
+
+
+# proc to set child window position
+proc setwingeom {wintoset} {
+    global pad
+    wm resizable $wintoset 0 0
+    set myx [expr (([winfo screenwidth $pad]/2) - \
+		       ([winfo reqwidth $wintoset]))]
+    set myy [expr (([winfo screenheight $pad]/2) - \
+		       ([winfo reqheight $wintoset]/2))]
+    wm geometry $wintoset +$myx+$myy
+}

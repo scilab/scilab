@@ -88,27 +88,32 @@ proc insertnewline {w} {
 ### 
 
 proc puttext {w text} {
-    global winTitle pad
+    global winTitle
+#   global pad
     set rem 0
     set cuttexts [selection own]
 # FV 13/05/04, next line corrected (see bug #723)
-    if {[string range $cuttexts 0 [expr [string length $pad]-1]] == $pad} {
-	if [catch {selection get -selection PRIMARY} sel] {
-	    
-	} else {
-	    $cuttexts delete sel.first sel.last
-	    selection clear
-	}
+# FV 07/06/04, further improved
+#    if {[string range $cuttexts 0 [expr [string length $pad]-1]] == $pad} {}
+    if {[string range $cuttexts 0 [expr [string length [gettextareacur]]-1]] == [gettextareacur]} {
+        if [catch {selection get -selection PRIMARY} sel] {
+
+        } else {
+            $cuttexts delete sel.first sel.last
+            selection clear
+        }
     }	
     set i1 [$w index insert]
     $w insert insert $text
     set i2 [$w index insert]
     if {$i1 != $i2 || $rem} {
-	colorize $w $i1 [$w index "$i2+1l linestart"]
+        colorize $w $i1 [$w index "$i2+1l linestart"]
     }
 # FV 13/05/04
     reshape_bp
     $w see insert
+# FV 14/06/04
+    inccount [gettextareacur]
 }
 
 # this sets saveTextMsg to 1 for message boxes

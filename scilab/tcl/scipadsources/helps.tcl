@@ -44,10 +44,13 @@ proc helpword {} {
                                     [$textareacur index "$i1 wordend"]
            set curterm [selection get]
 	} else {
-           set cursel [selection get]
+	    set cursel [string trim [selection get]]
 # get only the first word of the selection (or a symbol)
            regexp "(\\A\\w*\\M|\\A\\W)" $cursel curterm
 	}
-        if {[info exists curterm]} { ScilabEval "help $curterm" }	
+    if {[info exists curterm]} {
+          set curterm [string trim $curterm]
+          if {$curterm!=""} { ScilabEval "help \"$curterm\"" }
+    }
 }
 

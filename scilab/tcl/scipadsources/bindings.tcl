@@ -124,3 +124,4 @@ bind $pad <F11> {resume_bp}
 bind $pad <Shift-F11> {insertremovedebug_bp}
 bind $pad <Shift-F12> {goonwo_bp}
 bind $pad <F12> {stepbystep_bp}
+bind $pad <Control-F12> {showwatch_bp}

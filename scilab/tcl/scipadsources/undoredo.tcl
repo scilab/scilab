@@ -1,11 +1,3 @@
-###################################################################
-#set zed_dir [file dirname [info script]] 
-# here is where the undo stuff begins
-if {![info exists classNewId]} {
-    # work around object creation between multiple include of this file problem
-    set classNewId 0
-}
-
 proc new {className args} {
     # calls the constructor for the class with optional arguments
     # and returns a unique object identifier independent of the class name
@@ -44,8 +36,8 @@ proc lifo:lifo {id {size 2147483647}} {
 proc lifo:push {id data} {
     global lifo saveTextMsg
     set saveTextMsg 1
-
-    inccount [gettextareacur]
+# FV 14/06/04
+#    inccount [gettextareacur]
     lifo:tidyUp $id
     if {$lifo($id,size)>=$lifo($id,maximumSize)} {
         unset lifo($id,data,$lifo($id,first))
@@ -301,12 +293,6 @@ proc textRedoer:reset {id} {
     lifo:empty $textRedoer($id,cursorStack)
 }
 
-# end of where youd source in undo.tcl
-
-set undo_id [new textUndoer $textareacur]
-#
-# added by Matthieu PHILIPPE 14/12/2001
-set listundo_id("$textareacur") $undo_id
 #### 
 proc undo_menu_proc {} {
     global textareacur

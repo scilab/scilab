@@ -1,15 +1,8 @@
 # new file
 # Matthieu PHILIPPE 14/12/2001
 proc filesetasnewmat {} {
-    global winopened
-    global listoffile
-    global tcl_platform
-    global fileName
-    global listundo_id
-    global listoftextarea
-    global pad
-    global radiobuttonvalue
-    global lang
+    global winopened listoffile tcl_platform fileName
+    global listoftextarea pad radiobuttonvalue lang
 
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
@@ -19,15 +12,11 @@ proc filesetasnewmat {} {
     set listoffile("$pad.new$winopened",thetime) 0
 #ES 27/5/04
     set listoffile("$pad.new$winopened",language) "scilab"
-    set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
     lappend listoftextarea $pad.new$winopened
-    bind $pad.new$winopened <KeyRelease> {keyposn %W}
-    bind $pad.new$winopened <ButtonRelease> {keyposn %W}
-    TextStyles $pad.new$winopened
     $pad.filemenu.wind add radiobutton -label "[pwd]/Untitled$winopened.sce" \
         -value $winopened -variable radiobuttonvalue \
         -command "montretext $pad.new$winopened"
-    set radiobuttonvalue $winopened
+    newfilebind
     if {$lang == "eng"} {
         showinfo "New Script"
     } else {
@@ -64,53 +53,56 @@ proc closecur {} {
     closefile [gettextareacur]
 }
 
-proc closefile {textarea} {
-    global listoftextarea
-    global listoffile
-    global pad
-    global lang
-
-    proc byebye {textarea} {
-        global listoftextarea
-        global listoffile
-        global pad winopened radiobuttonvalue wm WMGEOMETRY
-        if {  [ llength $listoftextarea ] > 1 } {
-            # delete the textarea entry in the listoftextarea
-            set listoftextarea [lreplace $listoftextarea [lsearch \
-                   $listoftextarea $textarea] [lsearch $listoftextarea \
-                                                   $textarea]]
-            # delte the menu windows entry
-            $pad.filemenu.wind delete [$pad.filemenu.wind index \
-                                           $listoffile("$textarea",filename)]
-            # delete the textarea entry in listoffile
-            unset listoffile("$textarea",filename) 
-            unset listoffile("$textarea",save) 
-            unset listoffile("$textarea",new) 
-            unset listoffile("$textarea",thetime) 
-            #ES 27/5/04
-            unset listoffile("$textarea",language) 
-            # delete the textarea entry in Undoerr
+proc byebye {textarea} {
+    global listoftextarea listoffile
+    global pad winopened radiobuttonvalue wm WMGEOMETRY
+    if {  [ llength $listoftextarea ] > 1 } {
+  # delete the textarea entry in the listoftextarea
+        set listoftextarea [lreplace $listoftextarea [lsearch \
+              $listoftextarea $textarea] [lsearch $listoftextarea $textarea]]
+  # delete the menu windows entry
+#            $pad.filemenu.wind delete [$pad.filemenu.wind index \
+#                                           $listoffile("$textarea",filename)]
+# FV 07/06/04
+        set ilab [extractindexfromlabel $pad.filemenu.wind \
+                  $listoffile("$textarea",filename)]
+        $pad.filemenu.wind delete $ilab
+      # delete the textarea entry in listoffile
+        unset listoffile("$textarea",filename) 
+        unset listoffile("$textarea",save) 
+        unset listoffile("$textarea",new) 
+        unset listoffile("$textarea",thetime) 
+      #ES 27/5/04
+        unset listoffile("$textarea",language) 
+      # delete the textarea entry in Undoerr
 ##ES: the text widget was opened for $pad.textarea. If that is destroyed, the 
 ## next change font, new file or open file command causes the window to shrink.
 ## On the other side, the only side
 ## effect of not destroying it which I see is that font changes do not resize
 ## the window (so what? -- the resizing was not exact anyway)
 #            destroy $textarea
-            # place as current textarea the last 
-            montretext [lindex $listoftextarea end]
+      # place as current textarea the last 
+        montretext [lindex $listoftextarea end]
 ##ES 30/9/03 
-            set lastwin [$pad.filemenu.wind entrycget end -value]
-            set radiobuttonvalue $lastwin
+        set lastwin [$pad.filemenu.wind entrycget end -value]
+        set radiobuttonvalue $lastwin
 ##
-        } else {
+     } else {
 #ES 18/10/2003: save the geometry for the next time
-            set WMGEOMETRY [eval {wm geometry $pad}] 
-            killwin $pad 
-            unset pad
-        }   
-    }
-    #### end of bye bye
+        set WMGEOMETRY [eval {wm geometry $pad}] 
+#        set WMGEOMETRY [winfo geometry $pad] 
+#        tk_messageBox -message $WMGEOMETRY
+        killwin $pad 
+        unset pad
+     }   
+}
 
+
+proc closefile {textarea} {
+    global listoftextarea
+    global listoffile
+    global pad
+    global lang
     if  [ expr [string compare [getccount $textarea] 1] == 0 ] {
         if {$lang == "eng"} {
             set answer [tk_messageBox -message "The contents of \
@@ -136,41 +128,28 @@ proc closefile {textarea} {
 proc extenstolang {file} {
             set extens [string tolower [file extension $file]] 
             if {$extens == ".xml"} {return "xml"
-            } elseif {$extens == ".sce" | $extens == ".sci"} {return "scilab"
+            } elseif {$extens == ".sce" | $extens == ".sci" | \
+                $extens == ".tst" | $extens == ".dem"} {return "scilab"
             } else {return "none"}
 }
 
 
 proc openfile {file} {
     global listoffile
-    global FGCOLOR BGCOLOR textFont taille wordWrap 
-    global pad winopened textareacur listoftextarea
-    global tcl_platform listundo_id
-    global radiobuttonvalue lang
-    if [string compare "$file" ""] {
+    global FGCOLOR BGCOLOR textFont taille wordWrap pad winopened 
+    global textareacur listoftextarea tcl_platform radiobuttonvalue lang
+    if [string compare $file ""] {
         # search for a opened existing file
-        if { [catch {[$pad.filemenu.wind index "$file"]} res]} {
-            # not opened file
-            incr winopened
-            dupWidgetOption [gettextareacur] $pad.new$winopened
-            set listoffile("$pad.new$winopened",filename) "$file"
-#ES 27/5/04
-            set listoffile("$pad.new$winopened",language) [extenstolang $file]
-            set listoffile("$pad.new$winopened",new) 0
-#ES: the following line has to be brought here for modifiedtitle to work
-            $pad.filemenu.wind add radiobutton -label "$file" \
-                -value $winopened -variable radiobuttonvalue \
-                -command "montretext $pad.new$winopened"
-            if [ file exists "$file" ] {
+        set res [lookiffileisopen "$file"]
+        if {$res == 0} {
+            notopenedfile $file
+            if [ file exists $file ] {
                 set listoffile("$pad.new$winopened",thetime) [file mtime $file]
-                setTextTitleAsNew $pad.new$winopened
-                montretext $pad.new$winopened
-                openoninit $pad.new$winopened "$file"
-                outccount $pad.new$winopened
-                update
-                colorize $pad.new$winopened 1.0 end
+                set listoffile("$pad.new$winopened",new) 0
+                shownewbuffer $file
             } else {
                 set listoffile("$pad.new$winopened",thetime) 0
+                set listoffile("$pad.new$winopened",new) 1
                 setTextTitleAsNew $pad.new$winopened
 ##added ES 4/9/2003
                 lappend listoftextarea $pad.new$winopened
@@ -183,28 +162,89 @@ proc openfile {file} {
             $pad.new$winopened mark set insert "1.0"
             keyposn $pad.new$winopened
 #
-            set listundo_id("$pad.new$winopened") \
-                [new textUndoer $pad.new$winopened]
-            bind $pad.new$winopened <KeyRelease> {keyposn %W}
-            bind $pad.new$winopened <ButtonRelease> {keyposn %W}
-            TextStyles $pad.new$winopened
-            set radiobuttonvalue $winopened
+            newfilebind
         } else {
-            # file is already opened
-            if {$lang == "eng"} {
-                 tk_messageBox -type ok -title "Open file" -message \
-                   "This file is already opened! Save the current opened\
-                    file to an another name and reopen it from disk!"
-            } else {
-                 tk_messageBox -type ok -title "Ouvrir fichier" -message \
-               "Ce fichier est déjà ouvert! Sauvez-le sous un\
-                autre nom et rouvrez-le à partir du disque !"
-            }
+            fileisopen
+            $pad.filemenu.wind invoke $res
         }
         selection clear
     }
 }
 
+proc lookiffileisopen {file} {
+   global listoffile listoftextarea
+   set i 0
+   set lab 0
+   foreach textarea $listoftextarea {
+       incr i
+       if {[fullpath $listoffile("$textarea",filename)]==[fullpath $file]} {
+                 set lab $i
+       }
+   }
+   return $lab
+}
+
+proc fullpath {filename} {
+#we have to keep in mind that this is a hack -
+# it suffers from all the known issues about filesystem traversability, 
+# permissions, behavior with symbolic links
+    set curdir [pwd]
+    set filedir [file dirname $filename]
+    cd $filedir
+    set filedir [pwd]
+    cd $curdir
+    set canonicalpath [file join $filedir [file tail $filename]]  
+    return $canonicalpath
+}
+
+
+proc shownewbuffer {file} {
+   global pad winopened
+   setTextTitleAsNew $pad.new$winopened
+   montretext $pad.new$winopened
+   openoninit $pad.new$winopened $file
+   outccount $pad.new$winopened
+   update
+   colorize $pad.new$winopened 1.0 end
+}
+
+proc notopenedfile {file} {
+   global winopened pad listoffile radiobuttonvalue
+ # not opened file
+   incr winopened
+   dupWidgetOption [gettextareacur] $pad.new$winopened
+   set listoffile("$pad.new$winopened",filename) $file
+#ES 27/5/04
+   set listoffile("$pad.new$winopened",language) [extenstolang $file]
+   set listoffile("$pad.new$winopened",new) 0
+#ES: the following line has to be brought here for modifiedtitle to work
+   $pad.filemenu.wind add radiobutton -label "$file" \
+         -value $winopened -variable radiobuttonvalue \
+         -command "montretext $pad.new$winopened"
+}
+
+proc newfilebind {} {
+   global pad winopened radiobuttonvalue listundo_id
+   set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
+   bind $pad.new$winopened <KeyRelease> {keyposn %W}
+   bind $pad.new$winopened <ButtonRelease> {keyposn %W}
+   TextStyles $pad.new$winopened
+   set radiobuttonvalue $winopened
+}
+
+proc fileisopen {} {
+   global lang
+ # file is already opened
+   if {$lang == "eng"} {
+       tk_messageBox -type ok -title "Open file" -message \
+          "This file is already opened! Save the current opened\
+            file to an another name and reopen it from disk!"
+   } else {
+       tk_messageBox -type ok -title "Ouvrir fichier" -message \
+          "Ce fichier est déjà ouvert! Sauvez-le sous un\
+            autre nom et rouvrez-le à partir du disque !"
+  }
+}
 
 #open an existing file
 proc filetoopen {textarea} {
@@ -219,11 +259,12 @@ proc filetoopen {textarea} {
 
 # generic save function
 proc writesave {textarea nametosave} {
-    global lang
+    global lang listoffile
     set FileNameToSave [open $nametosave w+]
     puts -nonewline $FileNameToSave [$textarea get 0.0 end]
     close $FileNameToSave
     outccount $textarea
+    set listoffile("$textarea",thetime) [file mtime $nametosave] 
     if {$lang == "eng"} {
         set msgWait "File $nametosave saved"
     } else {
@@ -232,6 +273,8 @@ proc writesave {textarea nametosave} {
     }
     showinfo $msgWait
 }
+
+
 
 #save a file
 #
@@ -256,23 +299,18 @@ proc filetosave {textarea} {
 
     # save the opened file from disk, if not, user has to get a file name.
     # we would verify if the file has not been modify by another application
-    if { [file exists $listoffile("$textarea",filename)] && \
-             $listoffile("$textarea",new) == 0  } {
-        if { $listoffile("$textarea",thetime) != [file mtime \
-                    $listoffile("$textarea",filename)]} {
+    set myfile $listoffile("$textarea",filename)
+    if { [file exists $myfile] && $listoffile("$textarea",new) == 0  } {
+        if { $listoffile("$textarea",thetime) != [file mtime $myfile]} {
             set answer [tk_messageBox -message $msgChanged -title $msgTitle \
                             -type yesnocancel -icon question]
             case $answer {
-                yes { writesave $textarea $listoffile("$textarea",filename);
-                       set listoffile("$textarea",thetime) \
-                             [file mtime $listoffile("$textarea",filename)]}
+                yes { writesave $textarea $myfile}
                 no {}
                 cancel {}
             }
         } else {  
-            writesave $textarea $listoffile("$textarea",filename)
-            set listoffile("$textarea",thetime) \
-                [file mtime $listoffile("$textarea",filename)] 
+            writesave $textarea $myfile
         }
         return 1
     } else {
@@ -294,23 +332,33 @@ proc filesaveas {textarea} {
     global winopened
     global lang
 
-    if {$lang == "eng"} {
-        set types {
-            {"Scilab files" {*.sce *.sci }} 
-            {"XML files" {*.xml }} 
-            {"All files" {*.* *}}
+    if {$lang == "eng"} {showinfo "Save As"} else {showinfo "Enregistrer sous"}
+# FV 14/06/04, added proposedname for new functions
+# proposedname is the first function name found in the buffer
+    set proposedname ""
+    set nextfun [$textarea search -exact -forwards -regexp\
+                 "\\mfunction\\M" 0.0 end ]
+    if {$nextfun != ""} {
+        while {[lsearch [$textarea tag names $nextfun] "textquoted"] != -1 || \
+               [lsearch [$textarea tag names $nextfun] "rem2"] != -1 } {
+            set nextfun [$textarea search -exact -forwards -regexp\
+                         "\\mfunction\\M" "$nextfun +8c" end]
+            if {$nextfun == ""} break
         }
-        showinfo "Save As"
-    } else {
-        set types {
-            {"Fichiers Scilab" {*.sce *.sci }} 
-            {"Fichiers XML" {*.xml }} 
-            {"Tous les fichiers" {*.* *}}
+        if {$nextfun != ""} {
+            set infun [whichfun [$textarea index "$nextfun +1l"]]
+            set proposedname [lindex $infun 0]
+            set nextfun [$textarea search -exact -forwards -regexp\
+                         "\\mfunction\\M" "$nextfun +8c" end]
         }
-        showinfo "Enregistrer sous"
     }
-    set myfile [tk_getSaveFile -filetypes $types -parent $pad \
-                    -initialfile $listoffile("$textarea",filename)]
+    if {$listoffile("$textarea",new)==0 || $proposedname==""} {
+        set proposedname $listoffile("$textarea",filename)
+    } else {
+        set proposedname $proposedname.sci
+    }
+    set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
+                    -initialfile $proposedname]
     if { [expr [string compare $myfile ""]] != 0} {
        $pad.filemenu.wind delete "$listoffile("$textarea",filename)"
         set listoffile("$textarea",filename) $myfile
@@ -320,15 +368,30 @@ proc filesaveas {textarea} {
         $pad.filemenu.wind add radiobutton -label "$myfile" \
            -value $radiobuttonvalue -variable radiobuttonvalue \
            -command "montretext $textarea"
-        writesave  $textarea $myfile
-        set listoffile("$textarea",thetime) \
-           [file mtime $listoffile("$textarea",filename)] 
+        writesave $textarea $myfile
         settitle $myfile
         return 1
     }
     return 0
 }
 
+proc knowntypes {} {
+    global lang
+    if {$lang == "eng"} {
+        set types {
+            {"Scilab files" {*.sce *.sci *.tst *.dem}} 
+            {"XML files" {*.xml }} 
+            {"All files" {*.* *}}
+        }
+    } else {
+        set types {
+            {"Fichiers Scilab" {*.sce *.sci *.tst *.dem}} 
+            {"Fichiers XML" {*.xml }} 
+            {"Tous les fichiers" {*.* *}}
+        }
+    }
+    return $types
+}
 
 # bring up open win
 # modified by Matthieu PHILIPPE 16/12/2001
@@ -338,69 +401,25 @@ proc showopenwin {textarea} {
     global listoffile
     global FGCOLOR BGCOLOR textFont taille wordWrap 
     global pad winopened textareacur listoftextarea
-    global tcl_platform listundo_id
+    global tcl_platform
     global radiobuttonvalue lang
-    if {$lang == "eng"} {
-        set types {
-            {"Scilab files" {*.sce *.sci }} 
-            {"XML files" {*.xml }} 
-            {"All files" {*.* *}}
-        }
-        #showinfo "Open file"
-    } else {
-        set types {
-            {"Fichiers Scilab" {*.sce *.sci }} 
-            {"Fichiers XML" {*.xml }} 
-            {"Tous les fichiers" {*.* *}}
-        }
-        #showinfo "Ouvrir le fichier"
-    }
-    set file [tk_getOpenFile -filetypes $types -parent $pad]
+    if {$lang == "eng"} {showinfo "Open file"
+    } else {showinfo "Ouvrir le fichier"}
+    set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad]
     #####
     if [string compare "$file" ""] {
         # search for a opened existing file
-        if { [catch {[$pad.filemenu.wind index "$file"]} res]} {
-            # not opened file
-            incr winopened
-            dupWidgetOption [gettextareacur] $pad.new$winopened
-            set listoffile("$pad.new$winopened",filename) "$file"
-            set listoffile("$pad.new$winopened",new) 0
+        set res [lookiffileisopen "$file"]
+        if {$res == 0} {
+            notopenedfile $file
             set listoffile("$pad.new$winopened",thetime) [file mtime $file]
-#ES 27/5/04
-            set listoffile("$pad.new$winopened",language) [extenstolang $file]
-#ES: the following line has to be brought here for modifiedtitle to work - what
-# afterwards opening fails?
-            $pad.filemenu.wind add radiobutton -label "$file" \
-                -value $winopened -variable radiobuttonvalue \
-                -command "montretext $pad.new$winopened"
-            #####
-            setTextTitleAsNew $pad.new$winopened
-            montretext $pad.new$winopened
-            openoninit $pad.new$winopened "$file"
-            outccount $pad.new$winopened
-            update
-            colorize $pad.new$winopened 1.0 end
+            shownewbuffer $file
 # FV 13/05/04
-          reshape_bp
-          showinfo " "
-            set listundo_id("$pad.new$winopened") \
-                [new textUndoer $pad.new$winopened]
-            bind $pad.new$winopened <KeyRelease> {keyposn %W}
-            bind $pad.new$winopened <ButtonRelease> {keyposn %W}
-            TextStyles $pad.new$winopened
-            set radiobuttonvalue $winopened
+            reshape_bp
+            showinfo " "
+            newfilebind
         } else {
-            # file is already opened
-            if {$lang == "eng"} {
-                 tk_messageBox -type ok -title "Open file" -message \
-                   "This file is already opened! Save the current\
-                    opened file to an another name and reopen\
-                    it from disk!"
-            } else {
-                 tk_messageBox -type ok -title "Ouvrir fichier" -message \
-                  "Ce fichier est déjà ouvert ! Sauvez-le sous un\
-                   autre nom et rouvrez-le à partir du disque !"
-            }
+            fileisopen
             $pad.filemenu.wind invoke $res
         }
         selection clear
@@ -470,4 +489,21 @@ proc switchcase {yesfn argyesfn nofn argnofn} {
     } else {
            $nofn $argnofn
     }
+}
+
+# FV 07/06/04 added extractindexfromlabel to cure bugs with special filenames
+# This proc should be used as a replacement for [$menuwidget index $label]
+# It returns the index of entry $label in $menuwidget, even if $label is a
+# number or an index reserved name (see the tcl/tk help for menu indexes)
+# If $label is not found in $menuwidget, it returns -1
+proc extractindexfromlabel {dm labsearched} {
+    for {set i 1} {$i<=[$dm index last]} {incr i} {
+       if {[$dm type $i] != "separator" && [$dm type $i] != "tear-off"} {
+           set lab [$dm entrycget $i -label]
+           if {$lab == $labsearched} {
+               return $i
+           }
+       }
+    }
+    return -1
 }

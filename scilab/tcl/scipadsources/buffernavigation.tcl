@@ -25,7 +25,8 @@ proc montretext {textarea} {
 proc nextbuffer {} {
     global pad listoftextarea listoffile radiobuttonvalue
     set textarea [gettextareacur]
-    set curbuf [$pad.filemenu.wind index $listoffile("$textarea",filename)]    
+#    set curbuf [$pad.filemenu.wind index $listoffile("$textarea",filename)]    
+    set curbuf [expr [lsearch $listoftextarea $textarea]+1]
     set curbuf [expr $curbuf+1]
     set nbuf [llength $listoftextarea]
 
@@ -40,7 +41,8 @@ proc nextbuffer {} {
 proc prevbuffer {} {
    global pad listoftextarea listoffile radiobuttonvalue
     set textarea [gettextareacur]
-    set curbuf [$pad.filemenu.wind index $listoffile("$textarea",filename)]    
+#    set curbuf [$pad.filemenu.wind index $listoffile("$textarea",filename)]    
+    set curbuf [expr [lsearch $listoftextarea $textarea]+1]
     set curbuf [expr $curbuf-1]
     set nbuf [llength $listoftextarea]
 
