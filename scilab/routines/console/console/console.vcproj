@@ -20,7 +20,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11,../../../tcl/include"
-				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;WIN32;__STDC__;WITH_READLINE"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;WIN32;__STDC__"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
