@@ -4891,9 +4891,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {
       pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth=stk(*value)[0];  
       pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight=stk(*value)[1];
-      C2F(dr)("xset","wdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth),
+      /*dj2003 wpdim au lieu de wdim*/
+      C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth),
 	      &(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    } 
+     } 
   else if (strncmp(marker,"figure_size", 11) == 0)
     {
       pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth=stk(*value)[0];  
