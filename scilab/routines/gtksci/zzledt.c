@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #endif
+#include <sys/ioctl.h>
 
 extern int Xorgetchar();
 static int gchar_no_echo();
