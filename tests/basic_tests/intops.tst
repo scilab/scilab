@@ -450,4 +450,98 @@ if or(min(x,'c')<>INT(min(X,'c'))) then pause,end
 if or(min(x,INT(2))<>INT(min(X,2))) then pause,end
 if or(min(x,y)<>INT(min(X,Y))) then pause,end
 
+
+a=[0 3 7];
+b=[1 2 7];
+A=[0 3 7 5;
+   1 2 0 2
+   8 9 3 1];
+types=['double','int32','uint32','int16','uint16','int8','uint8']
+
+// checking max(a,b)
+[mx,kx]=max(a,b);
+for t1=types
+  for t2=types
+    execstr('at='+t1+'(a); bt='+t2+'(b);')
+    [mt,kt]=max(at,bt);
+    if or(kt<>kx)|or(mx<>double(mt)) then 
+      disp('max('+t1+','+t2+')'),pause
+    end
+  end	
+end
+
+// checking min(a,b)
+[mn,kn]=min(a,b);
+for t1=types
+  for t2=types
+    execstr('at='+t1+'(a); bt='+t2+'(b);')
+    [mt,kt]=min(at,bt);
+    if or(kt<>kn)|or(mn<>double(mt)) then 
+      disp('min('+t1+','+t2+')'),pause
+    end
+  end	
+end
+
+// checking max(A)
+[mx,kx]=max(A)
+for t1=types
+  execstr('At='+t1+'(A);')
+  [mt,kt]=max(At);
+  if or(kt<>kx)|or(mx<>double(mt)) then 
+    disp('max('+t1+')'),pause
+  end
+end
+
+// checking min(A)
+[mx,kx]=min(A)
+for t1=types
+  execstr('At='+t1+'(A);')
+  [mt,kt]=min(At);
+  if or(kt<>kx)|or(mx<>double(mt)) then 
+    disp('min('+t1+')'),pause
+  end
+end
+
+
+// checking max(A,'r')
+[mx,kx]=max(A,'r')
+for t1=types
+  execstr('At='+t1+'(A);')
+  [mt,kt]=max(At,'r');
+  if or(kt<>kx)|or(mx<>double(mt)) then 
+    disp('max('+t1+',''r'')'),pause
+  end
+end
+
+// checking min(A,'r')
+[mx,kx]=min(A,'r')
+for t1=types
+  execstr('At='+t1+'(A);')
+  [mt,kt]=min(At,'r');
+  if or(kt<>kx)|or(mx<>double(mt)) then 
+    disp('min('+t1+',''r'')'),pause
+  end
+end
+
+// checking max(A,'c')
+[mx,kx]=max(A,'c')
+for t1=types
+  execstr('At='+t1+'(A);')
+  [mt,kt]=max(At,'c');
+  if or(kt<>kx)|or(mx<>double(mt)) then 
+    disp('max('+t1+',''c'')'),pause
+  end
+end
+
+// checking min(A,'c')
+[mx,kx]=min(A,'c')
+for t1=types
+  execstr('At='+t1+'(A);')
+  [mt,kt]=min(At,'c');
+  if or(kt<>kx)|or(mx<>double(mt)) then 
+    disp('min('+t1+',''c'')'),pause
+  end
+end
+
+
 //int32 int8 ... iconvert
