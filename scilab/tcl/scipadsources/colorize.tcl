@@ -213,16 +213,16 @@ proc changelanguage {newlanguage} {
 #ES,FV 27/5/04 
 proc schememenus {textarea} {
   global pad listoffile
-  set dm $pad.filemenu.debug
+ # set dm $pad.filemenu.debug
   if {$listoffile("$textarea",language) == "scilab"} {
 #enable "Load into scilab"
         $pad.filemenu.exec entryconfigure 1 -state normal
 #enable all the Debug entries
-        for {set i 1} {$i<=[$dm index last]} {incr i} {
-            if {[$dm type $i] == "command"} {
-                $dm entryconfigure $i -state normal
-            }
-        }
+#        for {set i 1} {$i<=[$dm index last]} {incr i} {
+#            if {[$dm type $i] == "command"} {
+#               $dm entryconfigure $i -state normal
+#            }
+#        }
 # restore their bindings
     bind $pad <Control-l> {execfile}
     bind $pad <F5> {filetosave %W; execfile}
@@ -239,11 +239,11 @@ proc schememenus {textarea} {
 #disable "Load into scilab"
         $pad.filemenu.exec entryconfigure 1 -state disabled
 #disable all the Debug entries
-        for {set i 1} {$i<=[$dm index last]} {incr i} {
-            if {[$dm type $i] == "command"} {
-                $dm entryconfigure $i -state disabled
-            }
-        }
+#        for {set i 1} {$i<=[$dm index last]} {incr i} {
+#            if {[$dm type $i] == "command"} {
+#                $dm entryconfigure $i -state disabled
+#            }
+#        }
 # remove their bindings
     bind $pad <Control-l> {}
     bind $pad <F5> {}

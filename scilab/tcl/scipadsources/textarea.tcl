@@ -111,7 +111,7 @@ proc setfontscipad {FontSize} {
     $pad.filemenu.wind configure -font $menuFont
     $pad.filemenu.options configure -font $menuFont
     $pad.filemenu.exec configure -font $menuFont
-    $pad.filemenu.debug configure -font $menuFont
+    #$pad.filemenu.debug configure -font $menuFont
     $pad.filemenu.help configure -font $menuFont
     foreach textarea $listoftextarea {$textarea configure -font $textFont}
     $pad.statusind configure -font $menuFont
