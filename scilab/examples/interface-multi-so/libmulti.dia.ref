@@ -1,0 +1,39 @@
+ 
+// load the shared library
+ 
+ 
+exec loader.sce ;
+shared archive loaded
+
+Link done
+
+shared archive loaded
+
+Link done
+
+Linking libmulti1 
+
+Interface 0 libmulti1
+
+Linking libmulti2 
+
+Interface 0 libmulti1
+
+Interface 1 libmulti2
+
+ 
+ 
+if f1(89)<>89+2 then bugmes();quit;end
+ 
+if f2(89)<>89+3 then bugmes();quit;end
+ 
+if f3(89)<>89 then bugmes();quit;end
+ 
+if f4(89)<>89+5 then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+ 

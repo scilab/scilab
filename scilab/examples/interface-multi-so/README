@@ -1,0 +1,16 @@
+Copyright Cermics Enpc 
+Jean-Philippe Chancelier
+
+This directory contains an example of the simultaneous 
+definition of several interfaces in the same builder 
+file.
+The interfaces also use a common library build in the lib 
+subdirectory. 
+
+The interfaced function are standard interface 
+or mexfiles. 
+
+just type make to build the shared libraries 
+and make tests to run a test 
+
+	
