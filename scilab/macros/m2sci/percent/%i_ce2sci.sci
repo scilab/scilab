@@ -9,6 +9,18 @@ function [tree]=%i_ce2sci(tree)
 from=tree.operands($)
 to=tree.operands(1)
 
+// Verify that to is not a struct (cell of struct)
+inds=tree.operands(2:$-1)
+if type(inds)<>15 then
+  inds=list(inds)
+end
+for kinds=1:lstsize(inds)
+  if inds(kinds).vtype==String & typeof(inds(kinds))=="cste" & inds(kinds).value<>":" then
+    tree=%i_st2sci(tree)
+    return
+  end
+end
+disp(to.name)
 if and(to.vtype<>[Cell,Unknown]) then
   if to.vtype==Double & and(to.dims==list(0,0)) then
     insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
