@@ -29,7 +29,7 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 
 M5 = mtlb_cell.sci struct.sci  \
 	%s_i_struct.sci %b_i_struct.sci %i_i_struct.sci %sp_i_struct.sci \
-	%c_i_struct.sci %s_i_struct.sci %struct_p.sci\
+	%c_i_struct.sci %s_i_struct.sci %cell_i_struct.sci %struct_p.sci\
         %cell_e.sci %cell_p.sci %cell_size.sci cell.sci \
 	%s_i_cell.sci %c_i_cell.sci %cell_i_cell.sci\
 	%cell_c_cell.sci %cell_f_cell.sci \
