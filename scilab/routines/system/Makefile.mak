@@ -16,7 +16,7 @@ OBJSC = System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.o
 
 OBJSF = allops.obj  banier.obj\
 	clause.obj comand.obj compcl.obj   \
-	defmat.obj eqid.obj error.obj showstack.obj expr.obj fact.obj funs.obj \
+	defmat.obj eqid.obj error.obj showstack.obj fact.obj funs.obj \
 	getch.obj  getlin.obj getnum.obj getstr.obj getsym.obj \
 	getval.obj inisci.obj \
 	logops.obj macro.obj mname.obj nextj.obj parse.obj findequal.obj print.obj \
@@ -61,7 +61,6 @@ defmat.obj:  ../stack.h
 diary.obj:  ../stack.h
 eqid.obj:  ../stack.h
 error.obj:  ../stack.h
-expr.obj:  ../stack.h
 fact.obj:  ../stack.h
 findequal.obj:  ../stack.h
 funnam.obj:  ../stack.h
