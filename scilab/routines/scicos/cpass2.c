@@ -1708,7 +1708,7 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
       free(clkconnectjind);
       clkconnectjind=NULL;
       free(ind);ind=NULL;
-    } //fin de if (clkconnect[0]!=0) 
+    } /*fin de if (clkconnect[0]!=0) */
       if (((*ordptr1)=(int*)malloc(sizeof(int)*(bllst5ptr[bllst5ptr[0]]+1))) == NULL) return 0;
       (*ordptr1)[0]=bllst5ptr[bllst5ptr[0]];
       (*ordptr1)[1]=1;
