@@ -9,15 +9,15 @@ LIBRARY = $(SCIDIR)/libs/system.a
 
 OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o \
 	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o \
-	inisci-c.o diary.o  
+	inisci-c.o diary.o  parse.o run.o
 
 OBJSF = allops.o  banier.o\
 	clause.o comand.o compcl.o   \
 	defmat.o eqid.o error.o showstack.o expr.o fact.o funs.o \
 	getch.o  getlin.o getnum.o getstr.o getsym.o \
 	getval.o inisci.o \
-	logops.o macro.o mname.o nextj.o parse.o findequal.o print.o \
-	prompt.o putid.o  run.o savlod.o  stackg.o stackgl.o \
+	logops.o macro.o mname.o nextj.o  findequal.o print.o \
+	prompt.o putid.o savlod.o  stackg.o stackgl.o \
 	ref2val.o stackp.o terme.o  scirun.o \
 	majmin.o whatln.o \
 	seteol.o setlnb.o skpins.o msgs.o prntid.o \
@@ -26,7 +26,7 @@ OBJSF = allops.o  banier.o\
 	mrknmd.o mkindx.o mklist.o cmdstr.o setgetmode.o\
 	typ2cod.o israt.o funnam.o dspdsp.o lspdsp.o wspdsp.o \
 	xerbla.o algebre.o storeglobal.o setippty.o allowptr.o copyvar.o \
-	lst2vars.o createref.o getfunction.o varfunptr.o tksynchro.o
+	lst2vars.o createref.o getfunction.o varfunptr.o tksynchro.o 
 
 include ../../Makefile.incl
 
