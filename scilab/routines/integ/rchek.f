@@ -110,7 +110,11 @@ c if a root was found on the previous step, evaluate g0 = g(t0). -------
       nge = nge + 1
       zroot = .false.
       do 210 i = 1,ngc
- 210    if (dabs(g0(i)) .le. 0.0d0) zroot = .true.
+         if (dabs(g0(i)) .le. 0.0d0) then
+            jroot(i)=1
+            zroot = .true.
+         endif
+ 210  continue
       if (.not. zroot) go to 260
 c g has a zero at t0.  look at g at t + (small increment). -------------
       temp1 = dsign(hming,h)
@@ -126,15 +130,18 @@ c g has a zero at t0.  look at g at t + (small increment). -------------
       nge = nge + 1
       zroot = .false.
       do 250 i = 1,ngc
-        if (dabs(g0(i)) .gt. 0.0d0) go to 250
-        jroot(i) = 1
-        zroot = .true.
- 250    continue
-      if (.not. zroot) go to 260
-c g has a zero at t0 and also close to t0.  return root. ---------------
-      irt = 1
-      return
-c     here, g0 does not have a root
+         if (dabs(g0(i)) .gt. 0.0d0) go to 250
+         
+         if (jroot(i) .eq. 1) then
+            irt = -1
+            return
+         else
+            jroot(i) = -sign(1.0d0,g0(i))
+            irt = 1
+         endif
+
+ 250  continue
+      if (irt .eq. 1) return      
 c g0 has no zero components.  proceed to check relevant interval. ------
  260  if (tn .eq. tlast) go to 390
 c

@@ -75,11 +75,14 @@ c          is to be evaluated and loaded into gx.
 c          when jflag = 2 or 3, x is the root.
 c          when jflag = 4, x is the right endpoint of the interval, x1.
 c
-c jroot  = integer array of length ng.  output only.
-c          when jflag = 2 or 3, jroot indicates which components
-c          of g(x) have a root at x.  jroot(i) is 1 if the i-th
-c          component has a root, and jroot(i) = 0 otherwise.
-c!
+c JROOT  = integer array of length NRT.  Output only.
+C         When JFLAG = 2 or 3, JROOT indicates which components
+C         of R(x) have a root at X, and the direction of the sign
+C         change across the root in the direction of integration.
+C         JROOT(i) =  1 if Ri has a root and changes from - to +.
+C         JROOT(i) = -1 if Ri has a root and changes from + to -.
+C          Otherwise JROOT(i) = 0.
+c     !
 c note.. this routine uses the common block /lsr001/ to save
 c the values of certain variables between calls (own variables).
 c-----------------------------------------------------------------------
@@ -177,20 +180,20 @@ c no sign change between x0 and x2.  replace x0 with x2. ---------------
 c
 c return with x1 as the root.  set jroot.  set x = x1 and gx = g1. -----
  300  jflag = 2
-      x = x1
+      X = X1
       call dcopy (ng, g1, 1, gx, 1)
-      do 320 i = 1,ng
-        jroot(i) = 0
-        if (dabs(g1(i)) .gt. zero) go to 310
-          jroot(i) = dsign(1.0d0,-g0(i))
-          go to 320
- 310    if (dsign(1.0d0,g0(i)) .gt. dsign(1.0d0,g1(i))) jroot(i) =-1
-        if (dsign(1.0d0,g0(i)) .lt. dsign(1.0d0,g1(i))) jroot(i) = 1
-
- 320    continue
+      do 320 I = 1,ng
+         jroot(i) = 0
+         if (abs(g1(i)) .eq. 0.0d0) then
+            jroot(i) = -sign(1.0d0,g0(i))
+            go to 320
+         endif
+         if (sign(1.0d0,g0(I)) .ne. sign(1.0d0,g1(I)))
+     1        jroot(i) = sign(1.0d0,g1(i) - g0(i))
+ 320  continue
       return
-c
-c no sign change in the interval.  check for zero at right endpoint. ---
+c     
+c     no sign change in the interval.  check for zero at right endpoint. ---
  400  if (.not. zroot) go to 420
 c
 c zero value at x1 and no sign change in (x0,x1).  return jflag = 3. ---
@@ -198,7 +201,7 @@ c zero value at x1 and no sign change in (x0,x1).  return jflag = 3. ---
       call dcopy (ng, g1, 1, gx, 1)
       do 410 i = 1,ng
         jroot(i) = 0
-        if (dabs(g1(i)) .le. zero) jroot (i) = dsign(1.0d0,-g0(i))
+        if (dabs(g1(i)) .le. zero) jroot (i) = -sign(1.0d0,g0(i))
  410  continue
       jflag = 3
       return

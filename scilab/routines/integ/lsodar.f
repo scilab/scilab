@@ -1448,6 +1448,7 @@ c
       call rchek (2, g, neq, y, rwork(lyh), nyh,
      1   rwork(lg0), rwork(lg1), rwork(lgx), jroot, irt)
       if(iero.gt.0) return
+      if (irt .lt. 0) go to 632
       if (irt .ne. 1) go to 205
       irfnd = 1
       istate = 3
