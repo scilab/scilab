@@ -596,6 +596,10 @@ sciLabel;
 
 typedef struct 
 {  
+  double  xlim[4];  /* [xmin,xmax,ar,nint]           */ /* F.Leray 21.09.04 : NOUVEAU sens pour xlim,ylim,zlim: NON! Comme avant valeurs en tight limits on/off */ /* F.Leray 07.10.04 */
+  double  ylim[4];  /* [ymin,ymax,ar,nint]           */ /* pour afficher les graduations automatiques on a calculé des xyzgrads provenant de TheTicks */
+  double  zlim[4];  /* [zmin,zmax,ar,nint]         */ 
+
   int  ticscolor;
   /*  int  fontsize;
       int  textcolor;*/
@@ -605,14 +609,29 @@ typedef struct
   int  rect;
   char xdir;   /**  xdir  = 'u' | 'd'  : gives the xy-axes positions **/ 
   char ydir;   /**  ydir  = 'r' | 'l' : gives the xy-axes positions **/ 
-  double  xlim[4];  /* [xmin,xmax,ar,nint]           */
-  double  ylim[4];  /* [ymin,ymax,ar,nint]           */ 
-  double  zlim[4];  /* [zmin,zmax,ar,nint]         */  /**DJ.Abdemouche 2003**/
-  double    limits[7]; /* = 1 set tight limits = 0 set axes auto shape */
+ 
+  /* tics data from algo */
+  double  xgrads[20], ygrads[20], zgrads[20];                   /* Here they are  */
+  int nxgrads, nygrads, nzgrads;                         /* with their size <=> nber of tics */
+
+  /* tics data from user (=> u_...)*/
+  double *u_xgrads, *u_ygrads, *u_zgrads;                       /* Here they are  */
+  int u_nxgrads, u_nygrads, u_nzgrads;                   /* with their size <=> nber of tics */
+  
+  /* flags for switching from auto to manual ticks */
+  BOOL auto_ticks[3]; /* if on, it means that the ticks are taken from computation (see theticks algo. by Francois D.) */
+  
+  char **u_xlabels,  **u_ylabels,  **u_zlabels; /* label string corresponding to each specified u_xyzgrads */
+    
+  double  limits[7]; /* = 1 set tight limits = 0 set axes auto shape */
   integer flag[3]; /* 3d options */
   
-  /* F.Leray To keep the logic on aaint:*/
-  integer aaint[4];
+   /* F.Leray 07.10.04 REMOVE AAINT*/
+  int nbsubtics[3]; /* Don't touch to subint because also deals with drawaxis: AXES structure has multiple uses... */ /* F.Leray 07.10.04 */
+
+  BOOL reverse[3]; /* if TRUE, it means that the corresponding axe is reversed */
+  BOOL axes_visible[3]; /* if TRUE, it means that the corresponding axes is drawn */
+  
 }
 AXES; 
 
@@ -621,6 +640,7 @@ AXES;
  */
 typedef struct
 {
+  AXES axes;
   /** */
   sciRelationShip relationship;
   /** */
@@ -658,8 +678,8 @@ typedef struct
   double FRect_kp[4];
   char logflags[2]; 
   int grid[3];
-  BOOL isaxes;
-  AXES axes;
+/*   BOOL isaxes; */
+
   BOOL is3d;
   BOOL tight_limits;
   double theta_kp;
@@ -692,6 +712,8 @@ typedef struct
   sciPointObj * mon_y_label;
   sciPointObj * mon_z_label;
 
+  /*  An internal state used as subtics flag (auto == FALSE, TRUE == manual) named flagNax */
+  BOOL flagNax;
 
 }/** */
 sciSubWindow;  
@@ -1532,8 +1554,7 @@ extern BOOL Ishidden(sciPointObj *pobj);
 extern BOOL IsDownAxes(sciPointObj *pobj);
 extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1);
 extern void update_3dbounds(sciPointObj *pobj);
-double Fill_XYdec01_TLO_and_ISO_case(int Xdec3, double val);
-extern void  sci_update_frame_bounds(int cflag);
+extern void  sci_update_frame_bounds();
 extern double graphic_search(double *id, double *tab1, double *tab2, integer *n);
 extern void update_graduation(sciPointObj *pobj);
 /***/
@@ -1546,6 +1567,7 @@ extern sciPointObj *sciGetMerge(sciPointObj *psubwin);
 extern int C2F(CreateModels) ();
 extern int InitFigureModel();
 extern int InitAxesModel();
+int ResetFigureToDefaultValues(sciPointObj * pobj); /* F.Leray 23.09.04 */
 
 extern sciHandleTab * sciGetpendofhandletab();
 extern void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG);
@@ -1555,5 +1577,10 @@ extern int labels2D_draw(sciPointObj * psubwin);
 extern sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type);
 extern int DestroyLabel (sciPointObj * pthis);
 extern int ComputeC_format(sciPointObj * pobj, char * c_format);
-
+extern int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input);
+extern BOOL GetIsAxes(sciPointObj *psubwin);
+extern int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double * dbox, integer *xind, integer *InsideU, integer *InsideD);
+extern int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind);
+extern int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _maxval, double fx, double fy, double fz);
+extern int FindGrads(double *grads,int * n_grads);
 #endif /*__SCI_ENTITIES__*/
