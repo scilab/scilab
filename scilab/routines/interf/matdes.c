@@ -5208,6 +5208,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"Object is not a Polyline");return -1;}
     }
+
   /************* font properties *********/
   else if (strncmp(marker,"font_size", 9) == 0)
     {
@@ -5674,7 +5675,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"log_flags property does not exist for this handle");return -1;}
       }
   else if (strncmp(marker,"arrow_size", 10) == 0) {
-    pSEGS_FEATURE (pobj)->arrowsize = *stk(*value);      
+    if(sciGetEntityType (pobj) == SCI_SEGS)
+      pSEGS_FEATURE (pobj)->arrowsize = *stk(*value);      
+    else
+      	{strcpy(error_message,"arrow_size property does not exist for this handle");return -1;}
   }  
   else if ((strncmp(marker,"segs_color", 10) == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){  
     if (pSEGS_FEATURE (pobj)->ptype == 0){
@@ -6290,7 +6294,7 @@ if ((pobj == (sciPointObj *)NULL) &&
       numrow   = 1;
       numcol   = 1;
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      *stk(outindex) = sciGetHandle(sciGetCurrentObj());
+      *stk(outindex) = (double ) sciGetHandle(sciGetCurrentObj());
     }
   /* DJ.A 08/01/04 */
   else if (strncmp(marker,"default_figure", 14) == 0)
@@ -6402,16 +6406,17 @@ if ((pobj == (sciPointObj *)NULL) &&
     *stk(outindex) = sciGetLineWidth((sciPointObj *) pobj);
     }
 
-  else if (strncmp(marker,"polyline_style", 14) == 0) {
-    numrow   = 1;numcol   = 1;
-    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-    if (sciGetEntityType (pobj) == SCI_POLYLINE)
-      *stk(outindex) = pPOLYLINE_FEATURE (pobj)->plot;
-    else
-      { strcpy(error_message,"Unknown polyline property"); return -1;}
+  else if (strncmp(marker,"polyline_style", 14) == 0)
+    {
+      numrow   = 1;numcol   = 1;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
+      if (sciGetEntityType (pobj) == SCI_POLYLINE)
+	*stk(outindex) = pPOLYLINE_FEATURE (pobj)->plot;
+      else
+	{ strcpy(error_message,"Unknown polyline property"); return -1;}
+    } 
 
-  }
-  /****************************************************/
+/****************************************************/
   else if (strncmp(marker,"font_size", 9) == 0)
     {
       numrow = 1;numcol = 1;
@@ -7643,16 +7648,9 @@ static int get3ddata(sciPointObj *pobj)
 
 	  numrow = pSURFACE_FEATURE (pobj)->m3n;
 	  numcol = pSURFACE_FEATURE (pobj)->n3n;
-	  /* see if problems here F.Leray 19.03.04*/ 
-	  if(pSURFACE_FEATURE (pobj)->flagcolor == 2) /* nc=dimzy;*/ /* one color per facet*/
-	    {
-	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
-	    }
-	  else  /* one color per edge */
-	    {
-	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
-	    }
-	  /* copy the x value in stk(lr) */
+
+	  /* F.Leray 24.03.04 Replaced by: */
+	  CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->inputCMoV);
 	  
 	}
       else if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)
@@ -7675,16 +7673,11 @@ static int get3ddata(sciPointObj *pobj)
 	  
 	  numrow = pSURFACE_FEATURE (pobj)->m3n;
 	  numcol = pSURFACE_FEATURE (pobj)->n3n;
-	  /* see if problems here F.Leray 19.03.04*/ 
-	  if(pSURFACE_FEATURE (pobj)->flagcolor == 2) /*nc=nz; */ /* one color per facet */
-	    {
-	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
-	    }
-	  else /*  nc=nz*4; */ /*one color per edge */
-	    {
-	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
-	    }
-	  /* copy the x value in stk(lr) */
+
+
+	  /* F.Leray 24.03.04 Replaced by: */
+	  CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->inputCMoV);
+
 	}
     }
   else /* no color provided in input*/
@@ -7821,6 +7814,12 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
 	}
     }
   
+
+
+  /* Update of the dimzx, dimzy depends on  m3, n3: */
+  psurf->dimzx = m3;
+  psurf->dimzy = n3;
+
 
   /* Free the old values... */
   FREE(psurf->pvecx); psurf->pvecx = NULL;
@@ -7982,9 +7981,6 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
   psurf->m3n = m3n; /* If m3n and n3n are 0, then it means that no color matrix/vector was in input*/
   psurf->n3n = n3n;
       
-  /* Update of the dimzx, dimzy depends on  m3, n3: */
-  psurf->dimzx = m3;
-  psurf->dimzy = n3;
 
   return 0;
 }
