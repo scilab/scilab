@@ -20887,7 +20887,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
     SONAME=sl
     # standard compilers
     CC=cc
-    CC_OPTIONS='-O -DSYSV -Dhpux +-Dhppa Z +DAportable'
+    CC_OPTIONS='-O -DSYSV -Dhpux -Dhppa +Z +DAportable'
     CC_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
     if test "$WITH_G77" != yes; then
       for ac_prog in fort77 f77 f90 f2c-f77
