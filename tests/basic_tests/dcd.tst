@@ -4,12 +4,12 @@ prec=1.e-5;
 // test for beta distribution 
 //===========================
 A=2;B=3;bn=1;
-deff('[y]=beta(x)','y=bn*(x^(A-1) * (1-x)^(B-1))');
-bn=intg(0,1,beta);bn=1/bn;
-if norm(intg(0,1,beta)-1)> prec then pause,end
+deff('[y]=Beta(x)','y=bn*(x^(A-1) * (1-x)^(B-1))');
+bn=intg(0,1,Beta);bn=1/bn;
+if norm(intg(0,1,Beta)-1)> prec then pause,end
 
 x=0:0.1:1; y=1-x;
-p1=[]; for k=x ; p1=[p1,intg(0,k,beta)];end
+p1=[]; for k=x ; p1=[p1,intg(0,k,Beta)];end
 
 A=2*ones(x);B=3*ones(x);
 [p,q]=cdfbet('PQ',x,y,A,B);
