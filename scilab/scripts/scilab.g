@@ -29,7 +29,7 @@ VERSION="SCILAB_VERSION"
 export VERSION
 
 if test "$PVM_ROOT" = ""; then
-  PVM_ROOT=$SCI/pvm3
+  PVM_ROOT="$SCI/pvm3"
 fi
 if test "$PVM_ARCH" = ""; then
   PVM_ARCH=`$PVM_ROOT/lib/pvmgetarch`
