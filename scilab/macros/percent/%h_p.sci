@@ -49,26 +49,28 @@ function %h_p(h)
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
+	 " "
 	 "visible = "+sci2exp(h.visible)
 	 "axes_visible = "+sci2exp(h.axes_visible)
-	 "isoview = "+sci2exp(h.isoview)
-	 "cube_scaling = "+sci2exp(h.cube_scaling)
-	 "view = "+sci2exp(h.view)
-	 "rotation_angles = "+sci2exp(h.rotation_angles,0)
 	 "grid = "+sci2exp(h.grid,0)
-	 "log_flags = "+sci2exp(h.log_flags)
 	 "x_location = "+sci2exp(h.x_location)
 	 "y_location = "+sci2exp(h.y_location)
-	 "title  "
-	 "x_label  "
-	 "y_label  "
-	 "z_label  "
+	 "title: "+fmtchildren(h.title)
+	 "x_label: "+fmtchildren(h.x_label)
+	 "y_label: "+fmtchildren(h.y_label)
+	 "z_label: "+fmtchildren(h.y_label)
 	 "box = "+sci2exp(h.box)
+	 "sub_tics = "+sci2exp(h.sub_tics,0)
 	 "tics_color = "+string(h.tics_color)
          "font_style = "+string(h.font_style)
 	 "font_size = "+string(h.font_size)
 	 "font_color = "+string(h.font_color)
-	 "sub_tics = "+sci2exp(h.sub_tics,0)
+	 " "
+	 "isoview = "+sci2exp(h.isoview)
+	 "cube_scaling = "+sci2exp(h.cube_scaling)
+	 "view = "+sci2exp(h.view)
+	 "rotation_angles = "+sci2exp(h.rotation_angles,0)
+	 "log_flags = "+sci2exp(h.log_flags)
 	 "tight_limits = "+sci2exp(h.tight_limits)
 	 "data_bounds = "+sci2exp(h.data_bounds,0)
 	 "margins = "+sci2exp(h.margins,0)
