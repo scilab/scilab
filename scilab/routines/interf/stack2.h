@@ -92,6 +92,9 @@ extern int C2F(createdata) __PARAMS((integer *lw, integer n));
 char * ArgPosition __PARAMS((int i));
 char * ArgsPosition __PARAMS((int i,int j));
 
+int IsRef __PARAMS((int lw));
+int Ref2val __PARAMS((int from , int to )) ; 
+
 extern void ConvertData __PARAMS(( char *type, int size,int l));
 
 int check_square __PARAMS((int pos,int m,int n));
