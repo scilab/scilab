@@ -116,9 +116,7 @@ if type(index)==15 then
 	  z(kmax)=getfield(3,N)
 	  z=mlist(getfield(1,N),int32(Dims),z);
 	else
-	  // This case should not happen
-	  // Equivalent to : x.z(p)=not_scalar_value
-	  error("Not implemented")
+	  z(index($)(:))=N;
 	end
 	M=mlist(["st","dims",index($-1)],int32([1,1]),z);
 	index($)=null()
