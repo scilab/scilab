@@ -20,7 +20,6 @@
 #endif
 
 
-
 #if defined(THINK_C) || defined (__MWERKS__)|| defined(WIN32)
 #define CoordModePrevious 0
 #define CoordModeOrigin 1
@@ -48,11 +47,27 @@
 #include "periPos.h"
 #include "color.h"
 
+void C2F(WriteGeneric1Pos)(char *string, integer nobjpos, integer objbeg, integer sizeobj, integer *vx, integer *vy, integer flag, integer *fvect);
+void C2F(xgetmarkPos)(integer *verbose, integer *symb, integer *narg, double *dummy);
+void C2F(xsetmarkPos)(integer *number, integer *size, integer *v3, integer *v4);
+void C2F(xgetfontPos)(integer *verbose, integer *font, integer *nargs, double *dummy);
+void C2F(xsetfontPos)(integer *fontid, integer *fontsize, integer *v3, integer *v4);
+void C2F(setdashstylePos)(integer *value, integer *xx, integer *n);
+void C2F(Write2VectPos)(integer *vx, integer *vy, integer from, integer n, char *string, integer flag, integer fv);
+void C2F(WriteGenericPos)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
+void C2F(InitScilabGCPos)(integer *v1, integer *v2, integer *v3, integer *v4);
+void C2F(setforegroundPos)(integer *num, integer *v2, integer *v3, integer *v4);
+void C2F(ScilabGCGetorSetPos)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1);
+void C2F(setbackgroundPos)(integer *num, integer *v2, integer *v3, integer *v4);
+void C2F(set_cPos)(integer i);
+void C2F(idfromnamePos) (char *name1, integer *num);
+void C2F(getdashPos)(integer *verbose, integer *value, integer *narg, double *dummy);
 
-static int C2F(PosQueryFont)();
-static void C2F(displaysymbolsPos)();
-static void WriteColorRGB();
-static void WriteColorRGBDef();
+
+static int C2F(PosQueryFont)(char *name);
+static void C2F(displaysymbolsPos)(char *str, integer *n, integer *vx, integer *vy);
+static void WriteColorRGB(char *str, double *tab, int ind);
+static void WriteColorRGBDef(char *str, short unsigned int *tab, int ind);
 
 #define Char2Int(x)   ( x & 0x000000ff )
 
@@ -100,23 +115,12 @@ struct BCG
 
 /** To select the graphic Window  **/
 
-void C2F(xselgraphicPos)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(xselgraphicPos)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {}
 
 /** End of graphic (close the file) **/
 
-void C2F(xendgraphicPos)()
+void C2F(xendgraphicPos)(void)
 {
   if (file != stdout && file != (FILE*) 0) {
     FPRINTF((file,"\n showpage\n"));
@@ -125,18 +129,7 @@ void C2F(xendgraphicPos)()
     file=stdout;}
 }
 
-void C2F(xendPos)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(xendPos)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   C2F(xendgraphicPos)();
 }
@@ -145,18 +138,7 @@ void C2F(xendPos)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 /** Clear the current graphic window     **/
 /** In Postscript : nothing      **/
 
-void C2F(clearwindowPos)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(clearwindowPos)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   /* FPRINTF((file,"\n showpage")); */
   /** Sending the scale etc.. in case we want an other plot **/
@@ -165,78 +147,23 @@ void C2F(clearwindowPos)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 
 /** To generate a pause : Empty here **/
 
-void C2F(xpausePos)(str, sec_time, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *sec_time;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(xpausePos)(char *str, integer *sec_time, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {}
 
 /** Wait for mouse click in graphic window : Empty here **/
 
-void C2F(xclickPos)(str, ibutton, xx1, yy1, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *ibutton;
-     integer *xx1;
-     integer *yy1;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(xclickPos)(char *str, integer *ibutton, integer *xx1, integer *yy1, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { }
 
-void C2F(xclick_anyPos)(str, ibutton, xx1, yy1, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *ibutton;
-     integer *xx1;
-     integer *yy1;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(xclick_anyPos)(char *str, integer *ibutton, integer *xx1, integer *yy1, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { }
 
-void C2F(xgetmousePos)(str, ibutton, xx1, yy1, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *ibutton;
-     integer *xx1;
-     integer *yy1;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(xgetmousePos)(char *str, integer *ibutton, integer *xx1, integer *yy1, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { }
 
 /** Clear a rectangle **/
 
-void C2F(clearareaPos)(str, x, y, w, h, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x;
-     integer *y;
-     integer *w;
-     integer *h;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(clearareaPos)(char *str, integer *x, integer *y, integer *w, integer *h, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   FPRINTF((file,"\n [ %d %d %d %d ] clearzone",(int)*x,(int)*y,(int)*w,(int)*h));
 }
@@ -249,11 +176,7 @@ void C2F(clearareaPos)(str, x, y, w, h, v6, v7, dv1, dv2, dv3, dv4)
 
 /** to get the window upper-left pointeger coordinates **/
 
-void C2F(getwindowposPos)(verbose, x, narg,dummy)
-     integer *verbose;
-     integer *x;
-     integer *narg;
-     double *dummy;
+void C2F(getwindowposPos)(integer *verbose, integer *x, integer *narg, double *dummy)
 {
   *narg = 2;
   x[0]= x[1]=0;
@@ -263,11 +186,7 @@ void C2F(getwindowposPos)(verbose, x, narg,dummy)
 
 /** to set the window upper-left pointeger position (Void) **/
 
-void C2F(setwindowposPos)(x, y, v3, v4)
-     integer *x;
-     integer *y;
-     integer *v3;
-     integer *v4;
+void C2F(setwindowposPos)(integer *x, integer *y, integer *v3, integer *v4)
 {
 }
 
@@ -278,11 +197,7 @@ void C2F(setwindowposPos)(x, y, v3, v4)
 
 static integer prec_fact =10;
 
-void C2F(getwindowdimPos)(verbose, x, narg, dummy)
-     integer *verbose;
-     integer *x;
-     integer *narg;
-     double *dummy;
+void C2F(getwindowdimPos)(integer *verbose, integer *x, integer *narg, double *dummy)
 {     
   *narg = 2;
   x[0]= 600*prec_fact;
@@ -293,33 +208,21 @@ void C2F(getwindowdimPos)(verbose, x, narg, dummy)
 
 /** To change the window dimensions : do Nothing in Postscript  **/
 
-void C2F(setwindowdimPos)(x, y, v3, v4)
-     integer *x;
-     integer *y;
-     integer *v3;
-     integer *v4;
+void C2F(setwindowdimPos)(integer *x, integer *y, integer *v3, integer *v4)
 {
 }
 
 
 /** Select a graphic Window : Empty for Postscript **/
 
-void C2F(setcurwinPos)(intnum, v2, v3, v4)
-     integer *intnum;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setcurwinPos)(integer *intnum, integer *v2, integer *v3, integer *v4)
 {
   ScilabGCPos.CurWindow = *intnum;
 }
 
 /** Get the id number of the Current Graphic Window **/
 
-void C2F(getcurwinPos)(verbose, intnum, narg,dummy)
-     integer *verbose;
-     integer *intnum;
-     integer *narg;
-     double *dummy;
+void C2F(getcurwinPos)(integer *verbose, integer *intnum, integer *narg, double *dummy)
 {
   *narg =1 ;
   *intnum = ScilabGCPos.CurWindow ;
@@ -329,11 +232,7 @@ void C2F(getcurwinPos)(verbose, intnum, narg,dummy)
 
 /** Set a clip zone (rectangle ) **/
 
-void C2F(setclipPos)(x, y, w, h)
-     integer *x;
-     integer *y;
-     integer *w;
-     integer *h;
+void C2F(setclipPos)(integer *x, integer *y, integer *w, integer *h)
 {
   ScilabGCPos.ClipRegionSet = 1;
   ScilabGCPos.CurClipRegion[0]= *x;
@@ -345,11 +244,7 @@ void C2F(setclipPos)(x, y, w, h)
 
 /** unset clip zone **/
 
-void C2F(unsetclipPos)(v1, v2, v3, v4)
-     integer *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(unsetclipPos)(integer *v1, integer *v2, integer *v3, integer *v4)
 {
   ScilabGCPos.ClipRegionSet = 0;
   ScilabGCPos.CurClipRegion[0]= -1;
@@ -361,11 +256,7 @@ void C2F(unsetclipPos)(v1, v2, v3, v4)
 
 /** Get the boundaries of the current clip zone **/
 
-void C2F(getclipPos)(verbose, x, narg,dummy)
-     integer *verbose;
-     integer *x;
-     integer *narg;
-     double *dummy;
+void C2F(getclipPos)(integer *verbose, integer *x, integer *narg, double *dummy)
 {
   x[0] = ScilabGCPos.ClipRegionSet;
   if ( x[0] == 1)
@@ -397,11 +288,7 @@ void C2F(getclipPos)(verbose, x, narg,dummy)
  Absolute mode if *num==0, relative mode if *num != 0
 ------------------------------------------------------------*/
 
-void C2F(setabsourelPos)(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setabsourelPos)(integer *num, integer *v2, integer *v3, integer *v4)
 {
   if (*num == 0 )
     ScilabGCPos.CurVectorStyle =  CoordModeOrigin;
@@ -411,11 +298,7 @@ void C2F(setabsourelPos)(num, v2, v3, v4)
 
 /** to get information on absolute or relative mode **/
 
-void C2F(getabsourelPos)(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+void C2F(getabsourelPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 {
   *narg = 1;
   *num = ScilabGCPos.CurVectorStyle  ;
@@ -432,8 +315,7 @@ void C2F(getabsourelPos)(verbose, num, narg,dummy)
 /** The alu function for drawing : Works only with X11 **/
 /** Not in Postscript **/
 
-void C2F(setalufunctionPos)(string)
-     char *string;
+void C2F(setalufunctionPos)(char *string)
 {    
   integer value;
   
@@ -469,9 +351,7 @@ struct alinfo {
   {"GXset" ,GXset," 1 "}
 };
 
-void C2F(idfromnamePos)(name1, num)
-     char *name1;
-     integer *num;
+void C2F(idfromnamePos)(char *name1, integer *num)
 {integer i;
  *num = -1;
  for ( i =0 ; i < 16;i++)
@@ -487,11 +367,7 @@ void C2F(idfromnamePos)(name1, num)
 }
 
 
-void C2F(setalufunction1Pos)(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setalufunction1Pos)(integer *num, integer *v2, integer *v3, integer *v4)
 {     
   integer value;
   value=AluStrucPos[Min(15,Max(0,*num))].id;
@@ -504,11 +380,7 @@ void C2F(setalufunction1Pos)(num, v2, v3, v4)
 
 /** To get the value of the alufunction **/
 
-void C2F(getalufunctionPos)(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+void C2F(getalufunctionPos)(integer *verbose, integer *value, integer *narg, double *dummy)
 { 
   *narg =1 ;
   *value = ScilabGCPos.CurDrawFunction ;
@@ -523,11 +395,7 @@ void C2F(getalufunctionPos)(verbose, value, narg,dummy)
 
 #define Thick_prec 5
 
-void C2F(setthicknessPos)(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setthicknessPos)(integer *value, integer *v2, integer *v3, integer *v4)
 { 
   ScilabGCPos.CurLineWidth =Max(0, *value);
   FPRINTF((file,"\n%d Thickness",(int)Max(0,*value*Thick_prec)));
@@ -535,11 +403,7 @@ void C2F(setthicknessPos)(value, v2, v3, v4)
 
 /** to get the thicknes value **/
 
-void C2F(getthicknessPos)(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+void C2F(getthicknessPos)(integer *verbose, integer *value, integer *narg, double *dummy)
 {
   *narg =1 ;
   *value = ScilabGCPos.CurLineWidth ;
@@ -556,11 +420,7 @@ void C2F(getthicknessPos)(verbose, value, narg,dummy)
   the white pattern }
 ----------------------------------------------------*/
 
-void C2F(setpatternPos)(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setpatternPos)(integer *num, integer *v2, integer *v3, integer *v4)
 {
  integer i ; 
   if ( ScilabGCPos.CurColorStatus ==1) 
@@ -587,11 +447,7 @@ void C2F(setpatternPos)(num, v2, v3, v4)
 
 /** To get the id of the current pattern  **/
 
-void C2F(getpatternPos)(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+void C2F(getpatternPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
 
   *narg=1;
@@ -612,11 +468,7 @@ void C2F(getpatternPos)(verbose, num, narg,dummy)
 
 /** To get the id of the last pattern **/
 
-void C2F(getlastPos)(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+void C2F(getlastPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 {
   *num = ScilabGCPos.IDLastPattern +1 ;
   if (*verbose==1) 
@@ -638,11 +490,7 @@ static integer DashTabPos[MAXDASH][4] = {
 
 /* old version of setdashPos retained for compatibility */
 
-void C2F(set_dash_or_color_Pos)(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(set_dash_or_color_Pos)(integer *value, integer *v2, integer *v3, integer *v4)
 {
   static integer  l2=4,l3 ;
 
@@ -662,11 +510,7 @@ void C2F(set_dash_or_color_Pos)(value, v2, v3, v4)
 }
 
 
-void C2F(setdashPos)(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setdashPos)(integer *value, integer *v2, integer *v3, integer *v4)
 {
   static integer l2=4,l3 ;
 
@@ -675,11 +519,7 @@ void C2F(setdashPos)(value, v2, v3, v4)
   ScilabGCPos.CurDashStyle = l3;
 }
 
-void C2F(set_dash_and_color_Pos)(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(set_dash_and_color_Pos)(integer *value, integer *v2, integer *v3, integer *v4)
 {
   C2F(setdashPos)(value, v2, v3, v4); 
   C2F(setpatternPos)(value+6, v2, v3, v4);
@@ -687,11 +527,7 @@ void C2F(set_dash_and_color_Pos)(value, v2, v3, v4)
 
 /* style arguments sets either dash style either color */
 
-void C2F(set_line_style_Pos)(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(set_line_style_Pos)(integer *value, integer *v2, integer *v3, integer *v4)
 {
   integer j;
   if (ScilabGCPos.CurColorStatus == 0)
@@ -708,10 +544,7 @@ void C2F(set_line_style_Pos)(value, v2, v3, v4)
 /** the dash style is specified by the xx vector of n values **/
 /** xx[3]={5,3,7} and *n == 3 means :  5white 3 void 7 white \ldots **/
   
-void C2F(setdashstylePos)(value, xx, n)
-     integer *value;
-     integer *xx;
-     integer *n;
+void C2F(setdashstylePos)(integer *value, integer *xx, integer *n)
 {
   integer i ;
   if ( *value == 0) FPRINTF((file,"\n[] 0 setdash"));
@@ -728,11 +561,7 @@ void C2F(setdashstylePos)(value, xx, n)
 /** to get the current dash-style **/
 
 /* old version of getdashPos retained for compatibility */
-void C2F(get_dash_or_color_Pos)(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+void C2F(get_dash_or_color_Pos)(integer *verbose, integer *value, integer *narg, double *dummy)
 {integer i ;
  *narg =1 ;
  if ( ScilabGCPos.CurColorStatus ==1) 
@@ -759,11 +588,7 @@ void C2F(get_dash_or_color_Pos)(verbose, value, narg,dummy)
    }
 }
 
-void C2F(getdashPos)(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+void C2F(getdashPos)(integer *verbose, integer *value, integer *narg, double *dummy)
 {integer i ;
  *narg =1 ;
  *value=ScilabGCPos.CurDashStyle+1;
@@ -784,11 +609,7 @@ void C2F(getdashPos)(verbose, value, narg,dummy)
    }
 }
 
-void C2F(get_dash_and_color_Pos)(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+void C2F(get_dash_and_color_Pos)(integer *verbose, integer *value, integer *narg, double *dummy)
 {
   /*may be improved replacing 6 by narg */
   C2F(getdashPos)(verbose, value, narg,dummy);
@@ -796,11 +617,7 @@ void C2F(get_dash_and_color_Pos)(verbose, value, narg,dummy)
   *narg = 6;
 }
 
-void C2F(usecolorPos)(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(usecolorPos)(integer *num, integer *v2, integer *v3, integer *v4)
 {
   integer i;
   i =  Min(Max(*num,0),1);
@@ -848,11 +665,7 @@ void C2F(usecolorPos)(num, v2, v3, v4)
 }
 
 
-void C2F(getusecolorPos)(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+void C2F(getusecolorPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 {
   *num = ScilabGCPos.CurColorStatus;
   if (*verbose == 1) 
@@ -878,11 +691,7 @@ void C2F(getusecolorPos)(verbose, num, narg,dummy)
  *   ( see  if (  CheckColormap(&m) == 1) in FileInt) 
  ******************************************************/
 
-void C2F(setcolormapPos)(v1,v2,v3,v4,v5,v6,a)
-     integer *v1,*v2;
-     integer *v3;
-     integer *v4,*v5,*v6;
-     double *a;
+void C2F(setcolormapPos)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
 {
   int i,m;
   if (*v2 != 3 ||  *v1 < 0) {
@@ -912,10 +721,7 @@ void C2F(setcolormapPos)(v1,v2,v3,v4,v5,v6,a)
   C2F(setbackgroundPos)((i=ScilabGCPos.NumForeground+2,&i),PI0,PI0,PI0);
 }
 
-static void WriteColorRGB(str,tab,ind) 
-     char *str;
-     double tab[];
-     int ind;
+static void WriteColorRGB(char *str, double *tab, int ind)
 {
   int i;
   FPRINTF((file,"\n/Color%s [",str));
@@ -931,7 +737,7 @@ static void WriteColorRGB(str,tab,ind)
   Initial colormap : The arrays were filled with the numbers that we get with xget("colormap") 
 **/
 
-void ColorInit()
+void ColorInit(void)
 {
   int   m = DEFAULTNUMCOLORS;
   ScilabGCPos.Numcolors = m;
@@ -940,10 +746,7 @@ void ColorInit()
   WriteColorRGBDef("B",default_colors,2);
 }
 
-static void WriteColorRGBDef(str,tab,ind) 
-     char *str;
-     unsigned short tab[];
-     int ind;
+static void WriteColorRGBDef(char *str, short unsigned int *tab, int ind)
 {
   int i;
   FPRINTF((file,"\n/Color%s [",str));
@@ -955,8 +758,7 @@ static void WriteColorRGBDef(str,tab,ind)
   FPRINTF((file,"0.0 1.0] def"));
 }
 
-void C2F(set_cPos)(i)
-     integer i;
+void C2F(set_cPos)(integer i)
 {
   integer j;
   j=Max(Min(i,ScilabGCPos.Numcolors+1),0);
@@ -966,11 +768,7 @@ void C2F(set_cPos)(i)
 
 /** set and get the number of the background or foreground */
 
-void C2F(setbackgroundPos)(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setbackgroundPos)(integer *num, integer *v2, integer *v3, integer *v4)
 { 
   if (ScilabGCPos.CurColorStatus == 1) 
     {
@@ -979,11 +777,7 @@ void C2F(setbackgroundPos)(num, v2, v3, v4)
     }
 }
 
-void C2F(getbackgroundPos)(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+void C2F(getbackgroundPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
   *narg=1;
   if ( ScilabGCPos.CurColorStatus == 1 ) 
@@ -1001,11 +795,7 @@ void C2F(getbackgroundPos)(verbose, num, narg,dummy)
 
 /** set and get the number of the background or foreground */
 
-void C2F(setforegroundPos)(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setforegroundPos)(integer *num, integer *v2, integer *v3, integer *v4)
 { 
   if (ScilabGCPos.CurColorStatus == 1) 
     {
@@ -1013,11 +803,7 @@ void C2F(setforegroundPos)(num, v2, v3, v4)
     }
 }
 
-void C2F(getforegroundPos)(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+void C2F(getforegroundPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
   *narg=1;
   if ( ScilabGCPos.CurColorStatus == 1 ) 
@@ -1036,11 +822,7 @@ void C2F(getforegroundPos)(verbose, num, narg,dummy)
 
 /** set and get the number of the hidden3d color */
 
-void C2F(sethidden3dPos)(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(sethidden3dPos)(integer *num, integer *v2, integer *v3, integer *v4)
 { 
   if (ScilabGCPos.CurColorStatus == 1) 
     {
@@ -1049,11 +831,7 @@ void C2F(sethidden3dPos)(num, v2, v3, v4)
     }
 }
 
-void C2F(gethidden3dPos)(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+void C2F(gethidden3dPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
   *narg=1;
   if ( ScilabGCPos.CurColorStatus == 1 ) 
@@ -1075,30 +853,17 @@ void C2F(gethidden3dPos)(verbose, num, narg,dummy)
  routines } 
 -------------------------------------------------------*/
 
-void C2F(semptyPos)(verbose, v2, v3, v4)
-     integer *verbose;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(semptyPos)(integer *verbose, integer *v2, integer *v3, integer *v4)
 {
   if ( *verbose ==1 ) Scistring("\n No operation ");
 }
-void C2F(setwwhowPos)(verbose, v2, v3, v4)
-     integer *verbose;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setwwhowPos)(integer *verbose, integer *v2, integer *v3, integer *v4)
 {
   FPRINTF((file,"\n%% SPLIT HERE"));
 
 }
 
-void C2F(gemptyPos)(verbose, v2, v3,dummy)
-     integer *verbose;
-     integer *v2;
-     integer *v3;
-     double *dummy;
-
+void C2F(gemptyPos)(integer *verbose, integer *v2, integer *v3, double *dummy)
 {
   if ( *verbose ==1 ) Scistring("\n No operation ");
 }
@@ -1170,50 +935,19 @@ static  test(str,flag,verbose,x1,x2,x3,x4,x5)
 #endif 
 
 
-void C2F(scilabgcgetPos)(str, verbose, x1, x2, x3, x4, x5, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *verbose;
-     integer *x1;
-     integer *x2;
-     integer *x3;
-     integer *x4;
-     integer *x5;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(scilabgcgetPos)(char *str, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   int x6=0;
   C2F(ScilabGCGetorSetPos)(str,(integer)1L,verbose,x1,x2,x3,x4,x5,&x6,dv1);
 }
 
-void C2F(scilabgcsetPos)(str, x1, x2, x3, x4, x5, x6, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x1;
-     integer *x2;
-     integer *x3;
-     integer *x4;
-     integer *x5;
-     integer *x6;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(scilabgcsetPos)(char *str, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dv1, double *dv2, double *dv3, double *dv4)
 {
  integer verbose ;
  verbose = 0 ;
  C2F(ScilabGCGetorSetPos)(str,(integer)0L,&verbose,x1,x2,x3,x4,x5,x6,dv1);}
 
-void C2F(ScilabGCGetorSetPos)(str, flag, verbose, x1, x2, x3, x4, x5,x6,dv1)
-     char *str;
-     integer flag;
-     integer *verbose;
-     integer *x1;
-     integer *x2;
-     integer *x3;
-     integer *x4;
-     integer *x5,*x6;
-     double *dv1;
+void C2F(ScilabGCGetorSetPos)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dv1)
 { integer i ;
   for (i=0; i < NUMSETFONC ; i++)
      {
@@ -1250,18 +984,7 @@ void C2F(ScilabGCGetorSetPos)(str, flag, verbose, x1, x2, x3, x4, x5,x6,dv1)
  positive when clockwise. If *flag ==1 a framed  box is added 
  around the string.}
 -----------------------------------------------------*/
-void C2F(displaystringPos)(string, x, y, v1, flag, v6, v7, angle, dv2, dv3, dv4)
-     char *string;
-     integer *x;
-     integer *y;
-     integer *v1;
-     integer *flag;
-     integer *v6;
-     integer *v7;
-     double *angle;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, integer *flag, integer *v6, integer *v7, double *angle, double *dv2, double *dv3, double *dv4)
 {     
   integer i,rect[4] ;
   C2F(boundingboxPos)(string,x,y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
@@ -1291,18 +1014,7 @@ double bsizePos[6][4]= {{ 0.0,-7.0,4.63,9.0  },
 /** approximative result in Postscript : use the X11 driver **/
 /** with the same current font to have a good result **/
 
-void C2F(boundingboxPos)(string, x, y, rect, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *string;
-     integer *x;
-     integer *y;
-     integer *rect;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(boundingboxPos)(char *string, integer *x, integer *y, integer *rect, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {integer verbose,nargs,font[2];
  verbose=0;
  C2F(xgetfontPos)(&verbose,font,&nargs,vdouble);
@@ -1314,11 +1026,7 @@ void C2F(boundingboxPos)(string, x, y, rect, v5, v6, v7, dv1, dv2, dv3, dv4)
 
 /** Draw a single line in current style **/
 
-void C2F(drawlinePos)(xx1, yy1, x2, y2)
-     integer *xx1;
-     integer *yy1;
-     integer *x2;
-     integer *y2;
+void C2F(drawlinePos)(integer *xx1, integer *yy1, integer *x2, integer *y2)
 {
     FPRINTF((file,"\n %d %d %d %d L",(int)*xx1,(int)*yy1,(int)*x2,(int)*y2));
   }
@@ -1327,18 +1035,7 @@ void C2F(drawlinePos)(xx1, yy1, x2, y2)
 /** segments are defined by (vx[i],vy[i])->(vx[i+1],vy[i+1]) **/
 /** for i=0 step 2 **/
 
-void C2F(drawsegmentsPos)(str, vx, vy, n, style, iflag, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vx;
-     integer *vy;
-     integer *n;
-     integer *style;
-     integer *iflag;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawsegmentsPos)(char *str, integer *vx, integer *vy, integer *n, integer *style, integer *iflag, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer verbose=0,Dnarg,Dvalue[10],NDvalue;
   int i;
@@ -1364,18 +1061,7 @@ void C2F(drawsegmentsPos)(str, vx, vy, n, style, iflag, v7, dv1, dv2, dv3, dv4)
 
 /** Draw a set of arrows **/
 
-void C2F(drawarrowsPos)(str, vx, vy, n, as, style, iflag, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vx;
-     integer *vy;
-     integer *n;
-     integer *as;
-     integer *style;
-     integer *iflag;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawarrowsPos)(char *str, integer *vx, integer *vy, integer *n, integer *as, integer *style, integer *iflag, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer verbose=0,Dnarg,Dvalue[10],NDvalue;
   int i;
@@ -1409,18 +1095,7 @@ void C2F(drawarrowsPos)(str, vx, vy, n, as, style, iflag, dv1, dv2, dv3, dv4)
 /** (*n) : number of rectangles **/
 /** fillvect[*n] : specify the action (see periX11.c) **/
 
-void C2F(drawrectanglesPos)(str, vects, fillvect, n, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vects;
-     integer *fillvect;
-     integer *n;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawrectanglesPos)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer cpat,verb=0,num;
   C2F(getpatternPos)(&verb,&cpat,&num,vdouble);
@@ -1428,18 +1103,7 @@ void C2F(drawrectanglesPos)(str, vects, fillvect, n, v5, v6, v7, dv1, dv2, dv3, 
   C2F(setpatternPos)(&(cpat),PI0,PI0,PI0);
 }
 
-void C2F(drawrectanglePos)(str, x, y, width, height, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x;
-     integer *y;
-     integer *width;
-     integer *height;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawrectanglePos)(char *str, integer *x, integer *y, integer *width, integer *height, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer i = 1;
   integer fvect[1] ;
@@ -1453,18 +1117,7 @@ void C2F(drawrectanglePos)(str, x, y, width, height, v6, v7, dv1, dv2, dv3, dv4)
 
 /** Draw a filled rectangle **/
 
-void C2F(fillrectanglePos)(str, x, y, width, height, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x;
-     integer *y;
-     integer *width;
-     integer *height;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(fillrectanglePos)(char *str, integer *x, integer *y, integer *width, integer *height, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer i = 1;
   integer vects[4];
@@ -1480,18 +1133,7 @@ void C2F(fillrectanglePos)(str, x, y, width, height, v6, v7, dv1, dv2, dv3, dv4)
 /** fillvect[*n] : specify the action <?> **/
 /** caution angle=degreangle*64          **/
 
-void C2F(fillarcsPos)(str, vects, fillvect, n, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vects;
-     integer *fillvect;
-     integer *n;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(fillarcsPos)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer cpat,verb,num;
   verb=0;
@@ -1507,18 +1149,7 @@ void C2F(fillarcsPos)(str, vects, fillvect, n, v5, v6, v7, dv1, dv2, dv3, dv4)
 /** angle1,angle2 specifies the portion of the ellipsis **/
 /** caution : angle=degreangle*64          **/
 
-void C2F(drawarcsPos)(str, vects, style, n, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vects;
-     integer *style;
-     integer *n;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawarcsPos)(char *str, integer *vects, integer *style, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer verbose=0,Dnarg,Dvalue[10];
   int i;
@@ -1541,18 +1172,7 @@ void C2F(drawarcsPos)(str, vects, style, n, v5, v6, v7, dv1, dv2, dv3, dv4)
 /** Draw a single ellipsis or part of it **/
 /** caution angle=degreAngle*64          **/
 
-void C2F(drawarcPos)(str, x, y, width, height, angle1, angle2, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x;
-     integer *y;
-     integer *width;
-     integer *height;
-     integer *angle1;
-     integer *angle2;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawarcPos)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer i =1;
   integer fvect[1] ;
@@ -1567,18 +1187,7 @@ void C2F(drawarcPos)(str, x, y, width, height, angle1, angle2, dv1, dv2, dv3, dv
 /** Fill a single elipsis or part of it **/
 /** with current pattern **/
 
-void C2F(fillarcPos)(str, x, y, width, height, angle1, angle2, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x;
-     integer *y;
-     integer *width;
-     integer *height;
-     integer *angle1;
-     integer *angle2;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(fillarcPos)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer i =1,vects[6];
   integer cpat,verb=0,num;
@@ -1597,18 +1206,7 @@ void C2F(fillarcPos)(str, x, y, width, height, angle1, angle2, dv1, dv2, dv3, dv
 /** drawvect[i] >= use a mark for polyline i **/
 /** drawvect[i] < 0 use a line style for polyline i **/
 
-void C2F(drawpolylinesPos)(str, vectsx, vectsy, drawvect, n, p, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vectsx;
-     integer *vectsy;
-     integer *drawvect;
-     integer *n;
-     integer *p;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawpolylinesPos)(char *str, integer *vectsx, integer *vectsy, integer *drawvect, integer *n, integer *p, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { integer verbose ,symb[2],Mnarg,Dnarg,Dvalue[10],NDvalue,i,close;
   verbose =0 ;
   /* store the current values */
@@ -1646,18 +1244,7 @@ void C2F(drawpolylinesPos)(str, vectsx, vectsy, drawvect, n, p, v7, dv1, dv2, dv
  if fillvect[i] < 0  fill with pattern - fillvect[i]
  **************************************************************/
 
-void C2F(fillpolylinesPos)(str, vectsx, vectsy, fillvect, n, p, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vectsx;
-     integer *vectsy;
-     integer *fillvect;
-     integer *n;
-     integer *p;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(fillpolylinesPos)(char *str, integer *vectsx, integer *vectsy, integer *fillvect, integer *n, integer *p, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer cpat,verb=0,num;
   if ( ScilabGCPos.CurVectorStyle !=  CoordModeOrigin)
@@ -1672,18 +1259,7 @@ void C2F(fillpolylinesPos)(str, vectsx, vectsy, fillvect, n, p, v7, dv1, dv2, dv
 /** Only draw one polygon with current line style **/
 /** according to *closeflag : it's a polyline or a polygon **/
 
-void C2F(drawpolylinePos)(str, n, vx, vy, closeflag, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *n;
-     integer *vx;
-     integer *vy;
-     integer *closeflag;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawpolylinePos)(char *str, integer *n, integer *vx, integer *vy, integer *closeflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { integer i =1;
   integer fvect[1] ;
   /** fvect set to tell that we only want to draw not to fill  */
@@ -1697,18 +1273,7 @@ void C2F(drawpolylinePos)(str, n, vx, vy, closeflag, v6, v7, dv1, dv2, dv3, dv4)
 
 /** Fill the polygon **/
 
-void C2F(fillpolylinePos)(str, n, vx, vy, closeareaflag, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *n;
-     integer *vx;
-     integer *vy;
-     integer *closeareaflag;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(fillpolylinePos)(char *str, integer *n, integer *vx, integer *vy, integer *closeareaflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer i =1;
   integer cpat,verb=0,num;
@@ -1721,18 +1286,7 @@ void C2F(fillpolylinePos)(str, n, vx, vy, closeareaflag, v6, v7, dv1, dv2, dv3, 
 /** Draw a set of  current mark centred at points defined **/
 /** by vx and vy (vx[i],vy[i]) **/
 
-void C2F(drawpolymarkPos)(str, n, vx, vy, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *n;
-     integer *vx;
-     integer *vy;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawpolymarkPos)(char *str, integer *n, integer *vx, integer *vy, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer keepid,keepsize,i=1,sz=ScilabGCPos.CurHardSymbSize;
   keepid =  ScilabGCPos.FontId;
@@ -1746,18 +1300,7 @@ void C2F(drawpolymarkPos)(str, n, vx, vy, v5, v6, v7, dv1, dv2, dv3, dv4)
 \encadre{Routine for initialisation}
 ------------------------------------------------------*/
 
-void C2F(initgraphicPos)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *string;
-     integer *v2;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(initgraphicPos)(char *string, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   char string1[256];
   static integer EntryCounter = 0;
@@ -1790,7 +1333,7 @@ void C2F(initgraphicPos)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   EntryCounter =EntryCounter +1;
 }
 
-void FileInit()
+void FileInit(void)
 {
   int m;
   /** Just send Postscript commands to define scales etc....**/
@@ -1853,11 +1396,7 @@ to come back to the default graphic state}
 ---------------------------------------------------------*/
 
 
-void InitScilabGCPos(v1, v2, v3, v4)
-     integer *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void InitScilabGCPos(integer *v1, integer *v2, integer *v3, integer *v4)
 { integer i,j,col;
   ScilabGCPos.IDLastPattern = GREYNUMBER-1;
   ScilabGCPos.CurLineWidth=0 ;
@@ -1918,18 +1457,7 @@ $n1$and $n2$ are integer numbers for interval numbers.
 }
 
 -------------------------------------------------------------*/
-void C2F(drawaxisPos)(str, alpha, nsteps, v2, initpoint, v6, v7, size, dx2, dx3, dx4)
-     char *str;
-     integer *alpha;
-     integer *nsteps;
-     integer *v2;
-     integer *initpoint;
-     integer *v6;
-     integer *v7;
-     double *size;
-     double *dx2;
-     double *dx3;
-     double *dx4;
+void C2F(drawaxisPos)(char *str, integer *alpha, integer *nsteps, integer *v2, integer *initpoint, integer *v6, integer *v7, double *size, double *dx2, double *dx3, double *dx4)
 {
   FPRINTF((file,"\n %d [%d %d] [%f %f %f] [%d %d] drawaxis",
 	  (int)*alpha,(int)nsteps[0],(int)nsteps[1],size[0],size[1],size[2],
@@ -1942,18 +1470,7 @@ void C2F(drawaxisPos)(str, alpha, nsteps, v2, initpoint, v6, v7, size, dx2, dx3,
   with a slope alpha[i] (see displaystring_), if flag==1
   add a box around the string.
 -----------------------------------------------------*/
-void C2F(displaynumbersPos)(str, x, y, v1, v2, n, flag, z, alpha, dx3, dx4)
-     char *str;
-     integer *x;
-     integer *y;
-     integer *v1;
-     integer *v2;
-     integer *n;
-     integer *flag;
-     double *z;
-     double *alpha;
-     double *dx3;
-     double *dx4;
+void C2F(displaynumbersPos)(char *str, integer *x, integer *y, integer *v1, integer *v2, integer *n, integer *flag, double *z, double *alpha, double *dx3, double *dx4)
 { integer i ;
   char buf[20];
   for (i=0 ; i< *n ; i++)
@@ -1982,15 +1499,7 @@ must check size and cut into pieces big objects}
 #define PERLINE 20
 #define FORMATNUM "%d "
 
-void C2F(WriteGenericPos)(string, nobj, sizeobj, vx, vy, sizev, flag, fvect)
-     char *string;
-     integer nobj;
-     integer sizeobj;
-     integer *vx;
-     integer *vy;
-     integer sizev;
-     integer flag;
-     integer *fvect;
+void C2F(WriteGenericPos)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect)
 {   
   integer nobjpos,objbeg;
   objbeg= 0 ;
@@ -2009,15 +1518,7 @@ void C2F(WriteGenericPos)(string, nobj, sizeobj, vx, vy, sizev, flag, fvect)
   
 }
 
-void C2F(WriteGeneric1Pos)(string, nobjpos, objbeg, sizeobj, vx, vy, flag, fvect)
-     char *string;
-     integer nobjpos;
-     integer objbeg;
-     integer sizeobj;
-     integer *vx;
-     integer *vy;
-     integer flag;
-     integer *fvect;
+void C2F(WriteGeneric1Pos)(char *string, integer nobjpos, integer objbeg, integer sizeobj, integer *vx, integer *vy, integer flag, integer *fvect)
 {
   integer from,n,i;
   if (flag == 1) 
@@ -2069,14 +1570,7 @@ void C2F(WriteGeneric1Pos)(string, nobjpos, objbeg, sizeobj, vx, vy, flag, fvect
 -------------------------------------------------------*/
 
 
-void C2F(Write2VectPos)(vx, vy, from, n, string, flag, fv)
-     integer *vx;
-     integer *vy;
-     integer from;
-     integer n;
-     char *string;
-     integer flag;
-     integer fv;
+void C2F(Write2VectPos)(integer *vx, integer *vy, integer from, integer n, char *string, integer flag, integer fv)
 { 
   integer i,j,k,co,nco;
   int fv1;
@@ -2132,11 +1626,7 @@ static int  isizePos[] = { 8 ,10,12,14,18,24};
 
 /** To set the current font id of font and size **/
 
-void C2F(xsetfontPos)(fontid, fontsize, v3, v4)
-     integer *fontid;
-     integer *fontsize;
-     integer *v3;
-     integer *v4;
+void C2F(xsetfontPos)(integer *fontid, integer *fontsize, integer *v3, integer *v4)
 { integer i,fsiz;
   i = Min(FONTNUMBER-1,Max(*fontid,0));
   fsiz = Min(FONTMAXSIZE-1,Max(*fontsize,0));
@@ -2154,11 +1644,7 @@ void C2F(xsetfontPos)(fontid, fontsize, v3, v4)
 
 /** To get the values id and size of the current font **/
 
-void C2F(xgetfontPos)(verbose, font, nargs,dummy)
-     integer *verbose;
-     integer *font;
-     integer *nargs;
-     double *dummy;
+void C2F(xgetfontPos)(integer *verbose, integer *font, integer *nargs, double *dummy)
 {
   *nargs=2;
   font[0]= ScilabGCPos.FontId ;
@@ -2175,11 +1661,7 @@ void C2F(xgetfontPos)(verbose, font, nargs,dummy)
 
 /** To set the current mark : using the symbol font of adobe **/
 
-void C2F(xsetmarkPos)(number, size, v3, v4)
-     integer *number;
-     integer *size;
-     integer *v3;
-     integer *v4;
+void C2F(xsetmarkPos)(integer *number, integer *size, integer *v3, integer *v4)
 { 
   ScilabGCPos.CurHardSymb =
     Max(Min(SYMBOLNUMBER-1,*number),0);
@@ -2189,11 +1671,7 @@ void C2F(xsetmarkPos)(number, size, v3, v4)
 
 /** To get the current mark id **/
 
-void C2F(xgetmarkPos)(verbose, symb, narg,dummy)
-     integer *verbose;
-     integer *symb;
-     integer *narg;
-     double *dummy;
+void C2F(xgetmarkPos)(integer *verbose, integer *symb, integer *narg, double *dummy)
 {
   *narg =2 ;
   symb[0] = ScilabGCPos.CurHardSymb ;
@@ -2211,11 +1689,7 @@ char symb_listPos[] = {
   (char)0x2e,(char)0x2b,(char)0xb4,(char)0xc5,(char)0xa8,
   (char)0xe0,(char)0x44,(char)0xd1,(char)0xa7,(char)0x4f};
 
-static void C2F(displaysymbolsPos)(str, n, vx, vy)
-     char *str;
-     integer *n;
-     integer *vx;
-     integer *vy;
+static void C2F(displaysymbolsPos)(char *str, integer *n, integer *vx, integer *vy)
 {
   integer fvect[1];
   fvect[0] =  ( ScilabGCPos.CurColorStatus ==1) ? ScilabGCPos.CurColor : ScilabGCPos.CurPattern ;
@@ -2234,18 +1708,7 @@ static void C2F(displaysymbolsPos)(str, n, vx, vy)
 Postscript }
 -------------------------------------------------------*/
 
-void C2F(loadfamilyPos)(name, j, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *name;
-     integer *j;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(loadfamilyPos)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer i ;
   for ( i = 0; i < FONTMAXSIZE ; i++)
@@ -2263,24 +1726,12 @@ void C2F(loadfamilyPos)(name, j, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 \encadre{always answer ok. Must be Finished}
 ---------------------------------------------*/
 
-static int C2F(PosQueryFont)(name)
-     char *name;
+static int C2F(PosQueryFont)(char *name)
 { 
   return(1);
 }
 
-void C2F(queryfamilyPos)(name, j, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *name;
-     integer *j;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(queryfamilyPos)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer i ;
   name[0]='\0';

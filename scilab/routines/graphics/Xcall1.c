@@ -1,9 +1,9 @@
-/* C code produced by gperf version 2.7 */
+/* C code produced by gperf version 2.7.1 (19981006 egcs) */
 /* Command-line: gperf -C -t -k 2,3,4,$ Xcall1.gperf  */
 /*------------------------------------------------------------------------
  *   Graphic library for 2D and 3D plotting 
- *   Copyright (C) 2000 Chancelier Jean-Philippe 
- *   jpc@cermics.enpc.fr 
+ *   Copyright (C) 1998-2001 Chancelier Jean-Philippe 
+ *   jpc@cereve.enpc.fr 
  *--------------------------------------------------------------------------*/
 
 #include <string.h>
@@ -32,9 +32,9 @@ static f_xcall1 displaystringa_1  ,boundingbox_1  ,xstringb_1  ;
 static integer Ivide=0;
 static double  Dvide;
 
-/* should be removed when scilab will be full ansi C */
-
+#ifndef __STDC__ 
 #define const 
+#endif 
 
 struct funreplace { char *name; f_xcall1 *action; };
 
@@ -175,12 +175,9 @@ in_word_set (str, len)
 }
 
 
-
-int C2F(dr1)(x0,x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4,lx0,lx1)
-     char x0[],x1[];
-     integer *x2,*x3,*x4,*x5,*x6,*x7;
-     integer lx0,lx1;
-     double *dx1,*dx2,*dx3,*dx4;
+int C2F(dr1)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
+	    integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
+	    integer lx0, integer lx1)
 { 
   const struct funreplace *fr;
   fr=in_word_set(x0,strlen(x0));
@@ -203,20 +200,12 @@ int C2F(dr1)(x0,x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4,lx0,lx1)
 static char FPF[32]={'\0'};
 static int Autoclear = 0;
 
-void C2F(setautoclear)(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setautoclear)(integer *num,integer * v2,integer * v3,integer * v4)
 { 
   Autoclear = Max(0,Min(1,*num));
 }
 
-void C2F(getautoclear)(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+void C2F(getautoclear)(integer * verbose,integer * num,integer * narg,double *dummy)
 { 
   *narg=1;
   *num = Autoclear;
@@ -224,14 +213,12 @@ void C2F(getautoclear)(verbose, num, narg,dummy)
     sciprint("\n Autoclear : %d\r\n",*num);
 }
 
-char *getFPF()
+char *getFPF(void)
 {
   return(FPF);
 }
 
-int C2F(xsetg)(str,str1,lx0,lx1)
-     char *str,*str1;
-     integer lx0,lx1;
+int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
 {
   if ( strcmp(str,"fpf") == 0) 
     {
@@ -256,10 +243,7 @@ int C2F(xsetg)(str,str1,lx0,lx1)
   return 0;
 }
 
-int C2F(xgetg)(str,str1, len,lx0,lx1)
-     char *str,*str1;
-     integer *len;
-     integer lx0,lx1;
+int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1)
 {
   if ( strcmp(str,"fpf") == 0) 
     {
@@ -287,12 +271,7 @@ int C2F(xgetg)(str,str1, len,lx0,lx1)
  *  xset_1 
  *-----------------------------------------------------------------------------*/
 
-void xset_1(fname, str, x1, x2, x3, x4, x5, x6, dx1, dx2, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *x1,*x2,*x3,*x4,*x5,*x6;
-     double *dx1,*dx2,*dx3,*dx4;
-     integer lx0,lx1;
+void xset_1(char *fname, char *str, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
 {
   /** Warning : we must not record : wdim,wpos,colormap,window and viewport **/
   if (GetDriver()=='R' &&strcmp(str,"wdim")!=0 && strcmp(str,"wpos")!=0 && strcmp(str,"colormap") !=0
@@ -328,12 +307,7 @@ void xset_1(fname, str, x1, x2, x3, x4, x5, x6, dx1, dx2, dx3, dx4, lx0, lx1)
  *  drawarc_1
  *-----------------------------------------------------------------------------*/
 
-void drawarc_1(fname, str, v1, v2, v3, v4, angle1, angle2, x, y, width, height, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *v1, *v2, *v3, *v4, *angle1, *angle2;
-     double *x, *y, *width, *height;
-     integer lx0, lx1;
+void drawarc_1(char *fname, char *str, integer *v1, integer *v2, integer *v3, integer *v4, integer *angle1, integer *angle2, double *x, double *y, double *width, double *height, integer lx0, integer lx1)
 { 
   integer x1,yy1,w1,h1,n=1;
   x1 = XDouble2Pixel(*x);
@@ -348,12 +322,7 @@ void drawarc_1(fname, str, v1, v2, v3, v4, angle1, angle2, x, y, width, height, 
  * 
  *-----------------------------------------------------------------------------*/
 
-void fillarcs_1(fname, str, v1, fillvect, n, x6, x7, x8, vects, dx2, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *v1, *fillvect, *n, *x6, *x7, *x8;
-     double *vects, *dx2, *dx3, *dx4;
-     integer lx0, lx1;
+void fillarcs_1(char *fname, char *str, integer *v1, integer *fillvect, integer *n, integer *x6, integer *x7, integer *x8, double *vects, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
 {
   integer *xm,err=0,n2;
   Myalloc1(&xm,6*(*n),&err);
@@ -368,12 +337,7 @@ void fillarcs_1(fname, str, v1, fillvect, n, x6, x7, x8, vects, dx2, dx3, dx4, l
  *  
  *-----------------------------------------------------------------------------*/
 
-void drawarcs_1(fname, str, v1, style, n, x6, x7, x8, vects, dx2, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *v1, *style, *n, *x6, *x7, *x8;
-     double *vects, *dx2, *dx3, *dx4;
-     integer lx0, lx1;
+void drawarcs_1(char *fname, char *str, integer *v1, integer *style, integer *n, integer *x6, integer *x7, integer *x8, double *vects, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
 {
   integer *xm,err=0,n2;
   Myalloc1(&xm,6*(*n),&err);
@@ -387,12 +351,7 @@ void drawarcs_1(fname, str, v1, style, n, x6, x7, x8, vects, dx2, dx3, dx4, lx0,
  *  
  *-----------------------------------------------------------------------------*/
 
-void fillpolyline_1(fname, str, n, v1, v2, closeflag, x7, x8, vx, vy, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *n, *v1, *v2, *closeflag, *x7, *x8;
-     double *vx, *vy, *dx3, *dx4;
-     integer lx0, lx1;
+void fillpolyline_1(char *fname, char *str, integer *n, integer *v1, integer *v2, integer *closeflag, integer *x7, integer *x8, double *vx, double *vy, double *dx3, double *dx4, integer lx0, integer lx1)
 {
   integer *xm,*ym,err=0,n2=1;
   Myalloc(&xm,&ym,*n,&err);
@@ -407,12 +366,7 @@ void fillpolyline_1(fname, str, n, v1, v2, closeflag, x7, x8, vx, vy, dx3, dx4, 
  *  arrows
  *-----------------------------------------------------------------------------*/
 
-void drawarrows_1(fname, str, style, iflag, n, v3, x7, x8, vx, vy, as, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *style, *iflag, *n, *v3, *x7, *x8;
-     double *vx, *vy, *as, *dx4;
-     integer lx0, lx1;
+void drawarrows_1(char *fname, char *str, integer *style, integer *iflag, integer *n, integer *v3, integer *x7, integer *x8, double *vx, double *vy, double *as, double *dx4, integer lx0, integer lx1)
 { 
   integer *xm,*ym,err=0,n2=1,n1=1,ias,ias1;
   Myalloc(&xm,&ym,*n,&err);
@@ -450,11 +404,7 @@ void drawarrows_1(fname, str, style, iflag, n, v3, x7, x8, vx, vy, as, dx4, lx0,
  * axis 
  *-----------------------------------------------------------------------------*/
 
-void drawaxis_1(fname, str, v1, nsteps, v2, v3, x7, x8, alpha, size, initpoint, dx4, lx0, lx1)
-     char *fname,*str;
-     integer *v1,*nsteps,*v2,*v3,*x7,*x8;
-     double *alpha,*size,*initpoint,*dx4;
-     integer lx0, lx1;
+void drawaxis_1(char *fname, char *str, integer *v1, integer *nsteps, integer *v2, integer *v3, integer *x7, integer *x8, double *alpha, double *size, double *initpoint, double *dx4, integer lx0, integer lx1)
 {
   integer initpoint1[2],alpha1;
   double size1[3];
@@ -469,12 +419,7 @@ void drawaxis_1(fname, str, v1, nsteps, v2, v3, x7, x8, alpha, size, initpoint, 
  *  cleararea
  *-----------------------------------------------------------------------------*/
 
-void cleararea_1(fname, str, v1, v2, v3, v4, x7, x8, x, y, w, h, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *v1, *v2, *v3, *v4, *x7, *x8;
-     double *x, *y, *w, *h;
-     integer lx0, lx1;
+void cleararea_1(char *fname, char *str, integer *v1, integer *v2, integer *v3, integer *v4, integer *x7, integer *x8, double *x, double *y, double *w, double *h, integer lx0, integer lx1)
 {
   integer x1,yy1,w1,h1,n=1;
   x1 = XDouble2Pixel(*x);
@@ -487,12 +432,7 @@ void cleararea_1(fname, str, v1, v2, v3, v4, x7, x8, x, y, w, h, lx0, lx1)
 /*-----------------------------------------------------------------------------
  * click 
  *-----------------------------------------------------------------------------*/
-void xclick_1(fname, str,ibutton,iflag,istr, x5, x6, x7, x, y, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *ibutton, *iflag, *istr, *x5, *x6, *x7;
-     double *x, *y, *dx3, *dx4;
-     integer lx0, lx1;
+void xclick_1(char *fname, char *str, integer *ibutton, integer *iflag, integer *istr, integer *x5, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1)
 { 
   integer x1,yy1,n=1;
   C2F(dr)(fname,str,ibutton,&x1,&yy1,iflag,istr,x7,PD0,PD0,dx3,dx4,lx0,lx1);
@@ -501,12 +441,7 @@ void xclick_1(fname, str,ibutton,iflag,istr, x5, x6, x7, x, y, dx3, dx4, lx0, lx
 /*-----------------------------------------------------------------------------
  *  click_any
  *-----------------------------------------------------------------------------*/
-void xclick_any_1(fname, str, ibutton, iwin, iflag, x5, x6, x7, x, y, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *ibutton, *iwin, *iflag, *x5, *x6, *x7;
-     double *x, *y, *dx3, *dx4;
-     integer lx0, lx1;
+void xclick_any_1(char *fname, char *str, integer *ibutton, integer *iwin, integer *iflag, integer *x5, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1)
 { 
   integer x1,y1,n=1;
   integer verb=0,cur,na;
@@ -522,12 +457,7 @@ void xclick_any_1(fname, str, ibutton, iwin, iflag, x5, x6, x7, x, y, dx3, dx4, 
 /*-----------------------------------------------------------------------------
  *   xgetmouse
  *-----------------------------------------------------------------------------*/
-void xgetmouse_1(fname, str, ibutton,iflag, v2, x5, x6, x7, x, y, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *ibutton, *iflag, *v2, *x5, *x6, *x7;
-     double *x, *y, *dx3, *dx4;
-     integer lx0, lx1;
+void xgetmouse_1(char *fname, char *str, integer *ibutton, integer *iflag, integer *v2, integer *x5, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1)
 { 
   integer x1,yy1,n=1;
   C2F(dr)(fname,str,ibutton,&x1,&yy1,iflag,x6,x7,PD0,PD0,dx3,dx4,lx0,lx1);
@@ -538,12 +468,7 @@ void xgetmouse_1(fname, str, ibutton,iflag, v2, x5, x6, x7, x, y, dx3, dx4, lx0,
  *   fillarc
  *-----------------------------------------------------------------------------*/
 
-void fillarc_1(fname, str, v1, v2, v3, v4, angle1, angle2, x, y, width, height, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *v1, *v2, *v3, *v4, *angle1, *angle2;
-     double *x, *y, *width, *height;
-     integer lx0, lx1;
+void fillarc_1(char *fname, char *str, integer *v1, integer *v2, integer *v3, integer *v4, integer *angle1, integer *angle2, double *x, double *y, double *width, double *height, integer lx0, integer lx1)
 { 
   integer x1,yy1,w1,h1,n=1;
   x1 = XDouble2Pixel(*x);
@@ -558,12 +483,7 @@ void fillarc_1(fname, str, v1, v2, v3, v4, angle1, angle2, x, y, width, height, 
  *  fillrectangle
  *-----------------------------------------------------------------------------*/
 
-void fillrectangle_1(fname, str, v1, v2, v3, v4, x7, x8, x, y, width, height, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *v1, *v2, *v3, *v4, *x7, *x8;
-     double *x, *y, *width, *height;
-     integer lx0, lx1;
+void fillrectangle_1(char *fname, char *str, integer *v1, integer *v2, integer *v3, integer *v4, integer *x7, integer *x8, double *x, double *y, double *width, double *height, integer lx0, integer lx1)
 { 
   integer x1,yy1,w1,h1,n=1;
   x1 = XDouble2Pixel(*x);
@@ -579,12 +499,7 @@ void fillrectangle_1(fname, str, v1, v2, v3, v4, x7, x8, x, y, width, height, lx
 /*-----------------------------------------------------------------------------
  *  drawpolyline
  *-----------------------------------------------------------------------------*/
-void drawpolyline_1(fname, str, n, v1, v2, closeflag, x7, x8, vx, vy, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *n, *v1, *v2, *closeflag, *x7, *x8;
-     double *vx, *vy, *dx3, *dx4;
-     integer lx0, lx1;
+void drawpolyline_1(char *fname, char *str, integer *n, integer *v1, integer *v2, integer *closeflag, integer *x7, integer *x8, double *vx, double *vy, double *dx3, double *dx4, integer lx0, integer lx1)
 {
   integer *xm,*ym,err=0,n2=1;
   Myalloc(&xm,&ym,*n,&err);
@@ -600,12 +515,7 @@ void drawpolyline_1(fname, str, n, v1, v2, closeflag, x7, x8, vx, vy, dx3, dx4, 
  *  fillpolylines
  *-----------------------------------------------------------------------------*/
 
-void fillpolylines_1(fname, str, v1, v2, fillvect, n, p, x8, vx, vy, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *v1, *v2, *fillvect, *n, *p, *x8;
-     double *vx, *vy, *dx3, *dx4;
-     integer lx0, lx1;
+void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *fillvect, integer *n, integer *p, integer *x8, double *vx, double *vy, double *dx3, double *dx4, integer lx0, integer lx1)
 {
   integer *xm,*ym,err=0,i;
   Myalloc(&xm,&ym,(*n)*(*p),&err);
@@ -625,7 +535,7 @@ void fillpolylines_1(fname, str, v1, v2, fillvect, n, p, x8, vx, vy, dx3, dx4, l
 	n,1L,p,1L,&Ivide,1L,vx,(*n)*(*p),vy,(*n)*(*p),dx3,1L,dx4,1L);
   }
   if (*v1==2) {
-    for (i=0 ; i< (*n) ;i++) shade(&xm[(*p)*i],&ym[(*p)*i],&fillvect[(*p)*i],*p,0);
+     for (i=0 ; i< (*n) ;i++) shade(&xm[(*p)*i],&ym[(*p)*i],&fillvect[(*p)*i],*p,0);
   }
   else C2F(dr)(fname,str,xm,ym,fillvect,n,p,x8,PD0,PD0,dx3,dx4,lx0,lx1);
 
@@ -635,12 +545,7 @@ void fillpolylines_1(fname, str, v1, v2, fillvect, n, p, x8, vx, vy, dx3, dx4, l
 /*-----------------------------------------------------------------------------
  *  drawpolymark
  *-----------------------------------------------------------------------------*/
-void drawpolymark_1(fname, str, n, v1, v2, x6, x7, x8, vx, vy, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *n, *v1, *v2, *x6, *x7, *x8;
-     double *vx, *vy, *dx3, *dx4;
-     integer lx0, lx1;
+void drawpolymark_1(char *fname, char *str, integer *n, integer *v1, integer *v2, integer *x6, integer *x7, integer *x8, double *vx, double *vy, double *dx3, double *dx4, integer lx0, integer lx1)
 {
   integer *xm,*ym,err=0,n2=1;
   Myalloc(&xm,&ym,*n,&err);
@@ -657,12 +562,7 @@ void drawpolymark_1(fname, str, n, v1, v2, x6, x7, x8, vx, vy, dx3, dx4, lx0, lx
  *  displaynumbers
  *-----------------------------------------------------------------------------*/
 
-void displaynumbers_1(fname, str, v1, v2, v3, v4, n, flag, x, y, z, alpha, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *v1, *v2, *v3, *v4, *n, *flag;
-     double *x, *y, *z, *alpha;
-     integer lx0, lx1;
+void displaynumbers_1(char *fname, char *str, integer *v1, integer *v2, integer *v3, integer *v4, integer *n, integer *flag, double *x, double *y, double *z, double *alpha, integer lx0, integer lx1)
 {
   integer *xm,*ym,err=0,n2=1;
   Myalloc(&xm,&ym,*n,&err);
@@ -677,12 +577,7 @@ void displaynumbers_1(fname, str, v1, v2, v3, v4, n, flag, x, y, z, alpha, lx0, 
  *   drawpolylines
  *-----------------------------------------------------------------------------*/
 
-void drawpolylines_1(fname, str, v1, v2, drawvect, n, p, x8, vx, vy, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *v1, *v2, *drawvect, *n, *p, *x8;
-     double *vx, *vy, *dx3, *dx4;
-     integer lx0, lx1;
+void drawpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *drawvect, integer *n, integer *p, integer *x8, double *vx, double *vy, double *dx3, double *dx4, integer lx0, integer lx1)
 {
   integer *xm,*ym,err=0;
   Myalloc(&xm,&ym,(*n)*(*p),&err);
@@ -695,12 +590,7 @@ void drawpolylines_1(fname, str, v1, v2, drawvect, n, p, x8, vx, vy, dx3, dx4, l
 /*-----------------------------------------------------------------------------
  *   drawrectangle
  *-----------------------------------------------------------------------------*/
-void drawrectangle_1(fname, str, v1, v2, v3, v4, x7, x8, x, y, w, h, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *v1, *v2, *v3, *v4, *x7, *x8;
-     double *x, *y, *w, *h;
-     integer lx0, lx1;
+void drawrectangle_1(char *fname, char *str, integer *v1, integer *v2, integer *v3, integer *v4, integer *x7, integer *x8, double *x, double *y, double *w, double *h, integer lx0, integer lx1)
 {
   integer xm[4],n2=4;
   double vect[4];
@@ -713,12 +603,7 @@ void drawrectangle_1(fname, str, v1, v2, v3, v4, x7, x8, x, y, w, h, lx0, lx1)
 /*-----------------------------------------------------------------------------
  *   drawrectangles
  *-----------------------------------------------------------------------------*/
-void drawrectangles_1(fname, str, v1, fillvect, n, x6, x7, x8, vects, dx2, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *v1, *fillvect, *n, *x6, *x7, *x8;
-     double *vects, *dx2, *dx3, *dx4;
-     integer lx0, lx1;
+void drawrectangles_1(char *fname, char *str, integer *v1, integer *fillvect, integer *n, integer *x6, integer *x7, integer *x8, double *vects, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
 {
   integer *xm,err=0,n2;
   Myalloc1(&xm,4*(*n),&err);
@@ -732,12 +617,7 @@ void drawrectangles_1(fname, str, v1, fillvect, n, x6, x7, x8, vects, dx2, dx3, 
 /*-----------------------------------------------------------------------------
  *  drawsegments
  *-----------------------------------------------------------------------------*/
-void drawsegments_1(fname, str, style, iflag, n, x6, x7, x8, vx, vy, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *str;
-     integer *style, *iflag, *n, *x6, *x7, *x8;
-     double *vx, *vy, *dx3, *dx4;
-     integer lx0, lx1;
+void drawsegments_1(char *fname, char *str, integer *style, integer *iflag, integer *n, integer *x6, integer *x7, integer *x8, double *vx, double *vy, double *dx3, double *dx4, integer lx0, integer lx1)
 { 
   integer *xm,*ym,err=0,n2=1;
   Myalloc(&xm,&ym,*n,&err);
@@ -757,12 +637,7 @@ void drawsegments_1(fname, str, style, iflag, n, x6, x7, x8, vx, vy, dx3, dx4, l
 /*-----------------------------------------------------------------------------
  *  displaystring
  *-----------------------------------------------------------------------------*/
-void displaystring_1(fname, string, v1, v2, v3, flag, x7, x8, x, y, angle, dx4, lx0, lx1)
-     char *fname;
-     char *string;
-     integer *v1, *v2, *v3, *flag, *x7, *x8;
-     double *x, *y, *angle, *dx4;
-     integer lx0, lx1;
+void displaystring_1(char *fname, char *string, integer *v1, integer *v2, integer *v3, integer *flag, integer *x7, integer *x8, double *x, double *y, double *angle, double *dx4, integer lx0, integer lx1)
 {
   integer x1,yy1;
   x1 = XDouble2Pixel(*x);
@@ -774,12 +649,7 @@ void displaystring_1(fname, string, v1, v2, v3, flag, x7, x8, x, y, angle, dx4, 
 /*-----------------------------------------------------------------------------
  *  displaystringa
  *-----------------------------------------------------------------------------*/
-void displaystringa_1(fname, string, ipos, v2, v3, v4, x7, x8, dx1, dx2, dx3, dx4, lx0, lx1)
-     char *fname;
-     char *string;
-     integer *ipos, *v2, *v3, *v4, *x7, *x8;
-     double *dx1, *dx2, *dx3, *dx4;
-     integer lx0, lx1;
+void displaystringa_1(char *fname, char *string, integer *ipos, integer *v2, integer *v3, integer *v4, integer *x7, integer *x8, double *dx1, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
 {
   if (GetDriver()=='R') 
 	StoreXcall1(fname,string,ipos,1L,v2,1L,v3,1L,v4,1L,&Ivide,1L,&Ivide,1L,dx1,1L,dx2,1L,dx3,1L,dx4,1L);
@@ -801,9 +671,7 @@ void displaystringa_1(fname, string, ipos, v2, v3, v4, x7, x8, dx1, dx2, dx3, dx
  *   centred in the rectangle [x,y,w=wide,h=height] 
  *-----------------------------------------------------------------------------*/
 
-static void xstringb(string, x, y, w, h)
-     char *string;
-     integer x, y, w, h;
+static void xstringb(char *string, integer x, integer y, integer w, integer h)
 {
   char *loc,*loc1;
   loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
@@ -844,12 +712,7 @@ static void xstringb(string, x, y, w, h)
  *  To get the bounding rectangle of a string
  *-----------------------------------------------------------------------------*/
 
-void boundingbox_1(fname, string, v1, v2, v3, x6, x7, x8, x, y, rect, dx4, lx0, lx1)
-     char *fname;
-     char *string;
-     integer *v1, *v2, *v3, *x6, *x7, *x8;
-     double *x, *y, *rect, *dx4;
-     integer lx0, lx1;
+void boundingbox_1(char *fname, char *string, integer *v1, integer *v2, integer *v3, integer *x6, integer *x7, integer *x8, double *x, double *y, double *rect, double *dx4, integer lx0, integer lx1)
 { 
   integer x1,yy1,n=1,rect1[4];
   x1 = XDouble2Pixel(*x);
@@ -866,12 +729,7 @@ void boundingbox_1(fname, string, v1, v2, v3, x6, x7, x8, x, y, rect, dx4, lx0, 
 
 #define FONTMAXSIZE 6
 
-void xstringb_1(fname,str,fflag,v2,v3,v4,x7,x8,xd,yd,wd,hd,lx0,lx1)
-     char *fname;
-     char *str;
-     integer *fflag,*v2,*v3,*v4,*x7,*x8;
-     double *xd,*yd,*wd,*hd;
-     integer lx0, lx1;
+void xstringb_1(char *fname, char *str, integer *fflag, integer *v2, integer *v3, integer *v4, integer *x7, integer *x8, double *xd, double *yd, double *wd, double *hd, integer lx0, integer lx1)
 {
   integer x,y,w,h,wbox,hbox,size,n=1;
   integer fontid[2],narg,verbose=0;
@@ -910,10 +768,7 @@ void xstringb_1(fname,str,fflag,v2,v3,v4,x7,x8,xd,yd,wd,hd,lx0,lx1)
  * and the string is Drawn if Dflag ==1 ;
  **********************************/
 
-void GSciString(Dflag,x,y,StrMat,w,h)
-     char *StrMat;
-     integer *x,*y,*w,*h;
-     int Dflag;
+void GSciString(int Dflag, integer *x, integer *y, char *StrMat, integer *w, integer *h)
 {
   char *p = StrMat,*p1,*p2,*plast;
   integer yi=*y;
@@ -956,8 +811,7 @@ void GSciString(Dflag,x,y,StrMat,w,h)
  * Utilities : Allocation 
  *-----------------------------------------------------------------------------*/
 
-static void Myalloc(xm, ym, n, err)
-     integer **xm, **ym,  n, *err;
+static void Myalloc(integer **xm, integer **ym, integer n, integer *err)
 {
   if ( n != 0) 
     {
@@ -971,8 +825,7 @@ static void Myalloc(xm, ym, n, err)
     }
 }
 
-static void Myalloc1(xm, n, err)
-     integer **xm, n, *err;
+static void Myalloc1(integer **xm, integer n, integer *err)
 {
   if ( n != 0) 
     {

@@ -35,11 +35,7 @@ extern void sciqsort();
  * iord : 'i' or 'd' : increasind or decreasing sort 
  ******************************************************/
 
-int C2F(gsort)(xI,xD,ind,iflag,m,n,type,iord)
-     int *xI,*ind;
-     double *xD;
-     int *m,*n,*iflag;
-     char *type,*iord;
+int C2F(gsort)(int *xI, double *xD, int *ind, int *iflag, int *m, int *n, char *type, char *iord)
 {
   switch ( type[0])
     {
@@ -68,11 +64,7 @@ int C2F(gsort)(xI,xD,ind,iflag,m,n,type,iord)
 
 #ifndef TEST 
 
-void C2F(gsorts_old)(value,ptrv,m,n,res,ptrres,ierr,ind,iflag,type,iord)
-     int *value,*ptrv,*m,*n,*res,*ptrres,*ierr;
-     int *ind;
-     int *iflag;
-     char *type,*iord;     
+void C2F(gsorts_old)(int *value, int *ptrv, int *m, int *n, int *res, int *ptrres, int *ierr, int *ind, int *iflag, char *type, char *iord)
 {
   char **data;
   int i,nv;
@@ -110,10 +102,7 @@ void C2F(gsorts_old)(value,ptrv,m,n,res,ptrres,ierr,ind,iflag,type,iord)
 
 #ifndef TEST 
 
-void C2F(gsorts)(data,ind,iflag,m,n,type,iord)
-     char **data;
-     int *m,*n,*ind,*iflag;
-     char *type,*iord;     
+void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord)
 {
   switch ( type[0])
     {

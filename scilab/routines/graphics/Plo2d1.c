@@ -29,11 +29,7 @@ static void Plo2d1RealToPixel __PARAMS((integer *n1, integer *n2, double *x, dou
   xf[2]='l' or 'n' LogAxis or standard on Y
 --------------------------------------------------------------------------*/
   
-int C2F(plot2d1)(xf,x,y,n1,n2,style,strflag,legend,brect,aaint,l1,l2,l3)
-     double x[],y[],brect[];
-     integer   *n1,*n2,style[],aaint[];
-     char legend[],strflag[],xf[];
-     integer l1,l2,l3;
+int C2F(plot2d1)(char *xf, double *x, double *y, integer *n1, integer *n2, integer *style, char *strflag, char *legend, double *brect, integer *aaint, integer l1, integer l2, integer l3)
 {
   int n;
   integer *xm,*ym, nn2=(*n2);
@@ -77,14 +73,7 @@ int C2F(plot2d1)(xf,x,y,n1,n2,style,strflag,legend,brect,aaint,l1,l2,l3)
 
 }
 
-static void Plo2d1RealToPixel(n1, n2, x, y, xm, ym, xf)
-     integer *n1;
-     integer *n2;
-     double *x;
-     double *y;
-     integer *xm;
-     integer *ym;
-     char *xf;
+static void Plo2d1RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
 {
   integer i,j;
   /** Computing y-values **/
@@ -140,8 +129,7 @@ static void Plo2d1RealToPixel(n1, n2, x, y, xm, ym, xf)
 }
 
 
-int CheckxfParam(xf) 
-     char *xf ;
+int CheckxfParam(char *xf)
 {
   if ( strlen(xf) < 3 ) 
     {

@@ -74,13 +74,7 @@
  * sinon cas standard on leur donnera la valeur 1;
  **************************************************/
 
-void sciqsort(a,tab, flag, n, es, es1, cmp ,swapcode,swapcodeind)
-  char *a;
-  char *tab;
-  int flag;
-  int n, es,es1;
-  int (*cmp)();  int (*swapcode)();  int (*swapcodeind)();
-
+void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp) (/* ??? */), int (*swapcode) (/* ??? */), int (*swapcodeind) (/* ??? */))
 {
   char *pa, *pb, *pc, *pd, *pl, *pm, *pn;
   char *taba, *tabb, *tabc, *tabd, *tabl, *tabm, *tabn;

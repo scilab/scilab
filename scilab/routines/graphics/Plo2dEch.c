@@ -82,12 +82,12 @@ static WCScaleList  Defscale =
  * and curwin() scale with default scale.
  *----------------------------------------------------------*/
 
-void Cscale2default()
+void Cscale2default(void)
 {
   scale_copy(&Cscale,&Defscale);  set_window_scale(curwin(),&Cscale);
 }
 
-void set_window_scale_with_default(i) int i; { set_window_scale(i,&Defscale);} 
+void set_window_scale_with_default(int i) { set_window_scale(i,&Defscale);} 
 
 /*------------------------------------------------------------
  * void get_window_scale(i,subwin)
@@ -100,17 +100,12 @@ void set_window_scale_with_default(i) int i; { set_window_scale(i,&Defscale);}
 
 static int get_scale_win __PARAMS((ScaleList *listptr, integer wi, double *subwin));
 
-int get_window_scale(i,subwin)
-     integer i;
-     double *subwin;
+int get_window_scale(integer i, double *subwin)
 { 
   return get_scale_win(The_List,Max(0L,i),subwin);
 }
 
-static int get_scale_win(listptr, wi,subwin)
-     ScaleList *listptr;
-     integer wi;
-     double *subwin;
+static int get_scale_win(ScaleList *listptr, integer wi, double *subwin)
 {
   if (listptr != (ScaleList  *) NULL)
     { 
@@ -147,17 +142,12 @@ static int get_scale_win(listptr, wi,subwin)
  * (which is also modified) making Cscale the current scale of window i 
  *-------------------------------------------------------------*/
 
-static void set_window_scale(i,scale)
-     integer i;
-     WCScaleList  *scale;
+static void set_window_scale(integer i, WCScaleList *scale)
 { 
   set_scale_win(&The_List,Max(0L,i),scale);
 }
 
-static void set_scale_win(listptr, i,scale)
-     ScaleList **listptr;
-     integer i;
-     WCScaleList *scale;
+static void set_scale_win(ScaleList **listptr, integer i, WCScaleList *scale)
 {
   if ( *listptr == (ScaleList  *) NULL)
     {
@@ -218,8 +208,7 @@ static void set_scale_win(listptr, i,scale)
     set_scale_win( &((*listptr)->next),i,scale);
 }
  
-static WCScaleList *new_wcscale(val) 
-     WCScaleList *val;
+static WCScaleList *new_wcscale(WCScaleList *val)
 {
   WCScaleList *new ;
   if ((new = (WCScaleList *) MALLOC( sizeof (WCScaleList))) == NULL) 
@@ -230,9 +219,7 @@ static WCScaleList *new_wcscale(val)
   return new;
 }
 
-static WCScaleList *check_subwin_wcscale(listptr,subwin_rect)
-     WCScaleList *listptr;
-     double subwin_rect[4];
+static WCScaleList *check_subwin_wcscale(WCScaleList *listptr, double *subwin_rect)
 {
   if ( listptr == (WCScaleList  *) NULL)  return NULL;
   if ( same_subwin( listptr->subwin_rect,subwin_rect)) 
@@ -241,8 +228,7 @@ static WCScaleList *check_subwin_wcscale(listptr,subwin_rect)
     return check_subwin_wcscale(listptr->next,subwin_rect);
 }
 
-static int same_subwin( lsubwin_rect,subwin_rect)
-     double lsubwin_rect[4],subwin_rect[4];
+static int same_subwin(double *lsubwin_rect, double *subwin_rect)
 {
   if ( Abs(lsubwin_rect[0] - subwin_rect[0]) < 1.e-8
        && Abs(lsubwin_rect[1] - subwin_rect[1]) < 1.e-8
@@ -260,8 +246,7 @@ static int same_subwin( lsubwin_rect,subwin_rect)
 
 static void DeleteWCScale __PARAMS((WCScaleList *l));
 
-void del_window_scale(i)
-     integer i;
+void del_window_scale(integer i)
 { 
   ScaleList *loc, *loc1;
   /* check head of The_List */
@@ -293,8 +278,7 @@ void del_window_scale(i)
     }
 }
 
-static void DeleteWCScale(l) 
-     WCScaleList *l;
+static void DeleteWCScale(WCScaleList *l)
 {
   if ( l != NULL) 
     {
@@ -308,8 +292,7 @@ static void DeleteWCScale(l)
  * (only necessary for non ansi C compilers) 
  *-------------------------------------------*/
 
-static void scale_copy(s1,s2) 
-     WCScaleList *s1,*s2;
+static void scale_copy(WCScaleList *s1, WCScaleList *s2)
 {
   int i,j;
   s1->flag=s2->flag;
@@ -342,7 +325,7 @@ static void scale_copy(s1,s2)
  * return current window : ok if driver is Rec
  *-------------------------------------------*/
 
-static integer curwin()
+static integer curwin(void)
 {
   integer verbose=0,narg,winnum;
   C2F(dr)("xget","window",&verbose,&winnum,&narg ,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -355,7 +338,7 @@ static integer curwin()
 
 static void show_scales __PARAMS((ScaleList *listptr));
 
-void ShowScales()
+void ShowScales(void)
 { 
   sciprint("-----------scales-------------\r\n");
   show_scales(The_List);
@@ -366,8 +349,7 @@ void ShowScales()
   sciprint("-----------end----------------\r\n");
 }
 
-static void show_scales(listptr)
-     ScaleList *listptr;
+static void show_scales(ScaleList *listptr)
 {
   if (listptr != (ScaleList  *) NULL)
     { 
@@ -397,10 +379,7 @@ static void show_scales(listptr)
  *            quarter of the window 
  *-------------------------------------------*/
 
-int C2F(setscale2d)(WRect,FRect,logscale,l1)
-     double FRect[4], WRect[4];
-     char *logscale;
-     integer l1;
+int C2F(setscale2d)(double *WRect, double *FRect, char *logscale, integer l1)
 {
   static integer aaint[]={2,10,2,10};
   if (GetDriver()=='R') StoreEch("scale",WRect,FRect,logscale);
@@ -440,10 +419,7 @@ int C2F(setscale2d)(WRect,FRect,logscale,l1)
  *  
  *-------------------------------------------*/
 
-int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
-     double FRect[4], WRect[4],ARect[4];
-     char *logscale;
-     integer l1;
+int C2F(Nsetscale2d)(double *WRect, double *ARect, double *FRect, char *logscale, integer l1)
 {
   /* if some arguments are null pointer we set them to 
    * the corresponding Cscale value. 
@@ -509,9 +485,7 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
 
 /* used to send values to Scilab */
 
-int getscale2d(WRect,FRect,logscale,ARect)
-     double FRect[4],WRect[4],ARect[4];
-     char *logscale;
+int getscale2d(double *WRect, double *FRect, char *logscale, double *ARect)
 {
   integer i;
   static double ten=10.0;
@@ -547,13 +521,13 @@ int getscale2d(WRect,FRect,logscale,ARect)
  *           when using log scales 
  *-------------------------------------------*/
 
-void set_scale(flag,subwin,frame_values,aaint,logflag,axis_values)
-     char flag[6];            /* flag[i] = 't' or 'f' */
-     double  subwin[4];       /* subwindow specification */
-     double  frame_values[4]; /* [xmin,ymin,xmax,ymax] */
-     integer aaint[4];        /* [xint,x_subint,y_int,y_subint]*/
-     char logflag[2];         /* [xlogflag,ylogflag] */
-     double axis_values[4];   /* [mfact_xl, mfact_xr,mfact_yu,mfact_yd]; */
+void set_scale(char *flag, double *subwin, double *frame_values, integer *aaint, char *logflag, double *axis_values)
+                              /* flag[i] = 't' or 'f' */
+                              /* subwindow specification */
+                              /* [xmin,ymin,xmax,ymax] */
+                              /* [xint,x_subint,y_int,y_subint]*/
+                              /* [xlogflag,ylogflag] */
+                              /* [mfact_xl, mfact_xr,mfact_yu,mfact_yd]; */
 {
   char c;
   char wdim_changed= 'f',subwin_changed='f';
@@ -671,8 +645,7 @@ void set_scale(flag,subwin,frame_values,aaint,logflag,axis_values)
  * Get the current window dimensions.
  *--------------------------------------------------------------------*/
 
-void get_cwindow_dims(wdims)
-     int wdims[2];
+void get_cwindow_dims(int *wdims)
 {
   int verbose=0,narg;
   C2F(dr)("xget","wdim",&verbose,wdims,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -682,13 +655,13 @@ void get_cwindow_dims(wdims)
  * use current scale to set the clipping rectangle 
  *--------------------------------------------------------------------*/
 
-void frame_clip_on()
+void frame_clip_on(void)
 {
   C2F(dr)("xset","clipping",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
 	  &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
 
-void frame_clip_off()
+void frame_clip_off(void)
 {
   C2F(dr)("xset","clipoff",PI0,PI0,PI0,PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
@@ -704,10 +677,7 @@ void frame_clip_off()
  *    lstr    : unused (Fortran/C) 
  * --------------------------------------------------------------------------*/
 
-int C2F(echelle2d)(x,y,x1,yy1,n1,n2,dir,lstr)
-     double x[],y[];
-     integer x1[],yy1[],*n1,*n2,lstr;
-     char dir[];
+int C2F(echelle2d)(double *x, double *y, integer *x1, integer *yy1, integer *n1, integer *n2, char *dir, integer lstr)
 {
   int n=(*n1)*(*n2);
   C2F(xechelle2d)(x,x1,&n,dir,lstr);
@@ -717,11 +687,7 @@ int C2F(echelle2d)(x,y,x1,yy1,n1,n2,dir,lstr)
 
 /* for x only */
 
-int C2F(xechelle2d)(x,x1,n1,dir,lstr)
-     double x[];
-     integer x1[],*n1;
-     char dir[];
-     integer lstr;
+int C2F(xechelle2d)(double *x, integer *x1, integer *n1, char *dir, integer lstr)
 {
   integer i;
   if (strcmp("f2i",dir)==0) 
@@ -745,11 +711,7 @@ int C2F(xechelle2d)(x,x1,n1,dir,lstr)
 
 /* for y only */
 
-int C2F(yechelle2d)(y,yy1,n2,dir,lstr)
-     double y[];
-     integer yy1[],*n2;
-     char dir[];
-     integer lstr;
+int C2F(yechelle2d)(double *y, integer *yy1, integer *n2, char *dir, integer lstr)
 {
   integer i;
   if (strcmp("f2i",dir)==0) 
@@ -777,10 +739,7 @@ int C2F(yechelle2d)(y,yy1,n2,dir,lstr)
  * Note that it cannot work in logarithmic scale 
  *--------------------------------------------------------------------*/
 
-void C2F(echelle2dl)(x, y, x1, yy1, n1, n2,  dir)
-     double  x[],y[];
-     integer x1[],yy1[],*n1,*n2;
-     char *dir;
+void C2F(echelle2dl)(double *x, double *y, integer *x1, integer *yy1, integer *n1, integer *n2, char *dir)
 {
   integer i;
   if (strcmp("f2i",dir)==0) 
@@ -805,10 +764,7 @@ void C2F(echelle2dl)(x, y, x1, yy1, n1, n2,  dir)
 
 /** meme chose mais pour transformer des ellipses **/
 
-void C2F(ellipse2d)(x, x1, n, dir)
-     double x[];
-     integer x1[],*n;
-     char *dir;
+void C2F(ellipse2d)(double *x, integer *x1, integer *n, char *dir)
 {
   integer i;
   if (strcmp("f2i",dir)==0) 
@@ -842,10 +798,7 @@ void C2F(ellipse2d)(x, x1, n, dir)
 
 /** meme chose mais pour transformer des rectangles **/
 
-void C2F(rect2d)(x, x1, n, dir)
-     double x[];
-     integer x1[],*n;
-     char *dir;
+void C2F(rect2d)(double *x, integer *x1, integer *n, char *dir)
 {
   integer i;
   if (strcmp("f2i",dir)==0) 
@@ -910,12 +863,7 @@ void C2F(rect2d)(x, x1, n, dir)
  
 /** meme chose mais pour axis **/
 
-void C2F(axis2d)(alpha, initpoint, size, initpoint1, size1)
-     double *alpha;
-     double *initpoint;
-     double *size;
-     integer *initpoint1;
-     double *size1;
+void C2F(axis2d)(double *alpha, double *initpoint, double *size, integer *initpoint1, double *size1)
 {
   double sina ,cosa;
   double xx,yy,scl;
@@ -950,12 +898,11 @@ void C2F(axis2d)(alpha, initpoint, size, initpoint1, size1)
 
 /** Changement interactif d'echelle **/
 
-extern int EchCheckSCPlots();
+extern int EchCheckSCPlots(char *, integer *);
 
 /** get a rectangle interactively **/ 
 
-void zoom_get_rectangle(bbox)
-     double bbox[4];
+void zoom_get_rectangle(double *bbox)
 {
   /* Using the mouse to get the new rectangle to fix boundaries */
   integer th,th1=1;
@@ -1020,7 +967,7 @@ void zoom_get_rectangle(bbox)
 
 }
 
-void zoom()
+void zoom(void)
 {
   char driver[4];
   integer aaint[4],flag[2]; /* ansi : ={1,0};*/
@@ -1043,7 +990,7 @@ void zoom()
     }
 }
 
-void unzoom()
+void unzoom(void)
 {
   char driver[4];
   integer ww,verbose=0,narg;
@@ -1068,11 +1015,7 @@ void unzoom()
   inside dbox
   **/
 
-static void zoom_rect(x0, yy0, x, y)
-     double x0;
-     double yy0;
-     double x;
-     double y;
+static void zoom_rect(double x0, double yy0, double x, double y)
 {
   double xi,yi,w,h;
 #ifdef WIN32
@@ -1098,13 +1041,7 @@ static void zoom_rect(x0, yy0, x, y)
  *  (voir les fonctions qui suivent )
  */
 
-void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
-     char *logf;
-     double *FRectI;
-     integer *Xdec;
-     integer *Ydec;
-     integer *xnax;
-     integer *ynax;
+void Gr_Rescale(char *logf, double *FRectI, integer *Xdec, integer *Ydec, integer *xnax, integer *ynax)
 {
   double FRectO[4];
   if (logf[0] == 'n') 

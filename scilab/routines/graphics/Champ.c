@@ -29,15 +29,7 @@ static double MiniD __PARAMS((double *x,integer n));
  * - lstr : (used when called from Fortran code)
  -------------------------------------------------------------------*/
 
-void champg(name, colored, x, y, fx, fy, n1, n2, strflag, brect, arfact, lstr)
-     char *name;
-     integer colored;
-     double x[],y[],fx[],fy[];
-     integer *n1,*n2;
-     char *strflag;
-     double *brect;
-     double *arfact;
-     integer lstr;
+void champg(char *name, integer colored, double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, char *strflag, double *brect, double *arfact, integer lstr)
 {
   static integer aaint[]={2,10,2,10};
   integer *xm,*ym,*zm,i,j,n,na;
@@ -172,21 +164,13 @@ void champg(name, colored, x, y, fx, fy, n1, n2, strflag, brect, arfact, lstr)
   frame_clip_off();
 }
 
-int C2F(champ)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
-     double x[],y[],fx[],fy[],brect[],*arfact;
-     integer *n1,*n2;
-     char strflag[];
-     integer lstr;
+int C2F(champ)(double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, char *strflag, double *brect, double *arfact, integer lstr)
 {
   champg("champ",0,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
   return(0); 
 }
 
-int C2F(champ1)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
-     double x[],y[],fx[],fy[],brect[],*arfact;
-     integer *n1,*n2;
-     char strflag[];
-     integer lstr;
+int C2F(champ1)(double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, char *strflag, double *brect, double *arfact, integer lstr)
 {
   champg("champ1",1,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
   return(0);
@@ -198,9 +182,7 @@ int C2F(champ1)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
  * if x==0 then 1 is returned 
  *----------------------------------*/
 
-static double MiniD(x, n)
-     double *x;
-     integer n;
+static double MiniD(double *x, integer n)
 {
   int i;
   double dx=1,mindx=1;

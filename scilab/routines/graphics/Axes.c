@@ -23,8 +23,7 @@ static void aplotv2 __PARAMS((char*));
  * Draw Axis or only rectangle
  *----------------------------------------------------------------*/
 
-void axis_draw(strflag)
-     char strflag[];
+void axis_draw(char *strflag)
 {
   /* using foreground to draw axis */
   integer verbose=0,narg,xz[10],fg,i;
@@ -62,8 +61,7 @@ void axis_draw(strflag)
  *  each big interval will be divided in 3 small intervals.
  *----------------------------------------------------------------*/
 
-static void aplotv2(strflag) 
-     char *strflag;
+static void aplotv2(char *strflag)
 {
   char dir = 'l';
   int nx,ny;
@@ -103,8 +101,7 @@ static void aplotv2(strflag)
   Sci_Axis(dir,'r',&x1,&nx,y,&ny,NULL,Cscale.Waaint1[2],NULL,fontsize,textcolor,ticscolor,Cscale.logflag[1],seg);
 }
 
-static void aplotv1(strflag)
-     char *strflag;
+static void aplotv1(char *strflag)
 {
   char dir = 'l';
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
@@ -187,32 +184,14 @@ static void aplotv1(strflag)
  *-------------------------------------------------------------*/
 
 
-void sci_axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag)
-     char pos,xy_type;        
-     double x[],y[];  
-     int *nx,*ny;
-     char *str[];
-     int  subtics;
-     char *format; 
-     int fontsize,textcolor,ticscolor;
-     char logflag;
-     int seg_flag;
+void sci_axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, char **str, int subtics, char *format, int fontsize, int textcolor, int ticscolor, char logflag, int seg_flag)
 {
   if (GetDriver()=='R') 
     StoreSciAxis("axis",pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag);
   Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag);
 }
 
-void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag)
-     char pos,xy_type;        
-     double x[],y[];  
-     int *nx,*ny;
-     char *str[];
-     int  subtics;
-     char *format; 
-     int fontsize,textcolor,ticscolor;
-     char logflag;
-     int seg_flag;
+void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, char **str, int subtics, char *format, int fontsize, int textcolor, int ticscolor, char logflag, int seg_flag)
 {
   int Nx,Ny;
   double angle=0.0,vxx,vxx1;
@@ -457,10 +436,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
 
 /* from double to pixel */ 
 
-static double  x_convert(xy_type, x , i)
-     char xy_type;
-     double *x;
-     int i;
+static double  x_convert(char xy_type, double *x, int i)
 {
   switch ( xy_type ) { 
   case 'v' :  return x[i];
@@ -470,10 +446,7 @@ static double  x_convert(xy_type, x , i)
   return 0.0;
 }
 
-static double y_convert(xy_type, y , i)
-     char xy_type;
-     double *y;
-     int i;
+static double y_convert(char xy_type, double *y, int i)
 {
   switch ( xy_type ) { 
   case 'v' :  return y[i]; 
@@ -487,10 +460,7 @@ static double y_convert(xy_type, y , i)
 
 /* Format pour imprimer un nombre de la forme k10^a */
 
-static void NumberFormat(str, k, a)
-     char *str;
-     integer k;
-     integer a;
+static void NumberFormat(char *str, integer k, integer a)
 {
   if ( k==0) 
     {

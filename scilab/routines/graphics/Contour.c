@@ -61,17 +61,14 @@ static integer oddp  __PARAMS((integer i));
 static double *GX,*GY,*GZ;
 static integer Gn1,Gn2;
 
-static void InitValues(x, y, z, n1, n2)
-     double *x,*y,*z;
-     integer n1,n2;
+static void InitValues(double *x, double *y, double *z, integer n1, integer n2)
 {
   Gn1=n1;  Gn2=n2;  GX = x;  GY = y;  GZ = z;
 }
 
 /*--------return the  value of f for a pointeger on the grid-----*/
 
-static double phi_cont(i, j)
-     integer i,j;
+static double phi_cont(integer i, integer j)
 {
   return(GZ[i+Gn1*j]);
 }
@@ -79,16 +76,14 @@ static double phi_cont(i, j)
 /*---------return the coordinates between  [xi,xj] along one axis 
  *  for which the value of f is zCont */ 
 
-static double f_intercept(zCont, fi, xi, fj, xj)
-     double zCont,fi,xi,fj,xj;
+static double f_intercept(double zCont, double fi, double xi, double fj, double xj)
 {
   return( xi+ (zCont-fi)*(xj-xi)/ (fj-fi));
 }
 
 /* check for boundary points */
 
-static integer  bdyp(i, j)
-     integer i,j;
+static integer  bdyp(integer i, integer j)
 {
   return (  j == 0 || i == 0 || j == Gn2-1 || i == Gn1-1 );
 }
@@ -97,21 +92,17 @@ static integer  bdyp(i, j)
 
 static  integer *itg_cont, *xbd_cont,*ybd_cont;
 
-static integer get_itg_cont(i, j)
-     integer i,j;
+static integer get_itg_cont(integer i, integer j)
 {
   return( itg_cont[i+Gn1*j]);
 }
 
-static void inc_itg_cont(i, j, val)
-     integer i,j, val;
+static void inc_itg_cont(integer i, integer j, integer val)
 {
   itg_cont[i+Gn1*j] += val;
 }
 
-static integer not_same_sign(val1, val2)
-     double val1;
-     double val2;
+static integer not_same_sign(double val1, double val2)
 {
   if ( ISNAN(val1) ==1 || ISNAN(val2) == 1) return(0);
   /** 0.0 est consid\'er\'e comme positif **/
@@ -123,15 +114,15 @@ static integer not_same_sign(val1, val2)
       if ( val2 >= 0.0) return(1) ; else return(0);}
 }
 
-static integer oddp(i) integer i; { return( i == 1 || i ==3 );}
+static integer oddp(integer i) { return( i == 1 || i ==3 );}
 
 /*---------return the x-value of a grid point--------*/
 
-static double x_cont(i) integer i; {  return GX[i] ;}
+static double x_cont(integer i) {  return GX[i] ;}
 
 /*---------return the y-value of a grid point --------*/
 
-static double y_cont(i) integer i; {  return GY[i] ;}
+static double y_cont(integer i) {  return GY[i] ;}
 
 /*------------------------------------------------------------
  * Draw level curves for a function f(x,y) which values 
@@ -151,13 +142,7 @@ static double y_cont(i) integer i; {  return GY[i] ;}
 static double ZC=0.0;
 static char   ContNumFormat[100];
 
-int C2F(contour)(x,y,z,n1,n2,flagnz,nz,zz,teta,alpha,legend,flag,bbox,zlev,lstr)
-     double *teta,*alpha;
-     integer flag[3];
-     char legend[];
-     double x[],y[],z[],zz[],bbox[6],*zlev;
-     integer *n1,*n2,*nz,*flagnz;
-     integer lstr;
+int C2F(contour)(double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, double *teta, double *alpha, char *legend, integer *flag, double *bbox, double *zlev, integer lstr)
 {
   int err=0;
   integer verbose=0,narg,fg;
@@ -252,13 +237,7 @@ int C2F(contour)(x,y,z,n1,n2,flagnz,nz,zz,teta,alpha,legend,flag,bbox,zlev,lstr)
 
 /** interface for contour2d **/
 
-int C2F(contour2)(x,y,z,n1,n2,flagnz,nz,zz,style,strflag,legend,brect,aaint,lstr1,lstr2)
-     double x[],y[],z[],zz[];
-     integer *n1,*n2,*nz,*flagnz;
-     double brect[];
-     integer aaint[];
-     char legend[],strflag[];
-     integer lstr1,lstr2,style[];
+int C2F(contour2)(double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, integer *style, char *strflag, char *legend, double *brect, integer *aaint, integer lstr1, integer lstr2)
 {
   Contour2D(ContStore2,"contour2",x,y,z,n1,n2,flagnz,nz,zz,style,strflag,
 	    legend,brect,aaint,lstr1,lstr2);
@@ -270,15 +249,7 @@ int C2F(contour2)(x,y,z,n1,n2,flagnz,nz,zz,style,strflag,legend,brect,aaint,lstr
  * contour2di + c2dex 
  */
 
-static int Contour2D(func,name,x,y,z,n1,n2,flagnz,nz,zz,style,strflag,legend,brect,aaint,lstr1,lstr2)
-     ptr_level_f func;
-     char name[];
-     double x[],y[],z[],zz[];
-     integer *n1,*n2,*nz,*flagnz;
-     double brect[];
-     integer aaint[];
-     char legend[],strflag[];
-     integer lstr1,lstr2,style[];
+static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, integer *style, char *strflag, char *legend, double *brect, integer *aaint, integer lstr1, integer lstr2)
 {
   integer err=0;
   static double *zconst;
@@ -323,9 +294,7 @@ static int Contour2D(func,name,x,y,z,n1,n2,flagnz,nz,zz,style,strflag,legend,bre
   return(0);
 }
 
-int C2F(contourif)(x,y,z,n1,n2,flagnz,nz,zz,style)
-     double x[],y[],z[],zz[];
-     integer *n1,*n2,*nz,*flagnz,style[];
+int C2F(contourif)(double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, integer *style)
 {
   integer err=0;
   static double *zconst;
@@ -365,14 +334,7 @@ int C2F(contourif)(x,y,z,n1,n2,flagnz,nz,zz,style)
  *  gives the dash style for contour i
  *-------------------------------------------------------*/
 
-static void contourI(func, x, y, z, zCont, N,style, err)
-     ptr_level_f func;
-     double *x;
-     double *y;
-     double *z;
-     double *zCont;
-     integer *N,*style;
-     integer *err;
+static void contourI(ptr_level_f func, double *x, double *y, double *z, double *zCont, integer *N, integer *style, integer *err)
 {
   int check = 1;
   char *F;
@@ -451,15 +413,7 @@ static void contourI(func, x, y, z, zCont, N,style, err)
  *  c: indice of the contour Cont 
  *---------------------------------------------------------------------*/
 
-static void look(func, i, j, ib, jb, qq, Cont,style)
-     ptr_level_f func;
-     integer i;
-     integer j;
-     integer ib;
-     integer jb;
-     integer qq;
-     double Cont;
-     integer style;
+static void look(ptr_level_f func, integer i, integer j, integer ib, integer jb, integer qq, double Cont, integer style)
 {
   integer ip,jp,im,jm,zds,ent=0,flag=0,wflag;
   jp= j+1; ip= i+1; jm=j-1;im=i-1;
@@ -596,11 +550,7 @@ static void look(func, i, j, ib, jb, qq, Cont,style)
  *       suivant a explorer 
  *-----------------------------------------------------------------------*/
 
-static integer ffnd (func, i1, i2, i3, i4, jj1, jj2, jj3, jj4, ent, qq, Cont, zds)
-     ptr_level_f func;
-     integer i1,i2,i3,i4, jj1, jj2, jj3, jj4, ent, qq;
-     double Cont;
-     integer *zds;
+static integer ffnd (ptr_level_f func, integer i1, integer i2, integer i3, integer i4, integer jj1, integer jj2, integer jj3, integer jj4, integer ent, integer qq, double Cont, integer *zds)
 {
   double phi1,phi2,phi3,phi4,xav,yav,phiav;
   integer revflag,i;
@@ -672,9 +622,7 @@ static integer cont_size ;
  */
 
 static void
-G_ContStore(ival, xncont, yncont)
-     integer ival;
-     int xncont,yncont;
+G_ContStore(integer ival, int xncont, int yncont)
 {
   int n;
   /* nouveau contour */
@@ -695,9 +643,7 @@ G_ContStore(ival, xncont, yncont)
  */
 
 static void
-ContStore(ival, Cont, xncont, yncont)
-     integer ival;
-     double Cont,xncont,yncont;
+ContStore(integer ival, double Cont, double xncont, double yncont)
 {
   G_ContStore(ival,GEOX(xncont,yncont,Cont),
 	      GEOY(xncont,yncont,Cont));
@@ -710,9 +656,7 @@ ContStore(ival, Cont, xncont, yncont)
  */
 
 static void
-ContStore1(ival, Cont, xncont, yncont)
-     integer ival;
-     double Cont,xncont,yncont;
+ContStore1(integer ival, double Cont, double xncont, double yncont)
 {
   G_ContStore(ival,GEOX(xncont,yncont,ZC),
 	      GEOY(xncont,yncont,ZC));
@@ -725,9 +669,7 @@ ContStore1(ival, Cont, xncont, yncont)
  */
 
 static void
-ContStore2(ival, Cont, xncont, yncont)
-     integer ival;
-     double Cont,xncont,yncont;
+ContStore2(integer ival, double Cont, double xncont, double yncont)
 {
   G_ContStore(ival,XScale(xncont),YScale(yncont));
 }
@@ -738,9 +680,7 @@ ContStore2(ival, Cont, xncont, yncont)
  * floating point format 
  */
 
-static void ContourTrace(Cont,style)
-     double Cont;
-     integer style;
+static void ContourTrace(double Cont, integer style)
 { 
   char *F;
   integer verbose=0 ,Dnarg,Dvalue[10];
@@ -783,9 +723,7 @@ static int count=0;
  
 /** used to bring back data to Scilab Stack **/
 
-int C2F(getconts)(x,y,mm ,n)
-     double **x,**y;
-     integer *mm,*n;
+int C2F(getconts)(double **x, double **y, integer *mm, integer *n)
 {
   *x = Gxcont;
   *y = Gycont;
@@ -794,11 +732,7 @@ int C2F(getconts)(x,y,mm ,n)
   return 0;
 }
 
-static void GContStore2(ival, Cont, xncont, yncont)
-     integer ival;
-     double Cont;
-     double xncont;
-     double yncont;
+static void GContStore2(integer ival, double Cont, double xncont, double yncont)
 {
   int n;
   if ( ival == 0) 
@@ -827,7 +761,7 @@ static void GContStore2(ival, Cont, xncont, yncont)
   count++;
 }
 
-static void GContStore2Last()
+static void GContStore2Last(void)
 {
   if ( last != -1 ) Gycont[last]= count;
 }

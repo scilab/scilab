@@ -12,11 +12,7 @@ static int bblocs __PARAMS((double *x, double *y, double *z, integer *n, double 
  *------------------------------------------------------*/
 
 
-int C2F(nues1)(xyz, n, bxyz, nbbary, chaine, ierr)
-     double *xyz;
-     integer *n;
-     double *bxyz;
-     integer *nbbary, *chaine, *ierr;
+int C2F(nues1)(double *xyz, integer *n, double *bxyz, integer *nbbary, integer *chaine, integer *ierr)
 {
   bblocs(xyz, xyz+(*n), xyz+2*(*n), n, bxyz, bxyz+(*nbbary), 
 	 bxyz+2*(*nbbary), nbbary, chaine, ierr); 
@@ -33,11 +29,7 @@ int C2F(nues1)(xyz, n, bxyz, nbbary, chaine, ierr)
  * belongs 
  *------------------------------------------------------*/
 
-static int nnuees(x, y, z, n, bx, by, bz, nbbary, chaine, ierr)
-     double *x, *y, *z;
-     integer *n;
-     double *bx, *by, *bz;
-     integer *nbbary, *chaine, *ierr;
+static int nnuees(double *x, double *y, double *z, integer *n, double *bx, double *by, double *bz, integer *nbbary, integer *chaine, integer *ierr)
 {
   integer i1, i2;
   double d1, d2, d3;
@@ -257,11 +249,7 @@ static int nnuees(x, y, z, n, bx, by, bz, nbbary, chaine, ierr)
  *     le point x(i),y(i),z(i) appartient 
  *------------------------------------------------------*/
 
-static int bblocs(x, y, z, n, bx, by, bz, nbbary, chaine, ierr)
-     double *x, *y, *z;
-     integer *n;
-     double *bx, *by, *bz;
-     integer *nbbary, *chaine, *ierr;
+static int bblocs(double *x, double *y, double *z, integer *n, double *bx, double *by, double *bz, integer *nbbary, integer *chaine, integer *ierr)
 {
   /* System generated locals */
   integer i1, i2;
@@ -631,8 +619,7 @@ L100:
  *     record suit le reordonnancement 
  *------------------------------------------------------*/
 
-static int heapi2(criter, record, n)
-     integer *criter, *record, *n;
+static int heapi2(integer *criter, integer *record, integer *n)
 {
   static integer crit, i, j, l, r, rec;
   --record;

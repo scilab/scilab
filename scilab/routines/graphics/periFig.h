@@ -37,5 +37,5 @@
  extern void  C2F(boundingboxXfig)();
  extern void  C2F(drawarrowsXfig)(); 
  extern void  C2F(loadfamilyXfig)();
- extern void  C2F(queryfamilyXfig)();
+ extern void  C2F(queryfamilyXfig)() ;
 

@@ -28,11 +28,7 @@ static void GraySquare1 __PARAMS((integer *x,integer *y,double *z,
  *  the color associated to zmoy is used for filling a specific rectangle 
  *---------------------------------------------------------------*/
 
-int C2F(xgray)(x,y,z,n1,n2,strflag,brect,aaint,l1)
-     double x[],y[],z[],brect[];
-     integer *n1,*n2,aaint[];
-     long int l1;
-     char strflag[];
+int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, long int l1)
 {
   int N = Max((*n1),(*n2));
   double xx[2],yy[2];
@@ -71,10 +67,7 @@ int C2F(xgray)(x,y,z,n1,n2,strflag,brect,aaint,l1)
 }
 
 
-static void GraySquare_base(x, y, z, n1, n2)
-     integer x[],y[];
-     double *z;
-     integer n1,n2;
+static void GraySquare_base(integer *x, integer *y, double *z, integer n1, integer n2)
 {
   double zmoy,zmax,zmin,zmaxmin;
   integer i,j,verbose=0,whiteid,narg,fill[1],cpat,xz[2];
@@ -111,12 +104,7 @@ static void GraySquare_base(x, y, z, n1, n2)
 }
 
 
-static void GraySquare(x, y, z, n1, n2)
-     integer *x;
-     integer *y;
-     double *z;
-     integer n1;
-     integer n2;
+static void GraySquare(integer *x, integer *y, double *z, integer n1, integer n2)
 {
   if ( GetDriverId() == 0 ) 
     /** accelerated version for X11 or Windows **/
@@ -134,11 +122,7 @@ static void GraySquare(x, y, z, n1, n2)
  *  z[i,j] is used as the color of a square [i-0.5,i+0.5] [j-0.5,j+0.5]
  *-------------------------------------------------------*/
 
-int C2F(xgray1)(z,n1,n2,strflag,brect,aaint,l1)
-     double z[],brect[];
-     integer *n1,*n2,aaint[];
-     long int l1;
-     char strflag[];
+int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, long int l1)
 {
   int N = Max((*n1+1),(*n2+1));
   double xx[2],yy[2];
@@ -180,9 +164,7 @@ int C2F(xgray1)(z,n1,n2,strflag,brect,aaint,l1)
  * grayplot is to be drawn using the current scale
  -------------------------------------------------------*/
 
-int C2F(xgray2)(z,n1,n2,xrect)
-     double z[],xrect[];
-     integer *n1,*n2;
+int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
 {
   double xx[2],yy[2];
   integer xx1[2],yy1[2],nn1=1,nn2=2;
@@ -222,12 +204,7 @@ int C2F(xgray2)(z,n1,n2,xrect)
  *        P1= x[i],y[j] x[i+1],y[j+1]
  *-------------------------------------------------------*/
 
-static void GraySquare1_base(x, y, z, n1, n2)
-     integer *x;
-     integer *y;
-     double *z;
-     integer n1;
-     integer n2;
+static void GraySquare1_base(integer *x, integer *y, double *z, integer n1, integer n2)
 {
   integer i,j,verbose=0,narg,fill[1],cpat,xz[2];
   C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -248,12 +225,7 @@ static void GraySquare1_base(x, y, z, n1, n2)
   C2F(dr)("xset","pattern",&cpat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
 
-static void GraySquare1(x, y, z, n1, n2)
-     integer *x;
-     integer *y;
-     double *z;
-     integer n1;
-     integer n2;
+static void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2)
 {
   if ( GetDriverId() == 0 ) 
     /** accelerated version for X11 or Windows **/

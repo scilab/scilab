@@ -11,8 +11,8 @@
 #include "PloEch.h"
 
 extern double C2F(dsort)();
-extern char GetDriver();
-extern int Check3DPlots();
+extern char GetDriver(void);
+extern int Check3DPlots(char *, integer *);
 
 /** like GEOX or GEOY in PloEch.h but we keep values in xx1 and yy1 for finite check **/
 
@@ -60,61 +60,31 @@ static void dbox __PARAMS((void));
  *     
  *  <-- The arguments are not modified 
  *-------------------------------------------------------------------------*/
-int C2F(plot3d)(x,y,z,p,q,teta,alpha,legend,flag,bbox,lstr)
-     double x[],y[],z[],bbox[];
-     integer *p,*q;
-     double *teta,*alpha;
-     integer flag[];
-     char legend[];
-     integer lstr;
+int C2F(plot3d)(double *x, double *y, double *z, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr)
 {
   C2F(plot3dg)("plot3d",DPoints,x,y,z,p,q,teta,alpha,legend,flag,bbox);
   return(0);
 }
 
-int C2F(plot3d1)(x,y,z,p,q,teta,alpha,legend,flag,bbox,lstr)
-     double x[],y[],z[],bbox[];
-     integer *p,*q;
-     double *teta,*alpha;
-     integer flag[];
-     char legend[];
-     integer lstr;
+int C2F(plot3d1)(double *x, double *y, double *z, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr)
 {
   C2F(plot3dg)("plot3d1",DPoints1,x,y,z,p,q,teta,alpha,legend,flag,bbox);
   return(0);
 }
 
-int C2F(fac3d)(x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox,lstr)
-     double x[],y[],z[],bbox[];
-     integer *p,*q;
-     double *teta,*alpha;
-     integer flag[],*cvect;
-     char legend[];
-     integer lstr;
+int C2F(fac3d)(double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr)
 {
   C2F(fac3dg)("fac3d",0,x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox);
   return(0);
 }
 
-int C2F(fac3d1)(x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox,lstr)
-     double x[],y[],z[],bbox[];
-     integer *p,*q;
-     double *teta,*alpha;
-     integer flag[],*cvect;
-     char legend[];
-     integer lstr;
+int C2F(fac3d1)(double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr)
 {
   C2F(fac3dg)("fac3d1",1,x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox);
   return(0);
 }
 
-int C2F(fac3d2)(x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox,lstr)
-     double x[],y[],z[],bbox[];
-     integer *p,*q;
-     double *teta,*alpha;
-     integer flag[],*cvect;
-     char legend[];
-     integer lstr;
+int C2F(fac3d2)(double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr)
 {
   C2F(fac3dg)("fac3d2",2,x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox);
   return(0);
@@ -126,15 +96,7 @@ int C2F(fac3d2)(x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox,lstr)
  *
  */
 
-static void C2F(plot3dg)(name, func, x, y, z, p, q, teta, alpha, legend, flag, bbox)
-     char *name;
-     int (*func)();
-     double *x,*y,*z;
-     integer *p,*q;
-     double *teta, *alpha;
-     char *legend;
-     integer *flag;
-     double *bbox;
+static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double *y, double *z, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox)
 {
   static integer InsideU[4],InsideD[4],fg,fg1,dc;
   /* solid = color of 3D frame */
@@ -277,20 +239,7 @@ static void C2F(plot3dg)(name, func, x, y, z, p, q, teta, alpha, legend, flag, b
 }
 
 
-static void C2F(fac3dg)(name, iflag, x, y, z, cvect, p, q, teta, alpha, legend, flag, bbox)
-     char *name;
-     int iflag;
-     double *x;
-     double *y;
-     double *z;
-     integer *cvect;
-     integer *p;
-     integer *q;
-     double *teta;
-     double *alpha;
-     char *legend;
-     integer *flag;
-     double *bbox;
+static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox)
 {
   static integer InsideU[4],InsideD[4],fg1;
   integer polysize,npoly,whiteid,verbose=0,narg;
@@ -480,12 +429,7 @@ static void C2F(fac3dg)(name, iflag, x, y, z, cvect, p, q, teta, alpha, legend, 
  *  returns in (polyx, polyy) the polygon for one facet of the surface 
  *--------------------------------------------------------------------*/
 
-int DPoints1(polyx, polyy, fill, whiteid, zmin, zmax, x, y, z, i, j, jj1, p,dc,fg)
-     integer *polyx, *polyy;
-     integer *fill, whiteid;
-     double zmin, zmax;
-     double *x, *y, *z;
-     integer i, j, jj1, *p, dc,fg;
+int DPoints1(integer *polyx, integer *polyy, integer *fill, integer whiteid, double zmin, double zmax, double *x, double *y, double *z, integer i, integer j, integer jj1, integer *p, integer dc, integer fg)
 {
   polyx[  5*jj1] =PGEOX(x[i]  ,y[j]  ,z[i+(*p)*j]);
   if ( finite(xx1)==0 )return(0);
@@ -521,10 +465,7 @@ int DPoints1(polyx, polyy, fill, whiteid, zmin, zmax, x, y, z, i, j, jj1, p,dc,f
   
 }
 
-int DPoints(polyx, polyy, fill, whiteid, zmin, zmax, x, y, z, i, j, jj1, p,dc,fg)
-     integer *polyx, *polyy, *fill, whiteid;
-     double zmin, zmax, *x,*y, *z;
-     integer i,j,jj1,*p,dc,fg;
+int DPoints(integer *polyx, integer *polyy, integer *fill, integer whiteid, double zmin, double zmax, double *x, double *y, double *z, integer i, integer j, integer jj1, integer *p, integer dc, integer fg)
 {
 #ifdef lint
   whiteid,fill[0],zmin,zmax;
@@ -561,13 +502,7 @@ int DPoints(polyx, polyy, fill, whiteid, zmin, zmax, x, y, z, i, j, jj1, p,dc,fg
  * param3d function 
  *-------------------------------------------------------------------*/
 
-int C2F(param3d)(x,y,z,n,teta,alpha,legend,flag,bbox,lstr)
-     double x[],y[],z[],bbox[];
-     integer *n;
-     double *teta,*alpha;
-     integer *flag;
-     char legend[];
-     integer lstr;
+int C2F(param3d)(double *x, double *y, double *z, integer *n, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr)
 {
   static integer InsideU[4],InsideD[4];
   static double xbox[8],ybox[8],zbox[8];
@@ -655,13 +590,7 @@ int C2F(param3d)(x,y,z,n,teta,alpha,legend,flag,bbox,lstr)
  * param3d1 function 
  *-------------------------------------------------------------------*/
 
-int C2F(param3d1)(x,y,z,m,n,iflag,colors,teta,alpha,legend,flag,bbox,lstr)
-     double x[],y[],z[],bbox[];
-     integer *m,*n,*colors,*iflag;
-     double *teta,*alpha;
-     integer *flag;
-     char legend[];
-     integer lstr;
+int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integer *iflag, integer *colors, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr)
 {
   static integer InsideU[4],InsideD[4];
   static double xbox[8],ybox[8],zbox[8];
@@ -755,8 +684,7 @@ int C2F(param3d1)(x,y,z,m,n,iflag,colors,teta,alpha,legend,flag,bbox,lstr)
  * box3d 
  *-------------------------------------------------------------------*/
 
-int C2F(box3d)(xbox,ybox,zbox)
-     double xbox[8],ybox[8],zbox[8];
+int C2F(box3d)(double *xbox, double *ybox, double *zbox)
 {
   static integer InsideU[4],InsideD[4],flag[]={1,1,3},verbose=0,fg,narg,fg1;
   /** Calcule l' Enveloppe Convexe de la boite **/
@@ -783,9 +711,7 @@ int C2F(box3d)(xbox,ybox,zbox)
  * 3d geometric transformation 
  *-------------------------------------------------------------------*/
 
-int C2F(geom3d)(x,y,z,n)
-     double x[],y[],z[];
-     integer *n;
+int C2F(geom3d)(double *x, double *y, double *z, integer *n)
 {
   integer j;
   for ( j =0 ; j < (*n) ; j++)	 
@@ -806,13 +732,7 @@ int C2F(geom3d)(x,y,z,n)
  * functions for 3D scales 
  *-------------------------------------------------------------------*/
 
-void SetEch3d(xbox, ybox, zbox, bbox, teta, alpha)
-     double *xbox;
-     double *ybox;
-     double *zbox;
-     double *bbox;
-     double *teta;
-     double *alpha;
+void SetEch3d(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha)
 {
   SetEch3d1(xbox,ybox,zbox,bbox,teta,alpha,1L);
 }
@@ -822,14 +742,7 @@ void SetEch3d(xbox, ybox, zbox, bbox, teta, alpha)
  * if flag==0      we only change m without changing scales 
  */
 
-void SetEch3d1(xbox, ybox, zbox, bbox, teta, alpha, flag)
-     double *xbox;
-     double *ybox;
-     double *zbox;
-     double *bbox;
-     double *teta;
-     double *alpha;
-     integer flag;
+void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag)
 {
   double xmmin,ymmax,xmmax,ymmin,FRect[4],WRect[4],ARect[4];
   integer ib;
@@ -956,11 +869,7 @@ void SetEch3d1(xbox, ybox, zbox, bbox, teta, alpha, flag)
  * constituent le triedre dans les tableaux xbox et ybox 
  *-----------------------------------------------------------------*/ 
 
-void DrawAxis(xbox, ybox, Indices, style)
-     double *xbox;
-     double *ybox;
-     integer *Indices;
-     integer style;
+void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
 {
   integer ixbox[6],iybox[6],npoly=6,lstyle[6],verbose=0,narg;
   integer i,iflag=0;
@@ -984,14 +893,7 @@ void DrawAxis(xbox, ybox, Indices, style)
  * qui sont sur les 2 tri\`edres a l'interieur de l'enveloppe convexe
  *---------------------------------------------------------------------*/
 
-void Convex_Box(xbox, ybox, InsideU, InsideD, legend, flag, bbox)
-     double *xbox;
-     double *ybox;
-     integer *InsideU;
-     integer *InsideD;
-     char *legend;
-     integer *flag;
-     double *bbox;
+void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, char *legend, integer *flag, double *bbox)
 {
   double xmaxi;
   integer ixbox[8],iybox[8];
@@ -1088,13 +990,7 @@ void Convex_Box(xbox, ybox, InsideU, InsideD, legend, flag, bbox)
 /** (ixbox,iybox) : Coordonnees des points de l'envelloppe cvxe en pixel **/
 /** xind : indices des points de l'enveloppe cvxe ds xbox et ybox **/
 
-void AxesStrings(axflag, ixbox, iybox, xind, legend, bbox)
-     integer axflag;
-     integer *ixbox;
-     integer *iybox;
-     integer *xind;
-     char *legend;
-     double *bbox;
+void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, char *legend, double *bbox)
 {
   integer verbose=0,narg,xz[2];
   integer iof;
@@ -1227,11 +1123,7 @@ void AxesStrings(axflag, ixbox, iybox, xind, legend, bbox)
   FREE(loc);
 }
 
-void MaxiInd(vect, n, ind, maxi)
-     double *vect;
-     integer n;
-     integer *ind;
-     double maxi;
+void MaxiInd(double *vect, integer n, integer *ind, double maxi)
 {
   integer i ;
   if ( *ind+1 < n)
@@ -1243,10 +1135,7 @@ void MaxiInd(vect, n, ind, maxi)
 /* renvoit les indices des points voisins de ind1 sur la face haute 
    de la boite  */
 
-void UpNext(ind1, ind2, ind3)
-     integer ind1;
-     integer *ind2;
-     integer *ind3;
+void UpNext(integer ind1, integer *ind2, integer *ind3)
 {
   *ind2 = ind1+1;
   *ind3 = ind1-1;
@@ -1254,10 +1143,7 @@ void UpNext(ind1, ind2, ind3)
   if (*ind3 == 3) *ind3 = 7;
 }
 
-void DownNext(ind1, ind2, ind3)
-     integer ind1;
-     integer *ind2;
-     integer *ind3;
+void DownNext(integer ind1, integer *ind2, integer *ind3)
 {
   *ind2 = ind1+1;
   *ind3 = ind1-1;
@@ -1266,14 +1152,7 @@ void DownNext(ind1, ind2, ind3)
 }
 
 
-void TDAxis(flag, FPval, LPval, nax, FPoint, LPoint, Ticsdir)
-     integer flag;
-     double FPval;
-     double LPval;
-     integer *nax;
-     integer *FPoint;
-     integer *LPoint;
-     integer *Ticsdir;
+void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPoint, integer *LPoint, integer *Ticsdir)
 {
   char fornum[100];
   integer i,barlength;
@@ -1323,14 +1202,7 @@ void TDAxis(flag, FPval, LPval, nax, FPoint, LPoint, Ticsdir)
 }
 
 
-void C2F(TDdrawaxis)(size, FPval, LPval, nax, FPoint, LPoint, Ticsdir)
-     double size;
-     double FPval;
-     double LPval;
-     integer *nax;
-     integer *FPoint;
-     integer *LPoint;
-     integer *Ticsdir;
+void C2F(TDdrawaxis)(double size, double FPval, double LPval, integer *nax, integer *FPoint, integer *LPoint, integer *Ticsdir)
 { 
   integer i;
   double dx,dy,ticsx,ticsy;
@@ -1361,12 +1233,7 @@ void C2F(TDdrawaxis)(size, FPval, LPval, nax, FPoint, LPoint, Ticsdir)
 
 /** Returns the [x,y,z] values of a pointeger given its xbox or ybox indices **/
 
-void BBoxToval(x, y, z, ind, bbox)
-     double *x;
-     double *y;
-     double *z;
-     integer ind;
-     double *bbox;
+void BBoxToval(double *x, double *y, double *z, integer ind, double *bbox)
 {
   switch ( ind)
     {
@@ -1388,7 +1255,7 @@ void BBoxToval(x, y, z, ind, bbox)
 /** Changement interactif de 3d **/
 static double theta,alpha;
 
-void I3dRotation()
+void I3dRotation(void)
 {
   char driver[4];
   integer flag[3],pixmode,alumode,verbose=0,narg,ww;
@@ -1471,7 +1338,7 @@ void I3dRotation()
  * inside dbox
  */
 
-static void dbox()
+static void dbox(void)
 {
   double xbox[8],ybox[8],zbox[8];
 #ifdef WIN32
@@ -1492,13 +1359,7 @@ static void dbox()
  *
  *******************************************************************************/
 
-int C2F(fac3d3)(x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox,lstr)
-     double x[],y[],z[],bbox[];
-     integer *p,*q;
-     double *teta,*alpha;
-     integer flag[],*cvect;
-     char legend[];
-     integer lstr;
+int C2F(fac3d3)(double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr)
 {
   C2F(fac3dg)("fac3d3",3,x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox);
   return(0);
@@ -1508,13 +1369,7 @@ int C2F(fac3d3)(x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox,lstr)
  *This function sorts the vertices such that the color value is in decreasing order
  *---------------------------------------------------------------------------------*/
 
-int  triangleSort(polyxin,polyyin,fillin,polyx,polyy,fill)
-     integer *polyxin;
-     integer *polyyin;
-     integer *fillin;
-     integer *polyx;
-     integer *polyy;
-     integer *fill;
+int  triangleSort(integer *polyxin, integer *polyyin, integer *fillin, integer *polyx, integer *polyy, integer *fill)
 { 
   integer tmp,k;
   for (k=0;k<3;k++) {polyx[k]=polyxin[k]; polyy[k]=polyyin[k]; fill[k]=fillin[k];}
@@ -1546,13 +1401,7 @@ int  triangleSort(polyxin,polyyin,fillin,polyx,polyy,fill)
  *       routines 
  *-----------------------------------------------------------------------*/
 
-int shade(polyx,polyy,fill,polysize,flag)
-    
-     integer *polyx;
-     integer *polyy;
-     integer *fill;
-     integer polysize;
-     integer flag;
+int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag)
 {
    integer px[5],py[5],fil[4],is[3],ie[3],n[3];
    integer npoly=1,k,col,cols,psize,i,s,e;

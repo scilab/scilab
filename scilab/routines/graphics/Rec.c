@@ -32,7 +32,7 @@ static int CopyVectC  __PARAMS((char **,char *,int ));
 static int CopyVectS  __PARAMS((char ***,char **)); 
 
 
-static int curwin()
+static int curwin(void)
 {
   integer verbose=0,narg,winnum;
   C2F(dr)("xget","window",&verbose,&winnum,&narg ,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -43,18 +43,7 @@ static int curwin()
  * xcall1  
  *---------------------------------------------------------------------------*/
 
-void StoreXcall1(fname, string, x1, n1, x2, n2, x3, n3, x4, n4, x5, n5, x6, n6, dx1, ndx1, dx2, ndx2, dx3, ndx3, dx4, ndx4)
-     char *fname;
-     char *string;
-     integer *x1,n1,*x2,n2,*x3,n3,*x4,n4,*x5,n5,*x6,n6;
-     double *dx1;
-     integer ndx1;
-     double *dx2;
-     integer ndx2;
-     double *dx3;
-     integer ndx3;
-     double *dx4;
-     integer ndx4;
+void StoreXcall1(char *fname, char *string, integer *x1, integer n1, integer *x2, integer n2, integer *x3, integer n3, integer *x4, integer n4, integer *x5, integer n5, integer *x6, integer n6, double *dx1, integer ndx1, double *dx2, integer ndx2, double *dx3, integer ndx3, double *dx4, integer ndx4)
 {
   int debug=0;
   struct xcall1_rec *lplot;
@@ -135,10 +124,7 @@ void StoreXcall1(fname, string, x1, n1, x2, n2, x3, n3, x4, n4, x5, n5, x6, n6, 
  * xsetech 
  *---------------------------------------------------------------------------*/
 
-void StoreEch(name, WRect, FRect, logflag)
-     char *name;
-     double *WRect, *FRect;
-     char *logflag;
+void StoreEch(char *name, double *WRect, double *FRect, char *logflag)
 {
   struct scale_rec *lplot;
   lplot= ((struct scale_rec *) MALLOC(sizeof(struct scale_rec)));
@@ -159,11 +145,7 @@ void StoreEch(name, WRect, FRect, logflag)
   Scistring("\n Store Plot (storeEch): No more place \n");
 }
 
-void StoreNEch(name, flag,WRect,ARect,FRect, logflag)
-     char *name;
-     char *flag;
-     double *WRect, *FRect, *ARect;
-     char *logflag;
+void StoreNEch(char *name, char *flag, double *WRect, double *ARect, double *FRect, char *logflag)
 {
   struct nscale_rec *lplot;
   lplot= ((struct nscale_rec *) MALLOC(sizeof(struct nscale_rec)));
@@ -191,15 +173,7 @@ void StoreNEch(name, flag,WRect,ARect,FRect, logflag)
  * 2D plots 
  *---------------------------------------------------------------------------*/
 
-void StorePlot(name, xf, x, y, n1, n2, style, strflag, legend, brect, aint)
-     char *name;
-     char *xf;
-     double *x, *y;
-     integer *n1,*n2,*style;
-     char *strflag;
-     char *legend;
-     double *brect;
-     integer *aint;
+void StorePlot(char *name, char *xf, double *x, double *y, integer *n1, integer *n2, integer *style, char *strflag, char *legend, double *brect, integer *aint)
 {
   int nstyle,n1n2;
   struct plot2d_rec *lplot;
@@ -244,17 +218,7 @@ void StorePlot(name, xf, x, y, n1, n2, style, strflag, legend, brect, aint)
  * axis  
  *---------------------------------------------------------------------------*/
 
-void StoreSciAxis(name,pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag)
-     char *name;
-     char pos,xy_type;        
-     double x[],y[];  
-     int *nx,*ny;
-     char *str[];
-     int  subtics;
-     char *format; 
-     int fontsize,textcolor,ticscolor;
-     char logflag;
-     int seg_flag;
+void StoreSciAxis(char *name, char pos, char xy_type, double *x, int *nx, double *y, int *ny, char **str, int subtics, char *format, int fontsize, int textcolor, int ticscolor, char logflag, int seg_flag)
 {
   struct sciaxis_rec *lplot = ((struct sciaxis_rec *) MALLOC(sizeof(struct sciaxis_rec)));
   if (lplot == NULL)
@@ -289,9 +253,7 @@ void StoreSciAxis(name,pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcol
  * xgrid 
  *---------------------------------------------------------------------------*/
 
-void StoreGrid(name, style)
-     char *name;
-     integer *style;
+void StoreGrid(char *name, integer *style)
 {
   struct xgrid_rec *lplot;
   lplot= ((struct xgrid_rec *) MALLOC(sizeof(struct xgrid_rec)));
@@ -311,14 +273,7 @@ void StoreGrid(name, style)
  * param3d 
  *---------------------------------------------------------------------------*/
 
-void StoreParam3D(name, x, y, z, n, teta, alpha, legend, flag, bbox)
-     char *name;
-     double *x, *y, *z;
-     integer *n;
-     double *teta, *alpha;
-     char *legend;
-     integer *flag;
-     double *bbox;
+void StoreParam3D(char *name, double *x, double *y, double *z, integer *n, double *teta, double *alpha, char *legend, integer *flag, double *bbox)
 {
   struct param3d_rec *lplot;
   lplot= ((struct param3d_rec *) MALLOC(sizeof(struct param3d_rec)));
@@ -343,14 +298,7 @@ void StoreParam3D(name, x, y, z, n, teta, alpha, legend, flag, bbox)
   Scistring("\n Store Plot (storeparam3d): No more place \n");
 }
 
-void StoreParam3D1(name, x, y, z,m,n,iflag,colors, teta, alpha, legend, flag, bbox)
-     char *name;
-     double *x, *y, *z;
-     integer *n,*m,*iflag,*colors;
-     double *teta, *alpha;
-     char *legend;
-     integer *flag;
-     double *bbox;
+void StoreParam3D1(char *name, double *x, double *y, double *z, integer *m, integer *n, integer *iflag, integer *colors, double *teta, double *alpha, char *legend, integer *flag, double *bbox)
 {
   struct param3d1_rec *lplot;
   lplot= ((struct param3d1_rec *) MALLOC(sizeof(struct param3d1_rec)));
@@ -383,14 +331,7 @@ void StoreParam3D1(name, x, y, z,m,n,iflag,colors, teta, alpha, legend, flag, bb
  * plot3d 
  *---------------------------------------------------------------------------*/
 
-void StorePlot3D(name, x, y, z, p, q, teta, alpha, legend, flag, bbox)
-     char *name;
-     double *x, *y, *z;
-     integer *p,*q;
-     double *teta, *alpha;
-     char *legend;
-     integer *flag;
-     double *bbox;
+void StorePlot3D(char *name, double *x, double *y, double *z, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox)
 {
   struct plot3d_rec *lplot;
   lplot= ((struct plot3d_rec *) MALLOC(sizeof(struct plot3d_rec)));
@@ -420,14 +361,7 @@ void StorePlot3D(name, x, y, z, p, q, teta, alpha, legend, flag, bbox)
  * fac3d 
  *---------------------------------------------------------------------------*/
 
-void StoreFac3D(name, x, y, z, cvect, p, q, teta, alpha, legend, flag, bbox)
-     char *name;
-     double *x, *y, *z;
-     integer *cvect,*p,*q;
-     double *teta, *alpha;
-     char *legend;
-     integer *flag;
-     double *bbox;
+void StoreFac3D(char *name, double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox)
 {
   struct fac3d_rec *lplot;
   lplot= ((struct fac3d_rec *) MALLOC(sizeof(struct fac3d_rec)));
@@ -479,16 +413,7 @@ void StoreFac3D(name, x, y, z, cvect, p, q, teta, alpha, legend, flag, bbox)
  *fec 
  *---------------------------------------------------------------------------*/
 
-void StoreFec(name, x, y, triangles, func, Nnode, Ntr, strflag, legend, brect, aaint, zminmax, colminmax)
-     char *name;
-     double *x, *y, *triangles, *func;
-     integer *Nnode,*Ntr;
-     char *strflag;
-     char *legend;
-     double *brect;
-     integer *aaint;
-     double *zminmax;
-     integer *colminmax;
+void StoreFec(char *name, double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, integer *colminmax)
 {
   struct fec_rec *lplot;
   lplot= ((struct fec_rec *) MALLOC(sizeof(struct fec_rec)));
@@ -524,14 +449,7 @@ void StoreFec(name, x, y, triangles, func, Nnode, Ntr, strflag, legend, brect, a
  * contour 
  *---------------------------------------------------------------------------*/
 
-void StoreContour(name, x, y, z, n1, n2, flagnz, nz, zz, teta, alpha, legend, flag, bbox, zlev)
-     char *name;
-     double *x, *y, *z;
-     integer *n1,*n2,*flagnz,*nz;
-     double *zz, *teta, *alpha;
-     char *legend;
-     integer *flag;
-     double *bbox, *zlev;
+void StoreContour(char *name, double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, double *teta, double *alpha, char *legend, integer *flag, double *bbox, double *zlev)
 {
   struct contour_rec *lplot;
   lplot= ((struct contour_rec *) MALLOC(sizeof(struct contour_rec)));
@@ -565,16 +483,7 @@ void StoreContour(name, x, y, z, n1, n2, flagnz, nz, zz, teta, alpha, legend, fl
   Scistring("\n Store Plot (storecontour): No more place \n");
 }
 
-void StoreContour2D(name,x,y,z,n1,n2,flagnz,nz,zz,style,strflag,legend,brect,aint)
-     char *name;
-     double *x, *y, *z;
-     integer *n1,*n2,*flagnz,*nz;
-     double *zz;
-     integer *style;
-     char *strflag;
-     char *legend;
-     double *brect;
-     integer *aint;
+void StoreContour2D(char *name, double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, integer *style, char *strflag, char *legend, double *brect, integer *aint)
 {
   struct contour2d_rec *lplot;
   int nstyle;
@@ -617,13 +526,7 @@ void StoreContour2D(name,x,y,z,n1,n2,flagnz,nz,zz,style,strflag,legend,brect,ain
  * grayplots Matplot 
  *---------------------------------------------------------------------------*/
 
-void StoreGray(name, x, y, z, n1, n2, strflag, brect, aaint)
-     char *name;
-     double *x, *y, *z;
-     integer *n1,*n2;
-     char *strflag;
-     double *brect;
-     integer *aaint;
+void StoreGray(char *name, double *x, double *y, double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint)
 {
   struct gray_rec *lplot;
   lplot= ((struct gray_rec *) MALLOC(sizeof(struct gray_rec)));
@@ -652,13 +555,7 @@ void StoreGray(name, x, y, z, n1, n2, strflag, brect, aaint)
 
 /** For matrices  z(i,j) **/
 
-void StoreGray1(name,  z, n1, n2, strflag, brect, aaint)
-     char *name;
-     double *z;
-     integer *n1,*n2;
-     char *strflag;
-     double *brect;
-     integer *aaint;
+void StoreGray1(char *name, double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint)
 {
   struct gray_rec *lplot;
   lplot= ((struct gray_rec *) MALLOC(sizeof(struct gray_rec)));
@@ -687,11 +584,7 @@ void StoreGray1(name,  z, n1, n2, strflag, brect, aaint)
 
 
 
-void StoreGray2(name,  z, n1, n2, xrect)
-     char *name;
-     double *z;
-     integer *n1,*n2;
-     double *xrect;
+void StoreGray2(char *name, double *z, integer *n1, integer *n2, double *xrect)
 {
   struct gray_rec_2 *lplot;
   lplot= ((struct gray_rec_2 *) MALLOC(sizeof(struct gray_rec_2)));
@@ -716,12 +609,7 @@ void StoreGray2(name,  z, n1, n2, xrect)
  * champ champ1 
  *---------------------------------------------------------------------------*/
 
-void StoreChamp(name, x, y, fx, fy, n1, n2, strflag, vrect, arfact)
-     char *name;
-     double *x, *y, *fx, *fy;
-     integer *n1,*n2;
-     char *strflag;
-     double *vrect, *arfact;
+void StoreChamp(char *name, double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, char *strflag, double *vrect, double *arfact)
 {
   struct champ_rec *lplot;
   lplot= ((struct champ_rec *) MALLOC(sizeof(struct champ_rec)));
@@ -768,9 +656,7 @@ static int CopyVectI(nx, x, l)
   return(1);
 }
 */
-static int CopyVectLI(nx, x, l)
-     integer **nx,*x;
-     int l;
+static int CopyVectLI(integer **nx, integer *x, int l)
 { 
   int i;
   if ( x != (integer *) 0) 
@@ -782,10 +668,7 @@ static int CopyVectLI(nx, x, l)
   return(1);
 }
 
-static int CopyVectF(nx, x, l)
-     double **nx;
-     double *x;
-     integer l;
+static int CopyVectF(double **nx, double *x, integer l)
 {
   int i;
   if ( x != (double *) 0) 
@@ -797,10 +680,7 @@ static int CopyVectF(nx, x, l)
   return(1);
 }
 
-static int CopyVectC(nx, x, l)
-     char **nx;
-     char *x;
-     int l;
+static int CopyVectC(char **nx, char *x, int l)
 {
   int i;
   if ( x != (char *) 0) 
@@ -812,9 +692,7 @@ static int CopyVectC(nx, x, l)
   return(1);
 }
 
-static int CopyVectS( hstr,str)
-     char ***hstr;
-     char **str;
+static int CopyVectS(char ***hstr, char **str)
 {
   /** x is a null terminated string vector */
   if ( str != 0) 
@@ -855,9 +733,7 @@ static int CopyVectG(pstr, str, n, type)
 }
 */
 
-static int MaybeCopyVect3dPLI(iflag, nx, x, l)
-     integer *iflag,**nx,*x;
-     int l;
+static int MaybeCopyVect3dPLI(integer *iflag, integer **nx, integer *x, int l)
 {
   if ( *iflag == 1 ) 
     return( CopyVectLI(nx,x,l));
@@ -865,10 +741,7 @@ static int MaybeCopyVect3dPLI(iflag, nx, x, l)
     return(1);
 }
 
-static int MaybeCopyVectLI(name, nx, x, l)
-     char *name;
-     integer **nx,*x;
-     int l;
+static int MaybeCopyVectLI(char *name, integer **nx, integer *x, int l)
 {
   if (strcmp(name,"fac3d2")==0)
     return( CopyVectLI(nx,x,l));
@@ -887,8 +760,7 @@ struct listplot *ListPFirst = NULL ;
  * to restore in recorded list graphic context elements 
  *---------------------------------------------------------------------------*/
 
-void StoreXgc(winnumber)
-     integer winnumber;
+void StoreXgc(integer winnumber)
 {
   integer i,win,col;
   integer fontid[2],narg,verbose=0;
@@ -943,10 +815,7 @@ void StoreXgc(winnumber)
  * Show recorded elements  
  *---------------------------------------------------------------------------*/
 
-void Tape_Replay_Show(unused, winnumber, v3, v4, v5, v6, v7, dx1, dx2, dx3, dx4)
-     char *unused;
-     integer *winnumber,*v3,*v4,*v5,*v6,*v7;
-     double *dx1, *dx2, *dx3, *dx4;
+void Tape_Replay_Show(char *unused, integer *winnumber, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
 {
   struct listplot *list;
 #ifdef lint 
@@ -961,125 +830,108 @@ void Tape_Replay_Show(unused, winnumber, v3, v4, v5, v6, v7, dx1, dx2, dx3, dx4)
     }
 }
 
-static void Show3D(plot)
-     char *plot;
+static void Show3D(char *plot)
 {
   struct plot3d_rec *theplot=(struct plot3d_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 }
 
-static void ShowFac3D(plot)
-     char *plot;
+static void ShowFac3D(char *plot)
 {
   struct fac3d_rec *theplot =(struct fac3d_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 }
 
-static void ShowFec(plot)
-     char *plot;
+static void ShowFec(char *plot)
 {
   struct fec_rec *theplot =(struct fec_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 }
 
-static void ShowContour(plot)
-     char *plot;
+static void ShowContour(char *plot)
 {
   struct contour_rec *theplot =(struct contour_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 }
 
-static void ShowContour2D(plot)
-     char *plot;
+static void ShowContour2D(char *plot)
 {
   struct contour2d_rec *theplot =(struct contour2d_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 
 }
 
-static void ShowGray(plot)
-     char *plot;
+static void ShowGray(char *plot)
 {
   struct gray_rec *theplot =(struct gray_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 
 }
 
-static void ShowGray1(plot)
-     char *plot;
+static void ShowGray1(char *plot)
 {
   struct gray_rec *theplot =(struct gray_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 
 }
 
-static void ShowGray2(plot)
-     char *plot;
+static void ShowGray2(char *plot)
 {
   struct gray_rec_2 *theplot = (struct gray_rec_2 *) plot;
   sciprint("%s \r\n",theplot->name);
 
 }
 
-static void ShowParam3D(plot)
-     char *plot;
+static void ShowParam3D(char *plot)
 {
   struct param3d_rec *theplot =(struct param3d_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 }
 
-static void ShowParam3D1(plot)
-     char *plot;
+static void ShowParam3D1(char *plot)
 {
   struct param3d1_rec *theplot =(struct param3d1_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 }
 
-static void Show2D(plot)
-     char *plot;
+static void Show2D(char *plot)
 {
   struct plot2d_rec *theplot =(struct plot2d_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 }
 
-static void ShowSciAxis(plot)
-     char *plot;
+static void ShowSciAxis(char *plot)
 {
   struct sciaxis_rec *theplot = (struct sciaxis_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 }
 
-static void ShowGrid(plot)
-     char *plot;
+static void ShowGrid(char *plot)
 {
   struct xgrid_rec *theplot =(struct xgrid_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 }
 
-static void ShowEch(plot)
-     char *plot;
+static void ShowEch(char *plot)
 {
   struct scale_rec *theplot=(struct scale_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 }
 
-static void ShowNEch(plot)
-     char *plot;
+static void ShowNEch(char *plot)
 {
   struct nscale_rec *theplot=(struct nscale_rec *) plot;
   sciprint("%s \r\n",theplot->name);
 }
 
-static void ShowX1(plot)
-     char *plot;
+static void ShowX1(char *plot)
 {
   struct xcall1_rec *theplot;
   theplot=(struct xcall1_rec *) plot;
   sciprint("%s %s\r\n",theplot->fname,theplot->string);
 }
 
-static void ShowChamp(plot)
-     char *plot;
+static void ShowChamp(char *plot)
 {
   struct champ_rec *theplot;
   theplot=(struct champ_rec *) plot;
@@ -1091,7 +943,7 @@ typedef  struct  {
   void  (*Show) __PARAMS((char *));
 } ShowTable;
 
-static void shfnvoid(plot) char *plot; {} 
+static void shfnvoid(char *plot) {} 
 
 static ShowTable ShTable[] ={
   {"axis", ShowSciAxis},
@@ -1119,9 +971,7 @@ static ShowTable ShTable[] ={
   {(char *)NULL,shfnvoid}
 };
 
-static void ShowPlot(type, plot)
-     char *type;
-     char *plot;
+static void ShowPlot(char *type, char *plot)
 {
   int i=0;
   while ( ShTable[i].name != (char *) NULL)
@@ -1150,10 +1000,7 @@ static void ShowPlot(type, plot)
  *      [2] the scale flag is reset to zero (for preventing auto scale to use it) 
  *---------------------------------------------------------------------------*/
 
-void CleanPlots(unused, winnumber, v3, v4, v5, v6, v7, dx1, dx2, dx3, dx4)
-     char *unused;
-     integer *winnumber,*v3,*v4,*v5,*v6,*v7;
-     double *dx1, *dx2, *dx3, *dx4;
+void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
 {
   struct listplot *list,*list1;     
   list=ListPFirst;
@@ -1189,8 +1036,7 @@ void CleanPlots(unused, winnumber, v3, v4, v5, v6, v7, dx1, dx2, dx3, dx4)
     set_window_scale_with_default(*winnumber);
 }
 
-static void Clean3D(plot)
-     char *plot;
+static void Clean3D(char *plot)
 {
   struct plot3d_rec *theplot;
   theplot=(struct plot3d_rec *) plot;
@@ -1200,8 +1046,7 @@ static void Clean3D(plot)
 }
 
 
-static void CleanFac3D(plot)
-     char *plot;
+static void CleanFac3D(char *plot)
 {
   struct fac3d_rec *theplot;
   theplot=(struct fac3d_rec *) plot;
@@ -1211,8 +1056,7 @@ static void CleanFac3D(plot)
 }
 
 
-static void CleanFec(plot)
-     char *plot;
+static void CleanFec(char *plot)
 {
   struct fec_rec *theplot;
   theplot=(struct fec_rec *) plot;
@@ -1226,8 +1070,7 @@ static void CleanFec(plot)
 
 }
 
-static void CleanContour(plot)
-     char *plot;
+static void CleanContour(char *plot)
 {
   struct contour_rec *theplot;
   theplot=(struct contour_rec *) plot;
@@ -1236,8 +1079,7 @@ static void CleanContour(plot)
   FREE(theplot->bbox);
 }
 
-static void CleanContour2D(plot)
-     char *plot;
+static void CleanContour2D(char *plot)
 {
   struct contour2d_rec *theplot;
   theplot=(struct contour2d_rec *) plot;
@@ -1249,8 +1091,7 @@ static void CleanContour2D(plot)
   FREE(theplot->brect_kp);FREE(theplot->aint_kp);   
 }
 
-static void CleanGray(plot)
-     char *plot;
+static void CleanGray(char *plot)
 {
   struct gray_rec *theplot;
   theplot=(struct gray_rec *) plot;
@@ -1262,8 +1103,7 @@ static void CleanGray(plot)
   FREE(theplot->brect_kp);FREE(theplot->aaint_kp);   
 }
 
-static void CleanGray2(plot)
-     char *plot;
+static void CleanGray2(char *plot)
 {
   struct gray_rec_2 *theplot;
   theplot=(struct gray_rec_2 *) plot;
@@ -1272,8 +1112,7 @@ static void CleanGray2(plot)
   FREE(theplot->xrect);
 }
 
-static void CleanParam3D(plot)
-     char *plot;
+static void CleanParam3D(char *plot)
 {
   struct param3d_rec *theplot;
   theplot=(struct param3d_rec *) plot;
@@ -1282,8 +1121,7 @@ static void CleanParam3D(plot)
   FREE(theplot->bbox);
 }
 
-static void CleanParam3D1(plot)
-     char *plot;
+static void CleanParam3D1(char *plot)
 {
   struct param3d1_rec *theplot;
   theplot=(struct param3d1_rec *) plot;
@@ -1295,8 +1133,7 @@ static void CleanParam3D1(plot)
   
 }
 
-static void Clean2D(plot)
-     char *plot;
+static void Clean2D(char *plot)
 {
   struct plot2d_rec *theplot;
   theplot=(struct plot2d_rec *) plot;
@@ -1309,8 +1146,7 @@ static void Clean2D(plot)
   FREE(theplot->brect_kp);FREE(theplot->aint_kp);   
 }
 
-static void CleanSciAxis(plot) 
-     char *plot;
+static void CleanSciAxis(char *plot)
 {
   int count = 0;
   struct sciaxis_rec *theplot = (struct sciaxis_rec *) plot;
@@ -1325,16 +1161,14 @@ static void CleanSciAxis(plot)
     }
 }
 
-static void CleanGrid(plot)
-     char *plot;
+static void CleanGrid(char *plot)
 {
   struct xgrid_rec *theplot;
   theplot=(struct xgrid_rec *) plot;
   FREE(theplot->name);    
 }
 
-static void CleanEch(plot)
-     char *plot;
+static void CleanEch(char *plot)
 {
   struct scale_rec *theplot;
   theplot=(struct scale_rec *) plot;
@@ -1344,8 +1178,7 @@ static void CleanEch(plot)
   FREE(theplot->Frect_kp);     
 }
 
-static void CleanNEch(plot)
-     char *plot;
+static void CleanNEch(char *plot)
 {
   struct nscale_rec *theplot;
   theplot=(struct nscale_rec *) plot;
@@ -1358,8 +1191,7 @@ static void CleanNEch(plot)
 }
 
 
-static void CleanX1(plot)
-     char *plot;
+static void CleanX1(char *plot)
 {
   struct xcall1_rec *theplot;
   theplot=(struct xcall1_rec *) plot;
@@ -1377,8 +1209,7 @@ static void CleanX1(plot)
   FREE(theplot->dx4);
 }
 
-static void CleanChamp(plot)
-     char *plot;
+static void CleanChamp(char *plot)
 {
   struct champ_rec *theplot;
   theplot=(struct champ_rec *) plot;
@@ -1393,7 +1224,7 @@ typedef  struct  {
   char *name;
   void  (*clean) __PARAMS((char *));} CleanTable;
 
-static void fnvoid (plot) char *plot; {}
+static void fnvoid (char *plot) {}
 
 static CleanTable CTable[] ={
   {"axis", CleanSciAxis},
@@ -1420,9 +1251,7 @@ static CleanTable CTable[] ={
   {"xgrid",CleanGrid},
   {(char *)NULL,fnvoid}};
 
-static void CleanPlot(type, plot)
-     char *type;
-     char *plot;
+static void CleanPlot(char *type, char *plot)
 {
   int i=0;
   while ( CTable[i].name != (char *) NULL)
@@ -1453,12 +1282,7 @@ static void CleanPlot(type, plot)
  *iflag[4] sert a dire s'il faut ou pas changer bbox 
  *---------------------------------------------------------------------------*/
 
-static void NAPlots(unused, winnumber, theta, alpha, iflag, flag, bbox)
-     char *unused;
-     integer *winnumber;
-     double *theta, *alpha;
-     integer *iflag,*flag;
-     double *bbox;
+static void NAPlots(char *unused, integer *winnumber, double *theta, double *alpha, integer *iflag, integer *flag, double *bbox)
 {
   struct listplot *list;
 #ifdef lint 
@@ -1473,12 +1297,7 @@ static void NAPlots(unused, winnumber, theta, alpha, iflag, flag, bbox)
     }
 }
 
-static void NA3D(plot, theta, alpha, iflag, flag, bbox)
-     char *plot;
-     double *theta, *alpha;
-     integer *iflag;
-     integer *flag;
-     double *bbox;
+static void NA3D(char *plot, double *theta, double *alpha, integer *iflag, integer *flag, double *bbox)
 {
   int i;
   struct plot3d_rec *theplot;
@@ -1492,11 +1311,7 @@ static void NA3D(plot, theta, alpha, iflag, flag, bbox)
             theplot->bbox[i] = bbox[i];
 }
 
-static void NAFac3D(plot, theta, alpha, iflag, flag, bbox)
-     char *plot;
-     double *theta, *alpha;
-     integer *iflag,*flag;
-     double *bbox;
+static void NAFac3D(char *plot, double *theta, double *alpha, integer *iflag, integer *flag, double *bbox)
 {
   int i;
   struct fac3d_rec *theplot;
@@ -1510,11 +1325,7 @@ static void NAFac3D(plot, theta, alpha, iflag, flag, bbox)
             theplot->bbox[i] = bbox[i];
 }
 
-static void NAContour(plot, theta, alpha, iflag, flag, bbox)
-     char *plot;
-     double *theta, *alpha;
-     integer *iflag,*flag;
-     double *bbox;
+static void NAContour(char *plot, double *theta, double *alpha, integer *iflag, integer *flag, double *bbox)
 {
   int i;
   struct contour_rec *theplot;
@@ -1528,11 +1339,7 @@ static void NAContour(plot, theta, alpha, iflag, flag, bbox)
             theplot->bbox[i] = bbox[i];
 }
 
-static void NAParam3D(plot, theta, alpha, iflag, flag, bbox)
-     char *plot;
-     double *theta, *alpha;
-     integer *iflag,*flag;
-     double *bbox;
+static void NAParam3D(char *plot, double *theta, double *alpha, integer *iflag, integer *flag, double *bbox)
 {
   int i;
   struct param3d_rec *theplot;
@@ -1546,11 +1353,7 @@ static void NAParam3D(plot, theta, alpha, iflag, flag, bbox)
             theplot->bbox[i] = bbox[i];
 }
 
-static void NAParam3D1(plot, theta, alpha, iflag, flag, bbox)
-     char *plot;
-     double *theta, *alpha;
-     integer *iflag,*flag;
-     double *bbox;
+static void NAParam3D1(char *plot, double *theta, double *alpha, integer *iflag, integer *flag, double *bbox)
 {
   int i;
   struct param3d1_rec *theplot;
@@ -1565,11 +1368,7 @@ static void NAParam3D1(plot, theta, alpha, iflag, flag, bbox)
 }
 
 
-static void navoid (plot, theta, alpha, iflag, flag, bbox)
-     char *plot;
-     double *theta, *alpha;
-     integer *iflag,*flag;
-     double *bbox;
+static void navoid (char *plot, double *theta, double *alpha, integer *iflag, integer *flag, double *bbox)
 {}
 
 
@@ -1591,12 +1390,7 @@ static NATable NACTable[] ={
     {"plot3d1",NA3D},
     {(char *)NULL,navoid}};
 
-static void NAPlot(type, plot, alpha, theta, iflag, flag, bbox)
-     char *type;
-     char *plot;
-     double *alpha, *theta;
-     integer *iflag,*flag;
-     double *bbox;
+static void NAPlot(char *type, char *plot, double *alpha, double *theta, integer *iflag, integer *flag, double *bbox)
 {
   int i=0;
   while ( NACTable[i].name != (char *) NULL)
@@ -1628,14 +1422,7 @@ static void NAPlot(type, plot, alpha, theta, iflag, flag, bbox)
  *       => we must find the subwin asscoiated to bbox1
  *--------------------------------------------------*/
 
-void SCPlots(unused, winnumber, flag, bbox, aaint,undo,bbox1,subwin)
-     char *unused;
-     integer *winnumber,*flag;
-     double *bbox;
-     integer *aaint;
-     int undo;
-     int bbox1[4];
-     double subwin[4];
+void SCPlots(char *unused, integer *winnumber, integer *flag, double *bbox, integer *aaint, int undo, int *bbox1, double *subwin)
 {
   struct listplot *list;
 #ifdef lint 
@@ -1652,8 +1439,7 @@ void SCPlots(unused, winnumber, flag, bbox, aaint,undo,bbox1,subwin)
 
 /** change the plot flag in order to use bbox **/ 
 
-static void SC2DChangeFlag(str) 
-     char *str;
+static void SC2DChangeFlag(char *str)
 {
   if ( str[1] == '2' ||  str[1] == '1'  || str[1] == '6' ) 
     str[1] = '5';
@@ -1661,15 +1447,7 @@ static void SC2DChangeFlag(str)
     str[1] = '3';
 }
   
-static void SC2D(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
-     char *plot;
-     integer *flag;
-     double *bbox;
-     integer *aaint;
-     int undo;
-     int bbox1[4];
-     double subwin[4];
-     int win_num;
+static void SC2D(char *plot, integer *flag, double *bbox, integer *aaint, int undo, int *bbox1, double *subwin, int win_num)
 {
   int i;
   struct plot2d_rec *theplot;
@@ -1687,14 +1465,7 @@ static void SC2D(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
     }
 }
 
-static void SCContour2D(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
-     char *plot;
-     integer *flag;
-     double *bbox;
-     integer *aaint,undo;
-     int bbox1[4];
-     double subwin[4];
-     int win_num;
+static void SCContour2D(char *plot, integer *flag, double *bbox, integer *aaint, integer undo, int *bbox1, double *subwin, int win_num)
 {
   int i;
   struct contour2d_rec *theplot;
@@ -1712,14 +1483,7 @@ static void SCContour2D(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
     }
 }
 
-static void SCgray(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
-     char *plot;
-     integer *flag;
-     double *bbox;
-     integer *aaint,undo;
-     int bbox1[4];
-     double subwin[4];
-     int win_num;
+static void SCgray(char *plot, integer *flag, double *bbox, integer *aaint, integer undo, int *bbox1, double *subwin, int win_num)
 {
   int i;
   struct gray_rec *theplot;
@@ -1737,14 +1501,7 @@ static void SCgray(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
     }
 }
 
-static void SCchamp(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
-     char *plot;
-     integer *flag;
-     double *bbox;
-     integer *aaint,undo;
-     int bbox1[4];
-     double subwin[4];
-     int win_num;
+static void SCchamp(char *plot, integer *flag, double *bbox, integer *aaint, integer undo, int *bbox1, double *subwin, int win_num)
 {
   int i;
   struct champ_rec *theplot;
@@ -1761,14 +1518,7 @@ static void SCchamp(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
     }
 }
 
-static void SCfec(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
-     char *plot;
-     integer *flag;
-     double *bbox;
-     integer *aaint,undo;
-     int bbox1[4];
-     double subwin[4];
-     int win_num;
+static void SCfec(char *plot, integer *flag, double *bbox, integer *aaint, integer undo, int *bbox1, double *subwin, int win_num)
 {
   int i;
   struct fec_rec *theplot;
@@ -1788,14 +1538,7 @@ static void SCfec(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
 
 /* here we deal with subwin changes */
 
-static void SCEch(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
-     char *plot;
-     integer *flag;
-     double *bbox;
-     integer *aaint,undo;
-     int bbox1[4];
-     double subwin[4];
-     int win_num;
+static void SCEch(char *plot, integer *flag, double *bbox, integer *aaint, integer undo, int *bbox1, double *subwin, int win_num)
 {
   int i;
   struct scale_rec *theplot;
@@ -1858,14 +1601,7 @@ static void SCEch(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
     }
 }
 
-static void SCNEch(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
-     char *plot;
-     integer *flag;
-     double *bbox;
-     integer *aaint,undo;
-     int bbox1[4];
-     double subwin[4];
-     int win_num;
+static void SCNEch(char *plot, integer *flag, double *bbox, integer *aaint, integer undo, int *bbox1, double *subwin, int win_num)
 {
   int i;
   struct nscale_rec *theplot;
@@ -1934,14 +1670,7 @@ static void SCNEch(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
     }
 }
 
-static void SCvoid(plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
-     char *plot;
-     integer *flag;
-     double *bbox;
-     integer *aaint,undo;
-     int bbox1[4];
-     double subwin[4];
-     int win_num;
+static void SCvoid(char *plot, integer *flag, double *bbox, integer *aaint, integer undo, int *bbox1, double *subwin, int win_num)
 {}
 
 typedef  struct  {
@@ -1974,16 +1703,7 @@ static SCTable SCCTable[] ={
   {"xgrid",SCvoid},
   {(char *)NULL,SCvoid}};
 
-static void SCPlot(type, plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
-     char *type;
-     char *plot;
-     integer *flag;
-     double *bbox;
-     integer *aaint;
-     int undo;
-     int bbox1[4];
-     double subwin[4];
-     int win_num;
+static void SCPlot(char *type, char *plot, integer *flag, double *bbox, integer *aaint, int undo, int *bbox1, double *subwin, int win_num)
 {
   int i=0;
   while ( SCCTable[i].name != (char *) NULL)
@@ -2011,9 +1731,7 @@ static void SCPlot(type, plot, flag, bbox, aaint,undo,bbox1,subwin,win_num)
  * scale undo : used in unzoom 
  *--------------------------------------------------------------------*/
 
-static void UnSCPlots(unused, winnumber)
-     char *unused;
-     integer *winnumber;
+static void UnSCPlots(char *unused, integer *winnumber)
 {
   struct listplot *list;
 #ifdef lint 
@@ -2028,8 +1746,7 @@ static void UnSCPlots(unused, winnumber)
     }
 }
 
-static void UnSC2D(plot)
-     char *plot;
+static void UnSC2D(char *plot)
 {
   int i;
   struct plot2d_rec *theplot;
@@ -2041,8 +1758,7 @@ static void UnSC2D(plot)
       theplot->aint[i]=theplot->aint_kp[i];
     }
 }
-static void UnSCContour2D(plot)
-     char *plot;
+static void UnSCContour2D(char *plot)
 {
   int i;
   struct contour2d_rec *theplot;
@@ -2055,8 +1771,7 @@ static void UnSCContour2D(plot)
     }
 }
 
-static void UnSCgray(plot)
-     char *plot;
+static void UnSCgray(char *plot)
 {
   int i;
   struct gray_rec *theplot;
@@ -2069,8 +1784,7 @@ static void UnSCgray(plot)
     }
 }
 
-static void UnSCchamp(plot)
-     char *plot;
+static void UnSCchamp(char *plot)
 {
   int i;
   struct champ_rec *theplot;
@@ -2082,8 +1796,7 @@ static void UnSCchamp(plot)
     }
 }
 
-static void UnSCfec(plot)
-     char *plot;
+static void UnSCfec(char *plot)
 {
   int i;
   struct fec_rec *theplot;
@@ -2096,8 +1809,7 @@ static void UnSCfec(plot)
     }
 }
 
-static void UnSCEch(plot)
-     char *plot;
+static void UnSCEch(char *plot)
 {
   int i;
   struct scale_rec *theplot;
@@ -2108,8 +1820,7 @@ static void UnSCEch(plot)
     }
 }
 
-static void UnSCNEch(plot)
-     char *plot;
+static void UnSCNEch(char *plot)
 {
   int i;
   struct nscale_rec *theplot;
@@ -2120,8 +1831,7 @@ static void UnSCNEch(plot)
     }
 }
 
-static void UnSCvoid(plot)
-     char *plot;
+static void UnSCvoid(char *plot)
 {}
 
 typedef  struct  {
@@ -2154,9 +1864,7 @@ static UnSCTable UnSCCTable[] ={
   {(char *)NULL,fnvoid}
 };
 
-static void UnSCPlot(type, plot)
-     char *type;
-     char *plot;
+static void UnSCPlot(char *type, char *plot)
 {
   int i=0;
   while ( UnSCCTable[i].name != (char *) NULL)
@@ -2183,9 +1891,7 @@ static void UnSCPlot(type, plot)
  * checks if recorded list contains 3d graphics 
  *-------------------------------------------------------*/
 
-int Check3DPlots(unused, winnumber)
-     char *unused;
-     integer *winnumber;
+int Check3DPlots(char *unused, integer *winnumber)
 {
   struct listplot *list;
 #ifdef lint 
@@ -2213,9 +1919,7 @@ int Check3DPlots(unused, winnumber)
  * checks if xsetech was used : no more used 
  *-------------------------------------------------------*/
 
-int EchCheckSCPlots(unused, winnumber)
-     char *unused;
-     integer *winnumber;
+int EchCheckSCPlots(char *unused, integer *winnumber)
 {
   struct listplot *list;
   int res=0 ;
@@ -2239,9 +1943,7 @@ int EchCheckSCPlots(unused, winnumber)
  *  restore scales (unzoom) and redraw stored graphics 
  *---------------------------------------------------------------------------*/
 
-void Tape_ReplayUndoScale(unused, winnumber)
-     char *unused;
-     integer *winnumber;
+void Tape_ReplayUndoScale(char *unused, integer *winnumber)
 { 
   UnSCPlots(unused,winnumber);
   Tape_Replay("v",winnumber,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
@@ -2253,10 +1955,7 @@ void Tape_ReplayUndoScale(unused, winnumber)
  * the problem is a bit complex if we have manu subwindows 
  *---------------------------------------------------------------------------*/
 
-void Tape_ReplayNewScale(unused, winnumber, flag, v1, aaint, v6, v7, bbox, dx2, dx3, dx4)
-     char *unused;
-     integer *winnumber,*flag,*v1,*aaint,*v6,*v7;
-     double *bbox, *dx2, *dx3, *dx4;
+void Tape_ReplayNewScale(char *unused, integer *winnumber, integer *flag, integer *v1, integer *aaint, integer *v6, integer *v7, double *bbox, double *dx2, double *dx3, double *dx4)
 { 
   /** get the bounding box in pixel */
   int bbox1[4];
@@ -2273,10 +1972,7 @@ void Tape_ReplayNewScale(unused, winnumber, flag, v1, aaint, v6, v7, bbox, dx2, 
  * used for automatic scales 
  *---------------------------------------------------------------------------*/
 
-void Tape_ReplayNewScale1(unused, winnumber, flag, v1, aaint, v6, v7, bbox, dx2, dx3, dx4)
-     char *unused;
-     integer *winnumber,*flag,*v1,*aaint,*v6,*v7;
-     double *bbox, *dx2, *dx3, *dx4;
+void Tape_ReplayNewScale1(char *unused, integer *winnumber, integer *flag, integer *v1, integer *aaint, integer *v6, integer *v7, double *bbox, double *dx2, double *dx3, double *dx4)
 { 
   /* here we want to change bbox but only for recorded graphics 
    * which are on the same subwin as the current one 
@@ -2291,12 +1987,9 @@ void Tape_ReplayNewScale1(unused, winnumber, flag, v1, aaint, v6, v7, bbox, dx2,
  *  then redraw recorded graphics 
  *---------------------------------------------------------------------------*/
 
-extern char GetDriver();
+extern char GetDriver(void);
 
-void Tape_ReplayNewAngle(unused, winnumber, v1, v2, iflag, flag, v3, theta, alpha, bbox, dx4)
-     char *unused;
-     integer *winnumber,*v1,*v2,*iflag,*flag,*v3;
-     double *theta, *alpha, *bbox, *dx4;
+void Tape_ReplayNewAngle(char *unused, integer *winnumber, integer *v1, integer *v2, integer *iflag, integer *flag, integer *v3, double *theta, double *alpha, double *bbox, double *dx4)
 { 
   NAPlots(unused,winnumber,theta,alpha,iflag,flag,bbox);
   Tape_Replay("v",winnumber,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
@@ -2306,10 +1999,7 @@ void Tape_ReplayNewAngle(unused, winnumber, v1, v2, iflag, flag, v3, theta, alph
  * redraw stored graphics 
  *---------------------------------------------------------------------------*/
 
-void Tape_Replay(unused, winnumber, v3, v4, v5, v6, v7, dx1, dx2, dx3, dx4)
-     char *unused;
-     integer *winnumber,*v3,*v4,*v5,*v6,*v7;
-     double *dx1, *dx2, *dx3, *dx4;
+void Tape_Replay(char *unused, integer *winnumber, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
 { 
 #ifdef WIN32
   int flag;
@@ -2342,16 +2032,13 @@ void Tape_Replay(unused, winnumber, v3, v4, v5, v6, v7, dx1, dx2, dx3, dx4)
     }
 }
 
-static void Tape_Replay1(list, winnumber)
-     struct listplot *list;
-     integer winnumber;
+static void Tape_Replay1(struct listplot *list, integer winnumber)
 {
   if (list->window == winnumber) GReplay(list->type,list->theplot);
   if (list->ptrplot != NULL) Tape_Replay1(list->ptrplot,winnumber);
 }
 
-static void Replay3D(theplot)
-     char *theplot;
+static void Replay3D(char *theplot)
 {
   struct plot3d_rec *pl3d;
   pl3d= (struct plot3d_rec *)theplot;
@@ -2359,8 +2046,7 @@ static void Replay3D(theplot)
 	  &pl3d->alpha,pl3d->legend,pl3d->flag,pl3d->bbox,0L);
 }
 
-static void ReplayFac3D(theplot)
-     char *theplot;
+static void ReplayFac3D(char *theplot)
 {
   struct fac3d_rec *pl3d;
   pl3d= (struct fac3d_rec *)theplot;
@@ -2368,8 +2054,7 @@ static void ReplayFac3D(theplot)
 	     &pl3d->alpha,pl3d->legend,pl3d->flag,pl3d->bbox,0L);
 }
 
-static void ReplayFac3D1(theplot)
-     char *theplot;
+static void ReplayFac3D1(char *theplot)
 {
   struct fac3d_rec *pl3d;
   pl3d= (struct fac3d_rec *)theplot;
@@ -2378,8 +2063,7 @@ static void ReplayFac3D1(theplot)
 	      &pl3d->alpha,pl3d->legend,pl3d->flag,pl3d->bbox,0L);
 }
 
-static void ReplayFac3D2(theplot)
-     char *theplot;
+static void ReplayFac3D2(char *theplot)
 {
   struct fac3d_rec *pl3d;
   pl3d= (struct fac3d_rec *)theplot;
@@ -2390,8 +2074,7 @@ static void ReplayFac3D2(theplot)
 
 /****** code added by polpoth 4/5/2000 ******/
 
-static void ReplayFac3D3(theplot) 
-     char *theplot;
+static void ReplayFac3D3(char *theplot)
 {
   struct fac3d_rec *pl3d;
   pl3d= (struct fac3d_rec *)theplot;
@@ -2402,8 +2085,7 @@ static void ReplayFac3D3(theplot)
 
 /****** end of code added ******************/
 
-static void ReplayFec(theplot)
-     char *theplot;
+static void ReplayFec(char *theplot)
 {
   struct fec_rec *plfec;
   plfec= (struct fec_rec *)theplot;
@@ -2414,8 +2096,7 @@ static void ReplayFec(theplot)
 	   0L,0L);
 }
 
-static void ReplayContour(theplot)
-     char *theplot;
+static void ReplayContour(char *theplot)
 {
   struct contour_rec *pl3d;
   pl3d= (struct contour_rec *)theplot;
@@ -2424,8 +2105,7 @@ static void ReplayContour(theplot)
 	  &pl3d->alpha,pl3d->legend,pl3d->flag,pl3d->bbox,&pl3d->zlev,0L);
 }
 
-static void ReplayContour2D(theplot)
-     char *theplot;
+static void ReplayContour2D(char *theplot)
 {
   struct contour2d_rec *pl3d;
   pl3d= (struct contour2d_rec *)theplot;
@@ -2435,8 +2115,7 @@ static void ReplayContour2D(theplot)
 }
 
 
-static void ReplayGray(theplot)
-     char *theplot;
+static void ReplayGray(char *theplot)
 {
   struct gray_rec *pl3d;
   pl3d= (struct gray_rec *)theplot;
@@ -2446,8 +2125,7 @@ static void ReplayGray(theplot)
 
 
 
-static void ReplayGray1(theplot)
-     char *theplot;
+static void ReplayGray1(char *theplot)
 {
   struct gray_rec *pl3d;
   pl3d= (struct gray_rec *)theplot;
@@ -2457,8 +2135,7 @@ static void ReplayGray1(theplot)
 
 
 
-static void ReplayGray2(theplot)
-     char *theplot;
+static void ReplayGray2(char *theplot)
 {
   struct gray_rec_2 *pl3d;
   pl3d= (struct gray_rec_2 *)theplot;
@@ -2467,8 +2144,7 @@ static void ReplayGray2(theplot)
 }
 
 
-static void ReplayParam3D(theplot)
-     char *theplot;
+static void ReplayParam3D(char *theplot)
 {
   struct param3d_rec *pl3d;
   pl3d= (struct param3d_rec *)theplot;
@@ -2476,8 +2152,7 @@ static void ReplayParam3D(theplot)
 	  &pl3d->alpha,pl3d->legend,pl3d->flag,pl3d->bbox,0L);
 }
 
-static void ReplayParam3D1(theplot)
-     char *theplot;
+static void ReplayParam3D1(char *theplot)
 {
   struct param3d1_rec *pl3d;
   pl3d= (struct param3d1_rec *)theplot;
@@ -2486,8 +2161,7 @@ static void ReplayParam3D1(theplot)
 	       &pl3d->alpha,pl3d->legend,pl3d->flag,pl3d->bbox,0L);
 }
 
-static void Replay3D1(theplot)
-     char *theplot;
+static void Replay3D1(char *theplot)
 {
   struct plot3d_rec *pl3d;
   pl3d= (struct plot3d_rec *)theplot;
@@ -2500,7 +2174,7 @@ typedef  struct  {
   char *name;
   int  (*fonc)();} OpTab ;
 
-static int fnvide() {return(0);}
+static int fnvide(void) {return(0);}
 
 extern int C2F(plot2d1)(),C2F(plot2d2)(),C2F(plot2d3)(),C2F(plot2d4)();
 
@@ -2513,8 +2187,7 @@ OpTab plottab[] ={
 };
 
 
-static void Replay2D(theplot)
-     char *theplot;
+static void Replay2D(char *theplot)
 {
   int i=0;
   struct plot2d_rec *pl2d;
@@ -2542,8 +2215,7 @@ static void Replay2D(theplot)
       sciprint("\n Unknow  operator <%s>\r\n",pl2d->name);
 }
 
-static void ReplaySciAxis(theplot)
-     char *theplot;
+static void ReplaySciAxis(char *theplot)
 {
   struct sciaxis_rec *p = (struct sciaxis_rec *) theplot;
   sci_axis(p->pos,p->xy_type,p->x,&p->nx,p->y,&p->ny,p->str,p->subtics,p->format,p->fontsize,p->textcolor,
@@ -2551,32 +2223,28 @@ static void ReplaySciAxis(theplot)
 
 }
 
-static void ReplayGrid(theplot)
-     char *theplot;
+static void ReplayGrid(char *theplot)
 {
   struct xgrid_rec *plch;
   plch= (struct xgrid_rec *)theplot;
   C2F(xgrid)(&(plch->style));
 }
 
-static void ReplayEch(theplot)
-     char *theplot;
+static void ReplayEch(char *theplot)
 {
   struct scale_rec *plch;
   plch= (struct scale_rec *)theplot;
   C2F(setscale2d)(plch->Wrect,plch->Frect,plch->logflag,0L);
 }
 
-static void ReplayNEch(theplot)
-     char *theplot;
+static void ReplayNEch(char *theplot)
 {
   struct nscale_rec *plch;
   plch= (struct nscale_rec *)theplot;
   set_scale(plch->flag,plch->Wrect,plch->Frect,NULL,plch->logflag,plch->Arect);
 }
 
-static void ReplayChamp(theplot)
-     char *theplot;
+static void ReplayChamp(char *theplot)
 {
   struct champ_rec *plch;
   plch= (struct champ_rec *)theplot;
@@ -2598,14 +2266,12 @@ static void ReplayChamp(theplot)
 
 static int special_color=0;
 
-void UseColorFlag(flag)
-     int flag;
+void UseColorFlag(int flag)
 {
   special_color=flag;
 }
 
-static void ReplayX1(theplot)
-     char *theplot;
+static void ReplayX1(char *theplot)
 {
   struct xcall1_rec *plch;
   plch= (struct xcall1_rec *)theplot;
@@ -2657,9 +2323,7 @@ static ReplayTable RTable[] ={
   {(char *) NULL,fnvoid}
 };
 
-static void GReplay(type, plot)
-     char *type;
-     char *plot;
+static void GReplay(char *type, char *plot)
 {
   int i=0;
   while ( RTable[i].name != (char *) NULL)
@@ -2688,9 +2352,7 @@ static void GReplay(type, plot)
  * Add a new graphics record in the graphic recorder lisy 
  *---------------------------------------------------------------------------*/
 
-int Store(type, plot)
-     char *type;
-     char *plot;
+int Store(char *type, char *plot)
 {
   if (ListPFirst == NULL)
       {

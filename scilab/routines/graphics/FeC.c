@@ -44,15 +44,7 @@ static void FindIntersection __PARAMS((double sx[], double sy[], double fxy[],
  *  first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr)
 ---------------------------------------------------------------*/
 
-int C2F(fec)(x,y,triangles,func,Nnode,Ntr,strflag,legend,brect,aaint,zminmax, 
-	     colminmax, lstr1,lstr2)
-     double x[],y[],triangles[],func[];
-     integer *Nnode,*Ntr;
-     double brect[], zminmax[];
-     integer  aaint[], colminmax[];
-     char legend[],strflag[];
-     integer lstr1,lstr2;
-
+int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, integer *colminmax, integer lstr1, integer lstr2)
 {
   integer i, *xm,*ym,n1=1,j,k;
 
@@ -152,7 +144,7 @@ int C2F(fec)(x,y,triangles,func,Nnode,Ntr,strflag,legend,brect,aaint,zminmax,
     if ( (zone == NULL) || (zlevel == NULL) || (fill  == NULL)) 
       {
 	Scistring("fec: malloc No more Place\n");
-	return;
+	return 0;
       }
     /* compute the fill array (fill = - num color) */
     fill[1] = - color_min;
@@ -221,8 +213,7 @@ int C2F(fec)(x,y,triangles,func,Nnode,Ntr,strflag,legend,brect,aaint,zminmax,
  * functions used by the modified code (Bruno 01/02/2001)
  ********************************************************************/
 
-static void PermutOfSort (tab,perm) 
-     int tab[]; int perm[];
+static void PermutOfSort (int *tab, int *perm)
 {
   /* 
    * get the permutation perm[3] which sort the array tab[3] in increasing order 
@@ -242,9 +233,7 @@ static void PermutOfSort (tab,perm)
 }
 
 
-static void PaintTriangle (sx,sy,fxy,zxy,zlevel,fill)
-     double sx[]; double sy[]; double fxy[]; int zxy[]; 
-     double zlevel[]; int fill[];
+static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy, double *zlevel, int *fill)
 {
   /* 
      arguments :
@@ -358,9 +347,7 @@ static void PaintTriangle (sx,sy,fxy,zxy,zlevel,fill)
 	  PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
 
-static void FindIntersection(sx,sy,fxy,z,inda,indb,xint,yint)
-     double sx[]; double sy[]; double fxy[]; double z;
-     int inda; int indb; integer *xint; integer *yint;
+static void FindIntersection(double *sx, double *sy, double *fxy, double z, int inda, int indb, integer *xint, integer *yint)
 {
   double alpha;
   alpha = (z - fxy[inda])/(fxy[indb] - fxy[inda]);

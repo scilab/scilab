@@ -41,8 +41,7 @@ static int SaveChamp  __PARAMS((char *));
  * exproted function int C2F(xsaveplots) __PARAMS((integer *winnumber,char *,integer lxv)); 
  *---------------------------------------------------------------------------*/
 
-static int SaveXcall1(plot)
-     char *plot;
+static int SaveXcall1(char *plot)
 {
   struct xcall1_rec *lplot = (struct xcall1_rec *) plot;
   if ( SaveVectC((lplot->fname),((int)strlen(lplot->fname))+1) == 0) return(0);
@@ -74,8 +73,7 @@ static int SaveXcall1(plot)
  * scale 
  * ---------------------------------------------------------------------------*/
 
-static int SaveEch(plot)
-     char *plot;
+static int SaveEch(char *plot)
 {
   struct scale_rec *lplot = (struct scale_rec *) plot;
   if ( SaveC(lplot->logflag,2L)== 0) return(0);
@@ -86,8 +84,7 @@ static int SaveEch(plot)
   return(1);
 }
 
-static int SaveNEch(plot)
-     char *plot;
+static int SaveNEch(char *plot)
 {
   struct nscale_rec *lplot = (struct nscale_rec *) plot;
   if ( SaveC(lplot->logflag,2L)== 0) return(0);
@@ -104,8 +101,7 @@ static int SaveNEch(plot)
  * plot2d 
  *---------------------------------------------------------------------------*/
 
-static int SavePlot(plot)
-     char *plot;
+static int SavePlot(char *plot)
 {
   integer n=0, nstyle;
   struct plot2d_rec *lplot = (struct plot2d_rec *) plot;
@@ -137,8 +133,7 @@ static int SavePlot(plot)
  * axis 
  *---------------------------------------------------------------------------*/
 
-static int SaveSciAxis(plot)
-     char *plot;
+static int SaveSciAxis(char *plot)
 {
   struct sciaxis_rec *lplot = (struct sciaxis_rec *) plot;
   char type[3] ;
@@ -166,8 +161,7 @@ static int SaveSciAxis(plot)
  * xgrid 
  *---------------------------------------------------------------------------*/
 
-static int SaveGrid(plot)
-     char *plot;
+static int SaveGrid(char *plot)
 {
   struct xgrid_rec *lplot = (struct xgrid_rec *) plot;
   if ( SaveLI(lplot->style)== 0) return(0);
@@ -180,8 +174,7 @@ static int SaveGrid(plot)
  * param3d 
  *---------------------------------------------------------------------------*/
 
-static int SaveParam3D(plot)
-     char *plot;
+static int SaveParam3D(char *plot)
 {
   struct param3d_rec *lplot = (struct param3d_rec *) plot;
   if ( SaveLI(lplot->n)== 0) return(0);
@@ -197,8 +190,7 @@ static int SaveParam3D(plot)
   return(1);
 }
 
-static int SaveParam3D1(plot)
-     char *plot;
+static int SaveParam3D1(char *plot)
 {
   struct param3d1_rec *lplot = (struct param3d1_rec *) plot;
   if ( SaveLI(lplot->m)== 0) return(0);
@@ -223,8 +215,7 @@ static int SaveParam3D1(plot)
  * plot3d  
  *---------------------------------------------------------------------------*/
 
-static int SavePlot3D(plot)
-     char *plot;
+static int SavePlot3D(char *plot)
 {
   struct plot3d_rec *lplot = (struct plot3d_rec *) plot;
   if ( SaveLI(lplot->p)== 0) return(0);
@@ -245,8 +236,7 @@ static int SavePlot3D(plot)
  * fac3d 
  *---------------------------------------------------------------------------*/
 
-static int SaveFac3D(plot)
-     char *plot;
+static int SaveFac3D(char *plot)
 {
   struct fac3d_rec *lplot = (struct fac3d_rec *) plot;
   if ( SaveLI(lplot->p)== 0) return(0);
@@ -272,8 +262,7 @@ static int SaveFac3D(plot)
  * fec 
  *---------------------------------------------------------------------------*/
 
-static int SaveFec(plot)
-     char *plot;
+static int SaveFec(char *plot)
 {
   struct fec_rec *lplot = (struct fec_rec *) plot;
   if ( SaveLI(lplot->Nnode)== 0) return(0);
@@ -299,8 +288,7 @@ static int SaveFec(plot)
  * contour 
  *---------------------------------------------------------------------------*/
 
-static int SaveContour(plot)
-     char *plot;
+static int SaveContour(char *plot)
 {
   struct contour_rec *lplot = (struct contour_rec *) plot;
   if ( SaveLI(lplot->n1)== 0) return(0);
@@ -322,8 +310,7 @@ static int SaveContour(plot)
   return(1);
 }
 
-static int SaveContour2D(plot)
-     char *plot;
+static int SaveContour2D(char *plot)
 {
   integer nstyle;
   struct contour2d_rec *lplot = (struct contour2d_rec *) plot;
@@ -353,8 +340,7 @@ static int SaveContour2D(plot)
  * xgray 
  *---------------------------------------------------------------------------*/
 
-static int SaveGray(plot)
-     char *plot;
+static int SaveGray(char *plot)
 {
   struct gray_rec *lplot = (struct gray_rec *) plot;
   if ( SaveLI(lplot->n1)== 0) return(0);
@@ -372,8 +358,7 @@ static int SaveGray(plot)
   return(1);
 }
 
-static int SaveGray1(plot)
-     char *plot;
+static int SaveGray1(char *plot)
 {
   struct gray_rec *lplot = (struct gray_rec *) plot;
   if ( SaveLI(lplot->n1)== 0) return(0);
@@ -389,8 +374,7 @@ static int SaveGray1(plot)
   return(1);
 }
 
-static int SaveGray2(plot)
-     char *plot;
+static int SaveGray2(char *plot)
 {
   struct gray_rec_2 *lplot = (struct gray_rec_2 *) plot;
   if ( SaveLI(lplot->n1)== 0) return(0);
@@ -405,8 +389,7 @@ static int SaveGray2(plot)
  * champ 
  *---------------------------------------------------------------------------*/
 
-static int SaveChamp(plot)
-     char *plot;
+static int SaveChamp(char *plot)
 {
   struct champ_rec *lplot = (struct champ_rec *) plot;
   if ( SaveLI(lplot->n1)== 0) return(0);
@@ -490,10 +473,7 @@ static SaveTable SaveCTable[] ={
 #define __STDC__
 #endif 
 
-int C2F(xsaveplots)(winnumber, fname1, lxv)
-     integer *winnumber;
-     char *fname1;
-     integer lxv; 
+int C2F(xsaveplots)(integer *winnumber, char *fname1, integer lxv)
 {
   static char endplots[]={"endplots"};
   static char scig[]={"SciG1.1"};
@@ -533,9 +513,7 @@ int C2F(xsaveplots)(winnumber, fname1, lxv)
   return(0);
 }
 
-static int SaveTPlot(type, plot)
-     char *type;
-     char *plot;
+static int SaveTPlot(char *type, char *plot)
 {
   int i=0;
   while (SaveCTable[i].name != (char *) NULL)
@@ -559,8 +537,7 @@ static int SaveTPlot(type, plot)
   return(0);
 }
 
-static int SaveD(x)
-     double x;
+static int SaveD(double x)
 {
   szof = sizeof(double) ;
   count = 1;
@@ -568,8 +545,7 @@ static int SaveD(x)
   return(1);
 }
 
-static int SaveF(x)
-     float x;
+static int SaveF(float x)
 {
   double z=x;
   SaveD(z);
@@ -583,8 +559,7 @@ static int SaveF(x)
   return(1);
 }
 
-static int SaveLI(ix)
-     integer ix;
+static int SaveLI(integer ix)
 {
   szof = sizeof(int) ;
   count = 1;
@@ -592,9 +567,7 @@ static int SaveLI(ix)
   return(1);
 }
 
-static int SaveC(c, lc)
-     char *c;
-     integer lc;
+static int SaveC(char *c, integer lc)
 {
   szof = lc*sizeof(char);
   assert( xdr_vector(xdrs,(char *) &szof,(unsigned)1,(unsigned) sizeof(unsigned), (xdrproc_t) xdr_u_int)) ;
@@ -625,9 +598,7 @@ static int SaveVectI(nx,l)
 
 **/
 
-static int SaveVectLI(nx, l)
-     integer *nx;
-     integer l;
+static int SaveVectLI(integer *nx, integer l)
 { 
   integer nx1=1;
   /** Attention integer peut etre un long int **/
@@ -645,9 +616,7 @@ static int SaveVectLI(nx, l)
   return(1);
 }
 
-static int SaveVectF(nx, l)
-     double *nx;
-     integer l;
+static int SaveVectF(double *nx, integer l)
 {
   double nx1=0.0;
   szof = sizeof(double) ;
@@ -660,9 +629,7 @@ static int SaveVectF(nx, l)
   return(1);
 }
 
-static int SaveVectC(nx, l)
-     char *nx;
-     int l;
+static int SaveVectC(char *nx, int l)
 { 
   char nx1='1';
   szof = l*sizeof(char);
@@ -674,8 +641,7 @@ static int SaveVectC(nx, l)
   return(1);
 }
 
-static int SaveVectS(nx) 
-     char **nx ;
+static int SaveVectS(char **nx)
 {
   int scount = 0,i;
   if (nx != NULL) { while ( nx[scount] != NULL) scount++;} 
@@ -692,7 +658,7 @@ static int SaveVectS(nx)
 
 /** save the colormap if necessary **/
 
-static int SaveColormap()
+static int SaveColormap(void)
 {
   int m;
   /** If the X window exists we check its colormap **/

@@ -36,9 +36,7 @@ static S_alloc Storage[S_alloc_max] = { {0,0,NULL},{0,0,NULL},{0,0,NULL},
 					{0,0,NULL},{0,0,NULL},{0,0,NULL},
 					{0,0,NULL},{0,0,NULL},{0,0,NULL}};
 
-void * graphic_alloc(indice,n,size)
-     int indice,n ;
-     unsigned int size ;
+void * graphic_alloc(int indice, int n, unsigned int size)
 {
   integer *p; 
   unsigned int size_needed = n*size;
@@ -65,7 +63,7 @@ void * graphic_alloc(indice,n,size)
   return Storage[indice].storage;
 }
 
-void graphic_alloc_info() 
+void graphic_alloc_info(void)
 {
   unsigned int gsize=0;
   int i;
@@ -74,7 +72,7 @@ void graphic_alloc_info()
   sciprint("Graphic allocated dynamic memory: %ud bytes\n",gsize);
 }
 
-void graphic_alloc_free()
+void graphic_alloc_free(void)
 {
   int i;
   for (i = 0 ; i < S_alloc_max ; i++) 
