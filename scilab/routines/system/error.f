@@ -294,12 +294,12 @@ c
       go to 999
    33 call msgout(io,lunit,'too many '':''')
       go to 999
-   34 call msgout(io,lunit,'incorrect clause ')
+   34 call msgout(io,lunit,'incorrect control intruction syntax')
       errtyp=1
       go to 999
    35 continue
       call cvname(ids(1,pt),buf,1)
-      call msgout(io,lunit,'error in '//buf(1:nlgh))
+      call msgout(io,lunit,'Syntax error in '//buf(1:nlgh))
       errtyp=1
       go to 999
    36 if(err.ne.1) then

@@ -397,8 +397,6 @@ c     argument is a standard expression
 c     *call* expr
       return
  43   excnt = pstk(pt)
-cSS   LIGNE SUIVANTE A AJOUTER POUR GERER [A,B]=(L(1:2)) 
-c      if(ids(1,pt-1).eq.blank) excnt=lhs
       fun=ids(2,pt)
       pt = pt-1
 c

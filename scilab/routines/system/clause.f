@@ -104,17 +104,14 @@ c     .  for matlab compatiblity: for (k=1:n)
       elseif( sym.eq.eol) then
          sym=semi
          pstk(pt) = lpt(4)
+      elseif(lin(lpt(3)-2).eq.blank) then
+         sym=semi
+         lpt(4)=lpt(3)-1
+         pstk(pt) = lpt(4)
+         char1=blank
       else
-         if(comp(1).ne.0.and.comp(3).eq.1) then
-c          to accept matlab syntax for matlab to scilab translation
-           sym = semi
-	   lpt(4)=lpt(2)
-           pstk(pt) = lpt(4)
-	   char1=blank
-         else
-           call error(34)
-           return
-         endif
+         call error(35)
+         return
       endif
 c     on recherche le "end" pour s'assurer que toutes les lignes relatives 
 c     sont chargee (pb des matrices sur plusieurs lignes)
@@ -197,17 +194,14 @@ c     get the following line
             call compcl
             if(err.gt.0) return
          endif
+      elseif(lin(lpt(3)-2).eq.blank) then
+         sym=semi
+         lpt(4)=lpt(3)-1
+         char1=blank
+         goto 41
       else
-         if(comp(1).ne.0.and.comp(3).eq.1) then
-c          to accept matlab syntax for matlab to scilab translation
-           sym = semi
-	   lpt(4)=lpt(2)
-	   char1=blank
-	   goto 41
-         else
-           call error(35)
-           return
-         endif
+         call error(35)
+         return
       endif   
 
  42   if(comp(1).eq.0) then
@@ -243,16 +237,13 @@ c     *call* allops(==)
  46   if (eqid(syn,do) .or. eqid(syn,thenn)
      &     .or.sym.eq.comma.or.sym.eq.semi.or.sym.eq.eol) then
          sym = semi
+      elseif(lin(lpt(3)-2).eq.blank) then
+         sym=semi
+         lpt(4)=lpt(3)-1
+         char1=blank
       else
-         if(comp(1).ne.0.and.comp(3).eq.1) then
-c          to accept matlab syntax for matlab to scilab translation
-           sym = semi
-	   lpt(4)=lpt(2)
-	   char1=blank
-         else
-           call error(35)
-           return
-         endif
+         call error(35)
+         return
       endif
       if(comp(1).ne.0) goto 48
 c     comparaison ...
