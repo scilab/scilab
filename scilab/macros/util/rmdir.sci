@@ -2,7 +2,7 @@
 // Allan CORNET
 // INRIA 2004
 //------------------------------------------------------------------------
-// rmdir Make a directory
+// rmdir remove a directory
 function [status,msg]=rmdir(varargin)
   lhs=argn(1);   
   rhs=argn(2);
