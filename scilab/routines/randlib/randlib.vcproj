@@ -638,9 +638,6 @@ cd .. &gt;nul
 				RelativePath=".\Rand.c">
 			</File>
 			<File
-				RelativePath=".\ultra.c">
-			</File>
-			<File
 				RelativePath=".\urand.c">
 			</File>
 		</Filter>
