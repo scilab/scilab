@@ -3,6 +3,8 @@
  *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
+#include "../machine.h" /* to be sure that WITH_XXX are defined */
+
 #ifndef WIN32
 #ifdef WITH_GTK
 #include <gtk/gtk.h>
