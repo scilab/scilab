@@ -4724,14 +4724,19 @@ sciSetDim (sciPointObj * pobj, int *pwidth, int *pheight)
  * @return the width of the dimension of the window or figure 
  * (the visibility dimension) in pixel dimension
  */
-double /* ????? */
+double
 sciGetWidth (sciPointObj * pobj)
 {
+  struct BCG *Xgc;
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
+      Xgc=pFIGURE_FEATURE (pthis)->pScilabXgc;
+      pFIGURE_FEATURE (pthis)->windowdimwidth= Xgc->CWindowWidth;
+      return pFIGURE_FEATURE (pthis)->windowdimwidth;
+      break;
     case SCI_SUBWIN:
-      return sciGetPosWidth(pobj);
+       return pSUBWIN_FEATURE (pthis)->windimwidth;
       break;
     default:
       sciprint ("Only Figure is physical dimensioned\n");
@@ -4746,14 +4751,18 @@ sciGetWidth (sciPointObj * pobj)
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the height of the dimension of the window or figure (the visibility dimension) in pixel dimension
  */
-double /* ????? */
+double 
 sciGetHeight (sciPointObj * pobj)
 {
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
+      Xgc=pFIGURE_FEATURE (pthis)->pScilabXgc;
+      pFIGURE_FEATURE (pthis)->windowdimheight= Xgc->CWindowHeight;
+      return pFIGURE_FEATURE (pthis)->windowdimheight;
+      break;
     case SCI_SUBWIN:
-      return sciGetPosHeight(pobj);
+       return pSUBWIN_FEATURE (pthis)->windimheight;
       break;
     default:
       sciprint ("Only Figure is physical dimensioned\n");
@@ -4769,11 +4778,19 @@ sciGetHeight (sciPointObj * pobj)
 int
 sciSetFigurePos (sciPointObj * pobj, int pposx, int pposy)
 {
+  integer x[2],y=0,cur,num,na;
+
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      if (pobj != pfiguremdl)
+      if (pobj != pfiguremdl) {
+	num=pFIGURE_FEATURE(pobj)->number;
+	C2F(dr)("xget","window",&y,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+	C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	C2F(dr)("xset","wpos",&pposx,&pposy,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
+	C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+      }
       pFIGURE_FEATURE (pobj)->inrootposx = pposx;
       pFIGURE_FEATURE (pobj)->inrootposy = pposy;
       return 0;
@@ -4796,14 +4813,20 @@ sciSetFigurePos (sciPointObj * pobj, int pposx, int pposy)
 int
 sciGetFigurePosX (sciPointObj * pobj)
 {
-  integer x[2],y=0;
+  integer x[2],y=0,cur,num,na;
   double d=0;
   
   switch (sciGetEntityType (pobj))
     { 
     case SCI_FIGURE:
       /* synchronize figure position with its actual value */
-      C2F(dr)("xget","wpos",&y,x,&y,PI0,PI0,PI0,&d,PD0,PD0,PD0,4L,4L);
+      num=pFIGURE_FEATURE(pobj)->number;
+      C2F(dr)("xget","window",&y,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+      C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+      C2F(dr)("xget","wpos",&y,x,&na,PI0,PI0,PI0,&d,PD0,PD0,PD0,4L,4L);
+      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
       pFIGURE_FEATURE (pobj)->inrootposx=x[0];
       return pFIGURE_FEATURE (pobj)->inrootposx;
       break;
@@ -4824,14 +4847,17 @@ sciGetFigurePosX (sciPointObj * pobj)
 int
 sciGetFigurePosY (sciPointObj * pobj)
 {  
-  integer x[2],y=0;
+  integer x[2],y=0,cur,num,na;
   double d=0;
   
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
       /* synchronize figure position with its actual value */
+      C2F(dr)("xget","window",&y,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+      C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xget","wpos",&y,x,&y,PI0,PI0,PI0,&d,PD0,PD0,PD0,4L,4L);
+      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       pFIGURE_FEATURE (pobj)->inrootposy=x[1];
       return pFIGURE_FEATURE (pobj)->inrootposy;
       break;
@@ -4929,7 +4955,7 @@ sciSetSubWindowPos (sciPointObj * pobj, int *pposx, int *pposy)
 
 
 /**sciGetSubwindowPosX
- * Gets scrollbar position; use unreserved function sciGetPosX for all. 
+ * Gets scrollbar position; 
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int vertical position in pixel
  **/
@@ -4953,7 +4979,7 @@ sciGetSubwindowPosX (sciPointObj * pobj)
 
 
 /**sciGetSubwindowPosY
- * @memo Gets subwindow position; use unreserved function sciGetPosX for all.
+ * @memo Gets subwindow position; 
  * @param sciPointObj * pobj: the pointer to the entity in pixel
  * @return  int vertical position 
  **/
@@ -11346,7 +11372,6 @@ sciDrawObj (sciPointObj * pobj)
   framevalues[3] = 1;
  
   currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
-
  switch (sciGetEntityType (pobj))
    {
    case SCI_FIGURE: 
@@ -11445,22 +11470,8 @@ sciDrawObj (sciPointObj * pobj)
 	 if (pSUBWIN_FEATURE (pobj)->isaxes) {
 	   char STRFLAG[4];
 	   rebuild_strflag(pobj,STRFLAG);
-	   
-	   
-	   /*  sciprint("JUSTE AVANT axis_draw...\n"); */
-	   /* 	    sciprint("Cscale.ytics[0] = %f\n",Cscale.ytics[0]); */
-	   /* 	    sciprint("Cscale.ytics[1] = %f\n",Cscale.ytics[1]); */
-	   /* 	    sciprint("Cscale.ytics[2] = %f\n",Cscale.ytics[2]); */
-	   /* 	    sciprint("Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
-	   
-	   
 	   axis_draw (STRFLAG); 
 	   labels2D_draw(pobj);
-	   /*  sciprint("JUSTE APRES axis_draw...\n"); */
-	   /* 	    sciprint("Cscale.ytics[0] = %f\n",Cscale.ytics[0]); */
-	   /* 	    sciprint("Cscale.ytics[1] = %f\n",Cscale.ytics[1]); */
-	   /* 	    sciprint("Cscale.ytics[2] = %f\n",Cscale.ytics[2]); */
-	   /* 	    sciprint("Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
 	   
 	 }
 	 /** walk subtree **/
@@ -11479,7 +11490,6 @@ sciDrawObj (sciPointObj * pobj)
      /******************/
 	  
    case SCI_AGREG: 
-     
       if (!sciGetVisibility(pobj)) break;
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
       /* scan the hierarchie and call sciDrawObj */
@@ -12707,397 +12717,6 @@ sciGetReplay ()
 }
 
 
-
-/**sciSetPosX
- * @memo returns coordonee X in REAL (probably obsolete in few futur, replace with sciSetpoint)
- */
-int
-sciSetPosX (sciPointObj * pthis, double x)
-{
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_TEXT:
-      sciSetTextPosX (pthis, x);
-      return 0;
-      break;  
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-      return -1;
-      break; 
-    case SCI_POLYLINE:  
-    case SCI_LEGEND: 
-      /*   case SCI_AXIS*/
-    case SCI_TITLE:
-      return -1;
-      break;  
-    case SCI_SEGS:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:    
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    default:
-      sciprint ("This object has no place X\n");
-      return -1;
-      break;
-    }
-  return -1;
-}
-
-
-
-/**sciSetPosY
- * @memo returns coordonee Y in REAL (probably obolete in few futur, replace with sciSetpoint)
- */
-int
-sciSetPosY (sciPointObj * pthis, double y)
-{
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_TEXT:
-      sciSetTextPosY (pthis, y);
-      return 0;
-      break;      
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-      return -1;
-      break; 
-    case SCI_POLYLINE:
-    case SCI_LEGEND:
-      /*   case SCI_AXIS*/
-    case SCI_TITLE:
-      return -1;
-      break; 
-    case SCI_SEGS:
-    case SCI_SBV:
-    case SCI_SBH:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    default:
-      sciprint ("This object has no place Y\n");
-      return -1;
-      break;
-    }
-  return -1;
-}
-
-
-
-
-/**sciGetPosX
- * @memo returns coordonee X in pixel for figure and subwindow and in REAL for other entity (probably obolete in few futur, replace with sciGetpoint)
- */
-double
-sciGetPosX (sciPointObj * pthis)
-{
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_FIGURE:
-      return (double) sciGetFigurePosX (pthis);
-      break;
-    case SCI_SUBWIN:
-      return (double) sciGetSubwindowPosX (pthis);
-      break;
-    case SCI_TEXT:
-      return sciGetTextPosX (pthis);
-      break;
-    case SCI_SBH:
-      return (double) sciGetScrollPosH (pthis);
-      break;
-    case SCI_SBV:
-      return 0;			/* les coordonnees sont (0,y)  il n'y a pas de X */
-    case SCI_RECTANGLE:
-      return pRECTANGLE_FEATURE (pthis)->x;
-      break;
-    case SCI_ARC:		
-      return pARC_FEATURE (pthis)->x;
-      break;
-    case SCI_POLYLINE:
-      return pPOLYLINE_FEATURE (pthis)->xmin;
-      break;
-    case SCI_AGREG:
-      return pAGREG_FEATURE (pthis)->xmin;
-      break; 
-    case SCI_LEGEND:
-      /*   case SCI_AXIS*/
-    case SCI_TITLE:
-      return -1;
-      break;
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-      return -1;
-      break; 
-    case SCI_SEGS:
-    case SCI_SURFACE:
-    case SCI_LIGHT:  
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    default:
-      sciprint ("This object has no place X\n");
-      return -1;
-      break;
-    }
-  return -1;
-}
-
-
-/**sciGetPosWidth
- * @memo returns width in in pixel for figure and subwindow and in REAL dimension for the other (probably obolete in few futur, replace with sciGetpoint)
- */
-double
-sciGetPosWidth (sciPointObj * pthis)
-{
-  int x[2],itmp=0;
-  double xtmp1, xtmp2;
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_FIGURE:
-      C2F(dr)("xget","wdim",&itmp,x,&itmp,PI0,PI0,PI0,&xtmp2,PD0,PD0,PD0,0L,0L);
-      pFIGURE_FEATURE (pthis)->windowdimwidth=x[0];
-      return pFIGURE_FEATURE (pthis)->windowdimwidth;
-      break;
-    case SCI_SUBWIN:
-      return pSUBWIN_FEATURE (pthis)->windimwidth;
-      break;
-    case SCI_TEXT:
-      return sciGetTextPosWidth (pthis);
-      break;
-    case SCI_RECTANGLE:
-      return pRECTANGLE_FEATURE (pthis)->width;
-      break;
-    case SCI_ARC:		
-      return pARC_FEATURE (pthis)->width;
-      break;
-    case SCI_POLYLINE:
-      return pPOLYLINE_FEATURE (pthis)->width;
-      break;
-    case SCI_AGREG:
-      xtmp1 = pAGREG_FEATURE(pthis)->xmax;
-      xtmp2 = pAGREG_FEATURE(pthis)->xmin;
-      return fabs(pAGREG_FEATURE(pthis)->xmax - pAGREG_FEATURE(pthis)->xmin);
-      break;
-      break; 
-    case SCI_LEGEND:   
-      /*   case SCI_AXIS*/
-    case SCI_TITLE:
-      return -1;
-      break;
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-      return -1;
-      break; 
-    case SCI_SEGS:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_SURFACE:
-    case SCI_LIGHT:    
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    default:
-      sciprint ("This object has no place X\n");
-      return -1;
-      break;
-    }
-  return -1;
-}
-
-
-/**sciGetPosY
- * @memo returns coordonee Y  in REAL dimension (probably obolete in few futur, replace with sciGetpoint)
- */
-double
-sciGetPosY (sciPointObj * pthis)
-{
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_FIGURE:
-      return (double) sciGetFigurePosY (pthis);
-      break;
-    case SCI_SUBWIN:
-      return (double) sciGetSubwindowPosY (pthis);
-      break;
-    case SCI_TEXT:
-      return sciGetTextPosY (pthis);
-      break;
-    case SCI_SBV:
-      return (double) sciGetScrollPosV (pthis);
-      break;
-    case SCI_SBH:
-      return 0;			/* les coordonnees sont (x,0)  il n'y a pas de y */
-    case SCI_RECTANGLE:
-      return pRECTANGLE_FEATURE (pthis)->y;
-      break;
-    case SCI_ARC:		
-      return pARC_FEATURE (pthis)->y;
-      break;
-    case SCI_POLYLINE:
-      return pPOLYLINE_FEATURE (pthis)->ymin;
-      break;
-    case SCI_AGREG:
-      return pAGREG_FEATURE (pthis)->ymin;
-      break;   
-    case SCI_LEGEND:
-      /*   case SCI_AXIS*/
-    case SCI_TITLE:
-      return -1;
-      break;
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-      return -1;
-      break;
-    case SCI_SURFACE:
-    case SCI_LIGHT:    
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    default:
-      sciprint ("This object has no place Y\n");
-      return -1;
-      break;
-    }
-  return -1;
-}
-
-
-
-
-/**sciGetPosHeight
- * @memo returns width in REAL (probably obolete in few futur, replace with sciGetpoint)
- */
-double
-sciGetPosHeight (sciPointObj * pthis)
-{ 
-  int x[2],itmp=0;
-  double xtmp2;
-	
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_FIGURE:  
-      C2F(dr)("xget","wdim",&itmp,x,&itmp,PI0,PI0,PI0,&xtmp2,PD0,PD0,PD0,0L,0L);
-      pFIGURE_FEATURE (pthis)->windowdimheight=x[1];
-      return pFIGURE_FEATURE (pthis)->windowdimheight;
-      break;
-    case SCI_SUBWIN:
-      return pSUBWIN_FEATURE (pthis)->windimheight;
-      break;
-    case SCI_TEXT:
-      return sciGetTextPosHeight (pthis);
-      break;
-    case SCI_RECTANGLE:
-      return pRECTANGLE_FEATURE (pthis)->height;
-      break;
-    case SCI_ARC:		
-      return pARC_FEATURE (pthis)->height;
-      break;
-    case SCI_POLYLINE:
-      return pPOLYLINE_FEATURE (pthis)->height;
-      break;
-    case SCI_AGREG:
-      return fabs(pAGREG_FEATURE (pthis)->ymax - pAGREG_FEATURE (pthis)->ymin);
-      break;  
-    case SCI_LEGEND: 
-      /*  case SCI_AXIS*/
-    case SCI_TITLE:
-      return -1;
-      break;
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-      return -1;
-      break;
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    default:
-      sciprint ("This object has no place X\n");
-      return -1;
-      break;
-    }
-  return -1;
-}
-/**DJ.Abdemouche 2003**/
-/**sciGetPosX
- * @memo returns coordonee Z  in REAL for entity 
- */
-double
-sciGetPosZ (sciPointObj * pthis)
-{
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_TEXT:
-      return pTEXT_FEATURE (pthis)->z;
-      break;
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_RECTANGLE:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:		
-    case SCI_POLYLINE:
-    case SCI_AGREG:
-    case SCI_LEGEND:
-      /*   case SCI_AXIS*/
-    case SCI_TITLE:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_SEGS:
-    case SCI_SURFACE:
-    case SCI_LIGHT:  
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    default:
-      sciprint ("This object has no place Z\n");
-      return -1;
-      break;
-    }
-  return -1;
-}
-
-
 /**sciGetPoint
  * @memo returns pointer to the points of the entity, and a pointer to the number of points. This function allocates memory for the tab of point, so after using the tab don't forget to free it
  */
@@ -13114,8 +12733,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       *numcol = 2;
       if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
-      tab[0] = sciGetPosX (pthis);
-      tab[1] = sciGetPosY (pthis);
+      tab[0] = (double) sciGetFigurePosX (pthis);
+      tab[1] = (double) sciGetFigurePosY (pthis);
       tab[2] = (double)sciGetWidth (pthis);
       tab[3] = (double)sciGetHeight (pthis);
       return (double*)tab;
@@ -13125,8 +12744,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       *numcol = 2;
       if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
-      tab[0] = sciGetPosX (pthis);
-      tab[1] = sciGetPosY (pthis);
+      tab[0] =  (double) sciGetSubwindowPosX (pthis);
+      tab[1] =  (double) sciGetSubwindowPosY (pthis);
       tab[2] = (double)sciGetWidth (pthis);
       tab[3] = (double)sciGetHeight (pthis);
       tab[4] = (double)sciGetScilabXgc(pthis)->CWindowWidthView; 
@@ -13173,8 +12792,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 7: 6;
       if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
-      tab[0] = sciGetPosX (pthis);
-      tab[1] = sciGetPosY (pthis);
+      tab[0] = pARC_FEATURE (pthis)->x;
+      tab[1] =  pARC_FEATURE (pthis)->y;
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
 	{
 	  tab[2] = pARC_FEATURE (pthis)->z;
@@ -13194,25 +12813,26 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       return (double*)tab;
       break;
     case SCI_AGREG:
-      *numrow = 2;
+      /*      *numrow = 2;
       *numcol = 2;
       if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
-      tab[0] = sciGetPosX (pthis);
-      tab[1] = sciGetPosY (pthis);
-      tab[2] = sciGetPosWidth(pthis);
-      tab[3] = sciGetPosHeight(pthis);
-      return (double*)tab;
+      tab[0] = pAGREG_FEATURE (pthis)->xmin
+      tab[1] = pAGREG_FEATURE (pthis)->ymin
+      tab[2] = pAGREG_FEATURE (pthis)->xmax - pAGREG_FEATURE (pthis)->xmin
+      tab[3] = pAGREG_FEATURE (pthis)->ymax - pAGREG_FEATURE (pthis)->ymin
+      return (double*)tab;*/
+      return (double*)NULL;
       break;
     case SCI_TEXT:
       *numrow = 1;
       *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 3: 2;
       if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
-      tab[0] = sciGetPosX (pthis);
-      tab[1] = sciGetPosY (pthis); 
+      tab[0] = pTEXT_FEATURE (pthis)->x;
+      tab[1] = pTEXT_FEATURE (pthis)->y;
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	tab[2] = sciGetPosZ (pthis);
+	tab[2] =  pTEXT_FEATURE (pthis)->z;
       return (double*)tab;
       break;
     case SCI_SBV:
@@ -13891,35 +13511,8 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
 	}
       return FALSE;
       break;
-    case SCI_AGREG:
-      /* on recupere la dimension de la sous fenetre parente */
-      /*set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
-	pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);*/
-      set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
-		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
-      DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
-      DELTAY = fabs(0.01 * sciGetHeight (sciGetParent(pthis)));/* dimension in pixel */
-      n=4;
-      vect[0] = pAGREG_FEATURE (pthis)->xmin;
-      vect[1] = pAGREG_FEATURE (pthis)->ymin;
-      vect[2] = sciGetPosWidth(pthis);
-      vect[3] = sciGetPosHeight(pthis);
-      C2F(rect2d)(vect, xm, &n,"f2i");
-      if (
-	  ((abs(x - xm[0]) < DELTAX) && ((y - xm[1]) < DELTAY)) ||
-	  ((abs(x - xm[0] - xm[2]) < DELTAX) && (abs(y - xm[1]) < DELTAY)) ||
-	  ((abs(x - xm[0]) < DELTAX) && (abs(y - xm[1] - xm[3]) < DELTAY)) ||
-	  ((abs(x - xm[0] - xm[2]) < DELTAX) && (abs(y - xm[1] - xm[3]) < DELTAY))
-	  )
-	{
-	  return TRUE;
-	}
-      return FALSE;
-      break;
     case SCI_RECTANGLE:
       /* on recupere la dimension de la sous fenetre parente */
-      /*set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
-	pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);*/
       set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
 		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
       DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
@@ -13942,8 +13535,6 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
       return FALSE;
       break;
     case SCI_POLYLINE:
-      /*set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
-	pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);*/
       set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
 		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
       DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
@@ -13965,6 +13556,7 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
       FREE(tab);
       return FALSE;
       break;
+    case SCI_AGREG:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT:
@@ -14498,19 +14090,11 @@ sciExecCallback (sciPointObj * pthis)
 
 
 /************************************ Agregation *******************************************/
-
-
-/**sciConstructAgregation
- * @memo constructes an agregation of entities
- * @memo do only a association with a parent and a handle reservation !
- */
-sciPointObj *
-ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with definition */
+int CheckForAgregation(long *handelsvalue, int number)
 {
-  sciSons *sons, *sonsnext;
-  sciPointObj *pobj, *prevpparent;
+  sciPointObj *prevpparent;
   int i;
-  double xtmp1; long xtmp; /*double xtmp,xtmp1;*/
+  long xtmp; 
 
   prevpparent = sciGetParent(sciGetPointerFromHandle((long) handelsvalue[0]));
 
@@ -14541,8 +14125,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 	      (sciGetParent(sciGetPointerFromHandle(xtmp)) != prevpparent)
 	      )
 	    {
-	      sciprint("entity number %d have to be a basic graphic entity, already packed or have a different parents !\n",(i+1));
-	      return (sciPointObj *) NULL;
+	      return i+1; /* invalid parent */
 	    }
 	  break;
 	case SCI_AGREG:
@@ -14557,8 +14140,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 	      (sciGetParent(sciGetPointerFromHandle(xtmp)) != prevpparent)
 	      )
 	    {
-	      sciprint("entity number %d have to be a basic graphic entity, already packed or have a different parents !\n",(i+1));
-	      return (sciPointObj *) NULL;
+	      return i+1; /* invalid parent */
 	    }
 	  break;
 	  /* we verify if the entity is not */
@@ -14572,11 +14154,27 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 	case SCI_SBH:
 	case SCI_LABEL: /* F.Leray 28.05.04 A REVOIR...*/
 	default:
-	  sciprint("entity number %d have to be a basic graphic entity\n",(i+1));
-	  return (sciPointObj *) NULL;
+	  return -(i+1); /* not a basic entity*/
 	}
       prevpparent = sciGetParent(sciGetPointerFromHandle(xtmp));
     }
+  return 0;
+}
+
+/**sciConstructAgregation
+ * @memo constructes an agregation of entities
+ * @memo do only a association with a parent and a handle reservation !
+ * @memo check for valid handle can be done using CheckForAgregation
+ */
+sciPointObj *
+ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with definition */
+{
+  sciSons *sons, *sonsnext;
+  sciPointObj *pobj;
+  int i;
+  long xtmp;
+
+ 
   if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
     return (sciPointObj *) NULL;
 
@@ -14591,8 +14189,6 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
     }
 
   /* the parent of the agregation will be the parent of the sons entities */
-  /*sciSetParent (pobj, (sciPointObj *)sciGetParent(
-    sciGetPointerFromHandle((long) (stk(*value))[0])));*/
   if (!(sciAddThisToItsParent (pobj, (sciPointObj *)sciGetParent(
 								 sciGetPointerFromHandle((long) handelsvalue[0])))))
     return NULL;
@@ -14608,12 +14204,6 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 
   /* initialisation with the first son */
   xtmp = (long) handelsvalue[0];
-  pAGREG_FEATURE(pobj)->xmin   = sciGetPosX((sciPointObj *)sciGetPointerFromHandle(xtmp));
-  pAGREG_FEATURE(pobj)->ymin   = sciGetPosY((sciPointObj *)sciGetPointerFromHandle(xtmp));
-  pAGREG_FEATURE(pobj)->xmax   = sciGetPosX((sciPointObj *)sciGetPointerFromHandle(xtmp))
-    + sciGetPosWidth((sciPointObj *)sciGetPointerFromHandle(xtmp));
-  pAGREG_FEATURE(pobj)->ymax   = sciGetPosY((sciPointObj *)sciGetPointerFromHandle(xtmp))
-    + sciGetPosHeight((sciPointObj *)sciGetPointerFromHandle(xtmp));
 
   for (i=0;i<number;i++)
     {
@@ -14632,14 +14222,6 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 	  sciAddThisToItsParent (sons->pointobj, pobj);
 	}
 
-      pAGREG_FEATURE(pobj)->xmax  = Max(pAGREG_FEATURE(pobj)->xmax,
-					sciGetPosX(sons->pointobj) + sciGetPosWidth(sons->pointobj));
-      pAGREG_FEATURE(pobj)->ymax =  Max(pAGREG_FEATURE(pobj)->ymax,
-					sciGetPosY(sons->pointobj) + sciGetPosHeight(sons->pointobj));
-      xtmp1 = Min(pAGREG_FEATURE(pobj)->xmin, sciGetPosX(sons->pointobj));
-      pAGREG_FEATURE(pobj)->xmin = xtmp1;
-      pAGREG_FEATURE(pobj)->ymin = Min(pAGREG_FEATURE(pobj)->ymin, sciGetPosY(sons->pointobj));
-
       sons->pprev         = (sciSons *)NULL;
       sons->pnext         = sonsnext;
       if (sonsnext) sonsnext->pprev = sons;
@@ -14647,8 +14229,6 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
     }
 
   pAGREG_FEATURE(pobj)->relationship.psons = sons;
-
-  /*  rect of the dimension of the agregation */
   pAGREG_FEATURE(pobj)->isselected = TRUE;
 
   return (sciPointObj *)pobj;
@@ -14728,28 +14308,14 @@ sciUnAgregation (sciPointObj * pobj)
 sciPointObj *sciIsExistingFigure(value)
      int *value;
 {
-  sciHandleTab *hdl;
-  sciPointObj  *pobj, *figure;
+  struct BCG *figGC;
 
-  figure= (sciPointObj *) NULL;
-  hdl=pendofhandletab;
-  while (hdl != NULL)
-    {
-      pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
-      if (sciGetEntityType (pobj)== SCI_FIGURE) 
-	{
-          pFIGURE_FEATURE (pobj)->isselected = FALSE;
-	  if ( sciGetNum ( pobj) == *value) 
-            {  
-              figure=pobj;
-              pFIGURE_FEATURE (figure)->isselected = TRUE;
-            }
-	}
-      hdl=hdl->pprev;
-    }
-  if (figure != (sciPointObj *) NULL)
-    return figure;
-  return  (sciPointObj *) NULL;    
+  figGC=GetWindowXgcNumber(*value);
+  if (figGC != (struct BCG *) 0)
+    return figGC->mafigure;
+  else
+    return  (sciPointObj *) NULL;    
+
 }
 
 void sciSwitchWindow(winnum)
@@ -14799,7 +14365,6 @@ void sciRedrawF(value)
 { 
   sciPointObj *figure; 
   integer cur,na,verb=0;
- 
   figure= (sciPointObj *) sciIsExistingFigure(value); 
   /* F.Leray 13.04.04 : Test if returned sciPointObj* is NULL (means Figure has been destroyed) */
 
@@ -14817,7 +14382,6 @@ void sciRedrawF(value)
       sciSetReplay (FALSE);
       C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
     }
-  
 }
 
 void sciXbasc()

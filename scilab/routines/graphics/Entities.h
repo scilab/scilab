@@ -1451,6 +1451,7 @@ extern sciPointObj *ConstructMenu (sciPointObj * pparentfigure,
 				      char plabel[], int n);
 extern int DestroySciMenu (sciPointObj * pthis);
 extern sciPointObj *ConstructAgregation (long *tabpointobj, int number);
+extern int CheckForAgregation (long *tabpointobj, int number);
 
 extern sciPointObj *sciCloneObj (sciPointObj * pobj);
 extern sciPointObj *sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget );
@@ -1469,13 +1470,6 @@ extern int sciSetReplay (BOOL value);
 extern BOOL sciGetReplay ();
 extern int sciSetHDC (sciPointObj * pobj);
 
-extern int sciSetPosX (sciPointObj * pthis, double x);
-extern int sciSetPosY (sciPointObj * pthis, double y);
-extern double sciGetPosX (sciPointObj * pthis);
-extern double sciGetPosY (sciPointObj * pthis);
-extern double sciGetPosZ (sciPointObj * pthis);/**DJ.Abdemouche 2003**/
-extern double sciGetPosWidth (sciPointObj * pthis);
-extern double sciGetPosHeight (sciPointObj * pthis);
 extern double *sciGetPoint (sciPointObj * pthis, int *num, int *numco);
 extern int sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol);
 extern sciPointObj *sciGetObjClicked (sciPointObj *pthis,int x, int y);
