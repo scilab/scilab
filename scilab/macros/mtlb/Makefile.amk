@@ -36,7 +36,8 @@ M5 = mtlb_cell.sci  cell.sci struct.sci  \
 	%c_i_st.sci %ce_i_st.sci %p_i_st.sci \
 	%l_i_st.sci %st_i_st.sci %r_i_st.sci %lss_i_st.sci\
 	%spb_i_st.sci %mc_i_st.sci %hm_i_st.sci\
-	%st_p.sci %st_e.sci \
+	%fptr_i_st.sci %h_i_st.sci %ip_i_st.sci %msp_i_st.sci \
+	%st_p.sci %st_e.sci %st_size.sci \
         %ce_e.sci %ce_p.sci %ce_size.sci  \
 	%b_i_ce.sci %ce_i_ce.sci %i_i_ce.sci %p_i_ce.sci  \
 	%s_i_ce.sci %spb_i_ce.sci %c_i_ce.sci %hm_i_ce.sci \
@@ -45,7 +46,7 @@ M5 = mtlb_cell.sci  cell.sci struct.sci  \
 	%ce_c_s.sci %ce_f_s.sci %s_f_ce.sci %s_c_ce.sci \
 	%c_c_ce.sci %c_f_ce.sci %ce_f_c.sci %ce_c_c.sci \
 	%i_c_ce.sci %i_f_ce.sci %ce_f_i.sci %ce_c_i.sci \
-	createstruct.sci
+	createstruct.sci %st_6.sci 
 
 PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci \
 	mtlb_hold.sci mtlb_ishold.sci mtlb_mesh.sci mtlb_meshdom.sci \

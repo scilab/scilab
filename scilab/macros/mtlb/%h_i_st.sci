@@ -1,4 +1,4 @@
-function out=%ce_i_st(i,in,out)
+function out=%h_i_st(i,in,out)
 // Authors: F. Delebecque, S. Steer, Copyright INRIA 
 // out.i=in  
 // this function is called only if the i field is not already defined in out

@@ -5,5 +5,5 @@ function c=struct(varargin)
    for k=1:prod(dims),val(k)=[],end
  end
  if size(dims,'*')<2 then dims(2)=min(1,dims(1));end
- c=mlist(['st','dims'],int32(dims))
+ c=mlist(['st','dims'],int32(matrix(dims,1,-1)))
 endfunction
