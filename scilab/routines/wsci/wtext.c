@@ -2195,33 +2195,35 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 			SetDlgItemText(hDlg,IDC_COPYRIGHT_SPLASH,buffer);
 			wsprintf(buffer,"%s %s",__DATE__,__TIME__);
 			SetDlgItemText(hDlg,IDC_BUILD,buffer);
-			#if _DEBUG
-			strcpy(buffer,"Debug ");
+			#if __MAKEFILEVC__
+				strcpy(buffer,"Makefile VC ");
 			#else
-			strcpy(buffer,"Release ");
+				#if __ABSC__
+				strcpy(buffer,"Makefile ABSOFT ");
+				#else
+					#if _DEBUG
+					strcpy(buffer,"Debug ");
+					strcat(buffer,"Blend");
+					#else
+					strcpy(buffer,"Release ");
+					switch(cpubuild)
+					{
+						case 500: // Pentium
+							strcat(buffer,"Pentium");
+						break;
+						case 600: // Pentium Pro
+							strcat(buffer,"Pentium II and more");
+						break;
+						case 400: // 486
+							strcat(buffer,"486");
+						break;
+						case 300: // 386
+							strcat(buffer,"386");
+						break;
+					}
+					#endif
+				#endif
 			#endif
-
-			#if _DEBUG
-			strcat(buffer,"Blend");
-			#else
-			switch(cpubuild)
-			{
-			case 500: // Pentium
-				strcat(buffer,"Pentium");
-				break;
-			case 600: // Pentium Pro
-				strcat(buffer,"Pentium II and more");
-				break;
-			case 400: // 486
-				strcat(buffer,"486");
-				break;
-			case 300: // 386
-				strcat(buffer,"386");
-				break;
-			}
-			#endif
-			
-
 			SetDlgItemText(hDlg,IDC_COMPILMODE,buffer);
 			}
 		return TRUE;
