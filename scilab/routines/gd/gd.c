@@ -693,6 +693,9 @@ int gdImageChar(im, f, x, y, c, color)
 	cx = 0;
 	cy = 0;
 	mx = x;
+	if (c == 32)  /* a q & d way to solve bug 1113 (bruno 7 dec 2004) */
+	  return((f->w-2)/3);
+
 	if ((c < f->offset) || (c >= (f->offset + f->nchars))) {
 		return(0);
 	}
