@@ -2,6 +2,7 @@
 NEW FUNCTIONALITIES
 ===================
 - continue instruction added
+- [a(i,j),b(..),..]=foo(..) syntax is now handled
 
 OTHERS IMPROVEMENTS
 ===================
