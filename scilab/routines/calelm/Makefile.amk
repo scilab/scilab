@@ -21,7 +21,7 @@ SLATEC= d9knus.obj d9lgmc.obj dasyik.obj dbdiff.obj dbesi.obj dbesi0.obj dbesi1.
 	zacai.obj zbuni.obj zuni2.obj zuni1.obj zunik.obj zmlt.obj zdiv.obj zabs.obj zsqrt.obj	\
 	zlog.obj zexp.obj dbesj.obj dbesy.obj dbesj1.obj dbesy1.obj dbesy0.obj zbesj.obj	\
 	zbesy.obj zbesh.obj d9b0mp.obj d9b1mp.obj djairy.obj dyairy.obj dasyjy.obj dbsynu.obj	\
-	dxlegf.obj
+	dxlegf.obj dgamlm.obj
 
 
 OTHERS = coshin.obj arcosh.obj dad.obj dadd.obj ccopy.obj rcopy.obj ddif.obj			\
