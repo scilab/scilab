@@ -36,7 +36,7 @@
      <PARAM_ITEM>
         <PARAM_NAME>C</PARAM_NAME>
         <PARAM_DESCRIPTION>
-         <SP>: a big vector with the coefficients of the bicubic patches</SP>
+         <SP>: a big vector with the coefficients of the bicubic patches (see details in Remarks)</SP>
         </PARAM_DESCRIPTION> 
      </PARAM_ITEM>
    </PARAM_INDENT>
@@ -53,11 +53,11 @@
     is defined by :
     </P>
         <VERBATIM><![CDATA[
-             _3_   _3_                       
-             \     \                    k         l
+             _4_   _4_                       
+             \     \                   k-1       l-1
     s(x,y) = /     /    C (k,l) (x - xi)  (y - yj)
              ---   ---   ij
-             k=0   l=0
+             k=1   l=1
           ]]></VERBATIM>
     <P>
     The evaluation of  <EM>s</EM> at some points must be done by the <LINK>interp2d</LINK> 
@@ -98,6 +98,13 @@
     <P>The <BD>natural</BD>, <BD>monotone</BD>, <BD>fast</BD> (or <BD>fast_periodic</BD>) type may
        be useful in some cases, for instance to limit oscillations (<BD>monotone</BD> being the
        most powerfull for that).
+    </P>
+    <P>To get the coefficients of the bi-cubic patches in a more friendly way you can use
+     <TT>c = hypermat([4,4,nx-1,ny-1],C)</TT> then the coefficient <EM>(k,l)</EM> of the patch 
+     <EM>(i,j)</EM> (see equation here before) is stored at <TT>c(k,l,i,j)</TT>. Nevertheless
+     the <LINK>interp2d</LINK> function wait for the big vector <VERB>C</VERB> and not for the
+     hypermatrix <VERB>c</VERB> (note that one can easily retrieve <TT>C</TT> from <TT>c</TT> with
+     <TT>C=c(:)</TT>).
     </P>
     </SECTION>
   <EXAMPLE><![CDATA[
