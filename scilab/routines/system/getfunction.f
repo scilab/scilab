@@ -194,7 +194,7 @@ c     .     endfunction omitted
             endif
          endif
          goto 72
-      elseif(sym.eq.cmt) then
+      elseif(strcnt.eq.0.and.sym.eq.cmt) then
          lpt(4)=lpt(6)
          n=lpt(4)-l4
          goto 72
