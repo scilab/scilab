@@ -42,13 +42,13 @@ $(DLL) : $(OBJS)
 clean:: cleanC cleanF 
 
 cleanC :
-	del *.obj
+	-del *.obj
 
 cleanF :
-	del *.obj
+	-del *.obj
 
 distclean::
-	del *.obj
+	-del *.obj
 
 
 # won't work since LIBRARY is a path with \ del $(LIBRARY)

@@ -31,8 +31,11 @@ Funtab.obj : fundef
 
 $(EXAMPLES) : ../stack.h 
 
+clean::
+	-del *.obj
+
 distclean::
-	del *.obj
+	-del *.obj
 
 # symbols 
 

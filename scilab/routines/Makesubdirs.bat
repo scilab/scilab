@@ -144,12 +144,13 @@ echo Making %1 in directory  int
  nmake /C /f Makefile.mak %1
 cd ..
 echo on
+if "%1" == "clean" goto tksci
 goto end
 
 :tksci 
 cd tksci 
 echo Making %1 in directory  tksci 
- nmake /C /f Makefile.mak all
+ nmake /C /f Makefile.mak %1
 cd ..
 goto end 
 

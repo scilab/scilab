@@ -56,7 +56,7 @@ output.h: niceprintf.h
 put.obj putpcc.obj: pccdefs.h
 
 clean::
-	del *.obj *.o 
+	-del *.obj *.o 
 
 distclean:: clean 
-	del $(SCIDIR1)\bin\f2c.exe
+	-del $(SCIDIR1)\bin\f2c.exe
