@@ -32,8 +32,8 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2001/04/26 07:48:07 $
- *  $Revision: 1.1 $
+ *  $Date: 2001/10/16 09:48:07 $
+ *  $Revision: 1.2 $
  */
 
 
@@ -427,6 +427,18 @@
 #   define  LARGEST_SHORT_INTEGER   SHRT_MAX
 #   define  LARGEST_LONG_INTEGER    LONG_MAX
 #else /* NOT defined(__STDC__) */
+
+/* Apple MacOSX */ 
+
+#ifdef __APPLE__  /* __STDC__ */
+#   include <limits.h>
+#   include <float.h>
+#   define  MACHINE_RESOLUTION      DBL_EPSILON
+#   define  LARGEST_REAL            DBL_MAX
+#   define  SMALLEST_REAL           DBL_MIN
+#   define  LARGEST_SHORT_INTEGER   SHRT_MAX
+#   define  LARGEST_LONG_INTEGER    LONG_MAX
+#endif /* NOT defined(__STDC__) */
 
 /* VAX machine constants */
 #if  (defined(vax) && !defined(netbsd)) 

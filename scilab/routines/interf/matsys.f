@@ -275,8 +275,6 @@ c     in scilab executable
  999  return
       end
 
-
-
       subroutine scilink(fname) 
 C     ================================================================
 C    link function  

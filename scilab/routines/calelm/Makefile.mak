@@ -8,7 +8,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/calelm.lib
 
-OBJSC = vfloor.obj vceil.obj  finite.obj vfrexp.obj sci_tools.obj
+OBJSC = vfloor.obj vceil.obj  finite.obj vfrexp.obj sci_tools.obj vfinite.obj
 
 OBJSF = coshin.obj arcosh.obj  dad.obj dadd.obj  ccopy.obj  rcopy.obj ddif.obj \
 	 dmcopy.obj dmmul.obj dset.obj dsort.obj \
@@ -25,7 +25,7 @@ OBJSF = coshin.obj arcosh.obj  dad.obj dadd.obj  ccopy.obj  rcopy.obj ddif.obj \
 	ivimp.obj intp.obj cusum.obj cupro.obj cuproi.obj rcsort.obj wsort.obj vpythag.obj\
 	calerf.obj gamma.obj ribesl.obj rkbesl.obj rjbesl.obj rybesl.obj psi.obj dlgama.obj\
 	dmsum.obj wmsum.obj dmprod.obj wmprod.obj drdiv.obj dcabs1.obj infinity.obj \
-	unsfdcopy.obj idmax.obj idmin.obj
+	unsfdcopy.obj idmax.obj idmin.obj wacos.obj wasin.obj  wtan.obj nearfloat.obj
 
 include ../../Makefile.incl.mak
 

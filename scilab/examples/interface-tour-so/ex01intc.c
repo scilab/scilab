@@ -60,7 +60,6 @@ int intex1c(fname)
    *  The values of stk(l5), stk(l5+1), ... should be set
    *  to desired values.  
    */
-
   CreateVar(5, "d", &m4, &n4, &l5);
   CreateVar(6, "d", &m4, &n4, &l6);
 

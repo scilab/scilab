@@ -6,14 +6,14 @@
 SHELL = /bin/sh
 top_builddir = $(SCIDIR)
 
-DLLTOOL = 
+DLLTOOL = dlltool
 LIBM = 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIBTOOL_DEPS = config/ltconfig config/ltmain.sh
+LIBTOOL_DEPS = config/ltmain.sh
 LN_S = ln -s
-NM = /usr/bin/nm -B
+NM = /usr/bin/nm -p
 
-OBJDUMP = 
+OBJDUMP = objdump
 STATIC = 
 
 CPPFLAGS = 

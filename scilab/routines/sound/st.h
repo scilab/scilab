@@ -11,7 +11,7 @@
  * Lance Norskog And Sundry Contributors are not responsible for 
  * the consequences of using this software.
  */
-#if (defined(netbsd) || defined(freebsd)) && !defined(unix) 
+#if (defined(netbsd) || defined(freebsd) || defined(__APPLE__)) && !defined(unix) 
 #define unix
 #endif
 

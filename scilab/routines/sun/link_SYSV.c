@@ -234,7 +234,10 @@ static int Sci_dlopen(char **loaded_files,int global)
 #ifndef hppa
       Call_shl_load = 0;
       if ( global == 1) 
-	hd1 = dlopen(tmp_file, RTLD_NOW | RTLD_GLOBAL );
+	{
+	  /* sciprint("Using global\r\n"); */ 
+	  hd1 = dlopen(tmp_file, RTLD_NOW | RTLD_GLOBAL );
+	}
       else 
 	hd1 = dlopen(tmp_file, RTLD_NOW  );
 #else

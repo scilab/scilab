@@ -24,20 +24,20 @@ all:: bin/scilex
 # Add the object files that are used to compile Scilex
 include Makefile.OBJ
 
-include config/Makefile.linux
+include config/Makefile.darwin
 
 distclean::
 	$(RM) bin/scilex
 
 SUBDIRS = scripts maple macros imp intersci xless xmetanet \
-	tests demos geci examples
+	tests demos geci examples man
 
 scilex-lib::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
 	cd routines; echo "making all in routines..."; \
 		$(MAKE) $(MFLAGS) all;
 
-scilex-lib::
+pvm-bidon::
 	@cd pvm3; echo "making all in pvm3..."; $(MAKE) $(MFLAGS) "CC=$(CC)";
 
 all::
@@ -116,8 +116,8 @@ BINDISTFILES = \
 	$(SCIBASE)/pvm3/lib/pvmd \
 	$(SCIBASE)/pvm3/lib/pvmtmparch \
 	$(SCIBASE)/pvm3/lib/pvmgetarch \
-	$(SCIBASE)/pvm3/lib/LINUX/pvmd3 \
-	$(SCIBASE)/pvm3/lib/LINUX/pvmgs \
+	$(SCIBASE)/pvm3/lib//pvmd3 \
+	$(SCIBASE)/pvm3/lib//pvmgs \
 	$(SCIBASE)/routines/*.h \
 	$(SCIBASE)/routines/Make.lib \
 	$(SCIBASE)/routines/default/FCreate \

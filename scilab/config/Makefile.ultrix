@@ -14,7 +14,7 @@ bin/scilex: scilex-lib
 		echo "linking";\
 		$(FC) -o $@ $(DEFAULTS) $(LIBR) $(FC_LDFLAGS) $(TCLTK_LIBS) \
 			$(XLIBS) $(TERMCAPLIB)  ;\
-		/usr/bin/nm -B $@ > $@.nm;\
+		/usr/bin/nm -p $@ > $@.nm;\
 		grep ' T ' $@.nm > $@.txtnm;\
 		grep ' [A-SU-Z] ' $@.nm > $@.datnm;\
 		rm $@.nm;\

@@ -1,5 +1,5 @@
 function [btn,xc,yc,win,Cmenu]=cosclick(flag)
-// Copyright INRIA
+// Copyright INRIA POO
 [lhs,rhs]=argn(0)
 Cmenu=[]
 if ~or(winsid()==curwin) then  Cmenu='Quit',return,end    

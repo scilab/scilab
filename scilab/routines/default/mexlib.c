@@ -913,7 +913,7 @@ Matrix *mxCreateSparse(int m, int n, int nzmax, int cmplx)
  * Create on Scilab Stack a 1x1 string matrix filled with string
  **************************************************************/
 
-Matrix *mxCreateString(char *string)
+Matrix *mxCreateString(const char *string)
 {
   static int i, lw;
   static int one=1;

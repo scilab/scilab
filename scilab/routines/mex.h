@@ -48,7 +48,7 @@ typedef struct table_struct {
 /* prototypes */
 
 Matrix *mxCreateCharMatrixFromStrings __PARAMS((int m, char **str));
-Matrix *mxCreateString __PARAMS((char *string));
+Matrix *mxCreateString __PARAMS((const char *string));
 Matrix *C2F(mxcreatestring)  __PARAMS((char *string, long int l));
 Matrix *C2F(mxcreatefull)  __PARAMS((int *m, int *n, int *it));
 Matrix *mxCreateCharMatrixFromStrings __PARAMS((int m, char **str));
