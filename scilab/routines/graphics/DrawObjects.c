@@ -4004,8 +4004,9 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
     ymin= ppsubwin->ZRect[1]; 
     xmax= ppsubwin->ZRect[2];
     ymax= ppsubwin->ZRect[3];
-    zmin= ppsubwin->ZRect[4];
-    zmax= ppsubwin->ZRect[5];
+    
+    zmin= ppsubwin->SRect[4]; /* ZRect[4] and ZRect[5] do not exist */
+    zmax= ppsubwin->SRect[5];
   }
   else {
     xmin=ppsubwin->SRect[0];
