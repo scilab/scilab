@@ -70,6 +70,18 @@
 				CleanCommandLine="nmake /f makefile.mak clean /a"
 				Output="Modelicac.exe"/>
 		</Configuration>
+		<Configuration
+			Name="Debug without Java|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f makefile.mak all /a"
+				ReBuildCommandLine="nmake /f makefile.mak all /a"
+				CleanCommandLine="nmake /f makefile.mak clean /a"
+				Output="Modelicac.exe"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>

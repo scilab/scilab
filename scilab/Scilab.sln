@@ -438,7 +438,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SetupAtlas", "Win95-util\Se
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Setup", "Win95-util\Setup\Setup.vcproj", "{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Autorun", "Win95-util\Setup\Setup.vcproj", "{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -446,6 +446,7 @@ Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
 		Debug with Atlas = Debug with Atlas
+		Debug without Java = Debug without Java
 		Pentium_Release = Pentium_Release
 		PIV_Release = PIV_Release
 		PIV_Release with Atlas = PIV_Release with Atlas
@@ -457,6 +458,8 @@ Global
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Debug.Build.0 = Debug|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Debug without Java.Build.0 = Debug without Java|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -471,6 +474,8 @@ Global
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Debug.Build.0 = Debug|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Debug without Java.Build.0 = Debug without Java|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -485,6 +490,8 @@ Global
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug.Build.0 = Debug|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug without Java.Build.0 = Debug without Java|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -499,6 +506,8 @@ Global
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Debug.Build.0 = Debug|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Debug without Java.Build.0 = Debug without Java|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -513,6 +522,8 @@ Global
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Debug.Build.0 = Debug|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{B678A0CA-E006-415A-83E4-46F6060282C4}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{B678A0CA-E006-415A-83E4-46F6060282C4}.Debug without Java.Build.0 = Debug without Java|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -527,6 +538,8 @@ Global
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Debug.Build.0 = Debug|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Debug without Java.Build.0 = Debug without Java|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -541,6 +554,8 @@ Global
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Debug.Build.0 = Debug|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{836EC214-02DD-474F-91C9-C8C46C183D48}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{836EC214-02DD-474F-91C9-C8C46C183D48}.Debug without Java.Build.0 = Debug without Java|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -555,6 +570,8 @@ Global
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Debug.Build.0 = Debug|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Debug without Java.Build.0 = Debug without Java|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -569,6 +586,8 @@ Global
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Debug.Build.0 = Debug|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Debug without Java.Build.0 = Debug without Java|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -583,6 +602,8 @@ Global
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug.Build.0 = Debug|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug without Java.Build.0 = Debug without Java|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -597,6 +618,8 @@ Global
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Debug.Build.0 = Debug|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{66F2FB48-5D68-4445-A856-119F685A371B}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{66F2FB48-5D68-4445-A856-119F685A371B}.Debug without Java.Build.0 = Debug without Java|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -611,6 +634,8 @@ Global
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Debug.Build.0 = Debug|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Debug without Java.Build.0 = Debug without Java|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -625,6 +650,8 @@ Global
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Debug.Build.0 = Debug|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Debug without Java.Build.0 = Debug without Java|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -639,6 +666,8 @@ Global
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Debug.Build.0 = Debug|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Debug without Java.Build.0 = Debug without Java|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -653,6 +682,8 @@ Global
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Debug.Build.0 = Debug|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Debug without Java.Build.0 = Debug without Java|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -667,6 +698,8 @@ Global
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Debug.Build.0 = Debug|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Debug without Java.Build.0 = Debug without Java|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -681,6 +714,8 @@ Global
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug.Build.0 = Debug|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug without Java.Build.0 = Debug without Java|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -695,6 +730,8 @@ Global
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Debug.Build.0 = Debug|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Debug without Java.Build.0 = Debug without Java|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -709,6 +746,8 @@ Global
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Debug.Build.0 = Debug|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Debug without Java.Build.0 = Debug without Java|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -723,6 +762,8 @@ Global
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug.Build.0 = Debug|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug without Java.Build.0 = Debug without Java|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -737,6 +778,8 @@ Global
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Debug.Build.0 = Debug|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Debug without Java.Build.0 = Debug without Java|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -751,6 +794,8 @@ Global
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Debug.Build.0 = Debug|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Debug without Java.Build.0 = Debug without Java|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -765,6 +810,8 @@ Global
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Debug.Build.0 = Debug|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Debug without Java.Build.0 = Debug without Java|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -779,6 +826,8 @@ Global
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Debug.Build.0 = Debug|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Debug without Java.Build.0 = Debug without Java|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -793,6 +842,8 @@ Global
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Debug.Build.0 = Debug|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Debug without Java.Build.0 = Debug without Java|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -807,6 +858,8 @@ Global
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Debug.Build.0 = Debug|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Debug without Java.Build.0 = Debug without Java|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -821,6 +874,8 @@ Global
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Debug.Build.0 = Debug|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Debug without Java.Build.0 = Debug without Java|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -835,6 +890,8 @@ Global
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Debug.Build.0 = Debug|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{3DBBFF93-F344-4484-A317-14F985434BBC}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{3DBBFF93-F344-4484-A317-14F985434BBC}.Debug without Java.Build.0 = Debug without Java|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -849,6 +906,8 @@ Global
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Debug.Build.0 = Debug|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Debug without Java.Build.0 = Debug without Java|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -863,6 +922,8 @@ Global
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Debug.Build.0 = Debug|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Debug without Java.Build.0 = Debug without Java|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -877,6 +938,8 @@ Global
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Debug.Build.0 = Debug|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Debug without Java.Build.0 = Debug without Java|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -891,6 +954,8 @@ Global
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Debug.Build.0 = Debug|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Debug without Java.Build.0 = Debug without Java|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -905,6 +970,8 @@ Global
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Debug.Build.0 = Debug|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{F230A0FD-8B40-4112-B458-1947D48348FD}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{F230A0FD-8B40-4112-B458-1947D48348FD}.Debug without Java.Build.0 = Debug without Java|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -919,6 +986,8 @@ Global
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Debug.Build.0 = Debug|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Debug without Java.Build.0 = Debug without Java|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -933,6 +1002,8 @@ Global
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Debug.Build.0 = Debug|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Debug without Java.Build.0 = Debug without Java|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -947,6 +1018,8 @@ Global
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Debug.Build.0 = Debug|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{45CA5B12-7601-4968-AE16-16069FD1A152}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{45CA5B12-7601-4968-AE16-16069FD1A152}.Debug without Java.Build.0 = Debug without Java|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -961,6 +1034,8 @@ Global
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Debug.Build.0 = Debug|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{E9741474-5C3A-4101-8B85-AC5221018C05}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{E9741474-5C3A-4101-8B85-AC5221018C05}.Debug without Java.Build.0 = Debug without Java|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -975,6 +1050,8 @@ Global
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Debug.Build.0 = Debug|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Debug without Java.Build.0 = Debug without Java|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -989,6 +1066,8 @@ Global
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Debug.Build.0 = Debug|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Debug without Java.Build.0 = Debug without Java|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1003,6 +1082,8 @@ Global
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Debug.Build.0 = Debug|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Debug without Java.Build.0 = Debug without Java|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1017,6 +1098,8 @@ Global
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Debug.Build.0 = Debug|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Debug without Java.Build.0 = Debug without Java|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1031,6 +1114,8 @@ Global
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug.Build.0 = Debug|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug without Java.Build.0 = Debug without Java|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1045,6 +1130,8 @@ Global
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Debug.Build.0 = Debug|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Debug without Java.Build.0 = Debug without Java|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1059,6 +1146,8 @@ Global
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug.Build.0 = Debug|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug without Java.Build.0 = Debug without Java|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1073,6 +1162,8 @@ Global
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Debug.Build.0 = Debug|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Debug without Java.Build.0 = Debug without Java|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1087,6 +1178,8 @@ Global
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Debug.Build.0 = Debug|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{B7A0273E-8E71-4663-8497-0895945ED54D}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{B7A0273E-8E71-4663-8497-0895945ED54D}.Debug without Java.Build.0 = Debug without Java|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1101,6 +1194,8 @@ Global
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Debug.Build.0 = Debug|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{566E524B-D327-4416-A865-9C83503FAB7B}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{566E524B-D327-4416-A865-9C83503FAB7B}.Debug without Java.Build.0 = Debug without Java|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1115,6 +1210,8 @@ Global
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Debug.Build.0 = Debug|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Debug without Java.Build.0 = Debug without Java|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1129,6 +1226,8 @@ Global
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Debug.Build.0 = Debug|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Debug without Java.Build.0 = Debug without Java|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1143,6 +1242,8 @@ Global
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Debug.Build.0 = Debug|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Debug without Java.Build.0 = Debug without Java|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1157,6 +1258,8 @@ Global
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Debug.Build.0 = Debug|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{51240B08-5E4E-439B-B745-C870D5B513BF}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{51240B08-5E4E-439B-B745-C870D5B513BF}.Debug without Java.Build.0 = Debug without Java|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1171,6 +1274,8 @@ Global
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Debug.Build.0 = Debug|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Debug without Java.Build.0 = Debug without Java|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1185,6 +1290,8 @@ Global
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Debug.Build.0 = Debug|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Debug without Java.Build.0 = Debug without Java|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1199,6 +1306,8 @@ Global
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Debug.Build.0 = Debug|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Debug without Java.Build.0 = Debug without Java|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1213,6 +1322,8 @@ Global
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Debug.Build.0 = Debug|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Debug without Java.Build.0 = Debug without Java|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1227,6 +1338,8 @@ Global
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Debug.Build.0 = Debug|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Debug without Java.Build.0 = Debug without Java|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1241,6 +1354,8 @@ Global
 		{89630A5F-60FB-424E-AD60-330607086D56}.Debug.Build.0 = Debug|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{89630A5F-60FB-424E-AD60-330607086D56}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{89630A5F-60FB-424E-AD60-330607086D56}.Debug without Java.Build.0 = Debug without Java|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1255,6 +1370,8 @@ Global
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Debug.Build.0 = Debug|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Debug without Java.Build.0 = Debug without Java|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1269,6 +1386,8 @@ Global
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Debug.Build.0 = Debug|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Debug without Java.Build.0 = Debug without Java|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1283,6 +1402,8 @@ Global
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Debug.Build.0 = Debug|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{3396F078-1296-47EB-B817-78CB36265DD1}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{3396F078-1296-47EB-B817-78CB36265DD1}.Debug without Java.Build.0 = Debug without Java|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1297,6 +1418,8 @@ Global
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug.Build.0 = Debug|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug without Java.Build.0 = Debug without Java|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1309,6 +1432,7 @@ Global
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Debug.ActiveCfg = Debug|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
+		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Debug without Java.ActiveCfg = Debug without Java|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
@@ -1318,6 +1442,8 @@ Global
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Debug.Build.0 = Debug|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Debug without Java.Build.0 = Debug without Java|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1332,6 +1458,8 @@ Global
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Debug.Build.0 = Debug|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Debug without Java.Build.0 = Debug without Java|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1346,6 +1474,8 @@ Global
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug.Build.0 = Debug|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug without Java.Build.0 = Debug without Java|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1360,6 +1490,8 @@ Global
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug.Build.0 = Debug|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug without Java.Build.0 = Debug without Java|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1374,6 +1506,8 @@ Global
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug.Build.0 = Debug|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug without Java.Build.0 = Debug without Java|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1388,6 +1522,8 @@ Global
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug.Build.0 = Debug|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug without Java.Build.0 = Debug without Java|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1402,6 +1538,8 @@ Global
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug.Build.0 = Debug|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug without Java.Build.0 = Debug without Java|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1416,6 +1554,8 @@ Global
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug.Build.0 = Debug|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug without Java.Build.0 = Debug without Java|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1430,6 +1570,8 @@ Global
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug.Build.0 = Debug|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug without Java.Build.0 = Debug without Java|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1444,6 +1586,8 @@ Global
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Debug.Build.0 = Debug|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Debug without Java.Build.0 = Debug without Java|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1456,6 +1600,7 @@ Global
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Debug.ActiveCfg = Debug|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
+		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Debug without Java.ActiveCfg = Debug without Java|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Pentium_Release.ActiveCfg = Release|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.PIV_Release.ActiveCfg = Release|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
@@ -1463,6 +1608,7 @@ Global
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Debug.ActiveCfg = Debug|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
+		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Debug without Java.ActiveCfg = Debug without Java|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Pentium_Release.ActiveCfg = Release|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.PIV_Release.ActiveCfg = Release|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
@@ -1472,6 +1618,7 @@ Global
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug.Build.0 = Debug|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug without Java.ActiveCfg = Debug without Java|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Pentium_Release.ActiveCfg = Release|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Pentium_Release.Build.0 = Release|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.PIV_Release.ActiveCfg = Release|Win32
@@ -1486,6 +1633,8 @@ Global
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug.Build.0 = Debug|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug without Java.Build.0 = Debug without Java|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1500,6 +1649,8 @@ Global
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug.Build.0 = Debug|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug without Java.Build.0 = Debug without Java|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1514,6 +1665,8 @@ Global
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug.Build.0 = Debug|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug without Java.Build.0 = Debug without Java|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release.ActiveCfg = PIV_Release|Win32
@@ -1527,6 +1680,7 @@ Global
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug.ActiveCfg = Debug|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug with Atlas.ActiveCfg = Debug|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug with Atlas.Build.0 = Debug|Win32
+		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug without Java.ActiveCfg = Debug without Java|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Pentium_Release.ActiveCfg = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.PIV_Release.ActiveCfg = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.PIV_Release with Atlas.ActiveCfg = Release|Win32
@@ -1538,6 +1692,8 @@ Global
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug.Build.0 = Debug|Win32
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug with Atlas.ActiveCfg = Debug|Win32
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug with Atlas.Build.0 = Debug|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug without Java.ActiveCfg = Debug without Java|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug without Java.Build.0 = Debug without Java|Win32
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Pentium_Release.ActiveCfg = Release|Win32
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Pentium_Release.Build.0 = Release|Win32
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.PIV_Release.ActiveCfg = Release|Win32

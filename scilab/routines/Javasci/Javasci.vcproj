@@ -44,7 +44,8 @@
 				Name="VCPostBuildEventTool"
 				CommandLine="cd classes
 MakeJavaClass.bat
-cd .."/>
+cd ..
+"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -94,7 +95,8 @@ cd .."/>
 				Name="VCPostBuildEventTool"
 				CommandLine="cd classes
 MakeJavaClass.bat
-cd .."/>
+cd ..
+"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -148,7 +150,8 @@ cd .."/>
 				Name="VCPostBuildEventTool"
 				CommandLine="cd classes
 MakeJavaClass.bat
-cd .."/>
+cd ..
+"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -200,7 +203,8 @@ cd .."/>
 				Name="VCPostBuildEventTool"
 				CommandLine="cd classes
 MakeJavaClass.bat
-cd .."/>
+cd ..
+"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -253,7 +257,61 @@ cd .."/>
 				Name="VCPostBuildEventTool"
 				CommandLine="cd classes
 MakeJavaClass.bat
-cd .."/>
+cd ..
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Debug without Java|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;JAVA_EXPORTS"
+				MinimalRebuild="TRUE"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="4"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="../../bin/Javasci.dll"
+				LinkIncremental="1"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="$(OutDir)/Javasci.pdb"
+				SubSystem="2"
+				ImportLibrary="$(OutDir)/Javasci.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="cd classes
+MakeJavaClass.bat
+cd ..
+"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool

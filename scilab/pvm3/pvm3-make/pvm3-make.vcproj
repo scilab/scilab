@@ -95,6 +95,18 @@
 				CleanCommandLine="nmake /f &quot;../Make-pvm3.mak&quot; clean /a"
 				Output="pvm3-make.exe"/>
 		</Configuration>
+		<Configuration
+			Name="Debug without Java|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f ..\Make-PVM3.mak all"
+				ReBuildCommandLine="nmake /f ..\Make-PVM3.mak all"
+				CleanCommandLine="nmake /f ..\Make-PVM3.mak clean"
+				Output="pvm3-make.exe"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
