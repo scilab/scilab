@@ -5192,20 +5192,32 @@ int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, inte
   if(ppsubwin->axes.reverse[1] == TRUE) facteur = -facteur;
   if(ppsubwin->axes.reverse[2] == TRUE) facteur = -facteur;
   
+  /* type == flagcolor and dc == color_mode */
+  /* fg = hidden color */
+  
   if ((((polyx[1+5*jj1]-polyx[0+5*jj1])*(polyy[2+5*jj1]-polyy[0+5*jj1])-
 	(polyy[1+5*jj1]-polyy[0+5*jj1])*(polyx[2+5*jj1]-polyx[0+5*jj1]))*facteur <  0) && (fg >=0 )) 
     {
-      /*      sciprint("CAS 1\n");*/
-      if (type != 0)
+      
+      /* ------------------- */
+      /* Beneath the surface */
+      /* ------------------- */
+
+      if (type != 0) /* flagcolor = 1 case : special treatment compared to flagcolor = 0 */
+	             /* don't know why... F.Leray */
 	fill[jj1]= (dc < 0 ) ? -fg : fg ;
-      else
+      else           /* flagcolor = 0 :  No shading at all, fixed facecolor. */
 	fill[jj1]=  (dc != 0 ) ? fg : dc ;
     }
   else
     {
-      /*      sciprint("CAS 2\n");*/
-      if (type != 0)
-	{
+
+      /* ------------------- */
+      /* Above the surface */
+      /* ------------------- */
+
+     if (type != 0)
+	{  /* flagcolor = 1 :  Z-level flat shading. */
 	  fill[jj1]=inint((whiteid-1)*((1/4.0*( z[i+(*p)*j]+ z[i+1+(*p)*j]+
 						z[i+(*p)*(j+1)]+ z[i+1+(*p)*(j+1)])-zmin)
 				       /(zmax-zmin)))+1;
