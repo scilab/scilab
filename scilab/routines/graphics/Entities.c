@@ -10982,10 +10982,6 @@ sciDrawObj (sciPointObj * pobj)
     sciSubWindow *ppsubwin = NULL; /* F.Leray 02.04.04 */
     /*    sciPolyline  *pppoly = NULL;*/
 
-  /*#ifdef WIN32
-    int flag;
-    #endif*/
-
   int i,j;
   /* variable pour le set_scale update_frame_bouns*/
   double subwin[4], framevalues[4];
@@ -11355,6 +11351,7 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
       sciClip(sciGetIsClipping(pobj)); 
 
       /* load the object foreground and dashes color */
+      x[0] = sciGetForeground(pobj); /* Adding F.leray 27.04.04 */
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
@@ -11441,14 +11438,16 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 #ifdef WIN32 
 	  flag_DO = MaybeSetWinhdc();
 #endif
+	  /*verbose = 1; */ /* debug F.Leray release mode */
 	  C2F(dr)("xget","use color",&verbose, &uc, &narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
 	  if (uc)
-	    C2F(dr)("xget","color",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
+		C2F(dr)("xget","color",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
 	  else
 	    C2F(dr)("xget","line style",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
 #ifdef WIN32 
 	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
+
 	  /*n=2*(pSEGS_FEATURE (pobj)->Nbr1)*(pSEGS_FEATURE (pobj)->Nbr2); F.Leray 17.02.04*/
 	  n=2*(pSEGS_FEATURE (pobj)->Nbr1)*((pSEGS_FEATURE (pobj)->Nbr2)+1);
 	 
@@ -11498,8 +11497,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  if (pSEGS_FEATURE (pobj)->arrowsize > 1)
 	    arssize = (int) pSEGS_FEATURE (pobj)->arrowsize;
 	  
-	  if ( pSEGS_FEATURE (pobj)->pcolored ==0) 
-	    C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,&sflag,&dv,&dv,&dv,&dv,0L,0L); 
+	  if ( pSEGS_FEATURE (pobj)->pcolored ==0)
+		C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,(sflag=0,&sflag),&dv,&dv,&dv,&dv,0L,0L);
 	  else
 	    C2F(dr)("xarrow","v",xm,ym,&na,&arssize,zm,(sflag=1,&sflag),&dv,&dv,&dv,&dv,0L,0L);   
 #ifdef WIN32 
