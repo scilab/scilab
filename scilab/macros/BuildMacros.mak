@@ -144,4 +144,5 @@ clean::
 	-del *.bin /s
 	-del names.* /s
 	-del genlib /s
+	-del *.moc /s
 	
