@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.23 $)dnl
+AC_REVISION($Revision: 1.24 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -185,8 +185,8 @@ MALLOC=
 # USE_CDEC directives for Dec Alpha
 FC_USE_CDEC=DEC
 # want to build Scilab f2c too 
-if test "$with_addedf2c" != no; then
-  F2C_SUBDIR=src/f2c 
+if test "$with_addedf2c" = yes; then
+  F2C_SUBDIR=f2c/src
 else
   F2C_SUBDIR=
 fi
