@@ -1,4 +1,4 @@
-function txt=help_skeleton(funname)
+function txt=help_skeleton(funname,path)
 global LANGUAGE
 if type(funname)<>10 then error('argument should be a function name'),end
 txt=[]
@@ -20,7 +20,7 @@ args=[inputs(:);outputs(:)]
 
 txt=[
 '<?xml version=""1.0"" encoding=""ISO-8859-1"" standalone=""no""?>' 
-'<!DOCTYPE MAN SYSTEM ""../../man.dtd"">'
+'<!DOCTYPE MAN SYSTEM ""'+pathconvert(SCI,%t,%t)+'man/manrev.dtd"">'
 '<MAN>'
 '  <LANGUAGE>eng</LANGUAGE>'
 '  <TITLE>'+funname+'</TITLE>'
@@ -41,7 +41,9 @@ txt=[txt;"";
 '    <PARAM_ITEM>'
 '    <PARAM_NAME>'+a+'</PARAM_NAME>'
 '    <PARAM_DESCRIPTION>'
+'       <SP>'     
 '       : add here the parameter description'
+'       </SP>'         
 '    </PARAM_DESCRIPTION>'
 '    </PARAM_ITEM>']
 end
@@ -51,33 +53,47 @@ txt=[txt;
 ' ']
 end
 txt=[txt;
-'  <DESCRIPTION>'
-'   Add here the description of the function'
-'  </DESCRIPTION>'
-''
-'  <EXAMPLE><![CDATA['
-'   Add here scilab instructions and comments'
-'  ]]></EXAMPLE>'
-''
-'  <SEE_ALSO>'
-'    <SEE_ALSO_ITEM> <LINK> add a key here</LINK> </SEE_ALSO_ITEM>'
-'    <SEE_ALSO_ITEM> <LINK> add a key here</LINK> </SEE_ALSO_ITEM>'
-'  </SEE_ALSO>'
-''
-'  <BIBLIO>'
-'    Add here the function bibliography if any'
-'  </BIBLIO>'
-''
-'  <AUTHOR>'
-'    Add here the author name and references'
-'  </AUTHOR>'
-'</MAN>'
-]
-
-//write(%io(2),txt,'(a)')
-
-
-
-
-
+     '  <DESCRIPTION>'
+     '     <DESCRIPTION_INDENT>'     
+     '     <DESCRIPTION_ITEM>'     
+     '     <P>'     
+     '      Add here a paragraph of the function description. '
+     '      Other paragraph can be added '
+     '     </P>'   
+     '     </DESCRIPTION_ITEM>' 
+     '     <DESCRIPTION_ITEM>'     
+     '     <P>'     
+     '      Add here a paragraph of the function description '
+     '     </P>'   
+     '     </DESCRIPTION_ITEM>' 
+     '     </DESCRIPTION_INDENT>'       
+     '  </DESCRIPTION>'
+     ''
+     '  <EXAMPLE><![CDATA['
+     '   Add here scilab instructions and comments'
+     '  ]]></EXAMPLE>'
+     ''
+     '  <SEE_ALSO>'
+     '    <SEE_ALSO_ITEM> <LINK> add a key here</LINK> </SEE_ALSO_ITEM>'
+     '    <SEE_ALSO_ITEM> <LINK> add a key here</LINK> </SEE_ALSO_ITEM>'
+     '  </SEE_ALSO>'
+     ''
+     '  <BIBLIO>'
+     '    Add here the function bibliography if any'
+     '  </BIBLIO>'
+     ''
+     '  <AUTHORS>'
+     '    <AUTHORS_ITEM label=''enter here the author name''>'      
+     '    Add here the author  references'
+     '    </AUTHORS_ITEM>'
+     '  </AUTHORS>'
+     '  <USED_FUNCTIONS>'
+     '     Add here the used function name and  references'
+     '  </USED_FUNCTIONS>'     
+     '</MAN>'
+    ]
+if argn(2)==2 then
+  mputl(txt,pathconvert(path,%t,%f)+funname+'.xml')
+  txt=pathconvert(path,%t,%f)+funname+'.xml'
+end
 endfunction
