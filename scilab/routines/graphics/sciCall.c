@@ -9,7 +9,7 @@
 #include "Entities.h"
 #include "PloEch.h"
 
-extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
+extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 
 int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint, BOOL flagNax, integer lstr1,integer lstr2);
 
@@ -292,7 +292,8 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   double drect[6];
   char *loc,*legx,*legy,*legz;
   sciSubWindow * ppsubwin = NULL;
-	
+  BOOL bounds_changed = FALSE; /* cannot be used here because we have to force redrawing since there is no way to avoid merge (=> complete redraaw) */
+
   /* Initialisation drect A.C pour debuggueur */
   drect[0]=0;
   drect[1]=0;
@@ -352,6 +353,8 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   /* Force psubwin->logflags to linear */
   pSUBWIN_FEATURE (psubwin)->logflags[0]='n';
   pSUBWIN_FEATURE (psubwin)->logflags[1]='n';
+  pSUBWIN_FEATURE (psubwin)->logflags[2]='n'; /* add z logscale default here */
+ 
   
   pSUBWIN_FEATURE (psubwin)->axes.flag[0] = iflag[0]; /* mode: treatment of hidden parts */
   if (iflag[1] != 0){
@@ -415,8 +418,9 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
       drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
       drect[4] = Min(pSUBWIN_FEATURE(psubwin)->SRect[4],drect[4]); /*zmin*/
       drect[5] = Max(pSUBWIN_FEATURE(psubwin)->SRect[5],drect[5]); /*zmax*/
-    }
-    if (iflag[1] != 0) update_specification_bounds(psubwin, drect,3);
+   }
+   if (iflag[1] != 0) 
+     bounds_changed = update_specification_bounds(psubwin, drect,3);
   } 
   
   if(iflag[1] != 0)
