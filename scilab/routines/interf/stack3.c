@@ -118,6 +118,27 @@ int C2F(cwritemat)(namex, m, n, mat, name_len)
   return TRUE_;
 } 
 
+int C2F(putvar)(number, namex, name_len)
+     /* Put variable number into Scilab internal stack with name "namex" */
+     char *namex;
+     int  *number;
+     unsigned long name_len;
+{
+  integer Rhs_k = Rhs , Top_k = Top ;
+  integer l4, id[nsiz], lc, lr, cx0=1;
+  
+  C2F(str2name)(namex, id, name_len);
+  Top = *number + Top -Rhs;
+  Rhs = 0;
+  l4 = C2F(iop).lct[3];
+  C2F(iop).lct[3] = -1;
+  C2F(stackp)(id, &cx0);
+  C2F(iop).lct[3] = l4;
+  Top = Top_k;
+  Rhs = Rhs_k;
+  if (Err > 0)  return FALSE_;
+  return TRUE_;
+} 
 
 /*------------------------------------------------------
  *     see creadchain 
