@@ -153,6 +153,14 @@
       position of the upper-left corner and the dimension of the axes.</SP>
      </DESCRIPTION_ITEM>
 
+     <DESCRIPTION_ITEM label="margins: ">
+      <SP>A vector <VERB>[x_left,y_up,width,height]</VERB> specifying 
+      the portion of figure used by this axes. Where
+      <VERB>x_left</VERB>, <VERB>y_up</VERB>, <VERB>width</VERB> and
+      <VERB>height</VERB> are numbers in [0 1] give respectively the 
+      position of the upper-left corner and the dimension of the axes.</SP>
+     </DESCRIPTION_ITEM>
+
      <DESCRIPTION_ITEM label="children: "> 
       <SP>A vector containing the handles of all graphics objects children of the axes 
       These graphics objects are of type  <VERB>&quot;Agregation&quot;</VERB>,
