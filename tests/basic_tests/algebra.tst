@@ -1923,14 +1923,14 @@ if Err(Ab2-inv(X)*A*X )>500000*%eps then pause,end
 [Ab2,X,bs]=bdiag(A);
 if Err(Ab2-Ab1)>>10*%eps then pause,end 
 if Err(Ab2-inv(X)*A*X )>1.d-10 then pause,end 
-if or(size(bs)<>[3,1] then pause,end
+if or(size(bs)<>[3,1]) then pause,end
 if sum(bs)<>size(A,1) then pause,end
 if or(bs<=0) then pause,end
 
 [Ab2,X,bs]=bdiag(A,1);
 if Err(Ab2-Ab1)>>10*%eps then pause,end 
 if Err(Ab2-inv(X)*A*X )>1d-7 then pause,end 
-if or(size(bs)<>[1,1] then pause,end
+if or(size(bs)<>[1,1]) then pause,end
 if sum(bs)<>size(A,1) then pause,end
 if or(bs<=0) then pause,end
 
