@@ -248,13 +248,15 @@ int Xorgetchar(int interrupt)
     XFlush(the_dpy); /* always flush writes before waiting */
     fflush(stdout); 
     fflush(stderr); 
+#ifdef WITH_TK 
     flushTKEvents();
+#endif 
     /* Initialize masks  */
     select_mask = Select_mask_ref;
     write_mask  = Write_mask_ref;
 
-    select_timeout.tv_sec = 1;
-    select_timeout.tv_usec = 0;
+    select_timeout.tv_sec = 0;
+    select_timeout.tv_usec = 10;
     i = select(max_plus1, &select_mask, &write_mask, (fd_set *)NULL,
 	       QLength(the_dpy) ? &select_timeout
 	       : (struct timeval *) NULL);
@@ -281,8 +283,6 @@ int Xorgetchar(int interrupt)
     }
 #endif 
 
-
-
     /* if there's something to read */
     if (FD_ISSET(fd_in,&select_mask) || IsClick_menu()) 
       state=1;
@@ -299,30 +299,12 @@ int Xorgetchar(int interrupt)
       return(i);
     }
 	
-    /* if there are X events already in our queue, it
-       counts as being readable */
-    if (QLength(the_dpy) ||  FD_ISSET(Xsocket,&select_mask ))
-      { C2F(sxevents)();	}
+    C2F(sxevents)();
+    if (interrupt&&(C2F(ismenu)()==1)) return(-1);
+
   }
 
-  /* The previous code seams stangely complex 
-   * and I would prefer what follows ..
-   * but the intoemacs stuff needs to be checked 
-   *
-    if ( FD_ISSET(fd_in,&select_mask ) ) 
-      {
-	return getchar();
-      }
-    if ( IsClick_menu() )
-      {
-	return charfromclick();
-      } 
-    if ( QLength(the_dpy) ||  FD_ISSET(Xsocket,&select_mask ) ) 
-      {
-	C2F(sxevents)();
-      }
-  }
-  */
+
 }
 
 
