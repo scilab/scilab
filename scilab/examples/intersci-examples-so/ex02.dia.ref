@@ -51,7 +51,6 @@ ilib_build(ilib_name,table,files,libs);
  
 exec loader.sce;
 shared archive loaded
-
  
  
 //[4] test the loaded function
