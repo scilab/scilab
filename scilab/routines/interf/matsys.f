@@ -2355,7 +2355,7 @@ c     .  get number of protected variables
 c     .     mark n oldest current variables as protected
             if(.not.getscalar('predef',top,top,l)) return
             is=isiz
-            bbot=max(bot,isiz-max( nint(stk(l)),(isiz-bot0) ) )
+            bbot=max(bot,min(isiz-nint(stk(l)),bot0))
          elseif(ityp.eq.10) then
             if(.not.getsmat('predef',top,top,m,n,1,1,l,n1)) return
             if(.not.checkval('predef',m*n,1) ) return
@@ -2364,7 +2364,7 @@ c     .        mark all current variables as protected
                bbot=bot
             elseif(abs(istk(l)).eq.12) then
 c     .        unmark all 
-               bbot=max(bot,isiz-max(0,(isiz-bot0) ) )
+               bbot=bot0
             else
                buf='Unknown option'
                call error(901)

@@ -39,12 +39,13 @@ c
       if(istk(ilk).eq.10) then
 c     an execstr
          exec=.false.
+         vargout=.false.
          mrhs=0
          rhs=0
          mlhs=0
          l=ilk+5+istk(ilk+1)*istk(ilk+2)
          lf=l+istk(ilk+4+istk(ilk+1)*istk(ilk+2))-1
-         last=isiz-4
+         last=bbot
          if(macr.ne.0.or.paus.ne.0) then
             k=lpt(1)-(13+nsiz)
             last=lin(k+5)
@@ -382,7 +383,7 @@ c     exec
       lin(k+2) = lpt(2)
       lin(k+3) = lpt(3)
       lin(k+4) = lpt(4)
-      lin(k+5) = isiz-4
+      lin(k+5) = bot0
 c     two following lines set information necessary for  stackp to know 
 c     current macro context
       if(macr.ge.1) lin(k+5)=lin(lpt(1)-(8+nsiz))
