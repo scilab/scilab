@@ -71,6 +71,7 @@ function %h_p(h)
 	 " "
 	 "visible = "+sci2exp(h.visible)
 	 "axes_visible = "+sci2exp(h.axes_visible)
+	 "axes_reverse = "+sci2exp(h.axes_reverse)
 	 "grid = "+sci2exp(h.grid,0)
 	 "x_location = "+sci2exp(h.x_location)
 	 "y_location = "+sci2exp(h.y_location)
