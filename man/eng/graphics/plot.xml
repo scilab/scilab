@@ -13,11 +13,11 @@
   <SHORT_DESCRIPTION name="plot">2D plot</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>plot(y,&lt;LineSpec&gt;,&lt;LinePropertySpec&gt;)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>plot(y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>plot(x,y,&lt;LineSpec&gt;,&lt;LinePropertySpec&gt;)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>plot(x,y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>plot(x1,y1,&lt;LineSpec1&gt;,x2,y2,&lt;LineSpec2&gt;,...xN,yN,&lt;LineSpecN&gt;,&lt;LinePropertySpec1&gt;,&lt;LinePropertySpec2&gt;,..&lt;LinePropertySpecM&gt;)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>plot(x1,y1,&lt;LineSpec1&gt;,x2,y2,&lt;LineSpec2&gt;,...xN,yN,&lt;LineSpecN&gt;,&lt;GlobalProperty1&gt;,&lt;GlobalProperty2&gt;,..&lt;GlobalPropertyM&gt;)</CALLING_SEQUENCE_ITEM>
 
     <CALLING_SEQUENCE_ITEM>plot(&lt;axes_handle&gt;,...)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -58,14 +58,14 @@
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>&lt;LinePropertySpec&gt;</PARAM_NAME>
+        <PARAM_NAME>&lt;GlobalProperty&gt;</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
           <SP>: This optional argument represents a sequence of couple
           statements <VERB>{PropertyName,PropertyValue}</VERB> that defines
           global objects' properties applied to all the curves created by this
           plot. For a complete view of the available properties (see
-          <LINK>LinePropertySpec</LINK>).</SP>
+          <LINK>GlobalProperty</LINK>).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -90,10 +90,10 @@
     <P>Data entry specification :</P>
 
     <P>In this paragraph and to be more clear, we won't mention
-    <VERB>LineSpec</VERB> nor <VERB>LinePropertySpec</VERB> optional arguments
+    <VERB>LineSpec</VERB> nor <VERB>GlobalProperty</VERB> optional arguments
     as they do not interfer with entry data (except for <VERB>"Xdata"</VERB>,
     <VERB>"Ydata"</VERB> and <VERB>"Zdata"</VERB> property, see
-    <LINK>LinePropertySpec</LINK>). It is assumed that all those optional
+    <LINK>GlobalProperty</LINK>). It is assumed that all those optional
     arguments could be present too.</P>
 
     <P>If <VERB>y</VERB> is a vector, plot(y) plots vector <VERB>y</VERB>
@@ -173,7 +173,7 @@
         <VERB>PropertySpec</VERB>, you can set multiple properties : every
         properties available via LineSpec and more : the marker color
         (foreground and background), the visibility, clipping and thickness of
-        the curves. (see <LINK>LinePropertySpec</LINK>)</SP>
+        the curves. (see <LINK>GlobalProperty</LINK>)</SP>
 
         <P>Note that all these properties can be (re-)set throught the
         polyline entity properties (see <LINK>polyline_properties</LINK>).</P>
@@ -397,6 +397,14 @@ plot(1:10,toto)
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
+      <LINK>surf</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>scf</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
       <LINK>clf</LINK>
     </SEE_ALSO_ITEM>
 
@@ -413,7 +421,7 @@ plot(1:10,toto)
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>LinePropertySpec</LINK>
+      <LINK>GlobalProperty</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 

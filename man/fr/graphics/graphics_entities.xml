@@ -57,7 +57,7 @@
         well as the parameters' default values for the children creation. The
         figure children are the Axes entities.</SP>
 
-        <P>The handle on the current figure (The figure used where the drawing
+        <P>The handle on the current figure (the figure used where the drawing
         are sent) may be got using <VERB>get("current_figure")</VERB> and it
         may be set using <VERB>set("current_figure",h)</VERB>, where
         <VERB>h</VERB> is either a handle on a figure or a
@@ -65,122 +65,187 @@
         already exists , it is created</P>
 
         <P>See <LINK>figure_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Axes">
+      <DESCRIPTION_ITEM label="Axes: ">
         <P>The Axes entity is the second level of the graphics entities
         hierarchy. This entity defines the parameters for the change of
         coordinates and the axes drawing as well as the parameters' default
-        values for the children creation. See <LINK>axes_properties</LINK> for
+        values for its children creation. See <LINK>axes_properties</LINK> for
         details. The handle on the current Axes may be got using
         <VERB>get("current_axes")</VERB>.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Agregation">
+      <DESCRIPTION_ITEM label="Agregation: ">
         <SP>The agregation entity is just a vector of children and with a
         single property (visibility property). It is used to glue a set of
         entities together.</SP>
 
-        <P>See <LINK>glue</LINK> and <LINK>agregation_properties</LINK>
-        functions.</P>
+        <P>See <LINK>glue</LINK>, <LINK>unglue</LINK> and
+        <LINK>agregation_properties</LINK> functions.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Axis">
+      <DESCRIPTION_ITEM label="Axis: ">
         <SP>The Axis entity is a leaf of the graphics entities hierarchy. This
         entity defines the parameters for axis scaling and appearance.</SP>
 
         <P>See <LINK>axis_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Polyline">
+      <DESCRIPTION_ITEM label="Polyline: ">
         <SP>The polyline entity is a leaf of the graphics entities hierarchy.
-        It defines polylines and polylines extensions drawing properties.</SP>
+        It defines 2D and 3D polylines and polylines extensions drawing
+        properties.</SP>
 
         <P>See <LINK>polyline_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Arc">
+      <DESCRIPTION_ITEM label="Arc: ">
         <SP>The Arc entity is a leaf of the graphics entities hierarchy. This
         entity defines the parameters for ellipses and part of ellipses.</SP>
 
         <P>See <LINK>arc_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Rectangle">
+      <DESCRIPTION_ITEM label="Rectangle: ">
         <SP>The Rectangle entity is a leaf of the graphics entities hierarchy.
         This entity defines the parameters for rectangles and filled
         rectangles.</SP>
 
         <P>See <LINK>rectangle_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Surface">
+      <DESCRIPTION_ITEM label="Surface: ">
         <SP>The Surface entity is a leaf of the graphics entities hierarchy.
-        It has sub types Fac3d Plot3d . This entity is still under
-        developpement and will problably evolve a lot.</SP>
+        It has sub types <VERB>Fac3d</VERB> or <VERB>Plot3d</VERB>. This
+        entity defines the parameters for 3d surface plots.</SP>
 
         <P>See <LINK>surface_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Param3d">
-        <SP>The Param3d entity is a leaf of the graphics entities hierarchy.
-        It is a Surface sub type . This entity is still under developpement
-        and will problably evolve a lot.</SP>
-
-        <P>See <LINK>param3d_properties</LINK> for details.</P>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="Fec">
+      <DESCRIPTION_ITEM label="Fec: ">
         <SP>The Fec entity is a leaf of the graphics entities hierarchy. It
         represents 2D finite elements plots .</SP>
 
         <P>See <LINK>fec_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Grayplot">
+      <DESCRIPTION_ITEM label="Grayplot: ">
         <SP>The Grayplot entity is a leaf of the graphics entities hierarchy.
         It represents 2D plots of surface using colors and images.</SP>
 
         <P>See <LINK>grayplot_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Segs">
+      <DESCRIPTION_ITEM label="Segs: ">
         <SP>The Segs entity is a leaf of the graphics entities hierarchy. This
         entity defines the parameters for a set of colored segments or colored
         arrows.</SP>
 
         <P>See <LINK>segs_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Champ">
+      <DESCRIPTION_ITEM label="Champ: ">
         <SP>The Champ entity is a leaf of the graphics entities hierarchy.
         This entity defines the parameters for a 2D vector field.</SP>
 
         <P>See <LINK>champ_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Text">
+      <DESCRIPTION_ITEM label="Text: ">
         <SP>The Text entity is a leaf of the graphics entities hierarchy. This
         entity defines the parameters for string drawing.</SP>
 
         <P>See <LINK>text_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Title">
-        <SP>The Title entity is a leaf of the graphics entities hierarchy.
-        This entity defines the parameters for a title drawn on a graphics
-        window.</SP>
+      <DESCRIPTION_ITEM label="Title: ">
+        <SP>The Title entity is a child of the <VERB>Axes</VERB> graphics
+        entity. This entity defines the parameters for a title drawn on a
+        graphics window.</SP>
 
         <P>See <LINK>title_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Legend">
+      <DESCRIPTION_ITEM label="Labels: ">
+        <SP>The Labels entity are children of the <VERB>Axes</VERB> graphics
+        entity. This entity defines the parameters for the 3 x,y and z labels
+        drawn on a graphics window.</SP>
+
+        <P>See <LINK>label_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Legend: ">
         <SP>The Legend entity is a leaf of the graphics entities hierarchy.
         This entity defines the parameters for legends drawn below
         <VERB>plot2dx</VERB> graphs. This entity requires further
         developments.</SP>
 
         <P>See <LINK>legend_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
@@ -245,6 +310,14 @@
 
     <SEE_ALSO_ITEM>
       <LINK>object_editor</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>plot</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>surf</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
