@@ -686,11 +686,41 @@ void set_scale(flag,subwin,frame_values,aaint,logflag,axis_values)
       val = Abs(Cscale.frect[1]- Cscale.frect[3]);
       Cscale.Wscy1 = (val <=SMDOUBLE) ? Cscale.Wscy1/SMDOUBLE : Cscale.Wscy1/val;
 
-      Cscale.WIRect1[0] = XScale( Cscale.frect[0]);
-      Cscale.WIRect1[1] = YScale( Cscale.frect[3]);
-      Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
-      Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1]));
-
+      if(version_flag()!=0)
+	{
+	  Cscale.WIRect1[0] = XScale( Cscale.frect[0]);
+	  Cscale.WIRect1[1] = YScale( Cscale.frect[3]);
+	  Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
+	  Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1]));
+	}
+      else
+	{
+/* 	  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure()); */
+/* 	  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);  */
+	  
+	  /*F.Leray 12.10.04 : MODIF named scale_modification*/
+/* 	  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE) */
+/* 	    { */
+/* 	      Cscale.WIRect1[0] = XScale( Cscale.frect[2]); */
+/* 	      Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0])); */
+/* 	    } */
+/* 	  else */
+/* 	    { */
+	      Cscale.WIRect1[0] = XScale( Cscale.frect[0]);
+	      Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
+/* 	    } */
+	  
+/* 	  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE) */
+/* 	    { */
+/* 	      Cscale.WIRect1[1] = YScale( Cscale.frect[1]); */
+/* 	      Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1])); */
+/* 	    } */
+/* 	  else */
+/* 	    { */
+	      Cscale.WIRect1[1] = YScale( Cscale.frect[3]);
+	      Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1]));
+/* 	    }    */
+	}
     }
   if (  aaint_changed== 't' ) 
     {
@@ -1347,3 +1377,97 @@ void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
 
 
 }
+
+
+
+/* int XScale(double x) */
+/* { */
+/*   /\*F.Leray 12.10.04 : MODIF named scale_modification*\/ */
+/*   if(version_flag()!=0) */
+/*     return inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647)); */
+/*   else */
+/*     { */
+/*       sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure()); */
+/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);  */
+      
+/*       if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE) */
+/* 	return inint( Min(Cscale.Wscx1*(Cscale.frect[2] - (x)) + Cscale.Wxofset1,2147483647)); */
+/*       else */
+/* 	return inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647)); */
+/*     } */
+  
+
+/*   sciprint("Error in XScale\n"); */
+/*   return -9000; */
+/* } */
+
+
+
+
+/* int XLogScale(double x) */
+/* { */
+/*   /\*F.Leray 12.10.04 : MODIF named scale_modification*\/ */
+/*   if(version_flag()!=0) */
+/*     return inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1); */
+/*   else */
+/*     { */
+/*       sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure()); */
+/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);  */
+      
+/*       if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE) */
+/* 	return inint( Cscale.Wscx1*(Cscale.frect[2] - log10(x)) + Cscale.Wxofset1); */
+/*       else */
+/* 	return inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1); */
+     	
+/*     } */
+  
+
+/*   sciprint("Error in XLogScale\n"); */
+/*   return -9000; */
+/* } */
+
+
+
+
+/* int YScale(double y) */
+/* { */
+/*   /\*F.Leray 12.10.04 : MODIF named scale_modification*\/ */
+/*   if(version_flag()!=0) */
+/*     return inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647)); */
+/*   else */
+/*     { */
+/*       sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure()); */
+/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);  */
+      
+/*       if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE) */
+/* 	return inint(  Min(Cscale.Wscy1*((y)-Cscale.frect[1]) + Cscale.Wyofset1,2147483647)); */
+/*       else */
+/* 	return inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647)); */
+/*     } */
+  
+  
+/*   sciprint("Error in YScale\n"); */
+/*   return -9000; */
+/* } */
+
+
+/* int YLogScale(double y) */
+/* { */
+/*   /\*F.Leray 12.10.04 : MODIF named scale_modification*\/ */
+/*   if(version_flag()!=0) */
+/*     return inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1); */
+/*   else */
+/*     { */
+/*       sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure()); */
+/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);  */
+      
+/*       if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE) */
+/* 	return inint( Cscale.Wscy1*(log10(y)-Cscale.frect[1]) + Cscale.Wyofset1); */
+/*       else */
+/* 	return inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1); */
+/*     } */
+  
+
+/*   sciprint("Error in YLogScale\n"); */
+/*   return -9000; */
+/* } */
