@@ -1,7 +1,7 @@
 function [rect]=dig_bound(scs_m)
 // Copyright INRIA
   n=lstsize(scs_m.objs)
-  if n<=1 then rect=[];return;end
+  if n<1 then rect=[];return;end
   xmin=100000;
   xmax=-xmin;
   ymin=xmin;

@@ -1,5 +1,13 @@
 function do_export(scs_m,fname) 
   [lhs,rhs]=argn(0)
+  
+    
+  rect=dig_bound(scs_m)
+  if rect==[] then
+    enablemenus()
+    return
+  end
+  
   driv='Pos';num=1
   dr=driver()
   wpar=scs_m.props.wpar
@@ -26,8 +34,8 @@ function do_export(scs_m,fname)
   colmap=xget('colormap')
   driver(driv)
   options=scs_m.props.options
+
   
-  rect=dig_bound(scs_m)
   wa=(rect(3)-rect(1))
   ha=(rect(4)-rect(2))
   
@@ -109,7 +117,7 @@ function do_export(scs_m,fname)
       rep=unix_g(SCI+'/bin/BEpsf '+opt+fname)
     end
     if rep<>[] then 
-      x_message(['Problem generating ps file.';..
+      message(['Problem generating ps file.';..
 		 'perhaps directory not writable'] )
     end
   end
