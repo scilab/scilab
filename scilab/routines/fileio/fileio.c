@@ -752,7 +752,7 @@ typedef int (*FLUSH) __PARAMS((FILE *));
 int voidflush(FILE *fp)
 {
   return 0;
-};
+}
 
 static int do_scanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type)
 {

@@ -523,4 +523,5 @@ int C2F(soundi)(void)
  Rhs=Max(0,Rhs);
  (*(Tab[Fin-1].f))(Tab[Fin-1].name);
  return 0;
-};
+}
+

@@ -229,7 +229,7 @@ static int Sci_dlopen(char **loaded_files)
       /* this will load the shared library */
 #ifndef hppa
       Call_shl_load = 0;
-      hd1 = dlopen(tmp_file, RTLD_NOW);
+      hd1 = dlopen(tmp_file, RTLD_NOW | RTLD_GLOBAL );
 #else
       Call_shl_load = 1;
       hd1 = shl_load(tmp_file, BIND_IMMEDIATE | BIND_VERBOSE,0L);

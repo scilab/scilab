@@ -249,7 +249,7 @@ void init(void) {
  * Process input file -> effect table -> output file
  *	one buffer at a time
  */
-#if defined(netbsd) || defined(freebsd) || defined(unix) || defined(AMIGA) || defined(ARM) || defined(aix)
+#if defined(netbsd) || defined(freebsd) || defined(unix) || defined(AMIGA) || defined(ARM) || defined(aix) || (!defined(hppa_old) && defined(hppa))
 int filetype(int fd)
 {
   struct stat st;

@@ -452,7 +452,7 @@ void C2F(mtell) (integer *fd, double *offset, integer *err)
 		  sciprint("mput : %s format not recognized \r\n",type); \
 		  *ierr=1;return; \
 				    }
-void C2F(mputnc) (integer *fd, __builtin_va_list res, integer *n1, char *type, integer *ierr)
+void C2F(mputnc) (integer *fd, void * res, integer *n1, char *type, integer *ierr)
 {  
   char c1,c2;
   int i,swap,n;
@@ -626,7 +626,7 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	     *ierr=1; return; \
                 } \
 }
-void C2F(mgetnc)(integer *fd, __builtin_va_list res, integer *n1, char *type, integer *ierr)
+void C2F(mgetnc)(integer *fd, void * res, integer *n1, char *type, integer *ierr)
 {  
   char c1,c2;
   int i,items=*n1,n=*n1;
