@@ -704,7 +704,7 @@ Matrix *mxCreateFull(int m, int n, int it)
   for ( k=0; k<m*n*(it+1); k++ ) {
    *stk(lr+k)=0;
   }
-  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1];
+   return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1]);  */
 }
 
 int mxIsClass(Matrix *ptr, char *name)
@@ -743,7 +743,7 @@ mxArray *mxCreateStructArray(int ndim, int *dims, int nfields, char **field_name
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
 /* int C2F(structcreate)(lw, nz, sz, nf, fnames,retval) */
-  C2F(structcreate)(&lw1, &ndim, dims, &nfields, field_names, &retval);
+  /* C2F(structcreate)(&lw1, &ndim, dims, &nfields, field_names, &retval); */
   if( !retval) {
     return (Matrix *) 0;
   }
@@ -763,7 +763,7 @@ Matrix *mxCreateNumericArray(int ND, int *size, int CLASS, int cmplx)
     return (Matrix *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
+  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
 Matrix *mxCreateCharArray(int ND, int *size)
@@ -778,8 +778,7 @@ Matrix *mxCreateCharArray(int ND, int *size)
     return (Matrix *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];
-
+  return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
 Matrix *mxCreateCellArray(int ND, int *size)
@@ -926,7 +925,7 @@ Matrix *mxCreateSparse(int m, int n, int nzmax, int cmplx)
     return (Matrix *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1];
+  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1];     /* C2F(intersci).iwhere[lw-1])  */
 }
 
 /***************************************************************
