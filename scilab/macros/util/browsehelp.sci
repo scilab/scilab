@@ -31,8 +31,14 @@ function  browsehelp_configure(job)
 		  'mozilla/netscape (gnome-moz-remote)';
 		  'opera'
 		  'quanta (kde)'];
-    if with_tk() then browse_modes=[browse_modes;'Scilab Browser'];end
-    if with_gtk() then browse_modes=['help widget';browse_modes];end
+    if with_tk() then 
+      browse_modes=[browse_modes;
+		    'Scilab Browser'
+		    'Old Scilab Browser'];
+    end
+    if with_gtk() then 
+      browse_modes=['help widget';browse_modes];
+    end
     
     
     if %browsehelp<>[] then //help mode already selected
@@ -49,7 +55,11 @@ function  browsehelp_configure(job)
     
     if job=='set' then oldbrowsehelp=%browsehelp;%browsehelp=[],end
     browse_modes=['Default Windows Browser';];
-    if with_tk() then browse_modes=[browse_modes;'Scilab Browser'];end
+    if with_tk() then 
+      browse_modes=[browse_modes;
+		    'Scilab Browser'
+		    'Old Scilab Browser'];
+    end
     if %browsehelp<>[] then //help mode already selected
       if and(browse_modes<>%browsehelp) then
 	warning('Unhandled  help browser '+%browsehelp)
@@ -74,24 +84,26 @@ function run_help(path,key)
   key1=strsubst(key,' ','_') //for temp file and widget name
 
   select %browsehelp
-   case 'help widget' then
+  case 'help widget' then
     help_gtk(SCI+"/man/",LANGUAGE,path);
-   case 'nautilus' then 
+  case 'nautilus' then 
     unix_s("nautilus --no-desktop "+path+ '&');
-   case 'mozilla/netscape (gnome-moz-remote)' then
+  case 'mozilla/netscape (gnome-moz-remote)' then
     unix_s("gnome-moz-remote --raise  file://"+path+ '&');
-   case 'opera' then
+  case 'opera' then
     unix_s(%browsehelp + " file://" +path+ '&');
-   case 'quanta' then
+  case 'quanta' then
     unix_s(%browsehelp + " --unique file://" +path+ '&');
-   case 'Default Windows Browser' then
-   	openbrowser(path);
-   case 'Scilab Browser' then 
-   if MSDOS then
-   	tcltk_help(path,key);
-   else
-     unix(SCI+'/tcl/browsehelpexe '+path+' '+INDEX+' '+LANGUAGE+ '&');
-   end
+  case 'Default Windows Browser' then
+    openbrowser(path);
+  case 'Scilab Browser' then 
+    sciGUIhelp(key);
+  case 'Old Scilab Browser' then 
+    if MSDOS then
+      tcltk_help(path,key);
+    else
+      unix(SCI+'/tcl/browsehelpexe '+path+' '+INDEX+' '+LANGUAGE+ '&');
+    end
   else
      write(%io(2),mgetl(path))
   end
