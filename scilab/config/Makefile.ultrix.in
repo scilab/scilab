@@ -5,13 +5,13 @@ FFLAGS = $(FC_OPTIONS)
 
 bin/scilex: scilex-lib
 	@x=1;if [ -f $@ ] ; then  \
-		x=`find $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \)\
+		x=`find $(MAINSCI) $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \)\
 		-newer $@ -print | wc -l `; \
 	fi;\
 	if [ $$x -ne 0 ] ; then \
 		$(RM) $@; \
 		echo "linking";\
-		$(FC) -o $@ $(DEFAULTS) $(LIBR) $(FC_LDFLAGS) $(TCLTK_LIBS) \
+		$(FC) -o $@ $(MAINSCI) $(DEFAULTS) $(LIBR) $(FC_LDFLAGS) $(TCLTK_LIBS) \
 			$(XLIBS) $(TERMCAPLIB)  ;\
 		@NM@ $@ > $@.nm;\
 		grep ' T ' $@.nm > $@.txtnm;\
@@ -22,7 +22,7 @@ bin/scilex: scilex-lib
 	fi
 
 show	:
-	@echo 		$(FC) -o $@ $(DEFAULTS) $(LIBR) $(FC_LDFLAGS) $(TCLTK_LIBS) \
+	@echo 		$(FC) -o $@ $(MAINSCI) $(DEFAULTS)  $(LIBR) $(FC_LDFLAGS) $(TCLTK_LIBS) \
 			$(XLIBS) $(TERMCAPLIB)  ;
 
 	

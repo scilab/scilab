@@ -5,13 +5,13 @@ LDDLF = -lU77 -lm -lcl -lisamstub -lc
 
 bin/scilex: scilex-lib
 	@x=1;if [ -f $@ ] ; then \
-		x=`find $(DEFAULTS) $(LIBR) \( -name '*.a' -o -name '*.o' \) \
+		x=`find $(MAINSCI) $(DEFAULTS) $(LIBR) \( -name '*.a' -o -name '*.o' \) \
 		-newer $@ -print | wc -l `; \
 	fi;\
 	if [ $$x -ne 0 ] ; then \
 		if [ -f $@ ]; then $(RM) $@; fi ;\
 		echo "linking";\
-		$(LDD)  $(DEFAULTS) $(LIBR) $(LD_LDFLAGS) $(TCLTK_LIBS) \
+		$(LDD)  $(MAINSCI) $(DEFAULTS) $(LIBR) $(LD_LDFLAGS) $(TCLTK_LIBS) \
 			$(XLIBS) $(TERMCAPLIB) $(LDDLF);\
 	else \
 		echo bin/scilex is up to date ;\
@@ -19,5 +19,5 @@ bin/scilex: scilex-lib
 
 
 show	:
-	@echo 	$(LDD)  $(DEFAULTS) $(LIBR) $(LD_LDFLAGS) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB) $(LDDLF);
+	@echo 	$(LDD)  $(MAINSCI) $(DEFAULTS) $(LIBR) $(LD_LDFLAGS) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB) $(LDDLF);
 

@@ -5,29 +5,37 @@ SHELL = /bin/sh
 SCIDIR=../..
 SCIDIR1=..\..
 
-JAVAID=/usr/java/j2sdk1.4.2_03/include
+JAVAID=/usr/java/j2sdk1.4.2_06/include
 JAVAINC=-I$(JAVAID) -I$(JAVAID)/linux
 
 #--------------------------------------------------------
-PROG= $(SCIDIR)/libs/javasci.so 
-OBJS= javasci_Matrix.o fix.o
-
-all	:: .init  
-	make -f config/Makefile.all  FC="g77 -Wl,-shared" PROG=$(PROG) OBJS="$(OBJS)" SCIDIR=$(SCIDIR) \
-		JAVAINC="$(JAVAINC)"
-	cd classes; make all SCIDIR=../$(SCIDIR)
+LIBRARY= $(SCIDIR)/bin/libjavasci.so 
 
 
-.init 	: Makefile 
-	config/Init $(PROG) $(SCIDIR) 
-	touch .init 
+OBJSC= javasci_Matrix.o fix.o
 
-clean	::
-	@rm  -f $(PROG) $(OBJS)
+OBJSF = 
 
-distclean ::
-	@rm -f $(PROG) $(OBJS) $(PROG).sh .init config/Makefile 
-	@rm -f config/Makefile.Top
-	@find classes -name '*.class' -exec \rm -f {} \;
+include ../../Makefile.incl
+include ../../Makefile.OBJ
 
- 
+CFLAGS = $(CC_OPTIONS) $(JAVAINC)
+
+OBJS = $(OBJSC)
+
+all:: $(LIBRARY)
+
+$(LIBRARY): $(OBJS)
+	@echo Creation of $(LIBRARY)
+	$(RM) $@;
+	echo "linking";
+	$(FC) -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);
+
+clean::
+	$(RM) *.o
+
+cleanC :
+	$(RM) $(OBJSC)
+
+distclean::
+	$(RM) *.o $(LIBRARY)

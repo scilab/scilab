@@ -5,7 +5,7 @@ RESOURCES= routines/wsci/Rscilab.res
 bin/Nscilex.exe : $(DEFAULTS1) $(LIBRSCI)
 	@echo Linking $*.exe 
 	@$(LINKER) $(LINKER_FLAGS) $(GUIFLAGS) -OUT:"$*.exe"  \
-		$(DEFAULTS) $(RESOURCES) $(LIBR) $(XLIBS) 
+		$(MAINSCI) $(DEFAULTS) $(RESOURCES) $(LIBR) $(XLIBS) 
 	@echo Link done
 
 DEFAULTS1 = routines/wsci/winmain.obj	\

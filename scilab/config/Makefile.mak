@@ -3,9 +3,9 @@ CFLAGS = $(CC_OPTIONS)
 RESOURCES= routines/wsci/Rscilab.res 
 
 
-bin/LibScilab.dll: $(DEFAULTS) $(LIBRSCI)
+bin/LibScilab.dll: $(MAINSCI) $(DEFAULTS) $(LIBRSCI)
 	@echo Creation of $*.dll and import lib $*.lib
-	@$(LINKER) -subsystem:windows $(LINKER_FLAGS) $(RESOURCES) $(DEFAULTS) $(LIBR) $(XLIBS) \
+	@$(LINKER) -subsystem:windows $(LINKER_FLAGS) $(RESOURCES) $(MAINSCI) $(DEFAULTS) $(LIBR) $(XLIBS) \
 	 /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
 
 bin/WScilex.exe : bin/LibScilab.dll

@@ -18,14 +18,14 @@ bin/scilex bin/scilex.exe : scilex-lib  routines/wsci/Rscilab.o $(DLL_NAME1).a
 
 $(DLL_NAME1).dll : $(DLL_NAME1).def  
 	@x=1;if test -f $(DLL_NAME1).dll; then  \
-		x=`find $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) \
+		x=`find $(MAINSCI) $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) \
 		-newer $(DLL_NAME1).dll  -print | wc -l `; \
 	fi;\
 	if test $$x -ne 0; then \
 		$(RM) $@; \
 		$(ECHO) ------- Building $@ --------; \
 		$(LD) --shared -s -o $(DLL_NAME1).dll $(DLL_NAME1).def \
-			$(DEFAULTS) $(RESOURCES) \
+			$(MAINSCI) $(DEFAULTS) $(RESOURCES) \
 			$(LIBR) -lg2c $(WINLIBS)  ; \
 	else \
 		echo $(DLL_NAME1) is up to date ; \
@@ -35,7 +35,7 @@ ECHO=echo
 NM=nm 
 SED=sed
 
-$(DLL_NAME1).def : $(DEFAULTS) $(RESOURCES) $(LIBR) 
+$(DLL_NAME1).def : $(MAINSCI) $(DEFAULTS) $(RESOURCES) $(LIBR) 
 	@$(ECHO) ------- Building $@ --------
 	@$(ECHO) LIBRARY $(DLL_NAME) > $*.def
 	@$(ECHO) EXPORTS >> $*.def
@@ -57,7 +57,7 @@ scilex-force :
 
 bin/sci.exe : 
 	$(CC) -mconsole -o bin/sci.exe  \
-		$(DEFAULTS) $(RESOURCES) $(LIBR) -lg2c $(WINLIBS) 
+		$(MAINSCI) $(DEFAULTS) $(RESOURCES) $(LIBR) -lg2c $(WINLIBS) 
 
 
 
