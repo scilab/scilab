@@ -32,29 +32,31 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    mtlb_save   save variables on file with matlab4 formats.
+    <VERB>mtlb_save</VERB>   save variables on file with Matlab4 formats.
   </P>
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="mtlb_save fname saves all the current scilab variables which">
-        <SP>have corresponding matlab type to the binary &quot;MAT-file&quot; named <VERB>fname.mat</VERB>. The data may be retrieved with <VERB>mtlb_load</VERB>.</SP>
+      <DESCRIPTION_ITEM>
+        <SP><VERB>mtlb_save fname</VERB> saves all the current scilab variables
+	  which  have corresponding matlab type to the binary &quot;MAT-file&quot; named <VERB>fname.mat</VERB>. The data may be retrieved with <VERB>mtlb_load</VERB>.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="mtlb_save fname X ">
-        <SP>saves only variable <VERB>X</VERB>.</SP>
+      <DESCRIPTION_ITEM>
+        <SP><VERB>mtlb_save fname  X </VERB> saves only variable <VERB>X</VERB>.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="mtlb_save fname X Y Z">
-        <SP>saves variables <VERB>X</VERB>, <VERB>Y</VERB>, and <VERB>Z</VERB>.</SP>
+      <DESCRIPTION_ITEM>
+        <SP><VERB>mtlb_save fname  X Y Z</VERB> saves variables <VERB>X</VERB>, <VERB>Y</VERB>, and <VERB>Z</VERB>.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="mtlb_save fname X Y Z  -ascii">
-        <SP>uses 8-digit ASCII form instead of binary.</SP>
+      <DESCRIPTION_ITEM>
+        <SP><VERB>mtlb_save fname  X Y Z -ascii</VERB> uses 8-digit ASCII form instead of binary.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="mtlb_save fname X Y Z  -ascii -double">
-        <SP>uses 16-digit ASCII form.</SP>
+      <DESCRIPTION_ITEM>
+        <SP><VERB>mtlb_save fname  X Y Z -ascii -double</VERB> uses 16-digit ASCII form.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="mtlb_save fname X Y Z  -ascii -double -tabs">
-        <SP>delimits with tabs.</SP>
+      <DESCRIPTION_ITEM>
+        <SP><VERB>mtlb_save fname  X Y Z -ascii -double -tabs </VERB> delimits with tabs.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="&quot;stdio&quot; value for  fname doesnt redirect save to standard output.">
-        <SP/>
+      <DESCRIPTION_ITEM>
+         <SP>&quot;stdio&quot; value for  fname doesnt redirect save to standard output
+        </SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
@@ -69,4 +71,10 @@
       <LINK>load</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
+<BIBLIO> 
+www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf
+</BIBLIO> 
+ <AUTHOR>
+  Serge Steer, INRIA
+ </AUTHOR>
 </MAN>

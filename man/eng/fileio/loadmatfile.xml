@@ -5,7 +5,7 @@
   <TITLE>loadmatfile</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>2002</DATE>
-  <SHORT_DESCRIPTION name="loadmatfile"> loads  a Matlab 5 MAT-file into Scilab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="loadmatfile"> loads  a Matlab  MAT-file into Scilab</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>loadmatfile(filename)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -21,7 +21,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    loads a Matlab 5 MAT-file into Scilab. The Matlab data types are
+    loads a Matlab MAT-file into Scilab. The Matlab data types are
     converted into the Scilab equivalents.</P>
   </DESCRIPTION>
   <SEE_ALSO>
@@ -38,6 +38,7 @@
   <AUTHOR>Serge Steer (INRIA)  </AUTHOR>
   <BIBLIO>
     <P>This function has been developped following the &quot;MAT-File Format&quot;
-  description:<A href="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"><VERB>matfile_format.pdf</VERB></A></P>
+  description: 
+<VERB>www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf</VERB></P>
   </BIBLIO>
 </MAN>

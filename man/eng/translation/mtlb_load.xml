@@ -5,7 +5,7 @@
   <TITLE>mtlb_load</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="mtlb_load"> load variables from file with matlab4 format.  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mtlb_load"> load variables from file with Matlab4 format.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>mtlb_load fname</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>mtlb_load xxx.yyy</CALLING_SEQUENCE_ITEM>
@@ -29,26 +29,33 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    mtlb_load   load variables on file with matlab4 formats.
+    <VERB>mtlb_load</VERB>   loads variables on file with Matlab4 formats.
   </P>
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="mtlb_load fname">
-        <SP>loads in scilab all variables stored in file binary <VERB>fname.mat</VERB> .</SP>
+      <DESCRIPTION_ITEM>
+        <SP><VERB>mtlb_load fname</VERB> loads in scilab all variables stored in file binary <VERB>fname.mat</VERB> .</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="mtlb_load fname -ascii">
-        <SP>loads in scilab  variable stored in ascii file <VERB>fname</VERB>,  which must contain a rectangular array of numeric data, arranged in m lines with n values in each line.  The result is an m-by-n matrix named <VERB>fname</VERB> .</SP>
+      <DESCRIPTION_ITEM>
+        <SP><VERB>mtlb_load fname -ascii </VERB> loads in scilab  variable stored in ascii file <VERB>fname</VERB>,  which must contain a rectangular array of numeric data, arranged in m lines with n values in each line.  The result is an m-by-n matrix named <VERB>fname</VERB> .</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="mtlb_load xxx.yyy">
-        <SP>reads the ascii file <VERB>xxx.yyy</VERB>, which must contain a rectangular array of numeric data, arranged in m lines with n values in each line.  The result is an m-by-n matrix named <VERB>xxx</VERB>.</SP>
+        <SP><VERB>mtlb_load xxx.yyy </VERB>  reads the ascii file <VERB>xxx.yyy</VERB>, which must contain a rectangular array of numeric data, arranged in m lines with n values in each line.  The result is an m-by-n matrix named <VERB>xxx</VERB>.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="&quot;stdio&quot; value for  fname doesnt redirect load from standard input.">
         <SP/>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
+       <P>
+    <VERB>mtlb_load</VERB>   is superseeded by <link>loadmatfile</link> for
+      binary files.
+  </P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>mtlb_save</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>loadmatfile</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>save</LINK>
@@ -57,4 +64,11 @@
       <LINK>load</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
+<BIBLIO> 
+www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf
+</BIBLIO> 
+ <AUTHOR>
+  Serge Steer, INRIA
+ </AUTHOR>
+
 </MAN>
