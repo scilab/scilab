@@ -1,0 +1,281 @@
+function C=expression2code(e)
+// Copyright INRIA
+// Scilab Project - V. Couvert
+// Translate an expression tree to macro code (called by tree2code)
+// Input:
+// - e: expression 'tree'
+// Output:
+// - C: Scilab code corresponding to e
+// V.C.
+
+// Change format for constants
+fmtsav=format();
+format(16);
+
+// Tables of symbols arranged by priority in computations
+sumops=["+","-","&","|"] //1
+prodops=["*","/",".*","./","\",".\","^",".^"] //2
+othops=["==",">=","<=","~=",">","<","~",".''",".''",":"] //3
+
+// Commands names (Type what in Scilab to get commands names)
+commands=["quit","exit","return","help","what","who","pause","clear","resume","then","do","apropos","abort","break","continue"];
+mtlb_commands=["diary","dir"]
+commands=[commands,mtlb_commands]
+
+C=[]
+select typeof(e)
+  // ---------
+  // OPERATION
+  // ---------
+case "operation" then
+  operator=e.operator
+  operands=[]
+  nb_op=size(e.operands)
+  if and(operator<>["cc","cceol"]) then
+    for i=1:nb_op
+      operands=[operands;expression2code(e.operands(i))]
+    end
+  end
+  // Row concatenation
+  if operator=="rc" then
+    for i=1:nb_op
+      if typeof(e.operands(i))=="operation" then
+	if e.operands(i).operator=="rc" then
+	  operands(i)=part(operands(i),2:length(operands(i))-1)
+	elseif or(e.operands(i).operator==["cc","cceol"]) then
+	  operands(1)=part(operands(1),2:length(operands(1)))
+	  operands($)=part(operands($),1:length(operands($))-1)
+	end
+      end
+    end
+    C="["+strcat(operands,",")+"]"
+  // Multi-line column concatenation
+  elseif operator=="cceol" then
+    for i=1:nb_op
+      opi=expression2code(e.operands(i))
+      if typeof(e.operands(i))=="operation" then
+	if e.operands(i).operator=="rc" then
+	  opi=part(opi,2:length(opi)-1)
+	elseif or(e.operands(i).operator==["cc","cceol"]) then
+	  opi(1)=part(opi(1),2:length(opi(1)))
+	  opi($)=part(opi($),1:length(opi($))-1)
+	end
+      end
+      
+      if i==1 then
+	C="["
+	if size(opi,"*")>1 then
+	  C = [C+opi(1);opi(2:$)]
+	else
+	  C = C+opi
+	end
+	C($)=C($)+";"
+	C=[C;""]
+      else
+ 	if size(opi,"*")>1 then
+	  C = [C(1:$-1);C($)+opi(1);opi(2:$)]
+	else
+	  C = [C(1:$-1);C($)+opi]
+	end
+	C($)=C($)+"]"
+      end
+    end
+  // Column concatenation
+  elseif operator=="cc" then
+    C="["
+    for i=1:nb_op
+      opi=expression2code(e.operands(i))
+      // Delete [ and ] if there are...
+      if typeof(e.operands(i))=="operation" then
+	if e.operands(i).operator=="rc" then
+	  opi=part(opi,2:length(opi)-1)
+	elseif or(e.operands(i).operator==["cc","cceol"]) then
+	  opi(1)=part(opi(1),2:length(opi(1)))
+	  opi($)=part(opi($),1:length(opi($))-1)
+	end
+      end
+      if i==1 then
+	if size(opi,"*")>1 then
+	  C = [C+opi(1);opi(2:$)]
+	else
+	  C = C+opi
+	end
+	C($)=C($)+";"
+     else
+	if size(opi,"*")>1 then
+	  C = [C(1:$-1);C($)+opi(1);opi(2:$)]
+	else
+	  C = [C(1:$-1);C($)+opi]
+	end
+      end
+    end
+    C($)=C($)+"]"
+  // Extraction
+  elseif operator=="ext" then
+    if typeof(e.operands(2))=="list" then // Recursive extraction
+      C=operands(1)+operands(2)
+    else
+      // Deal with : 
+      for k=2:size(operands,"*")
+	if operands(k)==""":""" then
+	  operands(k)=":"
+	end
+      end
+      val = part(operands(2),1)=="''" & part(operands(2),length(operands(2)))=="''"
+      if val then // struct field
+	C=operands(1)+"."+evstr(operands(2))
+	if size(operands,"*")>=3 then
+	  C=C+"("
+	end
+	for k=3:size(operands,"*")
+	  C=C+","+operands(k)
+	end
+	if size(operands,"*")>=3 then
+	  C=C+")"
+	end
+      else
+	C=operands(1)+"("+operands(2)
+	for k=3:size(operands,"*")
+	  C=C+","+operands(k)
+	end
+	C=C+")"
+      end
+    end
+  // Insertion  
+  elseif operator=="ins" then
+    C=operands(1)
+    opened=%f
+    for k=2:size(operands,"*")
+      val = part(operands(k),1)=="''" & part(operands(k),length(operands(k)))=="''"
+      if val then // struct field
+	if opened==%t then
+	  C = C+")"
+	end
+	C=C+"."+evstr(operands(k))
+      elseif strindex(operands(k),"(")==[] then // Not a recursive ins/ext
+	if opened==%f then
+	  C = C+"("
+	  opened=%t
+	end
+	C=C+operands(k)
+	if k<>size(operands,"*") then
+	  C = C+","
+	end
+      else
+	C = C+operands(k);
+      end
+    end
+    if opened==%t then
+      C = C+")"
+    end
+  // Unary Operators
+  elseif size(operands,"*")==1 then 
+    if or(operator==["''",".''"]) then
+      if typeof(e.operands(1))=="operation" then
+	if and(e.operands(1).operator<>["rc","cc"]) then
+	  operands="("+operands+")"
+	end
+      end
+      C=operands+operator
+    else
+      C=operator+operands
+    end
+  // Other operators  
+  else
+    // Parenthesize
+    if or(operator==["+","-"]) then
+      for i=1:nb_op
+	if typeof(e.operands(i))=="operation" then
+	  if or(e.operands(i).operator==othops) then
+	    operands=[operands(1:i-1) "("+operands(i)+")" operands(i+1:$)]
+	  end
+	end
+      end
+      for i=2:nb_op
+	if typeof(e.operands(i))=="operation" then
+	  if or(e.operands(i).operator==sumops) & operator=="-" then
+	    operands=[operands(1:i-1) "("+operands(i)+")" operands(i+1:$)]
+	  end
+	end
+      end
+    end
+    if or(operator==[prodops,othops]) & (operator<>":") then
+      if typeof(e.operands(1))=="operation" then
+	if or(e.operands(1).operator==[sumops,prodops,othops]) then
+	  operands(1)="("+operands(1)+")"
+	end
+      end
+      if typeof(e.operands(2))=="operation" then
+	if or(e.operands(2).operator==[sumops,prodops,othops]) then
+	  operands(2)="("+operands(2)+")"
+	end
+      end
+    end
+    C=strcat(operands,operator)
+  end
+  // --------
+  // CONSTANT
+  // --------
+case "cste" then
+  C=sci2exp(e.value)
+  if C=="'':''" then
+    C=":"
+  end
+  C=strsubst(C,"%Inf","%inf")
+  // --------
+  // VARIABLE
+  // --------
+case "variable" then
+  C=e.name
+  // ----------------
+  // CHARACTER STRING
+  // ----------------
+case "string" then
+  C=e
+  // -------
+  // FUNCALL
+  // -------
+case "funcall" then
+  if size(e.rhs)==0 & ~isempty(grep(commands,e.name)) then
+    C=e.name
+  else
+    C=e.name+"("+rhs2code(e.rhs)+")"
+  end
+  // ----
+  // LIST
+  // ----
+case "list"
+  // Recursive extraction
+  C=[]
+  for k=1:lstsize(e)
+    ind=expression2code(e(k))
+    if typeof(e(k))=="list" then // Recursive extraction in recursive extraction
+      ind=strsubst(ind,")(",",")
+      ind=strsubst(ind,"(","")
+      ind=strsubst(ind,")","")
+    end
+    if ind==""":""" then
+      ind=":"
+    end
+    val = part(ind,1)=="''" & part(ind,length(ind))=="''"
+    if val then
+      C=C+"."+evstr(ind)
+    else
+      C=C+"("+ind+")"
+    end
+  end
+  C=strsubst(C,")(",",")
+else
+  disp(e)
+  error("expression2code(): "+typeof(e)+" is not yet implemented !");
+end
+
+// Restore format
+if fmtsav(1)==1 then
+  format("v",fmtsav(2));
+else
+  format("e",fmtsav(2));
+end
+endfunction
+
+
