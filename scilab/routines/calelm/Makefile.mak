@@ -1,10 +1,9 @@
 #-----------------------------
 # generated from Makefile: DO NOT EDIT
 # -----------------------------
-# Generated automatically from Makefile.in by configure.
 SHELL = /bin/sh
 SCIDIR=../..
-SCIDIR1=..\.. 
+SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/calelm.lib
 
@@ -35,12 +34,6 @@ CFLAGS = $(CC_OPTIONS)
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile
 
 
 finite.obj: ../machine.h
