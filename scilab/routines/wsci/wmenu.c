@@ -46,12 +46,23 @@ void Callback_NEWSCILAB(void)
 	sec_attrs.nLength = sizeof (sec_attrs);
 	sec_attrs.lpSecurityDescriptor = NULL;
 	sec_attrs.bInheritHandle = FALSE;
-  			
 
 	if ( GetVersion() < 0x80000000 )
 	{
 		/* Windows NT */
-		if (CreateProcess (ScilexName,"",&sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,  NULL, NULL, &start, &child))
+		char *VarEnvironmnt=NULL;
+		extern char ScilexWindowName[MAX_PATH];
+
+		VarEnvironmnt=(char*)malloc((strlen("SCILAB_CREATOR=")+strlen(ScilexWindowName)+1)*sizeof(char));
+		wsprintf(VarEnvironmnt,"SCILAB_CREATOR=%s",ScilexWindowName);
+		putenv(VarEnvironmnt);
+		if (VarEnvironmnt) 
+		{
+			free(VarEnvironmnt);
+			VarEnvironmnt=NULL;
+		}
+		
+		if (CreateProcess (ScilexName,"",&sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,NULL, NULL, &start, &child))
 		{
 			CloseHandle (child.hThread);
 			CloseHandle (child.hProcess);

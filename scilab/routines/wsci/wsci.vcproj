@@ -875,7 +875,13 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\FilesAssociations.c">
+			</File>
+			<File
 				RelativePath=".\FindScilab.c">
+			</File>
+			<File
+				RelativePath=".\GetOS.c">
 			</File>
 			<File
 				RelativePath="gvwprn.c">
@@ -1166,6 +1172,9 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\printf.c">
+			</File>
+			<File
 				RelativePath="readcons.c">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -1357,6 +1366,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\registry.c">
+			</File>
+			<File
+				RelativePath=".\SciEnv.c">
 			</File>
 			<File
 				RelativePath="sh.c">
@@ -1927,6 +1939,9 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\WinConsole.c">
 			</File>
 			<File
 				RelativePath="winmain.c">
@@ -2809,7 +2824,13 @@ cd .. &gt;nul
 				RelativePath="errno.h">
 			</File>
 			<File
+				RelativePath=".\FilesAssociations.h">
+			</File>
+			<File
 				RelativePath=".\FindScilab.h">
+			</File>
+			<File
+				RelativePath=".\GetOS.h">
 			</File>
 			<File
 				RelativePath="gvwin.h">
@@ -2821,7 +2842,13 @@ cd .. &gt;nul
 				RelativePath="plot.h">
 			</File>
 			<File
+				RelativePath=".\printf.h">
+			</File>
+			<File
 				RelativePath=".\registry.h">
+			</File>
+			<File
+				RelativePath=".\SciEnv.h">
 			</File>
 			<File
 				RelativePath="..\version.h">
@@ -2842,6 +2869,9 @@ cd .. &gt;nul
 				RelativePath="wgraph.h">
 			</File>
 			<File
+				RelativePath=".\WinConsole.h">
+			</File>
+			<File
 				RelativePath=".\Winmain.h">
 			</File>
 			<File
@@ -2855,9 +2885,6 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath="wtext.h">
-			</File>
-			<File
-				RelativePath="wtextc.h">
 			</File>
 		</Filter>
 		<File

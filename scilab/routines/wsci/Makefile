@@ -4,8 +4,10 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/wsci.a
 
-OBJSC1 = dde.o interfdde.o registry.o FindScilab.o clipboard.o wmcopydata.o wtext.o wgnuplib.o wmenu.o wprinter.o wpause.o wgraph.o \
-	wgmenu.o wstatbar.o gvwprn.o wmprint.o wmtex.o winmain.o
+OBJSC1 = printf.o FilesAssociations.o GetOS.o SciEnv.o WinConsole.o dde.o interfdde.o registry.o FindScilab.o \
+clipboard.o wmcopydata.o wtext.o wgnuplib.o wmenu.o wprinter.o wpause.o wgraph.o \
+wgmenu.o wstatbar.o gvwprn.o wmprint.o wmtex.o winmain.o
+	
 
 OBJSC2 =readwin.o wtloop.o misc.o \
 	command.o readcons.o x_zzledt.o jpc_Xloop.o sh.o \

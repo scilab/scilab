@@ -2,7 +2,7 @@
 
 /**************************************
  * performs I/O in a console window 
- * (see wtextc.h for the definition of the used io functions
+ * (see printf.h for the definition of the used io functions
  * (1997) : Jean-Philippe Chancelier 
  * 
  **************************************/
@@ -13,7 +13,7 @@
    #define _Windows is needed
 
    when  _Windows is activated see 
-   wtextc.h and in winmain.c WriteStr and WriteKey 
+   printf.c WriteStr and WriteKey 
    file add #define UseWIN
 
  */

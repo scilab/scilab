@@ -32,6 +32,7 @@
 //#include <WinAble.h>
 #include "WTEXT.h"   
 #include "wmcopydata.h"
+#include "WinConsole.h"
 
 /*-----------------------------------------------------------------------------------*/
 char ScilexWindowName[MAX_PATH];
@@ -2155,48 +2156,6 @@ EXPORT void WINAPI AboutBox (HWND hwnd, LPSTR str)
 }
 
 /*-----------------------------------------------------------------------------------*/
-/*Cache la fenetre Scilex(x) de ce processus */
-void HideScilex(void)
-{
-	HWND hScilex=NULL;
-	hScilex=FindWindow(NULL,ScilexConsoleName);
-	if (hScilex)
-		{
-		ShowWindow(hScilex,SW_HIDE);	
-		}
-}
-/*-----------------------------------------------------------------------------------*/
-/*Montre la fenetre Scilex(x) de ce processus */
-void ShowScilex(void)
-{
-  HWND hScilex=NULL;
-  hScilex=FindWindow(NULL,ScilexConsoleName);
-  if (hScilex)
-  {
-  	ShowWindow(hScilex,SW_SHOWNOACTIVATE);
-  }
-}
-/*-----------------------------------------------------------------------------------*/
-void SwitchConsole(void)
-{
-	switch (Windows_Console_State)
-  			{
-  				/* La fenetre etait cachée , on la restaure */
-  				case 0:
-  					{
-  						ShowScilex();
-  						Windows_Console_State=1;
-  					}
-  				break;
-  				/* La fenetre etait apparente , on la cache */ 
-  				case 1:
-  					{
-  						HideScilex();
-  						Windows_Console_State=0;
-  					}
-  				break;
-  			}
-}
 /*-----------------------------------------------------------------------------------*/
 void HelpOn(LPTW lptw)
 /* Affiche l'aide concernant la zone de texte selectionnée */
