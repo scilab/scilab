@@ -170,11 +170,11 @@ function %h_p(h)
          "color_map= matrix "+strcat(string(size(h.color_map)),'x')
 	 "pixmap = "+sci2exp(h.pixmap)
 	 "pixel_drawing_mode = "+sci2exp(h.pixel_drawing_mode,0)
+	 "immediate_drawing = "+sci2exp(h.immediate_drawing)
 	 "background =  "+string(h.background)
 	 " "
 	 "visible = "+sci2exp(h.visible)
 	 "rotation_style = "+sci2exp(h.rotation_style)
-	 "immediate_drawing = "+sci2exp(h.immediate_drawing)
 	 ]
       case "Grayplot"
       d=sci2exp(h.data,0)
