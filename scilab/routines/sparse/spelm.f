@@ -282,12 +282,6 @@ c     [m,n] given
          endif
          top=top-1
          lw=lstk(top+1)
-      else
-         il=iadr(lstk(top))
-         if(istk(il+1)*istk(il+2).eq.0) then
-            top=top-1
-            return
-         endif
       endif
       
       ilij=iadr(lstk(top-1))
@@ -296,8 +290,7 @@ c     [m,n] given
          call error(52)
          return
       endif
-      if(istk(ilij+1).ne.0.and.
-     $     istk(ilij+1).ne.2.and.istk(ilij+2).ne.2) then
+      if(istk(ilij+1).ne.0.and.istk(ilij+2).ne.2) then
          err=2
          call error(60)
          return
@@ -1450,8 +1443,8 @@ c     checking variable sp
       n=istk(il1+2)
 
 C     to avoid integer overflow
-      sz=dfloat(m)*dfloat(n)
-      szr=dfloat(mr)*dfloat(nr)
+      sz=dble(m)*dble(n)
+      szr=dble(mr)*dble(nr)
       
       if(sz.ne.szr) then
          call error(60)
