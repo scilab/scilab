@@ -559,3 +559,6 @@
 {"contr",		IN_intslicot,	5,	3},
 {"mucomp",		IN_intslicot,	6,	3},
 {"pet_ricc",		IN_intslicot,	7,	3},
+{"hinf",		IN_intslicot,	8,	3},
+{"dhinf",		IN_intslicot,	9,	3},
+
