@@ -6,10 +6,15 @@
   <TYPE>Scilab Function  </TYPE>
   <DATE>January 1998  </DATE>
   <SHORT_DESCRIPTION name="st_deviation"> écart-type des termes d&apos;une matrice  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="stdev"> écart-type des termes d&apos;une matrice  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>y=st_deviation(x)  </CALLING_SEQUENCE_ITEM>
   <CALLING_SEQUENCE_ITEM>y=st_deviation(x,&apos;r&apos;)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>y=st_deviation(x,&apos;c&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=st_deviation(x,&apos;c&apos;)
+    </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=stdev(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=stdev(x,'r')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=stdev(x,'c')  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
  <PARAM_INDENT>
@@ -50,6 +55,14 @@ st_deviation(A,'r')
 st_deviation(A,'c')
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>median</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mean</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM>  
+   <SEE_ALSO_ITEM> <LINK>median</LINK> </SEE_ALSO_ITEM>  
+   <SEE_ALSO_ITEM> <LINK>mean</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>nanstdev</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>stdevf</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
