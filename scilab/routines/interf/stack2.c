@@ -23,6 +23,8 @@ static int C2F(mvfromto) __PARAMS((integer *itopl,integer *));
 
 static int rhs_opt_find __PARAMS((char *name,rhs_opts opts[]));
 static void rhs_opt_print_names __PARAMS((rhs_opts opts[]));
+static void intersci_pop();
+static int intersci_push();
 
 /*------------------------------------------------
  * checkrhs: checks right hand side arguments 
@@ -1773,6 +1775,12 @@ int C2F(scifunction)(number, ptr, mlhs, mrhs)
 {
   integer cx26 = 26;
   integer ix1, krec, iflagint, ix, k, intop, il, ir, lw;
+  
+  if ( intersci_push() == 0 ) 
+    {
+      Scierror(999,"scifunction: Running out of memory \r\n");
+      goto L9999;
+    }
 
   /*     macro execution */
   intop = Top;
@@ -1907,11 +1915,13 @@ int C2F(scifunction)(number, ptr, mlhs, mrhs)
     lw = Top - Rhs + *number + ix - 1;
     C2F(intersci).ntypes[lw - 1] = '$';
   }
+  intersci_pop();
   return TRUE_;
 
  L9999:
   Top = intop;
   --C2F(recu).niv;
+  intersci_pop();
   return FALSE_;
 } 
 
@@ -2010,6 +2020,13 @@ int C2F(scibuiltin)(number, ifun, ifin, mlhs, mrhs)
   integer krec, srhs, slhs, iflagint;
   integer ix, k, intop, il, ir, lw, pt0;
   intop = Top;
+  
+  if ( intersci_push() == 0 ) 
+    {
+      Scierror(999,"scifunction: Running out of memory \r\n");
+      goto L9999;
+    }
+
   Top = Top - Rhs + *number + *mrhs - 1;
   slhs = Lhs;
   srhs = Rhs;
@@ -2135,8 +2152,10 @@ int C2F(scibuiltin)(number, ifun, ifin, mlhs, mrhs)
     lw = Top - Rhs + *number + ix ;
     C2F(intersci).ntypes[lw - 1] = '$';
   }
+  intersci_pop();
   return TRUE_;
  L9999:
+  intersci_pop();
   return FALSE_;
 }
 
@@ -2429,7 +2448,17 @@ static int C2F(mvfromto)(itopl, ix)
   integer ix1, m,n,it,lcs,lrs ,il; 
   unsigned char Type ;
   int iwh;
+/*   FD modif 
   int izpos,spos;
+<<<<<<< stack2.c
+     was:
+     m = C2F(intersci).nbrows[*ix - 1];
+     n = C2F(intersci).nbcols[*ix - 1];
+     it = C2F(intersci).itflag[*ix - 1];
+     Type = C2F(intersci).ntypes[*ix - 1];  
+*/
+=======
+>>>>>>> 1.5
 
   Type = C2F(intersci).ntypes[*ix - 1];
   if ( Type != '$') 
@@ -2918,5 +2947,71 @@ void *GetData(lw)
   C2F(intersci).iwhere[lw - 1] = *lstk(lw1);
   C2F(intersci).lad[lw - 1] = *lstk(lw1);
   return loci;
+}
+
+/*-------------------------------------------------------
+ * protect the intersci common during recursive calls 
+ *-------------------------------------------------------*/ 
+
+typedef struct inter_s_ { 
+  int iwhere,nbrows,nbcols,itflag,ntypes,lad,ladc,lhsvar;
+} intersci_state ;
+
+typedef struct inter_l {
+  intersci_state *state ;
+  int nbvars;
+  struct inter_l * next ;
+} intersci_list ;
+
+static intersci_list * L_intersci;
+
+
+static int intersci_push() 
+{
+  int i;
+  intersci_list *loc;
+  intersci_state *new ;
+  new = malloc( Nbvars * sizeof(intersci_state) );
+  if (new == 0 ) return 0;
+  loc = malloc( sizeof(intersci_list) );
+  if ( loc == NULL ) return 0;
+  loc->next = L_intersci;
+  loc->state = new; 
+  loc->nbvars =  Nbvars;
+  for ( i = 0 ; i <  Nbvars ; i++ ) 
+    {
+      loc->state[i].iwhere = C2F(intersci).iwhere[i];
+      loc->state[i].nbrows = C2F(intersci).nbrows[i];
+      loc->state[i].nbcols = C2F(intersci).nbcols[i];
+      loc->state[i].itflag = C2F(intersci).itflag[i];
+      loc->state[i].ntypes = C2F(intersci).ntypes[i];
+      loc->state[i].lad    = C2F(intersci).lad[i];
+      loc->state[i].ladc   = C2F(intersci).ladc[i];
+      loc->state[i].lhsvar = C2F(intersci).lhsvar[i];
+    }
+  L_intersci = loc;
+  return 1;
+}
+
+static void intersci_pop()
+{
+  int i;
+  intersci_list *loc = L_intersci;
+  if ( loc == NULL ) return ;
+  Nbvars =  loc->nbvars;
+  for ( i = 0 ; i <  Nbvars ; i++ ) 
+    {
+      C2F(intersci).iwhere[i] =   loc->state[i].iwhere ;
+      C2F(intersci).nbrows[i] =   loc->state[i].nbrows ;
+      C2F(intersci).nbcols[i] =   loc->state[i].nbcols ;
+      C2F(intersci).itflag[i] =   loc->state[i].itflag ;
+      C2F(intersci).ntypes[i] =   loc->state[i].ntypes ;
+      C2F(intersci).lad[i] =   loc->state[i].lad    ;
+      C2F(intersci).ladc[i] =   loc->state[i].ladc   ;
+      C2F(intersci).lhsvar[i] =   loc->state[i].lhsvar ;
+    }
+  L_intersci = loc->next ;
+  FREE(loc->state);
+  FREE(loc);
 }
 
