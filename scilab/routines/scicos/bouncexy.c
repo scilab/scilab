@@ -22,7 +22,7 @@ void bouncexy(scicos_block *block,int flag)
  
   static int cur = 0;
   static int verb = 0;
-  
+  static int c400=400;
   int i__1;
   
   static double rect[4];
@@ -86,19 +86,36 @@ void bouncexy(scicos_block *block,int flag)
     }
     C2F(dr1)("xsetdr\000", "X11\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
 	     dv);
-    /*     erase first point */
-    if (ipar[2] == 0) {
-      C2F(dr1)("xfarcs\000", "v\000", &v, &ipar[3], &n, &v, &v, &v, &z__[1],
-	       &dv, &dv, &dv);
-    }
+    rect[0] = xmin;
+    rect[1] = ymin;
+    rect[2] = xmax;
+    rect[3] = ymax;
+    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, strf, buf, rect, nax);
     /*     draw new point */
     i__1 = nu;
     for (i__ = 1; i__ <= i__1; ++i__) {
       z__[(i__ - 1) * 6 + 1] = u[i__] - z__[(i__ - 1) * 6 + 3] / 2;
       z__[(i__ - 1) * 6 + 2] = y[i__] + z__[(i__ - 1) * 6 + 4] / 2;
     }
+    C2F(dr1)("xset\000", "wwpc\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
+	     dv);
     C2F(dr1)("xfarcs\000", "v\000", &v, &ipar[3], &n, &v, &v, &v, &z__[1], &
 	     dv, &dv, &dv);
+    xmin = rpar[1];
+    xmax = rpar[2];
+    ymin = rpar[3];
+    ymax = rpar[4];
+    zz[0] = xmin;
+    zz[1] = xmin;
+    zz[2] = xmax;
+    zz[3] = xmax;
+    zz[4] = xmin;
+    zz[5] = ymax;
+    zz[6] = ymin;
+    zz[7] = ymin;
+    zz[8] = ymax;
+    zz[9] = ymax;
+    C2F(dr1)("xpolys\000", "v\000", &v, &v, &c__1, &c__1, &c__5, &v, zz, &zz[5], &dv, &dv);
     C2F(dr1)("xset\000", "wshow\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
 	     dv);
   } else if (flag == 4) {
@@ -113,12 +130,15 @@ void bouncexy(scicos_block *block,int flag)
     nax[2] = 2;
     nax[3] = 10;
     C2F(sciwin)();
-    C2F(dr1)("xget\000", "window\000", &verb, &cur, &na, &v, &v, &v, &dv, &dv,
-	     &dv, &dv);
-    if (cur != wid) {
-      C2F(dr1)("xset\000", "window\000", &wid, &v, &v, &v, &v, &v, &dv, &dv,
+
+    C2F(dr1)("xset\000", "window\000", &wid, &v, &v, &v, &v, &v, &dv, &dv,
 	       &dv, &dv);
-    }
+    
+    C2F(dr1)("xset\000", "wdim\000", &c400, &c400, &v, &v, &
+	       v, &v, &dv, &dv, &dv, &dv);
+  C2F(dr1)("xset\000", "window\000", &wid, &v, &v, &v, &v, &v, &dv, &dv,
+	       &dv, &dv);
+
     C2F(dr1)("xsetdr\000", "X11\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
 	     dv);
     on = 1;
@@ -142,8 +162,7 @@ void bouncexy(scicos_block *block,int flag)
     C2F(dr1)("xset\000", "dashes\000", &c__0, &c__0, &c__0, &c__0, &c__0, &v, 
 	     &dv, &dv, &dv, &dv);
     C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, strf, buf, rect, nax);
-    C2F(dr1)("xset\000", "wshow\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
-	     dv);
+
     zz[0] = xmin;
     zz[1] = xmin;
     zz[2] = xmax;
@@ -155,6 +174,8 @@ void bouncexy(scicos_block *block,int flag)
     zz[8] = ymax;
     zz[9] = ymax;
     C2F(dr1)("xpolys\000", "v\000", &v, &v, &c__1, &c__1, &c__5, &v, zz, &zz[5], &dv, &dv);
+    C2F(dr1)("xset\000", "wshow\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
+	     dv);
     nxname = 40;
     kfun=get_block_number();
     C2F(getlabel)(&kfun, buf, &nxname);
@@ -167,15 +188,8 @@ void bouncexy(scicos_block *block,int flag)
     } else {
       C2F(dr)("xname\000", buf, &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &dv);
     }
-    if (ipar[2] == 0) {
-      C2F(dr1)("xset\000", "alufunction\000", &c__6, &v, &v, &v, &v, &v, &
-	       dv, &dv, &dv, &dv);
-    }
     C2F(sxevents)();
-    /*     first point drawing */
-    if (ipar[2] == 0) {
-      C2F(dr1)("xfarcs\000", "v\000", &v, &ipar[3], &n, &v, &v, &v, &z__[1],
-	       &dv, &dv, &dv);
-    }
   }
+  C2F(dr1)("xsetdr\000", "Rec\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
+	     dv);
 } 

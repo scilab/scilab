@@ -1,11 +1,8 @@
 function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
 	  %scicos_display_mode, modelica_libs] = initial_scicos_tables()
   
-  if MSDOS then 
-    %scicos_display_mode = 0  // =1 if pixmap to be used for display under X11
-  else
-    %scicos_display_mode = 1
-  end
+    %scicos_display_mode = 0 
+
 
   //Scicos palettes =======================================================
   pal_names=['Sources';'Sinks';'Linear';'Non_linear';'Events';'Threshold';

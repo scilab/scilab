@@ -53,7 +53,7 @@ function create_palette(bidon)
 	lisf=['DEMUX.sci';'EXTRACTOR.sci'; 
 	      'MUX.sci'; 'NRMSOM_f.sci';       
 	      'SELECT_f.sci';
-	      'DEMUX_f.sci';'IFTHEL_f.sci';'MUX_f.sci';     
+	     'IFTHEL_f.sci';     
 	      'RELAY_f.sci';'SWITCH2.sci';
 	      'ESELECT_f.sci';  'ISELECT_f.sci';  'M_SWITCH.sci';  
 	      'SCALAR2VECTOR.sci';  'SWITCH_f.sci']
@@ -76,12 +76,12 @@ function create_palette(bidon)
 	lisf=[  'NEGTOPOS_f.sci';  'POSTONEG_f.sci';  'ZCROSS_f.sci']    
 	
       elseif txt=='Others' then
-	lisf=['DIFF_f.sci';
+	lisf=['DIFF_f.sci';'c_block.sci';'fortran_block.sci';
 	      'DOLLAR_f.sci';'SUPER_f.sci';'scifunc_block.sci';
 	      'TEXT_f.sci';'CBLOCK.sci';'RATELIMITER.sci'; ...
 	      'BACKLASH.sci';'DEADBAND.sci';	      
-	      'CONSTRAINT_f.sci';'MEMORY_f.sci';'HYSTHERESIS.sci';
-	      'func_block.sci';'LOGICAL_OP.sci';'RELATIONALOP.sci']
+	      'CONSTRAINT_f.sci';'HYSTHERESIS.sci';
+	      'LOGICAL_OP.sci';'RELATIONALOP.sci']
 	
       elseif txt=='Linear' then
 	lisf=['DLR_f.sci';'TCLSS_f.sci';
@@ -91,10 +91,10 @@ function create_palette(bidon)
 	
       elseif txt=='OldBlocks' then
 	lisf=['ABSBLK_f.sci'; 'MSCOPE_f.sci';'SCOPE_f.sci';    
-	      'MAX_f.sci'; 'MIN_f.sci';'SAT_f.sci'; 
+	      'MAX_f.sci'; 'MIN_f.sci';'SAT_f.sci'; 'MEMORY_f.sci';
 	      'CLKSOM_f.sci';'TRASH_f.sci';'GENERAL_f.sci';
 	      'BIGSOM_f.sci';'INTEGRAL_f.sci';'GAINBLK_f.sci';
-	      'DELAYV_f.sci';'DELAY_f.sci']
+	      'DELAYV_f.sci';'DELAY_f.sci'; 'DEMUX_f.sci';'MUX_f.sci'  ]
 
       elseif txt=='DemoBlocks' then
 	lisf=['BOUNCE.sci';'BOUNCEXY.sci']

@@ -2,10 +2,10 @@ scicos_ver = 'scicos2.7.3'
 scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ['params','wpar','title','tol','tf','context','void1','options','void2','void3',..
-'doc'],[600,450,0,0,600,450],['bounce','/usr/local/lib/scilab/demos/scicos/'],..
-[0.0001;1.000E-06;1.000E-10;100001;1;0],1000,..
+'doc'],[600,450,0,0,600,450],['bounce','/usr/local/src/scilab/demos/scicos/'],..
+[0.0001;0.000001;1.000E-10;100001;1;0],1000,..
 [' N=5;';
-'siz=[1.4 2 1 .5 3];';
+'siz=[1.04 2 1 .5 3];';
 'mass=siz.^2;';
 'walls=[-10,10,0,15]';
 'xpos=linspace(walls(1)+1.1*max(siz),walls(2)-1.1*max(siz),N)';
@@ -17,7 +17,7 @@ list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],list())
 scs_m_1=scicos_diagram()
 scs_m_1.props=tlist(..
 ['params','wpar','title','tol','tf','context','void1','options','void2','void3',..
-'doc'],[600,450,0,0,600,450],'Untitled',[0.0001,1.000E-06,1.000E-10,100001,0,0],..
+'doc'],[600,450,0,0,600,450],'Untitled',[0.0001,0.000001,1.000E-10,100001,0,0],..
 100000,[],[],..
 tlist(['scsopt','3D','Background','Link','ID','Cmap'],list(%t,33),[8,1],[1,5],..
 list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],list())
@@ -107,10 +107,10 @@ scs_m.objs(2)=mlist(['Block','graphics','model','gui','doc'],..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
               'ipar','blocktype','firing','dep_ut','label','nmode','nzcross'],..
               list('bounce_ball',4),[],[5;5],[],[],..
-              [-6.7;2.51896;3.3;7.6511316;-3.35;4.391129;5.4;0.4173616;0;
-              0.7593037;7.5;3.4382718;3.35;2.5593802;9.6;1.9701673;6.7;
-              0.6706167;11.7;2.1228987],[],..
-              [1.96;4;1;0.25;9;1.4;2;1;0.5;3;-10;10;0;15;9.81;0],..
+              [-6.7;5.6084861;3.3;2.3207479;-3.35;6.6235694;5.4;2.3122372;0;
+              7.2635068;7.5;2.1646326;3.35;1.9851438;9.6;8.8338878;6.7;
+              5.4425732;11.7;6.5251349],[],..
+              [1.0816;4;1;0.25;9;1.04;2;1;0.5;3;-10;10;0;15;9.81;0],..
               [1;2;1;3;1;4;1;5;2;3;2;4;2;5;3;4;3;5;4;5],'c',[],[%f,%t],..
               emptystr(),0,30),'BOUNCE',list())
 scs_m.objs(3)=mlist(['Block','graphics','model','gui','doc'],..
@@ -131,7 +131,7 @@ scs_m.objs(3)=mlist(['Block','graphics','model','gui','doc'],..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
               'ipar','blocktype','firing','dep_ut','label','nmode','nzcross'],..
               list('bouncexy',4),[-1;-1],[],1,[],[],..
-              [0;0;2.8;2.8;0;23040;0;0;4;4;0;23040;0;0;2;2;0;23040;0;0;1;1;0;
+              [0;0;2.08;2.08;0;23040;0;0;4;4;0;23040;0;0;2;2;0;23040;0;0;1;1;0;
               23040;0;0;6;6;0;23040],[-10;10;0;15],[1;0;1;2;3;4;5],'d',[],..
               [%f,%f],emptystr(),0,0),'BOUNCEXY',list())
 scs_m.objs(4)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
