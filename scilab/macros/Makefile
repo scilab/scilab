@@ -8,7 +8,7 @@ CFLAGS = $(CC_OPTIONS)
 SUBDIRS = algebre arma auto calpol \
 	elem metanet optim percent robust sci2for \
 	signal tdcs util xdess scicos sound \
-	m2sci mtlb int statistics tksci texmacs scicos_blocks
+	m2sci mtlb int statistics tksci texmacs scicos_blocks sparse
 
 all:: Progs 
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
