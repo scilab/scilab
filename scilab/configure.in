@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.76 $)dnl
+AC_REVISION($Revision: 1.77 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -538,7 +538,7 @@ case "$host" in
     MAKEFILE_TARGET=Makefile.linux
    ;;
 # Linux ELF: all standard distributions
-  *-pc-linux-gnu)
+  i*86-*-linux-gnu | *-pc-linux-gnu )
     LIEEELIB=
     AC_CHECK_LIB(ieee,main,
       [LIEEELIB=-lieee])
