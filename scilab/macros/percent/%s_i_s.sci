@@ -26,7 +26,7 @@ for k=rhs-2:-1:1
     else
       iimp=iimp+1
       if iimp<=2 then
-	ik=1:size(N,iimp)
+	ik=1:size(N,3-iimp)
       else
 	ik=1
       end
@@ -61,3 +61,7 @@ else
   M=mlist(['hm','dims','entries'],matrix(dims1,1,-1),v)
 end
 endfunction
+
+
+
+
