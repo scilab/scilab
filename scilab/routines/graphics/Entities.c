@@ -905,43 +905,49 @@ int
 sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
 {
   /*  double *pc;*/
-  int k,old_m;
-  
-  old_m = sciGetNumColors(pobj); /* F.Leray*/
+  int k,old_m,m1;
+  sciPointObj * pcurwin;
+  double *cmap;
 
-
-  if(n != 3){
-    sciprint("Impossible size for colormap : number of colums must be 3\n");
+ if(n != 3){
+    sciprint("colormap : number of colums must be 3\n");
     return 0;
   }
   
-  if (pobj != pfiguremdl)
-    C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
-
-
   if(SCI_FIGURE != sciGetEntityType(pobj)){
     sciprint("sciSetColormap Error: Object must be a SCI_FIGURE\n");
     return 0;
   }
 
-  FREE(pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap);
-  if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (m * n * sizeof (double))) == (double *) NULL)
-    {
-      sciprint ("Not enough memory available for colormap\n");
+  old_m = sciGetNumColors(pobj);
+  m1=m;
+  if (pobj != pfiguremdl) {
+    pcurwin=sciGetCurrentFigure ();
+    sciSetCurrentFigure ( pobj);
+    /*It should be impossible to set the colormap because of restriction on max 
+      number of colors. In this case the old one is kept*/
+    C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
+    sciSetCurrentFigure (pcurwin);
+    m1=sciGetNumColors(pobj); /* if m1!=m  old colormap has been  kept*/
+  }
+  if (m1 != old_m){ /* color map size changes, reallocate it */
+    if ((cmap = (double *)MALLOC (m*n*sizeof(double))) == (double *) NULL) {
+      if (pobj != pfiguremdl) {
+	sciSetCurrentFigure ( pobj);
+	C2F(dr)("xset","colormap",&old_m,&n,PI0,PI0,PI0,PI0,
+		pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap,PD0,PD0,PD0,0L,0L);
+	sciSetCurrentFigure (pcurwin);
+      }
+      sciprint ("Not enough memory available for colormap, previous one kept\n");
       return -1;
     }  
-  for (k=0;k<m*n;k++) 
-    pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap[k] = rgbmat[k];
-
-  
-/*   sciSetNumColors (pobj,old_m); /\* F.Leray *\/ */
-
-  sciRecursiveUpdateBaW(pobj,old_m, m);
-
-/*   sciSetNumColors (pobj,m); */
+    FREE(pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap);
+    pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap=cmap;
+  }
+  for (k=0;k<m1*n;k++) pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap[k] = rgbmat[k];
+  pFIGURE_FEATURE ((sciPointObj *) pobj)->numcolors = m1;
 
   return 0;
-  
 }
 
 
@@ -7732,10 +7738,13 @@ ConstructFigure (XGC)
   pFIGURE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
   pFIGURE_FEATURE (pobj)->pScilabXgc = XGC;
   
-  /** the colormap is mx3 matrix */
+  /** Initialize the colormap */
   n=3;
-  m = sciGetNumColors (pfiguremdl);
-  if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (m * n * sizeof (double))) == (double *) NULL)
+  m = pFIGURE_FEATURE (pfiguremdl)->numcolors;
+  /* try to install the colormap in the graphic context */
+  C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,
+	 pFIGURE_FEATURE(pfiguremdl)->pcolormap,PD0,PD0,PD0,0L,0L);
+  if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (XGC->Numcolors * n * sizeof (double))) == (double *) NULL)
     {
       sciDelHandle (pobj);
       FREE(pobj->pfeatures);
@@ -7743,10 +7752,18 @@ ConstructFigure (XGC)
       return (sciPointObj *) NULL;
     }  
 
-  /* F.Leray 30.03.04 */
-  for (i=0; i <m*n ; i++)
-    pFIGURE_FEATURE(pobj)->pcolormap[i] = pFIGURE_FEATURE(pfiguremdl)->pcolormap[i];
-  C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,pFIGURE_FEATURE(pobj)->pcolormap,PD0,PD0,PD0,0L,0L);
+  if (XGC->Numcolors == m) { 
+    /* xset('colormap') was  able to install the colormap */
+    for (i=0; i <m*n ; i++) {
+      pFIGURE_FEATURE(pobj)->pcolormap[i] = pFIGURE_FEATURE(pfiguremdl)->pcolormap[i];
+    }
+  }
+  else {
+    m=XGC->Numcolors;
+    for (i=0; i <m*n ; i++)
+      pFIGURE_FEATURE(pobj)->pcolormap[i] = defcolors[i]/255.0;
+  }
+
   sciSetNumColors (pobj,m);
    
   /* initialisation de context et mode graphique par defaut (figure model)*/
@@ -14495,7 +14512,7 @@ sciPointObj *sciIsExistingFigure(value)
 
 }
 
-void sciSwitchWindow(winnum)
+int sciSwitchWindow(winnum)
      int *winnum; 
 { 
   struct BCG *CurXGC; 
@@ -14522,10 +14539,13 @@ void sciSwitchWindow(winnum)
 	    cf_type=1;/* current figure is a graphic one */
 	  }
 	}
+       else
+	 return 1; /* failed to switch */
        
     }
   else
     cf_type=1;/* current figure is a graphic one */
+  return 0;
 }
 
 

@@ -1498,7 +1498,7 @@ extern void scizoom(double bbox[]);
 extern void Zoom_Subwin(double bbox[]);
 extern void Unzoom_Subwin();
 extern sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin);
-extern void sciSwitchWindow(int *winnum);
+extern int sciSwitchWindow(int *winnum);
 extern int sciType (char *marker, sciPointObj *pobj);  /* F.Leray MODIFICATION ICI*/
 extern int sciUnAgregation (sciPointObj * pobj);
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
