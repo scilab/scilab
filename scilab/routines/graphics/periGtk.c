@@ -3525,22 +3525,27 @@ void clip_line(integer x1, integer yy1, integer x2, integer y2, integer *x1n, in
 	y_intr[count++] = ytop;
       }
     }
-
-    /* Find intersections with the y parallel bbox lines: */
-    if (dx != 0) {
-      y = (xleft - x2) * ((double) dy / (double) dx) + y2;   
-      /* Test for xleft boundary. */
-      if (y >= ybot && y <= ytop) {
-	x_intr[count] = xleft;
-	y_intr[count++] = y;
+    if ( count < 2 ) 
+      {
+	/* Find intersections with the y parallel bbox lines: */
+	if (dx != 0) {
+	  y = (xleft - x2) * ((double) dy / (double) dx) + y2;   
+	  /* Test for xleft boundary. */
+	  if (y >= ybot && y <= ytop) {
+	    x_intr[count] = xleft;
+	    y_intr[count++] = y;
+	  }
+	  if (count < 2 ) 
+	    {
+	      y = (xright - x2) * ((double) dy / (double) dx) + y2;  
+	      /* Test for xright boundary. */
+	      if (y >= ybot && y <= ytop) {
+		x_intr[count] = xright;
+		y_intr[count++] = y;
+	      }
+	    }
+	}
       }
-      y = (xright - x2) * ((double) dy / (double) dx) + y2;  
-      /* Test for xright boundary. */
-      if (y >= ybot && y <= ytop) {
-	x_intr[count] = xright;
-	y_intr[count++] = y;
-      }
-    }
 
     if (count == 2) {
       if (pos1 && pos2) {	   /* Both were out - update both */

@@ -4943,107 +4943,100 @@ void
 clip_line(x1, yy1, x2, y2, x1n, yy1n, x2n, y2n, flag)
      integer x1, yy1, x2, y2, *flag, *x1n, *yy1n, *x2n, *y2n;
 {
-    //integer x, y, dx, dy, x_intr[2], y_intr[2], count, pos1, pos2; F.Leray pb dimension 18.02.04
-	// de x_intr et y_intr. count peut aller jusqu'a 4 apparemment...
+  integer x, y, dx, dy, x_intr[2], y_intr[2], count, pos1, pos2;
 
-	integer x, y, dx, dy, x_intr[5], y_intr[5], count, pos1, pos2;
+  *x1n=x1; *yy1n=yy1; *x2n=x2; *y2n=y2; *flag=4;
+  pos1 = clip_point(x1, yy1);
+  pos2 = clip_point(x2, y2);
+  if (pos1 || pos2) {
+    if (pos1 & pos2) { *flag=0;return;}	  
+    /* segment is totally out. */
 
+    /* Here part of the segment MAy be inside. test the intersection
+     * of this segment with the 4 boundaries for hopefully 2 intersections
+     * in. If non found segment is totaly out.
+     */
+    count = 0;
+    dx = x2 - x1;
+    dy = y2 - yy1;
 
-	// Ou sont les allocations memoires de *x1n, yy1n etc... ???  F.Leray 18.02.04
-	// Je le fais maitenant: NON c'est OK car x1n, yy1n, x2n, y2n sont sur la pile cf. Champ.c->Champ2DRealToPixel.
-
-    *x1n=x1; *yy1n=yy1; *x2n=x2; *y2n=y2; *flag=4;
-    pos1 = clip_point(x1, yy1);
-    pos2 = clip_point(x2, y2);
-    if (pos1 || pos2) {
-		if (pos1 & pos2) { *flag=0;return;}	  
-	/* segment is totally out. */
-
-	/* Here part of the segment MAy be inside. test the intersection
-	 * of this segment with the 4 boundaries for hopefully 2 intersections
-	 * in. If non found segment is totaly out.
-	 */
-	count = 0;
-	sciprint("DANS Periwin.c -> count = %d\n",count);
-	dx = x2 - x1;
-	dy = y2 - yy1;
-
-	/* Find intersections with the x parallel bbox lines: */
-	if (dy != 0) {
-	    x = (int) ((ybot - y2)  * ((double) dx / (double) dy) + x2);
-	    /* Test for ybot boundary. */
-	    if (x >= xleft && x <= xright) {
-		x_intr[count] = x;
-		y_intr[count++] = ybot;
-		sciprint("DANS Periwin.c -> count = %d\n",count);
-	    }
-	    x = (int) ((ytop - y2) * ((double) dx / (double) dy) + x2); 
-	    /* Test for ytop boundary. */
-	    if (x >= xleft && x <= xright) {
-		x_intr[count] = x;
-		y_intr[count++] = ytop;
-		sciprint("DANS Periwin.c -> count = %d\n",count);
-	    }
-	}
-
+    /* Find intersections with the x parallel bbox lines: */
+    if (dy != 0) {
+      x = (int) ((ybot - y2)  * ((double) dx / (double) dy) + x2);
+      /* Test for ybot boundary. */
+      if (x >= xleft && x <= xright) {
+	x_intr[count] = x;
+	y_intr[count++] = ybot;
+      }
+      x = (int) ((ytop - y2) * ((double) dx / (double) dy) + x2); 
+      /* Test for ytop boundary. */
+      if (x >= xleft && x <= xright) {
+	x_intr[count] = x;
+	y_intr[count++] = ytop;
+      }
+    }
+    if ( count < 2 ) 
+      {
 	/* Find intersections with the y parallel bbox lines: */
 	if (dx != 0) {
-	    y = (int) ((xleft - x2) * ((double) dy / (double) dx) + y2);   
-	    /* Test for xleft boundary. */
-	    if (y >= ybot && y <= ytop) {
-		x_intr[count] = xleft;
-		y_intr[count++] = y;
-		sciprint("DANS Periwin.c -> count = %d\n",count);
-	    }
-	    y = (int) ((xright - x2) * ((double) dy / (double) dx) + y2);  
-	    /* Test for xright boundary. */
-	    if (y >= ybot && y <= ytop) {
+	  y = (int) ((xleft - x2) * ((double) dy / (double) dx) + y2);   
+	  /* Test for xleft boundary. */
+	  if (y >= ybot && y <= ytop) {
+	    x_intr[count] = xleft;
+	    y_intr[count++] = y;
+	  }
+	  if ( count < 2 ) 
+	    {
+	      y = (int) ((xright - x2) * ((double) dy / (double) dx) + y2);  
+	      /* Test for xright boundary. */
+	      if (y >= ybot && y <= ytop) {
 		x_intr[count] = xright;
 		y_intr[count++] = y;
-		sciprint("DANS Periwin.c -> count = %d\n",count);
+	      }
 	    }
 	}
+      }
 
-	if (count == 2) {
-	    if (pos1 && pos2) {	   /* Both were out - update both */
-		*x1n = x_intr[0];
-		*yy1n = y_intr[0];
-		*x2n = x_intr[1];
-		*y2n = y_intr[1];
-		*flag=3;return;
-	      }
-	    else if (pos1) {       /* Only x1/yy1 was out - update only it */
-		if (dx * (x2 - x_intr[0]) + dy * (y2 - y_intr[0]) >= 0) {
-		    *x1n = x_intr[0];
-		    *yy1n = y_intr[0];
-		    *flag=1;return;
-		}
-		else {
-		    *x1n = x_intr[1];
-		    *yy1n = y_intr[1];
-		    *flag=1;return;
-		}
-	    }
-	    else {	         /* Only x2/y2 was out - update only it */
-		if (dx * (x_intr[0] - x1) + dy * (y_intr[0] - yy1) >= 0) {
-		    *x2n = x_intr[0];
-		    *y2n = y_intr[0];
-		    *flag=2;return;
-		}
-		else {
-		    *x2n = x_intr[1];
-		    *y2n = y_intr[1];
-		    *flag=2;return;
-		}
-	      }
-	  }
-	else 
-	  {
-	    /* count != 0 */
-	    *flag=0;return;
-	  }
+    if (count == 2) {
+      if (pos1 && pos2) {	   /* Both were out - update both */
+	*x1n = x_intr[0];
+	*yy1n = y_intr[0];
+	*x2n = x_intr[1];
+	*y2n = y_intr[1];
+	*flag=3;return;
+      }
+      else if (pos1) {       /* Only x1/yy1 was out - update only it */
+	if (dx * (x2 - x_intr[0]) + dy * (y2 - y_intr[0]) >= 0) {
+	  *x1n = x_intr[0];
+	  *yy1n = y_intr[0];
+	  *flag=1;return;
+	}
+	else {
+	  *x1n = x_intr[1];
+	  *yy1n = y_intr[1];
+	  *flag=1;return;
+	}
+      }
+      else {	         /* Only x2/y2 was out - update only it */
+	if (dx * (x_intr[0] - x1) + dy * (y_intr[0] - yy1) >= 0) {
+	  *x2n = x_intr[0];
+	  *y2n = y_intr[0];
+	  *flag=2;return;
+	}
+	else {
+	  *x2n = x_intr[1];
+	  *y2n = y_intr[1];
+	  *flag=2;return;
+	}
+      }
+    }
+    else 
+      {
+	/* count != 0 */
+	*flag=0;return;
       }
   }
+}
 
 
 
