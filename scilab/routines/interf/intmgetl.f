@@ -11,8 +11,8 @@ c
       sadr(l)=(l/2)+1
 c           
       rhs = max(0,rhs)
-      if(.not.checkrhs(fname,1,2)) return
-      if(.not.checklhs(fname,1,1)) return
+      if(.not.checkrhs('mgetl',1,2)) return
+      if(.not.checklhs('mgetl',1,1)) return
 
 c     opening file
       call v2cunit(top-rhs+1,'rb',lunit,opened,ierr)
