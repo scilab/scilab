@@ -22,8 +22,8 @@ c
 
       if(.not.getrhsvar(1,'d', M, N, lA)) return
       if(M.ne.N) then
-         buf='schur'//': the matrix must be square'
-         call error(998)
+         err=1
+         call error(20)
          return
       endif
        if(N.eq.0) then
@@ -31,16 +31,18 @@ c
            lhsvar(1) = 1
            return
          else if(lhs.eq.2) then
-           if(.not.createvar(2,'d', 0, 0, lSDIM)) return
+           if(.not.createvar(2,'d', 1, 1, lSDIM)) return
+           stk(lSDIM)=0.0d0
            lhsvar(1)=1
            lhsvar(2)=2
            return
          else if(lhs.eq.3) then
-           if(.not.createvar(2,'d', N, N, lVS)) return
-           if(.not.createvar(3,'i', 0, 0, lSDIM)) return 
-           lhsvar(1)=2
-           lhsvar(2)=3
-           lhsvar(3)=1
+          if(.not.createvar(2,'d', 1, 1, lSDIM)) return
+           stk(lSDIM)=0.0d0
+           if(.not.createvar(3,'d', N, N, lVS)) return
+           lhsvar(1)=1
+           lhsvar(2)=2
+           lhsvar(3)=3
            return
          endif
        endif
@@ -126,9 +128,9 @@ c
 
        if(.not.getrhsvar(1,'z', M, N, lA)) return
        if(M.ne.N) then
-         buf='schur'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(N.eq.0) then
          if(lhs.eq.1) then
@@ -228,9 +230,9 @@ c
 
        if(.not.getrhsvar(1,'d', M, N, lA)) return
        if(M.ne.N) then
-         buf='hess'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(N.eq.0) then
          if(lhs.eq.1) then
@@ -310,8 +312,8 @@ c
 
        if(.not.getrhsvar(1,'z', M, N, lA)) return
        if(M.ne.N) then
-         buf='hess'//': the matrix must be square'
-         call error(998)
+          err=1
+          call error(20)
          return
        endif
        if(N.eq.0) then
@@ -395,19 +397,19 @@ c
 
        if(.not.getrhsvar(1,'d', MA, NA, lA)) return
        if(MA.ne.NA) then
-         buf='dggev'//': the matrix A must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(.not.getrhsvar(2,'d', MB, NB, lB)) return
        if(MB.ne.NB) then
-         buf='gspec'//': the matrix B must be square'
-         call error(998)
-         return
+          err=2
+          call error(20)
+          return
        endif
        if(MA.ne.MB) then
          buf='gspec'//':
-     $        the matrices A and B must be of the same order'
+     $        the matrices A and B must be of the same dimension'
          call error(998)
          return
        endif
@@ -519,19 +521,19 @@ c
 
        if(.not.getrhsvar(1,'z', MA, NA, lA)) return
        if(MA.ne.NA) then
-         buf='gspec'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(.not.getrhsvar(2,'z', MB, NB, lB)) return
        if(MB.ne.NB) then
-         buf='gspec'//': the matrix must be square'
-         call error(998)
-         return
+          err=2
+          call error(20)
+          return
        endif
        if(MA.ne.NB) then
          buf='gspec'//':
-     $        the matrices A and B must be of the same order'
+     $        the matrices A and B must be of the same dimension'
          call error(998)
          return
        endif
@@ -618,9 +620,9 @@ c
 
        if(.not.getrhsvar(1,'d', M, N, lA)) return
        if(M.ne.N) then
-         buf='spec'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(N.eq.0) then
          if(lhs.eq.1) then
@@ -710,9 +712,9 @@ c
 
        if(.not.getrhsvar(1,'z', M, N, lA)) return
        if(M.ne.N) then
-         buf='spec'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(N.eq.0) then
          if(lhs.eq.1) then
@@ -805,19 +807,19 @@ c
 
        if(.not.getrhsvar(1,'d', MA, NA, lA)) return
        if(MA.ne.NA) then
-         buf='gschur'//': the matrix A must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(.not.getrhsvar(2,'d', MB, NB, lB)) return
        if(MB.ne.NB) then
-         buf='gschur'//': the matrix B must be square'
-         call error(998)
-         return
+          err=2
+          call error(20)
+          return
        endif
        if(MA.ne.MB) then
          buf='gschur'//':
-     $        the matrices A and B must be of the same order'
+     $        the matrices A and B must be of the same dimension'
          call error(998)
          return
        endif
@@ -916,19 +918,19 @@ c
 
        if(.not.getrhsvar(1,'z', MA, NA, lA)) return
        if(MA.ne.NA) then
-         buf='gschur'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(.not.getrhsvar(2,'z', MB, NB, lB)) return
        if(MB.ne.NB) then
-         buf='gschur'//': the matrix must be square'
-         call error(998)
-         return
+          err=2
+          call error(20)
+          return
        endif
        if(MA.ne.NB) then
          buf='gschur'//':
-     $        the matrices A and B must be of the same order'
+     $        the matrices A and B must be of the same dimension'
          call error(998)
          return
        endif
@@ -989,7 +991,6 @@ c     $    BWORK, INFO )
          return
        endif
 
-
       if(lhs.eq.2) then
         lhsvar(1)=1
         lhsvar(2)=2
@@ -1004,7 +1005,7 @@ c
 
 
 
-      subroutine intozgshur(fname)
+      subroutine intozgschur(fname)
 
 c     [As,Bs,VSR,dim]=gshur(A,B,function)
 c     [VS,dim]=gshur(A,B,function)
@@ -1021,7 +1022,7 @@ c     [VS,dim]=gshur(A,B,function)
 
       minrhs=3
       maxrhs=3
-      minlhs=2
+      minlhs=1
       maxlhs=4
 c     
       if(.not.checkrhs(fname,minrhs,maxrhs)) return
@@ -1029,15 +1030,15 @@ c
 
        if(.not.getrhsvar(1,'z', MA, NA, lA)) return
        if(MA.ne.NA) then
-         buf='gschur'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(.not.getrhsvar(2,'z', MB, NB, lB)) return
        if(MB.ne.NB) then
-         buf='gschur'//': the matrix must be square'
-         call error(998)
-         return
+          err=2
+          call error(20)
+          return
        endif
        N = MA 
        if(N.eq.0) then
@@ -1087,13 +1088,16 @@ c     $    BWORK, INFO )
          call errorinfo("gschur",info)
          return
        endif
-
-      
-
-      if(lhs.eq.2) then
+      if(lhs.eq.1) then
+         lhsvar(1)=4
+      elseif(lhs.eq.2) then
          lhsvar(1)=8
          lhsvar(2)=4
-      else if(lhs.eq.4) then 
+      elseif(lhs.eq.3) then
+         lhsvar(1)=7
+         lhsvar(2)=8
+         lhsvar(3)=4
+      else if(lhs.eq.4) then
          lhsvar(1)=1
          lhsvar(2)=2
          lhsvar(3)=8
@@ -1170,7 +1174,9 @@ c     check return value of fct
       end
 
       subroutine intogschur(fname)
-
+c     [dim]=gschur(A,B,function)
+c     [VSR,dim]=gschur(A,B,function)
+c     [VSL,VSR,dim]=gschur(A,B,function)
 c     [As,Bs,VSR,dim]=gschur(A,B,function)
 c     [VSR,dim]=gschur(A,B,function)
 
@@ -1186,7 +1192,7 @@ c     [VSR,dim]=gschur(A,B,function)
 
       minrhs=3
       maxrhs=3
-      minlhs=2
+      minlhs=1
       maxlhs=4
 c     
       if(.not.checkrhs(fname,minrhs,maxrhs)) return
@@ -1194,30 +1200,40 @@ c
 
       if(.not.getrhsvar(1,'d', MA, NA, lA)) return
       if(MA.ne.NA) then
-         buf='gschur'//': the matrix A must be square'
-         call error(998)
+         err=1
+         call error(20)
          return
       endif
 
       if(.not.getrhsvar(2,'d', MB, NB, lB)) return
        if(MB.ne.NB) then
-         buf='gschur'//': the matrix B must be square'
-         call error(998)
+         err=2
+         call error(20)
          return
        endif
        if(MA.ne.MB) then
          buf='gschur'//':
-     $        the matrices A and B must be of the same order'
+     $        the matrices A and B must be of the same dimension'
          call error(998)
          return
        endif
        N = MA
        if(N.eq.0) then
         lhsvar(1)=1
-        lhsvar(2)=2
-        if(lhs.eq.4) then
+        if(lhs.eq.2) then
+           if(.not.createvar(2,'d', 1, 1, lSDIM)) return
+           stk(lSDIM)=0.0d0
+           lhsvar(2)=2
+        elseif(lhs.eq.3) then
+           if(.not.createvar(3,'d', 1, 1, lSDIM)) return
+           stk(lSDIM)=0.0d0
+           lhsvar(2)=2
+           lhsvar(3)=3
+        else
            if(.not.createvar(3,'d', N, N, lVSR)) return
-           if(.not.createvar(4,'d', N, N, lSDIM)) return
+           if(.not.createvar(4,'d', 1, 1, lSDIM)) return
+           stk(lSDIM)=0.0d0
+           lhsvar(2)=2
            lhsvar(3)=3
            lhsvar(4)=4
         endif
@@ -1260,56 +1276,19 @@ c     $     LWORK, BWORK, INFO )
          return
        endif
 
-      if(lhs.eq.2) then
+      if(lhs.eq.1) then
+         lhsvar(1)=4
+      elseif(lhs.eq.2) then
          lhsvar(1)=9
          lhsvar(2)=4
-      else if(lhs.eq.4) then 
+      elseif(lhs.eq.3) then
+         lhsvar(1)=8
+         lhsvar(2)=9
+         lhsvar(3)=4
+      else if(lhs.eq.4) then
          lhsvar(1)=1
          lhsvar(2)=2
          lhsvar(3)=9
          lhsvar(4)=4
       endif
-c     
       end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

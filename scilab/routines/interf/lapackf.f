@@ -1438,8 +1438,8 @@ c
 
        if(.not.getrhsvar(1,'d', M, N, lA)) return
        if(M.ne.N) then
-          buf='spec'//': the matrix must be square'
-          call error(998)
+          err=1
+          call error(20)
           return
        endif
        if(N.eq.0) then
@@ -1564,9 +1564,9 @@ c
 
        if(.not.getrhsvar(1,'z', M, N, lA)) return
        if(M.ne.N) then
-          buf='spec'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(N.eq.0) then
          if(lhs.eq.1) then
@@ -1663,8 +1663,8 @@ c
 
       if(.not.getrhsvar(1,'d', M, N, lA)) return
       if(m.ne.n) then
-         buf='inv'//': the matrix must be square'
-         call error(998)
+         err=1
+         call error(20)
          return
       endif
       if(n.eq.0) then
@@ -1683,7 +1683,10 @@ c
 
       call DGETRF( N, N, stk(lA), N, istk(lIWORK), INFO )
 c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
-      if(info.ne.0) then
+      if(info.gt.0) then
+         call error(19)
+         return
+      elseif (info.lt.0) then
          call errorinfo("inv: dgetrf",info)
          return
       endif
@@ -1715,8 +1718,8 @@ c
 
       if(.not.getrhsvar(1,'z', M, N, lA)) return
       if(m.ne.n) then
-         buf='inv'//': the matrix must be square'
-         call error(998)
+         err=1
+         call error(20)
          return
       endif
       if(n.eq.0) then
@@ -1735,7 +1738,10 @@ c
 
       call ZGETRF( N, N, zstk(lA), N, istk(lIWORK), INFO )
 c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
-      if(info.ne.0) then
+      if(info.gt.0) then
+         call error(19)
+         return
+      elseif (info.lt.0) then
          call errorinfo("inv: zgetrf",info)
          return
       endif
@@ -1771,8 +1777,8 @@ c
         
        if(.not.getrhsvar(1,'d', MA, NA, lA)) return
        if(MA .ne. NA) then
-         buf='rcond'//': matrix must be square'
-         call error(998)
+          err=1
+          call error(20)
          return
        endif
        N = MA
@@ -1833,9 +1839,9 @@ c
         
        if(.not.getrhsvar(1,'z', MA, NA, lA)) return
        if(MA .ne. NA) then
-         buf='rcond'//': matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        N = MA
 
@@ -1893,8 +1899,8 @@ c
 
       if(.not.getrhsvar(1,'d', M, N, lA)) return
       if(m.ne.n) then
-         buf='chol'//': the matrix must be square'
-         call error(998)
+         err=1
+         call error(20)
          return
       endif
 
@@ -1941,8 +1947,8 @@ c
 
       if(.not.getrhsvar(1,'z', M, N, lA)) return
       if(m.ne.n) then
-         buf='chol'//': the matrix must be square'
-         call error(998)
+         err=1
+         call error(20)
          return
       endif
 
@@ -1989,12 +1995,22 @@ c
       if(.not.getrhsvar(1,'d', M, N, lA)) return
        if(M.eq.0 .or.N.eq.0) then
         lhsvar(1) = 1
+        if(.not.createvar(2,'d',0,0,lL)) return
+        lhsvar(2) = 2
+        if(lhs.eq.3) then
+           if(.not.createvar(3,'d',0,0,lE)) return
+           lhsvar(3) = 3
+        endif
         return
       endif
       if(.not.createvar(2,'d',M,min(M,N),lL)) return
       if(.not.createvar(3,'d',min(M,N),N,lU)) return
       if(.not.createvar(4,'i',1,min(M,N),lIPIV)) return
       if(.not.createvar(5,'d',M,M,lE)) return
+      if(lhs.eq.2) then
+         if(.not.createvar(6,'i',1,M,lIW)) return
+         if(.not.createvar(7,'d',M,min(M,N),lW)) return
+      endif
 
 
       call DGETRF( M, N, stk(lA), M, istk(lIPIV), INFO )
@@ -2027,17 +2043,37 @@ c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
             endif
  30      continue
  40   continue
-      if(lhs.gt.2) then
+      if(lhs.eq.2) then
+c        form E'*L
+         do 41 i = 1, M
+            istk(lIW-1+i)=i
+ 41      continue
+         do 42 i = 1, min(M,N)
+            ip = istk(lIPIV-1+i)
+            if( ip.ne.i ) then
+               iw=istk(lIw-1+i)
+               istk(lIW-1+i)=istk(lIW-1+ip)
+               istk(lIW-1+ip)=iw
+            endif
+ 42      continue
+         do 43 i= 1, M
+            ip =istk(lIW-1+i)
+            call dcopy(N,stk(lL-1+i),M,stk(lW-1+ip),M)
+ 43      continue
+         lhsvar(1)=7
+         lhsvar(2)=3
+      else
         call DLASET( 'F', M, M, ZERO, ONE, stk(lE), M ) 
 c        SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
         call DLASWP( M, stk(lE), M, 1, min(M,N), istk(lIPIV), 1 )
 c        SUBROUTINE DLASWP( N, A, LDA, K1, K2, IPIV, INCX )   
+        lhsvar(1)=2
+        lhsvar(2)=3
+        lhsvar(3)=5
       endif   
 
 
-      lhsvar(1)=2
-      lhsvar(2)=3
-      lhsvar(3)=5
+ 
 c
       return     
       end
@@ -2073,7 +2109,10 @@ c
       if(.not.createvar(3,'z',min(M,N),N,lU)) return
       if(.not.createvar(4,'i',1,min(M,N),lIPIV)) return
       if(.not.createvar(5,'d',M,M,lE)) return
-
+      if(lhs.eq.2) then
+         if(.not.createvar(6,'i',1,M,lIW)) return
+         if(.not.createvar(7,'z',M,min(M,N),lW)) return
+      endif
 
       call ZGETRF( M, N, zstk(lA), M, istk(lIPIV), INFO )
 c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
@@ -2105,17 +2144,38 @@ c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
             endif
  30      continue
  40   continue
-      if(lhs.gt.2) then
+
+      if(lhs.eq.2) then
+c        form E'*L
+         do 41 i = 1, M
+            istk(lIW-1+i)=i
+ 41      continue
+         do 42 i = 1, min(M,N)
+            ip = istk(lIPIV-1+i)
+            if( ip.ne.i ) then
+               iw=istk(lIw-1+i)
+               istk(lIW-1+i)=istk(lIW-1+ip)
+               istk(lIW-1+ip)=iw
+            endif
+ 42      continue
+         do 43 i= 1, M
+            ip =istk(lIW-1+i)
+            call zcopy(N,zstk(lL-1+i),M,zstk(lW-1+ip),M)
+ 43      continue
+         lhsvar(1)=7
+         lhsvar(2)=3
+      else
         call DLASET( 'F', M, M, ZERO, ONE, stk(lE), M ) 
 c        SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
         call DLASWP( M, stk(lE), M, 1, min(M,N), istk(lIPIV), 1 )
 c        SUBROUTINE DLASWP( N, A, LDA, K1, K2, IPIV, INCX )   
+        lhsvar(1)=2
+        lhsvar(2)=3
+        lhsvar(3)=5
       endif   
 
 
-      lhsvar(1)=2
-      lhsvar(2)=3
-      lhsvar(3)=5
+
 c
       return     
       end
@@ -2701,9 +2761,9 @@ c
 
        if(.not.getrhsvar(1,'d', M, N, lA)) return
        if(M.ne.N) then
-         buf='schur'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(N.eq.0) then
          if(lhs.eq.1) then
@@ -2791,18 +2851,18 @@ c
 
        if(.not.getrhsvar(1,'d', M, N, lA)) return
        if(M.ne.N) then
-         buf='schur'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(N.eq.0) then
          if(lhs.eq.1) then
            lhsvar(1) = 1
            return
          else if(lhs.eq.2) then
-           if(.not.createvar(2,'d', N, N, lV)) return
-           lhsvar(1) = 2
-           lhsvar(2) = 1
+           if(.not.createvar(2,'d', 0, 0, lS)) return
+           lhsvar(1) = 1
+           lhsvar(2) = 2
            return
          endif
        endif
@@ -2933,8 +2993,8 @@ c
 
       if(.not.getrhsvar(1,'d', M, N, lA)) return
       if(M.ne.N) then
-         buf='schur'//': the matrix must be square'
-         call error(998)
+         err=1
+         call error(20)
          return
       endif
        if(N.eq.0) then
@@ -2942,16 +3002,18 @@ c
            lhsvar(1) = 1
            return
          else if(lhs.eq.2) then
-           if(.not.createvar(2,'d', 0, 0, lSDIM)) return
+           if(.not.createvar(2,'d',1,1, lSDIM)) return
+           stk(lSDIM)=0.0d0
            lhsvar(1)=1
            lhsvar(2)=2
            return
          else if(lhs.eq.3) then
-           if(.not.createvar(2,'d', N, N, lVS)) return
-           if(.not.createvar(3,'i', 0, 0, lSDIM)) return 
-           lhsvar(1)=2
-           lhsvar(2)=3
-           lhsvar(3)=1
+           if(.not.createvar(2,'d', 1, 1, lSDIM)) return 
+           stk(lSDIM)=0.0d0
+           if(.not.createvar(3,'d', N, N, lVS)) return
+           lhsvar(1)=1
+           lhsvar(2)=2
+           lhsvar(3)=3
            return
          endif
        endif
@@ -3007,7 +3069,7 @@ c
       
       logical function scischur(re,im)
       INCLUDE '../stack.h'
-      logical scifunction, createvar
+      logical scifunction, createcvar
       common /scisch/ lf, nx
       integer iadr
       double precision re, im
@@ -3015,7 +3077,7 @@ c
       iadr(l) = l+l-1
 c
       scischur=.false.
-      if(.not.createvar(nx,'d',1,2,lx)) return
+      if(.not.createcvar(nx,'d',1,1,1,lx,lc)) return
       stk(lx)=re
       stk(lx+1)=im
       if(.not.scifunction(nx,lf,1,1)) return
@@ -3032,14 +3094,14 @@ c     stk(lx)=fct([re,im])  evaluated by scilab fct pointed to by lf
       logical function scichk()
 c    checks fct passed to schur
       INCLUDE '../stack.h'
-      logical scifunction, createvar
+      logical scifunction, createcvar
 c     
       integer iadr
       common/ierinv/iero
       common /scisch/ lf, nx
       iadr(l) = l+l-1
       scichk=.false.
-      if(.not.createvar(nx,'d',1,2,lx)) return
+      if(.not.createcvar(nx,'d',1,1,1,lx,lc)) return
       stk(lx)=1.0d0
       stk(lx+1)=1.0d0
       if(.not.scifunction(nx,lf,1,1)) then
@@ -3087,9 +3149,9 @@ c
 
        if(.not.getrhsvar(1,'z', M, N, lA)) return
        if(M.ne.N) then
-         buf='schur'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(N.eq.0) then
          if(lhs.eq.1) then
@@ -3170,9 +3232,9 @@ c
 
        if(.not.getrhsvar(1,'z', M, N, lA)) return
        if(M.ne.N) then
-         buf='schur'//': the matrix must be square'
-         call error(998)
-         return
+          err=1
+          call error(20)
+          return
        endif
        if(N.eq.0) then
          if(lhs.eq.1) then
@@ -3180,8 +3242,8 @@ c
            return
          else if(lhs.eq.2) then
            if(.not.createvar(2, 'z', N, N, lVS)) return
-           lhsvar(1) = 2
-           lhsvar(2) = 1
+           lhsvar(1) = 1
+           lhsvar(2) = 2
            return
          endif
        endif  
@@ -3388,8 +3450,8 @@ c
 
       if(.not.getrhsvar(1,'z', M, N, lA)) return
       if(M.ne.N) then
-         buf='schur'//': the matrix must be square'
-         call error(998)
+         err=1
+         call error(20)
          return
       endif
        if(N.eq.0) then
@@ -3402,11 +3464,12 @@ c
            lhsvar(2)=2
            return
          else if(lhs.eq.3) then
-           if(.not.createvar(2,'z', N, N, lVS)) return
-           if(.not.createvar(3,'i', 0, 0, lSDIM)) return 
-           lhsvar(1)=2
-           lhsvar(2)=3
-           lhsvar(3)=1
+           if(.not.createvar(2,'d', 0, 0, lSDIM)) return 
+           stk(lSDIM)=0.0d0
+           if(.not.createvar(3,'z', N, N, lVS)) return
+           lhsvar(1)=1
+           lhsvar(2)=2
+           lhsvar(3)=3
            return
          endif
        endif
@@ -3463,7 +3526,7 @@ c
       
       logical function scizschur(w)
       INCLUDE '../stack.h'
-      logical scifunction, createvar
+      logical scifunction, createcvar
       common /scisch/ lf, nx
       integer iadr
       complex*16 w
@@ -3472,7 +3535,7 @@ c
       iadr(l) = l+l-1
 c
       scizschur=.false.
-      if(.not.createvar(nx,'d',1,2,lx)) return
+      if(.not.createcvar(nx,'d',1,1,1,lx,lc)) return
       stk(lx)=dreal(w)
       stk(lx+1)=dimag(w)
       if(.not.scifunction(nx,lf,1,1)) return
@@ -3489,14 +3552,14 @@ c     stk(lx)=fct([re,im])  evaluated by scilab fct pointed to by lf
       logical function scizchk()
 c    checks fct passed to schur
       INCLUDE '../stack.h'
-      logical scifunction, createvar
+      logical scifunction, createcvar
 c     
       integer iadr
       common/ierinv/iero
       common /scisch/ lf, nx
       iadr(l) = l+l-1
       scizchk=.false.
-      if(.not.createvar(nx,'d',1,2,lx)) return
+      if(.not.createcvar(nx,'d',1,1,1,lx,lc)) return
       stk(lx)=1.0d0
       stk(lx+1)=1.0d0
       if(.not.scifunction(nx,lf,1,1)) then
@@ -3542,38 +3605,48 @@ c     [VSR,dim]=gschur(A,B,"function")
  
       minrhs=3
       maxrhs=3
-      minlhs=2
+      minlhs=1
       maxlhs=4
 c     
       if(.not.checkrhs(fname,minrhs,maxrhs)) return
       if(.not.checklhs(fname,minlhs,maxlhs)) return 
-
+      
       if(.not.getrhsvar(1,'d', MA, NA, lA)) return
       if(MA.ne.NA) then
-         buf='gschur'//': the matrix A must be square'
-         call error(998)
+         err=1
+         call error(20)
          return
       endif
 
       if(.not.getrhsvar(2,'d', MB, NB, lB)) return
        if(MB.ne.NB) then
-         buf='gschur'//': the matrix B must be square'
-         call error(998)
+         err=2
+         call error(20)
          return
        endif
        if(MA.ne.MB) then
          buf='gschur'//':
-     $        the matrices A and B must be of the same order'
+     $        the matrices A and B must be of the same dimension'
          call error(998)
          return
        endif
        N = MA
        if(N.eq.0) then
         lhsvar(1)=1
-        lhsvar(2)=2
-        if(lhs.eq.4) then
+        if(lhs.eq.2) then
+           if(.not.createvar(2,'d', 1, 1, lSDIM)) return
+           stk(lSDIM)=0.0d0
+           lhsvar(2)=2
+        elseif(lhs.eq.3) then
+           if(.not.createvar(3,'d', 1, 1, lSDIM)) return
+           stk(lSDIM)=0.0d0
+           lhsvar(2)=2
+           lhsvar(3)=3
+        else
            if(.not.createvar(3,'d', N, N, lVSR)) return
-           if(.not.createvar(4,'d', N, N, lSDIM)) return
+           if(.not.createvar(4,'d', 1, 1, lSDIM)) return
+           stk(lSDIM)=0.0d0
+           lhsvar(2)=2
            lhsvar(3)=3
            lhsvar(4)=4
         endif
@@ -3612,22 +3685,27 @@ c
      $     N, istk(lSDIM), stk(lALPHAR), stk(lALPHAI), stk(lBETA),
      $     stk(lVSL), N, stk(lVSR), N, stk(lDWORK), LWORK, istk(lBWORK),
      $     INFO )
-c      SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
+c     SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
 c     $     SDIM, ALPHAR, ALPHAI, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
 c     $     LWORK, BWORK, INFO )
-       if(info.ne.0) then
+      if(info.ne.0) then
          call errorinfo("gschur: dgges",info)
          return
-       endif
-
-      if(lhs.eq.2) then
-        lhsvar(1)=9
-        lhsvar(2)=4
+      endif
+      if(lhs.eq.1) then
+         lhsvar(1)=4
+      elseif(lhs.eq.2) then
+         lhsvar(1)=9
+         lhsvar(2)=4
+      elseif(lhs.eq.3) then
+         lhsvar(1)=8
+         lhsvar(2)=9
+         lhsvar(3)=4
       else if(lhs.eq.4) then
-        lhsvar(1)=1
-        lhsvar(2)=2
-        lhsvar(3)=9
-        lhsvar(4)=4
+         lhsvar(1)=1
+         lhsvar(2)=2
+         lhsvar(3)=9
+         lhsvar(4)=4
       endif
 
       end
@@ -3650,7 +3728,7 @@ c     [VSR,dim]=gschur(A,B,'function')
 
        minrhs=3
        maxrhs=3
-       minlhs=2
+       minlhs=1
        maxlhs=4
 c
        if(.not.checkrhs(fname,minrhs,maxrhs)) return
@@ -3659,29 +3737,39 @@ c
 
        if(.not.getrhsvar(1,'z', MA, NA, lA)) return
        if(MA.ne.NA) then
-         buf='gschur'//': the matrix must be square'
-         call error(998)
+          err=1
+         call error(20)
          return
        endif
        if(.not.getrhsvar(2,'z', MB, NB, lB)) return
        if(MB.ne.NB) then
-         buf='gschur'//': the matrix must be square'
-         call error(998)
-         return
+          err=2
+          call error(20)
+          return
        endif
        if(MA.ne.NB) then
          buf='gschur'//':
-     $        the matrices A and B must be of the same order'
+     $        the matrices A and B must be of the same dimension'
          call error(998)
          return
        endif
        N = MA
        if(N.eq.0) then
         lhsvar(1)=1
-        lhsvar(2)=2
-        if(lhs.eq.4) then
-           if(.not.createvar(3,'z', N, N, lVSR)) return
-           if(.not.createvar(4,'d', N, N, lSDIM)) return
+        if(lhs.eq.2) then
+           if(.not.createvar(2,'d', 1, 1, lSDIM)) return
+           stk(lSDIM)=0.0d0
+           lhsvar(2)=2
+        elseif(lhs.eq.3) then
+           if(.not.createvar(3,'d', 1, 1, lSDIM)) return
+           stk(lSDIM)=0.0d0
+           lhsvar(2)=2
+           lhsvar(3)=3
+        else
+           if(.not.createvar(3,'d', N, N, lVSR)) return
+           if(.not.createvar(4,'d', 1, 1, lSDIM)) return
+           stk(lSDIM)=0.0d0
+           lhsvar(2)=2
            lhsvar(3)=3
            lhsvar(4)=4
         endif
@@ -3718,26 +3806,31 @@ c
      $     zstk(lB), N, istk(lSDIM), zstk(lALPHA), zstk(lBETA),
      $     zstk(lVSL), N, zstk(lVSR), N, zstk(lDWORK), LWORK,
      $     stk(lRWORK), istk(lBWORK), INFO )
-c      SUBROUTINE ZGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
-c     $    SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK, LWORK, RWORK,
+c     SUBROUTINE ZGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
+c     $    SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK, LWORK, RWORK
+c     ,
 c     $    BWORK, INFO )
-       if(info.ne.0) then
+      if(info.ne.0) then
          call errorinfo("gschur: zgges",info)
          return
-       endif
-
-    
-      if(lhs.eq.2) then
-        lhsvar(1) = 8
-        lhsvar(2) = 4
-      else if(lhs.eq.4) then
-        lhsvar(1)=1
-        lhsvar(2)=2
-        lhsvar(3)=8
-        lhsvar(4)=4
       endif
-c
-       end
+      if(lhs.eq.1) then
+         lhsvar(1)=4
+      elseif(lhs.eq.2) then
+         lhsvar(1)=8
+         lhsvar(2)=4
+      elseif(lhs.eq.3) then
+         lhsvar(1)=7
+         lhsvar(2)=8
+         lhsvar(3)=4
+      else if(lhs.eq.4) then
+         lhsvar(1)=1
+         lhsvar(2)=2
+         lhsvar(3)=8
+         lhsvar(4)=4
+      endif
+
+      end
 
 
 
@@ -3802,61 +3895,268 @@ c     check return value of fct
       return
       end
 
+      subroutine intdoldsvd(tol,fname)
 
+c     [U,S,V,rk]=svd(A,tol)
 
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
 
+      character fname*(*)
+      character JOBU, JOBVT
+      double precision ZERO
+      double precision tol,eps,dlamch
+      parameter ( ZERO=0.0D0 )
 
+       minrhs=1
+       maxrhs=2
+       minlhs=1
+       maxlhs=4
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
+       if(.not.getrhsvar(1,'d', M, N, lA)) return
+       if(M.eq.0) then
+         if(lhs.eq.1) then
+            lhsvar(1) = 1
+            return
+         else if(lhs.eq.2) then
+            if(.not.createvar(2,'d', N, N, lS)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            return
+         else if(lhs.eq.3) then
+            if(.not.createvar(2,'d', M, N, lS)) return
+            if(.not.createvar(3,'d', N, N, lV)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            lhsvar(3) = 3
+            return
+         else if(lhs.eq.4) then
+            if(.not.createvar(2,'d', M, N, lS)) return
+            if(.not.createvar(3,'d', N, N, lV)) return
+            if(.not.createvar(4,'d', 1, 1, lrk)) return
+            stk(lrk)=0
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            lhsvar(3) = 3
+            lhsvar(4) = 4
+            return
+         endif
+       endif
+       if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
+       k = 3              
+       if(lhs.gt.1) then
+         if(.not.createvar(3,'d', M, M, lU)) return
+         if(.not.createvar(4,'d', M, N, lS)) return
+         if(.not.createvar(5,'d', N, N, lV)) return
+         if(.not.createvar(6,'d', N, N, lVT)) return
+         if(.not.createvar(7,'d', 1, 1, lrk)) return
+         k = 8
+       endif
+       LWORKMIN = max(3*min(M,N)+max(M,N),5*min(M,N)-4)
+       LWORK=maxvol(k,'d')
+       if(LWORK.le.LWORKMIN) then
+         buf='dgesvd'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(k,'d',1,LWORK,lDWORK)) return
 
+      JOBU = 'N'
+      JOBVT = 'N'
+      if(lhs.gt.1) then
+        JOBU = 'A'
+        JOBVT = 'A'
+      endif
+      if(lhs.eq.1) then
+        call DGESVD( JOBU, JOBVT, M, N, stk(lA), M, stk(lSV), stk(lA),
+     $       M, stk(lA), N, stk(lDWORK), LWORK, INFO )
+c        SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, INFO )
+      else
+        call DGESVD( JOBU, JOBVT, M, N, stk(lA), M, stk(lSV), stk(lU),
+     $       M, stk(lVT), N, stk(lDWORK), LWORK, INFO )
+c        SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, INFO )
+      endif  
+       if(info.ne.0) then
+         call errorinfo("dgesvd",info)
+         return
+       endif
 
+c     calculating rk = # of sv's > tol 
 
+      eps=dlamch('eps')
+      if(tol.eq.0.0d0) tol=dble(max(M,N))*eps*stk(lSV)
+      irang=0
+      do 51 i = 1, min(M,N)
+         if(stk(lSV+i-1).gt.tol) irang=i
+ 51   continue
+      stk(lrk)=dble(irang)
+      if(lhs.gt.1) then
+        call DLASET( 'F', M, N, ZERO, ZERO, stk(lS), M )
+c       SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
 
+        do 10 i = 1, min(M,N)
+           ii = i+(i-1)*M
+           stk(lS+ii-1) = stk(lSV+i-1)
+   10   continue        
+        do 30 j = 1, N
+           do 20 i = j, N
+              ij = i+(j-1)*N
+              ji = j+(i-1)*N
+              stk(lV+ij-1) = stk(lVT+ji-1)
+              stk(lV+ji-1) = stk(lVT+ij-1)
+   20      continue
+   30   continue     
+      endif
 
+      if(lhs.eq.1) then
+        lhsvar(1) = 2
+      else 
+        lhsvar(1)=3
+        lhsvar(2)=4
+        lhsvar(3)=5
+        lhsvar(4)=7
+      endif
+c
+       end
 
+      subroutine intzoldsvd(tol,fname)
 
+c     [U,S,V,rk]=svd(A,tol)
 
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+      
+      character fname*(*)
+      character JOBU, JOBVT
+      double precision ZERO
+      double precision tol,eps,dlamch
+      parameter ( ZERO=0.0D0 )
+      intrinsic conjg
 
+      minrhs=1
+      maxrhs=2
+      minlhs=1
+      maxlhs=4
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
+      if(.not.getrhsvar(1,'z', M, N, lA)) return
+      if(M.eq.0) then
+         if(lhs.eq.1) then
+            lhsvar(1) = 1
+            return
+         else if(lhs.eq.2) then
+            if(.not.createvar(2,'d', N, N, lS)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            return
+         else if(lhs.eq.3) then
+            if(.not.createvar(2,'d', M, N, lS)) return
+            if(.not.createvar(3,'d', N, N, lV)) return
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            lhsvar(3) = 3
+            return
+         else if(lhs.eq.4) then
+            if(.not.createvar(2,'d', M, N, lS)) return
+            if(.not.createvar(3,'d', N, N, lV)) return
+            if(.not.createvar(4,'d', 1, 1, lrk)) return
+            stk(lrk)=0
+            lhsvar(1) = 1
+            lhsvar(2) = 2
+            lhsvar(3) = 3
+            lhsvar(4) = 4
+            return
+         endif
+      endif
+      if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
+      k = 3              
+      if(lhs.gt.1) then
+         if(.not.createvar(3,'z', M, M, lU)) return
+         if(.not.createvar(4,'d', M, N, lS)) return
+         if(.not.createvar(5,'z', N, N, lV)) return
+         if(.not.createvar(6,'z', N, N, lVT)) return
+         if(.not.createvar(7,'d', 1, 1, lrk)) return
+         k = 8
+      endif
+      LRWRK = max(3*min(M,N),5*min(M,N)-4)
+      if(.not.createvar(k,'d',1,LRWRK,lRWORK)) return
+      LWORKMIN = 2*min(M,N)+max(M,N)
+      LWORK=maxvol(k+1,'z')
+      if(LWORK.le.LWORKMIN) then
+         buf='zgesvd'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(k+1,'z',1,LWORK,lDWORK)) return
 
+      JOBU = 'N'
+      JOBVT = 'N'
+      if(lhs.gt.1) then
+         JOBU = 'A'
+         JOBVT = 'A'
+      endif
+      if(lhs.eq.1) then
+         call ZGESVD( JOBU, JOBVT, M, N, zstk(lA), M, stk(lSV), 
+     $        zstk(lA), M, zstk(lA), N, zstk(lDWORK), LWORK, 
+     $        stk(lRWORK), INFO )
+c     SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, RWORK, INFO )
+      else
+         call ZGESVD( JOBU, JOBVT, M, N, zstk(lA), M, stk(lSV), 
+     $        zstk(lU), M, zstk(lVT), N, zstk(lDWORK), LWORK,
+     $        stk(lRWORK), INFO )
+c     SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
+C     $      LDVT, WORK, LWORK, RWORK, INFO )
+      endif  
+      if(info.ne.0) then
+         call errorinfo("zgesvd",info)
+         return
+      endif
 
+c     calculating rk = # of sv's > tol 
 
+      eps=dlamch('eps')
+      if(tol.eq.0.0d0) tol=dble(max(M,N))*eps*stk(lSV)
+      irang=0
+      do 51 i = 1, min(M,N)
+         if(stk(lSV+i-1).gt.tol) irang=i
+ 51   continue
+      stk(lrk)=dble(irang)
 
+      if(lhs.gt.1) then
+         call DLASET( 'F', M, N, ZERO, ZERO, stk(lS), M )
+c     SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+         do 10 i = 1, min(M,N)
+            ii = i+(i-1)*M
+            stk(lS+ii-1) = stk(lSV+i-1)
+ 10      continue        
+         do 30 j = 1, N
+            do 20 i = j, N
+               ij = i+(j-1)*N
+               ji = j+(i-1)*N
+               zstk(lV+ij-1) = conjg(zstk(lVT+ji-1))
+               zstk(lV+ji-1) = conjg(zstk(lVT+ij-1))
+ 20         continue
+ 30      continue     
+      endif
+      
+      if(lhs.eq.1) then
+         lhsvar(1) = 2
+      else 
+         lhsvar(1)=3
+         lhsvar(2)=4
+         lhsvar(3)=5
+         lhsvar(4)=7
+      endif
+c     
+      end

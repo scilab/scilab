@@ -241,6 +241,7 @@ int inteig(fname)
   Symmetric = C2F(issymmetric)((X=1,&X));
   switch (CmplxA) {
   case REAL:
+    
     switch (Symmetric) {
     case NO :
     ret = C2F(intdgeev)("spec",4L);
@@ -517,7 +518,9 @@ int intschur(fname)
      char *fname;
 
 {
-  int *header1;int *header2; int Cmplx;int ret; int something;
+  int *header1;int *header2;int *header3; 
+  int Cmplx, CmplxA, CmplxB;
+  int ret, something, X;
   int which = 1; int longueur;
 
   extern int C2F(intdgees0) __PARAMS((char *fname, unsigned long fname_len));
@@ -528,12 +531,19 @@ int intschur(fname)
   extern int C2F(intzgees1) __PARAMS((char *fname, unsigned long fname_len));
   extern int C2F(intfschur) __PARAMS((char *fname, unsigned long fname_len));
   extern int C2F(intzfschur) __PARAMS((char *fname, unsigned long fname_len));
+
+  extern int C2F(intdgges) __PARAMS((char *fname, unsigned long fname_len));
+  extern int C2F(intzgges) __PARAMS((char *fname, unsigned long fname_len));
+  extern int C2F(intogschur) __PARAMS((char *fname, unsigned long fname_len));
+  extern int C2F(intzgschur) __PARAMS((char *fname, unsigned long fname_len));
+  extern int C2F(intgschur) __PARAMS((char *fname, unsigned long fname_len));
+
   extern int schtst __PARAMS((int longueur, int *header));
 
-  header1 = (int *) GetData(1);   Cmplx=header1[3];
+  header1 = (int *) GetData(1);   CmplxA=header1[3];
   switch (Rhs) {
   case 1:   /* schur(A)   */
-    switch (Cmplx) {
+    switch (CmplxA) {
     case REAL :
       ret = C2F(intdgees0)("schur",5L);
       break;
@@ -544,12 +554,12 @@ int intschur(fname)
       Scierror(999,"%s: Invalid input! \r\n",fname);
       break;
     }
-    return 0;
+    break;
   case 2 :   /* schur(A, something)   */
     header2 = (int *) GetData(2); something=header2[0];
     switch (something) {
     case FUNCTION :
-      switch (Cmplx) {
+      switch (CmplxA) {
       case REAL :
 	ret = C2F(intoschur)("schur",5L);
 	break;
@@ -560,13 +570,13 @@ int intschur(fname)
 	Scierror(999,"%s: Invalid input! \r\n",fname);
 	break;
       }
-      return 0;
+      break;
     case STRING  :
       longueur=header2[5]-header2[4];
       which = schtst(longueur, header2);
       switch (which) {
       case STRINGREAL:
-	switch (Cmplx) {
+	switch (CmplxA) {
 	case REAL:
 	  ret = C2F(intdgees1)("schur",5L);
 	  break;
@@ -576,7 +586,7 @@ int intschur(fname)
 	}
 	return 0;
       case STRINGCOMPLEX:
-	switch (Cmplx) {
+	switch (CmplxA) {
 	case REAL:
 	  ret = C2F(intdgees1)("schur",5L);
 	  break;
@@ -584,10 +594,9 @@ int intschur(fname)
 	  ret = C2F(intzgees1)("schur",5L);
 	  break;
 	}
-	return 0;
       default:
 	/*   String is an external function  */
-	switch (Cmplx) {
+	switch (CmplxA) {
 	case REAL:
 	  ret = C2F(intfschur)("schur",5L);
 	  break;
@@ -595,15 +604,83 @@ int intschur(fname)
 	  ret = C2F(intzfschur)("schur",5L);
 	  break;
 	}
-	return 0;
       }
-    default :
-      Scierror(999,"%s: Invalid call! \r\n",fname);
       break;
+    case DOUBLE: /*schur(A,B)*/
+      CmplxB=header2[3];
+      if ((CmplxA == 0) && (CmplxB ==0))  Cmplx =0; 
+      else if ((CmplxA == 1) && (CmplxB ==0)) {
+	C2F(complexify)((X=2,&X));
+	Cmplx=1;}
+      else if ((CmplxA == 0) && (CmplxB ==1)) {
+	C2F(complexify)((X=1,&X));
+	Cmplx=1;}
+      else  Cmplx=1;
+
+      switch (Cmplx) {
+      case REAL :
+	ret = C2F(intdgges)("schur",6L);
+	break;
+      case COMPLEX :
+	ret = C2F(intzgges)("schur",6L);
+	break;
+      default :
+	Scierror(999,"%s: Invalid input! \r\n",fname);
+	break;
+      }
+      break;
+    } /* end of switch (something) */
+    break;
+  case 3: /* schur(A,B,something) */
+    header2 = (int *) GetData(2); something=header2[0];
+    CmplxB=header2[3];
+    if ((CmplxA == 0) && (CmplxB ==0))  Cmplx =0; 
+    else if ((CmplxA == 1) && (CmplxB ==0)) {
+      C2F(complexify)((X=2,&X));
+      Cmplx=1;}
+    else if ((CmplxA == 0) && (CmplxB ==1)) {
+      C2F(complexify)((X=1,&X));
+      Cmplx=1;}
+    else  Cmplx=1;
+
+    header3 = (int *) GetData(3); something=header3[0];
+    switch (something) {
+    case FUNCTION :
+      switch (Cmplx) {
+      case REAL :
+	ret = C2F(intogschur)("schur",6L);
+	break;
+      case COMPLEX :
+	ret = C2F(intozgschur)("schur",6L);
+	break;
+      default :
+	Scierror(999,"%s: Invalid input! \r\n",fname);
+	break;
+      }
+      break;
+    case STRING  :
+      switch (Cmplx) {
+      case REAL:
+	ret = C2F(intgschur)("schur",6L);
+	break;
+      case COMPLEX:
+	ret = C2F(intzgschur)("schur",6L);
+	break;
+      default :
+	Scierror(999,"%s: Invalid input! \r\n",fname);
+	break;
+      }
+      break;
+    default: /* switch (something) */
     }
-  }
-  return 0;
+    break; /* end of case 3 */
+  default : 
+    Scierror(999,"%s: Invalid call! \r\n",fname);
+    break;
+  } /*end of switch(Rhs) */
+return 0;
 }
+
 
 
 int intgschur(fname)
@@ -656,7 +733,7 @@ int intgschur(fname)
 	ret = C2F(intogschur)("gschur",6L);
 	break;
       case COMPLEX :
-	ret = C2F(intzgschur)("schur",6L);
+	ret = C2F(intzgschur)("gschur",6L);
 	break;
       default :
 	Scierror(999,"%s: Invalid input! \r\n",fname);
@@ -743,8 +820,9 @@ int schtst (longueur, header)
      int *header;
 {
   if( (longueur==1) && ( Abs(header[6])==27 ) ) return STRINGREAL;  /* "r" */
-  if( (longueur==4) && ( Abs(header[6])==27 ) && (Abs(header[7])==14 ) && (Abs(header[6])==10 ) && ( Abs(header[6])==21 ) ) return STRINGREAL;  /* "real"  */
-  if( (longueur==4) && ( Abs(header[6])==12 ) && (Abs(header[7])==24 ) && (Abs(header[6])==22 ) && ( Abs(header[6])==25 ) ) return STRINGCOMPLEX;  /* "comp" */
+
+  if( (longueur==4) && ( Abs(header[6])==27 ) && (Abs(header[7])==14 ) && (Abs(header[8])==10 ) && ( Abs(header[9])==21 ) ) return STRINGREAL;  /* "real"  */
+  if( (longueur==4) && ( Abs(header[6])==12 ) && (Abs(header[7])==24 ) && (Abs(header[8])==22 ) && ( Abs(header[9])==25 ) ) return STRINGCOMPLEX;  /* "comp" */
   if( (longueur==7) && ( Abs(header[6])==12 ) && (Abs(header[7])==24 ) && (Abs(header[8])==22 ) && ( Abs(header[9])==25 ) && ( Abs(header[10])==21) && ( Abs(header[11])==14) && ( Abs(header[12])==33) ) return STRINGCOMPLEX;  /* "complex" */
 return 0;
 }
@@ -771,7 +849,6 @@ static LapackTable Tab[]={
   {intschur,"lap_schur"},
   {inthess,"lap_hess"},
   {intgspec,"lap_gspec"},
-  {intgschur,"lap_gschur"},
 };
 
 int C2F(intlapack)()
