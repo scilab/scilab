@@ -74,7 +74,7 @@
    plot2d()
    seteventhandler('my_eventhandler')
    //now move the mouse over the graphic window/
-
+   seteventhandler('') //suppress the event handler
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>addmenu</LINK> </SEE_ALSO_ITEM>
