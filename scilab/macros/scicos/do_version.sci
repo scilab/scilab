@@ -59,7 +59,6 @@ end
 
 endfunction
 function scs_m=do_version231(scs_m)
-
 //2.3.1 to 2.4 version
 if size(scs_m(1))<5 then scs_m(1)(5)=' ',end  //compatibility
 if type(scs_m(1)(5))<>10 then scs_m(1)(5)=' ',end //compatibility
@@ -127,13 +126,14 @@ function x_new=do_version23(scs_m)
 //2.3 to 2.3.1
 x_new=list()
 x_new(1)=scs_m(1)
+nx=size(scs_m)
 for k=2:nx
   o=scs_m(k)
   if o(1)=='Link' then
   elseif o(1)=='Block' then
     model=o(3)
     if model(1)=='super'|model(1)=='csuper' then
-      model(8)=do_version(model(8))
+      model(8)=do_version23(model(8))
       o(3)=model
       o=block2_version(o)
       scs_m(k)=o
@@ -150,11 +150,12 @@ function o=block2_version(o)
 if o(3)(6)<>[] then o(3)(12)(2)=%t;end
 
 endfunction
+
+
 function o=block_version(o)
 [graphics,model]=o(2:3)
 for k=2:5, model(k)=ones(model(k),1),end
 blocktype=o(5)
-
 ok=%t
 label=' '
 gr_i=' '
@@ -234,7 +235,43 @@ case 'CLOCK_f' then
       break
     end
   end
-  o=CLOCK_f('define')
+  o = list('Block',..
+list([0,0],[2,2],%t,[],[],[],[],0,..
+list(..
+['wd=xget(''wdim'').*[1.016,1.12];';
+'thick=xget(''thickness'');xset(''thickness'',2);';
+'p=wd(2)/wd(1);p=1;';
+'rx=sz(1)*p/2;ry=sz(2)/2;';
+'xarcs([orig(1)+0.05*sz(1);';
+'orig(2)+0.95*sz(2);';
+'   0.9*sz(1)*p;';
+'   0.9*sz(2);';
+'   0;';
+'   360*64],scs_color(5));';
+'xset(''thickness'',1);';
+'xx=[orig(1)+rx    orig(1)+rx;';
+'    orig(1)+rx    orig(1)+rx+0.6*rx*cos(%pi/6)];';
+'yy=[orig(2)+ry    orig(2)+ry ;';
+'  orig(2)+1.8*ry  orig(2)+ry+0.6*ry*sin(%pi/6)];';
+'xsegs(xx,yy,scs_color(10));';
+'xset(''thickness'',thick);'],[])),..
+list('csuper',[],[],[],1,[],' ',..
+list(list([600,400,0,0],'foo',[],[]),..
+list('Block',list([399,162],[20,20],%t,'1',[],[],6,[],[]),..
+list('output',[],[],1,[],[],[],[],1,'d',[],[%f,%f],' ',list()),' ','CLKOUT_f'),..
+list('Block',list([320,232],[40,40],%t,['0.1';'0.1'],[],[],7,4,..
+['dt=model(8);';
+'txt=[''Delay'';string(dt)];';
+'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
+list('evtdly',[],[],1,1,[],[],0.1,[],'d',0.1,[%f,%f],' ',list()),' ','EVTDLY_f'),..
+list('Link',[340;340;380.71066],[226.28571;172;172],'drawlink',' ',[0,0],[5,-1],[3,1],..
+[5,1]),..
+list('Block',list([380.71066;172],[1,1],%t,' ',[],[],4,[6;7]),..
+list('lsplit',[],[],1,[1;1],[],[],[],[],'d',[-1,-1],[%t,%f],' ',list()),' ','CLKSPLIT_f'),..
+list('Link',[380.71066;399],[172;172],'drawlink',' ',[0,0],[5,-1],[5,1],[2,1]),..
+list('Link',[380.71066;380.71066;340;340],[172;301.9943;301.9943;277.71429],'drawlink',' ',..
+[0,0],[5,-1],[5,2],[3,1])),[],'h',[],[%f,%f]),' ','CLOCK_f')
+
   o(2)(1)=orig
   o(2)(2)=sz
   xx=o(3)(8)(3)
@@ -911,15 +948,16 @@ case 'FOR_f' then
   o=replace_firing(o)
 
 endfunction
+
 function o=replace_firing(o)
 firing=o(3)(11)
 cout=o(3)(5)
 if firing==%f|firing==0 then 
   o(3)(11)=-ones(cout)
-  disp('firing changed from %f to '+sci2exp(o(3)(11))+' in '+o(3)(1)(1))
+  //disp('firing changed from %f to '+sci2exp(o(3)(11))+' in '+o(3)(1)(1))
 elseif firing==%t|firing==1  then 
   o(3)(11)=0*cout
-  disp('firing changed from %t to '+sci2exp(o(3)(11))+' in '+o(3)(1)(1))  
+  //disp('firing changed from %t to '+sci2exp(o(3)(11))+' in '+o(3)(1)(1))  
 elseif firing==[] then
   o(3)(11)=[]
 else
@@ -933,20 +971,18 @@ x_new=list()
 wpar=scs_m(1)
 wsiz=wpar(1)
 
-if size(wsiz,'*')>=4 then x_new=x,return,end
+if size(wsiz,'*')>=4 then x_new=scs_m,return,end
 
 wpar(3)(4)=wpar(4)+1
 x_new(1)=wpar
-
-
-
+nx=size(scs_m)
 for k=2:nx
   o=scs_m(k)
   if o(1)=='Link' then
   elseif o(1)=='Block' then
     model=o(3)
     if model(1)=='super'|model(1)=='csuper' then
-      model(8)=do_version(model(8))
+      model(8)=do_version22(model(8))
       o(3)=model
       o=block_version(o)
       scs_m(k)=o
@@ -975,11 +1011,13 @@ function scs_m_new=do_version27(scs_m)
     return,
   end
   scs_m_new=scicos_diagram()
-
-  tol=scs_m(1)(3)
-  if size(tol,'*')<6 then tol(6)=0,end
   tf=scs_m(1)(4)
-  if tf==[] then tf=100000;end
+  if tf==[] then tf=100;end
+  tol=scs_m(1)(3)
+  if size(tol,'*')<4 then tol(4)=tf+1,end
+  if size(tol,'*')<5 then tol(5)=0,end
+  if size(tol,'*')<6 then tol(6)=0,end
+  
   scs_m_new.props=scicos_params(wpar=scs_m(1)(1),title=scs_m(1)(2),..
 				tol=tol,tf=tf,..
 				context=scs_m(1)(5),options=scs_m(1)(7),..

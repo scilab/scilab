@@ -2,7 +2,8 @@ function Load_()
 
     Cmenu='Open/Set'
     if edited&~super_block then
-      message(['Diagram has not been saved'])
+      num=x_message(['Diagram has not been saved'],['OK','Go Back'])
+      if num==2 then return;end
       if alreadyran then do_terminate(),end  //terminate current simulation
       alreadyran=%f
     end

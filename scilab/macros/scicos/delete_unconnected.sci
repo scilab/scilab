@@ -22,6 +22,7 @@ end
 //suppress rigth-most deleted elements
 while getfield(1,scs_m.objs($))=='Deleted' then
   scs_m.objs($)=null();
+  if size(scs_m.objs)==0 then break,end
 end
 
 // Notify by hiliting and message edition

@@ -741,7 +741,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     typ_m(i)=ll.blocktype=='m'
     dep_ut(i,:)=(ll.dep_ut(:))'
     //
-    if ll.evtout<>[] then  
+    if ~typ_s(i)&ll.evtout<>[] then  
       ll11=ll.firing
       prt=find(ll11>=zeros(ll11))
       nprt=prod(size(prt))

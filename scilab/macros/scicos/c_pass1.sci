@@ -43,7 +43,6 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
   clksum=[] // clock sum table for this level
   nrmsplit=[]
   nrmsum=[]
-
   sel=1:n
   for k=sel
     o=scs_m.objs(k)

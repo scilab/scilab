@@ -35,7 +35,9 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
       message(name+' cannot be loaded.') 
       ok=%f;return
     end
-//    if scs_m==[] then scs_m=x,end //for compatibility
+    if scicos_ver=='scicos2.2' then
+      if scs_m==[] then scs_m=x,end //for compatibility
+    end
     if scicos_ver<>current_version then 
       scs_m=do_version(scs_m,scicos_ver),
       %cpr=list()
