@@ -20,14 +20,14 @@ proc aboutme {} {
 	tk_messageBox -title "About" -type ok \
 	    -message "$winTitle $version\n\
             Originated by Joseph Acosta, joeja@mindspring.com.\n\
-            Modified by Scilab Group.\n\
+            Modified by Scilab Consortium.\n\
             Revised by Enrico Segre 2003,2004.\n\
             Miscellaneous improvements, particularly debug tools, by François Vogel 2004."
     } else {
 	tk_messageBox -title "A propos" -type ok \
 	    -message "$winTitle $version\n\
             Créé par Joseph Acosta, joeja@mindspring.com.\n\
-            Modifié par le Groupe Scilab.\n\
+            Modifié par le Consortium Scilab.\n\
             Amélioré par Enrico Segre 2003,2004.\n\
             Améliorations diverses, dont outils de débug, par François Vogel 2004."
     }
