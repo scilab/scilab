@@ -1,24 +1,61 @@
 function plotprofile(fun)
-lst=macr2lst(fun)
-sep='='
+  sep='='
 sep=part(sep,ones(1,72))
-count=profile(lst);count(:,3)=count(:,3).*count(:,1);
-txt=fun2string(lst,'fun')
-m=min(size(count,1),size(txt,1))
-txt=txt(1:m);count=count(1:m,:)
-txt(txt=='')=' '
+
+if type(fun)==13 then
+  lst=macr2lst(fun)
+  count=profile(lst);count(:,3)=count(:,3).*count(:,1);
+  txt=fun2string(lst,'fun')
+  m=min(size(count,1),size(txt,1))
+  txt=txt(1:m);count=count(1:m,:)
+  txt(txt=='')=' '
+elseif type(fun)==10 then
+  nf=size(fun,'*')
+  txt=[];bnd=[];count=[];
+  for k=1:nf
+    execstr('lst=macr2lst('+fun(k)+')')
+    c=profile(lst);c(:,3)=c(:,3).*c(:,1);
+    t=fun2string(lst,fun(k))
+    m=min(size(c,1),size(t,1))
+    t=t(1:m);c=c(1:m,:)
+    t(t=='')=' '
+    if txt<>[] then
+      txt=[txt;'=============================================']
+      bnd=[bnd,size(txt,1)]
+      count=[count;[0 0 0]]
+    end
+    txt=[txt;t]
+    count=[count;c]
+  end
+end
 n=size(count,1)
+
+
 win=sum(winsid())+1
 xset('window',win)
 step=ceil(n/15)
 nn=ceil((n+1)/step)
 nm=nn*step
+mx=max(count(:,1))+1
+
 xsetech([0,0,1,1/3]);plot2d3('enn',0,count(:,1),1,'011',' ',..
-    [0,0,nm,max(count(:,1))+1],[step nn 1 3])
+    [0,0,nm,mx],[step nn 1 3])
+xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
+xp=[0 bnd];yp=mx*1.05;for k=1:nf,xstring(xp(k),yp,fun(k));end  
+legends('# calls',1,1)
+
+mx=max(1,max(count(:,2))+1)
 xsetech([0,1/3,1,1/3]);plot2d3('enn',0,count(:,2),2,'011',' ',..
-    [0,0,nm,max(1,max(count(:,2)))],[step nn 1 3])
+    [0,0,nm,mx],[step nn 1 3])
+xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
+legends('Complexity',2,1)
+
+mx=max(count(:,3))+1
 xsetech([0,2/3,1,1/3]);plot2d3('enn',0,count(:,3),3,'011',' ',..
-    [0,0,nm,max(count(:,3))+1],[step nn 1 3])
+    [0,0,nm,mx],[step nn 1 3])
+xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
+legends('Time',3,1)
+
 if ~MSDOS then
   delmenu(win,'3D Rot.')
 else
