@@ -38,15 +38,13 @@
 #define GXorInverted 13
 #define GXnand 14
 #define GXset 15
-#else
-#include <X11/Xlib.h>
-#include <X11/Intrinsic.h>
 #endif
 
 
 #include "Math.h"
 #include "periFig.h"
 #include "color.h"
+#include "bcg.h" /* NG */
 
 #define WHITE 7
 #define BLACK 0
@@ -62,6 +60,14 @@ void C2F(set_cXfig)(integer i);
 void C2F(idfromnameXfig) (char *name1, integer *num);
 void C2F(getdashXfig)(integer *verbose, integer *value, integer *narg, double *dummy);
 
+/* NG beg */
+void C2F(setscilabFigureXfig)(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure);
+void C2F(getscilabFigureXfig)(integer *verbose, integer *x,integer *narg, double *figure);
+void C2F(setscilabVersionXfig)(integer *vers, integer *v2, integer *v3, integer *v4);
+void C2F(getscilabVersionXfig)(integer *verbose, integer *vers, integer *narg, double *dummy);
+void C2F(setscilabxgcXfig)(integer *v1, integer *v2, integer *v3, integer *v4); 
+void C2F(getscilabxgcXfig)(integer *verbose, integer *x,integer *narg, double *dummy);
+/* NG end */
 
 static void 
 C2F(analyze_pointsXfig) (integer n, integer *vx, integer *vy,
@@ -98,29 +104,7 @@ static void set_dash  __PARAMS((int dash,int *l_style,int *_val));
 static void set_color  __PARAMS((int c,int *color));
 /** Structure to keep the graphic state  **/
 
-struct BCG 
-{ 
-  int FontSize;
-  int FontId;
-  int CurHardSymb;
-  int CurHardSymbSize;
-  int CurLineWidth;
-  int CurPattern;
-  int CurColor;
-  int CurWindow;
-  int CurVectorStyle;
-  int CurDrawFunction;
-  int ClipRegionSet;
-  int CurClipRegion[4];
-  int CurDashStyle;
-  char CurNumberDispFormat[20];
-  int CurColorStatus;
-  int IDLastPattern;
-  int Numcolors;
-  int   NumBackground;  /* number of Background in the color table */
-  int  NumForeground; /* number of Foreground in the color table */
-  int NumHidden3d;  /* color for hidden 3d facets **/
-}  ScilabGCXfig ;
+struct BCG  ScilabGCXfig ;
 
 
 /*-----------------------------------------------------
@@ -646,18 +630,14 @@ void C2F(getusecolorXfig)(integer *verbose, integer *num, integer *narg, double 
  * ds le cas usuel comme cette fonction n'est pas
  * enregistree ds Rec.c elle ne doit pas etre appellee
  ******************************************************/
+void setcolormapgXfig(struct  BCG *Xgc,integer *v1,integer *v2, double *a);/* NG */
 
-void C2F(setcolormapXfig)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
+void C2F(setgccolormapXfig)(struct BCG *Xgc,integer m, double *a)
 {
- 
-  int i,m;
+  int i;
   Scistring("Warning : you will have to move the colors definition\n");
   Scistring(" at the top of the xfig file \n");
-  if (*v2 != 3 ||  *v1 < 0) {
-    Scistring("Colormap must be a m x 3 array \n");
-    return;
-  }
-  m = *v1;
+
   /* Checking RGB values */
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
@@ -666,10 +646,10 @@ void C2F(setcolormapXfig)(integer *v1, integer *v2, integer *v3, integer *v4, in
       return;
     }
   }
-  ScilabGCXfig.Numcolors = m;
-  ScilabGCXfig.IDLastPattern = m - 1;
-  ScilabGCXfig.NumForeground = m;
-  ScilabGCXfig.NumBackground = m + 1;
+  Xgc->Numcolors = m;
+  Xgc->IDLastPattern = m - 1;
+  Xgc->NumForeground = m;
+  Xgc->NumBackground = m + 1;
   for ( i=0; i < m ; i++)
     {
       unsigned short ur,ug,ub;
@@ -682,11 +662,30 @@ void C2F(setcolormapXfig)(integer *v1, integer *v2, integer *v3, integer *v4, in
   FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m+1,255,255,255));
   C2F(usecolorXfig)((i=1,&i) ,PI0,PI0,PI0);
   C2F(setalufunction1Xfig)((i=3,&i),PI0,PI0,PI0);
-  C2F(setpatternXfig)((i=ScilabGCXfig.NumForeground+1,&i),PI0,PI0,PI0);  
-  C2F(setforegroundXfig)((i=ScilabGCXfig.NumForeground+1,&i),PI0,PI0,PI0);
-  C2F(setbackgroundXfig)((i=ScilabGCXfig.NumForeground+2,&i),PI0,PI0,PI0);
+  C2F(setpatternXfig)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);  
+  C2F(setforegroundXfig)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);
+  C2F(setbackgroundXfig)((i=Xgc->NumForeground+2,&i),PI0,PI0,PI0);
 }
 
+void C2F(setcolormapXfig)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
+{
+ 
+  int m;
+  Scistring("Warning : you will have to move the colors definition\n");
+  Scistring(" at the top of the xfig file \n");
+  if (*v2 != 3 ||  *v1 < 0) {
+    Scistring("Colormap must be a m x 3 array \n");
+    return;
+  }
+  m = *v1;
+  C2F(setgccolormapXfig)(&ScilabGCXfig, m, a);
+}
+
+void setcolormapgXfig(struct  BCG *Xgc,integer *m,integer *v2, double *a) /* NG */
+{
+
+  C2F(setgccolormapXfig)(Xgc,*m, a);
+}
 
 void C2F(set_cXfig)(integer i)
 {
@@ -852,7 +851,7 @@ void C2F(gemptyXfig)(integer *verbose, integer *v2, integer *v3, double *dummy)
 
 
 
-#define NUMSETFONC 28
+#define NUMSETFONC 32 /* NG */
 
 struct bgc { char *name ;
 	     void  (*setfonc )() ;
@@ -866,8 +865,11 @@ struct bgc { char *name ;
    {"colormap",C2F(setcolormapXfig),C2F(gemptyXfig)},
    {"dashes",C2F(setdashXfig),C2F(getdashXfig)},
    {"default",C2F(InitScilabGCXfig), C2F(gemptyXfig)},
+   {"figure",C2F(setscilabFigureXfig),C2F(getscilabFigureXfig)},/* NG */
    {"font",C2F(xsetfontXfig),C2F(xgetfontXfig)},
    {"foreground",C2F(setforegroundXfig),C2F(getforegroundXfig)},
+   {"gc",C2F(semptyXfig),C2F(getscilabxgcXfig)},/* NG */
+   {"gccolormap",C2F(setgccolormapXfig),C2F(gemptyXfig)},/* NG */
    {"hidden3d",C2F(sethidden3dXfig),C2F(gethidden3dXfig)},
    {"lastpattern",C2F(semptyXfig),C2F(getlastXfig)},
    {"line mode",C2F(absourelXfig),C2F(getabsourelXfig)},
@@ -877,6 +879,7 @@ struct bgc { char *name ;
    {"pixmap",C2F(semptyXfig),C2F(gemptyXfig)},
    {"thickness",C2F(setthicknessXfig),C2F(getthicknessXfig)},
    {"use color",C2F(usecolorXfig),C2F(getusecolorXfig)},
+   {"version",C2F(setscilabVersionXfig),C2F(getscilabVersionXfig)},/* NG */
    {"viewport",C2F(semptyXfig),C2F(gemptyXfig)},
    {"wdim",C2F(setwindowdimXfig),C2F(getwindowdimXfig)},
    {"white",C2F(semptyXfig),C2F(getlastXfig)},
@@ -1597,6 +1600,7 @@ void C2F(InitScilabGCXfig)(integer *v1, integer *v2, integer *v3, integer *v4)
   /** we force CurColorStatus to th eopposite value of col 
     to force usecolorPos to perform initialisations 
     **/
+  ScilabGCXfig.graphicsversion = 0;/* NG */ /* old mode */
   ScilabGCXfig.CurColorStatus = (col == 1) ? 0: 1;
   C2F(usecolorXfig)(&col,PI0,PI0,PI0);
   if (col == 1) ScilabGCXfig.IDLastPattern = ScilabGCXfig.Numcolors - 1;
@@ -2198,6 +2202,37 @@ static void C2F(analyze_pointsXfig)(integer n, integer *vx, integer *vy, integer
   }
 }
 
+/* NG beg */
+void C2F(setscilabFigureXfig)(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure)
+{
+ figure=(double *)ScilabGCXfig.mafigure;
+}
+
+void C2F(getscilabFigureXfig)(integer *verbose, integer *x,integer *narg, double *figure)
+{   
+  //*narg=1;
+  figure=(double *)ScilabGCXfig.mafigure;
+}
+void C2F(setscilabVersionXfig)(integer *vers, integer *v2, integer *v3, integer *v4)
+{
+  ScilabGCXfig.graphicsversion=*vers;
+}
+
+void C2F(getscilabVersionXfig)(integer *verbose, integer *vers, integer *narg, double *dummy)
+{   
+  //*narg =1 ;
+  *vers = ScilabGCXfig.graphicsversion;
+}
+void C2F(getscilabxgcXfig)(integer *verbose, integer *x,integer *narg, double *dummy)
+{   
+ double **XGC;
+ //*narg = 1;
+ XGC=(double **)dummy;
+ *XGC= (double *)&ScilabGCXfig;
+}
+void C2F(setscilabxgcXfig)(integer *v1, integer *v2, integer *v3, integer *v4)
+{}
+/* NG end */
 
 
 

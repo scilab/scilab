@@ -10,7 +10,7 @@
 #include "Math.h"
 #include "PloEch.h"
 
-static void Plo2d4RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
+extern void Plo2d4RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 /*--------------------------------------------------------------------
   C2F(plot2d4)(xf,x,y,n1,n2,style,strflag,legend,brect,aaint)
 --------------------------------------------------------------------------*/
@@ -77,7 +77,7 @@ int C2F(plot2d4)(char *xf, double *x, double *y, integer *n1, integer *n2, integ
 
 
 
-static void Plo2d4RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
+extern void Plo2d4RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
 {
   integer i,j;
   /** Computing y-values **/

@@ -41,7 +41,7 @@
 #include <malloc.h>
 extern  char  *getenv();
 #endif
-
+#if defined(THINK_C) || defined (__MWERKS__)|| defined(WIN32)
 #define CoordModePrevious 0
 #define CoordModeOrigin 1
 #define GXclear 0
@@ -60,6 +60,8 @@ extern  char  *getenv();
 #define GXorInverted 13
 #define GXnand 14
 #define GXset 15
+#endif
+
 
 
 #define Char2Int(x)   ( x & 0x000000ff )
@@ -75,6 +77,8 @@ static FILE *file= stdout ;
 #include "periGif.h"
 #include "color.h"
 #include "../gd/gd.h"
+#include "bcg.h" /* NG */
+
 
 void C2F(WriteGeneric1Gif)();
 void C2F(xgetmarkGif)(integer *verbose, integer *symb, integer *narg, double *dummy);
@@ -92,6 +96,14 @@ void C2F(set_cGif)(integer i);
 void C2F(idfromnameGif) (char *name1, integer *num);
 void C2F(getdashGif)(integer *verbose, integer *value, integer *narg, double *dummy);
 
+/* NG beg */
+void C2F(setscilabFigureGif)(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure);
+void C2F(getscilabFigureGif)(integer *verbose, integer *x,integer *narg, double *figure);
+void C2F(setscilabVersionGif)(integer *vers, integer *v2, integer *v3, integer *v4);
+void C2F(getscilabVersionGif)(integer *verbose, integer *vers, integer *narg, double *dummy);
+void C2F(setscilabxgcGif)(integer *v1, integer *v2, integer *v3, integer *v4); 
+void C2F(getscilabxgcGif)(integer *verbose, integer *x,integer *narg, double *dummy);
+/* NG end */
 
 
 
@@ -112,34 +124,10 @@ static void FileInitGif  __PARAMS((void));
 static int GifLineColor __PARAMS((void));
 static int GifPatternColor __PARAMS((int pat));
 static void LoadFontsGif(void);
-
+extern int gdImageSymb(gdImagePtr im, gdFontPtr f, int x, int y, int c, int color);
 /** Structure to keep the graphic state  **/
 
-struct BCG 
-{ 
-   int FontSize;
-   int FontId;
-   int CurWindowWidth;
-   int CurWindowHeight;
-   int CurHardSymb;
-   int CurHardSymbSize;
-   int CurLineWidth;
-   int CurPattern;
-   int CurColor;
-   int CurWindow;
-   int CurVectorStyle;
-   int CurDrawFunction;
-   int ClipRegionSet;
-   int CurClipRegion[4];
-   int CurDashStyle;
-   char CurNumberDispFormat[20];
-   int CurColorStatus;
-   int IDLastPattern; /* number of last patter or color */
-   int Numcolors; /* number of colors */
-   int NumBackground;  /* number of Background in the color table */
-   int NumForeground; /* number of Foreground in the color table */
-   int NumHidden3d;  /* color for hidden 3d facets **/
-}  ScilabGCGif ;
+struct BCG  ScilabGCGif ;
 
 static int col_index[gdMaxColors];
 static int fillpolylines_closeflag = 0;
@@ -263,8 +251,8 @@ void C2F(setwindowposGif)(integer *x, integer *y, integer *v3, integer *v4)
 void C2F(getwindowdimGif)(integer *verbose, integer *x, integer *narg, double *dummy)
 {     
   *narg = 2;
-  x[0]= ScilabGCGif.CurWindowWidth;
-  x[1]= ScilabGCGif.CurWindowHeight;
+  x[0]= ScilabGCGif.CWindowWidth;
+  x[1]= ScilabGCGif.CWindowHeight;
   if (*verbose == 1) 
     sciprint("\n CWindow dim :%d,%d\r\n",(int)x[0],(int)x[1]);
 } 
@@ -282,18 +270,18 @@ void C2F(setwindowdimGif)(integer *x, integer *y, integer *v3, integer *v4)
   }
   GifIm = gdImageCreate(*x, *y);
 
-  /*  ScilabGCGif.CurWindowWidth  = *x;
-      ScilabGCGif.CurWindowHeight = *y; */
+  /*  ScilabGCGif.CWindowWidth  = *x;
+      ScilabGCGif.CWindowHeight = *y; */
 
   FileInitGif();
   gdImageFilledRectangle(GifIm, 0, 0, (*x) - 1, (*y) - 1, col_white);
 
   gdImageCopyResized(GifIm, GifImOld, 0, 0, 0, 0, *x, *y, 
-              ScilabGCGif.CurWindowWidth,
-              ScilabGCGif.CurWindowHeight);
+              ScilabGCGif.CWindowWidth,
+              ScilabGCGif.CWindowHeight);
   gdImageDestroy(GifImOld);
-  ScilabGCGif.CurWindowWidth  = *x;
-  ScilabGCGif.CurWindowHeight = *y;
+  ScilabGCGif.CWindowWidth  = *x;
+  ScilabGCGif.CWindowHeight = *y;
 }
 
 /** Select a graphic Window : Empty for GIF **/
@@ -797,7 +785,7 @@ void C2F(getusecolorGif)(integer *verbose, integer *num, integer *narg, double *
  * -------
  *   This function is only used when the GIF driver is on 
  *   and xset('colormap',..) is used 
- *   (i.e driver('Pos');xset('colormap',....) 
+ *   (i.e driver('Gif');xset('colormap',....) 
  *   In the usual case (i.e when someone exports a graphic 
  *   which is displayed in a window) only the graphics 
  *   recorded commands are replayed and xset('colormap') belongs 
@@ -807,22 +795,19 @@ void C2F(getusecolorGif)(integer *verbose, integer *num, integer *narg, double *
  *   to GIF when the GIF file is opened 
  *   ( see  if (  CheckColormap(&m) == 1) in FileInt) 
  ******************************************************/
+void setcolormapgGif(struct  BCG *Xgc,integer *v1,integer *v2, double *a);/* NG */
 
-void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
+void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
 {
-  int i,m,r,g,b,c,ierr,m1;
+  int i,r,g,b,c,ierr,m1;
   double *cmap;
   int *ind,i1;
 
-  if (*v2 != 3 ||  *v1 < 0 ) {
-    Scistring("Colormap must be a m x 3 array \n");
-    return;
-  }
   if (GifIm == (gdImagePtr)0 ) {
     sciprint(" xinit must be called before any action \r\n");
     return;
   }
-  m = *v1;
+
   /* Checking RGB values */
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
@@ -836,7 +821,7 @@ void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, int
   /* deallocate old colors*/
   for ( i=0; i < GifIm->colorsTotal; i++) 
     gdImageColorDeallocate(GifIm, i);
-  for ( i=0;i < ScilabGCGif.Numcolors+2; i++) 
+  for ( i=0;i < Xgc->Numcolors+2; i++) 
     col_index[i] = -1;
 
   if (m>gdMaxColors-3) {/* reduce the number of colors */
@@ -853,8 +838,8 @@ void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, int
 
       C2F(nues1)(a,&m,cmap,&m1,ind,&ierr);
       /* create new colormap */
-      ScilabGCGif.Numcolors = m;
-      for ( i=0; i < ScilabGCGif.Numcolors; i++) {
+      Xgc->Numcolors = m;
+      for ( i=0; i < Xgc->Numcolors; i++) {
 	i1 = ind[i] - 1;
 	r=(int)(cmap[i1] * 255);
 	g=(int)(cmap[i1 + m1] * 255);
@@ -872,8 +857,8 @@ void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, int
   }
   else {
     /* create new colormap */
-    ScilabGCGif.Numcolors = m;
-    for ( i=0; i < ScilabGCGif.Numcolors; i++) {
+    Xgc->Numcolors = m;
+    for ( i=0; i < Xgc->Numcolors; i++) {
       r=(int)(a[i] * 255);
       g=(int)(a[i + m] * 255);
       b=(int)(a[i + 2*m] * 255);
@@ -897,15 +882,38 @@ void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, int
   col_index[m+1]=c;
   col_white=c;
 
-  ScilabGCGif.IDLastPattern = m - 1;
-  ScilabGCGif.NumForeground = m;
-  ScilabGCGif.NumBackground = m + 1;
+  Xgc->IDLastPattern = m - 1;
+  Xgc->NumForeground = m;
+  Xgc->NumBackground = m + 1;
 
 
   C2F(usecolorGif)((i=1,&i) ,PI0,PI0,PI0);
   C2F(setalufunction1Gif)((i=3,&i),PI0,PI0,PI0);
-  C2F(setpatternGif)((i=ScilabGCGif.NumForeground+1,&i),PI0,PI0,PI0);  
+  C2F(setpatternGif)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);  
 }
+
+void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
+{
+  int m;
+
+  if (*v2 != 3 ||  *v1 < 0 ) {
+    Scistring("Colormap must be a m x 3 array \n");
+    return;
+  }
+  if (GifIm == (gdImagePtr)0 ) {
+    sciprint(" xinit must be called before any action \r\n");
+    return;
+  }
+  m = *v1;
+
+  C2F(setgccolormapGif)(&ScilabGCGif,m, a);
+}
+/* NG beg */
+void setcolormapgGif(struct  BCG *Xgc,integer *m,integer *v2, double *a) /* NG */
+{
+  C2F(setgccolormapGif)(Xgc,*m, a);
+}
+/* NG end */
 
 /** 
   Initial (default) colormap 
@@ -1060,7 +1068,7 @@ void C2F(gemptyGif)(integer *verbose, integer *v2, integer *v3, double *dummy)
   if ( *verbose ==1 ) Scistring("\n No operation ");
 }
 
-#define NUMSETFONC 28
+#define NUMSETFONC 32
 
 /** Table in lexicographic order **/
 
@@ -1076,8 +1084,11 @@ struct bgc { char *name ;
     {"colormap",C2F(setcolormapGif),C2F(gemptyGif)},
     {"dashes",C2F(set_dash_or_color_Gif),C2F(get_dash_or_color_Gif)},
     {"default",InitScilabGCGif, C2F(gemptyGif)},
+    {"figure",C2F(setscilabFigureGif),C2F(getscilabFigureGif)},/* NG */
     {"font",C2F(xsetfontGif),C2F(xgetfontGif)},
     {"foreground",C2F(setforegroundGif),C2F(getforegroundGif)},
+    {"gc",C2F(semptyGif),C2F(getscilabxgcGif)},/* NG */
+    {"gccolormap",C2F(setgccolormapGif),C2F(gemptyGif)},/* NG */
     {"hidden3d",C2F(sethidden3dGif),C2F(gethidden3dGif)},
     {"lastpattern",C2F(semptyGif),C2F(getlastGif)},
     {"line mode",C2F(setabsourelGif),C2F(getabsourelGif)},
@@ -1087,6 +1098,7 @@ struct bgc { char *name ;
     {"pixmap",C2F(semptyGif),C2F(gemptyGif)},
     {"thickness",C2F(setthicknessGif),C2F(getthicknessGif)},
     {"use color",C2F(usecolorGif),C2F(getusecolorGif)},
+    {"version",C2F(setscilabVersionGif),C2F(getscilabVersionGif)},/* NG */
     {"viewport",C2F(semptyGif),C2F(gemptyGif)},
     {"wdim",C2F(setwindowdimGif),C2F(getwindowdimGif)},
     {"white",C2F(semptyGif),C2F(getlastGif)},
@@ -1121,7 +1133,7 @@ static  test(str,flag,verbose,x1,x2,x3,x4,x5)
   C2F(setwindowdimGif)(x1,x2,x3,x4);C2F(getwindowdimGif)(verbose,x1,x2,dv);
   C2F(semptyGif)(x1,x2,x3,x4);C2F(getlastGif)(verbose,x1,x2,dv);
   C2F(setcurwinGif)(x1,x2,x3,x4);C2F(getcurwinGif)(verbose,x1,x2,dv);
-  C2F(setwindowposGif)(x1,x2,x3,x4);getwindowposPos(verbose,x1,x2,dv);
+  C2F(setwindowposGif)(x1,x2,x3,x4);getwindowposGif(verbose,x1,x2,dv);
 }
 
 #endif 
@@ -1731,8 +1743,8 @@ initgraphicGif)(char *string, integer *v2, integer *v3, integer *v4, integer *v5
   GifIm = gdImageCreate(x[0], x[1]);
 
   /*GifFont = gdFontSmall;*/
-  ScilabGCGif.CurWindowWidth  = x[0];
-  ScilabGCGif.CurWindowHeight = x[1];
+  ScilabGCGif.CWindowWidth  = x[0];
+  ScilabGCGif.CWindowHeight = x[1];
   FileInitGif();
   ScilabGCGif.CurWindow =EntryCounter;
   EntryCounter =EntryCounter +1;
@@ -1880,8 +1892,9 @@ void InitScilabGCGif(integer *v1, integer *v2, integer *v3, integer *v4)
   /* Choix du mode par defaut (decide dans initgraphic_ */
   getcolordef(&col);
   /** we force CurColorStatus to the opposite value of col 
-    to force usecolorPos to perform initialisations 
+    to force usecolorGif to perform initialisations 
     **/
+  ScilabGCGif.graphicsversion = 0;/* NG */ /* old mode */
   ScilabGCGif.CurColorStatus = (col == 1) ? 0: 1;
   C2F(usecolorGif)(&col,PI0,PI0,PI0);
   if (col == 1) ScilabGCGif.IDLastPattern = ScilabGCGif.Numcolors - 1;
@@ -2080,7 +2093,7 @@ char symb_listGif[] = {
 
 static void C2F(displaysymbolsGif)(char *str, integer *n, integer *vx, integer *vy)
 {
-  int col, i, c, sz;
+  int col, i, c;
   col = ( ScilabGCGif.CurColorStatus ==1) ? ScilabGCGif.CurColor : ScilabGCGif.CurPattern ;
   for (i = 0; i < *n; i++) {
       c = Char2Int(symb_listGif[ScilabGCGif.CurHardSymb]);
@@ -2196,3 +2209,36 @@ static void LoadFontsGif(void)
      C2F(loadfamilyGif)("timBI",&i,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);*/
 
 }
+
+/* NG beg */
+void C2F(setscilabFigureGif)(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure)
+{
+ figure=(double *)ScilabGCGif.mafigure;
+}
+
+void C2F(getscilabFigureGif)(integer *verbose, integer *x,integer *narg, double *figure)
+{   
+  //*narg=1;
+  figure=(double *)ScilabGCGif.mafigure;
+}
+void C2F(setscilabVersionGif)(integer *vers, integer *v2, integer *v3, integer *v4)
+{
+  ScilabGCGif.graphicsversion=*vers;
+}
+
+void C2F(getscilabVersionGif)(integer *verbose, integer *vers, integer *narg, double *dummy)
+{   
+  //*narg =1 ;
+  *vers = ScilabGCGif.graphicsversion;
+}
+void C2F(getscilabxgcGif)(integer *verbose, integer *x,integer *narg, double *dummy)
+{   
+ double **XGC;
+ //*narg = 1;
+ XGC=(double **)dummy;
+ *XGC= (double *)&ScilabGCGif;
+}
+void C2F(setscilabxgcGif)(integer *v1, integer *v2, integer *v3, integer *v4)
+{}
+/* NG end */
+

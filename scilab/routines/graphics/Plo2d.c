@@ -17,6 +17,8 @@
 #include "../sparse/spConfig.h"
 #endif
 
+#include "Entities.h"
+
 /*--------------------------------------------------------------------
  *  C2F(plot2d)(x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
  *  
@@ -115,7 +117,15 @@ int C2F(xgrid)(style)
   double pas;
   integer verbose=0,narg,xz[10];
   /* Recording command */
-  if (GetDriver()=='R') StoreGrid("xgrid",style);
+  if (version_flag() == 0)
+    {
+      sciPointObj *psubwin;
+      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      pSUBWIN_FEATURE (psubwin)->grid = *style;
+    }
+  else
+    if (GetDriver()=='R') StoreGrid("xgrid",style);
+
   /* changes dash style if necessary */
   C2F(dr)("xget","color",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -169,6 +179,7 @@ int C2F(xgrid)(style)
  * output : FRect,aaint,strflag are modified 
  *----------------------------------------------------*/
 
+
 void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
      int cflag;
      char *xf;
@@ -184,6 +195,10 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
   int size_x = (cflag == 1) ? (*n1) : (*n1)*(*n2) ;
   int size_y = (cflag == 1) ? (*n2) : (*n1)*(*n2) ;
   char c;
+
+  
+  sciPointObj *subwindowtmp; /* NG */
+
   if ((int)strlen(strflag) < 2) return ;
   /* 
    * min,max using brect or x,y according to flags 
@@ -329,20 +344,43 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
     {
       /* recherche automatique des bornes et graduations */
       Gr_Rescale(&xf[1],FRect,Xdec,Ydec,&(aaint[0]),&(aaint[2]));
-      Gr_Rescale(&xf[1],FRect,Xdec,Ydec,&(aaint[0]),&(aaint[2]));
     }
   
   /* Update the current scale */
+  set_scale("tftttf",NULL,FRect,aaint,xf+1,NULL); 
+/* NG beg */ 
+  if (version_flag() == 0){
+    subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); 
+    if (!(sciGetZooming(subwindowtmp))){
+     pSUBWIN_FEATURE (subwindowtmp)->FRect[0]   = FRect[0];
+     pSUBWIN_FEATURE (subwindowtmp)->FRect[1]   = FRect[1];
+     pSUBWIN_FEATURE (subwindowtmp)->FRect[2]   = FRect[2];
+     pSUBWIN_FEATURE (subwindowtmp)->FRect[3]   = FRect[3];}
+    else { 
+     pSUBWIN_FEATURE (subwindowtmp)->FRect_kp[0]   = FRect[0];
+     pSUBWIN_FEATURE (subwindowtmp)->FRect_kp[1]   = FRect[1];
+     pSUBWIN_FEATURE (subwindowtmp)->FRect_kp[2]   = FRect[2];
+     pSUBWIN_FEATURE (subwindowtmp)->FRect_kp[3]   = FRect[3];}
+  }
+  /* NG end*/
 
-  set_scale("tftttf",NULL,FRect,aaint,xf+1,NULL);
 
   /* Should be added to set_scale */
 
   for (i=0; i < 3 ; i++ ) Cscale.xtics[i] = Xdec[i];
   for (i=0; i < 3 ; i++ ) Cscale.ytics[i] = Ydec[i];
   Cscale.xtics[3] = aaint[1];
-  Cscale.ytics[3] = aaint[3];
-
+  Cscale.ytics[3] = aaint[3]; 
+  /* NG beg */ 
+  if (version_flag() == 0){
+    subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); 
+    for (i=0 ; i<4 ; i++)
+      {  
+               pSUBWIN_FEATURE (subwindowtmp)->axes.xlim[i]=Cscale.xtics[i]; 
+    	       pSUBWIN_FEATURE (subwindowtmp)->axes.ylim[i]=Cscale.ytics[i];
+      } 
+    }
+  /* NG end */ 
   /* Changing back min,max and aaint if using log scaling X axis */
   if ((int)strlen(xf) >= 2 && xf[1]=='l' && (int)strlen(strflag) >= 2 && strflag[1] != '0')
     {
@@ -370,6 +408,11 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
       C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       Tape_ReplayNewScale1(" ",&ww,flag,PI0,aaint,PI0,PI0,FRect,PD0,PD0,PD0);
+      /*** MAJ A.Djalel */ 
+      if (version_flag() == 0)
+	{
+	    sciDrawObj(subwindowtmp);
+        } 
       C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
 }
@@ -474,16 +517,5 @@ void Legends(style, n1, legend)
       Scistring("Legends : running out of memory to store legends\n");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -5,6 +5,7 @@
  --------------------------------------------------------------------------*/
 
 #include "Math.h"
+#include "Entities.h"
 
 /********************************************************
  * the functions in this file are called from 
@@ -86,9 +87,12 @@ void scig_expose(integer win_num)
 	C2F(SetDriver)("Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
       C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
       C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+      C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+      if (version_flag() == 0) /* NG */
+       sciRedrawF(&win_num); /* NG */
+      else /* NG */  
       /* XXXX scig_handler(win_num); */
-      C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
       C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -184,30 +188,41 @@ void scig_tops(integer win_num, integer colored, char *bufname, char *driver)
   char name[4];
   integer zero=0,un=1;
   integer verb=0,cur,na,screenc;
+
   if ( scig_buzy  == 1 ) return ;
   scig_buzy =1;
   GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-  C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xsetdr",driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xinit",bufname,&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if (colored==1) 
-    C2F(dr)("xset","use color",&un,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  else
-    C2F(dr)("xset","use color",&zero,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  getcolordef(&screenc);
-  /** we set the default screen color to the value of colored 
-    because we don't want that recorded events such as xset("default") could 
-    change the color status .
-    and we set the UseColorFlag to 1 not to replay xset("use color",..) events 
+  C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);  
+  C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
+  if (version_flag() == 0) {
+    sciPointObj *curFig=sciGetCurrentFigure ();
+    integer bg;
+    C2F(dr)("xget","background",&verb,&bg,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,11L);
+    C2F(dr)("xsetdr",driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xinit",bufname,&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xset","background",&bg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
+    sciDrawObj(curFig);
+  }
+  else {
+    C2F(dr)("xsetdr",driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xinit",bufname,&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    if (colored==1) 
+      C2F(dr)("xset","use color",&un,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    else
+      C2F(dr)("xset","use color",&zero,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    getcolordef(&screenc);
+    /** we set the default screen color to the value of colored 
+	because we don't want that recorded events such as xset("default") could 
+	change the color status .
+	and we set the UseColorFlag to 1 not to replay xset("use color",..) events 
     **/
-  setcolordef(colored);
-  UseColorFlag(1);
-  /* XXXX scig_handler(win_num); */
-  C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  /** back to default values **/
-  UseColorFlag(0);
-  setcolordef(screenc);
+    setcolordef(colored);
+    UseColorFlag(1);
+    C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    /** back to default values **/
+    UseColorFlag(0);
+    setcolordef(screenc);
+  }
   C2F(dr)("xend","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);

@@ -39,13 +39,12 @@
 #define GXorInverted 13
 #define GXnand 14
 #define GXset 15
-#else
-#include <X11/Xlib.h>
-#include <X11/Intrinsic.h>
 #endif
+
 #include "Math.h"
 #include "periPos.h"
 #include "color.h"
+#include "bcg.h" /* NG */
 
 void C2F(WriteGeneric1Pos)(char *string, integer nobjpos, integer objbeg, integer sizeobj, integer *vx, integer *vy, integer flag, integer *fvect);
 void C2F(xgetmarkPos)(integer *verbose, integer *symb, integer *narg, double *dummy);
@@ -62,13 +61,21 @@ void C2F(setbackgroundPos)(integer *num, integer *v2, integer *v3, integer *v4);
 void C2F(set_cPos)(integer i);
 void C2F(idfromnamePos) (char *name1, integer *num);
 void C2F(getdashPos)(integer *verbose, integer *value, integer *narg, double *dummy);
+/* NG beg */
+void C2F(setscilabFigurePos)(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure);
+void C2F(getscilabFigurePos)(integer *verbose, integer *x,integer *narg, double *figure);
+void C2F(setscilabVersionPos)(integer *vers, integer *v2, integer *v3, integer *v4);
+void C2F(getscilabVersionPos)(integer *verbose, integer *vers, integer *narg, double *dummy);
+void C2F(setscilabxgcPos)(integer *v1, integer *v2, integer *v3, integer *v4); 
+void C2F(getscilabxgcPos)(integer *verbose, integer *x,integer *narg, double *dummy);
+/* NG end */
+
 static double ascentPos(void);
 static int fontsizePos (void);
 static int C2F(PosQueryFont)(char *name);
 static void C2F(displaysymbolsPos)(char *str, integer *n, integer *vx, integer *vy);
 static void WriteColorRGB(char *str, double *tab, int ind);
 static void WriteColorRGBDef(char *str, short unsigned int *tab, int ind);
-
 #define Char2Int(x)   ( x & 0x000000ff )
 
 static double *vdouble = 0; /* used when a double argument is needed */
@@ -85,29 +92,7 @@ void FileInit  __PARAMS((void));
 
 /** Structure to keep the graphic state  **/
 
-struct BCG 
-{ 
-   int FontSize;
-   int FontId;
-   int CurHardSymb;
-   int CurHardSymbSize;
-   int CurLineWidth;
-   int CurPattern;
-   int CurColor;
-   int CurWindow;
-   int CurVectorStyle;
-   int CurDrawFunction;
-   int ClipRegionSet;
-   int CurClipRegion[4];
-   int CurDashStyle;
-   char CurNumberDispFormat[20];
-   int CurColorStatus;
-   int IDLastPattern; /* number of last patter or color */
-   int Numcolors; /* number of colors */
-  int   NumBackground;  /* number of Background in the color table */
-  int  NumForeground; /* number of Foreground in the color table */
-  int NumHidden3d;  /* color for hidden 3d facets **/
-}  ScilabGCPos ;
+struct BCG ScilabGCPos ;
 
 /*-----------------------------------------------------
 \encadre{General routines}
@@ -334,8 +319,7 @@ void C2F(setalufunctionPos)(char *string)
 struct alinfo { 
   char *name;
   char id;
-  char *info;} AluStrucPos[] =
-{ 
+  char *info;} AluStrucPos[] = { 
   {"GXclear" ,GXclear," 0 "},
   {"GXand" ,GXand," src AND dst "},
   {"GXandReverse" ,GXandReverse," src AND NOT dst "},
@@ -693,15 +677,12 @@ void C2F(getusecolorPos)(integer *verbose, integer *num, integer *narg, double *
  *   to Postscript when the Postscript file is opened 
  *   ( see  if (  CheckColormap(&m) == 1) in FileInt) 
  ******************************************************/
+void setcolormapgPos(struct  BCG *Xgc,integer *v1,integer *v2, double *a);/* NG */
 
-void C2F(setcolormapPos)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
+
+void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a)
 {
-  int i,m;
-  if (*v2 != 3 ||  *v1 < 0) {
-    Scistring("Colormap must be a m x 3 array \n");
-    return;
-  }
-  m = *v1;
+  int i;
   /* Checking RGB values */
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
@@ -710,20 +691,37 @@ void C2F(setcolormapPos)(integer *v1, integer *v2, integer *v3, integer *v4, int
       return;
     }
   }
-  ScilabGCPos.Numcolors = m;
-  ScilabGCPos.IDLastPattern = m - 1;
-  ScilabGCPos.NumForeground = m;
-  ScilabGCPos.NumBackground = m + 1;
+  Xgc->Numcolors = m;
+  Xgc->IDLastPattern = m - 1;
+  Xgc->NumForeground = m;
+  Xgc->NumBackground = m + 1;
   WriteColorRGB("R",a,0);
   WriteColorRGB("G",a,1);
   WriteColorRGB("B",a,2);
   C2F(usecolorPos)((i=1,&i) ,PI0,PI0,PI0);
   C2F(setalufunction1Pos)((i=3,&i),PI0,PI0,PI0);
-  C2F(setpatternPos)((i=ScilabGCPos.NumForeground+1,&i),PI0,PI0,PI0);  
-  C2F(setforegroundPos)((i=ScilabGCPos.NumForeground+1,&i),PI0,PI0,PI0);
-  C2F(setbackgroundPos)((i=ScilabGCPos.NumForeground+2,&i),PI0,PI0,PI0);
+  C2F(setpatternPos)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);  
+  C2F(setforegroundPos)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);
+  C2F(setbackgroundPos)((i=Xgc->NumForeground+2,&i),PI0,PI0,PI0);
 }
 
+void C2F(setcolormapPos)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
+{
+  int m;
+  if (*v2 != 3 ||  *v1 < 0) {
+    Scistring("Colormap must be a m x 3 array \n");
+    return;
+  }
+  m = *v1;
+  C2F(setgccolormapPos)(&ScilabGCPos,m, a);
+}
+/* NG beg */
+void setcolormapgPos(struct  BCG *Xgc,integer *m,integer *v2, double *a) /* NG */
+{
+
+  C2F(setgccolormapPos)(Xgc,*m, a);
+}
+/* NG end */
 static void WriteColorRGB(char *str, double *tab, int ind)
 {
   int i;
@@ -871,7 +869,7 @@ void C2F(gemptyPos)(integer *verbose, integer *v2, integer *v3, double *dummy)
   if ( *verbose ==1 ) Scistring("\n No operation ");
 }
 
-#define NUMSETFONC 28
+#define NUMSETFONC 32 /* NG */
 
 /** Table in lexicographic order **/
 
@@ -887,8 +885,11 @@ struct bgc { char *name ;
     {"colormap",C2F(setcolormapPos),C2F(gemptyPos)},
     {"dashes",C2F(set_dash_or_color_Pos),C2F(get_dash_or_color_Pos)},
     {"default",InitScilabGCPos, C2F(gemptyPos)},
+    {"figure",C2F(setscilabFigurePos),C2F(getscilabFigurePos)},/* NG */
     {"font",C2F(xsetfontPos),C2F(xgetfontPos)},
     {"foreground",C2F(setforegroundPos),C2F(getforegroundPos)},
+    {"gc",C2F(semptyPos),C2F(getscilabxgcPos)},/* NG */
+    {"gccolormap",C2F(setgccolormapPos),C2F(gemptyPos)},/* NG */
     {"hidden3d",C2F(sethidden3dPos),C2F(gethidden3dPos)},
     {"lastpattern",C2F(semptyPos),C2F(getlastPos)},
     {"line mode",C2F(setabsourelPos),C2F(getabsourelPos)},
@@ -898,6 +899,7 @@ struct bgc { char *name ;
     {"pixmap",C2F(semptyPos),C2F(gemptyPos)},
     {"thickness",C2F(setthicknessPos),C2F(getthicknessPos)},
     {"use color",C2F(usecolorPos),C2F(getusecolorPos)},
+    {"version",C2F(setscilabVersionPos),C2F(getscilabVersionPos)},/* NG */
     {"viewport",C2F(semptyPos),C2F(gemptyPos)},
     {"wdim",C2F(setwindowdimPos),C2F(getwindowdimPos)},
     {"white",C2F(semptyPos),C2F(getlastPos)},
@@ -1647,6 +1649,8 @@ void InitScilabGCPos(integer *v1, integer *v2, integer *v3, integer *v4)
   /** we force CurColorStatus to the opposite value of col 
     to force usecolorPos to perform initialisations 
     **/
+  ScilabGCPos.graphicsversion = 0;/* NG */ /* old mode */
+
   ScilabGCPos.CurColorStatus = (col == 1) ? 0: 1;
   C2F(usecolorPos)(&col,PI0,PI0,PI0);
   if (col == 1) ScilabGCPos.IDLastPattern = ScilabGCPos.Numcolors - 1;
@@ -1888,7 +1892,7 @@ void C2F(xgetfontPos)(integer *verbose, integer *font, integer *nargs, double *d
 
 void C2F(xsetmarkPos)(integer *number, integer *size, integer *v3, integer *v4)
 { 
-  ScilabGCPos.CurHardSymb =
+  ScilabGCPos.CurHardSymb =     
     Max(Min(SYMBOLNUMBER-1,*number),0);
   ScilabGCPos.CurHardSymbSize = 
     Max(Min(FONTMAXSIZE-1,*size),0);
@@ -1968,3 +1972,34 @@ void C2F(queryfamilyPos)(char *name, integer *j, integer *v3, integer *v4, integ
 }
 
 /*------------------------END--------------------*/
+/* NG beg */
+void C2F(setscilabFigurePos)(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure)
+{
+ figure=(double *)ScilabGCPos.mafigure;
+}
+
+void C2F(getscilabFigurePos)(integer *verbose, integer *x,integer *narg, double *figure)
+{   
+  //*narg=1;
+  figure=(double *)ScilabGCPos.mafigure;
+}
+void C2F(setscilabVersionPos)(integer *vers, integer *v2, integer *v3, integer *v4)
+{
+  ScilabGCPos.graphicsversion=*vers;
+}
+
+void C2F(getscilabVersionPos)(integer *verbose, integer *vers, integer *narg, double *dummy)
+{   
+  //*narg =1 ;
+  *vers = ScilabGCPos.graphicsversion;
+}
+void C2F(getscilabxgcPos)(integer *verbose, integer *x,integer *narg, double *dummy)
+{   
+ double **XGC;
+ //*narg = 1;
+ XGC=(double **)dummy;
+ *XGC= (double *)&ScilabGCPos;
+}
+void C2F(setscilabxgcPos)(integer *v1, integer *v2, integer *v3, integer *v4)
+{}
+/* NG end */

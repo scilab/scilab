@@ -30,7 +30,7 @@ struct BCG
   int CurPattern;
   int CurColor;
   int CurPixmapStatus;
-  integer CurResizeStatus;
+  int CurResizeStatus;
   int CurVectorStyle;
   int CurDrawFunction;
   int ClipRegionSet;
@@ -52,6 +52,12 @@ struct BCG
   int NumForeground; /* number of Foreground in the color table */
   int NumHidden3d;  /* color for hidden 3d facets **/
   char EventHandler[25]; /* name of window event handler */
+  /* NG beg */
+  int CWindowWidthView;	 /** graphic window width **/
+  int CWindowHeightView;  /** graphic window height **/
+  sciPointObj *mafigure;  /* Entities root */
+  int graphicsversion;
+  /* NG end */
   /** win95 specific objects **/
   HPEN hPen ;  /** the current pen for graphic window **/
   HBRUSH hBrush; /** the current brush **/
@@ -60,8 +66,6 @@ struct BCG
 		     initgraphic **/
   SCROLLINFO vertsi;
   SCROLLINFO horzsi;
-  int CWindowWidthView ; /** graphic window width **/
-  int CWindowHeightView ; /** graphic window height **/
 }  ;
 
 

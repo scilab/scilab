@@ -11,18 +11,13 @@
 #ifndef STRICT 
 #define STRICT
 #endif 
-#include <windows.h>
-#include <windowsx.h>
-#ifndef __GNUC__XXX
-#include <commctrl.h>
-#endif
+
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
 #include <stdarg.h>
 
-#include "../wsci/wgnuplib.h"
 #include "../wsci/wresource.h"
 #include "../wsci/wcommon.h"
 #include "../wsci/wgraph.h"
@@ -33,6 +28,7 @@
 #include "Graphics.h"
 #include "scigraphic.h"
 #include "../machine.h"
+
 #ifdef WITH_TK
 extern void flushTKEvents ();
 extern int tcl_check_one_event();
@@ -58,7 +54,13 @@ extern int tcl_check_one_event();
 
 LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndParentGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-
+void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a);
+static void C2F(setscilabFigure)(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure);
+static void C2F(getscilabFigure)(integer *verbose, integer *x,integer *narg, double *figure);
+static void C2F(setscilabVersion)(integer *vers, integer *v2, integer *v3, integer *v4);
+static void C2F(getscilabVersion)(integer *verbose, integer *vers, integer *narg, double *dummy);
+static void C2F(setscilabxgc)(integer *v1, integer *v2, integer *v3, integer *v4);
+static void C2F(getscilabxgc)(integer *verbose, integer *x,integer *narg, double *dummy);
 /* Initialization values - Guess Now Scale later */
 
 #define WIN_XMAX (2400)
@@ -1098,7 +1100,6 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
      int getmouse,dyn_men,getrelease;
      char *str;
 {
-  MSG msg;
   int win;
   /** BOOL flag1= TRUE; **/
   integer buttons = 0;
@@ -2136,13 +2137,8 @@ void C2F(setpixmapOn)(num, v2, v3, v4)
     }
 }
 
-void C2F(getpixmapOn)(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+void C2F(getpixmapOn)(integer *verbose, integer *value, integer *narg, double *dummy)
 {
-
   *value=sciGetPixmapStatus();
   *narg =1 ;
   if (*verbose == 1) sciprint("Color %d",(int)*value);
@@ -2286,12 +2282,37 @@ void set_default_colormap()
      a[i+m] = GREEN
      a[i+2*m] = BLUE
      *v2 gives the value of m and *v3 must be equal to 3 */
-
 void C2F(setcolormap)(v1,v2,v3,v4,v5,v6,a)
      integer *v1,*v2;
      integer *v3;
      integer *v4,*v5,*v6;
      double *a;
+{
+  unsigned long maxcol;
+  int iPlanes = GetDeviceCaps(hdc,PLANES);
+  int iBitsPixel = GetDeviceCaps(hdc,BITSPIXEL);
+
+  /** must be improved for 32bit color display **/
+  if ( iBitsPixel > 24 ) iBitsPixel = 24;
+  maxcol = 1 << ( iPlanes*iBitsPixel);
+ 
+ /** to avoid overflow in maxcol **/
+  if (*v2 != 3 || (unsigned long) *v1 > maxcol || *v1 < 0) {
+    sciprint("Colormap must be a m x 3 array with m <= %d\r\n",maxcol);
+    return;
+  }
+  setcolormapg(ScilabXgc,v1,v2,a);
+}
+void C2F(setgccolormap)(v1,v2,a,XGC)
+     integer *v1,*v2;
+     double *a;
+     struct BCG *XGC;
+{
+
+  setcolormapg(XGC,v1,v2,a);
+}
+
+void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a)
 {
   int i,palstatus ,m;
   unsigned long maxcol;
@@ -2300,30 +2321,31 @@ void C2F(setcolormap)(v1,v2,v3,v4,v5,v6,a)
   /** XXXXX Trouver une doc sur les pallettes **/
   int iPlanes = GetDeviceCaps(hdc,PLANES);
   int iBitsPixel = GetDeviceCaps(hdc,BITSPIXEL);
-  /** to avoid overflow in maxcol **/
+
+  if ( ScilabXgc->CurPixmapStatus == 1) 
+    hdc = Xgc->hdcCompat;
+  else
+    hdc=GetDC(Xgc->CWindow); /*?????*/
+
   /** must be improved for 32bit color display **/
   if ( iBitsPixel > 24 ) iBitsPixel = 24;
   maxcol = 1 << ( iPlanes*iBitsPixel);
   palstatus= (GetDeviceCaps(hdc, RASTERCAPS) & RC_PALETTE);
-  /** sciprint(" couleurs %d et palette %d\r\n",maxcol,palstatus); **/
 
-  if (*v2 != 3 || (unsigned long) *v1 > maxcol || *v1 < 0) {
-    sciprint("Colormap must be a m x 3 array with m <= %d\r\n",maxcol);
-    return;
-  }
+ 
   m = *v1;
 
   /* Save old color vectors */
-  c = ScilabXgc->Colors;
-  r = ScilabXgc->Red;
-  g = ScilabXgc->Green;
-  b = ScilabXgc->Blue;
+  c = Xgc->Colors;
+  r = Xgc->Red;
+  g = Xgc->Green;
+  b = Xgc->Blue;
 
-  if (!XgcAllocColors(ScilabXgc,m)) {
-    ScilabXgc->Colors = c;
-    ScilabXgc->Red = r;
-    ScilabXgc->Green = g;
-    ScilabXgc->Blue = b;
+  if (!XgcAllocColors(Xgc,m)) {
+    Xgc->Colors = c;
+    Xgc->Red = r;
+    Xgc->Green = g;
+    Xgc->Blue = b;
     return;
   }
 
@@ -2332,38 +2354,38 @@ void C2F(setcolormap)(v1,v2,v3,v4,v5,v6,a)
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
       Scistring("RGB values must be between 0 and 1\n");
-      ScilabXgc->Colors = c;
-      ScilabXgc->Red = r;
-      ScilabXgc->Green = g;
-      ScilabXgc->Blue = b;
+      Xgc->Colors = c;
+      Xgc->Red = r;
+      Xgc->Green = g;
+      Xgc->Blue = b;
       return;
     }
-    ScilabXgc->Red[i] = (float)a[i];
-    ScilabXgc->Green[i] = (float)a[i+m];
-    ScilabXgc->Blue[i] = (float)a[i+2*m];  
-    ScilabXgc->Colors[i] = RGB((unsigned short) (255.0*a[i]),
+    Xgc->Red[i] = (float)a[i];
+    Xgc->Green[i] = (float)a[i+m];
+    Xgc->Blue[i] = (float)a[i+2*m];  
+    Xgc->Colors[i] = RGB((unsigned short) (255.0*a[i]),
 			       (unsigned short) (255.0*a[i+m]),
 			       (unsigned short) (255.0*a[i+2*m]));
   }
   /* Black */
-  ScilabXgc->Red[m] = ScilabXgc->Green[m] =  ScilabXgc->Blue[m] = (float) 0;
-  ScilabXgc->Colors[m]= RGB(0,0,0);
+  Xgc->Red[m] = Xgc->Green[m] =  Xgc->Blue[m] = (float) 0;
+  Xgc->Colors[m]= RGB(0,0,0);
 
   /* White */
-  ScilabXgc->Red[m+1] =  ScilabXgc->Green[m+1] =  ScilabXgc->Blue[m+1] = (float) 0;
-  ScilabXgc->Colors[m+1]= RGB(255,255,255);
+  Xgc->Red[m+1] =  Xgc->Green[m+1] =  Xgc->Blue[m+1] = (float) 0;
+  Xgc->Colors[m+1]= RGB(255,255,255);
 
-  ScilabXgc->Numcolors = m;
-  ScilabXgc->IDLastPattern = m - 1;
-  ScilabXgc->CmapFlag = 0;
-  ScilabXgc->NumForeground = m;
-  ScilabXgc->NumBackground = m + 1;
+  Xgc->Numcolors = m;
+  Xgc->IDLastPattern = m - 1;
+  Xgc->CmapFlag = 0;
+  Xgc->NumForeground = m;
+  Xgc->NumBackground = m + 1;
   C2F(usecolor)((i=1,&i) ,PI0,PI0,PI0);
   /** we must change the current pattern before the alufunction **/
-  C2F(setpattern)((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);  
-  C2F(setalufunction1)(&ScilabXgc->CurDrawFunction,PI0,PI0,PI0);
-  C2F(setforeground)((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);
-  C2F(setbackground)((i=ScilabXgc->NumForeground+2,&i),PI0,PI0,PI0);
+  C2F(setpattern)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);  
+  C2F(setalufunction1)(&Xgc->CurDrawFunction,PI0,PI0,PI0);
+  C2F(setforeground)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);
+  C2F(setbackground)((i=Xgc->NumForeground+2,&i),PI0,PI0,PI0);
   FREE(c); FREE(r); FREE(g); FREE(b);
 }
 
@@ -2710,7 +2732,7 @@ void C2F(gempty)(verbose, v2, v3,dummy)
   if ( *verbose ==1 ) Scistring("\n No operation ");
 }
 
-#define NUMSETFONC 28
+#define NUMSETFONC 32
 
 /** Table in lexicographic order **/
 
@@ -2727,8 +2749,11 @@ MissileGCTab_[] = {
   {"colormap",C2F(setcolormap),C2F(getcolormap)},
   {"dashes",C2F(set_dash_or_color),C2F(get_dash_or_color)}, /* obsolet */
   {"default",InitMissileXgc, C2F(gempty)},
+  {"figure",C2F(setscilabFigure),C2F(getscilabFigure)},/* NG */
   {"font",C2F(xsetfont),C2F(xgetfont)},
   {"foreground",C2F(setforeground),C2F(getforeground)},
+  {"gc",C2F(setscilabxgc),C2F(getscilabxgc)},/* NG */
+  {"gccolormap",C2F(setgccolormap),C2F(getcolormap)}, /* NG */
   {"hidden3d",C2F(sethidden3d),C2F(gethidden3d)},
   {"lastpattern",C2F(sempty),C2F(getlast)},
   {"line mode",C2F(setabsourel),C2F(getabsourel)},
@@ -2738,6 +2763,7 @@ MissileGCTab_[] = {
   {"pixmap",C2F(setpixmapOn),C2F(getpixmapOn)},
   {"thickness",C2F(setthickness),C2F(getthickness)},
   {"use color",C2F(usecolor),C2F(getusecolor)},
+  {"version",C2F(setscilabVersion),C2F(getscilabVersion)},/* NG */
   {"viewport", C2F(setviewport), C2F(getviewport)},
   {"wdim",C2F(setwindowdim),C2F(getwindowdim)},
   {"white",C2F(sempty),C2F(getlast)},
@@ -4149,7 +4175,6 @@ static void InitMissileXgc (integer *v1,integer *v2,integer *v3,integer *v4)
   C2F(setthickness)((i=0,&i),PI0,PI0,PI0);
   /* initialisation de la couleur par defaut */ 
   ScilabXgc->CurColorStatus = 1;
-
   set_default_colormap();
   C2F(setalufunction1)((i=3,&i),PI0,PI0,PI0);
   C2F(setpattern)((i=DefaultForeground,&i),PI0,PI0,PI0);
@@ -4164,6 +4189,7 @@ static void InitMissileXgc (integer *v1,integer *v2,integer *v3,integer *v4)
   /** we force CurColorStatus to the opposite value of col
     to force usecolorPos to perform initialisations
     **/
+  ScilabXgc->graphicsversion = 0;/* NG */ /* old */
   ScilabXgc->CurColorStatus = (i == 1) ? 0: 1;
   C2F(usecolor)(&i ,PI0,PI0,PI0);
   strcpy(ScilabXgc->CurNumberDispFormat,"%-5.2g");
@@ -5043,3 +5069,39 @@ int CheckScilabXgc()
 {
   return( ScilabXgc != (struct BCG *) 0);
 }
+
+/* NG beg */
+static void C2F(setscilabFigure)(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure)
+{
+ figure=(double *)ScilabXgc->mafigure;
+}
+
+static void C2F(getscilabFigure)(integer *verbose, integer *x,integer *narg, double *figure)
+{   
+  //*narg=1;
+  figure=(double *)ScilabXgc->mafigure;
+}
+
+static void C2F(setscilabVersion)(integer *vers, integer *v2, integer *v3, integer *v4)
+{
+  ScilabXgc->graphicsversion=*vers;
+}
+
+static void C2F(getscilabVersion)(integer *verbose, integer *vers, integer *narg, double *dummy)
+{   
+  //*narg =1 ;
+  *vers = ScilabXgc->graphicsversion;
+}
+
+static void C2F(setscilabxgc)(integer *v1, integer *v2, integer *v3, integer *v4)
+{
+
+}
+static void C2F(getscilabxgc)(integer *verbose, integer *x,integer *narg, double *dummy)
+{   
+ double **XGC;
+ XGC=(double **)dummy;
+ *XGC= (double *)ScilabXgc;
+}
+/* NG end */
+

@@ -23,8 +23,7 @@ typedef struct wcscalelist
   double m[3][3];                       /* 3d geometric transformation */
   double bbox1[6];                      /* 3d bounds */
   double alpha,theta;                   /* polar coordinates of visualization point */
-  integer metric3d;                     /* added by es - metric mode
-                                           for 3d -> 2d */
+  integer metric3d;                     /* added by es - metric mode for 3d -> 2d */
   struct wcscalelist *next;             /* points to next one */
   struct wcscalelist *prev;             /* points to previous one */
 }  WCScaleList ;
@@ -53,6 +52,18 @@ extern WCScaleList Cscale;
 #define YLogScale(y) inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1)
 #define XDouble2Pixel(x) ((Cscale.logflag[0] == 'n') ? ( XScale(x)) : ( XLogScale(x)))
 #define YDouble2Pixel(y) ((Cscale.logflag[1] == 'n') ? ( YScale(y)) : ( YLogScale(y)))
+
+/* NG beg */
+/*
+ * geometric transformation "for length"
+ */
+#define WScale(w)   inint (Cscale.Wscx1 * w)
+#define WLogScale(x,w) inint (Cscale.Wscx1 * (log10 ((x + w) / x)))
+#define HScale(h)   inint (Cscale.Wscy1 * h) 
+#define HLogScale(y,h) inint (Cscale.Wscy1 * (log10 (y / y - h)))
+#define WDouble2Pixel(x,w) ((Cscale.logflag[0] == 'n') ? ( WScale(w)) : ( WLogScale(x,w)))
+#define HDouble2Pixel(y,h) ((Cscale.logflag[1] == 'n') ? ( HScale(h)) : ( HLogScale(y,h)))
+/* NG end */
 
 /*
  * Current geometric transformation : from pixel to double 

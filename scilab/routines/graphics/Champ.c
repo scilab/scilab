@@ -9,9 +9,13 @@
 #include <string.h>
 #include "Math.h"
 #include "PloEch.h"
+#include "Entities.h" /* NG */
 
 static double MiniD __PARAMS((double *x,integer n));
-
+extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,integer *na,
+					 integer *arsize,integer *colored,double *x,double *y,
+                                         double  *fx,double *fy,integer *n1,integer *n2,double *arfact));
+extern void initsubwin();
 /*-----------------------------------------------------------------
  *  int C2F(champ)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
  *  int C2F(champ1)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
@@ -29,14 +33,18 @@ static double MiniD __PARAMS((double *x,integer n));
  * - lstr : (used when called from Fortran code)
  -------------------------------------------------------------------*/
 
-void champg(char *name, integer colored, double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, char *strflag, double *brect, double *arfact, integer lstr)
+void champg(char *name, integer colored, double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, 
+char *strflag, double *brect, double *arfact, integer lstr)
 {
   static integer aaint[]={2,10,2,10};
-  integer *xm,*ym,*zm,i,j,n,na;
-  double  xx[2],yy[2], maxx;
-  double  nx,ny,sc,sfx,sfy,sfx2,sfy2;
-  double  arsize1=0.5,arsize2=0.5;
-  integer arsize,nn1=1,nn2=2,iflag=0;
+  integer *xm,*ym,*zm,na,n;
+  double  xx[2],yy[2];
+  integer arsize,nn1=1,nn2=2,iflag=0;  
+  /* NG */
+  sciPointObj  *psubwin;
+  integer flag,type =1;
+  double arsize1;
+  integer *style;
   /* get default dash fo rarrows **/
   integer verbose=0,narg,xz[10],uc;
 
@@ -46,18 +54,52 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   else
     C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /** The arrowsize acording to the windowsize **/
-  n=2*(*n1)*(*n2);
+  n=2*(*n1)*(*n2); 
   xx[0]=x[0];xx[1]=x[*n1-1];
   yy[0]=y[0];yy[1]=y[*n2-1];
-  /** Boundaries of the frame **/
+  /** Boundaries of the frame **/ 
+  
+  // 19/12/2002
+  if (version_flag() == 0)
+  {
+      if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) 
+        { 
+          sciXbasc();  
+          initsubwin();
+          sciRedrawFigure();
+        }  
+  /** Boundaries of the frame **/ 
+      if ((sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->autoscaling)
+            update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
+  }
+ else
+      update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
 
-  update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
   /* Storing values if using the Record driver */
-  if (GetDriver()=='R') 
-    StoreChamp(name,x,y,fx,fy,n1,n2,strflag,brect,arfact);
+  if ((GetDriver()=='R') && (version_flag() != 0))
+     StoreChamp(name,x,y,fx,fy,n1,n2,strflag,brect,arfact); 
+ 
+  /*---- Drawing the axes ----*/
+  if (version_flag() == 0)
+  {
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+  sciSetIsClipping (psubwin,0); 
+  if ((realloc (pSUBWIN_FEATURE (psubwin)->strflag,(strlen(strflag)+1)*sizeof (char)))== NULL)
+		  sciprint("No more Memory allocation for axes !\n");
+        else
+	  { 
+          strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
+          pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
+          }
+  sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); 
 
-  /** Allocation **/
-  xm = graphic_alloc(0,n,sizeof(int));
+  sciSetCurrentObj(ConstructSegs((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
+                       type,x,y,*n1,*n2,fx,fy,flag,style,arsize1,colored,*arfact)); 
+
+  }
+  else 
+    axis_draw(strflag);
+  /** Allocation **/  xm = graphic_alloc(0,n,sizeof(int));
   ym = graphic_alloc(1,n,sizeof(int));
   if ( xm == 0 || ym == 0) 
     {
@@ -72,89 +114,9 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 	return ;
       }      
   }
-  /* From double to pixels */
-  for ( i = 0 ; i < *n1 ; i++)
-    for ( j =0 ; j < *n2 ; j++)
-      {
-	xm[2*(i +(*n1)*j)]= XScale(x[i]);
-	ym[2*(i +(*n1)*j)]= YScale(y[j]);
-      }
-  /** Scaling **/
-  nx=MiniD(x,*n1)*Cscale.Wscx1;
-  ny=MiniD(y,*n2)*Cscale.Wscy1;
-  sfx= Cscale.Wscx1;
-  sfy= Cscale.Wscy1;
-  sfx2= sfx*sfx;
-  sfy2= sfy*sfy;
-  maxx = sfx2*fx[0]*fx[0]+sfy2*fy[0]*fy[0];
-  for (i = 1;  i < (*n1)*(*n2) ; i++)
-    {
-      double maxx1 = sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i];
-      if ( maxx1 > maxx) maxx=maxx1;
-    }
-  maxx = ( maxx < SMDOUBLE) ? SMDOUBLE : sqrt(maxx);
-  sc=maxx;
-  /*sc= Min(nx,ny)/sc;*/
-  sc= sqrt(nx*nx+ny*ny)/sc;
-  sfx *= sc;
-  sfy *= sc;
-  /** size of arrow **/
-  arsize1= ((double) Cscale.WIRect1[2])/(5*(*n1));
-  arsize2= ((double) Cscale.WIRect1[3])/(5*(*n2));
-  arsize=  (arsize1 < arsize2) ? inint(arsize1*10.0) : inint(arsize2*10.0) ;
-  arsize = (int)(arsize*(*arfact));
 
-  set_clip_box(Cscale.WIRect1[0],Cscale.WIRect1[0]+Cscale.WIRect1[2],Cscale.WIRect1[1],
-	       Cscale.WIRect1[1]+Cscale.WIRect1[3]);
-
-  if ( colored == 0 ) 
-    {
-      int j=0;
-      for ( i = 0 ; i < (*n1)*(*n2) ; i++)
-	{
-	  integer x1n,y1n,x2n,y2n,flag1=0;
-	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]);
-	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]);
-	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]);
-	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]);
-	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
-	  if (flag1 !=0)
-	    {
-	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
-	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
-	      /* sciprint("j'ai rajoute (%d,%d)->(%d,%d)\r\n",xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1]); */
-	      j++;
-	    }
-	}
-      na=2*j;
-    }
-  else 
-    {
-      integer x1n,y1n,x2n,y2n,flag1=0;
-      integer whiteid;
-      int j=0;
-      C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      for ( i = 0 ; i < (*n1)*(*n2) ; i++)
-	{
-	  double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
-	  zm[j] = inint( ((double) whiteid)*(1.0 - nor/maxx));
-	  nor= sqrt(fx[i]*fx[i]+fy[i]*fy[i]);
-	  xm[1+2*j]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]);
-	  xm[2*j]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]);
-	  ym[1+2*j]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]);
-	  ym[2*j]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]);
-	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
-	  if (flag1 !=0)
-	    {
-	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
-	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
-	      j++;
-	    }
-       }
-      na=2*j;
-    }
-  /** Drawing axes **/
-  axis_draw(strflag);
+  Champ2DRealToPixel(xm,ym,zm,&na,&arsize,&colored,x,y,fx,fy,n1,n2,arfact);
+  
   /** Drawing the curves **/
   frame_clip_on();
   if ( colored ==0) 
@@ -198,8 +160,104 @@ static double MiniD(double *x, integer n)
 }
 
 
+extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact)
 
+  integer *xm,*ym,*zm;
+  integer *na,*arsize,*colored;
+  integer *n1,*n2;
+  double *x, *y, *fx, *fy;
+  double*arfact;
+{  
+ 
+  integer i,j;
+  double  maxx;
+  double  nx,ny,sc,sfx,sfy,sfx2,sfy2;
+  double  arsize1=0.5,arsize2=0.5;
+  /* get default dash fo rarrows **/
+  integer verbose=0,narg;
 
+  /* From double to pixels */
+  for ( i = 0 ; i < *n1 ; i++)
+    for ( j =0 ; j < *n2 ; j++)
+      {
+	xm[2*(i +(*n1)*j)]= XScale(x[i]);
+	ym[2*(i +(*n1)*j)]= YScale(y[j]);
+      }
+  /** Scaling **/
+  nx=MiniD(x,*n1)*Cscale.Wscx1;
+  ny=MiniD(y,*n2)*Cscale.Wscy1;
+  sfx= Cscale.Wscx1;
+  sfy= Cscale.Wscy1;
+  sfx2= sfx*sfx;
+  sfy2= sfy*sfy;
+  maxx = sfx2*fx[0]*fx[0]+sfy2*fy[0]*fy[0];
+  for (i = 1;  i < (*n1)*(*n2) ; i++)
+    {
+      double maxx1 = sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i];
+      if ( maxx1 > maxx) maxx=maxx1;
+    }
+  maxx = ( maxx < SMDOUBLE) ? SMDOUBLE : sqrt(maxx);
+  sc=maxx;
+  /*sc= Min(nx,ny)/sc;*/
+  sc= sqrt(nx*nx+ny*ny)/sc;
+  sfx *= sc;
+  sfy *= sc;
+  /** size of arrow **/
+  arsize1= ((double) Cscale.WIRect1[2])/(5*(*n1));
+  arsize2= ((double) Cscale.WIRect1[3])/(5*(*n2));
+  *arsize=  (arsize1 < arsize2) ? inint(arsize1*10.0) : inint(arsize2*10.0) ;
+  *arsize = (int)((*arsize)*(*arfact));
+
+  set_clip_box(Cscale.WIRect1[0],Cscale.WIRect1[0]+Cscale.WIRect1[2],Cscale.WIRect1[1],
+	       Cscale.WIRect1[1]+Cscale.WIRect1[3]);
+
+  if ( *colored == 0 ) 
+    {
+      int j=0;
+      for ( i = 0 ; i < (*n1)*(*n2) ; i++)
+	{
+	  integer x1n,y1n,x2n,y2n,flag1=0;
+	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]);
+	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]);
+	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]);
+	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]);
+	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+	  if (flag1 !=0)
+	    {
+	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
+	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
+	      /* sciprint("j'ai rajoute (%d,%d)->(%d,%d)\r\n",xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1]); */
+	      j++;
+	    }
+	}
+      *na=2*j;
+    }
+  else 
+    {
+      integer x1n,y1n,x2n,y2n,flag1=0;
+      integer whiteid;
+      int j=0;
+      C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      for ( i = 0 ; i < (*n1)*(*n2) ; i++)
+	{
+	  double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
+	  zm[j] = inint( ((double) whiteid)*(1.0 - nor/maxx));
+	  nor= sqrt(fx[i]*fx[i]+fy[i]*fy[i]);
+	  xm[1+2*j]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]);
+	  xm[2*j]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]);
+	  ym[1+2*j]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]);
+	  ym[2*j]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]);
+	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+	  if (flag1 !=0)
+	    {
+	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
+	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
+	      j++;
+	    }
+       }
+      *na=2*j;
+    }
+}
 
 
 

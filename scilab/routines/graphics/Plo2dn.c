@@ -64,7 +64,6 @@ extern void initsubwin();
   
 int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint,integer lstr1,integer lstr2)
 {
-  int n;
   int closeflag = 0;
   int jj = 0;
   sciPointObj **pptabofpointobj;
@@ -83,7 +82,11 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   } 
   
   /*---- Boundaries of the frame ----*/
-  if ((sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->autoscaling)
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+  pSUBWIN_FEATURE (psubwin)->logflags[0]=logflags[1];
+  pSUBWIN_FEATURE (psubwin)->logflags[1]=logflags[2];
+
+  if (sciGetGraphicMode (psubwin)->autoscaling)
      update_frame_bounds(0,logflags,x,y,n1,n2,aaint,strflag,brect); 
     
 
@@ -93,7 +96,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 
   /*---- Drawing the axes ----*/
   /** Check if an other axis exist in the selected subwindow **/
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+
   sciSetIsClipping (psubwin,0); 
   if ((realloc (pSUBWIN_FEATURE (psubwin)->strflag,(strlen(strflag)+1)*sizeof (char)))== NULL)
     {
@@ -102,7 +105,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     }
   else
     { 
-      strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
+      if (strflag[1]!='0')
+	strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
       pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
     }
 
@@ -135,7 +139,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       else {
         sciSetIsMark(sciGetCurrentObj(),  (style[jj] < 0 ? TRUE : FALSE));
         sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
-        sciSetForeground (sciGetCurrentObj(), -(style[jj]));
+        //sciSetForeground (sciGetCurrentObj(), -(style[jj]));
       } 
       if (with_leg) pptabofpointobj[jj] = sciGetCurrentObj();
       sciDrawObj(sciGetCurrentObj ()); 

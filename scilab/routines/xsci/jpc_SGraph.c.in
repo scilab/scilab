@@ -45,13 +45,14 @@ extern int getpid();
 #include "../menusX/men_scilab.h"
 #include "All-extern.h"
 #include "All-extern-x1.h"
-#include "../graphics/periX11-bcg.h"
+#include "../graphics/bcg.h"
 
 extern Widget initColors  __PARAMS((Widget));  
 extern Window GetBGWindowNumber __PARAMS((int));
 extern void DisplayInit __PARAMS((char *string,Display **dpy,Widget *toplevel));
 extern void ChangeBandF __PARAMS((int win_num,Pixel fg, Pixel bg));
 extern integer F2C(fbutn) __PARAMS((char *,integer*,integer*));
+extern void __PARAMS(DeleteObjs(int win_num)); /* NG */
 struct BCG *GetWindowXgcNumber __PARAMS((int));
 int demo_menu_activate=0; /* add a demo menu in the graphic Window */
 
@@ -870,7 +871,10 @@ EventProc1(widget, number, event)
       if ( event1->count == 0) 
 	{
 	  FDEBUG((stderr,"Expose--> scig_replay or wshow \r\n")); 
-	  scig_expose(win_num);
+	  if (version_flag() == 0) /* NG */
+	    sciRedrawF(&win_num); /* NG */
+	  else /* NG */
+	    scig_expose(win_num);
 	  ignore_expose(widget,&event2);
 	}
       break;
@@ -880,7 +884,10 @@ EventProc1(widget, number, event)
       break;
     case ConfigureNotify :
       FDEBUG((stderr,"XXX Configure\n"));
-      scig_replay(win_num);
+      if (version_flag() == 0) /* NG */
+       sciRedrawF(&win_num); /* NG */
+      else /* NG */
+	scig_replay(win_num);
       /** I ignore the following expose events **/
       ignore_expose(widget,&event2);
       break; 
@@ -1026,10 +1033,10 @@ Delete(w, number, client_data)
       SendSGDeleteMessage(win_num);
     }
   /** Delete the graphic window **/
+  if (version_flag() == 0) DeleteObjs(win_num);/* NG */
   Efface((Widget) 0,(XtPointer) number, (XtPointer) 0);
   scig_deletegwin_handler(win_num);
   DeleteSGWin(win_num);
-
 }
 
 /* for Fortran call */

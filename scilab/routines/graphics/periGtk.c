@@ -16,12 +16,19 @@
 #include <math.h>
 #include <gtk/gtk.h>
 #include "Math.h"
-#include "periGtk-bcg.h"
+#include "bcg.h"
 #include "../version.h"
 #include "color.h"
 
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
-
+extern integer C2F(ismenu)();
+extern int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry);
+extern int CheckClickQueue(integer *win,integer *x,integer *y,integer *ibut);
+extern int ClearClickQueue(int win);
+extern int PushClickQueue(int win,int x,int y,int ibut,int motion,int release) ;
+extern void * graphic_initial_menu(int winid);
+extern void MenuFixCurrentWin __PARAMS(( int ivalue));
+extern void GPopupResize __PARAMS((struct BCG *ScilabXgc,int *,int *));
 /** Global variables to deal with X11 **/
 
 static double *vdouble = 0; /* used when a double argument is needed */
@@ -126,7 +133,7 @@ void start_sci_gtk();
 
 /* Allocating colors in BCG struct */
 
-#define PIXEL_FROM_RGB(r,g,b) gdk_rgb_xpixel_from_rgb((r << 16)|(g << 8)|(b))
+#define PIXEL_FROM_RGB(r,g,b) gdk_rgb_xpixel_from_rgb(((guchar)r << 16)|((guchar)g << 8)|((guchar)b))
 #define PIXEL_FROM_CMAP(i) PIXEL_FROM_RGB(ScilabXgc->Red[i],ScilabXgc->Green[i],ScilabXgc->Blue[i])
 
 
@@ -149,9 +156,9 @@ static int XgcAllocColors(struct BCG *xgc, int m)
 {
   /* don't forget black and white */
   int mm = m + 2;
-  if ( (!(xgc->Red = (guchar *) MALLOC(mm*sizeof(guchar))))
-       || (!(xgc->Green = (guchar *) MALLOC(mm*sizeof(guchar))))
-       || (!(xgc->Blue = (guchar *) MALLOC(mm*sizeof(guchar)))) ) 
+  if ( (!(xgc->Red = (float *) MALLOC(mm*sizeof(float))))
+       || (!(xgc->Green = (float *) MALLOC(mm*sizeof(float))))
+       || (!(xgc->Blue = (float *) MALLOC(mm*sizeof(float)))) ) 
     {
       Sciprintf("XgcAllocColors: unable to alloc\n");
       FREE(xgc->Red);FREE(xgc->Green);FREE(xgc->Blue);
@@ -1479,7 +1486,7 @@ int C2F(sedeco)(int *flag)
 void set_default_colormap(void)
 {
   int i;
-  guchar *r, *g, *b;
+  float *r, *g, *b;
   int m;
   /* we don't want to set the default colormap at window creation 
      if the scilab command was xset("colormap"); 
@@ -1526,7 +1533,7 @@ void set_default_colormap(void)
 static void xset_colormap(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
 {
   int i,m;
-  guchar *r, *g, *b;
+  float *r, *g, *b;
   /* 2 colors reserved for black and white */
   if (*v2 != 3 || *v1 < 0 || *v1 > maxcol - 2) {
     Scierror(999,"Colormap must be a m x 3 array with m <= %ld\r\n",
@@ -1555,7 +1562,7 @@ static void xset_colormap(integer *v1, integer *v2, integer *v3, integer *v4, in
       ScilabXgc->Blue = b;
       return;
     }
-    SETCOLOR(i, (guchar)  (a[i]*255), (guchar)(a[i+m]*255),(guchar) (a[i+2*m]*255));
+    SETCOLOR(i, (float)  (a[i]*255), (float)(a[i+m]*255),(float) (a[i+2*m]*255));
   }
 
   /* Black */
@@ -2436,8 +2443,8 @@ void C2F(drawpolymark)(char *str, integer *n, integer *vx, integer *vy,
     { 
       integer i,keepid,keepsize,hds;
       i=1;
-      keepid =  ScilabXgc->fontId;
-      keepsize= ScilabXgc->fontSize;
+      keepid =  ScilabXgc->FontId;
+      keepsize= ScilabXgc->FontSize;
       hds= ScilabXgc->CurHardSymbSize;
       xset_font(&i,&hds,PI0,PI0);
       for ( i=0; i< *n ;i++) DrawMark(vx+i,vy+i);
@@ -2479,9 +2486,9 @@ static struct BCG *AddNewWindow(WindowList **listptr)
 	  (*listptr)->winxgc.pixmap =   NULL;
 	  (*listptr)->winxgc.CinfoW =   NULL ;
 	  (*listptr)->winxgc.CurWindow = 0;
-	  (*listptr)->winxgc.Red = (guchar *) 0;
-	  (*listptr)->winxgc.Green = (guchar *) 0;
-	  (*listptr)->winxgc.Blue = (guchar *) 0;
+	  (*listptr)->winxgc.Red = (float *) 0;
+	  (*listptr)->winxgc.Green = (float *) 0;
+	  (*listptr)->winxgc.Blue = (float *) 0;
 	  (*listptr)->winxgc.CmapFlag  = 1;
 	  (*listptr)->winxgc.EventHandler[0] = '\0';
 	  (*listptr)->next = (struct WindowList *) NULL ;
@@ -2861,8 +2868,8 @@ static void InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
 static void ResetScilabXgc (void)
 { 
   integer i,j, clip[4];
-  i= ScilabXgc->fontId;
-  j= ScilabXgc->fontSize;
+  i= ScilabXgc->FontId;
+  j= ScilabXgc->FontSize;
   xset_font(&i,&j,PI0,PI0);
   
   i= ScilabXgc->CurHardSymb;
@@ -3085,8 +3092,8 @@ static void xset_font(integer *fontid, integer *fontsize, integer *v3, integer *
 	  return;
 	}
     }
-  ScilabXgc->fontId = i;
-  ScilabXgc->fontSize = fsiz;
+  ScilabXgc->FontId = i;
+  ScilabXgc->FontSize = fsiz;
   ScilabXgc->font = FontsList_[i][fsiz_sca];
   /* 
      XSetFont(dpy,gc,FontsList_[i][fsiz_sca]->fid);
@@ -3099,14 +3106,14 @@ static void xset_font(integer *fontid, integer *fontsize, integer *v3, integer *
 static void  xget_font(integer *verbose, integer *font, integer *nargs, double *dummy)
 {
   *nargs=2;
-  font[0]= ScilabXgc->fontId ;
-  font[1] =ScilabXgc->fontSize ;
+  font[0]= ScilabXgc->FontId ;
+  font[1] =ScilabXgc->FontSize ;
   if (*verbose == 1) 
     {
-      Sciprintf("\nfontId : %d ", ScilabXgc->fontId );
+      Sciprintf("\nFontId : %d ", ScilabXgc->FontId );
       Sciprintf("--> %s at size %s pts\r\n",
-	       FontInfoTab_[ScilabXgc->fontId].fname,
-	       size_[ScilabXgc->fontSize]);
+	       FontInfoTab_[ScilabXgc->FontId].fname,
+	       size_[ScilabXgc->FontSize]);
     }
 }
 

@@ -7,11 +7,10 @@
 #include <string.h> /* in case of dbmalloc use */
 #include <stdio.h>
 #include <math.h>
-#include "Math.h"
+#include "Math.h" 
+#include "Graphics.h"
 #include "PloEch.h"
-
-extern void   set_delete_win_mode();
-extern void   set_no_delete_win_mode();
+#include "Entities.h"
 
 /*----------------------------------------------
  * A List for storing Window scaling information 
@@ -25,7 +24,8 @@ static WCScaleList *new_wcscale __PARAMS(( WCScaleList *val));
 static WCScaleList *check_subwin_wcscale __PARAMS((WCScaleList *listptr, double *));
 static int same_subwin __PARAMS((double lsubwin_rect[4],double subwin_rect[4]));
 static void set_window_scale __PARAMS((integer i,WCScaleList  *scale));
-
+/************/
+//extern int version_flag;
 
 /* The scale List : one for each graphic window */
 
@@ -51,12 +51,13 @@ WCScaleList  Cscale =
   35.0,45.0,
   1,                 /* added by es */
   (WCScaleList *) 0, /*unused */
-  (WCScaleList *) 0 /*unused */
+  (WCScaleList *) 0  /*unused */  
 };
 
 /** default values **/
 
-static WCScaleList  Defscale = 
+//static WCScaleList  Defscale = 
+WCScaleList  Defscale = 
 { 
   0,
   {600,400},
@@ -74,7 +75,7 @@ static WCScaleList  Defscale =
   35.0,45.0,
   1,                 /* added by es */
   (WCScaleList *) 0, /*unused */
-  (WCScaleList *) 0 /*unused */
+  (WCScaleList *) 0 /*unused */  
 };
 
 /*----------------------------------------------------------
@@ -82,7 +83,7 @@ static WCScaleList  Defscale =
  * and curwin() scale with default scale.
  *----------------------------------------------------------*/
 
-void Cscale2default()
+extern void Cscale2default()
 {
   scale_copy(&Cscale,&Defscale);  set_window_scale(curwin(),&Cscale);
 }
@@ -384,6 +385,14 @@ static void show_scales(listptr)
     }
 }
 
+/*** 14/03/2002 ****/
+//void get_curwin(curwin)
+//     integer curwin;
+//{
+//  curwin=The_List->Win;
+//  sciprint("Window %d \r\n",curwin);
+//}
+/**************/
 
 /*-------------------------------------------
  * setscale2d 
@@ -450,10 +459,38 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
    * this is only important for StoreNEch which do not work with null arguments 
    */ 
   /* char flag[] = "tfffff";*/ /* flag to specify which arguments have changed*/
+  /* 14/03/2002*/
+  sciPointObj *masousfen;
+	
   char flag[7];
-  strcpy(flag,"tfffff");
+  strcpy(flag,"tfffff");  
+ 
+  /** voir aussi si xsetech (frect) **/ 
   if ( WRect != NULL) 
     {
+      /* Ajout djalel */
+      if (version_flag() == 0)
+        {
+	  if (( masousfen = sciIsExistingSubWin (WRect)) != (sciPointObj *)NULL)
+	    sciSetSelectedSubWin(masousfen);
+	  else if ((masousfen = ConstructSubWin (sciGetCurrentFigure(), 0)) != NULL)
+	    sciSetSelectedSubWin(masousfen);
+
+	  pSUBWIN_FEATURE (masousfen)->WRect[0]   = WRect[0];
+	  pSUBWIN_FEATURE (masousfen)->WRect[1]   = WRect[1];
+	  pSUBWIN_FEATURE (masousfen)->WRect[2]   = WRect[2];
+          pSUBWIN_FEATURE (masousfen)->WRect[3]   = WRect[3];
+
+	  if (FRect != NULL)
+	    {
+	      pSUBWIN_FEATURE (masousfen)->FRect[0]   = FRect[0];
+	      pSUBWIN_FEATURE (masousfen)->FRect[1]   = FRect[1];
+	      pSUBWIN_FEATURE (masousfen)->FRect[2]   = FRect[2];
+	      pSUBWIN_FEATURE (masousfen)->FRect[3]   = FRect[3];
+	    }
+	}
+
+      /** */
       /* a subwindow is specified */
       flag[1]='t';
       if (! same_subwin( WRect, Cscale.subwin_rect))
@@ -524,7 +561,7 @@ int getscale2d(WRect,FRect,logscale,ARect)
       ARect[i]=Cscale.axis[i];
     }
   if (logscale[0]=='l') 
-    {
+    { 
       FRect[0]=pow(ten,FRect[0]);
 	FRect[2]=pow(ten,FRect[2]);
     }
@@ -658,13 +695,12 @@ void set_scale(flag,subwin,frame_values,aaint,logflag,axis_values)
       Cscale.xtics[3] = Cscale.Waaint1[1];
       Cscale.ytics[3] = Cscale.Waaint1[3];
     }
-
-
+ 
   /** Cscale changes are copied int current window scale */
   if ( (c=GetDriver()) == 'X' ||  c == 'R' || c == 'I' || c == 'G' || c == 'W' )
     {
       set_window_scale(curwin(),&Cscale);
-    }
+    }  
 }
 
 /*--------------------------------------------------------------------
@@ -726,6 +762,7 @@ int C2F(xechelle2d)(x,x1,n1,dir,lstr)
   integer i;
   if (strcmp("f2i",dir)==0) 
     {
+      
       if (Cscale.logflag[0] == 'n') 
 	for ( i=0 ; i < (*n1) ; i++) x1[i]= XScale(x[i]);
       else 
@@ -739,7 +776,22 @@ int C2F(xechelle2d)(x,x1,n1,dir,lstr)
 	for ( i=0 ; i < (*n1) ; i++) x[i]= exp10(XPi2R( x1[i]));
     }
   else 
-    sciprint(" Wrong dir %s argument in echelle2d\r\n",dir);
+   sciprint(" Wrong dir %s argument in echelle2d\r\n",dir);
+
+  
+  //sciprint(" *****************************-\r\n"); 
+   //sciprint(" premier point [x0]= %f\r\n",x[0]);
+  //sciprint(" deuxieme point [x1]= %f\r\n",x[1]);
+  //sciprint(" avant ernier point [xn-1]= %f\r\n",x[*n1-1]);
+  //sciprint(" dernier point [xn]= %f\r\n",x[*n1]);
+  //sciprint(" -------------changementd'echelle--------\r\n"); 
+  //sciprint(" premier point [x0]= %d\r\n",x1[0]);
+  //sciprint(" deuxieme point [x1]=  %d\r\n",x1[1]);
+  //sciprint(" avant ernier point [xn-1]= %d\r\n",x1[*n1-1]);
+  //sciprint(" dernier point [xn]= %d\r\n",x1[*n1]); 
+  //sciprint(" nombre de points===%d\r\n",*n1);
+  //sciprint(" &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*-\r\n");
+  
   return(0);
 }
 
@@ -767,7 +819,19 @@ int C2F(yechelle2d)(y,yy1,n2,dir,lstr)
 	for ( i=0 ; i < (*n2) ; i++)  y[i]= exp10(YPi2R( yy1[i]));
     }
   else 
-    sciprint(" Wrong dir %s argument in echelle2d\r\n",dir);
+    sciprint(" Wrong dir %s argument in echelle2d\r\n",dir); 
+  
+  //sciprint(" ************************************\r\n"); 
+  //sciprint(" premier point [y0]= %f\r\n",y[0]);
+  //sciprint(" deuxieme point [y1]= %f\r\n",y[1]);
+  //sciprint(" avant ernier point [yn-1]= %f\r\n",y[*n2-1]);
+  //sciprint(" dernier point yn=% f\r\n",y[*n2]);
+  //sciprint(" -------------changementd'echelle--------\r\n"); 
+  //sciprint(" premier point [yy0]= %d\r\n",yy1[0]);
+  //sciprint(" deuxieme point [yy1]= %d\r\n",yy1[1]);
+  //sciprint(" avant ernier point [yyn-1]= %d\r\n",yy1[*n2-1]);
+  //sciprint(" dernier point [yyn]= %d\r\n",yy1[*n2]);
+  //sciprint(" nombre de point==== %d\r\n",*n2);
   return(0);
 }
 
@@ -960,10 +1024,10 @@ void zoom_get_rectangle(bbox)
   /* Using the mouse to get the new rectangle to fix boundaries */
   integer th,th1=1;
   integer pixmode,alumode,color,style[10],fg,verbose=0,narg;
-  integer ibutton,in,iwait=0,istr=0;
+  integer ibutton,in,iwait=0,istr=0, noir=33;
   integer modes[2];
-
   double x0,yy0,x,y,xl,yl;
+
   modes[0]=1;modes[1]=0; /* for xgemouse only get mouse mouvement*/ 
 
   C2F(dr)("xget","pixmap",&verbose,&pixmode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -972,11 +1036,10 @@ void zoom_get_rectangle(bbox)
   C2F(dr)("xget","color",&verbose,&color,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","line style",&verbose,style,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  set_no_delete_win_mode();
 
 #ifdef WIN32
   SetWinhdc();
-  SciMouseCapture();
+  SciMouseCapture();Szoom
 #endif 
   C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   C2F(dr)("xset","thickness",&th1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -991,14 +1054,15 @@ void zoom_get_rectangle(bbox)
   while ( ibutton == -1 ) 
     {
       /* dessin d'un rectangle */
+      C2F (dr) ("xset", "color",&noir,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0, PD0,0L,0L);
       zoom_rect(x0,yy0,x,y);
       if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(dr1)("xgetmouse","one",&ibutton,&iwait,PI0,PI0, modes ,PI0,&xl, &yl,PD0,PD0,0L,0L);
+      C2F(dr1)("xgetmouse","one",&ibutton,&iwait,PI0,PI0,modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
       /* effacement du rectangle */
       zoom_rect(x0,yy0,x,y);
       if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       x=xl;y=yl;
-    }
+    }   
 #ifndef WIN32
   /** XXXX */
   C2F(dr1)("xset","alufunction",(in=3,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1014,9 +1078,7 @@ void zoom_get_rectangle(bbox)
   C2F(dr)("xset","thickness",&th,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  
-  set_delete_win_mode();
-  wininfo(" ");
+
 #ifdef WIN32
   ReleaseWinHdc();
   SciMouseRelease();
@@ -1024,11 +1086,21 @@ void zoom_get_rectangle(bbox)
 
 }
 
+
+
 void zoom()
 {
   char driver[4];
   integer aaint[4],flag[2]; /* ansi : ={1,0};*/
-  integer verbose=0,narg,ww;
+  integer verbose=0,narg,ww; 
+  /** 01/07/2002 ***/
+  sciPointObj *psousfen,*tmpsousfen;
+  sciSons *psonstmp;  
+
+  double fmin,fmax,lmin,lmax;  
+  integer min,max,puiss,deux=2,dix=10,box1[4],section[4];
+ 
+ 
   flag[0] =1 ; flag[1]=0;
   C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
@@ -1040,17 +1112,99 @@ void zoom()
   else 
     {
       double bbox[4];
-      zoom_get_rectangle(bbox);
+ 
+      zoom_get_rectangle(bbox);   
       C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-      C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
-      Tape_ReplayNewScale(" ",&ww,flag,PI0,aaint,PI0,PI0,bbox,PD0,PD0,PD0);
+      C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+      if (version_flag() == 0){  
+	/***** 02/10/2002 ****/
+        integer box[4];
+       
+        box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2])); 
+        box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
+        box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3])); 
+        box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
+       
+        
+        tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure());
+        psonstmp = sciGetSons (sciGetCurrentFigure());
+        while (psonstmp != (sciSons *) NULL)	
+          {  
+           if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
+             {
+                psousfen= (sciPointObj *)psonstmp->pointobj;
+                 sciSetSelectedSubWin(psousfen);
+                 box1[0]= Cscale.WIRect1[0]; 
+		 box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
+		 box1[1]= Cscale.WIRect1[1]; 
+		 box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
+                 
+                 if (sciIsAreaZoom(box,box1,section))
+                   { 
+                 bbox[0]= Min(XPixel2Double(section[0]),XPixel2Double(section[2])); 
+                 bbox[2]= Max(XPixel2Double(section[0]),XPixel2Double(section[2]));
+                 bbox[1]= Min(YPixel2Double(section[1]),YPixel2Double(section[3])); 
+                 bbox[3]= Max(YPixel2Double(section[1]),YPixel2Double(section[3])); 
+                 
+                     if (!(sciGetZooming(psousfen)))
+	               {
+		       sciSetZooming(psousfen, 1);
+		       pSUBWIN_FEATURE (psousfen)->FRect_kp[0]   = pSUBWIN_FEATURE (psousfen)->FRect[0];
+		       pSUBWIN_FEATURE (psousfen)->FRect_kp[1]   = pSUBWIN_FEATURE (psousfen)->FRect[1];
+		       pSUBWIN_FEATURE (psousfen)->FRect_kp[2]   = pSUBWIN_FEATURE (psousfen)->FRect[2];
+		       pSUBWIN_FEATURE (psousfen)->FRect_kp[3]   = pSUBWIN_FEATURE (psousfen)->FRect[3];
+                       }
+		      
+ 
+		       //pSUBWIN_FEATURE (psousfen)->FRect[0]   = exp10( Cscale.xtics[2])*inint(bbox[0]/exp10( Cscale.xtics[2])); //bbox[0]
+		       //pSUBWIN_FEATURE (psousfen)->FRect[1]   = exp10( Cscale.ytics[2])*inint(bbox[1]/exp10( Cscale.ytics[2])); //bbox[1];
+		       //pSUBWIN_FEATURE (psousfen)->FRect[2]   = exp10( Cscale.xtics[2])*inint(bbox[2]/exp10( Cscale.xtics[2])); //bbox[2];
+		       //pSUBWIN_FEATURE (psousfen)->FRect[3]   = exp10( Cscale.ytics[2])*inint(bbox[3]/exp10( Cscale.ytics[2])); //bbox[3];
+	
+                    
+		     /** 17/09/2002 ***/
+		     /** regraduation de l'axe des axes ***/
+		     fmin=  bbox[0]; 
+		     fmax=  bbox[2];
+		     C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+                     pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss; 
+                     pSUBWIN_FEATURE (psousfen)->FRect[0]=lmin;  
+                     pSUBWIN_FEATURE (psousfen)->FRect[2]=lmax; 
+		     
+          
+		     fmin= bbox[1]; fmax= bbox[3];   
+		     C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+		     pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
+                     pSUBWIN_FEATURE (psousfen)->FRect[1]=lmin;  
+                     pSUBWIN_FEATURE (psousfen)->FRect[3]=lmax; 
+		     /*****/
+		 }
+	     }     
+           psonstmp = psonstmp->pnext;
+          }
+          sciSetSelectedSubWin(tmpsousfen);
+          sciSetReplay(1);
+	  sciDrawObj(sciGetCurrentFigure());
+	  sciSetReplay(0);
+         }
+        else 
+           Tape_ReplayNewScale(" ",&ww,flag,PI0,aaint,PI0,PI0,bbox,PD0,PD0,PD0);
+	  
     }
 }
 
-void unzoom()
+
+extern void unzoom()
 {
   char driver[4];
-  integer ww,verbose=0,narg;
+  integer ww,verbose=0,narg; 
+  /** 17/09/2002 ***/  
+  double fmin,fmax,lmin,lmax;  
+  integer min,max,puiss,deux=2,dix=10;
+  sciPointObj *psousfen;
+  sciSons *psonstmp;  
+
+  
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   if (strcmp("Rec",driver) != 0) 
     {
@@ -1061,7 +1215,44 @@ void unzoom()
     {
       C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      Tape_ReplayUndoScale("v",&ww);
+      if (version_flag() == 0){ 
+         /***** 02/10/2002 ****/
+        psonstmp = sciGetSons (sciGetCurrentFigure());
+        while (psonstmp != (sciSons *) NULL)	
+          {  
+           if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
+             {
+                psousfen= (sciPointObj *)psonstmp->pointobj;
+        	if (sciGetZooming(psousfen))
+	            {
+		      sciSetZooming(psousfen, 0);
+		      pSUBWIN_FEATURE (psousfen)->FRect[0]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[0];
+		      pSUBWIN_FEATURE (psousfen)->FRect[1]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[1];
+		      pSUBWIN_FEATURE (psousfen)->FRect[2]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[2];
+		      pSUBWIN_FEATURE (psousfen)->FRect[3]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[3];
+		    }
+	  
+		/** regraduation de l'axe des axes ***/
+		fmin= pSUBWIN_FEATURE (psousfen)->FRect[0];
+		fmax= pSUBWIN_FEATURE (psousfen)->FRect[2]; 
+		C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+		pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss; 
+          
+		fmin= pSUBWIN_FEATURE (psousfen)->FRect[1];
+		fmax= pSUBWIN_FEATURE (psousfen)->FRect[3]; 
+		C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+		pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
+		/*****/  
+               }     
+              psonstmp = psonstmp->pnext;
+            } 
+        
+          sciSetReplay(1);
+	  sciDrawObj(sciGetCurrentFigure());
+	  sciSetReplay(0);
+    }
+   else
+    Tape_ReplayUndoScale("v",&ww);
     }
 }
 
@@ -1111,10 +1302,27 @@ void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
      integer *ynax;
 {
   double FRectO[4];
+  sciPointObj *psubwin; 
+  int i;
+
+  if (version_flag() == 0){
+      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      for (i=0;i<4 ; i++)
+	pSUBWIN_FEATURE (psubwin)->axes.limits[i+1]=FRectI[i];}
+     
+    
   if (logf[0] == 'n') 
-    {
-      C2F(graduate)(FRectI,FRectI+2,FRectO,FRectO+2,xnax,xnax+1,Xdec,Xdec+1,Xdec+2);
-      FRectI[0]=FRectO[0];FRectI[2]=FRectO[2];
+    { 
+      if ((version_flag() != 0) || ( pSUBWIN_FEATURE (psubwin)->axes.limits[0] !=1))
+         {
+          C2F(graduate)(FRectI,FRectI+2,FRectO,FRectO+2,xnax,xnax+1,Xdec,Xdec+1,Xdec+2);
+          FRectI[0]=FRectO[0];FRectI[2]=FRectO[2];
+         }
+        
+      else
+      {
+         C2F(graduate)(FRectI,FRectI+2,FRectO,FRectO+2,xnax,xnax+1,Xdec,Xdec+1,Xdec+2);
+      }
     }
   else
     {
@@ -1124,22 +1332,21 @@ void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
     }
   if (logf[1] == 'n') 
     {
-      C2F(graduate)(FRectI+1,FRectI+3,FRectO+1,FRectO+3,ynax,ynax+1,Ydec,Ydec+1,Ydec+2);
-      FRectI[1]=FRectO[1];FRectI[3]=FRectO[3];
+     if ((version_flag() != 0) || ( pSUBWIN_FEATURE (psubwin)->axes.limits[0] !=1))
+         {
+            C2F(graduate)(FRectI+1,FRectI+3,FRectO+1,FRectO+3,ynax,ynax+1,Ydec,Ydec+1,Ydec+2);
+            FRectI[1]=FRectO[1];FRectI[3]=FRectO[3];
+         } 
+     else
+      {
+         C2F(graduate)(FRectI+1,FRectI+3,FRectO+1,FRectO+3,ynax,ynax+1,Ydec,Ydec+1,Ydec+2);
+      }
     }
   else
     {
       Ydec[0]=inint(FRectI[1]);Ydec[1]=inint(FRectI[3]);Ydec[2]=0;
     }
+
+
 }
-
-    
-
-
-
-
-
-
-
-
 

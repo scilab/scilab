@@ -2,15 +2,22 @@
  *    Graphic library
  *    Copyright (C) 1998-2001 Enpc/Jean-Philippe Chancelier
  *    jpc@cermics.enpc.fr 
+ *
  *    modified by Bruno Pincon 01/02/2001 for gain in speed and added 
  *    possibilities to set zmin, zmax by the user and also to set the 
  *    first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr)
+ *
+for entities handling
  --------------------------------------------------------------------------*/
 
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
-#include "Math.h"
+#include "Math.h" 
+#include "Graphics.h"
+#include "Entities.h" /* NG */
+extern int version_flag(void); /* NG */
+
 
 /* functions used by the modified version : */
 static void PaintTriangle __PARAMS((double sx[], double sy[], double fxy[], 
@@ -20,6 +27,9 @@ static void PermutOfSort __PARAMS((int tab[], int perm[]));
 static void FindIntersection __PARAMS((double sx[], double sy[], double fxy[],
 				       double z, int inda, int indb, 
 				       integer *xint, integer *yint));
+void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
+		      integer *Ntr,double *zminmax,integer *colminmax));
+extern void initsubwin();
 
 /*------------------------------------------------------------
  *  Iso contour with grey level or colors 
@@ -46,170 +56,219 @@ static void FindIntersection __PARAMS((double sx[], double sy[], double fxy[],
 
 int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, integer *colminmax, integer lstr1, integer lstr2)
 {
-  integer i, *xm,*ym,n1=1,j,k;
-
-  /** Boundaries of the frame **/
-  update_frame_bounds(0,"gnn",x,y,&n1,Nnode,aaint,strflag,brect);
-
-  /* Storing values if using the Record driver */
-  if (GetDriver()=='R') 
-    /* added zminmax and colminmax (bruno) */
-    StoreFec("fec_n",x,y,triangles,func,Nnode,Ntr,strflag,legend,brect,aaint,zminmax,colminmax);
-
-
-  /** Allocation **/
-  xm = graphic_alloc(0,*Nnode,sizeof(int));
-  ym = graphic_alloc(1,*Nnode,sizeof(int));
-  if ( xm == 0 || ym == 0) 
-    {
-      sciprint("Running out of memory \n");
-      return 0;
-    }      
-  
-  C2F(echelle2d)(x,y,xm,ym,Nnode,&n1,"f2i",3L);
+  integer *xm,*ym,n1=1;
 
   /* Fec code */
-  frame_clip_on();
-  {
-    /********************************************************************
-     *	 beginning of the code modified by Bruno 01/02/2001  
-     ********************************************************************/
-    
-    integer nz;
-    integer verbose=0,whiteid,narg;
-    
-    double *zlevel, dz, zmin, zmax, fxy[3], sx[3], sy[3];
-    int *zone, *fill, kp, perm[3], zxy[3], color_min;
-    integer ii[3];
 
-    /* choice between zmin and zmax given by the user or computed
-     *   with the min and max z values. In matdes.c I have put 
-     * zminmax[0]= zminmax[1]=0 if the user don't give this argument 
-     */
+  /* NG  beg */
+   if (version_flag() == 0){
+     long hdltab[2];
+     int cmpt=0,styl[2];
+     sciPointObj *pptabofpointobj;
+     sciPointObj  *psubwin;
 
-    if ( zminmax[0]==zminmax[1] ) { 
-      zmin=(double) Mini(func,*Nnode); 
-      zmax=(double) Maxi(func,*Nnode);
-    } 
-    else {
-      zmin = Min( zminmax[0] , zminmax[1] );
-      zmax = Max( zminmax[0] , zminmax[1] );
-    };
-      
-    C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,
-	    PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    nz=whiteid;
-    
-    /* choice for the colormap (in case of a user 's choice 
-     *   verify the parameter). For the automatic choice I have
-     * put colminmax[0]=colominmax[1]=1 in matdes.c  
-     */
+     if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
+       sciXbasc(); 
+       initsubwin();
+       sciRedrawFigure();
+     } 
+  
+    /*---- Boundaries of the frame ----*/
+     if ((sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->autoscaling)
+       update_frame_bounds(0,"gnn",x,y,&n1,Nnode,aaint,strflag,brect);
+     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+     sciSetIsClipping (psubwin,0); 
+     if ((realloc (pSUBWIN_FEATURE (psubwin)->strflag,(strlen(strflag)+1)*sizeof (char)))== NULL)
+       {
+	 sciprint("No more Memory allocation for axes !\n");
+	 return (0);
+       }
+     else
+       { 
+	 strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
+	 pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
+       }
+     sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));
+     
+     sciSetCurrentObj (ConstructFec 
+		       ((sciPointObj *)
+	                sciGetSelectedSubWin (sciGetCurrentFigure ()),
+	                x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax)); 
+     pptabofpointobj = sciGetCurrentObj();
+     hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
+     cmpt++;   
+     sciDrawObj(sciGetCurrentObj ());  
+     /** Drawing the Legends **/
+     if ((int)strlen(strflag) >=1  && strflag[0] == '1'){
+       n1=1; styl[0]=1;styl[1]=0;
+       sciSetCurrentObj (ConstructLegend
+			 ((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
+			  legend, strlen(legend), n1, styl, &pptabofpointobj)); 
+       sciSetIsMark(pptabofpointobj, TRUE);
+       sciSetMarkStyle (pptabofpointobj, *styl);
+       sciDrawObj(sciGetCurrentObj ()); 
+       hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 
+       cmpt++;
+     } 
+     sciSetCurrentObj(ConstructAgregation (hdltab, cmpt));  /** construct agregation **/
+   }
+   else { /* NG end */
+     /** Boundaries of the frame **/
+     update_frame_bounds(0,"gnn",x,y,&n1,Nnode,aaint,strflag,brect);
 
-    if ( colminmax[0] == colminmax[1] )  /* automatic choice (see matdes.c) */
-      color_min=1; 
-    else if ( colminmax[0] < 1 || colminmax[1] > nz || colminmax[0] > colminmax[1] ) {
-      /* ici on pourrait plutot forcer les choses en imposant 1<= colmin < colmax <= nz */
-      sciprint("\n\r fec : colminmax badly choosen ! ");
-      return ( 0 );
-    } 
-    else {
-      color_min = colminmax[0];
-      nz = colminmax[1] - colminmax[0] + 1;
-    };
-      
-    /* 
-     *  1/ the purpose of the first part is to to compute the "zone" of each point :
-     *    
-     *    - the array zlevel are the boundaries between the differents zones :
-     *
-     *        zlevel[0] = zmin, zlevel[nz] = zmax 
-     *     and zlevel[i] = zmin + i*(zmax-zmin)/nz
-     *  
-     *     - if  zlevel[j-1] <= func[i] < zlevel[j]  then zone[i] = j
-     *       if func[i] > zmax  then zone[i] = nz+1
-     *       if func[i] < zmin  then zone[i] = 0
-     *     - the zone j is filled with color fill[j] with
-     *       fill[j] = -(j-1 + color_min) if 1 <= j <= nz
-     *       fill[0] = color attributed for fill[1]     ---> this behavior may be changed ...
-     *       fill[nz+1] = color attributed for fill[nz] --/
-     */
- 
-    /* allocations for some arrays ... */
+     /* Storing values if using the Record driver */
+     if ((GetDriver()=='R') && (version_flag() != 0)) /* NG */
+       /* added zminmax and colminmax (bruno) */
+       StoreFec("fec_n",x,y,triangles,func,Nnode,Ntr,strflag,legend,brect,aaint,zminmax,colminmax);
 
-    zone = graphic_alloc(2,(*Nnode),sizeof(int));
-    zlevel = graphic_alloc(3,nz+1,sizeof(double));
-    fill  = graphic_alloc(4,nz+2,sizeof(int));
-    if ( (zone == NULL) || (zlevel == NULL) || (fill  == NULL)) 
-      {
-	Scistring("fec: malloc No more Place\n");
-	return 0;
-      }
-    /* compute the fill array (fill = - num color) */
-    fill[1] = - color_min;
-    for ( i = 2 ; i <= nz ; i++ ) fill[i] = fill[i-1] - 1;
-    fill[0] = fill[1] ; fill[nz+1] = fill[nz];
+     /** Allocation **/
+     xm = graphic_alloc(0,*Nnode,sizeof(int));
+     ym = graphic_alloc(1,*Nnode,sizeof(int));
+     if ( xm == 0 || ym == 0) {
+       sciprint("Running out of memory \n"); return 0;}      
+  
+     C2F(echelle2d)(x,y,xm,ym,Nnode,&n1,"f2i",3L);
 
-    /* compute the zlevels */
-    dz = (zmax - zmin)/nz;
-    for (i = 0 ; i < nz ; i++) zlevel[i] = zmin + i*dz;
-    zlevel[nz] = zmax;
+     newfec(xm,ym,triangles,func,Nnode,Ntr,zminmax,colminmax);
+     axis_draw(strflag); 
 
-    /* finaly compute the zone of each point */
-    for ( i = 0 ; i < (*Nnode) ; i++ ) {
-      if ( func[i] > zmax )
-	zone[i] = nz+1;
-      else if ( func[i] < zmin )
-	zone[i] = 0;
-      else
-	zone[i] = floor( (func[i] - zmin)/dz ) + 1;
-    };
-    /* 
-       2/ loop of the triangles : each triangle is finally decomposed 
-          into its differents zones (polygons) by the function PaintTriangle   
-    */
-    for ( j = 0 ; j < *Ntr ; j++) {
-
-      /* retrieve node numbers and functions values */
-      for ( k = 0 ; k < 3 ; k++ ) {
-	ii[k] = (integer) triangles[j+(*Ntr)*(k+1)] - 1;
-	zxy[k] = zone[ii[k]];
-      }
-
-      /* get the permutation perm so as zxy[perm] is sorted */
-      PermutOfSort(zxy, perm); 
-
-      /* apply the permutation to get the triangle 's vertices
-         in increasing zone (zxy[0] <= zxy[1] <= zxy[2]) */
-      for ( k = 0 ; k < 3 ; k++ ) {
-	kp = perm[k];
-	sx[k]  = xm[ii[kp]];   sy[k]  = ym[ii[kp]];
-	fxy[k] = func[ii[kp]]; zxy[k] = zone[ii[kp]];
-      };
-
-      /* call the "painting" function */
-      PaintTriangle(sx, sy, fxy, zxy, zlevel, fill);
-
-    };
-  }
-
-  /********************************************************************
-   *                     end of the modified code
-   ********************************************************************/
-
-  frame_clip_off();
-
-  /** Draw Axis or only rectangle **/
-  axis_draw(strflag);
-
-  /** Drawing the Legends **/
-  if ((int)strlen(strflag) >=1  && strflag[0] == '1')
-    {
-      integer style = -1;
-      n1=1;
-      Legends(&style,&n1,legend);
-    }
-  return(0);
+     /** Drawing the Legends **/
+     if ((int)strlen(strflag) >=1  && strflag[0] == '1')
+       {
+	 integer style = -1;
+	 n1=1;
+	 Legends(&style,&n1,legend);
+       }        
+   } /** version_flag ***/
+   
+   return(0);
+   
 }
+
+void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,integer *Ntr,double *zminmax,integer *colminmax)
+{
+  /*************************************
+   *	 code modified by Bruno 01/02/2001  
+   *************************************/
+    
+  integer nz,i,j,k;
+  integer verbose=0,whiteid,narg;
+    
+  double *zlevel, dz, zmin, zmax, fxy[3], sx[3], sy[3];
+  int *zone, *fill, kp, perm[3], zxy[3], color_min;
+  integer ii[3];
+
+  /* choice between zmin and zmax given by the user or computed
+   *   with the min and max z values. In matdes.c I have put 
+   * zminmax[0]= zminmax[1]=0 if the user don't give this argument 
+   */
+ 
+  frame_clip_on();
+  if ( zminmax[0]==zminmax[1] ) {  
+    zmin=(double) Mini(func,*Nnode); 
+    zmax=(double) Maxi(func,*Nnode);
+  } 
+  else {
+    zmin = Min( zminmax[0] , zminmax[1] );
+    zmax = Max( zminmax[0] , zminmax[1] );
+  };
+  
+  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,
+	  PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  nz=whiteid;
+    
+  /* choice for the colormap (in case of a user 's choice 
+   *   verify the parameter). For the automatic choice I have
+   * put colminmax[0]=colominmax[1]=1 in matdes.c  
+   */
+
+  if ( colminmax[0] == colminmax[1] )  /* automatic choice (see matdes.c) */
+    color_min=1; 
+  else if ( colminmax[0] < 1 || colminmax[1] > nz || colminmax[0] > colminmax[1] ) {
+    /* ici on pourrait plutot forcer les choses en imposant 1<= colmin < colmax <= nz */
+    sciprint("\n\r fec : colminmax badly choosen ! ");
+    return;
+  } 
+  else {
+    color_min = colminmax[0];
+    nz = colminmax[1] - colminmax[0] + 1;
+  };
+      
+  /* 
+   *  1/ the purpose of the first part is to to compute the "zone" of each point :
+   *    
+   *    - the array zlevel are the boundaries between the differents zones :
+   *
+   *        zlevel[0] = zmin, zlevel[nz] = zmax 
+   *     and zlevel[i] = zmin + i*(zmax-zmin)/nz
+   *  
+   *     - if  zlevel[j-1] <= func[i] < zlevel[j]  then zone[i] = j
+   *       if func[i] > zmax  then zone[i] = nz+1
+   *       if func[i] < zmin  then zone[i] = 0
+   *     - the zone j is filled with color fill[j] with
+   *       fill[j] = -(j-1 + color_min) if 1 <= j <= nz
+   *       fill[0] = color attributed for fill[1]     ---> this behavior may be changed ...
+   *       fill[nz+1] = color attributed for fill[nz] --/
+   */
+ 
+  /* allocations for some arrays ... */
+
+  zone = graphic_alloc(2,(*Nnode),sizeof(int));
+  zlevel = graphic_alloc(3,nz+1,sizeof(double));
+  fill  = graphic_alloc(4,nz+2,sizeof(int));
+  if ( (zone == NULL) || (zlevel == NULL) || (fill  == NULL)) 
+    {
+      Scistring("fec: malloc No more Place\n");
+      return;
+    }
+  /* compute the fill array (fill = - num color) */
+  fill[1] = - color_min;
+  for ( i = 2 ; i <= nz ; i++ ) fill[i] = fill[i-1] - 1;
+  fill[0] = fill[1] ; fill[nz+1] = fill[nz];
+
+  /* compute the zlevels */
+  dz = (zmax - zmin)/nz;
+  for (i = 0 ; i < nz ; i++) zlevel[i] = zmin + i*dz;
+  zlevel[nz] = zmax;
+
+  /* finaly compute the zone of each point */
+  for ( i = 0 ; i < (*Nnode) ; i++ ) {
+    if ( func[i] > zmax )
+      zone[i] = nz+1;
+    else if ( func[i] < zmin )
+      zone[i] = 0;
+    else
+      zone[i] = floor( (func[i] - zmin)/dz ) + 1;
+  };
+  /* 
+     2/ loop of the triangles : each triangle is finally decomposed 
+     into its differents zones (polygons) by the function PaintTriangle   
+  */
+  for ( j = 0 ; j < *Ntr ; j++) {
+
+    /* retrieve node numbers and functions values */
+    for ( k = 0 ; k < 3 ; k++ ) {
+      ii[k] = (integer) triangles[j+(*Ntr)*(k+1)] - 1;      
+      zxy[k] = zone[ii[k]];  
+    }
+
+    /* get the permutation perm so as zxy[perm] is sorted */
+    PermutOfSort(zxy, perm); 
+
+    /* apply the permutation to get the triangle 's vertices
+       in increasing zone (zxy[0] <= zxy[1] <= zxy[2]) */
+    for ( k = 0 ; k < 3 ; k++ ) {
+      kp = perm[k];
+      sx[k]  = xm[ii[kp]];   sy[k]  = ym[ii[kp]];
+      fxy[k] = func[ii[kp]]; zxy[k] = zone[ii[kp]];
+    };
+
+    /* call the "painting" function */
+    PaintTriangle(sx, sy, fxy, zxy, zlevel, fill);
+  }
+  frame_clip_off();
+}
+
 
 /********************************************************************
  * functions used by the modified code (Bruno 01/02/2001)

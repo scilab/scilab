@@ -24,10 +24,24 @@
 
 #include "Math.h"
 #include "periX11.h"
-#include "periX11-bcg.h"
 #include "../version.h"
 #include "color.h"
 #include "../intersci/cerro.h" 
+#include "bcg.h"
+
+/** jpc_SGraph.c **/
+extern void ChangeBandF __PARAMS((int win_num,Pixel fg, Pixel bg));
+extern int CheckClickQueue   __PARAMS((integer *,integer *x,integer *y,integer *ibut));
+extern int ClearClickQueue  __PARAMS((integer));
+void CreatePopupWindow  __PARAMS((integer WinNum,Widget top,struct BCG *, Pixel *fg,Pixel *bg));
+extern void GViewportResize __PARAMS((struct BCG *ScilabXgc, int *width,int *height));
+
+/** jpc_Xloop.c **/
+extern integer C2F(ismenu) __PARAMS((void));
+extern int C2F(getmen) __PARAMS((char *btn_cmd,integer *lb,integer *entry));
+
+extern void DisplayInit __PARAMS((char *string,Display **dpy,Widget *toplevel));
+extern void MenuFixCurrentWin __PARAMS(( int ivalue));
 
 extern void GPopupResize __PARAMS((struct BCG *ScilabXgc,int *,int *));
 extern int IswmDeleteWindow __PARAMS((XEvent *));
@@ -147,19 +161,21 @@ static void xset_colormap __PARAMS((integer *v1,integer *v2,integer *v3,integer 
 static void xset_dashstyle __PARAMS((integer *v1,integer *v2,integer *v3));
 
 /* declaration for xset('name',...) functions */
-
 typedef void (xset_f) __PARAMS((integer * v1,integer * v2,integer * v3,integer * v4));
 static xset_f xset_windowpos,xset_windowdim,xset_popupdim,xset_viewport,xset_curwin,xset_clip;
 static xset_f xset_absourel,xset_alufunction1,xset_thickness,xset_pattern,xset_dash;
 static xset_f xset_pixmapOn,xset_wresize,xset_background,xset_foreground,xset_hidden3d; 
 static xset_f xset_unclip,xset_font,xset_usecolor,xset_mark,xset_pixmapclear,xset_show,xset_dash_or_color;
+static xset_f xset_scilabxgc,xset_scilabVersion;/* NG */
+static void xset_scilabFigure(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure);
 /* declaration for xget('name',...) functions */
-
 typedef void (xget_f) __PARAMS((integer *verbose, integer *x,integer *narg, double *dummy));
 static xget_f xget_windowpos,xget_windowdim,xget_popupdim,xget_viewport,xget_curwin ,xget_clip;
 static xget_f xget_absourel,xget_alufunction,xget_thickness,xget_pattern,xget_last,xget_dash;
 static xget_f xget_usecolor,xget_pixmapOn,xget_wresize,xget_colormap,xget_background,xget_foreground,xget_hidden3d;
 static xget_f xget_font,xget_mark,xget_dash_or_color;
+static xget_f xget_scilabxgc,xget_scilabFigure,xget_scilabVersion;/* NG */
+
 
 /* Allocating colors in BCG struct */
 
@@ -820,6 +836,52 @@ static void xset_curwin(integer *intnum, integer *v2, integer *v3, integer *v4)
       ScilabXgc->CWindowHeight = war.height;
     }
 }
+/* NG beg */
+static void xset_scilabFigure(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure)
+{
+ figure=(double *)ScilabXgc->mafigure;
+}
+
+static void xget_scilabFigure(integer *verbose, integer *x,integer *narg, double *figure)
+{   
+  *narg=1;
+  figure=(double *)ScilabXgc->mafigure;
+}
+
+static void xset_scilabVersion(integer *vers, integer *v2, integer *v3, integer *v4)
+{
+  ScilabXgc->graphicsversion=*vers;
+}
+
+static void xget_scilabVersion(integer *verbose, integer *vers, integer *narg, double *dummy)
+{   
+  *narg =1 ;
+  *vers = ScilabXgc->graphicsversion;
+}
+
+static void xset_scilabxgc(v1, v2, v3, v4)
+     integer *v1;
+     integer *v2;
+     integer *v3;
+     integer *v4; 
+     
+{
+
+}
+static void xget_scilabxgc(verbose, x,narg, dummy)
+     integer *verbose;
+     integer *x;
+     integer *narg;
+     double *dummy;
+{   
+  double **XGC;
+  
+  XGC=(double **)dummy;
+  *XGC= (double *)ScilabXgc;
+  
+}
+/* NG end */
+
 
 /* used in the previous function to set back the graphic scales 
  * when changing form one window to an other 
@@ -1817,10 +1879,10 @@ void set_default_colormap3(int m)
     sciprint("%d colors missing, switch to private colormap\r\n",m - 
 	     missing_col_mess);
 }
-
-void setcolormap1(integer m, double *a);
-void setcolormap2(integer m, double *a);
-void setcolormap3(integer m, double *a);
+void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a);/* NG */
+void setcolormap1(struct  BCG *XGC,integer m, double *a);
+void setcolormap2(struct  BCG *XGC,integer m, double *a);
+void setcolormap3(struct  BCG *XGC,integer m, double *a);
 
 /* Setting the colormap 
    a must be a m x 3 double RGB matrix: 
@@ -1828,8 +1890,27 @@ void setcolormap3(integer m, double *a);
      a[i+m] = GREEN
      a[i+2*m] = BLUE
      *v2 gives the value of m and *v3 must be equal to 3 */
+/* NG beg*/
+static void xset_colormap(v1,v2,v3,v4,v5,v6,a)
+     integer *v1,*v2;
+     integer *v3;
+     integer *v4,*v5,*v6;
+     double *a;
+{
 
-static void xset_colormap(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
+  setcolormapg(ScilabXgc,v1,v2,a);
+}
+static void xset_gccolormap(v1,v2,a,XGC)
+     integer *v1,*v2;
+     double *a;
+     struct BCG *XGC;
+{
+
+  setcolormapg(XGC,v1,v2,a);
+}
+/* NG end*/
+
+extern void setcolormapg(struct BCG *XGC,integer *v1, integer *v2, double *a)
 {
   int m;
   char merror[128];
@@ -1843,19 +1924,19 @@ static void xset_colormap(integer *v1, integer *v2, integer *v3, integer *v4, in
   m = *v1;
   switch (visual->class) {
   case TrueColor:
-    setcolormap1(m,a);
+    setcolormap1(XGC,m,a);
     break;
   case DirectColor:
-    setcolormap2(m,a);
+    setcolormap2(XGC,m,a);
     break;
   default:
-    setcolormap3(m,a);
+    setcolormap3(XGC,m,a);
     break;
   }
 }
 
 /* True Color visuals */
-void setcolormap1(integer m, double *a)
+void setcolormap1(struct BCG *Xgc,integer m, double *a) /*NG*/
 {
   int i;
   Colormap cmap;
@@ -1864,16 +1945,16 @@ void setcolormap1(integer m, double *a)
   unsigned int red, green, blue;
 
   /* Save old color vectors */
-  c = ScilabXgc->Colors;
-  r = ScilabXgc->Red;
-  g = ScilabXgc->Green;
-  b = ScilabXgc->Blue;
+  c = Xgc->Colors;
+  r = Xgc->Red;
+  g = Xgc->Green;
+  b = Xgc->Blue;
 
   if (!XgcAllocColors(ScilabXgc,m)) {
-    ScilabXgc->Colors = c;
-    ScilabXgc->Red = r;
-    ScilabXgc->Green = g;
-    ScilabXgc->Blue = b;
+    Xgc->Colors = c;
+    Xgc->Red = r;
+    Xgc->Green = g;
+    Xgc->Blue = b;
     return;
   }
 
@@ -1882,28 +1963,28 @@ void setcolormap1(integer m, double *a)
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
       Scistring("RGB values must be between 0 and 1\n");
-      ScilabXgc->Colors = c;
-      ScilabXgc->Red = r;
-      ScilabXgc->Green = g;
-      ScilabXgc->Blue = b;
+      Xgc->Colors = c;
+      Xgc->Red = r;
+      Xgc->Green = g;
+      Xgc->Blue = b;
       return;
     }
-    ScilabXgc->Red[i] = (float)a[i];
-    ScilabXgc->Green[i] = (float)a[i+m];
-    ScilabXgc->Blue[i] = (float)a[i+2*m];  
+    Xgc->Red[i] = (float)a[i];
+    Xgc->Green[i] = (float)a[i+m];
+    Xgc->Blue[i] = (float)a[i+2*m];  
   }
   /* Black */
-  ScilabXgc->Red[m] = 0;
-  ScilabXgc->Green[m] = 0;
-  ScilabXgc->Blue[m] = 0;
-  ScilabXgc->Colors[m] =  RGB2pix(0,0,0,visual->red_mask,
+  Xgc->Red[m] = 0;
+  Xgc->Green[m] = 0;
+  Xgc->Blue[m] = 0;
+  Xgc->Colors[m] =  RGB2pix(0,0,0,visual->red_mask,
 				  visual->green_mask,visual->blue_mask);
 
   /* White */
-  ScilabXgc->Red[m+1] = 1;
-  ScilabXgc->Green[m+1] = 1;
-  ScilabXgc->Blue[m+1] = 1;
-  ScilabXgc->Colors[m+1] = RGB2pix(255,255,255,visual->red_mask,
+  Xgc->Red[m+1] = 1;
+  Xgc->Green[m+1] = 1;
+  Xgc->Blue[m+1] = 1;
+  Xgc->Colors[m+1] = RGB2pix(255,255,255,visual->red_mask,
 				   visual->green_mask,visual->blue_mask);
 
   for (i = 0; i < m; i++) {
@@ -1912,36 +1993,36 @@ void setcolormap1(integer m, double *a)
     blue = (unsigned short)(a[i+2*m]*255.0);
     pix = RGB2pix(red,green,blue,visual->red_mask,visual->green_mask,
 		  visual->blue_mask);
-    ScilabXgc->Colors[i] = pix;
+    Xgc->Colors[i] = pix;
   }
 
   cmap = XDefaultColormap(dpy,XDefaultScreen(dpy));
 
-  XSetWindowColormap(dpy,ScilabXgc->CBGWindow,cmap);
-  ScilabXgc->Cmap = cmap;
-  ScilabXgc->Numcolors = m;
-  ScilabXgc->IDLastPattern = m - 1;
-  ScilabXgc->CmapFlag = 0;
-  ScilabXgc->NumForeground = m;
-  ScilabXgc->NumBackground = m + 1;
+  XSetWindowColormap(dpy,Xgc->CBGWindow,cmap);
+  Xgc->Cmap = cmap;
+  Xgc->Numcolors = m;
+  Xgc->IDLastPattern = m - 1;
+  Xgc->CmapFlag = 0;
+  Xgc->NumForeground = m;
+  Xgc->NumBackground = m + 1;
   xset_usecolor((i=1,&i) ,PI0,PI0,PI0);
-  xset_alufunction1(&ScilabXgc->CurDrawFunction,PI0,PI0,PI0);
-  xset_pattern((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);  
-  xset_foreground((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);
-  xset_background((i=ScilabXgc->NumForeground+2,&i),PI0,PI0,PI0);
+  xset_alufunction1(&Xgc->CurDrawFunction,PI0,PI0,PI0);
+  xset_pattern((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);  
+  xset_foreground((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);
+  xset_background((i=Xgc->NumForeground+2,&i),PI0,PI0,PI0);
   XFlush(dpy);
   FREE(c); FREE(r); FREE(g); FREE(b);
 }
 
 /* Direct Color visuals */
-void setcolormap2(integer m, double *a)
+void setcolormap2(struct BCG *Xgc,integer m, double *a)
 {
   /* Use same code as Pseudo Color for the moment */
-  setcolormap3(m,a);
+  setcolormap3(Xgc,m,a);
 }
 
 /* Other visuals, mainly Pseudo Color */
-void setcolormap3(integer m, double *a)
+void setcolormap3(struct BCG *Xgc,integer m, double *a)
 {
   int missing_col_mess=-1;
   int i;
@@ -1952,26 +2033,26 @@ void setcolormap3(integer m, double *a)
   int bp1,wp1;
 
   /* Save old color vectors */
-  c = ScilabXgc->Colors;
-  r = ScilabXgc->Red;
-  g = ScilabXgc->Green;
-  b = ScilabXgc->Blue;
+  c = Xgc->Colors;
+  r = Xgc->Red;
+  g = Xgc->Green;
+  b = Xgc->Blue;
 
-  if (!XgcAllocColors(ScilabXgc,m)) {
-    ScilabXgc->Colors = c;
-    ScilabXgc->Red = r;
-    ScilabXgc->Green = g;
-    ScilabXgc->Blue = b;
+  if (!XgcAllocColors(Xgc,m)) {
+    Xgc->Colors = c;
+    Xgc->Red = r;
+    Xgc->Green = g;
+    Xgc->Blue = b;
     return;
   }
 
   if (!(pixels = (Pixel *) MALLOC((m+2)*sizeof(Pixel)))) {
     Scistring("setcolormap: unable to alloc\n");
-    XgcFreeColors(ScilabXgc);
-    ScilabXgc->Colors = c;
-    ScilabXgc->Red = r;
-    ScilabXgc->Green = g;
-    ScilabXgc->Blue = b;    
+    XgcFreeColors(Xgc);
+    Xgc->Colors = c;
+    Xgc->Red = r;
+    Xgc->Green = g;
+    Xgc->Blue = b;    
     return;
   }
 
@@ -1980,33 +2061,33 @@ void setcolormap3(integer m, double *a)
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
       Scistring("RGB values must be between 0 and 1\n");
-      ScilabXgc->Colors = c;
-      ScilabXgc->Red = r;
-      ScilabXgc->Green = g;
-      ScilabXgc->Blue = b;
+      Xgc->Colors = c;
+      Xgc->Red = r;
+      Xgc->Green = g;
+      Xgc->Blue = b;
       return;
     }
-    ScilabXgc->Red[i] = (float)a[i];
-    ScilabXgc->Green[i] = (float)a[i+m];
-    ScilabXgc->Blue[i] = (float)a[i+2*m];  
+    Xgc->Red[i] = (float)a[i];
+    Xgc->Green[i] = (float)a[i+m];
+    Xgc->Blue[i] = (float)a[i+2*m];  
   }
   /* Black */
-  ScilabXgc->Red[m] = 0;
-  ScilabXgc->Green[m] = 0;
-  ScilabXgc->Blue[m] = 0;
+  Xgc->Red[m] = 0;
+  Xgc->Green[m] = 0;
+  Xgc->Blue[m] = 0;
 
   /* White */
-  ScilabXgc->Red[m+1] = 1;
-  ScilabXgc->Green[m+1] = 1;
-  ScilabXgc->Blue[m+1] = 1;
+  Xgc->Red[m+1] = 1;
+  Xgc->Green[m+1] = 1;
+  Xgc->Blue[m+1] = 1;
 
   dcmap = XDefaultColormap(dpy,XDefaultScreen(dpy));
-  ocmap = ScilabXgc->Cmap;
+  ocmap = Xgc->Cmap;
 
   /* If old colormap is the default colormap, free already
      allocated colors */
-  if (ScilabXgc->Numcolors!= 0 && ocmap == dcmap) {
-    XFreeColors(dpy,dcmap,c,ScilabXgc->Numcolors,0);
+  if (Xgc->Numcolors!= 0 && ocmap == dcmap) {
+    XFreeColors(dpy,dcmap,c,Xgc->Numcolors,0);
   }
 
   color.flags = DoRed|DoGreen|DoBlue;
@@ -2023,7 +2104,7 @@ void setcolormap3(integer m, double *a)
   color.green = default_colors[3*DEFAULTWHITE+1]<<8;
   color.blue = default_colors[3*DEFAULTWHITE+2]<<8;   
   XAllocColor(dpy,dcmap,&color);
-  ScilabXgc->Colors[m+1] = pixels[wp1] = color.pixel;
+  Xgc->Colors[m+1] = pixels[wp1] = color.pixel;
 
   if (bpixel == 1) bp1 = bpixel;
   else if (bpixel == 0) bp1 = bpixel;
@@ -2034,7 +2115,7 @@ void setcolormap3(integer m, double *a)
   color.green = default_colors[3*DEFAULTBLACK+1]<<8;
   color.blue = default_colors[3*DEFAULTBLACK+2]<<8;   
   XAllocColor(dpy,dcmap,&color);
-  ScilabXgc->Colors[m] = pixels[bp1] = color.pixel;
+  Xgc->Colors[m] = pixels[bp1] = color.pixel;
 
   for (i = 2; i < m+2; i++) {
     color.red = (unsigned short)(a[i-2]*65535.0);
@@ -2045,7 +2126,7 @@ void setcolormap3(integer m, double *a)
       if (i != 0) XFreeColors(dpy,dcmap,pixels,i,0);
       break;
     }
-    ScilabXgc->Colors[i-2] = pixels[i] = color.pixel;
+    Xgc->Colors[i-2] = pixels[i] = color.pixel;
   }
   
   cmap = dcmap;
@@ -2056,13 +2137,13 @@ void setcolormap3(integer m, double *a)
     if (ocmap == 0 || ocmap == dcmap) {
       /* Create a new private colormap */
       missing_col_mess=i;
-      if ((cmap = XCreateColormap(dpy,ScilabXgc->CBGWindow,visual,AllocNone)) == 0) {
-	XgcFreeColors(ScilabXgc);
+      if ((cmap = XCreateColormap(dpy,Xgc->CBGWindow,visual,AllocNone)) == 0) {
+	XgcFreeColors(Xgc);
 	FREE(pixels);
-	ScilabXgc->Colors = c;
-	ScilabXgc->Red = r;
-	ScilabXgc->Green = g;
-	ScilabXgc->Blue = b;
+	Xgc->Colors = c;
+	Xgc->Red = r;
+	Xgc->Green = g;
+	Xgc->Blue = b;
 	sciprint("%d colors missing, switch to private colormap\r\n",m+2 - i);
 	sciprint("Cannot allocate new colormap\n");
 	return;
@@ -2071,20 +2152,20 @@ void setcolormap3(integer m, double *a)
       /* Use old private colormap */
       cmap = ocmap;
       /* Free already allocated colors */
-      if (ScilabXgc->CmapFlag)
-	XFreeColors(dpy,cmap,c,ScilabXgc->Numcolors,0);
-      else XFreeColors(dpy,cmap,c,ScilabXgc->Numcolors+2,0);
+      if (Xgc->CmapFlag)
+	XFreeColors(dpy,cmap,c,Xgc->Numcolors,0);
+      else XFreeColors(dpy,cmap,c,Xgc->Numcolors+2,0);
     }
     /* Try to alloc readwrite colors from the private colormap */
     for (i = 0; i < m+2; i++) {
       if (!XAllocColorCells(dpy,cmap,False,NULL,0,&pixels[i],1)) {
 	/* sciprint is dangerous here we use wininfo : see the Warning bellow*/
-	XgcFreeColors(ScilabXgc);
+	XgcFreeColors(Xgc);
 	FREE(pixels);
-	ScilabXgc->Colors = c;
-	ScilabXgc->Red = r;
-	ScilabXgc->Green = g;
-	ScilabXgc->Blue = b;
+	Xgc->Colors = c;
+	Xgc->Red = r;
+	Xgc->Green = g;
+	Xgc->Blue = b;
 	sciprint("%d colors missing, unable to allocate colormap\r\n",m+2 - i);
 	return;
       }
@@ -2099,7 +2180,7 @@ void setcolormap3(integer m, double *a)
     else if (bpixel == 1) wp1 = 0;
     else wp1 =0;
     color.red = 65535; color.green = 65535; color.blue = 65535;
-    color.pixel = ScilabXgc->Colors[m+1] = pixels[wp1];
+    color.pixel = Xgc->Colors[m+1] = pixels[wp1];
     XStoreColor(dpy,cmap,&color);
     if (bpixel == 1) bp1 = bpixel;
     else if (bpixel == 0) bp1 = bpixel;
@@ -2107,33 +2188,33 @@ void setcolormap3(integer m, double *a)
     else if (wpixel == 1) bp1 = 0;
     else bp1 =1;
     color.red = 0; color.green = 0; color.blue = 0;
-    color.pixel = ScilabXgc->Colors[m] = pixels[bp1];    
+    color.pixel = Xgc->Colors[m] = pixels[bp1];    
     XStoreColor(dpy,cmap,&color);    
     for (i = 0; i < m; i++) {
       color.red = (unsigned short)(a[i]*65535.0);
       color.green = (unsigned short)(a[i+m]*65535.0);
       color.blue = (unsigned short)(a[i+2*m]*65535.0);      
-      color.pixel = ScilabXgc->Colors[i] = pixels[i+2];
+      color.pixel = Xgc->Colors[i] = pixels[i+2];
       XStoreColor(dpy,cmap,&color);     
     }
     /* Change decoration of graphics windows */
-    ChangeBandF(ScilabXgc->CurWindow,pixels[bp1],pixels[wp1]);
+    ChangeBandF(Xgc->CurWindow,pixels[bp1],pixels[wp1]);
   }
 
   if (ocmap != (Colormap)0 && ocmap != cmap && ocmap != dcmap) 
     XFreeColormap(dpy,ocmap);
-  XSetWindowColormap(dpy,ScilabXgc->CBGWindow,cmap);
-  ScilabXgc->Cmap = cmap;
-  ScilabXgc->Numcolors = m;
-  ScilabXgc->IDLastPattern = m - 1;
-  ScilabXgc->CmapFlag = 0;
-  ScilabXgc->NumForeground = m;
-  ScilabXgc->NumBackground = m + 1;
+  XSetWindowColormap(dpy,Xgc->CBGWindow,cmap);
+  Xgc->Cmap = cmap;
+  Xgc->Numcolors = m;
+  Xgc->IDLastPattern = m - 1;
+  Xgc->CmapFlag = 0;
+  Xgc->NumForeground = m;
+  Xgc->NumBackground = m + 1;
   xset_usecolor((i=1,&i) ,PI0,PI0,PI0);
-  xset_alufunction1(&ScilabXgc->CurDrawFunction,PI0,PI0,PI0);
-  xset_pattern((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);  
-  xset_foreground((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);
-  xset_background((i=ScilabXgc->NumForeground+2,&i),PI0,PI0,PI0);
+  xset_alufunction1(&Xgc->CurDrawFunction,PI0,PI0,PI0);
+  xset_pattern((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);  
+  xset_foreground((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);
+  xset_background((i=Xgc->NumForeground+2,&i),PI0,PI0,PI0);
   XFlush(dpy);
   FREE(c); FREE(r); FREE(g); FREE(b);
   FREE(pixels);
@@ -2344,7 +2425,7 @@ static void xget_empty(integer *verbose, integer *v2, integer *v3, double *dummy
   if ( *verbose ==1 ) Scistring("\n No operation ");
 }
 
-#define NUMSETFONC 28
+#define NUMSETFONC 32
 
 /** Table in lexicographic order **/
 
@@ -2361,8 +2442,11 @@ MissileGCTab_[] = {
   {"colormap",xset_colormap,xget_colormap},
   {"dashes",xset_dash_or_color,xget_dash_or_color}, /* obsolet */ 
   {"default",InitMissileXgc, xget_empty},
+  {"figure",xset_scilabFigure,xget_scilabFigure},/* NG */
   {"font",xset_font,xget_font},
   {"foreground",xset_foreground,xget_foreground},
+  {"gc",xset_scilabxgc,xget_scilabxgc},/* NG */
+  {"gccolormap",xset_gccolormap,xget_colormap}, /* NG */
   {"hidden3d",xset_hidden3d,xget_hidden3d},
   {"lastpattern",xset_empty,xget_last},
   {"line mode",xset_absourel,xget_absourel},
@@ -2372,6 +2456,7 @@ MissileGCTab_[] = {
   {"pixmap",xset_pixmapOn,xget_pixmapOn},
   {"thickness",xset_thickness,xget_thickness},
   {"use color",xset_usecolor,xget_usecolor},
+  {"version",xset_scilabVersion,xget_scilabVersion},/* NG */
   {"viewport",xset_viewport,xget_viewport},
   {"wdim",xset_windowdim,xget_windowdim},
   {"white",xset_empty,xget_last},
@@ -2693,6 +2778,7 @@ void fill_grid_rectangles(integer *x, integer *y, double *z, integer n1, integer
 	integer w,h;
 	zmoy=1/4.0*(z[i+n1*j]+z[i+n1*(j+1)]+z[i+1+n1*j]+z[i+1+n1*(j+1)]);
 	fill[0]=1 + inint((whiteid-1)*(zmoy-zmin)/(zmaxmin));
+	/* if (x[n1] == 1)  fill[0]= inint(z[j+ (i*n2)]);*/ /* NG */
 	xset_pattern(fill,PI0,PI0,PI0);
         w=Abs(x[i+1]-x[i]);h=Abs(y[j+1]-y[j]);
 	/* We don't trace rectangle which are totally out **/
@@ -3591,6 +3677,9 @@ InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
   /** we force CurColorStatus to the opposite value of col 
       to force usecolorPos to perform initialisations 
   **/
+ 
+  ScilabXgc->graphicsversion = 0;/* NG */ /* old */
+
   ScilabXgc->CurColorStatus = (i == 1) ? 0: 1;
   xset_usecolor(&i ,PI0,PI0,PI0);
   strcpy(ScilabXgc->CurNumberDispFormat,"%-5.2g");
@@ -3799,14 +3888,16 @@ FontAlias fonttab[] ={
 
 int fontidscale(int fontsize)
 {
-  int nsiz,i;
+  int Nsiz;
+  int i;
   int isiz = i_size_[fontsize];
   double d = Min(ScilabXgc->CWindowHeight,ScilabXgc->CWindowWidth);
-  nsiz = (ScilabXgc != NULL) ? inint((isiz*d/400.0)) : isiz; 
-  fprintf(stderr,"Scaling by -->%d %d \n",isiz,nsiz);
+  
+  Nsiz = (ScilabXgc != NULL) ? inint((isiz*d/400.0)) : isiz; 
+  fprintf(stderr,"Scaling by -->%d %d \n",isiz,Nsiz);
   for ( i=0; i < FONTMAXSIZE ; i++) 
     {
-      if (i_size_[i] >= nsiz ) return Max(i-1,0);
+      if (i_size_[i] >= Nsiz ) return Max(i-1,0);
     }
   return FONTMAXSIZE -1;
 }
@@ -4442,4 +4533,3 @@ int CheckScilabXgc(void)
 {
   return( ScilabXgc != (struct BCG *) 0);
 }
-

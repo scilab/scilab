@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------
  *    Graphic library
- *    Copyright (C) 1998-2001 Enpc/Jean-Philippe Chancelier
- *    jpc@cermics.enpc.fr 
+ *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
+ *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------
  * Axis drawing for 2d plots 
@@ -13,18 +13,24 @@
 #include "Math.h"
 #include "PloEch.h"
 
+
+#include "Entities.h" /* NG */
+sciPointObj *psubwin;/* NG */
+
+
 static double  x_convert __PARAMS((char xy_type,double x[] ,int i));
 static double  y_convert __PARAMS((char xy_type,double x[] ,int i));
 static void NumberFormat __PARAMS((char *str,integer k,integer a));
 static void aplotv1 __PARAMS((char*));
 static void aplotv2 __PARAMS((char*));
-
+extern int version_flag();
 /*--------------------------------------------------------------
  * Draw Axis or only rectangle
  *----------------------------------------------------------------*/
 
-void axis_draw(char *strflag)
-{
+void axis_draw(strflag)
+     char strflag[];
+{ 
   /* using foreground to draw axis */
   integer verbose=0,narg,xz[10],fg,i;
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
@@ -32,13 +38,18 @@ void axis_draw(char *strflag)
   C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  switch ( c) 
+  C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+   if (version_flag() == 0)
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+
+ switch ( c) 
     {
     case '0' :
       break ;
     case '2' :
-      C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3]
+      if (version_flag() == 0) pSUBWIN_FEATURE (psubwin)->axes.rect = 1;  /* NG */
+       
+      C2F(dr)("xrect","xv",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3]
 		,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       break;
     default :
@@ -61,56 +72,158 @@ void axis_draw(char *strflag)
  *  each big interval will be divided in 3 small intervals.
  *----------------------------------------------------------------*/
 
-static void aplotv2(char *strflag)
+static void aplotv2(strflag) 
+     char *strflag;
 {
   char dir = 'l';
   int nx,ny;
   int fontsize=-1,textcolor=-1,ticscolor=-1 ; /*==> use default values  */
   int seg =0;
   double x[3],y[3],x1,y1;
-  char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
+  /*** Ajout D.ABDEMOUCHE ****/
+  char xstr,ystr;  
+  char dirx = 'd';
+  int i;
+  
+char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   x[0] = Cscale.frect[0]; x[1] = Cscale.frect[2] ; x[2]=Cscale.Waaint1[1];
-  y[0]=  Cscale.frect[1]; y[1] = Cscale.frect[3] ; y[2]=Cscale.Waaint1[3];
+  y[0]=  Cscale.frect[1]; y[1] = Cscale.frect[3] ; y[2]=Cscale.Waaint1[3]; 
+
+  /** Cscale.frect[4]= xmin ymin xmax ymax **/ 
+
+  if (version_flag() == 0) {
+      Cscale.xtics[2]=pSUBWIN_FEATURE(psubwin)->axes.xlim[2];
+      Cscale.ytics[2]=pSUBWIN_FEATURE(psubwin)->axes.ylim[2]; 
+      for(i=0 ; i<4 ; i++ )
+             Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ;
+       Cscale.xtics[1]= (Cscale.frect[2] / (exp10( Cscale.xtics[2]))) ; 
+       Cscale.xtics[0]  = (Cscale.frect[0]  / (exp10( Cscale.xtics[2]))) ;
+       Cscale.xtics[3]=inint(Cscale.xtics[1]-Cscale.xtics[0]);
+       Cscale.ytics[1]= (Cscale.frect[3] / (exp10( Cscale.ytics[2]))) ; 
+       Cscale.ytics[0]  = (Cscale.frect[1]  / (exp10( Cscale.ytics[2]))) ;
+       Cscale.ytics[3]=inint(Cscale.ytics[1]-Cscale.ytics[0]);}   
   switch ( c ) 
     { 
     case '3' : /* right axis */ 
-      x1 = x[1]; y1 = y[0]; dir = 'r';
+      x1 = x[1]; y1 = y[0]; dir = 'r'; 
       break;
     case '4' : /* centred axis */
       seg=1;
-      x1 = (x[0]+x[1])/2.0;y1=(y[0]+y[1])/2.0;
+      x1 = (x[0]+x[1])/2.0;y1=(y[0]+y[1])/2.0; 
       break ;
     case '5': /* centred at (0,0) */
       seg=1;
-      x1 = y1 = 0.0;
+      x1 = y1 = 0.0; 
       break;
     case '1' : /* left axis */
-    default :
-      x1 = x[0]; y1 = y[0];
+    default : 
+      x1 = x[0]; y1 = y[0];   
       break;
-    }
-  if ( c != '4' && c != '5' )  
+    } 
+   
+    if ((version_flag() == 0) && (c != '4'))
+       {  
+         xstr=pSUBWIN_FEATURE(psubwin)->axes.xdir;
+          switch (xstr) 
+             {
+             case 'u':  
+	       y1 = y[1];
+                dirx='u';   
+                break;
+             case 'c':  
+                y1=(y[0]>0.0) ? y[0]: 0.0;
+                y1=(y[1]<0.0) ? y[0]: y1; 
+                seg =1; 
+                dirx ='d';                           
+                break;
+             default :  
+                y1= y[0];;
+                dirx ='d'; 
+                break;
+             }
+         ystr=pSUBWIN_FEATURE(psubwin)->axes.ydir;
+         switch (ystr) 
+             {
+             case 'r': 
+                x1=x[1];
+                dir='r';    
+                break;
+             case 'c': 
+                x1=(x[0]>0.0) ? x[0]: 0.0;
+                x1=(x[1]<0.0) ? x[0]: x1; 
+                seg =1; 
+                dir ='l';                              
+                break; 
+             default : 
+                x1= x[0];
+                dir ='l';  
+                break;
+             }
+        }
+  if ( c != '4' && c != '5' ) {
+    if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.rect == 0))
+      seg=1;
+    else  
     /** frame rectangle **/
     C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
 	    PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
+
+  if (version_flag() == 0){  
+    //for(i=0 ; i<4 ; i++ )
+    //  Cscale.Waain
+    Cscale.Waaint1[i]= pSUBWIN_FEATURE (psubwin)->axes.subint[i]+1; /*SS 01/01/03 */
+    Cscale.Waaint1[0]= pSUBWIN_FEATURE (psubwin)->axes.subint[0]+1;
+    Cscale.Waaint1[1]= pSUBWIN_FEATURE (psubwin)->axes.xlim[3]; /*SS 02/01/03 */
+    Cscale.Waaint1[2]= pSUBWIN_FEATURE (psubwin)->axes.subint[1]+1; 
+    Cscale.Waaint1[3]= pSUBWIN_FEATURE (psubwin)->axes.ylim[3];/*SS 02/01/03 */
+
+    ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
+    textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
+    fontsize=pSUBWIN_FEATURE (psubwin)->axes.fontsize;
+  }
+
+ 
   /** x-axis **/
   ny=1,nx=3;
-  Sci_Axis('d','r',x,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],NULL,fontsize,textcolor,ticscolor,Cscale.logflag[0],seg);
+  Sci_Axis(dirx,'r',x,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],NULL,fontsize,textcolor,ticscolor,Cscale.logflag[0],seg);
   /** y-axis **/
   ny=3,nx=1;
   Sci_Axis(dir,'r',&x1,&nx,y,&ny,NULL,Cscale.Waaint1[2],NULL,fontsize,textcolor,ticscolor,Cscale.logflag[1],seg);
 }
 
-static void aplotv1(char *strflag)
+static void aplotv1(strflag)
+     char *strflag;
 {
   char dir = 'l';
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
-  int nx,ny,seg=0;
-  int fontsize = -1 ,textcolor = -1 ,ticscolor = -1; /* default values */
+  int nx,ny,seg=0,i;
+  int fontsize = -1 ,textcolor = -1 ,ticscolor = -1 ; /* default values */
   double  x1,y1;
+  /*** Ajout D.ABDEMOUCHE ****/  
+  char xstr,ystr; 
+  char dirx = 'd';  
+
+  seg=0; 
+
+  if (version_flag() == 0){    
+    Cscale.xtics[2]=pSUBWIN_FEATURE(psubwin)->axes.xlim[2];
+    Cscale.ytics[2]=pSUBWIN_FEATURE(psubwin)->axes.ylim[2];
+    for(i=0 ; i<4 ; i++ )
+      Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ;
+    /*** parceque c'est pas la subwin selectionnee mais celle en cours ***/
+    Cscale.xtics[1]= (Cscale.frect[2] / (exp10( Cscale.xtics[2]))) ;
+    Cscale.xtics[0]= (Cscale.frect[0]  / (exp10( Cscale.xtics[2]))) ;
+    Cscale.xtics[3]= floor(Cscale.xtics[1])-ceil(Cscale.xtics[0]);  //inint(Cscale.xtics[1]-Cscale.xtics[0]);
+    Cscale.ytics[1]= (Cscale.frect[3] / (exp10( Cscale.ytics[2]))) ; 
+    Cscale.ytics[0]  = (Cscale.frect[1]  / (exp10( Cscale.ytics[2]))) ;
+    Cscale.ytics[3]= floor(Cscale.ytics[1])-ceil(Cscale.ytics[0]); 
+
+  }       
+     
   switch ( c ) 
     { 
-    case '3' : /* right axis */ 
+    case '3' : /* right axis */
       x1= Cscale.xtics[1]*exp10(Cscale.xtics[2]);
       y1= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
       dir = 'r';
@@ -122,24 +235,86 @@ static void aplotv1(char *strflag)
       break ;
     case '5': /* centred at (0,0) */
       seg=1;
-      x1 = y1 = 0.0;
+      x1 = y1 = 0.0; 
       break;
     case '1' : /* left axis */
-    default :
-      x1= Cscale.xtics[0]*exp10(Cscale.xtics[2]);
-      y1= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
-      break;
+    default :  
+       x1= Cscale.xtics[0]*exp10(Cscale.xtics[2]);
+       y1= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
+       break;
     }
-  if ( c != '4' && c != '5' )  
-    /** frame rectangle **/
-    C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
+       
+  if ((version_flag() == 0) && (c != '4'))
+       {  
+         xstr=pSUBWIN_FEATURE(psubwin)->axes.xdir;
+          switch (xstr) 
+             {
+             case 'u':  
+                y1=Cscale.ytics[1]*exp10(Cscale.ytics[2]);
+                dirx='u';   
+                break;
+             case 'c':  
+                y1=(Cscale.ytics[0]*exp10(Cscale.ytics[2])>0.0)?Cscale.ytics[0]*exp10(Cscale.ytics[2]): 0.0;
+                y1=(Cscale.ytics[1]*exp10(Cscale.ytics[2])<0.0)?Cscale.ytics[0]*exp10(Cscale.ytics[2]): y1; 
+                seg =1; 
+                dirx ='d';                           
+                break;
+             default :  
+                y1= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
+                dirx ='d'; 
+                break;
+             }
+         ystr=pSUBWIN_FEATURE(psubwin)->axes.ydir;
+         switch (ystr) 
+             {
+             case 'r': 
+                x1=Cscale.xtics[1]*exp10(Cscale.xtics[2]);
+                dir='r';    
+                break;
+             case 'c': 
+                x1=(Cscale.xtics[0]*exp10(Cscale.xtics[2])>0.0)?Cscale.xtics[0]*exp10(Cscale.xtics[2]): 0.0;
+                x1=(Cscale.xtics[1]*exp10(Cscale.xtics[2])<0.0)?Cscale.xtics[0]*exp10(Cscale.xtics[2]): x1; 
+                seg =1; 
+                dir ='l';                              
+                break; 
+             default : 
+                x1= Cscale.xtics[0]*exp10(Cscale.xtics[2]);
+                dir ='l';  
+                break;
+             }
+        }
+  
+  if ( c != '4' && c != '5' ) {
+    if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.rect == 0))
+      seg=1;
+    else
+      /** frame rectangle **/
+      C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
 	    PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+   }
   /** sciprint("un xrect [%d %d %d %d ]\r\n",Cscale.WIRect1[0],Cscale.WIRect1[1],Cscale.WIRect1[2],Cscale.WIRect1[3]);
-   **/
+   **/ 
+  /** 07/06/2002 **/ 
+  if (version_flag() == 0){  
+    //for (i=0;i<4;i++)
+    //  Cscale.Waaint1[i]= pSUBWIN_FEATURE (psubwin)->axes.subint[i]+1; /*SS 01/01/03 */
+
+    Cscale.Waaint1[0]= pSUBWIN_FEATURE (psubwin)->axes.subint[0]+1;
+    Cscale.Waaint1[1]= pSUBWIN_FEATURE (psubwin)->axes.xlim[3]; /*SS 02/01/03 */
+    Cscale.Waaint1[2]= pSUBWIN_FEATURE (psubwin)->axes.subint[1]+1; 
+    Cscale.Waaint1[3]= pSUBWIN_FEATURE (psubwin)->axes.ylim[3];/*SS 02/01/03 */
+
+     ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
+     textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
+     fontsize=pSUBWIN_FEATURE (psubwin)->axes.fontsize;
+  
+   }
+ 
   /** x-axis **/
   ny=1,nx=4;
-  Sci_Axis('d','i',Cscale.xtics,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],
+  Sci_Axis(dirx,'i',Cscale.xtics,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],
 	   NULL,fontsize,textcolor,ticscolor,Cscale.logflag[0],seg);
+  
   /** y-axis **/
   ny=4,nx=1;
   Sci_Axis(dir,'i',&x1,&nx,Cscale.ytics,&ny,NULL,Cscale.Waaint1[2],
@@ -184,14 +359,32 @@ static void aplotv1(char *strflag)
  *-------------------------------------------------------------*/
 
 
-void sci_axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, char **str, int subtics, char *format, int fontsize, int textcolor, int ticscolor, char logflag, int seg_flag)
+void sci_axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag)
+     char pos,xy_type;        
+     double x[],y[];  
+     int *nx,*ny;
+     char *str[];
+     int  subtics;
+     char *format; 
+     int fontsize,textcolor,ticscolor;
+     char logflag;
+     int seg_flag;
 {
   if (GetDriver()=='R') 
     StoreSciAxis("axis",pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag);
   Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag);
 }
 
-void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, char **str, int subtics, char *format, int fontsize, int textcolor, int ticscolor, char logflag, int seg_flag)
+void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag)
+     char pos,xy_type;        
+     double x[],y[];  
+     int *nx,*ny;
+     char *str[];
+     int  subtics;
+     char *format; 
+     int fontsize,textcolor,ticscolor;
+     char logflag;
+     int seg_flag;
 {
   int Nx,Ny;
   double angle=0.0,vxx,vxx1;
@@ -200,19 +393,21 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, ch
   integer flag=0,xx=0,yy=0,posi[2],rect[4];
   integer i,barlength;
   int ns=2,style=0,iflag=0;
-  integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp;
-  
-   /* Modified by POLPOTH09042001 Mon Apr  9 08:59:10 MET DST 2001 */
-   /* If  zero ticks are requested, exit */
- 
-   if (*nx==3) if (x[2]==0.0) return;
-   if (*ny==3) if (y[2]==0.0) return;
- 
-   /* End of modified code */
-  
-  C2F(dr)("xget","font",&verbose,fontid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  fontsize_kp = fontid[1] ;
+  integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp; 
+  /*** 01/07/2002 ***/
+  double xmin,xmax,ymin, ymax; 
 
+
+ if (version_flag() == 0)
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  
+ C2F(dr)("xget","font",&verbose,fontid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  fontsize_kp = fontid[1] ;
+  /** 28/10/2002 **/
+  if ((version_flag() == 0) && ( fontsize == -1 ))
+     { fontid[0]= 0; fontid[1]= 1;  fontsize_kp = fontid[1] ;
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);}
+  
   if ( fontsize != -1 ) 
     {
       fontid[1] = fontsize ;
@@ -229,6 +424,10 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, ch
       smallersize=fontid[1]-2;
       C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
+  /**** 01/07/2002 ***/ 
+  if (version_flag() == 0) 
+      { while (x[3]>10)  x[3]=floor(x[3]/2);
+        while (y[3]>10)  y[3]=floor(y[3]/2); }
   /** Real to Pixel values **/
   switch ( xy_type ) 
     {
@@ -270,7 +469,16 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, ch
 	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
-
+        /******* 01/07/2002 **********/
+       if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1) && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){  
+	 xmax=Cscale.frect[2];
+	 xmin=Cscale.frect[0];
+        x[1]= floor(Cscale.frect[2] / (exp10( x[2]))) ;  
+        x[0]  = ceil(Cscale.frect[0]  / (exp10( x[2]))) ; 
+        x[3]=inint(x[1]-x[0]);
+        while (x[3]>10)  x[3]=floor(x[3]/2);
+        Nx=x[3]+1;}
+      /**********************/
       /** loop on the ticks **/
       for (i=0 ; i < Nx ; i++)
 	{ 
@@ -327,8 +535,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, ch
 	      double dx ; 
 	      vxx1= x_convert(xy_type,x,i+1);
 	      dx = (vxx1-vxx)/subtics;
-	      for ( j = 1 ; j < subtics; j++) 
-		{
+	      for ( j = 1 ; j < subtics; j++){ 
 		  vx[0] = vx[1] = XScale(vxx+dx*j);
 		  if ( pos == 'd' ) 
 		    { vy[0]= ym[0];vy[1]= ym[0] + barlength/2.0 ; }
@@ -336,7 +543,43 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, ch
 		    { vy[0]= ym[0];vy[1]= ym[0] - barlength/2.0; }
 		  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		}
-	    }
+	    } 
+	  /***   01/07/2002 ****/
+      if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){
+        if ( i == 0 ) 
+	    {
+	      int j;
+	      double dx ; 
+	      vxx1= x_convert(xy_type,x,i+1);
+	      dx = (vxx1-vxx)/subtics;
+	      for ( j = 1 ; j < subtics; j++) {  
+                 if ( vxx-dx*j > xmin){
+		  vx[0] = vx[1] = XScale(vxx-dx*j);
+		  if ( pos == 'd' ) 
+		    { vy[0]= ym[0];vy[1]= ym[0] + barlength/2.0 ; }
+		  else 
+		    { vy[0]= ym[0];vy[1]= ym[0] - barlength/2.0; }
+		  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 }}
+	    } 
+        if ( i == Nx-1 ) 
+	    {
+	      int j;
+	      double dx ; 
+	      vxx1= x_convert(xy_type,x,i+1);
+	      dx = (vxx1-vxx)/subtics;
+	      for ( j = 1 ; j < subtics; j++) {  
+                 if ( vxx+dx*j < xmax){
+		  vx[0] = vx[1] = XScale(vxx+dx*j);
+		  if ( pos == 'd' ) 
+		    { vy[0]= ym[0];vy[1]= ym[0] + barlength/2.0 ; }
+		  else 
+		    { vy[0]= ym[0];vy[1]= ym[0] - barlength/2.0; }
+		  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 }}
+	    } 
+            }
+         
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
       break;
@@ -359,6 +602,16 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, ch
 	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
+       /******* 01/07/2002 **********/
+       if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){  
+	 ymax=Cscale.frect[3];
+	 ymin=Cscale.frect[1];
+        y[1]= floor(Cscale.frect[3] / (exp10( y[2]))) ;  
+        y[0]  = ceil(Cscale.frect[1]  / (exp10( y[2]))) ; 
+        y[3]=inint(y[1]-y[0]);
+        while (y[3]>10)  y[3]=floor(y[3]/2);
+        Ny=y[3]+1;}
+      /**********************/
       /** loop on the ticks **/
       for (i=0 ; i < Ny ; i++)
 	{ 
@@ -424,6 +677,41 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, ch
 		  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		}
 	    }
+  /***   01/07/2002 ****/
+      if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){
+        if ( i == 0 )  
+            {
+	      int j;
+	      double dy ; 
+	      vxx1= y_convert(xy_type,y,i+1);
+	      dy = (vxx1-vxx)/subtics;
+	      for ( j = 1 ; j < subtics; j++) {  
+                 if ( vxx-dy*j > ymin){
+		  vy[0] = vy[1] = YScale(vxx-dy*j);
+		  if ( pos == 'r' ) 
+		    { vx[0]= xm[0];vx[1]= xm[0] + barlength/2.0 ; }
+		  else 
+		    { vx[0]= xm[0];vx[1]= xm[0] - barlength/2.0; }
+		  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 }}
+	    }
+        if ( i == Ny-1 )
+            {
+	      int j;
+	      double dy ; 
+	      vxx1= y_convert(xy_type,y,i+1);
+	      dy = (vxx1-vxx)/subtics;
+	      for ( j = 1 ; j < subtics; j++) {  
+                 if ( vxx+dy*j < ymax){
+		  vy[0] = vy[1] = YScale(vxx+dy*j);
+		  if ( pos == 'r' ) 
+		    { vx[0]= xm[0];vx[1]= xm[0] + barlength/2.0 ; }
+		  else 
+		    { vx[0]= xm[0];vx[1]= xm[0] - barlength/2.0; }
+		  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 }}
+	    }  
+            }
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
       break;
@@ -444,7 +732,10 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, ch
 
 /* from double to pixel */ 
 
-static double  x_convert(char xy_type, double *x, int i)
+static double  x_convert(xy_type, x , i)
+     char xy_type;
+     double *x;
+     int i;
 {
   switch ( xy_type ) { 
   case 'v' :  return x[i];
@@ -454,7 +745,10 @@ static double  x_convert(char xy_type, double *x, int i)
   return 0.0;
 }
 
-static double y_convert(char xy_type, double *y, int i)
+static double y_convert(xy_type, y , i)
+     char xy_type;
+     double *y;
+     int i;
 {
   switch ( xy_type ) { 
   case 'v' :  return y[i]; 
@@ -468,7 +762,10 @@ static double y_convert(char xy_type, double *y, int i)
 
 /* Format pour imprimer un nombre de la forme k10^a */
 
-static void NumberFormat(char *str, integer k, integer a)
+static void NumberFormat(str, k, a)
+     char *str;
+     integer k;
+     integer a;
 {
   if ( k==0) 
     {
