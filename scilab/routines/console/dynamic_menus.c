@@ -37,6 +37,7 @@
 extern int HideToolBarWin32(int WinNum); /* see "wsci/wmenu.c" */
 extern BOOL IsToThePrompt(void);
 void SetLanguageMenu(char *Language); /* see "wsci/wmenu.c" */
+
 #endif /*WIN32*/
 
 extern void write_scilab  __PARAMS((char *s));
@@ -55,8 +56,11 @@ extern integer C2F (ismenu) __PARAMS((void));
 extern int C2F (getmen) __PARAMS((char *btn_cmd, integer *lb, integer *entry));  
 extern void  reset_scig_command_handler __PARAMS((void));
 
-
+static int SaveHistoryAfterNcommands=0;
 static int wait_for_input_end=0; 
+
+extern int NumberOfCommands;
+
 
 typedef struct commandRec
 {
@@ -316,5 +320,38 @@ int C2F(setlanguagemenu) _PARAMS((char *fname))
 	C2F(putlhsvar)();
 
 	return 0;
+}
+ /*-----------------------------------------------------------------------------------*/
+int C2F(savehistoryafterncommands) _PARAMS((char *fname))
+{
+	if (Rhs == 0) /* aucun parametre */
+	{
+	}
+	else
+	{
+		int SaveHistoryAfterNcommandsTemp=0;
+		int m1,n1,l1;
+
+		CheckRhs(1,1);
+  		CheckLhs(1,1);
+  		GetRhsVar(1,"i",&m1,&n1,&l1);
+  		SaveHistoryAfterNcommandsTemp=*istk(l1);
+		
+		if (SaveHistoryAfterNcommandsTemp>=0)
+		{
+			SaveHistoryAfterNcommands=SaveHistoryAfterNcommandsTemp;
+			NumberOfCommands=0;
+		}
+	}
+
+	LhsVar(0)=0;
+	C2F(putlhsvar)();
+
+	return 0;
+}
+ /*-----------------------------------------------------------------------------------*/
+int GetSaveHistoryAfterNcommands(void)
+{
+	return SaveHistoryAfterNcommands;
 }
  /*-----------------------------------------------------------------------------------*/

@@ -226,6 +226,13 @@ static char *IC=NULL;            /* insert character */
 static char *EI=NULL;            /* end insert mode */
 static char *CL=NULL;            /* clear screen */
 #endif
+
+extern int GetSaveHistoryAfterNcommands(void);
+extern char * getfilenamehistory(void);
+extern void save_history(char *filename);
+
+int NumberOfCommands=0;
+
 /*-------------- End of Declarations  specific for console mode-----------------  */
 
 /***********************************************************************
@@ -643,6 +650,20 @@ extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 #endif
   *eof = FALSE;
   set_is_reading(FALSE);
+  
+  /* see savehistoryafterncommands */
+  NumberOfCommands++;
+  if ( ( GetSaveHistoryAfterNcommands() == NumberOfCommands ) && ( GetSaveHistoryAfterNcommands() > 0) )
+  {
+	  char *filenamehistory=NULL;
+	
+	  filenamehistory=getfilenamehistory();
+	  save_history( filenamehistory );
+	  free(filenamehistory);
+
+	  NumberOfCommands=0;
+  }
+  
   return;
 
 }

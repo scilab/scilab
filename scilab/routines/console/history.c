@@ -6,7 +6,6 @@ sci_hist *cur_entry = NULL;
 sci_hist *research_knot_last = NULL;
 BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
 static char *HistoryFileNamePath = "~/history.scilab";
-
 #include  "../stack-c.h"
 #ifndef Max 
 #define Max(x,y)	(((x)>(y))?(x):(y))
@@ -183,45 +182,62 @@ sci_hist * GoNextKnot(sci_hist * CurrentKnot)
 /*interface routine for Scilab function savehistory  */
 int C2F(savehistory) _PARAMS((char *fname))
 {
-  FILE * pFile;
+  
   char  line[MAXBUF];
   char *Path;
   int l1, m1, n1, out_n, lout;
-  sci_hist *Parcours = history;
-  BOOL SaveLine=TRUE;
-
+  
   Rhs=Max(Rhs,0);
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
 
 	
-  if (Rhs == 0) {
+  if (Rhs == 0)
+  {
     Path=HistoryFileNamePath;
   }
-  else {
+  else
+  {
     GetRhsVar(1,"c",&m1,&n1,&l1);
     Path=cstk(l1);
   }
-  if (history) {
+
+  if (history)
+  {
     lout=MAXBUF;
     C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),lout);
-    pFile = fopen (line,"wt");
-    if (pFile)
-      {
-	Parcours=GoFirstKnot(Parcours);
-	while(Parcours->next)
-	  {
+    Path=line;
+  }
+
+  save_history(Path);
+
+  LhsVar(1)=0;
+  C2F(putlhsvar)();
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+void save_history(char *filename)
+{
+	FILE * pFile;
+	sci_hist *Parcours = history;
+	char  line[MAXBUF];
+	BOOL SaveLine=TRUE;
+
+	pFile = fopen (filename,"wt");
+	if (pFile)
+    {
+		Parcours=GoFirstKnot(Parcours);
+		while(Parcours->next)
 		{
 			if (strncmp(Parcours->line,"// Begin Session :",strlen("// Begin Session :"))==0)
 			{
-				sci_hist *ParcoursNextforTest = GoNextKnot(Parcours);
-				if (ParcoursNextforTest)
-				{
-					if (strncmp(ParcoursNextforTest->line,"// End Session :",strlen("// End Session :"))==0)
+					sci_hist *ParcoursNextforTest = GoNextKnot(Parcours);
+					if (ParcoursNextforTest)
 					{
-						SaveLine=FALSE;
-					}
-				}
+						if (strncmp(ParcoursNextforTest->line,"// End Session :",strlen("// End Session :"))==0)
+						{
+							SaveLine=FALSE;
+						}
 			}
 		}
 		if (SaveLine)
@@ -238,20 +254,28 @@ int C2F(savehistory) _PARAMS((char *fname))
 	    Parcours=GoNextKnot(Parcours);  
 	  }
 
-	if (Parcours)
-	 {
-		fputs(Parcours->line,pFile );
-		fputs("\n",pFile );
-	 }
+		if (Parcours)
+		{
+			fputs(Parcours->line,pFile );
+			fputs("\n",pFile );
+		}
 
-	GetCommentDateSession(line,FALSE);
-	fputs(line,pFile );
-	fclose(pFile);
-      }
-  }
-  LhsVar(1)=0;
-  C2F(putlhsvar)();
-  return 0;
+		GetCommentDateSession(line,FALSE);
+		fputs(line,pFile);
+		fclose(pFile);
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+char * getfilenamehistory(void)
+{
+	char  *filename=NULL;
+	int out_n, lout;
+
+	filename=(char*)malloc(MAXBUF*sizeof(char));
+	lout=MAXBUF;
+    C2F(cluni0)(HistoryFileNamePath, filename, &out_n,(long)strlen(HistoryFileNamePath),lout);
+
+	return filename;
 }
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function resethistory  */

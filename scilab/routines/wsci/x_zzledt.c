@@ -1,8 +1,8 @@
 /* Copyright (C) 1998-2002 Chancelier Jean-Philippe */
+/* INRIA 2003 Allan CORNET */
+
 /************************************
  * reading functions for scilab 
- * Scilab 1997
- *   Jean-Philippe Chancelier 
  ************************************/
 
 #include <stdio.h>
@@ -11,8 +11,6 @@
 #ifndef STRICT
 #define STRICT
 #endif
-/*#include <windows.h>
-  #include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
 #include "plot.h"
@@ -25,11 +23,15 @@ extern char input_line[MAX_LINE_LEN + 1];
 extern BOOL ScilabIsStarting;
 extern void SetReadyOrNotForAnewLign(BOOL Ready);
 extern void GetCurrentPrompt(char *CurrentPrompt);
+extern int GetSaveHistoryAfterNcommands(void);
+extern char * getfilenamehistory(void);
+extern void save_history(char *filename);
 
 
 char copycur_line[1024];
 BOOL PutLineInBuffer=FALSE;
 void ChangeCursorWhenScilabIsReady(void);
+int NumberOfCommands=0;
 /*-----------------------------------------------------------------------------------*/
 /***********************************************************************
  * line editor win32 version 
@@ -85,6 +87,18 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
   set_is_reading (FALSE);
   C2F (sxevents) ();
 
+  /* see savehistoryafterncommands */
+  NumberOfCommands++;
+  if ( ( GetSaveHistoryAfterNcommands() == NumberOfCommands ) && ( GetSaveHistoryAfterNcommands() > 0) )
+  {
+	  char *filenamehistory=NULL;
+	
+	  filenamehistory=getfilenamehistory();
+	  save_history( filenamehistory );
+	  free(filenamehistory);
+
+	  NumberOfCommands=0;
+  }
 
   return;
 }
@@ -115,6 +129,5 @@ void SaveCurrentLine(BOOL RewriteLineAtPrompt)
 		strcpy(copycur_line,cur_line);
 		if (RewriteLineAtPrompt) PutLineInBuffer=TRUE;
 	}
-
 }
 /*-----------------------------------------------------------------------------------*/
