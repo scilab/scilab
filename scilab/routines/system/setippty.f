@@ -10,9 +10,10 @@ c     .  initialization
          byptr(2)=13
          byptr(3)=16
          byptr(4)=21
-         byptr(5)=41
-         byptr(6)=42
-         nbyptr=6
+         byptr(5)=23
+         byptr(6)=41
+         byptr(7)=42
+         nbyptr=7
       elseif(n.gt.0) then 
 c     .  add a  interface n in the list
          do 01 i=1,nbyptr
