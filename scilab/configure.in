@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.110 $)dnl
+AC_REVISION($Revision: 1.111 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1929,7 +1929,8 @@ USER_ATLAS_LIB_PATH=""
 AC_ARG_WITH(atlas-library,
     [  --with-atlas-library=DIR  Atlas library files are in DIR and we use Atlas ],
     [  USER_ATLAS_LIB_PATH=$withval
-    ])
+    CC_OPTIONS="$CC_OPTIONS -DWITH_ATLAS"],
+    )
 
 if test "$USER_ATLAS_LIB_PATH" = ""; then
 	WHICH_BLAS="STD_BLAS"
