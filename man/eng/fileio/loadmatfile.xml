@@ -5,16 +5,44 @@
   <TITLE>loadmatfile</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>2002</DATE>
-  <SHORT_DESCRIPTION name="loadmatfile"> loads  a Matlab  MAT-file into Scilab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="loadmatfile">loads a Matlab MAT-file (binary or ASCII) into Scilab</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>loadmatfile(filename)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>loadmatfile(format,filename[,var1[,var2[,...]]])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>loadmatfile(filename[,format[,var1[,var2[,...]]]])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>loadmatfile(filename[,var1[,var2,[,...[,format]]]])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
-    <PARAM_INDENT>
+  <PARAM_INDENT>
+    <PARAM_ITEM>
+       <PARAM_NAME>filename</PARAM_NAME>
+       <PARAM_DESCRIPTION>
+         <SP>: character string containing the path of the file (needed)</SP>
+       </PARAM_DESCRIPTION>
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+       <PARAM_NAME>format</PARAM_NAME>
+       <PARAM_DESCRIPTION>
+         <SP>: file format (if not given and file has extension ".mat", file is considered to be binary)</SP>
+         <PARAM_INDENT>
+           <PARAM_ITEM>
+             <PARAM_NAME>"-mat"</PARAM_NAME>
+             <PARAM_DESCRIPTION>
+                <SP>: binary file</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>"-ascii"</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: option to force Scilab to read file as an ASCII file</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>filename</PARAM_NAME>
+        <PARAM_NAME>var1, var2</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: character string containing the path of the file</SP>
+          <SP>: character strings containing the name of the variables to load (only for binary files)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -35,7 +63,10 @@
       <LINK>matfile2sci</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Serge Steer (INRIA)  </AUTHOR>
+  <AUTHORS>
+  <AUTHORS_ITEM>Serge Steer (INRIA)</AUTHORS_ITEM>
+  <AUTHORS_ITEM>V.C</AUTHORS_ITEM>
+  </AUTHORS>
   <BIBLIO>
     <P>This function has been developped following the &quot;MAT-File Format&quot;
   description: 
