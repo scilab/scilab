@@ -4,6 +4,7 @@ function [tree]=sci_dir(tree)
 // Conversion function for Matlab dir()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
+// Emulation function: mtlb_dir()
 // V.C.
 
 if tree.lhs(1).name=="ans" then
