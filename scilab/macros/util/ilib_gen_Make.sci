@@ -17,7 +17,7 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
     tables(it)=table;
   end
       
-  comp_target = getenv('COMPILER','NO');
+  comp_target = COMPILER;
   if getenv('WIN32','NO')=='OK' then
     select comp_target
      case 'VC++'   then Makename = makename+'.mak'

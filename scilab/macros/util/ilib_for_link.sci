@@ -34,7 +34,7 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
   if rhs <= 4 then libname = ""; end 
   if rhs <= 3 then libs=[]; end 
   if rhs <= 2 then loadername = 'loader.sce' ; end 
-  comp_target = getenv('COMPILER','NO');
+  comp_target = COMPILER;
   // suffix to be used for dll
   if getenv('WIN32','NO')=='OK' then
     select comp_target
@@ -78,7 +78,7 @@ function ilib_link_gen_Make(names,files,libs,makename,libname,ldflags,cflags,ffl
   if rhs <= 6 then cflags  = ""; end 
   if rhs <= 7 then fflags  = ""; end 
   if rhs <= 8 then cc  = ""; end 
-  comp_target = getenv('COMPILER','NO');
+  comp_target = COMPILER;
   if getenv('WIN32','NO')=='OK' then
     select comp_target
      case 'VC++'   then Makename = makename+'.mak'

@@ -42,7 +42,7 @@ function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_
   else
      path=''
   end
-  comp_target = getenv('COMPILER','NO');
+  comp_target = COMPILER;
   if getenv('WIN32','NO')=='OK' then
     lib_name=lib_name+'.dll'
     lib_name_make=lib_name;

@@ -6,10 +6,10 @@ if getenv('WIN32','NO')=='OK' then
   if typeof(objects_or_dll)<>'string' then error('G_make: objects must be a string');
     return;
   end 
-  if getenv('COMPILER','NO')=='VC++' then 
+  if COMPILER=='VC++' then 
     // scilab was build with VC++ 
     host('nmake /nologo /f Makefile.mak '+objects_or_dll);
-  else if getenv('COMPILER','NO')=='ABSOFT' then 
+  else if COMPILER=='ABSOFT' then 
       // scilab was build with ABSOFT 
       host('amake /f Makefile.amk '+objects_or_dll); 
     else  

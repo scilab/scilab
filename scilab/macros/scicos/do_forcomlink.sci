@@ -14,7 +14,7 @@ function [ok]=do_forcomlink(funam,txt)
     [a,b]=c_link(funam); while a ; ulink(b);[a,b]=c_link(funam);end
     cur_wd = getcwd();
     chdir(TMPDIR);
-    if (getenv('COMPILER','NO')=='ABSOFT')
+    if (COMPILER=='ABSOFT')
       cmd_win='amake /f '"'+SCI+'\demos\intro\MakeF.amk'"  TARGET=';
     else
       cmd_win='nmake /f '"'+SCI+'\demos\intro\MakeF.mak'"  TARGET=';

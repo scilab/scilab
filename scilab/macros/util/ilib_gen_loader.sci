@@ -13,7 +13,7 @@ function ilib_gen_loader(name,tables,libs)
     if nt<>3 & nt<>2 then error('second argument has wrong size ');end 
   end
   
-  comp_target = getenv('COMPILER','NO');
+  comp_target = COMPILER;
   if getenv('WIN32','NO')=='OK' then
     select comp_target
      case 'VC++'   then lib_suf='dll';

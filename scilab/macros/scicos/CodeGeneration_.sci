@@ -1552,7 +1552,7 @@ function ok=gen_loader()
 	 'end'
 	 'archname='+sci2exp(archname);
 	 'Makename = DIR+rdnom+''_Makefile'';'
-	 'select getenv(''COMPILER'',''NO'');'
+	 'select COMPILER'
 	 'case ''VC++''   then '
 	 '  Makename = strsubst(Makename,''/'',''\'')+''.mak'';'
 	 'case ''ABSOFT'' then '
@@ -1665,7 +1665,7 @@ WSCI=strsubst(SCI,'/','\')
      "standalone: $(OBJSSTAN) $(OTHERLIBS) "
       ascii(9)+"$(LINKER) $(LINKER_FLAGS)  $(OBJSSTAN) $(OTHERLIBS) $(SCILIBS)  /out:standalone.exe "]
 
-  select getenv('COMPILER','NO');
+  select COMPILER;
     case 'VC++'   then 
     makename = strsubst(Makename,'/','\')+'.mak'
     case 'ABSOFT' then 
