@@ -444,6 +444,7 @@ OBJDLL=  routines\calelm\vfloor.obj \
  routines\default\Ex-corr.obj \
  routines\default\Ex-feval.obj \
  routines\default\Ex-fsolve.obj \
+ routines\default\Ex-lsqrsolve.obj \
  routines\default\Ex-impl.obj \
  routines\default\Ex-intg.obj \
  routines\default\Ex-ode-more.obj \

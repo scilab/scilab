@@ -66,6 +66,7 @@ DEFAULTS = routines/wsci/winmain.obj	\
 	routines/default/Ex-corr.obj \
 	routines/default/Ex-feval.obj \
 	routines/default/Ex-fsolve.obj \
+        routines/default/Ex-lsqrsolve.obj \
 	routines/default/Ex-impl.obj \
 	routines/default/Ex-intg.obj \
 	routines/default/Ex-int2d.obj \
