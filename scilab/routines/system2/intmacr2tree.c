@@ -9,6 +9,7 @@
 
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];
+
 /* Number of variables */
 static int nbvars = 0;
 
@@ -24,11 +25,12 @@ int C2F(macr2tree) _PARAMS((char *fname))
   int m_pgrm_tlist = 1,n_pgrm_tlist = 6;
   char *pgrm_tlist[] = {"program","name","outputs","inputs","statements","nblines"};
   
-  int *data; /* Macro integer vector */
+  int *stkdata = NULL; /* Pointeur to rhs arguments */
+  int *data = NULL; /* Macro integer vector (pointer to copy of rhs argument) */
  
   int minRhs = 1; /* Minimum number of RHS arguments */
   int maxRhs = 1; /* Maximum number of RHS arguments */
-  int minLhs = 0; /* Minimum number of LHS arguments */
+  int minLhs = 1; /* Minimum number of LHS arguments */
   int maxLhs = 1; /* Maximum number of LHS arguments */
   
   int il = 0,ils = 0,ile = 0,ilt = 0,codelength = 0;
@@ -40,8 +42,8 @@ int C2F(macr2tree) _PARAMS((char *fname))
   int nblines = 1;
 
   /* Name (character string used to store function/lhs/rhs names */
-  char **name;
-  int namelgth;
+  char **name = NULL;
+  int namelgth = 0;
 
   /* Number of statements in macro */
   int nbstat = 0;
@@ -55,13 +57,38 @@ int C2F(macr2tree) _PARAMS((char *fname))
   /* Save last code interpreted */
   int cod_sav = 0;
 
-  /* Used when move a variable on stack */
-  int orig = 0,dest = 0;
+  /* Loop index */
+  int k = 0;
 
   /* Used for statements list creation */
   int sz = 0; /* Size */
-  int k = 0;
   int newinstr = 0; /* flag used to know if a new instruction has been created (1->TRUE) */
+
+  /* Verify number of RHS arguments */
+  CheckRhs(minRhs,maxRhs);
+  
+  /* Verify number of LHS arguments */
+  CheckLhs(minLhs,maxLhs);
+
+  /* Read all data */
+  stkdata = (int *) stk(*lstk(Top));
+
+  if (stkdata[0] > 0) /* Not a reference to variable */
+    {
+      Scierror(999,"macr2tree: input argument must be a named variable\r\n");
+      return 0;
+    }
+  else
+    {
+      stkdata = (int *) stk(stkdata[1]);
+    }
+
+  /* Verify good type for input: must be a compiled macro (type 13) */
+  if(stkdata[0] != 13)
+    {
+      Scierror(999,"macr2tree: Wrong input type (must be a compiled macro)!\r\n");
+      return 0;
+    }
 
   /* Memory allocation */
   if((name=calloc(1,sizeof(char)))==NULL)
@@ -76,58 +103,58 @@ int C2F(macr2tree) _PARAMS((char *fname))
     }
   (name[0])[nlgh]='\0';
   
-  /* Verify number of RHS arguments */
-  CheckRhs(minRhs,maxRhs);
-  
-  /* Verify number of LHS arguments */
-  CheckLhs(minLhs,maxLhs);
-
-  /* Read all data */
-  data = (int*) GetData(1);
-
-  /* Verify good type for input: must be a compiled macro (type 13) */
-  if(data[0] != 13)
-    {
-      Scierror(999,"macr2tree: Wrong input type (must be a compiled macro)!\r\n");
-      return 0;
-    }
-
   /* Get function name: variable name on top of idstk */
   /* Must be done before writing anything on stack or else we have to save Top when entering this program */
 
   CvNameL(idstk(1,Top),name[0],&job1,&namelgth);
   (name[0])[namelgth]='\0';
+
+  /* Input variable is no more useful */
+  Top--;
+
   /* Write 'program' tlist first element on stack */
   str2sci(pgrm_tlist,m_pgrm_tlist,n_pgrm_tlist);
  
   /* Write function name on stack */
   str2sci(name,one,one);
  
-  ils=il+1; /* data[ils] = number of outputs */
+  ils=il+1; /* stkdata[ils] = number of outputs */
 
   /* Read output parameters names */
-  for(i=0;i<data[ils];i++)
+  for(i=0;i<stkdata[ils];i++)
     {
-      CvNameL(&data[ils+1+i*nsiz],name[0],&job1,&namelgth);
+      CvNameL(&stkdata[ils+1+i*nsiz],name[0],&job1,&namelgth);
       (name[0])[namelgth]='\0';
       CreateVariableTList(name);
     }
-  C2F(mklist)(&data[ils]);
+  C2F(mklist)(&stkdata[ils]);
 
-  ile = ils+nsiz*data[ils]+1; /* data[ile] = number of outputs */
+  ile = ils+nsiz*stkdata[ils]+1; /* stkdata[ile] = number of outputs */
 
   /* Read input parameters names */
-  for(i=0;i<data[ile];i++)
+  for(i=0;i<stkdata[ile];i++)
     {
-      CvNameL(&data[ile+1+i*nsiz],name[0],&job1,&namelgth);
+      CvNameL(&stkdata[ile+1+i*nsiz],name[0],&job1,&namelgth);
       (name[0])[namelgth]='\0';
       CreateVariableTList(name);
     }
-  C2F(mklist)(&data[ile]);
+  C2F(mklist)(&stkdata[ile]);
 
-  ilt=ile+nsiz*data[ile]+1;
-  codelength=data[ilt];
-  
+  ilt=ile+nsiz*stkdata[ile]+1;
+
+  codelength=stkdata[ilt];
+
+  /* Make a copy variable passed as reference */
+  /* Memory allocation */
+  if((data=(int *)calloc(1,sizeof(int)*(codelength+ilt+1)))==NULL)
+    {
+      Scierror(999,"macr2tree: No more memory available\r\n");
+      return 0;
+    }
+  /* Copy */
+  for(k=0;k<(codelength+ilt+1);k++)
+    data[k]=stkdata[k];
+
   /* List header */
   /* Considering Top is pointing last occupied place */
 
@@ -143,6 +170,20 @@ int C2F(macr2tree) _PARAMS((char *fname))
   *istk(il+2) = 1;
 
   *lstk(Top+1) = sadr(il+3+nbstat);
+  
+  /* Error handling (S. Steer */
+  if (*lstk(Top+1) >= *lstk(Bot)) {
+    Scierror(17,"macr2tree: stack size exceeded (Use stacksize function to increase it)\r\n");
+
+    /* Free memory */
+    free(name[0]);
+    name[0]=NULL;
+    free(name);
+    name=NULL;
+    free(data);
+    
+    return 0;
+  }
 
   /* Fill list */
   for(k=1;k<=nbstat;k++)
@@ -152,8 +193,22 @@ int C2F(macr2tree) _PARAMS((char *fname))
       while(newinstr==0)
   	{
 	  cod_sav=data[cod_ind];
-
 	  GetInstruction(data,&cod_ind,&nblines,&newinstr);
+
+	  /* Error handling (S. Steer) */
+	  if (Err>0 || C2F(errgst).err1>0)
+	    {
+	      Scierror(999,"macr2tree: error found while getting instruction\r\n");
+
+	      /* Free memory */
+	      free(name[0]);
+	      name[0]=NULL;
+	      free(name);
+	      name=NULL;
+	      free(data);
+
+	      return 0;
+	    }
 
 	  if(cod_sav==15 && Top!=TopSave+1) /* Column catenation with EOL after semi-colon */
 	    newinstr=0;
@@ -164,12 +219,30 @@ int C2F(macr2tree) _PARAMS((char *fname))
 	  if(cod_ind>codelength+ilt+1)
 	    {
 	      Scierror(999,"macr2tree: Out of code\r\n");
+ 
+	      /* Free memory */
+	      free(name[0]);
+	      name[0]=NULL;
+	      free(name);
+	      name=NULL;
+	      free(data);
+	      
 	      return 0;
 	    }
 
 	}
-      if(TopSave!=Top-1)
+      if(TopSave!=Top-1) {
 	Scierror(999,"macr2tree: wrong Top value %d instead of %d\r\n",Top,TopSave+1);
+
+	/* Free memory */
+	free(name[0]);
+	name[0]=NULL;
+	free(name);
+	name=NULL;
+	free(data);
+	
+	return 0;
+      }
 
       sz = *lstk(Top+1) - *lstk(Top);
 
@@ -185,20 +258,13 @@ int C2F(macr2tree) _PARAMS((char *fname))
 
   C2F(mktlist)(&n_pgrm_tlist);
 
-  orig = Top;
-  dest = Top - 1;
-  /* Copy result list on first place */
-  VCopyObj("macr2tree", &orig, &dest, 9L);
-
-  /*  Return variables  */
-  LhsVar(1) = 1;
-  
   /* Free memory */
   free(name[0]);
   name[0]=NULL;
   free(name);
   name=NULL;
-
+  free(data);
+  
   return 0;
 }
 
@@ -1005,8 +1071,10 @@ static int CreateOperationTList(int *data,int *index)
 	  break;
 	}
     }
-  if(operator_index<0)
+  if(operator_index<0) {
     Scierror(999,"CreateOperationTList: unknown operator %d\r\n",operator_num);
+    return 0;
+  }
 
   /* Move all operands to next place in stack */
   /* Special case for column concatenation followed by a EOL */
@@ -1292,7 +1360,6 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
   (operator[0])[3] = '\0';
 
   /* Add tlist items names to stack */
-  
   str2sci(eq_tlist,m_eq_tlist,n_eq_tlist);
 
   if(!strncmp(fromwhat,"code29",6))  /* A code 29 was found in data */
@@ -1316,7 +1383,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
 	  (name[0])[namelgth] = '\0';
 	  *index = *index + nsiz;
 	  nbrhs = data[*index];
-	  nb_indexes = nbrhs + nb_indexes;
+ 	  nb_indexes = nbrhs + nb_indexes;
 
 	  if(nbrhs==0) /* Variable affectation */
 	    {
@@ -1368,7 +1435,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
       
       /* Create equal tlist */
       C2F(mktlist)(&n_eq_tlist);
-  
+ 
       /* Copy tlist to first free place */
       orig = Top;
       dest = Top - nb_indexes - 1;
