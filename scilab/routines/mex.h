@@ -270,8 +270,9 @@ typedef REAL32_T real32_T;
 }
 #endif
 
+/* generic mexfunction name */
 #ifdef __cplusplus
 extern "C" {
-void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
+  void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]);
 }
 #endif
