@@ -1,12 +1,12 @@
-function routines=create_palette(bidon)
+function routines=create_palette(Path)
   load SCI/macros/scicos/lib;
   scicos_ver='scicos2.7.3'
-  lisf=unix_g('ls *.sci')
   rhs=argn(2)
-  if rhs==0 then
-    Path=pwd();
+  if rhs==1 then
+    Path=pathconvert(Path,%t,%t)
+    PalName=basename(part(Path,1:length(Path)-1))
     to_del=[]
-
+    lisf=listfiles(Path+'*.sci')
     for i=1:size(lisf,'*')
       fil=lisf(i)
       ierror=execstr('getf(fil)','errcatch')
@@ -15,24 +15,16 @@ function routines=create_palette(bidon)
       end
     end
     lisf(to_del)=[];
-    [path,fname,ext]=splitfilepath(Path);
-    path=path+fname
-    build_palette(lisf,path,fname)
+    routines=build_palette(lisf,Path,PalName)
   else
-    savepwd=pwd()
-    chdir(SCI+'/macros/scicos/')
+    [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
+     %scicos_display_mode, modelica_libs,scicos_pal_libs] = initial_scicos_tables()
+    clear %scicos_menu  %scicos_short %scicos_help %scicos_display_mode modelica_libs
     exec(loadpallibs,-1) 
-    path='SCI/macros/scicos_blocks'
-    
-    if stripblanks(bidon)=='all' then
-      bidon=['Sources','Sinks','Branching','Non_linear','Events','Threshold',...
-	     'Others','Linear','OldBlocks','DemoBlocks','Electrical','Hydraulics'];
-    else
-      bidon=bidon(:)'
-    end
+    path='SCI/macros/scicos/'
     
     routines=[]
-    for txt=bidon
+    for txt=scicos_pal(:,1)'
       disp('Constructing '+txt)
       if txt=='Sources' then
 	lisf=['CONST_f.sci';'GENSQR_f.sci';'RAMP.sci';  
@@ -108,14 +100,14 @@ function routines=create_palette(bidon)
 	      'Inductor.sci';'PotentialSensor.sci';'VariableResistor.sci';'CurrentSensor.sci';
 	      'Resistor.sci';'VoltageSensor.sci';'Diode.sci';'VsourceAC.sci']
 	
-      elseif txt=='Hydraulics' then
+      elseif txt=='ThermoHydraulics' then
 	lisf=['Bache.sci';'VanneReglante.sci';'PerteDP.sci';'PuitsP.sci';'SourceP.sci';]
       else
 	error('Palette '+txt+' does not exists')
       end
       routines=[routines;build_palette(lisf,path,txt)]
     end
-    chdir(savepwd)
+//    chdir(savepwd)
   end
   routines=unique(routines)
 endfunction
@@ -129,7 +121,8 @@ function [routines]=build_palette(lisf,path,fname)
   sep=30
   routines=[];
   for fil=lisf'
-    name= part(fil,1:length(fil)-4)
+    name=basename(fil)
+    //name= part(fil,1:length(fil)-4)
     ierror=execstr('blk='+name+'(''define'')','errcatch')
     if ierror <>0 then
       message(['Error in GUI function';lasterror()] )
@@ -144,7 +137,7 @@ function [routines]=build_palette(lisf,path,fname)
     if X>400 then X=0,Y=Y+yy+sep,yy=0,end
     scs_m.objs($+1)=blk
   end
-    [u,err]=file('open',fname+'.cosf','unknown','formatted')
+  [u,err]=file('open',path+fname+'.cosf','unknown','formatted')
   if err<>0 then
     message('File or directory write access denied')
     return
@@ -153,11 +146,11 @@ function [routines]=build_palette(lisf,path,fname)
   if execstr('write(u,sci2exp(scicos_ver,''scicos_ver''),''(a)'')',..
 	     'errcatch')<>0 then
     message('Directory write access denied')
-    disp('Wrote '+fname+'.cosf in '+pwd())
     file('close',u)
     return
   end
   cos2cosf(u,do_purge(scs_m))
   file('close',u)
+  mprintf('Wrote '+path+fname+'.cosf \n')
 endfunction
 
