@@ -677,9 +677,9 @@ typedef struct
   double ARect[4]; /* margins*/
   int zoomy_kp;
   double FRect_kp[4];
-  char logflags[2]; 
+  char logflags[3]; /* Z has a logflag now F.Leray 03.11.04 */
   int grid[3];
-/*   BOOL isaxes; */
+  /*   BOOL isaxes; */
 
   BOOL is3d;
   BOOL tight_limits;
@@ -1584,6 +1584,6 @@ extern int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, dou
 extern int FindGrads(double *grads,int * n_grads);
 extern int CheckIfiisNan(int j, int dim, int * tab);
 extern int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * psubwin, int * nb_curves, double *** xvect, double *** yvect, double *** zvect, int ** curves_size);
-
+extern int ComputeGoodTrans3d( sciPointObj * psubwin, int n, int *xm, int *ym, double * fx, double *fy, double *fz);
 
 #endif /*__SCI_ENTITIES__*/
