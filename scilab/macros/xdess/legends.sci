@@ -5,7 +5,6 @@ function legends(leg, style, opt, with_box)
 // AUTHORS
 //    F. Delebecque + slight modif from B. Pincon 
 //   
-
   
   rhs=argn(2)
  
@@ -14,7 +13,7 @@ function legends(leg, style, opt, with_box)
     error("first arg may be a vector of strings"), 
   end
   nleg=size(leg,'*')
-  if type(style) ~= 1&type(style) ~= 9 then, 
+  if type(style) ~= 1 & type(style) ~= 9 then, 
     error("second argument type may be 1 or 9  "), 
   end  
   if ~exists("opt","local") then
@@ -33,33 +32,21 @@ function legends(leg, style, opt, with_box)
   if ~exists("with_box","local") then, with_box=%t, end
 
   
-  if or(size(style)==1) then   style=matrix(style,1,-1),end
+  if or(size(style)==1) then, style=matrix(style,1,-1),end
   ns=size(style,2)
-
-//  if ns<=nleg then
-//     style(1,ns+1:nleg)=-1
-//     ns=nleg
-//   else
-//     ns=nleg
-//   end
-
-
 
   fs=get('figure_style')=='old'
   
-  [r1,r2,logflag,arect]=xgetech()  //preserve current graphic context
+  //preserve current graphic context
   if ~fs then 
     f=gcf()
     vis=f.visible;
     old_ax=gca(),
-    r2=old_ax.data_bounds;
     arect=old_ax.margins;
     r1=old_ax.axes_bounds;
   else
     [r1,r2,logflag,arect]=xgetech() 
   end  
-  
-  
   
   //create small axes on the top left corner (the axes is choosen very
   //small to avoid it can be selected for rotation in new graphic mode
@@ -96,24 +83,36 @@ function legends(leg, style, opt, with_box)
 
   //upper left coordinates
   if size(opt,'*')>1 then 
-    pos=opt;opt=0 ;
-  elseif opt<1|opt>5 then 
+     // fix for bug 1237 (Bruno 9 march 2005)
+     if ~fs then
+	if old_ax.tight_limits == "on" then  // data_bounds' corresponds to the old frec
+	   r2 = old_ax.data_bounds'
+	else 
+	   r2 = [old_ax.x_ticks.locations(1),old_ax.y_ticks.locations(1),...
+		 old_ax.x_ticks.locations($),old_ax.y_ticks.locations($)]
+	end
+     end
+     pos(1) = xmin + ((opt(1)-r2(1))/(r2(3)-r2(1)))*(1-arect(1)-arect(2))
+     pos(2) = ymin + ((opt(2)-r2(2))/(r2(4)-r2(2)))*(1-arect(3)-arect(4))
+     // end bugfix
+     opt=0 ;
+  elseif opt<1 | opt>5 then 
      error('opt can take value in 1 2 3 4 5')
   end
   select opt
-  case 1 then
-    pos=[xmax-width-drx/5,ymax-dy/60]
-  case 2 then
-    pos=[xmin+drx/5,ymax-dy/60]
-  case 3 then
-    pos=[xmin+drx/5,ymin+height+dy/60]
-  case 4 then 
-    pos=[xmax-width-drx/5,ymin+height+dy/60]
-  case 5 then
-    rect=dragrect([xmax-width-drx/5,ymax-dy/60,width,height])
-    pos=rect(1:2)
+    case 1 then
+      pos=[xmax-width-drx/5,ymax-dy/60]
+    case 2 then
+      pos=[xmin+drx/5,ymax-dy/60]
+    case 3 then
+      pos=[xmin+drx/5,ymin+height+dy/60]
+    case 4 then 
+      pos=[xmax-width-drx/5,ymin+height+dy/60]
+    case 5 then
+      rect=dragrect([xmax-width-drx/5,ymax-dy/60,width,height])
+      pos=rect(1:2)
   end
- 
+  
   x=pos(1)+drx/5
   y=pos(2)-dy/60
   

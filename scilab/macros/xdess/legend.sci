@@ -40,8 +40,6 @@ function R=legend(varargin)
   if k0<=narg&type(varargin(k0))==1 then opt=varargin(k0);k0=k0+1,end
   if k0<=narg&type(varargin(k0))==4 then with_box=varargin(k0);k0=k0+1,end
   
-  
-  r2=A.data_bounds;
   arect=A.margins;
   r1=A.axes_bounds;
   //create small axes on the top left corner (the axes is choosen very
@@ -72,7 +70,17 @@ function R=legend(varargin)
 
   //upper left coordinates
   if size(opt,'*')>1 then 
-    pos=opt;opt=0 ;
+     // fix for bug 1237 (Bruno 9 march 2005)
+     if A.tight_limits == "on" then  // data_bounds' corresponds to the old frec
+	re = A.data_bounds'
+     else 
+	re = [A.x_ticks.locations(1),A.y_ticks.locations(1),...
+	      A.x_ticks.locations($),A.y_ticks.locations($)]
+     end
+     pos(1) = xmin + ((opt(1)-re(1))/(re(3)-re(1)))*(1-arect(1)-arect(2))
+     pos(2) = ymin + ((opt(2)-re(2))/(re(4)-re(2)))*(1-arect(3)-arect(4))
+     // end bugfix
+     opt=0
   elseif opt<-1|opt>5 then 
     error('opt can take value in -1:5')
   end
