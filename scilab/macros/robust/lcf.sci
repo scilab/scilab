@@ -21,7 +21,4 @@ Cr=Rm12*C;Dn=Rm12*D;Dm=Rm12;
 N=syslin('c',Ar,Bn,Cr,Dn);
 M=syslin('c',Ar,Bm,Cr,Dm);
 if flag==1 then N=ss2tf(N);M=ss2tf(M);end
-
-
-
-
+endfunction

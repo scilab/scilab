@@ -21,6 +21,4 @@ function [n,m,x,y,nt,mt,xt,yt]=dcf(g,polf,polc,tol)
        [n,m,xt,yt]=copfac(g,polf,polc,tol),
        [nt,mt,x,y]=copfac(g',polc,polf,tol),
        nt=nt',mt=mt',x=x',y=y',
-
-
-
+endfunction

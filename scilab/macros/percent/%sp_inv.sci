@@ -10,3 +10,4 @@ for k=1:ma
   x=[x,sparse(lusolve(hand,b))]
 end
 ludel(hand);
+endfunction

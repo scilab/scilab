@@ -11,6 +11,4 @@ if m1*n1==1 then
 else
   h=(eye(m1,m1)+h1*h2)\h1
 end
-
-
-
+endfunction

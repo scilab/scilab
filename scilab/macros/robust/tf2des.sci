@@ -42,6 +42,4 @@ B=[sp(3);
    spol(3)];
 C=[sp(4),-spol(4)];
 S=tlist(['des','A','B','C','D','E'],A,B,C,D,E)
-
-
-
+endfunction

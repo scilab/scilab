@@ -36,6 +36,4 @@ function [kf,kc]=lqg_ltr(sl,mu,ro)
 //     kf=lqe(a,c,q,r,'c')
      kc=lqr(syslin('c',a,b,c,ro*eye(p,p)));
      kf=lqe(syslin('c',a,b,c,mu*eye(m,m)));
-
-
-
+endfunction

@@ -14,6 +14,4 @@ enx=sum(diag(X*B*B'));
 J=[A',g1*C'*C;-g1*B*B',-A];
 [Y,zero]=ric_desc(J);            //zero=A*Y+Y*A'+g1*g1*Y*C'*C*Y+B*B'
 eny=sum(diag(Y*C'*C));
-
-
-
+endfunction

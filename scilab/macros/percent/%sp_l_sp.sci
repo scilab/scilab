@@ -15,3 +15,4 @@ for k=1:nb
   x=[x,sparse(lusolve(h,full(b(:,k))))]
 end
 ludel(h)
+endfunction

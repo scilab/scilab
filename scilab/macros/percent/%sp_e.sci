@@ -8,4 +8,4 @@ if rhs==2 then
   a=a(:)
   r=a(i)
 end
-
+endfunction

@@ -3,6 +3,4 @@ function f=%r_s(f)
 //!
 // Copyright INRIA
 f(2)=-f(2)
-
-
-
+endfunction

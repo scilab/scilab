@@ -89,6 +89,7 @@ else
   gs=syslin('c',a1,b1,c1);
 end;
 
+endfunction
 function D=ginfini(g)
 //gi=ginfini(g) computes D = g(infinity) for the proper transfer matrix g
 //!
@@ -110,5 +111,4 @@ for i=1:nn,
     end
   end
 end
-
-
+endfunction

@@ -8,4 +8,4 @@ for k=1:n
   incr=incr*dims(k)
 end
 x('entries')=v
-
+endfunction

@@ -6,4 +6,4 @@ r=l1('dt')<>l2('dt')
 if ~r then
   r=l1('num')<>l2('num')|(l1('den')<>l2('den')&l1('num')<>0)
 end
-
+endfunction

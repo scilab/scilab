@@ -13,6 +13,4 @@ H=[Ar',-C'*Ri*C;
    -B*Si*B',-Ar];
 Z=ric_desc(H);
 H=-(B*D'+Z*C')*Ri
-
-
-
+endfunction

@@ -4,6 +4,4 @@ function r=%r_o_s(l1,l2)
 // Copyright INRIA
 r=degree(l1('num'))==0&degree(l1('den'))==0
 if r then r=coeff(l1('num'))./coeff(l1('den'))==l2,end
-
-
-
+endfunction

@@ -19,5 +19,4 @@ if ~r&n1>0 then
   if k1<>[] then r(intersect(s1,s2))=%t,end
   r=~r
 end
-
-
+endfunction

@@ -18,6 +18,4 @@ else
     end
     s1=invr(p)*s2,
 end
-
-
-
+endfunction

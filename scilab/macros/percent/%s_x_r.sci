@@ -7,5 +7,4 @@ if size(n1,'*')==0 then
 else
   f2('num')=n1.*f2('num')
 end
-
-
+endfunction

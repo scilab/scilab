@@ -80,4 +80,4 @@ case 'd' then
   err=norm(x-(abar'*inv((inv(x)+b2*ri*b2'-vx))*abar+qbar),1);
 //k=-ri*(b2'*inv(inv(x)+b2*ri*b2'-vx)*abar+s')
 end
-
+endfunction

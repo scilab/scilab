@@ -17,3 +17,4 @@ elseif size(b)==[1 1] then
     s=b+full(a)
   end
 end
+endfunction

@@ -30,10 +30,10 @@ case 2 then
   for p=%sel; if almosteq(pol,p,eps) then flag=1;end;end   
 end
 
+endfunction
 function trfa=almosteq(pol,p,eps)
 // returns %T if pol ~ p     %F if not
 if degree(pol)<>degree(p) then trfa=%F;return;end
 if norm((coeff(p)-coeff(pol)),1)<=eps then trfa=%T;return;end
 trfa=%F;
-
-
+endfunction

@@ -5,9 +5,4 @@ if size(M2,'*')<>1 then
 else
   M1('entries')=M1('entries')/M2
 end
-
-
-
-
-
-
+endfunction

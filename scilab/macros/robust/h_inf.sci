@@ -63,6 +63,7 @@ if LHS==3 then rk=r;
 end
 
 
+endfunction
 function [P2,mu_inf,Uci,Yci,D22]=h_init(P,r)
 //******************************
 // Initialization of the standard plant
@@ -167,6 +168,7 @@ P2=syslin('c',A,[B1,B2],[C1;C2],[D11,D12;D21,0*D22]);
 //P2 = standard plant with D22=0 and D12,D21 normalized;
 
 
+endfunction
 function [P6ad,Finfad,muad,Uc#iad,Yc#iad]=h_iter(P2,r,mumin,mumax,nmax)
 niter=0;muad=0;P6ad=[]; Finfad=[];Uc#iad=[];Yc#iad=[];
 while niter < nmax
@@ -185,6 +187,7 @@ while niter < nmax
 end  //while
 
 
+endfunction
 function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
 //****************************
 //To test if mu is feasable for the plant P2 :
@@ -391,6 +394,7 @@ end;
      P6=syslin('c',A,[B1,B2],[C1;C2],[D11,D12;D21,D22])
 
 
+endfunction
 function [Sk,polesH,polesJ]=h_contr(P,r,mu,U2i,Y2i)
 // ****************************
 // Computation of the optimal controller Sk for a standard
@@ -487,6 +491,4 @@ end
 //  Dk11=U2i*Dk11*Y2i
 
     Sk=list(E,Ak,Bk1,Bk2,Ck1,Ck2,Dk11,Dk12,Dk21,Dk22);
-
-
-
+endfunction

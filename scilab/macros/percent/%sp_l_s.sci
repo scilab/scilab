@@ -28,5 +28,4 @@ else
   x=x(1:$/2,:)+%i*x($/2+1:$,:)
   ludel(h)
 end
-
-
+endfunction

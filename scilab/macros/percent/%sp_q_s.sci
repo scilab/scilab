@@ -7,3 +7,4 @@ if size(v,'*')<>mn(1)*mn(2) then
 else
   r=full(a).\b
 end
+endfunction

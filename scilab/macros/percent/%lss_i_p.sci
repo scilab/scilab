@@ -32,6 +32,4 @@ else
   d2(i,j)=d1;
   s=lsslist(a1,b2,c2,d2,x1,dom1)
 end
-
-
-
+endfunction

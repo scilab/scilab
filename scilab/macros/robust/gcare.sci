@@ -13,6 +13,4 @@ H=[Ar,-B*Si*B';
    -C'*inv(R)*C,-Ar'];
 X=ric_desc(H);
 F=-Si*(D'*C+B'*X)
-
-
-
+endfunction

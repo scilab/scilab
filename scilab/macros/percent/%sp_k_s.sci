@@ -3,3 +3,4 @@ function r=%sp_k_s(a,b)
 // Copyright INRIA
 if b==[] then r=[],return,end
 r=a.*.sparse(b)
+endfunction

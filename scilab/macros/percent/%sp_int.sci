@@ -4,3 +4,4 @@ function x=%sp_int(a)
 // Copyright INRIA
 [ij,v,mn]=spget(a)
 x=sparse(ij,int(v),mn)
+endfunction

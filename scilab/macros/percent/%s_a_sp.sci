@@ -9,4 +9,4 @@ if size(a)==[-1,-1] then
 else
   s=a+full(b)
 end
-
+endfunction

@@ -24,3 +24,4 @@ if size(sz,'*')==2 then
 else
   a('dims')=sz(:)
 end
+endfunction

@@ -10,3 +10,4 @@ else
    write(%io(2),'No such file opened file')
  end
 end
+endfunction

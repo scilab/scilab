@@ -7,7 +7,4 @@ if size(f('num'),'*')<>1 then
 else
   f=rlist(m*f('den'),ones(m)*f('num'),f('dt'))
 end
-
-
-
-
+endfunction

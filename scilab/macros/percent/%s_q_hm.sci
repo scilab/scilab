@@ -5,7 +5,4 @@ if size(M1,'*')<>1 then
 else
   M2('entries')=M1.\M2('entries')
 end
-
-
-
-
+endfunction

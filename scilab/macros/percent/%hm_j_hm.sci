@@ -5,7 +5,4 @@ if and(M1('dims')==M2('dims')) then
 else
  error('inconsistent element-wise operation')
 end
-
-
-
-
+endfunction

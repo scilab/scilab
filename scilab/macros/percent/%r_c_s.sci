@@ -3,3 +3,4 @@ function f=%r_c_s(f,m)
 //!
 // Copyright INRIA
 f=rlist([f('num'),m],[f('den'),ones(m)],f('dt'))
+endfunction

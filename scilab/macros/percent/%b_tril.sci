@@ -9,3 +9,4 @@ a=matrix(a,m*n,1)
 d(m*n,1)=%f
 d(i)=a(i)
 d=matrix(d,m,n)
+endfunction

@@ -3,3 +3,4 @@ function r=%r_d_p(r,m)
 //!
 // Copyright INRIA
 r=rlist(r('num').*ones(m),r('den').*m,r('dt'))
+endfunction

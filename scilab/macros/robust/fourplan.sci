@@ -8,3 +8,4 @@ P11=syslin(dom,A,B1,C1,D11);
 P12=syslin(dom,A,B2,C1,D12);
 P21=syslin(dom,A,B1,C2,D21);
 P22=syslin(dom,A,B2,C2,D22);
+endfunction

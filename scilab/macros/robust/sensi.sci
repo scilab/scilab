@@ -55,6 +55,4 @@ if ssflag >0 then
    Se=ss2tf(Se);R=ss2tf(R);T=ss2tf(T);
 end
 end
-
-
-
+endfunction

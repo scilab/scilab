@@ -3,6 +3,4 @@ function r=%p_x_r(p,r)
 //!
 // Copyright INRIA
 r('num')=p.*r('num')
-
-
-
+endfunction

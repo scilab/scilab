@@ -54,6 +54,4 @@ if g1(1)=='r' then g=tf2ss(g);end
          if mp>tol then gu=x, else gl=x, end,
        end;
        n=(gu+gl)/2
-
-
-
+endfunction

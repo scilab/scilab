@@ -9,6 +9,4 @@ if type(i)==10|type(j)==10 then
 end
 [s1 s2]=sysconv(s1,s2)
 s2(i,j)=s1
-
-
-
+endfunction

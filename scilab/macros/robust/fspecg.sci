@@ -14,6 +14,4 @@ h=[-a',c'*c;
    0*eye(a),a];
 x=ric_desc(h);h=[]
 gm=syslin('c',-a'+c'*c*x,-c',b'-d'*c*x,d')';
-
-
-
+endfunction

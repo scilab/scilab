@@ -28,3 +28,4 @@ else
     varargout(k)=dims(k)
   end
 end
+endfunction

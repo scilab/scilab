@@ -16,3 +16,4 @@ else
   for k=1:nv,dims(k)=varargin(k),end
   M=hypermat(dims,zeros(prod(dims),1))
 end
+endfunction

@@ -18,6 +18,4 @@ end
 
 s1=tlist(['lss','A','B','C','D','X0','dt'],[],[],[],s1,[],[])
 s2(i,j)=s1
-
-
-
+endfunction

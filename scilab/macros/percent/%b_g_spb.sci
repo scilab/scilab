@@ -3,3 +3,4 @@ function r=%b_g_spb(a,b)
 //  and b a boolean matrix
 // Copyright INRIA
 r=sparse(a)|b
+endfunction

@@ -26,6 +26,4 @@ slt=gtild(sl);slt=balreal(slt);sl=gtild(slt),
   bb=-inv(s**2*eye()-sig*sig)*(sig*b2+s*c2'*dd),
   aa=-(a22+b2*bb')',cc=c2*sig+dd*b2',
   Q=syslin('c',aa,bb,cc,dd),
-
-
-
+endfunction

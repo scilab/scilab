@@ -13,5 +13,4 @@ else
     f=f+(m\coeff(p,k))*(s^k)
   end
 end
-
-
+endfunction

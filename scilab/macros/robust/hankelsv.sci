@@ -16,6 +16,4 @@ if maxi(real(lf)) > tol then warning('unstable !'),end,
 [sla,sls,d]=dtsi(sl);
 lc=ctr_gram(sls),lo=obs_gram(sls),W=lc*lo;
 nk=sort(real(spec(W)));
-
-
-
+endfunction

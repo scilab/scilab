@@ -10,6 +10,4 @@ function [s]=%lss_c_lss(s1,s2)
 a1=[a1 0*ones(n1,n2);0*ones(n2,n1) a2];
 b1=[b1 0*ones(n1,m2);0*ones(n2,m1) b2];
 s=tlist(['lss','A','B','C','D','X0','dt'],a1,b1,[c1 c2],[d1 d2],[x1;x2],dom1);
-
-
-
+endfunction

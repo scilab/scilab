@@ -21,7 +21,4 @@ else
     M=hypermat(dims,rand(prod(dims),1))
   end
 end
-
-
-
-
+endfunction

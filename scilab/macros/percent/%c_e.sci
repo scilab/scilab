@@ -11,6 +11,4 @@ else
   if type(j)==4 then j=find(j),end
   f=f(i,j)
 end
-
-
-
+endfunction

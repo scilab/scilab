@@ -9,4 +9,4 @@ function [s]=%p_m_lss(d2,s1)
 //
 // Copyright INRIA
 s=tlist(['lss','A','B','C','D','X0','dt'],[],[],[],d2,[],[])*s1
-
+endfunction

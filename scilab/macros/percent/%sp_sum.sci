@@ -7,3 +7,4 @@ end
 if flag==1|flag=='r' then
   a=sparse(ones(1,m)*a);
 end
+endfunction

@@ -346,6 +346,7 @@ end//end while
  
 gopt=sqrt(lower*upper);
  
+endfunction
 function [bool]=str_member(c,s)
 //**********************
 // tests whether the character c occurs in the string s
@@ -355,4 +356,4 @@ for i=1:length(s),
   if part(s,i)==c then bool=%t; return; end
 end
 bool=%f;
-
+endfunction

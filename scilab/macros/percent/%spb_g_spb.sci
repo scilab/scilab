@@ -19,4 +19,4 @@ elseif prod(size(b))==1  then
 else
   r=a|b  
 end
-
+endfunction

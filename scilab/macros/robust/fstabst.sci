@@ -48,3 +48,4 @@ flag='ss';if Stplant1(1)=='r' then flag='tf';Stplant=tf2ss(Stplant);end
 //Normalization to get inner and co-inner factors
     J=syslin('c',aj,bj,cj,dj),
     if flag=='tf' then J=ss2tf(J);end
+endfunction

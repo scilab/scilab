@@ -240,6 +240,7 @@ end, end, end
 end//end while
 
 
+endfunction
 function [dist,frequ]=heval_test(e,f,TOL,option);
 //[dist,frequ]=heval_test(e,f,TOL,option);
 // This procedure estimates the distance of the generalized spectrum
@@ -380,6 +381,7 @@ frequ=list_set(frequ,1.0e-5); //eliminate redundancy in frequ
 end //endif
  
 
+endfunction
 function [c]=cond_test(e,f,frequ,TOL);
 //[c]=cond_test(e,f,frequ,TOL);
 //   This procedure returns a confidence index for the computed gamma = ||G||
@@ -400,6 +402,7 @@ for i=1:maxi(size(frequ)),
 end
 
 
+endfunction
 function [l]=list_set(l,TOL);
 //[l]=list_set(l,TOL);
 //  eliminates redundant elements in a list. Two entries are considered
@@ -421,5 +424,4 @@ while i < nl,
   end
   i=i+1;
 end
-
-
+endfunction

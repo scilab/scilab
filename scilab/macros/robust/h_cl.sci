@@ -30,6 +30,4 @@ Cw=[0*ones(ndc1,m1),Cc;
 Aclosed=[A, 0*ones(n,m);
     0*ones(m,n),Ac]+...
     Bw*inv([eye(ndc1,ndc1),-Dc;-D22,eye(nd1,nd1)])*Cw;
-
-
-
+endfunction

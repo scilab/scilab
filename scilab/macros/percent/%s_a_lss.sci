@@ -5,6 +5,4 @@ function s2=%s_a_lss(d1,s2)
 //
 // Copyright INRIA
 s2(5)=s2(5)+d1
-
-
-
+endfunction

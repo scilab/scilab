@@ -9,4 +9,4 @@ if flag=='*' then
 else
   x=sum(bool2s(a<>0),flag)>=1
 end
-
+endfunction

@@ -4,3 +4,4 @@ function a=%spb_ib(i,j,b,a)
 //!
 // Copyright INRIA
 a(i,j)=full(b)
+endfunction

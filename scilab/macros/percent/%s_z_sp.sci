@@ -3,4 +3,4 @@ function r=%s_z_sp(a,b)
 // Copyright INRIA
 if a==[] then r=[],return,end
 r=sparse(a).\.b
-
+endfunction

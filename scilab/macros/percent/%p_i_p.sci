@@ -50,4 +50,4 @@ case 2
 else
   M=mlist(['hm','dims','entries'],dims1,v)
 end
-
+endfunction

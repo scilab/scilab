@@ -10,3 +10,4 @@ else
   a=b;//b=j
   a(i)=full(j)
 end
+endfunction

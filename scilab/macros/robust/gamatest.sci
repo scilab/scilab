@@ -56,5 +56,4 @@ stint=and(real(spec(h_cl(P,size(C2*B2),sk))) < zeros(2*nx,1))
 //Sk1=lqg(P,size(c2*B2));
 end
 write(%io(2),'ok')
-
-
+endfunction

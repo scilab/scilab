@@ -12,3 +12,4 @@ else
   den=den-diag(diag(den,k))+diag(a('den'),k)
   d=syslin(a('dt'),diag(a('num'),k),den)
 end
+endfunction

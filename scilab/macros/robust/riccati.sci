@@ -34,6 +34,4 @@ function [x1,x2]=riccati(a,b,c,dom,typ)
       end,
       x1=s(n+1:2*n,:),x2=s(1:n,:),
       if lhs==1 then x1=x1/x2,end
-
-
-
+endfunction

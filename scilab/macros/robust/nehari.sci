@@ -29,6 +29,7 @@ x=syslin('c',ax,bx,cx*nn),
 [y,x]=dtsi(x);
 
 
+endfunction
 function [nk]=nophkel(sl,tol)
 //[nk]=nophkel(sl,[tol]) : norm of Hankel operator
 [lhs,rhs]=argn(0),
@@ -42,3 +43,4 @@ sl=dtsi(sl);
 lc=ctr_gram(sl),lo=obs_gram(sl),
 vp=spec(lc*lo),vmax=maxi(real(vp)),
 nk=sqrt(vmax)
+endfunction

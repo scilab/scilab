@@ -8,3 +8,4 @@ if size(b)==[-1 -1] then
 else
   s=full(a)-b
 end
+endfunction

@@ -26,3 +26,4 @@ elseif lhs==2 then
 elseif lhs==3 then 
   [nx,nx]=size(a);
 end;
+endfunction

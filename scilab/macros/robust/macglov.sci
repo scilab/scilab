@@ -22,6 +22,4 @@ Dp=[R12,0*C*B;
     R12,D];
 P=syslin('c',Ap,Bp,Cp,Dp);
 if flag==1 then P=ss2tf(P);end
-
-
-
+endfunction

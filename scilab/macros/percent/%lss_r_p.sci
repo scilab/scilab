@@ -5,4 +5,4 @@ function [sr]=%lss_r_p(s,p)
 //!
 // Copyright INRIA
 sr=s/tlist(['lss','A','B','C','D','X0','dt'],[],[],[],p,[],[])
-
+endfunction

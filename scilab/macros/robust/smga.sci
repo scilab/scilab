@@ -25,5 +25,4 @@ if slp1(1)=='r' then
   b2=slp(k2,m1); //p21
   c1=slp(k2,m2); //p22
 end
-
-
+endfunction

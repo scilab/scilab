@@ -26,10 +26,4 @@ else
   [num,den]=simp(nn,dd*ones(1,mb))
   a=rlist(num,den,a('dt'))
 end
-
-
-
-
-
-
-
+endfunction

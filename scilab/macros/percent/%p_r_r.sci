@@ -6,4 +6,4 @@ function f=%p_r_r(m,f)
 // Copyright INRIA
 if prod(size(f('num')))<>1 then f=m*invr(f),return,end
 f=rlist(m*f('den'),ones(m)*f('num'),f('dt'))
-
+endfunction

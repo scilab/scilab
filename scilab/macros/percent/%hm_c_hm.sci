@@ -20,9 +20,4 @@ v=[matrix(M1('entries'),d1(1)*d1(2),prod(d1)/(d1(1)*d1(2)));
 
 M1('entries')=v(:)
 M1('dims')(2)=M1('dims')(2)+M1('dims')(2)
-
-
-
-
-
-
+endfunction

@@ -17,3 +17,4 @@ elseif rhs==2 then
 end
 tdom=a('dt')
 a=simp(clean(a('num'),epsa,epsr)./clean(a('den'),epsa,epsr));a('dt')=tdom 
+endfunction

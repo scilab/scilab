@@ -28,4 +28,4 @@ if prod(size(s1))==1 then
 end
 D=D1*D2; 
 s=tlist(['lss','A','B','C','D','X0','dt'],A1,B1*D2,C1,D,x1,dom1);
-
+endfunction

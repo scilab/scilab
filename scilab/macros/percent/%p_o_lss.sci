@@ -3,6 +3,4 @@ function [r]=%p_o_lss(s1,s2)
 //!
 // Copyright INRIA
 r=%f
-
-
-
+endfunction

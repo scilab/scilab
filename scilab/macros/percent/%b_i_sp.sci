@@ -13,4 +13,4 @@ else
   error('multidimensional sparse matrices are not handled')
 end
  
-
+endfunction

@@ -9,3 +9,4 @@ a=matrix(a,m*n,1)
 d=emptystr(m*n,1)
 d(i)=a(i)
 d=matrix(d,m,n)
+endfunction

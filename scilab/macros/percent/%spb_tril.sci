@@ -8,3 +8,4 @@ if rhs==1 then k=0,end
 m=sz(1);n=sz(2)
 l=find(ij(:,1)>=(ij(:,2)-k))
 d=sparse(ij(l,:),v(l),[m,n])
+endfunction

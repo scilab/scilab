@@ -253,6 +253,7 @@ if rhs==4 then
   end //p(1)='r'
 end //rhs=4
 
+endfunction
 function [lf,r1]=lftpssd(p,r,k,r2)
 //lft for pssd (inria report #1827, dec. 1992)
 [lhs,rhs]=argn(0);
@@ -293,4 +294,4 @@ if rhs==4 then
       [zeros(l1+l2+l3+l4,l5+l6);eye(l5+l6,l5+l6)];
   r1=[k3,l6];
 end
-
+endfunction

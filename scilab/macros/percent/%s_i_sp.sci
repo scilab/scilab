@@ -9,3 +9,4 @@ if rhs==3 then
   a(i)=b(:)
   a=matrix(a,m,n)
 end
+endfunction

@@ -31,3 +31,4 @@ if rhs==1 then k=0,end
       end
     end
   end
+endfunction

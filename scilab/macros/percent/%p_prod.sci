@@ -8,3 +8,4 @@ end
 if flag==2|flag=='c' then
   for k=1:m,r(k,1)=prod(a(k,:)),end
 end
+endfunction

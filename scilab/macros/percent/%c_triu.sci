@@ -15,3 +15,4 @@ i=(1:mn)+((1:mn)+(k-1))*m
 d=emptystr(m*n,1)
 d(i)=a(i)
 d=matrix(d,m,n)
+endfunction

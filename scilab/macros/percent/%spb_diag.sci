@@ -22,3 +22,4 @@ else
     d=sparse([ij(:,1),ij(:,1)+k],v,[nn,nn])
   end
 end
+endfunction

@@ -15,3 +15,4 @@ else
   d=ones(n);d(1:n1,1:n2)=s2('den');d(i,j)=s1('den')
 end
 s1=rlist(n,d,s1('dt'))
+endfunction

@@ -15,3 +15,4 @@ function [gm]=cfspec(g)
 if type(g)==1 then gm=chol(g),return,end,
 gm=fspec(g'),
 gm=gm'
+endfunction

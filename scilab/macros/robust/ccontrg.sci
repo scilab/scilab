@@ -120,6 +120,7 @@ ak=sz\(vz'*ak*uz)/sz;
  
 K=syslin('c',ak,bk,ck,dk);
  
+endfunction
 function [go,xo]=parrt(a,b,c,rx,cx);
 //
 // [go,xo]=par(a,b,c,rx,cx) solves the minimization problem:
@@ -185,3 +186,4 @@ else
    xo=-c*vnz*s'*unz'*b;
  
 end
+endfunction

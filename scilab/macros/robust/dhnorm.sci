@@ -15,6 +15,7 @@ if n>1000 then warning('dhnorm: more than 1000 iterations!');return;end
 if (gamamax-gamamin)<tol then return;end
 end
 
+endfunction
 function ok=dhtest(Sl,gama)
 //test if discrete hinfinity norm of Sl is < gama
 [A,B,C,D]=Sl(2:5);B=B/sqrt(gama);C=C/sqrt(gama);D=D/gama;
@@ -40,5 +41,4 @@ z=eye()-B'*X*B
 ok= mini(real(spec(z))) > -%eps
 else
 ok=%t;end
-
-
+endfunction

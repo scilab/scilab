@@ -6,3 +6,4 @@ if flag==1|flag=='r' then
 elseif flag==2|flag=='c' then
   a=a*ones(n,1);
 end
+endfunction

@@ -19,3 +19,4 @@ else
   i=ij(:,1)-m*(j-1)
   a=sparse([i j],v,[m,n])
 end
+endfunction

@@ -13,3 +13,4 @@ for j=1:na
   end
   k=k+nb
 end
+endfunction

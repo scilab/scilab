@@ -22,4 +22,4 @@ flag='ss';if g1(1)=='r' then flag='tf';g=tf2ss(g);end
       gm=syslin('c',a,b,inv(id)*(c+b'*x),id),
       gm=minss(gm)
 if flag=='tf' then gm=ss2tf(gm);end;
-
+endfunction

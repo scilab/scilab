@@ -21,3 +21,4 @@ if k<>[] then
   N=prod(dims)
   f=mlist(['hm','dims','entries'],[size(f) dims]',ones(N,1).*.f(:))
 end
+endfunction

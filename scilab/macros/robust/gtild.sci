@@ -75,6 +75,7 @@ case 'constant'
 Gt=G';return;
 end
 
+endfunction
 function mpt=dp_tilde(mp)
 //mp(z) =  polynomial matrix 
 // mpt(i,j)= z^n*conj(mp(j,i))(1/z)
@@ -87,6 +88,7 @@ for i=1:m
   end
 end
 
+endfunction
 function mpt=cp_tilde(mp)
 //mp(s) =  polynomial matrix 
 // mpt(i,j)= conj(mp(j,i))(s)
@@ -95,3 +97,4 @@ pr=real(mp);pi=imag(mp);
 mpt=horner(pr',-s);
 if pi==0*s then return;end
 mpt=mpt+%i*horner(pi',-s);
+endfunction

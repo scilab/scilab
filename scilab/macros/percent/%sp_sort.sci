@@ -16,6 +16,4 @@ elseif mn(1)==1 then
 else
   error('Sorry: Only sparse VECTORS can be sorted!');
 end
-
-
-
+endfunction

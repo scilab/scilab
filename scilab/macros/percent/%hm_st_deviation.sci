@@ -26,3 +26,4 @@ if size(dims,'*')==2 then
 else
   x=hypermat(dims,x(:))
 end
+endfunction

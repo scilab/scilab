@@ -5,4 +5,4 @@ if b==[] then
 else
   error(43)
 end
-
+endfunction

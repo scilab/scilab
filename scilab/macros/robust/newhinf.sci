@@ -25,6 +25,7 @@ end
 //xclear();plot2d(frq',w(1,:)');
 
 
+endfunction
 function [ok,sk,stint]=gamatest(P12,P21,gama)
 // Test if gama is ok. If ok, sk=controller. stint is true (%T) if
 // internal stability is achieved.
@@ -82,5 +83,4 @@ stint=and(real(spec(h_cl(P,size(C2*B2),sk))) < zeros(2*nx,1))
 //Sk1=lqg(P,size(c2*B2));
 end
 write(%io(2),'ok')
-
-
+endfunction

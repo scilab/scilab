@@ -15,7 +15,4 @@ nr=d1(1)
 v=[matrix(M1('entries'),nr,prod(d1)/nr);matrix(M2('entries'),nr,prod(d2)/nr)]
 M1('entries')=v(:)
 M1('dims')(1)=M1('dims')(1)+M1('dims')(1)
-
-
-
-
+endfunction

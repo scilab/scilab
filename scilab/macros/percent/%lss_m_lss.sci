@@ -51,3 +51,4 @@ Dg=maxi(degree(D));
 if Dg==0 then D=coeff(D);end
 
 SS=tlist(['lss','A','B','C','D','X0','dt'],J',B,C,D,[x1;x2],dom1);
+endfunction

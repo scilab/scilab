@@ -22,6 +22,4 @@ else
   end
 end
 f=rlist(num,den,f('dt'))
-
-
-
+endfunction

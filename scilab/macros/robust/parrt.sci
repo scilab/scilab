@@ -64,6 +64,4 @@ else
    xo=-c*vnz*s'*unz'*b;
  
 end
-
-
-
+endfunction

@@ -8,4 +8,4 @@ else
   [n1,d1]=simp(f1('num'),p1*f1('den')),
   f1=rlist(n1,d1,f1('dt'))
 end
-
+endfunction

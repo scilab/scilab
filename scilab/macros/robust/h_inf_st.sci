@@ -38,6 +38,4 @@ D12c=D12(l-r(1)-n+1:l-r(1),:);
 D21c=D21(:,k-r(2)-m+1:k-r(2));
 K#=D12c\Kinf/D21c;
 Kopt=(eye()+K#*D22)\K#
-
-
-
+endfunction

@@ -43,5 +43,4 @@ bb = sei * (bb1  - a12*a22i*bb2);
 cc = (cc1 - cc2 * a22i * a21) * sei;
 dd = d - cc2 * a22i * bb2;
 s1=syslin([],aa,bb,cc,dd);
-
-
+endfunction

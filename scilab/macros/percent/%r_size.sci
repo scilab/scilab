@@ -14,3 +14,4 @@ elseif lhs==2 then
   if rhs<>1 then error(41),end
   [m,n]=size(x('num'));
 end
+endfunction

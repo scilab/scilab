@@ -41,5 +41,4 @@ else,
   end
   nh=sqrt(sum(nh)),return,
 end
-
-
+endfunction

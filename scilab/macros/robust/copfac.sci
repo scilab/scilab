@@ -53,4 +53,4 @@ m=syslin('c',ak1,b,-k1,eye(p,p)),
 n=syslin('c',ak1,b,ck1,d),
 xt=syslin('c',ak2,-bk2,-k1,eye(p,p)),
 yt=syslin('c',ak2,k2,-k1),
-
+endfunction

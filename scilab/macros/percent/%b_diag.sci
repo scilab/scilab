@@ -21,3 +21,4 @@ else
   d(i)=a
   d=matrix(d,nn,nn)
 end
+endfunction

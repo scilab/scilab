@@ -6,3 +6,4 @@ if a==[]|b==[] then
 else
   r=(a<>0)&(b<>0)
 end
+endfunction

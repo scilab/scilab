@@ -9,3 +9,4 @@ elseif rhs==3 then
   f=rlist(f('num')(i,j),f('den')(i,j),f('dt'))
 end
 if f('num')==[] then f=[],end
+endfunction

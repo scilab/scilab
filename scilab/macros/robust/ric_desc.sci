@@ -66,6 +66,4 @@ if LHS==3 then
 end
 end
 if LHS==1 then X=X1/X2;end
-
-
-
+endfunction

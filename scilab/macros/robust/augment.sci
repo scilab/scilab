@@ -282,8 +282,4 @@ case 'i'
     end
   end
 end
-
-
-
-
-
+endfunction

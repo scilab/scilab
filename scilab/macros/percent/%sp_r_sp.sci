@@ -15,4 +15,4 @@ for k=1:ma
   x=[x;sparse(lusolve(h,full(a(k,:))')')]
 end
 ludel(h)
-
+endfunction

@@ -22,3 +22,4 @@ else
   [num,den]=simp(nn,ones(na,1)*dd)
   b=rlist(num,den,b('dt'))
 end
+endfunction

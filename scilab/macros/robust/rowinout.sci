@@ -39,6 +39,4 @@ X=invsyslin(Inn);
 // Outer factor:
 Gbar=invsyslin(syslin('c',Af,B*sqD,F,sqD));
 if flag=='tf' then Inner=ss2tf(Inner);Gbar=ss2tf(Gbar);X=ss2tf(X);end
-
-
-
+endfunction

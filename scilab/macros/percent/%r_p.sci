@@ -57,6 +57,7 @@ while %t
   if width==[] then break,end
 end
 
+endfunction
 function txt=p2str(p)
 //form display of a single polynomial with complex coefficients
 lparen='('
@@ -123,6 +124,7 @@ while %t
   count=count+1
 end
 
+endfunction
 function txt=r2str(h)
 //form display of a single rational with complex coefficients
 dash='-'
@@ -151,3 +153,4 @@ elseif l1<l2 then
 else
   txt=[t1;part(dash,ones(1,l1));t2]
 end
+endfunction

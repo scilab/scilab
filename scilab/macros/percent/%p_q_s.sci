@@ -8,6 +8,4 @@ elseif size(p2,'*')==1 then
   p2=p2*ones(p1)
 end
 f=tlist(['r','num','den','dt'],p2,p1,[])
-
-
-
+endfunction

@@ -4,4 +4,4 @@ function x=%sp_floor(a)
 // Copyright INRIA
 [ij,v,mn]=spget(a)
 x=sparse(ij,floor(v),mn)
-
+endfunction

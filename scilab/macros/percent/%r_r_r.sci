@@ -17,6 +17,4 @@ else
  end
  s1=s1*invr(p)
 end
-
-
-
+endfunction

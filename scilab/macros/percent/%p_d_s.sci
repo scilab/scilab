@@ -8,3 +8,4 @@ if m*n==1 then
 else
   z=x./y*ones(x)
 end
+endfunction

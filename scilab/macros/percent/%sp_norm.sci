@@ -41,4 +41,4 @@ else
   [ij,v]=spget(S);
   res=norm(v,flag);
 end
-
+endfunction

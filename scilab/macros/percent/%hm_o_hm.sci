@@ -5,3 +5,4 @@ if r then
 else
   r=%f
 end
+endfunction

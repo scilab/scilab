@@ -5,6 +5,7 @@ function %ar_p(l)
 // We use armp_p as the default function for printing
 armap_p(l)
 
+endfunction
 function armap(ar,out)
 //used for display of armax objects 
 //!
@@ -84,6 +85,7 @@ write(out," ");
 write(out,t);
 write(out," ");
 
+endfunction
 function armap_p(ar,out)
 //used for display of armax objects 
 //use Scilan Polynomial matrix display
@@ -151,9 +153,4 @@ write(out," ");
   t=t+%cv(ta);
 write(out,t);
 write(out," ");
-
-
-
-
-
-
+endfunction

@@ -59,3 +59,4 @@ elseif m==n&mp*np==1 then  //A^p  p non integer
 else
   error(43)
 end
+endfunction

@@ -25,6 +25,7 @@ else
 end
 
 
+endfunction
 function x=%hm_oriented_max(m,d)
 if d=='r' then 
   d=1
@@ -55,3 +56,4 @@ if size(dims,'*')==2 then
 else
   x=hypermat(dims,x(:))
 end
+endfunction

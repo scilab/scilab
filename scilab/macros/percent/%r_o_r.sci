@@ -8,3 +8,4 @@ if varn([l1('num'),l1('den')])~=varn([l2('num'),l2('den')]) then
 else
 r=(l1('dt')==l2('dt'))&((l1-l2)==0)
 end
+endfunction

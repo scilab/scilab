@@ -11,5 +11,4 @@ end
 d=d1*d2;
 [a2;d1*c2];
 s=tlist(['lss','A','B','C','D','X0','dt'],a2,b2,d1*c2,d,x2,dom2)
-
-
+endfunction

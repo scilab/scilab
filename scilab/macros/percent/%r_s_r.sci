@@ -52,5 +52,4 @@ for l=1:m1
 end,
 [num1,den1]=simp(num1,den1),
 f=rlist(num1,den1,s1('dt'))
-
-
+endfunction

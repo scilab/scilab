@@ -37,5 +37,4 @@ if indef then
   den=den*eye()
 end
 f1=rlist(num,den,f1('dt'))
-
-
+endfunction

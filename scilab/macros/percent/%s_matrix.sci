@@ -17,4 +17,4 @@ if size(a,'*')<>prod(sz) then
   error('MATRIX: input and output matrices  must have the same number of elements')
 end
 y=hypermat(sz,a(:))
-
+endfunction

@@ -23,9 +23,4 @@ for II=I
   disp(matrix(M('entries')(k:k-1+sz),dims(1),dims(2)))
   k=k+sz
 end
-
-
-
-
-
-
+endfunction

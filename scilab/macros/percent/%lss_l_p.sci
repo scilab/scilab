@@ -6,5 +6,4 @@ function [sr]=%lss_l_p(s,p)
 //origine S Steer INRIA 1992
 // Copyright INRIA
 sr=s\tlist(['lss','A','B','C','D','X0','dt'],[],[],[],p,[],[])
-
-
+endfunction

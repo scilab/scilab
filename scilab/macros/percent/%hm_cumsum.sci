@@ -17,4 +17,4 @@ I=ones(ind).*.I+ind.*.ones(I)
 x=cumsum(matrix(m.entries(I),-1,dims(d)),2)
 x(I)=x(:)
 x=hypermat(dims,x)
-
+endfunction
