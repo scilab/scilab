@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.32 $)dnl
+AC_REVISION($Revision: 1.33 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1360,7 +1360,7 @@ if test "$with_gtk" = yes; then
       # result of `gtk-config --cflags`. Idem for gnome
       AC_MSG_RESULT([$GTK_VER])
       GTKCFLAGS='`gtk-config --cflags`'
-      GTKLIBS='`gtk-config --libs`'
+      GTKLIBS='`gtk-config --libs` `gnome-config --libs  gtkxmhtml`'
       GNOMECFLAGS='`gnome-config --cflags gnome`'
       ;;
     esac    
