@@ -1357,7 +1357,7 @@ c
       endif
       if(.not.createvar(8,'d',1,LWORK,lDWORK)) return
 
-      call DLACPY( 'F', M, N, stk(lB), M, stk(lXB), max(M,N) )
+      call DLACPY( 'F', M, NRHS, stk(lB), M, stk(lXB), max(M,N) )
 c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
       do 10 i = 1, N
          istk(lJPVT+i-1) = 0
@@ -1370,7 +1370,7 @@ c     $     RANK, WORK, LWORK, INFO )
       if(info.ne.0) then
          return
       endif
-
+      
       call DLACPY( 'F', N, NRHS, stk(lXB), max(M,N), stk(lX), N )
 c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
 
@@ -1452,7 +1452,7 @@ c
       endif
       if(.not.createvar(9,'z',1,LWORK,lDWORK)) return
 
-      call ZLACPY( 'F', M, N, zstk(lB), M, zstk(lXB), max(M,N) )
+      call ZLACPY( 'F', M, NRHS, zstk(lB), M, zstk(lXB), max(M,N) )
 c     SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )
       do 10 i = 1, N
          istk(lJPVT+i-1) = 0
