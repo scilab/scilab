@@ -1,4 +1,9 @@
-/**@name Header for newGraph Library  */
+/*------------------------------------------------------------------------
+ *    Graphic library 2001-2002
+ *    name Header for newGraph Library
+ *    INRIA / Djalel ABDEMOUCHE
+ --------------------------------------------------------------------------*/
+
 
 
 #ifdef WIN32
@@ -53,12 +58,13 @@
 #define pTEXT_FEATURE(pointobj)        ((sciText          *)pointobj->pfeatures)/** */
 #define pTITLE_FEATURE(pointobj)       ((sciTitle         *)pointobj->pfeatures)/** */
 #define pLEGEND_FEATURE(pointobj)      ((sciLegend        *)pointobj->pfeatures)/** */
-#define pPOLYLINE_FEATURE(pointobj)    ((sciPolyline     *)pointobj->pfeatures)/** */
+#define pPOLYLINE_FEATURE(pointobj)    ((sciPolyline      *)pointobj->pfeatures)/** */
 #define pPATCH_FEATURE(pointobj)       ((sciPatch         *)pointobj->pfeatures)/** */
 #define pARC_FEATURE(pointobj)         ((sciArc           *)pointobj->pfeatures)/** */
 #define pRECTANGLE_FEATURE(pointobj)   ((sciRectangle     *)pointobj->pfeatures)/** */
+#define pMERGE_FEATURE(pointobj)       ((sciMerge         *)pointobj->pfeatures)/* DJ.A 30/12 */
 #define pSURFACE_FEATURE(pointobj)     ((sciSurface       *)pointobj->pfeatures)/** */
-#define pLIGHT_FEATURE(pointobj)       ((sciLightSource   *)pointobj->pfeatures)/** */
+#define pLIGHT_FEATURE(pointobj)       ((sciLightSource   *)pointobj->pfeatures)/** */ 
 #define pAXIS_FEATURE(pointobj)        ((sciAxis          *)pointobj->pfeatures)/** */
 #define pAXES_FEATURE(pointobj)        ((sciAxes          *)pointobj->pfeatures)/** */
 #define pGRAYPLOT_FEATURE(pointobj)    ((sciGrayplot      *)pointobj->pfeatures)/** */
@@ -141,7 +147,9 @@ typedef enum
   /**Entity type PATCH*/
   SCI_PATCH,		
   /**Entity type SURFACE*/
-  SCI_SURFACE,	    
+  SCI_SURFACE,
+  /**Entity type MERGE*/  /* DJ.A 30/12 */
+  SCI_MERGE,
   /**Entity type LIGHT*/
   SCI_LIGHT,		
   /**Entity type AXIS*/
@@ -430,7 +438,7 @@ typedef struct
   /** specifies the number of the selected son         */
   int numsubwinselected;
   /** specifies the current pixmap status         */
-  int pixmap;/*dj2003*/
+  int pixmap; /* DJ.A 30/12 */
   int wshow ; 
     
 }/** */
@@ -646,6 +654,7 @@ typedef struct
   integer cubecolor;
   int hiddencolor;
   int hiddenstate;
+  BOOL facetmerge; /* DJ.A 30/12 */
 }/** */
 sciSubWindow;  
 
@@ -843,6 +852,22 @@ typedef struct
   BOOL visible; 
 }
 sciSurface;  /** */
+
+
+/**@name merge DJ.A 30/12
+ * Structure used to specify 
+ */
+typedef struct
+{
+  sciRelationShip relationship;
+  double * pvecx;
+  double * pvecy;
+  double * pvecz; 
+  long *tab;
+  integer dimzx;
+  integer dimzy;
+}
+sciMerge;  /** */
 
 
 /**@name LightSource
@@ -1345,6 +1370,9 @@ extern sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D t
 				  integer *zcol, integer izcol, integer dimzx, integer dimzy, 
                                   integer *flag, double *ebox, integer flagcolor);
 extern int DestroySurface (sciPointObj * pthis);
+extern sciPointObj *ConstructMerge (sciPointObj * pparentsubwin, double * pvecx, double * pvecy, double * pvecz,
+				  integer dimzx, integer dimzy, long *tab);/*DJ.A*/
+extern int DestroyMerge (sciPointObj * pthis);
 extern sciPointObj *ConstructAxis (sciPointObj * pparentfigure,char *strflag,int style,
 				   double minx, double miny, double minz,
 				   double maxx, double maxy, double maxz); 
@@ -1464,3 +1492,7 @@ extern void update_graduation(sciPointObj *pobj);
 /***/
 extern void initsubwin();
 extern int Gen3DPoints (integer type,integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg); 
+extern void MergeFac3d(sciPointObj *psubwin);/*DJ.A merge*/ 
+extern void Genfac3d(sciPointObj *pobj,double *x, double *y,double *z);
+extern void DrawFac3d(sciPointObj *psubwin, double *x, double *y,double *z, integer p, integer q, long *hdl );
+extern sciPointObj *sciGetMerge(sciPointObj *psubwin);

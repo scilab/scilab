@@ -33,26 +33,26 @@
     It will be define a  matrix data of a row and column indices of each element 
     as the x- and y-coordinates and the value of each element as the z-coordinate.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="mode: ">
+      <DESCRIPTION_ITEM label="color_mode: ">
         <SP>a string (treatment of hidden parts).  where:</SP>
         <DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM>
               <P>
-	 If  <VERB>mode&gt;0</VERB> 
+	 If  <VERB>color_mode&gt;0</VERB> 
 	 the hidden parts of the surface are removed 
-	 and the surface is painted  with color <VERB>&quot;mode&quot;</VERB>.
+	 and the surface is painted  with color <VERB>&quot;color_mode&quot;</VERB>.
          </P>
 	 </DESCRIPTION_ITEM>
 	  <DESCRIPTION_ITEM>
 	     <P>
-	     if <VERB>mode=0</VERB>  the hidden parts of the surface are drawn.
+	     if <VERB>color_mode=0</VERB>  the hidden parts of the surface are drawn.
          </P>
 	  </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM>
             <P>
-         if <VERB>mode&lt;0 </VERB>
+         if <VERB>color_mode&lt;0 </VERB>
          only the backward facing facets are painted with color or
-         pattern id <VERB>&quot;-mode&quot;</VERB>.
+         pattern id <VERB>&quot;-color_mode&quot;</VERB>.
          </P>
           </DESCRIPTION_ITEM>
         </DESCRIPTION_INDENT>
@@ -157,7 +157,7 @@
    f.color_map=hotcolormap(64); //change the figure colormap
 
    h.color_flag=1; //color according to z
-   h.mode=-2;  //remove the facets boundary
+   h.color_mode=-2;  //remove the facets boundary
 
    h.color_flag=2; //color according to given colors
    h.surface_color=[modulo(1:400,64),modulo(1:400,64)];

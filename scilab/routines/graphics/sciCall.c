@@ -1,6 +1,6 @@
 /*------------------------------------------------------------------------
  *    Graphic library 2001-2002
- *    New Graphics Fonctions
+ *    Graphic subroutines interface
  --------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h>
@@ -236,7 +236,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
     sciTypeOf3D typeof3d;
     integer flagcolor;  
     long *hdltab;
-    int i;
+    int i, ok;
     sciPointObj *psubwin;
      
       
@@ -275,8 +275,11 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
     else {
       typeof3d = SCI_PARAM3D1 ;
       flagcolor=1;
-    }/*2004*/
+    }
+    ok=0; /* DJ.A 30/12 */
     psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+    if (sciGetSurface(psubwin) != (sciPointObj *) NULL)
+      ok=1;
      if ((sciGetGraphicMode (psubwin)->autoscaling))
        update_3dbounds(psubwin,isfac,x,y,z,*m,*n,*theta, *alpha);
     if ( typeof3d != SCI_PARAM3D1 )
@@ -301,6 +304,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
 	if ( *n>1 ) sciSetCurrentObj (ConstructAgregation (hdltab, *n));  
 	FREE(hdltab);
       }
+    if (ok==1) MergeFac3d(psubwin);
     sciDrawObj(sciGetCurrentFigure ());/*dj2004*/
      
        

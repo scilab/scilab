@@ -247,7 +247,7 @@ function %h_p(h)
 	 "visible= "+string(h.visible) 
 	 "clip_state= "+string(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
-	 "mode= "+string(h.mode)
+	 "color_mode= "+string(h.color_mode)
 	 "color_flag= "+sci2exp(h.color_flag,0)
 	]
       case "Fac3d" 
@@ -262,7 +262,7 @@ function %h_p(h)
 	 "visible= "+string(h.visible) 
 	 "clip_state= "+string(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
-	 "mode= "+string(h.mode)
+	 "color_mode= "+string(h.color_mode)
 	 "color_flag= "+sci2exp(h.color_flag,0)
 	 "surface_color= "+c
 	 ]
@@ -281,7 +281,7 @@ function %h_p(h)
 	 "data= "+d
 	 "clip_state= "+string(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
-	 "mode= "+string(h.mode)
+	 "color_mode= "+string(h.color_mode)
 	 "surface_color= "+c
 	 ]
       case "Axis"

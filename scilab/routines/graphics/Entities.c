@@ -1,3 +1,9 @@
+/*------------------------------------------------------------------------
+ *    Graphic library 2001-2002
+ *    New Graphics Fonctions 
+ *    INRIA / Djalel ABDEMOUCHE
+ --------------------------------------------------------------------------*/
+
 #include <stdio.h> 
 #include <string.h>
 #include <math.h>
@@ -59,7 +65,7 @@ static sciPointObj *pcurrentpobj = (sciPointObj *) NULL;
  * This table is memory of the clipping associated to the objects  
  */
 extern sciClipTab ptabclip[15];
-
+extern double C2F(dsort)();/*DJ.A merge*/ 
 /**sciGetPointerToFeature
  * @memo Returns the pointer to features structure from this object Used only for functions FREE or to use void pointer
  */
@@ -138,6 +144,9 @@ sciGetPointerToFeature (sciPointObj * pobj)
       break;
     case SCI_AGREG:
       return (sciAgreg *) pAGREG_FEATURE (pobj);
+      break;
+    case SCI_MERGE:
+      return (sciMerge *) pMERGE_FEATURE (pobj);
       break;
     default:
       return (void *) NULL;
@@ -260,6 +269,9 @@ sciGetCharEntityType (sciPointObj * pobj)
     case SCI_AGREG:
       return "Agregation";
       break;
+    case SCI_MERGE:
+      return "Merge";
+      break;
     default:
       return (char *)NULL;
       break;
@@ -300,6 +312,7 @@ sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_MERGE:
       (sciGetRelationship (pobj))->phandle = pvalue;		/** put the new index handle */
       break;
     default:
@@ -365,6 +378,7 @@ sciGetHandleTabPointer (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_MERGE: 
       return (sciHandleTab *) ((sciGetRelationship (pobj))->phandle);
     default:
       return (sciHandleTab *) NULL;
@@ -462,6 +476,7 @@ sciGetHandle (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_MERGE:  
       return (sciGetRelationship (pobj))->phandle->index;
       break;
     default:
@@ -2183,6 +2198,9 @@ sciGetRelationship (sciPointObj * pobj)
       break;
     case SCI_AGREG:
       return  &(pAGREG_FEATURE (pobj)->relationship);
+      break; 
+    case SCI_MERGE:
+      return  &(pMERGE_FEATURE (pobj)->relationship);
       break;
     default:
       return (sciRelationShip *) NULL;
@@ -2274,6 +2292,9 @@ sciSetParent (sciPointObj * pson, sciPointObj * pparent)
     case SCI_AGREG:
       (sciGetRelationship (pson))->pparent = pparent;
       break;
+    case SCI_MERGE:
+      (sciGetRelationship (pson))->pparent = pparent;
+      break;
     default:
       return -1;
       break;
@@ -2361,6 +2382,9 @@ sciGetParent (sciPointObj * pobj)
     case SCI_AGREG:
       return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
       break;
+    case SCI_MERGE:
+      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
+      break; 
     default:
       break;
     }
@@ -2400,6 +2424,7 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_MERGE:
       return sciGetScilabXgc ((sciPointObj *) pobj)->mafigure;  
       break;                                                     
     default:  
@@ -2445,6 +2470,7 @@ sciGetParentSubwin (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_MERGE:
       while (sciGetEntityType(subwin) != SCI_SUBWIN)
 	subwin=sciGetParent(subwin);      
       return (sciPointObj *) subwin;  
@@ -2536,6 +2562,7 @@ sciGetScilabXgc (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+    case SCI_MERGE:  
       /* on recherche la root par recursivite 
 	 puisque scilabxgc n'est connu que par le parent */
       return (struct BCG *) sciGetScilabXgc (sciGetParent (pobj));	
@@ -2649,6 +2676,9 @@ sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson)
     case SCI_AGREG:
       (sciGetRelationship (pparent))->pcurrentson = pson;
       break;
+    case SCI_MERGE:
+      (sciGetRelationship (pparent))->pcurrentson = pson;
+      break;  
     default:
       break;
     }
@@ -2732,6 +2762,9 @@ sciGetCurrentSon (sciPointObj * pobj)
     case SCI_AGREG:
       return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
       break;
+    case SCI_MERGE:
+      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
+      break;
     default:
       return (sciPointObj *) NULL;
       break;
@@ -2779,6 +2812,7 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     case SCI_AXES:
     case SCI_ARC:
     case SCI_AGREG:
+    case SCI_MERGE: 
       /* Si c'est null alors il n'y a pas encore de fils d'affecte */
       if ((sciSons *) (sciGetRelationship (pparent)->psons) != NULL)
 	{			
@@ -2850,6 +2884,7 @@ sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     case SCI_ARC:
     case SCI_PATCH:
     case SCI_AGREG:
+    case SCI_MERGE:
       /* recherche de l'objet a effacer*/
       OneSon = (sciGetRelationship (pparent)->psons);
       OneSonprev = OneSon;
@@ -2991,6 +3026,9 @@ sciGetSons (sciPointObj * pobj)
     case SCI_AGREG:
       return (sciSons *) (sciGetRelationship (pobj)->psons);
       break;
+    case SCI_MERGE:
+      return (sciSons *) (sciGetRelationship (pobj)->psons);
+      break;
     default:
       return (sciSons *) NULL;
       break;
@@ -3075,6 +3113,9 @@ sciGetLastSons (sciPointObj * pobj)
       return (sciSons *)sciGetRelationship (pobj)->plastsons;
       break;
     case SCI_AGREG:
+      return (sciSons *)sciGetRelationship (pobj)->plastsons;
+      break;
+    case SCI_MERGE:
       return (sciSons *)sciGetRelationship (pobj)->plastsons;
       break;
     default:
@@ -6857,6 +6898,10 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
     case SCI_AGREG:
       DestroyAgregation (pthis);
       return 0;
+      break; 
+    case SCI_MERGE:
+      DestroyMerge (pthis);
+      return 0;
       break;
     default:
       sciprint ("This object cannot be destroyall\n");
@@ -6894,6 +6939,7 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_TEXT:
+    case SCI_MERGE: 
       DestroyAllGraphicsSons (pthis);
       return 0;
       break;
@@ -7244,7 +7290,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       /***/
 
       pSUBWIN_FEATURE (pobj)->isoview= TRUE;
-      
+      pSUBWIN_FEATURE (pobj)->facetmerge = FALSE;/*DJ.A merge*/ 
       pSUBWIN_FEATURE (pobj)->WRect[0]   = 0;
       pSUBWIN_FEATURE (pobj)->WRect[1]   = 0;
       pSUBWIN_FEATURE (pobj)->WRect[2]   = 1;
@@ -9157,7 +9203,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       }
 
       pSURFACE_FEATURE (pobj)->dimzx = dimzx;
-      pSURFACE_FEATURE (pobj)->dimzy = dimzy; 
+      pSURFACE_FEATURE (pobj)->dimzy = dimzy;
       pSURFACE_FEATURE (pobj)->izcol = izc;
       pSURFACE_FEATURE (pobj)->pproj = NULL;	/* Les projections ne sont pas encore calculees */
       pSURFACE_FEATURE (pobj)->isselected = TRUE;
@@ -9206,6 +9252,11 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 int
 DestroySurface (sciPointObj * pthis)
 {
+  sciPointObj *psubwin, *pobj;
+  sciSons *psonstmp;
+  integer cmpt;
+  
+  psubwin = (sciPointObj *) sciGetParentSubwin(pthis);
   FREE(pSURFACE_FEATURE (pthis)->pvecz);
   FREE(pSURFACE_FEATURE (pthis)->pvecy);
   FREE(pSURFACE_FEATURE (pthis)->pvecx);
@@ -9216,12 +9267,169 @@ DestroySurface (sciPointObj * pthis)
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
-  FREE (pSURFACE_FEATURE (pthis)->pproj);
+  /*FREE (pSURFACE_FEATURE (pthis)->pproj);*/
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
-  /* on peut alors destroyer le parent, le vecteur 3d et 2d */
+  cmpt=0;
+  psonstmp = sciGetSons (psubwin);
+  while (psonstmp != (sciSons *) NULL)	
+    {   
+      if(sciGetEntityType (psonstmp->pointobj) == SCI_SURFACE) 
+	cmpt=cmpt+1;
+      psonstmp = psonstmp->pnext;
+    }
+  if (cmpt < 2)
+    {
+      if ((pobj= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
+      DestroyMerge(pobj); 
+    }
+  else
+    MergeFac3d(psubwin);
+  /* on peut alors detruire l'entite merge */
+
   return 0;
 }
+
+ /* DJ.A 30/12 */
+
+/**ConstructMerge
+ * @memo This function creates Merge Structure
+ */
+sciPointObj *
+ConstructMerge (sciPointObj * pparentsubwin, double * pvecx, double * pvecy, double * pvecz,
+				  integer dimzx, integer dimzy,long *tab)
+
+{
+  sciPointObj *pobj = (sciPointObj *) NULL;
+  int i=0, j=0, n;
+ 
+  n=dimzx*dimzy;
+  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
+    {
+      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+	return (sciPointObj *) NULL;
+      sciSetEntityType (pobj, SCI_MERGE);
+      if ((pobj->pfeatures = MALLOC ((sizeof (sciMerge)))) == NULL)
+	{
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      if (sciAddNewHandle (pobj) == -1)
+	{
+	  FREE(pMERGE_FEATURE (pobj));
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      /*sciSetParent (pobj, pparentsubwin);*/
+      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
+	{
+	  sciDelHandle (pobj);
+	  FREE(pMERGE_FEATURE (pobj));
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pSURFACE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
+      pSURFACE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+
+      if (((pMERGE_FEATURE (pobj)->pvecx = MALLOC ((n * sizeof (double)))) == NULL))
+	{
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pMERGE_FEATURE (pobj));
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      else
+	{
+	  for (i = 0;i <n ; i++)
+	    pMERGE_FEATURE (pobj)->pvecx[i] = pvecx[i];
+	}
+      if (((pMERGE_FEATURE (pobj)->pvecy = MALLOC ((n * sizeof (double)))) == NULL))
+	{
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pMERGE_FEATURE (pobj)->pvecx);
+	  FREE(pMERGE_FEATURE (pobj));
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      else
+	{
+	  for (j = 0;j < n; j++)
+	    pMERGE_FEATURE (pobj)->pvecy[j] = pvecy[j];
+	}
+
+      if (((pMERGE_FEATURE (pobj)->pvecz = MALLOC ((n * sizeof (double)))) == NULL))
+	{
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pMERGE_FEATURE (pobj)->pvecy);
+	  FREE(pMERGE_FEATURE (pobj)->pvecx);
+	  FREE(pMERGE_FEATURE (pobj));
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      else
+	{
+	  for (j = 0;j < n; j++)
+	    pMERGE_FEATURE (pobj)->pvecz[j] = pvecz[j];
+	}
+
+      
+      
+      
+      if (((pMERGE_FEATURE (pobj)->tab = MALLOC ((n * sizeof (long)))) == NULL))
+	  {
+	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	    sciDelHandle (pobj);
+	    FREE(pMERGE_FEATURE (pobj)->pvecy);
+	    FREE(pMERGE_FEATURE (pobj)->pvecx); 
+	    FREE(pMERGE_FEATURE (pobj)->pvecz);
+	    FREE(pMERGE_FEATURE (pobj));
+	    FREE(pobj);
+	    return (sciPointObj *) NULL;
+	  }
+	else
+	  {
+	      for (j = 0;j < n; j++)  
+		pMERGE_FEATURE (pobj)->tab[j]= tab[j];
+	  }
+      
+      pMERGE_FEATURE (pobj)->dimzx = dimzx;
+      pMERGE_FEATURE (pobj)->dimzy = dimzy;
+      return pobj;
+    }
+  else
+    return (sciPointObj *) NULL;
+}
+
+
+/**DestroyMerge
+ * @memo This function destroies Merge structures
+ * @param sciPointObj * pthis: the pointer to the entity
+ */
+int
+DestroyMerge (sciPointObj * pthis)
+{
+  pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->facetmerge = FALSE;
+  FREE(pMERGE_FEATURE (pthis)->pvecz);
+  FREE(pMERGE_FEATURE (pthis)->pvecy);
+  FREE(pMERGE_FEATURE (pthis)->pvecx);
+  FREE(pMERGE_FEATURE (pthis)->tab);
+  sciDelThisToItsParent (pthis, sciGetParent (pthis));
+  if (sciDelHandle (pthis) == -1)
+    return -1;
+  FREE (sciGetPointerToFeature (pthis));
+  FREE (pthis);
+  return 0;
+}
+
+
+
+
+
+
 
 /**ConstructAxis
  * @memo This function creates Axis structure
@@ -10899,9 +11107,13 @@ sciDrawObj (sciPointObj * pobj)
       sciUnClip(sciGetIsClipping(pobj));   
 			  
       break;
-
-      /****************************************************************************************/
-    case SCI_SURFACE: 
+    case SCI_MERGE: /* DJ.A 30/12 */
+      if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge)) break; 
+      DrawFac3d(sciGetParentSubwin(pobj),pMERGE_FEATURE (pobj)->pvecx, pMERGE_FEATURE (pobj)->pvecy,pMERGE_FEATURE (pobj)->pvecz, 
+		pMERGE_FEATURE (pobj)->dimzx, pMERGE_FEATURE (pobj)->dimzy,pMERGE_FEATURE (pobj)->tab);
+      break;
+    case SCI_SURFACE:
+      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
       if (!sciGetVisibility(pobj)) break;
       sciSetCurrentObj (pobj);	
       itmp[0] = 0;		/* verbose*/
@@ -10934,6 +11146,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32
 	  flag=MaybeSetWinhdc();
 #endif     
+ 
       switch(pSURFACE_FEATURE (pobj)->typeof3d)
 	{ /*2004*/
 	case SCI_FAC3D:
@@ -12647,6 +12860,7 @@ char *sciGetCallback(sciPointObj * pthis)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
+    default:
       sciprint ("\r\nNo Callback is associeted with this Entity");
       return (char *)NULL;
       break;
@@ -12709,6 +12923,7 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
+    default:
       sciprint ("\r\nNo Callback is associeted with this Entity");
       return 100;
       break;
@@ -12768,6 +12983,7 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
+    default:
       sciprint ("\r\nNo Callback is associeted with this Entity");
       return 100;
       break;
@@ -12825,6 +13041,7 @@ sciGetCallbackLen (sciPointObj * pthis)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
+    default:
       sciprint ("\r\nNo Callback is associeted with this Entity");
       return -1;
       break;
@@ -13534,7 +13751,7 @@ int sciType (marker)
   else if (strcmp(marker,"data_mapping") == 0)    {return 10;}
   else if (strcmp(marker,"surface_color") == 0)    {return 1;}
   else if (strcmp(marker,"rotation_angles") == 0)    {return 1;}
-  else if (strcmp(marker,"mode") == 0)    {return 1;}/*2004*/
+  else if (strcmp(marker,"color_mode") == 0)    {return 1;}/*DJ.A merge*/ 
   else if (strcmp(marker,"color_flag") == 0)    {return 1;}
   else if (strcmp(marker,"axes_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"data_bounds") == 0)    {return 1;}
@@ -13902,19 +14119,24 @@ void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
   pSUBWIN_FEATURE (psubwin)->alpha = alpha;
   pSUBWIN_FEATURE (psubwin)->theta  = theta;
   pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
-  if ((alpha == 0.0 ) || (alpha == 180.0 ))
+  if ((alpha == 0.0 ) || (alpha == 180.0 ) || (alpha == -180.0 ))  /* DJ.A 30/12 */
     pSUBWIN_FEATURE (psubwin)->project[2]= 0;
   else 
     {
       pSUBWIN_FEATURE (psubwin)->project[2]= 1;
-      if ((alpha == 90.0 ) && ((theta == 90.0 ) || (theta == -90.0 )))
+      if (((alpha == 90.0 ) || (alpha == 270.0 )|| (alpha == -90.0) || (alpha == -270.0 ))
+	  && ((theta == 90.0 ) || (theta == -90.0 )
+			       || (theta == 270.0 )|| (theta == -270.0 )))
 	pSUBWIN_FEATURE (psubwin)->project[1]= 0;
       else
-	pSUBWIN_FEATURE (psubwin)->project[1]= 1;
-      if ((alpha == 90.0 ) && ((theta == 0.0 ) || (theta == 180.0 )))
-	pSUBWIN_FEATURE (psubwin)->project[0]= 0;
-      else
-	pSUBWIN_FEATURE (psubwin)->project[0]= 1;
+	{
+	  pSUBWIN_FEATURE (psubwin)->project[1]= 1;
+	  if (((alpha == 90.0 )|| (alpha == 270.0 )|| (alpha == -90.0) || (alpha == -270.0 ))  
+	      && ((theta == 0.0 ) || (theta == 180.0 )|| (alpha == -180.0 )))
+	    pSUBWIN_FEATURE (psubwin)->project[0]= 0;
+	  else
+	    pSUBWIN_FEATURE (psubwin)->project[0]= 1;
+	}
     }
 }
 /*2004*/
@@ -15024,7 +15246,7 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
   
   mn=n1*n2;
   if(sciGetEntityType (pobj) == SCI_SUBWIN)
-    {
+    { 
       /*2004*/
       if (!(sciGetGraphicMode (pobj)->addplot)) { 
 	sciXbasc(); 
@@ -15032,16 +15254,10 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
 	sciRedrawFigure();
 	pobj = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
       } 
-      if (*flag != 0)
-	{
-	  xmin=(double) Mini(x,mn);xmax=(double) Maxi(x,mn);
-	}
-      else
-	{
-	  xmin= x[0];xmax=x[n1-1];
-	}
-      if ((pSUBWIN_FEATURE (pobj)->axes.limits[1] !=0 ) &&(pSUBWIN_FEATURE (pobj)->axes.limits[3] !=0 ))
-	{
+     
+      xmin=(double) Mini(x,mn);xmax=(double) Maxi(x,mn);
+      if ((pSUBWIN_FEATURE (pobj)->axes.limits[1] !=0 )  || (pSUBWIN_FEATURE (pobj)->axes.limits[3] !=0 ))
+	{  
 	  xmin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[1],xmin);
 	  xmax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[3],xmax);
 	}
@@ -15054,16 +15270,9 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
       pSUBWIN_FEATURE(pobj)->axes.xlim[2]=puiss;
       pSUBWIN_FEATURE (pobj)->FRect[0]=lmin;
       pSUBWIN_FEATURE (pobj)->FRect[2]=lmax;
-      
-      if (*flag != 0)
-	{
-	  ymin=(double) Mini(y,mn);ymax=(double) Maxi(y,mn);
-	}
-      else
-	{
-	  ymin=  y[0];ymax=  y[n2-1];
-	}
-       if ((pSUBWIN_FEATURE (pobj)->axes.limits[2] !=0 ) &&(pSUBWIN_FEATURE (pobj)->axes.limits[4] !=0 ))
+
+      ymin=(double) Mini(y,mn);ymax=(double) Maxi(y,mn);
+       if ((pSUBWIN_FEATURE (pobj)->axes.limits[2] !=0 ) || (pSUBWIN_FEATURE (pobj)->axes.limits[4] !=0 ))
 	{
 	  ymin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[2],ymin);
 	  ymax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[4],ymax);
@@ -15080,7 +15289,7 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
       
   
       zmin=(double) Mini(z,mn);zmax=(double) Maxi(z,mn);   
-      if ((pSUBWIN_FEATURE (pobj)->axes.limits[5] !=0 ) &&(pSUBWIN_FEATURE (pobj)->axes.limits[6] !=0 ))
+      if ((pSUBWIN_FEATURE (pobj)->axes.limits[5] !=0 ) || (pSUBWIN_FEATURE (pobj)->axes.limits[6] !=0 ))
 	{
 	  zmin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[5],zmin);
 	  zmax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[6],zmax);
@@ -15187,4 +15396,331 @@ int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, inte
   
   return(1);
   
+}
+
+/*DJ.A merge*/ 
+void MergeFac3d(sciPointObj *psubwin)
+{
+  integer i,q,p,k,tmp; 
+  sciSons *psonstmp;
+  double *x, *y, *z,*xf, *yf, *zf;
+  long *hdl;
+  sciPointObj *pobj, *pmerge; 
+  
+#ifdef WIN32
+  int flag;
+#endif
+
+  if(sciGetEntityType (psubwin) != SCI_SUBWIN) return; 
+  if ((pmerge= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
+     DestroyMerge(pmerge); 
+  /** Nbr de facettes **/
+  q=0;p=0;
+  psonstmp = sciGetSons (psubwin);
+  while (psonstmp != (sciSons *) NULL)	
+    {   
+      if(sciGetEntityType (psonstmp->pointobj) == SCI_SURFACE) 
+	{ 
+	  if (pSURFACE_FEATURE (psonstmp->pointobj)->typeof3d == SCI_PLOT3D)
+	    {
+	      p= 4;
+	      q = q + ((pSURFACE_FEATURE (psonstmp->pointobj)->dimzx-1)*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzy-1));
+	    }
+	  else
+	    {
+	      p= pSURFACE_FEATURE (psonstmp->pointobj)->dimzx;
+	      q = q + pSURFACE_FEATURE (psonstmp->pointobj)->dimzy;
+	    }
+	}
+      psonstmp = psonstmp->pnext;
+    }
+  /** Allocation  **/  
+  x = graphic_alloc(6,(p*q)+1L,sizeof(double));
+  y = graphic_alloc(7,(p*q)+1L,sizeof(double));
+  z = graphic_alloc(8,(p*q)+1L,sizeof(double)); 
+   if (( x == NULL) ||  ( y== NULL) || ( z== NULL)) 
+       
+    {
+      Scistring("plot3dg_ : malloc No more Place\n");
+      return;
+    }
+    if ((hdl = MALLOC (p * q * sizeof (long))) == NULL)
+	    { 
+	      Scistring(" No more Place\n");
+	      return ;
+	    }  
+ 
+  /** merge des facettes  **/
+  psonstmp = sciGetSons (psubwin);
+  k=0;
+  while (psonstmp != (sciSons *) NULL)	
+    {   
+      if (sciGetEntityType (psonstmp->pointobj) == SCI_SURFACE) 
+	{  
+	    if (pSURFACE_FEATURE (psonstmp->pointobj)->typeof3d == SCI_PLOT3D) 
+	      {
+		tmp=4*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzx-1)*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzy-1);
+		if ((xf = MALLOC (tmp * sizeof (double))) == NULL)
+		  { 
+		    Scistring(" No more Place\n");
+		    return ;
+		  } 
+		if ((yf = MALLOC (tmp * sizeof (double))) == NULL)
+		  { 
+		    Scistring(" No more Place\n");
+		    FREE(xf);return ;
+		  } 
+		if ((zf = MALLOC (tmp * sizeof (double))) == NULL)
+		  { 
+		    Scistring(" No more Place\n");
+		    FREE(yf); FREE(zf);return ;
+		  } 
+		Genfac3d(psonstmp->pointobj,xf,yf,zf);
+	      for (i=0 ; i<tmp; i++)
+		{
+		  x[k]=xf[i];
+		  y[k]=yf[i];
+		  z[k]=zf[i];
+		  hdl[k]=(long) sciGetHandle (psonstmp->pointobj);
+		  k=k+1;
+		}
+	      FREE(xf); FREE(yf); FREE(zf); 
+	      
+	      }
+	  else
+	    {
+		  tmp = pSURFACE_FEATURE (psonstmp->pointobj)->dimzx*pSURFACE_FEATURE (psonstmp->pointobj)->dimzy;
+		  for (i=0 ; i<tmp; i++)
+		    {
+		      x[k]=pSURFACE_FEATURE (psonstmp->pointobj)->pvecx[i];
+		      y[k]=pSURFACE_FEATURE (psonstmp->pointobj)->pvecy[i];
+		      z[k]=pSURFACE_FEATURE (psonstmp->pointobj)->pvecz[i];
+		      hdl[k]=(long) sciGetHandle (psonstmp->pointobj);
+		      k=k+1;
+		    }  
+	    }
+	}
+      psonstmp = psonstmp->pnext;
+    }
+  if ((pobj=ConstructMerge ((sciPointObj *) psubwin,x,y,z,p,q,hdl)) == (sciPointObj *) NULL)
+     sciprint ("\r\n No merge supported");
+  else
+    pSUBWIN_FEATURE (psubwin)->facetmerge = TRUE;
+  FREE(hdl);
+}
+
+
+/**Genfac3d
+ * @author Djalel Abdemouche 12/2003
+ * transforms  standard 3d data to four sides facets representation
+ * Should be in Plo3dn.c file
+ */
+
+void Genfac3d(sciPointObj *pobj,double *x, double *y,double *z)
+{
+  integer n1, n2, i, j, k; 
+  if (sciGetEntityType (pobj) != SCI_SURFACE) return;
+  n1= pSURFACE_FEATURE (pobj)->dimzx -1;
+  n2= pSURFACE_FEATURE (pobj)->dimzy -1;
+  
+  k=0;
+  for (i=0 ; i<n2 ; i++)
+    for (j=0 ; j<n1 ; j++)
+      {
+	x[k]=x[k+1]=j+1;
+	x[k+2]=x[k+3]=j+2;
+	k=k+4;
+      }
+  k=0;
+  for (i=0 ; i<n2 ; i++)
+    for (j=0 ; j<n1 ; j++)
+      {
+	z[k]=z[k+3]=i*(n1+1);
+	z[k+1]=z[k+2]=(i+1)*(n1+1);
+	y[k]=y[k+3]=i+1;
+	y[k+1]=y[k+2]=i+2;
+	k=k+4;
+      } 
+  for (k=0 ; k<(n1*n2*4) ; k++)
+    {
+      z[k]=z[k]+x[k];
+      x[k]=pSURFACE_FEATURE (pobj)->pvecx[(int)(x[k]-1)];
+      y[k]=pSURFACE_FEATURE (pobj)->pvecy[(int)(y[k]-1)];
+      z[k]=pSURFACE_FEATURE (pobj)->pvecz[(int)(z[k]-1)];
+    }
+
+}
+/*DJ.A merge*/ 
+void DrawFac3d(sciPointObj *psubwin, double *x, double *y,double *z, 
+	       integer p, integer q, long *hdl )
+{
+  integer polysize,npoly,whiteid,verbose=0,narg;
+  integer *polyx,*polyy,fill[4],*locindex; 
+  static double zmin,zmax,*polyz;
+  integer i; 
+  sciPointObj *pobj; 
+  integer context[6];
+
+  if(sciGetEntityType (psubwin) != SCI_SUBWIN) return;
+  
+  polyz = graphic_alloc(5,(q),sizeof(double));
+  if ( (polyz == NULL) && (q) != 0)
+    {
+      Scistring("plot3dg_ : malloc No more Place\n");
+      return;
+    }
+  polyx = graphic_alloc(0,(p)+1L,sizeof(int));
+  polyy = graphic_alloc(1,(p)+1L,sizeof(int));
+  locindex = graphic_alloc(2,(q),sizeof(int)); 
+  if (( polyx == NULL) ||  ( polyy== NULL) || ( locindex== NULL))
+       
+    {
+      Scistring("plot3dg_ : malloc No more Place\n");
+      return;
+    }
+  /** tri des facettes **/
+   for ( i =0 ; i < q ; i++)
+    {
+      double zdmin1, zdmin,xmoy=0.00,ymoy=0.00,zmoy=0.00;
+      int j=0 ;
+      zdmin1=  TRZ(x[ p*i]  ,y[p*i]  ,z[p*i]);
+      for ( j= 0 ; j < p ; j++) 
+	{
+	  xmoy += x[ j +p*i];  ymoy += y[ j +p*i];  zmoy += z[ j +p*i];
+	  zdmin =  TRZ(x[ j +p*i]  ,y[ j +p*i]  ,z[ j +p*i]);
+	  if ( zdmin1 < zdmin ) zdmin1= zdmin;
+	}
+         polyz[i]=  TRZ(xmoy,ymoy,zmoy);
+    }
+  C2F(dsort)(polyz,&q,locindex); 
+  for ( i =0 ; i < q ; i++)
+    {
+      locindex[i] -= 1;  
+      if ( locindex[i] >= q) 
+	sciprint (" index[%d]=%d\r\n",i,locindex[i]);
+      locindex[i] = Min(Max(0,locindex[i]),q-1);
+    }
+  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  zmin=  pSUBWIN_FEATURE (psubwin)->FRect[4];
+  zmax= pSUBWIN_FEATURE (psubwin)->FRect[5];
+  
+  polysize=4+1;
+  npoly=1; 
+  for ( i = q-1 ; i>= 0 ; i--)
+    {
+      int j,nok=0;
+      for ( j =0 ; j < p ; j++)
+	{ 
+	trans3d(psubwin ,1, &(polyx[j]),&(polyy[j]),&(x[p*locindex[i]+j]),
+		&(y[p*locindex[i]+j]),&(z[p*locindex[i]+j])); 
+	  if ( finite(polyx[j]) ==0 || finite(polyy[j])==0 ) 
+	    {
+	      nok=1;break; 
+	    }
+	}
+      pobj=(sciPointObj *) sciGetPointerFromHandle (hdl[p*locindex[i]+1]);
+      if (sciGetEntityType (pobj) == SCI_SURFACE) 
+	{ 
+	  context[0] = sciGetForeground (pobj);	
+	  context[1] = sciGetLineWidth (pobj);
+	  context[2] = sciGetLineStyle (pobj); 
+	  context[3] = 0;
+	  context[4] = sciGetMarkStyle(pobj);
+	  context[5] = sciGetLineWidth (pobj);
+#ifdef WIN32
+       flag=MaybeSetWinhdc();
+#endif
+      C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
+      C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
+      C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
+      C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
+      C2F (dr) ("xset", "mark", context+4, context+5, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
+#ifdef WIN32
+      if ( flag == 1) ReleaseWinHdc ();
+#endif	  
+      
+	}
+     if (pSURFACE_FEATURE (pobj)->visible)
+       if ( nok == 0) 
+	 {
+	   polyx[4]=polyx[0];
+	   polyy[4]=polyy[0];
+	   if ( p >= 2 && ((polyx[1]-polyx[0])*(polyy[2]-polyy[0])-
+			   (polyy[1]-polyy[0])*(polyx[2]-polyx[0])) <  0) 
+	     {  
+	       if (( pSURFACE_FEATURE (pobj)->flagcolor == 1) && (pSUBWIN_FEATURE (psubwin)->hiddencolor<=0))
+		 {
+		  double zl=0;
+		  int k1;
+		  for ( k1= 0 ; k1 < p ; k1++) 
+		    zl+= z[p*locindex[i]+k1];
+		  fill[0]=inint((whiteid-1)*((zl/p)-zmin)/(zmax-zmin))+1;
+		  if ( pSURFACE_FEATURE (pobj)->flag[0]  < 0 ) fill[0]=-fill[0];
+		  C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 }
+	       else if ((pSURFACE_FEATURE (pobj)->flagcolor ==3) && (pSUBWIN_FEATURE (psubwin)->hiddencolor<=0))
+		 { 
+		   int k1;
+		   if ( (p) != 3 && (p) !=4 ) 
+		     {Scistring("plot3d1 : interpolated shading is only allowed for polygons with 3 or 4 vertices\n");return;} 
+		   else 
+		     {
+		       for ( k1= 0 ; k1 < p ; k1++) fill[k1]=pSURFACE_FEATURE (pobj)->zcol[p*locindex[i]+k1];
+		       shade(polyx,polyy,fill,p,pSURFACE_FEATURE (pobj)->flag[0]);
+		     }
+		 }
+	       else
+		 {
+		   fill[0]= (pSUBWIN_FEATURE (psubwin)->hiddencolor>0)?
+		     pSUBWIN_FEATURE (psubwin)->hiddencolor:pSURFACE_FEATURE (pobj)->flag[0] ;
+		   C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize,
+			   PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 }
+	     }
+	   else if ( pSURFACE_FEATURE (pobj)->flagcolor == 1) 
+	     {
+	       double zl=0;
+	       int k1;
+	       for ( k1= 0 ; k1 < p ; k1++) 
+		 zl+= z[p*locindex[i]+k1];
+	       fill[0]=inint((whiteid-1)*((zl/p)-zmin)/(zmax-zmin))+1;
+	       if ( pSURFACE_FEATURE (pobj)->flag[0]  < 0 ) fill[0]=-fill[0];
+	       C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	   }
+	   else if ( pSURFACE_FEATURE (pobj)->flagcolor == 2) 
+	     {
+	       fill[0]= pSURFACE_FEATURE (pobj)->zcol[locindex[i]];
+	       if ( pSURFACE_FEATURE (pobj)->flag[0] < 0 ) fill[0]=-fill[0];
+	       C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	     }
+	   else if (pSURFACE_FEATURE (pobj)->flagcolor ==3) { 
+	     int k1;
+	      if ( (p) != 3 && (p) !=4 ) {
+                Scistring("plot3d1 : interpolated shading is only allowed for polygons with 3 or 4 vertices\n");
+ 		return;
+	      } else {
+       	        for ( k1= 0 ; k1 < p ; k1++) fill[k1]=pSURFACE_FEATURE (pobj)->zcol[p*locindex[i]+k1];
+		shade(polyx,polyy,fill,p,pSURFACE_FEATURE (pobj)->flag[0]);
+	      }
+	   }
+	   else
+	     {
+	       fill[0]= pSURFACE_FEATURE (pobj)->flag[0];
+	       C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	     }
+	 }
+    }
+}
+sciPointObj *sciGetMerge(sciPointObj *psubwin)
+{
+  sciSons *psonstmp;
+  
+  psonstmp = sciGetSons (psubwin);
+  while (psonstmp != (sciSons *) NULL)	
+    {   
+      if(sciGetEntityType (psonstmp->pointobj) == SCI_MERGE) 
+	return (sciPointObj *) psonstmp->pointobj;
+      psonstmp = psonstmp->pnext;
+    }
+  return (sciPointObj *) NULL;
 }
