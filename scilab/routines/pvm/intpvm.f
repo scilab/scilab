@@ -1,387 +1,237 @@
+c------------------------------------------------------------------------
+c     PVM functions interfaces
 c     Copyright (c) 1997 by Inria Lorraine.  All Rights Reserved 
-c SCILAB function : pvmjoingroup, fin = 1
-       subroutine intspvmjoingroup(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl,res
-       logical checkrhs,checklhs,getsmat,checkval,bufstore,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,1,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable group (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1*n1,1)) return
+c------------------------------------------------------------------------
+c-----SCILAB function : pvmjoingroup, fin = 1
+      subroutine intspvmjoingroup(fname)
 c     
-c       cross variable size checking
+      character*(*) fname
+      include '../stack.h'
 c     
-       if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
-       if(.not.cremat(fname,top+1,0,1,1,lw3,loc3)) return
-       call scipvmjoingroup(buf(lbufi1:lbuff1),nlr1,stk(lw3))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+      integer inum
+      logical checkrhs,checklhs,getsmat,checkval,bufstore,cremat
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: inum
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw3)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmlvgroup, fin = 2
-       subroutine intspvmlvgroup(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getsmat,checkval,bufstore,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,1,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable group (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1*n1,1)) return
+      lbuf = 1
 c     
-c       cross variable size checking
+      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checklhs(fname,1,1)) return
 c     
-       if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
-       if(.not.cremat(fname,top+1,0,1,1,lw3,loc3)) return
-       call scipvmlvgroup(buf(lbufi1:lbuff1),nlr1,stk(lw3))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+c     checking variable group (number 1)
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: size
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw3)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmgsize, fin = 3
-       subroutine intspvmgsize(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getsmat,checkval,bufstore,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,1,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable group (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1*n1,1)) return
+      if(.not.getsmat(fname,top,top,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1*n1,1)) return
 c     
-c       cross variable size checking
+      if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
+      call scipvmjoingroup(buf(lbufi1:lbuff1),nlr1,inum)
 c     
-       if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
-       if(.not.cremat(fname,top+1,0,1,1,lw3,loc3)) return
-       call scipvmgsize(buf(lbufi1:lbuff1),nlr1,stk(lw3))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+c     output variable: inum
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=inum
+      return
+      end
 c
-       topk=top-rhs
-       topl=top+1
+c-----SCILAB function : pvmlvgroup, fin = 2
+      subroutine intspvmlvgroup(fname)
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: size
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw3)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmgettid, fin = 4
-       subroutine intspvmgettid(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getsmat,checkval,getscalar,bufstore
-       logical cremat
-       integer inum
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,2,2)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable group (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1*n1,1)) return
-c       checking variable inum (number 2)
-c       
-       if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
+      character*(*) fname
+      include '../stack.h'
 c     
-c       cross variable size checking
+      integer res
+      logical checkrhs,checklhs,getsmat,checkval,bufstore,cremat
 c     
-       if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
-c       call entier(1,stk(lr2),istk(iadr(lr2)))
-       inum = stk(lr2)
-       if(.not.cremat(fname,top+1,0,1,1,lw4,loc4)) return
-c       call scipvmgettid(buf(lbufi1:lbuff1),nlr1,istk(iadr(lr2)),stk(l
-c     $ w4))
-       call scipvmgettid(buf(lbufi1:lbuff1),nlr1,inum,stk(lw4))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+      lbuf = 1
+
+      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checklhs(fname,1,1)) return
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: tid
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw4)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmgetinst, fin = 5
-       subroutine intspvmgetinst(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr, sadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getsmat,checkval,getscalar
-       logical bufstore,cremat
-       integer tid
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,2,2)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable group (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1*n1,1)) return
-c       checking variable tid (number 2)
-c       
-       if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
+c     checking variable group (number 1)
 c     
-c       cross variable size checking
+      if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1*n1,1)) return
 c     
-       if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
-c       call entier(1,stk(lr2),istk(iadr(lr2)))
-       tid = stk(lr2)
-       if(.not.cremat(fname,top+1,0,1,1,lw4,loc4)) return
-c       call scipvmgetinst(buf(lbufi1:lbuff1),nlr1,istk(iadr(lr2)),stk(
-c     $ lw4))
-       call scipvmgetinst(buf(lbufi1:lbuff1),nlr1,tid,stk(lw4))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+      if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
+      call scipvmlvgroup(buf(lbufi1:lbuff1),nlr1,res)
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: inum
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw4)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
+c     output variable: res
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
 c
-c SCILAB function : pvmbarrier, fin = 6
-       subroutine intspvmbarrier(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getsmat,checkval,getscalar
-       logical bufstore,cremat
-       integer count
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,2,2)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable group (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1*n1,1)) return
-c       checking variable count (number 2)
-c       
-       if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
+c-----SCILAB function : pvmgsize, fin = 3
+      subroutine intspvmgsize(fname)
+      character*(*) fname
+      include '../stack.h'
 c     
-c       cross variable size checking
+      integer size
+      logical checkrhs,checklhs,getsmat,checkval,bufstore,cremat
 c     
-       if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
-c       call entier(1,stk(lr2),istk(iadr(lr2)))
-       count = stk(lr2)
-       if(.not.cremat(fname,top+1,0,1,1,lw4,loc4)) return
-c       call scipvmbarrier(buf(lbufi1:lbuff1),nlr1,istk(iadr(lr2)),stk(
-c     $ lw4))
-       call scipvmbarrier(buf(lbufi1:lbuff1),nlr1,count,stk(lw4))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+      lbuf = 1
+
+      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checklhs(fname,1,1)) return
 c
-       topk=top-rhs
-       topl=top+1
+c     checking variable group (number 1)
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw4)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
+      if(.not.getsmat(fname,top,top,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1*n1,1)) return
+c     
+      if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
+      call scipvmgsize(buf(lbufi1:lbuff1),nlr1,size)
+c     
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=size
+      return
+      end
 c
-c SCILAB function : pvmbcast, fin = 7
-       subroutine intspvmbcast(fname)
+c-----SCILAB function : pvmgettid, fin = 4
+      subroutine intspvmgettid(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      integer tid,inum
+      logical checkrhs,checklhs,getsmat,checkval,getscalar,bufstore
+      logical cremat
+c     
+      lbuf = 1
+c     
+      if(.not.checkrhs(fname,2,2)) return
+      if(.not.checklhs(fname,1,1)) return
 c
-       character*(*) fname
-       include '../stack.h'
+c     checking variable group (number 1)
+c     
+      if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1*n1,1)) return
 c
-       integer iadr, sadr, tag, maxsize, n
-       integer topk,rhsk,topl, address
-       logical checkrhs,checklhs,getsmat,checkval,getscalar
-       logical bufstore,cremat
+c     checking variable inum (number 2)
+c     
+      if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
+      inum=stk(lr2)
+c     
+      if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
+      call scipvmgettid(buf(lbufi1:lbuff1),nlr1,inum,tid)
+c     
+      top=top-rhs+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=tid
+      return
+      end
 c
-       iadr(l)=l+l-1
+c-----SCILAB function : pvmgetinst, fin = 5
+      subroutine intspvmgetinst(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      logical checkrhs,checklhs,getsmat,checkval,getscalar
+      logical bufstore,cremat
+      integer tid,inum
+c     
+      lbuf = 1
+
+      if(.not.checkrhs(fname,2,2)) return
+      if(.not.checklhs(fname,1,1)) return
+c     
+c     checking variable group (number 1)
+c     
+      if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1*n1,1)) return
+c     
+c     checking variable tid (number 2)
+c     
+      if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
+      tid = stk(lr2)
+c     
+      if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
+
+      call scipvmgetinst(buf(lbufi1:lbuff1),nlr1,tid,inum)
+c     
+      top=top-rhs+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=inum
+      return
+      end
 c
-       rhs = max(0,rhs)
+c-----SCILAB function : pvmbarrier, fin = 6
+      subroutine intspvmbarrier(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      logical checkrhs,checklhs,getsmat,checkval,getscalar
+      logical bufstore,cremat
+      integer count,res
+c     
+      lbuf = 1
+c     
+      if(.not.checkrhs(fname,2,2)) return
+      if(.not.checklhs(fname,1,1)) return
+c     
+c     checking variable group (number 1)
+c     
+      if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1*n1,1)) return
+      if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
+
+c     
+c     checking variable count (number 2)
+c     
+      if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
+      count = stk(lr2)
+c     
+
+      call scipvmbarrier(buf(lbufi1:lbuff1),nlr1,count,res)
+c     
+      top=top-rhs+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
 c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,3,3)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable group (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1*n1,1)) return
-c       checking variable buff (number 2)
-c       
-c       if(.not.getmat(fname,top,top-rhs+2,it2,m2,n2,lr2,lc2)) return
-c       checking variable msgtag (number 3)
-c       
-       if(.not.getscalar(fname,top,top-rhs+3,lr3)) return
-       tag=stk(lr3)
-c     construct the pack vector for the variable number 2
+c-----SCILAB function : pvmbcast, fin = 7
+      subroutine intspvmbcast(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      integer tag, maxsize, n,res
+      integer address
+      logical checkrhs,checklhs,getsmat,checkval,getscalar
+      logical bufstore,cremat
+      integer iadr
+c     
+      iadr(l)=l+l-1
+c     
+      lbuf = 1
+
+      if(.not.checkrhs(fname,3,3)) return
+      if(.not.checklhs(fname,1,1)) return
+c     
+c     checking variable group (number 1)
+c     
+      if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1*n1,1)) return
+      if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
+c     
+c     checking variable tag (number 2)
+c     
+      if(.not.getscalar(fname,top,top-rhs+3,lr3)) return
+      tag=stk(lr3)
+
+c     construct the pack vector for the variable number 2. 
 c     set adress where to put the pack vector and its max
 c     allowable size
-       ilpack=iadr(lstk(top))
-       maxsize=iadr(lstk(bot)) - ilpack
-       address = top-rhs+2
-       call varpak(address,istk(ilpack),n,maxsize,ierr)
-       if(ierr .gt. 0) then 
-          buf = fname // ' Unknow type or not yet implemented' 
-          call error(999)
-          return
-       endif
-c
+      ilpack=iadr(lstk(top))
+      maxsize=iadr(lstk(bot)) - ilpack
+      address = top-rhs+2
+      call varpak(address,istk(ilpack),n,maxsize,ierr)
+      if(ierr .gt. 0) then 
+         buf = fname // ' Unknow type or not yet implemented' 
+         call error(999)
+         return
+      endif
+c     
 c     Check if maxsize has been enough
       if(n.gt.maxsize) then
          err=n-maxsize
@@ -389,830 +239,515 @@ c     Check if maxsize has been enough
          return
       endif 
 c
-c     set correct size for the pack vect
-c      lstk(top+1)=lstk(top)+n
+      call scipvmbcast(buf(lbufi1:lbuff1),nlr1,
+     $     istk(ilpack),n,stk(lstk(address)),tag,res)
 c     
-c       cross variable size checking
+c     output variable res
+      top=top-rhs+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
 c     
-       if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
-c
+c-----SCILAB function : pvmtasks, fin = 8
+      subroutine intspvmtasks(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      logical checkrhs,checklhs,cremat,getscalar,crepointer,listcremat
+      logical lcrestringmatfromC
+      integer where, ntask, info
+c     following ligne defines memory to contain pointers returned by
+c     scipvmtasks
+      double precision  ptid, pptid, pdtid, pflag, pname
+c     
+      if(.not.checkrhs(fname,0,1)) return
+      if(.not.checklhs(fname,1,1)) return
+c     checking variable where (number 1)
+c     
+      if(rhs .le. 0) then
+         where=0
+      else
+         if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
+         where = stk(lr1)
+      endif
 
-       call scipvmbcast(buf(lbufi1:lbuff1),nlr1,
-     $      istk(ilpack),n,stk(lstk(address)),tag,res)
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+      call scipvmtasks(where, ntask, ptid, pptid, pdtid, pflag,
+     $     pname,ne3,info)
+
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        stk(lrs)=res
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmtasks, fin = 8
-       subroutine intspvmtasks(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,cremat,getscalar,crepointer,listcremat
-       logical lcrestringmatfromC
-       integer where
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,0,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable where (number 1)
-c       
-       if(rhs .le. 0) then
-        top = top+1
-        rhs = rhs+1
-        if(.not.cremat(fname,top,0,1,1,lr1,lc1)) return
-        stk(lr1)= 0
-       endif
-       if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
+      top=top-rhs+1
+c     Creation of output list
+      call crelist(top,7,lw)
 c     
-c       cross variable size checking
+c     Element 1: tid
+      if(.not.listcremat(fname,top,1,lw,0,1,ne3,lrs,lcs)) return
+      call cintf(ne3,ptid,stk(lrs))
 c     
-c       call entier(1,stk(lr1),istk(iadr(lr1)))
-       where = stk(lr1)
-       if(.not.cremat(fname,top+1,0,1,1,lw2,loc2)) return
-       if(.not.cremat(fname,top+2,0,1,1,lw3,loc3)) return
-       if(.not.cremat(fname,top+3,0,1,1,lw4,loc4)) return
-       if(.not.cremat(fname,top+4,0,1,1,lw5,loc5)) return
-       if(.not.cremat(fname,top+5,0,1,1,lw6,loc6)) return
-       mm7=1
-       if(.not.crepointer(fname,top+6,lw7)) return
-       if(.not.cremat(fname,top+7,0,1,1,lw9,loc9)) return
-c       call scipvmtasks(istk(iadr(lr1)),stk(lw2),stk(lw3),stk(lw4),stk
-c     $ (lw5),stk(lw6),stk(lw7),ne3,stk(lw9))
-       call scipvmtasks(where,stk(lw2),stk(lw3),stk(lw4),stk
-     $ (lw5),stk(lw6),stk(lw7),ne3,stk(lw9))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+7
-c       Creation of output list
-       top=topl+1
-       call crelist(top,7,lw)
+c     Element 2: ptid
+      if(.not.listcremat(fname,top,2,lw,0,1,ne3,lrs,lcs)) return
+      call cintf(ne3,pptid,stk(lrs))
 c     
-c       Element 1: tid
-       if(.not.listcremat(fname,top,1,lw,0,1,ne3,lrs,lcs)) return
-       call cintf(1*ne3,stk(lw3),stk(lrs))
+c     Element 3: dtid
+      if(.not.listcremat(fname,top,3,lw,0,1,ne3,lrs,lcs)) return
+      call cintf(ne3,pdtid,stk(lrs))
 c     
-c       Element 2: ptid
-       if(.not.listcremat(fname,top,2,lw,0,1,ne3,lrs,lcs)) return
-       call cintf(1*ne3,stk(lw4),stk(lrs))
+c     Element 4: flag
+      if(.not.listcremat(fname,top,4,lw,0,1,ne3,lrs,lcs)) return
+      call cintf(ne3,pflag,stk(lrs))
 c     
-c       Element 3: dtid
-       if(.not.listcremat(fname,top,3,lw,0,1,ne3,lrs,lcs)) return
-       call cintf(1*ne3,stk(lw5),stk(lrs))
+c     Element 5: name
+      lw5=lstk(bot)-1
+      stk(lw5)=pname
+      if(.not.lcrestringmatfromC(fname,top,5,lw,lw5,1,ne3)) return
 c     
-c       Element 4: flag
-       if(.not.listcremat(fname,top,4,lw,0,1,ne3,lrs,lcs)) return
-       call cintf(1*ne3,stk(lw6),stk(lrs))
+c     Element 6: ntask
+      if(.not.listcremat(fname,top,6,lw,0,1,1,lrs,lcs)) return
+      stk(lrs)=ntask
 c     
-c       Element 5: name
-       if(.not.lcrestringmatfromC(fname,top,5,lw,lw7,mm7,ne3)) return
+c     Element 7: info
+      if(.not.listcremat(fname,top,7,lw,0,1,1,lrs,lcs)) return
+      stk(lrs)=info
+      return
+      end
+c
+c-----SCILAB function : pvmconfig, fin = 9
+      subroutine intspvmconfig(fname)
 c     
-c       Element 6: ntask
-       if(.not.listcremat(fname,top,6,lw,0,1,1,lrs,lcs)) return
-       call int2db(1*1,istk(iadr(lw2)),-1,stk(lrs),-1)
+      character*(*) fname
+      include '../stack.h'
 c     
-c       Element 7: info
-       if(.not.listcremat(fname,top,7,lw,0,1,1,lrs,lcs)) return
-       call int2db(1*1,istk(iadr(lw9)),-1,stk(lrs),-1)
+      logical checkrhs,checklhs,cremat,crepointer,listcremat
+      logical lcrestringmatfromC
+      integer nhost,narch,ne3,info
+c     following ligne defines memory to contain pointers returned by
+c     scipvmconfig 
+      double precision pdtid,pname,parch,pspeed
 c     
-c     Putting in order the stack
-       call copyobj(fname,topl+1,topk+1)
-       top=topk+1
-       return
-       end
-c
-c SCILAB function : pvmconfig, fin = 9
-       subroutine intspvmconfig(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,cremat,crepointer,listcremat
-       logical lcrestringmatfromC
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,0,0)) return
-       if(.not.checklhs(fname,1,1)) return
+      if(.not.checkrhs(fname,0,0)) return
+      if(.not.checklhs(fname,1,1)) return
 c     
-c       cross variable size checking
+      call scipvmconfig(nhost,narch,pdtid,pname,parch,pspeed,ne3,info)
 c     
-       if(.not.cremat(fname,top+1,0,1,1,lw1,loc1)) return
-       if(.not.cremat(fname,top+2,0,1,1,lw2,loc2)) return
-       if(.not.cremat(fname,top+3,0,1,1,lw3,loc3)) return
-       mm4=1
-       if(.not.crepointer(fname,top+4,lw4)) return
-       if(.not.crepointer(fname,top+5,lw5)) return
-       if(.not.cremat(fname,top+6,0,1,1,lw6,loc6)) return
-       if(.not.cremat(fname,top+7,0,1,1,lw8,loc8)) return
-       call scipvmconfig(stk(lw1),stk(lw2),stk(lw3),stk(lw4),stk(lw5),
-     $ stk(lw6),ne3,stk(lw8))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+7
-c       Creation of output list
-       top=topl+1
-       call crelist(top,7,lw)
+      top=top-rhs+1
+c     Creation of output list
+      call crelist(top,7,lw)
 c     
-c       Element 1: nhost
-       if(.not.listcremat(fname,top,1,lw,0,1,1,lrs,lcs)) return
-       call int2db(1*1,istk(iadr(lw1)),-1,stk(lrs),-1)
+c     Element 1: nhost
+      if(.not.listcremat(fname,top,1,lw,0,1,1,lrs,lcs)) return
+      stk(lrs)=nhost
 c     
-c       Element 2: narch
-       if(.not.listcremat(fname,top,2,lw,0,1,1,lrs,lcs)) return
-       call int2db(1*1,istk(iadr(lw2)),-1,stk(lrs),-1)
+c     Element 2: narch
+      if(.not.listcremat(fname,top,2,lw,0,1,1,lrs,lcs)) return
+      stk(lrs)=narch
 c     
-c       Element 3: dtid
-       if(.not.listcremat(fname,top,3,lw,0,1,ne3,lrs,lcs)) return
-       call cintf(1*ne3,stk(lw3),stk(lrs))
+c     Element 3: dtid
+      if(.not.listcremat(fname,top,3,lw,0,1,ne3,lrs,lcs)) return
+      call cintf(ne3,pdtid,stk(lrs))
 c     
-c       Element 4: name
-       if(.not.lcrestringmatfromC(fname,top,4,lw,lw4,mm4,ne3)) return
+c     Element 4: name
+      lw4=lstk(bot)-1
+      stk(lw4)=pname
+      if(.not.lcrestringmatfromC(fname,top,4,lw,lw4,1,ne3)) return
 c     
-c       Element 5: arch
-       if(.not.lcrestringmatfromC(fname,top,5,lw,lw5,mm4,ne3)) return
+c     Element 5: arch
+      lw5=lstk(bot)-1
+      stk(lw5)=parch
+      if(.not.lcrestringmatfromC(fname,top,5,lw,lw5,1,ne3)) return
 c     
-c       Element 6: speed
-       if(.not.listcremat(fname,top,6,lw,0,1,ne3,lrs,lcs)) return
-       call cintf(1*ne3,stk(lw6),stk(lrs))
+c     Element 6: speed
+      if(.not.listcremat(fname,top,6,lw,0,1,ne3,lrs,lcs)) return
+      call cintf(ne3,pspeed,stk(lrs))
 c     
-c       Element 7: info
-       if(.not.listcremat(fname,top,7,lw,0,1,1,lrs,lcs)) return
-       call int2db(1*1,istk(iadr(lw8)),-1,stk(lrs),-1)
+c     Element 7: info
+      if(.not.listcremat(fname,top,7,lw,0,1,1,lrs,lcs)) return
+      stk(lrs)=info
+
+      return
+      end
 c     
-c     Putting in order the stack
-       call copyobj(fname,topl+1,topk+1)
-       top=topk+1
-       return
-       end
-c
-c SCILAB function : pvmaddhosts, fin = 10
-       subroutine intspvmaddhosts(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getsmat,checkval,crestringv,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,1,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable hosts (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1,1)) return
+c-----SCILAB function : pvmaddhosts, fin = 10
+      subroutine intspvmaddhosts(fname)
 c     
-c       cross variable size checking
+      character*(*) fname
+      include '../stack.h'
 c     
-       if(.not.crestringv(fname,top+1,lr1-5-m1*n1,lw1)) return
-       if(.not.cremat(fname,top+2,0,n1,1,lw3,loc3)) return
-       call scipvmaddhosts(stk(lw1),n1,stk(lw3))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+2
+      integer iadr
+      logical checkrhs,checklhs,getsmat,checkval,crestringv,cremat
+      double precision pstr
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: infos
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,n1,lrs,lcs)) return
-        call int2db(1*n1,istk(iadr(lw3)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmdelhosts, fin = 11
-       subroutine intspvmdelhosts(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getsmat,checkval,crestringv,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,1,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable hosts (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1,1)) return
+      iadr(l)=l+l-1
+
 c     
-c       cross variable size checking
+      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checklhs(fname,1,1)) return
+c
+c     checking variable hosts (number 1)
 c     
-       if(.not.crestringv(fname,top+1,lr1-5-m1*n1,lw1)) return
-       if(.not.cremat(fname,top+2,0,n1,1,lw3,loc3)) return
-       call scipvmdelhosts(stk(lw1),n1,stk(lw3))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+2
+      if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1,1)) return
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: infos
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,n1,lrs,lcs)) return
-        call int2db(1*n1,istk(iadr(lw3)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmparent, fin = 12
-       subroutine intspvmparent(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,0,0)) return
-       if(.not.checklhs(fname,1,1)) return
+c     crestringv returns a pointer on a C structure in stk(lw1)
+      if(.not.crestringv(fname,top+1,lr1-5-m1*n1,lw1)) return
+      pstr=stk(lw1)
+      
+      if(.not.cremat(fname,top,0,1,n1,lrs,lcs)) return
+      if(.not.cremat(fname,top+1,0,n1,1,lw3,loc3)) return
+      call scipvmaddhosts(pstr,n1,stk(lw3))
 c     
-c       cross variable size checking
+c     --------------output variable: infos
+      call int2db(n1,istk(iadr(lw3)),-1,stk(lrs),-1)
+      return
+      end
+c
+c-----SCILAB function : pvmdelhosts, fin = 11
+      subroutine intspvmdelhosts(fname)   
+      character*(*) fname
+      include '../stack.h'
 c     
-       if(.not.cremat(fname,top+1,0,1,1,lw1,loc1)) return
-       call scipvmparent(stk(lw1))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+      integer iadr
+      logical checkrhs,checklhs,getsmat,checkval,crestringv,cremat
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw1)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmtidtohost, fin = 13
-       subroutine intspvmtidtohost(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getscalar,cremat
-       integer tid
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,1,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable tid (number 1)
-c       
-       if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
+      iadr(l)=l+l-1
 c     
-c       cross variable size checking
+      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checklhs(fname,1,1)) return
+c
+c     checking variable hosts (number 1)
 c     
-c       call entier(1,stk(lr1),istk(iadr(lr1)))
-       tid = stk(lr1)
-       if(.not.cremat(fname,top+1,0,1,1,lw2,loc2)) return
-c       call scipvmtidtohost(istk(iadr(lr1)),stk(lw2))
-       call scipvmtidtohost(tid,stk(lw2))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+      if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1,1)) return
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw2)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmsettimer, fin = 14
-       subroutine intspvmsettimer(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,0,0)) return
-       if(.not.checklhs(fname,1,1)) return
+c     cross variable size checking
 c     
-c       cross variable size checking
+      if(.not.crestringv(fname,top+1,lr1-5-m1*n1,lw1)) return
+      
+      if(.not.cremat(fname,top,0,1,n1,lrs,lcs)) return
+      if(.not.cremat(fname,top+1,0,n1,1,lw3,loc3)) return
+      call scipvmdelhosts(stk(lw1),n1,stk(lw3))
 c     
-       if(.not.cremat(fname,top+1,0,1,1,lw1,loc1)) return
-       call scipvmsettimer(stk(lw1))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+c     --------------output variable: infos
+      call int2db(n1,istk(iadr(lw3)),-1,stk(lrs),-1)
+      return
+      end
 c
-       topk=top-rhs
-       topl=top+1
+c-----SCILAB function : pvmparent, fin = 12
+      subroutine intspvmparent(fname)
+      character*(*) fname
+      include '../stack.h'
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw1)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmgettimer, fin = 15
-       subroutine intspvmgettimer(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,cremat
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,0,0)) return
-       if(.not.checklhs(fname,1,1)) return
+      logical checkrhs,checklhs,cremat
+      integer res
 c     
-c       cross variable size checking
+
+      if(.not.checkrhs(fname,0,0)) return
+      if(.not.checklhs(fname,1,1)) return
 c     
-       if(.not.cremat(fname,top+1,0,1,1,lw1,loc1)) return
-       call scipvmgettimer(stk(lw1))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+c     cross variable size checking
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call unsfdcopy(1*1,stk(lw1),1,stk(lrs),1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmmytid, fin = 16
-       subroutine intspvmmytid(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,0,0)) return
-       if(.not.checklhs(fname,1,1)) return
+      call scipvmparent(res)
 c     
-c       cross variable size checking
+      top=top+1
 c     
-       if(.not.cremat(fname,top+1,0,1,1,lw1,loc1)) return
-       call scipvmmytid(stk(lw1))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
 c
-       topk=top-rhs
-       topl=top+1
+c-----SCILAB function : pvmtidtohost, fin = 13
+      subroutine intspvmtidtohost(fname)
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw1)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmexit, fin = 17
-       subroutine intspvmexit(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,0,0)) return
-       if(.not.checklhs(fname,1,1)) return
+      character*(*) fname
+      include '../stack.h'
 c     
-c       cross variable size checking
+      logical checkrhs,checklhs,getscalar,cremat
+      integer tid,res
 c     
-       if(.not.cremat(fname,top+1,0,1,1,lw1,loc1)) return
-       call scipvmexit(stk(lw1))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checklhs(fname,1,1)) return
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw1)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmkill, fin = 18
-       subroutine intspvmkill(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getvectrow,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,1,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable tids (number 1)
-c       
-       if(.not.getvectrow(fname,top,top-rhs+1,it1,m1,n1,lr1,lc1)) return
+c     checking variable tid (number 1)
 c     
-c       cross variable size checking
+      if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
+      tid = stk(lr1)
 c     
-c       call entier(n1,stk(lr1),istk(iadr(lr1)))
-       if(.not.cremat(fname,top+1,0,n1,1,lw3,loc3)) return
-       call entier(n1,stk(lr1),istk(iadr(lstk(top+2))))
-c       call scipvmkill(istk(iadr(lr1)),n1,stk(lw3))
-       call scipvmkill(istk(iadr(lstk(top+2))),n1,stk(lw3))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+      call scipvmtidtohost(tid,res)
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,n1,lrs,lcs)) return
-        call int2db(1*n1,istk(iadr(lw3)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
+c     --------------output variable: res
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
 c
-c SCILAB function : pvmspawn, fin = 19
-       subroutine intspvmspawn(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getsmat,checkval,getscalar,cresmat2
-       logical bufstore,cremat
-       integer ntask
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,2,4)) return
-       if(.not.checklhs(fname,1,2)) return
-c       checking variable task (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1*n1,1)) return
-c       checking variable ntask (number 2)
-c       
-       if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
-c       checking variable win (number 3)
-c       
-       if(rhs .le. 2) then
-        top = top+1
-        rhs = rhs+1
-        nlr3 = 1
-        if(.not.cresmat2(fname,top,nlr3,lr3)) return
-        call cvstr(nlr3,istk(lr3),'w',0)
-       endif
-       if(.not.getsmat(fname,top,top-rhs+3,m3,n3,1,1,lr3,nlr3)) return
-       if(.not.checkval(fname,m3*n3,1)) return
-c       checking variable where (number 4)
-c       
-       if(rhs .le. 3) then
-        top = top+1
-        rhs = rhs+1
-        nlr4 = 4
-        if(.not.cresmat2(fname,top,nlr4,lr4)) return
-        call cvstr(nlr4,istk(lr4),'null',0)
-       endif
-       if(.not.getsmat(fname,top,top-rhs+4,m4,n4,1,1,lr4,nlr4)) return
-       if(.not.checkval(fname,m4*n4,1)) return
+c-----SCILAB function : pvmsettimer, fin = 14
+      subroutine intspvmsettimer(fname)
 c     
-c       cross variable size checking
+      character*(*) fname
+      include '../stack.h'
 c     
-       if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
-       if(.not.bufstore(fname,lbuf,lbufi3,lbuff3,lr3,nlr3)) return
-       if(.not.bufstore(fname,lbuf,lbufi5,lbuff5,lr4,nlr4)) return
-c       call entier(1,stk(lr2),istk(iadr(lr2)))
-       ntask = stk(lr2)
-c       if(.not.cremat(fname,top+1,0,istk(iadr(lr2)),1,lw8,loc8)) return
-       if(.not.cremat(fname,top+1,0,ntask,1,lw8,loc8)) return
-       if(.not.cremat(fname,top+2,0,1,1,lw9,loc9)) return
-c       call scipvmspawn(buf(lbufi1:lbuff1),nlr1,buf(lbufi3:lbuff3),nlr
-c     $ 3,buf(lbufi5:lbuff5),nlr4,istk(iadr(lr2)),stk(lw8),stk(lw9))
-       call scipvmspawn(buf(lbufi1:lbuff1),nlr1,buf(lbufi3:lbuff3),nlr
-     $ 3,buf(lbufi5:lbuff5),nlr4,ntask,stk(lw8),stk(lw9))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+2
+      logical checkrhs,checklhs,cremat
+      integer res
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: tids
-        top=topl+1
-c        if(.not.cremat(fname,top,0,1,istk(iadr(lr2)),lrs,lcs)) return
-        if(.not.cremat(fname,top,0,1,ntask,lrs,lcs)) return
-c        call int2db(1*istk(iadr(lr2)),istk(iadr(lw8)),-1,stk(lrs),-1)
-        call int2db(1*ntask,istk(iadr(lw8)),-1,stk(lrs),-1)
-       endif
+      if(.not.checkrhs(fname,0,0)) return
+      if(.not.checklhs(fname,1,1)) return
 c     
-       if(lhs .ge. 2) then
-c       --------------output variable: res
-        top=topl+2
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw9)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       if(lhs .ge. 2) then
-        call copyobj(fname,topl+2,topk+2)
-       endif
-       top=topk+lhs
-       return
-       end
+      call scipvmsettimer(res)
+
+c     return variable res
+      top=top+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
 c
-c SCILAB function : pvmspawnindependent, fin = 20
-       subroutine intspvmspawnindependent(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getsmat,checkval,getscalar,cresmat2
-       logical bufstore,cremat
-       integer ntask
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,2,3)) return
-       if(.not.checklhs(fname,1,2)) return
-c       checking variable task (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1*n1,1)) return
-c       checking variable ntask (number 2)
-c       
-       if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
-c       checking variable where (number 3)
-c       
-       if(rhs .le. 2) then
-        top = top+1
-        rhs = rhs+1
-        nlr3 = 4
-        if(.not.cresmat2(fname,top,nlr3,lr3)) return
-        call cvstr(nlr3,istk(lr3),'null',0)
-       endif
-       if(.not.getsmat(fname,top,top-rhs+3,m3,n3,1,1,lr3,nlr3)) return
-       if(.not.checkval(fname,m3*n3,1)) return
+c-----SCILAB function : pvmgettimer, fin = 15
+      subroutine intspvmgettimer(fname)
 c     
-c       cross variable size checking
+      character*(*) fname
+      include '../stack.h'
 c     
-       if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
-c       call entier(1,stk(lr2),istk(iadr(lr2)))
-       ntask = stk(lr2)
-       if(.not.bufstore(fname,lbuf,lbufi4,lbuff4,lr3,nlr3)) return
-c     if(.not.cremat(fname,top+1,0,istk(iadr(lr2)),1,lw6,loc6)) return
-       if(.not.cremat(fname,top+1,0,ntask,1,lw6,loc6)) return
-       if(.not.cremat(fname,top+2,0,1,1,lw7,loc7)) return
-c       call scipvmspawnindependent(buf(lbufi1:lbuff1),nlr1,istk(iadr(
-c     $ lr2)),buf(lbufi4:lbuff4),nlr3,stk(lw6),stk(lw7))
-       call scipvmspawnindependent(buf(lbufi1:lbuff1),nlr1,ntask,
-     $ buf(lbufi4:lbuff4),nlr3,stk(lw6),stk(lw7))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+2
+      double precision t
+      logical checkrhs,checklhs,cremat
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: tids
-        top=topl+1
-c        if(.not.cremat(fname,top,0,1,istk(iadr(lr2)),lrs,lcs)) return
-        if(.not.cremat(fname,top,0,1,ntask,lrs,lcs)) return
-c     call int2db(1*istk(iadr(lr2)),istk(iadr(lw6)),-1,stk(lrs),-1)
-        call int2db(1*ntask,istk(iadr(lw6)),-1,stk(lrs),-1)
-       endif
+      if(.not.checkrhs(fname,0,0)) return
+      if(.not.checklhs(fname,1,1)) return
 c     
-       if(lhs .ge. 2) then
-c       --------------output variable: res
-        top=topl+2
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw7)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       if(lhs .ge. 2) then
-        call copyobj(fname,topl+2,topk+2)
-       endif
-       top=topk+lhs
-       return
-       end
+      call scipvmgettimer(t)
+c     
+c     --------------output variable: t
+      top=top+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=t
+      return
+      end
+c     
+c-----SCILAB function : pvmmytid, fin = 16
+      subroutine intspvmmytid(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      integer res
+      logical checkrhs,checklhs,cremat
+c     
+      if(.not.checkrhs(fname,0,0)) return
+      if(.not.checklhs(fname,1,1)) return
+
+      call scipvmmytid(res)
+c     
+c     --------------output variable: res
+      top=top+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
+c
+c-----SCILAB function : pvmexit, fin = 17
+      subroutine intspvmexit(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      integer res
+      logical checkrhs,checklhs,cremat
+c     
+      if(.not.checkrhs(fname,0,0)) return
+      if(.not.checklhs(fname,1,1)) return
+    
+      call scipvmexit(res)
+c     
+c     --------------output variable: res
+      top=top+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
+c
+c-----SCILAB function : pvmkill, fin = 18
+      subroutine intspvmkill(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      integer iadr
+      logical checkrhs,checklhs,getvectrow,cremat
+c     
+      iadr(l)=l+l-1
+
+      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checklhs(fname,1,1)) return
+c     
+c     checking variable tids (number 1)
+c     
+      if(.not.getvectrow(fname,top,top,it1,m1,n1,lr1,lc1)) return
+c     
+c     cross variable size checking
+c     
+      if(.not.cremat(fname,top+1,0,n1,1,lw3,loc3)) return
+      if(.not.cremat(fname,top+2,0,n1,1,ltids,loc3)) return
+      call entier(n1,stk(lr1),istk(iadr(ltids)))
+
+c     
+      call scipvmkill(istk(iadr(ltids)),n1,stk(lw3))
+c     
+c     --------------output variable: res
+      if(.not.cremat(fname,top+2,0,1,n1,lrs,lcs)) return
+      call int2db(n1,istk(iadr(lw3)),-1,stk(lrs),-1)
+      call copyobj(fname,top+2,top)
+      return
+      end
+c
+c-----SCILAB function : pvmspawn, fin = 19
+      subroutine intspvmspawn(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      integer iadr
+      integer topk
+      logical checkrhs,checklhs,getsmat,checkval,getscalar,cresmat2
+      logical bufstore,cremat
+      integer ntask,res
+c     
+      iadr(l)=l+l-1
+c     
+      lbuf = 1
+      topk = top-rhs+1 
+
+      if(.not.checkrhs(fname,2,4)) return
+      if(.not.checklhs(fname,1,2)) return
+c     
+c     checking variable task (number 1)
+c     
+      if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1*n1,1)) return
+c     
+c     checking variable ntask (number 2)
+c     
+      if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
+      ntask=stk(lr2)
+c     
+c     checking variable win (number 3)
+c     
+      if(rhs .le. 2) then
+         top = top+1
+         rhs = rhs+1
+         nlr3 = 1
+         if(.not.cresmat2(fname,top,nlr3,lr3)) return
+         call cvstr(nlr3,istk(lr3),'w',0)
+      endif
+      if(.not.getsmat(fname,top,top-rhs+3,m3,n3,1,1,lr3,nlr3)) return
+      if(.not.checkval(fname,m3*n3,1)) return
+c     checking variable where (number 4)
+c     
+      if(rhs .le. 3) then
+         top = top+1
+         rhs = rhs+1
+         nlr4 = 4
+         if(.not.cresmat2(fname,top,nlr4,lr4)) return
+         call cvstr(nlr4,istk(lr4),'null',0)
+      endif
+      if(.not.getsmat(fname,top,top-rhs+4,m4,n4,1,1,lr4,nlr4)) return
+      if(.not.checkval(fname,m4*n4,1)) return
+c     
+c     cross variable size checking
+c     
+      if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
+      if(.not.bufstore(fname,lbuf,lbufi3,lbuff3,lr3,nlr3)) return
+      if(.not.bufstore(fname,lbuf,lbufi5,lbuff5,lr4,nlr4)) return
+
+      if(.not.cremat(fname,topk,0,ntask,1,ltids,loc8)) return
+      if(.not.cremat(fname,topk+1,0,ntask,1,lw8,loc8)) return
+
+      call scipvmspawn(buf(lbufi1:lbuff1),nlr1,buf(lbufi3:lbuff3),nlr
+     $     3,buf(lbufi5:lbuff5),nlr4,ntask,stk(lw8),res)
+c     
+c     --------------output variable: tids
+      call int2db(1*ntask,istk(iadr(lw8)),-1,stk(ltids),-1)
+c     
+      if(lhs .ge. 2) then
+c     --------------output variable: res
+         top=topk+1
+         if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+         stk(lrs)=res
+      endif
+      return
+      end
+c
+c-----SCILAB function : pvmspawnindependent, fin = 20
+      subroutine intspvmspawnindependent(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      integer iadr
+      integer topk
+      logical checkrhs,checklhs,getsmat,checkval,getscalar,cresmat2
+      logical bufstore,cremat
+      integer ntask,res
+c     
+      iadr(l)=l+l-1
+c     
+      lbuf = 1
+      topk = top-rhs+1
+
+      if(.not.checkrhs(fname,2,3)) return
+      if(.not.checklhs(fname,1,2)) return
+c     
+c     checking variable task (number 1)
+c     
+      if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1*n1,1)) return
+c     
+c     checking variable ntask (number 2)
+c     
+      if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
+      ntask = stk(lr2)
+c     
+c     checking variable where (number 3)
+c     
+      if(rhs .le. 2) then
+         top = top+1
+         rhs = rhs+1
+         nlr3 = 4
+         if(.not.cresmat2(fname,top,nlr3,lr3)) return
+         call cvstr(nlr3,istk(lr3),'null',0)
+      endif
+      if(.not.getsmat(fname,top,top-rhs+3,m3,n3,1,1,lr3,nlr3)) return
+      if(.not.checkval(fname,m3*n3,1)) return
+c     
+c     cross variable size checking
+c     
+      if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
+      if(.not.bufstore(fname,lbuf,lbufi4,lbuff4,lr3,nlr3)) return
+
+      if(.not.cremat(fname,topk,0,ntask,1,ltids,loc6)) return
+      if(.not.cremat(fname,topk+1,0,ntask,1,lw6,loc6)) return
+      
+
+      call scipvmspawnindependent(buf(lbufi1:lbuff1),nlr1,ntask,
+     $     buf(lbufi4:lbuff4),nlr3,stk(lw6),res)
+      if(err .gt. 0) then 
+         buf = fname // ' Internal Error' 
+         call error(999)
+         return
+      endif
+c     --------------output variable: tids
+      top=topk
+      call int2db(ntask,istk(iadr(lw6)),-1,stk(ltids),-1)
+c     
+      if(lhs .ge. 2) then
+c     --------------output variable: res
+         top=top+1
+         if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+         stk(lrs)=res
+      endif
+      return
+      end
 c
 c
-c SCILAB function : pvmrecv, fin = 21
+c-----SCILAB function : pvmrecv, fin = 21
       subroutine intspvmrecv(fname)
 c     
       character*(*) fname
@@ -1249,11 +784,6 @@ c     receive the variable
       call scipvmrecv(stk(beginvar),maxsize,n,tid,tag,iis)
 c     ATTENTION scipvmrecv ne doit pas ecrire plus de maxsize double
 c     dans stk(beginvar)
-      if(err .gt. 0) then 
-         buf = fname // ' Internal Error' 
-         call error(999)
-         return
-      endif
 c
 c     Check if maxsize has been enough
       if(n.gt.maxsize) then
@@ -1289,744 +819,452 @@ c       --------------output variable: tag
          stk(lrs)=tag
       endif
 c     
-c     clear status variable if lhs is one
-c      if(lhs.eq.1) top=top-1
-c      return
+      return
       end
 
 c
-c SCILAB function : pvmsend, fin = 22
-       subroutine intspvmsend(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr, address, tag, n
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getvectrow,getscalar,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,3,3)) return
-       if(.not.checklhs(fname,1,1)) return
+c-----SCILAB function : pvmsend, fin = 22
+      subroutine intspvmsend(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      integer iadr, address, tag, n
+      logical checkrhs,checklhs,getvectrow,getscalar,cremat
+c     
+      iadr(l)=l+l-1
+c     
+      if(.not.checkrhs(fname,3,3)) return
+      if(.not.checklhs(fname,1,1)) return
+c     
 c     checking variable tids (number 1)
-c       
-       if(.not.getvectrow(fname,top,top-rhs+1,it1,m1,n1,lr1,lc1)) return
+c     
+      if(.not.getvectrow(fname,top,top-rhs+1,it1,m1,n1,lr1,lc1)) return
+c     
 c     checking variable buff (number 2)
-c       
-c     if(.not.getmat(fname,top,top-rhs+2,it2,m2,n2,lr2,lc2)) return
-c     checking variable tag (number 3)
-c       
-       if(.not.getscalar(fname,top,top-rhs+3,lr3)) return
-       tag=stk(lr3)
+c     
+      if(.not.getscalar(fname,top,top-rhs+3,lr3)) return
+      tag=stk(lr3)
+
 c     construct the pack vector for the variable number 2
 c     set adress where to put the pack vector and its max
 c     allowable size
-       ilpack=iadr(lstk(top)+n1)
-       maxsize=iadr(lstk(bot)) - ilpack
-       address = top-rhs+2
-c       write(*,*) 'call varpack'
-       call varpak(address,istk(ilpack),n,maxsize,ierr)
-c       write(*,*) 'callback varpack'
-       if(ierr .gt. 0) then 
-          buf = fname // ' Unknow type or not yet implemented' 
-          call error(999)
-          return
-       endif
-c
+      ilpack=iadr(lstk(top)+n1)
+      maxsize=iadr(lstk(bot)) - ilpack
+      address = top-rhs+2
+      call varpak(address,istk(ilpack),n,maxsize,ierr)
+      if(ierr .gt. 0) then 
+         buf = fname // ' Unknow type or not yet implemented' 
+         call error(999)
+         return
+      endif
+c     
 c     Check if maxsize has been enough
       if(n.gt.maxsize) then
          err=n-maxsize
          call error(17)
          return
       endif 
+c     
+      call entier(n1,stk(lr1),istk(iadr(lstk(top))))
+c     
+c     Gestion du passage par @ du buffer a envoyer.
+      iiladdress =  lstk(address)
+      iladdress=iadr(lstk(address))
+      if(istk(iladdress).lt.0) then 
+         iiladdress=istk(iladdress+1)
+      endif
+      
+      call scipvmsend(istk(iadr(lstk(top))),n1,
+     $     istk(ilpack),n,
+     $     stk(iiladdress),
+     $     tag,is)
+c     
+c     --------------output variable: res
+      top=top-rhs+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=is
+      return
+      end
 c
-c     set correct size for the pack vect
-c      lstk(top+1)=lstk(top)+n
+c-----SCILAB function : pvmrecvvar, fin = 23
+      subroutine intspvmrecvvar(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      logical checkrhs,checklhs,getscalar,getsmat,checkval,bufstore
+      logical cremat
+      integer tid, tag,res
+c     
+      lbuf = 1
 
+      if(.not.checkrhs(fname,3,3)) return
+      if(.not.checklhs(fname,1,1)) return
+c     
+c     checking variable tid (number 1)
+c     
+      if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
+      tid = stk(lr1)
+c     
+c     checking variable tag (number 2)
+c     
+      if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
+      tag = stk(lr2)
+c     
+c     checking variable buff (number 3)
+c     
+      if(.not.getsmat(fname,top,top-rhs+3,m3,n3,1,1,lr3,nlr3)) return
+      if(.not.checkval(fname,m3*n3,1)) return
+c     
+      if(.not.bufstore(fname,lbuf,lbufi3,lbuff3,lr3,nlr3)) return
+      call scipvmrecvvar(tid,tag,buf(lbufi3:lbuff3),res)
+c
+c     --------------output variable: res
+      top=top-rhs+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
+c
+c-----SCILAB function : pvmsendvar, fin = 24
+      subroutine intspvmsendvar(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      integer iadr
+      integer topk
+      logical checkrhs,checklhs,getvectrow,getsmat,checkval,getscalar
+      logical bufstore,cremat
+      integer tag,res
+c     
+      iadr(l)=l+l-1
+c     
+      lbuf = 1
+      topk = top-rhs+1
+
+      if(.not.checkrhs(fname,3,3)) return
+      if(.not.checklhs(fname,1,1)) return
+c     
+c     checking variable tids (number 1)
+c     
+      if(.not.getvectrow(fname,top,top-rhs+1,it1,m1,n1,lr1,lc1)) return
+c     
+c     checking variable buff (number 2)
+c     
+      if(.not.getsmat(fname,top,top-rhs+2,m2,n2,1,1,lr2,nlr2)) return
+      if(.not.checkval(fname,m2*n2,1)) return
+      if(.not.bufstore(fname,lbuf,lbufi3,lbuff3,lr2,nlr2)) return
+c     
+c     checking variable tag (number 3)
+c     
+      if(.not.getscalar(fname,top,top-rhs+3,lr3)) return
+      tag = stk(lr3)
+
+      if(.not.cremat(fname,topk+1,0,1,n1,ltids,loc)) return
+      call entier(n1,stk(lr1),istk(iadr(ltids)))
+
+      call scipvmsendvar(istk(iadr(ltids)),n1,buf(lbufi3:lbuff3),
+     $     tag,res)
+c     
+      top=topk
+c     --------------output variable: res
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
+c     
+c     SCILAB function : pvmreduce, fin = 25
+      subroutine intspvmreduce(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      logical checkrhs,checklhs,getsmat,checkval,getmat,getscalar
+      logical bufstore,cremat
+      integer msgtag, rootginst, res
+      double precision rval
+c     
+      lbuf = 1
+
+      if(.not.checkrhs(fname,5,5)) return
+      if(.not.checklhs(fname,1,2)) return
+c     
+c     checking variable func (number 1)
+c     
+      if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
+      if(.not.checkval(fname,m1*n1,1)) return
+      if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
+c     
+c     checking variable data (number 2)
+c     
+      if(.not.getmat(fname,top,top-rhs+2,it2,m2,n2,ldata,lc2)) return
+      kdata=top-rhs+2
+
+c     
+c     checking variable msgtag (number 3)
+c     
+      if(.not.getscalar(fname,top,top-rhs+3,lr3)) return
+      msgtag = stk(lr3)
+c     
+c     checking variable group (number 4)
+c     
+      if(.not.getsmat(fname,top,top-rhs+4,m4,n4,1,1,lr4,nlr4)) return
+      if(.not.checkval(fname,m4*n4,1)) return
+      if(.not.bufstore(fname,lbuf,lbufi7,lbuff7,lr4,nlr4)) return
+c     
+c     checking variable rootginst (number 5)
+c     
+      if(.not.getscalar(fname,top,top-rhs+5,lr5)) return
+      rootginst = stk(lr5)
+
+      if(ldata.ge.bot) then
+c       buff is passed by reference
+         kdata=top-rhs+6
+         if(.not.cremat(fname,top-rhs+6,it2,m2,n2,lrs,lcs)) return
+         call dcopy(m2*n2*(it2+1),stk(ldata),1,stk(lrs),1)
+         ldata=lrs
+      endif
+c     
+      call scipvmreduce(buf(lbufi1:lbuff1),nlr1,stk(ldata),m2,n2,msgtag,
+     $     buf(lbufi7:lbuff7),nlr4,rootginst,res)
+
+      if(err .gt. 0) then 
+         buf = fname // ' Internal Error' 
+         call error(999)
+         return
+      endif
+c     
+c     --------------output variable: buff
+      call copyobj(fname,kdata,top-rhs+1)
+      top=top-rhs+1
+c     
+      if(lhs .ge. 2) then
+c     --------------output variable: res
+         top=top+1
+         if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+         stk(lrs)=res
+      endif
+      return
+      end
+c
+c-----SCILAB function : pvm_start, fin = 26
+      subroutine intspvmstart(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      logical checkrhs,checklhs,cresmat2,getsmat,checkval,cremat
+      logical bufstore
+      integer res
+c     
+      lbuf = 1
+
+      if(.not.checkrhs(fname,0,1)) return
+      if(.not.checklhs(fname,1,1)) return
+c     
+c     checking variable hostfile (number 1)
+c     
+      if(rhs .le. 0) then
+         buf='null'//char(0)
+         lbufi2=1
+         lbuff2=5
+      else
+         if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
+         if(.not.checkval(fname,m1*n1,1)) return
+         if(.not.bufstore(fname,lbuf,lbufi2,lbuff2,lr1,nlr1)) return
+      endif
+c
+      call scipvmstart(res,buf(lbufi2:lbuff2),nlr1)
+
+c     
+      top=top-rhs+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
+c
+c-----SCILAB function : pvm_halt, fin = 27
+      subroutine intspvmhalt(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      integer res
+      logical checkrhs,checklhs,cremat
+c     
+      if(.not.checkrhs(fname,0,0)) return
+      if(.not.checklhs(fname,1,1)) return
 c     
 c     cross variable size checking
 c     
-c       call entier(n1,stk(lr1),istk(iadr(lr1)))
-      call entier(n1,stk(lr1),istk(iadr(lstk(top))))
-c
-c     Gestion du passage par @ du buffer a envoyer.
-       iiladdress =  lstk(address)
-       iladdress=iadr(lstk(address))
-       if(istk(iladdress).lt.0) then 
-          iiladdress=istk(iladdress+1)
-       endif
-       
-c       call scipvmsend(istk(iadr(lr1)),n1,
-       call scipvmsend(istk(iadr(lstk(top))),n1,
-     $      istk(ilpack),n,
-     $      stk(iiladdress),
-     $      tag,is)
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+      call scipvmhalt(res)
+
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        stk(lrs)=is
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmrecvvar, fin = 23
-       subroutine intspvmrecvvar(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getscalar,getsmat,checkval,bufstore
-       logical cremat
-       integer tid, tag
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,3,3)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable tid (number 1)
-c       
-       if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
-c       checking variable tag (number 2)
-c       
-       if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
-c       checking variable buff (number 3)
-c       
-       if(.not.getsmat(fname,top,top-rhs+3,m3,n3,1,1,lr3,nlr3)) return
-       if(.not.checkval(fname,m3*n3,1)) return
-c     
-c       cross variable size checking
-c     
-c       call entier(1,stk(lr1),istk(iadr(lr1)))
-c       call entier(1,stk(lr2),istk(iadr(lr2)))
-       tid = stk(lr1)
-       tag = stk(lr2)
-       if(.not.bufstore(fname,lbuf,lbufi3,lbuff3,lr3,nlr3)) return
-       if(.not.cremat(fname,top+1,0,1,1,lw4,loc4)) return
-c       call scipvmrecvvar(istk(iadr(lr1)),istk(iadr(lr2)),buf(lbufi3:
-c     $ lbuff3),stk(lw4))
-       call scipvmrecvvar(tid,tag,buf(lbufi3:lbuff3),stk(lw4))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
-c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw4)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmsendvar, fin = 24
-       subroutine intspvmsendvar(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getvectrow,getsmat,checkval,getscalar
-       logical bufstore,cremat
-       integer tag
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,3,3)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable tids (number 1)
-c       
-       if(.not.getvectrow(fname,top,top-rhs+1,it1,m1,n1,lr1,lc1)) return
-c       checking variable buff (number 2)
-c       
-       if(.not.getsmat(fname,top,top-rhs+2,m2,n2,1,1,lr2,nlr2)) return
-       if(.not.checkval(fname,m2*n2,1)) return
-c       checking variable tag (number 3)
-c       
-       if(.not.getscalar(fname,top,top-rhs+3,lr3)) return
-c     
-c       cross variable size checking
-c     
-c       call entier(n1,stk(lr1),istk(iadr(lr1)))
-       if(.not.bufstore(fname,lbuf,lbufi3,lbuff3,lr2,nlr2)) return
-c       call entier(1,stk(lr3),istk(iadr(lr3)))
-       tag = stk(lr3)
-       if(.not.cremat(fname,top+1,0,1,1,lw5,loc5)) return
-       call entier(n1,stk(lr1),istk(iadr(lstk(top+2))))
-c       call scipvmsendvar(istk(iadr(lr1)),n1,buf(lbufi3:lbuff3),istk(
-c     $ iadr(lr3)),stk(lw5))
-c       call scipvmsendvar(istk(iadr(lr1)),n1,buf(lbufi3:lbuff3),tag,
-       call scipvmsendvar(istk(iadr(lstk(top+2))),n1,buf(lbufi3:lbuff3),tag,
-     $ stk(lw5))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
-c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw5)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvmreduce, fin = 25
-       subroutine intspvmreduce(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getsmat,checkval,getmat,getscalar
-       logical bufstore,cremat
-       integer msgtag, rootginst
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,5,5)) return
-       if(.not.checklhs(fname,1,2)) return
-c       checking variable func (number 1)
-c       
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1*n1,1)) return
-c       checking variable buff (number 2)
-c       
-       if(.not.getmat(fname,top,top-rhs+2,it2,m2,n2,lr2,lc2)) return
-c       checking variable msgtag (number 3)
-c       
-       if(.not.getscalar(fname,top,top-rhs+3,lr3)) return
-c       checking variable group (number 4)
-c       
-       if(.not.getsmat(fname,top,top-rhs+4,m4,n4,1,1,lr4,nlr4)) return
-       if(.not.checkval(fname,m4*n4,1)) return
-c       checking variable rootginst (number 5)
-c       
-       if(.not.getscalar(fname,top,top-rhs+5,lr5)) return
-c     
-c       cross variable size checking
-c     
-       if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
-c       call entier(1,stk(lr3),istk(iadr(lr3)))
-       msgtag = stk(lr3)
-       if(.not.bufstore(fname,lbuf,lbufi7,lbuff7,lr4,nlr4)) return
-c       call entier(1,stk(lr5),istk(iadr(lr5)))
-       rootginst = stk(lr5)
-       if(.not.cremat(fname,top+1,0,1,1,lw10,loc10)) return
-       call scipvmreduce(buf(lbufi1:lbuff1),nlr1,stk(lr2),m2,n2,msgtag,
-     $ buf(lbufi7:lbuff7),nlr4,rootginst,stk(lw10))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
-c     
-       if(lhs .ge. 1) then
-c       --------------output variable: buff
-        top=topl+1
-        if(.not.cremat(fname,top,it2,m2,n2,lrs,lcs)) return
-c     PAS TRES PROPRE.
-c     A remplacer par un copy(type,size... ou par un dxcopy...
-        call unsfdcopy(n2*m2*(it2+1),stk(lr2),1,stk(lrs),1)
-       endif
-c     
-       if(lhs .ge. 2) then
-c       --------------output variable: res
-        top=topl+2
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw10)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       if(lhs .ge. 2) then
-        call copyobj(fname,topl+2,topk+2)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvm_start, fin = 26
-       subroutine intspvmstart(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,cresmat2,getsmat,checkval,cremat,bufsto
-     $ re
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       lbuf = 1
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,0,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable hostfile (number 1)
-c       
-       if(rhs .le. 0) then
-        top = top+1
-        rhs = rhs+1
-        nlr1 = 4
-        if(.not.cresmat2(fname,top,nlr1,lr1)) return
-        call cvstr(nlr1,istk(lr1),'null',0)
-       endif
-       if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-       if(.not.checkval(fname,m1*n1,1)) return
-c     
-c       cross variable size checking
-c     
-       if(.not.cremat(fname,top+1,0,1,1,lw1,loc1)) return
-       if(.not.bufstore(fname,lbuf,lbufi2,lbuff2,lr1,nlr1)) return
-       call scipvmstart(stk(lw1),buf(lbufi2:lbuff2),nlr1)
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
-c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw1)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvm_halt, fin = 27
-       subroutine intspvmhalt(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,cremat
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,0,0)) return
-       if(.not.checklhs(fname,1,1)) return
-c     
-c       cross variable size checking
-c     
-       if(.not.cremat(fname,top+1,0,1,1,lw1,loc1)) return
-       call scipvmhalt(stk(lw1))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
-c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw1)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
+c     --------------output variable: res
+      top=top+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=res
+      return
+      end
 
 c
-c SCILAB function : pvm_error, fin = 28
-       subroutine intspvmerror(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getscalar,crepointer,crestringmatfromC
-       integer num
-c
-       iadr(l)=l+l-1
-c
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,1,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable err (number 1)
-c       
-       if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
+c-----SCILAB function : pvm_error, fin = 28
+      subroutine intspvmerror(fname)
 c     
-c       cross variable size checking
+      character*(*) fname
+      include '../stack.h'
 c     
-       num = stk(lr1)
-c       call entier(1,stk(lr1),istk(iadr(lr1)))
-       mm2=1
-       if(.not.crepointer(fname,top+1,lw2)) return
-c       call scipvmerror(istk(iadr(lr1)),stk(lw2))
-       call scipvmerror(num,stk(lw2))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+1
+      logical checkrhs,checklhs,getscalar,crepointer,crestringmatfromC
+      integer num
+      double precision pstr
 c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.crestringmatfromC(fname,top,lw2,mm2,mm2)) return
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvm_sci2f77, fin = 29
-       subroutine intspvmsci2f77(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr, sadr, iladdress, address
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getscalar,cremat
-       iadr(l)=l+l-1
-       sadr(l)=(l/2)+1
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,1,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable var (number 1)
-c       
-c       if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
+      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checklhs(fname,1,1)) return
 c     
-c       cross variable size checking
+c     checking variable err (number 1)
 c     
-       address = top-rhs+1
-       iladdress=iadr(lstk(address))
+      if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
+      num = stk(lr1)
+
+      call scipvmerror(num,pstr)
+
+c     --------------output variable: res
+      lw2=lstk(bot)-1
+      stk(lw2)=pstr
+      if(.not.crestringmatfromC(fname,top,lw2,1,1)) return
+      return
+      end
 c
-       call scipvmscitof77(top - rhs + 1)
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+0
+c-----SCILAB function : pvm_sci2f77, fin = 29
+      subroutine intspvmsci2f77(fname)
 c     
-c       if(lhs .ge. 1) then
-c       --------------output variable: var
-c        top=topl+1
-c        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-c        call unsfdcopy(1*1,stk(lr1),1,stk(lrs),1)
-c       endif
-c     Putting in order the stack
-c     if the variable is passed by value copy it on the result
-       if(lhs .ge. 1.and.istk(iladdress).ge.0) then
-        call copyobj(fname,topl,topk+1)
-        top=topk+lhs
-c     else we return the null variable
-       else
-          top=topk+lhs
-          il = iadr(lstk(top))
-          istk(il) = 0
-          lstk(top+1) = lstk(top) + 1
-c          top=topk-lhs
-       endif
-c       top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvm_f772sci, fin = 30
-       subroutine intspvmf772sci(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr, sadr, iladdress, address
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getscalar,cremat
-       iadr(l)=l+l-1
-       sadr(l)=(l/2)+1
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,1,1)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable var (number 1)
-c       
-c       if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
+      character*(*) fname
+      include '../stack.h'
 c     
-c       cross variable size checking
+      integer iadr
+      integer ila, topfrom
+      logical checkrhs,checklhs
 c     
-       address = top-rhs+1
-       iladdress=iadr(lstk(address))
+      iadr(l)=l+l-1
 c
-       call scipvmf77tosci(top - rhs + 1)
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+0
+      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checklhs(fname,1,1)) return
 c     
-c       if(lhs .ge. 1) then
-c       --------------output variable: var
-c        top=topl+1
-c        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-c        call unsfdcopy(1*1,stk(lr1),1,stk(lrs),1)
-c       endif
-c     Putting in order the stack
-c     if the variable is passed by value copy it on the result
-       if(lhs .ge. 1.and.istk(iladdress).ge.0) then
-        call copyobj(fname,topl,topk+1)
-        top=topk+lhs
-c     else we return the null variable
-       else
-          top=topk+lhs
-          il = iadr(lstk(top))
-          istk(il) = 0
-          lstk(top+1) = lstk(top) + 1
-c          top=topk-lhs
-       endif
-c      top=topk+lhs
-       return
-       end
-c
-c SCILAB function : pvm_probe, fin = 31
-       subroutine intspvm_probe(fname)
-c
-       character*(*) fname
-       include '../stack.h'
-c
-       integer iadr, sadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getscalar,cremat
-       integer tid, msgtag
-       iadr(l)=l+l-1
-       sadr(l)=(l/2)+1
-       rhs = max(0,rhs)
-c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,2,2)) return
-       if(.not.checklhs(fname,1,1)) return
-c       checking variable tid (number 1)
-c       
-       if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
-c       checking variable msgtag (number 2)
-c       
-       if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
+c     checking variable var (number 1)
+      ila=iadr(lstk(top))
+      if(istk(ila).lt.0) then
+c     the variable is passed by reference, a copy is made
+         topfrom=istk(ila+2)
+         call copyobj(fname,topfrom,top)
+      endif
 c     
-c       cross variable size checking
+      call scipvmscitof77(top)
 c     
-c       call entier(1,stk(lr1),istk(iadr(lr1)))
-c       call entier(1,stk(lr2),istk(iadr(lr2)))
-       tid = stk(lr1)
-       msgtag = stk(lr2)
-       if(.not.cremat(fname,top+1,0,1,1,lw3,loc3)) return
-c       call scipvmprobe(istk(iadr(lr1)),istk(iadr(lr2)),stk(lw3))
-       call scipvmprobe(tid,msgtag,stk(lw3))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
+      return
+      end
+c     
+c-----SCILAB function : pvm_f772sci, fin = 30
+      subroutine intspvmf772sci(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      integer iadr 
+      integer ila,topfrom
+      logical checkrhs,checklhs
 c
-       topk=top-rhs
-       topl=top+1
-c     
-       if(lhs .ge. 1) then
-c       --------------output variable: res
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw3)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       top=topk+lhs
-       return
-       end
+      iadr(l)=l+l-1
 c
-c SCILAB function : pvm_bufinfo, fin = 32
-       subroutine intspvm_bufinfo(fname)
+      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checklhs(fname,1,1)) return
+c     
+c     checking variable var (number 1)
+c     
+      ila=iadr(lstk(top))
+      if(istk(ila).lt.0) then
+c     the variable is passed by reference, a copy is made
+         topfrom=istk(ila+2)
+         call copyobj(fname,topfrom,top)
+      endif
+c     
+      call scipvmf77tosci(top)
+c     
+      return
+      end
 c
-       character*(*) fname
-       include '../stack.h'
+c-----SCILAB function : pvm_probe, fin = 31
+      subroutine intspvm_probe(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      logical checkrhs,checklhs,getscalar,cremat
+      integer tid, msgtag, res
+c     
+      if(.not.checkrhs(fname,2,2)) return
+      if(.not.checklhs(fname,1,1)) return
+c     
+c     checking variable tid (number 1)
+c     
+      if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
+      tid = stk(lr1)
+c     
+c     checking variable msgtag (number 2)
+c     
+      if(.not.getscalar(fname,top,top-rhs+2,lr2)) return
+      msgtag = stk(lr2)
+
+      call scipvmprobe(tid,msgtag,res)
+c     
+      top=top-rhs+1
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=tid
+      return
+      end
 c
-       integer iadr, sadr
-       integer topk,rhsk,topl
-       logical checkrhs,checklhs,getscalar,cremat
-       integer bufinfo
-       iadr(l)=l+l-1
-       sadr(l)=(l/2)+1
-       rhs = max(0,rhs)
+c-----SCILAB function : pvm_bufinfo, fin = 32
+      subroutine intspvm_bufinfo(fname)
+c     
+      character*(*) fname
+      include '../stack.h'
+c     
+      logical checkrhs,checklhs,getscalar,cremat
+      integer bufid, bytes, msgtag, tid, res
+c     
+      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checklhs(fname,1,4)) return
 c
-       topk = top 
-       rhsk = rhs 
-       if(.not.checkrhs(fname,1,1)) return
-       if(.not.checklhs(fname,1,4)) return
-c       checking variable bufid (number 1)
-c       
-       if(.not.getscalar(fname,top,top-rhs+1,lr1)) return
+c     checking variable bufid (number 1)
+      if(.not.getscalar(fname,top,top,lr1)) return
+      bufid=stk(lr1)
+
+      call scipvmbufinfo(bufid, bytes, msgtag, tid, res)
 c     
-c       cross variable size checking
-c     
-c       call entier(1,stk(lr1),istk(iadr(lr1)))
-       bufinfo = stk(lr1)
-       if(.not.cremat(fname,top+1,0,1,1,lw2,loc2)) return
-       if(.not.cremat(fname,top+2,0,1,1,lw3,loc3)) return
-       if(.not.cremat(fname,top+3,0,1,1,lw4,loc4)) return
-       if(.not.cremat(fname,top+4,0,1,1,lw5,loc5)) return
-c       call scipvmbufinfo(istk(iadr(lr1)),stk(lw2),stk(lw3),stk(lw4),stk(lw
-c     $ 5))
-       call scipvmbufinfo(bufinfo,stk(lw2),stk(lw3),stk(lw4),stk(lw5))
-       if(err .gt. 0) then 
-        buf = fname // ' Internal Error' 
-        call error(999)
-        return
-       endif
-c
-       topk=top-rhs
-       topl=top+4
-c     
-       if(lhs .ge. 1) then
-c       --------------output variable: bytes
-        top=topl+1
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw2)),-1,stk(lrs),-1)
-       endif
-c     
-       if(lhs .ge. 2) then
-c       --------------output variable: msgtag
-        top=topl+2
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw3)),-1,stk(lrs),-1)
-       endif
-c     
-       if(lhs .ge. 3) then
-c       --------------output variable: tid
-        top=topl+3
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw4)),-1,stk(lrs),-1)
-       endif
-c     
-       if(lhs .ge. 4) then
-c       --------------output variable: res
-        top=topl+4
-        if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
-        call int2db(1*1,istk(iadr(lw5)),-1,stk(lrs),-1)
-       endif
-c     Putting in order the stack
-       if(lhs .ge. 1) then
-        call copyobj(fname,topl+1,topk+1)
-       endif
-       if(lhs .ge. 2) then
-        call copyobj(fname,topl+2,topk+2)
-       endif
-       if(lhs .ge. 3) then
-        call copyobj(fname,topl+3,topk+3)
-       endif
-       if(lhs .ge. 4) then
-        call copyobj(fname,topl+4,topk+4)
-       endif
-       top=topk+lhs
-       return
-       end
+c     --------------output variable: bytes
+      if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+      stk(lrs)=bytes
+      if(lhs .ge. 2) then
+c     --------------output variable: msgtag
+         top=top+1
+         if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+         stk(lrs)=msgtag
+      endif
+      if(lhs .ge. 3) then
+c     --------------output variable: tid
+         top=top+1
+         if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+         stk(lrs)=tid
+      endif
+      if(lhs .ge. 4) then
+c     --------------output variable: res
+         top=top+1
+         if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
+         stk(lrs)=res
+      endif
+      return
+      end
 c
 c  interface function 
 c   ********************
