@@ -1159,7 +1159,9 @@ c
       n=istk(il+2)
       it=istk(il+3)
 
-      if(istk(il).eq.1) then
+      if(istk(il).eq.8) then
+         return
+      elseif(istk(il).eq.1) then
          mn=m*n
          l=sadr(il+4)
          lr=sadr(ilr+4)
@@ -1228,8 +1230,9 @@ c
       m=istk(il+1)
       n=istk(il+2)
       it=istk(il+3)
-
-      if(istk(il).eq.1) then
+      if(istk(il).eq.8) then
+         return
+      elseif(istk(il).eq.1) then
          mn=m*n
          l=sadr(il+4)
          lr=sadr(ilr+4)
@@ -1299,8 +1302,9 @@ c
       m=istk(il+1)
       n=istk(il+2)
       it=istk(il+3)
-
-      if(istk(il).eq.1) then
+      if(istk(il).eq.8) then
+         return
+      elseif(istk(il).eq.1) then
          mn=m*n
          l=sadr(il+4)
          lr=sadr(ilr+4)
@@ -1366,8 +1370,9 @@ c
       m=istk(il+1)
       n=istk(il+2)
       it=istk(il+3)
-
-      if(istk(il).eq.1) then
+      if(istk(il).eq.8) then
+         return
+      elseif(istk(il).eq.1) then
          mn=m*n
          l=sadr(il+4)
          lr=sadr(ilr+4)
