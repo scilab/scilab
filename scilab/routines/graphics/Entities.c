@@ -7551,7 +7551,7 @@ int C2F(graphicsmodels) ()
 
   pFIGURE_FEATURE (pfiguremdl)->relationship.psons = (sciSons *) NULL;
   pFIGURE_FEATURE (pfiguremdl)->relationship.plastsons = (sciSons *) NULL;
-  pFIGURE_FEATURE (pfiguremdl)->numcolors=  NUMCOLORS;
+  pFIGURE_FEATURE (pfiguremdl)->numcolors=  NUMCOLORS_SCI;
   /** the colormap is mx3 matrix */
   m = NUMCOLORS;
   if((pFIGURE_FEATURE(pfiguremdl)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)

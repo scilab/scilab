@@ -51,7 +51,7 @@
 #define SB_VERT 0
 #define SB_HORZ 0
 #endif 
-#define NUMCOLORS 32
+#define NUMCOLORS_SCI 32
 /* Renvoi le pointeur sur la structure */
 
 #define pFIGURE_FEATURE(pointobj)      ((sciFigure        *)pointobj->pfeatures)/** */

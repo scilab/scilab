@@ -2220,7 +2220,7 @@ void set_default_colormap()
   /** XXXXX Trouver une doc sur les pallettes **/
   int iPlanes = GetDeviceCaps(hdc,PLANES);
   int iBitsPixel = GetDeviceCaps(hdc,BITSPIXEL);
-  /* int numcolors = GetDeviceCaps(hdc,NUMCOLORS);*/
+  /* int numcolors = GetDeviceCaps(hdc,NUMCOLORS_SCI);*/
   /** to avoid overflow in maxcol **/
   /** must be improved for 32bit color display **/
   if ( iBitsPixel > 24 ) iBitsPixel = 24;
