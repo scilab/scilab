@@ -13,9 +13,9 @@
   directory</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>home=sethomedirectory()</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[home,scilabhome]=sethomedirectory()</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>home=sethomedirectory(homepath)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[home,scilabhome]=sethomedirectory(homepath)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -25,6 +25,16 @@
 
         <PARAM_DESCRIPTION>
           <SP>: a string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>scilabhome</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string (value of SCIHOME environment variable)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -41,12 +51,12 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>Set Scilab home path. </P>
+    <P>Set Scilab home path : "SCIHOME" variable.</P>
 
     <P>On Windows, C:/Documents and
     Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;</P>
 
-    <P>On Unix, /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</P>
+    <P>On Unix, /home/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;</P>
   </DESCRIPTION>
 
   <AUTHOR>Allan CORNET</AUTHOR>
