@@ -88,8 +88,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   pSUBWIN_FEATURE (psubwin)->logflags[1]=logflags[2];
 
   if (sciGetGraphicMode (psubwin)->autoscaling)
+  {
+	  //sciprint("je suis APRES le if");
      update_frame_bounds(0,logflags,x,y,n1,n2,aaint,strflag,brect); 
-    
+  } 
 
   with_leg= ((int)strlen(strflag) >=1  && strflag[0] == '1');
 

@@ -333,6 +333,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 		FRect[3] = Max(FRect[3],Cscale.frect[3]);
 	      }
 	      else{ /*dj2003*/
+		subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); // rajout F.Leray
 		FRect[0] = Min(FRect[0],pSUBWIN_FEATURE (subwindowtmp)->FRect[0]);
 		FRect[1] = Min(FRect[1],pSUBWIN_FEATURE (subwindowtmp)->FRect[1]);
 		FRect[2] = Max(FRect[2],pSUBWIN_FEATURE (subwindowtmp)->FRect[2]);
@@ -421,20 +422,28 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       /* Redraw previous graphics with new Scale */
       integer ww,verbose=0,narg;
       GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-      if (strcmp("Rec",driver) != 0) 
-	{
-	  Scistring("Auto rescale only works with the rec driver\n" );
-	  return;
-	}
-      C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-      C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      Tape_ReplayNewScale1(" ",&ww,flag,PI0,aaint,PI0,PI0,FRect,PD0,PD0,PD0);
+
+      if (version_flag() != 0) // F.Leray
+	  {
+		if (strcmp("Rec",driver) != 0) 
+		{	
+		  Scistring("Auto rescale only works with the rec driver\n" );
+		  return;
+		}
+		C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+		C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		Tape_ReplayNewScale1(" ",&ww,flag,PI0,aaint,PI0,PI0,FRect,PD0,PD0,PD0);
       /*** MAJ A.Djalel */ 
-      if (version_flag() == 0)
-	{
+
+	  }
+	  else
+	  {
+		sciprint("JE SUIS LA  1 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
 	    sciDrawObj(subwindowtmp);
-        } 
+		sciprint("JE SUIS LA  2 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+      } 
+
       C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
 }
