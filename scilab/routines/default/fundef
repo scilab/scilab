@@ -575,4 +575,5 @@
 {"phase_simulation",    IN_intcscicos,  5,      2},
 {"set_xproperty",       IN_intcscicos,  6,      2},
 {"scicos_cpass2",       IN_intcscicos,  7,      2},
+{"set_blockerror",      IN_intcscicos,  8,      2},
 

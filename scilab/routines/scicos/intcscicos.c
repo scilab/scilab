@@ -4,7 +4,7 @@
 #include "../stack-c.h"
 #include "../machine.h"
 #include "intcscicos.h"
-
+#include "scicos_block.h"
 
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 
@@ -21,6 +21,7 @@ static intcscicosTable Tab[]={
   {intphasesim,"phase_simulation"},
   {intsetxproperty,"set_xproperty"},
   {intcpass2,"scicos_cpass2"},
+  {intsetblockerror,"set_blockerror"},
 };
 
 /* interface for the previous function Table */ 
@@ -158,6 +159,21 @@ int intsetxproperty(fname,fname_len)
   LhsVar(1)=0; 
   return 0;
 }
+
+int intsetblockerror(fname,fname_len)
+     /* renvoi le type d'equation get_pointer_xproperty() 
+      *	(-1: algebriques, +1 differentielles) */
+     char *fname;
+     unsigned long fname_len;
+{
+  int un,l1;
+  CheckRhs(1,1);
+  GetRhsVar(1,"i",(un=1,&un),(un=1,&un),&l1);
+  set_block_error(*istk(l1));
+  LhsVar(1)=0; 
+  return 0;
+}
+
 
 void  duplicata(n,v,w,ww,nw)
      double *v,*w,*ww;
