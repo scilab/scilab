@@ -13,6 +13,9 @@ function head_comments(name,%paths)
     path=path+name+'.sci'
   else
     files= listfiles(%paths+'*.sci')
+    if files==[] then
+      error(name+'.sci file cannot be found with the given paths')
+    end
     k=grep(files,name+'.sci')
     if k<>[] then
       path=files(k(1))

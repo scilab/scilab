@@ -12,7 +12,6 @@ function genlib(nam,path,force,verbose,names)
   // with env subsitution 
   path = pathconvert(path,%t,%t); 
 
-  
   if exists('names','local')==0 then 
     // list the sci files 
     files=listfiles(path+'*.sci',%f)
@@ -25,7 +24,6 @@ function genlib(nam,path,force,verbose,names)
     files = path+names
     names=strsubst(names,'.sci','')
   end
-  
   modified=%f
 
   if force == %t then 

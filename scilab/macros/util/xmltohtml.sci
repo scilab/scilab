@@ -83,7 +83,7 @@ function xmltohtml(dirs,titles,xsl,step)
 	// if rep is %t then new xml2 files have been 
 	// generated
 	xml2 = listfiles('*.xml2');
-	if xml2 <> "" then 
+	if xml2 <> [] then 
 	  for k1=1:size(xml2,'*')  // loop on .xml2 files 
 	    fb=basename(xml2(k1))
 	    mprintf('  Processing file %s.xml\n',fb);
@@ -145,7 +145,7 @@ function gener_whatis(title)
   lines(0);
   // look for .xml files
   xml = listfiles('*.xml');
-  if MSDOS then 
+  if MSDOS& xml<>[] then 
     // on MSDOS listfiles *.xml also 
     // returns *.xml* !!!!!
     ind = grep(xml,'xml2');
@@ -370,13 +370,15 @@ function gener_hh(dirs,titles)
   for k=1:n 
     // look for .xml files
     files = listfiles(base(k)+'/*.xml');
-    fbase = basename(files);
-    name = strsubst(base(k)+"\"+fbase,"\\","/");
-    items=[items;
-	   "<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
-	   + name +  ...
-	 ".htm""><param name=""Name"" value="""+ fbase+"""></OBJECT>"];
-    names=[names;files];
+    if files<>[] then
+      fbase = basename(files);
+      name = strsubst(base(k)+"\"+fbase,"\\","/");
+      items=[items;
+	     "<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
+	     + name +  ...
+	     ".htm""><param name=""Name"" value="""+ fbase+"""></OBJECT>"];
+      names=[names;files];
+    end
   end
 
   [sv,sk]=sort(names);
