@@ -63,9 +63,11 @@ PWD = getcwd()
 home= getenv('HOME','ndef');
 if home=='ndef',home=unix_g('cd; pwd');end 
 
+// in inisci.f COMPILER=getenv('COMPILER','NO');
+// 
 // use MSDOS syntax?
 MSDOS = getenv('WIN32','NO')=='OK' & ..
-	or(getenv('COMPILER','NO')==['VC++' 'ABSOFT' 'gcc'])
+	or(COMPILER==['VC++' 'ABSOFT' 'gcc'])
 
 
 // LANGUAGE TO USE FOR ONLINE MAN

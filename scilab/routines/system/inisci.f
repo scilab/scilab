@@ -227,23 +227,31 @@ c     . hard predefined variables
       gbot=isizt
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
-c     11 is the number of predefined variables 
-      bot=isiz-11
+c     12 is the number of predefined variables 
+      bot=isiz-12
       bbot=bot
       bot0=bot
 c     memory requested for predefined variables 
 c     mxn bmat -> size : sadr(2+m*n+2)
 c     $        -> size : sadr(10-1) + 2 
 c     mxn mat  -> size : sadr(3)+m*n*(it+1)
+c     string   -> size : sadr(6+nchar)+1
+      call getcomp(buf,nbuf)
       lpvar = (sadr(10-1) + 2) 
      $     + 5*sadr(5) 
      $     + 4*(sadr(3)+1)
      $     + 2*(sadr(3)+2)
+     $     + 1*(sadr(6+nbuf)+1)
       l=vsizr-lpvar
       k=bot
       lstk(k)=lstk(1)-1+l
-c     . %gtk 
+c     . COMPILER
       vname = ' '
+      vname(1:8) = "COMPILER"
+      call cvname(idloc,vname,0)
+      call cresmatvar(idloc,k,buf,nbuf)
+      k=k+1
+c     . %gtk 
       vname(1:4) = "%gtk"
       call withgtk(irep)
       call cvname(idloc,vname,0)
@@ -391,4 +399,35 @@ c
       call icopy(m*n,val,1,istk(lr),1)
       end
 
+
+      subroutine cresmatvar(id,lw,str,lstr)
+C     crebmat without check and call to putid 
+C     implicit undefined (a-z)
+      integer iadr,sadr,lw,m,n,il,id(*),lr,nchar
+      integer mn
+      include '../stack.h'
+      character str*(*)
 c     
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+c     
+      call putid(idstk(1,lw),id)
+      il = iadr(lstk(lw))
+      mn = 1 
+      ix1 = il + 4 + (lstr + 1) + (mn + 1)
+      istk(il ) = 10
+      istk(il +1) = 1
+      istk(il +2) = 1
+      istk(il +3) = 0
+      ilp = il + 4
+      istk(ilp) = 1
+      istk(ilp+1) = istk(ilp) + lstr
+      ilast = ilp + mn
+      lr1 = ilast + istk(ilp )
+      call cvstr(lstr,istk(lr1),str,0)
+      ix1 = ilast + istk(ilast )
+      lstk(lw +1) = sadr(ix1)
+      return 
+      end 
+
+

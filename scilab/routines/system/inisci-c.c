@@ -1,5 +1,5 @@
 #include "../machine.h" 
-
+#include "../sun/Sun.h" 
 /*-------------------------------------------
  *  get configure options used for compilation 
  *  used in inisci.f
@@ -29,6 +29,15 @@ int C2F(withgtk)(int *rep) {
 #else 
   *rep =0; 
 #endif 
+  return 0;
+}
+
+int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
+{
+  int ierr,iflag=0,l1buf=lbuf;
+  C2F(getenvc)(&ierr,"COMPILER",buf,&l1buf,&iflag);
+  if ( ierr== 1) strncpy(buf,"NO",lbuf);
+  *nbuf = strlen(buf);
   return 0;
 }
 
