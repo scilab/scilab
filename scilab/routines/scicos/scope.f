@@ -37,7 +37,6 @@ c      character*(4) logf
       data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
       data cur/0/,verb/0/
 
-      call dr("xinfo","inside the scope",v,v,v,v,v,v,dv,dv,dv,dv)
 c     
       if(nipar.lt.16) then
 c     compatibility
