@@ -106,8 +106,8 @@ case 'define' then
   
   split=CLKSPLIT_f('define')
     split.graphics.orig=[263;271.2]
-    output_port.graphics.pein=7,
-    output_port.graphics.peout=[9;10]
+    split.graphics.pein=7,
+    split.graphics.peout=[9;10]
     
   diagram=scicos_diagram();
     diagram.objs(1)=input_port
