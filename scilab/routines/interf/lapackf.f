@@ -1724,6 +1724,10 @@ c     B = inv(A)
       logical getrhsvar,createvar
       logical checklhs,checkrhs
       character fname*(*)
+      double precision anorm,rcond
+      double precision dlange,dlamch
+      external dlange,dlamch
+
 c     
       minrhs=1
       maxrhs=1
@@ -1747,17 +1751,20 @@ c
          lhsvar(1) = 1
          return
       endif
-      if(.not.createvar(2,'i',1,N,lIWORK)) return
+      if(.not.createvar(2,'i',1,N,lIPIV)) return
+      if(.not.createvar(4,'i',1,N,lIWORK)) return
       LWORKMIN = MAX(1,N)
-      LWORK=maxvol(3,'d')
+      LWORK=maxvol(4,'d')
       if(LWORK.le.LWORKMIN) then
          err=(LWORK-LWORKMIN)
          call error(17)
          return
       endif
-      if(.not.createvar(3,'d',1,LWORK,lDWORK)) return
+      if(.not.createvar(4,'d',1,LWORK,lDWORK)) return
 
-      call DGETRF( N, N, stk(lA), N, istk(lIWORK), INFO )
+
+
+      call DGETRF( N, N, stk(lA), N, istk(lIPIV), INFO )
 c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
       if(info.gt.0) then
          call error(19)
@@ -1765,7 +1772,18 @@ c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
       elseif (info.lt.0) then
          return
       endif
-      call DGETRI( N, stk(lA), N, istk(lIWORK), stk(lDWORK),
+      RCOND = 0.0d0
+      ANORM = dlange( '1', M, N, stk(lA), M, stk(lDWORK) )
+      call DGECON( '1', N, stk(lA), N, ANORM, RCOND, stk(lDWORK),
+     $     istk(lIWORK), INFO )
+      if(RCOND.le.sqrt(dlamch('eps'))) then
+         write(buf(1:13),'(1pd13.4)') RCOND
+c     .  ill conditionned problem
+         call msgs(5,0)
+      endif
+
+
+      call DGETRI( N, stk(lA), N, istk(lIPIV), stk(lDWORK),
      $     LWORK, INFO )
 c     SUBROUTINE DGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )
 
@@ -1781,6 +1799,9 @@ c     B = inv(A)
       include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
+      double precision zlange,dlamch,rcond,anorm
+      external zlange,dlamch
+
       character fname*(*)
 c     
       minrhs=1
@@ -1800,22 +1821,24 @@ c
       if(n.eq.0) then
          lhsvar(1) = 1
          return
+
       elseif(n.eq.-1) then
          stk(lA)=1.0d0/stk(lA)
          lhsvar(1) = 1
          return
       endif
-      if(.not.createvar(2,'i',1,N,lIWORK)) return
-      LWORKMIN = MAX(1,N)
-      LWORK=maxvol(3,'z')
+      if(.not.createvar(2,'i',1,N,lIPIV)) return
+      if(.not.createvar(3,'d',1,2*N,lRWORK)) return
+      LWORKMIN = MAX(1,2*N)
+      LWORK=maxvol(4,'z')
       if(LWORK.le.LWORKMIN) then
          err=2*(LWORK-LWORKMIN)
          call error(17)
          return
       endif
-      if(.not.createvar(3,'z',1,LWORK,lDWORK)) return
+      if(.not.createvar(4,'z',1,LWORK,lDWORK)) return
 
-      call ZGETRF( N, N, zstk(lA), N, istk(lIWORK), INFO )
+      call ZGETRF( N, N, zstk(lA), N, istk(lIPIV), INFO )
 c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
       if(info.gt.0) then
          call error(19)
@@ -1823,7 +1846,19 @@ c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
       elseif (info.lt.0) then
          return
       endif
-      call ZGETRI( N, zstk(lA), N, istk(lIWORK), zstk(lDWORK),
+      RCOND = 0.0d0
+      ANORM = zlange( '1', M, N, zstk(lA), M, zstk(lDWORK) )
+
+   
+      call ZGECON( '1', N, zstk(lA), N, ANORM, RCOND, zstk(lDWORK),
+     $     stk(lRWORK), INFO )
+      if(RCOND.le.sqrt(dlamch('eps'))) then
+         write(buf(1:13),'(1pd13.4)') RCOND
+c     .  ill conditionned problem
+         call msgs(5,0)
+      endif
+
+      call ZGETRI( N, zstk(lA), N, istk(lIPIV), zstk(lDWORK),
      $     LWORK, INFO )
 c     SUBROUTINE ZGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )
 
@@ -1941,7 +1976,6 @@ c
 
       if(.not.createvar(2,'d', 1, 1, lRCOND)) return
       if(.not.createvar(3,'i', 1, N, lIPIV)) return
-      if(.not.createvar(4,'i', 1, N, lIWORK)) return
       if(.not.createvar(5,'d', 1, 2*N, lRWORK)) return
       LWORKMIN =  2*N
       LWORK=maxvol(6,'z')
@@ -1958,9 +1992,9 @@ c     SUBROUTINE ZGETRF( N, N, A, LDA, IPIV, INFO )
       stk(lRCOND) = 0.0d0
       if(INFO.eq.0) then
          call ZGECON( '1', N, zstk(lA), N, ANORM, stk(lRCOND),
-     $        zstk(lDWORK), istk(lIWORK), stk(lRWORK), INFO )
+     $        zstk(lDWORK),  stk(lRWORK), INFO )
 c     SUBROUTINE ZGECON( NORM, N, A, LDA, ANORM, RCOND, WORK,
-c     $                     IWORK, RWORK, INFO )
+c     $                     RWORK, INFO )
       endif
 
       lhsvar(1) = 2
@@ -2541,17 +2575,16 @@ c
       if(.not.createvar(6,'i', 1, 1, lRANK)) return
       if(.not.createvar(7,'i', 1, N, lIPIV)) return
       if(.not.createvar(8,'i', 1, N, lJPVT)) return
-      if(.not.createvar(9,'i', 1, N, lIWORK)) return 
-      if(.not.createvar(10,'d',1,2*N,lRWORK)) return       
+      if(.not.createvar(9,'d',1,2*N,lRWORK)) return       
       LWORKMIN = max( 2*N, min(M,N)+max( 2*min(M,N), N+1,
      $     min(M,N)+NRHS ) )
-      LWORK=maxvol(11,'z')
+      LWORK=maxvol(10,'z')
       if(LWORK.le.LWORKMIN) then
          err=2*(LWORK-LWORKMIN)
          call error(17)
          return
       endif
-      if(.not.createvar(11,'z',1,LWORK,lDWORK)) return
+      if(.not.createvar(10,'z',1,LWORK,lDWORK)) return
       
       EPS = dlamch('eps')
       ANORM = zlange( '1', M, N, zstk(lA), M, zstk(lDWORK) )
@@ -2568,9 +2601,9 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )
 c     SUBROUTINE ZGETRF( N, N, A, LDA, IPIV, INFO )
          if(INFO.eq.0) then
             call ZGECON( '1', N, zstk(lAF), N, ANORM, RCOND,
-     $           zstk(lDWORK), istk(lIWORK), stk(lRWORK), INFO )
+     $           zstk(lDWORK), stk(lRWORK), INFO )
 c     SUBROUTINE ZGECON( NORM, N, A, LDA, ANORM, RCOND, WORK,
-c     $                       IWORK, RWORK, INFO )
+c     $                        RWORK, INFO )
             if(RCOND.gt.sqrt(EPS)) then
                call ZGETRS( 'N', N, NRHS, zstk(lAF), N, istk(lIPIV),
      $              zstk(lXB), N, INFO ) 
@@ -2665,17 +2698,16 @@ c     .  for backwar compatibility
       if(.not.createvar(7,'i', 1, 1, lRANK)) return
       if(.not.createvar(8,'i', 1, N, lIPIV)) return
       if(.not.createvar(9,'i', 1, M, lJPVT)) return
-      if(.not.createvar(10,'i', 1, N, lIWORK)) return
-      if(.not.createvar(11,'d',1,2*M,lRWORK)) return    
+      if(.not.createvar(10,'d',1,2*M,lRWORK)) return    
       LWORKMIN = max( 2*N, min(M,N)+max( 2*min(M,N), M+1,
      $     min(M,N)+K ))
-      LWORK=maxvol(12,'z')
+      LWORK=maxvol(11,'z')
       if(LWORK.le.LWORKMIN) then
          err=2*(LWORK-LWORKMIN)
          call error(17)
          return
       endif
-      if(.not.createvar(12,'z',1,LWORK,lDWORK)) return
+      if(.not.createvar(11,'z',1,LWORK,lDWORK)) return
       EPS = dlamch('eps')
       ANORM = zlange( '1', M, N, zstk(lA), M, zstk(lDWORK) )
 c     
@@ -2707,9 +2739,9 @@ c     SUBROUTINE ZGETRF( N, N, A, LDA, IPIV, INFO )
          RCOND = 0.0d0
          if(INFO.eq.0) then
             call ZGECON( '1', N, zstk(lAF), N, ANORM, RCOND,
-     $           zstk(lDWORK), istk(lIWORK), stk(lRWORK), INFO )
+     $           zstk(lDWORK), stk(lRWORK), INFO )
 c     SUBROUTINE ZGECON( NORM, N, A, LDA, ANORM, RCOND, WORK,
-c     $                        IWORK, RWORK, INFO )
+c     $                        RWORK, INFO )
             if(RCOND.gt.sqrt(EPS)) then
                call ZGETRS( 'N', N, K, zstk(lAF), N, istk(lIPIV),
      $              zstk(lBT), N, INFO ) 
