@@ -73,7 +73,7 @@ case 'define' then
     evtdly.graphics.pein=10
     evtdly.graphics.peout=7
     evtdly.model.rpar=0.1
-    evtdly.model.firing=1
+    evtdly.model.firing=0
     
   register=REGISTER_f('define')
     register.graphics.orig=[238,195]
