@@ -23,4 +23,4 @@ colorbar(1,N+1)
 rect=[-1.2,-1.2,1.2,1.2];
 fec(noeul(:,2),noeul(:,3),trianl,(1:N+1)',"030"," ",rect);
 meshvisu(3,rect) // the mesh 
-if new_style then, drawnow("all"), end
+if new_style then, drawnow(), end

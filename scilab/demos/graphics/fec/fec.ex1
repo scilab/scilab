@@ -22,7 +22,7 @@ rect=[-1.2,-1.2,1.2,1.2];
 if new_style then, drawlater(), end
 fec(noeul(:,2),noeul(:,3),trianl,(1:N+1)',"030"," ",rect);
 meshvisu(3,rect);
-if new_style then, drawnow("all"), end
+if new_style then, drawnow(), end
 xselect()
 
 

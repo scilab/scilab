@@ -17,7 +17,7 @@ if new_style then, drawlater(), end
 amdbaR(path+'MESH')
 meshvisu()
 xtitle("a mesh (click to continue)")
-if new_style then, drawnow("all"), end
+if new_style then, drawnow(), end
 xclick()
 
 xbasc()
@@ -25,7 +25,7 @@ xset("use color",1)
 if new_style then, drawlater(), end
 emc2C(1,6,path+'MESH.VAL')
 xtitle("display a fem solution (click to continue)")
-if new_style then, drawnow("all"), end
+if new_style then, drawnow(), end
 xclick()
 
 xbasc()
@@ -34,7 +34,7 @@ if new_style then, drawlater(), end
 emc2C(1,6,path+'MESH.VAL',[-2,-2,2,2])
 emc2V(2,3,6,20,path+'MESH.VAL',[-2,-2,2,2])
 xtitle("display a zoom of the solution together with the velocity field")
-if new_style then, drawnow("all"), end
+if new_style then, drawnow(), end
 
 
 
