@@ -45,5 +45,5 @@ MACROS = sysconv.sci  lin.sci halt.sci bloc2exp.sci \
 	xmltohtml.sci help_skeleton.sci\
 	loadmatfile.sci matfile2sci.sci ReadmiMatrix.sci toolboxes.sci\
 	with_tk.sci with_gtk.sci gettklib.sci with_pvm.sci with_texmacs.sci scipad.sci\
-	add_help_chapter.sci add_demo.sci add_palette.sci fileparts.sci comments.sci
+	add_help_chapter.sci add_demo.sci add_palette.sci fileparts.sci head_comments.sci
 include ../Make.lib
