@@ -81,8 +81,7 @@ int cdfbetI(fname)
     }
   else 
     {
-      sciprint("%s Wrong first argument %s\r\n",fname,cstk(l1));
-      Error(999);
+      Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
       return 0;
     }
   return 0;
@@ -95,13 +94,13 @@ static void cdfbetErr(status,bound)
   static char param[]="-PQXYAB";
   switch ( status ) 
     {
-    case 1 : sciprint("answer appears to be lower than lowest search bound %f\r\n",bound);break;
-    case 2 : sciprint("answer appears to be higher than greatest search bound %f\r\n",bound);break;
-    case 3 : sciprint(" P + Q .ne. 1 \r\n");break ;
-    case 4 : sciprint(" X + Y .ne. 1 \r\n");break;
+    case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
+    case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
+    case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
+    case 4 : Scierror(999," X + Y .ne. 1 \r\n");break;
     default : 
-      sciprint("input parameter %c is out of range \r\n",param[-status-1]);
-      sciprint("      bound exceeded: %f \r\n",bound);
+      Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		    param[-status-1],bound);
     }
 }
 
@@ -150,8 +149,7 @@ int cdfbinI(fname)
     }
   else 
     {
-      sciprint("%s Wrong first argument %s\r\n",fname,cstk(l1));
-      Error(999);
+      Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
     }      
   return 0;
 }
@@ -163,13 +161,13 @@ static void cdfbinErr(status,bound)
   static char *param[7]={"Which", "P","Q","Pr","Ompr","S","Xn"};
   switch ( status ) 
     {
-    case 1 : sciprint("answer appears to be lower than lowest search bound %f\r\n",bound);break;
-    case 2 : sciprint("answer appears to be higher than greatest search bound %f\r\n",bound);break;
-    case 3 : sciprint(" P + Q .ne. 1 \r\n");break ;
-    case 4 : sciprint(" Pr + Ompr .ne. 1 \r\n");break;
+    case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
+    case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
+    case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
+    case 4 : Scierror(999," Pr + Ompr .ne. 1 \r\n");break;
     default : 
-      sciprint("input parameter %s is out of range\r\n",param[-status-1]);
-      sciprint("      bound exceeded: %f \r\n",bound);
+      Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		    param[-status-1],bound);
     }
 }
 
@@ -212,8 +210,7 @@ int cdfchiI(fname)
     }
   else 
     {
-      sciprint("%s Wrong first argument %s\r\n",fname,cstk(l1));
-      Error(999);
+      Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
     }      
   return 0;
 }
@@ -225,13 +222,13 @@ static void cdfchiErr(status,bound)
   static char *param[7]={"X", "P","Q","X","Df"};
   switch ( status ) 
     {
-    case 1 : sciprint("answer appears to be lower than lowest search bound %f\r\n",bound);break;
-    case 2 : sciprint("answer appears to be higher than greatest search bound %f\r\n",bound);break;
-    case 3 : sciprint(" P + Q .ne. 1 \r\n");break ;
-    case 10 : sciprint("cdfchi: Error in  cumgam\r\n");break;
+    case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
+    case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
+    case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
+    case 10 : Scierror(999,"cdfchi: Error in  cumgam\r\n");break;
     default : 
-      sciprint("input parameter %s is out of range\r\n",param[-status-1]);
-      sciprint("      bound exceeded: %f \r\n",bound);
+      Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		    param[-status-1],bound);
     }
 }
 
@@ -278,8 +275,7 @@ int cdffI(fname)
     }
   else 
     {
-      sciprint("%s Wrong first argument %s\r\n",fname,cstk(l1));
-      Error(999);
+      Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
     }      
   return 0;
 }
@@ -292,12 +288,12 @@ static void cdffErr(status,bound)
   static char *param[7]={"X", "P","Q","F","Dfn","Dfd"};
   switch ( status ) 
     {
-    case 1 : sciprint("answer appears to be lower than lowest search bound %f\r\n",bound);break;
-    case 2 : sciprint("answer appears to be higher than greatest search bound %f\r\n",bound);break;
-    case 3 : sciprint(" P + Q .ne. 1 \r\n");break ;
+    case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
+    case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
+    case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
     default : 
-      sciprint("input parameter %s is out of range\r\n",param[-status-1]);
-      sciprint("      bound exceeded: %f \r\n",bound);
+      Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		    param[-status-1],bound);
     }
 }
 
@@ -351,8 +347,7 @@ int cdffncI(fname)
     }
   else 
     {
-      sciprint("%s Wrong first argument %s\r\n",fname,cstk(l1));
-      Error(999);
+      Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
     }      
   return 0;
 }
@@ -365,12 +360,12 @@ static void cdffncErr(status,bound)
   static char *param[7]={"X", "P","Q","F","Dfn","Dfd","Pnonc"};
   switch ( status ) 
     {
-    case 1 : sciprint("answer appears to be lower than lowest search bound %f\r\n",bound);break;
-    case 2 : sciprint("answer appears to be higher than greatest search bound %f\r\n",bound);break;
-    case 3 : sciprint(" P + Q .ne. 1 \r\n");break ;
+    case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
+    case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
+    case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
     default : 
-      sciprint("input parameter %s is out of range\r\n",param[-status-1]);
-      sciprint("      bound exceeded: %f \r\n",bound);
+      Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		    param[-status-1],bound);
     }
 }
 
@@ -418,8 +413,7 @@ int cdfgamI(fname)
     }
   else 
     {
-      sciprint("%s Wrong first argument %s\r\n",fname,cstk(l1));
-      Error(999);
+      Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
     }      
   return 0;
 }
@@ -432,13 +426,13 @@ static void cdfgamErr(status,bound)
   static char *param[7]={"X", "P","Q","X","Shape","Scale"};
   switch ( status ) 
     {
-    case 1 : sciprint("answer appears to be lower than lowest search bound %f\r\n",bound);break;
-    case 2 : sciprint("answer appears to be higher than greatest search bound %f\r\n",bound);break;
-    case 3 : sciprint(" P + Q .ne. 1 \r\n");break ;
-    case 10 : sciprint(" cannot compute the answer \r\n");break ;
+    case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
+    case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
+    case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
+    case 10 : Scierror(999," cannot compute the answer \r\n");break ;
     default : 
-      sciprint("input parameter %s is out of range\r\n",param[-status-1]);
-      sciprint("      bound exceeded: %f \r\n",bound);
+      Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		    param[-status-1],bound);
     }
 }
 
@@ -486,8 +480,7 @@ int cdfnbnI(fname)
     }
   else 
     {
-      sciprint("%s Wrong first argument %s\r\n",fname,cstk(l1));
-      Error(999);
+      Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
     }      
   return 0;
 }
@@ -499,13 +492,13 @@ static void cdfnbnErr(status,bound)
   static char param[]="-PQXYAB";
   switch ( status ) 
     {
-    case 1 : sciprint("answer appears to be lower than lowest search bound %f\r\n",bound);break;
-    case 2 : sciprint("answer appears to be higher than greatest search bound %f\r\n",bound);break;
-    case 3 : sciprint(" P + Q .ne. 1 \r\n");break ;
-    case 4 : sciprint(" Pr + Ompr .ne. 1 \r\n");break;
+    case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
+    case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
+    case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
+    case 4 : Scierror(999," Pr + Ompr .ne. 1 \r\n");break;
     default : 
-      sciprint("input parameter %c is out of range\r\n",param[-status-1]);
-      sciprint("      bound exceeded: %f \r\n",bound);
+      Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		    param[-status-1],bound);
     }
 }
 
@@ -553,8 +546,7 @@ int cdfnorI(fname)
     }
   else 
     {
-      sciprint("%s Wrong first argument %s\r\n",fname,cstk(l1));
-      Error(999);
+      Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
     }      
   return 0;
 }
@@ -567,13 +559,13 @@ static void cdfnorErr(status,bound)
   static char *param[7]={"X", "P","Q","X","Mean","Std"};
   switch ( status ) 
     {
-    case 1 : sciprint("answer appears to be lower than lowest search bound %f\r\n",bound);break;
-    case 2 : sciprint("answer appears to be higher than greatest search bound %f\r\n",bound);break;
-    case 3 : sciprint(" P + Q .ne. 1 \r\n");break ;
-    case 4 : sciprint(" Std must not be zero \r\n");break ;
+    case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
+    case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
+    case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
+    case 4 : Scierror(999," Std must not be zero \r\n");break ;
     default : 
-      sciprint("input parameter %s is out of range\r\n",param[-status-1]);
-      sciprint("      bound exceeded: %f \r\n",bound);
+      Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		    param[-status-1],bound);
     }
 }
 
@@ -613,8 +605,7 @@ int cdfpoiI(fname)
     }
   else 
     {
-      sciprint("%s Wrong first argument %s\r\n",fname,cstk(l1));
-      Error(999);
+      Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
     }      
   return 0;
 }
@@ -626,12 +617,12 @@ static void cdfpoiErr(status,bound)
   static char *param[7]={"X", "P","Q","S","Xlam"};
   switch ( status ) 
     {
-    case 1 : sciprint("answer appears to be lower than lowest search bound %f\r\n",bound);break;
-    case 2 : sciprint("answer appears to be higher than greatest search bound %f\r\n",bound);break;
-    case 3 : sciprint(" P + Q .ne. 1 \r\n");break ;
+    case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
+    case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
+    case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
     default : 
-      sciprint("input parameter %s is out of range\r\n",param[-status-1]);
-      sciprint("      bound exceeded: %f \r\n",bound);
+      Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		    param[-status-1],bound);
     }
 }
 
@@ -672,8 +663,7 @@ int cdftI(fname)
     }
   else 
     {
-      sciprint("%s Wrong first argument %s\r\n",fname,cstk(l1));
-      Error(999);
+      Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
     }      
   return 0;
 }
@@ -685,12 +675,12 @@ static void cdftErr(status,bound)
   static char *param[7]={"X", "P","Q","T","Df"};
   switch ( status ) 
     {
-    case 1 : sciprint("answer appears to be lower than lowest search bound %f\r\n",bound);break;
-    case 2 : sciprint("answer appears to be higher than greatest search bound %f\r\n",bound);break;
-    case 3 : sciprint(" P + Q .ne. 1 \r\n");break ;
+    case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
+    case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
+    case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
     default : 
-      sciprint("input parameter %s is out of range\r\n",param[-status-1]);
-      sciprint("      bound exceeded: %f \r\n",bound);
+      Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		    param[-status-1],bound);
     }
 }
 
@@ -736,8 +726,7 @@ int cdfchnI(fname)
     }
   else 
     {
-      sciprint("%s Wrong first argument %s\r\n",fname,cstk(l1));
-      Error(999);
+      Scierror(999,"%s: Wrong first argument %s\r\n",fname,cstk(l1));
     }      
   return 0;
 }
@@ -750,12 +739,12 @@ static void cdfchnErr(status,bound)
   static char *param[7]={"X", "P","Q","F","Dfn","Dfd"};
   switch ( status ) 
     {
-    case 1 : sciprint("answer appears to be lower than lowest search bound %f\r\n",bound);break;
-    case 2 : sciprint("answer appears to be higher than greatest search bound %f\r\n",bound);break;
-    case 3 : sciprint(" P + Q .ne. 1 \r\n");break ;
+    case 1 : Scierror(999,"answer appears to be lower than lowest search bound %f\r\n",bound);break;
+    case 2 : Scierror(999,"answer appears to be higher than greatest search bound %f\r\n",bound);break;
+    case 3 : Scierror(999," P + Q .ne. 1 \r\n");break ;
     default : 
-      sciprint("input parameter %s is out of range\r\n",param[-status-1]);
-      sciprint("      bound exceeded: %f \r\n",bound);
+      Scierror(999,"input parameter %c is out of range \r\n\tbound exceeded: %f\r\n",
+		    param[-status-1],bound);
     }
 }
 
@@ -792,8 +781,8 @@ static int  CdfBase(fname,inarg,oarg,callpos,option,errnames,which,fonc,foncErr)
   double bound;
   if ( Rhs != inarg+1 ) 
     {
-      sciprint("%s Rhs must be %d for '%s' option'\r\n",fname,inarg+1,option);
-      Error(999); return 1;
+      Scierror(999,"%s: Rhs must be %d for '%s' option'\r\n",fname,inarg+1,option);
+      return 1;
     }
   for ( i = 0 ; i < inarg ; i++ )
     {
@@ -802,8 +791,8 @@ static int  CdfBase(fname,inarg,oarg,callpos,option,errnames,which,fonc,foncErr)
   for ( i = 1 ; i < inarg ; i++) 
     if ( m[i] != m[i-1] || n[i] != n[i-1]) 
       {
-	sciprint("%s %s must have same size\r\n",fname,errnames);
-	Error(999); return 1;
+	Scierror(999,"%s %s must have same size\r\n",fname,errnames);
+	return 1;
       } 
   for ( i = 0 ; i < oarg ; i++) 
     CreateVar(i+2+inarg,"d",&m[0],&n[0],&l[i+inarg]);
@@ -818,7 +807,7 @@ static int  CdfBase(fname,inarg,oarg,callpos,option,errnames,which,fonc,foncErr)
 		  &status,&bound);
 	  if (status != 0) 
 	    {
-	      (*foncErr)(status,bound); Error(999); return 1;
+	      (*foncErr)(status,bound); return 1;
 	    }
 	}
       break;
@@ -831,8 +820,8 @@ static int  CdfBase(fname,inarg,oarg,callpos,option,errnames,which,fonc,foncErr)
 		  &status,&bound);
 	  if (status != 0) 
 	    {
-	      /** sciprint("i=%d\r\n",i); **/
-	      (*foncErr)(status,bound); Error(999); return 1;
+	      /** Scierror(999,"i=%d\r\n",i); **/
+	      (*foncErr)(status,bound); return 1;
 	    }
 	}
       break;
@@ -844,7 +833,7 @@ static int  CdfBase(fname,inarg,oarg,callpos,option,errnames,which,fonc,foncErr)
 		  &status,&bound);
 	  if (status != 0) 
 	    {
-	      (*foncErr)(status,bound); Error(999); return 1;
+	      (*foncErr)(status,bound); return 1;
 	    }
 	}
       break;
