@@ -1,6 +1,6 @@
-function color=tk_getcolor(title,color)
+function Color=tk_getcolor(title,Color)
   title=sci2tcl(title)
-  color=color-1;
+  Color=Color-1;
   
 txt=  'proc createmxn {frame r g b taille ind} {global maxrow n;set n"+...
       " {$taille / $maxrow};set n [expr $n];set nn {$taille % $maxrow};set n"+...
@@ -10,7 +10,7 @@ txt=  'proc createmxn {frame r g b taille ind} {global maxrow n;set n"+...
       " $ax];set bx [lindex $g $c];set bx [expr $bx];set dx [lindex $b $"+...
       "c];set dx [expr $dx];set bg [format '"#%02x%02x%02x'" $ax $bx"+...
       " $dx ];if ($c!=$ind) { button '"$frame.$i$j'" -padx 6 -pady 3"+...
-      " -bg $bg  -borderwidth 4 -activebackground $bg -relief sunken -command [list titi $i $j]} else {button '"$frame.$i$j'"  -padx 6 -pady 3 -bg $bg -borderwidth 4 -activebackground $bg -relief raised -command [list titi $i $j]};grid '"$frame.$i$j'" -row $i -column $j -sticky news;bind '"$frame.$i$j'" <Enter> [list '"$frame.$i$j'" configure -relief raised];bind '"$frame.$i$j'" <Leave> [list '"$frame.$i$j'" configure -relief sunken];incr {c}};	grid columnconfigure $frame $i -weight 1;grid rowconfigure $frame $j -weight 1}};proc titi {g h} {global maxrow n;set x {$h + $n*$g +1};set x [expr $x];ScilabEval color=''$x'';destroy .toto};'
+      " -bg $bg  -borderwidth 4 -activebackground $bg -relief sunken -command [list titi $i $j]} else {button '"$frame.$i$j'"  -padx 6 -pady 3 -bg $bg -borderwidth 4 -activebackground $bg -relief raised -command [list titi $i $j]};grid '"$frame.$i$j'" -row $i -column $j -sticky news;bind '"$frame.$i$j'" <Enter> [list '"$frame.$i$j'" configure -relief raised];bind '"$frame.$i$j'" <Leave> [list '"$frame.$i$j'" configure -relief sunken];incr {c}};	grid columnconfigure $frame $i -weight 1;grid rowconfigure $frame $j -weight 1}};proc titi {g h} {global maxrow n;set x {$h + $n*$g +1};set x [expr $x];ScilabEval Color=''$x'';destroy .toto};'
   
 col=xget('colormap')
 ta=size(col,1);
@@ -30,11 +30,11 @@ ta=size(col,1);
     ttb=ttb+' '+x(3);
   end
   txt=txt+'createmxn .toto.titi [list '+ttr+'] [list '+ttg+'] [list"+...
-      " '+ttb+'] '+string(ta)+' '+string(color)+';pack .toto.titi;tkwait w"+...
+      " '+ttb+'] '+string(ta)+' '+string(Color)+';pack .toto.titi;tkwait w"+...
       "indow .toto;'
-  color=[];
+  Color=[];
   TK_EvalStr(txt)
-  color=evstr(color)
+  Color=evstr(Color)
 endfunction
 
 

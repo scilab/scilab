@@ -46,9 +46,9 @@ for k=3:size(sd)
       w=string(abs(x1-x2));
       yi=string(max(y1,y2));
       h=string(abs(y1-y2));
-      color=string(pat)
-      if scsmode then color='scs_color('+color+')',end
-      txt=[txt;'xrects(['+strcat([zsx(xi),zsy(yi),zx(w),zy(h)],';')+'],'+color+');']  
+      Color=string(pat)
+      if scsmode then Color='scs_color('+Color+')',end
+      txt=[txt;'xrects(['+strcat([zsx(xi),zsy(yi),zx(w),zy(h)],';')+'],'+Color+');']  
     case 'fleche' then
       x=round(dx*o(2))/dx;y=round(dy*o(3))/dy
       txt=[txt;'xarrows('+zsx(sci2exp(x))+','+zsy(sci2exp(y))+',-1,-1);']
@@ -82,9 +82,9 @@ for k=3:size(sd)
       y=zsy(string(round(dy*z(2))/dy))
       txt=[txt;'xstring('+strcat([x,y,com,'0,0'],',')+');']
     case 'patts' then
-      color=string(o(2))
-      if scsmode then color='scs_color('+color+')',end
-      txt=[txt;'xset(''pattern'','+color+')']
+      Color=string(o(2))
+      if scsmode then Color='scs_color('+Color+')',end
+      txt=[txt;'xset(''pattern'','+Color+')']
       pat=o(2)
     case 'thick' then
       txt=[txt;'xset(''thickness'','+string(o(2))+')']  
@@ -93,9 +93,9 @@ for k=3:size(sd)
       txt=[txt;'xset(''mark'','+string(o(2))+','+string(o(3))+')']
       symb=[o(2),o(3)]
     case 'dashs' then
-      color=string(o(2))
-      if scsmode then color='scs_color('+color+')',end
-      txt=[txt;'xset(''dashes'','+color+')']
+      Color=string(o(2))
+      if scsmode then Color='scs_color('+Color+')',end
+      txt=[txt;'xset(''dashes'','+Color+')']
       dash=o(2)
     case 'fligne' then
       z=o(2)';
