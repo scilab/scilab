@@ -1317,7 +1317,9 @@ proc help::load {filename} {
 
  variable font "Helvetica"
  variable fontfixed "Courier"
- variable fontsize 12
+ #CHANGED BY FRANCOIS VOGEL, 30/03/05 - Fixes Scilab bug 902
+ #variable fontsize 12
+ variable fontsize
  variable backcolor ""
  variable forecolor black
  variable linkcolor "#006800"
