@@ -140,7 +140,9 @@ end
 // Result is displayed or not ?
 if ~batch & or(mtlb_instr.endsymbol==[",",""]) then
   if typeof(sci_instr.lhs(1))=="variable" & sci_instr.lhs(1).name=="ans" then // Variable to display
-    sci_instr.expression=Funcall("disp",1,list(sci_instr.expression),list())
+    if typeof(sci_instr.expression)<>"funcall" | sci_instr.expression.name<>"comment" then
+      sci_instr.expression=Funcall("disp",1,list(sci_instr.expression),list())
+    end
   else // Instruction lhs to display
     sci_instr.endsymbol=","
     displhs=list()
