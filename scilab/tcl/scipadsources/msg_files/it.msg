@@ -323,7 +323,7 @@
     ::msgcat::mcset it "found!" "!"
 ::msgcat::mcset it "An old version of" "Esiste una versione precedente di"
     ::msgcat::mcset it "already exists: open the old file instead?" \
-          "Aprire il file esistente invece?"
+          ": apro il file esistente invece?"
 ::msgcat::mcset it "Existing file" "File esistente"
 ::msgcat::mcset it "New skeleton" "Crea nuovo scheletro"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to compile the help file." \
