@@ -34,10 +34,10 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    <VERB>isreal(x)</VERB> renvoie %T (vrai) si x est stockée comme une matrice réelle ou %F (faux) si x est stockée avec une partie imaginaire (même nulle).
+    <VERB>isreal(x)</VERB> renvoie <VERB>%T</VERB> (vrai) si  <VERB>x</VERB> est stockée comme une matrice réelle ou  <VERB>%F</VERB> (faux) si  <VERB>x</VERB> est stockée avec une partie imaginaire (même nulle).
   </P>
   <P>
-    <VERB>isreal(x,eps)</VERB> renvoie %T (vrai) si x est stockée comme une matrice réelle ou si les valeurs absolues des parties imaginaires des éléments de x sont plus petites que eps.
+    <VERB>isreal(x,eps)</VERB> renvoie <VERB>%T</VERB> (vrai) si  <VERB>x</VERB> est stockée comme une matrice réelle ou si les valeurs absolues des parties imaginaires des éléments de  <VERB>x</VERB> sont plus petites que  <VERB>eps</VERB>.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
