@@ -28,5 +28,5 @@ MACROS = acosm.sci acosh.sci acoshm.sci asinm.sci \
 	isinf.sci isnan.sci \
 	lex_sort.sci unique.sci union.sci setdiff.sci intersect.sci \
 	isempty.sci  nextpow2.sci convertindex.sci vectorfind.sci \
-	ind2sub.sci sub2ind.sci
+	ind2sub.sci sub2ind.sci interp1.sci isvector.sci
 include ../Make.lib.mak
