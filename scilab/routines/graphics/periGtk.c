@@ -122,7 +122,7 @@ static void R_clear  __PARAMS((int x,int y,int w,int h));
 
 static void CreateGtkGWindow (struct BCG *ScilabXgc) ;
 void create_graphic_window_menu(struct BCG *dd);
-
+void start_sci_gtk();
 
 /* Allocating colors in BCG struct */
 
@@ -393,13 +393,14 @@ static gboolean locator_button_motion(GtkWidget *widget,
 
 static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
 {
+  /* modified 30/10/02 to get cursor location and register  key_press_event in queue' SS */
+  gint x,y; 
+  GdkModifierType state;
   if (info.getkey == 1 && (event->keyval >= 0x20) && (event->keyval <= 0xFF))
     {
       /* since Alt-keys and Ctrl-keys are stored in menus I want to ignore them here */
       if ( event->state != GDK_CONTROL_MASK && event->state != GDK_MOD1_MASK ) 
 	{
-	  gint x,y;
-	  GdkModifierType state;
 	  gdk_window_get_pointer (gc->drawing->window, &x, &y, &state);
 	  info.x=x ; info.y=y;
 	  info.ok =1 ;  info.win=  gc->CurWindow; 
@@ -407,6 +408,11 @@ static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
 	  gtk_main_quit();
 	}
     }
+  else {
+    gdk_window_get_pointer (gc->drawing->window, &x, &y, &state);
+    PushClickQueue( gc->CurWindow,x, y,event->keyval ,0,1);
+  }
+
   return TRUE;
 }
 
@@ -3820,7 +3826,6 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
 		     (GtkSignalFunc) locator_button_release, (gpointer) dd);
   gtk_signal_connect(GTK_OBJECT(dd->drawing), "motion-notify-event",
 		     (GtkSignalFunc) locator_button_motion, (gpointer) dd);
-
   gtk_signal_connect(GTK_OBJECT(dd->drawing), "realize",
 		     (GtkSignalFunc) realize_event, (gpointer) dd);
 
@@ -3856,9 +3861,9 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
 
   gtk_signal_connect(GTK_OBJECT(dd->window), "delete_event",
 		     (GtkSignalFunc)  sci_destroy_window, (gpointer) dd);
-  
+
   gtk_signal_connect (GTK_OBJECT (dd->window), "key_press_event",
-		      (GtkSignalFunc) key_press_event, (gpointer) dd);
+      (GtkSignalFunc) key_press_event, (gpointer) dd);
 
   /* show everything */
   gtk_widget_realize(dd->window);
