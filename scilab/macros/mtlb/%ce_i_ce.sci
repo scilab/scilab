@@ -1,80 +1,104 @@
 function M=%ce_i_ce(varargin)
-// Copyright INRIA
-//insertion 
-[lhs,rhs]=argn(0)
-M=varargin(rhs)
-N=varargin(rhs-1)//inserted matrix
-dims=double(M.dims(:));
+// Authors: F. Delebecque, S. Steer, Copyright INRIA 
+//insert the struct varargin($-1) into the struct varargin($)
+//at position varargin(1), varargin(2),varargin(3),...
+//insert the struct varargin($-1) as the field varargin(1)
+//of the struct varargin($)
+  [lhs,rhs]=argn(0)
+  M=varargin($)
+  N=varargin($-1)//inserted matrix
+  dims=double(matrix(M.dims,1,-1));
+  
+  if type(varargin(1))==10 //addind a new field
+    flds=getfield(1,M);flds=[flds,varargin(1)];
+    setfield(1,flds,M);setfield($+1,N,M);
+    if and(dims==[0 0]) then M.dims=int32([1 1]),end
+  else   //Subscripted assignment between structures
+    
+    //build resulting struct fields
+    FM=getfield(1,M);FM=FM(3:$);nFM=size(FM,'*')
+    FN=getfield(1,N);FN=FN(3:$);nFN=size(FN,'*')
+    FR=FM;for f=FN, if and(f<>FM) then FR=[FR,f],end,end
 
-v=M.entries;
+    Nfields=size(FR,'*')
+    //computing the dimension of the result
+    nd=size(dims,'*')
+    if rhs-2>nd then dims(nd+1:rhs-2)=1;end  
 
-Ndims=rhs-2
-nd=size(dims,'*')
-if Ndims>nd then dims(nd+1:Ndims)=0;end  
+    //convert N-dimensionnal indexes to 1-D and extend dims if necessary
+    [Ndims,I]=convertindex(dims,varargin(1:$-2));Ndims=matrix(Ndims,1,-1)
 
-dims1=[]
-I=0;I1=0
-for k=Ndims:-1:1
-  ik=varargin(k)//the kth subscript
-  if type(ik)==2 |type(ik)==129 then // size implicit subscript $...
-    ik=horner(ik,dims(k)) // explicit subscript
-    dims1(k,1)=max(max(ik),dims(k))
-  elseif type(ik)==4 then // boolean subscript
-    ik=find(ik)
-    dims1(k,1)=max(max(ik),dims(k))
-  elseif mini(size(ik))<0 then // :
-    ik=1:dims(k)
-    dims1(k,1)=max(max(ik),dims(k))
-    if k==Ndims then
-      if k<nd then
-	ik=1:prod(dims(k:$))
-	dims1(k:nd,1)=dims(k:nd)
-      end
-    end
-  else
-    dims1(k,1)=max(max(ik),dims(k))
-  end
-  if size(ik,'*')>1 then
-    ik=ik(:)
-    if size(I,'*')>1 then
-      I=(dims1(k)*I).*.ones(ik)+ones(I).*.(ik-1)
-    else
-      I=dims1(k)*I+ik-1
-    end
-  else
-    I=dims1(k)*I+ik-1
-  end
-end
-if or(dims1>dims) then
-  I1=0
-  for k=size(dims1,'*'):-1:1
-    ik1=(1:dims(k))'
-    if ik1<>[] then
-      if dims1(k)>1 then
-	if size(I1,'*')>1 then
-	  I1=(dims1(k)*I1).*.ones(ik1)+ones(I1).*.(ik1-1)
-	else
-	  I1=dims1(k)*I1+ik1-1
+    if or(Ndims>dims) then
+      //extend the destination matrix
+      I1=0
+      for k=size(Ndims,'*'):-1:1
+	ik1=(1:dims(k))'
+	if ik1<>[] then
+	  if Ndims(k)>1 then
+	    if size(I1,'*')>1 then
+	      I1=(Ndims(k)*I1).*.ones(ik1)+ones(I1).*.(ik1-1)
+	    else
+	      I1=Ndims(k)*I1+ik1-1
+	    end
+	  else
+	    I1=Ndims(k)*I1+ik1-1
+	  end
 	end
-      else
-	I1=dims1(k)*I1+ik1-1
+      end
+      v1=list();for k=1:prod(Ndims),v1(k)=[];end
+      // create the resulting matrix
+      R=mlist(['ce','dims',matrix(FR,1,-1)],int32(Ndims));
+      for k=1:size(FR,'*'),setfield(2+k,v1,R),end
+      // populate it with M entries
+      for k=1:nFM
+	v2=v1;
+	kf=find(FR==FM(k));
+	w=getfield(k+2,M);if type(w)<>15 then w=list(w),end
+	for i=1:size(I1,'*'), 
+	  v2(I1(i)+1)=w(i)
+	end
+	setfield(kf+2,v2,R);
+      end
+    else //the dimension agree
+      R=M
+      //does the fields agree?
+      if or(FR<>FM) then //no
+	//add new fields
+	setfield(1,['ce','dims',FR],R)
+	v1=list();for k=1:prod(Ndims),v1(k)=[];end
+	for k=nFM+1:size(FR,'*')
+	  setfield($+1,v1,R)
+	end
       end
     end
+	  
+    //insert N entries into result  
+    for k=1:nFN
+      kf=find(FR==FN(k))
+      v2=getfield(kf+2,R)
+      w=getfield(k+2,N);
+      if type(w)<>15 then w=list(w),end
+      for i=1:size(I,'*'), 
+	v2(I(i))=w(i)
+      end 
+      if length(v2)==1 then v2=v2(1);end
+      setfield(kf+2,v2,R);
+    end
+    
+    //remove trailing unitary dimensions
+    while  Ndims($)==1 then Ndims($)=[],end
+    select size(Ndims,'*')
+      case 0 then
+      Ndims=[1,1]
+      case 1 then
+      Ndims=[Ndims,1]
+    else 
+      Ndims=matrix(Ndims,1,-1)
+    end
+    
+    R.dims=int32(Ndims)
+    M=R
   end
-  v1=list();for iw=1:prod(dims1),v1(iw)=[],end
-  for iw=1:size(I1,'*')
-    v1(I1(iw)+1)=v(iw);
-  end
-  v=v1
-end
-v(I+1)=N
-
-
-dims12=dims1(3:$)
-while  dims12($)==1 then dims12($)=[],end
-dims1=[dims1;dims12]
-if size(dims1,'*')<2 then dims1(2)=1,end
-
-M=mlist(['ce','dims','entries'],int32(dims1),v)
-
 endfunction
+
+
