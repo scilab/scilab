@@ -20,7 +20,7 @@ for k=2:size(scs_m)
     if and(o.gui<>excluded) then
       model=o.model
       if model.sim=='super'| model.sim=='csuper' then
-	o=get_tree_elt(scs_m,list(k,'model','rpar'))
+	o=scs_m(list(k,'model','rpar'))
 	ppath=getparpath(o,[bpath k],ppath)
       else
         if model.state<>[] | model.dstate<>[] | model.rpar<>[] | model.ipar<>[] then

@@ -71,7 +71,7 @@ function path=save_csuper(scs_m,fpath)
 	 '      spath($+1)=''rpar'''
 	 '      spath($+1)=path(k)'
 	 '    end'
-	 '    xx=get_tree_elt(arg1,spath)'+com+' get the block';
+	 '    xx=arg1(spath)'+com+' get the block';
 	 '    execstr(''xxn=''+xx.gui+''(''''set'''',xx)'')'
 	 '    if xxn<>xx then '
 	 '      '+com+' parameter or states changed'
