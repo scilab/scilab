@@ -30,6 +30,360 @@
 #endif
 
 /*-----------------------------------------------------------------------------------*/
+void Callback_NEWSCILAB(void)
+{
+	STARTUPINFO start;
+	SECURITY_ATTRIBUTES sec_attrs;
+	PROCESS_INFORMATION child;
+	char ScilexName[MAX_PATH];
+	    		
+	GetModuleFileName (NULL,ScilexName, MAX_PATH);
+
+	memset (&start, 0, sizeof (start));
+	start.cb = sizeof (start);
+	start.dwFlags = STARTF_USESHOWWINDOW;
+	start.wShowWindow = SW_SHOWMINIMIZED;
+	sec_attrs.nLength = sizeof (sec_attrs);
+	sec_attrs.lpSecurityDescriptor = NULL;
+	sec_attrs.bInheritHandle = FALSE;
+  			
+	if (CreateProcess (ScilexName,"", &sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,  NULL, NULL, &start, &child))
+	{
+		CloseHandle (child.hThread);
+		CloseHandle (child.hProcess);
+	}
+	else MessageBox(NULL,"Couldn't Execute a new Scilab","Warning",MB_ICONWARNING);
+
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_EXEC(void)
+{
+	char Fichier[MAX_PATH];
+	char command[MAX_PATH];
+	
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	    			
+	if ( OpenSaveSCIFile(lptw->hWndParent,"Exec",TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",Fichier) == TRUE)
+	{
+		SendCTRLandAKey(CTRLU);
+		wsprintf(command,"exec('%s');disp('exec done');\n;",Fichier);
+		write_scilab(command);
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_GETF(void)
+{
+	char Fichier[MAX_PATH];
+	char command[MAX_PATH];
+	
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	    			
+	if ( OpenSaveSCIFile(lptw->hWndParent,"Getf",TRUE,"Files *.sci\0*.sci\0All *.*\0*.*\0",Fichier) == TRUE)
+	{
+		SendCTRLandAKey(CTRLU);
+		wsprintf(command,"getf('%s');disp('getf done');\n;",Fichier);
+		write_scilab(command);
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_LOAD(void)
+{
+	char Fichier[MAX_PATH];
+	char command[MAX_PATH];
+	    			
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	    			
+	if ( OpenSaveSCIFile(lptw->hWndParent,"Load",TRUE,"Files *.sav;*.bin\0*.sav;*.bin\0Files *.sav\0*.sav\0Files *.bin\0*.bin\0All *.*\0*.*\0",Fichier) == TRUE)
+	{
+		SendCTRLandAKey(CTRLU);
+	    	wsprintf(command,"load('%s');disp('file loaded');\n;",Fichier);
+	    	write_scilab(command);
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_SAVE(void)
+{
+	char Fichier[MAX_PATH];
+	char command[MAX_PATH];
+	
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	    			
+	if (OpenSaveSCIFile(lptw->hWndParent,"Save",FALSE,"Files *.sav\0*.sav\0Files *.bin\0*.bin\0All *.*\0*.*\0",Fichier) == TRUE)
+	{
+		SendCTRLandAKey(CTRLU);
+		wsprintf(command," save('%s');disp('file saved');\n;",Fichier);
+		write_scilab(command);
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_CHDIR(void)
+{
+	BROWSEINFO InfoBrowserDirectory;
+	char chemin[MAX_PATH];
+	char command[MAX_PATH]; 
+	char TextPath[MAX_PATH*2]; 
+	LPITEMIDLIST pidl; 
+			
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+		
+	GetCurrentDirectory(MAX_PATH,chemin);
+			
+	InfoBrowserDirectory.hwndOwner = lptw->hWndParent; 
+	InfoBrowserDirectory.pidlRoot = NULL; 
+	switch (LanguageCode)
+	{ 
+		case 1:
+			wsprintf(TextPath,"%s\n%s","Choisir un répertoire",chemin);
+		break;
+				
+		case 0:default:
+			wsprintf(TextPath,"%s\n\n%s","Choose a Directory",chemin);
+		break;
+	}
+		
+	InfoBrowserDirectory.lpszTitle=TextPath;
+	InfoBrowserDirectory.pszDisplayName=chemin; 
+	InfoBrowserDirectory.ulFlags = BIF_STATUSTEXT|BIF_RETURNONLYFSDIRS; 
+	InfoBrowserDirectory.lpfn =NULL;
+
+
+	pidl=SHBrowseForFolder(&InfoBrowserDirectory);
+	if (pidl!=NULL)
+	{
+	 	SHGetPathFromIDList(pidl, chemin); 
+	 	SendCTRLandAKey(CTRLU);
+		wsprintf(command,"chdir('%s');",chemin);
+		StoreCommand1 (command, 2);
+	}
+
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_GETCWD(void)
+{
+	SendCTRLandAKey(CTRLU);
+	StoreCommand1 ("printf('\n\n %s\n\n-->',getcwd())", 2);
+	    		
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_MCOPY(void)
+{
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	
+	if ( HasAZoneTextSelected(lptw) == TRUE )TextCopyClip (lptw);
+	else MessageBox(lptw->hWndParent,"Please Select a zone of text","Info.",MB_ICONINFORMATION);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_PASTE(void)
+{
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	
+	if ( !IsEmptyClipboard(lptw) ) PasteFunction(lptw,FALSE);
+	else MessageBox(lptw->hWndParent,"Clipboard is empty","Info.",MB_ICONINFORMATION);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_PRINT(void)
+{
+	MessageBox(NULL,"En cours de dév.","",MB_OK);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_TOOLBAR(void)
+{
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	
+	ShowButtons=!ShowButtons;
+	ToolBarOnOff(lptw,ShowButtons);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_FRENCH(void)
+{
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	
+	LanguageCode=1;
+	SwitchLanguage(lptw,LanguageCode);
+	    		
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_ENGLISH(void)
+{
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+	LanguageCode=0;
+	SwitchLanguage(lptw,LanguageCode);
+
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_CHOOSETHEFONT(void)
+{
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+	TextSelectFont (lptw);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_RESTART(void)
+{
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+	SendCTRLandAKey(CTRLU);
+	ClearCommandWindow(lptw,TRUE);
+	SendCTRLandAKey(CTRLU);
+	write_scilab("abort;\n");
+	SendCTRLandAKey(CTRLU);
+	write_scilab("exec('SCI/scilab.star',-1);\n");
+	SendCTRLandAKey(CTRLU);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_ABORT(void)
+{
+	SendCTRLandAKey(CTRLU);
+	write_scilab("abort;\n");
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_PAUSE(void)
+{
+	SendCTRLandAKey(CTRLU);
+	write_scilab("pause;\n");
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_RESUME(void)
+{
+	SendCTRLandAKey(CTRLU);
+	write_scilab("resume;\n");
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_CONSOLE(void)
+{
+	SwitchConsole();
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_SCIPAD(void)
+{
+	StoreCommand1 ("scipad()", 2);
+	switch (LanguageCode)
+	{
+		case 1:
+			StoreCommand1 ("LANGUAGE=\"fr\";", 2);
+		break;
+		
+		default: case 0:
+			StoreCommand1 ("LANGUAGE=\"eng\";", 2);
+		break;
+	}
+	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);", 2);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_HELP(void)
+{
+	StoreCommand1 ("help();", 2);
+	switch (LanguageCode)
+	{
+		case 1:
+			StoreCommand1 ("LANGUAGE=\"fr\";", 2);
+		break;
+		
+		default: case 0:
+			StoreCommand1 ("LANGUAGE=\"eng\";", 2);
+		break;
+	}
+		
+	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);", 2);
+	    		
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_DEMOS(void)
+{
+	SendCTRLandAKey(CTRLU);
+	StoreCommand1 ("exec('SCI/demos/alldems.dem');", 1);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_WEB(void)
+{
+	int error =(int)ShellExecute(NULL, "open", URL, NULL, NULL, SW_SHOWNORMAL);
+	if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_BUGZILLA(void)
+{
+	int error =(int)ShellExecute(NULL, "open", URLBUGZILLA, NULL, NULL, SW_SHOWNORMAL);
+	if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_EMAIL(void)
+{
+	char Message[MAX_PATH];
+	int error;
+	    		
+	wsprintf(Message,"mailto:%s?Subject=%s&CC=%s&body=%s",MAILTO, SUBJECT,CCMAILTO,"TEST Message");
+	error =(int)ShellExecute(NULL, "open",Message,NULL,NULL,SW_SHOWNORMAL);
+	if (error<= 32) MessageBox(NULL,"Couldn't Open Email Client","Warning",MB_ICONWARNING);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_NEWSGROUP(void)
+{
+	int error =(int)ShellExecute(NULL, "open", URLNEWSGROUP, NULL, NULL, SW_SHOWNORMAL);
+	if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_ABOUT(void)
+{
+	DLGPROC lpfnAboutDlgProc;
+  	lpfnAboutDlgProc = (DLGPROC) MyGetProcAddress ("AboutDlgProc", AboutDlgProc);
+	DialogBox (hdllInstance, "AboutDlgBox", NULL,lpfnAboutDlgProc);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_CLEARCOMMANDWINDOW(void)
+{
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+	ClearCommandWindow(lptw,TRUE);
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_PRINTWINDOW(void)
+{
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+	PrintCommandWindow(lptw);
+}
+/*-----------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+/*-----------------------------------------------------------------------------------*/
 /*********************************
  * Send a macro to the text window 
  * lptw : text window 
@@ -65,143 +419,31 @@ void SendMacro (LPTW lptw, UINT m)
 	  switch (*s)
 	    {
 	    	case NEWSCILAB:
-	    	{
-	    		
-	    		STARTUPINFO start;
-			SECURITY_ATTRIBUTES sec_attrs;
-			PROCESS_INFORMATION child;
-	    		char ScilexName[MAX_PATH];
-	    		
-	    		GetModuleFileName (NULL,ScilexName, MAX_PATH);
-
-			memset (&start, 0, sizeof (start));
-			start.cb = sizeof (start);
-			start.dwFlags = STARTF_USESHOWWINDOW;
-
-			start.wShowWindow = SW_SHOWMINIMIZED;
-			sec_attrs.nLength = sizeof (sec_attrs);
-			sec_attrs.lpSecurityDescriptor = NULL;
-			sec_attrs.bInheritHandle = FALSE;
-  			
-  			if (CreateProcess (ScilexName,"", &sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,  NULL, NULL, &start, &child))
-  				{
-  					CloseHandle (child.hThread);
-					CloseHandle (child.hProcess);
-  				}
-  			else MessageBox(NULL,"Couldn't Execute a new Scilab","Warning",MB_ICONWARNING);
-
-	    	}
+	    		Callback_NEWSCILAB();
 	    		return;
 	    	break;
 	    	case EXEC:
-	   		{ 			
-	    			char Fichier[MAX_PATH];
-	    			char command[MAX_PATH];
-	    			
-	    			if ( OpenSaveSCIFile(lptw->hWndParent,"Exec",TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",Fichier) == TRUE)
-	    			{
-	    				SendCTRLandAKey(CTRLU);
-	    				wsprintf(command,"exec('%s');disp('exec done');\n;",Fichier);
-	    				write_scilab(command);
-	    				
-	    				
-	    			}
-	   		}
-	    		return;
+	   		Callback_EXEC();
+	   		return;
 	    	break;
 	    	case GETF:
-	    		{ 			
-	    			char Fichier[MAX_PATH];
-	    			char command[MAX_PATH];
-	    			
-	    			if ( OpenSaveSCIFile(lptw->hWndParent,"Getf",TRUE,"Files *.sci\0*.sci\0All *.*\0*.*\0",Fichier) == TRUE)
-	    			{
-	    				SendCTRLandAKey(CTRLU);
-	    				wsprintf(command,"getf('%s');disp('getf done');\n;",Fichier);
-	    				write_scilab(command);
-	    			}
-	   		}
+	    		Callback_GETF();
 	    		return;
 	    	break;
 	    	case LOAD:
-	    		{
-	   		
-	    			char Fichier[MAX_PATH];
-	    			char command[MAX_PATH];
-	    			
-	    			if ( OpenSaveSCIFile(lptw->hWndParent,"Load",TRUE,"Files *.sav;*.bin\0*.sav;*.bin\0Files *.sav\0*.sav\0Files *.bin\0*.bin\0All *.*\0*.*\0",Fichier) == TRUE)
-	    			{
-	    				SendCTRLandAKey(CTRLU);
-	    	   			wsprintf(command,"load('%s');disp('file loaded');\n;",Fichier);
-	    	   			write_scilab(command);
-	    				
-	    			}
-	    			
-	    		}
+	    		Callback_LOAD();
 	    		return;
 	    	break;	
 	    	case SAVE:
-	    		{
-	    			char Fichier[MAX_PATH];
-	    			char command[MAX_PATH];
-	    			
-	    			if (OpenSaveSCIFile(lptw->hWndParent,"Save",FALSE,"Files *.sav\0*.sav\0Files *.bin\0*.bin\0All *.*\0*.*\0",Fichier) == TRUE)
-	    			{
-	    				SendCTRLandAKey(CTRLU);
-	    				wsprintf(command," save('%s');disp('file saved');\n;",Fichier);
-	    				write_scilab(command);
-	    	   			
-	    			}
-	    		}
+	    		Callback_SAVE();
 	    		return;
 	    	break;
 	    	case CHDIR:
-	    	{
-	    		
-			BROWSEINFO InfoBrowserDirectory;
-			char chemin[MAX_PATH];
-			char command[MAX_PATH]; 
-			char TextPath[MAX_PATH*2]; 
-			LPITEMIDLIST pidl; 
-
-			GetCurrentDirectory(MAX_PATH,chemin);
-			
-			InfoBrowserDirectory.hwndOwner = lptw->hWndParent; 
-			InfoBrowserDirectory.pidlRoot = NULL; 
-			switch (LanguageCode)
-			{ 
-				case 1:
-				wsprintf(TextPath,"%s\n%s","Choisir un répertoire",chemin);
-				break;
-				
-				case 0:default:
-				wsprintf(TextPath,"%s\n\n%s","Choose a Directory",chemin);
-				break;
-			}
-		
-			InfoBrowserDirectory.lpszTitle=TextPath;
-			InfoBrowserDirectory.pszDisplayName=chemin; 
-			InfoBrowserDirectory.ulFlags = BIF_STATUSTEXT|BIF_RETURNONLYFSDIRS; 
-			InfoBrowserDirectory.lpfn =NULL;
-
-
-			pidl=SHBrowseForFolder(&InfoBrowserDirectory);
-			if (pidl!=NULL)
-			{
-			 	SHGetPathFromIDList(pidl, chemin); 
-			 	SendCTRLandAKey(CTRLU);
-	    			wsprintf(command,"chdir('%s');",chemin);
-	    			StoreCommand1 (command, 2);
-			 	
-			}
-
-	    	}
+	    		Callback_CHDIR();
 	    		return;
 	    	break;
 	    	case GETCWD:
-	    		SendCTRLandAKey(CTRLU);
-	    		StoreCommand1 ("printf('\n\n %s\n\n-->',getcwd())", 2);
-	    		
+	    		Callback_GETCWD();
 	    		return;
 	    	break;
 	    	case EXIT:
@@ -210,70 +452,52 @@ void SendMacro (LPTW lptw, UINT m)
 	    	break;
 	    	
 	    	case MCOPY:
-	    		 if ( HasAZoneTextSelected(lptw) == TRUE )TextCopyClip (lptw);
-	    		 else MessageBox(lptw->hWndParent,"Please Select a zone of text","Info.",MB_ICONINFORMATION);
+	    		Callback_MCOPY();
 			s++;
 	    	break;
 	    	case PASTE:
-	    		if ( !IsEmptyClipboard(lptw) ) PasteFunction(lptw,FALSE);
-	    		else MessageBox(lptw->hWndParent,"Clipboard is empty","Info.",MB_ICONINFORMATION);
+	    		Callback_PASTE();
 	    	        return;
 	    	break; 
 	    	
 	    	case PRINT:
-	    		MessageBox(NULL,"En cours de dév.","",MB_OK);
+	    		Callback_PRINT();
 	    		return;
-	    		break;
+	    	break;
 	    	case TOOLBAR:
-	    		ShowButtons=!ShowButtons;
-	    		ToolBarOnOff(lptw,ShowButtons);
+	    		Callback_TOOLBAR();
 	    		return;
 	    	break;
 	    	case FRENCH:
-	    		LanguageCode=1;
-	    		SwitchLanguage(lptw,LanguageCode);
-	    		
+	    		Callback_FRENCH();
 	    		return;
 	    	break;
 	    	case ENGLISH:
-	    		LanguageCode=0;
-	    		SwitchLanguage(lptw,LanguageCode);
-	    		
+	    		Callback_ENGLISH();
 	    		return;
 	    	break;
 	    	case CHOOSETHEFONT:
-	    		TextSelectFont (lptw);
+	    		Callback_CHOOSETHEFONT();
 	      		s++;
 	    	break;
 	    	case RESTART:
-	    		SendCTRLandAKey(CTRLU);
-	    		ClearCommandWindow(lptw,TRUE);
-	    		SendCTRLandAKey(CTRLU);
-	    		write_scilab("abort;\n");
-	    		SendCTRLandAKey(CTRLU);
-	    		write_scilab("exec('SCI/scilab.star',-1);\n");
-	    		SendCTRLandAKey(CTRLU);
+	    		Callback_RESTART();
 	    		return;
-	
-	    	
 	    	break;
 	    	case ABORT:
-	    		SendCTRLandAKey(CTRLU);
-	    		write_scilab("abort;\n");
+	    		Callback_ABORT();
 	    		return;
 	    	break;
 	    	case PAUSE:
-	    		SendCTRLandAKey(CTRLU);
-	    		write_scilab("pause;\n");
+	    		Callback_PAUSE();
 	    		return;
 	    	break;
 	    	case RESUME:
-	    		SendCTRLandAKey(CTRLU);
-	    		write_scilab("resume;\n");
+			Callback_RESUME();	    		
 	    		return;
 	    	break;
 	    	case CONSOLE:
-	      		SwitchConsole();
+	      		Callback_CONSOLE();
 	      		return;
 	    	break;
 	    	case SET:
@@ -300,90 +524,42 @@ void SendMacro (LPTW lptw, UINT m)
 	    		return;
 	    	break;
 	    	case SCIPAD:
-	    	
-	    		StoreCommand1 ("scipad()", 2);
-	    		switch (LanguageCode)
-	    		{
-				case 1:
-					StoreCommand1 ("LANGUAGE=\"fr\";", 2);
-				break;
-		
-				default: case 0:
-					StoreCommand1 ("LANGUAGE=\"eng\";", 2);
-				break;
-			}
-			StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);", 2);
+	    		Callback_SCIPAD();
 	    		return;
 	    	break;
 	    	case HELP:
-	    	
-	    	StoreCommand1 ("help();", 2);
-		switch (LanguageCode)
-		{
-			case 1:
-				StoreCommand1 ("LANGUAGE=\"fr\";", 2);
-			break;
-		
-			default: case 0:
-				StoreCommand1 ("LANGUAGE=\"eng\";", 2);
-			break;
-		}
-		
-		StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);", 2);
-		
-	    		
+			Callback_HELP();
 	    		return;
 	    	break;
 	    	case DEMOS:
-	    		SendCTRLandAKey(CTRLU);
-	    		StoreCommand1 ("exec('SCI/demos/alldems.dem');", 1);
+	    		Callback_DEMOS();
 	    		return;
 	    	break;
 	    	case WEB:
-	    	{
-	    		int error =(int)ShellExecute(NULL, "open", URL, NULL, NULL, SW_SHOWNORMAL);
-	    		if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
-	    	}
-	    		return;
+			Callback_WEB();
+			return;
 	    	break;
 	    	case BUGZILLA:
-	    	{
-	    		int error =(int)ShellExecute(NULL, "open", URLBUGZILLA, NULL, NULL, SW_SHOWNORMAL);
-	    		if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
-	    	}
+	    		Callback_BUGZILLA();
 	    		return;
 	    	break;
 	    	case EMAIL:
-	    	{
-	    		char Message[MAX_PATH];
-	    		int error;
-	    		
-	    		wsprintf(Message,"mailto:%s?Subject=%s&CC=%s&body=%s",MAILTO, SUBJECT,CCMAILTO,"TEST Message");
-	    		error =(int)ShellExecute(NULL, "open",Message,NULL,NULL,SW_SHOWNORMAL);
-	    		if (error<= 32) MessageBox(NULL,"Couldn't Open Email Client","Warning",MB_ICONWARNING);
-		}
+	    		Callback_EMAIL();
  	    		return;
 	    	break;
 	    	case NEWSGROUP:
-	    	{
-	    		int error =(int)ShellExecute(NULL, "open", URLNEWSGROUP, NULL, NULL, SW_SHOWNORMAL);
-	    		if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
-	    	}
+	    		Callback_NEWSGROUP();
 	    		return;
 	    	break;
 	    	case ABOUT:
-	    		{
-	    			DLGPROC lpfnAboutDlgProc;
-  				lpfnAboutDlgProc = (DLGPROC) MyGetProcAddress ("AboutDlgProc", AboutDlgProc);
-	       			DialogBox (hdllInstance, "AboutDlgBox", NULL,lpfnAboutDlgProc);
-	    		}
+	    		Callback_ABOUT();
 	    		return;
 	    	break;
 	    	case M_CTRL_C:
-	    		{
-	    			SignalCtrC ();
-	    			write_scilab("\n");
-	    		}
+	    	{
+	    		SignalCtrC ();
+	    		write_scilab("\n");
+	    	}
 	    		return;
 	    	break;
 	    	
@@ -391,62 +567,62 @@ void SendMacro (LPTW lptw, UINT m)
 	    	{
 	    		 SendCTRLandAKey(CTRLU);
 	    	}
-	    	return;
+	    		return;
 	    	break;
 	    	
 		case M_CTRL_P:
 	    	{
 	    		 SendCTRLandAKey(CTRLP);
 	    	}
-	    	return;
+	    		return;
 	    	break;
 		case M_CTRL_B:
 	    	{
 	    		 SendCTRLandAKey(CTRLB);
 	    	}
-	    	return;
+	    		return;
 	    	break;	
 		case M_CTRL_F:
 	    	{
 	    		 SendCTRLandAKey(CTRLF);
 	    	}
-	    	return;
+	    		return;
 	    	break;	
 		case M_CTRL_A:
 	    	{
 	    		 SendCTRLandAKey(CTRLA);
 	    	}
-	    	return;
+	    		return;
 	    	break;	
 		case M_CTRL_E:
 	    	{
 	    		 SendCTRLandAKey(CTRLE);
 	    	}
-	    	return;
+	    		return;
 	    	break;	
 		case M_CTRL_H:
 	    	{
 	    		 SendCTRLandAKey(CTRLH);
 	    	}
-	    	return;
+	    		return;
 	    	break;	
 		case M_CTRL_D:
 	    	{
 	    		 SendCTRLandAKey(CTRLD);
 	    	}
-	    	return;
+	    		return;
 	    	break;	
 		case M_CTRL_W:
 	    	{
 	    		 SendCTRLandAKey(CTRLW);
 	    	}
-	    	return;
+	    		return;
 	    	break;	
 		case M_CTRL_K:
 	    	{
 	    		 SendCTRLandAKey(CTRLK);
 	    	}
-	    	return;
+	    		return;
 	    	break;	
 		case M_CTRL_L:
 	    	{
@@ -456,13 +632,13 @@ void SendMacro (LPTW lptw, UINT m)
 	    	break;	
 	    	case CLEARCOMMANDWINDOW:
 	    	{
-	    		ClearCommandWindow(lptw,TRUE);
+	    		Callback_CLEARCOMMANDWINDOW();
 	    	}
 	    	return;
 	    	break;	
 		case PRINTWINDOW:
 		{
-			PrintCommandWindow(lptw);
+			Callback_PRINTWINDOW();
 		}
 		return;
 	    	break;	

@@ -172,6 +172,41 @@ static void SendCountSet ();
 static void SendCountRaise ();
 static void SendCountDelete ();
 
+
+
+
+/*--------------------------------*/
+void Callback_NEWSCILAB(void);
+void Callback_EXEC(void);
+void Callback_GETF(void);
+void Callback_LOAD(void);
+void Callback_SAVE(void);
+void Callback_CHDIR(void);
+void Callback_GETCWD(void);
+void Callback_MCOPY(void);
+void Callback_PASTE(void);
+void Callback_PRINT(void);
+void Callback_TOOLBAR(void);
+void Callback_FRENCH(void);
+void Callback_ENGLISH(void);
+void Callback_CHOOSETHEFONT(void);
+void Callback_RESTART(void);
+void Callback_ABORT(void);
+void Callback_PAUSE(void);
+void Callback_RESUME(void);
+void Callback_CONSOLE(void);
+void Callback_SCIPAD(void);
+void Callback_HELP(void);
+void Callback_DEMOS(void);
+void Callback_WEB(void);
+void Callback_BUGZILLA(void);
+void Callback_EMAIL(void);
+void Callback_NEWSGROUP(void);
+void Callback_ABOUT(void);
+void Callback_CLEARCOMMANDWINDOW(void);
+void Callback_PRINTWINDOW(void);
+
+/*--------------------------------*/
 void SendMacro (LPTW lptw, UINT m);
 BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, char **d, int *ierr);
 void MenuFixCurrentWin (int ivalue);
