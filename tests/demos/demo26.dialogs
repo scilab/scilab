@@ -91,6 +91,11 @@
        -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
        Exit
   //13 sound demo 
+  14 // Synchro Block
+       -2,0,450,-1,'execstr(Simulate_1000(4))' //Run
+       -2,0,450,-1,'execstr(Diagram_1000(16))'//Exit
+       Exit
+
   0 //Exit scicos demo
 0 // Exit
 
