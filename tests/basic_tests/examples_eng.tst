@@ -6545,6 +6545,11 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
+//====================================================
+// ../man/eng/graphics/param3d1.xml
+//====================================================
+clear;lines(0);
+
 t=[0:0.1:5*%pi]';
 param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
   list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
@@ -6557,8 +6562,8 @@ param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
  a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
  a.thickness = 2;
  h=a.children //get the handle of the param3d entity: an agregation composed of 2 curves
- h.children(1).foreground = 3 // first curve
- curve2 = h.children(2);
+ h(1).children(1).foreground = 3 // first curve
+ curve2 = h(2).children(2);
  curve2.foreground = 6;
  curve2.mark_style = 2;
 
