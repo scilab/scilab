@@ -845,7 +845,7 @@ c     overlapping object is necessary
 c     sciargs()
       character*(*) fname
       logical checkrhs,checklhs
-      integer iadr,sadr,ciargc
+      integer iadr,sadr,sciiargc
       include '../stack.h'
 c
       iadr(l)=l+l-1
@@ -857,8 +857,7 @@ c
       if(.not.checkrhs(fname,0,0)) return
       if(.not.checklhs(fname,1,1)) return
 
-      nargs = iargc()
-
+      nargs = sciiargc()
       top=top+1
       il=iadr(lstk(top))
       l=il+5+nargs+1
@@ -874,7 +873,7 @@ c
       istk(il+4)=1
 
       do 20 k=0,nargs
-         call fgetarg(k,buf)
+         call scigetarg(k,buf)
          l1=len(buf)+1
  10      l1=l1-1
          if(buf(l1:l1).eq.' ') goto 10
