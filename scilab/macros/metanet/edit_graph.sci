@@ -34,7 +34,7 @@ if rhs>=1 then
     if ~ok then return,end
   else //diagram is given by its datastructure
     if typeof(GraphList)<>'graph' then 
-      error('first argument must be a editgraph data structure'),
+      error('first argument must be a graph data structure'),
     end
   end
 else //empty graphlist
