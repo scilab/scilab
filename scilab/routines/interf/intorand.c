@@ -15,7 +15,7 @@ int C2F(intor)(fname,l)
    char *fname;
    long l;
 {
- int m1,n1,l1,mm2,l2,lo,nopt=0,typ,lw;
+ int m1,n1,l1,mm2,l2,lo,nopt=0,lw;
  int opt=0,errn=44;
  CheckRhs(1,2);
  CheckLhs(1,1);
@@ -53,6 +53,12 @@ int C2F(intor)(fname,l)
  /*  checking variable a */
  GetRhsVar(1,"b",&m1,&n1,&l1);
 
+ if (Rhs==2 && m1*n1==0) {
+   LhsVar(1)= 1;
+   C2F(putlhsvar)();
+   return 0;
+ }
+
  /* cross variable size checking */
  mm2=1;
  if (opt==0) {
@@ -76,9 +82,8 @@ int C2F(intand)(fname,l)
    char *fname;
    long l;
 {
- int m1,n1,l1,mm2,l2,lo,nopt=0,typ,lw;
+ int m1,n1,l1,mm2,l2,lo,nopt=0,lw;
  int opt=0,errn=44;
- SciSparse *Sp;
 
  CheckRhs(1,2);
  CheckLhs(1,1);
@@ -115,6 +120,12 @@ int C2F(intand)(fname,l)
 
  /*  checking variable a */
  GetRhsVar(1,"b",&m1,&n1,&l1);
+
+ if (Rhs==2 && m1*n1==0) {
+   LhsVar(1)= 1;
+   C2F(putlhsvar)();
+   return 0;
+ }
 
  /* cross variable size checking */
  mm2=1;

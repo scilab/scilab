@@ -6400,13 +6400,12 @@ int delete(fname,fname_len)
   unsigned long hdl;
   sciPointObj *pobj, *pparentfigure;
 
-  CheckRhs(0,2);
+  CheckRhs(1,2);
   CheckLhs(0,1);
   C2F(sciwin)();
   switch(VarType(1)) 
     {
     case 9: /* delete Entity given by a handle */
-      CheckRhs(1,2); 
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */
       if (m1!=1||n1!=1) { 
 	lw = 1 + Top - Rhs;
@@ -6592,15 +6591,12 @@ int glue(fname,fname_len)
   int m,n,outindex,i;
   sciPointObj *pobj;
 
-  CheckRhs(0,1);
+  CheckRhs(1,1);
   CheckLhs(0,1);
 
   /*  set or create a graphic window */
   C2F(sciwin)();
-  GetRhsVar(1,"d",&numrow,&numcol,&l1); /* We get the scalar value if it is ones */
-  n   = 1;
-  m   = 1;
-  CreateVar(Rhs+1,"d",&m,&n,&outindex);
+  GetRhsVar(1,"h",&numrow,&numcol,&l1); /* We get the scalar value if it is ones */
   /* we must change the pobj to the agregation type */
   handelsvalue = MALLOC(((numcol)*(numrow))*sizeof(long));
   for (i = 0; i < (numcol)*(numrow);i++)
@@ -6700,7 +6696,7 @@ int drawnow(fname,fname_len)
       else
         switch(VarType(1)) 
 	  {
-	  case 1: /* first is a handle argument so it's a drawnow(subwin) */
+	  case 9: /* first is a handle argument so it's a drawnow(subwin) */
 	    GetRhsVar(1,"h",&m,&n,&l); 
 	    for (i = 0; i < n*m; i++)
 	      {
