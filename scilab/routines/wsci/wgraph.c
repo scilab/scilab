@@ -40,9 +40,7 @@ extern void   set_no_delete_win_mode()  {  sci_graphic_protect = 1 ;}
 int C2F (deletewin) (integer * number)
 {
   int v_flag = 1;
-
-  double *XGC,dv=0;
-  struct BCG *CurrentScilabXgc; 
+  double dv=0;
   int v=0;
 
   /* destroying recorded graphic commands */
@@ -57,41 +55,7 @@ int C2F (deletewin) (integer * number)
      that could have been possibly previously deleted !! */
   
   /* So, we use another flag named v_flag :*/
-
-
-  C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
-  CurrentScilabXgc=(struct BCG *)XGC;
-  
-  if(v_flag == 0)
-    {
-      /* Need to reset the new current figure returned by sciGetCurrentFigure */
-      sciHandleTab *hdl = NULL;
-      sciPointObj  *pobj= NULL;
-      
-      hdl = sciGetpendofhandletab();
-
-	  if(CurrentScilabXgc != NULL)
-		while (hdl != NULL)
-		{
-		 pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
-		 if (sciGetEntityType(pobj) == SCI_FIGURE && sciGetNum(pobj) == CurrentScilabXgc->CurWindow ) /* Adding F.Leray 19.04.04 */
-	      {
-	        sciSetCurrentFigure(pobj);
-	        /* sciGetScilabXgc (pobj)->CWindow */
-	        /* cur =  sciGetScilabXgc (pobj)->CWindow;*/
-	        /* to force a reset in the graphic scales : COPY from Actions.c line 237 */
-	        /* SwitchWindow(&cur);*/
-	        /*C2F(dr)("xset","window",&(pFIGURE_FEATURE(pobj)->number),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);*/
-	        /*sciDrawObj(pobj);*/
-	        /*sciSetSelectedSubWin((sciPointObj *) sciGetSelectedSubWin
-		      (pobj));*/
-	        sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
-	        break;
-		  }
-	  hdl = hdl->pprev;
-		}
-	}
-  
+  delete_sgwin_entities(win_num,v_flag);
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/

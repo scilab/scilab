@@ -52,6 +52,7 @@ extern void SciViewportClipGetSize __PARAMS((struct BCG *,int *,int*));
 #ifdef WITH_TK
 extern void flushTKEvents();
 #endif
+extern int versionflag;
 
 #define MESSAGE4 "Can't allocate point vector"
 #define MESSAGE5 "Can't re-allocate point vector" 
@@ -3830,7 +3831,7 @@ InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
       to force usecolorPos to perform initialisations 
   **/
  
-  ScilabXgc->graphicsversion = 0;/* NG */ /* old */
+  ScilabXgc->graphicsversion = (versionflag==1) ? 0:1;/* NG */ 
 
   ScilabXgc->CurColorStatus = (i == 1) ? 0: 1;
   xset_usecolor(&i ,PI0,PI0,PI0);

@@ -133,6 +133,7 @@ static integer DashTab[MAXDASH] = { PS_SOLID,PS_DASH,PS_DOT,PS_DASHDOT,PS_DASHDO
 
 extern GW graphwin; /** keeps information for the current graphic window **/
 extern TW textwin; /** keeps information for the current scilab window **/
+extern int versionflag;
 
 /** XXX a mettre ailleurs **/
 
@@ -4220,7 +4221,7 @@ static void InitMissileXgc (integer *v1,integer *v2,integer *v3,integer *v4)
   /** we force CurColorStatus to the opposite value of col
    *  to force usecolorPos to perform initialisations
    **/
-  ScilabXgc->graphicsversion = 0;/* NG */ /* old */
+  ScilabXgc->graphicsversion = (versionflag==1) ? 0:1;/* NG */ 
   ScilabXgc->CurColorStatus = (i == 1) ? 0: 1;
   C2F(usecolor)(&i ,PI0,PI0,PI0);
   strcpy(ScilabXgc->CurNumberDispFormat,"%-5.2g");

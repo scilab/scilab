@@ -896,12 +896,17 @@ void reset_scig_deletegwin_handler()
 
 /* delete action */
 
+extern void  delete_sgwin_entities(int winid,int v_flag);
+
+
 static void scig_menu_delete(int winid) 
 {
+  int v_flag = 1;
   scig_erase(winid);
+  if (version_flag() == 0) {DeleteObjs(winid); v_flag = 0;}
   scig_deletegwin_handler(winid);
   DeleteSGWin(winid);
-
+  delete_sgwin_entities(winid,v_flag);
 }
 
 /* for Fortran call */

@@ -18490,3 +18490,50 @@ DestroyLabel (sciPointObj * pthis)
   return 0;
 }
 
+/**delete_sgwin_entities(int win_num)
+ * @memo This function is to be called after window deletion 
+ */
+void delete_sgwin_entities(int win_num,int v_flag)
+{
+  double dv=0;
+  double *XGC;
+  struct BCG *CurrentScilabXgc; 
+  int v=0;
+
+  C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
+  CurrentScilabXgc=(struct BCG *)XGC;
+
+  if(v_flag == 0)
+    {
+      /* Need to reset the new current figure returned by sciGetCurrentFigure */
+      sciHandleTab *hdl = NULL;
+      sciPointObj  *pobj= NULL;
+      
+      hdl = sciGetpendofhandletab();
+		 
+      if(CurrentScilabXgc != NULL)
+	while (hdl != NULL)
+	  {
+	    pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
+	    if (sciGetEntityType(pobj) == SCI_FIGURE && sciGetNum(pobj) == CurrentScilabXgc->CurWindow ) /* Adding F.Leray 19.04.04 */
+	      {
+		sciSetCurrentFigure(pobj);
+		/* sciGetScilabXgc (pobj)->CWindow */
+		/* cur =  sciGetScilabXgc (pobj)->CWindow;*/
+		/* to force a reset in the graphic scales : COPY from Actions.c line 237 */
+		/* SwitchWindow(&cur);*/
+		/*C2F(dr)("xset","window",&(pFIGURE_FEATURE(pobj)->number),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);*/
+		/*sciDrawObj(pobj);*/
+		/*sciSetSelectedSubWin((sciPointObj *) sciGetSelectedSubWin
+		  (pobj));*/
+		sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
+		break;
+		
+	      }
+	    hdl = hdl->pprev;
+	  }
+    }
+}
+
+
+

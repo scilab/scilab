@@ -48,7 +48,7 @@
 
 #define WHITE 7
 #define BLACK 0
-
+extern int versionflag;
 
 void C2F(Write2VectXfig)(integer *vx, integer *vy, integer n, integer flag); 
 void C2F(WriteGenericXfig)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
@@ -1627,7 +1627,7 @@ void C2F(InitScilabGCXfig)(integer *v1, integer *v2, integer *v3, integer *v4)
   /** we force CurColorStatus to th eopposite value of col 
     to force usecolorPos to perform initialisations 
     **/
-  ScilabGCXfig.graphicsversion = 0;/* NG */ /* old mode */
+  ScilabGCXfig.graphicsversion = (versionflag==1) ? 0:1;/* NG */
   ScilabGCXfig.CurColorStatus = (col == 1) ? 0: 1;
   C2F(usecolorXfig)(&col,PI0,PI0,PI0);
   if (col == 1) ScilabGCXfig.IDLastPattern = ScilabGCXfig.Numcolors - 1;

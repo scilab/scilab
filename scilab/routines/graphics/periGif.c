@@ -125,6 +125,7 @@ static int GifLineColor __PARAMS((void));
 static int GifPatternColor __PARAMS((int pat));
 static void LoadFontsGif(void);
 extern int gdImageSymb(gdImagePtr im, gdFontPtr f, int x, int y, int c, int color);
+extern int versionflag;
 /** Structure to keep the graphic state  **/
 
 struct BCG  ScilabGCGif ;
@@ -1910,7 +1911,7 @@ void InitScilabGCGif(integer *v1, integer *v2, integer *v3, integer *v4)
   /** we force CurColorStatus to the opposite value of col 
     to force usecolorGif to perform initialisations 
     **/
-  ScilabGCGif.graphicsversion = 0;/* NG */ /* old mode */
+  ScilabGCGif.graphicsversion = (versionflag==1) ? 0:1;/* NG */
   ScilabGCGif.CurColorStatus = (col == 1) ? 0: 1;
   C2F(usecolorGif)(&col,PI0,PI0,PI0);
   if (col == 1) ScilabGCGif.IDLastPattern = ScilabGCGif.Numcolors - 1;

@@ -29,6 +29,7 @@ extern int PushClickQueue(int win,int x,int y,int ibut,int motion,int release) ;
 extern void * graphic_initial_menu(int winid);
 extern void MenuFixCurrentWin __PARAMS(( int ivalue));
 extern void GPopupResize __PARAMS((struct BCG *ScilabXgc,int *,int *));
+extern int versionflag;
 
 /** Global variables to deal with X11 **/
 
@@ -2888,7 +2889,7 @@ static void InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
   /** we force CurColorStatus to the opposite value of col 
    * to force usecolorPos to perform initialisations 
    **/
-  ScilabXgc->graphicsversion = 0;/* NG */ /* old */
+  ScilabXgc->graphicsversion = (versionflag==1) ? 0:1;/* NG */
 
   ScilabXgc->CurColorStatus = (i == 1) ? 0: 1;
   xset_usecolor(&i ,PI0,PI0,PI0);

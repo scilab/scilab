@@ -45,7 +45,7 @@
 #include "periPos.h"
 #include "color.h"
 #include "bcg.h" /* NG */
-
+extern int versionflag;
 void C2F(WriteGeneric1Pos)(char *string, integer nobjpos, integer objbeg, integer sizeobj, integer *vx, integer *vy, integer flag, integer *fvect);
 void C2F(xgetmarkPos)(integer *verbose, integer *symb, integer *narg, double *dummy);
 void C2F(xsetmarkPos)(integer *number, integer *size, integer *v3, integer *v4);
@@ -1737,7 +1737,7 @@ void InitScilabGCPos(integer *v1, integer *v2, integer *v3, integer *v4)
   /** we force CurColorStatus to the opposite value of col 
     to force usecolorPos to perform initialisations 
     **/
-  ScilabGCPos.graphicsversion = 0;/* NG */ /* old mode */
+  ScilabGCPos.graphicsversion = (versionflag==1) ? 0:1;/* NG */ 
 
   ScilabGCPos.CurColorStatus = (col == 1) ? 0: 1;
   C2F(usecolorPos)(&col,PI0,PI0,PI0);
