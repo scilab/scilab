@@ -23,6 +23,8 @@ function []=toolboxes(dir,flag,force)
     force = %f 
   end
   files= listfiles(dir);
+  cur_wd= getcwd();
+  chdir(dir);
   contribs=[]
   for k=1:size(files,'*') 
     if fileinfo(files(k)+'/builder.sce')<>[] then 
@@ -43,12 +45,14 @@ function []=toolboxes(dir,flag,force)
   end
 
   if contribs<>[] & grep(sciargs(),"-nw")==[] then 
+    delmenu('toolboxes')
     addmenu('toolboxes',contribs);
     // If you also want a build meny 
     //addmenu('build',contribs);
   end
   %toolboxes= contribs;
   %toolboxes_dir= pathconvert(dir);
+  chdir(cur_wd);
 endfunction
 
 function y=build(i)
