@@ -82,7 +82,7 @@ function routines=create_palette(bidon)
 	      'TEXT_f.sci';'CBLOCK.sci';'RATELIMITER.sci'; ...
 	      'BACKLASH.sci';'DEADBAND.sci';'EXPRESSION.sci';	      
 	      'CONSTRAINT_f.sci';'HYSTHERESIS.sci';
-	      'LOGICAL_OP.sci';'RELATIONALOP.sci']
+	      'LOGICAL_OP.sci';'RELATIONALOP.sci';'generic_block2.sci']
 	
       elseif txt=='Linear' then
 	lisf=['DLR_f.sci';'TCLSS_f.sci';'DOLLAR_f.sci';
@@ -97,7 +97,7 @@ function routines=create_palette(bidon)
 	      'BIGSOM_f.sci';'INTEGRAL_f.sci';'GAINBLK_f.sci';
 	      'DELAYV_f.sci';'DELAY_f.sci'; 'DEMUX_f.sci';'MUX_f.sci';
 	     'MFCLCK_f.sci';'MCLOCK_f.sci';'COSBLK_f.sci';   'DLRADAPT_f.sci'; ...
-	      'SINBLK_f.sci'; 'TANBLK_f.sci'	     ]
+	      'SINBLK_f.sci'; 'TANBLK_f.sci';'generic_block.sci'	     ]
 
       elseif txt=='DemoBlocks' then
 	lisf=['BOUNCE.sci';'BOUNCEXY.sci']
