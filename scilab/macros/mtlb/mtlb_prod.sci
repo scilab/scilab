@@ -1,9 +1,24 @@
-function r=mtlb_prod(a)
+function r=mtlb_prod(a,dim)
 // Copyright INRIA
-if type(a)==4 then a=bool2s(a);end
-if size(a,1)==1|size(a,2)==1 then
-  r=prod(a)
+// Emulation function for prod() Matlab function
+// V.C.
+
+rhs=argn(2)
+
+if rhs==1 then
+  // Scalar, vector or empty matrix
+  if find(size(a)==1)<>[] | find(size(a)==0)<>[] then
+    r=prod(a)
+  else
+    r=prod(a,1)
+  end
 else
-  r=prod(a,1)
+  if dim<=size(size(a),"*") then
+    r=prod(a,dim)
+  else
+    r=a
+  end
 end
 endfunction
+
+
