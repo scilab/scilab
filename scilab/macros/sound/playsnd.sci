@@ -9,5 +9,8 @@ if ~MSDOS then
    end
   mput(lin2mu(y),'uc',fp);
   mclose(fp);
+else
+	savewave(TMPDIR+'/_playsnd_.wav',y);
+	PlaySound(TMPDIR+'/_playsnd_.wav');  
 end
 endfunction
