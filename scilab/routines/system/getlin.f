@@ -205,7 +205,7 @@ c
       ilk=lin(k+6)
       if(istk(ilk).eq.10) then
          mn=istk(ilk+1)*istk(ilk+2)
-         lf=ilk+4+mn+istk(ilk+4+mn)
+         lf=ilk+4+mn+istk(ilk+4+mn)-1
       else
          mlhs=istk(ilk+1)
          mrhs=istk(ilk+1+nsiz*mlhs+1)
@@ -213,7 +213,10 @@ c
          lf= ll+istk(ll-1)+1
       endif
       il=lin(k+7)
-      if(il.gt.lf)  goto 45
+      if(il.gt.lf) then
+         eof=.true.
+         goto 45
+      endif
 
    81 if(istk(il).eq.eol) goto 82
       lin(l)=istk(il)

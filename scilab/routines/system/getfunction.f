@@ -178,8 +178,13 @@ c     statements of the function
          n=lpt(4)-l4
          if (eof) then
 c     .     endfunction omitted
-            last=.true.
-            goto 72
+            if(macr.eq.0) then
+               last=.true.
+               goto 72
+            else
+               call error(272)
+               return
+            endif
          endif
          goto 72
       else
@@ -187,7 +192,8 @@ c     .     endfunction omitted
       endif
 
 c     store a line
- 72   if(last.and.n.le.0) goto 73
+ 72   continue
+      if(last.and.n.le.0) goto 73
       if(ilp+nr+1.ge.ilw) then
 c     .  allocate memory for rblock more rows
          ilw=ilw+rblock

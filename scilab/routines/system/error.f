@@ -1221,6 +1221,7 @@ C     errors from semidef
       endif
       goto 999
  272  continue
+      call msgout(io,lunit, 'endfunction is missing')
       goto 999
  273  continue
       goto 999

@@ -77,7 +77,7 @@ c     matfns
       if(op.ge.100) goto 80
 c     return
       if(op.eq.99) then
-c     .  check is "return" occured in a for loop
+c     .  check if "return" occured in a for loop
          p=pt+1
  12      p=p-1
          if(rstk(p).eq.612) then

@@ -786,8 +786,10 @@ c
 c     
  85   icall=0
       if(fun.eq.krec) then
-         call error(22)
-         goto 98
+         if(fun.gt.0) then
+            call error(22)
+            goto 98
+         endif
       endif
       
       if(err1.ne.0) then
