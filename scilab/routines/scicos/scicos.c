@@ -2414,6 +2414,7 @@ callf(t,xtd,xt,residual,g,flag)
     in=Blocks[kf-1].nin;
     
     /* catenate outputs if necessary */
+	no=0;
     if (Blocks[kf-1].nout>1) {
       ko=0;
       for (out=0;out<Blocks[kf-1].nout;out++) {
