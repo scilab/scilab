@@ -680,6 +680,11 @@ int sciprint2(va_alist) va_dcl
   iv = va_arg(ap,int);
   fmt = va_arg(ap, char *);
 #endif
+  /* next three lines added for diary SS*/
+  (void ) vsprintf(s_buf, fmt, ap );
+  lstr=strlen(s_buf);
+  C2F(diary)(s_buf,&lstr,0L);
+
   C2F(xscion)(&i);
   if (i == 0) 
     {
@@ -687,8 +692,9 @@ int sciprint2(va_alist) va_dcl
     }
   else 
     {
-      retval= vsprintf(s_buf, fmt, ap );
-      lstr=strlen(s_buf);
+      /* Next two lines suppressed:see above SS
+	retval= vsprintf(s_buf, fmt, ap );
+	lstr=strlen(s_buf); */ 
       C2F(xscisncr)(s_buf,&lstr,0L);
     }
   va_end(ap);

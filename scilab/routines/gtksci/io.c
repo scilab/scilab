@@ -97,7 +97,13 @@ int  sciprint2(int iv,char *fmt,...)
 {
   int retval;
   va_list ap;
+  char s_buf[1024];
   va_start(ap,fmt);
+  /* next three lines added for diary SS*/
+  (void ) vsprintf(s_buf, fmt, ap );
+  lstr=strlen(s_buf);
+  C2F(diary)(s_buf,&lstr,0L);
+
   retval= vfprintf(stdout, fmt, ap );
   va_end(ap);
   return retval;
