@@ -2184,7 +2184,7 @@ WSCI=strsubst(SCI,'/','\')
      "SCILIBS = """+WSCI+"\bin\LibScilab.lib"""
      "LIBRARY = lib"+name
      "OBJS = "+strcat(files+'.obj',' ')
-     'OBJSSTAN='+rdnom+'_standalone.obj '+rdnom+'_act_sens_events.obj' +rdnom+'_Cblocks.obj'
+     'OBJSSTAN='+rdnom+'_standalone.obj '+rdnom+'_act_sens_events.obj '+rdnom+'_Cblocks.obj'
      "OTHERLIBS = "+libs
      ""
      "DUMPEXTS="""+WSCI+"\bin\dumpexts"""
