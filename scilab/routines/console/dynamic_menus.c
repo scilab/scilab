@@ -51,7 +51,7 @@ int  scig_command_handler_none (char *command);
 extern int StoreCommand  __PARAMS((char *command));  
 extern int StoreCommand1  __PARAMS((char *command, int flag));  
 
-extern void GetCommand  __PARAMS((char *str));  
+extern int GetCommand  __PARAMS((char *str));  
 extern integer C2F (ismenu) __PARAMS((void));  
 extern int C2F (getmen) __PARAMS((char *btn_cmd, integer *lb, integer *entry));  
 extern void  reset_scig_command_handler __PARAMS((void));
@@ -65,6 +65,7 @@ extern int NumberOfCommands;
 typedef struct commandRec
 {
   char              *command;		/* command info one string two integers */
+  int               flag; /* 1 if the command execution cannot be interrupted */
   struct commandRec *next;
 } CommandRec, *CommandRecPtr;
 
@@ -131,11 +132,13 @@ int StoreCommand1 (char *command,int flag)
 					sciprint ("send_command : No more memory \r\n");
 					return (1);
 				}
+			  p->flag = 0;
 			  p->command = (char *) malloc ((strlen (command) + 1) * sizeof (char));
 			 if (p->command == (char *) 0)
 				{
-					sciprint ("send_command : No more memory \r\n");
-					return (1);
+				  free(p);
+				  sciprint ("send_command : No more memory \r\n");
+				  return (1);
 				}
 			strcpy (p->command, command);
 			p->next = NULL;
@@ -156,26 +159,40 @@ int StoreCommand1 (char *command,int flag)
  }
 return (0);
 }
+void SetCommandflag(int flag)
+{
+  CommandRec *p, *r;
+  if (commandQueue != NULL) {
+    p = commandQueue;
+    while ((r = p->next))	p = r;
+    p->flag=flag;
+  }
+}
 
 /*-------------------------------------------------
  * Gets info on the first queue element 
  * and remove it from the queue 
  -------------------------------------------------*/
 
-void GetCommand ( char *str)
+int GetCommand ( char *str)
 {
-	
+  int flag;
+  flag = 0;	
   if (commandQueue != NULL)
     {
 
       CommandRec *p;
+
           	
       p = commandQueue;
       strcpy (str, p->command);
+      flag=p->flag;
+
       commandQueue = p->next;
       free (p->command);
       free (p);
     }
+  return flag;
 }
 
 /*-------------------------------------------------
@@ -197,17 +214,19 @@ integer C2F(ismenu)()
 
 int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
 {
+  int flag;
   if (C2F(ismenu)()==1) 
     {
-      GetCommand(btn_cmd);
+      flag=GetCommand(btn_cmd);
       *lb=(integer)strlen(btn_cmd);
     }
   else
     { 
+      flag=0;
       *lb =0;
       *entry=0;
     }
-  return(0);
+  return flag;
 }
 
 
