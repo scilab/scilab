@@ -1122,8 +1122,8 @@ int C2F(createlistcvarfromptr)(lnumber, number, typex,it, m, n, iptr, iptc, type
  * the allowed size (in double) is returned in m
  *---------------------------------------------------------------------*/
 
-int C2F(creatework)(number, lr,m)
-     integer *number, *lr,*m;
+int C2F(creatework)(number,m,lr)
+     integer *number,*m, *lr;
 {
   int n,it=0,lw1,lcs,il;
   char *fname = Get_Iname();
