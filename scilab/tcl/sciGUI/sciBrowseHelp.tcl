@@ -181,6 +181,8 @@ proc sciGUIBrowseHelpShowTree { winId } {
         if { $gethtml > 0 } {
                 help::init $sciGUITable(browsehelp,$gethtml,URL)
         }
+        # 1 LINE ADDED BY FRANCOIS VOGEL, 03/04/05 - Implements Scilab request 106
+        focus $w
 }
 
 
@@ -274,12 +276,16 @@ proc sciGUIBrowseHelp { {winId -1} update filelist {toFind ""} } {
                 #pack $w.l.t.labFind -side right -fill x -expand 1 -padx 5
                 pack $w.l.t.butFind -side left -expand 0
                 
-                canvas $w.l.b.tree -width 250 -height 350 -bd 1 -background LightGray -relief sunken -yscrollcommand "$w.l.b.sb set"
+                canvas $w.l.b.tree -width 250 -height 350 -bd 1 -background LightGray -relief sunken -yscrollcommand "$w.l.b.sb set" -highlightthickness 0
                 scrollbar $w.l.b.sb -command "$w.l.b.tree yview"
                 pack $w.l.b.tree $w.l.b.sb -side left -fill both -expand 0
                 pack $w.l.t -side top -fill x -expand 0 
                 pack $w.l.b -side top -fill both -expand 1 -pady 3
 
+                # 3 LINES ADDED BY FRANCOIS VOGEL, 03/04/05 - Implements Scilab request 106
+                bind $w.l.b.tree <Enter> {focus %W}
+                bind $w.l.b.tree <Leave> {focus [winfo toplevel %W].r.f.text}
+                bind $w.l.b.tree <MouseWheel> {%W yview scroll [expr {-(%D/120)}] units}
 
                 pack $w.l -side left -padx 5 -fill both -expand 0
                 pack $w.r -side left -padx 5 -fill both -expand 1
