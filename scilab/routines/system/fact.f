@@ -216,17 +216,9 @@ c     -- check for eye, rand ones function special call
       fun1=fun
       call funs(id)
       if(err.gt.0) return
-c This test is retained for obsolete syntax eye rand ones
-      if(fun.eq.6.and.(fin.eq.14.or.fin.eq.13.or.fin.eq.15)) then
-        call msgs(8,0)
-        goto 53
-      endif
       if (fun .gt. 0) then
          call varfunptr(id,fun,fin)
          goto 60
-c         call putid(ids(1,pt+1),id)
-c         call error(25)
-c         if (err .gt. 0) return
       endif
 c     this should never happen???
       if (eqid(id,eye).or.eqid(id,rand)) then
