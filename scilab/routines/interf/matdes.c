@@ -129,7 +129,7 @@ extern void C2F(gsorts)  __PARAMS((char **data,int *ind,int *iflag, int *m,int *
 extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,int *n,
 				 char *type,char *iord));
 extern void ShowScales  __PARAMS((void));
-extern  void C2F(seteventhandler)  __PARAMS((int *win_num,char *name,int *ierr));
+extern  void seteventhandler  __PARAMS((int *win_num,char *name,int *ierr));
 #ifdef WITH_TK
 extern int GetTclCurrentFigure(void);
 #endif
@@ -4825,10 +4825,10 @@ int sciseteventhandler(fname, fname_len)
   if (Rhs == 1) 
     {
       GetRhsVar(1,"c",&m1,&n1,&l1);
-      C2F(seteventhandler) (&win,cstk(l1),&ierr);
+      seteventhandler(&win,cstk(l1),&ierr);
     }
   else 
-    C2F(seteventhandler) (&win,"",&ierr);
+    seteventhandler(&win,"",&ierr);
   LhsVar(1)=0;
   return 0;
 } 
