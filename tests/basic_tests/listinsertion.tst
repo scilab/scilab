@@ -354,3 +354,30 @@ Sr=mlist(["st","dims","a","b"],int32([1,3,2,2]),..
 	 list("1",[],[],5,[],"foo" ,[],[],[],[],[],[]),..
 	 list(2,[],[],[],[],[],[],[],[],[],[],[33,44]));
 if or(S<>Sr) pause,end
+
+clear S;S(1,2).a=3;S(3).a=44 ;
+Sr = mlist(["st","dims","a"],int32([1,3]),list([],3,44));
+if or(S<>Sr) pause,end
+
+clear S;S.a=3;S(3).a=44;
+Sr = mlist(["st","dims","a"],int32([3,1]),list(3,[],44));
+if or(S<>Sr) pause,end
+
+clear S;S(4).a=3;
+Sr = mlist(["st","dims","a"],int32([4,1]),list([],[],[],3));   
+if or(S<>Sr) pause,end
+
+mtlb_mode(%t) 
+clear S;S(1,2).a=3;S(3).a=44 ;
+Sr = mlist(["st","dims","a"],int32([1,3]),list([],3,44));
+if or(S<>Sr) pause,end
+
+clear S;S.a=3;S(3).a=44;
+Sr = mlist(["st","dims","a"],int32([1,3]),list(3,[],44));
+if or(S<>Sr) pause,end
+
+
+clear S;S(4).a=3;
+Sr = mlist(["st","dims","a"],int32([1,4]),list([],[],[],3));   
+if or(S<>Sr) pause,end
+mtlb_mode(%f) 
