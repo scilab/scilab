@@ -28,7 +28,7 @@
  *
  *	from: @(#)types.h 1.18 87/07/24 SMI
  *	from: @(#)types.h	2.3 88/08/15 4.0 RPCSRC
- *	$Id: types.h,v 1.1 2001/04/26 07:48:37 scilab Exp $
+ *	$Id: types.h,v 1.2 2002/06/28 10:49:24 chanceli Exp $
  */
 
 /*
@@ -58,7 +58,7 @@
 #ifndef __ABSC__
 #include <sys/types.h>
 #endif
-#if (defined __MSC__) || (defined __ABSC__)
+#if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__)
 #undef FALSE
 #undef TRUE 
 #include <winsock.h>
@@ -70,7 +70,7 @@ typedef char * caddr_t;
 
 #endif /* makedev */
 
-#if !(defined __MSC__) && !(defined __ABSC__)
+#if !(defined __MSC__) && !(defined __ABSC__) && ! (defined __MINGW32__)
 #include <sys/time.h>
 #endif
 #ifdef __ABSC__

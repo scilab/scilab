@@ -28,7 +28,7 @@
  *
  *	from: @(#)xdr.h 1.19 87/04/22 SMI
  *	from: @(#)xdr.h	2.2 88/07/29 4.0 RPCSRC
- *	$Id: xdr.h,v 1.1 2001/04/26 07:48:37 scilab Exp $
+ *	$Id: xdr.h,v 1.2 2002/06/28 10:49:24 chanceli Exp $
  */
 
 /*
@@ -40,7 +40,7 @@
 #ifndef _RPC_XDR_H
 #define _RPC_XDR_H
 
-#if !(defined __MSC__) && !(defined __ABSC__)
+#if !(defined __MSC__) && !(defined __ABSC__) && !(defined __MINGW32__)
 #include <sys/cdefs.h>
 #endif 
 
@@ -269,7 +269,7 @@ extern bool_t   xdr_netobj();
  * These are the public routines for the various implementations of
  * xdr streams.
  */
-#if !(defined __MSC__) && !(defined __ABSC__)
+#if !(defined __MSC__) && !(defined __ABSC__) &&!(defined __MINGW32__)
 __BEGIN_DECLS
 #endif
 /* XDR using memory buffers */
@@ -291,7 +291,7 @@ extern bool_t xdrrec_skiprecord	__P((XDR *));
 
 /* true if no more input */
 extern bool_t xdrrec_eof	__P((XDR *));
-#if !(defined __MSC__) && !(defined __ABSC__)
+#if !(defined __MSC__) && !(defined __ABSC__) && !(defined __MINGW32__) 
 __END_DECLS
 #endif
 
