@@ -22,7 +22,7 @@ int intqr()
       ret = C2F(intdgeqpf3)("qr",2L);
       return; }
     if (Cmplx==1) {
-      /*     ret = C2F(intzgeqpf3)("qr",2L); */
+      ret = C2F(intzgeqpf3)("qr",2L);
       return; } 
     break;
   case 2 :   /* ...=qr(A, something)   */
@@ -36,10 +36,10 @@ int intqr()
     case STRING  :
       /* Economy size:  ...=qr(A,"e")  */
       if (Cmplx==0) {
-	/* ret = C2F(intdgeqpf4)("qr",2L);  
+	ret = C2F(intdgeqpf4)("qr",2L);  
 	return;}
       if (Cmplx==1) {
-	/*  ret = C2F(intzgeqpf4)("qr",2L);   */
+	ret = C2F(intzgeqpf4)("qr",2L);  
 	return;} 
       break;
     }
