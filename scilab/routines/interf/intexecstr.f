@@ -2,9 +2,10 @@
 c     Copyright INRIA/ENPC
       INCLUDE '../stack.h'
 c     
-      integer retu(6),comma,eol,topk
+      integer retu(6),comma,eol,topk,mode(2)
       logical eptover,getsmat,checklhs,checkrhs,checkval
       integer iadr,sadr
+      logical first,pflag
 c
       save opened,lunit,job,icomp
 c     
@@ -93,7 +94,7 @@ c     add ",return,<eol>,<eol>" at the end of the last line
       istk(l-1)=istk(l-1)+10
       lstk(top+1)=sadr(l1)+1
 c     
-      fin=lstk(top)
+      fin=lstk(top)      
       pt=pt+1
       pstk(pt)=top
       rstk(pt)=903
@@ -102,13 +103,18 @@ c     error control
       ids(3,pt)=err2
       ids(4,pt)=err1
       ids(5,pt)=errpt
+      ids(6,pt)=(lct(4)+100)+10000*sym
       if(icheck.eq.0) then
          ids(1,pt)=0
+         if(errct.ne.0) then
+            imode=abs(errct/100000)
+            imode=imode-8*int(imode/8)
+         endif
+         if (imode.ne.0) errpt=pt
       else
          errpt=pt
          ids(1,pt)=1
          imode=1
-c         imess=1
          num=-1
          errct=(8*imess+imode)*100000+abs(num)
          if(num.lt.0) errct=-errct
@@ -118,7 +124,7 @@ c     *call*  macro
       go to 999
  24   continue
       if(ids(1,pt).eq.1) then
-c     return error number
+c     .  error recovery required: return error number
          il=iadr(lstk(top))
          istk(il)=1
          istk(il+1)=1
@@ -131,10 +137,35 @@ c     return error number
          err2=ids(3,pt)
          err1=ids(4,pt)
          errpt=ids(5,pt)
+         sym=ids(6,pt)/10000
+         lct(4)=ids(6,pt)-10000*sym-100
          fun=0
       else
-         if(errct.ne.0.and.err1.gt.0) then
-            top=top-1
+c     .  error recovery not required by this execstr
+         if(errct.ne.0.and.err1.gt.0.and.rstk(pt).eq.903) then
+c     .     error recovery required at a higher level
+            pt0=ids(5,pt)
+c     .     following code copied from errmgr
+            pt=pt+1
+ 25         pt=pt-1
+            if(pt.eq.pt0) goto 28
+            goto(26,26,27) rstk(pt)-500
+            if(r.eq.904) then
+               if (ids(2,pt).ne.0) then
+c     .           getf(  'c') case, close the file
+                  mode(1)=0
+                  call clunit(-ids(2,pt),buf,mode)
+               endif
+            endif
+            goto 25
+c     .     on depile une fonction
+ 26         call depfun(lunit,.false.,.false.)
+            goto 25
+c     .     on depile un exec ou une pause
+ 27         call depexec(lunit,.false.,.false.,pflag)
+            if(.not.pflag) goto 25
+ 28         top=pstk(pt)
+            goto 24
          else
             errpt=ids(5,pt)
             il=iadr(lstk(top))
