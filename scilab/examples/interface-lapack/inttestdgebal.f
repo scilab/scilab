@@ -1,4 +1,4 @@
-      subroutine intdgebal(fname)
+      subroutine inttestdgebal(fname)
 c***************************************************************************
 c   usage: 
 c   [SCALE, ILOW, IHI]=dgebal(JOB, A) 

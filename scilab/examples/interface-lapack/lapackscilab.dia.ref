@@ -20,7 +20,7 @@ if norm(C1-(alfa*A*B+beta*C)) > %eps then bugmes();quit;end
  
 A=[1/2^10,1/2^10;2^10,2^10];
  
-[SCALE, ILOW, IHI]=dgebal('S', A);
+[SCALE, ILOW, IHI]=xxdgebal('S', A);
  
 if norm(SCALD-[0.001;1]) > %eps then bugmes();quit;end
  

@@ -16,9 +16,9 @@ CFUNCTIONS = dgemm dlassq dgetrf  dsyev dgeesx zgemm dgesvd #zgeesx
 
 OTHERCOBJS = 
 
-FORTRANINTERFACES = intfdgemm.o intdgebal.o intdgebak.o intdgels.o intdgeqrf.o 
+FORTRANINTERFACES = intfdgemm.o inttestdgebal.o intdgebak.o intdgels.o intdgeqrf.o 
 
-FFUNCTIONS = fdgemm dgebal dgebak dgels dgeqrf 
+FFUNCTIONS = fdgemm xxdgebal dgebak dgels dgeqrf 
 
 OTHERFOBJS = 
 ################ do not edit below this line ############################
