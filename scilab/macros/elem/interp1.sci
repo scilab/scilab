@@ -1,27 +1,27 @@
 function yi=interp1(varargin)
 // Copyright INRIA
-//yi=interp1(x,y,xi[,method[,interpolation)
-//This fuction performs the yi values corresponding to xi by interpolation defined by x and y.
-//Inputs :
+// yi=interp1(x,y,xi[,method[,interpolation)
+// This function performs the yi values corresponding to xi by interpolation defined by x and y.
+// Inputs :
 // x , y : given data, x is a reals vector, y is a vector, matrix, or hypermatrix of reals
-//if y is a vector, the length of x must be equal to length of y, else the size of the first dimension of y must be equal to length of x.
-//Output:
+// if y is a vector, the length of x must be equal to the length of y, 
+// else the size of the first dimension of y must be equal to length of x.
 // xi : a vector, matrix, or hypermatrix of reals 
-// yi : the values corresponding to xi by interpolation defined by x and y
-//if size(y)=[C,N1,N2,N3,....] and size(xi)=[M1,M2,M3,M4] also size(xi)=[M1,M2,M3,M4,N1,N2,N3,N4,..], and length of x must be equal to C. 
-//Several kind of intepolations may be computed by selecting the appropriate  method  parameter:
+// Output
+// yi : reals vector, matrix or hypermatrix, the values corresponding to xi by interpolation defined by x and y
+// if size(y)=[C,N1,N2,N3,....] and size(xi)=[M1,M2,M3,M4] also size(xi)=[M1,M2,M3,M4,N1,N2,N3,N4,..], and length of x must be equal to C. 
+// Several kind of intepolations may be computed by selecting the appropriate  method  parameter:
 //
-//The methods are:
-//linear : this is the default method (using the interp function) 
-//spline : this is the cubic spline interpolation  (using interpln and splin functions)
-//nearest : yi take the values corresponding to the nearest neighbor of xi  
+// The methods are:
+// linear : this is the default method (using the interp Scilab function) 
+// spline : this is the cubic spline interpolation  (using interpln and splin Scilab functions)
+// nearest : yi take the values corresponding to the nearest neighbor of xi  
 //
-//Several kind of extrapolations may be computed :
-//'extrap' : the extrapolation points is performed by the defined method (for spline), else for the linear and nearest method the 
-//extrapolation points are equal to nan
-// you can also enter a numeric value for example 0,5 but too nan and inf
-//F.B
-
+// Several kind of extrapolations may be computed :
+// 'extrap' : the extrapolation points is performed by the defined method (for spline), else for the linear and nearest method the 
+// extrapolation points are equal to nan
+// you can also enter a numeric value for example 0 or 5 but too nan and inf
+// F.B
 
 rhs=size(varargin)
 // 2 < Number of inputs arguments < 5
@@ -62,7 +62,7 @@ if type(xi)<>1 then
   end
 end
 //delete the dimension of xi equal to one after the second dimension
-//or the first dimension
+//or the first dimension 
 xisize=size(xi);
 while size(xisize,"*")>=2 & xisize($)==1
   xisize=xisize(1:$-1);
@@ -79,7 +79,6 @@ end
 //-------------------------
 x=varargin(1);
 y=varargin(2);
-xi=varargin(3)
 //x must be real vector
 if type(x)<>1 then
   error("x must be a reals array")
@@ -94,7 +93,7 @@ if type(y)<>1 then
     error("y must be a reals array")
   end
 end
-//verification of x,y line/column
+//verification of x,y line/column 
 if isvector(x) then
   if find(isnan(x))<>[] then
     error("x values must be real ")
@@ -114,7 +113,7 @@ else
   error("x must be a vector")
 end
 
-// xi : increase order sorting for xi
+// xi : increase order sorting (for xi)
 [xtemp,p]=gsort(matrix(x,1,-1),'c','i')
 x=matrix(xtemp,size(x))
 x=matrix(x,1,-1)
@@ -134,6 +133,10 @@ end
 
 //default method : linear method is used
 if size(varargin)==3 then
+  if xi==[] then
+    yi=[]
+    return
+  end
   yi=interp1(x,y,xi,'linear',%nan)
 end
 
@@ -148,18 +151,32 @@ if size(varargin)==4 then
     //-------------------------------------------
     // the values of extrapolation points are nan for linear method  
   case "l"
+    if xi==[] then
+      yi=[]
+      return
+    end
+
     yi=interp1(x,y,xi,'linear',%nan) 
     //-------------------------------------------
     // Spline method  yi=interp1(x,y,xi,'spline')
     //-------------------------------------------
     // the extrapolation used the spline method
   case "s"
+    if xi==[] then
+      yi=[]
+      return
+    end
+
     yi=interp1(x,y,xi,'spline','extrap')  
     //----------------------------------------------
     // Nearest method  yi=interp1(x,y,xi,'nearest')
     //----------------------------------------------
     // the values of extrapolation points are nan for nearest method  
   case "n"
+    if xi==[] then
+      yi=[]
+      return
+    end
     yi=interp1(x,y,xi,'nearest',%nan)
   else
     error("wrong interpolation")
@@ -175,7 +192,16 @@ if size(varargin)==5 then
     //--------------------------------------------------------------------------------------------  
     // Linear method : yi=linear(x,y,xi,'linear','extrap') or  yi=interp1(x,y,xi,method,extrapval)
     //---------------------------------------------------------------------------------------------
-  case "l"     
+  case "l"    
+    if xi==[] then 
+      if varargin(5)=="extrap"|type(varargin(5))==1 then
+	yi=[]
+	return
+      else
+	error("wrong extrapolation")
+      end
+    end
+
     xitemp=matrix(xi,-1,1)
     // y is a vector
     if isvector(y) then
@@ -202,6 +228,7 @@ if size(varargin)==5 then
       for l=1:size(y,"*")/size(y,1)
 	yi(:,l)=matrix(interpln([matrix(x,1,-1);y(:,l)'],xitemp),size(xitemp)) 
       end 
+      //extrapolation
       if type(varargin(5))==10 then
 	if varargin(5)<>"extrap" then
 	  error("wrong extrapolation")
@@ -219,6 +246,14 @@ if size(varargin)==5 then
     // Spline method  yi=interp1(x,y,xi,'spline','extrap') or  yi=interp1(x,y,xi,'spline',extrapval) 
     //----------------------------------------------------------------------------------------------    
   case "s"
+    if xi==[] then 
+      if varargin(5)=="extrap"|type(varargin(5))==1 then
+	yi=[]
+	return
+      else
+	error("wrong extrapolation")
+      end
+    end
     xitemp=matrix(xi,-1,1)
     //y is a vector
     if isvector(y) then
@@ -245,6 +280,7 @@ if size(varargin)==5 then
       for l=1:size(y,"*")/size(y,1) 
 	yi(:,l)=matrix(interp(matrix(xi,-1,1),matrix(x,-1,1),y(:,l),splin(matrix(x,-1,1),y(:,l)),"natural"),size(xitemp))//les composante de yi
       end
+      //extrapolation
       if type(varargin(5))==10 then
 	if varargin(5)<>"extrap" then
 	  error("wrong extrapolation")
@@ -262,10 +298,22 @@ if size(varargin)==5 then
     // Nearest method  yi=interp1(x,y,xi,'nearest','extrap') or yi=interp1(x,y,xi,'nearest',extrapval)
     //------------------------------------------------------------------------------------------------    
   case "n"
-    //all xi values are nan
+    //if all xi values are nan, retuns nan values for yi
     if size(find(isnan(xi)),"*")==size(xi,"*") then
-      yi=xi
-      return
+      if varargin(5)=="extrap"|type(varargin(5))==1 then
+	yi=xi
+	return
+      else
+	error("wrong extrapolation") 
+      end
+    end
+    if xi==[] then 
+      if varargin(5)=="extrap"|type(varargin(5))==1 then
+	yi=[]
+	return
+      else
+	error("wrong extrapolation")
+      end
     end
     //y is vector
     if isvector(y) then
@@ -294,6 +342,7 @@ if size(varargin)==5 then
       k(i) = k(i)+1;
       yi=y(k)     
       yi=matrix(yi,1,-1)
+      //extrapolation
       if type(varargin(5))==10 then
 	if varargin(5)<>"extrap" then
 	  error("wrong extrapolation")
@@ -315,7 +364,7 @@ if size(varargin)==5 then
       else
 	yi=matrix(yi,xisizetemp)
       end
-      //y is a matrix
+      //y is a matrix or a hypermatrix
     elseif size(size(y),"*")>=2 then 
       xitemp=matrix(xi,1,-1)
       knan=find(isnan(xitemp))
@@ -346,6 +395,7 @@ if size(varargin)==5 then
 	ytemp=matrix(y(:,l),1,-1)
 	yi(:,l) =ytemp(k)
       end
+      //extrapolation
       if type(varargin(5))==10 then
 	if varargin(5)<>"extrap" then
 	  error("wrong extrapolation")
