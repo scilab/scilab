@@ -15,7 +15,7 @@ int C2F(banier)(integer *flag)
     sciprint("        -------------------------------------------\r\n");
 	#endif
 
-    sciprint("                       %s\r\n\n",VERSION);
+    sciprint("                         %s\r\n\n",VERSION);
     sciprint("                  Copyright (c) 1989-2004          \r\n");
     sciprint("              Consortium Scilab (INRIA, ENPC)      \r\n");
 

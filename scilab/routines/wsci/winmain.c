@@ -515,7 +515,7 @@ void CreateScilabConsole(int ShowBanner)
 
 		strcpy(line,"        ___________________________________________\r\n");
 		printf(line);
-	    wsprintf(line,"                       %s\r\n\n",VERSION);
+	    wsprintf(line,"                         %s\r\n\n",VERSION);
 		printf(line);
 		strcpy(line,"                  Copyright (c) 1989-2004          \r\n");
 		printf(line);
