@@ -142,7 +142,7 @@
                    "Continuare la ricerca nel resto del testo?"
 ::msgcat::mcset it "You are searching for an empty string!" \
           "La stringa da cercare è vuota!"
-::msgcat::mcset it "Re&place" "&Cerca"
+::msgcat::mcset it "Re&place" "&Sostituisci"
 ::msgcat::mcset it "Find what:" "Cerca:"
 ::msgcat::mcset it "Replace with:" "Cambia in:"
 ::msgcat::mcset it "Find &Next" "Trova il prossimo"
