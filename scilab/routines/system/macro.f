@@ -290,6 +290,7 @@ c     .  set output variable name
                   call putid(ids(1,pt+1),istk(l0))
                   call error(4)
                   if(err.gt.0) return
+                  return
                endif
                l0=l0+nsiz
  41         continue

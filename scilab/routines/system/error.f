@@ -123,6 +123,7 @@ c     on depile un exec ou une pause
       if(.not.pflag) goto 35
 c     
  50   continue
+c     if(pt.gt.0.and.rstk(pt).eq.1001) pt=pt+1
       if(erecmode) then
          if(errtyp.eq.0) then
 c     .     recoverable error
@@ -1284,8 +1285,9 @@ c     depile une macro pu un execstr
       include '../stack.h'
       integer lunit
       logical trace,first,callback
-      integer sadr,ll,leng
-
+      integer sadr,ll,leng,ival(2)
+      double precision val
+      equivalence (ival(1),val)
 c
       sadr(l)=(l/2)+1
 c
@@ -1293,7 +1295,12 @@ c
       k=lpt(1)-(13+nsiz)
       lpt(1)=lin(k+1)
       lpt(2)=lin(k+2)
+      lpt(3)=lin(k+3)
+      lpt(4)=lin(k+4)
       lpt(6)=k
+      ival(1)=lin(k+8)
+      ival(2)=lin(k+9)
+      stk(lstk(isiz))=val
 
 c     recherche du nom de la function correspondant a ce niveau
       lk=sadr(lin(k+6))
