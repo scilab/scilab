@@ -56,7 +56,8 @@ function tests=testslist()
 'sprintf.tst';
 'sscanf.tst';
 'strelm.tst';
-'slicot.tst'];
+'slicot.tst';
+'scicos.tst' ];
 
 if MSDOS then
   comp_target = getenv('COMPILER','NO');
