@@ -43,7 +43,7 @@ SIMPA = Modelica_.sci build_block.sci build_modelica_block.sci  \
 	modelicac_path.sci point2pixel.sci scicos_flat.sci  \
 	scs_full_path.sci standard_draw_ports.sci \
 	standard_draw_ports_up.sci value2modelica.sci  \
-	width2pixel.sci  
+	width2pixel.sci getinputports.sci 
 
 MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci \
 	getblock.sci getinputs.sci getlink.sci getobj.sci \
