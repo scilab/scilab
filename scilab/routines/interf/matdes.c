@@ -2993,7 +2993,6 @@ int scixgetmouse(fname,fname_len)
   }
 
   C2F(sciwin)();
-  sciprint("%d,%d,%d\n",sel[0],sel[1],sel[2]);
   C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v,&x,&y,&dv,&dv,10L,3L);
 
   CreateVar(Rhs+1,"d",&m1,&n1,&l1);
