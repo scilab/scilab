@@ -238,9 +238,7 @@ function %h_p(h)
 	 "font_size= "+string(h.font_size)
 	 "font_angle= "+string(h.font_angle)]
       case "Plot3d"
-      d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'), end
-
+ 
       Data = h.data
       dx=sci2exp(Data.x,0)
       if length(dx)>70 then dx="matrix '+strcat(string(size(Data.x)),'x'), end
@@ -264,7 +262,7 @@ function %h_p(h)
 	 "data_x= "+dx
 	 "data_y= "+dy
 	 "data_z= "+dz  
-	 "data_color= "+dcolor
+	 "data_color USELESS= "+dcolor
 	 "clip_state= "+string(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
 	 "color_mode= "+string(h.color_mode)
@@ -288,8 +286,6 @@ function %h_p(h)
       end
 
       case "Fac3d" 
-      c=sci2exp(h.surface_color,0)
-      if length(c)>70 then c="matrix '+strcat(string(size(h.surface_color)),'x'),end
 
       Data = h.data
       dx=sci2exp(Data.x,0)
