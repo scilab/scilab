@@ -92,7 +92,7 @@ function cleantests()
 if MSDOS then
   path=SCI+'\tests\'
   file_to_clean=path+strsubst(testslist(),'.tst','.dia')
-  unix_s('del '+strcat(file_to_clean,' '))
+  unix_s('del '+'""'+strcat(file_to_clean,'"" ""')+'""')
 else
   path=SCI+'/tests/'
   file_to_clean=path+strsubst(testslist(),'.tst','.dia')
