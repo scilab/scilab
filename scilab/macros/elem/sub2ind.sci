@@ -11,6 +11,10 @@ function I=sub2ind(dims,varargin)
 //of size dims.
 //Author Serge Steer, Copyright INRIA  
   d=[1;cumprod(matrix(dims(1:$-1),-1,1))]
+  for i=1:size(varargin)
+    if varargin(i)==[] then I=[],return,end
+  end
+
   if size(varargin)==1 then //subindices are the columns of the argument
     I=(varargin(1)-1)*d+1
   else //subindices are given as separated arguments
