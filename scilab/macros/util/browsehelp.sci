@@ -3,7 +3,7 @@ function browsehelp(path,key)
   global LANGUAGE INDEX
   global %browsehelp
   
-   browsehelp_configure()
+  browsehelp_configure()
   
   // set of possible browsers
   
@@ -12,14 +12,12 @@ function browsehelp(path,key)
     key="index"
   end
   if or(sciargs()=="-nw") then // the no window case
-    if  with_gtk () then
+    if  with_gtk ()| ..
+	  (with_tk()& or(%browsehelp==['Scilab Browser','Old Scilab Browser'])) | ..
+	  or(%browsehelp==['nautilus','mozilla/netscape (gnome-moz-remote)','opera','quanta (kde)']) then
       run_help(path,key);
     else
-       if with_tk() then
-       run_help(path,key);
-       else
-       	write(%io(2),mgetl(path))
-       end
+      write(%io(2),mgetl(path))
     end
   else
     run_help(path,key)
