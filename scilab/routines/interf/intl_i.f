@@ -188,9 +188,14 @@ c     create a pointer on arg2
       if(err.gt.0) return
 
 c     create a pointer on the designed matrix (part of arg3)
-      call createref(il3i,0,vol3)
-      if(err.gt.0) return
-
+      if(vol3.gt.0) then 
+         call createref(il3i,0,vol3)
+         if(err.gt.0) return
+      else
+c     .  the list entry is undefined
+         call defmat
+         if(err.gt.0) return
+      endif
 c     call allops for  standard insertion
       fin=2
       if (ptover(1,psiz)) return
