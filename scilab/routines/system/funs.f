@@ -21,7 +21,8 @@ c     look only in scilab code function libraries
 c     
 c     
 c     if special compilation mode skip primitive functions
-      if (comp(3).eq.1) then
+c      if (comp(3).eq.1) then
+      if (comp(1).ne.0.and.comp(3).ne.2) then
          if(.not.eqid(id,eye)) then
             fin=0
             fun=0
