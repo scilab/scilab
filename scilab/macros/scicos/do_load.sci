@@ -60,12 +60,13 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
 	    if ~c_link(funam) then
 	      qqq=%cpr.corinv(jj)
 	      path=list('objs',qqq(1))
-	      for kkk=qqq(1:$-1)
+	      for kkk=qqq(2:$)
 		path($+1)='model'
 		path($+1)='rpar'
 		path($+1)='objs'
 		path($+1)=kkk
 	      end
+
 	      path($+1)='graphics';path($+1)='exprs';path($+1)=2;
 	      tt=scs_m(path)
 	      if %cpr.sim.funtyp(jj)>1999 then
