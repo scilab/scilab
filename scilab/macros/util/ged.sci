@@ -448,6 +448,7 @@ endfunction
 
 function ged_plot3d(h)
   global ged_handle; ged_handle=h
+  TK_SetVar("curvis",h.visible)
   disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
   TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
 endfunction
@@ -455,12 +456,14 @@ endfunction
 
 function ged_fac3d(h)
   global ged_handle; ged_handle=h
+  TK_SetVar("curvis",h.visible)
   disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
 endfunction
 
 
 function ged_text(h)
   global ged_handle; ged_handle=h
+  TK_SetVar("curvis",h.visible)
   disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
   TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
   TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
@@ -469,6 +472,7 @@ endfunction
 
 function ged_legend(h)
   global ged_handle; ged_handle=h
+  TK_SetVar("curvis",h.visible)
   disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
   TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
 endfunction
@@ -476,6 +480,7 @@ endfunction
 
 function ged_arc(h)
   global ged_handle; ged_handle=h
+  TK_SetVar("curvis",h.visible)
   disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
   TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
 endfunction
@@ -483,6 +488,7 @@ endfunction
 
 function ged_segs(h)
   global ged_handle; ged_handle=h
+  TK_SetVar("curvis",h.visible)
   disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
   TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
 endfunction
@@ -490,12 +496,14 @@ endfunction
 
 function ged_champ(h)
   global ged_handle; ged_handle=h
+  TK_SetVar("curvis",h.visible)
   disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
   TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
 endfunction
 
 function ged_fec(h)
   global ged_handle; ged_handle=h
+  TK_SetVar("curvis",h.visible)
   disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
   TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
 endfunction
@@ -503,6 +511,7 @@ endfunction
 
 function ged_grayplot(h)
   global ged_handle; ged_handle=h
+  TK_SetVar("curvis",h.visible)
   disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
   TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
 endfunction
@@ -510,6 +519,7 @@ endfunction
 
 function ged_axis(h)
   global ged_handle; ged_handle=h
+  TK_SetVar("curvis",h.visible)
   disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
   TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
 endfunction
