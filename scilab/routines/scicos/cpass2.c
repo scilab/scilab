@@ -20,7 +20,16 @@ int OR(int* Vect)
   return next;
 }
 /************************************************* fin du OR *******************************/
-
+/**************************** la fonction de Sign *****************************************/
+int Sign(int x)
+{
+  int y;
+  if  (x < 0) y=-1;
+  else if (x > 0) y=1;
+  else y=0;
+  return y;
+}
+/******************************* fin de Sign  *************************************************/
 /**************************** la fonction de Max1 *****************************************/
 int Max1(int* vect)
 {
@@ -62,24 +71,24 @@ int AND(int* Vect)
 
 /******************************functio main *********************************************************/
 int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
-           bllst11,bllst12,bllst13,nzcross,bllst2ptr,bllst3ptr,bllst4ptr,bllst5ptr,bllst9ptr,typ_x,
+           bllst11,bllst12,bllst13,nmode,nzcross,bllst2ptr,bllst3ptr,bllst4ptr,bllst5ptr,bllst6ptr,bllst9ptr,typ_x,
            bllst11ptr,connectmat,clkconnect,corinvec,corinvptr,
-           iz0,tevts,evtspt,pointi,outtb,zcptr,outlnk,inplnk,
+           iz0,tevts,evtspt,pointi,outtb,zcptr,modptr,outlnk,inplnk,
            lnkptr,ordptr,execlk,ordclk,cord,oord,zord,critev,nb,ztyp,
            nblk,ndcblk,subscr,iord,ok)
      
      char ***bllst10,***bllst13,***bllst111;
      int **bllst2,**bllst3,**bllst4,**bllst5,**bllst2ptr,**bllst3ptr,**bllst4ptr;
      int **bllst5ptr,**typ_x,**bllst11ptr,*ok,**bllst112,**bllst9,**bllst9ptr;
-     int **corinvec,**corinvptr,**evtspt,*pointi,**outtb,**zcptr,**inplnk;
+     int **corinvec,**corinvptr,**evtspt,*pointi,**outtb,**zcptr,**modptr,**inplnk;
      int **outlnk,**lnkptr,**ordptr,**execlk,**ordclk,**cord,**oord;
-     int **zord,**critev,**iz0,**subscr,**nzcross;
+     int **zord,**critev,**iz0,**subscr,**nzcross,**nmode,**bllst6ptr;
      int *nb,**ztyp,*nblk,*ndcblk,**iord,**bllst12,**connectmat,**clkconnect;
      double **bllst11,**tevts;  
 { 
-
+ 
   /*take care of the heritage*/
-  int need_newblk=1,i,l,nombr;
+  int need_newblk=1,i,l,nombr,a;
   int done,ncblk,nxblk,ndblk,nblk1; 
   int *typ_l,*typ_r,*typ_m,*tblock;
   int *typ_cons,*typ_z,*typ_s,*bexe,*boptr,*blnk,*blptr,*outoinptr,*typ_zx;
@@ -103,6 +112,8 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   typ_r=NULL;
   free(tblock);
   tblock=NULL;
+  free(typ_zx);
+  typ_zx=NULL;
   free(typ_cons);
   typ_cons=NULL;
   done=false;  
@@ -132,6 +143,8 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
       (*bllst11ptr)[0]=(*bllst11ptr)[0]+nombr-nblk1;
       if (((*bllst11)=(double*)realloc((*bllst11),sizeof(double)*(((int*) (*bllst11))[0]+2*(nombr-nblk1)+1))) == NULL ) return 0;
       ((int*)(*bllst11))[0]=((int*)(*bllst11))[0]+2*(nombr-nblk1);
+      if (((*nmode)=(int*)realloc((*nmode),sizeof(int)*(nombr+1))) == NULL ) return 0;
+      (*nmode)[0]=nombr;
       if (((*nzcross)=(int*)realloc((*nzcross),sizeof(int)*(nombr+1))) == NULL ) return 0;
       (*nzcross)[0]=nombr;
       if (((*bllst13)=(char**)realloc((*bllst13),sizeof(char*)*(nombr+1))) == NULL )  return 0;
@@ -160,7 +173,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   free(*inplnk);
   free(*outlnk);
   extract_info(*bllst2,*bllst3,*bllst5,*bllst10,*bllst11,*bllst12,*bllst2ptr,*bllst3ptr,*bllst4ptr,*bllst5ptr,
-               *bllst11ptr,*connectmat,*clkconnect,lnkptr,inplnk,outlnk,
+               *bllst11ptr,*connectmat,*clkconnect,lnkptr,inplnk,outlnk,*nzcross,*nmode,
 	       &typ_s,&typ_m,&initexe,&bexe,&boptr,&blnk,&blptr,ok,*corinvec,*corinvptr);
   free(typ_m);
   typ_m=NULL;
@@ -182,11 +195,8 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   exe_cons=NULL;
   
   scheduler(*bllst12,*bllst5ptr,*execlk,execlk0,execlk_cons,ordptr1,outoin,outoinptr,evoutoin,
-	    evoutoinptr,&typ_z,*typ_x,typ_s,bexe,boptr,blnk,blptr,ordptr,ordclk,cord,iord,oord,zord,ok,*nzcross);
-  if(!OR(*typ_x) && OR(typ_z) )
-    {
-      Message("No continuous-time state. Tresholds are ignored.");
-    }
+	    evoutoinptr,&typ_z,typ_x,typ_s,bexe,boptr,blnk,blptr,ordptr,ordclk,cord,iord,oord,zord,ok,*nzcross);
+  
   free(typ_s);
   typ_s=NULL;
   free(*typ_x);
@@ -218,9 +228,14 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   if (((*zcptr)=malloc(sizeof(int)*((nombr+2))))== NULL ) return 0;
   (*zcptr)[0]=nombr+1;
   (*zcptr)[1]=1;
+  if (((*modptr)=malloc(sizeof(int)*((nombr+2))))== NULL ) return 0;
+  (*modptr)[0]=nombr+1;
+  (*modptr)[1]=1;
   for (i=1; i<= nombr; i++)
     {
       (*zcptr)[i+1]=(*zcptr)[i] + typ_z[i];
+      a=Sign(typ_z[i]);
+      (*modptr)[i+1]=(*modptr)[i]+a*(*nmode)[i];
     }
   free(typ_z);
   /*completement inutile pour simulation, c'est pour la generation de code*/
@@ -240,7 +255,10 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
 	  (*ztyp)[i]=0;  
 	}
     }
-
+  /* if xptr($)==1 & zcptr($)>1 then */
+  if ((*bllst6ptr)[(*bllst6ptr)[0]]==1 && (*zcptr)[(*zcptr)[0]] > 1) {
+    Message("No continuous-time state. Tresholds are ignored.");
+  }
   ncblk=0;nxblk=0;ndblk=0;*ndcblk=0;
 
   *nb=nombr;
@@ -263,12 +281,12 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
 int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoinptr,evoutoin,
                evoutoinptr,typ_z,typ_x,typ_s,bexe,boptr,blnk,blptr,ordptr2,ordclk,cord,iord,oord,
                zord,ok,nzcross)
-     int *bllst5ptr,*outoinptr,*evoutoin,*evoutoinptr,**typ_z,*typ_x,*typ_s,*bexe,*boptr;
+     int *bllst5ptr,*outoinptr,*evoutoin,*evoutoinptr,**typ_z,**typ_x,*typ_s,*bexe,*boptr;
      int *blnk,*blptr,**ordptr2,*ok,*ordptr1,*bllst12,*nzcross;
      int *execlk,*execlk0,*execlk_cons,*outoin,**ordclk,**cord,**iord,**oord,**zord;
 {
-  int i,iii,k,l,j,jj,hh,o,fl,fz,maX,n,nblk=typ_x[0],f=0;
-  int *vec,*wec,*ii,*ii1,*ii2,*r,*ext_cord1,*pp,*ppget,*ext_cord2;
+  int i,iii,k,l,j,jj,hh,o,maX,n,nblk=(*typ_x)[0],f=0,fin=0;
+  int *vec,*wec,*ii,*ii1,*ii2,*r,*ext_cord1,*pp,*ppget,*ppget1,*ext_cord2,*typ_z_save;
   int *orddif,*cordX,*ext_cord,*ext_cord_old,*oordii,*ind,a,val=0;
   Mat2C ordclki,ext_cord1i;
   
@@ -401,8 +419,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
     if ((*cord=(int*)malloc(sizeof(int)))== NULL ) return 0;
      (*cord)[0]=0; 
    }
- (*zord)=VecEg1(*cord); 
- (*oord)=VecEg1(*cord);
+ 
  if ((vec=(int*)malloc(sizeof(int)*(nblk+1)))== NULL ) return 0;
  vec[0]=nblk;
  Setmem(vec,-1);   
@@ -462,10 +479,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
    }
  }
  ext_cord[0]=val;
- /* adding zero crossing surfaces to cont. time synchros */
- for (i=1; i<ext_cord[0]+1; i++){
-   if (typ_s[ext_cord[i]]) (*typ_z)[ext_cord[i]]=bllst5ptr[ext_cord[i]+1]-bllst5ptr[ext_cord[i]]-1;
- }
+ /* adding zero crossing surfaces to cont. time synchros */ 
  
  tree3(vec,vec[0],bllst12,typ_s,bexe,boptr,blnk,blptr,&ext_cord_old,ok);
  if(vec) free(vec);
@@ -485,6 +499,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
    if (ext_cord2[i] != ext_cord_old[i]) vec[i]=1;
  }
  free(ext_cord2);
+ if (ext_cord_old) free(ext_cord_old);
  if ( OR(vec)){
    free(vec);
    return 0;
@@ -512,33 +527,18 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
    {
      sciprint("serious bug,report1");
    }
-
- if (ext_cord[0] >= (*cord)[0]/2+1)
-   {
-     ext_cord2=GetPartVect(ext_cord,(*cord)[0]/2+1,ext_cord[0] -(*cord)[0]/2);
-     free(ext_cord);
-     ext_cord=VecEg1(ext_cord2);
-     free(ext_cord2);ext_cord2=NULL;   
-   }
- else 
-   {
-     free(ext_cord);
-     if ((ext_cord=(int*)malloc(sizeof(int)))== NULL ) return 0;
-     ext_cord[0]=0;
-   }
- 
- for (iii=(*cord)[0]/2;iii>0;iii--)
-   {
-     i=(*cord)[iii];
-     fl=false;
-     fz=false;
-     ii=GetPartVect(outoin,outoinptr[i],outoinptr[i+1]-outoinptr[i]);
+ typ_z_save=VecEg1(*typ_z);
+ while (!fin){
+   fin=1;
+   for (i=ext_cord[0]; i>0; i--){
+     iii=ext_cord[i];
+     ii=GetPartVect(outoin,outoinptr[iii],outoinptr[iii+1]-outoinptr[iii]);
      if (!ii)
        {
 	 if ((ii=(int*)malloc(sizeof(int)))== NULL ) return 0;
 	 ii[0]=0;
        }      
-     ppget=GetPartVect(evoutoin,evoutoinptr[i],evoutoinptr[i+1]-evoutoinptr[i]);
+     ppget=GetPartVect(evoutoin,evoutoinptr[iii],evoutoinptr[iii+1]-evoutoinptr[iii]);
      if(ppget)
        {
 	 if ((ii=(int*)realloc(ii,sizeof(int)*(ii[0]+ppget[0]+1)))== NULL ) return 0;
@@ -550,152 +550,61 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
      for (j=1;j<ii[0]+1;j++)
        {
 	 l=ii[j];
-	 if ((*typ_z)[l]) fz=true;
-	 if (typ_x[l]) fl=true;
-	 if (fl && fz) break;
-	 ii1=GetPartVect(*zord,iii+1,(*zord)[0]/2-iii);	     
-	 if (!ii1)
-	   {
-	     if ((ii1=(int*)malloc(sizeof(int)))== NULL ) return 0;
-	     ii1[0]=0;
+	 if ((*typ_z)[l]) {
+	   if ((*typ_z)[iii] == 0){
+	     (*typ_z)[iii]=1;
+	     fin=0;
 	   }
-	 if ((ii1=(int*)realloc(ii1,sizeof(int)*(ii1[0]+ext_cord[0]+1)))== NULL ) return 0;
-	 for (k = 1; k <= ext_cord[0]; k++)
-	   {
-	     ii1[ii1[0]+k]=ext_cord[k];
+	 }
+	 if ((*typ_x)[l]) {
+	   if (!(*typ_x)[iii]) {
+	     (*typ_x)[iii]=1;
+	     fin=0;
 	   }
-	 ii1[0]=ii1[0]+ext_cord[0];
-	 if ((ii2=(int*)malloc(sizeof(int)*(ii1[0]+1))) == NULL ) return 0;
-	 ii2[0]=ii1[0];
-	 for (k=1;k<ii1[0]+1;k++)
-	   {
-	     if (ii1[k]==l) ii2[k]=1;
-	     else ii2[k]=0;
-	   }
-	 if (OR(ii2)) fz=true;
-	 free(ii1);
-	 ii1=NULL;
-	 free(ii2);
-	 ii2=NULL;
-	 
-	 ii1=GetPartVect(*oord,iii+1,(*oord)[0]/2-iii);
-	 if (!ii1)
-	   {
-	     if ((ii1=(int*)malloc(sizeof(int)))== NULL ) return 0;
-	     ii1[0]=0;
-	   }
-	 if ((ii1=(int*)realloc(ii1,sizeof(int)*(ii1[0]+ext_cord[0]+1)))== NULL ) return 0;
-	 for (k = 1; k <= ext_cord[0]; k++)
-	   {
-	     ii1[ii1[0]+k]=ext_cord[k];
-	   }
-	 ii1[0]=ii1[0]+ext_cord[0];
-	 if ((ii2=(int*)malloc(sizeof(int)*(ii1[0]+1))) == NULL ) return 0;
-	 ii2[0]=ii1[0];
-	 for (k=1;k<ii1[0]+1;k++)
-	   {
-	     if (ii1[k]==l) ii2[k]=1;
-	     else ii2[k]=0;
-	   }
-	 free(ii1); ii1=NULL;
-	 if (OR(ii2)) fl=true;
-	 if (fl && fz){ free(ii2); break;}
-	 free(ii2);
-	 ii2=NULL;
-	 
-	 
-	 if (fl && fz) break;
-       } /* fin de ii=l */
-     free(ii);
-     if (!(fl) && !(typ_x[i])) (*oord)[iii]=0;
-     if (!(fz) && !((*typ_z)[i])) (*zord)[iii]=0;
-   } /* fin de for iii */
+	 }
+	 if ((*typ_z)[iii] && (*typ_x)[iii]) break;
+       }
+     if (ii) free(ii);
+   }
+ }
+ 
  free(ext_cord); ext_cord=NULL;
  
  if ((*cord)[0] != 0)
    {
-     ppget=GetPartVect(*oord,1,(*oord)[0]/2);
+     if ((ppget=(int*)calloc((*cord)[0]/2+1,sizeof(int))) == NULL ) return 0;
+     ppget[0]=(*cord)[0]/2;
+     ppget1=VecEg1(ppget);
+     for (i=1; i <= (*cord)[0]/2; i++){
+       if ((*typ_z)[(*cord)[i]]) ppget[i]=1;
+       if ((*typ_x)[(*cord)[i]]) ppget1[i]=1;
+     }
      ii=FindDif(ppget,0);
      free(ppget);
      if (ii)
        {
-	 oordii=VecEg1(*oord);
-	 free(*oord);
-	 if (((*oord)=(int*)malloc(sizeof(int)*(2*ii[0]+1))) == NULL ) return 0;
-	 (*oord)[0]=2*ii[0];
-	 for(i=1;i<ii[0]+1;i++)
-	   {
-	     (*oord)[i]=oordii[ii[i]];
-	     (*oord)[i+ii[0]]=oordii[ii[i]+oordii[0]/2];
-	   }
-	 free(oordii);
-	 oordii=NULL;
-	 free(ii); 
-       }
-     ppget=GetPartVect(*zord,1,(*zord)[0]/2);
-     ii=FindDif(ppget,0);
-     free(ppget);
-     if (ii)
-       {
-	 oordii=VecEg1(*zord);
-	 free(*zord);
 	 if (((*zord)=(int*)malloc(sizeof(int)*(2*ii[0]+1))) == NULL ) return 0;
-	 (*zord)[0]=2*ii[0];
+	 (*zord)[0]=2*ii[0];	 
 	 for(i=1;i<ii[0]+1;i++)
 	   {
-	     (*zord)[i]=oordii[ii[i]];
-	     (*zord)[i+ii[0]]=oordii[ii[i]+oordii[0]/2];
-	   }
-	 free(oordii);
-	 oordii=NULL;
+	     (*zord)[i]=(*cord)[ii[i]];
+	     (*zord)[i+ii[0]]=(*cord)[ii[i]+(*cord)[0]/2];
+	   }	 
 	 free(ii);
        }
-     ii=GetPartVect(ext_cord1,1,ext_cord1[0]/2);
-     if ((ii=(int*)realloc(ii,sizeof(int)*(ext_cord1[0]/2+(*ordclk)[0]/2+1))) == NULL ) return 0;
-     ii[0]=ext_cord1[0]/2+(*ordclk)[0]/2;
-     pp=&ii[ext_cord1[0]/2+1];
-     pp=memcpy(pp,&(*ordclk)[1],sizeof(int)*((*ordclk)[0]/2));
-     maX=Max1(ii)+1;
-     free(ii);
-     ii=NULL;
-     if ((cordX=(int*)malloc(sizeof(int)*(ext_cord1[0]/2+1))) == NULL ) return 0;
-     cordX[0]=ext_cord1[0]/2;
-     ii1=GetPartVect(ext_cord1,1,ext_cord1[0]/2);
-     ii2=GetPartVect(ext_cord1,ext_cord1[0]/2+1,ext_cord1[0]/2);
-     if (ii1 && ii2)
+     ii=FindDif(ppget1,0);
+     free(ppget1);
+     if (ii)
        {
-	 for(i=1;i<ext_cord1[0]/2+1;i++)
+	 if (((*oord)=(int*)malloc(sizeof(int)*(2*ii[0]+1))) == NULL ) return 0;
+	 (*oord)[0]=2*ii[0];	 
+	 for(i=1;i<ii[0]+1;i++)
 	   {
-	     cordX[i]=maX*ii1[i]+ii2[i];
-	   }
-	 free(ii1);
-	 free(ii2);
-	 free(ext_cord1);
+	     (*oord)[i]=(*cord)[ii[i]];
+	     (*oord)[i+ii[0]]=(*cord)[ii[i]+(*cord)[0]/2];
+	   }	 
+	 free(ii);
        }
-     
-     
-     for (i=1;i<bllst5ptr[nblk+1];i++)
-       {	 
-	 for (hh=ordptr1[i];hh<ordptr1[i+1];hh++)
-	   {
-	     jj=(*ordclk)[hh];
-	     if ((ii=(int*)malloc(sizeof(int)*(cordX[0]+1))) == NULL ) return 0;
-	     ii[0]=cordX[0];
-	     n=jj*maX+(*ordclk)[hh+(*ordclk)[0]/2];
-	     for (j=1;j<cordX[0]+1;j++)
-	       {
-		 if (cordX[j]==n) ii[j]=1;
-		 else ii[j]=0;
-	       }
-	     if (OR(ii))
-	       {
-		 (*ordclk)[hh+(*ordclk)[0]/2]=-(*ordclk)[hh+(*ordclk)[0]/2];
-	       } /* fin de if OR()*/
-	 if(ii) free(ii);
-	   } /* fin de for hh */
-       } /* fin de for i */
-     if(cordX) free(cordX);
-     cordX=NULL;
    } /* fin de if *cord[0] !=0 */
  else
    {
@@ -703,7 +612,57 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
      *zord=NULL;
    }
      
-     return 0;
+ free(*typ_z);
+ (*typ_z)=VecEg1(typ_z_save);
+ free(typ_z_save);
+ ii=GetPartVect(ext_cord1,1,ext_cord1[0]/2);
+ if ((ii=(int*)realloc(ii,sizeof(int)*(ext_cord1[0]/2+(*ordclk)[0]/2+1))) == NULL ) return 0;
+ ii[0]=ext_cord1[0]/2+(*ordclk)[0]/2;
+ pp=&ii[ext_cord1[0]/2+1];
+ pp=memcpy(pp,&(*ordclk)[1],sizeof(int)*((*ordclk)[0]/2));
+ maX=Max1(ii)+1;
+ free(ii);
+ ii=NULL;
+ if ((cordX=(int*)malloc(sizeof(int)*(ext_cord1[0]/2+1))) == NULL ) return 0;
+ cordX[0]=ext_cord1[0]/2;
+ ii1=GetPartVect(ext_cord1,1,ext_cord1[0]/2);
+ ii2=GetPartVect(ext_cord1,ext_cord1[0]/2+1,ext_cord1[0]/2);
+ if (ii1 && ii2)
+   {
+     for(i=1;i<ext_cord1[0]/2+1;i++)
+       {
+	 cordX[i]=maX*ii1[i]+ii2[i];
+       }
+     free(ii1);
+     free(ii2);
+     free(ext_cord1);
+   }
+ 
+ 
+ for (i=1;i<bllst5ptr[nblk+1];i++)
+   {	 
+     for (hh=ordptr1[i];hh<ordptr1[i+1];hh++)
+       {
+	 jj=(*ordclk)[hh];
+	 if ((ii=(int*)malloc(sizeof(int)*(cordX[0]+1))) == NULL ) return 0;
+	 ii[0]=cordX[0];
+	 n=jj*maX+(*ordclk)[hh+(*ordclk)[0]/2];
+	 for (j=1;j<cordX[0]+1;j++)
+	   {
+	     if (cordX[j]==n) ii[j]=1;
+	     else ii[j]=0;
+	   }
+	 if (OR(ii))
+	   {
+	     (*ordclk)[hh+(*ordclk)[0]/2]=-(*ordclk)[hh+(*ordclk)[0]/2];
+	   } /* fin de if OR()*/
+	 if(ii) free(ii);
+       } /* fin de for hh */
+   } /* fin de for i */
+ if(cordX) free(cordX);
+ cordX=NULL;
+ 
+ return 0;
 } /* end function */
 /***************************************** fin de scheduler**********************************/
 /* =======================================function paksazi=============================================== */
@@ -1976,7 +1935,7 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 /* *************************************** function extract_info ******************************************** */
 int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,int* bllst2ptr,
 		 int* bllst3ptr,int* bllst4ptr,int* bllst5ptr,int* bllst11ptr,int* connectmat,int* clkconnect,
-		 int** lnkptr,int** inplnk,int** outlnk,int** typ_s,int** typ_m,double** initexe,
+		 int** lnkptr,int** inplnk,int** outlnk,int* nzcross,int* nmode,int** typ_s,int** typ_m,double** initexe,
 		 int** bexe,int** boptr,int** blnk,int** blptr,int* ok,int* corinvec,int* corinvptr)
 {
   int j,l,ko,ki,nlnk,ptlnk,siz_unco,m1,n,jj,a,nbl=((int*)bllst10)[0];
@@ -1997,11 +1956,18 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
   *typ_s=VecEg1(fff);
   *typ_m=VecEg1(fff);
   free(fff); fff=NULL;
+  adjust_inout(bllst2,bllst3,bllst2ptr,bllst3ptr,nzcross,nmode,connectmat,ok,corinvec,corinvptr,nbl);
+  if(!*ok) return 0;
+
   if (((*initexe)=(double*)malloc(sizeof(double))) == NULL) return 0;
   (*initexe)[0]=0;                
   
   for (j=1;j<nbl+1;j++)
     {
+      if (nmode[j] < 0){
+	Message("Number of modes in block j cannot be determined");	
+	*ok=false;
+      }
       if (*(bllst10[j]) == 's' ) (*typ_s)[j]=1;
       else (*typ_s)[j]=0;
       if (*(bllst10[j])=='m') (*typ_m)[j]=1;
@@ -2167,10 +2133,8 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
       else (*blptr)[j+1]=(*blptr)[j];
       free(idl);idl=NULL;
     }
-  free(ppget);ppget=NULL;
+  free(ppget);ppget=NULL;  
   
-  adjust_inout(bllst2,bllst3,bllst2ptr,bllst3ptr,connectmat,ok,corinvec,corinvptr,nbl);
-  if(!*ok) return 0;
   nlnk=connectmat[0]/4;
   if (((*inplnk)=(int*)calloc(bllst2ptr[bllst2ptr[0]],sizeof(int))) == NULL ) return 0;
   (*inplnk)[0]=bllst2ptr[bllst2ptr[0]]-1;
@@ -2596,10 +2560,10 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
 	    done1=0;
 	    done=0;
 	  }
-	}
-	free(jj);
+	}	
 	if (vec) free(vec);
       }
+      free(jj);
     }
   }
   free(typ_c);
@@ -2625,8 +2589,8 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
 	free(ind);
       }
     }
-}
-
+  }
+  free(clkconnecttmp);
   return 0;
 } /* end function */
 /* ======================================= endfunction critical_events ========================================== */
@@ -2683,7 +2647,7 @@ int make_ptr(char** bllst10,int** bllst4ptr,int** bllst5ptr,int** typ_l,int** ty
 } /* end function */
 /* ======================================= endfunction make_ptr ========================================== */
 /* *************************************** function adjust_inout ****************************************** */
-int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* connectmat,int* ok,int* corinvec,int* corinvptr,int nblk1)
+int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcross,int* nmode,int* connectmat,int* ok,int* corinvec,int* corinvptr,int nblk1)
 {
   int hhjj,j,hh,jj,nout,nin,findflag,mini1,mini2;
   int *wwi,*ww,*nww,*ind,*ind1,*wwi1,a,ninnout,*nww1;
@@ -2775,6 +2739,12 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 		      if (wwi1) free(wwi1);
 		      wwi1=NULL;
                     }
+		  if (nzcross[connectmat[jj+connectmat[0]/2]] == nin){
+		    nzcross[connectmat[jj+connectmat[0]/2]] = nout;
+		  }
+		  if (nmode[connectmat[jj+connectmat[0]/2]] == nin){
+		    nmode[connectmat[jj+connectmat[0]/2]] = nout;
+		  }
 		}
 	      else if (nin>0 && nout<0)
 		{
@@ -2836,6 +2806,12 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 		  wwi1=NULL;
 		  if(wwi) free(wwi);
 		  wwi=NULL;
+		  if (nzcross[connectmat[jj]] == nout){
+		    nzcross[connectmat[jj]] = nin;
+		  }
+		  if (nmode[connectmat[jj]] == nout){
+		    nmode[connectmat[jj]] = nin;
+		  }
 		}
 	      else if (nin==0)
 		{

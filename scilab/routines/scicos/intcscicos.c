@@ -207,35 +207,35 @@ int intcpass2(fname,fname_len)
      unsigned long fname_len;
 {
   static int l1,l2,m1,m2,m3; 
-  static int n1,n2,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16;
+  static int n1,n2,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16,n43;
   static int n17,n18,n19,n20,n21,n22,n23,n24,n25,n26,n27,n28,n29,n30;
   static int minlhs=5, maxlhs=5, minrhs=5, maxrhs=5;
   static int one=1,deux=2;
   static int n33,n34,n35,n36,n37,n38,n1111,n1313,n41,n42,*y40,l40,l39;
   int m31=8,n31=1,l31,n32=8;
   static int *header,*li,*le1,*le11,*le2,*le3,*le4,*le5,*le6,*le7,*le8,*le9;
-  static int *le10,*le12,*le13,*header1,*lii,*le14;
+  static int *le10,*le12,*le13,*header1,*lii,*le14,*le15;
   static int m,me12,ne2,ne3,ne4,ne5,ne6,ne7,ne8,ne9,ne11,ne12,ne71,ne81;
   static double *le66,*le77,*le88,*le1111,*le121,*le22,*le33,*le44,*le55,*le71;
-  static double *le81,*le99,*xd0k,*lc1,*rpark,*le1414;
+  static double *le81,*le99,*xd0k,*lc1,*rpark,*le1414,*le1515;
   static int *le1010,*le111,*le1313,nc1,mc1,l33,l3,m4,*vecnull;
   static char *Str1[]={ "xcs","x","z","iz","tevts","evtspt","pointi","outtb"};
   double *y1,*y2,*y4,*y17;
   int *y3,*y5,*y6,*y7,*y9,*y10,*y11,*y12,*y13,*y14,*y15,*y16,*y18,*y19,*y20,*y38,*y39;
-  int *y21,*y22,*y23,*y24,*y25,*y26,*y27,*y28,*y29,*y30,*y31,*y32,*y33,*y34,*y35;
+  int *y21,*y22,*y23,*y24,*y25,*y26,*y27,*y28,*y29,*y30,*y31,*y32,*y33,*y34,*y35,*y41;
   static char *Str2[]={ "scs","funs","xptr","zptr","zcptr","inpptr","outptr","inplnk",
 			"outlnk","lnkptr","rpar","rpptr","ipar","ipptr","clkptr","ordptr",
 			"execlk","ordclk","cord","oord","zord","critev","nb","ztyp",
-			"nblk","ndcblk","subscr","funtyp","iord","labels"};
-  int m33=30,n39=1,l32,n40=30;
+			"nblk","ndcblk","subscr","funtyp","iord","labels","modptr"};
+  int m33=31,n39=1,l32,n40=31;
   char **y36,**y8,*y37;
   int i,j,k,ok,zeros=0;
-  int *bllst2,*bllst3,*bllst4,*bllst5,*bllst12,*bllst9,*nzcross;
+  int *bllst2,*bllst3,*bllst4,*bllst5,*bllst12,*bllst9,*nzcross,*nmode;
   int *bllst2ptr,*bllst3ptr,*bllst4ptr,*bllst112,*bllst6ptr,*bllst7ptr;
   int *bllst5ptr,*typ_x,*bllst8ptr,*bllst9ptr;
   int *bllst11ptr,*connectmat,*clkconnect;
   int *corinvec,*corinvptr,*evtspt,pointi,*outtb,*pointiptr;
-  int *zcptr,*nbptr,*nblkptr,*ndcblkptr; 
+  int *zcptr,*modptr,*nbptr,*nblkptr,*ndcblkptr; 
   int *inplnk,*outlnk,*lnkptr,*ordptr;
   int *execlk,*ordclk,*cord,*oord,*zord,*iz0,*subscr;
   int *critev,nb,*ztyp,nblk,ndcblk,*iord,solver,*solverptr;
@@ -300,8 +300,10 @@ int intcpass2(fname,fname_len)
   bllst9ptr[1]=1;
   if ((bllst9=malloc(sizeof(int))) ==NULL )  return 0;		  
   bllst9[0]=0;
+  if ((nmode=malloc(sizeof(int)*(m+1))) ==NULL )  return 0;		  
+  nmode[0]=m;
   if ((nzcross=malloc(sizeof(int)*(m+1))) ==NULL )  return 0;		  
-  nzcross[0]=m;
+  nzcross[0]=m;  
   if ((bllst10=(char**) malloc(sizeof(char *)*(m+1))) ==NULL )  return 0;		  
   ((int*) bllst10)[0]=m;
   if ((bllst11ptr=malloc(sizeof(int)*(m+2))) ==NULL )  return 0;		  
@@ -554,10 +556,14 @@ int intcpass2(fname,fname_len)
       if ((bllst13[k]=(char*) malloc(sizeof(char)*(n1313+1))) ==NULL )  return 0;
       ((char*) bllst13[k])[n1313]='\0'; 
       C2F(cvstr)(&n1313,le1313,bllst13[k],&one,str_len);
-     /* 14ieme element de la list nzcross*/
+     /* 14ieme element de la list nmode*/
       le14=(int*) listentry(li,15);
       le1414=((double *) (le14+4));
-      nzcross[k]=(int)le1414[0];
+      nmode[k]=(int)le1414[0];
+     /* 15ieme element de la list nzcross*/
+      le15=(int*) listentry(li,16);
+      le1515=((double *) (le15+4));
+      nzcross[k]=(int)le1515[0];
     }
   
   GetRhsVar(2, "i", &m1, &n1, &l1);
@@ -608,9 +614,9 @@ int intcpass2(fname,fname_len)
   solver=*istk(l3);
   
   cpass2(&bllst111,&bllst112,&bllst2,&bllst3,&bllst4,&bllst5,&bllst9,&bllst10,&bllst11,
-	 &bllst12,&bllst13,&nzcross,&bllst2ptr,&bllst3ptr,&bllst4ptr,&bllst5ptr,&bllst9ptr,&typ_x,
+	 &bllst12,&bllst13,&nmode,&nzcross,&bllst2ptr,&bllst3ptr,&bllst4ptr,&bllst5ptr,&bllst6ptr,&bllst9ptr,&typ_x,
 	 &bllst11ptr,&connectmat,&clkconnect,&corinvec,&corinvptr,
-	 &iz0,&tevts,&evtspt,&pointi,&outtb,&zcptr,&outlnk,&inplnk,
+	 &iz0,&tevts,&evtspt,&pointi,&outtb,&zcptr,&modptr,&outlnk,&inplnk,
 	 &lnkptr,&ordptr,&execlk,&ordclk,&cord,&oord,&zord,&critev,&nb,&ztyp,
 	 &nblk,&ndcblk,&subscr,&iord,&ok);
   if (!ok) 
@@ -703,6 +709,8 @@ int intcpass2(fname,fname_len)
   n12=bllst7ptr[0];
   y11=(int*) (zcptr+1);
   n13=zcptr[0];
+  y41=(int*) (modptr+1);
+  n43=modptr[0];
   y12=(int*) (bllst2ptr+1);
   n14=bllst2ptr[0];
   y13=(int*) (bllst3ptr+1);
@@ -814,10 +822,11 @@ int intcpass2(fname,fname_len)
   CreateListVarFromPtr(7,28,"i", &n35,&one,  &y34);
   CreateListVarFromPtr(7,29,"i", &n36, &deux, &y35);
   CreateListVarFromPtr(7,30,"S", &n37, &one, y36);
-  
+  CreateListVarFromPtr(7,31,"i", &n43, &one, &y41);
   LhsVar(2) = 7;
   
   free(zcptr);
+  free(modptr);
   free(inplnk);
   free(outlnk);
   free(lnkptr);
@@ -857,6 +866,7 @@ int intcpass2(fname,fname_len)
   for(i = 1; i < ((int*) bllst13)[0]+1; i++)
     free(bllst13[i]);
   free(bllst13);
+  free(nmode);
   free(nzcross);
   if(ndcblkptr) free(ndcblkptr);
   if (pointiptr) free(pointiptr);
