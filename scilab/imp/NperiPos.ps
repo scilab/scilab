@@ -166,10 +166,11 @@ $pictdict begin
       /norme dx dx mul dy dy mul add sqrt def 
       norme 1.e-8 ge 
 	{
-	 arsize dx mul norme div /dx1 exch def 
-	 arsize dy mul norme div /dy1 exch def 
-	 /depx tipx cos20 dx1 mul add def 
-	/depy  tipy cos20 dy1 mul add def 
+	arsize dx mul norme div /dx1 exch def 
+	arsize dy mul norme div /dy1 exch def 
+% 	2 following lines modified (correction bug 607 (bruno 18 nov 2004)) 
+	/depx tipx def 
+	/depy tipy def 
 	newpath depx depy moveto 
 	cos20 neg dx1 mul sin20 dy1 mul sub depx add
 	sin20 dx1  mul cos20 dy1 mul sub depy add lineto 

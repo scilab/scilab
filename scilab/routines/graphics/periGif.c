@@ -1386,10 +1386,10 @@ void C2F(drawarrowsGif)(char *str, integer *vx, integer *vy, integer *n, integer
       if ( Abs(norm) >  SMDOUBLE ) 
 	{ integer nn=1,p=3;
 	  dx=(*as/10.0)*dx/norm;dy=(*as/10.0)*dy/norm;
-	  polyx[0]= polyx[3]=inint(vx[2*i+1]+dx*cos20);
+	  polyx[0]= polyx[3]=vx[2*i+1];/* correction bug 607 (bruno 18 nov 2004) */
 	  polyx[1]= inint(polyx[0]  - cos20*dx -sin20*dy );
 	  polyx[2]= inint(polyx[0]  - cos20*dx + sin20*dy);
-	  polyy[0]= polyy[3]=inint(vy[2*i+1]+dy*cos20);
+	  polyy[0]= polyy[3]=vy[2*i+1];/* correction bug 607 (bruno 18 nov 2004) */
 	  polyy[1]= inint(polyy[0] + sin20*dx -cos20*dy) ;
 	  polyy[2]= inint(polyy[0] - sin20*dx - cos20*dy) ;
 	  C2F(fillpolylinesGif)("v",polyx,polyy,&NDvalue, &nn,&p,PI0,PD0,PD0,PD0,PD0);
