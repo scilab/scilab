@@ -1672,7 +1672,6 @@ void PrintString(char *lines,char *Entete)
 	HDC hDCmem;
 	DOCINFO di;
 	int TextLength=0;
-	char LignePrint[100];
 	int i =0;
     int Index1 = 0;
     int Index2 = 2;
@@ -1683,14 +1682,11 @@ void PrintString(char *lines,char *Entete)
 	int HauteurCaractere=0;
 	int NombredeCaracteresparLignes=0;
 
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-
-
-	PrintDC=GetPrinterDC();
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 	
-    hFont=EzCreateFont (PrintDC, TEXT ("Courier"),120, 0, 0, TRUE) ;
+	PrintDC=GetPrinterDC();
+	
+	
+    hFont=EzCreateFont (PrintDC, TEXT ("Courier New"),120, 0, 0, TRUE) ;
 
 	/*hFont = GetStockObject (ANSI_FIXED_FONT);*/
 	hOldFont = SelectObject(PrintDC, hFont );
@@ -1709,16 +1705,19 @@ void PrintString(char *lines,char *Entete)
     HauteurCaractere= tm.tmHeight+tm.tmExternalLeading;
     NbLigneParPage = GetDeviceCaps(PrintDC,VERTRES) / HauteurCaractere;
 
-
     if (TextLength > 0)
       {
 		if ( StartDoc( PrintDC, &di ) > 0 )
 			{
+				char *LignePrint=NULL;
+				LignePrint=(char*)malloc(100*sizeof(char));
+
 				StartPage(PrintDC);
 				PageHeader(PrintDC,Entete);
 				for (i=0;i < TextLength;i++)
 					{
-						LignePrint[Index1] =    lines[i];
+						
+						LignePrint[Index1] = lines[i];
 						if ( (lines[i] == '\n') )
 							{
 								Index2 ++;
@@ -1726,6 +1725,13 @@ void PrintString(char *lines,char *Entete)
 								if (LignePrint[Index1-1]== '\r') LignePrint[Index1-1] = '\0';
 								TextOut (PrintDC,(tm.tmMaxCharWidth+10), Index2*HauteurCaractere, LignePrint, strlen(LignePrint));
 								Index1 = 0;
+								if (LignePrint)
+								{
+									free(LignePrint);
+									LignePrint=NULL;
+								}
+
+								LignePrint=(char*)malloc(100*sizeof(char));
 							}
 						else Index1 ++;
 						if (Index2 == NbLigneParPage-6)
@@ -1744,8 +1750,15 @@ void PrintString(char *lines,char *Entete)
 				Footer(PrintDC,numero);
 				EndPage (PrintDC);
 				EndDoc (PrintDC);
+
+				if (LignePrint)
+				{
+					free(LignePrint);
+					LignePrint=NULL;
+				}
 			}
 	  }
+	  SelectObject(PrintDC, hOldFont );
 }
 /*-----------------------------------------------------------------------------------*/
 void PrintFile(char *filename)
