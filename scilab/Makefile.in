@@ -256,19 +256,24 @@ INSTBINDISTFILES = \
 	tests \
 	util
 
+DOCNAME=$(SCIBASE)
+
 install:
-	@if test `pwd`/..  != ${PREFIX}/lib ; then \
-		install -d ${PREFIX}/lib/$(SCIBASE); \
-		( tar cf - $(INSTBINDISTFILES) @PVMINST1@  | (cd ${PREFIX}/lib/$(SCIBASE) ; tar xf -)); \
-		(cd ${PREFIX}/lib/$(SCIBASE);touch .binary; make postinstall PREFIX=$(PREFIX) ) \
+	@if test `pwd`/..  != $(PREFIX)/lib ; then \
+		install -d $(PREFIX)/lib/$(SCIBASE); \
+		( tar cf - $(INSTBINDISTFILES) @PVMINST1@  | (cd $(PREFIX)/lib/$(SCIBASE) ; tar xf -)); \
+		(cd $(PREFIX)/lib/$(SCIBASE);touch .binary; make postinstall PREFIX=$(PREFIX) ) \
 	fi
-	install -d ${PREFIX}/bin 
+	install -d $(PREFIX)/share/doc/$(DOCNAME)/
+	install ACKNOWLEDGEMENTS CHANGES README_Unix Version.incl \
+		licence.txt license.txt  $(PREFIX)/share/doc/$(DOCNAME)
+	install -d $(PREFIX)/bin 
 	$(RM)  $(PREFIX)/bin/scilab
-	ln -fs ${PREFIX}/lib/$(SCIBASE)/bin/scilab $(PREFIX)/bin/scilab
-	$(RM)  $(PREFIX)$/bin/intersci
-	ln -fs ${PREFIX}/lib/$(SCIBASE)/bin/intersci $(PREFIX)/bin/intersci
+	ln -fs $(PREFIX)/lib/$(SCIBASE)/bin/scilab $(PREFIX)/bin/scilab
+	$(RM)  $(PREFIX)$/bin/intersciXXX
+	ln -fs $(PREFIX)/lib/$(SCIBASE)/bin/intersci $(PREFIX)/bin/intersci
 	$(RM)  $(PREFIX)$/bin/intersci-n
-	ln -fs ${PREFIX}/lib/$(SCIBASE)/bin/intersci-n $(PREFIX)/bin/intersci-n
+	ln -fs $(PREFIX)/lib/$(SCIBASE)/bin/intersci-n $(PREFIX)/bin/intersci-n
 
 # DESTDIR is the final destination of the file 
 # it can be different from $(PREFIX)/lib
@@ -290,7 +295,7 @@ postinstall:
 	@@STRIP@ bin/scilex;
 
 uninstall:
-	$(RM) -r ${PREFIX}/$(SCIBASE)
+	$(RM) -r $(PREFIX)/$(SCIBASE)
 	$(RM) $(PREFIX)/bin/scilab
 	$(RM) $(PREFIX)/bin/intersci
 	$(RM) $(PREFIX)/bin/intersci-n
@@ -301,3 +306,4 @@ cvsclean::
 
 setversion : 
 	echo "SCIVERSION=Scilab-3.0-CVS-`date --iso`" > Version.incl
+
