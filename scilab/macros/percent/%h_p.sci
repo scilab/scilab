@@ -359,7 +359,7 @@ function %h_p(h)
 	 ]
       case "Axis"
       T=sci2exp(h.tics_labels,0)
-      if length(T)>70 then T="string array'+strcat(string(size(h.text)),'x'),end
+      if length(T)>70 then T="string array 1x'+string(length(T)),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "visible = "+sci2exp(h.visible)
