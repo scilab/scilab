@@ -3321,7 +3321,9 @@ sciSetIsClipping (sciPointObj * pobj, int value)
     case SCI_AXES: 
       pAXES_FEATURE (pobj)->isclip = value;
       break; 
-    case SCI_AXIS: 
+    case SCI_AXIS:  //F.Leray Adding here 10.03.04
+      pAXIS_FEATURE (pobj)->isclip = value;
+      break; 
     case SCI_SURFACE:  
     case SCI_LEGEND: 
     case SCI_TITLE:
@@ -3374,9 +3376,11 @@ sciGetIsClipping (sciPointObj * pobj)
     case SCI_AXES: 
       return pAXES_FEATURE (pobj)->isclip;
       break; 
+    case SCI_AXIS:  //F.Leray Adding here 10.03.04
+      return pAXIS_FEATURE (pobj)->isclip;
+      break;
     case SCI_SURFACE:
     case SCI_LEGEND: 
-    case SCI_AXIS: 
     case SCI_TITLE:    
     case SCI_AGREG: 
     case SCI_FIGURE: 
@@ -9833,7 +9837,7 @@ DestroyMerge (sciPointObj * pthis)
 sciPointObj *
 ConstructAxis (sciPointObj * pparentsubwin, char *strflag, int style, double minx,
 	       double miny, double minz, double maxx, double maxy,
-	       double maxz)
+	       double maxz) // Apparently this Constructor is unused (except in CloneaAxis) F.Leray 10.03.04
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
 
@@ -9890,6 +9894,7 @@ ConstructAxis (sciPointObj * pparentsubwin, char *strflag, int style, double min
 
 
       pAXIS_FEATURE (pobj)->strflaglen = strlen (strflag);
+      pAXIS_FEATURE (pobj)->isclip = -1; // F.Leray By default Axis are not clipped. 10.03.04
 
       strncpy(pAXIS_FEATURE (pobj)->strflag, strflag, pAXIS_FEATURE (pobj)->strflaglen);
 
@@ -10016,8 +10021,9 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       pAXES_FEATURE (pobj)->callbacklen = 0;
       pAXES_FEATURE (pobj)->callbackevent = 100;
       pAXES_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
-      pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
- 
+      //  pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
+      pAXES_FEATURE (pobj)->isclip = -1; // F.Leray Change here: by default Axis are not clipped. 10.03.04
+
      
       pAXES_FEATURE (pobj)->dir =dir;
       pAXES_FEATURE (pobj)->tics =tics;
