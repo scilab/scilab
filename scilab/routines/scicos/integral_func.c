@@ -17,7 +17,7 @@ void  integral_func(scicos_block *block,int flag)
 	block->xd[i]=block->inptr[0][i];
       }
     }
-  }else if (flag==1){
+  }else if (flag==1||flag==6){
     for(i=0;i<block->nx;++i) {
       block->outptr[0][i]=block->x[i];
     }

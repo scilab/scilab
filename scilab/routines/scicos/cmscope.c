@@ -173,8 +173,8 @@ void cmscope(scicos_block *block,int flag)
       /*     clear window */
       nax[0] = 2;
       nax[1] = 10;
-      nax[2] = 2;
-      nax[3] = 6;
+      nax[2] = 5;
+      nax[3] = 4;
       C2F(dr1)("xclear\000", "v\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv,
 	       &dv);
       C2F(dr1)("xset\000", "use color\000", &c__1, &c__0, &c__0, &c__0, &
@@ -215,8 +215,8 @@ void cmscope(scicos_block *block,int flag)
     z__[1]=-1.0;
     nax[0] = 2;
     nax[1] = 10;
-    nax[2] = 2;
-    nax[3] = 6;
+    nax[2] = 5;
+    nax[3] = 4;
     n1 = (int) (t / per);
     if (t <= 0.) {
       --n1;
@@ -299,14 +299,16 @@ void cmscope(scicos_block *block,int flag)
     
     ilt = ipar[2] + 8;
     it = 0;
-    n1 =  (int) (z__[k + 1] / per);
-
+    n1 = (int) (t / per);
+    if (t <= 0.) {
+      --n1;
+    }
     /*     loop on input ports */
     i__1 = nwid;
     for (kwid = 1; kwid <= i__1; ++kwid) {
-      rect[0] = per * (n1 );
+      rect[0] = per * (n1 + 1);
       rect[1] = rpar[(kwid << 1) + 1];
-      rect[2] = per * (n1 + 1);
+      rect[2] = per * (n1 + 2);
       rect[3] = rpar[(kwid << 1) + 2];
       frect[0] = 0.;
       frect[1] = (kwid - 1) * (1. / nwid);
