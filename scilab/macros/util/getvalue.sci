@@ -58,12 +58,12 @@ while %t do
   if %str1==[] then ok=%f,%str=[];break,end
   %str=%str1;
   for %kk=1:%nn
-    %cod=str2code(%str(%kk))
-    %spe=find(%cod==99)
+    %cod=ascii(%str(%kk))
+    %spe=find(%cod==10)
     if %spe<>[] then
-      %semi=str2code(';')
+      %semi=ascii(';')
       %cod(%spe)=%semi*ones(%spe')
-      %str(%kk)=code2str(%cod)
+      %str(%kk)=ascii(%cod)
     end
   end
   %nok=0
@@ -126,7 +126,7 @@ while %t do
       if %sz(1)>=0 then if %mv<>%sz(1) then %nok=%kk,break,end,end
     case 'str'
       %sde=%str1(%kk)
-      %spe=find(str2code(%str1(%kk))==99)
+      %spe=find(ascii(%str1(%kk))==10)
       %spe($+1)=length(%sde)+1
       %vv=[];%kk1=1
       for %kkk=1:size(%spe,'*')
