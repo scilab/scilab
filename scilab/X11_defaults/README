@@ -1,8 +1,7 @@
 For changing icons (if you have XPM)
 ************************************
 
-[1] Copy "scilab.xpm" and "metanet.xpm" into the directory where you 
-    store xpm files 
+[1] Copy "scilab.xpm" into the directory where you store xpm files 
 
 [2] For ctwm : add in .ctwmrc in Icons 
 
