@@ -23,9 +23,6 @@ void C2F(diary)(char *str,int *n)
   u=getdiary();
   if ( u != 0 ) {
     FILE *fd= GetFile(&u);
-    if (str[0]=='-') {
-
-    }
     fwrite(str,sizeof(unsigned char),*n,fd);
     fwrite(newline,sizeof(unsigned char),nn,fd);
   }
@@ -37,9 +34,6 @@ void diary_nnl(char *str,int *n)
 
   u=getdiary();
   if (u) {
-    if (str[0]=='-') {
-
-    }
     FILE *fd= GetFile(&u);
     fwrite(str,sizeof(unsigned char),*n,fd);
   }
