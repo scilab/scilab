@@ -19,7 +19,7 @@ if mtlb_expr.operator=="ext" then
   // Variable is unknown
   if ~bval then
     // Try to find what is this variable
-    [tmp]=get2sci(mtlb_expr.operands(1),lhslist)
+    [tmp]=getvar2sci(mtlb_expr.operands(1),lhslist)
     if typeof(tmp)=="funcall" then
       newname=mtlb_expr.operands(1).name
       mtlb_expr.operands(1)=null()

@@ -68,7 +68,7 @@ case "variable"
     // Variable is unknown  
   else
     // Try to find what is this variable
-    [sci_expr]=get2sci(mtlb_expr,lhslist)
+    [sci_expr]=getvar2sci(mtlb_expr,lhslist)
     if typeof(sci_expr)=="funcall" then
       if sci_expr.name==lhslist(1).name then // Used for commands such as keyboard, cputime...
 	// keyboard in an M-file is represented in tree by an equal with lhs=keyboard and expression=keyboard
