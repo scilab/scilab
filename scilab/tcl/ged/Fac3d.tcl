@@ -206,7 +206,7 @@ pack $w.sep -fill both  -pady  5m
 #exit button
 frame $w.buttons
 pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "destroy $ww" 
+button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww" 
 pack $w.buttons.dismiss  -side bottom -expand 1
 
 
@@ -361,7 +361,7 @@ pack $w.sep -fill both  -pady 5m
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom 
 
 
@@ -636,4 +636,8 @@ proc SelectDataColor  {w args} {
 	    ScilabEval "global ged_handle;ged_handle.data.color=EditData(ged_handle.data.color)" "seq"
 	}
     }
+}
+
+proc DestroyGlobals { } {
+    ScilabEval "DestroyGlobals()" "seq"
 }

@@ -210,7 +210,7 @@ frame $w.sep -height 2 -borderwidth 1 -relief sunken
 pack $w.sep -fill both  -pady 5m
 
 #exit button
-button $w.buttons -text Quit -command "destroy $ww" 
+button $w.buttons -text Quit -command "DestroyGlobals; destroy $ww" 
 pack $w.buttons -side bottom
 
 #Trimmings here
@@ -327,7 +327,7 @@ if { $nbcolX == 1} {
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom 
 
 
@@ -411,7 +411,7 @@ if { $nbcolY == 1} {
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom 
 
 
@@ -506,7 +506,7 @@ pack $w9.sep -fill both  -pady 30m
 
 #exit button
 frame $w9.buttons
-button $w9.b -text Quit -command "destroy $ww"
+button $w9.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w9.b -side bottom 
 
 
@@ -757,3 +757,7 @@ proc SelectTicsdir { w args } {
     ScilabEval "global ged_handle;ged_handle.tics_direction='$curticsdir'"
 }
 
+
+proc DestroyGlobals { } {
+    ScilabEval "DestroyGlobals()" "seq"
+}

@@ -239,7 +239,7 @@ pack $w.sep -fill both -pady 12m
 #exit button
 frame $w.buttons
 pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "destroy $ww" 
+button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww" 
 pack $w.buttons.dismiss  -side bottom -expand 1
 
 
@@ -317,7 +317,7 @@ pack $w.sep -fill both -pady 40m
 #exit button
 frame $w.buttons
 pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "destroy $ww" 
+button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww" 
 pack $w.buttons.dismiss  -side bottom -expand 1
 
 
@@ -410,7 +410,7 @@ pack $w.sep -fill both -pady 10m
 #exit button
 frame $w.buttons
 pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "destroy $ww" 
+button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww" 
 pack $w.buttons.dismiss  -side bottom -expand 1
 
 
@@ -592,3 +592,7 @@ proc sciCommandColormap {} {
     }
 }
 
+
+proc DestroyGlobals { } {
+    ScilabEval "DestroyGlobals()" "seq"
+}

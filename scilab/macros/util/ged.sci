@@ -1,11 +1,16 @@
 function ged(k,win)
   //xset, xget used because ged should handle both old and new style
-  cur=xget('window')
+
+  global ged_current_figure
+
+  ged_current_figure=xget('window')
   xset('window',win) 
   isold=get('figure_style')=='old'
   if isold&k>3 then 
     message('this menu does not apply to old style graphics')
-    xset('window',cur)
+    xset('window',ged_current_figure)
+    clearglobal ged_current_figure
+    clear ged_current_figure
     return
   end
   if k>3 then
@@ -66,7 +71,7 @@ function ged(k,win)
     case 7 then //stop Entity picker
     seteventhandler("")
   end
-  xset('window',cur)
+  //xset('window',cur)
 endfunction
 
 
@@ -1865,4 +1870,14 @@ function ReLoadTicks2TCL(h)
   end
 
 endfunction
+
+
+
+function DestroyGlobals()
+ global ged_current_figure
+
+ xset('window',ged_current_figure)
+ clearglobal ged_current_figure
+ clear ged_current_figure
+endfunctions
 

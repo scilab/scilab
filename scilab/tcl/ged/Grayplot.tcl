@@ -150,7 +150,7 @@ frame $w.sep -height 2 -borderwidth 1 -relief sunken
 pack $w.sep -fill both  -pady 5m
 
 #exit button
-button $w.buttons -text Quit -command "destroy $ww" 
+button $w.buttons -text Quit -command "DestroyGlobals; destroy $ww" 
 pack $w.buttons -side bottom
 
 
@@ -284,7 +284,7 @@ pack $w.sep -fill both  -pady 5m
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom 
 
 
@@ -336,7 +336,7 @@ pack $topf -fill both -pady 2 -expand yes
 
 #  #exit button
 #  frame $w.buttons
-#  button $w.b -text Quit -command "destroy $ww"
+#  button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 #  pack $w.b -side bottom 
 
 
@@ -380,7 +380,7 @@ pack $topf -fill both -pady 2 -expand yes
 
 #   #exit button
 #   frame $w2.buttons
-#   button $w2.b -text Quit -command "destroy $ww"
+#   button $w2.b -text Quit -command "DestroyGlobals; destroy $ww"
 #   pack $w2.b -side bottom 
 
 
@@ -435,7 +435,7 @@ pack $topf -fill both -pady 2 -expand yes
 
 #   #exit button
 #   frame $w3.buttons
-#   button $w3.b -text Quit -command "destroy $ww"
+#   button $w3.b -text Quit -command "DestroyGlobals; destroy $ww"
 #   pack $w3.b -side bottom 
 
 # ########### Scilab Command Interface ##############################
@@ -498,7 +498,7 @@ pack $topf -fill both -pady 2 -expand yes
 
 # #exit button
 # frame $w5.buttons
-# button $w5.b -text Quit -command "destroy $ww"
+# button $w5.b -text Quit -command "DestroyGlobals; destroy $ww"
 # pack $w5.b -side bottom 
 
 
@@ -626,3 +626,7 @@ proc SelectDataZ  {w args} {
     }
 }
 
+
+proc DestroyGlobals { } {
+    ScilabEval "DestroyGlobals()" "seq"
+}

@@ -387,7 +387,7 @@ pack $w9.sep -fill both  -pady 20m
 
 #exit button
 frame $w9.buttons
-button $w9.b -text Quit -command "destroy $ww"
+button $w9.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w9.b -side bottom 
 
 
@@ -580,3 +580,7 @@ ScilabEval "global ged_handle;ged_handle.clip_state='$curclipstate';"
 }
 
 
+
+proc DestroyGlobals { } {
+    ScilabEval "DestroyGlobals()" "seq"
+}

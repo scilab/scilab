@@ -281,7 +281,7 @@ pack $w3.sep -fill both  -pady 10m
 
  #exit button
 frame $w3.buttons
-button $w3.b -text Quit -command "destroy $ww"
+button $w3.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w3.b -side bottom 
 
 
@@ -531,4 +531,9 @@ proc SelectData  {w args} {
 	    sciCommandData
 	}
     }
+}
+
+
+proc DestroyGlobals { } {
+    ScilabEval "DestroyGlobals()" "seq"
 }

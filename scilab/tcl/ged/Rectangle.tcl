@@ -218,7 +218,7 @@ pack $w.sep -fill both -pady 5m
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom 
 
 ########### Data onglet ###########################################
@@ -552,4 +552,7 @@ ScilabEval "global ged_handle;ged_handle.clip_state='$curclipstate';"
 }
 
 
+proc DestroyGlobals { } {
+    ScilabEval "DestroyGlobals()" "seq"
+}
 

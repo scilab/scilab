@@ -12,6 +12,7 @@ cd $pwd
 variable DEMODIR
 
 lappend ::auto_path [file dirname  "$env(SCIPATH)/tcl/BWidget-1.7.0"]
+#lappend ::auto_path "$env(SCIPATH)/tcl"
 namespace inscope :: package require BWidget
 package require BWidget
 
@@ -346,7 +347,7 @@ pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww "
 pack $w.b -side bottom
 
 ########### Y onglet ##############################################
@@ -489,7 +490,7 @@ pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom 
 
 ########### Z onglet ##############################################
@@ -630,7 +631,7 @@ pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom 
 
 ########### Title onglet ##########################################
@@ -711,7 +712,7 @@ pack $w.sep -fill both -pady 35m
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom 
 
 
@@ -846,7 +847,7 @@ pack $w.sep -fill both -pady 5m
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom
 
 ########### Aspect onglet #########################################
@@ -1044,7 +1045,7 @@ pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom
 
 
@@ -1087,7 +1088,7 @@ pack $w.sep -fill both  -pady 60m
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom
 
 
@@ -2831,7 +2832,7 @@ proc SetSubticksX { } {
 	tk_messageBox -icon error -type ok -title "Incorrect sub ticks value" -message "Select a positive integer value"
 	return
     }
-    ScilabEval "Subtickstoggle($SubticksEntryX,1)"
+    ScilabEval "Subtickstoggle($SubticksEntryX,1)" "seq"
 }
 
 
@@ -2842,7 +2843,7 @@ proc SetSubticksY { } {
 	tk_messageBox -icon error -type ok -title "Incorrect sub ticks value" -message "Select a positive integer value"
 	return
     }
-    ScilabEval "Subtickstoggle($SubticksEntryY,2)"
+    ScilabEval "Subtickstoggle($SubticksEntryY,2)" "seq"
 }
 
 proc SetSubticksZ { } {
@@ -2852,5 +2853,9 @@ proc SetSubticksZ { } {
 	tk_messageBox -icon error -type ok -title "Incorrect sub ticks value" -message "Select a positive integer value"
 	return
     }
-    ScilabEval "Subtickstoggle($SubticksEntryZ,3)"
+    ScilabEval "Subtickstoggle($SubticksEntryZ,3)" "seq"
+}
+
+proc DestroyGlobals { } {
+    ScilabEval "DestroyGlobals()" "seq"
 }

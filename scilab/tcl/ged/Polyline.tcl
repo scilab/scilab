@@ -245,7 +245,7 @@ pack $w.sep -fill both -pady 5m
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom 
 
 
@@ -284,7 +284,7 @@ pack $w.sep -fill both -pady 25m
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom 
 
 
@@ -379,7 +379,7 @@ pack $w9.sep -fill both  -pady 15m
 
 #exit button
 frame $w9.buttons
-button $w9.b -text Quit -command "destroy $ww"
+button $w9.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w9.b -side bottom 
 
 
@@ -572,4 +572,8 @@ proc SelectData  {w args} {
 	    sciCommandData
 	}
     }
+}
+
+proc DestroyGlobals { } {
+    ScilabEval "DestroyGlobals()" "seq"
 }

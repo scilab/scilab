@@ -150,7 +150,7 @@ frame $w.sep -height 2 -borderwidth 1 -relief sunken
 pack $w.sep -fill both  -pady 5m
 
 #exit button
-button $w.buttons -text Quit -command "destroy $ww" 
+button $w.buttons -text Quit -command "DestroyGlobals; destroy $ww" 
 pack $w.buttons -side bottom
 
 
@@ -218,7 +218,7 @@ pack $w.sep -fill both  -pady 5m
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
 pack $w.b -side bottom 
 
 
@@ -312,3 +312,7 @@ proc SelectData  {w args} {
     }
 }
 
+
+proc DestroyGlobals { } {
+    ScilabEval "DestroyGlobals()" "seq"
+}

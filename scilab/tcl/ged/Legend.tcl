@@ -189,7 +189,7 @@ pack $w.sep -fill both  -pady 2m
 #exit button
 frame $w.buttons
 pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "destroy $ww" 
+button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww" 
 pack $w.buttons.dismiss  -side bottom -expand 1
 
 
@@ -279,3 +279,7 @@ global curtext
 ScilabEval "global ged_handle;ged_handle.text='$curtext'"
 }
 
+
+proc DestroyGlobals { } {
+    ScilabEval "DestroyGlobals()" "seq"
+}
