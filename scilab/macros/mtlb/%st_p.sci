@@ -22,7 +22,8 @@ function %st_p(s)
     value=s(var)
     tp=typeof(value)
     if tp~='st' then
-      if size(value,1)==1 then // This line can avoid some stacksize error when field contains a big matrix 
+      sz=size(value)
+      if sz(1)==1 then // This line can avoid some stacksize error when field contains a big matrix 
 	str=sci2exp(value,ll(1))
       else
 	str='['+strcat(string(size(value)),'x')+' '+tp+']'
