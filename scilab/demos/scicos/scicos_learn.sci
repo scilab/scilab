@@ -29,6 +29,7 @@ names=[
     'do_delete';
     'do_delete_region';
     'do_help';
+    'do_load';
     'do_move';
     'do_stupidmove';
     'do_palettes';
