@@ -15,7 +15,7 @@ if s1.vtype==String & s2.vtype==String & s3.vtype==String then
   tree.lhs(1).type=Type(String,Real)
 else
   tree.name="mtlb_strrep"
-  tree.out(1).dims=list(Unknown,Unknown)
-  tree.out(1).type=Type(Unknown,Unknown)
+  tree.lhs(1).dims=list(Unknown,Unknown)
+  tree.lhs(1).type=Type(Unknown,Unknown)
 end
 endfunction
