@@ -9,7 +9,7 @@ function xmltohtml(dirs,titles,xsl,step)
 // standard scilab man are assumed and titles 
 // are searched in %helps 
 // updated by HUYNH Olivier on the 9/03/2004
-  generate_cmd='sabcmd';
+  curdir=pwd()
   help=utillib.help; //to load the subfunction change_old_man
   change_old_man() //this is required to produce the whatis.htm files
                    //associated with old style manuals
@@ -19,6 +19,7 @@ function xmltohtml(dirs,titles,xsl,step)
    case 'eng' then H= 'Help chapter' 
    case 'fr'  then H= 'Chapitre de help'
   end
+  
   // get man_dirs 
   std= grep(%helps(:,1),SCI)
   //patch because scicos is not written in xml
@@ -60,15 +61,9 @@ function xmltohtml(dirs,titles,xsl,step)
     end
   end
   
-  // the perform the make-links 
-  // and html generation 
+  // the perform the  html generation 
   if step=='all' | step == 'html' then 
-
-    // sabcmd does not like c:/.. path 
-    xslprefix="";
-    if MSDOS then  xslprefix= "file://" ; end
     dirs=stripblanks(dirs)
-    
     for k=1:size(dirs,'*');
       mprintf('Processing chapter %s\n',dirs(k));
       chdir(dirs(k));
@@ -78,50 +73,19 @@ function xmltohtml(dirs,titles,xsl,step)
       if and(%helps<>part(dirs(k),1:nk)) then
 	saved_helps=%helps;
 	%helps=[%helps;'./',"Temp"];
-	rep=gener_links();
 	%helps=saved_helps;
-      else
-	rep=gener_links();
       end
       
-      if rep then 
-	// if rep is %t then new xml2 files have been 
-	// generated
-	xml2 = listfiles('*.xml2');
-	if xml2 <> [] then 
-	  for k1=1:size(xml2,'*')  // loop on .xml2 files 
-	    fb=basename(xml2(k1))
-	    mprintf('  Processing file %s.xml\n',fb);
-	    xslpath=xslprefix+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
-
-	    if  MSDOS then 
-	      // Il a ete décidé que Sablotron etait "embarqué" avec Scilab sous Windows
-	      // Don't forget to put sabcmd in Win95-util\sablotron directory
-	      // Allan CORNET Juin 2004
-	      ierr=execstr('unix_s(WSCI+''\Win95-util\sablotron\sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
-	    else 
-	      if generate_cmd=='sabcmd' then 
-		ierr=execstr('unix_s(''sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm'');','errcatch')
-	      else
-		ierr=execstr('unix_s(''xsltproc -o '+fb+'.htm '+xslpath+' '+fb+'.xml2 '');','errcatch')
-	      end
-	    end
-	    if ierr<>0 then 
-	      write(%io(2),'     Warning '+fb+'.xml does not follow dtd','(a)')
-	    end
-	  end 
-	end
-	if MSDOS then 
-	// updated by HUYNH Olivier on the 09/03/2004 
-	  unix_s('del /s *.xml2')
-	else
-	   unix_s('rm -f *.xml2')
-	end
+      xml = listfiles('*.xml');
+      if xml <> [] then 
+	for k1=1:size(xml,'*')  // loop on .xml files 
+	  xmlfiletohtml(xml(k1))
+	end 
       end
       chdir('../')
     end
   end
-    
+  chdir(curdir)  
   // now the index 
   if step=='all' | step == 'index' then 
     mprintf('Creating index.htm \n');

@@ -44,7 +44,7 @@ MACROS = perl.sci clipboard.sci with_atlas.sci setlanguage.sci with_lcc.sci VCto
 	apropos.sci help.sci gethelpfile.sci browsehelp.sci \
 	help_menu.sci change_old_man.sci \
 	make_help_index.sci find_links.sci editor.sci \
-	xmltohtml.sci help_skeleton.sci\
+	xmltohtml.sci xmlfiletohtml.sci help_skeleton.sci\
 	loadmatfile.sci matfile2sci.sci ReadmiMatrix.sci toolboxes.sci\
 	with_tk.sci with_gtk.sci gettklib.sci with_pvm.sci with_ocaml.sci \
 	with_texmacs.sci with_modelica_compiler.sci\
