@@ -224,10 +224,7 @@ typedef enum {
 	mxUNKNOWN_CLASS = 0
 } mxClassID;
 
-typedef enum {
-  mxREAL,
-  mxCOMPLEX
-  } mxComplexity; 
+typedef enum { mxREAL, mxCOMPLEX } mxComplexity; 
 
 
 
@@ -249,9 +246,6 @@ mxArray *mxDuplicateArray __PARAMS((const mxArray *ptr));
 
 /* typedef short int mxChar; */
 typedef unsigned short mxChar;
-
-#define mxREAL 0
-#define mxCOMPLEX 1
 
 #define INT8_T char
 #define UINT8_T unsigned char
