@@ -179,7 +179,7 @@ tarbindist:
 	@STRIP@ bin/scilex
 	cd tests; make distclean
 	cd examples; make distclean
-	cd .. ; tar cvf $(SCIBASE)/$(SCIBASE)-bin.tar @PVMINST@ 
+	cd .. ; tar cvf $(SCIBASE)/$(SCIBASE)-bin.tar $(BINDISTFILES) @PVMINST@ 
 	$(RM) .binary
 
 
