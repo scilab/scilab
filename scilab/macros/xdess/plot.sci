@@ -381,7 +381,6 @@ for i=1:numplot
       e.mark_mode ='on';
       e.mark_foreground = Color;
       e.mark_style=MarkerStyle;
-      e.mark_size_unit = 'point';
       e.mark_size=MarkerSize;
     else
       e.mark_mode ='off'
@@ -436,6 +435,9 @@ Property = P1;
 
 Curves = Agreg.children
 //Curves(:,1) = Curves(:,$:-1:1);
+
+// set mark_size_unit to 'point' for all the curves
+Curves.mark_size_unit='point';
 
 while (Property <= nv-1)
   setPlotProperty(ListArg(Property),ListArg(Property+1),Curves)

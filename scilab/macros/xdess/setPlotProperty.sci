@@ -144,7 +144,6 @@ case 'markstyle'        // <=> Marker
     
     if (opt1 > 0)
       Curves.mark_style = MarksStyleVal(opt1);
-      Curves.mark_size_unit  = 'point';
       Curves.mark_size  = 6;
       //MarksSizeVal(opt1);
     else
@@ -268,7 +267,6 @@ case 'marksize'        // <=> MarkerSize
     markmodeON = find(Curves.mark_mode=='on');
     
     if markmodeON <> []
-      Curves(markmodeON).mark_size_unit = 'point';
       Curves(markmodeON).mark_size = PropertyValue;
     end
   else
