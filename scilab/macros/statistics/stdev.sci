@@ -1,4 +1,4 @@
-function [s]=stdev(x,orien)
+function sd=stdev(x,orien)
 //
 //This function computes  the  standard deviation  of  the values  of  a
 //vector or matrix x.
