@@ -7,6 +7,8 @@ function [tree]=sci_tanh(tree)
 // Ouput: tree = Scilab equivalent for tree
 // V.C.
 
+tree.name="tanh"
+
 A=getrhs(tree)
 A=convert2double(A)
 tree.rhs=Rhs(A)
