@@ -10453,7 +10453,7 @@ sciDrawObj (sciPointObj * pobj)
   double anglestr,w2,h2,as;
   double xx[2],yy[2];   
   integer px1[2],py1[2],pn1=1,pn2=2;
-  integer nn1,nn2, arsize,lstyle,iflag,in1,in2; // F.Leray Rajour de in1 et in2 18.02.04
+  integer nn1,nn2, arsize,lstyle,iflag;
   double arsize1=5.0,arsize2=5.0,dv;
   integer angle1, angle2;
   integer x1, yy1, w1, h1, wstr,hstr,hh1;
