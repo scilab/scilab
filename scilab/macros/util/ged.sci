@@ -1079,6 +1079,7 @@ if k>np then ind=ki(k-np),else ind=-k,end
 endfunction
 
 function ged_eventhandler(win,x,y,ibut)
+//if ibut<>-1 then disp(ibut),end
 //Copyright INRIA
 //Author : Serge Steer 2002
 
@@ -1105,10 +1106,10 @@ function ged_eventhandler(win,x,y,ibut)
   if ged_handle~=[] then
 
 
-    if ibut==0 then
+    if ibut==0 | ibut==3 then
       //Set(h)
       tkged()
-    elseif ibut==2 then
+    elseif ibut==2 | ibut==5 then
       [x,y]=xchange(x,y,'i2f')
       pos=[x,y]
       while %t then
@@ -1118,8 +1119,8 @@ function ged_eventhandler(win,x,y,ibut)
 	move(ged_handle,rep(1:2)-pos)
 	pos=rep(1:2)
       end
-    elseif ibut==3 then
-      delete(ged_handle)
+//    elseif ibut==3 then
+//      delete(ged_handle)
     end
   end
 //  seteventhandler("ged_eventhandler")  
