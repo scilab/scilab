@@ -8,7 +8,6 @@ function [x]=input(msg,flag)
   if argn(2)==2 then
     mprintf(msg(n))
      x=mscanf(fmt) 
-     if x==' ' then x='',end
   else
     while %t
       mprintf(msg(n))

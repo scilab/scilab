@@ -1,10 +1,10 @@
-function [x]=cmb_lin(Alfa,x,Beta,y)
-//  x =cmb_lin(Alfa,x,Beta,y) evaluates Alfa*x-Beta*y 
+function [x]=cmb_lin(alfa,x,beta,y)
+//  x =cmb_lin(alfa,x,beta,y) evaluates alfa*x-beta*y 
 // (low-level routine)
 //!
 // Copyright INRIA
 n=prod(size(x));
 for j=1:n,
-    x(j)=addf(mulf(Alfa,x(j)),mulf(mulf('-1',Beta),y(j)));
+    x(j)=addf(mulf(alfa,x(j)),mulf(mulf('-1',beta),y(j)));
 end
 endfunction

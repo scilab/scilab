@@ -108,7 +108,7 @@ elseif cc=='o' then
     lb=lb+1
     ll=ll+1
   end
-elseif cc=='x' then
+elseif cc=='x'then
   ll=0
   v=0
   c=part(buf,lb)

@@ -1,3 +1,4 @@
+
 function ge_drawobj(o)
 //Copyright INRIA
 //Author : Serge Steer 2002
