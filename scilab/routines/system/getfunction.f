@@ -118,9 +118,10 @@ c     statements of the function
       
 
       if(sym.eq.eol) then
+         print *, (lpt(ii),ii=1,6)
          if (lpt(4).ge.lpt(6)) then
             if(comp(1).ne.0) then 
-               eof=.true.
+               eof=.false.
             else
                call getlin(2)
                eof=fin.eq.-2
