@@ -111,7 +111,7 @@ clear initial_demos_tables
 // Menu for Help and editor
 if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"--texmacs") then
   delmenu("Help")
-  addmenu("Help",list(2,"help"))
+  addmenu("Help",["Help browser","Apropos"],list(2,"help"))
   if with_tk() then
     delmenu("Editor")
 //retricted to Windows version because of problems on some unix platform	

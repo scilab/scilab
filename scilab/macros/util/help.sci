@@ -8,8 +8,15 @@ function help(key,flag)
     browsehelp(INDEX,"index");
     return
   elseif type(key)==1 then //called by the menu
-    browsehelp(INDEX,"index");
-    return
+    if key==1 then
+      browsehelp(INDEX,"index");
+      return
+    else
+      key=x_dialog('Select a keyword','')
+      if key==[] then return,end
+      help_apropos(key)
+      return
+    end
   end
  
   if rhs> 2 then error(39),return; end
@@ -19,10 +26,6 @@ function help(key,flag)
     key="symbols";
   end
 
-  if rhs == 2 then
-    help_apropos(key)
-    return
-  end
  
   path=gethelpfile(key)
   if path<>[] then
@@ -31,6 +34,7 @@ function help(key,flag)
      help_apropos(key)
   end
 endfunction
+
 function help_menu(i)
   browsehelp(INDEX,"index");
 endfunction
