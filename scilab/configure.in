@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.55 $)dnl
+AC_REVISION($Revision: 1.56 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -850,24 +850,21 @@ case "$host" in
     CC_OPTIONS='-O -DSYSV -Dhpux +Z +DAportable'
     CC_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
     if test "$WITH_G77" != yes; then    
-      #AC_CHECK_PROG(F77,fort77,yes,no)
       AC_CHECK_PROGS(F77,fort77 f77 f90 f2c-f77,no)
       if test "$F77" = no; then
         AC_MSG_ERROR([Unable to configure: Fortran fort77 compiler not found])
       fi
       FC="$F77"
     fi
-    #FC="$F77"
     AC_F77_LIBRARY_LDFLAGS
-    #FC_OPTIONS='+O2 +E4 +Z +DAportable'
     FC_OPTIONS='+O2 +Z +DAportable'
-    FC_OPTIONS_O0='+E4 +Z +DAportable'
+    FC_OPTIONS_O0=' +Z +DAportable'
     FC_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
     LD=ld
     LD_LDFLAGS=
     if test "$enable_debug" = yes; then 
       CC_OPTIONS='-g -DSYSV -Dhpux'
-      FC_OPTIONS='-g +E4'
+      FC_OPTIONS='-g'
     fi
     # GNU compilers
     if test "$WITH_GCC" = yes; then
