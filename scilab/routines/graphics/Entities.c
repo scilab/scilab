@@ -7000,6 +7000,7 @@ ConstructFigure (XGC)
   sciSetFigurePos (pobj, x[0], x[1]);
   pFIGURE_FEATURE (pobj)->isiconified = FALSE;
   pFIGURE_FEATURE (pobj)->isselected = TRUE;
+  pFIGURE_FEATURE (pobj)->rotstyle = 0;
   pFIGURE_FEATURE (pobj)->visible = TRUE;
   pFIGURE_FEATURE (pobj)->numsubwinselected = 0; 
   return pobj;
@@ -11355,8 +11356,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       *numcol = 2;
       if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
-      tab[0] = sciGetPosX (pthis);
-      tab[1] = sciGetPosY (pthis);
+      tab[0] = pRECTANGLE_FEATURE (pthis)->x;
+      tab[2] = pRECTANGLE_FEATURE (pthis)->y;
       tab[2] = pRECTANGLE_FEATURE (pthis)->width;
       tab[3] = pRECTANGLE_FEATURE (pthis)->height;
       return (double*)tab;
@@ -11460,22 +11461,23 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_GRAYPLOT:
       if (pGRAYPLOT_FEATURE (pthis)->type == 0) { /* gray plot */
 	int ny=pGRAYPLOT_FEATURE (pthis)->ny,nx=pGRAYPLOT_FEATURE (pthis)->nx;
-	*numrow = ny+1;
-	*numcol = nx+1;
+	*numrow = nx+1;
+	*numcol = ny+1;
 	if ((tab = calloc(*numrow * *numcol,sizeof(double))) == NULL)
 	  return (double*)NULL;
 	tab[0]=0;
+	for (i=0;i < nx;i++) 
+	  tab[i+1] = pGRAYPLOT_FEATURE (pthis)->pvecx[i];
 	for (i=0;i < ny;i++) 
-	  tab[i+1] = pGRAYPLOT_FEATURE (pthis)->pvecy[i];
-	for (i=0;i < nx;i++) 
-	  tab[*numrow*(i+1)] = pGRAYPLOT_FEATURE (pthis)->pvecx[i];
-	for (i=0;i < nx;i++) 
-	  for (k=0;k < ny;k++) 
-	    tab[*numrow*(i+1)+k+1] = pGRAYPLOT_FEATURE (pthis)->pvecz[ny*i+k];
+	  tab[*numrow*(i+1)] = pGRAYPLOT_FEATURE (pthis)->pvecy[i];
+
+	for (i=0;i < ny;i++) 
+	  for (k=0;k < nx;k++) 
+	    tab[*numrow*(i+1)+k+1] = pGRAYPLOT_FEATURE (pthis)->pvecz[nx*i+k];
       }
       else  {/* Matplot */
-	int ny=pGRAYPLOT_FEATURE (pthis)->ny,nx=pGRAYPLOT_FEATURE (pthis)->nx;
-	*numrow = ny;	*numcol = nx;
+	int ny=pGRAYPLOT_FEATURE (pthis)->ny-1,nx=pGRAYPLOT_FEATURE (pthis)->nx-1;
+	*numrow = nx;	*numcol = ny;
 	if ((tab = calloc(nx*ny,sizeof(double))) == NULL)
 	  return (double*)NULL;
 	for (i=0;i < nx*ny;i++) 
@@ -11606,8 +11608,8 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	}
 
       pRECTANGLE_FEATURE (pthis)->x          = tab[0];
-      pRECTANGLE_FEATURE (pthis)->width      = tab[1];
-      pRECTANGLE_FEATURE (pthis)->y          = tab[2];
+      pRECTANGLE_FEATURE (pthis)->y          = tab[1];
+      pRECTANGLE_FEATURE (pthis)->width      = tab[2];
       pRECTANGLE_FEATURE (pthis)->height     = tab[3];
       return 0;
       break;
@@ -11800,9 +11802,58 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       }
       return 0;
       break;
-
-    case SCI_FEC: 
     case SCI_GRAYPLOT:
+      if (pGRAYPLOT_FEATURE (pthis)->type == 0) { /* gray plot */
+	double *pvecx,*pvecy,*pvecz;
+	int nx,ny;
+	nx=*numrow-1;
+	ny=*numcol-1;
+	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny || pGRAYPLOT_FEATURE (pthis)->nx!=nx) {
+	  if ((pvecx = calloc(nx,sizeof(double))) == NULL) {
+	    sciprint ("Not enough memory\n");
+	    return -1;}
+	  if ((pvecy = calloc(ny,sizeof(double))) == NULL) {
+	    FREE(pvecx);
+	    sciprint ("Not enough memory\n");
+	    return -1;}
+	  if ((pvecz = calloc(nx*ny,sizeof(double))) == NULL) {
+	    FREE(pvecx);FREE(pvecy);
+	    sciprint ("Not enough memory\n");
+	    return -1;}
+	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecx);pGRAYPLOT_FEATURE (pthis)->pvecx=pvecx;
+	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecy);pGRAYPLOT_FEATURE (pthis)->pvecy=pvecy;
+	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
+	}
+	for (i=0;i < nx;i++) 
+	  pGRAYPLOT_FEATURE (pthis)->pvecx[i] = tab[i+1];
+
+	for (i=0;i < ny;i++) 
+	  pGRAYPLOT_FEATURE (pthis)->pvecy[i] = tab[*numrow*(i+1)];
+	for (i=0;i < ny;i++) 
+	  for (k=0;k < nx;k++) 
+	    pGRAYPLOT_FEATURE (pthis)->pvecz[nx*i+k]=tab[*numrow*(i+1)+k+1];
+	pGRAYPLOT_FEATURE (pthis)->ny=ny;
+	pGRAYPLOT_FEATURE (pthis)->nx=nx;
+      }
+      else  {/* Matplot */
+	double *pvecz;
+	int nx,ny;
+	nx=*numrow;
+	ny=*numcol;
+	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny+1 || pGRAYPLOT_FEATURE (pthis)->nx!=nx+1) {
+	  if ((pvecz = calloc(nx*ny,sizeof(double))) == NULL) {
+	    sciprint ("Not enough memory\n");
+	    return -1;}
+	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
+	}
+	for (i=0;i < nx*ny;i++) 
+	  pGRAYPLOT_FEATURE (pthis)->pvecz[i]=tab[i];
+	pGRAYPLOT_FEATURE (pthis)->ny=ny+1;
+	pGRAYPLOT_FEATURE (pthis)->nx=nx+1;
+      }
+      break;
+    case SCI_FEC: 
+
     case SCI_SBV:
     case SCI_SBH:
     case SCI_FIGURE:
@@ -13115,6 +13166,7 @@ int sciType (marker)
   else if (strcmp(marker,"axes_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"data_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"surface_color") == 0)    {return 1;}
+  else if (strcmp(marker,"rotation_style") == 0)    {return 10;}
   else { sciprint("\r\n Unknown property \r");return 0;}
 }
 /**sciGetAxes
@@ -13456,19 +13508,18 @@ sciGetCurrentScilabXgc ()
   return (struct BCG *) CurrentScilabXgc;
 }
 
-void Obj_RedrawNewAngle(double theta,double alpha)
+extern void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
 {
   sciPointObj *pobj;
-  pobj=(sciPointObj *) sciGetSons(sciGetSelectedSubWin(sciGetCurrentFigure ()))->pointobj;
-  if(sciGetEntityType (pobj) == SCI_SURFACE) {
-    pSURFACE_FEATURE (pobj)->theta   = theta;
-    pSURFACE_FEATURE (pobj)->alpha   = alpha;
-    sciSetReplay(1);
-    sciDrawObj(pobj);
-    sciSetReplay(0);
-  }
+  
+  pobj= (sciPointObj *) sciGetSurface(psubwin);
+  if(pobj != (sciPointObj *) NULL)	
+    {   
+      pSURFACE_FEATURE (pobj)->theta   = theta;
+      pSURFACE_FEATURE (pobj)->alpha   = alpha;
+    }
 }
-int Check3DObjs(int win)
+extern int Check3DObjs()
 {
   sciPointObj *pobj;
   pobj=(sciPointObj *) sciGetSons(sciGetSelectedSubWin(sciGetCurrentFigure ()))->pointobj;
@@ -13477,5 +13528,30 @@ int Check3DObjs(int win)
   else
    return 0;
 }
+extern BOOL CheckRotSubwin(sciPointObj *psubwin, integer x, integer y)
+{ 
+  integer box[4]; 
+  sciSetSelectedSubWin(psubwin); 
+  box[0]= Cscale.WIRect1[0]; 
+  box[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
+  box[1]= Cscale.WIRect1[1]; 
+  box[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
+  if ((x >= box[0]) && (x <= box[2]) && (y >= box[1]) && (y <= box[3])) 
+       return TRUE;
+  return FALSE;                
+}
 
  
+extern sciPointObj *sciGetSurface(sciPointObj *psubwin)
+{
+  sciSons *psonstmp;
+  
+  psonstmp = sciGetSons (psubwin);
+  while (psonstmp != (sciSons *) NULL)	
+    {   
+      if(sciGetEntityType (psonstmp->pointobj) == SCI_SURFACE) 
+	return (sciPointObj *) psonstmp->pointobj;
+      psonstmp = psonstmp->pnext;
+    }
+  return (sciPointObj *) NULL;
+}

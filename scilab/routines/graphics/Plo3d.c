@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "Math.h"
 #include "PloEch.h"
+#include "Entities.h"
 
 #ifdef __STDC__
 void wininfo(char *format,...);
@@ -21,8 +22,7 @@ extern double C2F(dsort)();
 extern char GetDriver(void);
 extern int Check3DPlots(char *, integer *);
 extern int version_flag();
-int Check3DObjs(int win);
-extern void Obj_RedrawNewAngle(double theta,double alpha);
+
 /** like GEOX or GEOY in PloEch.h but we keep values in xx1 and yy1 for finite check **/
 
 static double xx1,yy1;
@@ -1272,6 +1272,9 @@ void I3dRotation(void)
   double xx,yy;
   double theta0,alpha0;
   static integer modes[]={1,0};/* for xgemouse only get mouse mouvement*/ 
+  sciSons *psonstmp;
+  sciPointObj *psubwin, *tmpsubwin, *psurface; 
+  integer xr, yr;
 
 
   C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1283,7 +1286,7 @@ void I3dRotation(void)
       }
   }
   else {
-    if ( Check3DObjs(&ww) == 0) 
+    if ( Check3DObjs() == 0) 
       {
 	wininfo("No 3d entities in your graphic window");
 	return;
@@ -1295,7 +1298,7 @@ void I3dRotation(void)
   C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if (strcmp("Rec",driver) != 0&& version_flag !=0) 
+  if (strcmp("Rec",driver) != 0&& version_flag() !=0) 
     {
       Scistring("\n Use the Rec driver for 3f Rotation " );
       return;
@@ -1316,7 +1319,8 @@ void I3dRotation(void)
 #endif
       if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L);
-      C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if (version_flag() != 0)
+	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       theta=Cscale.theta ;
       alpha=Cscale.alpha ;
 
@@ -1326,6 +1330,47 @@ void I3dRotation(void)
       theta0=theta;
       alpha0=alpha;
       ibutton=-1;
+      if (version_flag() == 0)
+	{
+	  tmpsubwin = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ());          
+	  xr=inint( ((double) Cscale.wdim[0]*pSUBWIN_FEATURE(tmpsubwin)->WRect[2]*
+		     (1-(Cscale.axis[0]+Cscale.axis[1])))*(x0) + 
+		    (((double) Cscale.wdim[0]*pSUBWIN_FEATURE(tmpsubwin)->WRect[2])*(Cscale.axis[0])
+		     +pSUBWIN_FEATURE(tmpsubwin)->WRect[0]*((double)Cscale.wdim[0])));
+	  yr=inint(((double) Cscale.wdim[1]*pSUBWIN_FEATURE(tmpsubwin)->WRect[3]*
+		    (1-(Cscale.axis[2]+Cscale.axis[3])))*(-(yy0)+1) + 
+		   (((double) Cscale.wdim[1]*pSUBWIN_FEATURE(tmpsubwin)->WRect[3])*(Cscale.axis[2])
+		    + pSUBWIN_FEATURE(tmpsubwin)->WRect[1]*((double)Cscale.wdim[1])));
+          if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0)    
+	    {
+	      psonstmp = sciGetSons (sciGetCurrentFigure());  
+	      while (psonstmp != (sciSons *) NULL)	
+		{  
+		  if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
+		    {
+		      psubwin= (sciPointObj *) psonstmp->pointobj;
+		      if (CheckRotSubwin(psubwin,xr,yr))
+			break;   
+		    }
+		  psonstmp = psonstmp->pnext;
+		} 
+	      sciSetSelectedSubWin (psubwin);
+              psurface = (sciPointObj *) sciGetSurface(psubwin);
+	      theta0 =  pSURFACE_FEATURE (psurface)-> theta; 
+	      alpha0 =  pSURFACE_FEATURE (psurface)-> alpha;
+	    }
+          else
+	    { 
+	      psonstmp = sciGetLastSons (sciGetCurrentFigure());  
+	      while (psonstmp != (sciSons *) NULL)	
+		{  
+		  if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
+		    break;  
+		  psonstmp = psonstmp->pnext;
+		} 
+	      sciSetSelectedSubWin (psonstmp->pointobj);
+	    } 
+	}
       while ( ibutton == -1 ) 
 	{
 	  /* dessin d'un rectangle */
@@ -1344,7 +1389,8 @@ void I3dRotation(void)
 	}
       if ( pixmode == 0) C2F(dr1)("xset","alufunction",(in=3,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-      C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if (version_flag() != 0)
+	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #ifdef WIN32
@@ -1354,7 +1400,22 @@ void I3dRotation(void)
       if (version_flag() != 0)
 	Tape_ReplayNewAngle("v",&ww,PI0,PI0,iflag,flag,PI0,&theta,&alpha,bbox,PD0);
       else
-        Obj_RedrawNewAngle(theta,alpha);
+	{  
+          if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0)         
+	    Obj_RedrawNewAngle(psubwin,theta,alpha);
+	  else
+            { 
+	      psonstmp = sciGetSons (sciGetCurrentFigure());  
+	      while (psonstmp != (sciSons *) NULL)	
+		{  
+		  if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
+		    Obj_RedrawNewAngle(psonstmp->pointobj,theta,alpha);
+		  psonstmp = psonstmp->pnext;
+		} 
+            }
+	  sciRedrawFigure(); 
+	  sciSetSelectedSubWin (tmpsubwin);
+	}
     }
 }
 

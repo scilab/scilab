@@ -4855,6 +4855,14 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     C2F(dr)("xset","window",&id,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
     sciSwitchWindow(&id);
   }
+  else if (strncmp(marker,"rotation_style", 14) == 0)
+    { 
+      if (strncmp(cstk(*value),"unary",5)==0 )
+	pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle = 0 ;
+      else if (strncmp(cstk(*value),"multiple",8)==0 )
+	pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle = 1 ;
+      else  {strcpy(error_message,"Nothing to do (value must be 'unary/multiple')"); return -1;}
+    }
   /********************** context graphique ******************************/
   else if (strncmp(marker,"background", 10) == 0)
     {
@@ -5061,7 +5069,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
   else if (strncmp(marker,"tight_limits", 12) == 0) 
     {                   
-      if ((strncmp(cstk(*value),"on", 3) == 0)) 
+      if ((strncmp(cstk(*value),"off", 3) == 0)) 
 	{                     
 	  pSUBWIN_FEATURE (psubwin)->FRect[0]= 
 	    exp10( Cscale.xtics[2]) * (floor(pSUBWIN_FEATURE (psubwin)->axes.limits[1]/ (exp10( Cscale.xtics[2])))); 
@@ -5072,12 +5080,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  pSUBWIN_FEATURE (psubwin)->FRect[3]=  
 	    exp10( Cscale.ytics[2]) * (ceil(pSUBWIN_FEATURE (psubwin)->axes.limits[4]/ (exp10( Cscale.ytics[2])))); 
                  
-	  pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 1;} 
-      else if ((strncmp(cstk(*value),"off", 3) == 0)){
+	  pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 0;} 
+      else if ((strncmp(cstk(*value),"on", 2) == 0)){
 	for (i=0;i<4 ; i++) 
 	  pSUBWIN_FEATURE (psubwin)->FRect[i]
 	    = pSUBWIN_FEATURE (psubwin)->axes.limits[i+1];
-	pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 0; }            
+	pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 1; }            
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
     } 
@@ -5337,7 +5345,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"data_mapping", 12) == 0) {
     if (sciGetEntityType (pobj) == SCI_GRAYPLOT) {
       if ((strncmp(cstk(*value),"scaled", 6) == 0)||(strncmp(cstk(*value),"direct", 6) == 0)) 
-	strcpy(pGRAYPLOT_FEATURE (pobj)->datamapping,cstk(*value));
+	strncpy(pGRAYPLOT_FEATURE (pobj)->datamapping,cstk(*value),6);
       else
 	{strcpy(error_message,"Value must be 'direct' or 'scaled'");return -1;}
     }
@@ -5620,6 +5628,15 @@ int sciGet(sciPointObj *pobj,char *marker)
       numcol = 1;
       CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
       *istk(outindex) = sciGetNum((sciPointObj *)pobj);
+    }
+  else if (strncmp(marker,"rotation_style", 14) == 0) 
+    {
+      numrow = 1;numcol = 8;
+      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+      if (pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle == 0)
+	strncpy(cstk(outindex),"unary", numrow*(numcol-3));
+      else
+	strncpy(cstk(outindex),"multiple",numrow*numcol);
     }
   /********** Handles Properties *********************************************/       
   else if (strncmp(marker,"type", 4) == 0)

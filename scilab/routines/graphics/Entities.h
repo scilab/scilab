@@ -424,6 +424,7 @@ typedef struct
   BOOL isiconified;		     
   /** specifies if this window is selected             */
   BOOL isselected; 
+  int rotstyle;
   /** specifies if this object is visble             */
   BOOL visible;
   /** specifies the number of the selected son         */
@@ -975,7 +976,7 @@ typedef struct
   int nx; 
   int ny;
   int type;   /** 0 if a grayplot, 1if a matplot **/  
-  char datamapping[6];
+  char datamapping[7];
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */   
@@ -1417,3 +1418,7 @@ extern HFONT sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight, int iD
 extern HDC sciGetDC (sciPointObj * pobj);                                  
 extern HDC sciGetHDC (sciPointObj * pobj);   
 #endif
+extern sciPointObj *sciGetSurface(sciPointObj *psubwin);
+extern BOOL CheckRotSubwin(sciPointObj *psubwin, integer x, integer y);
+extern void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha);
+extern int Check3DObjs();
