@@ -1335,6 +1335,7 @@ c
  1513 continue
       ilk=lin(k+6)
       if(trace) then
+         m=0
          if(istk(ilk).ne.10) then
             if(first) then
                buf='at line '
