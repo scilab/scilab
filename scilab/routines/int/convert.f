@@ -53,8 +53,24 @@ c     intn to intm or double
             lstk(top+1)=sadr(lr+memused(it,mn))
          endif
       else
-         err=1
-         call error(53)
+         top=top+1
+         il=iadr(lstk(top))
+         l=sadr(il+4)
+         err=l+1-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         istk(il)=1
+         istk(il+1)=1
+         istk(il+2)=1
+         istk(il+3)=0
+         stk(l)=it
+         lstk(top+1)=l+1
+         rhs=2
+         call funnam(ids(1,pt+1),'iconvert',iadr(lstk(top-1)))
+         fun=-1
+         return
       endif
       return
       end
