@@ -15,6 +15,7 @@ function txt=fun2string(fun,nam)
     lst=fun
   end
   lst=mmodlst(lst)
+
   lcount=1;level=[0,0];
   quote=''''
   dquote='""'
@@ -36,7 +37,7 @@ function txt=fun2string(fun,nam)
   end
 
   hdr='function '+outputs+'='+nam+inputs;
-  txt=[hdr;crp(2:$-2);'endfunction']
+  txt=[hdr;'  '+crp(2:$-2);'endfunction']
 endfunction
 
 function txt=ins2sci(lst,ilst)
@@ -139,7 +140,7 @@ function [txt,ilst]=cod2sci(lst,ilst)
 //
 //!
 // Copyright INRIA
-// Author Serge Steer  
+// Author Serge Steer 
   nlst=size(lst)
   txt=''
   ilst=ilst-1
@@ -148,7 +149,8 @@ function [txt,ilst]=cod2sci(lst,ilst)
     op=lst(ilst)
     if type(op)==15 then return,end
     select op(1)
-      case '1' then //stackp
+      case '1' then //stackp 
+      // retained for compatibility with 2.7 and earlier version
       prev=lst(ilst-1)
       if size(prev,'*')==1 then prev=[prev ' '],end
       if and(prev(1:2)==['5','25'])|prev(1)=='20' then
@@ -209,6 +211,33 @@ function [txt,ilst]=cod2sci(lst,ilst)
       case '25' then   
       case '28' then //continue
       txt=catcode(txt,'continue,')
+      case '29' then //affectation
+      ip=','//code2str(evstr(op(2)))
+      op=matrix(op(3:$),2,-1)
+      lhs=size(op,2)
+      LHS=[]
+      iind=0
+      for k=1:lhs
+	name=op(1,k)
+	rhs=evstr(op(2,k))
+	if rhs==0 then
+	  LHS=[name,LHS]
+	else
+	  I=[];
+	  for i=1:rhs, iind=iind+1,I=[I,stk(iind)(1)];end
+	  LHS=[name+'('+strcat(I,',')+')',LHS]
+	end
+      end
+      if lhs>1 then  LHS='['+strcat(LHS,',')+']',end
+      
+      RHS=[]
+      for k=iind+1:size(stk), RHS=[RHS stk(k)(1)],end
+      if size(RHS,'*')<>1, RHS='('+strcat(RHS,',')+')',end
+      if LHS=='ans' then
+	txt=catcode(txt,RHS+ip)
+      else
+	txt=catcode(txt,LHS+' = '+RHS+ip)
+      end
       case '99' then //return
       txt=catcode(txt,'return,')
     else
@@ -372,6 +401,7 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
     end
 
   end
+  stk=list(stk(1:top))
   lst=resume(lst)
 endfunction
 
@@ -698,7 +728,7 @@ function lst=mmodlst(lst)
 	pos((top-rhs+1):(top-rhs+lhs))=ones(lhs,1)*ilst
 	top=top-rhs+lhs
 	pos(top+1:$)=[]
-      elseif opn=='2'|opn=='3'|opn=='4'|opn=='6'|opn=='23'|opn=='24'|opn=='26' then
+      elseif opn=='2'|opn=='3'|opn=='4'|opn=='6'|opn=='23'|opn=='24'|opn=='26'|opn=='27'|opn=='29' then
 	top=top+1
 	pos(top)=ilst
 	//    else

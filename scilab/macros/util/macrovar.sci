@@ -53,7 +53,13 @@ for lstk=lst
     [vars,getted]=listvars(lstk)
   else
     if lstk(1)=='1'|lstk(1)=='for' then 
+      // case 1 retained for 2.7 and earlier versions
        vars=[vars;addvar(lstk(2))],
+    elseif lstk(1)=='29' then 
+      nlhs=(size(lstk,'*')-2)/2
+      for k=0:nlhs-1
+	vars=[vars;addvar(lstk(3+2*k))],
+      end
     elseif lstk(1)=='2' then 
        getted=[getted;addget(lstk(2))],
     end
