@@ -61,4 +61,6 @@ void C2F(tksciInterf)()
 	}
     }
   (*FuncI[Interf.FuncIndex -1])();
+  InterfDone();
+
 }
