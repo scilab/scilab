@@ -568,7 +568,7 @@ typedef struct
   int  fontsize;
   int  textcolor;
   int  ticscolor;
-  int  subint[2]; /* SS 01/01/03 */
+  int  subint[3]; /* Dj.A 17/12/03 */
   int  rect;
   char xdir;   /**  xdir  = 'u' | 'd'  : gives the xy-axes positions **/ 
   char ydir;   /**  ydir  = 'r' | 'l' : gives the xy-axes positions **/ 

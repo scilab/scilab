@@ -14265,7 +14265,6 @@ void Nextind(integer ind1, integer *ind2, integer *ind3)
       if (*ind3 == -1) *ind3 = 3;
     }
 }
-
 /**Axes3dStrings
  * @author Djalel Abdemouche 10/2003
  * Should be in Axes.c file
@@ -14280,8 +14279,8 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
   int fontsize=-1,textcolor=-1,ticscolor=-1, doublesize ;
   sciPointObj *psubwin;
   int ns=2,style=0,iflag=0,gstyle,trois=3,dash[6];
-  double xx[4],yy[4],zz[4],vxx,vyy,vzz;
-  integer i,xm,ym,vx[2],vy[2],xg[2],yg[2];
+  double xx[4],yy[4],zz[4],vxx,vxx1,vyy,vyy1,vzz,vzz1,dx;
+  integer i,xm,ym,vx[2],vy[2],xg[2],yg[2],j,subtics;
   loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
   if ( loc == 0)    
     {
@@ -14336,6 +14335,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	double fx,fy,fz; 
 	char str[100];
 	integer Ticsdir[2];
+	subtics=pSUBWIN_FEATURE (psubwin)->axes.subint[2];
 	Ticsdir[0]=ixbox[3]-ixbox[4];
 	Ticsdir[1]=iybox[3]-iybox[4];
 	BBoxToval(&fx,&fy,&fz,xind[3],bbox);
@@ -14352,8 +14352,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	for (i=0 ; i < zz[3]+1 ; i++)
 	  {  char foo[100]; 
 	    vzz = exp10(zz[2])*(zz[0] + i*ceil((zz[1]-zz[0])/zz[3]));
-	    trans3d((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
-		    1,&xm,&ym,&fx,&fy,&vzz);
+	    trans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz);
 	    vx[0]=xm;vy[0]=ym;
 	    if ((ym >= iybox[2]) && (ym <= iybox[3]))
 	      {
@@ -14389,7 +14388,21 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 			C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		      }
 		  }
-	      }	  
+	      }
+	    /* Ajout subtics  Dj.A 17/12/2003 **/
+	    vzz1= exp10(zz[2])*(zz[0] + (i+1)*ceil((zz[1]-zz[0])/zz[3]));
+	    dx = (vzz1-vzz)/(subtics+1);
+	    for ( j = 1 ; j < subtics+1; j++)
+	      {  
+		vzz1=vzz+dx*j;
+		trans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1);
+		vx[0]=xm;vy[0]=ym;
+		vx[1]=vx[0]+barlengthx/2.0;
+		vy[1]=vy[0]+barlengthy/2.0;
+		if ((ym <= iybox[3]) && (ym >= iybox[2]))
+		  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      }
+	    /***/
 	  }
 	if (legz != 0)
 	  {
@@ -14408,6 +14421,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	     double fx,fy,fz;
 	     char str[100];
 	     integer Ticsdir[2]; 
+	     subtics=pSUBWIN_FEATURE (psubwin)->axes.subint[0];
 	     Ticsdir[0]=ixbox[4]-ixbox[3];
 	     Ticsdir[1]=iybox[4]-iybox[3];
 	     BBoxToval(&fx,&fy,&fz,xind[4],bbox);
@@ -14425,8 +14439,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	     for (i=0 ; i < xx[3]+1 ; i++)
 	       {  char foo[100]; 
 	       vxx = exp10(xx[2])*(xx[0] + i*ceil((xx[1]-xx[0])/xx[3]));
-	       trans3d((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
-		       1,&xm,&ym,&vxx,&fy,&fz);
+	       trans3d(psubwin,1,&xm,&ym,&vxx,&fy,&fz);
 	       vx[0]=xm;vy[0]=ym; 
 	       /**/
 	       if ((xm <= ixbox[5]) && (xm >= ixbox[4]) && (ym >= iybox[5]) && (ym <= iybox[4]))
@@ -14472,6 +14485,29 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 			 }	
 		     } 
 		 }
+	       /* Ajout subtics  Dj.A 17/12/2003 **/
+	       vxx1 = exp10(xx[2])*(xx[0] + (i+1)*ceil((xx[1]-xx[0])/xx[3]));
+	       dx = (vxx1-vxx)/(subtics+1);
+	       for ( j = 1 ; j < subtics+1; j++)
+		 {  
+		   vxx1=vxx+dx*j;
+		   trans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
+		   if (IsDownAxes(psubwin))
+		     {
+		       vx[1]=vx[0]=xm;
+		       vy[0]=ym;
+		       vy[1]=vy[0]+iof/4;
+		     }
+		   else
+		     {
+		       vx[0]=xm;vy[0]=ym;
+		       vx[1]=vx[0]+barlengthx/2.0;
+		       vy[1]=vy[0]+barlengthy/2.0;
+		     }
+		     
+		   if ((ym >= iybox[5]) && (ym <= iybox[4]) && (xm <= ixbox[5]) && (xm >= ixbox[4])) 
+		     C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 }
 	       } 
 	  if (legx != 0)
 	    {
@@ -14489,6 +14525,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	    double fx,fy,fz; 
 	    char str[100];
 	    integer Ticsdir[2];
+	    subtics=pSUBWIN_FEATURE (psubwin)->axes.subint[1];
 	    Ticsdir[0]=ixbox[4]-ixbox[3];
 	    Ticsdir[1]=iybox[4]-iybox[3];
 	    BBoxToval(&fx,&fy,&fz,xind[4],bbox);
@@ -14506,8 +14543,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	    for (i=0 ; i < yy[3]+1 ; i++)
 	      { char foo[100]; 
 		vyy = exp10(yy[2])*(yy[0] + i*ceil((yy[1]-yy[0])/yy[3]));
-		trans3d((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
-			1,&xm,&ym,&fx,&vyy,&fz);
+		trans3d(psubwin,1,&xm,&ym,&fx,&vyy,&fz);
 		vx[0]=xm;vy[0]=ym;
 		/**/
 		if ((xm <= ixbox[5]) && (xm >= ixbox[4]) && (ym >= iybox[5]) && (ym <= iybox[4]))
@@ -14553,6 +14589,28 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 			}	
 		    } 
 		}
+		/* Ajout subtics  Dj.A 17/12/2003 **/
+		vyy1 = exp10(yy[2])*(yy[0] + (i+1)*ceil((yy[1]-yy[0])/yy[3]));
+		dx = (vyy1-vyy)/(subtics+1);
+		for ( j = 1 ; j < subtics+1; j++)
+		  {  
+		    vyy1=vyy+dx*j;
+		    trans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
+		    if (IsDownAxes(psubwin))
+		     {
+		       vx[1]=vx[0]=xm;
+		       vy[0]=ym;
+		       vy[1]=vy[0]+iof/4;
+		     }
+		   else
+		     {
+		       vx[0]=xm;vy[0]=ym;
+		       vx[1]=vx[0]+barlengthx/2.0;
+		       vy[1]=vy[0]+barlengthy/2.0;
+		     }
+		    if ((ym >= iybox[5]) && (ym <= iybox[4]) && (xm <= ixbox[5]) && (xm >= ixbox[4]))
+		      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }
 	      }
 	    if (legy != 0) 
 	      {
@@ -14569,6 +14627,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	    double fx,fy,fz;
 	    char str[100];
 	    integer Ticsdir[2];
+	    subtics=pSUBWIN_FEATURE (psubwin)->axes.subint[0];
 	    Ticsdir[0]=ixbox[4]-ixbox[5];
 	    Ticsdir[1]=iybox[4]-iybox[5];
 	    BBoxToval(&fx,&fy,&fz,xind[3],bbox);
@@ -14586,8 +14645,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	    for (i=0 ; i < xx[3]+1 ; i++)
 	    { char foo[100];
 	      vxx = exp10(xx[2])*(xx[0] + i*ceil((xx[1]-xx[0])/xx[3]));
-	      trans3d((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
-		      1,&xm,&ym,&vxx,&fy,&fz);
+	      trans3d(psubwin,1,&xm,&ym,&vxx,&fy,&fz);
 	      vx[0]=xm;vy[0]=ym;
 	      /**/
 	      if ((xm <= ixbox[4]) && (xm >= ixbox[3]) && (ym <= iybox[4]) && (ym >= iybox[3]))
@@ -14632,6 +14690,28 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 			}	
 		    } 	    
 		}
+	      /* Ajout subtics  Dj.A 17/12/2003 **/
+	      vxx1 = exp10(xx[2])*(xx[0] + (i+1)*ceil((xx[1]-xx[0])/xx[3]));
+	      dx = (vxx1-vxx)/(subtics+1);
+	      for ( j = 1 ; j < subtics+1; j++)
+		{  
+		  vxx1=vxx+dx*j;
+		  trans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
+		  if (IsDownAxes(psubwin))
+		    {
+		      vx[1]=vx[0]=xm;
+		      vy[0]=ym;
+		      vy[1]=vy[0]+iof/4;
+		    }
+		  else
+		    {
+		      vx[0]=xm;vy[0]=ym;
+		      vx[1]=vx[0]+barlengthx/2.0;
+		      vy[1]=vy[0]+barlengthy/2.0;
+		    }
+		   if ((ym >= iybox[3]) && (ym <= iybox[4]) && (xm >= ixbox[3]) && (xm <= ixbox[4]))
+		     C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		}
 	    }
 	    if (legx != 0)
 	      {
@@ -14649,6 +14729,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	    double fx,fy,fz;
 	    char str[100]; 
 	    integer Ticsdir[2];
+	    subtics=pSUBWIN_FEATURE (psubwin)->axes.subint[1];
 	    Ticsdir[0]=ixbox[4]-ixbox[5];
 	    Ticsdir[1]=iybox[4]-iybox[5];
 	    BBoxToval(&fx,&fy,&fz,xind[3],bbox);
@@ -14666,8 +14747,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	    for (i=0 ; i < yy[3]+1 ; i++)
 	      { char foo[100];
 		vyy = exp10(yy[2])*(yy[0] + i*ceil((yy[1]-yy[0])/yy[3]));
-		trans3d((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
-			1,&xm,&ym,&fx,&vyy,&fz);
+		trans3d(psubwin,1,&xm,&ym,&fx,&vyy,&fz);
 		vx[0]=xm;vy[0]=ym; 
 		/**/
 		if ((xm <= ixbox[4]) && (xm >= ixbox[3]) && (ym <= iybox[4]) && (ym >= iybox[3]))
@@ -14712,6 +14792,28 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 			  }	
 		      } 	     
 		  }
+		/* Ajout subtics  Dj.A 17/12/2003 **/
+		vyy1 = exp10(yy[2])*(yy[0] + (i+1)*ceil((yy[1]-yy[0])/yy[3]));
+		dx = (vyy1-vyy)/(subtics+1);
+		for ( j = 1 ; j < subtics+1; j++)
+		  {  
+		    vyy1=vyy+dx*j;
+		    trans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
+		    if (IsDownAxes(psubwin))
+		      {
+			vx[1]=vx[0]=xm;
+			vy[0]=ym;
+			vy[1]=vy[0]+iof/4;
+		      }
+		    else
+		      {
+			vx[0]=xm;vy[0]=ym;
+			vx[1]=vx[0]+barlengthx/2.0;
+			vy[1]=vy[0]+barlengthy/2.0;
+		      }
+		    if ((ym >= iybox[3]) && (ym <= iybox[4]) && (ym >= ixbox[3]) && (xm <= ixbox[4]))
+		      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }
 	      }
 	    if (legy != 0)
 	      {
@@ -14732,8 +14834,6 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
   /***/
   FREE(loc);
 }
-
- 
 
 void trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z)
 {
