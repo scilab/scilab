@@ -76,9 +76,20 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       }  
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
 
+      /* Force psubwin->is3d to FALSE: we are in 2D mode */
+      if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+	{
+	  pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+	  pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+	}
+      pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+      pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+      pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
+      pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
+            
       /* Force psubwin->axes.aaint to those given by argument aaint*/
       for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; 
-
+      
       /* Force "cligrf" clipping */
       sciSetIsClipping (psubwin,0); 
 

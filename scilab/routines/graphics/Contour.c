@@ -271,6 +271,18 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
   else /* F.Leray 21.04.04 */
     {
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      
+      /* Force psubwin->is3d to FALSE: we are in 2D mode */
+      if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+	{
+	  pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+	  pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+	}
+      pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+      pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+      pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
+      pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
+      
       for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; 
       if (sciGetGraphicMode (psubwin)->autoscaling) {
 	/* compute and merge new specified bounds with psubwin->Srect */
