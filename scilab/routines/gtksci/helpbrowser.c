@@ -429,7 +429,7 @@ load_page (HelpPage *source_page,
 
   if (access (new_name, R_OK) != 0){
       g_string_sprintf (file_contents, gettext (doc_not_found_format_string),
-			eek_png_tag, new_dir, new_ref);
+			eek_png_tag, new_name,new_name);
       html_source (dest_page,new_ref,0,file_contents->str,add_to_queue,FALSE);
       goto FINISH;
   }
@@ -456,7 +456,7 @@ load_page (HelpPage *source_page,
   if (strlen (file_contents->str) <= 0)
     {
       g_string_sprintf (file_contents, gettext (doc_not_found_format_string),
-			eek_png_tag, new_dir, new_ref);
+			eek_png_tag,new_name, new_name);
     }
   else
     page_valid = TRUE;
