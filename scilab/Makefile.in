@@ -137,6 +137,7 @@ BINDISTFILES = \
 	$(SCIBASE)/man/fr/*.htm \
 	$(SCIBASE)/maple \
 	$(SCIBASE)/routines/*.h \
+	$(SCIBASE)/routines/f2c/*.h \
 	$(SCIBASE)/routines/Make.lib \
 	$(SCIBASE)/routines/default/FCreate \
 	$(SCIBASE)/routines/default/Flist \
@@ -194,6 +195,6 @@ uninstall:
 
 
 cvsclean::
-	@$(RM) -f -r  xless wless xmetanet routines/comm routines/libcomm
+	@$(RM) -f -r geci xless wless xmetanet routines/comm routines/libcomm
 	@cd man; $(RM) -f -r arma comm control dcd elementary fileio functions graphics gui identification linear metanet nonlinear polynomials programming pvm robust scicos signal sound strings tdcs time-date tksci translation utilities
 
