@@ -474,6 +474,7 @@
    // the plot
    x=(0:0.1:2*%pi)';
    plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
+   sda() // back to default axes model
 
  ]]></EXAMPLE>
 
@@ -500,6 +501,18 @@
 
     <SEE_ALSO_ITEM>
       <LINK>gcf</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>sda</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>sdf</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>scf</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
