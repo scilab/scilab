@@ -38,7 +38,7 @@ periGif.o: periGif.c Math.h ../machine.h Graphics.h periGif.h color.h \
  ../gd/gd.h ../gd/../machine.h
 periPos.o: periPos.c Math.h ../machine.h Graphics.h periPos.h color.h
 periX11.o: periX11.c Math.h ../machine.h Graphics.h periX11.h \
- periX11-bcg.h version.h color.h ../intersci/cerro.h \
+ periX11-bcg.h ../version.h color.h ../intersci/cerro.h \
  ../intersci/../machine.h
 Plo2d1.o: Plo2d1.c Math.h ../machine.h Graphics.h PloEch.h
 Plo2d2.o: Plo2d2.c Math.h ../machine.h Graphics.h PloEch.h

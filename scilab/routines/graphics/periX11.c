@@ -25,7 +25,7 @@
 #include "Math.h"
 #include "periX11.h"
 #include "periX11-bcg.h"
-#include "version.h"
+#include "../version.h"
 #include "color.h"
 #include "../intersci/cerro.h" 
 

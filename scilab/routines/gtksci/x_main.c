@@ -14,7 +14,7 @@
 #include <signal.h>
 #include <gtk/gtk.h>
 
-#include "version.h"
+#include "../version.h"
 #include "../machine.h"
 #include "../graphics/Math.h"
 #include "All-extern.h"

@@ -22,7 +22,7 @@
 #include <X11/cursorfont.h>
 #include <X11/Xaw/SimpleMenu.h>
 
-#include "version.h"
+#include "../version.h"
 #include "../machine.h"
 #include "../graphics/Math.h"
 

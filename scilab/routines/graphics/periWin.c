@@ -27,7 +27,7 @@
 #include "../wsci/wcommon.h"
 
 #include "periWin.h" 
-#include "version.h"
+#include "../version.h"
 #include "color.h" 
 #include "Graphics.h"
 #include "scigraphic.h"

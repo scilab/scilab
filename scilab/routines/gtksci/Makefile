@@ -24,13 +24,6 @@ include ../Make.lib
 helpbrowser.o : helpbrowser.c 
 	$(CC) $(CC_OPTIONS) `gnome-config --cflags gnome` -c helpbrowser.c 
 
-
-version.h: version.g $(SCIDIR)/Version.incl
-	@$(RM) version.h
-	@sed -e "s+SCILAB_VERSION+$(SCIVERSION)+" version.g > version.h;
-	@chmod g+w version.h
-	@echo version.h created
-
 helpbrowser:  helpbrowser.c queue.o
 	$(CC) -DALONE $(CC_OPTIONS) `gnome-config --cflags gnome` \
 		-o helpbrowser helpbrowser.c queue.o \
@@ -62,7 +55,7 @@ click.o: click.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../graphics/periX11-bcg.h
 command.o: command.c ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h All-extern.h ../sun/Sun.h
-help.o: help.c version.h ../sun/h_help.h ../machine.h ../graphics/Math.h \
+help.o: help.c ../version.h ../sun/h_help.h ../machine.h ../graphics/Math.h \
   ../graphics/Graphics.h
 io.o: io.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../sun/Sun.h All-extern.h
@@ -71,7 +64,7 @@ jpc_xwidgets.o: jpc_xwidgets.c ../graphics/Math.h ../machine.h \
 menus.o: menus.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../graphics/periGtk-bcg.h  All-extern.h \
    ../sun/Sun.h 
-x_main.o: x_main.c version.h ../machine.h ../graphics/Math.h \
+x_main.o: x_main.c ../version.h ../machine.h ../graphics/Math.h \
   ../graphics/Graphics.h x_ptyxP.h x_ptyx.h x_error.h x_menu.h \
   All-extern.h
 

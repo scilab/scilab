@@ -13,7 +13,7 @@
 #include <unistd.h>
 #include <gtk/gtk.h>
 
-#include "version.h"
+#include "../version.h"
 #include "../sun/h_help.h"
 #include "../graphics/Math.h"
 

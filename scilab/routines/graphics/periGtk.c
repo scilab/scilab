@@ -17,7 +17,7 @@
 #include <gtk/gtk.h>
 #include "Math.h"
 #include "periGtk-bcg.h"
-#include "version.h"
+#include "../version.h"
 #include "color.h"
 
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
