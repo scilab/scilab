@@ -27,7 +27,7 @@ int XTKsocket;
 
 Matrix *UserData[MAX_HANDLE];
 
-
+extern void Cout(char *str);
 
 int TK_Wait=0;
 int TK_NbEv=10;

@@ -6,6 +6,7 @@
 #include "tksci.h"
 
 
+extern int TK_UiGet(int Handle,Matrix * Mfield,Matrix ** Mvalue);
 void LAB_get()
 {
   Matrix *MHandle, *Mfield, *Mvalue;

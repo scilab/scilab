@@ -4,6 +4,7 @@
 #include "TK_ScilabCallback.h"
 #include "tksci.h"
 
+extern int StoreCommand ( char *command);
 
 int TK_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int  objc,char ** argv)
 {

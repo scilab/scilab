@@ -22,10 +22,10 @@ int LAB_gcf()
  
   char MyCommand[2000];
   char *StrHandle;
-  int Handle;
 
-  Matrix *MOutputHandle;
-  double *OutputHandle;
+
+
+
 
 
 

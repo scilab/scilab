@@ -76,7 +76,7 @@ void LAB_uimenu()
 	  else
 	    {
 	      /* OK this time */
-	      FigureHandle = MatrixGetScalar(Interf.Param[i]);
+	      FigureHandle = (int)MatrixGetScalar(Interf.Param[i]);
 	      
 	    }
 	}

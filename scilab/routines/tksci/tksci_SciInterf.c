@@ -6,7 +6,7 @@
 
 /* INTERFACE ROUTINE */
 typedef void (*voidf)();
-
+extern void Cout(char *str);
 extern void LAB_uicontrol();
 extern void LAB_TK_DoOneEvent();
 extern void LAB_TK_EvalStr();
