@@ -15621,7 +15621,7 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
       } 
      
       xmin=(double) Mini(x,mn);xmax=(double) Maxi(x,mn);
-      if ((pSUBWIN_FEATURE (pobj)->axes.limits[1] !=0 )  && (pSUBWIN_FEATURE (pobj)->axes.limits[3] !=0 ))
+      if ((pSUBWIN_FEATURE (pobj)->axes.limits[1] !=0 )  || (pSUBWIN_FEATURE (pobj)->axes.limits[3] !=0 ))
 	{  
 	  xmin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[1],xmin);
 	  xmax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[3],xmax);
@@ -15637,7 +15637,7 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
       pSUBWIN_FEATURE (pobj)->FRect[2]=lmax;
 
       ymin=(double) Mini(y,mn);ymax=(double) Maxi(y,mn);
-       if ((pSUBWIN_FEATURE (pobj)->axes.limits[2] !=0 ) && (pSUBWIN_FEATURE (pobj)->axes.limits[4] !=0 ))
+       if ((pSUBWIN_FEATURE (pobj)->axes.limits[2] !=0 ) || (pSUBWIN_FEATURE (pobj)->axes.limits[4] !=0 ))
 	{
 	  ymin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[2],ymin);
 	  ymax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[4],ymax);
