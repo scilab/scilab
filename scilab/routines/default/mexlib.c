@@ -909,7 +909,7 @@ void mxDestroyArray(Matrix *ptr)
   return; 
 }
 
-void mxFree(Matrix *ptr)
+void mxFree(void *ptr)
 {
   /* No need to free */
   return ;
@@ -999,7 +999,7 @@ void mexWarnMsgTxt(char *error_msg)
   /*  mexPrintf(strcat("Warning: ",error_msg)); */
 }
 
-int mexCallSCILAB(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *name)
+static int mexCallSCI(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *name,int jumpflag)
 {
   static int i1, i2;
   static int k, kk, nv;
@@ -1022,8 +1022,11 @@ int mexCallSCILAB(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *name)
 	}
     }
   i1 = nv + 1;
-  if (! C2F(scistring)(&i1, name, &nlhs, &nrhs, strlen(name) )) {
-    errjump();
+  if (! C2F(scistring)(&i1, name, &nlhs, &nrhs, strlen(name) )) { 
+    if ( jumpflag == 1 )
+      errjump();
+    else 
+      return 0; 
     /*	      return 0;  */
   }
   for (k = 1; k <= nlhs; ++k) {
@@ -1031,6 +1034,11 @@ int mexCallSCILAB(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *name)
   }
   Nbvars = nv+nlhs;
   return 1;
+}
+
+
+int mexCallSCILAB(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *name) {
+  return mexCallSCI(nlhs,plhs,nrhs,prhs,name,1); 
 }
 
 int mxCalcSingleSubscript(Matrix *ptr, int nsubs, int *subs)
@@ -1140,14 +1148,13 @@ Matrix *mxCreateCharMatrixFromStrings(int m, char **str)
   return (Matrix *) C2F(vstk).Lstk[lw - 1];
 }
 
-void mexEvalString(char *name)
+int mexEvalString(char *name)
 {
   Matrix *ppr[1];Matrix *ppl[1];
   int nlhs;     int nrhs;
   *ppr = mxCreateString(name);
   nrhs=1;nlhs=0;
-  mexCallSCILAB(nlhs, ppl, nrhs, ppr, "execstr");    
-  return;
+  return mexCallSCI(nlhs, ppl, nrhs, ppr, "execstr",0);    
 }
 
 mxArray *mexGetArray(char *name, char *workspace)

@@ -42,7 +42,7 @@ typedef struct table_struct {
 /** Put a matrix in Scilab Workspace */ 
 
 #define mexPutFull(name,m,n,ptrM,tag) \
-  if ( ! C2F(cwritemat)(name,m,n,ptrM,strlen(name))) {	\
+  if ( ! C2F(cwritemat)(name,(c_local=m,&c_local),(c1_local=n,&c1_local),ptrM,strlen(name))) {	\
       mexErrMsgTxt("mexPutFull failed\r\n");return; }
 
 /* prototypes */
@@ -144,10 +144,10 @@ void *mxMalloc __PARAMS((unsigned int nsize));
 void C2F(mexerrmsgtxt)  __PARAMS((char *error_msg, int len));
 void C2F(mxfreematrix)  __PARAMS((Matrix *ptr));
 void mexErrMsgTxt __PARAMS((char *error_msg));
-void mexEvalString __PARAMS((char *name));
+int  mexEvalString __PARAMS((char *name));
 void mexWarnMsgTxt __PARAMS((char *error_msg));
 void mexprint __PARAMS((char* fmt,...));
-void mxFree __PARAMS((Matrix *ptr));
+void mxFree __PARAMS((void *ptr));
 void mxFreeMatrix __PARAMS((Matrix *ptr));
 void mxDestroyArray __PARAMS((Matrix *ptr));
 
