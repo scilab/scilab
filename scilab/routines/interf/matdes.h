@@ -4,6 +4,7 @@
 /* Allan CORNET le 20/08/03 */
 /* voir wsci\wtext.c */
 /* & voir xsc/x_screen.c */
+extern void HistoryFunction _PARAMS((char *fname)); /* readline.c (wsci)*/
 extern void HomeFunction(void);
 extern void ClearScreenConsole(void);
 extern int scisetposfigdim  _PARAMS((char *fname, unsigned long fname_len));
