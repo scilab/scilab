@@ -441,7 +441,7 @@ static void testG()
       z[i+XNG*j]= (i-VXG)*(i-VXG)-(j-VXG)*(j-VXG);
   p= XNG ; q= YNG;
   aaint[0]=aaint[2]=2;aaint[1]=aaint[3]=10;
-  C2F(xgray)(x,y,z,&p,&q,"021",brect,aaint,0L);
+  C2F(xgray)(x,y,z,&p,&q,"021",brect,aaint,0,0L);
 }
 
 
