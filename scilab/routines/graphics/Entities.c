@@ -8987,13 +8987,9 @@ DestroySegs (sciPointObj * pthis)
     } 
   else 
     {
-      // F.Leray 18.02.04 Rajout de 2 if pour voir...
-      if (pSEGS_FEATURE (pthis)->vfx != (double *)NULL) 
-	FREE(pSEGS_FEATURE (pthis)->vfx);  
-      if (pSEGS_FEATURE (pthis)->vfy != (double *)NULL) 
-	FREE(pSEGS_FEATURE (pthis)->vfy);
-      if (pSEGS_FEATURE (pthis)->vfz != (double *)NULL) 
-	FREE(pSEGS_FEATURE (pthis)->vfz);  
+	FREE(pSEGS_FEATURE (pthis)->vfx); pSEGS_FEATURE (pthis)->vfx = NULL;
+	FREE(pSEGS_FEATURE (pthis)->vfy); pSEGS_FEATURE (pthis)->vfy = NULL;
+	FREE(pSEGS_FEATURE (pthis)->vfz); pSEGS_FEATURE (pthis)->vfz = NULL;
     } 
   sciDelThisToItsParent (pthis, sciGetParent (pthis)); 
   if (sciDelHandle (pthis) == -1)
@@ -10061,20 +10057,53 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
      
       pAXES_FEATURE (pobj)->ny =ny;
      
-      if ((pAXES_FEATURE(pobj)->str= malloc (Max(nx,ny) * sizeof (char*))) == NULL)
-	return (sciPointObj *) NULL;
 
-      pAXES_FEATURE(pobj)->str = str;
-      
+     /* pAXES_FEATURE(pobj)->str = str;*/ // Pb here, F.Leray : Weird init.: can not copy a string using '='
+	 if(str != (char **) NULL)
+	  {
+		   if ((pAXES_FEATURE(pobj)->str= malloc (Max(nx,ny) * sizeof (char*))) == NULL)
+			return (sciPointObj *) NULL;
+
+		   for(i=0;i<Max(nx,ny);i++) 
+		   {
+			   if(str[i] != (char *) NULL)
+			   {
+                   if((pAXES_FEATURE (pobj)->str[i] = malloc( (strlen(str[i])+1) * sizeof(char))) == NULL)
+                       return (sciPointObj *) NULL;
+				   else
+				       strcpy(pAXES_FEATURE (pobj)->str[i],str[i]);
+			   }
+			   else
+                   pAXES_FEATURE (pobj)->str[i] = (char *) NULL;
+		   }
+	  }
+	  else
+	  {
+		pAXES_FEATURE (pobj)->str = (char **) NULL;
+	  }
+
       pAXES_FEATURE (pobj)->subint = subint;
       pAXES_FEATURE (pobj)->fontsize =fontsize; 
       pAXES_FEATURE (pobj)->textcolor =textcolor;
       pAXES_FEATURE (pobj)->ticscolor =ticscolor;
       pAXES_FEATURE (pobj)->seg =seg;    
-      pAXES_FEATURE (pobj)->format =format;
-      pAXES_FEATURE (pobj)->logscale=logscale; 
-
-     
+  /*    pAXES_FEATURE (pobj)->format =format; */ // Pb here, F.Leray : Weird init.: can not copy a string using '='
+      pAXES_FEATURE (pobj)->logscale=logscale;
+	  if(format != (char *) NULL)
+	  {
+		  if((pAXES_FEATURE (pobj)->format = malloc( (strlen(format)+1) * sizeof(char))) == NULL)
+		  {
+			  return (sciPointObj *) NULL;
+		  }
+		  else
+		  {
+              strcpy(pAXES_FEATURE (pobj)->format,format);
+		  }
+	  }
+	  else
+	  {
+		pAXES_FEATURE (pobj)->format = (char *) NULL;
+	  }
 
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -10440,6 +10469,9 @@ sciDrawObj (sciPointObj * pobj)
   double xbox[8],ybox[8],zbox[8], *xzz,*yzz,*zzz;
   static integer InsideU[4],InsideD[4];
   	
+// variables declarations for debugg:
+    sciAxes *paxes = (sciAxes *) NULL;
+
   /*#ifdef WIN32
     int flag;
     #endif*/
@@ -10748,7 +10780,7 @@ sciDrawObj (sciPointObj * pobj)
 	 
 
 	  // On laisse tomber le graphic_alloc ICI F.Leray 20.02.04
-	  /*	  xm = graphic_alloc(0,n,sizeof(int));
+	 /* 	  xm = graphic_alloc(0,n,sizeof(int));
 		  ym = graphic_alloc(1,n,sizeof(int)); */
 
 	  if ((xm = MALLOC (n*sizeof (integer))) == NULL)	return -1;
@@ -11543,7 +11575,14 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 		PD0, PD0, PD0, 0L, 0L);
       sciClip(sciGetIsClipping(pobj));
      
-      Sci_Axis(pAXES_FEATURE (pobj)->dir,pAXES_FEATURE (pobj)->tics,pAXES_FEATURE(pobj)->vx,
+/* Prototype Sci_Axis: 
+void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag)
+*/
+// variable tmpAxes init. for debugging: 
+	  paxes = pAXES_FEATURE(pobj);
+
+
+      Sci_Axis(pAXES_FEATURE(pobj)->dir,pAXES_FEATURE (pobj)->tics,pAXES_FEATURE(pobj)->vx,
                &pAXES_FEATURE (pobj)->nx,pAXES_FEATURE(pobj)->vy,&pAXES_FEATURE (pobj)->ny,
                pAXES_FEATURE(pobj)->str,pAXES_FEATURE (pobj)->subint,pAXES_FEATURE (pobj)->format,
                pAXES_FEATURE (pobj)->fontsize,pAXES_FEATURE (pobj)->textcolor,
@@ -12695,7 +12734,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	    if (*numcol == 3)
 	      FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
 	    // Attention ici on detruit pstyle !! F.Leray 20.02.04
-	    FREE(pSEGS_FEATURE (pthis)->pstyle); pSEGS_FEATURE (pthis)->vz = NULL;
+	    FREE(pSEGS_FEATURE (pthis)->pstyle); pSEGS_FEATURE (pthis)->pstyle = NULL;
 	    for (i=0;i < *numrow;i++)
 	      {
 		pvx[i] = tab[i];
