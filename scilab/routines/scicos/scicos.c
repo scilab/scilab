@@ -849,8 +849,9 @@ int C2F(scicos)
 	}
       } else {
 	/*     integrate */
-	while(*told<tevts[*pointi]-ttol){
 
+	{
+	L15:
 	  rhotmp = *tf + ttol;
 	  kpo = *pointi;
 	L20:
@@ -1143,6 +1144,15 @@ int C2F(scicos)
 	      }
 	    }
 	  }
+	  if(*pointi!=0){
+	    if(*told<tevts[*pointi]-ttol){
+	      goto L15;
+	    }
+	  }else{
+	    if(*told<*tf){
+	      goto L15;
+	    }
+	  }
 	}
       }
       C2F(realtime)(told);
@@ -1424,8 +1434,9 @@ int C2F(scicos)
 	  }
 	}
 
-	while(*told<tevts[*pointi]-ttol){
-	
+        
+	{
+	L15:
 	  rhotmp = *tf + ttol;
 	  kpo = *pointi;
 	L20:
@@ -1714,6 +1725,16 @@ int C2F(scicos)
 		  }
 		}
 	      }
+	    }
+        
+	  }
+	  if(*pointi!=0){
+	    if(*told<tevts[*pointi]-ttol){
+	      goto L15;
+	    }
+	  }else{
+	    if(*told<*tf){
+	      goto L15;
 	    }
 	  }
 	}
