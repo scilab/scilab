@@ -36,7 +36,7 @@ BLOCKS_CODE=evtdly.o cstblk.o \
 BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
 	readau.o plusblk.o slider.o  zcross2.o
 
-OBJSF=intcos.o coselm.o sciblk.o  addevt.o   \
+OBJSF=intcos.o coselm.o sciblk.o  \
 	sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
 	list2vars.o dtosci.o itosci.o scitoi.o scitod.o vvtosci.o \
 	scitovv.o  $(BLOCKS_CODE)

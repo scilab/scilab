@@ -39,7 +39,7 @@ BLOCKS_CODE=evtdly.obj cstblk.obj \
 BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj writeau.obj \
 	readau.obj plusblk.obj slider.obj  zcross2.obj
 
-OBJSF=intcos.obj coselm.obj sciblk.obj  addevt.obj   \
+OBJSF=intcos.obj coselm.obj sciblk.obj  \
 	sctree.obj ftree2.obj ftree3.obj ftree4.obj skipvars.obj scierr.obj scifunc.obj \
 	list2vars.obj dtosci.obj itosci.obj scitoi.obj scitod.obj vvtosci.obj \
 	scitovv.obj  $(BLOCKS_CODE)
