@@ -1,4 +1,4 @@
-function []=delete(sd)
+function []=Delete(sd)
 //destruction d'un objet
 // Copyright INRIA
 xx=locate(1);eps=0.2
@@ -75,7 +75,7 @@ sd=resume(sd)
 
 
 endfunction
-function sd=move(sd)
+function sd=Move(sd)
 //deplacement d'un objet
 // Copyright INRIA
 xx=locate(1);eps=0.2

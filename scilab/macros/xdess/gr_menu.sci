@@ -42,7 +42,7 @@ end
 if noframe==1;s_t="010";else s_t="012";end
 plot2d(0,0,[1],s_t,' ',cdef);
 curwin=xget('window')
-
+set("figure_style","old")
 
 xclip('clipgrf')
 
@@ -177,9 +177,9 @@ while %t then
   case 'pause'      then 
     pause;
   case 'delete'     then 
-    delete(sd);
+    Delete(sd);
   case 'move'     then 
-    sd=move(sd);  
+    sd=Move(sd);  
   case 'clip off'   then 
     new=grclipoff();
     if new<>list() then
