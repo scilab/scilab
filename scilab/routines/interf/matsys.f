@@ -2642,6 +2642,10 @@ c     Check if a compiled macro is running
             call adjuststkptr(pstk(p),kd1,kd2,l2)
          elseif(rstk(p).eq.604.or.rstk(p).eq.606) then
             call adjuststkptr(ids(1,p),kd1,kd2,l2)
+            if(rstk(p).le.606) call adjuststkptr(ids(2,p),kd1,kd2,l2)
+         elseif(rstk(p).ge.611.and.rstk(p).le.616) then
+             call adjuststkptr(ids(1,p),kd1,kd2,l2)
+             if(rstk(p).le.616) call adjuststkptr(pstk(p),kd1,kd2,l2)
          elseif(rstk(p).eq.501.or.rstk(p).eq.502.or.rstk(p).eq.503) then
             k = lpt1 - (13+nsiz)
             lpt1 = lin(k+1)
