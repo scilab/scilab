@@ -26,7 +26,6 @@ Type *DY;\
 
 #define BIT1(Type,Op) {\
 Type *DX;\
-Type *DY;\
     DX=(Type *)dx;\
     --DX;\
     if (*incx == 1 && *incy == 1)\
@@ -123,6 +122,7 @@ int *dy;
     }
     break;
   }
+  return 0;
 }
 
 

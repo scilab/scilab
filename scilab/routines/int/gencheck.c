@@ -82,7 +82,7 @@ int *a;
 int *b;
 int *r;
 {
-  static integer i, iy, i1, i2, ii1;
+  static integer i, i1, i2, ii1;
   static integer less = 59;
   static integer great = 60;
   static integer equal = 50;
@@ -110,4 +110,5 @@ int *r;
     CHECK(unsigned int);
     break;
   }
+  return 0;
 }
