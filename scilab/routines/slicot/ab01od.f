@@ -325,6 +325,9 @@ C
      $                 LJOBVI .AND. LDV.LT.MAX( 1, M ) ) THEN
             INFO = -13
          END IF
+      ELSE IF( .NOT.LSTAGB .AND. (TOL.LT.ZERO .OR.  TOL.GT.ONE) ) THEN
+C added by S. STEER (see mb03oy)
+         INFO = -17
       END IF
 C
       IF ( INFO.NE.0 ) THEN
@@ -364,6 +367,7 @@ C
          CALL AB01ND( JOBU, N, M, A, LDA, B, LDB, NCONT, INDCON,
      $                KSTAIR, U, LDU, DWORK(ITAU), TOL, IWORK,
      $                DWORK(JWORK), LDWORK-JWORK+1, INFO )
+         IF(INFO.LT.0) RETURN
 C
          WRKOPT = INT( DWORK(JWORK) ) + JWORK - 1
       END IF

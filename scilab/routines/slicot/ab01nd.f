@@ -258,6 +258,9 @@ C
       ELSE IF( .NOT.LJOBZ .AND. LDZ.LT.1 .OR.
      $              LJOBZ .AND. LDZ.LT.MAX( 1, N ) ) THEN
          INFO = -12
+      ELSE IF(TOL.LT.ZERO .OR.  TOL.GT.ONE ) THEN
+C added by S. STEER (see mb03oy)
+         INFO = -14
       ELSE IF( LDWORK.LT.MAX( 1, N, 3*M ) ) THEN
          INFO = -17
       END IF
