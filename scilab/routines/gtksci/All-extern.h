@@ -58,6 +58,8 @@ extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
 
 void sci_get_screen_size (int *rows,int *cols); 
 void C2F(setprlev)(int *pause) ; 
+extern int using_readline(void);
+extern int get_one_char(char *prompt);
 
 /* xxx */
 
@@ -76,6 +78,7 @@ extern void sci_winch_signal(int);
 extern void C2F(tmpdirc)();
 extern void sci_clear_and_exit (int);
 extern void sci_usr1_signal(int);
+extern void start_sci_gtk(void);
 
 /* ../sun/inffic.c */ 
 extern char *get_sci_data_strings(int n);
