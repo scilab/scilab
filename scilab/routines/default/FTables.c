@@ -541,13 +541,14 @@ integer *C2F(schsel)(alpha,beta)
 
 /** fixes the function associated to name **/
 
-void C2F(setschsel)(name,rep) 
+void C2F(setschsel)(len, name,rep) 
      char *name;
      int *rep;
+     int *len;
 {
-  if (strncmp(name,"c",1)== 0 || strncmp(name,"cont",3)== 0 )
+  if ( ((strncmp(name,"c",1)== 0 ) && (*len==1)) || strncmp(name,"cont",4)== 0 )
       schselfonc = (schself) SetFunction("sb02mv",rep,FTab_schsel);
-  else if (strncmp(name,"d",1)== 0 || strncmp(name,"disc",4)== 0 )
+  else if ( ((strncmp(name,"d",1)== 0) && (*len==1)) || strncmp(name,"disc",4)== 0 )
       schselfonc = (schself) SetFunction("sb02mw",rep,FTab_schsel);
   else 
     schselfonc = (schself) SetFunction(name,rep,FTab_schsel);
@@ -572,13 +573,14 @@ integer *C2F(zchsel)(alpha)
 
 /** fixes the function associated to name **/
 
-void C2F(setzchsel)(name,rep) 
+void C2F(setzchsel)(len,name,rep) 
      char *name;
      int *rep;
+     int *len;
 {
-  if (strncmp(name,"c",1)== 0 || strncmp(name,"cont",3)== 0 )
+  if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
       zchselfonc = (zchself) SetFunction("zb02mv",rep,FTab_zchsel);
-  else if (strncmp(name,"d",1)== 0 || strncmp(name,"disc",4)== 0 )
+  else if ( ( (strncmp(name,"d",1)== 0) && (*len==1) ) || strncmp(name,"disc",4)== 0 )
       zchselfonc = (zchself) SetFunction("zb02mw",rep,FTab_zchsel);
   else 
     zchselfonc = (zchself) SetFunction(name,rep,FTab_zchsel);
