@@ -1,6 +1,7 @@
 function scipad(varargin)
 // start scipad editor
-global %scipad_fontsize LANGUAGE;
+//global %scipad_fontsize;
+global LANGUAGE
 global TMPDIR
   if with_tk() then
     TK_EvalStr("set isscipadinterp [interp exists scipad]")
@@ -18,7 +19,7 @@ global TMPDIR
     else
       TK_EvalStr("scipad eval { set tmpdir """+pathconvert(TMPDIR,%f,%t)+""" }")
     end
-    TK_EvalStr("scipad eval { set FontSize """+string(%scipad_fontsize)+""" }")
+//    TK_EvalStr("scipad eval { set FontSize """+string(%scipad_fontsize)+""" }")
     TK_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
     TK_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipadsources/scipad.tcl""}")
     nfiles=argn(2)
