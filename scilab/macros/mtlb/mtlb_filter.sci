@@ -6,8 +6,10 @@ x=matrix(x,1,m*n)
 a=poly(a($:-1:1),'z','c')
 b=poly(b($:-1:1),'z','c')
 z=poly(0,'z')
-b=b*z^(max(degree(a)-degree(b),0))
-a=a*z^(max(degree(b)-degree(a),0))
+da = degree(a)
+db = degree(b)
+if (da-db) > 0 then b=b*z^(da-db); end 
+if (db-da) > 0 then a=a*z^(db-da); end
 if  lhs==1 then
   if rhs==4 then
     y=rtitr(b,a,x,zi)
