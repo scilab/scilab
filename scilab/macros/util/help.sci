@@ -1,20 +1,20 @@
 function help(key,flag)
   //for compatibility with toolboxes making use of old cat files
-  change_old_man() 
+  change_old_man()
   INDEX=make_index()
   [lhs,rhs]=argn(0);
-    
+   
   if rhs==0 then
     browsehelp(INDEX,"index");
     return
-  end 
-  
-  if rhs> 2 then error(39),return; end
-  if rhs == 2 then 
-    help_apropos(key)
-    return 
   end
-  
+ 
+  if rhs> 2 then error(39),return; end
+  if rhs == 2 then
+    help_apropos(key)
+    return
+  end
+ 
   path=gethelpfile(key)
   if path<>[] then
     browsehelp(path,key)
@@ -38,7 +38,7 @@ function path=gethelpfile(key)
        for k2=1:size(whatis,"*")
 	 lwhatis=whatis(k2)
 	 i=strindex(lwhatis,">"); j=strindex(lwhatis,"</A>")
-	 if j<>[] then 
+	 if j<>[] then
 	   lkey=part(lwhatis,i(2)+1:j-1)
 	   // key must be a word in lkey
 	   if findword(lkey,key)<>[] then
@@ -48,7 +48,7 @@ function path=gethelpfile(key)
 	   end
 	 end
        end
-    end 
+    end
   end
   path=[]
 endfunction
@@ -66,65 +66,74 @@ function res=findword(str,word)
   res=strindex(str," "+word)
   if res==length(str)-length(word) then return; end
   res=[]
-endfunction	    
+endfunction	   
 
 function browsehelp(path,key)
-  global LANGUAGE INDEX 
-  global %gtkhelp
-
-  // when Scilab is built with gtk we use the prefered 
-  // broswer given by %gtkhelp
-  // when %gtkhelp is [] a choose menu is given 
-  global %gtkhelp;
-  
+  global LANGUAGE INDEX
+  global %browsehelp
+  // when Scilab is built with gtk we use the prefered
+  // broswer given by %browsehelp
+  // when %browsehelp is [] a choose menu is given
+  global %browsehelp;
+ 
   // set of possible modes for gtk
-  gtk_modes=['help widget';
-	     'nautilus';
+  // modif Matthieu PHILIPPE retirer : 'help widget';
+  browse_modes=['nautilus';
 	     'mozilla/netscape (gnome-moz-remote)';
 	     'opera'
 	     'quanta (kde)'];
-  
-  // add tcktk if scilab was compiled with tcl/tk 
-  
-  if with_tk() then gtk_modes=[gtk_modes;'tcltk'];end 
-    
+ 
+  // add tcltk if scilab was compiled with tcl/tk
+  if with_tk() then browse_modes=[browse_modes;'tcltk'];end
+  // ajout Matthieu PHILIPPE 10/01/2003
+  if with_gtk() then browse_modes=['help widget';browse_modes];end
+  ////////////// 
   [lhs,rhs]=argn(0);
-  
-  // ask for an help mode 
+ 
+  // ask for an help mode
   if with_gtk ()
-    if %gtkhelp<>[] then 
-      help_mode = %gtkhelp;
+    if %browsehelp<>[] then
+      help_mode = %browsehelp;
     else
-       %gtkhelp= gtk_help_ask(gtk_modes);
+       %browsehelp= gtk_help_ask(browse_modes);
     end
-  end 
-
+  // ajout Matthieu PHILIPPE 10/01/2003
+  else // without gtk
+    if %browsehelp<>[] then
+      help_mode = %browsehelp;
+    else
+      %browsehelp=browse_modes(x_choose(browse_modes,['Choose the help browser';'you want to use';
+		   'use %browsehelp=[] to reset your choice']));
+    end
+    //////////////////////
+  end
   if rhs==0 then
     path=INDEX
     key="index"
   end
   if or(sciargs()=="-nw") then
-    // the no window case 
-    if  with_gtk () then 
-      gtk_help(path,key);
-    else 
+    // the no window case
+    if  with_gtk () then
+      run_help(path,key);
+    else
        write(%io(2),mgetl(path))
     end
   else
-     if with_gtk() then 
-       gtk_help(path,key);
-     elseif  with_tk()  then 
-	tcltk_help(path,key);
+     if with_gtk() then
+       run_help(path,key);
+     elseif  with_tk()  then
+	run_help(path,key);// tcltk_help(path,key);
      else
-	error(999,'I cannot browse help files');
+	run_help(path,key);
+	//error(999,'I cannot browse help files');
      end
   end
 endfunction
 
 
-function tcltk_help(path,key) 
-  // the tck tk help browser 
-  global LANGUAGE INDEX 
+function tcltk_help(path,key)
+  // the tck tk help browser
+  global LANGUAGE INDEX
   // We must have / in paths, even for Windows
   path=strsubst(path,"\","/")
   if MSDOS then
@@ -137,35 +146,35 @@ function tcltk_help(path,key)
   else
      TK_SetVar("lang",LANGUAGE)
      TK_SetVar("Home",INDEX)
-     TK_SetVar("sciw",".scihelp-"+key)
+     TK_SetVar("sciw",".scihelp-"+key+"}")
      TK_SetVar("manpath",path)
      TK_EvalFile(SCI+"/tcl/browsehelp.tcl")
   end
 endfunction
 
-function gtk_help(path,key) 
-// the gtk help browser 
-// gtk_modes=['help widget';'nautilus';'tcltk'];
+function run_help(path,key)
+// the  help browser
+// browse_modes=['help widget';'nautilus';'tcltk'];
   [lhs,rhs]=argn(0);
-  global LANGUAGE INDEX 
-  global %gtkhelp
-  select %gtkhelp 
-   case 'help widget' then 
+  global LANGUAGE INDEX
+  global %browsehelp
+  select %browsehelp
+   case 'help widget' then
     help_gtk(SCI+"/man/",LANGUAGE,path);
-   case 'nautilus' then  
-    unix_s("nautilus --no-desktop "+path+ '&'); 
-   case 'mozilla/netscape (gnome-moz-remote)' then 
-    unix_s("gnome-moz-remote --raise  file://"+path+ '&'); 
-   case 'opera' then 
-    unix_s(%gtkhelp + " file://" +path+ '&'); 
-   case 'quanta' then 
-    unix_s(%gtkhelp + " --unique file://" +path+ '&'); 
-   case 'tcltk' then  
-    tcltk_help(path,key); 
+   case 'nautilus' then 
+    unix_s("nautilus --no-desktop "+path+ '&');
+   case 'mozilla/netscape (gnome-moz-remote)' then
+    unix_s("gnome-moz-remote --raise  file://"+path+ '&');
+   case 'opera' then
+    unix_s(%browsehelp + " file://" +path+ '&');
+   case 'quanta' then
+    unix_s(%browsehelp + " --unique file://" +path+ '&');
+   case 'tcltk' then 
+    tcltk_help(path,key);
   else
      write(%io(2),mgetl(path))
   end
-endfunction 
+endfunction
 
 function path=make_index()
 //we create a new index file each time to take into account dynamically
@@ -185,7 +194,7 @@ function path=make_index()
 endfunction
 
 function change_old_man()
-  // Given an old fashion help chapter, this function translate it in an 
+  // Given an old fashion help chapter, this function translate it in an
   // HTML version located in TMPDIR/man<number>/ where <number> is the
   // index of the chapter in %help
   global %helps
@@ -197,7 +206,7 @@ function change_old_man()
       whatispath=TMPDIR+"/man"+string(k);
       p=pathconvert(whatispath);
       if fileinfo(p)==[] then unix_s("mkdir "+p),end
-      
+     
       name=[],fil=[],def=[]
       for i=1:size(txt,1)
 	p=strindex(txt(i)," - ")
@@ -218,7 +227,7 @@ function change_old_man()
 	      " text/html; charset=ISO-8859-1"">";
 	      "  <title>"+name(i)+"</title>";
 	      "<body>"];
-	mputl([head;"<pre>";mgetl(%helps(k,1)+"/"+fil(i)+'.cat');"</pre></html></body>"],... 
+	mputl([head;"<pre>";mgetl(%helps(k,1)+"/"+fil(i)+'.cat');"</pre></html></body>"],...
 	      whatispath+'/'+fil(i)+'.htm')
 	end
       end
@@ -237,10 +246,10 @@ endfunction
 
 function gtk_mode=gtk_help_ask(modes)
   n=x_choose(modes,['Choose the help browser';'you want to use';
-		   'use %gtkhelp=[] to reset your choice']);
-  if n<>0 then 
+		   'use %browsehelp=[] to reset your choice']);
+  if n<>0 then
     gtk_mode=modes(n)
-  else    
+  else   
      gtk_mode=gtk_help_ask(modes)
   end
 endfunction
@@ -248,17 +257,17 @@ endfunction
 
 function help_apropos(key)
   global %helps LANGUAGE INDEX
-  global %gtkhelp;
+  global %browsehelp;
   [lhs,rhs]=argn(0);
-  // list relevant man for key 
+  // list relevant man for key
   provpath =apropos_gener(key);
   browsehelp(provpath,key);
 endfunction
 
-function tcltk_apropos(path) 
-// calling the tck tk help browser 
-// for apropos 
-  global LANGUAGE INDEX 
+function tcltk_apropos(path)
+// calling the tck tk help browser
+// for apropos
+  global LANGUAGE INDEX
   // We must have / in paths, even for Windows
   path=strsubst(path,"\","/")
   if MSDOS then
@@ -278,8 +287,8 @@ function tcltk_apropos(path)
 endfunction
 
 function [provpath]=apropos_gener(key)
-// generate html file for apropos key 
-// provpath is the path of generated html file 
+// generate html file for apropos key
+// provpath is the path of generated html file
   global %helps LANGUAGE INDEX
   sep="/";
   key=stripblanks(key)
@@ -303,7 +312,7 @@ function [provpath]=apropos_gener(key)
       end
     end
   end
-  
+ 
   if found==[] then
     select LANGUAGE
      case "eng"
@@ -315,10 +324,10 @@ function [provpath]=apropos_gener(key)
      [s,k]=sort(foundkey);
      found= found(k);
   end
-       
+      
   provpath=TMPDIR+sep+"apropos_"+key
 
-  
+ 
   apropos_txt =["<html>";
 		 "<head>";
 		 "  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">";
