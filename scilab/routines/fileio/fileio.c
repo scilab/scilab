@@ -564,19 +564,21 @@ int int_objnumTokens(char *fname)
 
 /*********************************************************************
  * Scilab fprintfMat function
+ * fprintfMat('pipo',rand(2,2),'%f',['comment un';'comment 2'])
  *********************************************************************/
 
 int int_objfprintfMat(char *fname)
 {
-  int l1, m1, n1,l2,m2,n2,m3,n3,l3,i,j;
+  int l1, m1, n1,l2,m2,n2,m3,n3,l3,i,j,mS,nS;
   FILE  *f;
+  char **Str2;
   char *Format;
   Nbvars = 0;
-  CheckRhs(1,3); 
+  CheckRhs(1,4); 
   CheckLhs(1,1);
   GetRhsVar(1,"c",&m1,&n1,&l1);/* file name */
   GetRhsVar(2,"d",&m2,&n2,&l2);/* data */
-  if ( Rhs == 3) 
+  if ( Rhs >= 3) 
     {
       GetRhsVar(3,"c",&m3,&n3,&l3);/* format */
       StringConvert(cstk(l3));  /* conversion */
@@ -586,12 +588,19 @@ int int_objfprintfMat(char *fname)
     {
       Format = "%f";
     }
+  if ( Rhs >= 4 )
+    {
+      GetRhsVar(4,"S",&mS,&nS,&Str2);
+    }
   if (( f = fopen(cstk(l1),"w")) == (FILE *)0) 
     {
       Scierror(999,"Error: in function %s, cannot open file %s\r\n",
 	       fname,cstk(l1));
       return 0;
     }
+  for ( i=0 ; i < mS*nS ; i++) 
+    fprintf(f,"%s\n",Str2[i]);
+  
   for (i = 0 ; i < m2 ; i++ ) 
     {
       for ( j = 0 ; j < n2 ; j++) 
@@ -603,12 +612,15 @@ int int_objfprintfMat(char *fname)
     }
   fclose(f);
   LhsVar(1)=0 ; /** no return value **/
+  FreeRhsSVar(Str2);
   PutLhsVar();
   return 0;
 }  
 
 /*********************************************************************
  * Scilab fscanMat function
+ * fscanfMat('pipo')
+ * [A,b]=fscanfMat('pipo')
  *********************************************************************/
 #define INFOSIZE 1024
 
@@ -619,6 +631,7 @@ static int ReadLine __PARAMS((FILE *fd,int *mem));
 
 int int_objfscanfMat(char *fname)
 {
+  char **Str;
   int mem=0;
   double x;
   static int l1, m1, n1,l2,m2,n2;
@@ -635,8 +648,8 @@ int int_objfscanfMat(char *fname)
   }
 
   Nbvars = 0;
-  CheckRhs(1,1); /** just 1 <<pour l''instant>> **/
-  CheckLhs(1,1);
+  CheckRhs(1,1); /** just 1 **/
+  CheckLhs(1,2);
   GetRhsVar(1,"c",&m1,&n1,&l1);/* file name */
   if ( Rhs == 2) 
     {
@@ -685,11 +698,36 @@ int int_objfscanfMat(char *fname)
   /** second pass to read data **/
   rewind(f);
   /** skip non numeric lines **/
+  if ( Lhs >= 2) {
+    if ((Str = malloc((vl+1)*sizeof(char *)))==NULL) {
+      Scierror(999,"Error: in function %s, no more memory \r\n", fname);
+      return 0;
+    }
+    Str[vl]=NULL;
+  }
+
   for ( i = 0 ; i < vl ; i++) 
     {
       ReadLine(f,&mem);
       if ( mem == 1) return 0;
+      if ( Lhs >= 2) {
+	if ((Str[i]=malloc((strlen(Info)+1)*sizeof(char)))==NULL) { 
+	  int j;
+	  for ( j=0 ; j < i; j++) {FREE(Str[i]); FREE(Str);}
+	  Scierror(999,"Error: in function %s, no more memory \r\n", fname);
+	  return 0;
+	}
+	strcpy(Str[i],Info);
+      }
     }
+
+  if ( Lhs >= 2) {
+    int un=1;
+    CreateVarFromPtr(Rhs+2,"S",&vl,&un,Str);
+    LhsVar(2)=Rhs+2;
+    FreeRhsSVar(Str);
+  }
+
   for (i=0; i < rows ;i++)
     for (j=0;j < cols;j++)
       { 
