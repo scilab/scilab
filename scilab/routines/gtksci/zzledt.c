@@ -1,8 +1,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.1 2001/06/18 11:44:24 chanceli Exp $
+ * $Id: zzledt.c,v 1.2 2001/06/18 12:41:41 chanceli Exp $
  * $Log: zzledt.c,v $
+ * Revision 1.2  2001/06/18 12:41:41  chanceli
+ * upgrade
+ *
  * Revision 1.1  2001/06/18 11:44:24  chanceli
  *  update du help
  *
@@ -26,11 +29,12 @@
 
 #ifdef __STDC__
 #include <stdlib.h>
+#include <unistd.h>
 #endif
 
-int gchar_no_echo();
-extern int  Xorgetchar();
-char Sci_Prompt[10];
+extern int Xorgetchar();
+static int gchar_no_echo();
+static char Sci_Prompt[10];
 
 #ifdef aix
 #define ATTUNIX
@@ -185,16 +189,31 @@ static int init_flag = TRUE;
 static int tty;
 static    int cur_line_number = 0;
 
-static void move_right(), move_left(), display_string();
-static void get_line(), save_line(), backspace(), erase_nchar();
-static void enable_keypad_mode(), disable_keypad_mode();
-static void init_io(), set_cbreak(), set_crmod();
-static void strip_blank();
-static int  lines_equal();
-static int  translate();
-static int  search_line_backward(),search_line_forward();
-void  set_echo_mode(),set_is_reading();
-int   get_echo_mode();
+extern void set_is_reading(int); 
+extern int get_echo_mode(); 
+extern void set_echo_mode(int); 
+
+/* local functions */ 
+
+static int gchar_no_echo(void );
+static void move_right(char *source,int  max_chars);
+static void move_left(char *source); 
+static void display_string( char *string); 
+static void get_line(  int  line_index,  char *source);
+static void save_line(char *source);
+static void backspace(int n);
+static void erase_nchar( int n ); 
+static int lines_equal(char *source, int  line_index); 
+static void strip_blank(char *source); 
+static int gchar_no_echo(void );
+static void set_cbreak(void );
+static void set_crmod(void );
+static int translate(int ichar); 
+static void init_io(void );
+static void enable_keypad_mode(void );
+static void disable_keypad_mode(void );
+static int search_line_backward(char *source);
+static int search_line_forward(char *source);
 
 #include "x_VTparse.h" 
 extern int groundtable[]; /* character table */ 
@@ -202,14 +221,9 @@ extern int groundtable[]; /* character table */
 /***********************************************************************
  * line editor
  **********************************************************************/
-extern void
-C2F(zzledt)(buffer, buf_size, len_line, eof, dummy1)
-/**********************************************************************/
-char *buffer;
-int *buf_size;
-int *len_line;
-int *eof;
-long int dummy1;                /* added by FORTRAN to give buffer length */
+
+extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
+			int * eof,long int  dummy1)
 {
    int line_index = 0;
    int line_number;
@@ -615,11 +629,8 @@ long int dummy1;                /* added by FORTRAN to give buffer length */
 /***********************************************************************
  * move_right - move source string to one address larger (right)
  **********************************************************************/
-static void
-move_right(source, max_chars)
-/**********************************************************************/
-char *source;
-int  max_chars;
+
+static void move_right(char *source,int  max_chars)
 {
    char *p;
 
@@ -636,23 +647,20 @@ int  max_chars;
 /***********************************************************************
  * move_left - move source string to one address less (left)
  **********************************************************************/
-static void
-move_left(source)
-/**********************************************************************/
-char *source;
+
+static void move_left(char *source) 
 {
-   do {                     /* move from left edge to left */
-      *source = *(source + 1);
-   } while(*source++ != NUL);
+  do {                     
+    /* move from left edge to left */
+    *source = *(source + 1);
+  } while(*source++ != NUL);
 }
 
 /***********************************************************************
  * display_string - display string starting at current cursor position
  **********************************************************************/
 
-static void
-display_string(string)
-     char *string;
+static void display_string( char *string) 
 {
    while(*string != NUL) {
       putchar(*string++);
@@ -662,35 +670,30 @@ display_string(string)
  * get_line()
  **********************************************************************/
 
-static void
-get_line(line_index, source)
-     int  line_index;
-     char *source;
+static void get_line(  int  line_index,  char *source)
 {
    char *p;
-                            /* pointer to line in save buffer */
+   /* pointer to line in save buffer */
    p = sv_lines[line_index];
-                            /* if NUL, it-s an empty line */
+   /* if NUL, it-s an empty line */
    if(p == NULL) {
       *source = NUL;
       return;
    }
    while(*p != NUL) {
-                            /* move each character from save buffer */
-      *source++ = *p++;
-                            /* if at end of save buffer, wrap */
-      if(p - sv_buf == SV_BUF_SIZE) p = sv_buf;
+     /* move each character from save buffer */
+     *source++ = *p++;
+      /* if at end of save buffer, wrap */
+     if(p - sv_buf == SV_BUF_SIZE) p = sv_buf;
    }
-                            /* add terminator to line */
+   /* add terminator to line */
    *source = NUL;
 }
 /***********************************************************************
  * save_line - save edited line in next position in save buffer
  **********************************************************************/
-static void
-save_line(source)
-/**********************************************************************/
-char *source;
+
+static void save_line(char *source)
 {
    int i;
    int length;
@@ -735,10 +738,8 @@ char *source;
 /***********************************************************************
  * backspace - move cursor n char to the left
  **********************************************************************/
-static void
-backspace(n)
-/**********************************************************************/
-int n;
+
+static void backspace(int n)
 {
    if(n < 1)
       return;
@@ -760,10 +761,8 @@ int n;
 /***********************************************************************
  * erase n characters to right and back up cursor
  **********************************************************************/
-static void
-erase_nchar(n)
-/**********************************************************************/
-int n;
+
+static void erase_nchar( int n ) 
 {
    int i;                   /* fill field with blanks */
    for(i = 0; i < n; i++) {
@@ -771,47 +770,44 @@ int n;
    }
    backspace(n);            /* and back up over blanks just written */
 }
+
 /***********************************************************************
  * lines_equal(source, line_index)
  **********************************************************************/
-static int
-lines_equal(source, line_index)
-/**********************************************************************/
-char *source;
-int  line_index;
+
+static int lines_equal(char *source, int  line_index) 
 {
    char *p;
 
-                            /* if empty line, matches anything */
+   /* if empty line, matches anything */
    if(*source == NUL) return(TRUE);
-                            /* point to line start in save buffer */
+   /* point to line start in save buffer */
    p = sv_lines[line_index];
-                            /* if line empty, report not equal */
+   /* if line empty, report not equal */
    if(p == NULL) return(FALSE);
    while(*source != NUL) {
-                            /* if not equal, return false */
+     /* if not equal, return false */
       if(*source++ != *p++) {
          return(FALSE);
       }
-                            /* if outside buffer, wrap to beginning */
+      /* if outside buffer, wrap to beginning */
       if(p - sv_buf == SV_BUF_SIZE) {
          p = sv_buf;
       }
    }
    return (*p == NUL) ? TRUE : FALSE;
 }
+
 /***********************************************************************
  * strip_blank(source) - strip trailing blanks by inserting NUL-s
  **********************************************************************/
-static void
-strip_blank(source)
-/**********************************************************************/
-char *source;
+
+static void strip_blank(char *source) 
 {
    char *p;
 
    p = source;
-                            /* look for end of string */
+   /* look for end of string */
    while(*p != NUL) {
       p++;
    }
@@ -824,8 +820,8 @@ char *source;
 /***********************************************************************
  * get sungle character with no echo
  **********************************************************************/
-int gchar_no_echo()
-/**********************************************************************/
+
+static int gchar_no_echo()
 {
    int i;
    /* get next character, gotten in cbreak mode
@@ -895,10 +891,8 @@ static void set_crmod()
 /***********************************************************************
  * translate escape sequences
  **********************************************************************/
-static int
-translate(ichar)
-/**********************************************************************/
-int ichar;
+
+static int translate(int ichar) 
 {
    int i, j, not_done;
    char *pstr[N_SEQS];      /* points to each sequence as it progresses */
@@ -992,47 +986,58 @@ static void init_io()
 
 }
 #ifdef TERMCAP
+
+
+/* a adapter pour que ca marche partout XXXXXX */ 
+
+void sci_get_screen_size (int *rows,int *cols)
+{
+  struct winsize window_size;
+  if (ioctl (fd, TIOCGWINSZ, &window_size) == 0)
+    {
+      *rows = (int) window_size.ws_col;
+      *cols = (int) window_size.ws_row;
+    }
+}
+
+
+
 /************************************************************************
  * enable keypad mode if using termcap
  ***********************************************************************/
-static void
-enable_keypad_mode()
-/***********************************************************************/
+static void enable_keypad_mode()
 {
-                            /* enable keypad transmit mode */
-   if(KS && *KS)
-      fputs(KS, stdout);
+  /* enable keypad transmit mode */
+  if(KS && *KS)
+    fputs(KS, stdout);
 }
+
 /************************************************************************
  * disable the keypad mode if using termcap
  ***********************************************************************/
-static void
-disable_keypad_mode()
-/***********************************************************************/
+
+static void disable_keypad_mode()
 {
-                            /* disable keypad transmit mode */
+  /* disable keypad transmit mode */
    if(KE && *KE)
       fputs(KE, stdout);
 }
+
 #else 
+
 /************************************************************************
  *wee need references to thoses function if using KEYPAD but not Having TERMCAP
  ***********************************************************************/
-static void
-enable_keypad_mode(){}
+static void enable_keypad_mode(){}
 
-static void
-disable_keypad_mode(){}
+static void disable_keypad_mode(){}
+
 #endif
 
- 
 /***********************************************************************
  * search_line_backward(source)
  **********************************************************************/
-static int
-search_line_backward(source)
-/**********************************************************************/
-char *source;
+static int search_line_backward(char *source)
 {
    int  line_index,ok,length;
    char *p,*p1;
@@ -1055,7 +1060,7 @@ char *source;
    }
 
    if(ok==1) {
-/*     strcpy(source,p);*/
+     /*     strcpy(source,p);*/
      return(line_index);
    }
    else {
@@ -1066,10 +1071,8 @@ char *source;
 /***********************************************************************
  * search_line_forward(source)
  **********************************************************************/
-static int
-search_line_forward(source)
-/**********************************************************************/
-char *source;
+
+static int search_line_forward(char *source)
 {
    int  line_index,ok,length;
    char *p,*p1;

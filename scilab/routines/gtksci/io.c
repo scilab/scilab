@@ -302,9 +302,8 @@ int C2F(sxevents)()
 void sci_winch_signal(int n) 
 {
   int rows,cols;
-  /* XXXXX need a rcent version of readlin 
-   * rl_get_screen_size(&rows,&cols);
-   */ 
+  sci_get_screen_size (&rows,&cols);
+  C2F(scilines)(&rows,&cols);
   fprintf(stderr,"windows size changed %d %d\r\n",rows,cols);
 }
 
