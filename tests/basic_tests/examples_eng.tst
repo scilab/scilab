@@ -6705,7 +6705,8 @@ plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5])
 //multiple plot with captions and given tics // old syntax and new syntax
 xbasc()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
-  [1,2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10]) xbasc()
+  [1,2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10])
+xbasc()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
   [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2])
 // isoview
