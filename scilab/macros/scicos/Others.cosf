@@ -72,7 +72,7 @@ scs_m.objs(5)=mlist(['Block','graphics','model','gui','doc'],..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
               'gr_i','id'],[280,0],[40,40],%t,..
               ['sinblk';
-              '''c''';
+              '1';
               '1';
               '1';
               '[]';
@@ -90,20 +90,7 @@ scs_m.objs(5)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
               'ipar','blocktype','firing','dep_ut','label'],list('sinblk',1),1,1,..
-              [],[],[],[],[],[],'c',[],['y','n'],..
-              ['sinblk';
-              '''c''';
-              '1';
-              '1';
-              '[]';
-              '[]';
-              '[]';
-              '[]';
-              '[]';
-              '[]';
-              '[]';
-              'y';
-              'n']),'generic_block',list())
+              [],[],[],[],[],[],'c',[],['y','n']),'generic_block',list())
 scs_m.objs(6)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..

@@ -13,7 +13,7 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   x=arg1
-  model=arg1.model;graphics=arg1.graphics;label=model.label
+  model=arg1.model;graphics=arg1.graphics;label=graphics.exprs
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
     [ok,junction_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,auto0,depu,dept,lab]=..
@@ -88,14 +88,14 @@ case 'define' then
   model.blocktype='c' 
   model.firing=[]
   model.dep_ut=[%t %f]
-  model.label=[junction_name;sci2exp(funtyp);
+  label=[junction_name;sci2exp(funtyp);
 	       sci2exp(model.in);sci2exp(model.out);
 	       sci2exp(model.evtin);sci2exp(model.evtout);
 	       sci2exp(model.state);sci2exp(model.dstate);
 	       sci2exp(model.rpar);sci2exp(model.ipar);
 	       sci2exp(model.firing);'y';'n'];
   gr_i=['xstringb(orig(1),orig(2),''GENERIC'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,model.label,gr_i)
+  x=standard_define([2 2],model,label,gr_i)
 end
 endfunction
 
