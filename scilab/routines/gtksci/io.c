@@ -59,7 +59,7 @@ void C2F(xscimore)(int *n)
   int n1=0;
   *n=0;
   if ( using_readline() == 1 ) 
-    n1= get_one_char("[More (y or n) ?]");
+    n1= get_one_char("[More (y or n) ?] ");
   else {
     fprintf(stdout,"%s","[More (y or n ) ?] ");
     n1=Xorgetchar(0);
