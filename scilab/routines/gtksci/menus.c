@@ -651,7 +651,7 @@ static void sci_menu_default_callback (gpointer  callback_data,
 	sprintf(buf,"execstr(%s(%d))",m->fname,m->nsub);
       else 
 	sprintf(buf,"execstr(%s_%d(%d))",m->fname,m->winid,m->nsub);
-      StoreCommand(buf);
+      StoreCommand1(buf,1);
     }
   else if (m->action_type == 2) 
     { 
@@ -660,7 +660,7 @@ static void sci_menu_default_callback (gpointer  callback_data,
 	sprintf(buf,"%s(%d)",m->fname,m->nsub);
       else 
 	sprintf(buf,"%s(%d,%d)",m->fname,m->nsub,m->winid);
-      StoreCommand(buf);
+      StoreCommand1(buf,2);
     }
   else 
     { 
@@ -826,7 +826,7 @@ void scig_deletegwin_handler_sci (int win)
   SciGc = GetWindowXgcNumber(win);
   if (strlen(SciGc->EventHandler)!=0) {
     sprintf(buf,"%s(%d,0,0,-1000)",SciGc->EventHandler,win);
-    StoreCommand(buf);
+    StoreCommand1(buf,0);
     }
 };
 static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_sci;
