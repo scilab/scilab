@@ -2,7 +2,8 @@ function [x,y,typ]=GAIN_f(job,arg1,arg2)
 // Copyright INRIA
 x=[];y=[];typ=[];
 select job
-case 'plot' then
+ case 'plot' then
+  C=arg1.graphics.exprs;
   standard_draw(arg1)
 case 'getinputs' then
   [x,y,typ]=standard_inputs(arg1)
@@ -43,12 +44,7 @@ case 'define' then
   model.dep_ut=[%t %f]
   
   exprs=[strcat(sci2exp(gain));strcat(sci2exp(in));strcat(sci2exp(out))]
-  gr_i=['nin=model.in;nout=model.out;';
-      'if model.in*model.out==1 then '
-      '  gain=string(model.rpar),'
-      'else'
-      '  gain=''Gain'','
-      'end';
+  gr_i=['gain=C,'
       'dx=sz(1)/5;';
       'dy=sz(2)/10;';
       'xx=orig(1)+      [1 4 1 1]*dx;';

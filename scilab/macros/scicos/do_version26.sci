@@ -17,15 +17,25 @@ function scs_m_new=do_version26(scs_m)
   
   scs_m_new.objs(1)=mlist('Deleted') // not to change the internal numbering
   n=size(scs_m)
+  back_col=8   //white background
   for i=2:n //loop on objects
     o=scs_m(i)
     if o(1)=='Block' then
       if size(o(2)) > 8 then
-	gr_i=convert_gri(o(5),o(2)(9))
-	if gr_i==[] then gr_i=o(2)(9), end
+	if type(o(2)(9))==15 then 
+	  gr_io=o(2)(9)(1)
+	  if o(2)(9)(2)<>[] then
+	    back_col=o(2)(9)(2),
+	  end
+	else
+	  gr_io=o(2)(9)
+	end
+	gr_i=convert_gri(o(5),gr_io)
+	if gr_i==[] then gr_i=gr_io, end
       elseif size(o(2)) < 9 then
 	gr_i=[];
       end
+      gr_i=list(gr_i,back_col)
       graphics=scicos_graphics()
       graphics.orig  = o(2)(1)
       graphics.sz    = o(2)(2)
@@ -118,15 +128,9 @@ case 'BIGSOM_f' then
         'xpoly(xx,yy,''lines'')']
 
 case 'CONST_f' then
-  gr_i=['model=arg1.model;C=string(model.rpar);';
-    'dx=sz(1)/5;dy=sz(2)/10;';
+    gr_i=['dx=sz(1)/5;dy=sz(2)/10;';
     'w=sz(1)-2*dx;h=sz(2)-2*dy;';
-    'if size(C,''*'')==1 then ';
-    '  txt=C;'
-    '  if length(txt)>4 then txt=''C'',end;'
-    'else ';
-    '  txt=''C'';'
-    'end';
+    'txt=C;'
     'xstringb(orig(1)+dx,orig(2)+dy,txt,w,h,''fill'');']
 
 case 'CURV_f' then
@@ -153,8 +157,7 @@ case 'EVTGEN_f' then
 
 case 'GAIN_f' then
 
-  gr_i=['[nin,nout]=(model.in,model.out);';
-      'if nin*nout==1 then gain=string(model.rpar),else gain=''Gain'',end';
+  gr_i=['gain=C,'
       'dx=sz(1)/5;';
       'dy=sz(2)/10;';
       'xx=orig(1)+      [1 4 1 1]*dx;';

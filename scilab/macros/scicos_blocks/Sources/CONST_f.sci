@@ -2,8 +2,8 @@ function [x,y,typ]=CONST_f(job,arg1,arg2)
 // Copyright INRIA
 x=[];y=[];typ=[];
 select job
-  case 'plot' then
-  C=arg1.model.rpar;
+ case 'plot' then
+  C=arg1.graphics.exprs;
   standard_draw(arg1)
 case 'getinputs' then
   x=[];y=[];typ=[];
@@ -41,15 +41,9 @@ case 'define' then
   model.dep_ut=[%f %f]
 
   exprs=strcat(sci2exp(C))
-  gr_i=['C=string(C);';
-    'dx=sz(1)/5;dy=sz(2)/10;';
+  gr_i=['dx=sz(1)/5;dy=sz(2)/10;';
     'w=sz(1)-2*dx;h=sz(2)-2*dy;';
-    'if size(C,''*'')==1 then ';
-    '  txt=C;'
-    '  if length(txt)>4 then txt=''C'',end;'
-    'else ';
-    '  txt=''C'';'
-    'end';
+    'txt=C;'
     'xstringb(orig(1)+dx,orig(2)+dy,txt,w,h,''fill'');']
   x=standard_define([2 2],model,exprs,gr_i)
 end

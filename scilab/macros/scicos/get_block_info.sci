@@ -10,7 +10,7 @@ case 'Block' then
   
   if o.model.sim=='super'|o.model.sim=='csuper' then
     objet=o.model.rpar
-    infos = objet(1)
+    infos = o.model.rpar.props
     if size(infos.title,'*')==2 then 
       txt = [txt;
 	     'Super Block Documentation: '+infos.title(2)+'/'+..
@@ -39,8 +39,8 @@ case 'Block' then
 	    'Informations on selected components'
 	    '----------------------------------';' ']
       end
-      for k = 2 : size(objet)
-	o1=objet(k)
+      for k = 1 : size(objet.objs)
+	o1=objet.objs(k)
 	ok=%f
 	if typeof(o1)=='Block' then
 	  ok=filtre(1)|..
