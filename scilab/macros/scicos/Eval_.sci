@@ -1,5 +1,5 @@
 function Eval_()
-    Cmenu='Open/Set'
+    Cmenu='Replot'
     disablemenus()
     %now_win=xget('window')
 

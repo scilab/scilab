@@ -1,5 +1,5 @@
 function Context_()
-    Cmenu='Open/Set'
+    Cmenu='Replot'
     while %t do
       %now_win=xget('window')
       [context,ok]=do_context(scs_m.props.context)

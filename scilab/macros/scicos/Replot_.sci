@@ -3,12 +3,7 @@ function Replot_()
     %pt=[];
     disablemenus()
     xbasc()
-//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-   // %wdm=scs_m(1)(1)
-
     %wdm=scs_m.props.wpar
-//*****************************************
-
     window_set_size()
     set_background()
     drawobjs(scs_m),
