@@ -40,7 +40,7 @@ MACROS = with_lcc.sci VCtoLCCLib.sci \
 	printf.sci fprintf.sci sprintf.sci scanf.sci fscanf.sci sscanf.sci \
 	profile.sci get_profile.sci showprofile.sci plotprofile.sci \
 	ilib_mex_build.sci listfiles.sci pathconvert.sci basename.sci \
-	dirname.sci \
+	dirname.sci ls.sci dir.sci\
 	apropos.sci help.sci gethelpfile.sci browsehelp.sci \
 	help_menu.sci change_old_man.sci \
 	make_help_index.sci find_links.sci editor.sci \
