@@ -31,36 +31,37 @@ function [status,msg]=rmdir(varargin)
   else
      error('Number of parameters incorrect.');
   end
+  
+  if MSDOS then
+    batchlog = ' > '+TMPDIR+'\rmdir.log';
+    if SubDirMode then
+      cmd = 'rmdir /s /q '+DirName; 
+    else
+      cmd = 'rmdir '+DirName;
+    end
+  else
+    batchlog = ' > '+TMPDIR+'/rmdir.log';
+    if SubDirMode then
+      cmd = 'rm -r -f '+DirName;
+    else
+      cmd = 'rmdir '+DirName;
+    end
+  end
+  
+  cmdline =cmd+batchlog;	
+  status=unix(cmdline);
+  if (status~=0) then
+    if MSDOS then
+      msg='Error :'+cmd;
+    else
+      msg='Error :'+cmd;  
+    end
+    status=0;
+  else
+    msg=''; 
+    status=1;
+  end
 
-  
-	if MSDOS then
-	  if SubDirMode then
-      cmdline = 'rmdir /s /q '+DirName+' > '+TMPDIR+'\rmdir.log';
-        else
-      cmdline = 'rmdir '+DirName+' > '+TMPDIR+'\rmdir.log';
-        end
-	else
-	  if SubDirMode then
-      cmdline = 'rm -r -f '+DirName+' > '+TMPDIR+'/rmdir.log';
-    else
-      cmdline = 'rmdir '+DirName+' > '+TMPDIR+'/rmdir.log';
-    end
-	end
-	
-	status=unix(cmdline);
-    if (status~=0) then
-      if MSDOS then
-        msg='Error :'+cmdline;
-      else
-        msg='Error :'+cmdline;  
-      end
-      status=0;
-    else
-      msg=''; 
-      status=1;
-    end
-	
-  
 endfunction
 //------------------------------------------------------------------------
 
