@@ -22,7 +22,7 @@ menu $pad.filemenu.files -tearoff 0 -font $menuFont
                    -command \"xmlhelpfile\" -state disabled "
     $pad.filemenu.files add separator
     eval "$pad.filemenu.files add command [me "Open &function source"] \
-                   -command {openlibfunsource [[gettextareacur] index insert]}\
+                   -command {openlibfunsource \[\[gettextareacur\] index insert\]}\
                    -state disabled -accelerator Ctrl+/"
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
