@@ -37,13 +37,16 @@
     Singular value approximation.
   </P>
   <P>
-     with <VERB>k</VERB> an integer &gt;=1, returns <VERB>U,S</VERB> and <VERB>V</VERB> such that
-    <VERB>B=U*S*V&apos;</VERB> is the best L2 approximation
-    of <VERB>A</VERB> with rank(<VERB>B</VERB>)=<VERB>k</VERB>. 
+     <VERB>[U,S,V]=sva(A,k)</VERB> with <VERB>k</VERB> an integer
+    &gt;=1, returns <VERB>U,S</VERB> and <VERB>V</VERB> such that
+    <VERB>B=U*S*V&apos;</VERB> is the best L2 approximation of
+    <VERB>A</VERB> with rank(<VERB>B</VERB>)=<VERB>k</VERB>.
   </P>
   <P>
-     with <VERB>tol</VERB> a real number, returns <VERB>U,S</VERB> and <VERB>V</VERB> such that
-    <VERB>B=U*S*V&apos;</VERB> such that L2-norm of  <VERB>A-B</VERB> is at most <VERB>tol</VERB>.
+     <VERB>[U,S,V]=sva(A,tol)</VERB> with <VERB>tol</VERB> a real
+    number, returns <VERB>U,S</VERB> and <VERB>V</VERB> such that
+    <VERB>B=U*S*V&apos;</VERB> such that L2-norm of <VERB>A-B</VERB>
+    is at most <VERB>tol</VERB>.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

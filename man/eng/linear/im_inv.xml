@@ -40,31 +40,25 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    computes 
+     <VERB>[X,dim]=im_inv(A,B)</VERB> computes <VERB>(A^-1)(B)</VERB>
+     i.e vectors whose image through <VERB>A</VERB> are in
+     range(<VERB>B</VERB>)
   </P>
   <P>
-    (A^-1)(B)
-  </P>
-  <P>
-     i.e vectors whose image through <VERB>A</VERB> are in range(<VERB>B</VERB>)
-  </P>
-  <P>
-    The <VERB>dim</VERB> first columns of <VERB>X</VERB> span 
-  </P>
-  <P>
-    (A^-1) (B)
+    The <VERB>dim</VERB> first columns of <VERB>X</VERB> span
+    <VERB>(A^-1)(B)</VERB>
   </P>
   <P>
     <VERB>tol</VERB> is a threshold used to test if subspace inclusion;
     default value is <VERB>tol = 100*%eps</VERB>.
     If <VERB>Y</VERB> is returned, then <VERB>[Y*A*X,Y*B]</VERB> is partitioned as follows:
   </P>
-  <VERBATIM><![CDATA[
-[A11,A12;0,A22],[B1;0]
-   ]]></VERBATIM>
+  <VERB>[A11,A12;0,A22]</VERB>,<VERB>[B1;0]</VERB>
+
   <P>
-    where <VERB>B1</VERB> has full row rank (equals <VERB>rank(B)</VERB>) and <VERB>A22</VERB> has
-    full column rank and has <VERB>dim</VERB> columns.
+    where <VERB>B1</VERB> has full row rank (equals
+    <VERB>rank(B)</VERB>) and <VERB>A22</VERB> has full column rank
+    and has <VERB>dim</VERB> columns.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
@@ -75,7 +69,10 @@ svd([A*X(:,1:dim),B])   //vectors A*X(:,1:dim) belong to range(B)
 [X,dim,Y]=im_inv(A,B);[Y*A*X,Y*B]
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>spaninter</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>spanplus</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>linsolve</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>spaninter</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>spanplus</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>linsolve</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>F. D.; ;   </AUTHOR>
+  <AUTHOR>F. Delebecque INRIA  </AUTHOR>
 </MAN>

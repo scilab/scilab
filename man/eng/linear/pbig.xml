@@ -39,36 +39,42 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    Projection on eigen-subspace associated with eigenvalues
-    with real part &gt;= <VERB>thres</VERB> (<VERB>flag=&apos;c&apos;</VERB>) or with 
-    magnitude &gt;= <VERB>thres</VERB> (<VERB>flag=&apos;d&apos;</VERB>).
+    Projection on eigen-subspace associated with eigenvalues with real
+    part &gt;= <VERB>thres</VERB> (<VERB>flag=&apos;c&apos;</VERB>) or
+    with magnitude &gt;= <VERB>thres</VERB>
+    (<VERB>flag=&apos;d&apos;</VERB>).
   </P>
   <P>
-    The projection is defined by <VERB>Q*M</VERB>, <VERB>Q</VERB> is full column rank,
-    <VERB>M</VERB> is full row rank and <VERB>M*Q=eye</VERB>.
+    The projection is defined by <VERB>Q*M</VERB>, <VERB>Q</VERB> is
+    full column rank, <VERB>M</VERB> is full row rank and
+    <VERB>M*Q=eye</VERB>.
   </P>
   <P>
-    If <VERB>flag=&apos;c&apos;</VERB>, the eigenvalues of <VERB>M*A*Q</VERB> = eigenvalues
-    of <VERB>A</VERB> with real part &gt;= <VERB>thres</VERB>.
+    If <VERB>flag=&apos;c&apos;</VERB>, the eigenvalues of
+    <VERB>M*A*Q</VERB> = eigenvalues of <VERB>A</VERB> with real part
+    &gt;= <VERB>thres</VERB>.
   </P>
   <P>
-    If <VERB>flag=&apos;d&apos;</VERB>, the eigenvalues of <VERB>M*A*Q</VERB> = eigenvalues
-    of <VERB>A</VERB> with magnitude &gt;= <VERB>thres</VERB>.
+    If <VERB>flag=&apos;d&apos;</VERB>, the eigenvalues of
+    <VERB>M*A*Q</VERB> = eigenvalues of <VERB>A</VERB> with magnitude
+    &gt;= <VERB>thres</VERB>.
   </P>
   <P>
-    If <VERB>flag=&apos;c&apos;</VERB> and if <VERB>[Q1,M1]</VERB> = full rank factorization (<VERB>fullrf</VERB>) 
-    of <VERB>eye()-Q*M</VERB> then eigenvalues of  <VERB>M1*A*Q1</VERB> = eigenvalues of <VERB>A</VERB> 
-    with real part &lt; <VERB>thres</VERB>.
+    If <VERB>flag=&apos;c&apos;</VERB> and if <VERB>[Q1,M1]</VERB> =
+    full rank factorization (<VERB>fullrf</VERB>) of
+    <VERB>eye()-Q*M</VERB> then eigenvalues of <VERB>M1*A*Q1</VERB> =
+    eigenvalues of <VERB>A</VERB> with real part &lt;
+    <VERB>thres</VERB>.
   </P>
   <P>
-    If <VERB>flag=&apos;d&apos;</VERB> and if <VERB>[Q1,M1]</VERB> = full rank factorization (<VERB>fullrf</VERB>) 
-    of <VERB>eye()-Q*M</VERB> then eigenvalues of  <VERB>M1*A*Q1</VERB> = eigenvalues of <VERB>A</VERB> 
-    with magnitude &lt; <VERB>thres</VERB>.
+    If <VERB>flag=&apos;d&apos;</VERB> and if <VERB>[Q1,M1]</VERB> =
+    full rank factorization (<VERB>fullrf</VERB>) of
+    <VERB>eye()-Q*M</VERB> then eigenvalues of <VERB>M1*A*Q1</VERB> =
+    eigenvalues of <VERB>A</VERB> with magnitude &lt;
+    <VERB>thres</VERB>.
   </P>
   </DESCRIPTION>
-   <USED_FUNCTION>
-   <VERB>pbig</VERB> is based on the ordered schur form (scilab function <VERB>schur</VERB>).
-  </USED_FUNCTION>
+
 
   <EXAMPLE><![CDATA[
 A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
@@ -84,4 +90,8 @@ spec(M1*A*Q1)
     <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>F. D. (1988); ;   </AUTHOR>
+   <USED_FUNCTIONS>
+   <VERB>pbig</VERB> is based on the ordered schur form (scilab
+   function <VERB>schur</VERB>).
+  </USED_FUNCTIONS>
 </MAN>

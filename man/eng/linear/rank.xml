@@ -28,27 +28,26 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    is the numerical rank of <VERB>X</VERB> i.e. the number of singular values  
-    of X that are larger than <VERB>norm(size(X),&apos;inf&apos;) * norm(X) * %eps</VERB>.
+    <VERB>rank(X)</VERB> is the numerical rank of <VERB>X</VERB>
+    i.e. the number of singular values of X that are larger than
+    <VERB>norm(size(X),&apos;inf&apos;) * norm(X) * %eps</VERB>.
   </P>
   <P>
-    <VERB>rank(X,tol)</VERB> is the number of singular values of <VERB>X</VERB> that 
-    are larger than <VERB>tol</VERB>.
+    <VERB>rank(X,tol)</VERB> is the number of singular values of
+    <VERB>X</VERB> that are larger than <VERB>tol</VERB>.
   </P>
+    Note that the default value of <VERB>tol</VERB> is proportional to
+    <VERB>norm(X)</VERB>. As a consequence <VERB>rank([1.d-80,0;0,1.d-80])</VERB> is 2 !.
   </DESCRIPTION>
-  <ITEMIZE label='Remark'>
-  <P>
-    Note that the default value of <VERB>tol</VERB> is proportional to <VERB>norm(X)</VERB>. As a consequence 
-  </P>
-  <P>
-    <VERB>rank([1.d-80,0;0,1.d-80])</VERB> is 2 !.
-  </P>
-  </ITEMIZE>
   <EXAMPLE><![CDATA[
 rank([1.d-80,0;0,1.d-80])
 rank([1,0;0,1.d-80])
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lu</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>lu</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

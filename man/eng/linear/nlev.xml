@@ -33,18 +33,15 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    computes:
+    <VERB>[num,den]=nlev(A,z [,rmax])</VERB> computes <VERB>(z*eye()-A)^(-1)</VERB>
   </P>
   <P>
     by block diagonalization of A followed by Leverrier&apos;s algorithm
     on each block.
   </P>
+   This algorithm is better than the usual leverrier algorithm but still not perfect!
   </DESCRIPTION>
-  <ITEMIZE label='Remark'>
-  <P>
-    This algorithm is better than the usual leverrier algorithm but still not perfect!
-  </P>
-  </ITEMIZE>
+
   <EXAMPLE><![CDATA[
 A=rand(3,3);x=poly(0,'x');
 [NUM,den]=nlev(A,'x')
@@ -52,7 +49,10 @@ clean(den-poly(A,'x'))
 clean(NUM/den-inv(x*eye()-A))
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>coff</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>glever</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ss2tf</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>coff</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>glever</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>ss2tf</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>F. D., S. S.;   </AUTHOR>
+  <AUTHORS>F. Delebecque., S. Steer INRIA;   </AUTHORS>
 </MAN>

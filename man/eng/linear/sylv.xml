@@ -27,13 +27,15 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    computes <VERB>X</VERB>, solution of the &quot;continuous time&quot; Sylvester equation
+    <VERB>X = sylv(A,B,C,'c')</VERB> computes <VERB>X</VERB>, solution
+    of the &quot;continuous time&quot; Sylvester equation
   </P>
   <VERBATIM><![CDATA[
 A*X+X*B=C 
    ]]></VERBATIM>
   <P>
-    computes <VERB>X</VERB>, solution of the &quot;discrete time&quot; Sylvester equation
+    <VERB>X=sylv(A,B,C,'d')</VERB> computes <VERB>X</VERB>, solution
+    of the &quot;discrete time&quot; Sylvester equation
   </P>
   <VERBATIM><![CDATA[
 A*X*B-X=C

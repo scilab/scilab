@@ -54,8 +54,8 @@
   <DESCRIPTION>
  
 
-  <DESCRIPTION_ITEM  label='-'> 
-    <VERB>[Q,R] = qr(X)</VERB> produces an upper triangular matrix <VERB>R</VERB> of the same dimension as <VERB>X</VERB> and an orthogonal (unitary in the complex case) matrix <VERB>Q</VERB> so that <VERB>X = Q*R</VERB>. <VERB>[Q,R] = qr(X,&quot;e&quot;)</VERB> produces an &quot;economy size&quot;: If <VERB>X</VERB> is m-by-n with m &gt; n, then only the first n columns of <VERB>Q</VERB>  are computed as well as the first n rows of <VERB>R</VERB>.
+  <DESCRIPTION_ITEM label='[Q,R] = qr(X)'> 
+    produces an upper triangular matrix <VERB>R</VERB> of the same dimension as <VERB>X</VERB> and an orthogonal (unitary in the complex case) matrix <VERB>Q</VERB> so that <VERB>X = Q*R</VERB>. <VERB>[Q,R] = qr(X,&quot;e&quot;)</VERB> produces an &quot;economy size&quot;: If <VERB>X</VERB> is m-by-n with m &gt; n, then only the first n columns of <VERB>Q</VERB>  are computed as well as the first n rows of <VERB>R</VERB>.
   </DESCRIPTION_ITEM>
   <P>
     From <VERB>Q*R = X</VERB> , it follows that
@@ -81,11 +81,7 @@
   </DESCRIPTION_ITEM>
  
   </DESCRIPTION>
-  <ITEMIZE label='REFERENCES'>
-  <P>
-    qr decomposition are based  the Lapack routines DGEQRF, DGEQPF, DORGQR for the real matrices and  ZGEQRF, ZGEQPF, ZORGQR for the complex case.
-  </P>
-  </ITEMIZE>
+
   <EXAMPLE><![CDATA[
 // QR factorization, generic case
 // X is tall (full rank)
@@ -104,6 +100,13 @@ norm(Q'*A-R)
 svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>rankqr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>rankqr</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM>    
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+  <USED_FUNCTIONS>
+    qr decomposition is based  the Lapack routines DGEQRF, DGEQPF, DORGQR for the real matrices and  ZGEQRF, ZGEQPF, ZORGQR for the complex case.
+  </USED_FUNCTIONS>
 </MAN>

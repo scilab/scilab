@@ -27,7 +27,8 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    produces a matrix <VERB>X</VERB> of the same  dimensions as <VERB>A&apos;</VERB> such that:
+    <VERB>X = pinv(A)</VERB> produces a matrix <VERB>X</VERB> of the
+    same dimensions as <VERB>A&apos;</VERB> such that:
   </P>
   <P>
     <VERB>A*X*A = A, X*A*X = X</VERB>  and both
@@ -39,17 +40,18 @@
     is accessed by <VERB>X=pinv(A,tol)</VERB>.
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='REFERENCES'>
-  <P>
- <VERB>pinv</VERB> function is  based on the singular value decomposition
- (Scilab function <VERB>svd</VERB>).
-  </P>
-  </ITEMIZE>
+
   <EXAMPLE><![CDATA[
 A=rand(5,2)*rand(2,4);
 norm(A*pinv(A)*A-A,1)
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+  <USED_FUNCTIONS>
+ <VERB>pinv</VERB> function is  based on the singular value decomposition
+ (Scilab function <VERB>svd</VERB>).
+</USED_FUNCTIONS>
 </MAN>

@@ -49,39 +49,45 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    produces a diagonal matrix <VERB>S</VERB> , of the same 
-    dimension as <VERB>X</VERB> and with nonnegative diagonal elements in 
-    decreasing order, and unitary matrices <VERB>U</VERB> and <VERB>V</VERB> so that 
-    <VERB>X = U*S*V&apos;</VERB>.
+    <VERB>[U,S,V] = svd(X)</VERB> produces a diagonal matrix
+    <VERB>S</VERB> , of the same dimension as <VERB>X</VERB> and with
+    nonnegative diagonal elements in decreasing order, and unitary
+    matrices <VERB>U</VERB> and <VERB>V</VERB> so that <VERB>X =
+    U*S*V&apos;</VERB>.
   </P>
   <P>
-    or 
+    <VERB>[U,S,V] = svd(X,0)</VERB> produces the &quot;economy
+    size&quot; decomposition. If <VERB>X</VERB> is m-by-n with m &gt;
+    n, then only the first n columns of <VERB>U</VERB> are computed
+    and <VERB>S</VERB> is n-by-n.
   </P>
   <P>
-     produces the &quot;economy size&quot;
-    decomposition. If <VERB>X</VERB> is m-by-n with m &gt; n, then only the
-    first n columns of <VERB>U</VERB> are computed and <VERB>S</VERB> is n-by-n.
+    <VERB>s = svd(X)</VERB> by itself, returns a vector <VERB>s</VERB>
+    containing the singular values.
   </P>
   <P>
-    by itself, returns a vector <VERB>s</VERB> containing the singular values.
-  </P>
-  <P>
-    gives in addition <VERB>rk</VERB>, the numerical rank of <VERB>X</VERB> i.e. the number of 
+    <VERB>[U,S,V,rk]=svd(X,tol)</VERB> gives in addition <VERB>rk</VERB>, the numerical rank of <VERB>X</VERB> i.e. the number of 
     singular values larger than <VERB>tol</VERB>.
   </P>
   <P>
     The default value of <VERB>tol</VERB> is the same as in <VERB>rank</VERB>.
   </P>
   </DESCRIPTION>
-   <USED_FUNCTION>
-   svd decompositions are based on  the Lapack routines DGESVD for  real matrices and  ZGESVD for the complex case. 
-  </USED_FUNCTION>
+
   <EXAMPLE><![CDATA[
 X=rand(4,2)*rand(2,4)
 svd(X)
 sqrt(spec(X*X'))
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>sva</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>sva</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+   <USED_FUNCTIONS>
+   svd decompositions are based on  the Lapack routines DGESVD for  real matrices and  ZGESVD for the complex case. 
+  </USED_FUNCTIONS>
 </MAN>

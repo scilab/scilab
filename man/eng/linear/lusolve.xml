@@ -34,11 +34,13 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    solves the sparse linear system  <VERB>A*x = b</VERB>.
+    <VERB>x=lusolve(hand,b)</VERB> solves the sparse linear system
+    <VERB>A*x = b</VERB>.
   </P>
   <P>
     <VERB>[hand,rk]=lufact(A)</VERB> is the output of lufact.
   </P>
+ <VERB>x=lusolve(A,b)</VERB> solves the sparse linear system  \fVA*x = b\fR.
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 non_zeros=[1,2,3,4];rows_cols=[1,1;2,2;3,3;4,4];
@@ -46,14 +48,15 @@ sp=sparse(rows_cols,non_zeros);
 [h,rk]=lufact(sp);x=lusolve(h,[1;1;1;1]);ludel(h)
 rk,sp*x
 
-
 non_zeros=[1,2,3,4];rows_cols=[1,1;2,2;3,3;4,4];
 sp=sparse(rows_cols,non_zeros);
 x=lusolve(sp,-ones(4,1));
 sp*x
-
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sparse</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lufact</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>slash</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>backslash</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>sparse</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>lufact</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>slash</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>backslash</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

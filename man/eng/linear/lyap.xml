@@ -22,16 +22,17 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    solves the continuous time or discrete time  matrix Lyapunov 
-    matrix equation:
+     <VERB>X = lyap(A,C,flag)</VERB> solves the continuous time or
+    discrete time matrix Lyapunov matrix equation:
   </P>
   <VERBATIM><![CDATA[
-A'*X + X*A = C       ( flag='c' )
-A'*X*A - X = C       ( flag='d' )
-Note that a unique solution exist if and only if an eigenvalue of A is
-not an eigenvalue of -A (flag='c')  or 1 over an eigenvalue of A 
-(flag='d').
+       A'*X + X*A = C       ( flag='c' )
+      A'*X*A - X = C       ( flag='d' )
    ]]></VERBATIM>
+Note that a unique solution exist if and only if an eigenvalue of <VERB>A</VERB> is
+not an eigenvalue of <VERB>-A</VERB> (<VERB>flag='c'</VERB>)  or 1 over an eigenvalue of <VERB>A</VERB> 
+(<VERB>flag='d'</VERB>).
+
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 A=rand(4,4);C=rand(A);C=C+C';
@@ -41,6 +42,8 @@ X=lyap(A,C,'d');
 A'*X*A - X -C
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sylv</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ctr_gram</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>obs_gram</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>sylv</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>ctr_gram</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>obs_gram</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -39,23 +39,26 @@
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
+    Balance a square matrix to improve
+    its condition number.
   <P>
-    Balance a square matrix to improve its condition number.
   </P>
+    <VERB>[Ab,X] = balanc(A)</VERB> finds a similarity transformation
+    <VERB>X</VERB> such that
   <P>
-    finds a similarity transformation <VERB>X</VERB> such that
   </P>
+    <VERB>Ab = inv(X)*A*X </VERB> has approximately equal row and column norms.
   <P>
-    has approximately equal row and column norms.
   </P>
-  <P>
+
     For matrix pencils,balancing is done for improving the
     generalized eigenvalue problem.
-  </P>
   <P>
-    returns left and right transformations <VERB>X</VERB> and <VERB>Y</VERB>
-    such that <VERB>Eb=inv(X)*E*Y,  Ab=inv(X)*A*Y</VERB>
   </P>
+
+    <VERB>[Eb,Ab,X,Y] = balanc(E,A)</VERB> returns left and right transformations <VERB>X</VERB> and <VERB>Y</VERB>
+    such that <VERB>Eb=inv(X)*E*Y,  Ab=inv(X)*A*Y</VERB>
+
   </DESCRIPTION>
   <ITEMIZE label='Remark'>
   <P>
