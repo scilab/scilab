@@ -44,5 +44,10 @@ echo Macros compilation scicos_blocks/Electrical
 nmake /C /f Makefile.mak %1 
 cd ..
 
+cd Hydraulics
+echo Macros compilation scicos_blocks/Hydraulics
+nmake /C /f Makefile.mak %1 
+cd ..
+
 
 cd ..

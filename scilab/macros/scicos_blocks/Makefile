@@ -5,7 +5,7 @@ include ../../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS) 
 
-SUBDIRS = Branching Linear Sinks Misc Sources Events NonLinear Threshold Electrical
+SUBDIRS = Branching Linear Sinks Misc Sources Events NonLinear Threshold Electrical Hydraulics
 
 
 all:: 
