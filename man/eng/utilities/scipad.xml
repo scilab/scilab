@@ -7,7 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>1st-Nov-2004</DATE>
+  <DATE>1st-Nov-2004 - Revised 2005</DATE>
 
   <SHORT_DESCRIPTION name="scipad">Embedded Scilab text
   editor</SHORT_DESCRIPTION>
@@ -90,7 +90,7 @@
         <TABLE_NEW_COLUMN>&lt;Control mouse-button1&gt;</TABLE_NEW_COLUMN>
 
         <TABLE_NEW_COLUMN>Open the source of the library function under the
-          pointer</TABLE_NEW_COLUMN>
+        pointer</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
 
       <TABLE_NEW_ROW>
@@ -230,7 +230,7 @@
 
       <ITEM label="Remove all breakpoints.">
         <SP>This allows to quickly remove all the breakpoints from both Scilab
-        and Scipad. </SP>
+        and Scipad.</SP>
 
         <P></P>
       </ITEM>
@@ -281,12 +281,24 @@
 
         <P></P>
       </ITEM>
+
+      <ITEM label="Drag and drop:">
+        <SP>Drag and drop capability for a file or for a list of files can be
+        achieved in Scipad simply by installing the TkDnD package
+        (http://sourceforge.net/projects/tkdnd). Presence of this package
+        should be automatically detected by Scipad, enabling the corresponding
+        features at that time. Once TkDnD is intalled, dragging one or more
+        files from an explorer and dropping to Scipad will open the file(s) in
+        Scipad.</SP>
+
+        <P></P>
+      </ITEM>
     </ITEMIZE>
   </SECTION>
 
-  <EXAMPLE>
+  <EXAMPLE><![CDATA[
    scipad SCI/scilab.star 
-</EXAMPLE>
+]]></EXAMPLE>
 
   <AUTHORS>
     <AUTHORS_ITEM>Scipad is derived from <VERB>tknotepad</VERB> written by
