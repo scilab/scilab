@@ -73,7 +73,7 @@ function ge_drawnodes_2(sel)
     k=find(b==bu)
     xset("thickness",bu)
     xarcs(arcs(:,k),c(k));
-    xpolys(ones(10,1)*x+vx*d(k),ones(10,1)*y+vy*d(k),c(k))
+    xpolys(ones(10,1)*x+vx*d(k),ones(10,1)*y+vy*d(k),max(c(k),1))
   end
   
   Ids=ge_get_nodes_id(sel)
@@ -108,12 +108,11 @@ function ge_drawnodes_1(sel)
 	360*64*ones(d)];
   vx=[-1/2;-1/2;-3/4;-1;0;+1;+3/4;+1/2;+1/2;-1/2]
   vy=[1/2;3/2;1;1;5/2;1;1;3/2;1/2;1/2]-3;
-
   for bu=unique(b)
     k=find(b==bu)
     xset("thickness",bu)
     xarcs(arcs(:,k),c(k));
-    xpolys(ones(10,1)*x+vx*d(k),ones(10,1)*y+vy*d(k),c(k))
+    xpolys(ones(10,1)*x+vx*d(k),ones(10,1)*y+vy*d(k),max(c(k),1))
   end
   
   Ids=ge_get_nodes_id(sel)
