@@ -15405,9 +15405,9 @@ int version_flag()
 
   C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
   CurrentScilabXgc=(struct BCG *)XGC;
- /*  if (CurrentScilabXgc==(struct BCG *)NULL) return 1; */
+  /*  if (CurrentScilabXgc==(struct BCG *)NULL) return 1; */
   if (CurrentScilabXgc==(struct BCG *)NULL) return 0; /* New Graphic mode returned by default F.Leray 11.06.04 */
-
+  
   return (CurrentScilabXgc->graphicsversion == 0) ? 1 : 0; 
 }
 
@@ -15437,15 +15437,13 @@ sciGetCurrentScilabXgc ()
 
 void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
 {
-  sciPointObj *pold = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   /**dj20003***/ 
   if ((alpha == 0.0) && (theta == 270.0))
     {
       pSUBWIN_FEATURE (psubwin)-> is3d = FALSE; 
       return;
     }
-
-  sciSetSelectedSubWin (psubwin);
+  
   pSUBWIN_FEATURE (psubwin)->alpha = alpha;
   pSUBWIN_FEATURE (psubwin)->theta  = theta;
   pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
@@ -15468,7 +15466,6 @@ void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
 	    pSUBWIN_FEATURE (psubwin)->project[0]= 1;
 	}
     }
-  sciSetSelectedSubWin (pold);
 }
 /* DJ.A 2003 */
 BOOL Check3DObjs(sciPointObj *pobj)
