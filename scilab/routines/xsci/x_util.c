@@ -1071,3 +1071,69 @@ int XClearScreenConsole(char *fname)
     }
   return 0;
 }
+
+/* Scilab get(0,"....") (root properties) */
+/* V.C. 08/2004 */
+int GetScreenProperty(char *prop, char **value)
+{
+  register TScreen *screen = &term->screen;
+
+  if((value=calloc(1,sizeof(char)))==NULL)
+    {
+      Scierror(999,"GetScreenProperty: No more memory available\r\n");
+      return -1;
+    }
+  if((value[0]=(char *)calloc(1,sizeof(char)*(200+1)))==NULL)
+    {
+      Scierror(999,"GetScreenProperty: No more memory available\r\n");
+      return -1;
+    }
+    (value[0])[200]='\0';
+
+  if(!strcmp(prop,"screensize_px"))
+    {
+      sprintf(value[0],"%f|%f|%f|%f",(float)1,(float)1,
+	      (float)DisplayWidth(screen->display,DefaultScreen(screen->display)),
+	      (float)DisplayHeight(screen->display,DefaultScreen(screen->display)));
+    }
+  else if(!strcmp(prop,"screensize_mm"))
+    {
+      sprintf(value[0],"%f|%f|%f|%f",(float)0,(float)0,
+	      (float)DisplayWidthMM(screen->display,DefaultScreen(screen->display)),
+	      (float)DisplayHeightMM(screen->display,DefaultScreen(screen->display)));
+    }
+  else if(!strcmp(prop,"screensize_mm"))
+    {
+      sprintf(value[0],"%f|%f|%f|%f",(float)0,(float)0,
+	      (float)DisplayWidthMM(screen->display,DefaultScreen(screen->display)),
+	      (float)DisplayHeightMM(screen->display,DefaultScreen(screen->display)));
+    }
+  else if(!strcmp(prop,"screensize_cm"))
+    {
+      sprintf(value[0],"%f|%f|%f|%f",(float)0,(float)0,
+	      (float)DisplayWidthMM(screen->display,DefaultScreen(screen->display))/10,
+	      (float)DisplayHeightMM(screen->display,DefaultScreen(screen->display))/10);
+    }
+  else if(!strcmp(prop,"screensize_in"))
+    {
+      sprintf(value[0],"%f|%f|%f|%f",(float)0,(float)0,
+	      ((float)DisplayWidthMM(screen->display,DefaultScreen(screen->display)))/25.4,
+	      ((float)DisplayHeightMM(screen->display,DefaultScreen(screen->display)))/25.4);
+    }
+  else if(!strcmp(prop,"screensize_pt"))
+    {
+      sprintf(value[0],"%f|%f|%f|%f",(float)0,(float)0,
+	      (float)DisplayWidthMM(screen->display,DefaultScreen(screen->display))/25.4*72,
+	      (float)DisplayHeightMM(screen->display,DefaultScreen(screen->display))/25.4*72);
+    }
+  else if(!strcmp(prop,"screensize_norm"))
+    {
+      sprintf(value[0],"%f|%f|%f|%f",(float)0,(float)0,(float)1,(float)1);
+    }
+  else
+    {
+      sciprint("Unknown property %s\r\n",prop);
+      return -1;
+    }
+  return 0;
+}
