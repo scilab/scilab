@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.5 $)dnl
+AC_REVISION($Revision: 1.6 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -522,7 +522,7 @@ case "$host" in
     LD=ld
     LD_LDFLAGS=$LIEEELIB
     if test "$enable_debug" = yes; then 
-      CC_OPTIONS='-g -Dlinux -fwritable-strings -DNARROWPROTO'
+      CC_OPTIONS='-g -Wall -Dlinux -fwritable-strings -DNARROWPROTO'
       FC_OPTIONS=-g
     fi
     MAKEFILE_TARGET=Makefile.linux
@@ -1219,6 +1219,7 @@ if test "$with_gtk" = yes; then
   GTKINC="\`gtk-config --cflags\`"
   GUILIB='gtksci'
   GZVT='gzvt'
+  SCILABSCRIPT=scilab-gtk.g
   MENUSOBJS=GOBJS
   PERIFILE=periGtk.o
 fi
