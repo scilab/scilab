@@ -308,7 +308,10 @@ void strflag2axes_properties(sciPointObj * psubwin, char * strflag)
   /* strflag[2] */
   switch (strflag[2])  {
   case '0': 
-    pSUBWIN_FEATURE (psubwin)->isaxes = FALSE;
+    if( pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE)
+      pSUBWIN_FEATURE (psubwin)->isaxes = FALSE;
+    /*else no changes : the isaxes properties is driven by the previous plot */
+   
     break;
   case '1' : 
     pSUBWIN_FEATURE (psubwin)->isaxes = TRUE;
