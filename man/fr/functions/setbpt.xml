@@ -36,8 +36,8 @@
     current values. The <VERB>pause</VERB> is exited with <VERB>resume</VERB> or <VERB>abort</VERB>.
     Redefining the function does not clear the breakpoints, the user must explicitly
     delete breakpoints using <VERB>delbpt</VERB>. The maximum number of functions with 
-    breakpoints enabled must be less than 20 and the maximum number of breakpoints
-    is set to 100.</P>
+    breakpoints enabled must be less than 100 and the maximum number of breakpoints
+    is set to 1000.</P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
