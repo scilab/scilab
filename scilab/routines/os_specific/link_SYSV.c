@@ -36,7 +36,8 @@
 #include <sys/wait.h>
 #endif 
 
-#if !defined(linux) && !defined(netbsd)  && !defined(freebsd)
+#if !defined(linux) && !defined(netbsd)  && !defined(freebsd) && !defined(__APPLE__)
+
 #ifndef hppa
 #if (defined(sun) && ! defined(SYSV)) 
 #else 
