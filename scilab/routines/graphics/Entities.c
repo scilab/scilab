@@ -722,7 +722,7 @@ sciInitGraphicContext (sciPointObj * pobj)
 	}
       else
 	{
-	  (sciGetGraphicContext(pobj))->backgroundcolor = (sciGetGraphicContext(paxesmdl))->backgroundcolor	;
+	  (sciGetGraphicContext(pobj))->backgroundcolor = (sciGetGraphicContext(paxesmdl))->backgroundcolor;
 	  (sciGetGraphicContext(pobj))->foregroundcolor = (sciGetGraphicContext(paxesmdl))->foregroundcolor;
 	  (sciGetGraphicContext(pobj))->fillstyle = (sciGetGraphicContext(paxesmdl))->fillstyle;
 	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(paxesmdl))->fillcolor;
@@ -1428,7 +1428,7 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
 	  C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
 		  PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
 	}
-	}
+    }
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -7818,6 +7818,8 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
   char dir;
   int i;
 
+  char strflag[] = "081";
+
   if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
     {
       sciPointObj *pobj = (sciPointObj *) NULL;
@@ -7936,7 +7938,17 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       /* F.Leray 02.04.04*/
       pSUBWIN_FEATURE (pobj)->flag_min_max = 0;
-            
+
+      /* F.Leray 07.04.04*/
+      pSUBWIN_FEATURE (pobj)-> value_min[0] = 0;  /* xmin */
+      pSUBWIN_FEATURE (pobj)-> value_min[1] = 0;  /* ymin */
+      pSUBWIN_FEATURE (pobj)-> value_min[2] = -1; /* zmin */
+      pSUBWIN_FEATURE (pobj)-> value_max[0] = 1;  /* xmax */
+      pSUBWIN_FEATURE (pobj)-> value_max[1] = 1;  /* ymax */
+      pSUBWIN_FEATURE (pobj)-> value_max[2] = 1;  /* zmax */
+      
+      strncpy(pSUBWIN_FEATURE (pobj)->strflag, strflag, strlen(strflag));
+      
       if (sciSetSelectedSubWin(pobj) != 1) 
 	return (sciPointObj *)NULL; 
       pSUBWIN_FEATURE (pobj)->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
@@ -8184,7 +8196,7 @@ int C2F(graphicsmodels) ()
   pSUBWIN_FEATURE (paxesmdl)->hiddencolor=4;
   pSUBWIN_FEATURE (paxesmdl)->hiddenstate=0;
   
-  pSUBWIN_FEATURE (paxesmdl)->isoview= TRUE;
+  pSUBWIN_FEATURE (paxesmdl)->isoview= FALSE; /* F.Leray 07.04.04: isoview is set to FALSE by default instead of TRUE;*/
   pSUBWIN_FEATURE (paxesmdl)->facetmerge = FALSE;/*DJ.A merge*/ 
   pSUBWIN_FEATURE (paxesmdl)->WRect[0]   = 0;
   pSUBWIN_FEATURE (paxesmdl)->WRect[1]   = 0;
@@ -8755,6 +8767,8 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciPolyline *ppoly = (sciPolyline *) NULL;
+  /* Adding F.Leray */
+  sciPointObj *psubwin = ( sciPointObj *) NULL;
   double xmax, ymax;
 
   int i = 0;
@@ -8824,6 +8838,8 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	} 
       ppoly->xmin   = pvecx[0];
       ppoly->ymin   = pvecy[0];
+      ppoly->xmax   = pvecx[0];  /* Adding F.Leray 07.04.04 */
+      ppoly->ymax   = pvecy[0];  /* Adding F.Leray 07.04.04 */
       xmax          = 0;
       ymax          = 0;
       ppoly->width  = 0;
@@ -8865,6 +8881,17 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	    } 
 	  for (i = 0; i < n1; i++)
 	    ppoly->pvz[i] = pvecz[i];
+	  
+	  ppoly->zmin   = pvecz[0];  /* Adding F.Leray 07.04.04 */
+	  ppoly->zmax   = pvecz[0];  /* Adding F.Leray 07.04.04 */
+
+	  /* Adding F.Leray 07.04.04 : Find the min and max for z*/
+	  for (i = 0; i < n1; i++)
+	    {
+	      ppoly->zmin   = Min(ppoly->pvz[i], ppoly->zmin);
+	      ppoly->zmax   = Max(ppoly->pvz[i], ppoly->zmax);
+	    }
+
 	}
       ppoly->width  = fabs(xmax - ppoly->xmin);
       ppoly->height = fabs(ymax - ppoly->ymin); 
@@ -8875,6 +8902,24 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       ppoly->xmax = xmax;  /** xmax Adding  F.Leray 02.04.04 */
       ppoly->ymax = ymax;  /** ymax Adding  F.Leray 02.04.04 */
 
+      /* Adding F.Leray to know the value_min, -max of the parent subwin
+         in order to use isoview with good/updated values */
+      psubwin = sciGetParentSubwin(pobj);
+      /* xmin*/
+      pSUBWIN_FEATURE (psubwin)->value_min[0] = Min( pSUBWIN_FEATURE (psubwin)->value_min[0],ppoly->xmin);
+      /* ymin*/
+      pSUBWIN_FEATURE (psubwin)->value_min[1] = Min( pSUBWIN_FEATURE (psubwin)->value_min[1],ppoly->ymin); 
+      /* zmin*/
+      if (ppoly->pvz != (double *) NULL)
+	pSUBWIN_FEATURE (psubwin)->value_min[2] = Min( pSUBWIN_FEATURE (psubwin)->value_min[2],ppoly->zmin); 
+      /* xmax*/
+      pSUBWIN_FEATURE (psubwin)->value_max[0] = Max( pSUBWIN_FEATURE (psubwin)->value_max[0],ppoly->xmax);
+      /* ymax*/
+      pSUBWIN_FEATURE (psubwin)->value_max[1] = Max( pSUBWIN_FEATURE (psubwin)->value_max[1],ppoly->ymax); 
+      /* zmax*/
+      if (ppoly->pvz != (double *) NULL)
+	pSUBWIN_FEATURE (psubwin)->value_max[2] = Max( pSUBWIN_FEATURE (psubwin)->value_max[2],ppoly->zmax);
+      
       if (sciInitGraphicContext (pobj) == -1)
 	{
 	  FREE(pPOLYLINE_FEATURE (pobj)->pvy);
@@ -11073,7 +11118,7 @@ sciDrawObj (sciPointObj * pobj)
   /* variables declarations for debugg:*/
     sciAxes *paxes = (sciAxes *) NULL;
     sciSubWindow *ppsubwin = NULL; /* F.Leray 02.04.04 */
-    sciPolyline  *pppoly = NULL;
+    /*    sciPolyline  *pppoly = NULL;*/
 
   /*#ifdef WIN32
     int flag;
@@ -11155,12 +11200,6 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 		 pSUBWIN_FEATURE (pobj)->FRect,
 		 NULL, pSUBWIN_FEATURE (pobj)->logflags, NULL);      */
 
-      /* Prototype:
-	 void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
-			      double *value_max, integer *aaint, 
-			      char *strflag, double *FRect) */
-      
-
       /* NEEDED to take into account subwindow resize F.Leray 06.04.04 */
       set_scale ("tttftf", pSUBWIN_FEATURE (pobj)->WRect, 
 		 pSUBWIN_FEATURE (pobj)->FRect,
@@ -11171,20 +11210,59 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
      
       ppsubwin =  pSUBWIN_FEATURE (pobj); /* debug */
 
-      /* Mise en dur pour les test des min et des max*/
-      pSUBWIN_FEATURE (pobj)->value_min[0] =  -0.999874127673;
-      pSUBWIN_FEATURE (pobj)->value_min[1] =  -0.999496542383;
-      // zmin a voir... pSUBWIN_FEATURE (pobj)->value_min[2] =  pPOLYLINE_FEATURE (psonstmp->pointobj)->zmin;
-      pSUBWIN_FEATURE (pobj)->value_max[0] =  0.999874127673;
-      pSUBWIN_FEATURE (pobj)->value_max[1] =  1.;
-	      // zmax a voir... pSUBWIN_FEATURE (pobj)->value_max[2] =  pPOLYLINE_FEATURE (psonstmp->pointobj)->zmax;
+      /* || ... POSSIBLE other use of sci_update_frame_bounds (logflags???) F.LEray 07.04.04 TO SEE!!!!*/
+      /* TO SEE !!!*/
+
+
+      /* F.Leray debug*/
+     /*  sciprint("----------------------------------------------\n"); */
+/*       sciprint("pSUBWIN_FEATURE (pobj)->value_min[0]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_min[0]); */
+/*       sciprint("pSUBWIN_FEATURE (pobj)->value_min[1]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_min[1]); */
+/*       sciprint("pSUBWIN_FEATURE (pobj)->value_min[2]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_min[2]); */
       
-      /*sci_update_frame_bounds(0,pSUBWIN_FEATURE (pobj)->logflags,pSUBWIN_FEATURE (pobj)->value_min,
+/*       sciprint("pSUBWIN_FEATURE (pobj)->value_max[0]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_max[0]); */
+/*       sciprint("pSUBWIN_FEATURE (pobj)->value_max[1]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_max[1]); */
+/*       sciprint("pSUBWIN_FEATURE (pobj)->value_max[2]= %.3f\r\n",pSUBWIN_FEATURE (pobj)->value_max[2]); */
+/*       sciprint("----------------------------------------------\n\n"); */
+
+      /* sciprint("pSUBWIN_FEATURE (pobj)->strflag= %s\n\n",pSUBWIN_FEATURE (pobj)->strflag);*/
+      /* sciprint("pSUBWIN_FEATURE (pobj)->old_strflag= %s\n\n",pSUBWIN_FEATURE (pobj)->old_strflag);*/
+      
+      if(pSUBWIN_FEATURE (pobj)->isoview == TRUE)
+	{
+	  if((pSUBWIN_FEATURE (pobj)->strflag[1]=='3') || (pSUBWIN_FEATURE (pobj)->strflag[1]=='4'))
+	    {
+	      /* Nothing to do !! F.Leray 07.04.04 */
+	      /* sciprint("je suis la\n");
+		 sciprint("et pSUBWIN_FEATURE (pobj)->strflag[1]= %c\n\n",pSUBWIN_FEATURE (pobj)->strflag[1]);*/
+	    }
+	  else
+	    {
+	      pSUBWIN_FEATURE (pobj)->strflag[1] ='4'; /* 3 ou 4 ??  3 selon Serge mais je crois que frameflag=3 marche mal (test: resize fenetre plusieurs fois)*/
+	    }
+	}
+
+      
+      if(pSUBWIN_FEATURE (pobj)->isoview == FALSE)
+	{
+	  if((pSUBWIN_FEATURE (pobj)->strflag[1]=='3') || (pSUBWIN_FEATURE (pobj)->strflag[1]=='4'))
+	    pSUBWIN_FEATURE (pobj)->strflag[1] ='8';
+	  else
+	    {
+	      /* Nothing to do !! F.Leray 07.04.04 */
+	      /* sciprint("je suis la\n");
+		 sciprint("et pSUBWIN_FEATURE (pobj)->strflag[1]= %c\n\n",pSUBWIN_FEATURE (pobj)->strflag[1]);*/
+	    } 
+	}
+      
+      /* Prototype:
+	 void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
+			               double *value_max, integer *aaint, 
+			               char *strflag, double *FRect) */
+      
+      sci_update_frame_bounds(0,pSUBWIN_FEATURE (pobj)->logflags,pSUBWIN_FEATURE (pobj)->value_min,
 			      pSUBWIN_FEATURE (pobj)->value_max,pSUBWIN_FEATURE (pobj)->axes.aaint,
-			      pSUBWIN_FEATURE (pobj)->strflag,pSUBWIN_FEATURE (pobj)->FRect);*/
-      
-
-
+			      pSUBWIN_FEATURE (pobj)->strflag,pSUBWIN_FEATURE (pobj)->FRect);
       
       /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (pobj)->is3d)
@@ -13148,6 +13226,10 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
   int *pstyle = NULL;
   POINT2D *pvector;
 
+  /* Adding F.Leray 07.04.04 for value_min -max update for isoview*/
+  sciPointObj *psubwin = ( sciPointObj *) NULL;
+  double xmin,xmax,ymin,ymax,zmin,zmax;
+
   switch (sciGetEntityType (pthis))
     {
     case SCI_POLYLINE:
@@ -13188,6 +13270,14 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	      FREE(pPOLYLINE_FEATURE (pthis)->pvz); 
 	      pPOLYLINE_FEATURE (pthis)->pvz = NULL;
 	    }
+
+	  /* Adding F.Leray 07.04.04 : Init. phase*/
+	  xmin=xmax=tab[0];
+	  ymin=ymax=tab[0+ (*numrow)];
+	  if (*numcol == 3)
+	    zmin=zmax=tab[0+ 2*(*numrow)];
+	    /* END Adding */
+
 	  for (i=0;i < *numrow;i++)
 	    {
 	      pvx[i] = tab[i];
@@ -13196,6 +13286,17 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	      pvector[i].y =  tab[i+ (*numrow)];
 	      if (*numcol == 3)
 		pvz[i] = tab[i+ 2*(*numrow)];
+
+	      /* Adding F.Leray 07.04.04 */
+	      xmin=Min(pvx[i],xmin);
+	      xmax=Max(pvx[i],xmax);
+	      ymin=Min(pvy[i],ymin);
+	      ymax=Max(pvy[i],ymax);
+	      if (*numcol == 3){
+		zmin=Min(pvz[i],zmin);
+		zmax=Max(pvz[i],zmax);
+	      }
+		 /* END Adding */
 	    }
 	  pPOLYLINE_FEATURE (pthis)->pvx=pvx;
 	  pPOLYLINE_FEATURE (pthis)->pvy=pvy; 
@@ -13209,16 +13310,54 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	  if (*numcol == 3)
 	    if ((pvz = MALLOC (*numrow * sizeof (double))) == NULL) 
 	      return -1;
+	  
+	  /* Adding F.Leray 07.04.04 : Init. phase*/
+	  xmin=xmax=tab[0];
+	  ymin=ymax=tab[0+ (*numrow)];
+	  if (*numcol == 3)
+	    zmin=zmax=tab[0+ 2*(*numrow)];
+	  /* END Adding */
+	  
 	  for (i=0;i < *numrow;i++)
 	    {
 	      pPOLYLINE_FEATURE (pthis)->pvx[i] = tab[i];
 	      pPOLYLINE_FEATURE (pthis)->pvy[i] = tab[i+ (*numrow)];
 	      if (*numcol == 3)
 		pvz[i] = tab[i+ 2*(*numrow)];
+	      
+	      /* Adding F.Leray 07.04.04 */
+	      xmin=Min(pPOLYLINE_FEATURE (pthis)->pvx[i],xmin);
+	      xmax=Max(pPOLYLINE_FEATURE (pthis)->pvx[i],xmax);
+	      ymin=Min(pPOLYLINE_FEATURE (pthis)->pvy[i],ymin);
+	      ymax=Max(pPOLYLINE_FEATURE (pthis)->pvy[i],ymax);
+	      if (*numcol == 3){
+		zmin=Min(pvz[i],zmin); /* F.Leray 07.04.04: Strange: different management with z (use pvz and not pPOLYLINE_FEATURE (pthis)->pvz) */
+		zmax=Max(pvz[i],zmax); /* Why not but it is not consistant...*/
+	      }
+	      /* END Adding */
 	    }
 	  if (*numcol == 3)
-	    pPOLYLINE_FEATURE (pthis)->pvz = pvz;
+	    pPOLYLINE_FEATURE (pthis)->pvz = pvz; /* ..and here we put pvz...*/
 	}
+      
+
+      /* xyz-min - max update for isoview mode */
+      psubwin = sciGetParentSubwin(pthis);
+      /* xmin*/
+      pSUBWIN_FEATURE (psubwin)->value_min[0] = Min( pSUBWIN_FEATURE (psubwin)->value_min[0],xmin);
+      /* ymin*/
+      pSUBWIN_FEATURE (psubwin)->value_min[1] = Min( pSUBWIN_FEATURE (psubwin)->value_min[1],ymin);
+      /* zmin*/
+      if (pvz != (double *) NULL)
+	pSUBWIN_FEATURE (psubwin)->value_min[2] = Min( pSUBWIN_FEATURE (psubwin)->value_min[2],zmin);
+      /* xmax*/
+      pSUBWIN_FEATURE (psubwin)->value_max[0] = Max( pSUBWIN_FEATURE (psubwin)->value_max[0],xmax);
+      /* ymax*/
+      pSUBWIN_FEATURE (psubwin)->value_max[1] = Max( pSUBWIN_FEATURE (psubwin)->value_max[1],ymax);
+      /* zmax*/
+      if (pvz != (double *) NULL)
+	pSUBWIN_FEATURE (psubwin)->value_max[2] = Max( pSUBWIN_FEATURE (psubwin)->value_max[2],zmax);
+      
       return 0;
       break;
     case SCI_PATCH:
@@ -16505,34 +16644,45 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
   if ( strflag[1] == '3' || strflag[1] == '4')
     {
       /* code added by S. Mottelet 11/7/2000 */
-      double FRect[4],WRect[4],ARect[4];
+      double FFRect[4],WRect[4],ARect[4];
       /*char logscale[4]; */ /*   F.Leray 24.03.04      */
       char logscale[2]; 
       /* end of added code by S. Mottelet 11/7/2000 */
       
-      int verbose=1,wdim[2],narg; /* verbose set to 1 F.Leray 05.04.04*/
+      int verbose=0,wdim[2],narg; /* verbose set to 1 F.Leray 05.04.04 AND reset to 0 07.04.04*/
       C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       hx=xmax-xmin;
       hy=ymax-ymin;
 
       /* code added by S. Mottelet 11/7/2000 */
-      getscale2d(WRect,FRect,logscale,ARect);
+      getscale2d(WRect,FFRect,logscale,ARect);
 
       wdim[0]=linint((double)wdim[0] * WRect[2]);
       wdim[1]=linint((double)wdim[1] * WRect[3]);
       /* end of added code by S. Mottelet 11/7/2000 */
 
+     /*  sciprint("wdim[0] = %d, wdim[1] = %d\r\n",wdim[0],wdim[1]); */
+/*       sciprint("  hx = %.3f, hy = %.3f\r\n",hx,hy); */
+/*       sciprint("xmin = %.3f, xmax = %.3f\r\n",xmin,xmax); */
+/*       sciprint("ymin = %.3f, ymax = %.3f \r\n\n",ymin,ymax); */
+      
       if ( hx/(double)wdim[0]  <hy/(double) wdim[1] ) 
 	{
 	  hx1=wdim[0]*hy/wdim[1];
 	  xmin=xmin-(hx1-hx)/2.0;
 	  xmax=xmax+(hx1-hx)/2.0;
+	/*   sciprint("CAS 1:\n"); */
+/* 	  sciprint("hx1 =  %.3f\r\n",hx1); */
+/* 	  sciprint("xmin = %.3f, xmax = %.3f\r\n\n",xmin,xmax); */
 	}
       else 
 	{
 	  hy1=wdim[1]*hx/wdim[0];
 	  ymin=ymin-(hy1-hy)/2.0;
 	  ymax=ymax+(hy1-hy)/2.0;
+	/*   sciprint("CAS 2:\n"); */
+/* 	  sciprint("hy1 =  %.3f\r\n",hy1); */
+/* 	  sciprint("ymin = %.3f, ymax = %.3f\r\n\n",ymin,ymax); */
 	}
     }
 
@@ -16545,7 +16695,7 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
 	{
 	  xmax=ceil(log10(xmax));  xmin=floor(log10(xmin));
 	}
-      else 
+      else
 	{
 	  Scistring("Warning: Can't use Log on X-axis xmin is negative \n");
 	  xmax= 1; xmin= 0;
@@ -16557,11 +16707,11 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
   if ((int)strlen(logflags) >=3  && logflags[2]=='l' && (int)strlen(strflag) >= 2 && strflag[1] != '0')
     {
       /* y axis */
-      if ( ymin > 0 ) 
+      if ( ymin > 0 )
 	{
 	  ymax= ceil(log10(ymax)); ymin= floor(log10(ymin));
 	}
-      else 
+      else
 	{
 	  Scistring(" Can't use Log on y-axis ymin is negative \n");
 	  ymax= 1; ymin= 0;
@@ -16571,30 +16721,69 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
   
   /* FRect gives the plotting boundaries xmin,ymin,xmax,ymax */
   
+ /*  sciprint("!INSIDE sci_update_frame_bounds! => BEFORE affectation in  pSUBWIN_FEATURE (subwindowtmp)->axes.limits\n"); */
+/*   sciprint("xmin = %.3f, xmax = %.3f\r\n",xmin,xmax); */
+/*   sciprint("ymin = %.3f, ymax = %.3f \r\n\n",ymin,ymax); */
+
   /*update A.Djalel for new graphics auto scaling*/
   subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); /**DJ.Abdmouche 2003**/
   
   ppsubwin =  pSUBWIN_FEATURE (subwindowtmp); /* F.Leray debug 05.04.04 */
 
-  if(pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag != 0) /* means : already set at least once*/
-    {
+  /* Some prints F.Leray 07.04.04 */
+ /*  sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]); */
+/*   sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]); */
+/*   sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]); */
+/*   sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]); */
+/*   sciprint("THEN WE DO THE Min(Xmin,pSUBWIN_FEATURE (subwindowtmp)->axes.limits[X]\n\n"); */
+  
+  // if(pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag != 0) /* means : already set at least once*/
+  //  {
+  /*
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1],xmin);
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3],xmax);
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2],ymin);
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4],ymax);
+  */
 
-    }
-  else
-    {
+  /*   } */
+/*   else */
+/*     { */
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin;
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax;
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin;
       pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax;
 	  
-      pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag = 1; /* F.Leray 01.04.04*/
-    }
-  FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax;
+    /*   pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag = 1; /\* F.Leray 01.04.04*\/ */
+/*     } */
+
+      /* Some prints*/
+     /*  sciprint("!INSIDE sci_update_frame_bounds! => AFTER having computed min,max if isoview requested\n"); */
+/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]); */
+/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]); */
+/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]); */
+/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]); */
+/*       sciprint("FRect[0]=xmin=  %.3f\r\n", FRect[0]); */
+/*       sciprint("FRect[2]=xmax=  %.3f\r\n", FRect[2]); */
+/*       sciprint("FRect[1]=ymin=  %.3f\r\n", FRect[1]); */
+/*       sciprint("FRect[3]=ymax=  %.3f\r\n", FRect[3]); */
+//      FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax;
   
+     /*  sciprint("INSIDE----> sci_update_frame_bounds\n"); */
+/*       sciprint("BEFORE FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax; AFFECTATION\n"); */
+/*       sciprint("FRect[0]=xmin=  %.3f\r\n", FRect[0]); */
+/*       sciprint("FRect[2]=xmax=  %.3f\r\n", FRect[2]); */
+/*       sciprint("FRect[1]=ymin=  %.3f\r\n", FRect[1]); */
+/*       sciprint("FRect[3]=ymax=  %.3f\r\n\n", FRect[3]); */
+      
+      FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax;
+      
+   /*    sciprint("AFTER FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax; AFFECTATION\n"); */
+/*       sciprint("FRect[0]=xmin=  %.3f\r\n", FRect[0]); */
+/*       sciprint("FRect[2]=xmax=  %.3f\r\n", FRect[2]); */
+/*       sciprint("FRect[1]=ymin=  %.3f\r\n", FRect[1]); */
+/*       sciprint("FRect[3]=ymax=  %.3f\r\n\n", FRect[3]); */
+
 
  /* if strflag[1] == 7 or 8 we compute the max between current scale and the new one  */
   if (strflag[1] == '7' || strflag[1] == '8' )
@@ -16621,16 +16810,18 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
 	      }
 	      else{ /*dj2003*/
 		subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); /* rajout F.Leray*/
+		/* F.Leray 07.04.04 */
+		/* FRect is pSUBWIN_FEATURE (subwindowtmp)->FRect here so what follows is useless!! */
 		FRect[0] = Min(FRect[0],pSUBWIN_FEATURE (subwindowtmp)->FRect[0]);
 		FRect[1] = Min(FRect[1],pSUBWIN_FEATURE (subwindowtmp)->FRect[1]);
 		FRect[2] = Max(FRect[2],pSUBWIN_FEATURE (subwindowtmp)->FRect[2]);
 		FRect[3] = Max(FRect[3],pSUBWIN_FEATURE (subwindowtmp)->FRect[3]);
 	      }
-	       if ( FRect[0] < Cscale.frect[0] 
+	      if ( FRect[0] < Cscale.frect[0] 
 		   || FRect[1] < Cscale.frect[1] 
 		   || FRect[2] > Cscale.frect[2] 
-		    || FRect[3] > Cscale.frect[3] ){}
-	       /*redraw = 1;*/
+		   || FRect[3] > Cscale.frect[3] ){}
+	      /*redraw = 1;*/
 	    }
 	}
       /* and we force flag back to 5  */
@@ -16673,7 +16864,7 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
   
   
   /* Should be added to set_scale */
-
+  
   for (i=0; i < 3 ; i++ ) Cscale.xtics[i] = Xdec[i];
   for (i=0; i < 3 ; i++ ) Cscale.ytics[i] = Ydec[i];
   Cscale.xtics[3] = aaint[1];
@@ -17285,7 +17476,7 @@ int InitAxesModel()
   pSUBWIN_FEATURE (paxesmdl)->project[2]= 0;
   pSUBWIN_FEATURE (paxesmdl)->hiddencolor=4;
   pSUBWIN_FEATURE (paxesmdl)->hiddenstate=0; 
-  pSUBWIN_FEATURE (paxesmdl)->isoview= TRUE;
+  pSUBWIN_FEATURE (paxesmdl)->isoview= FALSE;/*TRUE;*/
   pSUBWIN_FEATURE (paxesmdl)->facetmerge = FALSE; 
   pSUBWIN_FEATURE (paxesmdl)->WRect[0]   = 0;
   pSUBWIN_FEATURE (paxesmdl)->WRect[1]   = 0;
