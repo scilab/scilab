@@ -419,9 +419,7 @@ c
       fmtd='dl'//char(0)
 c
       if(rstk(pt).eq.912) then
-         il1=il
-         if(istk(il1).lt.0) il1=iadr(istk(il1+1))
-         call loadlist(fd,il1,nn,ierr)
+         call loadlist(fd,il,nn,ierr)
          return
       endif
 c
@@ -432,7 +430,6 @@ c     read id and type
       if(ierr.ne.0) return
       call mgetnc (fd,istk(il1),1,fmti,ierr)
       if(ierr.ne.0) return
-
       if(istk(il1).eq.1) then
          call loadmat(fd,il1,nn,ierr)
       elseif(istk(il1).eq.2.or.istk(il1).eq.129) then
@@ -592,6 +589,7 @@ c
 c
       fmti='il'//char(0)
       fmtd='dl'//char(0)
+      ierr=0
 c
       il1=il
       if(rstk(pt).eq.912) then
@@ -603,11 +601,11 @@ c     .  manage recursion
          nne=ids(5,pt)
          pt=pt-1
          l=sadr(il+n+3)
-         il1=iadr(l-1+istk(il+1+i))
-         istk(il+2+i)=istk(il+1+i)+sadr(il1+nne)-sadr(il1)
+         il1=iadr(lstk(top))
+         istk(il+2+i)=istk(il+1+i)+lstk(top+1)-lstk(top)
+         top=top-1
          goto 20
       endif
-
       
  10   il0=il
 c     read list header without type
@@ -637,7 +635,6 @@ c     read the elements
       if(i.gt.n) goto 30
       if(istk(il+2+i)-istk(il+1+i).eq.0) goto 20
       il1=iadr(l-1+istk(il+1+i))
-
 c     read  type
       call mgetnc (fd,istk(il1),1,fmti,ierr)
       if(ierr.ne.0) return
@@ -685,6 +682,8 @@ c     .  call an external function
          ids(3,pt)=i
          ids(4,pt)=il0
          lstk(top+1)=sadr(il1)
+         top=top+1
+         lstk(top+1)=lstk(top)
          fun=-il1
 c     *call* parse
          return
@@ -711,6 +710,7 @@ c
  40   continue
 c     finish
       nn=il1+nne-il0
+      il=il0
       return
       end
 
