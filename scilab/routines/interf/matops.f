@@ -238,6 +238,11 @@ c     .  vector+eye
          go to 41
       elseif (mn2.eq.1) then
 c     .   vector+const
+         err=l1+mn1*(itr+1)-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
          call dadd(mn1,stk(l2),0,stk(l1),1)
          if(it2+2*it1.eq.1) call unsfdcopy(mn1,stk(l2+mn2),0,
      $        stk(l1+mn1),1)
@@ -246,6 +251,11 @@ c     .   vector+const
          istk(il1+3)=itr
       elseif (mn1.eq.1) then
 c     .  cst+vector
+         err=l1+mn2*(itr+1)-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
          cstr=stk(l1)
          csti=stk(l1+1)
          call unsfdcopy((it2+1)*mn2,stk(l2),1,stk(l1),1)
@@ -260,6 +270,11 @@ c     .  cst+vector
 c     .  vector+vector
          if (m1 .ne. m2.or.n1 .ne. n2) then
             call error(8)
+            return
+         endif
+         err=l1+mn1*(itr+1)-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
             return
          endif
          call dadd(mn1,stk(l2),1,stk(l1),1)
