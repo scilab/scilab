@@ -214,6 +214,13 @@ int C2F(savehistory) _PARAMS((char *fname))
 	    fputs("\n",pFile );
 	    Parcours=GoNextKnot(Parcours);  
 	  }
+
+	if (Parcours)
+	 {
+		fputs(Parcours->line,pFile );
+		fputs("\n",pFile );
+	 }
+
 	GetCommentDateSession(line,FALSE);
 	fputs(line,pFile );
 	fclose(pFile);
