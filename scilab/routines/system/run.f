@@ -524,6 +524,10 @@ c     break in a while
          lc=l0+abs(istk(l0+1))
          pt=p-1
          goto 70
+      elseif(rstk(p).eq.501.or.rstk(p).eq.502.or.rstk(p).eq.503) then
+c     going outside a function an exec (break ignored)
+         lc=lc+1
+         goto 10
       else
          goto 96
       endif
