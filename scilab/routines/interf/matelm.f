@@ -26,14 +26,15 @@ c     eye  rand ones maxi mini sort kron matr sin  cos  atan exp
 c      13   14   15   16   17   18  19-21 22   23   24   25   26
 c     sqrt log   ^  sign clean floor ceil expm cumsum  cumprod testmatrix
 c      27   28   29  30   31     32   33   34    35      36      37
-c     isreal frexp zeros
-c       38     39    40
+c     isreal frexp zeross tan  log1p imult  asin acos number_properties
+c       38     39    40   41     42    43   44   45      46
 c!
 c
       goto (10 ,15 ,20 ,25 ,30 ,35 ,40 ,45 ,50 ,60,
      1      61 ,62 ,70 ,72 ,71 ,90 ,91 ,105,110,110,
      2      110,130,140,150,160,170,180,190,200,210,
-     3      220,37 ,39 ,173,46 ,47, 230,240, 250, 260),fin
+     3      220,37 ,39 ,173,46 ,47, 230,240,250,260,
+     4      165,195,196,152,154,300                 ),fin
 
  10   continue
       call intabs(id)
@@ -166,11 +167,29 @@ c
  150  continue
       call intcos(id)
       goto 900
+c
+c     asin
+c
+ 152  continue
+      call intasin(id)
+      goto 900
+c
+c     acos
+c
+ 154  continue
+      call intacos(id)
+      goto 900  
 c     
 c     atan
 c     
  160  continue
       call intatan(id)
+      goto 900
+c
+c     tan
+c
+ 165  continue
+      call inttan(id)
       goto 900
 
 c     exp element wise
@@ -193,6 +212,18 @@ c     log
 c     
  190  continue
       call intlog(id)
+      goto 900
+c     
+c     log1p
+c     
+ 195  continue
+      call intlog1p(id)
+      goto 900
+c     
+c     imult
+c     
+ 196  continue
+      call intimult(id)
       goto 900
 
 c     
@@ -232,9 +263,19 @@ c
       call intfrexp(id)
       goto 900
 c
+c     zeros
+c
+
  260  continue
       call intzeros(id)
       goto 900
+ 
+c
+c     number_properties
+c
+ 300  call  intnbprop(id)
+      go to 900
+c
  900  return
       end
 
@@ -3395,7 +3436,8 @@ c     .     argument is passed by value
             do 11 i=0,mn-1
                sr=stk(l+i)
                si=stk(l+mn+i)
-               if(abs(sinh(sr)).eq.1.0d+0.and.si.eq.0.0d+0) then
+c correction (Bruno) : les points singuliers de atan sont +- i
+               if ( sr .eq. 0.d0 .and. abs(si) .eq. 1.d0 ) then
                   if(ieee.eq.0) then
                      call error(32)
                      return
@@ -3774,12 +3816,20 @@ c     argument is passed by reference
  10      continue
 
  20      if(itr.eq.0) then
-c     .     argument is a real positive matrix
+c     .     argument is a real positive matrix with entries >= 0
             do 193 i=0,mn-1
+               if(stk(l+i).eq.0.0d+0) then
+                  if(ieee.eq.0) then
+                     call error(32)
+                     return
+                  elseif(ieee.eq.1) then
+                     call msgs(64)
+                  endif
+               endif
                stk(lr+i)=log(stk(l+i))
  193        continue
          else
-c     .     argument is a real matrix with negative entries
+c     .     argument is a real matrix with  at least one entry < 0     
             err=lr+2*mn-lstk(bot)
             if(err.gt.0) then
                call error(17)
@@ -3787,6 +3837,14 @@ c     .     argument is a real matrix with negative entries
             endif
             lstk(top+1)=lr+2*mn
             do 194 i=0,mn-1
+               if(stk(l+i).eq.0.0d+0) then
+                  if(ieee.eq.0) then
+                     call error(32)
+                     return
+                  elseif(ieee.eq.1) then
+                     call msgs(64)
+                  endif
+               endif
                call wlog(stk(l+i),0.0d+0,stk(lr+i),stk(lr+mn+i))
  194        continue
             istk(ilr+3)=itr
@@ -3796,7 +3854,7 @@ c     argument is a complex matrix
          do 195 i=0,mn-1
             sr=stk(l+i)
             si=stk(l+mn+i)
-            if(sr*sr+si*si.eq.0.0d+0) then
+            if(sr.eq.0d0 .and. si.eq.0.0d+0) then  
                if(ieee.eq.0) then
                   call error(32)
                   return
@@ -4185,6 +4243,7 @@ c     .  check for zero imaginary part
       endif
       return
       end
+
       subroutine intfrexp(id)
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE '../stack.h'
@@ -4251,3 +4310,564 @@ c
       call vfrexp(mn,stk(l),1,stk(lr),1,stk(lr1),1)
       return
       end
+      subroutine inttan(id)
+      INCLUDE '../stack.h'
+c     
+c     interface for tan
+c     
+      integer id(nsiz)
+
+      integer iadr,sadr
+     
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+
+      if (lhs .ne. 1) then
+         call error(41)
+         return
+      endif
+      if(rhs .ne. 1) then
+         call error(42)
+         return
+      endif
+
+      il=iadr(lstk(top))
+
+      if(abs(istk(il)).ne.1) then
+         call funnam(ids(1,pt+1),'tan',iadr(lstk(top)))
+         fun=-1
+         return
+      endif
+
+      if(istk(il).lt.0) then
+c        argument is passed by reference
+         ilr=il
+         il=iadr(istk(il+1))
+         mn=istk(il+1)*istk(il+2)
+         it=istk(il+3)
+         l=sadr(il+4)
+         lr=sadr(ilr+4)
+         err=lr+mn*(it+1)-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call icopy(4,istk(il),1,istk(ilr),1)
+         lstk(top+1)=lr+mn*(it+1)
+      else
+         mn=istk(il+1)*istk(il+2)
+         it=istk(il+3)
+         l=sadr(il+4)
+         lr=l
+      endif
+
+      if(mn.eq.0) return
+
+      if(it.eq.0) then
+         do i=0,mn-1
+            stk(lr+i)=tan(stk(l+i))
+         enddo
+      else
+         do i=0,mn-1
+            call wtan(stk(l+i),stk(l+mn+i),stk(lr+i),stk(lr+mn+i))
+         enddo
+      endif
+      return
+      end
+
+
+      subroutine intimult(id)
+      INCLUDE '../stack.h'
+      integer id(nsiz)
+c
+c     interface for imult : multiplication by i
+c
+      double precision sr,si
+      integer iadr,sadr
+
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+
+      if (lhs .ne. 1) then
+         call error(41)
+         return
+      endif
+      if(rhs .ne. 1) then
+         call error(42)
+         return
+      endif
+
+      il=iadr(lstk(top))
+      
+      if(abs(istk(il)).ne.1) then
+         call funnam(ids(1,pt+1),'imult',iadr(lstk(top)))
+         fun=-1
+         return
+      endif
+
+      if(istk(il).lt.0) then
+c        argument is passed by reference
+         ilr=il
+         il=iadr(istk(il+1))
+         mn=istk(il+1)*istk(il+2)
+         it=istk(il+3)
+         l=sadr(il+4)
+         lr=sadr(ilr+4)
+         err=lr+mn*(it+1)-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call icopy(4,istk(il),1,istk(ilr),1)
+         lstk(top+1)=lr+mn*(it+1)
+      else
+         mn=istk(il+1)*istk(il+2)
+         it=istk(il+3)
+         l=sadr(il+4)
+         lr=l
+         ilr=il
+      endif
+      
+      if(mn.eq.0) return
+
+      if(it.eq.0) then
+c        argument is real but result is complex
+         err=lr+2*mn-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         lstk(top+1)=lr+2*mn
+         do i=0,mn-1
+            stk(lr+mn+i) = stk(l+i)
+            stk(lr+i) = 0.d0
+         enddo
+         istk(ilr+3)=1
+      else
+c        argument is complex
+         do i=0,mn-1
+            sr=stk(l+i)
+            si=stk(l+mn+i)
+            stk(lr+i) = -si
+            stk(lr+i+mn) = sr
+         enddo
+      endif
+      return
+      end
+
+
+      subroutine intlog1p(id)
+c
+c     interface for log1p function (log(1+x))
+c     rmk : don't work in complex
+c
+      INCLUDE '../stack.h'
+      integer id(nsiz)
+
+      double precision logp1
+      external         logp1
+
+      integer iadr,sadr
+c
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+c
+      if (lhs .ne. 1) then
+         call error(41)
+         return
+      endif
+      if(rhs .ne. 1) then
+         call error(42)
+         return
+      endif
+
+      il=iadr(lstk(top))
+      
+      if(abs(istk(il)).ne.1) then
+         call funnam(ids(1,pt+1),'log1p',iadr(lstk(top)))
+         fun=-1
+         return
+      endif
+
+      if(istk(il).lt.0) then
+c        argument is passed by reference
+         ilr=il
+         il=iadr(istk(il+1))
+         mn=istk(il+1)*istk(il+2)
+         it=istk(il+3)
+         l=sadr(il+4)
+         lr=sadr(ilr+4)
+         err=lr+mn*(it+1)-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call icopy(4,istk(il),1,istk(ilr),1)
+         lstk(top+1)=lr+mn*(it+1)
+      else
+         mn=istk(il+1)*istk(il+2)
+         it=istk(il+3)
+         l=sadr(il+4)
+         lr=l
+         ilr=il
+      endif
+      
+      if(mn.eq.0) return
+
+      if(it.eq.0) then
+         itr=0
+         do i=0,mn-1
+            if(stk(l+i).le.-1.0d+0) then
+               if(ieee.eq.0) then
+                  call error(32)
+                  return
+               elseif(ieee.eq.1) then
+                  call msgs(64)
+               endif
+               goto 20
+            endif
+         enddo
+
+ 20      continue
+
+         do i=0,mn-1
+            stk(lr+i)=logp1(stk(l+i))
+         enddo
+      else
+c        complex case : message "not implemented in scilab ..."
+         call error(43)
+         return
+      endif
+      end
+
+
+      subroutine intasin(id)
+      INCLUDE '../stack.h'
+      integer id(nsiz)
+c
+c     interface for the arcsin function
+c
+      double precision sr,si
+      integer iadr,sadr
+c
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+c
+      if (lhs .ne. 1) then
+         call error(41)
+         return
+      endif
+      if(rhs .ne. 1) then
+         call error(42)
+         return
+      endif
+
+      il=iadr(lstk(top))
+      
+      if(abs(istk(il)).ne.1) then
+         call funnam(ids(1,pt+1),'asin',iadr(lstk(top)))
+         fun=-1
+         return
+      endif
+
+      if(istk(il).lt.0) then
+c        argument is passed by reference
+         ilr=il
+         il=iadr(istk(il+1))
+         mn=istk(il+1)*istk(il+2)
+         it=istk(il+3)
+         l=sadr(il+4)
+         lr=sadr(ilr+4)
+         err=lr+mn*(it+1)-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call icopy(4,istk(il),1,istk(ilr),1)
+         lstk(top+1)=lr+mn*(it+1)
+      else
+         mn=istk(il+1)*istk(il+2)
+         it=istk(il+3)
+         l=sadr(il+4)
+         lr=l
+         ilr=il
+      endif
+      
+      if(mn.eq.0) return
+
+      if(it.eq.0) then
+         itr=0
+         do i=0,mn-1
+            if(abs(stk(l+i)).gt.1.0d+0) then
+               itr=1
+               goto 20
+            endif
+         enddo
+
+ 20      continue
+         if(itr.eq.0) then
+c           argument is a real positive matrix with entries in [-1,1]
+            do i=0,mn-1
+               stk(lr+i)=asin(stk(l+i))
+            enddo
+         else
+c           argument is a real matrix with some entries outside [-1,1]
+            err=lr+2*mn-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            lstk(top+1)=lr+2*mn
+            do i=0,mn-1
+               call wasin(stk(l+i),0.0d+0,stk(lr+i),stk(lr+mn+i))
+            enddo
+            istk(ilr+3)=itr
+         endif
+      else
+c        argument is a complex matrix
+         do i=0,mn-1
+            call wasin(stk(l+i),stk(l+mn+i),stk(lr+i),stk(lr+i+mn))
+         enddo
+      endif
+      return
+      end
+
+      subroutine intacos(id)
+      INCLUDE '../stack.h'
+      integer id(nsiz)
+
+      double precision sr,si
+      integer iadr,sadr
+c
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+c
+      if (lhs .ne. 1) then
+         call error(41)
+         return
+      endif
+      if(rhs .ne. 1) then
+         call error(42)
+         return
+      endif
+
+      il=iadr(lstk(top))
+      
+      if(abs(istk(il)).ne.1) then
+         call funnam(ids(1,pt+1),'acos',iadr(lstk(top)))
+         fun=-1
+         return
+      endif
+
+      if(istk(il).lt.0) then
+c        argument is passed by reference
+         ilr=il
+         il=iadr(istk(il+1))
+         mn=istk(il+1)*istk(il+2)
+         it=istk(il+3)
+         l=sadr(il+4)
+         lr=sadr(ilr+4)
+         err=lr+mn*(it+1)-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call icopy(4,istk(il),1,istk(ilr),1)
+         lstk(top+1)=lr+mn*(it+1)
+      else
+         mn=istk(il+1)*istk(il+2)
+         it=istk(il+3)
+         l=sadr(il+4)
+         lr=l
+         ilr=il
+      endif
+      
+      if(mn.eq.0) return
+
+      if(it.eq.0) then
+         itr=0
+         do i=0,mn-1
+            if(abs(stk(l+i)).gt.1.0d+0) then
+               itr=1
+               goto 20
+            endif
+         enddo
+
+ 20      continue
+         if(itr.eq.0) then
+c           argument is a real positive matrix with entries in [-1,1]
+            do i=0,mn-1
+               stk(lr+i)=acos(stk(l+i))
+            enddo
+         else
+c           argument is a real matrix with some entries outside [-1,1]
+            err=lr+2*mn-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            lstk(top+1)=lr+2*mn
+            do i=0,mn-1
+               call wacos(stk(l+i),0.0d+0,stk(lr+i),stk(lr+mn+i))
+            enddo
+            istk(ilr+3)=itr
+         endif
+      else
+c        argument is a complex matrix
+         do i=0,mn-1
+            call wacos(stk(l+i),stk(l+mn+i),stk(lr+i),stk(lr+i+mn))
+         enddo
+      endif
+      return
+      end
+
+      subroutine intnbprop(id)
+
+c     Interface for number_properties :
+c    
+c         number_properties("eps")    -> machine epsilon
+c         number_properties("radix")  -> base
+c         number_properties("digits") -> number of digits for the mantissa
+c         number_properties("minexp") -> emin
+c         number_properties("maxexp") -> emax
+c         number_properties("huge")   -> max positive float
+c         number_properties("tiny")   -> min positive normalised float 
+c         number_properties("denorm") -> (boolean) true if denormalised number are used
+c         number_properties("tiniest")-> min positive denormalised float 
+c         
+c         number_properties("nextfloat",x) -> succ of x
+c         number_properties("prevfloat",x) -> pred of x
+c
+      implicit none
+
+      INCLUDE '../stack.h'
+
+      integer id(nsiz)
+
+c     EXTERNAL FUNCTIONS
+      double precision dlamch, nearfloat
+      external         dlamch, nearfloat
+
+c     EXTERNAL API FUNCTIONS
+      logical  checkrhs, checklhs, getsmat, getrmat, cremat, crebmat
+      external checkrhs, checklhs, getsmat, getrmat, cremat, crebmat
+
+c     LOCAL VAR
+      integer topk
+      integer n, m, idxmat, mt, nt, lstr, nlstr, lm, lr, lc, i
+      integer   lmax
+      parameter(lmax = 10)
+      character*(lmax) inputstring
+      character*17 fname
+      double precision tiniest, b, xtest
+
+c     TEXT
+      fname = 'number_properties'
+      topk=top
+      rhs=max(0,rhs)
+
+      if (.not.checkrhs(fname,1,2)) return
+      if (.not.checklhs(fname,1,1)) return
+
+      if ( rhs.eq.2 ) then
+c        -> nextfloat prevfloat : second arg must be a real matrix
+c                                 first arg must be a string
+
+c        1/ get the adress of the matrix
+         if( .not. getrmat(fname, topk, top, m, n, idxmat) ) return
+         top = top - 1
+c        2/ get the string
+         if( .not. getsmat(fname,topk,top,mt,nt,1,1,lstr,nlstr)) return
+c        pas de verif qu'il s'agit bien d'une matrice (1,1) ...
+c        on recupere la chaine dans la variable inputstring
+         lm = min(nlstr,lmax)
+         call cvstr(lm,istk(lstr),inputstring,1)
+c        complete (eventualy) the string with some blanks
+         inputstring(lm+1:lmax) = '          '
+
+c        3/ go on
+         if (inputstring .eq. 'nextfloat ') then
+            if (.not.cremat(fname,top,0,m,n,lr,lc)) return
+            do i=0, m*n-1
+               stk(lr+i) = nearfloat(stk(idxmat+i),1.d0)
+            enddo
+
+         elseif (inputstring(1:9) .eq. 'prevfloat ') then
+            if (.not.cremat(fname,top,0,m,n,lr,lc)) return
+            do i=0, m*n-1
+               stk(lr+i) = nearfloat(stk(idxmat+i),-1.d0)
+            enddo
+
+         else
+            buf=fname//' : unknown property kind'
+            call error(999)
+            return
+         endif
+            
+      else
+c        -> one arg : this is a query of a property of the
+c                     floating point system (one string argument only)
+
+c        1/ get the string
+         if( .not. getsmat(fname,topk,top,mt,nt,1,1,lstr,nlstr)) return
+c           rmq : pas de verif qu'il s'agit bien d'une matrice (1,1) ...
+c        on recupere la chaine dans la variable inputstring
+         lm = min(nlstr,lmax)
+         call cvstr(lm,istk(lstr),inputstring,1)
+c        complete (eventualy) the string with some blanks
+         inputstring(lm+1:lmax) = '          '
+
+c        2/ go on
+         
+         if     (inputstring(1:9) .eq. 'eps      ') then
+            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+            stk(lr) = dlamch('e')
+         elseif (inputstring(1:9) .eq. 'huge     ') then
+            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+            stk(lr) = dlamch('o')
+         elseif (inputstring(1:9) .eq. 'tiny     ') then
+            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+            stk(lr) = dlamch('u')
+         elseif (inputstring(1:9) .eq. 'radix    ') then
+            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+            stk(lr) = dlamch('b')
+         elseif (inputstring(1:9) .eq. 'digits   ') then
+            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+            stk(lr) = dlamch('n')
+         elseif (inputstring(1:9) .eq. 'minexp   ') then
+            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+            stk(lr) = dlamch('m')
+         elseif (inputstring(1:9) .eq. 'maxexp   ') then
+            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+            stk(lr) = dlamch('l')
+         elseif (inputstring(1:9) .eq. 'denorm   ') then
+            if (.not.crebmat(fname,top,1,1,lr)) return
+            if (dlamch('u') / dlamch('b') .gt. 0.d0) then
+               istk(lr) = 1
+            else
+               istk(lr) = 0
+            endif
+         elseif (inputstring(1:9) .eq. 'tiniest  ') then
+            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+            b = dlamch('b')
+            tiniest = dlamch('u')
+            if ( tiniest/b .ne. 0.d0 ) then
+c              denormalised number are used
+               do i = 1, dlamch('n') - 1
+                  tiniest = tiniest / b
+               enddo
+            endif
+            stk(lr) = tiniest
+         else
+            buf=fname//' : unknown property kind'
+            call error(999)
+            return
+         endif
+
+      endif
+
+      end
+
+
+
+
