@@ -38,8 +38,13 @@ cd link-examples-so
  nmake /nologo /C /f Makefile.mak all
 cd ..\
 
-echo "Inside mex-examples"
+echo "Inside mex-examples/cmex"
 cd mex-examples/cmex
+ nmake /nologo /C /f Makefile.mak all
+cd ..\..\
+
+echo "Inside mex-examples/cppmex"
+cd mex-examples/cppmex
  nmake /nologo /C /f Makefile.mak all
 cd ..\..\
 
@@ -70,11 +75,15 @@ cd link-examples-so
  nmake /nologo /C /f Makefile.mak clean
 cd ..\
 
-echo "Inside mex-examples"
+echo "Inside mex-examples/cmex"
 cd mex-examples/cmex
  nmake /nologo /C /f Makefile.mak clean 
 cd ..\..\
 
+echo "Inside mex-examples/cppmex"
+cd mex-examples/cppmex
+ nmake /nologo /C /f Makefile.mak clean 
+cd ..\..\
 goto end 
 
 :distclean
@@ -100,8 +109,13 @@ cd link-examples-so
  nmake /nologo /C /f Makefile.mak distclean
 cd ..\
 
-echo "Inside mex-examples"
+echo "Inside mex-examples/cmex"
 cd mex-examples/cmex
+ nmake /nologo /C /f Makefile.mak distclean 
+cd ..\..\
+
+echo "Inside mex-examples/cppmex"
+cd mex-examples/cppmex
  nmake /nologo /C /f Makefile.mak distclean 
 cd ..\..\
 
@@ -130,11 +144,15 @@ cd link-examples-so
  nmake /nologo /C /f Makefile.mak tests
 cd ..\
 
-echo "Inside mex-examples"
+echo "Inside mex-examples/cmex"
 cd mex-examples/cmex
  nmake /nologo /C /f Makefile.mak tests 
 cd ..\..\
 
+echo "Inside mex-examples/cppmex"
+cd mex-examples/cppmex
+ nmake /nologo /C /f Makefile.mak tests 
+cd ..\..\
 
 goto end 
 
