@@ -200,7 +200,7 @@ scs_m(6)=mlist(['Block','graphics','model','gui','doc'],..
 scs_m(7)=mlist(['Block','graphics','model','gui','doc'],..
          mlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[275.91412,327.73025],[40,40],%t,['1';'1';'1'],0,0,[],[],..
+         'gr_i','id'],[275.91412,327.73025],[40,40],%t,['1'],0,0,[],[],..
          emptystr(),emptystr()),..
          mlist(..
          ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
