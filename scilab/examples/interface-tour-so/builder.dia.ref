@@ -4,6 +4,9 @@
 // must be run from this directory
  
  
+lines(0);
+ 
+ 
 ilib_name  = 'libexamples' 		// interface library name
  ilib_name  =
  
