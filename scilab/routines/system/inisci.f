@@ -145,21 +145,8 @@ c     .  wte = unit number for terminal output
          wte=9999
       endif
       wio = 0
-c     .  hio =unit for history output
+c     .  hio =unit for history output (no more used)
       hio = 0
-      i   = 0
-      buf = ' '
-      call inffic(4,buf,nc)
-      nc=max(1,nc)
-      mode(1)=3
-      call clunit(i,buf(1:nc),mode)
-      if(err.gt.0) then
-         call error(err)
-         hio=0
-         err=0
-      else
-         hio=i
-      endif
 c     
 c     .  banner 
 c     .  ------

@@ -1459,7 +1459,6 @@ c
       write(line(m1+11:m1+15),'(i5)') n
       line(m1+16:m1+16)=bel
       call basout(io,lunit,line(1:m1+16))
-      if(hio.gt.0) call basout(io,hio,line(1:m1+15))
       return
       end
 

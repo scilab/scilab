@@ -71,7 +71,7 @@ c
  
       if ( lunit.lt.0 ) then
 c     .  preserve permanent files
-         if (lunit.eq.-rte.or.lunit.eq.-wte.or.lunit.eq.-hio) goto 100
+         if (lunit.eq.-rte.or.lunit.eq.-wte) goto 100
 c     .  close file and put it out of the table
          call getfiletype(-lunit,ltype,info)
          if(info.eq.0) then

@@ -41,7 +41,6 @@ c
  1000 buf=' '
       buf(m1+1:m1+9)=mg
       call basout(io,lunit,buf(1:m1+9))
-      if(hio.gt.0) call basout(io,hio,buf(1:m1+9))
  
 c depilement de l'environnement
       lct(4)=2
@@ -96,7 +95,6 @@ c
       buf(m+1:m+14)=' called by :'
       m=m+14
       call basout(io,lunit,buf(1:m))
-      if(hio.gt.0) call basout(io,hio,buf(1:m))
       lct(8)=lin(k+12+nsiz)
 c     
       call whatln(lpt1(1),lpt1(2),lpt1(6),nlc,l1,ifin)
@@ -108,7 +106,6 @@ c
       if(l1.gt.0.and.m.gt.0.and.m+l1-1.le.lsiz) then
          call cvstr(m,lin(l1),buf(1:m),1)
          call basout(io,lunit,buf(1:m))
-         if(hio.gt.0) call basout(io,hio,buf(1:m))
       endif
 c
       goto 1501
@@ -135,7 +132,6 @@ c
          buf(m+1:m+29)=' of exec file called by :'
          m=m+29
          call basout(io,lunit,buf(1:m))
-         if(hio.gt.0) call basout(io,hio,buf(1:m))
          lct(8)=lin(k+12+nsiz)
 c     
          call whatln(lpt1(1),lpt1(2),lpt1(6),nlc,l1,ifin)
@@ -146,7 +142,6 @@ c
          endif
          call cvstr(m,lin(l1),buf,1)
          call basout(io,lunit,buf(1:m))
-         if(hio.gt.0) call basout(io,hio,buf(1:m))
  1505    p=p-1
          if(rstk(p).ne.902) goto 1505
          goto 1501
@@ -159,7 +154,6 @@ c
  1510 continue
 
       call basout(io,lunit,' ')
-      if(hio.gt.0) call basout(io,hio,' ')
       lct(4)=lct4
 c
       return

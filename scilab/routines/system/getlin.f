@@ -103,7 +103,6 @@ c        check if getlin is call in a macro or an exec
          if(wio.ne.0) then
             call promptecho(wio,buf(1:n),n)
          endif
-         if (hio.gt.0) call basout(io,hio,buf(1:n))
          lct(1)=1
       endif
 c
