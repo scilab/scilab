@@ -118,7 +118,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
   end
   
   // Indexes for varname ? myvar(1,2).field....
-  if or(strindex(name,"(")<strindex(name,".")) | (~isempty(strindex(name,"("))&isempty(strindex(name,".")))then
+  if or(strindex(name,"(")<strindex(name,".")) | (~isempty(strindex(name,"("))&isempty(strindex(name,"."))) then
     ierr=execstr("vardims=list"+part(name,min(strindex(name,"(")):min(strindex(name,")"))),"errcatch")
     if ierr then
       if ~isempty(strindex(part(name,min(strindex(name,"(")):min(strindex(name,")"))),"*")) then // Generic command *
