@@ -21,15 +21,7 @@ if X.vtype==String then
   end
   tree=X
 elseif X.vtype==Unknown then
-  scitree=tree
-  scitree.name="mtlb_setstr"
-  repl1=tree
-  
-  repl_poss(scitree,..
-      Funcall("ascii",1,list(X),list()),X,"is a Double",..
-      X,X,"is a String")
-
-  tree=scitree
+  tree.name="mtlb_setstr"
   tree.lhs(1).dims=X.dims
   tree.lhs(1).type=Type(String,Real)
 else
@@ -38,11 +30,7 @@ else
     tree.lhs(1).dims=X.dims
     tree.lhs(1).type=Type(String,Real)
   else
-    scitree=tree
-    scitree.name="mtlb_setstr"
-    repl_poss(scitree,..
-	Funcall("ascii",1,list(X),list()),X,"is a row vector or a scalar")
-    tree=scitree
+    tree.name="mtlb_setstr"
     tree.lhs(1).dims=X.dims
     tree.lhs(1).type=Type(String,Real)
   end

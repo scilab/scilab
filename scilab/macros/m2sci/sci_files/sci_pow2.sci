@@ -25,16 +25,14 @@ else
     E = Funcall("real",1,list(E),list(Variable("",E.infer)))
   elseif ~is_real(E) then
     newE = Funcall("real",1,list(E),list(Variable("",E.infer)))
-    repl_poss(newE,..
-        E,E,"is real");
+    repl_poss(newE,E,E,"is real");
     E=newE
   end
   if is_complex(F) then
     F = Funcall("real",1,list(F),list(Variable("",F.infer)))
   elseif ~is_real(F) then
     newF = Funcall("real",1,list(F),list(Variable("",F.infer)))
-    repl_poss(newF,..
-        F,F,"is real");
+    repl_poss(newF,F,F,"is real");
     F=newF
   end
 

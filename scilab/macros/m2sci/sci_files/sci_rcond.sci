@@ -13,11 +13,7 @@ tree.rhs=Rhs(A)
 
 // If A can be an empty matrix...
 if ~not_empty(A) then
-  scitree=tree
-  scitree.name="mtlb_rcond"
-  repl_poss(scitree,..
-      tree,A,"is not an empty matrix")
-  tree=scitree
+  tree.name="mtlb_rcond"
   
   tree.lhs(1).dims=list(1,1)
   tree.lhs(1).type=Type(Double,Real)

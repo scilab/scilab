@@ -18,8 +18,7 @@ if rhs==2 then
     k = Funcall("real",1,list(k),list(Variable("",k.infer)))
   elseif ~is_real(k) then
     newk = Funcall("real",1,list(k),list(Variable("",k.infer)))
-    repl_poss(newk,..
-        k,k,"is real");
+    repl_poss(newk,k,k,"is real");
     k=newk
   end
   tree.rhs=Rhs(X,k)
@@ -30,14 +29,7 @@ end
 
 // Common part
 if or(X.vtype==[String,Unknown]) then
-  scitree=tree
-  scitree.name="mtlb_tril"
-  repl1=tree
-  repl1.rhs(1)=Funcall("bool2s",1,Rhs(X),list())
-  repl_poss(scitree,..
-      repl1,X,"is a Boolean matrix",..
-      tree,X,"is a Double matrix");
-  tree=scitree
+  tree.name="mtlb_tril"
 else
   if X.vtype==Boolean then
     X=Funcall("bool2s",1,Rhs(X),list(Variable("",X.infer)))

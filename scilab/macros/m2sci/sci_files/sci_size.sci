@@ -30,10 +30,7 @@ if rhs==2 then
       tree.lhs(1).type=Type(Double,Real)
     end
   else
-    scitree=Funcall("mtlb_size",1,list(X,dim),tree.lhs)
-    repl_poss(scitree,..
-	tree,dim,"< size(size("+expression2code(X)+"),2)")
-    tree=scitree
+    tree=Funcall("mtlb_size",1,list(X,dim),tree.lhs)
     tree.lhs(1).dims=list(1,1)
     tree.lhs(1).type=Type(Double,Real)
   end
@@ -54,14 +51,12 @@ else
   // [d1,d2,d3,...,dn] = size(X)
   else
     if size(tree.lhs)<size(X.dims) then
+      // Number of outputs is less than size(size(X),2) so mtlb_size() is called
       tree=Funcall("mtlb_size",size(tree.lhs),list(X),tree.lhs)
-      set_infos(["Number of outputs is less than size(size("+expression2code(X)+"),2)";
-	  "So mtlb_size() is called"]);
     end
     if size(tree.lhs)>size(X.dims) then
+      // Number of outputs is greater than size(size(X),2) so mtlb_size() is called
       tree=Funcall("mtlb_size",size(tree.lhs),list(X),tree.lhs)
-      set_infos(["Number of outputs is greater than size(size("+expression2code(X)+"),2)";
-	  "So mtlb_size() is called"]);
     end
     for klhs=1:size(tree.lhs)
       tree.lhs(klhs).dims=list(1,1)

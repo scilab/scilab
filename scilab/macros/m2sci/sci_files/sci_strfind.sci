@@ -14,13 +14,7 @@ if A.vtype==String & B.vtype==String then
   tree.lhs(1).dims=list(Unknown,Unknown)
   tree.lhs(1).type=Type(Double,Real)
 else
-  scitree=tree
-  scitree.name="mtlb_strfind"
-  tree.name="strindex"
-  repl_poss(scitree,..
-      tree,list(A,B),"are character string matrices")
-  
-  tree=scitree
+  tree.name="mtlb_strfind"
   tree.lhs(1).dims=list(Unknown,Unknown)
   tree.lhs(1).type=Type(Double,Real)
 end

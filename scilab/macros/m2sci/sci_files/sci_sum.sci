@@ -38,17 +38,7 @@ if rhs==1 then
       tree.lhs(1).dims=allunknown(A.dims)
     end
   else
-    scitree=tree
-    scitree.name="mtlb_sum"
-    repl1=tree
-    repl1.rhs=Rhs(A,1)
-    repl2=tree
-    repl2.rhs=Rhs(A,Funcall("firstnonsingleton",1,list(A),list()))
-    repl_poss(scitree,..
-	tree,A,"is an empty matrix or a vector",..
-	repl1,A,"is a matrix",..
-	repl2,A,"is a multidimensional array");
-    tree=scitree
+    tree.name="mtlb_sum"
     tree.lhs(1).dims=allunknown(A.dims)
   end
 
@@ -64,8 +54,8 @@ else
   
   if typeof(dim)=="cste" then
     if dim.value>size(A.dims) then
+      // Scilab sum() does not work when dim  is greater than number of dims A
       tree.name="mtlb_sum"
-      set_infos("Scilab sum() does not work when dim input argument is greater than number of dims of first rhs...",1)
       tree.lhs(1).dims=allunknown(A.dims)
     else
       tree.lhs(1).dims=A.dims
@@ -73,9 +63,6 @@ else
     end
   else
     tree.name="mtlb_sum"
-    repl1=tree;repl1.name="sum";repl1.rhs=Rhs(A,dim)
-    repl_poss(tree,..
-	repl1,dim,"is < number of dims of first rhs")
     tree.lhs(1).dims=allunknown(A.dims)
   end
   

@@ -30,13 +30,7 @@ else
 	if not_a_vector(A) then
 	  tree=Funcall("max",1,Rhs(newtree),tree.lhs)
 	elseif ~is_a_vector(A) & ~is_a_scalar(A) then
-	  scitree=tree
-	  scitree.name="mtlb_norm"
-	  repl1=Funcall("max",1,Rhs(newtree),list())
-	  repl_poss(scitree,..
-	      tree,A,"is a scalar or a vector",..
-	      repl1,A,"is a matrix");
-	  tree=scitree
+	  tree.name="mtlb_norm"
 	end
 	tree.lhs(1).dims=list(1,1)
 	tree.lhs(1).type=Type(Double,Real)
@@ -45,19 +39,8 @@ else
     end
   end
 
-  // Arrive here if do not knwon if p==-%inf
-  scitree=tree
-  scitree.name="mtlb_norm"
-  repl1=Funcall("max",1,Rhs(newtree),list())
-
-  repl_poss(scitree,..
-      tree,p,"<> -inf");
-  
-  set_infos("If "+rhs2code(p)+" is equal to -inf then",1);
-  repl_poss(scitree,..
-      tree,A,"is a scalar or a vector",..
-      repl1,A,"is a matrix");
-  tree=scitree
+  // Arrive here if do not know if p==-%inf
+  tree.name="mtlb_norm"
 end
 
 tree.lhs(1).dims=list(1,1)
