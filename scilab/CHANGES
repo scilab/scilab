@@ -1,37 +1,63 @@
 		     Main Changes Scilab 2.6 -> 2.7
 		     ==============================
+THANKS
+======
+Scilab group wants to thank the increasing number of people who have
+contributed to this new version of Scilab, with special mention to 
+Anders Blomdell,  Stephane Mottelet, Dan McMahill
+Ton van Overbeek, Bruno Pincon and Enrico Segre.
+
 
 NEW FUNCTIONALITIES
 ===================
-Slicot based control routines have been introduced
-Interface with TeXmacs 
-text editor for Windows.
-Code generation from Scicos discrete models
-Blocks defining DAE are now usage in Scicos.
+Slicot based control routines have been introduced with a special attention 
+to identification functions, lyapunov, sylvester and riccati equation solvers.
+
+Interface with TeXmacs  (www.texmacs.org) a high level scientific text editor. 
+The editor allows you to write structured documents via a wysiwyg interface 
+including Scilab sessions ans results.
+
+An embedded text editor scipad derived from TkNotepad 
+(www.mindspring.com/~joeja/programs.html) as been developped.
+
+C Code generation from Scicos discrete models 
+
+Blocks defining DAE are now usable in Scicos.
+
 Statistic toolbox added (labostat)
+
+An Entity oriented graphics mode has been developped. It allows to edit 
+the drawn graphics properties in a easy to use way. 
 
 OTHERS IMPROVEMENTS
 ===================
 Linear algebra primitives now based on Lapack instead of Linpack/Eispack
 Basic functions revised (thanks to B Pincon)
 stacksize use is no more restricted.
-Hypertext online help instead of the old help browser. 
-Binary Matlab file .mat loader added
-possibility to customize event handler
-PVM interface now also works with Windows versions
+Hypertext, xml based, online help.
+Binary Matlab file .mat loader (loadmatfile) added.
+possibility to customize graphics window event handlers (seteventhandler).
+PVM interface now also works with Windows versions.
+xmetanet replaced by a portable graph editor (edit_graph).
 
-INCOMPATIBLITY
+INCOMPATIBLITIES
 ==============
-User's Scilab function libraries must be rebuild
-gschur and gspec are now obsolete and replaced by schur and spec
+It is higly recommended to rebuild user's scilab functions libraries. This 
+can be done as follow:
+predef(0);genlib('mylib','mylib_path',%t)
 
-Geci and communication library have been removed
+gschur and gspec functions are now obsolete and replaced by schur and spec
 
-Metanet graph editor has been rewritten use edit_graph instead
+Geci and the communication library have been removed. Use PVM interface instead.
 
-man pages have to be written in HTML or better in XML
+Metanet graph editor has been rewritten. Use edit_graph instead.
 
-Scicos internal data structure have been changes (mlist) Voir si help OK
+man pages have to be written in HTML or better in XML but chapters 
+written in the old ascii files are still handled.
+
+Scicos internal data structure have been changed. Automatic translation 
+is made when  old diagrams are loaded.
+
 		     Main Changes Scilab 2.5 -> 2.6
 		     ==============================
 THANKS
