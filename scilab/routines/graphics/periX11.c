@@ -238,10 +238,20 @@ static void xset_pixmapclear(integer *v1, integer *v2, integer *v3, integer *v4)
     }
 }
 
+int WithBackingStore()
+
+{
+  return (ScilabXgc->Cdrawable != (Drawable) 0)&&(ScilabXgc->CurPixmapStatus == 0) ;
+}
+
 static void xset_show(integer *v1, integer *v2, integer *v3, integer *v4)
 {
-  if (ScilabXgc->CurPixmapStatus == 0) return; /* added line  22/10/2002 */
-  XClearWindow(dpy,ScilabXgc->CWindow);
+  /*if (ScilabXgc->CurPixmapStatus == 0) return; */
+  /* if CurPixmapStatus ==0 the pixmap is used as a backing store memory*/
+  if (ScilabXgc->Cdrawable != (Drawable) 0) {
+    XSetWindowBackgroundPixmap(dpy, ScilabXgc->CWindow, (Pixmap) ScilabXgc->Cdrawable);
+    XClearWindow(dpy,ScilabXgc->CWindow);
+  }
   XFlush(dpy);
 }
 
@@ -252,23 +262,18 @@ static void xset_show(integer *v1, integer *v2, integer *v3, integer *v4)
 
 void CPixmapResize(int x, int y)
 {
-  Drawable draw;
-  draw = ScilabXgc->Cdrawable;
-  if (ScilabXgc->CurPixmapStatus == 1){
-    ScilabXgc->Cdrawable = (Drawable) XCreatePixmap(dpy, root,Max(x,400),Max(y,300),depth);
-    if ( ScilabXgc->Cdrawable == (Drawable) 0) 
-      {
-	ScilabXgc->Cdrawable = draw;
-	sciprint("No more space to create Pixmaps\r\n");
-      }
-    else
-      {
-	XFreePixmap(dpy,(Pixmap) draw);
-      }
-    PixmapClear(0,0,x,y);
-    XSetWindowBackgroundPixmap(dpy, ScilabXgc->CWindow, 
-			       (Pixmap) ScilabXgc->Cdrawable);
-  }
+  /*if (ScilabXgc->CurPixmapStatus != 0) { use pixmap as backing store if CurPixmapStatus==0 */
+  if (ScilabXgc->Cdrawable != (Drawable) 0) 
+    XFreePixmap(dpy,(Pixmap)ScilabXgc->Cdrawable);
+  ScilabXgc->Cdrawable = (Drawable) XCreatePixmap(dpy, root,Max(x,400),Max(y,300),depth);
+  if ( ScilabXgc->Cdrawable == (Drawable) 0) 
+    sciprint("No more space to create Pixmaps\r\n");
+  else
+    {
+      PixmapClear(0,0,x,y);
+      XSetWindowBackgroundPixmap(dpy, ScilabXgc->CWindow,(Pixmap) ScilabXgc->Cdrawable);
+    }
+  /*}*/
 }
 
 /*
@@ -281,7 +286,10 @@ static void PixmapClear(int x, int y, int w, int h)
   int cur_alu = ScilabXgc->CurDrawFunction;
   int clear = GXclear;
   xset_alufunction1(&clear,PI0,PI0,PI0);
-  XFillRectangle(dpy, ScilabXgc->Cdrawable, gc, x,y,w,h);
+  if (ScilabXgc->Cdrawable != (Drawable) 0) XFillRectangle(dpy, ScilabXgc->Cdrawable, gc, x,y,w,h);
+  /*  if (ScilabXgc->CurPixmapStatus != 1) 
+      XFillRectangle(dpy, (Drawable) ScilabXgc->CWindow, gc, x,y,w,h);*/
+
   /* back to standard value */
   xset_alufunction1(&cur_alu,PI0,PI0,PI0);
 }
@@ -294,7 +302,7 @@ static void PixmapClear(int x, int y, int w, int h)
 void CPixmapResize1(void)
 {
   XWindowAttributes war;
-  if (ScilabXgc->Cdrawable != (Drawable) ScilabXgc->CWindow ) 
+  if (ScilabXgc->Cdrawable != (Drawable) 0 ) 
     {
       XGetWindowAttributes(dpy,ScilabXgc->CWindow,&war); 
       CPixmapResize(war.width,war.height);
@@ -335,7 +343,7 @@ void C2F(xend)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, int
 
 void C2F(clearwindow)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
-  if (ScilabXgc->Cdrawable != (Drawable) ScilabXgc->CWindow ) 
+  if (ScilabXgc->Cdrawable != (Drawable) 0 ) 
     xset_pixmapclear(PI0,PI0,PI0,PI0);
   XClearWindow(dpy, ScilabXgc->CWindow);
   XFlush(dpy);
@@ -674,15 +682,11 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 
 void C2F(cleararea)(char *str, integer *x, integer *y, integer *w, integer *h, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
-  if (ScilabXgc->Cdrawable != (Drawable) ScilabXgc->CWindow ) 
-    {
+  if (ScilabXgc->Cdrawable != (Drawable) 0 ) 
       PixmapClear(*x,*y,*w,*h);
-    }
-  else
-    {
-      XClearArea(dpy,ScilabXgc->Cdrawable,(int)*x,(int) *y,(unsigned) *w,
-		 (unsigned) *h,False);
-    }
+  if (ScilabXgc->CurPixmapStatus != 1) 
+    XClearArea(dpy,ScilabXgc->Cdrawable,(int)*x,(int) *y,(unsigned) *w,
+	       (unsigned) *h,False);
   XFlush(dpy);
 }
 
@@ -780,7 +784,7 @@ static void xset_popupdim(integer *x, integer *y, integer *v3, integer *v4)
 static void xget_viewport(integer *verbose, integer *x, integer *narg, double *dummy)
 {     
   *narg = 2;
-  if ( ScilabXgc->CurResizeStatus == 0) 
+  if ( ScilabXgc->CurResizeStatus != 1) 
     {
       SciViewportGet(ScilabXgc,x,x+1) ;
     }
@@ -796,7 +800,7 @@ static void xget_viewport(integer *verbose, integer *x, integer *narg, double *d
 
 static void xset_viewport(integer *x, integer *y, integer *v3, integer *v4)
 {
-  if ( ScilabXgc->CurResizeStatus == 0) 
+  if ( ScilabXgc->CurResizeStatus != 1) 
     SciViewportMove(ScilabXgc,*x,*y);
 }
 
@@ -924,6 +928,7 @@ static void xget_curwin(integer *verbose, integer *intnum, integer *narg, double
   *intnum = (ScilabXgc != (struct BCG *) 0) ? ScilabXgc->CurWindow : 0;
   if (*verbose == 1) 
     sciprint("\nCurrent Graphic Window :%d\r\n",(int) *intnum);
+
 }
 
 /** Set a clip zone (rectangle ) **/
@@ -1405,47 +1410,62 @@ static void xget_usecolor(integer *verbose, integer *num, integer *narg, double 
   *narg=1;
 }
 
-/* Change the pixmap status of a Graphic Window. 
- * adding or removing a Background Pixmap to it 
- */
+
+/* 
+   Change the pixmap status of a Graphic Window. 
+
+   CurPixmapStatus==0 uses a pixmap as backing store memory if it is possible to allocate it
+   if allocation fails no backing store will be used (graphics will be redrawn on expose).
+   In backing store mode the graphics are drawn on the display AND into the pixmap. The pixmap
+   is used when expose events are received
+
+   CurPixmapStatus==1 uses a pixmap as double buffer for animation if it is possible to 
+   allocate it. if allocation fails CurPixmapStatus is set to 0
+   In this mode the graphics are only drawn into the pixmap. The pixmap is send to the display
+   when user explicitly requires it.
+*/
 
 static void xset_pixmapOn(integer *num, integer *v2, integer *v3, integer *v4)
 {
   integer num1= Min(Max(*num,0),1);
   Pixel px;
-  if ( ScilabXgc->CurPixmapStatus == num1 ) return;
-  if ( num1 == 1 )
-    {
-      /** I add a Background Pixmap to the window **/
-      XWindowAttributes war;
-      C2F(xinfo)("Animation mode is on,( xset('pixmap',0) to leave)",
-		 PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-      XGetWindowAttributes(dpy,ScilabXgc->CWindow,&war); 	
-      ScilabXgc->Cdrawable = (Drawable) XCreatePixmap(dpy,root,war.width,war.height,
-						      depth);
-      if ( ScilabXgc->Cdrawable == (Drawable) 0) 
-	{
-	  ScilabXgc->Cdrawable = (Drawable) ScilabXgc->CWindow;
-	  sciprint("No more space to create Pixmaps\r\n");
-	}
-      else 
-	{
-	  ScilabXgc->CurPixmapStatus = 1;
-	  PixmapClear(0,0,war.width,war.height);
-	  XSetWindowBackgroundPixmap(dpy, ScilabXgc->CWindow, (Pixmap) ScilabXgc->Cdrawable);
-	}
+
+
+  /* create the pixmap if it does not exist */
+  if (ScilabXgc->Cdrawable == (Drawable) 0) {
+    XWindowAttributes war;
+    XGetWindowAttributes(dpy,ScilabXgc->CWindow,&war); 
+    ScilabXgc->Cdrawable = (Drawable) XCreatePixmap(dpy,root,war.width,war.height,depth);
+    if (ScilabXgc->Cdrawable != (Drawable) 0) {
+      PixmapClear(0,0,war.width,war.height);
+      XSetWindowBackgroundPixmap(dpy, ScilabXgc->CWindow, (Pixmap) ScilabXgc->Cdrawable);
     }
-  if ( num1 == 0 )
-    {
-      C2F(xinfo)(" ",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-      /** I remove the Background Pixmap to the window **/
-      XFreePixmap(dpy, (Pixmap) ScilabXgc->Cdrawable);
+    else {
       px = (ScilabXgc->Colors == NULL) ? DefaultBackground 
 	:  ScilabXgc->Colors[ScilabXgc->NumBackground];
       XSetWindowBackground(dpy, ScilabXgc->CWindow,px);
-      ScilabXgc->Cdrawable = (Drawable) ScilabXgc->CWindow;
-      ScilabXgc->CurPixmapStatus = 0;
     }
+  }
+
+  if ( num1 == 0 ) {
+    C2F(xinfo)(" ",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+    ScilabXgc->CurPixmapStatus = 0;
+  }
+  else if ( num1 == 1 ) {
+      if (ScilabXgc->Cdrawable != (Drawable) 0) {
+	XWindowAttributes war;
+	C2F(xinfo)("Animation mode is on,( xset('pixmap',0) to leave)",
+		   PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+	XGetWindowAttributes(dpy,ScilabXgc->CWindow,&war); 	
+
+	ScilabXgc->CurPixmapStatus = 1;
+	PixmapClear(0,0,war.width,war.height);
+      }
+      else /*no pixmap */
+	ScilabXgc->CurPixmapStatus = 0;
+
+    }
+
 }
 
 static void xget_pixmapOn(integer *verbose, integer *value, integer *narg, double *dummy)
@@ -2311,10 +2331,10 @@ static void xset_background(integer *num, integer *v2, integer *v3, integer *v4)
       xset_alufunction1(&ScilabXgc->CurDrawFunction,PI0,PI0,PI0);
       px = (ScilabXgc->Colors == NULL) ? DefaultBackground 
 	:  ScilabXgc->Colors[ScilabXgc->NumBackground];
-      if (ScilabXgc->Cdrawable == (Drawable) ScilabXgc->CWindow )
-	{
-	  XSetWindowBackground(dpy, ScilabXgc->CWindow,px);
-	}
+      
+      XSetWindowBackground(dpy, ScilabXgc->CWindow,px);
+      if(ScilabXgc->Cdrawable != (Drawable) 0 ) 
+	XSetWindowBackground(dpy, ScilabXgc->Cdrawable,px);
     }
 }
  
@@ -2579,8 +2599,13 @@ void C2F(displaystring)(char *string, integer *x, integer *y, integer *v1, integ
 	XQueryTextExtents(dpy,ScilabXgc->FontXID,
 			  string,strlen(string),&dir,&asc,&dsc,&charret);
 	xpos= *x+ (charret.width)/(2.0*strlen(string));
-	XDrawString(dpy, ScilabXgc->Cdrawable,gc,(int) *x,(int) *y-charret.descent,
-		    string,strlen(string));
+	if(ScilabXgc->Cdrawable != (Drawable) 0 ) 
+	  XDrawString(dpy, ScilabXgc->Cdrawable,gc,(int) *x,(int) *y-charret.descent,
+		      string,strlen(string));
+	if(ScilabXgc->CurPixmapStatus !=1)
+	  XDrawString(dpy, (Drawable) ScilabXgc->CWindow,gc,(int) *x,(int) *y-charret.descent,
+		      string,strlen(string));
+
 	if ( *flag == 1) 
 	  {
 	    integer rect[4];
@@ -2612,7 +2637,11 @@ void C2F(DispStringAngle)(integer *x0, integer *yy0, char *string, double *angle
   for ( i = 0 ; i < (int)strlen(string); i++)
     { 
       str1[0]=string[i];
-      XDrawString(dpy,ScilabXgc->Cdrawable,gc,(int) x,(int) y ,str1,1);
+      if (ScilabXgc->Cdrawable != (Drawable) 0) 
+	XDrawString(dpy,ScilabXgc->Cdrawable,gc,(int) x,(int) y ,str1,1);
+      if (ScilabXgc->CurPixmapStatus != 1) 
+	XDrawString(dpy,(Drawable) ScilabXgc->CWindow,gc,(int) x,(int) y ,str1,1);
+
       C2F(boundingbox)(str1,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
       /** C2F(drawrectangle)(string,rect,rect+1,rect+2,rect+3); **/
       if ( cosa <= 0.0 && i < (int)strlen(string)-1)
@@ -2664,7 +2693,10 @@ subsection{ Segments and Arrows }
 
 void C2F(drawline)(integer *x1, integer *yy1, integer *x2, integer *y2)
 {
-  XDrawLine(dpy, ScilabXgc->Cdrawable, gc,(int) *x1,(int) *yy1,(int) *x2,(int) *y2); 
+  if (ScilabXgc->Cdrawable != (Drawable) 0) 
+    XDrawLine(dpy, ScilabXgc->Cdrawable, gc,(int) *x1,(int) *yy1,(int) *x2,(int) *y2); 
+  if (ScilabXgc->CurPixmapStatus != 1) 
+    XDrawLine(dpy,(Drawable) ScilabXgc->CWindow, gc,(int) *x1,(int) *yy1,(int) *x2,(int) *y2); 
   XFlush(dpy);
 }
 
@@ -2683,8 +2715,12 @@ void C2F(drawsegments)(char *str, integer *vx, integer *vy, integer *n, integer 
     for (i=0 ; i < *n/2 ; i++) {
       NDvalue = style[i];
       xset_line_style(&NDvalue,PI0,PI0,PI0);
-      XDrawLine(dpy,ScilabXgc->Cdrawable,gc, (int) vx[2*i],
-		(int) vy[2*i],(int) vx[2*i+1],(int) vy[2*i+1]) ;
+      if (ScilabXgc->Cdrawable != (Drawable) 0) 
+	XDrawLine(dpy,ScilabXgc->Cdrawable,gc, (int) vx[2*i],
+		  (int) vy[2*i],(int) vx[2*i+1],(int) vy[2*i+1]) ;
+      if (ScilabXgc->CurPixmapStatus != 1) 
+	XDrawLine(dpy,(Drawable) ScilabXgc->CWindow,gc, (int) vx[2*i],
+		  (int) vy[2*i],(int) vx[2*i+1],(int) vy[2*i+1]) ;
       XFlush(dpy);
     }
   }
@@ -2693,8 +2729,12 @@ void C2F(drawsegments)(char *str, integer *vx, integer *vy, integer *n, integer 
       xset_line_style(style,PI0,PI0,PI0);
 
     for (i=0 ; i < *n/2 ; i++) {
-      XDrawLine(dpy,ScilabXgc->Cdrawable,gc, (int) vx[2*i],
-		(int) vy[2*i],(int) vx[2*i+1],(int) vy[2*i+1]) ;
+      if (ScilabXgc->Cdrawable != (Drawable) 0) 
+	XDrawLine(dpy,ScilabXgc->Cdrawable,gc, (int) vx[2*i],
+		  (int) vy[2*i],(int) vx[2*i+1],(int) vy[2*i+1]) ;
+      if (ScilabXgc->CurPixmapStatus != 1) 
+	XDrawLine(dpy,(Drawable) ScilabXgc->CWindow,gc, (int) vx[2*i],
+		  (int) vy[2*i],(int) vx[2*i+1],(int) vy[2*i+1]) ;
       XFlush(dpy);
     }
   }
@@ -2725,9 +2765,12 @@ void C2F(drawarrows)(char *str, integer *vx, integer *vy, integer *n, integer *a
       else if (*style >= 1)
 	xset_line_style(style,PI0,PI0,PI0);
       
-      /* xset_pattern(&NDvalue,PI0,PI0,PI0); commented out 13/09/00 ss */
-      XDrawLine(dpy,ScilabXgc->Cdrawable,gc,(int) vx[2*i],(int)vy[2*i],
-		(int)vx[2*i+1],(int)vy[2*i+1]);
+      if (ScilabXgc->Cdrawable != (Drawable) 0)
+	XDrawLine(dpy,ScilabXgc->Cdrawable,gc,(int) vx[2*i],(int)vy[2*i],
+		  (int)vx[2*i+1],(int)vy[2*i+1]);
+      if (ScilabXgc->CurPixmapStatus != 1) 
+	XDrawLine(dpy,(Drawable) ScilabXgc->CWindow,gc,(int) vx[2*i],(int)vy[2*i],
+		  (int)vx[2*i+1],(int)vy[2*i+1]);
       dx=( vx[2*i+1]-vx[2*i]);
       dy=( vy[2*i+1]-vy[2*i]);
       norm = sqrt(dx*dx+dy*dy);
@@ -2794,14 +2837,20 @@ void C2F(drawrectangles)(char *str, integer *vects, integer *fillvect, integer *
 
 void C2F(drawrectangle)(char *str, integer *x, integer *y, integer *width, integer *height, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
-  XDrawRectangle(dpy, ScilabXgc->Cdrawable, gc, *x, *y, (unsigned)*width,(unsigned)*height);
+  if (ScilabXgc->Cdrawable != (Drawable) 0)
+    XDrawRectangle(dpy, ScilabXgc->Cdrawable, gc, *x, *y, (unsigned)*width,(unsigned)*height);
+  if (ScilabXgc->CurPixmapStatus != 1) 
+    XDrawRectangle(dpy, (Drawable) ScilabXgc->CWindow, gc, *x, *y, (unsigned)*width,(unsigned)*height);
   XFlush(dpy); }
 
 /** fill one rectangle, with current pattern **/
 
 void C2F(fillrectangle)(char *str, integer *x, integer *y, integer *width, integer *height, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
-  XFillRectangle(dpy, ScilabXgc->Cdrawable, gc,(int) *x,(int) *y,(unsigned) *width,(unsigned) *height); 
+  if (ScilabXgc->Cdrawable != (Drawable) 0)
+    XFillRectangle(dpy, ScilabXgc->Cdrawable, gc,(int) *x,(int) *y,(unsigned) *width,(unsigned) *height); 
+  if (ScilabXgc->CurPixmapStatus != 1) 
+    XFillRectangle(dpy, (Drawable) ScilabXgc->CWindow, gc,(int) *x,(int) *y,(unsigned) *width,(unsigned) *height); 
   XFlush(dpy);
 }
 
@@ -2837,8 +2886,12 @@ void fill_grid_rectangles(integer *x, integer *y, double *z, integer n1, integer
         w=Abs(x[i+1]-x[i]);h=Abs(y[j+1]-y[j]);
 	/* We don't trace rectangle which are totally out **/
 	if ( w != 0 && h != 0 && x[i] < xz[0] && y[j+1] < xz[1] && x[i]+w > 0 && y[j+1]+h > 0 )
-	  if ( Abs(x[i]) < int16max && Abs(y[j+1]) < int16max && w < uns16max && h < uns16max)
-	    XFillRectangle(dpy,ScilabXgc->Cdrawable,gc,x[i],y[j+1],w,h); 
+	  if ( Abs(x[i]) < int16max && Abs(y[j+1]) < int16max && w < uns16max && h < uns16max) {
+	    if (ScilabXgc->Cdrawable != (Drawable) 0) 
+	      XFillRectangle(dpy,ScilabXgc->Cdrawable,gc,x[i],y[j+1],w,h); 
+	    if (ScilabXgc->CurPixmapStatus != 1) 
+	      XFillRectangle(dpy,(Drawable) ScilabXgc->CWindow,gc,x[i],y[j+1],w,h); 
+	  }
       }
   xset_pattern(&cpat,PI0,PI0,PI0);
 }
@@ -2868,8 +2921,12 @@ void fill_grid_rectangles1(integer *x, integer *y, double *z, integer n1, intege
 	h=Abs(y[i+1]-y[i]);
 	/* We don't trace rectangle which are totally out **/
 	if ( w != 0 && h != 0 && x[j] < xz[0] && y[i] < xz[1] && x[j]+w > 0 && y[i]+h > 0 )
-	  if ( Abs(x[j]) < int16max && Abs(y[i+1]) < int16max && w < uns16max && h < uns16max)
-	    XFillRectangle(dpy,ScilabXgc->Cdrawable,gc,x[j],y[i],w,h); 
+	  if ( Abs(x[j]) < int16max && Abs(y[i+1]) < int16max && w < uns16max && h < uns16max) {
+	    if (ScilabXgc->Cdrawable != (Drawable) 0) 
+	      XFillRectangle(dpy,ScilabXgc->Cdrawable,gc,x[j],y[i],w,h); 
+	    if (ScilabXgc->CurPixmapStatus != 1) 
+	      XFillRectangle(dpy,(Drawable) ScilabXgc->CWindow,gc,x[j],y[i],w,h); 
+	  }
       }
   xset_pattern(&cpat,PI0,PI0,PI0);
 }
@@ -2948,15 +3005,22 @@ void C2F(drawarcs)(char *str, integer *vects, integer *style, integer *n, intege
 
 void C2F(drawarc)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
-  XDrawArc(dpy, ScilabXgc->Cdrawable, gc, *x, *y,(unsigned)*width,
-	   (unsigned)*height,*angle1, *angle2);
+  if (ScilabXgc->Cdrawable != (Drawable) 0)
+    XDrawArc(dpy, ScilabXgc->Cdrawable, gc, *x, *y,(unsigned)*width,
+	     (unsigned)*height,*angle1, *angle2);
+  if (ScilabXgc->CurPixmapStatus != 1) 
+    XDrawArc(dpy, (Drawable) ScilabXgc->CWindow, gc, *x, *y,(unsigned)*width,
+	     (unsigned)*height,*angle1, *angle2);
   XFlush(dpy); }
 
 /** Fill a single elipsis or part of it with current pattern **/
 
 void C2F(fillarc)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
-  XFillArc(dpy, ScilabXgc->Cdrawable, gc, *x, *y, *width, *height, *angle1, *angle2);    
+  if (ScilabXgc->Cdrawable != (Drawable) 0)
+    XFillArc(dpy, ScilabXgc->Cdrawable, gc, *x, *y, *width, *height, *angle1, *angle2);    
+  if (ScilabXgc->CurPixmapStatus != 1) 
+    XFillArc(dpy, (Drawable) ScilabXgc->CWindow, gc, *x, *y, *width, *height, *angle1, *angle2);    
   XFlush(dpy);}
 
 /*
@@ -3081,7 +3145,11 @@ void C2F(fillpolyline)(char *str, integer *n, integer *vx, integer *vy, integer 
   integer n1;
   if (*closeflag == 1) n1 = *n+1;else n1= *n;
   if (C2F(store_points)(*n, vx, vy,*closeflag)){
-    XFillPolygon (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), n1,
+    if (ScilabXgc->Cdrawable != (Drawable) 0) 
+      XFillPolygon (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), n1,
+		  Complex, ScilabXgc->CurVectorStyle);
+    if (ScilabXgc->CurPixmapStatus != 1) 
+      XFillPolygon (dpy, (Drawable) ScilabXgc->CWindow, gc, get_xpoints(), n1,
 		  Complex, ScilabXgc->CurVectorStyle);
   }
   XFlush(dpy);
@@ -3095,8 +3163,12 @@ void C2F(fillpolyline)(char *str, integer *n, integer *vx, integer *vy, integer 
 void C2F(drawpolymark)(char *str, integer *n, integer *vx, integer *vy, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   if ( ScilabXgc->CurHardSymb == 0 )
-    {if (C2F(store_points)(*n, vx, vy,(integer)0L))		
-      XDrawPoints (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), *n,CoordModeOrigin);
+    {if (C2F(store_points)(*n, vx, vy,(integer)0L)){		
+      if (ScilabXgc->Cdrawable != (Drawable) 0)
+	XDrawPoints (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), *n,CoordModeOrigin);
+      if (ScilabXgc->CurPixmapStatus != 1) 
+	XDrawPoints (dpy, (Drawable) ScilabXgc->CWindow, gc, get_xpoints(), *n,CoordModeOrigin);
+    }
     XFlush(dpy);
     }
   else 
@@ -3342,7 +3414,6 @@ int GetWinsMaxId(void)
       Num = Max(listptr->winxgc.CurWindow,Num);
       listptr =  (WindowList *)listptr->next;
     }
-  /* sciprint("Max Id : %d \r\n",Num); */
   return(Num);
 }
 
@@ -3359,7 +3430,6 @@ static int X_error_handler(Display *d, XErrorEvent *err_ev)
   char            err_msg[MAXERRMSGLEN];
 
   XGetErrorText(dpy, (int) (err_ev->error_code), err_msg, MAXERRMSGLEN - 1);
-  /*  (void) sciprint( */
       printf(
 	     "Scilab : X error trapped - error message follows:\r\n%s\r\n", err_msg);
   return(0);
@@ -3444,7 +3514,10 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   ScilabXgc->CWindowWidth =  war.width;
   ScilabXgc->CWindowHeight =  war.height;
   /** Default value is without Pixmap **/
-  ScilabXgc->Cdrawable = (Drawable) ScilabXgc->CWindow;
+
+
+ 
+
   ScilabXgc->CurPixmapStatus = 0; 
   ScilabXgc->CurResizeStatus = 1; 
   ScilabXgc->CurWindow = WinNum;
@@ -3462,6 +3535,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
       XSetErrorHandler(X_error_handler);
       XSetIOErrorHandler((XIOErrorHandler) X_error_handler);
     }
+
   InitMissileXgc(PI0,PI0,PI0,PI0);
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
@@ -3709,8 +3783,7 @@ InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
   ScilabXgc->ClipRegionSet= 0;
   xset_font((i=2,&i),(j=1,&j),PI0,PI0);
   xset_mark((i=0,&i),(j=0,&j),PI0,PI0);
-  ScilabXgc->CurPixmapStatus =0 ;
-  ScilabXgc->CurResizeStatus =1 ;
+  ScilabXgc->CurResizeStatus = 1 ;
   xset_pixmapOn((i=0,&i),PI0,PI0,PI0);
   /** trace absolu **/
   i= CoordModeOrigin;
@@ -3846,7 +3919,10 @@ void C2F(drawaxis)(char *str, integer *alpha, integer *nsteps, integer *v2, inte
 	 yi = initpoint[1]+i*size[0]*sinal;
 	 xf = xi - ( size[1]*sinal);
 	 yf = yi + ( size[1]*cosal);
-	 XDrawLine(dpy,ScilabXgc->Cdrawable,gc,inint(xi),inint(yi),inint(xf),inint(yf));
+	 if (ScilabXgc->Cdrawable != (Drawable) 0) 
+	   XDrawLine(dpy,ScilabXgc->Cdrawable,gc,inint(xi),inint(yi),inint(xf),inint(yf));
+	 if (ScilabXgc->CurPixmapStatus != 1) 
+	    XDrawLine(dpy,(Drawable) ScilabXgc->CWindow,gc,inint(xi),inint(yi),inint(xf),inint(yf));
        }
    }
  for (i=0; i <= nsteps[1]; i++)
@@ -3854,14 +3930,12 @@ void C2F(drawaxis)(char *str, integer *alpha, integer *nsteps, integer *v2, inte
    yi = initpoint[1]+i*nsteps[0]*size[0]*sinal;
    xf = xi - ( size[1]*size[2]*sinal);
    yf = yi + ( size[1]*size[2]*cosal);
-   XDrawLine(dpy,ScilabXgc->Cdrawable,gc,inint(xi),inint(yi),inint(xf),inint(yf));
-   }
- /** 
-     xi = initpoint[0]; yi= initpoint[1];
-     xf = initpoint[0]+ nsteps[0]*nsteps[1]*size[0]*cosal;
-     yf = initpoint[1]+ nsteps[0]*nsteps[1]*size[0]*sinal;
+   if (ScilabXgc->Cdrawable != (Drawable) 0)
      XDrawLine(dpy,ScilabXgc->Cdrawable,gc,inint(xi),inint(yi),inint(xf),inint(yf));
- **/
+   if (ScilabXgc->CurPixmapStatus != 1) 
+     XDrawLine(dpy,(Drawable) ScilabXgc->CWindow,gc,inint(xi),inint(yi),inint(xf),inint(yf));
+   }
+
  XFlush(dpy);
 }
 
@@ -3887,7 +3961,11 @@ void C2F(bitmap)(char *string, integer w, integer h)
   setimage = XCreateImage (dpy, XDefaultVisual (dpy, DefaultScreen(dpy)),
 			   1, XYBitmap, 0, string,w,h, 8, 0);	
   setimage->data = string;
-  XPutImage (dpy, ScilabXgc->Cdrawable, gc, setimage, 0, 0, 10,10,w,h);
+  if (ScilabXgc->Cdrawable != (Drawable) 0) 
+    XPutImage (dpy, ScilabXgc->Cdrawable, gc, setimage, 0, 0, 10,10,w,h);
+  if (ScilabXgc->CurPixmapStatus != 1) 
+    XPutImage (dpy, (Drawable) ScilabXgc->CWindow, gc, setimage, 0, 0, 10,10,w,h);
+
   XDestroyImage(setimage);
 }
 
@@ -4220,7 +4298,12 @@ static void DrawMark(integer *x, integer *y)
 { 
   char str[1];
   str[0]=Marks[ScilabXgc->CurHardSymb];
-  XDrawString(dpy,ScilabXgc->Cdrawable,gc,(int) *x+C2F(CurSymbXOffset)(),(int)*y+C2F(CurSymbYOffset)(),str,1);
+  if (ScilabXgc->Cdrawable != (Drawable) 0)
+    XDrawString(dpy,ScilabXgc->Cdrawable,gc,(int) *x+C2F(CurSymbXOffset)(),
+		(int)*y+C2F(CurSymbYOffset)(),str,1);
+  if (ScilabXgc->CurPixmapStatus != 1) 
+    XDrawString(dpy,(Drawable) ScilabXgc->CWindow,gc,(int) *x+C2F(CurSymbXOffset)(),
+		(int)*y+C2F(CurSymbYOffset)(),str,1);
   XFlush(dpy);
 }
 
@@ -4276,8 +4359,12 @@ static int ReallocVector(integer n)
 
 static void XDroutine(int npts)
 {
-  XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(),(int) npts,
-	      ScilabXgc->CurVectorStyle);
+  if (ScilabXgc->Cdrawable != (Drawable) 0)
+    XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(),(int) npts,
+		ScilabXgc->CurVectorStyle);
+  if (ScilabXgc->CurPixmapStatus != 1) 
+    XDrawLines (dpy, (Drawable) ScilabXgc->CWindow, gc, get_xpoints(),(int) npts,
+		ScilabXgc->CurVectorStyle);
 }
 
 /* My own clipping routines  
@@ -4445,10 +4532,7 @@ static void MyDraw(integer iib, integer iif, integer *vx, integer *vy)
     if (iib > 0 && (flag1==1||flag1==3)) change_points((integer)0L,x1n,y1n);
     if (flag2==2 || flag2==3) change_points(npts-1,x2n,y2n);
     XDroutine((int)npts);
-    /**
-       XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(),(int) npts,
-       ScilabXgc->CurVectorStyle);
-    **/
+
   }
 }
 
@@ -4465,10 +4549,7 @@ static void My2draw(integer j, integer *vx, integer *vy)
 	       vxn[0],vyn[0],vxn[1],vyn[1]);
 #endif 
       XDroutine((int)npts);
-      /**
-	 XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(),(int)npts,
-	 ScilabXgc->CurVectorStyle);
-      **/
+ 
     }
 }
 
@@ -4525,8 +4606,12 @@ static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer one
 #ifdef DEBUG1
   xleft=100;xright=300;
   ybot=100;ytop=300;
-  XDrawRectangle(dpy, ScilabXgc->Cdrawable, gc,xleft,ybot,(unsigned)xright-xleft,
-		 (unsigned)ytop-ybot);
+  if (ScilabXgc->Cdrawable != (Drawable) 0)
+    XDrawRectangle(dpy, ScilabXgc->Cdrawable, gc,xleft,ybot,(unsigned)xright-xleft,
+		   (unsigned)ytop-ybot);
+  if (ScilabXgc->CurPixmapStatus != 1) 
+    XDrawRectangle(dpy,(Drawable) ScilabXgc->CWindow , gc,xleft,ybot,(unsigned)xright-xleft,
+		   (unsigned)ytop-ybot);
 #endif
 #ifdef DEBUG 
   sciprint("inside analyze\r\n");
@@ -4560,11 +4645,6 @@ static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer one
 	      int n1 ;
 	      if (onemore == 1) n1 = n+1;else n1= n;
 	      XDroutine(n1);
-	      /**
-		 XDrawLines (dpy, ScilabXgc->Cdrawable, gc, 
-		 get_xpoints(), n1,
-		 ScilabXgc->CurVectorStyle);
-	      **/
 	      return;
 	    }
 	  else
@@ -4591,10 +4671,6 @@ static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer one
 	if (flag1==1||flag1==3) change_points((integer)0L,x1n,y1n);
 	if (flag1==2||flag1==3) change_points((integer)1L,x2n,y2n);
 	XDroutine(2);
-	/**
-	   XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(),2,
-	   ScilabXgc->CurVectorStyle);	
-	**/
       }
   }
 }
