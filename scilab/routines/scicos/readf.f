@@ -24,30 +24,27 @@ c
       integer mode(2)
 c
       if(flag.eq.1) then
+c     discrete state
          n=ipar(4)
          k=int(z(1))
          ievt=ipar(3)
          kmax=int(z(2))
+         lunit=int(z(3))
+         if(k+1.gt.kmax.and.kmax.eq.n) then
 c     output
-         call dcopy(ny,z(3+n*ievt+k),n,y,1)
-         if(nevprt.gt.0) then
-c     discrete state
-            n=ipar(4)
-            k=int(z(1))
-            ievt=ipar(3)
-            kmax=int(z(2))
-            lunit=int(z(3))
-            if(k+1.gt.kmax.and.kmax.eq.n) then
+            call dcopy(ny,z(3+n*ievt+k),n,y,1)
 c     .     read a new buffer
-               no=(nz-3)/N
-               call bfrdr(lunit,ipar,z(4),no,kmax,ierr)
-               if(ierr.ne.0) goto 110
-               z(1)=1.0d0
-               z(2)=kmax
-            elseif(k.lt.kmax) then
-               z(1)=z(1)+1.0d0
-            endif
+            no=(nz-3)/N
+            call bfrdr(lunit,ipar,z(4),no,kmax,ierr)
+            if(ierr.ne.0) goto 110
+            z(1)=1.0d0
+            z(2)=kmax
+         elseif(k.lt.kmax) then
+c     output
+            call dcopy(ny,z(3+n*ievt+k),n,y,1)
+            z(1)=z(1)+1.0d0
          endif
+c
       elseif(flag.eq.3) then
          n=ipar(4)
          k=int(z(1))
