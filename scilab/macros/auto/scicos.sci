@@ -52,6 +52,11 @@ if ~super_block then
       modelica_libs=modelica_libs_0
     end
   end
+  
+  if ~exists('%scicos_context') then
+    %scicos_context=struct()
+  end
+  
   //intialize lhb menu
  
  %scicos_lhb_list=list()
@@ -270,7 +275,10 @@ end
 //set context (variable definition...)
 if type(scs_m.props.context)==10 then
   %now_win=xget('window')
-  if execstr(scs_m.props.context,'errcatch') <>0 then
+
+  [%scicos_context,ierr]=script2var(scs_m.props.context,%scicos_context)
+      
+  if ierr  <>0 then
     message(['Error occur when evaluating context:'
 	     lasterror() ])
   end
