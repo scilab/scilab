@@ -31,6 +31,10 @@
     <P>
     For the Postscript, Xfig or Gif driver, <VERB>driver-name</VERB> is a name of 
     the file where all the graphics operations are recorded.</P>
+    <P>Note that in Postscript case the generated file is not a complete
+      postscript file. It should be converted using the BEpsf or Blatexpr shell
+      programs (see printing)</P>
+      
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
