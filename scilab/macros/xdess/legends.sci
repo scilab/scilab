@@ -8,7 +8,6 @@ clr=xget('color')
 xset('line style',1)
 xset('color',xget('foreground'))
 
-
 if rhs==2 then opt=5,end
 
 [r1,r2,logflag,arect]=xgetech()
@@ -37,7 +36,7 @@ width=max(bbx(:,1))+drx*1.2+2*drx/5
 
 //upper left coordoninates
 if size(opt,'*')>1 then 
-  rep=opt;opt=0 ;
+  pos=opt;opt=0 ;
 elseif opt<1|opt>5 then 
   error('opt can take value in 1 2 3 4 5')
 end
