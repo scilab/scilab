@@ -29,6 +29,8 @@ case 10 //  a string
        cmap=greencolormap(nc);
     case 'blue'
        cmap=bluecolormap(nc);
+    case 'jet'
+       cmap=jetcolormap(nc);
     else
        error(sprintf('%s : unknown colormap name',funcName));
     end

@@ -59,6 +59,8 @@ case 1 // a matrix (must be a 4 or 6 element vector)
       end
    elseif (length(parseList(2))==4) & or(size(parseList(2))==1)
       axisVect=parseList(2)
+      axisTightX=%T;
+      axisTightY=%T;
    else
       error(sprintf('%s : axis limits must be a 4 element vector',funcName));
    end

@@ -17,7 +17,8 @@ globalState=loadGlobalGraphicState();
 if rhs==1
    win=varargin(1);
 else
-   win=xget('window');
+   f=gcf();
+   win=f.figure_id;
 end
 
 s=loadGraphicState(win);
@@ -27,10 +28,6 @@ s('viewport')=globalState('defaultViewport');
 s('Xscale')='linear';
 s('Yscale')='linear'
 s('listOfPlots')=list();
-
-xset('window',win);
-
-//xsetech(s('viewport'));
 
 saveGraphicState(s,win);  
 

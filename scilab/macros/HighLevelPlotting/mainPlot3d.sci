@@ -52,14 +52,17 @@ axisVect=[];
 foreground=[];
 background=[];
 
+// get the number of current graphic window
+
 if winsid()==[]
-  fig();
+  win=fig()
+else
+  win=get(gcf(),'figure_id');
 end
 
-savedThickness=xget('thickness');
-
-win=xget('window'); // get the number of current graphic window
-//xset('auto clear','off')  
+winH=gcf();
+imm_draw = winH.immediate_drawing;
+winH.immediate_drawing='off';
 
 while length(argList)
 
@@ -265,11 +268,7 @@ end // while length(argList)
 
 // Common 2D/3D stuff
 
-winH=gcf();
-winH.visible='off';
-
 [foreground,background]=processSFB(foreground,background,win,typeOfPlot)
-
 if edgecolor==[]
    edgecolor=foreground;
 end
@@ -329,32 +328,41 @@ else
 			triang=triang($:-1:1,:);
 			nnodes=length(X);
 
-			if typeOfPlot=='tripcolor' & length(Z)~=length(X) // when color is given for triangles, not nodes
-				Z=Z(:)';
-				if shadingType=='interp' // Averaging of value for each node
-					C=zeros(nnodes,1);
-					nV=zeros(nnodes,1);
-					t=zeros(3,1);
-					M=[-1 -1 0;1 0 1;0 1 -1];
-					for i=1:ntri // for each triangle, nodal values are weighted
-						nodes=triang(:,i); // by the measure of the associated angular sector
-						D=[X(nodes);Y(nodes)]*M;
-						D=D*diag(1../sqrt(sum(D.^2,'r')));
-						s=D'*D;
-						t=acos(s(2:3,1));t(3)=%pi-[1 1]*t;
-						nV(nodes)=nV(nodes)+t;
-						C(nodes)=C(nodes)+Z(i)*t;
+			if typeOfPlot=='tripcolor'
+				if length(Z)~=length(X) // when color is given for triangles, not nodes
+					Z=Z(:)';
+					if shadingType=='interp' // Averaging of value for each node
+						C=zeros(nnodes,1);
+						nV=zeros(nnodes,1);
+						t=zeros(3,1);
+						M=[-1 -1 0;1 0 1;0 1 -1];
+						for i=1:ntri // for each triangle, nodal values are weighted
+							nodes=triang(:,i); // by the measure of the associated angular sector
+							D=[X(nodes);Y(nodes)]*M;
+							D=D*diag(1../sqrt(sum(D.^2,'r')));
+							s=D'*D;
+							t=acos(s(2:3,1));t(3)=%pi-[1 1]*t;
+							nV(nodes)=nV(nodes)+t;
+							C(nodes)=C(nodes)+Z(i)*t;
+						end
+						Z=C./(nV+%eps);
+						clear C;
+//						Z=matrix(Z(triang),3,ntri);
 					end
-					Z=C./(nV+%eps);
-					clear C;
+				end
+				if shadingType~="interp"
+					X=matrix(X(triang),3,ntri); 
+					Y=matrix(Y(triang),3,ntri);
 					Z=matrix(Z(triang),3,ntri);
 				end
-			elseif typeOfPlot~='triplot'
-				Z=matrix(Z(triang),3,ntri);
+			else
+				if typeOfPlot~='triplot'
+					Z=matrix(Z(triang),3,ntri);
+				end
+				X=matrix(X(triang),3,ntri); 
+				Y=matrix(Y(triang),3,ntri);
 			end
 
-			X=matrix(X(triang),3,ntri); 
-			Y=matrix(Y(triang),3,ntri);
 
 			if typeOfPlot=='trisurfl' // Computation of normals and illumination
 
@@ -394,21 +402,50 @@ else
 				[zx,zy]=nonParametricDiffData(X,Y,Z');
 				Z=Z+%i*matrix(computeLight(nonParametricNormals(zx,zy),lightVect),ny,nx)';
 			end
-			[X,Y,Z]=genfac3d(X,Y,Z);
-		else  
-
+			if typeOfPlot=='pcolor' & shadingType=='interp'
+					p=prod(size(X));
+					q=prod(size(Y));
+					_X = ones(Y).*.X;
+					Y = Y.*.ones(X);
+					X=_X;
+					Z = matrix(Z,p*q,1);
+					xxb=(1:p-1)';xx=[];
+					for i=0:q-2; 
+						xx=[ xx; xxb+p*i*ones(xxb)];
+					end
+					[Ntr,vv]=size(xx);
+					triang=[xx,xx+ones(xx),xx+(p+1)*ones(xx)];
+					triang=[triang;xx,xx+(p)*ones(xx),xx+(p+1)*ones(xx)]';
+					ntri=size(triang,2);
+			else
+					[X,Y,Z]=genfac3d(X,Y,Z);
+			end
+		else
 			[nv,nu]=size(X)          // parametric case
 			if typeOfPlot=='surfl'
-			[xu,yu,zu,xv,yv,zv]=parametricDiffData(X,Y,Z);
-			Z=Z+%i*matrix(computeLight(parametricNormals(xu,yu,zu,...
-						xv,yv,zv),lightVect),nv,nu);
-         end
-		 
-		// Now convert X,Y and Z to polygons	
+				[xu,yu,zu,xv,yv,zv]=parametricDiffData(X,Y,Z);
+				Z=Z+%i*matrix(computeLight(parametricNormals(xu,yu,zu,...
+							xv,yv,zv),lightVect),nv,nu);
+    	     end
 
-		[X,Y,Z]=generate3dPolygons(X,Y,Z,numberOfVertices,surfaceIsParam);
- 
-      end
+			if typeOfPlot=='pcolor' & shadingType=='interp'
+					p=nu;
+					q=nv;
+					X = matrix(X,p*q,1);
+					Y = matrix(Y,p*q,1);
+					Z = matrix(Z,p*q,1);
+					xxb=(1:p-1)';xx=[];
+					for i=0:q-2; 
+						xx=[ xx; xxb+p*i*ones(xxb)];
+					end
+					[Ntr,vv]=size(xx);
+					triang=[xx,xx+ones(xx),xx+(p+1)*ones(xx)];
+					triang=[triang;xx,xx+(p)*ones(xx),xx+(p+1)*ones(xx)]';
+					ntri=size(triang,2);
+			else
+				[X,Y,Z]=generate3dPolygons(X,Y,Z,numberOfVertices,surfaceIsParam);
+			end
+	    end
       
 	elseif type(Z)==13 // if the surface is defined by a function
 
@@ -436,18 +473,21 @@ else
 
 	end
 
-	xset('dashes',addcolor(edgecolor));
-
 	if typeOfPlot=='mesh' | typeOfPlot=='trimesh'
 
 		if hidden
-			c=addcolor(facecolor);   
+			fc=facecolor*255;
+			c=color(fc(1),fc(2),fc(3));   
 		else
 			c=0;
 		end
 
 		[modeStart]=process3DPrelim(win,axisVect,axisRatio,axisStyle,[],[]);
-		doThePlot3d(X,Y,Z,azimuth,elevation,labels,[c modeStart],axis());
+		ec=edgecolor*255;
+		xset('color',color(ec(1),ec(2),ec(3)));
+		plot3d(X,Y,Z,azimuth,elevation,labels,[c modeStart],axis());
+		a=gca();
+		a.foreground=winH.foreground;
 
 	elseif 	typeOfPlot=='surf' | ...
 			typeOfPlot=='pcolor' | ...
@@ -546,15 +586,21 @@ else
 			
 			xclip('clipgrf')
 
-			if shadingType=='flat'
-				xfpolys(X,Y,-C)
-			elseif shadingType=='faceted'
-				xset('dashes',addcolor(edgecolor));
-				xfpolys(X,Y,C)
-			elseif shadingType=='interp'
-				xfpolys(X,Y,C)
+			if typeOfPlot=='tripcolor' & shadingType=='interp'			
+				fec(X,Y,[1:ntri;triang;zeros(1,ntri)]',Z,colminmax=[tab(1) tab($)],zminmax=[minC maxC])
+			elseif typeOfPlot=='pcolor' & shadingType=='interp'
+				fec(X,Y,[1:ntri;triang;zeros(1,ntri)]',Z,colminmax=[tab(1) tab($)],zminmax=[minC maxC])
+			else
+				if shadingType=='flat'
+					xfpolys(X,Y,-C)
+				elseif shadingType=='faceted'
+					xset('dashes',addcolor(edgecolor));
+					xfpolys(X,Y,C)
+				elseif shadingType=='interp'
+					xfpolys(X,Y,C)
+				end
 			end
-			
+						
 			xclip()
 
 			// Now draw the axis and grid (2nd part of process2DAxis)
@@ -570,10 +616,17 @@ else
 			if Ylabel~=" "
 			   ylabel(Ylabel);
 			end
-
+			if colorBar~='off'
+			   processColorBar(tab,colorBar,state);
+			end
 		else
 			[modeStart]=process3DPrelim(win,axisVect,axisRatio,axisStyle,colorBar,tab,fontSize);
-			doThePlot3d1(X,Y,list(Z,C),azimuth,elevation,labels,[flag modeStart],axis());
+			state=loadGraphicState(win);
+			plot3d1(X,Y,list(Z,C),azimuth,elevation,labels,[flag modeStart],axis());
+
+			if colorBar~='off'
+				processColorBar(tab,colorBar,state);
+			end
 		end
 
 	else
@@ -596,9 +649,6 @@ if Title~=[]
    title(Title);
 end
 
-pause
-
-winH.visible='on';
-
+winH.immediate_drawing=imm_draw; // <=> smarter than drawlater
 
 endfunction // end of mainPlot3d

@@ -49,13 +49,12 @@ while length(argList)
       end
       winNum=int(argList(1));
       state=loadGraphicState(winNum); // get the graphic state of the window
-
       if or(winsid()==winNum) // if winNum is the number of an existing window
-         xset('window',winNum); // activate the window
+         scf(winNum); // activate the window
          dontClear=%T;
       else
-         xset('window',winNum); // create the window
-	 newWin=%T;
+         scf(winNum); // create the window
+		 newWin=%T;
       end
       argList(1)=null();
 
@@ -104,6 +103,9 @@ while length(argList)
 
 end // while length(argList)
 
+winH=gcf();
+imm_draw = winH.immediate_drawing;
+winH.immediate_drawing='off';	
 
 if cmap~=[]
 	RGBmap=state('RGBcolormap');
@@ -111,9 +113,9 @@ if cmap~=[]
 	n2=size(RGBmap,1);
 	finalColormap=[state('colormap');RGBmap];
 	state('RGBcolormaptable')=n1+1:n1+n2;
-	xset('colormap',finalColormap);	
-	xset('background',addcolor(state('frameColor')));
-	xset('foreground',addcolor(state('foreground')));
+	winH.color_map=finalColormap;
+	fbg=state('frameColor')*255;
+	winH.background=color(fbg(1),fbg(2),fbg(3));
 end
 
 saveGraphicState(state,winNum);
@@ -123,5 +125,8 @@ if newWin
 end
 
 varargout(1)=winNum;
+
+winH.immediate_drawing=imm_draw; // <=> smarter than drawlater
+
 
 // end of fig

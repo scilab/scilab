@@ -9,10 +9,11 @@ function draw2DAxis(state,nTicksX,nTicksY,foreground,background,modeStart,gridFl
 
       xset('line style',1);
       
-      plot2d1(modeScale,minX,minY,back,modeStart,' ',ax,[2,nTicksX,2,nTicksY]);
+      plot2d1(modeScale,minX,minY,,modeStart,' ',ax,[2,nTicksX,2,nTicksY]);
 
       if gridFlag
       	 gc=addcolor(gridColor);
-         xgrid(gc);
+		 set(gca(),'grid',[gc gc]);
+		 pause
       end
       	  

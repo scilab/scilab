@@ -31,11 +31,13 @@ Title=[];
 gridFlag=%f;
 gridColor=[];
 
-if winsid()==[]
-  fig()
-end
+// get the number of current graphic window
 
-win=xget('window'); // get the number of current graphic window
+if winsid()==[]
+  win=fig()
+else
+  win=get(gcf(),'figure_id');
+end
 
 while length(argList)
    
@@ -215,22 +217,27 @@ state=loadGraphicState(win);
 for k=1:length(liste)
 	[X,Y,col,markerId,markerSize,lineStyle]=liste(k)(1:6);
 	if k==1 & state('nextPlot')=='erase'
-   		plot2d(X,Y,style=col,strf=modeStart,logflag=modeScale,rect=state('axis'));
+   		plot2d(X,Y,style=col,frameflag=1,rect=state('axis'));
 	else
-   		plot2d(X,Y,style=col,strf=modeAdd);
+   		plot2d(X,Y,style=col,frameflag=0);
 	end
     h=gce();h=h.children;
 	h.thickness=markerSize;
 	h.line_style=lineStyle;
 	if markerId~=[]
 		if lineStyle>0
-			plot2d(X,Y,style=col,strf=modeAdd);
+			plot2d(X,Y,style=col,frameflag=0);
 			h=gce();h=h.children;
 		end
 		h.mark_mode='on';
 		h.mark_style=markerId;
 		h.mark_size=markerSize;
 	end
+end
+
+if gridFlag
+     gc=addcolor(gridColor);
+	 set(gca(),'grid',[gc gc]);
 end
 
 // Now process the legends (if applicable)
@@ -250,6 +257,8 @@ end
 if Title~=[]
    title(Title);
 end
+
+
 
 winH.immediate_drawing=imm_draw; // <=> smarter than drawlater
 

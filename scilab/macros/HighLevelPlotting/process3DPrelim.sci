@@ -1,18 +1,14 @@
 function [modeStart]=process3DPrelim(win,axisVect,axisRatio,axisStyle,colorBar,tab,fontSize)
+
 if colorBar==[]
 colorBar='off'
 end
+
 state=loadGraphicState(win);
 
 viewport = state('viewport');
 
 if state('nextPlot')=='erase'
-
-	if fontSize==-1
-		setFontSize(viewport)
-	else
-		xset('font size',fontSize);
-	end
 
 	minX=axisVect(1); maxX=axisVect(2);
 	minY=axisVect(3); maxY=axisVect(4);
@@ -47,17 +43,9 @@ if state('nextPlot')=='erase'
 	state('ech')=ech;
 	state('cbech')=cbech;
 
-	if colorBar~='off'
-		processColorBar(tab,colorBar,state);
-	end
-
-	xsetech(wrect=state('ech'),arect=[0 0 0 0]);  
-
 else
    modeStart=[0 0];
 end
 
 
-
-
-saveGraphicState(state,win); // save the state of the current window
+setCurrentViewport(state,win,[])

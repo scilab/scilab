@@ -88,7 +88,7 @@ modeStart='0'+y+z;
 
 modeAdd='0'+y+z;
 
-modeScale='g';
+modeScale='';
 
 if state('nextPlot')=='erase' 
       modeAdd='00'+z;
@@ -106,10 +106,4 @@ else
    modeScale=modeScale+'n';
 end
 
-
-if colorBar~='off'
-   state('colorbar')=colorBar;
-   processColorBar(tab,colorBar,state);
-end
-
-setCurrentViewport(state,win)
+setCurrentViewport(state,win,modeScale)

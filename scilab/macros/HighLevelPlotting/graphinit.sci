@@ -76,14 +76,25 @@ else
       error('graphinit : background color specification must be a 3-vector')
 end 
 
+clum = ([.298936021 .58704307445 .114020904255]*bg' >= .5) + 1;
+if clum==1
+     fg = [1 1 1];
+     fbg = 0.7*bg + .3*fg;
+else
+     fg=[0 0 0];
+ 	fbg=0.7*bg;
+end
+
 cmap(17,:)=bg(:)';
 
 globalGraphicState=tlist(['globalGraphicState';
 'bg';
+'fg';
+'fbg';
 'defaultViewport';
 'defaultColormap';
 'defaultRGBcolormap';
-'simpleColorTable'],bg,[0,0,1,1],cmap,defaultColormap,simpletable);
+'simpleColorTable'],bg,fg,fbg,[0,0,1,1],cmap,defaultColormap,simpletable);
 
 if length(myWorld)==0 // first call to graphinit()
    graphicState=list();
