@@ -18,6 +18,8 @@ function [Q,M]=pbig(A,thres,flag)
  elseif flag=='d' then 
    deff('[flag]=%smallei(x)','flag=abs(x) >= thres')
    deff('[flag]=%bigeig(x)','flag=abs(x) < thres')
+ else
+  error('Invalid flag value, it must be '"c"' or '"d"' ')
  end
 // 
  [X,dsmall] = schur(A,%smallei);
