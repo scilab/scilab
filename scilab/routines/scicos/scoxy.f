@@ -25,7 +25,7 @@ c
 c
       double precision xmin,xmax,ymin,ymax,rect(4)
       integer n,verb,cur,na,v,wid,nax(4)
-      character*20 strf,buf
+      character*40 strf,buf
       double precision dv
       double precision frect(4)
       character*(4) logf
@@ -33,6 +33,9 @@ c
 
       data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
       data cur/0/,verb/0/
+      integer kfun
+      common /curblk/ kfun
+
 
 c     
 c   
@@ -125,6 +128,14 @@ c     draw new point
      &        0,0,v,dv,dv,dv,dv)
          call dr1('xset'//char(0),'alufunction'//char(0),3,v,v,v,v,v,
      $        dv,dv,dv,dv)
+         n=40
+         call getlabel(kfun,buf,n)
+         if(n.gt.39) n=39
+         buf(n+1:n+1)=char(0)
+         if (n.eq.1.and.buf(1:1).eq.' ') then
+         else
+            call dr('xname'//char(0),buf,v,v,v,v,v,v,dv,dv,dv,dv)
+         endif
          call plot2d(rect(1),rect(2),1,1,-1,strf,buf,rect,nax)
          call dr1('xset'//char(0),'thickness'//char(0),ipar(5),v,
      $        v,v,v,v,dv,dv,dv,dv)

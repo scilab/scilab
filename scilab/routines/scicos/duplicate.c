@@ -108,7 +108,7 @@ int C2F(intcpass2)(fname)
   static int n17,n18,n19,n20,n21,n22,n23,n24,n25,n26,n27,n28,n29,n30;
   static int minlhs=5, maxlhs=5, minrhs=5, maxrhs=5;
   static int one=1,deux=2;
-  static int n33,n34,n35,n36,n37,n38,n1111,n41,n42,*y40,l40,l39;
+  static int n33,n34,n35,n36,n37,n38,n1111,n1313,n41,n42,*y40,l40,l39;
   int m31=8,n31=1,l31,n32=8;
   static int *header,*li,*le1,*le11,*le2,*le3,*le4,*le5,*le6,*le7,*le8,*le9;
   static int *le10,*le12,*le13,*header1,*lii;
@@ -125,7 +125,7 @@ int C2F(intcpass2)(fname)
 			"execlk","ordclk","cord","oord","zord","critev","nb","ztyp",
 			"nblk","ndcblk","subscr","funtyp","iord","labels"};
   int m33=30,n39=1,l32,n40=30;
-  char *y36,**y8,*y37;
+  char **y36,**y8,*y37;
   int i,j,k,ok,zeros=0;
   int *bllst2,*bllst3,*bllst4,*bllst5,*bllst12,*bllst9;
   int *bllst2ptr,*bllst3ptr,*bllst4ptr,*bllst112,*bllst6ptr,*bllst7ptr;
@@ -450,9 +450,11 @@ int C2F(intcpass2)(fname)
       /* 13ieme element de la list labels*/
       le13=(int*) listentry(li,14);
       le1313=((int *) (le13+6));
-      if ((bllst13[k]=(char*) malloc(sizeof(char)*2)) ==NULL )  return 0;
-      ((char*) bllst13[k])[1]='\0'; 
-      C2F(cvstr)(&one,le1313,bllst13[k],&one,str_len);
+      //    modifss
+      n1313=le13[5]-1;
+      if ((bllst13[k]=(char*) malloc(sizeof(char)*(n1313+1))) ==NULL )  return 0;
+      ((char*) bllst13[k])[n1313]='\0'; 
+      C2F(cvstr)(&n1313,le1313,bllst13[k],&one,str_len);
     }
   
   GetRhsVar(2, "i", &m1, &n1, &l1);
@@ -675,7 +677,7 @@ int C2F(intcpass2)(fname)
     }
   y35=(int*) (iord+1);
   n36=iord[0]/2;
-  y36=(char*) (bllst13+1);
+  y36=(char**) (bllst13+1);
   n37=(int) bllst13[0];
   if ((vecnull=malloc(sizeof(int))) ==NULL )  return 0;		  
   y38=(int*) (vecnull+1);
@@ -709,7 +711,7 @@ int C2F(intcpass2)(fname)
   CreateListVarFromPtr(7,27,"i", &n34, &one, &y33);
   CreateListVarFromPtr(7,28,"i", &n35,&one,  &y34);
   CreateListVarFromPtr(7,29,"i", &n36, &deux, &y35);
-  CreateListVarFromPtr(7,30,"c", &n37, &one, &y36);
+  CreateListVarFromPtr(7,30,"S", &n37, &one, y36);
   
   LhsVar(2) = 7;
   
@@ -794,7 +796,7 @@ int C2F(intcpass2)(fname)
 
 int connection(int* path_out,int* path_in) 
 {
-  int mlhs,mrhs,ibegin;
+  int mlhs,mrhs,ibegin,i;
   static int l1, m1, n1, m2, n2, l2, il, l, l5,ninnout;
   static char name[] = "under_connection" ;
   
@@ -802,10 +804,12 @@ int connection(int* path_out,int* path_in)
   n1=n2=1;
   m2=path_in[0];
   
-  CreateVar(1, "i", &m1, &n1, &l1);  
-  *istk(l1)=*(path_out+1);
-  CreateVar(2, "i", &m2, &n2, &l2);
-  *istk(l2)=*(path_in+1);
+  CreateVar(1, "i", &n1, &m1, &l1);  
+  for (i=1; i<=m1; i++)
+    *istk(l1+i-1)=path_out[i];
+  CreateVar(2, "i", &n2, &m2, &l2);
+  for (i=1; i<=m2; i++)
+    *istk(l2+i-1)=path_in[i];
   
   Convert2Sci(1);
   Convert2Sci(2);

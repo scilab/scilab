@@ -20,7 +20,7 @@ c
 c
       double precision ymin,ymax,per,rect(4),xx(2),yy(2)
       integer verb,cur,na,v,wid,nax(4)
-      character*20 strf,buf
+      character*40 strf,buf
       double precision dv
       double precision frect(4)
       character*(4) logf
@@ -28,6 +28,9 @@ c
 
       data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
       data cur/0/,verb/0/
+      integer kfun
+      common /curblk/ kfun
+
 c      data yy / 0.00d0,0.80d0/
 c     
 c     
@@ -154,6 +157,14 @@ c
          call dr1('xset'//char(0),'dashes'//char(0),0,0,0,
      &        0,0,v,dv,dv,dv,dv)
          call plot2d(rect(1),rect(2),1,1,-1,strf,buf,rect,nax)
+         n=40
+         call getlabel(kfun,buf,n)
+         if(n.gt.39) n=39
+         buf(n+1:n+1)=char(0)
+         if (n.eq.1.and.buf(1:1).eq.' ') then
+         else
+            call dr('xname'//char(0),buf,v,v,v,v,v,v,dv,dv,dv,dv)
+         endif
          call sxevents()
          z(1)=0.0d0
       endif

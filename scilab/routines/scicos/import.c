@@ -245,14 +245,17 @@ integer *type ;/* type of the imported data 0:integer,1:double */
 }
 void 
 C2F(getlabel)(kfun,label,n)
-integer *n, *kfun;  /* length of the label */
+integer *n, *kfun;  /* length of the label 
+                       as input n gives the max length expected*/
 char *label;    
 {
     int k;
     int job=1;
 
     k= *kfun;
-    *n=(integer)(scicos_imp.izptr[k]-scicos_imp.izptr[k-1]);
+    if (*n>(integer)(scicos_imp.izptr[k]-scicos_imp.izptr[k-1])){
+      *n=(integer)(scicos_imp.izptr[k]-scicos_imp.izptr[k-1]);
+    }
     if (*n>0 )
 	F2C(cvstr)(n,&(scicos_imp.iz[scicos_imp.izptr[k-1]-1]),label,&job,*n);
 }

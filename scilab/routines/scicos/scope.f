@@ -25,8 +25,7 @@ c
 c
       double precision dt,ymin,ymax,per,rect(4),tsave
       integer i,n,verb,cur,na,v,wid,nax(4)
-      character*20 strf,buf
-      character*4 name
+      character*40 strf,buf
       double precision dv
       double precision frect(4)
 c      character*(4) logf
@@ -34,6 +33,8 @@ c      character*(4) logf
 
       data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
       data cur/0/,verb/0/
+      integer kfun
+      common /curblk/ kfun
 
 c     
       if(nipar.lt.16) then
@@ -128,8 +129,8 @@ c     clear window
 c            call dr1('xset'//char(0),'clipping-p'//char(0),-1.0d0,
 c     &           -1.0d0,200000.0d0,200000.0d0,v,dv,dv,dv,dv)
             call plot2d(rect(1),rect(2),1,1,-1,strf,buf,rect,nax,4,21)
-c            call dr1('xset'//char(0),'clipping'//char(0),rect(1),ymin,per,
-c     &           ymax,v,dv,dv,dv,dv)
+c            call dr('xset'//char(0),'clipping'//char(0),rect(1),rect(2),
+c     &           rect(3),rect(4),v,v,dv,dv,dv,dv)
          endif
          t=tsave
 c
@@ -180,6 +181,14 @@ c     to force dimensions update
          call dr1('xset'//char(0),'dashes'//char(0),0,0,0,
      &        0,0,v,dv,dv,dv,dv)
          call plot2d(rect(1),rect(2),1,1,-1,strf,buf,rect,nax,4,21)
+         n=40
+         call getlabel(kfun,buf,n)
+         if(n.gt.39) n=39
+         buf(n+1:n+1)=char(0)
+         if (n.eq.1.and.buf(1:1).eq.' ') then
+         else
+            call dr('xname'//char(0),buf,v,v,v,v,v,v,dv,dv,dv,dv)
+         endif
          z(1)=0.0d0
          z(2)=t
          call dset(nu*N,0.0d0,z(3),1)

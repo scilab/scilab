@@ -27,7 +27,7 @@ c
 c
       double precision dt,ymin,ymax,per,rect(4),tsave
       integer i,n,verb,cur,na,v,wid,nax(4)
-      character*20 strf,buf
+      character*40 strf,buf
       double precision dv
       double precision frect(4)
       character*(4) logf
@@ -35,6 +35,9 @@ c
       logical herited
 
       data cur/0/,verb/0/
+      integer kfun
+      common /curblk/ kfun
+
 
 c     
       call dr1('xgetdr'//char(0),name,v,v,v,v,v,v,
@@ -195,6 +198,14 @@ c
          strf='011'//char(0)
          call dr1('xset'//char(0),'dashes'//char(0),0,0,0,
      &        0,0,v,dv,dv,dv,dv)
+         n=40
+         call getlabel(kfun,buf,n)
+         if(n.gt.39) n=39
+         buf(n+1:n+1)=char(0)
+         if (n.eq.1.and.buf(1:1).eq.' ') then
+         else
+            call dr('xname'//char(0),buf,v,v,v,v,v,v,dv,dv,dv,dv)
+         endif
 
          do 20 kwid=1,nwid
             rect(1)=per*(1+n1)
