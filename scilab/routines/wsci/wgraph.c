@@ -1083,15 +1083,15 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
 	    return 0;
 	  }
       return 0;
-     case WM_KEYDOWN:
+      case WM_KEYDOWN:
 		{
 			switch (wParam)
 			{
 				case VK_F3:
 	      		{
-					ScilabGC->lpmw.ShowToolBar = ! ScilabGC->lpmw.ShowToolBar;
-					if (ScilabGC->lpmw.ShowToolBar)	MessageBox(NULL,"Montre","Toolbar",MB_OK);
-					else MessageBox(NULL,"Cache","Toolbar",MB_OK);
+			
+					if (ScilabGC->lpmw.ShowToolBar)	HideGraphToolBar(ScilabGC);
+					else ShowGraphToolBar(ScilabGC);
 
 				}
 				break;
@@ -1102,6 +1102,7 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
 	      	
 			}
 		}
+
     case WM_CHAR:
       check_pointer_win(&x,&y,&iwin);
       PushClickQueue (ScilabGC->CurWindow, x,y,wParam,0,0);

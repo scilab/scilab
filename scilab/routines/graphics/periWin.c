@@ -21,6 +21,7 @@
 #include <stdarg.h>
 
 #include "../wsci/wresource.h"
+#include "../wsci/resource.h"
 #include "../wsci/wcommon.h"
 #include "../wsci/wgraph.h"
 
@@ -3918,6 +3919,55 @@ void set_c(coli)
   ScilabXgc->hBrush = hBrush;
 }
 
+#define ToolBarHeight 24
+/*-----------------------------------------------------------------------------------*/
+void CreateAToolBar(struct BCG * ScilabGC) 
+/* Temporaire */
+
+{ 
+  HWND hwndTB; 
+  HICON IconButton;
+  RECT RectWindowParent;
+
+  // Create a toolbar. 
+  GetClientRect(ScilabGC->hWndParent,&RectWindowParent);
+   hwndTB = CreateWindowEx(0, TOOLBARCLASSNAME, (LPSTR) NULL, 
+         WS_CHILD | WS_VISIBLE , 0, 0, ToolBarHeight, RectWindowParent.right-RectWindowParent.left,ScilabGC->hWndParent, 
+        NULL, graphwin.hInstance, NULL); 
+   ScilabGC->hWndToolBar=hwndTB;
+
+  ScilabGC->lpmw.hButton[0]= CreateWindow("button","Zoom",WS_CHILD|WS_VISIBLE|BS_ICON ,
+										  0, 0,
+										  24, 24,
+                                          ScilabGC->hWndToolBar, (HMENU) 15/*index*/,
+                                          graphwin.hInstance, NULL);
+  IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_ZOOM,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
+  SendMessage(ScilabGC->lpmw.hButton[0],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+   CreateMyTooltip (ScilabGC->lpmw.hButton[0], "Zoom"); 
+
+  ScilabGC->lpmw.hButton[1]= CreateWindow("button","UnZoom",WS_CHILD|WS_VISIBLE|BS_ICON ,
+										  24, 0,
+										  24, 24,
+                                          ScilabGC->hWndToolBar, (HMENU) 16/*index*/,
+                                          graphwin.hInstance, NULL);
+  IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_UNZOOM,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
+  SendMessage(ScilabGC->lpmw.hButton[1],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+  CreateMyTooltip (ScilabGC->lpmw.hButton[1], "UnZoom"); 
+
+  ScilabGC->lpmw.hButton[2]= CreateWindow("button","2D/3D Rotation",WS_CHILD|WS_VISIBLE|BS_ICON ,
+										  48, 0,
+										  24, 24,
+                                          ScilabGC->hWndToolBar, (HMENU) 17/*index*/,
+                                          graphwin.hInstance, NULL);
+  IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_3DROT,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
+  SendMessage(ScilabGC->lpmw.hButton[2],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+  CreateMyTooltip (ScilabGC->lpmw.hButton[2], "2D/3D Rotation"); 
+
+
+   //ShowWindow(hwndTB, SW_SHOW); 
+   
+   //return hwndTB; 
+} 
 /*-----------------------------------------------------------------------------------*/
 /** Initialyze the dpy connection and creates graphic windows **/
 /** If v2 is not a nul pointer *v2 is the window number to create **/
@@ -4003,17 +4053,6 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   sprintf((char *)winname,"BG%d", (int)WinNum);
 
 
-   if (GraphToolBarDefault)
-  {
-	  ScilabXgc->lpmw.ShowToolBar=TRUE;
-	  //graphwin.ButtonHeight=32;
-  }
-  else
-  {
-	  ScilabXgc->lpmw.ShowToolBar=FALSE;
-	  //graphwin.ButtonHeight=0;
-  }
-
   ScilabXgc->CWindowWidth =  rect.right;
   ScilabXgc->CWindowHeight = rect.bottom - ( rect1.bottom - rect1.top);
   ScilabXgc->CWindow = CreateWindow(szGraphClass, winname,
@@ -4088,6 +4127,19 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   InitMissileXgc(PI0,PI0,PI0,PI0);/* a laisser ici */
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
+  
+  CreateAToolBar(ScilabXgc) ;
+  if (GraphToolBarDefault)
+	{
+		ShowGraphToolBar(ScilabXgc);
+	}
+	else
+	{
+		HideGraphToolBar(ScilabXgc);
+	}
+
+  
+
   ScilabXgc->Inside_init=0;
 }
 
