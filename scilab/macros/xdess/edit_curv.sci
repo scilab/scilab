@@ -37,7 +37,7 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 xset('default')
-
+windows=[] //for getclick
 ok=%t
 if rhs==0 then x=[];y=[],end;
 if rhs==1 then y=x;x=(1:size(y,'*'))',end
