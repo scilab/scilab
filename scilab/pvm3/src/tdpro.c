@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: tdpro.c,v 1.1 2001/04/26 07:47:12 scilab Exp $";
+	"$Id: tdpro.c,v 1.2 2002/10/14 14:37:55 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,66 @@ static char rcsid[] =
  *
  *	Entry points for messages from local tasks.
  *
-$Log: tdpro.c,v $
-Revision 1.1  2001/04/26 07:47:12  scilab
-Initial revision
-
+ * $Log: tdpro.c,v $
+ * Revision 1.2  2002/10/14 14:37:55  chanceli
+ * update
+ *
+ * Revision 1.33  2001/09/25 21:20:20  pvmsrc
+ * Minor TMPNAMFUN()/tmpnam() cleanup.
+ * 	- moved macro def to pvm3.h, renamed PVMTNPMAN().
+ * 	- same for LEN_OF_TMP_NAM -> PVMTMPNAMLEN.
+ * 	- mostly a huge waste of time, since *both* tmpnam() & mktemp()
+ * 		produce the same "dangerous" warning message in Linux/gcc...
+ * 	- damn.
+ * (Spanker=kohl)
+ *
+ * Revision 1.32  2001/04/23 14:16:14  pvmsrc
+ * Added new working directory option to pvm_spawn().
+ * 	- use "where" argument to cram in working directory,
+ * 		e.g. where = "msr.epm.ornl.gov:/home/user/project/bozo"
+ * 	- TM_SPAWN strips out working directory & creates PVMSPAWNWD env var
+ * 	- exectasks() (called by DM_EXEC or SM_EXEC) checks for env var
+ * 		and does a chdir() (even uses getcwd() to reset directory :-).
+ * 	- should not introduce any run-time incompatibility with older
+ * 		PVM releases.
+ * 	- PvmTaskHost or PvmTaskArch flags need not be used, i.e.
+ * 		pvm_spawn( "foo", 0, PvmTaskDefault, ":/tmp", 1, &tid ) works.
+ * (Spanker=kohl)
+ *
+ * Revision 1.31  2001/02/07 23:15:58  pvmsrc
+ * 2nd Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.30  2000/02/17 23:12:20  pvmsrc
+ * *** Changes for new BEOLIN port ***
+ * 	- MPP-like, similar to SP2, etc.
+ * 	- submitted by Paul Springer <pls@smokeymt.jpl.nasa.gov>.
+ * 	- format-checked & cleaned up by Jeembo...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.29  2000/02/16 22:00:30  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.28  1999/07/08 19:00:16  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.27  1998/11/20  20:06:49  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (spanker=sscott)
+ *
+ * Revision 1.26  1998/01/12  21:13:31  pvmsrc
+ * Replaced inline constants with new task output op defines.
+ * 	- TO_NEW == -2.
+ * 	- TO_SPAWN == -1.
+ * 	- TO_EOF == 0.
+ * (Spanker=kohl)
+ *
  * Revision 1.25  1997/09/22  21:14:02  pvmsrc
  * Modified TM_CONN2/tm_conn2() linkage for shell-spanwed tasks.
  * 	- check for additional task name packed in message, save it in
@@ -206,6 +262,13 @@ Initial revision
  *
  */
 
+#include <stdio.h>
+
+#ifdef IMA_TITN
+#include <bsd/sys/types.h>
+#else
+#include <sys/types.h>
+#endif
 
 #ifdef NEEDMENDIAN
 #include <machine/endian.h>
@@ -216,18 +279,23 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32 
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
+#include "..\xdr\types.h"
+#include "..\xdr\xdr.h"
+#else
 #include <rpc/types.h>
 #include <rpc/xdr.h>
-#include <sys/types.h>
+#endif
+
+#ifdef WIN32
+#include <time.h>
+#else
 #include <sys/time.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#else
-#include "..\xdr\types.h"
-#include "..\xdr\xdr.h"
-#include <sys/types.h>
-#include <time.h>
 #endif
 
 #include <fcntl.h>
@@ -237,9 +305,7 @@ Initial revision
 #include <strings.h>
 #endif
 #include <errno.h>
-#include <stdio.h>
 
-#include <pvm3.h>
 #include <pvmproto.h>
 #include "pvmalloc.h"
 #include "pmsg.h"
@@ -250,24 +316,13 @@ Initial revision
 #include "bfunc.h"
 #include <pvmtev.h>
 #include "global.h"
+#ifdef IMA_BEOLIN
+#include "pvmdmp.h"
+#endif
 
 #ifndef	min
 #define	min(a,b)	((a)<(b)?(a):(b))
 #endif
-
-#ifdef	NOTMPNAM
-#define	TMPNAMFUN(x)	pvmtmpnam(x)
-#define	LEN_OF_TMP_NAM	32
-char *pvmtmpnam();
-
-#else	/*NOTMPNAM*/
-#define	TMPNAMFUN(x)	tmpnam(x)
-#ifdef	L_tmpnam
-#define	LEN_OF_TMP_NAM	L_tmpnam
-#else
-#define	LEN_OF_TMP_NAM	64
-#endif
-#endif	/*NOTMPNAM*/
 
 
 /***************
@@ -455,7 +510,7 @@ tm_connect(tp, mp)
 	struct pmsg *mp;
 {
 	int ver;						/* task's libpvm t-d proto version */
-	char authfn[LEN_OF_TMP_NAM];	/* t-auth file name */
+	char authfn[PVMTMPNAMLEN];	/* t-auth file name */
 	int d;
 	int cc;
 
@@ -483,6 +538,11 @@ tm_connect(tp, mp)
 		goto bail;
 	}
 
+#ifdef NOPROT
+	tp->t_authnam = TALLOC(PVMTMPNAMLEN, char, "auth");
+	(void)PVMTMPNAMFUN(tp->t_authnam);
+#else
+
 	/*
 	*	write in t-auth file, create empty d-auth file that task
 	*	must write and we'll check later
@@ -500,8 +560,8 @@ tm_connect(tp, mp)
 	}
 	(void)close(d);
 
-	tp->t_authnam = TALLOC(LEN_OF_TMP_NAM, char, "auth");
-	(void)TMPNAMFUN(tp->t_authnam);
+	tp->t_authnam = TALLOC(PVMTMPNAMLEN, char, "auth");
+	(void)PVMTMPNAMFUN(tp->t_authnam);
 
 #ifndef IMA_OS2
 	if ((tp->t_authfd = open(tp->t_authnam, O_RDONLY|O_CREAT|O_TRUNC, 0600))
@@ -514,6 +574,8 @@ tm_connect(tp, mp)
 		tp->t_authnam = 0;
 		goto bail;
 	}
+
+#endif
 
 	/*
 	*	task's turn to auth
@@ -595,6 +657,8 @@ tm_conn2(tp, mp)
 	*	check that task could write d-auth file
 	*/
 
+#ifndef NOPROT
+
 	if ((cc = read(tp->t_authfd, &c, 1)) == -1) {
 		pvmlogperror("tm_conn2() can't read d-auth file");
 		return 0;
@@ -608,6 +672,9 @@ tm_conn2(tp, mp)
 	(void)close(tp->t_authfd);
 	tp->t_authfd = -1;
 	(void)unlink(tp->t_authnam);
+
+#endif
+
 	PVM_FREE(tp->t_authnam);
 	tp->t_authnam = 0;
 
@@ -621,6 +688,16 @@ tm_conn2(tp, mp)
 			pvmlogprintf("tm_conn2() reconnect task t%x\n", tp2->t_tid);
 		}
 		tp->t_sched = tp2->t_sched;
+
+#ifdef IMA_BEOLIN
+	} else if ( (tp2 = mpp_find(tp))
+			&& !(tp2->t_flag & (TF_AUTH|TF_CONN)) ) {
+		if (pvmdebmask & PDMTASK) {
+			pvmlogprintf(
+					"tm_conn2() reconnect task t%x pid=%d name=%s\n",
+					tp2->t_tid,tp2->t_pid, tp2->t_a_out );
+		}
+#endif
 
 	} else {
 		if ((tid = tid_new()) < 0) {
@@ -673,7 +750,7 @@ tm_conn2(tp, mp)
 			mp2->m_ctx = pvmtracer.outctx;
 			mp2->m_tag = pvmtracer.outtag;
 			pkint(mp2, tid);
-			pkint(mp2, -2);
+			pkint(mp2, TO_NEW);
 			pkint(mp2, -1);
 			sendmessage(mp2);
 		}
@@ -690,8 +767,20 @@ tm_conn2(tp, mp)
 	tp2->t_sock = tp->t_sock;
 	tp2->t_sad = tp->t_sad;
 	tp2->t_salen = tp->t_salen;
+
+#ifdef NOPROT
+	if (!TIDISNODE(tp2->t_tid)) {
+		if (pvmdebmask & PDMTASK) {
+			pvmlogprintf( "Setting pid of t%x to %d, same as t%x\n",
+					tp2->t_tid, tp->t_pid, tp->t_tid );
+		}
+		task_setpid(tp2, tp->t_pid);
+	}
+#else
 	if (tp2->t_pid != pid)
 		task_setpid(tp2, pid);
+#endif
+
 	tp2->t_rxp = tp->t_rxp;
 	tp2->t_sched = tp->t_sched;
 	tp->t_sock = -1;	/* tp will be freed by loclinput() */
@@ -951,6 +1040,10 @@ tm_spawn(tp, mp)
 	struct hostd *hp;
 	int hh;
 	int i;
+	char *wd = 0;
+	char *wdenv = 0;
+	char *ptr;
+	int sz;
 
 	/*
 	* unpack spawn command from task
@@ -983,13 +1076,41 @@ tm_spawn(tp, mp)
 	|| upkuint(mp, &wxp->w_trctag))
 		goto bad;
 
+	/*
+	* extract any working directory string from "where"
+	*/
+
+	ptr = where;
+	while ( *ptr != ':' && *ptr != '\0' )
+		ptr++;
+	if ( *ptr == ':' ) {
+		*ptr++ = '\0';    /* close off actual "where" string */
+		wd = ptr;         /* save ptr to working directory */
+	}
+
+	/*
+	* unpack environment from task
+	*/
+
 	if (upkuint(mp, &wxp->w_nenv))
 		goto bad;
-	wxp->w_env = TALLOC((wxp->w_nenv + 1), char*, "env");
-	BZERO((char*)wxp->w_env, (wxp->w_nenv + 1) * sizeof(char*));
+	sz = wxp->w_nenv + 1 + (wd ? 1 : 0);
+	wxp->w_env = TALLOC(sz, char*, "env");
+	BZERO((char*)wxp->w_env, sz * sizeof(char*));
 	for (i = 0; i < wxp->w_nenv; i++)
 		if (upkstralloc(mp, &wxp->w_env[i]))
 			goto bad;
+
+	/*
+	* add extra env string for working directory
+	*/
+
+	if ( wd ) {
+		sz = strlen(wd) + strlen("PVMSPAWNWD=") + 1;
+		wdenv = TALLOC(sz, char, "wdenv");
+		sprintf( wdenv, "PVMSPAWNWD=%s", wd );
+		wxp->w_env[ (wxp->w_nenv)++ ] = STRALLOC( wdenv );
+	}
 
 	/*
 	* make host set containing hosts (matching where option)
@@ -1010,6 +1131,13 @@ tm_spawn(tp, mp)
 				if ((hp = hosts->ht_hosts[hh])
 				&& !strcmp(where, hp->hd_arch))
 					ht_insert(htp, hp);
+
+#ifdef IMA_BEOLIN
+		/* local pvmd for now */
+		} else if (wxp->w_flags & PvmMppFront) {
+			hp = hosts->ht_hosts[hosts->ht_local];
+			ht_insert(htp, hp);
+#endif
 
 		} else {						/* anywhere */
 			ht_merge(htp, hosts);
@@ -1035,7 +1163,7 @@ tm_spawn(tp, mp)
 		wxp->w_ptid = tp->t_tid;
 	}
 	else
-		wxp->w_ptid = PvmParentNotSet;	/* indicate that task unset parent */
+		wxp->w_ptid = PvmParentNotSet;	/* indicate task unset parent */
 
 	/*
 	* assign each task to a host
@@ -1142,7 +1270,7 @@ assign_tasks(wp)
 				mp->m_ctx = wxp->w_outctx;
 				mp->m_tag = wxp->w_outtag;
 				pkint(mp, tid);
-				pkint(mp, -1);
+				pkint(mp, TO_SPAWN);
 				pkint(mp, wxp->w_ptid);
 				sendmessage(mp);
 			}
@@ -2488,7 +2616,7 @@ change_output(tp, outtid, outctx, outtag)
 			mp->m_ctx = tp->t_outctx;
 			mp->m_tag = tp->t_outtag;
 			pkint(mp, tp->t_tid);
-			pkint(mp, 0);
+			pkint(mp, TO_EOF);
 			sendmessage(mp);
 		}
 		if (pvmdebmask & PDMTASK) {
@@ -2506,7 +2634,7 @@ change_output(tp, outtid, outctx, outtag)
 			mp->m_ctx = tp->t_outctx;
 			mp->m_tag = tp->t_outtag;
 			pkint(mp, tp->t_tid);
-			pkint(mp, -1);
+			pkint(mp, TO_SPAWN);
 			pkint(mp, tp->t_ptid);
 			sendmessage(mp);
 
@@ -2515,7 +2643,7 @@ change_output(tp, outtid, outctx, outtag)
 			mp->m_ctx = tp->t_outctx;
 			mp->m_tag = tp->t_outtag;
 			pkint(mp, tp->t_tid);
-			pkint(mp, -2);
+			pkint(mp, TO_NEW);
 			pkint(mp, tp->t_ptid);
 			sendmessage(mp);
 		}
@@ -2582,7 +2710,7 @@ tm_getopt(tp, mp)
 }
 
 
-/*	change_output()
+/*	change_trace()
 *
 *	Task sets its trace sink parameters.
 *	If new values are different we have to send close and open

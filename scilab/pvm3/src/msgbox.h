@@ -1,5 +1,5 @@
 
-/* $Id: msgbox.h,v 1.1 2001/04/26 07:47:10 scilab Exp $ */
+/* $Id: msgbox.h,v 1.2 2002/10/14 14:37:49 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -34,10 +34,14 @@
  *
  *	Message mailbox includes.
  *
-$Log: msgbox.h,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: msgbox.h,v $
+ * Revision 1.2  2002/10/14 14:37:49  chanceli
+ * update
+ *
+ * Revision 1.5  1999/07/08 19:00:22  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.4  1997/06/25  22:09:14  pvmsrc
  * Markus adds his frigging name to the author list of
  * 	every file he ever looked at...

@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: lpvmshmem.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: lpvmshmem.c,v 1.2 2002/10/14 14:37:48 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,66 @@ static char rcsid[] =
  *
  *	Libpvm core for MPP environment.
  *
-$Log: lpvmshmem.c,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: lpvmshmem.c,v $
+ * Revision 1.2  2002/10/14 14:37:48  chanceli
+ * update
+ *
+ * Revision 1.45  2001/09/25 21:21:00  pvmsrc
+ * Yanked "char *pvmgettmp();" decl - now in pvm3.h...
+ * (Spanker=kohl)
+ *
+ * Revision 1.44  2001/05/11 17:32:29  pvmsrc
+ * Eliminated references to sys_errlist & sys_nerr.
+ * 	- unnecessary, and we're whacking that crap anyway.
+ * (Spanker=kohl)
+ *
+ * Revision 1.43  2000/02/10 20:44:41  pvmsrc
+ * Replaced hard-coded /tmp for PVMSHMFILE.
+ * 	- use pvmgettmp() routine now to determine PVM temp dir.
+ * (Spanker=kohl)
+ *
+ * Revision 1.42  1999/07/08 19:00:02  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.41  1999/03/15  19:06:03  pvmsrc
+ * Replaced sleep() calls with pvmsleep().
+ * 	- Unix / Win32, C / Fortran compat...
+ * (Spanker=kohl)
+ *
+ * Revision 1.40  1999/02/20  14:17:57  pvmsrc
+ * Another try at the SGI compiler warning...  :-]
+ * (Spanker=kohl)
+ *
+ * Revision 1.39  1999/02/19  14:10:56  pvmsrc
+ * SGI compiler warning...
+ * (Spanker=kohl)
+ *
+ * Revision 1.38  1998/08/13  18:31:13  pvmsrc
+ * Altered SUNMP to use test and set operations with semaphores
+ * 		for page locking instead of MUTEX and cond vars.
+ * 	Changes are mainly in pvmshmem.h, with lots of #ifdefs changes.
+ * 	Makefile altered to use the PLOCKFILE to indicate the Page Locking
+ * 		INLINE code used (from SUNMP.conf).
+ * 	Some changes effect AIX MP versions which still use conditional
+ * 		variables and may change to semaphores soon.
+ * (Spanker=fagg)
+ *
+ * Revision 1.37  1998/07/24  17:11:46  pvmsrc
+ * Cleaned up use of SOCKLENISUINT / oslen.
+ * 	- use oslen for every socket-related call:
+ * 		* bind(), recvfrom(), getsockname() and accept().
+ * (Spanker=kohl)
+ *
+ * Revision 1.36  1998/02/24  15:36:25  pvmsrc
+ * Oops...  leftover typo from umbuf -> pmsg renaming way back when.
+ * 	- UB_DIFFNODE -> MM_DIFFNODE for IMA_CSPP.
+ * (Spanker=kohl)
+ *
+ * Revision 1.35  1998/02/23  22:51:39  pvmsrc
+ * Added AIX4SP2 stuff.
+ * (Spanker=kohl)
+ *
  * Revision 1.34  1997/12/31  20:50:09  pvmsrc
  * Cleaned Up System Message Handlers.
  * 	- current send / recv buffers now saved before invocation of
@@ -439,6 +495,7 @@ Initial revision
 #endif
 
 char *getenv();
+
 void hex_inadport __ProtoGlarp__ (( char *, struct sockaddr_in * ));
 
 /* These prototypes stop compiler casting structs to ints... */
@@ -464,8 +521,6 @@ int current_node();
 
 #ifndef HASERRORVARS
 extern int errno;					/* from libc */
-extern char *sys_errlist[];
-extern int sys_nerr;
 #endif
 
 /* XXX this should be in a header file not copied */
@@ -625,7 +680,7 @@ peer_wait()
 
 	PAGELOCK(&inbp->mb_lock);
 	while (inbp->mb_read == inbp->mb_last)
-#ifdef	IMA_SUNMP
+#if defined(IMA_SUNMP) && defined(PVMUSEMUTEX)
 		cond_wait(&inbp->mb_cond, &inbp->mb_lock);
 #endif
 #if defined(IMA_RS6KMP) || defined(IMA_AIX4MP)
@@ -1000,7 +1055,7 @@ peer_recv(gotem)
 		rxup->m_src = src;
 #ifdef IMA_CSPP
 		if (pp && pp->p_node != current_node())
-			rxup->m_flag |= UB_DIFFNODE;
+			rxup->m_flag |= MM_DIFFNODE;
 #endif
 		LISTPUTBEFORE(rxfrag, rxup, m_link, m_rlink);
 	}
@@ -1209,7 +1264,9 @@ peer_send(txup, txfp, dtid, code)
 	dboxp->mb_last = next;
 
 	if (dboxp != (struct msgboxhdr *)pvmdinbox && dboxp->mb_sleep) {
-#if	defined(IMA_SUNMP) || defined(IMA_RS6KMP) || defined(IMA_AIX4MP)
+
+/* #if	defined(IMA_SUNMP) || defined(IMA_RS6KMP) || defined(IMA_AIX4MP) */
+#ifdef  PVMUSEMUTEX
 #ifdef	IMA_SUNMP
 		cond_signal(&dboxp->mb_cond);
 #endif
@@ -1218,7 +1275,7 @@ peer_send(txup, txfp, dtid, code)
 #endif
 #else
 		peer_wake(pp);
-#endif
+#endif /* PVMUSEMUTEX */
 		dboxp->mb_sleep = 0;
 	}
 
@@ -1422,6 +1479,7 @@ pvmbeatask()
 #endif
 	int key, firstkeytried;
 	int mytid;
+	char *pvmtmp;
 	TEV_DECLS
 
 	if (pvmmytid != -1)
@@ -1450,11 +1508,13 @@ pvmbeatask()
 #ifdef IMA_CSPP
 	int scid = get_scid();
 
+	pvmtmp = pvmgettmp();
+
 	if (scid > 1)
-		sprintf(fname, "/tmp/pvmt.%d.%d", pvm_useruid, scid);
+		sprintf(fname, "%s/pvmt.%d.%d", pvmtmp, pvm_useruid, scid);
 	else
 #endif
-		sprintf(fname, "/tmp/pvmt.%d", pvm_useruid);
+		sprintf(fname, "%s/pvmt.%d", pvmtmp, pvm_useruid);
 		if ((logfp = fopen(fname, "a")) == NULL)
 			pvmlogerror("pvmbeatask() can't open log file\n");
 #endif
@@ -1517,13 +1577,13 @@ pvmbeatask()
 	pvminfo = (struct pidtidhdr *)(infopage + PVMPAGEHDR);
 
 	while ( read_int( (int *) &(pvminfo[0]) ) == 0 ) {
-		sleep(1);
+		pvmsleep(1);
 		if (pvmdebmask & PDMMEM)
 			pvmlogerror("Waiting for pvmd to set protocol\n");
 	}
 	if (pvminfo->i_proto != TDPROTOCOL) {
 		sprintf(pvmtxt, "beatask() t-d protocol mismatch (%d/%d)\n",
-			TDPROTOCOL, pvminfo[0]);
+			TDPROTOCOL, *((int *) &(pvminfo[0])));
 		pvmlogerror(pvmtxt);
 		return PvmSysErr;
 	}
@@ -2115,7 +2175,7 @@ pvm_start_pvmd(argc, argv, block)
 
 		pvm_config((int*)0, (int*)0, &hip);
 		while ((cc = pvm_addhosts(&hip[0].hi_name, 1, (int*)0)) == PvmAlready) {
-			sleep(t);
+			pvmsleep(t);
 			if (t < 8)
 				t *= 2;
 		}
@@ -2272,6 +2332,7 @@ dynbuf(tid, len)
 	int fd;
 	char fname[32];
 	struct shmpghdr *ph;
+	char *pvmtmp;
 
 	while (!(pp = peer_conn(tid, (int *)0)))
 		;
@@ -2282,7 +2343,8 @@ dynbuf(tid, len)
 	}
 
 	if (!(ph = (struct shmpghdr *)pp->p_dbuf)) {
-		sprintf(fname, PVMSHMFILE, tid);
+		pvmtmp = pvmgettmp();
+		sprintf(fname, PVMSHMFILE, pvmtmp, tid);
 		if ((fd = open(fname, O_CREAT|O_RDWR, 0600)) == -1 ||
 		(pp->p_dbuf = (char *)mmap(0, max(len,SHMBUFSIZE), PROT_READ|PROT_WRITE,
 #if defined(IMA_SGIMP) || defined(IMA_SGIMP6) || defined(IMA_SGIMP64)
@@ -2626,11 +2688,7 @@ shmemuptod(txup)
 #endif
 	int ff;
 	int n;
-#ifdef SOCKLENISUINT
-	size_t oslen;
-#else
-	int oslen;
-#endif
+
 	char *txcp = 0;				/* point to remainder of txfp */
 	int txtogo = 0;				/* len of remainder of txfp */
 	struct sockaddr_in sad;
@@ -2729,7 +2787,7 @@ shmemuptod(txup)
 	/* in trouble anyway! */
 	while (txtogo) {
 
-#if defined(IMA_RS6K) || defined(IMA_SP2MPI) || defined(IMA_AIX4) || defined (IMA_AIX4MP)
+#if defined(IMA_RS6K) || defined(IMA_SP2MPI) || defined(IMA_AIX4) || defined (IMA_AIX4MP) || defined(IMA_AIX4SP2)
 		n = write(pvmdsock, txcp, min(txtogo, 4096));
 #else
 		n = write(pvmdsock, txcp, txtogo);

@@ -1,5 +1,5 @@
 
-/* $Id: task.h,v 1.1 2001/04/26 07:47:12 scilab Exp $ */
+/* $Id: task.h,v 1.2 2002/10/14 14:37:55 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -34,10 +34,34 @@
  *
  *	Task descriptors.
  *
-$Log: task.h,v $
-Revision 1.1  2001/04/26 07:47:12  scilab
-Initial revision
-
+ * $Log: task.h,v $
+ * Revision 1.2  2002/10/14 14:37:55  chanceli
+ * update
+ *
+ * Revision 1.10  2000/06/16 16:27:33  pvmsrc
+ * DAMN.  The seemingly cool and efficient tp->t_flag / TF_MBNOTIFY
+ * solution is not as cool as previously thought.
+ * 	- each pvmd only keeps a *local* tasks table...!  D-OH!
+ * 	- need to just search the wait context list for an existing
+ * 		WT_TASKX mbox notify, as previously feared.
+ * 	- already checking wait context list for WT_RECVINFO, so this
+ * 		is not too terrible...
+ * 	- Damn, though...
+ * Removed TF_MBNOTIFY contant - now fricking useless.
+ * (Spanker=kohl)
+ *
+ * Revision 1.9  2000/06/13 22:37:25  pvmsrc
+ * Added new task flag (tp->t_flag):
+ * 	- TF_MBNOTIFY for marking whether a task has had a mbox notify
+ * 		set up or not.
+ * 	- to avoid a HUGE number of redundant notifies for multiple
+ * 		inserts by the same task.  D-Oh!
+ * (Spanker=kohl)
+ *
+ * Revision 1.8  1999/07/08 19:00:25  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.7  1997/07/02  20:27:34  pvmsrc
  * 	Fixed startup race on shmem to that a shmem task can get fully
  * 	configured before getting any messages.

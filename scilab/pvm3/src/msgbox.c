@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: msgbox.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: msgbox.c,v 1.2 2002/10/14 14:37:49 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,59 @@ static char rcsid[] =
  *
  *	Message mailbox database.
  *
-$Log: msgbox.c,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: msgbox.c,v $
+ * Revision 1.2  2002/10/14 14:37:49  chanceli
+ * update
+ *
+ * Revision 1.25  2001/02/07 23:15:49  pvmsrc
+ * 2nd Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.24  2000/02/16 21:59:47  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.23  1999/12/13 18:13:41  pvmsrc
+ * Moved pvmmatchstring() routine to pvmcruft.c (for usage by pvmtester).
+ * Re-integrated two versions of mb_name() into one with #ifdefs for
+ * 	the USE_GNU_REGEX stuff.
+ * (Spanker=kohl)
+ *
+ * Revision 1.22  1999/12/10 21:30:45  pvmsrc
+ * Yanked GNU Regex Stuff.
+ * 	- re-activate using -DUSE_GNU_REGEX define...  if you must.
+ * 	- replaced full regular expression matching in mb_names()
+ * 		with good ole Unix style '*' globbing,
+ * 		via pvmmatchstring() a la Jeembo.
+ * (Spanker=kohl)
+ *
+ * Revision 1.21  1999/11/08 17:21:16  pvmsrc
+ * Added new PvmMboxDirectIndex() flag handling to mb_insert().
+ * 	- allow atomic re-insert at a specific index.
+ * (Spanker=kohl)
+ *
+ * Revision 1.20  1999/07/08 19:00:04  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.19  1999/01/13  00:03:45  pvmsrc
+ * Fixed up mbox insert stuff, bugs & 3.3 compat (insert/lookup/delete).
+ * 	- changed to always pass in -1 for index (internal arg only).
+ * 	- handle minst correctly, supercedes overwritable else no way to
+ * 		build a minst list from within a single task, always just look
+ * 		for next unused index if minst set.
+ * 	- check for pvm_insert() compat, if mbox exists and req != -1 (any),
+ * 		then return PvmDenied (no overwrite in 3.3).
+ * (Spanker=kohl)
+ *
+ * Revision 1.18  1998/11/20  20:04:10  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (Spanker=sscott)
+ *
  * Revision 1.17  1997/06/27  17:32:30  pvmsrc
  * Updated for WIN32 header files & Authors.
  *
@@ -131,6 +180,7 @@ Initial revision
 
 #include <stdio.h>
 #ifdef NEEDMENDIAN
+#include <sys/types.h>
 #include <machine/endian.h>
 #endif
 #ifdef NEEDENDIAN
@@ -139,12 +189,15 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32
-#include <rpc/types.h>
-#include <rpc/xdr.h>
-#else 
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
+#else
+#include <rpc/types.h>
+#include <rpc/xdr.h>
 #endif
 
 #ifdef	SYSVSTR
@@ -152,16 +205,21 @@ Initial revision
 #else
 #include <strings.h>
 #endif
-#include <pvm3.h>
+
 #include "pvmalloc.h"
 #include "listmac.h"
 #include "pmsg.h"
 #include "msgbox.h"
 #include "global.h"
 
+
+#ifdef USE_GNU_REGEX
 void *pvmcompileregex __ProtoGlarp__ (( char * ));
 int pvmmatchregex __ProtoGlarp__ (( void *, char * ));
 void pvmfreeregex __ProtoGlarp__ (( void ** ));
+#else
+int pvmmatchstring __ProtoGlarp__ (( char *, char * ));
+#endif
 
 
 /***************
@@ -268,29 +326,43 @@ mb_insert(tid, name, req, flags, mp)
 	struct pvmmentry *ep;
 	struct pvmmentry *ep2 = 0;
 
+	int dind;	/* direct index	*/
+	int cind;	/* current index */
+
+	/* must change to always pass in -1 for 3.4 calls */
+	/* then can distinguish between 3.4 reinsert which succeeds
+		if !overwritable/minst & 3.3 reinsert which should fail */
+	/* to fix the "if (ep->me_ind == req)" conditional
+		use a "current index":  cind = ( req == -1 ) ? 0 : req; */
+	/* also, minst supercedes overwritable, else no way to build
+		a minst list from within a single task... */
+
 	if (!(np = mc_find(name)))
 		if (!(np = mc_new(name)))
 			return PvmNoMem;
 
+	dind = PvmMboxDirectIndexOf( flags );
+
+	cind = ( req == -1 ) ?
+		( ( dind ) ? dind : 0 )
+		: req;
+
 	for (ep = np->mc_ent->me_link; ep != np->mc_ent; ep = ep->me_link)
-		if (ep->me_ind >= req)
+		if (ep->me_ind >= cind)
 			break;
 
 	/* default insert is "locked"... */
 
-	if (flags & PvmMboxMultiInstance) {
-		for (; ep != np->mc_ent; ep = ep->me_link) {
-			if (ep->me_ind != req)
-				break;
-			if ( (ep->me_flags & PvmMboxOverWritable)
-					|| tid == ep->me_tid ) {
-				ep2 = ep;
-				break;
+	if (ep->me_ind == cind) {
+		if (flags & PvmMboxMultiInstance) {
+			if ( req != -1 ) /* hack for 3.3 compat */
+				return PvmDenied;
+			for (; ep != np->mc_ent; ep = ep->me_link) {
+				if (ep->me_ind != cind)
+					break;
+				cind++;
 			}
-			req = ep->me_ind + 1;
-		}
-	} else {
-		if (ep->me_ind == req) {
+		} else {
 			if ( !(ep->me_flags & PvmMboxOverWritable)
 					&& tid != ep->me_tid) {
 				return PvmDenied;
@@ -305,13 +377,14 @@ mb_insert(tid, name, req, flags, mp)
 		pmsg_unref(ep2->me_msg);
 		PVM_FREE(ep2);
 	}
-	ep2 = me_new(req);
+
+	ep2 = me_new(cind);
 	ep2->me_tid = tid;
 	ep2->me_flags = flags;
 	ep2->me_msg = mp;
 	LISTPUTBEFORE(ep, ep2, me_link, me_rlink);
 
-	return req;
+	return cind;
 }
 
 
@@ -401,13 +474,17 @@ mb_names(tid, pattern, mp)
 	char *pattern;
 	struct pmsg *mp;
 {
-	void *pattbuff;
-
 	struct pvmmclass *np;
 	struct pvmmentry *ep;
 
+#ifdef USE_GNU_REGEX
+	void *pattbuff;
 	int pattglob = 0;
+#endif
+
 	int cnt;
+
+#ifdef USE_GNU_REGEX
 
 	/* Check for "*" Global Match Pattern */
 
@@ -419,6 +496,8 @@ mb_names(tid, pattern, mp)
 	if ( !pattglob )
 		pattbuff = pvmcompileregex( pattern );
 
+#endif
+
 	/* Count # of Classes */
 
 	cnt = 0;
@@ -426,10 +505,14 @@ mb_names(tid, pattern, mp)
 	for ( np = pvmmboxclasses->mc_link; np != pvmmboxclasses;
 			np = np->mc_link )
 	{
+#ifdef USE_GNU_REGEX
 		if ( pattglob
 				|| ( ( pattbuff ) ?
 					( pvmmatchregex( pattbuff, np->mc_name ) )
 					: ( !strcmp( pattern, np->mc_name ) ) ) )
+#else
+		if ( pvmmatchstring( np->mc_name, pattern ) )
+#endif
 		{
 			cnt++;
 		}
@@ -442,10 +525,14 @@ mb_names(tid, pattern, mp)
 	for ( np = pvmmboxclasses->mc_link; np != pvmmboxclasses;
 			np = np->mc_link )
 	{
+#ifdef USE_GNU_REGEX
 		if ( pattglob
 				|| ( ( pattbuff ) ?
 					( pvmmatchregex( pattbuff, np->mc_name ) )
 					: ( !strcmp( pattern, np->mc_name ) ) ) )
+#else
+		if ( pvmmatchstring( np->mc_name, pattern ) )
+#endif
 		{
 			pkstr( mp, np->mc_name );
 
@@ -471,8 +558,10 @@ mb_names(tid, pattern, mp)
 		}
 	}
 
+#ifdef USE_GNU_REGEX
 	if ( !pattglob && pattbuff )
 		pvmfreeregex( &pattbuff );
+#endif
 
 	return 0;
 }

@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: global.c,v 1.1 2001/04/26 07:47:09 scilab Exp $";
+	"$Id: global.c,v 1.2 2002/10/14 14:37:45 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,30 @@ static char rcsid[] =
  *
  *	General PVM Globals.
  *
-$Log: global.c,v $
-Revision 1.1  2001/04/26 07:47:09  scilab
-Initial revision
-
+ * $Log: global.c,v $
+ * Revision 1.2  2002/10/14 14:37:45  chanceli
+ * update
+ *
+ * Revision 1.18  2001/02/07 23:14:03  pvmsrc
+ * First Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.17  2000/02/10 23:53:34  pvmsrc
+ * Added new PvmIPLoopback error code:
+ * 	- Master Host IP Address tied to Loopback.
+ * 	- check for this case in addhosts(), don't even TRY to add hosts...
+ * (Spanker=kohl)
+ *
+ * Revision 1.16  1999/07/08 18:59:52  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.15  1998/11/20  20:03:55  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (Spanker=sscott)
+ *
  * Revision 1.14  1997/12/31  22:14:23  pvmsrc
  * Renamed TEV_REMOVE -> TEV_DELINFO.  D-Oh.
  * (Spanker=kohl)
@@ -102,14 +122,17 @@ Initial revision
 
 
 #include <stdio.h>
-#ifndef WIN32
-#include <rpc/types.h>
-#include <rpc/xdr.h>
-#else 
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
+#else
+#include <rpc/types.h>
+#include <rpc/xdr.h>
 #endif
-#include <pvm3.h>
+
 #include "lpvm.h"
 #include "pmsg.h"
 #include "host.h"
@@ -165,6 +188,7 @@ char *pvm_errlist[] = {
 	"Already Exists",
 	"Hoster must run on master host",
 	"Spawning parent set PvmNoParent",
+	"Master Host IP Address is Loopback! (See Readme)",
 };
 
 int pvm_nerr =							/* exported num of errors */

@@ -1,5 +1,5 @@
 
-/* $Id: pvmwin.h,v 1.1 2001/04/26 07:47:12 scilab Exp $ */
+/* $Id: pvmwin.h,v 1.2 2002/10/14 14:37:55 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -38,17 +38,33 @@
 #ifdef WIN32
 #define __fortran __stdcall
 #endif
+
 #define STRICT
-#ifndef __ABSC__
+
 #include <sys/timeb.h>
-#include <process.h>
-#include <io.h>
-#endif
 #include <time.h>
+#include <process.h>
 #include <winsock.h>
+
 #include <windows.h>
 
+/*	WIN32 gets stdarg.h via pvm3.h -> pvmwin.h -> windows.h
+	nice coding trail - NOT...
+	since WIN32 is not a __STDC__ environment - it needs varargs.h
+	so, this will cleanup the incorrect include order for var args
+	from windows.h first must remove va_start va_end to avoid compiler
+	warnings...  Someone else must then include the varargs.h file
+	or that will then cause error.
+	uggghhhhh... this is ugly coding at its best
+*/
+
+#ifdef WIN32
+#undef va_start
+#undef va_end
+#endif
+
 #include <stdio.h>
+#include <io.h>
 
 #ifndef HASSTDLIB
 #define HASSTDLIB

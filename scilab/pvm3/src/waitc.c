@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: waitc.c,v 1.1 2001/04/26 07:47:12 scilab Exp $";
+	"$Id: waitc.c,v 1.2 2002/10/14 14:37:56 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,30 @@ static char rcsid[] =
  *
  *	Wait context descriptors.
  *
-$Log: waitc.c,v $
-Revision 1.1  2001/04/26 07:47:12  scilab
-Initial revision
-
+ * $Log: waitc.c,v $
+ * Revision 1.2  2002/10/14 14:37:56  chanceli
+ * update
+ *
+ * Revision 1.10  2001/02/07 23:16:00  pvmsrc
+ * 2nd Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.9  2000/02/16 22:00:32  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.8  1999/07/08 19:00:18  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.7  1998/11/20  20:04:19  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (Spanker=sscott)
+ *
  * Revision 1.6  1997/06/27  17:32:59  pvmsrc
  * Updated for WIN32 header files & Authors.
  *
@@ -85,6 +105,13 @@ Initial revision
  */
 
 #include <stdio.h>
+
+#ifdef IMA_TITN
+#include <bsd/sys/types.h>
+#else
+#include <sys/types.h>
+#endif
+
 #ifdef NEEDMENDIAN
 #include <machine/endian.h>
 #endif
@@ -94,20 +121,20 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32
-#include <rpc/types.h>
-#include <rpc/xdr.h>
-#include <sys/time.h>
-#include <sys/socket.h>
-#else
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
+#else
+#include <rpc/types.h>
+#include <rpc/xdr.h>
 #endif
 
-#ifdef IMA_TITN
-#include <bsd/sys/types.h>
-#else
-#include <sys/types.h>
+#ifndef WIN32
+#include <sys/socket.h>
+#include <sys/time.h>
 #endif
 
 #ifdef	SYSVSTR
@@ -116,7 +143,6 @@ Initial revision
 #include <strings.h>
 #endif
 
-#include <pvm3.h>
 #include <pvmproto.h>
 #include "pvmalloc.h"
 #include "pmsg.h"

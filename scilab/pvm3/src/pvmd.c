@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmd.c,v 1.1 2001/04/26 07:47:11 scilab Exp $";
+	"$Id: pvmd.c,v 1.2 2002/10/14 14:37:51 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,222 @@ static char rcsid[] =
  *
  *	Mr. pvm daemon.
  *
-$Log: pvmd.c,v $
-Revision 1.1  2001/04/26 07:47:11  scilab
-Initial revision
-
+ * $Log: pvmd.c,v $
+ * Revision 1.2  2002/10/14 14:37:51  chanceli
+ * update
+ *
+ * Revision 1.68  2001/09/28 12:43:18  pvmsrc
+ * D-Oh!  Stupid Solaris doesn't recognize FNDELAY, only O_NDELAY...  :-Q
+ * (Spanker=kohl)
+ *
+ * Revision 1.67  2001/09/27 21:25:11  pvmsrc
+ * BEOSCYLD port.
+ * 	- submitted by Joe Vitale <vitale@scyld.com>.
+ * 	(we renamed it from BEOWULF to BEOSCYLD, but it's his port... :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.66  2001/09/26 21:23:21  pvmsrc
+ * Added Handling for Optional Virtual Machine ID.
+ * 	- added new check_ext_input() routine to check for extension
+ * 		options on stdin before anything else happens...  currently
+ * 		only expects env string a la "PVM_VMID=xxxx", but more options
+ * 		could be added on same input line, white-space-separated...
+ * 	- extra vmid comes through with SM_STHOST message (after wincmd)
+ * 		to hoster.
+ * 	- user instructed to type VMID (or other options) to pvmd stdin
+ * 		during manual startup.
+ * (Spanker=kohl)
+ *
+ * Revision 1.65  2001/09/25 21:20:19  pvmsrc
+ * Minor TMPNAMFUN()/tmpnam() cleanup.
+ * 	- moved macro def to pvm3.h, renamed PVMTNPMAN().
+ * 	- same for LEN_OF_TMP_NAM -> PVMTMPNAMLEN.
+ * 	- mostly a huge waste of time, since *both* tmpnam() & mktemp()
+ * 		produce the same "dangerous" warning message in Linux/gcc...
+ * 	- damn.
+ * (Spanker=kohl)
+ *
+ * Revision 1.64  2001/04/04 15:13:58  pvmsrc
+ * Fixed pesky bug buried in pvmd opq...
+ * 	- ack packets were being stuck at the end of the output queue,
+ * 		where they could get delayed (not lost) long enough to trigger
+ * 		a cascade of packet retries from remote pvmds.
+ * 	- solution is to stick ack packets after new (zero-rtv) packets,
+ * 		but before and locally queued retry packets (which can block
+ * 		processing of the opq at a specified time...).
+ * Yanked Bogus chdir() from WIN32 forkexec().
+ * 	- patch submitted by Peter J. Puchyr, SpaceTime Software
+ * (Spanker=kohl)
+ *
+ * Revision 1.63  2001/02/07 23:15:51  pvmsrc
+ * 2nd Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.62  2001/02/02 14:50:26  pvmsrc
+ * Win32 fixes & additions.
+ * (Spanker=kohl)
+ *
+ * Revision 1.61  2000/10/11 20:50:24  pvmsrc
+ * Yikes...
+ * 	- fixed '//' comments in WIN32 forkexec() implementation to
+ * 		'/ * * /'.
+ * 	- apparently intereferes with SUN4SOL2 preprocessor?  HOW BOGUS.
+ * (Spanker=kohl)
+ *
+ * Revision 1.60  2000/02/18 15:48:43  pvmsrc
+ * Commented out ECONNREFUSED check for sendto() in LINUX.
+ * 	- apparently results from local networking problems...
+ * 	- leave in code as a sign post for future occurrences.
+ * (Spanker=kohl)
+ *
+ * Revision 1.59  2000/02/17 23:12:16  pvmsrc
+ * *** Changes for new BEOLIN port ***
+ * 	- MPP-like, similar to SP2, etc.
+ * 	- submitted by Paul Springer <pls@smokeymt.jpl.nasa.gov>.
+ * 	- format-checked & cleaned up by Jeembo...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.58  2000/02/17 16:42:56  pvmsrc
+ * Added hack to ignore errno=ECONNREFUSED from sendto() for Linux.
+ * 	- apparently occurs intermittently on some setups...
+ * 	- patch submitted by Russell Mora <rd.mora@auckland.ac.nz>.
+ * (Spanker=kohl)
+ *
+ * Revision 1.57  2000/02/16 22:01:25  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * Added #ifndef NO_NETINET_TCP_H around <netinet/tcp.h> for
+ * 	archs that can't handle it...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.56  2000/02/11 21:04:03  pvmsrc
+ * Added new PVMHOSTFILE env var.
+ * 	- submitted by Anders Mundt Due <amd@pd-house.dk>.
+ * (Spanker=kohl)
+ *
+ * Revision 1.55  2000/02/10 20:46:12  pvmsrc
+ * Yanked char *pvmtmpspec for WIN32.
+ * 	- not necessary, fixed string manip in log file name gen.
+ * (Spanker=kohl)
+ *
+ * Revision 1.54  2000/02/07 22:22:10  pvmsrc
+ * Hack to help with select()/fd_sets in WIN32:
+ * 	- fd_set is *NOT* a bit field in WIN32, is a circular buffer.
+ * 	- must check for !FD_ISSET() before FD_SET() else duplicate
+ * 		entries possible, and fd_set buffer overflow/overwrite.
+ * 	- similary, FD_ISSET() check before FD_CLR().
+ * 	- patch submitted by "Bruce W. Church" <bwc1@cornell.edu>.
+ * (Spanker=kohl)
+ *
+ * Revision 1.53  1999/07/08 19:00:07  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.52  1999/03/05  17:21:18  pvmsrc
+ * improved to work with registry/environment on NT/win95-98
+ * and devstudio 5/6
+ * (Spanker=sscott)
+ *
+ * Revision 1.51  1999/02/09  23:07:18  pvmsrc
+ * Don't re-invoke read_pvmregistry("PVM_ROOT")...
+ * 	- use pvmgetroot().
+ * In varsub(), if read_pvmregistry() fails for substring,
+ * 	try getenv() too just in case...
+ * (Spanker=kohl)
+ *
+ * Revision 1.50  1999/02/09  20:11:00  pvmsrc
+ * Typo in log message...
+ * (Spanker=kohl)
+ *
+ * Revision 1.49  1998/11/20  20:06:38  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (spanker=sscott)
+ *
+ * Revision 1.48  1998/10/02  15:44:06  pvmsrc
+ * Single source code merge of Win32 and Unix code.
+ * (Spanker=sscott)
+ *
+ * Revision 1.47  1998/09/23  15:31:59  pvmsrc
+ * Damn!  A non-#ifdef WIN32-ed read_pvmregistry() call!  Blarghhh...
+ * (Spanker=kohl)
+ *
+ * Revision 1.46  1998/09/23  15:23:45  pvmsrc
+ * 	changes to use WIN32 registry as per Markus.
+ * 	ifdef in pvmd.c::colonsep() to include WIN32 and OS2
+ * (Spanker=phil)
+ *
+ * Revision 1.45  1998/08/13  18:32:49  pvmsrc
+ * Added special case for AIX4SP2 arch with SOCKLENISUINT.
+ * 	- on AIX 4.3 systems, I guess unsigned int is really
+ * 		unsigned int, and not size_t...  D-Oh!
+ * 	- probably need a better constant name (or two) here...
+ * (Spanker=kohl)
+ *
+ * Revision 1.44  1998/07/24  17:31:25  pvmsrc
+ * Fixed use of PVM_TIMET stuff:
+ * 	- on dorky systems (like LINUXALPHA) timeval->tv_sec could be an
+ * 		int, while time_t is a long, so casting the &tnow.tv_sec ptr
+ * 		blows chunks.
+ * 	- e.g., check this date:  Fri Oct 11 07:59:03 3386993  :-)
+ * 	- use a temp var & cast the value before passing the ptr...
+ * 	- thanks to Greg Lindahl (lindahl@cs.virginia.edu) for the patch.
+ * (Spanker=kohl)
+ *
+ * Revision 1.43  1998/07/24  17:11:49  pvmsrc
+ * Cleaned up use of SOCKLENISUINT / oslen.
+ * 	- use oslen for every socket-related call:
+ * 		* bind(), recvfrom(), getsockname() and accept().
+ * (Spanker=kohl)
+ *
+ * Revision 1.42  1998/06/03  18:46:37  pvmsrc
+ * Enhanced spawning of default pluggable modules...
+ * 	- created static env var name list "modulenames[]".
+ * 	- replaced simple command name handling with acav() parsing...
+ * 	- check for non-zero myhostpart to avoid re-spawning modules
+ * 		in pvmd'...
+ * (Spanker=kohl)
+ *
+ * Revision 1.41  1998/06/02  20:49:00  pvmsrc
+ * Added new locl_spawn() routine for pvmd to spawn local system tasks.
+ * 	- applied for new env vars interface to pluggable modules:
+ * 		* $PVM_TASKER - defines tasker to spawn on pvmd startup.
+ * 		* $PVM_HOSTER - defines hoster to spawn on pvmd startup.
+ * 		* $PVM_RM - defines resource manager to spawn on pvmd startup.
+ * (Spanker=kohl)
+ *
+ * Revision 1.40  1998/02/23  22:51:46  pvmsrc
+ * Added AIX4SP2 stuff.
+ * (Spanker=kohl)
+ *
+ * Revision 1.39  1998/01/28  21:27:35  pvmsrc
+ * Leftover LINUX fixes:
+ * 	- un-#ifdef-ed sendto() error ENOMEM for LINUX, should be O.K. for
+ * 		every arch.
+ * 	- also commented out #ifndef LINUX socket addressing stuff in
+ * 		netinput(), looks a bit antiquated and seems to work just
+ * 		fine without it - here's hoping.
+ * (Spanker=kohl)
+ *
+ * Revision 1.38  1998/01/28  19:31:31  pvmsrc
+ * Added new -DCTIMEISTIMET flag.
+ * 	- the #if defined() list for PVM_TIMET was getting way
+ * 		out of hand...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.37  1998/01/28  19:13:57  pvmsrc
+ * Added new IMA_LINUXHPPA to #if cases...
+ * (Spanker=kohl)
+ *
+ * Revision 1.36  1998/01/12  21:13:27  pvmsrc
+ * Replaced inline constants with new task output op defines.
+ * 	- TO_NEW == -2.
+ * 	- TO_SPAWN == -1.
+ * 	- TO_EOF == 0.
+ * (Spanker=kohl)
+ *
  * Revision 1.35  1997/12/01  19:20:51  pvmsrc
  * Replaced #ifdef IMA_OS2 fd_set declarations:
  * 	- new #ifdef FDSETNOTSTRUCT.
@@ -359,9 +571,18 @@ Initial revision
  *
  */
 
+#include <stdio.h>
+
 #ifndef WIN32
 #include <sys/param.h>
 #endif
+
+#ifdef IMA_TITN
+#include <bsd/sys/types.h>
+#else
+#include <sys/types.h>
+#endif
+
 #ifdef NEEDMENDIAN
 #include <machine/endian.h>
 #endif
@@ -371,31 +592,43 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
+#include "..\xdr\types.h"
+#include "..\xdr\xdr.h"
+#else
 #include <rpc/types.h>
 #include <rpc/xdr.h>
+#endif
+
+#ifdef WIN32
+#include "pvmwin.h"
+#include <time.h>
+#else
 #include <sys/time.h>
 #include <sys/wait.h>
 #include <sys/socket.h>
 #include <sys/signal.h>
 #include <netinet/in.h>
+#ifndef NO_NETINET_TCP_H
 #include <netinet/tcp.h>
+#endif
 #include <netdb.h>
 #include <pwd.h>
-#else
-#include "pvmwin.h"
-#include "..\xdr\types.h"
-#include "..\xdr\xdr.h"
-#include <time.h>
 #endif
-#ifdef IMA_TITN
-#include <bsd/sys/types.h>
-#else
-#include <sys/types.h>
+
+#ifdef IMA_BEOSCYLD
+#include <sys/bproc.h>
+#endif
+
+#ifndef IMA_TITN
 #ifndef WIN32
 #include <sys/ioctl.h>
 #endif
 #endif
+
 #ifndef	NOWAIT3
 #include <sys/resource.h>
 #endif
@@ -408,7 +641,6 @@ Initial revision
 #endif
 #include <fcntl.h>
 #include <errno.h>
-#include <stdio.h>
 #include <signal.h>
 #include <ctype.h>
 /* Must come before local CINDEX macro definition */
@@ -426,7 +658,6 @@ Initial revision
 #define	CINDEX(s,c)	index(s,c)
 #endif
 
-#include <pvm3.h>
 #include <pvmproto.h>
 #include "pvmalloc.h"
 #include "host.h"
@@ -438,7 +669,9 @@ Initial revision
 #include "waitc.h"
 #include "listmac.h"
 #include "tvdefs.h"
-#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_CM5) || defined(SHMEM) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_CM5) \
+	|| defined(SHMEM) || defined(IMA_SP2MPI) \
+	|| defined(IMA_AIX4SP2) || defined(IMA_BEOLIN)
 #include "pvmdmp.h"
 #endif
 #include "bfunc.h"
@@ -464,20 +697,6 @@ Initial revision
 #ifndef	SOMAXCONN
 #define	SOMAXCONN	5
 #endif
-
-#ifdef	NOTMPNAM
-#define	TMPNAMFUN(x)	pvmtmpnam(x)
-#define	LEN_OF_TMP_NAM	64
-char *pvmtmpnam();
-
-#else	/*NOTMPNAM*/
-#define	TMPNAMFUN(x)	tmpnam(x)
-#ifdef	L_tmpnam
-#define	LEN_OF_TMP_NAM	L_tmpnam
-#else
-#define	LEN_OF_TMP_NAM	64
-#endif
-#endif	/*NOTMPNAM*/
 
 #ifdef	STATISTICS
 struct statistics {
@@ -516,8 +735,12 @@ void reap();
 void i_dump();
 void hex_inadport __ProtoGlarp__ (( char *, struct sockaddr_in * ));
 void mesg_rewind __ProtoGlarp__ (( struct pmsg * ));
+void locl_spawn();
+/* void make_valid(char *n); sls */
+void make_valid();
+void check_ext_input();
 
-#if defined(IMA_LINUX) || defined(IMA_LINUXSPARC) || defined(IMA_LINUXALPHA) || defined(IMA_SGI64) || defined(IMA_SGIMP64)
+#ifdef CTIMEISTIMET
 #define PVM_TIMET time_t
 #else
 #define PVM_TIMET long
@@ -525,6 +748,10 @@ void mesg_rewind __ProtoGlarp__ (( struct pmsg * ));
 
 #if defined(IMA_PGON) && !defined(IMA_MPP)
 #define IMA_MPP
+#endif
+
+#ifdef WIN32
+char *read_pvmregistry __ProtoGlarp__(( const char * ));
 #endif
 
 /***************
@@ -576,7 +803,6 @@ char *username = 0;				/* our loginname */
 #ifdef WIN32
 /* the userid is not available in WIN 32! */
 /* some useless binary sid struct */
-char *pvmtmpspec=0;
 int system_loser_win=FALSE;
 int nAlert=SO_SYNCHRONOUS_NONALERT;
 int nFileHandle;
@@ -611,6 +837,13 @@ static struct fd_set wrk_wfds;
 #endif
 static int wrk_nfds = 0;		/* 1 + highest bit set in fds */
 
+static char *modulenames[] = {
+	"PVM_TASKER",
+	"PVM_TRACER",
+	"PVM_HOSTER",
+	"PVM_RM",
+	0
+};
 
 main(argc, argv)
 	int argc;
@@ -623,9 +856,11 @@ main(argc, argv)
 	struct timeval tnow;
 	char buf[128];
 
+	/* check for extension config options */
+	check_ext_input();
+
 #ifndef WIN32
 	/* make sure 0, 1, 2 are in use */
-
 	(void)open("/dev/null", O_RDONLY, 0);
 	(void)open("/dev/null", O_RDONLY, 0);
 	(void)open("/dev/null", O_RDONLY, 0);
@@ -671,7 +906,7 @@ main(argc, argv)
 #endif
 
 #ifdef WIN32
-	if ((pvmmyupid = _getpid()) == -1) {
+	if ((pvmmyupid = getpid()) == -1) {
 		pvmlogerror("main() can't getpid() %d \n",GetLastError());
 		pvmbailout(0);
 	}
@@ -689,9 +924,10 @@ main(argc, argv)
 
 	pvmmydsig = pvmgetdsig();
 
-	ppi_config(&argc, argv);
+	ppi_config(argc, argv);
 
-#if defined(IMA_PGON) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2) \
+		|| defined(IMA_BEOLIN)
 	mpp_init(&argc, argv);
 #endif
 
@@ -762,10 +998,12 @@ main(argc, argv)
 		name = buf;
 	}
 	if (testmode) {
+		PVM_TIMET time_temp;
 		gettimeofday(&tnow, (struct timezone*)0);
 		pvmlogprintf("version %s ddpro %d tdpro %d sdpro %d\n",
 				PVM_VER, DDPROTOCOL, TDPROTOCOL, SDPROTOCOL);
-		pvmlogprintf(ctime((PVM_TIMET *) &tnow.tv_sec));
+		time_temp = (PVM_TIMET) tnow.tv_sec;
+		pvmlogprintf(ctime(&time_temp));
 		for (i = 0; i < argc; i++)
 			pvmlogprintf("argv[%d]=\"%s\"\n", i, argv[i]);
 		exit(0);
@@ -808,9 +1046,11 @@ main(argc, argv)
 
 #ifndef IMA_I860 /* this signal interferes with getcube() on I860 */
 #ifdef	SYSVSIGNAL
+#ifndef IMA_BEOSCYLD
 	(void)signal(SIGCLD, reap);
+#endif
 #ifdef IMA_SUNMP
-	sigset(SIGCLD, reap);	/* yep we go really want to catch our kids */
+	sigset(SIGCLD, reap); /* yep we go really want to catch our kids */
 #endif
 #else
 	(void)signal(SIGCHLD, reap);
@@ -907,6 +1147,76 @@ main(argc, argv)
 	work();
 	pvmbailout(0);		/* not reached */
 	exit(0);
+}
+
+
+void
+check_ext_input()
+{
+	char input[256];
+
+	char *ptr, *ptr2;
+
+	char c;
+
+	int flags;
+	int i;
+
+	/* Set stdin Non-Blocking */
+
+#ifndef WIN32
+	if ((flags = fcntl(0 , F_GETFL, 0)) != -1) {
+#ifdef O_NDELAY
+	  flags |= O_NDELAY;
+#else
+	  flags |= FNDELAY;
+#endif
+	  (void)fcntl(0, F_SETFL, flags);
+	}
+#endif
+	/* Test for Input */
+
+	i = 0;
+
+	while ( (int)(input[i] = getc( stdin )) != (char) EOF
+			&& input[i] != '\n' && i < 255 )
+		i++;
+
+	input[i] = '\0';
+
+	/* Parse Extension Options Here */
+
+	if ( i ) {
+		ptr = input;
+		while ( *ptr != '\0' )
+		{
+			/* Virtual Machine ID */
+			if ( !strncmp( "PVM_VMID=", ptr, 9 ) ) {
+				ptr2 = ptr + 9;
+				while ( *ptr2 != ' ' && *ptr2 != '\t' && *ptr2 != '\0' )
+					ptr2++;
+				c = *ptr2;
+				*ptr2 = '\0';
+				pvmputenv(STRALLOC(ptr));
+				*ptr2 = c;
+				ptr = ptr2;
+			}
+
+			/* Move Past Unknown Options */
+			else
+				while ( *ptr != ' ' && *ptr != '\t' && *ptr != '\0' )
+					ptr++;
+
+			/* Advance to Next Option */
+			while ( *ptr == ' ' || *ptr == '\t' )
+				ptr++;
+		}
+	}
+
+	/* Reset stdin to Blocking */
+#ifndef WIN32 
+	fcntl( 0, F_SETFL, flags );
+#endif
 }
 
 
@@ -1027,7 +1337,11 @@ reap(sig)
 #ifdef	NOWAITPID
 	if ((pid = wait(&es)) > 0)
 #else
+#ifdef IMA_BEOSCYLD
+	if ((pid = waitpid(-1, &es, WNOHANG)) > 0)
+#else
 	while ((pid = waitpid(-1, &es, WNOHANG)) > 0)
+#endif
 #endif
 #else	/*NOWAIT3*/
 	while ((pid = wait3(&es, WNOHANG, &rus)) > 0)
@@ -1050,7 +1364,9 @@ reap(sig)
 	}
 
 #ifdef	SYSVSIGNAL
+#ifndef IMA_BEOSCYLD
 	(void)signal(SIGCLD, reap);
+#endif
 #endif
 
 #endif
@@ -1147,24 +1463,43 @@ wrk_fds_add(fd, sets)
 	int sets;			/* which sets */
 {
 #ifdef	SANITY
+#ifndef WIN32
 	if (fd < 0 || fd >= FD_SETSIZE) {
 		pvmlogprintf("wrk_fds_add() bad fd %d\n", fd);
 		return 1;
 	}
 #endif
+#endif
 	if (sets & 1)
-		FD_SET(fd, &wrk_rfds);
+		if ( !FD_ISSET(fd, &wrk_rfds) ) {
+			FD_SET(fd, &wrk_rfds);
+#ifdef WIN32
+			wrk_nfds++;
+#endif
+		}
 	if (sets & 2)
-		FD_SET(fd, &wrk_wfds);
+		if ( !FD_ISSET(fd, &wrk_wfds) ) {
+			FD_SET(fd, &wrk_wfds);
+#ifdef WIN32
+			if ( !(sets & 1) ) wrk_nfds++;
+#endif
+		}
 /*
 	if (sets & 4)
-		FD_SET(fd, &wrk_efds);
+		if ( !FD_ISSET(fd, &wrk_efds) ) {
+			FD_SET(fd, &wrk_efds);
+#ifdef WIN32
+			wrk_nefds++;
+#endif
+		}
 */
 
+#ifndef WIN32
 	/* if this is new highest, adjust nfds */
-
 	if (fd >= wrk_nfds)
 		wrk_nfds = fd + 1;
+#endif
+
 	return 0;
 }
 
@@ -1174,22 +1509,39 @@ wrk_fds_delete(fd, sets)
 	int sets;			/* which sets */
 {
 #ifdef	SANITY
+#ifndef WIN32
 	if (fd < 0 || fd >= FD_SETSIZE) {
 		pvmlogprintf("wrk_fds_delete() bad fd %d\n", fd);
 		return 1;
 	}
 #endif
+#endif
 	if (sets & 1)
-		FD_CLR(fd, &wrk_rfds);
+		if ( FD_ISSET(fd, &wrk_rfds) ) {
+			FD_CLR(fd, &wrk_rfds);
+#ifdef WIN32
+			wrk_nfds--;
+#endif
+		}
 	if (sets & 2)
-		FD_CLR(fd, &wrk_wfds);
+		if ( FD_ISSET(fd, &wrk_wfds) ) {
+			FD_CLR(fd, &wrk_wfds);
+#ifdef WIN32
+			if ( !(sets & 1) ) wrk_nfds--;
+#endif
+		}
 /*
 	if (sets & 4)
-		FD_CLR(fd, &wrk_efds);
+		if ( FD_ISSET(fd, &wrk_efds) ) {
+			FD_CLR(fd, &wrk_efds);
+#ifdef WIN32
+			wrk_nefds--;
+#endif
+		}
 */
 
+#ifndef WIN32
 	/* if this was highest, may have to adjust nfds to new highest */
-
 	if (fd + 1 == wrk_nfds)
 		while (wrk_nfds > 0) {
 			wrk_nfds--;
@@ -1203,6 +1555,8 @@ wrk_fds_delete(fd, sets)
 				break;
 			}
 		}
+#endif
+
 	return 0;
 }
 
@@ -1269,13 +1623,45 @@ work()
 
 	gettimeofday(&tnow, (struct timezone*)0);
 	if (pvmdebmask || myhostpart) {
+		PVM_TIMET time_temp;
 		pvmlogprintf("%s (%s) %s %s\n",
 				hosts->ht_hosts[hosts->ht_local]->hd_name,
 				inadport_decimal(&hosts->ht_hosts[hosts->ht_local]->hd_sad),
 				myarchname,
 				PVM_VER);
 		pvmlogprintf("ready ");
-		pvmlogprintf(ctime((PVM_TIMET *) &tnow.tv_sec));
+		time_temp = (PVM_TIMET) tnow.tv_sec;
+		pvmlogprintf(ctime(&time_temp));
+	}
+
+	/*
+	* check for default plug-in modules (& start them)
+	* (only if pvmd, not for pvmd'...)
+	*/
+
+	if ( myhostpart ) {
+		char *av[5];
+		char *buf;
+		char *cmd;
+		int ac;
+		int i;
+
+		for ( i=0 ; modulenames[i] ; i++ ) {
+			cmd = getenv( modulenames[i] );
+			if ( cmd != NULL )
+			{
+				buf = STRALLOC( cmd );
+				ac = sizeof(av)/sizeof(av[0]);
+				if (!buf || acav( buf, &ac, av )) {
+					pvmlogprintf( "$%s: Line Too Long \"%s\".\n",
+							modulenames[i], cmd );
+				} else {
+					av[ ac ] = (char *) NULL;
+					locl_spawn( av[0], av + 1 );
+				}
+				if (buf) PVM_FREE( buf );
+			}
+		}
 	}
 
 	/*
@@ -1315,11 +1701,18 @@ work()
 		/*
 		*	clean up after any tasks that we got SIGCHLDs for
 		*/
+#ifdef IMA_BEOSCYLD
+		reap(SIGCLD);
+#endif
 		while (rdead != wdead) {
 			if (deads[rdead].dd_pid == pprime) {
 				int cc;
 #ifdef SOCKLENISUINT
+#ifdef IMA_AIX4SP2
+				unsigned int oslen;
+#else
 				size_t oslen;
+#endif
 #else
 				int oslen;
 #endif
@@ -1385,7 +1778,8 @@ work()
 						else
 							break;
 					}
-#if defined(IMA_PGON) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2) \
+	|| defined(IMA_BEOLIN)
 					mpp_free(tp);
 #endif
 					task_cleanup(tp);
@@ -1655,7 +2049,8 @@ work()
 				}
 			}
 		}
-#if defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2) \
+	|| defined(IMA_BEOLIN)
 		mpp_output((struct task *)0, (struct pkt *)0);
 #endif
 #ifdef	SHMEM
@@ -1663,6 +2058,57 @@ work()
 			mpp_dredge();
 #endif
 	}
+}
+
+
+/*	locl_spawn()
+*
+*	Shortcut to spawn a task on local host.
+*		(a.k.a. taskers, etc, at startup)
+*/
+
+void
+locl_spawn( file, argv )
+char *file;
+char **argv;
+{
+	struct pmsg *spawnmesg;
+
+	char **ep;
+
+	int i;
+	int n;
+
+	spawnmesg = mesg_new(0);
+	spawnmesg->m_tag = DM_EXEC;
+	spawnmesg->m_dst = TIDPVMD;
+
+	pkint(spawnmesg, PvmParentNotSet);
+	pkstr(spawnmesg, file);
+	pkint(spawnmesg, PvmTaskDefault | PvmMppFront);
+	pkint(spawnmesg, 1); /* number of tasks per host */
+
+	if (argv)
+		for (n = 0; argv[n]; n++);
+	else
+		n = 0;
+	pkint(spawnmesg, n);
+	for ( i=0 ; i < n ; i++ )
+		pkstr(spawnmesg, argv[i]);
+
+	pkint(spawnmesg, 0); /* outtid */
+	pkint(spawnmesg, 0); /* outctx */
+	pkint(spawnmesg, 0); /* outtag */
+	pkint(spawnmesg, 0); /* trctid */
+	pkint(spawnmesg, 0); /* trcctx */
+	pkint(spawnmesg, 0); /* trctag */
+
+	pkint(spawnmesg, 0); /* inherit pvmd env vars as is */
+
+	pkint(spawnmesg, 0); /* start proc location */
+	pkint(spawnmesg, 1); /* total tasks to spawn */
+
+	sendmessage(spawnmesg);
 }
 
 
@@ -1770,9 +2216,12 @@ netoutput()
 #ifndef WIN32
 			&& errno != ENOBUFS
 #endif
-#ifdef	IMA_LINUX
-			&& errno != ENOMEM
+#ifdef IMA_LINUX
+			/* some Linux systems report this intermittent error */
+			/* && errno != ECONNREFUSED */
 #endif
+			/* hope this works for all archs, not just linux */
+			&& errno != ENOMEM
 			) {
 				pvmlogperror("netoutput() sendto");
 #if defined(IMA_SUN4SOL2) || defined(IMA_X86SOL2) || defined(IMA_SUNMP) || defined(IMA_UXPM) || defined(IMA_UXPV)
@@ -1855,7 +2304,11 @@ netinput()
 {
 	struct sockaddr_in osad;		/* sender's ip addr */
 #ifdef SOCKLENISUINT
+#ifdef IMA_AIX4SP2
+	unsigned int oslen;
+#else
 	size_t oslen;
+#endif
 #else
 	int oslen;
 #endif						/* sockaddr length */
@@ -1932,14 +2385,15 @@ netinput()
 
 	hh = (src & tidhmask) >> (ffs(tidhmask) - 1);
 	if (hh < 0 || hh > hosts->ht_last || !(hp = hosts->ht_hosts[hh])
-#ifndef IMA_LINUX
+/* #ifndef IMA_LINUX */
+/* appears to be O.K. now in RedHat 5.0... JAK 1/28/98 */
 	/*
 	* XXX removing these lines is a hack and reduces security between
 	* XXX pvmds somewhat, but it's the easiest fix for Linux right now.
 	*/
 	|| (osad.sin_addr.s_addr != hp->hd_sad.sin_addr.s_addr)
 	|| (osad.sin_port != hp->hd_sad.sin_port)
-#endif
+/* #endif */
 	) {
 		pvmlogprintf("netinput() bogus pkt from %s\n",
 				inadport_decimal(&osad));
@@ -2065,7 +2519,20 @@ netinput()
 	pp2->pk_hostd = hp;
 	pp2->pk_seq = 0;
 	pp2->pk_ack = sqn;
-	LISTPUTAFTER(opq, pp2, pk_tlink, pk_trlink);
+	/*
+	 * Bogus!  Acks can't be put at end of opq, as could be
+	 * stuck behind packet retries with non-zero pk_rtv's...
+	 * Better place Acks, in order, after other zero-rtv-ed (new)
+	 * packets, but *before* any retry packets...
+	 */
+	/* LISTPUTAFTER(opq, pp2, pk_tlink, pk_trlink); */
+	{
+		struct pkt *pp3;
+		for (pp3 = opq->pk_tlink; pp3 != opq; pp3 = pp3->pk_tlink)
+			if (TVXLTY(&pp2->pk_rtv, &pp3->pk_rtv))
+				break;
+		LISTPUTBEFORE(pp3, pp2, pk_tlink, pk_trlink);
+	}
 
 	if (!(ff & FFDAT))
 		goto scrap;
@@ -2317,7 +2784,11 @@ loclconn()
 {
 	struct task *tp;			/* new task context */
 #ifdef SOCKLENISUINT
+#ifdef IMA_AIX4SP2
+	unsigned int oslen;
+#else
 	size_t oslen;
+#endif
 #else
 	int oslen;
 #endif
@@ -2338,8 +2809,9 @@ loclconn()
 #ifdef NOUNIXDOM
 	tp->t_salen = sizeof(tp->t_sad);
 
+	oslen = sizeof(tp->t_sad);
 	if ((tp->t_sock = accept(loclsock, (struct sockaddr*)&tp->t_sad,
-			&tp->t_salen)) == -1) {
+			&oslen)) == -1) {
 		pvmlogperror("loclconn() accept");
 		task_free(tp);
 		tp = 0;
@@ -2464,7 +2936,7 @@ locloutput(tp)
 	* send as much as possible; skip to next packet when all sent
 	*/
 
-#if defined(IMA_RS6K) || defined(IMA_SP2MPI)
+#if defined(IMA_RS6K) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 		n = write(tp->t_sock, cp, min(len, 4096));
 #else
 #ifndef WIN32
@@ -2518,12 +2990,15 @@ locloutput(tp)
 				pp->pk_cpos += n;
 
 			} else {
-#if defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2) \
+	|| defined(IMA_BEOLIN)
 				int dst = pp->pk_dst;
 #endif
 				LISTDELETE(pp, pk_link, pk_rlink);
 				pk_free(pp);
-#if defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
+				/* Not done for BEOLIN, since tp2 is tp, */
+				/* the task on which we are working (PLS) */
 				if (TIDISNODE(dst)) {
 					struct task *tp2;
 
@@ -2651,7 +3126,7 @@ again:
 	if (pp->pk_len == m) {
 		tp->t_rxp = 0;
 		pp->pk_dst = pvmget32(pp->pk_dat);
-#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 		pp->pk_src = pvmget32(pp->pk_dat + 4);
 #else
 		pp->pk_src = tp->t_tid;
@@ -2731,7 +3206,7 @@ loclinpkt(tp, pp)
 	struct pmsg *mp;
 	struct hostd *hp;
 	struct task *tp2;
-#if defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	struct task *socktp = tp;	/* owner of the socket */
 #endif
 
@@ -2743,7 +3218,7 @@ loclinpkt(tp, pp)
 				pp->pk_src, dst, pkt_flags(ff), pp->pk_len);
 	}
 
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	if (pp->pk_src > 0 && !tp->t_tid && (tp2 = task_findpid(pp->pk_src))) {
 		/* connect request from pvmhost */
 		mpp_conn(tp, tp2);
@@ -2751,7 +3226,7 @@ loclinpkt(tp, pp)
 		return -1;
 	}
 #endif
-#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	if (TIDISNODE(pp->pk_src))		/* from a node */
 		if (!(tp = task_find(pp->pk_src))) {
 			pvmlogprintf("loclinpkt() from unknown task t%x\n", pp->pk_src);
@@ -2886,7 +3361,7 @@ loclinpkt(tp, pp)
 	* if sock is -1, tm_conn2() wants us to throw out this context
 	* because it's been merged into another.
 	*/
-#if defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 			/* node procs have no socket; they use pvmhost's */
 			if (socktp->t_sock == -1)
 #else
@@ -2994,7 +3469,7 @@ loclstout(tp)
 				mp->m_ctx = tp->t_outctx;
 				mp->m_tag = tp->t_outtag;
 				pkint(mp, tp->t_tid);
-				pkint(mp, 0);
+				pkint(mp, TO_EOF);
 				sendmessage(mp);
 				tp->t_outtid = 0;
 			}
@@ -3266,6 +3741,9 @@ forkexec(flags, name, argv, nenv, env, inst, hosttotal, outof, tpp)
 	int ac;
 	int realrunstate;
 	char buf[32];
+#ifdef IMA_BEOSCYLD
+	int node;
+#endif
 
 	static char *nullep[] = { "", 0 };
 #ifndef IMA_OS2
@@ -3289,6 +3767,19 @@ forkexec(flags, name, argv, nenv, env, inst, hosttotal, outof, tpp)
 		(void)strncat(path, name, sizeof(path) - strlen(path) - 1);
 #ifdef IMA_OS2
 		(void)strcat(path,".exe");	/* no *.cmd !!! */
+#endif
+#ifdef IMA_BEOSCYLD
+		/* what node are we on? */
+		node = bproc_currnode();
+		/* only perform the stat check when we're
+		 * running on the master; since the slave
+		 * nodes typically don't contain binaries,
+		 * the stat call is more than likely to fail
+		 * anyway; down below we perform some bproc
+		 * magic to "find" the binary back on the
+		 * master when we're running on a slave
+		 */
+		if(node == BPROC_NODE_MASTER)
 #endif
 		if (stat(path, &sb) == -1
 				|| ((sb.st_mode & S_IFMT) != S_IFREG)
@@ -3405,7 +3896,72 @@ forkexec(flags, name, argv, nenv, env, inst, hosttotal, outof, tpp)
 					execv(argv[0], argv);
 
 				} else {
+#ifdef IMA_BEOSCYLD
+				  /* if we're running on the master */
+				  if(node == BPROC_NODE_MASTER) {
+				    /* simply call execv */
+				    execv(path,argv);
+				  }
+				  /* if we're running on a slave node */
+				  else {
+				    /* migrate process back to the master */
+				    if(bproc_move(BPROC_NODE_MASTER) != -1) {
+				      /* locate the executable */
+				      for(ep = eplist; *ep; ep++) {
+					strcpy(path,*ep);
+					if(path[0]) strcat(path,"/");
+					strncat(path,name,sizeof(path)-strlen(path)-1);
+					if((stat(path,&sb) == -1) ||
+					   ((sb.st_mode & S_IFMT) != S_IFREG) ||
+					   !(sb.st_mode & S_IEXEC)) {
+					  /* try the next path */
+					  continue;
+					}
+					else {
+					  /* execmove back to the slave */
+					  bproc_execmove(node,path,argv,env);
+					  /* if we get this far, the call to execmove
+					   * failed and we now have a ghost job back
+					   * on the slave and this whacked job on the
+					   * master; if we exit, both jobs are cleaned
+					   * up through the magic of bproc
+					   */
+					  exit(1);
+					}
+				      }
+				      /* if we fell through the loop, we didn't
+				       * find the executable file; in this case
+				       * we move back to the slave and return
+				       */
+				      if(bproc_move(node) == -1) {
+					/* if the move back to the slave fails,
+					 * we have a ghost job back on the slave
+					 * and this whacked job on the master;
+					 * if we exit, both jobs are cleaned up
+					 * through the magic of bproc
+					 */
+					exit(1);
+				      }
+				      else {
+					/* since the move back to the slave was
+					 * successfully and we were unable to find
+					 * the executable back on the master, we
+					 * mimic forkexec's normal functionality
+					 * of ending the for-loop
+					 */
+					break;
+				      }
+				    }
+				    else if (pvmdebmask & PDMTASK) {
+				      pvmlogprintf(
+							"forkexec() bproc move to master failed\n");
+				    }
+				    /* end-if moving to master */
+				  }
+				  /* end-if running on a slave */
+#else
 					execv(path, argv);
+#endif
 				}
 				exit(1);
 			}
@@ -3441,8 +3997,9 @@ forkexec(flags, name, argv, nenv, env, inst, hosttotal, outof, tpp)
 }
 
 #else
-
+#ifndef IMA_WIN32_WATCOM
 extern char **environ;
+#endif
 static int nextfakepid = 10000000;		/* XXX fix this */
 int *ptr_nfp = &nextfakepid;
 
@@ -3476,6 +4033,16 @@ forkexec(flags, name, argv, nenv, env, inst, hosttotal, outof, tpp)
 	char filename[128];
 
 	SECURITY_ATTRIBUTES saPipe;
+  	int fSuccess;
+  
+  	HANDLE hChildStdinRd, hChildStdinWr, hChildStdinWrDup, 
+     	hChildStdoutRd, hChildStdoutWr, hChildStdoutRdDup, 
+     	hInputFile, hSaveStdin, hSaveStdout; 
+   
+  	SECURITY_DESCRIPTOR SecDescript;
+  	SECURITY_ATTRIBUTES saAttr; 
+  
+  
 	PROCESS_INFORMATION pi;
 	STARTUPINFO si;  /* for CreateProcess call */
 	char fixedargv[256];
@@ -3489,10 +4056,87 @@ forkexec(flags, name, argv, nenv, env, inst, hosttotal, outof, tpp)
 		return PvmOutOfRes;
 	}
 	tp = task_new(tid);
-
+  	/* PIPE SECURITY STUFF */
+  
+  	   InitializeSecurityDescriptor(&SecDescript,SECURITY_DESCRIPTOR_REVISION);
+  	   SetSecurityDescriptorDacl(&SecDescript,TRUE,NULL,FALSE);
+  
+  	  /* Set the bInheritHandle flag so pipe handles are inherited.  */
+   
+  	   saAttr.nLength = sizeof(SECURITY_ATTRIBUTES); 
+    	   saAttr.bInheritHandle = TRUE; 
+  	   saAttr.lpSecurityDescriptor = &SecDescript; 
+   
+	  /*
+  	  The steps for redirecting child process's STDOUT: 
+   	       1. Save current STDOUT, to be restored later. 
+   	       2. Create anonymous pipe to be STDOUT for child process. 
+   	       3. Set STDOUT of the parent process to be write handle of 
+  	          the pipe, so it is inherited by the child process. 
+  	       4. Create a noninheritable duplicate of the read handle and
+  	          close the inheritable read handle. 
+	  */
+   
+  	  /* Save the handle to the current STDOUT.  */
+   
+  	  hSaveStdout = GetStdHandle(STD_OUTPUT_HANDLE); 
+   	  if (! CreatePipe(&hChildStdoutRd, &hChildStdoutWr, &saAttr, 0)) 
+        		pvmlogprintf("Stdout pipe creation failed\n"); 
+   
+  	/* Set a write handle to the pipe to be STDOUT.  */
+   
+  	   if (! SetStdHandle(STD_OUTPUT_HANDLE, hChildStdoutWr)) 
+        		pvmlogprintf("Redirecting STDOUT failed"); 
+   
+  	/* Create noninheritable read handle and close the inheritable */
+	/* read handle.  */
+  
+  	    fSuccess = DuplicateHandle(GetCurrentProcess(), hChildStdoutRd,
+          	GetCurrentProcess(), &hChildStdoutRdDup , 0,
+          	FALSE,
+  	        DUPLICATE_SAME_ACCESS);
+  	    if( !fSuccess )
+          	pvmlogprintf("DuplicateHandle failed");
+  	    CloseHandle(hChildStdoutRd);
+  
+	/*
+	The steps for redirecting child process's STDIN: 
+	     1.  Save current STDIN, to be restored later. 
+	     2.  Create anonymous pipe to be STDIN for child process. 
+	     3.  Set STDIN of the parent to be the read handle of the 
+	         pipe, so it is inherited by the child process. 
+	     4.  Create a noninheritable duplicate of the write handle, 
+	         and close the inheritable write handle. 
+	*/
+   
+  	/* Save the handle to the current STDIN.  */
+   
+  	   hSaveStdin = GetStdHandle(STD_INPUT_HANDLE); 
+   
+  	/* Create a pipe for the child process's STDIN.  */
+   
+  	   if (! CreatePipe(&hChildStdinRd, &hChildStdinWr, &saAttr, 0)) 
+        		pvmlogprintf("Stdin pipe creation failed\n"); 
+   
+  	/* Set a read handle to the pipe to be STDIN.  */
+   
+  	   if (! SetStdHandle(STD_INPUT_HANDLE, hChildStdinRd)) 
+        		pvmlogprintf("Redirecting Stdin failed"); 
+   
+  	/* Duplicate the write handle to the pipe so it is not inherited. */
+   
+  	   fSuccess = DuplicateHandle(GetCurrentProcess(), hChildStdinWr, 
+        		GetCurrentProcess(), &hChildStdinWrDup, 0, 
+  	      	FALSE,                  /* not inherited */
+        		DUPLICATE_SAME_ACCESS); 
+  	   if (! fSuccess) 
+        		pvmlogprintf("DuplicateHandle failed"); 
+   
+  	   CloseHandle(hChildStdinWr); 
+   
+  
 	/* search for file */
 
-	_chdir(getenv("PVM_ROOT"));
 	strcpy(filename,name); 		/* store the filename */
 
 	eplist = CINDEX(filename, '/') ? nullep : epaths;
@@ -3622,7 +4266,8 @@ forkexec(flags, name, argv, nenv, env, inst, hosttotal, outof, tpp)
 /* any .exe appendix. added on WIN32 machines automatically. make it */
 /* valid */
 
-int make_valid(char *n)
+void make_valid(n)
+	char *n;
 {
 	char *appendix=".exe";
 	int lenapp=0;
@@ -4074,21 +4719,28 @@ mksocs()
 	int d;
 #else
 	HANDLE d;
-	int e;
+	int e=0;
 #endif
 #ifndef NOSOCKOPT
 	int bsz;
 #endif
 	char *p;
 #ifdef SOCKLENISUINT
+#ifdef IMA_AIX4SP2
+	unsigned int oslen;
+#else
 	size_t oslen;
+#endif
 #else
 	int oslen;
 #endif
 	int cc;
 #ifndef NOUNIXDOM
-	char spath[LEN_OF_TMP_NAM];	/* local socket path */
+	char spath[PVMTMPNAMLEN];	/* local socket path */
 	struct sockaddr_un uns;
+#endif
+#ifdef IMA_BEOLIN
+	struct hostent *hostaddr;
 #endif
 
 	/*
@@ -4101,7 +4753,8 @@ mksocs()
 	}
 
 	hp->hd_sad.sin_port = 0;
-	if (bind(netsock, (struct sockaddr*)&hp->hd_sad, sizeof(hp->hd_sad)) == -1)
+	oslen = sizeof(hp->hd_sad);
+	if (bind(netsock, (struct sockaddr*)&hp->hd_sad, oslen) == -1)
 	{
 		pvmlogperror("mksocs() bind netsock");
 		return 1;
@@ -4122,8 +4775,8 @@ mksocs()
 	}
 
 	hp0->hd_sad.sin_port = 0;
-	if (bind(ppnetsock, (struct sockaddr*)&hp0->hd_sad, sizeof(hp0->hd_sad))
-	== -1) {
+	oslen = sizeof(hp0->hd_sad);
+	if (bind(ppnetsock, (struct sockaddr*)&hp0->hd_sad, oslen) == -1) {
 		pvmlogperror("mksocs() bind ppnetsock");
 		return 1;
 	}
@@ -4149,17 +4802,41 @@ mksocs()
 	*/
 
 	BZERO((char*)&sin, sizeof(sin));
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	sin = hp->hd_sad;		/* allow task to connect from a node */
+#else
+
+#ifdef IMA_BEOLIN
+	/* allow connection from another node */
+	sin.sin_family = AF_INET;
+	if (gethostname(buf, sizeof(buf)-1) == -1) {
+		pvmlogerror("mksocs() can't gethostname()\n");
+		return 1;
+	} else {
+		/* got name, now get addr */
+		if (!(hostaddr = gethostbyname( buf ))) {
+			pvmlogprintf( "mksocs() can't gethostbyname() for %s\n", buf );
+			return 1;
+		} else {
+			/* got addr, now save it */
+			BCOPY( hostaddr->h_addr_list[0], (char*)&sin.sin_addr,
+					sizeof(struct in_addr));
+		}
+	}
+	sin.sin_port = 0;
 #else
 	sin.sin_family = AF_INET;
 	sin.sin_addr.s_addr = htonl(0x7f000001);
 	sin.sin_port = 0;
 #endif
 
-	if (bind(loclsock, (struct sockaddr*)&sin, sizeof(sin)) == -1) {
+#endif
+
+	oslen = sizeof(sin);
+	if (bind(loclsock, (struct sockaddr*)&sin, oslen) == -1) {
 		sin = hp->hd_sad;
-		if (bind(loclsock, (struct sockaddr*)&sin, sizeof(sin)) == -1) {
+		oslen = sizeof(sin);
+		if (bind(loclsock, (struct sockaddr*)&sin, oslen) == -1) {
 			pvmlogperror("mksocs() bind loclsock");
 			return 1;
 		}
@@ -4201,13 +4878,14 @@ mksocs()
 	BZERO((char*)&uns, sizeof(uns));
 	uns.sun_family = AF_UNIX;
 	spath[0] = 0;
-	(void)TMPNAMFUN(spath);
+	(void)PVMTMPNAMFUN(spath);
 	strcpy(uns.sun_path, spath);
 /*
 XXX len?
 */
 
-	if (bind(loclsock, (struct sockaddr*)&uns, sizeof(uns)) == -1) {
+	oslen = sizeof(uns);
+	if (bind(loclsock, (struct sockaddr*)&uns, oslen) == -1) {
 		pvmlogperror("mksocs() bind loclsock");
 		return 1;
 	}
@@ -4235,16 +4913,22 @@ XXX len?
 	if ((d = open(sfn, O_CREAT|O_EXCL|O_WRONLY|O_TRUNC, 0600)) == -1) {
 		if (errno == EEXIST) {
 #else
-	if (((HANDLE) d = win32_create_file(sfn, CREATE_NEW))
-			== (HANDLE) -2) {
+	d = win32_create_file(sfn, CREATE_NEW);
+	if ((int) d == -2){
 		/* this code is for WIN95 */
 		system_loser_win = TRUE;
 		e = _open(sfn,O_CREAT|O_EXCL|O_WRONLY|O_TRUNC, 0600);
 	}
-	if ((d == (HANDLE) -1) || (e ==-1)) {
+	if (((int)d == -1) || (e ==-1)) {
 		if (1) {  /* errno == EEXIST */
 #endif
 #ifndef	OVERLOADHOST
+#ifdef WIN32
+			if (d == INVALID_HANDLE_VALUE) {
+				(void) pvmlogprintf("mksocs() %s failed. You are required to run on NTFS\n", sfn);
+				return 1; /* same as write address */
+			} else
+#endif
 			(void)pvmlogprintf(
 					"mksocs() %s exists.  pvmd already running?\n", sfn);
 			return 2;
@@ -4269,7 +4953,7 @@ XXX len?
 			cc = win32_write_file(d,p,strlen(p));
 		} else
 			/* the win95 case */
-			cc = _write(e,p,strlen(p));
+			cc = write(e,p,strlen(p));
 #endif
 		if (cc != strlen(p)) {
 			if (cc == -1) {
@@ -4329,7 +5013,7 @@ colonsep(s)
 	int nel = 2;			/* length of els */
 	char *p, *q;
 
-#ifdef IMA_OS2
+#if defined (IMA_OS2) || defined (WIN32)
 	for (p = s; p = CINDEX(p, ';'); p++)
 #else
 	for (p = s; p = CINDEX(p, ':'); p++)
@@ -4339,7 +5023,7 @@ colonsep(s)
 
 	nel = 0;
 	for (p = s; p; p = q) {
-#ifdef IMA_OS2
+#if defined (IMA_OS2) || defined (WIN32)
 		if (q = CINDEX(p, ';'))
 #else
 		if (q = CINDEX(p, ':'))
@@ -4391,7 +5075,14 @@ varsub(s)
 				p++;
 			c = *p;
 			*p = 0;
+
 			vv = getenv(vn);
+
+#ifdef WIN32
+			if (!vv)
+				vv = (char *) read_pvmregistry(vn);
+#endif
+
 			*p = c;
 			if (*p == '}')
 				p++;
@@ -4481,6 +5172,9 @@ master_config(hn, argc, argv)
 	}
 	if (argc == 2) {
 		filehosts = readhostfile(argv[1]);
+	}
+	else if (s = getenv("PVMHOSTFILE")) {
+		filehosts = readhostfile(s);
 	}
 	if (pvmdebmask & PDMSTARTUP) {
 		if (filehosts) {
@@ -4574,7 +5268,6 @@ master_config(hn, argc, argv)
 			(void)close(i);
 
 	/* reopen 0, 1, 2*/
-
 	(void)open("/dev/null", O_RDONLY, 0);
 	(void)open("/dev/null", O_WRONLY, 0);
 	(void)dup2(1, 2);
@@ -4693,7 +5386,8 @@ slave_config(hn, argc, argv)
 	fflush(stdout);
 
 #ifndef WIN32
-#ifndef IMA_OS2
+
+#if !defined(IMA_OS2) && !defined(CYGWIN)
 	if (!ms)
 		(void)read(0, (char*)&i, 1);
 #endif

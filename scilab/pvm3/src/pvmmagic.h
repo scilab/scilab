@@ -1,5 +1,5 @@
 
-/* $Id: pvmmagic.h,v 1.1 2001/04/26 07:47:11 scilab Exp $ */
+/* $Id: pvmmagic.h,v 1.2 2002/10/14 14:37:54 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System

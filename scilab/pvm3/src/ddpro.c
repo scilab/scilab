@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: ddpro.c,v 1.1 2001/04/26 07:47:09 scilab Exp $";
+	"$Id: ddpro.c,v 1.2 2002/10/14 14:37:44 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,131 @@ static char rcsid[] =
  *
  *	Entry points for messages from network.
  *
-$Log: ddpro.c,v $
-Revision 1.1  2001/04/26 07:47:09  scilab
-Initial revision
-
+ * $Log: ddpro.c,v $
+ * Revision 1.2  2002/10/14 14:37:44  chanceli
+ * update
+ *
+ * Revision 1.45  2001/09/26 23:35:19  pvmsrc
+ * Added new hd_vmid to hostd struct.
+ * 	- use to override local PVM_VMID settings with hostfile "id=" option
+ * (Spanker=kohl)
+ *
+ * Revision 1.44  2001/09/26 21:22:16  pvmsrc
+ * Added Handling for Optional Virtual Machine ID.
+ * 	- extra vmid comes through with SM_STHOST message (after wincmd).
+ * 	- instruct user to type VMID on remote pvmd stdin for manual startup
+ * 	- in phase1(), after potential rsh/rexec, write VMID env string
+ * 		to remote pvmd's stdin.
+ * (Spanker=kohl)
+ *
+ * Revision 1.43  2001/05/11 17:31:56  pvmsrc
+ * Cast getcwd() call, in case header file sucks.
+ * 	- eliminates warning message on compile...
+ * (Spanker=kohl)
+ *
+ * Revision 1.42  2001/04/23 14:16:13  pvmsrc
+ * Added new working directory option to pvm_spawn().
+ * 	- use "where" argument to cram in working directory,
+ * 		e.g. where = "msr.epm.ornl.gov:/home/user/project/bozo"
+ * 	- TM_SPAWN strips out working directory & creates PVMSPAWNWD env var
+ * 	- exectasks() (called by DM_EXEC or SM_EXEC) checks for env var
+ * 		and does a chdir() (even uses getcwd() to reset directory :-).
+ * 	- should not introduce any run-time incompatibility with older
+ * 		PVM releases.
+ * 	- PvmTaskHost or PvmTaskArch flags need not be used, i.e.
+ * 		pvm_spawn( "foo", 0, PvmTaskDefault, ":/tmp", 1, &tid ) works.
+ * (Spanker=kohl)
+ *
+ * Revision 1.41  2001/02/07 23:14:02  pvmsrc
+ * First Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.40  2000/06/16 16:27:32  pvmsrc
+ * DAMN.  The seemingly cool and efficient tp->t_flag / TF_MBNOTIFY
+ * solution is not as cool as previously thought.
+ * 	- each pvmd only keeps a *local* tasks table...!  D-OH!
+ * 	- need to just search the wait context list for an existing
+ * 		WT_TASKX mbox notify, as previously feared.
+ * 	- already checking wait context list for WT_RECVINFO, so this
+ * 		is not too terrible...
+ * 	- Damn, though...
+ * Removed TF_MBNOTIFY contant - now fricking useless.
+ * (Spanker=kohl)
+ *
+ * Revision 1.39  2000/06/13 22:37:56  pvmsrc
+ * In dm_db():
+ * 	- on successful insert, check whether task already had an mbox
+ * 		notify (for mb_tidy()) set up.
+ * 	- after first such notify / waitc created, set tp->t_flag
+ * 		TF_MBNOTIFY bit.
+ * 	- this avoids a HUGE number of redundant notifies for multiple
+ * 		inserts by the same task.  D-Oh!
+ * (Spanker=kohl)
+ *
+ * Revision 1.38  2000/02/17 23:12:08  pvmsrc
+ * *** Changes for new BEOLIN port ***
+ * 	- MPP-like, similar to SP2, etc.
+ * 	- submitted by Paul Springer <pls@smokeymt.jpl.nasa.gov>.
+ * 	- format-checked & cleaned up by Jeembo...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.37  2000/02/16 21:59:38  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.36  2000/02/10 23:53:35  pvmsrc
+ * Added new PvmIPLoopback error code:
+ * 	- Master Host IP Address tied to Loopback.
+ * 	- check for this case in addhosts(), don't even TRY to add hosts...
+ * (Spanker=kohl)
+ *
+ * Revision 1.35  1999/08/19 15:39:22  pvmsrc
+ * Whoa...  New wincmd stuff was whacking addhost protocol!
+ * 	- *always* pack in something for wincmd, else the attempt to unpack
+ * 		"possible" wincmd will snag start of next host's startup info...
+ * 	- damn.
+ * (Spanker=kohl)
+ *
+ * Revision 1.34  1999/07/08 18:59:50  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.33  1999/03/05  17:21:23  pvmsrc
+ * improved to work with registry/environment on NT/win95-98
+ * and devstudio 5/6
+ * (Spanker=sscott)
+ *
+ * Revision 1.32  1999/02/10  22:38:24  pvmsrc
+ * Fixed passing of pvmdebmask to new / slave pvmds...
+ * 	- need to do -d0x%x to insure interpreted as hex (not just -d%x).
+ * 	- report submitted by Paul Springer <pls@volcanoes.jpl.nasa.gov>.
+ * (Spanker=kohl)
+ *
+ * Revision 1.31  1999/01/28  18:55:30  pvmsrc
+ * Modified logic to allow alternate WIN32 pvmd path.
+ * 	- use new PVM_WINDPATH env var if set, else new WINPVMDPATH define.
+ * 	- append alternate WIN32 command path to end of SM_STHOST message,
+ * 		so smart hosters (and pvmd' running hoster()) can unpack it
+ * 		and use it if the default Unix pvmd path fails to start a pvmd.
+ * (Spanker=kohl)
+ *
+ * Revision 1.30  1998/10/02  15:43:55  pvmsrc
+ * Single source code merge of Win32 and Unix code.
+ * (Spanker=sscott)
+ *
+ * Revision 1.29  1998/02/23  22:51:24  pvmsrc
+ * Added AIX4SP2 stuff.
+ * (Spanker=kohl)
+ *
+ * Revision 1.28  1998/01/12  21:13:22  pvmsrc
+ * Replaced inline constants with new task output op defines.
+ * 	- TO_NEW == -2.
+ * 	- TO_SPAWN == -1.
+ * 	- TO_EOF == 0.
+ * (Spanker=kohl)
+ *
  * Revision 1.27  1997/08/29  13:34:59  pvmsrc
  * OS2 Port Submitted by Bohumir Horeni, horeni@login.cz.
  * (Spanker=kohl)
@@ -234,6 +355,12 @@ Initial revision
  */
 
 
+#ifdef IMA_TITN
+#include <bsd/sys/types.h>
+#else
+#include <sys/types.h>
+#endif
+
 #ifdef NEEDMENDIAN
 #include <machine/endian.h>
 #endif
@@ -243,26 +370,36 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32
-#include <rpc/types.h>
-#include <rpc/xdr.h>
-#include <sys/time.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#else 
+
+#ifdef WIN32
 #include "pvmwin.h"
 #include <sys/stat.h>
 #include <time.h>
 #include <direct.h>
 #include <errno.h>
+#else 
+#include <sys/time.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
 #endif
-#include <sys/types.h>
+
+
+#if defined(WIN32) || defined(CYGWIN)
+#include "..\xdr\types.h"
+#include "..\xdr\xdr.h"
+#else
+#include <rpc/types.h>
+#include <rpc/xdr.h>
+#endif
+
+
 #ifdef	SYSVSTR
 #include <string.h>
 #else
 #include <strings.h>
 #endif
+
 #include <errno.h>
 #include <stdio.h>
 
@@ -274,7 +411,9 @@ Initial revision
 #include "waitc.h"
 #include "task.h"
 #include "listmac.h"
-#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_CM5) || defined(SHMEM) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_CM5) \
+	|| defined(SHMEM) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2) \
+	|| defined(IMA_BEOLIN)
 #include "pvmdmp.h"
 #endif
 #include "bfunc.h"
@@ -311,6 +450,10 @@ extern int pvmschedtid;				/* from pvmd.c */
 extern struct Pvmtracer pvmtracer;	/* from pvmd.c */
 extern int tidhmask;				/* from pvmd.c */
 extern int tidlmask;				/* from pvmd.c */
+
+#ifndef IMA_WIN32_WATCOM
+extern char **environ;
+#endif
 
 int busyadding = 0;					/* lock for addhost op */
 int hosterwid = 0;					/* wid waiting on hoster */
@@ -694,7 +837,9 @@ addhosts(mp, rmp)
 	int hh;
 	int pid;
 	int *tids;
+	char *winpvmdpath;
 	char *pvmdpath;
+	char *vmid;
 	char *buf;
 	int len;
 
@@ -754,6 +899,26 @@ addhosts(mp, rmp)
 				applydefaults(hp, hp2);
 		}
 		PVM_FREE(buf);
+	}
+
+	/*
+	* verify we have a chance to add these babies...
+	* check whether our IP is "real" or just loopback
+	*/
+
+	hp = hosts->ht_hosts[hosts->ht_local];
+
+	if ( hp->hd_sad.sin_addr.s_addr == htonl(0x7f000001) ) {
+
+		/* damn, we're hosed.  bail on host adds with new */
+		/* PvmIPLoopback error code... */
+
+		for (i = 0; i < count; i++) {
+			hp = wxp->w_hosts[i];
+			if (hp->hd_err)
+				continue;
+			hp->hd_err = PvmIPLoopback;
+		}
 	}
 
 	/*
@@ -846,12 +1011,15 @@ addhosts(mp, rmp)
 	pkint(mp2, ngood);
 	if (!(pvmdpath = getenv("PVM_DPATH")))
 		pvmdpath = PVMDPATH;
+	if (!(winpvmdpath = getenv("PVM_WINDPATH")))
+		winpvmdpath = WINPVMDPATH;
 	for (i = 0; i < count; i++) {
 		hp = wxp->w_hosts[i];
 		if (hp->hd_err)
 			continue;
 		pkint(mp2, hp->hd_hostpart);
 		pkstr(mp2, hp->hd_sopts ? hp->hd_sopts : "");
+
 		if (hp->hd_login) {
 			len = strlen(hp->hd_login)
 				+ strlen((hp->hd_aname ? hp->hd_aname : hp->hd_name))
@@ -865,6 +1033,8 @@ addhosts(mp, rmp)
 					? hp->hd_aname : hp->hd_name) );
 		pkstr(mp2, buf);
 		PVM_FREE(buf);
+
+		/* default unix dpath */
 		len = strlen( (hp->hd_dpath ? hp->hd_dpath : pvmdpath) ) + 1
 			+ strlen( (hp->hd_sopts && !strcmp(hp->hd_sopts, "ms")
 					? "-S" : "-s") ) + 1
@@ -872,20 +1042,59 @@ addhosts(mp, rmp)
 			+ 2 + strlen( hp->hd_name ) + 1
 			+ 5 * ( 16 + 1 );
 		buf = TALLOC( len, char, "hdall" );
-		(void)sprintf(buf, "%s %s -d%x -n%s %d %s %d",
+		(void)sprintf(buf, "%s %s -d0x%x -n%s %d %s %d",
 				(hp->hd_dpath ? hp->hd_dpath : pvmdpath),
 				(hp->hd_sopts && !strcmp(hp->hd_sopts, "ms")
 					? "-S" : "-s"),
 				pvmdebmask,
 				hp->hd_name,
 				hosts->ht_master,
-				inadport_hex(&hosts->ht_hosts[hosts->ht_master]->hd_sad),
+				inadport_hex(
+					&hosts->ht_hosts[hosts->ht_master]->hd_sad),
 				hosts->ht_hosts[hosts->ht_master]->hd_mtu);
 		(void)sprintf(buf + strlen(buf), " %d %s",
 				((hp->hd_hostpart & tidhmask) >> (ffs(tidhmask) - 1)),
 				inadport_hex(&hp->hd_sad));
 		pkstr(mp2, buf);
 		PVM_FREE(buf);
+
+		/* default WIN32 dpath - only if not set manually (a la dx=) */
+		if (!(hp->hd_dpath)){
+		len = strlen( winpvmdpath ) + 1
+			+ strlen( (hp->hd_sopts && !strcmp(hp->hd_sopts, "ms")
+					? "-S" : "-s") ) + 1
+			+ 2 + 16 + 1
+			+ 2 + strlen( hp->hd_name ) + 1
+			+ 5 * ( 16 + 1 );
+		buf = TALLOC( len, char, "hdallwin" );
+		(void)sprintf(buf, "%s %s -d0x%x -n%s %d %s %d",
+				winpvmdpath,
+				(hp->hd_sopts && !strcmp(hp->hd_sopts, "ms")
+					? "-S" : "-s"),
+				pvmdebmask,
+				hp->hd_name,
+				hosts->ht_master,
+				inadport_hex(
+					&hosts->ht_hosts[hosts->ht_master]->hd_sad),
+				hosts->ht_hosts[hosts->ht_master]->hd_mtu);
+		(void)sprintf(buf + strlen(buf), " %d %s",
+				((hp->hd_hostpart & tidhmask) >> (ffs(tidhmask) - 1)),
+				inadport_hex(&hp->hd_sad));
+		pkstr(mp2, buf);
+		PVM_FREE(buf);
+		}
+		/* be sure to pack SOMETHING, dammit */
+		else
+			pkstr(mp2, "");
+
+		/* Include VMID (If Any) */
+		if (hp->hd_vmid)
+			pkstr(mp2, hp->hd_vmid);
+		else if (vmid = getenv("PVM_VMID"))
+			pkstr(mp2, vmid);
+		/* be sure to pack SOMETHING, dammit */
+		else
+			pkstr(mp2, "");
 	}
 	mp2->m_tag = SM_STHOST;
 
@@ -968,7 +1177,7 @@ start_hoster(reserved_tid)
 	char hosterpath[128];
 
 	(void) strcpy(hosterpath,(char *) pvmgetroot());
-	(void) strcat(hosterpath,"/bin/WIN32/hoster.exe");
+	(void) strcat(hosterpath,"\\bin\\WIN32\\hoster.exe");
 
 	if (hostexectasker(hosterpath,reserved_tid))
 		return -1;
@@ -1180,6 +1389,8 @@ exectasks(mp, rmp, schtid)
 	struct waitc_spawn *wxp;	/* new task parameters */
 	int munge_tenv = 0;
 	char tmp[255];
+	char *wd = 0;
+	char *savewd = 0;
 
 	wxp = TALLOC(1, struct waitc_spawn, "waix");
 	BZERO((char*)wxp, sizeof(struct waitc_spawn));
@@ -1242,8 +1453,18 @@ exectasks(mp, rmp, schtid)
 	for (i = 0; i < wxp->w_nenv; i++)
 		if (upkstralloc(mp, &wxp->w_env[i]))
 			goto bad;
+
 	if ( upkuint(mp, &wxp->w_instance) || upkuint(mp, &wxp->w_outof))
 		goto bad;
+
+	/* check for spawn working directory */
+
+	for (i = 0; i < wxp->w_nenv; i++)
+		if ( !strncmp( "PVMSPAWNWD=", wxp->w_env[i],
+				strlen("PVMSPAWNWD=") ) )
+			wd = STRALLOC( wxp->w_env[i] + strlen("PVMSPAWNWD=") );
+
+	/* munge env for tracing stuff */
 
 	if ( munge_tenv ) {
 		sprintf( tmp, "PVMTMASK=%s", pvmtracer.tmask );
@@ -1263,7 +1484,14 @@ exectasks(mp, rmp, schtid)
 
 	wxp->w_sched = schtid;
 
-#if defined(IMA_PGON) || defined(IMA_SP2MPI)
+	/* change to desired working directory (if specified) */
+	if (wd) {
+		savewd = (char *) getcwd( (char *) NULL, 255 );
+		chdir( wd );
+	}
+
+#if defined(IMA_PGON) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2) \
+		|| defined(IMA_BEOLIN)
 	if (!(wxp->w_flags & PvmMppFront))
 	{
 		mpp_load(wxp);
@@ -1273,6 +1501,10 @@ exectasks(mp, rmp, schtid)
 	{
 		ppi_load(wxp);
 	}
+
+	/* go back to original directory (if getcwd() was successful) */
+	if (savewd)
+		chdir( savewd );
 
 for (i = 0; i < wxp->w_veclen; i++) {
 		if (wxp->w_vec[i] > 0) {
@@ -1288,7 +1520,7 @@ for (i = 0; i < wxp->w_veclen; i++) {
 				mp2->m_ctx = wxp->w_outctx;
 				mp2->m_tag = wxp->w_outtag;
 				pkint(mp2, wxp->w_vec[i]);
-				pkint(mp2, -2);
+				pkint(mp2, TO_NEW);
 				pkint(mp2, wxp->w_ptid);
 				sendmessage(mp2);
 			}
@@ -1308,6 +1540,8 @@ cleanup:
 	if (wxp->w_argv)
 		*--wxp->w_argv = 0;
 	free_wait_spawn(wxp);
+	if (wd)
+		PVM_FREE(wd);
 	return 0;
 }
 
@@ -2709,6 +2943,7 @@ dm_db(hp, mp)
 	int found;
 	int cc;
 	int i;
+	int notified;
 
 	hp = hp;
 
@@ -2730,26 +2965,9 @@ dm_db(hp, mp)
 		if ((req = mb_insert(tid, name, req, flags, mp3)) < 0)
 			pmsg_unref(mp3);
 		else {
-			/* dummy notify for clean up */
-			wp = wait_new(WT_TASKX);
-			wp->wa_on = tid;
-			wp->wa_tid = pvmmytid;
-			wp->wa_dep = 0;
-			wp->wa_mesg = (struct pmsg *) NULL;
-
-			/* pass on to non-master host */
-			hp2 = tidtohost(hosts, tid);
-			if ( hp2 && hp2->hd_hostpart != myhostpart ) {
-				mp4 = mesg_new(0);
-				pkint(mp4, PvmTaskExit);
-				pkint(mp4, tid);
-				mp4->m_dst = hp2->hd_hostpart | TIDPVMD;
-				mp4->m_tag = DM_NOTIFY;
-				mp4->m_wid = wp->wa_wid;
-				sendmessage(mp4);
-			}
 
 			/* check for any pending requests for this mbox entry */
+			notified = 0;
 			for (wp = waitlist->wa_link; wp != waitlist; wp = wp2) {
 				wp2 = wp->wa_link;
 				if (wp->wa_kind == WT_RECVINFO) {
@@ -2771,7 +2989,35 @@ dm_db(hp, mp)
 						}
 					}
 				}
+				/* check if task needs mbox notify for mb_tidy()... */
+				else if (wp->wa_kind == WT_TASKX) {
+					if ( wp->wa_on == tid && wp->wa_tid == pvmmytid )
+						notified++;
+				}
 			}
+
+			/* create mbox notify for mb_tidy() cleanup... */
+			if ( !notified ) {
+				/* dummy notify for clean up */
+				wp = wait_new(WT_TASKX);
+				wp->wa_on = tid;
+				wp->wa_tid = pvmmytid;
+				wp->wa_dep = 0;
+				wp->wa_mesg = (struct pmsg *) NULL;
+
+				/* pass on to non-master host */
+				hp2 = tidtohost(hosts, tid);
+				if ( hp2 && hp2->hd_hostpart != myhostpart ) {
+					mp4 = mesg_new(0);
+					pkint(mp4, PvmTaskExit);
+					pkint(mp4, tid);
+					mp4->m_dst = hp2->hd_hostpart | TIDPVMD;
+					mp4->m_tag = DM_NOTIFY;
+					mp4->m_wid = wp->wa_wid;
+					sendmessage(mp4);
+				}
+			}
+
 		}
 		pkint(mp2, req);
 		break;

@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmalloc.c,v 1.1 2001/04/26 07:47:11 scilab Exp $";
+	"$Id: pvmalloc.c,v 1.2 2002/10/14 14:37:50 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,14 @@ static char rcsid[] =
  *
  *	Malloc filter interface.
  *
-$Log: pvmalloc.c,v $
-Revision 1.1  2001/04/26 07:47:11  scilab
-Initial revision
-
+ * $Log: pvmalloc.c,v $
+ * Revision 1.2  2002/10/14 14:37:50  chanceli
+ * update
+ *
+ * Revision 1.4  1999/07/08 19:00:06  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.3  1997/06/25  22:09:18  pvmsrc
  * Markus adds his frigging name to the author list of
  * 	every file he ever looked at...

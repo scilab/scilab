@@ -1,5 +1,5 @@
 
-/* $Id: lpvm.h,v 1.1 2001/04/26 07:47:10 scilab Exp $ */
+/* $Id: lpvm.h,v 1.2 2002/10/14 14:37:46 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -34,10 +34,19 @@
  *
  *	Libpvm Globals Declarations.
  *
-$Log: lpvm.h,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: lpvm.h,v $
+ * Revision 1.2  2002/10/14 14:37:46  chanceli
+ * update
+ *
+ * Revision 1.13  2000/02/16 22:00:59  pvmsrc
+ * Added #ifndef NO_NETINET_TCP_H around <netinet/tcp.h> for
+ * 	archs that can't handle it...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.12  1999/07/08 19:00:21  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.11  1997/09/22  21:13:28  pvmsrc
  * Added new pvmsettaskname() linkage (for shell-spawned tasks only!).
  * 	- call pvmsettaskname() before joining PVM, sends task name
@@ -91,7 +100,9 @@ Initial revision
 #include <sys/types.h>
 #ifndef WIN32
 #include <netinet/in.h>
+#ifndef NO_NETINET_TCP_H
 #include <netinet/tcp.h>
+#endif
 #endif
 
 #ifdef IMA_MPP

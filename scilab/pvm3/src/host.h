@@ -1,5 +1,5 @@
 
-/* $Id: host.h,v 1.1 2001/04/26 07:47:10 scilab Exp $ */
+/* $Id: host.h,v 1.2 2002/10/14 14:37:45 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -34,10 +34,19 @@
  *
  *	Host table data structures.
  *
-$Log: host.h,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: host.h,v $
+ * Revision 1.2  2002/10/14 14:37:45  chanceli
+ * update
+ *
+ * Revision 1.6  2001/09/26 23:35:21  pvmsrc
+ * Added new hd_vmid to hostd struct.
+ * 	- use to override local PVM_VMID settings with hostfile "id=" option
+ * (Spanker=kohl)
+ *
+ * Revision 1.5  1999/07/08 19:00:20  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.4  1997/06/25  22:08:45  pvmsrc
  * Markus adds his frigging name to the author list of
  * 	every file he ever looked at...
@@ -95,6 +104,7 @@ struct hostd {
 	int hd_speed;				/* cpu relative speed */
 	struct mca *hd_mcas;		/* from-host mca cache */
 	char *hd_aname;				/* name to use for network address */
+	char *hd_vmid;				/* virtual machine id */
 };
 
 /* hd_flag values */

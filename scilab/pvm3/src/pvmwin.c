@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmwin.c,v 1.1 2001/04/26 07:47:12 scilab Exp $";
+	"$Id: pvmwin.c,v 1.2 2002/10/14 14:37:55 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -31,15 +31,75 @@ static char rcsid[] =
  */
 
 #include "pvmwin.h"
+#include <pvm3.h>
+#include "pvmalloc.h"
+#include <winreg.h>
 #include <fcntl.h>
 
 extern int debugmask;
 
-char *username;
+extern char *username;
+
+
+char *
+read_pvmregistry(token_call)
+const char *token_call;
+{
+	long return_value;
+	HKEY top=NULL;
+	HKEY phkResult = NULL;
+	static char subkey[]="SOFTWARE\\PVM";
+	static char root[]="SOFTWARE\\PVM";
+ 	static char token[16];
+
+	LPTSTR key_name ="";
+	DWORD type = REG_EXPAND_SZ;
+
+	int value_size=0;
+	int i=0;
+	char value[64];
+	char *give_back = (char *) malloc (64 * sizeof(char));
+	value_size=sizeof(value);
+
+	top = HKEY_LOCAL_MACHINE;
+	for (i=0; token_call[i];i++)
+		token[i]=token_call[i];
+	token[i++]=0;
+	token[i++]=0;
+
+	key_name=subkey;
+
+	return_value = RegOpenKeyEx(top, 
+				key_name, 
+				0, 
+				KEY_EXECUTE, 
+				&phkResult);
+    
+	if ( return_value != ERROR_SUCCESS ) {
+      		fprintf(stderr,"RegOpenKey failed for %s: %d\n",token,(int) return_value);
+		return NULL;
+	}
+	
+	return_value = RegQueryValueEx(phkResult,
+					token,
+					NULL,
+					(LPDWORD) &type,
+					(LPBYTE) &value,
+					(LPDWORD)&value_size);
+	if ( return_value != ERROR_SUCCESS ) {
+	      fprintf(stderr,"RegQueryValueEx failed for %s: %d \n", token,(int) return_value);
+	      return NULL;
+	}
+	strcpy(give_back,(char *)value);
+	RegCloseKey(phkResult);
+	return (char* ) give_back;
+}
 
 
 void
-Wait(HANDLE id, DWORD *prv)
+Wait(id, prv)
+HANDLE id;
+DWORD *prv;
 {
 	if (!WaitForSingleObject(id, INFINITE)) {
 		*prv = 2;
@@ -51,7 +111,11 @@ Wait(HANDLE id, DWORD *prv)
 }
 
 
-int win32_write_socket (SOCKET s,const char FAR *tosend, int size)
+int
+win32_write_socket (s, tosend, size)
+SOCKET s;
+const char FAR *tosend;
+int size;
 {
 	int nSend=0;
 
@@ -72,7 +136,11 @@ int win32_write_socket (SOCKET s,const char FAR *tosend, int size)
 }
 
 
-int win32_read_socket (SOCKET s,char FAR *torecv, int size)
+int
+win32_read_socket (s, torecv, size)
+SOCKET s;
+char FAR *torecv;
+int size;
 {
 	int nReceived=0;
 
@@ -82,6 +150,11 @@ int win32_read_socket (SOCKET s,char FAR *torecv, int size)
 
 		if ((nReceived = recv(s, torecv, size2recv, 0)) == -1)
 			return nReceived;
+
+		/* Nothing received - EOF? */
+		/* return any bytes read */
+		if (!nReceived)
+			return size-size2recv;
 
 		torecv += nReceived;
 		size2recv -= nReceived;
@@ -94,7 +167,10 @@ int win32_read_socket (SOCKET s,char FAR *torecv, int size)
 }
 
 
-int gettimeofday(struct timeval *t, struct timezone *tzp)
+int
+gettimeofday(t, tzp)
+struct timeval *t;
+struct timezone *tzp;
 {
 	struct _timeb timebuffer;
 
@@ -107,19 +183,97 @@ int gettimeofday(struct timeval *t, struct timezone *tzp)
 }
 
 
-void nt_rpc_report( char *s)
+char *
+GetLastErrorToStr (error)
+int error;
+{
+    switch(error)
+    {
+        case WSAENETDOWN:
+            return("The network subsystem has failed.\n");
+            break;
+        case WSAEINTR:
+            return("A blocking call was cancelled.  This can be caused by\n1) a short response time, or\n2) User interrupts the process.\n");
+            break;
+        case WSAEINPROGRESS:
+            return("A blocking call is in progress.\n");
+            break;
+        case WSAENOBUFS:
+            return("No buffer space is available.\n");
+            break;
+        case WSAENOTSOCK:
+            return("Invalid socket descriptor.\n");
+            break;
+        case WSAEADDRINUSE:
+            return("The specified address is already in use.\n");
+            break;
+        case WSAEADDRNOTAVAIL:
+            return("The specified address is not available\nfrom the local machine.\n");
+            break;
+        case WSAECONNREFUSED:
+            return("The connection attempt was refused.\n");
+            break;
+        case WSAEINVAL:
+            return("The socket is not bound to an address.\n");
+            break;
+        case WSAEISCONN:
+            return("The socket is already connected.\n");
+            break;
+        case WSAEMFILE:
+            return("The maximum number of sockets has exceeded.\n");
+            break;
+        case WSAENETUNREACH:
+            return("Network cannot be reached from this host at this time.\n");
+            break;
+        case WSAETIMEDOUT:
+            return("Attempt to connect timed out without establishing a connection.\n");
+            break;
+        case WSAENOTCONN:
+            return("The socket is not connected.\n");
+            break;
+        case WSAESHUTDOWN:
+            return("The socket has been shut down.\n");
+            break;
+        case WSAECONNABORTED:
+            return("The socket connection has been reset.\n");
+            break;
+        case WSAECONNRESET:
+            return("Socket shutdown by remote.\n");
+            break;
+        case WSAEACCES:
+            return("The requested address is a broadcast address.\n");
+            break;
+        case WSAENETRESET:
+            return("The socket connection has been reset.\n");
+            break;
+        case WSAHOST_NOT_FOUND:
+            return("Host could not found.\n");
+            break;
+        default:
+	    return("could not match error tag");
+            break;
+    }
+}
+
+void 
+nt_rpc_report(s)
+char *s;
 {
 	printf("Error: %s: %d\n",s,GetLastError());
 }
 
 
-void ErrorHandler(char *s)
+void
+ErrorHandler(s)
+char *s;
 {
 	printf("Error: %s: %d\n",s,GetLastError());
 }
 
 
-int win32_close_file(HANDLE f)
+int 
+win32_close_file(f)
+HANDLE f;
 {
 	int success;
 	success = CloseHandle(f);
@@ -127,7 +281,10 @@ int win32_close_file(HANDLE f)
 }
 
 
-HANDLE win32_create_file(char *TMP_AREA, int mode)
+HANDLE 
+win32_create_file(TMP_AREA, mode)
+char *TMP_AREA;
+int mode;
 {
 	HANDLE hFile;
 	PSECURITY_DESCRIPTOR pSD;
@@ -270,7 +427,11 @@ Cleanup:
 }
 
 
-int win32_write_file(HANDLE f, char *s,int size)
+int 
+win32_write_file(f, s, size)
+HANDLE f;
+char *s;
+int size;
 {
 	int sizewritten=0;
 
@@ -283,7 +444,11 @@ int win32_write_file(HANDLE f, char *s,int size)
 }
 
 
-int win32_read_file(HANDLE f, char *s,int size)
+int
+win32_read_file(f, s, size)
+HANDLE f;
+char *s;
+int size;
 {
 	int sizeread=0;
 	if (!ReadFile(f,s,size,&sizeread,NULL)) {
@@ -296,7 +461,9 @@ int win32_read_file(HANDLE f, char *s,int size)
 }
 
 
-HANDLE win32_open_file(char *TMP_AREA)
+HANDLE 
+win32_open_file(TMP_AREA)
+char *TMP_AREA;
 {
 	HANDLE hF;
 
@@ -307,7 +474,11 @@ HANDLE win32_open_file(char *TMP_AREA)
 }
 
 
-int kill( int pid, int p_handle, int signal)
+int 
+kill(pid, p_handle, signal)
+int pid;
+int p_handle;
+int signal;
 {
 	HANDLE hProcess;
 
@@ -329,7 +500,8 @@ int kill( int pid, int p_handle, int signal)
 }
 
 
-char *MyGetUserName()
+char *
+MyGetUserName()
 {
 	char *thisname=0;
 	char myuser[64];
@@ -340,14 +512,15 @@ char *MyGetUserName()
 		pvmlogprintf("Continued by provided username\n");
 		return NULL;
 	}
-	thisname = malloc (16 *sizeof(char));
-	strncpy(thisname,myuser,16);
+	thisname = STRALLOC(myuser);
 	return thisname;
 
 }
 
 
-int win32_delete_file(char *TMP_AREA)
+int 
+win32_delete_file(TMP_AREA)
+char *TMP_AREA;
 {
 	return (!DeleteFile(TMP_AREA));
 }

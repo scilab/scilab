@@ -1,5 +1,5 @@
 
-/* $Id: bfunc.h,v 1.2 2002/10/14 14:37:44 chanceli Exp $ */
+/* $Id: patchlevel.h,v 1.1 2002/10/14 14:40:03 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -29,48 +29,5 @@
  * the National Science Foundation and the State of Tennessee.
  */
 
-/*
- *	bfunc.h
- *
- *	Bcopy/Memcpy patch.
- *
- * $Log: bfunc.h,v $
- * Revision 1.2  2002/10/14 14:37:44  chanceli
- * update
- *
- * Revision 1.4  1999/07/08 19:00:19  kohl
- * Fixed "Log" keyword placement.
- * 	- indent with " * " for new CVS.
- *
- * Revision 1.3  1997/06/25  22:08:42  pvmsrc
- * Markus adds his frigging name to the author list of
- * 	every file he ever looked at...
- *
- * Revision 1.2  1997/01/28  19:27:53  pvmsrc
- * New Copyright Notice & Authors.
- *
- * Revision 1.1  1996/09/23  23:43:11  pvmsrc
- * Initial revision
- *
- * Revision 1.2  1994/06/03  20:38:12  manchek
- * version 3.3.0
- *
- * Revision 1.1  1993/08/30  23:26:46  manchek
- * Initial revision
- *
- */
-
-
-#if defined(SYSVBFUNC)
-#include <memory.h>
-#define BZERO(d,n)      memset(d,0,n)
-#define BCMP(s,d,n)     memcmp(d,s,n)
-#define BCOPY(s,d,n)    memcpy(d,s,n)
-
-#else
-#define BZERO(d,n)      bzero(d,n)
-#define BCMP(s,d,n)     bcmp(s,d,n)
-#define BCOPY(s,d,n)    bcopy(s,d,n)
-
-#endif
+#define PATCHLEVEL 340
 

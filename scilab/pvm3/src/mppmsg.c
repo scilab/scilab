@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: mppmsg.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: mppmsg.c,v 1.2 2002/10/14 14:37:49 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -45,7 +45,9 @@ static char rcsid[] =
 #include <sys/un.h>
 #endif
 #include <netinet/in.h>
+#ifndef NO_NETINET_TCP_H
 #include <netinet/tcp.h>
+#endif
 #include <pvm3.h>
 #include <pvmproto.h>
 #include "lpvm.h"
@@ -108,7 +110,7 @@ extern int pvmhostnode;
 
 #endif /* IMA_PGON */
 
-#if defined(IMA_SP2MPI)
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 #if defined(IMA_NODE)
 #include <mpi.h>
 
@@ -166,6 +168,8 @@ extern int pvmhostnode;
 
 #endif /* IMA_SP2MPI */
 
+char *getenv();
+
 
 /* ----------( Node -- Node ) Routines ----------- */
 static int
@@ -181,7 +185,7 @@ msgmid_t *mid;
 #if defined(IMA_PGON)
 	return ((*mid) = ASYNCSEND(appid, tag, buffer, len, dest, partid, mid));
 #endif
-#if defined(IMA_SP2MPI)
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	return  ASYNCSEND(appid, tag, buffer, len, dest, partid, mid);
 #endif
 }
@@ -201,7 +205,7 @@ msgmid_t *mid;
 #if defined(IMA_PGON)
 	return ((*mid)=ASYNCRECV(appid, src, tag, buffer, len, partid, info, mid));
 #endif
-#if defined(IMA_SP2MPI)
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	return ASYNCRECV(appid, src, tag, buffer, len, partid, info, mid);
 #endif
 }
@@ -225,7 +229,7 @@ int flag;
 #if defined(IMA_PGON)
 	return MSGDONE(appid, mid, &flag, info);
 #endif
-#if defined(IMA_SP2MPI)
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	MSGDONE(appid, mid, &flag, info);
 	return flag;
 #endif
@@ -253,7 +257,7 @@ int len;
 #if defined(IMA_PGON)
 	return MSGLEN(info, &len);
 #endif
-#if defined(IMA_SP2MPI)
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	MSGLEN(info,&len);
 	return len;
 #endif
@@ -273,7 +277,7 @@ msgmid_t *mid;
 #if defined(IMA_PGON)
 	return ((*mid) = HOSTASYNCSEND(appid, tag, buffer, len, dest, partid, mid));
 #endif
-#if defined(IMA_SP2MPI)
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	return  HOSTASYNCSEND(appid, tag, buffer, len, dest, partid, mid);
 #endif
 }
@@ -293,7 +297,7 @@ msgmid_t *mid;
 #if defined(IMA_PGON)
 	return ((*mid)=HOSTASYNCRECV(appid, src, tag, buffer, len, partid, info, mid));
 #endif
-#if defined(IMA_SP2MPI)
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	return HOSTASYNCRECV(appid, src, tag, buffer, len, partid, info, mid);
 #endif
 }
@@ -316,7 +320,7 @@ int flag;
 #if defined(IMA_PGON)
 	return HOSTMSGDONE(appid, mid, &flag, info);
 #endif
-#if defined(IMA_SP2MPI)
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	HOSTMSGDONE(appid, mid, &flag, info);
 	return flag;
 #endif
@@ -344,7 +348,7 @@ int len;
 #if defined(IMA_PGON)
 	return HOSTMSGLEN(info, &len);
 #endif
-#if defined(IMA_SP2MPI)
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	HOSTMSGLEN(info,&len);
 	return len;
 #endif
@@ -429,7 +433,7 @@ int *partid;
 	*host = *partsize;
 #endif
 
-#if defined(IMA_SP2MPI)
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
     MPI_Init(&ac, NULL);
     MPI_Comm_rank(MPI_COMM_WORLD, node);
     MPI_Comm_size(MPI_COMM_WORLD, partsize);
@@ -457,7 +461,7 @@ int *partid;
 int
 pvm_mpp_message_stop() 
 {
-#if defined(IMA_SP2MPI)
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	MPI_Finalize();
 #endif
 	return 0;
@@ -465,7 +469,7 @@ pvm_mpp_message_stop()
 	
 #endif /* IMA_NODE */
 /* ===============  Host and Relay Processes for MPI =============== */
-#if defined(IMA_SP2MPI) && defined(IMA_NODE)
+#if ( defined(IMA_SP2MPI) || defined(IMA_AIX4SP2) ) && defined(IMA_NODE)
 
 #define NMPPSBUFMIDS 32			/* number of allowed outstanding send mids */
 static msgmid_t mppsendmids[NMPPSBUFMIDS];

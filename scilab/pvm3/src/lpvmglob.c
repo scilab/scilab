@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: lpvmglob.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: lpvmglob.c,v 1.2 2002/10/14 14:37:47 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,46 @@ static char rcsid[] =
  *
  *	Libpvm Globals.
  *
-$Log: lpvmglob.c,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: lpvmglob.c,v $
+ * Revision 1.2  2002/10/14 14:37:47  chanceli
+ * update
+ *
+ * Revision 1.18  2001/02/07 23:14:08  pvmsrc
+ * First Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.17  2000/06/15 17:51:52  pvmsrc
+ * Fixed bug in WIN32 direct routing.
+ * 	- stupid #endif in the wrong place, pvm_fd_add() call whacked.
+ * 	- turned back on direct routing default and setopt.
+ * (Spanker=kohl)
+ *
+ * Revision 1.16  2000/02/17 23:12:15  pvmsrc
+ * *** Changes for new BEOLIN port ***
+ * 	- MPP-like, similar to SP2, etc.
+ * 	- submitted by Paul Springer <pls@smokeymt.jpl.nasa.gov>.
+ * 	- format-checked & cleaned up by Jeembo...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.15  2000/02/16 22:01:00  pvmsrc
+ * Added #ifndef NO_NETINET_TCP_H around <netinet/tcp.h> for
+ * 	archs that can't handle it...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.14  1999/07/08 18:59:59  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.13  1999/03/12  20:55:37  pvmsrc
+ * Don't allow direct routing in WIN32 until we fix it.  Shit.
+ * (Spanker=kohl)
+ *
+ * Revision 1.12  1998/11/20  20:04:07  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (Spanker=sscott)
+ *
  * Revision 1.11  1997/09/22  21:13:32  pvmsrc
  * Added new pvmsettaskname() linkage (for shell-spawned tasks only!).
  * 	- call pvmsettaskname() before joining PVM, sends task name
@@ -90,16 +126,23 @@ Initial revision
 
 
 #include <stdio.h>
-#ifdef WIN32
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
 #else
 #include <rpc/types.h>
 #include <rpc/xdr.h>
+#endif
+
+#ifndef WIN32
 #include <netinet/in.h>
+#ifndef NO_NETINET_TCP_H
 #include <netinet/tcp.h>
 #endif
-#include <pvm3.h>
+#endif
+
 #include "pmsg.h"
 #include <pvmtev.h>
 #include "tevmac.h"
@@ -141,7 +184,8 @@ char *pvmmytaskname = (char *) NULL;	/* task name */
   || defined(IMA_PGON) || defined(IMA_SP2MPI) || defined(IMA_ALPHAMP) \
   || defined(IMA_CSPP) || defined(IMA_HPPAMP) || defined(IMA_RS6KMP) \
   || defined(IMA_SGIMP) || defined(IMA_SGIMP6) || defined(IMA_SGIMP64) \
-  || defined(IMA_SUNMP) || defined(IMA_AIX4MP) || defined(AIX4SP2)
+  || defined(IMA_SUNMP) || defined(IMA_AIX4MP) || defined(AIX4SP2) \
+  || defined(IMA_BEOLIN)
 #include "pvmmimd.h"
 int pvmrouteopt = PvmDontRoute;			/* task-task routing style */
 int pvmfrgsiz = MAXFRAGSIZE;			/* msg frag length (to pack) */

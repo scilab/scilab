@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: sdpro.c,v 1.1 2001/04/26 07:47:12 scilab Exp $";
+	"$Id: sdpro.c,v 1.2 2002/10/14 14:37:55 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,30 @@ static char rcsid[] =
  *
  *	Pvmd entry points for messages from scheduler.
  *
-$Log: sdpro.c,v $
-Revision 1.1  2001/04/26 07:47:12  scilab
-Initial revision
-
+ * $Log: sdpro.c,v $
+ * Revision 1.2  2002/10/14 14:37:55  chanceli
+ * update
+ *
+ * Revision 1.9  2001/02/07 23:15:54  pvmsrc
+ * 2nd Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.8  2000/02/16 22:00:29  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.7  1999/07/08 19:00:15  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.6  1998/11/20  20:06:45  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (spanker=sscott)
+ *
  * Revision 1.5  1997/06/27  17:32:55  pvmsrc
  * Updated for WIN32 header files & Authors.
  *
@@ -75,6 +95,12 @@ Initial revision
  */
 
 
+#ifdef IMA_TITN
+#include <bsd/sys/types.h>
+#else
+#include <sys/types.h>
+#endif
+
 #ifdef NEEDMENDIAN
 #include <machine/endian.h>
 #endif
@@ -84,20 +110,25 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32
-#include <rpc/types.h>
-#include <rpc/xdr.h>
+
+#ifdef WIN32
+#include "pvmwin.h"
+#include <time.h>
+#else
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/time.h>
-#else
-#include "pvmwin.h"
-#include <time.h>
-#include "..\xdr\types.h"
-#include "..\xdr\xdr.h"
 #endif
 
-#include <sys/types.h>
+
+#if defined(WIN32) || defined(CYGWIN)
+#include "..\xdr\types.h"
+#include "..\xdr\xdr.h"
+#else
+#include <rpc/types.h>
+#include <rpc/xdr.h>
+#endif
+
 #include <stdio.h>
 
 #include <pvm3.h>

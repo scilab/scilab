@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmcruft.c,v 1.1 2001/04/26 07:47:11 scilab Exp $";
+	"$Id: pvmcruft.c,v 1.2 2002/10/14 14:37:51 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,120 @@ static char rcsid[] =
  *
  *	Missing links and other wonk.
  *
-$Log: pvmcruft.c,v $
-Revision 1.1  2001/04/26 07:47:11  scilab
-Initial revision
-
+ * $Log: pvmcruft.c,v $
+ * Revision 1.2  2002/10/14 14:37:51  chanceli
+ * update
+ *
+ * Revision 1.38  2001/09/27 21:25:10  pvmsrc
+ * BEOSCYLD port.
+ * 	- submitted by Joe Vitale <vitale@scyld.com>.
+ * 	(we renamed it from BEOWULF to BEOSCYLD, but it's his port... :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.37  2001/09/26 22:04:20  pvmsrc
+ * Modified temp file prefix in pvmtmpnam().
+ * 	- tmp* -> pvmtmp*.
+ * (Spanker=kohl)
+ *
+ * Revision 1.36  2001/09/26 21:22:59  pvmsrc
+ * Append VMID string to PVMD socket file name in pvmdsockfile().
+ * 	- if set in PVM_VMID env var.
+ * 	- not restricted to be integer as in SGI, can be arbitrary
+ * 		string...  heh, heh...  :-}
+ * (Spanker=kohl)
+ *
+ * Revision 1.35  2001/09/25 21:21:02  pvmsrc
+ * Yanked "char *pvmgettmp();" decl - now in pvm3.h...
+ * (Spanker=kohl)
+ *
+ * Revision 1.34  2001/02/09 15:23:47  pvmsrc
+ * Minor tweak to pvmgettmp() for Markus.
+ * 	- check %PVM_TMP% & registry before resorting to %TEMP%.
+ * (Spanker=kohl)
+ *
+ * Revision 1.33  2001/02/07 23:15:51  pvmsrc
+ * 2nd Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.32  2001/02/02 14:50:26  pvmsrc
+ * Win32 fixes & additions.
+ * (Spanker=kohl)
+ *
+ * Revision 1.31  2000/03/29 20:04:12  pvmsrc
+ * Added prototype for pvm_readregistry() routine.
+ * (Spanker=sscott)
+ *
+ * Revision 1.30  2000/02/17 23:12:15  pvmsrc
+ * *** Changes for new BEOLIN port ***
+ * 	- MPP-like, similar to SP2, etc.
+ * 	- submitted by Paul Springer <pls@smokeymt.jpl.nasa.gov>.
+ * 	- format-checked & cleaned up by Jeembo...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.29  2000/02/16 23:30:24  pvmsrc
+ * Added back in read_pvmregistry() calls.
+ * 	- for PVM_ROOT and PVM_TMP, if env vars not present on WIN32.
+ * 	- couldn't find reference to PVM_ARCH anywhere, Markus?!
+ * (Spanker=kohl)
+ *
+ * Revision 1.28  2000/02/14 20:32:11  pvmsrc
+ * Added new pvmgetrsh() routine
+ * 	- checks for PVM_RSH or else uses old RSHCOMMAND interface.
+ * 	- one-stop shopping for rsh...
+ * (Spanker=kohl)
+ *
+ * Revision 1.27  2000/02/10 20:45:15  pvmsrc
+ * Replaced hard-coded /tmp usage.
+ * 	- modified pvmgettmp() to try $PVM_TMP env var for Unix, too.
+ * 	- use for TDSOCKNAME / TDSOCKNAME_CSPP in pvmdsockfile().
+ * Also in pvmdsockfile():
+ * 	- fixed WIN32 chdir() problem, cleaned up string manip.
+ * (Spanker=kohl)
+ *
+ * Revision 1.26  1999/12/13 18:13:55  pvmsrc
+ * Moved pvmmatchstring() here from msgbox.c.
+ * 	- for use by pvmtester stuff...
+ * (Spanker=kohl)
+ *
+ * Revision 1.25  1999/07/08 19:00:06  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.24  1999/03/16  16:29:56  pvmsrc
+ * Oops...  Fixed typing problem for WIN32 in pvmsleep()...
+ * (Spanker=kohl)
+ *
+ * Revision 1.23  1999/03/15  19:06:32  pvmsrc
+ * Added new pvmsleep() routine.
+ * 	- Unix / Win32, C / Fortran compat...
+ * 	- invokes Sleep() on WIN32 (with secs * 1000 :-)~
+ * (Spanker=kohl)
+ *
+ * Revision 1.22  1999/03/05  17:21:15  pvmsrc
+ * improved to work with registry/environment on NT/win95-98
+ * and devstudio 5/6
+ * (Spanker=sscott)
+ *
+ * Revision 1.21  1999/02/09  23:06:53  pvmsrc
+ * Cleaned up temp file stuff (mainly for WIN32).
+ * 	- extracted new pvmgettmp() routine for returning tmp directory.
+ * (Spanker=kohl)
+ *
+ * Revision 1.20  1999/02/09  20:10:10  pvmsrc
+ * Cleaned up pvmgetroot().
+ * 	- some arch cases not properly executed.
+ * 	- for WIN32, if read_pvmregistry() fails, give the env var a shot.
+ * (Spanker=kohl)
+ *
+ * Revision 1.19  1998/10/02  15:44:04  pvmsrc
+ * Single source code merge of Win32 and Unix code.
+ * (Spanker=sscott)
+ *
+ * Revision 1.18  1998/09/23  15:23:42  pvmsrc
+ * 	changes to use WIN32 registry as per Markus.
+ * 	ifdef in pvmd.c::colonsep() to include WIN32 and OS2
+ * (Spanker=phil)
+ *
  * Revision 1.17  1997/12/01  19:20:48  pvmsrc
  * Replaced #ifdef IMA_OS2 fd_set declarations:
  * 	- new #ifdef FDSETNOTSTRUCT.
@@ -176,17 +286,29 @@ Initial revision
 #include "lpvm.h"
 #include "global.h"
 
+#ifdef WIN32
+char *read_pvmregistry	__ProtoGlarp__(( const char * ));
+#endif
 
 /***************
  **  Globals  **
  **           **
  ***************/
 
+#ifndef RSHCOMMAND
+#define RSHCOMMAND  "/usr/ucb/rsh"
+#endif
+
 char *getenv();
 
 #ifdef WIN32
 extern char *username;
 #endif
+
+#ifdef IMA_BEOSCYLD
+#include <sys/bproc.h>
+#endif
+
 
 /***************
  **  Private  **
@@ -316,8 +438,9 @@ ffs(x)
 
 #endif
 
-
+#ifndef IMA_WIN32_WATCOM
 extern char **environ;
+#endif
 
 /*	pvmputenv()
 *
@@ -603,39 +726,47 @@ pvmtmpnam(buf)
 	char *buf;
 {
 	static int n = 0;
-	static char scratch[32];
+	static char scratch[255];
+
+	char *pvmtmp;
+
+	if (!buf)
+		buf = scratch;
+
+	pvmtmp = pvmgettmp();
 
 #ifndef WIN32
-
-	if (!buf)
-		buf = scratch;
-	sprintf(buf, "/tmp/tmp%06d.%d", getpid(), n++ % 10000);
-
+	sprintf(buf, "%s/pvmtmp%06d.%d", pvmtmp, getpid(), n++ % 10000);
 #else
-
-	char tmptmp[32];
-
-	if (!buf)
-		buf = scratch;
-	if (!getenv("PVM_TMP")) {
-		fprintf(stderr,
-				"Could not get PVM_TMP, defaulting to %Temp% \n");
-		if (!getenv("TEMP")) {
-			fprintf(stderr,
-					"Could not get TEMP, defaulting to c:\temp \n");
-		 	sprintf(buf,"c:\temp");
-		} else  sprintf(buf,getenv("TEMP"));
-	} else sprintf(buf,getenv("PVM_TMP"));
-
-	sprintf(tmptmp, "/tmp%06d.%d", _getpid(), n++ % 10000);
-	strcat(buf,tmptmp);
-
+	sprintf(buf, "%s\\pvmtmp%06d.%d", pvmtmp, getpid(), n++ % 10000);
 #endif
 
 	return buf;
 }
 #endif	/*NOTMPNAM*/
 
+
+#ifdef IMA_BEOSCYLD
+
+/*
+ * Implement a version of gethostname() that gives the "right" answer
+ * for a Scyld Beowulf cluster; calling bproc_currnode() here is why
+ * both the pvm daemon and the pvm library are linked with libbproc
+ */
+
+int
+gethostname(name, len)
+	char * name;
+	size_t len;
+{
+	int retval;
+
+	retval = snprintf(name,len,".%d",bproc_currnode());
+
+	return( (retval == -1) ? retval : 0 );
+}
+
+#endif
 
 pvmhdump(cp, n, pad)
 	char *cp;		/* bytes */
@@ -687,7 +818,7 @@ char *
 pvmgethome()
 {
 	static char *hd = 0;
-
+#ifndef WIN32 /* which registry should we use otherwise ? */
 	if (!hd) {
 		if (hd = getenv("HOME")) {
 			hd = STRALLOC(hd);
@@ -697,6 +828,9 @@ pvmgethome()
 			hd = "/";
 		}
 	}
+#else
+	hd="\\";
+#endif
 	return hd;
 }
 
@@ -711,25 +845,101 @@ pvmgetroot()
 {
 	static char *rd = 0;
 
-	if (!rd && !(rd = getenv("PVM_ROOT"))) {
-		pvmlogerror("PVM_ROOT environment variable not set.\n");
-#ifdef IMA_CSPP
-		{
-			struct stat buf;
+	if (!rd) {
 
-			rd = STRALLOC("/usr/convex/pvm");
-			if (stat(rd, &buf) == -1) {
-				pvmlogperror("Unable to default PVM_ROOT to /usr/convex/pvm");
-				pvmbailout(0);
-				exit(1);		/* the other meaning of bail out */
+#ifdef IMA_CSPP
+
+		struct stat buf;
+
+		rd = STRALLOC("/usr/convex/pvm");
+		if (stat(rd, &buf) == -1) {
+			pvmlogperror(
+				"Unable to default PVM_ROOT to /usr/convex/pvm");
+			pvmbailout(0);
+			exit(1);		/* the other meaning of bail out */
+		}
+		pvmputenv("PVM_ROOT=/usr/convex/pvm");
+		pvmlogerror("Defaulting PVM_ROOT to /usr/convex/pvm");
+
+#else
+
+#ifdef CYGWIN
+		rd = getenv("PVM_ROOT_U");
+#else
+		rd = getenv("PVM_ROOT");
+#endif
+
+#ifdef WIN32
+		if (!rd)
+			rd = read_pvmregistry("PVM_ROOT");
+#endif
+
+#endif
+
+		if (!rd) {
+			pvmlogerror("PVM_ROOT environment variable not set.\n");
+			pvmbailout(0);
+			exit(1);		/* the other meaning of bail out */
+		}
+	}
+
+	return rd;
+}
+
+
+/*	pvmgettmp()
+*
+*	Return absolute path of PVM temporary directory.
+*/
+
+char *
+pvmgettmp()
+{
+	static char *td = 0;
+
+	if (!td) {
+#ifndef WIN32
+		if ( !(td=getenv("PVM_TMP")) )
+#ifdef IMA_BEOLIN
+			td = "/tmps";	/* the shared tmp */
+#else
+			td = "/tmp";
+#endif
+#else
+		if ( !(td=getenv("PVM_TMP")) ) {
+			if ( !(td=read_pvmregistry("PVM_TMP")) ) {
+				if ( !(td=getenv("TEMP")) ) {
+					td = "C:\\TEMP";
+					fprintf(stderr,
+							"Could not get %%PVM_TMP%% or %%TEMP%% ");
+					fprintf(stderr, "-> using \"%s\".\n", td);
+					fprintf(stderr,
+							"Please check your PVM installation.\n");
+				}
 			}
-			pvmputenv("PVM_ROOT=/usr/convex/pvm");
-			pvmlogerror("Defaulting PVM_ROOT to /usr/convex/pvm");
 		}
 #endif
-		pvmbailout(0);
-		exit(1);		/* the other meaning of bail out */
 	}
+
+	return td;
+}
+
+
+/*	pvmgetrsh()
+*
+*	Return absolute path of the rsh executable for the local system.
+*/
+
+char *
+pvmgetrsh()
+{
+	static char *rd = 0;
+
+	if (!rd) {
+		if ( !(rd=getenv("PVM_RSH")) )
+			rd = RSHCOMMAND;
+	}
+
 	return rd;
 }
 
@@ -767,15 +977,17 @@ pvmgetpvmd()
 char *
 pvmdsockfile()
 {
-	static char buf[160];
-#ifdef WIN32
-	char TDSOCKSPEC[256];
-#endif
+	static char buf[255];
+
 	char hna[128];
+	char *pvmtmp;
 	char *p;
+
 #ifdef	IMA_CSPP
 	int scid = get_scid();	/* default (system) subcomplex ID is 1 */
 #endif
+
+	pvmtmp = pvmgettmp();
 
 #ifdef	SHAREDTMP
 
@@ -788,39 +1000,32 @@ pvmdsockfile()
 
 #ifdef	IMA_CSPP
 	if (scid > 1)
-		(void)sprintf(buf, TDSOCKNAME_CSPP, pvm_useruid, scid, hna);
+		(void)sprintf(buf, TDSOCKNAME_CSPP,
+				pvmtmp, pvm_useruid, scid, hna);
 	else
 #endif
-		(void)sprintf(buf, TDSOCKNAME, pvm_useruid, hna);
+		(void)sprintf(buf, TDSOCKNAME, pvmtmp, pvm_useruid, hna);
 
 #else
 
 #ifdef	IMA_CSPP
 	if (scid > 1)
-		(void)sprintf(buf, TDSOCKNAME_CSPP, pvm_useruid, scid);
+		(void)sprintf(buf, TDSOCKNAME_CSPP, pvmtmp, pvm_useruid, scid);
 	else
 #endif
 #ifdef WIN32
-		if (!getenv("PVM_TMP"))
-		{
-			(void)sprintf(buf, TDSOCKNAME, username);
-			pvmlogprintf("Could not get PVM_TMP, continuing with %s\n",
-					buf);
-		} else {
-			strcpy(TDSOCKSPEC,getenv("PVM_TMP"));
-			if (_chdir(getenv("PVM_TMP")) == -1) {
-				pvmlogerror("Could Not retrieve PVM_TMP directory \n");
-				pvmbailout(0);
-			}
-			sprintf(buf,"/pvmd.%s",username);
-			strcat(TDSOCKSPEC,buf);
-			sprintf(buf,TDSOCKSPEC);
-		}
+		sprintf( buf, "%s\\pvmd.%s", pvmtmp, username );
 #else
-		(void)sprintf(buf, TDSOCKNAME, pvm_useruid);
+		(void)sprintf(buf, TDSOCKNAME, pvmtmp, pvm_useruid);
 #endif
 
 #endif
+
+	/* Append a Virtual Machine ID, If Set */
+	if ( p = getenv("PVM_VMID") ) {
+		strcat( buf, "." );
+		strcat( buf, p );
+	}
 
 	return buf;
 }
@@ -1120,4 +1325,113 @@ pvmgetclock(tm)
 #endif
 }
 
+
+/*  pvmsleep()
+*
+*   A consistent way to invoke sleep(), from:
+*     Unix / Windows, C / Fortran
+*/
+
+int
+pvmsleep( secs )
+int secs;
+{
+	int ret;
+#ifdef WIN32
+	Sleep( secs * 1000 );
+	ret = secs;
+#else
+	ret = (int) sleep( secs );
+#endif
+	return( ret );
+}
+
+
+/*	pvmmatchstring()
+*
+*	Replacement for GNU Regex pattern matching.
+*/
+
+int
+pvmmatchstring( str, pattern )
+char *str;
+char *pattern;
+{
+	char *start;
+	char *save;
+	char *x;
+	char *y;
+
+	/* Find Start of Search String (Ignore Preceding '*'s) */
+
+	start = pattern;
+
+	while ( *start == '*' && *start != '\0' )
+		start++;
+
+	/* Null Search - Always Matches */
+
+	if ( *start == '\0' )
+		return( 1 );
+
+	/* Initialize Pointers */
+
+	x = str;
+
+	y = start;
+
+	/* Search Line for Start of Search String */
+
+	while ( *x != '\0' )
+	{
+		/* Starting Match Found...  Check it Out */
+
+		if ( *x == *y )
+		{
+			/* Save Continuation Pointer */
+
+			save = x + 1;
+
+			/* Traverse Line Until No Longer Matches */
+
+			while ( *x != '\0' && *y != '\0' && *x == *y )
+			{
+				x++;
+				y++;
+
+				/* Nested '*' Search Expansion */
+
+				if ( *y == '*' )
+				{
+					if ( pvmmatchstring( x, y + 1 ) )
+						return( 1 );
+
+					else
+						break;
+				}
+
+				/* Skip Over '\' for Escaped '*'s */
+
+				else if ( *y == '\\' && *(y+1) == '*' )
+					y++;
+			}
+
+			/* It's a Match! */
+
+			if ( *y == '\0' )
+				return( 1 );
+
+			/* Reset and Continue */
+
+			x = save;
+
+			y = start;
+		}
+
+		else
+			x++;
+	}
+
+	return( 0 );
+}
 

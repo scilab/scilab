@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: host.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: host.c,v 1.2 2002/10/14 14:37:45 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,50 @@ static char rcsid[] =
  *
  *	Host table functions.
  *
-$Log: host.c,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: host.c,v $
+ * Revision 1.2  2002/10/14 14:37:45  chanceli
+ * update
+ *
+ * Revision 1.19  2001/09/26 23:35:18  pvmsrc
+ * Added new hd_vmid to hostd struct.
+ * 	- use to override local PVM_VMID settings with hostfile "id=" option
+ * (Spanker=kohl)
+ *
+ * Revision 1.18  2001/02/07 23:14:03  pvmsrc
+ * First Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.17  2000/07/12 19:24:09  pvmsrc
+ * Goofy fix for FreeBSD - variation on ifreq struct.
+ * 	- submitted via Frederik Meerwaldt <frederik@freddym.org>.
+ * (Spanker=kohl)
+ *
+ * Revision 1.16  2000/02/16 21:59:39  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.15  1999/07/08 18:59:52  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.14  1998/11/20  20:03:57  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (Spanker=sscott)
+ *
+ * Revision 1.13  1998/06/26  12:31:07  pvmsrc
+ * Added IMA_FREEBSD to the ioctl() list of arches that have both
+ * 	SIOCGIFCONF and OSIOCGIFCONF defined...
+ * 	- need to force use of SIOCGIFCONF anyway for these bozos...
+ * (Spanker=kohl)
+ *
+ * Revision 1.12  1998/02/23  22:51:27  pvmsrc
+ * Added AIX4SP2 stuff.
+ * (Spanker=kohl)
+ *
  * Revision 1.11  1997/12/05  16:23:37  pvmsrc
  * Fixed setting of host table "ht_narch" field.
  * 	- used by pvm_config() to return # of archs.
@@ -117,6 +157,13 @@ Initial revision
 #ifndef WIN32
 #include <sys/param.h>
 #endif
+
+#ifdef IMA_TITN
+#include <bsd/sys/types.h>
+#else
+#include <sys/types.h>
+#endif
+
 #ifdef NEEDMENDIAN
 #include <machine/endian.h>
 #endif
@@ -127,20 +174,25 @@ Initial revision
 #include <sys/endian.h>
 #endif
 
-#ifdef WIN32
-#include "pvmwin.h"
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
 #else
 #include <rpc/types.h>
 #include <rpc/xdr.h>
+#endif
+
+#ifdef WIN32
+#include "pvmwin.h"
+#else
 #ifndef IMA_TITN
-#include <sys/types.h>
 #include <sys/ioctl.h>
 #else
-#include <bsd/sys/types.h>
 #include <sys/43ioctl.h>
 #endif
+
 #include <sys/time.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -160,7 +212,6 @@ Initial revision
 #include <strings.h>
 #endif
 #include <ctype.h>
-#include <pvm3.h>
 #include <pvmproto.h>
 #include "pvmalloc.h"
 #include "host.h"
@@ -275,6 +326,8 @@ hd_free(hp)
 	}
 	if (hp->hd_aname)
 		PVM_FREE(hp->hd_aname);
+	if (hp->hd_vmid)
+		PVM_FREE(hp->hd_vmid);
 	PVM_FREE(hp);
 }
 
@@ -332,9 +385,10 @@ hd_dump(hp)
 			n);
 
 	pvmlogprintf(
-			"           tx %d rx %d rtt %d.%06d\n",
+			"           tx %d rx %d rtt %d.%06d id \"%s\"\n",
 			hp->hd_txseq, hp->hd_rxseq,
-			hp->hd_rtt.tv_sec, hp->hd_rtt.tv_usec);
+			hp->hd_rtt.tv_sec, hp->hd_rtt.tv_usec,
+			hp->hd_vmid);
 }
 
 
@@ -642,6 +696,9 @@ applydefaults(hp, defhp)
 	if (!(hp->hd_flag & HF_SPEED) && (defhp->hd_flag & HF_SPEED))
 		hp->hd_speed = defhp->hd_speed;
 
+	if (!hp->hd_vmid && defhp->hd_vmid)
+		hp->hd_vmid = STRALLOC(defhp->hd_vmid);
+
 	hp->hd_flag |= defhp->hd_flag;
 
 	return 0;
@@ -718,6 +775,12 @@ parsehost(buf, hp)
 			if (hp->hd_aname)
 				PVM_FREE(hp->hd_aname);
 			hp->hd_aname = STRALLOC(av[ac] + 3);
+			continue;
+		}
+		if (!strncmp(av[ac], "id=", 3)) {
+			if (hp->hd_vmid)
+				PVM_FREE(hp->hd_vmid);
+			hp->hd_vmid = STRALLOC(av[ac] + 3);
 			continue;
 		}
 		pvmlogprintf("parsehost(): unknown option \"%s\"\n", av[ac]);
@@ -907,7 +970,7 @@ iflist(alp, np)
 	sif.ifc_len = sizeof(buf);
 	if (ioctl(soc,
 #ifdef OSIOCGIFCONF
-#if defined(IMA_RS6K) || defined(IMA_RS6KMP) || defined(IMA_SP2MPI)
+#if defined(IMA_RS6K) || defined(IMA_RS6KMP) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2) || defined(IMA_FREEBSD)
 		SIOCGIFCONF
 #else
 		OSIOCGIFCONF
@@ -932,6 +995,8 @@ iflist(alp, np)
 			perror("ioctl");
 			goto bail;
 		}
+		/* On some FreeBSD systems: */
+		/* if (IFF_UP & req.ifr_flags) { */
 		if (IFF_UP & req.ifr_ifru.ifru_flags) {
 			if (nip > 0 && !(nip % 10))
 				iplist = TREALLOC(iplist, (nip + 10), struct in_addr);

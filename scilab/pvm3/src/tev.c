@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: tev.c,v 1.1 2001/04/26 07:47:12 scilab Exp $";
+	"$Id: tev.c,v 1.2 2002/10/14 14:37:56 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -40,14 +40,17 @@ static char rcsid[] =
 
 
 #include <stdio.h>
+
 #include <pvm3.h>
-#ifdef WIN32
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
 #else
 #include <rpc/types.h>
 #include <rpc/xdr.h>
 #endif
+
 #ifdef  SYSVSTR
 #include <string.h>
 #else
@@ -821,13 +824,19 @@ int entry_exit;
 {
 	struct timeval timestamp;
 
+	int tsec, tusec;
 	int newbuffer;
 	int tmp;
 
 	/* Get Timestamp */
 
 	if ( pvmtrc.trcopt != PvmTraceCount )
+	{
 		gettimeofday( &timestamp, (struct timezone *) 0 );
+
+		tsec = (int) timestamp.tv_sec;
+		tusec = (int) timestamp.tv_usec;
+	}
 
 	switch ( pvmtrc.trcopt )
 	{
@@ -917,10 +926,8 @@ int entry_exit;
 
 			/* Pack Event Header */
 
-			TEV_PACK_INT( TEV_DID_TS, TEV_DATA_SCALAR,
-				(int *) &(timestamp.tv_sec), 1, 1 );
-			TEV_PACK_INT( TEV_DID_TU, TEV_DATA_SCALAR,
-				(int *) &(timestamp.tv_usec), 1, 1 );
+			TEV_PACK_INT( TEV_DID_TS, TEV_DATA_SCALAR, &tsec, 1, 1 );
+			TEV_PACK_INT( TEV_DID_TU, TEV_DATA_SCALAR, &tusec, 1, 1 );
 			TEV_PACK_INT( TEV_DID_TID, TEV_DATA_SCALAR,
 				&pvmmytid, 1, 1 );
 			
@@ -1012,7 +1019,7 @@ tev_fin()
 			}
 
 			if ( flush )
-				tev_flush( 0 );
+				tev_flush( 1 );
 	
 			break;
 		}
@@ -1062,6 +1069,7 @@ int setflag;
 
 	struct timeval timestamp;
 
+	int tsec, tusec;
 	int routetmp;
 	int savebuf;
 	int tmpbuf;
@@ -1127,10 +1135,11 @@ int setflag;
 
 			gettimeofday( &timestamp, (struct timezone *) 0 );
 
-			TEV_PACK_INT( TEV_DID_TS, TEV_DATA_SCALAR,
-				(int *) &(timestamp.tv_sec), 1, 1 );
-			TEV_PACK_INT( TEV_DID_TU, TEV_DATA_SCALAR,
-				(int *) &(timestamp.tv_usec), 1, 1 );
+			tsec = (int) timestamp.tv_sec;
+			tusec = (int) timestamp.tv_usec;
+
+			TEV_PACK_INT( TEV_DID_TS, TEV_DATA_SCALAR, &tsec, 1, 1 );
+			TEV_PACK_INT( TEV_DID_TU, TEV_DATA_SCALAR, &tusec, 1, 1 );
 			TEV_PACK_INT( TEV_DID_TID, TEV_DATA_SCALAR,
 				&pvmmytid, 1, 1 );
 
@@ -1144,8 +1153,9 @@ int setflag;
 				{
 					event_names[num] = pvmtevinfo[i].name;
 
-					timings_sec[num] = pvmtevinfo[i].total.tv_sec;
-					timings_usec[num] = pvmtevinfo[i].total.tv_usec;
+					timings_sec[num] = (int) pvmtevinfo[i].total.tv_sec;
+					timings_usec[num] =
+						(int) pvmtevinfo[i].total.tv_usec;
 
 					counts[num] = pvmtevinfo[i].count;
 
@@ -1212,10 +1222,11 @@ int setflag;
 
 			gettimeofday( &timestamp, (struct timezone *) 0 );
 
-			TEV_PACK_INT( TEV_DID_TS, TEV_DATA_SCALAR,
-				(int *) &(timestamp.tv_sec), 1, 1 );
-			TEV_PACK_INT( TEV_DID_TU, TEV_DATA_SCALAR,
-				(int *) &(timestamp.tv_usec), 1, 1 );
+			tsec = (int) timestamp.tv_sec;
+			tusec = (int) timestamp.tv_usec;
+
+			TEV_PACK_INT( TEV_DID_TS, TEV_DATA_SCALAR, &tsec, 1, 1 );
+			TEV_PACK_INT( TEV_DID_TU, TEV_DATA_SCALAR, &tusec, 1, 1 );
 			TEV_PACK_INT( TEV_DID_TID, TEV_DATA_SCALAR,
 				&pvmmytid, 1, 1 );
 

@@ -46,13 +46,17 @@ static char sccsid[] = "@(#)xdr_mem.c 1.19 87/08/11 Copyr 1984 Sun Micro";
 #ifdef WIN32
 #define bcopy(a,b,c) memcpy(a,b,c)
 #include <winsock.h>
+#else
+#include <netinet/in.h>
+#endif
 
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
 #else
 #include <rpc/types.h>
 #include <rpc/xdr.h>
-#include <netinet/in.h>
 #endif
 
 static bool_t	xdrmem_getlong();

@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmdmimd.c,v 1.2 2002/10/14 14:38:03 chanceli Exp $";
+	"$Id: pvmdmimd.c,v 1.1 2002/10/14 14:40:04 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -89,26 +89,25 @@ static char rcsid[] =
  *			Remove node/process-type from active list.
  *			tp: task pointer.
  *
- * $Log: pvmdmimd.c,v $
- * Revision 1.2  2002/10/14 14:38:03  chanceli
- * update
- *
- * Revision 1.13  2001/09/25 21:19:28  pvmsrc
- * Minor TMPNAMFUN()/tmpnam() cleanup.
- * 	- moved macro def to pvm3.h, renamed PVMTNPMAN().
- * 	- same for LEN_OF_TMP_NAM -> PVMTMPNAMLEN.
- * 	- mostly a huge waste of time, since *both* tmpnam() & mktemp()
- * 		produce the same "dangerous" warning message in Linux/gcc...
- * 	- damn.
- * (Spanker=kohl)
- *
- * Revision 1.12  2000/02/17 21:10:44  pvmsrc
- * Cleaned up comments...  mpp_load() args...
- * (Spanker=kohl)
- *
- * Revision 1.11  1999/07/08 19:00:28  kohl
- * Fixed "Log" keyword placement.
- * 	- indent with " * " for new CVS.
+$Log: pvmdmimd.c,v $
+Revision 1.1  2002/10/14 14:40:04  chanceli
+update
+
+Revision 1.3  2001/09/25 21:19:00  pvmsrc
+Minor TMPNAMFUN()/tmpnam() cleanup.
+	- moved macro def to pvm3.h, renamed PVMTNPMAN().
+	- same for LEN_OF_TMP_NAM -> PVMTMPNAMLEN.
+	- mostly a huge waste of time, since *both* tmpnam() & mktemp()
+		produce the same "dangerous" warning message in Linux/gcc...
+	- damn.
+(Spanker=kohl)
+
+Revision 1.2  2000/02/17 21:10:16  pvmsrc
+Cleaned up comments...  mpp_load() args...
+(Spanker=kohl)
+
+ * Revision 1.1  1998/02/23  21:31:44  pvmsrc
+ * Copied from SP2MPI.
  *
  * Revision 1.10  1997/10/01  15:36:06  pvmsrc
  * Removed unnecessary #include "fromlib.h" header.

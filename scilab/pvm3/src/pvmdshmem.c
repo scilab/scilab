@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmdshmem.c,v 1.1 2001/04/26 07:47:11 scilab Exp $";
+	"$Id: pvmdshmem.c,v 1.2 2002/10/14 14:37:52 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,33 @@ static char rcsid[] =
  *
  * Shared-memory MPP interface.
  *
-$Log: pvmdshmem.c,v $
-Revision 1.1  2001/04/26 07:47:11  scilab
-Initial revision
-
+ * $Log: pvmdshmem.c,v $
+ * Revision 1.2  2002/10/14 14:37:52  chanceli
+ * update
+ *
+ * Revision 1.19  2001/09/25 21:21:04  pvmsrc
+ * Yanked "char *pvmgettmp();" decl - now in pvm3.h...
+ * (Spanker=kohl)
+ *
+ * Revision 1.18  2000/02/10 20:45:33  pvmsrc
+ * Replaced hard-coded /tmp usage.
+ * 	- use pvmgettmp() routine now to determine PVM temp dir.
+ * (Spanker=kohl)
+ *
+ * Revision 1.17  1999/07/08 19:00:11  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.16  1998/08/13  18:31:15  pvmsrc
+ * Altered SUNMP to use test and set operations with semaphores
+ * 		for page locking instead of MUTEX and cond vars.
+ * 	Changes are mainly in pvmshmem.h, with lots of #ifdefs changes.
+ * 	Makefile altered to use the PLOCKFILE to indicate the Page Locking
+ * 		INLINE code used (from SUNMP.conf).
+ * 	Some changes effect AIX MP versions which still use conditional
+ * 		variables and may change to semaphores soon.
+ * (Spanker=fagg)
+ *
  * Revision 1.15  1997/11/04  23:21:43  pvmsrc
  * Added SYSVSTR stuff.
  * (Spanker=kohl)
@@ -320,6 +343,7 @@ void
 ppi_init()
 {
 	struct pidtidhdr *pvminfo;
+	char *pvmtmp = pvmgettmp();
 	char *p;
 	int key;
 
@@ -329,10 +353,10 @@ ppi_init()
 #ifdef IMA_CSPP
 	int scid = get_scid();
 	if (scid > 1)
-		sprintf(fname, "/tmp/pvmt.%d.%d", pvm_useruid, scid);
+		sprintf(fname, "%s/pvmt.%d.%d", pvmtmp, pvm_useruid, scid);
 	else
 #else
-	sprintf(fname, "/tmp/pvmt.%d", pvm_useruid);
+	sprintf(fname, "%s/pvmt.%d", pvmtmp, pvm_useruid);
 #endif
 	logfp = fopen(fname, "w");
 	fclose(logfp);
@@ -686,7 +710,9 @@ mpp_output(tp, pp)
 			dboxp->mb_last = next;
 
 			if (dboxp->mb_sleep) {
-#if defined(IMA_SUNMP) || defined(IMA_RS6KMP) || defined(IMA_AIX4MP)
+
+/* #if defined(IMA_SUNMP) || defined(IMA_RS6KMP) || defined(IMA_AIX4MP) */
+#ifdef PVMUSEMUTEX
 #ifdef	IMA_SUNMP
 				cond_signal(&dboxp->mb_cond);
 #endif
@@ -695,7 +721,8 @@ mpp_output(tp, pp)
 #endif
 #else
 				peer_wake(pe);
-#endif
+
+#endif	/* PVMUSEMUTEX */
 				dboxp->mb_sleep = 0;
 			}
 

@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: imalloc.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: imalloc.c,v 1.2 2002/10/14 14:37:46 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -300,7 +300,7 @@ i_free(loc)
 	he = &hashtbl[HASH(loc)];
 	for (preob = 0, ob = *he; ob && ob->base != loc; preob = ob, ob = ob->next);
 	if (!ob) {
-		(void)sprintf(msbuf, "i_free: bogus loc=0x%x\n", loc);
+		(void)sprintf(msbuf, "i_free: bogus loc=0x%lx\n", (long) loc);
 		(void)SWRITE(debfd, msbuf);
 		i_choke();
 		return 0;
@@ -311,14 +311,15 @@ i_free(loc)
 
 	for (i = ob->lop, ptr -= i; i > 0; i--)
 		if ((0xff & (int)(*ptr++)) != (0xff & NEXTRN(rs))) {
-			(void)sprintf(msbuf, "i_free: scribbled in 0x%x[%d]\n", loc, -i);
+			(void)sprintf(msbuf, "i_free: scribbled in 0x%lx[%d]\n",
+				(long) loc, -i);
 			(void)SWRITE(debfd, msbuf);
 			i_choke();
 		}
 	for (i = ob->hip, ptr += ob->len; i > 0; i--)
 		if ((0xff & (int)(*ptr++)) != (0xff & NEXTRN(rs))) {
-			(void)sprintf(msbuf, "i_free: scribbled in 0x%x[%d+%d]\n",
-				loc, ob->len, ob->hip - i);
+			(void)sprintf(msbuf, "i_free: scribbled in 0x%lx[%d+%d]\n",
+				(long) loc, ob->len, ob->hip - i);
 			(void)SWRITE(debfd, msbuf);
 			i_choke();
 		}
@@ -394,7 +395,8 @@ i_realloc(loc, len)
 	he = &hashtbl[HASH(loc)];
 	for (preob = 0, ob = *he; ob && ob->base != loc; preob = ob, ob = ob->next);
 	if (!ob) {
-		(void)sprintf(msbuf, "i_realloc: bogus loc=0x%x\n", loc);
+		(void)sprintf(msbuf, "i_realloc: bogus loc=0x%lx\n",
+			(long) loc);
 		(void)SWRITE(debfd, msbuf);
 		i_choke();
 		return (char*)0;
@@ -405,14 +407,16 @@ i_realloc(loc, len)
 
 	for (i = ob->lop, ptr -= i; i > 0; i--)
 		if ((0xff & (int)(*ptr++)) != (0xff & NEXTRN(rs))) {
-			(void)sprintf(msbuf, "i_realloc: scribbled in 0x%x[%d]\n", loc, -i);
+			(void)sprintf(msbuf, "i_realloc: scribbled in 0x%lx[%d]\n",
+				(long) loc, -i);
 			(void)SWRITE(debfd, msbuf);
 			i_choke();
 		}
 	for (i = ob->hip, ptr += ob->len; i > 0; i--)
 		if ((0xff & (int)(*ptr++)) != (0xff & NEXTRN(rs))) {
-			(void)sprintf(msbuf, "i_realloc: scribbled in 0x%x[%d+%d]\n",
-				loc, ob->len, ob->hip - i);
+			(void)sprintf(msbuf,
+				"i_realloc: scribbled in 0x%lx[%d+%d]\n",
+				(long) loc, ob->len, ob->hip - i);
 			(void)SWRITE(debfd, msbuf);
 			i_choke();
 		}
@@ -517,16 +521,17 @@ i_dump(how)
 				for (i = ob->lop, ptr -= i; i > 0; i--)
 					if ((0xff & (int)(*ptr++)) != (0xff & NEXTRN(rs))) {
 						(void)sprintf(msbuf,
-							"%5d 0x%08x[%d]: scribbled in [%d]\n",
-							ob->id, ob->base, ob->len, -i);
+							"%5d 0x%08lx[%d]: scribbled in [%d]\n",
+							ob->id, (long) ob->base, ob->len, -i);
 						(void)SWRITE(debfd, msbuf);
 						err++;
 					}
 				for (i = ob->hip, ptr += ob->len; i > 0; i--)
 					if ((0xff & (int)(*ptr++)) != (0xff & NEXTRN(rs))) {
 						(void)sprintf(msbuf,
-							"%5d 0x%08x[%d]: scribbled in [%d+%d]\n",
-							ob->id, ob->base, ob->len, ob->len, ob->hip - i);
+							"%5d 0x%08lx[%d]: scribbled in [%d+%d]\n",
+							ob->id, (long) ob->base, ob->len, ob->len,
+							ob->hip - i);
 						(void)SWRITE(debfd, msbuf);
 						err++;
 					}
@@ -534,12 +539,12 @@ i_dump(how)
 			if (!err) {
 				strncpy(tagstr, ob->tag, 4);
 				tagstr[4] = 0;
-				sprintf(msbuf, "%5d%c%4s 0x%08x[%4d]",
+				sprintf(msbuf, "%5d%c%4s 0x%08lx[%4d]",
 					ob->id,
 					(ob->flg & OBALLOC ? '*' :
 						(ob->flg & OBREALLOC ? '+' : ' ')),
 					tagstr,
-					ob->base, ob->len);
+					(long) ob->base, ob->len);
 				r = msbuf + strlen(msbuf);
 				*r++ = ' ';
 				if ((i = ob->len) > 24)

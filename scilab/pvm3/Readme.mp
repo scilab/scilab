@@ -13,9 +13,10 @@ Table of Contents
 6. IBM SP2
 	AIX 3.x
 	AIX 4.x
-7. Shared-memory Systems
-	Solaris 2.3
-	SGI 5.1
+7. Shared-memory Systems (pvmd and internal)
+	Solaris 2.X+
+8. Shared-memory Systems (separate daemon)
+	ATT SysV shmop supported systems
 
 
 1. Massively Parallel Systems vs. Workstation Cluster
@@ -463,42 +464,63 @@ communication to go over the high-performance switch rather than Ethernet.
 7. Shared-memory Systems
 ------------------------
 
-	These ports achieve better performance by using shared memory instead
-of sockets to pass messages. They're fully compatible with the socket
-version. The original socket library has been renamed libpvm3s.a, users
-can link their programs with -lpvm3s if they would rather use sockets
-than shared memory. In addition, tasks linked to different PVM libraries
-can coexist and communicate with each other. (These messages have to be
-routed by the PVM daemon.)
+	These ports achieve better performance by using shared memory
+instead of sockets to pass messages.  They're fully compatible with
+the socket version.  In addition, tasks linked to different PVM
+libraries can coexist and communicate with each other.  (But these
+messages are routed through the PVM daemon instead of using shared
+memory.)
 
+On architectures that support shared memory operations, the default
+PVM architecture selection is still non-shmem, therefore to turn on
+selection of the appropriate *MP architecture the user must set the
+environment variable "PVM_SHMEM" to "ON", as in:
+
+  % setenv PVM_SHMEM ON
+
+(Note that the old "$SGIMP" environment variable has been subsumed
+with the new "$PVM_SHMEM" environment variable.)
+
+The original socket library in PVM 3.4 is now (consistently) named
+libpvm3.a, whether on a shared memory (*MP) architecture or not.
+The new shared memory version of the PVM library is now named
+"libpvm3s.a", and users can link their programs with -lpvm3s if
+they would rather use shared memory for local communication.
+(Note that this naming convention is the *reverse* of the PVM 3.3
+naming convention - sorry.)
+
+There is also now a new PVM shmd shared memory daemon, to control
+and monitor the use of shared memory.  This alleviates a significant
+number of bugs as compared to the PVM 3.3 implementation.
 
 BUGS AND CAVEATS
 
 	a) Messages are sent directly, pvm_setopt(PvmRoute, PvmRouteDirect)
-has no effect. The sender will block if the receiving buffer is full. This 
-could lead to deadlocks.
+has no effect.  The sender will block if the receiving buffer is full.
+This could lead to deadlocks.
 
 	b) The buffer size used by PVM, SHMBUFSIZE, is defined in 
-pvm3/src/pvmshmem.h, with a default of 1MBytes. You can change the buffer 
-size by setting the environment variable PVMBUFSIZE before starting PVM.
-Note that the default system limit on shared-memory segment size (1 MB on
-Sun's) may have to be raised as well.
+pvm3/src/pvmshmem.h, with a default of 1MBytes.  You can change the
+buffer size by setting the environment variable PVMBUFSIZE before
+starting PVM.  Note that the default system limit on shared-memory
+segment size (1 MB on Sun's) may have to be raised as well.
 
-    c) PVM uses the last 10 bits of the Unix user ID as the base for the
-shared-memory keys. If there is a conflict with keys used by another user
-or application, you can set the environment variable PVMSHMIDBASE to a
-different value.
+    c) PVM uses the last 10 bits of the Unix user ID as the base for
+the shared-memory keys.  If there is a conflict with keys used by
+another user or application, you can set the environment variable
+PVMSHMIDBASE to a different value.
 
-    d) If PVM crashes for any reason, you may have to remove the leftover
-shared-memory segments and/or semaphores manually. Use the Uhix command
-`ipcs` to list them and `ipcrm` to delete them.  Or, use the script
-`ipcfree` in $PVM_ROOT/lib.
+    d) If PVM crashes for any reason, you may have to remove the
+leftover shared-memory segments and/or semaphores manually.  Use the
+Uhix command `ipcs` to list them and `ipcrm` to delete them.  Or,
+use the script `ipcfree` in $PVM_ROOT/lib.
 
-    e) For best performance, use psend/precv. If you must use the standard
-send/recv, the InPlace encoding should be used where appropiate.
+    e) For best performance, use psend/precv.  If you must use the
+standard send/recv, the InPlace encoding should be used where
+appropiate.
 
 
-Solaris2.4
+Solaris2.3+
 ----------
 
 APPLICATION PROGRAMS
@@ -513,4 +535,88 @@ BUGS AND CAVEATS
 a process can attach to. This in turn imposes a limit on the number of
 PVM tasks allowed on a single host. According to Sun Microsystem, the
 system parameter can be set by a system administrator.
+
+	b) Some of the newer PVM shared memory systems prefer to use semaphores
+instead of mutex and conditional variables. Some of these systems also support
+the V8plus instruction set. The semaphore version has been made the default
+version at the request of Sun MicroSystems.
+	For older systems that need to use the Mutex version, edit the
+pvm3/conf/SUNMP.def file and add the -DPVMUSEMUTEX flag to the ARCHFLAGS line
+and null out the PLOCKFILE line.
+
+
+8. Shared-memory Systems (separate daemon)
+
+This version is an add-on that is used to speed up particular application classes at
+the expense of flexibility, while avoiding many of the un-welcome feature in the 
+generic PVM shared memory system described above.
+
+The system is designed to allow programs that use the pvm_psend and pvm_precv calls
+to be accelerated through the use of a self monitoring shared memory daemon
+that takes the burden of resource handling away from the PVM host daemons (pvmds).
+
+In the generic version of shared memory all messages, even those received through forien
+pvmds were placed into shared memory, and each task handled its own memory, even though
+monitoring of processes was still via Unix pipes. This method had a number of know race 
+conditions and other problems once the shared memory was full, or tasks forgot to cleanup
+their own resources when exiting. This new version hands all the management to a single 
+daemon, and allows the task-daemon operations to continue via pipes/sockets in the time proven
+way.
+
+Uses:
+This version only uses shared memory for passing messages internal to a single SMP when using
+pvm_psend, pvm_precv, and NOT pvm_send / pvm_recv with any packed buffers.
+Messages off the machine (if enabled*) use sockets etc. *See readme in the shmd directory for 
+more info.
+
+To use the new version:
+cd into the shmd directory and do an aimk.
+This should build two executables, the shared memory daemon (pvm_shmd) and a program to probe
+the daemon about its state (pvm_shmd_stat). The extra program is required as tickle from the PVM
+console only tickles the pvmd and not other pvm tasks. (The new program is much like pvm_gstat
+in the PVM group directory).
+One other file will have been built,
+libpvm3shmd.a
+This is the library file that replaces libpvm3.a when you want to use the shared memory versions
+of pvm_psend/pvm_precv. If you don't link to this you won't get any benefits.
+
+Running the system:
+Start the pvm_shmd,
+host% pvm_shmd &
+
+The pvm_shmd can be started automatically by calls to psend/precv in the libpvm3shmd.a, but this
+has to be enabled at compile time. This is currently off as you probably want to monitor
+how the pvm_shmd works so that you can tune it for your specific applications.
+
+Now that the pvm_shmd is running you can use the shared memory calls. More info on the daemon
+is in the manual pages under pvm_shmd(1PVM).
+
+Other options and restrictions are listed in the shmd directory readme file.
+
+Bugs: 
+Only know bug to date appears on some linux boxes running RedHat.
+When *somestimes* first starting the pvm_shmd, no output appears and the shmd daemon spins,
+it appears that the kernel is creating the SysV resources and holding the daemon on a 
+shmget() call. Just CTRL C the daemon, and start it again!
+
+Warnings:
+As mentioned in the pvm_shmd(1PVM) manual page, don't give all your virtual memory to the
+pvm_shmd for use in message passing, as you'll need some running actual applications. 
+Under Solaris, this is usually very restricted (6-8 segments 1MB each).
+IRIX6 on the otherhand can be very very genereous.... and make all the VM shared memory for 
+message passing!
+
+Supported Architectures:
+This system was made using only standard SysV calls. So it should work on *any* platform that
+supports these calls. (Pigs have been known to fly).
+
+The systems that shmd has been tested under include:
+SGI IRIX64 6.5 
+SGI IRIX64 origin 6.5 (Origin 2000)
+SunOS 5.5.1 sun4u sparc SUNW,Ultra-2
+SunOS 5.6 sun4u sparc SUNW,Ultra-2
+SunOS sol 5.5.1 sun4m sparc SUNW,SPARCstation-10 (4 processor Sun)
+IBM AIX 2 4 (SP2 4 processor high node)
+HP V-Class 2250 under HP-UX 11.0
+Linux 2.2.2 #9 SMP Sun Feb 28 14:19:40 EST 1999 i686 unknown (Dell Dual PII Linux box)
 

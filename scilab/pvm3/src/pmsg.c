@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pmsg.c,v 1.1 2001/04/26 07:47:11 scilab Exp $";
+	"$Id: pmsg.c,v 1.2 2002/10/14 14:37:50 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,51 @@ static char rcsid[] =
  *
  *	Libpvm and pvmd message descriptors
  *
-$Log: pmsg.c,v $
-Revision 1.1  2001/04/26 07:47:11  scilab
-Initial revision
-
+ * $Log: pmsg.c,v $
+ * Revision 1.2  2002/10/14 14:37:50  chanceli
+ * update
+ *
+ * Revision 1.17  2001/02/07 23:15:50  pvmsrc
+ * 2nd Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.16  2001/02/06 22:26:57  pvmsrc
+ * Added handling for -DUSE_XDR_LONGLONG.
+ * 	- for Alphas with broken XDR...
+ * (Spanker=kohl)
+ *
+ * Revision 1.15  2000/02/16 21:59:48  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.14  2000/02/11 20:42:09  pvmsrc
+ * Added support for rare Strongarm float byte order to fbol()...
+ * 	- hope this doesn't break anything else!!!
+ * 	- submitted by Alexander Schulz <un23@rz.uni-karlsruhe.de>.
+ * (Spanker=kohl)
+ *
+ * Revision 1.13  1999/07/08 19:00:05  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.12  1998/11/20  20:06:34  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (spanker=sscott)
+ *
+ * Revision 1.11  1998/03/10  20:32:31  pvmsrc
+ * Fixed tracing bogusness in struct timeval on 64-bit arches...
+ * 	- need to cast to (int) before packing, else could crop off usecs...
+ * (Spanker=kohl)
+ *
+ * Revision 1.10  1998/02/24  15:36:28  pvmsrc
+ * Oops...  leftover typo from umbuf -> pmsg renaming way back when.
+ * 	- UB_DIFFNODE -> MM_DIFFNODE for IMA_CSPP.
+ * (Spanker=kohl)
+ *
  * Revision 1.9  1997/11/04  23:21:40  pvmsrc
  * Added SYSVSTR stuff.
  * (Spanker=kohl)
@@ -91,6 +132,7 @@ Initial revision
 
 #include <stdio.h>
 #ifdef NEEDMENDIAN
+#include <sys/types.h>
 #include <machine/endian.h>
 #endif
 #ifdef NEEDENDIAN
@@ -99,19 +141,23 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32
-#include <rpc/types.h>
-#include <rpc/xdr.h>
-#else
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
+#else
+#include <rpc/types.h>
+#include <rpc/xdr.h>
 #endif
+
 #ifdef  SYSVSTR
 #include <string.h>
 #else
 #include <strings.h>
 #endif
-#include <pvm3.h>
+
 #include <pvmproto.h>
 #include "pvmalloc.h"
 #include "pvmfrag.h"
@@ -171,7 +217,7 @@ ibol(o, p, n)
 
 	j = ffs(n) - 1;
 /*
-	printf(".%d%d.%d%d%d", (i & 2) ? 1 : 0, (i & 1) ? 1 : 0
+	printf(".%d%d.%d%d%d", (i & 2) ? 1 : 0, (i & 1) ? 1 : 0,
 			(j & 4) ? 1 : 0, (j & 2) ? 1 : 0, (j & 1) ? 1 : 0);
 */
 	return ((i << 3) | j) << o;
@@ -249,9 +295,17 @@ fbol(o, p, n)
 					break;
 			if (j == n)
 				return i << o;
+
+			/* weird float byte order for Strongarm?! */
+			/* submitted Alexander Schulz <un23@rz.uni-karlsruhe.de> */
+			for (j = 0; j < n; j++)
+				if (p[(((j/4)*8)+3)-j] != thesigs[i].bytes[j])
+					break;
+			if (j == n)
+				return ((2 << 4) | i) << o;
 		}
 	}
-	fprintf(stderr, "can't generate signature for my integer byte order\n");
+	fprintf(stderr, "can't generate signature for my float byte order\n");
 	abort();
 	return 0;
 }
@@ -591,7 +645,7 @@ byteupk(mp, cp, num, siz, lnc)
 	int togo;					/* bytes left in chunk */
 	int r;						/* bytes (data) left in frag */
 #ifdef IMA_CSPP
-	int diff_node = mp->m_flag & UB_DIFFNODE;
+	int diff_node = mp->m_flag & MM_DIFFNODE;
 #endif
 
 	if (siz == lnc) {		/* if contiguous, treat as single chunk */
@@ -830,16 +884,33 @@ enc_xdr_long(mp, vp, cnt, std, siz)
 {
     register long *np;
     register char *cp;
-    char     buf[4];
+    char     buf[8];
     int cc = 0;
 
     for (np = (long *)vp; cnt-- > 0; np += std) {
         cp = (char *)np;
+#ifdef USE_XDR_LONGLONG
+        buf[7] = *cp;
+        buf[6] = *(cp+1);
+        buf[5] = *(cp+2);
+        buf[4] = *(cp+3);
+        buf[3] = *(cp+4);
+        buf[2] = *(cp+5);
+        buf[1] = *(cp+6);
+        buf[0] = *(cp+7);
+#else
         buf[3] = *cp;
         buf[2] = *(cp+1);
         buf[1] = *(cp+2);
         buf[0] = *(cp+3);
-        if (cc = bytepk(mp, buf, 4, 1, 1))
+#endif
+        if (cc = bytepk(mp, buf,
+#ifdef USE_XDR_LONGLONG
+				8,
+#else
+				4,
+#endif
+				1, 1))
             return cc;
     }
     return 0;
@@ -1033,17 +1104,34 @@ dec_xdr_long(mp, vp, cnt, std, siz)
 {
     register long *np;
     register char *cp;
-    char     buf[4];
+    char     buf[8];
     int cc = 0;
 
     for (np = (long *)vp; cnt-- > 0; np += std) {
-        if (cc = byteupk(mp, buf, 4, 1, 1))
+        if (cc = byteupk(mp, buf,
+#ifdef USE_XDR_LONGLONG
+				8,
+#else
+				4,
+#endif
+				1, 1))
             return cc;
         cp = (char *)np;
+#ifdef USE_XDR_LONGLONG
+        *cp     = buf[7];
+        *(cp+1) = buf[6];
+        *(cp+2) = buf[5];
+        *(cp+3) = buf[4];
+        *(cp+4) = buf[3];
+        *(cp+5) = buf[2];
+        *(cp+6) = buf[1];
+        *(cp+7) = buf[0];
+#else
         *cp = buf[3];
         *(cp+1) = buf[2];
         *(cp+2) = buf[1];
         *(cp+3) = buf[0];
+#endif
     }
     return 0;
 }
@@ -1304,9 +1392,21 @@ enc_xdr_long(mp, vp, cnt, std, siz)
 	int cc = 0;
 
 	for (np = (long*)vp; cnt-- > 0; np += std)
-		if (!xdr_long(&mp->m_xdr, np)) {
+#ifdef USE_XDR_LONGLONG
+		if (!xdr_longlong_t(&mp->m_xdr, np))
+#else
+		if (!xdr_long(&mp->m_xdr, np))
+#endif
+		{
+#ifdef USE_XDR_LONGLONG
+			if ((*np & ~(long)0x7fffffffffffffff)
+			&& (*np & ~(long)0x7fffffffffffffff)
+					!= ~(long)0x7fffffffffffffff)
+#else
 			if ((*np & ~(long)0x7fffffff)
-			&& (*np & ~(long)0x7fffffff) != ~(long)0x7fffffff) {
+			&& (*np & ~(long)0x7fffffff) != ~(long)0x7fffffff)
+#endif
+			{
 				cc = PvmOverflow;
 				break;
 			}
@@ -1314,7 +1414,12 @@ enc_xdr_long(mp, vp, cnt, std, siz)
 			if (cc = enc_xdr_step(mp))
 				break;
 			else
-				if (!xdr_long(&mp->m_xdr, np)) {
+#ifdef USE_XDR_LONGLONG
+				if (!xdr_longlong_t(&mp->m_xdr, np))
+#else
+				if (!xdr_long(&mp->m_xdr, np))
+#endif
+				{
 					cc = PvmNoMem;
 					break;
 				}
@@ -1334,8 +1439,18 @@ enc_xdr_ulong(mp, vp, cnt, std, siz)
 	int cc = 0;
 
 	for (np = (unsigned long*)vp; cnt-- > 0; np += std)
-		if (!xdr_u_long(&mp->m_xdr, np)) {
-			if (*np & ~(long)0xffffffff) {
+#ifdef USE_XDR_LONGLONG
+		if (!xdr_u_longlong_t(&mp->m_xdr, np))
+#else
+		if (!xdr_u_long(&mp->m_xdr, np))
+#endif
+		{
+#ifdef USE_XDR_LONGLONG
+			if (*np & ~(long)0xffffffffffffffff)
+#else
+			if (*np & ~(long)0xffffffff)
+#endif
+			{
 				cc = PvmOverflow;
 				break;
 			}
@@ -1343,7 +1458,12 @@ enc_xdr_ulong(mp, vp, cnt, std, siz)
 			if (cc = enc_xdr_step(mp))
 				break;
 			else
-				if (!xdr_u_long(&mp->m_xdr, np)) {
+#ifdef USE_XDR_LONGLONG
+				if (!xdr_u_longlong_t(&mp->m_xdr, np))
+#else
+				if (!xdr_u_long(&mp->m_xdr, np))
+#endif
+				{
 					cc = PvmNoMem;
 					break;
 				}
@@ -1537,9 +1657,10 @@ dec_xdr_step(mp)
 			return PvmBadMsg;
 
 		} else {
-/*
-			pvmlogprintf("fragment has %d bytes left, doing fixup\n", l);
-*/
+			/*
+			pvmlogprintf("fragment has %d bytes left, doing fixup\n",
+					l);
+			*/
 			fp->fr_dat -= l;
 			fp->fr_len += l;
 			BCOPY(p, fp->fr_dat, l);
@@ -1639,12 +1760,22 @@ dec_xdr_long(mp, vp, cnt, std, siz)
 	int cc = 0;
 
 	for (np = (long*)vp; cnt-- > 0; np += std)
-		if (!xdr_long(&mp->m_xdr, np)) {
+#ifdef USE_XDR_LONGLONG
+		if (!xdr_longlong_t(&mp->m_xdr, np))
+#else
+		if (!xdr_long(&mp->m_xdr, np))
+#endif
+		{
 			mp->m_cpos = xdr_getpos(&mp->m_xdr);
 			if (cc = dec_xdr_step(mp))
 				break;
 			else
-				if (!xdr_long(&mp->m_xdr, np)) {
+#ifdef USE_XDR_LONGLONG
+				if (!xdr_longlong_t(&mp->m_xdr, np))
+#else
+				if (!xdr_long(&mp->m_xdr, np))
+#endif
+				{
 					cc = PvmNoData;
 					break;
 				}
@@ -1714,12 +1845,22 @@ dec_xdr_ulong(mp, vp, cnt, std, siz)
 	int cc = 0;
 
 	for (np = (unsigned long*)vp; cnt-- > 0; np += std)
-		if (!xdr_u_long(&mp->m_xdr, np)) {
+#ifdef USE_XDR_LONGLONG
+		if (!xdr_u_longlong_t(&mp->m_xdr, np))
+#else
+		if (!xdr_u_long(&mp->m_xdr, np))
+#endif
+		{
 			mp->m_cpos = xdr_getpos(&mp->m_xdr);
 			if (cc = dec_xdr_step(mp))
 				break;
 			else
-				if (!xdr_u_long(&mp->m_xdr, np)) {
+#ifdef USE_XDR_LONGLONG
+				if (!xdr_u_longlong_t(&mp->m_xdr, np))
+#else
+				if (!xdr_u_long(&mp->m_xdr, np))
+#endif
+				{
 					cc = PvmNoData;
 					break;
 				}
@@ -1914,10 +2055,14 @@ enc_trc_hdr(mp)
 {
 	struct timeval timestamp;
 
+	int tsec, tusec;
 	int tmp;
 	int cc;
 
 	gettimeofday( &timestamp, (struct timezone *) 0 );
+
+	tsec = (int) timestamp.tv_sec;
+	tusec = (int) timestamp.tv_usec;
 
 	if ( (cc = enc_xdr_init(mp)) )
 		return( cc );
@@ -1938,10 +2083,10 @@ enc_trc_hdr(mp)
 			(void *)(pvmtevinfo[TEV_USER_DEFINED].name), tmp, 1, 1)))
 		return( cc );
 
-	if ((cc = enc_xdr_int(mp, (void *) &(timestamp.tv_sec), 1, 1,
+	if ((cc = enc_xdr_int(mp, (void *) &tsec, 1, 1,
 			(int) sizeof(int))))
 		return( cc );
-	if ((cc = enc_xdr_int(mp, (void *) &(timestamp.tv_usec), 1, 1,
+	if ((cc = enc_xdr_int(mp, (void *) &tusec, 1, 1,
 			(int) sizeof(int))))
 		return( cc );
 

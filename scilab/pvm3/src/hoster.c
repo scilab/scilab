@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: hoster.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: hoster.c,v 1.2 2002/10/14 14:37:45 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,70 @@ static char rcsid[] =
  *
  *	Slave pvmd starter.
  *
-$Log: hoster.c,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: hoster.c,v $
+ * Revision 1.2  2002/10/14 14:37:45  chanceli
+ * update
+ *
+ * Revision 1.20  2001/09/27 21:25:09  pvmsrc
+ * BEOSCYLD port.
+ * 	- submitted by Joe Vitale <vitale@scyld.com>.
+ * 	(we renamed it from BEOWULF to BEOSCYLD, but it's his port... :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.19  2001/09/26 21:22:17  pvmsrc
+ * Added Handling for Optional Virtual Machine ID.
+ * 	- extra vmid comes through with SM_STHOST message (after wincmd).
+ * 	- instruct user to type VMID on remote pvmd stdin for manual startup
+ * 	- in phase1(), after potential rsh/rexec, write VMID env string
+ * 		to remote pvmd's stdin.
+ * (Spanker=kohl)
+ *
+ * Revision 1.18  2001/02/07 23:14:04  pvmsrc
+ * First Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.17  2000/02/16 21:59:40  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.16  2000/02/14 20:31:57  pvmsrc
+ * Lose #define-d RSHCOMMAND usage.
+ * 	- use new pvmgetrsh() routine, which checks for PVM_RSH or else
+ * 		uses old RSHCOMMAND interface.
+ * (Spanker=kohl)
+ *
+ * Revision 1.15  1999/08/19 15:39:24  pvmsrc
+ * Whoa...  New wincmd stuff was whacking addhost protocol!
+ * 	- *always* pack in something for wincmd, else the attempt to unpack
+ * 		"possible" wincmd will snag start of next host's startup info...
+ * 	- damn.
+ * (Spanker=kohl)
+ *
+ * Revision 1.14  1999/07/08 18:59:53  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.13  1999/01/28  18:56:21  pvmsrc
+ * Added host add retries for alternate WIN32 pvmd command.
+ * 	- added char *h_wincmd field to hst struct.
+ * 	- in hoster() check for extra command string at end of each
+ * 		host unpack (ignore if omitted), stick in h_wincmd ptr.
+ * 	- in pl_startup() if default pvmd command fails,
+ * 		and alternate WIN32 command is defined, reset h_cmd and
+ * 		try phase1() again...
+ * 	- in phase1(), if doing manual startup and an alternate WIN32
+ * 		command is defined, echo that to the user too, so they can
+ * 		try both before typing back the response...
+ * (Spanker=kohl)
+ *
+ * Revision 1.12  1998/11/20  20:03:58  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (Spanker=sscott)
+ *
  * Revision 1.11  1997/12/01  19:20:34  pvmsrc
  * Replaced #ifdef IMA_OS2 fd_set declarations:
  * 	- new #ifdef FDSETNOTSTRUCT.
@@ -142,6 +202,12 @@ Initial revision
  *
  */
 
+#ifdef IMA_TITN
+#include <bsd/sys/types.h>
+#else
+#include <sys/types.h>
+#endif
+
 #ifdef NEEDMENDIAN
 #include <machine/endian.h>
 #endif
@@ -151,19 +217,28 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
+#include "..\xdr\types.h"
+#include "..\xdr\xdr.h"
+#else
 #include <rpc/types.h>
 #include <rpc/xdr.h>
-#ifdef IMA_TITN
-#include <bsd/sys/types.h>
-#else
-#include <sys/types.h>
 #endif
+
+#ifndef WIN32
 #include <sys/time.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#endif
+
 #ifdef NEEDSSELECTH
 #include <sys/select.h>
 #endif
-#include <sys/socket.h>
-#include <netinet/in.h>
+
 #include <fcntl.h>
 #include <stdio.h>
 #include <errno.h>
@@ -175,9 +250,7 @@ Initial revision
 #include <strings.h>
 #define	CINDEX(s,c)	index(s,c)
 #endif
-#include <netdb.h>
 
-#include <pvm3.h>
 #include <pvmproto.h>
 #include "pvmalloc.h"
 #include "pmsg.h"
@@ -187,8 +260,8 @@ Initial revision
 #include "bfunc.h"
 #include "global.h"
 
-#ifndef	RSHCOMMAND
-#define	RSHCOMMAND	"/usr/ucb/rsh"
+#ifdef IMA_BEOSCYLD
+#include <string.h>
 #endif
 
 #ifndef	RSHTIMEOUT
@@ -217,6 +290,8 @@ struct hst {
 #define	HST_PASSWORD	1		/* ask for a password */
 #define	HST_MANUAL		2		/* do manual startup */
 	char *h_cmd;
+	char *h_wincmd;				/* alternate WIN32 default pvmd cmd */
+	char *h_vmid;				/* optional virtual machine ID */
 	char *h_result;
 };
 
@@ -245,6 +320,8 @@ extern void pvmbailout();
 
 extern int pvmdebmask;				/* from pvmd.c */
 extern char *username;				/* from pvmd.c */
+
+char *pvmgetrsh();
 
 
 /***************
@@ -285,9 +362,21 @@ hoster(mp)
 			if (upkint(mp, &hp->h_tid)
 			|| upkstralloc(mp, &hp->h_sopts)
 			|| upkstralloc(mp, &hp->h_login)
-			|| upkstralloc(mp, &hp->h_cmd)) {
+			|| upkstralloc(mp, &hp->h_cmd)
+			|| upkstralloc(mp, &hp->h_wincmd)
+			|| upkstralloc(mp, &hp->h_vmid)) {
 				pvmlogerror("hoster() bad message format\n");
 				pvmbailout(0);
+			}
+			/* Check for (possible) alternate WIN32 pvmd cmd */
+			if (!strcmp(hp->h_wincmd,"")) {
+				PVM_FREE(hp->h_wincmd);
+				hp->h_wincmd = 0;
+			}
+			/* Check for (optional) virtual machine ID */
+			if (!strcmp(hp->h_vmid,"")) {
+				PVM_FREE(hp->h_vmid);
+				hp->h_vmid = 0;
 			}
 			if (pvmdebmask & PDMSTARTUP) {
 				pvmlogprintf("%d. t%x %s so=\"%s\"\n", i,
@@ -437,6 +526,12 @@ pl_startup(num, hostlist)
 			phase1(sp);
 			if (hp->h_result) {
 				/* error or fully started (manual startup) */
+
+				if (pvmdebmask & PDMSTARTUP) {
+					pvmlogprintf(
+					"pl_startup() got result \"%s\" for %s phase1()\n",
+						hp->h_result, hp->h_name);
+				}
 
 				LISTPUTBEFORE(slfree, sp, s_link, s_rlink);
 
@@ -617,11 +712,35 @@ pl_startup(num, hostlist)
 						pvmlogprintf("stdout@%s: EOF\n",
 								sp->s_hst->h_name);
 					}
-					sp->s_hst->h_result = STRALLOC("PvmCantStart");
 					if (sp->s_elen > 0) {
 						pvmlogprintf("stderr@%s: %s\n",
 								sp->s_hst->h_name, sp->s_ebuf);
 						sp->s_elen = 0;
+					}
+
+					/* before failing, check for alternate WIN32 cmd */
+					if (sp->s_hst->h_wincmd) {
+						if (pvmdebmask & PDMSTARTUP) {
+							pvmlogprintf(
+								"pl_startup() re-trying %s as WIN32\n",
+								hp->h_name);
+						}
+						/* no need to free h_cmd, we're a pvmd'... */
+						sp->s_hst->h_cmd = sp->s_hst->h_wincmd;
+						sp->s_hst->h_wincmd = 0;
+
+						phase1(sp);
+
+						if (!(sp->s_hst->h_result)) {
+							/* partially started */
+							pvmgetclock(&sp->s_bail);
+							tout.tv_sec = RSHTIMEOUT;
+							tout.tv_usec = 0;
+							TVXADDY(&sp->s_bail, &sp->s_bail, &tout);
+						}
+
+					} else {
+						sp->s_hst->h_result = STRALLOC("PvmCantStart");
 					}
 				}
 				if (sp->s_hst->h_result) {
@@ -642,7 +761,7 @@ phase1(sp)
 {
 	struct hst *hp;
 	char *hn;
-	char *av[16];			/* for rsh args */
+	char *av[32];			/* for rsh args */
 	int ac;
 	char buf[512];
 	int pid = -1;			/* pid of rsh */
@@ -673,7 +792,15 @@ phase1(sp)
 	if (hp->h_flag & HST_MANUAL) {
 		fprintf(stderr, "*** Manual startup ***\n");
 		fprintf(stderr, "Login to \"%s\" and type:\n", hn);
-		fprintf(stderr, "%s\n", hp->h_cmd);
+
+		if (hp->h_wincmd) {
+			fprintf(stderr, "%s\n\n", hp->h_cmd);
+			fprintf(stderr, "or, if that command fails, " );
+			fprintf(stderr, "for WIN32 hosts try:\n");
+			fprintf(stderr, "%s\n\n", hp->h_wincmd);
+		}
+		else
+			fprintf(stderr, "%s\n", hp->h_cmd);
 
 	/* get version */
 
@@ -687,6 +814,17 @@ phase1(sp)
 		if (*p == '\n')
 			*p = 0;
 		hp->h_result = STRALLOC(buf);
+
+	/* send vmid, if set */
+
+		if (hp->h_vmid) {
+			fprintf(stderr, "Now Type the Virtual Machine ID on %s:\n",
+					hn);
+			fprintf(stderr, "%s\n", hp->h_vmid);
+		}
+
+	/* done */
+
 		fprintf(stderr, "Thanks\n");
 		fflush(stderr);
 		return 0;
@@ -736,13 +874,33 @@ phase1(sp)
 			for (i = getdtablesize(); --i > 2; )
 				(void)close(i);
 			ac = 0;
-			av[ac++] = RSHCOMMAND;
+			av[ac++] = pvmgetrsh();
 			av[ac++] = hn;
 			if (hp->h_login) {
 				av[ac++] = "-l";
 				av[ac++] = hp->h_login;
 			}
+#ifdef IMA_BEOSCYLD
+			/* Chop up the command line and all its parameters into
+			 * individual strings. The underlying assumption here is
+			 * that PVM_RSH is defined to specify 'bpsh' instead of
+			 * 'rsh/ssh'. This bit of code converts the single string
+			 * av[2] from this: "pvmd3 -option1 -option2", into this:
+			 * av[2] = "pvmd3", av[3] = "-option1", av[4] = "-option2").
+			 * If this is not done 'bpsh' treats the original av[2] as
+			 * the file name of the command to be executed, which will
+			 * fail to execute.
+			 */
+			p = hp->h_cmd;
+			do {
+				av[ac++] = p;
+				p = strstr(p," ");
+				if (p != NULL)
+					*p++ = '\0';
+			} while (p != NULL);
+#else
 			av[ac++] = hp->h_cmd;
+#endif
 			av[ac++] = 0;
 			if (pvmdebmask & PDMSTARTUP) {
 				for (ac = 0; av[ac]; ac++)
@@ -779,6 +937,21 @@ phase1(sp)
 		}
 #endif
 	}
+
+	/* send vmid, if set */
+	if (sp->s_hst->h_vmid && sp->s_wfd >= 0) {
+#ifdef WIN32
+		win32_write_socket(sp->s_wfd, "PVM_VMID=", 9);
+		win32_write_socket(sp->s_wfd,
+				sp->s_hst->h_vmid, strlen(sp->s_hst->h_vmid));
+		win32_write_socket(sp->s_wfd, "\n", 1);
+#else
+		write(sp->s_wfd, "PVM_VMID=", 9);
+		write(sp->s_wfd, sp->s_hst->h_vmid, strlen(sp->s_hst->h_vmid));
+		write(sp->s_wfd, "\n", 1);
+#endif
+	}
+
 	return 0;
 
 oops:

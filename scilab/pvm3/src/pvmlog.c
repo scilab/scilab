@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmlog.c,v 1.1 2001/04/26 07:47:11 scilab Exp $";
+	"$Id: pvmlog.c,v 1.2 2002/10/14 14:37:53 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,78 @@ static char rcsid[] =
  *
  *	Error logging fac.
  *
-$Log: pvmlog.c,v $
-Revision 1.1  2001/04/26 07:47:11  scilab
-Initial revision
-
+ * $Log: pvmlog.c,v $
+ * Revision 1.2  2002/10/14 14:37:53  chanceli
+ * update
+ *
+ * Revision 1.21  2001/09/26 21:23:56  pvmsrc
+ * Added Handling for Optional Virtual Machine ID.
+ * 	- append virtual machine ID string to pvmd log file, too,
+ * 		if set in PVM_VMID env var.
+ * 	- not restricted to be integer as in SGI, can be arbitrary
+ * 		string...  heh, heh...  :-}
+ * (Spanker=kohl)
+ *
+ * Revision 1.20  2001/09/25 21:21:05  pvmsrc
+ * Yanked "char *pvmgettmp();" decl - now in pvm3.h...
+ * (Spanker=kohl)
+ *
+ * Revision 1.19  2001/05/11 18:58:13  pvmsrc
+ * Added use of new "USESTRERROR" define.
+ * 	- uses strerror() function instead of sys_errlist/sys_nerr
+ * 		(which aren't public globals on some new operating systems).
+ * (Spanker=kohl)
+ *
+ * Revision 1.18  2000/03/30 18:01:18  pvmsrc
+ * Damn.  Max PVMD Log Size Checking Whacked!
+ * 	- everything goes through pvmlogprintf() now, transferred old
+ * 		code from pvmlogerror() to truncate logging...
+ * (Spanker=kohl)
+ *
+ * Revision 1.17  2000/02/10 20:46:43  pvmsrc
+ * Replaced hard-coded /tmp usage with PVMDLOGFILE.
+ * 	- use pvmgettmp() routine now to determine PVM temp dir.
+ * 	- also, eliminated goofy pvmtmpspec stuff for WIN32, cleaned up
+ * 		string manip...
+ * (Spanker=kohl)
+ *
+ * Revision 1.16  1999/12/10 21:29:40  pvmsrc
+ * Added pvmdlogmax = pvmdlogmax for picky SGI compiler warning...  :-Q
+ * (Spanker=kohl)
+ *
+ * Revision 1.15  1999/07/08 19:00:13  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.14  1999/02/09  23:06:54  pvmsrc
+ * Cleaned up temp file stuff (mainly for WIN32).
+ * 	- extracted new pvmgettmp() routine for returning tmp directory.
+ * (Spanker=kohl)
+ *
+ * Revision 1.13  1998/11/20  20:06:42  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (spanker=sscott)
+ *
+ * Revision 1.12  1998/10/02  15:44:09  pvmsrc
+ * Single source code merge of Win32 and Unix code.
+ * (Spanker=sscott)
+ *
+ * Revision 1.11  1998/09/23  15:23:48  pvmsrc
+ * 	changes to use WIN32 registry as per Markus.
+ * 	ifdef in pvmd.c::colonsep() to include WIN32 and OS2
+ * (Spanker=phil)
+ *
+ * Revision 1.10  1998/01/28  20:09:00  pvmsrc
+ * Added new -DSYSERRISCONST define.
+ * 	- for const char *sys_errlist...
+ * (Spanker=kohl)
+ *
+ * Revision 1.9  1998/01/28  19:13:59  pvmsrc
+ * Added new IMA_LINUXHPPA to #if cases...
+ * (Spanker=kohl)
+ *
  * Revision 1.8  1997/12/29  19:40:03  pvmsrc
  * 	Made char *em a const char *em for LINUX machines.
  * 	(Redhat 5.0/4.2 compatible.)
@@ -90,11 +158,8 @@ Initial revision
  *
  */
 
-#ifdef WIN32
-#include "pvmwin.h"
-#endif
-
 #include <stdio.h>
+#include <pvm3.h>
 #include <errno.h>
 #include <sys/types.h>
 #include <time.h>
@@ -106,7 +171,7 @@ Initial revision
 #include <strings.h>
 #define	CINDEX(s,c)	index(s,c)
 #endif
-#ifdef	__STDC__
+#if defined (__STDC__) || defined(IMA_WIN32_WATCOM)
 #include <stdarg.h>
 #else
 #include <varargs.h>
@@ -119,20 +184,20 @@ Initial revision
 /* pvmd log file name */
 
 #ifdef	SHAREDTMP
-#define	PVMDLOGFILE	"/tmp/pvml.%d.%s"
+#define	PVMDLOGFILE	"%s/pvml.%d.%s"
 #else
 #ifndef WIN32
-#define	PVMDLOGFILE	"/tmp/pvml.%d"
+#define	PVMDLOGFILE	"%s/pvml.%d"
 #else
-#define PVMDLOGFILE "c:/temp/pvml.%s"  /* for default */
+#define PVMDLOGFILE "%s\\pvml.%s"  /* for default */
 #endif
 #endif
 
 #ifdef	IMA_CSPP
 #ifdef	SHAREDTMP
-#define	PVMDLOGFILE_CSPP	"/tmp/pvml.%d.%d.%s"
+#define	PVMDLOGFILE_CSPP	"%s/pvml.%d.%d.%s"
 #else
-#define	PVMDLOGFILE_CSPP	"/tmp/pvml.%d.%d"
+#define	PVMDLOGFILE_CSPP	"%s/pvml.%d.%d"
 #endif
 
 int get_scid();
@@ -148,7 +213,7 @@ char *getenv();
 
 #ifndef HASERRORVARS
 extern int errno;					/* from libc */
-#ifndef WIN32
+#ifndef USESTRERROR
 extern int sys_nerr;
 extern char *sys_errlist[];
 #endif
@@ -163,7 +228,6 @@ extern int pvmmyupid;				/* from pvmd.c */
 extern int pvm_useruid;				/* from pvmd.c */
 #ifdef WIN32
 extern char *username;				/* from pvmd.c */
-extern char *pvmtmpspec;			/* from pvmd.c */
 #endif
 
 int log_fd = -1;					/* error log file */
@@ -174,10 +238,12 @@ int log_fd = -1;					/* error log file */
  **           **
  ***************/
 
-static int log_how = 1;				/* how much error logging we can do */
+static int log_how = 1;		/* how much error logging we can do */
 FILE *log_ff = 0;
+static int log_alrdy = 0;	/* how much already written to file */
 static int pvmdlogmax = PVMDLOGMAX;
-static int atnewline = 1;			/* on new log line (XXX ick) */
+static char *toomuch = "\n*** logging truncated\n";
+static int atnewline = 1;	/* on new log line (XXX ick) */
 
 
 /*	pvmsetlog()
@@ -191,15 +257,18 @@ int
 pvmsetlog(how)
 	int how;
 {
-	char buf[160];
+	char buf[255];
 	char hna[128];
+	char *pvmtmp;
 	char *p;
+
 #ifdef	IMA_CSPP
 	int scid = get_scid();	/* default (system) subcomplex ID is 1) */
-							/* differentiate logfile when not on system s/c */
+					/* differentiate logfile when not on system s/c */
 #endif
 
 	if (2 & how & ~log_how) {
+		pvmtmp = pvmgettmp();
 #ifdef	SHAREDTMP
 		if (gethostname(hna, sizeof(hna)-1) == -1) {
 			pvmlogerror("pvmsetlog() can't gethostname()\n");
@@ -209,33 +278,31 @@ pvmsetlog(how)
 			*p = 0;
 #ifdef	IMA_CSPP
 		if (scid > 1)
-			(void)sprintf(buf, PVMDLOGFILE_CSPP, pvm_useruid, scid, hna);
+			(void)sprintf(buf, PVMDLOGFILE_CSPP,
+					pvmtmp, pvm_useruid, scid, hna);
 		else
 #endif
-			(void)sprintf(buf, PVMDLOGFILE, pvm_useruid, hna);
+			(void)sprintf(buf, PVMDLOGFILE, pvmtmp, pvm_useruid, hna);
 
 #else	/*SHAREDTMP*/
 #ifdef	IMA_CSPP
 		if (scid > 1)
-			(void)sprintf(buf, PVMDLOGFILE_CSPP, pvm_useruid, scid);
+			(void)sprintf(buf, PVMDLOGFILE_CSPP,
+					pvmtmp, pvm_useruid, scid);
 		else
 #endif
 #ifndef WIN32
-			(void)sprintf(buf, PVMDLOGFILE, pvm_useruid);
+		(void)sprintf(buf, PVMDLOGFILE, pvmtmp, pvm_useruid);
 #else
-		if(!pvmtmpspec) pvmtmpspec = malloc(128*sizeof(char));
-
-		if (!getenv("PVM_TMP")) {
-			(void)sprintf(buf,PVMDLOGFILE,username);
-			fprintf(stderr,
-					"Could not get PVM_TMP, continuing with %s \n",buf);
-		} else {
-			strcpy(pvmtmpspec,getenv("PVM_TMP"));
-			strcat(pvmtmpspec,"/pvml.%s");
-			(void)sprintf(buf,pvmtmpspec,username);	
-		}
+		(void)sprintf(buf, "%s\\pvml.%s", pvmtmp, username);	
 #endif		
 #endif	/*SHAREDTMP*/
+
+		/* Append a Virtual Machine ID, If Set */
+		if ( p = getenv("PVM_VMID") ) {
+			strcat( buf, "." );
+			strcat( buf, p );
+		}
 
 		if ((log_fd = open(buf, O_WRONLY|O_TRUNC|O_CREAT|O_APPEND, 0600)) != -1)
 			log_ff = fdopen(log_fd, "a");
@@ -244,6 +311,8 @@ pvmsetlog(how)
 
 		if (p = getenv("PVMDLOGMAX"))
 			pvmdlogmax = atoi(p);
+
+		pvmdlogmax = pvmdlogmax;  /* for picky SGI compiler warning */
 	}
 
 	if (2 & log_how & ~how) {
@@ -262,8 +331,6 @@ vpvmlogprintf(fmt, ap)
 	char *fmt;
 	va_list ap;
 {
-	static char *toomuch = "\n*** logging truncated\n";
-	static int log_alrdy = 0;	/* how much already written to file */
 
 	int cnt = 0;
 	int cc;
@@ -292,35 +359,36 @@ vpvmlogprintf(fmt, ap)
 						tmp->tm_sec);
 #endif	/*TIMESTAMPLOG*/
 		}
-
 		cc = vfprintf(stderr, fmt, ap);
 		cnt = ( cc >= 0 ) ? cnt + cc : cc;
 		fflush(stderr);
 	}
 
 	if (log_how & 2) {
-/*
-		XXX we don't update log_alrdy (log_alrdy < PVMDLOGMAX)
-*/
-		if (atnewline) {
-			if (pvmmytid)
-				fprintf(log_ff, "[t%x] ", pvmmytid);
-			else
-				fprintf(log_ff, "[pvmd pid%d] ", pvmmyupid);
+		if (log_alrdy < pvmdlogmax) {
+			if (atnewline) {
+				if (pvmmytid)
+					fprintf(log_ff, "[t%x] ", pvmmytid);
+				else
+					fprintf(log_ff, "[pvmd pid%d] ", pvmmyupid);
 
 #ifdef	TIMESTAMPLOG
-			fprintf(log_ff, "%02d/%02d %02d:%02d:%02d ",
+				fprintf(log_ff, "%02d/%02d %02d:%02d:%02d ",
 						tmp->tm_mon + 1,
 						tmp->tm_mday,
 						tmp->tm_hour,
 						tmp->tm_min,
 						tmp->tm_sec);
 #endif	/*TIMESTAMPLOG*/
-		}
+			}
 
-		cc = vfprintf(log_ff, fmt, ap);
-		cnt = ( cnt >= 0 ) ? ( ( cc >= 0 ) ? cnt + cc : cc ) : cnt;
-		fflush(log_ff);
+			cc = vfprintf(log_ff, fmt, ap);
+			cnt = ( cnt >= 0 ) ? ( ( cc >= 0 ) ? cnt + cc : cc ) : cnt;
+			fflush(log_ff);
+
+			if ((log_alrdy += cnt) >= pvmdlogmax)
+				(void)write(log_fd, toomuch, strlen(toomuch));
+		}
 	}
 
 	atnewline = (fmt[strlen(fmt) - 1] == '\n') ? 1 : 0;
@@ -336,7 +404,7 @@ XXX send error-log message to console host
 
 
 int
-#ifdef __STDC__
+#if defined (__STDC__) || defined(IMA_WIN32_WATCOM)
 pvmlogprintf(const char *fmt, ...)
 #else
 pvmlogprintf(va_alist)
@@ -346,7 +414,8 @@ pvmlogprintf(va_alist)
 	va_list ap;
 	int cc;
 
-#ifdef __STDC__
+#if defined (__STDC__) || defined(IMA_WIN32_WATCOM)
+
 	va_start(ap, fmt);
 #else
 	char    *fmt;
@@ -354,7 +423,6 @@ pvmlogprintf(va_alist)
 	va_start(ap);
 	fmt = va_arg(ap, char *);
 #endif
-
 	cc = vpvmlogprintf(fmt, ap);
 	va_end(ap);
 
@@ -370,7 +438,7 @@ pvmlogperror(s)
 	char em[16];
 	int error_nr=0;
 #else
-#if defined(IMA_FREEBSD) || defined(IMA_OS2) || defined(IMA_LINUXALPHA) || defined(IMA_LINUX)
+#ifdef SYSERRISCONST
 	const char *em;
 #else
 	char *em;
@@ -378,8 +446,12 @@ pvmlogperror(s)
 #endif
 
 #ifndef WIN32
+#ifdef USESTRERROR
+	em = strerror( errno );
+#else
 	em = ((errno >= 0 && errno < sys_nerr)
 		? sys_errlist[errno] : "Unknown Error");
+#endif
 #else
 	error_nr = GetLastError();
 	sprintf(em,"%d",error_nr);
@@ -405,8 +477,6 @@ pvmlogerror(s)
 	return 0;
 
 #if NOMORELOGERROR
-	static char *toomuch = "\n*** logging truncated\n";
-	static int log_alrdy = 0;		/* how much already written to file */
 	int len = strlen(s);
 	char buf[40];
 	int l;

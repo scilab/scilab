@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmerr.c,v 1.1 2001/04/26 07:47:11 scilab Exp $";
+	"$Id: pvmerr.c,v 1.2 2002/10/14 14:37:53 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,20 @@ static char rcsid[] =
  *
  *	Text of PVM error messages.
  *
-$Log: pvmerr.c,v $
-Revision 1.1  2001/04/26 07:47:11  scilab
-Initial revision
-
+ * $Log: pvmerr.c,v $
+ * Revision 1.2  2002/10/14 14:37:53  chanceli
+ * update
+ *
+ * Revision 1.8  2000/02/10 23:53:35  pvmsrc
+ * Added new PvmIPLoopback error code:
+ * 	- Master Host IP Address tied to Loopback.
+ * 	- check for this case in addhosts(), don't even TRY to add hosts...
+ * (Spanker=kohl)
+ *
+ * Revision 1.7  1999/07/08 19:00:12  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.6  1997/10/01  15:35:41  pvmsrc
  * Added missing "PvmParentNotSet" name to errnames[] array.
  * 	- for errnamecode() routine...
@@ -119,6 +129,7 @@ static char *errnames[] = {
 	"PvmExists",
 	"PvmHostrNMstr",
 	"PvmParentNotSet",
+	"PvmIPLoopback",
 	0
 };
 

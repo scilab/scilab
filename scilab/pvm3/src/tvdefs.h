@@ -1,5 +1,5 @@
 
-/* $Id: tvdefs.h,v 1.1 2001/04/26 07:47:12 scilab Exp $ */
+/* $Id: tvdefs.h,v 1.2 2002/10/14 14:37:56 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -34,10 +34,14 @@
  *
  *	Timeval manipulation stuff.
  *
-$Log: tvdefs.h,v $
-Revision 1.1  2001/04/26 07:47:12  scilab
-Initial revision
-
+ * $Log: tvdefs.h,v $
+ * Revision 1.2  2002/10/14 14:37:56  chanceli
+ * update
+ *
+ * Revision 1.4  1999/07/08 19:00:26  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.3  1997/06/25  22:11:14  pvmsrc
  * Markus adds his frigging name to the author list of
  * 	every file he ever looked at...

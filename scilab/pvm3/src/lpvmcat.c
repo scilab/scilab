@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: lpvmcat.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: lpvmcat.c,v 1.2 2002/10/14 14:37:47 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,41 @@ static char rcsid[] =
  *
  *	Child task output collection.
  *
-$Log: lpvmcat.c,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: lpvmcat.c,v $
+ * Revision 1.2  2002/10/14 14:37:47  chanceli
+ * update
+ *
+ * Revision 1.14  2001/02/07 23:14:06  pvmsrc
+ * First Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.13  2000/02/16 21:59:43  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.12  1999/11/08 17:44:31  pvmsrc
+ * SGI compiler cleanup.
+ * (Spanker=kohl)
+ *
+ * Revision 1.11  1999/07/08 18:59:56  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.10  1998/11/20  20:04:02  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (Spanker=sscott)
+ *
+ * Revision 1.9  1998/01/12  21:13:24  pvmsrc
+ * Replaced inline constants with new task output op defines.
+ * 	- TO_NEW == -2.
+ * 	- TO_SPAWN == -1.
+ * 	- TO_EOF == 0.
+ * (Spanker=kohl)
+ *
  * Revision 1.8  1997/12/31  20:50:11  pvmsrc
  * Cleaned Up System Message Handlers.
  * 	- current send / recv buffers now saved before invocation of
@@ -101,6 +132,7 @@ Initial revision
 
 #include <stdio.h>
 #ifdef NEEDMENDIAN
+#include <sys/types.h>
 #include <machine/endian.h>
 #endif
 #ifdef NEEDENDIAN
@@ -109,13 +141,17 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32
-#include <rpc/types.h>
-#include <rpc/xdr.h>
-#else 
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
+#else
+#include <rpc/types.h>
+#include <rpc/xdr.h>
 #endif
+
 #ifdef	SYSVSTR
 #include <string.h>
 #define	CINDEX(s,c)	strchr(s,c)
@@ -123,8 +159,8 @@ Initial revision
 #include <strings.h>
 #define	CINDEX(s,c)	index(s,c)
 #endif
+
 #include <signal.h>
-#include <pvm3.h>
 #include <pvmproto.h>
 #include "pvmalloc.h"
 #include "listmac.h"
@@ -266,7 +302,6 @@ static int
 pvmflusho()
 {
 	struct tobuf *op;
-	int cc;
 
 	if (outlogff) {
 		if (tobuflist && tobuflist->o_link != tobuflist) {
@@ -276,7 +311,7 @@ pvmflusho()
 
 	/* XXX mroute() does return after ctrl messages received */
 
-				if ((cc = mroute(0, 0, 0, (struct timeval *)0)) < 0)
+				if ( mroute(0, 0, 0, (struct timeval *)0) < 0 )
 					break;
 			}
 		}
@@ -367,7 +402,7 @@ pvmclaimo(mid)
 	} else {
 		switch (n) {
 
-		case 0:		/* EOF from task */
+		case TO_EOF:	/* EOF from task */
 			if (!(op = tobuf_find(tid))) {
 				pvmlogprintf("pvmclaimo() bogus message, no task t%x\n", tid);
 				goto done;
@@ -388,7 +423,7 @@ pvmclaimo(mid)
 			}
 			break;
 
-		case -1:	/* spawn creating new task */
+		case TO_SPAWN:	/* spawn creating new task */
 			if (!(op = tobuf_find(tid))) {
 				op = tobuf_new(tid);
 				if (outlogff && pvmshowtaskid)
@@ -403,7 +438,7 @@ pvmclaimo(mid)
 
 			break;
 
-		case -2:	/* new task starting up */
+		case TO_NEW:	/* new task starting up */
 			if (!(op = tobuf_find(tid))) {
 				op = tobuf_new(tid);
 				if (outlogff && pvmshowtaskid)

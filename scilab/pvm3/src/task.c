@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: task.c,v 1.1 2001/04/26 07:47:12 scilab Exp $";
+	"$Id: task.c,v 1.2 2002/10/14 14:37:55 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,56 @@ static char rcsid[] =
  *
  *	Task descriptors.
  *
-$Log: task.c,v $
-Revision 1.1  2001/04/26 07:47:12  scilab
-Initial revision
-
+ * $Log: task.c,v $
+ * Revision 1.2  2002/10/14 14:37:55  chanceli
+ * update
+ *
+ * Revision 1.23  2001/02/07 23:15:54  pvmsrc
+ * 2nd Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.22  2000/09/01 14:39:22  pvmsrc
+ * Plugged memory (waitc) leak in task_cleanup():
+ * 	- better get rid of any notify wait contexts, if the task is
+ * 		dead we probably don't care any more...
+ * 	- added wait_delete() for WT_HOSTA, WT_TASKX, WT_ROUTEA, WT_ROUTED.
+ * 	- I hope this doesn't break any shit...  :-o
+ * (Spanker=kohl)
+ *
+ * Revision 1.21  2000/02/17 23:12:19  pvmsrc
+ * *** Changes for new BEOLIN port ***
+ * 	- MPP-like, similar to SP2, etc.
+ * 	- submitted by Paul Springer <pls@smokeymt.jpl.nasa.gov>.
+ * 	- format-checked & cleaned up by Jeembo...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.20  2000/02/16 22:00:30  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.19  1999/07/08 19:00:15  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.18  1998/11/20  20:06:47  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (spanker=sscott)
+ *
+ * Revision 1.17  1998/10/02  15:44:10  pvmsrc
+ * Single source code merge of Win32 and Unix code.
+ * (Spanker=sscott)
+ *
+ * Revision 1.16  1998/01/12  21:13:30  pvmsrc
+ * Replaced inline constants with new task output op defines.
+ * 	- TO_NEW == -2.
+ * 	- TO_SPAWN == -1.
+ * 	- TO_EOF == 0.
+ * (Spanker=kohl)
+ *
  * Revision 1.15  1997/12/01  22:17:43  pvmsrc
  * Fixed tracer registry problem.
  * 	- in task_cleanup(), if exited task was the tracer, forward a
@@ -145,6 +191,12 @@ Initial revision
  *
  */
 
+#ifdef IMA_TITN
+#include <bsd/sys/types.h>
+#else
+#include <sys/types.h>
+#endif
+
 #ifdef NEEDMENDIAN
 #include <machine/endian.h>
 #endif
@@ -154,19 +206,25 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
+#include "..\xdr\types.h"
+#include "..\xdr\xdr.h"
+#else
 #include <rpc/types.h>
 #include <rpc/xdr.h>
+#endif
+
+#ifdef WIN32
+#include "pvmwin.h"
+#include <time.h>
+#else
 #include <sys/time.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#else
-#include "pvmwin.h"
-#include "..\xdr\types.h"
-#include "..\xdr\xdr.h"
-#include <time.h>
 #endif
-#include <sys/types.h>
 
 #ifdef	SYSVSTR
 #include <string.h>
@@ -174,7 +232,6 @@ Initial revision
 #include <strings.h>
 #endif
 
-#include <pvm3.h>
 #include <pvmproto.h>
 #include "pmsg.h"
 #include "pkt.h"
@@ -412,6 +469,9 @@ task_free(tp)
 	   XXX this will change in the portable processor interface cleanup. */
 	mpp_free(tp->t_tid);
 #endif
+#ifdef IMA_BEOLIN
+	mpp_free(tp);
+#endif
 	if (tp->t_plink && tp->t_prlink) {
 		LISTDELETE(tp, t_plink, t_prlink);
 	}
@@ -432,11 +492,19 @@ task_free(tp)
 	}
 	if (tp->t_sock != -1) {
 		wrk_fds_delete(tp->t_sock, 3);
+#ifdef WIN32
+		closesocket(tp->t_sock);
+#else
 		(void)close(tp->t_sock);
+#endif
 	}
 	if (tp->t_out != -1) {
 		wrk_fds_delete(tp->t_out, 1);
+#ifdef WIN32
+		closesocket(tp->t_out);
+#else
 		(void)close(tp->t_out);
+#endif
 	}
 	if (tp->t_outtid > 0) {
 		mp = mesg_new(0);
@@ -444,7 +512,7 @@ task_free(tp)
 		mp->m_ctx = tp->t_outctx;
 		mp->m_tag = tp->t_outtag;
 		pkint(mp, tp->t_tid);
-		pkint(mp, 0);
+		pkint(mp, TO_EOF);
 		sendmessage(mp);
 		tp->t_outtid = 0;
 	}
@@ -642,6 +710,10 @@ task_cleanup(tp)
 				switch (wp->wa_kind) {
 
 				case WT_HOSTF:
+				case WT_HOSTA:
+				case WT_TASKX:
+				case WT_ROUTEA:
+				case WT_ROUTED:
 				case WT_TASKSTART:
 					wp2 = wp;				/* some kinds we can toss now */
 					wp = wp->wa_rlink;

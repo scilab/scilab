@@ -1,4 +1,4 @@
-; $Id: amem.s,v 1.1 2001/04/26 07:47:09 scilab Exp $
+; $Id: amem.s,v 1.2 2002/10/14 14:37:44 chanceli Exp $
 ; $CHeader: amem.s 1.3 1995/08/30 08:47:06 $
 ; Copyright 1992 Convex Computer Corp.
 ;	int __ldcws  (void *addr)

@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: lpvmmimd.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: lpvmmimd.c,v 1.2 2002/10/14 14:37:47 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,23 @@ static char rcsid[] =
  *
  *	Libpvm core for MPP environment.
  *
-$Log: lpvmmimd.c,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: lpvmmimd.c,v $
+ * Revision 1.2  2002/10/14 14:37:47  chanceli
+ * update
+ *
+ * Revision 1.24  2001/05/11 17:32:28  pvmsrc
+ * Eliminated references to sys_errlist & sys_nerr.
+ * 	- unnecessary, and we're whacking that crap anyway.
+ * (Spanker=kohl)
+ *
+ * Revision 1.23  1999/07/08 18:59:59  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.22  1998/02/23  22:51:37  pvmsrc
+ * Added AIX4SP2 stuff.
+ * (Spanker=kohl)
+ *
  * Revision 1.21  1997/12/31  20:50:06  pvmsrc
  * Cleaned Up System Message Handlers.
  * 	- current send / recv buffers now saved before invocation of
@@ -253,7 +266,7 @@ Initial revision
 #ifdef IMA_I860
 #include <cube.h>
 #endif
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 #include <sys/socket.h>
 #include <sys/select.h>
 #include "mpi.h"
@@ -289,8 +302,6 @@ extern struct encvec *enctovec();
 
 #ifndef HASERRORVARS
 extern int errno;					/* from libc */
-extern char *sys_errlist[];
-extern int sys_nerr;
 #endif
 
 int pvmtidhmask = TIDHOST;			/* mask - host field of tids */
@@ -311,7 +322,7 @@ static struct pmsg *rxfrag = 0;			/* not-assembled incm msgs */
 static int mpierrcode = 0;				/* error code returned by MPI calls */
 static struct tmpfrag outfrags[NUMSMHD];/* fragments queued by async send */
 static int nextsmhd = 0;				/* index of current isend mhdl */
-#if defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 static struct pmsg *precvlist = 0;		/* not-processed incm msgs */
 #endif
 static long pvmmyptype = 0;				/* my process type */
@@ -456,16 +467,13 @@ mroute(mid, dtid, code, tmout)
 	struct timeval tnow, tstop;
 	int len;
 	long node;
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	MPI_Status info;
+	int mpiflag = 0;
+	int mpisiz;
 #else
 	long info[8];				/* info about pending message */
 #endif
-#ifdef IMA_SP2MPI
-	int mpiflag = 0;
-	int mpisiz;
-#endif
-	
 
 	/* XXX do we really have to do this? */
 	if ((dtid == TIDPVMD && code == TM_MCA) || dtid == TIDGID)
@@ -652,12 +660,12 @@ node_send(txup, txfp, dtid, code)
 	int i;
 	int ff;
 	char dummy[TDFRAGHDR+TTMSGHDR];	/* for inplace data */
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	MPI_Status mpista;
 	int mpiflag = 0;
 #endif
 
-#if defined(IMA_PGON) || defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	mask |= pvmtidtmask;				/* process type */
 #endif
 
@@ -765,7 +773,7 @@ node_send(txup, txfp, dtid, code)
 		} else {
 
 			if (node != pvmhostnode) {
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 				if (mpierrcode = MPI_Isend(txcp, txtogo, MPI_BYTE, node, 
 				PMTPACK, MPI_COMM_WORLD, &outfrags[nextsmhd].tf_mhdl)) {
 #else
@@ -942,7 +950,7 @@ node_mcast(mid, dtid, code)
 	PVM_FREE(nodes);
 #endif /*defined(IMA_PGON)*/
 
-#if defined(IMA_CM5) || defined(IMA_I860) || defined(IMA_SP2MPI)
+#if defined(IMA_CM5) || defined(IMA_I860) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	for (i = 0; i < ntask; i++)
 		cc = mroute(mid, tids[i], code, &ztv);
 #endif
@@ -1010,7 +1018,7 @@ msendrecv(other, code)
 }
 
 
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 
 /* Relay messages between pvmd and node tasks. */
 void relay(dsock)
@@ -1291,7 +1299,7 @@ pvmbeatask()
 	char *p;
 	struct pvmminfo minfo;
 	int n;
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	char *msgbuf;				/* buffer for Bsend */
 	int msgbufsiz;
 #endif
@@ -1341,7 +1349,7 @@ pvmbeatask()
 	pvmhostnode = CMMD_host_node();
 #endif
 
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	MPI_Init(&ac, NULL);
 	MPI_Comm_rank(MPI_COMM_WORLD, &pvmmynode);
 	MPI_Comm_size(MPI_COMM_WORLD, &pvmhostnode);
@@ -1388,7 +1396,7 @@ fflush(stdout);
 	BZERO((char*)pvmrxlist, sizeof(struct pmsg));
 	pvmrxlist->m_link = pvmrxlist->m_rlink = pvmrxlist;
 
-#if defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	precvlist = TALLOC(1, struct pmsg, "umb");
 	BZERO((char*)precvlist, sizeof(struct pmsg));
 	precvlist->m_link = precvlist->m_rlink = precvlist;
@@ -1401,7 +1409,7 @@ fflush(stdout);
 	_msgwait(rmid);
 #endif
 
-#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	if (pvminfo[0] != TDPROTOCOL) {
 		sprintf(pvmtxt, "beatask() t-d protocol mismatch (%d/%d)\n",
 			TDPROTOCOL, pvminfo[0]);
@@ -1557,9 +1565,9 @@ fflush(stdout);
 int
 pvmendtask()
 {
-#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_I860) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	int i;
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	MPI_Status mpista;
 #endif
 
@@ -1575,7 +1583,7 @@ pvmendtask()
 #ifdef IMA_CM5
 	CMMD_all_msgs_wait();
 #endif
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	MPI_Finalize();
 #endif
 
@@ -1627,7 +1635,7 @@ mpprecv(tid, tag, cp, len, rtid, rtag, rlen)
 #if defined(IMA_PGON) || defined(IMA_CM5)
 	long info[8];
 #endif
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	MPI_Status info;
 	int mpiflag = 0;
 	int mpisiz;
@@ -1637,7 +1645,7 @@ mpprecv(tid, tag, cp, len, rtid, rtag, rlen)
 	int cc;
 
 	node = (tid == -1) ? MPPANYNODE : tid & pvmtidnmask;
-#if defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	for (up = precvlist->m_link; up != precvlist; up = up->m_link)
 		/* message picked up by psend */
 		if ((tag == -1 || tag == up->m_tag) 
@@ -1801,7 +1809,7 @@ pvm_precv(tid, tag, cp, len, dt, rtid, rtag, rlen)
 	}
 
 	if (!cc) {
-#if defined(IMA_PGON) || defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 		int mask = pvmtidhmask | pvmtidtmask;		/* same partition */
 
 		if (tid == -1 || (TIDISNODE(tid) && (tid & mask) == (pvmmytid & mask)))
@@ -1937,7 +1945,7 @@ pvm_psend(tid, tag, cp, len, dt)
 
 	if (!cc) {
 
-#if defined(IMA_PGON) || defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 
 		int mask = pvmtidhmask;     		/* host */
 		long node = tid & pvmtidnmask;
@@ -1945,7 +1953,7 @@ pvm_psend(tid, tag, cp, len, dt)
 		CMMD_mcb mhdl;
 		int info;
 #endif
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 		MPI_Request mhdl;
 		MPI_Status info, mpista;
 		int mpiflag = 0;
@@ -1966,7 +1974,7 @@ pvm_psend(tid, tag, cp, len, dt)
 #ifdef IMA_CM5
 			if ((mhdl = ASYNCSEND(tag, cp, len, node, pvmmyptype)) < 0)
 #endif
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 			if (mpierrcode = MPI_Isend(cp, len, MPI_BYTE, node,
                 tag, MPI_COMM_WORLD, &mhdl))
 #endif
@@ -1975,7 +1983,7 @@ pvm_psend(tid, tag, cp, len, dt)
 				cc = PvmSysErr;
 				goto done;
 			}
-#if defined(IMA_CM5) || defined(IMA_SP2MPI)
+#if defined(IMA_CM5) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 			while (!ASYNCDONE(mhdl)) {
 				int rtag;
 

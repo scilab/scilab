@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmdmimd.c,v 1.1 2001/04/26 07:47:13 scilab Exp $";
+	"$Id: pvmdmimd.c,v 1.2 2002/10/14 14:38:01 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -31,7 +31,7 @@ static char rcsid[] =
  */
 
 /*
- *	mpp.c
+ *	pvmdmimd.c
  *
  *  MPP interface.
  *
@@ -92,17 +92,19 @@ static char rcsid[] =
  */
 
 /*
- * Sat Dec  3 14:54:20 EST 1994
- *		copy new code that handles absolute filename to mpp_load() 
- *		from forkexec()
  *
- * Jul 12 23:57:07 EDT 1993
- *      deleted loclinput(), and merged loclinpkt() into pvmd.c
+ * $Log: pvmdmimd.c,v $
+ * Revision 1.2  2002/10/14 14:38:01  chanceli
+ * update
  *
-$Log: pvmdmimd.c,v $
-Revision 1.1  2001/04/26 07:47:13  scilab
-Initial revision
-
+ * Revision 1.9  2000/02/17 21:10:31  pvmsrc
+ * Cleaned up comments...  mpp_load() args...
+ * (Spanker=kohl)
+ *
+ * Revision 1.8  1999/07/08 19:00:27  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.7  1997/07/09  13:54:32  pvmsrc
  * Fixed Author Header.
  *
@@ -156,6 +158,10 @@ Initial revision
  * Revision 1.5  1995/02/01  20:51:05  manchek
  * added nenv and envp args to mpp_load
  *
+ * Sat Dec  3 14:54:20 EST 1994
+ *		copy new code that handles absolute filename to mpp_load() 
+ *		from forkexec()
+ *
  * Revision 1.4  1994/11/07  21:30:45  manchek
  * Modify mpp_output() and mpp_mcast() to send a null packet to alert precv().
  * Modify mpp_input() to handle DataInPlace properly.
@@ -171,6 +177,8 @@ Initial revision
  * Revision 1.1  1993/08/30  23:36:09  manchek
  * Initial revision
  *
+ * Jul 12 23:57:07 EDT 1993
+ *      deleted loclinput(), and merged loclinpkt() into pvmd.c
  */
 
 #include <sys/param.h>

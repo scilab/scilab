@@ -1,5 +1,5 @@
 
-/* $Id: pmsg.h,v 1.1 2001/04/26 07:47:11 scilab Exp $ */
+/* $Id: pmsg.h,v 1.2 2002/10/14 14:37:50 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -34,10 +34,18 @@
  *
  *	Libpvm and pvmd message descriptors.
  *
-$Log: pmsg.h,v $
-Revision 1.1  2001/04/26 07:47:11  scilab
-Initial revision
-
+ * $Log: pmsg.h,v $
+ * Revision 1.2  2002/10/14 14:37:50  chanceli
+ * update
+ *
+ * Revision 1.5  2001/02/07 23:15:51  pvmsrc
+ * 2nd Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.4  1999/07/08 19:00:22  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.3  1997/06/27  17:32:50  pvmsrc
  * Updated for WIN32 header files & Authors.
  *
@@ -55,11 +63,8 @@ Initial revision
 */
 
 #ifdef WIN32
-#ifndef _XDR_HEADERS
-#define _XDR_HEADERS
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
-#endif
 #endif
 
 struct encvec {

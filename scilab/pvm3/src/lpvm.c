@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: lpvm.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: lpvm.c,v 1.2 2002/10/14 14:37:46 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,157 @@ static char rcsid[] =
  *
  *	Libpvm core for unix environment.
  *
-$Log: lpvm.c,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: lpvm.c,v $
+ * Revision 1.2  2002/10/14 14:37:46  chanceli
+ * update
+ *
+ * Revision 1.64  2001/09/25 21:20:17  pvmsrc
+ * Minor TMPNAMFUN()/tmpnam() cleanup.
+ * 	- moved macro def to pvm3.h, renamed PVMTNPMAN().
+ * 	- same for LEN_OF_TMP_NAM -> PVMTMPNAMLEN.
+ * 	- mostly a huge waste of time, since *both* tmpnam() & mktemp()
+ * 		produce the same "dangerous" warning message in Linux/gcc...
+ * 	- damn.
+ * (Spanker=kohl)
+ *
+ * Revision 1.63  2001/09/25 17:28:09  pvmsrc
+ * Fixed leftover tmpnam() usage -> use TMPNAMFUN() instead...
+ * 	- also got rid of "double" call to tmpnam()...
+ * (Spanker=kohl)
+ *
+ * Revision 1.62  2001/05/11 19:40:50  pvmsrc
+ * Fixed direct-routing bug, removed blocking socket deadlock.
+ * 	- fix submitted by Kamil Iskra <kamil@wins.uva.nl> (as well as
+ * 		<jc@esi.fr>, Dick van Albada <dick@wins.uva.nl>, and
+ * 		Zeger Hendrikse <zegerh@wins.uva.nl>).
+ * (Spanker=kohl)
+ *
+ * Revision 1.61  2001/05/11 19:21:29  pvmsrc
+ * Added "&& errno != EAGAIN" to select() return code check in mxfer().
+ * 	- reported by "Johannes Hennecke" <Johannes.Hennecke@ELSA.de>
+ * (Spanker=kohl)
+ *
+ * Revision 1.60  2001/05/11 17:32:26  pvmsrc
+ * Eliminated references to sys_errlist & sys_nerr.
+ * 	- unnecessary, and we're whacking that crap anyway.
+ * (Spanker=kohl)
+ *
+ * Revision 1.59  2001/02/07 23:14:04  pvmsrc
+ * First Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.58  2000/06/15 17:51:49  pvmsrc
+ * Fixed bug in WIN32 direct routing.
+ * 	- stupid #endif in the wrong place, pvm_fd_add() call whacked.
+ * 	- turned back on direct routing default and setopt.
+ * (Spanker=kohl)
+ *
+ * Revision 1.57  2000/02/17 23:12:10  pvmsrc
+ * *** Changes for new BEOLIN port ***
+ * 	- MPP-like, similar to SP2, etc.
+ * 	- submitted by Paul Springer <pls@smokeymt.jpl.nasa.gov>.
+ * 	- format-checked & cleaned up by Jeembo...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.56  2000/02/16 21:59:40  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.55  2000/02/07 22:22:07  pvmsrc
+ * Hack to help with select()/fd_sets in WIN32:
+ * 	- fd_set is *NOT* a bit field in WIN32, is a circular buffer.
+ * 	- must check for !FD_ISSET() before FD_SET() else duplicate
+ * 		entries possible, and fd_set buffer overflow/overwrite.
+ * 	- similary, FD_ISSET() check before FD_CLR().
+ * 	- patch submitted by "Bruce W. Church" <bwc1@cornell.edu>.
+ * (Spanker=kohl)
+ *
+ * Revision 1.54  1999/11/08 17:44:29  pvmsrc
+ * SGI compiler cleanup.
+ * (Spanker=kohl)
+ *
+ * Revision 1.53  1999/07/08 18:59:53  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.52  1999/03/15  19:05:58  pvmsrc
+ * Replaced sleep() calls with pvmsleep().
+ * 	- Unix / Win32, C / Fortran compat...
+ * (Spanker=kohl)
+ *
+ * Revision 1.51  1999/03/04  22:09:33  pvmsrc
+ * New SHMD #ifdefs for pvm_psend() & pvm_precv().
+ * More direct conn debugging output.
+ * (Spanker=kohl)
+ *
+ * Revision 1.50  1999/02/12  17:43:38  pvmsrc
+ * Improved error messages in mksocs() for connect().
+ * 	- dump out the socket file being tried, in case some BOZOS (like
+ * 		the people at Harris :-) put an echo statement into the
+ * 		pvm3/lib/pvmd script...  D-OH!
+ * (Spanker=kohl)
+ *
+ * Revision 1.49  1998/11/20  20:04:00  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (Spanker=sscott)
+ *
+ * Revision 1.48  1998/10/02  15:43:58  pvmsrc
+ * Single source code merge of Win32 and Unix code.
+ * (Spanker=sscott)
+ *
+ * Revision 1.47  1998/09/30  18:08:32  pvmsrc
+ * Fixed (I think :-) the direct connection initialization protocol.
+ * 	- if two tasks tried to direct connect to each at the same time,
+ * 		the CONREQ control messages could cross, causing each task
+ * 		to fail on a connect().
+ * 	- instead, independent of Unix Domain / TCP (local / remote)
+ * 		socket, *always* have greater (numerically) task ID handle
+ * 		the direct connection, and have lower task ID just drop the
+ * 		CONREQ on the floor.
+ * 	- seems to work after extensive testing, both local & remote,
+ * 		here's hoping...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.46  1998/09/23  15:25:23  pvmsrc
+ * Need to make char *username non-extern here.
+ * 	- username storage has to be somewhere for pvmd & libpvm.
+ * 	- pvmwin.c can't have the storage, because it wouold clash with
+ * 		pvmd.c, which needs to define username for non-WIN32 archs...
+ * 	- beat me with a shovel dammit.
+ * (Spanker=kohl)
+ *
+ * Revision 1.45  1998/08/13  18:32:45  pvmsrc
+ * Added special case for AIX4SP2 arch with SOCKLENISUINT.
+ * 	- on AIX 4.3 systems, I guess unsigned int is really
+ * 		unsigned int, and not size_t...  D-Oh!
+ * 	- probably need a better constant name (or two) here...
+ * (Spanker=kohl)
+ *
+ * Revision 1.44  1998/07/24  17:11:44  pvmsrc
+ * Cleaned up use of SOCKLENISUINT / oslen.
+ * 	- use oslen for every socket-related call:
+ * 		* bind(), recvfrom(), getsockname() and accept().
+ * (Spanker=kohl)
+ *
+ * Revision 1.43  1998/03/02  19:27:32  pvmsrc
+ * Fixed PGON typo seg fault parentheses d-oh.  (Phil P.)
+ * (Spanker=kohl)
+ *
+ * Revision 1.42  1998/02/23  22:51:29  pvmsrc
+ * Added AIX4SP2 stuff.
+ * (Spanker=kohl)
+ *
+ * Revision 1.41  1998/01/23  20:28:41  pvmsrc
+ * 	Changed arguments to mxinput so that it will return number of frags
+ * 	read and the number of messages.
+ * 	mxfer will now continue reading frags if called by probe or nrecv and
+ * 	mxinput returns frags > 0 but messages == 0.
+ * (Spanker=phil)
+ *
  * Revision 1.40  1997/12/31  20:50:02  pvmsrc
  * Cleaned Up System Message Handlers.
  * 	- current send / recv buffers now saved before invocation of
@@ -388,9 +535,18 @@ Initial revision
 #ifdef WIN32
 #include "pvmwin.h"
 #include <process.h>
+#include <stdlib.h>
+#include <search.h>
 #endif
 
 #include <stdio.h>
+
+#ifdef IMA_TITN
+#include <bsd/sys/types.h>
+#else
+#include <sys/types.h>
+#endif
+
 #ifdef NEEDMENDIAN
 #include <machine/endian.h>
 #endif
@@ -401,16 +557,19 @@ Initial revision
 #include <sys/endian.h>
 #endif
 
-#ifndef WIN32
-#include <rpc/types.h>
-#include <rpc/xdr.h>
-#include <sys/socket.h>
-#else
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
+#else
+#include <rpc/types.h>
+#include <rpc/xdr.h>
 #endif
 
-#include <pvm3.h>
+#ifndef WIN32
+#include <sys/socket.h>
+#endif
 
 #ifndef NOUNIXDOM
 #include <sys/un.h>
@@ -427,6 +586,11 @@ Initial revision
 #endif
 #include <errno.h>
 #include <signal.h>
+
+#ifdef IMA_BEOLIN
+#include <netdb.h>
+#endif
+
 #include <pvmproto.h>
 #include "pvmalloc.h"
 #include "pvmfrag.h"
@@ -447,6 +611,11 @@ Initial revision
 #include "mppmsg.h"
 #endif 
 
+#ifdef PVM_SHMD
+/* need the prototypes for the pvm_shmd send and receive calls */
+#include "../shmd/shmdproto.h"
+#endif
+
 
 #ifndef	max
 #define	max(a,b)	((a)>(b)?(a):(b))
@@ -459,20 +628,6 @@ Initial revision
 #ifndef	TTSOCKBUF
 #define	TTSOCKBUF	0x8000
 #endif
-
-#ifdef	NOTMPNAM
-#define	TMPNAMFUN(x)	pvmtmpnam(x)
-#define	LEN_OF_TMP_NAM	32
-char *pvmtmpnam();
-
-#else	/*NOTMPNAM*/
-#define	TMPNAMFUN(x)	tmpnam(x)
-#ifdef	L_tmpnam
-#define	LEN_OF_TMP_NAM	L_tmpnam
-#else
-#define	LEN_OF_TMP_NAM	64
-#endif
-#endif	/*NOTMPNAM*/
 
 
 /***************
@@ -495,8 +650,6 @@ struct msgid *pvm_inprecv = (struct msgid *) NULL;
 
 #ifndef HASERRORVARS
 extern int errno;						/* from libc */
-extern char *sys_errlist[];
-extern int sys_nerr;
 #endif
 
 #if defined(IMA_PGON)
@@ -523,9 +676,11 @@ static struct pmsg *txlist[100];		/* queue for when mroute reentered */
 static int txrp = 0;					/* txlist read pointer */
 static int txwp = 0;					/* txlist write pointer */
 #ifdef WIN32
-extern char* username;
+char *username = 0;
 int system_loser_win;
+#ifndef IMA_WIN32_WATCOM
 extern char **environ;
+#endif
 #ifndef SOCK_DEFINES
 WSADATA WSAData;
 extern int nAlert;
@@ -533,6 +688,9 @@ extern int nAlert;
 #endif
 #endif
 
+#ifdef WIN32
+int int_compare(const void *i, const void *j);
+#endif
 
 /**************************
  **  Internal Functions  **
@@ -545,24 +703,43 @@ pvm_fd_add(fd, sets)
 	int sets;			/* which sets */
 {
 #ifdef	SANITY
+#ifndef WIN32
 	if (fd < 0 || fd >= FD_SETSIZE) {
 		pvmlogprintf("pvm_fd_add() bad fd %d\n", fd);
 		return 1;
 	}
 #endif
+#endif
 	if (sets & 1)
-		FD_SET(fd, &pvmrfds);
+		if ( !FD_ISSET(fd, &pvmrfds) ) {
+			FD_SET(fd, &pvmrfds);
+#ifdef WIN32
+			pvmnfds++;
+#endif
+		}
 /*
 	if (sets & 2)
-		FD_SET(fd, &pvmwfds);
+		if ( !FD_ISSET(fd, &pvmwfds) ) {
+			FD_SET(fd, &pvmwfds);
+#ifdef WIN32
+			pvmnwfds++;
+#endif
+		}
 	if (sets & 4)
-		FD_SET(fd, &pvmefds);
+		if ( !FD_ISSET(fd, &pvmefds) ) {
+			FD_SET(fd, &pvmefds);
+#ifdef WIN32
+			pvmnefds++;
+#endif
+		}
 */
 
+#ifndef WIN32
 	/* if this is new highest, adjust nfds */
-
 	if (fd >= pvmnfds)
 		pvmnfds = fd + 1;
+#endif
+
 	return 0;
 }
 
@@ -572,35 +749,54 @@ pvm_fd_delete(fd, sets)
 	int sets;			/* which sets */
 {
 #ifdef	SANITY
+#ifndef WIN32
 	if (fd < 0 || fd >= FD_SETSIZE) {
 		pvmlogprintf("pvm_fd_delete() bad fd %d\n", fd);
 		return 1;
 	}
 #endif
+#endif
 	if (sets & 1)
-		FD_CLR(fd, &pvmrfds);
+		if ( FD_ISSET(fd, &pvmrfds) ) {
+			FD_CLR(fd, &pvmrfds);
+#ifdef WIN32
+			pvmnfds--;
+#endif
+		}
 /*
 	if (sets & 2)
-		FD_CLR(fd, &pvmwfds);
+		if ( FD_ISSET(fd, &pvmwfds) ) {
+			FD_CLR(fd, &pvmwfds);
+#ifdef WIN32
+			pvmnwfds--;
+#endif
+		}
 	if (sets & 4)
-		FD_CLR(fd, &pvmefds);
+		if ( FD_ISSET(fd, &pvmefds) ) {
+			FD_CLR(fd, &pvmefds);
+#ifdef WIN32
+			pvmnefds--;
+#endif
+		}
 */
 
+#ifndef WIN32
 	/* if this was highest, may have to adjust nfds to new highest */
-
 	if (fd + 1 == pvmnfds)
 		while (pvmnfds > 0) {
 			pvmnfds--;
 			if (FD_ISSET(pvmnfds, &pvmrfds)
 /*
-			|| FD_ISSET(pvmnfds, &pvmefds)
-			|| FD_ISSET(pvmnfds, &pvmwfds)
+			|| FD_ISSET(pvmnefds, &pvmefds)
+			|| FD_ISSET(pvmnwfds, &pvmwfds)
 */
 			) {
 				pvmnfds++;
 				break;
 			}
 		}
+#endif
+
 	return 0;
 }
 
@@ -895,17 +1091,20 @@ pvm_tc_conreq(mid)
 	struct ttpcb *pcbp;			/* pcb for connection */
 	int ackd;					/* allow connection (0) */
 	char *addr = "";			/* socket address */
-	static int linger[2] = { 1, 60 };   /* XXX arbitrary time */
 	int i;
 	int ictx;
 #ifdef SOCKLENISUINT
+#ifdef IMA_AIX4SP2
+	unsigned int oslen;
+#else
 	size_t oslen;
+#endif
 #else
 	int oslen;
 #endif
 #ifndef NOUNIXDOM
 	struct sockaddr_un uns;
-	char spath[LEN_OF_TMP_NAM];
+	char spath[PVMTMPNAMLEN];
 #endif
 	char buf[256];
 
@@ -916,98 +1115,95 @@ pvm_tc_conreq(mid)
 
 	if (pcbp = ttpcb_find(src)) {
 		if (pvmdebmask & PDMROUTE) {
-			pvmlogprintf("pvm_tc_conreq() crossed CONREQ from t%x\n", src);
+			pvmlogprintf(
+					"pvm_tc_conreq() crossed CONREQ from t%x\n", src);
 		}
 		if (pcbp->tt_state == TTCONWAIT) {
-			if (buf[0] == '/') {
-#ifdef NOUNIXDOM
-				pvmlogprintf(
-				"pvm_tc_conreq() CONREQ from t%x, Unix domain socket unsupported\n",
-						src);
 
-#else /*NOUNIXDOM*/
-				BZERO((char*)&uns, sizeof(uns));
-				uns.sun_family = AF_UNIX;
-				strcpy(uns.sun_path, buf);
-				while ((i = connect(pcbp->tt_fd, (struct sockaddr*)&uns,
-						sizeof(uns))) == -1
-						&& errno == EINTR)
-					;
-				if (i == -1)
-					pvmlogperror("pvm_tc_conreq() connect");
-				else
-					pcbp->tt_state = TTOPEN;
-#endif /*NOUNIXDOM*/
+			/* must handle simultaneous connect from both ends:
+			 *  lower tid of the two just ignores the CONREQ.
+			 *  higher tid pretends it didn't send a CONREQ,
+			 *      sends a CONACK back.
+			 * this makes the connection single-sided.
+			 */
 
-			} else {
-				pcbp->tt_osad.sin_family = AF_INET;
-				hex_inadport(buf, &pcbp->tt_osad);
-				while ((i = connect(pcbp->tt_fd,
-						(struct sockaddr*)&pcbp->tt_osad,
-						sizeof(pcbp->tt_osad))) == -1
-						&& errno == EINTR)
-					;
-				if (i == -1) {
-					pvmlogperror("pvm_tc_conreq() connect");
+			if (pvmdebmask & PDMROUTE)
+				pvmlogerror( "pvmmctl() handling crossed CONREQ\n");
 
-				} else {
-					pcbp->tt_state = TTOPEN;
-#ifndef NOSOCKOPT
-					if (setsockopt(pcbp->tt_fd, SOL_SOCKET, SO_LINGER,
-							(char*)linger, sizeof(linger)) == -1)
-						pvmlogperror("pvm_tc_conreq() setsockopt");
-#endif /*NOSOCKOPT*/
-				}
+			if (pvmmytid > src) {
+				if (listen(pcbp->tt_fd, 1) == -1)
+					pvmlogperror("pvm_tc_conreq() listen");
 
-			}
-			if (pcbp->tt_state == TTOPEN) {
-#ifndef WIN32
-				if ((i = fcntl(pcbp->tt_fd, F_GETFL, 0)) == -1)
-					pvmlogperror("pvm_tc_conreq() fcntl");
 				else {
-#ifdef O_NDELAY
-					i |= O_NDELAY;
+					pcbp->tt_state = TTGRNWAIT;
+					pvm_fd_add(pcbp->tt_fd, 1);
+					ackd = 0;
+					if (buf[0] == '/') {
+#ifdef NOUNIXDOM
+						pvmlogprintf( "%s CONREQ from t%x, ",
+								"pvm_tc_conreq()", src );
+						pvmlogprintf(
+								"Unix domain socket unsupported\n" );
 #else
-					i |= FNDELAY;
+						addr = pcbp->tt_spath;
 #endif
-					(void)fcntl(pcbp->tt_fd, F_SETFL, i);
+					} else {
+						hex_inadport(buf, &pcbp->tt_osad);
+						addr = inadport_hex(&pcbp->tt_sad);
+					}
+					check_routeadd(pcbp);
+
+					sbf=pvm_setsbuf(pvm_mkbuf(PvmDataFoo));
+					ttpro = TDPROTOCOL;
+					pvm_pkint(&ttpro, 1, 1);
+					pvm_pkint(&ackd, 1, 1);
+					pvm_pkstr(addr);
+					i = pvmrescode;
+					pvmrescode = 1;
+					ictx = pvm_setcontext(SYSCTX_TC);
+					pvm_send(src, TC_CONACK);
+					pvm_setcontext(ictx);
+					pvmrescode = i;
+					pvm_freebuf(pvm_setsbuf(sbf));
 				}
-#endif
-				pvm_fd_add(pcbp->tt_fd, 1);
 			}
 
 		} else {
-			pvmlogprintf("pvm_tc_conreq() CONREQ from t%x but state=%d ?\n",
+			pvmlogprintf(
+					"pvm_tc_conreq() CONREQ from t%x but state=%d ?\n",
 					src, pcbp->tt_state);
 		}
 
 	} else {
-		if (pvmdebmask & PDMROUTE) {
+		if (pvmdebmask & PDMROUTE)
 			pvmlogprintf("pvm_tc_conreq() CONREQ from t%x\n", src);
-		}
 		ackd = 1;
 		pcbp = ttpcb_creat(src);
 		if (pvmrouteopt != PvmDontRoute) {
 			if (buf[0] == '/') {
+
 #ifdef NOUNIXDOM
-				pvmlogprintf(
-				"pvm_tc_conreq() CONREQ from t%x, Unix domain socket unsupported\n",
-						src);
+
+				pvmlogprintf( "%s CONREQ from t%x, ",
+						"pvm_tc_conreq()", src );
+				pvmlogprintf( "Unix domain socket unsupported\n" );
 
 #else /*NOUNIXDOM*/
-				if ((pcbp->tt_fd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
+
+				if ((pcbp->tt_fd = socket(AF_UNIX, SOCK_STREAM, 0))
+						== -1) {
 					pvmlogperror("pvm_tc_conreq() socket");
 
 				} else {
-					(void)TMPNAMFUN(spath);
 					BZERO((char*)&uns, sizeof(uns));
 					uns.sun_family = AF_UNIX;
 					spath[0] = 0;
-					(void)tmpnam(spath);
+					(void)PVMTMPNAMFUN(spath);
 					strcpy(uns.sun_path, spath);
 
-					if (bind(pcbp->tt_fd, (struct sockaddr*)&uns, sizeof(uns))
-					== -1) {
+					oslen = sizeof(uns);
+					if (bind(pcbp->tt_fd, (struct sockaddr*)&uns, oslen)
+							== -1) {
 						pvmlogperror("pvm_tc_conreq() bind");
 
 					} else {
@@ -1020,27 +1216,38 @@ pvm_tc_conreq(mid)
 							ackd = 0;
 							addr = pcbp->tt_spath = STRALLOC(spath);
 
-	/* new route socket listening, will be accepted later */
+							if (pvmdebmask & PDMROUTE)
+								pvmlogprintf( "%s: %s (t%x)\n",
+									"pvm_tc_conreq()",
+									"new route socket listening", src );
+
+							/* new route socket listening, */
+							/* will be accepted later */
 
 							check_routeadd(pcbp);
 						}
 					}
 				}
+
 #endif /*NOUNIXDOM*/
 
 			} else {
-				if ((pcbp->tt_fd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+				if ((pcbp->tt_fd = socket(AF_INET, SOCK_STREAM, 0))
+						== -1) {
 					pvmlogperror("pvm_tc_conreq() socket");
 
 				} else {
 					pcbp->tt_sad = pvmourinet;
 					oslen = sizeof(pcbp->tt_sad);
-					if (bind(pcbp->tt_fd, (struct sockaddr*)&pcbp->tt_sad, oslen) == -1) {
+					if (bind(pcbp->tt_fd,
+							(struct sockaddr*)&pcbp->tt_sad, oslen)
+								== -1) {
 						pvmlogperror("pvm_tc_conreq() bind");
 
 					} else {
 						if (getsockname(pcbp->tt_fd,
-								(struct sockaddr*)&pcbp->tt_sad, &oslen) == -1) {
+								(struct sockaddr*)&pcbp->tt_sad, &oslen)
+									== -1) {
 							pvmlogperror("pvm_tc_conreq() getsockname");
 
 						} else {
@@ -1054,7 +1261,14 @@ pvm_tc_conreq(mid)
 								ackd = 0;
 								addr = inadport_hex(&pcbp->tt_sad);
 
-	/* new route socket listening, will be accepted later */
+								if (pvmdebmask & PDMROUTE)
+									pvmlogprintf( "%s: %s (t%x)\n",
+										"pvm_tc_conreq()",
+										"new route socket listening",
+										src );
+
+								/* new route socket listening, */
+								/* will be accepted later */
 
 								check_routeadd(pcbp);
 							}
@@ -1063,6 +1277,10 @@ pvm_tc_conreq(mid)
 				}
 			}
 		}
+
+		if (pvmdebmask & PDMROUTE)
+			pvmlogprintf( "%s: sending CONACK to t%x\n",
+				"pvm_tc_conreq()", src );
 
 		sbf = pvm_setsbuf(pvm_mkbuf(PvmDataFoo));
 		ttpro = TDPROTOCOL;
@@ -1120,7 +1338,9 @@ pvm_tc_conack(mid)
 	if (pcbp = ttpcb_find(src)) {
 		if (pcbp->tt_state == TTCONWAIT) {
 			if (pvmdebmask & PDMROUTE) {
-				pvmlogprintf("pvm_tc_conack() CONACK from t%x\n", src);
+				pvmlogprintf(
+						"pvm_tc_conack() CONACK from t%x ackd=%d\n",
+						src, ackd );
 			}
 			if (ttpro != TDPROTOCOL) {
 				pvmlogprintf("pvm_tc_conack() t-t protocol mismatch with t%x\n",
@@ -1203,8 +1423,8 @@ pvm_tc_conack(mid)
 #endif
 								(void)fcntl(pcbp->tt_fd, F_SETFL, i);
 							}
-							pvm_fd_add(pcbp->tt_fd, 1);
 #endif
+							pvm_fd_add(pcbp->tt_fd, 1);
 						}
 					}
 				}
@@ -1214,6 +1434,10 @@ pvm_tc_conack(mid)
 				pcbp->tt_state = TTDENY;
 				(void)close(pcbp->tt_fd);
 				pcbp->tt_fd = -1;
+			}
+			else if (pvmdebmask & PDMROUTE) {
+				pvmlogprintf( "%s: connection accepted to t%x\n",
+					"pvm_tc_conack()", src );
 			}
 
 		} else {
@@ -1271,9 +1495,9 @@ pvm_tc_taskexit(mid)
 */
 
 static int
-mxinput(pcbp)
+mxinput(pcbp, nfr)
 	struct ttpcb *pcbp;
-
+	int *nfr;				/* number of frags read */
 {
 	int gotem = 0;			/* num msgs added to pvmrxlist */
 	struct frag *fp;		/* shadows pcbp->tt_rxf */
@@ -1281,12 +1505,14 @@ mxinput(pcbp)
 	int n;					/* bytes received */
 	int m;					/* length of fragment */
 	struct pmsg *rxup;		/* message containing this frag */
-	struct pmsg *frgpile, *hdfrgpile;
+	struct pmsg *hdfrgpile;
 	char *cp;				/* gp */
 	int src;
 	int dst;
 	int ff;
 	static int fairprobe = 0;
+
+	*nfr = 0;
 
 
 #if defined(IMA_MPP)
@@ -1393,6 +1619,7 @@ mxinput(pcbp)
 	if (fp)  /* got a frag */
 #endif
 	{
+		(*nfr)++;
 #if !defined (IMA_MPP)
 		pcbp->tt_rxf = 0;
 #endif
@@ -1416,9 +1643,9 @@ mxinput(pcbp)
 		return gotem;
 	}
 
-	frgpile = hdfrgpile = pvm_mpp_pmsgs();
+	hdfrgpile = pvm_mpp_pmsgs();
 #else
-	frgpile = hdfrgpile = pcbp->tt_rxfrag ;
+	hdfrgpile = pcbp->tt_rxfrag ;
 #endif
 	/*
 	* if start of message, make new umbuf, add to frag pile
@@ -1531,7 +1758,11 @@ mxfer(txup, tmout)
 	int ff;
 	int n;
 #ifdef SOCKLENISUINT
+#ifdef IMA_AIX4SP2
+	unsigned int oslen;
+#else
 	size_t oslen;
+#endif
 #else
 	int oslen;
 #endif
@@ -1548,8 +1779,14 @@ mxfer(txup, tmout)
 	struct msgid *sendmsg = (struct msgid *) NULL;
 	char errtxt[64];
 
+	int nfr = 0, totfr = 0;				/* number frags read my mxinput */
+	int probe = 0;						/* called at a probe (nrecv) */
+
 	if (tmout)
+	{
 		pvmgetclock(&tin);
+		probe = ( tmout -> tv_sec == 0 && tmout -> tv_usec == 0);
+	}
 
 	if (txup) {	/* transmitting a umsg */
 		txfp = txup->m_frag->fr_link;
@@ -1599,6 +1836,8 @@ mxfer(txup, tmout)
 			|| !probedForIncomingPkts
 	) 
 	{
+
+		totfr = 0; 
 
 		/* Either we are sending something, or have a partial recv'd frag */
 		if (txfp || topvmd->tt_rxf) 			/* gotta block */
@@ -1678,7 +1917,11 @@ mxfer(txup, tmout)
 				(fd_set *)&rfds, (fd_set *)&wfds, (fd_set*)0,
 #endif
 				tvp)) == -1
-		&& errno != EINTR) {
+		&& errno != EINTR
+#ifdef IMA_LINUX
+		&& errno != EAGAIN
+#endif
+		) {
 			pvmlogperror("mxfer() select");
 			return PvmSysErr;
 		}
@@ -1694,7 +1937,7 @@ mxfer(txup, tmout)
 		if (FD_ISSET(topvmd->tt_fd, &rfds) 
 			&& !(mxfersingle && gotem)) 
 		{
-			if ((n = mxinput(topvmd)) < 0) {
+			if ((n = mxinput(topvmd, &nfr)) < 0) {
 				if (n != -1)
 					pvmlogerror("mxfer() mxinput bad return on pvmd sock\n");
 				else if (pvmdebmask & (PDMSELECT|PDMMESSAGE|PDMPACKET))
@@ -1702,6 +1945,7 @@ mxfer(txup, tmout)
 				return PvmSysErr;
 			}
 
+			totfr += nfr;
 			if (gotem += n)
 				wantmore = 0;
 		}
@@ -1717,10 +1961,11 @@ mxfer(txup, tmout)
 		
 		for (pcbp = ttlist->tt_link; pcbp != ttlist; pcbp = pcbp->tt_link) {
 			if (pcbp->tt_state == TTOPEN && FD_ISSET(pcbp->tt_fd, &rfds)) {
-				if ((n = mxinput(pcbp)) < 0)
+				if ((n = mxinput(pcbp, &nfr)) < 0)
 					ttpcb_dead(pcbp);
 
 				else {
+					totfr += nfr;
 					if (gotem += n)
 						wantmore = 0;
 				}
@@ -1771,6 +2016,24 @@ mxfer(txup, tmout)
 						check_routedelete(pcbp);
 						pcbp->tt_fd = s;
 						pcbp->tt_state = TTOPEN;
+
+						{
+							int i;
+#ifndef WIN32
+							if ((i = fcntl(pcbp->tt_fd, F_GETFL, 0))
+									== -1)
+								pvmlogperror("mxfer() fcntl");
+							else {
+#ifdef O_NDELAY
+								i |= O_NDELAY;
+#else
+								i |= FNDELAY;
+#endif
+								(void)fcntl(pcbp->tt_fd, F_SETFL, i);
+							}
+#endif
+						}
+
 						pvm_fd_add(s, 1);
 
 	/* new route socket created for communication */
@@ -1779,6 +2042,8 @@ mxfer(txup, tmout)
 					}
 				}
 		}
+
+		bypassRead = bypassRead; /* sgi compiler */
 
 #else	/* !IMA_MPP */
 
@@ -1790,11 +2055,12 @@ mxfer(txup, tmout)
 		{
 	
 			probedForIncomingPkts = TRUE;
-			if ((n = mxinput((struct ttpcb *) NULL)) < 0) {
+			if ((n = mxinput((struct ttpcb *) NULL, &nfr)) < 0) {
 					pvmlogerror("mxfer() mxinput bad return on probe\n");
 					return PvmSysErr;
 				}
 
+			totfr += nfr;
 			if (gotem += n)
 				wantmore = 0;
 		}
@@ -1913,8 +2179,9 @@ mxfer(txup, tmout)
 				n = pvm_node_send(txcp, txtogo, txpcbp, &sendmsg, 
 							inPlaceHeader, inPlaceBodyLen);
 #else 
+				inPlaceBodyLen = inPlaceBodyLen; /* sgi compiler */
 
-#if defined(IMA_RS6K) || defined(IMA_SP2MPI)
+#if defined(IMA_RS6K) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 				n = write(txpcbp->tt_fd, txcp, min(txtogo, 4096));
 #else
 #ifndef WIN32
@@ -2017,6 +2284,9 @@ mxfer(txup, tmout)
 			pvmlogprintf("mxfer() txfp %d gotem %d tt_rxf %d\n",
 					(txfp ? 1 : 0), gotem, (topvmd->tt_rxf ? 1 : 0));
 		}
+
+		if (probe && !gotem && totfr)		/* got frags, keep reading */
+			wantmore = 1;
 	}
 
 	return gotem;
@@ -2055,7 +2325,11 @@ mroute(mid, dtid, tag, tmout)
 	struct sockaddr_in sad;
 	int l;
 #ifdef SOCKLENISUINT
+#ifdef IMA_AIX4SP2
+	unsigned int oslen;
+#else
 	size_t oslen;
+#endif
 #else
 	int oslen;
 #endif
@@ -2065,7 +2339,7 @@ mroute(mid, dtid, tag, tmout)
 	char *addr = 0;
 #ifndef NOUNIXDOM
 	struct sockaddr_un uns;
-	char spath[LEN_OF_TMP_NAM];
+	char spath[PVMTMPNAMLEN];
 #endif
 
 	if (up = midtobuf(mid)) {
@@ -2132,14 +2406,14 @@ mroute(mid, dtid, tag, tmout)
 					pvmlogperror("mroute() socket");
 
 				} else {
-					(void)TMPNAMFUN(spath);
 					BZERO((char*)&uns, sizeof(uns));
 					uns.sun_family = AF_UNIX;
 					spath[0] = 0;
-					(void)tmpnam(spath);
+					(void)PVMTMPNAMFUN(spath);
 					strcpy(uns.sun_path, spath);
 
-					if (bind(s, (struct sockaddr*)&uns, sizeof(uns)) == -1) {
+					oslen = sizeof(uns);
+					if (bind(s, (struct sockaddr*)&uns, oslen) == -1) {
 						pvmlogperror("mroute() bind");
 						(void)close(s);
 						s = -1;
@@ -2162,7 +2436,7 @@ mroute(mid, dtid, tag, tmout)
 				} else {
 					sad = pvmourinet;
 					oslen = sizeof(sad);
-					if (bind(s, (struct sockaddr*)&sad, sizeof(sad)) == -1) {
+					if (bind(s, (struct sockaddr*)&sad, oslen) == -1) {
 						pvmlogperror("mroute() bind");
 						(void)close(s);
 						s = -1;
@@ -2355,10 +2629,9 @@ msendrecv(other, tag, context)
 	return up->m_mid;
 }
 
-
 static int
 int_compare(i, j)
-#if defined(IMA_SGI) || defined(IMA_SGI5) || defined(IMA_SGI6) || defined(IMA_SGI64) || defined(IMA_SGIMP) || defined(IMA_SGIMP6) || defined(IMA_SGIMP64)
+#if defined (WIN32) || defined(IMA_SGI) || defined(IMA_SGI5) || defined(IMA_SGI6) || defined(IMA_SGI64) || defined(IMA_SGIMP) || defined(IMA_SGIMP6) || defined(IMA_SGIMP64)
 	const void *i, *j;
 #else
 	void *i, *j;
@@ -2393,7 +2666,12 @@ pvmmcast(mid, tids, count, tag)
 	*/
 	dst = TALLOC(count, int, "mcal");
 	BCOPY(tids, dst, count * sizeof(int));
-	qsort((char*)dst, count, sizeof(int), int_compare);
+
+	qsort(
+		(void *)dst, 
+		(size_t)count, 
+		sizeof(int),
+		int_compare);
 
 	/*
 	* remove duplicates
@@ -2467,7 +2745,11 @@ mksocs()
 #endif
 
 #ifdef SOCKLENISUINT
+#ifdef IMA_AIX4SP2
+	unsigned int oslen;
+#else
 	size_t oslen;
+#endif
 #else
 	int oslen;
 #endif
@@ -2497,7 +2779,7 @@ mksocs()
 		d = win32_open_file(p);
 		if (d == (HANDLE) -2) {
 			system_loser_win=TRUE;
-			d = _open(p,O_RDONLY,0);
+			d = (HANDLE) _open(p,O_RDONLY,0);
 		}
 		if (d== (HANDLE) -1) {
 #endif
@@ -2510,8 +2792,8 @@ mksocs()
 			win32_close_file(d);
 		}
 		else  {
-			n = _read(d,buf,sizeof(buf));
-			(void)_close(d);
+			n = (int)_read((int)d, (void *)buf, (unsigned int)sizeof(buf));
+			(void)_close((int)d);
 		}
 #else
 		n = read(d, buf, sizeof(buf));
@@ -2563,9 +2845,10 @@ mksocs()
 			if (connect(topvmd->tt_fd, (struct sockaddr*)&uns, n) == -1) {
 				if (--try <= 0) {
 					pvmlogperror("mksocs() connect");
+					pvmlogprintf("\tsocket address tried: %s\n",p);
 					goto bail;
 				}
-				sleep(1);	/* XXX hmm again */
+				pvmsleep(1);	/* XXX hmm again */
 
 			} else
 				break;
@@ -2588,19 +2871,20 @@ mksocs()
 			== -1) {
 				if (--try <= 0) {
 					pvmlogperror("mksocs() connect");
+					pvmlogprintf("\tsocket address tried: %s\n",p);
 					goto bail;
 				}
-#ifndef WIN32
-				sleep(1);	/* XXX hmm again */
-#else
-				Sleep(1);
-#endif	
+				pvmsleep(1);	/* XXX hmm again */
 			} else
 				break;
 		}
 
 #ifndef NOSOCKOPT
+#ifdef WIN32
+		d = (HANDLE)1;
+#else
 		d = 1;
+#endif
 		if (setsockopt(topvmd->tt_fd, IPPROTO_TCP, TCP_NODELAY, (char*)&d, sizeof(int))
 		== -1) {
 			pvmlogperror("mksocs() setsockopt");
@@ -2665,7 +2949,7 @@ pvmbeatask()
 	int cookie;						/* cookie assigned by pvmd for ident */
 	int cc;
 	char **ep=0;
-	char authfn[LEN_OF_TMP_NAM];	/* auth file name */
+	char authfn[PVMTMPNAMLEN];	/* auth file name */
 	int authfd = -1;				/* auth fd to validate pvmd ident */
 	int i;
 	char buf[16];					/* for converting sockaddr */
@@ -2678,6 +2962,10 @@ pvmbeatask()
 	char tmask[ 2 * TEV_MASK_LENGTH ];
 	int tbuf, topt;
 	int mid;
+#ifdef IMA_BEOLIN
+	struct hostent *hostaddr;
+	char namebuf[128];
+#endif
 	TEV_DECLS
 #ifdef WIN32
 
@@ -2769,7 +3057,8 @@ pvmbeatask()
 	*/
 
 #ifndef IMA_MPP
-	(void)TMPNAMFUN(authfn);
+#ifndef NOPROT
+	(void)PVMTMPNAMFUN(authfn);
 #ifdef IMA_OS2
 	if ((authfd = open(authfn, O_RDWR|O_CREAT|O_TRUNC, 0600)) == -1) {
 #else
@@ -2780,6 +3069,7 @@ pvmbeatask()
 		cc = PvmSysErr;
 		goto bail2;
 	}
+#endif
 
 	/*
 	*	send first connect message to pvmd
@@ -2807,6 +3097,12 @@ pvmbeatask()
 	/*
 	*	check our t-auth file; write in pvmd d-auth file
 	*/
+
+#ifndef NOPROT
+
+#ifdef IMA_BEOLIN
+	sleep(15);  /* because of race condition over NFS--yuck! (PLS) */
+#endif
 
 	if ((cc = read(authfd, (char*)&cc, 1)) == -1) {
 		pvmlogperror("pvmbeatask() read authfile");
@@ -2841,6 +3137,8 @@ pvmbeatask()
 	}
 	authfd = -1;
 	authfn[0] = 0;
+
+#endif
 
 	/*
 	*	send second connect message to pvmd
@@ -2948,7 +3246,28 @@ pvmbeatask()
 	pvm_upkint(&i, 1, 1);	/* XXX data signature */
 
 	pvm_upkstr(buf);
+
+#ifdef IMA_BEOLIN
+	if (gethostname(namebuf, sizeof(namebuf)-1) == -1) {
+		pvmlogerror("pvmbeatask() can't gethostname()\n");
+		hex_inadport(buf, &pvmourinet);
+	} else {
+		/* got name, now get addr */
+		if (!(hostaddr = gethostbyname( namebuf ))) {
+			pvmlogprintf( "pvmbeatask() can't gethostbyname() for %s\n",
+					namebuf );
+			hex_inadport(buf, &pvmourinet);
+		} else {
+			/* got addr, now save it */
+			BCOPY( hostaddr->h_addr_list[0],
+					(char*)&pvmourinet.sin_addr,
+					sizeof(struct in_addr));
+		}
+	}
+#else
 	hex_inadport(buf, &pvmourinet);
+#endif
+
 	pvmourinet.sin_family = AF_INET;
 	pvmourinet.sin_port = 0;
 
@@ -3155,7 +3474,7 @@ pvm_start_pvmd(argc, argv, block)
 	char buf[128];
 
 #ifdef WIN32
-	char *pathending = "/lib/win32/pvmd3.exe";
+	char *pathending = "\\lib\\win32\\pvmd3.exe";
 	SECURITY_ATTRIBUTES saPipe;
 	PROCESS_INFORMATION pi;
 	STARTUPINFO si;  /* for CreateProcess call */
@@ -3215,16 +3534,19 @@ pvm_start_pvmd(argc, argv, block)
 		BCOPY((char *)&argv[0], (char *)&av[1], argc * sizeof(char*));
 	av[0] = fn;
 	if (stat(av[0],&sb) == -1) {
-		fprintf(stderr,"Couldn't find daemon executable !\n");
+		fprintf(stderr,"Couldn't find daemon executable !\n", 
+			"It should be stored in %PVM_ROOT%\\lib\\win32");
 		goto bail;
 	}
 	av[argc + 1] = 0;
 
 	strcpy(cmd,"");
-	for (i=0;i <= argc ;i++) {	
+	strcat(cmd, "pvmd3.exe ");
+	for (i=1;i <= argc ;i++) {	
 		strcat(cmd,av[i]);
 		strcat(cmd," ");
 	}
+	av[argc + 1] = 0;
 
 	/* pvmdid gives us back the process handle 
 	    but it is an int anyway 	*/
@@ -3344,11 +3666,7 @@ pvm_start_pvmd(argc, argv, block)
 
 		pvm_config((int*)0, (int*)0, &hip);
 		while ((cc = pvm_addhosts(&hip[0].hi_name, 1, (int*)0)) == PvmAlready) {
-#ifndef WIN32
-			sleep(t);
-#else
-			Sleep(t);
-#endif
+			pvmsleep(t);
 			if (t < 8)
 				t *= 2;
 		}
@@ -3370,7 +3688,7 @@ bail:
 	return (cc < 0 ? lpvmerr("pvm_start_pvmd", cc) : 0);
 }
 
-
+#ifndef PVM_SHMD
 int
 pvm_precv(tid, tag, cp, len, dt, rtid, rtag, rlen)
 	int tid;
@@ -3491,8 +3809,24 @@ pvm_precv(tid, tag, cp, len, dt, rtid, rtag, rlen)
 		lpvmerr("pvm_precv", cc);
 	return cc;
 }
+#else /* PVM_SHMD */
+/* Do the PVM_SHMD version of precv */
+int
+pvm_precv(tid, tag, cp, len, dt, rtid, rtag, rlen)
+	int tid;
+	int tag;
+	void *cp;
+	int len;
+	int dt;
+	int *rtid;
+	int *rtag;
+	int *rlen;
+{
+	return (shmd_pvm_precv (tid, tag, cp, len, dt, rtid, rtag, rlen));
+}
+#endif /* PVM_SHMD */
 
-
+#ifndef PVM_SHMD
 int
 pvm_psend(tid, tag, cp, len, dt)
 	int tid;
@@ -3590,6 +3924,20 @@ pvm_psend(tid, tag, cp, len, dt)
 		lpvmerr("pvm_psend", cc);
 	return cc;
 }
+#else
+/* i.e. PVM_SHMD */
+int
+pvm_psend(tid, tag, cp, len, dt)
+	int tid;
+	int tag;
+	void *cp;
+	int len;
+	int dt;
+{
+	/* Go do the shmd thing instead */
+	return (shmd_pvm_psend(tid, tag, cp, len, dt));
+}
+#endif /* PVM_SHMD */
 
 /* ----- ogm_complete ------ */
 int 

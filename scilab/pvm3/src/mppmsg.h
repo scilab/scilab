@@ -1,5 +1,5 @@
 
-/* $Id: mppmsg.h,v 1.1 2001/04/26 07:47:10 scilab Exp $ */
+/* $Id: mppmsg.h,v 1.2 2002/10/14 14:37:49 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -99,7 +99,7 @@
  	returns tag of the message 
  
 */
-#if defined(IMA_SP2MPI) && defined(IMA_NODE)
+#if ( defined(IMA_SP2MPI) || defined(IMA_AIX4SP2) ) && defined(IMA_NODE)
 #include <mpi.h>
 #define msgmid_t MPI_Request 
 #define info_t MPI_Status

@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: lpvmgen.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: lpvmgen.c,v 1.2 2002/10/14 14:37:47 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,153 @@ static char rcsid[] =
  *
  *	Libpvm generic functions.
  *
-$Log: lpvmgen.c,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: lpvmgen.c,v $
+ * Revision 1.2  2002/10/14 14:37:47  chanceli
+ * update
+ *
+ * Revision 1.93  2001/09/26 23:35:43  pvmsrc
+ * Removed stuffing of PVM_VMID env var when spawning remote tasks.
+ * 	- first, each host can have it's own local vmid (why not?),
+ * 		so we shouldn't stomp that on the spawn.
+ * 	- second, each local pvmd sets its PVM_VMID env var on startup
+ * 		if the option is passed to it, so there's no need to
+ * 		additionally set the vmid on the spawn.
+ * (Spanker=kohl)
+ *
+ * Revision 1.92  2001/09/26 21:22:34  pvmsrc
+ * Added Handling for Optional Virtual Machine ID.
+ * 	- append PVM_VMID env var to spawn env for tasks (if set).
+ * (Spanker=kohl)
+ *
+ * Revision 1.91  2001/06/28 16:45:29  pvmsrc
+ * D-Oh!  Better set context around message handler functions.
+ * 	- if message comes in with a particular context, reply should
+ * 		probably be in same context!  :-]
+ * (Spanker=kohl)
+ *
+ * Revision 1.90  2001/05/11 18:58:11  pvmsrc
+ * Added use of new "USESTRERROR" define.
+ * 	- uses strerror() function instead of sys_errlist/sys_nerr
+ * 		(which aren't public globals on some new operating systems).
+ * (Spanker=kohl)
+ *
+ * Revision 1.89  2001/02/07 23:14:06  pvmsrc
+ * First Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.88  2000/06/15 17:51:50  pvmsrc
+ * Fixed bug in WIN32 direct routing.
+ * 	- stupid #endif in the wrong place, pvm_fd_add() call whacked.
+ * 	- turned back on direct routing default and setopt.
+ * (Spanker=kohl)
+ *
+ * Revision 1.87  2000/02/17 23:12:12  pvmsrc
+ * *** Changes for new BEOLIN port ***
+ * 	- MPP-like, similar to SP2, etc.
+ * 	- submitted by Paul Springer <pls@smokeymt.jpl.nasa.gov>.
+ * 	- format-checked & cleaned up by Jeembo...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.86  2000/02/16 21:59:43  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.85  1999/11/08 17:44:32  pvmsrc
+ * SGI compiler cleanup.
+ * (Spanker=kohl)
+ *
+ * Revision 1.84  1999/10/27 18:49:00  pvmsrc
+ * Fixed (hopefully) the function header declaration for pvm_recvf().
+ * 	- should work on all platforms now (using __ProtoGlarp__())...
+ * (Spanker=kohl)
+ *
+ * Revision 1.83  1999/07/08 18:59:56  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.82  1999/03/12 20:55:33  pvmsrc
+ * Don't allow direct routing in WIN32 until we fix it.  Shit.
+ * (Spanker=kohl)
+ * 
+ * Revision 1.81  1999/01/29  17:02:50  pvmsrc
+ * Implemented pvm_archcode() for 3.4 data signature handling.
+ * 	- backwards compat.
+ * (Spanker=kohl)
+ *
+ * Revision 1.80  1999/01/14  19:10:25  pvmsrc
+ * More mbox fixes:
+ * 	- make sure pvm_errno gets set in mbox and old insert/lookup/delete
+ * 		calls, even if lpvmerr() isn't called because of an accepted
+ * 		error code.
+ * 	- modified old 3.3 interface to create persistent mboxes...
+ * 	- gutted pvm_lookup() to snag the returned index for -1/firstavail
+ * 		queries, as pvm_recvinfo() doesn't ever return the index value.
+ * 		D-Oh...  Too late to fix it now...
+ * (Spanker=kohl)
+ *
+ * Revision 1.79  1999/01/13  00:04:46  pvmsrc
+ * Filled in backwards compat guts:
+ * 	- to pvm_insert(), pvm_lookup() & pvm_delete().
+ * 	- use mbox stuff, no more #ifdef PVM33COMPAT...
+ * 	- modified mbox pvm_putinfo() stuff to pass in -1 instead of 0
+ * 		for the internal index value...
+ * (Spanker=kohl)
+ *
+ * Revision 1.78  1998/11/20  20:04:04  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (Spanker=sscott)
+ *
+ * Revision 1.77  1998/10/12  21:16:28  pvmsrc
+ * Damn.  Typo - should be pvmsbuf->m_mid, not pvmsbuf...  D-Oh!
+ * (Spanker=kohl)
+ *
+ * Revision 1.76  1998/10/12  21:08:57  pvmsrc
+ * Fixed pvmtrcsbfsave fiasco in pvm_send/mcast().
+ * 	- as used for message number of bytes trace data.
+ * 	- if not using PvmTraceFull tracing option, pvmtrcsbfsave will not
+ * 		be set / swapped with pvmsbuf...
+ * 	- check for non-NULL pvmtrcsbfsave, if not use pvmsbuf instead.
+ * (Spanker=kohl)
+ *
+ * Revision 1.75  1998/10/02  15:44:01  pvmsrc
+ * Single source code merge of Win32 and Unix code.
+ * (Spanker=sscott)
+ *
+ * Revision 1.74  1998/09/02  14:07:05  pvmsrc
+ * Fixed bug in pvm_siblings().
+ * 	- incorrect handling of PvmParentNotSet case...
+ * (Spanker=kohl)
+ *
+ * Revision 1.73  1998/08/27  15:16:53  pvmsrc
+ * Plugged memory leak in pvm_recvinfo().
+ * 	- pvmrbuf is freed O.K., but the wrapper message from the pvmd
+ * 		(the one with the mbox message in it :-) was not being freed.
+ * (Spanker=kohl)
+ *
+ * Revision 1.72  1998/06/26  15:26:28  pvmsrc
+ * Fixed pvm_trecv():
+ * 	- if timeout is 0, could return without ever probing...
+ * 	- make sure mroute() is called at least once before timing
+ * 		out in the 0 case.
+ * (Spanker=kohl)
+ *
+ * Revision 1.71  1998/02/23  22:51:33  pvmsrc
+ * Added AIX4SP2 stuff.
+ * (Spanker=kohl)
+ *
+ * Revision 1.70  1998/01/28  20:08:56  pvmsrc
+ * Added new -DSYSERRISCONST define.
+ * 	- for const char *sys_errlist...
+ * (Spanker=kohl)
+ *
+ * Revision 1.69  1998/01/28  19:13:52  pvmsrc
+ * Added new IMA_LINUXHPPA to #if cases...
+ * (Spanker=kohl)
+ *
  * Revision 1.68  1997/12/31  22:14:25  pvmsrc
  * Renamed TEV_REMOVE -> TEV_DELINFO.  D-Oh.
  * (Spanker=kohl)
@@ -414,6 +557,7 @@ Initial revision
 
 #include <stdio.h>
 #ifdef NEEDMENDIAN
+#include <sys/types.h>
 #include <machine/endian.h>
 #endif
 #ifdef NEEDENDIAN
@@ -422,13 +566,17 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32
-#include <rpc/types.h>
-#include <rpc/xdr.h>
-#else
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
+#else
+#include <rpc/types.h>
+#include <rpc/xdr.h>
 #endif
+
 #ifdef	SYSVSTR
 #include <string.h>
 #define	CINDEX(s,c)	strchr(s,c)
@@ -436,14 +584,16 @@ Initial revision
 #include <strings.h>
 #define	CINDEX(s,c)	index(s,c)
 #endif
+
 #include <errno.h>
 #include <signal.h>
-#include <pvm3.h>
+
 #ifdef	__STDC__
 #include <stdarg.h>
 #else
 #include <varargs.h>
 #endif
+
 #include <pvmproto.h>
 #include "pvmalloc.h"
 #include "pmsg.h"
@@ -457,7 +607,8 @@ Initial revision
 #include "waitc.h"
 #include "global.h"
 
-#if defined(IMA_PGON) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2) \
+	|| defined(IMA_BEOLIN)
 #include "pvmmimd.h"
 #include "lmsg.h"
 extern struct msgid *pvm_inprecv;
@@ -465,13 +616,15 @@ extern struct msgid *pvm_inprecv;
 
 #ifndef HASERRORVARS
 extern int errno;						/* from libc */
+#ifndef USESTRERROR
 extern char *sys_errlist[];
 extern int sys_nerr;
+#endif
 #endif
 
 #ifdef WIN32
 #ifndef SOCK_DEFINES
-WSADATA WSAData;
+extern WSADATA WSAData;
 int nAlert=SO_SYNCHRONOUS_NONALERT;
 #define SOCK_DEFINES
 #endif
@@ -688,29 +841,37 @@ int
 pvmlogperror(s)
 	char *s;
 {
-#if defined(IMA_FREEBSD) || defined(IMA_OS2) || defined(IMA_LINUXALPHA) || defined(IMA_LINUX)
+#ifdef SYSERRISCONST
 	const char *em;
 #else
 	char *em;
 #endif
 
-#ifdef IMA_SP2MPI
+#if defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 	int l;
 
 	/* if (mpierrcode) {
 		MPI_Error_string(mpierrcode, pvmtxt, &l);
 		em = pvmtxt;
 	} else */
+#ifdef USESTRERROR
+		em = strerror( errno );
+#else
 		em = ((errno >= 0 && errno < sys_nerr)
 			? sys_errlist[errno] : "Unknown Error");
+#endif
 #else
 
 #ifdef IMA_CM5
 	errno = CMMD_get_errno();
 #endif
 
+#ifdef USESTRERROR
+	em = strerror( errno );
+#else
 	em = ((errno >= 0 && errno < sys_nerr)
 		? sys_errlist[errno] : "Unknown Error");
+#endif
 
 #endif /*IMA_SP2MPI*/
 
@@ -769,6 +930,7 @@ mesg_input(up)
 {
 	int savesbuf;
 	int saverbuf;
+	int savectx;
 	int i;
 	TEV_DECLS
 
@@ -811,9 +973,11 @@ mesg_input(up)
 
 			savesbuf = pvm_setsbuf( 0 );
 			saverbuf = pvm_setrbuf( up->m_mid );
+			savectx = pvm_setcontext( up->m_ctx );
 
 			(handles[i].f)(up->m_mid);
 
+			pvm_setcontext( savectx );
 			pvm_freebuf( pvm_setsbuf( savesbuf ) );
 			pvm_freebuf( pvm_setrbuf( saverbuf ) );
 
@@ -1224,7 +1388,7 @@ pvm_setopt(what, val)
 		case PvmAllowDirect:
 		case PvmRouteDirect:
 			rc = pvmrouteopt;
-#if !defined(IMA_PGON) && !defined(IMA_SP2MPI)
+#if !defined(IMA_PGON) && !defined(IMA_SP2MPI) && !defined(IMA_AIX4SP2)
 			pvmrouteopt = val;
 #endif
 			break;
@@ -1351,7 +1515,8 @@ pvm_setopt(what, val)
 #else /* SHMEM */
 
 #if defined(IMA_CM5) || defined(IMA_CUBE) || defined(IMA_I860) \
-	|| defined(IMA_PGON) || defined(IMA_SP2MPI)
+	|| defined(IMA_PGON) || defined(IMA_SP2MPI) \
+	|| defined(IMA_AIX4SP2) || defined(IMA_BEOLIN)
 		/* if (val < TDFRAGHDR + TTMSGHDR + 4 || val > 1048576) */
 		if (val < TDFRAGHDR + MSGHDRLEN + 4 || val > MAXFRAGSIZE)
 #else
@@ -1956,7 +2121,7 @@ pvm_delhosts(names, count, svp)
 int
 pvm_exit()
 {
-	int i, info, lndh;
+	int i, lndh;
 	int sbf, rbf;
 	int cc = 0;
 	struct waitc *wp, *wp2;
@@ -2003,7 +2168,7 @@ pvm_exit()
 		*/
 		lndh = ndhandles - 1;
 		for (i = lndh; i >= 0; i--){
-			info = pvm_delmhf(i);
+			pvm_delmhf(i);
 		}
 
 		pvmendtask();
@@ -2090,8 +2255,9 @@ pvm_mcast(tids, count, tag)
 	if (TEV_EXCLUSIVE) {
 		if (TEV_DO_TRACE(TEV_MCAST,TEV_EVENT_ENTRY)) {
 			int nb = -1;
-			pvm_bufinfo( pvmtrcsbfsave, &nb,
-					(int *) NULL, (int *) NULL );
+			pvm_bufinfo(
+					( pvmtrcsbfsave ) ? pvmtrcsbfsave : pvmsbuf->m_mid,
+					&nb, (int *) NULL, (int *) NULL );
 			TEV_PACK_INT( TEV_DID_MNB, TEV_DATA_SCALAR, &nb, 1, 1 );
 			TEV_PACK_INT( TEV_DID_MC, TEV_DATA_SCALAR, &tag, 1, 1 );
 			TEV_PACK_INT( TEV_DID_MCX, TEV_DATA_SCALAR,
@@ -2134,7 +2300,9 @@ pvm_mcast(tids, count, tag)
 }
 
 #ifdef WIN32
+#ifndef IMA_WIN32_WATCOM
 extern char **environ;
+#endif
 #endif
 
 int
@@ -2637,7 +2805,7 @@ pvm_recv(tid, tag)
 				up = up->m_rlink;
 				if ((cc = mroute(0, 0, 0, (struct timeval *)0)) < 0)
 					goto done;
-#if defined(IMA_PGON) || defined(IMA_SP2MPI)
+#if defined(IMA_PGON) || defined(IMA_SP2MPI) || defined(IMA_AIX4SP2)
 			/* bypass matching of messages when in a precv that completed */
 				if (pvm_inprecv && pvm_inprecv->complete)
 					return 0;
@@ -2691,11 +2859,7 @@ done:
 
 int (*
 pvm_recvf(new))()
-#ifdef	IMA_SCO
-	int (*new)(int,int,int);
-#else
-	int (*new)();
-#endif
+	int (*new)__ProtoGlarp__((int,int,int));
 {
 	int (*old)() = recv_match;
 	TEV_DECLS
@@ -2731,8 +2895,9 @@ pvm_send(tid, tag)
 	if (TEV_EXCLUSIVE) {
 		if (TEV_DO_TRACE(TEV_SEND,TEV_EVENT_ENTRY)) {
 			int nb = -1;
-			pvm_bufinfo( pvmtrcsbfsave, &nb,
-					(int *) NULL, (int *) NULL );
+			pvm_bufinfo(
+					( pvmtrcsbfsave ) ? pvmtrcsbfsave : pvmsbuf->m_mid,
+					&nb, (int *) NULL, (int *) NULL );
 			TEV_PACK_INT( TEV_DID_MNB, TEV_DATA_SCALAR, &nb, 1, 1 );
 			TEV_PACK_INT( TEV_DID_DST, TEV_DATA_SCALAR, &tid, 1, 1 );
 			TEV_PACK_INT( TEV_DID_MC, TEV_DATA_SCALAR, &tag, 1, 1 );
@@ -3253,11 +3418,16 @@ pvm_trecv(tid, tag, tmout)
 						if (bestcc)
 							goto fnd;
 						cc = 0;
-						goto done;
+						if (!TVISSET(tmout)) {
+							if ((cc = mroute(0, 0, 0, tmout)) <= 0)
+								goto done;
+						} else
+							goto done;
+					} else {
+						TVXSUBY(&tnow, tmout, &tnow);
+						if ((cc = mroute(0, 0, 0, &tnow)) < 0)
+							goto done;
 					}
-					TVXSUBY(&tnow, tmout, &tnow);
-					if ((cc = mroute(0, 0, 0, &tnow)) < 0)
-						goto done;
 
 				} else {
 					if ((cc = mroute(0, 0, 0, (struct timeval *)0)) < 0)
@@ -3722,7 +3892,81 @@ int
 pvm_archcode(arch)
 	char *arch;
 {
-	return lpvmerr("pvm_archcode", PvmNotImpl);
+	struct pvmhostinfo *hlist;
+	int sbf, rbf, cc;
+	int nhost, narch;
+	int i;
+	TEV_DECLS
+
+	if (TEV_EXCLUSIVE) {
+		if (TEV_DO_TRACE(TEV_ARCHCODE,TEV_EVENT_ENTRY)) {
+			TEV_PACK_STRING( TEV_DID_AN, TEV_DATA_SCALAR,
+				arch ? arch : "", 1, 1 );
+			TEV_FIN;
+		}
+	}
+
+	if (!arch)
+		cc = PvmBadParam;
+
+	else
+	{
+		/* Go get pvm_config() info...  :-Q :-Q :-Q */
+		/* (can't use pvm_config() directly, as stomps */
+		/* hostinfo structure...  Damn. */
+
+		if (!(cc = BEATASK)) {
+			sbf = pvm_setsbuf(pvm_mkbuf(PvmDataFoo));
+			rbf = pvm_setrbuf(0);
+			if (pvmschedtid)
+				cc = msendrecv(pvmschedtid, SM_CONFIG, PvmBaseContext);
+			else
+				cc = msendrecv(TIDPVMD, TM_CONFIG, SYSCTX_TM);
+			if (cc > 0) {
+				pvm_upkint(&nhost, 1, 1);
+				pvm_upkint(&narch, 1, 1);
+				hlist = TALLOC(nhost, struct pvmhostinfo, "hi");
+				for (i = 0; i < nhost; i++) {
+					pvm_upkint(&hlist[i].hi_tid, 1, 1);
+					pvmupkstralloc(&(hlist[i].hi_name));
+					pvmupkstralloc(&(hlist[i].hi_arch));
+					pvm_upkint(&hlist[i].hi_speed, 1, 1);
+					pvm_upkint(&hlist[i].hi_dsig, 1, 1);
+				}
+				pvm_freebuf(pvm_setrbuf(rbf));
+			}
+			pvm_freebuf(pvm_setsbuf(sbf));
+			pvm_setrbuf(rbf);
+
+			cc = PvmNotFound;
+
+			for ( i=0 ; i < nhost ; i++ ) {
+				if ( !strcmp(hlist[i].hi_arch, arch) ) {
+					cc = hlist[i].hi_dsig;
+					break;
+				}
+			}
+
+			while (nhost-- > 0) {
+				PVM_FREE(hlist[nhost].hi_name);
+				PVM_FREE(hlist[nhost].hi_arch);
+			}
+			PVM_FREE(hlist);
+		}
+	}
+
+	if (TEV_AMEXCL) {
+		if (TEV_DO_TRACE(TEV_ARCHCODE,TEV_EVENT_EXIT)) {
+			TEV_PACK_INT( TEV_DID_AC, TEV_DATA_SCALAR, &cc, 1, 1 );
+			TEV_FIN;
+		}
+		TEV_ENDEXCL;
+	}
+
+	if (cc < 0)
+		lpvmerr("pvm_archcode", cc);
+	
+	return( cc );
 }
 
 
@@ -4147,7 +4391,7 @@ pvm_putinfo(name, mid, flags)
 	int mid;			/* message to store */
 	int flags;			/* options */
 {
-	int index = 0;
+	int index = -1;
 	int sbf, rbf, cc;
 	TEV_DECLS
 
@@ -4162,7 +4406,7 @@ pvm_putinfo(name, mid, flags)
 		}
 	}
 
-	if (!name || !*name || index < 0) {
+	if (!name || !*name || index < -1) {
 		cc = PvmBadParam;
 
 	} else {
@@ -4194,8 +4438,11 @@ pvm_putinfo(name, mid, flags)
 		TEV_ENDEXCL;
 	}
 
-	if (cc < 0 && cc != PvmDenied && cc != PvmExists)
-		lpvmerr("pvm_putinfo", cc);
+	if (cc < 0)
+		if (cc != PvmDenied && cc != PvmExists)
+			lpvmerr("pvm_putinfo", cc);
+		else
+			pvm_errno = cc;
 	return cc;
 }
 
@@ -4240,7 +4487,7 @@ pvm_recvinfo(name, index, flags)
 				pvm_upkint(&cc, 1, 1);
 				if (cc >= 0) {
 					mid = pvm_upkmesg();
-					pvm_setrbuf(mid);
+					pvm_freebuf(pvm_setrbuf(mid));
 				}
 			}
 			pvm_freebuf(pvm_setsbuf(sbf));
@@ -4259,6 +4506,8 @@ pvm_recvinfo(name, index, flags)
 	if ( cc < 0 ) {
 		if ( cc != PvmNotFound )
 			lpvmerr("pvm_recvinfo", cc);
+		else
+			pvm_errno = cc;
 		return cc;
 	}
 	else
@@ -4316,8 +4565,11 @@ pvm_delinfo(name, index, flags)
 		TEV_ENDEXCL;
 	}
 
-	if (cc < 0 && cc != PvmDenied && cc != PvmNotFound)
-		lpvmerr("pvm_delinfo", cc);
+	if (cc < 0)
+		if (cc != PvmDenied && cc != PvmNotFound)
+			lpvmerr("pvm_delinfo", cc);
+		else
+			pvm_errno = cc;
 	return cc;
 }
 
@@ -4446,7 +4698,7 @@ pvm_siblings(tidsp)
 			if (cc < 0)
 				break;
 		}
-		if (cc >= 0) {
+		if (pvmnsibs != -1) {
 			cc = pvmnsibs;
 			*tidsp = pvmsibtids;
 		}
@@ -4643,44 +4895,10 @@ int index;
 }
 
 
-#ifdef	PVM33COMPAT
 /***************************************************************
- **  Crusty functions that will fall off in the next version  **
+ **  backwards compat functions: built on new mbox interface  **
  **                                                           **
  ***************************************************************/
-
-int
-pvm_delete(name, req)
-	char *name;		/* class name */
-	int req;		/* class index or -1 for all */
-{
-	int sbf, rbf, cc;
-	TEV_DECLS
-
-	if (TEV_EXCLUSIVE) {
-		if (TEV_DO_TRACE(TEV_DELETE,TEV_EVENT_ENTRY)) {
-			TEV_PACK_STRING( TEV_DID_CN, TEV_DATA_SCALAR,
-				name ? name : "", 1, 1 );
-			TEV_PACK_INT( TEV_DID_CI, TEV_DATA_SCALAR, &req, 1, 1 );
-			TEV_FIN;
-		}
-	}
-
-cc = PvmNotImpl;
-
-	if (TEV_AMEXCL) {
-		if (TEV_DO_TRACE(TEV_DELETE,TEV_EVENT_EXIT)) {
-			TEV_PACK_INT( TEV_DID_CC, TEV_DATA_SCALAR, &cc, 1, 1 );
-			TEV_FIN;
-		}
-		TEV_ENDEXCL;
-	}
-
-	if (cc < 0 && cc != PvmNoEntry)
-		lpvmerr("pvm_delete", cc);
-	return cc;
-}
-
 
 int
 pvm_insert(name, req, data)
@@ -4689,6 +4907,8 @@ pvm_insert(name, req, data)
 	int data;
 {
 	int sbf, rbf, cc;
+	int flags;
+	int mid;
 	TEV_DECLS
 
 	if (TEV_EXCLUSIVE) {
@@ -4701,7 +4921,39 @@ pvm_insert(name, req, data)
 		}
 	}
 
-cc = PvmNotImpl;
+	if (!name || !*name || req < -1) {
+		cc = PvmBadParam;
+
+	} else {
+		if (!(cc = BEATASK)) {
+
+			flags = PvmMboxDefault
+				| PvmMboxMultiInstance
+				| PvmMboxPersistent;
+
+			mid = pvm_mkbuf(PvmDataFoo);
+			sbf = pvm_setsbuf(mid);
+			pvm_pkint(&data, 1, 1);
+
+			pvm_setsbuf(pvm_mkbuf(PvmDataFoo));
+			rbf = pvm_setrbuf(0);
+			cc = TMDB_PUT;
+			pvm_pkint(&cc, 1, 1);
+			pvm_pkint(&pvmmytid, 1, 1);
+			pvm_pkstr(name);
+			pvm_pkint(&req, 1, 1);
+			pvm_pkint(&flags, 1, 1);
+			pvm_pkmesg(mid);
+			if ((cc = msendrecv(TIDPVMD, TM_DB, SYSCTX_TM)) > 0) {
+				pvm_upkint(&cc, 1, 1);
+				pvm_freebuf(pvm_setrbuf(rbf));
+
+			} else
+				pvm_setrbuf(rbf);
+			pvm_freebuf(pvm_setsbuf(sbf));
+			pvm_freebuf(mid);
+		}
+	}
 
 	if (TEV_AMEXCL) {
 		if (TEV_DO_TRACE(TEV_INSERT,TEV_EVENT_EXIT)) {
@@ -4711,8 +4963,11 @@ cc = PvmNotImpl;
 		TEV_ENDEXCL;
 	}
 
-	if (cc < 0 && cc != PvmDupEntry)
-		lpvmerr("pvm_insert", cc);
+	if (cc < 0)
+		if (cc != PvmDupEntry)
+			lpvmerr("pvm_insert", cc);
+		else
+			pvm_errno = cc;
 	return cc;
 }
 
@@ -4724,6 +4979,8 @@ pvm_lookup(name, req, datap)
 	int *datap;		/* data return */
 {
 	int sbf, rbf, cc;
+	int flags;
+	int mid;
 	TEV_DECLS
 
 	if (TEV_EXCLUSIVE) {
@@ -4735,7 +4992,43 @@ pvm_lookup(name, req, datap)
 		}
 	}
 
-cc = PvmNotImpl;
+	if (!name || !*name || req < -1) {
+		cc = PvmBadParam;
+
+	} else {
+		if (!(cc = BEATASK)) {
+
+			flags = PvmMboxDefault;
+
+			if ( req < 0 ) {
+				flags |= PvmMboxFirstAvail;
+				req = 0;
+			}
+
+			rbf = pvm_setrbuf(0);
+
+			sbf = pvm_setsbuf(pvm_mkbuf(PvmDataFoo));
+			cc = TMDB_GET;
+			pvm_pkint(&cc, 1, 1);
+			pvm_pkint(&pvmmytid, 1, 1);
+			pvm_pkstr(name);
+			pvm_pkint(&req, 1, 1);
+			pvm_pkint(&flags, 1, 1);
+			if ((cc = msendrecv(TIDPVMD, TM_DB, SYSCTX_TM)) > 0) {
+				pvm_upkint(&cc, 1, 1);
+				if (cc >= 0) {
+					mid = pvm_upkmesg();
+					pvm_freebuf(pvm_setrbuf(mid));
+				}
+			}
+			pvm_freebuf(pvm_setsbuf(sbf));
+
+			if ( cc >= 0 && datap )
+				pvm_upkint(datap, 1, 1);
+			
+			pvm_freebuf(pvm_setrbuf(rbf));
+		}
+	}
 
 	if (TEV_AMEXCL) {
 		if (TEV_DO_TRACE(TEV_LOOKUP,TEV_EVENT_EXIT)) {
@@ -4745,10 +5038,54 @@ cc = PvmNotImpl;
 		TEV_ENDEXCL;
 	}
 
-	if (cc < 0 && cc != PvmNoEntry)
-		lpvmerr("pvm_lookup", cc);
+	if (cc < 0)
+		if (cc != PvmNoEntry)
+			lpvmerr("pvm_lookup", cc);
+		else
+			pvm_errno = cc;
 	return cc;
 }
 
-#endif	/*PVM33COMPAT*/
+
+int
+pvm_delete(name, req)
+	char *name;		/* class name */
+	int req;		/* class index or -1 for all */
+{
+	int cc;
+	TEV_DECLS
+
+	if (TEV_EXCLUSIVE) {
+		if (TEV_DO_TRACE(TEV_DELETE,TEV_EVENT_ENTRY)) {
+			TEV_PACK_STRING( TEV_DID_CN, TEV_DATA_SCALAR,
+				name ? name : "", 1, 1 );
+			TEV_PACK_INT( TEV_DID_CI, TEV_DATA_SCALAR, &req, 1, 1 );
+			TEV_FIN;
+		}
+	}
+
+	if (!name || !*name || req < 0) {
+		cc = PvmBadParam;
+
+	} else {
+		if (!(cc = BEATASK)) {
+			cc = pvm_delinfo( name, req, PvmMboxDefault );
+		}
+	}
+
+	if (TEV_AMEXCL) {
+		if (TEV_DO_TRACE(TEV_DELETE,TEV_EVENT_EXIT)) {
+			TEV_PACK_INT( TEV_DID_CC, TEV_DATA_SCALAR, &cc, 1, 1 );
+			TEV_FIN;
+		}
+		TEV_ENDEXCL;
+	}
+
+	if (cc < 0)
+		if (cc != PvmNoEntry)
+			lpvmerr("pvm_delete", cc);
+		else
+			pvm_errno = cc;
+	return cc;
+}
 

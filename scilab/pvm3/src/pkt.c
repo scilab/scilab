@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pkt.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: pkt.c,v 1.2 2002/10/14 14:37:50 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,14 @@ static char rcsid[] =
  *
  *	Packet buffers.
  *
-$Log: pkt.c,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: pkt.c,v $
+ * Revision 1.2  2002/10/14 14:37:50  chanceli
+ * update
+ *
+ * Revision 1.4  1999/07/08 19:00:05  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.3  1997/06/27  17:32:32  pvmsrc
  * Updated for WIN32 header files & Authors.
  *

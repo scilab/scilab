@@ -1,5 +1,5 @@
 
-/* $Id: tevmac.h,v 1.1 2001/04/26 07:47:12 scilab Exp $ */
+/* $Id: tevmac.h,v 1.2 2002/10/14 14:37:56 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -34,10 +34,19 @@
  *
  *	Tracing defs.
  *
-$Log: tevmac.h,v $
-Revision 1.1  2001/04/26 07:47:12  scilab
-Initial revision
-
+ * $Log: tevmac.h,v $
+ * Revision 1.2  2002/10/14 14:37:56  chanceli
+ * update
+ *
+ * Revision 1.8  1999/07/08 19:00:25  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.7  1998/03/04  18:54:26  pvmsrc
+ * Oops...  better initialize pvmampushed to 0 in TEV_DECL.
+ * 	- otherwise, TEV_AMPUSHED might reference it before set...  :-Q
+ * (Spanker=kohl)
+ *
  * Revision 1.6  1997/12/23  20:24:43  pvmsrc
  * Added new TEV_PUSHTOP, TEV_AMPUSHED and TEV_POPTOP macros.
  * 	- to fake top level tracing, i.e. "push" the current tracing
@@ -127,7 +136,7 @@ void tev_flush();
 #define	TEV_FIN	tev_fin()
 
 #define	TEV_DECLS		int pvmamtraced; \
-						int pvmampushed; \
+						int pvmampushed = 0; \
 						int pvmtoplvlsave;
 
 #define	TEV_EXCLUSIVE	( (pvmamtraced = pvmtoplvl) != 0 \

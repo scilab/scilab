@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmdunix.c,v 1.1 2001/04/26 07:47:11 scilab Exp $";
+	"$Id: pvmdunix.c,v 1.2 2002/10/14 14:37:53 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,37 @@ static char rcsid[] =
  *
  *	Support routines for pvmd in unix environment.
  *
-$Log: pvmdunix.c,v $
-Revision 1.1  2001/04/26 07:47:11  scilab
-Initial revision
-
+ * $Log: pvmdunix.c,v $
+ * Revision 1.2  2002/10/14 14:37:53  chanceli
+ * update
+ *
+ * Revision 1.15  2001/02/07 23:15:54  pvmsrc
+ * 2nd Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.14  2000/02/16 22:00:29  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.13  2000/02/08 16:58:59  pvmsrc
+ * Re-arranged #include of header files for CRAY J932se.
+ * 	- move rpc/types.h, rpc/xdr.h before sys/time.h, sys/socket.h...
+ * 	- patch submitted by "Francois Moyroud" <francois@egi.kth.se>
+ * (Spanker=kohl)
+ *
+ * Revision 1.12  1999/07/08 19:00:11  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.11  1998/11/20  20:10:40  pvmsrc
+ * Lets try this again....
+ *
+ * Changes so that compiles & builds on win32.  Also, single
+ * source win32 & unix
+ * (Spanker=sscott)
+ *
  * Revision 1.10  1997/08/29  13:35:17  pvmsrc
  * OS2 Port Submitted by Bohumir Horeni, horeni@login.cz.
  * (Spanker=kohl)
@@ -80,6 +107,13 @@ Initial revision
 #ifndef WIN32
 #include <sys/param.h>
 #endif
+
+#ifdef IMA_TITN
+#include <bsd/sys/types.h>
+#else
+#include <sys/types.h>
+#endif
+
 #ifdef NEEDMENDIAN
 #include <machine/endian.h>
 #endif
@@ -89,20 +123,27 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
+#include "..\xdr\types.h"
+#include "..\xdr\xdr.h"
+#else
 #include <rpc/types.h>
 #include <rpc/xdr.h>
+#endif
+
+#ifdef WIN32
+#include "pvmwin.h"
+#include <time.h>
+#else
 #include <sys/time.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
-#else 
-#include "pvmwin.h"
-#include "..\xdr\types.h"
-#include "..\xdr\xdr.h"
-#include <time.h>
 #endif
-#include <sys/types.h>
+
 #ifdef	SYSVSTR
 #include <string.h>
 #define	CINDEX(s,c)	strchr(s,c)
@@ -112,7 +153,6 @@ Initial revision
 #endif
 #include <errno.h>
 #include <stdio.h>
-#include <pvm3.h>
 #include <pvmtev.h>
 #include <pvmproto.h>
 #include "pvmalloc.h"

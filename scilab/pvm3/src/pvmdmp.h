@@ -1,5 +1,5 @@
 
-/* $Id: pvmdmp.h,v 1.1 2001/04/26 07:47:11 scilab Exp $ */
+/* $Id: pvmdmp.h,v 1.2 2002/10/14 14:37:52 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -32,10 +32,21 @@
 /*
  *	pvmdmp.h
  *
-$Log: pvmdmp.h,v $
-Revision 1.1  2001/04/26 07:47:11  scilab
-Initial revision
-
+ * $Log: pvmdmp.h,v $
+ * Revision 1.2  2002/10/14 14:37:52  chanceli
+ * update
+ *
+ * Revision 1.6  2000/02/17 23:12:19  pvmsrc
+ * *** Changes for new BEOLIN port ***
+ * 	- MPP-like, similar to SP2, etc.
+ * 	- submitted by Paul Springer <pls@smokeymt.jpl.nasa.gov>.
+ * 	- format-checked & cleaned up by Jeembo...  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.5  1999/07/08 19:00:23  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.4  1997/06/25  22:09:33  pvmsrc
  * Markus adds his frigging name to the author list of
  * 	every file he ever looked at...
@@ -71,17 +82,16 @@ Initial revision
 
 void mpp_init __ProtoGlarp__((int *argc, char **argv));
 void mpp_free __ProtoGlarp__((struct task *tp));
-#if defined(IMA_PGON)
-int mpp_load __ProtoGlarp__(( struct waitc_spawn *wxp));
-#else
-int mpp_load __ProtoGlarp__((int flags, char *name, char **argv, int count,
-    int *tids, int ptid, int nenv, char **envp));
-#endif
+int mpp_load __ProtoGlarp__((struct waitc_spawn *wxp));
 int mpp_input __ProtoGlarp__((void));
 int mpp_mcast __ProtoGlarp__((struct pkt *pp, int *tids, int ntask));
 int mpp_output __ProtoGlarp__((struct task *tp, struct pkt *pp));
 int mpp_probe __ProtoGlarp__((void));
 void mpp_kill __ProtoGlarp__((struct task *tp, int signum));
 void mpp_cleanup __ProtoGlarp__((void));
+#ifdef IMA_BEOLIN
+struct task *mpp_find __ProtoGlarp__((struct task *tp));
+#endif
 
 void wakesig __ProtoGlarp__((int sig));
+

@@ -1,5 +1,5 @@
 
-/* $Id: global.h,v 1.1 2001/04/26 07:47:09 scilab Exp $ */
+/* $Id: global.h,v 1.2 2002/10/14 14:37:45 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -34,10 +34,29 @@
  *
  *	Generic includes.
  *
-$Log: global.h,v $
-Revision 1.1  2001/04/26 07:47:09  scilab
-Initial revision
-
+ * $Log: global.h,v $
+ * Revision 1.2  2002/10/14 14:37:45  chanceli
+ * update
+ *
+ * Revision 1.12  2001/02/07 23:14:03  pvmsrc
+ * First Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.11  1999/07/08 19:00:20  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.10  1999/01/28  18:54:58  pvmsrc
+ * Added alternate WIN32 pvmd path define:
+ * 	- WINPVMDPATH = "%PVM_ROOT%\\lib\\WIN32\\pvmd3.exe"
+ * 	- allows retry for WIN32 hosts if $PVM_ROOT/lib/pvmd fails
+ * 		(PVMDPATH).
+ * (Spanker=kohl)
+ *
+ * Revision 1.9  1998/10/02  15:43:56  pvmsrc
+ * Single source code merge of Win32 and Unix code.
+ * (Spanker=sscott)
+ *
  * Revision 1.8  1997/08/29  13:35:01  pvmsrc
  * OS2 Port Submitted by Bohumir Horeni, horeni@login.cz.
  * (Spanker=kohl)
@@ -231,6 +250,12 @@ Initial revision
 #ifdef IMA_OS2
 #define DEFBINDIR	"$HOME/pvm3/bin/$PVM_ARCH;$PVM_ROOT/bin/$PVM_ARCH"
 #endif
+#ifdef WIN32
+#define DEFBINDIR	"$PVM_ROOT\\bin\\$PVM_ARCH"
+#endif
+#ifdef CYGWIN
+#define	DEFBINDIR	"$HOME/pvm3/bin/$PVM_ARCH:$PVM_ROOT_U/bin/$PVM_ARCH"
+#endif
 
 #ifndef	DEFBINDIR
 #define	DEFBINDIR	"$HOME/pvm3/bin/$PVM_ARCH:$PVM_ROOT/bin/$PVM_ARCH"
@@ -240,16 +265,23 @@ Initial revision
 #define	DEFDEBUGGER	"$PVM_ROOT/lib/debugger"
 #endif
 
-#ifndef	PVMDFILE
 #ifdef IMA_OS2
 #define PVMDFILE	"lib/pvmd.cmd"
-#else
-#define	PVMDFILE	"lib/pvmd"
 #endif
+#ifdef CYGWIN
+#define	PVMDFILE	"lib/Win32/pvmd3.exe"
+#endif
+
+#ifndef	PVMDFILE
+#define	PVMDFILE	"lib/pvmd"
 #endif
 
 #ifndef	PVMDPATH
 #define	PVMDPATH	"$PVM_ROOT/lib/pvmd"
+#endif
+
+#ifndef	WINPVMDPATH
+#define	WINPVMDPATH	"%PVM_ROOT%\\lib\\WIN32\\pvmd3.exe"
 #endif
 
 

@@ -1,5 +1,5 @@
 
-/* $Id: pvmshmem.h,v 1.1 2001/04/26 07:47:12 scilab Exp $ */
+/* $Id: pvmshmem.h,v 1.2 2002/10/14 14:37:54 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -32,10 +32,29 @@
 /*
  *  pvmshmem.h
  *
-$Log: pvmshmem.h,v $
-Revision 1.1  2001/04/26 07:47:12  scilab
-Initial revision
-
+ * $Log: pvmshmem.h,v $
+ * Revision 1.2  2002/10/14 14:37:54  chanceli
+ * update
+ *
+ * Revision 1.8  2000/02/10 20:45:49  pvmsrc
+ * Replaced hard-coded /tmp usage with PVMSHMFILE.
+ * 	- use pvmgettmp() routine now to determine PVM temp dir.
+ * (Spanker=kohl)
+ *
+ * Revision 1.7  1999/07/08 19:00:24  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.6  1998/08/13  18:31:11  pvmsrc
+ * Altered SUNMP to use test and set operations with semaphores
+ * 		for page locking instead of MUTEX and cond vars.
+ * 	Changes are mainly in pvmshmem.h, with lots of #ifdefs changes.
+ * 	Makefile altered to use the PLOCKFILE to indicate the Page Locking
+ * 		INLINE code used (from SUNMP.conf).
+ * 	Some changes effect AIX MP versions which still use conditional
+ * 		variables and may change to semaphores soon.
+ * (Spanker=fagg)
+ *
  * Revision 1.5  1997/08/06  22:43:23  pvmsrc
  * Added new SGI6 and SGIMP6 arches.
  *
@@ -184,15 +203,25 @@ struct msgboxhdr {
 
 #ifdef IMA_SUNMP
 #include <synch.h>
+#include <thread.h>
+#include <stdio.h>
 
 struct shmpghdr {
+#ifdef PVMUSEMUTEX
 	mutex_t pg_lock;		/* mutex lock */
+#else
+	volatile int pg_lock;	/* shema lock */
+#endif /* PVMUSEMUTEX */
 	int pg_priv;			/* TRUE if page is private */
 	int pg_ref;				/* reference count */
 };
 
 struct msgboxhdr {
+#ifdef PVMUSEMUTEX
 	mutex_t mb_lock;		/* mutex lock */
+#else
+	volatile int mb_lock;	/* shema lock */
+#endif /* PVMUSEMUTEX */
 	int mb_read;			/* message last read */
 	int mb_last;			/* message last received */
 	int mb_sleep;			/* Is task blocked on a semaphore? */
@@ -202,16 +231,25 @@ struct msgboxhdr {
 
 #define	PVMPAGEHDR			sizeof(struct shmpghdr)
 
+#ifdef PVMUSEMUTEX	/* If we use mutex and cond vars instead of semas */
+	
 #define PAGEINITLOCK(lp)	mutex_init((lp), USYNC_PROCESS, 0)
 #define PAGELOCK(lp)		mutex_lock(lp)
 #define PAGEUNLOCK(lp)		mutex_unlock(lp)
-/*
-#define PAGEINITLOCK(p)		\
-				mutex_init(&((struct shmpghdr *)(p))->pg_lock,USYNC_PROCESS,0)
-#define PAGELOCK(p)			mutex_lock(&((struct shmpghdr *)(p))->pg_lock)
-#define PAGEUNLOCK(p)		mutex_unlock(&((struct shmpghdr *)(p))->pg_lock)
-#define PAGEREFCOUNT(cp)	(((shmpghdr*)(cp-PVMPAGEHDR))->pg_ref)
-*/
+
+#endif /* PVMUSEMUTEX */
+
+
+#ifndef PVMUSEMUTEX /* If no mutex then use Test And Set and semaphores */
+
+#define USERECVSEMAPHORE        1
+
+#define PAGEINITLOCK(lp)         (*(lp) = 0)
+#define PAGELOCK(lp)             while (Test_and_Set(lp, 1L));
+#define PAGEUNLOCK(lp)           Test_and_Set(lp,0L)
+
+#endif /* No PVMUSEMUTEX*/
+
 #endif /*IMA_SUNMP*/
 
 #if defined(IMA_SGIMP) || defined(IMA_SGIMP6) || defined(IMA_SGIMP64)
@@ -350,7 +388,8 @@ struct peer {
 #define FRAGPAGE	4			/* number of pages in each fragment */
 #define SHMBUFSIZE	0x180000	/* 1.5 MB of shared msg buffer for each task */
 #else
-#define MAXFRAGSIZE	0x1000		/* max fragment size (4K) */
+#define MAXFRAGSIZE	0x100000		/* max fragment size (4K) */
+/* now... 256K? */
 #define FRAGPAGE	1			/* number of pages in each fragment */
 #define SHMBUFSIZE	0x100000	/* 1 MB of shared msg buffer for each task */
 #endif
@@ -358,7 +397,7 @@ struct peer {
 #define INBOXPAGE	5			/* size of incoming box (number of pages) */
 #define PERMS		0600		/* permissions for shared-memory msg buffers */
 #define	BUSYWAIT	1000000		/* max wait cycles before backing off */
-#define PVMSHMFILE	"/tmp/pvmshm.%d"	/* file to map to shared memory */
+#define PVMSHMFILE	"%s/pvmshm.%d"	/* file to map to shared memory */
 
 struct peer *peer_conn __ProtoGlarp__((int tid, int *new_connection));
 void peer_init __ProtoGlarp__((void));

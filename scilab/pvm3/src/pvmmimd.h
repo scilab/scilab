@@ -1,5 +1,5 @@
 
-/* $Id: pvmmimd.h,v 1.1 2001/04/26 07:47:12 scilab Exp $ */
+/* $Id: pvmmimd.h,v 1.2 2002/10/14 14:37:54 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -32,10 +32,14 @@
 /*
  *  pvmmimd.h
  *
-$Log: pvmmimd.h,v $
-Revision 1.1  2001/04/26 07:47:12  scilab
-Initial revision
-
+ * $Log: pvmmimd.h,v $
+ * Revision 1.2  2002/10/14 14:37:54  chanceli
+ * update
+ *
+ * Revision 1.7  1999/07/08 19:00:24  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.6  1997/06/25  22:11:09  pvmsrc
  * Markus adds his frigging name to the author list of
  * 	every file he ever looked at...

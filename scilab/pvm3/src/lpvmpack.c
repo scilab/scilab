@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: lpvmpack.c,v 1.1 2001/04/26 07:47:10 scilab Exp $";
+	"$Id: lpvmpack.c,v 1.2 2002/10/14 14:37:48 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,66 @@ static char rcsid[] =
  *
  *	Typed packing/unpacking, message buffer manip.
  *
-$Log: lpvmpack.c,v $
-Revision 1.1  2001/04/26 07:47:10  scilab
-Initial revision
-
+ * $Log: lpvmpack.c,v $
+ * Revision 1.2  2002/10/14 14:37:48  chanceli
+ * update
+ *
+ * Revision 1.21  2001/02/07 23:14:08  pvmsrc
+ * First Half of CYGWIN Check-ins...
+ * (Spanker=kohl)
+ *
+ * Revision 1.20  2001/02/05 23:05:55  pvmsrc
+ * Fixed va_arg() issue.
+ * 	- shouldn't use "char" or "short", always use at least "int"...
+ * 	- error reported by gcc on latest Linux, documentation also
+ * 		indicates this guideline on SGI and other arches...
+ * 	- new test suite test validates functionality on SGI (of course,
+ * 		it worked before, too :-).
+ * 	- here's hoping this won't break anything...  :-o
+ * (Spanker=kohl)
+ *
+ * Revision 1.19  2000/02/16 21:59:46  pvmsrc
+ * Fixed up #include <sys/types.h> stuff...
+ * 	- use <bsd/sys/types.h> for IMA_TITN...
+ * 	- #include before any NEEDMENDIAN #includes...
+ * (Spanker=kohl)
+ *
+ * Revision 1.18  1999/11/08 17:44:34  pvmsrc
+ * SGI compiler cleanup.
+ * (Spanker=kohl)
+ *
+ * Revision 1.17  1999/08/12 15:12:19  pvmsrc
+ * Fixed error in arg to check_for_exit().
+ * 	- mp freed before mp->m_src passed in...!  D-Oh!
+ * 	- bug submitted by Einar Arne Soerheim <Einar.Sorheim@ife.no>.
+ * (Spanker=kohl)
+ *
+ * Revision 1.16  1999/07/08 19:00:01  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.15  1998/11/23  20:03:38  pvmsrc
+ * In umbuf_free() must check_for_exit() after pmsg_unref() or else we
+ * might splat a message structure before we try decrement it ref
+ * count.. i.e sigfault.
+ * Ops.
+ * (Spanker=fagg)
+ *
+ * Revision 1.14  1998/11/20  20:04:08  pvmsrc
+ * Changes so that win32 will compile & build. Also, common
+ * Changes so that compiles & builds on NT. Also
+ * common source on win32 & unix.
+ * (Spanker=sscott)
+ *
+ * Revision 1.13  1998/11/20  19:30:09  pvmsrc
+ * TC_TASKEXIT messages were setting pp->p_exited but check_for_exit()
+ * was not being called as it got lost when umbuf_free() was updated
+ * to use pmsg functions.
+ * Added check_for_exit() back so that it could call peer_detach()
+ * and thus free shared memory segments again...
+ * A happy bug fix for Sun(tm).
+ * (Spanker=fagg)
+ *
  * Revision 1.12  1997/11/04  23:21:38  pvmsrc
  * Added SYSVSTR stuff.
  * (Spanker=kohl)
@@ -58,7 +114,8 @@ Initial revision
  * 	- with proto in header.
  *
  * Revision 1.8  1997/05/01  20:05:30  pvmsrc
- * Made pvmmidh and pvmmidhsiz global so that lpvmshmem can see them..... [GEF]
+ * Made pvmmidh and pvmmidhsiz global so that lpvmshmem can see
+ * them..... [GEF]
  *
  * Revision 1.7  1997/05/01  14:11:48  pvmsrc
  * SGI Compiler Warning Cleanup.
@@ -83,10 +140,10 @@ Initial revision
  * 		(PvmDataTrace encoding).
  *
  * Revision 1.3  1996/10/23  15:57:25  pvmsrc
- * Changed pvm_freebuf so that freeing the null buffer '0' nolonger causes
- * an error message. Many old 3.3 codes showed this through the use of
- * pvm_freebuf(pvm_setsbuf(x)) etc where there was no old send buffer and
- * hense under 3.4 an error was caused.
+ * Changed pvm_freebuf so that freeing the null buffer '0' no longer
+ * causes an error message. Many old 3.3 codes showed this through the
+ * use of pvm_freebuf(pvm_setsbuf(x)) etc where there was no old send
+ * buffer and hense under 3.4 an error was caused.
  *
  * This saves having to change BLACS, ParckBench and some collective
  * Group operations.
@@ -141,6 +198,7 @@ Initial revision
 #endif
 #include <stdio.h>
 #ifdef NEEDMENDIAN
+#include <sys/types.h>
 #include <machine/endian.h>
 #endif
 #ifdef NEEDENDIAN
@@ -149,13 +207,17 @@ Initial revision
 #ifdef NEEDSENDIAN
 #include <sys/endian.h>
 #endif
-#ifndef WIN32
-#include <rpc/types.h>
-#include <rpc/xdr.h>
-#else
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
+#else
+#include <rpc/types.h>
+#include <rpc/xdr.h>
 #endif
+
 #include <ctype.h>
 #ifdef	__STDC__
 #include <stdarg.h>
@@ -167,7 +229,7 @@ Initial revision
 #else
 #include <strings.h>
 #endif
-#include <pvm3.h>
+
 #include <pvmproto.h>
 #include <pvmtev.h>
 #include "pvmalloc.h"
@@ -301,6 +363,9 @@ umbuf_new()
 	return mp;
 }
 
+void check_for_free();
+/* we need the def here before we call it from umbuf_free() */
+
 
 /*	umbuf_free()
 *
@@ -311,9 +376,18 @@ int
 umbuf_free(mp)
 	struct pmsg *mp;
 {
-	mid_free(mp->m_mid);
+	int src;
+
+	mid_free( mp->m_mid );
 	mp->m_mid = 0;
-	pmsg_unref(mp);
+
+	src = mp->m_src;
+
+	pmsg_unref( mp );
+
+	/* check to see if an TC_TASKEXIT message has been caught */
+	check_for_exit( src );
+
 	return 0;
 }
 
@@ -359,12 +433,11 @@ umbuf_list(lvl)
 	int lvl;
 {
 	int i;
-	struct pmsg *mp;
 	struct frag *fp;
 	int rlen;
 
 	for (i = 1; i < pvmmidhsiz; i++)
-		if (mp = pvmmidh[i].m_umb)
+		if (pvmmidh[i].m_umb)
 			umbuf_dump(i, lvl);
 	return 0;
 }
@@ -1766,8 +1839,7 @@ pvm_vpackf(fmt, ap)
 
 			case 'c':
 				if (isv) {
-				        /*tc = va_arg(ap, char); ss 17/01/2000*/
-					tc = va_arg(ap, int);
+					tc = (char) va_arg(ap, int);
 					cp = &tc;
 				} else
 					cp = va_arg(ap, char *);
@@ -1775,6 +1847,8 @@ pvm_vpackf(fmt, ap)
 #ifdef	DEBUGPACKF
 				printf("%d %d %s%schar\n", cnt, std, (vu ? "unsigned " : ""),
 						(isv ? "" : "&"));
+#else
+				vu = vu; /* sgi compiler */
 #endif
 				break;
 
@@ -1790,8 +1864,7 @@ pvm_vpackf(fmt, ap)
 				} else
 					if (vh) {
 						if (isv) {
-						  /*th = va_arg(ap, short); ss 17/01/00*/
-							th = va_arg(ap, int);
+							th = (short) va_arg(ap, int);
 							hp = &th;
 						} else
 							hp = va_arg(ap, short *);

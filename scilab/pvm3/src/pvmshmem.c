@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmshmem.c,v 1.1 2001/04/26 07:47:12 scilab Exp $";
+	"$Id: pvmshmem.c,v 1.2 2002/10/14 14:37:54 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,10 +35,28 @@ static char rcsid[] =
  *
  *  Shared-memory stuff.
  *
-$Log: pvmshmem.c,v $
-Revision 1.1  2001/04/26 07:47:12  scilab
-Initial revision
-
+ * $Log: pvmshmem.c,v $
+ * Revision 1.2  2002/10/14 14:37:54  chanceli
+ * update
+ *
+ * Revision 1.10  1999/07/08 19:00:14  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.9  1998/08/13  18:31:12  pvmsrc
+ * Altered SUNMP to use test and set operations with semaphores
+ * 		for page locking instead of MUTEX and cond vars.
+ * 	Changes are mainly in pvmshmem.h, with lots of #ifdefs changes.
+ * 	Makefile altered to use the PLOCKFILE to indicate the Page Locking
+ * 		INLINE code used (from SUNMP.conf).
+ * 	Some changes effect AIX MP versions which still use conditional
+ * 		variables and may change to semaphores soon.
+ * (Spanker=fagg)
+ *
+ * Revision 1.8  1998/03/05  16:31:31  pvmsrc
+ * Hack for CSPP - _touch() wasn't typed before use...  :-Q
+ * (Spanker=kohl)
+ *
  * Revision 1.7  1997/07/08  20:18:07  pvmsrc
  * Better logging in peer_conn()
  *
@@ -199,6 +217,10 @@ int bufpageused = 0;				/* number of dirty pages in msg buf */
 static char pvmtxt[512];			/* scratch for error log */
 static int nxtpage = 0;				/* next free page in outgoing msg buf */
 
+#ifdef IMA_CSPP
+static void _touch();
+#endif
+
 
 /*******************************************************
  **  Shared-memory data buffer manipulation routines  **
@@ -218,7 +240,7 @@ msgbufinit(buf)
 
 	end = buf + shmbufsiz;
 #ifndef IMA_KSR1
-#ifdef IMA_SUNMP
+#if defined(IMA_SUNMP) && defined(PVMUSEMUTEX)
 	cond_init(&((struct msgboxhdr *)buf)->mb_cond, USYNC_PROCESS, 0);
 #endif
 #if defined(IMA_RS6KMP) || defined(IMA_AIX4MP)

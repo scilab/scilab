@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmshmmsg.c,v 1.1 2001/04/26 07:47:12 scilab Exp $";
+	"$Id: pvmshmmsg.c,v 1.2 2002/10/14 14:37:54 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -154,6 +154,8 @@ struct segdesc *pvmmyshmseg = (struct segdesc *) NULL;
 
 static struct shm_midlist pvm_shmmids[NSHMMIDS];
 static int lastMidAlloced = 1;
+
+char *getenv();
 
 /* ============================================
 	 Section I
@@ -476,7 +478,7 @@ struct sembuf lockop;
 			return PvmSysErr;
 		}
 		/* GEF */
-		sleep (1);	/* don't even ask... */
+		pvmsleep (1);	/* don't even ask... */
 	}
 
 	if (pvmdebmask & PDMSEM )

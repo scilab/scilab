@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmdtev.c,v 1.1 2001/04/26 07:47:11 scilab Exp $";
+	"$Id: pvmdtev.c,v 1.2 2002/10/14 14:37:52 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -44,16 +44,23 @@ static char rcsid[] =
  *
  */
 
-#ifndef WIN32
-#include <sys/time.h>
-#include <rpc/types.h>
-#include <rpc/xdr.h>
-#else
-#include <time.h>
+
+#include <pvm3.h>
+
+#if defined(WIN32) || defined(CYGWIN)
 #include "..\xdr\types.h"
 #include "..\xdr\xdr.h"
+#else
+#include <rpc/types.h>
+#include <rpc/xdr.h>
 #endif
-#include <pvm3.h>
+
+#ifdef WIN32
+#include <time.h>
+#else
+#include <sys/time.h>
+#endif
+
 #include <pvmproto.h>
 #include "pmsg.h"
 #include <pvmtev.h>

@@ -61,6 +61,7 @@ extern char *malloc();
 #include <sys/time.h>
 #endif
 
+#ifndef CYGWIN
 #ifndef INADDR_LOOPBACK
 #define       INADDR_LOOPBACK         (u_long)0x7F000001
 #endif
@@ -72,5 +73,6 @@ typedef char *caddr_t;
 typedef unsigned int u_int;
 typedef unsigned long u_long;
 typedef unsigned short u_short;
+#endif /* Conflict */
 
 #endif /* ndef __TYPES_RPC_HEADER__ */

@@ -2831,7 +2831,10 @@ re_set_registers (bufp, regs, num_regs, starts, ends)
     {
       bufp->regs_allocated = REGS_UNALLOCATED;
       regs->num_regs = 0;
-      regs->start = regs->end = (regoff_t) 0;
+/* wintel does not like this line
+	  regs->start = regs->end = (regoff_t) 0; */
+	  regs->start = (regoff_t *) 0;
+	  regs->end = (regoff_t *) 0;
     }
 }
 
@@ -3048,7 +3051,8 @@ typedef union
 /* This converts PTR, a pointer into one of the search strings `string1'
    and `string2' into an offset from the beginning of that string.  */
 #define POINTER_TO_OFFSET(ptr)						\
-  (FIRST_STRING_P (ptr) ? (ptr) - string1 : (ptr) - string2 + size1)
+  ( (int) (FIRST_STRING_P (ptr) ? (long) (ptr) - (long) string1 \
+		: (long) (ptr) - (long) string2 + size1) )
 
 /* Registers are set to a sentinel when they haven't yet matched.  */
 #define REG_UNSET_VALUE ((char *) -1)
@@ -3471,8 +3475,9 @@ re_match_2 (bufp, string1, size1, string2, size2, pos, regs, stop)
               if (regs->num_regs > 0)
                 {
                   regs->start[0] = pos;
-                  regs->end[0] = (MATCHING_IN_FIRST_STRING ? d - string1
-			          : d - string2 + size1);
+                  regs->end[0] = (int) (MATCHING_IN_FIRST_STRING ?
+						(long) d - (long) string1
+			          : (long) d - (long) string2 + size1);
                 }
               
               /* Go through the first `min (num_regs, regs->num_regs)'
