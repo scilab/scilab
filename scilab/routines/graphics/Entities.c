@@ -6378,16 +6378,13 @@ sciSetFontForeground (sciPointObj * pobj, int colorindex)
 
 
 /**sciGetFontStyle
- * @memo Gets the font style (a logical mask with 
- * @memo SCI_ATTR_BOLD|SCI_ATTR_ITALIC|SCI_ATTR_UNDERLINE|SCI_ATTR_STRIKEOUT)
+ * @memo Gets the font style 
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 OK, -1 if not
  */
 int
 sciGetFontStyle (sciPointObj * pobj)
 {
-  int iAttributes = SCI_DONT_CARE;
-
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -6395,14 +6392,7 @@ sciGetFontStyle (sciPointObj * pobj)
     case SCI_LEGEND:
     case SCI_SUBWIN:
     case SCI_FIGURE:
-      (sciGetFontContext(pobj))->fontbold ? (iAttributes | SCI_ATTR_BOLD) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontitalic ? (iAttributes | SCI_ATTR_ITALIC) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontunderline ? (iAttributes | SCI_ATTR_UNDERLINE) : iAttributes;
-      iAttributes =
-	(sciGetFontContext(pobj))->fontstrikeout ? (iAttributes | SCI_ATTR_STRIKEOUT) : iAttributes;
-      return iAttributes;
+      return sciGetFontContext(pobj)->fonttype;
       break;
     case SCI_ARC:
     case SCI_SEGS: 
@@ -6446,14 +6436,7 @@ sciSetFontStyle (sciPointObj * pobj, int iAttributes)
     case SCI_SUBWIN: 
 
     case SCI_FIGURE: 
-      (sciGetFontContext(pobj))->fontbold =
-	iAttributes & SCI_ATTR_BOLD ? 700 : 0;
-      (sciGetFontContext(pobj))->fontitalic =
-	iAttributes & SCI_ATTR_ITALIC ? 1 : 0;
-      (sciGetFontContext(pobj))->fontunderline =
-	iAttributes & SCI_ATTR_UNDERLINE ? 1 : 0;
-      (sciGetFontContext(pobj))->fontstrikeout =
-	iAttributes & SCI_ATTR_STRIKEOUT ? 1 : 0;
+      (sciGetFontContext(pobj))->fonttype =iAttributes;
       break;
     case SCI_ARC:
     case SCI_SEGS: 
@@ -6947,11 +6930,8 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_STATUSB:
       (sciGetFontContext(pobj))->backgroundcolor = sciGetFontBackground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->foregroundcolor = sciGetFontForeground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->fontbold        = (sciGetFontContext(sciGetParent(pobj)))->fontbold; 
+      (sciGetFontContext(pobj))->fonttype        = (sciGetFontContext(sciGetParent(pobj)))->fonttype; 
       (sciGetFontContext(pobj))->fontdeciwidth   = (sciGetFontContext(sciGetParent(pobj)))->fontdeciwidth;
-      (sciGetFontContext(pobj))->fontitalic      = (sciGetFontContext(sciGetParent(pobj)))->fontitalic;	
-      (sciGetFontContext(pobj))->fontunderline   = (sciGetFontContext(sciGetParent(pobj)))->fontunderline;
-      (sciGetFontContext(pobj))->fontstrikeout   = (sciGetFontContext(sciGetParent(pobj)))->fontstrikeout;	
       (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(sciGetParent(pobj)))->textorientation;
       (sciGetFontContext(pobj))->fontnamelen     = (sciGetFontContext(sciGetParent(pobj)))->fontnamelen; 
       if (((sciGetFontContext(pobj))->pfontname =
@@ -6984,11 +6964,8 @@ sciInitFontContext (sciPointObj * pobj)
 	{
 	  (sciGetFontContext(pobj))->backgroundcolor = (sciGetFontContext(paxesmdl))->backgroundcolor;
 	  (sciGetFontContext(pobj))->foregroundcolor = (sciGetFontContext(paxesmdl))->foregroundcolor;
-	  (sciGetFontContext(pobj))->fontbold =        (sciGetFontContext(paxesmdl))->fontbold;
+	  (sciGetFontContext(pobj))->fonttype =        (sciGetFontContext(paxesmdl))->fonttype;
 	  (sciGetFontContext(pobj))->fontdeciwidth =   (sciGetFontContext(paxesmdl))->fontdeciwidth;
-	  (sciGetFontContext(pobj))->fontitalic =      (sciGetFontContext(paxesmdl))->fontitalic;
-	  (sciGetFontContext(pobj))->fontunderline =   (sciGetFontContext(paxesmdl))->fontunderline;
-	  (sciGetFontContext(pobj))->fontstrikeout =   (sciGetFontContext(paxesmdl))->fontstrikeout;
 	  (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(paxesmdl))->textorientation;
 	  (sciGetFontContext(pobj))->fontnamelen =     (sciGetFontContext(paxesmdl))->fontnamelen; /*fontname not used */
 	  
@@ -7027,11 +7004,8 @@ sciInitFontContext (sciPointObj * pobj)
 	  /* F.Leray 08.04.04 : I create a  sciFont fontcontext; to act on Axes font*/
 	  (sciGetFontContext(pobj))->backgroundcolor = (sciGetFontContext(pfiguremdl))->backgroundcolor;	
 	  (sciGetFontContext(pobj))->foregroundcolor = (sciGetFontContext(pfiguremdl))->foregroundcolor;
-	  (sciGetFontContext(pobj))->fontbold =        (sciGetFontContext(pfiguremdl))->fontbold;
+	  (sciGetFontContext(pobj))->fonttype =        (sciGetFontContext(pfiguremdl))->fonttype;
 	  (sciGetFontContext(pobj))->fontdeciwidth =   (sciGetFontContext(pfiguremdl))->fontdeciwidth;
-	  (sciGetFontContext(pobj))->fontitalic =      (sciGetFontContext(pfiguremdl))->fontitalic;
-	  (sciGetFontContext(pobj))->fontunderline =   (sciGetFontContext(pfiguremdl))->fontunderline;
-	  (sciGetFontContext(pobj))->fontstrikeout =   (sciGetFontContext(pfiguremdl))->fontstrikeout;
 	  (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(pfiguremdl))->textorientation;
 	  (sciGetFontContext(pobj))->fontnamelen =     (sciGetFontContext(pfiguremdl))->fontnamelen; /*fontname not used */
 	  
