@@ -176,6 +176,11 @@ clear fd ierr
 // load history file ==================================================
 loadhistory()
 
+// Configure Environment Variables for Ms Visual C ====================
+if MSDOS then
+  configure_msvc()
+end
+
 // calling user initialization =========================================
 // Home dir startup (if any)
 [startup,ierr]=mopen('home/.scilab','r')
