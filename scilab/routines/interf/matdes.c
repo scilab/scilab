@@ -2882,13 +2882,13 @@ int scixset(fname,fname_len)
    } /*Ajout A.Djalel le 10/11/03 */
    else if ( strncmp(cstk(l1),"pixmap",6) == 0) {
      pFIGURE_FEATURE(sciGetParent(subwin))->pixmap=x[0];
-     if(x[0] == 1) 
+     /*if(x[0] == 1) 
        sciSetVisibility (sciGetParent(subwin), FALSE);
      else{
        sciSetVisibility (sciGetParent(subwin), TRUE);
-       pFIGURE_FEATURE(sciGetParent(subwin))->wshow=0;}
-     }  
-   else if ( strncmp(cstk(l1),"wshow",5) == 0) {
+       pFIGURE_FEATURE(sciGetParent(subwin))->wshow=0;}*/
+       }  
+      else if ( strncmp(cstk(l1),"wshow",5) == 0) { /* a supprimer ce n'est pas une propriete mais une action */
      pFIGURE_FEATURE(sciGetParent(subwin))->wshow=1;
      sciSetVisibility (subwin, TRUE); 
      }
@@ -5152,11 +5152,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"pixmap", 6) == 0){
     if (strncmp(cstk(*value),"on",2)==0 ){
       pFIGURE_FEATURE(pobj)->pixmap =1;
-      sciSetVisibility (pobj, FALSE);}
+      /*sciSetVisibility (pobj, FALSE);*/}
     else if (strncmp(cstk(*value),"off",3)==0 ){
       pFIGURE_FEATURE(pobj)->pixmap =0;
-      sciSetVisibility (pobj, TRUE);
-      pFIGURE_FEATURE(pobj)->wshow=0;}
+      /*sciSetVisibility (pobj, TRUE);
+      pFIGURE_FEATURE(pobj)->wshow=0;*/}
     else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
   }
   /********************** context graphique ******************************/
