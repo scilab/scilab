@@ -112,31 +112,44 @@ dx=abs(xmax-xmin)*0.05
 dy=abs(ymax-ymin)*0.05
 if dx<1d-10, dx=0.01,end
 if dy<1d-10, dy=0.01,end
-
+legs=[],lstyle=[];
 rect=[xmin-dx;ymin-dy;xmax+dx;ymax+dy];
 gstyle=get('figure_style')
 if gstyle=='new' then 
   f=gcf();
   cur_im_dr= f.immediate_drawing;
   f.immediate_drawing = 'off';
-end
-plot2d([],[],rect=[xmin-dx;ymin-dy;xmax+dx;ymax+dy],frameflag=7)
+  a=gca()
+  a.data_bounds=[rect(1) rect(2);rect(3) rect(4)]
+  if nroots<>[] then 
+    plot2d(real(nroots),imag(nroots),style=-5)
+    e=gce();e=e.children;e.mark_size_unit="point";e.mark_size=7;
+    legs=[legs 'open loop zeroes']
+  end
+  if racines<>[] then 
+    plot2d(real(racines(:,1)),imag(racines(:,1)),style=-2)
+    e=gce();e=e.children;e.mark_size_unit="point";e.mark_size=7;
+    legs=[legs,'open loop poles']
+  end
+else
+  plot2d([],[],rect=rect,frameflag=7)
+  xx=xget("mark")
+  xset("mark",xx(1),xx(1)+3);
+  if nroots<>[] then
+    plot2d(real(nroots),imag(nroots),style=-5,frameflag=0,axesflag=0)
+    legs=[legs 'open loop zeroes'],lstyle=[lstyle [-5;0]];
+  end
+  //plot the poles locations
+  if racines<>[] then
+    plot2d(real(racines(:,1)),imag(racines(:,1)),style=-2,frameflag=0, ...
+	   axesflag=0)
+    legs=[legs,'open loop poles'],lstyle=[lstyle, [-2;0]];
+  end
 
+end
 dx=maxi(abs(xmax-xmin),abs(ymax-ymin));
 //plot the zeros locations
-xx=xget("mark")
-xset("mark",xx(1),xx(1)+3);
-legs=[],lstyle=[];
-if nroots<>[] then
-  plot2d(real(nroots),imag(nroots),style=-5,frameflag=0,axesflag=0)
-  legs=[legs 'open loop zeroes'],lstyle=[lstyle [-5;0]];
-end
-//plot the poles locations
-if racines<>[] then
-  plot2d(real(racines(:,1)),imag(racines(:,1)),style=-2,frameflag=0, ...
-	 axesflag=0)
-  legs=[legs,'open loop poles'],lstyle=[lstyle, [-2;0]];
-end
+
 
 //computes and draw the asymptotic lines
 m=degree(n);q=md-m
@@ -156,9 +169,14 @@ if q>0 then
     end,
   end;
   if maxi(k)>0 then
-    plot2d(i1,i2,style=1,frameflag=0,axesflag=0);
-    legs=[legs,'asymptotic directions'],lstyle=[lstyle [1;1]];
-    xset("clipgrf");
+    if gstyle=='new' then 
+      plot2d(i1,i2,style=1);
+      legs=[legs,'asymptotic directions']
+    else
+      plot2d(i1,i2,style=1,frameflag=0,axesflag=0);
+      legs=[legs,'asymptotic directions'],lstyle=[lstyle [1;1]];
+    end
+     xset("clipgrf");
     for i=1:q,xsegs([i1,x1(i)+i1],[i2,y1(i)+i2]),end,
     xclip();
   end
@@ -166,20 +184,23 @@ end;
 
 //lieu de evans
 [n1,n2]=size(racines);
-plot2d(real(racines)',imag(racines)',style=2+(1:n2),frameflag=0,axesflag=0);
-legends(legs,lstyle,1)
-xtitle('Evans root locus','Real axis','Imag. axis');
 if gstyle=='new' then
- f=gcf();
- if(cur_im_dr=="on")
-    f.immediate_drawing = 'on';
- end
+  plot2d(real(racines)',imag(racines)',style=2+(1:n2));
+  legend(legs,1)
+  xtitle('Evans root locus','Real axis','Imag. axis');
+  f=gcf();
+  if(cur_im_dr=="on") then f.immediate_drawing = 'on';end
+else
+  plot2d(real(racines)',imag(racines)',style=2+(1:n2),frameflag=0,axesflag=0);
+  legends(legs,lstyle,1)
+  xtitle('Evans root locus','Real axis','Imag. axis');
+  xset("mark",xx(1),xx(2));
 end
+
 
 if fin=='nptmax' then
   write(%io(2),'evans : too many points required')
 end
-xset("mark",xx(1),xx(2));
 
 //   gain corresponding to a selected point of the locus
 //[l1,l2]=min(abs(racines(:)-selected));
