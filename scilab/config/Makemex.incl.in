@@ -1,0 +1,110 @@
+# Generated automatically from Makemex.incl.in  by configure.
+# see examples/mex-examples/mex-with-so/Makefile 
+# for an example of Makemex use 
+# some variables are defined here and other are defined in Makefile.incl 
+
+top_builddir = $(SCIDIR)
+
+SHELL = @SHELL@
+DLLTOOL = @DLLTOOL@
+LIBM = @LIBM@
+LIBTOOL = @LIBTOOL@
+OBJDUMP = @OBJDUMP@
+STATIC = @STATIC@
+LN_S = @LN_S@
+NM = @NM@
+LDFLAGS = @LDFLAGS@ $(OTHERLIBS)
+LIBS = @LIBS@
+
+# we do not set CFLAGS and FFLAGS here 
+#CFLAGS = $(CC_OPTIONS) 
+#FFLAGS = $(FC_OPTIONS) 
+
+QUIET=--quiet
+
+COMPILE = $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+FCOMPILE = $(FC) $(FFLAGS)
+
+LTCOMPILE = $(LIBTOOL) --mode=compile $(QUIET) $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+FLTCOMPILE = $(LIBTOOL) --mode=compile $(QUIET) $(FC) $(FFLAGS)
+
+LINK = $(LIBTOOL) --mode=link $(QUIET)  $(CC) $(CFLAGS) $(LDFLAGS) -o $@
+
+LOBJS = $(OBJECTS:.o=.lo)
+#******************************************************************* 
+
+all::  $(LIBRARY).la  
+
+.SUFFIXES:
+.SUFFIXES: .c .lo .o .F .F90 .f90
+
+$(LIBRARY).la : $(LOBJS) 
+	@$(LINK) -rpath `pwd` -module -avoid-version -export-dynamic $(LOBJS) 
+	@$(LIBTOOL) --mode=install $(QUIET) cp $(LIBRARY).la `pwd`/$(LIBRARY).la > /dev/null
+
+clean	::
+	$(RM) *.o *.lo
+	$(RM) $(LIBRARY).la
+	$(RM) $(LIBRARY).so
+	$(RM) -r .libs
+
+distclean:: clean 
+
+tests	: $(LIBRARY).dia
+
+$(LIBRARY).dia	: $(LIBRARY).la $(LIBRARY).tst
+	@$(SCIDIR)/util/scidem $(SCIDIR) $(LIBRARY).tst $(LIBRARY).dia
+
+.c.o:
+	@$(COMPILE) -DmexFunction=mex_$* -c $<
+
+.c.lo :
+	@$(LTCOMPILE) -DmexFunction=mex_$* -c $<
+
+.F.o:
+	@$(FCOMPILE) -Dmexfunction=mex$* -c $<
+
+.F.lo :
+	@$(FLTCOMPILE) -Dmexfunction=mex$* -c $<
+
+.f.o:
+	@$(FCOMPILE) -Dmexfunction=mex$* -c $<
+
+.f.lo :
+	@$(FLTCOMPILE) -Dmexfunction=mex$* -c $<
+
+.F90.o:
+	@echo "compiling $<"
+	@$(FCOMPILE)  -Dmexfunction=mex$* -c $<
+
+.F90.lo :
+	@echo "Compiling $<"
+	@$(FLTCOMPILE)  -Dmexfunction=mex$* -c $<
+
+.f90.o:
+	@echo "compiling $<"
+	@$(FCOMPILE)  -Dmexfunction=mex$* -c $<
+
+.f90.lo :
+	@echo "Compiling $<"
+	@$(FLTCOMPILE)  -Dmexfunction=mex$* -c $<
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
