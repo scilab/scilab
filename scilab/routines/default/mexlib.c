@@ -20,7 +20,7 @@ extern int  C2F(mxgetn) __PARAMS((    Matrix *ptr));
 extern void C2F(xscisrn) __PARAMS((char *str,int *n,int  dummy));
 extern int  C2F(erro)  __PARAMS((char *str,int dummy));
 extern int  C2F(hmcreate)  __PARAMS((int *lw,int *nz,int *sz,int *typv,int *iflag,int *retval));
-extern int  C2F(structcreate)  __PARAMS((int *lw1,int *ndim,int *dims, int *nfields, char **field_names, int *retval));
+extern int  C2F(stcreate)  __PARAMS((int *lw1,int *ndim,int *dims, int *nfields, char **field_names, int *retval));
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 
 #define DOUBLEMATRIX 1
@@ -87,14 +87,20 @@ double *listentryold(int *loci, int i)
 
 int theMLIST(int *loci)
 {
+  int *loci1; int nfplus2, l;
   if (loci[0]==17 && loci[1]==3 && loci[6]==10) {
     if (loci[14]==12 && loci[15]==14) return 2;  /* CELL   */
     if (loci[14]==17 && loci[15]==22) return 1;  /* NDARRAY   */
   }
-   if (loci[17]==28 && loci[18]==29 && loci[19]==27) return 3;  
-   else return 0;
+  if (loci[0]==17) {
+    loci1 = (int *) listentry(loci,1);
+    nfplus2 = loci1[1]*loci1[2];
+    l = 5 + nfplus2;
+  /*  "s"=28,  "t"=29   */
+    if (loci1[0]==10 && loci1[l]==28 && loci1[l+1]==29) return 3;  /* STRUCT */
+  }
+  return 0;
 }
-
 
 /*----------------------------------------------------------------
  *                       DOUBLEMATRIX                            
@@ -350,7 +356,7 @@ double *mxGetPi(Matrix *ptr)
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
     if (loci[3]==0 || loci[1]==0 || loci[2] == 0) return NULL;
-    return  &loc[2];&loc[2 + loci[1] * loci[2]];
+    return  &loc[2];&loc[2 + loci[1] * loci[2]];  /*  ?  */
   case MLIST:
     debut=6+2*(loci[4]-1);
     switch (loci[debut]){
@@ -737,6 +743,7 @@ int mxIsClass(Matrix *ptr, char *name)
   }
   return 0;
 }
+
 mxArray *mxCreateStructArray(int ndim, int *dims, int nfields, char **field_names)
 {
   static int lw,lw1;
@@ -744,9 +751,7 @@ mxArray *mxCreateStructArray(int ndim, int *dims, int nfields, char **field_name
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
-  /* int C2F(structcreate)(lw, nz, sz, nf, fnames,retval) */
-  /*  C2F(hmcreate)(&lw1, &ndim, dims, &CLASS, &cmplx,&retval); */
-  C2F(structcreate)(&lw1, &ndim, dims, &nfields, field_names, &retval);
+  C2F(stcreate)(&lw1, &ndim, dims, &nfields, field_names, &retval);
   if( !retval) {
     return (Matrix *) 0;
   }
@@ -786,23 +791,19 @@ Matrix *mxCreateCharArray(int ndim, int *dims)
 
 Matrix *mxCreateCellArray(int ndim, int *dims)
 {
-  Matrix *ppr[1];Matrix *ppl[1];
-  int k, nlhs, nrhs;
-  double  *start_of_pr;
-  ppr[0] = mxCreateDoubleMatrix( ndim , 1, 0);
-  start_of_pr = (double *) mxGetPr(ppr[0]);
-  for ( k=0; k<ndim; k++ ) {
-    start_of_pr[k]= (double) dims[k];
+  static int lw,lw1;
+  int retval;
+  int nfields;char *field_names[] = {"entries"};
+  Nbvars++;
+  lw = Nbvars;
+  lw1 = lw + Top - Rhs;
+  C2F(stcreate)(&lw1, &ndim, dims, (nfields=1,&nfields), field_names , &retval);
+  if( !retval) {
+    return (Matrix *) 0;
   }
-  nrhs=1;nlhs=1;
-  /* cell = mlist(["ce","dims","entries"],[dim1,...,dimk],list([],...,[])) */
-  /* w=makecell(dims) w=mlist(["ce","dims","entries"],dims,list())  */
-  mexCallSCILAB(nlhs, ppl, nrhs, ppr, "makecell");    
-  C2F(intersci).ntypes[Nbvars + Top - Rhs -1]=AsIs;
-  return ppl[0];
+  C2F(intersci).ntypes[lw-1]=AsIs;
+  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
 }
-
-
 
 Matrix *mxGetCell(Matrix *ptr, int index)
 {
@@ -810,8 +811,8 @@ Matrix *mxGetCell(Matrix *ptr, int index)
   int *loci = (int *) stkptr((long int)ptr);
   int kk,lw,isize;
   locilist = listentry(loci,3);
-  lociobj = listentry(locilist,index);
-  isize=2*(locilist[index+2]-locilist[index+1]);
+  lociobj = listentry(locilist,index+1);
+  isize=2*(locilist[index+3]-locilist[index+2]);
   Nbvars++;
   lw=Nbvars;
   CreateData(lw,4*isize);
@@ -821,6 +822,54 @@ Matrix *mxGetCell(Matrix *ptr, int index)
   C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
   /* TO BE REDONE! */
   return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
+}
+
+int mxGetFieldNumber(mxArray *ptr, char *string)
+{
+  int *locistr;
+  int *loci = (int *) stkptr((long int)ptr);
+  int nf, longueur, istart, k, ilocal, retval;
+  char *str= (char *) malloc(24*sizeof(char));
+  locistr = listentry(loci,1);
+  nf=locistr[1]*locistr[2]-2;  /* number of fields */
+  retval=-1;
+  for (k=0; k<nf; k++) {
+    longueur=Min(locistr[7+k]-locistr[6+k],24);  /* size of kth fieldname */
+    istart=9+locistr[3+nf+k];            /* start of kth fieldname code */
+    C2F(cvstr)(&longueur, &locistr[istart], str, (ilocal=1, &ilocal),longueur);
+    str[longueur]='\0';
+    if (strcmp(string, str) == 0) {
+      retval=k;
+      break;}
+  }
+  return retval;
+}
+
+Matrix *mxGetField(mxArray *ptr, int index, char *string)
+{
+  int *locilist,*lociobj,*lociobjcopy;
+  int *loci = (int *) stkptr((long int)ptr);
+  int kk,lw,isize,fieldnum;
+  fieldnum=mxGetFieldNumber(ptr, string);
+  locilist = listentry(loci,3+fieldnum);
+  lociobj = listentry(locilist,index+1);
+  isize=2*(locilist[index+3]-locilist[index+2]);
+  Nbvars++;
+  lw=Nbvars;
+  CreateData(lw,4*isize);
+  lociobjcopy=GetData(lw);
+  for (kk = 0; kk < isize; ++kk) lociobjcopy[kk]=lociobj[kk];
+  C2F(intersci).ntypes[lw-1]=AsIs;
+  C2F(intersci).iwhere[lw-1]=C2F(vstk).Lstk[lw+ Top - Rhs - 1];
+  /* TO BE REDONE! */
+  return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
+}
+
+int mxGetNumberOfFields(mxArray *ptr)
+{
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0]==17) return loci[1]-2;
+  else return 0;
 }
 
 /*----------------------------------------------------
@@ -856,18 +905,31 @@ void *mxMalloc(unsigned int nsize)
 int mxIsCell(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
-  if (loci[0]==17 && loci[1]==3 && loci[6]==10 && loci[14]==12 && loci[15]==14)
-    return 1;
+  int *loci1; int l;
+  /* mlist(["ce","dims","entries"],[d1,..,dk],list(...)) */
+  if (loci[0]==17) {
+    loci1 = (int *) listentry(loci,1);
+    l = 8;
+  /*  "c"=12,  "e"=14   */
+    if (loci1[0]==10 && loci1[l]==12 && loci1[l+1]==14) return 1;
+    else return 0;
+      }
   else return 0;
 }
 
 int mxIsStruct(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
-  /* mlist(["struct","dims","fields"],
-           [d1,..,dk],["f1",...,"fp"],list1(...),listp(...)) */
-  if (loci[0]==17 && loci[17]==28 && loci[18]==29 && loci[19]==27)
-    return 1;
+  int *loci1; int nfplus2, l;
+  /* mlist(["st","dims","field1",...,"fieldp"],[d1,..,dk],list1(...),listp(...)) */
+  if (loci[0]==17) {
+    loci1 = (int *) listentry(loci,1);
+    nfplus2 = loci1[1]*loci1[2];
+    l = 5 + nfplus2;
+  /*  "s"=28,  "t"=29   */
+    if (loci1[0]==10 && loci1[l]==28 && loci1[l+1]==29) return 1;
+    else return 0;
+  }
   else return 0;
 }
       
@@ -1227,6 +1289,10 @@ int C2F(initmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
       prhs[k-1] = (Matrix *) C2F(vstk).Lstk[RhsVar - 1];
       C2F(intersci).ntypes[k-1]=AsIs;
       loci = (int *) stkptr((long int)prhs[k-1]);
+      /*
+	Indirect
+       */
+      if (loci[0] < 0) loci = (int *) stk(loci[1]);
       switch (loci[0]) {
       case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
 	break;
@@ -1249,7 +1315,7 @@ int C2F(initmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
       case MLIST:
 	loci1 = (int *) listentry(loci,2);
 	m = loci1[1]*loci1[2];
-	C2F(entier)(&m, (double *) &loci1[4], &loci1[4]);
+	/* C2F(entier)(&m, (double *) &loci1[4], &loci1[4]); */
 	break;
       default:
 	mexErrMsgTxt("Invalid input");
