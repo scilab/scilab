@@ -42,8 +42,8 @@ c
       character cstk*(4*vsiz)
       equivalence (cstk,stk(1))
 
-c      complex*16 zstk*(vsiz/2)
-c      equivalence (zstk(1),stk(1))
+      complex*16 zstk(vsiz/2)
+      equivalence (zstk(1),stk(1))
 
       integer bot,top,idstk(nsiz,isizt),lstk(isizt),leps,bbot,bot0,isiz
       integer gbot,gtop,infstk(isizt)
