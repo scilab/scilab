@@ -25,7 +25,7 @@ OBJSF = coshin.obj arcosh.obj  dad.obj dadd.obj  ccopy.obj  rcopy.obj ddif.obj \
 	calerf.obj gamma.obj ribesl.obj rkbesl.obj rjbesl.obj rybesl.obj psi.obj dlgama.obj\
 	dmsum.obj wmsum.obj dmprod.obj wmprod.obj drdiv.obj dcabs1.obj infinity.obj \
 	unsfdcopy.obj idmax.obj idmin.obj wacos.obj wasin.obj  wtan.obj nearfloat.obj \
-	dsearch.obj
+	dsearch.obj cmp.obj 
 
 include ../../Makefile.incl.mak
 
@@ -35,7 +35,7 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.mak
 
-
 finite.obj: ../machine.h
 
 sci_tools.obj : sci_tools.h ../machine.h
+
