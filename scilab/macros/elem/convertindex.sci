@@ -4,10 +4,13 @@ function [Newdims,I]=convertindex(dims,varargin)
 //extented and new dimensions are returned in Newdims
 // Copyright INRIA
 
+// VC 27/05/2004
 // if dims is a list (INSERTION) it contains:
 //  1) dims: vector of dimensions of matrix where data are inserted
 //  2) Ndims: vector of dimensions of matrix to insert
 // else (EXTRACTION) is is a vector (vector of dimensions)
+
+// Modified files: %ce_i_ce.sci %st_i_st.sci %b_i_hm.sci %hm_i_b.sci %hm_i_hm.sci %hm_i_i.sci %hm_i_p.sci %hm_i_s.sci %i_i_hm.sci %p_i_hm.sci
 
 if type(dims)==15 then // insertion
   Ndims=dims(2)
