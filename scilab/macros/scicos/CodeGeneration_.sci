@@ -1313,6 +1313,8 @@ function  [ok,XX]=do_compile_superblock(XX)
       wfunclist($+1)=Code
       if nbcap==1 then Protos=[Protos;'';protoi] ,end
       capt=[capt;capti]
+    elseif funs(i)=='bidon'
+      wfunclist($+1)=' '
     else
       ki=find(funs(i)==dfuns)
       [Code,protoi]=call_block(i)
@@ -1349,7 +1351,7 @@ function  [ok,XX]=do_compile_superblock(XX)
   [state,t]=scicosim(cpr.state,tcur,tf,Total_rdcpr,'start',tolerances);
   cpr.state=state;
   z=cpr.state.z;outtb=cpr.state.outtb;
-  
+  [junk_state,t]=scicosim(cpr.state,tcur,tf,Total_rdcpr,'finish',tolerances);
 
   
   //***********************************
