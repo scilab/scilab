@@ -1920,7 +1920,7 @@ EXPORT int WINAPI TextGetCh (LPTW lptw)
 
   do 
   {
-    if ( (!GetThreadPasteRunning()) || (!WriteInKeyBuf) ) Sleep(1); 
+    if ( (!GetThreadPasteRunning()) && (!WriteInKeyBuf) ) Sleep(1); 
     TextMessage();
   } while (!TextKBHit(lptw));
 
