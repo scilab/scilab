@@ -224,8 +224,12 @@ function [txt,ilst]=cod2sci(lst,ilst)
 	  LHS=[name,LHS]
 	else
 	  I=[];
-	  for i=1:rhs, iind=iind+1,I=[I,stk(iind)(1)];end
-	  LHS=[name+'('+strcat(I,',')+')',LHS]
+	  if rhs<>0 then
+	    for i=1:rhs, iind=iind+1,I=[I,string(stk(iind)(1))];end
+	    LHS=[name+'('+strcat(I,',')+')',LHS]
+	  else
+	    LHS=[name,LHS]
+	  end
 	end
       end
       if lhs>1 then  LHS='['+strcat(LHS,',')+']',end
