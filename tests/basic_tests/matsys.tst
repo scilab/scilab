@@ -179,8 +179,7 @@ if funcprot()<>2 then pause,end
 funcprot(1)
 
 // timer
-timer();svd(rand(100,100));if timer()<=0 then pause,end
-
+timer();for i=1:100000,end;if timer()<=0 then pause,end
 
 // comp
 deff('[a]=foo()','a=1','n')
