@@ -3,7 +3,7 @@ function M=%s_i_s(varargin)
 [lhs,rhs]=argn(0)
 M=varargin(rhs)
 N=varargin(rhs-1)//inserted matrix
-if type(varargin(1)==10) then
+if type(varargin(1))==10 then
   M=mlist(["st","dims",varargin(1)],int32([1 1]),N);
   return	
 end
