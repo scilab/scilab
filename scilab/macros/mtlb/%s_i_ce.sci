@@ -4,9 +4,9 @@ function M=%s_i_ce(varargin)
 [lhs,rhs]=argn(0)
 M=varargin(rhs)//
 N=varargin(rhs-1)//inserted matrix
-dims=M('dims')(:);
+dims=M.dims(:);
 
-v=M('entries');
+v=M.entries;
 
 nindex=rhs-2
 nd=size(dims,'*')
@@ -43,7 +43,7 @@ dims1=[dims1;dims12]
 if size(dims1,'*')<2 then dims1(2)=1,end
 
 //form the resulting data structure
-M=mlist(['ce','dims','entries'],int32(dims1),v)
+M=mlist(['ce','dims','entries'],int32(matrix(dims1,1,-1)),v)
 endfunction
 
 
