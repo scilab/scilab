@@ -541,3 +541,4 @@
 {"sident",		IN_intslicot,	1,	3},
 {"sorder",		IN_intslicot,	2,	3},
 {"findbd",		IN_intslicot,	3,	3},
+{"rankqr",		IN_intslicot,	4,	3},
