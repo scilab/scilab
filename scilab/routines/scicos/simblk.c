@@ -67,7 +67,7 @@ int C2F(simblkdassl)(t,xc,xcdot,residual,ires,rpar,ipar)
 	of the state 
      */
 { integer nordclk,neq;
-printf("t xc xcdot %f %f %f\n", *t, *xc,*xcdot);
+/*printf("t xc xcdot %f %f %f\n", *t, *xc,*xcdot);*/
  *ires=0;
  C2F(ierode).iero = 0;
  neq=scicos_imp.xptr[scicos_imp.nblk]-1;
@@ -90,6 +90,6 @@ printf("t xc xcdot %f %f %f\n", *t, *xc,*xcdot);
 	    scicos_imp.funtyp, scicos_imp.outtb, 
 	    scicos_imp.iwa,&C2F(ierode).iero);
  if(C2F(ierode).iero != 0) *ires=-2;
- printf("residual %f \n", *residual);    
+/* printf("residual %f \n", *residual); */   
 }
  

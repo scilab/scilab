@@ -67,7 +67,7 @@ C     initialization (flag 6)
 c     
 c     point-fix iterations
 c     
-      do 50 i=1,nblk
+      do 50 i=1,nblk+1
 C     loop on blocks
          do 11 kfun=1,nblk
             flag=6
@@ -99,6 +99,8 @@ c
  12         continue
          endif
          do 20 jj=1,nout
+            write(6,'(''outtb='',e10.3,'' outt='',e10.3)') 
+     $           outtb(1),outt(1)
             if(outtb(jj).ne.outt(jj)) goto 30
  20     continue
 c     

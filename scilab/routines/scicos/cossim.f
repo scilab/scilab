@@ -320,8 +320,8 @@ c
       logical hot,stuck
       integer i,k,ierr1,iopt,istate,itask,j,jdum,jt,
      &     ksz,flag,keve,kpo,nord,nclock
-      integer info(15)
-      double precision t
+      integer info(15),nng
+      double precision t,tkeep
       double precision tvec(nts)
 c
       external grblkdassl,simblkdassl
@@ -439,7 +439,7 @@ c     .     update outputs of 'c' type blocks with no continuous state
      $           rpar,rpptr,ipar
      $           ,ipptr,funptr,funtyp,outtb,w,hot,ierr) 
             if(ierr.ne.0) return
-            if(hot) info(1)=1
+            if(.NOT.hot) info(1)=0
  343        continue
 C     
          else
@@ -491,46 +491,31 @@ c
 c
             jt = 2
             t=min(told+deltat,min(t,tf+ttol))
+            if (stuck) then
+               info(3)=1
+               nng=0
+            else
+               nng=ng
+               info(3)=0
+            endif
 c     
-c
+c            write(6,'(''told='',e10.3,'' t='',e10.3,'' neq='',i3)') 
+c     $           told,t,neq(1)
 c     Warning rpar and ipar are used here as dummy pointers
             call DDASRT (simblkdassl,neq,told,x,x(neq(1)+1),t,info,
      *           rtol,atol,istate,rhot,nrwp,ihot,niwp,rpar,ipar,
-     *           jdum,grblkdassl,ng,jroot)
-
-c            call lsodar(simblk,neq,x,told,t,1,rtol,atol,itask,
-c     &           istate,iopt,rhot,nrwp,ihot,niwp,jdum,jt,grblk,
-c     &           ng,jroot)
+     *           jdum,grblkdassl,nng,jroot)
 
             if (istate .le. 0) then
-               if (istate .eq. -3) then
-                  if(stuck) then
-                     ierr= 2
-                     return
-                  endif
-c                  itask = 2
-                  info(1)=0
-                  info(3)=1
-                  istate = 1
-c                  call lsoda(simblk,neq,x,told,t,
-c     &                 1,rtol,atol,itask,
-c     &                 istate,iopt,rhot,nrwp,ihot,niwp,jdum,jt)
-                  call DDASSL(simblkdassl,neq,told,x,x(neq(1)+1),t,info
-     $                 ,rtol,atol,istate,rhot,nrwp,ihot,niwp,rpar,ipar
-     $                 ,jdum)
-c                  hot = .false.
-                  info(1)=0
-                  info(3)=1
-                  stuck=.true.
-                  if (istate .gt. 0) goto 38
-               endif
 C     !        integration problem (to be revised)
                ierr = 100-istate
                return
             endif
+            if (stuck) then
+               stuck=.false.
+               info(1)=0
+            endif
 c            hot = .true.
-            info(1)=1
-            stuck=.false.
  38         continue
 c     .     update outputs of 'c' type  blocks
             nclock = 0
@@ -544,9 +529,11 @@ c     .     update outputs of 'c' type  blocks
      $              rpar,rpptr,ipar
      $              ,ipptr,funptr,funtyp,outtb,w,hot,ierr) 
                if(ierr.ne.0) return
-               if(hot) info(1)=1
+               if(.NOT.hot) info(1)=0
             endif
             if (istate .eq. 4) then
+               info(1)=0
+               stuck=.true.
 C     .        at a least one root has been found
                ig = 1
                do 50 kfun = 1,nblk
@@ -574,10 +561,10 @@ c     .           kev is a base 2 coding of reached zero crossing surfaces
                         ntvec=clkptr(kfun+1)-clkptr(kfun)
 c     .              call corresponding block to determine output event (kev)
                         call callf(kfun,kev,funptr,funtyp,
-     $                       told,x,x,xptr,z,
-     $                       zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
-     $                       ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $                       outtb,flag) 
+     $                       told,x,x,xptr,z,zptr,
+     $                       iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
+     $                       ntvec,inpptr,inplnk,outptr,outlnk,
+     $                       lnkptr,outtb,flag) 
                         if(flag.lt.0) then
                            ierr=5-flag
                            return
@@ -585,12 +572,13 @@ c     .              call corresponding block to determine output event (kev)
 c     .              update event agenda
                         do 47 k=1,clkptr(kfun+1)-clkptr(kfun)
                            if (tvec(k).ge.told) then
-c                              if (critev(k+clkptr(kfun)-1).eq.1)
+c     if (critev(k+clkptr(kfun)-1).eq.1)
 c     $                             hot=.false.
                               if (critev(k+clkptr(kfun)-1).eq.1)
      $                             info(1)=0
-                              call addevs(tevts,evtspt,nevts,pointi,
-     &                             tvec(k),k+clkptr(kfun)-1,ierr1)
+                              call addevs(tevts,evtspt,nevts,
+     $                             pointi,tvec(k),
+     $                             k+clkptr(kfun)-1,ierr1)
                               if (ierr1 .ne. 0) then
 C     .                       nevts too small
                                  ierr = 3
@@ -609,14 +597,14 @@ c
       else
 C     .  t==told
          hot=info(1).eq.1
-         call ddoit(neq,x,xptr,z,zptr,iz,izptr,told,tf,
+         call ddoitdassl(neq,x,xptr,z,zptr,iz,izptr,told,tf,
      $        tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr,
      $        outlnk,lnkptr,clkptr,ordptr,nptr,
      $        ordclk,nordcl,cord,iord,niord,oord,zord,critev,
      $        rpar,rpptr,ipar,
      $        ipptr,funptr,funtyp,outtb,w,iwa,hot,ierr) 
          if(ierr.ne.0) return
-         if(hot) info(1)=1
+         if(.NOT.hot) info(1)=0
 C     
       endif
 C     end of main loop on time

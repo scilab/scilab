@@ -150,6 +150,9 @@ c
       double precision atol,rtol,ttol,deltat
       common /costol/ atol,rtol,ttol,deltat
 c     
+c      write(6,'(''x='',e10.3)') 
+c     $     x(1)
+
       urg=0
       do 19 jj=1,nzord
          kfun=zord(jj)
@@ -160,6 +163,7 @@ c
      $           x,x,xptr,z,zptr,iz,izptr,rpar,
      $           rpptr,ipar,ipptr,tvec,ntvec,inpptr,
      $           inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+
             if (flag .lt. 0) then
                ierr = 5 - flag
                return

@@ -81,7 +81,7 @@ int C2F(grblk)(neq, t, xc, ng1, g)
 	      }
 	  }
       }
-      printf("surface_g %f \n", *g);
+ /*     printf("surface_g %f \n", *g);*/
       return 0;
   }
 
