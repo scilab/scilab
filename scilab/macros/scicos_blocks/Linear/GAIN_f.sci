@@ -32,8 +32,8 @@ case 'set' then
     end
   end
 case 'define' then
-<<<<<<< GAIN_f.sci
-  gain=1
+
+  gain=1;in=1;out=1;
   model=scicos_model()
   model.sim='gain'
   model.in=1
@@ -49,13 +49,6 @@ case 'define' then
       'else'
       '  gain=''Gain'','
       'end';
-=======
-  in=1;out=1;gain=1
-  model=list('gain',in,out,[],[],[],[],gain,[],'c',[],[%t %f],' ',list())
-  label=strcat(sci2exp(gain))
-  gr_i=['[nin,nout]=model(2:3);';
-      'if nin*nout==1 then gain=string(model(8)),else gain=''Gain'',end';
->>>>>>> 1.3
       'dx=sz(1)/5;';
       'dy=sz(2)/10;';
       'xx=orig(1)+      [1 4 1 1]*dx;';

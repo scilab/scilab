@@ -73,7 +73,7 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
 	do_icon_edit.sci CFORTR.sci FORTR.sci getblocktext.sci getblocklink.sci \
 	do_export.sci systexport.sci do_doc.sci dig_bound.sci  \
 	cosclick.sci window_set_size.sci replayifnecessary.sci getgeom.sci \
-        convert_gri.sci traductor.sci scicos_block.sci scicos_graphics.sci \
+        do_version26.sci scicos_block.sci scicos_graphics.sci \
 	scicos_model.sci scicos_link.sci  %model_p.sci  %graphics_p.sci \
 	%Block_p.sci %Block_n_Block.sci %params_n_params.sci %params_o_params.sci\
 	%graphics_n_graphics.sci %model_n_model.sci %params_p.sci \
