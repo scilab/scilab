@@ -73,7 +73,12 @@ if(rep(1)==1) then,
   ory=av+0.05*eny;hy=0.9*eny;
 end;
 xsetech([0,0,1.0,1.0],[orx,ory,orx+wx,ory+hy]);
-isoview(orx,orx+wx,ory,ory+hy);
+if get('figure_style')=='new'  then
+  a=gca()
+  a.isoview='on';
+else
+  isoview(orx,orx+wx,ory,ory+hy);
+end
 nodecolor=nodediam;
 nodeborder=0*ones(1,n);
 nodefontsize=23040.*ones(1,n);
