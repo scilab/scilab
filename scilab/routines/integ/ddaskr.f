@@ -8,6 +8,7 @@ C   020815  DATE WRITTEN
 C   021105  Changed yprime argument in DRCHEK calls to YPRIME.
 C   021217  Modified error return for zeros found too close together.
 C   021217  Added root direction output in JROOT.
+C   031201  stuck root masking 
 C***CATEGORY NO.  I1A2
 C***KEYWORDS  DIFFERENTIAL/ALGEBRAIC, BACKWARD DIFFERENTIATION FORMULAS,
 C             IMPLICIT DIFFERENTIAL SYSTEMS, KRYLOV ITERATION
@@ -1003,7 +1004,10 @@ C                   is not considered to have been started.
 C
 C           IDID = 5 -- The integration was successfully completed
 C                   by finding one or more roots of R(T,Y,Y') at T.
-C
+C           IDID = 6 -- The integration was successfully completed
+C                   by finding A ROOT, LIFTED FROM ZERO.
+c
+c
 C                    *** TASK INTERRUPTED ***
 C                Reported by negative values of IDID
 C
@@ -1511,10 +1515,10 @@ C
 C     Set and/or check controls for the initial condition calculation
 C     (INFO(11) .GT. 0).  If indicated, set default values.
 C     Otherwise, verify inputs required for iterative solver.
-C
+C 
       IF (INFO(11) .EQ. 0) GO TO 30
       IF (INFO(17) .EQ. 0) THEN
-        IWORK(LMXNIT) = 1
+        IWORK(LMXNIT) = 5
         IF (INFO(12) .GT. 0) IWORK(LMXNIT) = 15
         IWORK(LMXNJ) = 6
         IF (INFO(12) .GT. 0) IWORK(LMXNJ) = 2
@@ -1589,6 +1593,9 @@ C
 C
 C     Check lengths of RWORK and IWORK.
 C
+c     -------------- masking ----------------->>>>
+      LENIW=LENIW+NRT
+c     -------------- masking -----------------
       IWORK(LNIW)=LENIW
       IWORK(LNRW)=LENRW
       IWORK(LNPD)=LENPD
@@ -1825,12 +1832,17 @@ C
          LYIC = LPHI + 2*NEQ
          LYPIC = LYIC + NEQ
          LPWK = LYPIC
+c      write(6,'('' ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>start--'')')
+
          CALL DDASIC(TN,Y,YPRIME,NEQ,INFO(11),IWORK(LID),
      *     RES,JAC,PSOL,H0,TSCALE,RWORK(LWT),NWT,IDID,RPAR,IPAR,
      *     RWORK(LPHI),RWORK(LSAVR),RWORK(LDELTA),RWORK(LE),
      *     RWORK(LYIC),RWORK(LYPIC),RWORK(LPWK),RWORK(LWM),IWORK(LIWM),
      *     RWORK(LROUND),RWORK(LEPLI),RWORK(LSQRN),RWORK(LRSQRN),
      *     EPCONI,RWORK(LSTOL),INFO(15),ICNFLG,IWORK(LICNS),DDASID)
+
+c      write(6,'('' ->>>>>>>>>>>>>>>>>>>>>>>>stop>>>>idid='',i2)')idid
+
       ELSE IF (INFO(12) .EQ. 1) THEN
          LYIC = LWM
          LYPIC = LYIC + NEQ
@@ -1857,7 +1869,8 @@ C
 C
 C     If INFO(14) = 1, return now with IDID = 4.
 C
-355   IF (INFO(14) .EQ. 1) THEN
+
+ 355  IF (INFO(14) .EQ. 1) THEN
         IDID = 4
         H = H0
         IF (INFO(11) .EQ. 1) RWORK(LHOLD) = H0
@@ -1920,12 +1933,14 @@ C
       RWORK(LPSI+1)=2.0D0*H
       IWORK(LKOLD)=1
       IF (NRT .EQ. 0) GO TO 390
+c     -------------- masking ----------------->>>
       CALL DRCHEK1(1,RT,NRT,NEQ,T,TOUT,Y,YPRIME,RWORK(LPHI),
      *   RWORK(LPSI),IWORK(LKOLD),RWORK(LR0),RWORK(LR1),
      *   RWORK(LRX),JROOT,IRT,RWORK(LROUND),INFO(3),
      *   RWORK,IWORK,RPAR,IPAR)
       IF (IRT .LT. 0) GO TO 731
-C
+      IF (IRT .EQ. 2)  IWORK(LIRFND) = 2
+
  390  GO TO 500
 C
 C-----------------------------------------------------------------------
@@ -1948,12 +1963,15 @@ C
      *   RWORK(LRX),JROOT,IRT,RWORK(LROUND),INFO(3),
      *   RWORK,IWORK,RPAR,IPAR)
       IF (IRT .LT. 0) GO TO 731
-      IF (IRT .NE. 1) GO TO 405
-      IWORK(LIRFND) = 1
-      IDID = 5
-      T = RWORK(LT0)
-      DONE = .TRUE.
-      GO TO 490
+
+      IF (IRT .EQ. 1) THEN 
+         IWORK(LIRFND) = 1
+         IDID = 5
+         T = RWORK(LT0)
+         DONE = .TRUE.
+         GO TO 490
+      ENDIF
+
 405   CONTINUE
 C
       IF(INFO(7) .EQ. 0) GO TO 410
@@ -2093,47 +2111,52 @@ C
      *            RPAR,IPAR)
       CALL DINVWT(NEQ,RWORK(LWT),IER)
       IF (IER .NE. 0) THEN
-        IDID = -3
-        GO TO 527
-        ENDIF
+         IDID = -3
+         GO TO 527
+      ENDIF
       IF (INFO(16) .NE. 0) THEN
-        DO 515 I = 1, NEQ
- 515      RWORK(LVT+I-1) = MAX(IWORK(LID+I-1),0)*RWORK(LWT+I-1)
-        ENDIF
-C
+         DO 515 I = 1, NEQ
+            RWORK(LVT+I-1) = MAX(IWORK(LID+I-1),0)*RWORK(LWT+I-1)
+ 515     CONTINUE
+      ENDIF
+C     
 C     Test for too much accuracy requested.
-C
+C     
       R = DDWNRM(NEQ,RWORK(LPHI),RWORK(LWT),RPAR,IPAR)*100.0D0*UROUND
       IF (R .LE. 1.0D0) GO TO 525
-C
+C     
 C     Multiply RTOL and ATOL by R and return.
-C
+C     
       IF(INFO(2).EQ.1)GO TO 523
-           RTOL(1)=R*RTOL(1)
-           ATOL(1)=R*ATOL(1)
-           IDID=-2
-           GO TO 527
-523   DO 524 I=1,NEQ
-           RTOL(I)=R*RTOL(I)
-524        ATOL(I)=R*ATOL(I)
+      RTOL(1)=R*RTOL(1)
+      ATOL(1)=R*ATOL(1)
       IDID=-2
       GO TO 527
-525   CONTINUE
-C
+ 523  DO 524 I=1,NEQ
+         RTOL(I)=R*RTOL(I)
+         ATOL(I)=R*ATOL(I)
+ 524  CONTINUE
+      IDID=-2
+      GO TO 527
+ 525  CONTINUE
+C     
 C     Compute minimum stepsize.
-C
+C     
       HMIN=4.0D0*UROUND*MAX(ABS(TN),ABS(TOUT))
-C
+C     
 C     Test H vs. HMAX
       IF (INFO(7) .NE. 0) THEN
          RH = ABS(H)/RWORK(LHMAX)
          IF (RH .GT. 1.0D0) H = H/RH
-         ENDIF
-C
+      ENDIF
+C     
 C     Call the one-step integrator.
 C     Note that INFO(12) represents the nonlinear solver type.
 C     Pass the required nonlinear solver, depending upon INFO(12).
-C
+C     
+c     info(12): 0-> dierct case  1->Krylov
+c     write(6,'(''1) Y='',e18.12,'' YP='',e18.12)')Y(1),YPRIME(1)
+
       IF (INFO(12) .EQ. 0) THEN
          CALL DDSTP(TN,Y,YPRIME,NEQ,
      *      RES,JAC,PSOL,H,RWORK(LWT),RWORK(LVT),INFO(1),IDID,RPAR,IPAR,
@@ -2146,6 +2169,8 @@ C
      *      RWORK(LEPCON), IWORK(LPHASE),IWORK(LJCALC),INFO(15),
      *      IWORK(LK), IWORK(LKOLD),IWORK(LNS),NONNEG,INFO(12),
      *      DNEDD)
+c         write(6,'(''2) Y='',e18.12,'' YP='',e18.12)')Y(1),YPRIME(1)
+         
       ELSE IF (INFO(12) .EQ. 1) THEN
          CALL DDSTP(TN,Y,YPRIME,NEQ,
      *      RES,JAC,PSOL,H,RWORK(LWT),RWORK(LVT),INFO(1),IDID,RPAR,IPAR,
@@ -2172,16 +2197,26 @@ C
 C     Check for a zero of R near TN.
 C
       CALL DRCHEK1(3,RT,NRT,NEQ,TN,TOUT,Y,YPRIME,RWORK(LPHI),
-     *   RWORK(LPSI),IWORK(LKOLD),RWORK(LR0),RWORK(LR1),
-     *   RWORK(LRX),JROOT,IRT,RWORK(LROUND),INFO(3),
-     *   RWORK,IWORK,RPAR,IPAR)
+     *     RWORK(LPSI),IWORK(LKOLD),RWORK(LR0),RWORK(LR1),
+     *     RWORK(LRX),JROOT,IRT,RWORK(LROUND),INFO(3),
+     *     RWORK,IWORK,RPAR,IPAR)
+C     >>>>
+      IF(IRT .EQ. 2) THEN
+         IWORK(LIRFND) = 2
+         IDID = 6
+         T = RWORK(LT0)
+         GO TO 580
+      ENDIF
+C     <<<<<
       IF(IRT .NE. 1) GO TO 529
       IWORK(LIRFND) = 1
       IDID = 5
       T = RWORK(LT0)
       GO TO 580
 529   CONTINUE
-C
+
+
+
       IF(INFO(4).NE.0)GO TO 540
            IF(INFO(3).NE.0)GO TO 530
              IF((TN-TOUT)*H.LT.0.0D0)GO TO 500
@@ -2241,6 +2276,7 @@ C
       RWORK(LTN)=TN
       RWORK(LTLAST)=T
       RWORK(LH)=H
+
       RETURN
 C
 C-----------------------------------------------------------------------
@@ -2251,7 +2287,7 @@ C
 600   CONTINUE
       ITEMP = -IDID
       GO TO (610,620,630,700,655,640,650,660,670,675,
-     *  680,685,690,695), ITEMP
+     *  680,685,690,695,696), ITEMP
 C
 C     The maximum number of steps was taken before
 C     reaching tout.
@@ -2364,6 +2400,12 @@ C
       CALL XERRWD(MSG,44,695,0,0,0,0,2,TN,H)
       MSG = 'DASKR--  LINEAR SYSTEM SOLVER COULD NOT CONVERGE.'
       CALL XERRWD(MSG,50,696,0,0,0,0,0,0.0D0,0.0D0)
+      GO TO 700
+C
+ 696  MSG = 'DASKR--  AT T (=R1) AND STEPSIZE H (=R2) THE'
+      CALL XERRWD(MSG,44,685,0,0,0,0,0,0.0D0,0.0D0)
+      MSG = 'DASKR--  INITIAL Jacobian COULD NOT BE COMPUTED'
+      CALL XERRWD(MSG,49,686,0,0,0,0,2,TN,H0)
       GO TO 700
 C
 C
@@ -2480,6 +2522,464 @@ C
 C------END OF SUBROUTINE DDASKR-----------------------------------------
       END
       SUBROUTINE DRCHEK1 (JOB, RT, NRT, NEQ, TN, TOUT, Y, YP, PHI, PSI,
+     *     KOLD, R0, R1, RX, JROOT, IRT, UROUND, INFO3, RWORK, IWORK,
+     *     RPAR, IPAR)
+C     
+C***  BEGIN PROLOGUE  DRCHEK
+C***  REFER TO DDASKR
+C***  ROUTINES CALLED  DDATRP, DROOTS, DCOPY, RT
+C***  REVISION HISTORY  (YYMMDD)
+C     020815  DATE WRITTEN   
+C     021217  Added test for roots close when JOB = 2.
+C***  END PROLOGUE  DRCHEK
+C     
+      IMPLICIT DOUBLE PRECISION(A-H,O-Z)
+C Pointers into IWORK:
+      PARAMETER (LNRTE=36, LIRFND=37)
+C     Pointers into RWORK:
+      PARAMETER (LT0=51, LTLAST=52)
+      EXTERNAL RT
+      INTEGER JOB, NRT, NEQ, KOLD, JROOT, IRT, INFO3, IWORK, IPAR
+      DOUBLE PRECISION TN, TOUT, Y, YP, PHI, PSI, R0, R1, RX, UROUND,
+     *     RWORK, RPAR
+      DIMENSION Y(*), YP(*), PHI(NEQ,*), PSI(*),
+     *          R0(*), R1(*), RX(*), JROOT(*), RWORK(*), IWORK(*)
+      INTEGER I, JFLAG, LMASK
+      DOUBLE PRECISION H
+      DOUBLE PRECISION HMINR, T1, TEMP1, TEMP2, X, ZERO
+      LOGICAL ZROOT
+c     -------------- masking -----------------
+      PARAMETER (LNIW=17)
+      DATA ZERO/0.0D0/
+
+c     -------------- masking -----------------
+
+C-----------------------------------------------------------------------
+C This routine checks for the presence of a root of R(T,Y,Y') in the
+C vicinity of the current T, in a manner depending on the
+C input flag JOB.  It calls subroutine DROOTS to locate the root
+C as precisely as possible.
+C
+C In addition to variables described previously, DRCHEK
+C uses the following for communication..
+C JOB    = integer flag indicating type of call..
+C          JOB = 1 means the problem is being initialized, and DRCHEK
+C                  is to look for a root at or very near the initial T.
+C          JOB = 2 means a continuation call to the solver was just
+C                  made, and DRCHEK is to check for a root in the
+C                  relevant part of the step last taken.
+C          JOB = 3 means a successful step was just taken, and DRCHEK
+C                  is to look for a root in the interval of the step.
+C R0     = array of length NRT, containing the value of R at T = T0.
+C          R0 is input for JOB .ge. 2 and on output in all cases.
+C R1,RX  = arrays of length NRT for work space.
+C IRT    = completion flag..
+C          IRT = 0  means no root was found.
+C          IRT = -1 means JOB = 1 and a zero was found both at T0 and
+C                   and very close to T0.
+C          IRT = -2 means JOB = 2 and some Ri was found to have a zero
+C                   both at T0 and very close to T0.
+C          IRT = 1  means a legitimate root was found (JOB = 2 or 3).
+C                   On return, T0 is the root location, and Y is the
+C                   corresponding solution vector.
+c          IRT = 2  A zero-crossing surface has detached from zero
+c
+C T0     = value of T at one endpoint of interval of interest.  Only
+C          roots beyond T0 in the direction of integration are sought.
+C          T0 is input if JOB .ge. 2, and output in all cases.
+C          T0 is updated by DRCHEK, whether a root is found or not.
+C          Stored in the global array RWORK.
+C TLAST  = last value of T returned by the solver (input only).
+C          Stored in the global array RWORK.
+C TOUT   = final output time for the solver.
+C IRFND  = input flag showing whether the last step taken had a root.
+C          IRFND = 1 if it did, = 0 if not.
+C          Stored in the global array IWORK.
+C INFO3  = copy of INFO(3) (input only).
+C-----------------------------------------------------------------------
+C     
+      H = PSI(1)
+      IRT = 0
+      LMASK=IWORK(LNIW)-NRT
+      HMINR = (ABS(TN) + ABS(H))*UROUND*100.0D0
+C
+      GO TO (100, 200, 300), JOB
+C
+C Evaluate R at initial T (= RWORK(LT0)); check for zero values.--------
+ 100  CONTINUE
+      DO 103 I = 1,NRT
+         JROOT(I) = 0
+ 103     IWORK(LMASK+I)=0
+      CALL DDATRP1(TN,RWORK(LT0),Y,YP,NEQ,KOLD,PHI,PSI)
+      CALL RT (NEQ, RWORK(LT0), Y, YP, NRT, R0, RPAR, IPAR)
+      IWORK(LNRTE) = 1
+      ZROOT = .FALSE.
+      DO 110 I = 1,NRT
+         IF (DABS(R0(I)) .EQ. ZERO) THEN
+            ZROOT = .TRUE.
+            JROOT(I)=1
+         ENDIF
+ 110  CONTINUE
+
+      IF (.NOT. ZROOT) GO TO 190
+C R has a zero at T.  Look at R at T + (small increment). --------------
+      TEMP1 = SIGN(HMINR,H)
+      RWORK(LT0) = RWORK(LT0) + TEMP1
+      TEMP2 = TEMP1/H
+      DO 120 I = 1,NEQ
+ 120    Y(I) = Y(I) + TEMP2*PHI(I,2)
+      CALL RT (NEQ, RWORK(LT0), Y, YP, NRT, R0, RPAR, IPAR)
+      IWORK(LNRTE) = IWORK(LNRTE) + 1
+C     ---------   MASKING THE STUCK ZEROS IN COLD-RESTARTS 
+      IRT = 0
+      DO 130 I = 1,NRT
+         IF (JROOT(I) .EQ. 1) THEN
+            IF (ABS(R0(I)) .EQ. ZERO) THEN
+               IWORK(LMASK+I)=1
+            ELSE
+c     .        to take one step through DDSTP then then in the next arrival->exit!
+               IRT = 2
+               JROOT(I)=SIGN(2.0D0,R0(I))
+            ENDIF
+         ENDIF
+ 130   CONTINUE
+ 190   CONTINUE
+       RETURN
+C     
+ 200   CONTINUE
+c     in the previous call there was not a root, so this part can be ignored.
+       IF (IWORK(LIRFND) .EQ. 0) GO TO 260
+c     --------------- INITIALIZING THE MASKS 
+       DO 203 I = 1,NRT
+          JROOT(I) = 0
+ 203      IWORK(LMASK+I)=0
+C     If a root was found on the previous step, evaluate R0 = R(T0). -------
+       CALL DDATRP1 (TN, RWORK(LT0), Y, YP, NEQ, KOLD, PHI, PSI)
+       CALL RT (NEQ, RWORK(LT0), Y, YP, NRT, R0, RPAR, IPAR)
+       IWORK(LNRTE) = IWORK(LNRTE) + 1
+       ZROOT = .FALSE.
+       DO 210 I = 1,NRT
+          IF (ABS(R0(I)) .EQ. ZERO) THEN
+             ZROOT = .TRUE.
+             JROOT(I) = 1
+          ENDIF
+ 210   CONTINUE
+       IF (.NOT. ZROOT) GO TO 260
+C     R has a zero at T0.  Look at R at T0+ = T0 + (small increment). ------
+       TEMP1 = SIGN(HMINR,H)
+       RWORK(LT0) = RWORK(LT0) + TEMP1
+       IF ((RWORK(LT0) - TN)*H .LT. ZERO) GO TO 230
+       TEMP2 = TEMP1/H
+       DO 220 I = 1,NEQ
+          Y(I) = Y(I) + TEMP2*PHI(I,2)
+ 220   continue
+       GO TO 240
+ 230   CALL DDATRP1 (TN, RWORK(LT0), Y, YP, NEQ, KOLD, PHI, PSI)
+ 240   CALL RT (NEQ, RWORK(LT0), Y, YP, NRT, R0, RPAR, IPAR)
+       IWORK(LNRTE) = IWORK(LNRTE) + 1
+       DO 250 I = 1,NRT
+          IF (ABS(R0(I)) .GT. ZERO) GO TO 250
+C     If Ri has a zero at both T0+ and T0, return an error flag. -----------
+          IF (JROOT(I) .EQ. 1) THEN
+C     .      MASKING THE STUCK ZEROS IN HOT-RESTARTS 
+             IWORK(LMASK+I)=1
+             JROOT(I)=0
+          ELSE
+C     If Ri has a zero at T0+, but not at T0, return valid root. -----------
+             JROOT(I) = -SIGN(1.0D0,R0(I))
+             IRT = 1
+          ENDIF
+ 250   CONTINUE
+       IF (IRT .EQ. 1) RETURN
+C     R0 has no zero components.  Proceed to check relevant interval. ------
+ 260   IF (TN .EQ. RWORK(LTLAST)) RETURN
+C     
+ 300   CONTINUE
+C     AT THE BEGINING OF THE PREVIOUS STEP THERE WERE A MASK-LIFTING
+       IF (IWORK(LIRFND) .EQ. 2) THEN
+          IWORK(LIRFND)=0  
+          IRT=2
+          RETURN
+       ENDIF
+C     Set T1 to TN or TOUT, whichever comes first, and get R at T1. --------
+       IF (INFO3 .EQ. 1 .OR. (TOUT - TN)*H .GE. ZERO) THEN
+          T1 = TN
+          GO TO 330
+       ENDIF
+       T1 = TOUT
+       IF ((T1 - RWORK(LT0))*H .LE. ZERO) RETURN
+ 330   CALL DDATRP1 (TN, T1, Y, YP, NEQ, KOLD, PHI, PSI)
+       CALL RT (NEQ, T1, Y, YP, NRT, R1, RPAR, IPAR)
+       IWORK(LNRTE) = IWORK(LNRTE) + 1
+C     .   PASSING THE MASK THROUGH DROOT2 VIA JROOT(I)
+       DO 331 I = 1,NRT
+          JROOT(I)=0
+ 331      IF(IWORK(LMASK+I).EQ.1) jroot(i)=1
+C     Call DROOTS to search for root in interval from T0 to T1. -----------
+       JFLAG = 0
+ 350   CONTINUE
+       CALL DROOTS1(NRT, HMINR, JFLAG,RWORK(LT0),T1, R0,R1,RX, X, JROOT)
+       IF (JFLAG .GT. 1) GO TO 360
+       CALL DDATRP1 (TN, X, Y, YP, NEQ, KOLD, PHI, PSI)
+       CALL RT (NEQ, X, Y, YP, NRT, RX, RPAR, IPAR)
+       IWORK(LNRTE) = IWORK(LNRTE) + 1
+       GO TO 350
+ 360   RWORK(LT0) = X
+       CALL DCOPY (NRT, RX, 1, R0, 1)
+       IF (JFLAG .NE. 4) THEN
+          CALL DDATRP1 (TN, X, Y, YP, NEQ, KOLD, PHI, PSI)
+          
+          ZROOT=.FALSE.
+          DO 370 I = 1,NRT
+             IF(ABS(JROOT(I)).EQ.1) THEN 
+                ZROOT=.TRUE.
+                GOTO 375
+             ENDIF
+ 370      CONTINUE
+ 375      CONTINUE
+          
+          IF(ZROOT) THEN
+             DO 380 I = 1,NRT
+                IF(ABS(JROOT(I)).EQ.2) JROOT(I)=0
+ 380         CONTINUE  
+             IRT=1
+          ELSE
+             IRT=2
+          ENDIF
+       ENDIF
+       RETURN
+C---------------------- END OF SUBROUTINE DRCHE -----------------------
+      END
+      SUBROUTINE DROOTS1(NRT, HMIN, JFLAG, X0, X1, R0, R1, RX, X, JROOT)
+C
+C***BEGIN PROLOGUE  DROOTS
+C***REFER TO DRCHEK
+C***ROUTINES CALLED DCOPY
+C***REVISION HISTORY  (YYMMDD)
+C   020815  DATE WRITTEN   
+C   021217  Added root direction information in JROOT.
+C***END PROLOGUE  DROOTS
+C
+      INTEGER NRT, JFLAG, JROOT
+      DOUBLE PRECISION HMIN, X0, X1, R0, R1, RX, X
+      DIMENSION R0(NRT), R1(NRT), RX(NRT), JROOT(NRT)
+C-----------------------------------------------------------------------
+C This subroutine finds the leftmost root of a set of arbitrary
+C functions Ri(x) (i = 1,...,NRT) in an interval (X0,X1).  Only roots
+C of odd multiplicity (i.e. changes of sign of the Ri) are found.
+C Here the sign of X1 - X0 is arbitrary, but is constant for a given
+C problem, and -leftmost- means nearest to X0.
+C The values of the vector-valued function R(x) = (Ri, i=1...NRT)
+C are communicated through the call sequence of DROOTS.
+C The method used is the Illinois algorithm.
+C
+C Reference:
+C Kathie L. Hiebert and Lawrence F. Shampine, Implicitly Defined
+C Output Points for Solutions of ODEs, Sandia Report SAND80-0180,
+C February 1980.
+C
+C Description of parameters.
+C
+C NRT    = number of functions Ri, or the number of components of
+C          the vector valued function R(x).  Input only.
+C
+C HMIN   = resolution parameter in X.  Input only.  When a root is
+C          found, it is located only to within an error of HMIN in X.
+C          Typically, HMIN should be set to something on the order of
+C               100 * UROUND * MAX(ABS(X0),ABS(X1)),
+C          where UROUND is the unit roundoff of the machine.
+C
+C JFLAG  = integer flag for input and output communication.
+C
+C          On input, set JFLAG = 0 on the first call for the problem,
+C          and leave it unchanged until the problem is completed.
+C          (The problem is completed when JFLAG .ge. 2 on return.)
+C
+C          On output, JFLAG has the following values and meanings:
+C          JFLAG = 1 means DROOTS needs a value of R(x).  Set RX = R(X)
+C                    and call DROOTS again.
+C          JFLAG = 2 means a root has been found.  The root is
+C                    at X, and RX contains R(X).  (Actually, X is the
+C                    rightmost approximation to the root on an interval
+C                    (X0,X1) of size HMIN or less.)
+C          JFLAG = 3 means X = X1 is a root, with one or more of the Ri
+C                    being zero at X1 and no sign changes in (X0,X1).
+C                    RX contains R(X) on output.
+C          JFLAG = 4 means no roots (of odd multiplicity) were
+C                    found in (X0,X1) (no sign changes).
+C
+C X0,X1  = endpoints of the interval where roots are sought.
+C          X1 and X0 are input when JFLAG = 0 (first call), and
+C          must be left unchanged between calls until the problem is
+C          completed.  X0 and X1 must be distinct, but X1 - X0 may be
+C          of either sign.  However, the notion of -left- and -right-
+C          will be used to mean nearer to X0 or X1, respectively.
+C          When JFLAG .ge. 2 on return, X0 and X1 are output, and
+C          are the endpoints of the relevant interval.
+C
+C R0,R1  = arrays of length NRT containing the vectors R(X0) and R(X1),
+C          respectively.  When JFLAG = 0, R0 and R1 are input and
+C          none of the R0(i) should be zero.
+C          When JFLAG .ge. 2 on return, R0 and R1 are output.
+C
+C RX     = array of length NRT containing R(X).  RX is input
+C          when JFLAG = 1, and output when JFLAG .ge. 2.
+C
+C X      = independent variable value.  Output only.
+C          When JFLAG = 1 on output, X is the point at which R(x)
+C          is to be evaluated and loaded into RX.
+C          When JFLAG = 2 or 3, X is the root.
+C          When JFLAG = 4, X is the right endpoint of the interval, X1.
+C
+C JROOT  = integer array of length NRT.  Output only.
+C          When JFLAG = 2 or 3, JROOT indicates which components
+C          of R(x) have a root at X, and the direction of the sign
+C          change across the root in the direction of integration.
+C          JROOT(i) =  1 if Ri has a root and changes from - to +.
+C          JROOT(i) = -1 if Ri has a root and changes from + to -.
+C          Otherwise JROOT(i) = 0.
+C-----------------------------------------------------------------------
+      INTEGER I, IMAX, IMXOLD, LAST, NXLAST,ISTUCK,IUNSTUCK
+      DOUBLE PRECISION ALPHA, T2, TMAX, X2, ZERO
+      LOGICAL ZROOT, SGNCHG, XROOT
+      SAVE ALPHA, X2, IMAX, LAST
+      DATA ZERO/0.0D0/
+C
+      IF (JFLAG .EQ. 1) GO TO 200
+C JFLAG .ne. 1.  Check for change in sign of R or zero at X1. ----------
+      IMAX = 0
+      ISTUCK=0
+      IUNSTUCK=0
+      TMAX = ZERO
+      ZROOT = .FALSE.
+      DO 120 I = 1,NRT
+         if ((jroot(i) .eq. 1).AND.((ABS(R1(I)) .GT. ZERO))) IUNSTUCK=I
+         IF (ABS(R1(I)) .GT. ZERO) GO TO 110
+         if (jroot(i) .eq. 1) GOTO 120
+         ISTUCK=I
+         GO TO 120
+C     At this point, R0(i) has been checked and cannot be zero. ------------
+ 110     IF (SIGN(1.0D0,R0(I)) .EQ. SIGN(1.0D0,R1(I))) GO TO 120
+         T2 = ABS(R1(I)/(R1(I)-R0(I)))
+         IF (T2 .LE. TMAX) GO TO 120
+         TMAX = T2
+         IMAX = I
+ 120  CONTINUE
+      IF (IMAX .GT. 0) GO TO 130
+      IMAX=ISTUCK
+      IF (IMAX .GT. 0) GO TO 130
+      IMAX=IUNSTUCK
+      IF (IMAX .GT. 0) GO TO 130
+
+      SGNCHG = .FALSE.
+      GO TO 140
+ 130  SGNCHG = .TRUE.
+ 140  IF (.NOT. SGNCHG) GO TO 420
+C There is a sign change.  Find the first root in the interval. --------
+      XROOT = .FALSE.
+      NXLAST = 0
+      LAST = 1
+C
+C Repeat until the first root in the interval is found.  Loop point. ---
+ 150  CONTINUE
+      IF (XROOT) GO TO 300
+      IF (NXLAST .EQ. LAST) GO TO 160
+      ALPHA = 1.0D0
+      GO TO 180
+ 160  IF (LAST .EQ. 0) GO TO 170
+      ALPHA = 0.5D0*ALPHA
+      GO TO 180
+ 170  ALPHA = 2.0D0*ALPHA
+ 180  if((ABS(R0(IMAX)).EQ.ZERO).OR.(ABS(R1(IMAX)).EQ.ZERO)) THEN
+         X2=(X0+ALPHA*X1)/(1+ALPHA)
+      ELSE
+         X2 = X1 - (X1-X0)*R1(IMAX)/(R1(IMAX) - ALPHA*R0(IMAX))
+      ENDIF
+      IF ((ABS(X2-X0) .LT. HMIN) .AND.
+     1   (ABS(X1-X0) .GT. 10.0D0*HMIN)) X2 = X0 + 0.1D0*(X1-X0)
+      JFLAG = 1
+      X = X2
+C Return to the calling routine to get a value of RX = R(X). -----------
+      RETURN
+C Check to see in which interval R changes sign. -----------------------
+ 200  IMXOLD = IMAX
+      IMAX = 0
+      ISTUCK=0
+      IUNSTUCK=0
+      TMAX = ZERO
+      ZROOT = .FALSE.
+      DO 220 I = 1,NRT
+         if ((jroot(i) .eq. 1).AND.((ABS(RX(I)) .GT. ZERO))) IUNSTUCK=I
+         IF (ABS(RX(I)) .GT. ZERO) GO TO 210
+         if (jroot(i) .eq. 1) go to 220
+         ISTUCK=I
+         GO TO 220
+C     Neither R0(i) nor RX(i) can be zero at this point. -------------------
+ 210     IF (SIGN(1.0D0,R0(I)) .EQ. SIGN(1.0D0,RX(I))) GO TO 220
+         T2 = ABS(RX(I)/(RX(I) - R0(I)))
+         IF (T2 .LE. TMAX) GO TO 220
+         TMAX = T2
+         IMAX = I
+ 220  CONTINUE
+      IF (IMAX .GT. 0) GO TO 230
+      IMAX=ISTUCK
+      IF (IMAX .GT. 0) GO TO 230
+      IMAX=IUNSTUCK
+      IF (IMAX .GT. 0) GO TO 230
+      SGNCHG = .FALSE.
+      IMAX = IMXOLD
+      GO TO 240
+ 230  SGNCHG = .TRUE.
+ 240  NXLAST = LAST
+      IF (.NOT. SGNCHG) GO TO 260
+C Sign change between X0 and X2, so replace X1 with X2. ----------------
+      X1 = X2
+      CALL DCOPY (NRT, RX, 1, R1, 1)
+      LAST = 1
+      XROOT = .FALSE.
+      GO TO 270
+
+ 260  CONTINUE
+      CALL DCOPY (NRT, RX, 1, R0, 1)
+      X0 = X2
+      LAST = 0
+      XROOT = .FALSE.
+ 270  IF (ABS(X1-X0) .LE. HMIN) XROOT = .TRUE.
+      GO TO 150
+C
+C Return with X1 as the root.  Set JROOT.  Set X = X1 and RX = R1. -----
+ 300  JFLAG = 2
+      X = X1
+      CALL DCOPY (NRT, R1, 1, RX, 1)
+      DO 320 I = 1,NRT
+         if(jroot(i).eq.1) then
+            if(ABS(R1(i)).ne. ZERO) THEN
+               JROOT(I)=SIGN(2.0D0,R1(I))
+            ELSE
+               JROOT(I)=0
+            ENDIF
+         ELSE
+            IF (ABS(R1(I)) .EQ. ZERO) THEN
+               JROOT(I) = -SIGN(1.0D0,R0(I))
+            ELSE
+               IF (SIGN(1.0D0,R0(I)) .NE. SIGN(1.0D0,R1(I))) THEN
+                  JROOT(I) = SIGN(1.0D0,R1(I) - R0(I))
+               ELSE
+                  JROOT(I)=0
+               ENDIF
+            ENDIF
+         ENDIF
+ 320  CONTINUE
+      RETURN
+C No sign changes in this interval.  Set X = X1, return JFLAG = 4. -----
+ 420  CALL DCOPY (NRT, R1, 1, RX, 1)
+      X = X1
+      JFLAG = 4
+      RETURN
+C----------------------- END OF SUBROUTINE DROOTS ----------------------
+      END
+
+      SUBROUTINE DRCHEK0 (JOB, RT, NRT, NEQ, TN, TOUT, Y, YP, PHI, PSI,
      *   KOLD, R0, R1, RX, JROOT, IRT, UROUND, INFO3, RWORK, IWORK,
      *   RPAR, IPAR)
 C
@@ -2586,8 +3086,9 @@ C
       RETURN
 C
  200  CONTINUE
+c     if in the previous step a z-crossing or mask lifting has occured...
       IF (IWORK(LIRFND) .EQ. 0) GO TO 260
-C If a root was found on the previous step, evaluate R0 = R(T0). -------
+C     If a root was found on the previous step, evaluate R0 = R(T0). ----
       CALL DDATRP1 (TN, RWORK(LT0), Y, YP, NEQ, KOLD, PHI, PSI)
       CALL RT (NEQ, RWORK(LT0), Y, YP, NRT, R0, RPAR, IPAR)
       IWORK(LNRTE) = IWORK(LNRTE) + 1
@@ -2640,7 +3141,7 @@ C Set T1 to TN or TOUT, whichever comes first, and get R at T1. --------
 C Call DROOTS to search for root in interval from T0 to T1. ------------
       JFLAG = 0
  350  CONTINUE
-      CALL DROOTS1(NRT, HMINR, JFLAG,RWORK(LT0),T1, R0,R1,RX, X, JROOT)
+      CALL DROOTS0(NRT, HMINR, JFLAG,RWORK(LT0),T1, R0,R1,RX, X, JROOT)
       IF (JFLAG .GT. 1) GO TO 360
       CALL DDATRP1 (TN, X, Y, YP, NEQ, KOLD, PHI, PSI)
       CALL RT (NEQ, X, Y, YP, NRT, RX, RPAR, IPAR)
@@ -2658,7 +3159,7 @@ C
       RETURN
 C---------------------- END OF SUBROUTINE DRCHEK -----------------------
       END
-      SUBROUTINE DROOTS1(NRT, HMIN, JFLAG, X0, X1, R0, R1, RX, X, JROOT)
+      SUBROUTINE DROOTS0(NRT, HMIN, JFLAG, X0, X1, R0, R1, RX, X, JROOT)
 C
 C***BEGIN PROLOGUE  DROOTS
 C***REFER TO DRCHEK
@@ -2875,6 +3376,7 @@ C No sign changes in this interval.  Set X = X1, return JFLAG = 4. -----
       RETURN
 C----------------------- END OF SUBROUTINE DROOTS ----------------------
       END
+
       SUBROUTINE DDASIC (X, Y, YPRIME, NEQ, ICOPT, ID, RES, JAC, PSOL,
      *   H, TSCALE, WT, NIC, IDID, RPAR, IPAR, PHI, SAVR, DELTA, E,
      *   YIC, YPIC, PWK, WM, IWM, UROUND, EPLI, SQRTN, RSQRTN,
@@ -3002,6 +3504,8 @@ C     consistent initial values for Y and YPRIME.
 C-----------------------------------------------------------------------
 C
  200  CONTINUE
+c      write(6,'('' NLSIC( DDASID) NH='',i3, '' H='',e12.6)')NH,H
+
       CALL NLSIC(X,Y,YPRIME,NEQ,ICOPT,ID,RES,JAC,PSOL,H,TSCALE,WT,
      *   JSKIP,RPAR,IPAR,SAVR,DELTA,E,YIC,YPIC,PWK,WM,IWM,CJ,UROUND,
      *   EPLI,SQRTN,RSQRTN,EPCONI,RATEMX,STPTOL,JFLG,ICNFLG,ICNSTR,
@@ -3024,6 +3528,10 @@ C
       JSKIP = 0
 C
       IF (IERNLS .EQ. -1) GO TO 350
+c     >>>>>>>>
+      IF (IERNLS .EQ. -2) GO TO 360
+c     >>>>>>>>
+
       IF (ICOPT .EQ. 2) GO TO 350
       IF (NH .EQ. MXNH) GO TO 350
 C
@@ -3039,6 +3547,10 @@ C
 C
  350  IDID = -12
       RETURN
+c     >>>>>>>>>>>
+ 360  IDID = -15
+      RETURN
+c     >>>>>>>>>>>>.
 C
 C------END OF SUBROUTINE DDASIC-----------------------------------------
       END
@@ -3192,6 +3704,7 @@ C
       XOLD=X
       NCF=0
       NEF=0
+c     //cold or hot start
       IF(JSTART .NE. 0) GO TO 120
 C
 C     If this is the first step, perform
@@ -3891,9 +4404,14 @@ C
       IF(VMAX .LE. 0.0D0) GO TO 30
       SUM = 0.0D0
       DO 20 I = 1,NEQ
+c         write(6,'(''norm('',i2,'')='',e10.3,'';'')')I,
+c     $        ((V(I)*RWT(I))/VMAX)**2
+         
  20      SUM = SUM + ((V(I)*RWT(I))/VMAX)**2
+c         write(6,'('' '')')
 
       DDWNRM = VMAX*SQRT(SUM/NEQ)
+c      write(6,'('' wnorm='',e10.3)')DDWNRM
 30    CONTINUE
       RETURN
 C
@@ -4027,16 +4545,32 @@ C
       NJ = NJ + 1
       IWM(LNJE)=IWM(LNJE)+1
 
+      
+c      write(6,'(''x18='',e12.5)')Y(18)
+c      write(6,'(''>>>>>>>>>>>>>>>>>>>call DMATD NJ='',i3,'' >>>>>'')')NJ
+
+c      write(6,'(''>>>>>>>>>>>>>JJJJJJJJ'')')
       CALL DMATD(NEQ,X,Y,YPRIME,DELTA,CJ,H,IERJ,WT,R,
      *              WM,IWM,RES,IRES,UROUND,JACD,RPAR,IPAR)
       IF (IRES .LT. 0 .OR. IERJ .NE. 0) GO TO 370
+c      write(6,'(''     <<<<<<<<<<<<<<<<<<<DMATD output:IRES='',i3)')IRES
+
 C     
 C     Call the nonlinear Newton solver for up to MXNIT iterations.
 C     
+c      write(6,'(''call DNSID  >>>>>'')')
       CALL DNSID(X,Y,YPRIME,NEQ,ICOPT,ID,RES,WT,RPAR,IPAR,DELTA,R,
      *     YIC,YPIC,WM,IWM,CJ,TSCALE,EPCON,RATEMX,MXNIT,STPTOL,
      *     ICNFLG,ICNSTR,IERNEW)
+
+c      IX=1
+c      DO 399 IX = 1,NEQ
+c         write(6,'(''x1('',i2,'')='',e10.3,'';'')')(IX),Y(IX)
+c 399  CONTINUE 
+
 C
+c     here MXNJ=6
+c      write(6,'(''     DNSID out:IERNEW='',i3,'' NJ='',i3)')IERNEW,NJ
 
       IF (IERNEW .EQ. 1 .AND. NJ .LT. MXNJ) THEN
 C     
@@ -4059,6 +4593,9 @@ C     Compute IERNLS accordingly.
 C     
  370  IERNLS = 2
       IF (IRES .LE. -2) IERNLS = -1
+c     ---------------------------
+      IF (IERJ .ne. 0)  IERNLS = -2
+c     ---------------------------
       RETURN
 C     
 380   IERNLS = MIN(IERNEW,2)
@@ -4160,6 +4697,15 @@ C
 C
 C     Compute a new step vector DELTA by back-substitution.
 C
+c      IX=18
+c      DO 99 IX = 1,NEQ
+c         write(6,'(''delta1('',i2,'')='',e10.3,'';'')')IX,DELTA(IX)
+c 99   CONTINUE     
+ 
+c      DO 100 IX = 1,NEQ
+c         write(6,'(''X('',i2,'')='',e10.3,'';'')')IX,Y(IX)
+c 100  CONTINUE    
+
       CALL DSLVD (NEQ, DELTA, WM, IWM)
 C
 
@@ -4169,6 +4715,7 @@ C
       FNRM = DELNRM
       IF (TSCALE .GT. 0.0D0) FNRM = FNRM*TSCALE*ABS(CJ)
       
+c      write(6,'(''NORM-1='',e10.3,'' < 0.33 ?'')')FNRM
 
       IF (FNRM .LE. EPCON) RETURN
 C
@@ -4181,11 +4728,15 @@ C     Call linesearch routine for global strategy and set RATE
 C
       OLDFNM = FNRM
 C
+c      write(6,'(''call DLINSD> called M=='',i4,'' mxit='',i4)')M,MAXIT
       CALL DLINSD (NEQ, Y, X, YPRIME, CJ, TSCALE, DELTA, DELNRM, WT,
      *             LSOFF, STPTOL, IRET, RES, IRES, WM, IWM, FNRM, ICOPT,
      *             ID, R, YIC, YPIC, ICNFLG, ICNSTR, RLX, RPAR, IPAR)
 C
       RATE = FNRM/OLDFNM
+c      write(6,'(''DLINSD out:IRET='',i2,'' FNRM='',e12.5,'' Rate='',
+c     $     e12.5)')IRET,FNRM,RATE
+
 C     
 C     Check for error condition from linesearch.
       IF (IRET .NE. 0) GO TO 390
@@ -4220,6 +4771,7 @@ c     here ratemx =0.8
       ELSE
          IERNEW = 2
       ENDIF
+c      write(6,'(''DLINSDout2:Rate='',e12.6,'' IERNEW='',i3)')RATE,IERNEW
       RETURN
 C
  390  IF (IRES .LE. -2) THEN
@@ -4370,6 +4922,10 @@ c     ----------------------------------------------------------
          CALL DFNRMD (NEQ, YNEW, T, YPNEW, R, CJ, TSCALE, WT, RES, IRES,
      *        FNRMP, WM, IWM, RPAR, IPAR)
 
+c         write(6,'(''         DYYP+DFNRM RL= '',e10.3,'' FN2='',e12.5)'
+c     $        )RL,FNRMP
+c         write(6,'(''         FNORM='',e10.3,'';'')')FNRMP
+
          IWM(LNRE) = IWM(LNRE) + 1
          IF (IRES .NE. 0) THEN
             IRET = 2
@@ -4391,6 +4947,7 @@ C     Alpha-condition is satisfied, or linesearch is turned off.
 C     Copy YNEW,YPNEW to Y,YPRIME and return.
 C-----------------------------------------------------------------------
  150     IRET = 0
+c          write(6,'(''    ..... X-updating ...'')')
 
          CALL DCOPY (NEQ, YNEW, 1, Y, 1)
          CALL DCOPY (NEQ, YPNEW, 1, YPRIME, 1)
@@ -4840,6 +5397,8 @@ C
 C
 C     If necessary, multiply residual by convergence factor.
 C
+c      write(6,'(''x('',i2,'')='',e20.10,'';'')')1,DELTA(1)
+
       IF (MULDEL .EQ. 1) THEN
          DO 320 I = 1,NEQ
 320        DELTA(I) = DELTA(I) * CONFAC
@@ -4848,14 +5407,27 @@ C
 C     Compute a new iterate (back-substitution).
 C     Store the correction in DELTA.
 C
-      CALL DSLVD(NEQ,DELTA,WM,IWM)
+c        write(6,'(''w('',i2,'')='',e20.10,'';'')')1,wm(1)
+c        write(6,'(''delta1('',i2,'')='',e20.10,'';'')')1,delta(1)
+        CALL DSLVD(NEQ,DELTA,WM,IWM)
+c        write(6,'(''delta2('',i2,'')='',e20.10,'';'')')1,delta(1)
+
 C
 C     Update Y, E, and YPRIME.
 C
       DO 340 I=1,NEQ
+c         write(6,'(''d('',i2,'')='',e20.10,'';'')')I,DELTA(I)
+c         write(6,'(''1/CJ='',e20.10,'';'')')(1/CJ)
+c         write(6,'(''Y1 ('',i2,'')='',e20.10,'';'')')I,Y(I)
+c         write(6,'(''YP1('',i2,'')='',e20.10,'';'')')I,YPRIME(I)
+
          Y(I)=Y(I)-DELTA(I)
          E(I)=E(I)-DELTA(I)
-340      YPRIME(I)=YPRIME(I)-CJ*DELTA(I)
+         YPRIME(I)=YPRIME(I)-CJ*DELTA(I)
+
+c     write(6,'(''Y2 ('',i2,'')='',e20.10,'';'')')I,Y(I)
+c     write(6,'(''YP2('',i2,'')='',e20.10,'';'')')I,YPRIME(I)
+ 340  continue
 C
 C     Test for convergence of the iteration.
 C
@@ -4986,14 +5558,21 @@ C
 C
 C     Dense finite-difference-generated matrix.
 C
+
+c     epsmch = dlamch('p')
+c     eps = dsqrt(dmax1(epsfcn,epsmch))
+c     temp = x(j)
+c     h = eps*dabs(temp)
+c     if (h .eq. zero) h = eps
+
 200   IRES=0
       NROW=0
       SQUR = SQRT(UROUND)
       DO 210 I=1,NEQ
-         DEL=SQUR*MAX(1.D0,ABS(Y(I)),ABS(H*YPRIME(I)),
+         DEL=SQUR*MAX(1,ABS(Y(I)),ABS(H*YPRIME(I)),
      *     ABS(1.D0/EWT(I)))
          DEL=SIGN(DEL,H*YPRIME(I))
-         DEL=(Y(I)+DEL)-Y(I)         
+         DEL=(Y(I)+DEL)-Y(I)
          YSAVE=Y(I)
          YPSAVE=YPRIME(I)
          Y(I)=Y(I)+DEL
@@ -5005,6 +5584,9 @@ C
          DO 220 L=1,NEQ  
             WM(NROW+L)=(E(L)-DELTA(L))*DELINV
             RS= WM(NROW+L)
+            IF (RS .ne. 0)  THEN
+c               write(6,'(''j('',i2,'','',i2,'')='',e20.10,'';'')')L,I,RS
+            endif
  220     CONTINUE    
          NROW=NROW+NEQ
          Y(I)=YSAVE
@@ -5016,6 +5598,9 @@ C     Do dense-matrix LU decomposition on J.
 C     
       
  230  CALL DGEFA(WM,NEQ,NEQ,IWM(LIPVT),IER)
+      IF (IER .ne. 0)  THEN
+         write(6,'('' Singular Jacobian at IER ='',i3)')IER
+      endif
       RETURN
 C     
 C
@@ -5125,7 +5710,8 @@ C     Dense matrix.
 c     subroutine dgesl(a,lda,n,ipvt,b,job)
 c     a*x=b  => b<-x
 c     (WM*X=DELTA)
-100   CALL DGESL(WM,NEQ,NEQ,IWM(LIPVT),DELTA,0)
+ 100  CALL DGESL(WM,NEQ,NEQ,IWM(LIPVT),DELTA,0)
+      
       RETURN
 C
 C     Dummy section for MTYPE=3.
@@ -7138,4 +7724,3 @@ C
 C
 C------END OF SUBROUTINE DHELS------------------------------------------
       END
-
