@@ -73,7 +73,7 @@ function path=genhelpfromfunc(key)
   
 
   l=macr2lst(%fun);l($+1)='99';
-  syntax='['+strcat(l(2),',')+'] = '+key+'('+strcat(l(3)+',')+')';
+  syntax='['+strcat(l(2),',')+'] = '+key+'('+strcat(l(3),',')+')';
   pars=unique([l(2), l(3)]);pars=pars($:-1:1);
   if pars<>[] then
     P=["    <h3>";
