@@ -9,6 +9,12 @@ Bugs:
    e.g. A=A'+B'
  . line-breaks (..) are not handled for quoted strings colorization
 
+-issues related with non colorizing single quoted text:
+  . code lines such as mprintf("%s",'this is a function') brakes the line
+    number counting in functions if not properly colorized as textquoted.
+  . mprintf('['); is detected as a continued line, and this results in
+    wrong line number in function displayed in statusind2
+
 -Ctrl-v copies also inside the find/replace/filename dialogs, but does not
  replace an existing selection. Problem of setting up the proper bindings,
  likely. Note: this happens only on some platforms.
@@ -43,6 +49,8 @@ Bugs:
  For the time being, the keyword "function" and the function name MUST be
  on the same code line.
 
+-Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
+ at least one Mandrake 10.1 Official Linux.
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------

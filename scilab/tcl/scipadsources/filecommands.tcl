@@ -192,7 +192,7 @@ proc openlistoffiles {filelist} {
         } else {
             # In windows this never happened to us, but linux applications
             # allow sometimes drag of e.g. http:// or ftp://; moreover
-            #  spaces in namefiles can produce unexpected results
+            # spaces in namefiles can produce unexpected results
             tk_messageBox -title [mc "Weird drag&drop"] -message [concat $f \
             [ mc "is neither a valid filename nor a valid directory.\
                        Either you're dragging an object of another type, or\
@@ -233,19 +233,33 @@ proc showopenwin {} {
 }
 
 proc openfileifexists {file} {
-#wrapper to openfile, but issues a warning if the file does not exist (anymore)
-    if {[file exist $file]} {
-         openfile $file
-    } else {
-         set answer \
-            [tk_messageBox -type yesno -icon question \
-             -title [mc "File not found"] -message "[mc "The file"]\
-              $file [mc "does not exist anymore. Do you want to create an\
-              empty file with the same name?"]"]
-         switch -- $answer {
-           yes {openfile $file}
-           no {}
-           }
+# wrapper to openfile, but issues a warning if the file does not exist (anymore).
+# if file is already open, action is the same as hitting the entry in the windows
+# menu
+    global listoftextarea listoffile pad
+    set alreadyopen "false"
+    foreach ta $listoftextarea {
+        if {$listoffile("$ta",fullname) == $file} {
+            set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
+            $pad.filemenu.wind invoke $i
+            set alreadyopen "true"
+            break
+        }
+    }
+    if {$alreadyopen == "false"} {
+        if {[file exist $file]} {
+             openfile $file
+        } else {
+             set answer \
+                [tk_messageBox -type yesno -icon question \
+                 -title [mc "File not found"] -message "[mc "The file"]\
+                  $file [mc "does not exist anymore. Do you want to create an\
+                  empty file with the same name?"]"]
+             switch -- $answer {
+               yes {openfile $file}
+               no {}
+               }
+        }
     }
 }
 
@@ -776,9 +790,7 @@ proc AddRecentFile {filename} {
 proc GetFirstRecentInd {} {
 # get index of first recent file item in the file menu
     global pad nbrecentfiles
-    set ampentrylabel [mc "&Close"]
-    set amppos [string first "&" $ampentrylabel]
-    set entrylabel [string replace $ampentrylabel $amppos $amppos]
+    set entrylabel [lindex [amp [mc "&Close"]] 1]
     set rec1ind [expr [extractindexfromlabel $pad.filemenu.files $entrylabel] \
                       - 1 - $nbrecentfiles]
     return $rec1ind

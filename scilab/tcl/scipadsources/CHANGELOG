@@ -928,3 +928,11 @@ Francois VOGEL, 24/03/05
 
 Francois VOGEL, 25/03/05
  * version --> 4.0 for inclusion in Scilab 3.1RC
+
+Francois VOGEL, 03/04/05
+ * Scipad silently displays the already opened buffer if the corresponding
+   file menu entry is selected - no complain any more
+ * Bindings with shift modifier corrected for Solaris Sun OS
+ * env(SCIHOME) is now used instead of env(HOME) for saving the preferences
+   file (changes by A. Cornet)
+ * version --> 4.1
