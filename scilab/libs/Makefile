@@ -16,6 +16,7 @@ integ.def \
 interf.def \
 intersci.def \
 lapack.def \
+slicot.def \
 libcomm.def \
 libf2c.def \
 menusX.def \
