@@ -692,6 +692,41 @@ int GetScreenProperty(char *prop, char *value)
 #endif
 }
 
+/* Scilab get the DPI (root properties) */
+/* F.Leray 08.03.05 */
+/* return the x/y DPI */
+int GetScreenDPI(int *ixres, int *iyres)
+{
+  /* be sure a gtk_init is started */
+  
+#if GTK_MAJOR_VERSION == 1 
+  sciprint("GetScreenDPI not implemented in gtk 1\r\n");
+  return -1;
+#else 
+  start_sci_gtk();
+  GdkScreen *screen =  gdk_screen_get_default();
+  double xres, yres;
+  
+  /*
+   * there are 2.54 centimeters to an inch; so there are 25.4 millimeters.
+   *
+   *     dpi = N pixels / (M millimeters / (25.4 millimeters / 1 inch))
+   *         = N pixels / (M inch / 25.4)
+   *         = N * 25.4 pixels / M inch
+   */
+  
+  xres = ((double) gdk_screen_get_width(screen) * 25.4) / 
+	  ((double) gdk_screen_get_width_mm(screen));
+  yres = ((double) gdk_screen_get_height(screen) * 25.4) / 
+	  ((double) gdk_screen_get_height_mm(screen));
+  
+  *ixres = (int) (xres + 0.5);
+  *iyres = (int) (yres + 0.5);
+  
+  return 0;
+}
+
+
 /* no comments .... should be elsewhere */
 
 #include "../stack-c.h"
