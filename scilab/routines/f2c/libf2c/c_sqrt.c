@@ -10,7 +10,8 @@ if( (mag = f__cabs(z->r, z->i)) == 0.)
 	r->r = r->i = 0.;
 else if(z->r > 0)
 	{
-	r->r = (real)t = (real) sqrt(0.5 * (mag + z->r) );
+	t = (real) sqrt(0.5 * (mag + z->r) );
+	r->r = (real)t ;
 	t = z->i / t;
 	r->i = (real) (0.5 * t);
 	}
