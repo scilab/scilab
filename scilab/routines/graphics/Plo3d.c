@@ -1330,7 +1330,7 @@ void I3dRotation(void)
   static integer modes[]={1,0};/* for xgemouse only get mouse mouvement*/ 
   sciSons *psonstmp;
   sciPointObj *psubwin, *tmpsubwin;
-    //  sciPointObj *psurface; 
+  /*  sciPointObj *psurface; */
   integer xr, yr;
 
 

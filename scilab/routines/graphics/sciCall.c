@@ -232,7 +232,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
      double x[],y[],z[];
      double *theta,*alpha,*ebox;
      integer *isfac,*n,*m,*iflag,*izcol,*zcol;
-     integer * m1, *n1, *m2, *n2, *m3, *n3, *m3n, *n3n;//Adding F.Leray 12.03.04 and 19.03.04
+     integer * m1, *n1, *m2, *n2, *m3, *n3, *m3n, *n3n;/*Adding F.Leray 12.03.04 and 19.03.04*/
      char *fname,*legend; 
 {  
   sciTypeOf3D typeof3d;
@@ -284,7 +284,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
     ok=1;
   if ((sciGetGraphicMode (psubwin)->autoscaling))
     update_3dbounds(psubwin,isfac,x,y,z,*m,*n,*theta, *alpha);
-  if ( typeof3d != SCI_PARAM3D1 ) //Distinction here between SCI_PARAM3D1 and others
+  if ( typeof3d != SCI_PARAM3D1 ) /*Distinction here between SCI_PARAM3D1 and others*/
     sciSetCurrentObj (ConstructSurface
 		      ((sciPointObj *)
 		       psubwin, typeof3d,
@@ -297,11 +297,11 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	return; 
       }
       for (i = 0; i < *n; ++i) { 
-	// F.Leray Pb here: In fact we do not create a Surface but one or several 3D Polylines
-	// Pb comes when wanting to access the fields "surface_color" or "flag" for example
-	// in function sciSet (cf. matdes.c). 
-	// Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
-	// Question 2: Is "flag" obsolete and replaced by "color_mode"?
+	/* F.Leray Pb here: In fact we do not create a Surface but one or several 3D Polylines
+	 Pb comes when wanting to access the fields "surface_color" or "flag" for example
+	 in function sciSet (cf. matdes.c). 
+	 Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
+	 Question 2: Is "flag" obsolete and replaced by "color_mode"?*/
 	sciSetCurrentObj (ConstructPolyline
 			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			   &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,0));  
@@ -312,7 +312,11 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
       if ( *n>1 ) sciSetCurrentObj (ConstructAgregation (hdltab, *n));  
       FREE(hdltab);
     }
-  if (ok==1) MergeFac3d(psubwin);
+  if (ok==1) 
+    {
+      /* F.Leray Check this... 19.03.04*/
+      MergeFac3d(psubwin);
+    }
   sciDrawObj(sciGetCurrentFigure ());/*dj2004*/
      
        
@@ -334,8 +338,8 @@ void Objdrawaxis (dir,tics,x,nx,y,ny,val,subint,format,font,textcol,ticscol,flag
 		     dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg));  
   sciDrawObj(sciGetCurrentObj ());
      
-  // F.Leray 10.03.04: In fact we use ConstructAxes AND NOT ConstructAxis to draw
-  // one axis. ConstructAxis is apparently unused!!
+  /* F.Leray 10.03.04: In fact we use ConstructAxes AND NOT ConstructAxis to draw
+     one axis. ConstructAxis is apparently unused!!*/
      
 }
 

@@ -128,7 +128,7 @@ void C2F(fac3dn)(int iflag, double *x, double *y, double *z, integer *cvect, int
     sciXbasc(); 
     initsubwin();
     sciRedrawFigure();
-	psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  // F.Leray 25.02.04
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
   } 
   
   polyz = graphic_alloc(5,(*q),sizeof(double));

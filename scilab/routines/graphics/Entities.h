@@ -67,7 +67,7 @@
 #define pMERGE_FEATURE(pointobj)       ((sciMerge         *)pointobj->pfeatures)/* DJ.A 30/12 */
 #define pSURFACE_FEATURE(pointobj)     ((sciSurface       *)pointobj->pfeatures)/** */
 #define pLIGHT_FEATURE(pointobj)       ((sciLightSource   *)pointobj->pfeatures)/** */ 
-//#define pAXIS_FEATURE(pointobj)        ((sciAxis          *)pointobj->pfeatures)/** */
+/*#define pAXIS_FEATURE(pointobj)        ((sciAxis          *)pointobj->pfeatures)*/ /** */
 #define pAXES_FEATURE(pointobj)        ((sciAxes          *)pointobj->pfeatures)/** */
 #define pGRAYPLOT_FEATURE(pointobj)    ((sciGrayplot      *)pointobj->pfeatures)/** */
 #define pFEC_FEATURE(pointobj)         ((sciFec           *)pointobj->pfeatures)/** */
@@ -289,7 +289,7 @@ typedef struct
 {
   /** currently not used in this version */
   /** pointe sur un ID de la table des couleur Scilab */
-  int backgroundcolor;	    //F.Leray 05.03.04: Question: Has each object a back/foreground color or do we use one back/foreground defined in the FIGURE Object??
+  int backgroundcolor;	    /*F.Leray 05.03.04: Question: Has each object a back/foreground color or do we use one back/foreground defined in the FIGURE Object??*/
   /** pointe sur un ID de la table des couleur Scilab */
   int foregroundcolor;
   /** */
@@ -779,7 +779,7 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible; 
   int isclip;
-  double *pvz;  /* vecteur des points z *//**DJ.Abdemouche 2003**/
+  double *pvz;  /* vecteur des points z */ /**DJ.Abdemouche 2003**/
 }
 sciPatch;  /** */
 
@@ -800,8 +800,8 @@ typedef struct
   int str; 
   integer strwidth;
   integer strheight;
-  double horzcurvature;		  /** to do rectangle with round corner */
-  double vertcurvature;		  /** to do rectangle with round corner */
+  double horzcurvature;		  /** to do rectangle with round corner */ /*F.Leray not implemented till now... 19.03.04 to see...*/
+  double vertcurvature;		  /** to do rectangle with round corner */ /*F.Leray not implemented till now... 19.03.04 to see...*/
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */  
@@ -836,11 +836,14 @@ typedef struct
   double * pvecy;
   double * pvecz;
   integer *zcol;
+  integer *inputCMoV; /* Affing here in order to always have the input data*/
+  /* We will determinate if it is a vector or matrix data with m3n and n3n values*/
+
   integer izcol;  
   integer dimzx;
   integer dimzy;
 
-   //F.Leray 12.03.04 Adding here to know the length of arrays pvecx, pvecy and pvecz
+  /*F.Leray 12.03.04 Adding here to know the length of arrays pvecx, pvecy and pvecz*/
 
   int nc;
   int nx;
@@ -857,7 +860,7 @@ typedef struct
   double ebox[6];
   int flagcolor; /* this flag indicates the type of the color of how the facet have to be colored 
                         0: uniformed color
-                       1: facet's color are computed with z*/ 
+			1: facet's color are computed with z*/ /* in case of a simple plot...!!! F.Leray 19.03.04 */
   sciTypeOf3D typeof3d;
 
   BOOL isselected;
@@ -934,7 +937,7 @@ typedef struct
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible; 
-  int isclip; // Adding F.Leray 10.03.04
+  int isclip; /* Adding F.Leray 10.03.04*/
 }
 sciAxis;  /** */
 
@@ -994,8 +997,8 @@ typedef struct
 {
   sciRelationShip relationship;
   sciGraphicContext graphiccontext; 
-  double *vx;  /** vx vector of size Nbr **/ //F.Leray 18.02.04 ...of size Nbr1 ? No depending on the type ptype
-  double *vy;  /** vy vector of size Nbr **/ //F.Leray 18.02.04 ...of size Nbr2 ? No depending on the type ptype
+  double *vx;  /** vx vector of size Nbr **/ /*F.Leray 18.02.04 ...of size Nbr1 ? No depending on the type ptype*/
+  double *vy;  /** vy vector of size Nbr **/ /*F.Leray 18.02.04 ...of size Nbr2 ? No depending on the type ptype*/
   double *vfx;
   double *vfy;
   integer Nbr1;   
@@ -1476,7 +1479,7 @@ extern void Zoom_Subwin(double bbox[]);
 extern void Unzoom_Subwin();
 extern sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin);
 extern void sciSwitchWindow(int *winnum);
-extern int sciType (char *marker, sciPointObj *pobj);  // F.Leray MODIFICATION ICI
+extern int sciType (char *marker, sciPointObj *pobj);  /* F.Leray MODIFICATION ICI*/
 extern int sciUnAgregation (sciPointObj * pobj);
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
 extern int version_flag(); 

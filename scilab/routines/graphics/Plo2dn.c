@@ -78,9 +78,9 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
   if (!(sciGetGraphicMode (psubwin)->addplot)) { 
     sciXbasc(); 
-    initsubwin(); 	// Pb here Re-init for the psubwin does not work properly F.Leray 24.02.04
+    initsubwin(); 	/* Pb here Re-init for the psubwin does not work properly F.Leray 24.02.04*/
     sciRedrawFigure();
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  // F.Leray 24.02.04
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 24.02.04 */
   } 
   
   /*---- Boundaries of the frame ----*/
@@ -135,7 +135,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       else {
         sciSetIsMark(sciGetCurrentObj(),  (style[jj] < 0 ? TRUE : FALSE));
         sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
-        sciSetForeground(sciGetCurrentObj(),-(style[jj])); // Adding here F.Leray 04.03.04
+        sciSetForeground(sciGetCurrentObj(),-(style[jj])); /* Adding here F.Leray 04.03.04*/
       } 
       if (with_leg) pptabofpointobj[jj] = sciGetCurrentObj();
       sciDrawObj(sciGetCurrentObj ()); 

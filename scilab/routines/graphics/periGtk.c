@@ -632,7 +632,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag,
   win = ScilabXgc->CurWindow;
   if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
     { 
-      /* sciprint("ds la queue %f %f \n",(double) *x1,(double) *yy1);*//* XXXX */
+      /* sciprint("ds la queue %f %f \n",(double) *x1,(double) *yy1);*/ /* XXXX */
       return ;
     }
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);

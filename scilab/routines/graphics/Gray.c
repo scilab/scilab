@@ -56,7 +56,7 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
       sciXbasc(); 
       initsubwin();
       sciRedrawFigure();
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  // F.Leray 25.02.04
+      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
     } 
     /*---- Boundaries of the frame ----*/
     if ((sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->autoscaling)
@@ -230,7 +230,7 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
       sciXbasc(); 
       initsubwin();
       sciRedrawFigure();
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  // F.Leray 25.02.04
+      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
     } 
   
     /*---- Boundaries of the frame ----*/

@@ -333,7 +333,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 		FRect[3] = Max(FRect[3],Cscale.frect[3]);
 	      }
 	      else{ /*dj2003*/
-		subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); // rajout F.Leray
+		subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); /* rajout F.Leray*/
 		FRect[0] = Min(FRect[0],pSUBWIN_FEATURE (subwindowtmp)->FRect[0]);
 		FRect[1] = Min(FRect[1],pSUBWIN_FEATURE (subwindowtmp)->FRect[1]);
 		FRect[2] = Max(FRect[2],pSUBWIN_FEATURE (subwindowtmp)->FRect[2]);
@@ -423,7 +423,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       integer ww,verbose=0,narg;
       GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 
-      if (version_flag() != 0) // F.Leray
+      if (version_flag() != 0) /* F.Leray*/
 	  {
 		if (strcmp("Rec",driver) != 0) 
 		{	
@@ -439,14 +439,14 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 	  }
 	  else
 	  {
-	//	sciprint("JE SUIS LA  1 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+	    /*	sciprint("JE SUIS LA  1 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");*/
 	    sciDrawObj(subwindowtmp);
-	//	sciprint("JE SUIS LA  2 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+	    /*	sciprint("JE SUIS LA  2 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");*/
       } 
 
       C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
-	//sciprint("Sortie de Fonction ----> update_frame_bounds");
+  /*sciprint("Sortie de Fonction ----> update_frame_bounds");*/
 }
  
 

@@ -55,8 +55,8 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   else
     C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /** The arrowsize acording to the windowsize **/
-  // n=2*(*n1)*(*n2); 
-  n=2*(*n1)*((*n2)+1); //F.Leray 17.02.04
+  /* n=2*(*n1)*(*n2); */
+  n=2*(*n1)*((*n2)+1); /*F.Leray 17.02.04*/
   xx[0]=x[0];xx[1]=x[*n1-1];
   yy[0]=y[0];yy[1]=y[*n2-1];
   /** Boundaries of the frame **/ 
@@ -91,10 +91,10 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 
       sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); 
 
-      flag = 1; // je le mets à 1 pour voir F.Leray 19.02.04
+      flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
       arsize1 = 0.5;
 
-      // F.Leray Allocation de style[dim = Nbr1]
+      /* F.Leray Allocation de style[dim = Nbr1] */
       if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL)
 	{
 	  sciprint("No more memory available\n");
@@ -109,7 +109,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       sciSetCurrentObj(ConstructSegs((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
 				     type,x,y,*n1,*n2,fx,fy,flag,style,arsize1,colored,*arfact)); 
 
-      // F.Leray Libération de style[dim = Nbr1]
+      /* F.Leray Libération de style[dim = Nbr1]*/
       if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
 
     }
@@ -123,7 +123,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       return ;
     }      
   if ( colored != 0) {
-    zm = graphic_alloc(2,n/2,sizeof(int)); // F.Leray 19.02.04 OK one norm by vector => dim(zm) = n1*n2
+    zm = graphic_alloc(2,n/2,sizeof(int)); /* F.Leray 19.02.04 OK one norm by vector => dim(zm) = n1*n2*/
     if (  zm == 0 ) 
       {
 	sciprint("Running out of memory \n");

@@ -32,10 +32,10 @@ void axis_draw(strflag)
      char strflag[];
 { 
   /* using foreground to draw axis */
-  integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp; // F.Leray verbose=1 interesting here!!!
+  integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp; /* F.Leray verbose=1 interesting here!!!*/
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  //sciprint("APRES xget foreground IN axis_draw------------------------------------------"); //F.Leray printf to see...
+  /*sciprint("APRES xget foreground IN axis_draw------------------------------------------");*/ /*F.Leray printf to see...*/
   C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -48,10 +48,10 @@ void axis_draw(strflag)
     ixbox[2]=Cscale.WIRect1[0]+Cscale.WIRect1[2];iybox[2]=iybox[1];
     ixbox[3]=ixbox[2];iybox[3]=iybox[0]; 
     C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    // C2F (dr) ("xset","foreground",&color,&color,&verbose,&verbose,&verbose,PI0,PD0,PD0,PD0,PD0,5L,4096);	  
+    /* C2F (dr) ("xset","foreground",&color,&color,&verbose,&verbose,&verbose,PI0,PD0,PD0,PD0,PD0,5L,4096);	  */
     C2F(dr)("xset","pattern",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	 
     C2F (dr) ("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
-    //C2F (dr) ("xset","foreground",&fg,&fg,&verbose,&verbose,&verbose,PI0,PD0,PD0,PD0,PD0,5L,4096);
+    /*C2F (dr) ("xset","foreground",&fg,&fg,&verbose,&verbose,&verbose,PI0,PD0,PD0,PD0,PD0,5L,4096);*/
     C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	  
   }
 
@@ -90,7 +90,7 @@ void axis_draw(strflag)
 static void aplotv2(strflag) 
      char *strflag;
 {
-  char dir = 'l'; // F.Leray Note: by default the position of y-axis is 'left'
+  char dir = 'l'; /* F.Leray Note: by default the position of y-axis is 'left'*/
   int nx,ny;
   int fontsize=-1,textcolor=-1,ticscolor=-1 ; /*==> use default values  */
   int seg =0;
@@ -104,9 +104,10 @@ static void aplotv2(strflag)
   x[0] = Cscale.frect[0]; x[1] = Cscale.frect[2] ; x[2]=Cscale.Waaint1[1];
   y[0]=  Cscale.frect[1]; y[1] = Cscale.frect[3] ; y[2]=Cscale.Waaint1[3]; 
 
-  // Comments on the x and y arrays:
-  // x = [xmin,xmax,nb_subtics_on_x_axis]
-  // y = [ymin,ymax,nb_subtics_on_y_axis]
+  /* Comments on the x and y arrays:
+   x = [xmin,xmax,nb_subtics_on_x_axis]
+   y = [ymin,ymax,nb_subtics_on_y_axis]
+  */
 
   /** Cscale.frect[4]= xmin ymin xmax ymax **/ 
 
@@ -181,7 +182,7 @@ static void aplotv2(strflag)
     }
   if ( c != '4' && c != '5' ) {
     if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.rect == 0))
-      seg=1; // seg=1 means not to draw a rectangle (cases wherexy-axis is centered in the middle of the frame or in (0,0))
+      seg=1; /* seg=1 means not to draw a rectangle (cases wherexy-axis is centered in the middle of the frame or in (0,0))*/
     else  
       /** frame rectangle **/
       C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
@@ -189,17 +190,17 @@ static void aplotv2(strflag)
   }
 
   if (version_flag() == 0){  
-    //  Cscale.Waaint1[i]= pSUBWIN_FEATURE (psubwin)->axes.subint[i]+1; /*SS 01/01/03 */ // F.Leray Error here: Array overflowed: dim  Cscale.Waaint1 = 4 and i=4 
+    /*  Cscale.Waaint1[i]= pSUBWIN_FEATURE (psubwin)->axes.subint[i]+1; */ /*SS 01/01/03 */ /* F.Leray Error here: Array overflowed: dim  Cscale.Waaint1 = 4 and i=4 */
     Cscale.Waaint1[0]= pSUBWIN_FEATURE (psubwin)->axes.subint[0]+1;
-    Cscale.Waaint1[1]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.xlim[3]); /*SS 02/01/03 */ // Give the number of intervals on x
+    Cscale.Waaint1[1]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.xlim[3]); /*SS 02/01/03 */ /* Give the number of intervals on x*/
     Cscale.Waaint1[2]= pSUBWIN_FEATURE (psubwin)->axes.subint[1]+1; 
-    Cscale.Waaint1[3]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.ylim[3]);/*SS 02/01/03 */  // Give the number of intervals on y
+    Cscale.Waaint1[3]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.ylim[3]);/*SS 02/01/03 */  /* Give the number of intervals on y*/
 
-    // Above: Number of tics on x-axis: Cscale.Waaint1[0]
-    //        Number of tics on y-axis: Cscale.Waaint1[2]
+    /* Above: Number of tics on x-axis: Cscale.Waaint1[0]*/
+    /*        Number of tics on y-axis: Cscale.Waaint1[2]*/
 
-    // Above: Number of subtics on x-axis: Cscale.Waaint1[1]
-    //        Number of subtics on y-axis: Cscale.Waaint1[3]
+    /* Above: Number of subtics on x-axis: Cscale.Waaint1[1]*/
+    /*        Number of subtics on y-axis: Cscale.Waaint1[3]*/
 
     ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
     textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
@@ -448,10 +449,10 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
   /**** 01/07/2002 ***/ 
   if (version_flag() == 0) 
     {
-      // Pb here, dim of x and y can be lesser than 4 (ie in example_eng.tst : nx = 6 and ny = 1) F.Leray 25.02.04
-      // x and y are either double x[3] (resp. y[3]) or simply a double !  F.Leray 05.03.04
-      // So a test on x[3] (resp. y[3]) is ALWAYS bad!!
-      // NO!! It depends on the xy_type as follow (see in aplotv1):
+      /* Pb here, dim of x and y can be lesser than 4 (ie in example_eng.tst : nx = 6 and ny = 1) F.Leray 25.02.04
+       x and y are either double x[3] (resp. y[3]) or simply a double !  F.Leray 05.03.04
+       So a test on x[3] (resp. y[3]) is ALWAYS bad!!
+       NO!! It depends on the xy_type as follow (see in aplotv1):*/
       /*
        *   xy_type = 'v' (for vector) or 'r' (for range) 
        *         'v' means that tics position are given by a vector 
@@ -460,8 +461,8 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
        *         'i' means that tics positions are in a range given by four number (integers) 
        *             [k1,k2,e,number_of intervale] -> [k1*10^e,k2*10^e] */
 
-      if(xy_type == 'i') {     // Adding F.Leray 05.03.04
-	//F.Leray Modification on 09.03.04
+      if(xy_type == 'i') {     /* Adding F.Leray 05.03.04*/
+	/*F.Leray Modification on 09.03.04*/
 	switch ( pos ) {
 	case 'u' : case 'd' :  while (x[3]>10)  x[3]=floor(x[3]/2); break;
 	case 'r' : case 'l' :  while (y[3]>10)  y[3]=floor(y[3]/2); break;
@@ -505,7 +506,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
 	}
       /** the horizontal segment **/
 
-      //F.Leray 26.02.04
+      /*F.Leray 26.02.04*/
       debug = version_flag();
 
       vx[0] =  XScale(x_convert(xy_type, x , 0));

@@ -1639,7 +1639,7 @@ void set_default_colormap1(int m)
   unsigned int red, green, blue;
 
   /* Save old color vectors */
-  if(ScilabXgc->Colors != (Pixel *) NULL) //F.Leray
+  if(ScilabXgc->Colors != (Pixel *) NULL) /*F.Leray*/
     c = ScilabXgc->Colors;
   
   if(ScilabXgc->Red != (float *) NULL)
@@ -1724,7 +1724,7 @@ void set_default_colormap3(int m)
   int bp1,wp1;
 
   /* Save old color vectors */
-  if(ScilabXgc->Colors != (Pixel *) NULL) //F.Leray
+  if(ScilabXgc->Colors != (Pixel *) NULL) /*F.Leray*/
     c = ScilabXgc->Colors;
 
   if(ScilabXgc->Red != (float *) NULL)
@@ -1971,7 +1971,7 @@ void setcolormap1(struct BCG *Xgc,integer m, double *a) /*NG*/
   unsigned int red, green, blue;
 
   /* Save old color vectors */
-  if(Xgc->Colors != (Pixel *) NULL) // F.Leray
+  if(Xgc->Colors != (Pixel *) NULL) /* F.Leray*/
     c = Xgc->Colors;
 
   if(Xgc->Red != (float *) NULL)
@@ -2069,7 +2069,7 @@ void setcolormap3(struct BCG *Xgc,integer m, double *a)
   int bp1,wp1;
 
   /* Save old color vectors */
-  if(Xgc->Colors != (Pixel *) NULL) // F.Leray
+  if(Xgc->Colors != (Pixel *) NULL) /* F.Leray*/
     c = Xgc->Colors;
 
   if(Xgc->Red != (float *) NULL)
@@ -2981,7 +2981,7 @@ void C2F(drawpolylines)(char *str, integer *vectsx, integer *vectsy, integer *dr
        { /** we use the markid : drawvect[i] : with current dash **/
 	 NDvalue = - drawvect[i];
 	 xset_mark(&NDvalue,symb+1,PI0,PI0);
-	 //xset_pattern(Dvalue+6,PI0,PI0,PI0); // F.Leray Correction here to have the right color
+	 /*xset_pattern(Dvalue+6,PI0,PI0,PI0); */ /* F.Leray Correction here to have the right color*/
 	 xset_pattern(&NDvalue,PI0,PI0,PI0);
 	 C2F(drawpolymark)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
        }

@@ -16,7 +16,7 @@
  * A List for storing Window scaling information 
  *----------------------------------------------*/
 
-extern int versionflag; // Test for NG F.Leray 03.03.04
+extern int versionflag; /* Test for NG F.Leray 03.03.04*/
 
 static void scale_copy __PARAMS((WCScaleList *s1, WCScaleList *s2));
 static integer curwin __PARAMS((void));
@@ -1045,7 +1045,7 @@ void zoom_get_rectangle(bbox)
   /* Back to the default driver which must be Rec and redraw the recorded
    * graphics with the new scales
    */
-// F.Leray With the nez graphic standard, driver has not to be Rec
+  /* F.Leray With the nez graphic standard, driver has not to be Rec*/
 
   bbox[0]=Min(x0,x);
   bbox[1]=Min(yy0,y);
@@ -1081,7 +1081,7 @@ void zoom()
   flag[0] =1 ; flag[1]=0;
   C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if (strcmp("Rec",driver) != 0 && versionflag !=0 ) // F.Leray 03.03.04
+  if (strcmp("Rec",driver) != 0 && versionflag !=0 ) /* F.Leray 03.03.04*/
     {
       Scistring("\n Use the Rec driver to zoom " );
       return;
@@ -1175,7 +1175,7 @@ extern void unzoom()
 
 
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if (strcmp("Rec",driver) != 0 && versionflag !=0)  // F.Leray 03.03.04
+  if (strcmp("Rec",driver) != 0 && versionflag !=0)  /* F.Leray 03.03.04*/
     {
       Scistring("\n Use the Rec driver to unzoom " );
       return;

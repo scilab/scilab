@@ -1513,7 +1513,7 @@ void C2F(drawpolylinesPos)(char *str, integer *vectsx, integer *vectsy, integer 
 	{ /** on utilise la marque de numero associ\'ee **/
 	  NDvalue = - drawvect[i];
 	  C2F(xsetmarkPos)(&NDvalue,symb+1,PI0,PI0);
-	  C2F(set_dash_and_color_Pos)(&NDvalue,PI0,PI0,PI0); // F.Leray avec la couleur associ\'ee 05.03.04
+	  C2F(set_dash_and_color_Pos)(&NDvalue,PI0,PI0,PI0); /* F.Leray avec la couleur associ\'ee 05.03.04*/
 	  C2F(drawpolymarkPos)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 	}
       else
