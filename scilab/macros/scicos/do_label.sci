@@ -18,8 +18,8 @@ end
 o=scs_m.objs(K)
 model=o.model
 lab=model.label
-lab=dialog('Give block label',lab)
-if lab<>[] then
+[ok,lab]=getvalue('Give block label','label',list('str',1),lab)
+if ok then
   drawblock(o);
   lab=stripblanks(lab)
   if length(lab)==0 then lab=' ',end

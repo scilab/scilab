@@ -20,9 +20,10 @@ if flag=='3D' then
   else
     with3d=With3D
   end
-  [ok,rep1]=getvalue('Use 3D aspect?','yes (1) or no (0)',list('vec',1),string(with3d))
-  if ok then
-    if rep1<>0 then rep1=1;end
+  if with3d then tt='Yes', else tt='No',end
+  rep1=message(['Use 3D aspect?';'current choice is '+tt],['Yes';'No'])
+
+    if rep1<>1 then rep1=0;end
     if rep1 then
       Color3D=options('3D')(2)
       rep2=getcolor('3D color',Color3D)
@@ -33,7 +34,7 @@ if flag=='3D' then
     ok=%t
     options('3D')(1)=rep1==1
     options('3D')(2)=rep2
-  end
+
 elseif flag=='Background' then
   bac=options('Background')
   if bac==[] then bac=[8 1],end //compatibility

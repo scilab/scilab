@@ -3,6 +3,8 @@ function Cmenu=tk_mpopupX(ll)
   if length(ll)==0 then return;end
   [txt,MM]=create_popup(ll)
   ierr=execstr('TK_EvalStr(txt)','continue')
+  done=0
+  while ~done,end
 endfunction
 
 function [txt,MM]=create_popup(ll)
@@ -21,7 +23,8 @@ txt='catch {destroy .zz};toplevel .zz;set numx [winfo pointerx .];set"+...
 txt=txt+txte
 txt=txt+' pack .zz.scicoslhb.xx -side left -in .zz.scicoslhb;button"+...
     " .zz.scicoslhb.xy -text Cancel -command {destroy .zz};pack"+...
-    " .zz.scicoslhb.xy -side right -in .zz.scicoslhb;pack .zz.scicoslhb;tkwait window .zz'
+    " .zz.scicoslhb.xy -side right -in .zz.scicoslhb;"+...
+"pack .zz.scicoslhb;bind .zz <Destroy> {ScilabEval '"done=1'"}'
 endfunction
 
 

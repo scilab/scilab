@@ -24,7 +24,7 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
     else
       j=3
     end
-  
+
     Cmenu=mpopup(%scicos_lhb_list(j));
 
     if Cmenu==[] then %pt=[];end
