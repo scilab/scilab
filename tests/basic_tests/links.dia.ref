@@ -21,34 +21,6 @@ if lktest==1 then
 	link(files,routines);
 shared archive loaded
 
-Linking ext1f 
-
-Linking ext2f 
-
-Linking ext3f 
-
-Linking ext4f 
-
-Linking ext5f 
-
-Linking ext6f 
-
-Linking ext7f 
-
-Linking ext8f 
-
-Linking ext9f 
-
-Linking ext10f 
-
-Linking ext11f 
-
-Linking ext12f 
-
-Linking ext13f 
-
-Linking ext14f 
-
 Link done
 
 else

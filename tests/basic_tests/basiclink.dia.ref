@@ -25,8 +25,6 @@ if ~c_link('foo') then
   exec loader.sce ;
 shared archive loaded
 
-Linking foo 
-
 Link done
 
   chdir(path)
@@ -60,10 +58,6 @@ if ~c_link('intertest') then
   // load the shared library
   exec loader.sce ;
 shared archive loaded
-
-Linking intertest 
-
-Interface 0 intertest
 
   if norm(scifun1(%pi)- sin(%pi+1)/%pi ) > %eps then pause;end
 end

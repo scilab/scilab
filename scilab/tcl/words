@@ -1,0 +1,21 @@
+#MODE scilab
+#TAG col1
+abort apropos
+break
+case clear
+deff do
+else elseif end endfunction exit
+for function 
+getd getf global
+help
+if
+load
+pause
+quit
+resume return
+save select stop
+then
+what where whereami whereis while whos
+xget xset
+# $Extended$File$Info$
+#

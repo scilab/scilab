@@ -1,72 +1,50 @@
-#!/bin/sh
+#!/bin/SCILABGS
 # Warning : some old versions of sh dont allow inline function definitions
 # like do_scilex()... . In this case use a system V sh (sh5)
-# Set the SCI environment variable if not already set
-# Copyright Inria/Enpc 
-# XXXXX : Attention quand on est en mingwin on veut des 
-# env avec c: pas /cygdrive 
-# de plus en cygwin scilab peut se lancer sans script 
+
+# Copyright INRIA
+
 if test "$PRINTERS" = ""; then
   PRINTERS="lp"
 fi
-
 #############################################################################
 #                                                                           #
 #                       DO NOT MODIFY BELOW THIS LINE                       #
 #                                                                           #
 #############################################################################
-if test "$HOME" = ""; then
-  HOME="SCILAB_DIRECTORY"
-fi
-export HOME
 if test "$SCI" = ""; then
   SCI="SCILAB_DIRECTORY"
 fi
 export SCI
-if test "$WSCI" = ""; then
-  WSCI="SCILAB_DIRECTORY"
+if test "$DISPLAY" = ""; then
+  DISPLAY="unix:0.0"
 fi
-export WSCI 
-
-PWD=`pwd`
-export PWD
-
-export  PRINTERS
+export DISPLAY
+export PRINTERS
 VERSION="SCILAB_VERSION"
 export VERSION
 
-do_scilex()
-{
-    PATH=$PATH:$SCI:$SCI/util
-    export PATH
-    XAPPLRESDIR=$SCI/X11_defaults
-    export XAPPLRESDIR
-    $SCI/bin/scilex $* 
-}
+if test "$PVM_ROOT" = ""; then
+  PVM_ROOT="$SCI/pvm3"
+fi
+if test "$PVM_ARCH" = ""; then
+  PVM_ARCH=`$PVM_ROOT/lib/pvmgetarch`
+fi
+export PVM_ROOT PVM_ARCH
 
-do_scilex_now()
-{
-    PATH=$PATH:$SCI:$SCI/util
-    export PATH
-    XAPPLRESDIR=$SCI/X11_defaults
-    export XAPPLRESDIR
-    $SCI/bin/scilex $* 
-}
-
-
+PATH=$PATH:$SCI:$SCI/util
+export PATH
 
 do_help()
 {
-echo "Usage  :"
-echo     "	scilab [-ns -nw -nwni -display display -l language]"
-echo     "	scilab -mini"
+echo "Usage:"
+echo     "	scilab [-ns -nw -display display -f file  -l lang -args arguments]"
+echo     "	scilab [-ns -nw -display display -e expression]"
 echo     "	scilab -link <objects>"
-echo     "	scilab -function <function-name>"
-echo     "	scilab -print_p file printer"
-echo     "	scilab -print_l file printer"
-echo     "	scilab -save_p file format"
-echo     "	scilab -save_l file format"
+exit
 }
+
+
 
 do_compile()
 {
@@ -75,7 +53,7 @@ do_compile()
 	name=`basename $1 .sci`
 	echo generating $name.bin
 	echo "predef();getf('$name.sci');save('$name.bin');quit"\
-	      | $SCI/bin/scilex -ns -nwni | sed 1,8d 1>report 2>&1
+	      | $SCI/bin/scilex -ns -nw | sed 1,8d 1>report 2>&1
 	if (grep error report 1> /dev/null  2>&1);
 	then cat report;echo " " 
 	   echo see `pwd`/report for more informations
@@ -91,7 +69,7 @@ do_lib()
 	umask 002
 	rm -f report
 	echo "$1=lib('$2/');save('$2/lib',$1);quit"\
-	      | $SCI/bin/scilex -ns -nwni |sed 1,/--\>/d 1>report 2>&1
+	      | $SCI/bin/scilex -ns -nw |sed 1,/--\>/d 1>report 2>&1
 	if (grep error report 1> /dev/null  2>&1);
 	then cat report;echo " " 
 		echo see `pwd`/report for more informations
@@ -103,32 +81,14 @@ do_lib()
 }
 
 
-
-do_compile_test ()
-{
-	umask 002
-	rm -f report
-	name=`basename $1 .sci`
-	echo generating $name.bin
-	echo "predef();getf('$name.sci','c');save('$name.bin');quit"\
-	      | $SCI/bin/scilex -ns -nwni | cat  1>report 2>&1
-	if (grep error report 1> /dev/null  2>&1);
-	then cat report;echo " " 
-	   echo see `pwd`/report for more informations
-	   grep libok report>/dev/null; 
-	fi
-	umask 022
-	exit 0
-}
-
-
 do_print() 
 {
 	$SCI/bin/BEpsf $1 $2 
-	lpr $2.eps
+	lpr -P$3 $2.eps
 	rm -f $2 $2.eps
 
 }
+
 do_save() 
 {
 	case $3 in 
@@ -166,7 +126,7 @@ do_save()
 rest="no"
 case $# in
     0)
-	do_scilex &
+       $SCI/bin/zterm -e $SCI/bin/geci -local $SCI/bin/scilex $start_file $arguments &
         ;;
     2)
         case $1 in
@@ -227,6 +187,7 @@ esac
 # really calling Scilab with arguments
 if test "$rest" = "yes"; then
   nos=
+  debug=
   now=
   display=
   start_file=
@@ -244,11 +205,14 @@ if test "$rest" = "yes"; then
       -ns)
           nos="yes"
           ;;
+      -debug) 
+          prevarg="debug"
+          ;;
       -nw)
           now="yes"
           ;;
       -nwni)
-          nowi="yes"
+          now="yes"
           ;;
       -display|-d)
           prevarg="display"
@@ -263,7 +227,7 @@ if test "$rest" = "yes"; then
           prevarg="start_exp"
           ;;
 
-      -args)
+       -args)
            prevarg="arguments"
           ;;
 
@@ -281,6 +245,7 @@ if test "$rest" = "yes"; then
     start_file="-f $start_file"
   fi
 
+
   if test -n "$start_exp"; then
     start_file="-e $start_exp"
   fi
@@ -289,26 +254,21 @@ if test "$rest" = "yes"; then
     language="-l $language"
   fi
 
+  if test -n "$debug"; then 
+     $SCI/bin/zterm -e gdb $SCI/bin/scilex
+  else 
   if test -n "$nos"; then
      if test -n "$now"; then
-       do_scilex_now -ns -nw $start_file $language $arguments
+      $SCI/bin/scilex -ns -nw $start_file $language $arguments
      else
-        if test -n "$nowi"; then 
-     	    do_scilex_now -ns -nwni $display $start_file  $language $arguments 
-        else
-	        do_scilex -ns $display $start_file  $language $arguments &
-        fi
+      $SCI/bin/zterm -e $SCI/bin/scilex -ns $display $start_file $language $arguments&
      fi
   else
      if test -n "$now"; then
-       do_scilex_now -nw $start_file $language $arguments
+      $SCI/bin/scilex -nw $start_file $language $arguments
      else
-        if test -n "$nowi"; then 
-	       do_scilex_now -nwni $display $start_file  $language $arguments 
-        else
-	       do_scilex $display $start_file  $language $arguments 
-        fi
+      $SCI/bin/zterm -e $SCI/bin/scilex $start_file $language $arguments
      fi
   fi    
-
+  fi 
 fi

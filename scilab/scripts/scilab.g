@@ -5,7 +5,7 @@
 # Copyright INRIA
 
 if test "$PRINTERS" = ""; then
-  PRINTERS="lp:LaserHP:SalleBal:Secretariat:ColorPS:Color12"
+  PRINTERS="lp"
 fi
 #############################################################################
 #                                                                           #
@@ -20,10 +20,7 @@ if test "$DISPLAY" = ""; then
   DISPLAY="unix:0.0"
 fi
 export DISPLAY
-if test "$MANCHAPTERS" = ""; then
-  MANCHAPTERS=~/SCIMANCHAPTERS
-fi
-export  MANCHAPTERS
+
 export PRINTERS
 VERSION="SCILAB_VERSION"
 export VERSION
@@ -46,10 +43,6 @@ do_scilex()
     export PATH
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
-    XLESSHELPFILE=$SCI/X11_defaults/xless.help
-    export XLESSHELPFILE
-    NETHELPDIR=$SCI/X11_defaults
-    export NETHELPDIR
     tty -s && stty kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
     $SCI/bin/scilex $* 
 }
@@ -60,146 +53,18 @@ do_scilex_now()
     export PATH
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
-    XLESSHELPFILE=$SCI/X11_defaults/xless.help
-    export XLESSHELPFILE
-    NETHELPDIR=$SCI/X11_defaults
-    export NETHELPDIR
     $SCI/bin/scilex $* 
-}
-
-do_geci_scilex()
-{
-    PATH=$PATH:$SCI:$SCI/util
-    export PATH
-    XAPPLRESDIR=$SCI/X11_defaults
-    export XAPPLRESDIR
-    XLESSHELPFILE=$SCI/X11_defaults/xless.help
-    export XLESSHELPFILE
-    NETHELPDIR=$SCI/X11_defaults
-    export NETHELPDIR
-    tty -s && stty kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
-    $SCI/bin/geci -local $SCI/bin/scilex $* 
-}
-do_geci_scilex_now()
-{
-    PATH=$PATH:$SCI:$SCI/util
-    export PATH
-    XAPPLRESDIR=$SCI/X11_defaults
-    export XAPPLRESDIR
-    XLESSHELPFILE=$SCI/X11_defaults/xless.help
-    export XLESSHELPFILE
-    NETHELPDIR=$SCI/X11_defaults
-    export NETHELPDIR
-    $SCI/bin/geci -local $SCI/bin/scilex $* 
 }
 
 do_help()
 {
 echo "Usage:"
-echo     "	scilab [-ns -nw -display display -f file -args arguments]"
+echo     "	scilab [-ns -nw -display display -f file  -l lang -args arguments]"
 echo     "	scilab [-ns -nw -display display -e expression]"
-echo     "	scilab -help <key>"
-echo     "	scilab -k <key>"
-echo     "	scilab -xk <key>"
 echo     "	scilab -link <objects>"
 exit
 }
 
-do_chapters()
-{
-# more efficient than do_chapters_alt but not as clean
-      newest=`ls -t -1 $MANCHAPTERS .scilab ~/.scilab $SCI/scilab.star 2>/dev/null |sed -n -e '1p'`
-      if [ "`basename $newest`" != "`basename $MANCHAPTERS`" ]; then
-        echo "mputl(%helps(:,1),'$MANCHAPTERS');quit" |scilab -nw >/dev/null
-      fi
-}
-
-do_chapters_alt()
-{
-        echo "mputl(%helps(:,1),'$MANCHAPTERS');quit" |scilab -nw >/dev/null
-}
-
-do_mank()
-{
-	do_chapters
-	tst=""
-	chapters=`cat $MANCHAPTERS | awk '{print " " $1 }'` 
-	for i in $chapters
-	do
-		eval "mpath=\"$i\""
-		f=`grep -i $1 $mpath/whatis  2> /dev/null`
-		if  test -n "$f"
-		then 
-			grep -i $1 $mpath/whatis 2> /dev/null |sed -e "s/^.*://"
-			tst="found"
-		fi 
-	done  
-	if [ "$tst" != "found" ]
-	then
-		echo $1: nothing appropriate
-	fi
-}
-
-do_mank_x()
-{
-    do_mank $1 > /tmp/Sci_mankx 
-    f=`grep nothing appropriate /tmp/Sci_mankx 2> /dev/null`
-    if test -n "$f"
-    then 
-	exit 19
-    else
-	( $SCI/bin/xless /tmp/Sci_mankx ;rm -f  /tmp/Sci_mankx  ) &
-    fi 
-}
-
-do_man()
-{
-	do_chapters
-	tst=""
-	chapters=`cat $MANCHAPTERS | awk '{print " " $1 }'` 
-	for i in $chapters
-	do
-		eval "mpath=\"$i\""
-		f=`ls  $mpath/$1.cat 2> /dev/null`
-		if  test -n "$f"
-		then 
-			cat $mpath/$1.cat
-			tst="found"
-			break
-		fi 
-	done  
-	if [ "$tst" != "found" ]
-	then
-		echo No manual entry for $1
-	fi
-
-}
-
-
-do_man_x()
-{
-	tst=""
-	XAPPLRESDIR=$SCI/X11_defaults
-	export XAPPLRESDIR
-	chapters=`cat $MANCHAPTERS | awk '{print " " $1 }'` 
-	for i in $chapters
-	do
-		eval "mpath=\"$i\""
-		f=`ls  $mpath/$1.cat 2> /dev/null`
-		if  test -n "$f"
-		then 
-			$SCI/bin/xless $mpath/$1.cat &
-			tst="found"
-			break
-		fi 
-	done  
-	if [ "$tst" != "found" ]
-	then
-		#echo No manual entry for $1
-		exit 19
-	fi
-
-}
 
 do_compile()
 {
@@ -281,25 +146,13 @@ do_save()
 rest="no"
 case $# in
     0)
-	do_geci_scilex &
+	do_scilex &
         ;;
     2)
         case $1 in
-            -help)
-		do_man $2|more
-                ;;
-            -xhelp)
-		do_man_x $2
-                ;;
             -comp)
 		do_compile $2
                 ;;
-	    -k)
-		do_mank $2
-		;;
-	    -xk)
-		do_mank_x $2 
-		;;
             -link)
                 shift
 		$SCI/bin/scilink $SCI $*
@@ -358,6 +211,7 @@ if test "$rest" = "yes"; then
   display=
   start_file=
   prevarg=
+  language=
   for sciarg 
   do
     # If the previous argument needs an argument, assign it.
@@ -381,6 +235,9 @@ if test "$rest" = "yes"; then
           ;;
       -f)
           prevarg="start_file"
+          ;;
+      -l)
+          prevarg="language"
           ;;
       -e)
           prevarg="start_exp"
@@ -408,18 +265,22 @@ if test "$rest" = "yes"; then
     start_file="-e $start_exp"
   fi
 
+  if test -n "$language"; then
+    language="-l $language"
+  fi
+
 
   if test -n "$nos"; then
      if test -n "$now"; then
-       do_scilex_now -ns -nw $start_file $arguments
+       do_scilex_now -ns -nw $start_file $language $arguments
      else
-       do_scilex -ns $display $start_file  $arguments&
+       do_scilex -ns $display $start_file  $language $arguments&
      fi
   else
      if test -n "$now"; then
-       do_geci_scilex_now -nw $start_file $arguments
+       do_scilex_now -nw $start_file $language $arguments
      else
-       do_geci_scilex $display $start_file  $arguments&
+       do_scilex $display $start_file  $language $arguments&
      fi
   fi    
 
