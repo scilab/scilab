@@ -21,6 +21,7 @@
  *   Russell Lang
  * Modified for Scilab 1997
  *   Jean-Philippe Chancelier 
+ *   Allan CORNET (2003)
  */
 
 
@@ -270,4 +271,6 @@ void SetReadyOrNotForAnewLign(BOOL Ready);
 void ForceToActiveWindowParent(void);
 /*--------------------------*/
 void PrintSelection(LPTW lptw);
+/*--------------------------*/
+void ExitWindow(void);
 /*--------------------------*/

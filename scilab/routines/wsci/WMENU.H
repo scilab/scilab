@@ -11,7 +11,6 @@
 #include <time.h>
 #include <string.h>		/* only use far items */
 #include <math.h>
-/*#include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
 #include "wtext.h"
@@ -52,10 +51,11 @@
 /**********************/
 #define MCOPY 			EXIT+1
 #define PASTE 			MCOPY+1
-#define TOOLBAR			MCOPY+2
-#define FRENCH			MCOPY+3
-#define ENGLISH			MCOPY+4
-#define CHOOSETHEFONT 		MCOPY+5
+#define PRINT 			MCOPY+2
+#define TOOLBAR			MCOPY+3
+#define FRENCH			MCOPY+4
+#define ENGLISH			MCOPY+5
+#define CHOOSETHEFONT 		MCOPY+6
 /**********************/
 #define RESTART 		CHOOSETHEFONT+1
 #define PAUSE 			RESTART+1
@@ -130,7 +130,7 @@ char *keyword[] =
 {
   "[FRENCH]","[ENGLISH]",
   "[TOOLBAR]","[NEWSGROUP]","[PRINTWINDOW]","[CLEARCOMMANDWINDOW]","[NEWSCILAB]","[EXEC]","[GETF]","[LOAD]","[SAVE]","[CHDIR]","[GETCWD]","[EXIT]",
-  "[MCOPY]","[PASTE]","[CHOOSETHEFONT]",
+  "[MCOPY]","[PASTE]","[PRINT]","[CHOOSETHEFONT]",
   "[RESTART]","[PAUSE]","[RESUME]","[ABORT]","[CONSOLE]",
   "[SET]","[RAISE]","[DELETESCIW]","[PLUS]","[MINUS]","[XBASC]",
   "[SCIPAD]",
@@ -145,7 +145,7 @@ char *keyword[] =
 BYTE keyeq[] =
 {
   FRENCH,ENGLISH,TOOLBAR,NEWSGROUP,PRINTWINDOW,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
-  MCOPY,PASTE,CHOOSETHEFONT,
+  MCOPY,PASTE,PRINT,CHOOSETHEFONT,
   RESTART,PAUSE,RESUME,ABORT,CONSOLE,
   SET,RAISE,DELETESCIW,PLUS,MINUS,XBASC,
   SCIPAD,
@@ -220,4 +220,5 @@ void CreateMyTooltip (HWND hwnd,char ToolTipString[30]);
 void SwitchLanguage(LPTW lptw,int LangCode);
 /*--------------------------------*/
 void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSizeX, int ButtonSizeY);
+int GetXPosButton(LPTW lptw,int index,int SizeXButtonText,int SizeXButtonIcon);
 /*--------------------------------*/

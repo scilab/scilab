@@ -21,7 +21,8 @@
  *   Modified for Scilab (1997) : Jean-Philippe Chancelier 
  *   Modified for Scilab (2003) : Allan CORNET
  */
-
+ #pragma comment(lib, "shell32.lib")
+#include <ShlObj.h>
 #include "wmenu.h"
 
 #ifndef STRICT
@@ -161,14 +162,26 @@ void SendMacro (LPTW lptw, UINT m)
 			BROWSEINFO InfoBrowserDirectory;
 			char chemin[MAX_PATH];
 			char command[MAX_PATH]; 
+			char TextPath[MAX_PATH*2]; 
 			LPITEMIDLIST pidl; 
 
 			GetCurrentDirectory(MAX_PATH,chemin);
-
+			
 			InfoBrowserDirectory.hwndOwner = lptw->hWndParent; 
 			InfoBrowserDirectory.pidlRoot = NULL; 
-			InfoBrowserDirectory.lpszTitle="Choose a Directory";
-			InfoBrowserDirectory.pszDisplayName = chemin; 
+			switch (LanguageCode)
+			{ 
+				case 1:
+				wsprintf(TextPath,"%s\n%s","Choisir un répertoire",chemin);
+				break;
+				
+				case 0:default:
+				wsprintf(TextPath,"%s\n\n%s","Choose a Directory",chemin);
+				break;
+			}
+		
+			InfoBrowserDirectory.lpszTitle=TextPath;
+			InfoBrowserDirectory.pszDisplayName=chemin; 
 			InfoBrowserDirectory.ulFlags = BIF_STATUSTEXT|BIF_RETURNONLYFSDIRS; 
 			InfoBrowserDirectory.lpfn =NULL;
 
@@ -193,9 +206,7 @@ void SendMacro (LPTW lptw, UINT m)
 	    		return;
 	    	break;
 	    	case EXIT:
-	    		WriteTextIni (lptw);
-	    		SendCTRLandAKey(CTRLU);
-   			StoreCommand1 ("quit", 2);
+	    	        ExitWindow();
 	    		return;
 	    	break;
 	    	
@@ -209,6 +220,11 @@ void SendMacro (LPTW lptw, UINT m)
 	    		else MessageBox(lptw->hWndParent,"Clipboard is empty","Info.",MB_ICONINFORMATION);
 	    	        return;
 	    	break; 
+	    	
+	    	case PRINT:
+	    		MessageBox(NULL,"En cours de dév.","",MB_OK);
+	    		return;
+	    		break;
 	    	case TOOLBAR:
 	    		ShowButtons=!ShowButtons;
 	    		ToolBarOnOff(lptw,ShowButtons);
@@ -904,129 +920,173 @@ cleanup:
 void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSizeX, int ButtonSizeY)
 {
 	LPMW lpmw;
-	lpmw = lptw->lpmw;
-		lpmw->hButton[index] = CreateWindow ("button", ButtonText[index],
-				       WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON|BS_TEXT |BS_VCENTER|BS_CENTER ,
-				       index * ButtonSizeX, 0,
-				       ButtonSizeX, ButtonSizeY,
-				       lptw->hWndParent, (HMENU) index,
-				       lptw->hInstance, lptw);
-		/* Associe une infobulle */
-		CreateMyTooltip (lpmw->hButton[index], ButtonText[index]);		       
+        lpmw = lptw->lpmw;
+        
+        if (strcmp(ButtonText[index],"--")==0)
+        {
+        	lpmw->IsAIcon[index]=TRUE;
+        	GetXPosButton(lptw,index, 32,ButtonSizeY);
+        	
+        }
+        else
+        if ( ButtonText[index][0]=='|')
+        {
+                char *LineTmp=NULL;
+                char *NameButton=NULL;
+                char *PathIconButton=NULL;
+                char *Token=NULL;
+                HICON IconButton;
+                
+                int i=0;
+        
+                
+                LineTmp=(char*)malloc(strlen(ButtonText[index])+1* sizeof(char));
+                strcpy(LineTmp,ButtonText[index]);
+        
+                Token=strtok(LineTmp,"|");
+                NameButton=(char*)malloc(strlen(Token)+1* sizeof(char));
+		strcpy(NameButton,Token);
+                
+                Token=strtok(NULL,"|");
+                PathIconButton=(char*)malloc(strlen(Token)+1* sizeof(char));
+                strcpy(PathIconButton,Token);
 		
-	
-	
-	
-				       
+                if ( ( IsAFile(PathIconButton)==TRUE)                ||
+                     ( strcmp(PathIconButton,"METANET_ICON")==0)     ||
+                     ( strcmp(PathIconButton,"SCICOS_ICON")==0)      ||
+                     ( strcmp(PathIconButton,"PRINT_ICON")==0)       ||
+                     ( strcmp(PathIconButton,"CONSOLE_ICON")==0)     ||
+                     ( strcmp(PathIconButton,"DIRECTORY_ICON")==0)   ||
+                     ( strcmp(PathIconButton,"EXIT_ICON")==0)        ||
+                     ( strcmp(PathIconButton,"FONT_ICON")==0)        ||
+                     ( strcmp(PathIconButton,"HELP_ICON")==0)        ||
+                     ( strcmp(PathIconButton,"SCILAB_ICON")==0)  )
+                {
+                        
+                        if ( IsAFile(PathIconButton) == TRUE )
+                        {
+                          IconButton=(HICON)LoadImage(  GetModuleHandle(NULL), PathIconButton,IMAGE_ICON,32,32, LR_DEFAULTCOLOR|LR_LOADFROMFILE);
+                        }
+                        else                      
+                        if ( strcmp(PathIconButton,"SCICOS_ICON")==0 )
+                        {
+                          IconButton=LoadIcon(hdllInstance, IDI_SCICOS);
+                        }
+                        else
+                        if ( strcmp(PathIconButton,"METANET_ICON")==0 )
+                        {
+                          IconButton=LoadIcon(hdllInstance, IDI_METANET);
+                        }
+                        if ( strcmp(PathIconButton,"PRINT_ICON")==0 )
+                        {
+                        	IconButton=LoadIcon(hdllInstance, IDI_XPPRINT);
+                        }
+                        else
+                     	if ( strcmp(PathIconButton,"CONSOLE_ICON")==0 )
+                     	{
+                     		IconButton=LoadIcon(hdllInstance, IDI_XPCONSOLE);
+                     	}
+                     	else
+                     	if ( strcmp(PathIconButton,"DIRECTORY_ICON")==0 )
+                     	{
+                     		IconButton=LoadIcon(hdllInstance, IDI_XPDIR);
+                     	}
+                     	else
+                     	if ( strcmp(PathIconButton,"EXIT_ICON")==0 )
+                     	{
+                     		IconButton=LoadIcon(hdllInstance, IDI_XPEXIT);
+                     	}
+                     	else
+                     	if ( strcmp(PathIconButton,"FONT_ICON")==0 )
+                     	{
+                     		IconButton=LoadIcon(hdllInstance, IDI_XPFONT);
+                     	}
+                     	else
+                     	if ( strcmp(PathIconButton,"HELP_ICON")==0 )
+                     	{
+                     		IconButton=LoadIcon(hdllInstance, IDI_XPHELP);
+                     	}
+                     	else
+                     	if ( strcmp(PathIconButton,"SCILAB_ICON")==0 )
+                     	{
+                     		IconButton=LoadIcon(hdllInstance, IDI_SCILAB);
+                     	}
+                        
+			lpmw->IsAIcon[index]=TRUE;
+                        lpmw->hButton[index] = CreateWindow("button",NameButton,WS_CHILD|WS_VISIBLE|BS_ICON ,
+                                       GetXPosButton(lptw,index, 32,ButtonSizeY), 0,
+                                       32, ButtonSizeY,
+                                       lptw->hWndParent, (HMENU) index,
+                                       lptw->hInstance, lptw);
 
-      lpmw->lpfnButtonProc[index] = (WNDPROC) GetWindowLong (lpmw->hButton[index], GWL_WNDPROC);
-      SetWindowLong (lpmw->hButton[index], GWL_WNDPROC, (LONG) lpmw->lpfnMenuButtonProc);
-}  	
-/*	
-	#define ID_STATIC1 100
-        LPMW lpmw;
-        HBITMAP hBitmap;
-        HDC hdc,hdcMemory;
-        HICON hIcon;	
-	lpmw = lptw->lpmw;
- 
-//lpmw->hButton[index] = CreateWindow("button",IDI_GRAPH,WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | BS_ICON,index * ButtonSizeX, 0,  ButtonSizeX, ButtonSizeY,lptw->hWndParent, (HMENU) index,lptw->hInstance,  NULL);
+                        /* Associe une infobulle */
+                        CreateMyTooltip (lpmw->hButton[index], NameButton);     
+               
+                
+                        lpmw->lpfnButtonProc[index] = (WNDPROC) GetWindowLong (lpmw->hButton[index], GWL_WNDPROC);
+                        SetWindowLong(lpmw->hButton[index], GWL_WNDPROC, (LONG) lpmw->lpfnMenuButtonProc);
+        
+                        /*Associe icone */
+                        SendMessage(lpmw->hButton[index],BM_SETIMAGE, IMAGE_ICON, IconButton);
+			
+                }
+                else
+                {
+                        char MsgErr[MAX_PATH];
+                        wsprintf(MsgErr,"Error in .mnu file: %s",ButtonText[index]);
+                        MessageBox(NULL,MsgErr,"Error in .mnu file",MB_ICONEXCLAMATION);
+                        free(PathIconButton);
+              		free(NameButton);
+              		free(LineTmp);
+                        exit(1);
+                }     
+        
+              free(PathIconButton);
+              free(NameButton);
+              free(LineTmp);
+        
+        }
+        else
+        {
+             lpmw->IsAIcon[index]=FALSE;                        	
+             lpmw->hButton[index] = CreateWindow ("button",ButtonText[index],WS_CHILD|WS_VISIBLE,
+                                       		  GetXPosButton(lptw,index,ButtonSizeX,ButtonSizeY), 0,
+                                       		  ButtonSizeX, ButtonSizeY,
+                                       		  lptw->hWndParent, (HMENU) index,
+                                       		  lptw->hInstance, lptw);
+           /* Associe une infobulle */
+             CreateMyTooltip (lpmw->hButton[index], ButtonText[index]);    
+             lpmw->lpfnButtonProc[index] = (WNDPROC) GetWindowLong (lpmw->hButton[index], GWL_WNDPROC);
+             SetWindowLong (lpmw->hButton[index], GWL_WNDPROC, (LONG) lpmw->lpfnMenuButtonProc);
+             
+        }
 
-lpmw->hButton[index]=CreateWindow("BUTTON","",WS_CHILD|WS_VISIBLE|BS_ICON,index * ButtonSizeX, 0,  ButtonSizeX, ButtonSizeY,lptw->hWndParent, (HMENU) ID_STATIC1,lptw->hInstance,  lptw);
-hIcon=LoadIcon(NULL,IDI_QUESTION);
-if (hIcon==NULL) MessageBox(NULL,"","",MB_OK);
-SendMessage(lpmw->hButton[index],(UINT)BM_SETIMAGE,(WPARAM)IMAGE_ICON,(LPARAM)hIcon);
-
-ShowWindow(lpmw->hButton[index],1); 
 
 
-				       
-	lpmw->lpfnButtonProc[index] = (WNDPROC) GetWindowLong (lpmw->hButton[index], GWL_WNDPROC);
-      	SetWindowLong (lpmw->hButton[index], GWL_WNDPROC, (LONG) lpmw->lpfnMenuButtonProc);			       
-}	
- / *
-	
-	#define ID_STATIC1 100
+}      
+      
+
+/*-----------------------------------------------------------------------------------*/
+int GetXPosButton(LPTW lptw,int index,int SizeXButtonText,int SizeXButtonIcon)
+{
 	LPMW lpmw;
-	int l=0;
-	char *BufferButtonText=NULL;
-	lpmw = lptw->lpmw;
-	
-	l=strlen(ButtonText[index])+1;
-	BufferButtonText=(char*)malloc(l*sizeof(char));
-	strcpy(BufferButtonText,ButtonText[index]);
-	
-	CharUpperBuff( BufferButtonText, lstrlen( BufferButtonText ) );    
-	
-	
-	
-	
-	if  ( ( strcmp(BufferButtonText,"|SCICOS|")==0) ||
-	      ( strcmp(BufferButtonText,"|METANET|")==0) )
-	{
-		HWND hWnd;
-		
-		ButtonSizeX=32;
-		
-		lpmw->hButton[index] =	 CreateWindow ("button", NULL,
-				       WS_CHILDWINDOW | WS_VISIBLE | BS_PUSHBUTTON,
-				       index * ButtonSizeX, 0,
-				       ButtonSizeX, ButtonSizeY,
-				       lptw->hWndParent, (HMENU) index,
-				       lptw->hInstance, lptw);
-		
-		if ( strcmp(BufferButtonText,"|SCICOS|")==0 )
-		{
-			hWnd =  CreateWindowEx( 0, "STATIC", NULL, WS_VISIBLE|WS_CHILD|SS_ICON,
-               					        0, 0,
-				       			100,100,
-				       			lpmw->hButton[index],ID_STATIC1,lptw->hInstance, NULL);           
-     
-		SendMessage(hWnd, STM_SETIMAGE, IMAGE_ICON, (LPARAM)LoadIcon(lptw->hInstance, IDI_COS));
-		CreateMyTooltip (lpmw->hButton[index], "Scicos");		       
-		}
-		
-		if ( strcmp(BufferButtonText,"|METANET|")==0 )
-		{
-			hWnd =  CreateWindowEx( 0, "STATIC", NULL, WS_VISIBLE|WS_CHILD|SS_ICON,
-               					        0, 0,
-				       			100,100,
-				       			lpmw->hButton[index],ID_STATIC1,lptw->hInstance, NULL);           
-     		
-		SendMessage(hWnd, STM_SETIMAGE, IMAGE_ICON, (LPARAM)LoadIcon(lptw->hInstance, IDI_GRAPH));
-		CreateMyTooltip (lpmw->hButton[index], "Metanet");		       
-		}
-		
-		UpdateWindow(hWnd);
-	
-		
-	}
+	int PosXButton=0;
+        lpmw = lptw->lpmw;
+ 	
+	if (index==0) lpmw->PositionX[index]=0;
 	else
-	{
-		lpmw->hButton[index] = CreateWindow ("button", ButtonText[index],
-				       WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON|BS_TEXT |BS_VCENTER|BS_CENTER ,
-				       index * ButtonSizeX, 0,
-				       ButtonSizeX, ButtonSizeY,
-				       lptw->hWndParent, (HMENU) index,
-				       lptw->hInstance, lptw);
-		/* Associe une infobulle */
-	/*	CreateMyTooltip (lpmw->hButton[index], ButtonText[index]);		       
-		
-	}
-	
-	/*	
-				       
-
-      lpmw->lpfnButtonProc[index] = (WNDPROC) GetWindowLong (lpmw->hButton[index], GWL_WNDPROC);
-      SetWindowLong (lpmw->hButton[index], GWL_WNDPROC, (LONG) lpmw->lpfnMenuButtonProc);
-      
-      
-      
-      free(BufferButtonText);
-      
-      */
-      
-
+		{
+		 if (lpmw->IsAIcon[index-1]==TRUE)
+		 {
+		 	lpmw->PositionX[index]=lpmw->PositionX[index-1]+32;
+		 }
+		 else
+		 {
+			 	lpmw->PositionX[index]=lpmw->PositionX[index-1]+80;
+		 }
+		}
+        return lpmw->PositionX[index];
+}
 /*-----------------------------------------------------------------------------------*/
 /***********************************************************************
  * MenuButtonProc() -  Message handling routine for Menu Buttons
@@ -1195,26 +1255,27 @@ BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *f
 /* Double le caractere \ dans un chemin */
 void DoubleDoubleSlash(char *pathout,char *pathin)
 {
-  int l=0;
-  unsigned int i=0;
-  for (i=0;i < strlen(pathin);i++)
-    {
-      
-      if (pathin[i]=='\\')
-	{
-	  pathout[l]=pathin[i];
-	  pathout[l+1]='\\';
-	  l=l+2;
-	}
-      else
-	{
-	  pathout[l]=pathin[i];
-	  l++;
-	}
-    }
-  pathout[l]='\0';
-}
+	int l=0;
+	int i=0;
+	for (i=0;i < strlen(pathin);i++)
+		{
 
+			if (pathin[i]=='\\')
+			{
+				pathout[l]=pathin[i];
+				pathout[l+1]='\\';
+				l=l+2;
+
+			}
+			else
+			{
+				pathout[l]=pathin[i];
+				l++;
+			}
+
+		}
+		pathout[l]='\0';
+}
 /*-----------------------------------------------------------------------------------*/
 /****************************************
  * Get a filename from system menu 

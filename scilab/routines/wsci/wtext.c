@@ -456,6 +456,7 @@ EXPORT void WINAPI TextToCursor (LPTW lptw)
       lptw->ScrollPos.x += nXinc;
       ScrollWindow (lptw->hWndText, -nXinc, -nYinc, NULL, NULL);
       SetScrollPos (lptw->hWndText, SB_VERT, lptw->ScrollPos.y, TRUE);
+
       SetScrollPos (lptw->hWndText, SB_HORZ, lptw->ScrollPos.x, TRUE);
       UpdateWindow (lptw->hWndText);
     }
@@ -1194,49 +1195,9 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
     case WM_CLOSE: 
            /* Allan CORNET 11/07/03 Bug Win 98 */
            /* Sortie Meme durant l'execution d'un script */
-           {
-           	if ( (get_is_reading()==FALSE) || (ThreadPasteRunning) )
-           		{
-           			if (ThreadPasteRunning)SuspendThread(hThreadPaste);
-
-           			if (MessageBox(hwnd,"Are you sure to quit ?","Quit",MB_SYSTEMMODAL|MB_YESNO|MB_ICONWARNING)==IDYES)
-           			{
-           				
-           				/* Stop la thread Coller si en cours*/
-           				ResumeThread(hThreadPaste);
-           				if (ThreadPasteRunning)
-           				{
-           					TerminateThread(hThreadPaste,1);
-           					ThreadPasteRunning=FALSE;
-           					CloseHandle( hThreadPaste );
-           				}
-           				WriteTextIni (lptw);
-           				           				
-           				StoreCommand1 ("abort;", 2);
-           				SendCTRLandAKey(CTRLU);
-   					StoreCommand1 ("quit;", 1);
-   					
-           				message = WM_DESTROY;
-           			}
-           			else
-           			{
-           				if (ThreadPasteRunning) ResumeThread(hThreadPaste);
-           				message = WM_PAINT;
-           			}
-           		}
-           		else
-           		{
-           				WriteTextIni (lptw);
-           				
-           				StoreCommand1 ("abort;", 2);
-           				SendCTRLandAKey(CTRLU);
-   					StoreCommand1 ("quit;", 1);
-   					
-           				message = WM_DESTROY;
-           		}
-	   	return SendMessage(lptw->hWndText, message, wParam, lParam);         
-           }
-	   
+           /* 28/11/03 */
+           ExitWindow();
+           return;
       break;
       
       
@@ -3240,3 +3201,58 @@ void ReorganizeScreenBuffer(LPTW lptw)
 
 }
 /*-----------------------------------------------------------------------------------*/
+void ExitWindow(void)
+{
+  LPTW lptw;
+  char Message[255];
+  char Title[50];
+  lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);	
+  if ( (get_is_reading()==FALSE) || (ThreadPasteRunning) )
+  {
+    if (ThreadPasteRunning)SuspendThread(hThreadPaste);
+    
+    switch (LanguageCode)
+    {
+    	case 1:
+    		strcpy(Message,"Etes vous sûr de quitter ?");
+    		strcpy(Title,"Quitter");
+    	break;
+    	case 0:default:
+    		strcpy(Message,"Are you sure to quit ?");
+    		strcpy(Title,"Quit");
+    	break;
+    }   
+    
+    if (MessageBox(lptw->hWndParent,Message,Title,MB_SYSTEMMODAL|MB_YESNO|MB_ICONWARNING)==IDYES)
+    {
+    	/* Stop la thread Coller si en cours*/
+        ResumeThread(hThreadPaste);
+        if (ThreadPasteRunning)
+        {
+        	TerminateThread(hThreadPaste,1);
+           	ThreadPasteRunning=FALSE;
+           	CloseHandle( hThreadPaste );
+        }
+        WriteTextIni (lptw);
+           				           				
+        StoreCommand1 ("abort;", 2);
+        SendCTRLandAKey(CTRLU);
+   	StoreCommand1 ("quit;", 1);
+   					
+  
+        Kill_Scilex();
+     }
+     else
+     {
+     	if (ThreadPasteRunning) ResumeThread(hThreadPaste);
+     }
+   }
+   else
+   {
+   	WriteTextIni (lptw);
+   	StoreCommand1 ("abort;", 2);
+   	SendCTRLandAKey(CTRLU);
+   	StoreCommand1 ("quit;", 1);
+   }
+	   	
+}
