@@ -67,47 +67,47 @@ men_print.o: men_print.c men_scilab.h ../machine.h ../graphics/Math.h \
   ../graphics/Graphics.h ../sun/men_Sutils.h
 wmen_choice.o: wmen_choice.c wmen_scilab.h ../wsci/wresource.h \
   ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h ../graphics/Entities.h \
+  ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../sun/men_Sutils.h
 wmen_choose.o: wmen_choose.c wmen_scilab.h ../wsci/wresource.h \
   ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h ../graphics/Entities.h \
+  ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../sun/men_Sutils.h
 wmen_choose_modal.o: wmen_choose_modal.c wmen_scilab.h \
   ../wsci/wresource.h ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h ../graphics/Entities.h \
+  ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../sun/men_Sutils.h
 wmen_dialog.o: wmen_dialog.c wmen_scilab.h ../wsci/wresource.h \
   ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h ../graphics/Entities.h \
+  ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../sun/men_Sutils.h
 wmen_getfile.o: wmen_getfile.c wmen_scilab.h ../wsci/wresource.h \
   ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h ../graphics/Entities.h \
+  ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../sun/men_Sutils.h
 wmen_madial.o: wmen_madial.c wmen_scilab.h ../wsci/wresource.h \
   ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h ../graphics/Entities.h \
+  ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../sun/men_Sutils.h
 wmen_mdial.o: wmen_mdial.c wmen_scilab.h ../wsci/wresource.h \
   ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h ../graphics/Entities.h \
+  ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../sun/men_Sutils.h
 wmen_message.o: wmen_message.c wmen_scilab.h ../wsci/wresource.h \
   ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h ../graphics/Entities.h \
+  ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../sun/men_Sutils.h
 wmen_print.o: wmen_print.c wmen_scilab.h ../wsci/wresource.h \
   ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h ../graphics/Entities.h \
+  ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../sun/men_Sutils.h
 xmen_Utils.o: xmen_Utils.c men_scilab.h ../machine.h ../graphics/Math.h \
