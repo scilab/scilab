@@ -3349,6 +3349,8 @@ int C2F(credata)(fname, lw, m, fname_len)
     return FALSE_;
   };
   /*  *Lstk(*lw +1) = lr + 1 + m/sizeof(double);  */
+  /*    type 0  */
+  *istk(iadr(lr)) = 0;
   *Lstk(*lw +1) = lr + (m+sizeof(double)-1)/sizeof(double);
   return TRUE_;
 } 
