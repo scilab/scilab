@@ -41,12 +41,15 @@ char * fname;
      *stk(l2+6) = (double) buf.st_ctime;/* time of last change */
      *stk(l2+7) = (double) buf.st_atime;/* time of last access */
      *stk(l2+8) = (double) buf.st_rdev;/* device type (if inode device) */
+#ifdef WIN32
+     *stk(l2+9) = 0.0;
+     *stk(l2+10) = 0.0;
+#else 
      *stk(l2+9) = (double) buf.st_blksize;/* blocksize for filesystem I/O */
      *stk(l2+10) = (double) buf.st_blocks;/* number of blocks allocated */
+#endif 
      *stk(l2+11) = (double) buf.st_ino;/* inode */
      *stk(l2+12) = (double) buf.st_nlink;/* number of hard links */
-
-       
    }
   LhsVar(1) = 2;
   if (Lhs==2) {
