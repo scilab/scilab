@@ -11828,10 +11828,8 @@ sciDrawObj (sciPointObj * pobj)
 	  ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n);
 	  ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n);
 	  
-	  for ( i =0 ; i < n ; i++)
-	    trans3d(sciGetParentSubwin(pobj),1,&xm[i],&ym[i],
-		    &xvect[i],&yvect[i],NULL);
-	  
+	  trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect,yvect,NULL);
+
 	  FREE(xvect); xvect = (double *) NULL;
 	  FREE(yvect); yvect = (double *) NULL;
 	}
