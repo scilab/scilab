@@ -48,18 +48,18 @@ xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
 xp=[0 bnd];yp=mx*1.05;for k=1:nf,xstring(xp(k),yp,fun(k));end  
 legends('# calls',1,1)
 
-mx=max(1,max(count(:,2))+1)
+mx=max(1,max(count(:,3))+1)
 
 xsetech([0,1/3,1,1/3]);
-plot2d3(1:size(count,1),count(:,2),style=2, frameflag=1,axesflag=1,..
+plot2d3(1:size(count,1),count(:,3),style=2, frameflag=1,axesflag=1,..
 	rect=[0,0,nm,mx],nax=[step nn 1 3])
 xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
 legends('Complexity',2,1)
 
-mx=max(count(:,3))+1
+mx=max(count(:,2))+1
 
 xsetech([0,2/3,1,1/3]);
-plot2d3(1:size(count,1),count(:,3),style=3, frameflag=1,axesflag=1,..
+plot2d3(1:size(count,1),count(:,2),style=3, frameflag=1,axesflag=1,..
 	rect=[0,0,nm,mx],nax=[step nn 1 3])
 
 xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
