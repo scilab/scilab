@@ -1,14 +1,26 @@
-read(`maple2scilab.mpl`):
+# load macrofort to be able o generate Fortran code
+read "macrofort.mpl":
+# load macroC to be able to generate C code
+read "macroC.mpl":
+# load maple2scilab
+read "maple2scilab.mpl":
+
+# If necessary, change the path of Scilab below
+machine_include:="/usr/local/lib/scilab/routines/machine.h":
+
+# we want optimized code
 optimized:=true:
 
+# If necessary, change the way to call Fortran compiler below
 compF:=proc(file) local FF;
 FF:='f77';
-system(``.FF.` -c `.file.`.f`);
+system(``||FF||` -c `||file||`.f`);
 end:
 
+# If necessary, change the way to call C compiler below
 compC:=proc(file) local CC;
 CC:='cc';
-system(``.CC.` -c `.file.`.c`);
+system(``||CC||` -c `||file||`.c`);
 end:
 
 ################################################

@@ -8,8 +8,9 @@ x=1
  
  
 link('foof1.o','foof1');
+shared archive loaded
+Link done
  
-getf('foof1.sci');
  
 out=foof1(x)
  out  =
@@ -17,9 +18,10 @@ out=foof1(x)
     8.7811181  
  
  
-link('fooc1.o','fooc1');
+link('fooc1.o','fooc1','c');
+shared archive loaded
+Link done
  
-getf('fooc1.sci');
  
 out=fooc1(x)
  out  =
@@ -27,7 +29,6 @@ out=fooc1(x)
     8.7811181  
  
  
-getf('foos1.sci')
  
 out=foos1(x)
  out  =
@@ -39,8 +40,9 @@ out=foos1(x)
  
  
 link('foof2.o','foof2');
+shared archive loaded
+Link done
  
-getf('foof2.sci');
  
 out=foof2()
  out  =
@@ -52,9 +54,10 @@ out=foof2()
 !   94.    83.  - 86.    23.  - 84.    19.  - 50.    88.  - 53.    85. !
  
  
-link('fooc2.o','fooc2');
+link('fooc2.o','fooc2','c');
+shared archive loaded
+Link done
  
-getf('fooc2.sci');
  
 out=fooc2()
  out  =
@@ -66,7 +69,6 @@ out=fooc2()
 !   94.    83.  - 86.    23.  - 84.    19.  - 50.    88.  - 53.    85. !
  
  
-getf('foos2.sci');
  
 out=foos2()
  out  =
@@ -86,9 +88,10 @@ x=2
     2.  
  
  
-link('fooc3.o','fooc3');
+link('fooc3.o','fooc3','c');
+shared archive loaded
+Link done
  
-getf('fooc3.sci');
  
 out=fooc3(x)
  out  =
@@ -98,8 +101,9 @@ out=fooc3(x)
  
  
 link('foof3.o','foof3');
+shared archive loaded
+Link done
  
-getf('foof3.sci');
  
 out=foof3(x)
  out  =
@@ -108,7 +112,6 @@ out=foof3(x)
 ! - 0.1411200 !
  
  
-getf('foos3.sci');
  
 out=foos3(x)
  out  =
@@ -131,8 +134,9 @@ y=2
  
  
 link('foof4.o','foof4');
+shared archive loaded
+Link done
  
-getf('foof4.sci');
  
 out=foof4(x,y)
  out  =
@@ -140,9 +144,10 @@ out=foof4(x,y)
 !   1.    2. !
  
  
-link('fooc4.o','fooc4');
+link('fooc4.o','fooc4','c');
+shared archive loaded
+Link done
  
-getf('fooc4.sci');
  
 out=fooc4(x,y)
  out  =
@@ -150,7 +155,6 @@ out=fooc4(x,y)
 !   1.    2. !
  
  
-getf('foos4.sci');
  
 out=foos4(x,y)
  out  =
@@ -172,8 +176,9 @@ x=[1,2,3]
  
  
 link('foof5.o','foof5');
+shared archive loaded
+Link done
  
-getf('foof5.sci');
  
 out=foof5(k,x)
  out  =
@@ -182,9 +187,10 @@ out=foof5(k,x)
 ! - 0.1411200    3. !
  
  
-link('fooc5.o','fooc5');
+link('fooc5.o','fooc5','c');
+shared archive loaded
+Link done
  
-getf('fooc5.sci');
  
 out=fooc5(k,x)
  out  =
@@ -193,7 +199,6 @@ out=fooc5(k,x)
 ! - 0.1411200    3. !
  
  
-getf('foos5.sci');
  
 out=foos5(k,x)
  out  =
@@ -217,8 +222,9 @@ x=[1,2,3;4,5,6]
  
  
 link('foof6.o','foof6');
+shared archive loaded
+Link done
  
-getf('foof6.sci');
  
 out=foof6(k,x)
  out  =
@@ -228,9 +234,10 @@ out=foof6(k,x)
 !   6.     3.  !
  
  
-link('fooc6.o','fooc6');
+link('fooc6.o','fooc6','c');
+shared archive loaded
+Link done
  
-getf('fooc6.sci');
  
 out=fooc6(k,x)
  out  =
@@ -240,7 +247,6 @@ out=fooc6(k,x)
 !   6.     3.  !
  
  
-getf('foos6.sci');
  
 out=foos6(k,x)
  out  =
@@ -265,8 +271,9 @@ x=[1,2,3;4,5,6]
  
  
 link('foof7.o','foof7');
+shared archive loaded
+Link done
  
-getf('foof7.sci');
  
 out=foof7(k,x)
  out  =
@@ -278,9 +285,10 @@ out=foof7(k,x)
 (   15,    6)      - 4. 
  
  
-link('fooc7.o','fooc7');
+link('fooc7.o','fooc7','c');
+shared archive loaded
+Link done
  
-getf('fooc7.sci');
  
 out=fooc7(k,x)
  out  =
@@ -292,7 +300,6 @@ out=fooc7(k,x)
 (   15,    6)      - 4. 
  
  
-getf('foos7.sci');
  
 out=foos7(k,x)
  out  =
@@ -308,8 +315,9 @@ out=foos7(k,x)
  
  
 link('foof8.o','foof8');
+shared archive loaded
+Link done
  
-getf('foof8.sci');
  
 out=foof8()
  out  =
@@ -321,9 +329,10 @@ out=foof8()
 !   78.    39.    94.    68.  - 17.  - 98.  - 36.    40.    22.    5.  !
  
  
-link('fooc8.o','fooc8');
+link('fooc8.o','fooc8','c');
+shared archive loaded
+Link done
  
-getf('fooc8.sci');
  
 out=fooc8()
  out  =
@@ -335,7 +344,6 @@ out=fooc8()
 ! - 73.  - 91.    1.     5.   - 86.    43.  - 4.   - 50.    50.    67. !
  
  
-getf('foos8.sci');
  
 out=foos8()
  out  =
