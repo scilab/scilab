@@ -1,11 +1,12 @@
-/* Copyright ENPC */
-/*
+/*------------------------------------------------------------------------
+ *    Copyright (C) 2001 Enpc/Jean-Philippe Chancelier
+ *    jpc@cermics.enpc.fr 
  * Utility functions to build data for 
  * Scilab help browser 
  * J.P Chancelier 
  *    used by wsci/wmhelp.c ( Windows )
  *    and     xsci/h_help.c ( X Window ) 
- */
+ *--------------------------------------------------------------------------*/
 
 #include <stdio.h>
 #include <string.h>
@@ -129,63 +130,7 @@ void HelpActivate(ntopic)
   SciCallHelp(helpPath,Topic);
 }
 
-void SciCallHelp(helpPath,Topic)
-     char *Topic;
-     char *helpPath;
-{
-  /** XXXXX cygwin bash scripts can't execute gcwin32 executable in batch
-    up to now : we use the standard windows system function 
-    that's why we need the getenv 
-    ***/
-#ifdef WIN32
-  static char format1[]="%s/bin/xless  %s/%s.cat ";
-  static char format2[]="xless  %s/%s.cat ";
-  char *local = (char *) 0;
-  local = getenv("SCI");
-  if ( local != (char *) 0)
-    {
-      char *buf = (char *) MALLOC((strlen(local)+strlen(helpPath)+strlen(Topic)+strlen(format1)+1) * (sizeof(char)));
-      if (buf == NULL){ sciprint("Running out of memory, I cannot activate help\n");return;}
-      sprintf(buf, format1 ,local, helpPath, Topic);
-      /** sciprint("TestMessage : je lance un winsystem sur %s\r\n",buf); **/
-      if (winsystem(buf,1))
-	sciprint("help error: winsystem failed\r\n");
-      FREE(buf);
-    }
-  else
-    {
-      char *buf = (char *) MALLOC((strlen(helpPath)+strlen(Topic)+strlen(format2)+1) * (sizeof(char)));
-      if (buf == NULL){ sciprint("Running out of memory, I cannot activate help\n");return;}
-      /** maybe xless is in the path ? **/
-      sprintf(buf, format2, helpPath, Topic);
-      /** sciprint("TestMessage : je lance un winsystem sur %s\r\n",buf); **/
-      if (winsystem(buf,1))
-	sciprint("help error: winsystem failed\r\n");
-      FREE(buf);
-    }
-#else
-  int i;
-  static char format1[]= "$SCI/bin/xless %s/%s.cat 2> /dev/null &";
-  static char format2[]= "cat %s/%s.cat | more ";
-  C2F(xscion)(&i);
-  if ( i != 0 )
-    {
-      char *buf = (char *) MALLOC((strlen(helpPath)+strlen(Topic)+strlen(format1)+1) * (sizeof(char)));
-      if (buf == NULL){ sciprint("Running out of memory, I cannot activate help\n");return;}
-      sprintf(buf,format1,helpPath, Topic);
-      system(buf);
-      FREE(buf);
-    }
-  else 
-    {
-      char *buf = (char *) MALLOC((strlen(helpPath)+strlen(Topic)+strlen(format1)+1) * (sizeof(char)));
-      if (buf == NULL){ sciprint("Running out of memory, I cannot activate help\n");return;}
-      sprintf(buf,format2, helpPath, Topic);
-      system(buf);
-      FREE(buf);
-    }
-#endif
-}
+
 
 /**********************************************
  * seaches the help database for a specific help 
@@ -632,6 +577,7 @@ static void CleanHelpTopics()
 int SetAproposTopics(str)
      char *str;
 {
+  int stop =0;
   FILE           *fg;
   char            line[120];
   int             k, ln, n;
@@ -678,11 +624,13 @@ int SetAproposTopics(str)
 		{
 		  sciprint("Too many answers for topic %s \r\n",str);
   		  sciprint("I will ignore the last ones \r\n");
-		break;
+		  stop = 1;
+		  break;
+		}
 	    }
 	}
-	}
       fclose(fg);
+      if ( stop == 1) break ;
     }
   AP.HelpTopic[AP.nTopic] = NULL;
   strncpy(AP.name,str,MAXTOPIC);
