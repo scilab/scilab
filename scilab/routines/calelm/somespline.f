@@ -25,7 +25,7 @@
 *
 *      work arrays :
 *         A_d(1..n), A_sd(1..n-1), qdy(1..n-1)
-*         lll(1..n-2) (used only in the periodic case)
+*         lll(1..n-1) (used only in the periodic case)
 *
 *    NOTES
 *         this routine requires (i)   n >= 3 (for natural) n >=4 (for not_a_knot) 
@@ -43,7 +43,7 @@
 
       integer n, type         
       double precision x(n), y(n), d(n), A_d(n), A_sd(n-1), qdy(n-1), 
-     $                 lll(n-2)
+     $                 lll(n-1)
 
       include 'constinterp.h'
       integer i
@@ -103,7 +103,7 @@
          A_d(1) = 2.d0*( A_sd(1) + A_sd(n-1) )
          d(1) = 3.d0 * ( qdy(1) + qdy(n-1) )
          lll(1) = A_sd(n-1)
-         call dset(n-3, 0.d0, lll(2),1)  ! mise a zero
+         call dset(n-2, 0.d0, lll(2),1)  ! mise a zero
          lll(n-2) = A_sd(n-2)
          call CyclicTriDiagLDLtSolve(A_d, A_sd, lll, d, n-1)
          d(n) = d(1)
@@ -184,7 +184,7 @@
 *
       implicit none
       integer n
-      double precision d(n), lsd(n-1), lll(n-1), b(n)
+      double precision d(n), lsd(n-2), lll(n-1), b(n)
       
       integer i, j
       double precision temp1, temp2 

@@ -298,7 +298,7 @@ static int intsplin(char * fname)
 
     case(NOT_A_KNOT) : case(NATURAL) : case(CLAMPED) : case(PERIODIC) :
       /*  (the wk4 work array is used only in the periodic case) */
-      mwk1 = n; nwk1 = 1; mwk2 = n-1; nwk2 = 1; mwk3 = n-1; nwk3 = 1; mwk4 = n-2; nwk4 = 1;
+      mwk1 = n; nwk1 = 1; mwk2 = n-1; nwk2 = 1; mwk3 = n-1; nwk3 = 1; mwk4 = n-1; nwk4 = 1;
       CreateVar(Rhs+2, "d", &mwk1,  &nwk1,   &lwk1);
       CreateVar(Rhs+3, "d", &mwk2,  &nwk2,   &lwk2);
       CreateVar(Rhs+4, "d", &mwk3,  &nwk3,   &lwk3);
