@@ -1626,7 +1626,7 @@ int C2F(fac3d3)(double *x, double *y, double *z, integer *cvect, integer *p, int
 int  triangleSort(integer *polyxin, integer *polyyin, integer *fillin, integer *polyx, integer *polyy, integer *fill)
 { 
   integer tmp,k;
-  for (k=0;k<3;k++) {polyx[k]=polyxin[k]; polyy[k]=polyyin[k]; fill[k]=fillin[k];}
+  for (k=0;k<3;k++) {polyx[k]=polyxin[k]; polyy[k]=polyyin[k]; fill[k]=Abs(fillin[k]);}
       
   if (fill[0]<fill[1]) {  
     tmp=fill[0]; fill[0]=fill[1]; fill[1]=tmp;
@@ -1751,11 +1751,19 @@ int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integ
       px[0]=polyx[0]; px[1]=polyx[1]; px[2]=polyx[2];
       py[0]=polyy[0]; py[1]=polyy[1]; py[2]=polyy[2];
       fil[0]=fill[0]; fil[1]=fill[1]; fil[2]=fill[2];
-      shade(px,py,fil,3,flag);
+      shade(px,py,fil,3,-1);
       px[0]=polyx[0]; px[1]=polyx[2]; px[2]=polyx[3];
       py[0]=polyy[0]; py[1]=polyy[2]; py[2]=polyy[3];
       fil[0]=fill[0]; fil[1]=fill[2]; fil[2]=fill[3];
-      shade(px,py,fil,3,flag);
+      shade(px,py,fil,3,-1);
+   }
+   
+   /* If flag>0 then the contour is drawn */
+   
+   if (flag > 0) { 
+       fill[0]=0;
+	   C2F (dr) ("xliness", "str", polyx, polyy, fill, &npoly,
+                    &polysize, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
    }
    return 0;
 }     
