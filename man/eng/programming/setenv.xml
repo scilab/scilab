@@ -46,13 +46,18 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>set the value of an environnment variable. </P>
+    <P>set the value of an environnment variable.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[
- setenv('toto','example')
+  <EXAMPLE><![CDATA[ setenv('toto','example')
  getenv('toto')
-
- 
   ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getenv</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
 </MAN>
