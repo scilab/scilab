@@ -63,7 +63,7 @@ function create_palette(bidon)
 	      'INTRPLBLK_f.sci'; 'INVBLK_f.sci'; 
 	      'LOGBLK_f.sci'; 'LOOKUP_f.sci'; 'MAXMIN.sci'; 
 	      'POWBLK_f.sci'; 'PROD_f.sci';
-	      'PRODUCT.sci';  'QUANT_f.sci'; 
+	      'PRODUCT.sci';  'QUANT_f.sci';'EXPRESSION.sci';	 
 	      'SATURATION.sci'; 'SIGNUM.sci' ]
 	
       elseif txt=='Events' then
@@ -76,14 +76,14 @@ function create_palette(bidon)
 	
       elseif txt=='Others' then
 	lisf=['c_block.sci';'fortran_block.sci';
-	      'DOLLAR_f.sci';'SUPER_f.sci';'scifunc_block.sci';
+	      'SUPER_f.sci';'scifunc_block.sci';
 	      'TEXT_f.sci';'CBLOCK.sci';'RATELIMITER.sci'; ...
 	      'BACKLASH.sci';'DEADBAND.sci';'EXPRESSION.sci';	      
 	      'CONSTRAINT_f.sci';'HYSTHERESIS.sci';
 	      'LOGICAL_OP.sci';'RELATIONALOP.sci']
 	
       elseif txt=='Linear' then
-	lisf=['DLR_f.sci';'TCLSS_f.sci';
+	lisf=['DLR_f.sci';'TCLSS_f.sci';'DOLLAR_f.sci';
 	      'CLINDUMMY_f.sci';'DLSS_f.sci';'REGISTER_f.sci';'TIME_DELAY.sci';
 	      'CLR_f.sci';'GAINBLK.sci';'SAMPLEHOLD_f.sci';'VARIABLE_DELAY.sci';
 	      'CLSS_f.sci';'SUMMATION.sci';'INTEGRAL.sci';'SUM_f.sci';'DERIV.sci']
