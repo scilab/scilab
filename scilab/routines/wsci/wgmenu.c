@@ -1037,16 +1037,27 @@ void scig_export (integer number)
   scig_command_scilabgc (number, SavePs);
 }
 /*-----------------------------------------------------------------------------------*/
-void UpdateFileGraphNameMenu(struct BCG *ScilabGC,int LangCode)
+void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
 {
 	#define FILEGRAPHMENUFRENCH "wgscilabF.mnu"
 	#define FILEGRAPHMENUENGLISH "wgscilabE.mnu"
-	
 	
 	char szModuleName[MAX_PATH];
 	LPSTR tail;
 	
 	HINSTANCE hInstance=NULL;
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	HWND hWndTmpScilex=FindWindow(NULL,ScilexWindowName);
+	int LangCode=0; /*English*/
+
+	if (hWndTmpScilex)
+		{
+			lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+			LangCode=lptw->lpmw->CodeLanguage;
+		}
+	else LangCode=0;
+	
 
 	hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
 	

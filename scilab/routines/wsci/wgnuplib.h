@@ -103,13 +103,14 @@ typedef struct tagMW
   char	        *szAnswer;
   int		nChar;
   int		nButton;
-  HWND	        hButton[BUTTONMAX];
+  HWND	    hButton[BUTTONMAX];
   int		hButtonID[BUTTONMAX];
   WNDPROC	lpfnMenuButtonProc;
   WNDPROC	lpfnButtonProc[BUTTONMAX];
   BOOL		IsAIcon[BUTTONMAX];
   int		PositionX[BUTTONMAX];
   BOOL		ShowToolBar;
+  int		CodeLanguage;
   
 } MW;
 typedef MW  *LPMW;

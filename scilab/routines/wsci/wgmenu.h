@@ -168,7 +168,7 @@ void scig_h_copyclip (integer number);
 void scig_h_copyclip1 (integer number);
 void scig_print (integer number);
 void scig_export (integer number);
-void UpdateFileGraphNameMenu(struct BCG *ScilabGC,int LangCode);
+void UpdateFileGraphNameMenu(struct BCG *ScilabGC);
 
 int WGFindMenuPos (BYTE ** macros);
 int C2F (setmen) (integer * win_num, char *button_name,

@@ -32,8 +32,7 @@
 #include "WTEXT.h"   
 #include <WinAble.h>
 /*-----------------------------------------------------------------------------------*/
-extern int LanguageCode;
-BOOL ShowButtons=TRUE;
+//extern int LanguageCode;
 
 char ScilexWindowName[MAX_PATH];
 
@@ -208,8 +207,8 @@ EXPORT int WINAPI TextInit (LPTW lptw)
   AppendMenu (sysmenu, MF_STRING, M_ABOUT, "&About");
 
   if (lptw->lpmw)    LoadMacros (lptw);
-  ReLoadMenus(lptw,ShowButtons);
-  ToolBarOnOff(lptw,ShowButtons);
+  ReLoadMenus(lptw);
+  ToolBarOnOff(lptw);
   OnRightClickMenu(lptw);
 
   ShowWindow (lptw->hWndText, SW_SHOWNORMAL);
@@ -272,6 +271,8 @@ void WriteTextIni (LPTW lptw)
   	int SysColors;
   	char TextFontName[MAX_PATH];
   	int TextFontSize;
+	BOOL ShowButtons;
+	int LanguageCode;
 
   	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);  	
   	RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
@@ -298,8 +299,10 @@ void WriteTextIni (LPTW lptw)
   	SysColors=lptw->bSysColors;
 	RegSetValueEx(key, "SysColors", 0, REG_DWORD, (LPBYTE)&SysColors, dwsize);
 	
+	ShowButtons=lptw->lpmw->ShowToolBar;
 	RegSetValueEx(key, "ToolBar", 0, REG_DWORD, (LPBYTE)&ShowButtons, dwsize);
 	
+	LanguageCode=lptw->lpmw->CodeLanguage;
 	RegSetValueEx(key, "Language", 0, REG_DWORD, (LPBYTE)&LanguageCode, dwsize);
 	
 	RegCloseKey(key);
@@ -408,20 +411,20 @@ void ReadTextIni (LPTW lptw)
 	
 	if ( RegQueryValueEx(key, "ToolBar", 0, NULL, (LPBYTE)&Toolbar, &size) !=  ERROR_SUCCESS )
   	{
-  			ShowButtons = TRUE;
+		lptw->lpmw->ShowToolBar = TRUE;
 	}
 	else
 	{
-			ShowButtons = Toolbar;
+		lptw->lpmw->ShowToolBar = Toolbar;
 	}
 	
 	if ( RegQueryValueEx(key, "Language", 0, NULL, (LPBYTE)&Language, &size) !=  ERROR_SUCCESS )
   	{
-  			LanguageCode = 0; /* English Default*/
+		lptw->lpmw->CodeLanguage = 0; /* English Default*/
 	}
 	else
 	{
-			LanguageCode = Language;
+		lptw->lpmw->CodeLanguage = Language;
 	}
 	
 		
@@ -1063,11 +1066,7 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 		return (0);
 		case WM_SIZE:
 			{
-    		/*  SetWindowPos (lptw->hWndText, (HWND) NULL, 0, lptw->ButtonHeight,
-		    	LOWORD (lParam), HIWORD (lParam) - lptw->ButtonHeight,
-		    	SWP_NOZORDER | SWP_NOACTIVATE);
-		    */
-				if (ShowButtons)
+    			if (lptw->lpmw->ShowToolBar)
     			{
     		  		/* Affichage Zone Toolbar */
     				SetWindowPos (lptw->hWndText, (HWND) NULL, 0, lptw->ButtonHeight,
@@ -1491,8 +1490,8 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	      	break;
 	      	case VK_F3:
 	      	{
-	      		ShowButtons=!ShowButtons;
-	      		ToolBarOnOff(lptw,ShowButtons);
+	      		lptw->lpmw->ShowToolBar=!lptw->lpmw->ShowToolBar;
+	      		ToolBarOnOff(lptw);
 	      		
 	      	}
 	      	break;
@@ -1502,9 +1501,6 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	      	case VK_F11:
 	      	{
 	      		ResetMenu();
-	      		//ReLoadMenus(lptw,ShowButtons);
-	      		
-	      		
 	      	}
       		break;        
 	      	
@@ -2261,6 +2257,9 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 					LPSTR tail;
 					HINSTANCE hInstance=NULL;
 					int error=0;
+					extern char ScilexWindowName[MAX_PATH];
+					LPTW lptw;
+					lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
 					hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
 					GetModuleFileName (hInstance,szModuleName, MAX_PATH);
@@ -2273,7 +2272,7 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 					szModuleName[strlen(szModuleName)-strlen(PATHBIN)]='\0';
 					strcpy(Chemin,szModuleName);
 
-					switch (LanguageCode)
+					switch (lptw->lpmw->CodeLanguage)
 						{
 						case 1: /* French */
 							{
@@ -2291,7 +2290,7 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 					error =(int)ShellExecute(NULL, "open", Chemin, NULL, NULL, SW_SHOWNORMAL);
 					if (error<= 32) 
 						{
-						switch (LanguageCode)
+						switch (lptw->lpmw->CodeLanguage)
 							{
 							case 1: /* French */
 								{
@@ -2535,7 +2534,7 @@ void OnRightClickMenu(LPTW lptw)
   if (lptw->hPopMenu) DestroyMenu(lptw->hPopMenu);    	
   lptw->hPopMenu = CreatePopupMenu ();
   
-  switch (LanguageCode)
+  switch (lptw->lpmw->CodeLanguage)
   {
   	case 1: /* French */
   	{
@@ -3272,7 +3271,7 @@ void ExitWindow(void)
   {
     if (ThreadPasteRunning)SuspendThread(hThreadPaste);
     
-    switch (LanguageCode)
+    switch (lptw->lpmw->CodeLanguage)
     {
     	case 1:
     		strcpy(Message,"Etes vous sûr de quitter ?");
@@ -3448,11 +3447,17 @@ void MessageBoxNewGraphicMode(void)
 /*-----------------------------------------------------------------------------------*/
 BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam)
 {
+   /* A modifier Allan pour lire dans B.de reg */
+   int LanguageCode=0;
+   extern char ScilexWindowName[MAX_PATH];
+   LPTW lptw;
+   lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
    switch(Message)
    {
       case WM_INITDIALOG:
          CheckDlgButton(hwnd, IDC_CHECKNEWGRAPHIC, BST_UNCHECKED);
-		 switch (LanguageCode)
+		 switch (lptw->lpmw->CodeLanguage)
 		{
     		case 1:
 			SetWindowText(hwnd,"Remarque Importante");

@@ -119,9 +119,8 @@
 /* Les Variables Globales */
 /*-----------------------------------------------------------------------------------*/
 
-extern BOOL ShowButtons;
 
-int LanguageCode=0;
+//int LanguageCode=0;
 /* 0 ENGLISH 
    1 FRENCH
    ...
@@ -244,15 +243,15 @@ void ResetMenu(void);
 /*--------------------------------*/
 void ShowToolBar(LPTW lptw);
 void HideToolBar(LPTW lptw);
-void ToolBarOnOff(LPTW lptw,BOOL ON);
+void ToolBarOnOff(LPTW lptw);
 /*--------------------------------*/
-void ReLoadMenus(LPTW lptw,BOOL ToolbarON);
-void UpdateFileNameMenu(LPTW lptw,int LangCode);
+void ReLoadMenus(LPTW lptw);
+void UpdateFileNameMenu(LPTW lptw);
 /*--------------------------------*/
 /* Cree une infobulle */
 void CreateMyTooltip (HWND hwnd,char ToolTipString[30]);
 /*--------------------------------*/
-void SwitchLanguage(LPTW lptw,int LangCode);
+void SwitchLanguage(LPTW lptw);
 /*--------------------------------*/
 void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSizeX, int ButtonSizeY);
 int GetXPosButton(LPTW lptw,int index,int SizeXButtonText,int SizeXButtonIcon);

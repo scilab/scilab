@@ -140,7 +140,7 @@ void Callback_CHDIR(void)
 			
 	InfoBrowserDirectory.hwndOwner = lptw->hWndParent; 
 	InfoBrowserDirectory.pidlRoot = NULL; 
-	switch (LanguageCode)
+	switch (lptw->lpmw->CodeLanguage)
 	{ 
 		case 1:
 			wsprintf(TextPath,"%s\n%s","Choisir un répertoire",chemin);
@@ -206,8 +206,8 @@ void Callback_TOOLBAR(void)
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 	
-	ShowButtons=!ShowButtons;
-	ToolBarOnOff(lptw,ShowButtons);
+	lptw->lpmw->ShowToolBar=!lptw->lpmw->ShowToolBar;
+	ToolBarOnOff(lptw);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_FRENCH(void)
@@ -216,8 +216,8 @@ void Callback_FRENCH(void)
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 	
-	LanguageCode=1;
-	SwitchLanguage(lptw,LanguageCode);
+	lptw->lpmw->CodeLanguage=1;
+	SwitchLanguage(lptw);
 	    		
 }
 /*-----------------------------------------------------------------------------------*/
@@ -227,8 +227,8 @@ void Callback_ENGLISH(void)
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
-	LanguageCode=0;
-	SwitchLanguage(lptw,LanguageCode);
+	lptw->lpmw->CodeLanguage=0;
+	SwitchLanguage(lptw);
 
 }
 /*-----------------------------------------------------------------------------------*/
@@ -291,8 +291,12 @@ void Callback_CONSOLE(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_SCIPAD(void)
 {
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
 	StoreCommand1 ("scipad()",2);
-	switch (LanguageCode)
+	switch (lptw->lpmw->CodeLanguage)
 	{
 		case 1:
 			StoreCommand("LANGUAGE=\"fr\";");
@@ -308,8 +312,12 @@ void Callback_SCIPAD(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_HELP(void)
 {
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
 	StoreCommand1 ("help();", 2);
-	switch (LanguageCode)
+	switch (lptw->lpmw->CodeLanguage)
 	{
 		case 1:
 			StoreCommand ("LANGUAGE=\"fr\";");
@@ -1820,8 +1828,9 @@ void HideToolBar(LPTW lptw)
     	
 }
 /*-----------------------------------------------------------------------------------*/   
-void ToolBarOnOff(LPTW lptw,BOOL ON)
+void ToolBarOnOff(LPTW lptw)
 {
+	BOOL ON=lptw->lpmw->ShowToolBar;
 	if  (ON)
 	{
 		ShowToolBar(lptw);
@@ -1832,7 +1841,7 @@ void ToolBarOnOff(LPTW lptw,BOOL ON)
 	}
 }
 /*-----------------------------------------------------------------------------------*/   
-void ReLoadMenus(LPTW lptw,BOOL ToolbarON)
+void ReLoadMenus(LPTW lptw)
 {
 	int i=0;	      		
 	LPMW lpmw;      		
@@ -1847,10 +1856,10 @@ void ReLoadMenus(LPTW lptw,BOOL ToolbarON)
 		DestroyWindow(lpmw->hButton[i]);
     	}
 	/* Contruction Menu et Toolbar */
-	UpdateFileNameMenu(lptw,LanguageCode);
+	UpdateFileNameMenu(lptw);
 	LoadMacros (lptw);
 	/* Affichage Toolbar */
-	ToolBarOnOff(lptw,ToolbarON);
+	ToolBarOnOff(lptw);
 }
 /*-----------------------------------------------------------------------------------*/   
 void CreateMyTooltip (HWND hwnd,char ToolTipString[30])
@@ -1913,7 +1922,7 @@ void CreateMyTooltip (HWND hwnd,char ToolTipString[30])
 
 } 
 /*-----------------------------------------------------------------------------------*/   
-void UpdateFileNameMenu(LPTW lptw,int LangCode)
+void UpdateFileNameMenu(LPTW lptw)
 {
 	#define FILEMENUFRENCH "wscilabF.mnu"
 	#define FILEMENUENGLISH "wscilabE.mnu"
@@ -1938,7 +1947,7 @@ void UpdateFileNameMenu(LPTW lptw,int LangCode)
 	strcpy (lpmw->szMenuName, szModuleName);
 
 	
-	switch (LangCode)
+	switch (lpmw->CodeLanguage)
 	{
 		case 1:
 			strcat (lpmw->szMenuName, FILEMENUFRENCH);
@@ -1950,10 +1959,10 @@ void UpdateFileNameMenu(LPTW lptw,int LangCode)
 	
 }
 /*-----------------------------------------------------------------------------------*/   
-void SwitchLanguage(LPTW lptw,int LangCode)
+void SwitchLanguage(LPTW lptw)
 {
 	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);", 2);
-	switch (LangCode)
+	switch (lptw->lpmw->CodeLanguage)
 	{
 		case 1:
 			StoreCommand1 ("LANGUAGE=\"fr\";", 2);
@@ -1965,8 +1974,8 @@ void SwitchLanguage(LPTW lptw,int LangCode)
 	}
 
 
-	ReLoadMenus(lptw,ShowButtons);
-	ToolBarOnOff(lptw,ShowButtons);
+	ReLoadMenus(lptw);
+	ToolBarOnOff(lptw);
 	OnRightClickMenu(lptw);
 
 }
@@ -1976,6 +1985,6 @@ void ResetMenu(void)
 	extern char ScilexWindowName[MAX_PATH];
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
-	ReLoadMenus(lptw,ShowButtons);
+	ReLoadMenus(lptw);
 }   
 /*-----------------------------------------------------------------------------------*/
