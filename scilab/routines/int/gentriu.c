@@ -57,5 +57,6 @@ int *dx;
     TRIU(unsigned int);
     break;
   }
+  return 0;
 }
 

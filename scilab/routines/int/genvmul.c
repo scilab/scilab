@@ -61,4 +61,5 @@ integer *incy;
     VMUL(unsigned int);
     break;
   }
+  return 0;
 }
