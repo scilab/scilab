@@ -5807,12 +5807,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
 
   else if (strcmp(marker,"labels_font_size") == 0)	{
-    xtmp =  100 * (int) *stk(*value);
+    xtmp =  (int) *stk(*value);
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->fontsize = xtmp;
     else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){
       /* pSUBWIN_FEATURE (pobj)->axes.fontsize = (int) *stk(*value);*/
-      sciSetFontDeciWidth(pobj,xtmp);} /* F.Leray 08.04.04 */
+      sciSetFontDeciWidth(pobj,(int) (100*xtmp));} /* F.Leray 08.04.04 */
     else
       {strcpy(error_message,"labels_font_size property does not exist for this handle");return -1;}
   }
@@ -5842,10 +5842,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    {sprintf(error_message,"Value must have %d elements",Max(pAXES_FEATURE(pobj)->nx,pAXES_FEATURE(pobj)->ny));return -1;}
 	  else
 	    {
+	      if(pAXES_FEATURE(pobj)->str != NULL)
+		for(i=0;i<*numcol;i++) { FREE(pAXES_FEATURE(pobj)->str[i]); pAXES_FEATURE(pobj)->str[i] = NULL;}
 	      FREE(pAXES_FEATURE(pobj)->str);
-	      if ((pAXES_FEATURE(pobj)->str= malloc
-		   (Max(pAXES_FEATURE(pobj)->nx,pAXES_FEATURE(pobj)->ny) * sizeof (char*)))== NULL)
-		{strcpy(error_message,"No enough memory to allocate tics labels string !!");return -1;}
 	      pAXES_FEATURE(pobj)->str =ptr;
             }
 	}
@@ -6880,11 +6879,7 @@ if ((pobj == (sciPointObj *)NULL) &&
      numrow = 1;
      numcol = sciGetTextLength((sciPointObj *)pobj);
      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-     /*  if(sciGetEntityType(pobj) != SCI_LABEL) */
      strncpy(cstk(outindex), sciGetText((sciPointObj *)pobj), numrow*numcol);
-   /*   else */
-/*        strncpy(cstk(outindex), sciGetLabel(sciGetSelectedSubWin (sciGetCurrentFigure ()), */
-/* 	       pLABEL_FEATURE(pobj)->ptype), numrow*numcol); */
    }
 
  else if (strncmp(marker,"auto_clear", 10) == 0)
@@ -7342,27 +7337,55 @@ if ((pobj == (sciPointObj *)NULL) &&
       else
 	{strcpy(error_message,"ytics_coord property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"tics_labels", 11) == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_AXES) {
-	numrow=1;
-	numcol= Max(pAXES_FEATURE (pobj)->nx,pAXES_FEATURE (pobj)->ny);
-	str = pAXES_FEATURE (pobj)->str;
-	if (str==NULL){
-	  numrow=1;
-	  numcol= Max(pAXES_FEATURE (pobj)->nx,pAXES_FEATURE (pobj)->ny);
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  for (i=0;i<numcol;i++) {
-	    stk(outindex)[i] = ((pAXES_FEATURE (pobj)->nx<numcol) ? pAXES_FEATURE (pobj)->vy[i]: pAXES_FEATURE (pobj)->vx[i]);
-	  }
-	}
-	else {
-	  CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,str);
-	}
-      }
-      else
-	{strcpy(error_message,"tics_labels property does not exist for this handle");return -1;}
-    }
+ else if (strncmp(marker,"tics_labels", 11) == 0)
+   {
+     char **foo = (char **) NULL;
+     int i;
+     if (sciGetEntityType (pobj) == SCI_AXES) 
+       {
+	 numrow=1;
+	 numcol= Max(pAXES_FEATURE (pobj)->nx,pAXES_FEATURE (pobj)->ny);
+	 str = pAXES_FEATURE (pobj)->str;
+	 if (str==NULL){
+	   
+	   if((foo=malloc(numcol*(sizeof(char *))))==NULL){
+	     strcpy(error_message,"No memory left for allocating tempory tics_labels");return -1;}
+	   for(i=0;i<numcol;i++){
+	     if((foo[i]=malloc(100*(sizeof(char)+1)))==NULL){
+	       strcpy(error_message,"No memory left for allocating tempory tics_labels");return -1;}
+	   }
+	   for (i=0;i<numcol;i++){
+	     if(pAXES_FEATURE (pobj)->format==NULL)
+	       {
+		 /* we need to compute a c_format */
+		 char c_format[5];
+		 ComputeC_format(pobj,c_format);
+		 if(pAXES_FEATURE (pobj)->nx<numcol) 
+		   sprintf(foo[i],c_format,pAXES_FEATURE (pobj)->vy[i]);
+		 else
+		   sprintf(foo[i],c_format,pAXES_FEATURE (pobj)->vx[i]);
+	       }
+	     else
+	       {
+		 if(pAXES_FEATURE (pobj)->nx<numcol) 
+		   sprintf(foo[i],pAXES_FEATURE (pobj)->format,pAXES_FEATURE (pobj)->vy[i]);
+		 else
+		   sprintf(foo[i],pAXES_FEATURE (pobj)->format,pAXES_FEATURE (pobj)->vx[i]);
+	       }
+	   }
+	   
+	   CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
+	   
+	   if(foo != NULL)
+	     for(i=0;i<numcol;i++) { FREE(foo[i]); foo[i] = NULL;}
+	   FREE(foo); foo = NULL;
+	 }
+	 else
+	   CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,str);
+       }
+     else
+       {strcpy(error_message,"tics_labels property does not exist for this handle");return -1;}
+   }
   else if ((strncmp(marker,"box", 3) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN)) {
     numrow   = 1;
     numcol   = 3;
@@ -8626,4 +8649,173 @@ double  sciFindLogMinSPos(double *x, int n)
      
      return -1.;
    }
+}
+
+
+
+int ComputeC_format(sciPointObj * pobj, char * c_format)
+{
+  int i,j;
+  char pos;
+  char xy_type;
+  double *x = NULL;
+  double *y = NULL;
+  int *nx = NULL;
+  int *ny = NULL;
+  char * format = NULL;
+  sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  int  xpassed = 0, ypassed = 0, Nx, Ny, x3, y3;
+
+
+  if(sciGetEntityType(pobj) != SCI_AXES){
+    sciprint("Error: ComputeFormat must be used with SCI_AXES objects\n");
+    return -1;
+  }
+
+ /*  strcpy(pos,pAXES_FEATURE(pobj)->dir); */
+/*   strcpy(xy_type,pAXES_FEATURE (pobj)->tics); */
+  pos = pAXES_FEATURE(pobj)->dir;
+  xy_type = pAXES_FEATURE (pobj)->tics;
+  /* Allocating space before re-copying values to not polluate the good values 
+    that will be used inside Axes.c */
+  if((x=malloc((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
+    sciprint("Memory allocation failed in ComputeFormat\n");
+    return -1;
+  }
+
+  if((y=malloc((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
+    sciprint("Memory allocation failed in ComputeFormat\n");
+    return -1;
+  }
+
+  if((nx=malloc(sizeof(int)))==NULL){
+    sciprint("Memory allocation failed in ComputeFormat\n");
+    return -1;
+  }  
+  
+  if((ny=malloc(sizeof(int)))==NULL){
+    sciprint("Memory allocation failed in ComputeFormat\n");
+    return -1;
+  } 
+
+  if((format=malloc(5*(sizeof(char ))+1))==NULL){
+    sciprint("Memory allocation failed in ComputeFormat\n");
+    return -1;
+  } 
+  
+  nx[0] = pAXES_FEATURE (pobj)->nx;
+  for(i=0;i<(*nx);i++)  x[i] = pAXES_FEATURE(pobj)->vx[i];  
+  
+  ny[0] = pAXES_FEATURE (pobj)->ny;
+  for(i=0;i<(*ny);i++)  y[i] = pAXES_FEATURE(pobj)->vy[i];
+
+  format = pAXES_FEATURE (pobj)->format;
+
+  /* Algo. here */
+  if(xy_type == 'i') {  
+    switch ( pos ) {
+    case 'u' : case 'd' :  
+      if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n')
+	while (x[3]>10)  x[3]=floor(x[3]/2); 
+      else{
+	if(x[3] > 12){ /* F.Leray arbitrary value=12 for the moment */
+	  x3=(int)x[3];     /* if x[3]>12 algo is triggered to search a divisor */
+	  for(j=x3-1;j>1;j--)
+	    if(x3%j == 0){
+	      x[3]=j; 
+	      xpassed = 1;
+	    }
+	  if(xpassed != 1) x[3] = 1;
+	}
+      }
+      
+      break;
+    case 'r' : case 'l' :
+      if(pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
+	while (y[3]>10)  y[3]=floor(y[3]/2);
+      else{
+	if(y[3] > 12){
+	  y3=(int)y[3];
+	  for(j=y3-1;j>1;j--)
+	    if(y3%j == 0){
+	      y[3]=j;
+	      ypassed = 1;
+	    }
+	  if(ypassed != 1) y[3] = 1;
+	}
+      }
+    }
+  }
+  
+      
+  /** Real to Pixel values **/
+  switch ( xy_type ) 
+    {
+    case 'v' : Nx= *nx; Ny= *ny; break;
+    case 'r' :
+      switch ( pos ) {
+      case 'u' : case 'd' : Nx = (int) x[2]+1; break;
+      case 'r' : case 'l' : Ny = (int) y[2]+1; break;
+      }
+      break;
+    case 'i' : 
+      switch ( pos ) {
+      case 'u' : case 'd' : Nx = (int) x[3]+1; break; 
+      case 'r' : case 'l' : Ny = (int) y[3]+1; break;
+      }
+      break;
+    default: 
+      sciprint("Sci_Axis: wrong type argument xy_type\r\n");
+    }
+  switch (pos ) 
+    {
+    case 'u' : 
+    case 'd' :
+      /** Horizontal axes **/
+    /*   barlength =  (integer) (Cscale.WIRect1[3]/50.0); */
+      /** compute a format **/
+    /*   if (str == NULL && format == NULL )   */
+	if (format == NULL )  
+	switch (xy_type ) {
+	case 'v' : ChoixFormatE1(c_format,x,Nx);break;
+	case 'r' : ChoixFormatE (c_format,x[0],x[1],(x[1]-x[0])/x[2]);break;
+	case 'i' : 
+	  ChoixFormatE (c_format,
+			(x[0] * exp10(x[2])),
+			(x[1] * exp10(x[2])),
+			((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]); break; /* Adding F.Leray 06.05.04 */
+	  
+	}
+	break;
+	/** the horizontal segment **/
+    case 'r' : 
+    case 'l' :
+      
+      /** Vertical axes **/
+    /*   barlength =  (integer) (Cscale.WIRect1[2]/75.0); */
+      /*   if (str == NULL &&  format == NULL )   */
+      if (format == NULL ) 
+	switch (xy_type ) {
+	case 'v' : ChoixFormatE1(c_format,y,Ny);break;
+	case 'r' : ChoixFormatE(c_format,y[0],y[1],(y[1]-y[0])/y[2]);break;
+	case 'i' : 
+	  ChoixFormatE (c_format,
+			(y[0] * exp10(y[2])),
+			(y[1] * exp10(y[2])),
+			((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]); break; /* Adding F.Leray 06.05.04 */
+	}
+      /** the vertical segment **/
+      break;
+    }
+  
+  /* c_format should be filled now */
+
+  FREE(x); x = NULL;
+  FREE(y); y = NULL;
+  FREE(nx); nx = NULL;
+  FREE(ny); ny = NULL;
+  FREE(format); format = NULL;
+  
+  return 0;
+  
 }
