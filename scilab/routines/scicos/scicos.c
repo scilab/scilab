@@ -1149,7 +1149,8 @@ int C2F(scicos)
 	    }
 	  }
 	  if(*pointi!=0){
-	    if(*told<tevts[*pointi]-ttol){
+	    t=tevts[*pointi];
+	    if(*told<t-ttol){
 	      goto L15;
 	    }
 	  }else{
@@ -1742,7 +1743,8 @@ int C2F(scicos)
 	    return;
 	  }
 	  if(*pointi!=0){
-	    if(*told<tevts[*pointi]-ttol){
+	    t=tevts[*pointi];
+	    if(*told<t-ttol){
 	      goto L15;
 	    }
 	  }else{
