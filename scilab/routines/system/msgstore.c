@@ -21,14 +21,16 @@ int C2F(msgstore)(str,n)
      char *str;
      int *n;
 {
-  char *line;
+  char *line, c;
+  int i,count=0;
   if (msg_line_counter >= MAX_MSG_LINES)
     return(MAX_LINES);
   if ( (line = (char *) malloc((*n + 1)*sizeof(char))) == (char *)0) 
     return(MEM_LACK);
-
-  strncpy(line,str,*n);
-  line[*n]='\0';
+  /* do not store \r\n" */ 
+  for ( i= 0 ; i < *n ; i++ ) 
+    if ( (c=str[i]) != '\n' && c != '\r') line[count++]=c;
+  line[count]='\0';
   msg_buff[msg_line_counter++]=line;
   return 0;
 }
