@@ -5112,8 +5112,6 @@ c     Interface for isequal:
 c     EXTERNAL API FUNCTIONS
       logical  checkrhs, checklhs
       external checkrhs, checklhs
-      integer gettype
-      external gettype
       character*7 fname
       integer iadr,sadr
       integer equal
@@ -5131,9 +5129,9 @@ c
       if (.not.checkrhs(fname,2,2000000)) return
       if (.not.checklhs(fname,1,1)) return
 c first check the types
-      typ=abs(gettype(1))
-      do 10 k=2,rhs
-        if (gettype(k).ne.typ) goto 60
+      typ=abs(istk(iadr(lstk(top1))))
+      do 10 k=1,rhs-1
+        if (abs(istk(iadr(lstk(top1+k)))).ne.typ) goto 60
  10   continue
 c
       if (typ.ge.15.and.typ.le.17) then
@@ -5143,7 +5141,7 @@ c
       endif
 
       if(typ.gt.14) then
-         call funnam(ids(1,pt+1),'isequal',iadr(lstk(top-rhs+1)))
+         call funnam(ids(1,pt+1),'isequal',iadr(lstk(top1)))
          fun=-1
          return
       endif
