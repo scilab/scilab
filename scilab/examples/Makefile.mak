@@ -1,7 +1,7 @@
-SCIDIR=..\
-include $(SCIDIR)Makefile.incl.mak 
+SCIDIR=..
+include ..\Makefile.incl.mak
 
-all :
+all ::
 	Makesubdirs.bat all 
 
 clean::
