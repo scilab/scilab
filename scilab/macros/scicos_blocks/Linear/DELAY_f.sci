@@ -13,10 +13,14 @@ case 'getorigin' then
 case 'set' then
   // paths to updatable parameters or states
   x=arg1
-  ppath = list(3,4)
+  if x.model.rpar.objs(1)==mlist('Deleted') then
+      ppath = list(4,5)  //compatibility with translated blocks
+    else
+      ppath = list(3,4)
+    end
   newpar=list();
-  register=x.model.rpar.objs(3) //data structure of register block
-  evtdly=x.model.rpar.objs(4) //data structure of evtdly block
+  register=x.model.rpar.objs(ppath(1)) //data structure of register block
+  evtdly=x.model.rpar.objs(ppath(2)) //data structure of evtdly block
   register_exprs=register.graphics.exprs
   evtdly_exprs=evtdly.graphics.exprs
   exprs=[evtdly_exprs(1);register_exprs]
@@ -47,17 +51,17 @@ case 'set' then
 
       if evtdly.model.rpar<>dt then //Discretisation time step
 	evtdly.model.rpar=dt
-	newpar($+1)=4 // notify clock changes
+	newpar($+1)=ppath(2) // notify clock changes
       end
-      x.model.rpar.objs(4)=evtdly
+      x.model.rpar.objs(ppath(2))=evtdly
       
       //Change the register
       register.graphics.exprs=exprs(2)
       if or(register.model.dstate<>z0(:)) then //Register initial state
 	register.model.dstate=z0(:)
-	newpar($+1)=3 // notify register changes
+	newpar($+1)=ppath(1) // notify register changes
       end
-      x.model.rpar.objs(3)=register
+      x.model.rpar.objs(ppath(1))=register
       break
     end
   end
