@@ -134,6 +134,12 @@ c
 c     
  22   if (sym.eq.semi .or. sym.eq.eol .or.sym.eq.right) go to 27
       if (sym .eq. comma) call getsym
+      if (sym .eq. num .and.char1.eq.dot) then
+c     .  to return an error on [1.000.3,...]
+         lpt(2)=lpt(4)+1
+         call error(276)
+         return
+      endif
       rstk(pt) = 301
 c     get next entry or block
       icall=1
