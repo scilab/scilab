@@ -63,16 +63,16 @@ int C2F(intcalendar) _PARAMS((char *fname))
 	CALMONTH=(int *)malloc( (NBRDAY*NBRWEEK)*sizeof(int) );
 	for (i=0;i<NBRDAY*NBRWEEK;i++) CALMONTH[i]=0;
 
-	//verification si le mois de fevrier est a 28 jours ou 29 jours 
+	/* verification si le mois de fevrier est a 28 jours ou 29 jours */
     numdays = days[month - 1];
     if (2 == month && isBissextile(year)) ++numdays;
 
-	 //Cela sert a faire demarrer le calendrier par le Lundi
+	/* Cela sert a faire demarrer le calendrier par le Lundi */
     day_1 = (int)((ymd_to_scalar(year, month, 1) - (long)1) % 7L);
 
 	for (day = 0; day < day_1; ++day) a++;
 
-    //ici on remplit les jours tous simplement
+    /* ici on remplit les jours tous simplement */
     for (day = 1; day <= numdays; ++day, ++day_1, day_1 %= 7)
     {
         CALMONTH[a]= day;
