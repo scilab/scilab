@@ -42,28 +42,28 @@ c
       k1=1+sadr(n)
       ierr=0
       if(job.lt.0) goto 20
-c     factorisation lu
+c factorisation lu
       call dgeco(a,na,n,w,rcond,w(k1))
       if(rcond.eq.0.0d+0) goto 70
       if(rcond+1.0d+0.eq.1.0d+0) ierr=-1
       if(job.eq.0) return
       if(job.eq.3) goto 60
-c     resolution
- 20   if(abs(job).eq.2) goto 40
+c resolution
+  20  if(abs(job).eq.2) goto 40
       jb=1
       do 30 j=1,m
-         call dgesl(a,na,n,w,b(jb),0)
-         jb=jb+nb
- 30   continue
+      call dgesl(a,na,n,w,b(jb),0)
+      jb=jb+nb
+   30 continue
       return
- 40   do 50 j=1,m
-         call dcopy(n,b(j),nb,w(k1),1)
-         call dgesl(a,na,n,w,w(k1),1)
-         call dcopy(n,w(k1),1,b(j),nb)
- 50   continue
+   40 do 50 j=1,m
+      call dcopy(n,b(j),nb,w(k1),1)
+      call dgesl(a,na,n,w,w(k1),1)
+      call dcopy(n,w(k1),1,b(j),nb)
+   50 continue
       return
- 60   call dgedi(a,na,n,w,dt,w(k1),1)
+   60 call dgedi(a,na,n,w,dt,w(k1),1)
       return
- 70   ierr=1
+   70 ierr=1
       return
       end
