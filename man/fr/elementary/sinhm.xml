@@ -28,6 +28,7 @@
   <EXAMPLE><![CDATA[
 A=[1,2;2,4]
 asinhm(sinhm(A))
+A(1,1)=%i;sinhm(A)-(expm(A)-expm(-A))/2   // cas complexe
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>sinh</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>expm</LINK> </SEE_ALSO_ITEM>

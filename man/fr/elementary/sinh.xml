@@ -25,8 +25,7 @@
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-x=[0,1,%i]
-asinh(sinh(x))
+asinh(sinh([0,1,%i]))
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>sinhm</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>asinh</LINK> </SEE_ALSO_ITEM>

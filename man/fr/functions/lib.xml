@@ -67,7 +67,37 @@
     Scilab tacitly assumes that file <VERB>foo.bin</VERB> defines only a single function named <VERB>foo</VERB>. 
   </P>
   </ITEMIZE>
+  <EXAMPLE><![CDATA[
+//define some variables
+function z = myplus(x, y), z = x + y,endfunction
+function z = yourplus(x, y), x = x - y,endfunction
+A=1:10;
+
+//creation des fichiers *.bin dans le repertoire libdir
+libdir=TMPDIR
+save(libdir + '/myplus.bin', myplus);
+save(libdir + '/yourplus.bin', yourplus);
+save(libdir + '/A.bin', A);
+
+//creation du fichier name
+mputl(['myplus';'yourplus';'A'],TMPDIR+'/names');
+
+//creation de la bibliotheque contenant  myplus et yourplus
+xlib = lib(libdir+'/')
+
+//effacement des variables
+clear myplus yourplus A
+
+//chargement automatique a l'execution
+myplus(1,2)
+
+A
+ ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>genlib</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>save</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>deff</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>whereis</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>genlib</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>save</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
+    <LINK>deff</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
+    <LINK>getf</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
+    <LINK>whereis</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -25,7 +25,7 @@
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-isinf([1 0.01 %inf-%inf])
+isinf([1 0.01 -%inf %inf])
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>isnan</LINK> </SEE_ALSO_ITEM>

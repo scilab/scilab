@@ -47,12 +47,11 @@ A=[1,2;3,4];
 cumsum(A)
 cumsum(A,'r')
 cumsum(A,'c')
-rand('seed',0);
-a=rand(3,4);
+a=rand(3,4)+%i;
 [m,n]=size(a);
 w=zeros(a);
 w(1,:)=a(1,:);
-for k=2:m;w(k,:)=w(k-1,:).*a(k,:);end;w-cumsum(a,'r')
+for k=2:m;w(k,:)=w(k-1,:)+a(k,:);end;w-cumsum(a,'r')
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>cumprod</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>prod</LINK> </SEE_ALSO_ITEM>
