@@ -101,7 +101,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>stop</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>:  sequence of optional parameters controlling the  convergence of the algorithm. Those 
+          <SP>:  sequence of optional parameters controlling the  convergence of the algorithm. They 
                  are introduced by the keyword <TT>'ar'</TT>, the sequence being of the form
                  <VERB>'ar',nap, [iter [,epsg   [,epsf [,epsx]]]]</VERB></SP>
           <PARAM_INDENT>
@@ -145,7 +145,7 @@
 
   <DESCRIPTION>
     <P>
-     <EM>fun</EM> being a function from <EM>R^n</EM> to <EM>R^m</EM> this routine try to minimize w.r.t.
+     <EM>fun</EM> being a function from <EM>R^n</EM> to <EM>R^m</EM> this routine tries to minimize w.r.t.
      <EM>x</EM>, the function:
    </P>
         <VERBATIM><![CDATA[
@@ -195,7 +195,7 @@ In C:          void fun(int *m, int *n, double *x, double *params, double *y)
          </ITEMIZE>
 
         <P>In many cases it is adviced to provide the Jacobian matrix <VERB>dfun</VERB> (<EM>dfun(i,j)=dfi/dxj</EM>) 
-           to the optimizer (which uses else a finite difference approximation) and as for <VERB>fun</VERB> it may 
+           to the optimizer (which uses a finite difference approximation otherwise) and as for <VERB>fun</VERB> it may 
            be given as a usual scilab function or as a  fortran or a C routine linked to scilab.</P> 
         <ITEMIZE>
           <ITEM label="case 1:">
@@ -222,9 +222,14 @@ In C:          void fun(int *m, int *n, double *x, double *params, double *y)
 
   </SECTION>
 
-  <SECTION label="Remark">
+  <SECTION label="Remarks">
     <P> Like <LINK>datafit</LINK>, <VERB>leastsq</VERB> is a front end onto the <LINK>optim</LINK>
        function. If you want to try the Levenberg-Marquard method instead, use <LINK>lsqrsolve</LINK>.
+    </P>
+    <P> A least squares problem may be solved directly with the <LINK>optim</LINK> function ;
+        in this case the function <LINK>NDcost</LINK> may be useful to compute the derivatives
+        (see the <LINK>NDcost</LINK> help page which provides a simple example for parameters 
+        identification of a differential equation).
     </P>
   </SECTION>
  
@@ -298,44 +303,45 @@ xinf = [-%inf,-%inf]; xsup = [%inf, %inf];
 
 
 // 7 and 8: now we want to define fun and dfun in fortran then in C
-// CAUTION: the "compile and link to scilab" method of these 2 examples
-//          is unix specific (and has been verified only on linux).
-//          For Windows you must adapt it (in particular the scilab
-//          command link is restricted to link dll on Windows so you
-//          must create a dll and not simply an object file as in these
-//          2 examples).
+//          Note that the "compile and link to scilab" method used here
+//          is believed to be OS independant (but there are some requirements, 
+//          in particular you need a C and a fortran compiler, and they must 
+//          be compatible with the ones used to build your scilab binary).
  
 // 7- fun and dfun in fortran
 
-// 7-1/ write in a file myfun.f the following lines:
-      subroutine myfun(m,n,x,param,f)
-*     param(i) = tm(i), param(m+i) = ym(i), param(2m+i) = wm(i)
-      implicit none
-      integer n,m
-      double precision x(n), param(*), f(m)
-      integer i
-      do i = 1,m
-         f(i) = param(2*m+i)*( x(1)*exp(-x(2)*param(i)) - param(m+i) )
-      enddo
-      end ! subroutine fun
-
-      subroutine mydfun(m,n,x,param,df)
-*     param(i) = tm(i), param(m+i) = ym(i), param(2m+i) = wm(i)
-      implicit none
-      integer n,m
-      double precision x(n), param(*), df(m,n)
-      integer i
-      do i = 1,m
-         df(i,1) =  param(2*m+i)*exp(-x(2)*param(i))
-         df(i,2) = -x(1)*param(i)*df(i,1)
-      enddo
-      end ! subroutine dfun
+// 7-1/ Let 's Scilab write the fortran code (in the TMPDIR directory):
+f_code = [ ...
+"      subroutine myfun(m,n,x,param,f)"
+"*     param(i) = tm(i), param(m+i) = ym(i), param(2m+i) = wm(i)"
+"      implicit none"
+"      integer n,m"
+"      double precision x(n), param(*), f(m)"
+"      integer i"
+"      do i = 1,m"
+"         f(i) = param(2*m+i)*( x(1)*exp(-x(2)*param(i)) - param(m+i) )"
+"      enddo"
+"      end ! subroutine fun"
+""
+"      subroutine mydfun(m,n,x,param,df)"
+"*     param(i) = tm(i), param(m+i) = ym(i), param(2m+i) = wm(i)"
+"      implicit none"
+"      integer n,m"
+"      double precision x(n), param(*), df(m,n)"
+"      integer i"
+"      do i = 1,m"
+"         df(i,1) =  param(2*m+i)*exp(-x(2)*param(i))"
+"         df(i,2) = -x(1)*param(i)*df(i,1)"
+"      enddo"
+"      end ! subroutine dfun"];
+mputl(f_code,TMPDIR+'/myfun.f')
 
 // 7-2/ compiles it. You need a fortran compiler !
-unix("g77 -c myfun.f")  // this must work on linux
+names = ["myfun" "mydfun"]
+flibname = ilib_for_link(names,"myfun.o",[],"f",TMPDIR+"/Makefile");
 
 // 7-3/ link it to scilab (see link help page)
-link("myfun.o",["myfun" "mydfun"])
+link(flibname,names,"f") 
 
 // 7-4/ ready for the leastsq call: be carreful don't forget to
 //      give the dimension m after the routine name !
@@ -345,33 +351,37 @@ link("myfun.o",["myfun" "mydfun"])
 
 // 8- last example: fun and dfun in C
 
-// 8-1/ write in a file myfunc.c the following lines:
-void myfunc(int *m,int *n, double *x, double *param, double *f)
-{
-  /*  param[i] = tm[i], param[m+i] = ym[i], param[2m+i] = wm[i] */
-  int i;
-  for ( i = 0 ; i < *m ; i++ )
-    f[i] = param[2*(*m)+i]*( x[0]*exp(-x[1]*param[i]) - param[(*m)+i] );
-  return;
-}
-
-void mydfunc(int *m,int *n, double *x, double *param, double *df)
-{
-  /*  param[i] = tm[i], param[m+i] = ym[i], param[2m+i] = wm[i] */
-  int i;
-  for ( i = 0 ; i < *m ; i++ )
-    {
-      df[i] = param[2*(*m)+i]*exp(-x[1]*param[i]);
-      df[i+(*m)] = -x[0]*param[i]*df[i];
-    }
-  return;
-}
+// 8-1/ Let 's Scilab write the C code (in the TMPDIR directory):
+c_code = [...
+"#include <math.h>"
+"void myfunc(int *m,int *n, double *x, double *param, double *f)"
+"{"
+"  /*  param[i] = tm[i], param[m+i] = ym[i], param[2m+i] = wm[i] */"
+"  int i;"
+"  for ( i = 0 ; i < *m ; i++ )"
+"    f[i] = param[2*(*m)+i]*( x[0]*exp(-x[1]*param[i]) - param[(*m)+i] );"
+"  return;"
+"}"
+""
+"void mydfunc(int *m,int *n, double *x, double *param, double *df)"
+"{"
+"  /*  param[i] = tm[i], param[m+i] = ym[i], param[2m+i] = wm[i] */"
+"  int i;"
+"  for ( i = 0 ; i < *m ; i++ )"
+"    {"
+"      df[i] = param[2*(*m)+i]*exp(-x[1]*param[i]);"
+"      df[i+(*m)] = -x[0]*param[i]*df[i];"
+"    }"
+"  return;"
+"}"];
+mputl(c_code,TMPDIR+'/myfunc.c')
 
 // 8-2/ compiles it. You need a C compiler !
-unix("gcc -c myfunc.c")  // this must work on linux
+names = ["myfunc" "mydfunc"]
+clibname = ilib_for_link(names,"myfunc.o",[],"c",TMPDIR+"/Makefile");
 
 // 8-3/ link it to scilab (see link help page)
-link("myfunc.o",["myfunc" "mydfunc"],"c")
+link(clibname,names,"c") 
 
 // 8-4/ ready for the leastsq call
 [f,xopt, gropt] = leastsq(list("myfunc",m,tm,ym,wm),"mydfunc",x0)
@@ -383,6 +393,9 @@ link("myfunc.o",["myfunc" "mydfunc"],"c")
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>optim</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>NDcost</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>datafit</LINK>
