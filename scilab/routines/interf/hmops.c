@@ -79,7 +79,7 @@ static void get_length_and_pointer(int num, int *n, int **t)
  
 static int get_hmat(int num, HyperMat *H)
 {
-  int il, il1, il2, il3, it, lw;
+  int il, il1, il2, il3,/* it,*/ lw;
 
   lw = num + Top - Rhs;
   il = iadr(*lstk( lw )); 
@@ -284,6 +284,8 @@ static int cre_hmat(int pos, HyperMat *H)
       H->P = (void *) istk(lr);
       return 1;
     }
+
+	
 }
 
 
@@ -387,7 +389,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
    */
       /* code based on SCI/routines/interf/indxg.f */
 
-  int m, n, l, li, one=1, trois=3, *ti, val, il, k, i, j, ideb, ipas, ifin, *P;
+  int m, n, l, li, one=1, trois=3, *ti,/* val,*/ il, k, i, j, ideb, ipas, ifin, *P;
   double *td, px[3], x;
   HyperMat H;
   SciBoolSparse B;
@@ -777,9 +779,9 @@ int C2F(intihm)()
 
   int minlhs=1, maxlhs=1;
   HyperMat A, B;
-  int i, k, l, li, m, n, ntot, mn, err_neg, iconf, ind_max;
+  int i, k,/* l, li, m, n,*/ ntot, mn,/* err_neg,*/ iconf, ind_max;
   int nb_index_vectors, B_is_scalar;
-  int *j, nd, one=1, ltot, il, dec, Top_save;
+  int *j,/* nd,*/ one=1, ltot, il, dec/*, Top_save*/;
   int *PA, *PB;
   short int *siPA, *siPB;
   char *cPA, *cPB;

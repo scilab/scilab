@@ -269,6 +269,9 @@ cd .. &gt;nul
 				RelativePath=".\getdate.c">
 			</File>
 			<File
+				RelativePath=".\hmops.c">
+			</File>
+			<File
 				RelativePath=".\intarpack.c">
 			</File>
 			<File
