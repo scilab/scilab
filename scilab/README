@@ -120,7 +120,24 @@
         * You should set the CFLAGS variable before running configure to set
         specific compilation options. Usually: CFLAGS="-O -pipe"
         * You should set the correct prefix. Usually: --prefix=$PREFIX
-        
+
+         On NetBSD, you should use the scilab package in /usr/pkgsrc/math/scilab
+         If you wish to build scilab by hand you should follow the following
+         rules (with PREFIX=/usr/local):
+         * If PVM is not already installed you should use --without-pvm.
+         * If PVM is installed you must set the PVM library and include
+         directories accordingly. Usually: --with-pvm-library=$PREFIX/lib and
+         --with-pvm-include=$PREFIX/include
+         * If you wish to use Tk (--with-tk), you must set the tcl/tk library
+         and include directories accordingly. Usually:
+         --with-tk-library=$PREFIX/lib
+         --with-tk-include=$PREFIX/include/tk8.3
+         --with-tcl-library=$PREFIX/lib
+         --with-tcl-include=$PREFIX/include/tcl8.3
+         * You should set the CFLAGS variable before running configure to set
+         specific compilation options. Usually: CFLAGS="-O2 -pipe"
+         * You should set the correct prefix. Usually: --prefix=$PREFIX
+       
  
   C - CHANGING THE COMPILATION OPTIONS (source version only)
   ------------------------------------

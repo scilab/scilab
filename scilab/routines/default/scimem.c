@@ -13,7 +13,9 @@
 #ifdef WIN32 
 #include <windows.h>
 #else 
-#include "values.h"
+#if defined(HAVE_VALUES_H)
+#include <values.h>
+#endif
 #endif
 
 #if defined(netbsd)
@@ -58,8 +60,9 @@ integer C2F(scimem)(integer *n, integer *ptr)
     unsigned long ulsize = ((unsigned long)sizeof(double)) * (*n + 1);
     if ( dsize != (double) ulsize)
 	  {
-		unsigned long pos = MAXLONG/sizeof(double);
-		sciprint("stacksize requested size is too big (max < %lu)\r\n",pos);
+	    unsigned long pos = MAXLONG/sizeof(double);  
+
+	    sciprint("stacksize requested size is too big (max < %lu)\r\n",pos);
 	  }
     else 
       p1 = (char *) malloc(((unsigned long) sizeof(double)) * (*n + 1));

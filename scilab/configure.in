@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.37 $)dnl
+AC_REVISION($Revision: 1.38 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -941,7 +941,7 @@ case "$host" in
    fi
    FC="$F77"
    FC_OPTIONS='-O2'
-   FC_OPTIONS_O0=
+   FC_OPTIONS_O0=`echo $FC_OPTIONS | sed 's/-O[0-9]*//g'`
    FC_LDFLAGS="-Wl,-R${X11BASE}/lib"
    FC_PICFLAGS='-fPIC'
    # check for --export-dynamic

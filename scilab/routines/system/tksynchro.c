@@ -4,7 +4,11 @@
 #include <stdio.h>
 
 #include "../machine.h"
+
+#ifdef WITH_TK
 #include "../tksci/tksci.h"
+#endif
+
 
 
 void C2F(tksynchro)(l)
