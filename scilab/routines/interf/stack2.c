@@ -2400,7 +2400,7 @@ integer C2F(maxvol)(lw, lw_type, type_len)
 int C2F(putlhsvar)()
 {
   integer ix2, ivar, ibufprec, ix, k, lcres, nbvars1;
-
+  if (C2F(iop).err > 0||C2F(errgst).err1> 0)  return TRUE_ ; 
   if (C2F(com).fun== -1 ) return TRUE_ ; /* execution continue with an 
 					    overloaded function */
   if (LhsVar(1) == 0) 
