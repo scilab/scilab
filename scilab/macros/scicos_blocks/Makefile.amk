@@ -14,7 +14,8 @@ NAME = blockslib
 NAM = SCI/macros/scicos_blocks
 
 MACROS=SPLIT_f.sci  GAIN_f.sci IN_f.sci CLKIN_f.sci OUT_f.sci CLKOUT_f.sci \
-	CLKOUTV_f.sci  CLKINV_f.sci CLKSOMV_f.sci  GAINBLK_f.sci \
+	CLKOUTV_f.sci  CLKINV_f.sci CLKSOMV_f.sci IMPSPLIT_f.sci  OUTIMPL_f.sci \
+	INIMPL_f.sci GAINBLK_f.sci \
 	QUANT_f.sci CLKSPLIT_f.sci CLKSOM_f.sci EVTDLY_f.sci\
 	SAT_f.sci SOM_f.sci SUPER_f.sci SCOPE_f.sci CLSS_f.sci DLSS_f.sci\
 	CLR_f.sci DLR_f.sci ZCROSS_f.sci m_sin.sci TRASH_f.sci \
