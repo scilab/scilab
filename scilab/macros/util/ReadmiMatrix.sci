@@ -12,7 +12,7 @@ function [value,ArrayName]=ReadmiMatrix(fd)
   ArrayName=ReadArrayName(fd)
   select Class
   case DoubleClass
-    value=ReadSimpleElement(fd,prod(DimensionArray),Class)
+    value=double(ReadSimpleElement(fd,prod(DimensionArray),Class))
     if Flags(1) then 
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
     end
@@ -47,7 +47,7 @@ function [value,ArrayName]=ReadmiMatrix(fd)
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
     end
     value=matrix(value,DimensionArray)
-      case Int32Class
+  case Int32Class
     value=int32(ReadSimpleElement(fd,prod(DimensionArray),Class))
     if Flags(1) then 
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
@@ -80,7 +80,7 @@ function [value,ArrayName]=ReadmiMatrix(fd)
       Fields(k)=ReadmiMatrix(fd)
     end
     //Form Scilab representation
-    value=tlist(['struct' Fnams],Fields(:))
+    value=tlist(['st' 'dims' Fnams],int32(DimensionArray),Fields(:))
   case ObjectClass 
     ClassName=stripblanks(ascii(double(ReadSimpleElement(fd))))
     FieldNameLength=double(ReadSimpleElement(fd,1))
