@@ -135,21 +135,28 @@ int ExposeMessageWindow(void)
  * message with just an OK button 
  */  
 
-int ExposeMessageWindow1(void)
+char *sci_convert_to_utf8(char *str, int *alloc)
 {
-  int ok=FALSE;
-  GtkWidget *dialog;
   gchar *msg_utf8 =NULL;
-
-  if (!  g_utf8_validate(ScilabMessage.string,-1,NULL) )
+  if (g_get_charset (NULL)) 
     {
-      msg_utf8= g_locale_to_utf8 (ScilabMessage.string, -1, NULL, NULL, NULL);
-      ok = TRUE;
+      *alloc = FALSE; 
+      msg_utf8 = str; 
     }
   else 
     {
-      msg_utf8 = ScilabMessage.string;
+      msg_utf8= g_locale_to_utf8 (str, -1, NULL, NULL, NULL);
+      *alloc = TRUE; 
     }
+  return msg_utf8; 
+}
+  
+
+int ExposeMessageWindow1(void)
+{
+  int alloc; 
+  GtkWidget *dialog;
+  char *msg_utf8 = sci_convert_to_utf8(ScilabMessage.string,&alloc);
 
   dialog = gtk_message_dialog_new (GTK_WINDOW (window),
 				   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -158,36 +165,24 @@ int ExposeMessageWindow1(void)
 				   msg_utf8);
   g_signal_connect (dialog, "response",  G_CALLBACK (gtk_widget_destroy),  NULL);
   gtk_widget_show (dialog);
-  if ( ok == TRUE) g_free (msg_utf8);
+  if ( alloc == TRUE) g_free (msg_utf8);
   return 1;
 }
 
 
 int ExposeMessageWindow(void)
 {
-  int ok=FALSE;
+  int alloc =FALSE;
   GtkWidget *dialog;
   GtkWidget *hbox;
   GtkWidget *stock;
   GtkWidget *label;
   gint response;
   char *ok_mess, *cancel_mess;
-  gchar *msg_utf8 =NULL;
+  char *msg_utf8 = sci_convert_to_utf8(ScilabMessage.string,&alloc);
 
   ok_mess = ScilabMessage.pButName[0]; 
   if ( strcasecmp(ok_mess,"Ok")==0 ) ok_mess = GTK_STOCK_OK; 
-
-
-  /* convert message to utf8 */ 
-  if (!  g_utf8_validate(ScilabMessage.string,-1,NULL) )
-    {
-      msg_utf8= g_locale_to_utf8 (ScilabMessage.string, -1, NULL, NULL, NULL);
-      ok = TRUE;
-    }
-  else 
-    {
-      msg_utf8 = ScilabMessage.string;
-    }
   
   switch ( ScilabMessage.nb ) 
     {
@@ -227,7 +222,7 @@ int ExposeMessageWindow(void)
   gtk_widget_show (label);
   response = gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
-  if ( ok == TRUE) g_free (msg_utf8);
+  if ( alloc == TRUE) g_free (msg_utf8);
   if (response == GTK_RESPONSE_OK)
     return 1; 
   else 
