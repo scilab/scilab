@@ -1,4 +1,4 @@
-function [t] = atanh(z)
+function [z] = atanh(z)
   // 
   //  PURPOSE 
   //     element wise hyperbolic arctangent
@@ -9,9 +9,9 @@ function [t] = atanh(z)
   if type(z)<>1 then error(53),end
   if isreal(z) then 
     k=find(abs(z)>1)
-    t(k) = imult(atan(-imult(z(k))))// result is complex 
+    z(k) = imult(atan(-imult(z(k))))// result is complex 
     k=find(abs(z)<=1)
-    t(k)= -imag(atan(-imult(z(k))))// result is real
+    z(k)= -imag(atan(-imult(z(k))))// result is real
   else
-    t = imult(atan(-imult(z)))
+    z = imult(atan(-imult(z)))
   end
