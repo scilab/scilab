@@ -32,7 +32,6 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   //???
   global need_newblk
   need_newblk=%t
-  
 
   if bllst==list() then
     message(['No block can be activated'])
@@ -45,7 +44,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   clkptr=1,cliptr=1,typ_l=[],dep_ut=[]
   nblk=size(bllst)
-  nblk_orig=nblk
+
   //take care of the heritage
 
   [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
@@ -66,9 +65,6 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   //end
 
   if show_trace then disp('c_pass21:'+string(timer())),end
-  
-  
-  extra_synchro=[1:nblk];
   done=%f	
   while ~done	
     //replace all synchro (l) blocks recursively
@@ -82,8 +78,8 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     if show_trace then disp('c_pass3011:'+string(timer())),end
     
     [ok,done,bllst,connectmat,clkconnect,typ_l,typ_m,critev,..
-     corinv, extra_synchro]=paksazi(bllst,connectmat,clkconnect,corinv,clkptr,cliptr,typ_l,..
-		     typ_m,critev,dep_ut, extra_synchro)
+     corinv]=paksazi(bllst,connectmat,clkconnect,corinv,clkptr,cliptr,typ_l,..
+		     typ_m,critev,dep_ut)
     
     if show_trace then disp('c_pass300011:'+string(timer())),end
     if ~ok then
@@ -99,7 +95,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
    xptr,zptr,modptr,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
    typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
-   bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect,nblk_orig);
+   bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect);
   typ_z0=typ_z;
 
   if ~ok then
@@ -179,6 +175,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   if show_trace then disp('c_pass61:'+string(timer())),end
 
   outtb=0*ones(lnkptr($)-1,1)
+  mod=0*ones(modptr($)-1,1)
   iz0=zeros(nb,1);
 
   if max(funtyp)>10000 &%scicos_solver==0 then
@@ -195,7 +192,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     state.evtspt=evtspt
     state.pointi=pointi
     state.outtb=outtb
-    state.mod=0*ones(max(modptr*[1;1])-1,1)
+    state.mod=mod
 
   cpr=scicos_cpr(state=state,sim=sim,cor=cor,corinv=corinv);
 
@@ -404,9 +401,9 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
   ord(find(k==1))=[];
 endfunction
 
-function [okk,done,bllst,connectmat,clkconnect,typ_l,typ_m,critev,corinv,extra_synchro]=..
+function [okk,done,bllst,connectmat,clkconnect,typ_l,typ_m,critev,corinv]=..
       paksazi(bllst,connectmat,clkconnect,corinv,clkptr,cliptr,..
-	      typ_l,typ_m,critev,dep_ut,extra_synchro)
+	      typ_l,typ_m,critev,dep_ut)
   global need_newblk  
   okk=%t
   nblk=length(bllst)
@@ -453,7 +450,6 @@ function [okk,done,bllst,connectmat,clkconnect,typ_l,typ_m,critev,corinv,extra_s
 	  clkconnect(indx(k),3)=nblk+1;
 	  bllst(nblk+1)=bllst(lb);
 	  corinv(nblk+1)=corinv(lb);
-	  extra_synchro(nblk+1)=extra_synchro(lb)
 	  tmp=clkconnect(indxo,:);
 	  yek=ones(tmp(:,1))
 	  clkconnect=[clkconnect;[yek*(nblk+1),tmp(:,[2 3 4])]]
@@ -699,13 +695,12 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
 	  xptr,zptr,modptr,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
 	  typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
 	  bexe,boptr,blnk,blptr,ok]=extract_info(bllst,..
-						 connectmat,clkconnect,nblk_orig)
+						 connectmat,clkconnect)
   ok=%t
   nbl=length(bllst)
   clkptr=zeros(nbl+1,1);clkptr(1)=1
   cliptr=clkptr;inpptr=cliptr;outptr=inpptr;
-  xptr=1;zptr=1;
-  modptr=zeros(nbl,2);mod_pointer=1;
+  xptr=1;zptr=1;modptr=1;
   rpptr=clkptr;ipptr=clkptr;
   //
   xc0=[];xcd0=[];xd0=[];rpar=[];ipar=[];
@@ -762,16 +757,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     end
     xd0=[xd0;xd0k]
     zptr(i+1)=zptr(i)+size(xd0k,'*')
-    if i<nblk_orig+1 then  // Synchro block
-      if ll.nmode>0 then
-	modptr(i,1)=mod_pointer
-	modptr(i,2)=ll.nmode;
-	mod_pointer=mod_pointer+ll.nmode;
-      end
-    else
-      modptr(i,1)=modptr(extra_synchro(i),1)
-      modptr(i,2)=modptr(extra_synchro(i),2);
-    end
+    modptr(i+1)=modptr(i)+ll.nmode;
     //  
     if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
       if ll.rpar==[] then rpark=[]; else rpark=var2vec(ll.rpar);end

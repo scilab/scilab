@@ -413,12 +413,8 @@ int C2F(scicos)
     }
     
     Blocks[kf].work=(void **)(((double *)work)+kf);
-    if (modptr[kf]==0) {
-      Blocks[kf].mode=NULL;
-    } else {
-      Blocks[kf].mode=&(mod[modptr[kf]-1]);
-    }
-    Blocks[kf].nmode=modptr[kf+nblk];
+    Blocks[kf].mode=&(mod[modptr[kf+1]-1]);
+    Blocks[kf].nmode=modptr[kf+2]-modptr[kf+1]; 
   }
 
 
@@ -2131,11 +2127,6 @@ int C2F(scicos)
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++(*urg);
-
-	/* update mode due to event */
-	Blocks[C2F(curblk).kfun - 1].mode[0] = i;
-	/*  end change */
-
 	i2 = i + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
