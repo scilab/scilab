@@ -32,7 +32,7 @@ int LinkStatus __PARAMS((void)) ;
 #define FAIL 0
 
 
-#define ENTRYMAX 200
+#define ENTRYMAX 5000
 #define MAXNAME  256 
 
 typedef void (*function) ();
