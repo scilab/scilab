@@ -183,6 +183,15 @@
             <VERB>[xmin,ymin;xmax,ymax]</VERB></SP>
           </DESCRIPTION_ITEM>
 
+          <DESCRIPTION_ITEM label="zoom_box: ">
+            <SP>This field contains the current zoom box if any.
+            coordinates. It is an empty matrix (no zoom) or the vector
+            <VERB>[xmin,ymax,width,height]</VERB> (defines a rectangle given by
+	      its top left corner coordinates, width and height. </SP>
+          </DESCRIPTION_ITEM>
+
+
+
           <DESCRIPTION_ITEM label="axes_bounds: ">
             <SP>A vector <VERB>[x_left,y_up,width,height]</VERB> specifying
             the portion of figure used by this axes. Where
