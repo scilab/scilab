@@ -451,7 +451,7 @@ int C2F(intcpass2)(fname)
       /* 13ieme element de la list labels*/
       le13=(int*) listentry(li,14);
       le1313=((int *) (le13+6));
-      //    modifss
+
       n1313=le13[5]-1;
       if ((bllst13[k]=(char*) malloc(sizeof(char)*(n1313+1))) ==NULL )  return 0;
       ((char*) bllst13[k])[n1313]='\0'; 
