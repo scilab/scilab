@@ -75,6 +75,8 @@ if rhs==1 then
       index=expression2code(infertree)
       execstr("tree.out(1).contents"+index+"=1") // Remove this line when Scilab bug corrected
       execstr("tree.out(1).contents"+index+"=from.infer")
+    else
+      tree.out(1).contents=cell()
     end
   end
 // Two indexes: to(ind1,ind2,...)=from or more
@@ -102,7 +104,6 @@ else
   infertree=tree.operands
   infertree(1)=null()
   infertree($)=null()
-
   if can_infer(infertree) then
     index=expression2code(infertree)
     execstr("tree.out(1).contents"+index+".entries=1"); // Remove this line when Scilab bug corrected
