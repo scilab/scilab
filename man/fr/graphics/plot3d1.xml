@@ -10,10 +10,19 @@
   <CALLING_SEQUENCE_ITEM>plot3d1(x,y,z,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
   <CALLING_SEQUENCE_ITEM>plot3d1(xf,yf,zf,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
-  <PARAM>
-  <P>
-    Voir <VERB>plot3d</VERB> pour une description complète. Il y a juste une petite différence, uniquement le signe de <VERB>flag(1)=mode</VERB> est utilisé : s&apos;il est négatif la grille n&apos;est pas dessinée. 
-  </P>
+ <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>args</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 
+	    Voir <VERB>plot3d</VERB> pour une description complète. Il y a juste une
+	    petite différence, uniquement le signe de <VERB>flag(1)=mode</VERB>
+	    est utilisé : s&apos;il est négatif la grille n&apos;est pas
+	    dessinée. </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
   <P>

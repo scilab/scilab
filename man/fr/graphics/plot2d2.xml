@@ -11,11 +11,7 @@
   <CALLING_SEQUENCE_ITEM>plot2d2([x],y,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
   <CALLING_SEQUENCE_ITEM>plot2d2([logflag],x,y,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
-  <PARAM>
-  <P>
-    [ ] : voir <VERB>plot2d</VERB> pour une description des paramètres.
-  </P>
-  </PARAM>
+
   <DESCRIPTION>
   <P>
     <VERB>plot2d2</VERB> est identique à <VERB>plot2d</VERB> mais les fonctions

@@ -10,7 +10,8 @@
   <CALLING_SEQUENCE_ITEM>[xc,yc]=contour2di(x,y,z,nz)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
+  <PARAM_INDENT>
+
   <PARAM_ITEM>
   <PARAM_NAME>x,y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
@@ -19,6 +20,7 @@
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
+
   <PARAM_ITEM>
   <PARAM_NAME>z  </PARAM_NAME>
   <PARAM_DESCRIPTION>
@@ -27,34 +29,48 @@
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
+
   <PARAM_ITEM>
   <PARAM_NAME>nz  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-  <SP>
-    : valeurs des niveaux ou nombre de niveaux
-</SP>
+  <SP>: valeurs des niveaux ou nombre de niveaux</SP>
+  <PARAM_INDENT>
+    <PARAM_ITEM>
+    <PARAM_NAME>-  </PARAM_NAME>
+    <PARAM_DESCRIPTION>
+    <SP>
+     Si <VERB>nz</VERB> est un entier, sa valeur définit le nombre de courbes
+		  de niveaux espacées régulièrement entre zmin et zmax :</SP>
+
+     <VERBATIM><![CDATA[
+       z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+     ]]></VERBATIM>
+ 
+    <P>
+    Noter que les niveaux <VERB>zmin</VERB> et <VERB>zmax</VERB> ne sont pas
+		  dessinés (génériquement ils sont réduits à des points) mais
+		  peuvent être ajoutés avec
+
+    </P>
+    <VERBATIM><![CDATA[
+       [im,jm] = find(z == zmin);     // ou zmax 
+        plot2d(x(im)',y(jm)',-9,"000")
+    ]]></VERBATIM>
+
+    </PARAM_DESCRIPTION> 
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+    <PARAM_NAME>-  </PARAM_NAME>
+    <PARAM_DESCRIPTION>
+    <SP>
+     - Si <VERB>nz</VERB>est un vecteur, <VERB>nz(i)</VERB> done la valeur de
+		  la iŽème courbe de niveau.</SP>
+	
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>-  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    Si <VERB>nz</VERB> est un entier, sa valeur définit le nombre de courbes de niveaux espacées régulièrement entre zmin et zmax :
-</SP>
+  </PARAM_INDENT>
   </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <VERBATIM><![CDATA[
- z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
-   ]]></VERBATIM>
-  <P>
-    Noter que les niveaux <VERB>zmin</VERB> et <VERB>zmax</VERB> ne sont pas dessinés (génériquement ils sont réduits à des points) mais peuvent être ajoutés avec
-  </P>
-  <VERBATIM><![CDATA[
- [im,jm] = find(z == zmin);     // ou zmax 
- plot2d(x(im)',y(jm)',-9,"000")
-   ]]></VERBATIM>
- </PARAM_INDENT>
+      </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>xc,yc  </PARAM_NAME>
   <PARAM_DESCRIPTION>

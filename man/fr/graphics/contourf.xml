@@ -10,7 +10,7 @@
   <CALLING_SEQUENCE_ITEM>contourf(x,y,z,nz,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
+  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>x,y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
@@ -19,6 +19,7 @@
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
+
   <PARAM_ITEM>
   <PARAM_NAME>z  </PARAM_NAME>
   <PARAM_DESCRIPTION>
@@ -27,14 +28,14 @@
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
+
   <PARAM_ITEM>
   <PARAM_NAME>nz  </PARAM_NAME>
   <PARAM_DESCRIPTION>
   <SP>
     : valeurs des niveaux ou nombre de niveaux
 </SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
+
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>-  </PARAM_NAME>
@@ -42,8 +43,7 @@
   <SP>
     Si <VERB>nz</VERB> est un entier, sa valeur définit le nombre de courbes de niveaux espacées régulièrement entre zmin et zmax :
 </SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
+
   <VERBATIM><![CDATA[
  z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
    ]]></VERBATIM>
@@ -54,6 +54,9 @@
  [im,jm] = find(z == zmin);     // ou zmax 
  plot2d(x(im)',y(jm)',-9,"000")
    ]]></VERBATIM>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
   <PARAM_ITEM>
   <PARAM_NAME>-  </PARAM_NAME>
   <PARAM_DESCRIPTION>
@@ -62,7 +65,11 @@
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
- </PARAM_INDENT>
+</PARAM_INDENT>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+
   <PARAM_ITEM>
   <PARAM_NAME>style,strf,leg,rect,nax  </PARAM_NAME>
   <PARAM_DESCRIPTION>

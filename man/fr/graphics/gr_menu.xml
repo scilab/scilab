@@ -49,27 +49,27 @@
     donnée en entrée de <VERB>gr_menu</VERB>.
   </P>
  
-
+  <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='[sd]=gr_menu([xmin,ymin,xmax,ymax])'> 
-    : lance <VERB>gr_menu</VERB> avec un cadre donné
+    <SP>: lance <VERB>gr_menu</VERB> avec un cadre donné</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='[sd]=gr_menu();'> 
-    : lance <VERB>gr_menu</VERB> avec le cadre par défaut [0 0 100 100].
+    <SP>: lance <VERB>gr_menu</VERB> avec le cadre par défaut [0 0 100 100].</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='[sd]=gr_menu(sd)'> 
-    : redessine les graphiques stockés dans sd et entre en mode interactif.
+    <SP>: redessine les graphiques stockés dans sd et entre en mode interactif.</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='[sd]=gr_menu(sd,1)'> 
-    : redessine uniquement les graphiques stockés dans <VERB>sd</VERB>. 
+    <SP>: redessine uniquement les graphiques stockés dans <VERB>sd</VERB>. </SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='[sd]=gr_menu(sd,1,1)'> 
-    : redessine uniquement les graphiques stockés dans <VERB>sd</VERB> et aucun cadre n&apos;est dessiné. 
+   <SP> : redessine uniquement les graphiques stockés dans <VERB>sd</VERB> et aucun cadre n&apos;est dessiné. </SP>
   </DESCRIPTION_ITEM>
- 
+ </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <AUTHOR>S.S. &amp; J.Ph.C.; ; ; ; ;   </AUTHOR>
 </MAN>
