@@ -38,6 +38,7 @@ c     ippty: interfaces properties
       integer i,k,l,nc,mode(2),vsizg
       integer eps(nsiz),im(nsiz),exp(nsiz),pi(nsiz),bl(nsiz),io(nsiz)
       integer true(nsiz),false(nsiz),dollar(nsiz)
+      integer idloc(nsiz)
       integer offset,goffset
       integer iadr,sadr
 c     
@@ -260,6 +261,10 @@ c     .  %eps : machine precision
       call crematvar(eps,k,0,1,1,dlamch('p'),0.0d0)
       leps=sadr( iadr(lstk(k)) +4)
       k=k+1
+c     . %test 
+c      call cvname(idloc,"%test",0)
+c      call crematvar(idloc,k,0,1,1,dlamch('p'),0.0d0)
+c      k=k+1
 c     .  %io : standard input&output
       iov(1)=dble(rte)
       iov(2)=dble(wte)

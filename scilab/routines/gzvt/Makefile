@@ -1,13 +1,10 @@
 
+LDFLAGS= `gtk-config --libs`  `gnome-config --libs zvt` `imlib-config --libs-gdk`
+CFLAGS=  `gtk-config --cflags` 
 
+all	: zterm gtkplug 
 
-all	::
-	gcc -o zterm zterm.c `gtk-config --cflags` `gnome-config --libs zvt` `imlib-config --libs-gdk`
+clean : 
+	\rm -f zterm gtkplug 
 
-all	::
-	gcc gtkplug.c -o gtkplug -O2 -Wall -g `gtk-config --cflags --libs`
-
-
-distclean : 
-	\rm -f zterm gtkplug gtksocket *.o
 
