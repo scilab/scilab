@@ -4,7 +4,7 @@ c     Copyright INRIA
      $     ,outlnk,lnkptr,clkptr,ordptr,nptr
      $     ,ordclk,nordcl,cord,oord,zord,critev,
      $     rpar,rpptr,ipar
-     $     ,ipptr,funptr,funtyp,outtb,urg,ierr,iwa) 
+     $     ,ipptr,funptr,funtyp,outtb,urg,ierr,iwa,kiwa) 
 C     
 C     
 C..   Parameters .. 
@@ -22,7 +22,7 @@ C     X must contain after state values all real data for simblk and grblk
       integer ordclk(nordcl,2),nordcl,cord(*),oord(*),zord(*)
       integer critev(*),rpptr(*),ipar(*),ipptr(*),funptr(*),funtyp(*)
       integer ierr
-      integer iwa(*)
+      integer iwa(*),kiwa
 c     
       integer urg
       integer i,k,ierr1,iopt,istate,itask,j,jdum,jt,
@@ -53,11 +53,13 @@ c
       nord=ordptr(keve+1)-ordptr(keve)
       if(nord.eq.0) return
 c
-      do 12 ii=ordptr(keve),ordptr(keve+1)-1
-         kfun=ordclk(ii,1)
-         iwa(kfun)=ordclk(ii,2)
- 12   continue
+c      do 12 ii=ordptr(keve),ordptr(keve+1)-1
+c         kfun=ordclk(ii,1)
+c         iwa(kfun)=ordclk(ii,2)
+c 12   continue
 c
+      kiwa=kiwa+1
+      iwa(kiwa)=keve
 c
       do 60 ii=ordptr(keve),ordptr(keve+1)-1
          kfun=ordclk(ii,1)
@@ -129,7 +131,7 @@ C     X must contain after state values all real data for simblk and grblk
       integer ordclk(nordcl,2),nordcl,cord(*),oord(*),zord(*)
       integer critev(*),rpptr(*),ipar(*),ipptr(*),funptr(*),funtyp(*)
       integer ierr
-      integer iwa(*)
+      integer iwa(*),kiwa
 c     
       integer i,k,ierr1,iopt,istate,itask,j,jdum,jt,urg,
      &     ksz,flag,keve,kpo,nord,nclock
@@ -151,12 +153,13 @@ c
       common /costol/ atol,rtol,ttol,deltat
 c     
       urg=0
+      kiwa=0
 c      
-      call iset(nblk,-1,iwa,1)
-      do 11 ii=1,noord
-         kfun=oord(ii)
-         iwa(kfun)=oord(ii+noord)
- 11   continue
+c      call iset(nblk,-1,iwa,1)
+c      do 11 ii=1,noord
+c         kfun=oord(ii)
+c         iwa(kfun)=oord(ii+noord)
+c 11   continue
 c
       do 19 jj=1,noord
          kfun=oord(jj)
@@ -207,16 +210,38 @@ c
      $        ,outlnk,lnkptr,clkptr,ordptr,nptr
      $        ,ordclk,nordcl,cord,oord,zord,critev,
      $        rpar,rpptr,ipar
-     $        ,ipptr,funptr,funtyp,outtb,urg,ierr,iwa) 
+     $        ,ipptr,funptr,funtyp,outtb,urg,ierr,iwa,kiwa) 
          if (urg.gt.0) goto 21
       endif
 
+      
+
+
+
 c     .  update states derivatives
-      do 61 kfun=1,nblk
-         if(iwa(kfun).ne.-1) then
+      do 31 ii=1,noord
+         kfun=oord(ii)
+         if(xptr(kfun+1)-xptr(kfun).gt.0) then
+            flag=0
+            nclock=oord(ii+noord)
+            call callf(kfun,nclock,funptr,funtyp,told,
+     $           xd,x,residual,xptr,z,zptr,iz,izptr,rpar,
+     $           rpptr,ipar,ipptr,tvec,ntvec,inpptr,
+     $           inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+            if (flag .lt. 0) then
+               ierr = 5 - flag
+               return
+            endif
+         endif
+ 31   continue
+c
+      do 61 i=1,kiwa
+         keve=iwa(i)
+         do 160 ii=ordptr(keve),ordptr(keve+1)-1
+            kfun=ordclk(ii,1)
             if(xptr(kfun+1)-xptr(kfun).gt.0) then
                flag=0
-               nclock=iwa(kfun)
+               nclock=ordclk(ii,2)
                call callf(kfun,nclock,funptr,funtyp,told,
      $              xd,x,residual,xptr,z,zptr,iz,izptr,rpar,
      $              rpptr,ipar,ipptr,tvec,ntvec,inpptr,
@@ -226,7 +251,7 @@ c     .  update states derivatives
                   return
                endif
             endif
-         endif
+ 160     continue   
  61   continue
       end
 
