@@ -90,15 +90,21 @@ int Xorgetchar()
 
 int main(int argc, char *argv[])
 {
-  GtkWidget *Plug, *Bouton;
+  GtkWidget *Plug,*Plug_down, *Bouton,*status;
   gtk_init(&argc, &argv);
   fprintf(stdout,"-2->%s",getenv("SCIWIN"));
   Plug = gtk_plug_new(atoi(getenv("SCIWIN")));
+  Plug_down = gtk_plug_new(atoi(getenv("SCIINFO")));
   Bouton = gtk_button_new_with_label("Plug");
   gtk_signal_connect(GTK_OBJECT(Bouton), "clicked",
                      (GtkSignalFunc)ClicPlug, NULL);
   gtk_container_add(GTK_CONTAINER(Plug), Bouton);
   gtk_widget_show_all(Plug);
+
+
+  status  = gtk_statusbar_new ();
+  gtk_container_add(GTK_CONTAINER(Plug_down), status);
+  gtk_widget_show_all(Plug_down);
 
   gtk_main();
   while (1) 

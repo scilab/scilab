@@ -46,7 +46,6 @@
 extern char      **environ;		
 static char      **env;
 static char      **env_copy;
-static int         winid_pos;
 static GtkWidget  *window = NULL;
 
 static void
@@ -90,44 +89,44 @@ button_press_event (ZvtTerm *term, GdkEventButton *e)
 static void
 set_hints (GtkWidget *widget)
 {
-        ZvtTerm *term;
-	GdkGeometry hints;
-	GtkWidget *app;
+  ZvtTerm *term;
+  GdkGeometry hints;
+  GtkWidget *app;
 
-	g_assert (widget != NULL);
-	term = ZVT_TERM (widget);
+  g_assert (widget != NULL);
+  term = ZVT_TERM (widget);
 
-	app = gtk_widget_get_toplevel(widget);
-	g_assert (app != NULL);
+  app = gtk_widget_get_toplevel(widget);
+  g_assert (app != NULL);
 
 #define PADDING 2
-	hints.base_width = (GTK_WIDGET (term)->style->klass->xthickness * 2) + PADDING;
-	hints.base_height =  (GTK_WIDGET (term)->style->klass->ythickness * 2);
+  hints.base_width = (GTK_WIDGET (term)->style->klass->xthickness * 2) + PADDING;
+  hints.base_height =  (GTK_WIDGET (term)->style->klass->ythickness * 2);
 
-	hints.width_inc = term->charwidth;
-	hints.height_inc = term->charheight;
-	hints.min_width = hints.base_width + hints.width_inc;
-	hints.min_height = hints.base_height + hints.height_inc;
+  hints.width_inc = term->charwidth;
+  hints.height_inc = term->charheight;
+  hints.min_width = hints.base_width + hints.width_inc;
+  hints.min_height = hints.base_height + hints.height_inc;
 
-	gtk_window_set_geometry_hints(GTK_WINDOW(app),
-				      GTK_WIDGET(term),
-				      &hints,
-				      GDK_HINT_RESIZE_INC|GDK_HINT_MIN_SIZE|GDK_HINT_BASE_SIZE);
+  gtk_window_set_geometry_hints(GTK_WINDOW(app),
+				GTK_WIDGET(term),
+				&hints,
+				GDK_HINT_RESIZE_INC|GDK_HINT_MIN_SIZE|GDK_HINT_BASE_SIZE);
 }
 
 /*
-  main routine
+ *  main routine
+ *  Does setup, initialises windows, forks child.
+ */
 
-  Does setup, initialises windows, forks child.
-*/
-gint 
-main (gint argc, gchar *argv[])
+gint main (gint argc, gchar *argv[])
 {
-  static char buf[128];
+  static char buf[128],buf1[128];
   int i, c, cmdindex, scrollbacklines, login_shell;
   char **p, *fontname=FONT;
   struct passwd *pw;
-  GtkWidget *term, *hbox, *scrollbar,*vbox,*socket_button,*button;
+  GtkWidget *term, *hbox, *scrollbar,*vbox,
+    *socket_button,*socket_button_down,*button;
   enum { RIGHT, LEFT } scrollpos = LEFT;
 
   login_shell = 0;
@@ -139,20 +138,17 @@ main (gint argc, gchar *argv[])
 
   for (p = env; *p; p++);
   i = p - env;
-  env_copy = (char **) g_malloc (sizeof (char *) * (i + 4));
+  env_copy = (char **) g_malloc (sizeof (char *) * (i + 5));
   for (i = 0, p = env; *p; p++) {
-      if (strncmp (*p, "TERM=", 5) == 0)
-	  env_copy [i++] = "TERM=xterm";
-      else if ((strncmp (*p, "COLUMNS=", 8) == 0) ||
-	       (strncmp (*p, "LINES=", 6) == 0))
-	  continue;
-      else
-	  env_copy [i++] = *p;
+    if (strncmp (*p, "TERM=", 5) == 0)
+      env_copy [i++] = "TERM=xterm";
+    else if ((strncmp (*p, "COLUMNS=", 8) == 0) ||
+	     (strncmp (*p, "LINES=", 6) == 0))
+      continue;
+    else
+      env_copy [i++] = *p;
   }
-
   env_copy [i++] = "COLORTERM=zterm";
-  winid_pos = i++;
-  env_copy [winid_pos] = "TEST";
   
   gtk_init(&argc, &argv);
 
@@ -190,8 +186,8 @@ main (gint argc, gchar *argv[])
 
   /* Create widgets and set options */
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title (GTK_WINDOW (window), "zterm");
-  gtk_window_set_wmclass (GTK_WINDOW (window), "zterm", "zterm");
+  gtk_window_set_title (GTK_WINDOW (window), "Scilab");
+  gtk_window_set_wmclass (GTK_WINDOW (window), "scilab", "scilab");
   gtk_widget_realize (window);
 
   /* create vbox */
@@ -203,6 +199,7 @@ main (gint argc, gchar *argv[])
   gtk_widget_show (vbox);
 
   /* création du socket qui contiendra le plug du programme gtkplug */
+
   socket_button = gtk_socket_new();
   gtk_box_pack_start(GTK_BOX(vbox), socket_button,FALSE,TRUE,0);
   gtk_widget_show(socket_button);
@@ -280,6 +277,16 @@ main (gint argc, gchar *argv[])
     gtk_box_pack_start (GTK_BOX (hbox), scrollbar, FALSE, TRUE, 0);
   }
   gtk_widget_show (scrollbar);
+
+  /* socket for the bottom widget */ 
+
+  socket_button_down = gtk_socket_new();
+  gtk_box_pack_start(GTK_BOX(vbox), socket_button_down,FALSE,TRUE,0);
+  gtk_widget_show(socket_button_down);
+  sprintf(buf1,"SCIINFO=%ld",GDK_WINDOW_XWINDOW(socket_button_down->window));
+  env_copy [i++] = buf1;
+  env_copy [i] = NULL;
+
 
   /* show them all! */
   gtk_widget_show (window);
