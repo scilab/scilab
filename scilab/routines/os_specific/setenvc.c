@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
 /*-----------------------------------------------------------------------------------*/
 /* returns 0 if there is a problem else 1 */
 int setenvc(char *string,char *value)
@@ -22,22 +21,20 @@ int setenvc(char *string,char *value)
 
 	if (env) free(env);
 #else
-	if ( setenv(string,value,1) ) ret=FALSE;
-	else ret=TRUE;
+	#if linux
+		if ( setenv(string,value,1) ) ret=FALSE;
+		else ret=TRUE;
+	#else /* others HP Solaris */
+		char *env=NULL;
+		env=(char*)malloc( (strlen(string)+strlen(value)+2)*sizeof(char) );
+		sprintf(env,"%s=%s",string,value);
+
+		if ( putenv(env) ) ret=FALSE;
+		else ret=TRUE;
+
+		if (env) free(env);
+	#endif
 #endif
-	/*
-	for HP & Sun use putenv
-
-	char *env=NULL;
-	env=(char*)malloc( (strlen(string)+strlen(value)+2)*sizeof(char) );
-	sprintf(env,"%s=%s",string,value);
-
-	if ( putenv(env) ) ret=FALSE;
-	else ret=TRUE;
-
-	if (env) free(env);
-
-	*/
 
 	return ret;
 }
