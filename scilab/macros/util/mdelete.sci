@@ -29,10 +29,12 @@ if strindex(filename," ") | strindex(file_path," ") then
 end
 
 if MSDOS then
-  cmd="del "+file_path+filename;
+  fullfilename=strsubst(file_path+filename,"/","\");
+  cmd="del "+fullfilename;
 else
   cmd="rm -f "+file_path+filename;
 end
+
 unix_w(cmd);
 endfunction
 
