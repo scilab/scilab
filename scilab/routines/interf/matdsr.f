@@ -17,7 +17,6 @@ C
 C     functions/fin
 C        1       2       3       4       5       6      
 C     0 hess    schur  spec  bdiag            balanc
-
 C
       if(fin.eq.4) then
          call intbdiagr('bdiag')
@@ -47,7 +46,7 @@ c     for compatibility
 c     [Ab [,X [,bs]]]=bdiag(A [,rmax]) 
 
       include '../stack.h'
-      logical getrhsvar,createvar,createcvar
+      logical getrhsvar,createvar,createcvar,getrhscvar
       logical checklhs,checkrhs,fail
       integer vfinite,iadr
 
@@ -65,9 +64,8 @@ c
       if(.not.checkrhs(fname,minrhs,maxrhs)) return
       if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-      if(.not.getrhsvar(1,'d', M, N, lA)) return
-      il=iadr(lstk(top-rhs+1))
-      it=istk(il+3)
+      if(.not.getrhscvar(1,'d',it, M, N, lA,lAi)) return
+
       if(M.ne.N) then
          err=1
          call error(20)
@@ -76,7 +74,7 @@ c
 
       if(N.eq.0) then
          if(.not.createvar(2,'d', 0, 0, lX)) return
-         if(.not.createvar(2,'d', 0, 0, lBs)) return
+         if(.not.createvar(3,'d', 0, 0, lBs)) return
          lhsvar(1) = 1
          lhsvar(2) = 2
          lhsvar(3) = 3
@@ -90,7 +88,12 @@ c
       endif 
       
       if (rhs.eq.2) then
-         if(.not.getrhsvar(1,'d', n1, m1, lrmax)) return
+         if(.not.getrhsvar(2,'d', n1, m1, lrmax)) return
+         if ( m1*n1 .ne.1 ) then
+            err=2 
+            call error(204)
+            return 
+         endif
          rmax=stk(lrmax)
       else
          rmax = 1.0d+0
@@ -104,7 +107,6 @@ c
             lj = lj + n
  03      continue
       endif
-
 
       if(.not.createcvar(2,'d',it, N, N, lXr,lXi)) return
       if(.not.createvar(3,'d', 1, 2*N, lE)) return
@@ -129,20 +131,19 @@ C
          nbloc = 0
          do 10 k = 1,n
             if (istk(lib+k-1) .ge. 0) nbloc = nbloc + 1
-            nbloc = nbloc + 1
  10      continue
-         if(.not.createvar(3,'d', 1, nbloc, lBs)) return
-         ln = lBs - 1
-         do 11 k = 1,n
-            if (istk(lib+k-1) .lt. 0) goto 11
-            ln = ln + 1
-            stk(ln) = dble(istk(lib+k-1))
+         if(.not.createvar(6,'d', nbloc,1, lBs)) return
+         i=0
+         do 11 k = 1,n 
+            if (istk(lIB+k-1) .ge. 0) then 
+               stk(lBs+i) = istk(lIB+k-1) 
+               i = i+1
+            endif
  11      continue
       endif
 
       lhsvar(1)=1
       lhsvar(2)=2
-      lhsvar(3)=3
-
+      lhsvar(3)=6
 c     
       end
