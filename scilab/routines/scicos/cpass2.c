@@ -3094,6 +3094,12 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 		}
 	      if(wwi) free(wwi);
 	      if(ww) free(ww);
+	      if (nzcross[connectmat[jj]] == nout){
+		nzcross[connectmat[jj]] = ninnout;
+	      }
+	      if (nmode[connectmat[jj]] == nout){
+		nmode[connectmat[jj]] = ninnout;
+	      }
 	      
 	      wwi=GetPartVect(bllst2,bllst2ptr[connectmat[jj]],bllst2ptr[connectmat[jj]+1]-bllst2ptr[connectmat[jj]]);
 	      if (wwi)
@@ -3153,6 +3159,13 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 		}
 	      if(wwi) free(wwi);
 	      if(ww) free(ww);
+
+	      if (nzcross[connectmat[jj+connectmat[0]/2]] == nin){
+		nzcross[connectmat[jj+connectmat[0]/2]] = ninnout;
+	      }
+	      if (nmode[connectmat[jj+connectmat[0]/2]] == nin){
+		nmode[connectmat[jj+connectmat[0]/2]] = ninnout;
+	      }
 	      wwi=GetPartVect(bllst3,bllst3ptr[connectmat[jj+connectmat[0]/2]],bllst3ptr[connectmat[jj+connectmat[0]/2]+1]-bllst3ptr[connectmat[jj+connectmat[0]/2]]);
 	      if (wwi) 
 		{
