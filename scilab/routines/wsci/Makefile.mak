@@ -73,7 +73,7 @@ all:: ../../bin/runscilab.exe
 
 ../../bin/runscilab.exe: runscilab.c  $(RUNRESOURCES) 
 	@echo Creation of $*.exe 
-	@del runscilab.obj 
+	-del runscilab.obj 
 	@$(CC) $(CFLAGS) -DTEST runscilab.c 	
 	@$(LINKER) -SUBSYSTEM:windows -OUT:"../../bin/runscilab.exe" \
 	runscilab.obj $(RESOURCES) $(GUILIBS) 
