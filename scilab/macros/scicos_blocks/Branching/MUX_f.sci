@@ -31,7 +31,8 @@ case 'set' then
 		 'and at most eight, and size 0 is not allowed. '])
 	ok=%f
       else
-	[model,graphics,ok]=check_io(model,graphics,in(:),0,[],[])
+	if min(in)<0 then nout=0,else nout=sum(in),end
+	[model,graphics,ok]=check_io(model,graphics,in(:),nout,[],[])
 	if ok then in=size(in,'*'),end
       end
     end
