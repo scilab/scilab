@@ -87,13 +87,13 @@ case 'define' then
   model.ipar=[]
   model.blocktype='c' 
   model.firing=[]
-  model.dep_ut=['y' 'n']
+  model.dep_ut=[%t %f]
   model.label=[junction_name;sci2exp(model.blocktype);
 	       sci2exp(model.in);sci2exp(model.out);
 	       sci2exp(model.evtin);sci2exp(model.evtout);
 	       sci2exp(model.state);sci2exp(model.dstate);
 	       sci2exp(model.rpar);sci2exp(model.ipar);
-	       sci2exp(model.firing);model.dep_ut(1);model.dep_ut(2)];
+	       sci2exp(model.firing);'y';'n'];
   gr_i=['xstringb(orig(1),orig(2),''GENERIC'',sz(1),sz(2),''fill'');']
   x=standard_define([2 2],model,model.label,gr_i)
 end
