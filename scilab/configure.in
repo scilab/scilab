@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.30 $)dnl
+AC_REVISION($Revision: 1.31 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -102,23 +102,23 @@ FILES_TO_CLEAN='*.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS ma
 if test "$with_gnu" = yes; then
   AC_CHECK_PROG(GCC,gcc,yes,no)
   if test "$GCC" = no; then
-    AC_MSG_ERROR("Unable to configure: gcc compiler not found")
+    AC_MSG_ERROR([Unable to configure: gcc compiler not found])
   fi
   AC_CHECK_PROG(G77,g77,yes,no)
   if test "$G77" = no; then
-    AC_MSG_ERROR("Unable to configure: g77 compiler not found")
+    AC_MSG_ERROR([Unable to configure: g77 compiler not found])
   fi
 else
   if test "$with_gcc" = yes; then
     AC_CHECK_PROG(GCC,gcc,yes,no)
     if test "$GCC" = no; then
-      AC_MSG_ERROR("Unable to configure: gcc compiler not found")
+      AC_MSG_ERROR([Unable to configure: gcc compiler not found])
     fi
   fi
   if test "$with_g77" = yes; then
     AC_CHECK_PROG(G77,g77,yes,no)
     if test "$G77" = no; then
-      AC_MSG_ERROR("Unable to configure: g77 compiler not found")
+      AC_MSG_ERROR([Unable to configure: g77 compiler not found])
     fi
   fi
 fi
@@ -209,7 +209,7 @@ case "$host" in
     if test "$G77" != yes; then    
       AC_CHECK_PROG(F77,f77,yes,no)
       if test "$F77" = no; then
-        AC_MSG_ERROR("Unable to configure: Fortran f77 compiler not found")
+        AC_MSG_ERROR([Unable to configure: Fortran f77 compiler not found])
       fi
     fi
     FC='f77'
@@ -250,7 +250,7 @@ case "$host" in
     if test "$G77" != yes; then    
       AC_CHECK_PROG(F77,f77,yes,no)
       if test "$F77" = no; then
-        AC_MSG_ERROR("Unable to configure: Fortran f77 compiler not found")
+        AC_MSG_ERROR([Unable to configure: Fortran f77 compiler not found])
       fi
     fi
     FC='f77'
@@ -291,7 +291,7 @@ case "$host" in
     if test "$G77" != yes; then    
       AC_CHECK_PROG(F77,f77,yes,no)
       if test "$F77" = no; then
-        AC_MSG_ERROR("Unable to configure: Fortran f77 compiler not found")
+        AC_MSG_ERROR([Unable to configure: Fortran f77 compiler not found])
       fi
     fi
     FC=f77
@@ -339,7 +339,7 @@ case "$host" in
     elif test "$with_f2c" = yes; then
       AC_CHECK_PROG(F2C,f2c,yes,no)
       if test "$F2C" = no; then
-        AC_MSG_ERROR("Unable to configure: f2c compiler not found")
+        AC_MSG_ERROR([Unable to configure: f2c compiler not found])
       fi
       # script shell f77 have bugs, get ours
       FC='${SCIDIR}/bin/f77-linux'
@@ -355,7 +355,7 @@ case "$host" in
           # script shell f77 have bugs, get ours
           FC='${SCIDIR}/bin/f77-linux'
         else
-          AC_MSG_ERROR("Unable to configure: no Fortran compiler found")
+          AC_MSG_ERROR([Unable to configure: no Fortran compiler found])
         fi
       fi
     fi
@@ -380,7 +380,7 @@ case "$host" in
     if test "$G77" != yes; then    
       AC_CHECK_PROG(F77,f77,yes,no)
       if test "$F77" = no; then
-        AC_MSG_ERROR("Unable to configure: Fortran f77 compiler not found")
+        AC_MSG_ERROR([Unable to configure: Fortran f77 compiler not found])
       fi
     fi
     FC=f77
@@ -424,7 +424,7 @@ case "$host" in
     if test "$G77" != yes; then    
       AC_CHECK_PROG(F77,f77,yes,no)
       if test "$F77" = no; then
-        AC_MSG_ERROR("Unable to configure: Fortran f77 compiler not found")
+        AC_MSG_ERROR([Unable to configure: Fortran f77 compiler not found])
       fi
     fi
     FC=f77
@@ -477,7 +477,7 @@ case "$host" in
     elif test "$with_f2c" = yes; then
       AC_CHECK_PROG(F2C,f2c,yes,no)
       if test "$F2C" = no; then
-        AC_MSG_ERROR("Unable to configure: f2c compiler not found")
+        AC_MSG_ERROR([Unable to configure: f2c compiler not found])
       fi
       # script shell f77 have bugs, get ours
       FC='${SCIDIR}/bin/f77-linux'
@@ -493,7 +493,7 @@ case "$host" in
           # script shell f77 have bugs, get ours
           FC='${SCIDIR}/bin/f77-linux'
         else
-          AC_MSG_ERROR("Unable to configure: no Fortran compiler found")    
+          AC_MSG_ERROR([Unable to configure: no Fortran compiler found])    
         fi
       fi
     fi
@@ -527,7 +527,7 @@ case "$host" in
     elif test "$with_f2c" = yes; then
       AC_CHECK_PROG(F2C,f2c,yes,no)
       if test "$F2C" = no; then
-        AC_MSG_ERROR("Unable to configure: f2c compiler not found")
+        AC_MSG_ERROR([Unable to configure: f2c compiler not found])
       fi
       # script shell f77 have bugs, get ours
       FC='${SCIDIR}/bin/f77-linux'
@@ -543,7 +543,7 @@ case "$host" in
           # script shell f77 have bugs, get ours
           FC='${SCIDIR}/bin/f77-linux'
         else
-          AC_MSG_ERROR("Unable to configure: no Fortran compiler found")    
+          AC_MSG_ERROR([Unable to configure: no Fortran compiler found])    
         fi
       fi
     fi
@@ -574,7 +574,7 @@ case "$host" in
     elif test "$with_f2c" = yes; then
       AC_CHECK_PROG(F2C,f2c,yes,no)
       if test "$F2C" = no; then
-        AC_MSG_ERROR("Unable to configure: f2c compiler not found")
+        AC_MSG_ERROR([Unable to configure: f2c compiler not found])
       fi
       # script shell f77 have bugs, get ours
       FC='${SCIDIR}/bin/f77-linux'
@@ -590,7 +590,7 @@ case "$host" in
           # script shell f77 have bugs, get ours
           FC='${SCIDIR}/bin/f77-linux'
         else
-          AC_MSG_ERROR("Unable to configure: no Fortran compiler found")    
+          AC_MSG_ERROR([Unable to configure: no Fortran compiler found])    
         fi
       fi
     fi
@@ -623,7 +623,7 @@ case "$host" in
     elif test "$with_f2c" = yes; then
       AC_CHECK_PROG(F2C,f2c,yes,no)
       if test "$F2C" = no; then
-        AC_MSG_ERROR("Unable to configure: f2c compiler not found")
+        AC_MSG_ERROR([Unable to configure: f2c compiler not found])
       fi
       # script shell f77 have bugs, get ours
       FC='${SCIDIR}/bin/f77-linux'
@@ -639,7 +639,7 @@ case "$host" in
           # script shell f77 have bugs, get ours
           FC='${SCIDIR}/bin/f77-linux'
         else
-          AC_MSG_ERROR("Unable to configure: no Fortran compiler found")    
+          AC_MSG_ERROR([Unable to configure: no Fortran compiler found])    
         fi
       fi
     fi
@@ -664,7 +664,7 @@ case "$host" in
     if test "$G77" != yes; then    
       AC_CHECK_PROG(F77,f77,yes,no)
       if test "$F77" = no; then
-        AC_MSG_ERROR("Unable to configure: Fortran f77 compiler not found")
+        AC_MSG_ERROR([Unable to configure: Fortran f77 compiler not found])
       fi
     fi
     FC=f77
@@ -705,7 +705,7 @@ case "$host" in
     if test "$G77" != yes; then    
       AC_CHECK_PROG(F77,f77,yes,no)
       if test "$F77" = no; then
-        AC_MSG_ERROR("Unable to configure: Fortran f77 compiler not found")
+        AC_MSG_ERROR([Unable to configure: Fortran f77 compiler not found])
       fi
     fi
     FC=f77
@@ -750,7 +750,7 @@ case "$host" in
     if test "$G77" != yes; then    
       AC_CHECK_PROG(F77,fort77,yes,no)
       if test "$F77" = no; then
-        AC_MSG_ERROR("Unable to configure: Fortran fort77 compiler not found")
+        AC_MSG_ERROR([Unable to configure: Fortran fort77 compiler not found])
       fi
     fi
     FC=fort77
@@ -791,7 +791,7 @@ case "$host" in
     if test "$G77" != yes; then    
       AC_CHECK_PROG(F77,fort77,yes,no)
       if test "$F77" = no; then
-        AC_MSG_ERROR("Unable to configure: Fortran fort77 compiler not found")
+        AC_MSG_ERROR([Unable to configure: Fortran fort77 compiler not found])
       fi
     fi
     FC=fort77
@@ -1003,7 +1003,7 @@ case "$host" in
    rm -f libtool-cp
     ;;
   *)
-    AC_MSG_ERROR("Unable to configure for host $host")
+    AC_MSG_ERROR([Unable to configure for host $host])
     ;;
 esac
 
@@ -1069,7 +1069,7 @@ if test "$X_LIBS" = ' -L/usr/lib'; then
 fi
 
 if test "$no_x" = yes; then
-  AC_MSG_ERROR("X Window not found")
+  AC_MSG_ERROR([X Window not found])
 fi
 fi 
 
@@ -1078,7 +1078,7 @@ fi
 ###################
 
 if test "$PERIFILE" = periX11.o; then 
-AC_CACHE_CHECK("for X11 release",ac_cv_X11_release,
+AC_CACHE_CHECK([for X11 release],ac_cv_X11_release,
 [
 cat << EOF > testX11.c
 #include <X11/Xlib.h>
@@ -1110,7 +1110,7 @@ XAW3D=no
 if test "$PERIFILE" = periX11.o; then 
   if test "$with_local_xaw" = yes; then
     if test "$ac_cv_X11_release" = R4; then
-      AC_MSG_ERROR("Local Xaw and Xmu Libraries cannot be used with X11R4")
+      AC_MSG_ERROR([Local Xaw and Xmu Libraries cannot be used with X11R4])
     else
       XAWLIB='$(SCIDIR)/libs/libXaw.a'
       XMULIB='$(SCIDIR)/libs/libXmu.a'
@@ -1128,7 +1128,7 @@ if test "$PERIFILE" = periX11.o; then
     if test "$with_xaw3d" != no; then
       AC_CHECK_LIB(Xaw3d,main,[XAthena3d=yes],[XAthena3d=no],-lXmu -lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
       if test "$XAthena3d" = no; then
-        AC_MSG_ERROR("Xaw3d missing. Use Xaw instead")
+        AC_MSG_ERROR([Xaw3d missing. Use Xaw instead])
       else
         XAW3D=yes
         XAthena=yes
@@ -1138,11 +1138,11 @@ if test "$PERIFILE" = periX11.o; then
     fi
     LDFLAGS="$ac_save_LDFLAGS"
     if test "$XAthena" = no; then
-      AC_MSG_WARN("Xaw and/or Xmu Library missing. Trying local libraries.")
+      AC_MSG_WARN([Xaw and/or Xmu Library missing. Trying local libraries.])
       if test "$ac_cv_X11_release" = R4; then
-        AC_MSG_ERROR("Local Xaw and Xmu Libraries cannot be used with X11R4")
+        AC_MSG_ERROR([Local Xaw and Xmu Libraries cannot be used with X11R4])
       else
-        AC_MSG_WARN("Using Local Xaw and Xmu Libraries")
+        AC_MSG_WARN([Using Local Xaw and Xmu Libraries])
         XAWLIB='$(SCIDIR)/libs/libXaw.a'
         XMULIB='$(SCIDIR)/libs/libXmu.a'
         XAW_LOCAL_LIB='$(SCIDIR)/libs/libXaw.a $(SCIDIR)/libs/libXmu.a'
@@ -1177,7 +1177,7 @@ fi
 ## test for underscores
 #######################
 
-AC_MSG_CHECKING("for leading and/or trailing underscores")
+AC_MSG_CHECKING([for leading and/or trailing underscores])
 cat << EOF > pipof.f
        subroutine pipof
        end
@@ -1217,13 +1217,13 @@ fi
 
 $RM pipof.f pipof.o
 
-AC_MSG_RESULT("$FC_LEADING_UNDERSCORE $FC_TRAILING_UNDERSCORE")
+AC_MSG_RESULT([$FC_LEADING_UNDERSCORE $FC_TRAILING_UNDERSCORE])
 
 #####################
 ## test for sharpsign
 #####################
 
-AC_MSG_CHECKING("for use of sharpsign in CPP")
+AC_MSG_CHECKING([for use of sharpsign in CPP])
 AC_TRY_COMPILE([#define C2F(name) name##_],
   [C2F(toto)()],  
   AC_MSG_RESULT(yes)
@@ -1302,12 +1302,12 @@ AC_ARG_WITH(pvm-include,
     ])
 
 
-AC_CACHE_CHECK("for PVM architecture",ac_cv_PVM_arch,
+AC_CACHE_CHECK([for PVM architecture],ac_cv_PVM_arch,
 [
 ac_cv_PVM_arch=`$PVMROOT/lib/pvmgetarch`
 ])
 if test "$ac_cv_PVM_arch" = UNKNOWN; then
-  AC_MSG_WARN("PVM unable to find architecture: I will not use PVM")
+  AC_MSG_WARN([PVM unable to find architecture: I will not use PVM])
   PVMTARGET=pvm-bidon
 else
   AC_DEFINE(WITH_PVM)
@@ -1334,12 +1334,12 @@ fi
 if test "$with_gtk" = yes; then
   AC_CHECK_PROG(GTK_CONFIG,gtk-config,yes,no)
   if test "$GTK_CONFIG" = no; then
-    AC_MSG_WARN("gtk-config not found: I will not use -with-gtk")
+    AC_MSG_WARN([gtk-config not found: I will not use -with-gtk])
     with_gtk="no"
   fi
   AC_CHECK_PROG(GNOME_CONFIG,gnome-config,yes,no)
   if test "$GNOME_CONFIG" = no; then
-    AC_MSG_WARN("gnome-config not found: I will not use -with-gtk")
+    AC_MSG_WARN([gnome-config not found: I will not use -with-gtk])
     with_gtk="no"
   fi
   if test "$with_gtk" = yes; then
@@ -1420,7 +1420,7 @@ if test $WITH_TKSCI = 1; then
   TKSCILIB="\$(SCIDIR)/libs/tksci.a"
   TKSCIDIR=tksci
 else
-  AC_MSG_ERROR("TCL/TK not found. Use --without-tk")
+  AC_MSG_ERROR([TCL/TK not found. Use --without-tk])
 fi
 
 fi
