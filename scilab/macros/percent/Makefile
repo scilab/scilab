@@ -63,7 +63,7 @@ L =      %c_n_l.sci %c_o_l.sci %l_n_l.sci %l_o_l.sci \
 	 %m_n_l.sci %m_o_l.sci %p_l_lss.sci %p_l_p.sci \
 	 %p_l_r.sci %p_l_s.sci %p_n_l.sci %p_o_l.sci \
 	 %r_l_lss.sci %r_l_p.sci %r_l_r.sci %r_l_s.sci \
-	 %s_l_hm.sci %s_l_lss.sci %s_l_p.sci %s_l_r.sci \
+	 %s_l_s.sci %s_l_hm.sci %s_l_lss.sci %s_l_p.sci %s_l_r.sci \
 	 %s_l_sp.sci %s_n_l.sci %s_o_l.sci %sp_l_s.sci \
 	 %sp_l_sp.sci
 
@@ -101,7 +101,7 @@ R =      %hm_r_s.sci %lss_r_lss.sci %lss_r_r.sci %lss_r_s.sci \
 	 %p_r_s.sci %p_s_r.sci %p_v_r.sci %p_x_r.sci %p_y_r.sci \
 	 %p_z_r.sci %r_r_lss.sci %r_r_r.sci %r_r_s.sci \
 	 %r_s_r.sci %r_v_r.sci %r_x_r.sci %r_y_r.sci %r_z_r.sci \
-	 %s_r_lss.sci %s_r_r.sci %s_r_sp.sci %s_s_r.sci \
+	 %s_r_s.sci %s_r_lss.sci %s_r_r.sci %s_r_sp.sci %s_s_r.sci \
 	 %s_v_r.sci %s_x_r.sci %s_y_r.sci %s_z_r.sci %sp_r_s.sci \
 	 %sp_r_sp.sci
 
