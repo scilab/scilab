@@ -4406,8 +4406,8 @@ void C2F(bitmap)(string, w, h)
  * Fonts for the graphic windows 
  ***********************************/
 
-#define FONTNUMBER 11 // F.Leray FONTNUMBER re-set to 11
-
+#define FONTNUMBER 10 // F.Leray FONTNUMBER set to 10 pb not solved: font Id 9 has always the same size
+                      // and looks like font fId 8 Size 5... Pb here F.Leray 25.04.02
 #define FONTMAXSIZE 6
 #define SYMBOLNUMBER 10
 
@@ -4615,14 +4615,13 @@ void C2F(queryfamily)(name, j, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   name[0]='\0';
  // for (i=0;i<FONTNUMBER;i++) { //Pb here: fonttab size is 10 and i goes from 0 to 10 included 
  // fonttab[10] is "{(char *) NULL,( char *) NULL}" F.Leray 24.02.04
- // Pb fixed by applying the same correction as in periX11.c (see below)
+ // Pb fixed by setting FONTNUMBER to 10
   
   for (i=0;i<FONTNUMBER;i++) {
     v3[i]=strlen((*FontTab)[i].fname);
     if (v3[i] > 0)
       strcat(name,(*FontTab)[i].fname);
-    else 
-      if(i< FONTNUMBER-1) { // here I put the same correction as in periX11.c to avoid fonttab[10] F.Leray 25.02.04
+	else {
       v3[i]=strlen(fonttab[i].Winname);
        strcat(name,fonttab[i].Winname);
     }
