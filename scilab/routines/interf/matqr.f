@@ -20,31 +20,29 @@ C
         call basout(io,wte,' matqr '//buf(1:4))
       endif
 C
+      if(fin.eq.1) then
+         call intqr
+         return
+      endif
       eps = stk(leps)
 C
-      il = iadr(lstk(top-rhs+1))
-      if (istk(il) .ne. 1) then
-         if(fin.eq.1) then
-            call putfunnam('qr',top-rhs+1)
-            fun=-1
-            return
-         else
-            err = rhs
-            call error(53)
-            return
-         endif
-      endif
-      m = istk(il+1)
-      n = istk(il+2)
-      it = istk(il+3)
-      l = sadr(il+4)
-C
-      goto (14,10,99,40) fin+3
+      goto (14,10) fin+3
 C
 C     rectangular matrix right division, a/a2
 C     call  left division for a2'\a
 C
  10   continue
+      il = iadr(lstk(top-rhs+1))
+      if (istk(il) .ne. 1) then
+         err = rhs
+         call error(53)
+         return
+      endif
+      m = istk(il+1)
+      n = istk(il+2)
+      it = istk(il+3)
+      l = sadr(il+4)
+
 C on interverti l'ordre de a et a2
       l1 = lstk(top-1)
       l2 = lstk(top)
@@ -121,7 +119,18 @@ C
 C
 C     rectangular matrix left division a backslash a2
 C
- 14   top = top - 1
+ 14   il = iadr(lstk(top-rhs+1))
+      if (istk(il) .ne. 1) then
+         err = rhs
+         call error(53)
+         return
+      endif
+      m = istk(il+1)
+      n = istk(il+2)
+      it = istk(il+3)
+      l = sadr(il+4)
+c
+      top = top - 1
  15   il2 = iadr(lstk(top+1))
       m2 = istk(il2+1)
       n2 = istk(il2+2)
@@ -151,7 +160,8 @@ C
       l3 = l2 + nn2*(it1+1)
       l4 = l3 + n*(it+1)
       ilb = iadr(l4+n*(it+1))
-      err = sadr(ilb+n) - lstk(bot)
+      lw=sadr(ilb+n)
+      err = lw - lstk(bot)
       if (err .gt. 0) then
         call error(17)
         return
@@ -199,23 +209,45 @@ C     resolution
       if (it .eq. 1) goto 28
 C a est reelle
       ls = l2
+      ly=lw
+      lqty=ly+m
+      lw=lqty+m
+      err=lw-lstk(bot)
+      if(err.gt.0) then
+         call error(17)
+         return
+      endif
       do 27 j = 1,n2
-        call dqrsl(stk(l),m,m,k,stk(l4),stk(ls),t,stk(ls),stk(ls),t,t,
-     &             100,info)
-        call dset(n-k,0.0d+0,stk(ls+k),1)
-        if (it2 .eq. 0) goto 27
-        call dqrsl(stk(l),m,m,k,stk(l4),stk(ls+nn2),t,stk(ls+nn2),
-     &             stk(ls+nn2),t,t,100,info)
-        call dset(n-k,0.0d+0,stk(ls+nn2+k),1)
- 27   ls = ls + mn
+         call dcopy(m,stk(ls),1,stk(ly),1)
+         call dqrsl(stk(l),m,m,k,stk(l4),stk(ly),t,stk(lqty),stk(ls),t,t
+     $        ,100,info)
+         call dset(n-k,0.0d+0,stk(ls+k),1)
+
+         if (it2 .eq. 0) goto 26
+         call dcopy(m,stk(ls+nn2),1,stk(ly),1)
+         call dqrsl(stk(l),m,m,k,stk(l4),stk(ly),t,stk(lqty),stk(ls+nn2)
+     $        ,t,t,100,info)
+         call dset(n-k,0.0d+0,stk(ls+nn2+k),1)
+ 26      ls = ls + mn
+ 27   continue
       goto 30
  28   continue
 C cas a complexe
       if (it2 .eq. 0) call dset(nn2,0.0d+0,stk(l2+nn2),1)
+      ly=lw
+      lqty=ly+2*m
+      lw=lqty+2*m
+      err=lw-lstk(bot)
+      if(err.gt.0) then
+         call error(17)
+         return
+      endif
       do 29 j = 1,n2
         ls = l2 + (j-1)*mn
-        call wqrsl(stk(l),stk(l+m*n),m,m,k,stk(l4),stk(l4+n),stk(ls),
-     &             stk(ls+nn2),t,t,stk(ls),stk(ls+nn2),stk(ls),
+        call dcopy(m,stk(ls),1,stk(ly),1)
+        call dcopy(m,stk(ls+nn2),1,stk(ly+m),1)
+        call wqrsl(stk(l),stk(l+m*n),m,m,k,stk(l4),stk(l4+n),stk(ly),
+     &             stk(ly+m),t,t,stk(lqty),stk(lqty+m),stk(ls),
      &             stk(ls+nn2),t,t,t,t,100,info)
         ll = ls + k
         call dset(n-k,0.0d+0,stk(ll),1)
@@ -333,9 +365,10 @@ C     on calcule et on stocke e
       endif
 C
       laux = lstk(top+1)
-      lw = laux + n*(it+1)
-      ilb = iadr(lw+n*(it+1))
-      err = sadr(ilb+n) - lstk(bot)
+      lw1 = laux + n*(it+1)
+      ilb = iadr(lw1+n*(it+1))
+      lw=sadr(ilb+n)
+      err = lw - lstk(bot)
       if (err .gt. 0) then
         call error(17)
         return
@@ -347,10 +380,10 @@ C     calcul de la dcomposition qr
         istk(ilb+j-1) = 0
  43   continue
       if (it .eq. 0)
-     &  call dqrdc(stk(lr),m,m,n,stk(laux),istk(ilb),stk(lw),job)
+     &  call dqrdc(stk(lr),m,m,n,stk(laux),istk(ilb),stk(lw1),job)
       if (it .eq. 1)
      &  call wqrdc(stk(lr),stk(lr+mn),m,m,n,stk(laux),stk(laux+n),
-     &             istk(ilb),stk(lw),stk(lw+n),job)
+     &             istk(ilb),stk(lw1),stk(lw1+n),job)
 C
 C     affectation des resultats
 C
@@ -358,14 +391,203 @@ C     affectation de q
       call dset(mm*(it+1),0.0d+0,stk(lq),1)
       call dset(m,1.0d+0,stk(lq),m+1)
       ll = lq
+      ly=lw
+      lw=lw+m*(it+1)
+      err=lw-lstk(bot)
+      if(err.gt.0) then 
+         call error(17)
+         return
+      endif
       do 44 j = 1,m
-        if (it .eq. 0)
-     &    call dqrsl(stk(lr),m,m,n,stk(laux),stk(ll),stk(ll),t,t,t,t,
+        if (it .eq. 0) then
+           call dcopy(m,stk(ll),1,stk(ly),1)
+           call dqrsl(stk(lr),m,m,n,stk(laux),stk(y),stk(ll),t,t,t,t,
      &               10000,info)
-        if (it .eq. 1)
-     &    call wqrsl(stk(lr),stk(lr+mn),m,m,n,stk(laux),stk(laux+n),
-     &               stk(ll),stk(ll+mm),stk(ll),stk(ll+mm),t,t,t,t,t,t,
-     &               t,t,10000,info)
+        endif
+        if (it .eq. 1) then
+           call dcopy(m,stk(ll),1,stk(ly),1)
+           call dcopy(m,stk(ll+mm),1,stk(ly+m),1)
+           call wqrsl(stk(lr),stk(lr+mn),m,m,n,stk(laux),stk(laux+n),
+     &          stk(ly),stk(ly+m),stk(ll),stk(ll+mm),t,t,t,t,t,t,
+     &          t,t,10000,info)
+      endif
+        ll = ll + m
+ 44   continue
+      istk(ilq+1) = m
+      istk(ilq+2) = m
+      m1 = min(m-1,n)
+      ll = lr + 1
+      do 51 j = 1,m1
+        call dset(m-j,0.0d+0,stk(ll),1)
+        if (it .eq. 1) call dset(m-j,0.0d+0,stk(ll+mn),1)
+        ll = ll + m + 1
+ 51   continue
+      istk(ilr) = 1
+      istk(ilr+1) = m
+      istk(ilr+2) = n
+      istk(ilr+3) = it
+C
+      if (lhs .eq. 2) goto 99
+      if (lhs .eq. 4) then
+C     ############# calcul du rang 
+        tt = abs(stk(lr))
+        if (it .eq. 1) tt = tt + abs(stk(lr+mn))
+        if(rhs.eq.1)  tol = dble(max(m,n)) * eps * tt
+        k = 0
+        ls = lr
+        m1 = min(m,n)
+        do 450 j = 1,m1
+          tt = abs(stk(ls))
+          if (it .eq. 1) tt = tt + abs(stk(ls+mn))
+          if (tt .le. tol) goto 460
+          k = j
+          ls = ls + m + 1
+ 450    continue
+ 460    istk(ilrk) = 1
+        istk(ilrk+1) = 1
+        istk(ilrk+2) = 1
+        istk(ilrk+3) = 0
+        stk(lrk) = dble(k)
+      endif
+C     #############   affectation de e
+      call dset(nn,0.0d+0,stk(le),1)
+      ll = le - 1
+      do 52 j = 1,n
+         stk(ll+istk(ilb+j-1)) = 1.0d+0
+         ll = ll + n
+ 52   continue
+      istk(ile) = 1
+      istk(ile+1) = n
+      istk(ile+2) = n
+      istk(ile+3) = 0
+
+      goto 99
+C     
+ 99   return
+      end
+
+      subroutine intqr
+
+C ================================== ( Inria    ) =============
+C     evaluate functions involving qr decomposition (least squares)
+C ====================================================================
+c     Copyright INRIA
+      include '../stack.h'
+      integer iadr,sadr
+C
+      double precision t(1),tol,eps,tt
+      integer vol
+
+      iadr(l) = l + l - 1
+      sadr(l) = (l/2) + 1
+C
+      eps = stk(leps)
+C
+      il = iadr(lstk(top-rhs+1))
+      if (istk(il) .ne. 1) then
+         call putfunnam('qr',top-rhs+1)
+         fun=-1
+         return
+      endif
+
+      m = istk(il+1)
+      n = istk(il+2)
+      it = istk(il+3)
+      l = sadr(il+4)
+C
+ 40   if (top+lhs .ge. bot) then
+        call error(18)
+        return
+      endif
+      if (rhs .eq. 2) then
+        il = iadr(lstk(top))
+        tol = stk(sadr(il+4))
+        top = top - 1
+      endif
+C
+      if (fin.eq.1 .and. (lhs.lt.2.or.lhs.gt.4.or.
+     $    rhs.eq.2.and.lhs.eq.3)) then
+        call error(41)
+        return
+      endif
+C
+      mn = m * n
+      mm = m * m
+      job = 0
+C     implantation des resultats et tableaux de travail
+      ilq = iadr(lstk(top))
+      lq = l
+      lstk(top+1) = lq + mm*(it+1)
+C
+      top = top + 1
+      ilr = iadr(lstk(top))
+      lr = sadr(ilr+4)
+      lstk(top+1) = lr + mn*(it+1)
+C
+      if (lhs .eq. 4) then
+        top = top + 1
+        ilrk = iadr(lstk(top))
+        lrk = sadr(ilrk+4)
+        lstk(top+1) = lrk + 1
+      endif
+C
+      if (lhs .ge. 3) then
+C     on calcule et on stocke e
+        top = top + 1
+        nn = n * n
+        job = 1
+        ile = iadr(lstk(top))
+        le = sadr(ile+4)
+        lstk(top+1) = le + nn
+      endif
+C
+      laux = lstk(top+1)
+      lw1 = laux + n*(it+1)
+      ilb = iadr(lw1+n*(it+1))
+      lw=sadr(ilb+n)
+      err = lw - lstk(bot)
+      if (err .gt. 0) then
+        call error(17)
+        return
+      endif
+C
+C     calcul de la dcomposition qr
+      call unsfdcopy(mn*(it+1),stk(l),-1,stk(lr),-1)
+      do 43 j = 1,n
+        istk(ilb+j-1) = 0
+ 43   continue
+      if (it .eq. 0)
+     &  call dqrdc(stk(lr),m,m,n,stk(laux),istk(ilb),stk(lw1),job)
+      if (it .eq. 1)
+     &  call wqrdc(stk(lr),stk(lr+mn),m,m,n,stk(laux),stk(laux+n),
+     &             istk(ilb),stk(lw1),stk(lw1+n),job)
+C
+C     affectation des resultats
+C
+C     affectation de q
+      call dset(mm*(it+1),0.0d+0,stk(lq),1)
+      call dset(m,1.0d+0,stk(lq),m+1)
+      ll = lq
+      ly=lw
+      lw=lw+m*(it+1)
+      err=lw-lstk(bot)
+      if(err.gt.0) then 
+         call error(17)
+         return
+      endif
+      do 44 j = 1,m
+        if (it .eq. 0) then
+           call dcopy(m,stk(ll),1,stk(ly),1)
+           call dqrsl(stk(lr),m,m,n,stk(laux),stk(ly),stk(ll),t,t,t,t,
+     &               10000,info)
+        endif
+        if (it .eq. 1) then
+           call dcopy(m,stk(ll),1,stk(ly),1)
+           call dcopy(m,stk(ll+mm),1,stk(ly+m),1)
+           call wqrsl(stk(lr),stk(lr+mn),m,m,n,stk(laux),stk(laux+n),
+     &          stk(ly),stk(ly+m),stk(ll),stk(ll+mm),t,t,t,t,t,t,
+     &          t,t,10000,info)
+      endif
         ll = ll + m
  44   continue
       istk(ilq+1) = m

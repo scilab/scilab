@@ -1711,8 +1711,13 @@ c     determine max of the degrees
          nb=max(nb,istk(idb+i)-istk(idb-1+i))
  76   continue
 c     preserve adress of the beginning of a and b coefficients
+
       lar=la
       lbr=lb
+c     allocate memory for intermediate results 
+      law=lw
+      lbw=law+na+1
+      lw=lbw+nb+1
 
 c     simplify
       la1=la
@@ -1721,14 +1726,18 @@ c     simplify
          na=istk(ida+i)-istk(ida-1+i)-1
          nb=istk(idb+i)-istk(idb-1+i)-1
          ierr=lstk(bot)-lw
-         call  dpsimp(stk(la),na,stk(lb),nb,stk(la1),nnum,
-     $        stk(lb1),nden,stk(lw),ierr)
+         call  dpsimp(stk(la),na,stk(lb),nb,stk(law),nnum,
+     $        stk(lbw),nden,stk(lw),ierr)
          if(ierr.eq.1) then
             call error(27)
             return
          elseif(ierr.eq.2) then
             call msgs(43,i)
          endif
+c     .  copy overwrite initial polynomials with simplified ones
+         call dcopy(nnum,stk(law),1,stk(la1),1)
+         call dcopy(nden,stk(lbw),1,stk(lb1),1)
+
          la=la+na+1
          lb=lb+nb+1
          la1=la1+nnum
@@ -1888,6 +1897,11 @@ c     set adress where to put the results
       lb1=lb
       ida1=ida
       idb1=idb
+c
+c     allocate memory for intermediate results 
+      law=lw
+      lbw=law+na+1
+      lw=lbw+nb+1
 
 c     beginning of numerator in resulting structure
       l0=ll+istk(ilr+4)-1
@@ -1902,14 +1916,19 @@ c     simplify
          na=istk(ida+i)-istk(ida-1+i)-1
          nb=istk(idb+i)-istk(idb-1+i)-1
          ierr=lstk(bot)-lw
-         call  dpsimp(stk(la),na,stk(lb),nb,stk(la1),nnum,
-     $        stk(lb1),nden,stk(lw),ierr)
+         call  dpsimp(stk(la),na,stk(lb),nb,stk(law),nnum,
+     $        stk(lbw),nden,stk(lw),ierr)
          if(ierr.eq.1) then
             call error(27)
             return
          elseif(ierr.eq.2) then
             call msgs(43,i)
          endif
+
+c     .  copy overwrite initial polynomials with simplified ones
+         call dcopy(nnum,stk(law),1,stk(la1),1)
+         call dcopy(nden,stk(lbw),1,stk(lb1),1)
+
          la=la+na+1
          lb=lb+nb+1
          la1=la1+nnum

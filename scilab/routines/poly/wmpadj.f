@@ -38,9 +38,11 @@ c     boucle sur les polynomes
  10      n1=n1-1
          if(abs(pm1r(k1+n1))+abs(pm1i(k1+n1)).eq.0.0d+0
      $        .and.n1.gt.1) goto 10
-         if(kk.ne.k1+1) then
-            call dcopy(n1,pm1r(k1+1),1,pm1r(kk),1)
-            call dcopy(n1,pm1i(k1+1),1,pm1i(kk),1)
+         if(kk.ne.k1+1.and.n1.gt.0) then
+            do 11 i=1,n1
+               pm1r(kk-1+i)=pm1r(k1+i)
+               pm1i(kk-1+i)=pm1i(k1+i)
+ 11         continue
          endif
          kk=kk+n1
          dj=d1(j+1)

@@ -534,27 +534,21 @@ c     ------simple case one argument which is a matrix or vector
 c     ------------max of each column of a 
          if (.not.cremat(fname,topk,0,1,n,lr,lir)) return
          if (.not.cremat(fname,topk+1,0,1,n,lkr,lkir)) return
-         do 20 j=0,n-1
-            stk(lr+j)=stk(lr1+m*j)
-            stk(lkr+j)=1
-            if(fin.eq.17) then 
-               do 15 i=1,m-1
-                  x1=stk(lr1+i+m*j)
-                  if(x1.lt.stk(lr+j).or.isanan(x1).eq.1) then 
-                     stk(lr+j)=x1
-                     stk(lkr+j)=i+1
-                  endif
- 15           continue
-            else
-               do 16 i=1,m-1
-                  x1=stk(lr1+i+m*j)
-                  if(x1.gt.stk(lr+j).or.isanan(x1).eq.1) then 
-                     stk(lr+j)=x1
-                     stk(lkr+j)=i+1
-                  endif
- 16            continue
-            endif
- 20     continue
+         if(fin.eq.17) then
+c     .    min
+            do 15 j=0,n-1
+               k=idmin(m,stk(lr1+m*j),1)
+               stk(lr+j)=stk(lr1+m*j+k-1)
+               stk(lkr+j)=k
+ 15         continue
+         else
+c     .    max
+            do 16 j=0,n-1
+               k=idmax(m,stk(lr1+m*j),1)
+               stk(lr+j)=stk(lr1+m*j+k-1)
+               stk(lkr+j)=k
+ 16         continue
+         endif
          call copyobj(fname,topk,topk-rhs+1)
          if (lhs.eq.2) then 
             call copyobj(fname,topk+1,topk-rhs+2)
@@ -564,27 +558,21 @@ c     ---------max of each row of a
       else if ( type(1:1).eq.'c') then       
          if (.not.cremat(fname,topk,0,m,1,lr,lir)) return
          if (.not.cremat(fname,topk+1,0,m,1,lkr,lkir)) return
-         do 30 j=0,m-1
-            stk(lr+j)=stk(lr1+j)
-            stk(lkr+j)=1
-            if(fin.eq.17) then 
-               do 25 i=1,n-1
-                  x1=stk(lr1+j+m*i)
-                  if (x1.lt.stk(lr+j).or.isanan(x1).eq.1) then 
-                     stk(lr+j)=x1
-                     stk(lkr+j)=i+1
-                  endif
- 25            continue
-            else
-               do 26 i=1,n-1
-                  x1=stk(lr1+j+m*i)
-                  if (x1.gt.stk(lr+j).or.isanan(x1).eq.1) then 
-                     stk(lr+j)=x1
-                     stk(lkr+j)=i+1
-                  endif
- 26           continue
-            endif
- 30      continue
+         if(fin.eq.17) then
+c     .    min
+            do 25 j=0,m-1
+               k=idmin(n,stk(lr1+j),m)
+               stk(lr+j)=stk(lr1+j+(k-1)*m)
+               stk(lkr+j)=k
+ 25         continue
+         else
+c     .    max
+            do 26 j=0,m-1
+               k=idmax(n,stk(lr1+j),m)
+               stk(lr+j)=stk(lr1+j+(k-1)*m)
+               stk(lkr+j)=k
+ 26         continue
+         endif
          call copyobj(fname,topk,topk-rhs+1)
          if (lhs.eq.2) then 
             call copyobj(fname,topk+1,topk-rhs+2)

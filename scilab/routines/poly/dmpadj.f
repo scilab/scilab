@@ -35,7 +35,11 @@ c     boucle sur les polynomes
          n1=d1(j+1)-dj+1
  10      n1=n1-1
          if(pm1(k1+n1).eq.0.0d+0.and.n1.gt.1) goto 10
-         if(kk.ne.k1+1) call dcopy(n1,pm1(k1+1),1,pm1(kk),1)
+         if(kk.ne.k1+1.and.n1.gt.0) then
+            do 11 i=1,n1
+               pm1(kk-1+i)=pm1(k1+i)
+ 11         continue
+         endif
          kk=kk+n1
          dj=d1(j+1)
          d1(j+1)=kk
