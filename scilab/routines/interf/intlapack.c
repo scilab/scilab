@@ -260,7 +260,6 @@ static LapackTable Tab[]={
   {intinv,"lap_inv"},
   {intrcond,"lap_rcond"},
   {intchol,"lap_chol"},
-  {intrank,"lap_rank"},
 };
 
 int C2F(intlapack)()
