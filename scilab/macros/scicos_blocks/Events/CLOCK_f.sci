@@ -20,7 +20,6 @@ case 'set' then
   dt_old= model.rpar
   model_n=model
   while %t do
-    pause
     [ok,dt,t0,exprs]=getvalue('Set Clock  block parameters',..
 	['Period';'Init time'],list('vec',1,'vec',1),exprs)
     if ~ok then break,end
