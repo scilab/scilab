@@ -32,6 +32,12 @@
 /* Define if have usleep: used in graphics/periX11.c */
 #undef HAVE_USLEEP
 
+/* Define if have limits.h header:  used in routines/default/scimem.c */
+#undef HAVE_LIMITS_H
+
+/* Define if have values.h header:  used in routines/default/scimem.c */
+#undef HAVE_VALUES_H
+
 /* Define if have finite */
 #undef HAVE_FINITE
 

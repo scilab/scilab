@@ -12,13 +12,19 @@
 
 #ifdef WIN32 
 #include <windows.h>
-#else 
-#if defined(__ppc__)
+#endif
+
+#ifdef HAVE_LIMITS_H
 #include <limits.h>
 #define MAXLONG LONG_MAX
 #else 
+#ifdef HAVE_VALUES_H
 #include <values.h>
-#endif
+#endif /* HAVE_VALUES_H */
+#endif /* !HAVE_LIMITS_H */
+
+#ifndef MAXLONG
+#define MAXLONG LONG_MAX
 #endif
 
 #if defined(netbsd)
