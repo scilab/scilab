@@ -676,7 +676,9 @@ typedef struct
   double WRect[4]; /* subwin */
   double ARect[4]; /* margins*/
   int zoomy_kp;
-  double FRect_kp[4];
+  /* ZRect_kp is now useless : when unzooming we deal with SRect values */
+  double ZRect[4]; /* reversed for zoom only to avoid using FRect as zoom box AND computed box */ /* F.Leray 09.12.04 */
+
   char logflags[3]; /* Z has a logflag now F.Leray 03.11.04 */
   int grid[3];
   /*   BOOL isaxes; */
@@ -1524,8 +1526,8 @@ extern int sciUndelete (long *hdl);
 extern BOOL sciIsAreaZoom(integer *box, integer *box1 ,integer *section);
 extern void DeleteObjs(int win);
 extern void scizoom(double bbox[]);
-extern void Zoom_Subwin(double bbox[]);
-extern void Unzoom_Subwin();
+/* extern void Zoom_Subwin(double bbox[]); */
+/* extern void Unzoom_Subwin(); */
 extern sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin);
 extern int sciSwitchWindow(int *winnum);
 extern int sciType (char *marker, sciPointObj *pobj);  /* F.Leray MODIFICATION ICI*/

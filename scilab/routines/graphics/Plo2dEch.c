@@ -1244,26 +1244,6 @@ int zoom_box(double *bbox)
 	    box1[1]= Cscale.WIRect1[1];
 	    box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
 
-	    /* F.Leray 09.12.04 */
-	    /* HERE I force the re-computation of ppsubwin->FRect to always have a user data
-	       without any treatment in case we have a logflag enable */
-	    /* this should correct the bug 972 */
-
-	    if (sciGetZooming(psousfen))
-	      {
-		if(pSUBWIN_FEATURE (psousfen)->logflags[0] == 'l') {
-		  pSUBWIN_FEATURE (psousfen)->FRect[0]= exp10(pSUBWIN_FEATURE (psousfen)->FRect[0]); /* xmin: -1 -> 10^(-1) to have good treatment in sci_update_frame_bounds */
-		  pSUBWIN_FEATURE (psousfen)->FRect[2]= exp10(pSUBWIN_FEATURE (psousfen)->FRect[2]);
-		}
-
-		if(pSUBWIN_FEATURE (psousfen)->logflags[1] == 'l') {
-		  pSUBWIN_FEATURE (psousfen)->FRect[1]= exp10(pSUBWIN_FEATURE (psousfen)->FRect[1]); /* ymin: -1 -> 10^(-1) to have good treatment in sci_update_frame_bounds */
-		  pSUBWIN_FEATURE (psousfen)->FRect[3]= exp10(pSUBWIN_FEATURE (psousfen)->FRect[3]);
-		}
-	      }
-
-	    /* end of adding */
-
 	    if (sciIsAreaZoom(box,box1,section))
 	      {
 		bbox[0]= Min(XPixel2Double(section[0]),XPixel2Double(section[2]));
@@ -1274,10 +1254,10 @@ int zoom_box(double *bbox)
 		if (!(sciGetZooming(psousfen)))
 		  {
 		    sciSetZooming(psousfen, 1);
-		    pSUBWIN_FEATURE (psousfen)->FRect_kp[0]   = pSUBWIN_FEATURE (psousfen)->FRect[0];
-		    pSUBWIN_FEATURE (psousfen)->FRect_kp[1]   = pSUBWIN_FEATURE (psousfen)->FRect[1];
-		    pSUBWIN_FEATURE (psousfen)->FRect_kp[2]   = pSUBWIN_FEATURE (psousfen)->FRect[2];
-		    pSUBWIN_FEATURE (psousfen)->FRect_kp[3]   = pSUBWIN_FEATURE (psousfen)->FRect[3];
+	/* 	    pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]   = pSUBWIN_FEATURE (psousfen)->ZRect[0]; */
+/* 		    pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]   = pSUBWIN_FEATURE (psousfen)->ZRect[1]; */
+/* 		    pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]   = pSUBWIN_FEATURE (psousfen)->ZRect[2]; */
+/* 		    pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]   = pSUBWIN_FEATURE (psousfen)->ZRect[3]; */
 		  }
 
 
@@ -1287,12 +1267,12 @@ int zoom_box(double *bbox)
 		if(pSUBWIN_FEATURE (psousfen)->logflags[0] == 'n') {
 		  C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
 		  pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
-		  pSUBWIN_FEATURE (psousfen)->FRect[0]=lmin;
-		  pSUBWIN_FEATURE (psousfen)->FRect[2]=lmax;}
+		  pSUBWIN_FEATURE (psousfen)->ZRect[0]=lmin;
+		  pSUBWIN_FEATURE (psousfen)->ZRect[2]=lmax;}
 		else {
 		  pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=0;
-		  pSUBWIN_FEATURE (psousfen)->FRect[0]=fmin;
-		  pSUBWIN_FEATURE (psousfen)->FRect[2]=fmax;
+		  pSUBWIN_FEATURE (psousfen)->ZRect[0]=fmin;
+		  pSUBWIN_FEATURE (psousfen)->ZRect[2]=fmax;
 		}
 
 
@@ -1300,12 +1280,12 @@ int zoom_box(double *bbox)
 		if(pSUBWIN_FEATURE (psousfen)->logflags[1] == 'n') {
 		  C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
 		  pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-		  pSUBWIN_FEATURE (psousfen)->FRect[1]=lmin;
-		  pSUBWIN_FEATURE (psousfen)->FRect[3]=lmax;}
+		  pSUBWIN_FEATURE (psousfen)->ZRect[1]=lmin;
+		  pSUBWIN_FEATURE (psousfen)->ZRect[3]=lmax;}
 		else {
 		  pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=0;
-		  pSUBWIN_FEATURE (psousfen)->FRect[1]=fmin;
-		  pSUBWIN_FEATURE (psousfen)->FRect[3]=fmax;}
+		  pSUBWIN_FEATURE (psousfen)->ZRect[1]=fmin;
+		  pSUBWIN_FEATURE (psousfen)->ZRect[3]=fmax;}
 	      }
 	  }
 	psonstmp = psonstmp->pnext;
@@ -1387,20 +1367,25 @@ extern void unzoom()
         	if (sciGetZooming(psousfen))
 	            {
 		      sciSetZooming(psousfen, 0);
-		      pSUBWIN_FEATURE (psousfen)->FRect[0]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[0];
-		      pSUBWIN_FEATURE (psousfen)->FRect[1]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[1];
-		      pSUBWIN_FEATURE (psousfen)->FRect[2]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[2];
-		      pSUBWIN_FEATURE (psousfen)->FRect[3]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[3];
+		    /*   pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]; */
+/* 		      pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]; */
+/* 		      pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]; */
+/* 		      pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]; */
+		      
+		      pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
+		      pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];
+		      pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->SRect[2];
+		      pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->SRect[3];
 		    }
 
 		/** regraduation de l'axe des axes ***/
-		fmin= pSUBWIN_FEATURE (psousfen)->FRect[0];
-		fmax= pSUBWIN_FEATURE (psousfen)->FRect[2];
+		fmin= pSUBWIN_FEATURE (psousfen)->ZRect[0];
+		fmax= pSUBWIN_FEATURE (psousfen)->ZRect[2];
 		C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
 		pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
 
-		fmin= pSUBWIN_FEATURE (psousfen)->FRect[1];
-		fmax= pSUBWIN_FEATURE (psousfen)->FRect[3];
+		fmin= pSUBWIN_FEATURE (psousfen)->ZRect[1];
+		fmax= pSUBWIN_FEATURE (psousfen)->ZRect[3];
 		C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
 		pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
 		/*****/
@@ -1425,20 +1410,26 @@ extern void unzoom_one_axes(sciPointObj *psousfen)
   if (sciGetEntityType (psousfen) == SCI_SUBWIN) {
       if (sciGetZooming(psousfen)) 	{
 	  sciSetZooming(psousfen, 0);
-	  pSUBWIN_FEATURE (psousfen)->FRect[0]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[0];
-	  pSUBWIN_FEATURE (psousfen)->FRect[1]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[1];
-	  pSUBWIN_FEATURE (psousfen)->FRect[2]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[2];
-	  pSUBWIN_FEATURE (psousfen)->FRect[3]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[3];
+	/*   pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]; */
+/* 	  pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]; */
+/* 	  pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]; */
+/* 	  pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]; */
+
+	  pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
+	  pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];
+	  pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->SRect[2];
+	  pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->SRect[3];
+
 	}
 
       /** regraduation de l'axe des axes ***/
-      fmin= pSUBWIN_FEATURE (psousfen)->FRect[0];
-      fmax= pSUBWIN_FEATURE (psousfen)->FRect[2];
+      fmin= pSUBWIN_FEATURE (psousfen)->ZRect[0];
+      fmax= pSUBWIN_FEATURE (psousfen)->ZRect[2];
       C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
       pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
 
-      fmin= pSUBWIN_FEATURE (psousfen)->FRect[1];
-      fmax= pSUBWIN_FEATURE (psousfen)->FRect[3];
+      fmin= pSUBWIN_FEATURE (psousfen)->ZRect[1];
+      fmax= pSUBWIN_FEATURE (psousfen)->ZRect[3];
       C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
       pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
 

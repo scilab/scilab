@@ -15135,7 +15135,7 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"cube_scaling") == 0)    {return 10;} /* F.Leray 22.04.04 */
   else if (strcmp(marker,"x_label") == 0)    {return 9;}  /* F.Leray 27.05.04 */
   else if (strcmp(marker,"y_label") == 0)    {return 9;} 
-  else if (strcmp(marker,"z_label") == 0)    {return 9;} 
+  else if (strcmp(marker,"z_label") == 0)    {return 9;}
   else if (strcmp(marker,"title") == 0)    {return 9;} 
   else if (strcmp(marker,"x_ticks") == 0)    {return 16;} 
   else if (strcmp(marker,"y_ticks") == 0)    {return 16;} 
@@ -15191,11 +15191,12 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
   pSUBWIN_FEATURE (psubwin)->WRect[2]   = 1;
   pSUBWIN_FEATURE (psubwin)->WRect[3]   = 1;
 
-  pSUBWIN_FEATURE (psubwin)->FRect[0]   = 0;
-  pSUBWIN_FEATURE (psubwin)->FRect[1]   = 0;
-  pSUBWIN_FEATURE (psubwin)->FRect[2]   = 1;
-  pSUBWIN_FEATURE (psubwin)->FRect[3]   = 1; 
-
+  pSUBWIN_FEATURE (psubwin)->FRect[0]   = 0.;
+  pSUBWIN_FEATURE (psubwin)->FRect[1]   = 0.;
+  pSUBWIN_FEATURE (psubwin)->FRect[2]   = 1.;
+  pSUBWIN_FEATURE (psubwin)->FRect[3]   = 1.; 
+  pSUBWIN_FEATURE (psubwin)->FRect[4]   =-1.;
+  pSUBWIN_FEATURE (psubwin)->FRect[5]   = 1.; 
   /* F.Leray 05.04.04 */
   pSUBWIN_FEATURE (psubwin)->SRect[0]   = 0.0; /* xmin */
   pSUBWIN_FEATURE (psubwin)->SRect[1]   = 1.0; /* xmax */
@@ -15323,142 +15324,142 @@ void scizoom(bbox)
   if (!(sciGetZooming(psousfen)))
     {
       sciSetZooming(psousfen, 1);
-      pSUBWIN_FEATURE (psousfen)->FRect_kp[0]   = pSUBWIN_FEATURE (psousfen)->FRect[0];
-      pSUBWIN_FEATURE (psousfen)->FRect_kp[1]   = pSUBWIN_FEATURE (psousfen)->FRect[1];
-      pSUBWIN_FEATURE (psousfen)->FRect_kp[2]   = pSUBWIN_FEATURE (psousfen)->FRect[2];
-      pSUBWIN_FEATURE (psousfen)->FRect_kp[3]   = pSUBWIN_FEATURE (psousfen)->FRect[3];
+   /*    pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]   = pSUBWIN_FEATURE (psousfen)->ZRect[0]; */
+/*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]   = pSUBWIN_FEATURE (psousfen)->ZRect[1]; */
+/*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]   = pSUBWIN_FEATURE (psousfen)->ZRect[2]; */
+/*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]   = pSUBWIN_FEATURE (psousfen)->ZRect[3]; */
     }
   /** regraduation de l'axe des axes ***/
   fmin=  bbox[0];
   fmax=  bbox[2];
   C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
   pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
-  pSUBWIN_FEATURE (psousfen)->FRect[0]=lmin;
-  pSUBWIN_FEATURE (psousfen)->FRect[2]=lmax;
+  pSUBWIN_FEATURE (psousfen)->ZRect[0]=lmin;
+  pSUBWIN_FEATURE (psousfen)->ZRect[2]=lmax;
 
 
   fmin= bbox[1]; fmax= bbox[3];
   C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
   pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-  pSUBWIN_FEATURE (psousfen)->FRect[1]=lmin;
-  pSUBWIN_FEATURE (psousfen)->FRect[3]=lmax;
+  pSUBWIN_FEATURE (psousfen)->ZRect[1]=lmin;
+  pSUBWIN_FEATURE (psousfen)->ZRect[3]=lmax;
   /*****/
 
   /* sciprint("DANS scizoom: *+*+*+*+*+*+*+*+*+*\n");
-  sciprint(" ppsubwin->FRect[0] = xmin = %f\n",pSUBWIN_FEATURE (psousfen)->FRect[0]);
-  sciprint(" ppsubwin->FRect[1] = ymin = %f\n",pSUBWIN_FEATURE (psousfen)->FRect[1]);
-  sciprint(" ppsubwin->FRect[2] = xmax = %f\n",pSUBWIN_FEATURE (psousfen)->FRect[2]);
-  sciprint(" ppsubwin->FRect[3] = ymax = %f\n\n",pSUBWIN_FEATURE (psousfen)->FRect[3]);
+  sciprint(" ppsubwin->ZRect[0] = xmin = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[0]);
+  sciprint(" ppsubwin->ZRect[1] = ymin = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[1]);
+  sciprint(" ppsubwin->ZRect[2] = xmax = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[2]);
+  sciprint(" ppsubwin->ZRect[3] = ymax = %f\n\n",pSUBWIN_FEATURE (psousfen)->ZRect[3]);
   sciprint("fin DANS scizoom: *+*+*+*+*+*+*+*+*+*\n");*/
 
 }
 
-void Zoom_Subwin(bbox)
-     double bbox[4];
-{   
-  sciPointObj *psousfen;
-  sciSons *psonstmp;  
-  double fmin,fmax,lmin,lmax;  
-  integer min,max,puiss,deux=2,dix=10;
-  integer box[4],box1[4],section[4];
+/* void Zoom_Subwin(bbox) */
+/*      double bbox[4]; */
+/* {    */
+/*   sciPointObj *psousfen; */
+/*   sciSons *psonstmp;   */
+/*   double fmin,fmax,lmin,lmax;   */
+/*   integer min,max,puiss,deux=2,dix=10; */
+/*   integer box[4],box1[4],section[4]; */
 
-  box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2])); 
-  box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
-  box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3])); 
-  box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
+/*   box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));  */
+/*   box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2])); */
+/*   box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));  */
+/*   box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3])); */
         
-  psonstmp = sciGetSons (sciGetCurrentFigure());
-  while (psonstmp != (sciSons *) NULL) {  
-    if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) {
-      psousfen= (sciPointObj *)psonstmp->pointobj;
-      sciSetSelectedSubWin(psousfen);
-      box1[0]= Cscale.WIRect1[0]; 
-      box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
-      box1[1]= Cscale.WIRect1[1]; 
-      box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
+/*   psonstmp = sciGetSons (sciGetCurrentFigure()); */
+/*   while (psonstmp != (sciSons *) NULL) {   */
+/*     if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) { */
+/*       psousfen= (sciPointObj *)psonstmp->pointobj; */
+/*       sciSetSelectedSubWin(psousfen); */
+/*       box1[0]= Cscale.WIRect1[0];  */
+/*       box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0]; */
+/*       box1[1]= Cscale.WIRect1[1];  */
+/*       box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1]; */
                  
-      if (sciIsAreaZoom(box,box1,section)) { 
-        bbox[0]= Min(XPixel2Double(section[0]),XPixel2Double(section[2])); 
-        bbox[2]= Max(XPixel2Double(section[0]),XPixel2Double(section[2]));
-        bbox[1]= Min(YPixel2Double(section[1]),YPixel2Double(section[3])); 
-        bbox[3]= Max(YPixel2Double(section[1]),YPixel2Double(section[3])); 
-        if (!(sciGetZooming(psousfen))) {
-          sciSetZooming(psousfen, 1);
-          pSUBWIN_FEATURE (psousfen)->FRect_kp[0]   = pSUBWIN_FEATURE
-	    (psousfen)->FRect[0];
-          pSUBWIN_FEATURE (psousfen)->FRect_kp[1]   = pSUBWIN_FEATURE
-	    (psousfen)->FRect[1];
-          pSUBWIN_FEATURE (psousfen)->FRect_kp[2]   = pSUBWIN_FEATURE
-	    (psousfen)->FRect[2];
-          pSUBWIN_FEATURE (psousfen)->FRect_kp[3]   = pSUBWIN_FEATURE
-	    (psousfen)->FRect[3];
-        }
+/*       if (sciIsAreaZoom(box,box1,section)) {  */
+/*         bbox[0]= Min(XPixel2Double(section[0]),XPixel2Double(section[2]));  */
+/*         bbox[2]= Max(XPixel2Double(section[0]),XPixel2Double(section[2])); */
+/*         bbox[1]= Min(YPixel2Double(section[1]),YPixel2Double(section[3]));  */
+/*         bbox[3]= Max(YPixel2Double(section[1]),YPixel2Double(section[3]));  */
+/*         if (!(sciGetZooming(psousfen))) { */
+/*           sciSetZooming(psousfen, 1); */
+/*           pSUBWIN_FEATURE (psousfen)->FRect_kp[0]   = pSUBWIN_FEATURE */
+/* 	    (psousfen)->FRect[0]; */
+/*           pSUBWIN_FEATURE (psousfen)->FRect_kp[1]   = pSUBWIN_FEATURE */
+/* 	    (psousfen)->FRect[1]; */
+/*           pSUBWIN_FEATURE (psousfen)->FRect_kp[2]   = pSUBWIN_FEATURE */
+/* 	    (psousfen)->FRect[2]; */
+/*           pSUBWIN_FEATURE (psousfen)->FRect_kp[3]   = pSUBWIN_FEATURE */
+/* 	    (psousfen)->FRect[3]; */
+/*         } */
                       
-        /** regraduation de l'axe ***/
-        fmin=  bbox[0]; 
-        fmax=  bbox[2];
-        C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-        pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss; 
-        pSUBWIN_FEATURE (psousfen)->FRect[0]=lmin;  
-        pSUBWIN_FEATURE (psousfen)->FRect[2]=lmax; 
-        fmin= bbox[1]; fmax= bbox[3];   
-        C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-        pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-        pSUBWIN_FEATURE (psousfen)->FRect[1]=lmin;  
-        pSUBWIN_FEATURE (psousfen)->FRect[3]=lmax; 
-      }
-    }     
-    psonstmp = psonstmp->pnext;
-  }
+/*         /\** regraduation de l'axe ***\/ */
+/*         fmin=  bbox[0];  */
+/*         fmax=  bbox[2]; */
+/*         C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ; */
+/*         pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;  */
+/*         pSUBWIN_FEATURE (psousfen)->FRect[0]=lmin;   */
+/*         pSUBWIN_FEATURE (psousfen)->FRect[2]=lmax;  */
+/*         fmin= bbox[1]; fmax= bbox[3];    */
+/*         C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ; */
+/*         pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss; */
+/*         pSUBWIN_FEATURE (psousfen)->FRect[1]=lmin;   */
+/*         pSUBWIN_FEATURE (psousfen)->FRect[3]=lmax;  */
+/*       } */
+/*     }      */
+/*     psonstmp = psonstmp->pnext; */
+/*   } */
 
-  sciSetSelectedSubWin((sciPointObj *) sciGetSelectedSubWin
-		       (sciGetCurrentFigure()));
-  sciSetReplay(1);
-  sciDrawObj(sciGetCurrentFigure());
-  sciSetReplay(0);
-}
+/*   sciSetSelectedSubWin((sciPointObj *) sciGetSelectedSubWin */
+/* 		       (sciGetCurrentFigure())); */
+/*   sciSetReplay(1); */
+/*   sciDrawObj(sciGetCurrentFigure()); */
+/*   sciSetReplay(0); */
+/* } */
 
-void Unzoom_Subwin()
-{
-  double fmin,fmax,lmin,lmax;  
-  integer min,max,puiss,deux=2,dix=10;
-  sciPointObj *psousfen;
-  sciSons *psonstmp;  
+/* void Unzoom_Subwin() */
+/* { */
+/*   double fmin,fmax,lmin,lmax;   */
+/*   integer min,max,puiss,deux=2,dix=10; */
+/*   sciPointObj *psousfen; */
+/*   sciSons *psonstmp;   */
 
-  psonstmp = sciGetSons (sciGetCurrentFigure());
-  while (psonstmp != (sciSons *) NULL) {  
-    if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) {
-      psousfen= (sciPointObj *)psonstmp->pointobj;
-      if (sciGetZooming(psousfen)) {
-        sciSetZooming(psousfen, 0);
-        pSUBWIN_FEATURE (psousfen)->FRect[0]   = pSUBWIN_FEATURE
-	  (psousfen)->FRect_kp[0];
-        pSUBWIN_FEATURE (psousfen)->FRect[1]   = pSUBWIN_FEATURE
-	  (psousfen)->FRect_kp[1];
-        pSUBWIN_FEATURE (psousfen)->FRect[2]   = pSUBWIN_FEATURE
-	  (psousfen)->FRect_kp[2];
-        pSUBWIN_FEATURE (psousfen)->FRect[3]   = pSUBWIN_FEATURE
-	  (psousfen)->FRect_kp[3];
-      }
+/*   psonstmp = sciGetSons (sciGetCurrentFigure()); */
+/*   while (psonstmp != (sciSons *) NULL) {   */
+/*     if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) { */
+/*       psousfen= (sciPointObj *)psonstmp->pointobj; */
+/*       if (sciGetZooming(psousfen)) { */
+/*         sciSetZooming(psousfen, 0); */
+/*         pSUBWIN_FEATURE (psousfen)->FRect[0]   = pSUBWIN_FEATURE */
+/* 	  (psousfen)->FRect_kp[0]; */
+/*         pSUBWIN_FEATURE (psousfen)->FRect[1]   = pSUBWIN_FEATURE */
+/* 	  (psousfen)->FRect_kp[1]; */
+/*         pSUBWIN_FEATURE (psousfen)->FRect[2]   = pSUBWIN_FEATURE */
+/* 	  (psousfen)->FRect_kp[2]; */
+/*         pSUBWIN_FEATURE (psousfen)->FRect[3]   = pSUBWIN_FEATURE */
+/* 	  (psousfen)->FRect_kp[3]; */
+/*       } */
           
-      /**axes  regraduation  ***/
-      fmin= pSUBWIN_FEATURE (psousfen)->FRect[0];
-      fmax= pSUBWIN_FEATURE (psousfen)->FRect[2]; 
-      C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-      pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss; 
+/*       /\**axes  regraduation  ***\/ */
+/*       fmin= pSUBWIN_FEATURE (psousfen)->FRect[0]; */
+/*       fmax= pSUBWIN_FEATURE (psousfen)->FRect[2];  */
+/*       C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ; */
+/*       pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;  */
           
-      fmin= pSUBWIN_FEATURE (psousfen)->FRect[1];
-      fmax= pSUBWIN_FEATURE (psousfen)->FRect[3]; 
-      C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-      pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-    }     
-    psonstmp = psonstmp->pnext;
-  } 
+/*       fmin= pSUBWIN_FEATURE (psousfen)->FRect[1]; */
+/*       fmax= pSUBWIN_FEATURE (psousfen)->FRect[3];  */
+/*       C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ; */
+/*       pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss; */
+/*     }      */
+/*     psonstmp = psonstmp->pnext; */
+/*   }  */
         
-  sciSetReplay(1);
-  sciDrawObj(sciGetCurrentFigure());
-  sciSetReplay(0);
-}
+/*   sciSetReplay(1); */
+/*   sciDrawObj(sciGetCurrentFigure()); */
+/*   sciSetReplay(0); */
+/* } */
 
 /**sciGetIdFigure
  */
@@ -19115,10 +19116,15 @@ void  sci_update_frame_bounds()
    * get initial bounds
    *****************************************************************/
   if(sciGetZooming(subwindowtmp) == TRUE) {
-    xmin= ppsubwin->FRect[0]; 
-    ymin= ppsubwin->FRect[1]; 
-    xmax= ppsubwin->FRect[2];
-    ymax= ppsubwin->FRect[3];
+    xmin= ppsubwin->ZRect[0]; 
+    ymin= ppsubwin->ZRect[1]; 
+    xmax= ppsubwin->ZRect[2];
+    ymax= ppsubwin->ZRect[3];
+ /*    sciprint("Il y a un zoom dans l'axe courrant\n"); */
+/*     sciprint(" xmin= ppsubwin->ZRect[0] = %lf\n",ppsubwin->ZRect[0]); */
+/*     sciprint(" ymin= ppsubwin->ZRect[1] = %lf\n",ppsubwin->ZRect[1]); */
+/*     sciprint(" xmax= ppsubwin->ZRect[2] = %lf\n",ppsubwin->ZRect[2]); */
+/*     sciprint(" ymax= ppsubwin->ZRect[3] = %lf\n",ppsubwin->ZRect[3]); */
   }
   else {
     xmin = ppsubwin->SRect[0];
@@ -19291,12 +19297,12 @@ void update_3dbounds(sciPointObj *pobj)
    *****************************************************************/
 
   if(sciGetZooming(pobj) == TRUE) { /* a revoir */
-    xmin= ppsubwin->FRect[0]; 
-    ymin= ppsubwin->FRect[1]; 
-    xmax= ppsubwin->FRect[2];
-    ymax= ppsubwin->FRect[3];
-    zmin= ppsubwin->FRect[4];
-    zmax= ppsubwin->FRect[5];
+    xmin= ppsubwin->ZRect[0]; 
+    ymin= ppsubwin->ZRect[1]; 
+    xmax= ppsubwin->ZRect[2];
+    ymax= ppsubwin->ZRect[3];
+    zmin= ppsubwin->ZRect[4];
+    zmax= ppsubwin->ZRect[5];
   }
   else {
     xmin=ppsubwin->SRect[0];
