@@ -3,10 +3,12 @@
 
 /* Allan CORNET 18/01/2004 */
 /* Gestion historique */
-extern void LoadHistoryFunction(void); /*voir history.c (wsci) */
-extern void SaveHistoryFunction(void); /*voir history.c (wsci) */
-extern void ResetHistoryFunction(void); /*voir history.c (wsci) */
-extern void HistoryFunction _PARAMS((char *fname)); /* voir history.c (wsci)*/
+//extern void LoadHistoryFunction(void); /*voir history.c (wsci) */
+//extern void SaveHistoryFunction(void); /*voir history.c (wsci) */
+//extern void ResetHistoryFunction(void); /*voir history.c (wsci) */
+//extern void HistoryFunction _PARAMS((char *fname)); /* voir history.c (wsci)*/
+/* Minimize or Restore a window */
+extern void ShowWindowFunction _PARAMS((char *fname)); /* wtext.c (wsci)*/
 /* Allan CORNET le 20/08/03 */
 /* voir wsci\wtext.c */
 /* & voir xsc/x_screen.c */

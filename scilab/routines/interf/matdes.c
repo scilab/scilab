@@ -4591,7 +4591,8 @@ static MatdesTable Tab[]={
   {scixs2ps,"xs2ps"},
   {ClearScreenConsole,"clc"},
   {HomeFunction,"tohome"},
-  {scisetposfig,"set_posfig_dim"}  	
+  {scisetposfig,"set_posfig_dim"},
+  {ShowWindowFunction,"show_window"}
 };
   
 

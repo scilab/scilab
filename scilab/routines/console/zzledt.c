@@ -1030,6 +1030,10 @@ void ClearScreenConsole(char *fname)
   sciprint("\nNot yet implemented. \n");
 }
 
+void ShowWindowFunction _PARAMS((char *fname))
+{
+ sciprint("\nNot yet implemented. \n");	
+}
 
 
 #endif /* The win32 version is defined in the wsci directory **/
