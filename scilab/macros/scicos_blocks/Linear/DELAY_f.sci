@@ -131,6 +131,8 @@ case 'define' then
     x.graphics.sz=[2,2]
     x.graphics.gr_i=list('xstringb(orig(1),orig(2),''Delay'',sz(1),s"+...
 			 "z(2),''fill'')',8) 
+    x.graphics.pin=0
+    x.graphics.pout=0
     x.model.sim='csuper'
     x.model.in=1
     x.model.out=1

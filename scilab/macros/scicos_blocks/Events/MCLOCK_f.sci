@@ -12,9 +12,12 @@ case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
   // paths to updatable parameters or states
-  ppath = list(1)
+  if arg1.model.rpar.objs(1)==mlist('Deleted') then
+    path = 2  //compatibility with translated blocks
+  else
+    path = 1
+  end
   newpar=list();
-  path=ppath(1)
   spath=list('model','rpar','objs',path)
   xx=arg1(spath)// get the block
   execstr('xxn='+xx.gui+'(''set'',xx)')
