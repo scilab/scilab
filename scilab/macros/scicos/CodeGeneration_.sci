@@ -959,7 +959,7 @@ function Code=c_make_doit2(cpr,stalone);
       //state
       is_act=or(fun==act)
       is_cap=or(fun==cap);
-      if ~is_cap then
+      if ~is_cap then    
 	if ordclk(ii,2)>0 then
 	  if  is_act then
 	    if stalone then
@@ -2949,10 +2949,11 @@ nztotal=size(z,1);
 	 ''
 	 '  /*Initial values */';
 	 cformatline('  double z[]={'+strcat(string(Z),',')+'};',70);
-	 '/* Note that z[]=[z_initial_condition;outtb;iwa;]';
+	 '/* Note that z[]=[z_initial_condition;outtb;iwa;work]';
 	 cformatline('z_initial_condition= {'+strcat(string(z),",")+'};',70);
 	 cformatline('outtb= {'+strcat(string(outtb),"," )+'};',70);
 	 cformatline('iwa= {'+strcat(string(iwa),"," )+'};',70);
+	 cformatline('work= {'+strcat(string(work),"," )+'};',70);
 	 '*/ ']
   Code=[Code
 	'double* block_outtb = z+'+string(nztotal)+';'
