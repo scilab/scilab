@@ -2261,6 +2261,9 @@ int scixend(fname,fname_len)
 
   C2F(sciwin)();
   CheckRhs(-1,0);
+ /* printf("Type de Driver: %c\n",GetDriver());
+  printf("Type d'ID     : %d\n\n",GetDriverId());
+  fflush(NULL); */
   if(version_flag() == 0) {
     xinitxend_flag = 0;   /* we DO draw now into the file/memory (depending on the driver type) */
     sciDrawObj(sciGetCurrentFigure());
