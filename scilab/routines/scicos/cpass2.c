@@ -34,11 +34,15 @@ int Sign(int x)
 int Max1(int* vect)
 {
   int i,max1;
-  max1=vect[1];
-  for(i=2;i<vect[0]+1;i++)
-    {
-      max1=(max1<vect[i])? vect[i]:max1;
-    }
+  if (vect[0]<1){
+    max1=0;
+  }else{
+    max1=vect[1];
+    for(i=2;i<vect[0]+1;i++)
+      {
+	max1=(max1<vect[i])? vect[i]:max1;
+      }
+  }
   return max1;
 }
 /******************************* fin de Max1  *************************************************/
@@ -46,11 +50,15 @@ int Max1(int* vect)
 int Min1(int* vect)
 {
   int i,min1;
-  min1=vect[1];
-  for(i=2;i<vect[0]+1;i++)
-    {
-      min1=(min1>vect[i])? vect[i]:min1;
-    }
+  if (vect[0]<1){
+    min1=0;
+  }else{
+    min1=vect[1];
+    for(i=2;i<vect[0]+1;i++)
+      {
+	min1=(min1>vect[i])? vect[i]:min1;
+      }
+  }
   return min1;
 }
 /******************************* fin de Min1  *************************************************/
