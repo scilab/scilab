@@ -5,5 +5,5 @@ function c=cell(varargin)
    for k=1:prod(dims),val(k)=[],end
  end
  if size(dims,'*')<2 then dims(2)=min(1,dims(1));end
- c=mlist(['cell','dims','entries'],dims,val)
+ c=mlist(['ce','dims','entries'],dims,val)
 endfunction

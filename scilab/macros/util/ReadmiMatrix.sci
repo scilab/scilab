@@ -64,7 +64,7 @@ function [value,ArrayName]=ReadmiMatrix(fd)
     for k=1:prod(DimensionArray)
       entries(k)=ReadmiMatrix(fd)
     end
-    value=mlist(['cell','dims','entries'],DimensionArray,entries)
+    value=mlist(['ce','dims','entries'],DimensionArray,entries)
   case CharClass 
     value=matrix(ReadSimpleElement(fd,prod(DimensionArray)),DimensionArray(1),-1)
     t=[];for v=value',t=[t;stripblanks(ascii(double(v)))];end

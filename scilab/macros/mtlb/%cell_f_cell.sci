@@ -14,7 +14,7 @@ for k=1:prod(db)
   val($+1)=b.entries(k)
 end
 da(1)=da(1)+db(1)
-r=mlist(['cell','dims','entries'],da,val)
+r=mlist(['ce','dims','entries'],da,val)
 endfunction
 
 

@@ -39,7 +39,7 @@ while  dims1($)==1 then dims1($)=[],end
 if size(dims1,'*')<2 then dims1(2)=1,end
 
 //form the resulting data structure
-M=mlist(['cell','dims','entries'],dims1,v)
+M=mlist(['ce','dims','entries'],dims1,v)
 endfunction
 
 

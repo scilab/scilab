@@ -23,7 +23,7 @@ for k=1:size(v,'*')
   end
 end
 da(2)=da(2)+db(2)
-r=mlist(['cell','dims','entries'],da,val)
+r=mlist(['ce','dims','entries'],da,val)
 endfunction
 
 

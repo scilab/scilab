@@ -49,6 +49,6 @@ end
 
 v=list()
 for k=1:size(I,'*'),v(k)=M('entries')(I(k)+1),end
-M=mlist(['cell','dims','entries'],dims1,v)
+M=mlist(['ce','dims','entries'],dims1,v)
 
 endfunction
