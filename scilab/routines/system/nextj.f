@@ -112,12 +112,16 @@ c     save location where loop variable has been saved in the expression
 c     identifier 
       idstk(1,top) = fin
       return
- 50   top=top-1
-      il = iadr(lstk(top))
-      istk(il) = 0
+ 50   continue
       rhs = 0
-      sym=semi
-      call stackp(id,0)
+C     the next commented lines are replaced by top=top-2 not to remove
+c     loop variable at the end of the loop
+c      top=top-1
+c      il = iadr(lstk(top))
+c      istk(il) = 0
+c      sym=semi
+c      call stackp(id,0)
+      top=top-2
       j = 0
       return
       end
