@@ -33,8 +33,6 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	int LenStr=0;
 	
 	char MyTclCommand[CommandLenMax];
-	
-	sciprint("TCL_UiSet handle %d propertie %s value %s\n",Handle,PropertieField,PropertieValue);
 
 	LenStr=(strlen(PropertieField)+strlen(PropertieValue)+strlen("SetField              ")+1);
 
