@@ -114,15 +114,15 @@ extern int draw _PARAMS((char *fname, unsigned long fname_len));
 
 void Objarc  _PARAMS((int *angle1,int *angle2,double *x,double *y,double *width,double *height,int color,int fill,long *hdl));
 void Objdrawaxis  _PARAMS((char dir,char tics,double *x,int *nx,double *y,int *ny,char **val,int subint,char *format,int font,int textcol,int ticscol,char flag,int seg));
-void Objfec  _PARAMS((double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax));
+void Objfec  _PARAMS((double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax, BOOL flagNax));
 
 
 void Objfpoly  _PARAMS((double *x,double *y,integer rempl,integer closed,long *hdl));
-void Objgrayplot  _PARAMS((double *x,double *y,double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint));
-void Objmatplot  _PARAMS((double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint));
+void Objgrayplot  _PARAMS((double *x,double *y,double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint, BOOL flagNax));
+void Objmatplot  _PARAMS((double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint, BOOL flagNax));
 void Objmatplot1  _PARAMS((double *z,integer *n1,integer *n2,double *xrect));
 void Objnumb _PARAMS((char *fname,unsigned long fname_len,integer n,integer flag,double *x,double *y,double *angle,double *box));
-void Objplot2d  _PARAMS((int ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint));
+void Objplot2d  _PARAMS((int ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint, BOOL flagNax));
 
 void Objplot3d  _PARAMS((char *fname,integer *isfac,integer *izcol,double *x,double *y,double *z,integer *zcol,integer *m,integer *n,double *theta,double *alpha,char *legend,integer *iflag,double *ebox, integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3,integer *m3n, integer *n3n));
 void Objpoly  _PARAMS((double *x,double *y,integer n,integer closed,int mark,long *hdl));
@@ -160,6 +160,15 @@ static int get3ddata(sciPointObj *pthis); /* F.Leray Declaration here*/
 static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int colorflag, char *fname);
 
 extern double  sciFindLogMinSPos(double *x, int n);
+
+static int BuildTListForTicks(double * locations, char ** labels, int nbtics);
+static int getticks(char * xyztick, sciPointObj* psubwin);
+static int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow, int * numcol);
+static char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads, int * u_nxgrads, char ** u_xlabels);
+static char ** CaseLogflagN2L(int * u_nxgrads,double *u_xgrads, char ** u_xlabels);
+
+static double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads);
+extern int ChooseGoodFormat(char * c_format,char logflag, double *_grads,int n_grads);
 #endif 
 
 
