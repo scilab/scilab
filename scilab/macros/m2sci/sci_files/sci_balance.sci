@@ -16,7 +16,7 @@ tree.name="balanc"
 
 // B=balance(A)
 if lhs==1 then
-  if tree.lhs(1).name=="" then
+  if tree.lhs(1).name=="ans" then
     B=gettempvar(1)
     T=gettempvar(2)
     insert(Equal(list(B,T),tree))
