@@ -6,7 +6,7 @@ function h=ged_getobject(pt)
    axes_array=f.children
    for k=1:size(axes_array,'*')
      Axes=axes_array(k)
-     //set("current_axes",Axes)
+     set("current_axes",Axes)
      h=ged_loop(Axes)
      if h<>[] then return,end
    end
@@ -23,8 +23,8 @@ function h=ged_loop(a)
       if d<0.005 then h=ck,return,end
       case "Rectangle"
       xy=ck.data;
-      x0=xy(1,1);y0=xy(1,2);w=xy(2,1);h=xy(2,2);
-      d=Dist2polyline((x0+[0,w,w,0]-Xmin)/Dx,(y0+[0,0,-h,-h]-Ymin)/Dy,pts)
+      x0=xy(1);y0=xy(2);W=xy(3);H=xy(4);
+      d=Dist2polyline((x0+[0,W,W,0]-Xmin)/Dx,(y0+[0,0,-H,-H]-Ymin)/Dy,pts)
       if d<0.005 then h=ck,return,end
       case "Arc" 
       xy=ck.data;
@@ -233,7 +233,7 @@ function GetSetValue(h)
     end
   end
 endfunction
-function tkged(h)
+function tkged()
   global h
   select h.type
     case "Polyline"
@@ -241,8 +241,8 @@ function tkged(h)
     TK_SetVar("curcolor",string(h.foreground))
     TK_SetVar("curthick",string(h.thickness))
     TK_SetVar("curvis",h.visible)
-    TK_SetVar("curstyle",h.polyline_style)
-     TK_EvalFile(SCI+'/tcl/ged/Polyline.tcl')
+    TK_SetVar("curstyle",string(h.polyline_style))
+    TK_EvalFile(SCI+'/tcl/ged/Polyline.tcl')
     case "Axes"
     TK_SetVar("xlabel",h.x_label.text)
     TK_SetVar("ylabel",h.y_label.text)
