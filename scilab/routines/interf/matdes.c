@@ -152,7 +152,7 @@ static BOOL TKModeON=FALSE;
 
 static int * Style;
 
-#define GetStyle(pos,n1,opts) if ( get_style(fname,pos,n1,opts) == 0) return 0;
+#define sciGetStyle(pos,n1,opts) if ( get_style(fname,pos,n1,opts) == 0) return 0;
 
 static int get_style(fname,pos,n1,opts) 
      char *fname;
@@ -914,7 +914,7 @@ int scicontour2d_G(fname, func, fname_len)
     }
   
  
-  GetStyle(5,nz,opts);
+  sciGetStyle(5,nz,opts);
   GetStrf(6,opts);    
   GetLegend(7,opts);
   GetRect(8,opts);
@@ -1473,7 +1473,7 @@ int sciplot2d(fname, fname_len)
     }
   }
   
-  GetStyle(3+iskip,n1,opts);
+  sciGetStyle(3+iskip,n1,opts);
   GetStrf(4+iskip,opts);
   GetLegend(5+iskip,opts);
   GetRect(6+iskip,opts);
@@ -1681,7 +1681,7 @@ int sciplot2d1_G(fname, ptype, func, fname_len)
     if (m1 == 1 && n1 > 1) { m1 = n1; n1 = 1;}
   }
   
-  GetStyle(3+iskip,n1,opts);
+  sciGetStyle(3+iskip,n1,opts);
   GetStrf(4+iskip,opts);
   GetLegend(5+iskip,opts);
   GetRect(6+iskip,opts);
