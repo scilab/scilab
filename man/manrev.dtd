@@ -46,6 +46,7 @@ AUTHOR 	CDATA 	"Matthieu PHILIPPE revisited by Jean-Philippe Chancelier"
 <!ATTLIST SECTION label CDATA #IMPLIED  	 >
 
 <!ELEMENT EXAMPLE (#PCDATA) >
+<!ATTLIST EXAMPLE xml:space (default|preserve) #FIXED 'preserve'>
 
 <!ELEMENT SEE_ALSO (SEE_ALSO_ITEM)+  	 >
 <!ELEMENT SEE_ALSO_ITEM (LINK)*	 >
