@@ -47,6 +47,8 @@ typedef struct table_struct {
 
 /* prototypes */
 
+void mexInfo __PARAMS((char *)); 
+int mexCheck __PARAMS((char *,int )); 
 Matrix *mxCreateCharMatrixFromStrings __PARAMS((int m, char **str));
 Matrix *mxCreateString __PARAMS((const char *string));
 Matrix *C2F(mxcreatestring)  __PARAMS((char *string, long int l));

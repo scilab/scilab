@@ -932,11 +932,13 @@ void mxFree(void *ptr)
   if ( Nbvars >= 1) { 
     if ( (vraiptrst) ptr ==  C2F(locptr)(stk(C2F(intersci).lad[Nbvars - 1]))) 
       {
-	sciprint("XXXX mxfree OK  %d \r\n",Nbvars);
+	/* sciprint("XXXX mxfree OK  %d \r\n",Nbvars); */ 
 	Nbvars--;
       }
     else 
-      sciprint("XXXX mxfree NOTOK %d \r\n",Nbvars);
+      {
+	/* sciprint("XXXX mxfree NOTOK %d \r\n",Nbvars); */ 
+      }
   }
   return ;
 }
@@ -1330,6 +1332,13 @@ void mexInfo(char *str) {
   fprintf(stderr,"%s %d\r\n",str,Nbvars);
   fflush(stderr);
 }
+
+int mexCheck(char *str,int nbvars) { 
+  if ( nbvars != -1 && Nbvars != nbvars) 
+    fprintf(stderr,"%s %d %d\r\n",str,Nbvars,nbvars);
+  return Nbvars ;
+}
+
 
 /****************************************************
  * C functions for Fortran  mexfunctions 
