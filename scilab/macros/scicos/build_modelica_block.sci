@@ -8,10 +8,10 @@ function [model,ok]=build_modelica_block(blklstm,cmmat,NiM,NoM,name,path)
 // dynamically linked with Scilab.
 // The correspondind model data structure is returned.
 name='imppart_'+stripblanks(name);
-path=stripblanks(path)
+path=pathconvert(stripblanks(path),%t,%t)
 [txt,rpar,ipar]=create_modelica1(blklstm,cmmat,name);
 mputl(txt,path+name+'.mo');
-mprintf('   Modelica code generated at '+path+name+'.mo\n')
+mprintf("%s",'   Modelica code generated at '+path+name+'.mo\n')
 [ok,name1,nx,nin,nout,ng,nm,nz]=compile_modelica(path+name+'.mo');
 
 if ~ok then return,end
