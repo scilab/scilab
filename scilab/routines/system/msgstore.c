@@ -7,7 +7,7 @@
 #define MAX_MSG_LINES  20
 
 static char* msg_buff[MAX_MSG_LINES];
-static char funname[27];    // Francois VOGEL August 2004 - Replaced 24 by 27 (bug 803)
+static char funname[25];    // Francois VOGEL August 2004 - Replaced 24 by 25 (bug 803)
 static int where = 0;
 static int err_n = 0;
 static int msg_line_counter=0;
@@ -72,10 +72,23 @@ int C2F(lasterror)(fname,fname_len)
   if (msg_line_counter == 0) {
     CreateVar(1,"d",&zero,&zero,&l1);
     LhsVar(1)=1;
-    if (Lhs == 2) {
+    if (Lhs >= 2) {
       CreateVar(2,"d",&one,&one,&l1);
       *stk(l1) = (double)0.0;
       LhsVar(2)=2;
+    }
+// Francois VOGEL August 2004 - Added initialization of missing lhs vars in case
+// there is no current 'last error' (bug 955)
+    if (Lhs >= 3) {
+      CreateVar(3,"d",&one,&one,&l1);
+      *stk(l1) = (double)0.0;
+      LhsVar(3)=3;
+    }
+    if (Lhs >= 4) {
+      l1=0;
+      C2F(createvar)(&four,"c", &one,&l1 , &lr, 1L);
+      strcpy(cstk(lr),"");
+      LhsVar(4)=4;
     }
   }
   else {
