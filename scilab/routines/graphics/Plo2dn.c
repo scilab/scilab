@@ -81,8 +81,11 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   int with_leg;
   double drect[6];
   char dataflag/*,frameflag*/;
+  sciSubWindow * ppsubwin = NULL;
 
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  ppsubwin = pSUBWIN_FEATURE(psubwin);
   ok=0;  
   if (sciGetSurface(psubwin) != (sciPointObj *) NULL)   ok=1;
 
@@ -95,16 +98,25 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   } 
   
   
-  /* Force psubwin->is3d to FALSE: we are in 2D mode */
-  if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+  if (sciGetSurface(psubwin) == (sciPointObj *) NULL) /* F.Leray 18.05.04 */
     {
       pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
       pSUBWIN_FEATURE (psubwin)->project[2]= 0;
     }
-  pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-  pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+  else
+    {
+      pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+      pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;
+    }
+  
   pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
   pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
+  
+  if (sciGetSurface(psubwin) != (sciPointObj *) NULL){
+    if(sciGetCurrentScilabXgc () != (struct BCG *) NULL)
+      sciRedrawFigure(); 
+    pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+  }
 
 
   /* Force psubwin->axes.aaint to those given by argument aaint*/
@@ -183,8 +195,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
         sciSetForeground (sciGetCurrentObj(), style[jj]);
       }
       else {
-        sciSetIsMark(sciGetCurrentObj(),  (style[jj] <= 0 ? TRUE : FALSE));
-        sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
+	sciSetIsMark(sciGetCurrentObj(),  (style[jj] <= 0 ? TRUE : FALSE));
+	sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
       } 
       if (with_leg) pptabofpointobj[jj] = sciGetCurrentObj();
       sciDrawObj(sciGetCurrentObj ()); 
