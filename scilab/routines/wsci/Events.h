@@ -8,10 +8,11 @@
 #include "wcommon.h"
 
 /* http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winui/winui/WindowsUserInterface/UserInput/VirtualKeyCodes.asp */
-#define VK_ALT 12
-#define VK_TAB 09
-#define VK_CONTROL 11
-#define VK_CAPITAL 14 /*CAPSLOCK*/
+
+
+#define CLCK_LEFT 10
+#define CLCK_MIDDLE 11
+#define CLCK_RIGHT 12
 
 #define DBL_CLCK_LEFT 10
 #define DBL_CLCK_MIDDLE 11

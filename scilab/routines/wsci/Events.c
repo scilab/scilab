@@ -4,6 +4,10 @@
 #include "Events.h"
 /*-----------------------------------------------------------------------------------*/
 extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
+
+static BOOL DoubleClick=FALSE;
+static BOOL TimerON=FALSE;
+static int Precedent=0;
 /*-----------------------------------------------------------------------------------*/
 int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 {
@@ -12,9 +16,63 @@ int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct
 
 	switch(message)
 	{
+		case WM_TIMER:
+		{
+			
+		    KillTimer(ScilabGC->CWindow, wParam );
+
+			if ( wParam == WM_LBUTTONDOWN ) 
+			{
+					//sciprint("bouton pressed\n");
+
+					PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+					ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, 0, 0, 0);
+					DoubleClick=FALSE;
+					
+			}
+
+			if ( wParam == WM_LBUTTONUP )
+			{
+				if (!DoubleClick)
+				{
+					if (Precedent==WM_LBUTTONDOWN)
+						{
+							//sciprint("bouton simple\n");
+						}
+					else
+						{
+							//sciprint("bouton released\n");
+							Precedent=wParam;
+						}
+
+					PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+					ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, -5, 0, 1);
+			
+				}
+				else 
+				{
+					DoubleClick=FALSE;
+					Precedent=wParam;
+				}
+				
+			
+			}
+		    
+		}
+		return (0);
+
 		case WM_KEYDOWN:
 		/*http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winui/winui/WindowsUserInterface/UserInput/VirtualKeyCodes.asp*/
 		{
+			/*check_pointer_win(&x,&y,&iwin);
+			if (GetKeyState (VK_CONTROL) < 0)
+			{
+				PushClickQueue (ScilabGC->CurWindow, x,y,1000+MapVirtualKey(wParam,0),0,0);
+			}
+			else
+			{
+				PushClickQueue (ScilabGC->CurWindow, x,y,MapVirtualKey(wParam,0),0,0);
+			}*/
 		}
 		return (0);
 
@@ -34,10 +92,29 @@ int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct
 
 		case WM_LBUTTONDOWN:
 		{
-			PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-			ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, 0, 0, 0);
+			Precedent=message;
+			SetTimer(ScilabGC->CWindow,message,GetDoubleClickTime(),NULL);
 		}
 		return (0);
+
+		case WM_LBUTTONUP:
+		{
+			Precedent=message;
+			SetTimer(ScilabGC->CWindow,message,GetDoubleClickTime(),NULL);
+		}
+		return (0);
+
+
+		case WM_LBUTTONDBLCLK:
+		{
+			KillTimer( ScilabGC->CWindow, WM_LBUTTONDOWN );
+			KillTimer(ScilabGC->CWindow, WM_LBUTTONUP );
+
+			PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+			ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, DBL_CLCK_LEFT,0, 0);
+		}
+		return (0);
+
 
 		case WM_MBUTTONDOWN:
 		{
@@ -53,12 +130,6 @@ int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct
 		}
 		return (0);
 
-		case WM_LBUTTONUP:
-		{
-			PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-			ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, -5, 0, 1);
-		}
-		return (0);
 
 		case WM_MBUTTONUP:
 		{
@@ -74,210 +145,8 @@ int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct
 		}
 		return (0);
 
-		case WM_LBUTTONDBLCLK:
-		{
-			
-			switch(wParam)
-			{
-				case MK_CONTROL:
-					PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-					ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, CTRL_DBL_CLCK_LEFT, 0, 1);
-				break;
-
-				case MK_MBUTTON:
-					
-				break;
-
-				case MK_RBUTTON:
-					
-				break;
-
-				case MK_SHIFT:
-					
-				break;
-
-				default:
-					PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-					ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, DBL_CLCK_LEFT, 0, 1);
-				break;
-			}
-		}
-		return (0);
 	}
 
- //  /*  
-
-	//switch (message)
-	//{
-	//	case WM_LBUTTONUP:
-	//		{
-	//			switch(wParam)
-	//			{
-	//				case MK_CONTROL:
-	//					sciprint("WM_LBUTTONUP & ctrl\n");
-	//					PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-	//				ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, CTRL_DBL_CLCK_LEFT, 0, 1);
-	//					break;
-
-	//				case MK_MBUTTON:
-	//					sciprint("WM_LBUTTONUP & bouton milieu\n");
-	//					break;
-
-	//				case MK_RBUTTON:
-	//					sciprint("WM_LBUTTONUP & bouton droit\n");
-	//					break;
-
-	//				case MK_SHIFT:
-	//					sciprint("WM_LBUTTONUP & touche shift\n");
-	//					break;
-	//				default:
-	//					sciprint("WM_LBUTTONUP \n");
-	//					break;
-	//			}
-	//		}
-	//	break;
-
-	//	case WM_RBUTTONUP:
-	//		{
-	//			switch(wParam)
-	//			{
-	//				case MK_CONTROL:
-	//					sciprint("WM_RBUTTONUP & ctrl\n");
-	//					break;
-
-	//				case MK_MBUTTON:
-	//					sciprint("WM_RBUTTONUP & mmiddle buton\n");
-	//					break;
-
-	//				case MK_LBUTTON:
-	//					sciprint("WM_RBUTTONUP & left button\n");
-	//					break;
-
-	//				case MK_SHIFT:
-	//					sciprint("WM_RBUTTONUP & shift\n");
-	//					break;
-	//				default:
-	//					sciprint("WM_RBUTTONUP\n");
-	//					break;
-	//			}
-	//		}
-	//	break;
-
-	//	case WM_MBUTTONUP:
-	//		{
-	//			switch(wParam)
-	//			{
-	//				case MK_CONTROL:
-	//					sciprint("WM_MBUTTONUP & ctrl\n");
-	//					break;
-
-	//				case MK_LBUTTON:
-	//					sciprint("WM_MBUTTONUP & left button\n");
-	//					break;
-
-	//				case MK_RBUTTON:
-	//					sciprint("WM_MBUTTONUP & right button\n");
-	//					break;
-
-	//				case MK_SHIFT:
-	//					sciprint("WM_MBUTTONUP & shift\n");
-	//					break;
-	//				default:
-	//					sciprint("WM_MBUTTONUP\n");
-	//					break;
-	//			}
-	//		}
-	//	break;
-
-	//	case WM_KEYDOWN:
-	//		{
-	//			
-	//			sciprint("a key %d\n",wParam);
-
-	//		
-	//		}
-	//	break;
-
-	//	case WM_LBUTTONDBLCLK:
-	//		{
-	//			switch(wParam)
-	//			{
-	//				case MK_CONTROL:
-	//					sciprint("WM_LBUTTONDBLCLK & contrl\n");
-	//					break;
-
-	//				case MK_MBUTTON:
-	//					sciprint("WM_LBUTTONDBLCLK & middle button\n");
-	//					break;
-
-	//				case MK_RBUTTON:
-	//					sciprint("WM_LBUTTONDBLCLK & right button\n");
-	//					break;
-
-	//				case MK_SHIFT:
-	//					sciprint("WM_LBUTTONDBLCLK & shift\n");
-	//					break;
-	//				default:
-	//					sciprint("WM_LBUTTONDBLCLK\n");
-	//					break;
-
-	//			}
-	//		}
-	//	break;
-
-	//	case WM_MBUTTONDBLCLK:
-	//		{
-	//			switch(wParam)
-	//			{
-	//				case MK_CONTROL:
-	//					sciprint("WM_MBUTTONDBLCLK & contrl\n");
-	//					break;
-
-	//				case MK_LBUTTON:
-	//					sciprint("WM_MBUTTONDBLCLK & left button\n");
-	//					break;
-
-	//				case MK_RBUTTON:
-	//					sciprint("WM_MBUTTONDBLCLK & right button\n");
-	//					break;
-
-	//				case MK_SHIFT:
-	//					sciprint("WM_MBUTTONDBLCLK & shift\n");
-	//					break;
-	//				default:
-	//					sciprint("WM_MBUTTONDBLCLK\n");
-	//					break;
-	//			}
-	//		}
-	//	break;
-
-	//	case WM_RBUTTONDBLCLK:
-	//		{
-	//			switch(wParam)
-	//			{
-	//				case MK_CONTROL:
-	//					sciprint("WM_RBUTTONDBLCLK & control\n");
-	//					break;
-
-	//				case MK_MBUTTON:
-	//					sciprint("WM_RBUTTONDBLCLK & middle button\n");
-	//					break;
-
-	//				case MK_LBUTTON:
-	//					sciprint("WM_RBUTTONDBLCLK & left button\n");
-	//					break;
-
-	//				case MK_SHIFT:
-	//					sciprint("WM_RBUTTONDBLCLK & shift button\n");
-	//					break;
-	//				default:
-	//					sciprint("WM_RBUTTONDBLCLK\n");
-	//					break;
-	//			}
-	//		}
-	//	break;
-
-	//}*/
-	return CodeKey;
+ 	return CodeKey;
 }
 /*-----------------------------------------------------------------------------------*/
