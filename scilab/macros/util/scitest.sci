@@ -99,11 +99,12 @@ function mydisp(str)
 endfunction
 
 function myexec()
+  pause
   if MSDOS then
       if fileinfo(tmpfiles+'dia')<>[] then  
 	unix_s('del '+tmpfiles+'dia')
       end
-      unix_s(SCI+'\bin\scilex.exe -nwni -f '+tmpfiles+'tst')
+      unix_s(SCI+'\bin\scilex.exe -nwni < '+tmpfiles+'tst')
   else
      if fileinfo(tmpfiles+'dia')<>[] then  
        unix_s('rm -f '+tmpfiles+'dia')
