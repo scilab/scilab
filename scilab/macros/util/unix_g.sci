@@ -28,7 +28,7 @@ function [rep,stat]=unix_g(cmd)
   stat=host(cmd1);
   select stat
    case 0 then
-    rep=read(tmp,-1,1,'(a)')
+    rep=mgetl(tmp)
     if size(rep,'*')==0 then rep=[],end
    case -1 then // host failed
     disp('host does not answer...')
@@ -38,7 +38,7 @@ function [rep,stat]=unix_g(cmd)
        write(%io(2),'unix_g: shell error');
        rep=emptystr()
      else 
-        msg=read(TMPDIR+'/unix.err',-1,1,'(a)')
+        msg=mgetl(TMPDIR+'/unix.err')
         disp(msg(1))
         rep=emptystr()
   end 
