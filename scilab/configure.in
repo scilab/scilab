@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.24 $)dnl
+AC_REVISION($Revision: 1.25 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1015,6 +1015,10 @@ case "$host" in
    # DLDLIB=
    # DLD_SUBDIR=
    MAKEFILE_TARGET=Makefile.darwin
+   # we need to patch libtool 		
+   cp  libtool libtool-cp
+   sed -e 's:\\\\"x\\\$module\\\\" = xyes:\\$module = .yes:' libtool-cp > libtool
+   rm -f libtool-cp
     ;;
   *)
     AC_MSG_ERROR("Unable to configure for host $host")
