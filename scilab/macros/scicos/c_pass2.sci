@@ -1060,7 +1060,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 	      bllst(connectmat(jj,3)).in(connectmat(jj,4))=nout
 	      k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
 
-	      if k==int(k) then
+	      if k==int(k)&k>0 then
 		bllst(connectmat(jj,3)).out(find(ww<0))=k
 	      else
 		bad_connection(corinv(connectmat(jj,3)),0,0,-1,0,0)
@@ -1089,8 +1089,8 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 	    nww=ww(find(ww<0))
 	    if norm(nww-nww(1),1)==0 & nin>0 then
 	      bllst(connectmat(jj,1)).out(connectmat(jj,2))=nin
-	      k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
-	      if k==int(k) then
+	      k=(nin-sum(ww(find(ww>0))))/size(nww,'*')
+	      if k==int(k)&k>0 then
 		bllst(connectmat(jj,1)).in(find(ww<0))=k
 	      else
 		bad_connection(corinv(connectmat(jj,1)),0,0,-1,0,0)
