@@ -19,12 +19,18 @@ MACROS= Capacitor.sci Ground.sci NPN.sci VVsourceAC.sci \
 	Diode.sci  VsourceAC.sci 
 
 
+MODELS=Capacitor.moc Ground.moc OutPutPort.moc VariableResistor.moc \
+	ConstantVoltage.moc InPutPort.moc Pin.moc VoltageSensor.moc \
+	CurrentSensor.moc Inductor.moc PotentialSensor.moc VsourceAC.moc \
+	Diode.moc NPN.moc Resistor.moc VsourceDC.moc \
+	OutPort.moc VVsourceAC.moc \
+
 include ../../Make.lib.mak
 
 .mo.moc: $(SCIDIR)/bin/modelicac
-	$(SCIDIR)/bin/modelicac -c   $(<) -o $(@)
+	$(SCIDIR)/bin/modelicac -c $(<) -o $(@)
 
-all ::  $(MACROS:.sci=.moc)
+all :: $(MODELS)
 
 
 distclean::
