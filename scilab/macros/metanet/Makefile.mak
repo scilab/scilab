@@ -18,7 +18,7 @@ EG = dist2polylines.sci edit_graph.sci editgraph_arc.sci editgraph_diagram.sci e
 	ge_arc_coordinates.sci ge_arc_fields.sci ge_clear_history.sci ge_complete_defaults.sci \
 	ge_compute.sci ge_copy_region_to_cb.sci ge_create_menus.sci ge_delete_arc.sci \
 	ge_delete_node.sci ge_dig_bound.sci ge_disablemenus.sci ge_do_SaveAs.sci ge_do_copy.sci \
-	ge_do_copy_region.sci ge_do_default_names.sci ge_do_defaults.sci ge_do_delete.sci \
+	ge_do_copy_region.sci ge_do_default_names.sci ge_do_settings.sci ge_do_delete.sci \
 	ge_do_delete_region.sci ge_do_load.sci ge_do_move.sci ge_do_move_region.sci ge_do_new.sci \
 	ge_do_options.sci ge_do_paste.sci ge_do_properties.sci ge_do_quit.sci ge_do_region2node.sci \
 	ge_do_save.sci ge_do_select.sci ge_do_shortestpath.sci ge_do_undo.sci ge_do_version.sci \
