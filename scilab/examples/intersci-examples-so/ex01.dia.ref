@@ -25,6 +25,7 @@ libs  = [] ;
    running the makefile
    compilation of ex01fi
    compilation of ex01c
+   building shared library (be patient)
  
  
 //[3] run the loader to load the interface

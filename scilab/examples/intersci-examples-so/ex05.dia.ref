@@ -36,6 +36,7 @@ ilib_build(ilib_name,table,files,libs);
    running the makefile
    compilation of ex05fi
    compilation of ex05f
+   building shared library (be patient)
  
  
  

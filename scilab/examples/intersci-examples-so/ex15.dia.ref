@@ -46,6 +46,7 @@ ilib_build(ilib_name,table,files,libs);
    running the makefile
    compilation of ex15fi
    compilation of ex15c
+   building shared library (be patient)
  
  
  

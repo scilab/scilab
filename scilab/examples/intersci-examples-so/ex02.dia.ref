@@ -37,6 +37,7 @@ ilib_build(ilib_name,table,files,libs);
    running the makefile
    compilation of ex02fi
    compilation of ex02c
+   building shared library (be patient)
  
  
  

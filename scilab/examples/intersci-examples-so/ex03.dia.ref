@@ -35,6 +35,7 @@ ilib_build(ilib_name,table,files,libs);
    generate a Makefile: Makelib
    running the makefile
    compilation of ex03fi
+   building shared library (be patient)
  
  
  

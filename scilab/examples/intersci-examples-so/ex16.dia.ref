@@ -43,6 +43,7 @@ ilib_build(ilib_name,table,files,libs);
    running the makefile
    compilation of ex16fi
    compilation of ex16c
+   building shared library (be patient)
  
  
  

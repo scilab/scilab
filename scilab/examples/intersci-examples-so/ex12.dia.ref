@@ -36,6 +36,7 @@ ilib_build(ilib_name,table,files,libs);
    running the makefile
    compilation of ex12fi
    compilation of ex12c
+   building shared library (be patient)
  
  
  
