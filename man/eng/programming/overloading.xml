@@ -195,7 +195,7 @@
         <TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>         </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    iext</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    E</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>    6</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
     </TABLE>
     <P>
@@ -217,7 +217,7 @@
     <P>
    </P>
     <P>
-    The <VERB>E</VERB> char code may be  used for some complex
+    The <VERB>6</VERB> char code may be  used for some complex
     insertion algorithm like <VERB>x.b(2)=33</VERB> where <VERB>b</VERB> field is
     not defined in the structure <VERB>x</VERB>. The insertion is
     automatically decomposed into <VERB>temp=x.b;</VERB>
