@@ -1118,7 +1118,7 @@ c
       endif
       nf=3
       if(.not.getrhsvar(nf,'f', mlhs, mrhs, lf)) return
-      if(mlhs.ne.1 .or. mrhs.ne.1) then
+      if(mlhs.ne.1 .or. mrhs.ne.2) then
          err=nf
          call error(80)
          return
@@ -1183,14 +1183,15 @@ c
       iadr(l) = l+l-1
 c
       scizgshr=.false.
-      if(.not.createcvar(nx,'d',1,1,2,lx,lxc)) return
+      if(.not.createcvar(nx,'d',1,1,1,lar,lai)) return
+      if(.not.createcvar(nx+1,'d',1,1,1,lbr,lbi)) return
+      lx=lar
+      stk(lar)=dreal(alpha)
+      stk(lai)=dimag(alpha)
+      stk(lbr)=dreal(beta)
+      stk(lbi)=dimag(beta)
 
-      stk(lx)=dreal(alpha)
-      stk(lx+1)=dreal(beta)
-      stk(lxc)=dimag(alpha)
-      stk(lxc+1)=dimag(beta)
-
-      if(.not.scifunction(nx,lf,1,1)) return
+      if(.not.scifunction(nx,lf,1,2)) return
 c     stk(lx)=fct([alpha,beta])  evaluated by scilab fct pointed to by lf
       ilx=iadr(lx-2)
       if(istk(ilx).eq.1) then
@@ -1212,12 +1213,13 @@ c    checks fct passed to zgshur
       iadr(l) = l+l-1
 
       scizgchk=.false.
-      if(.not.createcvar(nx,'d',1,1,2,lx,lxc)) return
-
-      stk(lx)=1.0d0
-      stk(lx+1)=1.0d0
-      stk(lxc)=0.0d0
-      stk(lxc+1)=0.0d0
+      if(.not.createcvar(nx,'d',1,1,1,lar,lai)) return
+      if(.not.createcvar(nx+1,'d',1,1,1,lbr,lbi)) return
+      lx=lar
+      stk(lar)=1.0D0
+      stk(lai)=0.0d0
+      stk(lbr)=1.0D0
+      stk(lbi)=0.0d0
       if(.not.scifunction(nx,lf,1,1)) then
 c     error into fct passed to schur (zgschur(A,B,tst))
          return
@@ -1304,7 +1306,7 @@ c
       endif
       nf=3
        if(.not.getrhsvar(nf,'f', mlhs, mrhs, lf)) return
-       if(mlhs.ne.1 .or. mrhs.ne.1) then
+       if(mlhs.ne.1 .or. mrhs.ne.2) then
           err=nf
           call error(80)
          return

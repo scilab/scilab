@@ -21,14 +21,12 @@ else //coded by a scilab function
   //flag=extern(x) 
   //x(1) ==1 ==> x(2:3)=[al,be]
   //x(1) ==2 ==> x(2:3)=[s,p]
-  //---- new ------------------
-  //R =[real(al),imag(al),be]
   warning('Obsolete function. Please, replace gschur by schur and adapt"+...
 	  " the external')
-  deff('t=%_rule(R)',['if R(2)==0 then'
-		    '  t=extern([1,R(1),R(3)])==1'
+  deff('t=%_rule(Alpha,Beta)',['if imag(Alpha)==0 then'
+		    '  t=extern([1,real(Alpha),Beta])==1'
 		    'else		    '
-		    '  c=(R(1)+%i*R(2))/R(3)'
+		    '  c=Alpha/Beta'
 		    '  t=extern([2,real(c+c''),real(c*c'')])==1'
                     'end;'])
   [As,Es,Z,dim]= schur(A,E,%_rule) 

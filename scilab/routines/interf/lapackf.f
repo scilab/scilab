@@ -4023,7 +4023,7 @@ c     $    BWORK, INFO )
       
       logical function scigshur(alphar,alphai,beta)
       INCLUDE '../stack.h'
-      logical scifunction, createvar
+      logical scifunction, createvar, createcvar
       common /scigsch/ lf, nx, nf
       integer iadr
       double precision alphar, alphai, beta
@@ -4031,11 +4031,12 @@ c
       iadr(l) = l+l-1
 c     
       scigshur=.false.
-      if(.not.createvar(nx,'d',1,3,lx)) return
+      if(.not.createcvar(nx,'d',1,1,1,lx,lc)) return
       stk(lx)=alphar
       stk(lx+1)=alphai
-      stk(lx+2)=beta
-      if(.not.scifunction(nx,lf,1,1)) return
+      if(.not.createvar(nx+1,'d',1,1,lb)) return
+      stk(lb)=beta
+      if(.not.scifunction(nx,lf,1,2)) return
 c     stk(lx)=fct([alphar,alphai,beta])  evaluated by scilab fct pointed
 c     to by lf
       ilx=iadr(lx-2)
@@ -4050,7 +4051,7 @@ c     to by lf
       logical function scigchk()
 c     checks fct passed to gschur
       INCLUDE '../stack.h'
-      logical scifunction, createvar
+      logical scifunction, createvar, createcvar
 c     
       integer iadr
       common/ierinv/iero
@@ -4058,11 +4059,12 @@ c
       iadr(l) = l+l-1
 
       scigchk=.false.
-      if(.not.createvar(nx,'d',1,3,lx)) return
+      if(.not.createcvar(nx,'d',1,1,1,lx,lc)) return
       stk(lx)=1.0d0
       stk(lx+1)=1.0d0
-      stk(lx+2)=1.0d0
-      if(.not.scifunction(nx,lf,1,1)) then
+      if(.not.createvar(nx+1,'d',1,1,lb)) return
+      stk(lb)=1.0d0
+      if(.not.scifunction(nx,lf,1,2)) then
 c     error into fct passed to gschur (gschur(A,B,tst))
          return
       endif
