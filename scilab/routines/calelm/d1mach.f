@@ -41,7 +41,7 @@ c  DLAMCH
       IF (I .EQ. 2) D1MACH = DLAMCH('O')
       IF (I .EQ. 3) D1MACH = DLAMCH('E')
       IF (I .EQ. 4) D1MACH = DLAMCH('P')
-      IF (I .EQ. 5) D1MACH = DLAMCH('B')
+      IF (I .EQ. 5) D1MACH = log10(DLAMCH('B'))   
       RETURN
       END
 
