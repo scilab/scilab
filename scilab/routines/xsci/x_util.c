@@ -31,7 +31,7 @@
 #include "x_data.h"
 #include "x_error.h"
 #include "x_menu.h"
-
+#include "../stack-c.h"
 #include "../machine.h"
 #include "All-extern-x.h"
 
@@ -991,3 +991,81 @@ void recolor_cursor (cursor, fg, bg)
     return;
 }
 
+/* Scilab tohome() */
+/* Called by HomeFunction() in SCI/routines/console/zzledt.c */
+/* V.C. 04/2004 */
+void XHomeFunction(void)
+{
+  register TScreen *screen = &term->screen;
+  static int k=0;
+  
+  if (!IsConsoleMode())
+    {
+      /* Screen is filled with empty lines and then cleared */
+      for(k=0;k<(Height(screen) - 1)/FontHeight(screen) - 2;k++) /* 2 is the number of rows used by tohome()\r\n */
+	{
+	  sciprint("\r\n");
+	}
+      screen->cur_row = screen->topline; /* New cursor position */
+      ClearBelow(screen); /* Screen is cleared below cursor */
+      ScrollBarDrawThumb(screen->scrollWidget);
+    }
+  else
+    {
+      system("clear");
+    }
+  return;
+}
+
+
+/* Scilab clc() */
+/* Called by ClearScreenConsole() in SCI/routines/console/zzledt.c */
+/* V.C. 04/2004 */
+int XClearScreenConsole(char *fname)
+{
+  register TScreen *screen = &term->screen;
+  int l1,m1=1,n1=1,NbLines=0;
+
+  if (!IsConsoleMode())
+    {
+      CheckRhs(0,1);
+      if (Rhs==0)
+	{
+	  ClearScreen(screen); /* All screen is cleared */
+	  screen->savedlines = 0; /* Number of lines scrolled */
+	  screen->cur_row = screen->topline - 1; /* New cursor position */
+	  sciprint("\r\n"); /* To have a blank space above prompt */
+	  ScrollBarDrawThumb(screen->scrollWidget);
+	}
+      else
+	{
+	  GetRhsVar(1,"i",&m1,&n1,&l1);
+	  NbLines = *istk(l1);
+	  if (NbLines>0)
+	    {
+	      if (screen->topline < screen->cur_row - NbLines)
+		{
+		  screen->savedlines = screen->savedlines - NbLines - 2; /* Number of lines scrolled */
+		  if (screen->savedlines < 0)
+		    screen->savedlines=0;
+		  screen->cur_row = screen->cur_row - NbLines - 2; /* New cursor position */
+		  ClearBelow(screen); /* Screen is cleared below cursor */
+		  ScrollBarDrawThumb(screen->scrollWidget);
+		}
+	      else
+		{
+		  sciprint("\n Not in screen \n");
+		}
+	    }
+	  else
+	    {
+	      sciprint("\n Error %d invalid number \n",NbLines);
+	    }
+	}
+    }
+  else
+    {
+      sciprint("\n Only in Window Mode \n");
+    }
+  return 0;
+}
