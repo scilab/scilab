@@ -7,7 +7,7 @@ if rhs <= 3 then dom='c' ; end
 if rhs <= 4 then 
   rtol=1.e-2; atol=1.e-4, N=10;
 else 
-  rtol=tols(1);atol=tols(2);N=atols(3);
+  rtol=tols(1);atol=tols(2);N=tols(3);
 end
 if dom==[] then dom='c';end 
 if dom=='d' then dom=1;end
