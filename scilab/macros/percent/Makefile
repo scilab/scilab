@@ -15,8 +15,7 @@ A =     %c_a_c.sci %hm_a_hm.sci %hm_a_s.sci %ip_a_s.sci \
 	%p_a_lss.sci %p_a_r.sci %r_a_lss.sci %r_a_p.sci \
 	%r_a_r.sci %r_a_s.sci %s_a_hm.sci %s_a_ip.sci \
 	%s_a_lss.sci %s_a_r.sci %s_a_sp.sci %sp_a_s.sci \
-	%sp_a_sp.sci %i_a_i.sci %3d_i_h.sci %ticks_i_h.sci
-#ajout ci dessus de %3d_i_h.sci et %ticks_i_h.sci
+	%sp_a_sp.sci %i_a_i.sci 
 
 B =      %b_i_b.sci %s_g_b.sci %s_h_b.sci %s_i_b.sci \
 	 %spb_c_b.sci %spb_f_b.sci %spb_g_b.sci %spb_h_b.sci \
@@ -59,7 +58,8 @@ I =      %b_i_s.sci %b_i_sp.sci %b_i_spb.sci %c_i_lss.sci \
 	 %s_i_sp.sci %s_i_spb.sci %sp_i_s.sci %sp_i_sp.sci \
 	 %i_i_hm.sci %i_i_s.sci %b_i_hm.sci %s_i_h.sci %c_i_h.sci \
 	 %i_i_i.sci %hm_i_s.sci %hm_i_p.sci %hm_i_i.sci %hm_i_b.sci \
-	 %c_i_s.sci %mc_i_s.sci %l_i_s.sci %lt_i_s.sci generic_i_s.sci
+	 %c_i_s.sci %mc_i_s.sci %l_i_s.sci %lt_i_s.sci generic_i_s.sci \
+	 %3d_i_h.sci %ticks_i_h.sci
 
 J =      %hm_j_hm.sci %hm_j_s.sci %p_j_s.sci %r_j_s.sci
 
