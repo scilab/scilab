@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>tic</TITLE>
+  <TYPE>Fonction Scilab</TYPE>
+  <DATE>Juin 2004</DATE>
+  <SHORT_DESCRIPTION name="tic">Démarre le chronomètre</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>tic()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>La séquence de commandes <VERB>tic(); opération; toc();</VERB> affiche le nombre de secondes nécessaire pour opération.</P>
+   </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+tic();
+realtimeinit(1);
+realtime(0);
+realtime(10);
+toc();
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM><LINK>toc</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>timer</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>etime</LINK></SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

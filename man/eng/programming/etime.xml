@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>etime</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>June 2004</DATE>
+  <SHORT_DESCRIPTION name="etime">Elapsed time</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>e = etime(t2,t1)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+  <PARAM_INDENT>
+    <PARAM_ITEM>
+      <PARAM_NAME>t2</PARAM_NAME>
+      <PARAM_DESCRIPTION>
+        <SP>: a vector with 6 or 10 values.</SP>
+      </PARAM_DESCRIPTION> 
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+      <PARAM_NAME>t1</PARAM_NAME>
+      <PARAM_DESCRIPTION>
+        <SP>: a vector with 6 or 10 values.</SP>
+      </PARAM_DESCRIPTION> 
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+      <PARAM_NAME>e</PARAM_NAME>
+      <PARAM_DESCRIPTION>
+        <SP>: number of seconds between <VERB>t2</VERB> and <VERB>t1</VERB>.</SP>
+      </PARAM_DESCRIPTION> 
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="t1 and t2 with 10 values">
+        <SP>: <VERB>t2</VERB> and <VERB>t1</VERB> must have format returned by <VERB>getdate</VERB>. 
+	In this case, their third, fourth and fifth values are ignored.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="t1 and t2 with 6 values">
+        <SP>: <VERB>t2</VERB> and <VERB>t1</VERB> must have format: T = [Year Month Day Hour Minute Second]
+	with Second a number of seconds with milliseconds (e.g: 12.345).</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P><VERB>t2</VERB> and <VERB>t1</VERB> must have the same size.</P>
+    <P><VERB>t2</VERB> et <VERB>t1</VERB> can be matrices with each line containing a format
+    described above (all lines having same format).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+t1=[2004 06 10 17 00 12.345]
+t2=[2004 06 10 17 01 13.965]
+E1=etime(t2,t1)
+t1=[2004 06 24 162 5 10 17 00 12.345]
+t2=[2004 06 24 162 5 10 17 01 13.965]
+E2=etime(t2,t1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM><LINK>tic</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>toc</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>getdate</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>etime</LINK></SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

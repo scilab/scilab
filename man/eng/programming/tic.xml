@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>tic</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>June 2004</DATE>
+  <SHORT_DESCRIPTION name="tic">start a stopwatch timer</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>tic()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>The sequence of commands <VERB>tic(); operation; toc();</VERB> prints the number of seconds required for the operation.</P>
+   </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+tic();
+realtimeinit(1);
+realtime(0);
+realtime(10);
+toc();
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM><LINK>toc</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>timer</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>etime</LINK></SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
