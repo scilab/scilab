@@ -120,6 +120,6 @@ case 'set' then
     x.model.evtout=[1;1]
     x.model.blocktype='h'
     x.model.rpar=diagram
-
+    x.graphics.peout=[0;0]
 end
 endfunction
