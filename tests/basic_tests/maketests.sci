@@ -62,7 +62,8 @@ function tests=testslist()
 	   'fptr.tst';
 	   'scicos.tst';
 	   'auto.tst';
-	   'opcode.tst'
+	   'opcode.tst';
+	   'specfun.tst';
 	   ];
 
 if MSDOS then
