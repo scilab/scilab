@@ -698,7 +698,6 @@ int sciprint2 (int iv, char *fmt,...)
   /* next three lines added for diary SS */
   count = vsprintf (s_buf, fmt, ap);
   lstr = strlen (s_buf);
-  C2F (diary) (s_buf, &lstr, 0L);
 
   C2F (xscion) (&i);
   if (i == 0)
@@ -710,6 +709,16 @@ int sciprint2 (int iv, char *fmt,...)
       /* count = vsprintf (s_buf, fmt, ap); SS */
       TextPutS (&textwin, s_buf);
     }
+
+  /* \r\n -> \n for diary */ 
+  if ( lstr >= 2 && s_buf[lstr-1]== '\n' && s_buf[lstr-2]== '\r') 
+    {
+      s_buf[lstr-2]= '\n';
+      s_buf[lstr-1]= '\0';
+      lstr--;
+    }
+  C2F (diary) (s_buf, &lstr, 0L);
+
   va_end (ap);
   return count;
 }
