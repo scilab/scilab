@@ -74,8 +74,12 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 	pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
 	pSUBWIN_FEATURE (psubwin)->project[2]= 0;
       }
-    pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-    pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+    else
+      {
+	pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+	pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+      }
+
     pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
     pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
     
@@ -233,8 +237,12 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 	pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
 	pSUBWIN_FEATURE (psubwin)->project[2]= 0;
 	}
-    pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-    pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+    else
+      {
+	pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+	pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+      }
+
     pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
     pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
           

@@ -81,9 +81,13 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 	{
 	  pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
 	  pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+	} 
+      else
+	{
+	  pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+	  pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
 	}
-      pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-      pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+
       pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
       pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
             
