@@ -48,5 +48,6 @@ integer *to;
     EXTRAC2(unsigned int);
     break;
   }
+  return 0;
 }
 

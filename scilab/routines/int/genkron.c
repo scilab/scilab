@@ -65,5 +65,6 @@ int *dr;
     KRON(unsigned int);
     break;
   }
+  return 0;
 }
 

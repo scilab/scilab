@@ -45,5 +45,6 @@ integer *inc2;
     INSERT1(unsigned int);
     break;
   }
+  return 0;
 }
 

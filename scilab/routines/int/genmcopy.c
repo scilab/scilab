@@ -51,4 +51,5 @@ integer *m, *n;
     MCOPY(unsigned int);
     break;
   }
+  return 0;
 }
