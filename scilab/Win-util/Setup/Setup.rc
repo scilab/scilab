@@ -1,0 +1,171 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_INSTALL DIALOGEX 0, 0, 388, 226
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Files Association"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,270,204,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,329,204,50,14
+    CONTROL         ".sci",IDC_CHECKSCI,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,36,18,37,20
+    CONTROL         ".sce",IDC_CHECKSCE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,36,38,37,20
+    CONTROL         ".tst",IDC_CHECKTST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,36,58,37,20
+    CONTROL         ".dem",IDC_CHECKDEM,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,36,78,37,20
+    CONTROL         ".cos",IDC_CHECKCOS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,36,98,37,20
+    CONTROL         ".cosf",IDC_CHECKCOSF,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,36,118,37,20
+    CONTROL         ".bin",IDC_CHECKBIN,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,36,138,37,20
+    CONTROL         ".sav",IDC_CHECKSAV,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,36,158,37,20
+    CONTROL         ".graph",IDC_CHECKGRAPH,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,36,178,37,20
+    CONTROL         ".graphb",IDC_CHECKGRAPHB,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,36,198,37,20
+    ICON            IDI_SCI,IDC_STATICICONSCI,12,18,21,20
+    ICON            IDI_SCE,IDC_STATICICONSCE,12,38,21,20
+    ICON            IDI_TST,IDC_STATICICONTST,12,58,21,20
+    ICON            IDI_DEM,IDC_STATICICONDEM,12,78,21,20
+    ICON            IDI_COS,IDC_STATICICONCOS,12,98,21,20
+    ICON            IDI_COSF,IDC_STATICICONCOSF,12,118,21,20
+    ICON            IDI_BIN,IDC_STATICICONBIN,12,138,21,20
+    ICON            IDI_SAV,IDC_STATICICONSAV,12,158,21,20
+    ICON            IDI_GRAPH,IDC_STATICICONGRAPH,12,178,21,20
+    ICON            IDI_GRAPH,IDC_STATICICONGRAPHB,12,198,21,20
+    GROUPBOX        "Files Association",IDC_STATICCADRE,6,6,378,216
+    LTEXT           "Please,\nselect files which you want associate to scilab",
+                    IDC_STATICTEXT,78,18,150,20
+    CONTROL         113,IDC_STATIC,"Static",SS_BITMAP,78,42,301,161
+    ICON            IDI_SCILAB,IDC_STATICSCILAB,358,18,21,20
+    CTEXT           "scilab INRIA/ENPC",IDC_STATIC,132,204,90,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_INSTALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 381
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 219
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_SCE                 ICON                    "SCE.ICO"
+IDI_SCI                 ICON                    "SCI.ICO"
+IDI_SCILAB              ICON                    "scilab.ico"
+IDI_TST                 ICON                    "TST.ICO"
+IDI_BIN                 ICON                    "BIN.ICO"
+IDI_COS                 ICON                    "COS.ICO"
+IDI_COSF                ICON                    "COSF.ICO"
+IDI_DEM                 ICON                    "DEM.ICO"
+IDI_GRAPH               ICON                    "Graph.ICO"
+IDI_SAV                 ICON                    "SAV.ICO"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_LOGO                BITMAP                  "scilab_logo.bmp"
+#endif    // French (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

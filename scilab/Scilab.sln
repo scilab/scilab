@@ -153,7 +153,7 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "default_f", "routines\defau
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dumpexts", "Win95-util\Nm\Dumpexts.vcproj", "{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dumpexts", "Win-util\Nm\Dumpexts.vcproj", "{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -357,7 +357,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pvm3-make", "pvm3\pvm3-make
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinConfigure", "Win95-util\WinConfigure\WinConfigure.vcproj", "{90CE268B-D7EF-4E88-B899-717989F6DD62}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinConfigure", "Win-util\WinConfigure\WinConfigure.vcproj", "{90CE268B-D7EF-4E88-B899-717989F6DD62}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -434,15 +434,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmat", "routines\default\
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SetupAtlas", "Win95-util\SetupAtlas\SetupAtlas.vcproj", "{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SetupAtlas", "Win-util\SetupAtlas\SetupAtlas.vcproj", "{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Autorun", "Win95-util\Setup\Setup.vcproj", "{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Autorun", "Win-util\Setup\Setup.vcproj", "{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xmlint", "Win95-util\xmlint\xmlint.vcproj", "{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xmlint", "Win-util\xmlint\xmlint.vcproj", "{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject

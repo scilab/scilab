@@ -54,7 +54,7 @@ cd ..
 goto end
 
 :dumpexts
-cd Win95-util\Nm
+cd Win-util\Nm
  nmake /C /f Makefile.mak 
 cd ..\..
 goto end 
@@ -146,7 +146,7 @@ cd ..
 goto end
 
 :xmlint 
-cd win95-util\xmlint
+cd Win-util\xmlint
 nmake /C /f Makefile.mak all /a
 cd ..\..
 goto end
@@ -222,14 +222,14 @@ cd ..
 goto end
 
 :xmlint-clean
-cd win95-util\xmlint
+cd Win-util\xmlint
 echo making clean in xmlint
 nmake /C /f Makefile.mak clean /a
 cd ..\..
 goto end
 
 :xmlint-distclean
-cd win95-util\xmlint
+cd Win-util\xmlint
 echo making clean in xmlint
 nmake /C /f Makefile.mak distclean /a
 cd ..\..

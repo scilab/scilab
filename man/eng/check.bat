@@ -1,5 +1,5 @@
 @echo off
-@..\..\..\Win95-util\xmlint\xmlint.exe *.xml > xmlint.tmp
+@..\..\..\Win-util\xmlint\xmlint.exe *.xml > xmlint.tmp
 IF NOT ERRORLEVEL 1 GOTO OK
 echo          Problem(s) detected (See xmlint.tmp)
 GOTO END

@@ -1,0 +1,198 @@
+
+John Cerney <j-cerney1@ti.com>
+
+The cygwin32 FAQ and release notes tell you how to build a simple
+non-relocatable DLL, and how to build relocatable executable, but not how to
+build a relocatable DLL. 
+
+Here is a simple example of building a relocatable DLL. This method of building
+DLLs is the same method used in building the cygwin.dll file. See the makefile
+(Makefile.in) in the winsup directory of the cygwin32 source distribution for
+more details.
+
+Source Files:
+==> main.c <============================================
+// Main file to try linking with a DLL under gnuwin32
+
+
+int
+main()
+{
+        printf("doit(5) returns %d\n", doit(5));
+        printf("doittoo(5) returns %d\n", doittoo(5));
+}
+==> foo.c <============================================
+// Test file to check out building DLLs with gnuwin32
+//  This uses printf from the std lib
+
+#include <stdio.h>
+
+
+int
+doit (int i)
+{
+     printf("In foo.c inside of doit\n");
+     return( doittoo(i) );
+}
+
+==> foo2.c <============================================
+// Test file to check out building DLLs with gnuwin32
+//  This uses printf from the std lib
+
+#include <stdio.h>
+
+
+
+int
+doittoo(int i)
+{
+      printf("In foo2.c inside of doittoo\n");
+      return(i+10);
+}
+
+==> init.cc <=============================================
+/* init.cc for WIN32.
+
+   Copyright 1996 Cygnus Solutions
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+
+#include <windows.h> 
+
+extern "C" 
+{
+  int WINAPI dll_entry (HANDLE h, DWORD reason, void *ptr);
+};
+
+int WINAPI dll_entry (HANDLE , 
+		     DWORD reason,
+		     void *)
+{
+  switch (reason) 
+    {
+    case DLL_PROCESS_ATTACH:
+      break;
+    case DLL_PROCESS_DETACH:
+      break;
+    case DLL_THREAD_ATTACH:
+      break;
+    case DLL_THREAD_DETACH:
+      break;
+    }
+  return 1;
+}
+
+==> fixup.c <=========================================================
+/* This is needed to terminate the list of inport stuff */
+/* Copied from winsup/dcrt0.cc in the cygwin32 source distribution. */
+	asm(".section .idata$3\n" ".long 0,0,0,0, 0,0,0,0");
+-------------------- snip (start of build script)-----------------------------
+#! /bin/sh
+#  Example Script to compile and link a relocatable DLL
+#    Files that make up the DLL = foo.c foo2.c init.cc fixup.c.
+#        (init.cc and fixup.c are housekeeping routines needed for the DLL. The
+actual
+#                      library routines are in foo.c and foo2.c)
+# ***Fill in your path to libcygwin.a here (with no trailing slash)***
+LIBPATH=/gnuwin32/H-i386-cygwin32/i386-cygwin32/lib
+
+# Compile source files:
+gcc -c foo.c
+gcc -c foo2.c
+gcc -c init.cc
+gcc -c fixup.c
+
+# Make .def file:
+echo EXPORTS > fooB.def
+nm foo.o foo2.o init.o fixup.o | grep '^........ [T] _' | sed 's/[^_]*_//' >>
+fooB.def
+
+# Link DLL.
+ld --base-file fooB.base --dll -o fooB.dll foo.o foo2.o init.o fixup.o \
+ $LIBPATH/libcygwin.a -e _dll_entry@12 
+dlltool --as=as --dllname fooB.dll --def fooB.def --base-file fooB.base
+--output-exp fooB.exp
+ld --base-file fooB.base fooB.exp --dll -o fooB.dll foo.o foo2.o init.o fixup.o
+\
+  $LIBPATH/libcygwin.a -e _dll_entry@12 
+dlltool --as=as --dllname fooB.dll --def fooB.def --base-file fooB.base
+--output-exp fooB.exp
+ld fooB.exp --dll -o fooB.dll foo.o foo2.o init.o fixup.o\
+ $LIBPATH/libcygwin.a -e _dll_entry@12 
+
+# Build the fooB.a lib to link to:
+dlltool --as=as --dllname fooB.dll --def fooB.def --output-lib fooB.a
+
+# Linking with main
+gcc main.c fooB.a -o main.exe
+
+-
+
+
+============================================================================
+Building DLLs on gnu-win32
+
+The easy way to create DLLs
+
+To create a DLL, first create a `foo.a' file using `ar' and `ranlib' in the
+usual manner.
+
+Then, copy the file Makefile.DLLs to your source directory, and add the line
+
+        include Makefile.DLLs
+
+at the very end of your Makefile, and type `make foo.dll'. That's it! This
+will also create foo.stubs.a, which is the library that applications that
+use the DLL must be linked with.
+
+Caveats
+
+If you get errors about `undefined symbol _WinCRTStartup' or something like
+that, add the line `LDFLAGS = --noinhibit-exec' to your Makefile and ignore
+them.
+
+All the functions with extern linkage in the library will be exported by the
+DLL. However, global data will not be exported. If you want to export only
+some of the extern functions, you need to provide your own `.def' file, and
+you'll have to remove the rule in Makefile.DLLs that creates the `.def' file
+automatically. Also, if you're using `__stdcall__', then you might need to
+tweak the `grep' and `sed' commands that are used to create the `.def' file.
+
+By default, this will generates non-relocatable DLLs. If you get an error
+message under Windows 95 saying "foo.dll can't load at the desired address,
+and is not relocatable. Contact your vendor to get...", then you can add a
+line of the form `LDFLAGS-foo = --image-base=0x0800000' to specify the load
+address for foo.dll. You need to use an address that is free on your
+machine. Alternatively, if you add `RELOCATABLE = yes' to your Makefile,
+then it will generate relocatable DLLs. This is not the default, because it
+requires two passes of the linker, and because the relocation information
+increases executable size (but perhaps it should be).
+
+If you need to specify options to `ld' or libraries to link in for a
+particular DLL, then you should set the variables `LDFLAGS' and `LDLIBS'
+respectively. If you're building more than one DLL, e.g. say you're building
+both foo.dll and bar.dll from one Makefile, and the options to `ld' are
+different for each (e.g. you want to specify a different `--image-base' for
+each), then set `LDFLAGS-foo' and `LDFLAGS-bar' instead of `LDFLAGS'.
+Similarly you can set `LDLIBS-foo' and `LDLIBS-bar'.
+
+Example
+
+Here's a sample Makefile.
+
+Disclaimer
+
+This is provided as is, with absolutely no warranty either express or
+implied. If you find any bugs, please let me know.

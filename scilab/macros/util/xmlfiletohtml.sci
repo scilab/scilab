@@ -22,7 +22,7 @@ function xmlfiletohtml(path,xsl)
     if  MSDOS then 
       // sabcmd does not like c:/.. path replace it by file://c:/..
       xsl='file://'+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
-      generate_cmd=WSCI+'\Win95-util\sablotron\sabcmd'
+      generate_cmd=WSCI+'\Win-util\sablotron\sabcmd'
       instr=generate_cmd+' '+xsl+' '+in+' '+out
       RM='del /s '
     else
