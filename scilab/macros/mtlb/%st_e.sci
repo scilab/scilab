@@ -1,8 +1,7 @@
 function s=%st_e(varargin)
 //extraction from struct
   w=varargin($);
-  if type(varargin(1))==15
-    //x(i,j,k).f or x.f(i,j,k)
+  if type(varargin(1))==15  //x(i,j,k).f or x.f(i,j,k)
     index=varargin($-1);
     if type(index($))==10 then  //x(i,j,k).f
       f=index($);
@@ -42,15 +41,32 @@ function s=%st_e(varargin)
   end
   
   //substruct x(i,j,k...)
-  sz=size(getfield(1,w),'*');
-  [indx,I]=convertindex(double(w.dims),varargin(1:$-1)); 
+  nind=size(varargin)-1
   
-  Ndims=size(varargin)-1
-  dims=zeros(1,Ndims)
-  for kk=1:Ndims
-    if size(varargin(kk),1)~=-1 then 
-      dims(kk)=size(varargin(kk),'*')
-    else dims(kk)=double(w.dims(kk));
+  dims1=double(w.dims)
+  if nind<size(dims1,'*') then
+    //reduce the dimension according to the number of indexes
+    dims1=[dims1(1:nind-1) prod(dims1(nind:$))]
+    if size(dims1,'*')==1 then dims1=[dims1 1],end
+  end
+  //get the "linear" vector of indexes
+  [indx,I]=convertindex(dims1,varargin(1:$-1)); 
+  dims=zeros(1,nind)
+  
+  //computing dimensions of the result
+  //following loop should be merged in the convertindex code
+  for kk=1:nind
+    ik=varargin(kk)
+    
+    if or(type(ik)==[2 129]) then
+      ik=horner(ik,dims1(kk))
+    end
+    if type(ik)==4 then
+       dims(kk)=max(find(ik))
+    elseif size(ik,1)~=-1 then 
+      dims(kk)=size(ik,'*')
+    else 
+      dims(kk)=dims1(kk)
     end
   end
   
@@ -63,8 +79,9 @@ function s=%st_e(varargin)
   else 
     dims=matrix(dims,1,-1)
   end
-  
   s=mlist(getfield(1,w),int32(dims));
+  //s=mlist(getfield(1,w),int32(indx));
+  sz=size(getfield(1,w),'*');
   for k=3:sz
     ww=getfield(k,w);
     if type(ww)~=15 then ww=list(ww);end
