@@ -7,8 +7,8 @@ Install Intel Fortran 8.0
 Install TCL/TK 8.4(.5)
 
 
-1] copy tcl84.dll and tk84.dll in bin directory.
-2] edit make-pvm3.mak in pvm3 directory
+1] copy tcl84.dll,tk84.dll,tcl84.lib and tk84.lib in bin directory.
+2] edit Make-PVM3.mak in pvm3 directory
    and modify first line (PVM_ROOT=...) with the good path
 3] execute configheaders.bat
 4] copy in root of scilab directory : "lib" and "tcllib" directories (see below)
@@ -340,7 +340,6 @@ And contents of the TCLLIB directory:
 13/02/2004  10:11    <REP>          .
 13/02/2004  10:11    <REP>          ..
 13/02/2004  10:11    <REP>          include
-13/02/2004  09:45    <REP>          lib
                0 fichier(s)                0 octets
 
  Répertoire de d:\scilab\tcllib\include
@@ -499,14 +498,4 @@ And contents of the TCLLIB directory:
 24/11/2003  21:47            20 273 Xutil.h
                8 fichier(s)          140 079 octets
 
- Répertoire de d:\scilab\tcllib\lib
-
-13/02/2004  09:45    <REP>          .
-13/02/2004  09:45    <REP>          ..
-24/11/2003  21:47           604 428 tcl84.lib
-24/11/2003  21:47           529 946 tk84.lib
-               2 fichier(s)        1 134 374 octets
-
-     Total des fichiers listés :
-             124 fichier(s)        2 705 046 octets
-              20 Rép(s)  10 647 605 248 octets libres
+ 
