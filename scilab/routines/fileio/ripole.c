@@ -103,7 +103,7 @@ int parse_parameters( struct ripOLE_object *role, int argc, char **argv )
 					exit (1);
 					break;
 
-					// if we get ANOTHER - symbol, then we have an extended flag
+					/*  if we get ANOTHER - symbol, then we have an extended flag */
 
 				case '-':
 						if (strncmp (&(argv[i][2]), "verbose", 7) == 0)
@@ -131,18 +131,18 @@ int parse_parameters( struct ripOLE_object *role, int argc, char **argv )
 						}
 					break;
 
-					// else, just dump out the help message
+					/*  else, just dump out the help message */
 
 				default:
 					fprintf(stdout,"Cannot interpret option \"%s\"\n%s\n", argv[i], help);
 					exit (1);
 					break;
 
-			}			// Switch argv[i][1]
+			}			/* Switch argv[i][1] */
 
-		}			// if argv[i][0] == -
+		}			/*  if argv[i][0] == -*/
 
-	}				// for
+	}				/*  for */
 
 	return result;
 }
