@@ -14240,15 +14240,20 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 }
 
 /**sciConstructAgregationSeq
- * @memo constructes an agregation of with the last n entities cerated in the current subwindow
+ * @memo constructes an agregation of with the last n entities created in the current subwindow
+  on entry subwin children list is
+   null->s1->s2->...->sn->sn+1->...->null
+  on exit it is
+   null->A->sn+1->...->null
+  with A an agregation whose children list is:
+   null->s1->s2->...->sn->null
  */
 sciPointObj *
 ConstructAgregationSeq (int number) 
 {
-  sciSons *sons, *lastsons;
+  sciSons *sons, *lastsons,*stmp;
   sciPointObj *pobj;
   int i;
-  long xtmp;
   sciPointObj *psubwin;
   sciSubWindow *ppsubwin;
   sciAgreg     *ppagr;
@@ -14256,7 +14261,7 @@ ConstructAgregationSeq (int number)
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   ppsubwin=pSUBWIN_FEATURE(psubwin);
 
-  /* initialize the agregation data structure */
+  /* initialize the A agregation data structure */
   if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
     return (sciPointObj *) NULL;
 
@@ -14272,34 +14277,86 @@ ConstructAgregationSeq (int number)
       return (sciPointObj *) NULL;
     }
 
-  
   sons=ppsubwin->relationship.psons;
+  /* check if s1 predecessor is null*/
+  if (sons->pprev != (sciSons *)NULL) {
+    sciprint("Unexpected case, please report\n");
+    free(pobj->pfeatures);free(pobj);
+    return (sciPointObj *) NULL;
+  }
+
+  /* change parent of all sons s1,...,sn*/
   lastsons=sons;
+
+  /* debug 
+     sciprint("debut\n");
+  end debug */
+
   for (i=0;i<number;i++) {
+    /* debug 
+       sciprint("%8x %8x %8x  |  %8x\n",lastsons->pprev,lastsons->pointobj,lastsons->pnext,
+	     sciGetRelationship (lastsons->pointobj)->pparent);
+    end debug */
     (sciGetRelationship (lastsons->pointobj))->pparent=pobj ;
     lastsons=lastsons->pnext;
   }
+  /* debug 
+  sciprint("\n%8x %8x %8x  |  %8x\n",lastsons->pprev,lastsons->pointobj,lastsons->pnext,
+	   sciGetRelationship (lastsons->pointobj)->pparent);
+  end debug */
 
+  lastsons=lastsons->pprev; /* lastsons is sn */
 
+  /* disconnect chain s1->s2->...->sn out of subwin children list */
+  ppsubwin->relationship.psons = lastsons->pnext;
+  ppsubwin->relationship.psons->pprev = (sciSons *)NULL;
   /* attach the agregation to the current subwin */
+  /* the subwin children list is now null->A->sn+1->...->null */
   if (!(sciAddThisToItsParent (pobj, (sciPointObj *)psubwin))) {
     free(pobj->pfeatures);free(pobj);
     return (sciPointObj *) NULL;
   }
   sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+ /* the subwin children list is now null->A->sn+1->...->null */
 
-  ppagr->relationship.psons = sons;
+  /* for debug
+  sciprint("subwin\n");
+  stmp=ppsubwin->relationship.psons;
+  sciprint("%8x %8x %8x  |  %8x\n",stmp->pprev,stmp->pointobj,stmp->pnext,
+	     sciGetRelationship (stmp->pointobj)->pparent);
+  stmp=stmp->pnext;
+  sciprint("%8x %8x %8x  |  %8x\n",stmp->pprev,stmp->pointobj,stmp->pnext,
+	     sciGetRelationship (stmp->pointobj)->pparent);
+  stmp=stmp->pnext;
+  if (stmp != (sciSons *)NULL)
+    sciprint("%8x %8x %8x  |  %8x\n",stmp->pprev,stmp->pointobj,stmp->pnext,
+	     sciGetRelationship (stmp->pointobj)->pparent);
+   end debug */
+  
+  /* set agregation properties*/
   ppagr->callback = (char *)NULL;
   ppagr->callbacklen = 0;
   ppagr->visible = sciGetVisibility (sciGetParentFigure(pobj));
   ppagr->isselected = TRUE;
  
-  /* re chain sons lists */
-  ppsubwin->relationship.psons->pnext = lastsons->pnext;
-
+  /* re chain A sons lists */
+  ppagr->relationship.psons = sons;
   ppagr->relationship.plastsons = lastsons;
   ppagr->relationship.plastsons->pnext = (sciSons *)NULL;
-  ppagr->relationship.psons->pprev = (sciSons *)NULL;
+  ppagr->relationship.psons->pprev = (sciSons *)NULL; /* this should do nothing*/
+  /* the agregation children list is now  null->s1->s2->...->sn->null*/
+
+  /* for debug
+  sciprint("fin\n");
+  stmp=ppagr->relationship.psons;
+  for (i=0;i<number;i++) {
+    sciprint("%8x %8x %8x  |  %8x\n",stmp->pprev,stmp->pointobj,stmp->pnext,
+	     sciGetRelationship (stmp->pointobj)->pparent);
+    (sciGetRelationship (stmp->pointobj))->pparent=pobj ;
+    stmp=stmp->pnext;
+  }
+  end debug */
+
   return (sciPointObj *)pobj;
 }
 
