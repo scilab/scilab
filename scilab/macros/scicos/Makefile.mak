@@ -32,7 +32,8 @@ MENU=	Documentation_.sci Addcolor_.sci Addnewblock_.sci Aspect_.sci \
 COMPAT= %Block_e.sci %graphics_e.sci %model_e.sci %model_e.sci \
 	%b_i_graphics.sci %s_i_graphics.sci %c_i_graphics.sci \
 	%l_i_graphics.sci %b_i_model.sci %s_i_model.sci %c_i_model.sci \
-        %l_i_model.sci %s_i_block.sci %c_i_block.sci %l_i_block.sci
+        %l_i_model.sci %s_i_block.sci %c_i_block.sci %l_i_block.sci \
+        %model_i_Block.sci %graphics_i_Block.sci
 
 CONSTRUCTORS= scicos_params.sci scicos_cpr.sci scicos_sim.sci \
 	scicos_state.sci scicos_block.sci scicos_graphics.sci \
