@@ -56,10 +56,19 @@
   <DESCRIPTION_ITEM label='Rectangle'>
   The Rectangle entity is a leaf of the graphics entities
   hierarchy. This entity defines the parameters for rectangles and
-  filled rectangles.See <LINK>rectangle_properties</LINK> for details.
+  filled rectangles. See <LINK>rectangle_properties</LINK> for details.
  </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Surface'>
+  The Surface entity is a leaf of the graphics entities
+  hierarchy. It has  sub_types Fac3d  Plot3d . This entity is still under developpement
+  and will problably evolve a lot. See <LINK>surface_properties</LINK> for details.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM label='Param3d'>
+  The Surface entity is a leaf of the graphics entities
+  hierarchy. It is a  Surface sub_type . This entity is still under developpement
+  and will problably evolve a lot. See <LINK>param3d_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Fec'>
