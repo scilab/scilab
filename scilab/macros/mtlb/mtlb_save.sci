@@ -2,6 +2,8 @@ function mtlb_save(mtlb_thefile,varargin)
 //save variable under  matlab 4.x .mat binary format files
 //see: www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
 
+warning("This function is obsolete, use savematfile instead");
+
 // Verify that all inputs are character strings
 for k=1:size(varargin)
   if type(varargin(k))<>10 then
