@@ -25,6 +25,7 @@ function libn=ilib_compile(lib_name,makename,files)
     unix_s(make_command+makename + ' '+ files(i)); 
   end
   // then the shared library 
+  write(%io(2),'   building shared library (be patient)');
   unix_s(make_command+makename + ' '+ lib_name); 
   // a revoir 
   libn=path+lib_name_make ; 
