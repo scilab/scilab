@@ -11987,6 +11987,16 @@ echo $ECHO_N "checking for tk library tk$TK_MAJOR_VERSION.$TK_MINOR_VERSION... $
 dirs="$USER_TK_LIB_PATH /lib /usr/lib /usr/lib/tk /usr/lib/tk8.* /shlib /shlib/tk /shlib/tk8.* /usr/shlib /shlib/tk /usr/shlib/tk8.* /usr/local/lib /usr/local/lib/tk /usr/local/lib/tk8.* /usr/local/shlib /usr/X11/lib/tk /usr/X11/lib/tk8.*  /usr/lib/X11 /usr/lib/X11/tk /usr/lib/X11/tk8.* ../lib ../../lib /usr/tk /usr/local/tk /usr/local/tk/lib /usr/tk/lib /usr/local/tcl /usr/tcl /usr/local/tcl/lib /usr/tcl/lib /sw/lib "
 libexts="so so.1.0 sl dylib a"
 libnames="tk$CHK_TK_MAJ.$CHK_TK_MIN tk.$CHK_TK_MAJ.$CHK_TK_MIN tk$CHK_TK_MAJ$CHK_TK_MIN tk.$CHK_TK_MAJ$CHK_TK_MIN"
+
+TK_PLUS=
+
+case $host in
+  darwin*)
+	TK_PLUS="-L${X11BASE}/lib -lX11"
+  ;;
+esac
+echo POOOO $TK_PLUS
+
 for e in $libexts; do
 	for j in $dirs; do
 		for n in $libnames; do
@@ -11995,7 +12005,7 @@ for e in $libexts; do
 				PATH_LIB_TK=$j
 				EXT_LIB_TK=$e
 				NAME_LIB_TK=$n
-				echo "$as_me:11998: result: found $m using -L$PATH_LIB_TK -l$NAME_LIB_TK" >&5
+				echo "$as_me:12008: result: found $m using -L$PATH_LIB_TK -l$NAME_LIB_TK" >&5
 echo "${ECHO_T}found $m using -L$PATH_LIB_TK -l$NAME_LIB_TK" >&6
 				saved_cflags="$CFLAGS"
 				saved_ldflags="$LDFLAGS"
@@ -12007,7 +12017,7 @@ echo "${ECHO_T}found $m using -L$PATH_LIB_TK -l$NAME_LIB_TK" >&6
 				# Check for Tcl lib
 				if test "$USER_TK_LIB_PATH" = ""
 				then as_ac_Lib=`echo "ac_cv_lib_$NAME_LIB_TK''_Tk_BindEvent" | $as_tr_sh`
-echo "$as_me:12010: checking for Tk_BindEvent in -l$NAME_LIB_TK" >&5
+echo "$as_me:12020: checking for Tk_BindEvent in -l$NAME_LIB_TK" >&5
 echo $ECHO_N "checking for Tk_BindEvent in -l$NAME_LIB_TK... $ECHO_C" >&6
 if eval "test \"\${$as_ac_Lib+set}\" = set"; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
@@ -12015,7 +12025,7 @@ else
   ac_check_lib_save_LIBS=$LIBS
 LIBS="-l$NAME_LIB_TK  -L$PATH_LIB_TK -l$NAME_LIB_TK $TK_LDFLAGS $LIBS"
 cat >conftest.$ac_ext <<_ACEOF
-#line 12018 "configure"
+#line 12028 "configure"
 #include "confdefs.h"
 
 /* Override any gcc2 internal prototype to avoid an error.  */
@@ -12034,16 +12044,16 @@ Tk_BindEvent ();
 }
 _ACEOF
 rm -f conftest.$ac_objext conftest$ac_exeext
-if { (eval echo "$as_me:12037: \"$ac_link\"") >&5
+if { (eval echo "$as_me:12047: \"$ac_link\"") >&5
   (eval $ac_link) 2>&5
   ac_status=$?
-  echo "$as_me:12040: \$? = $ac_status" >&5
+  echo "$as_me:12050: \$? = $ac_status" >&5
   (exit $ac_status); } &&
          { ac_try='test -s conftest$ac_exeext'
-  { (eval echo "$as_me:12043: \"$ac_try\"") >&5
+  { (eval echo "$as_me:12053: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
-  echo "$as_me:12046: \$? = $ac_status" >&5
+  echo "$as_me:12056: \$? = $ac_status" >&5
   (exit $ac_status); }; }; then
   eval "$as_ac_Lib=yes"
 else
@@ -12054,7 +12064,7 @@ fi
 rm -f conftest.$ac_objext conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-echo "$as_me:12057: result: `eval echo '${'$as_ac_Lib'}'`" >&5
+echo "$as_me:12067: result: `eval echo '${'$as_ac_Lib'}'`" >&5
 echo "${ECHO_T}`eval echo '${'$as_ac_Lib'}'`" >&6
 if test `eval echo '${'$as_ac_Lib'}'` = yes; then
   TK_LIB_OK=1
@@ -12063,7 +12073,7 @@ else
 fi
 
 				else as_ac_Lib=`echo "ac_cv_lib_$NAME_LIB_TK''_Tk_BindEvent" | $as_tr_sh`
-echo "$as_me:12066: checking for Tk_BindEvent in -l$NAME_LIB_TK" >&5
+echo "$as_me:12076: checking for Tk_BindEvent in -l$NAME_LIB_TK" >&5
 echo $ECHO_N "checking for Tk_BindEvent in -l$NAME_LIB_TK... $ECHO_C" >&6
 if eval "test \"\${$as_ac_Lib+set}\" = set"; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
@@ -12071,7 +12081,7 @@ else
   ac_check_lib_save_LIBS=$LIBS
 LIBS="-l$NAME_LIB_TK  -L$USER_TK_LIB_PATH -l$NAME_LIB_TK $TK_LDFLAGS $LIBS"
 cat >conftest.$ac_ext <<_ACEOF
-#line 12074 "configure"
+#line 12084 "configure"
 #include "confdefs.h"
 
 /* Override any gcc2 internal prototype to avoid an error.  */
@@ -12090,16 +12100,16 @@ Tk_BindEvent ();
 }
 _ACEOF
 rm -f conftest.$ac_objext conftest$ac_exeext
-if { (eval echo "$as_me:12093: \"$ac_link\"") >&5
+if { (eval echo "$as_me:12103: \"$ac_link\"") >&5
   (eval $ac_link) 2>&5
   ac_status=$?
-  echo "$as_me:12096: \$? = $ac_status" >&5
+  echo "$as_me:12106: \$? = $ac_status" >&5
   (exit $ac_status); } &&
          { ac_try='test -s conftest$ac_exeext'
-  { (eval echo "$as_me:12099: \"$ac_try\"") >&5
+  { (eval echo "$as_me:12109: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
-  echo "$as_me:12102: \$? = $ac_status" >&5
+  echo "$as_me:12112: \$? = $ac_status" >&5
   (exit $ac_status); }; }; then
   eval "$as_ac_Lib=yes"
 else
@@ -12110,7 +12120,7 @@ fi
 rm -f conftest.$ac_objext conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-echo "$as_me:12113: result: `eval echo '${'$as_ac_Lib'}'`" >&5
+echo "$as_me:12123: result: `eval echo '${'$as_ac_Lib'}'`" >&5
 echo "${ECHO_T}`eval echo '${'$as_ac_Lib'}'`" >&6
 if test `eval echo '${'$as_ac_Lib'}'` = yes; then
   TK_LIB_OK=1
@@ -12143,7 +12153,7 @@ done
   done
 
   if test $TK_LIB_OK = 0; then
-        { { echo "$as_me:12146: error: tk library not found" >&5
+        { { echo "$as_me:12156: error: tk library not found" >&5
 echo "$as_me: error: tk library not found" >&2;}
    { (exit 1); exit 1; }; }
   else
@@ -12160,7 +12170,7 @@ EOF
   TKSCILIB="\$(SCIDIR)/libs/tksci.a"
   TKSCIDIR=tksci
 else
-  { { echo "$as_me:12163: error: TCL/TK not found. Use --without-tk" >&5
+  { { echo "$as_me:12173: error: TCL/TK not found. Use --without-tk" >&5
 echo "$as_me: error: TCL/TK not found. Use --without-tk" >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -12283,7 +12293,7 @@ DEFS=-DHAVE_CONFIG_H
 : ${CONFIG_STATUS=./config.status}
 ac_clean_files_save=$ac_clean_files
 ac_clean_files="$ac_clean_files $CONFIG_STATUS"
-{ echo "$as_me:12286: creating $CONFIG_STATUS" >&5
+{ echo "$as_me:12296: creating $CONFIG_STATUS" >&5
 echo "$as_me: creating $CONFIG_STATUS" >&6;}
 cat >$CONFIG_STATUS <<_ACEOF
 #! $SHELL
@@ -12455,7 +12465,7 @@ cat >>$CONFIG_STATUS <<\EOF
     echo "$ac_cs_version"; exit 0 ;;
   --he | --h)
     # Conflict between --help and --header
-    { { echo "$as_me:12458: error: ambiguous option: $1
+    { { echo "$as_me:12468: error: ambiguous option: $1
 Try \`$0 --help' for more information." >&5
 echo "$as_me: error: ambiguous option: $1
 Try \`$0 --help' for more information." >&2;}
@@ -12474,7 +12484,7 @@ Try \`$0 --help' for more information." >&2;}
     ac_need_defaults=false;;
 
   # This is an error.
-  -*) { { echo "$as_me:12477: error: unrecognized option: $1
+  -*) { { echo "$as_me:12487: error: unrecognized option: $1
 Try \`$0 --help' for more information." >&5
 echo "$as_me: error: unrecognized option: $1
 Try \`$0 --help' for more information." >&2;}
@@ -12536,7 +12546,7 @@ do
   "imp/Makefile" ) CONFIG_FILES="$CONFIG_FILES imp/Makefile" ;;
   "routines/gtksci/Makefile" ) CONFIG_FILES="$CONFIG_FILES routines/gtksci/Makefile" ;;
   "routines/machine.h" ) CONFIG_HEADERS="$CONFIG_HEADERS routines/machine.h" ;;
-  *) { { echo "$as_me:12539: error: invalid argument: $ac_config_target" >&5
+  *) { { echo "$as_me:12549: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
    { (exit 1); exit 1; }; };;
   esac
@@ -12839,7 +12849,7 @@ done; }
   esac
 
   if test x"$ac_file" != x-; then
-    { echo "$as_me:12842: creating $ac_file" >&5
+    { echo "$as_me:12852: creating $ac_file" >&5
 echo "$as_me: creating $ac_file" >&6;}
     rm -f "$ac_file"
   fi
@@ -12857,7 +12867,7 @@ echo "$as_me: creating $ac_file" >&6;}
       -) echo $tmp/stdin ;;
       [\\/$]*)
          # Absolute (can't be DOS-style, as IFS=:)
-         test -f "$f" || { { echo "$as_me:12860: error: cannot find input file: $f" >&5
+         test -f "$f" || { { echo "$as_me:12870: error: cannot find input file: $f" >&5
 echo "$as_me: error: cannot find input file: $f" >&2;}
    { (exit 1); exit 1; }; }
          echo $f;;
@@ -12870,7 +12880,7 @@ echo "$as_me: error: cannot find input file: $f" >&2;}
            echo $srcdir/$f
          else
            # /dev/null tree
-           { { echo "$as_me:12873: error: cannot find input file: $f" >&5
+           { { echo "$as_me:12883: error: cannot find input file: $f" >&5
 echo "$as_me: error: cannot find input file: $f" >&2;}
    { (exit 1); exit 1; }; }
          fi;;
@@ -12930,7 +12940,7 @@ for ac_file in : $CONFIG_HEADERS; do test "x$ac_file" = x: && continue
   * )   ac_file_in=$ac_file.in ;;
   esac
 
-  test x"$ac_file" != x- && { echo "$as_me:12933: creating $ac_file" >&5
+  test x"$ac_file" != x- && { echo "$as_me:12943: creating $ac_file" >&5
 echo "$as_me: creating $ac_file" >&6;}
 
   # First look for the input files in the build tree, otherwise in the
@@ -12941,7 +12951,7 @@ echo "$as_me: creating $ac_file" >&6;}
       -) echo $tmp/stdin ;;
       [\\/$]*)
          # Absolute (can't be DOS-style, as IFS=:)
-         test -f "$f" || { { echo "$as_me:12944: error: cannot find input file: $f" >&5
+         test -f "$f" || { { echo "$as_me:12954: error: cannot find input file: $f" >&5
 echo "$as_me: error: cannot find input file: $f" >&2;}
    { (exit 1); exit 1; }; }
          echo $f;;
@@ -12954,7 +12964,7 @@ echo "$as_me: error: cannot find input file: $f" >&2;}
            echo $srcdir/$f
          else
            # /dev/null tree
-           { { echo "$as_me:12957: error: cannot find input file: $f" >&5
+           { { echo "$as_me:12967: error: cannot find input file: $f" >&5
 echo "$as_me: error: cannot find input file: $f" >&2;}
    { (exit 1); exit 1; }; }
          fi;;
@@ -13071,7 +13081,7 @@ cat >>$CONFIG_STATUS <<\EOF
   rm -f $tmp/in
   if test x"$ac_file" != x-; then
     if cmp -s $ac_file $tmp/config.h 2>/dev/null; then
-      { echo "$as_me:13074: $ac_file is unchanged" >&5
+      { echo "$as_me:13084: $ac_file is unchanged" >&5
 echo "$as_me: $ac_file is unchanged" >&6;}
     else
       ac_dir=`$as_expr X"$ac_file" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
