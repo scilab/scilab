@@ -6589,7 +6589,7 @@ int glue(fname,fname_len)
   integer numrow,numcol,l1 ;
   unsigned long hdl, parenthdl;
   long *handelsvalue;
-  int m,n,outindex,i;
+  int outindex,i;
   sciPointObj *pobj;
 
   CheckRhs(1,1);
@@ -6679,7 +6679,7 @@ int drawnow(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 { 
-     sciPointObj *subwin, *tmpsubwin;
+     sciPointObj *subwin;
      integer m,n,l,i;
  
   C2F(sciwin)(); 
@@ -6689,8 +6689,7 @@ int drawnow(fname,fname_len)
   if (version_flag() == 0)
     {
       if (Rhs <= 0) {
-	tmpsubwin = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()); 
-	sciSetVisibility (tmpsubwin, TRUE);  
+	sciSetVisibility (sciGetCurrentFigure (), TRUE);  
 	sciDrawObj(sciGetCurrentFigure ());
 	LhsVar(1) = 0;
 	return 0;}
@@ -6739,9 +6738,10 @@ int drawlater(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {  
+  
   C2F(sciwin)(); 
-  CheckRhs(-1,0); 
-  sciSetVisibility(sciGetSelectedSubWin(sciGetCurrentFigure()), FALSE); 
+  CheckRhs(-1,0);
+  pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->visible =FALSE; 
   LhsVar(1) = 0;
   return 0;
 }
