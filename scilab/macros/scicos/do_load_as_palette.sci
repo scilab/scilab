@@ -18,7 +18,7 @@ function [palettes,windows]=do_load_as_palette(palettes,windows)
   //
   xset('window',curwin),xselect();
   xset('alufunction',3)
-  set_background()
+
   if pixmap then xset('pixmap',1),end,xbasc();
   rect=dig_bound(scs_m);
 
@@ -42,13 +42,16 @@ function [palettes,windows]=do_load_as_palette(palettes,windows)
   w=%zoom*%wsiz(1)
 
   if ~MSDOS then h1=h+50,else h1=h,end
-  xset('wresize',0)
+  xset('wresize',1)
   xset('wpdim',w,h1)
   xset('wdim',w,h)
 
   xsetech(wrect=[0 0 1 1],frect=rect,arect=[1 1 1 1]/32)
-
-  options=default_options()
+  if ~set_cmap(palettes(kpal).props.options('Cmap')) then 
+    palettes(kpal).props.options('3D')(1)=%f //disable 3D block shape 
+  end
+  options=palettes(kpal).props.options
+  set_background()
   drawobjs(palettes(kpal))
   if pixmap then xset('wshow'),end
   xinfo('Palette: may be used to copy  blocks or regions')

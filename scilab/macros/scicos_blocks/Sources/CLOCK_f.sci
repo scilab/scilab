@@ -84,7 +84,7 @@ case 'set' then
 	       'yy=[orig(2)+ry    orig(2)+ry ;';
 	       '  orig(2)+1.8*ry  orig(2)+ry+0.6*ry*sin(%pi/6)];';
 	       'xsegs(xx,yy,scs_color(10));';
-	       'xset(''thickness'',thick);'],[])
+	       'xset(''thickness'',thick);'],8)
     diagram=scicos_diagram();
       diagram.objs(1)=output_port   
       diagram.objs(2)=evtdly

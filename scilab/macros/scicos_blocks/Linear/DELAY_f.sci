@@ -125,7 +125,8 @@ case 'define' then
   x=scicos_block()
     x.gui='DELAY_f'
     x.graphics.sz=[2,2]
-    x.graphics.gr_i='xstringb(orig(1),orig(2),''Delay'',sz(1),sz(2),''fill'')'
+    x.graphics.gr_i=list('xstringb(orig(1),orig(2),''Delay'',sz(1),s"+...
+			 " z(2),''fill'')',8)
     x.model.sim='csuper'
     x.model.in=1
     x.model.out=1

@@ -10,7 +10,8 @@ case 'getoutputs' then
   [x,y,typ]=standard_outputs(arg1)
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
-case 'set' then
+ case 'set' then
+  x=arg1
 case 'define' then
   andlog=ANDLOG_f('define')
     andlog.graphics.orig=[194,133]
@@ -79,7 +80,8 @@ case 'define' then
   x=scicos_block()
     x.gui='ANDBLK'
     x.graphics.sz=[2,2]
-    x.graphics.gr_i='xstringb(orig(1),orig(2),''ANDBLK'',sz(1),sz(2),''fill'')';
+    x.graphics.gr_i=list('xstringb(orig(1),orig(2),''ANDBLK'',sz(1),s"+...
+			 " z(2),''fill'')',8)
     x.model.sim='csuper'
     x.model.evtin=[1;1]
     x.model.evtout=1

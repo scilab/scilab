@@ -15,6 +15,9 @@ function o=standard_define(sz,model,label,gr_i)
 
   ncout=size(model.evtout,1);
   if ncout>0 then peout(ncout,1)=0,else peout=[],end
+  
+  if type(gr_i)<>15 then gr_i=list(gr_i,8),end
+  if gr_i(2)==[] then gr_i(2)=8,end
 
   graphics=scicos_graphics(sz=sz,pin=pin,pout=pout,pein=pein,peout=peout, ...
 			   gr_i=gr_i,exprs=label) 

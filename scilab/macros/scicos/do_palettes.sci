@@ -63,7 +63,7 @@ end
   w=%zoom*%wsiz(1)
 
   if ~MSDOS then h1=h+50,else h1=h,end
-  xset('wresize',0)
+  xset('wresize',1)
   xset('wpdim',w,h1)
   xset('wdim',w,h)
 
@@ -77,8 +77,11 @@ end
   if u<>[] then file('close',u);end
 
   if ierr<>0 then
-    options=default_options()
+    options=palettes(kpal).props.options
     set_background()
+    if ~set_cmap(palettes(kpal).props.options('Cmap')) then 
+	palettes(kpal).props.options('3D')(1)=%f //disable 3D block shape 
+    end
     drawobjs(palettes(kpal))
     if pixmap then xset('wshow'),end
 
