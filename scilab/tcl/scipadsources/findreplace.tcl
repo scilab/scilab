@@ -1,6 +1,6 @@
 proc FindIt {w} {
     global SearchString SearchPos SearchDir findcase regexpcase
-    global pad SearchEnd SearchPosI
+    global pad SearchEnd SearchPosI find
     set textareacur [gettextareacur]
     if {[winfo exists $w]} {
         set pw $w
@@ -36,7 +36,9 @@ proc FindIt {w} {
             $textareacur mark set insert $SearchPos
             $textareacur tag remove foundtext 0.0 end
             $textareacur tag add foundtext $SearchPos  "$SearchPos + $len char"
-            MoveDialogIfFoundHidden
+            if {[winfo exists $find]} {
+                MoveDialogIfFoundHidden
+            }
             if {$SearchDir == "forwards"} {
                 set SearchPos "$SearchPos + $len char"
             }         
