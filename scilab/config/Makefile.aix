@@ -15,7 +15,7 @@ bin/scilex: scilex-lib
 		$(RM) /tmp/scilex-1;\
 		$(LLD) $(DEFAULTS) $(LIBR) $(LD_LDFLAGS) $(TCLTK_LIBS) \
 			$(XLIBS) $(TERMCAPLIB) $(LLDLF);\
-		(echo "#!$(SCIDIR)/bin/scilex"; /usr/bin/nm -p -gp /tmp/scilex-1\
+		(echo "#!$(SCIDIR)/bin/scilex"; /usr/bin/nm -B -gp /tmp/scilex-1\
 			| sed -n -e '/.* T \./s///p' -e '/.* [DB] /s///p' \
 			| sort -u) > bin/scilex.exp ;\
 		$(RM) /tmp/scilex-1 ;\

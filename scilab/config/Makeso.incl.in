@@ -64,7 +64,8 @@ distclean:: clean
 tests	: $(LIBRARY_NAME).dia
 
 $(LIBRARY_NAME).dia	: $(LIBRARY_NAME).la $(LIBRARY_NAME).tst
-	@$(SCIDIR)/util/scidem $(SCIDIR) $(LIBRARY_NAME).tst $(LIBRARY_NAME).dia
+	@$(SCIDIR)/bin/scilab -nw -e "scitest(\"$(LIBRARY_NAME).tst\");quit;"
+
 
 .c.o:
 	@echo "compiling $<"
