@@ -88,6 +88,7 @@ int intqr(fname)
 	Scierror(999,"%s: Invalid input! \r\n",fname);
 	break;
       }
+      break;
     default:
       Scierror(999,"%s: Invalid input! \r\n",fname);
       break;
