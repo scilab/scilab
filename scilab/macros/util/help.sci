@@ -89,11 +89,10 @@ function browsehelp(path,key)
 	     'opera'
 	     'quanta (kde)'];
  
-  // add tcltk if scilab was compiled with tcl/tk
   if with_tk() then browse_modes=[browse_modes;'tcltk'];end
-  // ajout Matthieu PHILIPPE 10/01/2003
+
   if with_gtk() then browse_modes=['help widget';browse_modes];end
-  ////////////// 
+
   [lhs,rhs]=argn(0);
  
   // ask for an help mode
@@ -103,36 +102,28 @@ function browsehelp(path,key)
     else
        %browsehelp= gtk_help_ask(browse_modes);
     end
-  // ajout Matthieu PHILIPPE 10/01/2003
   else // without gtk
     if %browsehelp<>[] then
       help_mode = %browsehelp;
     else
-      %browsehelp=browse_modes(x_choose(browse_modes,['Choose the help browser';'you want to use';
-		   'use %browsehelp=[] to reset your choice']));
+      %browsehelp=browse_modes(x_choose(browse_modes,[
+	  'Choose the help browser you want to use';
+	  'use %browsehelp=[] to reset your choice']));
     end
-    //////////////////////
   end
+  
   if rhs==0 then
     path=INDEX
     key="index"
   end
-  if or(sciargs()=="-nw") then
-    // the no window case
+  if or(sciargs()=="-nw") then // the no window case
     if  with_gtk () then
       run_help(path,key);
     else
        write(%io(2),mgetl(path))
     end
   else
-     if with_gtk() then
-       run_help(path,key);
-     elseif  with_tk()  then
-	run_help(path,key);// tcltk_help(path,key);
-     else
-	run_help(path,key);
-	//error(999,'I cannot browse help files');
-     end
+    run_help(path,key)
   end
 endfunction
 
@@ -181,7 +172,11 @@ function run_help(path,key)
    case 'quanta' then
     unix_s(%browsehelp + " --unique file://" +path+ '&');
    case 'browsehelp' then
-    unix_s(SCI+'tcl/'+%browsehelp + " " +path+ '&');
+    if MSDOS
+      unix(strsubst(SCI,'/','\')+'\tcl\browsehelpexe.exe ' +path+ '&');
+    else
+      unix(SCI+'/tcl/browsehelpexe ' +path+ '&');
+    end
    case 'tcltk' then 
     tcltk_help(path,key);
   else
