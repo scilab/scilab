@@ -113,7 +113,7 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
   end
   
   switch_to_old_graphics_style()
-  
+
   if needstart then //scicos initialisation
     if alreadyran then
       [alreadyran,%cpr]=do_terminate1(scs_m,%cpr)
@@ -134,7 +134,7 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
       error(['Initialisation problem:'])
     end
   end
-  
+
   ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
 	       '''run'',tolerances)','errcatch')
 
@@ -158,7 +158,10 @@ endfunction
 function restore_graphics_style()
   global bak
   if Ignore==[] then
+    gg=xget('window')  // for bug in figure_style and winsid
+    xset('window',0) // for bug in figure_style and winsid
     set('figure_style',bak)
+    xset('window',gg) // for bug in figure_style and winsid
   end
 endfunction
 
