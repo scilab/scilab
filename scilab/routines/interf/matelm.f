@@ -652,7 +652,9 @@ c     .    max
          endif
          top=topk-rhs+lhs            
 c     ----- general maxi or mini 
-      else if ( type(1:1).eq.'g') then 
+      else if ( type(1:1).eq.'g'.or.type(1:1).eq.'*') then 
+         if (rhs.eq.2) topk=top
+
          x1=stk(lr1)
          k=1
          if(fin.eq.17) then 
