@@ -25,7 +25,6 @@ int gw_graphic_export(void);
 #include "sci_xs2ppm.h"
 #include "sci_xs2emf.h"
 #include "sci_xs2gif.h"
-#include "sci_xs2fig.h"
 #include "sci_xg2ps.h"
 #include "sci_xs2jpg.h"
 #include "sci_xs2png.h"

@@ -23,7 +23,6 @@ src/c/gl2ps/gl2ps.c
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_export.c \
 sci_gateway/c/sci_xs2bmp.c \
 sci_gateway/c/sci_xs2emf.c \
-sci_gateway/c/sci_xs2fig.c \
 sci_gateway/c/sci_xs2gif.c \
 sci_gateway/c/sci_xs2ppm.c \
 sci_gateway/c/sci_xs2ps.c \
@@ -99,7 +98,6 @@ includes/xs2file.h \
 includes/sci_xs2emf.h \
 includes/sci_xs2bmp.h \
 includes/sci_xs2ps.h \
-includes/sci_xs2fig.h \
 includes/sci_xg2ps.h \
 includes/sci_xs2eps.h \
 includes/sci_xs2jpg.h \

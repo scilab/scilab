@@ -31,8 +31,7 @@ static gw_generic_table Tab[]=
   {sci_xs2pdf,"xs2pdf"},
   {sci_xs2svg,"xs2svg"},
   {sci_xs2ps,"xs2ps"},
-  {sci_xs2emf,"xs2emf"},
-  {sci_xs2fig,"xs2fig"},  
+  {sci_xs2emf,"xs2emf"}, 
   {sci_xg2ps,"xg2ps"}
 };
 /*--------------------------------------------------------------------------*/

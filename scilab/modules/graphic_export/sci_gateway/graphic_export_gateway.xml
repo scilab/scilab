@@ -39,8 +39,7 @@
   <PRIMITIVE gatewayId="57" primitiveId="8" primitiveName="xs2svg" />
   <PRIMITIVE gatewayId="57" primitiveId="9" primitiveName="xs2ps" />
   <PRIMITIVE gatewayId="57" primitiveId="10" primitiveName="xs2emf" />
-  <PRIMITIVE gatewayId="57" primitiveId="11" primitiveName="xs2fig" />
-  <PRIMITIVE gatewayId="57" primitiveId="12" primitiveName="xg2ps" />
+  <PRIMITIVE gatewayId="57" primitiveId="11" primitiveName="xg2ps" />
 
 
 
