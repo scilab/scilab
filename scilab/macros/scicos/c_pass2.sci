@@ -39,7 +39,7 @@ if bllst==list() then
   return
 end
 
-
+if exists('%scicos_solver')==0 then %scicos_solver=0,end
 
 clkptr=1,cliptr=1,typ_l=[],dep_ut=[]
 nblk=size(bllst)
@@ -98,11 +98,11 @@ if ~ok then
 end
 
 
-if ~or(typ_x) & or(typ_z) then
-  message(['For using treshold, you need to have'
-      'a continuous system with state in your diagram.';
+if ~or(typ_x) & or(typ_z) & %scicos_solver<>100 then
+  message(['For using treshold with explicit solver (0),';
+	   'you need a block with continuous-time state in your diagram.';
       'You can include DUMMY CLSS block (linear palette)'
-      'in your diagram.']);
+      'in your diagram, or switch to implicit solver (100).']);
   cpr=list()
   ok=%f;
   return
@@ -166,7 +166,7 @@ if show_trace then disp('c_pass61:'+string(timer())),end
 statetp=['xcs','x','z','iz','tevts','evtspt','pointi','outtb']
 outtb=0*ones(lnkptr($)-1,1)
 iz0=[]
-if exists('%scicos_solver')==0 then %scicos_solver=0,end
+
 if max(funtyp)>10000 &%scicos_solver==0 then
   message(['Diagram contains implicit blocks,'
 	   'compiling for implicit Solver'])
