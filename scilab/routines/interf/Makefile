@@ -5,9 +5,9 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/interf.a
 
-OBJSC = Interf.o ctest.o  cs2st.o getdate.o stack1.o stack2.o stack3.o intlapack.o intslicot.o
+OBJSC = Interf.o ctest.o  cs2st.o getdate.o stack1.o stack2.o stack3.o intlapack.o intslicot.o matdes.o
 
-OBJSF = lstelm.o lstelmi.o  matdes.o matdsc.o matdsr.o matelm.o\
+OBJSF = lstelm.o lstelmi.o matdsc.o matdsr.o matelm.o\
 	lstops.o intl_e.o intl_i.o \
 	matio.o intdeff.o intdiary.o intdisp.o intexec.o intexecstr.o intgetf.o \
 	intgetpid.o inthost.o intlib.o intprint.o intrat.o intread.o intread4b.o \
@@ -22,7 +22,7 @@ OBJSF = lstelm.o lstelmi.o  matdes.o matdsc.o matdsr.o matelm.o\
 	intg.o int2d.o int3d.o feval.o bva.o comm.o specfun.o\
 	isany.o \
 	followpath.o newsave.o insertfield.o v2unit.o v2cunit.o \
-	hmcreate.o
+	hmcreate.o intdzgeqpf.o
 
 
 include ../../Makefile.incl
