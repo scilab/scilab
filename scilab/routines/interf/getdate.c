@@ -48,39 +48,7 @@ void C2F(convertdate)(dt,w)
      int w[];
      time_t *dt;
 {
-	struct tm *nowstruct=NULL;
-
-  /* Is setlocale useful?
-     (void) setlocale(LC_ALL, ""); */
-
-	nowstruct = localtime(dt);
-	if (nowstruct)
-	{
-		w[0] = 1900 + nowstruct->tm_year;
-		w[1] = 1    + nowstruct->tm_mon;
-		w[2] = week_number(nowstruct);
-		w[3] = 1    + nowstruct->tm_yday;
-		w[4] = 1    + nowstruct->tm_wday;
-		w[5] =        nowstruct->tm_mday;
-		w[6] =        nowstruct->tm_hour;
-		w[7] =        nowstruct->tm_min;
-		w[8] =        nowstruct->tm_sec;
-                if (ChronoFlag)
-		  {
-                        #if WIN32
-			w[9] = timebufferW.millitm;
-			#else
-			w[9] = timebufferU.tv_usec / 1000;  /* micro to ms */
-			#endif
-			ChronoFlag=0;
-		  }
-		else
-		  {
-		    w[9] = 0;
-		  }
-		
-	}
-	else
+	if (*dt<0)
 	{
 		w[0] = 0;
 		w[1] = 0;
@@ -93,6 +61,36 @@ void C2F(convertdate)(dt,w)
 		w[8] = 0;
 		w[9] = 0;
 		sciprint("dt=getdate(x) x must be >0.\n");
+	}
+	else
+	{
+		struct tm *nowstruct=NULL;
+		nowstruct = localtime(dt);
+		if (nowstruct)
+		{
+			w[0] = 1900 + nowstruct->tm_year;
+			w[1] = 1    + nowstruct->tm_mon;
+			w[2] = week_number(nowstruct);
+			w[3] = 1    + nowstruct->tm_yday;
+			w[4] = 1    + nowstruct->tm_wday;
+			w[5] =        nowstruct->tm_mday;
+			w[6] =        nowstruct->tm_hour;
+			w[7] =        nowstruct->tm_min;
+			w[8] =        nowstruct->tm_sec;
+            if (ChronoFlag)
+			{
+             #if WIN32
+				w[9] = timebufferW.millitm;
+			 #else
+				w[9] = timebufferU.tv_usec / 1000;  /* micro to ms */
+			 #endif
+			 ChronoFlag=0;
+			}
+			else
+			{
+				w[9] = 0;
+			}
+		}
 	}
 }
 
