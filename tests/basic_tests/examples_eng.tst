@@ -4519,7 +4519,8 @@ clear;lines(0);
    a.data_bounds=[-100,100,-2,2,-1,1]; //set the boundary values for the x, y and z coordinates.
    a.sub_tics=[5,0];
    a.labels_font_color=5;
-   a.grid=2;
+   // Modified by F.Leray on 16.02.04 a.grid=2;
+   a.grid=[2 2];
    a.box="off";
    // Example with 3D axes
    xbasc(); //clear the graphics window
