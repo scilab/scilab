@@ -32,7 +32,7 @@ case 'set' then
         'direct feedthrough (y or n)';                                       
         'time dependence (y or n)'],..
          list('str',1,'vec',1,'vec',-1,'vec',-1,'vec',-1,'vec',-1,..
-         'vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec','sum(x6)',..
+         'vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec','sum(%6)',..
          'str',1,'str',1),label)
     if ~ok then break,end
     label=lab

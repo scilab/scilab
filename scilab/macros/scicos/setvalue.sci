@@ -1,7 +1,7 @@
-function [ok,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,x16,x17,x18]=setvalue(desc,labels,typ,ini)
+function [ok,%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11,%12,%13,%14,%15,%16,%17,%18]=setvalue(%desc,%lables,%typ,%ini)
 if %scicos_prob==%t then 
 	ok=%f
-        [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,x16,x17,x18]=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+        [%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11,%12,%13,%14,%15,%16,%17,%18]=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 return;end
 //  setvalues -  data acquisition, getvalue equivalent without dialog
 //%Syntax
@@ -46,142 +46,142 @@ return;end
 // x_mdialog, dialog
 //!
 // Copyright INRIA
-[lhs,rhs]=argn(0)
-%nn=prod(size(labels))
-if lhs<>%nn+2&lhs<>%nn+1 then error(41),end
-if size(typ)<>2*%nn then
+[%lhs,%rhs]=argn(0)
+%nn=prod(size(%lables))
+if %lhs<>%nn+2&%lhs<>%nn+1 then error(41),end
+if size(%typ)<>2*%nn then
   error('typ : list(''type'',[sizes],...)')
 end
-x1=[];x2=[];x3=[];x4=[];x5=[];x6=[];x7=[];x8=[];x9=[];x10=[];x11=[];x12=[];x13=[];x14=[]
-if rhs==3 then  ini=emptystr(%nn,1),end
+%1=[];%2=[];%3=[];%4=[];%5=[];%6=[];%7=[];%8=[];%9=[];%10=[];%11=[];%12=[];%13=[];%14=[]
+if %rhs==3 then  %ini=emptystr(%nn,1),end
 ok=%t
 while %t do
-  str=ini;
-  if str==[] then ok=%f,break,end
-  for k=1:%nn
-    cod=str2code(str(k))
-    spe=find(cod==99)
-    if spe<>[] then
-      semi=str2code(';')
-      cod(spe)=semi*ones(spe')
-      str(k)=code2str(cod)
+  %str=%ini;
+  if %str==[] then ok=%f,break,end
+  for %kk=1:%nn
+    %cod=str2code(%str(%kk))
+    %spe=find(%cod==99)
+    if %spe<>[] then
+      %semi=str2code(';')
+      %cod(%spe)=%semi*ones(%spe')
+      %str(%kk)=code2str(%cod)
     end
   end
-  nok=0
-  for k=1:%nn
-    select part(typ(2*k-1),1:3)
+  %noooo=0
+  for %kk=1:%nn
+    select part(%typ(2*%kk-1),1:3)
     case 'mat'
-      if execstr('v=['+str(k)+']','errcatch')<>0  then 
-	nok=-k,break,
+      if execstr('%vv=['+%str(%kk)+']','errcatch')<>0  then 
+	%noooo=-%kk,break,
       end
-      if type(v)<>1 then nok=-k,break,end
-      sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
-      [mv,nv]=size(v)
-      ssz=string(sz(1))+' x '+string(sz(2))
-      if mv*nv==0 then
-	if  sz(1)>=0&sz(2)>=0&sz(1)*sz(2)<>0 then nok=k,break,end
+      if type(%vv)<>1 then %noooo=-%kk,break,end
+      %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
+      [%mmmm,%nnnnn]=size(%vv)
+      %ssss=string(%sz(1))+' x '+string(%sz(2))
+      if %mmmm*%nnnnn==0 then
+	if  %sz(1)>=0&%sz(2)>=0&%sz(1)*%sz(2)<>0 then %noooo=%kk,break,end
       else
-	if sz(1)>=0 then if mv<>sz(1) then nok=k,break,end,end
-	if sz(2)>=0 then if nv<>sz(2) then nok=k,break,end,end
+	if %sz(1)>=0 then if %mmmm<>%sz(1) then %noooo=%kk,break,end,end
+	if %sz(2)>=0 then if %nnnnn<>%sz(2) then %noooo=%kk,break,end,end
       end
     case 'vec'
-      if execstr('v=['+str(k)+']','errcatch')<>0  then 
-	nok=-k,break,
+      if execstr('%vv=['+%str(%kk)+']','errcatch')<>0  then 
+	%noooo=-%kk,break,
       end
-      if type(v)<>1 then nok=-k,break,end
-      sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
-      ssz=string(sz(1))
-      nv=prod(size(v))
-      if sz(1)>=0 then if nv<>sz(1) then nok=k,break,end,end
+      if type(%vv)<>1 then %noooo=-%kk,break,end
+      %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
+      %ssss=string(%sz(1))
+      %nnnnn=prod(size(%vv))
+      if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
     case 'pol'
-      if execstr('v=['+str(k)+']','errcatch')<>0  then 
-	nok=-k,break,
+      if execstr('%vv=['+%str(%kk)+']','errcatch')<>0  then 
+	%noooo=-%kk,break,
       end
-      if type(v)>2 then nok=-k,break,end
-      sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
-      ssz=string(sz(1))
-      nv=prod(size(v))
-      if sz(1)>=0 then if nv<>sz(1) then nok=k,break,end,end
+      if type(%vv)>2 then %noooo=-%kk,break,end
+      %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
+      %ssss=string(%sz(1))
+      %nnnnn=prod(size(%vv))
+      if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
     case 'row'
-      if execstr('v=['+str(k)+']','errcatch')<>0  then 
-	nok=-k,break,
+      if execstr('%vv=['+%str(%kk)+']','errcatch')<>0  then 
+	%noooo=-%kk,break,
       end
-      if type(v)<>1 then nok=-k,break,end
-      sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
-      if sz(1)<0 then
-	ssz='1 x *'
+      if type(%vv)<>1 then %noooo=-%kk,break,end
+      %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
+      if %sz(1)<0 then
+	%ssss='1 x *'
       else
-	ssz='1 x '+string(sz(1))
+	%ssss='1 x '+string(%sz(1))
       end
-      [mv,nv]=size(v)
-      if mv<>1 then nok=k,break,end,
-      if sz(1)>=0 then if nv<>sz(1) then nok=k,break,end,end
+      [%mmmm,%nnnnn]=size(%vv)
+      if %mmmm<>1 then %noooo=%kk,break,end,
+      if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
     case 'col'
-      if execstr('v=['+str(k)+']','errcatch')<>0  then 
-	nok=-k,break,
+      if execstr('%vv=['+%str(%kk)+']','errcatch')<>0  then 
+	%noooo=-%kk,break,
       end
-      if type(v)<>1 then nok=-k,break,end
-      sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
-      if sz(1)<0 then
-	ssz='* x 1'
+      if type(%vv)<>1 then %noooo=-%kk,break,end
+      %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
+      if %sz(1)<0 then
+	%ssss='* x 1'
       else
-	ssz=string(sz(1))+' x 1'
+	%ssss=string(%sz(1))+' x 1'
       end
-      [mv,nv]=size(v)
-      if nv<>1 then nok=k,break,end,
-      if sz(1)>=0 then if nv<>sz(1) then nok=k,break,end,end
-    case 'str'
-      v=str(k)
-      if type(v)<>10 then nok=-k,break,end
-      sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
-      ssz=string(sz(1))
-      nv=prod(size(v))
-      if sz(1)>=0 then if nv<>1 then nok=k,break,end,end
+      [%mmmm,%nnnnn]=size(%vv)
+      if %nnnnn<>1 then %noooo=%kk,break,end,
+      if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
+    case '%str'
+      %vv=%str(%kk)
+      if type(%vv)<>10 then %noooo=-%kk,break,end
+      %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
+      %ssss=string(%sz(1))
+      %nnnnn=prod(size(%vv))
+      if %sz(1)>=0 then if %nnnnn<>1 then %noooo=%kk,break,end,end
     case 'lis'
-      if execstr('v='+str(k),'errcatch')<>0  then 
-	nok=-k,break,
+      if execstr('%vv='+%str(%kk),'errcatch')<>0  then 
+	%noooo=-%kk,break,
       end    
-      if type(v)<>15& type(v)<>16 then nok=-k,break,end
-      sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
-      ssz=string(sz(1))
-      nv=size(v)
-      if sz(1)>=0 then if nv<>sz(1) then nok=k,break,end,end
+      if type(%vv)<>15& type(%vv)<>16 then %noooo=-%kk,break,end
+      %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
+      %ssss=string(%sz(1))
+      %nnnnn=size(%vv)
+      if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
     case 'r  '
-      if execstr('v=['+str(k)+']','errcatch')<>0  then 
-	nok=-k,break,
+      if execstr('%vv=['+%str(%kk)+']','errcatch')<>0  then 
+	%noooo=-%kk,break,
       end
-      if type(v)<>16 then nok=-k,break,end
-      if h(1)<>'r' then nok=-k,break,end
-      sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
-      [mv,nv]=size(v(2))
-      ssz=string(sz(1))+' x '+string(sz(2))
-      if mv*nv==0 then
-	if  sz(1)>=0&sz(2)>=0&sz(1)*sz(2)<>0 then nok=k,break,end
+      if type(%vv)<>16 then %noooo=-%kk,break,end
+      if h(1)<>'r' then %noooo=-%kk,break,end
+      %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
+      [%mmmm,%nnnnn]=size(%vv(2))
+      %ssss=string(%sz(1))+' x '+string(%sz(2))
+      if %mmmm*%nnnnn==0 then
+	if  %sz(1)>=0&%sz(2)>=0&%sz(1)*%sz(2)<>0 then %noooo=%kk,break,end
       else
-	if sz(1)>=0 then if mv<>sz(1) then nok=k,break,end,end
-	if sz(2)>=0 then if nv<>sz(2) then nok=k,break,end,end
+	if %sz(1)>=0 then if %mmmm<>%sz(1) then %noooo=%kk,break,end,end
+	if %sz(2)>=0 then if %nnnnn<>%sz(2) then %noooo=%kk,break,end,end
       end
     else
-      error('Incorrect type :'+typ(2*k-1))
+      error('Incorrect type :'+%typ(2*%kk-1))
     end
-    execstr('x'+string(k)+'=v')
+    execstr('%'+string(%kk)+'=%vv')
   end
-  if nok>0 then 
-    message(['answer given for  '+labels(nok);
+  if %noooo>0 then 
+    message(['answer given for  '+%lables(%noooo);
              'has invalid dimension: ';
-             'waiting for dimension  '+ssz])
-    ini=str
+             'waiting for dimension  '+%ssss])
+    %ini=%str
     ok=%f;break
-  elseif nok<0 then
-    message(['answer given for  '+labels(-nok);
-             'has incorrect type :'+ typ(-2*nok-1)])
-    ini=str
+  elseif %noooo<0 then
+    message(['answer given for  '+%lables(-%noooo);
+             'has incorrect type :'+ %typ(-2*%noooo-1)])
+    %ini=%str
     ok=%f;break
   else
     break
   end 
 end
-if lhs==%nn+2 then
-  execstr('x'+string(lhs-1)+'=str')
+if %lhs==%nn+2 then
+  execstr('%'+string(%lhs-1)+'=%str')
 end
 endfunction

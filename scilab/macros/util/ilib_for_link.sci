@@ -25,7 +25,7 @@ function libn=ilib_for_link(names,files,libs,flag,makename,loadername,libname,ld
 		     ldflags,cflags,fflags,cc);
   // we call make
   if info==1 then write(%io(2),'   running the makefile');end
-  if libname=="" then libname = names(1);end 
+  if libname=="" then libname = names(1);end
   libn=ilib_compile('lib'+libname,makename,files);
 endfunction
 

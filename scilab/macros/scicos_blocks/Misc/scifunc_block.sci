@@ -76,7 +76,7 @@ case 'set' then
 	  'initial firing vector (<0 for no firing)';
 	  'is block always active (0:no, 1:yes)'  ],..
 	  list('vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec',-1,..
-	  'vec',-1,'vec','sum(x4)','vec',1),exprs(1))
+	  'vec',-1,'vec','sum(%4)','vec',1),exprs(1))
     if ~ok then break,end
     exprs(1)=lab
     xx=xx(:);z=z(:);rpar=rpar(:)

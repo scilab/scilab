@@ -23,10 +23,10 @@ case 'set' then
 	'D matrix';
 	'Initial state'],..
 	 list('mat',[-1,-1],..
-	 'mat',['size(x1,2)','-1'],..
-	 'mat',['-1','size(x1,2)'],..
+	 'mat',['size(%1,2)','-1'],..
+	 'mat',['-1','size(%1,2)'],..
 	 'mat',[-1 -1],..
-	 'vec','size(x1,2)'),..
+	 'vec','size(%1,2)'),..
 	exprs)
     if ~ok then break,end
     out=size(C,1);if out==0 then out=[],end

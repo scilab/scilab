@@ -56,9 +56,9 @@ case 'set' then
     elseif swap<>0&swap<>1 then
       message('Swap mode must be 0 or 1')
     else
-      if tmask1==[] then ievt=0;tmask1=0;else ievt=1;end
+      if tmask1==[] then ievt=0;tmask1=0;outpt=[];else ievt=1;outpt=1;end
       out=size(outmask,'*')
-      [model,graphics,ok]=check_io(model,graphics,[],out,1,1)
+      [model,graphics,ok]=check_io(model,graphics,[],out,1,outpt)
       frmt1=part(frmt1,1:3);
       if ok then
 	if ievt==0 then
@@ -106,7 +106,7 @@ case 'define' then
   model.sim=list('readc',2)
   model.out=nout
   model.evtin=1
-  model.evtout=1
+  model.evtout=[]
   model.dstate=[1;1;lunit;zeros(N*M,1)]
   model.ipar=[length(fname);str2code(frmt);ievt;N;M;swap;offset;str2code(fname);
 	      tmask;outmask]

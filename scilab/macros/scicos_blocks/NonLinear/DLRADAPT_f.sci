@@ -23,8 +23,8 @@ case 'set' then
 	'past inputs (Num degree values)';
 	'past outputs (Den degree values)'],..
 	list('vec',-1,'mat',[-1,-1],'mat',..
-	['size(x1,''*'')','-1'],'vec','size(x1,''*'')',..
-	'vec','size(x2,2)','vec','size(x3,2)'),exprs)
+	['size(%1,''*'')','-1'],'vec','size(%1,''*'')',..
+	'vec','size(%2,2)','vec','size(%3,2)'),exprs)
 
 
     if ~ok then break,end

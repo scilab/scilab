@@ -25,7 +25,7 @@ case 'set' then
 	'A and B must be vector with equal sizes';
 	'seed is the seed of random number generator (integer<2**31)'],..
 	['flag';'A';'B';'seed'],..
-	list('vec',1,'vec',-1,'vec','size(x2,''*'')','vec',1),exprs)
+	list('vec',1,'vec',-1,'vec','size(%2,''*'')','vec',1),exprs)
     if ~ok then break,end
     if flag<>0&flag<>1 then
       message('flag must be equal to 1 or 0')

@@ -30,7 +30,7 @@ case 'set' then
 	'Buffer size';
         'Accept herited events 0/1'],..
 	 list('vec',-1,'vec',-1,'vec',1,'vec',-1,'vec',-1,..
-	 'vec','size(x1,''*'')','vec','size(x1,''*'')','vec',1,..
+	 'vec','size(%1,''*'')','vec','size(%1,''*'')','vec',1,..
          'vec',1,'vec',1),exprs)
     if ~ok then break,end //user cancel modification
     mess=[]
