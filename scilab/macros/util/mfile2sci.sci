@@ -83,10 +83,10 @@ if exists("Paths")==0 then
   Paths=file_path,
   if MSDOS then
     Paths=strsubst(Paths,"/","\")
-    mfiles=unix_g("dir /b "+Paths+"*.m")
+    mfiles=listfiles(Paths+"*.m")
     sep="\"
   else
-    mfiles=unix_g("ls "+Paths+"*.m")
+    mfiles=listfiles(Paths+"*.m")
     sep="/"
   end
 end
