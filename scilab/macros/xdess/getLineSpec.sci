@@ -48,7 +48,8 @@ opt1=[];
 //Marks
 Table = [ '+' 'o' '*' '.' 'x' 'square' 'diamond' '^' 'v' '>' '<' 'pentagram'];
 MarksStyleVal=[1 9 10 0 2 11 5 6 7 12 13 14];
-MarksSizeVal =[4 3 7  1 3  3 4 3 3  3  3  3];
+//MarksSizeVal =[4 3 7  1 3  3 4 3 3  3  3  3];
+//MarksSizeVal =[6 6 6  6 6  6 6 6 6  6  6  6]; // size is given in points now (25.02.05)
 
 //Colors
 Table= [Table 'red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'k' 'white']
@@ -115,7 +116,8 @@ for i=1:size(opt1,'*')
   if (opt1(i) <= 12)
     Marker = %T;
     MarkerStyle = MarksStyleVal(opt1(i));
-    MarkerSize  = MarksSizeVal (opt1(i));
+    MarkerSize  = 6; 
+//MarkerSize  = MarksSizeVal (opt1(i));
 //    disp("MarkerSize =");
 //    disp(MarkerSize);
   else

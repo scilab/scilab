@@ -89,17 +89,17 @@ for i=1:nv-1
     // With this trick, d=[1,3];
   end
 
-//  disp("i=");
-//  disp(i);
-//  disp("d vaut:");
-//  disp(d)
+  //  disp("i=");
+  //  disp(i);
+  //  disp("d vaut:");
+  //  disp(d)
 end
 
 
 if (d==[]) // No data couple found
   // Search for at least a single data , i.e.: plot(y)
-//  disp(T)
-//  disp(type(T(1,1)))
+  //  disp(T)
+  //  disp(type(T(1,1)))
 
   if (T(1,1)==1 & ListArg(1)<>[]) then // case plot(SINGLE y,...)
     d = 1; 
@@ -116,11 +116,11 @@ if (d==[]) // No data couple found
     return;
   end
   
-//  disp("ICII--------------------")
-//  disp("d vaut:")
-//  disp(d);
-//  disp("P1=")
-//  disp(P1)
+  //  disp("ICII--------------------")
+  //  disp("d vaut:")
+  //  disp(d);
+  //  disp("P1=")
+  //  disp(P1)
   
 else
   
@@ -174,7 +174,7 @@ if (provided_data == 2) then
 	P(k,3) = d(k)+2;
       end
     end
-//    disp(P);
+    //    disp(P);
   end
 else
   // we are in the case where: plot(SINGLE y,... x not specified
@@ -346,7 +346,7 @@ for i=1:numplot
 
   // The plot is made now :
   
-//  pause;
+  //  pause;
   plot2d(X,Y);
   agreg=gce();  // when using plot2d, we always have agregation as current entity
 
@@ -368,19 +368,20 @@ for i=1:numplot
     end
 
 
-//    disp('CurColor=')
-//    disp(CurColor);
-//    disp('Color=')
-//    disp(Color)
+    //    disp('CurColor=')
+    //    disp(CurColor);
+    //    disp('Color=')
+    //    disp(Color)
 
-//    disp('Line=');
-//    disp(Line);
+    //    disp('Line=');
+    //    disp(Line);
 
     if (Marker == %T)
       e.mark_style=MarkerStyle;
       e.mark_mode ='on';
       e.mark_foreground = Color;
       e.mark_style=MarkerStyle;
+      e.mark_size_unit = 'point';
       e.mark_size=MarkerSize;
     else
       e.mark_mode ='off'
@@ -417,10 +418,10 @@ Agreg = glue(FinalAgreg(1:$))
 
 k=find(Agreg.children.type=="Agregation")
 
-while(k<>[])
-k=k(1);
-unglue(Agreg.children(k));
-k=find(Agreg.children.type=="Agregation")
+while (k<>[])
+  k=k(1);
+  unglue(Agreg.children(k));
+  k=find(Agreg.children.type=="Agregation")
 end
 
 

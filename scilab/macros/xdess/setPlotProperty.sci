@@ -105,7 +105,7 @@ case 'markstyle'        // <=> Marker
     //Marks
     Table = [ '+' 'o' '*' '.' 'x' 'square' 'diamond' '^' 'v' '>' '<' 'pentagram' 'none'];
     MarksStyleVal=[1 9 10 0 2 11 5 6 7 12 13 14 -99];
-    MarksSizeVal =[4 3 7  1 3  3 4 3 3  3  3  3 -99];
+//    MarksSizeVal =[4 3 7  1 3  3 4 3 3  3  3  3 -99];
     
     opt1=[];
     
@@ -144,7 +144,9 @@ case 'markstyle'        // <=> Marker
     
     if (opt1 > 0)
       Curves.mark_style = MarksStyleVal(opt1);
-      Curves.mark_size  = MarksSizeVal(opt1);
+      Curves.mark_size_unit  = 'point';
+      Curves.mark_size  = 6;
+      //MarksSizeVal(opt1);
     else
       // 'none' is selected
       Curves.mark_mode='off'
@@ -266,6 +268,7 @@ case 'marksize'        // <=> MarkerSize
     markmodeON = find(Curves.mark_mode=='on');
     
     if markmodeON <> []
+      Curves(markmodeON).mark_size_unit = 'point';
       Curves(markmodeON).mark_size = PropertyValue;
     end
   else
