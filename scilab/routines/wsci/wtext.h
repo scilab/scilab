@@ -277,3 +277,5 @@ void ExitWindow(void);
 void write_scilab_synchro(char *line);
 DWORD WINAPI WriteTextThread(LPVOID lpParam);
 /*--------------------------*/
+void ShowWindowFunction _PARAMS((char *fname));
+/*--------------------------*/

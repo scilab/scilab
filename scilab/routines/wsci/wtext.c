@@ -1066,6 +1066,7 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
     case WM_SIZE:
     {
     	
+		
     	/*
     	  SetWindowPos (lptw->hWndText, (HWND) NULL, 0, lptw->ButtonHeight,
 		    	LOWORD (lParam), HIWORD (lParam) - lptw->ButtonHeight,
@@ -1093,12 +1094,12 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
     }
      return (0);
 
+	 
     case WM_EXITSIZEMOVE: /* Sauvegarde Position apres deplacement et redimensionnement */
     	 	WriteTextIni(lptw);
     	 
     return (0);
 
-    
       
     case WM_COMMAND:
       if (IsWindow (lptw->hWndText))
@@ -1215,7 +1216,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
   HDC hdc;
   PAINTSTRUCT ps;
   RECT rect;
-  int nYinc, nXinc, nl, nc;
+  int nYinc=0, nXinc=0, nl, nc;
   LPTW lptw;
   lptw = (LPTW) GetWindowLong (hwnd, 0);
   switch (message)
@@ -1234,7 +1235,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
       lptw->bFocus = FALSE;
       break;
     case WM_SIZE:
-      lptw->ClientSize.y = HIWORD (lParam);
+	  lptw->ClientSize.y = HIWORD (lParam);
       lptw->ClientSize.x = LOWORD (lParam);
       nc = lptw->ClientSize.x / lptw->CharSize.x;
       nl = lptw->ClientSize.y / lptw->CharSize.y;
@@ -1242,11 +1243,16 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
       nl = (nl > 5) ? nl : 5;
 /** to avoid lines set to 0 when iconified **/
       C2F (scilines) (&nl, &nc);
-      lptw->ScrollMax.y = max (0, lptw->CharSize.y * lptw->ScreenSize.y - lptw->ClientSize.y);
-      lptw->ScrollPos.y = min (lptw->ScrollPos.y, lptw->ScrollMax.y);
+      
+	  
 
-      SetScrollRange (hwnd, SB_VERT, 0, lptw->ScrollMax.y, FALSE);
-      SetScrollPos (hwnd, SB_VERT, lptw->ScrollPos.y, TRUE);
+ /*if (wParam != SIZE_RESTORED) A modifier pour show_window(-1)*/
+		
+	  lptw->ScrollMax.y = max (0, lptw->CharSize.y * lptw->ScreenSize.y - lptw->ClientSize.y);
+       lptw->ScrollPos.y = min (lptw->ScrollPos.y, lptw->ScrollMax.y);
+
+      SetScrollRange (hwnd, SB_VERT, 0, lptw->ScrollMax.y, FALSE);    
+       SetScrollPos (hwnd, SB_VERT, lptw->ScrollPos.y, TRUE);
 
       lptw->ScrollMax.x = max (0, lptw->CharSize.x * lptw->ScreenSize.x - lptw->ClientSize.x);
       lptw->ScrollPos.x = min (lptw->ScrollPos.x, lptw->ScrollMax.x);
@@ -1254,23 +1260,41 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
       SetScrollRange (hwnd, SB_HORZ, 0, lptw->ScrollMax.x, FALSE);
       SetScrollPos (hwnd, SB_HORZ, lptw->ScrollPos.x, TRUE);
 
-      if (lptw->bFocus && lptw->bGetCh)
+		
+	if (lptw->bFocus && lptw->bGetCh)
 	{
 	  SetCaretPos (lptw->CursorPos.x * lptw->CharSize.x - lptw->ScrollPos.x,
 		     lptw->CursorPos.y * lptw->CharSize.y + lptw->CharAscent
 		       - lptw->CaretHeight - lptw->ScrollPos.y);
 	  ShowCaret (hwnd);
 	}
-	
-      return (0);
+
+	  return (0);
       
-      
+    case 0x020A :/*WM_MOUSEWHEEL*/
+		{
+			int steps=((short) HIWORD(wParam))/120;
+			if( steps > 0 ) 
+				{
+					SendMessage (hwnd, WM_VSCROLL, SB_LINEUP, (LPARAM) 0);
+				}
+
+				if( steps < 0 ) 
+				{
+					SendMessage (hwnd, WM_VSCROLL, SB_LINEDOWN, (LPARAM) 0);
+				}
+		}
+	return (0);  
      
+	
     case WM_VSCROLL: /* Messages ScrollBar Verticale */
     /* Modification Allan CORNET 09/07/03 */
     /* Gestion ScrollBar en deplacement et autres*/
       switch (LOWORD (wParam))
 	{
+		case SB_ENDSCROLL:
+			nYinc = 0;
+		break;
 		case SB_TOP:
 			nYinc = -lptw->ScrollPos.y;
 		break;
@@ -1290,7 +1314,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 			nYinc = max(1,lptw->ClientSize.y);
 		break;
 		case SB_THUMBPOSITION:
-			nYinc = LOWORD(lParam) - lptw->ScrollPos.y;
+			nYinc = HIWORD (wParam) - lptw->ScrollPos.y;
 		break;
 		case SB_THUMBTRACK:
 			nYinc = HIWORD (wParam) - lptw->ScrollPos.y;
@@ -1298,68 +1322,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 		default:
 			nYinc = 0;
 		break;
-		/*
-		case SB_BOTTOM:
-		{
-			nYinc = 0;
-		}
-		break;
 		
-		case SB_ENDSCROLL:
-		{
-			nYinc = 0;
-		}
-		break;
-
-		case SB_LINEDOWN:
-		{
-			nYinc = lptw->CharSize.y;
-		}
-		break;
-
-		case SB_LINEUP:
-		{
-			nYinc = -lptw->CharSize.y;
-		}
-		break;
-
-		case SB_PAGEDOWN:
-		{
-			nYinc = max (1, lptw->ClientSize.y);
-		}
-		break;
-
-		case SB_PAGEUP:
-		{
-			nYinc = min (-1, -lptw->ClientSize.y);
-		}
-		break;
-
-		case SB_THUMBPOSITION:
-		{
-			nYinc = HIWORD (wParam) - lptw->ScrollPos.y;
-		}
-		break;
-
-		case SB_THUMBTRACK:
-		{
-			nYinc = HIWORD (wParam) - lptw->ScrollPos.y;
-		}
-		break;
-
-		case SB_TOP:
-		{
-			nYinc = 0;
-		}
-		break;
-		
-		default:
-		{
-			nYinc = 0;
-		}
-		
-		break;
-		*/
 	}
 	
 	if ((nYinc = max (-lptw->ScrollPos.y,
@@ -1374,89 +1337,54 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
       
       return (0);
       
+
+	
+
     case WM_HSCROLL: /* Messages ScrollBar Horizontale */
     /* Correction Allan CORNET 09/07/03 */
     /* Gestion de la ScrollBar Horizontale */
     /* Gestion ScrollBar en deplacement et autres*/
       switch (LOWORD (wParam))
 	{
-		case SB_LINEUP:
-					nXinc = -lptw->CharSize.x;
-					break;
-				case SB_LINEDOWN:
-					nXinc = lptw->CharSize.x;
-					break;
-				case SB_PAGEUP:
-					nXinc = min(-1,-lptw->ClientSize.x);
-					break;
-				case SB_PAGEDOWN:
-					nXinc = max(1,lptw->ClientSize.x);
-					break;
-				case SB_THUMBPOSITION:
-					nXinc = LOWORD(lParam) - lptw->ScrollPos.x;
-					break;
-				case SB_THUMBTRACK:
-					nXinc = HIWORD (wParam) - lptw->ScrollPos.x;
-				break;
-				default:
-					nXinc = 0;
-				break;
-	/*	case SB_ENDSCROLL:
-		{
+		case SB_ENDSCROLL:
 			nXinc = 0;
-		}
-		break;	
+		break;
+
 		case SB_LEFT:
-		{
 			nXinc = 0;
-		}
 		break;
-		
+
 		case SB_RIGHT:
-		{
-			nXinc = 0;
-		}
-		
+			 nXinc =lptw->ClientSize.x;
 		break;
-	
+
 		case SB_LINELEFT:
-		{
 			nXinc = -lptw->CharSize.x;
-		}
 		break;
 
 		case SB_LINERIGHT:
-		{
 			nXinc = lptw->CharSize.x;
-		}
 		break;
 
 		case SB_PAGELEFT:
-		{
-			nXinc = min (-1, -lptw->ClientSize.x);
-		}
+			nXinc = min(-1,-lptw->ClientSize.x);
 		break;
 
 		case SB_PAGERIGHT:
-		{
-			nXinc = max (1, lptw->ClientSize.x);
-		}
+			nXinc = max(1,lptw->ClientSize.x);
 		break;
-	
+
 		case SB_THUMBPOSITION:
-		{
 			nXinc = HIWORD (wParam) - lptw->ScrollPos.x;
-		}
 		break;
 
 		case SB_THUMBTRACK:
-		{
 			nXinc = HIWORD (wParam) - lptw->ScrollPos.x;
-		}
 		break;
+
 		default:
 	  		nXinc = 0;
-	  	break;*/
+	  	break;
 	}
 		
 	if ((nXinc = max (-lptw->ScrollPos.x,
@@ -1495,10 +1423,10 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	      SendMessage (hwnd, WM_VSCROLL, SB_LINEDOWN, (LPARAM) 0);
 	      break;
 	    case VK_LEFT:
-	      SendMessage (hwnd, WM_HSCROLL, SB_LINEUP, (LPARAM) 0);
+	      SendMessage (hwnd, WM_HSCROLL, SB_LINELEFT, (LPARAM) 0);
 	      break;
 	    case VK_RIGHT:
-	      SendMessage (hwnd, WM_HSCROLL, SB_LINEDOWN, (LPARAM) 0);
+	      SendMessage (hwnd, WM_HSCROLL, SB_LINERIGHT, (LPARAM) 0);
 	      break;
 	    case VK_INSERT:
 	      /* Modification Allan CORNET 09/07/03 */
@@ -3396,3 +3324,63 @@ DWORD WINAPI WriteTextThread(LPVOID lpParam)
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+void ShowWindowFunction _PARAMS((char *fname))
+{
+  static int l1, m1, n1;	
+  if (IsWindowInterface())
+  {
+    if (Rhs == 0)
+    	{
+    		sciprint("Error no window num.\n");
+    	}
+  	else
+  	{
+  		struct BCG *ScilabGC=NULL;
+  		int num_win=-2;
+  		CheckLhs(1,1);
+  		GetRhsVar(1,"i",&m1,&n1,&l1);
+  		num_win=*istk(l1);
+  		LhsVar(1)=0;
+  		ScilabGC = GetWindowXgcNumber (num_win);
+  		if (num_win == -1)
+  		{
+  			extern char ScilexWindowName[MAX_PATH];
+			LPTW lptw;
+			lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+			if ( IsIconic(lptw->hWndParent) )
+			{
+				ShowWindow(lptw->hWndParent,SW_RESTORE);
+				SendMessage (lptw->hWndText, WM_VSCROLL, SB_TOP, (LPARAM) 0);
+	
+			}
+			else
+			{
+				ShowWindow(lptw->hWndParent,SW_MINIMIZE);
+			} 
+			
+
+  		}
+  		else if (ScilabGC != (struct BCG *) 0)
+		{
+			if ( IsIconic(ScilabGC->hWndParent) )
+			{
+				ShowWindow(ScilabGC->hWndParent,SW_RESTORE);
+			}
+			else
+			{
+				ShowWindow(ScilabGC->hWndParent,SW_MINIMIZE);
+				ForceToActiveWindowParent();
+			}
+			
+			
+  		}
+  		
+ 	}
+  }		
+  else
+ 	{
+ 		sciprint("Not in Console mode\n");
+ 	}
+}
+/*-----------------------------------------------------------------------------------*/
+
