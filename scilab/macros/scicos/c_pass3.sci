@@ -105,7 +105,8 @@ if max(funtyp)>10000 &%scicos_solver==0 then
 end
 if %scicos_solver==100 then xc0=[xc0;xcd0],end
 
-iz0=[];
+nb=size(clkptr,'*')-1;
+iz0=zeros(nb,1);
 state=cpr.state
 state.x=xc0;
 state.z=xd0;
