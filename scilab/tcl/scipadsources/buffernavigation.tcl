@@ -1,42 +1,33 @@
 proc montretext {textarea} {
     global pad listoffile Scheme
-# Next line added by Francois VOGEL 16/04/04, to fix the silent clearing of 
-# selection
     selection clear
     pack forget [gettextareacur]
     settextareacur $textarea
     $pad.yscroll configure -command "[gettextareacur] yview"
     $pad.xscroll configure -command "[gettextareacur] xview"
-# Next two lines added by Francois VOGEL, 21/04/04, to fix size/position bug of sliders
     $pad.xscroll set [lindex [[gettextareacur] xview] 0] [lindex [[gettextareacur] xview] 1]
     $pad.yscroll set [lindex [[gettextareacur] yview] 0] [lindex [[gettextareacur] yview] 1]
-#    settitle $listoffile("$textarea",filename)
     modifiedtitle $textarea
     pack  $textarea -in  $pad.bottomleftmenu -side left -expand 1 -fill both
     focus $textarea
     keyposn $textarea
-#ES 27/5/04
     set Scheme $listoffile("$textarea",language)
     schememenus $textarea
 }
 
 
-# Francois VOGEL, 16/04/04, corrected and expanded by ES
 proc nextbuffer {} {
     global pad listoftextarea listoffile radiobuttonvalue
     set textarea [gettextareacur]
-#    set curbuf [$pad.filemenu.wind index $listoffile("$textarea",filename)]    
     set curbuf [expr [lsearch $listoftextarea $textarea]+1]
     set curbuf [expr $curbuf+1]
     set nbuf [llength $listoftextarea]
-
     if {$curbuf>$nbuf} {
         set curbuf 1
     }
-#    showinfo $curbuf
     set radiobuttonvalue [$pad.filemenu.wind entrycget $curbuf -value]
     montretext [lindex $listoftextarea [expr $curbuf-1]]
-#Francois VOGEL, 17/10/04 (keypress did not replace the selection if buffers were switched)
+    #keypress must replace the selection if buffers are switched
     set existsSel [[gettextareacur] tag nextrange sel 1.0]
     if {$existsSel != {}} {
         [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]
@@ -46,25 +37,21 @@ proc nextbuffer {} {
 proc prevbuffer {} {
    global pad listoftextarea listoffile radiobuttonvalue
     set textarea [gettextareacur]
-#    set curbuf [$pad.filemenu.wind index $listoffile("$textarea",filename)]    
     set curbuf [expr [lsearch $listoftextarea $textarea]+1]
     set curbuf [expr $curbuf-1]
     set nbuf [llength $listoftextarea]
-
     if {$curbuf<1} {
         set curbuf $nbuf
     }
-#    showinfo $curbuf
     set radiobuttonvalue [$pad.filemenu.wind entrycget $curbuf -value]
     montretext [lindex $listoftextarea [expr $curbuf-1]]
-#Francois VOGEL, 17/10/04 (keypress did not replace the selection if buffers were switched)
+    #keypress must replace the selection if buffers are switched
     set existsSel [[gettextareacur] tag nextrange sel 1.0]
     if {$existsSel != {}} {
         [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]
     }
 }
 
-# add gotoline option included by Matthieu PHILIPPE 21/11/2001 from gotoline.pth
 proc gotoline {} {
 	global textareacur pad
 	set gotln $pad.gotln
@@ -94,7 +81,6 @@ proc gotoline {} {
 	global textareacur
 	global gotlnCommand
 	set gotlnCommand [$prnt.top.gotln get]
-#	tkTextSetCursor [gettextareacur] "$gotlnCommand.0"
 	[gettextareacur] mark set insert "$gotlnCommand.0"
 	catch {keyposn [gettextareacur]}
         [gettextareacur] see insert

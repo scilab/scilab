@@ -1,12 +1,3 @@
-#############################################
-# added by Matthieu PHILIPPE 07/12/2001
-# this addes an entry widget to display information !
-proc delinfo {} {
-    global pad
-    $pad.statusmes configure -state normal
-    $pad.statusmes configure -text " " 
-}
-
 proc showinfo {message} {
     global pad
     $pad.statusmes configure -state normal
@@ -15,56 +6,47 @@ proc showinfo {message} {
     after 5000 catch delinfo
 }
 
-# this proc gets the posn and sets the statusbar, enables context menues, etc.
+proc delinfo {} {
+    global pad
+    $pad.statusmes configure -state normal
+    $pad.statusmes configure -text " " 
+}
+
 proc keyposn {textarea} {
+# this proc gets the posn and sets the statusbar, enables context menues, etc.
     global pad listoffile
     $pad.statusind configure -state normal
     set indexin [$textarea index insert]
     $pad.statusind configure -text " "
-    # changement Matthieu PHILIPPE 30/11/2001
     scan $indexin "%d.%d" ypos xpos
     incr xpos
     $pad.statusind configure -text [concat [mc "Line:"] $ypos [mc "Column:"] $xpos]
-#ES 16/5/2004 - show additionally the logical line in a function
-#FV 21/05/04 - changed to add a status indicator for line in fun
-#ES 27/5/04 - only in scilab schema
     set infun [whichfun $indexin]
     $pad.statusind2 configure -state normal
     $pad.statusind2 configure -text " "
     if {$listoffile("$textarea",language) == "scilab" } {
-	if {$infun !={} } {
-        set funname [lindex $infun 0]
-        set lineinfun [lindex $infun 1]
-        $pad.statusind2 configure -text [concat [mc "Line"] $lineinfun [mc "in"] $funname]
-        $pad.filemenu.files entryconfigure 8 -state normal
-	} else {
-        $pad.statusind2 configure -text " "
-        $pad.filemenu.files entryconfigure 8 -state disabled
-	}
+        if {$infun !={} } {
+            set funname [lindex $infun 0]
+            set lineinfun [lindex $infun 1]
+            $pad.statusind2 configure -text [concat [mc "Line"] $lineinfun [mc "in"] $funname]
+            $pad.filemenu.files entryconfigure 8 -state normal
+        } else {
+            $pad.statusind2 configure -text " "
+            $pad.filemenu.files entryconfigure 8 -state disabled
+        }
     }
-#ES 27/1/05
     if {[lsearch [$textarea tag names $indexin] "libfun"]!=-1} {
-            $pad.filemenu.files entryconfigure 11 -state normal
+        $pad.filemenu.files entryconfigure 11 -state normal
     } else {
-            $pad.filemenu.files entryconfigure 11 -state disabled
+        $pad.filemenu.files entryconfigure 11 -state disabled
     }
 }
 
-# this proc just sets the title to what it is passed
-proc settitle {WinTitleName} {
-    global winTitle fileName 
-    global pad
-    wm title $pad "$winTitle - $WinTitleName"
-    set fileName $WinTitleName
-}
-
-###added by ES 24/9/2003
 proc modifiedtitle {textarea} {
-# FV 07/06/04 changed $pad.filemenu.wind index for extractindexfromlabel
-# This fixes the scipad 0 bug as well as corrects side effects on some 
-# filenames    
-    global pad listoffile 
-    set fname $listoffile("$textarea",filename)
+# set the Scipad window title to the name of the file displayed in $textarea
+# add tags (modified, readonly) 
+    global pad winTitle listoffile 
+    set fname $listoffile("$textarea",prunedname)
     set ind [extractindexfromlabel $pad.filemenu.wind $fname]
     set mod1 ""; set mod2 ""
     if {$listoffile("$textarea",readonly) == 1} { 
@@ -84,7 +66,7 @@ proc modifiedtitle {textarea} {
         }
         $pad.statusind configure -background [$pad.filemenu cget -background]
     }
-    settitle "$fname$mod1$mod2"
+    wm title $pad "$winTitle - $fname$mod1$mod2"
     if {$listoffile("$textarea",save) ==1 && \
           $listoffile("$textarea",thetime) !=0} { 
         $pad.filemenu.files entryconfigure 4 -state normal

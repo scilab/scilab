@@ -730,5 +730,24 @@ Francois VOGEL, 17/02/05
  * Drag'n'drop one or more files at once from the explorer to Scipad now
    works (opens the file(s)).
    Reference: TkDnD package - http://sourceforge.net/projects/tkdnd
-   Possible absence of the package is catched and a warning is issued.
+   Possible absence of the package is catched (no warning issued).
  * version --> 3.32
+
+Francois VOGEL, 21/02/05
+ * Scipad now displays only pruned filenames (and full pathnames in
+   case of ambiguity) in the titlebar and windows menu.
+ * A lot of drastic code cleaning in filecommands.tcl, infomessages.tcl,
+   buffernavigation.tcl, inputtext.tcl plus a few more around those files,
+   rationalizing, suppressing old unused or duplicate procs, reindenting,
+   removing superfluous comments but adding explanatory comments.
+ * version --> 3.33
+
+Francois VOGEL, 21/02/05
+ * Few glitches correction about pruned file names.
+ * New buffers are now tagged as modified (required changes in scipad.sci).
+ * Trying to paste with button-2 when there is no selection does no more
+   tag the buffer as modified.
+ * Further drastic code cleaning. The only unclean file is now undoredo.tcl
+   but this will be removd one day or another anyway to be replaced by the
+   text widget undo/redo features.
+ * version --> 3.34

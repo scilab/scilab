@@ -3,7 +3,7 @@ menu $pad.filemenu.files -tearoff 0 -font $menuFont
     eval "$pad.filemenu  add cascade [me "&File"] \
 	               -menu $pad.filemenu.files "
     eval "$pad.filemenu.files add command [me "&New"] \
-                   -command \"filesetasnewmat\" -accelerator Ctrl+n"
+                   -command \"filesetasnew\" -accelerator Ctrl+n"
     eval "$pad.filemenu.files add command [me "&Open..."] \
                    -command \"filetoopen $textareacur\" -accelerator Ctrl+o"
     eval "$pad.filemenu.files add command [me "&Save"] \
@@ -22,7 +22,7 @@ menu $pad.filemenu.files -tearoff 0 -font $menuFont
                    -command \"xmlhelpfile\" -state disabled "
     $pad.filemenu.files add separator
     eval "$pad.filemenu.files add command [me "Open &function source"] \
-                   -command {openlibfunsource [[gettextareacur] index insert]}\
+                   -command \"openlibfunsource1\" \
                    -state disabled -accelerator Ctrl+/"
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
@@ -191,7 +191,7 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
 menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] -font $menuFont
     eval "$pad.filemenu add cascade [me "&Windows"] -menu $pad.filemenu.wind "
     $pad.filemenu.wind add radiobutton \
-               -label "$listoffile("$pad.textarea",filename)"\
+               -label "$listoffile("$pad.textarea",prunedname)"\
                -value $winopened -variable radiobuttonvalue \
                -command "montretext $pad.textarea"
 
@@ -208,8 +208,12 @@ menu $pad.filemenu.help -tearoff 0 -font $menuFont
 
 # now make the menu visible
 $pad configure -menu $pad.filemenu 
-####
-##ES: remember fontsize
+
+# remember fontsize
 setfontscipad $FontSize
 
+# set initial debug state
 setdbstate "NoDebug"
+
+# tag empty buffer as modified
+inccount $pad.textarea

@@ -140,11 +140,10 @@ Wishes:
  Note: a first step to this has been implemented. During a debug session, 
  the popup menu is the debug menu.
 
--display only pruned filenames (and full pathnames in case of ambiguity) 
- in the titlebar, windows menu, etc. 
-
 -smart indentation (i.e., for automatically indents the next line, end
  automatically indents back, etc)
+ Note: proc scipadindent should be removed, since scipad now uses physical
+ indentation
  
 -"auto smart wrap on": lines exceeding a margin could be truncated at
  word boundaries with .. dots and \n
@@ -190,6 +189,11 @@ Wishes:
  select the background color of the Scipad from a palette (this has been
  asked for in the ng).
  Could also be done through the config() macro from sciGUI.
+
+-Among the Scipad preferences, the user should be able to select whether
+ file names displayed in the title bar and windows menu entries is of
+ pruned form or full pathname. The switch for that is already prepared in
+ and saved in the preferences.
 
 -Allow the user to select whether the tab key inserts tabs or spaces, and 
  in the latter, how many. Could be part of the Options menu or Preferences

@@ -1,20 +1,20 @@
 set winTitle "SciPad"
-set version "Version 3.32"
+set version "Version 3.34"
 
-# all one needs in order to add a new retriavable preference is:
+# all one needs in order to add a new retrievable preference is:
 #  -add the variable name to $listofpref below
 #  -use the variable when needed in the program, such that 
 #    it is visible at main level (i.e. globalize it)
 #  -if needed, assign an initial fallback value here
 
-#ES 11/10/04: those are the preferences which are going to be saved
+# those are the preferences which are going to be saved
 set listofpref {wordWrap BGCOLOR FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
        BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR TXTCOLOR QTXTCOLOR \
        REMCOLOR XMLCOLOR NUMCOLOR SELCOLOR BREAKPOINTCOLOR FontSize \
-       LFUNCOLOR PDEFCOLOR WMGEOMETRY printCommand actbptextFont indentspaces}
+       LFUNCOLOR PDEFCOLOR WMGEOMETRY printCommand actbptextFont indentspaces \
+       filenamesdisplaytype}
 
-
-##ES: default options which can be overriden
+# default options which can be overriden
 set wordWrap "none"
 set BGCOLOR "snow1"
 set FGCOLOR "black"
@@ -39,26 +39,26 @@ set WMGEOMETRY 600x480
 set printCommand lpr
 set actbptextFont "-Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*"
 set indentspaces 2
+set filenamesdisplaytype "pruned"  ;# "pruned" or "full"
 
 #other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }
 set Scheme scilab
 
-#ES 12/11/04: source the user preferences file if any
+# source the user preferences file if any
 set preffilename $env(HOME)/.SciPadPreferences.tcl
 catch {source $preffilename}
 
-# Francois VOGEL, 12/02/05, message files added to avoid ifs on $lang
+# message files and localization to avoid ifs on $lang
 package require msgcat
 namespace import -force msgcat::*
 ::msgcat::mclocale "$lang"
 ::msgcat::mcload [file join "$env(SCIPATH)" "tcl" "scipadsources" "msg_files"]
 
-# Francois VOGEL, 17/02/05, drag and drop capability added
+# drag and drop capability using TkDnD
 if { [catch {package require tkdnd}] == 0 } {
     # package is present and loaded
     set TkDnDloaded "true"
 } else {
-#    ScilabEval "mprintf(\"Warning: TkDnD package is not present (please get it from http://sourceforge.net/projects/tkdnd)\\n         Drag''n''drop to Scipad will not be available\\n\")"
     set TkDnDloaded "false"
 }

@@ -1,8 +1,8 @@
-# added by matthieu PHILIPPE 21/11/2001
 proc gettextareacur {} {
     global textareacur
     return $textareacur
 }
+
 proc settextareacur {val} {
     global textareacur
     set textareacur $val
@@ -25,22 +25,20 @@ proc settextareacur {val} {
 #		{argvName dbName}
 #
 proc nondefOpts {widget} {
-	set options {}
-	foreach i [$widget configure] {
-		if {[llength $i] != 2} {
-			set optname [lindex $i 0]
-			set defval [lindex $i 3]
-			set curval [lindex $i 4]
-			#if [string compare $defval $curval] {
-				lappend options $optname $curval
-			#}
-		}
-	}
-	return $options
+    set options {}
+    foreach i [$widget configure] {
+        if {[llength $i] != 2} {
+            set optname [lindex $i 0]
+            set defval [lindex $i 3]
+            set curval [lindex $i 4]
+            #if [string compare $defval $curval] {
+                lappend options $optname $curval
+                #}
+        }
+    }
+    return $options
 }
 
-#
-#
 # dupWidget - make a copy of a widget.
 #
 # ARGUMENTS:
@@ -51,17 +49,13 @@ proc nondefOpts {widget} {
 #	a new widget
 #
 proc dupWidgetOption {widget name} {
-	return [eval  \
+    return [eval  \
            "[string tolower [winfo class $widget]] $name [nondefOpts $widget]"]
 }
 
-#
-#
-#matthieu PHLIPPE 12/12/2001
 proc dupWidgetText {widget name} {
-	$name insert end [$widget get 1.0 end]
+    $name insert end [$widget get 1.0 end]
 }
-##
 
 ###ES: who uses this, besides TextStyles which sets it? 
 # set the indent spacing (in cm) for lists
@@ -72,7 +66,7 @@ proc scipadindent {textarea cm} {
     $textarea configure -tabs ${tabs}c
     set tab [expr 1 * $cm]
     $textarea tag configure indentation -lmargin1 ${tab}c -lmargin2 ${tab}c \
-	    -tabs "[expr $tab + $tabs]c [expr $tab + 2*$tabs]c"
+        -tabs "[expr $tab + $tabs]c [expr $tab + 2*$tabs]c"
 }
 
 proc TextStyles { t } {
@@ -99,8 +93,6 @@ proc TextStyles { t } {
         -relief raised -borderwidth 2
 }
 
-
-#ES: instead of several setfontscipadN{}
 proc setfontscipad {FontSize} {
     global textFont menuFont pad
     global listoftextarea
@@ -127,25 +119,21 @@ proc setfontscipad {FontSize} {
 }
 
 
-# exit app
 proc exitapp {} {
+# exit app
     global listoffile listoftextarea pad
-
     foreach textarea $listoftextarea {
-	#inccount $textarea
-	closefile $textarea
+        closefile $textarea
     }
-#    unset pad  ## not needed if closefile unsets it
 }
 
-
-# proc to set child window position
 proc setwingeom {wintoset} {
+# proc to set child window position
     global pad
     wm resizable $wintoset 0 0
     set myx [expr (([winfo screenwidth $pad]/2) - \
-		       ([winfo reqwidth $wintoset]))]
+                ([winfo reqwidth $wintoset]))]
     set myy [expr (([winfo screenheight $pad]/2) - \
-		       ([winfo reqheight $wintoset]/2))]
+                ([winfo reqheight $wintoset]/2))]
     wm geometry $wintoset +$myx+$myy
 }

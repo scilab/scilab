@@ -1,9 +1,6 @@
 proc execfile {{buf "current"}} {
+# return argument: 0=success, 1 scilab busy, 2 cancel, -1 fail
     global listoffile sciprompt
-
-# FV 07/07/04, added capability for exec'ing a buffer which is not the current one
-# ES 10/1/05, added return argument 
-# (0=success, 1 scilab busy, 2 cancel, -1 fail)
     if {$buf == "current"} {
         set textarea [gettextareacur]
     } else {
@@ -11,28 +8,27 @@ proc execfile {{buf "current"}} {
     }
     set doexec 1
     if [ expr [string compare [getccount $textarea] 1] == 0 ] {
-    set answer [tk_messageBox -message [concat [mc "The contents of"] \
-                  $listoffile("$textarea",filename) \
-                  [mc "may have changed, do you wish to to save your changes?"] ] \
+        set answer [tk_messageBox -message [concat [mc "The contents of"] \
+                  $listoffile("$textarea",fullname) \
+                  [mc "may have changed, do you wish to save your changes?"] ] \
 	            -title [mc "Save Confirm?"] -type yesnocancel -icon question]
-	case $answer {
-	    yes { filetosave $textarea; set doexec 1 }
-	    no { set doexec 0 }
-	    cancel { set doexec 0; return 2 }
-	}
+        case $answer {
+            yes { filetosave $textarea; set doexec 1 }
+            no { set doexec 0 }
+            cancel { set doexec 0; return 2 }
+        }
     }
-
     if $doexec {
         if [ expr [string compare $sciprompt -1] == 0 ] {
             tk_messageBox -message [concat \
                      [mc "Scilab is working, wait for the prompt to load file"] \
-                      $listoffile("$textarea",filename) ] \
+                      $listoffile("$textarea",fullname) ] \
                         -title [mc "Scilab working"] -type ok -icon info
             return 1
         } else {
-            set f $listoffile("$textarea",filename)
+            set f $listoffile("$textarea",fullname)
             if {[catch {ScilabEval "exec(\"$f\");" "sync" "seq"}]} {
-                scilaberror $listoffile("$textarea",filename)
+                scilaberror $listoffile("$textarea",fullname)
                 return -1
             } else {
                 return 0 
@@ -50,83 +46,78 @@ proc execselection {} {
      } else {
         set seltexts [selection own]
         if {$seltexts != "" } {
-	  if [catch {selection get -selection PRIMARY} sel] {	    
-	  } else {
-     	    set f [selection get]
-#SciEval does not digest multilines, nor comments. The following hacks are 
-# not optimal - they can produce very long lines, and get confused about 
-# quoted strings containing //.
-#strip comments from // to \n (note - \n stays, as the interpreter allows 
-#    "...//bla\n rest" ) (NOTE: this way strings like "...//..." are truncated 
-#    -- FIXIT -- has to use tag textquoted information)
-            regsub -all -line "//.*(\\n|\\Z)" $f "\n" f1
-            unset f
-# remove trailing white space
-            regsub -all -line "^\\s*" $f1 " " f2
-            unset f1
-#join continued lines
-            regsub -all -line "\\.{2,} *\\n" $f2 "" f3
-            unset f2
-#join multilines with ","
-            regsub -all -line "\\n" $f3 "," comm
-            unset f3
-# last hack - add a final endfunction if there is an unterminated
-# function in the selection: TODO (try to involve proc whichfun)
-# Things are complicated because the selection may either include
-#  the originating "function" or not
-            set i1 [$textareacur index sel.first]
-            set i2 [$textareacur index sel.last]
+            if [catch {selection get -selection PRIMARY} sel] {	    
+            } else {
+                set f [selection get]
+                #SciEval does not digest multilines, nor comments. The following hacks are 
+                # not optimal - they can produce very long lines, and get confused about 
+                # quoted strings containing //.
+                #strip comments from // to \n (note - \n stays, as the interpreter allows 
+                #    "...//bla\n rest" ) (NOTE: this way strings like "...//..." are truncated 
+                #    -- FIXIT -- has to use tag textquoted information)
+                regsub -all -line "//.*(\\n|\\Z)" $f "\n" f1
+                unset f
+                # remove trailing white space
+                regsub -all -line "^\\s*" $f1 " " f2
+                unset f1
+                #join continued lines
+                regsub -all -line "\\.{2,} *\\n" $f2 "" f3
+                unset f2
+                #join multilines with ","
+                regsub -all -line "\\n" $f3 "," comm
+                unset f3
+                # last hack - add a final endfunction if there is an unterminated
+                # function in the selection: TODO (try to involve proc whichfun)
+                # Things are complicated because the selection may either include
+                #  the originating "function" or not
+                set i1 [$textareacur index sel.first]
+                set i2 [$textareacur index sel.last]
 #TODO ES 9/10/03
-#             if { $i2>$i1 } {
-#                 set funselstart [lindex [whichfun $i1] 0]
-#                 set funselend [lindex [whichfun $i2] 0]
-#             } else {
-#                 set funselstart [lindex [whichfun $i2] 0]
-# 		set funselend [lindex [whichfun $i1] 0]
-# 	     }
-#             tk_messageBox -message $funselstart"--"$funselend
-# 	      if { $funselend !={} && $funselstart == {}} {
-# 		  append comm ",endfunction"}
-# 	      if { $funselend !={} && $funselstart != $funselend} {
-# 		  tk_messageBox -message \
-# 		      "How do you pretend Scilab to evaluate the bottom of a function definition without its header?"
-# 		  return
-# 	    }
+#                if { $i2>$i1 } {
+#                    set funselstart [lindex [whichfun $i1] 0]
+#                    set funselend [lindex [whichfun $i2] 0]
+#                } else {
+#                    set funselstart [lindex [whichfun $i2] 0]
+#                    set funselend [lindex [whichfun $i1] 0]
+#                }
+#                tk_messageBox -message $funselstart"--"$funselend
+#                if { $funselend !={} && $funselstart == {}} {
+#                    append comm ",endfunction"}
+#                    if { $funselend !={} && $funselstart != $funselend} {
+#                        tk_messageBox -message \
+#                            "How do you pretend Scilab to evaluate the bottom of a function definition without its header?"
+#                        return
+#                }
 
-# Besides, I'd like to see screen output too.
-            regsub -all -line "\"" $comm "\"\"" dispcomm
-            regsub -all -line "'" $dispcomm "''" dispcomm1
-            unset dispcomm
-# Changed by the Scilab Team, 26/06/04
-#            if {"$tcl_platform(platform)" == "unix"} {    }
-    #           		ScilabEval "disp(\"$dispcomm1\")" # {  }
-# Changed for mprintf and with \n on ES request
-#
-# FV 01/01/05, added test to cope with string length limits in C language using %s
-# The hardwired limit in character length is 509-13 since (quote from the MSDN
-# Library - Oct 2001):
-# ANSI compatibility requires a compiler to accept up to 509 characters in a string
-# literal after concatenation. The maximum length of a string literal allowed in
-# Microsoft C is approximately 2,048 bytes.
-# (end of quote)
-# Because I don't know the limit for other compilers, I keep 509 as the maximum
-# above which the string is not displayed. Anyway, more than this is very hard
-# to read in the Scilab shell.
-            if {[string length $dispcomm1] < 496} {
-                ScilabEval "mprintf(\"%s\\n\",\"$dispcomm1\")"
+                # Besides, I'd like to see screen output too.
+                regsub -all -line "\"" $comm "\"\"" dispcomm
+                regsub -all -line "'" $dispcomm "''" dispcomm1
+                unset dispcomm
+                # The following test is to cope with string length limits in C language using %s
+                # The hardwired limit in character length is 509-13 since (quote from the MSDN
+                # Library - Oct 2001):
+                # ANSI compatibility requires a compiler to accept up to 509 characters in a string
+                # literal after concatenation. The maximum length of a string literal allowed in
+                # Microsoft C is approximately 2,048 bytes.
+                # (end of quote)
+                # Because I don't know the limit for other compilers, I keep 509 as the maximum
+                # above which the string is not displayed. Anyway, more than this is very hard
+                # to read in the Scilab shell.
+                if {[string length $dispcomm1] < 496} {
+                    ScilabEval "mprintf(\"%s\\n\",\"$dispcomm1\")"
+                }
+                ScilabEval $comm
             }
-	        ScilabEval $comm
-          }
         }
-     }
+    }
 }
 
 proc importmatlab {} {
     global pad listoffile sciprompt
     if [ expr [string compare $sciprompt -1] == 0 ] {
         tk_messageBox -message \
-              [mc "Scilab is working, wait for the prompt to convert a Matlab file."] \
-	        -title [mc "Scilab working"] -type ok -icon info
+                [mc "Scilab is working, wait for the prompt to convert a Matlab file."] \
+                -title [mc "Scilab working"] -type ok -icon info
      } else {
         set matfiles [mc "Matlab files"]
         set allfiles [mc "All files"]
@@ -161,13 +152,13 @@ proc failmatlabimp {} {
 }
 
 proc helpskeleton {} {
-     global listoffile
-# first exec the file in scilab, so that the current function is
-#  really defined; then call help_skeleton, and pipe the
-# result to a new (unsaved) buffer.
-# NB: execing the file can have far-reaching consequences
-#  if the file does more than just defining functions. 
-# Responsibility left to the user.   
+    global listoffile
+    # first exec the file in scilab, so that the current function is
+    #  really defined; then call help_skeleton, and pipe the
+    # result to a new (unsaved) buffer.
+    # NB: execing the file can have far-reaching consequences
+    #  if the file does more than just defining functions. 
+    # Responsibility left to the user.   
     set indexin [[gettextareacur] index insert]
     scan $indexin "%d.%d" ypos xpos
     set infun [whichfun $indexin]
@@ -197,14 +188,14 @@ proc helpskeleton {} {
 
 proc xmlhelpfile {} {
     global listoffile sciprompt
-# save the file and call xmlfiletohtml. Catch and popup the error messages.
+    # save the file and call xmlfiletohtml. Catch and popup the error messages.
     filetosavecur
     if [ expr [string compare $sciprompt -1] == 0 ] {
         tk_messageBox -message \
               [mc "Scilab is working, wait for the prompt to compile the help file."] \
             -title [mc "Scilab working"] -type ok -icon info
     } else {
-        set filetocomp [fullpath $listoffile("[gettextareacur]",filename)]
+        set filetocomp $listoffile("[gettextareacur]",fullname)
         ScilabEval "xmlfiletohtml(\"$filetocomp\")"
     }
 }

@@ -34,10 +34,7 @@ proc lifo:lifo {id {size 2147483647}} {
 }
 
 proc lifo:push {id data} {
-    global lifo saveTextMsg
-    set saveTextMsg 1
-# FV 14/06/04
-#    inccount [gettextareacur]
+    global lifo
     lifo:tidyUp $id
     if {$lifo($id,size)>=$lifo($id,maximumSize)} {
         unset lifo($id,data,$lifo($id,first))
@@ -49,8 +46,7 @@ proc lifo:push {id data} {
 }
 
 proc lifo:pop {id} {
-    global lifo saveTextMsg
-    set saveTextMsg 1
+    global lifo
     inccount [gettextareacur]
     lifo:tidyUp $id
     if {$lifo($id,last)<$lifo($id,first)} {

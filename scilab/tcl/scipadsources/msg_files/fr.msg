@@ -82,7 +82,7 @@
 # filecommands.tcl
 ::msgcat::mcset fr "New Script" "Nouveau script"
 ::msgcat::mcset fr "The contents of" "Voulez-vous enregistrer les modifications apportées à"
-    ::msgcat::mcset fr "may have changed, do you wish to to save your changes?" "?"
+    ::msgcat::mcset fr "may have changed, do you wish to save your changes?" "?"
 ::msgcat::mcset fr "Save Confirm?" "Confirmer sauver ?"
 ::msgcat::mcset fr "Open file" "Ouvrir fichier"
 ::msgcat::mcset fr "The file" "Le fichier"

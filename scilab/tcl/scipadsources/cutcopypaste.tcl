@@ -1,10 +1,8 @@
-#cut text procedure
 proc deletetext {} {
+# cut text procedure
     global textareacur
     if {[IsBufferEditable] == "No"} {return}
     set cuttexts [selection own]
-# FV 07/06/04, next line corrected (see bug #723)
-#    if {$cuttexts != "" } {}
     if {[string range $cuttexts 0 [expr [string length $textareacur]-1]] \
             == $textareacur} {
         if [catch {selection get -selection PRIMARY} sel] {   	
@@ -17,21 +15,17 @@ proc deletetext {} {
         $textareacur delete "insert" "insert +1c"
     }
     inccount $textareacur
-    # Added by Matthieu PHILIPPE
     set  i1 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
                               [$textareacur index "$i1 wordend"]
-# FV 13/05/04
     reshape_bp
 }
 
-#cut text procedure
 proc backspacetext {} {
+# cut text procedure
     global textareacur
     if {[IsBufferEditable] == "No"} {return}
     set cuttexts [selection own]
-# FV 07/06/04, next line corrected (see bug #723)
-#    if {$cuttexts != "" } {}
     if {[string range $cuttexts 0 [expr [string length $textareacur]-1]]\
              == $textareacur} {
         if [catch {selection get -selection PRIMARY} sel] {   	
@@ -44,43 +38,36 @@ proc backspacetext {} {
         $textareacur delete "insert-1c" "insert"
     }
     inccount $textareacur
-    # Added by Matthieu PHILIPPE
     set  i1 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
                               [$textareacur index "$i1 wordend"]
-# FV 13/05/04
     reshape_bp
 }
 
-#cut text procedure
 proc cuttext {} {
-# FV 07/06/04, removed superfluous global
+# cut text procedure
     global textareacur
     if {[IsBufferEditable] == "No"} {return}
-# FV 14/06/04, added test to avoid setting the modified flag if cut nothing
+    # test to avoid setting the modified flag if cut nothing
     if {[catch {selection get -selection CLIPBOARD}] == 0} {
         inccount $textareacur
     }
     tk_textCut $textareacur
-    # Added by Matthieu PHILIPPE
     set  i1 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 linestart"] \
                               [$textareacur index "$i1 lineend"]
     selection clear
-# FV 13/05/04
     reshape_bp
 }
 
-#copy text procedure
-#ES 16/11/04
 proc copytext {} {
+# copy text procedure
       set selowner [selection own]
       tk_textCopy  $selowner
 }
 
-#paste text procedure
 proc pastetext {} {
-# FV 07/06/04, removed superfluous funny test and globals
+# paste text procedure
     global textareacur
     if {[IsBufferEditable] == "No"} {return}
     catch {
@@ -88,34 +75,31 @@ proc pastetext {} {
     }
     set i1  [$textareacur index insert]
     tk_textPaste $textareacur 
-# FV 14/06/04, added test to avoid setting the modified flag if paste nothing
+    # test to avoid setting the modified flag if paste nothing
     if {[catch {selection get -selection CLIPBOARD}] == 0} {
         inccount $textareacur
     }
-    # Added by Matthieu PHILIPPE
     set  i2 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
                               [$textareacur index "$i2 wordend"]
-#added by ES (but might also be unhandy)
-#    $textareacur tag add sel $i1 $i2
-# FV 13/05/04
     reshape_bp
 }
 
 proc button2copypaste {w x y} {
 ##ES 16/11/04 -- strange I have to write a full proc for this!
 ## am I missing something?
-  global textareacur
-  if {[IsBufferEditable] == "No"} {return}
-  clipboard clear;
-  set ct ""
-  catch {set ct [selection get]}; 
-  clipboard append $ct; 
-  selection clear; 
-  $w mark set insert @$x,$y;
-  pastetext; 
+    global textareacur
+    if {[IsBufferEditable] == "No"} {return}
+    if {[catch {selection get}] == 0} {
+        clipboard clear
+        set ct [selection get]
+        clipboard append $ct
+        selection clear
+        $w mark set insert @$x,$y
+        pastetext
+    }
 #there is still one glitch - the cursor returns at the beginning
-# of the insertion point (why?)
+# of the insertion point (why?) - but not on windows !
 #also in windows this works as a sort of "drop selection here", but
-# with glitches
+# with glitches (which ones?)
 }
