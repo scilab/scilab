@@ -320,11 +320,11 @@ for e in $libexts; do
 				then
 					LDFLAGS="$LDFLAGS $TK_LDFLAGS -L$PATH_LIB_TK"
 					AC_CHECK_LIB([$NAME_LIB_TK], Tk_BindEvent, TK_LIB_OK=1,TK_LIB_OK=0,
-						  [-l$NAME_LIB_TK $TK_PLUS])
+						  [-l$NAME_LIB_TK $TCL_LIB -lX11])
 				else
 					LDFLAGS="$LDFLAGS $TK_LDFLAGS -L$USER_TK_LIB_PATH" 
 					AC_CHECK_LIB([$NAME_LIB_TK], Tk_BindEvent, TK_LIB_OK=1,TK_LIB_OK=0,
-						  [-l$NAME_LIB_TK $TK_PLUS])
+						  [-l$NAME_LIB_TK $TCL_LIB  -lX11])
 				fi
 				CFLAGS="$saved_cflags"
 				CPPFLAGS="$saved_cppflags"
