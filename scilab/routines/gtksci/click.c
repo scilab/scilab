@@ -11,11 +11,8 @@
 #include "../sun/men_Sutils.h"
 #include "../menusX/men_scilab.h"
 #include "All-extern.h"
-#include "../graphics/periX11-bcg.h"
-
-extern Window GetBGWindowNumber _PARAMS((int));
-extern char * get_sci_data_strings(int n);
-struct BCG *GetWindowXgcNumber _PARAMS((int));
+#include <gtk/gtk.h>
+#include "../graphics/periGtk-bcg.h"
 
 int demo_menu_activate=0; /* add a demo menu in the graphic Window */
 
@@ -70,15 +67,15 @@ int PushClickQueue(int win,int x,int y,int ibut,
 		   int motion,int release) 
 {
   struct BCG *SciGc;
-  EVTHANDLER h;
+  EVTHANDLER h = NULL ;
   /* first let a click_handler do the job  */
   /* is it a specific handler for this window ?*/
   SciGc = GetWindowXgcNumber(win);
-  h = SciGc->EventHandler;
+  if ( SciGc != NULL)  h = SciGc->EventHandler;
   if (h == (EVTHANDLER)NULL) { /* no, use global one */
     if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;}
   else { /* yes, call it */
-    (*(h))(win,x,y,ibut); return 0;
+    (h)(win,x,y,ibut); return 0;
   }
   
   /* do not record motion events and release button 
@@ -141,8 +138,7 @@ int CheckClickQueue(int *win,int *x,int *y,int *ibut)
   return(0);
 }
 
-int ClearClickQueue(win)
-     int win;
+int ClearClickQueue(int win)
 {
   int i;
   if ( win == -1 ) 
@@ -170,8 +166,9 @@ int ClearClickQueue(win)
   lastc=0;
   return(0);
 }
-int SciEventHandler(win,x,y,ibut)
-     int win,x,y,ibut;
+
+
+int SciEventHandler(int win,int x,int y,int ibut)
 {
   static char buf[256];
   sprintf(buf,"clickhandler_%d(%d,%d,%d)",win,x,y,ibut);
@@ -180,13 +177,9 @@ int SciEventHandler(win,x,y,ibut)
 }
 
 
-void C2F(seteventhandler)(win_num,job,ierr)
-     int *win_num;
-     int *ierr;
-     int *job;
+void C2F(seteventhandler)(int *win_num,int * job,int *ierr)
 {  
   struct BCG *SciGc;
-
   /*ButtonPressMask|PointerMotionMask|ButtonReleaseMask|KeyPressMask */
   *ierr = 0;
   SciGc = GetWindowXgcNumber(*win_num);
@@ -196,5 +189,3 @@ void C2F(seteventhandler)(win_num,job,ierr)
   else
     SciGc->EventHandler=(EVTHANDLER) NULL;
 }
-
-
