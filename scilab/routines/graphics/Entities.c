@@ -25,6 +25,16 @@ void wininfo(char *format,...);
 void wininfo();
 #endif
 
+/*F.Leray : Format pour imprimer un nombre de la forme k10^a ; cf. Axes.c*/
+extern void NumberFormat __PARAMS((char *str,integer k,integer a));
+extern void C2F(plot3dn)(sciPointObj *pobj, 
+			 double *x, double *y, double *z, 
+			 integer *p, integer *q, integer *flag, double *bbox);
+extern void C2F(fac3dn)(int iflag, 
+			double *x, double *y, double *z, 
+			integer *cvect, integer *p, integer *q, integer *flag, double *bbox);
+
+
 /**DJ.Abdemouche 2003**/
 #define TX3D(x1,y1,z1) inint(xz1= Cscale.Wscx1*(TRX(x1,y1,z1)-Cscale.frect[0]) +Cscale.Wxofset1);
 #define TY3D(x1,y1,z1) inint(yz1= Cscale.Wscy1*(-TRY(x1,y1,z1)+Cscale.frect[3])+Cscale.Wyofset1);
@@ -11522,18 +11532,20 @@ sciDrawObj (sciPointObj * pobj)
 	{ /* DJ.A 2003 */
 	case SCI_FAC3D:
 	  C2F(fac3dn)(pSURFACE_FEATURE (pobj)->flagcolor,
-			pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
-		       pSURFACE_FEATURE (pobj)->pvecz,
-		       pSURFACE_FEATURE (pobj)->zcol,&pSURFACE_FEATURE (pobj)->dimzx,
-		       &pSURFACE_FEATURE (pobj)->dimzy,pSURFACE_FEATURE (pobj)->flag,
-		       pSURFACE_FEATURE (pobj)->ebox,n);
-	    break;
+		      pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
+		      pSURFACE_FEATURE (pobj)->pvecz,
+		      pSURFACE_FEATURE (pobj)->zcol,&pSURFACE_FEATURE (pobj)->dimzx,
+		      &pSURFACE_FEATURE (pobj)->dimzy,pSURFACE_FEATURE (pobj)->flag,
+		      pSURFACE_FEATURE (pobj)->ebox);
+		      // pSURFACE_FEATURE (pobj)->ebox,n);
+	  break;
 	case SCI_PLOT3D:
 	  
-	    C2F(plot3dn)(pobj,pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
-			 pSURFACE_FEATURE (pobj)->pvecz,
-			 &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy,pSURFACE_FEATURE (pobj)->flag,
-			 pSURFACE_FEATURE (pobj)->ebox,n);
+	  C2F(plot3dn)(pobj,pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
+		       pSURFACE_FEATURE (pobj)->pvecz,
+		       &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy,pSURFACE_FEATURE (pobj)->flag,
+		       pSURFACE_FEATURE (pobj)->ebox);
+		       // pSURFACE_FEATURE (pobj)->ebox,n);
 	  break;
 	default:
 	  break;
@@ -12372,8 +12384,13 @@ int
 sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 {
   int i,n1,k,k1,k2;
-  double *pvx,*pvy,*pvz, *pvfx,*pvfy,*pvfz;
-  int *pstyle;
+  double *pvx = NULL,
+    *pvy = NULL,
+    *pvz = NULL,
+    *pvfx = NULL,
+    *pvfy = NULL,
+    *pvfz = NULL;
+  int *pstyle = NULL;
   POINT2D *pvector;
 
   switch (sciGetEntityType (pthis))
@@ -12416,8 +12433,8 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	    {
 	      pvx[i] = tab[i];
 	      pvy[i] = tab[i+ (*numrow)];
-	      pvector[i].x = tab[i];
-	      pvector[i].y = tab[i+ (*numrow)];
+	      pvector[i].x =  tab[i];
+	      pvector[i].y =  tab[i+ (*numrow)];
 	      if (*numcol == 3)
 		pvz[i] = tab[i+ 2*(*numrow)];
 	    }
@@ -12591,7 +12608,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	      if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
 		FREE(pvx);FREE(pvy);
 		return -1;
-	    }
+	      }
 	    if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
 	      FREE(pvx);FREE(pvy); FREE(pvz);
 	      return -1;
@@ -14926,7 +14943,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	yy[i]=pSUBWIN_FEATURE (psubwin)->axes.ylim[i];
 	zz[i]=pSUBWIN_FEATURE (psubwin)->axes.zlim[i];
       } 
-    size = xz[0]>=xz[1] ? xz[1]/50.0 : xz[0]/50.0; 
+    size = xz[0]>=xz[1] ? (integer) xz[1]/50.0 : (integer) xz[0]/50.0; 
     
     /*** le z scaling ***/
     if ( pSUBWIN_FEATURE (psubwin)->project[2]==1)
@@ -14955,8 +14972,8 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	    vx[0]=xm;vy[0]=ym;
 	    if ((ym >= iybox[2]) && (ym <= iybox[3]))
 	      {
-		barlengthx=( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size;
-		barlengthy=( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size;
+		barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		vx[1]=vx[0]+barlengthx;
 		vy[1]=vy[0]+barlengthy;
 		NumberFormat(foo,((integer) (zz[0] + i*ceil((zz[1]-zz[0])/zz[3]))),
@@ -14996,8 +15013,8 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 		vzz1=vzz+dx*j;
 		trans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1);
 		vx[0]=xm;vy[0]=ym;
-		vx[1]=vx[0]+barlengthx/2.0;
-		vy[1]=vy[0]+barlengthy/2.0;
+		vx[1]= (integer) (vx[0]+barlengthx/2.0);
+		vy[1]= (integer) (vy[0]+barlengthy/2.0);
 		if ((ym <= iybox[3]) && (ym >= iybox[2]))
 		  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      }
@@ -15043,8 +15060,8 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	       /**/
 	       if ((xm <= ixbox[5]) && (xm >= ixbox[4]) && (ym >= iybox[5]) && (ym <= iybox[4]))
 		 {
-		   barlengthx=( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size;
-		   barlengthy=( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size;
+		   barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		   barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		   NumberFormat(foo,((integer) (xx[0] + i*ceil((xx[1]-xx[0])/xx[3]))),
 				((integer) xx[2])); 
 		   C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -15100,8 +15117,8 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 		   else
 		     {
 		       vx[0]=xm;vy[0]=ym;
-		       vx[1]=vx[0]+barlengthx/2.0;
-		       vy[1]=vy[0]+barlengthy/2.0;
+		       vx[1]= (integer) (vx[0]+barlengthx/2.0);
+		       vy[1]= (integer) (vy[0]+barlengthy/2.0);
 		     }
 		     
 		   if ((ym >= iybox[5]) && (ym <= iybox[4]) && (xm <= ixbox[5]) && (xm >= ixbox[4])) 
@@ -15147,8 +15164,8 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 		/**/
 		if ((xm <= ixbox[5]) && (xm >= ixbox[4]) && (ym >= iybox[5]) && (ym <= iybox[4]))
 		{
-		  barlengthx=( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size;
-		  barlengthy=( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size;
+		  barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		  NumberFormat(foo,((integer) (yy[0] + i*ceil((yy[1]-yy[0])/yy[3]))),
 			       ((integer) yy[2]));
 		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -15204,8 +15221,8 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 		   else
 		     {
 		       vx[0]=xm;vy[0]=ym;
-		       vx[1]=vx[0]+barlengthx/2.0;
-		       vy[1]=vy[0]+barlengthy/2.0;
+		       vx[1]= (integer) (vx[0]+barlengthx/2.0);
+		       vy[1]= (integer) (vy[0]+barlengthy/2.0);
 		     }
 		    if ((ym >= iybox[5]) && (ym <= iybox[4]) && (xm <= ixbox[5]) && (xm >= ixbox[4]))
 		      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -15249,8 +15266,8 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	      /**/
 	      if ((xm <= ixbox[4]) && (xm >= ixbox[3]) && (ym <= iybox[4]) && (ym >= iybox[3]))
 		{
-		  barlengthx=( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size;
-		  barlengthy=( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size;
+		  barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		  NumberFormat(foo,((integer) (xx[0] + i*ceil((xx[1]-xx[0])/xx[3]))),
 			       ((integer) xx[2]));
 		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -15305,8 +15322,8 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 		  else
 		    {
 		      vx[0]=xm;vy[0]=ym;
-		      vx[1]=vx[0]+barlengthx/2.0;
-		      vy[1]=vy[0]+barlengthy/2.0;
+		      vx[1]= (integer) (vx[0]+barlengthx/2.0);
+		      vy[1]= (integer) (vy[0]+barlengthy/2.0);
 		    }
 		   if ((ym >= iybox[3]) && (ym <= iybox[4]) && (xm >= ixbox[3]) && (xm <= ixbox[4]))
 		     C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -15351,8 +15368,8 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 		/**/
 		if ((xm <= ixbox[4]) && (xm >= ixbox[3]) && (ym <= iybox[4]) && (ym >= iybox[3]))
 		  {
-		    barlengthx=( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size;
-		    barlengthy=( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size;
+		    barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		    barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		    NumberFormat(foo,((integer) (yy[0] + i*ceil((yy[1]-yy[0])/yy[3]))),
 				 ((integer) yy[2]));
 		    C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -15407,8 +15424,8 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 		    else
 		      {
 			vx[0]=xm;vy[0]=ym;
-			vx[1]=vx[0]+barlengthx/2.0;
-			vy[1]=vy[0]+barlengthy/2.0;
+			vx[1]= (integer) (vx[0]+barlengthx/2.0);
+			vy[1]= (integer) (vy[0]+barlengthy/2.0);
 		      }
 		    if ((ym >= iybox[3]) && (ym <= iybox[4]) && (ym >= ixbox[3]) && (xm <= ixbox[4]))
 		      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -15501,11 +15518,11 @@ BOOL IsDownAxes(sciPointObj *pobj)
     if (!(pSUBWIN_FEATURE (pobj)->isoview))
       cof=10.0;
     else
-      cof=Min(5,ceil(Max(
-		    abs(pSUBWIN_FEATURE (pobj)->axes.xlim[1]-pSUBWIN_FEATURE (pobj)->axes.xlim[0])/
-		     abs(pSUBWIN_FEATURE (pobj)->axes.ylim[1]-pSUBWIN_FEATURE (pobj)->axes.ylim[0]),
-		    abs(pSUBWIN_FEATURE (pobj)->axes.ylim[1]-pSUBWIN_FEATURE (pobj)->axes.ylim[0])/
-		     abs(pSUBWIN_FEATURE (pobj)->axes.xlim[1]-pSUBWIN_FEATURE (pobj)->axes.xlim[0]))));
+      cof= (double) (Min(5,ceil(Max(
+				    abs(pSUBWIN_FEATURE (pobj)->axes.xlim[1]-pSUBWIN_FEATURE (pobj)->axes.xlim[0])/
+				    abs(pSUBWIN_FEATURE (pobj)->axes.ylim[1]-pSUBWIN_FEATURE (pobj)->axes.ylim[0]),
+				    abs(pSUBWIN_FEATURE (pobj)->axes.ylim[1]-pSUBWIN_FEATURE (pobj)->axes.ylim[0])/
+				    abs(pSUBWIN_FEATURE (pobj)->axes.xlim[1]-pSUBWIN_FEATURE (pobj)->axes.xlim[0])))));
     if (cof == 0 ) cof =5;
     if ((alpha <=(-90.0+cof) ) && (alpha >= (-90.0-cof))) 
 	return TRUE;
@@ -15781,9 +15798,9 @@ void MergeFac3d(sciPointObj *psubwin)
   long *hdl;
   sciPointObj *pobj, *pmerge; 
   
-#ifdef WIN32
-  int flag;
-#endif
+  /*#ifdef WIN32
+    int flag;
+    #endif*/
 
   if(sciGetEntityType (psubwin) != SCI_SUBWIN) return; 
   if ((pmerge= sciGetMerge(psubwin)) != (sciPointObj *) NULL)

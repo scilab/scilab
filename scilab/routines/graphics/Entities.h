@@ -89,8 +89,8 @@ typedef unsigned long DWORD;
 
 typedef struct tagPOINT2D
 {
-  long x;
-  long y;
+  double x;
+  double y;
 }
 POINT2D;
 
