@@ -3,10 +3,21 @@
  * zzledt.c - line editing routine
  * Initial Version : Copyright (c) Mitchell and Gauthier assoc, inc 1993
  * Modified by Jean Philippe Chancelier (ENPC) and Serge Steer (INRIA) 
- *  - Console (xterm) and Scilab window mode handled, use it in Console mode for GTK
+ *  - Console (xterm) and Scilab window mode handled, 
+ *    used in Console mode for GTK
  *  - Interruption for Scilab menu execution
- *  - History functions changed to use chained lists
+ *  - History functions changed to use linked lists
  **********************************************************************/
+#include "../machine.h" 
+
+#ifdef WITH_GTK
+#ifdef WITH_READLINE 
+/* this file is unused */ 
+#define WITHOUT_STD_ZZLEDT 
+#endif 
+#endif 
+
+#ifndef WITHOUT_STD_ZZLEDT /* the gtk readline version is in gtk */ 
 #ifndef WIN32 /** The win32 version is defined in the wsci directory **/
 #include <string.h>
 #include <signal.h> /* for SIGINT */
@@ -855,11 +866,10 @@ int get_one_char(char *prompt) {
   int menusflag=0,modex=0;
   strcpy(lp,Sci_Prompt);
   strcpy(Sci_Prompt,prompt); 
-
   C2F(zzledt)(buffer,&buf_size,&len_line,&eof,&menusflag,&modex,2);
   strcpy(Sci_Prompt,lp);
-
   return buffer[0];
+  return Xorgetchar(1);
 }
 #endif
 
@@ -1034,4 +1044,5 @@ void ClearScreenConsole _PARAMS((char *fname))
   sciprint("Not yet implemented. \r\n");
 }
 
-#endif
+#endif /* The win32 version is defined in the wsci directory **/
+#endif /* the gtk readline version is in gtk */ 
