@@ -30,7 +30,7 @@ C     loop on blocks
       tvec(1)=0.0d0
       ntvec=0
       call dset(nout,0.0d0,outt,1)
-
+      nclock = 0
       do 5 kfun=1,nblk
          flag=4
          call callf(kfun,nclock,funptr,funtyp,told,x,x,xptr,z,zptr,iz,
