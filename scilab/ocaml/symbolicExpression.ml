@@ -766,19 +766,36 @@ and symbolic_or node node' = match symbolic_or_if_possible node node' with
   | None -> create_or (insert node [node'])
 
 and symbolic_partial_derivative var node' =
+  symbolic_partial_derivative_with eps var node'
+
+and symbolic_partial_derivative_with step var node' =
   let ( + ) = symbolic_add
   and ( - ) = symbolic_sub
   and ( * ) = symbolic_mult
   and ( / ) = symbolic_div
   and ( ** ) = symbolic_rationalPower in
+  let partial_blackBox_derivatives s args =
+    let dx_of_x x = step * (symbolic_if (symbolic_gt one (symbolic_abs x)) one (symbolic_abs x)) in
+    let rec augmented_arguments_list = function
+      | [] -> []
+      | arg :: args ->
+          (arg + dx_of_x arg :: args) :: List.map (fun aug_args -> arg :: aug_args) (augmented_arguments_list args)
+    and partial_derivatives aug_argss =
+      List.map2
+        (fun aug_args arg -> (create_blackBox s aug_args - create_blackBox s args) / dx_of_x arg)
+        aug_argss
+        args
+    in
+    partial_derivatives (augmented_arguments_list args)
+  in
   let rec partial_derivative node =
     if node == var then one
     else match node.nature with
       | Number _ | Constant _ | Derivative _ | DiscreteVariable _ | Floor _ |
         Parameter _ | Sign _ | TimeVariable | Variable _ -> zero
       | BlackBox (s, nodes) ->
-          let nodes' = List.map (replace var (symbolic_add var eps)) nodes in
-          symbolic_div (symbolic_sub (create_blackBox s nodes') node) eps
+          let dfs = partial_blackBox_derivatives s nodes in
+          List.fold_left2 (fun acc node df -> acc + partial_derivative node * df) zero nodes dfs
       | PartialDerivative _ ->
           create_partialDerivative var node
       | Addition nodes ->
@@ -1494,7 +1511,7 @@ and replace node node' node'' =
     | ArcHyperbolicTangent node -> symbolic_atanh (rewrite node)
     | ArcSine node -> symbolic_asin (rewrite node)
     | ArcTangent node -> symbolic_atan (rewrite node)
-    | BlackBox (s, nodes) -> apply_blackBox s (List.rev_map rewrite nodes)
+    | BlackBox (s, nodes) -> apply_blackBox s (List.map rewrite nodes)
     | Cosine node -> symbolic_cos (rewrite node)
     | Derivative (node, num) -> symbolic_derive (rewrite node) num
     | Equality (node, node') -> symbolic_eq (rewrite node) (rewrite node')
@@ -1523,4 +1540,6 @@ and replace node node' node'' =
   assert (!global_count <> 0);
   node.count <- !global_count;
   node.replacement <- node';
-  rewrite node''
+  let rewritten_node = rewrite node'' in
+  node.replacement <- node;
+  rewritten_node

@@ -13,7 +13,7 @@ module type S =
 module Make(G: CODEGENERATOR): S =
   struct
 
-    let version = "1.5.0"
+    let version = "1.5.3"
 
     let path = ref ""
 

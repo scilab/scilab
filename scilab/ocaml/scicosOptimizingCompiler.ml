@@ -3,7 +3,7 @@
 module Compiler = OptimizingCompiler.Make (ScicosCodeGeneration)
 
 let sccs_id =
-  "@(#)Modelicac - Copyright (C) 2003-2004 TNI-Valiosys"
+  "@(#)Modelicac - Copyright (C) 2005 Imagine"
 
 let name = Sys.argv.(0)
 

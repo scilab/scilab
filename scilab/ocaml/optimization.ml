@@ -321,7 +321,7 @@ let rec symbolic_expression_of_expression maps iexpr =
 let collect_external_function_names iequs =
   let rec add_if_not_in name = function
     | [] -> [name]
-    | name' :: names when name = name' -> names
+    | (name' :: _) as names when name = name' -> names
     | name' :: names -> name' :: add_if_not_in name names
   in
   let rec collect_in_equations funcalls = function

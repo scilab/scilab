@@ -527,7 +527,8 @@ let bufferize_jacobian model_info =
       0
       model.variables
   in
-  let cj = create_blackBox "Get_Jacobian_parameter" [] in
+  let cj = create_blackBox "Get_Jacobian_parameter" []
+  and dx = create_blackBox "Get_Scicos_SQUR" [] in
   let jacobian_matrix =
     Array.init (nx + ny) (fun _ -> Array.make (nx + nu) zero)
   in
@@ -540,14 +541,16 @@ let bufferize_jacobian model_info =
               (fun (j, k) variable ->
                 if not model.equations.(k).solved then begin
                   let dfdx =
-                    symbolic_partial_derivative
+                    symbolic_partial_derivative_with
+                      dx
                       (create_variable k)
                       equation.expression
                   in
                   jacobian_matrix.(i).(j) <-
                     if variable.state then
                       let dfdxd =
-                        symbolic_partial_derivative
+                        symbolic_partial_derivative_with
+                          dx
                           (create_derivative (create_variable k) (Num.Int 1))
                           equation.expression
                       in
@@ -570,7 +573,8 @@ let bufferize_jacobian model_info =
         if not equation.solved then begin
           for j = -1 downto -Array.length model.inputs do
             jacobian_matrix.(i).(nx - 1 - j) <-
-              symbolic_partial_derivative
+              symbolic_partial_derivative_with
+                dx
                 (create_discrete_variable j)
                 equation.expression
           done;
@@ -590,7 +594,8 @@ let bufferize_jacobian model_info =
                 if not model.equations.(l).solved then begin
                   jacobian_matrix.(nx + i).(j) <-
                     if equation.solved then
-                      symbolic_partial_derivative
+                      symbolic_partial_derivative_with
+                        dx
                         (create_variable l)
                         equation.expression
                     else if k = l then one
@@ -613,7 +618,8 @@ let bufferize_jacobian model_info =
           for j = -1 downto -Array.length model.inputs do
             jacobian_matrix.(nx + i).(nx - 1 - j) <-
               if equation.solved then
-                symbolic_partial_derivative
+                symbolic_partial_derivative_with
+                  dx
                   (create_discrete_variable j)
                   equation.expression
               else zero
@@ -636,15 +642,39 @@ let bufferize_jacobian model_info =
         row)
     jacobian_matrix;
   model_info.current_index <- -1;
-  Array.iteri
-    (fun i row ->
-      Array.iteri
-        (fun j elt ->
-          let lhs = "res[" ^ (string_of_int (i * (nx + nu) + j)) ^ "] = " in
-          bufferize_rhs model_info 2 true lhs elt;
-          Printf.bprintf model_info.code_buffer ";\n")
-        row)
-    jacobian_matrix;
+  for j = 0 to nx - 1 do
+    for i = 0 to nx - 1 do
+      let lhs = "res[" ^ (string_of_int ((j * nx) + i)) ^ "] = " in
+      bufferize_rhs model_info 2 true lhs jacobian_matrix.(i).(j);
+      Printf.bprintf model_info.code_buffer ";\n"
+    done;
+  done;
+  for j = nx to nx + nu - 1 do
+    for i = 0 to nx - 1 do
+      let lhs = "res[" ^ (string_of_int ((j * nx) + i)) ^ "] = " in
+      bufferize_rhs model_info 2 true lhs jacobian_matrix.(i).(j);
+      Printf.bprintf model_info.code_buffer ";\n"
+    done;
+  done;
+  let offset = nx * (nx + nu) in
+  for j = 0 to nx - 1 do
+    for i = nx to nx + ny - 1 do
+      let lhs =
+        "res[" ^ (string_of_int (offset + (j * ny) + (i - nx))) ^ "] = "
+      in
+      bufferize_rhs model_info 2 true lhs jacobian_matrix.(i).(j);
+      Printf.bprintf model_info.code_buffer ";\n"
+    done;
+  done;
+  for j = nx to nx + nu - 1 do
+    for i = nx to nx + ny - 1 do
+      let lhs =
+        "res[" ^ (string_of_int (offset + (j * ny) + (i - nx))) ^ "] = "
+      in
+      bufferize_rhs model_info 2 true lhs jacobian_matrix.(i).(j);
+      Printf.bprintf model_info.code_buffer ";\n"
+    done;
+  done;
   Printf.bprintf model_info.code_buffer "\t\tset_block_error(0);\n"
 
 let bufferize_outputs model_info =

@@ -433,6 +433,15 @@ val symbolic_or: t -> t -> t
 applying the 'or' function to the expressions represented by [expr] and
 [expr']. *)
 
+val symbolic_partial_derivative_with: t -> t -> t -> t
+(** [symbolic_partial_derivative step expr expr'] returns an object that represents
+the result of applying the partial derivative function to the expression
+represented by [expr'] with respect to the variable represented by [expr]. If
+[expr]'s nature is [And _], [BooleanValue _], [Equality _], [Not _], [Or _],
+[Greater _] or [GreaterEqual _], raise Invalid_argument. [step] is used to
+specify a default step value when generating finite-difference schemes for
+black box functions. *)
+
 val symbolic_partial_derivative: t -> t -> t
 (** [symbolic_partial_derivative expr expr'] returns an object that represents
 the result of applying the partial derivative function to the expression
