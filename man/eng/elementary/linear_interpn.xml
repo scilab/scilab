@@ -116,7 +116,6 @@ xx = linspace(0,2*%pi, 40);
 [xp,yp] = ndgrid(xx,xx);
 zp = linear_interpn(xp,yp, x, y, z);
 xbasc()
-xset("font",6,1)
 plot3d(xx, xx, zp, flag=[2 6 4])
 [xg,yg] = ndgrid(x,x);
 param3d1(xg,yg, list(z,-9*ones(1,n)), flag=[0 0])
@@ -141,7 +140,6 @@ zp3 = linear_interpn(XP, YP, x, y, z, "C0");
 zp4 = linear_interpn(XP, YP, x, y, z, "by_zero");
 zp5 = linear_interpn(XP, YP, x, y, z, "by_nan");
 xbasc()
-xset("font",6,1)
 subplot(2,3,1)
    plot3d(x, y, z, leg="x@y@z", flag = [2 4 4])
    xtitle("initial function 0.4 cos(2 pi x) cos(pi y)")
@@ -195,12 +193,9 @@ color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
 xset("colormap",jetcolormap(nb_col));
 xbasc()
 xset("hidden3d",xget("background"))
-xset("font",6,1)   
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
-xset("font",6,3)
 xtitle("tri-linear interpolation of "+func)
-xset("font",6,1)
 xselect()
  ]]></EXAMPLE>
 

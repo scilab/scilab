@@ -57,7 +57,7 @@
     </P>
     </DESCRIPTION>
 
-    <SECTION label="Remarks">
+    <SECTION label="Remark">
     <P>
        This function works under the conditions: 
     </P>
@@ -67,7 +67,7 @@
        2 <= ky < ny
        2 <= kz < nz]]></VERBATIM>
     <P>
-       The tlist struct have the following fields...
+       an error being issued when they are not respected.
     </P>
     </SECTION>
   <EXAMPLE><![CDATA[
@@ -117,7 +117,7 @@ nb_col = 128;
 vmin = min(VF); vmax = max(VF);
 color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
 xset("colormap",jetcolormap(nb_col));
-xbasc(); xset("hidden3d",xget("background")); xset("font",6,2)   
+xbasc(); xset("hidden3d",xget("background"));
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("3d spline interpolation of "+func)
@@ -140,3 +140,4 @@ xselect()
      <AUTHORS_ITEM> B. Pincon (scilab interface)</AUTHORS_ITEM>
   </AUTHORS>
 </MAN>
+

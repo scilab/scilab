@@ -111,14 +111,18 @@ xx = linspace(a,b,800)';
 [yyf, yy1f, yy2f] = interp(xx, x, y, df); 
 xbasc()
 subplot(3,1,1)
-plot2d(xx, [yyk yyf], leg="not_a_knot spline@fast sub-spline")
+plot2d(xx, [yyk yyf])
 plot2d(x, y, style=-9)
+legends(["not_a_knot spline","fast sub-spline","interpolation points"],...
+        [1 2 -9], "ur",%f)
 xtitle("spline interpolation")
 subplot(3,1,2)
-plot2d(xx, [yy1k yy1f], leg="not_a_knot spline@fast sub-spline")
+plot2d(xx, [yy1k yy1f])
+legends(["not_a_knot spline","fast sub-spline"], [1 2], "ur",%f)
 xtitle("spline interpolation (derivatives)")
 subplot(3,1,3)
-plot2d(xx, [yy2k yy2f], leg="not_a_knot spline@fast sub-spline")
+plot2d(xx, [yy2k yy2f])
+legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
 xtitle("spline interpolation (second derivatives)")
 
 // here is an example showing the different extrapolation possibilities
