@@ -498,6 +498,7 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
 	}
     }
   else WRect = Cscale.subwin_rect; 
+
   if (version_flag() == 0)
     if (FRect != NULL)
 	    { masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
@@ -507,6 +508,16 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
 	      pSUBWIN_FEATURE (masousfen)->FRect[3]   = FRect[3];
 	    }
   if ( FRect != NULL) flag[2]='t'; else FRect = Cscale.frect;
+
+  if (version_flag() == 0)
+    if (ARect != NULL)
+	    { masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
+	      pSUBWIN_FEATURE (masousfen)->ARect[0]   = ARect[0];
+	      pSUBWIN_FEATURE (masousfen)->ARect[1]   = ARect[1];
+	      pSUBWIN_FEATURE (masousfen)->ARect[2]   = ARect[2];
+	      pSUBWIN_FEATURE (masousfen)->ARect[3]   = ARect[3];
+	    }
+
   if ( ARect != NULL) flag[5]='t'; else ARect = Cscale.axis;
   if ( logscale != NULL) flag[4] ='t'; else logscale = Cscale.logflag;
   if ( flag[4] == 't' && flag[2] == 't' ) 

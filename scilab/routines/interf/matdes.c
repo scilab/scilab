@@ -5472,6 +5472,19 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"data_bounds property does not exist for this handle");return -1;}
   }
+  else if (strcmp(marker,"margins") == 0) {
+    if (sciGetEntityType (pobj) == SCI_SUBWIN) {   
+      /**DJ.Abdemouche 2003**/
+      if (*numrow * *numcol != 4) 
+	{strcpy(error_message,"Second argument must have 4 elements ");return -1;}
+      pSUBWIN_FEATURE (pobj)->ARect[0]=stk(*value)[0];
+      pSUBWIN_FEATURE (pobj)->ARect[1]=stk(*value)[1];
+      pSUBWIN_FEATURE (pobj)->ARect[2]=stk(*value)[2];
+      pSUBWIN_FEATURE (pobj)->ARect[3]=stk(*value)[3];}
+    else
+      {strcpy(error_message,"margins property does not exist for this handle");return -1;}
+  }
+
   else if (strncmp(marker,"tics_color", 10) == 0) {   
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->ticscolor = (int)stk(*value)[0];
@@ -6763,6 +6776,22 @@ if ((pobj == (sciPointObj *)NULL) &&
 	  stk(outindex)[i] = pSURFACE_FEATURE (pobj)->ebox[i];
 	}
     }
+    else
+      {strcpy(error_message,"data_bounds property does not exist for this handle");return -1;}
+  } 
+  else if (strcmp(marker,"margins") == 0) {
+    if (sciGetEntityType (pobj) == SCI_SUBWIN) {
+      /**SS  2004**/
+	numrow   = 1;
+	numcol=4;
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	  stk(outindex)[0] = pSUBWIN_FEATURE (pobj)->ARect[0];
+	  stk(outindex)[1] = pSUBWIN_FEATURE (pobj)->ARect[2];
+	  stk(outindex)[2] = pSUBWIN_FEATURE (pobj)->ARect[1];
+	  stk(outindex)[3] = pSUBWIN_FEATURE (pobj)->ARect[3];
+
+    }
+
     else
       {strcpy(error_message,"data_bounds property does not exist for this handle");return -1;}
   } 

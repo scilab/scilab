@@ -14729,6 +14729,7 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"color_flag") == 0)    {return 1;}
   else if (strcmp(marker,"axes_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"data_bounds") == 0)    {return 1;}
+  else if (strcmp(marker,"margins") == 0)    {return 1;}
   else if (strcmp(marker,"surface_color") == 0)    {return 1;}
   else if (strcmp(marker,"rotation_style") == 0)    {return 10;}
   else if (strcmp(marker,"triangles") == 0)    {return 1;}

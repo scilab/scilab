@@ -631,6 +631,7 @@ typedef struct
   int zoomy;
   double FRect[6]; /**DJ.Abdemouche 2003**/
   double WRect[4];
+  double ARect[4]; /* SS 22/04/04 */
   int zoomy_kp;
   double FRect_kp[4];
   double WRect_kp[4];
