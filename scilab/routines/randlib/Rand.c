@@ -783,7 +783,10 @@ int RandI( char* fname)
 	{ Scierror(999,"Missing P matrix and X0 for Markov chain\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
       GetRhsVar(suite+1, "i", &m2, &n2, &lb);
-      if ( m1 != n1 ) { Scierror(999,"P must be a square matrix\r\n");return 0;}
+      if ( m1 != n1 && m1 != 1 ) 
+	{ 
+	  Scierror(999,"P must be a square matrix or a row vector\r\n");return 0;
+	}
 
       if ( m2*n2 == 0 ) { Scierror(999,"X0 is empty\r\n");return 0;} 
       
@@ -839,13 +842,15 @@ int RandI( char* fname)
 	    {
 	      int niv=0;
 	      double rr = C2F(ranf)();
+	      if ( m1 == 1 ) icur =0;
 	      while ( rr >= *stk(lr1+ icur +m1*niv) && niv < n1p1 ) 
 		{
 		  niv++;
 		}
 	      /** projection to avoid boundaries **/
 	      niv = Max(Min(niv,n1),1); 
-	      *istk(lr+jj+mm*i)= niv ; icur=niv-1;
+	      *istk(lr+jj+mm*i)= niv ; 
+	      icur=niv-1;
 	    }
 	}
       LhsVar(1) = suite+2;
