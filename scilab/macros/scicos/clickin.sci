@@ -89,7 +89,7 @@ if typeof(o)=='Block' then
 elseif typeof(o)=='Link' then  
   [Cmenu]=resume('Link')
 elseif typeof(o)=='Text' then
-  execstr('o_n='+o.id+'(''set'',o)')
+  execstr('o_n='+o.gui+'(''set'',o)')
   edited=or(o<>o_n)
   o=o_n
 end

@@ -13,7 +13,7 @@ else
 end
 bl=''
 lmax=80;
-t=lname+'=mlist('+sci2exp(getfield(1,scs_m))+')'
+t=lname+'=scicos_diagram()'
 t1=sci2exp(scs_m.props,lmax);
 t=[t;lname+'.props='+t1(1);t1(2:$)]
 write(u,t,'(a)');t=[]
@@ -50,7 +50,7 @@ for k=1:size(scs_m.objs)
 	  tt=catinstr(tt,sci2exp(o.model(fn(k)),lmax-count*2),length(lhs))
 	else
 	  //introduce model.rpar generated above
-	  tt=catinstr(tt,'scs_m_'+string(count+1)+'.objs',0) 
+	  tt=catinstr(tt,'scs_m_'+string(count+1),0) 
 	end
       end
       tt($)=tt($)+')' // close model list
