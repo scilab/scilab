@@ -66,7 +66,7 @@
 #undef fwrite
 #undef fread
 
-#define ExecutableNameOfScilab "SCILEX.EXE"
+
 
 /*-----------------------------------------------------------------------------------*/
 /* Les Variables Globales */

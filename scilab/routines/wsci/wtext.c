@@ -2225,71 +2225,113 @@ EXPORT void WINAPI TextAttr (LPTW lptw, BYTE attr)
 /*-----------------------------------------------------------------------------------*/
 
 EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam)
-{
-   switch (wMsg)
-    {
-        case WM_INITDIALOG:    
-        
-      	{
-		char *buffer=NULL;
-
-		buffer=(char*)malloc(strlen("Copyright ® ")+strlen(DEFAULT_MES)+1);
-		wsprintf(buffer,"%s %s","Copyright ® ",DEFAULT_MES);
-		SetDlgItemText(hDlg,IDC_VERSION_SPLASH,VERSION);
-	        SetDlgItemText(hDlg,IDC_COPYRIGHT_SPLASH,buffer);
-	        wsprintf(buffer,"%s %s",__DATE__,__TIME__);
-	        SetDlgItemText(hDlg,IDC_BUILD,buffer);
-	        free(buffer);
-	}
-      	return TRUE;
-      	
-      	case WM_DRAWITEM:
-      	{
-      	}
-      	return FALSE;
-      	
-    	case WM_COMMAND:
-    	{
-    	
-      		switch (LOWORD (wParam))
+	{
+	switch (wMsg)
 		{
-			case IDC_LICENCE:
-			{
-				char Chemin[MAX_PATH];
-				int error=0;
-				
-				GetModuleFileName(NULL,Chemin,MAX_PATH);
-				Chemin[strlen(Chemin)-strlen("\\bin\\scilex.exe")]='\0';
-  				strcat(Chemin,"\\License.txt");
+		case WM_INITDIALOG:    
 
-				error =(int)ShellExecute(NULL, "open", Chemin, NULL, NULL, SW_SHOWNORMAL);
-	    			if (error<= 32) MessageBox(NULL,"Couldn't Open License.txt","Warning",MB_ICONWARNING);
-	    		}
-			break;
-			case IDOK:
-	  			EndDialog (hDlg, LOWORD (wParam));
-	  		return TRUE;
-	  	
+			{
+			char buffer[MAX_PATH];
+
+			wsprintf(buffer,"%s %s","Copyright ® ",DEFAULT_MES);
+			SetDlgItemText(hDlg,IDC_VERSION_SPLASH,VERSION);
+			SetDlgItemText(hDlg,IDC_COPYRIGHT_SPLASH,buffer);
+			wsprintf(buffer,"%s %s",__DATE__,__TIME__);
+			SetDlgItemText(hDlg,IDC_BUILD,buffer);
+			}
+		return TRUE;
+
+		case WM_DRAWITEM:
+			{
+			}
+		return FALSE;
+
+		case WM_COMMAND:
+			{
+			switch (LOWORD (wParam))
+				{
+				case IDC_LICENCE:
+					{
+					#define LICENCEFR "Licence.txt"
+					#define LICENSEENG "License.txt"
+					#define	PATHBIN "bin\\"
+
+					char Chemin[MAX_PATH];
+					char szModuleName[MAX_PATH];
+					LPSTR tail;
+					HINSTANCE hInstance=NULL;
+					int error=0;
+
+					hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
+					GetModuleFileName (hInstance,szModuleName, MAX_PATH);
+
+					if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
+						{
+						tail++;
+						*tail = '\0';
+						}
+					szModuleName[strlen(szModuleName)-strlen(PATHBIN)]='\0';
+					strcpy(Chemin,szModuleName);
+
+					switch (LanguageCode)
+						{
+						case 1: /* French */
+							{
+							strcat(Chemin,LICENCEFR);
+							}
+						break;
+
+						default: case 0: /*English */
+							{
+							strcat(Chemin,LICENSEENG);
+							}
+						break;
+						}
+
+					error =(int)ShellExecute(NULL, "open", Chemin, NULL, NULL, SW_SHOWNORMAL);
+					if (error<= 32) 
+						{
+						switch (LanguageCode)
+							{
+							case 1: /* French */
+								{
+								MessageBox(NULL,"Impossible d'ouvrir le fichier Licence.txt","Attention",MB_ICONWARNING);
+								}
+							break;
+
+							default: case 0: /*English */
+								{
+								MessageBox(NULL,"Couldn't Open License.txt","Warning",MB_ICONWARNING);
+								}
+							break;
+							}
+						}
+					}
+				break;
+				case IDOK:
+					EndDialog (hDlg, LOWORD (wParam));
+					return TRUE;
+
+				}
+			}	
+		break;
+
+		case WM_DESTROY :
+			{
+			EndDialog (hDlg, LOWORD (wParam));
+			return TRUE;
+			}
+		break;
+
+		case WM_CLOSE :
+			{
+			EndDialog (hDlg, LOWORD (wParam));
+			return TRUE;
+			}
+		break;
 		}
-	}	
-      	break;
-      	
-      	case WM_DESTROY :
-      	{
-               	EndDialog (hDlg, LOWORD (wParam));
-              	return TRUE;
-      	}
-        break;
-        
-        case WM_CLOSE :
-      	{
-               	EndDialog (hDlg, LOWORD (wParam));
-              	return TRUE;
-      	}
-        break;
-    }
-  return FALSE;
-}
+	return FALSE;
+	}
 /*-----------------------------------------------------------------------------------*/
 EXPORT void WINAPI AboutBox (HWND hwnd, LPSTR str)
 {
@@ -2303,12 +2345,12 @@ EXPORT void WINAPI AboutBox (HWND hwnd, LPSTR str)
 /*Cache la fenetre Scilex(x) de ce processus */
 void HideScilex(void)
 {
-  HWND hScilex=NULL;
-  hScilex=FindWindow(NULL,ScilexConsoleName);
-  if (hScilex)
-  {
-  	ShowWindow(hScilex,SW_HIDE);	
-  }
+	HWND hScilex=NULL;
+	hScilex=FindWindow(NULL,ScilexConsoleName);
+	if (hScilex)
+		{
+		ShowWindow(hScilex,SW_HIDE);	
+		}
 }
 /*-----------------------------------------------------------------------------------*/
 /*Montre la fenetre Scilex(x) de ce processus */
