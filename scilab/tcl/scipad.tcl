@@ -3,6 +3,11 @@
 exec `which wish` "$0" "$@"
 
 # Tk NotePad by Joseph Acosta
+# modified by Matthieu PHILIPPE 01/01/2003
+# Some bug corrected
+# - cut/paste with ctrl-x/ctrl-v
+# - select then unselect then type any key doesn't crash scipad any more !
+
 # modified by Matthieu PHILIPPE 03/01/2002
 # added
 # - Number line
@@ -28,7 +33,7 @@ set fileName " "
 set textareacur $pad.textarea
 set saveTextMsg 0
 set winTitle "SciPad"
-set version "Version 1.0 beta"
+set version "Version 1.1"
 set wordWrap none
 set printCommand lpr
 set BGCOLOR "white"
@@ -641,6 +646,9 @@ proc filesetasnewmat {} {
 	# more bindings
 	bind Text <Control-v> {}
 	bind $pad.new$winopened <Control-v> {pastetext}
+    } else {
+	bind Text <Control-v> {}
+	bind $pad.new$winopened <Control-v> {pastetext}
     }
     bind $pad.new$winopened <KeyRelease> {keyposn %W}
     bind $pad.new$winopened <ButtonRelease> {keyposn %W}
@@ -804,6 +812,9 @@ proc showopenwin {textarea} {
 	    set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
 	    if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
 		# more bindings
+		bind Text <Control-v> {}
+		bind $pad.new$winopened <Control-v> {pastetext}
+	    } else {
 		bind Text <Control-v> {}
 		bind $pad.new$winopened <Control-v> {pastetext}
 	    }
@@ -992,8 +1003,12 @@ proc deletetext {} {
 
     set cuttexts [selection own]
     if {$cuttexts != "" } {
-        $cuttexts delete sel.first sel.last
-        selection clear
+	if [catch {selection get -selection PRIMARY} sel] {   	
+	    [gettextareacur] delete "insert" "insert +1c"
+	} else {
+	    $cuttexts delete sel.first sel.last
+	    selection clear
+	}
     } else {
         [gettextareacur] delete "insert" "insert +1c"
     }
@@ -1008,8 +1023,12 @@ proc backspacetext {} {
     global textareacur
     set cuttexts [selection own]
     if {$cuttexts != "" } {
-        $cuttexts delete sel.first sel.last
-        selection clear
+	if [catch {selection get -selection PRIMARY} sel] {   	
+	    [gettextareacur] delete "insert-1c" "insert"
+	} else {
+	    $cuttexts delete sel.first sel.last
+	    selection clear
+	}
     } else {
         [gettextareacur] delete "insert-1c" "insert"
     }
@@ -1043,9 +1062,13 @@ proc pastetext {} {
     global textareacur
     global tcl_platform
     if {"$tcl_platform(platform)" == "unix"} {
-	    catch {
-		[gettextareacur] delete sel.first sel.last
-	    }
+	catch {
+	    [gettextareacur] delete sel.first sel.last
+	}
+    } else {
+	catch {
+	    [gettextareacur] delete sel.first sel.last
+	}
     }
     set i1  [[gettextareacur] index insert]
     tk_textPaste [gettextareacur]
@@ -1383,7 +1406,16 @@ if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
 	# more bindings
 	bind Text <Control-v> {}
 	bind $textareacur <Control-v> {pastetext}
-}
+    } else {
+	#events
+	set tk_strictMotif 0
+	event delete <<Cut>> <Control-x>
+	event delete <<Paste>> <Control-v>
+        event delete <<Paste>> <Control-Key-y>
+	# more bindings
+	bind Text <Control-v> {}
+	bind $textareacur <Control-v> {pastetext}
+    }
 
 bind $textareacur <KeyRelease> {keyposn %W}
 bind $textareacur <ButtonRelease> {keyposn %W}
@@ -1797,8 +1829,12 @@ proc puttext {w text} {
     set rem 0
     set cuttexts [selection own]
     if {$cuttexts != "" } {
-        $cuttexts delete sel.first sel.last
-        selection clear
+	if [catch {selection get -selection PRIMARY} sel] {
+	    
+	} else {
+	    $cuttexts delete sel.first sel.last
+	    selection clear
+	}
     }	
     set i1 [$w index insert]
     $w insert insert $text
