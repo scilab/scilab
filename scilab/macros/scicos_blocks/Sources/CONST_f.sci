@@ -17,7 +17,7 @@ case 'set' then
   model=arg1.model;
   while %t do
     [ok,C,exprs]=getvalue(['Set Contant Block'],..
-	    'Contants',list('vec',-1),exprs)
+	    'Constant',list('vec',-1),exprs)
     if ~ok then break,end
     nout=size(C,'*')
     if nout==0 then

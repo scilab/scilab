@@ -114,7 +114,7 @@ model.nzcross=ng
 
 label=list([funam,'n',sci2exp(in),sci2exp(out),sci2exp(clkin),sci2exp(clkout),..
 	   sci2exp(x0),sci2exp(0),sci2exp(z0),sci2exp(rpar),sci2exp(ipar),..
-	   sci2exp(auto),sci2exp(%t),sci2exp(%f)],[])
+	   sci2exp(auto),'y','n'],[])
 
   gr_i=['xstringb(orig(1),orig(2),''C block2'',sz(1),sz(2),''fill'');']
   x=standard_define([2 2],model,label,gr_i)

@@ -19,16 +19,16 @@ function [x,y,typ]=DEMUX(job,arg1,arg2)
 			      ['number of output ports or vector of sizes'],list('vec',-1),exprs)
       if ~ok then break,end
       if size(out,'*')==1 then
-	if out<2 then
-	  message('Block must have at least 2 output ports')
+	if out<2|out>31 then
+	  message('Block must have at least 2 and at most 31 output ports')
 	  ok=%f
 	else
 	  [model,graphics,ok]=check_io(model,graphics,0,-[1:out]',[],[])
 	end
       else
-        if size(out,'*')<2| or(out==0) then
-	  message(['Block must have at least 2 output ports';
-		'and size 0 is not allowed']   )
+        if size(out,'*')<2| or(out==0)|size(out,'*')>31 then
+	  message(['Block must have at least 2 and at most 31 output ports';
+		   'size 0 is not allowed'])
 	  ok=%f
 	else
 	  if min(out)<0 then nin=0,else nin=sum(out),end
