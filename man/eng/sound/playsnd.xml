@@ -37,7 +37,7 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-  y=wavread('SCI/demos/sound/chimes.wav');
+  y=wavread('SCI/demos/signal/sound/chimes.wav');
   playsnd(y)
 
 
