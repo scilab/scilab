@@ -622,17 +622,18 @@ void GViewportResize(ScilabXgc,width,height)
 }
 
 /** used when we resize the popup at scilab level **/
-
 void GPopupResize(ScilabXgc,width,height) 
      struct BCG *ScilabXgc;
      int *width,*height;
 {
   Dimension clwidth = Max(*width,  WINMINW);
   Dimension clheight= Max(*height, WINMINH);
-  iargs = 0;
-  XtSetArg (args[iargs], XtNwidth, clwidth ); iargs++;
-  XtSetArg (args[iargs], XtNheight,clheight); iargs++;
-  XtSetValues (ScilabXgc->popup, args, iargs);
+  if ( ScilabXgc->popup!=(Widget)0) { /* check if it is not a tk canvas */
+    iargs = 0;
+    XtSetArg (args[iargs], XtNwidth, clwidth ); iargs++;
+    XtSetArg (args[iargs], XtNheight,clheight); iargs++;
+    XtSetValues (ScilabXgc->popup, args, iargs);
+  }
 }
 
 /* 
