@@ -14,10 +14,11 @@ level(1)=level(1)+1
 to_insert=list()
 select typeof(mtlb_clause)
   
-// --- IF ---
+  // --- IF ---
 case "ifthenelse"
   level(2)=1  
   // Convert expression
+  
   [sci_expr]=expression2sci(mtlb_clause.expression)
   // Get instructions to insert if there are
   if m2sci_to_insert_b<>list() then
@@ -28,45 +29,71 @@ case "ifthenelse"
   // Convert then statements
   sci_then=list()
   for k=1:size(mtlb_clause.then)
-    [instr,nblines]=instruction2sci(mtlb_clause.then(k),nblines)
-    sci_then=update_instr_list(sci_then,instr)
+    if typeof(mtlb_clause.then(k))=="sup_equal" then
+      sci_then_temp=list()
+      for i=1:size(mtlb_clause.then(k).sup_instr)
+	[instr,nblines]=instruction2sci(mtlb_clause.then(k).sup_instr(i),nblines)
+	sci_then_temp=update_instr_list(sci_then_temp,instr)
+      end
+      sci_then($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_then_temp,mtlb_clause.then(k).nb_opr)
+    else
+      [instr,nblines]=instruction2sci(mtlb_clause.then(k),nblines)
+      sci_then=update_instr_list(sci_then,instr)
+    end
   end
   
   // Convert elseifs
-  sci_elseifs=list()
+sci_elseifs=list()
   for k=1:size(mtlb_clause.elseifs)
-    level(2)=level(2)+1
-    
-    // Convert expression
-    [sci_exprn]=expression2sci(mtlb_clause.elseifs(k).expression)
-    // Get instructions to insert if there are
-    if m2sci_to_insert_b<>list() then
-      to_insert=m2sci_to_insert_b
-      m2sci_to_insert_b=list()
-    end
-    
-    // Convert statements
-    sci_stat=list()
-    for l=1:size(mtlb_clause.elseifs(k).then)
-      [instr,nblines]=instruction2sci(mtlb_clause.elseifs(k).then(l),nblines)
-      sci_stat=update_instr_list(sci_stat,instr)
-    end
-    
-    sci_elseifs($+1)=tlist(["elseif","expression","then"],sci_exprn,sci_stat)
+  level(2)=level(2)+1
+  
+  // Convert expression
+[sci_exprn]=expression2sci(mtlb_clause.elseifs(k).expression)
+  // Get instructions to insert if there are
+  if m2sci_to_insert_b<>list() then
+    to_insert=m2sci_to_insert_b
+    m2sci_to_insert_b=list()
   end
   
-  // Convert else
-  sci_else=list()
+  // Convert statements
+  sci_stat=list()
+  for l=1:size(mtlb_clause.elseifs(k).then)
+  if typeof(mtlb_clause.elseifs(k).then(l))=="sup_equal" then
+  sci_stat_temp=list()
+  for i=1:size(mtlb_clause.elseifs(k).then(l).sup_instr)
+[instr,nblines]=instruction2sci(mtlb_clause.elseifs(k).then(l).sup_instr(i),nblines)
+  sci_stat_temp=update_instr_list(sci_stat_temp,instr)
+end
+sci_stat($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat_temp,mtlb_clause.elseifs(k).then(l).nb_opr)
+else
+[instr,nblines]=instruction2sci(mtlb_clause.elseifs(k).then(l),nblines)
+  sci_stat=update_instr_list(sci_stat,instr)
+end
+end
+sci_elseifs($+1)=tlist(["elseif","expression","then"],sci_exprn,sci_stat)
+end
+
+// Convert else
+sci_else=list()
   level(2)=level(2)+1 
   for k=1:size(mtlb_clause.else)
-    [instr,nblines]=instruction2sci(mtlb_clause.else(k),nblines)
-    sci_else=update_instr_list(sci_else,instr)
-  end
-  
-  // Create Scilab ifthenelse
-  sci_clause=tlist(["ifthenelse","expression","then","elseifs","else"],sci_expr,sci_then,sci_elseifs,sci_else)
-  updatevarslist("END OF CLAUSE")
-  level(1)=level(1)-1
+  if typeof(mtlb_clause.else(k))=="sup_equal" then
+sci_else_temp=list()
+  for i=1:size(mtlb_clause.else(k).sup_instr)
+[instr,nblines]=instruction2sci(mtlb_clause.else(k).sup_instr(i),nblines)
+  sci_else_temp=update_instr_list(sci_else_temp,instr)
+end
+sci_else($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_else_temp,mtlb_clause.else(k).nb_opr)
+else
+[instr,nblines]=instruction2sci(mtlb_clause.else(k),nblines)
+  sci_else=update_instr_list(sci_else,instr)
+end
+end
+
+// Create Scilab ifthenelse
+sci_clause=tlist(["ifthenelse","expression","then","elseifs","else"],sci_expr,sci_then,sci_elseifs,sci_else)
+updatevarslist("END OF CLAUSE")
+level(1)=level(1)-1
 
 // --- SELECT ---
 case "selectcase"
@@ -112,26 +139,42 @@ case "selectcase"
     // Convert statements
     sci_stat=list()
     for l=1:size(mtlb_clause.cases(k).then)
-      [instr,nblines]=instruction2sci(mtlb_clause.cases(k).then(l),nblines)
-      sci_stat=update_instr_list(sci_stat,instr)
+      if typeof(mtlb_clause.cases(k).then(l))=="sup_equal" then
+	sci_stat_temp=list()
+	for i=1:size(mtlb_clause.cases(k).then(l).sup_instr)
+	  [instr,nblines]=instruction2sci(mtlb_clause.cases(k).then(l).sup_instr(i),nblines)
+	  sci_stat_temp=update_instr_list(sci_stat_temp,instr)
+	end
+	sci_stat($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat_temp,mtlb_clause.cases(k).then(l).nb_opr)
+      else
+	[instr,nblines]=instruction2sci(mtlb_clause.cases(k).then(l),nblines)
+	sci_stat=update_instr_list(sci_stat,instr)
+      end
     end
-    
     sci_cases($+1)=tlist(["case","expression","then"],sci_exprn,sci_stat)
   end
   
   // Convert else
-  sci_else=list()
+sci_else=list()
   level(2)=level(2)+1 
   for k=1:size(mtlb_clause.else)
-    [instr,nblines]=instruction2sci(mtlb_clause.else(k),nblines)
-    sci_else=update_instr_list(sci_else,instr)
-  end
-  
-  // Create Scilab selectcase
-  sci_clause=tlist(["selectcase","expression","cases","else"],sci_expr,sci_cases,sci_else)
-  updatevarslist("END OF CLAUSE")
-  level(1)=level(1)-1
-  
+  if typeof(mtlb_clause.else(k))=="sup_equal" then
+sci_else_temp=list();
+  for i=1:size(mtlb_clause.else(k).sup_instr)
+[instr,nblines]=instruction2sci(mtlb_clause.else(k).sup_instr(i),nblines)
+  sci_else_temp=update_instr_list(sci_else_temp,instr)
+end
+sci_else($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_else_temp,mtlb_clause.else(k).nb_opr)
+else
+[instr,nblines]=instruction2sci(mtlb_clause.else(k),nblines)
+  sci_else=update_instr_list(sci_else,instr)
+end
+end
+// Create Scilab selectcase
+sci_clause=tlist(["selectcase","expression","cases","else"],sci_expr,sci_cases,sci_else)
+updatevarslist("END OF CLAUSE")
+level(1)=level(1)-1
+
 // --- WHILE ---
 case "while"
   level(2)=1  
@@ -149,6 +192,31 @@ case "while"
 
   // Convert all do instructions
   for k=1:size(mtlb_clause.statements)
+    if typeof(mtlb_clause.statements(k))=="sup_equal" then
+      sci_do_temp=list()
+      for i=1:size(mtlb_clause.statements(k).sup_instr)
+	[instr,nblines]=instruction2sci(mtlb_clause.statements(k).sup_instr(i),nblines)
+	// If inserted instruction is an initialisation, it has to be done just one time and before loop
+	l=1;
+	while l<=lstsize(m2sci_to_insert_b)
+	  if typeof(m2sci_to_insert_b(l))=="equal" & ..
+	      (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
+	      and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
+	      and(m2sci_to_insert_b(l).expression==Funcall("cell",1,list(),list())) ) then
+	  to_insert($+1)=m2sci_to_insert_b(l)
+	  m2sci_to_insert_b(l)=null()
+	  if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
+	    to_insert($+1)=m2sci_to_insert_b(l)
+	    m2sci_to_insert_b(l)=null()
+	  end
+	else
+	  l=l+1;
+	end
+      end
+      sci_do_temp=update_instr_list(sci_do_temp,instr)
+    end
+    sci_do($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_do_temp,mtlb_clause.statements(k).nb_opr)
+  else
     [instr,nblines]=instruction2sci(mtlb_clause.statements(k),nblines)
     // If inserted instruction is an initialisation, it has to be done just one time and before loop
     l=1;
@@ -157,21 +225,22 @@ case "while"
 	  (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
 	  and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
 	  and(m2sci_to_insert_b(l).expression==Funcall("cell",1,list(),list())) ) then
-        to_insert($+1)=m2sci_to_insert_b(l)
-        m2sci_to_insert_b(l)=null()
-        if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
-	  to_insert($+1)=m2sci_to_insert_b(l)
-	  m2sci_to_insert_b(l)=null()
-	end
-      else
-	l=l+1;
+      to_insert($+1)=m2sci_to_insert_b(l)
+      m2sci_to_insert_b(l)=null()
+      if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
+	to_insert($+1)=m2sci_to_insert_b(l)
+	m2sci_to_insert_b(l)=null()
       end
+    else
+      l=l+1;
     end
-    sci_do=update_instr_list(sci_do,instr)
   end
+  sci_do=update_instr_list(sci_do,instr)
+end
+end
 
-  // Create Scilab while
-  sci_clause=tlist(["while","expression","statements"],sci_expr,sci_do)
+// Create Scilab while
+sci_clause=tlist(["while","expression","statements"],sci_expr,sci_do)
 
 // --- FOR ---
 case "for"
@@ -189,10 +258,34 @@ case "for"
     to_insert=m2sci_to_insert_b
     m2sci_to_insert_b=list()
   end
-
   sci_instr=list()
   // Convert all do instructions
   for k=1:size(mtlb_clause.statements)
+    if typeof(mtlb_clause.statements(k))=="sup_equal" then
+      sci_instr_temp=list()
+      for i=1:size(mtlb_clause.statements(k).sup_instr)
+	[instr,nblines]=instruction2sci(mtlb_clause.statements(k).sup_instr(i),nblines)
+	// If inserted instruction is an initialisation, it has to be done just one time and before loop
+	l=1;
+	while l<=lstsize(m2sci_to_insert_b)
+	  if typeof(m2sci_to_insert_b(l))=="equal" & ..
+	      (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
+	      and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
+	      and(m2sci_to_insert_b(l).expression==Funcall("cell",1,list(),list())) ) then
+	  to_insert($+1)=m2sci_to_insert_b(l)
+	  m2sci_to_insert_b(l)=null()
+	  if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
+	    to_insert($+1)=m2sci_to_insert_b(l)
+	    m2sci_to_insert_b(l)=null()
+	  end
+	else
+	  l=l+1;
+	end
+      end
+      sci_instr_temp=update_instr_list(sci_instr_temp,instr)
+    end
+    sci_instr($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_instr_temp,mtlb_clause.statements(k).nb_opr)
+  else
     [instr,nblines]=instruction2sci(mtlb_clause.statements(k),nblines)
     // If inserted instruction is an initialisation, it has to be done just one time and before loop
     l=1;
@@ -201,26 +294,24 @@ case "for"
 	  (and(m2sci_to_insert_b(l).expression==Cste([])) | ..
 	  and(m2sci_to_insert_b(l).expression==Funcall("struct",1,list(),list())) | ..
 	  and(m2sci_to_insert_b(l).expression==Funcall("cell",1,list(),list())) ) then
-        to_insert($+1)=m2sci_to_insert_b(l)
-        m2sci_to_insert_b(l)=null()
-        if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
-	  to_insert($+1)=m2sci_to_insert_b(l)
-	  m2sci_to_insert_b(l)=null()
-	end
-      else
-	l=l+1;
+      to_insert($+1)=m2sci_to_insert_b(l)
+      m2sci_to_insert_b(l)=null()
+      if lstsize(m2sci_to_insert_b)>=l & m2sci_to_insert_b(l)==list("EOL") then
+	to_insert($+1)=m2sci_to_insert_b(l)
+	m2sci_to_insert_b(l)=null()
       end
+    else
+      l=l+1;
     end
-    sci_instr=update_instr_list(sci_instr,instr)
   end
-
-  // Create Scilab while
-  sci_clause=tlist(["for","expression","statements"],sci_expr,sci_instr)
-  
+  sci_instr=update_instr_list(sci_instr,instr)
+end   
+end
+// Create Scilab while
+sci_clause=tlist(["for","expression","statements"],sci_expr,sci_instr)
 else
   error("clause2sci(): unknown clause type: "+typeof(mtlb_clause))
 end
-
 m2sci_to_insert_b=to_insert
 if m2sci_to_insert_b<>list() then
   m2sci_to_insert_b($+1)=list("EOL");
