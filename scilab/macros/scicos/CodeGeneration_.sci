@@ -22,7 +22,7 @@ xinfo('Click on a Superblock (without activation output)'+..
     disablemenus()
     all_scs_m=scs_m;
     XX=scs_m.objs(k);
-    [ok,XX]=do_compile_superblock(XX,all_scs_m,k)
+    [ok,XX,alreadyran]=do_compile_superblock(XX,all_scs_m,k,alreadyran)
     enablemenus()
     if ok then 
       scs_m.objs(k)=XX
@@ -48,9 +48,15 @@ function [ok,Makename]=buildnewblock()
     //unlink if necessary
     [a,b]=c_link(rdnom); while a ; ulink(b);[a,b]=c_link(rdnom);end
     libn=ilib_compile('lib'+rdnom,Makename)
-
-    
-    ierr=execstr('link(libn,rdnom,''c'')','errcatch')
+    //RN : to make sure a generated block can be used in another
+    //generated block
+    ierr=execstr('libnum=link(libn)','errcatch')
+    if ierr<>0 then 
+      ok=%f;x_message(['sorry link problem';lasterror()]);
+      return;
+    end
+    //ierr=execstr('link(libn,rdnom,''c'')','errcatch')
+    ierr=execstr('link(libnum,rdnom,''c'')','errcatch')
     if ierr<>0 then 
       ok=%f;x_message(['sorry link problem';lasterror()]);
       return;
@@ -771,7 +777,7 @@ function t1=cformatline(t ,l)
     if first then l1=l1-2;bl=bl+'  ';first=%f;end
   end
 endfunction
-function  [ok,XX]=do_compile_superblock(XX,all_scs_m,numk)
+function  [ok,XX,alreadyran]=do_compile_superblock(XX,all_scs_m,numk,alreadyran)
 // Transforms a given Scicos discrete and continuous SuperBlock into a C defined Block
 // Copyright INRIA
 //Author : Rachid Djenidi
@@ -781,6 +787,7 @@ function  [ok,XX]=do_compile_superblock(XX,all_scs_m,numk)
   if alreadyran then 
     //terminate current simulation
     do_terminate()
+    alreadyran=%f
   end
   hname=scs_m.props.title(1) //superblock name
   //***********************************************************
@@ -901,6 +908,7 @@ if ok==%f then message('Sorry: problem in the pre-compilation step.'),return, en
     //superblock has no Event input, add a fictious clock
     bllst($+1)=scicos_model(sim=list('bidon',1),evtout=1,..
 			    firing=0,blocktype='d',dep_ut=[%f %f])
+    corinv(size(bllst))=size(bllst)+1;
     howclk=size(bllst);
   elseif szclkIN==1  then
     howclk=allhowclk;
@@ -949,7 +957,9 @@ if ok==%f then message('Sorry: problem in the pre-compilation step.'),return, en
   end
 Code_gene_run=[];
 %windo=xget('window')
+
 cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv);
+
 //cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 xset('window',%windo)
 
@@ -1591,9 +1601,9 @@ Code=['/*'+part('-',ones(1,40))+' Block Computational function */ ';
       '  double t;'
       '  /*  block_outtb is catenated at the end of z*/'
       '  double* block_outtb = z+'+string(nztotal)+';'
-      '  work = z+'+string(nZ)+'; '
       '  int kf;' 
       '  int* reentryflag;'
+      '  work = z+'+string(nZ)+'; '
       '  t=get_scicos_time();' 
       ' '];
 Code=[Code;
@@ -1609,7 +1619,7 @@ Code=[Code;
       '  set_nevprt(nevprt);';
       ' '  
       '  if (flag != 4 && flag != 6 && flag != 5){'
-      '    reentryflag=(int*) (*block->work+'+string(nblk1)+');'
+      '    reentryflag=(int*) (((scicos_block *)*block->work)+'+string(nblk1)+');'
       '    if ( *reentryflag ==0){'      
       '      *reentryflag =1;'
       '      block_'+rdnom+'=(scicos_block*) *block->work;']
@@ -1651,7 +1661,7 @@ Code=[Code;
       Code=[Code;
       '  }else if (flag == 4) { /* initialisation */'
       '    if ((*block->work=scicos_malloc(sizeof(scicos_block)*'+string(nblk1)+'+sizeof(int)))== NULL ) return 0;';
-	    '    reentryflag=(int*) (*block->work+'+string(nblk1)+');'
+	    '    reentryflag=(int*) (((scicos_block *)*block->work)+'+string(nblk1)+');'
             '    *reentryflag=0;'
 	    '    block_'+rdnom+'=(scicos_block*) *block->work;'];
  for kf=1:nblk1        

@@ -196,7 +196,21 @@ scs_m.objs(13)=mlist(["Block","graphics","model","gui","doc"],..
 scs_m.objs(14)=mlist(["Block","graphics","model","gui","doc"],..
                mlist(..
                ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
-               "gr_i","id","in_implicit","out_implicit"],[0,160],[40,40],%t,..
+               "gr_i","id","in_implicit","out_implicit"],[0,160],[60,40],%t,..
+               ["2";"(u1>0)*sin(u2)^2";"1"],[0;0],0,[],[],..
+               list(..
+               "xstringb(orig(1),orig(2),[''Mathematical'';''Expression''],sz(1),sz(2),''fill'');",..
+               8),"",["E";"E"],"E"),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],list("evaluate_expr",4),[1;1],1,[],[],[],[],[0;2],..
+               [2;1;6;1;5;18;2;2;5;101;6;2;5;15;5;3],"c",[],[%t,%f],"",1,1,..
+               list()),"EXPRESSION",list())
+scs_m.objs(15)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[90,160],[40,40],%t,..
                ["1";"-1";"1"],0,0,[],[],..
                list(..
                ["thick=xget(''thickness'');xset(''thickness'',2);";
@@ -209,11 +223,11 @@ scs_m.objs(14)=mlist(["Block","graphics","model","gui","doc"],..
                "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
                "equations"],list("satur",4),1,1,[],[],[],[],[1;-1],[],"c",[],..
                [%t,%f],"",2,1,list()),"SATURATION",list())
-scs_m.objs(15)=mlist(["Block","graphics","model","gui","doc"],..
+scs_m.objs(16)=mlist(["Block","graphics","model","gui","doc"],..
                mlist(..
                ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
-               "gr_i","id","in_implicit","out_implicit"],[70,160],[40,40],%t,"1",..
-               0,0,[],[],..
+               "gr_i","id","in_implicit","out_implicit"],[160,160],[40,40],%t,..
+               "1",0,0,[],[],..
                list(..
                ["txt=[''Sign''];";
                "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"],8),"","E",..
