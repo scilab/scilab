@@ -125,7 +125,6 @@ void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
      *eof = -1;
      use_prompt=1;
      buffer[0]=0;
-     *len_line= strlen(line);
      strncpy(saved_buf,rl_line_buffer,512);
      saved_buf_flag=1;
      return;
