@@ -140,7 +140,7 @@ case "while"
   [sci_expr]=expression2sci(mtlb_clause.expression)
   // If there are instructions to insert, while is modified so that inserted instruction is evaluated in each loop
   if m2sci_to_insert_b<>list() then
-    newif=If(sci_expr,Funcall("break",1,list(),list()),list(),list(),list(),list())
+    newif=tlist(["ifthenelse","expression","then","elseifs","else"],sci_expr,list(Funcall("break",1,list(),list())),list(),list())
     m2sci_to_insert_b($+1)=newif
     sci_expr=Cste(%T)
     sci_do=m2sci_to_insert_b
