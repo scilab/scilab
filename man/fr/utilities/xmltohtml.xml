@@ -75,9 +75,8 @@ the last step ("contents") produces a contents.xml file
 if dirs is  [] then already defined help directories
 (see <VERB>%helps(:,1)</VERB>)  are assumed and titles are searched in <VERB>%helps(:,2)</VERB>. So
 <VERB>xmltohtml([])</VERB> updates currents html files
+</P>
   </DESCRIPTION>
-
- 
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK> help</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK> help_skeleton</LINK> </SEE_ALSO_ITEM>
