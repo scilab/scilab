@@ -64,7 +64,7 @@
     xs2ps(0,filename)
     //add the Postscript file header and create <filename>.eps file
     if MSDOS then
-      unix_s(pathconvert(WSCI+'/bin/BEpsf',%f)+' -p ' +filename)
+      unix_s(pathconvert('""'+WSCI+'/bin/BEpsf'+'""',%f)+' -p ' +filename)
     else
       unix_s(pathconvert('SCI/bin/BEpsf',%f)+' -p ' +filename)
     end
