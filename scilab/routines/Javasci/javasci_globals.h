@@ -43,7 +43,7 @@ extern char *getenv();
 extern void start_sci_gtk();
 extern void add_sci_argv();
 extern void add_sci_argv();
-extern void set_sci_env();
+extern void set_sci_env(char *DefaultSCIPATH);
 extern void TextMessage1 (int ctrlflag);
 extern void InitWindowGraphDll(void);
 #endif

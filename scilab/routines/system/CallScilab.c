@@ -19,7 +19,7 @@ extern void C2F (tmpdirc) (void);
 #ifdef WIN32
 static void SetSciEnv(void)
 {
-  extern void set_sci_env(char *p);
+  extern void set_sci_env(char *DefaultSCIPATH);
 
   #define MAXSTR 4096
   LPSTR tail;

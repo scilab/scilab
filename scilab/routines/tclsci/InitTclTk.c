@@ -24,6 +24,8 @@ int TK_Started=0;
   int XTKsocket=0;
 #endif
 /*-----------------------------------------------------------------------------------*/ 
+char *GetSciPath(void);
+/*-----------------------------------------------------------------------------------*/ 
 void initTCLTK(void)
 {
   if ( OpenTCLsci()==0 ) TK_Started=1;
@@ -44,9 +46,6 @@ int OpenTCLsci(void)
 
   FILE *tmpfile=NULL;
 
-
-
-
 #ifdef TCL_MAJOR_VERSION
   #ifdef TCL_MINOR_VERSION
     #if TCL_MAJOR_VERSION >= 8
@@ -56,7 +55,7 @@ int OpenTCLsci(void)
     #endif
   #endif
 #endif
-  SciPath=getenv("SCI");
+  SciPath=GetSciPath();
   
   /* test SCI validity */
   if (SciPath==NULL)
@@ -148,9 +147,31 @@ int OpenTCLsci(void)
       flushTKEvents();
     }
 
-  TK_Started=1;
-  
+  if (SciPath) {free(SciPath);SciPath=NULL;}
   return(0);
 
+}
+/*-----------------------------------------------------------------------------------*/
+char *GetSciPath(void)
+/* force SciPath to Unix format for compatibility (Windows) */
+{
+	char *PathUnix=NULL;
+	char *SciPathTmp=NULL;
+	int i=0;
+
+	SciPathTmp=getenv("SCI");
+
+	if (SciPathTmp)
+	{
+		PathUnix=(char*)malloc( ((int)strlen(SciPathTmp)+1)*sizeof(char) );
+
+		strcpy(PathUnix,SciPathTmp);
+		for (i=0;i<(int)strlen(PathUnix);i++)
+		{
+			if (PathUnix[i]=='\\') PathUnix[i]='/';
+		}
+	}
+	
+	return PathUnix;
 }
 /*-----------------------------------------------------------------------------------*/
