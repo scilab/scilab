@@ -22,7 +22,9 @@
 #else  /* WIN32 */ 
 /** This should only be provided when finite prototype is missing **/
 /** XXX : to be tested **/
+#ifndef __cplusplus
 int finite __PARAMS((double));
+#endif
 #endif /* WIN32 */
 
 #ifdef WIN32 
