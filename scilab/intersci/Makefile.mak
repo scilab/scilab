@@ -20,6 +20,7 @@ OBJ1 = intersci-n.obj getrhs.obj crerhs.obj variables.obj read.obj fornames.obj 
 
 clean::
 	@del *.obj
-
-distclean:: clean 
 	@del ..\bin\intersci.exe ..\bin\intersci-n.exe
+
+distclean::  
+	@del *.obj	

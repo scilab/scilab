@@ -108,4 +108,13 @@ clean::
 	-$(RM)  parser.ml
 	-$(RM)  lexer.ml
 	-$(RM)  *.exe
+	-$(RM)  ..\bin\$(EXEC)
 	
+distclean::
+  -$(RM)  *.cmi
+	-$(RM)  *.cmo
+	-$(RM)  *.cmx
+	-$(RM)  *.obj
+	-$(RM)  parser.ml
+	-$(RM)  lexer.ml
+	-$(RM)  *.exe

@@ -13,7 +13,11 @@ MAKE=nmake /f Makefile.mak
 # the good pathnames for TKLIBS and TCL_INCLUDES.
 # compiler flags: -MT or -MD  only needed if tcl/tk is used
 
+!IF "$(DTK)" == ""
+DTK=
+!ELSE
 DTK=-DWITH_TK
+!ENDIF
 
 !IF "$(DTK)" == "-DWITH_TK"
 # -MT can be added here (note that DPVM=-DWITH_PVM will remove it)
@@ -21,11 +25,8 @@ USE_MT=-MT
 # SCIDIR1 is set to . in Makefile.mak for compilation 
 # and to scilab full path when used after compilation 
 # for dynamic linking
-#TCLTK=d:\scilab\tcl
 TCLTK=$(SCIDIR1)\tcl
-
 TKSCI=libs/tksci.lib 
-
 TKLIBS="$(SCIDIR1)\bin\tcl84.lib" "$(SCIDIR1)\bin\tk84.lib"
 TKLIBSBIN=$(TKLIBS)
 TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
@@ -37,7 +38,12 @@ TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
 # To compile with PVM interface, uncomment the following lines and give
 # the good pathname for PVM_ROOT.
 #
+
+!IF "$(DPVM)"==""
+DPVM=
+!ELSE
 DPVM=-DWITH_PVM
+!ENDIF 
 
 !IF "$(DPVM)" == "-DWITH_PVM"
 # compiler flags: -MT should be removed for pvm 
@@ -46,8 +52,14 @@ PVM=libs/pvm.lib
 # SCIDIR1 is set to . in Makefile.mak for compilation 
 # and to scilab full path when used after compilation 
 # for dynamic linking
-#PVM_ROOT=d:\scilab\pvm3
+
+!IF "$(DPVM)"==""
 PVM_ROOT=$(SCIDIR1)\pvm3
+!ELSE
+#modify this path to compile scilab with PVM
+PVM_ROOT=D:\scilab\pvm3
+!ENDIF
+
 PVM_ARCH=WIN32
 PVMLIB="$(PVM_ROOT)\lib\WIN32\libpvm3.lib" "$(PVM_ROOT)\lib\WIN32\libgpvm3.lib" 
 PVM_CINCLUDE="."
@@ -59,7 +71,12 @@ PVM_CCOMPILER=VISUALC++
 # YES if we compile the PVM given with Scilab else NO
 # If you use DLPVM=YES you will have to edit and customize
 # pvm3/conf/WIN32.def 
+!IF "$(DPVM)"==""
+DLPVM=NO
+!ELSE
 DLPVM=YES
+!ENDIF
+
 
 #--------------------------
 # to generate blas symbols compatible with 
@@ -151,17 +168,8 @@ RM = del
 #----------------------------------
 
 clean::
-	-del *.CKP 
-	-del *.ln 
-	-del *.BAK 
 	-del *.bak 
-	-del core 
-	-del errs 
-	-del *~ 
-	-del *.a 
-	-del .emacs_* 
-	-del tags 
-	-del TAGS 
-	-del make.log 
-
-distclean:: clean 
+  -del *.obj
+distclean::  
+  -del *.bak 
+  -del *.obj

@@ -4,13 +4,18 @@ SCIDIR1=.
 
 include Makefile.incl.mak 
 
-all ::  routines-pvm  bin\scilex.exe bin\Wscilex.exe macros MakeMexLib imp intersci tcl Javasci man
+minimum :: routines-pvm bin\scilex.exe macros bin\Wscilex.exe imp intersci
+standard:: routines-pvm bin\scilex.exe macros bin\Wscilex.exe imp intersci
+all ::  modelicac routines-pvm bin\scilex.exe macros bin\Wscilex.exe MakeMexLib imp intersci Javasci man
 
 !IF "$(DLPVM)" == "YES"
 routines-pvm :: routines pvm 
 !ELSE 
 routines-pvm :: routines 
 !ENDIF
+
+modelicac:
+  Makesubdirs.bat modelicac
 
 pvm	:
 	Makesubdirs.bat pvm
@@ -45,12 +50,19 @@ clean::
 	Makesubdirs.bat routines-clean
 	Makesubdirs.bat macros-clean
 	Makesubdirs.bat libs-clean
+	Makesubdirs.bat man-clean
+	Makesubdirs.bat modelicac-clean
+	Makesubdirs.bat intersci-clean
+	Makesubdirs.bat imp-clean
 
 distclean::
 	Makesubdirs.bat routines-distclean 
 	Makesubdirs.bat macros-distclean 
 	Makesubdirs.bat man-distclean 
 	Makesubdirs.bat libs-distclean
+	Makesubdirs.bat modelicac-distclean
+	Makesubdirs.bat intersci-distclean
+	Makesubdirs.bat imp-distclean
 
 # win32 
 LIBRSCI = libs/system.lib libs/console.lib libs/interf.lib \

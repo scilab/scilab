@@ -19,10 +19,9 @@ OBJS = Lib.obj Name.obj Gengatsce.obj Gensosce.obj Gensomex.obj Forwin.obj Tomak
 
 clean ::
 	$(RM) *.obj
-
+	$(RM) *.exe
 distclean::
 	$(RM) *.obj
-	$(RM) *.exe
 
 Lib.exe	: Lib.c 
 	$(CC) $(CFLAGS) $*.c 	

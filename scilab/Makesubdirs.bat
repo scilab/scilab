@@ -9,25 +9,50 @@ if "%1" == "Javasci" goto Javasci
 if "%1" == "macros-clean" goto macros-clean 
 if "%1" == "macros-distclean" goto macros-distclean 
 if "%1" == "imp" goto imp
+if "%1" == "imp-clean" goto imp-clean
+if "%1" == "imp-distclean" goto imp-distclean
 if "%1" == "intersci" goto intersci
+if "%1" == "intersci-clean" goto intersci-clean
+if "%1" == "intersci-distclean" goto intersci-distclean
 if "%1" == "dumpexts" goto dumpexts
 if "%1" == "pvm" goto pvm
 if "%1" == "def" goto def
 if "%1" == "man" goto man
-if "%1" == "tcl" goto tcl
 if "%1" == "man-clean" goto man-clean
 if "%1" == "man-distclean" goto man-distclean
+if "%1" == "tcl" goto tcl
 if "%1" == "libs-distclean" goto libs-distclean
 if "%1" == "libs-clean" goto libs-clean
+if "%1" == "modelicac-distclean" goto modelicac-distclean
+if "%1" == "modelicac-clean" goto modelicac-clean
+if "%1" == "modelicac" goto modelicac
 
 echo Unknown target %1 
 goto end
 
+:modelicac
+cd ocaml
+ nmake /C /f Makefile.mak all
+cd ..
+goto end
+
+:modelicac-distclean
+cd ocaml
+ nmake /C /f Makefile.mak distclean
+cd ..
+goto end
+
+:modelicac-clean
+cd ocaml
+ nmake /C /f Makefile.mak clean
+cd ..
+goto end
 :dumpexts
 cd Win95-util\Nm
  nmake /C /f Makefile.mak 
 cd ..\..
 goto end 
+
 
 :pvm 
 cd pvm3
@@ -80,16 +105,41 @@ goto end
 :imp
 cd imp
  echo making all in imp
- nmake /C /f Makefile.mak 
+ nmake /C /f Makefile.mak all
+cd ..
+goto end
+
+:imp-distclean
+cd imp
+ nmake /C /f Makefile.mak distclean
+cd ..
+goto end
+
+:imp-clean
+cd imp
+ nmake /C /f Makefile.mak clean
 cd ..
 goto end
 
 :intersci
 cd intersci
  echo making all in intersci
- nmake /C /f Makefile.mak 
+ nmake /C /f Makefile.mak all 
 cd ..
 goto end
+
+:intersci-clean
+cd intersci
+nmake /C /f Makefile.mak clean
+cd ..
+goto end
+
+:intersci-distclean
+cd intersci
+nmake /C /f Makefile.mak distclean
+cd ..
+goto end
+
  
 :man
 cd man

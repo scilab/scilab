@@ -1,53 +1,115 @@
+@cls
 @echo off
-if "%1" == "ABSOFT" set MAKE=%MAKE%
-if "%1" == "VC" set MAKE=nmake /f Makefile.mak
-if "%1" == "" goto ERROR_PARAM
-if not "%PVM_ROOT%" == "" set COMPILE_PVM=yes
-if not "%TKLIBS%" == "" goto L_TCL_INCLUDES
-if not "%TCL_INCLUDES%" == "" goto L_TKLIBS
+rem /**********************************************************/
+rem Allan CORNET INRIA (December 2004)
+rem /**********************************************************/
+set MAKE=nmake /f Makefile.mak
+set PARAMS_COMPILE=
+if "%1"=="" goto Message
+if "%1" == "minimum" goto min
+if "%1" == "standard" goto std
+if "%1" == "all" goto all
+if "%1" == "mexlib" goto mexlib
+if "%1" == "javasci" goto javasci
+if "%1" == "man" goto man
+if "%1" == "macros" goto macros
+if "%1" == "clean" goto clean
+if "%1" == "distclean" goto distclean
+if "%1" == "modelicac" goto modelicac
+goto all
+rem /**********************************************************/
+:min
+set PARAMS_COMPILE=minimum DLPVM=NO	DPVM=	DTK=
 goto Make
-
-:L_TCL_INCLUDES
-if "%TCL_INCLUDES%" == "" goto TCL_INCLUDES_ERROR
-set COMPILE_TCL_TK=yes
+rem /**********************************************************/
+:std
+set PARAMS_COMPILE=standard DLPVM=NO DPVM= DTK=-DWITH_TK
 goto Make
-
-:L_TKLIBS
-if "%TKLIBS%" == "" goto TKLIBS_ERROR
-set COMPILE_TCL_TK=yes
-
+rem /**********************************************************/
+:all
+set PARAMS_COMPILE=all DLPVM=YES DPVM=-DWITH_PVM DTK=-DWITH_TK 
+goto Make
+rem /**********************************************************/
+:mexlib
+set PARAMS_COMPILE=MakeMexLib
+goto Make
+rem /**********************************************************/
+:javasci
+set PARAMS_COMPILE=Javasci
+goto Make
+rem /**********************************************************/
+:man
+set PARAMS_COMPILE=man
+goto Make
+rem /**********************************************************/
+:macros
+set PARAMS_COMPILE=macros
+goto Make
+rem /**********************************************************/
+:modelicac
+set PARAMS_COMPILE=modelicac
+goto Make
+rem /**********************************************************/
+:clean
+set PARAMS_COMPILE=clean
+del bin\*.exe
+del bin\*.exp
+del bin\*.ilk
+del bin\*.pdb
+del bin\javasci.dll
+del bin\javasci.lib
+del bin\libmat.dll
+del bin\libmex.dll
+del bin\libmx.dll
+cd pvm3
+del *.obj /s
+del *.lib /s
+del *.exe /s
+cd ..
+goto Make
+rem /**********************************************************/
+:distclean
+set PARAMS_COMPILE=distclean
+del bin\*.exp
+del bin\*.ilk
+del bin\*.pdb
+cd pvm3
+del *.obj /s
+cd ..
+goto Make
+rem /**********************************************************/
 :Make
-if "%COMPILE_PVM%" == "yes" goto MAKE_PVM
-if "%COMPILE_TCL_TK%" == "yes" goto MAKE_TCL_TK
-%MAKE%
+%MAKE% %PARAMS_COMPILE%
 goto end
-
-:MAKE_PVM
-if "%COMPILE_TCL_TK%" == "yes" goto MAKE_PVM_TCL_TK
-%MAKE% PVM=libs/pvm.lib PVM_ROOT=%PVM_ROOT% PVM_ARCH=WIN32 PVMLIB="%PVM_ROOT%\lib\WIN32\libpvm3.lib %PVM_ROOT%\lib\WIN32\libgpvm3.lib" PVM_INCLUDES=-I%PVM_ROOT%\src DPVM=-DWITH_PVM
-goto end
-
-:MAKE_TCL_TK
-if "%COMPILE_PVM%" == "yes" goto MAKE_PVM_TCL_TK
-%MAKE% TKSCI=libs/tksci.lib TKLIBS=%TKLIBS% TKLIBSBIN=".\bin\tcl84.lib" ".\bin\tk84.lib" TCL_INCLUDES=%TCL_INCLUDES% DTK=-DWITH_TK
-goto end
-
-:MAKE_PVM_TCL_TK
-%MAKE% PVM=libs/pvm.lib PVM_ROOT=%PVM_ROOT% PVM_ARCH=WIN32 PVMLIB=%PVM_ROOT%\lib\WIN32\libpvm3.lib %PVM_ROOT%\lib\WIN32\libgpvm3.lib PVM_INCLUDES=-I%PVM_ROOT%\src DPVM=-DWITH_PVM TKSCI=libs/tksci.lib TKLIBS=%TKLIBS% TKLIBSBIN=".\bin\tcl84.lib" ".\bin\tk84.lib" TCL_INCLUDES=%TCL_INCLUDES% DTK=-DWITH_TK
-goto end
-
-:TCL_INCLUDES_ERROR
-@echo "ERROR: You must define the environment variable <<TCL_INCLUDES>>..."
-goto end
-
-:TKLIBS_ERROR
-@echo "ERROR: You must define the environment variable <<TKLIBS>>..."
-goto end
-
-:ERROR_PARAM
-@echo ERROR: You must choose one of these two options : "ABSOFT" or "VC"
-
+rem /**********************************************************/
+:Message
+echo ***********************************************************************
+echo *                                Scilab                               * 
+echo ***********************************************************************
+echo "%0 all" build Scilab (pvm,tcl/tk,macros,man,javasci,mexlib,modelicac,...)
+echo  1] edit scilab/makefile.incl.mak
+echo     modify (Line 60) PVM_ROOT=D:\scilab\pvm3 with a correct path
+echo  2] you need ocaml
+echo     edit scilab/ocaml/makefile.mak
+echo     change OCAMLPATH=C:\Program Files\Objective Caml with a correct path 
+echo  3] you need tcl/tk 8.4 or greater (see Readme_windows.txt)
+echo  4] you need Java SDK 1.4.2 or greater
+echo     Java must be in Path environment variable
+echo "%0 standard" build Scilab (no pvm,tcl/tk,macros)
+echo "%0 minimum" build Scilab (no pvm,no tcl/tk,macros)
+echo "%0 mexlib" build mexlib interfaces
+echo "%0 javasci" build Java Scilab interface
+echo     you need Java SDK 1.4.2 or greater 
+echo     Java must be in Path environment variable
+echo "%0 man" build manuals
+echo "%0 macros" build macros
+echo "%0 modelicac" build modelicac
+echo     you need ocaml
+echo     edit scilab/ocaml/makefile.mak
+echo     change OCAMLPATH=C:\Program Files\Objective Caml with a correct path 
+echo "%0 clean" clean Scilab for rebuild
+echo "%0 distclean" clean Scilab for distribution
+rem /**********************************************************/
 :end
-set COMPILE_PVM=
-set COMPILE_TCL_TK=
+@echo on
 

@@ -4,15 +4,18 @@ lib 	: $(MACROS)
 	$(SCIDIR1)\macros\Lib @<< 
 $(MACROS)
 <<
-	$(SCIDIR1)\bin\scilex.exe -nwni -ns -f tmp_Macros
-	$(SCIDIR1)\bin\scilex.exe -nwni -ns -f genlib
+	$(SCIDIR1)\bin\scilex.exe -nb -nwni -ns -f tmp_Macros
+	$(SCIDIR1)\bin\scilex.exe -nb -nwni -ns -f genlib
 	@del tmp_*
 
 clean::
-
+	@del *.bin
+	@del lib 
+	@del names 
+	@del genlib 
 
 distclean::
-	@del *.bin 
+	 
 	@del lib 
 	@del names 
 	@del genlib 
