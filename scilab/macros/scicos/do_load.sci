@@ -12,6 +12,7 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
   scicos_ver='scicos2.2' //default version, for latter version scicos_ver is stored in files
 
   if rhs<=0 then fname=getfile('*.cos*'),end
+  fname=stripblanks(fname)
   if fname<>emptystr() then
     %cpr=list()
     scs_m=[]

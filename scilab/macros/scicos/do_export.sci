@@ -13,7 +13,8 @@ function do_export(scs_m,fname)
   end
   // remove blanks and apostrophe
   if num<>2 then
-    ff=str2code(fname);ff(find(ff==40|ff==53))=[];fname=code2str(ff)
+    //ff=str2code(fname);ff(find(ff==40|ff==53))=[];fname=code2str(ff)
+    fname=stripblanks(fname)
     if fname==emptystr() then return;end
   end
   //
@@ -22,16 +23,26 @@ function do_export(scs_m,fname)
     xset('window',max(winsid())+1)
     driv='Rec'
   end
-
+  colmap=xget('colormap')
   driver(driv)
-  if num<>2 then xinit(fname);end
-
   options=scs_m.props.options
-  if ~set_cmap(options('Cmap')) then // add colors if required
-    options('3D')(1)=%f //disable 3D block shape
+  if num<>2 then 
+    xinit(fname),
+    cmap=options.Cmap
+    for k=1:size(cmap,1) 
+      [mc,kk]=mini(abs(colmap-ones(size(colmap,1),1)*cmap(k,:))*[1;1;1])
+      if mc>.0001 then
+	colmap=[colmap;cmap(k,:)]
+      end
+    end
+    xset('colormap',colmap)
+  else
+    if ~set_cmap(options('Cmap')) then // add colors if required
+      options('3D')(1)=%f //disable 3D block shape
+    end
   end
   set_background()
-
+  
 
   xset('wdim',600,400);
   rect=dig_bound(scs_m)
@@ -84,7 +95,9 @@ function do_export(scs_m,fname)
   xset('window',winc)
   if num==1 then
     if MSDOS then
-      rep=unix_g(''"'+SCI+'/bin/BEpsf'" -landscape '+fname)
+      fname=pathconvert(fname,%f,%t,'w')
+      comm=pathconvert(SCI+'\bin\BEpsf',%f,%f,'w')
+      rep=unix_g(''"'+com+''" -landscape '+fname)
     else
       rep=unix_g(SCI+'/bin/BEpsf -landscape '+fname)
     end

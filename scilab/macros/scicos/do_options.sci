@@ -41,8 +41,13 @@ elseif flag=='Background' then
   if size(bac,'*')<2 then bac(2)=1,end //compatibility
   lcols_bg=list('colors Background',bac(1),colors);
   lcols_fg=list('colors Foreground',bac(2),colors);
-  rep=x_choices('Background/Foreground color settings',list(lcols_bg,lcols_fg));
-  if rep<>[] then
+  //rep=x_choices('Background/Foreground color settings',list(lcols_bg,lcols_fg));
+  rep=[bac(1),bac(2)]
+  rep1=getcolor('Backgroundcolorsetting',bac(1))
+  if rep1<>[] then rep(1)=rep1;end
+  rep2=getcolor('Foregroundoloretting',bac(2))
+  if rep2<>[] then rep(2)=rep2;end
+  if or(rep<>[bac(1) bac(2)]) then
     ok=%t
     options('Background')=rep
   end
