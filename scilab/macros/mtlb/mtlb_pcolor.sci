@@ -15,7 +15,3 @@ else
   grayplot(1:size(C,1),1:size(C,2),C)
 end
 endfunction
-
- 
-endfunction
-endfunction

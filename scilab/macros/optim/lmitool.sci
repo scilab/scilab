@@ -201,6 +201,7 @@ x_message(['Welcome to LMITOOL';'      ';'   ';
               'To check the result, use [LME,LMI,OBJ]='+PROBNAME+'_eval(list('+XNAME+'))']
         end
 
+endfunction
 function [vec]=str2vec(str)
 w=length(str);
 [p,q]=size(w);ma=max(w);
@@ -208,3 +209,4 @@ vec=[];
 for i=1:ma
   vec=[vec part(str,i)]
 end
+endfunction

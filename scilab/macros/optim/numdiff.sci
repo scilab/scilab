@@ -34,3 +34,4 @@ else
     %g(:,%j)=(-%y0+%f(%x+%v,params(:)))/%dx(%j);
   end 
 end
+endfunction

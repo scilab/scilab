@@ -67,5 +67,4 @@ if nc > ne
     if f(i)>0 then gpen=gpen + cpen*f(i)*gradf(:,i),end;
   end;
 end;
-
-
+endfunction

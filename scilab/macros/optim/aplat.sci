@@ -23,4 +23,4 @@ for li=l
     ind(nind)=i
   end
 end
-
+endfunction

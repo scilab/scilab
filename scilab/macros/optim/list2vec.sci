@@ -11,4 +11,4 @@ for mati=li
   bigVector=[bigVector;matrix(mati,prod(sm),1)];
 //  bigVector=[bigVector;mati(:)];        
 end
-
+endfunction

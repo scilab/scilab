@@ -12,8 +12,3 @@ end
 C=varargin(Rhs)
 Matplot(C)
 endfunction
-
-
-  
-endfunction
-endfunction

@@ -332,6 +332,7 @@ end
 %OPT=%linobj0+%linobj*%xopt;
 
 
+endfunction
 function [r,ind]=recons(r,ind)
 //reconstruct a list from a flat list (see aplat)
 if ind==-1 then r=r(:);return;end
@@ -364,6 +365,7 @@ ind(ki)=vi
 r(ki)=rt
 [r,ind]=recons(r,ind)
 
+endfunction
 function [bigVector]=splist2vec(li)
 //li=list(X1,...Xk) is a list of matrices
 //bigVector: sparse vector [X1(:);...;Xk(:)] (stacking of matrices in li)
@@ -374,6 +376,7 @@ for mati=li
   bigVector=[bigVector;sparse(matrix(mati,prod(sm),1))];
 end
 
+endfunction
 function [A,b]=spaff2Ab(lme,dimX,D,ind)
 //Y,X,D are lists of matrices. 
 //Y=lme(X,D)= affine fct of Xi's; 
@@ -406,4 +409,4 @@ xi=x0;xi(k)=1;
   A=[A,sparse(list2vec(lme(vec2list(xi,dimX,ind),D))-b)];
 end
 end
-
+endfunction

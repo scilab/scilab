@@ -172,3 +172,4 @@ deff('[f,g,ind]=costf(p,ind)',[
 [err,p]=optim(costf,varargin(:),imp=imp)
 
  
+endfunction

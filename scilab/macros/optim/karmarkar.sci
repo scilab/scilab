@@ -46,3 +46,4 @@ while test>eps&count<=maxiter
     write(%io(2),[count,crit,test],'(f3.0,3x,e10.3,3x,e10.3)')
 end
   
+endfunction

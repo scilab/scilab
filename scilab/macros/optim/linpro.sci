@@ -18,3 +18,4 @@ select rhs
  else
 error('Bad call to linpro')
 end
+endfunction

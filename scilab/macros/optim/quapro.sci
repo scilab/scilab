@@ -66,3 +66,4 @@ if rhs==4 then
    [x,f,lagr]=qpqpqp(x0,Q,p,C',b,ci,cs,mi,modo,imp)
    return
 end
+endfunction

@@ -13,4 +13,4 @@ for ni=blck_szs
  kk=kk+ni*ni
 end
 M=M(sel,:)
-
+endfunction

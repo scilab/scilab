@@ -91,4 +91,4 @@ end
 
 if J then kr=2,else kr=1,end
 [f,x,g]=optim(%opt,varargin(kr:$),imp=imp)
-
+endfunction

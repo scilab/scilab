@@ -92,3 +92,4 @@ else
   [err,p]=optim(costf,'b',pmin,pmax,p0)
 end
   
+endfunction

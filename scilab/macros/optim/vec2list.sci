@@ -15,3 +15,4 @@ for dimi=varsizes'
  point=newpoint+1;
 end
 if RHS==3 then li=recons(li,ind); end
+endfunction
