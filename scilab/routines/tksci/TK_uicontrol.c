@@ -47,17 +47,11 @@ int GetStyle(StyleStr)
 
 
 /***/
-int TK_UiSet(Handle, Mfield, Mvalue)
-     int Handle;
-     Matrix *Mfield;
-     Matrix *Mvalue;
+int TK_UiSet( int  Handle,Matrix * Mfield,Matrix * Mvalue)
 {
-  char 
-    *StrField, 
-    *StrValue;
+  char *StrField,  *StrValue;
   char MyCommand[2000];
   int mem_siz;
-
     
   StrField = MatrixReadString(Mfield);
   nocase(StrField);
@@ -74,19 +68,16 @@ int TK_UiSet(Handle, Mfield, Mvalue)
     {
       return(-1);
     }
-    
-
+  
   if (!strcmp(StrField,"userdata")) 
     {
       mem_siz = MatrixMemSize(Mvalue);
       UserData[Handle]=(Matrix *)malloc(mem_siz);
       MatrixCopy(Mvalue,UserData[Handle]);
-	
     }
   else
     {
-      sprintf(MyCommand,"SetField %d \"%s\" \"%s\"", Handle, StrField, StrValue);    
-	
+      sprintf(MyCommand,"SetField %d \"%s\" \"%s\"",Handle,StrField,StrValue);
       Tcl_Eval(TKinterp,MyCommand);
     }
   return(0);
@@ -97,10 +88,7 @@ int TK_UiSet(Handle, Mfield, Mvalue)
 
 
 /***/
-int TK_UiGet(Handle, Mfield, Mvalue)
-     int Handle;
-     Matrix *Mfield;
-     Matrix **Mvalue;
+int TK_UiGet(int Handle,Matrix * Mfield,Matrix ** Mvalue)
 {
   char *StrField;
   
@@ -109,16 +97,20 @@ int TK_UiGet(Handle, Mfield, Mvalue)
   Matrix * TmpMat;
   int mem_siz;
 
-    
   StrField = MatrixReadString(Mfield);
   nocase(StrField);
-    
 
   sprintf(MyCommand,"set MyTmpBertrand [GetField %d \"%s\"]", Handle, StrField);
    
   Tcl_Eval(TKinterp,MyCommand);
   MyAnswer = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
-    
+
+  if ( MyAnswer == NULL) 
+    {
+      *Mvalue = MatrixCreate(0,0,"real");
+      return(0);
+    }
+
     
   if (!strcmp(StrField,"position")) {Str2MatReal(MyAnswer, Mvalue); return(0); }
   if (!strcmp(StrField,"value"))    {Str2MatReal(MyAnswer, Mvalue); return(0); }
