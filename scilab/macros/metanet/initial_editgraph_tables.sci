@@ -13,7 +13,7 @@ function [Menus,Shorts]=initial_editgraph_tables()
   Shorts=['d','Delete'; 
 	  'x','Delete Region'
 	  'c',"Copy Region To ClipBoard"
-	  'm','Move';      
+	  'm','Move Node';      
 	  'u','Undo';      
 	  'n','NewNode';   
 	  'a','NewArc';    
