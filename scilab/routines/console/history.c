@@ -230,6 +230,14 @@ int C2F(resethistory) _PARAMS((char *fname))
   Rhs=Max(Rhs,0);
   CheckRhs(0,0) ;
   CheckLhs(0,1) ;
+  reset_history();
+  LhsVar(1)=0;
+  C2F(putlhsvar)();
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+void reset_history(void)
+{
   if (history)
     {
       sci_hist *Parcours = history;
@@ -253,9 +261,7 @@ int C2F(resethistory) _PARAMS((char *fname))
       GetCommentDateSession(Commentline,TRUE);		
       AddHistory (Commentline);
     }
-  LhsVar(1)=0;
-  C2F(putlhsvar)();
-  return 0;
+
 }
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function loadhistory  */

@@ -62,6 +62,7 @@ sci_hist * GoNextKnot(sci_hist * CurrentKnot);
 
 /*-----------------------------------------------------------------------------------*/
 int C2F(resethistory) _PARAMS((char *fname));
+void reset_history(void);
 int C2F(loadhistory) _PARAMS((char *fname));
 int C2F(savehistory) _PARAMS((char *fname));
 int C2F(gethistory) _PARAMS((char *fname)); /* Affiche le contenu de l'historique */

@@ -387,7 +387,7 @@ void Callback_EMAIL(void)
 	char Message[MAX_PATH];
 	int error;
 	    		
-	wsprintf(Message,"mailto:%s?Subject=%s&CC=%s&body=%s",MAILTO, SUBJECT,CCMAILTO,"TEST Message");
+	wsprintf(Message,"mailto:%s?Subject=%s&CC=%s&body=%s",MAILTO, SUBJECT,CCMAILTO,"Message to Doctor Scilab");
 	error =(int)ShellExecute(NULL, "open",Message,NULL,NULL,SW_SHOWNORMAL);
 	if (error<= 32) MessageBox(NULL,"Couldn't Open Email Client","Warning",MB_ICONWARNING);
 }
@@ -423,17 +423,16 @@ void Callback_PRINTWINDOW(void)
 	PrintCommandWindow(lptw);
 }
 /*-----------------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
+void Callback_CONFIGUREBROWSER(void)
+{
+	SendCTRLandAKey(CTRLU);
+	StoreCommand("help_menu(3);");
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_CLEARHISTORY(void)
+{
+	reset_history();
+}
 /*-----------------------------------------------------------------------------------*/
 /*********************************
  * Send a macro to the text window 
@@ -585,6 +584,14 @@ void SendMacro (LPTW lptw, UINT m)
 			Callback_HELP();
 	    		return;
 	    	break;
+			case CONFIGBROWSER:
+				Callback_CONFIGUREBROWSER();
+				return;
+			break;
+			case CLEARHISTORY:
+				Callback_CLEARHISTORY();
+				return;
+			break;
 	    	case DEMOS:
 	    		Callback_DEMOS();
 	    		return;

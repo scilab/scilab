@@ -1107,6 +1107,18 @@ cd .. &gt;nul
 				RelativePath="wtextc.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\bin\wgscilabE.mnu">
+		</File>
+		<File
+			RelativePath="..\..\bin\wgscilabF.mnu">
+		</File>
+		<File
+			RelativePath="..\..\bin\wscilabE.mnu">
+		</File>
+		<File
+			RelativePath="..\..\bin\wscilabF.mnu">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

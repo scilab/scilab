@@ -85,6 +85,8 @@
 		C&hanger la police ...
 			[CHOOSETHEFONT]
 		--
+		Effacer &Historique
+			[CLEARHISTORY]
 		Effacer la fenêtre ligne de commande	F2
 			[CLEARCOMMANDWINDOW]
 		Afficher &Console	F12
@@ -141,7 +143,9 @@ E&diteur
  &?
  	
        		Aide &Scilab 	F1
-			[HELP]
+       		[HELP]
+       		&Configurer
+       		[CONFIGBROWSER]
 		--
 		Dé&monstrations Scilab 
 			[DEMOS]

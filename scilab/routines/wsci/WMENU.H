@@ -74,12 +74,13 @@
 #define SCIPAD 			XBASC+1
 /**********************/
 #define HELP 			SCIPAD+1
-#define DEMOS 			HELP+1
-#define NEWSGROUP		HELP+2
-#define EMAIL 			HELP+3
-#define WEB  			HELP+4
-#define BUGZILLA		HELP+5
-#define ABOUT 			HELP+6
+#define CONFIGBROWSER   HELP+1
+#define DEMOS 			HELP+2
+#define NEWSGROUP		HELP+3
+#define EMAIL 			HELP+4
+#define WEB  			HELP+5
+#define BUGZILLA		HELP+6
+#define ABOUT 			HELP+7
 /**********************/
 #define EOS 			ABOUT+1
 /**********************/
@@ -98,7 +99,8 @@
 #define M_CTRL_N		M_CTRL_C+12
 /**********************/
 #define CLEARCOMMANDWINDOW	M_CTRL_N+1
-#define CMDMAX 			CLEARCOMMANDWINDOW
+#define CLEARHISTORY		CLEARCOMMANDWINDOW+1
+#define CMDMAX 			CLEARHISTORY
 /**********************/
 #define URLNEWSGROUP "http://groups.google.com/groups?dq=&num=25&hl=en&lr=&ie=UTF-8&group=comp.soft-sys.math.scilab"
 #define URL "http://www.scilab.org"
@@ -128,7 +130,7 @@
 */
 char *keyword[] =
 {
-  "[OPEN]","[FRENCH]","[ENGLISH]",
+  "[CLEARHISTORY]","[CONFIGBROWSER]","[OPEN]","[FRENCH]","[ENGLISH]",
   "[TOOLBAR]","[NEWSGROUP]","[PRINTWINDOW]","[CLEARCOMMANDWINDOW]","[NEWSCILAB]","[EXEC]","[GETF]","[LOAD]","[SAVE]","[CHDIR]","[GETCWD]","[EXIT]",
   "[MCOPY]","[PASTE]","[PRINT]","[CHOOSETHEFONT]",
   "[RESTART]","[PAUSE]","[RESUME]","[ABORT]","[CONSOLE]",
@@ -144,7 +146,7 @@ char *keyword[] =
 
 BYTE keyeq[] =
 {
-  OPEN,FRENCH,ENGLISH,TOOLBAR,NEWSGROUP,PRINTWINDOW,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
+  CLEARHISTORY,CONFIGBROWSER,OPEN,FRENCH,ENGLISH,TOOLBAR,NEWSGROUP,PRINTWINDOW,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
   MCOPY,PASTE,PRINT,CHOOSETHEFONT,
   RESTART,PAUSE,RESUME,ABORT,CONSOLE,
   SET,RAISE,DELETESCIW,PLUS,MINUS,XBASC,
@@ -206,7 +208,8 @@ void Callback_NEWSGROUP(void);
 void Callback_ABOUT(void);
 void Callback_CLEARCOMMANDWINDOW(void);
 void Callback_PRINTWINDOW(void);
-
+void Callback_CONFIGUREBROWSER(void);
+void Callback_CLEARHISTORY(void);
 /*--------------------------------*/
 void SendMacro (LPTW lptw, UINT m);
 BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, char **d, int *ierr);
@@ -261,3 +264,4 @@ int GetXPosButton(LPTW lptw,int index,int SizeXButtonText,int SizeXButtonIcon);
 void ConfigureScilabStar(int LangCode);
 int ModifyFile(char *fichier,char *motclef,char *chaine);
 /*--------------------------------*/
+extern void reset_history(void); /* see Console\history.h*/
