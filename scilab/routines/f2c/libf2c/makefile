@@ -1,5 +1,5 @@
 SHELL = /bin/sh
-SCIDIR=../../../
+SCIDIR=../../..
 
 LIBRARY = $(SCIDIR)/libs/libf2c.a
 
@@ -18,9 +18,16 @@ OBJI =	backspace.o close.o dfe.o dolio.o due.o endfile.o err.o \
 
 MAIN=main.o
 
+ENT=entries.o
+
 MISC =	F77_aloc.o Version.o  s_rnge.o abort_.o getarg_.o iargc_.o \
 	getenv_.o signal_.o s_stop.o s_paus.o system_.o cabs.o\
-	derf_.o derfc_.o erf_.o erfc_.o sig_die.o exit.o
+	derf_.o derfc_.o erf_.o  sig_die.o exit.o
+
+# not on windows 
+
+MISC1 = erfc_.o
+
 POW =	pow_ci.o pow_dd.o pow_di.o pow_hh.o pow_ii.o  pow_ri.o pow_zi.o pow_zz.o
 CX =	c_abs.o c_cos.o c_div.o c_exp.o c_log.o c_sin.o c_sqrt.o
 DCX =	z_abs.o z_cos.o z_div.o z_exp.o z_log.o z_sin.o z_sqrt.o
@@ -40,12 +47,15 @@ EFL =	ef1asc_.o ef1cmc_.o
 CHAR =	s_cat.o s_cmp.o s_copy.o
 F90BIT = lbitbits.o lbitshft.o
 
-OBJSC = $(OBJI) $(MISC) $(POW) $(CX) $(DCX) $(REAL) $(DBL) $(INT) \
+OBJSC = $(ENT) $(OBJI) $(MISC) $(POW) $(CX) $(DCX) $(REAL) $(DBL) $(INT) \
 		$(HALF) $(CMP) $(EFL) $(CHAR) $(F90BIT)
 
 OBJSF = 
 
-all:: main.o
+all:: main.o ../../../libs/main.o 
+
+../../../libs/main.o : main.o 
+	cp main.o ../../../libs/main.o
 
 include ../../../Makefile.incl
 
