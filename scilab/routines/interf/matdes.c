@@ -3501,11 +3501,7 @@ int scixg2psofig_G(fname,dr,fname_len,dr_len)
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,flagx = -1,iwin;
   CheckRhs(2,3);
-  if (version_flag() == 0) {
-    /* call a Scilab function to handle compatibility */
-    C2F(callscifun)("%xexport",(unsigned long) 8);
-    return 0;
-  }/* NG end */
+
   /* the window number */ 
   GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1); iwin  = (integer) *stk(l1);
   /* the file name */ 
