@@ -23,14 +23,20 @@
         <SP>: the exec file or scilab function executes silently. (this is the default value for scilab functions)</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="k=1 or k=3">
-        <SP>: each line of instructions is echoed preceded of the prompt. The new variable values are displayed if required. This is the default for exec files.</SP>
+        <SP>: each line of instructions is echoed preceded of the prompt(if
+	  possible). The new variable values are displayed if required. This is
+	  the default for exec files.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="k=7">
-        <SP>: The new variable values are displayed if required, each line of instructions is echoed (if possible) and a prompt (&gt;&gt;) is issued after each line waiting for a carriage return.</SP>
+        <SP>: The new variable values are displayed if required, each line of
+	  instructions is echoed (if possible) and a prompt (&gt;&gt;) is
+	  issued after each line waiting for a carriage return .</SP>
+	<SP>If  carriage return follows character "p"  the execution is paused
+	  (see <LINK>pause</LINK>).</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
-    <P>
-    line display is disable for compiled scilab function (see getf or comp)</P>
+    <SP>Line display is disabled for compiled scilab function (see getf or
+      comp). By default, Scilab functions are executed using the silent ("-1") mode.</SP>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
