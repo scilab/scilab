@@ -16068,7 +16068,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      /***************************************************************/
 
 	      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp);
-/* 	      trans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp); */
+	      /* 	      trans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp); */
 
 
 	      vx[0]=xm;vy[0]=ym;
@@ -16124,27 +16124,27 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			  
 			  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1);
 			  
-			 /*  if ((ym != iybox[3]) && (ym != iybox[2])) */
-/* 			    { */
-			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      xg[0]= ixbox[3];yg[0]= ym;
-			      if (Ishidden(psubwin))
-				{  xg[1]=ixbox[4];  yg[1]= iybox[4]- iybox[3]+ym;}
-			      else
-				{xg[1]=ixbox[1];  yg[1]= iybox[1]- iybox[2]+ym;}
-			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      xg[0]=xg[1];  ; xg[1] =ixbox[0];
-			      yg[0]=yg[1]; yg[1]= ym- iybox[3]+ iybox[5];
-			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  /*  if ((ym != iybox[3]) && (ym != iybox[2])) */
+			  /* 			    { */
+			  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  xg[0]= ixbox[3];yg[0]= ym;
+			  if (Ishidden(psubwin))
+			    {  xg[1]=ixbox[4];  yg[1]= iybox[4]- iybox[3]+ym;}
+			  else
+			    {xg[1]=ixbox[1];  yg[1]= iybox[1]- iybox[2]+ym;}
+			  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  xg[0]=xg[1];  ; xg[1] =ixbox[0];
+			  yg[0]=yg[1]; yg[1]= ym- iybox[3]+ iybox[5];
+			  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			  /*   } */
 			}
 		      FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 		    }
 		  else
 		    { 
-		      if ((ym != iybox[3]) && (ym != iybox[2]))
+		      if(ztmp>zminval && ztmp<zmaxval) 
 			{
 			  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -16270,7 +16270,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 
 	      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp);
 
-/* 	      trans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp); */
+	      /* 	      trans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp); */
 
 
 	      vx[0]=xm;vy[0]=ym;
@@ -16356,8 +16356,8 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		      FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 		    }
 		  else
-		    { 
-		      if ((ym != iybox[3]) && (ym != iybox[2]))
+		    {
+		      if(ztmp>zminval && ztmp<zmaxval) 
 			{
 			  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -16515,7 +16515,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /***************************************************************/
 		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
-		/*   trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
+		  /*   trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
 
 
 		  vx[0]=xm;vy[0]=ym;
@@ -16575,30 +16575,30 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      
-			     /*  if ((xm != ixbox[5]) && (xm != ixbox[4])) */
-/* 				{  */
-				  xg[0]= xm;  yg[0]= ym;  
-				  if (Ishidden(psubwin)) 
-				    { xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
-				  else
-				    {xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
+			      /*  if ((xm != ixbox[5]) && (xm != ixbox[4])) */
+			      /* 				{  */
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin)) 
+				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
+			      else
+				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
 				  
-				  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  xg[0]= xg[1]; yg[0]= yg[1];
-				  xg[1] = ixbox[3] - ixbox[4] +xm; 
-				  yg[1]=  iybox[2] - iybox[4] +ym;
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-			/* 	} */
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[3] - ixbox[4] +xm; 
+			      yg[1]=  iybox[2] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			      /* 	} */
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			}
 		      else
 			{
-			  if ((xm != ixbox[5]) && (xm != ixbox[4]))
-			    { 
+			  if(xtmp>xminval && xtmp<xmaxval) 
+			    {
 			      xg[0]= xm;  yg[0]= ym;  
 			      if (Ishidden(psubwin)) 
 				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
@@ -16613,7 +16613,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 			    }
-			}	
+			}
 		    }
 
 		  /* and subtics */
@@ -16813,30 +16813,30 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      
-			     /*  if ((xm != ixbox[5]) && (xm != ixbox[4])) */
-/* 				{  */
-				  xg[0]= xm;  yg[0]= ym;  
-				  if (Ishidden(psubwin)) 
-				    { xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
-				  else
-				    {xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
+			      /*  if ((xm != ixbox[5]) && (xm != ixbox[4])) */
+			      /* 				{  */
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin)) 
+				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
+			      else
+				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
 				  
-				  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  xg[0]= xg[1]; yg[0]= yg[1];
-				  xg[1] = ixbox[3] - ixbox[4] +xm; 
-				  yg[1]=  iybox[2] - iybox[4] +ym;
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-			/* 	} */
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[3] - ixbox[4] +xm; 
+			      yg[1]=  iybox[2] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			      /* 	} */
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			}
 		      else
 			{
-			  if ((xm != ixbox[5]) && (xm != ixbox[4]))
-			    { 
+			  if(xtmp>xminval && xtmp<xmaxval) 
+			    {
 			      xg[0]= xm;  yg[0]= ym;  
 			      if (Ishidden(psubwin)) 
 				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
@@ -17012,7 +17012,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /***************************************************************/
 
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
-/* 		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
+		  /* 		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
 		  
 
 
@@ -17074,29 +17074,29 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 
-			     /*  if ((xm != ixbox[5]) && (xm != ixbox[4])) */
-/* 				{  */
-				  xg[0]= xm;  yg[0]= ym;  
-				  if (Ishidden(psubwin))
-				    { xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
-				  else
-				    {xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
-				  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  xg[0]= xg[1]; yg[0]= yg[1];
-				  xg[1] = ixbox[3] - ixbox[4] +xm; 
-				  yg[1]=  iybox[2] - iybox[4] +ym;
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-			/* 	} */
+			      /*  if ((xm != ixbox[5]) && (xm != ixbox[4])) */
+			      /* 				{  */
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
+			      else
+				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[3] - ixbox[4] +xm; 
+			      yg[1]=  iybox[2] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			      /* 	} */
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			}
 		      else
 			{
-			  if ((xm != ixbox[5]) && (xm != ixbox[4]))
-			    { 
+			  if(ytmp>yminval && ytmp<ymaxval) 
+			    {
 			      xg[0]= xm;  yg[0]= ym;  
 			      if (Ishidden(psubwin))
 				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
@@ -17237,7 +17237,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /* F.Leray 03.11.04 Test if log scale to perform a : exp10(x) because trans3d will */
 		  /* re-do a log10() (that is needed for data computations) */
 
-		/*   trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
+		  /*   trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
 		  
 		  
@@ -17311,29 +17311,29 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 
-			     /*  if ((xm != ixbox[5]) && (xm != ixbox[4])) */
-/* 				{  */
-				  xg[0]= xm;  yg[0]= ym;  
-				  if (Ishidden(psubwin))
-				    { xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
-				  else
-				    {xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
-				  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  xg[0]= xg[1]; yg[0]= yg[1];
-				  xg[1] = ixbox[3] - ixbox[4] +xm; 
-				  yg[1]=  iybox[2] - iybox[4] +ym;
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-			/* 	} */
+			      /*  if ((xm != ixbox[5]) && (xm != ixbox[4])) */
+			      /* 				{  */
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
+			      else
+				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[3] - ixbox[4] +xm; 
+			      yg[1]=  iybox[2] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			      /* 	} */
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			}
 		      else
 			{
-			  if ((xm != ixbox[5]) && (xm != ixbox[4]))
-			    { 
+			  if(ytmp>yminval && ytmp<ymaxval) 
+			    {
 			      xg[0]= xm;  yg[0]= ym;  
 			      if (Ishidden(psubwin))
 				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
@@ -17508,7 +17508,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /***************************************************************/
 		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
-/* 		  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
+		  /* 		  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
 
 
 		  vx[0]=xm;vy[0]=ym;
@@ -17568,29 +17568,28 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 
-			    /*   if ((xm != ixbox[3]) && (xm != ixbox[4])) */
-/* 				{  */
-				  xg[0]= xm;  yg[0]= ym;  
-				  if (Ishidden(psubwin))
-				    { xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
-				  else
-				    {xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
-				  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  xg[0]= xg[1]; yg[0]= yg[1];
-				  xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-			/* 	} */
+			      /*   if ((xm != ixbox[3]) && (xm != ixbox[4])) */
+			      /* 				{  */
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
+			      else
+				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			      /* 	} */
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			}
 		      else
 			{
-			  
-			  if ((xm != ixbox[3]) && (xm != ixbox[4]))
-			    { 
+			  if(xtmp>xminval && xtmp<xmaxval) 
+			    {
 			      xg[0]= xm;  yg[0]= ym;  
 			      if (Ishidden(psubwin))
 				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
@@ -17731,7 +17730,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /***************************************************************/
 
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
-/* 		  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
+		  /* 		  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
 
 
 
@@ -17803,28 +17802,28 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      
-			   /*    if ((xm != ixbox[3]) && (xm != ixbox[4])) */
-/* 				{  */
-				  xg[0]= xm;  yg[0]= ym;  
-				  if (Ishidden(psubwin))
-				    { xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
-				  else
-				    {xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
-				  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  xg[0]= xg[1]; yg[0]= yg[1];
-				  xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-			/* 	} */
+			      /*    if ((xm != ixbox[3]) && (xm != ixbox[4])) */
+			      /* 				{  */
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
+			      else
+				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			      /* 	} */
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			}
 		      else
 			{
-			  if ((xm != ixbox[3]) && (xm != ixbox[4]))
-			    { 
+			  if(xtmp>xminval && xtmp<xmaxval) 
+			    {
 			      xg[0]= xm;  yg[0]= ym;  
 			      if (Ishidden(psubwin))
 				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
@@ -17993,7 +17992,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /***************************************************************/
 		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
-/* 		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
+		  /* 		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
 
 
 		  vx[0]=xm;vy[0]=ym; 
@@ -18054,29 +18053,28 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 			      
-			    /*   if ((xm != ixbox[3]) && (xm != ixbox[4])) */
-/* 				{ */ 
-				  xg[0]= xm;  yg[0]= ym;  
-				  if (Ishidden(psubwin))
-				    { xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
-				  else
-				    {xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
-				  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  xg[0]= xg[1]; yg[0]= yg[1];
-				  xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-			/* 	} */
+			      /*   if ((xm != ixbox[3]) && (xm != ixbox[4])) */
+			      /* 				{ */ 
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
+			      else
+				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			      /* 	} */
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			}
 		      else
 			{
-			  
-			  if ((xm != ixbox[3]) && (xm != ixbox[4]))
-			    { 
+			  if(ytmp>yminval && ytmp<ymaxval) 
+			    {
 			      xg[0]= xm;  yg[0]= ym;  
 			      if (Ishidden(psubwin))
 				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
@@ -18216,7 +18214,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  /***************************************************************/
 		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
-/* 		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
+		  /* 		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz); */
 
 
 		  vx[0]=xm;vy[0]=ym; 
@@ -18287,29 +18285,28 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      
 			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
 			      
-			   /*    if ((xm != ixbox[3]) && (xm != ixbox[4])) */
-/* 				{  */
-				  xg[0]= xm;  yg[0]= ym;  
-				  if (Ishidden(psubwin))
-				    { xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
-				  else
-				    {xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
-				  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  xg[0]= xg[1]; yg[0]= yg[1];
-				  xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
-				  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-				  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-			/* 	} */
+			      /*    if ((xm != ixbox[3]) && (xm != ixbox[4])) */
+			      /* 				{  */
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
+			      else
+				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			      /* 	} */
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			}
 		      else
 			{
-			  
-			  if ((xm != ixbox[3]) && (xm != ixbox[4]))
-			    { 
+			  if(ytmp>yminval && ytmp<ymaxval) 
+			    {
 			      xg[0]= xm;  yg[0]= ym;  
 			      if (Ishidden(psubwin))
 				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
