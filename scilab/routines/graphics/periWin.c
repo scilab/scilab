@@ -922,6 +922,7 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
   *x1   =  SciClickInfo.x;
   *yy1  =  SciClickInfo.y;
   *ibutton = SciClickInfo.ibutton;
+  if (*istr==1) *istr = 0;
   set_wait_click(0);
 }
 /*-----------------------------------------------------------------------------------*/
