@@ -1,8 +1,9 @@
 SCIDIR=../../
 SCIDIR1=..\..\
 
-all	: Makelib.mak job message 
-	nmake -f Makelib.mak
+MAKE=nmake /nologo
+
+all	: Makelib.mak  message 
 
 Makelib.mak : builder.sce
 	@echo running builder BE PATIENT
@@ -11,11 +12,8 @@ Makelib.mak : builder.sce
 	"$(SCIDIR1)\bin\scilex.exe" -nwni -f job.sce 
 	del job.sce 
 
-job	: 
-	nmake -f Makelib.mak
-
 clean  	: 
-	nmake -f Makelib.mak clean 
+	$(MAKE) -f Makelib.mak clean 
 	del Makelib.mak 
 
 distclean::
@@ -30,11 +28,11 @@ distclean::
 	del libexamples.pdb
 
 distclean::
-	nmake -f Makelib.mak distclean
+	$(MAKE) -f Makelib.mak distclean
 	del Makelib.mak 
 
-tests	: all
-	"$(SCIDIR1)\bin\scilex.exe"  -f  libexamples.tst
+tests	: Makelib.mak 
+	@"$(SCIDIR1)\bin\scilex.exe" -nwni  -e scitest('libexamples.tst',%t);quit;
 
 message:
 	@echo ------------------------------------------;
@@ -42,7 +40,7 @@ message:
 	@echo "-->exec exXX.sce" to test one example 
 	@echo "-->exec libexamples.tst" to test all examples
 	@echo ------------------------------------------;
-	@echo Type nmake /f Makefile.mak tests 
+	@echo Type nmake /nologo /f Makefile.mak tests 
 	@echo to run all tests 
 	@echo ------------------------------------------;
 
