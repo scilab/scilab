@@ -1998,7 +1998,12 @@ void  mexPrintf (va_alist) va_dcl
     }
   else 
     {
+	#if WIN32
+		sciprint("%s",buf);
+		
+	#else
       C2F(xscisrn)(buf,&lstr,0L);
+	#endif
     }
   if (getdiary()) diary_nnl(buf,&lstr);
   va_end(args);
