@@ -5,7 +5,7 @@ str=[];
   for k=1:size(val)
     tp=typeof(val(k))
     if tp=="st" then
-      str=%struct_string(val(k))
+      str=%st_string(val(k))
     else
       sz=size(val(k))
       if prod(sz)==0 then 

@@ -7,9 +7,9 @@ for k=2:size(f,'*')
   value=s(var)
   tp=typeof(value)
   if tp=="ce" then
-    t=[t;%cell_string(value)]
+    t=[t;%ce_string(value)]
   elseif tp=="st" then
-    t=[t;%struct_string(value)]
+    t=[t;%st_string(value)]
   else
     str=sci2exp(value,ll(1))
     txt='   '+var+': '

@@ -1,3 +1,3 @@
 function %ce_p(c)
-disp(%cell_string(c))
+disp(%ce_string(c))
 endfunction
