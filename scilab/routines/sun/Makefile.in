@@ -9,7 +9,7 @@ OBJSF = bashos.o basin.o basout.o \
 
 OBJSC  = getenvc.o link.o systemc.o zzledt.o  csignal.o getpidc.o timer.o \
 	flags.o men_Sutils.o addinter.o  tmpdir.o cluni0.o \
-	inffic.o isanan.o  texmacs.o getarg.o @MALLOC@ 
+	inffic.o isanan.o  texmacs.o @GETARG@.o @MALLOC@ 
 
 include ../../Makefile.incl
 
