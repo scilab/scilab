@@ -70,7 +70,7 @@ c
      $           told,xd,x,x,xptr,z,
      $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $           outtb,flag) 
+     $           outtb,x,xptr,flag) 
             if(flag.lt.0) then
                ierr=5-flag
                return
@@ -169,7 +169,8 @@ c
             call callf(kfun,nclock,funptr,funtyp,told,
      $           xd,x,residual,xptr,z,zptr,iz,izptr,rpar,
      $           rpptr,ipar,ipptr,tvec,ntvec,inpptr,
-     $           inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+     $           inplnk,outptr,outlnk,lnkptr,outtb,
+     $           x,xptr,flag) 
             if (flag .lt. 0) then
                ierr = 5 - flag
                return
@@ -227,7 +228,8 @@ c     .  update states derivatives
             call callf(kfun,nclock,funptr,funtyp,told,
      $           xd,x,residual,xptr,z,zptr,iz,izptr,rpar,
      $           rpptr,ipar,ipptr,tvec,ntvec,inpptr,
-     $           inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+     $           inplnk,outptr,outlnk,lnkptr,outtb,
+     $           x,xptr,flag) 
             if (flag .lt. 0) then
                ierr = 5 - flag
                return
@@ -245,7 +247,8 @@ c
                call callf(kfun,nclock,funptr,funtyp,told,
      $              xd,x,residual,xptr,z,zptr,iz,izptr,rpar,
      $              rpptr,ipar,ipptr,tvec,ntvec,inpptr,
-     $              inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+     $              inplnk,outptr,outlnk,lnkptr,outtb,
+     $              x,xptr,flag) 
                if (flag .lt. 0) then
                   ierr = 5 - flag
                   return

@@ -37,8 +37,9 @@ case 'define' then
   minp=-1;maxp=1;slope=1;rpar=[minp;maxp;slope]
 
   model=scicos_model()
-  model.sim='lusat'
+  model.sim=list('lusat',1)
   model.in=1
+  model.nzcross=2
   model.out=1
   model.rpar=[minp;maxp;slope]
   model.blocktype='c'

@@ -78,10 +78,10 @@ for i=1:length(bllst)
 end
 //initialize agenda
 [tevts,evtspt,pointi]=init_agenda(initexe,clkptr)
-izptr=ones(length(bllst)+1,1);
+
 sim.xptr=xptr
 sim.zptr=zptr
-sim.izptr=izptr
+
 sim.inpptr=inpptr
 sim.outptr=outptr
 sim.inplnk=inplnk

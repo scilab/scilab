@@ -30,6 +30,7 @@ case 'set' then
       model.rpar=[-ones(kk,1);zeros(2^(2*in)-kk,1)]
       graphics.exprs=exprs
       model.in=in
+      model.nzcross=in
       model.firing=-1 //compatibility
       x.graphics=graphics;x.model=model
       break
@@ -40,8 +41,9 @@ case 'define' then
   in=1
 
   model=scicos_model()
-  model.sim='zcross'
+  model.sim=list('zcross',1)
   model.in=in
+  model.nzcross=in
   model.evtout=1
   model.rpar=[-1;-1;0;0]
   model.blocktype='z'

@@ -4,7 +4,7 @@ c     Copyright INRIA
      $     ,outlnk,lnkptr,clkptr,ordptr,nptr
      $     ,ordclk,nordcl,cord,oord,zord,critev,
      $     rpar,rpptr,ipar
-     $     ,ipptr,funptr,funtyp,outtb,urg,ierr) 
+     $     ,ipptr,funptr,funtyp,outtb,urg,ierr,iwa,kiwa) 
 C     
 C     
 C..   Parameters .. 
@@ -22,6 +22,7 @@ C     X must contain after state values all real data for simblk and grblk
       integer ordclk(nordcl,2),nordcl,cord(*),oord(*),zord(*)
       integer critev(*),rpptr(*),ipar(*),ipptr(*),funptr(*),funtyp(*)
       integer ierr
+      integer iwa(*),kiwa
 c     
       integer i,k,ierr1,iopt,istate,itask,j,jdum,jt,urg,
      &     ksz,flag,keve,kpo,nord,nclock
@@ -51,6 +52,9 @@ c
       nord=ordptr(keve+1)-ordptr(keve)
       if(nord.eq.0) return
 c
+      kiwa=kiwa+1
+      iwa(kiwa)=keve
+c
       do 60 ii=ordptr(keve),ordptr(keve+1)-1
          kfun=ordclk(ii,1)
          if(outptr(kfun+1)-outptr(kfun).gt.0) then
@@ -60,7 +64,7 @@ c
      $           xd,x,x,xptr,z,
      $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $           outtb,flag) 
+     $           outtb,x,xptr,flag) 
             if(flag.lt.0) then
                ierr=5-flag
                return
@@ -103,12 +107,12 @@ C     !                 event conflict
 
 
 
-      subroutine zdoit(neq,xd,x,xptr,z,zptr,iz,izptr,told
+      subroutine zdoit(neq,g,zcptr,xd,x,xptr,z,zptr,iz,izptr,told
      $     ,tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr
      $     ,outlnk,lnkptr,clkptr,ordptr,nptr
      $     ,ordclk,nordcl,cord,oord,zord,critev,
      $     rpar,rpptr,ipar
-     $     ,ipptr,funptr,funtyp,outtb,ierr) 
+     $     ,ipptr,funptr,funtyp,outtb,iwa,ierr) 
 C     
 
 C     
@@ -120,13 +124,15 @@ C
       integer neq(*)
 C     neq must contain after #states all integer data for simblk and grblk
       double precision x(*),z(*),told,tevts(*),rpar(*),outtb(*),xd(*)
+      double precision g(*)
 C     X must contain after state values all real data for simblk and grblk
       integer xptr(*),zptr(*),iz(*),izptr(*),evtspt(nevts),nevts,pointi
       integer inpptr(*),inplnk(*),outptr(*),outlnk(*),lnkptr(*)
-      integer clkptr(*),ordptr(nptr),nptr
+      integer clkptr(*),ordptr(nptr),nptr,zcptr(*)
       integer ordclk(nordcl,2),nordcl,cord(*),oord(*),zord(*)
       integer critev(*),rpptr(*),ipar(*),ipptr(*),funptr(*),funtyp(*)
       integer ierr
+      integer iwa(*),kiwa
 c     
       integer i,k,ierr1,iopt,istate,itask,j,jdum,jt,urg,
      &     ksz,flag,keve,kpo,nord,nclock
@@ -149,6 +155,9 @@ c
 c     
 
       urg=0
+      kiwa=0
+
+
       do 19 jj=1,nzord
          kfun=zord(jj)
          nclock = zord(jj+nzord)
@@ -157,7 +166,8 @@ c
             call callf(kfun,nclock,funptr,funtyp,told,
      $           xd,x,x,xptr,z,zptr,iz,izptr,rpar,
      $           rpptr,ipar,ipptr,tvec,ntvec,inpptr,
-     $           inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+     $           inplnk,outptr,outlnk,lnkptr,outtb,     
+     $           x,xptr,flag) 
 
             if (flag .lt. 0) then
                ierr = 5 - flag
@@ -193,14 +203,54 @@ C     !                 event conflict
  19   continue
 c
 c
-      if (urg.le.0)  return
+      if (urg.le.0)  goto 22
  21   call zzdoit(neq,xd,x,xptr,z,zptr,iz,izptr,told
      $     ,tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr
      $     ,outlnk,lnkptr,clkptr,ordptr,nptr
      $     ,ordclk,nordcl,cord,oord,zord,critev,
      $     rpar,rpptr,ipar
-     $     ,ipptr,funptr,funtyp,outtb,urg,ierr) 
+     $     ,ipptr,funptr,funtyp,outtb,urg,ierr,iwa,kiwa) 
       if (urg.gt.0) goto 21
+
+ 22   continue
+c     .  update zero crossing surfaces
+      do 31 ii=1,nzord
+         kfun=zord(ii)
+         if(zcptr(kfun+1)-zcptr(kfun).gt.0) then
+            flag=9
+            nclock=oord(ii+nzord)
+            call callf(kfun,nclock,funptr,funtyp,told,
+     $           xd,x,xd,xptr,z,zptr,iz,izptr,rpar,
+     $           rpptr,ipar,ipptr,tvec,ntvec,inpptr,
+     $           inplnk,outptr,outlnk,lnkptr,outtb,
+     $           g,zcptr,flag) 
+            if (flag .lt. 0) then
+               ierr = 5 - flag
+               return
+            endif
+         endif
+ 31   continue
+c
+      do 61 i=1,kiwa
+         keve=iwa(i)
+         do 160 ii=ordptr(keve),ordptr(keve+1)-1
+            kfun=ordclk(ii,1)
+            if(zcptr(kfun+1)-zcptr(kfun).gt.0) then
+               flag=9
+               nclock=ordclk(ii,2)
+               call callf(kfun,nclock,funptr,funtyp,told,
+     $              xd,x,xd,xptr,z,zptr,iz,izptr,rpar,
+     $              rpptr,ipar,ipptr,tvec,ntvec,inpptr,
+     $              inplnk,outptr,outlnk,lnkptr,outtb,
+     $              g,zcptr,flag) 
+               if (flag .lt. 0) then
+                  ierr = 5 - flag
+                  return
+               endif
+            endif
+ 160     continue   
+ 61   continue
+
       return
       end
 

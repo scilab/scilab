@@ -36,6 +36,7 @@ case 'set' then
 	  string(1:2^(2*nin1)),string(rp(:,:)))
       if result<>[] then
 	rp(1:nout1,1:2*n)=evstr(result)
+	model.nzcross=in
 	model.rpar=rp(:)
 	model.firing=-ones(out,1)
 	graphics.exprs=exprs
@@ -47,7 +48,8 @@ case 'define' then
   rpar=[0;0;0;0]
   in=1;out=1;
   model=scicos_model()
-  model.sim='zcross'
+  model.sim=list('zcross',1)
+  model.nzcross=in
   model.in=in
   model.evtout=ones(out,1)
   model.rpar=[0;0;0;0]

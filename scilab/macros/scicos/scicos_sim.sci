@@ -2,7 +2,7 @@ function sim=scicos_sim(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v16,v
   if exists('funs','local')==0 then funs=[],end
   if exists('xptr','local')==0 then xptr=[],end
   if exists('zptr','local')==0 then zptr=[],end
-  if exists('izptr','local')==0 then izptr=[],end
+  if exists('zcptr','local')==0 then zcptr=[],end
   if exists('inpptr','local')==0 then inpptr=[],end
   if exists('outptr','local')==0 then outptr=[],end
   if exists('inplnk','local')==0 then inplnk=[],end
@@ -28,13 +28,13 @@ function sim=scicos_sim(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v16,v
   if exists('funtyp','local')==0 then funtyp=[],end
   if exists('iord','local')==0 then iord=[],end
   if exists('labels','local')==0 then labels=[],end
-  sim=tlist(['scs','funs','xptr','zptr','izptr','inpptr',..
+  sim=tlist(['scs','funs','xptr','zptr','zcptr','inpptr',..
 	     'outptr','inplnk','outlnk','lnkptr','rpar',..
 	     'rpptr','ipar','ipptr','clkptr','ordptr',..
 	     'execlk','ordclk','cord','oord','zord',..
 	     'critev','nb','ztyp','nblk','ndcblk',..
 	     'subscr','funtyp','iord','labels'],..
-	    funs,xptr,zptr,izptr,inpptr,..
+	    funs,xptr,zptr,zcptr,inpptr,..
 	    outptr,inplnk,outlnk,lnkptr,rpar,..
 	    rpptr,ipar,ipptr,clkptr,ordptr,..
 	    execlk,ordclk,cord,oord,zord,..

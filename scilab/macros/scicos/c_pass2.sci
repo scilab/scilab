@@ -12,12 +12,9 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 //          7- vector (column) of discrete initial condition
 //          8- vector (column) of real parameters
 //          9- vector (column) of integer parameters
-//          10- string: 'z' if zero-crossing,
-//                      'l' logical
+//          10- string: 'l' for synchro (ifthenelse,eselect) or 'm' (memo)
 //          11- vector of size <number of clock outputs> including
 //              preprogrammed event firing times (<0 if no firing) 
-//              or [for backward compatibility]
-//              boolean vector: i-th entry %t if initially output is fired
 //          12- boolean vector (1x2): 1st entry for dependence on u, 2nd on t 
 //
 // connectmat: nx4 matrix. Each row contains, in order, the block
@@ -103,15 +100,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     return,
   end
 
-  if ~or(typ_x) & or(typ_z) then
-    message(['For using treshold with explicit solver (0),';
-	     'you need a block with continuous-time state in your diagram.';
-	     'You can include DUMMY CLSS block (linear palette).']);
-    cpr=list()
-    ok=%f;
-    return
-  end
-
+ 
   if show_trace then disp('c_pass41:'+string(timer())),end
 
 
@@ -133,7 +122,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   // Set execution scheduling tables 
   [ordptr,ordclk,cord,iord,oord,zord,..
-   critev,ok]=scheduler(inpptr,outptr,clkptr,execlk,execlk0,..
+   critev,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk,execlk0,..
 			execlk_cons,ordptr1,outoin,outoinptr,..
 			evoutoin,evoutoinptr,typ_z,typ_x,typ_s,..
 			bexe,boptr,blnk,blptr);
@@ -142,19 +131,32 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     cpr=list()
     return,
   end
+  
+   if ~or(typ_x) & or(typ_z) then
+    message(['No continuous-time state. Tresholds are ignored. If not';
+	     'you need a block with continuous-time state in your diagram.';
+	     'You can include DUMMY CLSS block (linear palette).']);
+    //cpr=list()
+    //ok=%f;
+    //return
+  end
+
 
   if show_trace then disp('c_pass51:'+string(timer())),end
   //form scicos arguments
-  izptr=ones(nblk+1,1)
 
-  ztyp=0*ones(typ_z)
-  ztyp(typ_z)=1
-
+  zcptr=ones(nblk+1,1);
+  for i=1:nblk
+    zcptr(i+1)=zcptr(i)+typ_z(i)
+  end
+  
+  
+  ztyp=sign(typ_z)  //completement inutile pour simulation
 
 
   subscr=[]
   ncblk=0;nxblk=0;ndblk=0;ndcblk=0;
-  sim=scicos_sim(funs=funs,xptr=xptr,zptr=zptr,izptr=izptr,..
+  sim=scicos_sim(funs=funs,xptr=xptr,zptr=zptr,zcptr=zcptr,..
 		 inpptr=inpptr,outptr=outptr,inplnk=inplnk,outlnk=outlnk,..
 		 lnkptr=lnkptr,rpar=rpar,rpptr=rpptr,ipar=ipar,ipptr=ipptr,..
 		 clkptr=clkptr,ordptr=ordptr,execlk=execlk,ordclk=ordclk,..
@@ -190,7 +192,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   clearglobal need_newblk
 endfunction
 
-function [ordptr2,ordclk,cord,iord,oord,zord,critev,ok]=..
+function [ordptr2,ordclk,cord,iord,oord,zord,critev,typ_z,ok]=..
       scheduler(inpptr,..
 		outptr,clkptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoinptr,..
 		evoutoin,evoutoinptr,typ_z,typ_x,typ_s,bexe,boptr,blnk,blptr);
@@ -261,10 +263,19 @@ function [ordptr2,ordclk,cord,iord,oord,zord,critev,ok]=..
   vec=-ones(1,nblk);
   vec(cord(:,1))=0;
   
-  //    [ext_cord,ok]=new_tree3(vec,dep_ut,typ_s);
   typp=zeros(typ_s);typp(typ_s)=1
   [ext_cord,ok]=new_tree3(vec,dep_ut,typp);
 
+  //pour mettre a zero les typ_z qui ne sont pas dans ext_cord
+  //noter que typ_z contient les tailles des nzcross (peut etre >1)
+  typ_z(ext_cord)=-typ_z(ext_cord)
+  typ_z=-min(typ_z,0)
+  
+//  tmp=typ_z
+//  typ_z=zeros(typ_z)
+//  typ_z(ext_cord)=tmp(ext_cord)
+
+  
   if ~ok then disp('serious bug, report.');pause;end
   ext_cord=ext_cord(n+1:$);
 
@@ -670,7 +681,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   xc0=[];xcd0=[];xd0=[];rpar=[];ipar=[];
 
   fff=ones(nbl,1)==1
-  dep_ut=[fff,fff];typ_z=fff;typ_s=fff;typ_x=fff;typ_m=fff;
+  dep_ut=[fff,fff];typ_z=zeros(nbl,1);typ_s=fff;typ_x=fff;typ_m=fff;
 
   initexe=[];
   funs=list();
@@ -680,6 +691,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   //
   for i=1:nbl
     ll=bllst(i)
+
     if type(ll.sim)==15 then
       funs(i)=ll.sim(1)
       funtyp(i,1)=ll.sim(2)
@@ -735,7 +747,8 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
       ipptr(i+1)=ipptr(i)
     end
     //
-    typ_z(i)=ll.blocktype=='z'
+    //    typ_z(i)=ll.blocktype=='z'
+    typ_z(i)=ll.nzcross
     typ_s(i)=ll.blocktype=='s'
     typ_x(i)=ll.state<>[]
     typ_m(i)=ll.blocktype=='m'
@@ -1228,7 +1241,7 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     ll=bllst(i)
     inpnum=ll.in;outnum=ll.out;cinpnum=ll.evtin;coutnum=ll.evtout;
     //    
-    if cinpnum==[]&ll.blocktype<>'z' then
+    if cinpnum==[] then
       // this block inherits
       ok=%f
       typ_r(i)=~ll.dep_ut(2)

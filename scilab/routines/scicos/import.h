@@ -2,6 +2,7 @@
 typedef struct {
   double* x;      /* continuous  state */
   integer* xptr;  /* vector of pointers on block states */
+  integer* zcptr;  /* vector of pointers on block zero crosses */
   double* z;      /* discrete state */
   integer* zptr;  /* vector of pointers on block states */
   integer* iz;      /* unused */

@@ -52,7 +52,7 @@ end
 
 
 
-scicos_ver='scicos2.7' // set current version of scicos
+scicos_ver='scicos2.7.1' // set current version of scicos
 Main_Scicos_window=1000
 
 //Initialisation

@@ -16,7 +16,8 @@ case 'set' then
 case 'define' then
   rpar=[-1;-1;-1;0]
   model=scicos_model()
-  model.sim='zcross'
+  model.sim=list('zcross',1)
+  model.nzcross=1
   model.in=1
   model.evtout=1
   model.rpar=[-1;-1;-1;0]

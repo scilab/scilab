@@ -4,13 +4,14 @@ c     Copyright INRIA
      $     outlnk,lnkptr,nlnkptr,rpar,rpptr,ipar,ipptr,clkptr,ordptr,
      $     nordptr1,ordclk,cord,ncord1,iord,niord,oord,noord1,
      $     zord,nzord1,
-     $     critev,nblk1,ztyp,ng1,subscr,nsubs,simpar,w,iw,iwa,
+     $     critev,nblk1,ztyp,zcptr,ng1,subscr,nsubs,simpar,w,iw,iwa,
      $     flag,ierr)
 c iz,izptr are used to pass block labels
       double precision x(*),z(*),t0,tf,tevts(nevts),outtb(*),rpar(*)
       double precision simpar(*),w(*)
 
-      integer xptr(*),zptr(*),iz(*),izptr(*),evtspt(nevts),nevts
+      integer xptr(*),zcptr(*),zptr(*),iz(*),izptr(*)
+      integer evtspt(nevts),nevts
       integer pointi,funptr(*),funtyp(*),inpptr(*),outptr(*)
       integer inplnk(*),outlnk(*),lnkptr(*),nlnkptr,rpptr(*),ipar(*)
       integer ipptr(*),clkptr(*),ordptr(nordptr1),ordclk(*)
@@ -80,9 +81,9 @@ c     split working areas into pieces
       lw = 1
 c     lx must be equal to one
       louttb = lw
-      lw = louttb + nout
+      lw = louttb + max(nout,ng)
 c     louttb used both in cosini for fixed-point and in cossim
-c     for temporary storage
+c     for temporary storage of g
       lrhot = lw
       lw = lrhot + nrwp
 c     reserved for futher use
@@ -150,7 +151,7 @@ c     hard coded maxsize in scicos.h
 
 c
 
-      call makescicosimport(x,xptr,z,zptr,iz,izptr,
+      call makescicosimport(x,xptr,zcptr,z,zptr,iz,izptr,
      $     inpptr,inplnk,outptr,outlnk,lnkptr,nlnkptr,
      $     rpar,rpptr,ipar,ipptr,
      $     nblk,outtb,nout,subscr,nsubs,tevts,evtspt,nevts,pointi,
@@ -178,7 +179,7 @@ c     initialisation des blocks
       elseif(flag.eq.2) then
 c     integration
          if (solver.eq.0) then
-            call cossim(nx,x,xptr,z,zptr,
+            call cossim(nx,x,xptr,zcptr,z,zptr,
      $           iz,izptr,t0,tf,tevts,evtspt,nevts,pointi,
      $           inpptr,inplnk,outptr,outlnk,
      $           lnkptr,clkptr,ordptr,nordptr,
@@ -188,7 +189,7 @@ c     integration
      $           funtyp,w(lrhot),iw(lihot),outtb,iw(ljroot),
      $           w(louttb),iwa,ierr)
          elseif (solver.eq.100) then
-           call cossimdassl(nx,x,xptr,z,zptr,
+           call cossimdassl(nx,x,xptr,zcptr,z,zptr,
      $           iz,izptr,t0,tf,tevts,evtspt,nevts,pointi,
      $           inpptr,inplnk,outptr,outlnk,
      $           lnkptr,clkptr,ordptr,nordptr,

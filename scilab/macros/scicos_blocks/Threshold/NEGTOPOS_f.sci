@@ -15,7 +15,8 @@ case 'set' then
   x.model.firing=-1 //compatibility
 case 'define' then
   model=scicos_model()
-  model.sim='zcross'
+  model.sim=list('zcross',1)
+  model.nzcross=1
   model.in=1
   model.evtout=1
   model.rpar=[-1;-1;0;-1]

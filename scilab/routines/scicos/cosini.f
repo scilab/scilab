@@ -37,7 +37,7 @@ C     loop on blocks
             call callf(kfun,nclock,funptr,funtyp,told,x(xptr(nblk+1))
      $           ,x,x,xptr,z,zptr,iz,
      $           izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk,
-     $           outptr,outlnk,lnkptr,outtb,flag) 
+     $           outptr,outlnk,lnkptr,outtb,x,xptr,flag) 
             if(flag.lt.0.and.ierr.eq.0) then
                ierr=5-flag
                kfune=kfun
@@ -62,7 +62,7 @@ C     initialization (flag 6)
      $              x(xptr(nblk+1)),x,x,xptr,z,
      $              zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $              ntvec,inpptr,inplnk
-     $              ,outptr,outlnk,lnkptr,outtb,flag) 
+     $              ,outptr,outlnk,lnkptr,outtb,x,xptr,flag) 
                if (flag .lt. 0) then
                   ierr = 5 - flag
                   return
@@ -83,7 +83,7 @@ C     loop on blocks
      $              x,w,xptr,z,
      $              zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $              ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $              outtb,flag) 
+     $              outtb,x,xptr,flag) 
                if(flag.lt.0) then
                   ierr=5-flag
                   return
@@ -102,7 +102,7 @@ c
                   call callf(kfun,nclock,funptr,funtyp,told,
      $                 x(xptr(nblk+1)),x,x,xptr,z,zptr
      $                 ,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr
-     $                 ,inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+     $                 ,inplnk,outptr,outlnk,lnkptr,outtb,x,xptr,flag) 
                   if (flag .lt. 0) then
                      ierr = 5 - flag
                      return
@@ -121,7 +121,7 @@ c                 flag=7
 c                 call callf(kfun,nclock,funptr,funtyp,told,
 c     $                xd,x,residual,xptr,z,zptr,iz,izptr,rpar,
 c     $                rpptr,ipar,ipptr,tvec,ntvec,inpptr,
-c     $                inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+c     $                inplnk,outptr,outlnk,lnkptr,outtb,x,xptr,flag) 
 c                 if (flag .lt. 0) then
 c                    ierr = 5 - flag
 c                    return

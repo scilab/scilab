@@ -11,6 +11,7 @@ extern struct {
 ScicosImport  scicos_imp={
 (double *) NULL,   /* x */
 (integer *) NULL,  /* xptr */
+(integer *) NULL,  /* zcptr */
 (double *) NULL,   /* z */
 (integer *) NULL,  /* zptr */
 (integer *) NULL,  /* iz */
@@ -50,20 +51,21 @@ ScicosImport  scicos_imp={
 };
 
 void  
-C2F(makescicosimport)(x,xptr,z,zptr,iz,izptr,
+C2F(makescicosimport)(x,xptr,zcptr,z,zptr,iz,izptr,
      inpptr,inplnk,outptr,outlnk,lnkptr,nlnkptr,
      rpar,rpptr,ipar,ipptr,nblk,outtb,nout,subs,nsubs,
      tevts,evtspt,nevts,pointi,oord,zord,
      funptr,funtyp,ztyp,cord,ordclk,clkptr,ordptr,critev,iwa,mask)
      
 double *x ,*z,*outtb,*rpar,*tevts;
-integer *xptr,*zptr,*iz,*izptr,*inpptr,*inplnk,*outptr,*outlnk,*lnkptr;
+integer *xptr,*zcptr,*zptr,*iz,*izptr,*inpptr,*inplnk,*outptr,*outlnk,*lnkptr;
 integer *nlnkptr,*rpptr,*ipar,*ipptr,*nblk,*nout,*subs,*nsubs;
 integer *evtspt,*nevts,*pointi,*oord,*zord,*funptr,*funtyp,*ztyp,*cord,*ordclk,*clkptr,*ordptr,*critev, *iwa,*mask;
      
 {
     scicos_imp.x=x;
     scicos_imp.xptr=xptr;
+    scicos_imp.zcptr=zcptr;
     scicos_imp.z=z;
     scicos_imp.zptr=zptr;
     scicos_imp.iz=iz;
@@ -113,6 +115,7 @@ C2F(clearscicosimport)()
 {
     scicos_imp.x=(double *) NULL;
     scicos_imp.xptr=(integer *) NULL;
+    scicos_imp.zcptr=(integer *) NULL;
     scicos_imp.z=(double *) NULL;
     scicos_imp.zptr=(integer *) NULL;
     scicos_imp.iz=(integer *) NULL;
@@ -183,62 +186,67 @@ integer *type ;/* type of the imported data 0:integer,1:double */
 	*v=(void *) (scicos_imp.xptr);
 	*type=0;
 	break;
-    case 3 :			/* discrete state */
+    case 3 :			/* continuous state splitting array*/
+	*nv=(integer)(nblk+1);
+	*v=(void *) (scicos_imp.zcptr);
+	*type=0;
+	break;
+    case 4 :			/* discrete state */
 	*nv=(integer)(scicos_imp.zptr[nblk]-scicos_imp.zptr[0]);
 	*v=(void *) (scicos_imp.z);
 	*type=1;
 	break;
-    case 4 :			/* discrete  state splitting array*/
+    case 5 :			/* discrete  state splitting array*/
 	*nv=(integer)(nblk+1);
 	*v=(void *) (scicos_imp.zptr);
 	*type=0;
 	break;
-    case 5 :			/* rpar */
+    case 6 :			/* rpar */
 	*nv=(integer)(scicos_imp.rpptr[nblk]-scicos_imp.rpptr[0]);
 	*v=(void *) (scicos_imp.rpar);
 	*type=1;
 	break;
-    case 6 :			/* rpar  splitting array*/
+    case 7 :			/* rpar  splitting array*/
 	*nv=(integer)(nblk+1);
 	*v=(void *) (scicos_imp.rpptr);
 	*type=0;
 	break;
-    case 7 :			/* ipar */
+    case 8 :			/* ipar */
 	*nv=(integer)(scicos_imp.ipptr[nblk]-scicos_imp.ipptr[0]);
 	*v=(void *) (scicos_imp.ipar);
 	*type=0;
 	break;
-    case 8 :			/* ipar  splitting array*/
+    case 9 :			/* ipar  splitting array*/
 	*nv=(integer)(nblk+1);
 	*v=(void *) (scicos_imp.ipptr);
 	*type=0;
 	break;
-    case 9 :			/* outtb */
+    case 10 :			/* outtb */
 	*nv=(integer)(scicos_imp.nout);
 	*v=(void *) (scicos_imp.outtb);
 	*type=1;
 	break;
-    case 10 :                   /* inpptr */
+    case 11 :                   /* inpptr */
 	*nv=(integer)(nblk+1);
 	*v=(void *) (scicos_imp.inpptr); 
 	*type=0;
 	break;
-    case 11 :                   /* outptr */
+    case 12 :                   /* outptr */
 	*nv=(integer)(nblk+1);
 	*v=(void *) (scicos_imp.outptr); 
 	*type=0;
 	break;
-    case 12 :                   /* inplnk */
+    case 13 :                   /* inplnk */
 	*nv=(integer)(scicos_imp.inpptr[nblk]-scicos_imp.inpptr[0]); 
 	*v=(void *) (scicos_imp.inplnk); 
 	*type=0;
 	break;
-    case 13 :                   /* outlnk */
+    case 14 :                   /* outlnk */
 	*nv=(integer)(scicos_imp.outptr[nblk]-scicos_imp.outptr[0]); 
 	*v=(void *) (scicos_imp.outlnk); 
 	*type=0;
 	break;
-    case 14 :                   /* lnkptr */
+    case 15 :                   /* lnkptr */
 	*nv=(integer)(scicos_imp.nlnkptr);
 	*v=(void *) (scicos_imp.lnkptr); 
 	*type=0;

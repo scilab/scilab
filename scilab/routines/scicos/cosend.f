@@ -34,7 +34,7 @@ C     loop on blocks
             call callf(kfun,ntvec,funptr,funtyp,told,x(xptr(nblk+1))
      $           ,x,x,xptr,z,zptr,iz,
      $           izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk,
-     $           outptr,outlnk,lnkptr,outtb,flag) 
+     $           outptr,outlnk,lnkptr,outtb,x,xptr,flag) 
             if(flag.lt.0.and.ierr.eq.0) then
                ierr=5-flag
                kfune=kfun

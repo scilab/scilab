@@ -5,11 +5,11 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
 // Copyright INRIA
 xptr=sim('xptr')
 zptr=sim('zptr')
-izptr=sim('izptr')
 rpptr=sim('rpptr')
 ipptr=sim('ipptr')
 ipar=sim('ipar')
 rpar=sim('rpar')
+ztyp=sim('ztyp')
 [st,dst]=state(['x','z'])
 [st0,dst0]=%state0(['x','z'])
 Impl=%f
@@ -25,10 +25,10 @@ nb=prod(size(rpptr))-1
 
 
 for k=newparameters
-  if prod(size(k))==1 then //parameter of a sImple block
+  if prod(size(k))==1 then //parameter of a simple block
     statekd=[]
     om=scs_m.objs(k).model
-    [fun,statek,dstatek,rpark,ipark]=(om.sim,om.state,om.dstate,om.rpar,om.ipar);
+    [fun,statek,dstatek,rpark,ipark,nscross]=(om.sim,om.state,om.dstate,om.rpar,om.ipar,om.nzcross);
     if type(fun)==15 then
       if fun(2)==3 then 
 	if rpark<>[] then rpark=var2vec(rpark); end
@@ -87,6 +87,7 @@ for k=newparameters
     dst(zptr(kc):zptr(kc+1)-1)=dstatek(:),
     dst0(zptr(kc):zptr(kc+1)-1)=dstatek(:),
 
+    
     //Change real parameters
     nek=prod(size(rpark))-(rpptr(kc+1)-rpptr(kc))
     sel=rpptr(kc+1):rpptr($)-1
@@ -122,8 +123,6 @@ end
 
 sim('xptr')=xptr
 sim('zptr')=zptr
-sim('izptr')=izptr
-
 sim('rpar')=rpar;
 sim('rpptr')=rpptr;
 if  type(ipark)==1 then sim('ipar')=ipar;end  //scifunc

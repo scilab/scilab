@@ -79,6 +79,10 @@ if typeof(o)=='Block' then
 	// type 'c','d','z','l' or dep_ut changed
 	needcompile=4
       end
+      if (model.nzcross<>model_n.nzcross) then 
+	// size of zero cross changed
+	needcompile=4
+      end
       if prod(size(model_n.sim))>1 then
         if model_n.sim(2)>1000 then  // Fortran or C Block
 	  if model.sim(1)<>model_n.sim(1) then  //function name has changed

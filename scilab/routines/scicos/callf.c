@@ -33,17 +33,17 @@ ScicosImport  scicos_imp;
 void 
 C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,residual,xptr,z,zptr,iz,izptr,
 	   rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk,outptr,
-	   outlnk,lnkptr,outtb,flag) 
-     integer *kfun,*nclock,*funptr,*funtyp,*xptr,*zptr,*iz,*izptr;
+	   outlnk,lnkptr,outtb,g,zcptr,flag) 
+     integer *kfun,*nclock,*funptr,*funtyp,*xptr,*zptr,*iz,*izptr,*zcptr;
      integer *rpptr,*ipar,*ipptr;
      integer *ntvec,*inpptr,*inplnk,*outptr,*outlnk,*lnkptr,*flag;
-     double *t,*xd,*x,*z,*rpar,*outtb,*tvec,*residual;
+     double *t,*xd,*x,*z,*rpar,*outtb,*tvec,*residual,*g;
 {
   voidf loc ; 
   double* args[SZ_SIZE];
   integer sz[SZ_SIZE];
   double intabl[TB_SIZE],outabl[TB_SIZE];
-  int ii,i,kf,nx,nz,nrpar,nipar,in,out,ki,ko,ni,no,k,Nx;
+  int ii,i,kf,nx,nz,nzc,nrpar,nipar,in,out,ki,ko,ni,no,k,Nx;
   int nin,nout,lprt,szi,funtype,flagi;
   int solver=C2F(cmsolver).solver;
   int cosd=C2F(cosdebug).cosd;
@@ -110,23 +110,14 @@ C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,residual,xptr,z,zptr,iz,izptr,
   }
   
   nx=xptr[kf+1]-xptr[kf];
+  nzc=zcptr[kf+1]-zcptr[kf];
   nz=zptr[kf+1]-zptr[kf];
   nrpar=rpptr[kf+1]-rpptr[kf];
   nipar=ipptr[kf+1]-ipptr[kf];
   nin=inpptr[kf+1]-inpptr[kf]; /* number of input ports */
   nout=outptr[kf+1]-outptr[kf];/* number of output ports */
   switch (funtype) {
- /* case -2:
-  case -1 :*/
-    /* special synchro blocks */
-   /*  in=0;
-    lprt=inplnk[inpptr[kf]-1+in];
-    args[in]=&(outtb[lnkptr[lprt-1]-1]);
-    sz[in]=lnkptr[lprt]-lnkptr[lprt-1];
-    loc3 = (ScicosFm1) loc;
-    (*loc3)(flag,nclock,ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-	    &(ipar[ipptr[kf]-1]),&nipar,(double *)args[0],&sz[0]);
-    break;  */  
+
   case 1 :			
     /* one entry for each input or output */
     for (in = 0 ; in < nin ; in++) 
@@ -140,6 +131,10 @@ C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,residual,xptr,z,zptr,iz,izptr,
       args[in+out]=&(outtb[lnkptr[lprt-1]-1]);
       sz[in+out]=lnkptr[lprt]-lnkptr[lprt-1];
     }
+    if(nzc>0){
+      args[nin+nout]=&(g[zcptr[kf]-1]);
+      sz[nin+nout]=nzc;
+	}
     loc1 = (ScicosF) loc;
     if (solver==100) {
  (*loc1)(flag,nclock,t,&(residual[xptr[kf]-1]),&(x[xptr[kf]-1]),&nx,&(z[zptr[kf]-1]),&nz,
@@ -290,6 +285,10 @@ C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,residual,xptr,z,zptr,iz,izptr,
       args[in+out]=&(outtb[lnkptr[lprt-1]-1]);
       sz[in+out]=lnkptr[lprt]-lnkptr[lprt-1];
     }
+    if(nzc>0){
+      args[nin+nout]=&(g[zcptr[kf]-1]);
+      sz[nin+nout]=nzc;
+	}
     loci1 = (ScicosFi) loc;
     Nx=xptr[scicos_imp.nblk]-1;/* complete state size */
     (*loci1)(flag,nclock,t,&(residual[xptr[kf]-1]),&(xd[xptr[kf]-1]),&(x[xptr[kf]-1]),

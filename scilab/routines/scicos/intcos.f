@@ -141,7 +141,7 @@ c       --   subvariable zptr(sim) --
         n4e4 = istk(il4e4+1)
         l4e4 = sadr(il4e4+4)
 c      
-c       --   subvariable izptr (sim) NO MORE USED --
+c       --   subvariable zcptr (sim) 
         il4e5=iadr(l4+istk(il4+6)-1)
         n4e5 = istk(il4e5+1)
         l4e5 = sadr(il4e5+4)
@@ -359,6 +359,10 @@ c
           call error(42)
           return
         endif
+        if (n4e3 .ne. n4e5) then
+          call error(42)
+          return
+        endif
         if (n4e3 .ne. n4e6) then
           call error(42)
           return
@@ -417,7 +421,7 @@ c       not implemented yet
         call entier(n4e3,stk(l4e3),istk(iadr(l4e3)))
         call entier(n4e4,stk(l4e4),istk(iadr(l4e4)))
 c        call entier(n1e4,stk(l1e4),istk(iadr(l1e4)))
-c        call entier(n4e5,stk(l4e5),istk(iadr(l4e5)))
+        call entier(n4e5,stk(l4e5),istk(iadr(l4e5)))
         call entier(n1e6,stk(l1e6),istk(iadr(l1e6)))
         call entier(n4e6,stk(l4e6),istk(iadr(l4e6)))
         call entier(n4e7,stk(l4e7),istk(iadr(l4e7)))
@@ -467,21 +471,11 @@ c
         llnkptr=iadr(l4e10)
         iloutptr=iadr(l4e7)
 c
-c        niz = n1e4
-c        liz0=iadr(l1e4)
 
-        ng=0
-c        do 02 kfun = ncblk+ndblk+1,nblk
-        do 02 kfun = 1,nblk
-           if(istk(ilztyp+kfun-1).eq.1) then
-c     .    loop on block input ports
-              do 01 kport=istk(linpptr-1+kfun),istk(linpptr+kfun)-1
-c     .       get corresponding link pointer 
-                 klink=istk(linplnk-1+kport)
-                 ng=ng+istk(llnkptr+klink)-istk(llnkptr-1+klink)
- 01           continue
-           endif
- 02     continue
+c
+        ng=istk(iadr(l4e5)+n4e5-1)-1
+
+
 c     
 c     maximum block state and input sizes      
 c        ilst=iadr(l4e3)
@@ -579,8 +573,8 @@ c
      $       istk(iadr(l4e18)),istk(iadr(l4e19)),n4e19,
      $       istk(iadr(l4e29)),n4e29,
      $       istk(iadr(l4e20)),n4e20,istk(iadr(l4e21)),n4e21,
-     $       istk(iadr(l4e22)),nblk,istk(iadr(l4e24)),ng,
-     $       istk(iadr(l4e27)),n4e27,simpar,stk(lw42),stk(lw43),
+     $       istk(iadr(l4e22)),nblk,istk(iadr(l4e24)),istk(iadr(l4e5)),
+     $       ng,istk(iadr(l4e27)),n4e27,simpar,stk(lw42),stk(lw43),
      $       stk(lw44),flag,ierr)
         idb=0
         if (ierr .gt. 0 ) then

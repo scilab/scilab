@@ -1,4 +1,4 @@
-scicos_ver = 'scicos2.7'
+scicos_ver = 'scicos2.7.1'
 scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ['params','wpar','title','tol','tf','context','void1','options','void2','void3',..
@@ -14,8 +14,9 @@ scs_m.objs(1)=mlist(['Block','graphics','model','gui','doc'],..
               8),emptystr()),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-              'ipar','blocktype','firing','dep_ut','label'],'zcross',1,[],[],1,..
-              [],[],[-1;-1;0;0],[],'z',-1,[%t,%f],emptystr()),'ZCROSS_f',list())
+              'ipar','blocktype','firing','dep_ut','label','nzcross'],..
+              list('zcross',1),1,[],[],1,[],[],[-1;-1;0;0],[],'z',-1,[%t,%f],..
+              emptystr(),1),'ZCROSS_f',list())
 scs_m.objs(2)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
@@ -25,9 +26,9 @@ scs_m.objs(2)=mlist(['Block','graphics','model','gui','doc'],..
               emptystr()),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-              'ipar','blocktype','firing','dep_ut','label'],'zcross',1,[],[],1,..
-              [],[],[-1;-1;0;-1],[],'z',-1,[%t,%f],emptystr()),'NEGTOPOS_f',..
-              list())
+              'ipar','blocktype','firing','dep_ut','label','nzcross'],..
+              list('zcross',1),1,[],[],1,[],[],[-1;-1;0;-1],[],'z',-1,[%t,%f],..
+              emptystr(),1),'NEGTOPOS_f',list())
 scs_m.objs(3)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
@@ -37,9 +38,9 @@ scs_m.objs(3)=mlist(['Block','graphics','model','gui','doc'],..
               emptystr()),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-              'ipar','blocktype','firing','dep_ut','label'],'zcross',1,[],[],1,..
-              [],[],[-1;-1;-1;0],[],'z',-1,[%t,%f],emptystr()),'POSTONEG_f',..
-              list())
+              'ipar','blocktype','firing','dep_ut','label','nzcross'],..
+              list('zcross',1),1,[],[],1,[],[],[-1;-1;-1;0],[],'z',-1,[%t,%f],..
+              emptystr(),1),'POSTONEG_f',list())
 scs_m.objs(4)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
@@ -49,5 +50,6 @@ scs_m.objs(4)=mlist(['Block','graphics','model','gui','doc'],..
               emptystr()),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-              'ipar','blocktype','firing','dep_ut','label'],'zcross',1,[],[],1,..
-              [],[],[0;0;0;0],[],'z',-1,[%t,%f],emptystr()),'GENERAL_f',list())
+              'ipar','blocktype','firing','dep_ut','label','nzcross'],..
+              list('zcross',1),1,[],[],1,[],[],[0;0;0;0],[],'z',-1,[%t,%f],..
+              emptystr(),1),'GENERAL_f',list())

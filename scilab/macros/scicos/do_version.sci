@@ -2,7 +2,7 @@ function scs_m=do_version(scs_m,version)
 // Copyright INRIA
 //translate scicos data structure to new version
 if version<>'scicos2.2'&version<>'scicos2.3'&version<>'scicos2.3.1'&..
-    version<>'scicos2.4'&version<>'scicos2.5.1' then
+    version<>'scicos2.4'&version<>'scicos2.5.1'&version<>'scicos2.7' then
 error('No version update defined to '+version+' version')
 end
 
@@ -20,8 +20,35 @@ if version=='scicos2.5.1' then
   disp('Save the diagram (under a different name just in case)')
   lines(ncl(2))
 end
+if version=='scicos2.7' then scs_m=do_version271(scs_m),version='scicos2.7.1';end
 endfunction
 
+function scs_m_new=do_version271(scs_m)
+  scs_m_new=scs_m;
+  n=size(scs_m.objs);
+  for i=1:n //loop on objects
+    o=scs_m.objs(i);
+    if typeof(o)=='Block' then
+      omod=o.model;
+      if omod.sim=='super'|omod.sim=='csuper' then
+	rpar=do_version271(omod.rpar)
+	setfield($+1,0,omod)
+	omod.rpar=rpar
+      elseif omod.sim=='zcross' then
+	setfield($+1,omod.in,omod)
+	omod.sim=list(omod.sim,1)
+      elseif omod.sim=='lusat' then
+	setfield($+1,2*omod.in,omod)
+	omod.sim=list(omod.sim,1)
+      else
+	setfield($+1,0,omod)
+      end
+      setfield(1,[getfield(1,omod),'nzcross'],omod)
+      o.model= omod
+      scs_m_new.objs(i)=o
+    end
+  end
+endfunction
 
 function scs_m=do_version251(scs_m)
 nx=size(scs_m)

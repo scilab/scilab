@@ -60,7 +60,7 @@ c
      $           x(xptr(nblk+1)),x,x,xptr,z,
      $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $           outtb,flag) 
+     $           outtb,x,xptr,flag) 
             if(flag.lt.0) then
                ierr=5-flag
                return
@@ -159,7 +159,8 @@ c
             call callf(kfun,nclock,funptr,funtyp,told,
      $           x(xptr(nblk+1)),x,x,xptr,z,zptr,iz,izptr,rpar,
      $           rpptr,ipar,ipptr,tvec,ntvec,inpptr,
-     $           inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+     $           inplnk,outptr,outlnk,lnkptr,outtb,
+     $           x,xptr,flag) 
             if (flag .lt. 0) then
                ierr = 5 - flag
                return
@@ -294,7 +295,7 @@ c     it sets hot to false at every event!
      $              x(xptr(nblk+1)),x,x,
      $              xptr,z,zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $              ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $              outtb,flag) 
+     $              outtb,x,xptr,flag) 
                if(flag.lt.0) then
                   ierr=5-flag
                   return
@@ -375,7 +376,7 @@ c
      $           x(xptr(nblk+1)),x,x,xptr,z,
      $           zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $           ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $           outtb,flag) 
+     $           outtb,x,xptr,flag) 
             if(flag.lt.0) then
                ierr=5-flag
                return
@@ -396,7 +397,7 @@ c
      $              x(xptr(nblk+1)),x,x,
      $              xptr,z,zptr,iz,izptr,rpar,rpptr,ipar,ipptr,tvec,
      $              ntvec,inpptr,inplnk,outptr,outlnk,lnkptr,
-     $              outtb,flag) 
+     $              outtb,x,xptr,flag) 
                if(flag.lt.0) then
                   ierr=5-flag
                   return
