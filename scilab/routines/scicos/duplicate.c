@@ -3,10 +3,12 @@
 #include "../stack-c.h"
 #include "../machine.h"
 
-extern int C2F(intcpass2) __PARAMS((char *fname));
-extern int C2F(connection)(int* path_out,int* path_in);
-extern int C2F(badconnection)(int* path_out,int prt_out,int nout,int* path_in,int prt_in,int nin);
-extern int C2F(Message)(char* code);
+int C2F(intcpass2) __PARAMS((char *fname));
+int connection(int* path_out,int* path_in);
+int badconnection(int* path_out,int prt_out,int nout,int* path_in,int prt_in,int nin);
+int Message(char* code);
+extern int Max1(int* vect);
+extern int *listentry(int *header, int i);
 
 void  duplicata(n,v,w,ww,nw)
      double *v,*w,*ww;
@@ -527,7 +529,6 @@ int C2F(intcpass2)(fname)
     }
   if (nb > nblk)
     {
-
       if ((bllst8ptr=realloc(bllst8ptr,sizeof(int)*(nb+2))) ==NULL )  return 0;		  
       bllst8ptr[0]=nb+1;
       if ((bllst7ptr=realloc(bllst7ptr,sizeof(int)*(nb+2))) ==NULL )  return 0;		  

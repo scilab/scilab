@@ -677,7 +677,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
   int *vectconnect,*iVect,*id,*dl,*ltmp,*idl,*lb,*indx,*tmpvect,*indxo,*indy,*bexe,*blnk;
   int *tmp,*clkconnecttmp,*clkconnect0,*texeclk0,*ind,*w2,*w1,*boptr,*blptr,*tclkconnect,*tcon,*ordptr1,*texeclki;
   int *b1,*typ_lm,*pointer,*r,*w3,*pointer1,*con,*vec,*clkconnectind,*connectmatind,*con1;
-  int okk,nn,nblk=((int*) (*bllst10))[0];
+  int *okk,nn,nblk=((int*) (*bllst10))[0];
   int nblkorg=nblk;
   int change=false;  
   Mat4C clkconnecti,connectmati;
@@ -687,7 +687,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
   ptmp1=ptmp2=b1= typ_lm= pointer= r= w3= pointer1= con= vec= clkconnectind= connectmatind= con1=NULL;
   vectconnect=iVect= id= dl= ltmp= idl= lb= indx= tmpvect= indxo= indy= bexe= blnk=inter=NULL;
   tmp= clkconnecttmp= clkconnect0= texeclk0= ind= w2= w1= boptr= blptr= tclkconnect= tcon= ordptr1= texeclki=NULL;
-  okk=true;
+  *ok=true;
   
   if(*need_newblk)
     {
@@ -718,266 +718,268 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 	  if(typ_l[(*clkconnect)[a+i]]==1) id[j++]=i;
 	}
       id[0]=j-1;
-      if (id[0]==0) {free(id); id= (int*) NULL;}
-      if(id)
-	{  
-          ltmp=GetCollVect(*clkconnect,id,3);
-          if ((idl=(int*)malloc(sizeof(int)*(2+ltmp[0]))) == NULL ) return 0;
-          idl[1]=1;
-	  j=2;
-          for(i=1;i<ltmp[0];i++)
-            {
-	      if(ltmp[i+1]-ltmp[i] != 0) idl[j++]=i+1;
-	    }
-	  idl[0]=j;
-	  idl[j]=1+ltmp[0];
-	  if(ltmp) free(ltmp);
-          ki=0;
-          lb=FindEg(typ_l,1);
-          for(i=1;i<lb[0]+1;i++)
+      //if (id[0]==0) {free(id); id= (int*) NULL;}
+      //if(id)
+      //{  
+      ltmp=GetCollVect(*clkconnect,id,3);
+      if ((idl=(int*)malloc(sizeof(int)*(3+ltmp[0]))) == NULL ) return 0;
+      idl[1]=1;
+      j=2;
+      for(i=1;i<ltmp[0];i++)
+	{
+	  if(ltmp[i+1]-ltmp[i] != 0) idl[j++]=i+1;
+	}
+      idl[0]=j;
+      idl[j]=1+ltmp[0];
+      if(ltmp) free(ltmp);
+      ki=0;
+      lb=FindEg(typ_l,1);
+      for(i=1;i<lb[0]+1;i++)
+	{
+	  ki++;
+	  if (id[0] != 0) {
+	    indx=GetPartVect(id,idl[ki],idl[ki+1]-idl[ki]);
+	  } else { indx=NULL;}
+	  if (indx==NULL) 
 	    {
-              ki++;
-              indx=GetPartVect(id,idl[ki],idl[ki+1]-idl[ki]);
-              if (indx==NULL) 
-                {
-                  Message("A synchro block is inactive; cannot be compile");
-                  okk=false;
-                  return 0;
-                }
-              if ((tmpvect=(int*)malloc(sizeof(int)*(indx[0]+1))) == NULL ) return 0;
-              tmpvect[0]=indx[0];
-	      ppget=GetCollVect(*clkconnect,indx,1);
-              for (l=1;l<ppget[0]+1;l++)
-                {
-                  if (ppget[l]==lb[i]) tmpvect[l]=1;
-                  else tmpvect[l]=0;
-                }
-              free (ppget);
-              if (OR(tmpvect))
-                {
-                  Message("A algebric loop detected; on activation links");
-                  okk=false;
-                  return 0;
-                }         
-              free(tmpvect);
-              tmpvect=NULL;
-              *need_newblk=false;
-              nn=indx[0];
-              if (nn >= 2)
-		{
-                  *need_newblk=true;
-		  ppget=GetPartVect(*clkconnect,1,(*clkconnect)[0]/4);
-                  indxo=FindEg(ppget,lb[i]);
-                  free(ppget);
-                  ppget=GetPartVect(*connectmat,(*connectmat)[0]/2+1,(*connectmat)[0]/4);
-                  indy=FindEg(ppget,lb[i]);
-                  free(ppget);
-                  if (indy[0] > 1) sciprint("Synchro block cannot have more than 1 input");
-		  if (((*bllst2ptr)=(int*)realloc((*bllst2ptr),sizeof(int)*((*bllst2ptr)[0]+nn))) == NULL ) return 0;
-		  if (((*bllst3ptr)=(int*)realloc((*bllst3ptr),sizeof(int)*((*bllst3ptr)[0]+nn))) == NULL ) return 0;		  
-		  if (((*bllst9ptr)=(int*)realloc((*bllst9ptr),sizeof(int)*((*bllst9ptr)[0]+nn))) == NULL ) return 0;
-                  if ((*bllst10=(char**)realloc(*bllst10,(nblk+nn)*sizeof(char*))) ==NULL )  return 0;
-                  ((int*)(*bllst10))[0]=nblk+nn-1;
-		  if ((*bllst111=(char**)realloc(*bllst111,sizeof(char*)*(nblk+nn))) == NULL )  return 0;
-		  ((int*) (*bllst111))[0]=nblk+nn-1;
-		  if (((*bllst112)=(int*)realloc((*bllst112),sizeof(int)*(nn+nblk))) == NULL ) return 0;
-                  (*bllst112)[0]=nblk+nn-1;
-                  if ((bllst12i.col1=(int*)malloc(sizeof(int)*(nblk+nn))) == NULL ) return 0;
-                  bllst12i.col1[0]=nblk+nn-1;
-                  if ((bllst12i.col2=(int*)malloc(sizeof(int)*(nblk+nn))) == NULL ) return 0;
-                  bllst12i.col2[0]=nblk+nn-1;
-		  if (((*bllst12)=(int*)realloc((*bllst12),sizeof(int)*(2*(nn+nblk)-1))) == NULL ) return 0;
-                  (*bllst12)[0]=2*(nblk+nn-1);
-		  if (((*corinvptr)=(int*)realloc((*corinvptr),sizeof(int)*((*corinvptr)[0]+nn))) == NULL ) return 0;
-		  if (((*corinvec)=(int*)realloc((*corinvec),sizeof(int)*((*corinvec)[0]+4*nn+1))) == NULL ) return 0;
-                      
-
-                  for(k=2;k<nn+1;k++)
-                    {
-                      (*clkconnect)[indx[k]+(*clkconnect)[0]/2]=nblk+1;
-		     
-		      if (((*bllst111)[nblk+1]=(char*) malloc(sizeof(char)*(strlen((*bllst111)[lb[i]])+1))) ==NULL )  return 0;
-		      ((char*) (*bllst111)[nblk+1])[strlen((*bllst111)[lb[i]])]='\0';
-		      strcpy((*bllst111)[nblk+1],(*bllst111)[lb[i]]);
-		      (*bllst112)[nblk+1]=(*bllst112)[lb[i]];
-
-                      (*bllst2ptr)[(*bllst2ptr)[0]+1]=(*bllst2ptr)[(*bllst2ptr)[0]]+(*bllst2ptr)[lb[i]+1]-(*bllst2ptr)[lb[i]];
-                      (*bllst2ptr)[0]++;
-                      if (((*bllst2)=(int*)realloc((*bllst2),sizeof(int)*((*bllst2)[0]+(*bllst2ptr)[nblk+2]-(*bllst2ptr)[nblk+1]+1))) == NULL ) return 0;
-                      (*bllst2)[0]=(*bllst2)[0]+(*bllst2ptr)[nblk+2]-(*bllst2ptr)[nblk+1];
-                      a=(*bllst2ptr)[lb[i]]-(*bllst2ptr)[nblk+1];            
-                      for(l=(*bllst2ptr)[nblk+1];l<(*bllst2ptr)[nblk+2];l++)
-                        {
-                          (*bllst2)[l]=(*bllst2)[a+l];
-                        }
-		      (*bllst3ptr)[(*bllst3ptr)[0]+1]=(*bllst3ptr)[(*bllst3ptr)[0]]+(*bllst3ptr)[lb[i]+1]-(*bllst3ptr)[lb[i]];
-                      (*bllst3ptr)[0]++;
-                      if (((*bllst3)=(int*)realloc((*bllst3),sizeof(int)*((*bllst3)[0]+(*bllst3ptr)[nblk+2]-(*bllst3ptr)[nblk+1]+1))) == NULL ) return 0;
-                      (*bllst3)[0]=(*bllst3)[0]+(*bllst3ptr)[nblk+2]-(*bllst3ptr)[nblk+1];
-                      a=(*bllst3ptr)[lb[i]]-(*bllst3ptr)[nblk+1];
-                      for(l=(*bllst3ptr)[nblk+1];l<=(*bllst3ptr)[nblk+2]-1;l++)
-                        {
-                          (*bllst3)[l]=(*bllst3)[a+l];
-                        }
-		      (*bllst9ptr)[(*bllst9ptr)[0]+1]=(*bllst9ptr)[(*bllst9ptr)[0]]+(*bllst9ptr)[lb[i]+1]-(*bllst9ptr)[lb[i]];
-                      (*bllst9ptr)[0]++;
-		      if (((*bllst9)=(int*)realloc((*bllst9),sizeof(int)*((*bllst9)[0]+(*bllst9ptr)[nblk+2]-(*bllst9ptr)[nblk+1]+1))) == NULL ) return 0;
-                      (*bllst9)[0]=(*bllst9)[0]+(*bllst9ptr)[nblk+2]-(*bllst9ptr)[nblk+1];
-                      a=(*bllst9ptr)[lb[i]]-(*bllst9ptr)[nblk+1];
-		      for(l=(*bllst9ptr)[nblk+1];l<=(*bllst9ptr)[nblk+2]-1;l++)
-                        {
-                          (*bllst9)[l]=(*bllst9)[a+l];
-                        }
-		      
-		      if (((*bllst10)[nblk+1]=(char*)malloc(sizeof(char)*2)) ==NULL )  return 0;
-                      *(*bllst10)[nblk+1]=*(*bllst10)[lb[i]];
-                      (*bllst10)[nblk+1][1]='\0';
-		      		      
-		      for (l=1;l<nblk+1;l++)
-                        {
-                          bllst12i.col1[l]=(*bllst12)[l];
-                          bllst12i.col2[l]=(*bllst12)[l+nblk];
-			}
-		      bllst12i.col1[nblk+1]=(*bllst12)[lb[i]];
-                      bllst12i.col2[nblk+1]=(*bllst12)[lb[i]+nblk];
-		      for (l=1;l<nblk+2;l++)
-                        {
-                          (*bllst12)[l]=bllst12i.col1[l];
-                          (*bllst12)[l+nblk+1]=bllst12i.col2[l];
-			}
-		      
-		      (*corinvptr)[(*corinvptr)[0]+1]=(*corinvptr)[(*corinvptr)[0]]+(*corinvptr)[lb[i]+1]-(*corinvptr)[lb[i]];
-                      (*corinvptr)[0]++;
-		      (*corinvec)[0]=(*corinvec)[0]+(*corinvptr)[nblk+2]-(*corinvptr)[nblk+1];
-                      a=(*corinvptr)[lb[i]]-(*corinvptr)[nblk+1];
-                      for(l=(*corinvptr)[nblk+1];l<(*corinvptr)[nblk+2];l++)
-                        {
-                          (*corinvec)[l]=(*corinvec)[a+l];
-                        }
-
-		      if ((tmp=(int*)malloc(sizeof(int)*(1+4*indxo[0]))) == NULL ) return 0;;
-                      tmp[0]=4*indxo[0];
-                      for(l=1;l<indxo[0]+1;l++)
-                        {
-                          tmp[l]=(*clkconnect)[indxo[l]];
-                          tmp[l+indxo[0]]=(*clkconnect)[indxo[l]+(*clkconnect)[0]/4];
-                          tmp[l+2*indxo[0]]=(*clkconnect)[indxo[l]+(*clkconnect)[0]/2];
-                          tmp[l+3*indxo[0]]=(*clkconnect)[indxo[l]+3*((*clkconnect)[0]/4)];
-                        }
-                      
-                      leng=(*clkconnect)[0]/4;
-                      if ((clkconnecti.col1=(int*)malloc(sizeof(int)*(leng+tmp[0]/4+1))) == NULL ) return 0;
-                      clkconnecti.col1[0]=leng+tmp[0]/4;  
-                      if ((clkconnecti.col2=(int*)malloc(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
-                      clkconnecti.col2[0]=leng+tmp[0]/4;  
-                      if ((clkconnecti.col3=(int*)malloc(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
-                      clkconnecti.col3[0]=leng+tmp[0]/4;
-                      if ((clkconnecti.col4=(int*)malloc(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
-                      clkconnecti.col4[0]=leng+tmp[0]/4;  
-		      for(l=1;l<leng+1;l++)
-                        {
-                          clkconnecti.col1[l]=(*clkconnect)[l];
-                          clkconnecti.col2[l]=(*clkconnect)[l+leng];
-                          clkconnecti.col3[l]=(*clkconnect)[l+leng*2];
-                          clkconnecti.col4[l]=(*clkconnect)[l+leng*3];
-                        }
-                      for(l=1;l<tmp[0]/4+1;l++)
-                        {
-                          clkconnecti.col1[l+leng]=nblk+1;
-                          clkconnecti.col2[l+leng]=tmp[l+tmp[0]/4];
-                          clkconnecti.col3[l+leng]=tmp[l+tmp[0]/2];
-                          clkconnecti.col4[l+leng]=tmp[l+3*tmp[0]/4];
-                        }
-                      free(*clkconnect);
-                      if (((*clkconnect)=(int*)malloc(sizeof(int)*(4*leng+tmp[0]+1))) == NULL ) return 0;
-                      (*clkconnect)[0]=4*leng+tmp[0];
-		      if(tmp) free(tmp);
-                      for(l=1;l<(*clkconnect)[0]/4+1;l++)
-                        {
-                          (*clkconnect)[l]=clkconnecti.col1[l];
-                          (*clkconnect)[l+(*clkconnect)[0]/4]=clkconnecti.col2[l];
-                          (*clkconnect)[l+(*clkconnect)[0]/2]=clkconnecti.col3[l];
-                          (*clkconnect)[l+3*(*clkconnect)[0]/4]=clkconnecti.col4[l];
-                        }
-                      nblk++;
-		      free(clkconnecti.col1);
-                      clkconnecti.col1=NULL;
-                      free(clkconnecti.col2);
-                      clkconnecti.col2=NULL;
-                      free(clkconnecti.col3);
-                      clkconnecti.col3=NULL;
-                      free(clkconnecti.col4);
-                      clkconnecti.col4=NULL;
-		    } /* end for k */
-		  free(bllst12i.col1);
-		  free(bllst12i.col2);
-                  leng=(*connectmat)[0]/4;
-                  if ((connectmati.col1=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
-                  connectmati.col1[0]=leng+nn-1;  
-                  if ((connectmati.col2=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
-                  connectmati.col2[0]=leng+nn-1;  
-                  if ((connectmati.col3=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
-                  connectmati.col3[0]=leng+nn-1;
-                  if ((connectmati.col4=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
-                  connectmati.col4[0]=leng+nn-1;  
-                  for(l=1;l<leng+1;l++)
-                    {              
-                      connectmati.col1[l]=(*connectmat)[l];
-                      connectmati.col2[l]=(*connectmat)[l+leng];
-                      connectmati.col3[l]=(*connectmat)[l+2*leng];
-                      connectmati.col4[l]=(*connectmat)[l+3*leng];
-                    }   
-		  for (l=1;l<nn;l++)
-                    {		      
-                      connectmati.col1[l+leng]=connectmati.col1[indy[1]];
-                      connectmati.col2[l+leng]=connectmati.col2[indy[1]];
-                      connectmati.col3[l+leng]=nblkorg+l;
-                      connectmati.col4[l+leng]=1;
-		    }
-                  free(*connectmat);
-		  leng=4*connectmati.col1[0];
-                  if (((*connectmat)=(int*)malloc(sizeof(int)*(leng+1))) == NULL ) return 0;
-                  (*connectmat)[0]=leng;
-                  for(l=1;l<(*connectmat)[0]/4+1;l++)
-                    {
-                      (*connectmat)[l]=connectmati.col1[l];
-                      (*connectmat)[l+(*connectmat)[0]/4]=connectmati.col2[l];
-                      (*connectmat)[l+(*connectmat)[0]/2]=connectmati.col3[l];
-                      (*connectmat)[l+3*(*connectmat)[0]/4]=connectmati.col4[l];
-                    }
-                  change=true;
-                  nblkorg=nblk;
-                  free(connectmati.col1);
-                  connectmati.col1=NULL;
-                  free(connectmati.col2);
-                  connectmati.col2=NULL;
-                  free(connectmati.col3);
-                  connectmati.col3=NULL;
-                  free(connectmati.col4);
-                  connectmati.col4=NULL;
-		  if (indy) {free(indy);
-		  indy=NULL;}
-		  if (indxo) {free(indxo);
-		  indxo=NULL;}
-		}
-	      free(indx);
-	      indx=NULL;
-	    } /*fin de for i*/
-          if (change) 
-            {
-              *done=false;
-	      free(lb);
-	      free(idl);
-	      free(id);  
-              return 0;
+	      Message("A synchro block is inactive; cannot be compile");
+	      *ok=false;
+	      return 0;
 	    }
-          if(lb) free(lb);
-	  if (idl) {free(idl);
-	  idl=NULL;}
-	 free(id);  
-	} /* fin de if (id)*/
+	  if ((tmpvect=(int*)malloc(sizeof(int)*(indx[0]+1))) == NULL ) return 0;
+	  tmpvect[0]=indx[0];
+	  ppget=GetCollVect(*clkconnect,indx,1);
+	  for (l=1;l<ppget[0]+1;l++)
+	    {
+	      if (ppget[l]==lb[i]) tmpvect[l]=1;
+	      else tmpvect[l]=0;
+	    }
+	  free (ppget);
+	  if (OR(tmpvect))
+	    {
+	      Message("A algebric loop detected; on activation links");
+	      *ok=false;
+	      return 0;
+	    }         
+	  free(tmpvect);
+	  tmpvect=NULL;
+	  *need_newblk=false;
+	  nn=indx[0];
+	  if (nn >= 2)
+	    {
+	      *need_newblk=true;
+	      ppget=GetPartVect(*clkconnect,1,(*clkconnect)[0]/4);
+	      indxo=FindEg(ppget,lb[i]);
+	      free(ppget);
+	      ppget=GetPartVect(*connectmat,(*connectmat)[0]/2+1,(*connectmat)[0]/4);
+	      indy=FindEg(ppget,lb[i]);
+	      free(ppget);
+	      if (indy[0] > 1) sciprint("Synchro block cannot have more than 1 input");
+	      if (((*bllst2ptr)=(int*)realloc((*bllst2ptr),sizeof(int)*((*bllst2ptr)[0]+nn))) == NULL ) return 0;
+	      if (((*bllst3ptr)=(int*)realloc((*bllst3ptr),sizeof(int)*((*bllst3ptr)[0]+nn))) == NULL ) return 0;		  
+	      if (((*bllst9ptr)=(int*)realloc((*bllst9ptr),sizeof(int)*((*bllst9ptr)[0]+nn))) == NULL ) return 0;
+	      if ((*bllst10=(char**)realloc(*bllst10,(nblk+nn)*sizeof(char*))) ==NULL )  return 0;
+	      ((int*)(*bllst10))[0]=nblk+nn-1;
+	      if ((*bllst111=(char**)realloc(*bllst111,sizeof(char*)*(nblk+nn))) == NULL )  return 0;
+	      ((int*) (*bllst111))[0]=nblk+nn-1;
+	      if (((*bllst112)=(int*)realloc((*bllst112),sizeof(int)*(nn+nblk))) == NULL ) return 0;
+	      (*bllst112)[0]=nblk+nn-1;
+	      if ((bllst12i.col1=(int*)malloc(sizeof(int)*(nblk+nn))) == NULL ) return 0;
+	      bllst12i.col1[0]=nblk+nn-1;
+	      if ((bllst12i.col2=(int*)malloc(sizeof(int)*(nblk+nn))) == NULL ) return 0;
+	      bllst12i.col2[0]=nblk+nn-1;
+	      if (((*bllst12)=(int*)realloc((*bllst12),sizeof(int)*(2*(nn+nblk)-1))) == NULL ) return 0;
+	      (*bllst12)[0]=2*(nblk+nn-1);
+	      if (((*corinvptr)=(int*)realloc((*corinvptr),sizeof(int)*((*corinvptr)[0]+nn))) == NULL ) return 0;
+	      if (((*corinvec)=(int*)realloc((*corinvec),sizeof(int)*((*corinvec)[0]+4*nn+1))) == NULL ) return 0;
+	      
+	      
+	      for(k=2;k<nn+1;k++)
+		{
+		  (*clkconnect)[indx[k]+(*clkconnect)[0]/2]=nblk+1;
+		  
+		  if (((*bllst111)[nblk+1]=(char*) malloc(sizeof(char)*(strlen((*bllst111)[lb[i]])+1))) ==NULL )  return 0;
+		  ((char*) (*bllst111)[nblk+1])[strlen((*bllst111)[lb[i]])]='\0';
+		  strcpy((*bllst111)[nblk+1],(*bllst111)[lb[i]]);
+		  (*bllst112)[nblk+1]=(*bllst112)[lb[i]];
+		  
+		  (*bllst2ptr)[(*bllst2ptr)[0]+1]=(*bllst2ptr)[(*bllst2ptr)[0]]+(*bllst2ptr)[lb[i]+1]-(*bllst2ptr)[lb[i]];
+		  (*bllst2ptr)[0]++;
+		  if (((*bllst2)=(int*)realloc((*bllst2),sizeof(int)*((*bllst2)[0]+(*bllst2ptr)[nblk+2]-(*bllst2ptr)[nblk+1]+1))) == NULL ) return 0;
+		  (*bllst2)[0]=(*bllst2)[0]+(*bllst2ptr)[nblk+2]-(*bllst2ptr)[nblk+1];
+		  a=(*bllst2ptr)[lb[i]]-(*bllst2ptr)[nblk+1];            
+		  for(l=(*bllst2ptr)[nblk+1];l<(*bllst2ptr)[nblk+2];l++)
+		    {
+		      (*bllst2)[l]=(*bllst2)[a+l];
+		    }
+		  (*bllst3ptr)[(*bllst3ptr)[0]+1]=(*bllst3ptr)[(*bllst3ptr)[0]]+(*bllst3ptr)[lb[i]+1]-(*bllst3ptr)[lb[i]];
+		  (*bllst3ptr)[0]++;
+		  if (((*bllst3)=(int*)realloc((*bllst3),sizeof(int)*((*bllst3)[0]+(*bllst3ptr)[nblk+2]-(*bllst3ptr)[nblk+1]+1))) == NULL ) return 0;
+		  (*bllst3)[0]=(*bllst3)[0]+(*bllst3ptr)[nblk+2]-(*bllst3ptr)[nblk+1];
+		  a=(*bllst3ptr)[lb[i]]-(*bllst3ptr)[nblk+1];
+		  for(l=(*bllst3ptr)[nblk+1];l<=(*bllst3ptr)[nblk+2]-1;l++)
+		    {
+		      (*bllst3)[l]=(*bllst3)[a+l];
+		    }
+		  (*bllst9ptr)[(*bllst9ptr)[0]+1]=(*bllst9ptr)[(*bllst9ptr)[0]]+(*bllst9ptr)[lb[i]+1]-(*bllst9ptr)[lb[i]];
+		  (*bllst9ptr)[0]++;
+		  if (((*bllst9)=(int*)realloc((*bllst9),sizeof(int)*((*bllst9)[0]+(*bllst9ptr)[nblk+2]-(*bllst9ptr)[nblk+1]+1))) == NULL ) return 0;
+		  (*bllst9)[0]=(*bllst9)[0]+(*bllst9ptr)[nblk+2]-(*bllst9ptr)[nblk+1];
+		  a=(*bllst9ptr)[lb[i]]-(*bllst9ptr)[nblk+1];
+		  for(l=(*bllst9ptr)[nblk+1];l<=(*bllst9ptr)[nblk+2]-1;l++)
+		    {
+		      (*bllst9)[l]=(*bllst9)[a+l];
+		    }
+		  
+		  if (((*bllst10)[nblk+1]=(char*)malloc(sizeof(char)*2)) ==NULL )  return 0;
+		  *(*bllst10)[nblk+1]=*(*bllst10)[lb[i]];
+		  (*bllst10)[nblk+1][1]='\0';
+		  
+		  for (l=1;l<nblk+1;l++)
+		    {
+		      bllst12i.col1[l]=(*bllst12)[l];
+		      bllst12i.col2[l]=(*bllst12)[l+nblk];
+		    }
+		  bllst12i.col1[nblk+1]=(*bllst12)[lb[i]];
+		  bllst12i.col2[nblk+1]=(*bllst12)[lb[i]+nblk];
+		  for (l=1;l<nblk+2;l++)
+		    {
+		      (*bllst12)[l]=bllst12i.col1[l];
+		      (*bllst12)[l+nblk+1]=bllst12i.col2[l];
+		    }
+		  
+		  (*corinvptr)[(*corinvptr)[0]+1]=(*corinvptr)[(*corinvptr)[0]]+(*corinvptr)[lb[i]+1]-(*corinvptr)[lb[i]];
+		  (*corinvptr)[0]++;
+		  (*corinvec)[0]=(*corinvec)[0]+(*corinvptr)[nblk+2]-(*corinvptr)[nblk+1];
+		  a=(*corinvptr)[lb[i]]-(*corinvptr)[nblk+1];
+		  for(l=(*corinvptr)[nblk+1];l<(*corinvptr)[nblk+2];l++)
+		    {
+		      (*corinvec)[l]=(*corinvec)[a+l];
+		    }
+		  
+		  if ((tmp=(int*)malloc(sizeof(int)*(1+4*indxo[0]))) == NULL ) return 0;;
+		  tmp[0]=4*indxo[0];
+		  for(l=1;l<indxo[0]+1;l++)
+		    {
+		      tmp[l]=(*clkconnect)[indxo[l]];
+		      tmp[l+indxo[0]]=(*clkconnect)[indxo[l]+(*clkconnect)[0]/4];
+		      tmp[l+2*indxo[0]]=(*clkconnect)[indxo[l]+(*clkconnect)[0]/2];
+		      tmp[l+3*indxo[0]]=(*clkconnect)[indxo[l]+3*((*clkconnect)[0]/4)];
+		    }
+		  
+		  leng=(*clkconnect)[0]/4;
+		  if ((clkconnecti.col1=(int*)malloc(sizeof(int)*(leng+tmp[0]/4+1))) == NULL ) return 0;
+		  clkconnecti.col1[0]=leng+tmp[0]/4;  
+		  if ((clkconnecti.col2=(int*)malloc(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
+		  clkconnecti.col2[0]=leng+tmp[0]/4;  
+		  if ((clkconnecti.col3=(int*)malloc(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
+		  clkconnecti.col3[0]=leng+tmp[0]/4;
+		  if ((clkconnecti.col4=(int*)malloc(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
+		  clkconnecti.col4[0]=leng+tmp[0]/4;  
+		  for(l=1;l<leng+1;l++)
+		    {
+		      clkconnecti.col1[l]=(*clkconnect)[l];
+		      clkconnecti.col2[l]=(*clkconnect)[l+leng];
+		      clkconnecti.col3[l]=(*clkconnect)[l+leng*2];
+		      clkconnecti.col4[l]=(*clkconnect)[l+leng*3];
+		    }
+		  for(l=1;l<tmp[0]/4+1;l++)
+		    {
+		      clkconnecti.col1[l+leng]=nblk+1;
+		      clkconnecti.col2[l+leng]=tmp[l+tmp[0]/4];
+		      clkconnecti.col3[l+leng]=tmp[l+tmp[0]/2];
+		      clkconnecti.col4[l+leng]=tmp[l+3*tmp[0]/4];
+		    }
+		  free(*clkconnect);
+		  if (((*clkconnect)=(int*)malloc(sizeof(int)*(4*leng+tmp[0]+1))) == NULL ) return 0;
+		  (*clkconnect)[0]=4*leng+tmp[0];
+		  if(tmp) free(tmp);
+		  for(l=1;l<(*clkconnect)[0]/4+1;l++)
+		    {
+		      (*clkconnect)[l]=clkconnecti.col1[l];
+		      (*clkconnect)[l+(*clkconnect)[0]/4]=clkconnecti.col2[l];
+		      (*clkconnect)[l+(*clkconnect)[0]/2]=clkconnecti.col3[l];
+		      (*clkconnect)[l+3*(*clkconnect)[0]/4]=clkconnecti.col4[l];
+		    }
+		  nblk++;
+		  free(clkconnecti.col1);
+		  clkconnecti.col1=NULL;
+		  free(clkconnecti.col2);
+		  clkconnecti.col2=NULL;
+		  free(clkconnecti.col3);
+		  clkconnecti.col3=NULL;
+		  free(clkconnecti.col4);
+		  clkconnecti.col4=NULL;
+		} /* end for k */
+	      free(bllst12i.col1);
+	      free(bllst12i.col2);
+	      leng=(*connectmat)[0]/4;
+	      if ((connectmati.col1=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
+	      connectmati.col1[0]=leng+nn-1;  
+	      if ((connectmati.col2=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
+	      connectmati.col2[0]=leng+nn-1;  
+	      if ((connectmati.col3=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
+	      connectmati.col3[0]=leng+nn-1;
+	      if ((connectmati.col4=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
+	      connectmati.col4[0]=leng+nn-1;  
+	      for(l=1;l<leng+1;l++)
+		{              
+		  connectmati.col1[l]=(*connectmat)[l];
+		  connectmati.col2[l]=(*connectmat)[l+leng];
+		  connectmati.col3[l]=(*connectmat)[l+2*leng];
+		  connectmati.col4[l]=(*connectmat)[l+3*leng];
+		}   
+	      for (l=1;l<nn;l++)
+		{		      
+		  connectmati.col1[l+leng]=connectmati.col1[indy[1]];
+		  connectmati.col2[l+leng]=connectmati.col2[indy[1]];
+		  connectmati.col3[l+leng]=nblkorg+l;
+		  connectmati.col4[l+leng]=1;
+		}
+	      free(*connectmat);
+	      leng=4*connectmati.col1[0];
+	      if (((*connectmat)=(int*)malloc(sizeof(int)*(leng+1))) == NULL ) return 0;
+	      (*connectmat)[0]=leng;
+	      for(l=1;l<(*connectmat)[0]/4+1;l++)
+		{
+		  (*connectmat)[l]=connectmati.col1[l];
+		  (*connectmat)[l+(*connectmat)[0]/4]=connectmati.col2[l];
+		  (*connectmat)[l+(*connectmat)[0]/2]=connectmati.col3[l];
+		  (*connectmat)[l+3*(*connectmat)[0]/4]=connectmati.col4[l];
+		}
+	      change=true;
+	      nblkorg=nblk;
+	      free(connectmati.col1);
+	      connectmati.col1=NULL;
+	      free(connectmati.col2);
+	      connectmati.col2=NULL;
+	      free(connectmati.col3);
+	      connectmati.col3=NULL;
+	      free(connectmati.col4);
+	      connectmati.col4=NULL;
+	      if (indy) {free(indy);
+	      indy=NULL;}
+	      if (indxo) {free(indxo);
+	      indxo=NULL;}
+	    }
+	  free(indx);
+	  indx=NULL;
+	} /*fin de for i*/
+      if (change) 
+	{
+	  *done=false;
+	  free(lb);
+	  free(idl);
+	  free(id);  
+	  return 0;
+	}
+      if(lb) free(lb);
+      if (idl) {free(idl);
+      idl=NULL;}
+      free(id);  
+      //    } /* fin de if (id)*/
     }
-
+  
   clkconnecttmp=VecEg1(*clkconnect);
   a=clkconnecttmp[0]/4;
   if ((ppget=(int*)malloc(sizeof(int)*(a+1))) == NULL ) return 0;
@@ -1301,15 +1303,14 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
                   else typ_lm[l]=0;
                 }
             }
-	  tree3(vec,vec[0],*bllst12,typ_lm,bexe,boptr,blnk,blptr,&r,ok);
+	  tree3(vec,vec[0],*bllst12,typ_lm,bexe,boptr,blnk,blptr,&r,okk);
           free(typ_lm);
           free(vec);
-          okk=*ok;
-          if (!okk)
+	  if (!*okk)
            {
              Message("Algebraic loop detected; cannot be compiled.");
              *bllst2=NULL;*bllst3=NULL;**bllst10=NULL;
-             okk=true;
+             *ok=true;
              *done=true;
              return 0;
            }
@@ -1396,7 +1397,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
                       clkconnecti.col4=NULL;             
                     }
                   *need_newblk=true;
-                  okk=true;
+                  *ok=true;
                   *done=false;
 		  free(r);
 		  free(pointer);
@@ -1443,9 +1444,8 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
     {
       sciprint("warning(problem2)");
     }
-  okk=true;
+  *ok=true;
   *done=true;
-  *ok=okk;
   free(bexe);
   free(blnk);  
   free(boptr);

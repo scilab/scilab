@@ -7,7 +7,8 @@
 #else 
 #define IMPORT extern
 #endif
-
+extern int C2F(isort)();
+extern double C2F(dsort)();
 extern int* GetCollVect(int* vect,int* vectid,int numcoll); 
 extern int* FindDif(int*vect,int val);
 extern int* GetPartVect(int* vect,int idebut,int taille);
@@ -35,7 +36,11 @@ extern void Incr2(int* vect,int j);
 extern void Incr1(int* vect,int j);
 extern double powerd (double base, int n);
 extern void Invd(double* Vect);
- 
+extern int Message(char* code);
+extern int badconnection(int* path_out,int prt_out,int nout,int* path_in,int prt_in,int nin);
+extern int connection(int* path_out,int* path_in);
+extern void sciprint __PARAMS((char *fmt, ...));  
+
 typedef struct 
 {
   int* col1;

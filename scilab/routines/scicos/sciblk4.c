@@ -16,7 +16,8 @@ extern void C2F(ltopadj)();
 extern int C2F(mktlist)();
 extern void C2F(scifunc)();
 extern int C2F(mklist)();
-extern void C2F(str2sci)(char** x,int n,int m);
+extern void str2sci(char** x,int n,int m);
+extern int *listentry(int *header, int i);
 
 void 
 sciblk4(Blocks,flag)
@@ -31,8 +32,8 @@ integer flag;
   int nu,l5,l,moinsun=-1;
   int mlhs=1,mrhs=2;
   int n27=30,zero=0;
-  int *le1,*le2,ne2,*le3,*le4,ne4,*le33;
-  double *le22,*le44,*le111,*le333;
+  int *le1,*le2,ne2,*le3,*le4,ne4,*le33,*le5;
+  double *le22,*le44,*le111,*le333,*le55;
   char *str[]={ "scicos_block","time","nevprt","funpt","type",
 		"scsptr","nz","z","nx","x","xd","res","nin",
 		"insz","inptr","nout","outsz","outptr","nevout",
@@ -104,8 +105,8 @@ integer flag;
   C2F(dtosci)(Blocks[0].jroot,&Blocks[0].ng,&one);
   if (C2F(scierr)()!=0) goto err;
   
-  if ((str1=malloc(sizeof(char*))) ==NULL )  return 0;
-  if ((str1[0]=malloc(sizeof(char)*(strlen(Blocks[0].label)+1))) ==NULL )  return 0;
+  if ((str1=malloc(sizeof(char*))) ==NULL )  return ;
+  if ((str1[0]=malloc(sizeof(char)*(strlen(Blocks[0].label)+1))) ==NULL )  return ;
   (str1[0])[strlen(Blocks[0].label)]='\0';
   strncpy(str1[0],Blocks[0].label,strlen(Blocks[0].label));
   str2sci(str1,1,1);
@@ -174,11 +175,11 @@ integer flag;
     }
     break;
   case 3 :
-    /*skip=5;
-      C2F(skipvars)(&skip);*/
-    /*C2F(scitod)(tvec,&Blocks.nevout,&one);*/
-    /*skip=2;
-      C2F(skipvars)(&skip);*/
+    le5=(int*) listentry(header,20);
+    le55=(double*) (le5+4);
+    for (j=0; j<Blocks[0].nevout;j++){
+      Blocks[0].evout[j]=le55[j];
+    }
     break;
   case 4 :
     le1=(int*) listentry(header,8);

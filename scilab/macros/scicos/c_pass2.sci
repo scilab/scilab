@@ -48,7 +48,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   //take care of the heritage
 
   [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
-   dep_ut,typ_l,typ_r,typ_m,tblock,typ_cons,ok]=mini_extract_info(bllst,..
+   dep_ut,typ_l,typ_r,typ_m,tblock,typ_cons,typ_zx,ok]=mini_extract_info(bllst,..
 						  connectmat,clkconnect)
 
   if show_trace then disp('c_pass20:'+string(timer())),end
@@ -56,6 +56,10 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   //if ~ok then 
   // heritage block !
   [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
+  
+  critev_p=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
+				 typ_l,typ_zx,outoin,outoinptr,clkptr)
+  
   [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,dep_ut,typ_r,..
 				 typ_l,outoin,outoinptr,tblock,typ_cons,clkptr)
   //end
@@ -126,6 +130,9 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 			execlk_cons,ordptr1,outoin,outoinptr,..
 			evoutoin,evoutoinptr,typ_z,typ_x,typ_s,..
 			bexe,boptr,blnk,blptr);
+  critev=zeros(critev);
+  critev(1:size(critev_p,1))=critev_p;
+  
 
   if ~ok then 
     cpr=list()
@@ -1224,7 +1231,7 @@ function [r,ok]=tree4(vec,outoin,outoinptr,typ_r)
 endfunction
 
 function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
-	  dep_ut,typ_l,typ_r,typ_m,tblock,typ_cons,ok]=mini_extract_info(bllst,..
+	  dep_ut,typ_l,typ_r,typ_m,tblock,typ_cons,typ_zx,ok]=mini_extract_info(bllst,..
 						  connectmat,clkconnect)
 
   ok=%t
@@ -1232,12 +1239,13 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   clkptr=zeros(nbl+1,1);clkptr(1)=1
   cliptr=clkptr;inpptr=cliptr;outptr=inpptr;
   fff=ones(nbl,1)==1
-  dep_ut=[fff,fff];typ_l=fff;typ_r=fff;typ_cons=fff;typ_m=fff;
+  dep_ut=[fff,fff];typ_l=fff;typ_r=fff;typ_cons=fff;typ_m=fff;typ_zx=fff;
   tblock=fff
   //tblock=[]  // specifies blocks that must be connected to time event.
   //
   for i=1:nbl
     ll=bllst(i)
+    if (ll.state==[]&ll.nzcross==0) then typ_zx(i)=%f;end
     inpnum=ll.in;outnum=ll.out;cinpnum=ll.evtin;coutnum=ll.evtout;
     //    
     if cinpnum==[] then
@@ -1346,4 +1354,61 @@ function  [r,ok]=new_tree4(vec,outoin,outoinptr,typ_r)
   [r1,r2]=sci_tree4(vec,outoin,outoinptr,nd,ddd)
   r=[r1',r2']
   ok=%t
+endfunction
+
+
+
+function critev=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
+				 typ_l,typ_zx,outoin,outoinptr,clkptr)
+
+ 
+  typ_r=typ_r|dep_ut(:,2)
+  
+  done1=%f
+  while ~done1
+    done1=%t
+    [clkr,clkc]=size(clkconnect);
+    mm=maxi(clkconnect)+1;
+    cll=clkconnect(:,1)*mm+clkconnect(:,2);
+    [cll,ind]=sort(-cll);
+    clkconnect=clkconnect(ind,:);
+    cll=[-1;-cll;mm];
+    ii=find(cll(2:$)-cll(1:$-1)<>0)
+    
+    
+    for k=1:size(ii,'*')-1
+      oo=[ii(k):ii(k+1)-1]
+      vec=-ones(1,nblk);
+      vec(clkconnect(oo,3))=0
+      
+      [r,ok]=new_tree4(vec,outoin,outoinptr,typ_r)
+      m=size(r,1)
+      r=[clkconnect(ii(k),1)*ones(m,1),clkconnect(ii(k),2)*ones(m,1),r]
+      clkconnect=[clkconnect;r]
+    end
+    
+    done=%f;
+    while ~done
+      done=%t;
+      for jj=find(typ_l);
+	if ~or(jj==clkconnect(:,3)) then
+	  typ_r(clkconnect(find(jj==clkconnect(:,1)),3))=%t
+	  clkconnect(find(jj==clkconnect(:,1)),:)=[];
+	  typ_l(jj)=%f;
+	  done1=%f
+	  done=%f
+	end
+      end
+    end
+  end
+
+  critev=zeros(clkptr($)-1,1);
+  for bb=1:size(clkptr,1)-1
+    for i=[clkptr(bb):clkptr(bb+1)-1]
+      if or(typ_zx(clkconnect(find(clkconnect(:,1)==i),3))) then
+	critev(i)=1
+      end
+    end
+  end
+  
 endfunction
