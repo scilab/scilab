@@ -700,8 +700,7 @@ static interff interffonc ;
 
 /** function call **/
 
-
-void C2F(interf)(__builtin_va_list x1, __builtin_va_list x2, __builtin_va_list x3, __builtin_va_list x4, __builtin_va_list x5, __builtin_va_list x6, __builtin_va_list x7, __builtin_va_list x8, __builtin_va_list x9, __builtin_va_list x10, __builtin_va_list x11, __builtin_va_list x12, __builtin_va_list x13, __builtin_va_list x14, __builtin_va_list x15, __builtin_va_list x16, __builtin_va_list x17, __builtin_va_list x18, __builtin_va_list x19, __builtin_va_list x20, __builtin_va_list x21, __builtin_va_list x22, __builtin_va_list x23, __builtin_va_list x24, __builtin_va_list x25, __builtin_va_list x26, __builtin_va_list x27, __builtin_va_list x28, __builtin_va_list x29, __builtin_va_list x30)
+void C2F(interf)(void * x1, void * x2, void * x3, void * x4, void * x5, void * x6, void * x7, void * x8, void * x9, void * x10, void * x11, void * x12, void * x13, void * x14, void * x15, void * x16, void * x17, void * x18, void * x19, void * x20, void * x21, void * x22, void * x23, void * x24, void * x25, void * x26, void * x27, void * x28, void * x29, void * x30)
 {
   (*interffonc)(x1 ,x2 ,x3 ,x4 ,x5 ,x6 ,x7 ,x8 ,x9 ,x10,
 	       x11,x12,x13,x14,x15,x16,x17,x18,x19,x20,
