@@ -35,6 +35,9 @@ export PVM_ROOT PVM_ARCH
 PATH=$PATH:$SCI:$SCI/util
 export PATH
 
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SCI/bin:$SCI/libs
+export LD_LIBRARY_PATH
+
 do_help()
 {
 echo "Usage:"

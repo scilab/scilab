@@ -41,6 +41,8 @@ do_scilex()
 {
     PATH=$PATH:$SCI:$SCI/util
     export PATH
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SCI/bin:$SCI/libs
+    export LD_LIBRARY_PATH
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
     tty -s && stty kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
@@ -51,6 +53,8 @@ do_scilex_now()
 {
     PATH=$PATH:$SCI:$SCI/util
     export PATH
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SCI/bin:$SCI/libs
+    export LD_LIBRARY_PATH
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
     $SCI/bin/scilex $* 
