@@ -2696,6 +2696,11 @@ mxArray *C2F(mxcreatefull)(int *m, int *n, int *it)
   return (mxArray *) lrd ;
 } 
 
+mxArray *C2F(mxcreatedoublematrix)(int *m, int *n, int *it)
+{
+  return (mxArray *) mxCreateDoubleMatrix(*m, *n, *it);
+} 
+
 
 unsigned long int C2F(mxcalloc)(unsigned int *n, unsigned int *size)
 {
