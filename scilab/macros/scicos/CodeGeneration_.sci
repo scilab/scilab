@@ -130,7 +130,6 @@ function Code=make_ddoit1()
 	 '  double  *args[100]; '; 
 	 '  integer sz[100]; ';
 	 '  integer ierr1; '; 
-	 '  integer ntvec; '; 
 	 '  integer nevprt; '; 
 	 '  integer urg; '; 
 	 ' '; 
@@ -157,9 +156,8 @@ function Code=make_ddoit1()
 	 ' '; 
 	 '  /* Function Body */ '; 
 	 '  kiwa = 0; ';
-	 '  urg = 0; '];
-
-  //////////////////////////////////////////////////
+	 '  urg = 1; '];
+ //////////////////////////////////////////////////
   if  szclkIN>=1 then
     pointi=clkptr(howclk)-1;
     Code($+1)='  *pointi='+string(pointi)+'+ totalnevprt;';
@@ -167,80 +165,13 @@ function Code=make_ddoit1()
     pointi=clkptr(howclk)
     Code($+1)='  *pointi='+string(pointi)+';';
   end
-  Code=[Code
-	'  tevts[*pointi]=*told;';
-	'  keve = *pointi; ';
-	'  *pointi = evtspt[keve]; '; 
-	'  evtspt[keve] = -1; ';
-	' ';
-	'  ++kiwa; ';
-	'  iwa[kiwa] = keve;';
-	' '];
-
-  maxkeve=size(evtspt,1);
-
-
-  Code($+1)='  switch(keve) {';
-  for keve=1:maxkeve
-    Code($+1)='  case '+string(keve)+':';
-    for ii=ordptr(keve):ordptr(keve+1)-1
-      //***********************************
-      fun=ordclk(ii,1);
-      i=fun;
-      if outptr(fun+1)-outptr(fun)>0 then
-	nclock=ordclk(ii,2);
-	Code=[Code;
-	      ' '; 
-	      '    flag = 1; ';
-	      '    nevprt='+string(nclock)+';';
-	      '   '+wfunclist(i);
-	      '    if(flag < 0 ) return(5 - flag);'];
-      end
-    end
-    Code($+1)='    break;';
-  end
   Code=[Code;
-	'  }  '; //switch
-	'  ';
-	'  switch(keve) {'];
+	'  tevts[*pointi]=*told;'];
 
-  for keve=1:maxkeve
-    Code($+1)='  case '+string(keve)+':';
-    for ii=ordptr(keve):ordptr(keve+1)-1
-      //***********************************
-      fun=ordclk(ii,1);
-      i=fun;
-      nevprt=ordclk(ii,2)
-      ntvec=clkptr(fun+1)-clkptr(fun);
-       if ntvec >0  & funs(fun) <> 'bidon' then
-	Code=[Code
-	      '  /*        Initialize tvec */';
-	      '  ntvec='+string(ntvec)+';';
-	      '	';
-	      '  flag = 3;';
-	      '  nevprt = '+string(nevprt)+';';
-	      ' '+wfunclist(i);
-	      ' ';
-	      '	 if(flag < 0 ) return(5 - flag);'
-	      ' '];
-	if ntvec >= 1 then
-	  if funtyp(fun)==-1 then
-	    Code=[Code
-		  '  ++urg;';
-		  '  i2 = ntvec + clkptr['+string(fun)+'] - 1;';
-		  '  C2F(putevs)(&tevts[1], &evtspt[1], nevts, pointi, told, &i2, &ierr1);'
-		  '  if (ierr1 != 0) return 3;']
-	  end
-	end
-      end
 
-    end
-    Code($+1)='    break;';
-  end
-  Code=[Code;
-	'  }';
-	'  if (urg > 0) {';
-	' L43:';
+  Code=[Code;	
+	 '  if (urg > 0) {';
+	 ' L43:';
 	cformatline('    '+rdnom+'edoit1(&z[1], &zptr[1], '+..
 		    'told, &tevts[1], &evtspt[1], nevts, pointi, '+..
 		    '&outptr[1], &clkptr[1], &ordptr[1],  '+..
@@ -253,6 +184,7 @@ function Code=make_ddoit1()
 	'      goto L43;';
 	'    }';
 	'  }';
+	'  iwa['+string(clkptr($))+']=kiwa;';
 	'  return 0;'
 	' ';
 	'} /* ddoit1 */';
@@ -301,7 +233,7 @@ function Code=make_edoit1()
 	'  double  *args[100]; '; 
 	'  integer sz[100]; ';
 	'  integer ierr1, i, nx=0; ';
-	'  integer ntvec, nevprt; ';
+	'  integer ntvec, ntvecm, nevprt; ';
 	' ';
 	'  /* Generated constants */'
 	'  integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';';
@@ -351,7 +283,6 @@ function Code=make_edoit1()
 	      '    nevprt='+string(nclock)+';';
 	      '   '+wfunclist(i);
 	      ' ';
-	      '    if(flag < 0 ) return(5 - flag);'
 	      ' '];
        end
     end
@@ -370,27 +301,29 @@ function Code=make_edoit1()
       nevprt=ordclk(ii,2);
       ntvec=clkptr(fun+1)-clkptr(fun);
       if ntvec >0  & funs(fun) <> 'bidon' then
-	Code=[Code;
-	      '    /*     .     Initialize tvec */';
-	      '    ntvec='+string(ntvec)+';';
-	      '    nevprt='+string(nevprt)+';';
-	      ' ';
-	      '    flag = 3;'
-	      '    '+wfunclist(i)
-	      ' ';
-	      '	   if(flag < 0 ) return(5 - flag);'
-	      ' ';
-	      '    if (ntvec >= 1) {';
-	      '      if (funtyp['+string(fun)+'] == -1) {';
-	      '        ++(*urg);';
-	      '        i2 = ntvec + clkptr['+string(fun)+'] - 1;';
-	      '        C2F(putevs)(&tevts[1], &evtspt[1],  nevts, '+..
-	                                    'pointi, told, &i2, &ierr1); ';
-	      '        if (ierr1 != 0) return 3;';
-	      '    }'; 
-	      '  }'];
-
+	nxx=lnkptr(inplnk(inpptr(fun)));
+	if funtyp(fun)==-1 then
+	  Code=[Code;
+		'    if (outtb['+string(nxx)+']<0) {';
+		'      ntvecm=2;';
+		'    }';
+		'    else {';
+		'      ntvecm=1;';
+		'    }']
+	elseif funtyp(fun)==-2 then
+	  Code=[Code;
+		'    ntvecm=(integer)outtb['+string(nxx)+'];';
+		'    if(ntvecm>'+string(ntvec)+'){ntvecm='+string(ntvec)+';}';
+		'    if(ntvecm<1){ntvecm=1;}']
+	else
+	  message('Block '+fun+' has funtyp '+string(funtyp(fun))+': not allowed')
+	end
 	
+	Code=[Code;
+	      '     ++(*urg);';
+	      '     i2 = ntvecm + clkptr['+string(fun)+'] - 1;';
+	      '     C2F(putevs)(&tevts[1], &evtspt[1],nevts,pointi, told, &i2, &ierr1); ';
+	      '     if (ierr1 != 0) return 3;']
       end
     end
     Code($+1)='    break;';
@@ -465,6 +398,7 @@ function Code=c_make_doit2(cpr);
 	'  /* Function Body */ '; 
 	' '
 	'  /*update continuous and discrete states on event */';
+	'  kiwa = iwa['+string(clkptr($))+'];';
 	'  if (kiwa == 0) {';
 	'    return 0 ;';
 	'  }';
@@ -487,8 +421,7 @@ function Code=c_make_doit2(cpr);
 	Code=[Code
 	      '    flag = 2;';
 	      '    nevprt='+string(ordclk(ii,2))+';';
-	      '   '+wfunclist(i);
-	      '	   if(flag < 0 ) return (5 - flag); '];
+	      '   '+wfunclist(i);];
 
       end  
     end   
@@ -572,8 +505,7 @@ for i=1:size(wfunclist)
   Code=[Code;
 	'';
 	'  '+wfunclist(i);
-	'';
-	'  if(flag < 0 ) return (5-flag);'];
+	'';];
 end   
 Code=[Code;
       '  return 0;'
@@ -648,7 +580,6 @@ function Code=c_make_initi(cpr)
   for i=1:size(wfunclist)
     Code=[Code
 	  '  '+wfunclist(i);
-	  '   if(flag < 0 )  return(5 - flag);'
 	  '  '];
   end   
   Code=[Code
@@ -721,8 +652,7 @@ function Code=c_make_outtb()
 	'  flag=1 ;'];
   for i=iord(:,1)'
     Code=[Code
-	  '  '+wfunclist(i);
-	  '   if(flag < 0 ) return(5 - flag); ']
+	  '  '+wfunclist(i);]
   end   
   Code=[Code
 	'  return 0;'
@@ -796,6 +726,7 @@ function [Code,proto]=callf(i)
 //Author : Rachid Djenidi
   Code=[];proto=''
   ftyp=funtyp(i)
+  if ftyp<0 then return,end
   if ftyp>2000 then ftyp=ftyp-2000,end
   if ftyp>1000 then ftyp=ftyp-1000,end
   
@@ -874,20 +805,6 @@ function [Code,proto]=callf(i)
 	    'args['+string(k+nin-1)+'] = &(outtb['+string(yk+1)+']);';
 	    'sz['+string(k+nin-1)+'] = '+string(nyk-1)+';'];
     end
-  elseif ftyp==-1
-    if  szclkIN>1 then
-      if  i==length(bllst) then
-	if funs(i)=='eselect' then
-	  lprt=inplnk(inpptr(i));
-	  uk=lnkptr(lprt);
-	  nuk=(lnkptr(lprt+1))-uk;
-	  nevprteselect='z['+string(uk+nztotal)+']=(double) *nevprt;';
-	end
-      end
-    end
-    lprt=inplnk(inpptr(i));
-    uk=lnkptr(lprt);
-    nuk=(lnkptr(lprt+1))-uk;
   end
   //************************
   //generate the call itself
@@ -942,19 +859,6 @@ function [Code,proto]=callf(i)
 	  " int *ntvec, double *rpar, int *nrpar, int *ipar, int *nipar, "+...
 	  " double **inptr, int* insz, int *nin, double **outptr,int"+...
 	  " *outsz, int *nout);" 
-    
-  elseif ftyp==-1
-    CodeC='C2F(' +fun+')(&flag, &nevprt, &ntvec, &(rpar['+..
-       string(rpar)+']), &nrd_'+string(nrpar)+', &(ipar['+..
-       string(ipar)+'])';
-    CodeC=CodeC+', &nrd_'+string(nipar)+ ', &(outtb['+string(uk)+..
-       ']),  &nrd_'+string(nuk)+');';
-    
-     proto='void '+"C2F("+fun+")(int *flag, int *nevprt, int *ntvec, double *rpar, "+...
-	   "int *nrpar, int *ipar, int *nipar, double *u, int *nu);"
-     
-  else
-    pause
   end
   //
   Code=[Code;cformatline(CodeC,70);' ']
@@ -1234,7 +1138,7 @@ function  [ok,XX]=do_compile_superblock(XX)
       msg=[msg;'Zero crossing block''s not allowed']
     elseif (xptr(i+1)-xptr(i))<>0 then
       msg=[msg;'Continuous state block''s not allowed']
-    elseif (clkptr(i+1)-clkptr(i))<>0 &funtyp(i)<>-1 &funs(i)~='bidon' then
+    elseif (clkptr(i+1)-clkptr(i))<>0 &funtyp(i)>-1 &funs(i)~='bidon' then
       msg=[msg;'Regular block generating activation not allowed yet']
     end
     if msg<>[] then message(msg),ok=%f,return,end
@@ -1306,13 +1210,13 @@ function  [ok,XX]=do_compile_superblock(XX)
     if or(i==act) then //block is an actuator
       nbact=nbact+1;
       [Code,actti,protoi]=call_actuator(i)
-      wfunclist($+1)=Code
+      wfunclist($+1)=[Code;'   if(flag < 0 ) return(5 - flag); ']
       if nbact==1 then Protos=[Protos;'';protoi],end   
       actt=[actt;actti]
     elseif or(i==cap) then //block is a sensor 
       nbcap=nbcap+1;
       [Code,capti,protoi]=call_sensor(i)
-      wfunclist($+1)=Code
+      wfunclist($+1)=[Code;'   if(flag < 0 ) return(5 - flag); ']
       if nbcap==1 then Protos=[Protos;'';protoi] ,end
       capt=[capt;capti]
     elseif funs(i)=='bidon'
@@ -1320,7 +1224,11 @@ function  [ok,XX]=do_compile_superblock(XX)
     else
       ki=find(funs(i)==dfuns)
       [Code,protoi]=call_block(i)
-      wfunclist($+1)=Code
+      if Code<>[] then
+	wfunclist($+1)=[Code;'   if(flag < 0 ) return(5 - flag); ']
+      else
+	wfunclist($+1)=' ';
+      end
       if ki==[] then Protos=[Protos;'';protoi],end      
       dfuns=[dfuns;funs(i)]
     end
@@ -1350,10 +1258,10 @@ function  [ok,XX]=do_compile_superblock(XX)
   tcur=0;
   tf=scs_m.props.tf;
   tolerances=scs_m.props.tol;
-  [state,t]=scicosim(cpr.state,tcur,tf,Total_rdcpr,'start',tolerances);
-  cpr.state=state;
+  //[state,t]=scicosim(cpr.state,tcur,tf,Total_rdcpr,'start',tolerances);
+ // cpr.state=state;
   z=cpr.state.z;outtb=cpr.state.outtb;
-  [junk_state,t]=scicosim(cpr.state,tcur,tf,Total_rdcpr,'finish',tolerances);
+  //[junk_state,t]=scicosim(cpr.state,tcur,tf,Total_rdcpr,'finish',tolerances);
 
   
   //***********************************
@@ -1518,7 +1426,7 @@ function ok=gen_gui();
 	'  '+sci2exp(actt(:,3),'out',70); //output ports sizes
 	'  '+sci2exp(z,'z',70); //initial state
 	'  '+sci2exp(outtb,'outtb',70); //initial link values
-	'  iwa=zeros('+string(clkptr($)-1)+',1)';
+	'  iwa=zeros('+string(clkptr($))+',1)';
 	'  Z=[z;outtb;iwa]';
         '  '+sci2exp(cpr.sim.rpar,'rpar',70); //real parameters
         '  '+sci2exp(cpr.sim.ipar,'ipar',70);//integer parameters
@@ -2149,7 +2057,7 @@ function Code=make_standalone()
 //Author : Rachid Djenidi
 
 //Generates simulation routine for standalone simulation
-  iwa=zeros(clkptr($)-1,1),Z=[z;outtb;iwa]';
+  iwa=zeros(clkptr($),1),Z=[z;outtb;iwa]';
 Code=[ '/*Main program */'
        'int main()'
        '{'
