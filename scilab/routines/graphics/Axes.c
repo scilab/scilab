@@ -255,7 +255,7 @@ static void aplotv1(strflag)
 {
   char dir = 'l';
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
-  int nx,ny,seg=0,i;
+  int nx,ny,seg=0;
   int fontsize = -1 ,textcolor = -1 ,ticscolor = -1 ; /* default values */
   int fontstyle= 0;
   double  x1,y1;
@@ -426,7 +426,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
      int seg_flag;
      int axisbuild_flag; /* specifies if axis is built from a call to axis_draw or drawaxis method */
 {
-  int Nx,Ny,debug;
+  int Nx,Ny,debug,j;
   double angle=0.0,vxx,vxx1;
   int vx[2],vy[2],xm[2],ym[2];
   char c_format[5];
@@ -439,7 +439,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 			 using tight_limits='on' and/or isoview='on' */
   double xmin,xmax,ymin, ymax; 
   sciPointObj * psubwin = NULL;
-
+  double pas; /* used for logarithmic grid */
 
   fontid[0]= fontstyle;
   
@@ -581,6 +581,10 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    sciprint(" Normally, unavailable case  AAA \n");
 	  }
       }
+
+
+      pas = ((double) Cscale.WIRect1[2]) / ((double) Cscale.Waaint1[1]);
+
       /**********************/
       /** loop on the ticks **/
       if (Nx==1) break;
@@ -636,17 +640,49 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  /*** MAJ Djalel.A 21/01/2003 ***/ 
 	  if (version_flag() == 0) 
-	    if ((vx[0] != Cscale.WIRect1[0]) && (vx[0] != (Cscale.WIRect1[0]+ Cscale.WIRect1[2])))
-	      if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1) /**DJ.Abdemouche 2003**/
-		{
+	    if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1) { /**DJ.Abdemouche 2003**/
+	      if(pSUBWIN_FEATURE (psubwin)->logflags[0] == 'l'){
+		if ((vx[0] != Cscale.WIRect1[0]) && (vx[0] != (Cscale.WIRect1[0]+ Cscale.WIRect1[2])))
+		  {
+		    pstyle=pSUBWIN_FEATURE (psubwin)->grid[0] ;
+		    C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    vy[0]=Cscale.WIRect1[1];
+		    vy[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];  
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }
+		
+		if(i < Nx -1 ){
+		  int jinit=1;
+		  /* In case there is a log. scale, add. sub-grid taking account of this special scale F.Leray 07.05.04 */
 		  pstyle=pSUBWIN_FEATURE (psubwin)->grid[0] ;
 		  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  vy[0]=Cscale.WIRect1[1];
-		  vy[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];  
-		  C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  vy[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];
+		  
+		  if ( i== 0 ) jinit=2; /* no grid on plot boundary */
+		  for (j= jinit; j < 10 ; j++)
+		    {
+		      vx[0]=vx[1]= Cscale.WIRect1[0] + inint( ((double) i)*pas)+ inint(log10(((double)j))*pas);
+		      C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    }
 		  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		}
+	      }
+	      else if(pSUBWIN_FEATURE (psubwin)->logflags[0] == 'n'){
+		if ((vx[0] != Cscale.WIRect1[0]) && (vx[0] != (Cscale.WIRect1[0]+ Cscale.WIRect1[2])))
+		  {
+		    pstyle=pSUBWIN_FEATURE (psubwin)->grid[0] ;
+		    C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    vy[0]=Cscale.WIRect1[1];
+		    vy[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];  
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }
+	      }
+	    }
 	  /***/
 	  /* subtics */
 	  if ( i < Nx-1 ) 
@@ -767,6 +803,10 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    sciprint(" Normally, unreachable case \n");
 	  }
       }
+
+
+
+      pas = ((double) Cscale.WIRect1[3]) / ((double) Cscale.Waaint1[3]);
       /** loop on the ticks **/
       if (Ny==1) break; /*D.Abdemouche 16/12/2003*/
       for (i=0 ; i < Ny ; i++)
@@ -820,17 +860,49 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  /*** MAJ Djalel.A 21/01/2003 ***/ 
 	  if (version_flag() == 0)
-            if ((vy[0] != Cscale.WIRect1[1]) && (vy[0] != (Cscale.WIRect1[1]+ Cscale.WIRect1[3])))
-	      if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1) /**DJ.Abdemouche 2003**/
-		{
+	    if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1 ){ /**DJ.Abdemouche 2003**/
+	      if(pSUBWIN_FEATURE (psubwin)->logflags[1] == 'l'){
+		if ((vy[0] != Cscale.WIRect1[1]) && (vy[0] != (Cscale.WIRect1[1]+ Cscale.WIRect1[3])))
+		  {
+		    pstyle=pSUBWIN_FEATURE (psubwin)->grid[1] ;
+		    vx[0]=Cscale.WIRect1[0];
+		    vx[1]=Cscale.WIRect1[0]+Cscale.WIRect1[2];  
+		    C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }
+		
+		if(i < Ny -1 ){
+		  int jinit=1;
+		  /* In case there is a log. scale, add. sub-grid taking account of this special scale F.Leray 07.05.04 */
 		  pstyle=pSUBWIN_FEATURE (psubwin)->grid[1] ;
-		  vx[0]=Cscale.WIRect1[0];
-		  vx[1]=Cscale.WIRect1[0]+Cscale.WIRect1[2];  
 		  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  vx[0]=Cscale.WIRect1[0];
+		  vx[1]=Cscale.WIRect1[0]+Cscale.WIRect1[2]; 
+		  
+		  if ( i== Cscale.Waaint1[3]-1 ) jinit=2; /* no grid on plot boundary */
+		  for (j= jinit; j < 10 ; j++)
+		    {
+		      vy[0]=vy[1]= Cscale.WIRect1[1] + inint( ((double) i+1)*pas)- inint(log10(((double)j))*pas);
+		      C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    }
 		  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		}
+	      }
+	      else  if(pSUBWIN_FEATURE (psubwin)->logflags[1] == 'n'){
+		if ((vy[0] != Cscale.WIRect1[1]) && (vy[0] != (Cscale.WIRect1[1]+ Cscale.WIRect1[3])))
+		  {
+		    pstyle=pSUBWIN_FEATURE (psubwin)->grid[1] ;
+		    vx[0]=Cscale.WIRect1[0];
+		    vx[1]=Cscale.WIRect1[0]+Cscale.WIRect1[2];  
+		    C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }
+	      }
+	    }
 	  /* subtics */
 	  if ( i < Ny-1 ) 
 	    {
