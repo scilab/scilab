@@ -1039,7 +1039,7 @@ void zoom_get_rectangle(bbox)
 
 #ifdef WIN32
   SetWinhdc();
-  SciMouseCapture();Szoom
+  SciMouseCapture();
 #endif 
   C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   C2F(dr)("xset","thickness",&th1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
