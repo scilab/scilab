@@ -1,3 +1,12 @@
 // This file contains scilab command to be executed at the end 
 // of a scilab session
 // Copyright INRIA
+L=who('global');
+L=L(part(L,1:7)=='EGdata_')
+ws=strsubst(L,'EGdata_','')
+for k=1:size(ws,'*')
+  ierr=execstr('win=ws(k)','errcatch')
+  if ierr==0 then
+    ok=ge_do_quit(%t)
+  end
+end
