@@ -440,7 +440,7 @@ static gboolean sci_destroy_window (GtkWidget *widget, GdkEventKey *event,  BCG 
   return TRUE;
 }
 
-gint timeout_test (BCG *gc)
+static gint timeout_test (BCG *gc)
 {
   if ( info.getmen  == 1 &&  C2F(ismenu)()==1 ) 
     {
@@ -454,11 +454,26 @@ gint timeout_test (BCG *gc)
   return TRUE;
 }
 
+  
+#ifdef WITH_TK
+
+extern int flushTKEvents();
+
+static gint timeout_tk (void *v)
+{
+  flushTKEvents();
+  return TRUE;
+}
+
+#endif
+
+
 void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, 
 		     integer *yy1, integer *iwin, integer *iflag,
 		     integer *istr, double *dv1, double *dv2, 
 		     double *dv3, double *dv4)
 {
+  guint timer_tk;
   GTK_locator_info rec_info ; 
   int win = -1,i;
   int wincount = GetWinsMaxId()+1;
@@ -503,6 +518,12 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1,
       info.str   = str;
     }
 
+  /* take care og tck/tk */
+  
+#ifdef WITH_TK
+  timer_tk=  gtk_timeout_add(100,  (GtkFunction) timeout_tk , NULL);
+#endif
+
   while (1) 
     {
       /* take care of window destroy during this .....XXXXXX */
@@ -519,6 +540,10 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1,
 
   /* remove timer if it was set by us */ 
   if ( rec_info.timer == 0 )  gtk_timeout_remove (info.timer);
+  
+#ifdef WITH_TK
+  gtk_timeout_remove(timer_tk);
+#endif
 
   /* take care of recursive calls i.e restore info  */
   info = rec_info ; 
@@ -580,6 +605,7 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1,
 void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, 
 	      int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
 {
+  guint timer_tk;
   GTK_locator_info rec_info ; 
   int win;
   if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->Cdrawable == NULL ) {
@@ -610,6 +636,12 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag,
       info.timer = gtk_timeout_add (100, (GtkFunction) timeout_test, ScilabXgc);
       info.str   = str;
     }
+
+  
+#ifdef WITH_TK
+  timer_tk=  gtk_timeout_add(100,  (GtkFunction) timeout_tk , NULL);
+#endif
+
   
   while (1) 
     {
@@ -617,6 +649,10 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag,
       /* be sure that gtk_main_quit was activated by proper event */
       if ( info.ok == 1 &&  info.win == win  ) break;
     }
+
+#ifdef WITH_TK
+  gtk_timeout_remove(timer_tk);
+#endif
 
   *x1 = info.x;
   *yy1 = info.y;
