@@ -7,9 +7,9 @@ ATLAS_LAPACKBLAS= $(ATLASDIR)/liblapack.a $(ATLASDIR)/libcblas.a $(ATLASDIR)/lib
 BLAS=$(@WHICH_BLAS@) 
 
 LIBRSCI = $(SCIDIR)/libs/system.a $(SCIDIR)/libs/interf.a \
-	$(SCIDIR)/libs/system2.a $(SCIDIR)/libs/optim.a \
+	$(SCIDIR)/libs/system2.a $(SCIDIR)/libs/optim.a $(SCIDIR)/libs/scicos.a \
         $(SCIDIR)/libs/integ.a $(SCIDIR)/libs/control.a \
-	$(SCIDIR)/libs/scicos.a $(SCIDIR)/libs/signal.a \
+	$(SCIDIR)/libs/signal.a \
         $(SCIDIR)/libs/poly.a $(SCIDIR)/libs/calelm.a \
 	$(SCIDIR)/libs/lapack.a $(SCIDIR)/libs/graphics.a \
         $(SCIDIR)/libs/sparse.a $(SCIDIR)/libs/metanet.a \
