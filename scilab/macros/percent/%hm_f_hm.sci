@@ -13,6 +13,6 @@ if kd<>[] then
 end
 
 M1.entries=matrix([matrix(M1.entries,double(d1(1)),-1);
-		   matrix(M2.entries,double(d2(1)),-1)])
+		   matrix(M2.entries,double(d2(1)),-1)],-1,1)
 M1.dims(1)=d1(1)+d2(1);
 endfunction
