@@ -93,7 +93,7 @@ table =['ex1c',		'intex1c';
 	'ex15c',	'intex15c';
 	'ex15f',	'intex15f';
 	'ex16c',	'intex16c';
-	'ex17c',	'intex17c_1']
+	'ex17c',	'intex17c_1'];
 
 
 // extra parameters can be transmited to the linker 
