@@ -1,4 +1,4 @@
-function [ok,%tcur,%cpr,alreadyran,needcompile,%state0]=do_run(%cpr)
+function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
 // realize action associated to the run button
 // performs necessary diagram (re-)compilation
 // performs simulation initialisation
@@ -10,6 +10,17 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0]=do_run(%cpr)
 // define user possible choices
 
 // Copyright INRIA
+if size(scs_m(1)(3),'*')<6 then solver =0,else solver=scs_m(1)(3)(6),end
+wpar=scs_m(1);tolerances=wpar(3)
+if size(tolerances,'*')<6 then tolerances(6) =0,end
+solver=tolerances(6)
+if %cpr(2).xptr($)-1<size(%cpr(1).x,'*') & solver<100 then
+  message(['Diagram has been compiled for implicit solver'
+	   'switching to implicit Solver'])
+  solver=100
+  tolerances(6)=solver
+end
+
 
 if needcompile==4 then 
 do_terminate(),alreadyran=%f
@@ -48,7 +59,8 @@ if choix<>[] then
     errcatch(-1,'continue')
     state=%cpr(1)
     needstart=%t
-    wpar=scs_m(1);tf=wpar(4);tolerances=wpar(3)
+    wpar=scs_m(1);tf=wpar(4);
+
     [state,t]=scicosim(%cpr(1),%tcur,tf,%cpr(2),'finish',tolerances)
     %cpr(1)=state
     alreadyran=%f
@@ -87,19 +99,11 @@ if needstart then //scicos initialisation
   end
   %tcur=0
   %cpr(1)=%state0
-  wpar=scs_m(1);tf=wpar(4);tolerances=wpar(3)
+  wpar=scs_m(1);tf=wpar(4);
   if tf*tolerances==[] then 
     x_message(['Simulation parameters not set';'use setup button']);
     return;
   end
-  if size(tolerances,'*')<6 then tolerances(6) =0,end
-  solver=tolerances(6)
-  if %cpr(1).xptr($)-1<size(%cpr(2).x,'*') & solver<100 then
-      message(['Diagram has been compiled for implicit solver'
-	   'switching to implicit Solver'])
-      tolerances(6)=100
-  end
-  
   errcatch(-1,'continue')
   [state,t]=scicosim(%cpr(1),%tcur,tf,%cpr(2),'start',tolerances)
   %cpr(1)=state
@@ -130,7 +134,7 @@ end
 needreplay=%t
 
 // simulation
-wpar=scs_m(1);tf=wpar(4);tolerances=wpar(3)
+wpar=scs_m(1);tf=wpar(4);
 disablemenus()
 setmenu(curwin,'stop')
 timer()
