@@ -2268,7 +2268,6 @@ c     .  [e,m]=det(A)
  30         continue
  40      continue
  50      continue
-         print *, D,E
          if(.not.createvar(1,'d',1,1,le)) return
          stk(le) = E
          if(.not.createvar(2,'d',1,1,lm)) return
