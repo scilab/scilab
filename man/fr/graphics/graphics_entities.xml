@@ -213,7 +213,7 @@
   plot(1:10);
   a1=f.children(1); //get its handle
   copy(e.children,a1); //copy the polyline of the first plot in the new Axes
-  a1.data_bounds=[1 0 10 100]; //change the Axes bounds  
+  a1.data_bounds=[1 0;10 100]; //change the Axes bounds  
 
   set("current_figure",10) //create a new figure with figure_id=10
   plot3d() //the drawing are sent to figure 10
