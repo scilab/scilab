@@ -45,15 +45,16 @@ function r=ge_graph(kmen,win)
     old=xget('window');xset('window',win);seteventhandler("")  
     execstr('EGdata=EGdata_'+w)
     edited=EGdata.Edited
-    [ok,GraphList,edited]=ge_do_load()
+    [ok,GraphList,edited,path]=ge_do_load()
     if ok then
       EGdata.GraphList=GraphList
       EGdata.Edited=edited
+      EGdata.Path=path
       ge_clear_history()
       xbasc()
       ge_set_winsize()
       ge_drawobjs(GraphList),
-      execstr('EGdata_'+w+'.GraphList=GraphList')
+      execstr('EGdata_'+w+'=EGdata;')
     end
     seteventhandler("ge_eventhandler") ;xset('window',old)
   case "Options" then

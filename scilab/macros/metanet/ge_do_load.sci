@@ -29,6 +29,7 @@ function [ok,GraphList,edited,fname]=ge_do_load(fname)
       ok=%f
       return
     end
+    
     if ierr<>0 then
       message(fname+' cannot be loaded.') 
       ok=%f;return

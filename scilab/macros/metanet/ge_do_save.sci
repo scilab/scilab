@@ -7,7 +7,7 @@ function ok=ge_do_save(GraphList,path)
 // Copyright INRIA
 
 
-  
+  ok=%f
   GraphList.node_number=size(GraphList.node_x,'*')
   
   if GraphList.tail==[] then
@@ -45,7 +45,7 @@ function ok=ge_do_save(GraphList,path)
     end
     
   end
-
+pause
   fname=path
   if fileinfo(fname)<>[] then
     if MSDOS then
