@@ -2287,9 +2287,7 @@ int scixgrid(fname,fname_len)
     style = (integer) *stk(l1);
   }
   C2F(sciwin)();
-  if (version_flag==0) {}
-  else
-    C2F(xgrid)(&style);
+  C2F(xgrid)(&style); /* test on version_flag() inside Plo2.c F.Leray 07.05.04 */
   LhsVar(1)=0;
   return 0;
 } 
