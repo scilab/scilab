@@ -10,6 +10,7 @@ c     Copyright INRIA
       integer num,imess,imode,errtyp,lct1
       logical trace
 c
+      print *,'error ',n,pt
       call errmds(num,imess,imode)
       trace=.not.((num.lt.0.or.num.eq.n).and.imess.ne.0)
 c
@@ -81,7 +82,6 @@ c     .     error has occurred in an external
          elseif(rstk(p).eq.502) then 
             if(rstk(p-1).eq.903) then
 c     .     error has occurred in execstr
-
                errtyp=0
                pt0=p
             elseif(rstk(p-1).eq.904.or.rstk(p-1).eq.901) then
@@ -108,7 +108,7 @@ c depilement de l'environnement
       goto(36,36,37) r-500
       if(r.eq.904) then
          if (ids(2,pt).ne.0) then
-c     .     fermeture du fichier dans le cas getf(  'c')
+c     .     getf(  'c') case, close the file
             mode(1)=0
             call clunit(-ids(2,pt),buf,mode)
          endif
@@ -1277,7 +1277,7 @@ c
 c     depile une macro pu un execstr
       include '../stack.h'
       integer lunit
-      logical trace,first
+      logical trace,first,callback
       integer sadr,ll
 
 c
@@ -1328,21 +1328,30 @@ c
             buf='in  execstr instruction'
             m=26
          endif
-         buf(m+1:m+14)=' called by :'
-         m=m+14
+         callback=rstk(pt-1).eq.706.or.rstk(pt-1).eq.606
+         if(callback) then
+            print *,pt
+            buf(1:26)='While executing a callback'
+            m=26
+         else
+            buf(m+1:m+14)=' called by :'
+            m=m+14
+         endif
          call basout(io,lunit,buf(1:m))
          lct(8)=lin(k+12+nsiz)
 c     
-         call whatln(lpt(1),lpt(2),lpt(6),nlc,l1,ifin)
-         m=ifin-l1+1
-         if(m.gt.ll) then
-            l1=max(l1,lpt(2)-ll/2)
-            m=min(ifin-l1,ll)
-         endif
+         if (.not.callback) then
+            call whatln(lpt(1),lpt(2),lpt(6),nlc,l1,ifin)
+            m=ifin-l1+1
+            if(m.gt.ll) then
+               l1=max(l1,lpt(2)-ll/2)
+               m=min(ifin-l1,ll)
+            endif
 
-         if(l1.gt.0.and.m.gt.0.and.m+l1-1.le.lsiz) then
-            call cvstr(m,lin(l1),buf(1:m),1)
-            call basout(io,lunit,buf(1:m))
+            if(l1.gt.0.and.m.gt.0.and.m+l1-1.le.lsiz) then
+               call cvstr(m,lin(l1),buf(1:m),1)
+               call basout(io,lunit,buf(1:m))
+            endif
          endif
       endif
 c
