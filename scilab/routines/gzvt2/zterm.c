@@ -186,7 +186,7 @@ gint main (gint argc, gchar *argv[])
   /* Create widgets and set options */
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window), "Scilab");
-  gtk_window_set_wmclass (GTK_WINDOW (window), "scilab", "scilab");
+  gtk_window_set_wmclass (GTK_WINDOW (window), "scilab", "Scilab");
   gtk_widget_realize (window);
 
   /* create vbox */

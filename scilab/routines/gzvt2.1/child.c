@@ -69,7 +69,7 @@ gint main (gint argc, gchar *argv[])
   gtk_init(&argc, &argv);
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window), "Scilab");
-  gtk_window_set_wmclass (GTK_WINDOW (window), "scilab", "scilab");
+  gtk_window_set_wmclass (GTK_WINDOW (window), "scilab", "Scilab");
 
   /* create vbox */
   vbox = gtk_vbox_new (FALSE, 0);
