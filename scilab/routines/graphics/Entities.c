@@ -15929,6 +15929,9 @@ void DrawFac3d(sciPointObj *psubwin, double *x, double *y,double *z,
   integer i; 
   sciPointObj *pobj; 
   integer context[6];
+#ifdef WIN32 
+  int flag; /* Allan.C 19/01/04 */
+#endif
 
   if(sciGetEntityType (psubwin) != SCI_SUBWIN) return;
   
