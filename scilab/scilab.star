@@ -73,7 +73,7 @@ PWD = getcwd()
 [home,SCIHOME]=sethomedirectory();
 clear sethomedirectory ExistScilabHomeDirectory CreateScilabHomeDirectory
 if MSDOS then
-  SCI=getshortpathname(SCI)
+  SCI=strsubst(getshortpathname(SCI),'\','/');
   // path of scilab main directory for Windows
   WSCI=getlongpathname(pathconvert(SCI,%f,%f,'w'))
   if with_pvm() then
