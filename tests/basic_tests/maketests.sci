@@ -2,6 +2,7 @@ function tests=testslist()
   tests = ['algebra.tst'
 	   'arma.tst';
 'auto.tst';
+'basiclink.tst';
 'binary.tst';
 'breakpoints.tst';
 'break.tst';
