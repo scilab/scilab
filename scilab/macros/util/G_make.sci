@@ -8,7 +8,7 @@ if getenv('WIN32','NO')=='OK' then
   end 
   if getenv('COMPILER','NO')=='VC++' then 
     // scilab was build with VC++ 
-    host('nmake /f Makefile.mak '+objects_or_dll);
+    host('nmake /nologo /f Makefile.mak '+objects_or_dll);
   else if getenv('COMPILER','NO')=='ABSOFT' then 
       // scilab was build with ABSOFT 
       host('amake /f Makefile.amk '+objects_or_dll); 

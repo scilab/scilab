@@ -52,7 +52,7 @@ function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_
     select comp_target
      case 'VC++' then 
       makename = makename + '.mak' ; 
-      make_command = 'nmake /f '
+      make_command = 'nmake /nologo /f '
      case 'ABSOFT' then 
       makename = makename + '.amk ';
       make_command = 'amake /f '
