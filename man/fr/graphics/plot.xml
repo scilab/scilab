@@ -38,7 +38,8 @@
         <PARAM_NAME>y</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: a real matrice or vector.</SP>
+          <SP>: a real matrice or vector. <VERB>y</VERB> can also be a
+          function defined as a macro or a primitive.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -121,6 +122,11 @@
     matrix row or column dimension. In case of a square matrix (on
     <VERB>x</VERB> or <VERB>y</VERB> only), priority is given to columns
     rather than lines (see examples below).</P>
+
+    <P><VERB>y</VERB> can also be a function defined as a macro or a
+    primitive. In this case, <VERB>x</VERB> data must be given (as a vector or
+    matrix) and the corresponding computation <VERB>y(x)</VERB> is done
+    implicitly.</P>
 
     <P>The <VERB>LineSpec</VERB> and <VERB>PropertySpec</VERB> arguments sould
     be used to customize the plot. Here is a complete list of the available
@@ -269,21 +275,16 @@ plot(x,sin(x))
 //multiple plot
 clf()
 plot(x,[sin(x) sin(2*x) sin(3*x)])
-// multiple plot giving the dimensions of the frame
 clf()
-// auto scaling with previous plots + style
-clf()
-plot(x,sin(x),-1)
-plot(x,2*sin(x),12) 
-plot(2*x,cos(x),3) 
+
 // axis on the right 
-clf()
-plot(x,sin(x),leg="sin(x)") 
-a=gca(); // Handle on axes entity 
+plot(x,sin(x)) 
+a=gca(); // Handle on current axes entity 
 a.y_location ="right"; 
-// axis centered at (0,0) 
 clf()
-plot(x-4,sin(x),1,leg="sin(x)") 
+
+// axis centered at (0,0)
+plot(x-4,sin(x)) 
 a=gca() // Handle on axes entity
 a.x_location = "middle"; 
 a.y_location = "middle"; 
@@ -377,8 +378,16 @@ clf();
 // t is transposed : notice the priority given to the columns treatment
 plot(t',[1 2 3 4]) // equivalent to plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4]) 
 plot(t',[1 2 3 4]') // the same plot 
-
 clf();
+
+// y is a function defined by..
+// ..a primitive
+plot(1:0.1:10,sin) // equivalent to plot(1:0.1:10,sin(1:0.1:10))
+clf();
+
+// ..a macro:
+deff('[y]=toto(x)','y=x.*x')
+plot(1:10,toto)
  
 ]]></EXAMPLE>
 
