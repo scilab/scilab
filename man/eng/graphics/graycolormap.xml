@@ -43,6 +43,9 @@ plot3d1()
       <LINK>hotcolormap</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
+      <LINK>jetcolormap</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
       <LINK>xset</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
