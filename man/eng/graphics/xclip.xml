@@ -1,47 +1,44 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>xclip  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
+  <DATE>April 199</DATE>
   <SHORT_DESCRIPTION name="xclip"> set a clipping zone   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>xclip([x,y,w,h])  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>xclip(rect)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>xclip(&quot;clipgrf&quot;)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>xclip([x,y,w,h])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>xclip(rect)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>xclip(&quot;clipgrf&quot;)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x,y,w,h  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : real values.
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>rect  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : row vector of size 4.
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x,y,w,h  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real values.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rect  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: row vector of size 4.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
-    <VERB>xclip</VERB> set a clipping zone given by the coordinates, in the current
+    <P><VERB>xclip</VERB> set a clipping zone given by the coordinates, in the current
     graphics scale, of the rectangle <VERB>x,y,w,h</VERB> 
     (upper-left point, width, height). If only one argument is given, it stands
-    for a rectangle specification <VERB>rect=[x,y,w,h]</VERB>.
-  </P>
-  <P>
-    <VERB>xclip(&quot;clipgrf&quot;)</VERB> is used to clip the usual rectangle boundaries.
-  </P>
-  <P>
-    To unclip a region use the command <VERB>xclip()</VERB>.
-  </P>
+    for a rectangle specification <VERB>rect=[x,y,w,h]</VERB>.</P>
+    <P><VERB>xclip(&quot;clipgrf&quot;)</VERB> is used to clip the usual rectangle boundaries.</P>
+    <P>
+    To unclip a region use the command <VERB>xclip()</VERB>.</P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 x=0:0.2:2*%pi;
 x1=[sin(x);100*sin(x)];
 y1=[cos(x);100*cos(x)];
@@ -60,6 +57,7 @@ xclip("clipgrf")
 xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));
 // clipping of
 xclip()
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <AUTHOR>J.Ph.C.  </AUTHOR>
 </MAN>

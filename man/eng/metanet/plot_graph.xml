@@ -1,95 +1,79 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>plot_graph  </TITLE>
   <TYPE>Scilab function  </TYPE>
-  <DATE>September 1996  </DATE>
+  <DATE>September 199</DATE>
   <SHORT_DESCRIPTION name="plot_graph"> general plot of a graph   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>plot_graph(g,[rep,rep1])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>plot_graph(g,[rep,rep1])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : graph list
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>rep  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : row vector of 13 values for the parameters of the plot
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>rep1  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : row vector of 4 values defining the plotting rectangle
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: graph list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rep  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: row vector of 13 values for the parameters of the plot</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rep</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: row vector of 4 values defining the plotting rectangle</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
-    <VERB>plot_graph</VERB> plots graph <VERB>g</VERB> in a Scilab graphical window.
-    The optional arguments <VERB>rep</VERB> and <VERB>rep1</VERB> define the parameters
+    <P><VERB>plot_graph</VERB> plots graph <VERB>g</VERB> in a Scilab graphical window.
+    The optional arguments <VERB>rep</VERB> and <VERB>rep</VERB> define the parameters
     of the plot. If there are not given, a dialog box for the definition
-    of these parameters is opened.
-  </P>
-  <P>
-    <VERB>rep</VERB> must be a row vector with 13 integer numbers which must be 1 or 2.
-    The meaning of the values of <VERB>rep</VERB> are:
-  </P>
-  <P>
+    of these parameters is opened.</P>
+    <P><VERB>rep</VERB> must be a row vector with 13 integer numbers which must be 1 or 2.
+    The meaning of the values of <VERB>rep</VERB> are:</P>
+    <P>
     Frame definition: 1 = Automatic
-                      2 = Given (see below)
-  </P>
-  <P>
-    Plotting arrows: 1 = yes, 2 = no
-  </P>
-  <P>
-    Plotting sink and source nodes: 1 = yes, 2 = no
-  </P>
-  <P>
-    Plotting node names: 1 = yes, 2 = no
-  </P>
-  <P>
-    Plotting node labels: 1 = yes, 2 = no
-  </P>
-  <P>
-    Plotting arc names : 1 = yes, 2 = no
-  </P>
-  <P>
-    Plotting arc labels: 1 = yes, 2 = no
-  </P>
-  <P>
-    Plotting node demand: 1 = yes, 2 = no
-  </P>
-  <P>
-    Plotting edge length: 1 = yes, 2 = no
-  </P>
-  <P>
-    Plotting edge cost: 1 = yes, 2 = no
-  </P>
-  <P>
-    Plotting edge min cap: 1 = yes, 2 = no
-  </P>
-  <P>
-    Plotting edge max cap: 1 = yes, 2 = no
-  </P>
-  <P>
-    Plotting edge weight: 1 = yes, 2 = no
-  </P>
-  <P>
+                      2 = Given (see below)</P>
+    <P>
+    Plotting arrows: 1 = yes, 2 = no</P>
+    <P>
+    Plotting sink and source nodes: 1 = yes, 2 = no</P>
+    <P>
+    Plotting node names: 1 = yes, 2 = no</P>
+    <P>
+    Plotting node labels: 1 = yes, 2 = no</P>
+    <P>
+    Plotting arc names : 1 = yes, 2 = no</P>
+    <P>
+    Plotting arc labels: 1 = yes, 2 = no</P>
+    <P>
+    Plotting node demand: 1 = yes, 2 = no</P>
+    <P>
+    Plotting edge length: 1 = yes, 2 = no</P>
+    <P>
+    Plotting edge cost: 1 = yes, 2 = no</P>
+    <P>
+    Plotting edge min cap: 1 = yes, 2 = no</P>
+    <P>
+    Plotting edge max cap: 1 = yes, 2 = no</P>
+    <P>
+    Plotting edge weight: 1 = yes, 2 = no</P>
+    <P>
     If <VERB>rep(1)</VERB> is 2, the frame definition must be given by
-    <VERB>rep1</VERB>. Otherwise, <VERB>rep1</VERB>can be omitted.
-    <VERB>rep1</VERB> must be a row vector <VERB>[orx,ory,w,h]</VERB> giving respectively the coordinates of the upper-left point, the width and the height of the
-    plotting rectangle.
-  </P>
+    <VERB>rep</VERB>. Otherwise, <VERB>rep</VERB>can be omitted.
+    <VERB>rep</VERB> must be a row vector <VERB>[orx,ory,w,h]</VERB> giving respectively the coordinates of the upper-left point, the width and the height of the
+    plotting rectangle.</P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 // simple graph with different choices for the plot
 ta=[2 2 1 1 2 4 3 3 4];
 he=[2 2 3 2 3 2 1 2 1];
@@ -111,8 +95,11 @@ xset("thickness",4);
 xbasc();
 plot_graph(g);
 xset('default');
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>show_graph</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>show_graph</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -1,68 +1,62 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>NDcost  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>2002  </DATE>
+  <DATE>200</DATE>
   <SHORT_DESCRIPTION name="NDcost"> generic external for optim
   computing gradient using finite differences  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[f,g,ind]=CDcost(x,ind,fun,varargin) </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[f,g,ind]=CDcost(x,ind,fun,varargin) </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : real  vector or matrix
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-
-  <PARAM_ITEM>
-  <PARAM_NAME>ind  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : integer parameter (see optim)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-
-  <PARAM_ITEM>
-  <PARAM_NAME>fun  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : Scilab function with calling sequence <VERB>F=fun(x,varargin)</VERB>
-           varargin may be use to pass  parameters <VERB>p1,...pn</VERB>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-
-  <PARAM_ITEM>
-  <PARAM_NAME>f  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : criterion value  at point <VERB>x</VERB> (see optim)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : gradient value  at point <VERB>x</VERB> (see optim)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-
-
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real  vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ind  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer parameter (see optim)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fun  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Scilab function with calling sequence <VERB>F=fun(x,varargin)</VERB>
+           varargin may be use to pass  parameters <VERB>p1,...pn</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: criterion value  at point <VERB>x</VERB> (see optim)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: gradient value  at point <VERB>x</VERB> (see optim)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
+    <P>
   This function can be used as an external for <VERB>optim</VERB> to minimize
    problem where gradient is too complicated to be programmed. only the
-   function <VERB>fun</VERB> which computes the criterion is required.
-  </P><P>
+   function <VERB>fun</VERB> which computes the criterion is required.</P>
+    <P>
    This function should be used as follow:
-   <VERB>[f,xopt,gopt]=optim(list(CDcost,fun,p1,...pn),x0,...)</VERB>	
-   </P>
+   <VERB>[f,xopt,gopt]=optim(list(CDcost,fun,p1,...pn),x0,...)</VERB></P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
    //function to minimize
    function f=rosenbrock(x,varagin)
      p=varargin(1)
@@ -71,10 +65,17 @@
 
    x0=[1;2;3;4];
    [f,xopt,gopt]=optim(list(NDcost,rosenbrock,200),x0)
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-   <SEE_ALSO_ITEM> <LINK>optim</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>external</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>derivative</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM>
+      <LINK>optim</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>external</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>derivative</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

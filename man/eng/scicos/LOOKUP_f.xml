@@ -1,25 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>LOOKUP_f  </TITLE>
   <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 1996  </DATE>
+  <DATE>Janvier 199</DATE>
   <SHORT_DESCRIPTION name="LOOKUP_f"> Scicos Lookup table with graphical editor  </SHORT_DESCRIPTION>
   <DESCRIPTION>
-  <P>
+    <P>
     This block realizes a non-linear function defined using a graphical
-    editor. 
-  </P>
-  <P>
-  </P>
-  <P>
-  </P>
-  <P>
-  </P>
-  <P>
-  </P>
-  <P>
-  </P>
+    editor.</P>
   </DESCRIPTION>
 </MAN>

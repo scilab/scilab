@@ -1,34 +1,38 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>sin  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
+  <DATE>April 199</DATE>
   <SHORT_DESCRIPTION name="sin">  sine function  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[t]=sin(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[t]=sin(x)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : real or complex vector or  matrix
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or  matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
+    <P>
     For a vector or a matrix, <VERB>sin(x)</VERB> is the sine of its elements. 
-    For matrix  sine use  <VERB>sinm(X)</VERB> function.
-  </P>
+    For matrix  sine use  <VERB>sinm(X)</VERB> function.</P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 asin(sin([1,0,%i]))
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sinm</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sinm</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

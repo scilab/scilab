@@ -1,46 +1,57 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>draw  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE> 2002 </DATE>
+  <DATE> 200</DATE>
   <SHORT_DESCRIPTION name="draw"> 
    draw an entity.
   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>draw() </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>draw(h) </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>draw() </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>draw(h) </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
-
   <PARAM>
-  <PARAM_INDENT>
-
-  <PARAM_ITEM>
-  <PARAM_NAME>h  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-     : a handle, the handle on an entity to draw. <VERB>h</VERB> can be a 
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>h  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a handle, the handle on an entity to draw. <VERB>h</VERB> can be a 
      vector of handles, in which case all objects identified by h(i) 
-     will be drawn.
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM> 
-
+     will be drawn.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
   <DESCRIPTION>
+    <P>
     This function can be used no to draw an entity even if its
-    visibility property is <VERB>"off"</VERB>. 
+    visibility property is <VERB>&quot;off&quot;</VERB>.</P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 
 
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>  
-    <SEE_ALSO_ITEM> <LINK>drawnow</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>drawlater</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>get</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>set</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>drawnow</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>drawlater</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>graphics_entities</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Djalel ABDEMOUCHE </AUTHOR>
+  <AUTHOR> Djalel ABDEMOUCH</AUTHOR>
 </MAN>

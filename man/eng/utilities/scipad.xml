@@ -1,65 +1,87 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>scipad</TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>27-May-2003</DATE>
+  <DATE>27-May-200</DATE>
   <SHORT_DESCRIPTION name="scipad"> Embedded Scilab text editor</SHORT_DESCRIPTION>
-
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>scipad(f)</CALLING_SEQUENCE_ITEM>
-   <CALLING_SEQUENCE_ITEM>scipad()</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>scipad(f)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>scipad()</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
-
   <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>f</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       : file path
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: file path</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
- 
   <DESCRIPTION>
-   Scipad is an embedded Scilab text editor written in TCL/TK. It can be started with the "Editor" menu or 
+    <P> 
+   Scipad is an embedded Scilab text editor written in TCL/TK. It can be started with the &quot;Editor&quot; menu or 
    from Scilab command line with the instruction <VERB>scipad()</VERB> or scipad(f). It allows Windows 
-   like edition modes. The "Load Into Scilab" menu can be used to <VERB>exec</VERB> the file contents 
-   into Scilab.
-   
-  <P></P>
-The following shortcuts are defined<P></P>
-  &lt;Control-o&gt; :  open file<P></P>
-  &lt;Control-z&gt; :  undo<P></P>
-  &lt;Control-y&gt; :  redo<P></P>
-  &lt;Control-f&gt; :  find<P></P>
-  &lt;Control-r&gt; :  find and replace<P></P>
-  &lt;Control-x&gt; :  cut<P></P>
-  &lt;Control-v&gt; :  paste<P></P>
-  &lt;Control-w&gt; :  close current file<P></P>
-  &lt;Control-n&gt; :  new file<P></P>
-  &lt;Control-q&gt; :  exit scipad file<P></P>
-  &lt;Control-g&gt; :  goto line<P></P>
-  &lt;Control-p&gt; :  print selection<P></P>
-  &lt;Control-P&gt; :  print <P></P>
-  &lt;Control-S&gt; :  Save As <P></P>
+   like edition modes. The &quot;Load Into Scilab&quot; menu can be used to <VERB>exec</VERB> the file contents 
+   into Scilab.  The following shortcuts are defined </P>
+    <ITEMIZE>
+      <ITEM label="&lt;Control-o&gt;">
+        <SP>open file</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-z&gt;">
+        <SP>undo</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-y&gt;">
+        <SP>redo</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-f&gt;">
+        <SP>find</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-r&gt;">
+        <SP>find and replace</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-x&gt;">
+        <SP>cut</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-v&gt;">
+        <SP>paste</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-w&gt;">
+        <SP>close current file</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-n&gt;">
+        <SP>new file</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-q&gt;">
+        <SP>exit scipad file</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-g&gt;">
+        <SP>goto line</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-p&gt;">
+        <SP>print selection</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-P&gt;">
+        <SP>print</SP>
+      </ITEM>
+      <ITEM label="&lt;Control-S&gt;">
+        <SP>Save As</SP>
+      </ITEM>
+    </ITEMIZE>
   </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 scipad SCI/scilab.star
 
-  ]]></EXAMPLE>
-
+  ]]>
+  </EXAMPLE>
   <AUTHOR>
     Mathieu Philippe, INRIA
-  </AUTHOR>  
-
+  </AUTHOR>
   <BIBLIO>
- Scipad is derived from the tknotepad written by Joseph Acosta
+    <P> Scipad is derived from the tknotepad written by Joseph Acosta</P>
   </BIBLIO>
-
-
 </MAN>

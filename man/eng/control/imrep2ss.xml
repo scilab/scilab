@@ -1,43 +1,44 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>imrep2ss  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
+  <DATE>April 199</DATE>
   <SHORT_DESCRIPTION name="imrep2ss"> state-space realization of an impulse response   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[sl]=imrep2ss(v [,deg])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[sl]=imrep2ss(v [,deg])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>v  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : vector coefficients of impulse response, <VERB>v(:,k)</VERB> is the kth sample
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>deg  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : integer (order required)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>sl  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : <VERB>syslin</VERB> list
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector coefficients of impulse response, <VERB>v(:,k)</VERB> is the kth sample</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>deg  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (order required)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
+    <P>
     Impulse response to linear system conversion (one input).
-    <VERB>v</VERB> must have an even number of columns.
-  </P>
+    <VERB>v</VERB> must have an even number of columns.</P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 s=poly(0,'s');
 H=[1/(s+0.5);2/(s-0.4)]   //strictly proper
 np=20;w=ldiv(H('num'),H('den'),np);
@@ -51,8 +52,26 @@ rep=rtitr(H('num'),H('den'),u);   //Impulse rep.
 w=z*imrep2ss(rep)   //Realization with shifted impulse response 
 // i.e strictly proper to proper
 H2=ss2tf(w);
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>frep2tf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>arl2</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>time_id</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>armax</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>markp2ss</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ldiv</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>frep2tf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>arl</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>time_id</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>armax</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>markp2ss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ldiv</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

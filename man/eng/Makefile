@@ -11,8 +11,8 @@ DIRS = arma control dcd elementary fileio functions graphics gui \
 QUIET= > /dev/null 
 LANGUAGE=eng 
 
-#XSLFILE=html-jpc.xsl
-XSLFILE=html.xsl
+XSLFILE=html-jpc-rev.xsl
+XSLFILE=html-rev.xsl
 
 man: 	
 	@echo "Creating html help files" 
@@ -33,7 +33,7 @@ man:
 check:
 	@for i in $(DIRS) ;\
 	do \
-		(cd $$i ; echo "Checking xlm in $$i"; \
+		(cd $$i ; echo "Checking xml in $$i"; \
 		for j in *.xml; \
 		do xmllint --noout --valid $$j 2> xmllint.tmp; \
 			if (grep error xmllint.tmp $(QUIET)) then \
@@ -42,6 +42,17 @@ check:
 			rm -f xmllint.tmp; \
 		done); \
 	done
+
+indent: 
+	@for i in $(DIRS) ;\
+	do \
+		(cd $$i ; echo "Indenting  xml in $$i"; \
+		for j in *.xml; \
+		do xmllint --format $$j > /tmp/tmp.xml ; mv /tmp/tmp.xml $$j; \
+		done ; ); \
+	done
+
+
 
 distclean::
 	$(RM)  $(FILES_TO_CLEAN)

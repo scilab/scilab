@@ -1,23 +1,17 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>odedi  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
+  <DATE>April 199</DATE>
   <SHORT_DESCRIPTION name="odedi"> test of ode   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[]=odedi()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[]=odedi()  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
-  <P>
-    Simple tests of ode and arsimul. Tests the option &apos;discret&apos; of ode 
-  </P>
-  <P>
-  </P>
-  <P>
-  </P>
-  <P>
-  </P>
+    <P>
+    Simple tests of ode and arsimul. Tests the option 'discret' of ode</P>
   </DESCRIPTION>
 </MAN>

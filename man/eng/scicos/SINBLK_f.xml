@@ -1,21 +1,20 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>SINBLK_f  </TITLE>
   <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 1996  </DATE>
+  <DATE>Janvier 199</DATE>
   <SHORT_DESCRIPTION name="SINBLK_f"> Scicos sine block  </SHORT_DESCRIPTION>
   <DESCRIPTION>
-  <P>
+    <P>
     This block realizes vector sine operation. <VERB>y(i)=sin(u(i))</VERB>.
     The input and output  port sizes are equal and determined by the
-    context.
-  </P>
+    context.</P>
   </DESCRIPTION>
-  <ITEMIZE label='DIALOGUE PARAMETERS'>
-  <P>
-    None.
-  </P>
-  </ITEMIZE>
+  <SECTION label="Dialogue parameters">
+    <P>
+    None.</P>
+  </SECTION>
 </MAN>

@@ -1,43 +1,44 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>fsfirlin  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
+  <DATE>April 199</DATE>
   <SHORT_DESCRIPTION name="fsfirlin"> design of FIR, linear phase filters, frequency sampling technique  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[hst]=fsfirlin(hd,flag)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[hst]=fsfirlin(hd,flag)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>hd  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : vector of desired frequency response samples
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>flag  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : is equal to 1 or 2, according to the choice of type 1 or type 2 design
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>hst  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : vector giving the approximated continuous response on a dense grid of frequencies
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>hd  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of desired frequency response samples</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is equal to 1 or 2, according to the choice of type 1 or type 2 design</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>hst  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector giving the approximated continuous response on a dense grid of frequencies</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
+    <P>
     function for the design of FIR, linear phase filters
-    using the frequency sampling technique
-  </P>
+    using the frequency sampling technique</P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 //
 //Example of how to use the fsfirlin macro for the design 
 //of an FIR filter by a frequency sampling technique.
@@ -64,9 +65,15 @@ fg=0:pas:.5;//normalized frequencies grid
 n=prod(size(hst1))
 plot(fg(1:n),hst1);
 plot2d(fg(1:n)',hst2',[3],"000");
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>ffilt</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>wfir</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ffilt</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>wfir</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>G. Le Vey  </AUTHOR>
 </MAN>

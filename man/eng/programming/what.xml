@@ -1,16 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>what  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
+  <DATE>April 199</DATE>
   <SHORT_DESCRIPTION name="what"> list the Scilab primitives  </SHORT_DESCRIPTION>
   <DESCRIPTION>
-  <P>
-    List of low level primitives and commands.
-  </P>
-  <P>
-  </P>
+    <P>
+    List of low level primitives and commands.</P>
   </DESCRIPTION>
 </MAN>

@@ -1,66 +1,66 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>semidef  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
+  <DATE>April 199</DATE>
   <SHORT_DESCRIPTION name="semidef"> semidefinite programming  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[x,Z,ul,info]=semidef(x0,Z0,F,blck_szs,c,options)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[x,Z,ul,info]=semidef(x0,Z0,F,blck_szs,c,options)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x0  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : m x 1 real column vector (must be strictly primal feasible, see below)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>Z0  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : L x 1 real vector (compressed form of a strictly feasible dual matrix, see below)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>F  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : L x (m+1) real matrix
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>blck_szs  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    :  p x 2 integer matrix (sizes of the blocks) defining the dimensions  of the (square) diagonal blocks <VERB>size(Fi(j)=blck_szs(j) j=1,...,m+1</VERB>.
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>c  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : m x 1 real vector
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>options  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : row vector with five entries <VERB>[nu,abstol,reltol,0,maxiters]</VERB>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>ul  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : row vector with two entries
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: m x 1 real column vector (must be strictly primal feasible, see below)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: L x 1 real vector (compressed form of a strictly feasible dual matrix, see below)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME/>
+        <PARAM_DESCRIPTION>
+          <SP>: L x (m+1) real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>blck_szs  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  p x 2 integer matrix (sizes of the blocks) defining the dimensions  of the (square) diagonal blocks <VERB>size(Fi(j)=blck_szs(j) j=1,...,m+</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>c  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: m x 1 real vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>options  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: row vector with five entries <VERB>[nu,abstol,reltol,0,maxiters]</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ul  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: row vector with two entries</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
-    <VERB>[x,Z,ul,info]=semidef(x0,Z0,F,blck_szs,c,options)</VERB>
-    solves semidefinite program:
-  </P>
-  <VERBATIM><![CDATA[
+    <P><VERB>[x,Z,ul,info]=semidef(x0,Z0,F,blck_szs,c,options)</VERB>
+    solves semidefinite program:</P>
+    <VERBATIM>
+<![CDATA[
 
     minimize    c'*x
     subject to  F_0 + x_1*F_1 + ... + x_m*F_m  >= 0
@@ -71,61 +71,53 @@
     subject to  Tr F_i Z = c_i, i=1,...,m
                 Z >= 0
 
-   ]]></VERBATIM>
-  <P>
-    exploiting block structure in the matrices F_i.
-  </P>
-  <P>
-    It interfaces L. Vandenberghe and S. Boyd sp.c program.
-  </P>
-  <P>
-    The <VERB>Fi&apos;s</VERB> matrices are stored columnwise in <VERB>F</VERB> in
+   ]]>
+    </VERBATIM>
+    <P>
+    exploiting block structure in the matrices F_i.</P>
+    <P>
+    It interfaces L. Vandenberghe and S. Boyd sp.c program.</P>
+    <P>
+    The <VERB>Fi's</VERB> matrices are stored columnwise in <VERB/> in
     compressed format: if F_i^j, i=0,..,m, j=1,...,L denote the jth 
-    (symmetric) diagonal block of F_i, then
-  </P>
-  <VERBATIM><![CDATA[
+    (symmetric) diagonal block of F_i, then</P>
+    <VERBATIM>
+<![CDATA[
     [ pack(F_0^1)  pack(F_1^1) ...  pack(F_m^1) ]
     [ pack(F_0^2)  pack(F_1^2) ...  pack(F_m^2) ]
 F=  [   ...       ...          ...              ]
     [ pack(F_0^L)  pack(F_1^L) ...  pack(F_m^L) ]
-   ]]></VERBATIM>
-  <P>
-    where <VERB>pack(M)</VERB>, for symmetric <VERB>M</VERB>, is the vector 
+   ]]>
+    </VERBATIM>
+    <P>
+    where <VERB>pack(M)</VERB>, for symmetric <VERB/>, is the vector 
     <VERB>[M(1,1);M(1,2);...;M(1,n);M(2,2);M(2,3);...;M(2,n);...;M(n,n)]</VERB>
-    (obtained by scanning columnwise the lower triangular part of <VERB>M</VERB>).
-  </P>
-  <P>
-    <VERB>blck_szs</VERB> gives the size of block <VERB>j</VERB>, ie, 
-    <VERB>size(F_i^j)=blck_szs(j)</VERB>.
-  </P>
-  <P>
+    (obtained by scanning columnwise the lower triangular part of <VERB/>).</P>
+    <P><VERB>blck_szs</VERB> gives the size of block <VERB>j</VERB>, ie, 
+    <VERB>size(F_i^j)=blck_szs(j)</VERB>.</P>
+    <P>
     Z is a block diagonal matrix with L blocks <VERB>Z^0, ..., Z^{L-1}</VERB>.
     <VERB>Z^j</VERB> has size <VERB>blck_szs[j] times blck_szs[j]</VERB>.
-    Every block is stored using packed storage of the lower triangular part.
-  </P>
-  <P>
-    The 2 vector <VERB>ul</VERB> contains the primal objective value <VERB>c&apos;*x</VERB>
-    and the dual objective value <VERB>-Tr F_0*Z</VERB>.
-  </P>
-  <P>
+    Every block is stored using packed storage of the lower triangular part.</P>
+    <P>
+    The 2 vector <VERB>ul</VERB> contains the primal objective value <VERB>c'*x</VERB>
+    and the dual objective value <VERB>-Tr F_0*</VERB>.</P>
+    <P>
     The entries of <VERB>options</VERB> are respectively:
     <VERB>nu</VERB> = a real parameter which ntrols the rate of convergence.
     <VERB>abstol</VERB> =   absolute tolerance.
     <VERB>reltol</VERB> =  relative tolerance (has a special meaning when negative).
-    <VERB>tv</VERB>  target value, only referenced if <VERB>reltol &lt; 0</VERB>.
+    <VERB>tv</VERB>  target value, only referenced if <VERB>reltol &lt; </VERB>.
     <VERB>iters</VERB> =  on entry: maximum number of iterations &gt;= 0, on exit: 
-    the number of iterations taken.
-  </P>
-  <P>
-    <VERB>info</VERB>  returns 1 if maxiters exceeded,  2 if absolute accuracy
+    the number of iterations taken.</P>
+    <P><VERB>info</VERB>  returns 1 if maxiters exceeded,  2 if absolute accuracy
     is reached, 3 if relative accuracy is reached, 4 if target value is
     reached, 5 if target value is  not achievable;  negative values 
-    indicate errors.
-  </P>
-  <P>
-    Convergence criterion:
-  </P>
-  <VERBATIM><![CDATA[
+    indicate errors.</P>
+    <P>
+    Convergence criterion:</P>
+    <VERBATIM>
+<![CDATA[
  (1) maxiters is exceeded
  (2) duality gap is less than abstol
  (3) primal and dual objective are both positive and
@@ -135,9 +127,11 @@ F=  [   ...       ...          ...              ]
  (4) reltol is negative and
      primal objective is less than tv or dual objective is greater
      than tv
-   ]]></VERBATIM>
+   ]]>
+    </VERBATIM>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 F0=[2,1,0,0;
     1,2,0,0;
     0,0,3,1
@@ -167,5 +161,6 @@ c'*x+trace(F0*Z)
 spec(F0+F1*x(1)+F2*x(2))
 trace(F1*Z)-c(1)
 trace(F2*Z)-c(2)
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
 </MAN>

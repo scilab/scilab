@@ -1,54 +1,45 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>realtime  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
+  <DATE>April 199</DATE>
   <SHORT_DESCRIPTION name="realtimeinit">set  time unit  </SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="realtime(t)">set  dates origin or waits until date   </SHORT_DESCRIPTION>
-
+  <SHORT_DESCRIPTION name="realtime">set  dates origin or waits until date   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>realtimeinit(time_unit)</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>realtime(t)  </CALLING_SEQUENCE_ITEM>
-
+    <CALLING_SEQUENCE_ITEM>realtimeinit(time_unit)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>realtime(t)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
-
   <PARAM>
-  <PARAM_INDENT>
-
-  <PARAM_ITEM>
-  <PARAM_NAME>time_unit </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : a real number. The number of seconds associated to the <VERB>realtime</VERB> argument 
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>t  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : a real number.  A date 
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-
-  </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>time_unit </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real number. The number of seconds associated to the <VERB>realtime</VERB> argument</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real number.  A date</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
-
   <DESCRIPTION>
-   These two functions can be used to handle real time into Scilab.
-   <P></P> 
-
-   <VERB>realtimeinit(time_unit)</VERB>  defines the time unit
-   associated to the <VERB>realtime</VERB> argument <VERB>t</VERB>
-   <P></P> 
-
+    <P>   These two functions can be used to handle real time into Scilab.</P>
+    <P><VERB>realtimeinit(time_unit)</VERB>  defines the time unit
+   associated to the <VERB>realtime</VERB> argument <VERB>t</VERB></P>
+    <P>
    first call to <VERB>realtime(t0)</VERB> sets current date to
-   (<VERB>t0</VERB>).
-
+   (<VERB>t</VERB>).
    subsequent calls to <VERB>realtime(t)</VERB> wait till date <VERB>t</VERB> is
-   reached.
-
+   reached.</P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 
 
    realtimeinit(1/2);//sets time unit to half a second
@@ -63,9 +54,11 @@
 
 
 
- ]]></EXAMPLE>
-
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>getdate</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>getdate</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

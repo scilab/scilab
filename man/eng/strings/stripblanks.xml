@@ -1,34 +1,36 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>stripblanks  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1998  </DATE>
+  <DATE>April 199</DATE>
   <SHORT_DESCRIPTION name="stripblanks"> strips leading and trailing blanks of strings  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>txt=stripblanks(txt)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>txt=stripblanks(txt)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>txt  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : string or matrix of strings
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>txt  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string or matrix of strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
-    stripblanks strips leading and trailing blanks of strings
-  </P>
+    <P>
+    stripblanks strips leading and trailing blanks of strings</P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 a='  123   ';
 '!'+a+'!'
 '!'+stripblanks(a)+'!'
 a=['  123   ',' xyz']
 strcat(stripblanks(a))
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
 </MAN>

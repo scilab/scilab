@@ -1,22 +1,28 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>gcf  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE> 04 June 1998  </DATE>
+  <DATE> 04 June 199</DATE>
   <SHORT_DESCRIPTION name="gcf"> gets the current active tksci figure  </SHORT_DESCRIPTION>
   <PARAM>
-  <P>
-    h : handle of the current figure.
-  </P>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: handle of the current figure.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
-    The current figure is the last created (and still existent) figure.
-  </P>
+    <P>
+    The current figure is the last created (and still existent) figure.</P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 figure(5);
 figure();
 figure();
@@ -30,9 +36,15 @@ close(1);
 gcf()
 // returns 5
 close(5);
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>figure</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>close</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>figure</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>close</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
 </MAN>

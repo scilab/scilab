@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>DLSS_f  </TITLE>
   <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 1996  </DATE>
+  <DATE>Janvier 199</DATE>
   <SHORT_DESCRIPTION name="DLSS_f"> Scicos discrete-time linear state-space system  </SHORT_DESCRIPTION>
   <DESCRIPTION>
-  <P>
+    <P>
     This block realizes a discrete-time linear state-space system.
     The system is defined by the (A,B,C,D) matrices and the initial
     state x0. The dimensions must be compatible. At the arrival of
@@ -15,25 +16,34 @@
     updated. 
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='DIALOGUE PARAMETERS'>
-  <ITEM label='A'>
-: square matrix. The A matrix
-
-  </ITEM>
-  <ITEM label='B'>
-: the B matrix
-
-  </ITEM>
-  <ITEM label='C'>
-: the C matrix
-
-  </ITEM>
-  <ITEM label='x0'>
-: vector. The initial state of the system.
-
-  </ITEM>
-  </ITEMIZE>
+  <SECTION label="Dialogue parameters">
+    <ITEMIZE>
+      <ITEM label="A">
+        <SP>: square matrix. The A matrix</SP>
+      </ITEM>
+      <ITEM label="B">
+        <SP>: the B matrix</SP>
+      </ITEM>
+      <ITEM label="C">
+        <SP>: the C matrix</SP>
+      </ITEM>
+      <ITEM label="x0">
+        <SP>: vector. The initial state of the system.</SP>
+      </ITEM>
+    </ITEMIZE>
+  </SECTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>DLR_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>INTEGRAL_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>CLSS_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>DLSS_f</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>DLR_f</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>INTEGRAL_f</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>CLSS_f</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>DLSS_f</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

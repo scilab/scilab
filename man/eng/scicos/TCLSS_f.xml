@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>TCLSS_f  </TITLE>
   <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 1996  </DATE>
+  <DATE>Janvier 199</DATE>
   <SHORT_DESCRIPTION name="TCLSS_f"> Scicos jump continuous-time linear state-space system  </SHORT_DESCRIPTION>
   <DESCRIPTION>
-  <P>
+    <P>
     This block realizes a continuous-time linear state-space system
     with the possibility of jumps in the state. The number of inputs
     to this block is two. The first input is the regular input of the
@@ -21,29 +22,31 @@
     and outputs are adjusted automatically.
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='DIALOGUE PARAMETERS'>
-  <ITEM label='A'>
-: square matrix. The A matrix
-
-  </ITEM>
-  <ITEM label='B'>
-: the B matrix
-
-  </ITEM>
-  <ITEM label='C'>
-: the C matrix
-
-  </ITEM>
-  <ITEM label='D'>
-: the D matrix
-
-  </ITEM>
-  <ITEM label='x0'>
-: vector. The initial state of the system.
-
-  </ITEM>
-  </ITEMIZE>
+  <SECTION label="Dialogue parameters">
+    <ITEMIZE>
+      <ITEM label="A">
+        <SP>: square matrix. The A matrix</SP>
+      </ITEM>
+      <ITEM label="B">
+        <SP>: the B matrix</SP>
+      </ITEM>
+      <ITEM label="C">
+        <SP>: the C matrix</SP>
+      </ITEM>
+      <ITEM label="D">
+        <SP>: the D matrix</SP>
+      </ITEM>
+      <ITEM label="x0">
+        <SP>: vector. The initial state of the system.</SP>
+      </ITEM>
+    </ITEMIZE>
+  </SECTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>CLSS_f</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>CLR_f</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>CLSS_f</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>CLR_f</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -1,53 +1,50 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<?xml version="1.0" standalone="no"?>
+<!--*- mode: xml -*-->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>min_weight_tree  </TITLE>
   <TYPE>Scilab function  </TYPE>
-  <DATE>September 1995  </DATE>
+  <DATE>September 199</DATE>
   <SHORT_DESCRIPTION name="min_weight_tree"> minimum weight spanning tree  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>t = min_weight_tree([i],g)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>t = min_weight_tree([i],g)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>i  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : integer, node number of the root of the tree
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : graph list
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>t  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : row vector of integer numbers of the arcs of the tree if it exists
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>i  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, node number of the root of the tree</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: graph list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: row vector of integer numbers of the arcs of the tree if it exists</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
-    <VERB>min_weight_tree</VERB> tries to find a minimum weight spanning tree for the
+    <P><VERB>min_weight_tree</VERB> tries to find a minimum weight spanning tree for the
     graph <VERB>g</VERB>. The optional argument <VERB>i</VERB> is the number of the root node of
     the tree; its default value is node number 1. This node is meaningless
-    for an undirected graph.
-  </P>
-  <P>
+    for an undirected graph.</P>
+    <P>
     The weights are given by the element <VERB>edge_weight</VERB> of the graph list. 
     If its value is not given (empty vector <VERB>[]</VERB>), it is assumed to be 
     equal to 0 on each edge.
     Weigths can be positive, equal to 0 or negative. To compute a spanning
     tree without dealing with weights, give to weights a value of 0 on each 
-    edge or the empty vector <VERB>[]</VERB>.
-  </P>
-  <P>
-    <VERB>min_weight_tree</VERB> returns the tree <VERB>t</VERB> as a row vector of the
+    edge or the empty vector <VERB>[]</VERB>.</P>
+    <P><VERB>min_weight_tree</VERB> returns the tree <VERB>t</VERB> as a row vector of the
     arc numbers (directed graph) or edge numbers (undirected graph)
     if it exists or the empty vector <VERB>[]</VERB> otherwise. 
     If the tree exists, the dimension of <VERB>t</VERB> is the number of nodes less 1.
@@ -55,11 +52,10 @@
       - for j &lt; i, <VERB>t(j)</VERB> is the number of the arc in the tree after
           node <VERB>t(j)</VERB>
       - for j &gt; i, <VERB>t(j)</VERB> is the number of the arc in the tree before 
-          node <VERB>t(j)</VERB>
-      
-  </P>
+          node <VERB>t(j)</VERB></P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -73,5 +69,6 @@ edgecolor=1*ones(1,ma); edgecolor(t)=11*ones(t); g1('edge_color')=edgecolor;
 edgewidth=1*ones(1,ma); edgewidth(t)=4*ones(t); g1('edge_width')=edgewidth;
 x_message('Minimum weight tree from node 1');
 show_graph(g1);
- ]]></EXAMPLE>
+ ]]>
+  </EXAMPLE>
 </MAN>
