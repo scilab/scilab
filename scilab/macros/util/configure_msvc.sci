@@ -93,7 +93,7 @@ if MSDOS then
 else
   bOK=%F;
 end
-endfuntion
+endfunction
 //-----------------------------------------------------------------------------
 function bOK=setmsvc60()
 if MSDOS then
@@ -129,7 +129,7 @@ if MSDOS then
 else
   bOK=%F;
 end
-endfuntion
+endfunction
 //-----------------------------------------------------------------------------
 function bOK=setmsvc50()
 if MSDOS then
@@ -162,5 +162,5 @@ if MSDOS then
 else
   bOK=%F;
 end
-endfuntion
+endfunction
 //-----------------------------------------------------------------------------
