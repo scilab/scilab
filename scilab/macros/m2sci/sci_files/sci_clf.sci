@@ -9,6 +9,9 @@ function [tree]=sci_clf(tree)
 if rhs<1 then
   set_infos("All children will be deleted, no HandleVisibility property in Scilab graphics.",2);
 end
+if rhs==1 then
+  set_infos("All properties will be reset.",2);
+end
 
 // f=gcf()
 if tree.lhs(1).name<>"ans" then
@@ -17,8 +20,5 @@ else
   f=gettempvar()
 end
 insert(Equal(list(f),Funcall("gcf",1,list(),list())))
-
-tree.name="delete"
-tree.rhs=list(Operation("ext",list(f,Cste("children")),list()))
 tree.lhs(1).name="ans"
 endfunction
