@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xdr", "xdr.vcproj", "{C304B910-C045-49DB-83C7-7730BCDD162C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{C304B910-C045-49DB-83C7-7730BCDD162C}.Debug.ActiveCfg = Debug|Win32
+		{C304B910-C045-49DB-83C7-7730BCDD162C}.Debug.Build.0 = Debug|Win32
+		{C304B910-C045-49DB-83C7-7730BCDD162C}.Release.ActiveCfg = Release|Win32
+		{C304B910-C045-49DB-83C7-7730BCDD162C}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
