@@ -36,17 +36,20 @@
 </xsl:if>
 
 
+<!-- A corriger 
 <xsl:if test="./EXAMPLE">
-<H3>EXAMPLES</H3>
-
-<ul>
-<pre><xsl:value-of select="./EXAMPLE/self::node()"/>
-</pre>
-</ul>
-
+	<H3><font color="blue"><a><xsl:attribute name="href">toscilab.html</xsl:attribute>
+	<xsl:attribute name="title"><xsl:value-of select="./EXAMPLE/self::node()" /></xsl:attribute>Examples</a>
+	</font></H3>
+	<dl><table bgcolor="lightblue"><tr><td><pre><xsl:value-of select="./EXAMPLE/self::node()"/></pre></td></tr></table></dl>
 </xsl:if>
+--> 
 
 
+<xsl:if test="./EXAMPLE">
+	<H3><font color="blue">Examples</font></H3>
+	<dl><table bgcolor="lightblue"><tr><td><pre><xsl:value-of select="./EXAMPLE/self::node()"/></pre></td></tr></table></dl>
+</xsl:if>
 
 <xsl:if test="./SEE_ALSO/SEE_ALSO_ITEM">
 	<H3><font color="blue">See Also</font></H3>
