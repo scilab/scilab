@@ -180,7 +180,7 @@ void GetCommand ( char *str)
 
 integer C2F(ismenu)()
 {
-  if ( commandQueue == NULL ) 
+  if ( (commandQueue == NULL) || (C2F(com).comp[0] != 0)) 
     return(0) ;
   else 
     return(1);
