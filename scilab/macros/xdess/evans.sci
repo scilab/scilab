@@ -114,7 +114,8 @@ if dx<1d-10, dx=0.01,end
 if dy<1d-10, dy=0.01,end
 
 rect=[xmin-dx;ymin-dy;xmax+dx;ymax+dy];
-
+gstyle=get('figure_style')
+if gstyle=='new' then f=gcf();f.visible='off',end
 plot2d([],[],rect=[xmin-dx;ymin-dy;xmax+dx;ymax+dy],frameflag=7)
 
 dx=maxi(abs(xmax-xmin),abs(ymax-ymin));
@@ -164,7 +165,7 @@ end;
 plot2d(real(racines)',imag(racines)',style=2+(1:n2),frameflag=0,axesflag=0);
 legends(legs,lstyle,1)
 xtitle('Evans root locus','Real axis','Imag. axis');
-
+if gstyle=='new' then f=gcf();f.visible='on',end
 
 if fin=='nptmax' then
   write(%io(2),'evans : too many points required')
