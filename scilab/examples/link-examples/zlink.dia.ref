@@ -8,9 +8,7 @@ files=G_make(['/tmp/ext1c.o'],'ext1c.dll');
  
 link(files,'ext1c','C');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[4,5,6];n=3;
@@ -31,9 +29,7 @@ files=G_make(['/tmp/ext1f.o'],'ext1f.dll');
  
 link(files,'ext1f');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[4,5,6];n=3;
@@ -53,9 +49,7 @@ files=G_make(['/tmp/ext2c.o'],'ext2c.dll');
  
 link(files,'ext2c','C');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[4,5,6];n=3;
@@ -74,9 +68,7 @@ files=G_make(['/tmp/ext2f.o'],'ext2f.dll');
  
 link(files,'ext2f');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[4,5,6];n=3;
@@ -95,9 +87,7 @@ files=G_make(['/tmp/ext3c.o'],'ext3c.dll');
  
 link(files,'ext3c','C');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[4,5,6];n=3;
@@ -120,9 +110,7 @@ files=G_make(['/tmp/ext3f.o'],'ext3f.dll');
  
 link(files,'ext3f');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[4,5,6];n=3;
@@ -145,9 +133,7 @@ files=G_make(['/tmp/ext4c.o'],'ext4c.dll');
  
 link(files,'ext4c','C');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[4,5,6];n=3;YesOrNo='yes';
@@ -172,9 +158,7 @@ files=G_make(['/tmp/ext4f.o'],'ext4f.dll');
  
 link(files,'ext4f');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[4,5,6];n=3;yes='yes';
@@ -199,9 +183,7 @@ files=G_make(['/tmp/ext5c.o'],'ext5c.dll');
  
 link(files,'ext5c','C');
 shared archive loaded
-
 Link done
-
  
  
 // reading vector a in scilab internal stack
@@ -220,9 +202,7 @@ files=G_make(['/tmp/ext5f.o'],'ext5f.dll');
  
 link(files,'ext5f');
 shared archive loaded
-
 Link done
-
  
  
 // reading vector a in scilab internal stack
@@ -243,9 +223,7 @@ files=G_make(['/tmp/ext6c.o'],'ext6c.dll');
  
 link(files,'ext6c','C');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[2,3,4];
@@ -266,9 +244,7 @@ files=G_make(['/tmp/ext6f.o'],'ext6f.dll');
  
 link(files,'ext6f');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[2,3,4];
@@ -288,9 +264,7 @@ files=G_make(['/tmp/ext7c.o'],'ext7c.dll');
  
 link(files,'ext7c','C');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3]; b=[2,3,4];
@@ -320,9 +294,7 @@ files=G_make(['/tmp/ext7f.o'],'ext7f.dll');
  
 link(files,'ext7f');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3]; b=[2,3,4];
@@ -354,9 +326,7 @@ files=G_make(['/tmp/ext8c.o'],'ext8c.dll');
  
 link(files,'ext8c','C');
 shared archive loaded
-
 Link done
-
  
  
 param=[1,2,3]
@@ -383,9 +353,7 @@ files=G_make(['/tmp/ext8f.o'],'ext8f.dll');
  
 link(files,'ext8f');
 shared archive loaded
-
 Link done
-
  
  
 param=[1,2,3];
@@ -410,9 +378,7 @@ files=G_make(['/tmp/ext9c.o'],'ext9c.dll');
  
 link(files,'ext9c','C');
 shared archive loaded
-
 Link done
-
  
  
 ode([1;0;0],0,[0.4,4],'ext9c')
@@ -434,9 +400,7 @@ files=G_make(['/tmp/ext9f.o'],'ext9f.dll');
  
 link(files,'ext9f');
 shared archive loaded
-
 Link done
-
  
  
 ode([1;0;0],0,[0.4,4],'ext9f')
@@ -453,9 +417,7 @@ files=G_make(['/tmp/ext10c.o'],'ext10c.dll');
  
 link(files,'ext10c','C');
 shared archive loaded
-
 Link done
-
  
  
 //passing a parameter to ext10c routine by a list:
@@ -476,9 +438,7 @@ files=G_make(['/tmp/ext10f.o'],'ext10f.dll');
  
 link(files,'ext10f');
 shared archive loaded
-
 Link done
-
  
  
 //passing a parameter to ext10f routine by a list:
@@ -501,9 +461,7 @@ files=G_make(['/tmp/ext11c.o'],'ext11c.dll');
  
 link(files,'ext11c','C');
 shared archive loaded
-
 Link done
-
  
  
 param=[0.04,10000,3d+7];
@@ -527,9 +485,7 @@ files=G_make(['/tmp/ext11f.o'],'ext11f.dll');
  
 link(files,'ext11f');
 shared archive loaded
-
 Link done
-
  
  
 param=[0.04,10000,3d+7];
@@ -551,9 +507,7 @@ files=G_make(['/tmp/ext12c.o'],'ext12c.dll');
  
 link(files,'ext12c','C');
 shared archive loaded
-
 Link done
-
  
  
 param=[0.04,10000,3d+7];
@@ -574,9 +528,7 @@ files=G_make(['/tmp/ext12f.o'],'ext12f.dll');
  
 link(files,'ext12f');
 shared archive loaded
-
 Link done
-
  
  
 param=[0.04,10000,3d+7];
@@ -595,9 +547,7 @@ files=G_make(['/tmp/ext13c.o'],'ext13c.dll');
  
 link(files,['ext13ic','ext13oc'],'C');  //Must be linked together
 shared archive loaded
-
 Link done
-
  
  
 a=1:10;
@@ -623,9 +573,7 @@ files=G_make(['/tmp/ext13f.o'],'ext13f.dll');
  
 link(files,['ext13if','ext13of']);  //Must be linked together
 shared archive loaded
-
 Link done
-
  
  
 a=1:10;
@@ -652,9 +600,7 @@ files=G_make(['/tmp/ext14c.o'],'ext14c.dll');
  
 link(files,'ext14cI','C');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[4,5,6];n=3;
@@ -675,9 +621,7 @@ files=G_make(['/tmp/ext14f.o'],'ext14f.dll');
  
 link(files,'ext14fi');
 shared archive loaded
-
 Link done
-
  
  
 a=[1,2,3];b=[4,5,6];n=3;
