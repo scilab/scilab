@@ -178,6 +178,8 @@ extern void set_is_reading(int mode);
 extern int  get_echo_mode();
 extern void sciprint_nd(char *fmt,...);
 extern void C2F(sigbas)(int *n);
+extern void XHomeFunction(void);
+extern int XClearScreenConsole(char *fname);
 
 /*history functions*/
 #include "history.h" 
