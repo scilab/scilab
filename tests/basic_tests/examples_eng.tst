@@ -4797,10 +4797,10 @@ endfunction
 deff('[x,y]=myfct(a,b)',['x=a+b';
                          'y=a-b'])
 // definition in an ascii file (see exec)
-exec SCI/macros/elem/asin.sci;
+exec SCI/macros/elem/asinh.sci;
 
 // definition in an ascii file (see getf)
-getf SCI/macros/elem/asin.sci;
+getf SCI/macros/elem/asinh.sci;
 
 
 xdel(winsid())
@@ -4834,7 +4834,7 @@ foo(%pi/3)
 
 
 // definition in an script file (see exec)
-exec SCI/macros/elem/asin.sci;
+exec SCI/macros/elem/asinh.sci;
 
 
 
@@ -5474,7 +5474,7 @@ xdel(winsid())
 clear;lines(0);
 
 t=%pi*[-10:10]/10;
-deff("[z]=surf(x,y)","z=sin(x)*cos(y)"); z=feval(t,t,surf);
+deff("[z]=Surf(x,y)","z=sin(x)*cos(y)"); z=feval(t,t,Surf);
 rect=[-%pi,%pi,-%pi,%pi,-1,1];
 contour(t,t,z,10,35,45," ",[0,1,0],rect)
 // changing the format of the printing of the levels
@@ -5728,10 +5728,10 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-deff('z=surf(x,y)','z=x^4-y^4')
+deff('z=Surf(x,y)','z=x^4-y^4')
 x=-3:0.1:3;
 y=x;
-fcontour2d(x,y,surf,10);
+fcontour2d(x,y,Surf,10);
 
 xdel(winsid())
 
@@ -5740,12 +5740,12 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-deff("[z]=surf(x,y)","z=sin(x)*cos(y)");
+deff("[z]=Surf(x,y)","z=sin(x)*cos(y)");
 t=%pi*[-10:10]/10;
 
-fcontour(t,t,surf,10)
+fcontour(t,t,Surf,10)
 
-xbasc();fcontour(t,t,surf,10,ebox=[-4 4 -4 4 -1 1],zlev=-1,flag=[0 1 4])
+xbasc();fcontour(t,t,Surf,10,ebox=[-4 4 -4 4 -1 1],zlev=-1,flag=[0 1 4])
  
 xdel(winsid())
 
@@ -5777,8 +5777,8 @@ xdel(winsid())
 clear;lines(0);
 
 t=-1:0.1:1;
-deff("[z]=surf(x,y)","z=x**2+y**2")
-fgrayplot(t,t,surf,rect=[-2,-2,2,2])
+deff("[z]=Surf(x,y)","z=x**2+y**2")
+fgrayplot(t,t,Surf,rect=[-2,-2,2,2])
 
 xdel(winsid())
 
@@ -5996,10 +5996,10 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-deff("[z]=surf(x,y)","z=sin(x)*cos(y)")
+deff("[z]=Surf(x,y)","z=sin(x)*cos(y)")
 t=%pi*(-10:10)/10;
 // 3D plot of the surface
-fplot3d(t,t,surf,35,45,"X@Y@Z")
+fplot3d(t,t,Surf,35,45,"X@Y@Z")
 // now (t,t,sin(t).*cos(t)) is a curve on the surface
 // which can be drawn using geom3d and xpoly
 [x,y]=geom3d(t,t,sin(t).*cos(t));
@@ -7308,8 +7308,8 @@ xdel(winsid())
 clear;lines(0);
 
 t=-1:0.1:1;
-deff("[z]=surf(x,y)","z=x**2+y**2")
-Sfgrayplot(t,t,surf,"111",[-2,-2,2,2])
+deff("[z]=Surf(x,y)","z=x**2+y**2")
+Sfgrayplot(t,t,Surf,"111",[-2,-2,2,2])
 
 xdel(winsid())
 
