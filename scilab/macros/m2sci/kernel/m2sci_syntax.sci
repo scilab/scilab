@@ -259,8 +259,8 @@ for k=1:n
     end
     
     // varargout replaced by %varargout so that code can be compiled with varargout considered as a Cell
-    if isempty(strindex(tkbeg,"function")) then
-      tkbeg=strsubst(tkbeg,"varargout","%varargout")
+    if isempty(strindex(tk,"function")) then
+      tk=strsubst(tk,"varargout","%varargout")
     end
 
     txt(k)=tk
