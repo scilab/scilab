@@ -576,7 +576,7 @@ int C2F(scicos)
      double *told;
 {
   static integer flag__;
-  static integer jj;
+  static integer i,jj;
   static integer ierr1;
   static integer urg;
   static integer i2;
@@ -613,17 +613,21 @@ int C2F(scicos)
 	
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
+	    /*Blocks[C2F(curblk).kfun - 1].nevout = 2;*/
+	    i=2;
 	  } else {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
+	    /*Blocks[C2F(curblk).kfun - 1].nevout = 1;*/
+	    i=1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  Blocks[C2F(curblk).kfun - 1].nevout= 
+	  /*Blocks[C2F(curblk).kfun - 1].nevout= */
+	  i=
 	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++urg;
-	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
+	/*i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;*/
+	i2 =i+ clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -656,7 +660,7 @@ int C2F(scicos)
   static integer iopt;
   
   static integer ierr1;
-  static integer j, k;
+  static integer i,j, k;
   static double t,ttmp;
   static integer itask;
   static integer ib, jj, jt;
@@ -947,7 +951,7 @@ int C2F(scicos)
 	      free(W);
 	      return;
 	    }
-	  L60:
+	  
 	    for (ib = 0; ib < ng; ++ib) {
 	      if (W[ib] != 0. && mask[ib] == 1) {
 		hot = 0;
@@ -955,7 +959,7 @@ int C2F(scicos)
 	      }
 	    }
 	  }
-	
+	L60:
 
 	  if (hot){
 	    istate=2;
@@ -985,15 +989,17 @@ int C2F(scicos)
 	
 	  if (istate <= 0) {
 	    if (istate == -3) {
-	      C2F(grblk)(neq, told, x, &ng, W);
+	      zdoit(W,x,x,told);
 	      for (ib = 0; ib < ng; ++ib) {
-		if (W[ib] == 0.) {
+		if (W[ib] != 0.){
+		  mask[ib] = 0; 
+		}else{
 		  mask[ib] = 1;
 		}
-	      }
+	      }	
 	      hot = 0;
 	      goto L60; 
-	    
+	      
 	    } else {
 	      /* integration problem */
 	      *ierr = 100 - istate;
@@ -1043,11 +1049,6 @@ int C2F(scicos)
 	      free(W);
 	      return;
 	    }
-	    /*     .        initialize mask
-		   for (ib = 0; ib < ng; ++ib) {
-		   mask[ib] = 0;
-		   } */
-
 	    for (jj = 0; jj < ng; ++jj) {
 	      C2F(curblk).kfun = zcros[ jj];
 	      if (C2F(curblk).kfun == -1) {
@@ -1102,8 +1103,7 @@ int C2F(scicos)
 		    }
 		  }
 		  /*     .              update state */
-		  if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].nz
-		      > 0) {
+		  if (Blocks[C2F(curblk).kfun-1].nx +mode[C2F(curblk).kfun-1]> 0) {
 		    /*     .              call corresponding block to update state */
 		    flag__ = 2;
 		    nclock = -kev;
@@ -1123,18 +1123,30 @@ int C2F(scicos)
 		  }
 		}else{
 		  if(funtyp[C2F(curblk).kfun] == -1) {
-		    if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-		      Blocks[C2F(curblk).kfun - 1].nevout = 2;
+		    if (*Blocks[C2F(curblk).kfun - 1].jroot==-1){
+		      /*
+			(outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
+		      Blocks[C2F(curblk).kfun - 1].nevout = 2;*/
+		      i=2;
 		    } else {
-		      Blocks[C2F(curblk).kfun - 1].nevout = 1;
+		      /*Blocks[C2F(curblk).kfun - 1].nevout = 1;*/
+		      i=1;
 		    }
+		    
 		  } else if (funtyp[C2F(curblk).kfun] == -2) {
-		    Blocks[C2F(curblk).kfun - 1].nevout= 
-		      max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-			      Blocks[C2F(curblk).kfun - 1].nevout),1);
+		    /*Blocks[C2F(curblk).kfun - 1].nevout= */
+		    for(i3=0;i3<Blocks[C2F(curblk).kfun - 1].ng;++i3){
+		      if(Blocks[C2F(curblk).kfun - 1].jroot[i3]==1){
+			i=i3+1+Blocks[C2F(curblk).kfun - 1].jroot[i3];
+		      }else if(Blocks[C2F(curblk).kfun - 1].jroot[i3]==-1){
+			i=i3+2+Blocks[C2F(curblk).kfun - 1].jroot[i3];
+		      }
+		    }
 		  }
-		  i3 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
-		  putevs(told, &i3, &ierr1);
+		  mode[C2F(curblk).kfun-1]=i;
+		  /* a decider si il faut propager initialisation par synchors
+		  i3=i+ clkptr[C2F(curblk).kfun] - 1;
+		  putevs(told, &i3, &ierr1);*/
 		  if (ierr1 != 0) {
 		    /*     !                 event conflict */
 		    *ierr = 3;
@@ -1204,7 +1216,7 @@ int C2F(scicos)
   static integer iopt, info[20];
 
   static integer ierr1;
-  static integer j, k;
+  static integer i,j, k;
   static double t;
   static integer ib, jj, jt;
   static integer istate, ntimer;
@@ -1248,7 +1260,7 @@ int C2F(scicos)
     free(jroot);
     return;
   }
-  if((mode=malloc(sizeof(int)*nblk*2))== NULL ){
+  if((mode=malloc(sizeof(int)*(nblk+(*neq))))== NULL ){
     *ierr =10000;
     free(rhot);
     free(ihot);
@@ -1537,7 +1549,7 @@ int C2F(scicos)
 	      free(W);
 	      return;
 	    }
-	  L60:
+	  
 	    for (ib = 0; ib < ng; ++ib) {
 	      if (W[ib] != 0. && mask[ib] == 1) {
 		hot = 0;
@@ -1545,7 +1557,7 @@ int C2F(scicos)
 	      }
 	    }
 	  }
-	  
+	L60:
 	  if (C2F(cosdebug).cosd >= 1) {
 	    sciprint("****daskr from: %f to %f hot= %d\r\n", *told, t,hot);
 	  }
@@ -1686,8 +1698,7 @@ int C2F(scicos)
 		    }
 		  }
 		  /*     .              update state */
-		  if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].nz
-		      > 0) {
+		  if (Blocks[C2F(curblk).kfun-1].nx +mode[C2F(curblk).kfun-1]> 0) {
 		    /*     .              call corresponding block to update state */
 		    flag__ = 2;
 		    nclock = -kev;
@@ -1706,18 +1717,24 @@ int C2F(scicos)
 		  }
 		}else{/* for re-initialization */
 		  if(funtyp[C2F(curblk).kfun] == -1) {
-		    if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-		      Blocks[C2F(curblk).kfun - 1].nevout = 2;
+		    if (*Blocks[C2F(curblk).kfun - 1].jroot==-1){
+		      i=2;
 		    } else {
-		      Blocks[C2F(curblk).kfun - 1].nevout = 1;
+		      i=1;
 		    }
 		  } else if (funtyp[C2F(curblk).kfun] == -2) {
-		    Blocks[C2F(curblk).kfun - 1].nevout= 
-		      max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-			      Blocks[C2F(curblk).kfun - 1].nevout),1);
+		    for(i3=0;i3<Blocks[C2F(curblk).kfun - 1].ng;++i3){
+		      if(Blocks[C2F(curblk).kfun - 1].jroot[i3]==1){
+			i=i3+1+Blocks[C2F(curblk).kfun - 1].jroot[i3];
+		      }else if(Blocks[C2F(curblk).kfun - 1].jroot[i3]==-1){
+			i=i3+2+Blocks[C2F(curblk).kfun - 1].jroot[i3];
+		      }
+		    }
 		  }
-		  i3 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
-		  putevs(told, &i3, &ierr1);
+		  mode[C2F(curblk).kfun-1]=i;
+		  /* a decider
+		  i3 = i + clkptr[C2F(curblk).kfun] - 1;
+		  putevs(told, &i3, &ierr1);*/
 		  if (ierr1 != 0) {
 		    /*     !                 event conflict */
 		    *ierr = 3;
@@ -1806,7 +1823,7 @@ int C2F(scicos)
      integer *urg;
 {
   /* System generated locals */
-  integer i2;
+  integer i,i2;
 
   /* Local variables */
   static integer flag__, keve, nord;
@@ -1846,18 +1863,18 @@ int C2F(scicos)
       if (funtyp[C2F(curblk).kfun] < 0) {
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
+	    i= 2;
 	  } else {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
+	    i= 1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 
-	  Blocks[C2F(curblk).kfun - 1].nevout= 
+	  i=
 	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++(*urg);
-	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
+	i2 = i + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -1879,7 +1896,7 @@ int C2F(scicos)
   static integer flag__;
   static integer ierr1;
 
-  static integer jj;
+  static integer i,jj;
   static integer urg;
 
 
@@ -1904,17 +1921,17 @@ int C2F(scicos)
 
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
+	    i = 2;
 	  } else {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
+	    i = 1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  Blocks[C2F(curblk).kfun - 1].nevout= 
+	  i=
 	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++urg;
-	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
+	i2 = i + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -2068,17 +2085,17 @@ int C2F(scicos)
       } else {
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
+	    i = 2;
 	  } else {
-	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
+	    i = 1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  Blocks[C2F(curblk).kfun - 1].nevout= 
+	  i=
 	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++(*urg);
-	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
+	i2 = i + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -2124,17 +2141,21 @@ int C2F(scicos)
 
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
-	if (funtyp[C2F(curblk).kfun] == -1) {
+
+
+	/*	if (funtyp[C2F(curblk).kfun] == -1) {
 	  Blocks[C2F(curblk).kfun - 1].nevout=
 	    mode[C2F(curblk).kfun - 1];
 	  
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 	  Blocks[C2F(curblk).kfun - 1].nevout=
 	    mode[C2F(curblk).kfun - 1];
-	}
+	    }*/
 	
 	++urg;
-	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
+	/*i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;*/
+
+	i2 = mode[C2F(curblk).kfun - 1] + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -2192,7 +2213,7 @@ int C2F(scicos)
   static integer flag__, keve, nord;
 
   static integer ierr1;
-  static integer ii;
+  static integer i,ii;
 
   /* Function Body */
   --(*urg);
@@ -2228,27 +2249,33 @@ int C2F(scicos)
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (phase==1){
 	    if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	      Blocks[C2F(curblk).kfun - 1].nevout = 2;
+	      /*  Blocks[C2F(curblk).kfun - 1].nevout = 2;*/
+	      i=2;
 	    } else {
-	      Blocks[C2F(curblk).kfun - 1].nevout = 1;
+	     /* Blocks[C2F(curblk).kfun - 1].nevout = 1;*/
+	      i=1;
 	    }
 	  }else{
-	    Blocks[C2F(curblk).kfun - 1].nevout=
-	      mode[C2F(curblk).kfun - 1];
+	   /* Blocks[C2F(curblk).kfun - 1].nevout=
+	      mode[C2F(curblk).kfun - 1];*/
+	    i=mode[C2F(curblk).kfun - 1];
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 	  if (phase==1){
-	    Blocks[C2F(curblk).kfun - 1].nevout= 
+	    /* Blocks[C2F(curblk).kfun - 1].nevout= */
+	    i=
 	      max(min((integer) 
 		      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);
 	  }else{
-	    Blocks[C2F(curblk).kfun - 1].nevout=
+	    /*Blocks[C2F(curblk).kfun - 1].nevout=*/
+	    i=
 	      mode[C2F(curblk).kfun - 1];
 	  }
 	}
 	++(*urg);
-	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
+	/*i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;*/
+	i2 =i+clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -2271,7 +2298,7 @@ int C2F(scicos)
   /* Local variables */
   static integer flag__, keve, kiwa;
 
-  static integer ierr1, i;
+  static integer ierr1, i,j;
   static integer ii, jj;
   static integer urg;
   static integer mode_save;
@@ -2299,7 +2326,40 @@ int C2F(scicos)
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
 
+
 	if (funtyp[C2F(curblk).kfun] == -1) {
+	  if (phase==1){
+	    if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
+	      /*  Blocks[C2F(curblk).kfun - 1].nevout = 2;*/
+	      i=2;
+	    } else {
+	     /* Blocks[C2F(curblk).kfun - 1].nevout = 1;*/
+	      i=1;
+	    }
+	  }else{
+	   /* Blocks[C2F(curblk).kfun - 1].nevout=
+	      mode[C2F(curblk).kfun - 1];*/
+	    i=mode[C2F(curblk).kfun - 1];
+	  }
+	} else if (funtyp[C2F(curblk).kfun] == -2) {
+	  if (phase==1){
+	    /* Blocks[C2F(curblk).kfun - 1].nevout= */
+	    i=
+	      max(min((integer) 
+		      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		      Blocks[C2F(curblk).kfun - 1].nevout),1);
+	  }else{
+	    /*Blocks[C2F(curblk).kfun - 1].nevout=*/
+	    i=
+	      mode[C2F(curblk).kfun - 1];
+	  }
+	}
+	++(urg);
+	/*i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;*/
+	i2 =i+clkptr[C2F(curblk).kfun] - 1;
+
+
+	/*	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (phase==1){
 	    if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
 	      Blocks[C2F(curblk).kfun - 1].nevout = 2;
@@ -2322,7 +2382,10 @@ int C2F(scicos)
 	  }
 	}
 	++urg;
-	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
+	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;*/
+
+
+
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -2372,17 +2435,18 @@ int C2F(scicos)
 	    }
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  for (ii=0;ii<Blocks[C2F(curblk).kfun - 1].nevout-1;++i) {
-	    g[zcptr[C2F(curblk).kfun]-1+ii]=
-	      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]+ii];
+	  for (jj=0;jj<Blocks[C2F(curblk).kfun - 1].nevout-1;++jj) {
+	    g[zcptr[C2F(curblk).kfun]-1+jj]=
+	      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]]
+	      -(double)(jj+2);
 	  }
 	  if(phase==1){
-	    i=max(min((integer) 
+	    j=max(min((integer) 
 		      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);
-	    if(mode[C2F(curblk).kfun - 1] != i){
+	    if(mode[C2F(curblk).kfun - 1] != j){
 	      hot=0;
-	      mode[C2F(curblk).kfun - 1]= i;
+	      mode[C2F(curblk).kfun - 1]= j;
 	    }
 	  }
 	}
@@ -2425,18 +2489,18 @@ int C2F(scicos)
 	      }
 	    }
 	  } else if (funtyp[C2F(curblk).kfun] == -2) {
-	    for (ii=0;ii<Blocks[C2F(curblk).kfun - 1].nevout-1;++i) {
-	      g[zcptr[C2F(curblk).kfun]-1-ii]=
+	    for (jj=0;jj<Blocks[C2F(curblk).kfun - 1].nevout-1;++jj) {
+	      g[zcptr[C2F(curblk).kfun]-1+jj]=
 		outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]]
-		-(double)(ii+1);
+		-(double)(jj+2);
 	    }
 	    if(phase==1){
-	      i=max(min((integer) 
+	      j=max(min((integer) 
 			outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 			Blocks[C2F(curblk).kfun - 1].nevout),1);
-	      if(mode[C2F(curblk).kfun - 1] != i){
+	      if(mode[C2F(curblk).kfun - 1] != j){
 		hot=0;
-		mode[C2F(curblk).kfun - 1]= i;
+		mode[C2F(curblk).kfun - 1]= j;
 	      }
 	    }
 	  }
