@@ -2,16 +2,23 @@
  * Copyright Jean-Philippe Chancelier 
  * ENPC 
  **************************************/
+#include <setjmp.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <signal.h>
 
 #include "../machine.h"
 #include "../sun/addinter.h" /* for DynInterfStart */
-#include <setjmp.h>
+
 static  jmp_buf jmp_env; 
 extern int  C2F(matdsc) __PARAMS((void));
 extern int  C2F(matdsr) __PARAMS((void));
 extern int  C2F(userlk) __PARAMS((int *));
 extern int  C2F(error) __PARAMS((int *));
 extern void sciprint __PARAMS((char* ,...));
+
+extern void  errjump(int n);
+extern void  sci_sig_tstp(int n);
 /***********************************************************
  * interface function 
  ***********************************************************/
@@ -63,12 +70,16 @@ int C2F(callinterf)(k,iflagint)
       int *k,*iflagint;
 {
   int returned_from_longjump ;
-  static count = 0;
+  static int count = 0;
   Iflag=*iflagint;
   if ( count == 0) 
     {
+      /* fprintf(stderr," je fixe le SIGTSTP a errjump "); */
+      /*XX signal (SIGTSTP ,errjump); */
       if (( returned_from_longjump = setjmp(jmp_env)) != 0 )
 	{
+	  /*XX signal (SIGTSTP ,sci_sig_tstp) ; */
+	  Scierror(999,"SIGSTP: aborting current computation\r\n");
 	  count = 0;
 	  return 0;
 	}
@@ -79,6 +90,10 @@ int C2F(callinterf)(k,iflagint)
   else
     (*(Interfaces[*k-1].fonc))();
   count--;
+  if (count == 0) { 
+    /* fprintf(stderr," je retire  SIGTSTP "); */
+    /*XX  signal (SIGTSTP ,sci_sig_tstp); */
+  }
   return 0;
 }
 
@@ -107,7 +122,11 @@ int ForceLink()
   return 0;
 }
 
-extern int errjump()
+/*-------------------------------------
+ * long jump to stop interface computation 
+ *-------------------------------------*/
+
+void errjump(int n)
 {
-longjmp(jmp_env,-1); 
+  longjmp(jmp_env,-1); 
 }
