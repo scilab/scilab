@@ -535,3 +535,5 @@
 {"%i_p",		IN_intelm,	23,	3},
 {"iconvert",		IN_intelm,	24,	3},
 {"%i_matrix",		IN_intelm,	25,	3},
+#define  IN_intlapack  44
+{"lap_qr",		IN_intlapack,	1,	3},

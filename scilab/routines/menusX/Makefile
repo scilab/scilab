@@ -19,7 +19,7 @@ WOBJS = wmen_choice.o wmen_choose.o wmen_dialog.o wmen_getfile.o \
 GOBJS = gxmen_choice.o gxmen_choose.o gxmen_dialog.o gxmen_getfile.o \
 	gxmen_mdial.o gxmen_message.o gxmen_print.o gxmen_madial.o
 
-OBJSC = $(COMM) $(GOBJS) 
+OBJSC = $(COMM) $(XOBJS) 
 
 include ../../Makefile.incl
 
