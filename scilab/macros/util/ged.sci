@@ -2,28 +2,35 @@ function ged(k,win)
   //xset, xget used because ged should handle both old and new style
   cur=xget('window')
   xset('window',win) 
-  if  get('figure_style')=='old' then 
-    message('Edit menu does not apply to old style graphics')
-    unsetmenu(win,'Edit')
+  isold=get('figure_style')=='old'
+  if isold&k>3 then 
+    message('this menu does not apply to old style graphics')
     xset('window',cur)
     return
   end
-  TK_EvalStr("set isgedinterp [interp exists ged]")
-  if TK_GetVar("isgedinterp")=='0' then    
-    TK_EvalStr("interp create ged")
-    TK_EvalStr("load {'+gettklib()+'} Tk ged")
-    TK_EvalStr("ged eval {wm withdraw .}")
+  if k>3 then
+    TK_EvalStr("set isgedinterp [interp exists ged]")
+    if TK_GetVar("isgedinterp")=='0' then    
+      TK_EvalStr("interp create ged")
+      TK_EvalStr("load {'+gettklib()+'} Tk ged")
+      TK_EvalStr("ged eval {wm withdraw .}")
+    end
   end
 
   select k
-    case 1 then //edit current figure properties
+    case 1 then //Select (make it current)
+    return
+    case 2 then //redraw
+    if isold then xbasr(win),end
+    case 3 then //erase
+    xbasc()
+    case 4 then //edit current figure properties
     ged_figure(gcf())
-    //to be done
-    case 2 then //edit current axes
+    case 5 then //edit current axes
     ged_axes(gca())
-    case 3 then //start Entity picker
+    case 6 then //start Entity picker
     seteventhandler("ged_eventhandler")
-    case 4 then //stop Entity picker
+    case 7 then //stop Entity picker
     seteventhandler("")
   end
   xset('window',cur)
@@ -34,7 +41,10 @@ endfunction
 
 function ged_figure(h)
   global ged_handle;ged_handle=h;
-  message('to be defined')
+  TK_SetVar("background",string(h.background))
+  TK_SetVar("rotation_style",h.rotation_style)
+  TK_SetVar("figure_name",h.figure_name)
+  TK_EvalFile(SCI+'/tcl/ged/Figure.tcl')
 endfunction
 
 function ged_axes(h)
