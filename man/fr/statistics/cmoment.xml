@@ -53,19 +53,19 @@ mom=cmoment(x,2,'r')
 mom=cmoment(x,3,'c')
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>median</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>st_deviation</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>mean</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>meanf</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>moment</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>nanmean</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>nanmeanf</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>stdev</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>stdevf</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>variance</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>variancef</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
-    <LINK>nanstdev</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>sum</LINK>    </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>median</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>st_deviation</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>mean</LINK>  </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>meanf</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>moment</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>nanmean</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>nanmeanf</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>stdev</LINK>  </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>stdevf</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>variance</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>variancef</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>nanstdev</LINK> </SEE_ALSO_ITEM> 
   </SEE_ALSO>
   <AUTHOR> Carlos Klimann  </AUTHOR>
 </MAN>
