@@ -550,6 +550,7 @@
 {"lap_schur",		IN_intlapack,	11,	3},
 {"lap_hess",		IN_intlapack,	12,	3},
 {"lap_gspec",		IN_intlapack,	13,	3},
+{"lap_gschur",		IN_intlapack,	14,	3},
 #define  IN_intslicot  45
 {"sident",		IN_intslicot,	1,	3},
 {"sorder",		IN_intslicot,	2,	3},
@@ -557,3 +558,4 @@
 {"rankqr",		IN_intslicot,	4,	3},
 {"contr",		IN_intslicot,	5,	3},
 {"mucomp",		IN_intslicot,	6,	3},
+{"pet_ricc",		IN_intslicot,	7,	3},
