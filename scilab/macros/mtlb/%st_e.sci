@@ -1,12 +1,12 @@
 function s=%st_e(varargin)
-  s=varargin($)
-  sz=size(getfield(1,s),'*')
-  
-  for k=2:sz
-    x=getfield(k,s)
-    if size(x,'*')>1 then
-      x=x(varargin(1:$-1))
-      setfield(k,x,s)
-    end
+//substruct x(i,j,k...)
+w=varargin($);
+sz=size(getfield(1,w),'*')
+[indx,I]=convertindex(w.dims,varargin(1:$-1));
+s=mlist(getfield(1,w),int32([1,1]));
+for k=3:sz
+    ww=getfield(k,w);
+    ext=ww(I)
+    setfield(k,ext,s)
   end
 endfunction
