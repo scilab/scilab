@@ -37,17 +37,20 @@ for k=1:size(%helps,1)
     for k1=f
       w=whatis(k1)
       i=strindex(w,">"); j=strindex(w,"</A>")
-      lname=part(w,i(2)+1:j-1)
-      lnames=getwords(lname) // transforms "toto titi tata" into ["toto" "titi" "tata"]
-      for ii=lnames
-	ok=%F
-	if ii==name then
-	  i=strindex(w,"HREF="""); j=strindex(w,""">")
-	  man=%helps(k,1)+sep+part(w,[i+6:j-1])
+      if j<>[] then 
+	lname=part(w,i(2)+1:j-1)
+	lnames=getwords(lname) 
+	// transforms "toto titi tata" into ["toto" "titi" "tata"]
+	for ii=lnames
+	  ok=%F
+	  if ii==name then
+	    i=strindex(w,"HREF="""); j=strindex(w,""">")
+	    man=%helps(k,1)+sep+part(w,[i+6:j-1])
+	  end
+	  if man<>[] then break; end
 	end
 	if man<>[] then break; end
       end
-      if man<>[] then break; end
     end
   end
   if man<>[] then break; end
