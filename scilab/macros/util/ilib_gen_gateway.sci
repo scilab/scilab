@@ -50,7 +50,7 @@ function ilib_gen_gateway(name,tables)
       mclose(fd);
       t1=mgetl(path+tname+'.c') 
       if t1==t then 
-	write(%io(2),'   gateway '+path+tname+'.c'+' unchanged ');
+	//	write(%io(2),'   gateway '+path+tname+'.c'+' unchanged ');
       else
 	 mputl(t,path+tname+'.c')    
       end
