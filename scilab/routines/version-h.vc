@@ -1,7 +1,7 @@
 #ifndef SCI_VERSION_H 
 #define SCI_VERSION_H 
 
-#define VERSION "Scilab-3.0-CVS"
-#define DEFAULT_MES "Scilab-3.0-CVS (INRIA,ENPC)"
+#define VERSION "Scilab-3.0-RC1"
+#define DEFAULT_MES "Scilab-3.0-RC1 (INRIA,ENPC)"
 
 #endif 
