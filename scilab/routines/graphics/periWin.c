@@ -3850,7 +3850,7 @@ Window GetWindowNumber(wincount)
 struct BCG *GetWindowXgcNumber(i)
      integer i;
 {
-  return( GetWinXgc(The_List,Max(0,i)));
+    return( GetWinXgc(The_List,Max(0,i)));
 }
 /*-----------------------------------------------------------------------------------*/
 struct BCG *GetWinXgc(listptr, i)
