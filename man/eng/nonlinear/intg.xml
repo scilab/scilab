@@ -93,4 +93,8 @@ abs(exact-intg(0,2*%pi,'intgex'))
       <LINK>ode</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <P>The associated routines can be found in  routines/integ directory :</P>
+    <P>dqag0.f and dqags.f from quadpack </P>
+  </USED_FUNCTIONS>
 </MAN>

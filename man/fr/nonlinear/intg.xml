@@ -95,4 +95,7 @@ abs(exact-intg(0,2*%pi,'intgex'))
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>intc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>inttrap</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intsplin</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ode</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <P>Les programmes correspondants (dqag0.f et  dqags.f de quadpack)  se trouvent dabs le repertoire   routines/integ  :</P>
+  </USED_FUNCTIONS>
 </MAN>
