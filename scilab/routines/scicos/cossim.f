@@ -122,13 +122,17 @@ C     .     no continuous state
             endif
 c     .     update outputs of 'c' type blocks with no continuous state
             if (ncord.eq.0) goto 343
-            call cdoit(neq,x,xptr,z,zptr,iz,izptr,told,tf
-     $           ,tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr
-     $           ,outlnk,lnkptr,clkptr,ordptr,nptr
-     $           ,ordclk,nordcl,cord,iord,niord,oord,zord,critev,
-     $           rpar,rpptr,ipar
-     $           ,ipptr,funptr,funtyp,outtb,w,hot,ierr) 
-            if(ierr.ne.0) return
+            if (told .ge. tf) then
+c     .     we are at the end, update continuous part before leaving            
+               call cdoit(neq,x,xptr,z,zptr,iz,izptr,told,tf
+     $              ,tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr
+     $              ,outlnk,lnkptr,clkptr,ordptr,nptr
+     $              ,ordclk,nordcl,cord,iord,niord,oord,zord,critev,
+     $              rpar,rpptr,ipar
+     $              ,ipptr,funptr,funtyp,outtb,w,hot,ierr) 
+c     .        if(ierr.ne.0) return
+               return
+            endif
  343        continue
 C     
          else
@@ -208,13 +212,17 @@ c     .     update outputs of 'c' type  blocks
             nclock = 0
             ntvec=0
             if (ncord.gt.0) then
-               call cdoit(neq,x,xptr,z,zptr,iz,izptr,told,tf
-     $              ,tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr
-     $              ,outlnk,lnkptr,clkptr,ordptr,nptr
-     $              ,ordclk,nordcl,cord,iord,niord,oord,zord,critev,
-     $              rpar,rpptr,ipar
-     $              ,ipptr,funptr,funtyp,outtb,w,hot,ierr) 
-               if(ierr.ne.0) return
+               if (told .ge. tf) then
+c     .        we are at the end, update continuous part before leaving
+                  call cdoit(neq,x,xptr,z,zptr,iz,izptr,told,tf
+     $                 ,tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr
+     $                 ,outlnk,lnkptr,clkptr,ordptr,nptr
+     $                 ,ordclk,nordcl,cord,iord,niord,oord,zord,critev,
+     $                 rpar,rpptr,ipar
+     $                 ,ipptr,funptr,funtyp,outtb,w,hot,ierr) 
+c                  if(ierr.ne.0) return
+                  return
+               endif
             endif
             if (istate .eq. 3) then
 C     .        at a least one root has been found
@@ -431,15 +439,19 @@ C     .     no continuous state
             endif
 c     .     update outputs of 'c' type blocks with no continuous state
             if (ncord.eq.0) goto 343
-            hot=info(1).eq.1
-            call cdoit(neq,x,xptr,z,zptr,iz,izptr,told,tf
-     $           ,tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr
-     $           ,outlnk,lnkptr,clkptr,ordptr,nptr
-     $           ,ordclk,nordcl,cord,iord,niord,oord,zord,critev,
-     $           rpar,rpptr,ipar
-     $           ,ipptr,funptr,funtyp,outtb,w,hot,ierr) 
-            if(ierr.ne.0) return
-            if(.NOT.hot) info(1)=0
+            if (told .ge. tf) then
+c     .     we are at the end, update continuous part before leaving
+c               hot=info(1).eq.1
+               call cdoit(neq,x,xptr,z,zptr,iz,izptr,told,tf
+     $              ,tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr
+     $              ,outlnk,lnkptr,clkptr,ordptr,nptr
+     $              ,ordclk,nordcl,cord,iord,niord,oord,zord,critev,
+     $              rpar,rpptr,ipar
+     $              ,ipptr,funptr,funtyp,outtb,w,hot,ierr) 
+c               if(ierr.ne.0) return
+               return
+c               if(.NOT.hot) info(1)=0
+            endif
  343        continue
 C     
          else
@@ -531,15 +543,19 @@ c     .     update outputs of 'c' type  blocks
             nclock = 0
             ntvec=0
             if (ncord.gt.0) then
-               hot=info(1).eq.1
-               call cdoit(neq,x,xptr,z,zptr,iz,izptr,told,tf
-     $              ,tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr
-     $              ,outlnk,lnkptr,clkptr,ordptr,nptr
-     $              ,ordclk,nordcl,cord,iord,niord,oord,zord,critev,
-     $              rpar,rpptr,ipar
-     $              ,ipptr,funptr,funtyp,outtb,w,hot,ierr) 
-               if(ierr.ne.0) return
-               if(.NOT.hot) info(1)=0
+               if (told .ge. tf) then
+c     .        we are at the end, update continuous part before leaving
+c                  hot=info(1).eq.1
+                  call cdoit(neq,x,xptr,z,zptr,iz,izptr,told,tf
+     $                 ,tevts,evtspt,nevts,pointi,inpptr,inplnk,outptr
+     $                 ,outlnk,lnkptr,clkptr,ordptr,nptr
+     $                 ,ordclk,nordcl,cord,iord,niord,oord,zord,critev,
+     $                 rpar,rpptr,ipar
+     $                 ,ipptr,funptr,funtyp,outtb,w,hot,ierr) 
+c                  if(ierr.ne.0) return
+                  return
+c                  if(.NOT.hot) info(1)=0
+               endif
             endif
             if (istate .eq. 4) then
                info(1)=0
@@ -582,8 +598,6 @@ c     .              call corresponding block to determine output event (kev)
 c     .              update event agenda
                         do 47 k=1,clkptr(kfun+1)-clkptr(kfun)
                            if (tvec(k).ge.told) then
-c     if (critev(k+clkptr(kfun)-1).eq.1)
-c     $                             hot=.false.
                               if (critev(k+clkptr(kfun)-1).eq.1)
      $                             info(1)=0
                               call addevs(tevts,evtspt,nevts,
