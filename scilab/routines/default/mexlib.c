@@ -194,7 +194,7 @@ int theMLIST(int *loci)
  *----------------------------------------------------------------------
  **************************************************************************/
 
-mxClassID mxGetClassID(const mxArray *ptr)
+mxClassID mxGetClassID(mxArray *ptr)
 {
   /* TO BE DONE */
   int *loci = (int *) stkptr((long int)ptr);
