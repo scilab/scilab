@@ -1,9 +1,12 @@
+#-----------------------------
+# generated from Makefile: DO NOT EDIT
+# -----------------------------
 SHELL = /bin/sh
 
 SCIDIR=../..
 SCIDIR1=..\..
 
-include ../../Makefile.incl
+include ../../Makefile.incl.amk
 
 .SUFFIXES: .sci .bin $(SUFFIXES)
 
@@ -45,4 +48,4 @@ MACROS = sysconv.sci  lin.sci halt.sci bloc2exp.sci \
 	loadmatfile.sci matfile2sci.sci ReadmiMatrix.sci toolboxes.sci\
 	with_tk.sci with_gtk.sci with_pvm.sci 
 
-include ../Make.lib
+include ../Make.lib.amk
