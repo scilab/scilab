@@ -518,9 +518,10 @@
       implicit none
       
       logical first
+      double precision a, b
       save    first
       data    first /.true./
-      double precision a, b
+      
       data    a /1.d0/, b /1.d0/
       save    a
 
