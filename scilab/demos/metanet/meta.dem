@@ -12,4 +12,5 @@ num=x_message([' ';
 
 if num==1 then
   metro()
+  set('old_style','off')
 end
