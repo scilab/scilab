@@ -955,11 +955,13 @@ void C2F(ScilabGCGetorSetXfig)(char *str, integer flag, integer *verbose, intege
 	 { if ( j <= 0)
 	     {
 	       sciprint("\nUnknow Postscript operator <%s>\r\n",str);
+	       *x1=1;*x2=0;
 	       return;
 	     }
 	 }
      }
   sciprint("\n Unknow Postscript operator <%s>\r\n",str);
+  *x1=1;*x2=0;
 }
 
 /*-----------------------------------------------------------

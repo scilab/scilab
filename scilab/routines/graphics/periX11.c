@@ -2505,13 +2505,14 @@ void C2F(MissileGCGetorSet)(char *str, integer flag, integer *verbose, integer *
 	      {
 		/** set x1 and x2 they are used in scixget 
 		    to size the return variable  **/
-		*x1=1;*x2=1;
+		*x1=1;*x2=0;
 	      }
 	    return;
 	  }
 	}
     }
   sciprint("\n Unknow X operator <%s>\r\n",str);
+  *x1=1;*x2=0;
 }
 
 /* Functions for drawing */

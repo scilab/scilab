@@ -970,11 +970,13 @@ void C2F(ScilabGCGetorSetPos)(char *str, integer flag, integer *verbose, integer
 	 { if ( j <= 0)
 	     {
 	       sciprint("\nUnknow Postscript operator <%s>\r\n",str);
+	       *x1=1;*x2=0;
 	       return;
 	     }
 	 }
      }
   sciprint("\n Unknow Postscript operator <%s>\r\n",str);
+  *x1=1;*x2=0;
 }
 
 /*-----------------------------------------------------------
