@@ -9,11 +9,15 @@ sfrom=stk(top);top=top-1
 top=top-rhs+1
 s2=stk(top)
 if rhs==1 then
-
-  if s2(5)=='10'&sto(5)=='?'  then // a.x=b with a undefined
-    txt=sto(1)+' = struct()';sto(5)='16';
-  end
+  // Commented 03/09/2003 V.C.
+  // No more needed to be init to struct()
+  //if size(s2)>=5 & size(sto)>=5 then // V.C. 02/09/2003
+  //  if s2(5)=='10'&sto(5)=='?'  then // a.x=b with a undefined
+  //    txt=sto(1)+' = struct()';sto(5)='16';
+  //  end
+  //end
   if type(s2(1))==1 then // recursive insertion
+    // What happens if a.x=b with a undefined ?
     [stk,t1,top]=%i2sci_rec()
     txt=[txt;t1];
   elseif sto(5)=='10'&sfrom(5)=='10' then //insertion of strings
@@ -80,7 +84,11 @@ ex=sto(1)
 if m>1 then n=n-1,end
 for k=1:n
   ik=s2(k+1)
-  ex=ex+'('+ik(1)+')'
+  if s2(k+1)(5)=='10' then // V.C. 03/09/2003
+    ex=ex+'.'+evstr(ik(1)) //
+  else //
+    ex=ex+'('+ik(1)+')'
+  end //
 end
 if m>1 then
   args=[]
@@ -160,6 +168,7 @@ stk=list(op(2),'-1','1','?',sto(5))
 
 endfunction
 function [stk,txt,top]=%i2sci_c()
+
 //  x(i)=y with x  a column vector
 if sfrom(3)=='1'&sfrom(4)=='1' then //insert a scalar
   txt=sto(1)+'('+s2(1)+') = '+sfrom(1)
