@@ -2,3 +2,5 @@ Makefile Makefile.OBJ Makefile.incl Makemex Path.incl config.log config.status l
 Scilab.suo
 Scilab.ncb
 history.scilab
+lib
+tcllib
