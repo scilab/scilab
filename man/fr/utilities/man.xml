@@ -16,26 +16,18 @@
     associated to a keyword (corresponding to a function name most of the cases) it describes.
   </P>
   </DESCRIPTION>
-  <SECTION label="How to write a simple xml scilab help page">
-    <ITEMIZE>
-      <ITEM label="lazzy way">
-	<SP>If one want to write the xml file associated to a new scilab function
-	he may use the Scilab function <LINK>help_skeleton</LINK> to produce
-	the skeleton of the xml file. In most cases the user will not be
-	required to know xml syntax.</SP>
-      </ITEM>
-      <ITEM label="introduction">
-        <SP>An XML file resembles to an HTML file but with both a more rigid and free syntax.
-     Free because you may build your own tags : the set of tags together with its rules
+  <SECTION label="A few words about XML">
+        <P>An XML file resembles to an HTML file but with both a more rigid and free syntax.
+     Free because you may build your own tags: the set of tags together with its rules
      must be described somewhere, generally in another file (<VERB>&lt;SCIDIR&gt;/man/manrev.dtd</VERB> 
      for scilab),
      and rigid because, once the tags and rules are defined (which are called the Definition
-     Type Document : DTD) , you must respect its (in particular to every open tags 
-     <VERB>&lt;MY_TAG&gt;</VERB> must correspond a closed  <VERB>&lt;/MY_TAG&gt;</VERB>).</SP>
+     Type Document: DTD) , you must respect its (in particular to every open tags 
+     <VERB>&lt;MY_TAG&gt;</VERB> must correspond a closed  <VERB>&lt;/MY_TAG&gt;</VERB>).</P>
         <P> 
      The DTD manrev.dtd is written in SGML and precises the exact syntax required by a 
      scilab XML help page. So if you know this language you may red this file. 
-     The following annotated example (see the next sub-section) shows you some possibilities 
+     The following annotated example (see the next section) shows you some possibilities 
      offered by this DTD and may be enough to write simple help pages.
      </P>
         <P>
@@ -44,11 +36,19 @@
      (see section browser choice in this page). The XML -&gt; HTML translation is controled
      by a set of rules written in the (XML) file <VERB>&lt;SCIDIR&gt;/man/language/html.xsl</VERB>.
      Those rules are currently more or less restricted to fit the tcltk scilab browser
-     features (which may display correctly only basic HTML) : if you use a real HTML
+     features (which may display correctly only basic HTML): if you use a real HTML
      browser and want a better appearance you have to modify this file.
      </P>
-      </ITEM>
-      <ITEM label="An example">
+  </SECTION>
+  <SECTION label="How to write a simple xml scilab help page: the lazzy way">
+       <P>
+         If one want to write the xml file associated to a new scilab function
+	he or she may use the Scilab function <LINK>help_skeleton</LINK> to produce
+	the skeleton of the xml file. In most cases the user will not be
+	required to know xml syntax. 
+       </P>
+  </SECTION>
+   <SECTION label="How to write a simple xml scilab help page: an example">
         <P>
      Here is a simple annotated XML scilab help page which describes an hypothetic foo scilab
      function. In the following, the XML file is displayed in a <TT>type writer font</TT>
@@ -69,7 +69,7 @@
       <VERB>TYPE</VERB> and  <VERB>DATE</VERB>, are also mandatory (in this order) the text 
       corresponding to  <VERB>&lt;TYPE&gt;</VERB> being generally 'Scilab function' 
       (most of the cases) but may be simply  'Scilab keyword' or 'Scilab data type', ..., 
-      depending of what explains the help page.have 
+      depending of what explains the help page. 
    </P>
         <VERBATIM>
 <![CDATA[
@@ -85,7 +85,7 @@
         <P>
    The first of these 2 following entries (<VERB>SHORT_DESCRIPTION</VERB>)
    is mandatory and important since the words of the short description text, are used by the
-   <LINK>apropos</LINK> command to search help pages from a keyword : the short description
+   <LINK>apropos</LINK> command to search help pages from a keyword: the short description
    is used to build the <VERB>whatis.html</VERB> file corresponding to your toolbox and 
    the <VERB>apropos keyword</VERB> command looks in all the whatis files and then proposes
    the links to every page containing the word <VERB>keyword</VERB> in its  short description
@@ -93,7 +93,7 @@
    <VERB>&lt;/SHORT_DESCRIPTION&gt;</VERB> and not <VERB>&lt;ASHORT_DESCRIPTION&gt;</VERB>
    and <VERB>&lt;/ASHORT_DESCRIPTION&gt;</VERB>).
    The next entry (<VERB>CALLING_SEQUENCE</VERB>) must be used if you describe a function 
-   (but is not stricly mandatory). If your function have several calling sequences
+   (but is not strictly mandatory). If your function have several calling sequences
    use several <VERB>CALLING_SEQUENCE_ITEM</VERB> entries.
    </P>
         <VERBATIM>
@@ -112,18 +112,20 @@
 <![CDATA[
           <PARAM>
              <PARAM_INDENT>
-             <PARAM_ITEM>
-               <PARAM_NAME>x</PARAM_NAME>
-               <PARAM_DESCRIPTION><SP>: what may be x</SP>
-</PARAM_DESCRIPTION> 
-            </PARAM_ITEM>
-            <PARAM_ITEM>
-               <PARAM_NAME>y</PARAM_NAME>
-               <PARAM_DESCRIPTION><SP>: what may be y</SP>
-</PARAM_DESCRIPTION> 
-            </PARAM_ITEM>
-            </PARAM_INDENT>
-         </PARAM>
+                <PARAM_ITEM>
+                   <PARAM_NAME>x</PARAM_NAME>
+                   <PARAM_DESCRIPTION>
+                      <SP>: what may be x</SP>
+                   </PARAM_DESCRIPTION> 
+                </PARAM_ITEM>
+                <PARAM_ITEM>
+                   <PARAM_NAME>y</PARAM_NAME>
+                   <PARAM_DESCRIPTION>
+                      <SP>: what may be y</SP>
+                   </PARAM_DESCRIPTION> 
+                </PARAM_ITEM>
+             </PARAM_INDENT>
+          </PARAM>
    ]]>
         </VERBATIM>
         <P>
@@ -132,9 +134,9 @@
    <VERB>DESCRIPTION_ITEM</VERB> sub-entries). Here you see how to write several paragraphes
    (each one enclosed between the <VERB>&lt;P&gt;</VERB> and <VERB>&lt;/P&gt;</VERB> tags),
    how to emphasis a variable or a function name (by enclosing it between the 
-   <VERB>&lt;VERB&gt;</VERB> and <VERB>&lt;/VERB&gt;</VERB> tags), how to do 
-   emphasis a part of text (<VERB>EM</VERB> or <VERB>BD</VERB>
-   and <VERB>TT</VERB> to put it in a type writer font)), and finally, how to put a link onto 
+   <VERB>&lt;VERB&gt;</VERB> and <VERB>&lt;/VERB&gt;</VERB> tags), how to
+   emphasis a part of text (<VERB>&lt;EM&gt;</VERB> or <VERB>&lt;BD&gt;</VERB>
+   and <VERB>&lt;TT&gt;</VERB> to put it in a type writer font)), and finally, how to put a link onto 
    another help page  (in fact the actual associated tags are <VERB>&lt;LINK&gt;</VERB> and 
    <VERB>&lt;/LINK&gt;</VERB> and not <VERB>&lt;ALINK&gt;</VERB>
    and <VERB>&lt;/ALINK&gt;</VERB>).
@@ -204,27 +206,29 @@
        </MAN>
    ]]>
         </VERBATIM>
-      </ITEM>
-    </ITEMIZE>
   </SECTION>
+
   <SECTION label="Browser choice">
     <P>
    Scilab includes its own simple browser written in TCL/TK. On
    unix/Linux systems it is possible to choose an other one.</P>
     <P> The global variable <VERB>%browsehelp</VERB> contains a string defining which browser 
-      must be used : its value may be changed (or redefined in your .scilab file). Note that when you 
+      must be used: its value may be changed (or redefined in your .scilab file). Note that when you 
       enter an <VERB>help</VERB> command while <VERB>%browsehelp</VERB> contains the empty matrix
       <VERB>[]</VERB> then the different 
-      browser choice possibilities are displayed (so that you can enter first 
-      <VERB>%browsehelp=[]</VERB> for changing of browser !). As generally different browsers 
+      browser choice possibilities are displayed (so that you can enter the 2 instructions
+      <VERB>global  %browsehelp; %browsehelp=[]</VERB> for changing of browser !). 
+      As generally different browsers 
       have differents calling sequences, if your favorite one is not in the list you have to 
-      change somethings in the <VERB>&lt;SCIDIR&gt;/macros/util/help.sci</VERB> scilab function.</P>
+      change somethings in the <VERB>&lt;SCIDIR&gt;/macros/util/browsehelp.sci</VERB> scilab function.</P>
   </SECTION>
+
   <SECTION label="How to to transform your xml pages in html">
     <P> See <VERB>&lt;SCIDIR&gt;/examples/man-examples-xml/</VERB> directory where a complete
       example is given. The method used required some tools (see the README file) but must work
-      on Unix and Windows.</P>
+      on both Unix and Windows.</P>
   </SECTION>
+
   <EXAMPLE><![CDATA[
     function y=foo(a,b,c),y=a+2*b+c,endfunction
     path=help_skeleton('foo',TMPDIR)
