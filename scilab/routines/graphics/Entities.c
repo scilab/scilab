@@ -15323,6 +15323,8 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
   
   BOOL cube_scaling;  /* TEST F.Leray 22.04.04 */
 
+  /*  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(pobj);*/ /* F.Leray debug 30.04.04 */
+
   /* Initialisation phase for x (to detect bug): x set to -1000 F.Leray 05.03.04*/
   for(i=0;i<5;i++) x[i] = -1000;
 
@@ -15347,14 +15349,18 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	  /* But I don't know the surface object yet to do:
 	     dbox[0] =  pSURFACE_FEATURE (pobj)->ebox[0]... */
 	  /* so temporarily I put the default ebox here */
+	 
+	  /* F.Leray 30.04.04 */
+	  /* 3D: brect = ebox = [-4,3,-4,3,-1,1]  <=> [xmin,xmax,ymin,ymax,zmin,zmax]  but dbox is filled in order [xmin,ymin,xmax,ymax,zmin,zmax] */
+	  /* 2D: brect = rect = [-4,3,-4] <=> [xmin,xmax,ymin] same behaviour as in 3D btu dbox or equivalent does not exist */
 	  if( ((pSUBWIN_FEATURE (pobj)->brect[0] != 0.) || (pSUBWIN_FEATURE (pobj)->brect[2] != 0.)) &&
 	      ((pSUBWIN_FEATURE (pobj)->brect[1] != 0.) || (pSUBWIN_FEATURE (pobj)->brect[3] != 0.)))
 	      /* &&
 		 ((pSUBWIN_FEATURE (pobj)->brect[4] != -1.) || (pSUBWIN_FEATURE (pobj)->brect[5] != 1.)))*/
 	    {
 	      dbox[0] =  pSUBWIN_FEATURE (pobj)->brect[0]; 
-	      dbox[1] =  pSUBWIN_FEATURE (pobj)->brect[2];
-	      dbox[2] =  pSUBWIN_FEATURE (pobj)->brect[1];
+	      dbox[1] =  pSUBWIN_FEATURE (pobj)->brect[1];
+	      dbox[2] =  pSUBWIN_FEATURE (pobj)->brect[2];
 	      dbox[3] =  pSUBWIN_FEATURE (pobj)->brect[3];
 	      dbox[4] =  pSUBWIN_FEATURE (pobj)->brect[4];
 	      dbox[5] =  pSUBWIN_FEATURE (pobj)->brect[5];
