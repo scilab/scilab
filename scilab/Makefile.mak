@@ -4,7 +4,7 @@ SCIDIR1=.
 
 include Makefile.incl.mak 
 
-all ::  routines-pvm  bin/scilex.exe bin/Wscilex.exe macros  imp intersci tcl
+all ::  routines-pvm  bin/scilex.exe bin/Wscilex.exe macros MakeMexLib imp intersci tcl
 
 !IF "$(DLPVM)" == "YES"
 routines-pvm :: routines pvm 
@@ -34,6 +34,9 @@ man::
 
 tcl:: 
 	Makesubdirs.bat tcl 
+
+MakeMexLib::
+	Makesubdirs.bat MakeMexLib
 
 clean::
 	Makesubdirs.bat routines-clean

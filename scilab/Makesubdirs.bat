@@ -4,6 +4,7 @@ if "%1" == "routines" goto routines
 if "%1" == "routines-clean" goto routines-clean 
 if "%1" == "routines-distclean" goto routines-distclean 
 if "%1" == "macros" goto macros
+if "%1" == "MakeMexLib" goto MakeMexLib
 if "%1" == "macros-clean" goto macros-clean 
 if "%1" == "macros-distclean" goto macros-distclean 
 if "%1" == "imp" goto imp
@@ -15,6 +16,7 @@ if "%1" == "man" goto man
 if "%1" == "tcl" goto tcl
 if "%1" == "man-clean" goto man-clean
 if "%1" == "man-distclean" goto man-distclean
+
 
 echo Unknown target %1 
 goto end
@@ -92,6 +94,13 @@ cd man
  echo making all in man
  nmake /C /f Makefile.mak 
 cd ..
+goto end
+
+:MakeMexLib
+cd routines/default
+ echo making all Mexlib
+ nmake /C /f makemexlib.mak all /a
+cd ../.. 
 goto end
 
 :tcl
