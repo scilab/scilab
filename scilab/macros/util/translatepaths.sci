@@ -70,7 +70,7 @@ for k1=1:size(mfiles,1)
   scepath=res_path+fnam+'.sce'
   // Translation is done only if M-file has changed
   if newest(mpath,scipath,scepath)==1 then
-    mfile2sci(mpath,res_path,%F,3,%F)
+    mfile2sci(mpath,res_path,%F,%F,3,%F)
   end
 end
 endfunction
