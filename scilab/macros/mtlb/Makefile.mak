@@ -32,7 +32,7 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 	mtlb_0.sci mtlb_a.sci mtlb_diag.sci mtlb_double.sci mtlb_diag.sci \
 	mtlb_dir.sci mtlb_e.sci mtlb_eig.sci mtlb_false.sci mtlb_fopen.sci mtlb_format.sci \
 	mtlb_full.sci mtlb_imp.sci mtlb_int8.sci mtlb_int16.sci mtlb_int32.sci \
-	mtlb_isletter.sci mtlb_isspace.sci mtlb_logical.sci mtlb_logic.sci \
+	mtlb_isfield.sci mtlb_isletter.sci mtlb_isspace.sci mtlb_logical.sci mtlb_logic.sci \
 	mtlb_lower.sci mtlb_l.sci mtlb_more.sci mtlb_norm.sci mtlb_num2str.sci mtlb_qr.sci \
 	mtlb_randn.sci mtlb_rcond.sci mtlb_setstr.sci mtlb_size.sci \
 	mtlb_sort.sci mtlb_s.sci mtlb_strcmp.sci mtlb_strcmpi.sci \
