@@ -37,6 +37,9 @@ scilex-lib::
 @PVMTARGET@::
 	@cd pvm3; echo "making all in pvm3..."; $(MAKE) $(MFLAGS) "CC=$(CC)";
 
+@OCAMLTARGET@::
+	@cd ocaml; echo "making all in ocaml..."; $(MAKE) $(MFLAGS) ;
+
 all::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
 	for i in $(SUBDIRS) ;\
@@ -56,6 +59,11 @@ distclean::
 distclean::
 	@cd pvm3; echo "making distclean in pvm3..."; \
 	$(MAKE) $(MFLAGS) super_distclean;
+
+distclean::
+	@cd ocaml; echo "making distclean in ocaml..."; \
+	$(MAKE) $(MFLAGS) super_distclean;
+
 
 distclean::
 	@cd maple; echo "making distclean in maple..."; \

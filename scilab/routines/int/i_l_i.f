@@ -49,7 +49,8 @@ c     .  cst \ vector
          istk(il1+3)=it1
 c     
          call gencopy(it1,1,istk(l1),1,is1,1)
-         call genrdiv(it1,istk(l2),1,is1,0,istk(l1),1,mn2,ierr)
+         call gencopy(it1,mn2,istk(l2),1,istk(l1),1)
+         call genrdiv(it1,istk(l1),1,is1,0,istk(l1),1,mn2,ierr)
          lstk(top+1)=sadr(l1+memused(it1,mn2))
          if(ierr.ne.0) then
             call error(27)

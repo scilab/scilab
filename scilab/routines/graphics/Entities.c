@@ -9414,7 +9414,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       psegs->ptype = type;
 
       /* F.Leray Test imprortant sur type ici*/
-      if (type == 0) /* attention ici type = 0 donc...*/
+      if (type == 0) /* attention ici type = 0 (segs) donc...*/
 	{   
 	  psegs->arrowsize = arsize * 100;       /* A revoir: F.Leray 06.04.04 */
 	  if ((psegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
@@ -9440,7 +9440,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  psegs->iflag = flag; 
 	  psegs->Nbr1 = Nbr1;
 	}	
-      else /* attention ici type = 1 donc...*/
+      else /* attention ici type = 1 (champs) donc...*/
 	{ 
 	  /* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
 	  psegs->arrowsize = arsize * 100;
