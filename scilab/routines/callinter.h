@@ -49,6 +49,7 @@ c
 c     
  90   if(err.gt.0) goto 9999
  91   k=fun
+      pstk(pt+1)=fun
       fun=0
       if(k.eq.krec) then
         call error(22)
