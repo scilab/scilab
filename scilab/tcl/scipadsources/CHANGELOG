@@ -616,3 +616,7 @@ ES 10/1/2005
 * proc execfile returns a value (0=success, 1 scilab busy, 2 cancel, -1 fail)
 * added new commands "Create help skeleton" and "Compile as a help page"
 * version -> 3.16
+
+ES 13/1/2005
+* "Create help skeleton" warns about preexisting xml files. Messages
+   there in french too.

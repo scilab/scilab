@@ -209,23 +209,51 @@ proc failmatlabimp {} {
 }
 
 proc helpskeleton {} {
-     global listoffile
+     global listoffile lang
 # first exec the file in scilab, so that the current function is
 #  really defined; then call help_skeleton, and pipe the
 # result to a new (unsaved) buffer.
 # NB: execing the file can have far-reaching consequences
-#  if the file does more than defining functions. 
+#  if the file does more than just defining functions. 
 # Responsibility left to the user.   
     set indexin [[gettextareacur] index insert]
     scan $indexin "%d.%d" ypos xpos
     set infun [whichfun $indexin]
     set funname [lindex $infun 0]
     if [execfile]==0 {
-        set dir [tk_chooseDirectory -title \
-		     "Path for the xml source of the help file"]
+        if {$lang == "eng"} {
+            set pathprompt  "Path for the xml source of the help file" 
+        }
+        if {$lang == "fr"} {
+            set pathprompt "Chemin pour le source xml du fichier d'aide"
+        }
+        set dir [tk_chooseDirectory -title $pathprompt]
         if {$dir != ""} {
-          ScilabEval "help_skeleton(\"$funname\",\"$dir\")" "sync"
-	    openfile [file join $dir $funname.xml]
+            set xmlfile [file join $dir $funname.xml]
+            if {$lang == "eng"} {
+              set warntitle "older $xmlfile found!"
+              set warnquest \
+                "The file $xmlfile alread exists: open the old file instead?"
+              set warnold "Existing file" 
+              set warnnew "New skeleton" 
+            }
+            if {$lang == "fr"} {
+              set warntitle "Il existe une version plus ancienne de $xmlfile!"
+              set warnquest \
+                 "Le fichier $xmlfile existe déjà: Ouvrir le fichier existant?"
+              set warnold "Fichier existant"
+              set warnnew "Nouveau squelette d'aide" 
+            }
+	    if [file exists $xmlfile] {
+		set answer [tk_dialog .existxml $warntitle $warnquest \
+                   questhead 0 $warnold $warnnew]
+	    } else {
+              set answer 1
+            }
+	    if $answer {
+              ScilabEval "help_skeleton(\"$funname\",\"$dir\")" "sync"
+	    }
+	    openfile $xmlfile
 	}
     }
 }
