@@ -220,7 +220,7 @@ int C2F(scicos)
 
   *ierr = 0;
 
-  xd=&x[xptr[nblk+1]];
+  xd=&x[xptr[nblk+1]-1];
 
   nordclk=ordptr[nordptr]-1;
   /*     computes number of zero crossing surfaces */
