@@ -11,6 +11,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
 // Auteur : J-Ph. Chancelier ENPC Cergrene
 //
 // Copyright Enpc
+
 [lhs,rhs]=argn(0)
 // switch to ar representation 
 if type(x1)<>15&type(x1)<>16 then 
