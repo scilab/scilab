@@ -70,11 +70,16 @@ C      if (k.eq.krec) krec=99999
       endif
 c     called interface ask for a scilab function to perform the function (fun=-1)
 c     the function name is given in ids(1,pt+1)
-      call ref2val
+
+c     call ref2val removed here because if forces overloadin function to
+C     be called by value
+c     call ref2val 
+
       fun=0
       call funs(ids(1,pt+1))
       if(err.gt.0) goto 9999
       if(fun.gt.0) then
+         if (isbyref(fun).eq.0) call ref2val
          goto 91
       endif
       if(fin.eq.0) then
