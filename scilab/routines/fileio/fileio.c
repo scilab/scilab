@@ -275,10 +275,10 @@ int int_objsprintf(char *fname)
   if (rval == RET_BUG) return 0;
   /** Create a Scilab String : lstr must not be freed **/
   n2=1;
-  CreateVarFromPtr( 2, "S", &n, &n2, strs);
+  CreateVarFromPtr(Rhs+1, "S", &n, &n2, strs);
   for (k=0;k<n;k++) free(strs[k]);
   free(strs);
-  LhsVar(1)=2;
+  LhsVar(1)=Rhs+1;
   PutLhsVar();    
   return 0;
  mem:
