@@ -1,5 +1,6 @@
 function tests=testslist()
-  tests = ['arma.tst';
+  tests = ['algebra.tst'
+	   'arma.tst';
 'auto.tst';
 'binary.tst';
 'breakpoints.tst';
