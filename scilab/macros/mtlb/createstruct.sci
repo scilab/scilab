@@ -71,7 +71,7 @@ if type(index)==15 then
       return;
     end
   
-  // Any number of indexes > 2  
+  // Any number of indexes <> 2  
   else
   
     // Last index is a fieldname -> init struct
@@ -124,7 +124,7 @@ if type(index)==15 then
       end
     else
       // This case should not happen (unknown kind of index)
-      error("Not implemented")
+      error("Not implemented");
     end
     if index==list() then
       return
@@ -133,7 +133,10 @@ if type(index)==15 then
     return;
   end
 else
-  // This case should not happen (index is not a list)
-  error("Not implemented");
+  if type(index)==10 then
+    M=mlist(["st","dims",index($)],int32([1,1]),N);
+  else
+    error("Not implemented");
+  end
 end
 endfunction
