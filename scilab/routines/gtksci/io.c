@@ -328,7 +328,7 @@ int Xorgetchar(int interrupt)
     /* FD_SET(fd_out,&write_mask);
        FD_SET(fd_err,&write_mask); */
 
-    select_timeout.tv_sec = 5;
+    select_timeout.tv_sec =  10;
     select_timeout.tv_usec = 0;
     while ( gtk_events_pending())
       { 
@@ -363,7 +363,9 @@ int Xorgetchar(int interrupt)
 	  exit(0);
 	  continue;
 	} 
+      continue ;
     }
+    if ( i== 0) continue ; 
     /* if there's something to output */
     if ( FD_ISSET(fd_out,&write_mask)) { 
       fflush(stdout); 
