@@ -2,7 +2,7 @@ function scs_m=do_version(scs_m,version)
 // Copyright INRIA
 //translate scicos data structure to new version
 if version<>'scicos2.2'&version<>'scicos2.3'&version<>'scicos2.3.1'&..
-    version<>'scicos2.4'&version<>'scicos2.5.1'&version<>'scicos2.7' then
+    version<>'scicos2.4'&version<>'scicos2.5.1'&version<>'scicos2.7'&version<>'scicos2.7.1' then
 error('No version update defined to '+version+' version')
 end
 
@@ -51,7 +51,7 @@ function scs_m_new=do_version272(scs_m)
 				       in_implicit,out_implicit)
       
       if or(scs_m_new.objs(i).model.sim==['super','csuper']) then
-	rpar=do_version_implicit(scs_m_new.objs(i).model.rpar)
+	rpar=do_version272(scs_m_new.objs(i).model.rpar)
 	scs_m_new.objs(i).model.rpar=rpar 
       end
     end
