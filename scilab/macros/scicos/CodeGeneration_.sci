@@ -852,20 +852,35 @@ function [Code,proto]=callf(i)
       end
     end
   elseif ftyp==2 
-    CodeC=fun+'(&flag, &nevprt, told,&(w['+string(x)+..
-	 ']), &(x['+string(x)+']), &nrd_'+string(nx);
-    CodeC=CodeC+', &(z['+string(z)+']),&nrd_'+string(nz)+..
-	 ', tvec, &ntvec, &(rpar['+string(rpar)+']), &nrd_'+..
-       string(nrpar)+',&(ipar['+string(ipar)+'])';
-    CodeC=CodeC+', &nrd_'+string(nipar)+', &(args[0]), &(sz[0]), &nrd_'+..
-       string(nin)+',&(args['+string(nin)+']),&(sz['+string(nin)+..
-	 ']),&nrd_'+string(nout)+');';
-    
-    proto='void '+fun+"(int *, int *,double *,"+...
+    if ztyp(i) then
+      CodeC=fun+'(&flag, &nevprt, told,&(w['+string(x)+..
+	    ']), &(x['+string(x)+']), &nrd_'+string(nx);
+      CodeC=CodeC+', &(z['+string(z)+']),&nrd_'+string(nz)+..
+	    ', tvec, &ntvec, &(rpar['+string(rpar)+']), &nrd_'+..
+	    string(nrpar)+',&(ipar['+string(ipar)+'])';
+      CodeC=CodeC+', &nrd_'+string(nipar)+', &(args[0]), &(sz[0]), &nrd_'+..
+	    string(nin)+',&(args['+string(nin)+']),&(sz['+string(nin)+..
+	    ']),&nrd_'+string(nout)+');';
+      proto='void '+fun+"(int *, int *,double *,"+...
 	  " double *, double *, int *, double *, int *, double *, "+...
 	  " int *, double *, int *, int *, int *, "+...
 	  " double **, int *, int *, double **,int"+...
 	  " *, int *);" 
+    else
+	CodeC=fun+'(&flag, &nevprt, told,&(w['+string(x)+..
+	      ']), &(x['+string(x)+']), &nrd_'+string(nx);
+	CodeC=CodeC+', &(z['+string(z)+']),&nrd_'+string(nz)+..
+	      ', tvec, &ntvec, &(rpar['+string(rpar)+']), &nrd_'+..
+	      string(nrpar)+',&(ipar['+string(ipar)+'])';
+	CodeC=CodeC+', &nrd_'+string(nipar)+', &(args[0]), &(sz[0]), &nrd_'+..
+	      string(nin)+',&(args['+string(nin)+']),&(sz['+string(nin)+..
+	      ']),&nrd_'+string(nout)+',w,&nrd_0);';
+	proto='void '+fun+"(int *, int *,double *,"+...
+	  " double *, double *, int *, double *, int *, double *, "+...
+	  " int *, double *, int *, int *, int *, "+...
+	  " double **, int *, int *, double **,int"+...
+	  " *, int *,double *,int * );" 
+    end
   end
   //
   Code=[Code;cformatline(CodeC,70);' ']
