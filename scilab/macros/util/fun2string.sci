@@ -211,7 +211,12 @@ function [txt,ilst]=cod2sci(lst,ilst)
     case '28' then //continue
       txt=catcode(txt,'continue,')
     case '29' then //affectation
-      ip=','//code2str(evstr(op(2)))
+      ip=evstr(op(2))
+      if ip==99 then 
+	ip=''
+      else
+	ip=code2str(ip)
+      end
       op=matrix(op(3:$),2,-1)
       lhs=size(op,2)
       LHS=[]
@@ -232,7 +237,6 @@ function [txt,ilst]=cod2sci(lst,ilst)
 	end
       end
       if lhs>1 then  LHS='['+strcat(LHS,',')+']',end
-      
       RHS=[]
       for k=iind+1:size(stk), RHS=[RHS stk(k)(1)],end
       if size(RHS,'*')<>1, RHS='('+strcat(RHS,',')+')',end
@@ -422,15 +426,15 @@ function [stk,top]=func2sci(op,stk)
   // add lhs expression to the stack
   top=top-rhs
   //  for k=size(stk):-1:(top-rhs+1), stk(top)=null(),end
-  if lhs>1 then
-    for k=1:lhs
-      top=top+1
-      stk(top)=stkr(k)
-    end
-  else
+//   if lhs>1 then
+//     for k=1:lhs
+//       top=top+1
+//       stk(top)=stkr(k)
+//     end
+//   else
     top=top+1
     stk(top)=stkr
-  end
+//  end
 endfunction
 
 function [stk,txt,top]=_m2sci()
@@ -479,14 +483,14 @@ function [stk,top]=sci_gener(nam)
   end
   if RHS==[] then RHS='',end
   top=top+1
-  if lhs==1 then
+//  if lhs==1 then
     stk=list(nam+rhsargs(RHS),'0')
-  else
-    stk=list()
-    for k=1:lhs
-      stk(k)=list(nam+rhsargs(RHS),'-1')
-    end
-  end
+//  else
+//    stk=list()
+//    for k=1:lhs
+//      stk(k)=list(nam+rhsargs(RHS),'-1')
+//    end
+//  end
 endfunction
 
 function [stk,txt,top]=_c2sci()
