@@ -43,19 +43,19 @@ function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
       o.xx=o.xx-rect(1)+xc
       o.yy=o.yy-rect(2)+yc
       [from,to]=(o.from,o.to)
-      o.from(1)=o.from(1)+n-1;
-      o.to(1)=o.to(1)+n-1;
+      o.from(1)=o.from(1)+n;
+      o.to(1)=o.to(1)+n;
     elseif typeof(o)=='Block' then
       o.graphics.orig(1)=o.graphics.orig(1)-rect(1)+xc
       o.graphics.orig(2)=o.graphics.orig(2)-rect(2)+yc
       k_conn=find(o.graphics.pin>0)
-      o.graphics.pin(k_conn)=o.graphics.pin(k_conn)+n-1
+      o.graphics.pin(k_conn)=o.graphics.pin(k_conn)+n
       k_conn=find(o.graphics.pout>0)
-      o.graphics.pout(k_conn)=o.graphics.pout(k_conn)+n-1
+      o.graphics.pout(k_conn)=o.graphics.pout(k_conn)+n
       k_conn=find(o.graphics.pein>0)
-      o.graphics.pein(k_conn)=o.graphics.pein(k_conn)+n-1
+      o.graphics.pein(k_conn)=o.graphics.pein(k_conn)+n
       k_conn=find(o.graphics.peout>0)
-      o.graphics.peout(k_conn)=o.graphics.peout(k_conn)+n-1
+      o.graphics.peout(k_conn)=o.graphics.peout(k_conn)+n
     end
     scs_m.objs($+1)=o
     drawobj(o)
