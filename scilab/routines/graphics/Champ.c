@@ -59,7 +59,6 @@ char *strflag, double *brect, double *arfact, integer lstr)
   yy[0]=y[0];yy[1]=y[*n2-1];
   /** Boundaries of the frame **/ 
   
-  // 19/12/2002
   if (version_flag() == 0)
   {
       if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) 

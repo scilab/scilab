@@ -2218,7 +2218,6 @@ void C2F(setscilabFigureGif)(integer *v1,integer *v2,integer *v3,integer *v4,int
 
 void C2F(getscilabFigureGif)(integer *verbose, integer *x,integer *narg, double *figure)
 {   
-  //*narg=1;
   figure=(double *)ScilabGCGif.mafigure;
 }
 void C2F(setscilabVersionGif)(integer *vers, integer *v2, integer *v3, integer *v4)
@@ -2228,13 +2227,11 @@ void C2F(setscilabVersionGif)(integer *vers, integer *v2, integer *v3, integer *
 
 void C2F(getscilabVersionGif)(integer *verbose, integer *vers, integer *narg, double *dummy)
 {   
-  //*narg =1 ;
   *vers = ScilabGCGif.graphicsversion;
 }
 void C2F(getscilabxgcGif)(integer *verbose, integer *x,integer *narg, double *dummy)
 {   
  double **XGC;
- //*narg = 1;
  XGC=(double **)dummy;
  *XGC= (double *)&ScilabGCGif;
 }

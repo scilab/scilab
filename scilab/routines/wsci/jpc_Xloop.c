@@ -85,7 +85,7 @@ TextMessage2()
 #ifdef WITH_TK
   if (  tcl_check_one_event() == 1) 
     {
-      //sciprint("tcl event %l\r\n",msg.hwnd);
+      /*sciprint("tcl event %l\r\n",msg.hwnd);*/
     }
 #else 
   while (  PeekMessage(&msg, 0, 0, 0,PM_REMOVE) ) 

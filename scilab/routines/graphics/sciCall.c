@@ -167,7 +167,6 @@ void Objtitle(str,n,hdl)
              		 sciGetSelectedSubWin (sciGetCurrentFigure ()),str,n));
   
   *hdl=sciGetHandle(sciGetCurrentObj ()); 
-  //sciSetFontOrientation (sciGetCurrentObj (), *angle *  10); 
   sciDrawObj(sciGetCurrentObj ()); 
 }
 
@@ -175,16 +174,7 @@ void Objtitle(str,n,hdl)
 /*------------------------------------------------
  *  plot2d 
  *-----------------------------------------------*/   
-//void Objplot2d (x,y,n1,n2,style,strflag,legend,brect,aaint)
-//     double x[],y[],brect[];
-//     integer *n1,*n2,style[],aaint[];
-//     char legend[],strflag[];
-//{ 
-//     
-//     C2F(plot2d)(x,y,n1,n2,style,strflag,legend,brect,aaint,4L, bsiz); 
-//         
-//}
-/** MAJ Serge **/
+
 void Objplot2d (ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint)
      double x[],y[],brect[];
      int ptype;

@@ -24,8 +24,6 @@ static WCScaleList *new_wcscale __PARAMS(( WCScaleList *val));
 static WCScaleList *check_subwin_wcscale __PARAMS((WCScaleList *listptr, double *));
 static int same_subwin __PARAMS((double lsubwin_rect[4],double subwin_rect[4]));
 static void set_window_scale __PARAMS((integer i,WCScaleList  *scale));
-/************/
-//extern int version_flag;
 
 /* The scale List : one for each graphic window */
 
@@ -56,7 +54,6 @@ WCScaleList  Cscale =
 
 /** default values **/
 
-//static WCScaleList  Defscale = 
 WCScaleList  Defscale = 
 { 
   0,
@@ -385,14 +382,6 @@ static void show_scales(listptr)
     }
 }
 
-/*** 14/03/2002 ****/
-//void get_curwin(curwin)
-//     integer curwin;
-//{
-//  curwin=The_List->Win;
-//  sciprint("Window %d \r\n",curwin);
-//}
-/**************/
 
 /*-------------------------------------------
  * setscale2d 
@@ -777,20 +766,6 @@ int C2F(xechelle2d)(x,x1,n1,dir,lstr)
     }
   else 
    sciprint(" Wrong dir %s argument in echelle2d\r\n",dir);
-
-  
-  //sciprint(" *****************************-\r\n"); 
-   //sciprint(" premier point [x0]= %f\r\n",x[0]);
-  //sciprint(" deuxieme point [x1]= %f\r\n",x[1]);
-  //sciprint(" avant ernier point [xn-1]= %f\r\n",x[*n1-1]);
-  //sciprint(" dernier point [xn]= %f\r\n",x[*n1]);
-  //sciprint(" -------------changementd'echelle--------\r\n"); 
-  //sciprint(" premier point [x0]= %d\r\n",x1[0]);
-  //sciprint(" deuxieme point [x1]=  %d\r\n",x1[1]);
-  //sciprint(" avant ernier point [xn-1]= %d\r\n",x1[*n1-1]);
-  //sciprint(" dernier point [xn]= %d\r\n",x1[*n1]); 
-  //sciprint(" nombre de points===%d\r\n",*n1);
-  //sciprint(" &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*-\r\n");
   
   return(0);
 }
@@ -821,17 +796,6 @@ int C2F(yechelle2d)(y,yy1,n2,dir,lstr)
   else 
     sciprint(" Wrong dir %s argument in echelle2d\r\n",dir); 
   
-  //sciprint(" ************************************\r\n"); 
-  //sciprint(" premier point [y0]= %f\r\n",y[0]);
-  //sciprint(" deuxieme point [y1]= %f\r\n",y[1]);
-  //sciprint(" avant ernier point [yn-1]= %f\r\n",y[*n2-1]);
-  //sciprint(" dernier point yn=% f\r\n",y[*n2]);
-  //sciprint(" -------------changementd'echelle--------\r\n"); 
-  //sciprint(" premier point [yy0]= %d\r\n",yy1[0]);
-  //sciprint(" deuxieme point [yy1]= %d\r\n",yy1[1]);
-  //sciprint(" avant ernier point [yyn-1]= %d\r\n",yy1[*n2-1]);
-  //sciprint(" dernier point [yyn]= %d\r\n",yy1[*n2]);
-  //sciprint(" nombre de point==== %d\r\n",*n2);
   return(0);
 }
 
@@ -1156,13 +1120,6 @@ void zoom()
                        }
 		      
  
-		       //pSUBWIN_FEATURE (psousfen)->FRect[0]   = exp10( Cscale.xtics[2])*inint(bbox[0]/exp10( Cscale.xtics[2])); //bbox[0]
-		       //pSUBWIN_FEATURE (psousfen)->FRect[1]   = exp10( Cscale.ytics[2])*inint(bbox[1]/exp10( Cscale.ytics[2])); //bbox[1];
-		       //pSUBWIN_FEATURE (psousfen)->FRect[2]   = exp10( Cscale.xtics[2])*inint(bbox[2]/exp10( Cscale.xtics[2])); //bbox[2];
-		       //pSUBWIN_FEATURE (psousfen)->FRect[3]   = exp10( Cscale.ytics[2])*inint(bbox[3]/exp10( Cscale.ytics[2])); //bbox[3];
-	
-                    
-		     /** 17/09/2002 ***/
 		     /** regraduation de l'axe des axes ***/
 		     fmin=  bbox[0]; 
 		     fmax=  bbox[2];
@@ -1177,7 +1134,6 @@ void zoom()
 		     pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
                      pSUBWIN_FEATURE (psousfen)->FRect[1]=lmin;  
                      pSUBWIN_FEATURE (psousfen)->FRect[3]=lmax; 
-		     /*****/
 		 }
 	     }     
            psonstmp = psonstmp->pnext;

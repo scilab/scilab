@@ -841,7 +841,7 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
       SetMapMode (hdc, MM_TEXT);
       SetBkMode (hdc, TRANSPARENT);
       GetClientRect (hwnd, &rect);
-      //SetViewportExtEx(hdc, rect.right, rect.bottom,NULL);
+      /*SetViewportExtEx(hdc, rect.right, rect.bottom,NULL);*/
       SetViewportExtEx (hdc, ScilabGC->CWindowWidth, ScilabGC->CWindowHeight, NULL);
       DebugGW ("==> paint rect %d %d \n", rect.right, rect.bottom);
       if (sciGetPixmapStatus () == 1)
@@ -971,32 +971,32 @@ EXPORT LRESULT CALLBACK
     case WM_LBUTTONDOWN:
       PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
 		      HIWORD (lParam) + ScilabGC->vertsi.nPos, 0, 0, 0);
-      //sciSendMessage(hwnd, WM_CHAR, wParam, lParam);
+      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
     case WM_MBUTTONDOWN:
       PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
 		      HIWORD (lParam) + ScilabGC->vertsi.nPos, 1, 0, 0);
-      //sciSendMessage(hwnd, WM_CHAR, wParam, lParam);
+      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
     case WM_RBUTTONDOWN:
       PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
 		      HIWORD (lParam) + ScilabGC->vertsi.nPos, 2, 0, 0);
-      //sciSendMessage(hwnd, WM_CHAR, wParam, lParam);
+      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
     case WM_LBUTTONUP:
       PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos
 		      ,HIWORD (lParam) + ScilabGC->vertsi.nPos, -5, 0, 1);
-      //sciSendMessage(hwnd, WM_CHAR, wParam, lParam);
+      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
     case WM_MBUTTONUP:
       PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
 		      HIWORD (lParam) + ScilabGC->vertsi.nPos, -4, 0, 1);
-      //sciSendMessage(hwnd, WM_CHAR, wParam, lParam);
+      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
     case WM_RBUTTONUP:
       PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
 		      HIWORD (lParam) + ScilabGC->vertsi.nPos, -3, 0, 1);
-      //sciSendMessage(hwnd, WM_CHAR, wParam, lParam);
+      /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
     case WM_CREATE:
       ScilabGC = ((CREATESTRUCT *) lParam)->lpCreateParams;
@@ -1146,8 +1146,8 @@ EXPORT LRESULT CALLBACK
       return 0;
     case WM_CLOSE:
       DebugGW ("Je fais un close \n");
-      //TranslateMessage(&message);
-      //DispatchMessage(&message);
+      /*TranslateMessage(&message);*/
+      /*DispatchMessage(&message);*/
       PostQuitMessage (0);
       C2F (deletewin) (&(ScilabGC->CurWindow));
       SetWindowLong (hwnd, 0, (LONG) 0L);

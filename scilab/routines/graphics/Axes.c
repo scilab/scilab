@@ -170,8 +170,6 @@ char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   }
 
   if (version_flag() == 0){  
-    //for(i=0 ; i<4 ; i++ )
-    //  Cscale.Waain
     Cscale.Waaint1[i]= pSUBWIN_FEATURE (psubwin)->axes.subint[i]+1; /*SS 01/01/03 */
     Cscale.Waaint1[0]= pSUBWIN_FEATURE (psubwin)->axes.subint[0]+1;
     Cscale.Waaint1[1]= pSUBWIN_FEATURE (psubwin)->axes.xlim[3]; /*SS 02/01/03 */
@@ -214,7 +212,7 @@ static void aplotv1(strflag)
     /*** parceque c'est pas la subwin selectionnee mais celle en cours ***/
     Cscale.xtics[1]= (Cscale.frect[2] / (exp10( Cscale.xtics[2]))) ;
     Cscale.xtics[0]= (Cscale.frect[0]  / (exp10( Cscale.xtics[2]))) ;
-    Cscale.xtics[3]= floor(Cscale.xtics[1])-ceil(Cscale.xtics[0]);  //inint(Cscale.xtics[1]-Cscale.xtics[0]);
+    Cscale.xtics[3]= floor(Cscale.xtics[1])-ceil(Cscale.xtics[0]);  
     Cscale.ytics[1]= (Cscale.frect[3] / (exp10( Cscale.ytics[2]))) ; 
     Cscale.ytics[0]  = (Cscale.frect[1]  / (exp10( Cscale.ytics[2]))) ;
     Cscale.ytics[3]= floor(Cscale.ytics[1])-ceil(Cscale.ytics[0]); 
@@ -292,12 +290,8 @@ static void aplotv1(strflag)
       C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
 	    PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
    }
-  /** sciprint("un xrect [%d %d %d %d ]\r\n",Cscale.WIRect1[0],Cscale.WIRect1[1],Cscale.WIRect1[2],Cscale.WIRect1[3]);
-   **/ 
-  /** 07/06/2002 **/ 
+
   if (version_flag() == 0){  
-    //for (i=0;i<4;i++)
-    //  Cscale.Waaint1[i]= pSUBWIN_FEATURE (psubwin)->axes.subint[i]+1; /*SS 01/01/03 */
 
     Cscale.Waaint1[0]= pSUBWIN_FEATURE (psubwin)->axes.subint[0]+1;
     Cscale.Waaint1[1]= pSUBWIN_FEATURE (psubwin)->axes.xlim[3]; /*SS 02/01/03 */

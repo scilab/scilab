@@ -768,7 +768,7 @@ int
 sciGetColormap (sciPointObj * pobj, double *rgbmat)
 {
   int i;
-  int m = sciGetNumColors (pobj);	// the number of the color
+  int m = sciGetNumColors (pobj);	/* the number of the color*/
   if (sizeof (rgbmat) != m * 3)
     return -1;
   for (i = 0; i < m; i++)
@@ -836,26 +836,11 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
   /* code taken in void C2F(setbackground)(num, v2, v3, v4) from JPC */
   if (sciGetScilabXgc (pobj)->CurColorStatus == 1)
     {
-      /// COLORREF px;                                     /* COLORREF ? "periWin-bgc"*/
+      /* COLORREF px;                           COLORREF ? "periWin-bgc"*/
       sciGetScilabXgc (pobj)->NumBackground =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
 	      PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-      
-     
-      /// px =
-      ///   (sciGetScilabXgc (pobj)->Colors ==                                  /* routrine dans les peri* !!  */
-      ///      NULL) ? DefaultBackground : sciGetScilabXgc (pobj)->
-      ///      Colors[sciGetScilabXgc (pobj)->NumBackground];
-      ///
-      /* A finir XXXX 
-	 if (ScilabXgc->Cdrawable != (Drawable) ScilabXgc->CWindow ) 
-	 {
-	 XSetWindowBackground(dpy, ScilabXgc->CWindow,px);
-	 }
-      **/
-      /******** y'a un Pb avec le sciset([hdl optionnel],"background", val) *************/
     }
   switch (sciGetEntityType (pobj))
     {
@@ -939,7 +924,6 @@ sciGetBackground (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_SUBWIN:
-      //return sciGetBackground (sciGetParentFigure (pobj));
       return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_TEXT:
@@ -950,7 +934,6 @@ sciGetBackground (sciPointObj * pobj)
       break;
     case SCI_LEGEND:
       return (sciGetFontContext(pobj))->backgroundcolor + 1;
-      //return (sciGetBackground(pLEGEND_FEATURE (pobj)->pobjattached));
       break;
     case SCI_ARC:
       return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
@@ -1176,8 +1159,6 @@ sciGetForeground (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_SUBWIN:
-      //return pSUBWIN_FEATURE(pobj)->graphiccontext.foregroundcolor + 1;
-      //return sciGetForeground (sciGetParent (pobj));
       return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_TEXT:
@@ -1188,7 +1169,6 @@ sciGetForeground (sciPointObj * pobj)
       break;
     case SCI_LEGEND:
       return (sciGetFontContext(pobj))->foregroundcolor + 1;
-      //return (sciGetForeground(pLEGEND_FEATURE (pobj)->pobjattached));
       break;
     case SCI_ARC:
       return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
@@ -1248,8 +1228,6 @@ sciGetLineWidth (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->linewidth;
       break;
     case SCI_SUBWIN:
-      // return pSUBWIN_FEATURE(pobj)->graphiccontext.linewidth;
-      //return sciGetLineWidth (sciGetParent (pobj));
       return (sciGetGraphicContext(pobj))->linewidth;
       break;
     case SCI_TEXT:
@@ -1414,8 +1392,6 @@ sciGetLineStyle (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->linestyle;
       break;
     case SCI_SUBWIN:
-      //return pSUBWIN_FEATURE(pobj)->graphiccontext.linestyle;
-      //return sciGetLineStyle (sciGetParent (pobj));
       return (sciGetGraphicContext(pobj))->linestyle;
       break;
     case SCI_ARC:
@@ -1573,8 +1549,6 @@ sciGetIsMark (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->ismark;
       break;
     case SCI_SUBWIN:
-      //return pSUBWIN_FEATURE(pobj)->graphiccontext.ismark;
-      //return sciGetIsMark (sciGetParent (pobj));
       return (sciGetGraphicContext(pobj))->ismark;
       break;
     case SCI_ARC:
@@ -1711,7 +1685,6 @@ sciGetMarkStyle (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->markstyle;
       break;
     case SCI_SUBWIN:
-      //return pSUBWIN_FEATURE(pobj)->graphiccontext.markstyle;
       return sciGetMarkStyle (sciGetParent (pobj));
       break;
     case SCI_ARC:
@@ -1857,7 +1830,6 @@ sciGetFillStyle (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->fillstyle;
       break;
     case SCI_SUBWIN:
-      //return pSUBWIN_FEATURE(pobj)->graphiccontext.fillstyle;
       return sciGetFillStyle (sciGetParent (pobj));
       break;
     case SCI_TEXT:
@@ -1997,7 +1969,6 @@ sciGetFillColor (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->fillcolor;
       break;
     case SCI_SUBWIN:
-      //return pSUBWIN_FEATURE(pobj)->graphiccontext.fillstyle;
       return sciGetFillColor (sciGetParent (pobj));
       break;
     case SCI_TEXT:
@@ -2582,10 +2553,7 @@ sciGetDC (sciPointObj * pobj)
     {
     case SCI_FIGURE:
     case SCI_SUBWIN:
-      //if (sciGetPixmapStatus () == 1)
- //	return GetDC (sciGetScilabXgc (pobj)->hdcCompat);
-      //else
- 	return GetDC (sciGetScilabXgc (pobj)->CWindow);
+      return GetDC (sciGetScilabXgc (pobj)->CWindow);
       break;
     default:
       return sciGetDC (sciGetParent (pobj));
@@ -3291,88 +3259,90 @@ sciUnClip (int value)
 }
 
 
-///**sciSetHighLight
-// * @memo Tunrs ON or OFF the highlighting of the objects when there are selected
-// */
-//void
-//sciSetHighLight (sciPointObj * pobj, BOOL value)
-//{
-//  switch (sciGetEntityType (pobj))
-//    {
-//    case SCI_FIGURE:
-//      (sciGetGraphicMode (pobj))->highlight = value;
-//      break;
-//    case SCI_SUBWIN:
-//      (sciGetGraphicMode (pobj))->highlight = value;
-//      /* la valeur est herite du parent...pour le moment */
-//      sciSetHighLight (sciGetParentFigure (pobj), value);
-//      break;
-//    case SCI_TEXT:
-//    case SCI_TITLE:
-//    case SCI_LEGEND:
-//    case SCI_ARC:
-//    case SCI_PATCH:
-//    case SCI_SEGS: 
-//    case SCI_FEC: 
-//   case SCI_GRAYPLOT: 
-//    case SCI_POLYLINE:
-//    case SCI_RECTANGLE:
-//    case SCI_SURFACE:
-//    case SCI_LIGHT:
-//    case SCI_AXIS:
-//    case SCI_AXES:
-//    case SCI_MENU:
-//    case SCI_MENUCONTEXT:
-//    case SCI_AGREG:
-//      sciprint ("We cannot highlight this object\n");
-//      break;
-//    default:
-//      sciprint ("We cannot highlight this object\n");
-//      break;
-//    }
-//}
+/**sciSetHighLight
+ * @memo Tunrs ON or OFF the highlighting of the objects when there are selected
+ */
 
+void
+sciSetHighLight (sciPointObj * pobj, BOOL value)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_FIGURE:
+      /* (sciGetGraphicMode (pobj))->highlight = value; unused */
+      break;
+    case SCI_SUBWIN:
+      /* la valeur est herite du parent...pour le moment */
 
-///**sciGetHighLight
-// * @memo Returns the highlight mode where the object are.
-// */
-//BOOL
-//sciGetHighLight (sciPointObj * pobj)
-//{
-//  switch (sciGetEntityType (pobj))
-//    {
-//    case SCI_FIGURE:
-//      return (sciGetGraphicMode (pobj))->highlight;
-//      break;
-//    case SCI_SUBWIN:
-//      /* the value is inhirated by the parent */
-//      return sciGetHighLight (sciGetParentFigure (pobj));
-//      /* return (sciGetGraphicMode (pobj))->highlight; */
-//      break;
-//    case SCI_TEXT:
-//    case SCI_TITLE:
-//    case SCI_LEGEND:
-//    case SCI_ARC:
-//    case SCI_SEGS: 
-//    case SCI_FEC: 
-//    case SCI_GRAYPLOT: 
-//    case SCI_POLYLINE:
-//    case SCI_RECTANGLE:
-//    case SCI_SURFACE:
-//    case SCI_LIGHT:
-//    case SCI_AXIS:   
-//    case SCI_AXES:
-//    case SCI_PATCH:
-//    case SCI_MENU:
-//    case SCI_MENUCONTEXT:
-//    case SCI_AGREG:
-//    default:
-//      sciprint ("This object cannot be highlighted\n");
-//      return FALSE;
-//      break;
-//    }
-//  return FALSE;
-//}
+      /* (sciGetGraphicMode (pobj))->highlight = value;
+      sciSetHighLight (sciGetParentFigure (pobj), value);unused */
+      break;
+    case SCI_TEXT:
+    case SCI_TITLE:
+    case SCI_LEGEND:
+    case SCI_ARC:
+    case SCI_PATCH:
+    case SCI_SEGS: 
+    case SCI_FEC: 
+   case SCI_GRAYPLOT: 
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_SURFACE:
+    case SCI_LIGHT:
+    case SCI_AXIS:
+    case SCI_AXES:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_AGREG:
+      sciprint ("We cannot highlight this object\n");
+      break;
+    default:
+      sciprint ("We cannot highlight this object\n");
+      break;
+    }
+}
+
+/**sciGetHighLight
+ * @memo Returns the highlight mode where the object are.
+ */
+
+BOOL
+sciGetHighLight (sciPointObj * pobj)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_FIGURE:
+      /*return (sciGetGraphicMode (pobj))->highlight; */
+      break;
+    case SCI_SUBWIN:
+      /* the value is inhirated by the parent */
+      /*return sciGetHighLight (sciGetParentFigure (pobj));*/
+      break;
+    case SCI_TEXT:
+    case SCI_TITLE:
+    case SCI_LEGEND:
+    case SCI_ARC:
+    case SCI_SEGS: 
+    case SCI_FEC: 
+    case SCI_GRAYPLOT: 
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_SURFACE:
+    case SCI_LIGHT:
+    case SCI_AXIS:   
+    case SCI_AXES:
+    case SCI_PATCH:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_AGREG:
+    default:
+      sciprint ("This object cannot be highlighted\n");
+      return FALSE;
+      break;
+    }
+  return FALSE;
+}
+
 
 /**sciSetAddPlot
  * @memo Tunrs ON or OFF the possibility to draw multi plots in one graphic. 
@@ -3841,12 +3811,14 @@ sciSetResize (sciPointObj * pobj, BOOL value)
       C2F(dr)("xget","wpdim",&xtmp,x,&xtmp,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L); 
       C2F(dr)("xset","wpdim",&(x[0]),&(x[1]),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L);
 #ifdef WIN32
-      ///      SetViewportOrgEx (GetDC (sciGetScilabXgc (pobj)->CWindow),  /* Win function sciGetScilabXgc (pobj)->horzsi.nPos !!? BCG.horzsi.nPos*/
-      //			-sciGetScilabXgc (pobj)->horzsi.nPos,
-      //			-sciGetScilabXgc (pobj)->vertsi.nPos, NULL);
-      ///      if (sciGetPixmapStatus () == 0)                                          /* y'a pas une fonction pour X11 qui retourne
-      //	         InvalidateRect (sciGetScilabXgc (pobj)->CWindow, NULL, TRUE);    /*    "return ScilabXgc->CurPixmapStatus;
-      ///      UpdateWindow (sciGetScilabXgc (pobj)->CWindow);  /* dependent function MacWinOther.c"*/
+      /* Win function sciGetScilabXgc (pobj)->horzsi.nPos !!? BCG.horzsi.nPos*/
+      /* SetViewportOrgEx (GetDC (sciGetScilabXgc (pobj)->CWindow),  
+      			-sciGetScilabXgc (pobj)->horzsi.nPos,
+      			-sciGetScilabXgc (pobj)->vertsi.nPos, NULL);*/
+       /*if (sciGetPixmapStatus () == 0)                                          
+	InvalidateRect (sciGetScilabXgc (pobj)->CWindow, NULL, TRUE); 
+      return ScilabXgc->CurPixmapStatus;
+      UpdateWindow (sciGetScilabXgc (pobj)->CWindow); */ /* dependent function MacWinOther.c"*/
 
 #endif
     }
@@ -4228,13 +4200,14 @@ sciSetFigureIconify (sciPointObj * pobj, BOOL value)
     {
     case SCI_FIGURE:
       pFIGURE_FEATURE (pobj)->isiconified = value;
-      //		if (value)
-      ///			ShowWindow ((sciGetScilabXgc (pobj))->hWndParent, SW_MINIMIZE);   /* hWndParent de Type HWND (BCG) "WIN" */
-      //		else
-      {
-	///			ShowWindow ((sciGetScilabXgc (pobj))->hWndParent, SW_SHOWNORMAL); /* hWndParent de Type HWND (BCG) "WIN" */
-	///			BringWindowToTop ((sciGetScilabXgc (pobj))->hWndParent);          /* hWndParent de Type HWND (BCG) "WIN" */
-      }
+      /* hWndParent de Type HWND (BCG) "WIN" */
+      /*     if (value)
+	ShowWindow ((sciGetScilabXgc (pobj))->hWndParent, SW_MINIMIZE);
+      else
+	{
+	  ShowWindow ((sciGetScilabXgc (pobj))->hWndParent, SW_SHOWNORMAL); 
+	  BringWindowToTop ((sciGetScilabXgc (pobj))->hWndParent);
+	  } */
       break;
     default:
       sciSetFigureIconify(sciGetCurrentFigure(), value);
@@ -4254,9 +4227,9 @@ sciGetIsFigureIconified (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      //return pFIGURE_FEATURE(pobj)->isiconified;
-      ///      return (pFIGURE_FEATURE (pobj)->isiconified =
-      //	      IsIconic ((sciGetScilabXgc (pobj))->hWndParent));          /* hWndParent de Type HWND (BCG) "WIN" */
+      /* hWndParent de Type HWND (BCG) "WIN" */
+      /*return (pFIGURE_FEATURE (pobj)->isiconified =
+	IsIconic ((sciGetScilabXgc (pobj))->hWndParent)); */
       return FALSE;
       break;
     case SCI_AGREG:
@@ -4276,7 +4249,6 @@ sciGetIsFigureIconified (sciPointObj * pobj)
  * @return  0 if OK , else -1
  * @version 0.1.
  **/
-//&  /* Conflicting types with previous declaration ".h"*/
 int
 sciSetSubWindowPos (sciPointObj * pobj, int *pposx, int *pposy)
 {
@@ -5099,7 +5071,6 @@ sciSetText (sciPointObj * pobj, char text[], int n)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-      //if (realloc (pTEXT_FEATURE (pobj)->ptextstring, n * sizeof (char)+1) == NULL)
       FREE(pTEXT_FEATURE (pobj)->ptextstring);
       if ((pTEXT_FEATURE (pobj)->ptextstring = calloc (n+1, sizeof (char))) == NULL)
 	return -1;
@@ -5107,7 +5078,6 @@ sciSetText (sciPointObj * pobj, char text[], int n)
       pTEXT_FEATURE (pobj)->textlen = n;
       break;
     case SCI_TITLE:
-      //if (realloc (pTITLE_FEATURE (pobj)->text.ptextstring, n * sizeof (char)+1) == NULL)
       FREE(pTITLE_FEATURE (pobj)->text.ptextstring);
       if ((pTITLE_FEATURE (pobj)->text.ptextstring = calloc (n+1, sizeof (char))) == NULL)
 	return -1;
@@ -5115,7 +5085,6 @@ sciSetText (sciPointObj * pobj, char text[], int n)
       pTITLE_FEATURE (pobj)->text.textlen = n;
       break;
     case SCI_LEGEND:
-      //if (realloc(pLEGEND_FEATURE (pobj)->text.ptextstring, n * sizeof (char)+1) == NULL)
       FREE(pLEGEND_FEATURE (pobj)->text.ptextstring);
       if ((pLEGEND_FEATURE (pobj)->text.ptextstring = calloc (n+1, sizeof (char))) == NULL)
 	return -1;
@@ -5354,7 +5323,7 @@ sciGetTextPosWidth (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-      return 0;//pTEXT_FEATURE (pobj)->width;
+      return 0;
       break;
     case SCI_TITLE:
     case SCI_LEGEND:
@@ -5400,7 +5369,7 @@ sciGetTextPosHeight (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-      return 0;//pTEXT_FEATURE (pobj)->height;
+      return 0;
       break;
     case SCI_TITLE:
     case SCI_LEGEND:
@@ -6287,12 +6256,6 @@ sciGetFontContext (sciPointObj * pobj)
     case SCI_TEXT:
       return  &(pTEXT_FEATURE (pobj)->fontcontext);
       break;
-      //case SCI_AXIS:
-      //return  &(pAXIS_FEATURE (pobj)->text.fontcontext);
-      //break;
-      //case SCI_AXES:
-      //return  &(pAXES_FEATURE (pobj)->text.fontcontext);
-      //break;
     case SCI_MENU:
       return  &(pMENU_FEATURE (pobj)->text.fontcontext);
       break;
@@ -6345,12 +6308,12 @@ sciInitFontContext (sciPointObj * pobj)
    * plutot que fontforeground pour l'initialisation
    */
 
-  ///  static TCHAR inifontname[] = TEXT ("Times New Roman");  /* unknown function initfontname "Win-stand"!! */
+  /* unknown function initfontname "Win-stand"!! */
+  /* static TCHAR inifontname[] = TEXT ("Times New Roman");*/  
 
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-      //(sciGetFontContext(pobj))->pcolormap =	(sciGetGraphicContext(sciGetParent (pobj)))->pcolormap;
       (sciGetFontContext(pobj))->backgroundcolor = sciGetBackground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->foregroundcolor = sciGetForeground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->fontbold        =  FALSE;	/* Normal font in windows */
@@ -6360,19 +6323,20 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontstrikeout   = FALSE;	/*d'utilisation sur les differents OS */
       (sciGetFontContext(pobj))->textorientation = 0;
       /**/
-      ///	(sciGetFontContext(pobj))->fontnamelen = strlen (inifontname);  /* unknown function initfontname "Win-stand"!! */
+      /* unknown function initfontname "Win-stand"!! */
+      /*(sciGetFontContext(pobj))->fontnamelen = strlen (inifontname);  */
       if (((sciGetFontContext(pobj))->pfontname =
 	   calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 		   sizeof (char))) == NULL)
 	{
-	  //sciprint ("No more Memory for fontname\n"); // a regler !!
+	  sciprint ("No more Memory for fontname\n"); 
 	  return 0;
 	}
-      ///	strncpy ((sciGetFontContext(pobj))->pfontname, inifontname,  /* unknown function initfontname "Win-stand"!!  */ 
-      //       (sciGetFontContext(pobj))->fontnamelen);
+      /* unknown function initfontname "Win-stand"!!  */ 
+      /* strncpy ((sciGetFontContext(pobj))->pfontname, inifontname,  
+		 (sciGetFontContext(pobj))->fontnamelen);*/ 
       break;
     case SCI_TITLE:
-      //(sciGetFontContext(pobj))->pcolormap =	(sciGetGraphicContext(sciGetParent (pobj)))->pcolormap;
       (sciGetFontContext(pobj))->backgroundcolor =	sciGetBackground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->fontbold = FALSE;
@@ -6381,7 +6345,8 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
-      ///      (sciGetFontContext(pobj))->fontnamelen =lstrlen (inifontname);    /* Unknown Function "WIN" */
+      /* Unknown Function "WIN" */
+      /*     (sciGetFontContext(pobj))->fontnamelen =lstrlen (inifontname);*/    
       if (
 	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 							  sizeof (char))) == NULL)
@@ -6389,11 +6354,11 @@ sciInitFontContext (sciPointObj * pobj)
 	  sciprint ("No more Memory for fontname\n");
 	  return 0;
 	}
-      ///      strncpy ((sciGetFontContext(pobj))->pfontname, inifontname, /* Unknown Function "WIN" */
-      //	       (sciGetFontContext(pobj))->fontnamelen);
+      /* Unknown Function "WIN" */
+      /*     strncpy ((sciGetFontContext(pobj))->pfontname, inifontname, 
+	     (sciGetFontContext(pobj))->fontnamelen);*/
       break;
     case SCI_LEGEND:
-      //(sciGetFontContext(pobj))->pcolormap =	(sciGetGraphicContext(sciGetParent (pobj)))->pcolormap;
       (sciGetFontContext(pobj))->backgroundcolor = sciGetBackground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->fontbold = FALSE;
@@ -6402,7 +6367,8 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
-      ///      (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname);     /* Unknown Function "WIN" */
+      /* Unknown Function "WIN" */
+      /*     (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname);     */
       if (
 	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 							  sizeof (char))) == NULL)
@@ -6410,12 +6376,12 @@ sciInitFontContext (sciPointObj * pobj)
 	  sciprint ("No more Memory for fontname\n");
 	  return 0;
 	}
-      ///      strncpy ((sciGetFontContext(pobj))->pfontname,
-      //	       inifontname,                       /* Unknown Function "WIN" */
-      //	       (sciGetFontContext(pobj))->fontnamelen);
+      /* Unknown Function "WIN" */
+      /*      strncpy ((sciGetFontContext(pobj))->pfontname,
+      	       inifontname,                       
+      	       (sciGetFontContext(pobj))->fontnamelen);*/
       break;
     case SCI_AXIS:
-      //(sciGetFontContext(pobj))->pcolormap =	(sciGetGraphicContext(sciGetParent (pobj)))->pcolormap;
       (sciGetFontContext(pobj))->backgroundcolor = sciGetBackground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->foregroundcolor = sciGetForeground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->fontbold = FALSE;
@@ -6424,7 +6390,8 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
-      ///      (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname); /* Unknown Function "WIN" */
+      /* Unknown Function "WIN" */
+      /*(sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname); */
       if (
 	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 							  sizeof (char))) == NULL)
@@ -6433,7 +6400,6 @@ sciInitFontContext (sciPointObj * pobj)
 	  return 0;
 	} 
     case SCI_AXES:
-      //(sciGetFontContext(pobj))->pcolormap =	(sciGetGraphicContext(sciGetParent (pobj)))->pcolormap;
       (sciGetFontContext(pobj))->backgroundcolor = sciGetBackground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->foregroundcolor = sciGetForeground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->fontbold = FALSE;
@@ -6442,7 +6408,8 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
-      ///      (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname); /* Unknown Function "WIN" */
+      /* Unknown Function "WIN" */
+      /*      (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname); */
       if (
 	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 							  sizeof (char))) == NULL)
@@ -6450,11 +6417,11 @@ sciInitFontContext (sciPointObj * pobj)
 	  sciprint ("No more Memory for fontname\n");
 	  return 0;
 	}
-      ///     strncpy ((sciGetFontContext(pobj))->pfontname, inifontname,             /* Unknown Function "WIN" */
-      //	       (sciGetFontContext(pobj))->fontnamelen);
+      /* Unknown Function "WIN" */
+      /*     strncpy ((sciGetFontContext(pobj))->pfontname, inifontname, 
+	     (sciGetFontContext(pobj))->fontnamelen);*/
       break;
     case SCI_MENU:
-      //(sciGetFontContext(pobj))->pcolormap =	(sciGetGraphicContext(sciGetParent (pobj)))->pcolormap;
       (sciGetFontContext(pobj))->backgroundcolor = sciGetBackground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->foregroundcolor = sciGetForeground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->fontbold = FALSE;
@@ -6463,7 +6430,8 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
-      ///      (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname);  /* Unknown Function "WIN" */
+      /* Unknown Function "WIN" */
+      /*      (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname);  */
       if (
 	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 							  sizeof (char))) == NULL)
@@ -6471,11 +6439,11 @@ sciInitFontContext (sciPointObj * pobj)
 	  sciprint ("No more Memory for fontname\n");
 	  return 0;
 	}
-      ///      strncpy ((sciGetFontContext(pobj))->pfontname, inifontname,        /* Unknown Function "WIN" */
-      //	       (sciGetFontContext(pobj))->fontnamelen);
+      /* Unknown Function "WIN" */
+      /*     strncpy ((sciGetFontContext(pobj))->pfontname, inifontname,  
+      	       (sciGetFontContext(pobj))->fontnamelen); */
       break;
     case SCI_MENUCONTEXT:
-      //(sciGetFontContext(pobj))->pcolormap =	(sciGetGraphicContext(sciGetParent (pobj)))->pcolormap;
       (sciGetFontContext(pobj))->backgroundcolor =	sciGetBackground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->fontbold = FALSE;
@@ -6484,7 +6452,8 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
-      ///      (sciGetFontContext(pobj))->fontnamelen =	lstrlen (inifontname);   /* Unknown Function "WIN" */
+      /* Unknown Function "WIN" */
+      /*(sciGetFontContext(pobj))->fontnamelen =	lstrlen (inifontname);   */
       if (
 	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 							  sizeof (char))) == NULL)
@@ -6492,12 +6461,12 @@ sciInitFontContext (sciPointObj * pobj)
 	  sciprint ("No more Memory for fontname\n");
 	  return 0;
 	}
-      ///      strncpy ((sciGetFontContext(pobj))->pfontname,
-      //	       inifontname,                                 /* Unknown Function "WIN" */
-      //	       (sciGetFontContext(pobj))->fontnamelen);
+      /* Unknown Function "WIN" */
+      /*      strncpy ((sciGetFontContext(pobj))->pfontname,
+      	       inifontname,                                 
+      	       (sciGetFontContext(pobj))->fontnamelen);*/
       break;
     case SCI_STATUSB:
-      //(sciGetFontContext(pobj))->pcolormap =	(sciGetGraphicContext(sciGetParent (pobj)))->pcolormap;
       (sciGetFontContext(pobj))->backgroundcolor =	sciGetBackground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
       (sciGetFontContext(pobj))->fontbold = FALSE;
@@ -6506,7 +6475,8 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
-      ///      (sciGetFontContext(pobj))->fontnamelen =	lstrlen (inifontname);             /* Unknown Function "WIN" */
+      /* Unknown Function "WIN" */
+      /*     (sciGetFontContext(pobj))->fontnamelen =	lstrlen (inifontname);*/
       if (
 	  ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 							  sizeof (char))) == NULL)
@@ -6514,8 +6484,8 @@ sciInitFontContext (sciPointObj * pobj)
 	  sciprint ("No more Memory for fontname\n");
 	  return 0;
 	}
-      ///strncpy ((sciGetFontContext(pobj))->pfontname,
-      //       inifontname, 15);                    /* Unknown Function "WIN" */
+      /* Unknown Function "WIN" */
+      /*strncpy ((sciGetFontContext(pobj))->pfontname,inifontname, 15);*/
       break;   
     case SCI_FIGURE:     
     case SCI_SUBWIN: 
@@ -6550,7 +6520,8 @@ sciInitFontContext (sciPointObj * pobj)
 HMENU
 sciGethPopMenu (sciPointObj * pthis)
 {
-  ///  HWND hwnd_window_pointed;   /* structure BCG periWIN ! winuser.h "Window"*/
+  /* structure BCG periWIN ! winuser.h "Window"*/
+  /*  HWND hwnd_window_pointed; */
 
   /* On cherche le handle de la fenetre selectionnnee */
   /* hwnd_window_pointed = WindowFromPoint(Point);    */
@@ -6677,7 +6648,7 @@ sciDelLabelsMenu (sciPointObj * pthis)
 int
 sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu)
 {
-  ///  HWND hwnd_window_pointed;     /* structure BCG periWIN ! winuser.h "Window */
+  /*  HWND hwnd_window_pointed;*/     /* structure BCG periWIN ! winuser.h "Window */
    
   if (sciGetEntityType(pPopMenu) == SCI_MENUCONTEXT) /* verification of the validate type */
     {
@@ -6733,7 +6704,7 @@ sciGetScrollPosV (sciPointObj * pobj)
     {
     case SCI_SBV:
     default:
-      ///     return GetScrollPos ((sciGetScilabXgc (pobj))->CWindow, SB_VERT); /* GetScrollPos fct stand dans WIN */
+      /*   return GetScrollPos ((sciGetScilabXgc (pobj))->CWindow, SB_VERT);*/ /* GetScrollPos fct stand dans WIN */
       return -1;
       break;
     }
@@ -6753,7 +6724,7 @@ sciGetScrollPosH (sciPointObj * pobj)
     {
     case SCI_SBH:
     default:
-      ///      return GetScrollPos ((sciGetScilabXgc (pobj))->CWindow, SB_HORZ); /* GetScrollPos fct stand dans WIN */
+      /* return GetScrollPos ((sciGetScilabXgc (pobj))->CWindow, SB_HORZ);*/ /* GetScrollPos fct stand dans WIN */
       return -1;
       break;
     }
@@ -6787,7 +6758,6 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
     {
 
     case SCI_FIGURE:
-      //DestroyFigure (pthis);
       return 0;
       break;
     case SCI_SUBWIN:
@@ -7020,36 +6990,18 @@ ConstructFigure (XGC)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }   
-  /*** 2002 ***/ 
+
   strncpy (pFIGURE_FEATURE (pobj)->name, "Scilab Graphic", sizeof ("Scilab Graphic") + 4);
   pFIGURE_FEATURE (pobj)->namelen = Min (sizeof ("Scilab Graphic") + 4, 14); 
   sciSetNum (pobj, &(XGC->CurWindow));
-
-  /* recupere dans les structures Scilab */
-  /*C2F (getwindowdim) (&verbose, x, &narg, &dummy);*/
-  
-  /*** 25/01/2002 ************
-   * utiliser le XGC courant de (propre à) cette fenetre au lieu de restaurer le ScilabXgc globale*/
-  //C2F(dr)("xget","wdim",&verbose,x,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
-  //sciSetDim (pobj, x, x + 1); 
   pFIGURE_FEATURE (pobj)->figuredimwidth = XGC->CWindowWidth;
   pFIGURE_FEATURE (pobj)->figuredimheight = XGC->CWindowHeight;
-  //sciSetDim (pobj, &(XGC->CWindowWidth), &(XGC->CWindowHeight));
-
-  //²**** Mise a jour le 14/01/2002 ******/ 
   C2F(dr)("xget","wpos",&verbose,x,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
   sciSetFigurePos (pobj, x[0], x[1]);
-  //////
-
-
   pFIGURE_FEATURE (pobj)->isiconified = FALSE;
   pFIGURE_FEATURE (pobj)->isselected = TRUE;
   pFIGURE_FEATURE (pobj)->visible = TRUE;
   pFIGURE_FEATURE (pobj)->numsubwinselected = 0; 
-
-  //if (sciInitChildWin (pobj, popupname) == -1)  /* Fonction non definie pour le moment dans periX11 */
-  //	  return (sciPointObj *)NULL;             
-
   return pobj;
 }
 
@@ -7088,8 +7040,6 @@ ConstructStatusBar (sciPointObj * pparentfigure)
 
   if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
     {
-      ///      if (sciInitStatusBar (pparentfigure) == -1)    /* Fonction non definie pour le moment dans periX11 */
-      //	return NULL;
       if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
 	return NULL;
       sciSetEntityType (pobj, SCI_STATUSB);
@@ -7320,8 +7270,6 @@ ConstructScrollV (sciPointObj * pparentfigure)
   if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
     {
       /* definition of scrollbars with original code */
-      ///      if (sciInitScrollBar (pFIGURE_FEATURE (pparentfigure)->pScilabXgc) ==  -1)  /* sciInitScrollBar fonction dependante */
-      //	return NULL;
       /* definition of the vertical scroll bar in the new struct */
       if ((pobjsbv = MALLOC ((sizeof (sciPointObj)))) == NULL)
 	return NULL;
@@ -7370,9 +7318,6 @@ ConstructScrollH (sciPointObj * pparentfigure)
   if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
     {
       /* definition of scrollbars with original code */
-      //if (sciInitScrollBar(pFIGURE_FEATURE(pparentfigure)->pScilabXgc) == -1)
-      //        return NULL;
-
       /* definition of the horizontal scroll bar in the new struct */
       if ((pobjsbh = MALLOC ((sizeof (sciPointObj)))) == NULL)
 	return NULL;
@@ -7504,7 +7449,6 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
 	  return (sciPointObj *) NULL;
 	}
       strncpy (pTEXT_FEATURE (pobj)->ptextstring, text, n);
-      /*pTEXT_FEATURE (pobj)->ptextstring[n] = '\0';*/ //normalement pas necessaire pisque calloc rempli la memoire avec des 0
       pTEXT_FEATURE (pobj)->textlen = n;
       pTEXT_FEATURE (pobj)->x = x;
       pTEXT_FEATURE (pobj)->y = y;
@@ -7924,8 +7868,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      //ppoly->pvx=pvecx;
-      // ppoly->pvy=pvecy;
 
       ppoly->xmin   = pvecx[0];
       ppoly->ymin   = pvecy[0];
@@ -7955,12 +7897,11 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
   
       ppoly->width  = fabs(xmax - ppoly->xmin);
       ppoly->height = fabs(ymax - ppoly->ymin); 
-      ppoly->n1 = n1;		// memorisation du nombre des courbes
-      ppoly->n2 = n2;		// memorisation du nombre de points
+      ppoly->n1 = n1;		/* memorisation du nombre des courbes */
+      ppoly->n2 = n2;		/* memorisation du nombre de points */
       ppoly->closed = closed;
       ppoly->plot = plot; 
-      /*		if (memcpy( ppoly->pvector, pvec, n*sizeof(POINT2D)) == NULL)
-			return (sciPointObj *)NULL;*/
+
       if (sciInitGraphicContext (pobj) == -1)
 	{
 	  FREE(pPOLYLINE_FEATURE (pobj)->pvy);
@@ -8162,8 +8103,6 @@ DestroyGrayplot (sciPointObj * pthis)
     FREE (pGRAYPLOT_FEATURE (pthis)->pvecy);
   FREE (pGRAYPLOT_FEATURE (pthis)->pvecz);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  //if (sciDelHandle (pthis) == -1)
-  //  return -1;
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
   /* on peut alors destroyer le parent */
@@ -8341,15 +8280,13 @@ DestroyFec (sciPointObj * pthis)
   FREE (pFEC_FEATURE (pthis)->zminmax);  
   FREE (pFEC_FEATURE (pthis)->colminmax);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  //if (sciDelHandle (pthis) == -1)
-  //  return -1;
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
   /* on peut alors destroyer le parent */
   return 0;
 }
-/********************** 21/05/2002 *****
- **ConstructSegs
+
+/**ConstructSegs
  * @memo This function creates Segments
  * @author Djalel.ABDEMOUCHE
  * @version 0.1
@@ -8647,10 +8584,8 @@ ConstructPatch (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
       ppoly->width  = fabs(xmax - ppoly->xmin);
       ppoly->height = fabs(ymax - ppoly->ymin);
 
-      ppoly->n1 = n;		// memorisation du nombre de points
+      ppoly->n1 = n;		/* memorisation du nombre de points */
       ppoly->closed = 1;
-      /*		if (memcpy( ppoly->pvector, pvec, n*sizeof(POINT2D)) == NULL)
-			return (sciPointObj *)NULL;*/
       if (sciInitGraphicContext (pobj) == -1)
 	{
 	  FREE(pPATCH_FEATURE (pobj)->pvy);
@@ -8686,9 +8621,6 @@ ClonePatch (sciPointObj * pthis)
 	 && (sciGetEntityType(subwinparent) != -1));
   if (sciGetEntityType(subwinparent) == -1)
     return (sciPointObj *)NULL;
-  //&	if (!(pobj = ConstructPatch (subwinparent, pPATCH_FEATURE(pthis)->pvx,   /* too many arguments to function*/
-  //	pPATCH_FEATURE(pthis)->pvy, pPATCH_FEATURE(pthis)->closed, pPATCH_FEATURE(pthis)->n)))
-  //	return (sciPointObj *)NULL;
   if (!(pobj = ConstructPatch (subwinparent, pPATCH_FEATURE(pthis)->pvx, 
 			       pPATCH_FEATURE(pthis)->pvy, pPATCH_FEATURE(pthis)->n)))
     return (sciPointObj *)NULL;
@@ -9297,7 +9229,6 @@ ConstructAxis (sciPointObj * pparentsubwin, char *strflag, int style, double min
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}  
-      //sciInitFontContext (pobj);
 
       return pobj;
     }
@@ -9356,7 +9287,6 @@ DestroyAxis (sciPointObj * pthis)
   FREE (pAXIS_FEATURE (pthis)->plabelx);
   FREE (pAXIS_FEATURE (pthis)->plabely);
   FREE (pAXIS_FEATURE (pthis)->plabelz);
-  //FREE ((sciGetFontContext(pthis))->pfontname);
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
   /* on peut alors destroyer le parent, le vecteur 3d et 2d */
@@ -9487,7 +9417,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
     	  FREE(pobj);
     	  return (sciPointObj *) NULL;
 	}
-      //sciInitFontContext (pobj);
+
 
       return pobj;
     }
@@ -9566,9 +9496,6 @@ DestroyAxes (sciPointObj * pthis)
  * pour obtenir un menu de contexe vide pour chacune des entites. L'utilisateur specifie avec un addlabel les label et callback necessaire ensuite.
  * @param  sciPointObj * pparentfigure: the parent entity
  */
-//& /* Conflicting types with previous declaration ".h */
-//sciPointObj *
-//ConstructMenuContext (sciPointObj * pparentfigure, char plabel[], int n)
 sciPointObj *
 ConstructMenuContext (sciPointObj * pparentfigure)
 {
@@ -9614,18 +9541,18 @@ ConstructMenuContext (sciPointObj * pparentfigure)
 	}
       sciInitFontContext (pobj);
 
-      /* contruit le menu contextuel */
-      ///     if ((pMENUCONTEXT_FEATURE(pobj)->hPopMenu = CreatePopupMenu ()) == NULL) /*CreatePopupMenu () ?! */
-      // {
-      //	  sciprint ("Scilab can't have more menu \n");
-      //	  FREE ((sciGetFontContext(pobj))->pfontname);
-      //	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-      //	  sciDelHandle (pobj);
-      //	  FREE(pMENUCONTEXT_FEATURE (pobj));
-      //	  FREE(pobj);
-      //	  return (sciPointObj *) NULL;
-      //  }
-      ///	  AppendMenu (pMENUCONTEXT_FEATURE(pobj)->hPopMenu, MF_SEPARATOR , 0, NULL);/* windows dependant*/
+      /* windows dependant*/
+      /*     if ((pMENUCONTEXT_FEATURE(pobj)->hPopMenu = CreatePopupMenu ()) == NULL) 
+      {
+      	  sciprint ("Scilab can't have more menu \n");
+      	  FREE ((sciGetFontContext(pobj))->pfontname);
+      	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+      	  sciDelHandle (pobj);
+      	  FREE(pMENUCONTEXT_FEATURE (pobj));
+      	  FREE(pobj);
+      	  return (sciPointObj *) NULL;
+       }
+       AppendMenu (pMENUCONTEXT_FEATURE(pobj)->hPopMenu, MF_SEPARATOR , 0, NULL);*/
       /*AppendMenu (sciGethPopMenu (pobj), MF_STRING, 4401, plabel);*/
 
       return (sciPointObj *) pobj;
@@ -9822,17 +9749,12 @@ sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget )
 int
 sciDrawObj (sciPointObj * pobj)
 {
- //     HFONT hfont;
-  ///  LOGFONT logfont;           /* Unknown type !! (non utilise ?!)*/
-  ///  HDC hdc;                   /* Structure BCG "Win" */
   char str[2] = "xv",locstr;
   integer n,n1,uc,verbose=0,narg,xz[10],na,arssize,sflag=0;
   integer *xm, *ym,*zm,n2 = 1, xtmp[4], ytmp[4],style[1],rect1[4];
   integer closeflag = 0;
   integer width, height;
-  /* 12/01/2002 */
   double anglestr,w2,h2;
-  /* 17/05/2002 */ 
   double xx[2],yy[2];   
   integer px1[2],py1[2],pn1=1,pn2=2;
   integer nn1,nn2, arsize,lstyle,iflag;
@@ -9842,8 +9764,8 @@ sciDrawObj (sciPointObj * pobj)
   integer x[5], v;
   integer xold[5], vold = 0, flagx = 0;
   sciSons *psonstmp;
-  integer itmp[5];		// variable temporaire
-  integer markidsizeold[2], markidsizenew[2];// variables du type de mark
+  integer itmp[5];		
+  integer markidsizeold[2], markidsizenew[2];
   sciPointObj *psubwin;
   double locx,locy,loctit;
   char logflags[4];
@@ -9865,8 +9787,7 @@ sciDrawObj (sciPointObj * pobj)
 
  
 
-  //if (!sciGetdrawmode())
-  //  return 0;
+
 
   switch (sciGetEntityType (pobj))
     {
@@ -9934,25 +9855,23 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_LEGEND: 
       if (!sciGetVisibility(pobj))
 	return 0;
-      sciSetCurrentObj (pobj);	// place l'objet comme objet courrant
+      sciSetCurrentObj (pobj);	
       C2F (dr1) ("xget", "dashes", &flagx, &xold[0], &vold, &vold, &vold,
 		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr1) ("xget", "foreground", &flagx, &xold[1], &vold, &vold, &vold,
 		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
-      //      C2F (dr1) ("xget", "background", &flagx, &xold[2], &vold, &vold, &vold,
-      //		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
 
-      itmp[0] = 0;		// verbose
-      itmp[1] = 0;		// thickness value
-      itmp[2] = 1;		// narg
+
+      itmp[0] = 0;		/* verbose */
+      itmp[1] = 0;		/* thickness value*/
+      itmp[2] = 1;		/* narg*/
       C2F (dr) ("xget", "thickness", &itmp[0], &itmp[1], &itmp[2], PI0, PI0,
 		PI0, PD0, PD0, PD0, PD0, 0L, 0L);
       C2F (dr) ("xget", "mark", &itmp[0], markidsizeold, &itmp[3], PI0, PI0, PI0,
 		PD0, PD0, PD0, PD0, 0L, 0L);
 
       /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      //      x[1] = sciGetBackground (pobj);
+      x[0] = sciGetForeground (pobj);	/*la dash est de la meme couleur que le foreground*/
       x[4] = 0;
       v = 0;
       dv = 0;
@@ -9963,8 +9882,6 @@ sciDrawObj (sciPointObj * pobj)
 		 &dv, &dv, &dv, 5L, 4096);
       C2F (dr1) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 		 &dv, &dv, &dv, &dv, 5L, 4096);
-      //      C2F (dr1) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
-      //		 &dv, &dv, &dv, &dv, 5L, 4096);
 #ifdef WIN32 
       ReleaseWinHdc ();
       SetWinhdc ();
@@ -9981,8 +9898,6 @@ sciDrawObj (sciPointObj * pobj)
 	}
       sciSetCurrentObj(pobj);
       Legends(pLEGEND_FEATURE (pobj)->pstyle, &(pLEGEND_FEATURE (pobj)->nblegends), sciGetText(pobj));
-      /*C2F (dr) ("xstring", leg, &xs, &ys, PI0, &flag, PI0, PI0,
-	&angle, PD0, PD0, PD0, 0L, 0L);*/
        
           
       /* restore the graphic context */
@@ -9996,8 +9911,6 @@ sciDrawObj (sciPointObj * pobj)
 		 &dv, &dv, &dv, &dv, 5L, 6L);
       C2F (dr1) ("xset", "foreground", &xold[1], &vold, &vold, &vold, &vold,
 		 &v, &dv, &dv, &dv, &dv, 5L, 10L);
-      //      C2F (dr1) ("xset", "background", &xold[2], &vold, &vold, &vold, &vold,
-      //		 &v, &dv, &dv, &dv, &dv, 5L, 10L);
 #ifdef WIN32 
       ReleaseWinHdc ();
 #endif
@@ -10178,9 +10091,9 @@ sciDrawObj (sciPointObj * pobj)
 
       sciSetCurrentObj (pobj);	  
       
-      itmp[0] = 0;		// verbose
-      itmp[1] = 0;		// thickness value
-      itmp[2] = 1;		// narg
+      itmp[0] = 0;		/* verbose*/
+      itmp[1] = 0;		/* thickness value*/
+      itmp[2] = 1;		/* narg*/
 
       /* load the object foreground and dashes color */
       x[0] = sciGetForeground (pobj);	
@@ -10279,12 +10192,11 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_PATCH: 
       if (!sciGetVisibility(pobj))
 	return 0;
-      sciSetCurrentObj (pobj);	// place l'objet comme objet courrant ce qui permet de travailler avec un objet par defaut
-     
+      sciSetCurrentObj (pobj);	     
 
-      itmp[0] = 0;		// verbose
-      itmp[1] = 0;		// thickness value
-      itmp[2] = 1;	       // narg
+      itmp[0] = 0;		/* verbose*/
+      itmp[1] = 0;		/* thickness value*/
+      itmp[2] = 1;	       /* narg*/
       C2F (dr) ("xget", "thickness", &itmp[0], &itmp[1], &itmp[2], PI0, PI0,
 		PI0, PD0, PD0, PD0, PD0, 0L, 0L);
 
@@ -10336,20 +10248,19 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_ARC: 
       if (!sciGetVisibility(pobj))
 	return 0;
-      sciSetCurrentObj (pobj);	// place l'objet comme objet courrant
+      sciSetCurrentObj (pobj);	
       n = 1;
       
      
-      itmp[0] = 0;		// verbose
-      itmp[1] = 0;		// thickness value
-      itmp[2] = 1;		// narg
+      itmp[0] = 0;		/* verbose*/
+      itmp[1] = 0;		/* thickness value*/
+      itmp[2] = 1;		/* narg*/
       C2F (dr) ("xget", "thickness", itmp, itmp+1, itmp+2, PI0, PI0,
 		PI0, PD0, PD0, PD0, PD0, 4L, 9L);
 
       /* load the object foreground and dashes color */
       
-      x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      //      x[1] = sciGetBackground (pobj);
+      x[0] = sciGetForeground (pobj);	
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
@@ -10365,8 +10276,6 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3,&v, 
 		&dv, &dv, &dv, &dv, 5L, 10L );
-      //      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,
-      //		&dv, &dv, &dv, &dv, 5L, 10L);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, 
 		PD0, PD0, PD0, PD0, 4L, 9L);   
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, 
@@ -10385,12 +10294,10 @@ sciDrawObj (sciPointObj * pobj)
      
 
       /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */
-      //C2F (echelle2dl) (width, height, &w1, &h1, &n, &n, "f2i");
       w1 = WScale(w2);
       h1 = HScale(h2);
       
       
-      //hdc = sciGetDC (pobj);	//selectionne le hdc dans lequel il doit etre dessine
 #ifdef WIN32 
       SetWinhdc ();
 #endif
@@ -10407,10 +10314,10 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_RECTANGLE:  
       if (!sciGetVisibility(pobj))
 	return 0;
-      sciSetCurrentObj (pobj);	// place l'objet comme objet courrant
+      sciSetCurrentObj (pobj);
       n = 1;
       if (sciGetFillStyle(pobj) != 0)
-	{       x[0] = 64;	//la dash est de la meme couleur que le foreground
+	{       x[0] = 64;	/*la dash est de la meme couleur que le foreground*/
 	x[1] = 1;
 	x[2] = 0;
 	x[3] = 0;
@@ -10428,12 +10335,11 @@ sciDrawObj (sciPointObj * pobj)
 	}
       /* load the object foreground and dashes color */
       x[0] = sciGetForeground (pobj);
-      //     x[1] = sciGetBackground (pobj); 
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
-      markidsizenew[0] =  sciGetMarkStyle(pobj);//3;
-      markidsizenew[1] =  sciGetLineWidth (pobj);//2;
+      markidsizenew[0] =  sciGetMarkStyle(pobj);
+      markidsizenew[1] =  sciGetLineWidth (pobj);
      
       v = 0;
       dv = 0; 
@@ -10445,8 +10351,6 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
 		&dv, &dv, &dv, &dv, 5L, 4096);
-      //      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,
-      //		&dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);    
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
@@ -10512,10 +10416,10 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_TEXT: 
       if (!sciGetVisibility(pobj))
 	return 0;
-      sciSetCurrentObj (pobj);	// place l'objet comme objet courrant
+      sciSetCurrentObj (pobj);	
       n = 1;
       /* load the object foreground and dashes color */
-      x[0] = sciGetFontForeground (pobj);//la dash est de la meme couleur que le foreground
+      x[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
       x[2] = sciGetFontDeciWidth (pobj)/100;
       x[3] = 0;
       x[4] = sciGetFontStyle(pobj);
@@ -10538,7 +10442,7 @@ sciDrawObj (sciPointObj * pobj)
       if (hh1 != 0)
 	yy1 -=hh1;
         
-      anglestr = (sciGetFontOrientation (pobj)/10); 	// *10 parce que l'angle est concerve en 1/10eme de degre
+      anglestr = (sciGetFontOrientation (pobj)/10); 	/* *10 parce que l'angle est concerve en 1/10eme de degre*/
 
       flagx = 0;
 #ifdef WIN32 
@@ -10548,7 +10452,6 @@ sciDrawObj (sciPointObj * pobj)
 
       C2F (displaystring) (sciGetText (pobj), &x1, &yy1, PI0, &flagx, PI0,
       			   PI0, &anglestr, PD0, PD0, PD0);
-      //C2F (boundingbox) (sciGetText (pobj),&x, &y, PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 #ifdef WIN32 
       ReleaseWinHdc ();
 #endif
@@ -10557,18 +10460,17 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_AXIS: 
       if (!sciGetVisibility(pobj))
 	return 0;
-      sciSetCurrentObj (pobj);	// place l'objet comme objet courant*/     
-      itmp[0] = 0;		// verbose
-      itmp[1] = 0;		// thickness value
-      itmp[2] = 1;		// narg
+      sciSetCurrentObj (pobj);	
+      itmp[0] = 0;		/* verbose */
+      itmp[1] = 0;		/* thickness value */
+      itmp[2] = 1;		/* narg */
       C2F (dr) ("xget", "thickness", &itmp[0], &itmp[1], &itmp[2], PI0, PI0,
 		PI0, PD0, PD0, PD0, PD0, 0L, 0L);
       C2F (dr) ("xget", "mark", &itmp[0], markidsizeold, &itmp[3], PI0, PI0, PI0,
 		PD0, PD0, PD0, PD0, 0L, 0L);
 
       /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      //x[1] = sciGetBackground (pobj);
+      x[0] = sciGetForeground (pobj);
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       markidsizenew[0] = sciGetMarkStyle(pobj);
@@ -10585,8 +10487,6 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 		&dv, &dv, &dv, &dv, 5L, 4096);
-      //      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
-      //		&dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
@@ -10623,9 +10523,9 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_TITLE:
       if (!sciGetVisibility(pobj))
 	return 0;
-      sciSetCurrentObj (pobj);        // place l'objet comme objet courrant
+      sciSetCurrentObj (pobj);       
       /* load the object foreground and dashes color */
-      x[0] = sciGetFontForeground (pobj);//la dash est de la meme couleur que le foreground
+      x[0] = sciGetFontForeground (pobj);
       x[2] = sciGetFontDeciWidth (pobj)/100;
       x[3] = 0;
       x[4] = 0; sciGetFontStyle(pobj);
@@ -10641,7 +10541,6 @@ sciDrawObj (sciPointObj * pobj)
       ReleaseWinHdc ();
 #endif
       sciClip(sciGetIsClipping(pobj));
-      ///
       flagx = 0;
       anglestr = 0;
       psubwin = sciGetParentSubwin(pobj);
@@ -10723,12 +10622,11 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_AXES:
       if (!sciGetVisibility(pobj))
 	return 0;
-      sciSetCurrentObj (pobj);	// place l'objet comme objet courant*/
+      sciSetCurrentObj (pobj);	
     
       /* load the object foreground and dashes color */
       
-      x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      //      x[1] = sciGetBackground (pobj);
+      x[0] = sciGetForeground (pobj);
       x[2] = sciGetLineWidth (pobj);
       x[3] = 0;
       x[4] = 0;
@@ -10741,8 +10639,6 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
 		&dv, &dv, &dv, &dv, 5L, 4096);
-      //      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,
-      //		&dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);
       sciClip(sciGetIsClipping(pobj));
@@ -10764,16 +10660,15 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_SURFACE: 
       if (!sciGetVisibility(pobj))
 	return 0;
-      sciSetCurrentObj (pobj);	// place l'objet comme objet courant*/     
-      itmp[0] = 0;		// verbose
-      itmp[1] = 0;		// thickness value
-      itmp[2] = 1;		// narg
+      sciSetCurrentObj (pobj);	
+      itmp[0] = 0;		/* verbose*/
+      itmp[1] = 0;		/* thickness value*/
+      itmp[2] = 1;		/* narg*/
       C2F (dr) ("xget", "thickness", &itmp[0], &itmp[1], &itmp[2], PI0, PI0,PI0, PD0, PD0, PD0, PD0, 4L, 9L);
       C2F (dr) ("xget", "mark", &itmp[0], markidsizeold, &itmp[3], PI0, PI0, PI0,PD0, PD0, PD0, PD0, 4L, 4L);
 
       /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      //      x[1] = sciGetBackground (pobj);
+      x[0] = sciGetForeground (pobj);	
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       markidsizenew[0] = sciGetMarkStyle(pobj);
@@ -10781,7 +10676,6 @@ sciDrawObj (sciPointObj * pobj)
       x[4] = 0;v = 0;dv = 0; 
       C2F (dr) ("xset", "dashes",     x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
-      //      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
       C2F (dr) ("xset", "thickness",  x+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
 		
@@ -10872,7 +10766,6 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     default:
-      //sciprint ("This object cannot be drawn !\n");
       return -1;
       break;
     }
@@ -10976,7 +10869,6 @@ sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight,
 long
 sciGetCurrentHandle ()
 {
-  //return (sciPointObj *)ScilabXgc->mafigure;
   return sciGetHandle (sciGetCurrentObj ());
 }
 
@@ -11404,7 +11296,6 @@ sciGetPosHeight (sciPointObj * pthis)
 /**sciGetPoint
  * @memo returns pointer to the points of the entity, and a pointer to the number of points. This function allocates memory for the tab of point, so after using the tab don't forget to free it
  */
-//& Conflicting types previous declaration in .h */
 double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 {
   double *tab;
@@ -11566,8 +11457,33 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       }
       return (double*)tab;
       break;
-    case SCI_FEC: 
     case SCI_GRAYPLOT:
+      if (pGRAYPLOT_FEATURE (pthis)->type == 0) { /* gray plot */
+	int ny=pGRAYPLOT_FEATURE (pthis)->ny,nx=pGRAYPLOT_FEATURE (pthis)->nx;
+	*numrow = ny+1;
+	*numcol = nx+1;
+	if ((tab = calloc(*numrow * *numcol,sizeof(double))) == NULL)
+	  return (double*)NULL;
+	tab[0]=0;
+	for (i=0;i < ny;i++) 
+	  tab[i+1] = pGRAYPLOT_FEATURE (pthis)->pvecy[i];
+	for (i=0;i < nx;i++) 
+	  tab[*numrow*(i+1)] = pGRAYPLOT_FEATURE (pthis)->pvecx[i];
+	for (i=0;i < nx;i++) 
+	  for (k=0;k < ny;k++) 
+	    tab[*numrow*(i+1)+k+1] = pGRAYPLOT_FEATURE (pthis)->pvecz[ny*i+k];
+      }
+      else  {/* Matplot */
+	int ny=pGRAYPLOT_FEATURE (pthis)->ny,nx=pGRAYPLOT_FEATURE (pthis)->nx;
+	*numrow = ny;	*numcol = nx;
+	if ((tab = calloc(nx*ny,sizeof(double))) == NULL)
+	  return (double*)NULL;
+	for (i=0;i < nx*ny;i++) 
+	    tab[i] = pGRAYPLOT_FEATURE (pthis)->pvecz[i];
+      }
+      return (double*)tab;
+      break;
+    case SCI_FEC: 
     case SCI_LEGEND:
     case SCI_LIGHT:
     case SCI_AXIS:    
@@ -11955,10 +11871,6 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
   double *tab;
   int numrow, numcol, i;
 
-  /* calcul de la position relative aux scroll bar */
-  //x = (x + sciGetScrollPosH (pthis));
-  //y = (y + sciGetScrollPosV (pthis));
-
   switch (sciGetEntityType (pthis))
     {
     case SCI_SUBWIN:
@@ -11973,7 +11885,6 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
 	  && (y <= ytmp2)
 	  )
 	{
-	  //sciprint("   objet selectionne 'subwin': %d: \n", pthis);
 	  set_scale ("tttfff", pSUBWIN_FEATURE (pthis)->WRect, 
 		     pSUBWIN_FEATURE (pthis)->FRect, NULL, "nn", NULL);
 	  return TRUE;
@@ -12000,7 +11911,6 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
 	  ((abs(x - xm[0] - xm[2]) < DELTAX) && (abs(y - xm[1] - xm[3]) < DELTAY))
 	  )
 	{
-	  //  sciprint("objet selectionne 'arc'\n");
 	  return TRUE;
 	}
       return FALSE;
@@ -12024,7 +11934,6 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
 	  ((abs(x - xm[0] - xm[2]) < DELTAX) && (abs(y - xm[1] - xm[3]) < DELTAY))
 	  )
 	{
-	  //  sciprint("objet selectionne 'agreg'\n");
 	  return TRUE;
 	}
       return FALSE;
@@ -12048,7 +11957,6 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
 	  ((abs(x - xm[0] - xm[2]) < DELTAX) && (abs(y - xm[1] - xm[3]) < DELTAY))
 	  )
 	{
-	  //  sciprint("objet selectionne 'rect'\n");
 	  return TRUE;
 	}
       return FALSE;
@@ -12069,7 +11977,6 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
       if ((i < numrow)   && (abs(XDouble2Pixel(tab[2*i]) - x) < DELTAX) && 
 	  (abs(YDouble2Pixel(tab[2*i+1]) - y) < DELTAY))
 	{
-	  //  sciprint("objet selectionne 'poly' \n");
 	  FREE(tab);
 	  return TRUE;
 	}
@@ -12091,7 +11998,6 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
 	  (abs(YDouble2Pixel(tab[2*i+1]) - y) < DELTAY))
 	{
 	  FREE(tab);
-	  //  sciprint("objet selectionne 'patch' \n");
 	  return TRUE;
 	}
       FREE(tab);
@@ -12854,27 +12760,6 @@ sciUnAgregation (sciPointObj * pobj)
 
 /************************************ End of Agregation *******************************************/
 
-//int
-//sciGetDrDr1() /* Conflicting types with previous declaration ".h"*/
-//{
-//	return drdr1;
-//}
-
-//void
-//sciSetDrDr1(int val)
-//{
-//	drdr1 = val;                                  
-//}
-
-
-//struct BCG *
-//sciGetCurrentScilabXgc ()
-//{ double *XGC;
-//  struct BCG *CurrentScilabXgc; 
-//  C2F(dr)("xget","gc",PI0,PI0,PI0,PI0,PI0,PI0,&XGC,PD0,PD0,PD0,5L,10L);
-//  CurrentScilabXgc=(struct BCG *)XGC;
-//  return (struct BCG *) CurrentScilabXgc;
-//}
 
 void sciInitObj(pointXGC)
      double *pointXGC; 

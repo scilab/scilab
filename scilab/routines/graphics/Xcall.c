@@ -1,5 +1,6 @@
 /* C code produced by gperf version 2.7.1 (19981006 egcs) */
-/* Command-line: gperf -C -t -k 2,3,4,$ Xcall.gperf  *//*------------------------------------------------------------------------
+/* Command-line: gperf -C -t -k 2,3,4,$ Xcall.gperf  */
+/*------------------------------------------------------------------------
    *  Graphic library for 2D and 3D plotting 
    *  Copyright (C) 1998-2001 Chancelier Jean-Philippe
    * jpc@cermics.enpc.fr 

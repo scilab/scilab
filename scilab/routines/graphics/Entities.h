@@ -278,7 +278,6 @@ sciRelationShip;
 typedef struct
 {
   /** currently not used in this version */
-  //double *pcolormap; MAJ Djalel ABDEMOUCHE 
   /** pointe sur un ID de la table des couleur Scilab */
   int backgroundcolor;	    
   /** pointe sur un ID de la table des couleur Scilab */
@@ -324,7 +323,6 @@ sciGraphicContext;
 typedef struct
 {
   /** currently not used in this version */
-  //double *pcolormap;  
   /* il faudrait prendre la font windows */
   /** pointe sur un ID de la table des couleur Scilab */
   int backgroundcolor;		
@@ -403,7 +401,6 @@ typedef struct
   sciRelationShip relationship;
   scigMode gmode;
   sciGraphicContext graphiccontext;
-  //sciFont fontcontext;
   sciPointObj * originalsubwin0011;
   /** specifies the title for this window  */
   char name[sizeof ("ScilabGraphic") + 4];	 
@@ -414,10 +411,10 @@ typedef struct
   /** specifies the dimension of this graphic        */
   int figuredimwidth;		       
   int figuredimheight;		       
-  // specifies the dimension of this figure         */
+  /* specifies the dimension of this figure         */
   int windowdimwidth;		       
   int windowdimheight;	
-  // specifies the dimension of this window         */
+  /* specifies the dimension of this window         */
   /** */
   int inrootposx;
   int inrootposy;
@@ -587,7 +584,6 @@ typedef struct
   scigMode gmode;
   /** */
   sciGraphicContext graphiccontext; 
-  //sciFont fontcontext;
   /** */
   sciTitle title;
   /** specifies the title for this window  */
@@ -705,14 +701,13 @@ typedef struct
   sciRelationShip relationship;
   sciGraphicContext graphiccontext;
   /* listPoints     points; */
-  POINT2D *pvector;		// vecteur de points redondant, for future developpement
-  double *pvx;			// vecteur des points x doublon avec pvector je les garde pour compatiblite
-  double *pvy;			// vecteur des points y doublon avec pvector
+  POINT2D *pvector;		/* vecteur de points redondant, for future developpement*/
+  double *pvx;			/* vecteur des points x doublon avec pvector je les garde pour compatiblite*/
+  double *pvy;			/* vecteur des points y doublon avec pvector*/
   int n1;                               /** number of point */
   int n2;				/** numbre of curve if Plot **/
   int closed;                      /** is it a closed polyline */
   int plot;                        /** is it simple poly or a plot (Plot2d /Plot2d1/.../Plot2d4) */
-  //char *flag;         		   
   double xmin;				/** xmin */
   double ymin;				/** ymin */
   double width;			/** width */
@@ -736,9 +731,9 @@ typedef struct
   sciRelationShip relationship;
   sciGraphicContext graphiccontext;
   /* listPoints     points; */
-  POINT2D *pvector;		// vecteur de points redondant, for future developpement
-  double *pvx;			// vecteur des points x doublon avec pvector je les garde pour compatiblite
-  double *pvy;			// vecteur des points y doublon avec pvector
+  POINT2D *pvector;		/* vecteur de points redondant, for future developpement*/
+  double *pvx;			/* vecteur des points x doublon avec pvector je les garde pour compatiblite*/
+  double *pvy;			/* vecteur des points y doublon avec pvector*/
   int n;				/** number of point */
   int closed;			/** is it a closed polyline */
   double xmin;				/** xmin */
@@ -839,7 +834,6 @@ typedef struct
   sciRelationShip relationship;
   sciGraphicContext graphiccontext;
   POINT3D org;
-  /// COLORREF lightcolor;                                         /* COLORREF ? "periWin-bgc"*/
   BOOL switchon;		/* on or off */
   /** specifies if this object is visble             */
   BOOL visible; 
@@ -898,10 +892,9 @@ typedef struct
 {
   sciRelationShip relationship;
   sciGraphicContext graphiccontext; 
-  //sciFont fontcontext;
   char dir;   /** dir = 'r' | 'l' | 'u' | 'd' : gives the tics directions **/  
   char tics;  /** tics = 'v' (for vector) or 'r' (for range) or i **/
-  POINT2D *vector;		// vecteur de points redondant, for future developpement
+  POINT2D *vector;		/* vecteur de points redondant, for future developpement*/
   double *vx;  /** vx vector of size nx **/
   double *vy;  /** vy vector of size ny **/  
   int nx;
@@ -962,7 +955,7 @@ sciSegs;
 
 
 
-/** *//**@name Grayplot
+/**@name Grayplot
  * Structure used to specify axes feature 
  * @author Djalel Abdemouche 
  * @version 0.1

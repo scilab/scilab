@@ -240,9 +240,8 @@ int sciSetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si, BOOLEAN b
 		Scilabgc->vertsi.nMax   = si->nMax;
 		Scilabgc->vertsi.nPage  = si->nPage;
 		if (sciGetwresize() == 1) {
-			//inttmp = si->nMax;
-			si->nMax = 0; /* on effectue un swapp pour ne pas changer la val (pointeur !!) */
-			              /* 0 permet de faire disparaitre les scrollbars */
+		  si->nMax = 0; /* on effectue un swapp pour ne pas changer la val (pointeur !!) */
+		  /* 0 permet de faire disparaitre les scrollbars */
 		}
 		Scilabgc->vertsi.nPos   = si->nPos;	
 		break;
@@ -254,8 +253,7 @@ int sciSetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si, BOOLEAN b
 		Scilabgc->horzsi.nMax   = si->nMax;
 		Scilabgc->horzsi.nPage  = si->nPage;
 		if (sciGetwresize() == 1) {
-			//inttmp = si->nMax;
-			si->nMax = 0;
+		  si->nMax = 0;
 		}
 		Scilabgc->horzsi.nPos   = si->nPos;
 		break;
@@ -760,7 +758,6 @@ void C2F(xclick_any_old)(char *str,integer *ibutton,integer* x1,integer * yy1,
 		  /* check for mouse click, keypressed or menu pressed */
 		  ok = 1;
 		  PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
-		  //if (  msg.message == WM_CHAR || msg.message == WM_KEYDOWN ) 
 		  if ( msg.message == WM_CHAR ) 
 		    {
 		      if ( check_pointer_win(x1,yy1,iwin)==1 )
@@ -807,7 +804,6 @@ void C2F(xclick_any_old)(char *str,integer *ibutton,integer* x1,integer * yy1,
 #ifdef WITH_TK
 	      else if (  tcl_check_one_event() == 1) 
 		{
-		  //sciprint("tcl event %l\r\n",msg.hwnd);
 		}
 #else
 	      else 
@@ -854,7 +850,6 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
 #ifdef WITH_TK
       if (  tcl_check_one_event() == 1) 
 	{
-	  //sciprint("tcl event %l\r\n",msg.hwnd);
 	}
 #else 
       PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
@@ -1117,7 +1112,6 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
     ShowWindow(ScilabXgc->hWndParent, SW_SHOWNORMAL);
   BringWindowToTop(ScilabXgc->hWndParent);
 
-  // SetCursor(LoadCursor(NULL,IDC_CROSS));
   /*  track a mouse click */
 #ifdef WITH_TK
   flushTKEvents();
@@ -1129,7 +1123,6 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
 #ifdef WITH_TK
       if (  tcl_check_one_event() == 1) 
 	{
-	  //sciprint("tcl event %l\r\n",msg.hwnd);
 	}
 #else 
       PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
@@ -1172,7 +1165,6 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   *yy1  =  SciClickInfo.y;
   *ibutton = SciClickInfo.ibutton;
   set_wait_click(0);
-  // SetCursor(LoadCursor(NULL,IDC_ARROW));
 }
  
 
@@ -1324,11 +1316,9 @@ void C2F(setwindowdim)(x, y, v3, v4)
 	  }
       vertsi.nMax   = ScilabXgc->CWindowHeight;
       vertsi.nPage  = ScilabXgc->CWindowHeightView;
-	  //vertsi.nPos   = 0;
       horzsi.nMax   = ScilabXgc->CWindowWidth;
       horzsi.nPage  = ScilabXgc->CWindowWidthView;  
-	  //horzsi.nPos   = 0;
-	  sciSetScrollInfo(ScilabXgc,SB_VERT, &(vertsi), TRUE);
+      sciSetScrollInfo(ScilabXgc,SB_VERT, &(vertsi), TRUE);
       sciSetScrollInfo(ScilabXgc,SB_HORZ, &(horzsi), TRUE);
   }
 }
@@ -4034,8 +4024,6 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   sciSetScrollInfo(ScilabXgc,SB_HORZ, &horzsi, TRUE);	  
   sciGetScrollInfo(ScilabXgc,SB_HORZ, &horzsi);
 
-  //sciInitScrollBar(ScilabXgc);
-
   if (ScilabXgc->CWindow == (HWND)NULL) 
     {
       MessageBox((HWND)NULL,"Couldn't open graphic window",
@@ -5078,7 +5066,6 @@ static void C2F(setscilabFigure)(integer *v1,integer *v2,integer *v3,integer *v4
 
 static void C2F(getscilabFigure)(integer *verbose, integer *x,integer *narg, double *figure)
 {   
-  //*narg=1;
   figure=(double *)ScilabXgc->mafigure;
 }
 
@@ -5089,7 +5076,6 @@ static void C2F(setscilabVersion)(integer *vers, integer *v2, integer *v3, integ
 
 static void C2F(getscilabVersion)(integer *verbose, integer *vers, integer *narg, double *dummy)
 {   
-  //*narg =1 ;
   *vers = ScilabXgc->graphicsversion;
 }
 

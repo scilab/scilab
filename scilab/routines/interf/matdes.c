@@ -1819,9 +1819,6 @@ int sciarrows(fname,fname_len)
   /* NG end */
  
   
-  //C2F(dr1)("xarrow","v",istk(l4),&one,&mn2,&v,&v,&v,stk(l1),stk(l2),&arsize,&dv,7L,2L);
-  //C2F(dr1)("xarrow","v",&dstyle,&zero,&mn2,&v,&v,&v,stk(l1),stk(l2),&arsize,&dv,7L,2L);
-  
   LhsVar(1)=0;
   return 0;
 } 
@@ -2846,7 +2843,7 @@ int scixstring(fname,fname_len)
     } /* end for(i) */
 
     if ((flagx == 1) && (*stk(l4) == 0)) {
-      double dx1= wy ;//dx1 = y - yi;
+      double dx1= wy ;
       Objrect (&x,&yi,&wc,&dx1,0,0,1,&hdlrect);
     }
     /** construct agregation and make it current object **/ 
@@ -2878,7 +2875,6 @@ int scixstring(fname,fname_len)
     if (flagx == 1) {
 	double dx1 = y - yi;
 	Xrect ("xrect",6L,&x,&y,&wc,&dx1); 
-	//C2F(dr1)("xrect","v",&v,&v,&v,&v,&v,&v,&x,&y,&wc,&dx1,6L,2L);
       }
   } /* end  (version_flag() == 0) */
    
@@ -3071,8 +3067,6 @@ int scixtape(fname,fname_len)
   /* NG beg */
   if (version_flag() != 0) {
     /* call a Scilab function to handle compatibility */
-    //C2F(callscifun)("%xtape",(unsigned long) 6);
-    //return 0;
   }/* NG end */
 
   /* first argument is a string */
@@ -4289,15 +4283,6 @@ int scirect(fname,fname_len)
     default :
       Scierror(999,"%s: wrong number of rhs argumens (%d), rhs must be 1 or 4\r\n",fname,Rhs);
     }
-//  if ((Lhs = 1) && (version_flag() == 0))
-  //   {
-  //     numrow = 1;
-   //    numcol = 1;
-   //    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-   //    stk(outindex)[0] = sciGetHandle((sciPointObj *) sciGetCurrentObj());
-   //    LhsVar(1) = Rhs+1;
-   //  }
-  // else
        LhsVar(1)=0;
   return 0;
 } 
@@ -4562,7 +4547,7 @@ int gset(fname,fname_len)
       if (hdl == (unsigned long)0 )
 	pobj = (sciPointObj *) NULL;
       else
-	pobj = sciGetPointerFromHandle(hdl);// verifier la validiter du pointeur !!!!
+	pobj = sciGetPointerFromHandle(hdl);
 	  
       GetRhsVar(2,"c",&m2,&n2,&l2); /* Gets the command name */  
       if (strncmp(cstk(l2),"old_style",9) !=0) C2F(sciwin)();
@@ -4594,7 +4579,7 @@ int gset(fname,fname_len)
       if (hdl == (unsigned long)0 )
 	pobj = (sciPointObj *) NULL;
       else
-	pobj = sciGetPointerFromHandle(hdl);// verifier la validiter du pointeur !!!!
+	pobj = sciGetPointerFromHandle(hdl);
       
       if (VarType(2) != sciType(cstk(l2))) {
 	Scierror(999,"%s: uncompatible values of proprety type  '%s' \r\n",fname,cstk(l2));
@@ -5020,7 +5005,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	   
         
 
-  /******** AXES *********************//**** 19/04/2002 ******/
+  /******** AXES *******************************/
   else if (strncmp(marker,"tics_direction", 14) == 0)
     {   
       if (pAXES_FEATURE (pobj)->ny == 1)
@@ -6377,7 +6362,7 @@ int delete(fname,fname_len)
       break;
     }
      
-  pobj = sciGetPointerFromHandle(hdl);// verifier la validiter du pointeur !!!!
+  pobj = sciGetPointerFromHandle(hdl);
   if (pobj == (sciPointObj *)NULL) {
       Scierror(999,"%s :the handle is not valid\r\n",fname);
       return 0;
@@ -6413,22 +6398,22 @@ int addcb(fname,fname_len)
  	CheckRhs(2,3);
 	CheckLhs(0,1);
 
-	//  set or create a graphic window
+	/*  set or create a graphic window*/
 	C2F(sciwin)();
 	switch(VarType(1)) 
 	{
-	case 1: // first is a scalar argument so it's a legend(hdl,"str1",...)
+	case 1: /* first is a scalar argument so it's a legend(hdl,"str1",...)*/
                 CheckRhs(3,3);
-                GetRhsVar(1,"h",&m1,&n1,&l1); // Gets the Handle passed as argument
-		hdl = (unsigned long)*stk(l1); // on recupere le pointeur d'objet par le handle
-	        GetRhsVar(2,"c",&m1,&n1,&l1); // Gets the command name  
-                GetRhsVar(3,"i",&m2,&n2,&l2); // Gets the mouse event 
+                GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
+		hdl = (unsigned long)*stk(l1); /* on recupere le pointeur d'objet par le handle*/
+	        GetRhsVar(2,"c",&m1,&n1,&l1); /* Gets the command name  */
+                GetRhsVar(3,"i",&m2,&n2,&l2); /* Gets the mouse event */
 		break;
-	case 10:// first is a string argument so it's a sciset("str1",....)
-		hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin(sciGetCurrentFigure())); // Gets the figure handle value if it ones (the phather)
+	case 10:/* first is a string argument so it's a sciset("str1",....)*/
+	  hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin(sciGetCurrentFigure())); /* Gets the figure handle value if it ones (the phather)*/
 		CheckRhs(2,2);
-                GetRhsVar(1,"c",&m1,&n1,&l1); // Gets the command name    
-                GetRhsVar(2,"i",&m2,&n2,&l2); // Gets the mouse event 
+                GetRhsVar(1,"c",&m1,&n1,&l1); /* Gets the command name    */
+                GetRhsVar(2,"i",&m2,&n2,&l2); /* Gets the mouse event */
                 break;
         default: 
                 Scierror(999,"%s: Pad parameters\r\n",fname);
@@ -6457,22 +6442,22 @@ int copy(fname,fname_len)
   CheckRhs(1,2);
   CheckLhs(0,1);
         
-  //  set or create a graphic window
+  /*  set or create a graphic window*/
   C2F(sciwin)();
   if (Rhs == 1)
     {
-      GetRhsVar(1,"h",&m1,&n1,&l1); // Gets the Handle passed as argument
-      hdl = (unsigned long)*stk(l1); // on recupere le pointeur d'objet par le handle
+      GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
+      hdl = (unsigned long)*stk(l1); /* on recupere le pointeur d'objet par le handle*/
       pobj = sciGetPointerFromHandle(hdl);
       psubwinparenttarget = sciGetParentSubwin(sciGetPointerFromHandle(hdl));
     }
   else
     {
-      GetRhsVar(1,"h",&m1,&n1,&l1); // Gets the Handle passed as argument
-      hdl = (unsigned long)*stk(l1); // on recupere le pointeur d'objet par le handle
+      GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
+      hdl = (unsigned long)*stk(l1); /* on recupere le pointeur d'objet par le handle*/
       pobj = sciGetPointerFromHandle(hdl);
-      GetRhsVar(2,"h",&m1,&n1,&l2); // Gets the command name 
-      hdlparent = (unsigned long)*stk(l2); // on recupere le pointeur d'objet par le handle
+      GetRhsVar(2,"h",&m1,&n1,&l2); /* Gets the command name */
+      hdlparent = (unsigned long)*stk(l2); /* on recupere le pointeur d'objet par le handle*/
       psubwinparenttarget = sciGetPointerFromHandle(hdlparent);
     }
   numrow   = 1;numcol   = 1;
@@ -6647,7 +6632,7 @@ int drawnow(fname,fname_len)
 	    GetRhsVar(1,"h",&m,&n,&l); 
 	    for (i = 0; i < n*m; i++)
 	      {
-		subwin = sciGetPointerFromHandle(*istk(l+i));   // verifier la validiter du pointeur !!!! 
+		subwin = sciGetPointerFromHandle(*istk(l+i)); 
 		if (sciGetEntityType (subwin) != SCI_SUBWIN) {
 		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname);
 		  return 0;
@@ -6721,7 +6706,7 @@ int scixclearsubwin(fname,fname_len)
 	GetRhsVar(1,"h",&m,&n,&l); 
 	for (i = 0; i < n*m; i++) {
 	  hdl = (unsigned long)*stk(l+i);            /* Puts the value of the Handle to hdl */ 
-	  subwin = sciGetPointerFromHandle(hdl);   // verifier la validiter du pointeur !!!! 
+	  subwin = sciGetPointerFromHandle(hdl);   
 	  if (sciGetEntityType (subwin) != SCI_SUBWIN) {
 	    Scierror(999,"%s:  handle does not reference a sub_window",fname);
 	    return 0;
@@ -6794,7 +6779,7 @@ int scixbascsubwin(fname,fname_len)
 	for (i = 0; i < n*m; i++)
 	  {
             hdl = (unsigned long)*stk(l+i);            /* Puts the value of the Handle to hdl */ 
-            subwin = sciGetPointerFromHandle(hdl);   // verifier la validiter du pointeur !!!! 
+            subwin = sciGetPointerFromHandle(hdl);   
             if (sciGetEntityType (subwin) != SCI_SUBWIN) {
 	      Scierror(999,"%s:  handle does not reference a sub_window",fname);
 	      return 0;
@@ -6861,7 +6846,7 @@ int draw(fname,fname_len)
 	C2F(overload)(&lw,"draw",4);return 0;
       }
       hdl = (unsigned long)*stk(l);            /* Puts the value of the Handle to hdl */ 
-      pobj = sciGetPointerFromHandle(hdl);   // verifier la validiter du pointeur !!!! 
+      pobj = sciGetPointerFromHandle(hdl);   
     }
     if (pobj != ( sciPointObj *)NULL )  {  
       tmpsubwin = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()); 

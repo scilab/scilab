@@ -1980,7 +1980,6 @@ void C2F(setscilabFigurePos)(integer *v1,integer *v2,integer *v3,integer *v4,int
 
 void C2F(getscilabFigurePos)(integer *verbose, integer *x,integer *narg, double *figure)
 {   
-  //*narg=1;
   figure=(double *)ScilabGCPos.mafigure;
 }
 void C2F(setscilabVersionPos)(integer *vers, integer *v2, integer *v3, integer *v4)
@@ -1990,13 +1989,11 @@ void C2F(setscilabVersionPos)(integer *vers, integer *v2, integer *v3, integer *
 
 void C2F(getscilabVersionPos)(integer *verbose, integer *vers, integer *narg, double *dummy)
 {   
-  //*narg =1 ;
   *vers = ScilabGCPos.graphicsversion;
 }
 void C2F(getscilabxgcPos)(integer *verbose, integer *x,integer *narg, double *dummy)
 {   
  double **XGC;
- //*narg = 1;
  XGC=(double **)dummy;
  *XGC= (double *)&ScilabGCPos;
 }

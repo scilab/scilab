@@ -12,7 +12,6 @@
 void Xrect (fname,fname_len,x,y,width,height)
      char *fname; 
      unsigned long fname_len; 
-     //integer x,y,width,height; 
      double *x,*y,*width,*height;
 { 
      integer v; 
