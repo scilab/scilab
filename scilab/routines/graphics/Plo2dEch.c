@@ -711,31 +711,31 @@ void set_scale(flag,subwin,frame_values,aaint,logflag,axis_values)
 	}
       else
 	{
-/* 	  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure()); */
-/* 	  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);  */
+	  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+	  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 	  
-	  /*F.Leray 12.10.04 : MODIF named scale_modification*/
-/* 	  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE) */
-/* 	    { */
-/* 	      Cscale.WIRect1[0] = XScale( Cscale.frect[2]); */
-/* 	      Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0])); */
-/* 	    } */
-/* 	  else */
-/* 	    { */
-	      Cscale.WIRect1[0] = XScale( Cscale.frect[0]);
-	      Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
-/* 	    } */
+	  /*	  F.Leray 12.10.04 : MODIF named scale_modification*/
+	    if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+	      {
+		Cscale.WIRect1[0] = XScale( Cscale.frect[2]);
+		Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
+	      }
+	    else
+	      {
+		Cscale.WIRect1[0] = XScale( Cscale.frect[0]);
+		Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
+	      }
 	  
-/* 	  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE) */
-/* 	    { */
-/* 	      Cscale.WIRect1[1] = YScale( Cscale.frect[1]); */
-/* 	      Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1])); */
-/* 	    } */
-/* 	  else */
-/* 	    { */
+	  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+	    {
+	      Cscale.WIRect1[1] = YScale( Cscale.frect[1]);
+	      Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1]));
+	    }
+	  else
+	    {
 	      Cscale.WIRect1[1] = YScale( Cscale.frect[3]);
 	      Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1]));
-/* 	    }    */
+	    }
 	}
     }
   if (  aaint_changed== 't' ) 
@@ -1064,6 +1064,7 @@ int zoom_get_rectangle(bbox)
   integer ibutton,in,iwait=0,istr=0, noir=33;
   integer modes[2];
   double x0,yy0,x,y,xl,yl;
+/*   int i; */
 
   modes[0]=1;modes[1]=0; /* for xgemouse only get mouse mouvement*/
 
@@ -1086,7 +1087,30 @@ int zoom_get_rectangle(bbox)
   /** XXXXXX : a regler pour Win32 in = 6 **/
   C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L);
+
+
   x=x0;y=yy0;
+  
+/*   if(version_flag() == 0) */
+/*     { */
+/*       sciPointObj * tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure()); */
+/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE(tmpsousfen); */
+      
+/*       if(ppsubwin->axes.reverse[0] == TRUE){ */
+/* 	double xmin = ppsubwin->SRect[0]; */
+/* 	double xmax = ppsubwin->SRect[1]; */
+/* 	x0= (x0-xmin)/(xmax-xmin)*xmin + (x0-xmax)/(xmin-xmax)*xmax; */
+/*       } */
+/*       if(ppsubwin->axes.reverse[1] == TRUE){ */
+/* 	double ymin = ppsubwin->SRect[2]; */
+/* 	double ymax = ppsubwin->SRect[3]; */
+/* 	yy0= (yy0-ymin)/(ymax-ymin)*ymin + (yy0-ymax)/(ymin-ymax)*ymax;	 */
+/*       } */
+      
+/*     } */
+  
+
+
   ibutton=-1;
   while ( ibutton == -1 ) 
     {
@@ -1108,12 +1132,68 @@ int zoom_get_rectangle(bbox)
   /* Back to the default driver which must be Rec and redraw the recorded
    * graphics with the new scales
    */
-  /* F.Leray With the nez graphic standard, driver has not to be Rec*/
+  /* F.Leray With the new graphic standard, driver has not to be Rec*/
 
-  bbox[0]=Min(x0,x);
-  bbox[1]=Min(yy0,y);
-  bbox[2]=Max(x0,x);
-  bbox[3]=Max(yy0,y);
+
+/*   printf("JE SORS et...\n"); */
+ 
+
+
+
+
+/*   if(version_flag() == 0) */
+/*     { */
+/*       sciPointObj * tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure()); */
+/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE(tmpsousfen); */
+      
+/*       if(ppsubwin->axes.reverse[0] == TRUE){ */
+/* 	double xmin = ppsubwin->SRect[0]; */
+/* 	double xmax = ppsubwin->SRect[1]; */
+/* 	x= (x-xmin)/(xmax-xmin)*xmin + (x-xmax)/(xmin-xmax)*xmax; */
+/* /\* 	bbox[0]=Max(x0,x); *\/ */
+/* /\* 	bbox[2]=Min(x0,x); *\/ */
+/* 	printf("x0= %lf \t  x= %lf\n",x0,x); */
+/* 	fflush(NULL); */
+/* 	bbox[0]=Min(x0,x); */
+/* 	bbox[2]=Max(x0,x); */
+/*       } */
+/*       else{ */
+/* 	bbox[0]=Min(x0,x); */
+/* 	bbox[2]=Max(x0,x); */
+/*       } */
+/*       if(ppsubwin->axes.reverse[1] == TRUE){ */
+/* 	double ymin = ppsubwin->SRect[2]; */
+/* 	double ymax = ppsubwin->SRect[3]; */
+/* 	y= (y-ymin)/(ymax-ymin)*ymin + (y-ymax)/(ymin-ymax)*ymax;	 */
+/* /\* 	bbox[1]=Max(yy0,y); *\/ */
+/* /\* 	bbox[3]=Min(yy0,y); *\/ */
+/* 	printf("yy0= %lf \t y= %lf\n",yy0,y); */
+/* 	fflush(NULL); */
+/* 	bbox[1]=Min(yy0,y); */
+/* 	bbox[3]=Max(yy0,y); */
+/*       } */
+/*       else{ */
+/* 	bbox[1]=Min(yy0,y); */
+/* 	bbox[3]=Max(yy0,y); */
+/*       } */
+/*     } */
+/*   else{ */
+    bbox[0]=Min(x0,x);
+    bbox[1]=Min(yy0,y);
+    bbox[2]=Max(x0,x);
+    bbox[3]=Max(yy0,y);
+ /*  } */
+
+ /*  printf("\nles bbox\n"); */
+  
+/*   for(i=0;i<4;i++) */
+/*     printf("bbox[%d]= %lf\n",i,bbox[i]); */
+
+/*   fflush(NULL); */
+
+
+/*   while(1); */
+
   C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","thickness",&th,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1137,25 +1217,32 @@ int zoom()
     double fmin,fmax,lmin,lmax;
     sciPointObj *psousfen,*tmpsousfen;
     sciSons *psonstmp;
+    sciSubWindow * ppsubwin;
+    
+    tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure());
+    ppsubwin = pSUBWIN_FEATURE(tmpsousfen);
+
+    psonstmp = sciGetSons (sciGetCurrentFigure());
+  
+    
 
     if (zoom_get_rectangle(bbox)==1) return 1;
  
-    box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
-    box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
-    box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
-    box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
 
+      box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
+      box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
+      box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
+      box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
 
-    tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure());
-    psonstmp = sciGetSons (sciGetCurrentFigure());
     while (psonstmp != (sciSons *) NULL)
       {
 	if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
 	  {
 	    psousfen= (sciPointObj *)psonstmp->pointobj;
 	    if ( pSUBWIN_FEATURE (psousfen)->is3d == TRUE) {
-	      sciprint("3D zoom is not yet implemented for new graphic style\n");
-	      return 0;
+	      sciprint("Warning: this figure contains at least one 3D view : \n3D zoom is not yet implemented for new graphic style\n");
+	      psonstmp = psonstmp->pnext;
+	      continue;
 	    }
 	    sciSetSelectedSubWin(psousfen);
 	    box1[0]= Cscale.WIRect1[0];
@@ -1313,15 +1400,50 @@ static void zoom_rect(x0, yy0, x, y)
      double y;
 {
   double xi,yi,w,h;
+
 #ifdef WIN32
   integer verbose=0,pat,pat1=3,narg;
   C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #endif
-  xi=Min(x0,x);
-  w=Abs(x0-x);
-  yi=Max(yy0,y);
-  h=Abs(yy0-y);
+
+/*   printf("x = %lf\t y = %lf\n",x,y); */
+/*   fflush(NULL); */
+
+  if(version_flag() == 0)
+    {
+      sciPointObj * tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE(tmpsousfen);
+      
+      if(ppsubwin->axes.reverse[0] == FALSE)
+	xi=Min(x0,x);
+      else
+	xi=Max(x0,x);
+      
+      if(ppsubwin->axes.reverse[1] == FALSE)
+	yi=Max(yy0,y);
+      else
+	yi=Min(yy0,y);
+      
+      w=Abs(x0-x);
+      h=Abs(yy0-y);
+    }
+  else
+    {
+      xi=Min(x0,x);
+      w=Abs(x0-x);
+      yi=Max(yy0,y);
+      h=Abs(yy0-y);
+    }
+  
+  
+  
+/*   printf("x0= %lf \t  xi= %lf\n",x0,xi); */
+/*   printf("yy0= %lf \t yi= %lf\n",yy0,yi); */
+/*   fflush(NULL); */
+
+
+
   C2F(dr1)("xrect","v",PI0,PI0,PI0,PI0,PI0,PI0,&xi,&yi,&w,&h,0L,0L);
 #ifdef WIN32
   C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1396,94 +1518,139 @@ void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
 
 
 
-/* int XScale(double x) */
-/* { */
-/*   /\*F.Leray 12.10.04 : MODIF named scale_modification*\/ */
-/*   if(version_flag()!=0) */
-/*     return inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647)); */
-/*   else */
-/*     { */
-/*       sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure()); */
-/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);  */
+int XScale(double x)
+{
+  /*F.Leray 12.10.04 : MODIF named scale_modification*/
+  if(version_flag()!=0)
+    return inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647));
+  else
+    {
+      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
       
-/*       if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE) */
-/* 	return inint( Min(Cscale.Wscx1*(Cscale.frect[2] - (x)) + Cscale.Wxofset1,2147483647)); */
-/*       else */
-/* 	return inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647)); */
-/*     } */
+      if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+	return inint( Min(Cscale.Wscx1*(Cscale.frect[2] - (x)) + Cscale.Wxofset1,2147483647));
+      else
+	return inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647));
+    }
   
 
-/*   sciprint("Error in XScale\n"); */
-/*   return -9000; */
-/* } */
+  sciprint("Error in XScale\n");
+  return -9000;
+}
 
 
 
 
-/* int XLogScale(double x) */
-/* { */
-/*   /\*F.Leray 12.10.04 : MODIF named scale_modification*\/ */
-/*   if(version_flag()!=0) */
-/*     return inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1); */
-/*   else */
-/*     { */
-/*       sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure()); */
-/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);  */
+int XLogScale(double x)
+{
+  /*F.Leray 12.10.04 : MODIF named scale_modification*/
+  if(version_flag()!=0)
+    return inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1);
+  else
+    {
+      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
       
-/*       if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE) */
-/* 	return inint( Cscale.Wscx1*(Cscale.frect[2] - log10(x)) + Cscale.Wxofset1); */
-/*       else */
-/* 	return inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1); */
+      if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+	return inint( Cscale.Wscx1*(Cscale.frect[2] - log10(x)) + Cscale.Wxofset1);
+      else
+	return inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1);
      	
-/*     } */
+    }
   
 
-/*   sciprint("Error in XLogScale\n"); */
-/*   return -9000; */
-/* } */
+  sciprint("Error in XLogScale\n");
+  return -9000;
+}
 
 
 
 
-/* int YScale(double y) */
-/* { */
-/*   /\*F.Leray 12.10.04 : MODIF named scale_modification*\/ */
-/*   if(version_flag()!=0) */
-/*     return inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647)); */
-/*   else */
-/*     { */
-/*       sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure()); */
-/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);  */
+int YScale(double y)
+{
+  /*F.Leray 12.10.04 : MODIF named scale_modification*/
+  if(version_flag()!=0)
+    return inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647));
+  else
+    {
+      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
       
-/*       if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE) */
-/* 	return inint(  Min(Cscale.Wscy1*((y)-Cscale.frect[1]) + Cscale.Wyofset1,2147483647)); */
-/*       else */
-/* 	return inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647)); */
-/*     } */
+      if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+	return inint(  Min(Cscale.Wscy1*((y)-Cscale.frect[1]) + Cscale.Wyofset1,2147483647));
+      else
+	return inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647));
+    }
   
   
-/*   sciprint("Error in YScale\n"); */
-/*   return -9000; */
-/* } */
+  sciprint("Error in YScale\n");
+  return -9000;
+}
 
 
-/* int YLogScale(double y) */
-/* { */
-/*   /\*F.Leray 12.10.04 : MODIF named scale_modification*\/ */
-/*   if(version_flag()!=0) */
-/*     return inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1); */
-/*   else */
-/*     { */
-/*       sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure()); */
-/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);  */
+int YLogScale(double y)
+{
+  /*F.Leray 12.10.04 : MODIF named scale_modification*/
+  if(version_flag()!=0)
+    return inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1);
+  else
+    {
+      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
       
-/*       if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE) */
-/* 	return inint( Cscale.Wscy1*(log10(y)-Cscale.frect[1]) + Cscale.Wyofset1); */
-/*       else */
-/* 	return inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1); */
-/*     } */
+      if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+	return inint( Cscale.Wscy1*(log10(y)-Cscale.frect[1]) + Cscale.Wyofset1);
+      else
+	return inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1);
+    }
   
 
-/*   sciprint("Error in YLogScale\n"); */
-/*   return -9000; */
-/* } */
+  sciprint("Error in YLogScale\n");
+  return -9000;
+}
+
+
+
+double XPi2R(int x)
+{
+  /*F.Leray 12.10.04 : MODIF named scale_modification*/
+  if(version_flag()!=0)
+    return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+  else
+    {
+      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+      
+      if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+	return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+      else
+	return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+    }
+  
+
+  sciprint("Error in XScale\n");
+  return -9000;
+}
+
+
+double YPi2R(int y)
+{
+  /*F.Leray 12.10.04 : MODIF named scale_modification*/
+  if(version_flag()!=0)
+    return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+  else
+    {
+      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+      
+      if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+	return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+      else
+	return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+    }
+  
+  
+  sciprint("Error in YScale\n");
+  return -9000;
+}

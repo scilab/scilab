@@ -49,17 +49,17 @@ extern WCScaleList Cscale;
 #define Min(x,y)	(((x)<(y))?(x):(y))
 #endif 
 
-/* extern int XScale(double x); */
-/* extern int XLogScale(double x); */
+extern int XScale(double x);
+extern int XLogScale(double x);
 
-/* extern int YScale(double y); */
-/* extern int YLogScale(double y); */
+extern int YScale(double y);
+extern int YLogScale(double y);
 
 
-#define XScale(x)    inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647))
-#define XLogScale(x) inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1)
-#define YScale(y)    inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647))
-#define YLogScale(y) inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1)
+/* #define XScale(x)    inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647)) */
+/* #define XLogScale(x) inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1) */
+/* #define YScale(y)    inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647)) */
+/* #define YLogScale(y) inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1) */
 #define XDouble2Pixel(x) ((Cscale.logflag[0] == 'n') ? ( XScale(x)) : ( XLogScale(x)))
 #define YDouble2Pixel(y) ((Cscale.logflag[1] == 'n') ? ( YScale(y)) : ( YLogScale(y)))
 
@@ -79,8 +79,12 @@ extern WCScaleList Cscale;
  * Current geometric transformation : from pixel to double 
  */
 
-#define XPi2R(x)  Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1)
-#define YPi2R(y)  Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1)
+/* #define XPi2R(x)  Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1) */
+/* #define YPi2R(y)  Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1) */
+
+extern double XPi2R(int x);
+extern double YPi2R(int y);
+
 #define XPi2LogR(x)  exp10( XPi2R(x))
 #define YPi2LogR(y)  exp10( YPi2R(y))
 #define XPixel2Double(x)  (( Cscale.logflag[0] == 'l') ? XPi2LogR(x) : XPi2R(x))
