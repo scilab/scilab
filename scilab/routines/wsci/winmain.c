@@ -1785,7 +1785,12 @@ BOOL SetHomeDirectory(char *DefaultPath)
 	}
 	else /* NT and more ... */
 	{
-		char *PathApplicationsData = (char*)getenv ("APPDATA");
+		char *PathHomeDrive = (char*)getenv ("HOMEDRIVE");
+		char *PathHomePath = (char*)getenv ("HOMEPATH");
+		char *PathApplicationsData=NULL;
+	
+		PathApplicationsData = (char *)malloc( (strlen(PathHomeDrive)+strlen(PathHomePath)+1)*sizeof(char) );
+		wsprintf(PathApplicationsData,"%s%s",PathHomeDrive,PathHomePath);
 
 		if (environmentTemp == (char *) 0)
 		{
@@ -1850,6 +1855,11 @@ BOOL SetHomeDirectory(char *DefaultPath)
 					exit(1);
 				}
 			}
+		}
+		if (PathApplicationsData)
+		{
+			free(PathApplicationsData);
+			PathApplicationsData=NULL;
 		}
 	}
 	return bOK;
