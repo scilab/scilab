@@ -17,7 +17,7 @@ if typeof(o)=='Block' then
 //elseif o(1)=='Link' then
 elseif typeof(o)=='Link' then
   //o(6)(1)=5*max(o(6)(1),1)
-  o.thick(1)=5*max(o.ct(1),1)
+  o.thick(1)=5*max(o.thick(1),1)
   drawobj(o)
   if pixmap then xset('wshow'),end
 end
