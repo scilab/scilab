@@ -1,3 +1,0 @@
-SCI = /usr/local/lib/scilab-2.5.1
-chgrp -R scilab $SCI
-chmod -R g+rw $SCI
