@@ -4,7 +4,7 @@ function [%pt,scs_m]=do_stupidmove(%pt,scs_m)
 //!
   
 //get block to move
-    rela=.1
+  rela=.1
   while %t
     if %pt==[] then
       [btn,%pt,win,Cmenu]=cosclick()
@@ -27,88 +27,48 @@ function [%pt,scs_m]=do_stupidmove(%pt,scs_m)
     scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
   end
   if Cmenu=='Quit' then
-      //active window has been closed
-      [%win,Cmenu]=resume(%win,Cmenu)
+    //active window has been closed
+    [%win,Cmenu]=resume(%win,Cmenu)
   end
   [scs_m_save,enable_undo,edited,nc_save,needreplay]=resume(..
-			scs_m_save,%t,%t,needcompile,needreplay)
+						  scs_m_save,%t,%t,needcompile,needreplay)
 endfunction
 
 function scs_m=stupid_moveblock(scs_m,k,xc,yc)
 // Move  block k and modify connected links if any
 //look at connected links
   dr=driver()
-  connectedi=[get_connected(scs_m,k,'in'),get_connected(scs_m,k,'clkin')];
-  connectedo=[get_connected(scs_m,k,'out'),get_connected(scs_m,k,'clkout')];
+
   o=scs_m.objs(k)
   xx=[];yy=[];ii=[];clr=[];mx=[];my=[]
 
   // build movable segments for all connected links
   //===============================================
   xm=[];ym=[];  jj=0;
-  // pause
-  for l=1:length(connectedi)
-    i=connectedi(l);
+  connected=get_connected(scs_m,k)
+  for l=1:length(connected)
+    i=connected(l);
     oi=scs_m.objs(i)
     driver(dr)
-    //   draw_link_seg(oi,$-1:$) //erase link
     if pixmap then xset('wshow'),end
     [xl,yl,ct,from,to]=(oi.xx,oi.yy,oi.ct,oi.from,oi.to)
     clr=[clr ct(1)]
     nl=prod(size(xl))
     if dr=='Rec' then driver('X11'),end
-
-    if or(o.graphics.pein==i) then //event link
-        xm=[xm,xl($-1:$)];ym=[ym,yl($-1:$)];
-	draw_link_seg(oi,$-1:$) //erase link
-    elseif o.graphics.in_implicit(find(connectedi==i))=='I' then //implicit link
-      if from(1)==k & from(2)==l & from(3)==1 then
-	xm=[xm,[xl(2);xl(1)]];ym=[ym,[yl(2);yl(1)]];
-	draw_link_seg(oi,1:2) //erase link
-      elseif to(1)==k & to(2)==l & to(3)==1 then
-	xm=[xm,xl($-1:$)];ym=[ym,yl($-1:$)];
-	draw_link_seg(oi,$-1:$) //erase link
-      end
-    else //regular link
+    if from(1)==k then
+      xm=[xm,[xl(2);xl(1)]];ym=[ym,[yl(2);yl(1)]];
+      draw_link_seg(oi,1:2) //erase link
+    else
       xm=[xm,xl($-1:$)];ym=[ym,yl($-1:$)];
       draw_link_seg(oi,$-1:$) //erase link
     end
   end
 
-  for l=1:length(connectedo)
-    i=connectedo(l);    
-    oi=scs_m.objs(i)
-    driver(dr)
-    //   draw_link_seg(oi,1:2) //erase link
-    if pixmap then xset('wshow'),end
-    [xl,yl,ct,from,to]=(oi.xx,oi.yy,oi.ct,oi.from,oi.to)
-    clr=[clr ct(1)]
-    nl=prod(size(xl))
-    if dr=='Rec' then driver('X11'),end
-    if or(o.graphics.peout==i) then //event link
-      xm=[xm,[xl(2);xl(1)]];ym=[ym,[yl(2);yl(1)]];
-      draw_link_seg(oi,1:2) //erase link
-    elseif o.graphics.out_implicit(find(connectedo==i))=='I' then
-       if to(1)==k & to(2)==l & to(3)==0 then
-	xm=[xm,xl($-1:$)];ym=[ym,yl($-1:$)];
-	draw_link_seg(oi,$-1:$) //erase link
-      elseif from(1)==k & from(2)==l & from(3)==0  then
-	xm=[xm,[xl(2);xl(1)]];ym=[ym,[yl(2);yl(1)]];
-	draw_link_seg(oi,1:2) //erase link
-      end
-    else
-      xm=[xm,[xl(2);xl(1)]];ym=[ym,[yl(2);yl(1)]];
-      draw_link_seg(oi,1:2) //erase link
-    end     
-  end
 
   xmt=xm;ymt=ym;
   // move a block and connected links
   //=================================
-  [ff,nii]=size(connectedi)
-  [ff,noo]=size(connectedo)
-
-  if nii+noo>0 then // move a block and connected links
+  if size(connected,2)>0 then // move a block and connected links
     [xmin,ymin]=getorigin(o)
     xco=xc;yco=yc;
     rep(3)=-1
@@ -134,11 +94,13 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       xc=rep(1);yc=rep(2)      
       xmt(2,:)=xm(2,:)-xco+xc; ymt(2,:)=ym(2,:)-yco+yc; 
     end
-        if xget('window')<>curwin then
+    
+    if xget('window')<>curwin then
       //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     xy=[xc-dx,yc-dy];
+    
     // update and draw block
     if rep(3)==2 then //user cancels move
       driver(dr)
@@ -151,91 +113,52 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       drawobj(o)
       if pixmap then xset('wshow'),end
       j=0
-      for l=1:length(connectedi)
-	i=connectedi(l);
+      for l=1:length(connected)
+	i=connected(l);
 	oi=scs_m.objs(i);
 	[from,to]=(oi.from,oi.to);
 	j=j+1
-	if or(o.graphics.pein==i) then //event link
-	  oi.xx($-1:$)=xmt(:,j)
-	  oi.yy($-1:$)=ymt(:,j)
-	  draw_link_seg(oi,$-1:$)//draw link
-	elseif o.graphics.in_implicit(find(connectedi==i))=='I' then
-	  if from(1)==k & from(2)==l & from(3)==1 then
-	    oi.xx(1:2)=xmt([2,1],j)
-	    oi.yy(1:2)=ymt([2,1],j)
-	    draw_link_seg(oi,1:2) //draw link
-	  elseif to(1)==k & to(2)==l & to(3)==1 then
-	    oi.xx($-1:$)=xmt(:,j)
-	    oi.yy($-1:$)=ymt(:,j)
-	    draw_link_seg(oi,$-1:$)//draw link
-	  end
+	if from(1)==k then
+	  oi.xx(1:2)=xmt([2,1],j)
+	  oi.yy(1:2)=ymt([2,1],j)
+	  draw_link_seg(oi,1:2) //draw link
 	else
 	  oi.xx($-1:$)=xmt(:,j)
 	  oi.yy($-1:$)=ymt(:,j)
 	  draw_link_seg(oi,$-1:$)//draw link
-	end	
-	scs_m.objs(i)=oi
-	if pixmap then xset('wshow'),end
-      end
-   
-      for l=1:length(connectedo)
-	i=connectedo(l);
-	oi=scs_m.objs(i);
-	[from,to]=(oi.from,oi.to);
-	j=j+1
-	if or(o.graphics.peout==i) then //event link
-	  oi.xx(1:2)=xmt([2,1],j)
-	  oi.yy(1:2)=ymt([2,1],j)
-	  draw_link_seg(oi,1:2) //draw link
-	elseif o.graphics.out_implicit(find(connectedo==i))=='I' then
-	  if to(1)==k & to(2)==l & to(3)==0 then
-	    oi.xx($-1:$)=xmt(:,j);
-	    oi.yy($-1:$)=ymt(:,j);
-	    draw_link_seg(oi,$-1:$)//draw link
-	  elseif from(1)==k & from(2)==l & from(3)==0  then
-	    oi.xx(1:2)=xmt([2,1],j)
-	    oi.yy(1:2)=ymt([2,1],j)
-	    draw_link_seg(oi,1:2) //draw link
-	  end 	  
-	else
-	  oi.xx(1:2)=xmt([2,1],j)
-	  oi.yy(1:2)=ymt([2,1],j)
-	  draw_link_seg(oi,1:2) //draw link
 	end
 	scs_m.objs(i)=oi
 	if pixmap then xset('wshow'),end
       end
     end
- else // move an unconnected block
-   rep(3)=-1
-   [xy,sz]=(o.graphics.orig,o.graphics.sz)
-   // clear block
-   drawobj(o)
-   dr=driver()
-   if dr=='Rec' then driver('X11'),end
-   while rep(3)==-1 , //move loop
-     // draw block shape
-     xrect(xc,yc+sz(2),sz(1),sz(2))
-     if pixmap then xset('wshow'),end
-     // get new position
-     rep=xgetmouse(0)
-     // clear block shape
-     xrect(xc,yc+sz(2),sz(1),sz(2))
-     xc=rep(1);yc=rep(2)
-     xy=[xc,yc];
-   end
-       if xget('window')<>curwin then
+  else // move an unconnected block
+    rep(3)=-1
+    [xy,sz]=(o.graphics.orig,o.graphics.sz)
+    // clear block
+    drawobj(o)
+    dr=driver()
+    if dr=='Rec' then driver('X11'),end
+    while rep(3)==-1 , //move loop
+      xrect(xc,yc+sz(2),sz(1),sz(2))// draw block shape
+      if pixmap then xset('wshow'),end
+      // get new position
+      rep=xgetmouse(0)
+      // clear block shape
+      xrect(xc,yc+sz(2),sz(1),sz(2))
+      xc=rep(1);yc=rep(2)
+      xy=[xc,yc];
+    end
+    if xget('window')<>curwin then
       //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
     end
-   // update and draw block
-   if rep(3)<>2 then o.graphics.orig=xy,scs_m.objs(k)=o,end
-   driver(dr)
-   drawobj(o)
-   if pixmap then xset('wshow'),end
- end
- 
+    // update and draw block
+    if rep(3)<>2 then o.graphics.orig=xy,scs_m.objs(k)=o,end
+    driver(dr)
+    drawobj(o)
+    if pixmap then xset('wshow'),end
+  end
+  
 endfunction
 
 function scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
