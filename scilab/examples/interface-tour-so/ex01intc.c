@@ -7,7 +7,7 @@ extern int ex1c __PARAMS((char *ch, int *a, int *ia, float *b, int *ib, double *
  * the function to be interfaced is ex1c (see below) 
  * the interface program is intex1c
  * the associated scilab function is ex1c (see file ex01.sce)
- * 
+ *  
  * Shows how to pass 
  *     - Scilab scalar matrices as int,float or double arrays 
  *     - Scilab string as C-string 
