@@ -55,11 +55,12 @@ end
 exec('SCI/tests/demos/demolist.sce',-1)
 if MSDOS then
 // Windows
-  sel=[1:23 25:28 30 31] // 24=Metanet 29=PVM
+  sel=[1:28 30 31] // 29=PVM
 else
 // UNIX
-  sel=[1:29 30 31] 
+  sel=[1:31] ;sel(29)=[]
 end
+
 sel(find(sel==16))=[] // do not execute demo 16 (Dialog)
 dialogs='demo'+string(sel)+'.dialogs'
 for dia=dialogs
