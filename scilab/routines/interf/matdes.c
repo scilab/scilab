@@ -6295,11 +6295,12 @@ else if (strncmp(marker,"visible", 7) == 0) {
 	    stk(outindex)[i] =  ptabclip[k].clip[i];	
 		 
 	}
-      else if ((k=sciGetIsClipping ((sciPointObj *) pobj)) == 0 )
-	{ 
+      else if ((k=sciGetIsClipping ((sciPointObj *) pobj)) == 0  && (sciGetEntityType (pobj) == SCI_SUBWIN) )
+	{																// Adding above:  && (sciGetEntityType (pobj) == SCI_SUBWIN)
+																	// We must first distinguish between SUBWIN and other Objects
 	  numrow=1;numcol=4;  
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  stk(outindex)[0] =  pSUBWIN_FEATURE (pobj)->FRect[0];	
+	  stk(outindex)[0] =  pSUBWIN_FEATURE (pobj)->FRect[0];	//Check if pobj is a SUBWIN or Other Objects (POLYLINE...) before ! F.Leray 03.03.04
 	  stk(outindex)[1] =  pSUBWIN_FEATURE (pobj)->FRect[1];
 	  stk(outindex)[2] =  pSUBWIN_FEATURE (pobj)->FRect[2] - pSUBWIN_FEATURE (pobj)->FRect[0];	
 	  stk(outindex)[3] =  pSUBWIN_FEATURE (pobj)->FRect[3] - pSUBWIN_FEATURE (pobj)->FRect[1];	
