@@ -1,4 +1,8 @@
 function [ok,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,x16,x17,x18]=setvalue(desc,labels,typ,ini)
+if %scicos_prob==%t then 
+	ok=%f
+        [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,x16,x17,x18]=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+return;end
 //  setvalues -  data acquisition, getvalue equivalent without dialog
 //%Syntax
 //  [ok,x1,..,x18]=setvalue(desc,labels,typ,ini)

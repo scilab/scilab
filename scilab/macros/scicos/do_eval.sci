@@ -6,6 +6,10 @@ needcompile1=max(2,needcompile)
 %mprt=funcprot()
 funcprot(0) 
 getvalue=setvalue;
+
+deff('message(txt)','x_message(''In block ''+o(5)+'': ''+txt);%scicos_prob=resume(%t)')
+
+%scicos_prob=%f
 deff('[ok,tt]=FORTR(funam,tt,i,o)','ok=%t')
 deff('[ok,tt]=CFORTR(funam,tt,i,o)','ok=%t')
 deff('[x,y,ok,gc]=edit_curv(x,y,job,tit,gc)','ok=%t')
@@ -42,5 +46,6 @@ for %kk=2:%nx
 end
 needcompile=needcompile1
 if needcompile==4 then cpr=list(),end
+endfunction
 
 
