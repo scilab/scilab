@@ -98,8 +98,7 @@ function ged_eventhandler(win,x,y,ibut)
 //Author : Serge Steer 2002
 
   if or(win==winsid()) then //does the windows still exists
-    //old=xget('window'); xset('window',win)
-    seteventhandler("")  
+//    seteventhandler("")  
   else //window has been deleted by an asynchronous xdel()
     return
   end
@@ -108,15 +107,16 @@ function ged_eventhandler(win,x,y,ibut)
     if ibut==-1000 then //the window has been closed by the window manager
       return
     end
-    seteventhandler("ged_eventhandler"),return,
+ //   seteventhandler("ged_eventhandler"),
+    return,
   end
-  seteventhandler("")  
-  global h;h=[]
+//  seteventhandler("")  
+  global ged_handle;ged_handle=[]
 //  [x,y]=xchange(x,y,'i2f')
-  h=ged_getobject([x,y])
+  ged_handle=ged_getobject([x,y])
 
 
-  if h~=[] then
+  if ged_handle~=[] then
     if ibut==0 then
       //Set(h)
       tkged()
@@ -127,14 +127,14 @@ function ged_eventhandler(win,x,y,ibut)
 	rep=xgetmouse()
 	if rep(3)>0 then break,end
 	
-	move(h,rep(1:2)-pos)
+	move(ged_handle,rep(1:2)-pos)
 	pos=rep(1:2)
       end
     elseif ibut==3 then
-      delete(h)
+      delete(ged_handle)
     end
   end
-  seteventhandler("ged_eventhandler")  
+//  seteventhandler("ged_eventhandler")  
 endfunction
 
 function ged_men()
@@ -234,8 +234,8 @@ function GetSetValue(h)
   end
 endfunction
 function tkged()
-  global h
-
+  global ged_handle
+  h=ged_handle
   //color_map array for color sample display
   f=gcf();
   for i=1:size(get(gcf(),'color_map'),1)
@@ -247,7 +247,7 @@ function tkged()
     TK_EvalStr('set '+bluname+" "+string(int(255*f.color_map(i,3))));
   end
 
-  select h.type
+  select ged_handle.type
     case "Polyline"
     TK_SetVar("ncolors",string(size(get(gcf(),'color_map'),1)))
     TK_SetVar("curcolor",string(h.foreground))
@@ -301,19 +301,19 @@ function tkged()
   end
 endfunction
 function setStyle(sty)
-  global h;h.polyline_style=find(sty==['interpolated','staircase', ...
+  global ged_handle; h=ged_handle
+  h.polyline_style=find(sty==['interpolated','staircase', ...
 		    'barplot','arrowed','filled'])
 endfunction
 function setLineStyle(sty)
-  global h;
+  global ged_handle; h=ged_handle
   h.line_style=find(sty==[ "solid" "dash" "dash dot" "longdash dot" ..
 		    "bigdash dot" "bigdash longdash"])
   
 endfunction
 
 function setFontStyle(ftn)
-  
-  global h;
+  global ged_handle; h=ged_handle
   h.font_style=find(ftn==["Courier" "Symbol" "Times",..
 		    "Times Italic" "Times Bold" "Times Bold Italic",..
 		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
@@ -322,28 +322,24 @@ endfunction
 
 
 function setLabelsFontStyle(label,ftn)
-  
+  global ged_handle; h=ged_handle
 select label
 case "t"
-  global h;
   h.title.font_style=find(ftn==["Courier" "Symbol" "Times",..
 		    "Times Italic" "Times Bold" "Times Bold Italic",..
 		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
 		   "Helvetica Bold Italic"])-1
 case "x"
-  global h;
   h.x_label.font_style=find(ftn==["Courier" "Symbol" "Times",..
 		    "Times Italic" "Times Bold" "Times Bold Italic",..
 		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
 		   "Helvetica Bold Italic"])-1
 case "y"
-  global h;
   h.y_label.font_style=find(ftn==["Courier" "Symbol" "Times",..
 		    "Times Italic" "Times Bold" "Times Bold Italic",..
 		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
 		   "Helvetica Bold Italic"])-1
 case "z"
-  global h;
   h.z_label.font_style=find(ftn==["Courier" "Symbol" "Times",..
 		    "Times Italic" "Times Bold" "Times Bold Italic",..
 		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
