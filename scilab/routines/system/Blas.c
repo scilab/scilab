@@ -44,6 +44,7 @@ int Blas_contents(x)
       C2F(dzasum)();
       C2F(dznrm2)();
       C2F(idamax)();
+      C2F(izamax)();
     }
   return 0;
 }
