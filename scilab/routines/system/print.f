@@ -55,9 +55,9 @@ C     topk : free stack zone for working areas
 c     
 
 
- 05   goto (20,10,06,55,25,26,06,06,75,30,60,06,60,70,40,40,40)
+ 05   goto (20,10,75,55,25,26,75,75,75,30,60,75,60,70,40,40,40)
      $     ,abs(itype)
- 06   goto 75
+      goto 75
 c     
 c     ----polynomial matrices
  10   continue
@@ -137,7 +137,6 @@ c     -------matrices of handle
  35   ilog=gethmat("print",lk,lk,m,n,lr)
       if (.not.crewimat("print",topk,1,m*n+2*n,lw)) return
       call dmdsp(stk(lr),m,m,n,ndgt,mode,lineln,lunit,buf,istk(lw))
-
       goto 48 
 
 c     -------lists 
@@ -533,7 +532,6 @@ c     -----------end
 
 c     overloaded print
  95   continue
-
 c     preserve data for recursion
 
       if ( eptover(3,psiz)) return
@@ -544,6 +542,7 @@ c     preserve data for recursion
       ids(2,pt-1)= rhs
       ids(3,pt-1)= lstk(lk)
       ids(4,pt-1)= li1
+      ids(5,pt-1)= lkeep0
       lstk(lk)   = lkeep
       pstk(pt)   = lk
       ids(1,pt)  = nlist
@@ -574,6 +573,7 @@ c     set back preserved data
       lkeep   = lstk(lk)
       lstk(lk)= ids(3,pt-1)
       li1     = ids(4,pt-1)
+      lkeep0  = ids(5,pt-1)
       nlist   = ids(1,pt)
       kl      = ids(2,pt)
       nl      = ids(3,pt)
