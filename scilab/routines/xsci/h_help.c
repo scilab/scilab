@@ -391,3 +391,34 @@ static void queryAproposAction(w,event,params,num_params)
     }
 }
 
+
+
+/****************************************************
+ * activates help for topic Topic 
+ ****************************************************/
+
+void SciCallHelp(helpPath,Topic)
+     char *Topic;
+     char *helpPath;
+{
+  int i;
+  static char format1[]= "$SCI/bin/xless %s/%s.cat 2> /dev/null &";
+  static char format2[]= "cat %s/%s.cat | more ";
+  C2F(xscion)(&i);
+  if ( i != 0 )
+    {
+      char *buf = (char *) MALLOC((strlen(helpPath)+strlen(Topic)+strlen(format1)+1) * (sizeof(char)));
+      if (buf == NULL){ sciprint("Running out of memory, I cannot activate help\n");return;}
+      sprintf(buf,format1,helpPath, Topic);
+      system(buf);
+      FREE(buf);
+    }
+  else 
+    {
+      char *buf = (char *) MALLOC((strlen(helpPath)+strlen(Topic)+strlen(format1)+1) * (sizeof(char)));
+      if (buf == NULL){ sciprint("Running out of memory, I cannot activate help\n");return;}
+      sprintf(buf,format2, helpPath, Topic);
+      system(buf);
+      FREE(buf);
+    }
+}

@@ -35,6 +35,45 @@ static void FillHelpsBox (HWND, DWORD);
 static void FillHelpList (HWND hwnd);
 static void SciApropos (HWND hwnd, char *str);
 
+/*--------------------
+ * help for topic Topic 
+ *--------------------*/
+
+void SciCallHelp(helpPath,Topic)
+     char *Topic;
+     char *helpPath;
+{
+  /* XXXXX cygwin bash scripts can't execute gcwin32 executable in batch
+   * up to now : we use the standard windows system function 
+   * that's why we need the getenv 
+   */
+  static char format1[]="%s/bin/xless  %s/%s.cat ";
+  static char format2[]="xless  %s/%s.cat ";
+  char *local = (char *) 0;
+  local = getenv("SCI");
+  if ( local != (char *) 0)
+    {
+      char *buf = (char *) MALLOC((strlen(local)+strlen(helpPath)+strlen(Topic)+strlen(format1)+1) * (sizeof(char)));
+      if (buf == NULL){ sciprint("Running out of memory, I cannot activate help\n");return;}
+      sprintf(buf, format1 ,local, helpPath, Topic);
+      /** sciprint("TestMessage : je lance un winsystem sur %s\r\n",buf); **/
+      if (winsystem(buf,1))
+	sciprint("help error: winsystem failed\r\n");
+      FREE(buf);
+    }
+  else
+    {
+      char *buf = (char *) MALLOC((strlen(helpPath)+strlen(Topic)+strlen(format2)+1) * (sizeof(char)));
+      if (buf == NULL){ sciprint("Running out of memory, I cannot activate help\n");return;}
+      /** maybe xless is in the path ? **/
+      sprintf(buf, format2, helpPath, Topic);
+      /** sciprint("TestMessage : je lance un winsystem sur %s\r\n",buf); **/
+      if (winsystem(buf,1))
+	sciprint("help error: winsystem failed\r\n");
+      FREE(buf);
+    }
+}
+
 /************************************************************************
  * Function: DoHelpDialog(HWND)
  * Purpose: Creates the scilab help dialog 
