@@ -19,6 +19,8 @@ if "%1" == "pvm" goto pvm
 if "%1" == "def" goto def
 if "%1" == "man" goto man
 if "%1" == "man-clean" goto man-clean
+if "%1" == "xmlint" goto xmlint
+if "%1" == "check" goto check
 if "%1" == "man-distclean" goto man-distclean
 if "%1" == "tcl" goto tcl
 if "%1" == "libs-distclean" goto libs-distclean
@@ -140,11 +142,23 @@ nmake /C /f Makefile.mak distclean
 cd ..
 goto end
 
- 
+:xmlint 
+cd win95-utils\xmlint
+nmake /C /f Makefile.mak all /a
+cd ..\..
+goto end
+
+:check
+cd man
+ echo checking all in man
+ nmake /C /f makefile.mak check /a
+cd ..
+goto end
+
 :man
 cd man
  echo making all in man
- nmake /C /f makefile.mak /a
+ nmake /C /f makefile.mak all /a
 cd ..
 goto end
 
@@ -168,7 +182,6 @@ cd routines\javasci
  nmake /C /f makefile.mak all /a
 cd ..\.. 
 goto end
-
 
 :tcl
 cd tcl

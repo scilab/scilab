@@ -6,7 +6,7 @@ include Makefile.incl.mak
 
 minimum :: routines-pvm bin\scilex.exe macros bin\Wscilex.exe imp intersci
 standard:: routines-pvm bin\scilex.exe macros bin\Wscilex.exe imp intersci
-all ::  modelicac routines-pvm bin\scilex.exe macros bin\Wscilex.exe MakeMexLib imp intersci Javasci man
+all ::  modelicac routines-pvm bin\scilex.exe macros bin\Wscilex.exe MakeMexLib imp intersci Javasci xmlint check man
 
 !IF "$(DLPVM)" == "YES"
 routines-pvm :: routines pvm 
@@ -33,6 +33,12 @@ imp::
 
 intersci::
 	Makesubdirs.bat intersci
+
+xmlint::
+	Makesubdirs.bat xmlint
+
+check::
+	Makesubdirs.bat check
 
 man::
 	Makesubdirs.bat man 
