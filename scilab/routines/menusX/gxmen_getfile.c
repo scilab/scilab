@@ -130,8 +130,8 @@ int  sci_get_file_window(char *filemask,char **file,char *dirname,
 		}
 	    }
 	}
-      
-      if (( *file = (char *) MALLOC((strlen(loc)+1+action_length)*sizeof(char))) == NULL) 
+      /* Attention la taille doit correspondre à "%s('%s');" */
+      if (( *file = (char *) MALLOC((strlen(loc)+6+action_length)*sizeof(char))) == NULL) 
 	{
 	  Scistring("Malloc : running out of memory");
 	  *ierr = 1;
