@@ -9,7 +9,7 @@ static integer cx1 = 1;
 static integer c_n1 = -1;
 
 /*------------------------------------------------
- *     converts from ascii to Scilab internal coding 
+ *   converts from ascii to Scilab internal coding 
  *   call cvstr(n,line,str,job) 
  *   n: integer, length of the string to be converted entier 
  *   line: integer array (where Scilab coded string are stored ) 
@@ -32,7 +32,7 @@ int C2F(cvstr)(integer * n,integer * line,char * str,integer * job,
 
 /*------------------------------------------------
  * very similar to cvstr but the conversion 
- *    ascii->code is performed from end to the begining 
+ * ascii->code is performed from end to the begining 
  ------------------------------------------------ */
 
 int C2F(cvstr1)(integer *n,integer * line,char * str,integer * job,
@@ -96,11 +96,11 @@ int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,
   integer j;
   if (*flagx == 1) {
     for (j = 0; j < *n ; ++j) {
-      line[j] = C2F(getcode)(str+j, 1L);
+      line[j] = C2F(getfastcode)(str+j, 1L);
     }
   } else {
     for (j = *n -1 ; j >= 0; --j) {
-      line[j] = C2F(getcode)(str+j, 1L);
+      line[j] = C2F(getfastcode)(str+j, 1L);
     }
   }
   return 0;
@@ -109,6 +109,7 @@ int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,
 /*--------------------------------------------- 
  *   converts one ascii to Scilab internal code 
  *   Copyright INRIA/ENPC 
+ *   Obsolete replaced by getfascode 
  *--------------------------------------------- */
 
 integer C2F(getcode)(unsigned char * mc,unsigned long mc_len)
@@ -134,6 +135,47 @@ integer C2F(getcode)(unsigned char * mc,unsigned long mc_len)
     return  *mc + eol + 1;
   }
 } 
+
+
+#include "../machine.h" 
+
+static integer taba2s[128] = 
+{ 99,101,102,103,104,105,106,107,108,-40,
+  99,111,112,113,114,115,116,117,118,119,
+ 120,121,122,123,124,125,126,127,128,129,
+ 130,131, 40, 38,-53, 37, 39, 56, 58, 53,
+  41, 42, 47, 45, 52, 46, 51, 48,  0,  1,
+   2,  3,  4,  5,  6,  7,  8,  9, 44, 43,
+  59, 50, 60,-38,-61,-10,-11,-12,-13,-14,
+ -15,-16,-17,-18,-19,-20,-21,-22,-23,-24,
+ -25,-26,-27,-28,-29,-30,-31,-32,-33,-34,
+ -35, 54, 49, 55, 62, 36,-59, 10, 11, 12,
+  13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+  23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
+  33, 34, 35,-54, 57,-55, 61,227 };
+
+/*--------------------------------------------------
+ * Convert one ascii char to Scilab internal code 
+ *     Copyright INRIA/ENPC 
+ *      Modified by Bruno Pincon 
+ *     the big table (pure) ascii -> scilab code 
+ *--------------------------------------------------*/
+
+integer C2F(getfastcode)(unsigned char *c, unsigned long c_len) 
+{
+  int k = *c ;
+  if (k <= 127) {
+    return taba2s[*c];
+  } else {
+    return k + 100;
+  }
+} 
+
+
+
+
+
+
 
 
 
