@@ -267,7 +267,13 @@ C=['int mytest(double *EvR, double *EvI) {' //the C code
    'if (*EvR * *EvR + *EvI * *EvI < 0.9025) return 1;'
    'else return 0; }';]
 mputl(C,TMPDIR+'/mytest.c')
-link(G_make(TMPDIR+'/mytest.o','c'), 'mytest',"C")
+
+
+//build and link
+lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
+link(lp,'mytest','c'); 
+
+//run it
 [U,dim,T]=schur(A,'mytest');
 //SCHUR FORM OF A PENCIL
 //----------------------
@@ -291,12 +297,21 @@ ftn=['integer function mytest(ar,ai,b)' //the fortran code
       'if(ar.lt.0.0d0) mytest=1'
       'end']
 mputl('      '+ftn,TMPDIR+'/mytest.f')
-link(G_make(TMPDIR+'/mytest.o'), 'mytest',"F")
+
+//build and link
+lp=ilib_for_link('mytest','mytest.o',[],'F',TMPDIR+'/Makefile');
+link(lp,'mytest','f'); 
+
+//run it
 
 [As,Es,Z,dim] = schur(A,E,'mytest')
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>bdiag</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ricc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pbig</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>psmall</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>spec</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>bdiag</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>ricc</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>pbig</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>psmall</LINK></SEE_ALSO_ITEM>
   </SEE_ALSO>
 
 </MAN>
