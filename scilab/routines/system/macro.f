@@ -54,8 +54,15 @@ c     a macro
          exec=rstk(pt).eq.909.or.rstk(pt).eq.903
          wmac=0
          if(nmacs.gt.0) then
+            if(rstk(pt).eq.602) then
+c     .        see run to explain the following
+               lcn=pstk(pt)-4-(nsiz+3)+1
+               call putid(id,istk(lcn))
+            else
+               call putid(id,ids(1,pt))
+            endif
             do 15 im=1,nmacs
-               if(eqid(ids(1,pt),macnms(1,im))) then
+               if(eqid(id,macnms(1,im))) then
                   wmac=im
                   goto 16
                endif
