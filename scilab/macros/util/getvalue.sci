@@ -149,7 +149,7 @@ while %t do
       %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
       if %ierr<>0 then %nok=-%kk;break,end 
       if type(%vv)<>16 then %nok=-%kk,break,end
-      if h(1)<>'r' then %nok=-%kk,break,end
+      if typeof(%vv)<>'rational' then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       [%mv,%nv]=size(%vv(2))
       %ssz=string(%sz(1))+' x '+string(%sz(2))

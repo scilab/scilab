@@ -130,7 +130,7 @@ while %t do
       [%mmmm,%nnnnn]=size(%vv)
       if %nnnnn<>1 then %noooo=%kk,break,end,
       if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
-    case '%str'
+    case 'str'
       %vv=%str(%kk)
       if type(%vv)<>10 then %noooo=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
@@ -151,7 +151,7 @@ while %t do
 	%noooo=-%kk,break,
       end
       if type(%vv)<>16 then %noooo=-%kk,break,end
-      if h(1)<>'r' then %noooo=-%kk,break,end
+      if typeof(%vv)<>'rational' then %noooo=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       [%mmmm,%nnnnn]=size(%vv(2))
       %ssss=string(%sz(1))+' x '+string(%sz(2))
