@@ -21,6 +21,7 @@ if ~c_link('foo') then
    generate a loader file
    generate a Makefile: Makelib
    running the makefile
+   compilation of foo
   exec loader.sce ;
 shared archive loaded
 
