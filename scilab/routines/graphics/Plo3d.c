@@ -924,7 +924,10 @@ void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
   if (version_flag() == 0) { 
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
     hiddencolor = pSUBWIN_FEATURE (psubwin)->hiddencolor;    
-    if (hiddencolor == style ) j= 2;
+    if (hiddencolor == style ) 
+      j= 2;
+    else
+      j=sciGetLineStyle (psubwin);
   }	
     /***/  
   C2F(dr)("xset","line style",&j,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
