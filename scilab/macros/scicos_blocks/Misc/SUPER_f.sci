@@ -11,27 +11,27 @@ case 'getoutputs' then
   [x,y,typ]=standard_outputs(arg1)
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
-case 'set' then
+ case 'set' then
+  y=needcompile // in case leaving with Exit
   while %t do
     [x,newparameters,needcompile,edited]=scicos(arg1.model.rpar)
     arg1.model.rpar=x
-    x=arg1
+//    x=arg1
     [ok,arg1]=adjust_s_ports(arg1)
     if ok then
       x=arg1
       y=needcompile
       typ=newparameters
-      return
-//      edited=resume(edited)
+      %exit=resume(%f)
     else
       %r=2
       %r=message(['SUPER BLOCK needs to be edited;';
 		  'Edit or exit by removing all edition'],['Edit'; ...
 		    'Exit'])
       if %r==2 then 
-//	edited=resume(%f),
 	typ=list()
-	return,
+	%exit=resume(%t),
+
       end
     end
   end

@@ -22,10 +22,11 @@ if ~ok then return; end
 lnkptr=lnkptrcomp(bllst,inpptr,outptr,inplnk,outlnk)
 //
 xptr=1;zptr=1;rpptr=1;ipptr=1;xc0=[];xcd0=[];xd0=[];
-rpar=[];ipar=[];initexe=[];funtyp=[];
+rpar=[];ipar=[];initexe=[];funtyp=[];labels=[];
 //
 for i=1:length(bllst)
   ll=bllst(i)
+  labels=[labels;ll.label];
   if type(ll.sim)==15 then funtyp(i,1)=ll.sim(2); else funtyp(i,1)=0;end
   //
   X0=ll.state(:)
@@ -91,6 +92,7 @@ sim.rpptr=rpptr
 sim.ipar=ipar
 sim.ipptr=ipptr
 sim.clkptr=clkptr
+sim.labels=labels
 cpr.sim=sim;
 
 outtb=0*ones(lnkptr($)-1,1)

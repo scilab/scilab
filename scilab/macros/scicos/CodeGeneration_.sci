@@ -1,41 +1,45 @@
 function  CodeGeneration_()
-  Cmenu='Open/Set'
-  xinfo('Click on a Superblock (without activation output)'+..
-	' to obtain a coded block ! ')
-  k=[]
-  while %t 
-    [btn,xc,yc,win,Cmenu]=cosclick()
-
-    if Cmenu<>[] then
-      %pt=[];break
-    elseif btn>31 then
-      Cmenu=%tableau(min(100,btn-31));%pt=[xc;yc];%win=win
-      if Cmenu==emptystr() then 
-	Cmenu=[];%pt=[];
-      end 
-      break
-    end
-    k=getobj(scs_m,[xc;yc])
-    if k<>[] then
-      if scs_m.objs(k).model.sim(1)=='super' then
-	disablemenus()
-	XX=scs_m.objs(k);
-	[ok,XX]=do_compile_superblock(XX)
-	enablemenus()
-	if ok then 
-	  scs_m.objs(k)=XX
-	  edited=%t;
-	  needcompile=4
-	  Cmenu='Replot';
-	  break
-	end     
+Cmenu='Open/Set'
+xinfo('Click on a Superblock (without activation output)'+..
+    ' to obtain a coded block ! ')
+k=[]
+while %t 
+  [btn,xc,yc,win,Cmenu]=cosclick()
+  
+  if Cmenu<>[] then
+    %pt=[];break
+  elseif btn>31 then
+    Cmenu=%tableau(min(100,btn-31));%pt=[xc;yc];%win=win
+    if Cmenu==emptystr() then 
+      Cmenu=[];%pt=[];
+    end 
+    break
+  end
+  k=getobj(scs_m,[xc;yc])
+  if k<>[] then
+    if scs_m.objs(k).model.sim(1)=='super' then
+      disablemenus()
+      all_scs_m=scs_m;
+      XX=scs_m.objs(k);
+      [ok,XX]=do_compile_superblock(XX,all_scs_m,k)
+      enablemenus()
+      if ok then 
+	scs_m.objs(k)=XX
+	edited=%t;
+	needcompile=4
+	Cmenu='Replot';
+	break
       else
-	message('Generation Code only work for a Superblock ! ')
+	Cmenu='Open/Set' 
+	break
+      end     
+    else
+      message('Generation Code only work for a Superblock ! ')
 	break
       end
     end
-    
-  end
+  end    
+  
 endfunction
 
 function [ok,Makename]=buildnewblock() 
@@ -937,7 +941,7 @@ function t1=cformatline(t ,l)
     if first then l1=l1-2;bl=bl+'  ';first=%f;end
   end
 endfunction
-function  [ok,XX]=do_compile_superblock(XX)
+function  [ok,XX]=do_compile_superblock(XX,all_scs_m,numk)
 // Transforms a given Scicos discrete SuperBlock into a C defined Block
 // Copyright INRIA
 //Author : Rachid Djenidi
@@ -1113,7 +1117,9 @@ if ok==%f then message('Sorry: problem in the pre-compilation step.'),return, en
       clkconnect=[clkconnect;[howclk 1 cap(i) 1]];
     end
   end
-cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv)
+Code_gene_run=[];
+cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv);
+//cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   if cpr==list() then ok=%f,return, end
 

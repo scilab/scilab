@@ -24,7 +24,6 @@ case 'set' then
       [model,graphics,ok]=check_io(model,graphics,1,[],[1],[ones(out,1)])
       if ok then
 	graphics.exprs=exprs;model.evtout=ones(out,1);model.ipar=out
-	model.sim(2)=-1
 	x.graphics=graphics;x.model=model
 	break
       end

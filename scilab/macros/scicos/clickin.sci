@@ -31,11 +31,14 @@ if typeof(o)=='Block' then
     execstr('scs_m_'+string(slevel)+'=scs_m')
     execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)')
     //edited variable is returned by SUPER_f -- NO LONGER TRUE
-    edited=diffobjs(o,o_n)
-    if edited then
-      o=o_n
-      modified=prod(size(newparameters))>0
+    if ~%exit then
+      edited=diffobjs(o,o_n)
+      if edited then
+	o=o_n
+	modified=prod(size(newparameters))>0
+      end
     end
+    
     curwin=lastwin
     if(~(or(curwin==winsid()))) then Cmenu=resume('Open/Set');end
     xset('window',curwin)

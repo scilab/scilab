@@ -22,9 +22,9 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
       [x,ierr]=fileinfo(fname)
       if ierr==0 then
 	ww=stacksize()
-	if ww(1)<x(1) then 
-	  disp('stacksize increased to '+string(x(1)))
-	  stacksize(x(1)),
+	if ww(1)<2*x(1) then 
+	  disp('stacksize increased to '+string(2*x(1)))
+	  stacksize(2*x(1)),
 	end
 	ierr=execstr('exec(fname,-1)','errcatch')
 	ok=%t
@@ -33,9 +33,9 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
       [x,ierr]=fileinfo(fname)
       if ierr==0 then
 	ww=stacksize()
-	if ww(1)<x(1) then 
-	  disp('stacksize increased to '+string(x(1)))
-	  stacksize(x(1)),
+	if ww(1)<2*x(1) then 
+	  disp('stacksize increased to '+string(2*x(1)))
+	  stacksize(2*x(1)),
 	end
 	ierr=execstr('load(fname)','errcatch')
 	ok=%t
