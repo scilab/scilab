@@ -7,6 +7,7 @@ extern int C2F(withtk)(int *rep);
 extern int C2F(withpvm)(int *rep);
 extern int C2F(withgtk)(int *rep);
 extern int C2F(withocaml)(int *rep);
+extern int C2F(withjavasci)(int *rep);
 extern int C2F(getcomp)(char *buf,int *nbuf,long int lbuf);
 
 int C2F(intversion)(char * fname,unsigned long fname_len)
@@ -20,11 +21,12 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
   CreateVarFromPtr( 1, "c",(m1=strlen(Version), &m1),&n1,&v);
   LhsVar(1) = 1;
   if (Lhs==2) {
-    static char *Str[7];
+    static char *Str[8];
     char tk[]="tk";
     char pvm[]="pvm";
     char gtk[]="gtk";
     char ocaml[]="ocaml";
+	char javasci[]="javasci";
 	char atlas[]="atlas";
 	char debugmode[]="debug";
 	char releasemode[]="release";
@@ -50,6 +52,8 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
     if (irep) {Str[n1]=tk;n1++;}
     C2F(withocaml)(&irep);
     if (irep) {Str[n1]=ocaml;n1++;}
+	C2F(withjavasci)(&irep);
+    if (irep) {Str[n1]=javasci;n1++;}
 
 	#ifdef WITH_ATLAS
 		{Str[n1]=atlas;n1++;}

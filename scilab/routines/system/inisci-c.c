@@ -6,6 +6,7 @@
 #include <windows.h>
 BOOL FileExist(char *filename);
 BOOL ExistModelicac(void);
+BOOL ExistJavaSciWin(void);
 #endif
 /*************************************************************************************************/
 /*-------------------------------------------
@@ -66,6 +67,30 @@ int C2F(withocaml)(int *rep)
   return 0;
 }
 /*************************************************************************************************/
+int C2F(withjavasci)(int *rep)
+{
+#ifdef WIN32
+	if (ExistJavaSciWin())
+	{
+		*rep =1;
+	}
+	else
+	{
+		*rep =0; 
+	}
+#else
+	if (ExistJavaSciUnix())
+	{
+		*rep =1;
+	}
+	else
+	{
+		*rep =0; 
+	}
+#endif
+  return 0;
+}
+/*************************************************************************************************/
 int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
 {
   int ierr,iflag=0,l1buf=lbuf;
@@ -103,8 +128,67 @@ BOOL ExistModelicac(void)
 	fullpathModelicac=(char*)malloc((strlen(SCIPATH)+strlen(ModelicacName)+1)*sizeof(char));
 	wsprintf(fullpathModelicac,"%s%s",SCIPATH,ModelicacName);
 	bOK=FileExist(fullpathModelicac);
-	free(fullpathModelicac);
+	if (fullpathModelicac) free(fullpathModelicac);
+	return bOK;
+}
+/*************************************************************************************************/
+BOOL ExistJavaSciWin(void)
+{
+	#define JavaSCIName "/bin/javasci.dll"
+
+	BOOL bOK=FALSE;
+	char *SCIPATH = (char*)getenv ("SCI");
+	char *fullpathJavaSci=NULL;
+	
+	fullpathJavaSci=(char*)malloc((strlen(SCIPATH)+strlen(JavaSCIName)+1)*sizeof(char));
+	wsprintf(fullpathJavaSci,"%s%s",SCIPATH,JavaSCIName);
+	bOK=FileExist(fullpathJavaSci);
+	if (fullpathJavaSci) free(fullpathJavaSci);
 	return bOK;
 }
 #endif
+/*************************************************************************************************/
+int ExistJavaSciUnix(void)
+{
+	int bOK=0;
+	char *SCIPATH = (char*)getenv ("SCI");
+	char *fullpathJavaSci=NULL;
+
+#ifndef WIN32
+	#define JavaSciName "libjavasci"
+
+	char OperatinSystem[256];
+	char Release[256];
+	char extension[5];
+	struct utsname uname_pointer;
+	FILE *fp;
+
+	uname(&uname_pointer);
+	sprintf(OperatinSystem,"%s",uname_pointer.sysname);
+	sprintf(Release,"%s",uname_pointer.release);
+
+	if (strcmp(OperatinSystem,"HP-UX")==0)
+	{
+		strcpy(extension,".sl");
+	}
+	else
+	{
+		strcpy(extension,".so");
+	}
+	fullpathJavaSci=(char*)malloc((strlen(SCIPATH)+strlen("/bin/")+strlen(JavaSciName)strlen(extension)+1)*sizeof(char));
+	sprintf(fullpathJavaSci,"%s/bin/%s%s",SCIPATH,JavaSciName,extension);
+	fp=fopen(fullpathJavaSci,"r");
+	if (fp)
+	{
+		fclose(fp);
+		bOK=1;
+	}
+	else
+	{
+		bOK=0;
+	}
+	if (fullpathJavaSci) free(fullpathJavaSci);
+#endif
+	return bOK;
+}
 /*************************************************************************************************/
