@@ -202,4 +202,5 @@ typedef INT32_T int32_T;
 typedef UINT32_T uint32_T;
 typedef REAL32_T real32_T;
 
-#endif SCI_MEX 
+#endif /* SCI_MEX  */
+
