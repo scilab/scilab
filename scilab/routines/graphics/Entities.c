@@ -9350,7 +9350,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       /* F.Leray Test imprortant sur type ici*/
       if (type == 0) /* attention ici type = 0 donc...*/
 	{   
-	  psegs->arrowsize = arsize * 100;     
+	  psegs->arrowsize = arsize * 100;
 	  if ((psegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
 	    {
 	      FREE(pSEGS_FEATURE (pobj)->vx); 
@@ -9377,7 +9377,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       else /* attention ici type = 1 donc...*/
 	{ 
 	  /* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
-	  psegs->arrowsize = arsize * 100;
+	  psegs->arrowsize = arsize  * 100;
 	  psegs->Nbr1 = Nbr1;   
 	  psegs->Nbr2 = Nbr2;	 
 	  psegs->pcolored = colored;
@@ -12400,6 +12400,17 @@ sciPointObj *
 sciGetCurrentFigure ()
 {
   return (sciPointObj *) sciGetCurrentScilabXgc ()->mafigure  ;
+  cf_type=1;/* current figure is a graphic one */
+}                                                               
+
+/**sciSetCurrentFigure
+ * @memo Sets the pointer to the current selected figure. 
+ */
+
+void 
+sciSetCurrentFigure (sciPointObj * mafigure)
+{
+  sciGetCurrentScilabXgc ()->mafigure = mafigure ;
   cf_type=1;/* current figure is a graphic one */
 }                                                               
 
