@@ -22,7 +22,7 @@ menu $pad.filemenu.files -tearoff 0 -font $menuFont
                    -command \"xmlhelpfile\" -state disabled "
     $pad.filemenu.files add separator
     eval "$pad.filemenu.files add command [me "Open &function source"] \
-                   -command \"openlibfunsource1\" \
+                   -command {openlibfunsource [[gettextareacur] index insert]}\
                    -state disabled -accelerator Ctrl+/"
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
@@ -175,9 +175,8 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
             -command {colormenuoption $c} -foreground \[set $c\]"
            }
     eval "$pad.filemenu.options add check [me "Word &Wrap"] \
-               -command \"wraptext\" \
-               -onvalue \"word\" -offvalue \"none\" -variable wordWrap "
-
+        -command {\[gettextareacur\] configure -wrap \$wordWrap}  \
+        -offvalue none -onvalue word -variable wordWrap"
 
 # window menu
 menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] -font $menuFont

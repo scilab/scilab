@@ -842,3 +842,8 @@ Francois VOGEL, 09/03/05
 Francois VOGEL, 09/03/05
  * Word wrap is now correctly taken into account between Scilab sessions
  * version --> 3.45
+
+ES  09/03/05
+ * procs openlibfunsource1 and wordwrap eliminated; the menu entries using them
+   can just inline them. 
+ * version --> 3.46

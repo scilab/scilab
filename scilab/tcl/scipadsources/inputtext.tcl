@@ -125,11 +125,6 @@ proc printtime {} {
     setmodified [gettextareacur]
 }
 
-proc wraptext {} {
-# binding for wordwrap
-    global wordWrap
-    [gettextareacur] configure -wrap $wordWrap
-}
 
 proc IsBufferEditable {} {
     if {[getdbstate]=="DebugInProgress"} {

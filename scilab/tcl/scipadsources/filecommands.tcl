@@ -158,9 +158,6 @@ proc killwin {widget} {
 ##################################################
 # procs for opening buffers from disk
 ##################################################
-proc openlibfunsource1 {} {
-    openlibfunsource [[gettextareacur] index insert]
-}
 
 proc openlibfunsource {ind} {
     global textareacur
