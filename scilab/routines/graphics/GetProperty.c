@@ -424,6 +424,8 @@ sciGetForeground (sciPointObj * pobj)
       colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_SEGS:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_AGREG:

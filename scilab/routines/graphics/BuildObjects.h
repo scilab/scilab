@@ -73,7 +73,7 @@ extern sciPointObj *ConstructFec (sciPointObj * pparentsubwin, double *pvecx, do
 
 extern sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy, integer Nbr1, 
                integer Nbr2, double *vfx, double *vfy, integer flag, 
-              integer *style, double arsize1,  integer colored, double arfact);  /* BUILD */
+              integer *style, double arsize1,  integer colored, double arfact, int typeofchamp);  /* BUILD */
 
 extern sciPointObj *ConstructAgregation (long *tabpointobj, int number); /* BUILD */
 extern sciPointObj *ConstructAgregationSeq (int number); /* BUILD */

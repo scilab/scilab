@@ -2151,7 +2151,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 sciPointObj *
 ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy, 
                integer Nbr1,integer Nbr2, double *vfx, double *vfy, integer flag,
-	       integer *style, double arsize, integer colored, double arfact) 
+	       integer *style, double arsize, integer colored, double arfact, int typeofchamp) 
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciSegs *psegs = (sciSegs *) NULL;
@@ -2231,7 +2231,8 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 
       /* F.Leray Test imprortant sur type ici*/
       if (type == 0) /* attention ici type = 0 donc...*/
-	{   
+	{
+	  psegs->typeofchamp = -1; /* useless property in the case type == 0 */
 	  psegs->arrowsize = arsize /** 100*/;       /* A revoir: F.Leray 06.04.04 */
 	  if ((psegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
 	    {
@@ -2263,6 +2264,8 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  psegs->Nbr1 = Nbr1;   
 	  psegs->Nbr2 = Nbr2;	 
 	  psegs->pcolored = colored;
+	  sciSetForeground(pobj,sciGetForeground(sciGetSelectedSubWin (sciGetCurrentFigure ()))); /* set sciGetForeground(psubwin) as the current foreground */
+	  psegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
 	  psegs->parfact = arfact;
 	  if ((psegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
 	    {

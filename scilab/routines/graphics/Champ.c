@@ -59,6 +59,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   double drect[6];
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
+  int typeofchamp = 0;
 
   /* get default dash for arrows **/
   integer verbose=0,narg,xz[10],uc;
@@ -154,9 +155,19 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       }
       for(i=0;i<(*n1);i++) style[i]=i;
 
-      sciSetCurrentObj(ConstructSegs((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
-				     type,x,y,*n1,*n2,fx,fy,flag,style,arsize1,colored,*arfact)); 
 
+      if(colored == 0){
+	/* champ with color inheritated from subwin */
+/* 	colored = sciGetForeground(psubwin); */
+	typeofchamp = 0;
+      }
+      else{
+	/*champ1 (normed vector + color) is enabled */
+	typeofchamp = 1;
+      }
+      sciSetCurrentObj(ConstructSegs(psubwin,type,x,y,*n1,*n2,fx,fy,flag,
+				     style,arsize1,colored,*arfact,typeofchamp)); 
+      
  /*      sciDrawObj(sciGetCurrentFigure ()); /\* Adding F.Leray 13.05.04 to insure the drawing *\/ */
       sciDrawObjIfRequired(sciGetCurrentObj ()); 
       DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
@@ -249,14 +260,14 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
   int xfacteur = 1;
   int yfacteur = 1;
   
-  if(version_flag()==0)
-    {
-      sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+/*   if(version_flag()==0) */
+/*     { */
+/*       sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); */
+/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin); */
 
-      if(ppsubwin->axes.reverse[0] == TRUE) xfacteur = -1;
-      if(ppsubwin->axes.reverse[1] == TRUE) yfacteur = -1;
-    }
+/*       if(ppsubwin->axes.reverse[0] == TRUE) xfacteur = -1; */
+/*       if(ppsubwin->axes.reverse[1] == TRUE) yfacteur = -1; */
+/*     } */
 
 
   /* From double to pixels */
@@ -296,6 +307,141 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	       Cscale.WIRect1[1]+Cscale.WIRect1[3]);
 
   if ( *colored == 0 ) 
+    {
+      int j=0;
+      for ( i = 0 ; i < (*n1)*(*n2) ; i++)
+	{
+	  integer x1n,y1n,x2n,y2n,flag1=0;
+	  /* 	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]); */
+	  /* 	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]); */
+	  /* 	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]); */
+	  /* 	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]); */
+	  xm[1+2*j]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
+	  xm[2*j]  = (int)(xm[2*i]);
+ 	  ym[1+2*j]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
+	  ym[2*j]  = (int)(ym[2*i]);
+	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+	  if (flag1 !=0)
+	    {
+	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
+	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
+	      /* sciprint("j'ai rajoute (%d,%d)->(%d,%d)\r\n",xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1]); */
+	      j++;
+	    }
+	}
+      *na=2*j;
+    }
+  else 
+    {
+      integer x1n,y1n,x2n,y2n,flag1=0;
+      integer whiteid;
+      int j=0;
+      C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      for ( i = 0 ; i < (*n1)*(*n2) ; i++)
+	{
+	  double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
+	  zm[j] = inint( ((double) whiteid)*(1.0 - nor/maxx));
+	  nor= sqrt(fx[i]*(fx[i])+fy[i]*(fy[i]));
+
+	  /*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
+	   *        at the point (before the arrow was placed such as the corresponding
+	   *        point was at the middle of the arrow)       
+	   *
+	   *        this is the old code :
+	   *
+	   * 	  xm[1+2*j]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]); 
+	   * 	  xm[2*j]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]); 
+	   * 	  ym[1+2*j]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]); 
+	   * 	  ym[2*j]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]); 
+	   *
+	   *        the new code :
+	   */
+	  xm[1+2*j]= (int)(xfacteur*sfx*(fx[i])/(nor)+xm[2*i]);
+	  xm[2*j]  = (int)(xm[2*i]);
+	  ym[1+2*j]= (int)(-yfacteur*sfy*(fy[i])/(nor)+ym[2*i]);
+	  ym[2*j]  = (int)(ym[2*i]);
+	  /* end of the modif */
+
+	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+	  if (flag1 !=0)
+	    {
+	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
+	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
+	      j++;
+	    }
+	}
+      *na=2*j;
+    }
+}
+
+
+
+/* F.Leray 11.03.05 */
+/* For new graphic style only */
+/* same thing has above (Champ2DRealToPixel) */
+/* only difference is in the typeofchamp treatment (taht replaces the colored flag) */
+extern void sciChamp2DRealToPixel(xm,ym,zm,na,arsize,x,y,fx,fy,n1,n2,arfact,typeofchamp)
+     integer *xm,*ym,*zm;
+     integer *na,*arsize;
+     integer *n1,*n2;
+     double *x, *y, *fx, *fy;
+     double *arfact;
+     int * typeofchamp;
+{  
+ 
+  integer i,j;
+  double  maxx;
+  double  nx,ny,sc,sfx,sfy,sfx2,sfy2;
+  double  arsize1=0.5,arsize2=0.5;
+  /* get default dash for arrows **/
+  integer verbose=0,narg;
+  int xfacteur = 1;
+  int yfacteur = 1;
+  
+  sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+  
+  if(ppsubwin->axes.reverse[0] == TRUE) xfacteur = -1;
+  if(ppsubwin->axes.reverse[1] == TRUE) yfacteur = -1;
+
+
+  /* From double to pixels */
+  for ( i = 0 ; i < *n1 ; i++)
+    for ( j =0 ; j < *n2 ; j++)
+      {
+	xm[2*(i +(*n1)*j)]= XScale(x[i]);
+	ym[2*(i +(*n1)*j)]= YScale(y[j]);
+      }
+
+  /** Scaling **/
+  nx=MiniD(x,*n1)*Cscale.Wscx1;
+  ny=MiniD(y,*n2)*Cscale.Wscy1;
+  sfx= Cscale.Wscx1;
+  sfy= Cscale.Wscy1;
+  sfx2= sfx*sfx;
+  sfy2= sfy*sfy;
+  maxx = sfx2*fx[0]*fx[0]+sfy2*fy[0]*fy[0];
+  for (i = 1;  i < (*n1)*(*n2) ; i++)
+    {
+      double maxx1 = sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i];
+      if ( maxx1 > maxx) maxx=maxx1;
+    }
+  maxx = ( maxx < SMDOUBLE) ? SMDOUBLE : sqrt(maxx);
+  sc=maxx;
+  /*sc= Min(nx,ny)/sc;*/
+  sc= sqrt(nx*nx+ny*ny)/sc;
+  sfx *= sc;
+  sfy *= sc;
+  /** size of arrow **/
+  arsize1= ((double) Cscale.WIRect1[2])/(5*(*n1));
+  arsize2= ((double) Cscale.WIRect1[3])/(5*(*n2));
+  *arsize=  (arsize1 < arsize2) ? inint(arsize1*10.0) : inint(arsize2*10.0) ;
+  *arsize = (int)((*arsize)*(*arfact));
+
+  set_clip_box(Cscale.WIRect1[0],Cscale.WIRect1[0]+Cscale.WIRect1[2],Cscale.WIRect1[1],
+	       Cscale.WIRect1[1]+Cscale.WIRect1[3]);
+
+  if ( *typeofchamp == 0 ) 
     {
       int j=0;
       for ( i = 0 ; i < (*n1)*(*n2) ; i++)
