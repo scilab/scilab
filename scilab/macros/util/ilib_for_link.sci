@@ -102,8 +102,8 @@ mfprintf(fd,"OTHERLIBS = ");
 for x=libs(:)' ; mfprintf(fd," %s.ilib",x);end
 mfprintf(fd,"\n");
 mfprintf(fd,"!include $(SCIDIR1)\\Makefile.incl.mak\n");
-mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I$(SCIDIR)/routines/ -Dmexfunction_=mex$*_  -DmexFunction=mex_$*\n");
-mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I$(SCIDIR)/routines/ -Dmexfunction=mex$*\n");
+mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines/\"" -Dmexfunction_=mex$*_  -DmexFunction=mex_$*\n");
+mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines/\"" -Dmexfunction=mex$*\n");
 mfprintf(fd,"!include $(SCIDIR1)\\config\\Makedll.incl \n");
 mclose(fd);
 endfunction
