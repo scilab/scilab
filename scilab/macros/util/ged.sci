@@ -1538,6 +1538,8 @@ global ged_tmp;
 global ged_tmp_string;
 global WINDOW;
 
+Nan = %nan // to avoid error message because of special Nan display
+
 ged_tmp=GEDeditvar_get(WINDOW);
 
 execstr(ged_tmp_string+"= ged_tmp");
