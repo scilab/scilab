@@ -464,7 +464,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL F2C FLIBS X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS GTK_CONFIG GNOME_CONFIG PKG_CONFIG with_ocamlc with_ocamlopt with_ocamldep RM AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB GTKCFLAGS GTKLIBS GNOMECFLAGS TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE GUILIB GZVT XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMROOT PVMROOTR PVMINST PVMINCLUDE PVMHOSTERFILES PVMHOSTER TKBASE TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TKSCILIB TKSCIDIR TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS OCAMLTARGET WITH_OCAML DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION FC_USE_CDEC FC_SUBDIR BLPR_SCRIPTS SED_CYGDRIVE F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS GTKPLUGBUG XXTXEXT XX11 LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL F2C FLIBS X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS GTK_CONFIG GNOME_CONFIG PKG_CONFIG with_ocamlc with_ocamlopt with_ocamldep WITH_SABCMD RM AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB GTKCFLAGS GTKLIBS GNOMECFLAGS TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE GUILIB GZVT XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMROOT PVMROOTR PVMINST PVMINCLUDE PVMHOSTERFILES PVMHOSTER TKBASE TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TKSCILIB TKSCIDIR TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS OCAMLTARGET WITH_OCAML MANTARGET DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION FC_USE_CDEC FC_SUBDIR BLPR_SCRIPTS SED_CYGDRIVE F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS GTKPLUGBUG XXTXEXT XX11 LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -27872,9 +27872,59 @@ _ACEOF
     fi
  fi
 fi
+
+#################
+## Sablotron
+#################
+
+ # Extract the first word of "sabcmd", so it can be a program name with args.
+set dummy sabcmd; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_prog_WITH_SABCMD+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$WITH_SABCMD"; then
+  ac_cv_prog_WITH_SABCMD="$WITH_SABCMD" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_WITH_SABCMD="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  test -z "$ac_cv_prog_WITH_SABCMD" && ac_cv_prog_WITH_SABCMD="no"
+fi
+fi
+WITH_SABCMD=$ac_cv_prog_WITH_SABCMD
+if test -n "$WITH_SABCMD"; then
+  echo "$as_me:$LINENO: result: $WITH_SABCMD" >&5
+echo "${ECHO_T}$WITH_SABCMD" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+ if test "$WITH_SABCMD" = yes; then
+    MANTARGET=man
+ else
+    { echo "$as_me:$LINENO: WARNING: Sablotron \"sabcmd\" not found: I will not build man pages" >&5
+echo "$as_me: WARNING: Sablotron \"sabcmd\" not found: I will not build man pages" >&2;}
+    MANTARGET=
+ fi
+
 #########################
 ## substituting variables
 #########################
+
 
 
 
@@ -28676,6 +28726,7 @@ s,@PKG_CONFIG@,$PKG_CONFIG,;t t
 s,@with_ocamlc@,$with_ocamlc,;t t
 s,@with_ocamlopt@,$with_ocamlopt,;t t
 s,@with_ocamldep@,$with_ocamldep,;t t
+s,@WITH_SABCMD@,$WITH_SABCMD,;t t
 s,@RM@,$RM,;t t
 s,@AR_FLAGS@,$AR_FLAGS,;t t
 s,@FILES_TO_CLEAN@,$FILES_TO_CLEAN,;t t
@@ -28743,6 +28794,7 @@ s,@ATLAS_DIR@,$ATLAS_DIR,;t t
 s,@IN_ATLAS@,$IN_ATLAS,;t t
 s,@OCAMLTARGET@,$OCAMLTARGET,;t t
 s,@WITH_OCAML@,$WITH_OCAML,;t t
+s,@MANTARGET@,$MANTARGET,;t t
 s,@DLLTOOL@,$DLLTOOL,;t t
 s,@LIBM@,$LIBM,;t t
 s,@LIBTOOL_DEPS@,$LIBTOOL_DEPS,;t t

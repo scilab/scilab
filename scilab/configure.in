@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.82 $)dnl
+AC_REVISION($Revision: 1.83 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1798,6 +1798,19 @@ if test "$with_ocaml" != no; then
     fi
  fi
 fi
+
+#################
+## Sablotron
+#################
+
+ AC_CHECK_PROG(WITH_SABCMD,sabcmd,yes,no)
+ if test "$WITH_SABCMD" = yes; then
+    MANTARGET=man
+ else
+    AC_MSG_WARN([Sablotron "sabcmd" not found: I will not build man pages])
+    MANTARGET=
+ fi
+
 #########################
 ## substituting variables
 #########################
@@ -1876,6 +1889,7 @@ AC_SUBST(ATLAS_DIR)
 AC_SUBST(IN_ATLAS)
 AC_SUBST(OCAMLTARGET)
 AC_SUBST(WITH_OCAML)
+AC_SUBST(MANTARGET)
 # for Makemex
 
 AC_SUBST(SHELL)
