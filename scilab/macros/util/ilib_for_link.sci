@@ -124,8 +124,13 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
   if cc<>"" then 
     mfprintf(fd,"CC="+cc+ "\n");
   end
-  mfprintf(fd,"CFLAGS = $(CC_OPTIONS) "+cflags+ "\n");
-  mfprintf(fd,"FFLAGS = $(FC_OPTIONS) "+fflags+ "\n");
+  if getenv('WIN32','NO')=='OK' then
+    mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL "+cflags+ "\n");
+    mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL "+fflags+ "\n");
+  else
+     mfprintf(fd,"CFLAGS = $(CC_OPTIONS) "+cflags+ "\n");
+     mfprintf(fd,"FFLAGS = $(FC_OPTIONS) "+fflags+ "\n");
+  end
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+ "\n");
   if getenv('WIN32','NO')=='OK' then
     // cygwin assumed : we use a specific makedll 
