@@ -1,0 +1,26 @@
+(** This module provides the required interface an implementation needs to
+conform to in order to create a new code generator. *)
+
+module type CODEGENERATOR =
+  sig
+    val generate_code: string -> string -> string -> Optimization.model -> unit
+    (** [generate_code path filename fun_name model] generates the code that allows
+    the numeric simulation of [model]. [path] is the path to the external functions
+    referenced in [model]. [filename] is the name of the file where the code is
+    generated. [fun_name] is the name of the entry point in the generated code. *)
+  end
+
+module type S =
+  sig
+    val version: string
+    (** The version of the compiler instance. *)
+    val run: unit -> unit
+    (** [run ()] invokes the compiler's unique entry point. *)
+  end
+
+module Make:
+  functor (G: CODEGENERATOR) ->
+    sig
+      val version: string
+      val run: unit -> unit
+    end

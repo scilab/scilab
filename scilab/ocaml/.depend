@@ -28,11 +28,13 @@ optimization.cmo: bipartiteGraph.cmi causalityGraph.cmi compilation.cmi \
 optimization.cmx: bipartiteGraph.cmx causalityGraph.cmx compilation.cmx \
     hungarianMethod.cmx instantiation.cmx squareSparseMatrix.cmx \
     symbolicExpression.cmx optimization.cmi 
+optimizingCompiler.cmo: compilation.cmi instantiation.cmi lexer.cmo \
+    optimization.cmi parser.cmo precompilation.cmi optimizingCompiler.cmi 
+optimizingCompiler.cmx: compilation.cmx instantiation.cmx lexer.cmx \
+    optimization.cmx parser.cmx precompilation.cmx optimizingCompiler.cmi 
 scicosCodeGeneration.cmo: optimization.cmi symbolicExpression.cmi \
     scicosCodeGeneration.cmi 
 scicosCodeGeneration.cmx: optimization.cmx symbolicExpression.cmx \
     scicosCodeGeneration.cmi 
-optimizingCompiler.cmo: compilation.cmi instantiation.cmi lexer.cmo \
-    optimization.cmi parser.cmo precompilation.cmi scicosCodeGeneration.cmi 
-optimizingCompiler.cmx: compilation.cmx instantiation.cmx lexer.cmx \
-    optimization.cmx parser.cmx precompilation.cmx scicosCodeGeneration.cmx 
+scicosOptimizingCompiler.cmo: optimizingCompiler.cmi scicosCodeGeneration.cmi 
+scicosOptimizingCompiler.cmx: optimizingCompiler.cmx scicosCodeGeneration.cmx 

@@ -61,20 +61,18 @@ module Make
       }
 
     let init size f =
-      if size = 0 then failwith "init: size must be greater than zero."
-      else
-        let matrix =
-          M.init size E.infinity f
-        in
-          {
-            size = size;
-            row_marks = Array.make size false;
-            column_marks = Array.make size false;
-            framed_zeros = Array.make size (-1);
-            (* -1 ensures is_framed_zero to work properly *)
-            matrix = matrix;
-            graph = B.create size
-          }
+      let matrix =
+        M.init size E.infinity f
+      in
+        {
+          size = size;
+          row_marks = Array.make size false;
+          column_marks = Array.make size false;
+          framed_zeros = Array.make size (-1);
+          (* -1 ensures is_framed_zero to work properly *)
+          matrix = matrix;
+          graph = B.create size
+        }
 
     let minimum elt elt' = if E.compare elt elt' < 0 then elt else elt'
 

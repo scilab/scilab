@@ -154,7 +154,6 @@ let bufferize_float f model_info =
   else
     Printf.bprintf model_info.code_buffer "%s" s
 
-
 let rec bufferize_rhs model_info tabs modes_on lhs expr =
   let rec precedence expr =
     if has_alias_binding expr model_info then 14
