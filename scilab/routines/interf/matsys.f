@@ -2578,8 +2578,22 @@ c            if(eqid(macnms(1,kmac),id)) goto 325
             if(eqid(macnms(1,kmac),id)) goto 324
  323     continue
       endif
+C Serge Steer May 2004
+      if (nmacs.ge.maxdb) then
+         buf='Too many functions contain breakpoints'
+         call error(9999)
+         return
+      endif
+
       nmacs=nmacs+1
       call putid(macnms(1,nmacs),id)
+C Serge Steer May 2004
+      if (lgptrs(nmacs)+1.gt.maxbpt) then
+         buf='Too many defined  breakpoints'
+         call error(9998)
+         return
+      endif
+  
       lgptrs(nmacs+1)=lgptrs(nmacs)+1
       bptlg(lgptrs(nmacs))=lnb
       goto 330
@@ -2590,8 +2604,21 @@ c do statement added to avoid definition of duplicate bpts
  3241 continue
  325  if(kmac.eq.nmacs) then
          lgptrs(nmacs+1)=lgptrs(nmacs+1)+1
+C Serge Steer May 2004
+         if (lgptrs(nmacs+1)-1.gt.maxbpt) then
+            buf='Too many defined  breakpoints'
+            call error(9998)
+            return
+         endif
          bptlg(lgptrs(nmacs+1)-1)=lnb
       else
+C Serge Steer May 2004
+        if (lgptrs(nmacs+1)-1.gt.maxbpt) then
+            buf='Too many defined  breakpoints'
+            call error(9998)
+            return
+         endif
+  
          do 326 kk=nmacs,kmac,-1
             l0=lgptrs(kk)
             call icopy(lgptrs(kk+1)-l0,bptlg(l0),-1,bptlg(l0+1),-1)
