@@ -66,8 +66,8 @@ int C2F(intreadxls)(char *fname, long lfn)
 
   else
     {
-      CreateVarFromPtr(Rhs+1, "d", &M,&N, &data);
-      CreateVarFromPtr(Rhs+2, "i", &M,&N, &ind);
+      CreateVarFromPtr(Rhs+1, "d", &N,&M, &data);
+      CreateVarFromPtr(Rhs+2, "i", &N,&M, &ind);
       free(data);
       free(ind);
     }
@@ -82,7 +82,6 @@ int C2F(intreadxls)(char *fname, long lfn)
 
 #include <libgen.h>
 #include "../sound/ole.h"
-
 int C2F(intopenxls)(char *fname, long lfn)
 {
   int i,k,m1,n1,l1,l2,one=1,fd,f_swap=0;
@@ -92,8 +91,14 @@ int C2F(intopenxls)(char *fname, long lfn)
   char **Sheetnames;
   int *Abspos;
   int nsheets;
-  int opt;
   char in[256],TMP[256];
+  char sep[2];
+#ifdef WIN32
+  sep[0]='\\';
+#else
+  sep[0]='/';
+#endif
+  sep[1]='\0';
 
   CheckLhs(4,4);
   CheckRhs(1,1);
@@ -101,9 +106,10 @@ int C2F(intopenxls)(char *fname, long lfn)
   /*  checking variable file */
   GetRhsVar(1,"c",&m1,&n1,&l1);
 
-  strcpy(in,cstk(l1));
+  strcpy(in,cstk(l1));/* copy cstk(l1) because basename can modify it's input */
   strcpy(TMP,getenv("TMPDIR"));
-  strcat(TMP,"/");
+  
+  strcat(TMP,sep);
   strcat(TMP,basename(in));
   result=ripole(cstk(l1), TMP, 0, 0);
   if (result != OLE_OK) {
@@ -120,7 +126,7 @@ int C2F(intopenxls)(char *fname, long lfn)
 
     return 0;
   }
-  strcat(TMP,"/");
+  strcat(TMP,sep);
   strcat(TMP,"Workbook");
   C2F(mopen)(&fd, TMP,"rb", &f_swap, &res, &ierr);
   if (ierr != 0)
