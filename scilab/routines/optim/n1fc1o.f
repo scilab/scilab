@@ -1,11 +1,13 @@
-      subroutine n1fc1o(lunit,job,i1,i2,i3,i4,i5,d1,d2,d3,d4)
+      subroutine n1fc1o(unit,job,i1,i2,i3,i4,i5,d1,d2,d3,d4)
 c     impression des traces
 c     Copyright INRIA
       implicit double precision (a-h,o-z)
-      integer lunit,job,i1,i2,i3,i4,i5(*)
+      integer unit,lunit,job,i1,i2,i3,i4,i5(*)
       dimension d4(*),d3(*)
 c     
       character*120  buf
+     
+      lunit=unit
 c
       buf=' '
       goto(11,12,13,14,15,16,17,18,19,20,
@@ -25,7 +27,7 @@ c
       ndz=i5(1)
       write (buf,'(''entry in n1fc1 . n='',i4,'' memax='',i3)')  n,memax
       call basout(io,lunit,buf(1:35))
-      write (buf,'(''  minimal array sizes'',2x,''iz('',i4,'//
+      write (buf(1:50),'(''  minimal array sizes'',2x,''iz('',i4,'//
      &     ' '')    rz('',i6,'')'')') niz,nrz,ndz
       call basout(io,lunit,buf(1:50))
       goto 100
@@ -109,8 +111,8 @@ c
       diam1=d1
       eta2=d2
       ap=d3(1)
-      write (buf,2801) diam2,eta2,ap
- 2801 format (6h n1fc1,12x,6hdiam2=,d10.3,4x,5heta2=,d10.3,4x,
+      write (buf,2801) diam1,eta2,ap
+ 2801 format (6h n1fc1,12x,6hdiam1=,d10.3,4x,5heta2=,d10.3,4x,
      1 3hap=,d10.3)
       call basout(io,lunit,buf(1:lnblnk(buf)))
       goto 100
