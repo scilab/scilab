@@ -74,11 +74,12 @@ if rhs==1 then
     if iscste then
       iscolon=ind.value==":"
     end
-    if iscste then
-      tree.operands(4)=tree.operands(3)
-      tree.operands(3)=ind
-      tree.operands(2)=Cste(1)
-    end
+
+    // A 1 is inserted to be sure to create a row vector
+    tree.operands(4)=tree.operands(3)
+    tree.operands(3)=ind
+    tree.operands(2)=Cste(1)
+    
     // --- Insertion with just one index which is not : ---
     if ~iscolon then
       if is_empty(to) then // Insertion in an empty matrix
