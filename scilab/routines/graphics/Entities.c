@@ -944,7 +944,7 @@ sciGetNumColors (sciPointObj * pobj)
   if ( (pobj == pfiguremdl) || (pobj == paxesmdl))
     return pFIGURE_FEATURE (pfiguremdl)->numcolors;
   else
-    return sciGetScilabXgc (pobj)->numcolors;
+    return sciGetScilabXgc (pobj)->Numcolors;
 }
 
 /**sciCloneColormap
