@@ -438,6 +438,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SetupAtlas", "Win95-util\Se
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Setup", "Win95-util\Setup\Setup.vcproj", "{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -1530,6 +1534,20 @@ Global
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release.ActiveCfg = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release with Atlas.ActiveCfg = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release with Atlas.Build.0 = Release|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug.ActiveCfg = Debug|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug.Build.0 = Debug|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug with Atlas.ActiveCfg = Debug|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug with Atlas.Build.0 = Debug|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Pentium_Release.ActiveCfg = Release|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Pentium_Release.Build.0 = Release|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.PIV_Release.ActiveCfg = Release|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.PIV_Release.Build.0 = Release|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.PIV_Release with Atlas.ActiveCfg = Release|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.PIV_Release with Atlas.Build.0 = Release|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Release.ActiveCfg = Release|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Release.Build.0 = Release|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Release with Atlas.ActiveCfg = Release|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Release with Atlas.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
