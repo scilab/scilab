@@ -155,17 +155,17 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
     /* &&
        (sciGetEntityType(pobj) != SCI_LABEL)) */
     {
-      if(old_m +1 == sciGetForeground(pobj)){         /* 0 => deals with Foreground */
+      if(old_m +1 == sciGetForeground(pobj)) {   /* 0 => deals with Foreground */
 	sciSetNumColors (pobj,m);
 	sciUpdateBaW (pobj,0,-1); /* Black */
 	sciSetNumColors (pobj,old_m);
       }
-      else  if(old_m +2 == sciGetForeground(pobj)) {
+      else  if(old_m +2 == sciGetForeground(pobj)) {  
 	sciSetNumColors (pobj,m);
 	sciUpdateBaW (pobj,0,-2); /* White */
 	sciSetNumColors (pobj,old_m);
       }
-      if(old_m +1 == sciGetBackground(pobj)) {   /* 1 => deals with Background */
+      if(old_m +1 == sciGetBackground(pobj)) { /* 1 => deals with Background */
 	sciSetNumColors (pobj,m);
 	sciUpdateBaW (pobj,1,-1);
 	sciSetNumColors (pobj,old_m);
@@ -188,7 +188,8 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
      (sciGetEntityType(pobj) == SCI_FIGURE)      ||
      (sciGetEntityType(pobj) == SCI_LABEL))
     {
-      if(old_m +1 == sciGetFontForeground(pobj))   {      /* 2 => deals with FontForeground */
+      if(old_m +1 == sciGetFontForeground(pobj)) {
+	/* 2 => deals with FontForeground */
 	sciSetNumColors (pobj,m);
 	sciUpdateBaW (pobj,2,-1);   
 	sciSetNumColors (pobj,old_m);
@@ -199,7 +200,7 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
 	sciSetNumColors (pobj,old_m);
       }
       
-      if(old_m +1 == sciGetFontBackground(pobj))  {  /* 3 => deals with FontBackground */
+      if(old_m +1 == sciGetFontBackground(pobj)) { /* 3 => deals with FontBackground */
 	sciSetNumColors (pobj,m);
 	sciUpdateBaW (pobj,3,-1);
 	sciSetNumColors (pobj,old_m);
@@ -210,6 +211,41 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
 	sciSetNumColors (pobj,old_m);
       }
     }
+
+
+  /* objects that can have marks */
+  if((sciGetEntityType(pobj) == SCI_FIGURE) ||
+     (sciGetEntityType(pobj) == SCI_SUBWIN) ||
+     (sciGetEntityType(pobj) == SCI_LEGEND) ||
+     (sciGetEntityType(pobj) == SCI_ARC) ||
+     (sciGetEntityType(pobj) == SCI_POLYLINE) ||
+     (sciGetEntityType(pobj) == SCI_RECTANGLE) ||
+     (sciGetEntityType(pobj) == SCI_SURFACE) ||
+     (sciGetEntityType(pobj) == SCI_AXES) ||
+     (sciGetEntityType(pobj) == SCI_SEGS))
+    {
+      if(old_m +1 == sciGetMarkForeground(pobj)) {   /* 4 => deals with MarkForeground */
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,4,-1); /* Black */
+	sciSetNumColors (pobj,old_m);
+      }
+      else  if(old_m +2 == sciGetMarkForeground(pobj)) {  
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,4,-2); /* White */
+	sciSetNumColors (pobj,old_m);
+      }
+      if(old_m +1 == sciGetMarkBackground(pobj)) { /* 5 => deals with MarkBackground */
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,5,-1);
+	sciSetNumColors (pobj,old_m);
+      }
+      else if(old_m +2 == sciGetMarkBackground(pobj)) {
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,5,-2);
+	sciSetNumColors (pobj,old_m);
+      }
+    }
+  
   
   sciSetNumColors (pobj,m); /* Add F.Leray 25.06.04 */
   
@@ -233,13 +269,13 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
     case 0: /* Foreground*/
       switch (sciGetEntityType (pobj))
 	{
+	case SCI_POLYLINE:
 	case SCI_FIGURE:
 	case SCI_SUBWIN: 
 	case SCI_ARC:
 	case SCI_SEGS: 
 	case SCI_FEC: 
-	case SCI_GRAYPLOT: 
-	case SCI_POLYLINE:
+	case SCI_GRAYPLOT:
 	case SCI_RECTANGLE:
 	case SCI_SURFACE:
 	case SCI_LIGHT:
@@ -249,6 +285,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_STATUSB:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	  sciSetForeground(pobj,value);
+	  sciSetMarkForeground(pobj,value); /* F.Leray 21.01.05 */
 	  break;
 	case SCI_AGREG:
 	case SCI_TEXT:
@@ -281,6 +318,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_STATUSB:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	  sciSetBackground(pobj,value);
+	  sciSetMarkBackground(pobj,value); /* F.Leray 21.01.05 */
 	  break;
 	case SCI_AGREG:
 	case SCI_TEXT:
@@ -293,7 +331,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	  return -1;
 	  break;
 	}
-      break;
+       break;
     case 2: /* FontForeground*/
       switch (sciGetEntityType (pobj))
 	{
@@ -315,7 +353,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	}
       break;
     case 3:
-       switch (sciGetEntityType (pobj))
+      switch (sciGetEntityType (pobj))
 	{
 	case SCI_AXES:
 	case SCI_MENU:
@@ -333,12 +371,51 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	  return -1;
 	  break;
 	}
-       break;
-       
+      break;
+    case 4: /* MarkForeground*/
+      switch (sciGetEntityType (pobj))
+	{
+	case SCI_FIGURE:
+	case SCI_SUBWIN: 
+	case SCI_LEGEND:
+	case SCI_ARC:
+	case SCI_POLYLINE:
+	case SCI_RECTANGLE:
+	case SCI_SURFACE:
+	case SCI_AXES:
+	case SCI_SEGS: 
+	  sciSetMarkForeground(pobj,value); /* F.Leray 21.01.05 */
+	  break;
+	default:
+	  return -1;
+	  break;
+	}
+      break;
+    case 5: /* MarkBackground*/
+      switch (sciGetEntityType (pobj))
+	{
+	case SCI_FIGURE:
+	case SCI_SUBWIN: 
+	case SCI_LEGEND:
+	case SCI_ARC:
+	case SCI_POLYLINE:
+	case SCI_RECTANGLE:
+	case SCI_SURFACE:
+	case SCI_AXES:
+	case SCI_SEGS: 
+	  sciSetMarkBackground(pobj,value); /* F.Leray 21.01.05 */
+	  break;
+	default:
+	  return -1;
+	  break;
+	}
+      break;
+      
     default:
       return -1;
-      
+      break;
     }
+  
   return 0;
 }
 
@@ -804,17 +881,17 @@ sciSetIsMark (sciPointObj * pobj, BOOL ismark)
 int
 sciSetMarkForeground (sciPointObj * pobj, int colorindex)
 {
-  
+  int aa; /* debug */
   colorindex = sciSetGoodIndex(pobj,colorindex); /* Adding F.Leray 31.03.04*/
   
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE: /* F.Leray 08.04.04 */
-      (sciGetGraphicContext(pobj))->markforeground =
+      (sciGetGraphicContext(pobj))->markforeground = aa =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_SUBWIN: /* F.Leray 08.04.04 */
-      (sciGetGraphicContext(pobj))->markforeground =
+      (sciGetGraphicContext(pobj))->markforeground = aa =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_ARC:
@@ -822,7 +899,7 @@ sciSetMarkForeground (sciPointObj * pobj, int colorindex)
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_POLYLINE:
-      (sciGetGraphicContext(pobj))->markforeground =
+      (sciGetGraphicContext(pobj))->markforeground = aa =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_RECTANGLE:
