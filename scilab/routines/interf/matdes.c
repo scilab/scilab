@@ -5688,7 +5688,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       if ((*numrow * *numcol != 4) && (*numrow * *numcol != 6)) 
 	{strcpy(error_message,"Second argument must have 4 elements (6 if 3d view)");return -1;}
 
-      if(pSUBWIN_FEATURE (psubwin)->logflags[0] == 'n'){ /* General case for x : logflag='n' */
+      if(pSUBWIN_FEATURE (pobj)->logflags[0] == 'n'){ /* General case for x : logflag='n' */
 	pSUBWIN_FEATURE (pobj)->SRect[0]=stk(*value)[0];
 	pSUBWIN_FEATURE (pobj)->SRect[1]=stk(*value)[1];
       }
@@ -5697,22 +5697,22 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	if(stk(*value)[0] <= 0. || stk(*value)[1] <= 0.)
 	  {sciprint("Error: bounds on x axis must be strictly positive to use logarithmic mode\n");return -1;}
 	else{
-	  pSUBWIN_FEATURE (psubwin)->SRect[0]=stk(*value)[0];
-	  pSUBWIN_FEATURE (psubwin)->SRect[1]=stk(*value)[1];
+	  pSUBWIN_FEATURE (pobj)->SRect[0]=stk(*value)[0];
+	  pSUBWIN_FEATURE (pobj)->SRect[1]=stk(*value)[1];
 	}
       }
       
-      if(pSUBWIN_FEATURE (psubwin)->logflags[1] == 'n'){  /* General case for y : logflag='n' */
-	pSUBWIN_FEATURE (psubwin)->SRect[2]=stk(*value)[2];
-	pSUBWIN_FEATURE (psubwin)->SRect[3]=stk(*value)[3];
+      if(pSUBWIN_FEATURE (pobj)->logflags[1] == 'n'){  /* General case for y : logflag='n' */
+	pSUBWIN_FEATURE (pobj)->SRect[2]=stk(*value)[2];
+	pSUBWIN_FEATURE (pobj)->SRect[3]=stk(*value)[3];
       }
       else{/* log. case */
 	/*ymin*/
 	if(stk(*value)[2] <= 0. || stk(*value)[3] <= 0.)
 	  {sciprint("Error: bounds on y axis must be strictly positive to use logarithmic mode\n");return -1;}
 	else{
-	  pSUBWIN_FEATURE (psubwin)->SRect[2]=stk(*value)[2];
-	  pSUBWIN_FEATURE (psubwin)->SRect[3]=stk(*value)[3];
+	  pSUBWIN_FEATURE (pobj)->SRect[2]=stk(*value)[2];
+	  pSUBWIN_FEATURE (pobj)->SRect[3]=stk(*value)[3];
 	}
       }
       
