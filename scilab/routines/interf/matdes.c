@@ -9,10 +9,15 @@
 
 #include <string.h>
 #include <stdio.h>
+#include <math.h>
+#include "../graphics/bcg.h"
 #include "../stack-c.h"
 #include "../graphics/Math.h"
+#include "../graphics/Graphics.h"
 #include "../graphics/PloEch.h"
 #include "matdes.h"
+
+
 
 #ifndef NULL
 #define NULL 0
@@ -26,6 +31,13 @@ extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,
 extern void ShowScales  __PARAMS((void));
 extern  void C2F(seteventhandler)  __PARAMS((int *win_num,char *name,int *ierr));
 static integer one = 1, zero = 0;
+/* NG beg */
+int versionflag = 1; /* old mode */
+sciClipTab ptabclip[15]; /* pourquoi n'est pas une prop de la figure */
+static char error_message[70];
+/* NG end */
+
+
 
 /*-----------------------------------------------------------
  * get_style
@@ -762,7 +774,7 @@ int sciparam3d1(fname, fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer izcol=0, *zcol=NULL;
+  integer izcol, *zcol=NULL, isfac;
   static double  ebox_def [6]= { 0,1,0,1,0,1};
   double *ebox = ebox_def ;
   static integer iflag_def[3]={1,2,4};
@@ -777,6 +789,7 @@ int sciparam3d1(fname, fname_len)
 			    {-1,"leg","?",0,0,0},
 			    {-1,"theta","?",0,0,0},
 			    {-1,NULL,NULL,0,0}};
+
 
   if (Rhs <= 0) {
     sci_demo(fname,  "t=0:0.1:5*%pi;param3d1(sin(t),cos(t),t/10,35,45,'X@Y@Z',[2,4]);", &one);
@@ -841,9 +854,14 @@ int sciparam3d1(fname, fname_len)
   if (m1 == 1 && n1 > 1) { m1 = n1;    n1 = 1; }
   C2F(sciwin)();
   C2F(scigerase)();
-  C2F(param3d1)(stk(l1), stk(l2), stk(l3), &m1, &n1, &izcol,zcol, 
-		theta, alpha, Legend,iflag,ebox, bsiz);
-  LhsVar(1) = 0;
+  /* NG beg */
+  isfac=-1;
+  if (version_flag() == 0)
+        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m1,&n1,theta,alpha,Legend,iflag,ebox);
+  else
+        Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
+  /* NG end */
+  LhsVar(1)=0;
   return 0;
 } 
 
@@ -945,7 +963,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
   integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
   integer m3n, n3n, l3n, m3l, n3l, l3l;
 
-  integer izcol=0, *zcol=NULL;
+  integer izcol, *zcol=NULL, isfac;
 
   static rhs_opts opts[]= { {-1,"alpha","?",0,0,0},
 			    {-1,"ebox","?",0,0,0},
@@ -1045,35 +1063,27 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
   if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
   C2F(sciwin)();
   C2F(scigerase)();
-
-  if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) 
-    { 
-      if (izcol == 0) 
-	{
-	  /*  Here we are in the case where x,y and z specify some polygons */
-	  (*func1)(stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox,bsiz);
-	} 
-      else if (izcol == 2) 
-	{
-	  /*  New case for the fac3d3 call (interpolated shadig)
-	   */
-	  (*func3)(stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox,bsiz);	}
-      else 
-	{
-	  (*func2)(stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox,bsiz);
-	}
-    } 
+ 
+  /******************** 24/015/2002 ********************/
+  if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) /* NG beg */
+    isfac=1;
   else 
-    {
-      (*func)(stk(l1 ),stk(l2 ),stk(l3 ),&m3,&n3,theta,alpha,Legend,iflag,ebox,bsiz);
-    }
+    isfac=0;
+
+  if (version_flag() == 0)
+        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
+  else
+        Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
+  /* NG end */
   LhsVar(1)=0;
   return 0;
+  
 }
 
 /*-----------------------------------------------------------
  *     plot2d(x,y,[style,strf,leg,rect,nax]) 
  *-----------------------------------------------------------*/
+
 
 int sciplot2d(fname, fname_len)
      char *fname;
@@ -1088,15 +1098,14 @@ int sciplot2d(fname, fname_len)
   int *axes=&axes_def;
 
   static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
-			    {-1,"frameflag","?",0,0,0},
-			    {-1,"leg","?",0,0,0},
-			    {-1,"logflag","?",0,0,0},
-		            {-1,"nax","?",0,0,0},
-			    {-1,"rect","?",0,0,0},
-			    {-1,"strf","?",0,0,0},
-			    {-1,"style","?",0,0,0},
-			    {-1,NULL,NULL,0,0}};
-
+                            {-1,"frameflag","?",0,0,0},
+                            {-1,"leg","?",0,0,0},
+                            {-1,"logflag","?",0,0,0},
+                            {-1,"nax","?",0,0,0},
+                            {-1,"rect","?",0,0,0},
+                            {-1,"strf","?",0,0,0},
+                            {-1,"style","?",0,0,0},
+                            {-1,NULL,NULL,0,0}};
   if (Rhs == 0) 
     {
       sci_demo(fname,str,&one);
@@ -1117,10 +1126,9 @@ int sciplot2d(fname, fname_len)
   if (Rhs == 1+iskip)       /** plot2d([loglags,] y); **/
     {
       if ( FirstOpt() <= Rhs) {
-	sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
-		 fname,3+iskip);
-	Error(999); 
-	return(0);
+        sciprint("%s: misplaced optional argument, first must be at position %d\r\n",fname,3+iskip);
+        Error(999); 
+        return(0);
       }
   
       GetRhsVar(1+iskip, "d", &m2, &n2, &l2);
@@ -1129,14 +1137,13 @@ int sciplot2d(fname, fname_len)
       if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
       m1 = m2;  n1 = n2;
       for (i = 0; i < m2 ; ++i) 
-	for (j = 0 ; j < n2 ;  ++j)
-	  *stk( l1 + i + m2*j) = (double) i+1;
+        for (j = 0 ; j < n2 ;  ++j)
+          *stk( l1 + i + m2*j) = (double) i+1;
     }
 
   if (Rhs >= 2+iskip) {
     if ( FirstOpt() < 3+iskip) {
-      sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
-	       fname,3+iskip);
+      sciprint("%s: misplaced optional argument, first must be at position %d\r\n", fname,3+iskip);
       Error(999); 
       return(0);
     }
@@ -1160,8 +1167,8 @@ int sciplot2d(fname, fname_len)
       CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
       if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
       for (i = 0; i < m2 ; ++i) 
-	for (j = 0 ; j < n2 ;  ++j)
-	  *stk( lt + i + m2*j) = (double) i+1;
+        for (j = 0 ; j < n2 ;  ++j)
+          *stk( lt + i + m2*j) = (double) i+1;
       m1 = m2;
       n1 = n2;
       l1 = lt;
@@ -1170,8 +1177,8 @@ int sciplot2d(fname, fname_len)
       /* a single x vector for mutiple columns for y */
       CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
       for (i = 0; i < m2 ; ++i) 
-	for (j = 0 ; j < n2 ;  ++j)
-	  *stk( lt + i + m2*j) = *stk(l1 +i);
+        for (j = 0 ; j < n2 ;  ++j)
+          *stk( lt + i + m2*j) = *stk(l1 +i);
       m1 = m2;
       n1 = n2;
       l1 = lt;
@@ -1180,7 +1187,7 @@ int sciplot2d(fname, fname_len)
       /* a single y row vector  for a single x */
       CreateVar(Rhs+1,"d",  &m1, &n2, &lt);
       for (j = 0 ; j < n2 ;  ++j)
-	*stk( lt + j ) = *stk(l1);
+        *stk( lt + j ) = *stk(l1);
       n1 = n2;
       l1 = lt;
     }
@@ -1214,16 +1221,20 @@ int sciplot2d(fname, fname_len)
     if(axes != &axes_def) 
       strfl[2] = (char)(*axes+48);
   }
-
-
   C2F(sciwin)();
   C2F(scigerase)();
-  if (Logflags != def_logflags) {
-    C2F(plot2d1)(Logflags,stk(l1),stk(l2),&n1,&m1,Style,Strf,Legend,Rect,Nax,
-		 4L,strlen(Strf),strlen(Legend));
+  /* NG beg */
+  if (version_flag() == 0){
+    Objplot2d (0,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect,Nax);
+    sciSetCurrentObj (sciGetSelectedSubWin(sciGetCurrentFigure()));
+  } 
+  else { /* NG end */
+    if (Logflags != def_logflags) 
+      C2F(plot2d1)(Logflags,stk(l1),stk(l2),&n1,&m1,Style,Strf,Legend,Rect,Nax,
+                   4L,strlen(Strf),strlen(Legend));
+    else 
+      Xplot2d (stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect, Nax); /* NG */
   }
-  else
-    C2F(plot2d)(stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect, Nax, 4L, bsiz);
   LhsVar(1)=0;
   return 0;
 }
@@ -1232,11 +1243,12 @@ int sciplot2d(fname, fname_len)
  *   plot2dxx(str,x,y,[style,strf,leg,rect,nax])
  *-----------------------------------------------------------*/
 
-int sciplot2d1_G(fname, func, fname_len)
+int sciplot2d1_G(fname, ptype, func, fname_len)
      char *fname;
+     int ptype; /* NG */
      int (*func) __PARAMS((char *,double *,double *,integer *,integer *,
-			  integer *,char *,char *,double *,integer *,
-			  integer,integer,integer));
+                          integer *,char *,char *,double *,integer *,
+                          integer,integer,integer));
      unsigned long fname_len;
 {
   int frame_def=8;
@@ -1247,18 +1259,17 @@ int sciplot2d1_G(fname, func, fname_len)
   integer m1,n1,l1, m2, n2, l2, lt, i, j ;
 
   static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
-			    {-1,"frameflag","?",0,0,0},
-			    {-1,"leg","?",0,0,0},
-			    {-1,"logflag","?",0,0,0},
-		            {-1,"nax","?",0,0,0},
-			    {-1,"rect","?",0,0,0},
-			    {-1,"strf","?",0,0,0},
-			    {-1,"style","?",0,0,0},
-			    {-1,NULL,NULL,0,0}};
+                            {-1,"frameflag","?",0,0,0},
+                            {-1,"leg","?",0,0,0},
+                            {-1,"logflag","?",0,0,0},
+                            {-1,"nax","?",0,0,0},
+                            {-1,"rect","?",0,0,0},
+                            {-1,"strf","?",0,0,0},
+                            {-1,"style","?",0,0,0},
+                            {-1,NULL,NULL,0,0}};
 
   if (Rhs <= 0) {
-    sprintf(C2F(cha1).buf,
-	    "x=0:0.1:2*%%pi; %s('gnn',[x;x;x]',[sin(x);sin(2*x);sin(3*x)]',[-1,-2,3],'151','L1@L2@L3',[0,-2,2*%%pi,2]);",fname);
+    sprintf(C2F(cha1).buf,"x=0:0.1:2*%%pi;%s('gnn',[x;x;x]',[sin(x);sin(2*x);sin(3*x)]',[-1,-2,3],'151','L1@L2@L3',[0,-2,2*%%pi,2]);",fname);
     sci_demo(fname,C2F(cha1).buf,&one);
     return 0;
   }
@@ -1277,7 +1288,7 @@ int sciplot2d1_G(fname, func, fname_len)
 
   if ( FirstOpt() < 3+iskip) {
     sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
-	     fname,3+iskip);
+             fname,3+iskip);
     Error(999); 
     return(0);
   }
@@ -1305,7 +1316,7 @@ int sciplot2d1_G(fname, func, fname_len)
     if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
     for (i = 0; i < m2 ; ++i) 
       for (j = 0 ; j < n2 ;  ++j)
-	*stk( lt + i + m2*j) = (double) i+1;
+        *stk( lt + i + m2*j) = (double) i+1;
     m1 = m2;
     n1 = n2;
     l1 = lt;
@@ -1315,7 +1326,7 @@ int sciplot2d1_G(fname, func, fname_len)
     CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
     for (i = 0; i < m2 ; ++i) 
       for (j = 0 ; j < n2 ;  ++j)
-	*stk( lt + i + m2*j) = *stk(l1 +i);
+        *stk( lt + i + m2*j) = *stk(l1 +i);
     m1 = m2;
     n1 = n2;
     l1 = lt;
@@ -1358,12 +1369,17 @@ int sciplot2d1_G(fname, func, fname_len)
 
   C2F(sciwin)();
   C2F(scigerase)();
-
-  (*func)(Logflags,stk(l1),stk(l2),&n1,&m1,Style,Strf,Legend,Rect,Nax,
-		 4L,strlen(Strf),strlen(Legend));
+  /* NG beg */
+  if (version_flag() == 0)
+    Objplot2d (ptype,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend,Rect, Nax);
+  else /* NG end */
+    (*func)(Logflags,stk(l1),stk(l2),&n1,&m1,Style,Strf,Legend,Rect,Nax,
+	    4L,strlen(Strf),strlen(Legend));
   LhsVar(1)=0;
   return 0;
 } 
+
+
 
 /*-----------------------------------------------------------
  *  grayplot(x,y,z,[strf,rect,nax])
@@ -1430,7 +1446,12 @@ int scigrayplot(fname, fname_len)
 
   C2F(sciwin)();
   C2F(scigerase)();
-  C2F(xgray)(stk(l1), stk(l2), stk(l3), &m3, &n3, Strf, Rect, Nax, 4L);
+
+  /* NG beg */
+  if (version_flag() == 0)
+    Objgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, Strf, Rect, Nax);
+  else /* NG end */
+     Xgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, Strf, Rect, Nax);
   LhsVar(1)=0;
   return 0;
 }
@@ -1492,13 +1513,18 @@ int scimatplot(fname, fname_len)
 
   C2F(sciwin)();
   C2F(scigerase)();
-  C2F(xgray1)(stk(l1), &m1, &n1, Strf, Rect, Nax, 4L);
-  LhsVar(1) = 0;
+  /* NG beg */
+  if (version_flag() == 0)
+    Objmatplot (stk(l1), &m1, &n1, Strf, Rect, Nax);
+  else 
+    Xmatplot (stk(l1), &m1, &n1, Strf, Rect, Nax);
+  /* NG end */
+  LhsVar(1)=0;
   return 0;
 } 
 
 /*-----------------------------------------------------------
- * Matplot1 
+ * Matplot1  
  *-----------------------------------------------------------*/
 
 int scigray2plot(fname, fname_len)
@@ -1517,7 +1543,12 @@ int scigray2plot(fname, fname_len)
   CheckLength(2,m2*n2,4);
   if (m1 * n1 == 0) {  LhsVar(1)=0; return 0;} 
   C2F(sciwin)();
-  C2F(xgray2)(stk(l1), &m1, &n1,stk(l2));
+  
+  /* NG beg */
+  if (version_flag() == 0)
+    Objmatplot1 (stk(l1), &m1, &n1,stk(l2));
+  else
+    Xmatplot1 (stk(l1), &m1, &n1,stk(l2)); /* NG end */
   LhsVar(1)=0;
   return 0;
 } 
@@ -1557,7 +1588,9 @@ int scixarc(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer m1,n1,l1,l2,l3,l4,l5,l6,v;
+  integer m1,n1,l1,l2,l3,l4,l5,l6;
+  long hdl;/* NG */
+
   C2F(sciwin)();
   CheckRhs(6,6);
   GetRhsVar(1,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
@@ -1566,21 +1599,33 @@ int scixarc(fname,fname_len)
   GetRhsVar(4,"d",&m1,&n1,&l4);CheckScalar(4,m1,n1);
   GetRhsVar(5,"i",&m1,&n1,&l5);CheckScalar(5,m1,n1);
   GetRhsVar(6,"i",&m1,&n1,&l6);CheckScalar(6,m1,n1);
-  C2F(dr1)(fname,"v",&v,&v,&v,&v,istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4),
-	   fname_len,1L);
+  /* NG beg */
+  if (version_flag() == 0)
+    if (strcmp(fname,"xarc")==0) 
+      Objarc (istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4),-1,0,&hdl);
+    else
+      Objarc (istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4),-1,1,&hdl);
+  else
+    Xarc(fname,fname_len,istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4));
+  /* NG end */
   LhsVar(1)=0;
   return 0;
 } 
 
 /*-----------------------------------------------------------
+  scixarcs
  *-----------------------------------------------------------*/
-
 int scixarcs(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer m1,n1,l1,m2,n2,l2,v;
-  double dv;
+  integer m1,n1,l1,m2,n2,l2;
+
+  /* NG beg */
+  long  hdl;
+  int i,a1,a2;
+  long *hdltab;
+  /* NG end */
   C2F(sciwin)();
   CheckRhs(1,2);
 
@@ -1596,7 +1641,7 @@ int scixarcs(fname,fname_len)
       return 0;
     }
   }
-
+  
   if (Rhs == 2) 
     {
       GetRhsVar(2,"i",&m2,&n2,&l2);
@@ -1612,11 +1657,30 @@ int scixarcs(fname,fname_len)
       m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
       for (i = 0; i < n2; ++i)  *istk(l2 + i) = 0;
     }  
-  C2F(dr1)(fname,"v",&v,istk(l2),&n1,&v,&v,&v,stk(l1),&dv,&dv,&dv,fname_len,2L);
+  /* NG beg */
+  if (version_flag() == 0){ 
+    if ((hdltab = malloc (n1 * sizeof (long))) == NULL) {
+      Scierror(999,"%s: No more memory available\r\n",fname);
+      return 0; 
+    }
+    for (i = 0; i < n1; ++i)
+      { 
+	a1=(int)(*stk(l1+(6*i)+4));
+	a2=(int)(*stk(l1+(6*i)+5));
+	Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
+		stk(l1+(6*i)+2),stk(l1+(6*i)+3),*istk(l2+i),0,&hdl); 
+	hdltab[i]=hdl; /** handle of arc i **/
+      }
+    /** construct agregation and make it current object **/
+    sciSetCurrentObj (ConstructAgregation (hdltab, n1));
+    FREE(hdltab);
+  }   
+  else
+    Xarcs(fname,fname_len,istk(l2), n1,stk(l1));
+  /* NG end */
   LhsVar(1)=0;
   return 0;
 } 
-
 /*-----------------------------------------------------------
  *  xfarcs(arcs,[style])
  *-----------------------------------------------------------*/
@@ -1625,8 +1689,11 @@ int scixfarcs(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  int m1,n1,l1,m2,n2,l2,v;
-  double dv;
+  int m1,n1,l1,m2,n2,l2;
+  /* NG beg */
+  long  hdl;
+  int i,a1,a2;
+  long *hdltab; /* NG end */
 
   C2F(sciwin)();
   CheckRhs(1,2);
@@ -1651,9 +1718,30 @@ int scixfarcs(fname,fname_len)
       m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
       for (i = 0; i < n2; ++i)  *istk(l2 + i) = i+1;
     }
-  C2F(dr1)(fname,"v",&v,istk(l2),&n1,&v,&v,&v,stk(l1),&dv,&dv,&dv,fname_len,2L);
+  /* NG beg */
+  if (version_flag() == 0) {
+    if ((hdltab = malloc (n1 * sizeof (long))) == NULL){
+      Scierror(999,"%s: No more memory available\r\n",fname);
+      return 0; 
+    }
+    for (i = 0; i < n1; ++i)
+      { 
+	a1 = (int)(*stk(l1+(6*i)+4));
+	a2 = (int)(*stk(l1+(6*i)+5));
+	Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
+		stk(l1+(6*i)+2),stk(l1+(6*i)+3),*istk(l2+i),1,&hdl); 
+	hdltab[i]=hdl; /** handle of arc i **/
+      }
+    /** construct agregation and make it current object **/
+    sciSetCurrentObj (ConstructAgregation (hdltab, n1));  
+    FREE(hdltab);
+  }   
+  else
+    Xfarcs(fname,fname_len,istk(l2), n1,stk(l1));
+  /* NG end */
   LhsVar(1)=0;
   return 0;
+
 }
  
 /*-----------------------------------------------------------
@@ -1664,9 +1752,10 @@ int sciarrows(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer dstyle = -1,v,m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3;
+  integer dstyle = -1,m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3;
+  integer *style,flag;
   integer m4,n4,l4,mn2;
-  double dv,arsize=-1.0 ;
+  double arsize=-1.0;
 
   C2F(sciwin)();
   CheckRhs(2,4);
@@ -1687,11 +1776,23 @@ int sciarrows(fname,fname_len)
       return 0;
     }
   }
+  /* NG beg */
   if (Rhs == 4 && m4 * n4 != 1) {
-    C2F(dr1)("xarrow","v",istk(l4),&one,&mn2,&v,&v,&v,stk(l1),stk(l2),&arsize,&dv,7L,2L);
-  } else {
-    C2F(dr1)("xarrow","v",&dstyle,&zero,&mn2,&v,&v,&v,stk(l1),stk(l2),&arsize,&dv,7L,2L);
+    style=istk(l4); flag= one;
+  } 
+  else {
+    style=&dstyle ; flag= zero;
   }
+  if (version_flag() == 0)
+    Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+  else
+    Xsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+  /* NG end */
+ 
+  
+  //C2F(dr1)("xarrow","v",istk(l4),&one,&mn2,&v,&v,&v,stk(l1),stk(l2),&arsize,&dv,7L,2L);
+  //C2F(dr1)("xarrow","v",&dstyle,&zero,&mn2,&v,&v,&v,stk(l1),stk(l2),&arsize,&dv,7L,2L);
+  
   LhsVar(1)=0;
   return 0;
 } 
@@ -1703,10 +1804,11 @@ int scixsegs(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer dstyle = -1;
-  integer v,mn2;
-  integer m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3;
-  double dv;
+  integer dstyle = -1, *style,flag;
+  integer mn2;
+  integer m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3; 
+  double arsize=0;
+
   C2F(sciwin)();
 
   CheckRhs(2,3);
@@ -1724,15 +1826,26 @@ int scixsegs(fname,fname_len)
       return 0;
     }
   }
-  mn2 = m2 * n2;
+  mn2 = m2 * n2; 
+
+  /* NG beg */
   if (Rhs == 3 && m3 * n3 != 1) {
-    C2F(dr1)("xsegs","v",istk(l3),&one,&mn2,&v,&v,&v,stk(l1),stk(l2),&dv,&dv,6L,2L);
-  } else {
-    C2F(dr1)("xsegs","v",&dstyle,&zero,&mn2,&v,&v,&v,stk(l1),stk(l2),&dv,&dv,6L,2L);
+    style=istk(l3); flag= one;
+  } 
+  else {
+    style=&dstyle ; flag= zero;
   }
+  if (version_flag() == 0)
+    Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+  else
+    Xsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+  /* NG end */
   LhsVar(1)=0;
   return 0;
 } 
+
+
+
 
 /*-----------------------------------------------------------
  * old version : kept for backward compatibility 
@@ -1866,7 +1979,6 @@ int scixclea(fname,fname_len)
   LhsVar(1)=0;
   return 0;
 } 
-
 /*-----------------------------------------------------------
  *   xclear([window-ids])
  *-----------------------------------------------------------*/
@@ -1879,9 +1991,10 @@ int scixclear(fname,fname_len)
   integer ix,m1,n1,l1,v;
   double dv;
 
-  CheckRhs(-1,1) ;
-  C2F(sciwin)();
 
+  CheckRhs(0,2); /* NG  */ /*CheckRhs(-1,1) */ 
+  CheckLhs(0,1);
+  C2F(sciwin)();
   if (Rhs == 1) 
     {
       GetRhsVar(1,"d",&m1,&n1,&l1);
@@ -1893,13 +2006,14 @@ int scixclear(fname,fname_len)
 	  C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
 	}
       C2F(dr1)("xset","window",&cur,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
-    } 
+    }
   else 
     {
       C2F(dr1)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
       C2F(dr1)("xset","window",&win,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
-      C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
-    }
+      C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L); 
+    } 
+  if (version_flag() == 0) sciXclear();   /* NG */
   LhsVar(1)=0;
   return 0;
 } 
@@ -1994,7 +2108,9 @@ int scixgrid(fname,fname_len)
     style = (integer) *stk(l1);
   }
   C2F(sciwin)();
-  C2F(xgrid)(&style);
+  if (version_flag==0) {}
+  else
+    C2F(xgrid)(&style);
   LhsVar(1)=0;
   return 0;
 } 
@@ -2007,8 +2123,9 @@ int scixfpoly(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer close=0,m1,n1,l1,m2,n2 ,l2,m3,n3,l3,mn1,v ;
-  double dv;
+  integer close=0,m1,n1,l1,m2,n2 ,l2,m3,n3,l3,mn1 ;
+
+  long hdl; /* NG */
 
   C2F(sciwin)();
   CheckRhs(2,3);
@@ -2023,9 +2140,15 @@ int scixfpoly(fname,fname_len)
     close = (integer) *stk(l3);
   } 
   mn1 = m1 * n1;
-  C2F(dr1)("xarea","xvoid",&mn1,&v,&v,&close,&v,&v,stk(l1),stk(l2),&dv,&dv,6L,5L);
+  /* NG beg */
+  if (version_flag() == 0)
+    Objfpoly (stk(l1),stk(l2),mn1,close,&hdl);
+  else
+    Xfpoly(mn1,close,stk(l1),stk(l2));
+  /* NG end */
   LhsVar(1)=0;
   return 0;
+    
 }
 
 /*-----------------------------------------------------------
@@ -2037,9 +2160,14 @@ int scixfpolys(fname,fname_len)
      unsigned long fname_len;
 {
 
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,v,v1=0,v2;
-  double dv;
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,v1=0,v2;
 
+
+  /* NG beg */
+  int i,color;
+  long hdl;
+  long *hdltab;
+  /* NG end */
 
 
   C2F(sciwin)();
@@ -2077,15 +2205,34 @@ int scixfpolys(fname,fname_len)
       CreateVar(3,"i",&un,&n2,&l3);
       for (ix = 0 ; ix < n2 ; ++ix) *istk(l3+ix) = 0;
     }
+  /* NG beg */
+  if (version_flag() == 0) {
+    if ((hdltab = malloc (n1 * sizeof (long))) == NULL) {
+      Scierror(999,"%s: No more memory available\r\n",fname);
+      return 0; 
+    }
+    for (i = 0; i < n1; ++i) {
+      if (*istk(l3+i) == 0) {
+	/** fil(i) = 0 poly i is drawn using the current line style (or color).**/
+	color= ((i==0) ? 1: sciGetForeground(sciGetPointerFromHandle((long) hdltab[i-1])));
+	Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),n2*m2,1,color,&hdl);
+      }
+      else   
+	/** poly i is drawn using the line style (or color) **/  
+	Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),n2*m2,*istk(l3+i),&hdl);
+      hdltab[i]=hdl;
+    }
+    /** construct agregation and make it current object**/
+    sciSetCurrentObj (ConstructAgregation (hdltab, n1));  
+    FREE(hdltab);
+  }
+  Xfpolys(istk(l3),v1,v2,n2,m2,stk(l1),stk(l2));
+  /* NG end */
 
-    
-    
-  C2F(dr1)("xliness","v",&v1,&v2,istk(l3),&n2,&m2,&v,stk(l1),stk(l2),&dv,&dv,8L,2L);
-  
   /* end of Code modified by polpoth 7/7/2000 */
 
   LhsVar(1)=0;
-  return 0;
+  return 0;  
 } 
 
 /*-----------------------------------------------------------
@@ -2154,10 +2301,19 @@ int scixget(fname,fname_len)
     CreateVar(Rhs+1,"d",&one,&x2,&l3);
     *stk(l3 ) = (double) x1[0];      
     LhsVar(1)=Rhs+1;
-  }
+  } 
+  /* NG beg */
+  else if ( strncmp(cstk(l1),"old_style",9) == 0) 
+      {
+       x2=1;
+       CreateVar(Rhs+1,"d",&one,&x2,&l3);
+       *stk(l3 ) = version_flag();      
+       LhsVar(1)=Rhs+1;          
+      }   /* NG end*/
   else 
+
     {
-      int i;
+      int i; 
       C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
       CreateVar(Rhs+1,"d",&one,&x2,&l3);
       for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];      
@@ -2242,7 +2398,7 @@ int scixlfont(fname,fname_len)
 }
 
 /*-----------------------------------------------------------
- * xnumb(x,y,nums,[box,angles]) : 
+ * scixnumb(x,y,nums,[box,angles]) : 
  *-----------------------------------------------------------*/
 
 int scixnumb(fname,fname_len)
@@ -2250,7 +2406,7 @@ int scixnumb(fname,fname_len)
      unsigned long fname_len;
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,m5,n5,l5;
-  integer flagx=0,v,mn3;
+  integer flagx=0,mn3;
   C2F(sciwin)();
 
   CheckRhs(3,5);
@@ -2272,9 +2428,15 @@ int scixnumb(fname,fname_len)
     CreateVar(Rhs+1,"d",&m3,&n3,&l5);
     for ( i=0 ; i < mn3 ; i++ ) *stk(l5+i) = 0.0;
   } 
-  C2F(dr1)("xnum","xv",&v,&v,&v,&v,&mn3,&flagx,stk(l1),stk(l2),stk(l3),stk(l5),5L,3L);
+  /* NG beg */
+  if (version_flag() == 0)
+    Objnumb(fname,fname_len,mn3,flagx,stk(l1),stk(l2),stk(l3),stk(l5));
+  else
+    Xnumb(fname,mn3,flagx,stk(l1),stk(l2),stk(l3),stk(l5));
+  /* NG end */
   LhsVar(1)=0;
   return 0;
+  
 } 
 
 /*-----------------------------------------------------------
@@ -2304,8 +2466,10 @@ int scixpoly(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer m1,n1,l1 ,m2 ,n2 ,l2,m3,n3,l3,m4,n4,l4,close=0,mn2,v;
-  double dv;
+  integer m1,n1,l1 ,m2 ,n2 ,l2,m3,n3,l3,m4,n4,l4,close=0,mn2;
+
+  long hdl;/* NG */
+  int mark;/* NG */
 
   C2F(sciwin)();
 
@@ -2318,9 +2482,11 @@ int scixpoly(fname,fname_len)
   if (Rhs >= 3) {
     GetRhsVar(3,"c",&m3,&n3,&l3);
     if ( strncmp(cstk(l3),"lines",5) == 0) {
-      strcpy(C2F(cha1).buf,"xlines");
+      strcpy(C2F(cha1).buf,"xlines"); 
+      mark=1; /* NG */
     } else if (strncmp(cstk(l3),"marks",5) == 0) {
-      strcpy(C2F(cha1).buf,"xmarks");
+      strcpy(C2F(cha1).buf,"xmarks"); 
+      mark=0; /* NG */
     } else {
       Scierror(999,"%s:  dtype must be \"lines\" or \"marks\"\r\n",fname);
       return 0;
@@ -2330,10 +2496,16 @@ int scixpoly(fname,fname_len)
     strcpy(C2F(cha1).buf,"xlines");
   }
     
-  if (Rhs >= 4) { GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (integer) *stk(l4);}
-  C2F(dr1)(C2F(cha1).buf,"xv",&mn2,&v,&v,&close,&v,&v,stk(l1),stk(l2),&dv,&dv,bsiz,3L);
+  if (Rhs >= 4) { GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (integer) *stk(l4);} 
+  /* NG beg */
+  if (version_flag() == 0)
+    Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
+  else
+    Xpoly(C2F(cha1).buf,bsiz,mn2,close,stk(l1),stk(l2));
+  /* NG end */
   LhsVar(1)=0;
   return 0;
+  /*************************************************/
 }
 
 /*-----------------------------------------------------------
@@ -2344,8 +2516,12 @@ int scixpolys(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer v,m1,n1,l1,m2,n2,l2,m3,n3,l3;
-  double dv;
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3;
+  /* NG beg */
+  int i;
+  long hdl;
+  long *hdltab;
+  /* NG end */
 
   C2F(sciwin)();
   CheckRhs(2,3);
@@ -2360,11 +2536,27 @@ int scixpolys(fname,fname_len)
     }
   else
     {
-      int un=1,i;
+      int un=1;
       CreateVar(3,"i",&un,&n1,&l3);
       for (i = 0 ; i < n1 ; ++i) *istk(l3+i) = 1;
+    } 
+  /* NG beg */
+  if (version_flag() == 0) {
+    if ((hdltab = malloc (n1 * sizeof (long))) == NULL) {
+      Scierror(999,"%s: No more memory available\r\n",fname);
+            return 0; 
     }
-  C2F(dr1)("xpolys","v",&v,&v,istk(l3),&n2,&m2,&v,stk(l1),stk(l2),&dv,&dv,7L,2L);
+    for (i = 0; i < n1; ++i) {
+      Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),n1,0,*istk(l3+i),&hdl);
+      hdltab[i]=hdl;
+      }
+    /** construct agregation and make it current object**/
+    sciSetCurrentObj (ConstructAgregation (hdltab, n1));  
+    FREE(hdltab);
+    }
+   else
+     Xpolys(istk(l3),n2,m2,stk(l1),stk(l2));
+  /* NG end*/
   LhsVar(1)=0;
   return 0;
 }
@@ -2384,7 +2576,7 @@ int scixselect(fname,fname_len)
   return 0;
 }
 
-/*-----------------------------------------------------------
+/*------------- ----------------------------------------------
  * xset(choice-name,x1,x2,x3,x4,x5)
  * or   xset()
  *-----------------------------------------------------------*/
@@ -2396,6 +2588,7 @@ int scixset(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2, xm[5],xn[5],x[5], i, v, isdc;
   integer lr, mark[2], font[2], verb=0;
   double  xx[5],dv ;
+  sciPointObj *subwin; 
 
   if (Rhs <= 0) {int zero=0; sci_demo(fname,"xsetm();",&zero); return 0; }
 
@@ -2436,18 +2629,17 @@ int scixset(fname,fname_len)
 
   if (strncmp(cstk(l1),"clipping",8) == 0) 
     C2F(dr1)("xset",cstk(l1),&v,&v,&v,&v,&v,&v,&xx[0],&xx[1],&xx[2],&xx[3],5L,bsiz);
-  else if ( strncmp(cstk(l1),"colormap",8) == 0) 
-    { 
-      C2F(dr1)("xset",cstk(l1),xm,xn,&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,bsiz);
-      /* ajout Bruno :
-       * since xset('colormap',..) is not recorded by the Rec driver the 
-       * current color initialisation performed by xset('colormap',..) 
-       * can be lost after redrawing. 
-       * Nex line is added for this
-       */
-      x[0] = xm[0]+1;
-      C2F(dr1)("xset","color",&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
-    }
+  else if ( strncmp(cstk(l1),"colormap",8) == 0) {
+    C2F(dr1)("xset",cstk(l1),xm,xn,&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,bsiz);
+    /* ajout Bruno :
+     * since xset('colormap',..) is not recorded by the Rec driver the 
+     * current color initialisation performed by xset('colormap',..) 
+     * can be lost after redrawing. 
+     * Nex line is added for this
+     */
+    x[0] = xm[0]+1;
+    C2F(dr1)("xset","color",&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
+  }
   else if ( strncmp(cstk(l1),"mark size",9) == 0) {
     C2F(dr1)("xget","mark",&verb,mark,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
     mark[1]=(int)xx[0];
@@ -2457,13 +2649,119 @@ int scixset(fname,fname_len)
     C2F(dr1)("xget","font",&verb,font,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
     font[1]=(int)xx[0];
     C2F(dr1)("xset","font",&(font[0]),&(font[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
-  }
+  } 
+ /* NG beg */
+  else if ( strncmp(cstk(l1),"old_style",9) == 0) {
+    if (*stk(lr) == 0) 
+      versionflag = *stk(lr);
+    else if (*stk(lr) == 1)
+      versionflag = *stk(lr);
+    else
+      Scierror(999,"%s: Value must be 1 or 0",fname);
+  }/* NG end */
   else 
     C2F(dr1)("xset",cstk(l1),&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
+  /* NG beg */
+  if ((versionflag == 0) && (strncmp(cstk(l1),"window",6L) == 0))
+    sciSwitchWindow(&x[0]);
+
+  if (version_flag() == 0)
+    {
+      subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+      if (( strncmp(cstk(l1),"foreground",10) == 0) ||( strncmp(cstk(l1),"color",4) == 0) ) {
+        sciSetForeground(subwin, x[0]); 
+        sciSetForeground(sciGetParent(subwin), x[0]); 
+      } 
+      else if ( strncmp(cstk(l1),"background",10) == 0) {
+        sciSetBackground(subwin, x[0]); 
+        sciSetBackground(sciGetParent(subwin), x[0]); 
+      }  
+      else if ( strncmp(cstk(l1),"thickness",9) == 0) {
+        sciSetLineWidth(subwin, x[0]); 
+        sciSetLineWidth(sciGetParent(subwin), x[0]);   
+      } 
+      else if ( strncmp(cstk(l1),"line style",10) == 0) {
+        sciSetLineStyle(subwin, x[0]); 
+        sciSetLineStyle(sciGetParent(subwin), x[0]);   
+      }  
+      else if ( strncmp(cstk(l1),"mark",4) == 0) {
+        sciSetIsMark(subwin,1); 
+        sciSetIsMark(sciGetParent(subwin),1); 
+	sciSetMarkStyle(subwin,x[0]); 
+        sciSetMarkStyle(sciGetParent(subwin),x[0]);   
+      } 
+      else if ( strncmp(cstk(l1),"colormap",8) == 0) {
+        sciSetColormap(sciGetParent(subwin), stk(lr),xm[0], xn[0]);
+      }
+      else if ( strncmp(cstk(l1),"font",4) == 0) {
+        sciSetFontStyle(subwin, font[0]); 
+        sciSetFontStyle(sciGetParent(subwin), font[0]);   
+      } 
+      else if ( strncmp(cstk(l1),"font size",9) == 0) {
+        sciSetFontDeciWidth(subwin, font[1]); 
+        sciSetFontDeciWidth(sciGetParent(subwin), font[1]);   
+      }  
+      else if ( strncmp(cstk(l1),"alufunction",11) == 0) {
+        sciSetXorMode(subwin, x[0]); 
+        sciSetXorMode(sciGetParent(subwin), x[0]);   
+      }
+      else if ( strncmp(cstk(l1),"auto clear",10) == 0) {
+        if ( x[0] == 1 )
+	  {
+           sciSetAddPlot(subwin, TRUE); 
+           sciSetAddPlot(sciGetParent(subwin), TRUE);  
+          }
+        else  
+	  {
+           sciSetAddPlot(subwin, FALSE); 
+           sciSetAddPlot(sciGetParent(subwin), FALSE);  
+          } 
+      } 
+     else if ( strncmp(cstk(l1),"auto scale",10) == 0) {
+        if ( x[0] == 1 )
+	  {
+           sciSetAutoScale(subwin, TRUE); 
+           sciSetAutoScale(sciGetParent(subwin), TRUE);  
+          }
+        else  
+	  {
+           sciSetAutoScale(subwin, FALSE); 
+           sciSetAutoScale(sciGetParent(subwin), FALSE);  
+          } 
+      }
+     else if ( strncmp(cstk(l1),"wresize",6) == 0) {
+        if ( x[0] == 1 )
+	  {
+           sciSetResize(subwin, TRUE); 
+           sciSetResize(sciGetParent(subwin), TRUE);  
+          }
+        else  
+	  {
+           sciSetResize(subwin, FALSE); 
+           sciSetResize(sciGetParent(subwin), FALSE);  
+          }
+     }
+    else if ( strncmp(cstk(l1),"wpos",4) == 0) {
+        sciSetFigurePos (sciGetParent(subwin), x[0], x[1]);
+	 
+      }
+    else if ( strncmp(cstk(l1),"wdim",4) == 0) {
+      pFIGURE_FEATURE(sciGetParent(subwin))->figuredimwidth=x[0];  
+      pFIGURE_FEATURE(sciGetParent(subwin))->figuredimheight=x[1];
+	 
+      } 
+   else if ( strncmp(cstk(l1),"wpdim",4) == 0) {
+     pFIGURE_FEATURE(sciGetParent(subwin))->windowdimwidth=x[0];  
+     pFIGURE_FEATURE(sciGetParent(subwin))->windowdimheight=x[1];
+	 
+      }
+  
+  
+    }
+  /* NG end */    
   LhsVar(1)=0;
   return 0;
-}
-
+} 
 
 /*-----------------------------------------------------------
  * xstring(x,y,str,[angle,box])
@@ -2473,10 +2771,12 @@ int scixstring(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  double rect[4],wc,dv,x,y,yi,angle=0.0;
-  integer i,j,iv =0,v,flagx=0;
+  double rect[4],wc,wy,x,y,yi,angle=0.0;
+  integer i,j,iv =0,flagx=0;
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5;
   char **Str;
+  long hdlstr, hdlrect;/* NG */
+  long *hdltab;/* NG */
 
   CheckRhs(3,5);
   
@@ -2489,33 +2789,71 @@ int scixstring(fname,fname_len)
   if (Rhs >= 5) { GetRhsVar(5,"d",&m5,&n5,&l5); CheckScalar(5,m5,n5); flagx = (integer) *stk(l5);  }
 
   C2F(sciwin)();
+  wc = 0.;/* to keep the size of the largest line */
 
-  /*     to keep the size of the largest line */
-  wc = 0.;
-
-  for (i = m3 -1 ; i >= 0; --i) 
-    {
+  /* NG beg */
+  if (version_flag() == 0) {
+    if ((hdltab = malloc ((m3+1) * sizeof (long))) == NULL){
+      Scierror(999,"%s: No more memory available\r\n",fname);
+      return 0; 
+    }
+    wy = 0.;
+    for (i = m3 -1 ; i >= 0; --i)  {
       int ib = 0;
-      for (j = 0 ; j < n3 ; ++j) 
-	{
-	  strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
-	  ib += strlen(Str[i+ m3*j]);
-	  if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
-	}
-      C2F(dr1)("xstring",C2F(cha1).buf,&v,&v,&v,&iv,&v,&v,&x,&y,&angle,&dv,8L,bsiz);
-      C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x,&y,rect,&dv,9L,bsiz);
+      for (j = 0 ; j < n3 ; ++j) {
+	strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
+	ib += strlen(Str[i+ m3*j]);
+	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
+      }
+      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,wy,&hdlstr);
+      hdltab[m3-1-i]=hdlstr;   
+      wc = Max(wc,rect[2]);
+      if (i != 0 ) 
+	wy += rect[3] * 1.2; 
+      else 
+	wy += rect[3];      
+    } /* end for(i) */
+
+    if ((flagx == 1) && (*stk(l4) == 0)) {
+      double dx1= wy ;//dx1 = y - yi;
+      Objrect (&x,&yi,&wc,&dx1,0,0,1,&hdlrect);
+    }
+    /** construct agregation and make it current object **/ 
+    if ((flagx == 1) && (*stk(l4) == 0)){
+      hdltab[m3]=hdlrect;
+      sciSetCurrentObj (ConstructAgregation (hdltab, m3+1));
+    }
+    else  { 
+      if (m3 > 1)
+	sciSetCurrentObj ( ConstructAgregation (hdltab, m3));
+    }
+    FREE(hdltab);
+  } /* end if (version_flag() == 0) */
+  else { /* NG end */
+    for (i = m3 -1 ; i >= 0; --i) {
+      int ib = 0;
+      for (j = 0 ; j < n3 ; ++j) {
+	strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
+	ib += strlen(Str[i+ m3*j]);
+	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
+      }
+      Xstring (C2F(cha1).buf,bsiz,iv,x,y,angle,rect);
       wc = Max(wc,rect[2]);
       if (i != 0 ) 
 	y += rect[3] * 1.2;
       else 
 	y += rect[3];
     }
-  if (flagx == 1) {
-    double dx1 = y - yi;
-    C2F(dr1)("xrect","v",&v,&v,&v,&v,&v,&v,&x,&y,&wc,&dx1,6L,2L);
-  }
-  /* we must free Str2 memory */ 
+    if (flagx == 1) {
+	double dx1 = y - yi;
+	Xrect ("xrect",6L,&x,&y,&wc,&dx1); 
+	//C2F(dr1)("xrect","v",&v,&v,&v,&v,&v,&v,&x,&y,&wc,&dx1,6L,2L);
+      }
+  } /* end  (version_flag() == 0) */
+   
+  /* we must free Str memory */ 
   FreeRhsSVar(Str);
+
   LhsVar(1)=0;
   return 0;
 } 
@@ -2563,6 +2901,7 @@ int scixstringb(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
+  /* Pas de modif pour la nouvelle version ????? */
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5,m6,n6,l6;
   integer fill =0, i,j,v,ib;
   double x,y,w,hx;
@@ -2676,6 +3015,14 @@ int scixtape(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,m5,n5,l5,m6,n6,l6,m7,n7,l7;
   
   CheckRhs(1,7);
+
+  /* NG beg */
+  if (version_flag() != 0) {
+    /* call a Scilab function to handle compatibility */
+    //C2F(callscifun)("%xtape",(unsigned long) 6);
+    //return 0;
+  }/* NG end */
+
   /* first argument is a string */
   GetRhsVar(1,"c",&m1,&n1,&l1);
 
@@ -2792,7 +3139,7 @@ int scixsetech(fname, fname_len)
 
       if ( Rhs <= 0) 
 	{
-	  ShowScales();
+     	  ShowScales();
 	  LhsVar(1) = 0;
 	  return 0;
 	}
@@ -2828,6 +3175,8 @@ int scixsetech(fname, fname_len)
       if ( opts[2].position != -1 ) { 
 	logflag = cstk(opts[2].l);CheckLength(opts[2].position,opts[2].m*opts[2].n,2);
       } 
+      else
+	logflag = logflag_def ; 
       if ( opts[3].position != -1 ) { 
 	wrect = stk(opts[3].l);	CheckLength(opts[3].position,opts[3].m*opts[3].n,4);
       } 
@@ -2838,11 +3187,11 @@ int scixsetech(fname, fname_len)
       if (logflag != 0) sciprint("logflag = \"%s\"\r\n",logflag);
       */
     }
-
   C2F(sciwin)();
   C2F(Nsetscale2d)(wrect,arect,frect,logflag,0L);
-  LhsVar(1) = 0;
+  LhsVar(1)=0;
   return 0;
+  
 }
 
 /*-----------------------------------------------------------
@@ -2876,10 +3225,11 @@ int scixgetech(fname,fname_len)
 
 int C2F(sciwin)()
 {
-  integer verb=0,win,v,na;
+  integer verb=0,win=0,v,na;
   double dv;
   C2F(dr)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
   C2F(dr)("xset","window",&win,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
+  if (versionflag == 0) sciSwitchWindow(&win);  /* NG */
   return 0;
 } 
 
@@ -2950,8 +3300,13 @@ int scifec(fname,fname_len)
   C2F(sciwin)();
   C2F(scigerase)();
   mn1 = m1 * n1;
-  C2F(fec)(stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,
-	   Zminmax,Colminmax,4L,bsiz);
+  
+  /* NG beg */
+  if (version_flag() == 0)
+     Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax);
+  else
+     Xfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,Strf,Legend,Rect,Nax,Zminmax,Colminmax);
+  /* NG end */
   LhsVar(1)=0;
   return 0;
 }
@@ -3011,8 +3366,14 @@ int scixsave(fname,fname_len)
 {
   integer m1,n1,l1,m2,n2,l2,v,wid;
   double dv;
-  CheckRhs(1,2);
 
+  CheckRhs(1,2);
+  /* NG beg */
+  if (version_flag() == 0) {
+    /* call a Scilab function to handle compatibility */
+    C2F(callscifun)("%xsave",(unsigned long) 6);
+    return 0;
+  }/* NG end */
   GetRhsVar(1,"c",&m1,&n1,&l1);
   if (Rhs == 2) { GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2); wid = (integer) *stk(l2 ); } 
   else {
@@ -3020,6 +3381,7 @@ int scixsave(fname,fname_len)
     C2F(dr)("xget","window",&verb,&wid,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
   }
   C2F(sciwin)();
+
   C2F(xsaveplots)(&wid,cstk(l1),m1);
   LhsVar(1)=0;
   return 0;
@@ -3037,6 +3399,11 @@ int scixload(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2,wid,v;
 
   CheckRhs(1,2);
+  if (version_flag() == 0) {
+    /* call a Scilab function to handle compatibility */
+    C2F(callscifun)("%xload",(unsigned long) 6);
+    return 0;
+  }/* NG end */
   GetRhsVar(1,"c",&m1,&n1,&l1);
   if (Rhs == 2) {
     GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2); wid = (integer) *stk(l2 );
@@ -3065,30 +3432,41 @@ int scidelw(fname,fname_len)
     for ( i=0; i < m1*n1 ; i++ ) 
       {
 	win = (integer) *stk(l1+i);
-	C2F(deletewin)(&win);
+	C2F(deletewin)(&win); 
+        if (version_flag() == 0) DeleteObjs(win); /* NG */
       }
   } else {
     C2F(dr)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
     C2F(deletewin)(&win);
+    if (version_flag() == 0) DeleteObjs(win);  /* NG */
   }
   LhsVar(1)=0;
   return 0;
 } 
 
 /*-----------------------------------------------------------
- * used to print or export a graphic window 
+ * impression
  *-----------------------------------------------------------*/
 
-int scixg2psofig_G(char * fname,char * dr,unsigned long fname_len,unsigned long dr_len)
+int scixg2psofig_G(fname,dr,fname_len,dr_len)
+     char *fname,*dr;
+     unsigned long fname_len;
+     unsigned long dr_len;
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,flagx = -1,iwin;
   CheckRhs(2,3);
+  if (version_flag() == 0) {
+    /* call a Scilab function to handle compatibility */
+    C2F(callscifun)("%xexport",(unsigned long) 8);
+    return 0;
+  }/* NG end */
   /* the window number */ 
   GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1); iwin  = (integer) *stk(l1);
   /* the file name */ 
   GetRhsVar(2,"c",&m2,&n2,&l2);
-  /* color or n & b */ 
+ /* color or n & b */ 
   if (Rhs >= 3) {GetRhsVar(3,"d",&m3,&n3,&l3); CheckScalar(3,m3,n3); flagx = (integer) *stk(l3); }
+  /* nouveau graphique ?????*/
   C2F(xg2psofig)(cstk(l2),&m2,&iwin,&flagx,dr,bsiz,dr_len);
   LhsVar(1)=0;
   return 0;
@@ -3244,13 +3622,26 @@ int sciwinsid(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer iflag =0,ids,num,un=1,l1;
-  CheckRhs(-1,0) ;
-  C2F(getwins)(&num,&ids ,&iflag);
-  CreateVar(1,"i",&un,&num,&l1);
-  iflag = 1;
-  C2F(getwins)(&num,istk(l1),&iflag);
-  LhsVar(1)=1;
+  integer iflag =0,ids,num,un=1,l1,i;
+  int vect[10],id=0;
+  CheckRhs(-1,0) ;  /* NG beg */
+ if (version_flag() == 0)
+   {
+    sciGetIdFigure (vect,&id);
+    CreateVar(1,"d",&un,&id,&l1);
+    for (i=0;i<id;i++)
+      stk(l1)[i] = vect[i];
+    LhsVar(1) = Rhs+1; 
+   }/* NG end*/
+ else
+   {
+    C2F(getwins)(&num,&ids ,&iflag);
+    CreateVar(1,"i",&un,&num,&l1);
+    iflag = 1; 
+    C2F(getwins)(&num,istk(l1),&iflag);
+    LhsVar(1)=1;
+    } 
+  
   return 0;
 }
 
@@ -3496,11 +3887,16 @@ int nscixaxis(fname, fname_len)
       /** sciprint("nombre de tics %d\r\n",ntics); **/
       CheckLength( opts[8].position, opts[8].m*opts[8].n,ntics);
     }
-
-  sci_axis(dir,tics,x,&nx,y,&ny,val,sub_int,format,fontsize,textcolor,ticscolor,'n',seg_flag);
-
-  LhsVar(1) = 0;
-  return 0;
+     
+  /* NG beg */
+   if (version_flag() == 0)
+     Objdrawaxis(dir,tics,x,&nx,y,&ny,val,sub_int,format,fontsize,textcolor,ticscolor,'n',seg_flag);
+   else
+     Xdrawaxis (dir,tics,x,&nx,y,&ny,val,sub_int,format,fontsize,textcolor,ticscolor,'n',seg_flag);
+   /* NG end */
+ 
+   LhsVar(1)=0;
+   return 0;
 }
 
 int check_xy(fname,dir,mn,xpos,xm,xn,xl,ypos,ym,yn,yl,ntics)
@@ -3556,7 +3952,6 @@ int check_xy(fname,dir,mn,xpos,xm,xn,xl,ypos,ym,yn,yl,ntics)
 /*-----------------------------------------------------------
  * metanet with Scilab graphics 
  *-----------------------------------------------------------*/
-
 int intmeta(fname, fname_len)
      char *fname;
      unsigned long fname_len;
@@ -3674,29 +4069,28 @@ int sciplot2d1_1 (fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-/*  return sciplot2d1_G("plot2d1",plot2d1_,fname_len); */
-  return sciplot2d1_G("plot2d1",C2F(plot2d1),fname_len);
+  return sciplot2d1_G("plot2d1",1,C2F(plot2d1),fname_len);/* NG */
 }
 
 int sciplot2d1_2 (fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  return sciplot2d1_G("plot2d2",C2F(plot2d2),fname_len);
+  return sciplot2d1_G("plot2d2",2,C2F(plot2d2),fname_len); /* NG */
 }
 
 int sciplot2d1_3 (fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  return sciplot2d1_G("plot2d3",C2F(plot2d3),fname_len);
+  return sciplot2d1_G("plot2d3",3,C2F(plot2d3),fname_len);/* NG */
 }
 
 int sciplot2d1_4 (fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  return sciplot2d1_G("plot2d4",C2F(plot2d4),fname_len);
+  return sciplot2d1_G("plot2d4",4,C2F(plot2d4),fname_len);/* NG */
 }
 
 int scicontour2d (fname,fname_len)
@@ -3765,7 +4159,6 @@ int scicontour2d1 (fname,fname_len)
   LhsVar(2)=7;
   return 0;
 }
-
 int scixs2ps(fname,fname_len)
      char *fname;
      unsigned long fname_len;
@@ -3802,10 +4195,129 @@ int scixs2ppm(fname,fname_len)
 {
   return scixg2psofig_G(fname,"PPM",fname_len,3);
 }
+/*-----------------------------------------------------------
+ *   rect(x,y,w,h) 
+ *-----------------------------------------------------------*/
 
+int scirect(fname,fname_len)
+     char *fname; 
+     unsigned long fname_len;
+{
+  long hdl;
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4;
+  C2F(sciwin)();
+  CheckRhs(1,4);
+  switch ( Rhs ) 
+    {
+    case 1 :
+      GetRhsVar(1,"d",&m1,&n1,&l1); 
+      CheckLength(1,m1*n1,4);
+      /* version_flag()  == "0" correspond aux graphics de la version 25001 */
+      if (version_flag() == 0)
+         if (strcmp(fname,"xrect")==0) 
+	    Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),0,0,0,&hdl);
+         else
+            Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),1,0,0,&hdl);
+       else
+        Xrect(fname,fname_len,stk(l1),stk(l1+1),stk(l1+2),stk(l1+3));
+      break;
+    case 4 :
+      GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1);
+      GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2);
+      GetRhsVar(3,"d",&m3,&n3,&l3); CheckScalar(3,m3,n3);
+      GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4);
+      if (version_flag() == 0)
+          if (strcmp(fname,"xrect")==0) 
+             Objrect (stk(l1),stk(l2),stk(l3),stk(l4),0,0,0,&hdl);
+          else
+             Objrect (stk(l1),stk(l2),stk(l3),stk(l4),1,0,0,&hdl);
+      else
+        Xrect(fname,fname_len,stk(l1),stk(l2),stk(l3),stk(l4));
+      break;
+    default :
+      Scierror(999,"%s: wrong number of rhs argumens (%d), rhs must be 1 or 4\r\n",fname,Rhs);
+    }
+//  if ((Lhs = 1) && (version_flag() == 0))
+  //   {
+  //     numrow = 1;
+   //    numcol = 1;
+   //    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+   //    stk(outindex)[0] = sciGetHandle((sciPointObj *) sciGetCurrentObj());
+   //    LhsVar(1) = Rhs+1;
+   //  }
+  // else
+       LhsVar(1)=0;
+  return 0;
+} 
 
+/*---- 15/02/2002 --------------------------------------------
+  scirects
+ *-----------------------------------------------------------*/
 
+int scirects(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  integer m1,n1,l1,m2,n2,l2;
+  long  hdl;
+  int i,j;
+  long *hdltab;
+  C2F(sciwin)();
+  CheckRhs(1,2);
 
+  GetRhsVar(1,"d",&m1,&n1,&l1);
+  
+    if (m1 != 4) {
+      Scierror(999,"%s: rects has a wrong size (4,n) expected \r\n",fname);
+      return 0;
+    }
+  
+
+  if (Rhs == 2) 
+    {
+      GetRhsVar(2,"i",&m2,&n2,&l2);
+      CheckVector(2,m2,n2);
+      if (m2 * n2 != n1) {
+	Scierror(999,"%s: first and second arguments have incompatible length\r\n",fname);
+	return 0;
+      }
+    }
+  else 
+    {
+      int i;
+      m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
+      for (i = 0; i < n2; ++i)  *istk(l2 + i) = 0;
+    }  
+  /* NG beg */
+  if (version_flag() == 0){
+    if ((hdltab = malloc (n1 * sizeof (long))) == NULL) {
+      return 0; 
+    }
+    for (i = 0; i < n1; ++i) { 
+      j = (i==0) ? 0 : 1;
+      if (*istk(l2+i) == 0)  
+	/** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
+	Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),0,*istk(l2+i-j),0,&hdl);
+      else  
+	if (*istk(l2+i) < 0)  
+	  /** fil(i) < 0 rectangle i is drawn using the line style (or color) **/
+	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),0,*istk(l2+i),0,&hdl); 
+	else         
+	  /** fil(i) > 0   rectangle i is filled using the pattern (or color) **/
+	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),1,*istk(l2+i),0,&hdl); 
+      hdltab[i]=hdl; /** handle of rectangle i **/
+    }
+    /** construct agregation and make it current object **/
+    sciSetCurrentObj (ConstructAgregation (hdltab, n1));  
+    FREE(hdltab);
+  }   
+  else
+    Xrects(fname,fname_len,istk(l2), n1,stk(l1));
+   /* NG end */
+  LhsVar(1)=0;
+  return 0;
+} 
+ 
 int sciseteventhandler(fname, fname_len)
      char *fname;
      unsigned long fname_len;
@@ -3822,7 +4334,7 @@ int sciseteventhandler(fname, fname_len)
       GetRhsVar(1,"c",&m1,&n1,&l1);
       C2F(seteventhandler) (&win,cstk(l1),&ierr);
     }
-  else
+  else 
     C2F(seteventhandler) (&win,"",&ierr);
   LhsVar(1)=0;
   return 0;
@@ -3852,14 +4364,14 @@ static MatdesTable Tab[]={
   {scixarc,"xfarc"},
   {scixarc,"xarc"},
   {scixarcs,"xarcs"},
-  {scixarcs,"xrects"},
+  {scirects,"xrects"},/* NG */
   {sciarrows,"xarrows"},
   {scixsegs,"xsegs"},
   {nscixaxis,"drawaxis"},
   {scixchange,"xchange"},
   {scixclea,"xclea"},
-  {scixclea,"xrect"},
-  {scixclea,"xfrect"},
+  {scirect,"xrect"},/* NG */
+  {scirect,"xfrect"},/* NG */
   {scixclear,"xclear"},
   {scixclick,"xclick"},
   {scixend,"xend"},
@@ -3892,7 +4404,7 @@ static MatdesTable Tab[]={
   {scidelw,"xdel"},
   {scicontour2d,"contour2d"},
   {scixg2ps,"xg2ps"},
-  {scixs2fig,"xs2fig"},
+  {scixs2fig,"xg2fig"},
   {scixsort,"gsort"},
   {sciwinsid,"winsid"},
   {sciparam3d1,"param3d1"},
@@ -3905,21 +4417,25 @@ static MatdesTable Tab[]={
   {scixname,"xname"},
   {scixaxis,"xaxis"},
   {sciseteventhandler,"seteventhandler"},
-
-#ifdef WITH_GTK
   {int_gtkhelp,"help_gtk"},
-#endif 
-
-  {scixs2gif,"xs2gif"},
-  {scixs2ppm,"xs2ppm"},
-  {scixs2ps,"xs2ps"},
+  /* NG beg */
+  {gset,"set"},
+  {gget,"get"},
+  {delete,"delete"},
+  {addcb,"addcb"},
+  {copy,"copy"},
+  {move,"move"},
+  {glue,"glue"},
+  {unglue,"unglue"}, 
+  {drawnow,"drawnow"},
+  {drawlater,"drawlater"},  
+  {draw,"draw"} /* NG end */
 };
 
 /* interface for the previous function Table */ 
 
 int C2F(matdes)()
 {  
-  /* int ifin = Fin; */
   Rhs = Max(0, Rhs);
   (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
   C2F(putlhsvar)();
@@ -3950,6 +4466,1952 @@ int sci_demo (fname,code, flagx)
   SciString(&ibegin,name,&mlhs,&mrhs);
   /* check if an error has occured while running a_function */
   LhsVar(1) = 0; 
+  return 0;
+}
+
+/* Functions for Entitiy based graphic NG */
+/*-----------------------------------------------------------
+ * sciset(choice-name,x1,x2,x3,x4,x5)
+ * or   xset()
+ *-----------------------------------------------------------*/
+
+
+/************** voir gset([hdl optionnel, le dernier objet],"propriete, val) ***************/
+int gset(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  integer m1,n1,l1,m2,n2,l2,numrow3,numcol3,l3,num,cur,na,verb=0;
+  unsigned long hdl; 
+  int lw;
+  sciPointObj *pobj;
+
+  CheckRhs(2,3);
+  CheckLhs(0,1);
+  /*  set or create a graphic window */
+  switch(VarType(1)) 
+    {
+    case 1: /* tksci handle */
+      lw = 1 + Top - Rhs;
+      C2F(overload)(&lw,"set",3);return 0;
+      return 0;
+      break;
+    case 9: /* first is a scalar argument so it's a gset(hdl,"command",[param]) */
+      CheckRhs(3,3);
+      GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */ 
+      if (m1!=1||n1!=1) { 
+	lw = 1 + Top - Rhs;
+	C2F(overload)(&lw,"set",3);return 0;
+      }
+      if (version_flag() ==0)
+	hdl = (unsigned long)*stk(l1); /* Puts the value of the Handle to hdl */ 
+      else
+	hdl = (unsigned long)0;
+      if (hdl == (unsigned long)0 )
+	pobj = (sciPointObj *) NULL;
+      else
+	pobj = sciGetPointerFromHandle(hdl);// verifier la validiter du pointeur !!!!
+	  
+      GetRhsVar(2,"c",&m2,&n2,&l2); /* Gets the command name */  
+      if (strncmp(cstk(l2),"old_style",9) !=0) C2F(sciwin)();
+    
+      if (VarType(3) != sciType(cstk(l2))) {
+	Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
+	return 0;} 
+      if (VarType(3) == 1)  GetRhsVar(3,"d",&numrow3,&numcol3,&l3);
+      if (VarType(3) == 9)  GetRhsVar(3,"h",&numrow3,&numcol3,&l3);
+      if (VarType(3) == 10) 
+	{ if (strncmp(cstk(l2),"tics_labels",11) !=0)
+	  {GetRhsVar(3,"c",&numrow3,&numcol3,&l3);} 
+	else
+	  GetRhsVar(3,"S",&numrow3,&numcol3,&l3); }
+      break;
+    case 10:/* first is a string argument so it's a gset("command",[param]) */ 
+      CheckRhs(2,2);
+      GetRhsVar(1,"c",&m2,&n2,&l2);/* Gets the Handle passed as argument */   
+      if (strncmp(cstk(l2),"old_style",9) !=0) C2F(sciwin)();
+      if (version_flag() == 0)	
+	if ((strncmp(cstk(l2),"zoom_",5) !=0) && 
+	    (strncmp(cstk(l2),"auto_",5) !=0) && 
+	    (strncmp(cstk(l2),"clip_box",8) !=0) )   
+	  hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ()) ; 
+	else  
+	  hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));
+      else
+	hdl = (unsigned long)0;
+      if (hdl == (unsigned long)0 )
+	pobj = (sciPointObj *) NULL;
+      else
+	pobj = sciGetPointerFromHandle(hdl);// verifier la validiter du pointeur !!!!
+      
+      if (VarType(2) != sciType(cstk(l2))) {
+	Scierror(999,"%s: uncompatible values of proprety type  '%s' \r\n",fname,cstk(l2));
+	return 0;} 
+      if ( (VarType(2) == 1) )   {GetRhsVar(2,"d",&numrow3,&numcol3,&l3); }
+      if ( (VarType(2) == 10) ) {
+	if (strncmp(cstk(l2),"tics_labels",11) !=0) 
+	  {GetRhsVar(2,"c",&numrow3,&numcol3,&l3);} 
+	else 
+	  GetRhsVar(2,"S",&numrow3,&numcol3,&l3);
+      }
+      break;
+    default:
+      Scierror(999,"%s: First argument must be a scalar a handle or a string\r\n",fname);
+      return 0;
+      break;
+    }
+
+  if ( (hdl =! (unsigned long)0) ) {
+    if (sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
+      Scierror(999,"%s: %s\r\n",fname,error_message);
+      return 0;
+    }
+    if ((strncmp(cstk(l2),"figure_style",12) !=0) && (strncmp(cstk(l2),"old_style",9) !=0 )) {
+      num= sciGetNumFigure (pobj);    
+      C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      sciDrawObj(sciGetParentFigure(pobj));  
+      sciDrawObj(sciGetParentFigure(pobj));
+      C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
+  }
+  else
+    if (sciSet((sciPointObj *) NULL, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
+      Scierror(999,"%s: %s\r\n",fname,error_message);
+      return 0;
+    }
+  LhsVar(1)=0;
+  return 0;
+}
+
+int gget(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  integer m1,n1,numrow2,numcol2,l2 ;
+  int l1;
+  unsigned long hdl;
+
+  int lw;
+  sciPointObj *pobj;
+
+  CheckRhs(1,2);
+  CheckLhs(0,1);
+  
+  /*  set or create a graphic window */
+
+  /* le premier argument peut etre soit un Id, ou un marker(auquel cas, get renvoi la valeur de 
+  l'objet courant ) */
+  switch(VarType(1))
+  {
+  case 1: /* tksci handle */
+    lw = 1 + Top - Rhs;
+    C2F(overload)(&lw,"get",3);return 0;
+    return 0;
+    break;
+  case 9: /* scalar argument (hdl + string) */
+    CheckRhs(2,2);
+    GetRhsVar(1,"h",&m1,&n1,&l1);
+    if (m1!=1||n1!=1) { 
+      lw = 1 + Top - Rhs;
+      C2F(overload)(&lw,"get",3);return 0;
+    }
+    GetRhsVar(2,"c",&numrow2,&numcol2,&l2);
+    if (strncmp(cstk(l2),"old_style",9) !=0) C2F(sciwin)();
+    if (version_flag() ==0)
+      hdl = (unsigned long)*stk(l1); /* on recupere le pointeur d'objet par le handle */
+    else
+      hdl = (unsigned long)0;
+    break;
+  case 10:/* string argument (string) */
+    CheckRhs(1,1);
+    GetRhsVar(1,"c",&numrow2,&numcol2,&l2);
+    if (strncmp(cstk(l2),"old_style",9) !=0) C2F(sciwin)();
+    if (version_flag() == 0)
+      {
+	if ((strncmp(cstk(l2),"children",8) != 0) &&  
+	    (strncmp(cstk(l2),"zoom_",5) !=0) && 
+	    (strncmp(cstk(l2),"clip_box",8) !=0) && 
+	    (strncmp(cstk(l2),"auto_",5) !=0)) 
+	  hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ());
+	else  
+	  hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* on recupere le pointeur d'objet par le handle */
+      }
+    else
+      hdl = (unsigned long)0;
+    break;
+  default:
+    Scierror(999,"%s: Incorrect argument\r\n",fname);
+    return 0;
+    break;
+  }
+  /* cstk(l2) est la commande, l3 l'indice sur les parametres de la commande */
+  CheckLhs(0,1);
+  if (hdl == (unsigned long)0 ) {
+    if (sciGet((sciPointObj *) NULL, cstk(l2))!=0) {
+      Scierror(999,"%s: %s\r\n",fname,error_message);
+      return 0;
+    }
+  }
+  else {
+    if ((pobj = sciGetPointerFromHandle(hdl)))
+      if (sciGet(pobj, cstk(l2))!=0) {
+	Scierror(999,"%s: %s\r\n",fname,error_message);
+	return 0;
+      }
+  }
+  LhsVar(1)=Rhs+1;
+  return 0;
+}
+
+
+
+
+/**@name int sciset(sciPointObj *pobj,char *marker, long *x, long *y, long *w, long *h)
+ * Sets the value to the object
+ */
+int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol)
+{
+  int xtmp;
+  int  i,num,v,na;
+  double dtmp,dv; 
+  char  **str, **ptr, ctmp[10];    
+  sciPointObj *psubwin, *figure;
+  struct BCG *XGC;
+ 
+  if (pobj != (sciPointObj *)NULL) {
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+    str=pAXES_FEATURE(pobj)->str;  
+  }
+
+  if ((pobj == (sciPointObj *)NULL) && 
+      (strncmp(marker,"old_style", 9) !=0 ) && 
+      (strncmp(marker,"figure_style", 12) != 0)) {
+    if (version_flag() == 0)
+      strcpy(error_message,"handle not valid");
+    else
+      strcpy(error_message,"function not valid under old graphics style");
+    return -1;
+  }
+
+  /***************** graphics mode *******************************/ 
+  if (strncmp(marker,"color_map", 9) == 0)
+    sciSetColormap((sciPointObj *)pobj, stk(*value), *numrow, *numcol);
+  else if (strncmp(marker,"old_style", 9) == 0) {
+    if ((strncmp(cstk(*value),"on", 3) == 0)) 
+      versionflag = 1;
+    else if ((strncmp(cstk(*value),"off", 3) == 0))
+      versionflag = 0; 
+    else {
+      strcpy(error_message,"Graphics style must be 'on' or 'off'");
+      return -1;
+    }
+  }
+  else if (strncmp(marker,"figure_style", 12) == 0) {
+    if ((strncmp(cstk(*value),"old", 3) == 0)) {
+      if (version_flag() == 0)  {
+	versionflag = 1;
+	sciXbasc();
+	C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
+	figure = (sciPointObj *) sciGetCurrentFigure();                       
+	XGC = (struct BCG *) pFIGURE_FEATURE (figure)->pScilabXgc;
+	XGC->mafigure = (sciPointObj *)NULL; 
+	DestroyFigure (figure);
+      }
+    }
+    else if ((strncmp(cstk(*value),"new", 3) == 0)) {   
+      if (version_flag() == 1)  {
+	C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);      
+	C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
+	C2F(dr1)("xget","window",&v,&num,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L); 
+	C2F(dr)("xstart","v",&num,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
+	XGC=(struct BCG *) sciGetCurrentScilabXgc ();
+	if ((figure = ConstructFigure (XGC)) != NULL) {
+	  XGC->mafigure = (sciPointObj *) figure;
+	  XGC->graphicsversion=1;  
+	  if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL)
+	    sciSetOriginalSubWin (figure, psubwin);
+	}
+      }
+    }
+    else {
+      strcpy(error_message,"Figure style must be 'old' or 'new'");    
+      return -1;
+    }
+  }  
+  else if (strncmp(marker,"xor_mode", 8) == 0) {
+    sciSetXorMode((sciPointObj *) pobj, *stk(*value));
+  }  
+  else if (strncmp(marker,"default_values", 14) == 0) {
+    if ((strncmp(cstk(*value),"on", 2) == 0)) 
+      sciSetDefaultValues();
+    else {
+      strcpy(error_message,"Value must be 'on'");
+      return -1;
+    }
+  }  
+  else if (strncmp(marker,"visible", 7) == 0) {
+    if ((strncmp(cstk(*value),"on", 2) == 0)) 
+      sciSetVisibility((sciPointObj *)pobj, TRUE); 
+    else if ((strncmp(cstk(*value),"off", 3) == 0))  
+      sciSetVisibility((sciPointObj *)pobj, FALSE); 
+    else
+      {strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
+  } 
+  else if (strncmp(marker,"auto_resize", 10) == 0)  { 
+    if ((strncmp(cstk(*value),"on", 2) == 0)) 
+      sciSetResize((sciPointObj *) pobj, TRUE); 
+    else if ((strncmp(cstk(*value),"off", 3) == 0))  
+      sciSetResize((sciPointObj *) pobj, FALSE);
+    else
+      {strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
+	       
+  }
+  /*************************** Handles Properties ********/
+  else if (strncmp(marker,"current_obj", 11) == 0) 
+    {
+      sciSetCurrentObj((sciPointObj *)sciGetPointerFromHandle(stk(*value)[0]));
+    }
+  else if (strncmp(marker,"current_axes", 12) == 0) 
+    {
+      sciSetSelectedSubWin((sciPointObj *)sciGetPointerFromHandle(stk(*value)[0]));
+    }
+	
+  /************************  figure Properties *****************************/ 
+  /*19/11/2002*/
+  else if (strncmp(marker,"figure_position", 15) == 0)
+    {
+      sciSetFigurePos ((sciPointObj *)pobj, stk(*value)[0], stk(*value)[1]);
+    } 
+  else if (strncmp(marker,"axes_size", 9) == 0)
+    {
+      pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth=stk(*value)[0];  
+      pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight=stk(*value)[1];
+      C2F(dr)("xset","wdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth),
+	      &(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    } 
+  else if (strncmp(marker,"figure_size", 11) == 0)
+    {
+      pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth=stk(*value)[0];  
+      pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight=stk(*value)[1];
+      C2F(dr)("xset","wdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth),
+	      &(pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
+  else if (strncmp(marker,"figure_name", 11) == 0) {
+    sciSetName((sciPointObj *) pobj, cstk(*value), (*numcol)*(*numrow));
+  }
+  else if (strncmp(marker,"figure_id", 9) == 0){
+    /** remplacer le role de xset("window") **/
+    {strcpy(error_message,"figure's id can not be modified");return -1;}
+  }
+  /********************** context graphique ******************************/
+  else if (strncmp(marker,"background", 10) == 0)
+    {
+      sciSetBackground((sciPointObj *)pobj, stk(*value)[0]);
+    }
+  else if (strncmp(marker,"foreground", 10) == 0)
+    {
+      sciSetForeground((sciPointObj *)pobj, stk(*value)[0]);
+    }
+  /**** 15/02/2002 ***/
+  else if (strncmp(marker,"fill_mode", 9) == 0)
+    { 
+      if (strncmp(cstk(*value),"on",2)==0 )
+	sciSetFillFlag((sciPointObj *)pobj,1);
+      else if (strncmp(cstk(*value),"off",3)==0 )
+	sciSetFillFlag((sciPointObj *)pobj,0);
+      else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
+    }
+  else if (strncmp(marker,"thickness", 9) == 0)  {
+    sciSetLineWidth((sciPointObj *) pobj, *stk(*value));
+  }
+  else if (strncmp(marker,"line_style", 10) == 0) {
+    sciSetLineStyle((sciPointObj *) pobj, *stk(*value));
+  }
+  else if (strncmp(marker,"mark_style", 10) == 0) {
+    sciSetIsMark((sciPointObj *) pobj, 1);
+    sciSetMarkStyle((sciPointObj *) pobj, *stk(*value));
+  }
+  else if (strncmp(marker,"mark_mode", 9) == 0) { 
+    if (strncmp(cstk(*value),"on",2)==0 )
+      sciSetIsMark((sciPointObj *) pobj,1);
+    else if (strncmp(cstk(*value),"off",3)==0 )
+      sciSetIsMark((sciPointObj *) pobj,0);
+    else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
+  }
+  /**** 13/05/2002 ***/
+  else if (strncmp(marker,"polyline_style", 14) == 0)
+    {  
+      if (sciGetEntityType (pobj) == SCI_POLYLINE)
+	if ((stk(*value)[0]==0) || (stk(*value)[0]==1) || (stk(*value)[0]==2) 
+	    || (stk(*value)[0]==3) ||(stk(*value)[0]==4))
+	  pPOLYLINE_FEATURE (pobj)->plot = stk(*value)[0];
+	else
+	  {strcpy(error_message,"Stylemust be 0,1,2,3 or 4");return -1;}
+      else
+	{strcpy(error_message,"Object is not a Polyline");return -1;}
+    }
+  /************* font properties *********/
+  else if (strncmp(marker,"font_size", 9) == 0)
+    {
+      xtmp = (int)stk(*value)[0];
+      sciSetFontDeciWidth((sciPointObj *) pobj, xtmp);
+    }
+  else if (strncmp(marker,"font_angle", 10) == 0)
+    {
+      xtmp = (int)stk(*value)[0];
+      sciSetFontOrientation((sciPointObj *) pobj, (*stk(*value)*10));
+    }
+  else if (strncmp(marker,"font_foreground", 15) == 0) 
+    {
+      xtmp = (int) *stk(*value);
+      sciSetFontForeground((sciPointObj *) pobj, xtmp);
+    }
+  else if (strncmp(marker,"font_style", 10) == 0)
+    {
+      xtmp = (int) *stk(*value);
+      if ( (xtmp > (SCI_DONT_CARE + SCI_ATTR_BOLD + SCI_ATTR_ITALIC
+		    + SCI_ATTR_UNDERLINE + SCI_ATTR_STRIKEOUT)) || xtmp < 0)
+	{strcpy(error_message,"The value must be a sum of 0, 1, 2, 4, 8");return -1;}
+      else
+	sciSetFontStyle((sciPointObj *) pobj, xtmp);
+    }
+  else if (strncmp(marker,"font_name", 9) == 0) {
+    sciSetFontName((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow));
+  }
+  else if (strncmp(marker,"text", 4) == 0) {
+    sciSetText((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow));
+  }
+  /******************/
+  else if (strncmp(marker,"auto_clear", 10) == 0) {
+    if (strncmp(cstk(*value),"on",2)==0 )
+      sciSetAddPlot((sciPointObj *) pobj,FALSE);
+    else if (strncmp(cstk(*value),"off",3)==0 )
+      sciSetAddPlot((sciPointObj *) pobj,TRUE);
+    else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
+  }
+  else if (strncmp(marker,"auto_scale", 10) == 0) {
+    if (strncmp(cstk(*value),"on",2)==0 )
+      sciSetAutoScale((sciPointObj *) pobj, TRUE);
+    else if (strncmp(cstk(*value),"off",3)==0 )
+      sciSetAutoScale((sciPointObj *) pobj, FALSE);
+    else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
+  }
+  else if ((strncmp(marker,"zoom_box", 8) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN)) { 
+    /* On doit avoir avoir une matrice 4x1 */
+    if (*numcol * *numrow == 4)
+      scizoom(stk(*value));  
+    else {strcpy(error_message,"Argument must be a vector of size 4");return -1;}
+	      
+  } 
+  else if ((strncmp(marker,"zoom_state", 9) == 0)  && (sciGetEntityType (pobj) == SCI_SUBWIN)){
+    if ((strncmp(cstk(*value),"on", 3) == 0))
+      { 
+	if (!sciGetZooming((sciPointObj *)pobj))
+	  {strcpy(error_message,"set zoom box ( set('zoom_box',[xmin ymin xmax ymax]))");return -1;}
+	else
+	  {strcpy(error_message,"Object is already zoomed");return -1;}
+      }
+    else if ((strncmp(cstk(*value),"off", 3) == 0)) 
+      { unzoom();
+      sciSetZooming((sciPointObj *)pobj,FALSE);
+      } 
+    else
+      {strcpy(error_message,"Value must be 'on/off'");       return -1;}
+  }  
+  /***********************************************/
+  else if (strncmp(marker,"clip_box", 8) == 0)  { 
+    /* On doit avoir avoir une matrice 4x1 */
+    if (*numcol * *numrow == 4)
+      sciSetClipping((sciPointObj *)pobj, stk(*value)); 
+    else {strcpy(error_message,"Argument must be a vector of size 4");return -1;}
+	      
+  } 
+  else if (strncmp(marker,"clip_state", 9) == 0) {
+    if ((strncmp(cstk(*value),"clipgrf", 7) == 0))
+      sciSetIsClipping( (sciPointObj *)pobj,0);
+    else if ((strncmp(cstk(*value),"off", 3) == 0)) 
+      sciSetIsClipping( (sciPointObj *)pobj,-1);
+    else if ((strncmp(cstk(*value),"on", 2) == 0)) 
+      {strcpy(error_message,"set clip box ( set('clip_box',[x y w h]) )");  return -1;}
+    else
+      {strcpy(error_message,"Value must be 'clipgrf', 'on' or 'off'"); return -1;}
+  }		
+  else if (strcmp(marker,"data") == 0)
+    sciSetPoint((sciPointObj *)pobj, stk(*value), numrow, numcol);
+     
+  /**************** callback *********************/
+  else if (strncmp(marker,"callbackmevent", 14) == 0) {
+    sciSetCallbackMouseEvent((sciPointObj *)pobj, *stk(*value));
+  }
+  else if (strncmp(marker,"callback", 8) == 0) {
+    sciAddCallback((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow),1);
+  }
+	   
+        
+
+  /******** AXES *********************//**** 19/04/2002 ******/
+  else if (strncmp(marker,"tics_direction", 14) == 0)
+    {   
+      if (pAXES_FEATURE (pobj)->ny == 1)
+	{ 
+	  if(strncmp(cstk(*value),"top",3) == 0) 
+	    strncpy(&(pAXES_FEATURE (pobj)->dir),"u",1);
+	  else if (strncmp(cstk(*value),"bottom",6) == 0)
+	    strncpy(&(pAXES_FEATURE (pobj)->dir),"d",1);
+	  else
+	    {strcpy(error_message,"Second argument must be 'top' or 'bottom'");return -1;}
+	} 
+      else
+	{
+	  if(strncmp(cstk(*value),"right",5) == 0)
+	    strncpy(&(pAXES_FEATURE (pobj)->dir),"r",1);
+	  else if  (strncmp(cstk(*value),"left",4) == 0)
+	    strncpy(&(pAXES_FEATURE (pobj)->dir),"l",1);
+	  else
+	    {strcpy(error_message,"Second argument must be 'right' or 'left' ");return -1;}
+	}
+    }
+  else if (strncmp(marker,"x_location", 10) == 0)
+    {  
+      char loc;
+      if(strncmp(cstk(*value),"top",3) == 0)
+	loc='u';
+      else if  (strncmp(cstk(*value),"bottom",6) == 0)
+	loc='d';
+      else if (strncmp(cstk(*value),"middle",6) == 0)
+	loc='c';
+      else  
+	{strcpy(error_message,"Second argument must be 'top', 'bottom' or 'middle'");return -1;}
+      if (sciGetEntityType (pobj) == SCI_SUBWIN)
+	pSUBWIN_FEATURE (pobj)->axes.xdir = loc;
+      else
+	{strcpy(error_message,"x_location property does not exist for this handle");return -1;}
+    }
+  else if (strncmp(marker,"y_location", 10) == 0)
+    {   
+      char loc;
+      if(strncmp(cstk(*value),"left",4) == 0)
+	loc='l';
+      else if  (strncmp(cstk(*value),"right",5) == 0)
+	loc='r';
+      else if (strncmp(cstk(*value),"middle",6) == 0)
+	loc='c';
+      else  
+	{strcpy(error_message,"Second argument must be 'left', 'right' or 'middle'");return -1;}
+      if (sciGetEntityType (pobj) == SCI_SUBWIN)
+	pSUBWIN_FEATURE (pobj)->axes.ydir = loc;
+      else
+	{strcpy(error_message,"x_location property does not exist for this handle");return -1;}
+    }
+  else if (strncmp(marker,"tight_limits", 12) == 0) 
+    {                   
+      if ((strncmp(cstk(*value),"on", 3) == 0)) 
+	{                     
+	  pSUBWIN_FEATURE (psubwin)->FRect[0]= 
+	    exp10( Cscale.xtics[2]) * (floor(pSUBWIN_FEATURE (psubwin)->axes.limits[1]/ (exp10( Cscale.xtics[2])))); 
+	  pSUBWIN_FEATURE (psubwin)->FRect[1]=  
+	    exp10( Cscale.ytics[2]) * (floor(pSUBWIN_FEATURE (psubwin)->axes.limits[2]/ (exp10( Cscale.ytics[2]))));   
+	  pSUBWIN_FEATURE (psubwin)->FRect[2]=  
+	    exp10( Cscale.xtics[2]) * (ceil(pSUBWIN_FEATURE (psubwin)->axes.limits[3]/ (exp10( Cscale.xtics[2])))); 
+	  pSUBWIN_FEATURE (psubwin)->FRect[3]=  
+	    exp10( Cscale.ytics[2]) * (ceil(pSUBWIN_FEATURE (psubwin)->axes.limits[4]/ (exp10( Cscale.ytics[2])))); 
+                 
+	  pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 0;} 
+      else if ((strncmp(cstk(*value),"off", 3) == 0)){
+	for (i=0;i<4 ; i++) 
+	  pSUBWIN_FEATURE (psubwin)->FRect[i]
+	    = pSUBWIN_FEATURE (psubwin)->axes.limits[i+1];
+	pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 1; }            
+      else
+	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
+    } 
+  else if (strncmp(marker,"tics_color", 10) == 0) {   
+    if (sciGetEntityType (pobj) == SCI_AXES)
+      pAXES_FEATURE (pobj)->ticscolor = stk(*value)[0];
+    else if (sciGetEntityType (pobj) == SCI_SUBWIN)
+      pSUBWIN_FEATURE (pobj)->axes.ticscolor = stk(*value)[0];
+    else
+      {strcpy(error_message,"tics_color property does not exist for this handle");return -1;}
+    }
+  else if (strncmp(marker,"tics_style", 10) == 0) { 
+    if((strncmp(cstk(*value),"v",1) != 0)&&
+       (strncmp(cstk(*value),"r",1) != 0)&&
+       (strncmp(cstk(*value),"i",1) != 0)) { 
+      strcpy(error_message,"tics must be 'v' or 'r' or 'i'");return -1;
+    }
+
+    if (sciGetEntityType (pobj) == SCI_AXES)
+      pAXES_FEATURE (pobj)->tics = *cstk(*value);
+    else {
+      strcpy(error_message,"tics_style property does not exist for this handle");return -1;
+    }
+  }
+  else if (strncmp(marker,"sub_tics", 8) == 0) {
+    if (sciGetEntityType (pobj) == SCI_AXES)
+      pAXES_FEATURE (pobj)->subint= *stk(*value);
+    else if (sciGetEntityType (pobj) == SCI_SUBWIN) {
+      if (*numcol != 2 ) {
+	strcpy(error_message,"Value must have two elements");return -1;}
+      for (i = 0; i < 2;i++)
+	pSUBWIN_FEATURE (pobj)->axes.subint[i]=*stk(*value+i); 
+    }
+    else
+      {strcpy(error_message,"sub_tics property does not exist for this handle");return -1;}
+    
+  }
+  else if (strncmp(marker,"tics_textsize", 13) == 0) {   
+    if (sciGetEntityType (pobj) == SCI_AXES)
+      pAXES_FEATURE (pobj)->fontsize= stk(*value)[0]; 
+    else if (sciGetEntityType (pobj) == SCI_SUBWIN)
+      pSUBWIN_FEATURE (pobj)->axes.fontsize = stk(*value)[0];
+    else
+      {strcpy(error_message,"tics_textsize property does not exist for this handle");return -1;}
+  }
+  else if (strncmp(marker,"format_n", 8) == 0)
+    {
+      strncpy(pAXES_FEATURE (pobj)->format,cstk(*value),1);   
+    }
+  else if (strncmp(marker,"tics_segment", 12) == 0) 
+    {
+      xtmp = stk(*value)[0];
+      if ((xtmp!= 0) && (xtmp!= 1))
+	{strcpy(error_message,"Second argument must be 0 or 1 ");return -1;}
+      else
+	pAXES_FEATURE (pobj)->seg = stk(*value)[0];
+    }
+  else if (strncmp(marker,"tics_textcolor", 14) == 0) 
+    {   if (sciGetEntityType (pobj) == SCI_AXES)
+      pAXES_FEATURE (pobj)->textcolor= stk(*value)[0];
+    else
+      pSUBWIN_FEATURE (psubwin)->axes.textcolor = stk(*value)[0];
+    }
+	
+  else if (strncmp(marker,"tics_labels", 11) == 0) 
+    { 
+      if (*numrow != 1)
+	{strcpy(error_message,"Second argument must be a vector"); return -1;}
+      else
+	{
+	  ptr= (char **)(*value);  
+	  if (Max(pAXES_FEATURE(pobj)->nx,pAXES_FEATURE(pobj)->ny) != *numcol)
+	    {sprintf(error_message,"Value must have %d elements",Max(pAXES_FEATURE(pobj)->nx,pAXES_FEATURE(pobj)->ny));return -1;}
+	  else
+	    pAXES_FEATURE(pobj)->str =ptr; 
+	}
+    }
+  else if (strncmp(marker,"xtics_coord", 11) == 0) 
+    { 
+      if (*numrow != 1)
+	{strcpy(error_message,"Second argument must be a row vector");return -1;}
+      else if (( pAXES_FEATURE(pobj)->nx == 1) &&(*numcol!=1))
+	{strcpy(error_message,"Second argument must be a scalar");return -1;}
+      else if (( pAXES_FEATURE(pobj)->nx != 1) &&(*numcol==1))
+	{strcpy(error_message,"Second argument  must be a vector");return -1;}
+      else
+	{                       
+	  if ( pAXES_FEATURE(pobj)->nx < *numcol)
+	    {  
+	      if ((str= (char **)realloc(str,(*numcol) * sizeof (char *))) == NULL)
+		return 0; 
+	      for (i=0; i<*numcol;i++)
+		{   
+		  if ((str[i]= (char *) MALLOC(strlen(ctmp) * sizeof (char ))) == NULL)
+		    return 0; 
+		  dtmp=*stk(*value+i);
+		  sprintf(ctmp,"%.2f",dtmp);
+		  strcpy(str[i],ctmp);
+		} 
+	      pAXES_FEATURE(pobj)->str=str;
+	    }
+	  if ((pAXES_FEATURE(pobj)->vx = MALLOC (*numcol * sizeof (double))) == NULL)
+	    return 0;
+	  pAXES_FEATURE(pobj)->nx= *numcol;
+	  for (i = 0; i < *numcol;i++)
+	    pAXES_FEATURE(pobj)->vx[i]=*stk(*value+i); 
+	}
+    }
+  else if (strncmp(marker,"ytics_coord", 11) == 0) 
+    {
+      if (*numrow != 1)
+	{strcpy(error_message,"Second argument must be a row vector");return -1;}
+      else if (( pAXES_FEATURE(pobj)->ny ==1) &&( *numcol != 1))
+	{strcpy(error_message,"Second argument must be a scalar");return -1;}
+      else if (( pAXES_FEATURE(pobj)->ny !=1) && (*numcol == 1))
+	{strcpy(error_message,"Second argument must be a vector");return -1;}
+      else
+	{                       
+	  if ( pAXES_FEATURE(pobj)->ny < *numcol)
+	    { 
+	      if ((str= (char **) realloc(str,(*numcol) * sizeof (char *))) == NULL)
+		return 0; 
+	      for (i=0; i<*numcol;i++)
+		{    
+		  if ((str[i]= (char *) MALLOC(strlen(ctmp) * sizeof (char ))) == NULL)
+		    return 0; 
+		  dtmp=*stk(*value+i);
+		  sprintf(ctmp,"%.2f",dtmp);
+		  strcpy(str[i],ctmp);                                
+		}
+	      pAXES_FEATURE(pobj)->str=str; 
+	    }
+	  if ((pAXES_FEATURE(pobj)->vy = MALLOC (*numcol * sizeof (double))) == NULL)
+	    return 0;
+	  pAXES_FEATURE(pobj)->ny= *numcol; 
+	  for (i = 0; i < *numcol;i++)
+	    pAXES_FEATURE(pobj)->vy[i]=*stk(*value+i);  
+	}
+    } 
+  else if  (strncmp(marker,"box", 3) == 0) 
+    {
+      if ((strncmp(cstk(*value),"on", 2) == 0)) 
+	pSUBWIN_FEATURE (psubwin)->axes.rect= 1; 
+      else if ((strncmp(cstk(*value),"off", 3) == 0))  
+	pSUBWIN_FEATURE (psubwin)->axes.rect= 0;
+      else
+	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
+    }
+  else if (strncmp(marker,"grid", 4) == 0) {
+    if (stk(*value)[0] < -1) 
+      {strcpy(error_message,"Argument must be -1 (no grid)  or number of color");return -1;}
+    else
+      pSUBWIN_FEATURE (pobj)->grid=stk(*value)[0];
+  }  
+  else if  (strncmp(marker,"axes_visible", 12) == 0) 
+    {
+      if ((strncmp(cstk(*value),"on", 2) == 0)) 
+	pSUBWIN_FEATURE (psubwin)->isaxes= TRUE; 
+      else if ((strncmp(cstk(*value),"off", 3) == 0))  
+	pSUBWIN_FEATURE (psubwin)->isaxes= FALSE;
+      else
+	{strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
+    }  
+  else if (strncmp(marker,"log_flags", 9) == 0)
+    {
+      char *flags;
+      flags=cstk(*value);
+      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
+	if ((*numrow * *numcol ==2 )&& 
+	    (flags[0]=='n'||flags[0]=='l')&&
+	    (flags[1]=='n'||flags[1]=='l')) {
+	  pSUBWIN_FEATURE (pobj)->logflags[0]=flags[0];
+	  pSUBWIN_FEATURE (pobj)->logflags[1]=flags[1];
+	}
+	else 
+	  {strcpy(error_message,"incorrect log_flags value");return -1;}
+      }
+      else
+	{strcpy(error_message,"log_flags property does not exist for this handle");return -1;}
+      }
+  else if (strncmp(marker,"arrow_size", 10) == 0) {
+    pSEGS_FEATURE (pobj)->arrowsize = *stk(*value);      
+  }  
+ /**************** Matplot Grayplot *********************/
+  else if (strncmp(marker,"data_mapping", 12) == 0) {
+    if (sciGetEntityType (pobj) == SCI_GRAYPLOT) {
+      if ((strncmp(cstk(*value),"scaled", 6) == 0)||(strncmp(cstk(*value),"direct", 6) == 0)) 
+	strcpy(pGRAYPLOT_FEATURE (pobj)->datamapping,cstk(*value));
+      else
+	{strcpy(error_message,"Value must be 'direct' or 'scaled'");return -1;}
+    }
+    else
+      {strcpy(error_message,"data_mapping property does not exist for this handle");return -1;}
+  } 
+
+  else 
+    {sprintf(error_message,"Unknown  property %s",marker);return -1;}
+  return 0;
+}
+
+
+
+/**@name sciGet(sciPointObj *pobj,)
+ * Sets the value to the object
+ */
+int sciGet(sciPointObj *pobj,char *marker)
+{
+  int numrow, numcol, outindex, i,j,k;
+  integer x[2],x1[10], x2,itmp=0, flagx=0;
+  sciSons *toto;
+  double *tab;
+  char **str;
+  sciPointObj *psubwin;
+  int Etype;
+        
+  if (pobj != (sciPointObj *)NULL){
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    Etype=sciGetEntityType (pobj);}
+
+  if ((pobj == (sciPointObj *)NULL) && 
+      (strncmp(marker,"old_style", 9) !=0 ) && 
+      (strncmp(marker,"figure_style", 12) != 0))
+    {
+      if (version_flag() == 0)
+	{strcpy(error_message,"handle is not valid");return -1;}
+      else
+	{strcpy(error_message,"function not valid under old graphics style");return -1;}
+		
+    }
+  /***************** graphics mode *******************************/ 
+  else if (strncmp(marker,"visible", 7) == 0) {
+    numrow   = 1;
+    numcol   = 3;
+    CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+    if (sciGetVisibility((sciPointObj *)pobj))
+      strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
+    else 
+      strncpy(cstk(outindex),"off", numrow*numcol);
+  }
+  else if (strncmp(marker,"xor_mode", 8) == 0)
+    {
+      numrow = 1;
+      numcol = 1;
+      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
+      *istk(outindex) = sciGetXorMode((sciPointObj *)pobj);
+    }  
+  else if (strncmp(marker,"old_style", 9) == 0)
+    {
+      numrow   = 1;
+      numcol   = 3;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      if (versionflag != 0)
+	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
+      else 
+	strncpy(cstk(outindex),"off", numrow*numcol);      
+		
+    }
+  else if (strncmp(marker,"figure_style", 12) == 0)
+    {
+      numrow   = 1;
+      numcol   = 3;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      if (version_flag()!=0)
+	strncpy(cstk(outindex),"old", numrow*numcol); 
+      else 
+	strncpy(cstk(outindex),"new", numrow*numcol);      
+    }
+  else if (strncmp(marker,"auto_resize", 10) == 0)
+    {
+      numrow   = 1;
+      numcol   = 3;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      if (sciGetResize((sciPointObj *) pobj))
+	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
+      else 
+	strncpy(cstk(outindex),"off", numrow*numcol);
+    }
+  /************************  figure Properties *****************************/ 
+  else if (strncmp(marker,"figure_position", 15) == 0)
+    {
+      if (Etype != SCI_FIGURE) {
+	sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
+      numrow   = 1;numcol   = 2;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
+      stk(outindex)[0] = sciGetFigurePosX ((sciPointObj *) pobj)-4; 
+      stk(outindex)[1] = sciGetFigurePosY ((sciPointObj *) pobj)-20;
+    }  
+  else if (strncmp(marker,"axes_size", 9) == 0)
+    {
+      numrow   = 1;
+      numcol   = 2;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      stk(outindex)[0] = sciGetPosWidth ((sciPointObj *) pobj); 
+      stk(outindex)[1] = sciGetPosHeight ((sciPointObj *) pobj);  
+    } 
+  else if (strncmp(marker,"figure_size", 15) == 0)
+    {
+      numrow   = 1;
+      numcol   = 2;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      C2F(dr)("xget","wpdim",&itmp,x,&itmp,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth=x[0];  
+      pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight=x[1]; 
+      stk(outindex)[0] = pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth;  
+      stk(outindex)[1] = pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight;  
+    }
+  else if (strncmp(marker,"figure_name", 11) == 0)
+    {
+      numrow = 1;
+      numcol = sciGetNameLength((sciPointObj *) pobj);
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      strncpy(cstk(outindex), sciGetName((sciPointObj *) pobj), numrow*numcol);
+    }
+  else if (strncmp(marker,"figure_id", 9) == 0)
+    {
+      numrow = 1;
+      numcol = 1;
+      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
+      *istk(outindex) = sciGetNum((sciPointObj *)pobj);
+    }
+  /********** Handles Properties *********************************************/       
+  else if (strncmp(marker,"type", 4) == 0)
+    {
+      numrow = 1;
+      numcol = strlen(sciGetCharEntityType((sciPointObj *) pobj));
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      strncpy(cstk(outindex), sciGetCharEntityType((sciPointObj *) pobj), numrow*numcol);
+    }
+  else if (strncmp(marker,"parent", 6) == 0)
+    {
+      numrow   = 1;
+      numcol   = 1;
+      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+      *stk(outindex) = (double )sciGetHandle(sciGetParent((sciPointObj *)pobj));
+    }
+  else if (strncmp(marker,"current_axes", 12) == 0)
+    {
+      numrow   = 1;
+      numcol   = 1;
+      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+      *stk(outindex) = (double )sciGetHandle(sciGetSelectedSubWin(
+								  sciGetCurrentFigure((sciPointObj *)pobj)));
+    }
+  else if (strncmp(marker,"current_figure", 14) == 0)
+    {
+      numrow   = 1;
+      numcol   = 1;
+      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+      *stk(outindex) = (double )sciGetHandle(sciGetCurrentFigure());
+    }
+  else if (strncmp(marker,"current_obj", 11) == 0)
+    {
+      numrow   = 1;
+      numcol   = 1;
+      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+      *stk(outindex) = (double )sciGetHandle(sciGetCurrentObj());
+    }
+  else if (strncmp(marker,"children", 8) == 0)
+    {
+      i = 0;
+      toto = sciGetSons((sciPointObj *) pobj);
+      while ((toto != (sciSons *)NULL) && (toto->pointobj != (sciPointObj *)NULL))
+	{
+	  toto = toto->pnext;
+	  i++;
+	}
+      numrow   = i;
+      numcol   = 1;
+      if(numrow==0) {
+	CreateVar(Rhs+1,"d",&numrow,&numrow,&outindex);
+      }
+      else {
+	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+	toto = sciGetSons((sciPointObj *) pobj);
+	i = 0;
+	while ((toto != (sciSons *)NULL) && (toto->pointobj != (sciPointObj *)NULL))
+	  {
+	    stk(outindex)[i] = 
+	      (double )sciGetHandle((sciPointObj *)toto->pointobj);
+	    toto = toto->pnext;/* toto is pointer to one son */
+	    i++;
+	  }
+      }
+    }
+  else if (strncmp(marker,"hdl", 3) == 0)
+    {
+      numrow   = 1;
+      numcol   = 1;
+      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+      *stk(outindex) = sciGetHandle(sciGetCurrentObj());
+    }
+
+  /******************************** context graphique  *****************************************/
+
+  else if (strncmp(marker,"color_map", 9) == 0)
+    { 
+      numcol = 3;
+      CheckColormap(&numrow);
+      if ( numrow == 0) numcol=0;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      C2F(dr1)("xget", "colormap",&flagx,x1,&x2,PI0,PI0,PI0,stk(outindex),PD0,PD0,PD0,5L,bsiz);
+    }
+  else if (strncmp(marker,"background", 10) == 0)
+    {
+      numrow   = 1;numcol   = 1;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      *stk(outindex) = sciGetBackground((sciPointObj *) pobj);
+    }
+  else if (strncmp(marker,"foreground", 10) == 0) 
+    {
+      numrow   = 1;numcol   = 1;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      *stk(outindex) = sciGetForeground((sciPointObj *) pobj);
+    }
+  else if (strncmp(marker,"fill_mode", 9) == 0) 
+    {
+      numrow = 1;numcol = 3;
+      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+      if (sciGetFillFlag((sciPointObj *) pobj)==1)
+	strncpy(cstk(outindex),"on", numrow*(numcol-1));
+      else
+	strncpy(cstk(outindex),"off", numrow*numcol);
+    }
+  else if (strncmp(marker,"thickness", 9) == 0) 
+    {
+      numrow   = 1;numcol   = 1;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      *stk(outindex) = sciGetLineWidth((sciPointObj *) pobj);
+    }
+  else if (strncmp(marker,"line_style",10) == 0)	{
+    numrow   = 1;numcol   = 1;
+    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+    *stk(outindex) = sciGetLineStyle((sciPointObj *) pobj);
+  }
+  else if (strncmp(marker,"mark_style", 10) == 0)	{
+    numrow   = 1;numcol   = 1;
+    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+    *stk(outindex) = sciGetMarkStyle((sciPointObj *) pobj);
+  }
+  else if (strncmp(marker,"mark_mode", 9) == 0)
+    {
+      numrow = 1;numcol = 3;
+      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+      if (sciGetIsMark((sciPointObj *)pobj) == 1)
+	strncpy(cstk(outindex),"on", numrow*(numcol-1));
+      else
+	strncpy(cstk(outindex),"off", numrow*numcol);
+    }
+  else if (strncmp(marker,"polyline_style", 14) == 0) {
+    numrow   = 1;numcol   = 1;
+    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
+    if (sciGetEntityType (pobj) == SCI_POLYLINE)
+      *stk(outindex) = pPOLYLINE_FEATURE (pobj)->plot;
+    else
+      { strcpy(error_message,"Unknown polyline property"); return -1;}
+
+  }
+  else if (strncmp(marker,"font_size", 9) == 0)
+    {
+      numrow = 1;numcol = 1;
+      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
+      *istk(outindex) = sciGetFontDeciWidth((sciPointObj *)pobj);
+    }
+  else if (strncmp(marker,"fontorient", 10) == 0)
+    {
+      numrow = 1; numcol = 1;
+      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
+      *istk(outindex) = (sciGetFontOrientation((sciPointObj *)pobj))/10;
+    }
+  else if (strncmp(marker,"font_foreground", 15) == 0)
+    {
+      numrow = 1;numcol = 1;
+      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
+      *istk(outindex) = sciGetFontForeground((sciPointObj *)pobj);
+    }
+  else if (strncmp(marker,"font_style", 10) == 0)
+    {
+      numrow = 1; numcol = 1;
+      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
+      *istk(outindex) = sciGetFontStyle((sciPointObj *)pobj);
+    }
+  else if (strncmp(marker,"font_name", 9) == 0)
+    {
+      numrow = 1;
+      numcol = sciGetFontNameLength((sciPointObj *)pobj);
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      strncpy(cstk(outindex), sciGetFontName((sciPointObj *)pobj), numrow*numcol);
+    }
+  else if (strncmp(marker,"text", 4) == 0)
+    {
+      numrow = 1;
+      numcol = sciGetTextLength((sciPointObj *)pobj);
+      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+      strncpy(cstk(outindex), sciGetText((sciPointObj *)pobj), numrow*numcol);
+    }
+  else if (strncmp(marker,"auto_clear", 10) == 0)
+    {
+      numrow = 1;numcol = 3;
+      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+      if (!sciGetAddPlot((sciPointObj *)pobj))
+	strncpy(cstk(outindex),"on", numrow*(numcol-1));
+      else
+	strncpy(cstk(outindex),"off",numrow*numcol);
+    }
+  else if (strncmp(marker,"auto_scale", 10) == 0)
+    {
+      numrow = 1;numcol = 3;
+      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+      if ( sciGetAutoScale((sciPointObj *)pobj))
+	strncpy(cstk(outindex),"on", numrow*(numcol-1));
+      else
+	strncpy(cstk(outindex),"off",numrow*numcol);
+    }
+  else if ((strncmp(marker,"zoom_box", 8) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
+    {
+      if (!sciGetZooming((sciPointObj *)pobj))
+	{
+	  numrow=0; numcol=0;
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	}
+      else
+	{
+	  numrow=1;numcol=4;
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	  for (i=0;i<numcol;i++)
+	    stk(outindex)[i] =  pSUBWIN_FEATURE(pobj)->FRect[i];			
+	} 
+    }
+  else if ((strncmp(marker,"zoom_state", 9) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
+    {
+      numrow   = 1;numcol   = 3;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      if (sciGetZooming((sciPointObj *)pobj)) 
+	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
+      else 
+	strncpy(cstk(outindex),"off", numrow*numcol);
+    }
+  else if (strncmp(marker,"clip_box", 8) == 0) 
+    {
+      if ((k=sciGetIsClipping ((sciPointObj *) pobj)) > 0 )
+	{ 
+	  numrow=1; numcol=4;  
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	  for (i=0;i<numcol;i++)
+	    stk(outindex)[i] =  ptabclip[k].clip[i];	
+		 
+	}
+      else if ((k=sciGetIsClipping ((sciPointObj *) pobj)) == 0 )
+	{ 
+	  numrow=1;numcol=4;  
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	  stk(outindex)[0] =  pSUBWIN_FEATURE (psubwin)->FRect[0];	
+	  stk(outindex)[1] =  pSUBWIN_FEATURE (psubwin)->FRect[1];
+	  stk(outindex)[2] =  pSUBWIN_FEATURE (psubwin)->FRect[2] - pSUBWIN_FEATURE (psubwin)->FRect[0];	
+	  stk(outindex)[3] =  pSUBWIN_FEATURE (psubwin)->FRect[3] - pSUBWIN_FEATURE (psubwin)->FRect[1];	
+	}
+      else
+	{ 
+	  numrow=0;numcol=0;
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);		
+	}
+    }
+  else if (strncmp(marker,"clip_state", 9) == 0) 
+    {
+      numrow   = 1;numcol   = 7;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      if (sciGetIsClipping (pobj) == 0) 
+	strncpy(cstk(outindex),"clipgrf", numrow*numcol); 
+      else if (sciGetIsClipping (pobj) > 0) 
+	strncpy(cstk(outindex),"on", numrow*(numcol-5));	
+      else 
+	strncpy(cstk(outindex),"off", numrow*(numcol-4));    
+    }
+  else if (strcmp(marker,"data") == 0)
+    {
+      if ((tab = sciGetPoint ((sciPointObj *)pobj, &numrow, &numcol)) == NULL)
+	{strcpy(error_message,"No point");return -1;}
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      k=0;
+      for (j=0;j < numcol;j++)
+	for (i=0;i<numrow;i++)
+	  {
+	    stk(outindex)[k++] = tab[2*i+j];
+	  }
+      FREE(tab);
+    }
+        
+  /**************** callback *********************/
+  else if (strncmp(marker,"callbackmevent", 14) == 0)
+    {
+      numrow = 1;numcol = 1;
+      CreateVar(Rhs+1,"i", &numrow, &numcol, &outindex);
+      istk(outindex)[0] = sciGetCallbackMouseEvent((sciPointObj *)pobj);
+    }
+  else if (strncmp(marker,"callback", 8) == 0)
+    {
+      numrow = 1;
+      numcol = sciGetCallbackLen((sciPointObj *)pobj);
+      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+      strncpy(cstk(outindex), sciGetCallback((sciPointObj *)pobj), numrow*numcol);
+    }
+	
+  /**************************** AXES *************/
+  else if (strncmp(marker,"log_flags", 9) == 0)
+    {
+      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
+	numrow = 1;numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	*cstk(outindex)=pSUBWIN_FEATURE (pobj)->logflags[0];
+	*cstk(outindex+1)=pSUBWIN_FEATURE (pobj)->logflags[1];
+      }
+      else 	
+	{strcpy(error_message,"log_flag property undefined for this object");return -1;}
+
+    }
+  else if (strncmp(marker,"tics_direction", 14) == 0)
+    {
+      numrow = 1;
+      switch (pAXES_FEATURE (pobj)->dir)
+	{
+	case 'u': 
+	  numcol =  3;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex), "top" , numrow*numcol);
+	  break;
+	case 'd': 
+	  numcol =  6;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex), "bottom" , numrow*numcol);
+	  break;
+	case 'r': 
+	  numcol =  5;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex), "right" , numrow*numcol); 
+	  break;
+	case 'l': 
+	  numcol =  4;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex), "left", numrow*numcol); 
+	  break;
+	default : 
+	  strcpy(error_message, "Unexpected error");return -1;
+	  break;
+	}
+    }
+  else if (strncmp(marker,"x_location", 10) == 0) 
+    {
+      char loc;
+      numrow = 1;
+      if (sciGetEntityType (pobj) == SCI_SUBWIN)
+	loc = pSUBWIN_FEATURE (pobj)->axes.xdir;
+      else
+	{strcpy(error_message,"x_location property does not exist for this handle");return -1;}
+
+      switch (loc)
+	{
+	case 'u': 
+	  numcol =  3;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex), "top" , numrow*numcol);
+	  break;
+	case 'd': 
+	  numcol =  6;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex), "bottom" , numrow*numcol);
+	  break;
+	case 'c': 
+	  numcol =  6;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex), "middle" , numrow*numcol); 
+	  break;
+	default : 
+	  strcpy(error_message, "Unexpected error"); return -1;
+	  break;
+	}
+    }  
+  else if (strncmp(marker,"y_location", 10) == 0)
+    {
+      char loc;
+      numrow = 1;
+      if (sciGetEntityType (pobj) == SCI_SUBWIN)
+	loc = pSUBWIN_FEATURE (pobj)->axes.ydir;
+      else
+	{strcpy(error_message,"x_location property does not exist for this handle");return -1;}
+
+      switch (loc)
+	{
+	case 'l': 
+	  numcol =  4;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex), "left" , numrow*numcol);
+	  break;
+	case 'r': 
+	  numcol =  5;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex), "right" , numrow*numcol);
+	  break;
+	case 'c': 
+	  numcol =  6;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex), "middle" , numrow*numcol); 
+	  break;
+	default : 
+	  strcpy(error_message, "Unexpected error"); return -1;
+	  break;
+	}
+    } 
+  else if (strncmp(marker,"tight_limits", 12) == 0)
+    {
+      numrow   = 1;numcol   = 3;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      if (pSUBWIN_FEATURE (pobj)->axes.limits[0] == 1)
+	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
+      else 
+	strncpy(cstk(outindex),"off", numrow*numcol);      
+    }
+  else if (strncmp(marker,"tics_color", 9) == 0) 
+    {
+      numrow   = 1;numcol   = 1;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      if (sciGetEntityType (pobj) == SCI_AXES)
+	*stk(outindex) = pAXES_FEATURE (pobj)->ticscolor;
+      else
+	*stk(outindex) = pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
+    }
+  else if (strncmp(marker,"tics_style", 10) == 0)
+    {
+      numrow = 1; numcol = 1;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      strncpy(cstk(outindex), &pAXES_FEATURE (pobj)->tics , numrow*numcol);
+    }
+  else if (strncmp(marker,"sub_tics", 8) == 0)
+    {
+      numrow   = 1;
+      numcol   = (sciGetEntityType (pobj) == SCI_AXES) ? 1:2;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex); 
+      if (sciGetEntityType (pobj) == SCI_AXES)
+	*stk(outindex) = pAXES_FEATURE (pobj)->subint;
+      else 
+	for (i=0;i<numcol;i++)
+	  stk(outindex)[i] = pSUBWIN_FEATURE (psubwin)->axes.subint[i];
+    }
+  else if (strncmp(marker,"tics_textsize", 13) == 0) 
+    {
+      numrow   = 1;numcol   = 1;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      if (sciGetEntityType (pobj) == SCI_AXES)
+	*stk(outindex) = pAXES_FEATURE (pobj)->fontsize;
+      else
+	*stk(outindex) = pSUBWIN_FEATURE (psubwin)->axes.fontsize;
+    }
+  else if (strncmp(marker,"tics_segment", 12) == 0) 
+    {
+      numrow   = 1; numcol   = 1;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      *stk(outindex) = pAXES_FEATURE (pobj)->seg;
+    }
+  else if (strncmp(marker,"tics_textcolor", 14) == 0)	{
+    numrow   = 1;numcol   = 1;
+    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+    if (sciGetEntityType (pobj) == SCI_AXES)
+      *stk(outindex) = pAXES_FEATURE (pobj)->textcolor;
+    else
+      *stk(outindex) = pSUBWIN_FEATURE (psubwin)->axes.textcolor;
+  }
+  else if (strncmp(marker,"format_n", 9) == 0)	{
+    numrow   = 1;numcol   = 1;
+    CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+    strncpy(cstk(outindex),pAXES_FEATURE (pobj)->format, numrow*numcol);
+  }
+  else if (strncmp(marker,"xtics_coord", 11) == 0)
+    {
+      numrow=1;
+      numcol= pAXES_FEATURE (pobj)->nx;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      for (i=0;i<numcol;i++)
+	stk(outindex)[i] = pAXES_FEATURE (pobj)->vx[i];
+    }
+  else if (strncmp(marker,"ytics_coord", 11) == 0)
+    {
+      numrow=1;
+      numcol= pAXES_FEATURE (pobj)->ny;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      for (i=0;i<numcol;i++)
+	stk(outindex)[i] = pAXES_FEATURE (pobj)->vy[i];
+    }
+  else if (strncmp(marker,"tics_labels", 11) == 0)
+    {
+      numrow=1;
+      numcol= Max(pAXES_FEATURE (pobj)->nx,pAXES_FEATURE (pobj)->ny);
+      str = pAXES_FEATURE (pobj)->str;
+      if (str==NULL){
+	numrow=1;
+	numcol= Max(pAXES_FEATURE (pobj)->nx,pAXES_FEATURE (pobj)->ny);
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	for (i=0;i<numcol;i++) {
+	  stk(outindex)[i] = ((pAXES_FEATURE (pobj)->nx<numcol) ? pAXES_FEATURE (pobj)->vy[i]: pAXES_FEATURE (pobj)->vx[i]);
+	}
+      }
+      else {
+	CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,str);
+      }
+    }
+  else if ((strncmp(marker,"box", 3) == 0) && (sciGetEntityType (pobj) == SCI_AXIS)) {
+    numrow   = 1;
+    numcol   = 3;
+    CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+    if (pSUBWIN_FEATURE (psubwin)->axes.rect==1)
+      strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
+    else 
+      strncpy(cstk(outindex),"off", numrow*numcol);  
+  }  
+  else if (strncmp(marker,"grid", 4) == 0) 
+    {
+      numrow   = 1; numcol   = 1;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      *stk(outindex) = pSUBWIN_FEATURE (pobj)->grid;
+    }
+  else if (strncmp(marker,"axes_visible", 12) == 0) {
+    numrow   = 1;numcol   = 3;
+    CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+    if (pSUBWIN_FEATURE (psubwin)->isaxes)
+      strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
+    else 
+      strncpy(cstk(outindex),"off", numrow*numcol);  
+  }
+  else if (strncmp(marker,"arrow_size", 10) == 0)
+    {
+      numrow = 1;numcol = 1;
+      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
+      *istk(outindex) = pSEGS_FEATURE (pobj)->arrowsize ;
+    } 
+ /**************** Matplot Grayplot *********************/
+  else if (strncmp(marker,"data_mapping", 12) == 0) {
+    if (sciGetEntityType (pobj) == SCI_GRAYPLOT) {
+      numrow = 1;numcol = 6;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      strcpy(cstk(outindex),pGRAYPLOT_FEATURE (pobj)->datamapping);
+    }
+    else
+      {strcpy(error_message,"data_mapping property does not exist for this handle");return -1;}
+  } 
+
+  else 
+    {sprintf(error_message,"Unknown  property %s",marker);return -1;}
+
+  return 0;
+}
+
+
+
+int delete(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{  
+  integer m1,n1,l1,m2,n2,l2,num,cur,na,verb=0, lw;
+  unsigned long hdl;
+  sciPointObj *pobj, *pparentfigure;
+
+  CheckRhs(0,2);
+  CheckLhs(0,1);
+  C2F(sciwin)();
+  switch(VarType(1)) 
+    {
+    case 9: /* delete Entity given by a handle */
+      CheckRhs(1,2); 
+      GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */
+      if (m1!=1||n1!=1) { 
+	lw = 1 + Top - Rhs;
+	C2F(overload)(&lw,"delete",6);return 0;}
+      if (Rhs == 2)
+	GetRhsVar(2,"c",&m2,&n2,&l2); /* Gets the command name */
+      hdl = (unsigned long)*stk(l1); /* Puts the value of the Handle to hdl */
+      break;
+    case 10: /* delete("all") */
+      CheckRhs(1,1);
+      GetRhsVar(1,"c",&m2,&n2,&l2);
+      if (strncmp(cstk(l2),"all", 3) == 0) 
+	{   
+	  sciXbasc();return 0;
+	} 
+      else
+	{
+	  Scierror(999,"%s :Incorrect argument\r\n",fname);
+	  return 0;
+	}
+      break;
+    default:
+      CheckRhs(0,0);
+      hdl = (unsigned long ) sciGetHandle((sciPointObj *)sciGetCurrentObj());
+      break;
+    }
+     
+  pobj = sciGetPointerFromHandle(hdl);// verifier la validiter du pointeur !!!!
+  if (pobj == (sciPointObj *)NULL) {
+      Scierror(999,"%s :the handle is not valid\r\n",fname);
+      return 0;
+    }
+  num= sciGetNumFigure (pobj);    
+  C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  if ((Rhs == 2) && (strncmp(cstk(l2),"callback", 8) == 0))
+    sciDelCallback((sciPointObj *)pobj);
+  else {  
+      if (sciGetParentFigure(pobj) != NULL)  {
+	  pparentfigure = sciGetParentFigure(pobj);
+	}
+      sciSetCurrentObj((sciPointObj *)sciGetParent((sciPointObj *)pobj));
+      sciDelGraphicObj((sciPointObj *)pobj);	
+      sciDrawObj((sciPointObj *)pparentfigure);	 
+		
+    }
+  C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  LhsVar(1)=0;
+  return 0;
+}
+
+
+int addcb(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{  
+	unsigned long hdl;
+	integer m1, n1, l1,m2, n2, l2;
+	sciPointObj *pobj;
+
+ 	CheckRhs(2,3);
+	CheckLhs(0,1);
+
+	//  set or create a graphic window
+	C2F(sciwin)();
+	switch(VarType(1)) 
+	{
+	case 1: // first is a scalar argument so it's a legend(hdl,"str1",...)
+                CheckRhs(3,3);
+                GetRhsVar(1,"h",&m1,&n1,&l1); // Gets the Handle passed as argument
+		hdl = (unsigned long)*stk(l1); // on recupere le pointeur d'objet par le handle
+	        GetRhsVar(2,"c",&m1,&n1,&l1); // Gets the command name  
+                GetRhsVar(3,"i",&m2,&n2,&l2); // Gets the mouse event 
+		break;
+	case 10:// first is a string argument so it's a sciset("str1",....)
+		hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin(sciGetCurrentFigure())); // Gets the figure handle value if it ones (the phather)
+		CheckRhs(2,2);
+                GetRhsVar(1,"c",&m1,&n1,&l1); // Gets the command name    
+                GetRhsVar(2,"i",&m2,&n2,&l2); // Gets the mouse event 
+                break;
+        default: 
+                Scierror(999,"%s: Pad parameters\r\n",fname);
+                return 0;
+                break;
+     
+         }
+	  if ((pobj = sciGetPointerFromHandle(hdl)) != NULL );
+	       sciAddCallback((sciPointObj *)pobj, cstk(l1),m1*n1,*istk(l2));
+        LhsVar(1)=0;
+	return 0;
+}
+
+
+
+
+int copy(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{  
+  unsigned long hdl, hdlparent;
+  sciPointObj *pobj, *psubwinparenttarget, *pcopyobj;
+  integer m1, n1, l1,l2;
+  int numrow, numcol, outindex;
+
+  CheckRhs(1,2);
+  CheckLhs(0,1);
+        
+  //  set or create a graphic window
+  C2F(sciwin)();
+  if (Rhs == 1)
+    {
+      GetRhsVar(1,"h",&m1,&n1,&l1); // Gets the Handle passed as argument
+      hdl = (unsigned long)*stk(l1); // on recupere le pointeur d'objet par le handle
+      pobj = sciGetPointerFromHandle(hdl);
+      psubwinparenttarget = sciGetParentSubwin(sciGetPointerFromHandle(hdl));
+    }
+  else
+    {
+      GetRhsVar(1,"h",&m1,&n1,&l1); // Gets the Handle passed as argument
+      hdl = (unsigned long)*stk(l1); // on recupere le pointeur d'objet par le handle
+      pobj = sciGetPointerFromHandle(hdl);
+      GetRhsVar(2,"h",&m1,&n1,&l2); // Gets the command name 
+      hdlparent = (unsigned long)*stk(l2); // on recupere le pointeur d'objet par le handle
+      psubwinparenttarget = sciGetPointerFromHandle(hdlparent);
+    }
+  numrow   = 1;numcol   = 1;
+  CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+  *stk(outindex) = (double )sciGetHandle(
+					 pcopyobj = sciCopyObj((sciPointObj *)pobj,(sciPointObj *)psubwinparenttarget));
+  sciDrawObj((sciPointObj *)sciGetParentFigure(pcopyobj));
+  LhsVar(1) = Rhs+1;
+  return 0;
+}
+
+
+
+
+int move(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  long hdl;
+  double x,y;
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3;
+  BOOL opt;
+   
+  CheckRhs(1,3);
+  /*  set or create a graphic window */
+  C2F(sciwin)();
+  opt = FALSE;
+  if (Rhs ==3) {
+    GetRhsVar(3,"c",&m3,&n3,&l3);
+    if (strncmp(cstk(l3),"alone", 5) == 0) opt = TRUE;
+    else {
+      Scierror(999,"%s: invalid option \r\n",fname); 
+      return 0;
+    }
+  }
+    
+  GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */    
+  GetRhsVar(2,"d",&m2,&n2,&l2);
+  hdl = (unsigned long)*stk(l1); /* Puts the value of the Handle to hdl */
+  if (n2 != 2)
+    { 
+      Scierror(999,"%s: third argument is a vector,[x y] \r\n",fname);
+      return 0;
+    }
+  x = *stk(l2); 
+  y =*stk(l2+1);
+  Objmove(&hdl,x,y,opt);
+
+  LhsVar(1)=0;
+  return 0;
+}
+
+int glue(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  integer numrow,numcol,l1 ;
+  unsigned long hdl, parenthdl;
+  long *handelsvalue;
+  int m,n,outindex,i;
+  sciPointObj *pobj;
+
+  CheckRhs(0,1);
+  CheckLhs(0,1);
+
+  /*  set or create a graphic window */
+  C2F(sciwin)();
+  GetRhsVar(1,"d",&numrow,&numcol,&l1); /* We get the scalar value if it is ones */
+  n   = 1;
+  m   = 1;
+  CreateVar(Rhs+1,"d",&m,&n,&outindex);
+  /* we must change the pobj to the agregation type */
+  handelsvalue = MALLOC(((numcol)*(numrow))*sizeof(long));
+  for (i = 0; i < (numcol)*(numrow);i++)
+    {
+      handelsvalue[i] = (long) (stk(l1))[i];
+      pobj = sciGetPointerFromHandle(handelsvalue[i]);
+      parenthdl = (unsigned long ) sciGetHandle(sciGetParent (pobj));
+      if (i == 0)
+	hdl=parenthdl;
+      if  (parenthdl != hdl)
+	{
+	  Scierror(999,"%s: Objects must have the same parent\r\n",fname);
+	  return 0;
+	}
+                            
+    }
+  sciSetCurrentObj ((sciPointObj *)ConstructAgregation (handelsvalue, (numcol)*(numrow)));
+	      
+  numrow = 1;
+  numcol = 1;
+  CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+  stk(outindex)[0] = (double )sciGetHandle((sciPointObj *) sciGetCurrentObj());
+  LhsVar(1) = Rhs+1;
+  FREE(handelsvalue);
+  return 0;
+}
+
+int unglue(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{ 
+  integer m1,n1,l1; 
+  unsigned long hdl;
+  int numrow, numcol, outindex, i;
+  sciPointObj *pobj;  
+  sciSons *psonstmp;
+
+  CheckRhs(1,1);
+  CheckLhs(0,1);
+  /*  set or create a graphic window */
+  C2F(sciwin)();
+  GetRhsVar(1,"h",&m1,&n1,&l1);
+  hdl = (unsigned long)*stk(l1);
+  pobj = sciGetPointerFromHandle(hdl);
+  if (sciGetEntityType (pobj) == SCI_AGREG)
+    {
+      psonstmp = sciGetLastSons (pobj);
+      i = 0;
+      psonstmp = sciGetSons((sciPointObj *) pobj);
+      while ((psonstmp != (sciSons *)NULL) && (psonstmp->pointobj != (sciPointObj *)NULL))
+	{
+	  psonstmp = psonstmp->pnext;
+	  i++;
+	}
+      numrow   = i;
+      numcol   = 1;
+      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+      psonstmp = sciGetSons((sciPointObj *) pobj);
+      i = 0;
+      while ((psonstmp != (sciSons *)NULL) && (psonstmp->pointobj != (sciPointObj *)NULL))
+	{
+	  stk(outindex)[i] = 
+	    (double )sciGetHandle((sciPointObj *)psonstmp->pointobj);
+	  psonstmp = psonstmp->pnext;/* psonstmp   is pointer to one son */
+	  i++;
+	}
+      LhsVar(1) = Rhs+1;
+      sciUnAgregation ((sciPointObj *)pobj);
+    }
+  else
+    {
+      Scierror(999,"%s: Object must be an agregation\r\n",fname);
+    }
+  return 0;
+}
+
+
+int drawnow(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{ 
+     sciPointObj *subwin, *tmpsubwin;
+     integer m,n,l,i;
+ 
+  C2F(sciwin)(); 
+  CheckRhs(0,1);
+  CheckLhs(0,1); 
+
+  if (version_flag() == 0)
+    {
+      if (Rhs <= 0) {
+	tmpsubwin = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+	sciSetVisibility (tmpsubwin, TRUE);  
+	sciDrawObj(sciGetCurrentFigure ());
+	LhsVar(1) = 0;
+	return 0;}
+      else
+        switch(VarType(1)) 
+	  {
+	  case 1: /* first is a handle argument so it's a drawnow(subwin) */
+	    GetRhsVar(1,"h",&m,&n,&l); 
+	    for (i = 0; i < n*m; i++)
+	      {
+		subwin = sciGetPointerFromHandle(*istk(l+i));   // verifier la validiter du pointeur !!!! 
+		if (sciGetEntityType (subwin) != SCI_SUBWIN) {
+		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname);
+		  return 0;
+		}
+		else 
+		  {	
+		    sciSetVisibility (subwin,TRUE);
+		    sciDrawObj(sciGetCurrentFigure ());
+		  }
+                        
+	      }
+	    break;
+	  case 10:/* first is a string argument so it's a drawnow('all') */
+	    GetRhsVar(1,"c",&m,&n,&l);
+	    if (strncmp(cstk(l),"all", 3) == 0){ 
+	      sciSetVisibility (sciGetCurrentFigure (),TRUE);  
+	      sciDrawObj(sciGetCurrentFigure ());
+	      LhsVar(1) = 0;
+	      return 0;}
+	    else{
+              Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
+              return 0;}
+	    break; 
+	  default: 
+	    Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
+	    return 0;
+	    break;
+          }
+    }
+  LhsVar(1) = 0;
+  return 0;
+}
+
+int drawlater(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{  
+  C2F(sciwin)(); 
+  CheckRhs(-1,0); 
+  sciSetVisibility(sciGetSelectedSubWin(sciGetCurrentFigure()), FALSE); 
+  LhsVar(1) = 0;
+  return 0;
+}
+
+int scixclearsubwin(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{ 
+  unsigned long hdl,hdltab[10];
+  sciPointObj *subwin, *tmpsubwin;
+  integer m,n,l,i,numrow,numcol,outindex,j=0;
+ 
+  C2F(sciwin)();
+  CheckRhs(0,1);
+  CheckLhs(0,1);
+  if (version_flag() == 0) {
+    tmpsubwin = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ());
+    if (Rhs <= 0) { 
+      sciSetdrawmode (FALSE); 
+      numrow = 1;
+      numcol = 1;
+      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+      stk(outindex)[0] = (double )sciGetHandle((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()));
+      LhsVar(1) = Rhs+1;
+      return 0;
+    }
+
+    switch(VarType(1)) 
+      {
+      case 1: /* clearsubwin(handle) */
+	GetRhsVar(1,"h",&m,&n,&l); 
+	for (i = 0; i < n*m; i++) {
+	  hdl = (unsigned long)*stk(l+i);            /* Puts the value of the Handle to hdl */ 
+	  subwin = sciGetPointerFromHandle(hdl);   // verifier la validiter du pointeur !!!! 
+	  if (sciGetEntityType (subwin) != SCI_SUBWIN) {
+	    Scierror(999,"%s:  handle does not reference a sub_window",fname);
+	    return 0;
+	  }
+	  else  {
+	    hdltab[j] = hdl;
+	    j++;
+	    sciSetSelectedSubWin (subwin);
+	    sciSetdrawmode (FALSE); 
+	  }         
+	} 
+	break;
+      case 10:/*  clearsubwin('all') */
+	GetRhsVar(1,"c",&m,&n,&l);
+	if (strncmp(cstk(l),"all", 3) == 0){ 
+	  sciXclear();  
+	  LhsVar(1) = 0;
+	  return 0;}
+	else{
+	  Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
+	  return 0;}
+	break; 
+      default: 
+	Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
+	return 0;
+	break;
+      }
+    sciSetSelectedSubWin (tmpsubwin); 
+  }
+
+  LhsVar(1) = 0;
+  return 0;
+}
+
+
+int scixbascsubwin(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{ 
+  unsigned long hdl;
+  sciPointObj *subwin,*psubwinobj,*mafigure;
+  sciSons *psons;
+  integer m,n,l,i;
+ 
+  C2F(sciwin)();
+  CheckRhs(0,1);
+  CheckLhs(0,1);
+  if (version_flag() == 0)     {
+    mafigure = (sciPointObj *) sciGetCurrentFigure();
+    psons = sciGetSons (mafigure);
+    if (psons->pnext == NULL) { 
+	sciXbasc();
+	return 0;
+      }
+    if (Rhs <= 0) {
+      DestroyAllGraphicsSons((sciPointObj *) sciGetSelectedSubWin(mafigure));
+      psons = sciGetSons (mafigure); 
+      psubwinobj = psons->pointobj;
+      if (sciGetEntityType (psubwinobj) == SCI_SUBWIN)
+	pSUBWIN_FEATURE (psubwinobj)->isselected = TRUE;
+      else {
+	Scierror(999,"%s:  no sub_window selected !!",fname);
+	return 0;
+      }
+    }
+    else {
+      switch(VarType(1)) {
+      case 1: /* first is a scalar argument so it's a drawnow(subwin) */
+	GetRhsVar(1,"h",&m,&n,&l); 
+	for (i = 0; i < n*m; i++)
+	  {
+            hdl = (unsigned long)*stk(l+i);            /* Puts the value of the Handle to hdl */ 
+            subwin = sciGetPointerFromHandle(hdl);   // verifier la validiter du pointeur !!!! 
+            if (sciGetEntityType (subwin) != SCI_SUBWIN) {
+	      Scierror(999,"%s:  handle does not reference a sub_window",fname);
+	      return 0;
+	    }
+            else  {
+	      if ((sciPointObj *)sciGetSelectedSubWin(mafigure) == subwin ) {
+		DestroyAllGraphicsSons((sciPointObj *) subwin);  
+		psons = sciGetSons (mafigure); 
+		psubwinobj = psons->pointobj;
+		if (sciGetEntityType (psubwinobj) == SCI_SUBWIN)
+		  pSUBWIN_FEATURE (psubwinobj)->isselected = TRUE; 
+		else
+		  Scierror(999,"%s:  no sub_window is selected !!",fname);
+	      }
+	      else
+		DestroyAllGraphicsSons((sciPointObj *) subwin);   
+	    }
+	  }         
+            
+	break;
+      case 10:/* first is a string argument so it's a drawnow('all') */
+	GetRhsVar(1,"c",&m,&n,&l);
+	if (strncmp(cstk(l),"all", 3) == 0)  {   
+	  sciXbasc();
+	  return 0;
+	}  
+	else {
+	  Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
+	  return 0;
+	}  
+	break; 
+      default: 
+	Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
+	return 0;
+	break;
+      }
+    }
+    sciDrawObj(mafigure);
+  }
+  LhsVar(1) = 0;
+  return 0;
+}
+
+int draw(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{ 
+  unsigned long hdl;
+  sciPointObj *pobj, *psubwin, *tmpsubwin;
+  integer m,n,l,lw;
+  BOOL tmpmode;
+   
+ 
+  C2F(sciwin)();
+  CheckRhs(0,1);
+  CheckLhs(0,1);
+  if (version_flag() == 0) {
+    if (Rhs == 0)  
+      pobj =( sciPointObj *) sciGetCurrentObj();
+    else {
+      GetRhsVar(1,"h",&m,&n,&l); 
+      if (m!=1||n!=1) { 
+	lw = 1 + Top - Rhs;
+	C2F(overload)(&lw,"draw",4);return 0;
+      }
+      hdl = (unsigned long)*stk(l);            /* Puts the value of the Handle to hdl */ 
+      pobj = sciGetPointerFromHandle(hdl);   // verifier la validiter du pointeur !!!! 
+    }
+    if (pobj != ( sciPointObj *)NULL )  {  
+      tmpsubwin = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+      psubwin = (sciPointObj *) sciGetParentSubwin(pobj);
+      if (psubwin != ( sciPointObj *)NULL )  {  
+	sciSetSelectedSubWin(psubwin); 
+	tmpmode = pSUBWIN_FEATURE(psubwin)->visible;
+	pSUBWIN_FEATURE(psubwin)->visible = TRUE ;
+	sciDrawObj(pobj);
+	pSUBWIN_FEATURE(psubwin)->visible = tmpmode;
+	sciSetSelectedSubWin(tmpsubwin);
+      }
+      else {
+	Scierror(999,"%s: object has no parent !!",fname);
+	return 0;
+      }
+    }
+  }
+  LhsVar(1) = 0;
   return 0;
 }
 
