@@ -9627,7 +9627,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	}
       
       for (j = 0;j < (*m3n)*(*n3n); j++)  
-	pSURFACE_FEATURE (pobj)->inputCMoV[i] = zcol[j];
+	pSURFACE_FEATURE (pobj)->inputCMoV[j] = zcol[j];
       
       /* Init. zcol to NULL F.Leray 17.03.04*/
       pSURFACE_FEATURE (pobj)->zcol = NULL;
@@ -9675,22 +9675,22 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  if(flagcolor==2 && ( *m3n==1 || *n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
 	    {
 	      /* We have just enough information to fill the pSURFACE_FEATURE (pobj)->zcol array*/
-	      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-		pSURFACE_FEATURE (pobj)->zcol[j]= pSURFACE_FEATURE (pobj)->inputCMoV[i];  /* DJ.A 2003 */
+	      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
+		pSURFACE_FEATURE (pobj)->zcol[j]= pSURFACE_FEATURE (pobj)->inputCMoV[j];  /* DJ.A 2003 */
 		  }
 	  else if(flagcolor==2 && !( *m3n==1 || *n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
 	    {
 	      /* We have too much information and we take only the first dimzy colors to fill the pSURFACE_FEATURE (pobj)->zcol array*/
 	      for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-		pSURFACE_FEATURE (pobj)->zcol[j]= pSURFACE_FEATURE (pobj)->inputCMoV[i];
+		pSURFACE_FEATURE (pobj)->zcol[j]= pSURFACE_FEATURE (pobj)->inputCMoV[j];
 	    }
 	  /* case flagcolor == 3*/
 	  else if(flagcolor==3 && ( *m3n==1 || *n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
 	    {
 	      /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
 	      /* We repeat the data:*/
-	      for(i = 0; i< dimzx; i++){
-		for (j = 0;j < dimzy; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+	      for(i = 0; i< dimzy; i++){
+		for (j = 0;j < dimzx; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
 		  pSURFACE_FEATURE (pobj)->zcol[dimzx*i+j]= pSURFACE_FEATURE (pobj)->inputCMoV[i];  /* DJ.A 2003 */
 		    }
 	    }
@@ -9698,13 +9698,13 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	    {
 	      /* We have just enough information to fill the pSURFACE_FEATURE (pobj)->zcol array*/
 	      for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-		pSURFACE_FEATURE (pobj)->zcol[j]= pSURFACE_FEATURE (pobj)->inputCMoV[i];
+		pSURFACE_FEATURE (pobj)->zcol[j]= pSURFACE_FEATURE (pobj)->inputCMoV[j];
 	    }
 	}
       /*-------END Replaced by: --------*/
 
-      pSURFACE_FEATURE (pobj)->dimzx = dimzx;
-      pSURFACE_FEATURE (pobj)->dimzy = dimzy;
+      pSURFACE_FEATURE (pobj)->dimzx = dimzx; /* dimzx is completly equal to m3*/
+      pSURFACE_FEATURE (pobj)->dimzy = dimzy; /* dimzx is completly equal to n3*/
       pSURFACE_FEATURE (pobj)->izcol = izc;
       pSURFACE_FEATURE (pobj)->pproj = NULL;	/* Les projections ne sont pas encore calculees */
       pSURFACE_FEATURE (pobj)->isselected = TRUE;
