@@ -209,6 +209,9 @@ integer C2F(overloadtype)(lw,fname,typ)
   case 'b' : /* boolean */
     ityp=4;
     break;
+  case 'h' : /* handle */
+    ityp=9;
+    break;
   case 'l' : /* list */
     ityp=15;
     break;
