@@ -22,11 +22,11 @@ extern Scig_handler set_scig_handler __PARAMS(( Scig_handler f));
 extern Scig_handler scig_handler;
 
 extern int C2F(xg2psofig) __PARAMS((char *,integer *,integer *,integer *,char *,long int,long int)); 
-extern void scig_2dzoom __PARAMS((integer )); 
+extern int scig_2dzoom __PARAMS((integer )); 
 extern void scig_unzoom __PARAMS((integer )); 
 extern void scig_replay __PARAMS((integer )); 
 extern void scig_expose __PARAMS((integer )); 
-extern void scig_3drot __PARAMS((integer )); 
+extern int scig_3drot __PARAMS((integer )); 
 extern void scig_sel __PARAMS((integer )); 
 extern void scig_raise __PARAMS((integer )); 
 extern void scig_loadsg __PARAMS((int ,char *)); 
@@ -138,8 +138,8 @@ extern void C2F(echelle2dl)  __PARAMS((double *,double *,integer *,integer *,int
 extern void C2F(ellipse2d)  __PARAMS((double *,integer *,integer *,char *)); 
 extern void C2F(rect2d)  __PARAMS((double *,integer *,integer *,char *)); 
 extern void C2F(axis2d)  __PARAMS((double *,double *,double *,integer *,double *)); 
-extern void zoom  __PARAMS((void)); 
-extern void zoom_get_rectangle    __PARAMS((double bbox[]));
+extern int zoom  __PARAMS((void)); 
+extern int zoom_get_rectangle    __PARAMS((double bbox[]));
 
 extern void unzoom  __PARAMS((void)); 
 extern void Gr_Rescale  __PARAMS((char *,double *,integer *,integer *,integer *,integer *)); 
@@ -158,7 +158,7 @@ extern void DownNext  __PARAMS((integer ,integer *,integer *));
 extern void TDAxis  __PARAMS((integer flag,double FPval,double LPval,integer *nax,integer *FPoint,integer *LPoint,integer *Ticsdir)); 
 extern void C2F(TDdrawaxis)  __PARAMS((double ,double FPval,double LPval,integer *nax,integer *FPoint,integer *LPoint,integer *Ticsdir)); 
 extern void BBoxToval  __PARAMS((double *,double *,double *,integer ,double *)); 
-extern void I3dRotation  __PARAMS((void)); 
+extern int I3dRotation  __PARAMS((void)); 
 extern int DPoints1  __PARAMS((integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg)); 
 extern int DPoints  __PARAMS((integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg)); 
 extern int C2F(plot3d)  __PARAMS((double *,double *,double *,integer *p,integer *q,double *teta,double *,char *,integer *,double *,integer)); 

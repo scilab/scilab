@@ -309,27 +309,32 @@ int C2F(xg2psofig)(char *fname, integer *len, integer *iwin, integer *color, cha
  * 2D Zoom 
  ******************************************************/
 
-void scig_2dzoom(integer win_num)
+int scig_2dzoom(integer win_num)
 {
   char name[4];
-  if ( scig_buzy  == 1 ) return ;
+  int ret;
+
+  if ( scig_buzy  == 1 ) return 0; ;
   scig_buzy =1;
   GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   /* if ( (GetDriver()) !='R'&&version_flag !=0) */ /* F.Leray 03.03.04*/
   if ( (GetDriver()) !='R'&&versionflag !=0)
     {
       wininfo("Zoom works only with the Rec driver");
+      return 0;
     }
   else 
     {
       integer verb=0,cur,na;
       C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
       C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      zoom();
-      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      ret=zoom();
+      if (cur != win_num)
+	C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
   scig_buzy = 0;
+  return ret;
 }
 
 
@@ -354,7 +359,8 @@ void   scig_unzoom(integer win_num)
       C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
       C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       unzoom();
-      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if (cur != win_num)
+	C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
   scig_buzy = 0;
@@ -364,27 +370,30 @@ void   scig_unzoom(integer win_num)
  * 3d rotation function 
  ******************************************************/
 
-void scig_3drot(integer win_num)
+int scig_3drot(integer win_num)
 {
-  integer verb=0,cur,na;
+  integer verb=0,cur,na,ret;
   char name[4];
-  if ( scig_buzy  == 1 ) return ;
+  if ( scig_buzy  == 1 ) return 0;
   scig_buzy =1;
   GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   /*  if ( (GetDriver()) !='R'&&version_flag !=0) */ /* F.Leray 03.03.04 */
   if ( (GetDriver()) !='R'&&versionflag !=0)
     {
       wininfo("Rot3D works only with the Rec driver");
+      return 0;
     }
   else 
     {
       C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
       C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      I3dRotation();
-      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      ret=I3dRotation();
+      if (cur != win_num)
+	C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
   scig_buzy = 0;
+  return ret;
 }
 
 /********************************************************

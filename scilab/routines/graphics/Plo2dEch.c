@@ -1005,7 +1005,7 @@ extern int EchCheckSCPlots();
 
 /** get a rectangle interactively **/
 
-void zoom_get_rectangle(bbox)
+int zoom_get_rectangle(bbox)
      double bbox[4];
 {
   /* Using the mouse to get the new rectangle to fix boundaries */
@@ -1045,6 +1045,7 @@ void zoom_get_rectangle(bbox)
       zoom_rect(x0,yy0,x,y);
       if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xgetmouse","one",&ibutton,&iwait,PI0,PI0,modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
+      if (ibutton==-100) return 1; /* the window has been closed */
       /* effacement du rectangle */
       zoom_rect(x0,yy0,x,y);
       if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1072,12 +1073,12 @@ void zoom_get_rectangle(bbox)
   ReleaseWinHdc();
   SciMouseRelease();
 #endif
-
+  return 0;
 }
 
 
 
-void zoom()
+int zoom()
 {
   integer min,max,puiss,deux=2,dix=10,box[4],box1[4],section[4];
   double bbox[4];
@@ -1087,7 +1088,7 @@ void zoom()
     sciPointObj *psousfen,*tmpsousfen;
     sciSons *psonstmp;
 
-    zoom_get_rectangle(bbox);
+    if (zoom_get_rectangle(bbox)==1) return 1;
  
     box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
     box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
@@ -1104,7 +1105,7 @@ void zoom()
 	    psousfen= (sciPointObj *)psonstmp->pointobj;
 	    if ( pSUBWIN_FEATURE (psousfen)->is3d == TRUE) {
 	      sciprint("3D zoom is not yet implemented for new graphic style\n");
-	      return;
+	      return 0;
 	    }
 	    sciSetSelectedSubWin(psousfen);
 	    box1[0]= Cscale.WIRect1[0];
@@ -1162,7 +1163,7 @@ void zoom()
     if (strcmp("Rec",driver) != 0)
       {
 	Scistring("\n Use the Rec driver to zoom " );
-	return;
+	return 0;
       }
     zoom_get_rectangle(bbox);
     C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
@@ -1171,6 +1172,7 @@ void zoom()
     flag[0] =1 ; flag[1]=0;
     Tape_ReplayNewScale(" ",&ww,flag,PI0,aaint,PI0,PI0,bbox,PD0,PD0,PD0);
   }
+  return 0;
 }
 
 

@@ -404,7 +404,7 @@ typedef struct
   struct BCG *pScilabXgc;	
   sciRelationShip relationship;
   scigMode gmode;
-  sciGraphicContext graphiccontext;
+  sciGraphicContext graphiccontext; /* the only property used here is background */
   sciPointObj * originalsubwin0011;
   /** specifies the title for this window  */
   char name[80];	 

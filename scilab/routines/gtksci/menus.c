@@ -1054,7 +1054,7 @@ static void scig_menu_zoom(int winid)
   SetUnsetMenu(&winid,"3D Rot.",&ne,False);
   SetUnsetMenu(&winid,"UnZoom",&ne,False);
   SetUnsetMenu(&winid,"File",&ne,False);
-  scig_2dzoom(winid);
+  if ( scig_2dzoom(winid)==1) return; /* the window has been closed */
   SetUnsetMenu(&winid,"Zoom",&ne,True);
   SetUnsetMenu(&winid,"3D Rot.",&ne,True);
   SetUnsetMenu(&winid,"UnZoom",&ne,True);
@@ -1086,7 +1086,7 @@ static void scig_menu_rot3d(int winid)
   SetUnsetMenu(&winid,"UnZoom",&ne,False);
   SetUnsetMenu(&winid,"Zoom",&ne,False);
   SetUnsetMenu(&winid,"File",&ne,False);
-  scig_3drot(winid);
+  if (scig_3drot(winid)==1) return; /* the window has been closed */
   SetUnsetMenu(&winid,"3D Rot.",&ne,True);
   SetUnsetMenu(&winid,"UnZoom",&ne,True);
   SetUnsetMenu(&winid,"Zoom",&ne,True);

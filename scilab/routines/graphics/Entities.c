@@ -15105,14 +15105,15 @@ sciGetCurrentScilabXgc ()
 
 void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
 {
-  
+  sciPointObj *pold = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   /**dj20003***/ 
   if ((alpha == 0.0) && (theta == 270.0))
     {
       pSUBWIN_FEATURE (psubwin)-> is3d = FALSE; 
       return;
     }
-  
+
+  sciSetSelectedSubWin (psubwin);
   pSUBWIN_FEATURE (psubwin)->alpha = alpha;
   pSUBWIN_FEATURE (psubwin)->theta  = theta;
   pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
@@ -15135,6 +15136,7 @@ void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
 	    pSUBWIN_FEATURE (psubwin)->project[0]= 1;
 	}
     }
+  sciSetSelectedSubWin (pold);
 }
 /* DJ.A 2003 */
 BOOL Check3DObjs(sciPointObj *pobj)
