@@ -1,0 +1,37 @@
+// -----------------------------------------------------------
+// Allan CORNET
+// INRIA 2005
+// -----------------------------------------------------------
+ function PName=GetUiControlPropertyName(PropertyName)
+ TableProperties    = ['backgroundcolor' ..
+												'callback' ..
+												'fontangle' ..
+												'fontsize' ..
+												'fontunits' ..
+												'fontweight' ..
+												'listboxtop' ..
+												'max' ..
+												'min' ..
+												'parent' ..
+												'position' ..
+												'sliderstep' ..
+												'string' ..
+												'style' ..
+												'tag' ..
+												'units' ..
+												'userdata' ..
+												'label'];
+  //conversion to lower format
+  str = convstr(PropertyName);
+  k=find(part(TableProperties,1:length(str))==str);
+
+  if (k == []) then
+    disp("Error in Property specification : bad argument specified");
+    PName='';
+    return;
+  end
+
+  PName=TableProperties(k);
+
+endfunction
+// -----------------------------------------------------------
