@@ -5314,11 +5314,15 @@ sciSetSelectedSubWin (sciPointObj * psubwinobj)
   /* puis on selectionne la sous fenetre passee en argument */
   pSUBWIN_FEATURE (psubwinobj)->isselected = TRUE;
 
-  set_scale ("tttftf", pSUBWIN_FEATURE (psubwinobj)->WRect,
-	     pSUBWIN_FEATURE (psubwinobj)->FRect, NULL,
-	     pSUBWIN_FEATURE(psubwinobj)->logflags, NULL);
-  
 
+  /*  set_scale ("tttftf", pSUBWIN_FEATURE (psubwinobj)->WRect,
+	     pSUBWIN_FEATURE (psubwinobj)->FRect, NULL,
+	     pSUBWIN_FEATURE(psubwinobj)->logflags, NULL);*/
+
+  set_scale ("tttftt", pSUBWIN_FEATURE (psubwinobj)->WRect,
+	     pSUBWIN_FEATURE (psubwinobj)->FRect, NULL,
+	     pSUBWIN_FEATURE(psubwinobj)->logflags, pSUBWIN_FEATURE (psubwinobj)->ARect);
+  
   return 1;
 }
 
