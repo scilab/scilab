@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2001/04/26 07:47:09 scilab Exp $
+# $Id: Makefile,v 1.2 2002/10/14 14:27:43 chanceli Exp $
 #
 
 PVMDIR		=	../..

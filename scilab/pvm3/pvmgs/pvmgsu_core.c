@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmgsu_core.c,v 1.1 2001/04/26 07:47:09 scilab Exp $";
+	"$Id: pvmgsu_core.c,v 1.2 2002/10/14 14:27:42 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -562,7 +562,6 @@ int *rvalue;
 int optarg;
 {
 	int len;
-	int mytid;
 	int rbuf;
 	int sbuf,stid;
 	int state;
@@ -570,9 +569,9 @@ int optarg;
 
 	GROUP_STRUCT_PTR sgroup;
 
-	mytid = pvm_mytid();
+	pvm_mytid();
 
-	if (group == (char*)0)
+	if (group == (char*)0 || *group == '\0')
 		return  (*rvalue = PvmNullGroup);
 
 	if ( (stid = gs_getgstid()) < 0)  /* find the server's tid         */
@@ -657,14 +656,13 @@ int holes_not_allowed;
 {
 	int i;
 	int len;
-	int mytid;
 	int rbuf;
 	int sbuf, state, stid;
 	int savectx;
 
 	GROUP_STRUCT_PTR sgroup;
 
-	if ( group == (char*)0 ) 
+	if ( group == (char*)0 || *group == '\0' ) 
 		return(PvmNullGroup);
 
 	/* look up to see if the information is held locally               */
@@ -883,7 +881,6 @@ int hosttid, *coord, *nmem_onhost, *nhosts;
 	GROUP_STRUCT_PTR sgroup;
 	int foo;
 	int info;
-	int mytid;
 	int rbuf, rc;
 	int sbuf, state, stid;
 	int x;
@@ -978,7 +975,6 @@ int **coordv, **nmem_onhostv, *nhosts;
 {
 	int foo;
 	int info;
-	int mytid;
 	int rbuf, rc;
 	int sbuf, state, stid;
 	int x;

@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvm_gstat.c,v 1.1 2001/04/26 07:47:09 scilab Exp $";
+	"$Id: pvm_gstat.c,v 1.2 2002/10/14 14:27:40 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -50,12 +50,12 @@ main(argc, argv)
 int argc;
 char *argv[];
 {
-    int mytid, gstid;
+    int gstid;
     int i, j, ng; 
     GROUP_STRUCT group;
         group.len = 0; group.name = (char *) NULL;
         group.tids = (int *) NULL; group.btids = (int *) NULL;
-        mytid = pvm_mytid();
+        pvm_mytid();
 	if((gstid = gs_getgstid()) < 0) 
         {
             fprintf(stderr, "%s: no groups server\n", argv[0]);

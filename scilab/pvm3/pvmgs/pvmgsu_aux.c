@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmgsu_aux.c,v 1.1 2001/04/26 07:47:09 scilab Exp $";
+	"$Id: pvmgsu_aux.c,v 1.2 2002/10/14 14:27:42 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System

@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmgs_func.c,v 1.1 2001/04/26 07:47:09 scilab Exp $";
+	"$Id: pvmgs_func.c,v 1.2 2002/10/14 14:27:42 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -271,7 +271,7 @@ int create;
 
 	GROUP_STRUCT_PTR group;
 
-	if (name == (char *) NULL) 
+	if (name == (char *) NULL || *name == '\0') 
 		return( (GROUP_LIST_PTR) NULL);  /* Null group name error      */
 
 	/* The following is the hash algorithm.                            */
@@ -435,7 +435,8 @@ int *ngroups;
 
 	GROUP_STRUCT_PTR group;
 
-	if (gname == (char*) 0) /* check for valid group name              */
+	/* check for valid group name */
+	if (gname == (char*) 0 || *gname == '\0')
 		return(PvmNullGroup);
 
 	if ( (group = gs_group(gname, hash_list, ngroups, CREATE))
@@ -516,7 +517,8 @@ int *ngroups;
 
 	GROUP_STRUCT_PTR group;
 
-	if (gname == (char*) 0) /* check for valid group name          */
+	/* check for valid group name */
+	if (gname == (char*) 0 || *gname == '\0')
 		return(PvmNullGroup);
 
 	if ( (group = gs_group(gname, hash_list, ngroups, NOCREATE))
@@ -623,7 +625,8 @@ int *ngroups, *gstate;
 
 	*gstate = DYNAMIC;
 
-	if (gname == (char*) 0) /* check for valid group name              */
+	/* check for valid group name */
+	if (gname == (char*) 0 || *gname == '\0')
 		return(PvmNullGroup);
 
 	group = gs_group(gname, hash_list, ngroups, NOCREATE);
@@ -660,7 +663,8 @@ int *ngroups, *gstate;
 
 	*gstate = DYNAMIC;
 
-	if (gname == (char*) 0) /* check for valid group name              */
+	/* check for valid group name */
+	if (gname == (char*) 0 || *gname == '\0')
 		return(PvmNullGroup);
 
 	group = gs_group(gname, hash_list, ngroups, NOCREATE);
@@ -691,7 +695,8 @@ int *ngroups, *gstate;
 
 	*gstate = DYNAMIC;
 
-	if (gname == (char*) 0) /* check for valid group name              */
+	/* check for valid group name */
+	if (gname == (char*) 0 || *gname == '\0')
 		return(PvmNullGroup);
 
 	group = gs_group(gname, hash_list, ngroups, NOCREATE);
@@ -727,7 +732,8 @@ int *ngroups, *gstate;
 
 	*gstate = DYNAMIC;
 
-	if (gname == (char*) 0) /* check for valid group name              */
+	/* check for valid group name */
+	if (gname == (char*) 0 || *gname == '\0')
 		return(PvmNullGroup);
 
 	group = gs_group(gname, hash_list, ngroups, NOCREATE);
@@ -791,7 +797,8 @@ int *ngroups;
 	
 	GROUP_STRUCT_PTR group;
 
-	if (gname == (char*) 0) /* check for valid group name              */
+	/* check for valid group name */
+	if (gname == (char*) 0 || *gname == '\0')
 		return(PvmNullGroup);
 
 	group = gs_group(gname, hash_list, ngroups, NOCREATE);
@@ -875,7 +882,8 @@ int *ngroups;
 
 	GROUP_STRUCT_PTR group;
 
-	if (gname == (char*) 0) /* check for valid group name              */
+	/* check for valid group name */
+	if (gname == (char*) 0 || *gname == '\0')
 		return(PvmNullGroup);
 
 	group = gs_group(gname, hash_list, ngroups, NOCREATE);
@@ -1191,7 +1199,8 @@ int *gstate;
 	*gstate = DYNAMIC; 
 	*pcoord = NOTID;
 
-	if (gname == (char*) 0) /* check for valid group name              */
+	/* check for valid group name */
+	if (gname == (char*) 0 || *gname == '\0')
 		return(PvmNullGroup);
 
 	group = gs_group(gname, hash_list, ngroups, NOCREATE);
@@ -1235,7 +1244,8 @@ int *gstate;
 	*gstate = DYNAMIC; 
 	*pcoordv = (int *) NULL;
 
-	if (gname == (char*) 0) /* check for valid group name              */
+	/* check for valid group name */
+	if (gname == (char*) 0 || *gname == '\0')
 		return(PvmNullGroup);
 
 	group = gs_group(gname, hash_list, ngroups, NOCREATE);

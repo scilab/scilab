@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.aimk,v 1.1 2001/04/26 07:47:08 scilab Exp $
+# $Id: Makefile.aimk,v 1.2 2002/10/14 14:27:40 chanceli Exp $
 #
 # Generic Makefile body to be concatenated to config header.
 #
@@ -75,7 +75,7 @@ $(PVMLDIR)/$(LIBGPVM)-mpp:  $(LIBGPVM)-mpp
 	touch $(PVMLDIR)/$(LIBGPVM)-mpp
 
 $(PVMLDIR)/pvmgs$(EXESFX):  pvmgs$(EXESFX)
-	cp pvmgs $(PVMLDIR)
+	cp pvmgs$(EXESFX) $(PVMLDIR)
 
 pvmgroups$(EXESFX):	pvmgroups.o $(LIBGPVM) $(PVMLIBDEP)
 	$(CC) $(CFLAGS) -o $@ pvmgroups.o $(LIBGPVM) $(LIBS) 
