@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>with_atlas</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>2005</DATE>
+
+  <SHORT_DESCRIPTION name="with_atlas">Checks if Scilab has been built with
+  Atlas Library</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>r=with_atlas()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Returns <VERB>%t</VERB> if Scilab as been built with Atlas Library or
+    <VERB>%f</VERB> if not.</P>
+  </DESCRIPTION>
+</MAN>
