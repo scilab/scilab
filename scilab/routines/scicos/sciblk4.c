@@ -26,23 +26,23 @@ scicos_block *Blocks;
 integer flag;
 
 {
-  int k,j;
+  int k,j,i;
   double *u;
   int one=1,*header,ne1,ne3,ne8;
   int nu,l5,l,moinsun=-1;
   int mlhs=1,mrhs=2;
-  int n27=30,zero=0;
-  int *le1,*le2,ne2,*le3,*le4,ne4,*le33,*le5,*le6,ne6,*le7,*le8;
+  int n27=31,zero=0;
+  int *le1,*le2,ne2,*le3,*le4,ne4,ne7,*le33,*le5,*le6,ne6,*le7,*le8;
   double *le22,*le44,*le111,*le333,*le55,*le222,*le444,*le66,*le666,*le77,*le88;
   char *str[]={ "scicos_block","nevprt","funpt","type",
 		"scsptr","nz","z","nx","x","xd","res","nin",
 		"insz","inptr","nout","outsz","outptr","nevout",
 		"evout","nrpar","rpar","nipar","ipar","ng","g",
-		"ztyp","jroot","label","work","mode"};
+		"ztyp","jroot","label","work","nmode","mode"};
   
   char **str1;
   
-  str2sci(str,1,30);
+  str2sci(str,1,31);
 
   C2F(itosci)(&Blocks[0].nevprt,&one,&one);
   if (C2F(scierr)()!=0) goto err;
@@ -114,7 +114,9 @@ integer flag;
   
   C2F(vvtosci)(*Blocks[0].work,&zero);
   if (C2F(scierr)()!=0) goto err; 
-  C2F(itosci)(&Blocks[0].mode,&one,&one);
+  C2F(itosci)(&Blocks[0].nmode,&one,&one);
+  if (C2F(scierr)()!=0) goto err;
+  C2F(itosci)(Blocks[0].mode,&Blocks[0].nmode,&one);  
   if (C2F(scierr)()!=0) goto err;
 
   C2F(mktlist)(&n27);
@@ -193,9 +195,12 @@ integer flag;
 	C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
       }
       /* 29 ieme element de la tlist mode */
-      le7=(int*) listentry(header,30);
+      le7=(int*) listentry(header,31);
       le77=(double*) (le7+4);
-      Blocks[0].mode=le77[0];   
+      ne7=le7[1];
+      for (i=0; i<ne7; i++){
+	Blocks[0].mode[i]=le77[i];
+      }   
     }
     break;
   case 3 :
@@ -297,9 +302,12 @@ integer flag;
       C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
     }
     /* 29 ieme element de la tlist mode */
-    le7=(int*) listentry(header,30);
+    le7=(int*) listentry(header,31);
     le77=(double*) (le7+4);
-    Blocks[0].mode=le77[0];   
+    ne7=le7[1];
+    for (i=0; i<ne7; i++){
+      Blocks[0].mode[i]=le77[i];
+    }     
     break;
   case 9 :
     /* 24 ieme element de la tlist g */
