@@ -259,7 +259,7 @@ c     mtlb_mode
       goto 999
  702  call resethistory('resethistory')
       goto 999
- 703  call openbrowser('openbrowser')
+ 703  call winopen('winopen')
       goto 999    
  704  call macr2tree('macr2tree')
       goto 999

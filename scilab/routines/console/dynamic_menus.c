@@ -250,7 +250,7 @@ int iswaitingforinputend()
 }
 /*-----------------------------------------------------------------------------------*/
 /* Open Web Browser Allan CORNET*/
-int C2F(openbrowser) _PARAMS((char *fname))
+int C2F(winopen) _PARAMS((char *fname))
 {
 	#define FILENAME_MAX 4096 
 	extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 
@@ -271,7 +271,7 @@ int C2F(openbrowser) _PARAMS((char *fname))
 
 	#ifdef WIN32
 	error = ShellExecute(NULL, "open", filename, NULL, NULL, SW_SHOWNORMAL);
-	if ( error<= (HINSTANCE)32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
+	if ( error<= (HINSTANCE)32) MessageBox(NULL,"Couldn't Open this document","Warning",MB_ICONWARNING);
 	#endif
 
 	LhsVar(0)=0;

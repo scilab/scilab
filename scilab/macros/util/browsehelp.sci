@@ -97,7 +97,7 @@ function run_help(path,key)
   case 'quanta' then
     unix_s(%browsehelp + " --unique file://" +path+ '&');
   case 'Default Windows Browser' then
-    openbrowser(path);
+    winopen(path);
   case 'Scilab Browser' then 
     sciGUIhelp(key);
   case 'Old Scilab Browser' then 
