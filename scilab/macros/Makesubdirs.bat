@@ -83,4 +83,8 @@ cd ..
 cd statistics
 echo Macros compilation statistics
 nmake /C /f Makefile.mak %1 
+cd ..
+cd tksci
+echo Macros compilation tksci
+nmake /C /f Makefile.mak %1 
 cd ..\..
