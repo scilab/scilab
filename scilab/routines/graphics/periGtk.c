@@ -2695,7 +2695,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
   CreateGtkGWindow(ScilabXgc);
   if (EntryCounter == 0)
     {
-      maxcol = 1 << 8; /* XXXXX : to be changed */
+      maxcol = 1 << 16; /* XXXXX : to be changed */
       LoadFonts();
     }
   /** Default value is without Pixmap **/
