@@ -33,7 +33,8 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    returns the standard plant <VERB>P</VERB> for the Glover-McFarlane problem.
+    <VERB>[P,r]=macglov(Sl)</VERB> returns the standard plant
+    <VERB>P</VERB> for the Glover-McFarlane problem.
   </P>
   <P>
     For this problem ro_optimal = 1-hankel_norm(<VERB>[N,M]</VERB>)
@@ -43,5 +44,5 @@
     gama_optimal = <VERB>1/sqrt(ro_optimal)</VERB>
   </P>
   </DESCRIPTION>
-  <AUTHOR>F. D.;   </AUTHOR>
+  <AUTHOR>F. Delebecque INRIA   </AUTHOR>
 </MAN>

@@ -37,7 +37,7 @@
     Riccati solver with hamiltonian matrices as inputs.
   </P>
   <P>
-    In the continuous time case calling sequence is (one input):
+    In the continuous time case calling sequence is <VERB>ric_descr(H)</VERB> (one input):
   </P>
   <P>
     Riccati equation is: 
@@ -63,7 +63,7 @@
     The solution <VERB>X</VERB> is also given by <VERB>X=riccati(A,Q,R,&apos;c&apos;))</VERB>
   </P>
   <P>
-    In the discrete-time case calling sequence is (two inputs):
+    In the discrete-time case calling sequence is <VERB>ric_descr(H,E)</VERB> (two inputs):
   </P>
   <P>
     The Riccati equation is:

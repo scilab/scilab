@@ -48,33 +48,38 @@
   <DESCRIPTION>
   <P>
     Linear fractional transform between two standard plants
-    <VERB>P</VERB> and <VERB>P#</VERB> in state space form or in transfer form 
-    (<VERB>syslin</VERB> lists).
+    <VERB>P</VERB> and <VERB>P#</VERB> in state space form or in
+    transfer form (<VERB>syslin</VERB> lists).
   </P>
   <P>
     <VERB>r= size(P22) r#=size(P22#)</VERB>
   </P>
   <P>
-    <VERB>LFT(P,r, K)</VERB> is the linear fractional transform between <VERB>P</VERB> and
-    a controller <VERB>K</VERB> (<VERB>K</VERB> may be a gain or a controller in
-    state space form or in transfer form);
+    <VERB>LFT(P,r, K)</VERB> is the linear fractional transform
+    between <VERB>P</VERB> and a controller <VERB>K</VERB>
+    (<VERB>K</VERB> may be a gain or a controller in state space form
+    or in transfer form);
   </P>
   <P>
-    <VERB>LFT(P,K)</VERB> is <VERB>LFT(P,r,K)</VERB> with <VERB>r</VERB>=size of <VERB>K</VERB> transpose;
+    <VERB>LFT(P,K)</VERB> is <VERB>LFT(P,r,K)</VERB> with
+    <VERB>r</VERB>=size of <VERB>K</VERB> transpose;
   </P>
   <P>
     <VERB>P1= P11+P12*K* (I-P22*K)^-1 *P21</VERB>
   </P>
   <P>
-    returns the generalized (2 ports) lft of <VERB>P</VERB> and <VERB>P#</VERB>.
+    <VERB>[P1,r1]=LFT(P,r,P#,r#)</VERB> returns the generalized (2
+    ports) lft of <VERB>P</VERB> and <VERB>P#</VERB>.
   </P>
   <P>
-    <VERB>P1</VERB> is the pair two-port interconnected plant and the partition
-    of <VERB>P1</VERB> into 4 blocks in given by <VERB>r1</VERB> which is the dimension
-    of the <VERB>22</VERB> block of <VERB>P1</VERB>.
+    <VERB>P1</VERB> is the pair two-port interconnected plant and the
+    partition of <VERB>P1</VERB> into 4 blocks in given by
+    <VERB>r1</VERB> which is the dimension of the <VERB>22</VERB>
+    block of <VERB>P1</VERB>.
   </P>
   <P>
-    <VERB>P</VERB> and <VERB>R</VERB> can be PSSDs i.e. may admit a polynomial <VERB>D</VERB> matrix.
+    <VERB>P</VERB> and <VERB>R</VERB> can be PSSDs i.e. may admit a
+    polynomial <VERB>D</VERB> matrix.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
@@ -91,6 +96,9 @@ W=[1,1;1,1/(s^2+0.1*s)];K=1+1/s+s
 lft(W,[1,1],K); ss2tf(lft(tf2ss(W),[1,1],tf2ss(K)))
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sensi</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>augment</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>feedback</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>sysdiag</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>sensi</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>augment</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>feedback</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>sysdiag</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

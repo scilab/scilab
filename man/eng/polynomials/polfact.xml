@@ -41,11 +41,14 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    returns the minimal factors of p i.e. <VERB>f=[f0 f1 ... fn]</VERB> such 
+    <VERB>f=polfact(p)</VERB> returns the minimal factors of p i.e. <VERB>f=[f0 f1 ... fn]</VERB> such 
     that <VERB>p=prod(f)</VERB> 
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>lcm</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>cmndred</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>factors</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>lcm</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>cmndred</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>factors</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+<AUTHOR> S. Steer INRIA </AUTHOR> 
 </MAN>

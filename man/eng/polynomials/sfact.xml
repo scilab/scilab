@@ -21,13 +21,14 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    Finds <VERB>F</VERB>, a spectral factor of <VERB>P</VERB>. <VERB>P</VERB> is a 
-    polynomial matrix such that each root of <VERB>P</VERB> has a 
-    mirror image w.r.t the unit circle. Problem is singular
-    if a root is on the unit circle.
+    Finds <VERB>F</VERB>, a spectral factor of
+    <VERB>P</VERB>. <VERB>P</VERB> is a polynomial matrix such that
+    each root of <VERB>P</VERB> has a mirror image w.r.t the unit
+    circle. Problem is singular if a root is on the unit circle.
   </P>
   <P>
-    returns a polynomial matrix <VERB>F(z)</VERB> which is antistable and such that
+    <VERB>sfact(P)</VERB> returns a polynomial matrix
+    <VERB>F(z)</VERB> which is antistable and such that
   </P>
   <P>
     <VERB>P = F(z)* F(1/z) *z^n</VERB>
@@ -63,6 +64,7 @@ roots(f)    //f is stable
 clean(f*gtild(f,'c')-p)    //f(s)*f(-s) is p(s) 
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>gtild</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fspecg</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>gtild</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>fspecg</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -21,9 +21,10 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    returns the matrix <VERB>V</VERB> such that <VERB>V(i,j)</VERB>
-    is the sum of the residues of the rational fraction 
-    <VERB>P(i,j)/(Q1(i,j)*Q2(i,j))</VERB> calculated at the zeros of <VERB>Q1(i,j)</VERB>.
+    <VERB>V=residu(P,Q1,Q2)</VERB> returns the matrix <VERB>V</VERB>
+    such that <VERB>V(i,j)</VERB> is the sum of the residues of the
+    rational fraction <VERB>P(i,j)/(Q1(i,j)*Q2(i,j))</VERB> calculated
+    at the zeros of <VERB>Q1(i,j)</VERB>.
   </P>
   <P>
     <VERB>Q1(i,j)</VERB> and <VERB>Q2(i,j)</VERB> must not have any common root.
@@ -46,7 +47,11 @@ a=a+0*%i;b=b+0*%i;
 real(residu(b*btild,z*a,atild)-2.9488038) //Complex case
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>pfss</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>bdiag</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>roots</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>gtild</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>pfss</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>bdiag</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>roots</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>gtild</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>F.D.; ;   </AUTHOR>
+  <AUTHOR> F.Delebecque INRIA   </AUTHOR>
 </MAN>

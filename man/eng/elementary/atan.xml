@@ -81,12 +81,13 @@ atan(-%i)
  ]]></EXAMPLE>
 
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>tan</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ieee</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>tan</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>ieee</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
   <AUTHORS>
-    <AUTHOR_ITEM>B.P.</AUTHOR_ITEM> 
-    <AUTHOR_ITEM>L.V.D.</AUTHOR_ITEM> 
+    <AUTHORS_ITEM>B.P.</AUTHORS_ITEM> 
+    <AUTHORS_ITEM>L.V.D.</AUTHORS_ITEM> 
     <EM>(authors of the complex atan function).</EM>
   </AUTHORS>
 </MAN>

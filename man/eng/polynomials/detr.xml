@@ -21,7 +21,7 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    returns the determinant <VERB>d</VERB> of the polynomial or 
+    <VERB>d=detr(h)</VERB> returns the determinant <VERB>d</VERB> of the polynomial or 
     rational function matrix <VERB>h</VERB>. Based on Leverrier&apos;s algorithm.
   </P>
   </DESCRIPTION>

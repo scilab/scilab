@@ -30,7 +30,7 @@
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
-  <PARAM_NAME>gain  </PARAM_NAME>
+  <PARAM_NAME>gain</PARAM_NAME>
   <PARAM_DESCRIPTION>
     : resulting gain of filter
   </PARAM_DESCRIPTION> 
@@ -41,8 +41,8 @@
   <P>
     computes the poles of a Butterworth analog
     filter of order <VERB>n</VERB> and cutoff frequency omegac
-    transfer function H(s) is calculated by
-  </P>
+    transfer function H(s) is calculated by <VERB>H(s)=gain/real(poly(pols,'s'))
+</VERB>  </P>
   </DESCRIPTION>
-  <AUTHOR>F.D.  </AUTHOR>
+  <AUTHOR>F. Delebecque INRIA  </AUTHOR>
 </MAN>

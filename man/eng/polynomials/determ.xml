@@ -31,7 +31,7 @@
     (computation made by FFT).
   </P>
   <P>
-    <VERB>k</VERB> is an integer larger than the actual degree of the determinant
+    <VERB>res=determ(W [,k])</VERB> <VERB>k</VERB> is an integer larger than the actual degree of the determinant
     of <VERB>W</VERB>.
   </P>
   <P>

@@ -27,11 +27,13 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    returns the denominator of a rational matrix.
+    <VERB>den=denom(r)</VERB> returns the denominator of a rational matrix.
   </P>
   <P>
-    Since rationals are internally represented as <VERB>r=list([&apos;r&apos;,&apos;num&apos;,&apos;den&apos;,&apos;dt&apos;],num,den,[])</VERB>,
-    <VERB>denom(r</VERB>) is the same as <VERB>r(3)</VERB>, <VERB>r(&apos;den&apos;)</VERB> or <VERB>r.den</VERB>
+    Since rationals are internally represented as
+    <VERB>r=list([&apos;r&apos;,&apos;num&apos;,&apos;den&apos;,&apos;dt&apos;],num,den,[])</VERB>,
+    <VERB>denom(r</VERB>) is the same as <VERB>r(3)</VERB>,
+    <VERB>r(&apos;den&apos;)</VERB> or <VERB>r.den</VERB>
   </P>
   </DESCRIPTION>
   <SEE_ALSO>

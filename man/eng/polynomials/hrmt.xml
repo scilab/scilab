@@ -33,7 +33,7 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    returns a unimodular matrix <VERB>U</VERB> and  <VERB>pg</VERB> = gcd of row of 
+    <VERB>[pg,U]=hrmt(v)</VERB> returns a unimodular matrix <VERB>U</VERB> and  <VERB>pg</VERB> = gcd of row of 
     polynomials <VERB>v</VERB> such that <VERB>v*U = [pg,0]</VERB>.
   </P>
   </DESCRIPTION>
@@ -44,6 +44,9 @@ v=[x*(x+1),x^2*(x+1),(x-2)*(x+1),(3*x^2+2)*(x+1)];
 det(U)
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>gcd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>htrianr</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>gcd</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>htrianr</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+<AUTHOR> S. Steer INRIA </AUTHOR> 
+
 </MAN>

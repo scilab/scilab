@@ -21,8 +21,9 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    computes a polynomial matrix <VERB>n</VERB> and 
-    a common denominator polynomial <VERB>d</VERB> such that:
+    <VERB>[n,d]=cmndred(num,den)</VERB> computes a polynomial matrix
+    <VERB>n</VERB> and a common denominator polynomial <VERB>d</VERB>
+    such that:
   </P>
   <P>
     <VERB>n/d=num./den</VERB>
@@ -32,6 +33,7 @@
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>simp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>simp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

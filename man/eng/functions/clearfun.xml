@@ -11,13 +11,14 @@
   </CALLING_SEQUENCE>
   <DESCRIPTION>
   <P>
-    removes the primitive <VERB>&apos;name&apos;</VERB> from the set of
+    <VERB>clearfun('name')</VERB> removes the primitive <VERB>&apos;name&apos;</VERB> from the set of
     primitives (built-in functions) .
     This function allows to rename a primitive : a Scilab 
     primitive can be replaced by a user-defined function. For experts...
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>newfun</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>funptr</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>newfun</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>funptr</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

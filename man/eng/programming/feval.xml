@@ -34,12 +34,12 @@
  
 
   <DESCRIPTION_ITEM  label='z=feval(x,f)'> 
-    returns the vector <VERB>z</VERB> defined by
-  </DESCRIPTION_ITEM>
+    returns the vector <VERB>z</VERB> defined by <VERB>z(i)=f(x(i))
+</VERB>  </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='z=feval(x,y,f)'> 
-    returns the matrix 
-  </DESCRIPTION_ITEM>
+    returns the matrix <VERB>z</VERB> such as <VERB>z(i,j)=f(x(i),y(j))
+</VERB>  </DESCRIPTION_ITEM>
   <P>
   </P>
   <P>
@@ -65,6 +65,10 @@ feval(1:10,'parab')
 // unix('make ftest.o');link('ftest.o','ftest); feval(1:10,1:5,'ftest') 
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>horner</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>execstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>external</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>link</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>horner</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>execstr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>external</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>link</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

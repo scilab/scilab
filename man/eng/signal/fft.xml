@@ -41,11 +41,9 @@
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
+   <DESCRIPTION_ITEM>   Short syntax (one or two dimensional fft):
   <P>
-    Short syntax (one or two dimensional fft):
-  </P>
-  <P>
-    gives a direct transform (the <VERB>-1</VERB> refers to
+    <VERB>x=fft(a,-1)</VERB> gives a direct transform (the <VERB>-1</VERB> refers to
     the sign of the exponent..., NOT to &quot;inverse&quot;), that is
   </P>
   <P>
@@ -55,7 +53,7 @@
     for k varying from 1 to n (n=size of vector <VERB>a</VERB>).
   </P>
   <P>
-    performs the inverse transform normalized by <VERB>1/n</VERB>.
+    <VERB>a=fft(x,1)</VERB> performs the inverse transform normalized by <VERB>1/n</VERB>.
   </P>
   <P>
     (<VERB>fft(fft(.,-1),1)</VERB> is identity).
@@ -64,11 +62,10 @@
     When the first argument given to <VERB>fft</VERB> is a matrix
     a two-dimensional FFT is performed.
   </P>
-  <P>
-    Long syntax (multidimensional FFT):
-  </P>
-  <P>
-    allows to perform an multidimensional fft.
+   </DESCRIPTION_ITEM>
+   <DESCRIPTION_ITEM>   Long syntax (multidimensional FFT):
+    <P>
+    <VERB>x=fft(a,-1,dim,incr)</VERB> allows to perform an multidimensional fft.
   </P>
   <P>
     If a is a real or complex vector implicitly indexed by
@@ -96,6 +93,7 @@
     if a is an hypermatrix (see hypermat) fft(a,flag) performs the N
     dimensional fft of a.
   </P>
+</DESCRIPTION_ITEM>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 a=[1;2;3];n=size(a,'*');

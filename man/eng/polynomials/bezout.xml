@@ -21,7 +21,7 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    computes GCD <VERB>thegcd</VERB> of <VERB>p1</VERB> and <VERB>p2</VERB> and in addition a (2x2) 
+    <VERB>[thegcd,U]=bezout(p1,p2)</VERB> computes GCD <VERB>thegcd</VERB> of <VERB>p1</VERB> and <VERB>p2</VERB> and in addition a (2x2) 
     unimodular matrix <VERB>U</VERB> such that:
   </P>
   <P>
@@ -44,6 +44,12 @@ thelcm=p1*U(1,2)
 lcm([p1,p2])
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>roots</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>simp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lcm</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>roots</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>simp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>lcm</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+<AUTHOR> S. Steer INRIA </AUTHOR> 
+
 </MAN>
