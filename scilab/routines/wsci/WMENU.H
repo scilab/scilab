@@ -28,7 +28,7 @@
 #define EZ_ATTR_ITALIC 2
 #define EZ_ATTR_UNDERLINE 4
 #define EZ_ATTR_STRIKEOUT 8
-#define INTERLINEPRINT 50
+
 
 /* limits */
 /* #define MAXSTR 255 : already in wtext.h */ 
@@ -242,7 +242,7 @@ void PrintSelection(LPTW lptw,char *Entete);
 
 void PageHeader(HDC hdc,LPSTR Entete);
 void Footer(HDC hdc,int number);
-
+HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWidth, int iAttributes, BOOL fLogRes);
 HDC GetPrinterDC(void);
 /*--------------------------------*/
 void ResetMenu(void);
