@@ -42,8 +42,10 @@ else
   if typeof(dim)=="cste" then
     if dim.value>size(A.dims) then
       if typeof(A)=="funcall" then
+	tree.lhs(1).infer=A.infer
 	A.lhs=tree.lhs
       elseif typeof(A)=="operation" then
+	tree.lhs(1).infer=A.infer
 	A.out=tree.lhs
       end
       tree=A;
