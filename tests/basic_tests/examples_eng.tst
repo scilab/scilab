@@ -1,4 +1,4 @@
-// mar jan 28 16:00:01 CET 2003
+// mar jan 28 18:32:21 CET 2003
 
 //====================================================
 // ../man/eng/arma/arma.xml
@@ -6227,11 +6227,17 @@ xdel(winsid())
 // ../man/eng/linear/lu.xml
 //====================================================
 clear;lines(0);
+a=rand(4,4);
+[l,u]=lu(a)
+norm(l*u-a)
+
+
 [h,rk]=lufact(sparse(a))  // lufact fonctionne avec des matrices creuses 
-[P,L,U,Q]=luget(h)
+[P,L,U,Q]=luget(h);
 ludel(h)
 P=full(P);L=full(L);U=full(U);Q=full(Q); 
-// P,Q sont des matrices de permutation telles que P*L*U*Q=A 
+norm(P*L*U*Q-a) // P,Q sont des matrices de permutation
+
 xdel(winsid())
 
 //====================================================
@@ -12159,10 +12165,6 @@ files=dirname('SCI/macros/util/poo.sci')
 files=dirname('SCI/macros\util/poo.sci')
 files=dirname('SCI/macros\util/poo.sci.k')
 xdel(winsid())
-
-//====================================================
-// ../man/eng/utilities/foo.xml
-//====================================================
 
 //====================================================
 // ../man/eng/utilities/help.xml
