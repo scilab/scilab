@@ -89,8 +89,14 @@ function xmltohtml(dirs,titles,xsl,step)
 	    mprintf('  Processing file %s.xml\n',fb);
 	    xslpath=xslprefix+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
 
+  	if  MSDOS then 
+	// Il a ete décidé que Sablotron etait "embarqué" avec Scilab sous Windows
+	// Don't forget to put sabcmd in Win95-util\sablotron directory
+	// Allan CORNET Juin 2004
+	    ierr=execstr('unix_s(WSCI+''\Win95-util\sablotron\sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
+	    else
 	    ierr=execstr('unix_s(''sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm'');','errcatch')
-	    
+	    end
 	    if ierr<>0 then 
 	      write(%io(2),'     Warning '+fb+'.xml does not follow dtd','(a)')
 	    end
@@ -415,7 +421,6 @@ function gener_hh(dirs,titles)
 
   //--------------------------------------
   // produce a scilab.hhp file 
-  // XXXXXXXXXXX A finir 
   //--------------------------------------
        
   head=["[OPTIONS]";
