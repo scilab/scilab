@@ -13178,7 +13178,7 @@ int sciType (marker)
   else if (strncmp(marker,"xtics_coord", 11) == 0){return 1;}	
   else if (strncmp(marker,"ytics_coord", 11) == 0){return 1;}	 
   else if (strncmp(marker,"grid", 4) == 0)        {return 1;}   
-  else if (strncmp(marker,"tics_segment", 12) == 0) {return 1;} 
+  else if (strncmp(marker,"tics_segment", 12) == 0) {return 10;} 
   else if (strncmp(marker,"tics_style", 10) == 0) {return 10;} 
   else if (strncmp(marker,"format_n", 9) == 0)    {return 10;}    
   else if (strncmp(marker,"tics_labels", 11) == 0){return 10;}  

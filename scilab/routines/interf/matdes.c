@@ -5172,11 +5172,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
   else if (strncmp(marker,"tics_segment", 12) == 0) 
     {
-      xtmp = stk(*value)[0];
-      if ((xtmp!= 0) && (xtmp!= 1))
-	{strcpy(error_message,"Second argument must be 0 or 1 ");return -1;}
-      else
-	pAXES_FEATURE (pobj)->seg = stk(*value)[0];
+       if (strncmp(cstk(*value),"on",2)==0 )
+ pAXES_FEATURE (pobj)->seg=1;
+      else if (strncmp(cstk(*value),"off",3)==0 )
+ pAXES_FEATURE (pobj)->seg=0;
+      else  {strcpy(error_message,"Nothing to do (value must be 'on/off')");
+      return -1;}
     }
 
   else if (strcmp(marker,"labels_font_size") == 0)	{
@@ -6142,9 +6143,12 @@ int sciGet(sciPointObj *pobj,char *marker)
   else if (strncmp(marker,"tics_segment", 12) == 0) 
     {
       if (sciGetEntityType (pobj) == SCI_AXES) {
-	numrow   = 1; numcol   = 1;
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	*stk(outindex) = pAXES_FEATURE (pobj)->seg;
+	numrow = 1;numcol = 3;
+	CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+	if (pAXES_FEATURE (pobj)->seg==1)
+	  strncpy(cstk(outindex),"on", numrow*(numcol-1));
+	else
+	  strncpy(cstk(outindex),"off", numrow*numcol);
       }
       else
 	{strcpy(error_message,"tics_segment property does not exist for this handle");return -1;}
