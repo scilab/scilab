@@ -7,16 +7,20 @@ index=varargin(1) //
 
 if rhs==3&(type(index)==10|type(index)==15) then
   if type(index)<>15 then
-    M=struct()
+   M=struct()
     M(index)=N
-  else
+    if index=="entries" then
+      // change struct to cell
+      f=getfield(1,M);f(1)="ce"
+      setfield(1,f,M)
+    end
+   else
     M=createstruct(index,N)
-
-  end
-  if index($)=='entries' then
-    // change struct to cell
-    f=getfield(1,M);f(1)='ce'
-    setfield(1,f,M)
+    if type(index(1))<>10 & index(2)=="entries" then
+      // change struct to cell
+      f=getfield(1,M);f(1)="ce"
+      setfield(1,f,M)
+    end
   end
   return
 end
