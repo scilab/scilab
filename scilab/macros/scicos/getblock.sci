@@ -5,7 +5,7 @@ xf=60;
 yf=40;
 x=pt(1);y=pt(2)
 data=[]
-for i=n:-1:2
+for i=n:-1:1
   k=i
   o=scs_m.objs(i)
   if typeof(o)=='Block' then
