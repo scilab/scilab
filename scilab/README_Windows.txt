@@ -1,4 +1,4 @@
-                Scilab version 2.6 for Windows (NT/2000/95/98)
+                Scilab version 2.7 for Windows (NT/2000/95/98)
                 **********************************************
  
  ******************************************************************************
@@ -13,8 +13,8 @@
  I - TO RUN SCILAB (BINARY VERSION)
  **********************************
  
-    1 - You have already installed Scilab by executing "scilab26.exe".
-        By default Scilab is in "C:\Program Files\Scilab-2.6" directory.
+    1 - You have already installed Scilab by executing "scilab27.exe".
+        By default Scilab is in "C:\Program Files\Scilab-2.7" directory.
  
     2 - Run Scilab by executing "Scilab" from the startup menu.
         In fact, it is a link to "runscilab.exe" in Scilab subdirectory "bin", 
@@ -38,7 +38,7 @@
  *****************************************
  
     To uninstall Scilab you can use the unintaller. You will find it in the 
-    "Scilab 2.6" item of the Program Group.
+    "Scilab 2.7" item of the Program Group.
     You can also use the Add/Remove Programs of the Control Panel.
  
  ******************************************************************************
@@ -63,27 +63,17 @@
  ********************************************
  
     We have compiled this distribution with Visual C++ 6.0. It is
-    possible to compile it with egcs or Cygwin compiler but the
-    incremental link does not work yet.
+    possible to compile it with egcs or Cygwin compiler.
  
     1 - To compile with Visual C++ 4.0,  5.0 or 6.0, edit the beginning of the 
         file "Makefile.incl.mak". Then type "nmake /f Makefile.mak".
  
         If you want to compile with TCL/TK interface, you need to uncomment
-        the corresponding lines in "Makefile.incl.mak". You also need to
-        modify the Makefiles of TCL/TK distribution and recompile it:
-        in files "tcl8.0\win\makefile.vc" and "tk8.0\win\makefile.vc" replace 
-        the line
-        "libcdll = msvcrt.lib oldnames.lib" by
-        "libcdll = libcmt.lib oldnames.lib" and the line
-        "cvarsdll   = $(cvarsmt) -D_DLL" by
-        "cvarsdll   = $(cvarsmt)".
+        the corresponding lines in "Makefile.incl.mak". 
  
         If you want to compile with PVM interface, you need to uncomment
         the corresponding lines in "Makefile.incl.mak". You also need to modify
         the pathnames of the compiler in the file "conf/WIN32.def" of PVM.
-        Note that at the present time, PVM interface does not work
-        well on Windows.
  
     2 - To compile with egcs or Cygwin compiler, try typing "./configure" and 
         then "make all".
@@ -136,19 +126,19 @@
              (control, polynomials,...). Each subdirectory contains 
              the source code of the macros (files *.sci). 
  
-  libs/	  : directory of libraries: archives of object files needed 
+libs/	   : directory of libraries: archives of object files needed 
              to link Scilab.
  
  routines/ : directory of fortran or C routines. Divided into subdirectories
              (see below).
  
- man/	  : files for online help
+ man/	   : files for online help
  
  tests/    : set of exec files to test Scilab.
  
  util/     : useful routines and ASCII files to manage Scilab.
  
- bin/	  : executable code and scripts.
+ bin/	   : executable code and scripts.
 
  		runscilab : executable code of Scilab.
                 intersci: generator of interface program between Scilab and 
@@ -158,7 +148,7 @@
  
  maple/    : Maple code to link Maple with Scilab.
  
- pvm3/	  : PVM 3.4 beta 6 for Scilab.
+ pvm3/	  : PVM 3 for Scilab.
  
  tcl/      : TCL/TK for Scilab.
  
