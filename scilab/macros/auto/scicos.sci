@@ -77,7 +77,7 @@ if ~super_block then
  %scicos_lhb_list(3)=list('Copy','Copy Region','Help')
   //
   if exists('scicoslib')==0 then load('SCI/macros/scicos/lib'),end
-  if exists('blockslib')==0 then load('SCI/macros/scicos_blocks/lib'),end
+  exec(loadpallibs,-1) //to load the palettes libraries
 end
 
 
@@ -312,3 +312,11 @@ function [x,k]=gunique(x)
     k(keq)=[]
 endfunction
 
+function loadpallibs()
+  //to be called by exec(loadpallibs)
+    Dirs=['Branching','Events','Misc','Sinks','Threshold','Linear', ...
+	  'NonLinear','Sources'];
+    for d=Dirs,execstr(['if exists(''scs'+convstr(d)+'lib'')==0 then'
+              '  load(''SCI/macros/scicos_blocks/'+d+'/lib'');'
+	      'end']); end
+endfunction
