@@ -321,9 +321,11 @@
       </ITEM>
 
       <ITEM label='fsultra'> 
-<SP>       : ce générateur a été concu par Arif Zaman (arif@stat.fsu.edu) et George Marsaglia
-         (geo@stat.fsu.edu). Son état interne est constitué par <VERB>2</VERB>
-	  entiers.</SP>
+<SP>       : un générateur SWB (subtract-with-borrow) mixé avec un générator congruentiel 
+             concu par Arif Zaman et George Marsaglia. Sa période est supérieure à <VERB>10^356</VERB>,
+             et son état interne est constitué d'un tableau de 37 entiers, d'un index sur
+             ce tableau et d'un drapeau (0 ou 1) ainsi qu'un autre entier donnant l'état interne
+             du générateur congruentiel.</SP>
       </ITEM>
       </ITEMIZE>
  </SECTION>
@@ -347,7 +349,7 @@
      <VERB>S</VERB> est un vecteur colonne (d'entiers) de dimension <VERB>625</VERB> 
      pour mt (la première composante étant un 'index' sur l'état, c-a-d un entier de l'intervalle
       <VERB>[1,624]</VERB>), <VERB>4</VERB> 
-     pour kiss, <VERB>2</VERB> pour clcg2 et fsultra, <VERB>4</VERB> pour clcg4 
+     pour kiss, <VERB>2</VERB> pour clcg2 , <VERB>40</VERB>pour fsultra, <VERB>4</VERB> pour clcg4 
      (pour ce dernier vous obtenez l'état interne du générateur virtuel courant), et <VERB>1</VERB> 
      pour urand.</SP>
   </ITEM>
@@ -360,7 +362,7 @@
        <SP><VERB>S</VERB> est un vecteur d'entiers de dimension <VERB>625</VERB> (la première composante
        étant un index sur <VERB>[1,624]</VERB>), les <VERB>624</VERB> dernières composantes doivent 
        être dans <VERB>[0,2^32[</VERB>) (mais ne doivent pas être toutes nulles) ; une initialisation
-       plus simple est possible en donnant un seul entier <VERB>s1</VERB> (<VERB>s1</VERB> appartenant
+       plus simple est possible (et recommandée) en donnant un seul entier <VERB>s1</VERB> (<VERB>s1</VERB> appartenant
        à <VERB>[0,2^32[</VERB>) ;</SP>
      </ITEM>
      <ITEM label='pour kiss'>
@@ -386,8 +388,11 @@
 	      <VERB>[0,2^31</VERB>[ est requis.</SP>
      </ITEM>
      <ITEM label='for fsultra'>
-<SP>       <VERB>2</VERB> entiers <VERB>s1, s2</VERB> dans <VERB>[0,2^32[</VERB> doivent être
-       fournis.</SP>
+            <SP>:  <VERB>S</VERB> est un vecteur de <VERB>40</VERB> entiers (son premier élément doit être dans
+       l'intervalle<VERB>[0,37]</VERB>, son deuxième (drapeau) doit être 0 ou 1, le troisième un
+       entier de [1,2^32[ et les 37 composantes suivantes, des entiers de [0,2^32[) ; il est recommandé
+       d'utiliser l'autre procédure d'initialisation (plus simple) avec deux entiers <VERB>s1</VERB> et 
+       <VERB>s2</VERB> de <VERB>[0,2^32[</VERB>.</SP>
      </ITEM>
      </ITEMIZE>
   </ITEM>

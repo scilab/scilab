@@ -279,8 +279,10 @@
          serious simulations).</SP>
       </ITEM>
       <ITEM label="fsultra">
-        <SP>: Arif Zaman (arif@stat.fsu.edu) and George Marsaglia
-         (geo@stat.fsu.edu). State given by 2 integers.</SP>
+        <SP>: a Subtract-with-Borrow generator mixing with a congruential
+	 generator of Arif Zaman and George Marsaglia, period more than <VERB>10^356</VERB>,
+         state given by an array of 37 integers (plus an index onto this array, a flag (0 or 1)
+         and another integer).</SP>
       </ITEM>
     </ITEMIZE>
     <P>The differents actions common to all the generators, are:
@@ -299,7 +301,7 @@
         <SP>: <VERB>S=grand('getsd')</VERB> gets the current state (the current seeds) of the current base
      generator ; <VERB>S</VERB> is given as a column vector (of integers) of dimension <VERB>625</VERB> 
      for mt (the first being an index in <VERB>[1,624]</VERB>), <VERB>4</VERB> for kiss, <VERB>2</VERB> 
-     for clcg2 and fsultra, <VERB>4</VERB> for clcg4 
+     for clcg2,  <VERB>40</VERB> for fsultra, <VERB>4</VERB> for clcg4 
      (for this last one you get the current state of the current virtual generator) and <VERB>1</VERB> 
      for urand.</SP>
       </ITEM>
@@ -335,7 +337,11 @@
             <SP>: <VERB>1</VERB> integer <VERB>s1</VERB> in  <VERB>[0,2^31</VERB>[ must be given.</SP>
           </ITEM>
           <ITEM label="for fsultra">
-            <SP>: <VERB>2</VERB> integers <VERB>s1, s2</VERB> in  <VERB>[0,2^32[</VERB> must be provided.</SP>
+            <SP>:  <VERB>S</VERB> is a vector of integers of dim <VERB>40</VERB> (the first component 
+       is an index and must be in <VERB>[0,37]</VERB>, the 2d component is a flag (0 or 1), the 3d
+       an integer in [1,2^32[ and the 37 others integers in [0,2^32[) ; a simpler (and recommanded) 
+       initialisation may be done with two integers <VERB>s1</VERB> and <VERB>s2</VERB> in 
+       <VERB>[0,2^32[</VERB>.</SP>
           </ITEM>
         </ITEMIZE>
       </ITEM>
