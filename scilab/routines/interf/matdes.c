@@ -4676,7 +4676,7 @@ int gset(fname,fname_len)
   sciPointObj *pobj;
 
   /* F.Leray Adding some tmp variable for SCI_SURFACE / data case*/
-  integer m3tl, n3tl, l3tl; /*,m3l, n3l, l3l;*/
+  integer m3tl, n3tl, l3tl;
   int numrow[4],i;
   int numcol[4], lxyzcol[4];
   int flagc = -1;
@@ -4717,7 +4717,7 @@ int gset(fname,fname_len)
 	    pobj = (sciPointObj *) NULL;
 	  else
 	    pobj = sciGetPointerFromHandle(hdl);
-	} /* DJ.A 08/01/04 */
+	} 
       else 
 	{
 	  hdl = (unsigned long)*stk(l1);
@@ -4743,10 +4743,11 @@ int gset(fname,fname_len)
       break;
     case 10:/* first is a string argument so it's a gset("command",[param]) */ 
       CheckRhs(2,2);
-      GetRhsVar(1,"c",&m2,&n2,&l2);/* Gets the Handle passed as argument */ 
+      GetRhsVar(1,"c",&m2,&n2,&l2);
       if (strncmp(cstk(l2),"default_figure",14) !=0 && strncmp(cstk(l2),"default_axes",12) !=0 )
 	{
-	  if (strncmp(cstk(l2),"old_style",9) !=0) C2F(sciwin)();
+	  if ((strncmp(cstk(l2),"old_style",9) !=0) && 
+	      (strncmp(cstk(l2),"current_figure",14) !=0)) C2F(sciwin)();
 	  if (version_flag() == 0)	
 	    if ((strncmp(cstk(l2),"zoom_",5) !=0) && 
 		(strncmp(cstk(l2),"auto_",5) !=0) && 
@@ -4760,16 +4761,18 @@ int gset(fname,fname_len)
 	    pobj = (sciPointObj *) NULL;
 	  else
 	    pobj = sciGetPointerFromHandle(hdl);
-	}/* DJ.A 08/01/04 */
+	}
       else
 	{
 	  hdl = (unsigned long)0;
 	  pobj = (sciPointObj *) NULL;
 	}
       if (VarType(2) != sciType(cstk(l2),pobj)) { /* F.Leray MODIFICATION ICI*/
-	Scierror(999,"%s: uncompatible values of property type  '%s' \r\n",fname,cstk(l2));
+	if (VarType(2)!=1 || strncmp(cstk(l2),"current_figure",14) !=0) {
+	  Scierror(999,"%s: uncompatible values of property type  '%s' \r\n",fname,cstk(l2));
 
-	return 0;} 
+	  return 0;} 
+      }
       if ( (VarType(2) == 1) )   {GetRhsVar(2,"d",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 9) )   {GetRhsVar(2,"h",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 10) ) {
@@ -4784,7 +4787,7 @@ int gset(fname,fname_len)
       return 0;
       break;
     }
-  if ( (hdl != (unsigned long)0) ) {/**DJ.Abdemouche 2003**/  /* F.Leray 16.03.04*/
+  if ( (hdl != (unsigned long)0) ) { /* F.Leray 16.03.04*/
     pobj = sciGetPointerFromHandle(hdl);
     vis_save=sciGetVisibility(pobj); /*used not to redraw the figure is object remains invisible SS 20.04.04*/
     /* make a test on SCI_SURFACE here*/
@@ -5000,7 +5003,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    strcpy(error_message,"function not valid under old graphics style");
 	  return -1;
 	}
-    }/* DJ.A 08/01/04 */
+    }
   
   /***************** graphics mode *******************************/ 
   if (strncmp(marker,"color_map", 9) == 0)
@@ -5121,9 +5124,24 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"Object is not an Axes Entity");return -1;}
     }
+  else if (strncmp(marker,"current_figure", 14) == 0) 
+    {
+      if (VarType(2) != 1) {
+	tmpobj =(sciPointObj *)sciGetPointerFromHandle((long)stk(*value)[0]);
+	if (tmpobj == (sciPointObj *) NULL)
+	  {strcpy(error_message,"Object is not valid");return -1;}
+	if (sciGetEntityType (tmpobj) != SCI_FIGURE)
+	  {strcpy(error_message,"Object is not a handle on a figure");return -1;}
+	num=pFIGURE_FEATURE(tmpobj)->number;
+      }
+      else
+	num=stk(*value)[0];
+
+      C2F(dr1)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
+      sciSwitchWindow(&num);
+    }
 	
   /************************  figure Properties *****************************/ 
-  /*19/11/2002*/
   else if (strncmp(marker,"figure_position", 15) == 0)
     {
       sciSetFigurePos ((sciPointObj *)pobj, (int)stk(*value)[0], (int)stk(*value)[1]);
@@ -5132,7 +5150,6 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {
       pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth=(int)stk(*value)[0];  
       pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight=(int)stk(*value)[1];
-      /*Ajout A.Djalel wdim au lieu de wpdim*/
       if ((sciPointObj *)pobj != pfiguremdl)
 	C2F(dr)("xset","wdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth),
 		&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
