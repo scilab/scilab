@@ -461,7 +461,6 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
   KeySym keysym;
   static XComposeStatus compose_status = {NULL, 0};
   struct timeval delay; /* usec, to slow down event loop */
-  delay.tv_sec = 0; delay.tv_usec = 10;
 
   wincount =  GetWinsMaxId()+1;
   if (wincount == 0) 
@@ -583,6 +582,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
 	}
     }
     /* to slow down event loop not to use all cpu when nothing happen*/
+    delay.tv_sec = 0; delay.tv_usec = 10;
     select(0, 0, 0, 0, &delay);
   }
   set_client_message_off();
