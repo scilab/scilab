@@ -50,7 +50,7 @@ MACROS = copyfile.sci mkdir.sci rmdir.sci calendar.sci datevec.sci \
 	loadmatfile.sci matfile2sci.sci ReadmiMatrix.sci toolboxes.sci\
 	with_tk.sci with_gtk.sci gettklib.sci with_pvm.sci with_ocaml.sci \
 	with_texmacs.sci with_modelica_compiler.sci\
-	scipad.sci\
+	scipad.sci iscell.sci isstruct.sci issparse.sci isfield.sci \
 	add_help_chapter.sci add_demo.sci add_palette.sci fileparts.sci head_comments.sci OS_Version.sci \
 	tree2code.sci expression2code.sci instruction2code.sci cat_code.sci format_txt.sci \
 	rhs2code.sci create_palette.sci ndgrid.sci \
