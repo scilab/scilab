@@ -164,7 +164,7 @@
 
         <SP>A default color table is used to color plotted curves if you do
         not specify a color (neither with <VERB>LineSpec</VERB> nor with
-        <LINK>LinePropertySpec</LINK>). When drawing multiple lines, the plot
+        <LINK>GlobalProperty</LINK>). When drawing multiple lines, the plot
         command automatically cycles through this table. Here are the used
         colors:</SP>
 
@@ -373,7 +373,7 @@ plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>LinePropertySpec</LINK>
+      <LINK>GlobalProperty</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
