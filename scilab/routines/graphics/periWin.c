@@ -3962,7 +3962,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   SCROLLINFO horzsi;
   integer ne=7, menutyp=2, ierr;
   char *EditMenusE[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties","Start Entity Picker","Stop  Entity Picker"};
-  char *EditMenusF[]={"Selectionner","Redessiner","Effacer","Proprietes de la Figure","Proprietes des Axes Courants","Démarrer Capture d'Entitées","Arrêter Capture d'Entitées"};
+  char *EditMenusF[]={"Selectionner","Redessiner","Effacer","Propriétés de la Figure","Propriétés des Axes Courants","Démarrer Sélecteur d'Entitées","Arrêter Sélecteur d'Entitées"};
   
   if ( v2 != (integer *) NULL && *v2 != -1 )
     WinNum= *v2;
