@@ -20,22 +20,38 @@ void C2F(convertdate)(dt,w)
      int w[];
      time_t *dt;
 {
-  struct tm *nowstruct;
+	struct tm *nowstruct=NULL;
 
   /* Is setlocale useful?
      (void) setlocale(LC_ALL, ""); */
+  
+	nowstruct = localtime(dt);
+	if (nowstruct)
+	{
+		w[0] = 1900 + nowstruct->tm_year;
+		w[1] = 1    + nowstruct->tm_mon;
+		w[2] = week_number(nowstruct);
+		w[3] = 1    + nowstruct->tm_yday;
+		w[4] = 1    + nowstruct->tm_wday;
+		w[5] =        nowstruct->tm_mday;
+		w[6] =        nowstruct->tm_hour;
+		w[7] =        nowstruct->tm_min;
+		w[8] =        nowstruct->tm_sec;
+	}
+	else
+	{
+		w[0] = 0;
+		w[1] = 0;
+		w[2] = 0;
+		w[3] = 0;
+		w[4] = 0;
+		w[5] = 0;
+		w[6] = 0;
+		w[7] = 0;
+		w[8] = 0;
+		sciprint("dt=getdate(x) x must be >0.\n");
+	}
 
-  nowstruct = localtime(dt);
-
-  w[0] = 1900 + nowstruct->tm_year;
-  w[1] = 1    + nowstruct->tm_mon;
-  w[2] = week_number(nowstruct);
-  w[3] = 1    + nowstruct->tm_yday;
-  w[4] = 1    + nowstruct->tm_wday;
-  w[5] =        nowstruct->tm_mday;
-  w[6] =        nowstruct->tm_hour;
-  w[7] =        nowstruct->tm_min;
-  w[8] =        nowstruct->tm_sec;
 }
 
 /* following code issued from glibc-2.1.2/time/strftime.c, 
