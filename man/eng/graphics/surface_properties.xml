@@ -157,8 +157,7 @@
 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-
-   set("old_style","off") // set new graphics style as default creating figure
+   set("figure_style","new") //create a figure
 
 
    t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');[xx,yy,zz]=genfac3d(t,t,z);
