@@ -1,6 +1,7 @@
 #ifndef STACK1_H 
 #define STACK1_H 
 
+
 typedef  void (*S_fp) __PARAMS((char *,int *));
 
 /** used in stack1.c : defined elsewhere */
@@ -15,10 +16,11 @@ extern void C2F(cstringf) __PARAMS((char ***,integer *,integer *,integer *,integ
 extern int s_copy __PARAMS((char *,char *, integer, unsigned long int));
 extern int C2F(stringc)  __PARAMS((integer *,char ***,integer *));
 extern int C2F(stackg)   __PARAMS((integer *));
-#ifdef __STDC__ 
-extern int  Scierror __PARAMS((int iv,char *fmt,...));
-#else 
-extern int Scierror(va_alist);
+
+#ifdef __STDC__
+	extern int  Scierror __PARAMS((int iv,char *fmt,...));
+#else
+	extern int Scierror __PARAMS((  )) ;
 #endif 
 
 /* calelm */
