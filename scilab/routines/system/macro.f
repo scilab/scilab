@@ -265,8 +265,8 @@ c     restaure  pointers
       call putid(syn,lin(k+12))
 c
       if (err1.gt.0.and.catch.eq.0) then
-         toperr=ids(6,pt)
          top=toperr
+         toperr=ids(6,pt)
          macr=macr-1
          if (.not.exec) bot=lin(k+5)
          goto 48
