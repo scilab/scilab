@@ -202,6 +202,14 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny, ch
   int ns=2,style=0,iflag=0;
   integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp;
   
+   /* Modified by POLPOTH09042001 Mon Apr  9 08:59:10 MET DST 2001 */
+   /* If  zero ticks are requested, exit */
+ 
+   if (*nx==3) if (x[2]==0.0) return;
+   if (*ny==3) if (y[2]==0.0) return;
+ 
+   /* End of modified code */
+  
   C2F(dr)("xget","font",&verbose,fontid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   fontsize_kp = fontid[1] ;
 

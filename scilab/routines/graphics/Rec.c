@@ -1439,7 +1439,7 @@ void SCPlots(char *unused, integer *winnumber, integer *flag, double *bbox, inte
 /** change the plot flag in order to use bbox **/ 
 
 static void SC2DChangeFlag(char *str)
-{
+{return; /* Added by POLPOTH09042001 on Apr  9 08:59:10 MET DST 2001 */
   if ( str[1] == '2' ||  str[1] == '1'  || str[1] == '6' ) 
     str[1] = '5';
   else if ( str[1] == '4' ) 

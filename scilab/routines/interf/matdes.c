@@ -242,7 +242,7 @@ static int get_nax(pos,opts)
     if (VarType(pos)) {
       GetRhsVar(pos, "i", &m, &n, &l);
       CheckLength(pos,m*n,4);
-      for (i = 0 ; i < 4; ++i) *istk(l+i) = Max((integer) *istk(l+i),1);
+      for (i = 0 ; i < 4; ++i) *istk(l+i) = Max((integer) *istk(l+i),0); /*POLPOTH09042001*/
       Nax=istk(l);
     }
     else
@@ -253,7 +253,7 @@ static int get_nax(pos,opts)
   else if ((kopt=FindOpt("nax",opts))) {
     GetRhsVar(kopt, "i", &m, &n, &l);
     CheckLength(kopt,m*n,4);
-    for (i = 0 ; i < 4; ++i) *istk(l+i) = Max((integer) *istk(l+i),1);
+    for (i = 0 ; i < 4; ++i) *istk(l+i) = Max((integer) *istk(l+i),0); /*POLPOTH09042001*/
     Nax=istk(l);
   }
   else 
