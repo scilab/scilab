@@ -1436,8 +1436,8 @@ void I3dRotation(void)
 			   ((pSUBWIN_FEATURE (psubwin)->brect[4] != -1.) || (pSUBWIN_FEATURE (psubwin)->brect[5] != 1.)))*/
 			{
 			  Cscale.bbox1[0] = pSUBWIN_FEATURE (psubwin)->brect[0]; 
-			  Cscale.bbox1[1] = pSUBWIN_FEATURE (psubwin)->brect[2]; 
-			  Cscale.bbox1[2] = pSUBWIN_FEATURE (psubwin)->brect[1]; 
+			  Cscale.bbox1[1] = pSUBWIN_FEATURE (psubwin)->brect[1]; 
+			  Cscale.bbox1[2] = pSUBWIN_FEATURE (psubwin)->brect[2]; 
 			  Cscale.bbox1[3] = pSUBWIN_FEATURE (psubwin)->brect[3]; 
 			  Cscale.bbox1[4] = pSUBWIN_FEATURE (psubwin)->brect[4]; 
 			  Cscale.bbox1[5] = pSUBWIN_FEATURE (psubwin)->brect[5]; 
