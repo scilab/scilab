@@ -7,9 +7,6 @@ c      integer plus,minus,ou,et
 c      integer equal,less,great,not
 
       data bslash/49/,star/47/,slash/48/,dot/51/,not/61/
-
-c      data plus/45/,minus/46/,ou/57/,et/58/
-c      data equal/50/,less/59/,great/60/,not/61/
 c
       r = rstk(pt)
       if (ddt .eq. 4) then
