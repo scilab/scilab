@@ -832,9 +832,6 @@ int Pause (LPSTR str)
 void WinExit (void)
 {
 	int i;
-	/** clear tmpdir */
-	/** fprintf(stderr,"I Quit Scilab through sciquit\n"); **/
-	C2F (tmpdirc) ();
 	C2F (xscion) (&i);
 	if (i != 0)
 	{

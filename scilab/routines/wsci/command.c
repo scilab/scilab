@@ -1,6 +1,7 @@
 /*
  * command.c : 
  * (1997) : Jean-Philippe Chancelier 
+ * (2004) : Allan CORNET
  * 
  */
 
@@ -25,6 +26,10 @@
 /*#include "wgnuplib.h"*/
 #include "wcommon.h"
 #include "plot.h"
+
+extern void add_history (char *line);
+extern void SearchInHistory(char *line);
+extern BOOL NewSearchInHistory;
 
 extern GW graphwin;		/* graphic window */
 extern TW textwin;
@@ -57,11 +62,21 @@ static char * rlgets (char *s, int n, char *prompt)
     free (line);
 
   line = readline_win (prompt);
-  
+   /* Rappel Commande avec ! */
+  if (line[0]=='!')
+  	{
+  		if (strlen(line)>1)
+  		{
+  			SearchInHistory(&line[1]);
+  		}
+  		add_history(line);
+  		return NULL;
+  	}
+  NewSearchInHistory=TRUE;	
   /* If it's not an EOF */
   if (line)
     {
-      if (*line>=0) add_history_win (line);
+      if (*line>=0) add_history (line);
       strncpy (s, line, n);
       return s;
     }
@@ -88,7 +103,7 @@ rlgets_nw (char *s, int n, char *prompt)
     {
       /* -1 is added for eos ( end of input when using pipes ) */
       if (*line>=0)
-	add_history_nw (line);
+	add_history (line);
       strncpy (s, line, n);
       return s;
     }

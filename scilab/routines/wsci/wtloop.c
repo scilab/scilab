@@ -197,8 +197,9 @@ static void realmain(int nos,char *initial_script,int initial_script_type,
   /* execute the initial script and enter scilab */ 
   
   C2F(scirun)(startup,strlen(startup));
-  /* cleaning */
-  /* performed in atexit C2F(sciquit)(); */
+  
+  /* cleaning */ /* Allan CORNET 18/01/2004 */
+  C2F(sciquit)(); 
   return ;
 }
 

@@ -238,7 +238,7 @@ void InitScreenBuffer(LPTW lptw);
 void ReorganizeScreenBuffer(LPTW lptw);
 
 extern void ResetMenu(void);
-void ClearScreenConsole(void);
+void ClearScreenConsole _PARAMS((char *fname));
 void ClearCommandWindow(LPTW lptw,BOOL Clearfirstline);
 void HideScilex(void);
 void ShowScilex(void);
@@ -273,4 +273,7 @@ void ForceToActiveWindowParent(void);
 void PrintSelection(LPTW lptw);
 /*--------------------------*/
 void ExitWindow(void);
+/*--------------------------*/
+void write_scilab_synchro(char *line);
+DWORD WINAPI WriteTextThread(LPVOID lpParam);
 /*--------------------------*/

@@ -55,6 +55,9 @@ BOOL IsReadyForAnewLign();
 void SetReadyOrNotForAnewLign(BOOL Ready);
 */
 
+/* Utiliser par write_scilab_synchro */
+HANDLE hThreadWrite;
+CRITICAL_SECTION Sync; /* Section Critique pour Write_scilab */
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -2610,7 +2613,7 @@ void EvaluateSelection(LPTW lptw)
 	}
 	CloseClipboard ();
 	strcat(MessagePaste,"\n");
-	write_scilab(MessagePaste);	
+	write_scilab_synchro(MessagePaste);	
 	
 }
 /*-----------------------------------------------------------------------------------*/
@@ -2753,17 +2756,72 @@ BOOL HasAZoneTextSelected(LPTW lptw)
 	return ValRetour;
 }
 /*-----------------------------------------------------------------------------------*/
-void ClearScreenConsole(void)
+void ClearScreenConsole _PARAMS((char *fname))
 {
-	if ( IsWindowInterface() )
-	{
-		LPTW lptw;
-		lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
-		ClearCommandWindow(lptw,FALSE);
+	
+	
+	if (Rhs == 0) /* aucun parametre On Efface tout l'ecran */
+        {
+		if ( IsWindowInterface() )
+		{
+			LPTW lptw;
+			lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+			ClearCommandWindow(lptw,FALSE);
+		}
+		else
+		{
+			system("cls");	
+		}
 	}
-	else
+	else /* on remonte le curseur en effacant du nombre de lignes indiqué */
 	{
-		system("cls");	
+		if ( IsWindowInterface() )
+		{
+			int X=0,Y=0;
+			int cx=0,cy=0;
+			char MSG[255];
+			LPTW lptw;
+			static int l1, m1, n1;
+			int NbrLineToRemove=0;
+					
+			CheckRhs(1,1);
+  			CheckLhs(1,1);
+  			GetRhsVar(1,"i",&m1,&n1,&l1);
+  			NbrLineToRemove=*istk(l1)+2;
+  			LhsVar(1)=0;
+	
+	 		if (NbrLineToRemove>0)
+	 		{
+	 			 LPTW lptw;
+	 			 int i = 0;
+	 			 lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+				 
+				 X=lptw->CursorPos.x;
+				 Y=lptw->CursorPos.y-NbrLineToRemove;
+				 if (Y>0)
+				 {
+				 	i=(Y+1)*lptw->ScreenSize.x;
+				 			 
+	 			 	_fmemset(lptw->ScreenBuffer + i, ' ', (NbrLineToRemove+1)*lptw->ScreenSize.x);
+	 			 	_fmemset(lptw->AttrBuffer + i, NOTEXT, (NbrLineToRemove+1)*lptw->ScreenSize.x);
+	 			 
+	 				TextGotoXY (lptw, X,Y);
+	 				InvalidateRect (lptw->hWndText, NULL, TRUE);
+				 }
+				 else
+				 {
+				 	sciprint("\n Not in screen \n");
+				 }
+			}	
+			else
+	 		{
+	 			sciprint("Error %d invalid number\n",NbrLineToRemove);
+	 		}
+		}
+		else
+		{
+			sciprint("\n Not in console mode \n");
+		}
 	}
 	
 }
@@ -2908,7 +2966,7 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 	{
 		long count;
 		
-	
+	        while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
 		count = lptw->KeyBufIn - lptw->KeyBufOut;
 			
 		if (count < 0) count = count+lptw->KeyBufSize;
@@ -3256,3 +3314,36 @@ void ExitWindow(void)
    }
 	   	
 }
+/*-----------------------------------------------------------------------------------*/
+void write_scilab_synchro(char *line)
+/* write_scilab_synchro attend le prompt pour ecrire une ligne sur la console*/
+/* une ligne c a d sans retour chariot ou un seul */
+{
+	DWORD IdThreadWrite;
+		
+	InitializeCriticalSection(&Sync);
+	hThreadWrite=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)WriteTextThread,line,0,(LPWORD)&IdThreadWrite);
+	CloseHandle(hThreadWrite);
+	
+}
+/*-----------------------------------------------------------------------------------*/
+DWORD WINAPI WriteTextThread(LPVOID lpParam)
+{
+	LPTW lptw;
+	char *line;
+	
+	line=(char *)lpParam;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	
+	
+	EnterCriticalSection(&Sync);
+	while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
+	/* Il n'y a plus rien dans la queue des commandes */
+	while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
+		
+	/* Nous sommes au prompt */
+	write_scilab(line);
+	LeaveCriticalSection(&Sync);
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
