@@ -8073,6 +8073,12 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       (ppsubwin->axes).reverse[1] = ppaxesmdl->axes.reverse[1];
       (ppsubwin->axes).reverse[2] = ppaxesmdl->axes.reverse[2];
       ppsubwin->flagNax = ppaxesmdl->flagNax;
+
+      /* do not forget the nbsubtics ! */
+      (ppsubwin->axes).nbsubtics[0] = ppaxesmdl->axes.nbsubtics[0];
+      (ppsubwin->axes).nbsubtics[1] = ppaxesmdl->axes.nbsubtics[1];
+      (ppsubwin->axes).nbsubtics[2] = ppaxesmdl->axes.nbsubtics[2];
+      
       (ppsubwin->axes).nxgrads = ppaxesmdl->axes.nxgrads;
       (ppsubwin->axes).nygrads = ppaxesmdl->axes.nygrads;
       (ppsubwin->axes).nzgrads = ppaxesmdl->axes.nzgrads;
@@ -8575,10 +8581,12 @@ int C2F(graphicsmodels) ()
   (ppaxesmdl->axes).reverse[1] = FALSE;
   (ppaxesmdl->axes).reverse[2] = FALSE;
   ppaxesmdl->flagNax = FALSE;
-  (ppaxesmdl->axes).nxgrads = 0;
-  (ppaxesmdl->axes).nygrads = 0;
-  (ppaxesmdl->axes).nzgrads = 0;
-
+ 
+  /*F.Leray : just for completion : */
+  ppaxesmdl->axes.nbsubtics[0] = 1; /* not used at all because needs ppaxesmdl->flagNax = TRUE */
+  ppaxesmdl->axes.nbsubtics[1] = 1; /* and when it is TRUE, it means WE have given the corresponding */
+  ppaxesmdl->axes.nbsubtics[2] = 1; /* ppaxesmdl->axes.nbsubtics[0,1,2] !! */
+  
   (ppaxesmdl->axes).nxgrads = 11; /* computed ticks */
   (ppaxesmdl->axes).nygrads = 11;
   (ppaxesmdl->axes).nzgrads = 3;
@@ -19655,6 +19663,11 @@ int InitAxesModel()
   (ppaxesmdl->axes).reverse[1] = FALSE;
   (ppaxesmdl->axes).reverse[2] = FALSE;
   ppaxesmdl->flagNax = FALSE;
+  
+  /*F.Leray : just for completion : */
+  ppaxesmdl->axes.nbsubtics[0] = 1; /* not used at all because needs ppaxesmdl->flagNax = TRUE */
+  ppaxesmdl->axes.nbsubtics[1] = 1; /* and when it is TRUE, it means WE have given the corresponding */
+  ppaxesmdl->axes.nbsubtics[2] = 1; /* ppaxesmdl->axes.nbsubtics[0,1,2] !! */
 
   (ppaxesmdl->axes).nxgrads = 11; /* computed ticks */
   (ppaxesmdl->axes).nygrads = 11;
