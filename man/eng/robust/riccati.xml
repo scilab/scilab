@@ -58,6 +58,7 @@ A'*X+X*A-X*B*X+C=0
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ricc</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>ric_desc</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

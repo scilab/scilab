@@ -41,7 +41,8 @@ M5 = mtlb_cell.sci  cell.sci struct.sci  \
 	%ce_c_ce.sci %ce_f_ce.sci \
 	%ce_c_s.sci %ce_f_s.sci %s_f_ce.sci %s_c_ce.sci \
 	%c_c_ce.sci %c_f_ce.sci %ce_f_c.sci %ce_c_c.sci \
-	%i_c_ce.sci %i_f_ce.sci %ce_f_i.sci %ce_c_i.sci
+	%i_c_ce.sci %i_f_ce.sci %ce_f_i.sci %ce_c_i.sci \
+	createstruct.sci
 
 PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci \
 	mtlb_hold.sci mtlb_ishold.sci mtlb_mesh.sci mtlb_meshdom.sci \

@@ -356,9 +356,9 @@ dx=mini(abs(real(spec(H))));
 //
 //     E=(Y2'*X2-mu*Y1'*X1);
 //     write(%io(2),mini(svd(E)),'(5x,''mini(svd(E)) = '',f10.2)')
-     [al1,be1]=gspec(A*X2 -B2*(S*X2 +B2'*X1 ),X2);
-     [al2,be2]=gspec(Y2'*A-(Y2'*L+Y1'*C2')*C2,Y2');
-     [al3,be3]=gspec(mu_test*Y1'*X1,Y2'*X2);
+     [al1,be1]=spec(A*X2 -B2*(S*X2 +B2'*X1 ),X2);
+     [al2,be2]=spec(Y2'*A-(Y2'*L+Y1'*C2')*C2,Y2');
+     [al3,be3]=spec(mu_test*Y1'*X1,Y2'*X2);
 
 //Here division by zero may appear...
 //If such division appear try to uncomment the 3 following lines:

@@ -715,15 +715,15 @@ c
          call error(998)
          return
        endif       
-       if(.not.getrhsvar(2,'d', MC, NC, lC)) return
-       if(MC.ne.NC) then
-         buf='ricc'//': the matrix C must be square'
+       if(.not.getrhsvar(2,'d', MD, ND, lD)) return
+       if(MD.ne.ND) then
+         buf='ricc'//': the matrix D must be square'
          call error(998)
          return
        endif
-       if(.not.getrhsvar(3,'d', MD, ND, lD)) return
-       if(MD.ne.ND) then
-         buf='ricc'//': the matrix D must be square'
+       if(.not.getrhsvar(3,'d', MC, NC, lC)) return
+       if(MC.ne.NC) then
+         buf='ricc'//': the matrix C must be square'
          call error(998)
          return
        endif

@@ -152,7 +152,7 @@ deff('[flg]=sel(x)',...
 X'*H*X
 
 //               With matrix pencil
-[X,d]=gschur(H,eye(H),sel)
+[X,d]=schur(H,eye(H),sel)
 X'*H*X
 
 //            block diagonalization
@@ -166,7 +166,7 @@ A=rand(3,2)*rand(2,3);
 s=poly(0,'s');
 
 w=det(s*E-A)   //determinant
-[al,be]=gspec(A,E);
+[al,be]=spec(A,E);
 al./(be+%eps*ones(be))
 roots(w)
 [Ns,d]=coffg(s*E-A);    //inverse of polynomial matrix;

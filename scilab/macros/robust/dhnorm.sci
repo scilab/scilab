@@ -26,7 +26,7 @@ e=[Id,-B*inv(R)*B';Z,Ak'];
 Aa=[Ak,Z;-C'*inv(eye()-D*D')*C,Id];
 [As,Es,w,k]=schur(Aa,e,'d');
 //Testing magnitude 1 eigenvalues.
-[al,be]=gspec(As,Es);
+[al,be]=spec(As,Es);
 finite=find(abs(be)>0.00000001);
 finite_eigen=al(finite)./be(finite);
 bad=find( abs(abs(finite_eigen)-1) < 0.0000001);

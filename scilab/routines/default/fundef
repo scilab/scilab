@@ -168,7 +168,7 @@
 {"ereduc",		IN_matqz,	3,	2},	
 {"fstair",		IN_matqz,	4,	2},	
 #define  IN_matric 9  
-{"ricc",		IN_matric,	3,	2},	
+{"ricc_old",		IN_matric,	3,	2},	
 #define  IN_matnew  10  
 {"freq",		IN_matnew,	4,	2},	
 {"ltitr",		IN_matnew,	5,	2},	
@@ -551,7 +551,7 @@
 {"rankqr",		IN_intslicot,	4,	3},
 {"contr",		IN_intslicot,	5,	3},
 {"mucomp",		IN_intslicot,	6,	3},
-{"riccsl",		IN_intslicot,	7,	3},
+{"ricc",		IN_intslicot,	7,	3},
 {"hinf",		IN_intslicot,	8,	3},
 {"dhinf",		IN_intslicot,	9,	3},
 {"linmeq",		IN_intslicot,	10,	3},

@@ -304,7 +304,7 @@ nz=nf-sum(diag(e)); //rank deficiency of e
  
 //Generalized Schur decomposition of the pencil (f,e)
 //---------------------------------------------------
-[a,b]=gspec(f,e);
+[a,b]=spec(f,e);
  
  
 if option=='test' then
