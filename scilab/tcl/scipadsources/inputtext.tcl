@@ -96,21 +96,21 @@ proc puttext {w text} {
     }
     reshape_bp
     $w see insert
-    inccount [gettextareacur]
+    setmodified [gettextareacur]
 }
 
-proc getccount {textarea} {
+proc getmodified {textarea} {
     global listoffile
     return $listoffile("$textarea",save)
 }
 
-proc inccount {textarea} {
+proc setmodified {textarea} {
     global listoffile
     set listoffile("$textarea",save) 1
     modifiedtitle $textarea
 }
 
-proc outccount {textarea} {
+proc unsetmodified {textarea} {
     global listoffile
     set listoffile("$textarea",save) 0
     modifiedtitle $textarea
@@ -122,7 +122,7 @@ proc printtime {} {
     if {[IsBufferEditable] == "No"} {return}
     [gettextareacur] insert insert [clock format [clock seconds] \
                     -format "%R %p %D"]
-    inccount [gettextareacur]
+    setmodified [gettextareacur]
 }
 
 proc wraptext {} {

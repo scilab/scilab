@@ -114,7 +114,7 @@ proc ReplaceIt {once_or_all} {
                     }
                 }
             }         
-            inccount [gettextareacur]
+            setmodified [gettextareacur]
             reshape_bp
             focus [gettextareacur]
             return [list "Done" $SearchPos]

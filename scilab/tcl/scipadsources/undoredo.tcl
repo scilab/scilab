@@ -47,7 +47,7 @@ proc lifo:push {id data} {
 
 proc lifo:pop {id} {
     global lifo
-    inccount [gettextareacur]
+    setmodified [gettextareacur]
     lifo:tidyUp $id
     if {$lifo($id,last)<$lifo($id,first)} {
         error "lifo($id) pop error, empty"
@@ -301,13 +301,11 @@ proc undo_menu_proc {} {
     set isempty [textUndoer:undo $listundo_id("[gettextareacur]")]
     set i2 [[gettextareacur] index insert]
     colorize [gettextareacur] $i1 [[gettextareacur] index "$i2+1l linestart"]
-# Francois VOGEL, 21/04/04, added test and outccount
     if {$isempty != "Undo_lifo_empty"} {
-        inccount [gettextareacur]
+        setmodified [gettextareacur]
     } else {
-        outccount [gettextareacur]
+        unsetmodified [gettextareacur]
     }
-# FV 13/05/04
     reshape_bp
 }
 
@@ -321,7 +319,7 @@ proc redo_menu_proc {} {
     textRedoer:redo $listundo_id("[gettextareacur]")
     set i2 [[gettextareacur] index insert]
     colorize [gettextareacur] $i1 [[gettextareacur] index "$i2+1l linestart"]
-    inccount [gettextareacur]
+    setmodified [gettextareacur]
 # FV 13/05/04
     reshape_bp
 }

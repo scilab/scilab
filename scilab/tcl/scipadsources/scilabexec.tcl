@@ -6,8 +6,12 @@ proc execfile {{buf "current"}} {
     } else {
         set textarea $buf
     }
+    if {[$textarea index end-1c] == 1.0} {
+        showinfo [mc "No point in loading an empty file!"]
+        return 2
+    }
     set doexec 1
-    if [ expr [string compare [getccount $textarea] 1] == 0 ] {
+    if [ expr [string compare [getmodified $textarea] 1] == 0 ] {
         set answer [tk_messageBox -message [concat [mc "The contents of"] \
                   $listoffile("$textarea",fullname) \
                   [mc "may have changed, do you wish to save your changes?"] ] \

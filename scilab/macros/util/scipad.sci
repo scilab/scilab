@@ -71,11 +71,10 @@ global TMPDIR
       end
   // close "Untitled.sce" opened as default when scipad is started anew
       if TK_GetVar("isscipadopen")=="0" & onevalidfile then
-          TK_EvalStr("scipad eval {closefile $pad.textarea force}")
+          TK_EvalStr("scipad eval {closefile $pad.new0}")
       end
     end
   else
     error(" Scilab has not been built with tk: scipad unavailable")
   end
 endfunction
-

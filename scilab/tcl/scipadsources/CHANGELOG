@@ -742,7 +742,7 @@ Francois VOGEL, 21/02/05
    removing superfluous comments but adding explanatory comments.
  * version --> 3.33
 
-Francois VOGEL, 21/02/05
+Francois VOGEL, 23/02/05
  * Few glitches correction about pruned file names.
  * New buffers are now tagged as modified (required changes in scipad.sci).
  * Trying to paste with button-2 when there is no selection does no more
@@ -751,3 +751,12 @@ Francois VOGEL, 21/02/05
    but this will be removd one day or another anyway to be replaced by the
    text widget undo/redo features.
  * version --> 3.34
+
+Francois VOGEL, 24/02/05
+ * New buffers are no more tagged as modified.
+ * Trying to exec an empty buffer is catched.
+ * Code rationalization:
+     - replaced $pad.textarea by $pad.new$winopened
+     - inccount, outccount, getccount become setmodified, unsetmodified,
+       and getmodified
+ * version --> 3.35

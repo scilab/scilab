@@ -52,7 +52,7 @@ proc modifiedtitle {textarea} {
     if {$listoffile("$textarea",readonly) == 1} { 
         set mod1 [mc " \[ReadOnly\]"]
     }
-    if {$listoffile("$textarea",save) ==1} { 
+    if {$listoffile("$textarea",save) == 1} { 
         set mod2 [mc " (modified)"]
         if {$ind !=-1} {
             $pad.filemenu.wind entryconfigure $ind -background Salmon \

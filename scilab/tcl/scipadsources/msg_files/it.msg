@@ -267,6 +267,7 @@
 
 
 # scilabexec.tcl
+::msgcat::mcset it "No point in loading an empty file!" "Inutile caricare un file vuoto!"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to load file" \
       "Scilab è occupato, attendere il prompt per caricare il file"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to execute the selection." \

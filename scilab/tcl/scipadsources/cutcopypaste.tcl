@@ -14,7 +14,7 @@ proc deletetext {} {
     } else {
         $textareacur delete "insert" "insert +1c"
     }
-    inccount $textareacur
+    setmodified $textareacur
     set  i1 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
                               [$textareacur index "$i1 wordend"]
@@ -37,7 +37,7 @@ proc backspacetext {} {
     } else {
         $textareacur delete "insert-1c" "insert"
     }
-    inccount $textareacur
+    setmodified $textareacur
     set  i1 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
                               [$textareacur index "$i1 wordend"]
@@ -50,7 +50,7 @@ proc cuttext {} {
     if {[IsBufferEditable] == "No"} {return}
     # test to avoid setting the modified flag if cut nothing
     if {[catch {selection get -selection CLIPBOARD}] == 0} {
-        inccount $textareacur
+        setmodified $textareacur
     }
     tk_textCut $textareacur
     set  i1 [$textareacur index insert]
@@ -77,7 +77,7 @@ proc pastetext {} {
     tk_textPaste $textareacur 
     # test to avoid setting the modified flag if paste nothing
     if {[catch {selection get -selection CLIPBOARD}] == 0} {
-        inccount $textareacur
+        setmodified $textareacur
     }
     set  i2 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 wordstart"] \

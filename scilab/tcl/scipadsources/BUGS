@@ -8,7 +8,6 @@ Bugs:
  . multiple matrix transposes in the same line are colorized as textquoted, 
    e.g. A=A'+B'
 
-
 -Find in selection does not work correctly on unix.
 
 -Ctrl-v copies also inside the find/replace/filename dialogs, but does not
@@ -60,7 +59,6 @@ Old bugs/whishes which have been hacked but could have been done better:
  exactly the same window geometry as in the previous session, but loses
  some advantages of the previously broken grid management, such as resize
  of the window upon font size changes.
-
 
 -added  "evaluate selection",  i.e.  send to  scilab  only the  selected
  text. It is  done, but: a) I  had has to translate \n  in commas (a very

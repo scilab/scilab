@@ -2,15 +2,11 @@
 #
 # About the variables used:
 #
-#   $pad.textarea
-#       This is the initial empty buffer (or textarea) opened on
-#       Scipad launch
-#
 #   $pad.new$winopened
-#       Further opened buffers (textareas)
-#       $winopened starts from 1 (zero is not used - corresponds
-#       to $pad.textarea). It is never decreased. It is increased
-#       each time a new file is opened.
+#       Opened buffers (textareas)
+#       $winopened starts from 0 (zero is the first buffer opened)
+#       It is never decreased. It is increased each time a new
+#       file is opened.
 #
 #   listoftextarea
 #       Contains the list of the above opened textarea names
@@ -46,9 +42,8 @@
 #
 #   The Windows menu entries are radionbuttons, with the following
 #   properties:
-#     -value is $winopened (starting from zero)
+#     -value is $winopened
 #     -label is $listoffile("$ta",prunedname), $ta being $pad.new$winopened
-#     or, if $winopened is zero, $pad.textarea
 #     All the labels of the menu are different at any time, except
 #     during ambiguities removal.
 #
@@ -76,7 +71,6 @@ proc filesetasnew {} {
         -command "montretext $pad.new$winopened"
     newfilebind
     showinfo [mc "New Script"]
-    inccount $pad.new$winopened
     montretext $pad.new$winopened
     selection clear
 }
@@ -90,36 +84,30 @@ proc closecur {} {
     closefile [gettextareacur]
 }
 
-proc closefile {textarea {forcenosave "noforce"}} {
+proc closefile {textarea} {
     global listoftextarea listoffile pad
-    if {$forcenosave == "force"} {
-        # ignore the modified flag and close buffer
-        byebye $textarea
-    } else {
-        # query the modified flag
-        if  [ expr [string compare [getccount $textarea] 1] == 0 ] {
-            # ask the user if buffer should be saved before closing
-            set answer [tk_messageBox -message [ concat [mc "The contents of"] \
-               $listoffile("$textarea",fullname) \
-               [mc "may have changed, do you wish to to save your changes?"] ] \
-                 -title [mc "Save Confirm?"] -type yesnocancel -icon question]
-            case $answer {
-                yes { filetosave $textarea; byebye $textarea }
-                no {byebye $textarea}
-                cancel {}
-            }
-        } else {
-            # buffer was not modified, so just close it
-            byebye $textarea
+    # query the modified flag
+    if  [ expr [string compare [getmodified $textarea] 1] == 0 ] {
+        # ask the user if buffer should be saved before closing
+        set answer [tk_messageBox -message [ concat [mc "The contents of"] \
+           $listoffile("$textarea",fullname) \
+           [mc "may have changed, do you wish to to save your changes?"] ] \
+             -title [mc "Save Confirm?"] -type yesnocancel -icon question]
+        case $answer {
+            yes { filetosave $textarea; byebye $textarea }
+            no {byebye $textarea}
+            cancel {}
         }
+    } else {
+        # buffer was not modified, so just close it
+        byebye $textarea
     }
 }
 
 proc byebye {textarea} {
     global listoftextarea listoffile
-    global pad winopened radiobuttonvalue wm WMGEOMETRY
+    global pad winopened radiobuttonvalue WMGEOMETRY
     if { [ llength $listoftextarea ] > 1 } {
-
         # delete the textarea entry in the listoftextarea
         set listoftextarea [lreplace $listoftextarea [lsearch \
               $listoftextarea $textarea] [lsearch $listoftextarea $textarea]]
@@ -136,12 +124,12 @@ proc byebye {textarea} {
         unset listoffile("$textarea",language) 
         unset listoffile("$textarea",readonly) 
         # delete the textarea entry in Undoerr
-##ES: the text widget was opened for $pad.textarea. If that is destroyed, the 
+##ES: the text widget was opened for $pad.new$winopened. If that is destroyed, the 
 ## next change font, new file or open file command causes the window to shrink.
 ## On the other side, the only side
 ## effect of not destroying it which I see is that font changes do not resize
 ## the window (so what? -- the resizing was not exact anyway)
-#            destroy $textarea
+#        destroy $textarea
         # place as current textarea the last
         set tatodisplay [lindex $listoftextarea end]
         montretext $tatodisplay
@@ -149,9 +137,7 @@ proc byebye {textarea} {
         set radiobuttonvalue $lastwin
         RefreshWindowsMenuLabels
         modifiedtitle $tatodisplay
-
     } else {
-
         #save the geometry for the next time
         set WMGEOMETRY [eval {wm geometry $pad}] 
 #        set WMGEOMETRY [winfo geometry $pad] 
@@ -252,7 +238,7 @@ proc openfile {file} {
                 set listoffile("$pad.new$winopened",thetime) 0
                 set listoffile("$pad.new$winopened",new) 1
                 lappend listoftextarea $pad.new$winopened
-                inccount $pad.new$winopened
+                unsetmodified $pad.new$winopened
                 montretext $pad.new$winopened
                 update
                 RefreshWindowsMenuLabels
@@ -310,7 +296,7 @@ proc notopenedfile {file} {
 
 proc shownewbuffer {file} {
     global pad winopened
-    outccount $pad.new$winopened
+    unsetmodified $pad.new$winopened
     montretext $pad.new$winopened
     openoninit $pad.new$winopened $file
     RefreshWindowsMenuLabels
@@ -483,7 +469,7 @@ proc writesave {textarea nametosave} {
         set FileNameToSave [open $nametosave w+]
         puts -nonewline $FileNameToSave [$textarea get 0.0 end]
         close $FileNameToSave
-        outccount $textarea
+        unsetmodified $textarea
         set listoffile("$textarea",thetime) [file mtime $nametosave] 
         set msgWait [concat [mc "File"] $nametosave [mc "saved"]]
         showinfo $msgWait
@@ -646,15 +632,6 @@ proc CreateUnambiguousPrunedNames {talist} {
 #      E:/a1/b2/c1/d1/afile.sci   as full pathnames
 # create b1/c1/d1/afile.sci
 #        b2/c1/d1/afile.sci       as pruned names
-# <TODO>: refine to obtain b1/../afile.sci
-#                          b2/../afile.sci
-# but is it actually desireable?
-# Consider e.g. :
-#      D:/a1/b1/c1/d1/e1/f1/g1/afile.sci
-#      E:/a1/b2/c1/d1/e2/f1/g1/afile.sci    as full pathnames
-# Would b1/../e1/../afile.sci
-#       b2/../e2/../afile.sci     as pruned names have a meaning,
-# especially since the two dots .. have a precise meaning (go up one dir)??
     global listoffile
     # split full names into a number $ind("$ta") of elements
     foreach ta $talist {

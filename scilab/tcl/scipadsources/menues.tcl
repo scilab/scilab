@@ -191,9 +191,9 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
 menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] -font $menuFont
     eval "$pad.filemenu add cascade [me "&Windows"] -menu $pad.filemenu.wind "
     $pad.filemenu.wind add radiobutton \
-               -label "$listoffile("$pad.textarea",prunedname)"\
+               -label "$listoffile("$pad.new$winopened",prunedname)"\
                -value $winopened -variable radiobuttonvalue \
-               -command "montretext $pad.textarea"
+               -command "montretext $pad.new$winopened"
 
 # help menu
 menu $pad.filemenu.help -tearoff 0 -font $menuFont
@@ -214,6 +214,3 @@ setfontscipad $FontSize
 
 # set initial debug state
 setdbstate "NoDebug"
-
-# tag empty buffer as modified
-inccount $pad.textarea

@@ -1,25 +1,25 @@
 toplevel $pad
 
-set textareacur $pad.textarea
+set winopened 0
+set radiobuttonvalue 0
+set textareacur $pad.new$winopened
+set listoftextarea $pad.new$winopened
+
+set listoffile("$pad.new$winopened",fullname) "[mc "Untitled"]$winopened.sce"
+set listoffile("$pad.new$winopened",prunedname) "[mc "Untitled"]$winopened.sce"
+set listoffile("$pad.new$winopened",save) 0; # file is unmodified
+set listoffile("$pad.new$winopened",new)  1; # is not an opened file from disk
+set listoffile("$pad.new$winopened",thetime) 0; # set the time of the last modify
+set listoffile("$pad.new$winopened",readonly) 0; # file can be written
+# set the scheme for colorization and allowed operations
+set listoffile("$pad.new$winopened",language) "scilab"; 
 
 set chset()                 {} 
 set words()                 {}  
-set listoffile("$pad.textarea",fullname) "[mc "Untitled"].sce"
-set listoffile("$pad.textarea",prunedname) "[mc "Untitled"].sce"
-set listoffile("$pad.textarea",save) 0; # file is unmodified
-set listoffile("$pad.textarea",new)  1; # is not an opened file from disk
-set listoffile("$pad.textarea",thetime) 0; # set the time of the last modify
-set listoffile("$pad.textarea",readonly) 0; # file can be written
-# set the scheme for colorization and allowed operations
-set listoffile("$pad.textarea",language) "scilab"; 
-
-set listoftextarea $pad.textarea
-set winopened 0
-set radiobuttonvalue 0
 
 # main window settings
 eval destroy [winfo child $pad]
-wm title $pad "$winTitle - $listoffile("$pad.textarea",prunedname)"
+wm title $pad "$winTitle - $listoffile("$pad.new$winopened",prunedname)"
 wm iconname $pad $winTitle
 
 # catch the kill of the windowmanager
@@ -66,7 +66,7 @@ pack $pad.bottombottommenu -side bottom -expand 0 -fill both
 set taille [expr [font measure $textFont " "] *3]
 
 # creates the default textarea 
-text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
+text $pad.new$winopened -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
         -yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
         -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont -tabs $taille \
         -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
@@ -113,5 +113,5 @@ set listundo_id("$textareacur") $undo_id
 
 # Drad and drop feature using TkDnD
 if {$TkDnDloaded == "true"} {
-    dnd bindtarget $pad.textarea text/uri-list <Drop> {openlistoffiles %D}
+    dnd bindtarget $pad.new$winopened text/uri-list <Drop> {openlistoffiles %D}
 }

@@ -243,6 +243,7 @@
 
 
 # scilabexec.tcl
+::msgcat::mcset fr "No point in loading an empty file!" "Charger un fichier vide ne présente pas d'intérêt!"
 ::msgcat::mcset fr "Scilab is working, wait for the prompt to load file" "Scilab est occupé, attendez le prompt pour charger le fichier"
 ::msgcat::mcset fr "Scilab is working, wait for the prompt to execute the selection." "Scilab est occupé, attendez le prompt pour exécuter la sélection."
 ::msgcat::mcset fr "Scilab is working, wait for the prompt to convert a Matlab file." "Scilab est occupé, attendez le prompt pour importer un fichier Matlab."
