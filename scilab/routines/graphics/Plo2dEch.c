@@ -467,7 +467,7 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
 	  else if ((masousfen = ConstructSubWin (sciGetCurrentFigure(), 0)) != NULL)
 	    {
 	      /* F.Leray Adding here 26.03.04*/
-	      scSetCurrentObj(masousfen);
+	      sciSetCurrentObj(masousfen);
 	      sciSetSelectedSubWin(masousfen);
 	      pSUBWIN_FEATURE (masousfen)->WRect[0]   = WRect[0];
 	      pSUBWIN_FEATURE (masousfen)->WRect[1]   = WRect[1];
