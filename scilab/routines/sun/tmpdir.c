@@ -22,7 +22,16 @@ extern  char  *getenv();
 #endif
 #endif
 
+#if defined(__MSC__)
+#include <process.h>
+#endif
+
 extern void C2F(setprlev) __PARAMS((int*));
+
+#ifdef WIN32
+extern int SciCreateDirectory (char *path);
+extern int SciRemoveDirectory (char *path);
+#endif
 
 static char tmp_dir[256],buf[256];
 

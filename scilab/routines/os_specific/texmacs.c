@@ -16,6 +16,9 @@
 static int first=1;
 static int texmacs_mode=0;
 
+
+extern int LineRead();
+
 void settexmacs() {
   texmacs_mode=1;
 }
