@@ -297,6 +297,7 @@ c     [Q,R,JPVT,RANK,SVAL]=rankqr(A,[RCOND,JPVT])
 
       end
 
+
       subroutine intmucomp(fname)
 
 c     [bound,D,G] = mucomp(Z,K,T)
@@ -316,7 +317,7 @@ c
        if(.not.checkrhs(fname,minrhs,maxrhs)) return
        if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-       if(.not.getrhsvar(1,'z', M, N, lA)) return
+       if(.not.getrhsvar(1,'z', M, N, lZ)) return
        if(M.ne.N) then
          buf='mucomp'//': the matrix must be square'
          call error(998)
@@ -324,17 +325,17 @@ c
        endif
        if(N.eq.0) then
          if(lhs.eq.1) then
-           if(.not.createvar(2,'d', 1, 1, lBOUND)) return
+           if(.not.createvar(2,'d', N, 1, lBOUND)) return
            lhsvar(1) = 2
            return
          else if(lhs.eq.2) then
-           if(.not.createvar(2,'d', 1, 1, lBOUND)) return
-           if(.not.createvar(3,'d', N, 1,lD)) return
+           if(.not.createvar(2,'d', N, 1, lBOUND)) return
+           if(.not.createvar(3,'d', N, 1, lD)) return
            lhsvar(1)=2
            lhsvar(2)=3
            return
          else if(lhs.eq.3) then
-           if(.not.createvar(2,'d', 1, 1, lBOUND)) return
+           if(.not.createvar(2,'d', N, 1, lBOUND)) return
            if(.not.createvar(3,'d', N, 1, lD)) return
            if(.not.createvar(4,'d', N, 1, lG)) return 
            lhsvar(1)=2
@@ -350,11 +351,11 @@ c
          call error(998)
          return
        endif
-       M = max(M1,N1)
+       M = M1*N1
        if(.not.createvar(4,'d', 1, 1, lBOUND)) return
        if(.not.createvar(5,'d', N, 1, lD)) return
        if(.not.createvar(6,'d', N, 1, lG)) return 
-       if(.not.createvar(7,'z', 2*N-1, 1, lX)) return
+       if(.not.createvar(7,'d', 2*N-1, 1, lX)) return
        if(.not.createvar(8,'i', 4*N-2, 1, lIWORK)) return 
        LRWRK = 2*N*N*N + 9*N*N +  44*N - 11
        if(.not.createvar(9,'d', LRWRK, 1, lRWORK)) return
@@ -365,12 +366,12 @@ c
          call error(998)
          return
        endif
-       if(.not.createvar(10,'z',1,LZWRK,lZWORK)) return     
-
+       if(.not.createvar(10,'z',1,LZWRK,lZWORK)) return 
+    
        call AB13MD( 'N', N, zstk(lZ), N, M, istk(lK), istk(lT),
      $    stk(lX), stk(lBOUND), stk(lD), stk(lG), istk(lIWORK),
      $    stk(lRWORK), LRWRK, zstk(lZWORK), LZWRK, INFO )
-c       SUBROUTINE AB13MD( 'N', N, Z, N, M, NBLOCK, ITYPE, X,
+c       SUBROUTINE AB13MD( FACT, N, Z, N, M, NBLOCK, ITYPE, X,
 c     $    BOUND, D, G, IWORK, DWORK, LDWORK, ZWORK, LZWORK,
 c     $    INFO )
       if(info.ne.0) then
@@ -390,7 +391,6 @@ c     $    INFO )
       endif
 c
        end
-
 
 
 
