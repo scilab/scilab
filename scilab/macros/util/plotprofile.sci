@@ -101,7 +101,9 @@ function [h,M]=dispfuntxt(txt,k,h,M)
   t=lbl+': '+txt;
   if ~or(winsid()==(win+1)) then
     
-    xset('window',win+1);xset('wpdim',400,600);
+    xset('window',win+1);
+    set figure_style old;
+    xset('wpdim',400,600);
     xset('wdim',400,600);xset('wresize',0);
     curwin=win+1
     if ~MSDOS then
