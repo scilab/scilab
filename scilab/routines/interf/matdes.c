@@ -2567,7 +2567,7 @@ int scixinit(fname,fname_len)
       char *param1=NULL;
       GetRhsVar(1,"c",&m1,&n1,&l1);
       param1=cstk(l1);
-      if (param1[0]='.') SetTKGraphicalMode(TRUE);
+      if (param1[0]=='.') SetTKGraphicalMode(TRUE);
       C2F(dr1)("xinit",cstk(l1),&v1,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,m1);
       if(version_flag() == 0) xinitxend_flag = 1; /* we do not draw now into the file/memory (depending on the driver type) */
     }
