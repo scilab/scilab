@@ -46,7 +46,8 @@ if rhs==1 then
 	if ierr<>0 | typeof(INFER)<>"infer" then // infer==[] or non-exsisting index in inference data
 	  // Inference can not be done
 	else
-	  tree.out(1).infer=INFER
+	  tree.out(1).type=INFER.type
+	  tree.out(1).dims=INFER.dims
 	end
       end
     else
@@ -141,7 +142,12 @@ else
   indexes=strcat(indexes,",")
   
   if cste_nb==size(tree.operands)-1 then // Inference can be done
-    ierr=execstr("CONT=var.contents("+indexes+")","errcatch")
+    if ~isempty(indexes) then
+      ierr=execstr("CONT=var.contents("+indexes+")","errcatch")
+    else
+      CONT=var.contents
+      ierr=0;
+    end
     if ierr<>0 then // Unknown index in contents
       tree.out(1).contents=list()
     else

@@ -155,7 +155,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     
     // Update vtype
     if varslist(index).type.vtype==Unknown then
-      varslist(index).type.vtype=vartype
+      varslist(index)=M2scivar(varslist(index).matname,varslist(index).matname,Infer(dims,Type(vartype,varslist(index).property)))
     elseif varslist(index).type.vtype~=vartype then
       set_infos(["Type current value and m2scideclare statements conflict for: "+varname
 	  "   m2scideclare given type: "+tp2str(vartype)
