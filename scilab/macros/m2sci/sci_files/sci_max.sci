@@ -46,26 +46,14 @@ if rhs==1 then
   // C = max(A) or [C,I] = max(A) 
   if is_real(A) then
     tree.lhs(1).type=Type(vtype,Real)
-    if dim==-1 then
-      repl1=tree
-      repl1.rhs=Rhs(A)
-      repl2=tree
-      repl2.rhs=Rhs(A,"r")
-      repl_poss(tree,..
-	  repl1,A,"is a scalar or a vector",..
-	  repl2,A,"is a matrix")
-    end
   elseif is_complex(A) then
+    // Scilab max() does not work with complexes so mtlb_max() is called
     tree.name="mtlb_max"
     tree.lhs(1).type=Type(Double,Unknown)
-    set_infos("Scilab max() does not work with complexes so mtlb_max() is called",0)
   else
+    // Scilab max() does not work with complexes so mtlb_max() is called but can be replaced
     tree.name="mtlb_max"
     tree.lhs(1).type=Type(vtype,Unknown)
-    repl1=tree
-    repl1.name="max"
-    repl_poss(tree,..
-	repl1,A,"is not complex")
   end
   
   // [C,I] = max(A)
@@ -90,18 +78,16 @@ elseif rhs==2 then
       tree.lhs(1).dims=A.dims
       tree.lhs(1).type=Type(vtype,Real)
     else
+      // Perhaps an input is an empty matrix
       tree.name="mtlb_max"
       tree.lhs(1).dims=A.dims
       tree.lhs(1).type=Type(vtype,Real)
-      repl_poss(tree,..
-	  tree,list(A,B),"are not empty matrices")
     end
   else
+    // Inputs can be complexes and/or empty matrices
     tree.name="mtlb_max"
     tree.lhs(1).dims=A.dims
     tree.lhs(1).type=Type(vtype,Unknown)
-    repl_poss(tree,..
-	tree,list(A,B),"are not empty matrices and real values")
   end
 // C = max(A,[],dim) or [C,I] = max(A,[],dim)   
 else
@@ -130,23 +116,20 @@ else
 	  tree.lhs(1).dims=A.dims
 	  tree.lhs(1).dims(dim.value)=1
 	else
-	  set_infos("Scilab max() does not work when dim input argument is greater than number of dims of first rhs...",1)
+	  // Scilab max() does not work when dim  is greater than number of dims of A
 	  tree.name="mtlb_max"
 	  tree.rhs=Rhs(A,tmp,dim)
 	  tree.lhs(1).dims=A.dims
 	end
       else
+	// If dim is 1 it can be replaced by 'r'
+	// If dim is 2 it can be replaced by 'c'
 	tree.name="mtlb_max"
 	tree.rhs=Rhs(A,tmp,dim)
 	tree.lhs(1).dims=allunknown(A.dims)
-	repl1=tree;repl1.rhs=Rhs(A,"r")
-	repl2=tree;repl2.rhs=Rhs(A,"c")
-	repl_poss(tree,..
-	    repl1,dim,"is equal to 1",..
-	    repl2,dim,"is equal to 2")
       end
     else
-      set_infos("See M2SCI documentation for mtlb_max() replacement possibilities",1)
+      // A can be complex....
       tree.name="mtlb_max"
       tree.rhs=Rhs(A,tmp,dim)
       tree.lhs(1).dims=allunknown(A.dims)
