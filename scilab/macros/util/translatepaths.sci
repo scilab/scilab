@@ -16,7 +16,7 @@ if exists("m2skernellib")==0 then load("SCI/macros/m2sci/kernel/lib"),end
 if exists('m2spercentlib')==0 then load("SCI/macros/m2sci/percent/lib"),end
 if exists("m2ssci_fileslib")==0 then load("SCI/macros/m2sci/sci_files/lib"),end
 
-// Convert paths so that they can be used accoerding to the platform
+// Convert paths so that they can be used according to the platform
 if MSDOS then 
   sep='\'
   Paths=strsubst(Paths,'/',sep)
@@ -73,4 +73,7 @@ for k1=1:size(mfiles,1)
     mfile2sci(mpath,res_path,%F,%F,3,%F)
   end
 end
+// File closing
+close(logfile);
+close(whsfil_unit);
 endfunction
