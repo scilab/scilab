@@ -23,10 +23,10 @@ function o=standard_define(sz,model,label,gr_i)
   graphics=scicos_graphics(sz=sz,pin=pin,pout=pout,pein=pein,peout=peout, ...
 			   gr_i=gr_i,exprs=label) 
   
-  if model.sim(1)=='super' then
-    o=scicos_block(graphics=graphics,model=model,gui='SUPER_f')
-  else
+//  if model.sim(1)=='super' then
+//    o=scicos_block(graphics=graphics,model=model,gui='SUPER_f')
+//  else
     [ln,mc]=where()
     o=scicos_block(graphics=graphics,model=model,gui=mc(2))
-  end
+//  end
 endfunction

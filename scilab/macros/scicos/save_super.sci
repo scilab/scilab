@@ -57,6 +57,7 @@ txt=[
 'case ''getorigin'' then';
 '  [x,y]=standard_origin(arg1)';
 'case ''set'' then'
+'  y=needcompile'
 '  while %t do'
 '    [x,newparameters,needcompile]=scicos(arg1.model.rpar)'
 '    arg1.model.rpar=x'
@@ -65,7 +66,11 @@ txt=[
 '      x=arg1'
 '      y=needcompile'
 '      typ=newparameters'
-'      break'
+'      %exit=resume(%f)'
+'    else'
+'      %r=2'
+'      %r=message([''SUPER BLOCK needs to be edited;'';''Edit or exit by removing all edition''],[''Edit'';''Exit''])'
+'      if %r==2 then typ=list(),%exit=resume(%t),end'
 '    end'
 '  end']
 
