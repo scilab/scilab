@@ -20555,8 +20555,10 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
       
       break;
     case  SCI_RECTANGLE: 
+		{
+	  double rectx[4],recty[4],rectz[4];
       p = 5;
-      double rectx[4],recty[4],rectz[4];
+      
 
       pstyle=0; /* arevoir */
       iflag=0; /* arevoir */
@@ -20575,6 +20577,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
       Y[1]=Y[2]=recty[2];
       Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=rectz[0];
       x=X;y=Y;z=Z; 
+		}
       break;
     default:
       p = 0;
@@ -20925,8 +20928,10 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
       
 	break;
       case  SCI_RECTANGLE: 
-	p = 5;
+	{
 	double rectx[4],recty[4],rectz[4];
+	p = 5;
+	
 
 	pstyle=0; /* arevoir */
 	iflag=0; /* arevoir */
@@ -20945,6 +20950,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	Y[1]=Y[2]=recty[2];
 	Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=rectz[0];
 	x=X;y=Y;z=Z; 
+	}
 	break;
       default:
 	p = 0;
