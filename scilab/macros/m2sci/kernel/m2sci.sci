@@ -51,6 +51,8 @@ for k=1:macrhs
   if funptr(mtlbtree.inputs(k).name)<>0 then // Matlab variable name corresponding to a Scilab function name
     varslist($+1)=M2scivar("%"+mtlbtree.inputs(k).name,mtlbtree.inputs(k).name,Infer())
     inputs(k)="%"+inputs(k),
+  elseif mtlbtree.inputs(k).name=="varargin" then
+    varslist($+1)=M2scivar("varargin","varargin",Infer(list(Unknown,Unknown),Type(Cell,Unknown)))
   else
     varslist($+1)=M2scivar(mtlbtree.inputs(k).name,mtlbtree.inputs(k).name,Infer())
   end
@@ -66,6 +68,7 @@ varslist($+1)=M2scivar("%inf","inf",Infer(list(1,1),Type(Double,Real)))
 varslist($+1)=M2scivar("$","end",Infer(list(1,1),Type(Double,Real)))
 varslist($+1)=M2scivar("%pi","pi",Infer(list(1,1),Type(Double,Real)))
 varslist($+1)=M2scivar("%eps","eps",Infer(list(1,1),Type(Double,Real)))
+varslist($+1)=M2scivar("varargout","%varargout",Infer(list(Unknown,Unknown),Type(Cell,Unknown)))
 varslist($+1)=M2scivar("%shortcircuit","%shortcircuit",Infer(list(1,1),Type(Double,Real))) // Used for short circuiting operators
 
 // Translated function output arguments
@@ -101,7 +104,11 @@ for k=1:size(mtlbtree.outputs)
     end
   end
   if ~found then
-    ini=[ini;mtlbtree.outputs(k).name+"=[];"]
+    if mtlbtree.outputs(k).name<>"varargout" then
+      ini=[ini;mtlbtree.outputs(k).name+"=[];"]
+    else
+      ini=[ini;mtlbtree.outputs(k).name+"=list();"]
+    end
   end
 end
 if ini<>[] then
