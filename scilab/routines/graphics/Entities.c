@@ -9436,7 +9436,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       /* F.Leray Test imprortant sur type ici*/
       if (type == 0) /* attention ici type = 0 donc...*/
 	{   
-	  psegs->arrowsize = arsize * 100;       /* A revoir: F.Leray 06.04.04 */
+	  psegs->arrowsize = arsize /** 100*/;       /* A revoir: F.Leray 06.04.04 */
 	  if ((psegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
 	    {
 	      FREE(pSEGS_FEATURE (pobj)->vx); 
@@ -9463,7 +9463,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       else /* attention ici type = 1 donc...*/
 	{ 
 	  /* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
-	  psegs->arrowsize = arsize * 100;
+	  psegs->arrowsize = arsize /* * 100 */;
 	  psegs->Nbr1 = Nbr1;   
 	  psegs->Nbr2 = Nbr2;	 
 	  psegs->pcolored = colored;
@@ -11200,7 +11200,7 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
       break;      
       /******************************** 22/05/2002 ***************************/    
     case SCI_SEGS:    
-     
+        
       if (!sciGetVisibility(pobj)) break;
       
       sciClip(sciGetIsClipping(pobj)); 
@@ -11280,6 +11280,7 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	      C2F(dr1)("xarrow","v",pstyle,&pSEGS_FEATURE (pobj)->iflag
 		       ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,&pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
 	    /* F.Leray appel bizarre ci dessus a dr1 pour le NG??!! A voir... 19.02.04*/
+	    /* TEST 13.05.04 avec C2F(dr)("xarrow",... ne marche pas: pourquoi? Que fait dr1 en plus que ne fait pas dr en nouveau graphique ?? */
 	  } /***/
 #ifdef WIN32 
 	  if ( flag_DO == 1) ReleaseWinHdc ();
@@ -11349,8 +11350,16 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #endif
 
 	  /* F.Leray Addings here 24.03.04*/
-	  if (pSEGS_FEATURE (pobj)->arrowsize > 1)
-	    arssize = (int) pSEGS_FEATURE (pobj)->arrowsize;
+	 /*  if (pSEGS_FEATURE (pobj)->arrowsize > 1) */
+/* 	    arssize = (int) pSEGS_FEATURE (pobj)->arrowsize; */
+
+	  /** size of arrow **/
+	  if (pSEGS_FEATURE (pobj)->arrowsize >= 1){
+	    arsize1= ((double) Cscale.WIRect1[2])/(5*(pSEGS_FEATURE (pobj)->Nbr1));
+	    arsize2= ((double) Cscale.WIRect1[3])/(5*(pSEGS_FEATURE (pobj)->Nbr2));
+	    arssize=  (arsize1 < arsize2) ? inint(arsize1*10.0) : inint(arsize2*10.0) ;
+	    arssize = (int)((arssize)*(pSEGS_FEATURE (pobj)->arrowsize));
+	  }
 	  
 	  if ( pSEGS_FEATURE (pobj)->pcolored ==0)
 		C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,(sflag=0,&sflag),&dv,&dv,&dv,&dv,0L,0L);
