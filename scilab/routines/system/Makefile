@@ -44,8 +44,9 @@ Makefile.mak	: Makefile
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
 
-include Make.banier
 
+banier.o : ../version.h ../machine.h 
+storeversion.o : ../version.h ../stack-c.h
 inisci.o : ../machine.h 
 System.o: ../machine.h
 System2.o: ../machine.h
