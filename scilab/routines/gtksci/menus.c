@@ -892,8 +892,6 @@ static void scig_menu_select(int winid)
   scig_sel(winid);
 }
 
-/*----------------------------------------------
-
 
 /* delete action */
 
