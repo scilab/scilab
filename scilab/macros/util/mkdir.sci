@@ -28,7 +28,7 @@ function [status,msg]=mkdir(varargin)
      error('Number of parameters incorrect.');
   end
 
-  NewDirectory=fullfile(DirName,NewDirName);
+  NewDirectory=""""+fullfile(DirName,NewDirName)+"""";
   
   if (fileinfo(NewDirectory)==[]) then 
     // Le repertoire n'existe pas
