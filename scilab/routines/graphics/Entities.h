@@ -636,6 +636,7 @@ typedef struct
   int grid[3];/**DJ.Abdemouche 2003**/
   BOOL isaxes;
   AXES axes;
+  int update_axes_flag; /* set to 0 by default; 1 means axes.limits[i] are set once */ /* F.Leray 01.04.04*/
   BOOL is3d;
   double theta_kp;
   double alpha_kp;	

@@ -304,10 +304,24 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
   if (version_flag() == 0) 
     {/*update A.Djalel for new graphics auto scaling*/
       subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); /**DJ.Abdmouche 2003**/
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1],xmin);
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3],xmax);
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2],ymin);
-      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4],ymax);
+
+      if(pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag != 0) /* means : already set at least once*/
+	{
+	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1],xmin);
+	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3],xmax);
+	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2],ymin);
+	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4],ymax);
+
+	}
+      else
+	{
+	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin;
+	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax;
+	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin;
+	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax;
+	  
+	  pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag = 1; /* F.Leray 01.04.04*/
+	}
     }
   FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax;
   
