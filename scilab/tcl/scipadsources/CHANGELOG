@@ -620,3 +620,9 @@ ES 10/1/2005
 ES 13/1/2005
 * "Create help skeleton" warns about preexisting xml files. Messages
    there in french too.
+
+Francois VOGEL, 19/01/05
+ * Strings containing slashes are now correctly handled in the watch window.
+ * The watch variables area and/or the call stack area in the watch window
+   can now be hidden/shown.
+ * version --> 3.17

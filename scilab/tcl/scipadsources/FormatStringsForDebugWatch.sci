@@ -93,7 +93,8 @@ function [svar] = FormatStringsForDebugWatch(varargin)
       if prod(size(var)) > 1 then
         svar = MatFormatStringsForDebugWatch(var);
       else
-        svar = "\""" + strsubst(string(var),"''","''''") + "\""";
+        svar = strsubst(string(var),"\","\\");
+        svar = "\""" + strsubst(svar,"''","''''") + "\""";
       end
 
     case 15 then  // list or tlist or mlist (types 16 and 17 changed into 15 above)

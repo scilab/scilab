@@ -5,6 +5,8 @@ proc showwatch_bp {} {
     global firsttimeinshowwatch watchgeom
     global callstackwidget callstackcontent
     global watchwinicons db_butimages
+    global showwatchvariablesarea togglewvabutton
+    global showcallstackarea togglecsabutton
     set watch $pad.watch
     catch {destroy $watch}
     toplevel $watch
@@ -18,28 +20,37 @@ proc showwatch_bp {} {
     frame $watch.f
 
     frame $watch.f.f1
-    set buttonConfigure $watch.f.f1.configure
+    frame $watch.f.f1.f1l
+    set buttonConfigure $watch.f.f1.f1l.configure
     button $buttonConfigure -command "configurefoo_bp" -image [lindex $db_butimages 4] \
            -relief flat -overrelief raised
-    set buttonToNextBpt $watch.f.f1.toNextBpt
+    set buttonToNextBpt $watch.f.f1.f1l.toNextBpt
     button $buttonToNextBpt -command "tonextbreakpoint_bp" -image [lindex $db_butimages 6] \
            -relief flat -overrelief raised
-    set buttonRunToCursor $watch.f.f1.runToCursor
+    set buttonRunToCursor $watch.f.f1.f1l.runToCursor
     button $buttonRunToCursor -command "runtocursor_bp" -image [lindex $db_butimages 8] \
            -relief flat -overrelief raised
-    set buttonGoOnIgnor $watch.f.f1.goOnIgnor
+    set buttonGoOnIgnor $watch.f.f1.f1l.goOnIgnor
     button $buttonGoOnIgnor -command "goonwo_bp" -image [lindex $db_butimages 9] \
            -relief flat -overrelief raised
-    set buttonBreakDebug $watch.f.f1.breakDebug
+    set buttonBreakDebug $watch.f.f1.f1l.breakDebug
     button $buttonBreakDebug -command "break_bp" -image [lindex $db_butimages 13] \
            -relief flat -overrelief raised
-    set buttonCancelDebug $watch.f.f1.cancelDebug
+    set buttonCancelDebug $watch.f.f1.f1l.cancelDebug
     button $buttonCancelDebug -command "canceldebug_bp" -image [lindex $db_butimages 14] \
            -relief flat -overrelief raised
     pack $buttonConfigure $buttonToNextBpt $buttonRunToCursor \
          $buttonGoOnIgnor $buttonBreakDebug $buttonCancelDebug \
          -padx 2 -pady 2 -side left
+    frame $watch.f.f1.f1r
+    set buttonshowwatchvariablesarea $watch.f.f1.f1r.showwatchvariablesarea
+    button $buttonshowwatchvariablesarea -command "togglewatchvariablesarea" -text $togglewvabutton -width 20
+    set buttonshowcallstackarea $watch.f.f1.f1r.showcallstackarea
+    button $buttonshowcallstackarea -command "togglecallstackarea" -text $togglecsabutton -width 20
+    pack $watch.f.f1.f1r.showwatchvariablesarea $watch.f.f1.f1r.showcallstackarea -pady 2
+    pack $watch.f.f1.f1l $watch.f.f1.f1r -side left -padx 20 -anchor w
     pack $watch.f.f1 -anchor w
+    pack $watch.f.f1
     set watchwinicons [list "sep" "" "" "sep" $buttonConfigure "sep" $buttonToNextBpt \
                             "" $buttonRunToCursor $buttonGoOnIgnor "sep" "" "sep"\
                             $buttonBreakDebug $buttonCancelDebug ]
@@ -106,7 +117,9 @@ proc showwatch_bp {} {
     pack $lbvarname $scrolly $lbvarval -side left \
             -expand 1 -fill both -padx 2
     pack $watch.f.f2.f2l $watch.f.f2.f2r -side left -padx 2
-    pack $watch.f.f2 -pady 2
+    if {$showwatchvariablesarea == "true"} {
+        pack $watch.f.f2 -pady 2
+    }
 
     frame $watch.f.f6 -relief groove -borderwidth 2 -padx 2
     if {$lang == "eng"} {
@@ -119,7 +132,9 @@ proc showwatch_bp {} {
     set callstackwidget $watch.f.f6.callstack
     text $callstackwidget -height 5 -width 81 -state normal -background gray83
     pack $callstackwidget
-    pack $watch.f.f6 -pady 2
+    if {$showcallstackarea == "true"} {
+        pack $watch.f.f6 -pady 2
+    }
     $callstackwidget delete 1.0 end
     $callstackwidget insert 1.0 $callstackcontent
     $callstackwidget configure -state disabled
@@ -155,7 +170,9 @@ proc showwatch_bp {} {
                                        {scrollarrows_bp $lbvarname up}}
     bind $watch <Configure> {set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]}
     if { $firsttimeinshowwatch == "true" } { 
-        focus $buttonAddw
+        if {$showwatchvariablesarea == "true"} {
+            focus $buttonAddw
+        }
         set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]
         set firsttimeinshowwatch "false"
     }
@@ -293,4 +310,48 @@ proc update_bubble {type butnum mousexy} {
         set cmd [list destroy $bubble]
         after 1000 $cmd
     }
+}
+
+proc togglewatchvariablesarea {} {
+    global watch lang
+    global showwatchvariablesarea togglewvabutton
+    closewatch_bp $watch
+    if {$showwatchvariablesarea == "true"} {
+        set showwatchvariablesarea "false"
+        if {$lang == "eng"} {
+            set togglewvabutton "Show watch variables"
+        } else {
+            set togglewvabutton "Montrer les variables"
+        }
+    } else {
+        set showwatchvariablesarea "true"
+        if {$lang == "eng"} {
+            set togglewvabutton "Hide watch variables"
+        } else {
+            set togglewvabutton "Cacher les variables"
+        }
+    }
+    showwatch_bp
+}
+
+proc togglecallstackarea {} {
+    global watch lang
+    global showcallstackarea togglecsabutton
+    closewatch_bp $watch
+    if {$showcallstackarea == "true"} {
+        set showcallstackarea "false"
+        if {$lang == "eng"} {
+            set togglecsabutton "Show call stack"
+        } else {
+            set togglecsabutton "Montrer la pile d'appel"
+        }
+    } else {
+        set showcallstackarea "true"
+        if {$lang == "eng"} {
+            set togglecsabutton "Hide call stack"
+        } else {
+            set togglecsabutton "Cacher la pile d'appel"
+        }
+    }
+    showwatch_bp
 }
