@@ -20,8 +20,8 @@
     <P>Considering the current figure, this function can be used to draw the
     hidden graphics entities and all its chidren, that may have been postponed
     by a previous call to <VERB>drawlater</VERB>. The
-    <VERB>immadiate_draw</VERB> property of the <VERB>current figure</VERB> is
-    set to <VERB>"on" </VERB>.</P>
+    <VERB>immadiate_drawing</VERB> property of the <VERB>current figure</VERB>
+    is set to <VERB>"on" </VERB>.</P>
 
     <P>It can specially be used with the <VERB>drawlater</VERB> function.</P>
   </DESCRIPTION>
