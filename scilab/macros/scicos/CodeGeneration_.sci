@@ -983,16 +983,6 @@ zcptr=cpr.sim.zcptr;
   //***********************************
   foo=3;okk=%f;rdnom='foo';rpat=getcwd();archname='';
   label1=[hname;getcwd()+'/'+hname;''];
-
-  //ab=[];
-  //routines=create_palette('all');
-
-  //for kf=1:nblk
-    //if (part(funs(kf),1:7) ~= 'capteur' & part(funs(kf),1:10) ~= 'actionneur' & funs(kf) ~= 'bidon') then 
-      //ab=[ab,funs(kf)];
-   //end
- //end
-  //[ab,kab]=setdiff(ab,routines);
  
   while %t do
     [okk,rdnom,rpat,archname,label1]=getvalue(..
@@ -1097,13 +1087,6 @@ zcptr=cpr.sim.zcptr;
   z=cpr.state.z;outtb=cpr.state.outtb;
   //[junk_state,t]=scicosim(cpr.state,tcur,tf,Total_rdcpr,'finish',tolerances);
  
-nblk1=nblk;
- for kf=1:nblk
-   if (part(funs(kf),1:7) == 'capteur' | part(funs(kf),1:10) == 'actionneur' | funs(kf) == 'bidon') then 
-      nblk1=nblk1-1;
-   end
- end
-
   
   //***********************************
   // Scilab and C files generation
@@ -1658,9 +1641,14 @@ Code=[Code;
         end
         Code=[Code
 	      '      block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);'
-	      '      block_'+rdnom+'['+string(kf-1)+'].rpar=&(rpar['+string(rpptr(kf)-1)+']);';
-              '      block_'+rdnom+'['+string(kf-1)+'].ipar=&(ipar['+string(ipptr(kf)-1)+']);';
-	      '      block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *)work)+'+string(kf-1)+');']
+	     ]
+	if ~(part(cpr.sim.funs(kf),1:7) == 'capteur' | part(cpr.sim.funs(kf),1:10) == 'actionneur' |cpr.sim.funs(kf)=='bidon') then
+	  Code=[Code
+		'      block_'+rdnom+'['+string(kf-1)+'].rpar=&(rpar['+string(rpptr(kf)-1)+']);';
+		'      block_'+rdnom+'['+string(kf-1)+'].ipar=&(ipar['+string(ipptr(kf)-1)+']);';
+		'      block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *)work)+'+string(kf-1)+');']
+	  
+	end
       end 
       Code=[Code
       '    }'
@@ -1684,113 +1672,129 @@ Code=[Code;
 	    '    reentryflag=(int*) ((scicos_block *)(*block->work)+'+string(nblk)+');'
             '    *reentryflag=0;'
 	    '    block_'+rdnom+'=(scicos_block*) *block->work;'];
+      
  for kf=1:nblk        
-      nin=inpptr(kf+1)-inpptr(kf); ///* number of input ports */
-      nout=outptr(kf+1)-outptr(kf); ///* number of output ports */
-      Code=[Code;
-	    '    block_'+rdnom+'['+string(kf-1)+'].type = '+string(funtyp(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].ztyp = '+string(ztyp(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].ng = '+string(zcptr(kf+1)-zcptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nz = '+string(zptr(kf+1)-zptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nrpar = '+string(rpptr(kf+1)-rpptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nipar = '+string(ipptr(kf+1)-ipptr(kf))+';'
-            '    block_'+rdnom+'['+string(kf-1)+'].nin = '+string(inpptr(kf+1)-inpptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nout = '+string(outptr(kf+1)-outptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nevout = '+string(clkptr(kf+1)-clkptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nmode = '+string(modptr(kf+1)-modptr(kf))+';';
-	    '    if ((block_'+rdnom+'['+string(kf-1)+'].insz=malloc(sizeof(int)*block_'+rdnom+'['+string(kf-1)+'].nin))== NULL ) return 0;';
-	    '    if ((block_'+rdnom+'['+string(kf-1)+'].inptr=malloc(sizeof(double*)*block_'+rdnom+'['+string(kf-1)+'].nin))== NULL ) return 0;';
-	    '    if ((block_'+rdnom+'['+string(kf-1)+'].evout=calloc(block_'+rdnom+'['+string(kf-1)+'].nevout,sizeof(double)))== NULL )return 0;'];
-    
-      for k=1:nin
-         lprt=inplnk(inpptr(kf)-1+k);
-         Code=[Code
-               '    block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);'
-	       '    block_'+rdnom+'['+string(kf-1)+'].insz['+string(k-1)+'] = '+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
-      end 
-      Code=[Code
-            '    if ((block_'+rdnom+'['+string(kf-1)+'].outsz=malloc(sizeof(int)*block_'+rdnom+'['+string(kf-1)+'].nout))== NULL ) return 0;';
-            '    if ((block_'+rdnom+'['+string(kf-1)+'].outptr=malloc(sizeof(double*)*block_'+rdnom+'['+string(kf-1)+'].nout))== NULL ) return 0;'];
-          
-      for k=1:nout
-        lprt=outlnk(outptr(kf)-1+k);
-        Code=[Code
-	      '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);'
-	      '    block_'+rdnom+'['+string(kf-1)+'].outsz['+string(k-1)+']='+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
-      end
-      Code=[Code
-	    '    block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);';
-	    '    block_'+rdnom+'['+string(kf-1)+'].rpar=&(rpar['+string(rpptr(kf)-1)+']);';
-            '    block_'+rdnom+'['+string(kf-1)+'].ipar=&(ipar['+string(ipptr(kf)-1)+']);';
-	    '    block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *)work)+'+string(kf-1)+');'
-	    '    block_'+rdnom+'['+string(kf-1)+'].nevprt=nevprt;']
-    //end
-end
-    
-      Code=[Code;
-      ' ';
-      '    '+rdnom+'_init(block_'+rdnom+',z,&t);';
-      '  } ';
-      '  else if (flag == 5) { /* ending */';
-      '    block_'+rdnom+'=*block->work;']
-      for kf=1:nblk        
-        nin=inpptr(kf+1)-inpptr(kf); ///* number of input ports */
-        nout=outptr(kf+1)-outptr(kf); ///* number of output ports */
-        for k=1:nin
-          lprt=inplnk(inpptr(kf)-1+k);
-          Code=[Code;
-	        '    block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);']
-        end
-        for k=1:nout
-          lprt=outlnk(outptr(kf)-1+k);
-          Code=[Code
-	        '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);']
-        end
-        Code=[Code
-	      '    block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);'
-	      '    block_'+rdnom+'['+string(kf-1)+'].rpar=&(rpar['+string(rpptr(kf)-1)+']);';
-              '    block_'+rdnom+'['+string(kf-1)+'].ipar=&(ipar['+string(ipptr(kf)-1)+']);';
-	      '    block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *)work)+'+string(kf-1)+');']
-      end 
-      Code=[Code
-	    '    '+rdnom+'_end(block_'+rdnom+',z,&t);';]
-      Code=[Code;
-      '    for (kf = 0; kf < '+string(nblk)+'; ++kf) {'
-      '      if (block_'+rdnom+'[kf].insz!=NULL) {'
-      '        free(block_'+rdnom+'[kf].insz);'
-      '      }else {'
-      '        break;'
-      '      } '   
-      '      if (block_'+rdnom+'[kf].outsz!=NULL){'
-      '        free(block_'+rdnom+'[kf].outsz);'
-      '      }else {'
-      '        break;'
-      '      }'    
-      '      if (block_'+rdnom+'[kf].evout!=NULL){'
-      '        free(block_'+rdnom+'[kf].evout);'
-      '      }else {'
-      '        break;'
-      '      }'
-      '    }' 
-      '    scicos_free(block_'+rdnom+');'    
-      '  } '];
 
-	                    
-//copy outputs
-for i=1:size(actt,1)
-  ni=actt(i,3) // dimension of ith output
-  Code=[Code;
-	'  y['+string(actt(i,4)-1)+']['+string(0:ni-1)'+'] =  block_outtb['+..
-                             string(actt(i,2)-1+(0:ni-1)')+'];']
-end
+     nin=inpptr(kf+1)-inpptr(kf); ///* number of input ports */
+     nout=outptr(kf+1)-outptr(kf); ///* number of output ports */
+     Code=[Code;
+	   '    block_'+rdnom+'['+string(kf-1)+'].type = '+string(funtyp(kf))+';';
+	   '    block_'+rdnom+'['+string(kf-1)+'].ztyp = '+string(ztyp(kf))+';';
+	   '    block_'+rdnom+'['+string(kf-1)+'].ng = '+string(zcptr(kf+1)-zcptr(kf))+';';
+	   '    block_'+rdnom+'['+string(kf-1)+'].nz = '+string(zptr(kf+1)-zptr(kf))+';';
+	   '    block_'+rdnom+'['+string(kf-1)+'].nrpar = '+string(rpptr(kf+1)-rpptr(kf))+';';
+	   '    block_'+rdnom+'['+string(kf-1)+'].nipar = '+string(ipptr(kf+1)-ipptr(kf))+';'
+	   '    block_'+rdnom+'['+string(kf-1)+'].nin = '+string(inpptr(kf+1)-inpptr(kf))+';';
+	   '    block_'+rdnom+'['+string(kf-1)+'].nout = '+string(outptr(kf+1)-outptr(kf))+';';
+	   '    block_'+rdnom+'['+string(kf-1)+'].nevout = '+string(clkptr(kf+1)-clkptr(kf))+';';
+	   '    block_'+rdnom+'['+string(kf-1)+'].nmode = '+string(modptr(kf+1)-modptr(kf))+';';
+	   '    if ((block_'+rdnom+'['+string(kf-1)+'].insz=malloc(sizeof(int)*block_'+rdnom+'['+string(kf-1)+'].nin))== NULL ) return 0;';
+	   '    if ((block_'+rdnom+'['+string(kf-1)+'].inptr=malloc(sizeof(double*)*block_'+rdnom+'['+string(kf-1)+'].nin))== NULL ) return 0;';
+	   '    if ((block_'+rdnom+'['+string(kf-1)+'].evout=calloc(block_'+rdnom+'['+string(kf-1)+'].nevout,sizeof(double)))== NULL )return 0;'];
+     
+     for k=1:nin
+       lprt=inplnk(inpptr(kf)-1+k);
+       Code=[Code
+	     '    block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);'
+	     '    block_'+rdnom+'['+string(kf-1)+'].insz['+string(k-1)+'] = '+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
+     end 
+     Code=[Code
+	   '    if ((block_'+rdnom+'['+string(kf-1)+'].outsz=malloc(sizeof(int)*block_'+rdnom+'['+string(kf-1)+'].nout))== NULL ) return 0;';
+	   '    if ((block_'+rdnom+'['+string(kf-1)+'].outptr=malloc(sizeof(double*)*block_'+rdnom+'['+string(kf-1)+'].nout))== NULL ) return 0;'];
+     
+     for k=1:nout
+       lprt=outlnk(outptr(kf)-1+k);
+       Code=[Code
+	     '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);'
+	     '    block_'+rdnom+'['+string(kf-1)+'].outsz['+string(k-1)+']='+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
+     end
+     Code=[Code
+	   '    block_'+rdnom+'['+string(kf-1)+'].z=&(z['+ ...
+	   string(zptr(kf)-1)+']);';
+	   ]
+     if ~(part(cpr.sim.funs(kf),1:7) == 'capteur' | part(cpr.sim.funs(kf),1:10) == 'actionneur' |cpr.sim.funs(kf)=='bidon') then
+       Code=[Code
+	     '    block_'+rdnom+'['+string(kf-1)+'].rpar=&(rpar['+string(rpptr(kf)-1)+']);';
+	     '    block_'+rdnom+'['+string(kf-1)+'].ipar=&(ipar['+string(ipptr(kf)-1)+']);';
+	     '    block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *"+...
+	     " )work)+'+string(kf-1)+');'
+	    ]
+     end
+     Code=[Code
+	   '    block_'+rdnom+'['+string(kf-1)+'].nevprt=nevprt;']
+     //end
 
-//Assemble the code
-
-Code=[Code;
-      '  return 0;'
-      ''
-      '} /* '+rdnom+' */']
-
+ end 
+ Code=[Code;
+       ' ';
+       '    '+rdnom+'_init(block_'+rdnom+',z,&t);';
+       '  } ';
+       '  else if (flag == 5) { /* ending */';
+       '    block_'+rdnom+'=*block->work;']
+ for kf=1:nblk        
+   nin=inpptr(kf+1)-inpptr(kf); ///* number of input ports */
+   nout=outptr(kf+1)-outptr(kf); ///* number of output ports */
+   for k=1:nin
+     lprt=inplnk(inpptr(kf)-1+k);
+     Code=[Code;
+	   '    block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);']
+   end
+   for k=1:nout
+     lprt=outlnk(outptr(kf)-1+k);
+     Code=[Code
+	   '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);']
+   end
+   Code=[Code
+	 '    block_'+rdnom+'['+string(kf-1)+'].z=&(z['+ ...
+	 string(zptr(kf)-1)+']);'
+	 ]
+   if ~(part(cpr.sim.funs(kf),1:7) == 'capteur' | part(cpr.sim.funs(kf),1:10) == 'actionneur' |cpr.sim.funs(kf)=='bidon') then
+     Code=[Code
+	 '    block_'+rdnom+'['+string(kf-1)+'].rpar=&(rpar['+string(rpptr(kf)-1)+']);';
+	 '    block_'+rdnom+'['+string(kf-1)+'].ipar=&(ipar['+string(ipptr(kf)-1)+']);';
+	 '    block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *)work)+'+string(kf-1)+');']
+     
+   end
+ end 
+ Code=[Code
+       '    '+rdnom+'_end(block_'+rdnom+',z,&t);';]
+ Code=[Code;
+       '    for (kf = 0; kf < '+string(nblk)+'; ++kf) {'
+       '      if (block_'+rdnom+'[kf].insz!=NULL) {'
+       '        free(block_'+rdnom+'[kf].insz);'
+       '      }else {'
+       '        break;'
+       '      } '   
+       '      if (block_'+rdnom+'[kf].outsz!=NULL){'
+       '        free(block_'+rdnom+'[kf].outsz);'
+       '      }else {'
+       '        break;'
+       '      }'    
+       '      if (block_'+rdnom+'[kf].evout!=NULL){'
+       '        free(block_'+rdnom+'[kf].evout);'
+       '      }else {'
+       '        break;'
+       '      }'
+       '    }' 
+       '    scicos_free(block_'+rdnom+');'    
+       '  } '];
+ 
+ 
+ //copy outputs
+ for i=1:size(actt,1)
+   ni=actt(i,3) // dimension of ith output
+   Code=[Code;
+	 '  y['+string(actt(i,4)-1)+']['+string(0:ni-1)'+'] =  block_outtb['+..
+	 string(actt(i,2)-1+(0:ni-1)')+'];']
+ end
+ 
+ //Assemble the code
+ 
+ Code=[Code;
+       '  return 0;'
+       ''
+       '} /* '+rdnom+' */']
+ 
 endfunction
 function Code=make_decl()
 //generates  procedure declarations
@@ -2183,12 +2187,16 @@ for kf=1:nblk
 	      '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);'
 	      '    block_'+rdnom+'['+string(kf-1)+'].outsz['+string(k-1)+']='+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
       end
+
       Code=[Code
-	    '    block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);';
+	    '    block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);'
+	    ]
+      if ~(part(cpr.sim.funs(kf),1:7) == 'capteur' |part(cpr.sim.funs(kf),1:10) == 'actionneur' |cpr.sim.funs(kf)=='bidon') then
+	Code=[Code
 	    '    block_'+rdnom+'['+string(kf-1)+'].rpar=&(RPAR1['+string(rpptr(kf)-1)+']);';
             '    block_'+rdnom+'['+string(kf-1)+'].ipar=&(IPAR1['+string(ipptr(kf)-1)+']);';
 	    '    block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *)work)+'+string(kf-1)+');']
-    //end
+      end
 end
     
 
@@ -2344,6 +2352,8 @@ function Code=make_static_standalone()
 	  OO=scs_m(path);
 	end
 	aaa=OO.gui;bbb=emptystr(3,1);
+	// the following is a useless test because these block do not
+        // have rpar
 	if and(aaa+bbb~= ['INPUTPORTEVTS'; ...
 			  'OUTPUTPORTEVTS';'EVTGEN_f']) then
 	  
@@ -2372,10 +2382,11 @@ function Code=make_static_standalone()
   else
     Code($+1)='static double RPAR1[1];';
   end
-  
+
   if size(ipar,1) <> 0 then
     
-    Code=[Code;'static integer IPAR1[ ] = {'];		
+    //Code=[Code;'static integer IPAR1[ ] = {'];
+    Code_TMP=[]
     
     for i=1:(length(ipptr)-1) 
       
@@ -2391,33 +2402,36 @@ function Code=make_static_standalone()
 	end
 	aaa=OO.gui;bbb=emptystr(3,1);
 	if and(aaa+bbb~= ['INPUTPORTEVTS';'OUTPUTPORTEVTS';'EVTGEN_f']) then
-	  Code($+1)=' ';
-	  Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
-	  Code($+1)=' Gui name of block: '+strcat(string(OO.gui));
+	  Code_TMP($+1)=' ';
+	  Code_TMP($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
+	  Code_TMP($+1)=' Gui name of block: '+strcat(string(OO.gui));
 	  // Code($+1)='/* Name block: '+strcat(string(cpr.sim.funs(i)));
 	  // Code($+1)='Object number in diagram: '+strcat(string(cpr.corinv(i)));
-	  Code($+1)='Compiled structure index: '+strcat(string(i));
+	  Code_TMP($+1)='Compiled structure index: '+strcat(string(i));
 	  if stripblanks(OO.model.label)~=emptystr() then	    
-	    Code=[Code;cformatline('Label: '+strcat(string(OO.model.label)),70)];
+	    Code_TMP=[Code_TMP;cformatline('Label: '+strcat(string(OO.model.label)),70)];
 	  end
 
 	  if stripblanks(OO.graphics.exprs(1))~=emptystr() then
-            Code=[Code;cformatline('Exprs: '+strcat(OO.graphics.exprs(1),","),70)];
+            Code_TMP=[Code_TMP;cformatline('Exprs: '+strcat(OO.graphics.exprs(1),","),70)];
 	  end
 	  if stripblanks(OO.graphics.id)~=emptystr() then
-	    Code=[Code;
+	    Code_TMP=[Code_TMP;
 		  cformatline('Identification: '+strcat(string(OO.graphics.id)),70)];
 	    
 	  end
-	  Code=[Code;cformatline('ipar= {'+strcat(string(ipar(ipptr(i):ipptr(i+1)-1)),",")+'};',70)];
-	  Code($+1)='*/';
-	  Code=[Code;cformatline(strcat(string(ipar(ipptr(i):ipptr(i+1)-1))+','),70)];
+	  Code_TMP=[Code_TMP;cformatline('ipar= {'+strcat(string(ipar(ipptr(i):ipptr(i+1)-1)),",")+'};',70)];
+	  Code_TMP($+1)='*/';
+	  Code_TMP=[Code_TMP;cformatline(strcat(string(ipar(ipptr(i):ipptr(i+1)-1))+','),70)];
 	end
       end
     end
-    Code($+1)='};';
-    //Code=[Code;cformatline('static integer IPAR1[ ]= {'+..
-    //		   strcat(string(ipar),",")+'};',70)] 
+    if  Code_TMP<>[] then
+      Code=[Code;'static integer IPAR1[ ] = {';Code_TMP;'};']
+    else
+      Code($+1)='static integer IPAR1[1];';
+    end
+    //    Code($+1)='};';
   else
     Code($+1)='static integer IPAR1[1];';
   end
