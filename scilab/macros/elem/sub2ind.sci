@@ -9,7 +9,7 @@ function I=sub2ind(dims,varargin)
 //I = sub2ind(dims,Mi) returns the linear index
 //equivalent to the n subscripts in the columns of the matrix Mi for a matrix
 //of size dims.
-   
+//Author Serge Steer, Copyright INRIA  
   d=[1;cumprod(matrix(dims(1:$-1),-1,1))]
   if size(varargin)==1 then //subindices are the columns of the argument
     I=(varargin(1)-1)*d+1
