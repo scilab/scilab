@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.78 $)dnl
+AC_REVISION($Revision: 1.79 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -57,6 +57,9 @@ AC_ARG_WITH(gtk2,
 
 AC_ARG_WITH(addedf2c,
     [  --with-addedf2c         build a local f2c (routines/f2c)])
+
+AC_ARG_WITH(ocaml,
+    [  --without-ocaml            do not compile with ocaml ])
 
 #################################
 ## check this is a source version
@@ -1752,6 +1755,7 @@ fi
 #################
 ## ocaml 
 #################
+if test "$with_ocaml" != no; then
  AC_CHECK_PROG(with_ocamlc,ocamlc,yes,no)
  if test "$with_ocamlc" = no; then
     AC_MSG_WARN([ocamlc not found: I will not build Modelica compiler])
@@ -1772,6 +1776,7 @@ fi
        fi
     fi
  fi
+fi
 #########################
 ## substituting variables
 #########################
