@@ -19,6 +19,10 @@ extern void sciprint __PARAMS((char* ,...));
 
 extern void  errjump(int n);
 extern void  sci_sig_tstp(int n);
+extern void  controlC_handler(int n);
+
+static void  sci_sigint_addinter(int n); /*
+
 /***********************************************************
  * interface function 
  ***********************************************************/
@@ -56,7 +60,6 @@ void C2F(NoPvm)()
 typedef  struct  {
   void  (*fonc)();} OpTab ;
 
-
 #include "callinterf.h"
 
 
@@ -66,6 +69,8 @@ typedef  struct  {
  * matdsc or matdsr 
  ***********************************************************/
 
+static int sig_ok = 0;
+
 int C2F(callinterf)(k,iflagint)
       int *k,*iflagint;
 {
@@ -74,11 +79,10 @@ int C2F(callinterf)(k,iflagint)
   Iflag=*iflagint;
   if ( count == 0) 
     {
-      /* fprintf(stderr," je fixe le SIGTSTP a errjump "); */
-      /*XX signal (SIGTSTP ,errjump); */
+      if (sig_ok) signal(SIGINT,sci_sigint_addinter);
       if (( returned_from_longjump = setjmp(jmp_env)) != 0 )
 	{
-	  /*XX signal (SIGTSTP ,sci_sig_tstp) ; */
+	  if (sig_ok) signal(SIGINT, controlC_handler);
 	  Scierror(999,"SIGSTP: aborting current computation\r\n");
 	  count = 0;
 	  return 0;
@@ -91,11 +95,20 @@ int C2F(callinterf)(k,iflagint)
     (*(Interfaces[*k-1].fonc))();
   count--;
   if (count == 0) { 
-    /* fprintf(stderr," je retire  SIGTSTP "); */
-    /*XX  signal (SIGTSTP ,sci_sig_tstp); */
+    if (sig_ok) signal(SIGINT, controlC_handler);
   }
   return 0;
 }
+
+static void sci_sigint_addinter(int n)
+{
+  int c;
+  sciprint("Trying to stop scilab in the middle of an interface\n");
+  sciprint("Do you really want to abort computation (y n  ?) ");
+  c = getchar();
+  if ( c == 'y' ) errjump(n);
+}
+
 
 /***********************************************************
  * Unused function just here to force linker to load some 
