@@ -13,7 +13,7 @@ if rhs==1 then
     r= list('qr('+s(1)+')','-1',s(3),s(4),'1')
     stk=list(r,r,r)     
   end
-else  //econmy size
+else  //economy size
   s=stk(top-1)
   if lhs==1 then
     set_infos('No scilab eqivalent to qr with only one lhs arg using mtlb_qr',1)
