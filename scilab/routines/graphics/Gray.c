@@ -53,11 +53,11 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
   integer *xm,*ym,j,nn1=1,nn2=2/*,i*/;
   sciPointObj  *psubwin = NULL;
   double drect[6];
-  xx[0]=Mini(x,*n1);xx[1]=Maxi(x,*n1);
-  yy[0]=Mini(y,*n2);yy[1]=Maxi(y,*n2);
-
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
+  
+  xx[0]=Mini(x,*n1);xx[1]=Maxi(x,*n1);
+  yy[0]=Mini(y,*n2);yy[1]=Maxi(y,*n2);
   
   /* NG beg */
   if (version_flag() == 0){
@@ -248,13 +248,12 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
   static integer *xm,*ym,j, nn1=1,nn2=2;
   sciPointObj  *psubwin = NULL;
   double drect[6];
-
-  xx[0]=0.5;xx[1]= *n2+0.5;
-  yy[0]=0.5;yy[1]= *n1+0.5;
-
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
-
+  
+  xx[0]=0.5;xx[1]= *n2+0.5;
+  yy[0]=0.5;yy[1]= *n1+0.5;
+  
   if (version_flag() == 0){
     if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
       sciXbasc(); 
