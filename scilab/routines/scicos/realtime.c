@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "nsp/machine.h"
+#include "../machine.h"
 
 #ifndef WIN32
 #include <sys/time.h>

@@ -1,7 +1,7 @@
 #include <stdlib.h> 
 #include <stdio.h>
 #include <math.h>
-#include "nsp/machine.h"
+#include "../machine.h"
 #include "cc_pass2.h"
 #include <memory.h>
 #include <string.h>

@@ -43,10 +43,10 @@ typedef struct {
 } scicos_block;
 
 
-void do_cold_restart(void);
-int get_phase_simulation(void);
-double get_scicos_time(void);
-int get_block_number(void);
+void do_cold_restart();
+int get_phase_simulation();
+double get_scicos_time();
+int get_block_number();
 void set_block_error(int);
 void set_pointer_xproperty(int* pointer);
 

@@ -1,6 +1,7 @@
+
 #include <string.h>
 #include "../stack-c.h"
-#include "nsp/machine.h"
+#include "../machine.h"
 
 
 int connection(int* path_out,int* path_in);
