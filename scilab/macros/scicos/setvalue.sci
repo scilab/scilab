@@ -71,10 +71,9 @@ while %t do
   for k=1:n
     select part(typ(2*k-1),1:3)
     case 'mat'
-      errcatch(-1,'continue','nomessage')
-      v=evstr('['+str(k)+']')
-      errcatch(-1)
-      if iserror(-1) then nok=-k,errclear(-1);break,end
+      if execstr('v=['+str(k)+']','errcatch')<>0  then 
+	nok=-k,break,
+      end
       if type(v)<>1 then nok=-k,break,end
       sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
       [mv,nv]=size(v)
@@ -86,30 +85,27 @@ while %t do
 	if sz(2)>=0 then if nv<>sz(2) then nok=k,break,end,end
       end
     case 'vec'
-      errcatch(-1,'continue','nomessage')
-      v=evstr('['+str(k)+']')
-      errcatch(-1)
-      if iserror(-1) then nok=-k,errclear(-1);break,end
+      if execstr('v=['+str(k)+']','errcatch')<>0  then 
+	nok=-k,break,
+      end
       if type(v)<>1 then nok=-k,break,end
       sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
       ssz=string(sz(1))
       nv=prod(size(v))
       if sz(1)>=0 then if nv<>sz(1) then nok=k,break,end,end
     case 'pol'
-      errcatch(-1,'continue','nomessage')
-      v=evstr('['+str(k)+']')
-      errcatch(-1)
-      if iserror(-1) then nok=-k,errclear(-1);break,end
+      if execstr('v=['+str(k)+']','errcatch')<>0  then 
+	nok=-k,break,
+      end
       if type(v)>2 then nok=-k,break,end
       sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
       ssz=string(sz(1))
       nv=prod(size(v))
       if sz(1)>=0 then if nv<>sz(1) then nok=k,break,end,end
     case 'row'
-      errcatch(-1,'continue','nomessage')
-      v=evstr('['+str(k)+']')
-      errcatch(-1)
-      if iserror(-1) then nok=-k,errclear(-1);break,end
+      if execstr('v=['+str(k)+']','errcatch')<>0  then 
+	nok=-k,break,
+      end
       if type(v)<>1 then nok=-k,break,end
       sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
       if sz(1)<0 then
@@ -121,10 +117,9 @@ while %t do
       if mv<>1 then nok=k,break,end,
       if sz(1)>=0 then if nv<>sz(1) then nok=k,break,end,end
     case 'col'
-      errcatch(-1,'continue','nomessage')
-      v=evstr('['+str(k)+']')
-      errcatch(-1)
-      if iserror(-1) then nok=-k,errclear(-1);break,end
+      if execstr('v=['+str(k)+']','errcatch')<>0  then 
+	nok=-k,break,
+      end
       if type(v)<>1 then nok=-k,break,end
       sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
       if sz(1)<0 then
@@ -143,20 +138,18 @@ while %t do
       nv=prod(size(v))
       if sz(1)>=0 then if nv<>1 then nok=k,break,end,end
     case 'lis'
-      errcatch(-1,'continue','nomessage')
-      v=evstr(str(k))
-      errcatch(-1)
-      if iserror(-1) then nok=-k,errclear(-1);break,end
+      if execstr('v='+str(k),'errcatch')<>0  then 
+	nok=-k,break,
+      end    
       if type(v)<>15& type(v)<>16 then nok=-k,break,end
       sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
       ssz=string(sz(1))
       nv=size(v)
       if sz(1)>=0 then if nv<>sz(1) then nok=k,break,end,end
     case 'r  '
-      errcatch(-1,'continue','nomessage')
-      v=evstr('['+str(k)+']')
-      errcatch(-1)
-      if iserror(-1) then nok=-k,errclear(-1);break,end
+      if execstr('v=['+str(k)+']','errcatch')<>0  then 
+	nok=-k,break,
+      end
       if type(v)<>16 then nok=-k,break,end
       if h(1)<>'r' then nok=-k,break,end
       sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
@@ -169,7 +162,7 @@ while %t do
 	if sz(2)>=0 then if nv<>sz(2) then nok=k,break,end,end
       end
     else
-      error('type non gere :'+typ(2*k-1))
+      error('Incorrect type :'+typ(2*k-1))
     end
     execstr('x'+string(k)+'=v')
   end

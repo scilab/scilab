@@ -26,13 +26,9 @@ for %kk=1:%nx
     model=o.model
     if model.sim=='super'|model.sim=='csuper' then
       sblock=model.rpar
-            errcatch(-1,'continue')
       context=sblock(1).context
-      execstr(context)
-      errcatch(-1)
-      if iserror(-1) then
-        message('Cannot evaluate a context')
-        errclear(-1)
+      if execstr(context,'errcatch')<>0 then
+        message(['Cannot evaluate a context';lasterror()])
       else
         [sblock,%w,needcompile2,ok]=do_eval(sblock,list())
         needcompile1=max(needcompile1,needcompile2)
