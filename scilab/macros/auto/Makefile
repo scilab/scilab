@@ -27,7 +27,7 @@ MACROS = calfrq.sci svplot.sci abcd.sci sm2ss.sci sm2des.sci \
 	obscont.sci tf2ss.sci trzeros.sci colregul.sci rowregul.sci \
 	time_id.sci zeropen.sci specfact.sci abinv.sci cainv.sci dbphi.sci \
 	bilin.sci arl2.sci \
-	scicos.sci lincos.sci steadycos.sci \
+	scicos.sci lincos.sci steadycos.sci scicos_simulate.sci \
 	findR.sci findAC.sci findABCD.sci findBDK.sci findx0BD.sci inistate.sci
 
 include ../Make.lib
