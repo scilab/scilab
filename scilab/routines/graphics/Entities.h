@@ -1,7 +1,9 @@
 /*------------------------------------------------------------------------
- *    Graphic library 2001-2002
- *    name Header for newGraph Library
- *    INRIA / Djalel ABDEMOUCHE
+ *    Graphic library 
+ *    Copyright INRIA
+ *    newGraph Library header
+ *    Matthieu PHILIPPE, INRIA 2001-2002
+ *    Djalel ABDEMOUCHE, INRIA 2002-2004
  --------------------------------------------------------------------------*/
 
 

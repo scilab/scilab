@@ -14184,6 +14184,7 @@ void initsubwin()
             
   dir= 'd'; pSUBWIN_FEATURE (psubwin)->axes.xdir=dir;
   dir= 'l'; pSUBWIN_FEATURE (psubwin)->axes.ydir=dir;
+  pSUBWIN_FEATURE (psubwin)->isaxes  = FALSE;
   pSUBWIN_FEATURE (psubwin)->axes.rect = 1;  
   pSUBWIN_FEATURE (psubwin)->axes.ticscolor = -1;
   pSUBWIN_FEATURE (psubwin)->axes.textcolor = -1;
