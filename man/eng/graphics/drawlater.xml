@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>drawlater  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE> 2002 </DATE>
+  <SHORT_DESCRIPTION name="drawlater"> 
+   makes axes children invisible.
+  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>drawlater() </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    This function can be used no to draw a axes children. It can
+    specially be used with the  <VERB>drawnow</VERB> function. 
+  <P>  </P>
+    <VERB>drawlater()</VERB> is equivalent to
+    <VERB>set(get("current_axes"),"visible","off")</VERB> 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+revoir l'interface dans matdes VARTYPE(1°==1...
+  set("figure_style","new") // select entity based graphics
+  t=1:10;plot2d(t,t.^2),
+  h=get("current_figure") //gets handle on the current figure
+  a=h.children
+  drawlater (a.children)
+  delete(a)
+  delete(h)
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>drawnow</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>graphics_handle</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Djamel Abdemouche  </AUTHOR>
+</MAN>

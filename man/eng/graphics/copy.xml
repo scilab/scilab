@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>copy  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE> 2002 </DATE>
+  <SHORT_DESCRIPTION name="copy"> 
+   copy  a graphic entity and its children.
+  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>copy(hfrom) </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>copy(hfrom,hto) </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+  <PARAM_INDENT>
+
+  <PARAM_ITEM>
+  <PARAM_NAME>hfrom  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+     : a handle, the handle of the entity  to copy.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+  <PARAM_ITEM>
+  <PARAM_NAME>hto  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+     : a handle, the handle of the parent entity for the
+  destination. It should be a figure or an agregation ??? pas evident
+  dans le code
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This routine can be used to make a copy of a graphics entity and
+    all its chidren. Pourquoi le detruire dans la source
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+  set("figure_style","new") // select entity based graphics
+  t=1:10;plot2d(t,t.^2),
+  h=get("current_figure") //gets handle on the current figure
+
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>move</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>graphics_handle</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Djamel Abdemouche  </AUTHOR>
+</MAN>
