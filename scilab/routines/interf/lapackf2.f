@@ -633,7 +633,7 @@ c
            return
          endif
        endif
-       if(vfinite(M*N,stk(lA))==0) then
+       if(vfinite(M*N,stk(lA)).eq.0) then
           buf='spec'//': the matrix contains NaN of Inf'
           call error(997)
           return
@@ -725,7 +725,7 @@ c
            return
          endif
        endif
-       if(vfinite(2*M*N,zstk(lA))==0) then
+       if(vfinite(2*M*N,zstk(lA)).eq.0) then
           buf='spec'//': the matrix contains NaN of Inf'
           call error(997)
           return

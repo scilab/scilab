@@ -774,6 +774,7 @@ c     s = svd(A)
       include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
+      integer vfinite
 
       character fname*(*)
       character JOBU, JOBVT
@@ -807,6 +808,11 @@ c
             return
          endif
        endif
+       if(vfinite(M*N,stk(lA)).eq.0) then
+          buf='svd'//': the matrix contains NaN of Inf'
+          call error(997)
+          return
+       endif 
        if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
        k = 3              
        if(lhs.gt.1) then
@@ -883,6 +889,7 @@ c     s = svd(A)
       include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
+      integer vfinite
 
       character fname*(*)
       character JOBU, JOBVT
@@ -916,6 +923,11 @@ c
             return
          endif
        endif
+       if(vfinite(M*N,stk(lA)).eq.0) then
+          buf='svd'//': the matrix contains NaN of Inf'
+          call error(997)
+          return
+       endif 
        if(.not.createvar(2,'d', min(M,N), 1, lSV)) return
        k = 3              
        if(lhs.gt.1) then
@@ -1431,7 +1443,7 @@ c
            return
          endif
        endif 
-       if(vfinite(M*N,stk(lA))==0) then
+       if(vfinite(M*N,stk(lA)).eq.0) then
           buf='spec'//': the matrix contains NaN of Inf'
           call error(997)
           return
@@ -1557,7 +1569,7 @@ c
            return
          endif
        endif  
-       if(vfinite(2*M*N,zstk(lA))==0) then
+       if(vfinite(2*M*N,zstk(lA)).eq.0) then
           buf='spec'//': the matrix contains NaN of Inf'
           call error(997)
           return
