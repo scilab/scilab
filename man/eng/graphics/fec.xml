@@ -94,6 +94,7 @@
     The <VERB>extremes_col</VERB> argument lets the user choosing the colors for the 2 extremes
     regions <EM>{func &lt; zmin}</EM> and <EM>{func &gt; zmax}</EM>, <VERB>under_min_col</VERB> and 
     <VERB>upper_max_col</VERB> may be equal (independantly) to:
+    </P>
     <ITEMIZE>
        <ITEM label="-1">
             <SP>: in this case the same color than in the neighbouring zone is used (CAUTION: 
@@ -108,7 +109,6 @@
                   is painting in color k.</SP>
        </ITEM>
      </ITEMIZE>
-    </P>
     <P>If you don't want to use the complete colormap you may use the <VERB>colminmax</VERB>
     argument with <EM>1 &lt;= colmin &lt; colmax &lt;= nc</EM> (nc being the number of colors 
     of the current colormap) so as to use only the [colmin,colmax]  sub-part of the colormap.
