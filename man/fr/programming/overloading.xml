@@ -12,7 +12,6 @@
     for new objects using  functions (scilab coded or primitives).
   </P>
  
-
   <DESCRIPTION_ITEM  label='Display'> 
     : The display of new objects defined by <VERB>tlist</VERB> structure may be overloaded (the default display is similar to <VERB>list</VERB>&apos;s one). The overloading function must have no output argument a single input argument. It&apos;s name is formed as follow <VERB>%&lt;tlist_type&gt;_p</VERB> where <VERB>%&lt;tlist_type&gt;</VERB> stands for the first entry of the <VERB>tlist</VERB> type component.
   </DESCRIPTION_ITEM>
@@ -206,33 +205,50 @@
 	<TABLE_NEW_COLUMN>   &gt;=        </TABLE_NEW_COLUMN>
 	<TABLE_NEW_COLUMN>    4    </TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+	<TABLE_NEW_COLUMN>             </TABLE_NEW_COLUMN>
+	<TABLE_NEW_COLUMN>         </TABLE_NEW_COLUMN>
+	<TABLE_NEW_COLUMN>    iext     </TABLE_NEW_COLUMN>
+	<TABLE_NEW_COLUMN>    E    </TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
     </TABLE>
-  <P>
-  </P>
+
   <P>
     The overloading function for extraction syntax <VERB>b=a(i1,...,in)</VERB>
     has the following calling sequence: <VERB>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</VERB>
   </P>
+
   <P>
     and the syntax
     <VERB>[x1,..,xm]=a(i1,...,in)</VERB> has the following calling sequence: 
     <VERB>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</VERB>
   </P>
-  <P>
-    The overloading function associated to the insertion syntax
-    <VERB>a(i1,...,in)=b</VERB>  has the following calling sequence: 
-      <VERB>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</VERB>.
-  </P>
+
   <P>
   </P>
 
+  <P>
+    The overloading function associated to the insertion syntax
+    <VERB>a(i1,...,in)=b</VERB>  has the following calling sequence: 
+    <VERB>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</VERB>.
+  </P>
+   <P>
+   </P>
+   <P>
+    The <VERB>E</VERB> char code may be  used for some complex
+    insertion algorithm like <VERB>x.b(2)=33 </VERB> where <VERB>b</VERB> field is
+    not defined in the structure <VERB>x</VERB>. The insertion is
+    automatically decomposed into <VERB>temp=x.b;</VERB>
+    <VERB>temp(2)=33;</VERB> <VERB>x.b=temp</VERB>. The <VERB>E</VERB>
+    char code is used for the first step of this algorithm. The <VERB>E</VERB>
+    overloading function is very similar to the <VERB>e</VERB>'s one.
+   </P>
   <DESCRIPTION_ITEM label='Functions :'> Some basic primitive function
     may also be overloaded for new data type. When such a function
     is undefined for a particular data types the function
     <VERB>%&lt;type_of_an_argument&gt;_&lt;function_name&gt;</VERB> is
     called. User may add in this called function the definition
     associated with the input data types.  </DESCRIPTION_ITEM>
- 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 //DISPLAY
