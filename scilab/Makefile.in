@@ -8,10 +8,10 @@ binary:
                 (cd maple; make); \
 		echo "Installation done"; \
 	else \
-		echo "**********************************"; \
+		echo "***************************************"; \
 		echo "Humm... this is a source version."; \
-		echo "Please read the README file first."; \
-		echo "**********************************"; \
+		echo "Please read the README_Unix file first."; \
+		echo "***************************************"; \
 	fi
 
 #SCIDIR=.
@@ -116,7 +116,7 @@ BINDISTFILES = \
 	$(SCIBASE)/Makefile.incl \
 	$(SCIBASE)/Makemex \
         $(SCIBASE)/Path.incl \
-	$(SCIBASE)/README \
+	$(SCIBASE)/README_Unix \
 	$(SCIBASE)/Version.incl \
 	$(SCIBASE)/configure \
 	$(SCIBASE)/libtool \
@@ -195,3 +195,4 @@ cvsclean::
 
 setversion : 
 	echo "SCIVERSION=scilab-CVS-`date --iso`" > Version.incl
+
