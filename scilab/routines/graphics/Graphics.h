@@ -67,16 +67,16 @@ extern int C2F(contourif)  __PARAMS((double *,double *,double *,integer *,intege
 
 	/* FeC.c */
 
-extern int C2F(fec)  __PARAMS((double *,double *,double *triangles,double *func,integer *Nnode,integer *Ntr,char *,char *,double *,integer *, double *, integer *, integer,integer)); 
+extern int C2F(fec)  __PARAMS((double *,double *,double *triangles,double *func,integer *Nnode,integer *Ntr,char *,char *,double *,integer *, double *, integer *, integer flagNax, integer,integer)); 
 
 /* extern int C2F(fec)  __PARAMS((double *,double *,double *triangles,double *func,integer *Nnode,integer *Ntr,char *,char *,double *,integer *,integer,integer));  */
 
 
 /* Gray.c */
 
-extern int C2F(xgray)  __PARAMS((double *,double *,double *,integer *,integer *,char *,double *,integer *,long int l1)); 
+extern int C2F(xgray)  __PARAMS((double *,double *,double *,integer *,integer *,char *,double *,integer *,integer flagNax,long int l1)); 
 
-extern int C2F(xgray1) __PARAMS((double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint,long int l1));
+extern int C2F(xgray1) __PARAMS((double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint,integer flagNax,long int l1));
 
 extern int C2F(xgray2) __PARAMS((double *z,integer *n1,integer *n2,double *xrect));
 
@@ -122,6 +122,12 @@ extern int C2F(yechelle2d) __PARAMS((double x[],integer x1[],integer *n1,char di
 
 extern void set_scale __PARAMS((char flag[],double subwin[],double frame_values[],int aaint[],char logflag[],double axis[]));
 extern int C2F(graduate)  __PARAMS((double *,double *,double *,double *,integer *,integer *,integer *,integer *,integer *)); 
+
+/* Theticks F.Leray 21.09.04 */
+extern int C2F(theticks) __PARAMS((double *xminv, double *xmaxv, double *grads, int *ngrads));
+extern int TheTicks( double *xminv, double * xmaxv, double * grads, int * ngrads);
+extern int GradEqual(double * grads, int *ngrads);
+
 extern void Cscale2default  __PARAMS((void)); 
 
 
@@ -673,6 +679,9 @@ extern void ReleaseWinHdc  __PARAMS((void));
   extern int C2F(AllocVectorStorage) __PARAMS((void));  
   extern void set_clip_box  __PARAMS((integer xxleft,integer xxright,integer yybot,integer yytop));  
   extern void clip_line  __PARAMS((integer,integer,integer ,integer,integer *,integer *,integer *,integer *, integer *));  
+
+
+
 
 #endif /* ifndef WIN32 */
 
