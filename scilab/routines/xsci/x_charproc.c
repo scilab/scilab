@@ -1361,6 +1361,11 @@ void xevents1()
 	  cok = bcnt;
 	}
     }
+  
+#ifdef WITH_TK
+  flushTKEvents();
+#endif
+  
 }
 
 
