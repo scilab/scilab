@@ -712,10 +712,11 @@ int sciparam3d(fname, fname_len)
      char *fname;
      unsigned long fname_len;
 {
+  integer izcol, *zcol=NULL, isfac;
   static double  ebox_def[6]= { 0,1,0,1,0,1};
   double *ebox = ebox_def ;
   static integer iflag_def[3]= {1,2,4};
-  integer iflag[3] , *ifl,  ix1 ;
+  integer iflag[3], *ifl, ix1, one=1;
   double  alpha_def=35.0 , theta_def=45.0 ;
   double *alpha=&alpha_def, *theta=&theta_def;
   integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
@@ -760,7 +761,15 @@ int sciparam3d(fname, fname_len)
   C2F(sciwin)();
   C2F(scigerase)();
   ix1 = m1 * n1;
-  C2F(param3d)(stk(l1 ),stk(l2 ),stk(l3 ),&ix1, theta, alpha,Legend,iflag, ebox,strlen(Legend));
+
+  /* NG beg */
+  isfac=-1;
+  izcol=0;
+  if (version_flag() == 0)
+        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox);
+  else
+        Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox);
+  /* NG end */
   LhsVar(1)=0;
   return 0;
 } 
@@ -5217,7 +5226,52 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"data_mapping property does not exist for this handle");return -1;}
   } 
-
+  /**************** Surface *******************************/
+  else if (strcmp(marker,"rotation_angles") == 0) {
+    if (sciGetEntityType (pobj) == SCI_SURFACE) {
+      pSURFACE_FEATURE (pobj)->theta=*stk(*value);
+      pSURFACE_FEATURE (pobj)->alpha=*stk(*value+1);
+    }
+    else
+      {strcpy(error_message,"rotation_angles property does not exist for this handle");return -1;}
+  }
+  else if (strcmp(marker,"bounds") == 0) {
+    if (sciGetEntityType (pobj) == SCI_SURFACE) {
+      if (*numrow * *numcol != 6)
+	{strcpy(error_message,"Second argument must be a row vector");return -1;}
+      for (i=0;i<6;i++) {
+	 pSURFACE_FEATURE (pobj)->ebox[i]= stk(*value)[i];
+      }
+    }
+    else
+      {strcpy(error_message,"bounds property does not exist for this handle");return -1;}
+   
+  }
+  else if (strcmp(marker,"surface_color") == 0) {
+    if (sciGetEntityType (pobj) == SCI_SURFACE && 
+	pSURFACE_FEATURE (pobj)->typeof3d == SCI_PARAM3D1)  {
+      if (*numrow * *numcol ==1 ){
+	pSURFACE_FEATURE (pobj)->izcol=0;
+	pSURFACE_FEATURE (pobj)->zcol[0]= (int)*stk(*value);
+      }
+      else if (*numrow == pSURFACE_FEATURE (pobj)->dimzx && 
+	       *numcol == pSURFACE_FEATURE (pobj)->dimzy ){
+	pSURFACE_FEATURE (pobj)->izcol=1;
+	for (i=0;i<(*numcol* *numrow);i++) {
+	  pSURFACE_FEATURE (pobj)->zcol[i] = (int)stk(*value)[i];;
+	}
+      }
+      else {
+	strcpy(error_message,"Second argument has incorrect dimensions");
+	return -1;
+      } 
+    }
+    else {
+      strcpy(error_message,"surface_color property does not exist for this handle");
+      return -1;
+    } 
+  }
+ 
   else 
     {sprintf(error_message,"Unknown  property %s",marker);return -1;}
   return 0;
@@ -5857,7 +5911,48 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"data_mapping property does not exist for this handle");return -1;}
   } 
-
+ /**************** Surface *******************************/
+  else if (strcmp(marker,"rotation_angles") == 0) {
+    if (sciGetEntityType (pobj) == SCI_SURFACE) {
+      numrow = 1;numcol = 2;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      *stk(outindex)=pSURFACE_FEATURE (pobj)->theta;
+      *stk(outindex+1)=pSURFACE_FEATURE (pobj)->alpha;
+    }
+    else
+      {strcpy(error_message,"rotation_angle property does not exist for this handle");return -1;}
+  } 
+  else if (strcmp(marker,"bounds") == 0) {
+    if (sciGetEntityType (pobj) == SCI_SURFACE) {
+      numrow = 1;numcol = 6;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      for (i=0;i<numcol;i++) {
+	  stk(outindex)[i] = pSURFACE_FEATURE (pobj)->ebox[i];
+      }
+    }
+    else
+      {strcpy(error_message,"bounds property does not exist for this handle");return -1;}
+  } 
+  else if (strcmp(marker,"surface_color") == 0) {
+    if (sciGetEntityType (pobj) == SCI_SURFACE && 
+	pSURFACE_FEATURE (pobj)->typeof3d == SCI_PARAM3D1) {
+      if (pSURFACE_FEATURE (pobj)->izcol==0){
+	numrow = 1;numcol = 1; 
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	*stk(outindex)=(double)pSURFACE_FEATURE (pobj)->zcol[0];
+      }
+      else {
+	numrow=pSURFACE_FEATURE (pobj)->dimzx;
+	numcol=pSURFACE_FEATURE (pobj)->dimzy;
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	for (i=0;i<numcol*numrow;i++) {
+	  stk(outindex)[i] = (double)pSURFACE_FEATURE (pobj)->zcol[i];
+	}
+      }
+    }
+    else
+      {strcpy(error_message,"surface_color property does not exist for this handle");return -1;}
+  } 
   else 
     {sprintf(error_message,"Unknown  property %s",marker);return -1;}
 

@@ -208,16 +208,16 @@ sciGetCharEntityType (sciPointObj * pobj)
       switch (pSURFACE_FEATURE (pobj)->typeof3d)
 	{
 	case SCI_FAC3D:
-	  return "Face3d";
+	  return "Fac3d";
 	  break;
 	case SCI_FAC3D1:
-	  return "Face3d1";
+	  return "Fac3d1";
 	  break;
 	case SCI_FAC3D2:
-	  return "Face3d2";
+	  return "Fac3d2";
 	  break;
 	case SCI_FAC3D3:
-	  return "Face3d3";
+	  return "Fac3d3";
 	  break;
 	case SCI_PLOT3D:
 	  return "Plot3d";
@@ -9002,7 +9002,26 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   int i=0, j=0;
-  int n = dimzx*dimzy;
+  int nx,ny,nz,nc;
+
+  if (typeof3d == SCI_PLOT3D1 ||typeof3d == SCI_PLOT3D) {
+    nx=dimzx;
+    ny=dimzy;
+    nz=dimzx*dimzy;
+    nc=nz;
+  }
+  else if (typeof3d == SCI_PARAM3D1) {
+    nx=dimzx*dimzy;
+    ny=dimzx*dimzy;
+    nz=dimzx*dimzy;
+    nc=dimzy;
+  }
+  else {
+    nx=dimzx*dimzy;
+    ny=dimzx*dimzy;
+    nz=dimzx*dimzy;
+    nc=nz;
+  }
 
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
     {
@@ -9038,7 +9057,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       pSURFACE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
  
 
-      if (((pSURFACE_FEATURE (pobj)->pvecx = MALLOC ((n * sizeof (double)))) == NULL))
+      if (((pSURFACE_FEATURE (pobj)->pvecx = MALLOC ((nx * sizeof (double)))) == NULL))
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
@@ -9048,10 +9067,10 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	}
       else
 	{
-	  for (i = 0;i < n; i++)
+	  for (i = 0;i < nx; i++)
 	    pSURFACE_FEATURE (pobj)->pvecx[i] = pvecx[i];
 	}
-      if (((pSURFACE_FEATURE (pobj)->pvecy = MALLOC ((n * sizeof (double)))) == NULL))
+      if (((pSURFACE_FEATURE (pobj)->pvecy = MALLOC ((ny * sizeof (double)))) == NULL))
 	{
 	  FREE(pSURFACE_FEATURE (pobj)->pvecx);
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -9062,10 +9081,11 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	}
       else
 	{
-	  for (j = 0;j < n; j++)
+	  for (j = 0;j < ny; j++)
 	    pSURFACE_FEATURE (pobj)->pvecy[j] = pvecy[j];
 	}
-      if (((pSURFACE_FEATURE (pobj)->pvecz = MALLOC (((2*n) * sizeof (double)))) == NULL))
+
+      if (((pSURFACE_FEATURE (pobj)->pvecz = MALLOC ((nz * sizeof (double)))) == NULL))
 	{
 	  FREE(pSURFACE_FEATURE (pobj)->pvecy);
 	  FREE(pSURFACE_FEATURE (pobj)->pvecx);
@@ -9077,28 +9097,28 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	}
       else
 	{
-	  for (j = 0;j < n; j++)
+	  for (j = 0;j < nz; j++)
 	    pSURFACE_FEATURE (pobj)->pvecz[j] = pvecz[j];
 	}
-      if (((pSURFACE_FEATURE (pobj)->zcol = MALLOC ((dimzy * sizeof (integer)))) == NULL))
-	{
-	  FREE(pSURFACE_FEATURE (pobj)->pvecy);
-	  FREE(pSURFACE_FEATURE (pobj)->pvecx); 
-	  FREE(pSURFACE_FEATURE (pobj)->pvecz);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pSURFACE_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      else
-	{
-	  if (typeof3d == SCI_PARAM3D1)
-	    for (j = 0;j < dimzy; j++)  
+
+      if (izcol !=0 ) {
+	if (((pSURFACE_FEATURE (pobj)->zcol = MALLOC ((nc * sizeof (integer)))) == NULL))
+	  {
+	    FREE(pSURFACE_FEATURE (pobj)->pvecy);
+	    FREE(pSURFACE_FEATURE (pobj)->pvecx); 
+	    FREE(pSURFACE_FEATURE (pobj)->pvecz);
+	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	    sciDelHandle (pobj);
+	    FREE(pSURFACE_FEATURE (pobj));
+	    FREE(pobj);
+	    return (sciPointObj *) NULL;
+	  }
+	else
+	  {
+	    for (j = 0;j < nc; j++)  
 	      pSURFACE_FEATURE (pobj)->zcol[j]= zcol[j];
-	  else
-	    pSURFACE_FEATURE (pobj)->zcol= zcol;
-	}
+	  }
+      }
 
       pSURFACE_FEATURE (pobj)->dimzx = dimzx;
       pSURFACE_FEATURE (pobj)->dimzy = dimzy; 
@@ -9165,6 +9185,9 @@ DestroySurface (sciPointObj * pthis)
   FREE(pSURFACE_FEATURE (pthis)->pvecz);
   FREE(pSURFACE_FEATURE (pthis)->pvecy);
   FREE(pSURFACE_FEATURE (pthis)->pvecx);
+  if (pSURFACE_FEATURE (pthis)->izcol != 0 ) 
+    FREE(pSURFACE_FEATURE (pthis)->zcol);
+
   FREE(pSURFACE_FEATURE (pthis)->legend);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
@@ -12882,6 +12905,10 @@ int sciType (marker)
   else if (strncmp(marker,"callback", 8) == 0)    {return 10;} 	
   else if (strncmp(marker,"log_flags", 9) == 0)   {return 10;}
   else if (strcmp(marker,"data_mapping") == 0)    {return 10;}
+  else if (strcmp(marker,"rotation_angles") == 0)    {return 1;}
+  else if (strcmp(marker,"bounds") == 0)    {return 1;}
+  else if (strcmp(marker,"surface_color") == 0)    {return 1;}
+
   else { sciprint("\r\n Unknown property \r");return 0;}
 }
 /**sciGetAxes
