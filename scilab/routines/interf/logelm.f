@@ -45,6 +45,11 @@ c
 c     max number of index to find
          call getrmat('find', top, top, m2, n2, l2)
          nmax=stk(l2)
+         if(nmax.le.0) then
+            err=2
+            call error(116)
+            return
+         endif
          top=top-1
       else
          nmax=-1
