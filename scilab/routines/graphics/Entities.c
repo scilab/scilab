@@ -2023,7 +2023,7 @@ sciSetLineStyle (sciPointObj * pobj, int linestyle)
 
   if (linestyle < 0)
     {
-      sciprint ("the line width must be greater than 0\n");
+      sciprint ("the line style must be greater than 0\n");
       return -1;
     }
   else
@@ -10584,20 +10584,14 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       pAXES_FEATURE (pobj)->logscale=logscale;
 	  if(format != (char *) NULL)
 	  {
-		  if((pAXES_FEATURE (pobj)->format = malloc( (strlen(format)+1) * sizeof(char))) == NULL)
-		  {
-			  return (sciPointObj *) NULL;
-		  }
-		  else
-		  {
-              strcpy(pAXES_FEATURE (pobj)->format,format);
-		  }
+	    if((pAXES_FEATURE (pobj)->format = malloc( (strlen(format)+1) * sizeof(char))) == NULL)
+	      return (sciPointObj *) NULL;
+	    else
+	      strcpy(pAXES_FEATURE (pobj)->format,format);
 	  }
 	  else
-	  {
-		pAXES_FEATURE (pobj)->format = (char *) NULL;
-	  }
-
+	    pAXES_FEATURE (pobj)->format = (char *) NULL;
+	  
       if (sciInitGraphicContext (pobj) == -1)
 	{
     	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -11072,12 +11066,28 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       
-	  sci_update_frame_bounds(0,pSUBWIN_FEATURE (pobj)->axes.aaint);
+	  sci_update_frame_bounds(0);
 
 	  if (pSUBWIN_FEATURE (pobj)->isaxes) {
 	    char STRFLAG[4];
 	    rebuild_strflag(pobj,STRFLAG);
+
+	    
+	   /*  sciprint("JUSTE AVANT axis_draw...\n"); */
+/* 	    sciprint("Cscale.ytics[0] = %f\n",Cscale.ytics[0]); */
+/* 	    sciprint("Cscale.ytics[1] = %f\n",Cscale.ytics[1]); */
+/* 	    sciprint("Cscale.ytics[2] = %f\n",Cscale.ytics[2]); */
+/* 	    sciprint("Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
+  
+
 	    axis_draw (STRFLAG); 
+
+	   /*  sciprint("JUSTE APRES axis_draw...\n"); */
+/* 	    sciprint("Cscale.ytics[0] = %f\n",Cscale.ytics[0]); */
+/* 	    sciprint("Cscale.ytics[1] = %f\n",Cscale.ytics[1]); */
+/* 	    sciprint("Cscale.ytics[2] = %f\n",Cscale.ytics[2]); */
+/* 	    sciprint("Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
+  
 	  }
 	  /** walk subtree **/
 	  psonstmp = sciGetLastSons (pobj);
@@ -12024,12 +12034,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 		PD0, PD0, PD0, 0L, 0L);
       sciClip(sciGetIsClipping(pobj));
      
-/* Prototype Sci_Axis: 
-void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticscolor,logflag,seg_flag)
-*/
-      
-/* Prototype Sci_Axis HAS CHANGED:  ************* F.Leray 08.04.04
-   void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag)
+/* Prototype Sci_Axis HAS CHANGED:  ************* F.Leray 19.05.04
+   void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag, axisbuild_flag)
    For the moment, for a simple axes ( coming from a scilab command as 'drawaxis'), we set the fontstyle to 0.
 */
 
@@ -12041,7 +12047,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
                &pAXES_FEATURE (pobj)->nx,pAXES_FEATURE(pobj)->vy,&pAXES_FEATURE (pobj)->ny,
                pAXES_FEATURE(pobj)->str,pAXES_FEATURE (pobj)->subint,pAXES_FEATURE (pobj)->format,
                pAXES_FEATURE (pobj)->fontsize,pAXES_FEATURE (pobj)->textcolor,fontstyle_zero, /* F.Leray 08.04.04 : Adding here fontstyle_zero*/
-               pAXES_FEATURE (pobj)->ticscolor,(char)(pAXES_FEATURE (pobj)->logscale),pAXES_FEATURE (pobj)->seg); 
+               pAXES_FEATURE (pobj)->ticscolor,(char)(pAXES_FEATURE (pobj)->logscale),pAXES_FEATURE (pobj)->seg, 1); 
 #ifdef WIN32 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
@@ -16243,7 +16249,7 @@ void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, dou
 /*** F.Leray 02.04.04 */
 /* FUNCTION FOR 2D UPDATE ONLY !!!!! <=> beginning of axis_3ddraw (in 2d HERE of course! ) */
 /* Copy on update_frame_bounds */
-void  sci_update_frame_bounds(int cflag, integer *aaint) 
+void  sci_update_frame_bounds(int cflag)
 {
   double xmax, xmin, ymin, ymax,xmax_tmp, xmin_tmp, ymin_tmp, ymax_tmp;
   double hx,hy,hx1,hy1;
@@ -16275,31 +16281,6 @@ void  sci_update_frame_bounds(int cflag, integer *aaint)
  
  
   /*****************************************************************
-   * modify  bounds if  isoview requested 
-   *****************************************************************/
-  if ( ppsubwin->isoview == TRUE) {      
-      int verbose=0,wdim[2],narg; 
-      C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      hx=xmax-xmin;
-      hy=ymax-ymin;
-      getscale2d(WRect,FRect,logscale,ARect);
-
-      wdim[0]=linint((double)wdim[0] *WRect[2]);
-      wdim[1]=linint((double)wdim[1] *WRect[3]);
-
-     if ( hx/(double)wdim[0]  <hy/(double) wdim[1] ) {
-       hx1=wdim[0]*hy/wdim[1];
-       xmin=xmin-(hx1-hx)/2.0;
-       xmax=xmax+(hx1-hx)/2.0;
-     }
-     else {
-       hy1=wdim[1]*hx/wdim[0];
-       ymin=ymin-(hy1-hy)/2.0;
-       ymax=ymax+(hy1-hy)/2.0;
-     }
-  }
-
-  /*****************************************************************
    * modify  bounds and aaint  if using log scaling X axis
    *****************************************************************/
    if ( ppsubwin->logflags[0]=='l') {
@@ -16310,7 +16291,8 @@ void  sci_update_frame_bounds(int cflag, integer *aaint)
 	Scistring("Warning: Can't use Log on X-axis xmin is negative \n");
 	xmax= 1; xmin= 0;
       }
-      aaint[0]=1;aaint[1]=inint(xmax-xmin);
+      ppsubwin->axes.aaint[0]=1;
+      ppsubwin->axes.aaint[1]=inint(xmax-xmin);
     }
 
    /*****************************************************************
@@ -16324,7 +16306,8 @@ void  sci_update_frame_bounds(int cflag, integer *aaint)
 	Scistring(" Can't use Log on y-axis ymin is negative \n");
 	ymax= 1; ymin= 0;
       }
-      aaint[2]=1;aaint[3]=inint(ymax-ymin);
+      ppsubwin->axes.aaint[2]=1;
+      ppsubwin->axes.aaint[3]=inint(ymax-ymin);
    }
    
    /*****************************************************************
@@ -16339,67 +16322,95 @@ void  sci_update_frame_bounds(int cflag, integer *aaint)
    ppsubwin->axes.ylim[2]=0;
 
    /* default values in the case where graduate is no called  1/2 */
-   Xdec[0]=inint(xmin);Xdec[1]=inint(xmax);Xdec[2]=0;
-   Ydec[0]=inint(ymin);Ydec[1]=inint(ymax);Ydec[2]=0;
+   /*  Xdec[0]=inint(xmin);Xdec[1]=inint(xmax);Xdec[2]=0; */
+   /*    Ydec[0]=inint(ymin);Ydec[1]=inint(ymax);Ydec[2]=0; */
 
+   Xdec[2]=0;
+   Ydec[2]=0;
    
    /* I need to know the good power value axes.x/ylim[2] to draw correctly in draw_axis */
    /* This value is correctly computed above: pb. there is a if instruction but I still */
    /* need to know the axes.x/ylim[2] even if I am not in tight_limits == FALSE && 
       isoview == FALSE*/
    /* I DO IT NOW :*/
-   if(ppsubwin->logflags[0] != 'l'){
-     C2F(graduate)(&xmin,&xmax,&xmin_tmp,&xmax_tmp,&(aaint[0]),&(aaint[1]),Xdec,Xdec+1,Xdec+2);
-     ppsubwin->axes.xlim[2]=Xdec[2];
-   }
+
+   if ( ppsubwin->tight_limits == TRUE){
+     if(ppsubwin->logflags[0] == 'n'){
+       C2F(graduate)(&xmin,&xmax,&xmin_tmp,&xmax_tmp,&(ppsubwin->axes.aaint[0]),&(ppsubwin->axes.aaint[1]),Xdec,Xdec+1,Xdec+2);
+       ppsubwin->axes.xlim[2]=Xdec[2];
+     }
    
-   if(ppsubwin->logflags[1] != 'l'){
-     C2F(graduate)(&ymin,&ymax,&ymin_tmp,&ymax_tmp,&(aaint[2]),&(aaint[3]),Ydec,Ydec+1,Ydec+2);
-     ppsubwin->axes.ylim[2]=Ydec[2];
+     if(ppsubwin->logflags[1] == 'n'){
+       C2F(graduate)(&ymin,&ymax,&ymin_tmp,&ymax_tmp,&(ppsubwin->axes.aaint[2]),&(ppsubwin->axes.aaint[3]),Ydec,Ydec+1,Ydec+2);
+       ppsubwin->axes.ylim[2]=Ydec[2];
+     }
    }
 
    /* default values in the case where graduate is no called  2/2 */
-   Xdec[0]=inint(xmin);Xdec[1]=inint(xmax);
-   Ydec[0]=inint(ymin);Ydec[1]=inint(ymax);
+   /*  Xdec[0]=inint(xmin);Xdec[1]=inint(xmax); */
+   /*    Ydec[0]=inint(ymin);Ydec[1]=inint(ymax); */
    
- /*   sciprint("Xdec[2] = %d\n",Xdec[2]); */
-/*    sciprint("Ydec[2] = %d\n",Ydec[2]); */
 
-
-   /* if ( ppsubwin->tight_limits == FALSE||ppsubwin->isoview == TRUE) {*/
-   if ( ppsubwin->tight_limits == FALSE && ppsubwin->isoview == FALSE ) { /* F.Leray 11.05.04 : for me, this is the good condition */
+   if ( ppsubwin->tight_limits == FALSE) {
      if ( ppsubwin->logflags[0]=='n') { /* x-axis */
-       C2F(graduate)(&xmin,&xmax,&xmin_tmp,&xmax_tmp,&(aaint[0]),&(aaint[1]),Xdec,Xdec+1,Xdec+2);
+       C2F(graduate)(&xmin,&xmax,&xmin_tmp,&xmax_tmp,&(ppsubwin->axes.aaint[0]),&(ppsubwin->axes.aaint[1]),Xdec,Xdec+1,Xdec+2);
        for (i=0; i < 3 ; i++ ) ppsubwin->axes.xlim[i]=Xdec[i];
        xmin=xmin_tmp;xmax=xmax_tmp;
      }
      
      if ( ppsubwin->logflags[1]=='n') { /* y-axis */
-       C2F(graduate)(&ymin,&ymax,&ymin_tmp,&ymax_tmp,&(aaint[2]),&(aaint[3]),Ydec,Ydec+1,Ydec+2);
+       C2F(graduate)(&ymin,&ymax,&ymin_tmp,&ymax_tmp,&(ppsubwin->axes.aaint[2]),&(ppsubwin->axes.aaint[3]),Ydec,Ydec+1,Ydec+2);
        for (i=0; i < 3 ; i++ ) ppsubwin->axes.ylim[i]=Ydec[i];
        ymin=ymin_tmp;ymax=ymax_tmp;
      }
    }
    
-
+   
    /*****************************************************************
-   * set the actual bounds in subwindow data structure
-   *****************************************************************/
+    * modify  bounds if  isoview requested 
+    *****************************************************************/
+   if ( ppsubwin->isoview == TRUE) {      
+     int verbose=0,wdim[2],narg; 
+     C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+     hx=xmax-xmin;
+     hy=ymax-ymin;
+     getscale2d(WRect,FRect,logscale,ARect);
+     
+     wdim[0]=linint((double)wdim[0] *WRect[2]);
+     wdim[1]=linint((double)wdim[1] *WRect[3]);
+     
+     if ( hx/(double)wdim[0]  <hy/(double) wdim[1] ) {
+       hx1=wdim[0]*hy/wdim[1];
+       xmin=xmin-(hx1-hx)/2.0;
+       xmax=xmax+(hx1-hx)/2.0;
+     }
+     else {
+       hy1=wdim[1]*hx/wdim[0];
+       ymin=ymin-(hy1-hy)/2.0;
+       ymax=ymax+(hy1-hy)/2.0;
+     }
+   }
+   
+   Xdec[0]=xmin;Xdec[1]=xmax;
+   Ydec[0]=ymin;Ydec[1]=ymax;
+   
+   
+   /*****************************************************************
+    * set the actual bounds in subwindow data structure
+    *****************************************************************/
 
    ppsubwin->FRect[0]=xmin;
    ppsubwin->FRect[2]=xmax;
    ppsubwin->FRect[1]=ymin;
    ppsubwin->FRect[3]=ymax;
 
-   for (i=0;i<4;i++) ppsubwin->axes.aaint[i] = aaint[i];
-
-   ppsubwin->axes.xlim[3]=aaint[1];
-   ppsubwin->axes.ylim[3]=aaint[3];
+   ppsubwin->axes.xlim[3] = ppsubwin->axes.aaint[1];
+   ppsubwin->axes.ylim[3] = ppsubwin->axes.aaint[3];
 
     /* Faut-il garder la suite ? */
 
   /* Update the current scale */
-  set_scale("tftttf",NULL,ppsubwin->FRect,aaint,ppsubwin->logflags,NULL); 
+  set_scale("tftttf",NULL,ppsubwin->FRect,ppsubwin->axes.aaint,ppsubwin->logflags,NULL); 
 
 
   /* Should be added to set_scale */
@@ -16407,8 +16418,9 @@ void  sci_update_frame_bounds(int cflag, integer *aaint)
   /* A voir s'il faut garder en + de update_graduation */
   for (i=0; i < 3 ; i++ ) Cscale.xtics[i] = Xdec[i];
   for (i=0; i < 3 ; i++ ) Cscale.ytics[i] = Ydec[i];
-  Cscale.xtics[3] = aaint[1];
-  Cscale.ytics[3] = aaint[3]; 
+  Cscale.xtics[3] = ppsubwin->axes.aaint[1];
+  Cscale.ytics[3] = ppsubwin->axes.aaint[3]; 
+
 
   
   for (i=0 ; i<4 ; i++) {  
@@ -16416,6 +16428,14 @@ void  sci_update_frame_bounds(int cflag, integer *aaint)
     ppsubwin->axes.ylim[i]=Cscale.ytics[i];
   } 
   
+
+ /*  sciprint("DANS sci_update_framebounds\n"); */
+/*   sciprint("Cscale.ytics[0] = %f\n",Cscale.ytics[0]); */
+/*   sciprint("Cscale.ytics[1] = %f\n",Cscale.ytics[1]); */
+/*   sciprint("Cscale.ytics[2] = %f\n",Cscale.ytics[2]); */
+/*   sciprint("Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
+  
+
 }
 
 /**update_3dbounds
