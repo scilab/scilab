@@ -71,7 +71,7 @@ void create_main_menu()
   /* Attention il faut aussi gerer les menu en set unest XXXXX */
 
   sci_menu_to_item_factory(item_factory, main_menu_entries);
-
+  
   /* Attach the new accelerator group to the window. */
   /* gtk_window_add_accel_group (GTK_WINDOW (window), accel_group); */ 
   
@@ -153,13 +153,14 @@ void create_graphic_window_menu(struct BCG *dd)
 int C2F(delbtn)(int *win_num,char *button_name)
 {
   GtkItemFactory  *item_factory;
-  static char btn[64],*p;
+  static char btn[64];
+  char *p,*but= button_name;
   p = btn ; 
   *(p++) = '/';
-  while ( *button_name != '\0' ) {
-    if ( *button_name == '/') break ; 
-    else if ( *button_name == '_') button_name++ ; 
-    else { *(p++)= *(button_name++);}
+  while ( *but != '\0' ) {
+    if ( *but == '/') break ; 
+    else if ( *but == '_') but++ ; 
+    else { *(p++)= *(but++);}
   }
   *p = '\0';
   if ( *win_num == -1 ) 
