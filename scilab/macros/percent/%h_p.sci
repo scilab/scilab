@@ -274,8 +274,6 @@ function %h_p(h)
 	 "data.y = "+dy
 	 "data.z "+dz  
 	 "data.color (not used) = "+dcolor
-	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "color_mode = "+string(h.color_mode)
 	 "color_flag = "+sci2exp(h.color_flag,0)
 	 "hiddencolor = "+string(h.hiddencolor)
@@ -290,8 +288,6 @@ function %h_p(h)
 	 "data.x = "+dx
 	 "data.y = "+dy
 	 "data.z = "+dz
-	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "color_mode = "+string(h.color_mode)
 	 "color_flag = "+sci2exp(h.color_flag,0)
 	 "hiddencolor = "+string(h.hiddencolor)
@@ -323,8 +319,6 @@ function %h_p(h)
 	 "data.y = "+dy
 	 "data.z = "+dz  
 	 "data.color = "+dcolor
-	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "color_mode = "+string(h.color_mode)
 	 "color_flag = "+sci2exp(h.color_flag,0)
 	 "hiddencolor = "+string(h.hiddencolor)
@@ -339,8 +333,6 @@ function %h_p(h)
 	 "data.x = "+dx
 	 "data.y = "+dy
 	 "data.z = "+dz
-	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "color_mode = "+string(h.color_mode)
 	 "color_flag = "+sci2exp(h.color_flag,0)
 	 "hiddencolor = "+string(h.hiddencolor)
