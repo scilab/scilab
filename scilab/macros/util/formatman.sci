@@ -377,16 +377,20 @@ if tp>0 then man($+1)=list('end_indent'),tp=tp-1,end
 
 function filledregion(txt)
 man
-k=find(part(txt(2:$),1)==' ')
-i0=1
-for i=1:size(k,'*')
-  man($+1)=list('fill',stripblanks(replacefonts(txt(i0:k(i)))),tp),
-  i0=k(i)+1
+if txt==[] then return,end
+if size(txt,1)==1 then
+  man($+1)=list('fill',stripblanks(replacefonts(txt)),tp),
+else
+  k=find(part(txt(2:$),1)==' ')
+  i0=1
+  for i=1:size(k,'*')
+    man($+1)=list('fill',stripblanks(replacefonts(txt(i0:k(i)))),tp),
+    i0=k(i)+1
+  end
+  if txt(i0:$)<>[] then
+    man($+1)=list('fill',stripblanks(replacefonts(txt(i0:$))),tp),
+  end
 end
-if txt(i0:$)<>[] then
-  man($+1)=list('fill',stripblanks(replacefonts(txt(i0:$))),tp),
-end
-
 man=resume(man)
 
 
