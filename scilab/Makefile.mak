@@ -4,7 +4,7 @@ SCIDIR1=.
 
 include Makefile.incl.mak 
 
-all ::  routines-pvm  bin\scilex.exe bin\Wscilex.exe macros MakeMexLib imp intersci tcl Javasci
+all ::  routines-pvm  bin\scilex.exe bin\Wscilex.exe macros MakeMexLib imp intersci tcl Javasci man
 
 !IF "$(DLPVM)" == "YES"
 routines-pvm :: routines pvm 

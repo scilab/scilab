@@ -26,31 +26,31 @@ distclean::
 
 Lib.exe	: Lib.c 
 	$(CC) $(CFLAGS) $*.c 	
-	$(LINKER) -SUBSYSTEM:console -OUT:"Lib.exe" Lib.obj 
+	$(LINKER) $(LINKER_FLAGS) -SUBSYSTEM:console -OUT:"Lib.exe" Lib.obj 
 
 Name.exe: Name.c 
 	$(CC) $(CFLAGS) $*.c 	
-	$(LINKER) -SUBSYSTEM:console -OUT:"Name.exe" Name.obj 
+	$(LINKER) $(LINKER_FLAGS) -SUBSYSTEM:console -OUT:"Name.exe" Name.obj 
 
 Gengatsce.exe: Gengatsce.c 
 	$(CC) $(CFLAGS) $*.c 	
-	$(LINKER) -SUBSYSTEM:console -OUT:"Gengatsce.exe" Gengatsce.obj 
+	$(LINKER) $(LINKER_FLAGS) -SUBSYSTEM:console -OUT:"Gengatsce.exe" Gengatsce.obj 
 
 Gensosce.exe: Gensosce.c 
 	$(CC) $(CFLAGS) $*.c 	
-	$(LINKER) -SUBSYSTEM:console -OUT:"Gensosce.exe" Gensosce.obj 
+	$(LINKER) $(LINKER_FLAGS) -SUBSYSTEM:console -OUT:"Gensosce.exe" Gensosce.obj 
 
 Gensomex.exe: Gensomex.c 
 	$(CC) $(CFLAGS) $*.c 	
-	$(LINKER) -SUBSYSTEM:console -OUT:"Gensomex.exe" Gensomex.obj 
+	$(LINKER) $(LINKER_FLAGS) -SUBSYSTEM:console -OUT:"Gensomex.exe" Gensomex.obj 
 
 Forwin.exe: Forwin.c 
 	$(CC) $(CFLAGS) $*.c 	
-	$(LINKER) -SUBSYSTEM:console -OUT:"Forwin.exe" Forwin.obj 
+	$(LINKER) $(LINKER_FLAGS) -SUBSYSTEM:console -OUT:"Forwin.exe" Forwin.obj 
 
 Tomake.exe: Tomake.c 
 	$(CC) $(CFLAGS) $*.c 	
-	$(LINKER) -SUBSYSTEM:console -OUT:"Tomake.exe" Tomake.obj 
+	$(LINKER) $(LINKER_FLAGS) -SUBSYSTEM:console -OUT:"Tomake.exe" Tomake.obj 
 
 
 
