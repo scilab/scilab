@@ -7104,11 +7104,13 @@ xdel(winsid())
 // ../man/eng/graphics/replot.xml
 //====================================================
 clear;lines(0);
+set old_style on
 
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x))
 replot([-1,-1,10,2])
 
+set old_style off
 xdel(winsid())
 
 //====================================================
