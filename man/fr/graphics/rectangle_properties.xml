@@ -118,7 +118,7 @@
    p.foreground=5;
    p.clip_box=[-1 1;1 1];
    p.clip_state="off"
-   p.data(2,:)=[-1 1 1/2 1/2];    
+   p.data(:,2)=[1/2;1/2];    
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>

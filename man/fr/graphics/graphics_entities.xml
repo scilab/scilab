@@ -9,6 +9,31 @@
   graphics entities data structures </SHORT_DESCRIPTION>
  
   <DESCRIPTION>
+  Scilab graphics is based on two different modes. In the "old" mode 
+  the graphics instructions are stored to enable redisplay, zoom and
+  rotations. In the "new" mode graphics each graphic window and the
+  drawing it contains are represented by hierchical entities. The
+  hierachy to level is the Figure. Each Figure defines at least one
+  children of type Axes. Each Axes entity contains a set of leaf
+  entities which are the basic graphics objects like Polylines,
+  Rectangles, Segs,... It can also contain Agregation type entities
+  which are recursive sets of entities. The main interest of the new
+  graphic mode is to make property change easier. Graphics entities
+  are associated to Scilab variables of type
+  <VERB>handle</VERB>. These handles can be used to set or get entities
+  properties, to move them, to make copies or delete them.
+  <P></P>
+  To set the current graphics window mode  one can use the
+  instruction <VERB>set("figure_style","new") </VERB> or
+  <VERB>set("figure_style","old "). The instructions
+  <VERB>set("old_style","off")</VERB>  or
+  <VERB>set("old_style","on")</VERB>o set the
+  default mode to be used when a new graphics window is created. 
+  <P></P>
+  The new graphics mode is a beta version. So the "old" mode is set as
+  default.
+
+
   <DESCRIPTION_ITEM label='Figure: '>
    The figure entity is the top level of the graphics entities
   hierarchy. This entity defines the parameters for the figure itself
@@ -56,19 +81,38 @@
   <DESCRIPTION_ITEM label='Rectangle'>
   The Rectangle entity is a leaf of the graphics entities
   hierarchy. This entity defines the parameters for rectangles and
-  filled rectangles.See <LINK>rectangle_properties</LINK> for details.
+  filled rectangles. See <LINK>rectangle_properties</LINK> for details.
  </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Surface'>
+  The Surface entity is a leaf of the graphics entities
+  hierarchy. It has  sub_types Fac3d  Plot3d . This entity is still under developpement
+  and will problably evolve a lot. See <LINK>surface_properties</LINK> for details.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM label='Param3d'>
+  The Surface entity is a leaf of the graphics entities
+  hierarchy. It is a  Surface sub_type . This entity is still under developpement
+  and will problably evolve a lot. See <LINK>param3d_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Fec'>
+  The Fec entity is a leaf of the graphics entities hierarchy. It
+  represents 2D finite elements plots . See <LINK>fec_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Grayplot'>
+  The Grayplot entity is a leaf of the graphics entities hierarchy. It
+  represents 2D plots of surface using colors and images. See
+  <LINK>grayplot_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Legend'>
+  The Legend entity is a leaf of the graphics entities
+  hierarchy. This entity defines the parameters for legends drawn
+  below <VERB>plot2dx</VERB> graphs. This entity requires further
+  developments. See <LINK>legend_properties</LINK> for details.
+
  </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Segs'>
@@ -92,6 +136,32 @@
 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
+  //Play this example line per line
+
+  set("figure_style","new") //create a figure in entity mode
+
+  //get the handle on the Figure entity and display its properties
+  f=get("current_figure") 
+  a=f.children // the handle on the Axes child
+  x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
+  e=a.children //Agregation of 2 polylines
+
+  p1=e.children(1) //the last drawn polyline properties
+  p1.foreground=5  // change the polyline color
+  e.children.thickness=5 // change the thickness of the two polylines
+
+  delete(e.children(2))
+
+  move(e.children,[0,30]) //translate the polyline
+
+  a.axes_bounds=[0 0 0.5 0.5]; 
+
+  subplot(222) //create a new Axes entity
+  a1=f.children(1); //get its handle
+  copy(e.children,a1); //copy the polyline of the first plot in the new Axes
+  a1.data_bounds=[1 0 10 10]; //change the Axes bounds
+  a1.axes_visible='on'; //make them visible
+
 
  ]]></EXAMPLE>
   <SEE_ALSO>

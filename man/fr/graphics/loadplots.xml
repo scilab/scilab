@@ -48,7 +48,8 @@ loadplots;
    ]]></VERBATIM>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-xbasc();plot2d([0 1.5 4]) //make a plot
+
+driver('Rec');xbasc();plot2d([0 1.5 4]) //make a plot
 xsave(TMPDIR+'/foo.scg') //save it in a binary file
 
 rec=loadplots(TMPDIR+'/foo.scg'); //get the associated data structure
