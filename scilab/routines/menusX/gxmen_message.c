@@ -48,7 +48,7 @@ int ExposeMessageWindow(void)
   GtkWidget *scrolled_window;
   GtkWidget *label;
   static int answer ;
-
+  start_sci_gtk(); /* in case gtk was not initialized */
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_name (window, "Scilab message");
   gtk_widget_set_usize (window, 300,300);

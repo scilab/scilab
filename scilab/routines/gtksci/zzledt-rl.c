@@ -20,6 +20,7 @@ static char Sci_Prompt[10];
  **********************************************************************/
 
 static int my_getc (FILE *dummy) { return Xorgetchar();}
+
 static void initialize_readline();
 
 static char * dupstr (char *s)

@@ -52,6 +52,8 @@ int MatrixDialogWindow(void)
   GtkWidget *separator; 
   GtkWidget *hbbox; 
 
+  start_sci_gtk(); /* in case gtk was not initialized */
+
   rep =RESET;
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window),"Scilab matrix dialog");

@@ -81,6 +81,8 @@ int SciChoiceI(char *label, int *defval, int nitems)
   GtkWidget *vbox;
   GtkWidget *hbbox;
   GtkWidget *scrolled_win;
+  
+  start_sci_gtk(); /* in case gtk was not initialized */
 
   rep =RESET;
   /* do not accept a reenter mode */ 

@@ -34,6 +34,9 @@
 extern void C2F(diary) _PARAMS((char *str, int *n, int nn));
 extern void C2F(zzledt)( char *buffer,int *  buf_size, int * len_line,int * eof, long int dummy1);
 
+
+static int BasicScilab = 1;
+
 /*---------------------------------------------------------
  * Input output functions 
  *---------------------------------------------------------*/
@@ -151,6 +154,7 @@ int  sciprint2(int iv,char *fmt,...)
 
 void xevents1()
 {
+  if (BasicScilab) return;
 #ifdef WITH_TK
   flushTKEvents();
 #endif
@@ -167,7 +171,7 @@ void xevents1()
 /*---------------------------------------------------------------------------
  * Functions to set or to get the scilab status 
  * i.e is it a scilab or a scilab -nw 
- ---------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 
 static int INXscilab=0;
 
@@ -177,6 +181,7 @@ void SetXsciOn()
   inittk();
 #endif
   INXscilab=1;
+  BasicScilab = 0;
 }
 
 /* for Fortran calls */
@@ -186,6 +191,19 @@ int C2F(xscion)(int *i)
   *i=INXscilab;
   return(0);
 }
+
+/*---------------------------------------------------------------------------
+ * when there is no window 
+ *    the display can be activated i.e with a plot or an x_menu 
+ *    then BasicScilab has to be set to 0 
+ *---------------------------------------------------------------------------*/
+
+void SetNotBasic() {
+  BasicScilab=0;
+}
+
+int GetBasic() { return  BasicScilab;} 
+
 
 /*---------------------------------------------------------------------------
  * 
@@ -234,6 +252,9 @@ int Xorgetchar()
   static int first = 0,max_plus1;
   fd_set select_mask,write_mask;
   static struct timeval select_timeout;
+
+  if ( BasicScilab) return(getchar());
+
   if ( first == 0) 
     {
       first++;

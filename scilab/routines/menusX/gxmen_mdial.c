@@ -43,7 +43,8 @@ int mDialogWindow(void)
   static GtkWidget **entries; 
   
   static state rep = RESET ;
-  
+
+
   GtkWidget *table;
   GtkWidget *label;
   GtkWidget *button_ok;
@@ -51,6 +52,8 @@ int mDialogWindow(void)
   GtkWidget *vbox;
   GtkWidget *hbbox;
   GtkWidget *scrolled_win;
+
+  start_sci_gtk(); /* in case gtk was not initialized */
 
   rep =RESET;
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);

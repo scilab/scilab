@@ -101,10 +101,11 @@ void C2F(realmain)()
   /* create temp directory */
   C2F(settmpdir)();
 
-  /* Always initialise gtk */
-  gtk_init(&argc,&argv);
+
   if ( no_window == 0 ) 
     {
+      /* Not Always initialise gtk */
+      gtk_init(&argc,&argv);
       /* we are in window mode */
       create_main_menu() ;
       /* create a status bar */ 
@@ -160,6 +161,26 @@ void C2F(realmain)()
   C2F(scirun)(startup,strlen(startup));
   /* cleaning */
   C2F(sciquit)();
+}
+
+/* This is to be used for starting gtk when 
+ * scilab has been called with scilab -nw 
+ * and a menu or graphic window is activated 
+ */
+
+void start_sci_gtk() {
+  int i;
+  C2F(xscion)(&i); 
+  if ( i== 0 && GetBasic() == 1) 
+    {
+      int argc;
+      char **argv; 
+      if (( argv = create_argv(&argc))== NULL) 
+	exit(1);
+      /* initialise gtk */
+      gtk_init(&argc,&argv);
+      SetNotBasic();
+    }
 }
 
 /* utility */

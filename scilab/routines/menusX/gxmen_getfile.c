@@ -65,6 +65,9 @@ int  sci_get_file_window(char *filemask,char **file,char *dirname,
   static state rep;
   GtkWidget *window;
   rep =RESET ;
+
+  start_sci_gtk(); /* in case gtk was not initialized */
+
   window = gtk_file_selection_new (title);
 
   if ( strcmp(dirname,".") == 0) 
