@@ -40,7 +40,7 @@ function h=%s_i_h(i,v,h)
     if type(index)==15 & and(type(property)<>[15 16 17]) then
       property(index(:))=v
     else
-      if or(size(index)<>[-1 1]) then
+      if or(size(index)<>[-1 -1]) then
 	property(index)=v
       else
 	property=v
