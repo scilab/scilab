@@ -172,8 +172,9 @@ void ClearScreenConsole(void)
 
 void HistoryFunction _PARAMS((char *fname))     
 {
-	sciprint("Not yet implemented. \r\n");
+  sciprint("Not yet implemented. \r\n");
 }
+
 /*----------------------------------------------------------------------
  * changing the prompt 
  *----------------------------------------------------------------------*/
@@ -186,13 +187,6 @@ void C2F(setprlev)(int *pause)
     sprintf(Sci_Prompt,"-%d->",*pause);
   else
     sprintf(Sci_Prompt,">>");
-}
-
-/*----------------------------------------------------------------------
-*----------------------------------------------------------------------*/
-void HistoryFunction _PARAMS((char *fname))     
-{
-	sciprint("Not yet implemented. \r\n");
 }
 
 /* **************************************************************** */
