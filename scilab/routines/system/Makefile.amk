@@ -23,7 +23,7 @@ OBJSF = allops.obj  banier.obj sascii.obj diary.obj\
 	majmin.obj apropo.obj whatln.obj \
 	seteol.obj setlnb.obj skpins.obj msgs.obj prntid.obj \
 	cvname.obj cvstr.obj compil.obj ptover.obj ptrback.obj \
-	isbrk.obj scilab.obj sciquit.obj bexec.obj scilines.obj \
+	isbrk.obj  bexec.obj scilines.obj \
 	mrknmd.obj mkindx.obj mklist.obj cmdstr.obj setgetmode.obj\
 	typ2cod.obj israt.obj funnam.obj dspdsp.obj lspdsp.obj wspdsp.obj \
 	xerbla.obj algebre.obj storeglobal.obj setippty.obj allowptr.obj copyvar.obj \

@@ -119,7 +119,7 @@ void test_menu()
 }
 
 void test_quit() {
-  ClearExit(0);
+ sci_clear_and_exit(0);
 };
 
 void test_loop() {

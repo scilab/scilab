@@ -7,7 +7,7 @@ SCIDIRS = graphics calelm blas comm control default integ interf intersci \
 	lapack \
 	libcomm metanet optim poly signal sparse sun system system2 \
 	menusX scicos sound dcd randlib \
-	gd int xsci  tksci pvm
+	gd int xsci   pvm
 
 SUBDIRS = $(XAW_LOCAL_SUBDIR) $(DLD_SUBDIR) $(SCIDIRS) 
 

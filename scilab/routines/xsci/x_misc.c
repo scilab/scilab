@@ -563,7 +563,7 @@ void Cleanup(code)
   {
     (void) kill_process_group((int) screen->pid, SIGHUP);
   }
-  ClearExit(code);
+ sci_clear_and_exit(code);
 }
 
 
@@ -594,7 +594,7 @@ void xerror(d, ev)
 {
   fprintf(stderr, "%s:  warning, error event receieved:\n", xterm_name);
   (void) XmuPrintDefaultErrorMessage(d, ev, stderr);
-  ClearExit(ERROR_XERROR);
+ sci_clear_and_exit(ERROR_XERROR);
 }
 
 /*ARGSUSED*/
@@ -606,7 +606,7 @@ void xioerror(dpy)
 	    "%s:  fatal IO error %d (%s) or KillClient on X server \"%s\"\r\n",
 	    xterm_name, errno, SysErrorMsg(errno),
 	    DisplayString(dpy));
-  ClearExit(ERROR_XIOERROR);
+ sci_clear_and_exit(ERROR_XIOERROR);
 }
 
 /**

@@ -54,8 +54,13 @@ extern int C2F (stimer) (void);
 extern void C2F (settmpdir) (void);
 extern void C2F (tmpdirc) (void);
 extern void C2F (getenvc) (int *ierr, char *var, char *buf, int *buflen, int *iflag);
-
+extern char *get_sci_data_strings (int n);
 static void interrupt_setup ();
+static void realmain (int nos,char *initial_script, int lpath,int memory);
+static int sci_exit(int n) ;
+extern int C2F(sciquit)(void );
+extern int C2F(scirun)(char * startup, int lstartup);
+extern int C2F(inisci)(int *,int *,int *);
 
 #ifdef TEST
 static int command ();
@@ -102,7 +107,7 @@ interrupt_setup (void)
 }
 
 void 
-sci_windows_main (int nowin, int *nos, char *path, int *lpath)
+sci_windows_main (int nowin, int *nos, char *path, int *lpath,int memory)
 {
 #ifdef XPG3_LOCALE
   (void) setlocale (LC_CTYPE, "");
@@ -123,8 +128,91 @@ sci_windows_main (int nowin, int *nos, char *path, int *lpath)
 #ifdef TEST
   testloop ();
 #else
-  C2F (mainsci) (nos, path, lpath, *lpath);
+  realmain (*nos, path,*lpath,memory);
 #endif
+}
+
+static int  no_startup_flag=0;
+
+static void realmain(int nos,char *initial_script, int lpath,int memory)
+{
+  int ierr;
+  static int ini=-1;
+  char startup[256];
+  /* create temp directory */
+  C2F(settmpdir)();
+  /* signals */
+  /* 
+  signal(SIGINT,sci_clear_and_exit);
+  signal(SIGBUS,sci_clear_and_exit);
+  signal(SIGSEGV,sci_clear_and_exit);
+  signal(SIGQUIT,sci_clear_and_exit);
+  signal(SIGHUP,sci_clear_and_exit);
+  */
+  /*  prepare startup script  */
+
+  if ( nos != 1 ) 
+    {
+      /* execute a startup */
+      no_startup_flag = 0;
+      if ( initial_script != NULL ) 
+	sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(1),
+		initial_script);
+      else 
+	sprintf(startup,"%s;",get_sci_data_strings(1));
+    }
+  else 
+    {
+      /* No startup but maybe an initial script  */
+      no_startup_flag = 1;
+      if ( initial_script != NULL ) 
+	sprintf(startup,"exec('%s',-1)",initial_script);
+      else 
+	sprintf(startup," ");
+    }
+
+  /* initialize scilab interp  */
+  C2F(inisci)(&ini, &memory, &ierr);
+  if (ierr > 0) sci_exit(1) ;
+  /* execute the initial script and enter scilab */ 
+  C2F(scirun)(startup,strlen(startup));
+  /* cleaning */
+  /* performed in atexit C2F(sciquit)(); */
+  return ;
+}
+
+/*-------------------------------------------------------
+ * Exit function called by some 
+ * X11 functions 
+ * call sciquit which call clear_exit
+ *-------------------------------------------------------*/
+
+int C2F(sciquit)()            /* used at Fortran level */
+{
+  int status = 0;
+  /* fprintf(stderr,"I Quit Scilab through sciquit\n"); */
+  if ( no_startup_flag == 0) 
+    {
+      char *quit_script =  get_sci_data_strings(5);
+      C2F(scirun)(quit_script,strlen(quit_script));
+    }
+  return sci_exit(status) ;
+} 
+
+void sci_clear_and_exit(int n) /* used with handlers */ 
+{
+  /* fprintf(stderr,"I Quit Scilab through sci_clear_and_exit\n"); */
+  C2F(sciquit)();
+}
+
+int sci_exit(int n) 
+{
+  /* fprintf(stderr,"I Quit Scilab through sci_exit\n");*/
+  /** clean tmpfiles **/
+  C2F(tmpdirc)();
+  /* really exit */
+  exit(n);
+  return(0);
 }
 
 #ifdef TEST

@@ -2088,9 +2088,9 @@ void SwitchBufPtrs(screen)
 
 #define PROMPT "==>"
 
-void VTRun(nostartup)
-     int nostartup;
+void VTRun(char *startup, int lstartup,int memory)
 {
+  static int ini=-1, ierr =0 ;
   register TScreen *screen = &term->screen;
   if (!screen->Vshow) set_vt_visibility(TRUE);
   if (screen->allbuf == NULL)  VTallocbuf();
@@ -2100,10 +2100,11 @@ void VTRun(nostartup)
 
   bcnt = 0;
   bptr = buffer;
-  {
-    /** An interaction Loop */
-    F2C(scilab)(&nostartup);
-  }
+
+  C2F(inisci)(&ini, &memory, &ierr);
+  if (ierr > 0) sci_exit(1) ;
+  /** An interaction Loop for scilab interpreter */
+  C2F(scirun)(startup,strlen(startup));
   HideCursor();
   screen->cursor_set = OFF;
 }
@@ -2358,7 +2359,7 @@ static void VTRealize(w, valuemask, values)
   {
     fprintf(stderr, "%s:  unable to locate a suitable font\n",
 	    xterm_name);
-    ClearExit(1);
+   sci_clear_and_exit(1);
   }
   /* making cursor */
   if (!screen->pointer_cursor)

@@ -1,32 +1,16 @@
-/***********************************************************
-Copyright 1987, 1988 by Digital Equipment Corporation, Maynard,
-Massachusetts, and the Massachusetts Institute of Technology,
-Cambridge, Massachusetts.
-
-                        All Rights Reserved
-
-Permission to use, copy, modify, and distribute this software and its 
-documentation for any purpose and without fee is hereby granted, 
-provided that the above copyright notice appear in all copies and that
-both that copyright notice and this permission notice appear in 
-supporting documentation, and that the names of Digital or MIT not be
-used in advertising or publicity pertaining to distribution of the
-software without specific, written prior permission.  
-
-DIGITAL DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING
-ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL
-DIGITAL BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR
-ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
-ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
-SOFTWARE.
-
-******************************************************************/
-
-
+/*---------------------------------------------------------- 
+ * Real main function for Scilab on X11 platform 
+ *----------------------------------------------------------*/
 /* main.c */
-#include "version.h"
-#include "../machine.h"
+
+#include <pwd.h>
+#include <ctype.h>
+#include <sys/ioctl.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <stdio.h>
+#include <errno.h>
+
 #include "x_ptyxP.h"
 #include "x_data.h"
 #include "x_error.h"
@@ -37,10 +21,13 @@ SOFTWARE.
 #include <X11/Xos.h>
 #include <X11/cursorfont.h>
 #include <X11/Xaw/SimpleMenu.h>
-#include <pwd.h>
-#include <ctype.h>
-#include <sys/ioctl.h>
-#include <sys/stat.h>
+
+#include "version.h"
+#include "../machine.h"
+#include "../graphics/Math.h"
+
+#include "All-extern-x.h"
+#include "All-extern.h"
 
 #ifdef USE_TERMIOS
 #include <termios.h>
@@ -56,7 +43,6 @@ SOFTWARE.
 #include <sys/termio.h>
 #endif /* SYSV */
 #endif /* USE_TERMIOS else */
-
 
 #ifndef SYSV				/* BSD systems */
 /* #include <sgtty.h> */
@@ -94,19 +80,131 @@ extern char *getenv();
 extern void exit();
 #endif
 
-#if defined(macII) && !defined(__STDC__)  /* stdlib.h fails to define these */
-char *malloc(), *realloc(), *calloc();
-#endif /* macII */
-
-
-extern char *strindex ();
-
-/** for function prototypes **/
-
-#include "All-extern-x.h"
-#include "All-extern.h"
-
 char *ProgramName;
+
+extern void sci_clear_and_exit (int);
+extern int C2F(initcom) (int *,int*);
+extern int C2F(nofpex) (void);
+extern int C2F(getarg) (int *,char *,long int l);
+extern int C2F(iargc) (void);
+extern void C2F(settmpdir) (void);
+extern char *get_sci_data_strings (int n);
+extern void C2F(tmpdirc)();
+extern char *strindex ();
+extern void do_hangup();
+extern void do_kill();
+
+static void Syntax  __PARAMS((char *badOption));  
+static void Help  __PARAMS((void));  
+static void strip_blank  __PARAMS((char *source));  
+static void clear_exit __PARAMS((int));
+static void Syntax  (char *badOption);  
+static void Help  (void);  
+static char ** create_argv(int *argc);
+static void strip_blank(char *source);
+
+/*---------------------------------------------------------- 
+ * mainsci.f directly call this function 
+ * thus this is the real main for scilab 
+ * Copyright Inria/Enpc 
+ *----------------------------------------------------------*/
+
+#define MIN_STACKSIZE 180000
+
+static int  no_startup_flag=0;
+static int  memory = MIN_STACKSIZE;
+static int  no_window = 0;
+static char * initial_script = NULL;
+
+void C2F(realmain)()
+{
+  int ierr, argc,i;
+  static int ini=-1;
+  char startup[256];
+  char **argv, *display = NULL;
+
+  /* floating point exceptions */
+  C2F(nofpex)(); 
+  /* create argv */
+  if (( argv = create_argv(&argc))== NULL) 
+    exit(1);
+  ProgramName = argv[0];
+  /* scanning options */
+  for ( i=0 ; i < argc ; i++) 
+    {
+      if ( strcmp(argv[i],"-nw") == 0) { no_window = 1; } 
+      else if ( strcmp(argv[i],"-display") == 0) 
+	{ 
+	  char dpy[128];
+	  sprintf(dpy,"DISPLAY=%s",display);
+	  putenv(dpy);
+	} 
+      else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1; }
+      else if ( strcmp(argv[i],"-mem") == 0) { memory = Max(atoi(argv[++i]),MIN_STACKSIZE );} 
+      else if ( strcmp(argv[i],"-f") == 0) { initial_script = argv[++i];} 
+      else if ( strcmp(argv[i],"-pipes") == 0) 
+	{
+	  int p1,p2;
+	  p1 = atoi(argv[++i]);
+	  p2 = atoi(argv[++i]); 
+	  C2F(initcom)(&p1, &p2);
+	}
+    }
+  /* create temp directory */
+  C2F(settmpdir)();
+  /* signals */
+  signal(SIGINT,sci_clear_and_exit);
+  signal(SIGBUS,sci_clear_and_exit);
+  signal(SIGSEGV,sci_clear_and_exit);
+  signal(SIGQUIT,sci_clear_and_exit);
+  signal(SIGHUP,sci_clear_and_exit);
+
+  /*  prepare startup script  */
+
+  if ( no_startup_flag == 0) 
+    {
+      /* execute a startup */
+      if ( initial_script != NULL ) 
+	sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(1),
+		initial_script);
+      else 
+	sprintf(startup,"%s;",get_sci_data_strings(1));
+    }
+  else 
+    {
+      /* No startup but maybe an initial script  */
+      if ( initial_script != NULL ) 
+	sprintf(startup,"exec('%s',-1)",initial_script);
+      else 
+	sprintf(startup," ");
+    }
+
+  if ( no_window == 0 ) 
+    {
+      /* we are in window mode */
+      SetXsciOn();
+    }
+
+  if ( no_window == 0 ) 
+    {
+      /* enters window mode first then 
+       * call inisci and scirun 
+       */
+      main_sci(argc,argv,startup,strlen(startup),memory);
+    }
+  else 
+    {
+      /* initialize scilab interp  */
+      C2F(inisci)(&ini, &memory, &ierr);
+      if (ierr > 0) sci_exit(1) ;
+      /* execute the initial script and enter scilab */ 
+      C2F(scirun)(startup,strlen(startup));
+    }
+  /* cleaning */
+  C2F(sciquit)();
+  return ;
+}
+
 
 Boolean   sunFunctionKeys = False;
 
@@ -150,11 +248,9 @@ XtResource application_resources[] = {
 	offset(visualType), XtRImmediate, (XtPointer)"" }
 };
 
-
 struct _color {
   char *c1;
 }; /**  colors; **/
-
 
 XtResource app_colors[] = {
   {"xscilab.color*Command.background", "Xscilab*Command.Background", 
@@ -172,9 +268,9 @@ static char *fallback_resources[] = {
 
 static XrmOptionDescRec optionDescList[] = {
 {"-geometry",	"*vtsci.geometry",XrmoptionSepArg,	(caddr_t) NULL},
-{"-tm",		"*ttyModes",	XrmoptionSepArg,	(caddr_t) NULL},
-{"-tn",		"*termName",	XrmoptionSepArg,	(caddr_t) NULL},
-{"-nw",		"*noWindow", XrmoptionNoArg,	(caddr_t) "on"},
+{"-tm",		"*ttyModes",  XrmoptionSepArg,	(caddr_t) NULL},
+{"-tn",		"*termName",  XrmoptionSepArg,	(caddr_t) NULL},
+{"-nw",		"*noWindow",  XrmoptionNoArg,	(caddr_t) "on"},
 {"-ns",		"*noStartup", XrmoptionNoArg,	(caddr_t) "on"},
 };
 
@@ -182,39 +278,27 @@ static struct _options {
   char *opt;
   char *desc;
 } options[] = {
-{ "-help",                 "print out this message" },
-{ "-ns",                   "no startup mode " },
-{ "-nw",                   "no window mode " },
-{ "-display displayname",  "X server to contact" },
-{ "-name string",          "client instance, icon, and title strings" },
-{ "-xrm resourcestring",   "additional resource specifications" },
-{ "-tm string",            "terminal mode keywords and characters" },
-{ NULL, NULL }};
-
-static char *message[] = {
-"Options that start with a plus sign (+) restore the default.",
-NULL};
-
-
-static void Syntax  __PARAMS((char *badOption));  
-static void Help  __PARAMS((void));  
-static void strip_blank  __PARAMS((char *source));  
-static void ClearExit1 __PARAMS((int));
+  { "-help",                 "print out this message" },
+  { "-ns",                   "no startup mode " },
+  { "-nw",                   "no window mode " },
+  { "-display displayname",  "X server to contact" },
+  { "-name string",          "client instance, icon, and title strings" },
+  { "-xrm resourcestring",   "additional resource specifications" },
+  { "-tm string",            "terminal mode keywords and characters" },
+  { NULL, NULL }
+};
 
 extern WidgetClass xtermWidgetClass;
 
 Arg ourTopLevelShellArgs[] = {
-	{ XtNallowShellResize, (XtArgVal) TRUE },	
-	{ XtNinput, (XtArgVal) TRUE },
+  { XtNallowShellResize, (XtArgVal) TRUE },	
+  { XtNinput, (XtArgVal) TRUE },
 };
 int number_ourTopLevelShellArgs = 2;
 	
 XtAppContext app_con;
 Widget toplevel = (Widget) NULL;
 Widget realToplevel = (Widget) NULL;
-
-extern void do_hangup();
-extern void do_kill();
 
 /*
  * DeleteWindow(): Action proc to implement ICCCM delete_window.
@@ -227,7 +311,7 @@ DeleteWindow(w, event, params, num_params)
     String *params;
     Cardinal *num_params;
 {
-  ClearExit1(0); 
+ sci_clear_and_exit(0); 
 }
 
 
@@ -265,37 +349,7 @@ int Xscilab(dpy,topwid)
   return(1);
 }
 
-
 Atom wm_delete_window;
-
-int C2F(winsci) (pname,nos,idisp,display,lpname,ldisp)
-     int *nos,*idisp;
-     int *lpname,*ldisp;
-     char *display;
-     char *pname;
-{
-  char *argv[10];
-  int argc=1;
-  char dpy[128];
-  pname[*lpname-1]='\0';
-  strip_blank(pname);
-  argv[0]=pname;
-  if ( *idisp == 1) 
-    {
-      argv[argc++]="-display";
-      display[*ldisp-1]='\0';
-      strip_blank(display);argv[argc++]=display;
-      sprintf(dpy,"DISPLAY=%s",display);
-      putenv(dpy);
-    }
-  if ( *nos == 1) 
-      argv[argc++]="-ns";
-  argv[argc++]="-name";
-  argv[argc++]="Scilab";
-  main_sci(argc,argv);
-  return(0);
-}
-
 
 /*
  * initColors: To allow resources to be specified separately for color
@@ -385,16 +439,13 @@ Widget initColors(realToplevel_w)
   return toplevel_w;
 }
 
-void main_sci(argc, argv)
-     int argc;
-     char **argv;
+void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory)
 {
   int nostartup=0;
   XtermWidget CreateSubWindows();
   register TScreen *screen;
   register int  pty;
   int Xsocket;
-  ProgramName = argv[0];
   /* Init the Toolkit. */
   realToplevel = toplevel = 
     XtAppInitialize(&app_con, "Xscilab", 
@@ -419,18 +470,24 @@ void main_sci(argc, argv)
   if (strcmp(xterm_name, "-") == 0) xterm_name = "xterm";
   XtSetValues (toplevel, ourTopLevelShellArgs,
 	       (Cardinal)  number_ourTopLevelShellArgs);
-  /* Parse the rest of the command line */
+  /* Parse the rest of the command line 
+   * the arguments parsed by XtAppInitialize must be the last ones 
+   * and here we can check that arguments belong to options 
+   * this is to be updated 
+   */
+  /* 
   for (argc--, argv++ ; argc > 0 ; argc--, argv++) 
     {
       if(**argv != '-') Syntax (*argv);
       switch(argv[0][1]) {
       case 'h':
 	Help ();      break;
-	/* NOTREACHED */
+	/ * NOTREACHED * /
       default:
 	Syntax (*argv);
       }
     }
+  */
   XawSimpleMenuAddGlobalActions (app_con);
   XtRegisterGrabAction (HandlePopupMenu, True,
 			(ButtonPressMask|ButtonReleaseMask),
@@ -472,7 +529,6 @@ void main_sci(argc, argv)
   screen->arrow = make_colored_cursor (XC_left_ptr, 
 				       screen->mousecolor,
 				       screen->mousecolorback);
-
   /* avoid double MapWindow requests */
   XtSetMappedWhenManaged( XtParent(term), False );
   wm_delete_window = XInternAtom(XtDisplay(realToplevel),"WM_DELETE_WINDOW",False);
@@ -485,15 +541,12 @@ void main_sci(argc, argv)
   max_plus1 = (pty < Xsocket) ? (1 + Xsocket) : (1 + pty); 
   XSetErrorHandler((XErrorHandler)xerror);
   XSetIOErrorHandler((XIOErrorHandler)xioerror);
-  signal(SIGINT,ClearExit1);
-  signal(SIGBUS,ClearExit1);
-  signal(SIGSEGV,ClearExit1);
-  signal(SIGQUIT,ClearExit1);
-  signal(SIGHUP,ClearExit1);
-  {
-    VTRun(nostartup);
-  }
+  /* initialize xterm and run scilab  */
+  VTRun(startup,lstartup,memory);
+
 }
+
+
 
 #ifdef sun 
 #ifndef SYSV
@@ -505,43 +558,6 @@ clear_ieee_warnings()
 }
 #endif 
 #endif 
-
-/**********************
- * Exit function called by some 
- * X11 functions 
- * call sciquit which call clearexit
- ************************/
-
-void ClearExit(n)
-     integer n;
-{
-  /** try to clean scilab **/
-  /** then call clearexit **/
-  C2F(sciquit)();
-}
-
-extern void   C2F(tmpdirc)();
-
-static void ClearExit1(n) 
-     int n;
-{
-  C2F(clearexit)(&n);
-}
-
-int C2F(clearexit)(n)
-     int *n;
-{
-  /** clean tmpfiles **/
-  C2F(tmpdirc)();
-  /** clean ieee **/
-#ifdef sun 
-#ifndef SYSV
-  clear_ieee_warnings();
-#endif 
-#endif
-  exit(*n);
-  return(0);
-}
 
 /* following include needed for solaris */
 #if defined(solaris) && defined(__STDC__) 
@@ -558,95 +574,164 @@ int GetBytesAvailable (fd)
     return (int) arg;
 #else
     struct pollfd pollfds[1];
-
     pollfds[0].fd = fd;
     pollfds[0].events = POLLIN;
     return poll (pollfds, 1, 0);
 #endif
 }
 
-/**********************************************************************
+/* utility */
+
+#define BSIZE 128 
+
+static char ** create_argv(int *argc)
+{
+  int i;
+  char **argv;
+  *argc = C2F(iargc)() + 1;
+  if ( ( argv = malloc((*argc)*sizeof(char *))) == NULL) return NULL;
+  for ( i=0 ; i < *argc ; i++) 
+    {
+      char buf[BSIZE];
+      C2F(getarg)(&i,buf,BSIZE);
+      buf[BSIZE-1]='\0';
+      strip_blank(buf);
+      argv[i] = malloc((strlen(buf)+1)*sizeof(char));
+      if ( argv[i] == NULL) return NULL;
+      strcpy(argv[i],buf);
+      /* fprintf(stderr,"arg[%d] %s\n",i,argv[i]);*/
+    }
+  return argv;
+}
+
+/* utility */
+
+static void strip_blank(char *source)
+{
+  char *p;
+  p = source;
+  /* look for end of string */
+  while(*p != '\0') p++;
+  while(p != source) {
+    p--;
+    if(*p != ' ') break;
+    *p = '\0';
+  }
+}
+
+/*-------------------------------------------------------
+ * Exit function called by some 
+ * X11 functions 
+ * call sciquit which call clear_exit
+ *-------------------------------------------------------*/
+
+int C2F(sciquit)()            /* used at Fortran level */
+{
+  int status = 0;
+  /* fprintf(stderr,"I Quit Scilab through sciquit\n"); */
+  if ( no_startup_flag == 0) 
+    {
+      char *quit_script =  get_sci_data_strings(5);
+      C2F(scirun)(quit_script,strlen(quit_script));
+    }
+  sci_exit(status) ;
+} 
+
+void sci_clear_and_exit(int n) /* used with handlers */ 
+{
+  /* fprintf(stderr,"I Quit Scilab through sci_clear_and_exit\n"); */
+  C2F(sciquit)();
+}
+
+int sci_exit(int n) 
+{
+  /* fprintf(stderr,"I Quit Scilab through sci_exit\n");*/
+  /** clean tmpfiles **/
+  C2F(tmpdirc)();
+  /** clean ieee **/
+#ifdef sun 
+#ifndef SYSV
+#include <sys/ieeefp.h>
+  {
+    char *mode, **out, *in;
+    ieee_flags("clearall","exeption","all", &out);
+  }
+#endif 
+#endif 
+  /* really exit */
+  exit(n);
+  return(0);
+}
+
+/*-------------------------------------------------------
  * Utility function to try to hide system differences from
  * everybody who used to call killpg() 
- **********************************************************************/
+ *-------------------------------------------------------*/
 
-int
-kill_process_group(pid, sig)
+int kill_process_group(pid, sig)
     int pid;
     int sig;
 {
     return kill (-pid, sig);
 }
 
-/**********************************************************************
+/*-------------------------------------------------------
  * Syntax 
- **********************************************************************/
+ *-------------------------------------------------------*/
 
 static void Syntax (badOption)
     char *badOption;
 {
-    struct _options *opt;
-    int col;
+  struct _options *opt;
+  int col;
 
-    fprintf (stderr, "%s:  bad command line option \"%s\"\r\n\n",
-	     ProgramName, badOption);
+  fprintf (stderr, "%s:  bad command line option \"%s\"\r\n\n",
+	   ProgramName, badOption);
 
-    fprintf (stderr, "usage:  %s", ProgramName);
-    col = 8 + strlen(ProgramName);
-    for (opt = options; opt->opt; opt++) {
-	int len = 3 + strlen(opt->opt);	 /* space [ string ] */
-	if (col + len > 79) {
-	    fprintf (stderr, "\r\n   ");  /* 3 spaces */
-	    col = 3;
-	}
-	fprintf (stderr, " [%s]", opt->opt);
-	col += len;
+  fprintf (stderr, "usage:  %s", ProgramName);
+  col = 8 + strlen(ProgramName);
+  for (opt = options; opt->opt; opt++) {
+    int len = 3 + strlen(opt->opt);	 /* space [ string ] */
+    if (col + len > 79) {
+      fprintf (stderr, "\r\n   ");  /* 3 spaces */
+      col = 3;
     }
+    fprintf (stderr, " [%s]", opt->opt);
+    col += len;
+  }
 
-    fprintf (stderr, "\r\n\nType %s -help for a full description.\r\n\n",
-	     ProgramName);
-    exit (1);
+  fprintf (stderr, "\r\n\nType %s -help for a full description.\r\n\n",
+	   ProgramName);
+  exit (1);
 }
 
-/**********************************************************************
+/*-------------------------------------------------------
  * Help utility function 
- **********************************************************************/
+ *-------------------------------------------------------*/
+
+static char *message[] = {
+  "Options that start with a plus sign (+) restore the default.",
+  NULL
+};
 
 static void Help ()
 {
-    struct _options *opt;
-    char **cpp;
+  struct _options *opt;
+  char **cpp;
 
-    fprintf (stderr, "usage:\n        %s [-options ...] \n\n",
-	     ProgramName);
-    fprintf (stderr, "where options include:\n");
-    for (opt = options; opt->opt; opt++) {
-	fprintf (stderr, "    %-28s %s\n", opt->opt, opt->desc);
-    }
+  fprintf (stderr, "usage:\n        %s [-options ...] \n\n",
+	   ProgramName);
+  fprintf (stderr, "where options include:\n");
+  for (opt = options; opt->opt; opt++) {
+    fprintf (stderr, "    %-28s %s\n", opt->opt, opt->desc);
+  }
+  putc ('\n', stderr);
+  for (cpp = message; *cpp; cpp++) {
+    fputs (*cpp, stderr);
     putc ('\n', stderr);
-    for (cpp = message; *cpp; cpp++) {
-	fputs (*cpp, stderr);
-	putc ('\n', stderr);
-    }
-    putc ('\n', stderr);
-    exit (0);
+  }
+  putc ('\n', stderr);
+  exit (0);
 }
 
-/**********************************************************************
- * For Fortran call 
- **********************************************************************/
 
-static void
-strip_blank(source)
-     char *source;
-{
-   char *p;
-   p = source;
-   /* look for end of string */
-   while(*p != '\0') p++;
-   while(p != source) {
-      p--;
-      if(*p != ' ') break;
-      *p = '\0';
-   }
-}

@@ -37,8 +37,13 @@ int finite __PARAMS((double));
 #endif 
 
 #define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )
+#ifndef Min
 #define Min(x,y)	(((x)<(y))?(x):(y))
+#endif 
+
+#ifndef Max 
 #define Max(x,y)	(((x)>(y))?(x):(y))
+#endif 
 
 #define PI0 (integer *) 0
 #define PD0 (double *) 0

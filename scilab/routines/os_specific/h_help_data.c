@@ -99,6 +99,8 @@ void HelpActivate(ntopic)
   int             ln, k;
   if (AP.nTopic == 0) 
     {
+      /* help has been reset */
+      if ( nTopicInfo == 0 ) return ;
       /* get keyword as first word of  helpTopicInfo[ntopic] */
       TopicInfo = helpTopicInfo[Min(nTopicInfo-1,Max(ntopic,0))];
     } 

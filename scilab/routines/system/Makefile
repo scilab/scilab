@@ -20,7 +20,7 @@ OBJSF = allops.o  banier.o sascii.o diary.o\
 	majmin.o apropo.o whatln.o \
 	seteol.o setlnb.o skpins.o msgs.o prntid.o \
 	cvname.o cvstr.o compil.o ptover.o ptrback.o \
-	isbrk.o scilab.o sciquit.o bexec.o scilines.o \
+	isbrk.o  bexec.o scilines.o \
 	mrknmd.o mkindx.o mklist.o cmdstr.o setgetmode.o\
 	typ2cod.o israt.o funnam.o dspdsp.o lspdsp.o wspdsp.o \
 	xerbla.o algebre.o storeglobal.o setippty.o allowptr.o copyvar.o \

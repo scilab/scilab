@@ -185,7 +185,7 @@ extern int instring(char *str,char  c);
 
 /* wtloop */
 
-extern void sci_windows_main(int,int *,char *,int *);
+extern void sci_windows_main(int,int *,char *,int *,int);
 void SciMenuSelect(char *Name);
 void test_sci();
 void test_mouse();

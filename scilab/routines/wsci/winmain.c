@@ -1,4 +1,3 @@
-
 /*******************************************
  * Original source : GNUPLOT - winmain.c
  * modified for Scilab 
@@ -22,7 +21,7 @@
  * 
  *   Maurice Castro
  *   Russell Lang
- * Modified for Scilab (1997) : Jean-Philippe Chancelier 
+ *   Modified for Scilab (1997) : Jean-Philippe Chancelier 
  * 
  */
 
@@ -78,7 +77,6 @@ LPSTR szGraphMenuName;
 
 int SciPlatformId;
 
-
 #define MENUNAME "wscilab.mnu"
 #define GRAPHMENUNAME "wgscilab.mnu"
 
@@ -86,14 +84,19 @@ void WinExit (void);
 
 extern void C2F (getwins) (integer *, integer *, integer *);
 extern void C2F (diary) (char *, int *, int);
-
 static void AllGraphWinDelete ();
-static int startupf = 0;
-/** 0 if we execute startup else 1 **/
+static int startupf = 0; /** 0 if we execute startup else 1 **/
 static int nointeractive = 0;
 
-static void 
-CheckMemory (LPSTR str)
+#define MIN_STACKSIZE 180000
+
+static int  memory = MIN_STACKSIZE;
+
+/*---------------------------------------------------
+ * utilities 
+ *---------------------------------------------------*/
+
+static void CheckMemory (LPSTR str)
 {
   if (str == (LPSTR) NULL)
     {
@@ -102,28 +105,26 @@ CheckMemory (LPSTR str)
     }
 }
 
-int 
-Pause (LPSTR str)
+int Pause (LPSTR str)
 {
   pausewin.Message = str;
   return (PauseBox (&pausewin) == IDOK);
 }
 
-/**************************
+/*---------------------------------------------------
  * atexit procedure for scilab and scilab -nw 
- *************************/
+ *---------------------------------------------------*/
 
-void 
-WinExit (void)
+void WinExit (void)
 {
   int i;
-/** TMPDIR is not created with scilab -ns **/
-  if (startupf == 0)
-    C2F (tmpdirc) ();
+  /** clear tmpdir */
+  fprintf(stderr,"I Quit Scilab through sciquit\n");
+  C2F (tmpdirc) ();
   C2F (xscion) (&i);
   if (i != 0)
     {
-/** delete all graph windows **/
+      /** delete all graph windows **/
       AllGraphWinDelete ();
       TextMessage ();		/* process messages */
       TextClose (&textwin);
@@ -132,16 +133,7 @@ WinExit (void)
   return;
 }
 
-/**************************
- * procedure called in sciquit 
- * but WinExit do the proper job at exit
- *************************/
-
-int C2F (clearexit) (integer * n)
-{
-  return (0);
-}
-
+/* utility function for WinExit */
 
 static void 
 AllGraphWinDelete ()
@@ -162,8 +154,7 @@ AllGraphWinDelete ()
 
 /* call back function from Text Window WM_CLOSE */
 
-EXPORT int CALLBACK 
-ShutDown (void)
+EXPORT int CALLBACK  ShutDown (void)
 {
   exit (0);
   return 0;
@@ -174,8 +165,7 @@ ShutDown (void)
  * necessary 
  ********************************/
 
-static void 
-SciEnv ()
+static void SciEnv ()
 {
   char *p, *p1;
   char modname[MAX_PATH + 1];
@@ -272,24 +262,22 @@ SciEnv ()
     }
 }
 
-/*************
+/*---------------------------------------------------
  * platform flag 
  *	The return value is one of:
  *	    VER_PLATFORM_WIN32s		Win32s on Windows 3.1. 
  *	    VER_PLATFORM_WIN32_WINDOWS	Win32 on Windows 95.
  *	    VER_PLATFORM_WIN32_NT	Win32 on Windows NT
- ****************/
+ *---------------------------------------------------*/
 
-int 
-SciWinGetPlatformId ()
+int SciWinGetPlatformId ()
 {
   return SciPlatformId;
 }
 
-
-/***************************************
+/*---------------------------------------------------
  * The WinMain function 
- ***************************************/
+ *---------------------------------------------------*/
 
 #ifndef __ABSC__
 int WINAPI 
@@ -419,6 +407,8 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	  path = _argv[argcount + 1];
 	  lpath = strlen (_argv[argcount + 1]);
 	}
+      else if ( strcmp(_argv[argcount],"-mem") == 0 && argcount + 1 < _argc)
+	{ memory = Max(atoi( _argv[argcount + 1]),MIN_STACKSIZE );} 
     }
 #ifndef __DLL__
   /** when we don't use a dll version of the graphic library 
@@ -430,7 +420,7 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   if (nowin == 1)
     {
 /** XXXX AllocConsole(); **/
-      sci_windows_main (nowin, &startupf, path, &lpath);
+      sci_windows_main (nowin, &startupf, path, &lpath,memory);
     }
   else
     {
@@ -441,10 +431,11 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
       SetXsciOn ();
 /** XXX **/
       ShowWindow (textwin.hWndParent, SW_SHOWNORMAL);
-      sci_windows_main (nowin, &startupf, path, &lpath);
+      sci_windows_main (nowin, &startupf, path, &lpath,memory);
     }
   return 0;
 }
+
 #define __MSC_NOC__
 #ifdef __MSC_NOC__
 /* 
@@ -654,8 +645,7 @@ MyPrintF (char *fmt,...)
 
 /** Synonym for Scilab of MyPrintf **/
 
-void 
-sciprint (char *fmt,...)
+void sciprint (char *fmt,...)
 {
   int i, count, lstr;
   char buf[MAXPRINTF];
@@ -680,19 +670,17 @@ sciprint (char *fmt,...)
       TextPutS (&textwin, buf);
     }
   va_end (args);
-/** return count; **/
+  /** return count; **/
 }
 
-/* 
-   as sciprint but with an added first argument 
-   which is ignored (used in do_printf) 
- */
+/*---------------------------------------------------
+ * as sciprint but with an added first argument 
+ * which is ignored (used in do_printf) 
+ *---------------------------------------------------*/
 
-int 
-sciprint2 (int iv, char *fmt,...)
+int sciprint2 (int iv, char *fmt,...)
 {
   int i, count;
-  integer lstr;
   va_list ap;
   char s_buf[1024];
   va_start (ap, fmt);

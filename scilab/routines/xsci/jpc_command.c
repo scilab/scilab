@@ -99,7 +99,7 @@ static void Do_Kill (w, command, call_data)
     XtPointer command;
     XtPointer call_data;
 {
-  ClearExit(1);
+ sci_clear_and_exit(1);
 }
 
 static void Do_Stop (w, command, call_data)
