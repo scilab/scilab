@@ -5637,6 +5637,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {                  
 	if ((strncmp(cstk(*value),"2d", 2) == 0)) 
 	  {  
+	    if(pSUBWIN_FEATURE (pobj)->is3d == FALSE) return 0;  /* Adding F.Leray 18.0604 */
 	    if (sciGetSurface(pobj) == (sciPointObj *) NULL)
 	      {
 		pSUBWIN_FEATURE (pobj)->is3d = FALSE;
@@ -5651,6 +5652,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    pSUBWIN_FEATURE (pobj)->is3d = FALSE; /*...and here */
 	  } 
 	else if ((strncmp(cstk(*value),"3d", 2) == 0)){
+	  if(pSUBWIN_FEATURE (pobj)->is3d == TRUE) return 0; /* Adding F.Leray 18.0604 */
 	  pSUBWIN_FEATURE (pobj)->is3d = TRUE;
 	  Obj_RedrawNewAngle(pobj,pSUBWIN_FEATURE (pobj)->theta_kp,pSUBWIN_FEATURE (pobj)->alpha_kp);
 	  wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (pobj)->alpha_kp,pSUBWIN_FEATURE (pobj)->theta_kp);
