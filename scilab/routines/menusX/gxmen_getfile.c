@@ -139,7 +139,7 @@ int  sci_get_file_window(char *filemask,char **file,char *dirname,
       else 
 	{ 
 	  if ( action == 1) 
-	    sprintf(*file,"%s %s;",actions[last_choice],loc);
+	    sprintf(*file,"%s('%s');",actions[last_choice],loc);
 	  else 
 	    strcpy(*file,loc);
 	  *ierr=0;
