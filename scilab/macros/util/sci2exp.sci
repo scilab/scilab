@@ -53,8 +53,16 @@ case 8 then
 case 10 then
   t=str2exp(a,lmax)
 case 13 then
-  t=fun2string(a,nom)
-  named=%f
+  if named then
+    t=fun2string(a,nom)
+  else
+    t=fun2string(a,'%fun')
+  end
+  t(1)=part(t(1),10:length(t(1)))
+  t($)=[]
+  t=sci2exp(t)
+  t(1)='createfun('+t(1)
+  t($)=t($)+')'
 case 15 then
   t=list2exp(a,lmax)
 case 16 then
@@ -68,7 +76,7 @@ else
 //  execstr('t='+typeof(a)+'2exp(a,lmax)')
   error('Variable translation of type '+string(type(a))+' Non implemented')
 end,
-if named then
+if named&and(type(a)<>[11 13]) then
   t(1)=nom+' = '+t(1)
 end
 
@@ -325,9 +333,8 @@ for k=1:n
   lk=null()
 end
 t($)=t($)+')'
-
-
 endfunction
+
 function t=tlist2exp(l,lmax)
 $;
 [lhs,rhs]=argn(0)
