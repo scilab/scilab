@@ -1,6 +1,8 @@
 path=get_absolute_file_path('specfun.tst');
 function r=testresult()
   eps=1d-10;
+  if or(isnan(real(y))<>isnan(real(yref)))  then r=%t,return,end;
+  if or(isnan(imag(y))<>isnan(imag(yref)))  then r=%t,return,end;
   if or(size(y)<>size(yref)) then r=%t,return,end;
   if yref==[] then r=%f,return,end;
   k=find(abs(yref)==0);
@@ -4686,13 +4688,13 @@ y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[0];
 x=[0];
-yref=[%nan];
+yref=[%nan+%nan*%i];
 y=besselh(alpha,x);
 if testresult() then pause,end
-yref=[%nan];
+yref=[%nan+%nan*%i];
 y=besselh(alpha,2,x);
 if testresult() then pause,end
-yref=[%nan];
+yref=[%nan+%nan*%i];
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[0];
@@ -4797,13 +4799,13 @@ y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[1];
 x=[0];
-yref=[%nan];
+yref=[%nan+%nan*%i];
 y=besselh(alpha,x);
 if testresult() then pause,end
-yref=[%nan];
+yref=[%nan+%nan*%i];
 y=besselh(alpha,2,x);
 if testresult() then pause,end
-yref=[%nan];
+yref=[%nan+%nan*%i];
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[1];
@@ -4908,13 +4910,13 @@ y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[1 2 3];
 x=[0];
-yref=[%nan %nan %nan];
+yref=[%nan %nan %nan]*(1+%i);
 y=besselh(alpha,x);
 if testresult() then pause,end
-yref=[%nan %nan %nan];
+yref=[%nan %nan %nan]*(1+%i);
 y=besselh(alpha,2,x);
 if testresult() then pause,end
-yref=[%nan %nan %nan];
+yref=[%nan %nan %nan]*(1+%i);
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[1 2 3];
@@ -4997,13 +4999,13 @@ y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[1.19999999999999996 2.20000000000000018 3.20000000000000018];
 x=[0];
-yref=[%nan %nan %nan];
+yref=[%nan %nan %nan]*(1+%i);
 y=besselh(alpha,x);
 if testresult() then pause,end
-yref=[%nan %nan %nan];
+yref=[%nan %nan %nan]*(1+%i);
 y=besselh(alpha,2,x);
 if testresult() then pause,end
-yref=[%nan %nan %nan];
+yref=[%nan %nan %nan]*(1+%i);
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[1.19999999999999996 2.20000000000000018 3.20000000000000018];
@@ -5092,17 +5094,17 @@ alpha=[0
 x=[0];
 yref=[%nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,2,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[0
@@ -5234,17 +5236,17 @@ alpha=[0.0200000000000000004
 x=[0];
 yref=[%nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,2,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[0.0200000000000000004
@@ -5370,13 +5372,13 @@ y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[-1];
 x=[0];
-yref=[%nan];
+yref=[%nan]*(1+%i);
 y=besselh(alpha,x);
 if testresult() then pause,end
-yref=[%nan];
+yref=[%nan]*(1+%i);
 y=besselh(alpha,2,x);
 if testresult() then pause,end
-yref=[%nan];
+yref=[%nan]*(1+%i);
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[-1];
@@ -5484,15 +5486,15 @@ alpha=[ -1
 -1.5];
 x=[0];
 yref=[%nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,x);
 if testresult() then pause,end
 yref=[%nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,2,x);
 if testresult() then pause,end
 yref=[%nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[ -1
@@ -5614,21 +5616,21 @@ yref=[%nan
 %nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,2,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[-3
@@ -5764,19 +5766,19 @@ x=[0];
 yref=[%nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,2,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[-2
@@ -5901,19 +5903,19 @@ x=[0];
 yref=[%nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,2,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[ -1.30000000000000004
@@ -6041,21 +6043,21 @@ yref=[%nan
 %nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,2,x);
 if testresult() then pause,end
 yref=[%nan
 %nan
 %nan
 %nan
-%nan];
+%nan]*(1+%i);
 y=besselh(alpha,1,x,1);
 if testresult() then pause,end
 alpha=[ -2.29999999999999982
