@@ -54,7 +54,7 @@ c     funcprot whereis where   timer         havewindow stacksize
 c     26         27    28      29       30       31       32
 c     mtlb_mode  link     ulink  c_link addinter <free>   <free>
 c     33         34        35     36    37       38        39
-c     fclear    what    sciargs  chdir getcwd ieee typename
+c     fclear    what    sciargs  chdir getwd ieee typename
 c     40         41       42     43     44     45    46
 c     global   clearglobal isglobal gstacksize getdate intppty
 c     47         48          49        50        51       52
@@ -1368,7 +1368,7 @@ c     return a null matrix
       subroutine intcomp
 c     Copyright INRIA
       include '../stack.h'
-      integer cmode,topk
+      integer cmode,topk,p
       logical checkrhs,checklhs,getscalar,cremat
       integer iadr,sadr
 c    
@@ -1376,7 +1376,7 @@ c
       sadr(l)=(l/2)+1
 c
       call ref2val
-      if(rstk(pt).eq.901) goto 71
+      if(rstk(pt).eq.901) goto 61
 c
       rhs=max(0,rhs)
       if(.not.checklhs('comp',1,1)) return
@@ -1430,12 +1430,16 @@ c
       icall=5
 c     *call* parse  macro
       return
- 71   l=ids(1,pt)
+ 61   l=ids(1,pt)
       pt=pt-1
       if(err1.ne.0) then
          comp(3)=0
          comp(2)=0
          comp(1)=0
+         if (rstk(pt).eq.904) then
+            top=toperr
+            return
+         endif
          il=iadr(lstk(top))
          istk(il)=0
          lhs=0

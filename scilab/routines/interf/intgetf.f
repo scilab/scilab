@@ -96,7 +96,7 @@ c     *call* comp
       icomp=ids(3,pt)
 c
       pt=pt-1
-      top=top-1
+      if (err1.eq.0) top=top-1
       if(job.eq.0) goto 55
 
 c     
