@@ -141,6 +141,11 @@ if with_tk()
   %browsehelp="tcltk";//set scilab  browser by default. may be changed in
 		      //the user startup file
 end
+if with_gtk()
+  %browsehelp="gtk";//set scilab  browser by default. may be changed in
+		      //the user startup file
+end
+
 clear %browsehelp //remove the local variable
 
 
