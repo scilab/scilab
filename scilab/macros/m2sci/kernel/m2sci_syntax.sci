@@ -64,6 +64,10 @@ while k<size(txt,'r')
       end
     end
   end
+  if part(stripblanks(txt(k)),1)=="}" then
+    txt(k-1)=txt(k-1)+txt(k);
+    txt(k)="";
+  end
 end
 
 // Change comments and get help part in input txt
@@ -185,8 +189,15 @@ for k=1:n
   kc=isacomment(tk)
   if kc<>0 then // Current line has or is a comment
     // A comment is replaced by a call to function comment() or m2scideclare()
+    
+        
+    // If function prototype immediately followed by a comment on same line
+    if part(tk,1:9) == 'function ' then 
+      first_ncl=k
+    end      
+
     com=part(tk,kc+1:length(tk))
-    if ~endofhelp then helppart=[helppart;com];end // Get help part placed at the beginning of the file
+    if ~endofhelp & part(tk,1:9) ~= 'function ' then helppart=[helppart;com];end // Get help part placed at the beginning of the file
     if length(com)==0 then com=" ",end
     com=strsubst(com,quote,quote+quote)
     com=strsubst(com,dquote,dquote+dquote)
@@ -222,9 +233,9 @@ for k=1:n
     if isempty(strindex(tkbeg,"function")) then
       tkbeg=strsubst(tkbeg,"varargout","%varargout")
     end
-    
+
     txt(k)=tkbeg+com
-  
+
   else // Current line has not and is not a comment line
     if first then // Function keyword not yet found
       tk=stripblanks(tk)
