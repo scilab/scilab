@@ -206,3 +206,8 @@ proc CloseUIControl { FigPath } {
     unset "$name";
     unset "Win($h)";
     
+    
+}
+
+
+
