@@ -33,7 +33,7 @@ KERNEL = allunknown.sci asciimat.sci clause2sci.sci clause2sci.sci convert2doubl
 	 isdefinedvar.sci is_empty.sci isinstring.sci is_real.sci m2sci_info.sci \
 	 m2sci.sci m2sci_syntax.sci mstr2sci.sci mtlbtree2sci.sci no_equiv.sci \
 	 not_a_scalar.sci not_a_vector.sci not_empty.sci operation2sci.sci readmfile.sci \
-	 replace_brackets.sci sci_gener.sci sci_m2sciassume.sci sciparam.sci set_infos.sci \
+	 replace_brackets.sci sci_gener.sci sci_m2scideclare.sci sciparam.sci set_infos.sci \
 	 update_instr_list.sci updatevarslist.sci
 
 OBSOLETE = repl_poss.sci
