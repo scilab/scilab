@@ -70,7 +70,7 @@ IMPORT struct {
   char alfa[csiz], alfb[csiz], buf[bsiz];
 } C2F(cha1);
 
-struct {
+IMPORT struct {
     int wmac, lcntr, nmacs, macnms[nsiz*maxdb]	, lgptrs[maxdb+1], bptlg[maxbpt];
 } C2F(dbg);
 
