@@ -6,10 +6,6 @@ if wpar(4)==[] then wpar(4)=100000;end
 if size(wpar(3), '*') < 4 then wpar(3)=[1.d-4;1.d-6;1.d-10;wpar(4)+1;0];end
 if size(wpar(3), '*') < 5 then wpar(3)(5)=0;end
 if size(wpar(3), '*') < 6 then wpar(3)(6)=0;end
-=======
-if size(wpar(3), 'r') < 4 then wpar(3)=[1.d-4;1.d-6;1.d-10;wpar(4)+1;0];end
-if size(wpar(3), 'r') <= 5 then wpar(3)(6)=0;end
->>>>>>> 1.5
 tolerances=wpar(3);
 tf=wpar(4)
 atol=tolerances(1);rtol=tolerances(2);ttol=tolerances(3);
