@@ -43,6 +43,7 @@ c     ippty: interfaces properties
       integer iadr,sadr
 c     
       double precision  iov(2)
+      character*(nlgh) vname 
 c     character set
 c     0       10       20       30       40       50
 c     
@@ -225,14 +226,41 @@ c     . hard predefined variables
       lstk(gtop+1)=goffset+1
       gbot=isizt
       lstk(gbot)=lstk(gtop+1)+vsizg-1
-
-
-      bot=isiz-8
+c
+c     11 is the number of predefined variables 
+      bot=isiz-11
       bbot=bot
       bot0=bot
-      l=vsizr-(8*sadr(5)+2)-2*sadr(4)-sadr(10)-2
+c     memory requested for predefined variables 
+c     mxn bmat -> size : sadr(2+m*n+2)
+c     $        -> size : sadr(10-1) + 2 
+c     mxn mat  -> size : sadr(3)+m*n*(it+1)
+      lpvar = (sadr(10-1) + 2) 
+     $     + 5*sadr(5) 
+     $     + 4*(sadr(3)+1)
+     $     + 2*(sadr(3)+2)
+      l=vsizr-lpvar
       k=bot
       lstk(k)=lstk(1)-1+l
+c     . %gtk 
+      vname = ' '
+      vname(1:4) = "%gtk"
+      call withgtk(irep)
+      call cvname(idloc,vname,0)
+      call crebmatvar(idloc,k,1,1,irep)
+      k=k+1
+c     . %pvm
+      vname(1:4) = "%pvm"
+      call withpvm(irep)
+      call cvname(idloc,vname,0)
+      call crebmatvar(idloc,k,1,1,irep)
+      k=k+1
+c     . %tk 
+      vname(1:4) = "%tk "
+      call withtk(irep)
+      call cvname(idloc,vname,0)
+      call crebmatvar(idloc,k,1,1,irep)
+      k=k+1
 c     .  $    : formal index
       call putid(idstk(1,k),dollar)
       il=iadr(lstk(k))

@@ -8,7 +8,8 @@ LIBRARY = $(SCIDIR)/libs/system.a
 
 
 OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o \
-	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o
+	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o \
+	inisci-c.o
 
 OBJSF = allops.o  banier.o diary.o\
 	clause.o comand.o compcl.o   \
