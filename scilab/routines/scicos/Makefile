@@ -16,7 +16,7 @@ BLOCKSF=evtdly.o cstblk.o \
 	intpol.o intplt.o minblk.o maxblk.o dlradp.o  iocopy.o \
 	sum2.o sum3.o delayv.o mux.o demux.o samphold.o dollar.o mscope.o \
 	intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o diffblk.o constraint.o \
-	absblk.o andlog.o bidon.o gain.o cdummy.o dband.o cosblk.o zcross2.o
+	absblk.o andlog.o bidon.o gain.o cdummy.o dband.o cosblk.o 
 
 
 BLOCKS_CODE=evtdly.o cstblk.o \
@@ -30,11 +30,11 @@ BLOCKS_CODE=evtdly.o cstblk.o \
 	intpol.o intplt.o minblk.o maxblk.o dlradp.o  iocopy.o \
 	sum2.o sum3.o delayv.o mux.o demux.o samphold.o dollar.o mscope.o \
 	intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o \
-	diffblk.o constraint.o zcross2.o
+	diffblk.o constraint.o
 
 
 BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
-	readau.o plusblk.o slider.o 
+	readau.o plusblk.o slider.o  zcross2.o
 
 OBJSF=intcos.o coselm.o sciblk.o  addevt.o   \
 	sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
@@ -96,7 +96,7 @@ writef.o: ../stack.h
 writeau.o: ../stack.h ../machine.h
 readau.o: ../machine.h
 grblk.o: ../machine.h import.h
-scicos.o: ../machine.h import.h blocks.h ../sun/link.h scicos.h
+scicos.o: ../machine.h import.h blocks.h ../sun/link.h scicos.h scicos_block.h
 coselm.o : ../stack.h
 intcos.o : ../stack.h
 cpass2.o: ../machine.h cc_pass2.h

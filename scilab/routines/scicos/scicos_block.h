@@ -1,0 +1,24 @@
+typedef struct {
+  voidf funpt ;
+  int type;
+  int scsptr;
+  int nz;
+  double *z;
+  int nx;
+  double *x;
+  double *xd;
+  double *res;
+  int nin;
+  int *insz;
+  double **inptr;
+  int nout;
+  int *outsz;
+  double **outptr;
+  int nevout;
+  int nrpar;
+  double *rpar;
+  int nipar;
+  int *ipar;
+  int ng;
+  double *g;
+} scicos_block;

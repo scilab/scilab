@@ -71,7 +71,6 @@ extern void F2C(gain) __PARAMS((ARGS_scicos));
 extern void F2C(cdummy) __PARAMS((ARGS_scicos));
 extern void F2C(dband) __PARAMS((ARGS_scicos));
 extern void F2C(cosblk) __PARAMS((ARGS_scicos));
-extern void F2C(zcross2) __PARAMS((ARGS_scicos));
 extern void selector __PARAMS((ARGS_scicos));
 extern void sum __PARAMS((ARGS_scicos));
 extern void prod __PARAMS((ARGS_scicos));
@@ -83,6 +82,7 @@ extern void writeau __PARAMS((ARGS_scicos));
 extern void readau __PARAMS((ARGS_scicos));
 extern void plusblk __PARAMS((ARGS_scicos));
 extern void slider __PARAMS((ARGS_scicos));
+extern void zcross2 __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
@@ -165,7 +165,7 @@ OpTab tabsim[] ={
 {"writec",(ScicosF) writec},
 {"writef",(ScicosF) F2C(writef)},
 {"zcross",(ScicosF) F2C(zcross)},
-{"zcross2",(ScicosF) F2C(zcross2)},
+{"zcross2",(ScicosF) zcross2},
 {(char *) 0, (ScicosF) 0}};
  
 int ntabsim= 81 ;

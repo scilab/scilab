@@ -1,10 +1,12 @@
 
+#include <stdlib.h> 
 #include <string.h>
 #include "../machine.h"
 #include "../sun/link.h"
 #include "scicos.h"
 #include "import.h"
 #include "blocks.h"
+#include "scicos_block.h"
 
 
 #ifdef FORDLL 
@@ -75,7 +77,7 @@ static integer nblk, nordptr, nout, ng, nrwp, niwp, ncord, noord, nzord,niord,
 
 static integer *neq;
 
-static  double atol, rtol, ttol, deltat;
+static  double Atol, rtol, ttol, deltat;
 static integer hot;
 
 extern struct {
@@ -126,6 +128,8 @@ static integer *jroot,*zcros,*mask;
 
 static double *t0,*tf;
 
+static scicos_block *Blocks; 
+
 
 /* Subroutine */ 
 int C2F(scicos)(x_in, xptr_in, z_in, zptr_in, iz_in, izptr_in, t0_in, tf_in, tevts_in, 
@@ -151,7 +155,7 @@ double *simpar, *w;
 integer *iw, *iwa_in, *flag__, *ierr_out;
 {
   /* System generated locals */
-  integer i1, i2;
+  integer i1, i2,kf,lprt,in,out;
 
   /* Local variables */
   extern /* Subroutine */ int C2F(msgs)();
@@ -212,7 +216,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   --iw;
 
   /* Function Body */
-  atol = simpar[1];
+  Atol = simpar[1];
   rtol = simpar[2];
   ttol = simpar[3];
   deltat = simpar[4];
@@ -337,7 +341,92 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
     }
   }
 
-  C2F(makescicosimport)(x, &xptr[1], &zcptr[1], z__, &zptr[1], iz, &izptr[1], 
+ if((Blocks=malloc(sizeof(scicos_block)*nblk))== NULL ){
+   *ierr =10000;
+   return 0;
+ }
+ for (kf = 0; kf < nblk; ++kf) {
+   C2F(curblk).kfun = kf+1;
+   i=funptr[kf];
+   Blocks[kf].type=funtyp[kf+1];
+   if (i<0) {
+     switch (funtyp[kf+1]) {
+     case 0:
+       Blocks[kf].funpt=F2C(sciblk);
+       break;
+     case 1:
+       sciprint("type 1 function not allowed for scilab blocks\r\n");
+       *ierr=10000;
+       return 0;
+     case 2:
+       sciprint("type 2 function not allowed for scilab blocks\r\n");
+       *ierr=10000;
+       return 0;
+     case 3:
+       Blocks[kf].funpt=sciblk2;
+       Blocks[kf].type=2;
+       break;
+     case 10003:
+       Blocks[kf].funpt=sciblk2i;
+       Blocks[kf].type=2;
+       break;
+     default :
+       sciprint("Undefined Function type\r\n");
+       *ierr=10000;
+       return 0;
+     }
+     Blocks[kf].scsptr=-i; /* set scilab function adress for sciblk */
+   }
+   else if (i<=ntabsim)
+     Blocks[kf].funpt=*(tabsim[i-1].fonc);
+   else {
+     i -= (ntabsim+1);
+     GetDynFunc(i,&Blocks[kf].funpt);
+     if ( Blocks[kf].funpt == (voidf) 0) {
+       sciprint("Function not found\r\n");
+       *ierr=1000;
+       return 0;
+     }
+   }
+   Blocks[kf].nx=xptr[kf+2]-xptr[kf+1];
+   Blocks[kf].ng=zcptr[kf+2]-zcptr[kf+1];
+   Blocks[kf].nz=zptr[kf+2]-zptr[kf+1];
+   Blocks[kf].nrpar=rpptr[kf+2]-rpptr[kf+1];
+   Blocks[kf].nipar=ipptr[kf+2]-ipptr[kf+1];
+   Blocks[kf].nin=inpptr[kf+2]-inpptr[kf+1]; /* number of input ports */
+   Blocks[kf].nout=outptr[kf+2]-outptr[kf+1];/* number of output ports */
+   if ((Blocks[kf].insz=malloc(sizeof(int)*Blocks[kf].nin))== NULL ){
+     *ierr =10000;
+     return 0;
+   }
+   if ((Blocks[kf].inptr=malloc(sizeof(int*)*Blocks[kf].nin))== NULL ){
+     *ierr =10000;
+     return 0;
+   }
+   for(in=0;in<Blocks[kf].nin;in++) {
+     lprt=inplnk[inpptr[kf+1]+in];
+     Blocks[kf].inptr[in]=&(outtb[lnkptr[lprt]-1]);
+     Blocks[kf].insz[in]=lnkptr[lprt+1]-lnkptr[lprt];
+   }
+   if ((Blocks[kf].outsz=malloc(sizeof(int)*Blocks[kf].nout))== NULL ){
+     *ierr =10000;
+     return 0;
+   }
+   if ((Blocks[kf].outptr=malloc(sizeof(double*)*Blocks[kf].nout))== NULL ){
+     *ierr =10000;
+     return 0;
+   }
+   for(out=0;out<Blocks[kf].nout;out++) {
+     lprt=outlnk[outptr[kf+1]+out];
+     Blocks[kf].outptr[out]=&(outtb[lnkptr[lprt]-1]);
+     Blocks[kf].outsz[out]=lnkptr[lprt+1]-lnkptr[lprt];
+   }
+   Blocks[kf].nevout=clkptr[kf+2] - clkptr[kf+1];
+   Blocks[kf].z=&(z__[zptr[kf+1]-1]);
+   Blocks[kf].rpar=&(rpar[rpptr[kf+1]-1]);
+   Blocks[kf].ipar=&(ipar[ipptr[kf+1]-1]);
+ }
+ C2F(makescicosimport)(x, &xptr[1], &zcptr[1], z__, &zptr[1], iz, &izptr[1], 
 			&inpptr[1], &inplnk[1], &outptr[1], &outlnk[1], &lnkptr[1], 
 			nlnkptr, rpar, &rpptr[1], ipar, &ipptr[1], &nblk, outtb, 
 			&nout, subscr, nsubs, &tevts[1], &evtspt[1], nevts, pointi, 
@@ -668,7 +757,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
 	  sciprint("****lsodar from: %f to %f\r\n", *told, t);
 	}
 	C2F(lsodar)(C2F(simblk), neq, x, told, &t, &c__1, &rtol, 
-		    &atol, &itask, &istate, &iopt, &rhot[1], &
+		    &Atol, &itask, &istate, &iopt, &rhot[1], &
 		    nrwp, &ihot[1], &niwp, &jdum, &jt, 
 		    C2F(grblk), &ng, jroot);
 	if (C2F(cosdebug).cosd >= 3) {
@@ -687,7 +776,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
 	    rhot[5] = ttol;
 	    istate = 1;
 	    C2F(lsodar)(C2F(simblk), neq, x, told, &t, &c__1, &
-			rtol, &atol, &itask, &istate, &
+			rtol, &Atol, &itask, &istate, &
 			c__1, &rhot[1], &nrwp, &ihot[1], &
 			niwp, &jdum, &jt, C2F(grblk), &ng, jroot);
 	    rhot[5] = (float)0.;
@@ -998,7 +1087,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
 	}
 	/*     Warning rpar and ipar are used here as dummy pointers */
 	C2F(ddaskr)(C2F(simblkdassl), neq, told, x, xd, &t, 
-		    info, &rtol, &atol, &istate, &rhot[1], &
+		    info, &rtol, &Atol, &istate, &rhot[1], &
 		    nrwp, &ihot[1], &niwp, rpar, ipar
 		    , &jdum, rpar, C2F(grblkdassl), &ng, jroot)
 	  ;
@@ -1018,7 +1107,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
 	    info[2] = 1;
 	    d__1 = *told + ttol;
 	    C2F(ddaskr)(C2F(simblkdassl), neq, told, x, xd
-			, &d__1, info, &rtol, &atol, &
+			, &d__1, info, &rtol, &Atol, &
 			istate, &rhot[1], &nrwp, &ihot[1], &
 			niwp, rpar, ipar, &jdum, rpar
 			, C2F(grblkdassl), &ng, jroot);
@@ -1734,7 +1823,7 @@ callf(t,xtd,xt,residual,g,flag)
   double* args[SZ_SIZE];
   integer sz[SZ_SIZE];
   double intabl[TB_SIZE],outabl[TB_SIZE];
-  int ii,i,kf,nx,nz,nzc,nrpar,nipar,in,out,ki,ko,ni,no,k;
+  int ii,kf,nx,nz,nzc,nrpar,nipar,in,out,ki,ko,ni,no,k;
   int nin,noutc,lprt,szi,funtype,flagi;
   int solver=C2F(cmsolver).solver;
   int cosd=C2F(cosdebug).cosd;
@@ -1756,86 +1845,46 @@ callf(t,xtd,xt,residual,g,flag)
     sciprint("at time %f \r\n",*t);
   }
   kf=kfun;
-  i=funptr[kf-1];
-  funtype=funtyp[kf];
   flagi=*flag; /* flag 7 implicit initialization */
   if(flagi==7 && funtype<10000) *flag=0;
+  loc=Blocks[kf-1].funpt;
+  funtype=Blocks[kf-1].type;
+  
+  C2F(scsptr).ptr=Blocks[kf-1].scsptr; /* set scilab function adress for sciblk */
 
-  if (i<0) {
-    switch (funtype) {
-    case -1:
-      sciprint("type -1 function not allowed for scilab blocks\r\n");
-      *flag=-1000-(kfun);
-    case 0:
-      loc=F2C(sciblk);
-      break;
-    case 1:
-      sciprint("type 1 function not allowed for scilab blocks\r\n");
-      *flag=-1000-(kfun);
-      return;
-    case 2:
-      sciprint("type 2 function not allowed for scilab blocks\r\n");
-      *flag=-1000-(kfun);
-      break;
-    case 3:
-      loc=sciblk2;
-      funtype=2;
-      break;
-    case 10003:
-      loc=sciblk2i;
-      funtype=2;
-      break;
-    default :
-      sciprint("Undefined Function type\r\n");
-      *flag=-1000;
-      return;
-    }
-    C2F(scsptr).ptr=-i; /* set scilab function adress for sciblk */
-  }
-  else if (i<=ntabsim)
-    loc=*(tabsim[i-1].fonc);
-  else {
-    i -= (ntabsim+1);
-    GetDynFunc(i,&loc);
-    if ( loc == (voidf) 0)
-      {
-	sciprint("Function not found\r\n");
-	*flag=-1000-(kfun);
-	return;
-      }
-  }
   typz=ztyp[kf];
-  nx=xptr[kf+1]-xptr[kf];
-  nzc=zcptr[kf+1]-zcptr[kf];
-  nz=zptr[kf+1]-zptr[kf];
-  nrpar=rpptr[kf+1]-rpptr[kf];
-  nipar=ipptr[kf+1]-ipptr[kf];
-  nin=inpptr[kf+1]-inpptr[kf]; /* number of input ports */
-  noutc=outptr[kf+1]-outptr[kf];/* number of output ports */
+  nx=Blocks[kf-1].nx;
+  nzc=Blocks[kf-1].ng;
+  nz=Blocks[kf-1].nz;
+  nrpar=Blocks[kf-1].nrpar;
+  nipar=Blocks[kf-1].nipar;
+  nin=Blocks[kf-1].nin;
+  noutc=Blocks[kf-1].nout;
+  ntvec=Blocks[kf-1].nevout;
   switch (funtype) {
 
   case 1 :			
     /* one entry for each input or output */
     for (in = 0 ; in < nin ; in++) 
       {
-	lprt=inplnk[inpptr[kf]+in];
-	args[in]=&(outtb[lnkptr[lprt]-1]);
-	sz[in]=lnkptr[lprt+1]-lnkptr[lprt];
+	args[in]=Blocks[kf-1].inptr[in];
+	sz[in]=Blocks[kf-1].insz[in];
       }
     for (out=0;out<noutc;out++) {
-      lprt=outlnk[outptr[kf]+out];
-      args[in+out]=&(outtb[lnkptr[lprt]-1]);
-      sz[in+out]=lnkptr[lprt+1]-lnkptr[lprt];
+      args[in+out]=Blocks[kf-1].outptr[out];
+      sz[in+out]=Blocks[kf-1].outsz[out];
     }
     if(typz>0){
-      args[nin+noutc]=&(g[zcptr[kf]-1]);
-      sz[nin+noutc]=nzc;
+      Blocks[kf-1].g=&g[zcptr[kf]-1];
+      args[nin+noutc]=Blocks[kf-1].g;
+      sz[nin+noutc]=Blocks[kf-1].ng;
     }
     loc1 = (ScicosF) loc;
     if (solver==100) {
-      (*loc1)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,&(z__[zptr[kf]-1]),&nz,
-	      tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-	      &(ipar[ipptr[kf]-1]),&nipar,
+      (*loc1)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+	      Blocks[kf-1].z,&nz,
+	      tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
+	      Blocks[kf-1].ipar,&nipar,
 	      (double *)args[0],&sz[0],
 	      (double *)args[1],&sz[1],(double *)args[2],&sz[2],
 	      (double *)args[3],&sz[3],(double *)args[4],&sz[4],
@@ -1848,9 +1897,10 @@ callf(t,xtd,xt,residual,g,flag)
 	      (double *)args[17],&sz[17]); 
     }
     else {
-      (*loc1)(flag,&nclock,t,&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,&(z__[zptr[kf]-1]),&nz,
-	      tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-	      &(ipar[ipptr[kf]-1]),&nipar,
+      (*loc1)(flag,&nclock,t,&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
+	      Blocks[kf-1].z,&nz,
+	      tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
+	      Blocks[kf-1].ipar,&nipar,
 	      (double *)args[0],&sz[0],
 	      (double *)args[1],&sz[1],(double *)args[2],&sz[2],
 	      (double *)args[3],&sz[3],(double *)args[4],&sz[4],
@@ -1943,52 +1993,42 @@ callf(t,xtd,xt,residual,g,flag)
     }
     break;
   case 2 :			
-    /* inputs and outputs given by a table of pointers */
-    for (in=0;in<nin;in++) {
-      lprt=inplnk[inpptr[kf]+in];
-      args[in]=&(outtb[lnkptr[lprt]-1]);
-      sz[in]=lnkptr[lprt+1]-lnkptr[lprt];
-    }
-    for (out=0;out<noutc;out++) {
-      lprt=outlnk[outptr[kf]+out];
-      args[in+out]=&(outtb[lnkptr[lprt]-1]);
-      sz[in+out]=lnkptr[lprt+1]-lnkptr[lprt];
-    }
+
     
     if (solver==100) {
       if (typz==0){
 	loc2 = (ScicosF2) loc;
 	(*loc2)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
-		&(z__[zptr[kf]-1]),&nz,
-		tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-		&(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
-		&(args[in]),&(sz[in]),&noutc);
+		Blocks[kf-1].z,&nz,
+		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
+		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
+		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc);
       }
       else{
 	loc2z = (ScicosF2z) loc;
 	(*loc2z)(flag,&nclock,t,&(residual[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
-		&(z__[zptr[kf]-1]),&nz,
-		tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-		&(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
-		&(args[in]),&(sz[in]),&noutc,&(g[zcptr[kf]-1]),&nzc);
+		Blocks[kf-1].z,&nz,
+		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
+		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
+		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc,&(g[zcptr[kf]-1]),&nzc);
       }
     }
     else {
       if (typz==0){
 	loc2 = (ScicosF2) loc;
 	(*loc2)(flag,&nclock,t,&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
-		&(z__[zptr[kf]-1]),&nz,
-		tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-		&(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
-		&(args[in]),&(sz[in]),&noutc);
+		Blocks[kf-1].z,&nz,
+		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
+		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
+		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc);
       }
       else{
 	loc2z = (ScicosF2z) loc;
 	(*loc2z)(flag,&nclock,t,&(xtd[xptr[kf]-1]),&(xt[xptr[kf]-1]),&nx,
-		 &(z__[zptr[kf]-1]),&nz,
-		 tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-		 &(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
-		 &(args[in]),&(sz[in]),&noutc,&(g[zcptr[kf]-1]),&nzc);
+		 Blocks[kf-1].z,&nz,
+		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
+		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
+		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc,&(g[zcptr[kf]-1]),&nzc);
       }
     }
     break;
