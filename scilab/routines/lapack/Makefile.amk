@@ -30,7 +30,9 @@ OBJSF = dgelqf.obj dgels.obj  dgeqrf.obj dlae2.obj dlaev2.obj \
 	dormql.obj dgeqlf.obj dpotrs.obj dorgql.obj dorgtr.obj dsytrd.obj dsyev.obj dsytrs.obj \
 	dsycon.obj dpocon.obj dpotrf.obj dgghrd.obj dhgeqz.obj dtgevc.obj dlag2.obj dgges.obj \
 	dgegs.obj dgesvd.obj dormbr.obj zlacpy.obj zgeqrf.obj zgeqpf.obj zungqr.obj zgeqr2.obj \
-	zlarft.obj zlarfb.obj zlarfg.obj zung2r.obj zunm2r.obj zlarf.obj zlacgv.obj zladiv.obj
+	zlarft.obj zlarfb.obj zlarfg.obj zung2r.obj zunm2r.obj zlarf.obj zlacgv.obj zladiv.obj \
+	dgelsy.obj dgesv.obj dormrz.obj dtrtrs.obj dtzrzf.obj dgeqp3.obj dlarzb.obj \
+	dlarzt.obj dlatrz.obj dormr3.obj dlaqp2.obj dlaqps.obj dlarz.obj dgelss.obj
 
 include ../../Makefile.incl.amk
 
