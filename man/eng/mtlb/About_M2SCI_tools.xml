@@ -88,7 +88,7 @@
       <SP>: "type" tlist</SP>
       </ITEM>
       <ITEM label="contents">
-      <SP>: contents if a Cell or a Struct</SP>
+      <SP>: "contents" tlist if a Cell or a Struct</SP>
       </ITEM>
     </ITEMIZE>
   </DESCRIPTION_ITEM>

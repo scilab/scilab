@@ -36,7 +36,9 @@
       <SP>
       nom_de_variable : nom de la variable déclarée. Ce nom peut être
       un champ de Struct (e.g. <VERB>x(1,2).nom</VERB>)
-      ou décrire le contenu d'une Cell en utilisant la syntaxe <VERB>x(1,2).entries</VERB>.
+      ou décrire le contenu d'une Cell en utilisant la syntaxe
+      <VERB>x(1,2).entries</VERB>. NOTEZ que pour les Cells et les
+      Structs <VERB>*</VERB> peut être utilisé comme index.
       </SP>
     </ITEM>
     <ITEM>
@@ -162,6 +164,17 @@
       : var4 est déclarée comme un tableau de Cells contenant
       un vecteur ligne de booléens à l'indice (1,5)
       et des données entières à l'indice (1,6)</SP>
+    </ITEM>
+    <ITEM>
+      <SP><VERB>%m2scideclare var5(*,*).name|1 ?|String|?</VERB>
+      : var5 est déclarée comme un tableau de Structs contenant une
+      chaîne de caractères de taille 1xn dans chaque champ 'name'</SP>
+    </ITEM>
+    <ITEM>
+      <SP><VERB>%m2scideclare var6(2,*).entries|1 3|Double|Real</VERB>
+      : var6 est déclarée comme un tableau de Cells contenant un
+      veteur de Doubles de taille 1x3 dans chaque élement de sa
+      seconde ligne.</SP>
     </ITEM>
   </ITEMIZE>
   </DESCRIPTION_ITEM>

@@ -32,7 +32,9 @@
     <ITEM>
       <SP>
       variable_name: name of the variable declared. It can be a Struct field (e.g. <VERB>x(1,2).name</VERB>)
-      or describe the contents of a Cell using syntax <VERB>x(1,2).entries</VERB>.
+      or describe the contents of a Cell using syntax
+      <VERB>x(1,2).entries</VERB>. NOTE that for Cells and Structs,
+      <VERB>*</VERB> can be used as an index (see examples below).
       </SP>
     </ITEM>
     <ITEM>
@@ -155,6 +157,16 @@
       <SP><VERB>%m2scideclare var4(1,6).entries|? ?|Int|?</VERB>
       : var4 is declared as a Cell containing a row boolean vector at index (1,5) 
       and integer data at index (1,6)</SP>
+    </ITEM>
+    <ITEM>
+      <SP><VERB>%m2scideclare var5(*,*).name|1 ?|String|?</VERB>
+      : var5 is declared as a Struct array containing a 1xn character string
+      in all fields 'name'</SP>
+    </ITEM>
+    <ITEM>
+      <SP><VERB>%m2scideclare var6(2,*).entries|1 3|Double|Real</VERB>
+      : var6 is declared as a Cell array containing a 1x3 double vector
+      in each element of its second row</SP>
     </ITEM>
   </ITEMIZE>
   </DESCRIPTION_ITEM>

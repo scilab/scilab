@@ -34,9 +34,8 @@
           <PARAM_ITEM>
             <PARAM_NAME>varargin(3)</PARAM_NAME>
             <PARAM_DESCRIPTION>
-              <SP>: contenu, la valeur par défaut est [], si la donnée réprésentée est une Cell
-	      le contenu est une Cell de tlists de type"infer", si la donnée réprésentée est une Struct,
-	      le contenu est une Struct de tlists de type "infer" sinon il n'est pas utilisé.
+              <SP>: contenu (tlist de type "contents", voir la page d'aide de Type), la valeur par défaut est
+              Contents(list(),list()). Ce champ est utilisé uniquement si la donnée réprésentée est une Cell ou une Struct.
 	      </SP>
             </PARAM_DESCRIPTION>
           </PARAM_ITEM>
@@ -65,6 +64,7 @@
     <SEE_ALSO_ITEM> <LINK>Operation</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>Variable</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>Cste</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Contents</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>Type</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>Equal</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
