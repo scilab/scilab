@@ -473,7 +473,13 @@ cd .. &gt;nul
 				RelativePath=".\msgstore.c">
 			</File>
 			<File
+				RelativePath=".\parse.c">
+			</File>
+			<File
 				RelativePath=".\readline.c">
+			</File>
+			<File
+				RelativePath=".\run.c">
 			</File>
 			<File
 				RelativePath=".\scicurdir.c">

@@ -147,7 +147,6 @@ cd .."/>
 		<File RelativePath="..\mrknmd.f"/>
 		<File RelativePath="..\msgs.f"/>
 		<File RelativePath="..\nextj.f"/>
-		<File RelativePath="..\parse.f">
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32">
@@ -159,7 +158,6 @@ cd .."/>
 		<File RelativePath="..\ptrback.f"/>
 		<File RelativePath="..\putid.f"/>
 		<File RelativePath="..\ref2val.f"/>
-		<File RelativePath="..\run.f">
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32">
