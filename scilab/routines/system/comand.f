@@ -158,8 +158,10 @@ c     if special compilation mode skip  comands
          return
       endif
       if (char1.ne.eol .and. char1.ne.comma .and. char1.ne.semi) then
-         call error(16)
-         return
+         if (.not.(char1.eq.slash.and.lin(lpt(4)).eq.slash)) then
+            call error(16)
+            return
+         endif
       endif
 C     compilation de pause:<12>
       if (compil(12,0,0,0,0)) return
