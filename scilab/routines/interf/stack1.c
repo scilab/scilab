@@ -2874,18 +2874,25 @@ int C2F(realmat)()
 *     pas de verification 
 *      implicit undefined (a-z) 
 *------------------------------------------------------------------ */
-
 int C2F(copyobj)(fname, lw, lwd, fname_len)
      char *fname;
      integer *lw, *lwd;
      unsigned long fname_len;
 {
-  integer ix1;
-  ix1 = *lstk(*lw +1) - *lstk(*lw );
-  C2F(dcopy)(&ix1, stk(*lstk(*lw ) ), &cx1, stk(*lstk(*lwd ) ), &cx1);
-  *lstk(*lwd +1) = *lstk(*lwd ) + *lstk(*lw +1) - *lstk(*lw );
+  integer ix1,l,ld;
+  l=*lstk(*lw );
+  ld=*lstk(*lwd );
+
+  ix1 = *lstk(*lw +1) - l;
+  /* check for overlaping region */
+  if (l+ix1>ld||ld+ix1>l) 
+    C2F(unsfdcopy)(&ix1, stk(l), &cx1, stk(ld), &cx1);
+  else
+    C2F(dcopy)(&ix1, stk(l), &cx1, stk(ld), &cx1);
+  *lstk(*lwd +1) = ld + ix1;
   return 0;
 }
+
 
 
 /*------------------------------------------------
@@ -2915,7 +2922,12 @@ int C2F(vcopyobj)(fname, lw, lwd, fname_len)
 	     get_fname(fname,fname_len));
     return FALSE_;
   }
-  C2F(dcopy)(&lv, stk(l ), &cx1, stk(l1 ), &cx1);
+  /* check for overlaping region */
+  if (l+lv>l1||l1+lv>l) 
+    C2F(unsfdcopy)(&lv, stk(l), &cx1, stk(l1), &cx1);
+  else
+    C2F(dcopy)(&lv, stk(l), &cx1, stk(l1), &cx1);
+
   *lstk(*lwd +1) = *lstk(*lwd ) + lv;
   return TRUE_;
 } 
