@@ -826,7 +826,7 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
   if ( flag == 2 || flag == 3 )
     {
 /* get current window size */
-      C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,\
+      C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,
               PD0,PD0,PD0,PD0,0L,0L);
       getscale2d(WRect,FRect,logf,ARect);
       wmax=linint((double)wdim[0] * WRect[2]);
