@@ -24,7 +24,7 @@ To make it run you have to:
 
     On some Linux distributions you will have to add fix.c 
     in the Makefile (it is here by default) 
-    see file bug.txt 
+    see file fix.txt 
 
  3) Edit javasci/Makefile if you want to change the classpath 
     Edit example/Makefile if you want to change the classpath 
