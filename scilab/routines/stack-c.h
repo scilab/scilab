@@ -31,7 +31,7 @@ typedef enum {
   sci_lib=  14,
   sci_list= 15,
   sci_tlist= 16,
-  sci_mlist= 17,
+  sci_mlist= 17
 } sci_types; 
 
 /*-------------------------------------------------
