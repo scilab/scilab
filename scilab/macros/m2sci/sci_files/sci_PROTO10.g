@@ -7,7 +7,7 @@ function [tree]=sci_MFUN(tree)
 // Emulation function: mtlb_MFUN()
 // V.C.
 
-opt=part(tree.name,1)
+opt=part("MFUN",1)
 
 A = getrhs(tree)
 if A.vtype==String then
@@ -16,15 +16,7 @@ if A.vtype==String then
   tree.lhs(1).dims=A.dims
   tree.lhs(1).type=A.type
 elseif A.vtype==Unknown then
-  scitree=tree
-  scitree.name="mtlb_MFUN"
-  repl1=tree
-  repl1.name="SFUN"
-  repl1.rhs=Rhs(A,opt)
-  repl_poss(scitree,..
-      repl1,A,"is a character string matrix",..
-      A,A,"is not a character string matrix")
-  tree=scitree
+  tree.name="mtlb_MFUN"
   tree.lhs(1).dims=A.dims
   tree.lhs(1).type=A.type
 else

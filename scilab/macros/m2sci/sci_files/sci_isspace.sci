@@ -19,19 +19,7 @@ elseif or(A.vtype==[Double,Boolean]) then
   tree.lhs(1).dims=A.dims
   tree.lhs(1).type=Type(Boolean,Real)
 else
-  scitree=tree
-  scitree.name="mtlb_isspace"
-  repl1=tree
-  repl1.rhs(1) = Funcall("asciimat",1,Rhs(repl1.rhs(1)),list())
-  repl1 = Operation("==",list(repl1.rhs(1),Cste(32)),tree.lhs)
-  repl2=tree
-  repl2.name="zeros"
-  
-  repl_poss(scitree,..
-      repl1,A,"is a character string matrix",..
-      repl2,A,"is not a character string matrix")
-
-  tree=scitree
+  tree.name="mtlb_isspace"
   tree.lhs(1).dims=A.dims
   tree.lhs(1).type=Type(Boolean,Real)
 end

@@ -25,16 +25,7 @@ elseif S.vtype==Sparse then
   tree.lhs(1).dims=S.dims
   tree.lhs(1).type=Type(Double,S.property)
 else
-  scitree=tree
-  scitree.name="mtlb_full"
-  repl1=tree
-  repl1.rhs=Rhs(Funcall("bool2s",1,Rhs(S),list()))
-  
-  repl_poss(scitree,..
-      tree,S,"is a Double matrix",..
-      repl1,S,"is a Boolean matrix")
-  
-  tree=scitree
+  tree.name="mtlb_full"
   tree.lhs(1).dims=S.dims
   tree.lhs(1).type=S.type
 end

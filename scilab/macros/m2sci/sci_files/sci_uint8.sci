@@ -32,8 +32,7 @@ if is_complex(x) then
   tree=x
 elseif ~is_real(x) then
   set_infos("Scilab uint8() does not work with Complex values: uint8() call IGNORED !",2);
-  repl_poss(x,..
-      tree,x,"is real")
+  repl_poss(x,tree,x,"is real")
   if typeof(x)=="operation" then
     x.out=tree.lhs
   elseif typeof(x)=="funcall" then
@@ -41,19 +40,7 @@ elseif ~is_real(x) then
   end
   tree=x
 else
-  scitree=tree
-  scitree.name="mtlb_uint8"
-  if tree.name=="int8" then
-    repl_poss(scitree,..
-	tree,x,"contains no %inf or -%inf values")
-  elseif or(tree.name==["int16","int32"]) then
-    repl_poss(scitree,..
-	tree,x,"contains no %inf or -%inf or NaNs values")
-  elseif or(tree.name==["uint8","uint16","uint32"]) then
-    repl_poss(scitree,..
-	tree,x,"contains no %inf values")
-  end
-  tree=scitree
+  tree.name="mtlb_uint8"
   tree.lhs(1).dims=x.dims
   tree.lhs(1).type=x.type
 end

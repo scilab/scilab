@@ -19,8 +19,7 @@ if lhs==1 then
     x = Funcall("abs",1,list(x),list(Variable("",x.infer)))
   elseif ~is_real(x) then
     newx = Funcall("abs",1,list(x),list(Variable("",x.infer)))
-    repl_poss(newx,..
-	x,x,"is real");
+    repl_poss(newx,x,x,"is real");
     x=newx
   end
   tree.rhs=Rhs(x)
@@ -40,13 +39,7 @@ if lhs==1 then
     tree=tree2
     tree.lhs(1).dims=list(Unknown,Unknown)
   else
-    scitree=tree
-    scitree.name="mtlb_find"
-    repl_poss(scitree,..
-        tree,x,"is a row vector or a scalar",..
-        tree1,x,"is a column vector",..
-	tree2,x,"is a matrix")
-    tree=scitree
+    tree.name="mtlb_find"
     tree.lhs(1).dims=list(Unknown,Unknown)
   end
 // [i,j] = find(x)
@@ -55,8 +48,7 @@ elseif lhs==2 then
     x = Funcall("abs",1,list(x),list(Variable("",x.infer)))
   elseif ~is_real(x) then
     newx = Funcall("abs",1,list(x),list(Variable("",x.infer)))
-    repl_poss(newx,..
-	x,x,"is real");
+    repl_poss(newx,x,x,"is real");
     x=newx
   end
   tree.rhs=Rhs(x)
@@ -67,11 +59,7 @@ elseif lhs==2 then
     tree.lhs(1).dims=list(1,Unknown)
     tree.lhs(2).dims=list(1,Unknown)
   else  
-    scitree=tree
-    scitree.name="mtlb_find"
-    repl_poss(scitree,..
-	tree,x,"is a row vector")
-    tree=scitree
+    tree.name="mtlb_find"
     tree.lhs(1).dims=list(Unknown,Unknown)
     tree.lhs(2).dims=list(Unknown,Unknown)
   end

@@ -33,11 +33,7 @@ elseif not_empty(X) then
     tree.out(1).type=Type(Boolean,Real)
   end
 else
-  scitree=tree
-  scitree.name="mtlb_logical"
-  repl_poss(scitree,..
-      tree,X,"is not an empty matrix")
-  tree=scitree
+  tree.name="mtlb_logical"
   tree.lhs(1).dims=list(Unknown,Unknown)
   tree.lhs(1).type=Type(Boolean,Real)
 end
