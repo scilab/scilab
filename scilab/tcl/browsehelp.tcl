@@ -371,17 +371,18 @@ proc HMset_font {win tag font} {
 # We can invent a new tag for the display stack.  If it starts with "T"
 # it will automatically get mapped directly to a text widget tag.
 
-proc HMtag_color {win param text} {
+proc HMtag_fontc {win param text} {
         global sciw
 
 	upvar #0 HM$win var
 	set value bad_color
-	HMextract_param $param value
-	$win tag configure $value -foreground $value
-	HMstack $win "" "Tcolor $value"
+	HMextract_param $param color
+	HMextract_param $param size
+	$win tag configure $color -foreground $color
+	HMstack $win "" "Tcolor $color"
 }
 
-proc HMtag_/color {win param text} {
+proc HMtag_/fontc {win param text} {
         global sciw
 
 	upvar #0 HM$win var
@@ -407,27 +408,34 @@ proc HMtag_font {win param text} {
 }
 
 # This version is closer to what Netscape does
-
+# modified by Matthieu PHILIPE
+# to includ colr management !
 proc HMtag_font {win param text} {
         global sciw
 
 	upvar #0 HM$win var
 	set size 0; set sign ""
-	HMextract_param $param size
+	set color bad_color
+    if {[HMextract_param $param size]} then {
 	regexp {([+-])? *([0-9]+)} $size dummy sign size
 	if {$sign != ""} {
-		set size [expr [lindex $var(size) end] $sign  $size*2]
-		HMstack $win {} "size $size"
+	    set size [expr [lindex $var(size) end] $sign  $size*2]
+	    HMstack $win {} "Tfont $size"
 	} else {
-		HMstack $win {} "size [expr 10 + 2 * $size]"
+	    HMstack $win {} "Tfont [expr 10 + 2 * $size]"
 	}
+    }
+    if {[HMextract_param $param color]} then {
+	$win tag configure $color -foreground $color
+    }
+    HMstack $win "" "Tfont $color"
 }
 
 proc HMtag_/font {win param text} {
         global sciw
 
 	upvar #0 HM$win var
-	HMstack $win / "size {}"
+	HMstack $win / "Tfont {}"
 }
 ### ajout Matthieu le 16/11/2001
 # reurn to the next page memorized
@@ -553,3 +561,4 @@ if { [info exists helpfile($sciw)] } {
     render $sciw $Home
 }
 ###
+
