@@ -10,7 +10,8 @@ include ../../../Makefile.incl
 NAME = m2ssci_fileslib
 NAM = SCI/macros/m2sci/sci_files
 
-PROTO0 = sci_abs.sci sci_cos.sci sci_cosh.sci sci_erf.sci sci_gamma.sci sci_imag.sci sci_real.sci
+PROTO0 = sci_abs.sci sci_cos.sci sci_cosh.sci sci_erf.sci sci_erfc.sci \
+	 sci_erfcx.sci sci_gamma.sci sci_gammaln.sci sci_imag.sci sci_real.sci
 PROTO1 = sci_max.sci sci_min.sci
 PROTO2 = sci_cumprod.sci sci_cumsum.sci
 PROTO3 = sci_eye.sci sci_false.sci sci_ones.sci sci_rand.sci sci_randn.sci sci_true.sci sci_zeros.sci
@@ -39,14 +40,17 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
          sci_cputime.sci sci_csc.sci sci_csch.sci sci_date.sci sci_dec2hex.sci \
 	 sci_delete.sci sci_det.sci sci_diag.sci sci_diary.sci \
 	 sci_diff.sci sci_dir.sci sci_display.sci sci_disp.sci sci_doc.sci \
-	 sci_docopt.sci sci_drawnow.sci \
+	 sci_docopt.sci sci_drawnow.sci sci_etime.sci \
          sci_eig.sci sci_error.sci sci_eval.sci sci_exist.sci sci_exit.sci \
 	 sci_fclose.sci sci_feof.sci sci_ferror.sci sci_feval.sci sci_fft.sci \
-         sci_fgets.sci  \
-	 sci_find.sci sci_findstr.sci sci_fopen.sci sci_format.sci \
-	 sci_fprintf.sci sci_fread.sci sci_fscanf.sci \
-         sci_fseek.sci sci_ftell.sci sci_full.sci sci_fwrite.sci sci_getenv.sci \
-	 sci_global.sci sci_help.sci sci_hess.sci sci_input.sci \
+         sci_fftshift.sci sci_fgetl.sci sci_fgets.sci sci_fileparts.sci sci_filesep.sci \
+	 sci_find.sci sci_findstr.sci sci_fliplr.sci sci_flipud.sci \
+	 sci_fopen.sci sci_format.sci \
+	 sci_fprintf.sci sci_fread.sci sci_frewind.sci sci_fscanf.sci \
+         sci_fseek.sci sci_ftell.sci sci_full.sci sci_fullfile.sci \
+	 sci_fwrite.sci sci_getenv.sci \
+	 sci_global.sci sci_hankel.sci sci_help.sci sci_helpbrowser.sci sci_helpdesk.sci\
+	 sci_helpwin.sci sci_hess.sci sci_input.sci \
          sci_isa.sci sci_ischar.sci sci_isempty.sci sci_isfinite.sci sci_isglobal.sci \
 	 sci_ishandle.sci sci_isinf.sci sci_isletter.sci sci_islogical.sci sci_isnan.sci \
          sci_isreal.sci sci_isspace.sci sci_issparse.sci sci_isstr.sci sci_keyboard.sci \
@@ -60,10 +64,11 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
 	 sci_size.sci sci_sort.sci sci_sparse.sci \
          sci_strcmpi.sci sci_strcmp.sci sci_strfind.sci sci_strrep.sci sci_struct.sci \
 	 sci_svd.sci sci_tic.sci sci_toc.sci sci_toeplitz.sci \
-         sci_home.sci sci_type.sci sci_uigetdir.sci sci_waitforbuttonpress.sci sci_warning.sci
+         sci_home.sci sci_type.sci sci_uigetdir.sci sci_vertcat.sci \
+	 sci_waitforbuttonpress.sci sci_warning.sci
 
 PLOT =  sci_axis.sci sci_box.sci sci_cla.sci sci_clf.sci sci_close.sci sci_closereq.sci sci_colordef.sci \
-	sci_hold.sci sci_ishold.sci sci_plot.sci
+	sci_graymon.sci sci_grid.sci sci_hold.sci sci_ishold.sci sci_plot.sci
 
 MACROS = $(PROTO0) $(PROTO1) $(PROTO2) $(PROTO3) $(PROTO4) \
          $(PROTO5) $(PROTO6) $(PROTO7) $(PROTO8) $(PROTO9) \
