@@ -23,10 +23,10 @@ extern char input_line[MAX_LINE_LEN + 1];
 extern BOOL ScilabIsStarting;
 extern void SetReadyOrNotForAnewLign(BOOL Ready);
 extern void GetCurrentPrompt(char *CurrentPrompt);
+
 extern int GetSaveHistoryAfterNcommands(void);
 extern char * getfilenamehistory(void);
-extern void save_history(char *filename);
-
+extern void write_history(char *filename);
 
 char copycur_line[1024];
 BOOL PutLineInBuffer=FALSE;
@@ -94,7 +94,7 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
 	  char *filenamehistory=NULL;
 	
 	  filenamehistory=getfilenamehistory();
-	  save_history( filenamehistory );
+	  write_history( filenamehistory );
 	  free(filenamehistory);
 
 	  NumberOfCommands=0;
