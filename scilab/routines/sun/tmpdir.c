@@ -14,16 +14,12 @@ extern  char  *getenv();
 #endif
 
 #if (defined __MSC__) || (defined __ABSC__) || defined(__MINGW32__) 
-#ifdef __MINGW32__
-#define putenv(x) 
-#else 
 #ifdef __ABSC__
 #define putenv(x) abs_putenv(x)
 #define getpid() getpid_()
 #else
 #define putenv(x) _putenv(x)
 #endif
-#endif 
 #endif
 
 extern void C2F(setprlev) __PARAMS((int*));
