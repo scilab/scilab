@@ -14,5 +14,6 @@ int	InterfaceWindowsDDEclose _PARAMS((char *fname));
 int	InterfaceWindowsDDEexec _PARAMS((char *fname));
 int	InterfaceWindowsDDEpoke _PARAMS((char *fname));
 int	InterfaceWindowsDDEreq _PARAMS((char *fname));
+int	InterfaceWindowsDDEIsOpen _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
 #endif /* __INTERFDDE__ */
