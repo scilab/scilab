@@ -383,7 +383,7 @@ void StoreFac3D(char *name, double *x, double *y, double *z, integer *cvect, int
 	  CopyVectLI(&(lplot->cvect),cvect,(*p)*(*q)) &&
 	  CopyVectC(&(lplot->legend), legend, ((int)strlen(legend))+1) && 
 	  CopyVectLI(&(lplot->flag), flag,3) &&
-	  CopyVectF(&(lplot->bbox), bbox,6L)
+	  CopyVectF(&(lplot->bbox), bbox,6L) 
 	  ) 
 	{
 	  Store(name,(char *) lplot);
@@ -474,7 +474,7 @@ void StoreContour(char *name, double *x, double *y, double *z, integer *n1, inte
 	  CopyVectF(&(lplot->z), z,(*n1)*(*n2)) &&
 	  CopyVectC(&(lplot->legend), legend, ((int)strlen(legend))+1) && 
 	  CopyVectLI(&(lplot->flag), flag,3) &&
-	  CopyVectF(&(lplot->bbox), bbox,6L) 
+	  CopyVectF(&(lplot->bbox), bbox,6L)
 	  ) 
 	{
 	  Store(name,(char *) lplot);
@@ -1130,7 +1130,6 @@ static void CleanParam3D1(char *plot)
   if ( theplot->iflag == 1 ) 
     FREE(theplot->colors);
   FREE(theplot->bbox);
-  
 }
 
 static void Clean2D(char *plot)
@@ -1670,6 +1669,212 @@ static void SCNEch(char *plot, integer *flag, double *bbox, integer *aaint, inte
     }
 }
 
+/*** code added by ES 21/5/2002 ****/
+static void SCContour(char *plot, integer *flag, double *b1, integer *aaint,
+                       integer undo, int *bbox1, double *subwin, int win_num)
+{
+  int i, j;
+  double xmin, xmax, ymin, ymax, zmin, zmax, xp, yp, x,y,z;
+  struct contour_rec *theplot;
+  theplot =   (struct contour_rec *) plot;
+  if (bbox1 != NULL) 
+  {
+   b1[0] = XPixel2Double(bbox1[0]);
+   b1[1] = YPixel2Double(bbox1[1]);
+   b1[2] = XPixel2Double(bbox1[2]);
+   b1[3] = YPixel2Double(bbox1[3]);
+/*   sciprint("I'm trying to zoom a 3d contour \r\n"); */
+/*  sciprint(" zoom area: x={%f:%f};  y={%f:%f}\r\n",b1[0],b1[2],b1[1],b1[3]); */
+   xmin=Maxi(theplot->x,theplot->n1); xmax=Mini(theplot->x,theplot->n1);
+   ymin=Maxi(theplot->y,theplot->n1); ymax=Mini(theplot->y,theplot->n2);
+   zmin=Maxi(theplot->z,theplot->n1*theplot->n2);
+   zmax=Mini(theplot->z,theplot->n1*theplot->n2);
+   for (i=0; i < theplot->n1; i++)
+    for (j=0; j < theplot->n2; j++)
+     {
+      x=theplot->x[i]; y=theplot->y[j]; z=theplot->z[j*theplot->n1 + i]; 
+      xp=TRX(x,y,z); yp=TRY(x,y,z); 
+      if(xp >= b1[0] && xp <= b1[2] && yp >= b1[1] && yp <= b1[3])
+       {
+        if(x < xmin) xmin=x; if(x > xmax) xmax=x;
+        if(y < ymin) ymin=y; if(y > ymax) ymax=y;
+        if(z < zmin) zmin=z; if(z > zmax) zmax=z;
+       }
+     }
+   if (xmax > xmin) {theplot->bbox[0]=xmin; theplot->bbox[1]=xmax;}
+   if (ymax > ymin) {theplot->bbox[2]=ymin; theplot->bbox[3]=ymax;}
+   if (zmax > zmin) {theplot->bbox[4]=zmin; theplot->bbox[5]=zmax;}
+   if (theplot->flag[1]>0) theplot->flag[1]=2*Cscale.metric3d-1;
+  }
+}
+
+static void SCFac3d(char *plot, integer *flag, double *b1, integer *aaint,
+                    integer undo, int *bbox1, double *subwin, int win_num)
+{
+  int i;
+  double xmin, xmax, ymin, ymax, zmin, zmax, xp, yp, x,y,z;
+  struct fac3d_rec *theplot;
+  theplot =   (struct fac3d_rec *) plot;
+  if (bbox1 != NULL) 
+  {
+   b1[0] = XPixel2Double(bbox1[0]);
+   b1[1] = YPixel2Double(bbox1[1]);
+   b1[2] = XPixel2Double(bbox1[2]);
+   b1[3] = YPixel2Double(bbox1[3]);
+/*   sciprint("I'm trying to zoom a 3d fac-plot \r\n");*/
+/*  sciprint(" zoom area: x={%f:%f};  y={%f:%f}\r\n",b1[0],b1[2],b1[1],b1[3]); */
+   xmin=Maxi(theplot->x,theplot->p*theplot->q);
+   xmax=Mini(theplot->x,theplot->p*theplot->q);
+   ymin=Maxi(theplot->y,theplot->p*theplot->q);
+   ymax=Mini(theplot->y,theplot->p*theplot->q);
+   zmin=Maxi(theplot->z,theplot->p*theplot->q);
+   zmax=Mini(theplot->z,theplot->p*theplot->q);
+   for (i=0; i < theplot->p*theplot->q; i++)
+     {
+      x=theplot->x[i]; y=theplot->y[i]; z=theplot->z[i]; 
+      xp=TRX(x,y,z); yp=TRY(x,y,z); 
+      if(xp >= b1[0] && xp <= b1[2] && yp >= b1[1] && yp <= b1[3])
+       {
+        if(x < xmin) xmin=x; if(x > xmax) xmax=x;
+        if(y < ymin) ymin=y; if(y > ymax) ymax=y;
+        if(z < zmin) zmin=z; if(z > zmax) zmax=z;
+       }
+     }
+   if (xmax > xmin) {theplot->bbox[0]=xmin; theplot->bbox[1]=xmax;}
+   if (ymax > ymin) {theplot->bbox[2]=ymin; theplot->bbox[3]=ymax;}
+   if (zmax > zmin) {theplot->bbox[4]=zmin; theplot->bbox[5]=zmax;}
+   if (theplot->flag[1]>0) theplot->flag[1]=2*Cscale.metric3d-1; 
+  }
+}
+
+static void SCParam3d(char *plot, integer *flag, double *b1, integer *aaint,
+                       integer undo, int *bbox1, double *subwin, int win_num)
+{
+  int i; double xmin, xmax, ymin, ymax, zmin, zmax, xp, yp, x,y,z;
+  struct param3d_rec *theplot;
+  theplot =   (struct param3d_rec *) plot;
+  if (bbox1 != NULL) 
+  {
+   b1[0] = XPixel2Double(bbox1[0]);
+   b1[1] = YPixel2Double(bbox1[1]);
+   b1[2] = XPixel2Double(bbox1[2]);
+   b1[3] = YPixel2Double(bbox1[3]);
+/*  sciprint(" zoom area: x={%f:%f};  y={%f:%f}\r\n",b1[0],b1[2],b1[1],b1[3]); */
+   xmin=Maxi(theplot->x,theplot->n); xmax=Mini(theplot->x,theplot->n);
+   ymin=Maxi(theplot->y,theplot->n); ymax=Mini(theplot->y,theplot->n);
+   zmin=Maxi(theplot->z,theplot->n); zmax=Mini(theplot->z,theplot->n);
+/* search the min and max x, y, z of the points which got projected into the bbox1 */
+   xmin=theplot->bbox[1]; xmax=theplot->bbox[0];
+   ymin=theplot->bbox[3]; ymax=theplot->bbox[2];
+   zmin=theplot->bbox[5]; zmax=theplot->bbox[4];
+   for (i=0; i < theplot->n; i++)
+     {
+      x=theplot->x[i]; y=theplot->y[i]; z=theplot->z[i]; 
+      xp=TRX(x,y,z); yp=TRY(x,y,z); 
+/*      sciprint("%f %f \r\n",xp,yp); */
+      if(xp >= b1[0] && xp <= b1[2] && yp >= b1[1] && yp <= b1[3])
+       {
+/*        sciprint("**\r\n");  */
+        if(x < xmin) xmin=x; if(x > xmax) xmax=x;
+        if(y < ymin) ymin=y; if(y > ymax) ymax=y;
+        if(z < zmin) zmin=z; if(z > zmax) zmax=z;
+       }
+     }
+   if (xmax > xmin) {theplot->bbox[0]=xmin; theplot->bbox[1]=xmax;}
+   if (ymax > ymin) {theplot->bbox[2]=ymin; theplot->bbox[3]=ymax;}
+   if (zmax > zmin) {theplot->bbox[4]=zmin; theplot->bbox[5]=zmax;}
+/*   sciprint("trying to zoom a 3d param3d plot: x= [%f:%f], y=[%f:%f], z=[%f:%f]\r\n",xmin, xmax, ymin, ymax, zmin, zmax);
+*/
+   if (theplot->flag[1]>0) theplot->flag[1]=2*Cscale.metric3d-1; 
+   }
+}
+
+static void SCParam3d1(char *plot, integer *flag, double *b1, integer *aaint, 
+                       integer undo, int *bbox1, double *subwin, int win_num)
+{
+  int i; 
+  double xmin, xmax, ymin, ymax, zmin, zmax, xp, yp, x,y,z;
+  struct param3d1_rec *theplot;
+  theplot =   (struct param3d1_rec *) plot;
+  if (bbox1 != NULL) 
+  {
+   b1[0] = XPixel2Double(bbox1[0]);
+   b1[1] = YPixel2Double(bbox1[1]);
+   b1[2] = XPixel2Double(bbox1[2]);
+   b1[3] = YPixel2Double(bbox1[3]);
+/*   sciprint("I'm trying to zoom a param3d-1 plot  \r\n");*/
+/*  sciprint(" zoom area: x={%f:%f};  y={%f:%f}\r\n",b1[0],b1[2],b1[1],b1[3]); */
+   xmin=Maxi(theplot->x,theplot->n*theplot->m);
+   xmax=Mini(theplot->x,theplot->n*theplot->m);
+   ymin=Maxi(theplot->y,theplot->n*theplot->m);
+   ymax=Mini(theplot->y,theplot->n*theplot->m);
+   zmin=Maxi(theplot->z,theplot->n*theplot->m);
+   zmax=Mini(theplot->z,theplot->n*theplot->m);
+   for (i=0; i < theplot->n*theplot->m; i++)
+     {
+      x=theplot->x[i]; y=theplot->y[i]; z=theplot->z[i]; 
+      xp=TRX(x,y,z); yp=TRY(x,y,z); 
+      if(xp >= b1[0] && xp <= b1[2] && yp >= b1[1] && yp <= b1[3])
+       {
+        if(x < xmin) xmin=x; if(x > xmax) xmax=x;
+        if(y < ymin) ymin=y; if(y > ymax) ymax=y;
+        if(z < zmin) zmin=z; if(z > zmax) zmax=z;
+       }
+     }
+   if (xmax > xmin) {theplot->bbox[0]=xmin; theplot->bbox[1]=xmax;}
+   if (ymax > ymin) {theplot->bbox[2]=ymin; theplot->bbox[3]=ymax;}
+   if (zmax > zmin) {theplot->bbox[4]=zmin; theplot->bbox[5]=zmax;}
+   if (theplot->flag[1]>0) theplot->flag[1]=2*Cscale.metric3d-1;
+/*   sciprint("I'm trying to zoom a 3d param3d1 plot \r\n"); */
+  } 
+}
+
+static void SCPlot3d(char *plot, integer *flag, double *b1, integer *aaint, 
+                     integer undo, int *bbox1, double *subwin, int win_num)
+{
+  int i, j;
+  double xmin, xmax, ymin, ymax, zmin, zmax, xp, yp, x,y,z;
+  struct plot3d_rec *theplot;
+  theplot =   (struct plot3d_rec *) plot;
+  if (bbox1 != NULL) 
+  {
+/*   sciprint("I'm trying to zoom a 3d plot\r\n"); */
+   b1[0] = XPixel2Double(bbox1[0]);
+   b1[1] = YPixel2Double(bbox1[1]);
+   b1[2] = XPixel2Double(bbox1[2]);
+   b1[3] = YPixel2Double(bbox1[3]);
+/*  sciprint(" zoom area: x={%f:%f};  y={%f:%f}\r\n",b1[0],b1[2],b1[1],b1[3]); */
+   xmin=Maxi(theplot->x,theplot->p); xmax=Mini(theplot->x,theplot->p);
+   ymin=Maxi(theplot->y,theplot->q); ymax=Mini(theplot->y,theplot->q);
+   zmin=Maxi(theplot->z,theplot->q*theplot->p);
+   zmax=Mini(theplot->z,theplot->q*theplot->p);
+   for (i=0; i < theplot->p; i++)
+    for (j=0; j < theplot->q; j++)
+     {
+      x=theplot->x[i]; y=theplot->y[j]; z=theplot->z[j*theplot->p + i]; 
+      xp=TRX(x,y,z); yp=TRY(x,y,z); 
+      if(xp >= b1[0] && xp <= b1[2] && yp >= b1[1] && yp <= b1[3])
+       {
+        if(x < xmin) xmin=x; if(x > xmax) xmax=x;
+        if(y < ymin) ymin=y; if(y > ymax) ymax=y;
+        if(z < zmin) zmin=z; if(z > zmax) zmax=z;
+/*        sciprint("%i,%i  (%f,%f,%f)-->(%f,%f)\r\n",i,j,x,y,z,xp,yp); */
+       }
+     }
+   if (xmax > xmin) {theplot->bbox[0]=xmin; theplot->bbox[1]=xmax;}
+   if (ymax > ymin) {theplot->bbox[2]=ymin; theplot->bbox[3]=ymax;}
+   if (zmax > zmin) {theplot->bbox[4]=zmin; theplot->bbox[5]=zmax;}
+   if (theplot->flag[1]>0) theplot->flag[1]=2*Cscale.metric3d-1; 
+/*   sciprint("theplotflags: %i %i %i\r\n", theplot->flag[0], theplot->flag[1],
+             theplot->flag[2]);
+   sciprint("flags: %i %i %\r\n", flag[0], flag[1],flag[2]); */
+/*   sciprint(" new bbox:: x=%f:%f; y=%f:%f; z=%f:%f\r\n",
+              theplot->bbox[0],theplot->bbox[1],theplot->bbox[2],
+              theplot->bbox[3],theplot->bbox[4],theplot->bbox[5]); */ 
+  }
+}
+/*** end code added by ES ****/
+
 static void SCvoid(char *plot, integer *flag, double *bbox, integer *aaint, integer undo, int *bbox1, double *subwin, int win_num)
 {}
 
@@ -1678,26 +1883,27 @@ typedef  struct  {
   void  (*SC) __PARAMS((char *,integer *,double *,integer *,integer ,int *,double *,int));
 } SCTable;
 
+/* modified by ES: changed SCvoid with  SCNe3d for 3d plots */
 static SCTable SCCTable[] ={
   {"axis",  SCvoid},
   {"champ", SCchamp},
-  {"contour",SCvoid},
+  {"contour",SCContour},
   {"contour2",SCContour2D},
-  {"fac3d",SCvoid},
-  {"fac3d1",SCvoid},
-  {"fac3d2",SCvoid},
-  {"fac3d3",SCvoid}, /****** entry added by polpoth 4/5/2000 ******/
+  {"fac3d",SCFac3d},
+  {"fac3d1",SCFac3d},
+  {"fac3d2",SCFac3d},
+  {"fac3d3",SCFac3d}, /****** entry added by polpoth 4/5/2000 (modif by ES 21/5/2002)******/
   {"fec", SCfec},
   {"fec_n", SCfec},
   {"gray", SCgray},
   {"gray1",SCgray},
   {"gray2",SCvoid },
   {"nscale",SCNEch},
-  {"param3d",SCvoid},
-  {"param3d1",SCvoid},
+  {"param3d",SCParam3d},
+  {"param3d1",SCParam3d1},
   {"plot2d",SC2D},
-  {"plot3d",SCvoid},
-  {"plot3d1",SCvoid},
+  {"plot3d",SCPlot3d},
+  {"plot3d1",SCPlot3d},
   {"scale",SCEch},
   {"xcall1",SCvoid},
   {"xgrid",SCvoid},
@@ -1831,6 +2037,86 @@ static void UnSCNEch(char *plot)
     }
 }
 
+/*** code added by ES 21/5/2002 ****/
+static void UnSCContour(char *plot)
+{
+  int i;
+  struct contour_rec *theplot;
+  theplot =   (struct contour_rec *) plot;
+  {
+   theplot->bbox[0]=Mini(theplot->x,theplot->n1); theplot->bbox[1]=Maxi(theplot->x,theplot->n1); 
+   theplot->bbox[2]=Mini(theplot->y,theplot->n2); theplot->bbox[3]=Maxi(theplot->y,theplot->n2); 
+   theplot->bbox[4]=Mini(theplot->z,theplot->n1*theplot->n2); 
+   theplot->bbox[5]=Maxi(theplot->z,theplot->n1*theplot->n2); 
+/*   sciprint("I'm trying to unzoom a 3d contour plot \r\n");*/
+  }
+}
+
+static void UnSCFac3D(char *plot)
+{
+  int i;
+  struct fac3d_rec *theplot;
+  theplot =   (struct fac3d_rec *) plot;
+  {
+   theplot->bbox[0]=Mini(theplot->x,theplot->p*theplot->q); 
+   theplot->bbox[1]=Maxi(theplot->x,theplot->p*theplot->q); 
+   theplot->bbox[2]=Mini(theplot->y,theplot->p*theplot->q); 
+   theplot->bbox[3]=Maxi(theplot->y,theplot->p*theplot->q); 
+   theplot->bbox[4]=Mini(theplot->z,theplot->p*theplot->q); 
+   theplot->bbox[5]=Maxi(theplot->z,theplot->p*theplot->q); 
+/*   sciprint("I'm trying to unzoom a 3d fac plot \r\n"); */
+  }
+}
+
+static void UnSCParam3D(char *plot)
+{
+  int i;
+  struct param3d_rec *theplot;
+  theplot =   (struct param3d_rec *) plot;
+  {
+   theplot->bbox[0]=Mini(theplot->x,theplot->n); theplot->bbox[1]=Maxi(theplot->x,theplot->n); 
+   theplot->bbox[2]=Mini(theplot->y,theplot->n); theplot->bbox[3]=Maxi(theplot->y,theplot->n); 
+   theplot->bbox[4]=Mini(theplot->z,theplot->n); theplot->bbox[5]=Maxi(theplot->z,theplot->n); 
+/*   sciprint("I'm trying to unzoom a 3d param3d plot \r\n");*/
+  }
+}
+
+static void UnSCParam3D1(char *plot)
+{
+  int i;
+  struct param3d1_rec *theplot;
+  theplot =   (struct param3d1_rec *) plot;
+  {
+   theplot->bbox[0]=Mini(theplot->x,theplot->n*theplot->m); 
+   theplot->bbox[1]=Maxi(theplot->x,theplot->n*theplot->m); 
+   theplot->bbox[2]=Mini(theplot->y,theplot->n*theplot->m); 
+   theplot->bbox[3]=Maxi(theplot->y,theplot->n*theplot->m); 
+   theplot->bbox[4]=Mini(theplot->z,theplot->n*theplot->m); 
+   theplot->bbox[5]=Maxi(theplot->z,theplot->n*theplot->m); 
+/*   sciprint("I'm trying to unzoom a 3d param3d1 plot \r\n");*/
+  }
+}
+
+static void UnSCPlot3D(char *plot)
+{
+  int i;
+  struct plot3d_rec *theplot;
+  theplot =   (struct plot3d_rec *) plot;
+  {
+
+   theplot->bbox[0]=Mini(theplot->x,theplot->p); theplot->bbox[1]=Maxi(theplot->x,theplot->p); 
+   theplot->bbox[2]=Mini(theplot->y,theplot->q); theplot->bbox[3]=Maxi(theplot->y,theplot->q); 
+   theplot->bbox[4]=Mini(theplot->z,theplot->p*theplot->q); 
+   theplot->bbox[5]=Maxi(theplot->z,theplot->p*theplot->q); 
+/*   sciprint("I'm trying to unzoom a 3d plot \r\n"); */
+/*  for ( i = 0 ; i < 6 ; i++)  theplot->bbox[i] =  Cscale.bbox1[i]; */
+/*  if (theplot->flag[1]>0) theplot->flag[1]=2*Cscale.metric3d-1; */
+/*   sciprint("theplotflags: %i %i %i\r\n", theplot->flag[0], theplot->flag[1],
+             theplot->flag[2]); */
+  }
+}
+/*** end code added by ES ****/
+
 static void UnSCvoid(char *plot)
 {}
 
@@ -1838,26 +2124,27 @@ typedef  struct  {
   char *name;
   void  (*UnSC) __PARAMS((char *));} UnSCTable;
 
+/* modified by ES: changed UnSCvoid with  UnSCxxx3d for 3d plots */
 static UnSCTable UnSCCTable[] ={
   {"axis", UnSCvoid},
   {"champ", UnSCchamp},
-  {"contour",UnSCvoid},
+  {"contour",UnSCContour},
   {"contour2",UnSCContour2D},
-  {"fac3d",UnSCvoid},
-  {"fac3d1",UnSCvoid},
-  {"fac3d2",UnSCvoid},
-  {"fac3d3",UnSCvoid}, /****** entry added by polpoth 4/5/2000 ******/
+  {"fac3d",UnSCFac3D},
+  {"fac3d1",UnSCFac3D},
+  {"fac3d2",UnSCFac3D},
+  {"fac3d3",UnSCFac3D}, /****** entry added by polpoth 4/5/2000 (modif. by ES)******/
   {"fec", UnSCfec},
   {"fec_n", UnSCfec},
   {"gray", UnSCgray},
   {"gray1", UnSCgray},
   {"gray2", UnSCvoid},
   {"nscale",UnSCNEch},
-  {"param3d",UnSCvoid},
-  {"param3d1",UnSCvoid},
+  {"param3d",UnSCParam3D},
+  {"param3d1",UnSCParam3D1},
   {"plot2d",UnSC2D},
-  {"plot3d",UnSCvoid},
-  {"plot3d1",UnSCvoid},
+  {"plot3d",UnSCPlot3D},
+  {"plot3d1",UnSCPlot3D},
   {"scale",UnSCEch},
   {"xcall1",UnSCvoid},
   {"xgrid",UnSCvoid},

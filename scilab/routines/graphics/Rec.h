@@ -70,6 +70,7 @@ struct param3d_rec {char *name;
 		    integer   n,*flag;
 		    double teta,alpha;
 		    char  *legend;
+                    double *bbox_kp; integer *flag_kp; /* added by ES */
 		 } ;
 
 struct param3d1_rec {char *name;
@@ -77,6 +78,7 @@ struct param3d1_rec {char *name;
 		    integer   n,m,iflag,*colors,*flag;
 		    double teta,alpha;
 		    char  *legend;
+                    double *bbox_kp; integer *flag_kp; /* added by ES */
 		 } ;
 
 /*---------------------------------------------------------------------
@@ -88,6 +90,7 @@ struct plot3d_rec {char *name;
 		   integer   p,q,*flag;
 		   double teta,alpha;
 		   char  *legend;
+                   double *bbox_kp; integer *flag_kp; /* added by ES */
 		 } ;
 
 
@@ -100,6 +103,7 @@ struct fac3d_rec {char *name;
 		   integer   p,q,*flag,*cvect;
 		   double teta,alpha;
 		   char  *legend;
+                   double *bbox_kp; integer *flag_kp; /* added by ES */
 		 } ;
 
 /*---------------------------------------------------------------------
@@ -129,6 +133,7 @@ struct contour_rec {char *name;
 		    double teta,alpha;
 		    integer *flag;
 		    char  *legend;
+                    double *bbox_kp; integer *flag_kp; /* added by ES */
 		 } ;
 
 /** version 2d **/
