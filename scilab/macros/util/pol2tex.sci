@@ -31,13 +31,13 @@ if part(p(2),1)<>'-' then
   select p(2)
     case '0',
     case '1' then tt=tt+ok+z,ok='+'
-    else  tt=tt+ok+p(2)+' '+z,ok='+'
+    else  tt=tt+ok+p(2)+'\*'+z,ok='+'
   end
 else
   if p(2)=='-1' then
     tt=tt+'-'+z
   else
-    tt=tt+p(2)+' '+z
+    tt=tt+p(2)+'\*'+z
   end
   ok='+'
 end
@@ -47,14 +47,14 @@ for i=3:np
    select p(i)
      case '0',
      case '1' then tt=tt+ok+z+'^{'+string(i-1)+'}',ok='+'
-     else    tt=tt+ok+p(i)+' '+z+'^{'+string(i-1)+'}',ok='+'
+     else    tt=tt+ok+p(i)+'\*'+z+'^{'+string(i-1)+'}',ok='+'
    end
  else
    ok='+'
    if p(i)=='-1' then
      tt=tt+'-'+z+'^{'+string(i-1)+'}'
    else
-     tt=tt+p(i)+' '+z+'^{'+string(i-1)+'}'
+     tt=tt+p(i)+'\*'+z+'^{'+string(i-1)+'}'
    end
  end
 end

@@ -6,45 +6,62 @@ function [tt]=texprint(a)
 //
 // Copyright INRIA
 typ=type(a)
-tt=''
 
 select typ
 case 1 then  //scalars
   [m,n]=size(a)
-  a=string(a)
-  for l=1:m-1,tt=tt+strcat(a(l,:),'&')+'\cr ',end
-  tt=strsubst(tt+strcat(a($,:),'&'),'%','')
-  if  m*n<>1 then tt='\pmatrix{'+tt+'}',end
-case 2 then //polynomials
-  [m,n]=size(a);z=stripblanks(varn(a))
-  for l=1:m
-    for k=1:n,tt=tt+pol2tex(a(l,k))+'&',end
-    tt=part(tt,1:length(tt)-1)+'\cr '
+  if norm(imag(a))<=%eps*norm(real(a)) then
+    a=string(real(a))
+  else
+    a=string(a)
   end
-  tt=part(tt,1:length(tt)-4);tt=strsubst(tt,'%','')
-  if  m*n<>1 then tt='\pmatrix{'+tt+'}',end
+  if m*n==0 then tt='{\pmatrix{}}',return,end
+  if m*n<>1 then tt='{\pmatrix{',else tt='{{',end
+  for l=1:m,tt=tt+strcat(a(l,:),'&')+'\cr '; end
+  tt=part(tt,1:length(tt)-4)+'}}'
+  tt=strsubst(tt,'%','')
+case 2 then //polynomials
+   [m,n]=size(a)
+   if m*n<>1 then tt='{\pmatrix{',else tt='{{',end
+   z=varn(a)
+   nz=1;while part(z,nz)<>' ' then nz=nz+1,end
+   z=part(z,1:nz-1)
+//
+   for l=1:m
+     for k=1:n,tt=tt+pol2tex(a(l,k))+'&',end
+     tt=part(tt,1:length(tt)-1)+'\cr '
+   end
+   tt=part(tt,1:length(tt)-4)+'}}'
+   tt=strsubst(tt,'%','')
 case 4 then //booleans
   [m,n]=size(a)
-  x='F'+emptystr(a);x(a)='T'
-  for l=1:m-1,tt=tt+strcat(x(l,:),'&')+'\cr ';end
-  tt=tt+strcat(x(m,:),'&')
-  if  m*n<>1 then tt='\pmatrix{'+tt+'}',end
-case 10 then //strings
-  [m,n]=size(a)
-  for l=1:m-1,tt=tt+strcat(a(l,:),'&')+'\cr ';end
-  tt=tt+strcat(a(m,:),'&')
-  if  m*n<>1 then tt='\pmatrix{'+tt+'}',end
+  x='F'+emptystr(a);x(a)='T';a=x;
+  if m*n<>1 then tt='{\pmatrix{',else tt='{{',end
+  for l=1:m,tt=tt+strcat(a(l,:),'&')+'\cr '; end
+  tt=part(tt,1:length(tt)-4)+'}}'
 case 8 then //int
   [m,n]=size(a);a=string(a)
-  for l=1:m-1,tt=tt+strcat(a(l,:),'&')+'\cr ';end
-  tt=tt+strcat(a(m,:),'&')
-  if  m*n<>1 then tt='\pmatrix{'+tt+'}',end
+  if m*n<>1 then tt='{\pmatrix{',else tt='{{',end
+  for l=1:m,tt=tt+strcat(a(l,:),'&')+'\cr '; end
+  tt=part(tt,1:length(tt)-4)+'}}'
+
+case 10 then //strings
+  [m,n]=size(a)
+  if m*n<>1 then tt='{\pmatrix{',else tt='{{',end
+  for l=1:m,tt=tt+strcat(a(l,:),'&')+'\cr '; end
+  tt=part(tt,1:length(tt)-4)+'}}'
+
 case 16 then 
-  a1=getfield(1,a)
+  a1=a(1)//transfer and linear systems
+  pause
   select a1(1)
   case 'r' then //rationals
-    num=a.num;a=a.den
-    [m,n]=size(a);z=stripblanks(varn(a))
+    num=a('num');a=a('den')
+    [m,n]=size(a)
+    if m*n<>1 then tt='{\pmatrix{',else tt='{{',end
+    z=varn(a)
+    nz=1;while part(z,nz)<>' ' then nz=nz+1,end
+    z=part(z,1:nz-1)
     //
     for l=1:m
       for k=1:n,
@@ -67,14 +84,13 @@ case 16 then
       end
       tt=part(tt,1:length(tt)-1)+'\cr '
     end
-    tt=part(tt,1:length(tt)-4)
-    if m*n<>1 then tt='\pmatrix{'+tt+'}',end
+    tt=part(tt,1:length(tt)-4)+'}}'
+    tt=strsubst(tt,'%','')
   case 'lss' //linear state space
-    if a(7)=='c' then der=' \dot{X}',else der=' \stackrel{+}{X}',end
+    if a(7)=='c' then der=' \dot{x}',else der=' \stackrel{+}{X}',end
     debut='\begin{eqnarray}';fin='\end{eqnarray}'
-    debut='';fin=''
-    tt=debut+der+' = '+texprint(a(2))+' X + '+...
-	texprint(a(3))+'U \\ \\ Y = '+texprint(a(4))+' X '
+    tt=debut+der+' &=& '+texprint(a(2))+' X + '+...
+	texprint(a(3))+'U \\ \\ Y &=& '+texprint(a(4))+' X '
     if norm(a(5),1)==0 then
       tt=tt+fin
     else
@@ -90,3 +106,4 @@ else
   execstr('tt=%'+typeof(a)+'_texprint(a)','errcatch')
 end
 endfunction
+
