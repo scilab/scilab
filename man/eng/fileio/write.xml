@@ -59,7 +59,10 @@
     <VERB>m=prod(size(k)</VERB>)
   </P>
   <P>
-    <VERB>write(%io(2),....)</VERB> writes on Scilab&apos;s window.
+    <VERB>write(%io(2),....)</VERB> writes on Scilab&apos;s
+    window. Note that in this case <VERB>format</VERB> should produce
+    one output line per matrix row. If this contraint is not verified
+    unpredictable results could happen.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
@@ -76,6 +79,15 @@ else unix('rm -f foo'); end
 write('foo',A)
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>file</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>writb</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>read</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>print</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>string</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mfprintf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mprintf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>msprintf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fprintfMat</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>file</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>fileinfo</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>writb</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>read</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>print</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>string</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>mfprintf</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>mprintf</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>msprintf</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>fprintfMat</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
