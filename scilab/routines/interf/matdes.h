@@ -92,67 +92,66 @@ extern int scixname  _PARAMS((char *fname, unsigned long fname_len));
 extern int scisetposfigdim  _PARAMS((char *fname, unsigned long fname_len));
 
 /* NG beg */
-extern int gset(char *fname, unsigned long fname_len);
-extern int gget(char *fname, unsigned long fname_len);
-extern int delete(char *fname, unsigned long fname_len);
-extern int addcb(char *fname, unsigned long fname_len);
-extern int copy(char *fname, unsigned long subwinparenttarget);
+extern int gset _PARAMS((char *fname, unsigned long fname_len));
+extern int gget _PARAMS((char *fname, unsigned long fname_len));
+extern int delete _PARAMS((char *fname, unsigned long fname_len));
+extern int addcb _PARAMS((char *fname, unsigned long fname_len));
+extern int copy _PARAMS((char *fname, unsigned long subwinparenttarget));
 /*** 18/03/2002 ***/
-extern int move(char *fname, unsigned long fname_len);
+extern int move _PARAMS((char *fname, unsigned long fname_len));
 /*** 19/03/2002 ***/
-extern int glue(char *fname, unsigned long fname_len);
-extern int unglue(char *fname, unsigned long fname_len);
-extern int drawnow(char *fname, unsigned long fname_len);
-extern int drawlater(char *fname, unsigned long fname_len);
-extern int scixclear(char *fname, unsigned long fname_len);
-extern int scixclearsubwin(char *fname, unsigned long fname_len);
-extern int scixbascsubwin(char *fname, unsigned long fname_len);
+extern int glue _PARAMS((char *fname, unsigned long fname_len));
+extern int unglue _PARAMS((char *fname, unsigned long fname_len));
+extern int drawnow _PARAMS((char *fname, unsigned long fname_len));
+extern int drawlater _PARAMS((char *fname, unsigned long fname_len));
+extern int scixclear _PARAMS((char *fname, unsigned long fname_len));
+extern int scixclearsubwin _PARAMS((char *fname, unsigned long fname_len));
+extern int scixbascsubwin _PARAMS((char *fname, unsigned long fname_len));
+
+extern int draw _PARAMS((char *fname, unsigned long fname_len));
+
+void Objarc  _PARAMS((int *angle1,int *angle2,double *x,double *y,double *width,double *height,int color,int fill,long *hdl));
+void Objdrawaxis  _PARAMS((char dir,char tics,double *x,int *nx,double *y,int *ny,char **val,int subint,char *format,int font,int textcol,int ticscol,char flag,int seg));
+void Objfec  _PARAMS((double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax));
 
 
-extern int draw(char *fname, unsigned long fname_len);
+void Objfpoly  _PARAMS((double *x,double *y,integer rempl,integer closed,long *hdl));
+void Objgrayplot  _PARAMS((double *x,double *y,double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint));
+void Objmatplot  _PARAMS((double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint));
+void Objmatplot1  _PARAMS((double *z,integer *n1,integer *n2,double *xrect));
+void Objnumb _PARAMS((char *fname,unsigned long fname_len,integer n,integer flag,double *x,double *y,double *angle,double *box));
+void Objplot2d  _PARAMS((int ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint));
 
-void Objarc (int *angle1,int *angle2,double *x,double *y,double *width,double *height,int color,int fill,long *hdl);
-void Objdrawaxis (char dir,char tics,double *x,int *nx,double *y,int *ny,char **val,int subint,char *format,int font,int textcol,int ticscol,char flag,int seg);
-void Objfec (double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax);
+void Objplot3d  _PARAMS((char *fname,integer *isfac,integer *izcol,double *x,double *y,double *z,integer *zcol,integer *m,integer *n,double *theta,double *alpha,char *legend,integer *iflag,double *ebox));
+void Objpoly  _PARAMS((double *x,double *y,integer n,integer closed,int mark,long *hdl));
+void Objrect  _PARAMS((double *x,double *y,double *width,double *height,int fillflag,int fillcolor,int n,long *hdl));
+void Objsegs  _PARAMS((integer *style,integer flag,integer n,double *x,double *y, double arsize));
+void Objstring _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,double *angle,double *box,double wy,long *hdl));
+void Objtitle _PARAMS((char *str,int n,long *hdl));
 
+void Xarc  _PARAMS((char *fname,unsigned long fname_len,int *a1,int *a2,double *x,double *y,double *width,double *height));
+void Xarcs  _PARAMS((char *fname,unsigned long fname_len,int *vect1,integer n,double *vect2));
 
-void Objfpoly (double *x,double *y,integer rempl,integer closed,long *hdl);
-void Objgrayplot (double *x,double *y,double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint);
-void Objmatplot (double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint);
-void Objmatplot1 (double *z,integer *n1,integer *n2,double *xrect);
-void Objnumb(char *fname,unsigned long fname_len,integer n,integer flag,double *x,double *y,double *angle,double *box);
-void Objplot2d (int ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint);
+void Xdrawaxis  _PARAMS((char dir,char tics,double *x,int *nx,double *y,int *ny,char **val,int sub_int,char *format,int fontsize,int textcolor,int ticscolor,char flag,int seg_flag));
 
-void Objplot3d (char *fname,integer *isfac,integer *izcol,double *x,double *y,double *z,integer *zcol,integer *m,integer *n,double *theta,double *alpha,char *legend,integer *iflag,double *ebox);
-void Objpoly (double *x,double *y,integer n,integer closed,int mark,long *hdl);
-void Objrect (double *x,double *y,double *width,double *height,int fillflag,int fillcolor,int n,long *hdl);
-void Objsegs (integer *style,integer flag,integer n,double *x,double *y, double arsize);
-void Objstring(char *fname,unsigned long fname_len,integer str,double x,double y,double *angle,double *box,double wy,long *hdl);
-void Objtitle(char *str,int n,long *hdl);
+void Xfarcs  _PARAMS((char *fname,unsigned long fname_len,int *vect1,int n,double *vect2));
+void Xfec  _PARAMS((double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax));
 
-void Xarc (char *fname,unsigned long fname_len,int *a1,int *a2,double *x,double *y,double *width,double *height);
-void Xarcs (char *fname,unsigned long fname_len,int *vect1,integer n,double *vect2);
+void Xfpoly  _PARAMS((integer rempl,integer closed,double *x,double *y));
+void Xfpolys  _PARAMS((int *vect,integer val1,integer val2,integer n,integer m,double *x,double *y));
+void Xgrayplot  _PARAMS((double *x,double *y,double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint));
+void Xmatplot  _PARAMS((double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint));
+void Xmatplot1  _PARAMS((double *z,integer *n1,integer *n2,double *xrect) );
+void Xnumb  _PARAMS((char *fname,unsigned long fname_len,integer flag,double *x,double *y,double *angle,double *box));
+void Xplot2d  _PARAMS((double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint));
+void Xplot3d  _PARAMS((char *fname,integer *isfac,integer *izcol,double *x,double *y,double *z,integer *zcol,integer *m,integer *n,double *theta,double *alpha,char *legend,integer *iflag,double *ebox));
 
-void Xdrawaxis (char dir,char tics,double *x,int *nx,double *y,int *ny,char **val,int sub_int,char *format,int fontsize,int textcolor,int ticscolor,char flag,int seg_flag);
-
-void Xfarcs (char *fname,unsigned long fname_len,int *vect1,int n,double *vect2);
-void Xfec (double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax);
-
-void Xfpoly (integer rempl,integer closed,double *x,double *y);
-void Xfpolys (int *vect,integer val1,integer val2,integer n,integer m,double *x,double *y);
-void Xgrayplot (double *x,double *y,double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint);
-void Xmatplot (double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint);
-void Xmatplot1 (double *z,integer *n1,integer *n2,double *xrect) ;
-void Xnumb (char *fname,unsigned long fname_len,integer flag,double *x,double *y,double *angle,double *box);
-void Xplot2d (double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint);
-void Xplot3d (char *fname,integer *isfac,integer *izcol,double *x,double *y,double *z,integer *zcol,integer *m,integer *n,double *theta,double *alpha,char *legend,integer *iflag,double *ebox);
-
-void Xpoly (char *fname,unsigned long fname_len,int n,int close,double *x,double *y);
-void Xpolys (integer *vect,integer n,integer m,double *x,double *y);
-void Xrect (char *fname,unsigned long fname_len,double *x,double *y,double *width,double *height);
-void Xrects (char *fname,unsigned long fname_len,int *vect1,integer n,double *vect2);
-void Xsegs (integer *style,integer flag,integer n,double *x,double *y, double arsize);
-void Xstring (char *fname,unsigned long fname_len,integer str,double x,double y,double angle,double *box);
-void Xtitle (char *str,int n);
+void Xpoly  _PARAMS((char *fname,unsigned long fname_len,int n,int close,double *x,double *y));
+void Xpolys  _PARAMS((integer *vect,integer n,integer m,double *x,double *y));
+void Xrect  _PARAMS((char *fname,unsigned long fname_len,double *x,double *y,double *width,double *height));
+void Xrects  _PARAMS((char *fname,unsigned long fname_len,int *vect1,integer n,double *vect2));
+void Xsegs  _PARAMS((integer *style,integer flag,integer n,double *x,double *y, double arsize));
+void Xstring  _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,double angle,double *box));
+void Xtitle  _PARAMS((char *str,int n));
 /* NG beg */
 #endif 

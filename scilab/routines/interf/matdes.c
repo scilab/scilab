@@ -19,10 +19,10 @@
 
 /* The following NUMSETFONC and KeyTab_ definition should be coherent
 with those defined in the drivers They are used in scixset to check
-for invalid keys. A better way should be to make drivers return an
+for invalid keys ("old_style" has been added). A better way should be to make drivers return an
 error indicator in order to skip recording*/
 extern void  C2F(msgs)(int *i, int *v);
-#define NUMSETFONC 32
+#define NUMSETFONC 33
 static char *KeyTab_[] = {
 	 "alufunction",
 	 "background",
@@ -42,6 +42,7 @@ static char *KeyTab_[] = {
 	 "line mode",
 	 "line style",
 	 "mark",
+	 "old_style",
 	 "pattern",
 	 "pixmap",
 	 "thickness",
@@ -3760,7 +3761,7 @@ int sciwinsid(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer iflag =0,ids,num,un=1,l1,i;
+  integer iflag =0,ids,num,un=1,l1;
 
   CheckRhs(-1,0) ;  /* NG beg */
  if (version_flag() == 0)
