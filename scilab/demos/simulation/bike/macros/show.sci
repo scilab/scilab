@@ -71,7 +71,7 @@ function []=show(xx,t,p,f_name)
   if ymax >0 then ymax=1.04*ymax,else ymax=0.96*ymax;end
   zmin=mini(xp(3,:));zmax=maxi(xp(3,:));
   rect=[xmin,xmax,ymin,ymax,zmin,zmax]
-  get_velo_rti(%t);
+  get_velo_rti(%f);
   f_name();
   [velo_rti]=resume(velo_rti);
 endfunction

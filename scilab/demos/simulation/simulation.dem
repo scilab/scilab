@@ -1,0 +1,19 @@
+mode(-1)
+path=get_absolute_file_path('simulation.dem');
+
+demolist=['n-pendulum',path+'npend/npend.dem';
+	  'Wheel simulation',path+'wheel2/wheel.dem';
+	  'Bike Simulation',path+'bike/bike.dem';
+	  'ODE''S',path+'ode/ode.dem';
+	  'DAE''S',path+'dae/dae.dem']
+deff('[]=demoex(num)','exec(demolist(num,2),-1)')
+
+while %t then
+  num=x_choose(demolist(:,1),'Choose a demo');
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     demoex(num)
+  end,
+end

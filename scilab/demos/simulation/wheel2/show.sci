@@ -129,9 +129,10 @@ function []=wheel_build_and_load()
   if ~c_link('wheel') then
     cd = getcwd(); 
     chdir(TMPDIR); 
-    fcode=mgetl(SCI+'/demos/wheel2/Maple/dlslv.f');mputl(fcode,'dlslv.f')
-    fcode=mgetl(SCI+'/demos/wheel2/Maple/wheel.f');mputl(fcode,'wheel.f')
-    fcode=mgetl(SCI+'/demos/wheel2/Maple/wheelg.f');mputl(fcode,'wheelg.f')
+    path='SCI/demos/simulation/wheel2/Maple/'
+    fcode=mgetl(path+'/dlslv.f');mputl(fcode,'dlslv.f')
+    fcode=mgetl(path+'/wheel.f');mputl(fcode,'wheel.f')
+    fcode=mgetl(path+'/wheelg.f');mputl(fcode,'wheelg.f')
     files = ['wheel.o','wheelg.o','dlslv.o' ];
     ilib_for_link(['wheel';'wheelg'],files,[],"f");
     exec loader.sce 
@@ -140,7 +141,7 @@ function []=wheel_build_and_load()
 endfunction 
 
 function get_wheel_rti(d_mode) 
-  data_rti=['timeunit for realtimeinit','wheel_rti','0.05'];
+  data_rti=['timeunit for realtimeinit','wheel_rti','0.02'];
   [d_r,d_c]=size(data_rti);
   for i=1:d_r, 
     if isdef(data_rti(i,2)) then 

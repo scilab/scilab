@@ -1,7 +1,7 @@
 mode(-1);
 // Copyright ENPC 
-path="SCI/demos/wheel2";
-getf(path+'/show.sci');
+path=get_absolute_file_path("wheel.dem");
+getf(path+'show.sci');
 
 xbasc();
 set("figure_style","old")
