@@ -86,9 +86,9 @@ struct BCG *GetWindowXgcNumber __PARAMS((int));
 static struct BCG *AddNewWindowToList __PARAMS((void));
 
 static void ResetScilabXgc __PARAMS((void));
-static void DrawMark(),LoadFonts(), LoadSymbFonts(), C2F(analyze_points)();
-static void DrawMark(), My2draw(), MyDraw(), change_points();
-static void C2F(loadfamily_n)();
+static void DrawMark(integer *x, integer *y),LoadFonts(void), LoadSymbFonts(void), C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore);
+static void DrawMark(integer *x, integer *y), My2draw(integer j, integer *vx, integer *vy), MyDraw(integer iib, integer iif, integer *vx, integer *vy), change_points(integer i, integer x, integer y);
+static void C2F(loadfamily_n)(char *name, integer *j);
 static void PixmapClear   __PARAMS((int x,int y,int w,int h));
 static void xset_colormap __PARAMS((integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *a));
 static void xset_dashstyle __PARAMS((integer *v1,integer *v2,integer *v3));
@@ -112,7 +112,7 @@ static xget_f xget_font,xget_mark,xget_dash_or_color;
 
 /* utility for points allocations */
 
-static GdkPoint *gtk_get_xpoints();
+static GdkPoint *gtk_get_xpoints(void);
 static int GtkReallocVector __PARAMS((integer n));
 static int gtk_store_points __PARAMS((integer n, integer *vx,integer *vy,int  onemore));
 
@@ -129,9 +129,23 @@ void create_graphic_window_menu(struct BCG *dd);
 #define PIXEL_FROM_RGB(r,g,b) gdk_rgb_xpixel_from_rgb((r << 16)|(g << 8)|(b))
 #define PIXEL_FROM_CMAP(i) PIXEL_FROM_RGB(ScilabXgc->Red[i],ScilabXgc->Green[i],ScilabXgc->Blue[i])
 
-static int XgcAllocColors(xgc,m)
-     struct BCG *xgc;
-     int m;
+
+void C2F(initgraphic) (char *string, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+void C2F(xinfo) (char *message, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+void C2F(MissileGCGetorSet) (char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dv1);
+void C2F(drawrectangle) (char *str, integer *x, integer *y, integer *width, integer *height, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+void C2F(DispStringAngle) (integer *x0, integer *yy0, char *string, double *angle);
+void C2F(boundingbox) (char *string, integer *x, integer *y, integer *rect, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+void C2F(fillpolylines) (char *str, integer *vectsx, integer *vectsy, integer *fillvect, integer *n, integer *p, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+void C2F(fillrectangle) (char *str, integer *x, integer *y, integer *width, integer *height, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+void C2F(drawarc) (char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4);
+void C2F(fillarc) (char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4);
+void C2F(drawpolymark) (char *str, integer *n, integer *vx, integer *vy, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+void C2F(drawpolyline) (char *str, integer *n, integer *vx, integer *vy, integer *closeflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+void C2F(fillpolyline) (char *str, integer *n, integer *vx, integer *vy, integer *closeflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+void C2F(loadfamily) (char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+
+static int XgcAllocColors(struct BCG *xgc, int m)
 {
   /* don't forget black and white */
   int mm = m + 2;
@@ -146,28 +160,18 @@ static int XgcAllocColors(xgc,m)
   return 1;
 }
 
-static void XgcFreeColors(xgc)
-     struct BCG *xgc;
-{
-  FREE(xgc->Red);   FREE(xgc->Green);  FREE(xgc->Blue);
-  xgc->Red = xgc->Green = xgc->Blue;
-}
+
 
 /*---------------------------------------------------------
  * Pixmap routines: 
  *---------------------------------------------------------*/
 
-static void xset_pixmapclear(v1, v2, v3, v4)
-     integer *v1, *v2, *v3, *v4;
+static void xset_pixmapclear(integer *v1, integer *v2, integer *v3, integer *v4)
 {
   PixmapClear(0,0,ScilabXgc->CWindowWidth,ScilabXgc->CWindowHeight);
 }
 
-static void xset_show(v1, v2, v3, v4)
-     integer *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_show(integer *v1, integer *v2, integer *v3, integer *v4)
 {
   if ( ScilabXgc->Cdrawable != ScilabXgc->drawing->window) 
     {
@@ -188,9 +192,7 @@ static void xset_show(v1, v2, v3, v4)
  * resize the extra pixmap associated to the window x,y is the new size 
  */
 
-void CPixmapResize(x, y)
-     int x;
-     int y;
+void CPixmapResize(int x, int y)
 {
   /** create a new pixmap **/
   GdkDrawable *temp = (GdkDrawable *) gdk_pixmap_new(ScilabXgc->drawing->window,x,y,-1);
@@ -208,8 +210,7 @@ void CPixmapResize(x, y)
  * Pixmap clear: clear the extra pixmap associated to the window 
  */
 
-static void PixmapClear(x,y,w,h)
-     int x,y,w,h;
+static void PixmapClear(int x, int y, int w, int h)
 {
   gdk_gc_set_background(ScilabXgc->stdgc, &ScilabXgc->gcol_bg);
   gdk_draw_rectangle(ScilabXgc->Cdrawable,ScilabXgc->stdgc, TRUE,
@@ -221,7 +222,7 @@ static void PixmapClear(x,y,w,h)
  * But only if there's a pixmap 
  */
 
-void CPixmapResize1()
+void CPixmapResize1(void)
 {
   if (ScilabXgc->Cdrawable != (GdkDrawable *) ScilabXgc->drawing->window)
     CPixmapResize(ScilabXgc->CWindowWidth, ScilabXgc->CWindowHeight);
@@ -236,18 +237,7 @@ void CPixmapResize1()
  * If there's no graphic window then select creates one 
  */
 
-void C2F(xselgraphic)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(xselgraphic)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   /* Test not really usefull: see sciwin in matdes.f */
   if ( ScilabXgc == (struct BCG *)0 || ScilabXgc->window ==  NULL) 
@@ -258,40 +248,18 @@ void C2F(xselgraphic)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 
 /** End of graphic (do nothing)  **/
 
-void C2F(xendgraphic)()
+void C2F(xendgraphic)(void)
 {
 } 
 
-void C2F(xend)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(xend)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   /** Must destroy everything  **/
 }
 
 /** Clear the current graphic window     **/
 
-void C2F(clearwindow)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(clearwindow)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   /* we use the stdgc graphic context */
   gdk_gc_set_foreground(ScilabXgc->stdgc, &ScilabXgc->gcol_bg);
@@ -309,18 +277,7 @@ void C2F(clearwindow)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 #include <unistd.h> 
 #endif 
 
-void C2F(xpause)(str, sec_time, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *sec_time;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(xpause)(char *str, integer *sec_time, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   unsigned useconds;
   useconds=(unsigned) *sec_time;
@@ -340,18 +297,14 @@ void C2F(xpause)(str, sec_time, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
  * Changes the graphic window popupname 
  *-----------------------------------------------------------------*/
 
-void Setpopupname(string)
-     char *string;
+void Setpopupname(char *string)
 { 
   gtk_window_set_title(GTK_WINDOW(ScilabXgc->window),string);
 }
 
 /* appelle ds Xcall.c */
 
-void C2F(setpopupname)(x0, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *x0;
-     integer *v2,*v3,*v4,*v5,*v6,*v7;
-     double *dv1,*dv2,*dv3,*dv4;
+void C2F(setpopupname)(char *x0, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   Setpopupname(x0);
 }
@@ -381,7 +334,9 @@ static gboolean locator_button_press(GtkWidget *widget,
 				     BCG *gc)
 {
   if ( info.sci_click_activated == 0) 
-    PushClickQueue( gc->CurWindow,event->x, event->y,event->button-1 ,0,0);
+    {
+      PushClickQueue( gc->CurWindow,event->x, event->y,event->button-1 ,0,0);
+    }
   else 
     {
       info.ok = 1; info.win=  gc->CurWindow; info.x = event->x; info.y = event->y; 
@@ -396,7 +351,9 @@ static gboolean locator_button_release(GtkWidget *widget,
 				       BCG *gc)
 {
   if ( info.sci_click_activated == 0 || info.getrelease == 0 ) 
-    PushClickQueue( gc->CurWindow,event->x, event->y,event->button-6 ,0,1);
+    {
+      PushClickQueue( gc->CurWindow,event->x, event->y,event->button-6 ,0,1);
+    }
   else 
     {
       info.ok =1 ; info.win=  gc->CurWindow; info.x = event->x;  info.y = event->y;
@@ -411,7 +368,9 @@ static gboolean locator_button_motion(GtkWidget *widget,
 				      BCG *gc)
 {
   if ( info.sci_click_activated == 0 || info.getmouse == 0 ) 
-    PushClickQueue( gc->CurWindow,event->x, event->y,-1 ,1,0);
+    {
+      PushClickQueue( gc->CurWindow,event->x, event->y,-1 ,1,0);
+    }
   else 
     {
       info.ok =1 ;  info.win=  gc->CurWindow; info.x = event->x;  info.y = event->y;
@@ -440,8 +399,8 @@ static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
 
 static int sci_graphic_protect = 0;
 
-void   set_delete_win_mode() {  sci_graphic_protect = 0 ;}
-extern void   set_no_delete_win_mode()  {  sci_graphic_protect = 1 ;}
+void   set_delete_win_mode(void) {  sci_graphic_protect = 0 ;}
+extern void   set_no_delete_win_mode(void) {  sci_graphic_protect = 1 ;}
 
 static gboolean sci_destroy_window (GtkWidget *widget, GdkEventKey *event,  BCG *gc)
 {
@@ -476,10 +435,7 @@ gint timeout_test (BCG *gc)
   return TRUE;
 }
 
-void C2F(xclick_any)(str, ibutton, x1, yy1, iwin,iflag, istr, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *ibutton, *x1,*yy1, *iwin, *iflag, *istr;
-     double *dv1, *dv2, *dv3, *dv4;
+void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iwin, integer *iflag, integer *istr, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   GTK_locator_info rec_info ; 
   int win = -1;
@@ -566,13 +522,7 @@ void C2F(xclick_any)(str, ibutton, x1, yy1, iwin,iflag, istr, dv1, dv2, dv3, dv4
   
 }
 
-void C2F(xclick)(str, ibutton, x1, yy1, iflag,istr, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *ibutton,*x1,*yy1,*iflag,*istr,*v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(xclick)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iflag, integer *istr, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer lstr ;
   SciClick(ibutton,x1, yy1,iflag,0,0,*istr,str,&lstr);
@@ -588,10 +538,7 @@ void C2F(xclick)(str, ibutton, x1, yy1, iflag,istr, v7, dv1, dv2, dv3, dv4)
     }
 }
 
-void C2F(xgetmouse)(str, ibutton, x1, yy1,iflag, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *ibutton,*x1,*yy1,*iflag,*v6,*v7;
-     double *dv1, *dv2, *dv3, *dv4;
+void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer lstr ;
   SciClick(ibutton,x1, yy1,iflag,1,0,0,(char *) 0,&lstr);
@@ -618,10 +565,8 @@ void C2F(xgetmouse)(str, ibutton, x1, yy1,iflag, v6, v7, dv1, dv2, dv3, dv4)
  * Il faut aussi tenir compte de la recursion sur les options 
  */
 
-void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
-     integer *ibutton,*x1,*yy1, *iflag,*lstr;
-     int getmouse,dyn_men,getrelease;
-     char *str;
+void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, 
+	      int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
 {
   GTK_locator_info rec_info ; 
   int win;
@@ -629,7 +574,11 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
     *ibutton = -100;     return;
   }
   win = ScilabXgc->CurWindow;
-  if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1) return ;
+  if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
+    { 
+      sciprint("ds la queue %f %f \n",(double) *x1,(double) *yy1);/* XXXX */
+      return ;
+    }
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
 
   /* XXXX 
@@ -652,7 +601,7 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   info.getkey     = 0; /* do not check keys in xclick */
   info.sci_click_activated = 1;
 
-  if (  info.getmen == 1 && info.timer == 0 ) 
+  if ( info.getmen == 1 && info.timer == 0 ) 
     {
       info.timer = gtk_timeout_add (100, (GtkFunction) timeout_test, ScilabXgc);
       info.str   = str;
@@ -681,11 +630,7 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
      XDefineCursor(dpy, ScilabXgc->CWindow ,arrowcursor);
      XSync (dpy, 0);
   */
-  
-  /* XXXXX : a finnir doit surveiller les menus connect signal */
-  /* timer = gtk_timeout_add (100, (GtkFunction) timeout_test, ScilabXgc->drawing); */
-  /* gtk_timeout_remove (timer); */
-  /* run the handler */
+
 }
 
 
@@ -694,17 +639,14 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
  * clear a rectangle zone 
  *******************************************************/
 
-static void R_clear(x,y,w,h) 
-     int x,y,w,h;
+static void R_clear(int x, int y, int w, int h)
 {
   gdk_draw_rectangle(ScilabXgc->Cdrawable, ScilabXgc->wgc, TRUE,x,y,w,h);
   if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
     gdk_draw_rectangle(ScilabXgc->pixmap, ScilabXgc->wgc, TRUE,x,y,w,h);
 }
 
-static void RectangleClear(x,y,w,h,clipflag,F)
-     int x,y,w,h,clipflag; 
-     r_c F;
+static void RectangleClear(int x, int y, int w, int h, int clipflag, r_c F)
 {
   /* switch to a clear gc */
   int cur_alu = ScilabXgc->CurDrawFunction;
@@ -729,10 +671,7 @@ static void RectangleClear(x,y,w,h,clipflag,F)
     }
 }
 
-void C2F(cleararea)(str, x, y, w, h, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x, *y, *w, *h, *v6, *v7;
-     double *dv1,*dv2,*dv3, *dv4;
+void C2F(cleararea)(char *str, integer *x, integer *y, integer *w, integer *h, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   RectangleClear(*x,*y,*w,*h,0,R_clear);
 }
@@ -745,11 +684,7 @@ void C2F(cleararea)(str, x, y, w, h, v6, v7, dv1, dv2, dv3, dv4)
 
 /** to get the window upper-left point coordinates on the screen  **/
 
-static void xget_windowpos(verbose, x, narg,dummy)
-     integer *verbose;
-     integer *x;
-     integer *narg;
-     double *dummy;
+static void xget_windowpos(integer *verbose, integer *x, integer *narg, double *dummy)
 {
   gint xx,yy;
   gdk_window_get_position (ScilabXgc->window->window,&xx,&yy);
@@ -761,11 +696,7 @@ static void xget_windowpos(verbose, x, narg,dummy)
 
 /** to set the window upper-left point position on the screen **/
 
-static void xset_windowpos(x, y, v3, v4)
-     integer *x;
-     integer *y;
-     integer *v3;
-     integer *v4;
+static void xset_windowpos(integer *x, integer *y, integer *v3, integer *v4)
 {
   if (ScilabXgc == NULL || ScilabXgc->window ==  NULL) 
     C2F(initgraphic)("",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
@@ -774,22 +705,14 @@ static void xset_windowpos(x, y, v3, v4)
 
 /** To get the drawbox  window size : used by periGif **/
 
-void C2F(getwindowdim) (verbose, x, narg,dummy)
-     integer *verbose;
-     integer *x;
-     integer *narg;
-     double *dummy;
+void C2F(getwindowdim) (integer *verbose, integer *x, integer *narg, double *dummy)
 {   
   xget_windowdim(verbose, x, narg,dummy);
 }
 
 /** To get the drawbox  window size **/
 
-static void xget_windowdim(verbose, x, narg,dummy)
-     integer *verbose;
-     integer *x;
-     integer *narg;
-     double *dummy;
+static void xget_windowdim(integer *verbose, integer *x, integer *narg, double *dummy)
 {     
   /* the two dimensions are always updated */
   *narg = 2;
@@ -807,11 +730,7 @@ static void xget_windowdim(verbose, x, narg,dummy)
  * but if the scrolled window is greater then drawbox will follow 
  */
 
-static void xset_windowdim(x, y, v3, v4)
-     integer *x;
-     integer *y;
-     integer *v3;
-     integer *v4;
+static void xset_windowdim(integer *x, integer *y, integer *v3, integer *v4)
 {
   /* XXXX: not so easy !!! */
   if (ScilabXgc == NULL || ScilabXgc->window ==  NULL) return ;
@@ -822,11 +741,7 @@ static void xset_windowdim(x, y, v3, v4)
 
 /** To get the popup  window size **/
 
-static void xget_popupdim(verbose, x, narg,dummy)
-     integer *verbose;
-     integer *x;
-     integer *narg;
-     double *dummy;
+static void xget_popupdim(integer *verbose, integer *x, integer *narg, double *dummy)
 { 
   gint xx,yy;
   gdk_window_get_size (ScilabXgc->window->window,&xx,&yy);
@@ -837,22 +752,14 @@ static void xget_popupdim(verbose, x, narg,dummy)
 
 /** To change the popup window size  **/
 
-static void xset_popupdim(x, y, v3, v4)
-     integer *x;
-     integer *y;
-     integer *v3;
-     integer *v4;
+static void xset_popupdim(integer *x, integer *y, integer *v3, integer *v4)
 {
   gdk_window_resize(ScilabXgc->window->window,*x,*y);
 }
 
 /** To get the viewport Upper/Left point Position **/
 
-static void xget_viewport(verbose, x, narg,dummy)
-     integer *verbose;
-     integer *x;
-     integer *narg;
-     double *dummy;
+static void xget_viewport(integer *verbose, integer *x, integer *narg, double *dummy)
 {     
   GtkAdjustment * H, *V;
   *narg = 2; 
@@ -874,11 +781,7 @@ static void xget_viewport(verbose, x, narg,dummy)
 
 /** To change the window size  **/
 
-static void xset_viewport(x, y, v3, v4)
-     integer *x;
-     integer *y;
-     integer *v3;
-     integer *v4;
+static void xset_viewport(integer *x, integer *y, integer *v3, integer *v4)
 {
   if ( ScilabXgc->CurResizeStatus == 0) 
     {
@@ -894,11 +797,7 @@ static void xset_viewport(x, y, v3, v4)
  * window is created if necessary 
  ********************************************/
 
-static void xset_curwin(intnum, v2, v3, v4)
-     integer *intnum;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_curwin(integer *intnum, integer *v2, integer *v3, integer *v4)
 { 
   struct BCG *bcgk;
   bcgk =  ScilabXgc ;
@@ -939,8 +838,7 @@ static void xset_curwin(intnum, v2, v3, v4)
  * after a print in Postscript or Xfig 
  */
 
-void SwitchWindow(intnum)
-     integer *intnum;
+void SwitchWindow(integer *intnum)
 {
   /** trying to get window *intnum **/
   struct BCG *SXgc =  GetWindowXgcNumber(*intnum);
@@ -965,11 +863,7 @@ void SwitchWindow(intnum)
  * exept for this function which is called in sciwin and the previous one 
  */
  
-static void xget_curwin(verbose, intnum, narg,dummy)
-     integer *verbose;
-     integer *intnum;
-     integer *narg;
-     double *dummy;
+static void xget_curwin(integer *verbose, integer *intnum, integer *narg, double *dummy)
 {
   *narg =1 ;
   *intnum = (ScilabXgc != (struct BCG *) 0) ? ScilabXgc->CurWindow : 0;
@@ -979,11 +873,7 @@ static void xget_curwin(verbose, intnum, narg,dummy)
 
 /** Set a clip zone (rectangle ) **/
 
-static void xset_clip(x, y, w, h)
-     integer *x;
-     integer *y;
-     integer *w;
-     integer *h;
+static void xset_clip(integer *x, integer *y, integer *w, integer *h)
 {
   GdkRectangle clip_rect ={ *x,*y,*w,*h};
   ScilabXgc->ClipRegionSet = 1;
@@ -996,11 +886,7 @@ static void xset_clip(x, y, w, h)
 
 /** unset clip zone **/
 
-static void xset_unclip(v1, v2, v3, v4)
-     integer *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_unclip(integer *v1, integer *v2, integer *v3, integer *v4)
 {
   static GdkRectangle clip_rect = { 0,0,int16max,  int16max};
   ScilabXgc->ClipRegionSet = 0;
@@ -1009,11 +895,7 @@ static void xset_unclip(v1, v2, v3, v4)
 
 /** Get the boundaries of the current clip zone **/
 
-static void xget_clip(verbose, x, narg,dummy)
-     integer *verbose;
-     integer *x;
-     integer *narg;
-     double *dummy;
+static void xget_clip(integer *verbose, integer *x, integer *narg, double *dummy)
 {
   x[0] = ScilabXgc->ClipRegionSet;
   if ( x[0] == 1)
@@ -1049,11 +931,7 @@ static void xget_clip(verbose, x, narg,dummy)
 
 /** to set absolute or relative mode **/
 
-static void xset_absourel(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_absourel(integer *num, integer *v2, integer *v3, integer *v4)
 {
   if (*num == 0 )
     ScilabXgc->CurVectorStyle =  CoordModeOrigin;
@@ -1063,11 +941,7 @@ static void xset_absourel(num, v2, v3, v4)
 
 /** to get information on absolute or relative mode **/
 
-static void xget_absourel(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+static void xget_absourel(integer *verbose, integer *num, integer *narg, double *dummy)
 {
   *narg = 1;
   *num = ScilabXgc->CurVectorStyle  ;
@@ -1107,9 +981,7 @@ static struct alinfo {
     {"GXset" , GDK_SET," 1 "}
   };
 
-static void idfromname(name1, num)
-     char *name1;
-     integer *num;
+static void idfromname(char *name1, integer *num)
 {int i;
  *num = -1;
  for ( i =0 ; i < 16;i++)
@@ -1123,8 +995,7 @@ static void idfromname(name1, num)
    }
 }
 
-void xset_alufunction(string)
-     char *string;
+void xset_alufunction(char *string)
 {   
   integer value;
   idfromname(string,&value);
@@ -1135,11 +1006,7 @@ void xset_alufunction(string)
     }
 }
 
-static void xset_alufunction1(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_alufunction1(integer *num, integer *v2, integer *v3, integer *v4)
 {   
   int value ; 
   GdkColor temp = {0,0,0,0};
@@ -1173,11 +1040,7 @@ static void xset_alufunction1(num, v2, v3, v4)
 }
 
 
-static void xget_alufunction(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+static void xget_alufunction(integer *verbose, integer *value, integer *narg, double *dummy)
 { 
   *narg =1 ;
   *value = ScilabXgc->CurDrawFunction ;
@@ -1196,11 +1059,7 @@ static void xget_alufunction(verbose, value, narg,dummy)
  * defaut value is 1 
  */
 
-static void xset_thickness(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_thickness(integer *value, integer *v2, integer *v3, integer *v4)
 { 
   int val =  ScilabXgc->CurDashStyle + 1;
   ScilabXgc->CurLineWidth =Max(0, *value);
@@ -1210,11 +1069,7 @@ static void xset_thickness(value, v2, v3, v4)
 
 /** to get the thickness value **/
 
-static void xget_thickness(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+static void xget_thickness(integer *verbose, integer *value, integer *narg, double *dummy)
 {
   *narg =1 ;
   *value = ScilabXgc->CurLineWidth ;
@@ -1259,11 +1114,8 @@ void C2F(CreatePatterns)(whitepixel, blackpixel)
  
 }
 */
-static void xset_pattern(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+
+static void xset_pattern(integer *num, integer *v2, integer *v3, integer *v4)
 { 
   if (ScilabXgc->CurColorStatus == 1) 
     {
@@ -1286,11 +1138,7 @@ static void xset_pattern(num, v2, v3, v4)
 
 /** To get the id of the current pattern  **/
 
-static void xget_pattern(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+static void xget_pattern(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
   *narg=1;
   if ( ScilabXgc->CurColorStatus == 1 ) 
@@ -1303,11 +1151,7 @@ static void xget_pattern(verbose, num, narg,dummy)
 
 /** To get the id of the last pattern **/
 
-static void xget_last(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+static void xget_last(integer *verbose, integer *num, integer *narg, double *dummy)
 {
   if ( ScilabXgc->CurColorStatus == 1 ) 
     {
@@ -1338,11 +1182,7 @@ static integer DashTab[MAXDASH][4] = {
   {2,5,2,5}, {5,2,5,2},  {5,3,2,3}, {8,3,2,3},
   {11,3,2,3}, {11,3,5,3}};
 
-static void xset_dash(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_dash(integer *value, integer *v2, integer *v3, integer *v4)
 {
   static integer  l2 = 4, l3;
   l3 = Max(0,Min(MAXDASH - 1,*value - 1));
@@ -1352,11 +1192,7 @@ static void xset_dash(value, v2, v3, v4)
 
 /* old version of xset_dash retained for compatibility */
 
-static void xset_dash_or_color(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_dash_or_color(integer *value, integer *v2, integer *v3, integer *v4)
 {
   if ( ScilabXgc->CurColorStatus == 1) 
     {
@@ -1366,21 +1202,13 @@ static void xset_dash_or_color(value, v2, v3, v4)
     xset_dash(value, v2, v3, v4);
 }
 
-static void xset_dash_and_color(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_dash_and_color(integer *value, integer *v2, integer *v3, integer *v4)
 {
   xset_dash(value, v2, v3, v4);
   xset_pattern(value+6, v2, v3, v4);
 }
 
-static void xset_line_style(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_line_style(integer *value, integer *v2, integer *v3, integer *v4)
 {
   integer j;
   if (ScilabXgc->CurColorStatus == 0) 
@@ -1400,10 +1228,7 @@ static void xset_line_style(value, v2, v3, v4)
  * xx[3]={5,3,7} and *n == 3 means :  5white 3 void 7 white \ldots 
  */
 
-static void xset_dashstyle(value, xx, n)
-     integer *value;
-     integer *xx;
-     integer *n;
+static void xset_dashstyle(integer *value, integer *xx, integer *n)
 {
   if ( *value == 0) 
     {
@@ -1431,11 +1256,7 @@ static void xset_dashstyle(value, xx, n)
 /** to get the current dash-style **/
 /* old version of xget_dash retained for compatibility */
 
-static void xget_dash_or_color(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+static void xget_dash_or_color(integer *verbose, integer *value, integer *narg, double *dummy)
 {
   if ( ScilabXgc->CurColorStatus ==1) 
     {
@@ -1447,11 +1268,7 @@ static void xget_dash_or_color(verbose, value, narg,dummy)
   xget_dash(verbose, value, narg,dummy);
 }
 
-static void xget_dash(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+static void xget_dash(integer *verbose, integer *value, integer *narg, double *dummy)
 {
   int i ;
   *narg =1 ;
@@ -1473,11 +1290,7 @@ static void xget_dash(verbose, value, narg,dummy)
     }
 }
 
-static void xget_dash_and_color(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+static void xget_dash_and_color(integer *verbose, integer *value, integer *narg, double *dummy)
 {
   /*may be improved replacing 6 by narg */
   xget_dash(verbose, value, narg,dummy);
@@ -1487,11 +1300,7 @@ static void xget_dash_and_color(verbose, value, narg,dummy)
 
 /* used to switch from color to b&w and reverse */
 
-static void xset_usecolor(num, v1, v2, v3)
-     integer *num;
-     integer *v1;
-     integer *v2;
-     integer *v3;
+static void xset_usecolor(integer *num, integer *v1, integer *v2, integer *v3)
 {
   integer i;
   i =  Min(Max(*num,0),1);
@@ -1528,11 +1337,7 @@ static void xset_usecolor(num, v1, v2, v3)
     }
 }
 
-static void xget_usecolor(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+static void xget_usecolor(integer *verbose, integer *num, integer *narg, double *dummy)
 {
   *num = ScilabXgc->CurColorStatus;
   if (*verbose == 1) 
@@ -1544,11 +1349,7 @@ static void xget_usecolor(verbose, num, narg,dummy)
  * adding or removing a Background Pixmap to it 
  */
 
-static void xset_pixmapOn(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_pixmapOn(integer *num, integer *v2, integer *v3, integer *v4)
 { 
   int num1= Min(Max(*num,0),1);
   if ( ScilabXgc->CurPixmapStatus == num1 ) return;
@@ -1583,11 +1384,7 @@ static void xset_pixmapOn(num, v2, v3, v4)
     }
 }
 
-static void xget_pixmapOn(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+static void xget_pixmapOn(integer *verbose, integer *value, integer *narg, double *dummy)
 {
   *value=ScilabXgc->CurPixmapStatus;
   *narg =1 ;
@@ -1602,11 +1399,7 @@ static void xget_pixmapOn(verbose, value, narg,dummy)
  * size of the grahic window to very small values 
  */
 
-static void xset_wresize(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_wresize(integer *num, integer *v2, integer *v3, integer *v4)
 {
   integer num1= Min(Max(*num,0),1);
   if ( num1 != ScilabXgc->CurResizeStatus && num1 == 1) 
@@ -1620,11 +1413,7 @@ static void xset_wresize(num, v2, v3, v4)
   ScilabXgc->CurResizeStatus = num1 ;
 }
 
-static void xget_wresize(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+static void xget_wresize(integer *verbose, integer *value, integer *narg, double *dummy)
 {
   *value=ScilabXgc->CurResizeStatus;
   *narg =1 ;
@@ -1635,8 +1424,7 @@ static void xget_wresize(verbose, value, narg,dummy)
 
 static int set_default_colormap_flag = 1;
 
-int C2F(sedeco)(flag) 
-     int *flag;
+int C2F(sedeco)(int *flag)
 {
   set_default_colormap_flag = *flag;
   return(0);
@@ -1650,7 +1438,7 @@ int C2F(sedeco)(flag)
 
 #define SETCOLOR(i,r,g,b)  ScilabXgc->Red[i]=r;ScilabXgc->Green[i]=g;ScilabXgc->Blue[i]=b ; 
 
-void set_default_colormap()
+void set_default_colormap(void)
 {
   int i;
   guchar *r, *g, *b;
@@ -1697,9 +1485,7 @@ void set_default_colormap()
  * v2 gives the value of m and *v3 must be equal to 3 
  */
 
-static void xset_colormap(v1,v2,v3,v4,v5,v6,a)
-     integer *v1,*v2,*v3,*v4,*v5,*v6;
-     double *a;
+static void xset_colormap(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
 {
   int i,m;
   guchar *r, *g, *b;
@@ -1754,11 +1540,7 @@ static void xset_colormap(v1,v2,v3,v4,v5,v6,a)
 
 /* getting the colormap */
 
-static void xget_colormap(verbose,num,narg,val)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *val;
+static void xget_colormap(integer *verbose, integer *num, integer *narg, double *val)
 {
   int m = ScilabXgc->Numcolors;
   int i;
@@ -1775,11 +1557,7 @@ static void xget_colormap(verbose,num,narg,val)
 /** set and get the number of the background or foreground */
 
 
-static void xset_background(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_background(integer *num, integer *v2, integer *v3, integer *v4)
 { 
   if (ScilabXgc->CurColorStatus == 1) 
     {
@@ -1801,11 +1579,7 @@ static void xset_background(num, v2, v3, v4)
     }
 }
  
-static void xget_background(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+static void xget_background(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
   *narg=1;
   *num = ( ScilabXgc->CurColorStatus == 1 ) ? ScilabXgc->NumBackground + 1 : 1;
@@ -1815,11 +1589,7 @@ static void xget_background(verbose, num, narg,dummy)
 
 /* set and get the number of the background or foreground */
 
-static void xset_foreground(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_foreground(integer *num, integer *v2, integer *v3, integer *v4)
 { 
   if (ScilabXgc->CurColorStatus == 1) 
     {
@@ -1835,11 +1605,7 @@ static void xset_foreground(num, v2, v3, v4)
     }
 }
 
-static void xget_foreground(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+static void xget_foreground(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
   *narg=1;
   if ( ScilabXgc->CurColorStatus == 1 ) 
@@ -1856,11 +1622,7 @@ static void xget_foreground(verbose, num, narg,dummy)
 
 /** set and get the number of the hidden3d color */
 
-static void xset_hidden3d(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_hidden3d(integer *num, integer *v2, integer *v3, integer *v4)
 { 
   if (ScilabXgc->CurColorStatus == 1) 
     {
@@ -1869,11 +1631,7 @@ static void xset_hidden3d(num, v2, v3, v4)
     }
 }
 
-static void xget_hidden3d(verbose, num, narg,dummy)
-     integer *verbose;
-     integer *num;
-     integer *narg;
-     double *dummy;
+static void xget_hidden3d(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
   *narg=1;
   if ( ScilabXgc->CurColorStatus == 1 ) 
@@ -1893,10 +1651,9 @@ static void xget_hidden3d(verbose, num, narg,dummy)
  *    to see the colormap of current graphic window
  ******************************************************/
 
-int IsPrivateCmap() { return 0 ;} 
+int IsPrivateCmap(void) { return 0 ;} 
 
-void set_cmap(w) 
-     void * w;
+void set_cmap(__builtin_va_list w)
 {
   /* 
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->Cmap != (Colormap)0)
@@ -1904,8 +1661,7 @@ void set_cmap(w)
   */
 }
 
-int get_pixel(i) 
-     int i;
+int get_pixel(int i)
 {
   /* 
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->Cmap != (Colormap)0)
@@ -1929,8 +1685,7 @@ Pixmap get_pixmap(i)
  * else return 0 
  *****************************************************/
 
-int CheckColormap(m)
-     int *m;
+int CheckColormap(int *m)
 {
   if (  ScilabXgc != (struct BCG *) 0 ) 
     {
@@ -1947,22 +1702,16 @@ int CheckColormap(m)
     }
 }
 
-void get_r(i,r) 
-     int i;
-     float *r;
+void get_r(int i, float *r)
 {
   *r = ScilabXgc->Red[i]/255.0;
 }
 
-void  get_g(i,g) 
-     int i;
-     float *g;
+void  get_g(int i, float *g)
 {
   *g = ScilabXgc->Green[i]/255.0;
 }
-void get_b(i,b) 
-     float *b;
-     int i;
+void get_b(int i, float *b)
 {
   *b = ScilabXgc->Blue[i]/255.0;
 }
@@ -1972,22 +1721,14 @@ void get_b(i,b)
  * 
  *-----------------------------------------------------------*/
 
-static void InitMissileXgc();
+static void InitMissileXgc(integer *v1, integer *v2, integer *v3, integer *v4);
 
-static void xset_empty(verbose, v2, v3, v4)
-     integer *verbose;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void xset_empty(integer *verbose, integer *v2, integer *v3, integer *v4)
 {
   if ( *verbose ==1 ) Sciprintf("\n No operation ");
 }
 
-static void xget_empty(verbose, v2, v3,dummy)
-     integer *verbose;
-     integer *v2;
-     integer *v3;
-     double *dummy;
+static void xget_empty(integer *verbose, integer *v2, integer *v3, double *dummy)
 {
   if ( *verbose ==1 ) Sciprintf("\n No operation ");
 }
@@ -2031,44 +1772,19 @@ MissileGCTab_[] = {
   {"wwpc",xset_pixmapclear,xget_empty}
 };
 
-void C2F(MissileGCget)(str, verbose, x1, x2, x3, x4, x5, dv1, dv2, dv3, dv4)
-     char *str; 
-     integer *verbose;
-     integer *x1; integer *x2; integer *x3; integer *x4;
-     integer *x5; double *dv1; double *dv2; double *dv3; double *dv4;
+void C2F(MissileGCget)(char *str, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   int x6=0;
   C2F(MissileGCGetorSet)(str,(integer)1L,verbose,x1,x2,x3,x4,x5,&x6,dv1);
 }
 
-void C2F(MissileGCset)(str, x1, x2, x3, x4, x5, x6, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x1;
-     integer *x2;
-     integer *x3;
-     integer *x4;
-     integer *x5;
-     integer *x6;
-     double *dv1;
-     double *dv2; 
-     double *dv3;
-     double *dv4;
+void C2F(MissileGCset)(char *str, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer verbose=0 ;
   C2F(MissileGCGetorSet)(str,(integer)0L,&verbose,x1,x2,x3,x4,x5,x6,dv1);
 }
 
-void C2F(MissileGCGetorSet)(str, flag, verbose, x1, x2, x3, x4, x5,x6,dv1)
-     char *str;
-     integer flag;
-     integer *verbose;
-     integer *x1;
-     integer *x2;
-     integer *x3;
-     integer *x4;
-     integer *x5;
-     integer *x6;
-     double  *dv1;
+void C2F(MissileGCGetorSet)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dv1)
 { 
   integer i ;
   for (i=0; i < NUMSETFONC ; i++)
@@ -2113,10 +1829,7 @@ void C2F(MissileGCGetorSet)(str, flag, verbose, x1, x2, x3, x4, x5,x6,dv1)
  * of the string ( we do not separate asc and desc 
  **************************************************/
 
-void C2F(displaystring)(string, x, y, v1, flag, v6, v7, angle, dv2, dv3, dv4)
-     char *string;
-     integer *x,*y,*v1,*flag,*v6,*v7;
-     double *angle,*dv2,*dv3,*dv4;
+void C2F(displaystring)(char *string, integer *x, integer *y, integer *v1, integer *flag, integer *v6, integer *v7, double *angle, double *dv2, double *dv3, double *dv4)
 { 
   if ( Abs(*angle) <= 0.1) 
     {
@@ -2143,11 +1856,7 @@ void C2F(displaystring)(string, x, y, v1, flag, v6, v7, angle, dv2, dv3, dv4)
     }
 }
 
-void C2F(DispStringAngle)(x0, yy0, string, angle)
-     integer *x0;
-     integer *yy0;
-     char *string;
-     double *angle;
+void C2F(DispStringAngle)(integer *x0, integer *yy0, char *string, double *angle)
 {
   int i;
   integer x,y, rect[4];
@@ -2187,10 +1896,7 @@ void C2F(DispStringAngle)(x0, yy0, string, angle)
 
 /** To get the bounding rectangle of a string **/
 
-void C2F(boundingbox)(string, x, y, rect, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *string;
-     integer *x, *y, *rect, *v5, *v6, *v7;
-     double *dv1, *dv2, *dv3, *dv4;
+void C2F(boundingbox)(char *string, integer *x, integer *y, integer *rect, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   gint lbearing, rbearing, iascent, idescent, iwidth;
   gdk_string_extents(ScilabXgc->font,"X", &lbearing, &rbearing, &iwidth, &iascent, &idescent);
@@ -2204,11 +1910,7 @@ void C2F(boundingbox)(string, x, y, rect, v5, v6, v7, dv1, dv2, dv3, dv4)
  * line segments arrows 
  *-------------------------------------------------*/
 
-void C2F(drawline)(x1, yy1, x2, y2)
-     integer *x1;
-     integer *yy1;
-     integer *x2;
-     integer *y2;
+void C2F(drawline)(integer *x1, integer *yy1, integer *x2, integer *y2)
 {
   gdk_draw_line(ScilabXgc->Cdrawable,ScilabXgc->wgc, *x1, *yy1, *x2, *y2);
   if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
@@ -2220,18 +1922,7 @@ void C2F(drawline)(x1, yy1, x2, y2)
 /** for i=0 step 2 **/
 /** n is the size of vx and vy **/
 
-void C2F(drawsegments)(str, vx, vy, n, style, iflag, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vx;
-     integer *vy;
-     integer *n;
-     integer *style;
-     integer *iflag;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawsegments)(char *str, integer *vx, integer *vy, integer *n, integer *style, integer *iflag, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer verbose=0,Dnarg,Dvalue[10],NDvalue;
   integer i;
@@ -2266,18 +1957,7 @@ void C2F(drawsegments)(str, vx, vy, n, style, iflag, v7, dv1, dv2, dv3, dv4)
  * as is 10*arsize (arsize) the size of the arrow head in pixels 
  */
 
-void C2F(drawarrows)(str, vx, vy, n, as, style, iflag, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vx;
-     integer *vy;
-     integer *n;
-     integer *as;
-     integer *style;
-     integer *iflag;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawarrows)(char *str, integer *vx, integer *vy, integer *n, integer *as, integer *style, integer *iflag, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer verbose=0,Dnarg,Dvalue[10],NDvalue,i;
   double cos20=cos(20.0*M_PI/180.0);
@@ -2330,18 +2010,7 @@ void C2F(drawarrows)(str, vx, vy, n, as, style, iflag, dv1, dv2, dv3, dv4)
  * if fillvect[i] is < 0 then draw the  rectangle with -fillvect[i] 
  */
 
-void C2F(drawrectangles)(str, vects, fillvect, n, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vects;
-     integer *fillvect;
-     integer *n;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawrectangles)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer i,cpat,verbose=0,num,cd[10];
   xget_pattern(&verbose,&cpat,&num,vdouble);
@@ -2372,18 +2041,8 @@ void C2F(drawrectangles)(str, vects, fillvect, n, v5, v6, v7, dv1, dv2, dv3, dv4
 
 /** Draw one rectangle with current line style **/
 
-void C2F(drawrectangle)(str, x, y, width, height, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x;
-     integer *y;
-     integer *width;
-     integer *height;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawrectangle)(char *str, integer *x, integer *y, integer *width, integer *height, 
+			integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   gdk_draw_rectangle(ScilabXgc->Cdrawable, ScilabXgc->wgc, FALSE,*x,*y,*width,*height);
   if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
@@ -2392,15 +2051,8 @@ void C2F(drawrectangle)(str, x, y, width, height, v6, v7, dv1, dv2, dv3, dv4)
 
 /** fill one rectangle, with current pattern **/
 
-void C2F(fillrectangle)(str, x, y, width, height, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x;
-     integer *y;
-     integer *width;
-     integer *height;
-     integer *v6;
-     integer *v7;
-     double *dv1,*dv2, *dv3, *dv4;
+void C2F(fillrectangle)(char *str, integer *x, integer *y, integer *width, integer *height,
+			integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   gdk_draw_rectangle(ScilabXgc->Cdrawable, ScilabXgc->wgc, TRUE,*x,*y,*width,*height);
   if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
@@ -2415,10 +2067,7 @@ void C2F(fillrectangle)(str, x, y, width, height, v6, v7, dv1, dv2, dv3, dv4)
  *  on each rectangle the average value of z is computed 
  *----------------------------------------------------------------------------------*/
 
-void fill_grid_rectangles(x, y, z, n1, n2)
-     integer x[],y[];
-     double *z;
-     integer n1,n2;
+void fill_grid_rectangles(integer *x, integer *y, double *z, integer n1, integer n2)
 {
   double zmoy,zmax,zmin,zmaxmin;
   integer i,j,verbose=0,whiteid,narg,fill[1],cpat,xz[2];
@@ -2463,12 +2112,7 @@ void fill_grid_rectangles(x, y, z, n1, n2)
  *        P1= x[i],y[j] x[i+1],y[j+1]
  *----------------------------------------------------------------------------------*/
 
-void fill_grid_rectangles1(x, y, z, n1, n2)
-     integer *x;
-     integer *y;
-     double *z;
-     integer n1;
-     integer n2;
+void fill_grid_rectangles1(integer *x, integer *y, double *z, integer n1, integer n2)
 {
   integer i,j,verbose=0,narg,fill[1],cpat,xz[2];
   xget_pattern(&verbose,&cpat,&narg,vdouble);
@@ -2514,18 +2158,8 @@ void fill_grid_rectangles1(x, y, z, n1, n2)
  *----------------------------------------------------------------------------------*/
 
 
-void C2F(fillarcs)(str, vects, fillvect, n, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vects;
-     integer *fillvect;
-     integer *n;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(fillarcs)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5,
+		   integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer i,cpat,verb,num;
   verb=0;
@@ -2560,18 +2194,8 @@ void C2F(fillarcs)(str, vects, fillvect, n, v5, v6, v7, dv1, dv2, dv3, dv4)
  */
 
 
-void C2F(drawarcs)(str, vects, style, n, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vects;
-     integer *style;
-     integer *n;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawarcs)(char *str, integer *vects, integer *style, integer *n, integer *v5,
+		   integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer verbose=0,Dnarg,Dvalue[10],NDvalue,i;
   /* store the current values */
@@ -2589,18 +2213,8 @@ void C2F(drawarcs)(str, vects, style, n, v5, v6, v7, dv1, dv2, dv3, dv4)
 
 /** Draw a single ellipsis or part of it **/
 
-void C2F(drawarc)(str, x, y, width, height, angle1, angle2, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x;
-     integer *y;
-     integer *width;
-     integer *height;
-     integer *angle1;
-     integer *angle2;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawarc)(char *str, integer *x, integer *y, integer *width, integer *height,
+		  integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   gdk_draw_arc(ScilabXgc->Cdrawable, ScilabXgc->wgc,FALSE,*x,*y,*width,*height,*angle1, *angle2);
   if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
@@ -2609,18 +2223,8 @@ void C2F(drawarc)(str, x, y, width, height, angle1, angle2, dv1, dv2, dv3, dv4)
 
 /** Fill a single elipsis or part of it with current pattern **/
 
-void C2F(fillarc)(str, x, y, width, height, angle1, angle2, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *x;
-     integer *y;
-     integer *width;
-     integer *height;
-     integer *angle1;
-     integer *angle2;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(fillarc)(char *str, integer *x, integer *y, integer *width, integer *height,
+		  integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   gdk_draw_arc(ScilabXgc->Cdrawable, ScilabXgc->wgc,TRUE,*x,*y,*width,*height,*angle1, *angle2);
   if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
@@ -2638,18 +2242,9 @@ void C2F(fillarc)(str, x, y, width, height, angle1, angle2, dv1, dv2, dv3, dv4)
  * drawvect[i] >  0 use a line style for polyline i 
  */
 
-void C2F(drawpolylines)(str, vectsx, vectsy, drawvect, n, p, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vectsx;
-     integer *vectsy;
-     integer *drawvect;
-     integer *n;
-     integer *p;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawpolylines)(char *str, integer *vectsx, integer *vectsy, integer *drawvect,
+			integer *n, integer *p, integer *v7, double *dv1, double *dv2,
+			double *dv3, double *dv4)
 { integer verbose=0 ,symb[2],Mnarg,Dnarg,Dvalue[10],NDvalue,i,close;
 /* store the current values */
  xget_mark(&verbose,symb,&Mnarg,vdouble);
@@ -2687,18 +2282,9 @@ void C2F(drawpolylines)(str, vectsx, vectsy, drawvect, n, p, v7, dv1, dv2, dv3, 
  * if fillvect[i] < 0  fill with pattern - fillvect[i]
  **************************************************************/
 
-void C2F(fillpolylines)(str, vectsx, vectsy, fillvect, n, p, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *vectsx;
-     integer *vectsy;
-     integer *fillvect;
-     integer *n;
-     integer *p;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(fillpolylines)(char *str, integer *vectsx, integer *vectsy, integer *fillvect,
+			integer *n, integer *p, integer *v7, double *dv1, double *dv2,
+			double *dv3, double *dv4)
 {
   integer Dnarg,Dvalue[10];
   integer i,cpat,verbose=0,num,close=1,pattern;
@@ -2742,10 +2328,8 @@ void C2F(fillpolylines)(str, vectsx, vectsy, fillvect, n, p, v7, dv1, dv2, dv3, 
  * n is the number of points of the polyline 
  */
 
-void C2F(drawpolyline)(str, n, vx, vy, closeflag, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *n, *vx, *vy, *closeflag, *v6, *v7;
-     double *dv1, *dv2, *dv3, *dv4;
+void C2F(drawpolyline)(char *str, integer *n, integer *vx, integer *vy, integer *closeflag,
+		       integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer n1;
   if (*closeflag == 1) n1 = *n+1;else n1= *n;
@@ -2769,10 +2353,9 @@ void C2F(drawpolyline)(str, n, vx, vy, closeflag, v6, v7, dv1, dv2, dv3, dv4)
  * according to *closeflag : the given vector is a polyline or a polygon 
  */
 
-void C2F(fillpolyline)(str, n, vx, vy, closeflag, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *n, *vx, *vy, *closeflag, *v6, *v7;
-     double *dv1, *dv2, *dv3, *dv4;
+void C2F(fillpolyline)(char *str, integer *n, integer *vx, integer *vy,
+		       integer *closeflag, integer *v6, integer *v7, double *dv1,
+		       double *dv2, double *dv3, double *dv4)
 {
   integer n1;
   if (*closeflag == 1) n1 = *n+1;else n1= *n;
@@ -2796,18 +2379,9 @@ void C2F(fillpolyline)(str, n, vx, vy, closeflag, v6, v7, dv1, dv2, dv3, dv4)
  * by vx and vy (vx[i],vy[i]) 
  */
 
-void C2F(drawpolymark)(str, n, vx, vy, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *n;
-     integer *vx;
-     integer *vy;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(drawpolymark)(char *str, integer *n, integer *vx, integer *vy,
+		       integer *v5, integer *v6, integer *v7, double *dv1,
+		       double *dv2, double *dv3, double *dv4)
 {
   if ( ScilabXgc->CurHardSymb == 0 )
     {
@@ -2843,13 +2417,12 @@ void C2F(drawpolymark)(str, n, vx, vy, v5, v6, v7, dv1, dv2, dv3, dv4)
 
 static struct BCG *AddNewWindow __PARAMS((WindowList **));
 
-static struct BCG *AddNewWindowToList()
+static struct BCG *AddNewWindowToList(void)
 {
   return( AddNewWindow(&The_List));
 }
 
-static struct BCG *AddNewWindow(listptr)
-     WindowList **listptr;
+static struct BCG *AddNewWindow(WindowList **listptr)
 { 
   if ( *listptr == (WindowList *) NULL)
     {
@@ -2883,8 +2456,7 @@ static struct BCG *AddNewWindow(listptr)
 
 /* delete a graphic window  **/
 
-void DeleteSGWin(intnum)
-     integer intnum;
+void DeleteSGWin(integer intnum)
 { 
   int curwin;
   if ( ScilabXgc == (struct BCG *) 0) return;
@@ -2920,8 +2492,7 @@ void DeleteSGWin(intnum)
  *   [2] del_window_scale(intnum); 
  ************************************************/
 
-void DeleteWindowToList(num)
-     integer num;
+void DeleteWindowToList(integer num)
 {
   WindowList *L1,*L2;
   L1 = The_List;
@@ -2965,8 +2536,7 @@ void DeleteWindowToList(num)
  * Get Window number wincount ( or 0 ) 
  ********************************************/
 
-GtkWidget *GetWindowNumber(wincount)
-     int wincount;
+GtkWidget *GetWindowNumber(int wincount)
 {
   struct BCG *bcg;
   bcg = GetWindowXgcNumber(wincount);
@@ -2983,15 +2553,12 @@ GtkWidget *GetWindowNumber(wincount)
 
 static struct BCG *GetWinXgc __PARAMS((WindowList *,integer));
 
-struct BCG *GetWindowXgcNumber(i)
-     integer i;
+struct BCG *GetWindowXgcNumber(integer i)
 { 
   return( GetWinXgc(The_List,Max(0,i)));
 }
 
-static struct BCG *GetWinXgc(listptr, i)
-     WindowList *listptr;
-     integer i;
+static struct BCG *GetWinXgc(WindowList *listptr, integer i)
 {
   if (listptr == (WindowList  *) NULL)
     {
@@ -3014,8 +2581,7 @@ static struct BCG *GetWinXgc(listptr, i)
  * Get BGWindow number wincount ( or 0 ) 
  ********************************************/
 
-GtkWidget *GetBGWindowNumber(wincount)
-     int wincount;
+GtkWidget *GetBGWindowNumber(int wincount)
 {
   struct BCG *bcg;
   bcg = GetWindowXgcNumber(wincount);
@@ -3033,8 +2599,7 @@ GtkWidget *GetBGWindowNumber(wincount)
  * flag == 0 ==> just get the Number Num 
  ***************************/
 
-void C2F(getwins)(Num,Ids,flag)
-     integer *Num,Ids[],*flag;
+void C2F(getwins)(integer *Num, integer *Ids, integer *flag)
 {
   WindowList *listptr = The_List;
   *Num = 0;
@@ -3062,7 +2627,7 @@ void C2F(getwins)(Num,Ids,flag)
  * or -1 if no windows 
  ***************************/
 
-int GetWinsMaxId()
+int GetWinsMaxId(void)
 {
   WindowList *listptr = The_List;
   int Num = -1;
@@ -3079,8 +2644,7 @@ int GetWinsMaxId()
  * Routines for initialization : string is a display name 
  ********************************************/
 
-void set_c(col)
-     integer col;
+void set_c(integer col)
 {
   int value = AluStruc_[ScilabXgc->CurDrawFunction].id;
   GdkColor temp = {0,0,0,0};
@@ -3109,10 +2673,9 @@ void set_c(col)
  * available window number 
  */
 
-void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *string;
-     integer *v2, *v3, *v4, *v5, *v6, *v7;
-     double *dv1, *dv2, *dv3, *dv4;
+void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
+		      integer *v5, integer *v6, integer *v7, double *dv1, 
+		      double *dv2, double *dv3, double *dv4)
 { 
   struct BCG *NewXgc ;
   static integer EntryCounter = 0;
@@ -3151,18 +2714,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 
 /* writes a message in the info widget associated to the current scilab window */
 
-void C2F(xinfo)(message, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *message;
-     integer *v2;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+void C2F(xinfo)(char *message, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CinfoW != NULL)
     {
@@ -3216,11 +2768,7 @@ void wininfo(va_alist) va_dcl
  *  to come back to the default graphic state}
  *---------------------------------------------------------*/
 
-static void InitMissileXgc (v1, v2, v3, v4)
-     integer *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+static void InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
 { 
   integer i,j;
   ScilabXgc->IDLastPattern = GREYNUMBER - 1;
@@ -3270,7 +2818,7 @@ static void InitMissileXgc (v1, v2, v3, v4)
  * XXXX : remettre le foreground 
  */
 
-static void ResetScilabXgc ()
+static void ResetScilabXgc (void)
 { 
   integer i,j, clip[4];
   i= ScilabXgc->fontId;
@@ -3353,18 +2901,7 @@ static void ResetScilabXgc ()
   
 -------------------------------------------------------------*/
 
-void C2F(drawaxis)(str, alpha, nsteps, v2, initpoint, v6, v7, size, dx2, dx3, dx4)
-     char *str;
-     integer *alpha;
-     integer *nsteps;
-     integer *v2;
-     integer *initpoint;
-     integer *v6;
-     integer *v7;
-     double *size;
-     double *dx2;
-     double *dx3;
-     double *dx4;
+void C2F(drawaxis)(char *str, integer *alpha, integer *nsteps, integer *v2, integer *initpoint, integer *v6, integer *v7, double *size, double *dx2, double *dx3, double *dx4)
 { integer i;
  double xi,yi,xf,yf;
  double cosal,sinal;
@@ -3400,18 +2937,7 @@ void C2F(drawaxis)(str, alpha, nsteps, v2, initpoint, v6, v7, size, dx2, dx3, dx
  *   add a box around the string, only if slope =0}
  *-----------------------------------------------------*/
 
-void C2F(displaynumbers)(str, x, y, v1, v2, n, flag, z, alpha, dx3, dx4)
-     char *str;
-     integer *x;
-     integer *y;
-     integer *v1;
-     integer *v2;
-     integer *n;
-     integer *flag;
-     double *z;
-     double *alpha;
-     double *dx3;
-     double *dx4;
+void C2F(displaynumbers)(char *str, integer *x, integer *y, integer *v1, integer *v2, integer *n, integer *flag, double *z, double *alpha, double *dx3, double *dx4)
 {
   integer i ;
   static char buf[56];
@@ -3422,10 +2948,7 @@ void C2F(displaynumbers)(str, x, y, v1, v2, n, flag, z, alpha, dx3, dx4)
     }
 }
 
-void C2F(bitmap)(string, w, h)
-     char *string;
-     integer w;
-     integer h;
+void C2F(bitmap)(char *string, integer w, integer h)
 {
   /* 
   static XImage *setimage;
@@ -3489,8 +3012,7 @@ FontAlias fonttab[] ={
   {(char *) NULL,( char *) NULL}
 };
 
-int fontidscale(fontsize)
-     int fontsize;
+int fontidscale(int fontsize)
 {
   int nnsiz,i;
   int isiz = i_size_[fontsize];
@@ -3504,11 +3026,7 @@ int fontidscale(fontsize)
   return FONTMAXSIZE -1;
 }
 
-static void xset_font(fontid, fontsize, v3, v4)
-     integer *fontid;
-     integer *fontsize;
-     integer *v3;
-     integer *v4;
+static void xset_font(integer *fontid, integer *fontsize, integer *v3, integer *v4)
 { 
   integer i,fsiz,fsiz_sca;
   i = Min(FONTNUMBER-1,Max(*fontid,0));
@@ -3538,11 +3056,7 @@ static void xset_font(fontid, fontsize, v3, v4)
 
 /** To get the  id and size of the current font **/
 
-static void  xget_font(verbose, font, nargs,dummy)
-     integer *verbose;
-     integer *font;
-     integer *nargs;
-     double *dummy;
+static void  xget_font(integer *verbose, integer *font, integer *nargs, double *dummy)
 {
   *nargs=2;
   font[0]= ScilabXgc->fontId ;
@@ -3558,11 +3072,7 @@ static void  xget_font(verbose, font, nargs,dummy)
 
 /** To set the current mark **/
 
-static void xset_mark(number, size, v3, v4)
-     integer *number;
-     integer *size;
-     integer *v3;
-     integer *v4;
+static void xset_mark(integer *number, integer *size, integer *v3, integer *v4)
 { 
   ScilabXgc->CurHardSymb = Max(Min(SYMBOLNUMBER-1,*number),0);
   ScilabXgc->CurHardSymbSize = Max(Min(FONTMAXSIZE-1,*size),0);
@@ -3570,11 +3080,7 @@ static void xset_mark(number, size, v3, v4)
 
 /** To get the current mark id **/
 
-static void xget_mark(verbose, symb, narg,dummy)
-     integer *verbose;
-     integer *symb;
-     integer *narg;
-     double *dummy;
+static void xget_mark(integer *verbose, integer *symb, integer *narg, double *dummy)
 {
   *narg =2 ;
   symb[0] = ScilabXgc->CurHardSymb ;
@@ -3598,10 +3104,7 @@ static void xget_mark(verbose, symb, narg,dummy)
  *   to X11 
  */
 
-void C2F(loadfamily)(name, j, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *name;
-     integer *j, *v3, *v4, *v5, *v6, *v7;
-     double *dv1, *dv2, *dv3, *dv4;
+void C2F(loadfamily)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer i,flag=1 ;
   /** generic name with % **/
@@ -3652,9 +3155,7 @@ void C2F(loadfamily)(name, j, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 
 static char *size_n_[] = { "8" ,"10","12","14","18","24"};
 
-static void C2F(loadfamily_n)(name, j)
-     char *name;
-     integer *j;
+static void C2F(loadfamily_n)(char *name, integer *j)
 { 
   char name1[200];
   integer i,flag=1 ;
@@ -3682,10 +3183,7 @@ static void C2F(loadfamily_n)(name, j)
     strcpy(FontInfoTab_[*j].fname,"fixed");
 }
 
-void C2F(queryfamily)(name, j, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *name;
-     integer *j, *v3,*v4, *v5,*v6,*v7;
-     double *dv1,*dv2,*dv3, *dv4;
+void C2F(queryfamily)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer i ;
   name[0]='\0';
@@ -3702,7 +3200,7 @@ void C2F(queryfamily)(name, j, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   *j=FONTNUMBER;
 }
 
-static void LoadFonts()
+static void LoadFonts(void)
 {
   integer fnum;
   C2F(loadfamily)("CourR",(fnum=0,&fnum),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
@@ -3731,7 +3229,7 @@ static char Marks[] = {
   (char)0xe0,(char)0x44,(char)0xd1,(char)0xa7,(char)0x4f};
 
 static void 
-LoadSymbFonts()
+LoadSymbFonts(void)
 { 
   integer j, i;
   /** Symbol Font is loaded under Id : 1 **/
@@ -3771,21 +3269,19 @@ LoadSymbFonts()
  * symbol at point (x,y) 
  */
 
-int C2F(CurSymbXOffset)()
+int C2F(CurSymbXOffset)(void)
 {
   return(-(ListOffset_[ScilabXgc->CurHardSymbSize].xoffset)
 	 [ScilabXgc->CurHardSymb]);
 }
 
-int C2F(CurSymbYOffset)()
+int C2F(CurSymbYOffset)(void)
 {
   return((ListOffset_[ScilabXgc->CurHardSymbSize].yoffset)
 	 [ScilabXgc->CurHardSymb]);
 }
 
-static void DrawMark(x, y)
-     integer *x;
-     integer *y;
+static void DrawMark(integer *x, integer *y)
 { 
   char str[1];
   str[0]=Marks[ScilabXgc->CurHardSymb];
@@ -3803,10 +3299,9 @@ static void DrawMark(x, y)
 
 static GdkPoint *gtk_points = NULL;
 
-static GdkPoint *gtk_get_xpoints() { return(gtk_points); }
+static GdkPoint *gtk_get_xpoints(void) { return(gtk_points); }
 
-static int gtk_store_points(n, vx, vy, onemore)
-     integer n,*vx, *vy, onemore;
+static int gtk_store_points(integer n, integer *vx, integer *vy, integer onemore)
 { 
   integer i,n1 = ( onemore == 1) ? n+1 : n;
   if (GtkReallocVector(n1) == 1)
@@ -3826,8 +3321,7 @@ static int gtk_store_points(n, vx, vy, onemore)
 
 #define MESSAGE5 "Can't re-allocate point vector" 
 
-static int GtkReallocVector(n)
-     integer n;
+static int GtkReallocVector(integer n)
 {
   if (( gtk_points = graphic_alloc(8,n,sizeof(GdkPoint))) == 0) 
     { 
@@ -3840,8 +3334,7 @@ static int GtkReallocVector(n)
  * Clipping functions 
  *----------------------------------------------------------*/
 
-static void XDroutine(npts)
-     int npts;
+static void XDroutine(int npts)
 {
   gdk_draw_lines(ScilabXgc->Cdrawable,ScilabXgc->wgc, gtk_get_xpoints(), npts);
   if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
@@ -3864,9 +3357,7 @@ static integer xleft,xright,ybot,ytop;
  * 0 is returned if inside.
  */
 
-static int clip_point(x, y)
-     integer x;
-     integer y;
+static int clip_point(integer x, integer y)
 {
   integer ret_val = 0;
 
@@ -3887,11 +3378,7 @@ static int clip_point(x, y)
  *	4  : segment in 
  */
 
-void  set_clip_box(xxleft, xxright, yybot, yytop)
-     integer xxleft;
-     integer xxright;
-     integer yybot;
-     integer yytop;
+void  set_clip_box(integer xxleft, integer xxright, integer yybot, integer yytop)
 {
   xleft=xxleft;
   xright=xxright;
@@ -3899,16 +3386,7 @@ void  set_clip_box(xxleft, xxright, yybot, yytop)
   ytop=yytop;
 }
 
-void clip_line(x1, yy1, x2, y2, x1n, yy1n, x2n, y2n, flag)
-     integer x1;
-     integer yy1;
-     integer x2;
-     integer y2;
-     integer *x1n;
-     integer *yy1n;
-     integer *x2n;
-     integer *y2n;
-     integer *flag;
+void clip_line(integer x1, integer yy1, integer x2, integer y2, integer *x1n, integer *yy1n, integer *x2n, integer *y2n, integer *flag)
 {
   integer x, y, dx, dy, x_intr[2], y_intr[2], count, pos1, pos2;
   *x1n=x1;*yy1n=yy1;*x2n=x2;*y2n=y2;*flag=4;
@@ -3999,19 +3477,12 @@ void clip_line(x1, yy1, x2, y2, x1n, yy1n, x2n, y2n, flag)
   }
 }
 
-static void change_points(i, x, y)
-     integer i;
-     integer x;
-     integer y;
+static void change_points(integer i, integer x, integer y)
 {
   gtk_points[i].x=(gint16)x;   gtk_points[i].y=(gint16)y;
 }
 
-static void MyDraw(iib, iif, vx, vy)
-     integer iib;
-     integer iif;
-     integer *vx;
-     integer *vy;
+static void MyDraw(integer iib, integer iif, integer *vx, integer *vy)
 {
   integer x1n,y1n,x11n,y11n,x2n,y2n,flag2=0,flag1=0;
   integer npts;
@@ -4029,10 +3500,7 @@ static void MyDraw(iib, iif, vx, vy)
   }
 }
 
-static void My2draw(j, vx, vy)
-     integer j;
-     integer *vx;
-     integer *vy;
+static void My2draw(integer j, integer *vx, integer *vy)
 {
   /** The segment is out but can cross the box **/
   integer vxn[2],vyn[2],flag;
@@ -4054,11 +3522,7 @@ static void My2draw(j, vx, vy)
  *  or zero if the whole polyline is out 
  */
 
-integer first_in(n, ideb, vx, vy)
-     integer n;
-     integer ideb;
-     integer *vx;
-     integer *vy;
+integer first_in(integer n, integer ideb, integer *vx, integer *vy)
 {
   integer i;
   for (i=ideb  ; i < n ; i++)
@@ -4080,11 +3544,7 @@ integer first_in(n, ideb, vx, vy)
  *  or zero if the whole polyline is out 
  */
 
-integer first_out(n, ideb, vx, vy)
-     integer n;
-     integer ideb;
-     integer *vx;
-     integer *vy;
+integer first_out(integer n, integer ideb, integer *vx, integer *vy)
 {
   integer i;
   for (i=ideb  ; i < n ; i++)
@@ -4100,11 +3560,7 @@ integer first_out(n, ideb, vx, vy)
   return(-1);
 }
 
-static void C2F(analyze_points)(n, vx, vy, onemore)
-     integer n;
-     integer *vx;
-     integer *vy;
-     integer onemore;
+static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore)
 { 
   integer iib,iif,ideb=0,vxl[2],vyl[2];
   integer verbose=0,wd[2],narg;
@@ -4178,7 +3634,7 @@ static void C2F(analyze_points)(n, vx, vy, onemore)
   }
 }
 
-int CheckScilabXgc()
+int CheckScilabXgc(void)
 {
   return( ScilabXgc != (struct BCG *) 0);
 }
@@ -4302,11 +3758,9 @@ static gint expose_event(GtkWidget *widget, GdkEventExpose *event, gpointer data
 
 #define R_RGB(r,g,b)	((r)|((g)<<8)|((b)<<16))
 
-
-
-/* create window etc */
 static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
 {
+  static char gwin_name[100];
   gint iw, ih;
   GtkWidget *scrolled_window;
   GtkWidget *vbox;
@@ -4314,20 +3768,19 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
   dd->drawing = NULL;
   dd->wgc = NULL;
   dd->gcursor = NULL;
-  /* initialise Gtk : performed in main  */
-  /* gtk_init (&argc, &argv); */
-  /* initialise colour */
   gdk_rgb_init();
   gtk_widget_push_visual(gdk_rgb_get_visual());
   gtk_widget_push_colormap(gdk_rgb_get_cmap());
 
   /* create window etc */
+
   dd->CWindowWidth = iw = w ; /*  / pixelWidth(); */
   dd->CWindowHeight = ih = h; /*  pixelHeight(); */
 
   dd->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  sprintf( gwin_name, "Graphic Window %d", dd->CurWindow );
+  gtk_window_set_title (GTK_WINDOW (dd->window),  gwin_name);
 
-  gtk_widget_set_name (dd->window, "Test Input");
   gtk_window_set_policy(GTK_WINDOW(dd->window), TRUE, TRUE, FALSE);
 
   gtk_widget_realize(dd->window);
@@ -4346,13 +3799,13 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
 
   /* create a new scrolled window. */
   dd->scrolled = scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-  gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 10);
+  gtk_container_set_border_width (GTK_CONTAINER (scrolled_window),0);
 
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
   /* fix min size of the scrolled window */
-  gtk_widget_set_usize(scrolled_window,300,200);
+  gtk_widget_set_usize(scrolled_window,iw,ih);
   
   /* place and realize the scrolled window  */
 
@@ -4393,7 +3846,7 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
 
   /* place and realize the drawing area */
   gtk_scrolled_window_add_with_viewport (
-    GTK_SCROLLED_WINDOW (scrolled_window),dd->drawing);
+      GTK_SCROLLED_WINDOW (scrolled_window),dd->drawing);
   gtk_widget_realize(dd->drawing);
 
   /* connect to signal handlers, etc */

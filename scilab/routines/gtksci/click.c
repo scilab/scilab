@@ -62,6 +62,10 @@ void reset_scig_click_handler()
   scig_click_handler = scig_click_handler_none;
 }
 
+/* A reprendre avec une vraie queue */ 
+
+
+
 int PushClickQueue(int win,int x,int y,int ibut,
 		   int motion,int release) 
 {
@@ -120,8 +124,8 @@ int CheckClickQueue(int *win,int *x,int *y,int *ibut)
 	      ClickBuf[j-1].motion =  ClickBuf[j].motion ;
 	      ClickBuf[j-1].release = ClickBuf[j].release ;
 	    }
-      lastc--;
-      return(1);
+	  lastc--;
+	  return(1);
 	}
     }
   return(0);

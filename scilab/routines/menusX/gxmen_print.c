@@ -76,7 +76,7 @@ typedef struct _lp_status {
   int in_use;        /* menu already in use */
 } lp_status ;
 
-static lp_status current_lp_status = { 0,0,0,0,0}; 
+static lp_status current_lp_status = { 0,1,0,0,0}; 
 
 void color_menu_select   ( GtkWidget *item, guint pos ) { current_lp_status.color = pos;} 
 void portrait_menu_select( GtkWidget *item, guint pos ) { current_lp_status.portrait = pos;} 
@@ -91,7 +91,7 @@ static int menu_export (int *colored,int *orient)
 {
   static char *color_items_name[]={ "color", "black and white"};
   static int  ncolor_items=2;
-  static char *portrait_items_name[]={ "portrait", "landscape"};
+  static char *portrait_items_name[]={"landscape", "portrait"};
   static int  nportrait_items=2;
 
   static GtkWidget *window1 = NULL;
@@ -230,7 +230,7 @@ static int menu_print (int *colored,int *orient)
 {
   static char *color_items_name[]={ "color", "black and white"};
   static int  ncolor_items=2;
-  static char *portrait_items_name[]={ "portrait", "landscape"};
+  static char *portrait_items_name[]={ "landscape", "portrait"};
   static int  nportrait_items=2;
 
   static GtkWidget *window1 = NULL;

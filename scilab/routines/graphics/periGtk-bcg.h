@@ -79,10 +79,14 @@ typedef struct BCG
 #define CoordModeOrigin 0
 #define CoordModePrevious 1
 
+void * graphic_initial_menu(int winid);
+
 /** jpc_SGraph.c **/
 
 extern int CheckClickQueue   __PARAMS((integer *,integer *x,integer *y,integer *ibut));
 extern int ClearClickQueue  __PARAMS((integer));
+extern int PushClickQueue __PARAMS((int,int ,int y,int ibut,int m,int r));
+
 
 /** jpc_Xloop.c **/
 

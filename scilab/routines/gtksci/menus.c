@@ -28,7 +28,7 @@ void menu_entry_show(menu_entry *m);  /* only used for debug */
 extern void create_scilab_about(void); 
 
 extern char GetDriver();
-static void * sci_window_initial_menu() ;
+static void *sci_window_initial_menu() ;
 static void sci_menu_to_item_factory(GtkItemFactory *ifactory,menu_entry *m);
 static void sci_menu_delete(menu_entry **m, char *name) ;
 static int sci_menu_add(menu_entry **m,int winid,char *name,char** entries,int ne, 
@@ -37,12 +37,15 @@ static menu_entry * sci_menu_set_status(menu_entry *m,int winid,char *name,
 					int subid,int status);
 static int call_predefined_callbacks(char *name, int winid);
 
+static void sci_factory_add_menu_entry(GtkItemFactory *ifactory,menu_entry *m);
+static void sci_factory_add_last_menu_entry(GtkItemFactory *ifactory,menu_entry *m);
 /*--------------------------------------------------------------
  * main menu. i.e the menu of the main scilab window 
  *            this menu is attached to a zterm through a plug widget
  *--------------------------------------------------------------*/
 
 static menu_entry *main_menu_entries = NULL;
+static GtkItemFactory  *main_item_factory= NULL;
 
 void create_main_menu() 
 {
@@ -50,20 +53,13 @@ void create_main_menu()
   static int first = 0; 
   static GtkWidget *Plug;
   static GtkItemFactory *item_factory;
-  static GtkAccelGroup *accel_group = NULL ; 
+  GtkAccelGroup *accel_group = NULL ; 
   char * plug_info = getenv("SCIWIN");
 
   if ( plug_info == NULL) return ;
-  /* XXXX 
-  if ( first != 0 ) 
-    {
-      gtk_window_remove_accel_group(GTK_WINDOW (Plug), accel_group);
-    }
-  accel_group = gtk_accel_group_new ();
-  */ 
-  
-  item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, "<main>", 
-				       accel_group);
+
+  main_item_factory= item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, "<main>", 
+							  accel_group);
   
   if ( first == 0 ) {
     Plug = gtk_plug_new(atoi(getenv("SCIWIN")));
@@ -101,80 +97,23 @@ static char gwin_name[100];
 
 void MenuFixCurrentWin(int ivalue)
 {
+  int w=-1;
   char *graphic_entries[] = { "Create or Select||$gwselect",
 			      "Raise||$gwraise", 
 			      "Delete||$gwdelete",
 			      "+||$gwplus" ,
 			      "-||$gwminus" } ;
   if ( ivalue == lab_count ) return ; 
+  if ( main_item_factory == NULL ) return;
   sprintf( gwin_name, "Graphic Window %d", (int) lab_count );
-  sci_menu_delete(&main_menu_entries,gwin_name);
+  C2F(delbtn)(&w, gwin_name);
   sprintf( gwin_name, "Graphic Window %d", (int) ivalue );
   lab_count = ivalue;
   sci_menu_add(&main_menu_entries,-1,gwin_name,
 	       graphic_entries,5,0,"$graphic_window");
-  create_main_menu();
+  sci_factory_add_last_menu_entry(main_item_factory,main_menu_entries);
 }
 
-/* 
-
-static void 
-Countp(widget, closure, callData)
-     Widget widget;
-     XtPointer closure, callData;
-{
-  Arg arg[1];
-  sprintf( gwin_name, "Graphic Window %d ", (int) ++lab_count );
-  XtSetArg( arg[0], XtNlabel, gwin_name );
-  XtSetValues( (Widget)closure, arg, ONE );
-}
-
-static void 
-Countm(widget, closure, callData)
-     Widget widget;
-     XtPointer closure, callData;
-{
-   Arg arg[1];
-   lab_count = (lab_count == 0) ? 0 : lab_count-1;
-   sprintf( gwin_name, "Graphic Window %d ", (int) lab_count);
-   XtSetArg( arg[0], XtNlabel, gwin_name );
-   XtSetValues( (Widget)closure, arg, ONE );
-}
-
-static void 
-SendCountSet(widget, closure, callData)
-     Widget widget;
-     XtPointer closure, callData;
-{
-  char c ;
-  if ((c=GetDriver())=='R' || c == 'X' || c == 'W')
-    {
-      C2F(dr)("xset","window",&lab_count,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    };
-}
-
-static void 
-SendCountRaise(widget, closure, callData)
-     Widget widget;
-     XtPointer closure, callData;
-{
-  char c ;
-  if ((c=GetDriver())=='R' || c == 'X' || c == 'W')
-    {
-      / * C2F(dr)("xsetdr","Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);* /
-      C2F(dr)("xset","window",&lab_count,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(dr)("xselect","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    };
-}
-
-static void 
-SendCountDelete(widget, closure, callData)
-     Widget widget;
-     XtPointer closure, callData;
-{
-  C2F(deletewin)(&lab_count);
-}
-*/
 
 /*--------------------------------------------------------------
  * Graphic window menu 
@@ -182,12 +121,10 @@ SendCountDelete(widget, closure, callData)
 
 void create_graphic_window_menu(struct BCG *dd)
 {
-  static GtkAccelGroup *accel_group = NULL; 
+  GtkAccelGroup *accel_group=  gtk_accel_group_new ();
 
-  if ( accel_group != NULL ) 
-    gtk_window_remove_accel_group(GTK_WINDOW (dd->window), accel_group);
-
-  accel_group = gtk_accel_group_new ();
+  /* Attach the new accelerator group to the window. */
+  gtk_window_add_accel_group (GTK_WINDOW (dd->window), accel_group);
 
   dd->item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, "<main>", 
 					   accel_group);
@@ -197,17 +134,8 @@ void create_graphic_window_menu(struct BCG *dd)
   
   sci_menu_to_item_factory(dd->item_factory,dd->menu_entries);
   
-  /* Attach the new accelerator group to the window. */
-
-  gtk_window_add_accel_group (GTK_WINDOW (dd->window), accel_group);
-  
   /* Finally, return the actual menu bar created by the item factory. */ 
 
-  if ( dd->menubar != NULL) 
-    {
-      /* free old menu bar */
-      gtk_widget_destroy(dd->menubar);
-    }
   dd->menubar = gtk_item_factory_get_widget (dd->item_factory, "<main>");
   gtk_box_pack_start (GTK_BOX (dd->vbox),dd->menubar, FALSE, TRUE, 0);
   gtk_widget_show (dd->menubar);
@@ -225,22 +153,29 @@ void create_graphic_window_menu(struct BCG *dd)
 
 int C2F(delbtn)(int *win_num,char *button_name)
 {
+  GtkItemFactory  *item_factory;
+  static char btn[64],*p;
+  p = btn ; 
+  *(p++) = '/';
+  while ( *button_name != '\0' ) {
+    if ( *button_name == '/') break ; 
+    else if ( *button_name == '_') button_name++ ; 
+    else { *(p++)= *(button_name++);}
+  }
+  *p = '\0';
   if ( *win_num == -1 ) 
     {
+      item_factory = main_item_factory; 
       sci_menu_delete(&main_menu_entries,button_name);
-      create_main_menu();
     }
   else 
     {
       BCG *dd = GetWindowXgcNumber(*win_num);
-      if ( dd == NULL) return 0;
-      if ( dd->menu_entries != NULL) 
-	{
-	  /* changes the stored menus_entries */
-	  sci_menu_delete(&dd->menu_entries,button_name);
-	  create_graphic_window_menu(dd);
-	}
+      if ( dd == NULL || dd->item_factory == NULL) return 0;
+      item_factory = dd->item_factory;
+      sci_menu_delete(&dd->menu_entries,button_name);
     }
+  gtk_item_factory_delete_item (item_factory,btn);
   return 0;
 }
 
@@ -300,27 +235,26 @@ void AddMenu(win_num, button_name, entries, ne, typ, fname, ierr)
   if ( *win_num == -1 ) 
     {
       /* Scilab main menu */ 
+      if ( main_item_factory == NULL ) return;
       if ( sci_menu_add(&main_menu_entries,*win_num,button_name,entries,*ne,
 			*typ,fname) == 1 ) 
 	{
 	  *ierr=1;
 	  return ;
 	}
-      create_main_menu();
+      sci_factory_add_last_menu_entry(main_item_factory,main_menu_entries);
     }
   else 
     {
       BCG *dd = GetWindowXgcNumber(*win_num);
-      if ( dd == NULL) return;
+      if ( dd == NULL || dd->item_factory == NULL ) return;
       if ( sci_menu_add(&dd->menu_entries,*win_num,button_name,entries,
 			*ne,*typ,fname) == 1 ) 
 	{
 	  *ierr=1;
 	  return ;
 	}
-      menu_entry_show(dd->menu_entries);/* XXXXX */
-  
-      create_graphic_window_menu (dd);
+      sci_factory_add_last_menu_entry(dd->item_factory,dd->menu_entries);
     }
 }
 
@@ -334,11 +268,22 @@ void SetUnsetMenu(win_num, button_name, ne,flag)
      integer *ne;
      int flag;
 { 
-  menu_entry *e;
-  /* reste a voir le cas du menu General Scilab XXXXXXXX */
-  BCG *dd = GetWindowXgcNumber(*win_num);
-  if ( dd == NULL) return;
-  e = sci_menu_set_status(dd->menu_entries,*win_num,button_name,*ne,flag);
+  menu_entry *e,*entries;
+  GtkItemFactory  *item_factory;
+  if ( *win_num == -1 ) 
+    {
+      item_factory = main_item_factory; 
+      entries =main_menu_entries;
+    }
+  else 
+    {
+      BCG *dd = GetWindowXgcNumber(*win_num);
+      if ( dd == NULL || dd->item_factory == NULL) return ;
+      item_factory = dd->item_factory;
+      entries = dd->menu_entries;
+    }
+  
+  e = sci_menu_set_status(entries,*win_num,button_name,*ne,flag);
   if ( e != NULL) 
     {
       GtkWidget *w;
@@ -376,7 +321,7 @@ void SetUnsetMenu(win_num, button_name, ne,flag)
 	    }
 	  *pbuf = '\0';
 	}
-      w = gtk_item_factory_get_widget (dd->item_factory,buf);
+      w = gtk_item_factory_get_widget (item_factory,buf);
       /* rend le menu non sensitif */
       if ( w != NULL) 
 	{
@@ -437,7 +382,6 @@ static int is_menu_name(char *name,char *name1)
   if ( *name1 != 0) return 1;
   return 0;
 }
-      
 
 void menu_entry_show(menu_entry *m)
 {
@@ -639,7 +583,7 @@ static void sci_menu_delete(menu_entry **m, char *name)
 
 
 static menu_entry * sci_menu_set_status(menu_entry *m,int winid,char *name,
-				 int subid,int status)
+					int subid,int status)
 {  
   menu_entry *loc = m ;
   while ( loc != NULL) 
@@ -716,43 +660,68 @@ static void sci_menu_default_callback (gpointer  callback_data,
 
 static void sci_menu_to_item_factory(GtkItemFactory *ifactory,menu_entry *m)
 {
-  char buf_path[128];
-  static GtkItemFactoryEntry entry = { NULL,NULL, sci_menu_default_callback,0,NULL};
-
   while ( m != NULL) 
     {
-      sprintf(buf_path,"/%s",m->name);
-      entry.path = buf_path;
-      entry.accelerator = m->accel;
-      if ( m->subs == NULL) 
-	{
-	  entry.item_type = "<Item>";
-	  gtk_item_factory_create_item(ifactory,&entry,(void *)m,1);
-	}
-      else 
-	{
-	  menu_entry *loc;
-	  if ( is_menu_name(m->name,"Help")==0) 
-	    entry.item_type = "<LastBranch>";
-	  else 
-	    entry.item_type = "<Branch>";
-	  entry.callback = NULL;
-	  gtk_item_factory_create_item(ifactory,&entry,(void *)m,1);
-	  loc =  m->subs ; 
-	  entry.item_type = "<Item>";
-	  while ( loc != NULL) 
-	    {
-	      sprintf(buf_path,"/%s/%s",m->name,loc->name);
-	      entry.path = buf_path;
-	      entry.accelerator = loc->accel;
-	      entry.callback = sci_menu_default_callback;
-	      gtk_item_factory_create_item(ifactory,&entry,(void*)loc,1);
-	      loc = loc->next;
-	    }
-	}
+      sci_factory_add_menu_entry(ifactory,m);
       m= m->next;
     }
 }
+
+/*-------------------------------------------------------------------
+ * build items associated to the last menu_entry contained in m 
+ * and add them in the factory ifactory 
+ *-------------------------------------------------------------------*/
+
+static void sci_factory_add_last_menu_entry(GtkItemFactory *ifactory,menu_entry *m)
+{
+  if ( m == NULL ) return ;
+  while ( m->next != NULL) m = m->next ; 
+  sci_factory_add_menu_entry(ifactory,m);
+}
+
+
+/*-------------------------------------------------------------------
+ * build items associated to the first menu_entry contained in m 
+ * and add them in the factory ifactory 
+ *-------------------------------------------------------------------*/
+
+static void sci_factory_add_menu_entry(GtkItemFactory *ifactory,menu_entry *m)
+{
+  char buf_path[128];
+  static GtkItemFactoryEntry entry = { NULL,NULL, sci_menu_default_callback,0,NULL};
+  if ( m == NULL ) return ;
+  sprintf(buf_path,"/%s",m->name);
+  entry.path = buf_path;
+  entry.accelerator = m->accel;
+  if ( m->subs == NULL) 
+    {
+      entry.item_type = "<Item>";
+      gtk_item_factory_create_item(ifactory,&entry,(void *)m,1);
+    }
+  else 
+    {
+      menu_entry *loc;
+      if ( is_menu_name(m->name,"Help")==0) 
+	entry.item_type = "<LastBranch>";
+      else 
+	entry.item_type = "<Branch>";
+      entry.callback = NULL;
+      gtk_item_factory_create_item(ifactory,&entry,(void *)m,1);
+      loc =  m->subs ; 
+      entry.item_type = "<Item>";
+      while ( loc != NULL) 
+	{
+	  sprintf(buf_path,"/%s/%s",m->name,loc->name);
+	  entry.path = buf_path;
+	  entry.accelerator = loc->accel;
+	  entry.callback = sci_menu_default_callback;
+	  gtk_item_factory_create_item(ifactory,&entry,(void*)loc,1);
+	  loc = loc->next;
+	}
+    }
+}
+
+
 
 
 void * graphic_initial_menu(int winid) {
@@ -1142,6 +1111,7 @@ static int call_predefined_callbacks(char *name, int winid)
   else if (strcmp(name,"$resume")== 0)  StoreCommand("resume");
   else if (strcmp(name,"$abort")== 0)   StoreCommand("abort");
   else if (strcmp(name,"$restart")== 0) StoreCommand("exec scilab.star;");
+  else if (strcmp(name,"$quit")== 0) StoreCommand("quit;");
   else return 0;
   return 1;
 }
