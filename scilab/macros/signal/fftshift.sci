@@ -6,7 +6,8 @@ function x = fftshift(x,job)
   if job=='all' then
     for sk=size(x),ind($+1)=fun(sk),end
   else
-    for sk=size(x),ind($+1)=:,end;ind(job)=fun(sk(job))
+    for sk=size(x),ind($+1)=:,end;
+    ind(job)=fun(size(x,job))
   end
   x=x(ind(:))
 endfunction
