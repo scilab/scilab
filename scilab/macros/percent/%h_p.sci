@@ -202,21 +202,12 @@ function %h_p(h)
 	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
 	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
 	 "flag: "+sci2exp(h.flag,0)
-	]
-      case "Plot3d1" 
-      t=[t;
-	 "foreground: "+string(h.foreground)
-	 "thickness: "+string(h.thickness)
-	 "visible: "+string(h.visible) 
-	 "clip_state: "+string(h.clip_state)
-	 "clip_box: "+sci2exp(h.clip_box,0)
-	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
-	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
-	 "flag: "+sci2exp(h.flag,0)
+	 "color_flag: "+sci2exp(h.color_flag,0)
 	]
       case "Fac3d" 
-      d=sci2exp(h.surface_color,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.surface_color)),'x'),end
+      c=sci2exp(h.surface_color,0)
+      if length(c)>70 then c="matrix "+ strcat(string(size(h.surface_color)),'x'),end
+
       t=[t;
 	 "foreground: "+string(h.foreground)
 	 "thickness: "+string(h.thickness)
@@ -226,44 +217,27 @@ function %h_p(h)
 	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
 	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
 	 "flag: "+sci2exp(h.flag,0)
-	 "surface_color: "+d
-	]
-      case "Fac3d1" 
-      d=sci2exp(h.surface_color,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.surface_color)),'x'),end
+	 "color_flag: "+sci2exp(h.color_flag,0)
+	 "surface_color: "+c
+	 ]
+      case "Param3d" 
+      d=sci2exp(h.data,0)
+      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'), end
+	
+      c=sci2exp(h.surface_color,0)
+      if length(c)>70 then c="matrix "+ strcat(string(size(h.surface_color)),'x'),end
       t=[t;
 	 "foreground: "+string(h.foreground)
 	 "thickness: "+string(h.thickness)
 	 "visible: "+string(h.visible) 
-	 "clip_state: "+string(h.clip_state)
-	 "clip_box: "+sci2exp(h.clip_box,0)
-	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
-	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
-	 "flag: "+sci2exp(h.flag,0)	 
-	 "surface_color: "+d
-	]
-      case "Fac3d2" 
-      t=[t;
-	 "foreground: "+string(h.foreground)
-	 "thickness: "+string(h.thickness)
-	 "visible: "+string(h.visible) 
+	 "data: "+d
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)
 	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
 	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
 	 "flag: "+sci2exp(h.flag,0)
-	]
-      case "Fac3d3" 
-      t=[t;
-	 "foreground: "+string(h.foreground)
-	 "thickness: "+string(h.thickness)
-	 "visible: "+string(h.visible) 
-	 "clip_state: "+string(h.clip_state)
-	 "clip_box: "+sci2exp(h.clip_box,0)
-	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
-	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
-	 "flag: "+sci2exp(h.flag,0)
-	]
+	 "surface_color: "+c
+	 ]
     end
   end
   write(%io(2),t)
