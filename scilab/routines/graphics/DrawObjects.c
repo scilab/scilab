@@ -6178,9 +6178,9 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
 	C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
 	C2F (dr) ("xset", "mark", context+4, context+5, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
-#ifdef WIN32
-	if ( hdcflag == 1) ReleaseWinHdc ();
-#endif	  
+/* #ifdef WIN32 */
+/* 	if ( hdcflag == 1) ReleaseWinHdc (); */
+/* #endif	   */
 
 	if (sciGetEntityType (pobj)==SCI_SURFACE) {
 	  int fg1  = pSURFACE_FEATURE (pobj)->hiddencolor;
@@ -6262,9 +6262,6 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	  if (p == 1)/*point */
 	    C2F (dr) ("xmarks", "str", &p, polyx,polyy, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
 	  else if (p==2) /*segment*/{
-	    if(sciGetIsLine(pobj))
-	      C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    
 	    if (sciGetIsMark(pobj) == TRUE){
 	      integer v;
 	      double dv=0;
@@ -6275,14 +6272,23 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	      
 	      markidsizenew[0] = sciGetMarkStyle(pobj);
 	      markidsizenew[1] = sciGetMarkSize (pobj);
-	      
+
 	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			&dv, &dv, &dv, &dv, 5L, 4096);
 	      
 	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			PD0, PD0, 0L, 0L);
-	      
 	      DrawNewMarks(pobj,n1,polyx,polyy);
+	    }
+	    
+	    if(sciGetIsLine(pobj)){
+	      C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, 
+			PD0, PD0, PD0, 5L, 6L);
+	      C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, 
+			PD0, PD0, PD0, 5L, 10L);
+	      C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
+	      C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
+	      C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  }
 	  else {/*patch*/
@@ -6292,6 +6298,12 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	}
       }
     }
+
+#ifdef WIN32
+	if ( hdcflag == 1) ReleaseWinHdc ();
+#endif	  
+
+
     FREE(ztmp); ztmp = NULL;
     FREE(xtmp); xtmp = NULL;
     FREE(ytmp); ytmp = NULL;
@@ -6774,25 +6786,34 @@ sciDrawObj (sciPointObj * pobj)
 	  flag_DO = MaybeSetWinhdc();
 #endif
 	  if (pSEGS_FEATURE (pobj)->arrowsize == 0){
-	    if(sciGetIsLine(pobj))
-	      C2F(dr)("xsegs","v",xm,ym,&n,pstyle,&pSEGS_FEATURE (pobj)->iflag,
-		      PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    
 	    if(sciGetIsMark(pobj))
 	      {
 		x[0] = sciGetMarkForeground(pobj);
 		
 		markidsizenew[0] =  sciGetMarkStyle(pobj);
 		markidsizenew[1] =  sciGetMarkSize(pobj);
-		
+			      
 		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			  &dv, &dv, &dv, &dv, 5L, 4096);
 		
 		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			  PD0, PD0, 0L, 0L);
-		
 		DrawNewMarks(pobj,n,xm,ym);
-	      }
+	      }	   
+	    
+	    if(sciGetIsLine(pobj)){
+	      
+	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+			&dv, &dv, &dv, 5L, 4096);
+	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+			PD0, PD0, PD0, 0L, 0L);    
+	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+			PD0, PD0, PD0, 0L, 0L);
+	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+			PD0, PD0, 0L, 0L);
+	      C2F(dr)("xsegs","v",xm,ym,&n,pstyle,&pSEGS_FEATURE (pobj)->iflag,
+		      PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
 	  }
 	  else{ 
 	    if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
@@ -6804,31 +6825,34 @@ sciDrawObj (sciPointObj * pobj)
 		else 
 		  ias =ias/2;
 		
-		if(sciGetIsLine(pobj))
-		  C2F(dr)("xarrow","v",xm,ym,&n,&ias,pstyle,&pSEGS_FEATURE (pobj)->iflag,PD0,PD0,PD0,PD0,0L,0L);
-
 		if(sciGetIsMark(pobj))
 		  {
 		    x[0] = sciGetMarkForeground(pobj);
 		    
 		    markidsizenew[0] =  sciGetMarkStyle(pobj);
 		    markidsizenew[1] =  sciGetMarkSize(pobj);
-		    
 		    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			      &dv, &dv, &dv, &dv, 5L, 4096);
 		    
 		    C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			      PD0, PD0, 0L, 0L);
-		    
 		    DrawNewMarks(pobj,n,xm,ym);
 		  }
- 	      }
+		
+		if(sciGetIsLine(pobj)){
+		  C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+			    &dv, &dv, &dv, 5L, 4096);
+		  C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+			    PD0, PD0, PD0, 0L, 0L);    
+		  C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+			    PD0, PD0, PD0, 0L, 0L);
+		  C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+			    PD0, PD0, 0L, 0L);
+		  C2F(dr)("xarrow","v",xm,ym,&n,&ias,pstyle,&pSEGS_FEATURE (pobj)->iflag,PD0,PD0,PD0,PD0,0L,0L);
+		}
+	      }
 	    else
 	      {
-		if(sciGetIsLine(pobj))
-		  C2F(dr1)("xarrow","v",pstyle,&pSEGS_FEATURE (pobj)->iflag
-			   ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,&pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
-		
 		if(sciGetIsMark(pobj))
 		  {
 		    x[0] = sciGetMarkForeground(pobj);
@@ -6844,6 +6868,19 @@ sciDrawObj (sciPointObj * pobj)
 		    
 		    DrawNewMarks(pobj,n,xm,ym);
 		  }
+		
+		if(sciGetIsLine(pobj)){
+		  C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+			    &dv, &dv, &dv, 5L, 4096);
+		  C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+			    PD0, PD0, PD0, 0L, 0L);    
+		  C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+			    PD0, PD0, PD0, 0L, 0L);
+		  C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+			    PD0, PD0, 0L, 0L);
+		  C2F(dr1)("xarrow","v",pstyle,&pSEGS_FEATURE (pobj)->iflag
+			   ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,&pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
+		}
 		/* with C2F(dr)("xarrow",... does not work: why? What does (dr1) routine make more than (dr) in New Graphics mode ?? */
 		/* Answer : dr deals with pixels value (data: xm and ym are integers!!) whereas dr1 deals with double value coming from the user */
 		/* This is true for old and new graphics mode. */
@@ -6966,9 +7003,6 @@ sciDrawObj (sciPointObj * pobj)
 	    }
 
 	  if (pSEGS_FEATURE (pobj)->pcolored ==0){
-	    if(sciGetIsLine(pobj))
-	      C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,(sflag=0,&sflag),&dv,&dv,&dv,&dv,0L,0L);
-
 	    if(sciGetIsMark(pobj))
 	      {
 		x[0] = sciGetMarkForeground(pobj);
@@ -6984,11 +7018,20 @@ sciDrawObj (sciPointObj * pobj)
 		
 		DrawNewMarks(pobj,n,xm,ym);
 	      }
+
+	    if(sciGetIsLine(pobj)){
+	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+			&dv, &dv, &dv, 5L, 4096);
+	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+			PD0, PD0, PD0, 0L, 0L);    
+	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+			PD0, PD0, PD0, 0L, 0L);
+	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+			PD0, PD0, 0L, 0L);
+	      C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,(sflag=0,&sflag),&dv,&dv,&dv,&dv,0L,0L);
+	    }
 	  }
 	  else{
-	    if(sciGetIsLine(pobj))
-	      C2F(dr)("xarrow","v",xm,ym,&na,&arssize,zm,(sflag=1,&sflag),&dv,&dv,&dv,&dv,0L,0L);
-	    
 	    if(sciGetIsMark(pobj))
 	      {
 		x[0] = sciGetMarkForeground(pobj);
@@ -7004,6 +7047,18 @@ sciDrawObj (sciPointObj * pobj)
 		
 		DrawNewMarks(pobj,n,xm,ym);
 	      }
+	    
+	    if(sciGetIsLine(pobj)){
+	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+			&dv, &dv, &dv, 5L, 4096);
+	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+			PD0, PD0, PD0, 0L, 0L);    
+	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+			PD0, PD0, PD0, 0L, 0L);
+	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+			PD0, PD0, 0L, 0L);
+	      C2F(dr)("xarrow","v",xm,ym,&na,&arssize,zm,(sflag=1,&sflag),&dv,&dv,&dv,&dv,0L,0L);
+	    }
 	  }
 #ifdef WIN32 
 	  if ( flag_DO == 1) ReleaseWinHdc ();
@@ -7426,8 +7481,6 @@ sciDrawObj (sciPointObj * pobj)
 #endif
 
 
-  
-
       for(jk=0;jk<nb_curves;jk++)
 	{
 	  n1 = curves_size[jk];
@@ -7575,17 +7628,14 @@ sciDrawObj (sciPointObj * pobj)
 	      break;
 	    default:
 	      sciprint ("This Polyline cannot be drawn !\n");
-#ifdef WIN32 
-	      if ( flag_DO == 1) ReleaseWinHdc ();
-#endif  
+/* #ifdef WIN32  */
+/* 	      if ( flag_DO == 1) ReleaseWinHdc (); */
+/* #endif   */
 	      break;     
 	    }
 	 
 	  if(result_trans3d == 1)
 	    {
-	      if (sciGetIsLine(pobj) == TRUE)
-		C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	     
 	      if (sciGetIsMark(pobj) == TRUE){
 		int x[4], markidsizenew[2];
 		x[0] = sciGetMarkForeground(pobj);
@@ -7598,10 +7648,28 @@ sciDrawObj (sciPointObj * pobj)
 	       
 		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			  PD0, PD0, 0L, 0L);   
-	       
+		
 		DrawNewMarks(pobj,n1,xm,ym);
 	      }
+	      
+	      if (sciGetIsLine(pobj) == TRUE){
+		
+		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			  &dv, &dv, &dv, 5L, 4096);
+		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			  &dv, &dv, &dv, &dv, 5L, 4096);
+		C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+			  PD0, PD0, PD0, 0L, 0L);
+		C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+			  PD0, PD0, PD0, 0L, 0L);
+		
+		C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	      }
 	    }
+	  
+#ifdef WIN32 
+	  if ( flag_DO == 1) ReleaseWinHdc ();
+#endif  
 	 
 	  FREE(xzz); xzz = (double *) NULL;
 	  FREE(yzz); yzz = (double *) NULL;
@@ -7835,23 +7903,6 @@ sciDrawObj (sciPointObj * pobj)
 	  flag_DO = MaybeSetWinhdc ();
 #endif
 	  sciClip(sciGetIsClipping(pobj));
-	  if (sciGetIsLine(pobj))
-	    {
-	      if (pRECTANGLE_FEATURE (pobj)->str == 1)
-		{
-		  yy1 -= hstr;
-		  C2F(dr)("xrect",str,&x1,&yy1,&wstr,&hstr,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		}
-	      else
-		if (pRECTANGLE_FEATURE (pobj)->fillflag == 0)
-		  C2F(dr)("xrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		else
-		  if (pRECTANGLE_FEATURE (pobj)->fillflag == 1)
-		    C2F(dr)("xfrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  else
-		    sciprint("  The value must be 1  or 0\r\n");
-	    }
-	 
 	  if(sciGetIsMark(pobj))
 	    {
 	      x[0] = sciGetMarkForeground(pobj);
@@ -7877,6 +7928,33 @@ sciDrawObj (sciPointObj * pobj)
 	     
 	      DrawNewMarks(pobj,n,xtmp,ytmp);
 	    }
+
+	  if (sciGetIsLine(pobj))
+	    {
+	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+			&dv, &dv, &dv, 5L, 4096);
+	      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
+			&dv, &dv, &dv, &dv, 5L, 4096);
+	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+			PD0, PD0, PD0, 0L, 0L);    
+	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+			PD0, PD0, PD0, 0L, 0L);
+	      
+	      if (pRECTANGLE_FEATURE (pobj)->str == 1)
+		{
+		  yy1 -= hstr;
+		  C2F(dr)("xrect",str,&x1,&yy1,&wstr,&hstr,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		}
+	      else
+		if (pRECTANGLE_FEATURE (pobj)->fillflag == 0)
+		  C2F(dr)("xrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		else
+		  if (pRECTANGLE_FEATURE (pobj)->fillflag == 1)
+		    C2F(dr)("xfrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  else
+		    sciprint("  The value must be 1  or 0\r\n");
+	    }
+	  
 	  sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
 	  if ( flag_DO == 1)  ReleaseWinHdc ();
@@ -7902,17 +7980,6 @@ sciDrawObj (sciPointObj * pobj)
 	  flag_DO = MaybeSetWinhdc ();
 #endif
 	  sciClip(sciGetIsClipping(pobj));
-	  if (sciGetIsLine(pobj)) 
-	    {
-	      if (pRECTANGLE_FEATURE (pobj)->fillflag == 0)	
-		C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	      else
-		if (pRECTANGLE_FEATURE (pobj)->fillflag == 1)
-		  C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-		else
-		  sciprint("  The value must be 1  or 0\r\n");
-	    }
-	 
 	  if (sciGetIsMark(pobj)) 
 	    {
 	      x[0] = sciGetMarkForeground(pobj);
@@ -7930,6 +7997,27 @@ sciDrawObj (sciPointObj * pobj)
 	     
 	      DrawNewMarks(pobj,n,xm,ym);
 	    }
+
+	  if (sciGetIsLine(pobj)) 
+	    {
+	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+			&dv, &dv, &dv, 5L, 4096);
+	      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
+			&dv, &dv, &dv, &dv, 5L, 4096);
+	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+			PD0, PD0, PD0, 0L, 0L);    
+	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+			PD0, PD0, PD0, 0L, 0L);
+	      
+	      if (pRECTANGLE_FEATURE (pobj)->fillflag == 0)	
+		C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	      else
+		if (pRECTANGLE_FEATURE (pobj)->fillflag == 1)
+		  C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		else
+		  sciprint("  The value must be 1  or 0\r\n");
+	    }
+	  
 	  sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
 	  if ( flag_DO == 1)  ReleaseWinHdc ();
