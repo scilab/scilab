@@ -47,8 +47,18 @@ c
       endif
       if(istk(il).ne.10) then 
          if(istk(il).eq.1.and.istk(il+1).eq.0) then
-            istk(il)=0
-            lstk(top+1)=lstk(top)+1
+            if (icheck.eq.1) then
+               istk(il)=1
+               istk(il+1)=1
+               istk(il+2)=1
+               istk(il+3)=0
+               l=sadr(il+4)
+               stk(l)=0
+               lstk(top+1)=l+1
+            else
+               istk(il)=0
+               lstk(top+1)=lstk(top)+1
+            endif
             return
          endif
          err=1
