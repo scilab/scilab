@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cshep2d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 2004</DATE>
+  <SHORT_DESCRIPTION name="cshep2d">bidimensional cubic shepard (scattered) interpolation</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>tl_coef = cshep2d(xyz)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+     <PARAM_ITEM>
+        <PARAM_NAME>xyz</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: a n x 3 matrix of the (no gridded) interpolation points (the i th row given
+               the (x,y) coordinates then the altitude z of the i th interpolation point)</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>tl_coef</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: a tlist scilab structure (of type cshep2d)</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+   </PARAM_INDENT>
+  </PARAM>
+  
+  <DESCRIPTION>
+    <P>
+    This function is useful to define a 2d interpolation function when the interpolation
+    points are not on a grid (you may use it in this case but <LINK>splin2d</LINK> is
+    better for that purpose). The interpolant is a cubic shepard one and is
+    a C2 (twice continuously differentiable) bivariate function <EM>s(x,y)</EM>
+    such that : <EM>s(xi,yi)=zi</EM> for all <EM>i=1,..,n</EM> ( <EM>(xi,yi,zi)</EM>
+    being the i th row of <VERB>xyz</VERB>).
+    </P>
+    <P>
+    The evaluation of  <EM>s</EM> at some points must be done by the <LINK>eval_cshep2d</LINK> 
+    function.
+    </P>
+    </DESCRIPTION>
+
+    <SECTION label="Remark">
+    <P>
+    The function works if <BD>n &gt;= 10</BD>, if the nodes are not all colinears
+    (i.e. the <EM>(x,y)</EM> coordinates of the interpolation points are not 
+    on the same straight line), and if there is no duplicate nodes (i.e. 2 or more
+    interpolation points with the same <EM>(x,y)</EM> coordinates). An error is
+    issued if these conditions are not respected.
+    </P>
+    </SECTION>
+
+  <EXAMPLE><![CDATA[
+// interpolation of cos(x)cos(y) with randomly choosen interpolation points
+n = 150; // nb of interpolation points
+xy = grand(n,2,"unf",0,2*%pi);
+z = cos(xy(:,1)).*cos(xy(:,2));
+xyz = [xy z];
+tl_coef = cshep2d(xyz);
+
+// evaluation on a grid
+m = 30;
+xx = linspace(0,2*%pi,m);
+[X,Y] = ndgrid(xx,xx);
+Z = eval_cshep2d(X,Y, tl_coef);
+xbasc()
+plot3d(xx,xx,Z,flag=[2 6 4])
+param3d1(xy(:,1),xy(:,2),list(z,-9), flag=[0 0])
+xtitle("Cubic Shepard Interpolation of cos(x)cos(y) with randomly choosen interpolation points")
+legends("interpolation points",-9,1)
+xselect()
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>splin2d</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>eval_cshep2d</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+     <AUTHORS_ITEM> Robert J. Renka</AUTHORS_ITEM>
+     <AUTHORS_ITEM> B. Pincon (scilab interface)</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>
