@@ -154,8 +154,8 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 				     type,x,y,*n1,*n2,fx,fy,flag,style,arsize1,colored,*arfact)); 
 
  /*      sciDrawObj(sciGetCurrentFigure ()); /\* Adding F.Leray 13.05.04 to insure the drawing *\/ */
-      sciDrawObj(sciGetCurrentObj ()); 
-      DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
+      sciDrawObjIfRequired(sciGetCurrentObj ()); 
+      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
       /* F.Leray Libération de style[dim = Nbr1]*/
       if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
   }

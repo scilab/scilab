@@ -38,7 +38,7 @@ void Objrect (x,y,width,height,fillflag,fillcolor,n,hdl,flagstring)
     /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
     sciDrawObj(sciGetCurrentFigure ());}
   else
-    sciDrawObj(sciGetCurrentObj ());
+    sciDrawObjIfRequired(sciGetCurrentObj ());
 }
 
 
@@ -62,8 +62,8 @@ void Objarc (angle1,angle2,x,y,width,height,color,fill,hdl)
   sciSetLineStyle(pobj, sciGetLineStyle (psubwin));
   sciSetForeground (pobj, sciGetForeground (psubwin));
  
-  *hdl=sciGetHandle(pobj); 
-  sciDrawObj(pobj);
+  *hdl=sciGetHandle(pobj);
+  sciDrawObjIfRequired(pobj);
  
 }
 
@@ -100,7 +100,7 @@ void Objpoly (x,y,n,closed,mark,hdl)
     /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
     sciDrawObj(sciGetCurrentFigure ());}
   else
-    sciDrawObj(pobj);
+    sciDrawObjIfRequired(pobj);
   
 }
   
@@ -132,7 +132,7 @@ void Objfpoly (x,y,n,style,hdl)
     /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
     sciDrawObj(sciGetCurrentFigure ());}
   else
-    sciDrawObj(sciGetCurrentObj ());
+    sciDrawObjIfRequired(sciGetCurrentObj ());
   *hdl=sciGetHandle(sciGetCurrentObj ()); 
   
 }
@@ -160,7 +160,7 @@ void Objsegs (style,flag,n1,x,y,arsize)
     /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
     sciDrawObj(sciGetCurrentFigure ());}
   else
-    sciDrawObj(sciGetCurrentObj ());  
+    sciDrawObjIfRequired(sciGetCurrentObj ());  
   
 }
 /*-----------------------------------------------------------
@@ -191,7 +191,7 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wh,fill,hdl)
   sciSetForeground (pobj, sciGetForeground (psubwin));
   sciSetFontStyle(pobj, sciGetFontStyle (psubwin));
   sciSetFontDeciWidth(pobj, sciGetFontDeciWidth (psubwin));
-  sciDrawObj(pobj);
+  sciDrawObjIfRequired(pobj);
           
 
   x1 = XDouble2Pixel(x);
@@ -215,7 +215,7 @@ void Objtitle(str,n,hdl)
              		 sciGetSelectedSubWin (sciGetCurrentFigure ()),str,n));
   
   *hdl=sciGetHandle(sciGetCurrentObj ()); 
-  sciDrawObj(sciGetCurrentObj ()); 
+  sciDrawObjIfRequired(sciGetCurrentObj ()); 
 }
 
 
@@ -521,7 +521,7 @@ void Objdrawaxis (dir,tics,x,nx,y,ny,val,subint,format,font,textcol,ticscol,flag
 		    ((sciPointObj *)
 		     sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		     dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg));  
-  sciDrawObj(sciGetCurrentObj ());
+  sciDrawObjIfRequired(sciGetCurrentObj ());
      
   /* F.Leray 10.03.04: In fact we use ConstructAxes AND NOT ConstructAxis to draw
      one axis. ConstructAxis is apparently unused!!*/

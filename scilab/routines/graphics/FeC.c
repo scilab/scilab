@@ -174,8 +174,8 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
     pptabofpointobj = sciGetCurrentObj();
     hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
     cmpt++;   
-    sciDrawObj(sciGetCurrentObj ());
-    DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
+    sciDrawObjIfRequired(sciGetCurrentObj ());
+    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
     /** Drawing the Legends **/
     if ((int)strlen(strflag) >=1  && strflag[0] == '1'){
       n1=1; styl[0]=1;styl[1]=0;
@@ -184,8 +184,8 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 			 legend, strlen(legend), n1, styl, &pptabofpointobj)); 
       sciSetIsMark(pptabofpointobj, TRUE);
       sciSetMarkStyle (pptabofpointobj, *styl);
-      sciDrawObj(sciGetCurrentObj ()); 
-      DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
+      sciDrawObjIfRequired(sciGetCurrentObj ()); 
+      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
       hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 
       cmpt++;
     }

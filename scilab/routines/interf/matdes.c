@@ -6011,8 +6011,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    pSUBWIN_FEATURE (pobj)->alpha_kp=pSUBWIN_FEATURE (pobj)->alpha;  
 	    pSUBWIN_FEATURE (pobj)->alpha  = 0.0;
 	    pSUBWIN_FEATURE (pobj)->theta  = 270.0;
-		if(sciGetCurrentScilabXgc () != (struct BCG *) NULL)
-            sciRedrawFigure(); /* F.Leray 10.06.04 Adding 2 lines here... */
+	    if(sciGetCurrentScilabXgc () != (struct BCG *) NULL)
+	       UpdateSubwinScale(pobj);
+/* 	    sciRedrawFigure(); /\* F.Leray 10.06.04 Adding 2 lines here... *\/ */
 	    pSUBWIN_FEATURE (pobj)->is3d = FALSE; /*...and here */
 	  } 
 	else if ((strncmp(cstk(*value),"3d", 2) == 0)){
@@ -8517,59 +8518,63 @@ int drawnow(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 { 
-     sciPointObj *subwin;
-     integer m,n,l,i;
+     sciPointObj *pfigure = NULL;
+ /*     integer m,n,l,i; */
  
   SciWin(); 
-  CheckRhs(0,1);
+  CheckRhs(0,0);
   CheckLhs(0,1); 
 
   if (version_flag() == 0)
     {
       if (Rhs <= 0) {
-	sciSetDrawLater (sciGetSelectedSubWin(sciGetCurrentFigure ()),FALSE);
-	sciDrawObj(sciGetCurrentFigure ());
+	pfigure = sciGetCurrentFigure ();
+	pFIGURE_FEATURE(pfigure)->auto_redraw = TRUE;
+
+	sciDrawObj(pfigure);
 	LhsVar(1) = 0;
-	return 0;}
-      else
-        switch(VarType(1)) 
-	  {
-	  case 9: /* first is a handle argument so it's a drawnow(subwin) */
-	    GetRhsVar(1,"h",&m,&n,&l); 
-	    for (i = 0; i < n*m; i++)
-	      {
-		subwin = (sciPointObj*) sciGetPointerFromHandle((unsigned long)*hstk(l+i)); 
-		if (subwin == NULL) {
-		  Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
-		  return 0;
-		}
-		if (sciGetEntityType (subwin) != SCI_SUBWIN) {
-		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname);
-		  return 0;
-		}
-		else 
-		  {	
-		    sciSetDrawLater (subwin,FALSE);
-		    sciDrawObj(sciGetCurrentFigure ());
-		  }
-	      }
-	    break;
-	  case 10:/* first is a string argument so it's a drawnow('all') */
-	    GetRhsVar(1,"c",&m,&n,&l);
-	    if (strncmp(cstk(l),"all", 3) == 0){ 
-	      sciSetDrawLater (sciGetCurrentFigure (),FALSE);  
-	      sciDrawObj(sciGetCurrentFigure ());
-	      LhsVar(1) = 0;
-	      return 0;}
-	    else{
-              Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
-              return 0;}
-	    break; 
-	  default: 
-	    Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
-	    return 0;
-	    break;
-          }
+	return 0;
+	
+      }
+/*       else */
+/*         switch(VarType(1))  */
+/* 	  { */
+/* 	  case 9: /\* first is a handle argument so it's a drawnow(subwin) *\/ */
+/* 	    GetRhsVar(1,"h",&m,&n,&l);  */
+/* 	    for (i = 0; i < n*m; i++) */
+/* 	      { */
+/* 		subwin = (sciPointObj*) sciGetPointerFromHandle((unsigned long)*hstk(l+i));  */
+/* 		if (subwin == NULL) { */
+/* 		  Scierror(999,"%s :the handle is not or no more valid\r\n",fname); */
+/* 		  return 0; */
+/* 		} */
+/* 		if (sciGetEntityType (subwin) != SCI_SUBWIN) { */
+/* 		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname); */
+/* 		  return 0; */
+/* 		} */
+/* 		else  */
+/* 		  {	 */
+/* 		    sciSetDrawLater (subwin,FALSE); */
+/* 		    sciDrawObj(sciGetCurrentFigure ()); */
+/* 		  } */
+/* 	      } */
+/* 	    break; */
+/* 	  case 10:/\* first is a string argument so it's a drawnow('all') *\/ */
+/* 	    GetRhsVar(1,"c",&m,&n,&l); */
+/* 	    if (strncmp(cstk(l),"all", 3) == 0){  */
+/* 	      sciSetDrawLater (sciGetCurrentFigure (),FALSE);   */
+/* 	      sciDrawObj(sciGetCurrentFigure ()); */
+/* 	      LhsVar(1) = 0; */
+/* 	      return 0;} */
+/* 	    else{ */
+/*               Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname); */
+/*               return 0;} */
+/* 	    break;  */
+/* 	  default:  */
+/* 	    Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname); */
+/* 	    return 0; */
+/* 	    break; */
+/*           } */
     }
   LhsVar(1) = 0;
   return 0;
@@ -8579,68 +8584,64 @@ int drawlater(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {  
-  sciPointObj *subwin;
-  integer m,n,l,i;
- 
-/*   SciWin();  */
-/*   CheckRhs(-1,0); */
-/*   pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->visible =FALSE;  */
-/*   LhsVar(1) = 0; */
-/*   return 0; */
-
+  sciPointObj *pfigure = NULL;
+/*   integer m,n,l,i; */
   
   SciWin(); 
-  CheckRhs(0,1);
+  CheckRhs(0,0);
   CheckLhs(0,1); 
-
+  
   if (version_flag() == 0)
     {
       if (Rhs <= 0) {
-	sciSetDrawLater (sciGetSelectedSubWin(sciGetCurrentFigure ()), TRUE);  
-	sciDrawObj(sciGetCurrentFigure ());
+	pfigure = sciGetCurrentFigure ();
+	pFIGURE_FEATURE(pfigure)->auto_redraw = FALSE;
+	
 	LhsVar(1) = 0;
-	return 0;}
-      else
-        switch(VarType(1)) 
-	  {
-	  case 9: /* first is a handle argument so it's a drawnow(subwin) */
-	    GetRhsVar(1,"h",&m,&n,&l); 
-	    for (i = 0; i < n*m; i++)
-	      {
-		subwin = (sciPointObj*) sciGetPointerFromHandle((unsigned long)*hstk(l+i)); 
-		if (subwin == NULL) {
-		  Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
-		  return 0;
-		}
-		if (sciGetEntityType (subwin) != SCI_SUBWIN) {
-		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname);
-		  return 0;
-		}
-		else 
-		  {	
-		    sciSetDrawLater (subwin,TRUE);
-		    sciDrawObj(sciGetCurrentFigure ());
-		  }
-	      }
-	    break;
-	  case 10:/* first is a string argument so it's a drawnow('all') */
-	    GetRhsVar(1,"c",&m,&n,&l);
-	    if (strncmp(cstk(l),"all", 3) == 0){ 
-	      sciSetDrawLater (sciGetCurrentFigure (),TRUE);  
-	      sciDrawObj(sciGetCurrentFigure ());
-	      LhsVar(1) = 0;
-	      return 0;}
-	    else{
-              Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
-              return 0;}
-	    break; 
-	  default: 
-	    Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
-	    return 0;
-	    break;
-          }
+	return 0;
+	
+      }
+/*       else */
+/*         switch(VarType(1))  */
+/* 	  { */
+/* 	  case 9: /\* first is a handle argument so it's a drawnow(subwin) *\/ */
+/* 	    GetRhsVar(1,"h",&m,&n,&l);  */
+/* 	    for (i = 0; i < n*m; i++) */
+/* 	      { */
+/* 		subwin = (sciPointObj*) sciGetPointerFromHandle((unsigned long)*hstk(l+i));  */
+/* 		if (subwin == NULL) { */
+/* 		  Scierror(999,"%s :the handle is not or no more valid\r\n",fname); */
+/* 		  return 0; */
+/* 		} */
+/* 		if (sciGetEntityType (subwin) != SCI_SUBWIN) { */
+/* 		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname); */
+/* 		  return 0; */
+/* 		} */
+/* 		else  */
+/* 		  {	 */
+/* 		    sciSetDrawLater (subwin,TRUE); */
+/* 		    sciDrawObj(sciGetCurrentFigure ()); */
+/* 		  } */
+/* 	      } */
+/* 	    break; */
+/* 	  case 10:/\* first is a string argument so it's a drawnow('all') *\/ */
+/* 	    GetRhsVar(1,"c",&m,&n,&l); */
+/* 	    if (strncmp(cstk(l),"all", 3) == 0){  */
+/* 	      sciSetDrawLater (sciGetCurrentFigure (),TRUE);   */
+/* 	      sciDrawObj(sciGetCurrentFigure ()); */
+/* 	      LhsVar(1) = 0; */
+/* 	      return 0;} */
+/* 	    else{ */
+/*               Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname); */
+/*               return 0;} */
+/* 	    break;  */
+/* 	  default:  */
+/* 	    Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname); */
+/* 	    return 0; */
+/* 	    break; */
+/*           } */
     }
-      
+  
   LhsVar(1) = 0;
   return 0;
   
@@ -8833,10 +8834,7 @@ int draw(fname,fname_len)
 	/*	tmpmode = pSUBWIN_FEATURE(psubwin)->visible;
 		pSUBWIN_FEATURE(psubwin)->visible = TRUE ;SS 20.04.04*/
 
-       
-
-	sciSetDrawLater(pobj,FALSE); /* force the drawing HERE*/ /* F.Leray 29.12.04 */
-	sciDrawObj(pobj);
+       	sciDrawObj(pobj); /* Leave it as sciDrawObj as I want 'draw' to make drawings even if figure->auto_redraw is OFF */
 	/*pSUBWIN_FEATURE(psubwin)->visible = tmpmode;SS 20.04.04*/
 	sciSetSelectedSubWin(tmpsubwin);
       }

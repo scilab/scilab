@@ -157,8 +157,8 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       x,y,z,*n1,*n2,0));
-    sciDrawObj(sciGetCurrentObj ());
-    DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
+    sciDrawObjIfRequired(sciGetCurrentObj ());
+    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
   }
 
   else { 
@@ -347,8 +347,8 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       NULL,NULL,z,*n1 + 1,*n2 + 1,1)); 
-    sciDrawObj(sciGetCurrentObj ());
-    DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
+    sciDrawObjIfRequired(sciGetCurrentObj ());
+    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
   }
   else { /* NG end */
     /** Boundaries of the frame **/
@@ -405,8 +405,8 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       xrect,&y,z,*n1+1,*n2+1,2));
-    sciDrawObj(sciGetCurrentObj ()); 
-    DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
+    sciDrawObjIfRequired(sciGetCurrentObj ()); 
+    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
   }
   else { /* NG end */
     double xx[2],yy[2];

@@ -119,7 +119,7 @@ int C2F(xgrid)(style)
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
       for (i=0 ; i<3 ; i++) /**DJ.Abdmouche 2003**/
 	pSUBWIN_FEATURE (psubwin)->grid[i] = *style;
-      sciDrawObj(psubwin);
+      sciDrawObj(sciGetParentFigure(psubwin));
       return(0);
     }
   

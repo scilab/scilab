@@ -123,7 +123,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   
   if (sciGetSurface(psubwin) != (sciPointObj *) NULL){
     if(sciGetCurrentScilabXgc () != (struct BCG *) NULL)
-      sciRedrawFigure(); 
+      UpdateSubwinScale(psubwin);
     pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
   }
 
@@ -233,8 +233,11 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 	sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
       } 
       if (with_leg) pptabofpointobj[jj] = sciGetCurrentObj();
-      sciDrawObj(sciGetCurrentObj ());
-      DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
+      sciDrawObjIfRequired(sciGetCurrentObj ());
+
+      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+
+
       hdl=sciGetHandle(sciGetCurrentObj ());   
       hdltab[cmpt]=hdl;
       cmpt++;
@@ -259,8 +262,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     FREE(hdltab);
     if (ok==1) {
       Merge3d(psubwin);
-      /*   sciDrawObj(sciGetCurrentFigure ()); /\*A.Djalel 3D axes*\/ */
-      sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); /*A.Djalel 3D axes*/
+      sciDrawObj(sciGetCurrentFigure ());
+      /*       sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); */
     }
     return(0);
   }
