@@ -5,12 +5,19 @@ NEW FUNCTIONALITIES
 - [a(i,j),b(..),..]=foo(..) syntax is now handled
 - Sparspack algorithm for sparse matrix eigenvalues/eigenvectors computation added 
 - Levenberg-Marquardt algorithm of Minpack used to define function lsqrsolve
+- New graphic mode improved (3D)
+
 OTHERS IMPROVEMENTS
 ===================
 - Better discontinuities handling in Scicos
 - More efficient number parsing (thanks to B Pincon)
 - More efficient 3D Zoom (thanks to E Segre)
 - Improved scipad, shortcuts, language handling, colorization, bug fixes.. (thanks to E Segre)
+- for loop variable is no more removed at the end of the loops
+- figure sizes are now taken into account in Postscript export 
+- Windows GUI improved
+- Graphic windows refresh improved under Windows
+- Scilab has been adapated to IA64 architecture
 
 INCOMPATIBLITIES
 ================
