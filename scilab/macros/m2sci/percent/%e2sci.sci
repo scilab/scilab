@@ -135,7 +135,11 @@ else
       dims(k-1)=1
       if typeof(tree.operands(k))=="cste" then
 	if tree.operands(k).value==":" then
-	  dims(k-1)=var.dims(k-1)
+	  if k<=lstsize(var.dims)+1 then
+	    dims(k-1)=var.dims(k-1);
+	  else
+	    dims(k-1)=Unknown;
+	  end
 	end
       end
     else
