@@ -260,10 +260,31 @@ cd .. &gt;nul
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
+				RelativePath=".\absolute_value.c">
+			</File>
+			<File
 				RelativePath=".\blocks.c">
 			</File>
 			<File
+				RelativePath=".\bounce_ball.c">
+			</File>
+			<File
+				RelativePath=".\bouncexy.c">
+			</File>
+			<File
+				RelativePath=".\cmscope.c">
+			</File>
+			<File
 				RelativePath=".\cpass2.c">
+			</File>
+			<File
+				RelativePath=".\cscope.c">
+			</File>
+			<File
+				RelativePath=".\extractor.c">
+			</File>
+			<File
+				RelativePath=".\gainblk.c">
 			</File>
 			<File
 				RelativePath=".\import.c">
@@ -275,13 +296,31 @@ cd .. &gt;nul
 				RelativePath=".\intcscicos.c">
 			</File>
 			<File
+				RelativePath=".\integral_func.c">
+			</File>
+			<File
 				RelativePath=".\intrealtime.c">
+			</File>
+			<File
+				RelativePath=".\logicalop.c">
+			</File>
+			<File
+				RelativePath=".\minmax.c">
+			</File>
+			<File
+				RelativePath=".\mswitch.c">
+			</File>
+			<File
+				RelativePath=".\multiplex.c">
 			</File>
 			<File
 				RelativePath=".\plusblk.c">
 			</File>
 			<File
 				RelativePath=".\prod.c">
+			</File>
+			<File
+				RelativePath=".\product.c">
 			</File>
 			<File
 				RelativePath=".\readau.c">
@@ -296,6 +335,12 @@ cd .. &gt;nul
 				RelativePath=".\relay.c">
 			</File>
 			<File
+				RelativePath=".\satur.c">
+			</File>
+			<File
+				RelativePath=".\scalar2vector.c">
+			</File>
+			<File
 				RelativePath=".\sciblk2.c">
 			</File>
 			<File
@@ -308,13 +353,25 @@ cd .. &gt;nul
 				RelativePath=".\scicos.c">
 			</File>
 			<File
+				RelativePath=".\scicos_free.c">
+			</File>
+			<File
+				RelativePath=".\scicos_malloc.c">
+			</File>
+			<File
 				RelativePath=".\scicosclip.c">
 			</File>
 			<File
 				RelativePath=".\selector.c">
 			</File>
 			<File
+				RelativePath=".\signum.c">
+			</File>
+			<File
 				RelativePath=".\slider.c">
+			</File>
+			<File
+				RelativePath=".\step_func.c">
 			</File>
 			<File
 				RelativePath=".\str2sci.c">
@@ -323,7 +380,19 @@ cd .. &gt;nul
 				RelativePath=".\sum.c">
 			</File>
 			<File
+				RelativePath=".\summation.c">
+			</File>
+			<File
+				RelativePath=".\switch2.c">
+			</File>
+			<File
 				RelativePath=".\switchn.c">
+			</File>
+			<File
+				RelativePath=".\time_delay.c">
+			</File>
+			<File
+				RelativePath=".\variable_delay.c">
 			</File>
 			<File
 				RelativePath=".\writeau.c">
@@ -338,6 +407,12 @@ cd .. &gt;nul
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
+			<File
+				RelativePath=".\blocks-vc.h">
+			</File>
+			<File
+				RelativePath=".\blocks.h">
+			</File>
 			<File
 				RelativePath=".\cc_pass2.h">
 			</File>
