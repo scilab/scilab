@@ -284,8 +284,6 @@ void Callback_PRINT(void)
 	{
 		PrintSelection(lptw,"Console Scilab");
 	}
-	
-	
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_TOOLBAR(void)
@@ -396,18 +394,6 @@ void Callback_SCIPAD(void)
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
 	StoreCommand1 ("scipad()",2);
-	switch (lptw->lpmw->CodeLanguage)
-	{
-		case 1:
-			StoreCommand1("LANGUAGE=\"fr\";",0);
-		break;
-		
-		default: case 0:
-			StoreCommand1("LANGUAGE=\"eng\";",0);
-		break;
-	}
-	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);",0);
-	
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_HELP(void)
@@ -417,19 +403,7 @@ void Callback_HELP(void)
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
 	StoreCommand1 ("help();", 2);
-	switch (lptw->lpmw->CodeLanguage)
-	{
-		case 1:
-			StoreCommand1 ("LANGUAGE=\"fr\";",0);
-		break;
-		
-		default: case 0:
-			StoreCommand1 ("LANGUAGE=\"eng\";",0);
-		break;
-	}
-		
-	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);",0);
-	    		
+  		
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_DEMOS(void)
@@ -1394,9 +1368,6 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
              SetWindowLong (lpmw->hButton[index], GWL_WNDPROC, (LONG) lpmw->lpfnMenuButtonProc);
              
         }
-
-
-
 }      
       
 
@@ -1870,6 +1841,12 @@ void UpdateFileNameMenu(LPTW lptw)
 /*-----------------------------------------------------------------------------------*/   
 void SwitchLanguage(LPTW lptw)
 {
+	char commandline[256];
+
+	strcpy(commandline,"%");
+	strcat(commandline,"helps=initial_help_chapters(LANGUAGE);");
+
+	StoreCommand1 (commandline, 2);
 	switch (lptw->lpmw->CodeLanguage)
 	{
 		case 1:
@@ -1880,8 +1857,8 @@ void SwitchLanguage(LPTW lptw)
 			StoreCommand1 ("LANGUAGE=\"eng\";", 2);
 		break;
 	}
-	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);", 2);
-
+	StoreCommand1 (commandline, 2);
+    
 	ReLoadMenus(lptw);
 	ToolBarOnOff(lptw);
 	OnRightClickMenu(lptw);
