@@ -488,7 +488,7 @@ void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory)
   **/
   XtAppAddActions(app_con, actionProcs, XtNumber(actionProcs));
   toplevel =   initColors(realToplevel);
-  SetXsciOn();
+   /* SetXsciOn();  */ /*Already done in realmain */
   xterm_name = resource.xterm_name;
   if (strcmp(xterm_name, "-") == 0) xterm_name = "xterm";
   XtSetValues (toplevel, ourTopLevelShellArgs,
