@@ -8,7 +8,7 @@
 
 #include "bcg.h"
 #include "PloEch.h" 
-/**DJ.Abdmouche 2003**/
+/**DJ.Abdemouche 2003**/
 #define TX3D(x1,y1,z1) inint(xz1= Cscale.Wscx1*(TRX(x1,y1,z1)-Cscale.frect[0]) +Cscale.Wxofset1);
 #define TY3D(x1,y1,z1) inint(yz1= Cscale.Wscy1*(-TRY(x1,y1,z1)+Cscale.frect[3])+Cscale.Wyofset1);
 extern void GPopupResize();
@@ -29,7 +29,7 @@ extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,int
 int DestroyAgregation (sciPointObj * pthis);
 extern int cf_type; /* used by gcf to determine if current figure is a graphic (1) or a tksci (0) one */
 /*************************************************************************************************/
-/**DJ.Abdmouche2003**/
+/**DJ.Abdemouche2003**/
 static double xz1,yz1;
 /** Functions for entity oriented graphic */
 
@@ -7200,7 +7200,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       pSUBWIN_FEATURE (pobj)->axes.rect  = 1;
       pSUBWIN_FEATURE (pobj)->axes.limits[0]  = 0;
-      /**DJ.Abdmouche 2003**/
+      /**DJ.Abdemouche 2003**/
       for (i=0 ; i<3 ; i++)
 	pSUBWIN_FEATURE (pobj)->grid[i]  = -1;
       pSUBWIN_FEATURE (pobj)->isaxes  = FALSE;
@@ -7221,7 +7221,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       pSUBWIN_FEATURE (pobj)->axes.flag[0]= 2;
       pSUBWIN_FEATURE (pobj)->axes.flag[1]= 2;
       pSUBWIN_FEATURE (pobj)->axes.flag[2]= 4;
-      /**DJ.Abdmouche 2003**/
+      /**DJ.Abdemouche 2003**/
       pSUBWIN_FEATURE (pobj)->project[0]= 1;
       pSUBWIN_FEATURE (pobj)->project[1]= 1;
       pSUBWIN_FEATURE (pobj)->project[2]= 0;
@@ -7487,7 +7487,7 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
       pTEXT_FEATURE (pobj)->x = x;
       pTEXT_FEATURE (pobj)->y = y;
       pTEXT_FEATURE (pobj)->wy = wy;
-      pTEXT_FEATURE (pobj)->z = 0.0; /**DJ.Abdmouche 2003**/
+      pTEXT_FEATURE (pobj)->z = 0.0; /**DJ.Abdemouche 2003**/
       if (sciInitFontContext (pobj) == -1)
 	{
 	  FREE(pTEXT_FEATURE (pobj)->ptextstring);	  
@@ -7928,7 +7928,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	  ppoly->ymin   = Min(ppoly->pvy[i], ppoly->ymin);
 	  ymax          = Max(ppoly->pvy[i], ymax);
 	}
-      /**DJ.Abdmouche 2003**/
+      /**DJ.Abdemouche 2003**/
       ppoly->pvz = (double *) NULL;
       ppoly->width  = fabs(xmax - ppoly->xmin);
       ppoly->height = fabs(ymax - ppoly->ymin); 
@@ -8000,7 +8000,7 @@ DestroyPolyline (sciPointObj * pthis)
   FREE (pPOLYLINE_FEATURE (pthis)->pvector);
   FREE (pPOLYLINE_FEATURE (pthis)->pvx);
   FREE (pPOLYLINE_FEATURE (pthis)->pvy);
-  if (pPOLYLINE_FEATURE (pthis)->pvz != NULL) /**DJ.Abdmouche 2003**/
+  if (pPOLYLINE_FEATURE (pthis)->pvz != NULL) /**DJ.Abdemouche 2003**/
     FREE (pPOLYLINE_FEATURE (pthis)->pvz);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
@@ -8408,7 +8408,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	{
 	  psegs->vy[i] = vy[i];
 	} 
-       pSEGS_FEATURE (pobj)->vz=(double *) NULL; /**DJ.Abdmouche 2003**/
+       pSEGS_FEATURE (pobj)->vz=(double *) NULL; /**DJ.Abdemouche 2003**/
       psegs->ptype = type;
       if (type == 0)
       {   
@@ -8469,7 +8469,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	      psegs->vfx[i] = vfx[i];
 	      psegs->vfy[i] = vfy[i]; 
 	    }
-	  pSEGS_FEATURE (pobj)->vfz=(double *) NULL; /**DJ.Abdmouche 2003**/
+	  pSEGS_FEATURE (pobj)->vfz=(double *) NULL; /**DJ.Abdemouche 2003**/
 	}	
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -8636,7 +8636,7 @@ ConstructPatch (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 
       ppoly->n1 = n;		/* memorisation du nombre de points */
       ppoly->closed = 1;
-      pPATCH_FEATURE (pobj)->pvz = (double *) NULL;/**DJ.Abdmouche 2003**/
+      pPATCH_FEATURE (pobj)->pvz = (double *) NULL;/**DJ.Abdemouche 2003**/
       if (sciInitGraphicContext (pobj) == -1)
 	{
 	  FREE(pPATCH_FEATURE (pobj)->pvy);
@@ -8888,7 +8888,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 
       pRECTANGLE_FEATURE (pobj)->x = x;
       pRECTANGLE_FEATURE (pobj)->y = y;
-      pRECTANGLE_FEATURE (pobj)->z = 0; /**DJ.Abdmouche 2003**/
+      pRECTANGLE_FEATURE (pobj)->z = 0; /**DJ.Abdemouche 2003**/
       pRECTANGLE_FEATURE (pobj)->height = height;
       pRECTANGLE_FEATURE (pobj)->width = width;
       /** 15/02/2002 **/
@@ -9824,7 +9824,7 @@ sciDrawObj (sciPointObj * pobj)
   sciPointObj *psubwin, *currentsubwin;
   double locx,locy,loctit;
   char logflags[4];
-  /**DJ.Abdmouche 2003**/
+  /**DJ.Abdemouche 2003**/
   double xbox[8],ybox[8],zbox[8], *xzz,*yzz,*zzz;
   static integer InsideU[4],InsideD[4];
   	
@@ -9881,7 +9881,7 @@ sciDrawObj (sciPointObj * pobj)
       set_scale ("tttfff", pSUBWIN_FEATURE (pobj)->WRect, 
 		 pSUBWIN_FEATURE (pobj)->FRect,
 		 NULL, pSUBWIN_FEATURE (pobj)->logflags, NULL);      
-      /**DJ.Abdmouche 2003**/
+      /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (pobj)->is3d)
 	{  
 	  axis_3ddraw(pobj,xbox,ybox,zbox,InsideU,InsideD); 
@@ -9920,7 +9920,7 @@ sciDrawObj (sciPointObj * pobj)
 	      axis_draw (pSUBWIN_FEATURE (pobj)->strflag); 
 	    }
 	  
-	  /**DJ.Abdmouche 2003**/
+	  /**DJ.Abdemouche 2003**/
 	  psonstmp = sciGetLastSons (pobj);
 	  while (psonstmp != (sciSons *) NULL)
 	    {
@@ -9932,7 +9932,7 @@ sciDrawObj (sciPointObj * pobj)
 #endif
 	  
 	}
-      break;  /**DJ.Abdmouche 2003**/                       
+      break;  /**DJ.Abdemouche 2003**/                       
 	  /******************/
 	  
 	case SCI_AGREG: 
@@ -10058,7 +10058,7 @@ sciDrawObj (sciPointObj * pobj)
 	  arsize = pSEGS_FEATURE (pobj)->arrowsize; 
 	  if ((xm = MALLOC (n*sizeof (integer))) == NULL)	return -1;
 	  if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1;
-	  /**DJ.Abdmouche 2003**/
+	  /**DJ.Abdemouche 2003**/
 	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 	    {
 	    trans3d(sciGetParentSubwin(pobj),n,xm,ym,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,pSEGS_FEATURE (pobj)->vz);
@@ -10281,7 +10281,7 @@ sciDrawObj (sciPointObj * pobj)
       
       if ((xm = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
       if ((ym = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
-      /**DJ.Abdmouche 2003**/
+      /**DJ.Abdemouche 2003**/
       if ((xzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
       if ((yzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
       if ((zzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
@@ -10290,7 +10290,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       flag=MaybeSetWinhdc ();
 #endif
-      /**DJ.Abdmouche 2003**/
+      /**DJ.Abdemouche 2003**/
       switch (pPOLYLINE_FEATURE (pobj)->plot)
 	{
 	case 0:
@@ -10298,7 +10298,7 @@ sciDrawObj (sciPointObj * pobj)
 	    trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz);
 	  else
 	    C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L); 
-	  /**DJ.Abdmouche 2003**/
+	  /**DJ.Abdemouche 2003**/
 	  break; 
 	case 1:
 	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
@@ -10334,7 +10334,7 @@ sciDrawObj (sciPointObj * pobj)
 	      iflag=0; nn1= n1*2;
 	      C2F(dr)("xsegs","v",&xm[2*n1*j],&ym[2*n1*j],&nn1,&lstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
-	  /**DJ.Abdmouche 2003**/
+	  /**DJ.Abdemouche 2003**/
 	  n1=n2;
 	  break;
 	case 4: 
@@ -10411,7 +10411,7 @@ sciDrawObj (sciPointObj * pobj)
       	return -1;
       if ((ym = MALLOC (n * sizeof (int))) == NULL)
       	return -1; 
-      /**DJ.Abdmouche 2003**/
+      /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 	    trans3d(sciGetParentSubwin(pobj),n,xm,ym,pPATCH_FEATURE (pobj)->pvx,
 		    pPATCH_FEATURE (pobj)->pvy,pPATCH_FEATURE (pobj)->pvz);
@@ -10469,7 +10469,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       if ( flag == 1) ReleaseWinHdc ();
 #endif
-      /**DJ.Abdmouche 2003**/
+      /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 	    {
 	    trans3d(sciGetParentSubwin(pobj),un,&x1,&yy1,&pARC_FEATURE(pobj)->x,
@@ -10552,7 +10552,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       if ( flag == 1) ReleaseWinHdc ();
 #endif 
-      /**DJ.Abdmouche 2003**/
+      /**DJ.Abdemouche 2003**/
       if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d))
 	{
 	  x1 = XDouble2Pixel(pRECTANGLE_FEATURE (pobj)->x); 
@@ -10663,7 +10663,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       if ( flag == 1) ReleaseWinHdc ();
 #endif
-      /**DJ.Abdmouche 2003**/
+      /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
       {trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,&pTEXT_FEATURE (pobj)->x,&pTEXT_FEATURE (pobj)->y,&pTEXT_FEATURE (pobj)->z);}
       else /***/
@@ -11528,7 +11528,7 @@ sciGetPosHeight (sciPointObj * pthis)
     }
   return -1;
 }
-/**DJ.Abdmouche 2003**/
+/**DJ.Abdemouche 2003**/
 /**sciGetPosX
  * @memo returns coordonee Z  in REAL for entity 
  */
@@ -11575,7 +11575,7 @@ sciGetPosZ (sciPointObj * pthis)
  * @memo returns pointer to the points of the entity, and a pointer to the number of points. This function allocates memory for the tab of point, so after using the tab don't forget to free it
  */
 
-/**MAJ pour le 3D DJ.Abdmouche 2003**/
+/**MAJ pour le 3D DJ.Abdemouche 2003**/
 double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 {
   double *tab;
@@ -11838,7 +11838,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 /**sciSetPoint
  * @memo sets points of the entity, and a pointer to the number of points
  */
-/** MAJ pour le 3D DJ.Abdmouche 2003**/
+/** MAJ pour le 3D DJ.Abdemouche 2003**/
 int
 sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 {
@@ -13587,8 +13587,8 @@ int sciType (marker)
   else if (strncmp(marker,"figure_position", 15) == 0) {return 1;}	 
   else if (strncmp(marker,"axes_size", 9) == 0)   {return 1;}
   else if (strncmp(marker,"axes_visible", 12) == 0)   {return 10;}
-  else if (strncmp(marker,"isoview", 7) == 0)   {return 10;}/**DJ.Abdmouche 2003**/
-  else if (strncmp(marker,"view", 4) == 0)   {return 10;}/**DJ.Abdmouche 2003**/	
+  else if (strncmp(marker,"isoview", 7) == 0)   {return 10;}/**DJ.Abdemouche 2003**/
+  else if (strncmp(marker,"view", 4) == 0)   {return 10;}/**DJ.Abdemouche 2003**/	
   else if (strncmp(marker,"figure_size", 11) == 0){return 1;}	
   else if (strncmp(marker,"figure_id", 9) == 0)   {return 1;}	
   else if (strncmp(marker,"figure_name", 11) == 0){return 10;}   

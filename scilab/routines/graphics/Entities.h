@@ -455,7 +455,7 @@ typedef struct
   /***/
   double wy;			    
   /** */
-  double z; /**DJ.Abdmouche 2003**/
+  double z; /**DJ.Abdemouche 2003**/
   unsigned int textlen;
   /** specifies the text scilab code for the callback associated with this entity */
   char *callback; 
@@ -574,7 +574,7 @@ typedef struct
   char ydir;   /**  ydir  = 'r' | 'l' : gives the xy-axes positions **/ 
   double  xlim[4];  /* [xmin,xmax,ar,nint]           */
   double  ylim[4];  /* [ymin,ymax,ar,nint]           */ 
-  double  zlim[4];  /* [zmin,zmax,ar,nint]         */  /**DJ.Abdmouche 2003**/
+  double  zlim[4];  /* [zmin,zmax,ar,nint]         */  /**DJ.Abdemouche 2003**/
   double    limits[5]; /* = 1 set tight limits = 0 set axes auto shape */
   integer flag[3]; /* 3d options */
 }
@@ -615,14 +615,14 @@ typedef struct
   int zoomx;				 
   /** specifies the factor of the y zoom                     */
   int zoomy;
-  double FRect[6]; /**DJ.Abdmouche 2003**/
+  double FRect[6]; /**DJ.Abdemouche 2003**/
   double WRect[4];
   int zoomy_kp;
   double FRect_kp[4];
   double WRect_kp[4];
   char logflags[2]; /* SS 01/01/03 */
   char strflag[4];
-  int grid[3];/**DJ.Abdmouche 2003**/
+  int grid[3];/**DJ.Abdemouche 2003**/
   BOOL isaxes;
   AXES axes;
   BOOL is3d;
@@ -638,7 +638,7 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;  
   int isclip;
-  /**DJ.Abdmouche 2003**/
+  /**DJ.Abdemouche 2003**/
   integer project[3];
   BOOL isreal; 
   integer cubecolor;
@@ -683,7 +683,7 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;  
   int isclip; 
-  double z; /**DJ.Abdmouche 2003**/
+  double z; /**DJ.Abdemouche 2003**/
 }  /** */
 sciArc;
 
@@ -721,7 +721,7 @@ typedef struct
   double *pvy;			/* vecteur des points y doublon avec pvector*/
   int n1;                               /** number of point */
   int n2;                             /** numbre of curve if Plot **/ 
-  double *pvz; /**DJ.Abdmouche 2003**/
+  double *pvz; /**DJ.Abdemouche 2003**/
   int closed;                      /** is it a closed polyline */
   int plot;                        /** is it simple poly or a plot (Plot2d /Plot2d1/.../Plot2d4) */
   double xmin;				/** xmin */
@@ -763,7 +763,7 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible; 
   int isclip;
-  double *pvz;  /* vecteur des points z *//**DJ.Abdmouche 2003**/
+  double *pvz;  /* vecteur des points z *//**DJ.Abdemouche 2003**/
 }
 sciPatch;  /** */
 
@@ -915,7 +915,7 @@ typedef struct
   POINT2D *vector;		/* vecteur de points redondant, for future developpement*/
   double *vx;  /** vx vector of size nx **/
   double *vy;  /** vy vector of size ny **/ 
-  /**DJ.Abdmouche 2003**/
+  /**DJ.Abdemouche 2003**/
   double *vz; 
   int nx;
   int ny;
@@ -970,7 +970,7 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible; 
   int isclip;
-  double *vz; /**DJ.Abdmouche 2003**/
+  double *vz; /**DJ.Abdemouche 2003**/
   double *vfz;
 
 }
@@ -1398,7 +1398,7 @@ extern int sciSetPosX (sciPointObj * pthis, double x);
 extern int sciSetPosY (sciPointObj * pthis, double y);
 extern double sciGetPosX (sciPointObj * pthis);
 extern double sciGetPosY (sciPointObj * pthis);
-extern double sciGetPosZ (sciPointObj * pthis);/**DJ.Abdmouche 2003**/
+extern double sciGetPosZ (sciPointObj * pthis);/**DJ.Abdemouche 2003**/
 extern double sciGetPosWidth (sciPointObj * pthis);
 extern double sciGetPosHeight (sciPointObj * pthis);
 extern double *sciGetPoint (sciPointObj * pthis, int *num, int *numco);
@@ -1446,7 +1446,7 @@ extern sciPointObj *sciGetSurface(sciPointObj *psubwin);
 extern void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha);
 extern BOOL Check3DObjs();
 extern sciPointObj *CheckClickedSubwin(integer x, integer y);
-/**DJ.Abdmouche 2003**/
+/**DJ.Abdemouche 2003**/
 extern void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag);
 extern void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, char *legend, integer *flag, double *bbox);
 extern void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style);

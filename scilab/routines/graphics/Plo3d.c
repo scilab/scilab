@@ -701,7 +701,7 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
   /** ainsi que les triedres caches ou non **/
        
   Convex_Box(xbox,ybox,InsideU,InsideD,"X@Y@Z",flag,Cscale.bbox1);
-  /**DJ.Abdmouche 2003**/
+  /**DJ.Abdemouche 2003**/
    if (version_flag() != 0) {
      /** le triedre vu **/
      C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -916,7 +916,7 @@ void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
   ixbox[3]=XScale(xbox[Indices[2]]);iybox[3]=YScale(ybox[Indices[2]]);
   ixbox[5]=XScale(xbox[Indices[3]]);iybox[5]=YScale(ybox[Indices[3]]);
   C2F(dr)("xget","line style",&verbose,lstyle,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-  /**DJ.Abdmouche 2003**/
+  /**DJ.Abdemouche 2003**/
   if (version_flag() == 0) { 
     C2F(dr)("xget","hidden3d",&verbose,&hiddencolor,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     if (hiddencolor == style ) j= 2;
@@ -1008,7 +1008,7 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
    }
   ixbox[6]=ixbox[0];iybox[6]=iybox[0];
   p=7,n=1;
-  /**DJ.Abdmouche 2003**/
+  /**DJ.Abdemouche 2003**/
   if (version_flag() != 0) 
     C2F(dr)("xget","foreground",&verbose,dvect,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   else
@@ -1016,7 +1016,7 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
      /** On trace l'enveloppe cvxe **/
   C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F (dr) ("xset","thickness",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);     /**DJ.Abdmouche 2003**/	   
+  C2F (dr) ("xset","thickness",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);     /**DJ.Abdemouche 2003**/	   
   if (flag[2]>=3){
     C2F(dr)("xpolys","v",ixbox,iybox,dvect,&n,&p
         ,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1332,7 +1332,7 @@ void I3dRotation(void)
 	return;
       }
   }
-  /**DJ.Abdmouche 2003**/
+  /**DJ.Abdemouche 2003**/
   xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
   yy=1.0/Abs(Cscale.frect[1]-Cscale.frect[3]);
   C2F(dr)("xget","pixmap",&verbose,&pixmode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1388,7 +1388,7 @@ void I3dRotation(void)
           if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0)    
 	    {
 	      psubwin = (sciPointObj *)CheckClickedSubwin(xr,yr);
-	      /**DJ.Abdmouche 2003**/
+	      /**DJ.Abdemouche 2003**/
 	      if((sciPointObj *) psubwin != NULL)
 		{
 		  sciSetSelectedSubWin (psubwin);
@@ -1502,7 +1502,7 @@ static void dbox(void)
   C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset", "line style",&un,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#endif/**DJ.Abdmouche 2003**/
+#endif/**DJ.Abdemouche 2003**/
 SetEch3d1(xbox,ybox,zbox,Cscale.bbox1,&theta,&alpha,Cscale.metric3d);
   C2F(box3d)(xbox,ybox,zbox);
 #ifdef WIN32
