@@ -12,7 +12,6 @@ c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
-      if(err1.gt.0) return
       fin=1
 C     maximum number of characters that we can store
       ilmax=iadr(lstk(bot)-1)
@@ -36,11 +35,15 @@ c     on ne sait pas encore combien il y en a
             call error(18)
             return
          endif
-         top=top+1
-         infstk(top)=0
-         call putid(idstk(1,top),bl)
-         if (.not.cresmat("getstr",top,1,1,1)) return
-         ln=iadr(lstk(top))+6
+         if(err1.le.0) then
+            top=top+1
+            infstk(top)=0
+            call putid(idstk(1,top),bl)
+            if (.not.cresmat("getstr",top,1,1,1)) return
+            ln=iadr(lstk(top))+6
+         else
+            ln=0
+         endif
       endif
 c     Begin : reading the string 
       l=ln
@@ -57,7 +60,7 @@ c     Begin : reading the string
          call error(17)
          return
       endif
-      istk(ln) = char1
+      if(err1.le.0) istk(ln) = char1
       n = n+1
       call getch
       go to 16
@@ -72,7 +75,7 @@ c     Storing size info in data Base
       if(comp(1).ne.0) then 
          istk(l0)=n
          comp(1)=l+n
-      else
+      elseif(err1.le.0)  then
          if (.not.cresmat("getstr",top,1,1,n)) return
       endif
       return
