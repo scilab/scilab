@@ -187,13 +187,15 @@
 
 // besselH functions
 // =================
-  x=-4:0.025:2; y=-1.5:0.025:1.5;
-  [X,Y] = ndgrid(x,y);
-  H = besselh(0,1,X+%i*Y); 
-  clf();f=gcf();
-  xset("fpf"," ")
-  f.color_map=jetcolormap(17);
-  contour2d(x,y,abs(H),0:0.2:3.2,rect=[-4,-1.5,2,1.5])
+   x=-4:0.025:2; y=-1.5:0.025:1.5;
+   [X,Y] = ndgrid(x,y);
+   H = besselh(0,1,X+%i*Y); 
+   clf();f=gcf();
+   xset("fpf"," ")
+   f.color_map=jetcolormap(16);
+   contour2d(x,y,abs(H),0.2:0.2:3.2,strf="034",rect=[-4,-1.5,3,1.5])
+   legends(string(0.2:0.2:3.2),1:16,"ur")
+   xtitle("Level curves of |H1(0,z)|")
 ]]>
   </EXAMPLE>
   <AUTHORS> 
