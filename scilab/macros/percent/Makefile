@@ -15,8 +15,8 @@ A =     %c_a_c.sci %hm_a_hm.sci %hm_a_s.sci %ip_a_s.sci \
 	%p_a_lss.sci %p_a_r.sci %r_a_lss.sci %r_a_p.sci \
 	%r_a_r.sci %r_a_s.sci %s_a_hm.sci %s_a_ip.sci \
 	%s_a_lss.sci %s_a_r.sci %s_a_sp.sci %sp_a_s.sci \
-	%sp_a_sp.sci %i_a_i.sci %3d_i_h.sci
-#ajout ci dessus de %3d_i_h.sci
+	%sp_a_sp.sci %i_a_i.sci %3d_i_h.sci %ticks_i_h.sci
+#ajout ci dessus de %3d_i_h.sci et %ticks_i_h.sci
 
 B =      %b_i_b.sci %s_g_b.sci %s_h_b.sci %s_i_b.sci \
 	 %spb_c_b.sci %spb_f_b.sci %spb_g_b.sci %spb_h_b.sci \
