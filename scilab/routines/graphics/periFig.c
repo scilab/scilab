@@ -881,7 +881,7 @@ struct bgc { char *name ;
    {"clipping",C2F(setclipXfig),C2F(getclipXfig)},
    {"color",C2F(setpatternXfig),C2F(getpatternXfig)},
    {"colormap",C2F(setcolormapXfig),C2F(gemptyXfig)},
-   {"dashes",C2F(setdashXfig),C2F(getdashXfig)},
+   {"dashes",C2F(set_dash_or_color_Xfig),C2F(set_dash_or_color_Xfig)},
    {"default",C2F(InitScilabGCXfig), C2F(gemptyXfig)},
    {"figure",C2F(setscilabFigureXfig),C2F(getscilabFigureXfig)},/* NG */
    {"font",C2F(xsetfontXfig),C2F(xgetfontXfig)},
