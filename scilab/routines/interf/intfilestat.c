@@ -4,7 +4,9 @@
 #include <locale.h>
 #include <stdio.h>
 #include "../stack-c.h"
-extern int C2F(cluni0) __PARAMS((char *in_name, char *out_name, int *out_n));
+
+#include "../sun/Sun.h" 
+
 
 int C2F(intfilestat)(fname)
 char * fname;
@@ -23,7 +25,7 @@ char * fname;
 
    n=m1*n1+256;
    CreateVar(2,"c",&one,&n,&l2);
-   C2F(cluni0)(cstk(l1), cstk(l2), &m1);
+   C2F(cluni0)(cstk(l1), cstk(l2), &m1,m1*n1,n);
    /* Get data associated with "given file": */
 #ifdef WIN32
    result = _stat(cstk(l2), &buf );
