@@ -47,7 +47,8 @@ for k=1:size(names,'r')
 end
 
 getf('SCI/demos/scicos/dialogs_play.sci')
-
+tk_getfile=xgetfile
+tk_getcolor=getcolor
 
 %I=mopen(fil,'r');ierr=execstr('scicos();','errcatch');mclose(%I);
 

@@ -14,6 +14,8 @@ c_cho=funptr('x_choose');clearfun('x_choose');newfun('x_choose1',c_cho);
 xgetf=funptr('xgetfile');clearfun('xgetfile');newfun('xgetfile1',xgetf);
 //these function are redefined below
 getf SCI/demos/scicos/dialogs_learn.sci
+tk_getfile=xgetfile
+tk_getcolor=getcolor
 //reload the functions using the redefined primitive functions
 names=[
     'scicos'
