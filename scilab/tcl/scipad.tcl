@@ -117,7 +117,11 @@ exec `which wish` "$0" "$@"
 # * rationalized setfontscipad procedures, font size changes also menu fonts
 # * accelerator F2=Save
 # * added catch to delinfo in proc showinfo - prevents a "missing variable
-#   .pad" which apears ocasionally on reopening
+#   .pad" which appears ocasionally on reopening
+
+#27/10/2003
+# * proc helpword
+# * message "file NNNN saved"
 
 # default global values
 #global .
@@ -458,11 +462,14 @@ proc execfile {} {
     set doexec 1
     if [ expr [string compare [getccount $textarea] 1] == 0 ] {
 	if {$lang == "eng"} {
-	    set answer [tk_messageBox -message "The contents of $listoffile("$textarea",filename) may have changed, do you wish to to save your changes?" \
+	    set answer [tk_messageBox -message "The contents of \
+             $listoffile("$textarea",filename) may have changed, do you wish \
+             to to save your changes?" \
 	            -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
 	    set answer [tk_messageBox -message \
-            "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" \
+            "Voulez-vous enregistrer les modifications apportées à \
+              $listoffile("$textarea",filename) ?" \
 	     -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
@@ -476,11 +483,13 @@ proc execfile {} {
 	if [ expr [string compare $sciprompt -1] == 0 ] {
 	    if {$lang == "eng"} {
 		tk_messageBox -message \
-                 "Scilab is working, wait for the prompt to load file $listoffile("$textarea",filename)" \
+                 "Scilab is working, wait for the prompt to load file \
+                  $listoffile("$textarea",filename)" \
                     -title "Scilab working" -type ok -icon info
 	    } else {
 		tk_messageBox -message \
-                "Scilab est occupé, attendez le prompt pour charger le fichier $listoffile("$textarea",filename)"\
+                "Scilab est occupé, attendez le prompt pour charger le fichier \
+                 $listoffile("$textarea",filename)"\
                     -title "Scilab occupé" -type ok -icon info
 	    }
 	} else {
@@ -564,15 +573,21 @@ menu $pad.filemenu.help -tearoff 0 -font $menuFont
 if {$lang == "eng"} {
     $pad.filemenu add cascade -label "Help" -underline 0 \
 	-menu $pad.filemenu.help
-    $pad.filemenu.help add command -label "Help" -underline 0 -command "helpme"
     $pad.filemenu.help add command -label "About" -underline 0 \
-	-command "aboutme" -accelerator F1
+	-command "aboutme" ;#-accelerator Shift-F1
+    $pad.filemenu.help add command -label "Help" -underline 0 \
+        -command "helpme" -accelerator F1
+    $pad.filemenu.help add command -label "What's?" -underline 0 \
+	-command "helpword" -accelerator Ctrl-F1
 } else {
     $pad.filemenu add cascade -label "Aide" -underline 0 \
 	-menu $pad.filemenu.help
-    $pad.filemenu.help add command -label "Aide" -underline 0 -command "helpme"
     $pad.filemenu.help add command -label "Apropos" -underline 0 \
-	-command "aboutme" -accelerator F1
+	-command "aboutme" ;#-accelerator Shift-F1
+    $pad.filemenu.help add command -label "Aide" -underline 0 \
+        -command "helpme" -accelerator F1
+    $pad.filemenu.help add command -label "Quoi?" -underline 0 \
+	-command "helpword" -accelerator Ctrl-F1
 }
 
 # now make the menu visible
@@ -863,9 +878,9 @@ proc openoninit {textarea thefile} {
     if {$lang == "eng"} {
 	set msgWait "Wait seconds while loading and colorizing file"
     } else {
-	set msgWait "Patientez un instant le temps du chargement et de la colorisation"
+	set msgWait \
+         "Patientez un instant le temps du chargement et de la colorisation"
     }
-
     showinfo $msgWait
     lappend listoftextarea $textarea
     if [string match " " $thefile] {  
@@ -936,6 +951,25 @@ proc aboutme {} {
             Modifié par le Groupe Scilab.\nAmelioré par Enrico Segre 2003"
     }
 }
+
+#ES:
+proc helpword {} {
+    global textareacur
+    set seltexts [selection own]
+    if {[catch {selection get -selection PRIMARY} sel] ||$seltexts != $textareacur} {
+#if there is no selection in the current textarea, select the word at the cursor position
+           set i1 [$textareacur index insert]
+           $textareacur tag add sel [$textareacur index "$i1 wordstart"] \
+                                    [$textareacur index "$i1 wordend"]
+           set curterm [selection get]
+	} else {
+           set cursel [selection get]
+# get only the first word of the selection (or a symbol)
+           regexp "(\\A\\w*\\M|\\A\\W)" $cursel curterm
+	}
+        if {[info exists curterm]} { ScilabEval "help $curterm" }	
+}
+
 
 # generic case switcher for message box
 proc switchcase {yesfn argyesfn nofn argnofn} {
@@ -1075,11 +1109,14 @@ proc closefile {textarea} {
 
     if  [ expr [string compare [getccount $textarea] 1] == 0 ] {
 	if {$lang == "eng"} {
-	    set answer [tk_messageBox -message "The contents of $listoffile("$textarea",filename) may have changed, do you wish to to save your changes?"\
+	    set answer [tk_messageBox -message "The contents of \
+                 $listoffile("$textarea",filename) may have changed, do you wish\
+                   to to save your changes?"\
 		       -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
-	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" \
-		      -title "Confirmer sauver ?" -type yesnocancel -icon question]
+	    set answer [tk_messageBox -message "Voulez-vous enregistrer les \
+                  modifications apportées à $listoffile("$textarea",filename) ?" \
+		     -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
 	    yes { filetosave $textarea; byebye $textarea }
@@ -1197,9 +1234,12 @@ proc showopenwin {textarea} {
 	} else {
 	    # file is already opened
             if {$lang == "eng"} {
-  	       tk_messageBox -type ok -title "Open file" -message "This file is already opened ! save the current opened file to an another name and reopen it from disk"
+  	       tk_messageBox -type ok -title "Open file" -message "This file is already\
+                    opened! Save the current opened file to an another name and reopen\
+                    it from disk"
             } else {
-  	       tk_messageBox -type ok -title "Ouvrir fichier" -message "Cette fichier est deja ouvert! Sauvez-le sous un autre nom y ouvrez-le par le disque!"
+  	       tk_messageBox -type ok -title "Ouvrir fichier" -message "Cette fichier \
+                   est deja ouvert! Sauvez-le sous un autre nom y ouvrez-le par le disque!"
             }
 	    $pad.filemenu.wind invoke $res
 	}
@@ -1275,9 +1315,12 @@ proc openfile {file} {
 	} else {
 	    # file is already opened
             if {$lang == "eng"} {
-  	       tk_messageBox -type ok -title "Open file" -message "This file is already opened ! save the current opened file to an another name and reopen it from disk"
+  	       tk_messageBox -type ok -title "Open file" -message "This file is already\
+                   opened! Save the current opened file to an another name and reopen it\
+                   from disk"
             } else {
-  	       tk_messageBox -type ok -title "Ouvrir fichier" -message "Cette fichier est deja ouvert! Sauvez-le sous un autre nom y ouvrez-le par le disque!"
+  	       tk_messageBox -type ok -title "Ouvrir fichier" -message "Cette fichier \
+                   est deja ouvert! Sauvez-le sous un autre nom y ouvrez-le par le disque!"
             }
 	}
 	selection clear
@@ -1298,10 +1341,18 @@ proc filetoopen {textarea} {
 
 # generic save function
 proc writesave {textarea nametosave} {
+    global lang
     set FileNameToSave [open $nametosave w+]
     puts -nonewline $FileNameToSave [$textarea get 0.0 end]
     close $FileNameToSave
     outccount $textarea
+    if {$lang == "eng"} {
+	set msgWait "file $nametosave saved"
+    } else {
+	set msgWait \
+         "Fichier $nametosave sauvegardé"
+    }
+    showinfo $msgWait
 }
 
 #save a file
@@ -1316,10 +1367,12 @@ proc filetosave {textarea} {
     global lang
 
     if {$lang == "eng"} {
-	set msgChanged "The contents of $listoffile("$textarea",filename) has changed on Disk, Save it anyway ?"
+	set msgChanged "The contents of $listoffile("$textarea",filename) has changed\
+                        on Disk, Save it anyway ?"
 	set msgTitle "File has changed !"
     } else {
-	set msgChanged "Le contenu de $listoffile("$textarea",filename) a changé sur le disque, étes-vous sur de vouloir le sauvegarder ?"
+	set msgChanged "Le contenu de $listoffile("$textarea",filename) a changé sur le\
+                        disque, étes-vous sur de vouloir le sauvegarder ?"
 	set msgTitle "Le fichier a changé"
     }
 
@@ -1976,7 +2029,7 @@ bind $pad <Control-M> {UnCommentSel}
 ##ES 22/9/03
 bind $pad <Control-l> {execfile}
 bind $pad <Control-y> {execselection}
-bind $pad <F1> {aboutme}
+bind $pad <F1> {helpme}
 bind Text <Button-3> {showpopup2}
 #ES 30/9/03
 bind Text <Shift-Button-3> {showpopup3}
@@ -1987,6 +2040,8 @@ bind $pad <Control-B> {showwhichfun}
 bind $pad <F5> {filetosave %W; execfile}
 
 bind $pad <F2> {filetosave %W}
+bind $pad <Control-F1> {helpword}
+bind $pad <Shift-F1> {aboutme}
 
 
 ###################################################################
@@ -2613,7 +2668,7 @@ proc modifiedtitle {textarea} {
        settitle "$fname"
        $pad.filemenu.wind  entryconfigure [$pad.filemenu.wind index $fname]\
                           -background "" -activebackground ""
-       $pad.statusind configure -background grey86
+       $pad.statusind configure -background [$pad.filemenu cget -background]
      }
 }
 
