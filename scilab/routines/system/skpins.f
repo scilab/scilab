@@ -57,7 +57,7 @@ c     get the following line
             endif
          else if (sym.eq.cmt) then
 c     .     look for eol
-            l=lpt(4)-1;
+            l=lpt(4)-1
  11         l=l+1
             if (lin(l).ne.eol.and.l.le.lpt(6)) goto 11
             lpt(4)=l-1
