@@ -8,10 +8,11 @@ extern int sci_show_banner ;
 int C2F(banier)(integer *flag)
 {
   if (*flag != 999 && sci_show_banner == 1) {
-    sciprint("        __________________________________________\r\n");
+    sciprint("        -------------------------------------------\r\n");
     sciprint("                       %s\r\n\n",VERSION);
-    sciprint("            Copyright (C) 1989-2004 INRIA ENPC  \r\n");
-    sciprint("        __________________________________________\r\n");
+    sciprint("                  Copyright (c) 1989-2004          \r\n");
+    sciprint("              Consortium Scilab (INRIA, ENPC)      \r\n");
+    sciprint("        -------------------------------------------\r\n");
   }
   return 0;
 } 
