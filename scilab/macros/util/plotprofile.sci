@@ -1,4 +1,4 @@
-function plotprofile(fun)
+function plotprofile(fun) 
   sep='='
 sep=part(sep,ones(1,72))
 
@@ -9,6 +9,7 @@ if type(fun)==13 then
   m=min(size(count,1),size(txt,1))
   txt=txt(1:m);count=count(1:m,:)
   txt(txt=='')=' '
+  bnd=[];nf=0;
 elseif type(fun)==10 then
   nf=size(fun,'*')
   txt=[];bnd=[];count=[];
