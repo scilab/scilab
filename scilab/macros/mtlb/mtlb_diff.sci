@@ -11,7 +11,7 @@ if rhs<=2 then
   elseif size(x,1)==1 | size(x,2)==1 then
     dim=0
   else
-    dim=2
+    dim='r'
   end
     
 end
@@ -32,10 +32,8 @@ else
   end
   if x==[] then
     y=0
-  elseif size(x,"*")==1 then
-    y=x
   else
-    y=-x($:-1:1)'
+    y=x
   end
 end
 endfunction
