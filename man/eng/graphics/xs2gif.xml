@@ -36,7 +36,8 @@
     <VERB>xs2gif</VERB> sends the recorded graphics of the
     window <VERB>win_num</VERB> in the file <VERB>filen</VERB> in GIF syntax.
     This function works only if the selected 
-    driver is <VERB>&quot;Rec&quot;</VERB> in the window <VERB>win_num</VERB>.
+    driver is <VERB>&quot;Rec&quot;</VERB> in the window
+    <VERB>win_num</VERB>  or if the window is in "new style".
   </P>
   </DESCRIPTION>
   <SEE_ALSO>

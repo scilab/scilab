@@ -36,10 +36,14 @@
     <VERB>xs2gif</VERB> sends the recorded graphics of the
     window <VERB>win_num</VERB> in the file <VERB>filen</VERB> in GIF syntax.
     This function works only if the selected 
-    driver is <VERB>&quot;Rec&quot;</VERB> in the window <VERB>win_num</VERB>.
+    driver is <VERB>&quot;Rec&quot;</VERB> in the window
+    <VERB>win_num</VERB>  or if the window is in "new style".
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>xbasimp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xs2fig</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>printing</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>xs2fig</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>xbasimp</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>xs2ppm</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

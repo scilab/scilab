@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
 <!DOCTYPE MAN SYSTEM "../../man.dtd">
 <MAN>
-  <LANGUAGE>fr</LANGUAGE>
+  <LANGUAGE>eng</LANGUAGE>
   <TITLE>xs2fig  </TITLE>
   <TYPE>Scilab Function  </TYPE>
   <DATE>April 1993  </DATE>
-  <SHORT_DESCRIPTION name="xs2fig"> sauve le contenu d&apos;une fenêtre graphique au format XFig  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="xs2fig"> send graphics to a file in Xfig syntax  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>xs2fig(win_num,filen,[color])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -14,27 +14,29 @@
   <PARAM_ITEM>
   <PARAM_NAME>win_num  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : entier ou vecteur d&apos;entiers
+    : integer scalar or vector .
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>filen  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : chaîne de caractères, nom de fichier
+    : string, file name.
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>color  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : entier optionnel. 0 (mode noir et blanc) ou 1 (mode en couleurs). La valeur par défaut dépend du statut courant de l&apos;écran.
+    : optional integer. 0 means black and white and 1 means color. The default value is to use a value compatible  with the screen status.
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
   <P>
-    <VERB>xs2fig</VERB> sauve les graphiques enregistrés dans la fenêtre <VERB>win_num</VERB> dans le fichier <VERB>filen</VERB> au format XFig.
-    Cette fonction ne marche que si le pilote courant est le pilote <VERB>&quot;Rec&quot;</VERB>.
+    <VERB>xs2fig</VERB> sends the recorded graphics of the
+    window <VERB>win_num</VERB> in the file <VERB>filen</VERB> in Xfig syntax.
+    This function works only if the selected 
+    driver is <VERB>&quot;Rec&quot;</VERB>  or if the window is in "new style".
   </P>
   </DESCRIPTION>
   <SEE_ALSO>

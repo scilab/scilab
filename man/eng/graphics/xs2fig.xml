@@ -36,7 +36,7 @@
     <VERB>xs2fig</VERB> sends the recorded graphics of the
     window <VERB>win_num</VERB> in the file <VERB>filen</VERB> in Xfig syntax.
     This function works only if the selected 
-    driver is <VERB>&quot;Rec&quot;</VERB>.
+    driver is <VERB>&quot;Rec&quot;</VERB>  or if the window is in "new style".
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
