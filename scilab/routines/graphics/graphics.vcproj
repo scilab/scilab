@@ -709,6 +709,9 @@ cd.. &gt;nul
 				RelativePath=".\DrawObjects.c">
 			</File>
 			<File
+				RelativePath=".\Events.c">
+			</File>
+			<File
 				RelativePath=".\FeC.c">
 			</File>
 			<File
@@ -871,6 +874,9 @@ cd.. &gt;nul
 			</File>
 			<File
 				RelativePath=".\DrawObjects.h">
+			</File>
+			<File
+				RelativePath=".\Events.h">
 			</File>
 			<File
 				RelativePath=".\GetProperty.h">

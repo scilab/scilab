@@ -24,7 +24,7 @@
 #include "../wsci/resource.h"
 #include "../wsci/wcommon.h"
 #include "../wsci/wgraph.h"
-#include "../wsci/Events.h"
+#include "Events.h"
 
 #include "bcg.h"
 #include "periWin.h" 
