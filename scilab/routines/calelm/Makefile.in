@@ -4,7 +4,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/calelm.a
 
-OBJSC = vfloor.o vceil.o  finite.o vfrexp.o sci_tools.o vfinite.o
+OBJSC = vfloor.o vceil.o  finite.o vfrexp.o sci_tools.o vfinite.o cmp.o
 
 OBJSF = coshin.o arcosh.o  dad.o dadd.o  ccopy.o  rcopy.o ddif.o \
 	 dmcopy.o dmmul.o dset.o dsort.o \
@@ -22,7 +22,7 @@ OBJSF = coshin.o arcosh.o  dad.o dadd.o  ccopy.o  rcopy.o ddif.o \
 	calerf.o gamma.o ribesl.o rkbesl.o rjbesl.o rybesl.o psi.o dlgama.o\
 	dmsum.o wmsum.o dmprod.o wmprod.o drdiv.o dcabs1.o infinity.o \
 	unsfdcopy.o idmax.o idmin.o wacos.o wasin.o  wtan.o nearfloat.o \
-	dsearch.o cmp.o
+	dsearch.o
 
 include ../../Makefile.incl
 
