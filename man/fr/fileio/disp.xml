@@ -19,6 +19,9 @@
     single input argument ant it's name is formed as follow
     <VERB>%&lt;tlist_type&gt;_p</VERB> where <VERB>%&lt;tlist_type&gt;</VERB> stands for the first
     entry of the tlist type component.</P>
+    <P>
+      The <LINK>lines</LINK> function may be used to control the ouput.
+      </P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -28,6 +31,9 @@ disp(tlist('t',1,2))
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lines</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>write</LINK>
     </SEE_ALSO_ITEM>
