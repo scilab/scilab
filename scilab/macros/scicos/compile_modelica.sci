@@ -47,7 +47,6 @@ function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
   //get the Genetrated block properties
   [nx,nin,nout,ng,nm]=analyze_c_code(mgetl(Cfile)) 
 
-  pause
   //below newest(Cfile,Ofile) is used instead of  updateC in case where
   //Cfile has been manually modified (debug,...)
   if newest(Cfile,Ofile)==1 then 
