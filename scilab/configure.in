@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.54 $)dnl
+AC_REVISION($Revision: 1.55 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -529,10 +529,12 @@ case "$host" in
     CC=cc
     CC_OPTIONS='-O -Dlinux -fwritable-strings -DNARROWPROTO'
     CC_LDFLAGS=$LIEEELIB
+    CC_PICFLAGS=-fPIC
     # find Fortran compiler
     # g77 already asked and found: good
     if test "$WITH_G77" = yes; then
       FC=g77
+      FC_PICFLAGS=-fPIC
     # option with-f2c
     elif test "$with_f2c" = yes; then
       AC_CHECK_PROG(F2C,f2c,yes,no)
@@ -546,6 +548,7 @@ case "$host" in
       AC_CHECK_PROG(WITH_G77,g77,yes,no)
       if test "$WITH_G77" = yes; then
         FC=g77
+        FC_PICFLAGS=-fPIC
       else
       # otherwise find f2c
         AC_CHECK_PROG(F2C,f2c,yes,no)
