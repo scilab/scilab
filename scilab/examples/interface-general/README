@@ -1,0 +1,14 @@
+Copyright Jean-Philippe Chancelier/Cermics Enpc 
+
+This directory contains example of a mix of C interface routines and  
+C and Fortran mex files. More over the interfaces and mex functions 
+use symbols defined in a shared library lib/libutil.so defined 
+in the lib subdirectory. 
+This should only work with scilab version build after oct 2001 
+(i.e it should not work with scilab-2.6 and older versions) 
+
+Jean-Philipppe Chancelier 
+
+just type make to build the shared libraries 
+and make tests to run a test 
+	
