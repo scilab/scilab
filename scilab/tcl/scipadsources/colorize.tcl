@@ -20,6 +20,7 @@ proc load_words {} {
                         set words($type.$col.$ch) $line
                 }
         }
+        close $f
 }
 
 #ES 2/10/2003
@@ -213,37 +214,40 @@ proc changelanguage {newlanguage} {
 #ES,FV 27/5/04 
 proc schememenus {textarea} {
   global pad listoffile
- # set dm $pad.filemenu.debug
+  set dm $pad.filemenu.debug
   if {$listoffile("$textarea",language) == "scilab"} {
 #enable "Load into scilab"
         $pad.filemenu.exec entryconfigure 1 -state normal
 #enable all the Debug entries
+# FV 07/07/04, now this is more selectively set in function of the debugger state
+# (see setdbmenuentriesstates_bp)
 #        for {set i 1} {$i<=[$dm index last]} {incr i} {
 #            if {[$dm type $i] == "command"} {
-#               $dm entryconfigure $i -state normal
+#                $dm entryconfigure $i -state normal
 #            }
 #        }
 # restore their bindings
     bind $pad <Control-l> {execfile}
     bind $pad <F5> {filetosave %W; execfile}
-	bind $pad <F9> {insertremove_bp}
-	bind $pad <Control-F9> {removeall_bp}
-	bind $pad <F10> {configurefoo_bp}
-	bind $pad <Control-F11> {execfile_bp}
-	bind $pad <F11> {resume_bp}
-	bind $pad <Shift-F11> {insertremovedebug_bp}
-	bind $pad <Shift-F12> {goonwo_bp}
-	bind $pad <F12> {stepbystep_bp}
-    bind $pad <Control-F12> {showwatch_bp}
+#	bind $pad <F9> {insertremove_bp}
+#	bind $pad <Control-F9> {removeall_bp}
+#	bind $pad <F10> {configurefoo_bp}
+#	bind $pad <Control-F11> {execfile_bp}
+#	bind $pad <F11> {resume_bp}
+##	bind $pad <Shift-F11> {insertremovedebug_bp}
+#	bind $pad <Shift-F12> {goonwo_bp}
+#	bind $pad <F12> {stepbystep_bp}
+#    bind $pad <Control-F12> {showwatch_bp}
+    setdbmenuentriesstates_bp
   } else {
 #disable "Load into scilab"
         $pad.filemenu.exec entryconfigure 1 -state disabled
 #disable all the Debug entries
-#        for {set i 1} {$i<=[$dm index last]} {incr i} {
-#            if {[$dm type $i] == "command"} {
-#                $dm entryconfigure $i -state disabled
-#            }
-#        }
+        for {set i 1} {$i<=[$dm index last]} {incr i} {
+            if {[$dm type $i] == "command"} {
+                $dm entryconfigure $i -state disabled
+            }
+        }
 # remove their bindings
     bind $pad <Control-l> {}
     bind $pad <F5> {}
@@ -252,7 +256,7 @@ proc schememenus {textarea} {
 	bind $pad <F10> {}
 	bind $pad <Control-F11> {}
 	bind $pad <F11> {}
-	bind $pad <Shift-F11> {}
+#    bind $pad <Shift-F11> {}
 	bind $pad <Shift-F12> {}
 	bind $pad <F12> {}
     bind $pad <Control-F12> {}

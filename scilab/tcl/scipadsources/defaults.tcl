@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.0"
+set version "Version 3.1"
 set wordWrap none
 ##ES: default options which can be overridden
 if { ![info exists BGCOLOR] } {set BGCOLOR "snow1"}
@@ -36,3 +36,8 @@ array set watchvarsvals {}
 set firsttimeinshowwatch "true"
 # FV, 17/06/04, better do it in scipad.sci
 #ScilabEval "     TK_EvalStr(\"scipad eval {set tmpdir \"+TMPDIR+\"}\");"
+if {$lang=="eng"} {
+    set waitmessage "Please wait..."
+} else {
+    set waitmessage "Veuillez patienter..."
+}

@@ -1,7 +1,6 @@
-proc Addarg_bp {w leftwin rightwin} {
+proc Addarg_bp {w focusbut leftwin rightwin} {
     global lang
     global argname argvalue
-    global buttonAdd
     set pos [$leftwin curselection]
     if {$pos == ""} {set pos -1}
     set adda $w.adda
@@ -64,7 +63,7 @@ proc Addarg_bp {w leftwin rightwin} {
         focus $adda.f.f1.entry
     }
     grab $adda
-    focus $buttonAdd
+    focus $focusbut
 }
 
 proc OKadda_bp {w pos leftwin rightwin} {
@@ -97,6 +96,12 @@ proc OKadda_bp {w pos leftwin rightwin} {
                 if {$argvalue == ""} {set argvalue $unklabel}
                 set watchvars [linsert $watchvars $pos $argname]
                 set watchvarsvals($argname) $argvalue
+                if {$argvalue == $unklabel} {
+                    set filename [creategetfromshellcomm]
+                    if {$filename != "emptyfile"} {
+                        ScilabEval "     exec(\"$filename\");"
+                    }
+                }
             }
             $leftwin insert $pos $argname
             $rightwin insert $pos $argvalue

@@ -111,7 +111,7 @@ proc whichfun {indexin {buf "current"}} {
 #        tk_messageBox -message \
 #	   "Etant à la ligne $ypos, la fonction $funname débute à $precfun, et il y a $contlines lignes multiples, i.e. nous sommes à la ligne $lineinfun de $funname"
 #      }
-        return [list $funname $lineinfun $funline $precfun] 
+        return [list $funname $lineinfun $funline $precfun $contlines] 
     }
 }
 

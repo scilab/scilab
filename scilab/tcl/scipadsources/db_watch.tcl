@@ -1,7 +1,7 @@
 proc showwatch_bp {} {
     global pad watch lang env
-    global lbvarname lbvarval scrolly buttonAdd
-    global watchvars watchvarsvals
+    global lbvarname lbvarval scrolly
+    global watchvars watchvarsvals buttonAddw
     global firsttimeinshowwatch watchgeom
     set watch $pad.watch
     catch {destroy $watch}
@@ -28,8 +28,8 @@ proc showwatch_bp {} {
     } else {
         set bl "Ajouter/Modifier"
     }
-    set buttonAdd $watch.f.f2.f2l.buttonAdd
-    button $buttonAdd -text $bl -width 20 -underline 0
+    set buttonAddw $watch.f.f2.f2l.buttonAdd
+    button $buttonAddw -text $bl -width 20 -underline 0
     if {$lang == "eng"} {
         set bl "Remove"
     } else {
@@ -37,12 +37,12 @@ proc showwatch_bp {} {
     }
     set buttonRemove $watch.f.f2.f2l.buttonRemove
     button $buttonRemove -text $bl -width 20 -underline 0
-    pack $watch.f.f2.f2l.label $buttonAdd $buttonRemove -pady 4
+    pack $watch.f.f2.f2l.label $buttonAddw $buttonRemove -pady 4
     frame $watch.f.f2.f2r
     set lbvarname $watch.f.f2.f2r.lbvarname
     set lbvarval $watch.f.f2.f2r.lbvarval
-    $buttonAdd configure -command {Addarg_bp $watch $lbvarname $lbvarval; \
-                                   closewatch_bp $watch nodestroy}
+    $buttonAddw configure -command {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
+                                    closewatch_bp $watch nodestroy}
     $buttonRemove configure -command {Removearg_bp $lbvarname $lbvarval; \
                                       closewatch_bp $watch nodestroy}
     set scrolly $watch.f.f2.f2r.yscroll
@@ -78,11 +78,11 @@ proc showwatch_bp {} {
     pack $watch.f.f9 -pady 4
 
     pack $watch.f
-    bind $watch <Return> {Addarg_bp $watch $lbvarname $lbvarval; \
+    bind $watch <Return> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
                           closewatch_bp $watch nodestroy}
-    bind $lbvarname <Double-Button-1> {Addarg_bp $watch $lbvarname $lbvarval; \
+    bind $lbvarname <Double-Button-1> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
                                        closewatch_bp $watch nodestroy}
-    bind $watch <Escape> {set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x];
+    bind $watch <Escape> {set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]; \
                           closewatch_bp $watch}
     bind $watch <BackSpace> {Removearg_bp $lbvarname $lbvarval; \
                              closewatch_bp $watch nodestroy}
@@ -95,11 +95,11 @@ proc showwatch_bp {} {
     bind $watch <Down> {scrollarrows_bp $lbvarname down}
     bind $watch <MouseWheel> {if {%D<0} {scrollarrows_bp $lbvarname down}\
                                        {scrollarrows_bp $lbvarname up}}
-    bind $watch <Enter> {set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x]}
+    bind $watch <Enter> {set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]}
+    bind $watch <FocusOut> {set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]}
     if { $firsttimeinshowwatch == "true" } { 
-        focus $buttonAdd
-        set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x]
-        ScilabEval "getf \"$env(SCIPATH)/tcl/scipadsources/FormatStringsForDebugWatch.sci\""
+        focus $buttonAddw
+        set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]
         set firsttimeinshowwatch "false"
     }
 }
@@ -124,7 +124,6 @@ proc creategetfromshellcomm {} {
 #    set fullcomm ""
 #    foreach var $watchvars {
 #         set comm1 "if exists(\"$var\"),"
-##         set comm2 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"\"+string($var)+\"\"\"}\");"
 #         set comm2 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"\"+FormatStringsForDebugWatch($var)+\"\"\"}\");"
 #         set comm3 "else"
 #         set comm4 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"$unklabel\"\"}\");"
@@ -141,18 +140,19 @@ proc creategetfromshellcomm {} {
     set filename [file join "$tmpdir" "getwatchcomm.sce"]
     set tempfile [open $filename w+]
     foreach var $watchvars {
-         set comm1 "if exists(\"$var\"),"
-#         set comm2 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"\"+string($var)+\"\"\"}\");"
-         set comm2 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"\"+FormatStringsForDebugWatch($var)+\"\"\"}\");"
-         set comm3 "else"
-         set comm4 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"$unklabel\"\"}\");"
-         set comm5 "end;"
-         set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5]
-         puts $tempfile $fullcomm
+        set comm1 "if exists(\"$var\"),"
+        set comm2 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"\"+FormatStringsForDebugWatch($var)+\"\"\"}\");"
+        set comm3 "else"
+        set comm4 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"$unklabel\"\"}\");"
+        set comm5 "end;"
+        set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5]
+        puts $tempfile $fullcomm
     }
     if {$fullcomm != ""} {
-         set fullcomm "TK_EvalStr(\"scipad eval {showwatch_bp}\");"
-         puts $tempfile $fullcomm
+        set fullcomm "TK_EvalStr(\"scipad eval {showwatch_bp}\");"
+        puts $tempfile $fullcomm
+    } else {
+       set filename "emptyfile"
     }
     close $tempfile
     return $filename
@@ -177,7 +177,7 @@ proc createsetinscishellcomm {} {
             set retcomm "$retcomm,$var"
         }
         set retcomm [string range $retcomm 1 end]
-        set retcomm "\[$retcomm\]=resume($retcomm)"
+        set retcomm "\[$retcomm\]=resume($retcomm);"
     }
     return [list $fullcomm $retcomm]
 }

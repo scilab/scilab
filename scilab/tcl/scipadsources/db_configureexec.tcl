@@ -1,6 +1,6 @@
 proc configurefoo_bp {} {
     global pad conf lang
-    global listboxinput listboxinputval listboxscrolly spin buttonAdd
+    global listboxinput listboxinputval listboxscrolly spin buttonAddc
     global funnames funvars funvarsvals funnameargs
     set conf $pad.conf
     catch {destroy $conf}
@@ -55,8 +55,8 @@ proc configurefoo_bp {} {
     } else {
         set bl "Ajouter/Modifier"
     }
-    set buttonAdd $conf.f.f2.f2l.buttonAdd
-    button $buttonAdd -text $bl -width 20 -underline 0
+    set buttonAddc $conf.f.f2.f2l.buttonAdd
+    button $buttonAddc -text $bl -width 20 -underline 0
     if {$lang == "eng"} {
         set bl "Remove"
     } else {
@@ -64,11 +64,11 @@ proc configurefoo_bp {} {
     }
     set buttonRemove $conf.f.f2.f2l.buttonRemove
     button $buttonRemove -text $bl -width 20 -underline 0
-    pack $conf.f.f2.f2l.label $buttonAdd $buttonRemove -pady 4
+    pack $conf.f.f2.f2l.label $buttonAddc $buttonRemove -pady 4
     frame $conf.f.f2.f2r
     set listboxinput $conf.f.f2.f2r.listboxinput
     set listboxinputval $conf.f.f2.f2r.listboxinputval
-    $buttonAdd configure -command {if {[$spin get] != ""} {Addarg_bp $conf $listboxinput $listboxinputval}}
+    $buttonAddc configure -command {if {[$spin get] != ""} {Addarg_bp $conf $buttonAddc $listboxinput $listboxinputval}}
     $buttonRemove configure -command "Removearg_bp $listboxinput $listboxinputval"
     set listboxscrolly $conf.f.f2.f2r.yscroll
     scrollbar $listboxscrolly -command "scrollyboth_bp $listboxinput $listboxinputval"
@@ -107,8 +107,8 @@ proc configurefoo_bp {} {
 
     pack $conf.f
 #    bind $conf <Return> "OKconf_bp $conf"
-    bind $conf <Return> {if {[$spin get] != ""} {Addarg_bp $conf $listboxinput $listboxinputval}}
-    bind $listboxinput <Double-Button-1> {if {[$spin get] != ""} {Addarg_bp $conf $listboxinput $listboxinputval}}
+    bind $conf <Return> {if {[$spin get] != ""} {Addarg_bp $conf $buttonAddc $listboxinput $listboxinputval}}
+    bind $listboxinput <Double-Button-1> {if {[$spin get] != ""} {Addarg_bp $conf $buttonAddc $listboxinput $listboxinputval}}
 #    bind $conf <Escape> "Cancelconf_bp $conf"
     bind $conf <Escape> "OKconf_bp $conf"
     bind $conf <BackSpace> "Removearg_bp $listboxinput $listboxinputval"
@@ -120,7 +120,7 @@ proc configurefoo_bp {} {
     bind $conf <Down> {scrollarrows_bp $listboxinput down}
     bind $conf <MouseWheel> {if {%D<0} {scrollarrows_bp $listboxinput down}\
                                        {scrollarrows_bp $listboxinput up}}
-    focus $buttonAdd
+    focus $buttonAddc
     grab $conf
     if {$funnames == ""} {Obtainall_bp}
     if {$funnames == ""} {OKconf_bp $conf}
@@ -264,9 +264,14 @@ proc OKconf_bp {w} {
             }
             set strargs [string range $strargs 1 end]
             set funnameargs "$funname\($strargs\)"
+            setdbstate "ReadyForDebug"
+        } else {
+            set funnameargs ""  
+            setdbstate "NoDebug"
         }
-    } else {
+    } else {       # .sce case
         set funnameargs ""
+#        setdbstate "ReadyForDebug"
     }
     destroy $w
 }
@@ -296,6 +301,9 @@ proc checkarglist {funname} {
                 set orderOK "true"
                 set i 0
                 foreach var $funvars($funname) {
+                    if {[lindex $listvars $i] == "varargin"} {
+                        break
+                    }
                     if {$var != [lindex $listvars $i]} {
                         set orderOK "false"
                         break
@@ -311,7 +319,7 @@ proc checkarglist {funname} {
             set mes "Function name or input arguments do not match definition\
                      of the function $funname in the file!\n\nCheck function\
                      name and arguments (names, order) in the configuration dialog.\
-                     \nArguments order can be changed using drap and drop with\
+                     \nArguments order can be changed using drag and drop with\
                      right mouse button in the arguments listbox."
             set tit "Error in selected function name or arguments"
         } else {
@@ -374,6 +382,10 @@ proc Obtainall_bp {} {
             set listvars [string range $funline [expr $oppar+1] [expr $clpar-1]]
             set listvars [string map {, " "} $listvars]
             foreach var $listvars {
+                if {$var == "varargin"} {
+                    set listvars [lreplace $listvars [lsearch $listvars "varargin"] end]
+                    break
+                }
                 $listboxinput insert end $var
                 set funvarsvals($funname,$var) ""
                 $listboxinputval insert end $funvarsvals($funname,$var)

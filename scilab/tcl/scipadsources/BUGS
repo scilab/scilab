@@ -1,0 +1,176 @@
+SCIPAD BUGS AND WISHES LIST - Rev. 3.1
+
+Bugs:
+-----
+-colorization: the regexp for the new class "numbers" is not perfect,
+ e123 is caught as number.
+
+-scipad resizes (in wrong grid units) upon font change only the first 
+ Untitled.sce (if still open, i.e. not destroyed). But, as now scipad 
+ remembers both fontsize and geometry across quit, a restart triggers 
+ nevertheless a resize, so the restart produces a geometry different than 
+ the one of the previous session.
+
+-Find in selection does not work correctly on unix.
+
+-Ctrl-v copies also inside the find/replace/filename dialogs, but does not
+ replace an existing selection. Problem of setting up the proper bindings,
+ likely. Note: this happens only on some platforms.
+
+-On unix, focus to the Find window can be off when clicking on some other window, 
+ such as scipad, even though Find stays always on top
+ 
+-Line number finding in functions may provide wrong results in some pathological
+ cases of continued lines, namely:
+ . "Mixed" continued lines, i.e. a single cont line splitted in many buffer lines,
+   some of them containing dots and some other not
+ . Nested brackets or braces in continued lines
+
+
+Old bugs/whishes which have been hacked but could have been done better:
+------------------------------------------------------------------------
+
+-if a copy-paste modification on a buffer is undone once too much, a 
+ "lifo($id) pop error, empty" results
+ -- This is now done, but perhaps not correctly. Just added a catch as I was
+  not proficient enough to find out why the commandStack and the cursorStack
+  gain different last element index only once a paste has been performed.
+  Note: tcl/tk8.4.6 now supports directly undo/redo in text widgets, and takes
+  care of the modified flag. Could therefore get rid of all this code in scipad.tcl
+
+-(the text cursor disappears every now and then while moving it around with the
+  arrows) -- now hacked: the cursor is always on and red but does not blink (is
+  it a tcl8.3.4 bug? - is blinking triggered by "events" like moving the 
+  mouse?)
+  Note: Using tcl/tk8.4.6 the cursor never disappears, therefore blinking restored
+  for that revision for Windows. For Unix, cursor blinking is disabled.
+
+-the row width of the window is wrong. As it is now it is hacked to [55], but
+ it seems to be in wrong width units. This leads to disproportions when 
+ changing font size. Btw in my WM the window size is seen in a tooltip when
+ resizing it.
+ -- Explanation: wm geometry in "grid" units - which are defined in an 
+  arbitrary way.
+
+-added  "evaluate selection",  i.e.  send to  scilab  only the  selected
+ text. It is  done, but: a) I  had has to translate \n  in commas (a very
+ long line can result, but I  found that up  to ~16300 char is  ok for
+ execstr); b) it used to go amok if the selection contains "function" 
+ without "endfunction" [scilab problem - with the latest CVS that should
+ be fixed]; c) I hacked that  comments are stripped off, but wasn't
+ proficient enough  to treat "xxx//xxx"  strings; d) it  doesn't output
+ nicely the strings passed on scilab's shell. Likely all this has to do
+ with limitations  of ScilabEval [execstr()].   In at least  one windows
+ version (old  ScilabEval? the command  is catched by the  history) the
+ first character of the command is  dropped (it was a known issue about
+ Copy/Paste).  I  do not hack-prepend a  space, as the  bug lies likely
+ there.
+Note: this is continuously changing and platform dependent. scilab 3.0RC1 has
+~4000 chars for linux and ~500 for windows. This has to do with the mechanics
+of ScilabEval and the command queue space.
+A workaround could be to via execstr(TK_GetVar), but then scipad has to be launched
+inside the master tk interpreted (perhaps in a namespace) and not in a slave interpreter.
+
+-after a succesful find the match is highlighted in green. This remains the 
+ selection color until one switches to another buffer. Hacked - now the text 
+ found gets selected normally, period.
+
+-command for indenting/unindenting. Now I just duplicated the Comment/uncomment
+ stuff, which works fine but just for two spaces. This is a "hard indentation":
+ physical insertion/removal of spaces; someone made provisions for a tag 
+ "indentation". probably a logical one. I think physical is more general.
+
+-after a paste (either Ctrl-v or 2nd-button), the selection is cleared. 
+ I could as well have left it in the old place with the cursor at 
+ the insertion point - but then typing erases the selection even if the 
+ cursor is somewhere else. A matter of taste. The two copy paste methods
+ are not identical since now the latter is equivalent to a copy-paste 
+ operation, so I could even decide a different option for each of the two.
+
+-the debugger works well for functions but shell scripts are not supported yet.
+  Step by step execution remains to be implemented, but this requires Scilab
+  core support.
+
+
+Wishes:
+-------
+
+-default colors, fonts, options are user-modifiable (currently, it is necessary to
+ edit SCI/tcl/scipadsources/defaults.tcl)
+
+-parentheses and brackets get colorized in colors according to their level
+ of nesting
+
+-unmatched parentheses are highlighted (e.g. stroke-tru) like in Matlab's editor
+
+-colorization supports different sets of keywords: e.g. for scopes, % constants,
+ hardcoded functions, distribution macros, toolbox additions; dynamical colorization 
+ (the current loaded functions, defined global variables are highlighted properly  -
+ the list could be read either at scipad startup or resfreshed on demand)
+
+-highlighting of for--end, while--end, select--end blocks while typing, 
+ like for parentheses; scope background remains highlighted in a background tint 
+ (choose a suitable scheme for nested structures), OR, block keywords 
+ are highlighted in different colors than standard keywords.
+ 
+-On some platforms and builds (e.g. xaw/linux) scipad cannot paste-in text selected 
+ in the standard scilab shell, which is a dire need.
+ Currently scipad can nicely either import text copied from applications which 
+ support Ctrl-C (with Ctrl-C) or 2nd button copy-paste (X selection), including even
+ the scilab-gtk shell. What is the technical difference with the standard scilab
+ shell? Note: this happens only on some platforms. At least on Win2000 it works
+ since Scilab 3.0
+
+-a taylored 3rd-button popup menu (currently it is just the edit menu) - i.e.
+ it includes execute selection, comment/uncomment this line, insert/delete
+ breakpoints
+
+-Add a Revert to saved... in the file menu.
+
+-display only pruned filenames (and full pathnames in case of ambiguity) 
+ in the titlebar, windows menu, etc. 
+
+-smart indentation (i.e., for automatically indents the next line, end
+ automatically indents back, etc)
+ 
+-(customizable?) tool bar
+ 
+-paned window, to allow for viewing two different parts of the text buffer at the
+ same time, or maybe two different buffers.
+ 
+-add a 'Go to function...' entry in a menu. Upon selection, a sub-menu would open
+ allowing for selection of any function found in all the currently opened buffers.
+ Could also be displayed in a combobox (but tk does not support combos natively)
+ which would be part of the tool bar. Or a spinbox plus a 'Go' button.
+ The buffer search could be launched only on invocation of the spinbox arrows or
+ on menu selection.
+
+-add a "Go to line N in function..." and "Go to logical line", which take into 
+ account continued lines, procedures and menu entries.
+
+-subwindows (e.g Find.., file choosers, debugger, tk_messageBoxes...)
+ should inherit the current font size
+
+-Outside of scipad: add and bulletproof a function which finds the source of a
+ library function and loads it into scipad showfunctionpath(), and propose it to
+ scilab core
+ Note: the existing get_function_path does the same but searches only in SCI.
+
+-same with a function for opening the script which produced the lasterro(): 
+ editoffendingline()
+
+-"compile xml as help page" command
+
+-"Create help skeleton" command (invokes help_skeleton in Scilab and retrieves the
+ generated text for modification in Scipad)
+
+-In the file menu, add the list of the n more recently opened files for quick access
+
+-Conditional breakpoints
+
+-Allow to watch an element of a variable, and not only the variable array (i.e. to watch
+ d(1) and not only d if d is a matrix). Problem: if d exists in Scilab, exists(d) is true
+ but exists(d(1)) is false!
+
+-Improve the aesthetics of Scipad (see sciGUI)
+

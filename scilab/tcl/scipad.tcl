@@ -1,6 +1,6 @@
 #!/bin/sh
 # the next line restarts using wish \
-# exec `which wish` "$0" "$@"
+ exec `which wish` "$0" "$@"
 
 if { [info exists pad] } { 
     raise $pad

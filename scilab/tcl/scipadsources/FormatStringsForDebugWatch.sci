@@ -13,7 +13,7 @@ function [svar] = FormatStringsForDebugWatch(varargin)
 
   if tvar<>1 & tvar<>2 & tvar<>4 & tvar<>5 & tvar<>6 & tvar<>8 & tvar<>10 & tvar<>15 & tvar<>16 & tvar<>17 then
     // unsupported cases
-    error("FormatStringsForDebugWatch: type not handled");
+    error("type not handled (input argument is of type "+typeof(var)+")");
 
   else
     // supported cases
@@ -48,6 +48,7 @@ function [svar] = FormatStringsForDebugWatch(varargin)
       else
         co = strcat(string(coeff(var))," ");
         if degree(var) > 0 then
+          // <TODO> search for the unknown could be improved using varn()
           varstr = string(var);
           poltok = tokens(varstr(2));
           unknown = part(poltok($),length(poltok($)));
@@ -99,11 +100,13 @@ function [svar] = FormatStringsForDebugWatch(varargin)
       if length(var) == 0 then svar = listpref + "list()";
       else
         for i = 1:length(var)
+          // <TODO> search for the undefined items could be improved using definedfields()
           ie = execstr("getfield(i,var)","errcatch");  // catch the undefined items
           if ie <> 117 then
             svar = svar + FormatStringsForDebugWatch(getfield(i,var)) + ",";
           else
             svar = svar + "\""Undefined\"",";  // Well, this actually defines this element as a string
+                                               // <TODO> find a solution for having a properly undefined element instead
           end
         end
         svar = part(svar,1:length(svar)-1);

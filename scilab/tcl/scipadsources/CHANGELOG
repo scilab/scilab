@@ -366,3 +366,62 @@ Francois VOGEL, 17/06/04
    file permissions that way. TMPDIR is set for Scipad in scipad.sci
  * splitted debugger.tcl in several sub-files to ease maintainability
  * version --> 3.0 (submitted to the Scilab team under bug #559)
+
+Francois VOGEL, 07/07/04
+ * simplified the use of the debugger: Scipad now maintains a state variable containing
+   "NoDebug" (no debugger correct configuration performed nor debug session started),
+   "ReadyForDebug" (debugger configuration performed OK but no debug session started), or
+   "DebugInProgress" (debug session started, Scilab prompt is -1->)
+   A schematic of the state machine is available in db_state.tcl
+   This allows for the following improvements:
+   - commands add/remove breakpoint and add/remove breakpoint during debug merged in the
+     debug menu - Scipad now knows if the setbpt/delbpt should be sent or not
+   - commands remove all breakpoints and remove all breakpoints in Scilab merged in the
+     debug menu - selecting this now deletes all breakpoints both in Scipad and in Scilab
+   - debug menu entries are disabled/enabled depending on the debugger state, so that the
+     user should get less confused about the possible actions at any given time of the
+     debug session (this copes also with colorization schemes)
+   - if no debug session was initialized, the button-3 popup menu is the edit menu
+     otherwise it is the debug menu - this is the 1st contextual menu in Scipad
+   - the debugger state is made known to the user from the bakground color of the message
+     area at the bottom of the Scipad window - for improved readability, messages are now
+     displayed in black instead of blue
+ * getf "FormatStringsForDebugWatch.sci" moved to db_states.tcl. If the user did not open
+   the watch window before launching a debug session, this .sci file was not getf'ed in
+   the right workspace and was therefore unknown later on during the debug session
+   Note: putting a ScilabEval at the mainlevel (e.g. defaults.tcl) does not work!
+ * exec getwatchcomm.sce is no more performed if unnecessary, i.e. if there is no watch
+   variable defined by the user
+ * added a binding to help fixing watch window repositioning that occurred sometimes
+ * the watch variables changed by the user in the watch window are now correctly passed
+   to Scilab (bug 818 in the resume function has been corrected in the CVS)
+ * the debugger now handles correctly functions containing varargin as an input argument
+ * incorporated some corrections from ES:
+   - proc importmatlab corrected with quotes as mentioned in bug #856 (was also included
+     in the CVS by the Scilab Team)
+   - removed the # at line 3 of scipad.tcl, so that Scipad can again be launched directly
+     in Unix shells
+   - on Unix the cursor is always on again, regardless of the TCL/TK version
+ * 'Remove all breakpoints' now removes the breakpoints in all the opened buffers
+ * On start of a debug session, the currently displayed file is exec'ed. Now the buffer
+   containing the function selected during the configuration phase is also exec'ed
+ * Breakpoints sent to Scilab on start of a debug session are now collected through all
+   the opened buffers, and removed accordingly in Scilab at the end of the debug session
+ * When adding a new watch variable, its value is now immediately retrieved from Scilab,
+   it is no more necessary to resume execution
+ * incorporated Scilab Team's changes in the CVS Scipad:
+   - changed 'Scilab Group' into 'Scilab Consortium' in the About window (proc aboutme)
+   - added echo of the ScilabEval command in proc execfile from ScilabExec.tcl whatever
+     the platform (and changed the disp into a mprintf - saves space in the shell!)
+ * added int16, int32, uint8, uint16, uint32 in file "words"
+ * proc load_words now closes the file "words" after having read it
+ * active breakpoint tagging dramatically improved:
+   - corrected active breakpoint tag when breakpoint is in conditional structure (for,
+     while, or anything else)
+   - works now with sub-functions or other nested structures containing breakpoints
+   - displays the correct buffer (if already opened), i.e. the buffer where the active
+     breakpoint lies
+ * When the watch window was open at the same time the user configured execution in the
+   configure box, the next time the Add button was hit in the watch window an error poped
+   out. This is now fixed
+ * version --> 3.1

@@ -71,13 +71,14 @@ set taille [expr [font measure $textFont " "] *3]
 ## Francois Vogel, 21/04/04: changed insertofftime to 500, and added 
 ##  insertontime 500
 ## FV 13/05/04: added test with tk_version on ES request
+## FV 07/07/04: changed test to adapt blinking to the platform rather to the tk version
 text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
 	-yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
         -fg $FGCOLOR -bg $BGCOLOR  -setgrid 1 -font $textFont -tabs $taille \
         -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
         -selectbackground $SELCOLOR -exportselection 1
 set textareacur $pad.textarea  
-if {[expr $tk_version] >= 8.4} {
+if {$tcl_platform(platform) != "unix"} {
     $textareacur configure -insertofftime 500 -insertontime 500
 } else {
     $textareacur configure -insertofftime 0
@@ -101,7 +102,7 @@ label $pad.statusind -relief groove -state disabled -background $colormen \
 # added by Matthieu PHILIPPE 07/12/2001
 # this addes an entry widget to display information !
 label $pad.statusmes -relief groove -state disabled -background $colormen \
-    -foreground blue -width 30
+    -width 30
 # FV 21/05/04, added a second statusind to display the line number in functions
 label $pad.statusind2 -relief groove -state disabled -background $colormen \
     -width 24
@@ -114,7 +115,6 @@ wm minsize $pad 1 1
 #strange: this on corrects reopen size
 #tk_messageBox -message $WMGEOMETRY;
 wm geometry $pad $WMGEOMETRY
-
 
 #the following comes from undoredo.tcl v2.5
 ###################################################################

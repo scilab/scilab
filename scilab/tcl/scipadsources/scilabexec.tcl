@@ -1,8 +1,12 @@
-proc execfile {} {
+proc execfile {{buf "current"}} {
     global listoffile sciprompt lang
 
-    set textarea [gettextareacur]
-
+# FV 07/07/04, added capability for exec'ing a buffer which is not the current one
+    if {$buf == "current"} {
+        set textarea [gettextareacur]
+    } else {
+        set textarea $buf
+    }
     set doexec 1
     if [ expr [string compare [getccount $textarea] 1] == 0 ] {
 	if {$lang == "eng"} {
@@ -38,7 +42,7 @@ proc execfile {} {
 	    }
 	} else {
 	    set f $listoffile("$textarea",filename)
-	    ScilabEval "exec(\"$f\");"
+	    ScilabEval "     exec(\"$f\");"
 	}
     }
 }
@@ -105,8 +109,12 @@ proc execselection {} {
             regsub -all -line "\"" $comm "\"\"" dispcomm
             regsub -all -line "'" $dispcomm "''" dispcomm1
             unset dispcomm
-            ScilabEval "disp(\"$dispcomm1\")" 
-	    ScilabEval $comm
+# Changed by the Scilab Team, 26/06/04
+#            if {"$tcl_platform(platform)" == "unix"} {    }
+    #           		ScilabEval "disp(\"$dispcomm1\")" # {  }
+# Changed for mprintf and with \n on ES request
+            ScilabEval "mprintf(\"%s\\n\",\"$dispcomm1\")"
+	          ScilabEval $comm
           }
         }
      }
