@@ -3,7 +3,7 @@ SCIDIR=../..
 SCIDIR1=..\..
 LIBRARY = $(SCIDIR)/libs/wsci.lib
 
-OBJSC1 =wmcopydata.obj wtext.obj wgnuplib.obj wmenu.obj wprinter.obj wpause.obj wgraph.obj winmain.obj \
+OBJSC1 = clipboard.obj wmcopydata.obj wtext.obj wgnuplib.obj wmenu.obj wprinter.obj wpause.obj wgraph.obj winmain.obj \
 	wgmenu.obj wstatbar.obj gvwprn.obj wmprint.obj wmtex.obj
 
 OBJSC2 =readwin.obj wtloop.obj misc.obj \
@@ -21,6 +21,7 @@ FFLAGS = $(FC_OPTIONS)
 include ../Make.lib.amk
 
 #================== dependencies 
+clipboard.obj : clipboard.c
 wmcopydata.obj : wmcopydata.c
 wgraph.obj : ../graphics/periWin-bcg.h
 $(OBJSC) : wgnuplib.h
