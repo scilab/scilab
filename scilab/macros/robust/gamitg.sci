@@ -263,7 +263,7 @@ if DONE==0 then
    //    diagnosed as indefinite. Otherwise X is nonnegative.
  
    if T_POSX==1 then
-      [e,f]=gspec(qx,px);
+      [e,f]=spec(qx,px);
       i=1;
       while i<=na,
         if mini(abs([e(i),f(i)])) >= RELACCU & real(e(i)/f(i)) <= 0 then
@@ -286,7 +286,7 @@ if DONE==0 then
    py=uj(1:na,1:na);   qy=uj(na+1:twona,1:na);
  
    if T_POSY==1 then
-      [e,f]=gspec(qy,py);
+      [e,f]=spec(qy,py);
       i=1;
       while i<=na,
         if mini(abs([e(i),f(i)])) >= RELACCU & real(e(i)/f(i)) <= 0 then
@@ -308,7 +308,7 @@ end
  
 if DONE==0 then
  
-   [e,f]=gspec(qy'*qx,py'*px);
+   [e,f]=spec(qy'*qx,py'*px);
    if maxi(real(e-gs*f)) <= 0 then
       upper=ga;
       if str_member('t',options) then
