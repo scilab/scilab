@@ -11,3 +11,6 @@ tests:
 
 clean::
 	$(RM) foo* examples.out examples.dia
+
+distclean::
+	$(RM) foo* examples.out examples.dia
