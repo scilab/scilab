@@ -1292,7 +1292,9 @@ int zoom_box(double *bbox)
   }
   else {
     integer aaint[4],flag[2];
-    integer ww;
+    integer verbose=0,narg,ww;
+
+    C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
     C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     flag[0] =1 ; flag[1]=0;
@@ -1312,10 +1314,8 @@ int zoom()
   else {
     integer ierr;
     char driver[4];
-    integer verbose=0,narg,ww;
-
-    C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+ 
+     GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     if (strcmp("Rec",driver) != 0)
       {
 	Scistring("\n Use the Rec driver to zoom " );
