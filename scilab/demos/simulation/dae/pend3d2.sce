@@ -2,7 +2,7 @@
 
 mode(1)
 
-getf("SCI/demos/dae/pendule3d.sci")
+getf("SCI/demos/simulation/dae/pendule3d.sci")
 
 m=1; g=10; l=1;
 

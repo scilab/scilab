@@ -2,7 +2,7 @@
 
 mode(1)
 
-getf("SCI/demos/dae/pendule3d.sci")
+getf("SCI/demos/simulation/dae/pendule3d.sci")
 
 m=1; g=10; l=1;
 
@@ -24,7 +24,7 @@ info=list([],0,[],[],[],0,0);
 atol=[0.0001;0.0001;0.0001;0.001;0.001;0.001;1];
 rtol=atol;
 
-alfa=20; beta=20;
+alfa=20; Beta=20;
 
 y1s=dassl([y0,yd0],t0,T,rtol,atol,index1s,info);
 

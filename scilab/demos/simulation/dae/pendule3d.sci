@@ -30,5 +30,5 @@ x=y(1:3); u=y(4:6); lambda=y(7);
 xp=ydot(1:3); up=ydot(4:6); lambdap=ydot(7);
 res(1:3)=xp-u;
 res(4:6)=up+2*lambda/m*x+[0;0;g];
-res(7)=beta*beta*gg(x)+2*alfa*ggp(x,u)+ggpp(x,u,lambda);
+res(7)=Beta*Beta*gg(x)+2*alfa*ggp(x,u)+ggpp(x,u,lambda);
 ires=0;

@@ -3,11 +3,13 @@
 //
 // Sliding pendulum, curve #2
 //
-
+getf SCI/demos/simulation/dae/demo_sliding_pendulum.sci
+demo_sliding_pendulum()
+return
 mode(1)
 
-getf("SCI/demos/dae/pendg.sci")
-getf("SCI/demos/dae/pendc2.sci")
+getf("SCI/demos/simulation/dae/pendg.sci")
+getf("SCI/demos/simulation/dae/pendc2.sci")
 
 omega=3.3;
 g=10; l=1; m=1; M=1; k=0.5;

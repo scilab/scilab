@@ -6,8 +6,8 @@
 
 mode(1)
 
-getf("SCI/demos/dae/pendg.sci")
-getf("SCI/demos/dae/pendc3.sci")
+getf("SCI/demos/simulation/dae/pendg.sci")
+getf("SCI/demos/simulation/dae/pendc3.sci")
 
 k1=20; k2=18; k3=1/2;
 g=10; l=1; m=1; M=1; k=0.5;
