@@ -1011,36 +1011,232 @@ void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, in
 	   string));
  }
 
-double bsizePos[6][4]= {{ 0.0,-7.0,4.63,9.0  },
-		{ 0.0,-9.0,5.74,12.0 },
+
+double bsizePos[6][4]= {{ 0.0,-7.0,4.63,9.0  },  /* normalement inutilise ici avec les modifs suivantes */
+		{ 0.0,-9.0,5.74,12.0 },          
 		{ 0.0,-11.0,6.74,14.0},
 		{ 0.0,-12.0,7.79,15.0},
 		{0.0, -15.0,9.72,19.0 },
 		{0.0,-20.0,13.41,26.0}};
+
+
+/*** ajouts q&d en attendant mieux.... Bruno (le 24 Nov 2002) ***/
+
+struct posfont  /* a data type for handling a postscript font in scilab */
+{
+  char *name;           
+  int asc;              /* max ascender of all printable ascii char */
+  int des;              /* min descender of all printable ascii char */
+  int mean_char_width;  /* the width used for all char if fixed_pitch=1 or for */ 
+                        /* printable non ascii characters when fixed_pitch=0 */
+  int fixed_pitch;
+  int *char_width;      /* NULL if fixed_pitch = 1 (mean_char_width is used instead)  */
+                        /* else give the width of all printable ascii character (from 32 to 126) */
+};
+
+typedef struct posfont PosFont;
+
+ /**   datas for postscript font : Courier   **/
+ static PosFont Courier = { "Courier",
+                             750,         /* Ascender */
+                            -250,         /* Descender */
+                             600,         /* Mean Width */
+                             1,           /* Is Fixed Pitch */
+                             NULL };
+   
+   
+ /**   datas for postscript font : Symbol   **/
+ static int WidthSymbol[] = { 250 , 333 , 713 , 500 , 549 , 833 , 778 , 439 , 333 , 333 ,
+                              500 , 549 , 250 , 549 , 250 , 278 , 500 , 500 , 500 , 500 ,
+                              500 , 500 , 500 , 500 , 500 , 500 , 278 , 278 , 549 , 549 ,
+                              549 , 444 , 549 , 722 , 667 , 722 , 612 , 611 , 763 , 603 ,
+                              722 , 333 , 631 , 722 , 686 , 889 , 722 , 722 , 768 , 741 ,
+                              556 , 592 , 611 , 690 , 439 , 768 , 645 , 795 , 611 , 333 ,
+                              863 , 333 , 658 , 500 , 500 , 631 , 549 , 549 , 494 , 439 ,
+                              521 , 411 , 603 , 329 , 603 , 549 , 549 , 576 , 521 , 549 ,
+                              549 , 521 , 549 , 603 , 439 , 576 , 713 , 686 , 493 , 686 ,
+                              494 , 480 , 200 , 480 , 549 };
+ static PosFont Symbol = { "Symbol",
+                            917,         /* Ascender */
+                           -252,         /* Descender */
+                            548,         /* Mean Width */
+                            0,           /* Is Fixed Pitch */
+                            WidthSymbol };
+   
+   
+ /**   datas for postscript font : Times-Roman   **/
+ static int WidthTimesR[] = { 250 , 333 , 408 , 500 , 500 , 833 , 778 , 333 , 333 , 333 ,
+                              500 , 564 , 250 , 333 , 250 , 278 , 500 , 500 , 500 , 500 ,
+                              500 , 500 , 500 , 500 , 500 , 500 , 278 , 278 , 564 , 564 ,
+                              564 , 444 , 921 , 722 , 667 , 667 , 722 , 611 , 556 , 722 ,
+                              722 , 333 , 389 , 722 , 611 , 889 , 722 , 722 , 556 , 722 ,
+                              667 , 556 , 611 , 722 , 722 , 944 , 722 , 722 , 611 , 333 ,
+                              278 , 333 , 469 , 500 , 333 , 444 , 500 , 444 , 500 , 444 ,
+                              333 , 500 , 500 , 278 , 278 , 500 , 278 , 778 , 500 , 500 ,
+                              500 , 500 , 333 , 389 , 278 , 500 , 500 , 722 , 500 , 500 ,
+                              444 , 480 , 200 , 480 , 541 };
+ static PosFont TimesR = { "Times-Roman",
+                            727,         /* Ascender */
+                           -218,         /* Descender */
+                            512,         /* Mean Width */
+                            0,           /* Is Fixed Pitch */
+                            WidthTimesR };
+   
+   
+ /**   datas for postscript font : Times-Italic   **/
+ static int WidthTimesI[] = { 250 , 333 , 420 , 500 , 500 , 833 , 778 , 333 , 333 , 333 ,
+                              500 , 675 , 250 , 333 , 250 , 278 , 500 , 500 , 500 , 500 ,
+                              500 , 500 , 500 , 500 , 500 , 500 , 333 , 333 , 675 , 675 ,
+                              675 , 500 , 920 , 611 , 611 , 667 , 722 , 611 , 611 , 722 ,
+                              722 , 333 , 444 , 667 , 556 , 833 , 667 , 722 , 611 , 722 ,
+                              611 , 500 , 556 , 722 , 611 , 833 , 611 , 556 , 556 , 389 ,
+                              278 , 389 , 422 , 500 , 333 , 500 , 500 , 444 , 500 , 444 ,
+                              278 , 500 , 500 , 278 , 278 , 444 , 278 , 722 , 500 , 500 ,
+                              500 , 500 , 389 , 389 , 278 , 500 , 444 , 667 , 444 , 444 ,
+                              389 , 400 , 275 , 400 , 541 };
+ static PosFont TimesI = { "Times-Italic",
+                            731,         /* Ascender */
+                           -209,         /* Descender */
+                            505,         /* Mean Width */
+                            0,           /* Is Fixed Pitch */
+                            WidthTimesI };
+   
+   
+ /**   datas for postscript font : Times-Bold   **/
+ static int WidthTimesB[] = { 250 , 333 , 555 , 500 , 500 ,1000 , 833 , 333 , 333 , 333 ,
+                              500 , 570 , 250 , 333 , 250 , 278 , 500 , 500 , 500 , 500 ,
+                              500 , 500 , 500 , 500 , 500 , 500 , 333 , 333 , 570 , 570 ,
+                              570 , 500 , 930 , 722 , 667 , 722 , 722 , 667 , 611 , 778 ,
+                              778 , 389 , 500 , 778 , 667 , 944 , 722 , 778 , 611 , 778 ,
+                              722 , 556 , 667 , 722 , 722 ,1000 , 722 , 722 , 667 , 333 ,
+                              278 , 333 , 581 , 500 , 333 , 500 , 556 , 444 , 556 , 444 ,
+                              333 , 500 , 556 , 278 , 333 , 556 , 278 , 833 , 556 , 500 ,
+                              556 , 556 , 444 , 389 , 333 , 556 , 500 , 722 , 500 , 500 ,
+                              444 , 394 , 220 , 394 , 520 };
+ static PosFont TimesB = { "Times-Bold",
+                            750,         /* Ascender */
+                           -206,         /* Descender */
+                            536,         /* Mean Width */
+                            0,           /* Is Fixed Pitch */
+                            WidthTimesB };
+   
+   
+ /**   datas for postscript font : Times-BoldItalic   **/
+ static int WidthTimesBI[] = { 250 , 389 , 555 , 500 , 500 , 833 , 778 , 333 , 333 , 333 ,
+                               500 , 570 , 250 , 333 , 250 , 278 , 500 , 500 , 500 , 500 ,
+                               500 , 500 , 500 , 500 , 500 , 500 , 333 , 333 , 570 , 570 ,
+                               570 , 500 , 832 , 667 , 667 , 667 , 722 , 667 , 667 , 722 ,
+                               778 , 389 , 500 , 667 , 611 , 889 , 722 , 722 , 611 , 722 ,
+                               667 , 556 , 611 , 722 , 667 , 889 , 667 , 611 , 611 , 333 ,
+                               278 , 333 , 570 , 500 , 333 , 500 , 500 , 444 , 500 , 444 ,
+                               333 , 500 , 556 , 278 , 278 , 500 , 278 , 778 , 556 , 500 ,
+                               500 , 500 , 389 , 389 , 278 , 556 , 444 , 667 , 500 , 444 ,
+                               389 , 348 , 220 , 348 , 570 };
+ static PosFont TimesBI = { "Times-BoldItalic",
+                             733,         /* Ascender */
+                            -208,         /* Descender */
+                             515,         /* Mean Width */
+                             0,           /* Is Fixed Pitch */
+                             WidthTimesBI };
+   
+#define NB_MAX_POS_FONT 6
+static PosFont *FontArray[NB_MAX_POS_FONT] = {&Courier, &Symbol, &TimesR, &TimesI, &TimesB, &TimesBI};
+
+#define NB_MAX_SIZES 6
+static int Font_Size_in_pts[NB_MAX_SIZES] = {8, 10, 12, 14, 18, 24};
+
+
+static void PosStrBox(char *str, integer id_font, integer id_size, 
+		      double *w, double *h)
+{
+  /*
+   *   PURPOSE : computes the width w and the height h of a string in postscript  
+   *             
+   *      NOTE : the computed h is for most cases too large because I use the
+   *             max ascender and descender of the font (the previus datas
+   *             font tables contains only the width of all the printable
+   *             ascii characters).
+   */
+  
+  PosFont *font=FontArray[id_font];
+  int nb_pts = Font_Size_in_pts[id_size];
+
+  /* computes w */
+  if ( font->fixed_pitch )
+    *w =  strlen(str) * font->mean_char_width*0.001*nb_pts;
+  else
+    {
+      int l=0, c = *str;
+      while (c != '\0')
+	{
+	  if (32 <= c && c <= 126)
+	    l += font->char_width[c-32];
+	  else
+	    l += font->mean_char_width;
+	  c = *(++str);
+	}
+      *w = l*0.001*nb_pts;
+    }
+
+  /* computes h */
+  *h = (font->asc - font->des)*0.001*nb_pts;
+}
+
+static double PosStrAsc(integer id_font, integer id_size)
+{
+  /*  correction pour centrer verticalement une chaine postscript il me semble ?
+   *             a partir de la hauteur de la boite, h (= ascender max - descender max)
+   *             on calcule  Dy = h/2 pour centrer verticalement mais ceci n'est pas                  
+   *    -    -   tres precis => il faut une correction (et descender/2 a l'air de
+   *    |    |                                          fonctionner...)
+   *    |    | ascender max
+   *    | h  |
+   *    |    -
+   *    |    | descender max (valeur negative)
+   *    -    -
+   *
+   */
+  PosFont *font=FontArray[id_font];
+  int nb_pts = Font_Size_in_pts[id_size];
+
+  return ( font->des*0.5*0.001*nb_pts );
+}
+/*** fin des ajouts de Bruno  ***/
 
 /** To get the bounding rectangle of a string **/
 /** we can't ask Postscript directly so we have an **/
 /** approximative result in Postscript : use the X11 driver **/
 /** with the same current font to have a good result **/
 
-void C2F(boundingboxPos)(char *string, integer *x, integer *y, integer *rect, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
+/*** modified by Bruno by using the previus datas and functions ***/
+void C2F(boundingboxPos)(char *string, integer *x, integer *y, integer *rect, integer *v5, 
+			 integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer verbose,nargs,font[2];
+  double h, w;
   verbose=0;
   C2F(xgetfontPos)(&verbose,font,&nargs,vdouble);
-  rect[0]= (int)(*x+bsizePos[font[1]][0]*((double) prec_fact));
-  rect[1]= (int)(*y+bsizePos[font[1]][1]*((double) prec_fact));
-  rect[2]= (int)(bsizePos[font[1]][2]*((double)prec_fact)*(int)strlen(string));
-  rect[3]= (int)(bsizePos[font[1]][3]*((double)prec_fact));
+  PosStrBox(string, font[0], font[1], &w, &h);
+  rect[0]= *x;
+  rect[1]= (integer)(*y-h*prec_fact);
+  rect[2]= (integer)(w*prec_fact);
+  rect[3]= (integer)(h*prec_fact);
+  /* old code 
+     rect[0]= (int)(*x+bsizePos[font[1]][0]*((double) prec_fact));
+     rect[1]= (int)(*y+bsizePos[font[1]][1]*((double) prec_fact));
+     rect[2]= (int)(bsizePos[font[1]][2]*((double)prec_fact)*(int)strlen(string));
+     rect[3]= (int)(bsizePos[font[1]][3]*((double)prec_fact));
+  */
 }
 
 /* approximation of ascent using (asc + dsc) /2  */ 
-
+/** modified by bruno **/
 static double ascentPos() 
 { 
   static integer verbose=0,nargs,font[2];
   C2F(xgetfontPos)(&verbose,font,&nargs,vdouble);
-  return ((bsizePos[font[1]][1] +(bsizePos[font[1]][3]/2.0) ))*((double) prec_fact);
+  return (PosStrAsc(font[0], font[1]) * prec_fact);
+  /* old: return ((bsizePos[font[1]][1] +(bsizePos[font[1]][3]/2.0) ))*((double) prec_fact); */
 }
 
 /** Draw a single line in current style **/
