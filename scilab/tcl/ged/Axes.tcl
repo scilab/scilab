@@ -6,7 +6,7 @@
 
 
 # A Notebook widget for Tcl/Tk
-# $Revision: 1.3 $
+# $Revision: 1.4 $
 #
 # Copyright (C) 1996,1997,1998 D. Richard Hipp
 #
@@ -348,7 +348,7 @@ toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
 wm geometry $ww 450x560
-wm maxsize  $ww 450 560
+#wm maxsize  $ww 450 560
 
 Notebook:create .axes.n -pages {X Y Z Title Style Axes_Aspect} -pad 20 
 pack .axes.n -fill both -expand 1
