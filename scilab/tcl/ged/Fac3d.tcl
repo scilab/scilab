@@ -1,5 +1,23 @@
+set pwd [pwd]
+cd [file dirname [info script]]
+variable DEMODIR [pwd]
+cd $pwd
+
+
+
+variable DEMODIR
+
+lappend ::auto_path [file dirname  "$env(SCIPATH)/tcl/BWidget-1.7.0"]
+namespace inscope :: package require BWidget
+package require BWidget
+
+
+set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
+
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
+source [file join $sourcedir Balloon.tcl]
+
 package require combobox 2.3
 catch {namespace import combobox::*}
 
@@ -218,6 +236,8 @@ for {set i 1} {$i<=$nbrowX} {incr i} {
 	set tmp $tmp+"_"
 	entry  $tmp$j  -relief sunken  -textvariable fac3dXVAL($i,$j)
 	bind   $tmp$j <Return> "setXData $i $j"
+#location help balloon	
+	set_balloon $tmp$j "Row: $i Column: $j"
 	
 	$w.frame.c create window $aa $bb -anchor c -window $tmp$j
     }
@@ -274,7 +294,9 @@ pack $w.b -side bottom
  	set tmp $tmp+"_"
  	entry  $tmp$j  -relief sunken  -textvariable fac3dYVAL($i,$j)
  	bind   $tmp$j <Return> "setYData $i $j"
-	
+#location help balloon	
+	set_balloon $tmp$j "Row: $i Column: $j"
+
  	$w2.frame2.c1 create window $aa $bb -anchor c -window $tmp$j
      }
  }
@@ -332,7 +354,9 @@ pack $w.b -side bottom
  	set tmp $tmp+"_"
  	entry  $tmp$j  -relief sunken  -textvariable fac3dZVAL($i,$j)
  	bind   $tmp$j <Return> "setZData $i $j"
-	
+#location help balloon	
+	set_balloon $tmp$j "Row: $i Column: $j"
+
  	$w3.frame2.c1 create window $aa $bb -anchor c -window $tmp$j
      }
  }
@@ -381,7 +405,9 @@ pack $w.b -side bottom
  	set tmp $tmp+"_"
  	entry  $tmp$j  -relief sunken  -textvariable fac3dCOLORVAL($i,$j)
  	bind   $tmp$j <Return> "setColorData $i $j"
-	
+#location help balloon	
+	set_balloon $tmp$j "Row: $i Column: $j"
+
  	$w4.frame2.c1 create window $aa $bb -anchor c -window $tmp$j
      }
  }

@@ -1,5 +1,23 @@
+set pwd [pwd]
+cd [file dirname [info script]]
+variable DEMODIR [pwd]
+cd $pwd
+
+
+
+variable DEMODIR
+
+lappend ::auto_path [file dirname  "$env(SCIPATH)/tcl/BWidget-1.7.0"]
+namespace inscope :: package require BWidget
+package require BWidget
+
+
+set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
+
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
+source [file join $sourcedir Balloon.tcl]
+
 package require combobox 2.3
 catch {namespace import combobox::*}
 
@@ -8,6 +26,7 @@ global ged_handle_list_size
 global lalist
 global curgedindex
 global curgedobject
+global RED GREEN BLUE
 
 global curvis
 global curcolormode curthick colorflagToggle curforeground curhiddencolor
@@ -203,7 +222,9 @@ for {set i 1} {$i<=$nbrowX} {incr i} {
     $w.frame.c create text 10 $bb -anchor c -text $i
     entry  $w.frame.c.data$i  -relief sunken  -textvariable plot3dXVAL($i)
     bind  $w.frame.c.data$i <Return> "setXData $i "
-    
+#location help balloon	
+    set_balloon $w.frame.c.data$i "Row: $i"
+
     $w.frame.c create window 160 $bb -anchor c -window $w.frame.c.data$i
 }
 
@@ -242,7 +263,9 @@ scrollbar $w2.frame2.ysbar -orient vertical -command   {$w2.frame2.c1 yview}
      $w2.frame2.c1 create text 10 $bb -anchor c -text $i
      entry  $w2.frame2.c1.data$i  -relief sunken  -textvariable plot3dYVAL($i)
      bind  $w2.frame2.c1.data$i <Return> "setYData $i "
-    
+#location help balloon	
+     set_balloon $w2.frame2.c1.data$i "Row: $i"
+
      $w2.frame2.c1 create window 160 $bb -anchor c -window $w2.frame2.c1.data$i
  }
 
@@ -288,7 +311,9 @@ for {set i 1} {$i<=$nbrowZ} {incr i} {
 	set tmp $tmp+"_"
 	entry  $tmp$j  -relief sunken  -textvariable plot3dZVAL($i,$j)
 	bind   $tmp$j <Return> "setZData $i $j"
-	
+#location help balloon	
+	set_balloon $tmp$j "Row: $i Column: $j"
+
 	$w3.frame2.c1 create window $aa $bb -anchor c -window $tmp$j
     }
 }

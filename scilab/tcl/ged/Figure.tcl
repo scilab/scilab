@@ -16,6 +16,8 @@ set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
 
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
+source [file join $sourcedir Balloon.tcl]
+
 package require combobox 2.3
 catch {namespace import combobox::*}
 
@@ -335,18 +337,24 @@ for {set i 1} {$i<=$ncolors} {incr i} {
     set aa [expr 10+(1*150)]
     entry  $w.frame.c.reddata$i  -relief sunken  -textvariable RED($i)
     bind  $w.frame.c.reddata$i <Return> "setRedColor $w $i "
+#location help balloon	
+    set_balloon $w.frame.c.reddata$i "Row: $i Column: 1"
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.reddata$i
 
 #GREEN
     set aa [expr 10+(2*150)]
     entry  $w.frame.c.gredata$i  -relief sunken  -textvariable GREEN($i)
     bind  $w.frame.c.gredata$i <Return> "setGreenColor $w $i "
+#location help balloon	
+    set_balloon $w.frame.c.gredata$i "Row: $i Column: 2"
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.gredata$i
 
 #BLUE
     set aa [expr 10+(3*150)]
     entry  $w.frame.c.bludata$i  -relief sunken  -textvariable BLUE($i)
     bind  $w.frame.c.bludata$i <Return> "setBlueColor  $w $i "
+#location help balloon	
+    set_balloon $w.frame.c.bludata$i "Row: $i Column: 3"
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.bludata$i
     
 #sample

@@ -15,6 +15,8 @@ set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
 
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
+source [file join $sourcedir Balloon.tcl]
+
 package require combobox 2.3
 catch {namespace import combobox::*}
 
@@ -277,6 +279,8 @@ for {set i 1} {$i<=$nbrow} {incr i} {
 	set tmp $tmp+"_"
 	entry  $tmp$j  -relief sunken  -textvariable polyVAL($i,$j)
 	bind  $tmp$j <Return> "setData $i $j"
+#location help balloon	
+	set_balloon $tmp$j "Row: $i Column: $j"
 
 	$w.frame.c create window $aa $bb -anchor c -window $tmp$j
     }

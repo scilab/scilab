@@ -16,6 +16,8 @@ set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
 
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
+source [file join $sourcedir Balloon.tcl]
+
 package require combobox 2.3
 catch {namespace import combobox::*}
 
@@ -200,6 +202,8 @@ for {set i 1} {$i<=$nbrow} {incr i} {
 	set tmp $tmp+"_"
 	entry  $tmp$j  -relief sunken  -textvariable segsVAL($i,$j)
 	bind  $tmp$j <Return> "setData $i $j"
+#location help balloon	
+	set_balloon $tmp$j "Row: $i Column: $j"
 
 	$w.frame.c create window $aa $bb -anchor c -window $tmp$j
     }
@@ -219,39 +223,42 @@ pack $w.b -side bottom
 
 ########### Color vector onglet ###################################
 ###################################################################
- set w2 [Notebook:frame $uf.n Color]
+set w2 [Notebook:frame $uf.n Color]
 
- frame $w2.frame2 -borderwidth 0
- pack $w2.frame2 -anchor w -fill both
+frame $w2.frame2 -borderwidth 0
+pack $w2.frame2 -anchor w -fill both
 
- frame $w2.frame2.fdata -borderwidth 0
- pack $w2.frame2.fdata  -in $w2.frame2 -side top   -fill x
+frame $w2.frame2.fdata -borderwidth 0
+pack $w2.frame2.fdata  -in $w2.frame2 -side top   -fill x
 
 
- canvas $w2.frame2.c1 -width 8i -height 6i  -yscrollcommand {$w2.frame2.ysbar set}
+canvas $w2.frame2.c1 -width 8i -height 6i  -yscrollcommand {$w2.frame2.ysbar set}
 scrollbar $w2.frame2.ysbar -orient vertical -command   {$w2.frame2.c1 yview}
 
 $w2.frame2.c1 create text 160 10 -anchor c -text "Segs color"
 
- for {set i 1} {$i<=$nbcolsegscolor} {incr i} {
-     set bb [expr 10+(25*$i)]
-     $w2.frame2.c1 create text 10 $bb -anchor c -text $i
-     entry  $w2.frame2.c1.data$i  -relief sunken  -textvariable segscolorVAL($i)
-     bind  $w2.frame2.c1.data$i <Return> "setSegsColorData $i "
+for {set i 1} {$i<=$nbcolsegscolor} {incr i} {
+    set bb [expr 10+(25*$i)]
+    $w2.frame2.c1 create text 10 $bb -anchor c -text $i
+    entry  $w2.frame2.c1.data$i  -relief sunken  -textvariable segscolorVAL($i)
+    bind  $w2.frame2.c1.data$i <Return> "setSegsColorData $i "
+#location help balloon	
+    set_balloon $w2.frame2.c1.data$i "Row: $i"
+ 
+    $w2.frame2.c1 create window 160 $bb -anchor c -window $w2.frame2.c1.data$i
     
-     $w2.frame2.c1 create window 160 $bb -anchor c -window $w2.frame2.c1.data$i
- }
+}
 
- $w2.frame2.c1 configure -scrollregion [$w2.frame2.c1 bbox all] -yscrollincrement 0.1i
+$w2.frame2.c1 configure -scrollregion [$w2.frame2.c1 bbox all] -yscrollincrement 0.1i
 
- pack  $w2.frame2.ysbar -side right -fill y
- pack  $w2.frame2.c1
+pack  $w2.frame2.ysbar -side right -fill y
+pack  $w2.frame2.c1
 
 
- #exit button
- frame $w2.buttons
- button $w2.b -text Quit -command "destroy $ww"
- pack $w2.b -side bottom 
+#exit button
+frame $w2.buttons
+button $w2.b -text Quit -command "destroy $ww"
+pack $w2.b -side bottom 
 
 
 ########### Clipping onglet #########################################
@@ -395,14 +402,14 @@ ScilabEval "global ged_handle;ged_handle.thickness=$thick;"
 
 proc setData { i j } {
 global segsVAL
-ScilabEval "execstr(\"global ged_handle; ged_handle.data($i,$j)=$sgesVAL($i,$j);\",\'errcatch\',\'n\');"
+ScilabEval "execstr(\"global ged_handle; ged_handle.data($i,$j)=$segsVAL($i,$j);\",\'errcatch\',\'n\');"
 }
 
 
 
 proc setSegsColorData { i } {
-global segscolorVAL
-ScilabEval "execstr(\"global ged_handle; ged_handle.segs_color($i)=$segscolorVAL($i);\",\'errcatch\',\'n\');"
+    global segscolorVAL
+    ScilabEval "execstr(\"global ged_handle; tmp = ged_handle.segs_color; tmp($i)=$segscolorVAL($i);ged_handle.segs_color = tmp;\",\'errcatch\',\'n\');"
 }
 
 
