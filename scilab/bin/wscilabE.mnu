@@ -144,7 +144,7 @@
 [EndMenu]
 
 [Menu]
- &Help
+ &?
  	
        		Scilab He&lp	F1
 			[HELP]
