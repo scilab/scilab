@@ -3140,7 +3140,7 @@ void *GetDataFromName( char *name )
     }
 }
 
-int C2F(createref)(number, pointed)
+int C2F(createreference)(number, pointed)
      int number; int pointed;
 /* variable number is created as a reference to variable pointed */
 {
