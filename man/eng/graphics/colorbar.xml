@@ -93,16 +93,11 @@ zzm = min(zz); zzM = max(zz);
 nb_col = 64;
 xbasc()
 xset("colormap",hotcolormap(nb_col))
-xset("foreground",nb_col+2)
-xset("background",nb_col+1)
-xbasr()   // to redraw the graphic window with the good bg and fg colors...
 colorbar(zzm,zzM)
 nbcol = xget("lastpattern")
 zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
 plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
-xset("font",8,3)
 xtitle("a plot3d with shaded interpolated colors")
-xset("font",2,1)
 xselect()
  ]]></EXAMPLE>
 
@@ -117,3 +112,4 @@ xselect()
   </AUTHOR>
 
 </MAN>
+
