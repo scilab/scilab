@@ -44,7 +44,7 @@ LIBRARY_NAME = $(LIBRARY:.a=)
 all:: $(LIBRARY_NAME).la 
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .F .f .F90 .f90 .cc 
+.SUFFIXES: .c .lo .o .F .f .F90 .f90 .cc .cpp
 
 $(LIBRARY_NAME).la : $(OBJECTS) 
 	@echo linking 
@@ -81,6 +81,14 @@ $(LIBRARY_NAME).dia	: $(LIBRARY_NAME).la $(LIBRARY_NAME).tst
 	@$(COMPILE)  -c $<
 
 .cc.lo :
+	@echo "Compiling $<"
+	@$(LTCOMPILE) -c $<
+
+.cpp.o:
+	@echo "compiling $<"
+	@$(COMPILE)  -c $<
+
+.cpp.lo :
 	@echo "Compiling $<"
 	@$(LTCOMPILE) -c $<
 
