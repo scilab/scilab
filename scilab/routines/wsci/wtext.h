@@ -188,8 +188,6 @@ EXPORT void WINAPI TextMessage (void);
 static void CreateTextClass (LPTW lptw);
 EXPORT int WINAPI TextInit (LPTW lptw);
 EXPORT void WINAPI TextClose (LPTW lptw);
-void WriteTextIni (LPTW lptw);
-void ReadTextIni (LPTW lptw);
 EXPORT void WINAPI TextToCursor (LPTW lptw);
 void NewLine (LPTW lptw);
 void UpdateText (LPTW lptw, int count);

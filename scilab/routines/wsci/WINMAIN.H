@@ -205,4 +205,6 @@ void RestoreConsoleColors(void);
 extern BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowNameDestination,char *CommandLine);
 extern BOOL HaveAnotherWindowScilab(void);
 extern char * ChooseAnotherWindowScilab(void);
+
+extern void sci_tk_activate(void);
 /*-----------------------------------------------------------------------------------*/

@@ -5,6 +5,7 @@
  *--------------------------------------------------------------------------*/
 #ifdef WIN32
 #include <windows.h>
+
 #endif
 
 #include <string.h>
@@ -36,8 +37,8 @@
 #ifdef WIN32
 extern int HideToolBarWin32(int WinNum); /* see "wsci/wmenu.c" */
 extern BOOL IsToThePrompt(void);
-void SetLanguageMenu(char *Language); /* see "wsci/wmenu.c" */
-
+extern void SetLanguageMenu(char *Language); /* see "wsci/wmenu.c" */
+extern int InterfaceWindowsQueryRegistry _PARAMS((char *fname));
 #endif /*WIN32*/
 
 extern void write_scilab  __PARAMS((char *s));
@@ -355,9 +356,21 @@ int savehistoryafterncommands(int N)
 
 	return 0;	
 }
- /*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 int GetSaveHistoryAfterNcommands(void)
 {
 	return SaveHistoryAfterNcommands;
 }
- /*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
+int C2F(winqueryreg) _PARAMS((char *fname))
+{
+#ifdef WIN32
+	InterfaceWindowsQueryRegistry(fname);
+#else
+	Scierror(999,"Only for Windows\r\n");
+	LhsVar(1)=0;
+#endif
+	C2F(putlhsvar)();
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/

@@ -873,6 +873,9 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\registry.c">
+			</File>
+			<File
 				RelativePath="sh.c">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -1817,6 +1820,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath="plot.h">
+			</File>
+			<File
+				RelativePath=".\registry.h">
 			</File>
 			<File
 				RelativePath="..\version.h">

@@ -387,111 +387,6 @@ PrintAbortProc);
   return bError || pr.bUserAbort;
 }
 /*-----------------------------------------------------------------------------------*/
-void WriteGraphIni (struct BCG *ScilabGC)
-{
-	/* Modification Allan CORNET Sauvegarde dans la base de registre dans 
-			HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Graph Settings
-	"Version" correspondant à la version de Scilab
-	Sauvegarde dans HKEY_CURRENT_USER car données dépendant de l'utilisateur
-	*/
-
-	HKEY key;
-	DWORD result,dwsize=4;
-	char Clef[MAX_PATH];
-
-	RECT rect;
-	long GraphSizeX,GraphSizeY;
-	int iconic;
-
-	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Graph Settings",VERSION);  	
-  	RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
-  	iconic = IsIconic (ScilabGC->hWndParent);
-	if (iconic) ShowWindow (ScilabGC->hWndParent, SW_SHOWNORMAL);
-
-	GetWindowRect (ScilabGC->hWndParent, &rect);
-	RegSetValueEx(key, "GraphOriginX", 0, REG_DWORD, (LPBYTE)&rect.left, dwsize);
-  	RegSetValueEx(key, "GraphOriginY", 0, REG_DWORD, (LPBYTE)&rect.top, dwsize);
-
-	GraphSizeX=rect.right - rect.left;
-	GraphSizeY=rect.bottom - rect.top;
-	RegSetValueEx(key, "GraphSizeX", 0, REG_DWORD,(LPBYTE)&GraphSizeX, dwsize);
-  	RegSetValueEx(key, "GraphSizeY", 0, REG_DWORD,(LPBYTE)&GraphSizeY, dwsize);
-	RegSetValueEx(key, "ToolBar", 0, REG_DWORD, (LPBYTE)&ScilabGC->lpmw.ShowToolBar, dwsize);
-
-	RegCloseKey(key);
-	if (iconic) ShowWindow (ScilabGC->hWndParent, SW_SHOWMINIMIZED);
-  
-}
-/*-----------------------------------------------------------------------------------*/
-void ReadGraphIni (struct BCG *ScilabGC)
-{
-	/* Modification Allan CORNET Restauration depuis la base de registre dans 
-			HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Graph Settings
-	"Version" correspondant à la version de Scilab
-	*/
-	HKEY key;
-	DWORD result,size=4;
-	long GraphSizeX,GraphSizeY;
-	char Clef[MAX_PATH];
-	int Toolbar;
-	
-	RECT rect;
-
-	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Graph Settings",VERSION);
-  	result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
-
-	if ( RegQueryValueEx(key, "GraphOriginX", 0, NULL, (LPBYTE)&rect.left, &size) !=  ERROR_SUCCESS )
-	{
-		ScilabGC->lpgw->Origin.x = CW_USEDEFAULT;
-
-	}
-	else
-	{
-		ScilabGC->lpgw->Origin.x = rect.left;
-	}
-
-	if ( RegQueryValueEx(key, "GraphOriginY", 0, NULL, (LPBYTE)&rect.top, &size) !=  ERROR_SUCCESS )
-	{
-		ScilabGC->lpgw->Origin.y = CW_USEDEFAULT;
-	}
-	else
-	{
-		ScilabGC->lpgw->Origin.y = rect.top;
-	}
-
-	if ( RegQueryValueEx(key, "GraphSizeX", 0, NULL, (LPBYTE)&GraphSizeX, &size) !=  ERROR_SUCCESS )
-	{
-		ScilabGC->lpgw->Size.x = CW_USEDEFAULT;
-	}
-	else
-	{
-	ScilabGC->lpgw->Size.x = GraphSizeX;
-	}
-
-	if ( RegQueryValueEx(key, "GraphSizeY", 0, NULL, (LPBYTE)&GraphSizeY, &size) !=  ERROR_SUCCESS )
-	{
-		ScilabGC->lpgw->Size.y = CW_USEDEFAULT;
-	}
-	else
-	{
-		ScilabGC->lpgw->Size.y = GraphSizeY;
-	}
-
-	if ( RegQueryValueEx(key, "ToolBar", 0, NULL, (LPBYTE)&Toolbar, &size) !=  ERROR_SUCCESS )
-  	{
-		ScilabGC->lpmw.ShowToolBar = TRUE;
-	}
-	else
-	{
-		ScilabGC->lpmw.ShowToolBar  = Toolbar;
-	}
-
-    DefaultShowToolBar=ScilabGC->lpmw.ShowToolBar;
-	ScilabGC->lpmw.LockToolBar=FALSE;
-
-	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
-}
-/*-----------------------------------------------------------------------------------*/
 /****************************************************
  * Debug Function 
  ****************************************************/
@@ -1598,6 +1493,11 @@ void C2F(seteventhandler)(int *win_num,char *name,int *ierr)
   SciGc = GetWindowXgcNumber(*win_num);
   if ( SciGc ==  NULL ) {*ierr=1;return;}
   strncpy(SciGc->EventHandler,name,24);
+}
+/*-----------------------------------------------------------------------------------*/
+void SetDefaultShowToolBar(BOOL valShowToolBar)
+{
+	DefaultShowToolBar=valShowToolBar;
 }
 /*-----------------------------------------------------------------------------------*/
 void HideGraphToolBar(struct BCG * ScilabGC)

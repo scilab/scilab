@@ -74,11 +74,9 @@ extern void DebugGW (char *fmt,...);
 extern void DebugGW1 (char *fmt,...);
 extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
 extern void delete_sgwin_entities(int win_num,int v_flag);
+extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
 
 static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height, int scale);
-
-void ReadGraphIni (struct BCG *ScilabGC);
-void WriteGraphIni (struct BCG *ScilabGC);
 
 void scig_deletegwin_handler_none (int win);
 void scig_deletegwin_handler_sci (int win);
@@ -147,11 +145,13 @@ extern void CreateMyTooltip (HWND hwnd,char ToolTipString[30]);
 
 #define ToolBarHeight 24
 #define ButtonToolBarWeight 24
+static BOOL DefaultShowToolBar=TRUE;
+void SetDefaultShowToolBar(BOOL valShowToolBar);
 void CreateGraphToolBar(struct BCG * ScilabGC); 
 void HideGraphToolBar(struct BCG * ScilabGC);
 void ShowGraphToolBar(struct BCG * ScilabGC);
 void RefreshGraphToolBar(struct BCG * ScilabGC) ;
-static BOOL DefaultShowToolBar=TRUE;
+
 
 BOOL HdcToBmpFile(HDC hdc, char *pszflname);
 BOOL HwndToBmpFile(HWND hwnd, char *pszflname);
