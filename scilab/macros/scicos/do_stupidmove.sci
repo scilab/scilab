@@ -120,7 +120,6 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
     dx=xc-xmin;dy=yc-ymin;
     
     while rep(3)==-1 ,  // move loop
-      xmt(2,:)=xm(2,:)-xco+xc; ymt(2,:)=ym(2,:)-yco+yc; 
       // draw block shape
       xrect(xc-dx,yc+sz(2)-dy,sz(1),sz(2))
       // draw moving links
@@ -133,6 +132,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       // clear moving part of links
       xpolys(xmt,ymt,clr)// erase moving part of links
       xc=rep(1);yc=rep(2)      
+      xmt(2,:)=xm(2,:)-xco+xc; ymt(2,:)=ym(2,:)-yco+yc; 
     end
         if xget('window')<>curwin then
       //active window has been closed
