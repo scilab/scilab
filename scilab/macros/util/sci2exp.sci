@@ -102,6 +102,8 @@ function t=str2exp(a,lmax)
     x=emptystr();
     for j=1:n,
       y=a(i,j);
+      y=dquote+part(y,2:length(y))
+      y=part(y,1:length(y)-1)+dquote
       if y=='''''' then y='emptystr()',end
       if lmax==0|length(x($))+length(y)<lmax then
 	if j==1 then
