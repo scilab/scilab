@@ -39,7 +39,7 @@ if ~boolval then
     sci_equiv=Funcall(varname,size(lhslist),list(),lhslist)
   else
     // Try to find what is 'varname'
-    sci_equiv=get_unknown(varname)
+    sci_equiv=get_unknown(varname,lhslist)
     if verbose_mode<0 then
       m2sci_info("L."+string(nblines)+": Unknown variable "+varname+" !",-1);
     end
