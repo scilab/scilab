@@ -60,6 +60,8 @@ end
 
 // Dimensions
 dimstxt=strsubst(dimstxt,"?","-1")
+dimstxt=strsubst(dimstxt,"*","-2")
+dimstxt=strsubst(dimstxt,"#","-3")
 blpos=strindex(dimstxt," ")
 nbblanks=size(blpos)
 blpos=[1,blpos,length(dimstxt)+1]
