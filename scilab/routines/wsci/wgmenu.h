@@ -158,7 +158,7 @@ extern void ResetMenu(void);
 extern struct BCG *GetWindowXgcNumber (integer i);
 extern void HideGraphToolBar(struct BCG * ScilabGC);
 extern void ShowGraphToolBar(struct BCG * ScilabGC);
-extern void SaveCurrentLine(void);
+extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
 
 
 void SendGraphMacro (struct BCG *ScilabGC, UINT m);

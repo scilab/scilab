@@ -36,7 +36,7 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 			  s++;
 	      break;
 		case NEWFIG:
-			SaveCurrentLine();
+			SaveCurrentLine(TRUE);
 			NewFigure(ScilabGC);
 			s++;
 	      break;

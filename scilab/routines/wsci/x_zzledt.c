@@ -104,14 +104,14 @@ void ChangeCursorWhenScilabIsReady(void)
 
 }
 /*-----------------------------------------------------------------------------------*/
-void SaveCurrentLine(void)
+void SaveCurrentLine(BOOL RewriteLineAtPrompt)
 {
 	extern char cur_line[1024];
 
 	if ( (get_is_reading ()) && (PutLineInBuffer == FALSE) )
 	{
 		strcpy(copycur_line,cur_line);
-		PutLineInBuffer=TRUE;
+		if (RewriteLineAtPrompt) PutLineInBuffer=TRUE;
 	}
 
 }

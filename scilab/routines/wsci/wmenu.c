@@ -484,7 +484,7 @@ void SendMacro (LPTW lptw, UINT m)
 	    		return;
 	    	break;
 			case OPEN:
-				SaveCurrentLine();
+				SaveCurrentLine(TRUE);
 				Callback_OPEN();
 				return;
 	    	case EXEC:
@@ -589,17 +589,17 @@ void SendMacro (LPTW lptw, UINT m)
 	    		return;
 	    	break;
 	    	case SCIPAD:
-				SaveCurrentLine();
+				SaveCurrentLine(TRUE);
 	    		Callback_SCIPAD();
 	    		return;
 	    	break;
 	    	case HELP:
-				SaveCurrentLine();
+				SaveCurrentLine(TRUE);
 				Callback_HELP();
 	    		return;
 	    	break;
 			case CONFIGBROWSER:
-				SaveCurrentLine();
+				SaveCurrentLine(TRUE);
 				Callback_CONFIGUREBROWSER();
 				return;
 			break;

@@ -1086,13 +1086,23 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
     			UpdateWindow (lptw->hWndText);
 			}
 		return (0);
-		case WM_EXITSIZEMOVE: /* Sauvegarde Position apres deplacement et redimensionnement */
-    	 		WriteTextIni(lptw);
-    	return (0);
-		case WM_COMMAND:
-				if (IsWindow (lptw->hWndText))SetFocus (lptw->hWndText);
-				SendMessage (lptw->hWndText, message, wParam, lParam);
-				/* pass on menu commands */
+
+	case WM_ENTERSIZEMOVE :
+		SaveCurrentLine(FALSE);
+	return (0);
+
+	case WM_EXITSIZEMOVE :
+		{
+		extern char copycur_line[1024];
+		SendCTRLandAKey(CTRLU); /* Scrollbar */
+		write_scilab(copycur_line);
+		WriteTextIni(lptw); /* Sauvegarde Position apres deplacement et redimensionnement */
+		}
+	return (0);
+	case WM_COMMAND:
+		if (IsWindow (lptw->hWndText))SetFocus (lptw->hWndText);
+		SendMessage (lptw->hWndText, message, wParam, lParam);
+		/* pass on menu commands */
 		return (0);
 		case WM_PAINT:
 		{
@@ -1223,8 +1233,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
       lptw->bFocus = FALSE;
       break;
     case WM_SIZE:
-		SendCTRLandAKey(CTRLU); /* Scrollbar */
-		
+	  {
 	  lptw->ClientSize.y = HIWORD (lParam);
       lptw->ClientSize.x = LOWORD (lParam);
       nc = lptw->ClientSize.x / lptw->CharSize.x;
@@ -1254,9 +1263,10 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 		       - lptw->CaretHeight - lptw->ScrollPos.y);
 	  ShowCaret (hwnd);
 	}
-		
+	  }	
 	  return (0);
-      
+
+	   
     case 0x020A :/*WM_MOUSEWHEEL*/
 		{
 			int steps=((short) HIWORD(wParam))/120;
@@ -1761,7 +1771,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	    
 	  case M_HELPON:
 	  {
-        SaveCurrentLine();
+        SaveCurrentLine(TRUE);
 	  	HelpOn(lptw);
 	  }
 	  return 0;
@@ -1774,7 +1784,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	  
 	  case M_OPENSELECTION:
 	  {
-		SaveCurrentLine();
+		SaveCurrentLine(TRUE);
 	  	OpenSelection(lptw);
 	  }
 	  return 0;
