@@ -32,7 +32,7 @@ function mom= cmoment(x,ord,orien)
     if ord==1 then mom=0, return, end
     le=length(x)
     m=sum(x)/le
-    mom=sum((x-m).^ord)/(le-1)
+    mom=sum((x-m).^ord)/(le)
     return
   elseif rhs==3 then
     le=size(x,orien)
@@ -43,7 +43,7 @@ function mom= cmoment(x,ord,orien)
       m=m(:,ones(le,1))
     else error('The third parameter must be ''r'', ''c'', 1 or 2'),
     end
-    mom=sum((x-m).^ord,orien)/(le-1)
+    mom=sum((x-m).^ord,orien)/(le)
     return
   else error('The function moment must have two or three parameters')
   end
