@@ -501,7 +501,7 @@ c     .    lsodar IWORK 20 + neq
            nn43= 20 + ncst + 2*ng
            lw43=lw
            lw=lw+nn43
-           nn44=istk(iadr(l4e15)+n4e15)
+           nn44=istk(iadr(l4e15)+n4e15-1)
            lw44=lw
            lw=lw+sadr(nn44)+1
         elseif(solver.eq.100) then
@@ -514,7 +514,7 @@ c     .    daskr
            nn43=40 +ncst+ ncst + 2*ng
            lw43=lw
            lw=lw+nn43
-           nn44=2*nblk
+           nn44=istk(iadr(l4e15)+n4e15-1)
            lw44=lw
            lw=lw+sadr(nn44)+1
         endif
