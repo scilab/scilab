@@ -55,18 +55,18 @@ proc showwatch_bp {} {
                             "" $buttonRunToCursor $buttonGoOnIgnor "sep" "" "sep"\
                             $buttonBreakDebug $buttonCancelDebug ]
     setdbmenuentriesstates_bp
-    bind $buttonConfigure   <Enter> {update_bubble enter  4 [winfo pointerxy $watch]}
-    bind $buttonConfigure   <Leave> {update_bubble leave  4 [winfo pointerxy $watch]}
-    bind $buttonToNextBpt   <Enter> {update_bubble enter  6 [winfo pointerxy $watch]}
-    bind $buttonToNextBpt   <Leave> {update_bubble leave  6 [winfo pointerxy $watch]}
-    bind $buttonRunToCursor <Enter> {update_bubble enter  8 [winfo pointerxy $watch]}
-    bind $buttonRunToCursor <Leave> {update_bubble leave  8 [winfo pointerxy $watch]}
-    bind $buttonGoOnIgnor   <Enter> {update_bubble enter  9 [winfo pointerxy $watch]}
-    bind $buttonGoOnIgnor   <Leave> {update_bubble leave  9 [winfo pointerxy $watch]}
-    bind $buttonBreakDebug  <Enter> {update_bubble enter 13 [winfo pointerxy $watch]}
-    bind $buttonBreakDebug  <Leave> {update_bubble leave 13 [winfo pointerxy $watch]}
-    bind $buttonCancelDebug <Enter> {update_bubble enter 14 [winfo pointerxy $watch]}
-    bind $buttonCancelDebug <Leave> {update_bubble leave 14 [winfo pointerxy $watch]}
+    bind $buttonConfigure   <Enter> {update_bubble_watch enter  4 [winfo pointerxy $watch]}
+    bind $buttonConfigure   <Leave> {update_bubble_watch leave  4 [winfo pointerxy $watch]}
+    bind $buttonToNextBpt   <Enter> {update_bubble_watch enter  6 [winfo pointerxy $watch]}
+    bind $buttonToNextBpt   <Leave> {update_bubble_watch leave  6 [winfo pointerxy $watch]}
+    bind $buttonRunToCursor <Enter> {update_bubble_watch enter  8 [winfo pointerxy $watch]}
+    bind $buttonRunToCursor <Leave> {update_bubble_watch leave  8 [winfo pointerxy $watch]}
+    bind $buttonGoOnIgnor   <Enter> {update_bubble_watch enter  9 [winfo pointerxy $watch]}
+    bind $buttonGoOnIgnor   <Leave> {update_bubble_watch leave  9 [winfo pointerxy $watch]}
+    bind $buttonBreakDebug  <Enter> {update_bubble_watch enter 13 [winfo pointerxy $watch]}
+    bind $buttonBreakDebug  <Leave> {update_bubble_watch leave 13 [winfo pointerxy $watch]}
+    bind $buttonCancelDebug <Enter> {update_bubble_watch enter 14 [winfo pointerxy $watch]}
+    bind $buttonCancelDebug <Leave> {update_bubble_watch leave 14 [winfo pointerxy $watch]}
 
     frame $watch.f.f2 -relief groove -borderwidth 2 -padx 2 -pady 4
     frame $watch.f.f2.f2l
@@ -247,13 +247,18 @@ proc duplicatechars {st ch} {
     return $st
 }
 
-proc update_bubble {type butnum mousexy} {
+proc update_bubble_watch {type butnum mousexy} {
     global pad watchwinicons
     set butname [lindex $watchwinicons $butnum]
     set txt [$pad.filemenu.debug entrycget $butnum -label]
     set acc [$pad.filemenu.debug entrycget $butnum -accelerator]
     if {$acc != ""} { set txt "$txt ($acc)" }
-    set bubble $butname.bubble
+    update_bubble $type $butname $mousexy $txt
+}
+
+proc update_bubble {type widgetname mousexy bubbletxt} {
+# generic bubble window handler
+    set bubble $widgetname.bubble
     catch {destroy $bubble}
     if {$type=="enter"} {
         update idletasks
@@ -263,8 +268,9 @@ proc update_bubble {type butnum mousexy} {
         wm transient $bubble
         wm withdraw $bubble
         catch {wm attributes $bubble -topmost 1}
-        label $bubble.txt -text $txt -relief flat -bd 0 -highlightthickness 0 -bg PaleGoldenrod
-        if {[$butname cget -state] == "disabled"} {
+        label $bubble.txt -text $bubbletxt -relief flat -bd 0 \
+                          -highlightthickness 0 -bg PaleGoldenrod
+        if {[$widgetname cget -state] == "disabled"} {
             $bubble.txt configure -state disabled
         }
         pack $bubble.txt -side left

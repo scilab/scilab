@@ -184,13 +184,6 @@ proc openlistoffiles {filelist} {
     }
 }
 
-proc filetoopen {textarea} {
-# open an existing file selected by the user in the open dialog
-    showopenwin $textarea
-    [gettextareacur] mark set insert "1.0"
-    keyposn [gettextareacur]
-}
-
 proc showopenwin {textarea} {
 # bring up the open dialog for file selection
 # if file is not already open, open it
@@ -218,6 +211,8 @@ proc showopenwin {textarea} {
         }
         selection clear
     }
+    [gettextareacur] mark set insert "1.0"
+    keyposn [gettextareacur]
 }
 
 proc openfile {file} {
@@ -301,6 +296,7 @@ proc shownewbuffer {file} {
     openoninit $pad.new$winopened $file
     RefreshWindowsMenuLabels
     modifiedtitle $pad.new$winopened
+    AddRecentFile [file normalize $file]
     update
     colorize $pad.new$winopened 1.0 end
 }
@@ -401,7 +397,7 @@ proc filetosave {textarea} {
 }
 
 proc filesaveas {textarea} {
-# bring up the SAve As... dialog so that the user can pick up a file name
+# bring up the Save As... dialog so that the user can pick up a file name
 # and do the save under that filename
     global listoffile pad radiobuttonvalue winopened
     global startdir
@@ -447,6 +443,7 @@ proc filesaveas {textarea} {
         writesave $textarea $myfile
         RefreshWindowsMenuLabels
         modifiedtitle $textarea
+        AddRecentFile [file normalize $myfile]
         return 1
     }
     return 0
@@ -481,13 +478,21 @@ proc writesave {textarea nametosave} {
 }
 
 proc savepreferences {} {
-  global env listofpref
+  global env listofpref listofpref_list
   set preffilename [file join $env(HOME) .SciPadPreferences.tcl]
   catch {
     set preffile [open $preffilename w]
     foreach opt $listofpref {
         global $opt
         puts $preffile [concat "set $opt" [set $opt]]
+    }
+    foreach opt $listofpref_list {
+        global $opt
+        set value ""
+        foreach item $opt {
+            set value [concat $value [set $item]]
+        }
+        puts $preffile "set $opt \[list $value\]"
     }
     close $preffile
   }
@@ -563,6 +568,9 @@ proc extractindexfromlabel {dm labsearched} {
     return -1
 }
 
+##################################################
+# procedures dealing with pruned file names
+##################################################
 proc RefreshWindowsMenuLabels {} {
 # Reset all labels to file tails, then remove ambiguities
 # by expanding names as necessary
@@ -666,5 +674,88 @@ proc CreateUnambiguousPrunedNames {talist} {
             set newname [file join $newname $tojoin]
         }
         set listoffile("$ta",prunedname) $newname
+    }
+}
+
+##################################################
+# procedures dealing with the recent files list
+# displayed in the file menu
+##################################################
+proc AddRecentFile {filename} {
+# add a new recent file item to the file menu
+# if there is already the max number of entries, then shift them
+# one line down and insert $filename at the top
+    global pad listofrecent maxrecentfiles nbrecentfiles
+    # first check if the new entry is already present
+    set present "false"
+    for {set i 0} {$i<$nbrecentfiles} {incr i} {
+        if {[lindex $listofrecent $i] == $filename} {
+            set present "true"
+        }
+    }
+    if {$present == "false"} {
+        set rec1ind [GetFirstRecentInd]
+        if {$nbrecentfiles == 0} {
+            incr rec1ind
+            $pad.filemenu.files insert $rec1ind separator
+        }
+        # update the file menu
+        if {$nbrecentfiles < $maxrecentfiles} {
+            incr nbrecentfiles
+            # insert new entry
+            set listofrecent [linsert $listofrecent 0 $filename]
+            $pad.filemenu.files insert $rec1ind command \
+                       -label [file tail [lindex $listofrecent 0] ] \
+                       -command "openfile \"[lindex $listofrecent 0]\""
+        } else {
+            # forget last entry of the list and insert new entry
+            set listofrecent [lreplace $listofrecent end end]
+            set listofrecent [linsert $listofrecent 0 $filename]
+            # update menu entries
+            for {set i 0} {$i<$nbrecentfiles} {incr i} {
+                $pad.filemenu.files entryconfigure [expr $rec1ind + $i] \
+                           -label [file tail [lindex $listofrecent $i] ] \
+                           -command "openfile \"[lindex $listofrecent $i]\""
+            }
+        }
+    }
+}
+
+proc GetFirstRecentInd {} {
+# get index of first recent file item in the file menu
+    global pad nbrecentfiles
+    set ampentrylabel [mc "&Close"]
+    set amppos [string first "&" $ampentrylabel]
+    set entrylabel [string replace $ampentrylabel $amppos $amppos]
+    set rec1ind [expr [extractindexfromlabel $pad.filemenu.files $entrylabel] \
+                      - 1 - $nbrecentfiles]
+    return $rec1ind
+}
+
+proc BuildInitialRecentFilesList {} {
+    global pad listofrecent nbrecentfiles
+    set nbrecentfiles [llength $listofrecent]
+    for {set i 0} {$i<$nbrecentfiles} {incr i} {
+        $pad.filemenu.files add command \
+                   -label [file tail [lindex $listofrecent $i] ] \
+                   -command "openfile \"[lindex $listofrecent $i]\""
+    }
+    bind $pad.filemenu.files <<MenuSelect>> {+showinfo_menu %W}
+    if {$nbrecentfiles > 0} {
+        $pad.filemenu.files add separator
+    }
+}
+
+proc showinfo_menu {w} {
+# display full pathname of a recent file entry of the file menu
+# as a showinfo
+    global pad nbrecentfiles listofrecent
+    if {$nbrecentfiles > 0} {
+        set rec1ind [GetFirstRecentInd]
+        set recnind [expr $rec1ind + $nbrecentfiles - 1]
+        set mouseentry [$w index active]
+        if {$rec1ind<=$mouseentry && $mouseentry<=$recnind} {
+            showinfo [lindex $listofrecent [expr $mouseentry - $rec1ind]]
+        }
     }
 }

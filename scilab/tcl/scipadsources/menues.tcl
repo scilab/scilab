@@ -5,7 +5,7 @@ menu $pad.filemenu.files -tearoff 0 -font $menuFont
     eval "$pad.filemenu.files add command [me "&New"] \
                    -command \"filesetasnew\" -accelerator Ctrl+n"
     eval "$pad.filemenu.files add command [me "&Open..."] \
-                   -command \"filetoopen $textareacur\" -accelerator Ctrl+o"
+                   -command \"showopenwin $textareacur\" -accelerator Ctrl+o"
     eval "$pad.filemenu.files add command [me "&Save"] \
                    -command \"filetosavecur\" -accelerator Ctrl+s"
     eval "$pad.filemenu.files add command [me "Save &as..."]\
@@ -32,6 +32,7 @@ menu $pad.filemenu.files -tearoff 0 -font $menuFont
                    -command \"selectprint $textareacur\" -accelerator Ctrl+p"
         $pad.filemenu.files add separator
     }
+    BuildInitialRecentFilesList
     eval "$pad.filemenu.files add command [me "&Close"]\
                    -command \"closecur\" -accelerator Ctrl+w"
     eval "$pad.filemenu.files add command [me "E&xit"] \

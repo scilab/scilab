@@ -1,18 +1,20 @@
 set winTitle "SciPad"
-set version "Version 3.35"
+set version "Version 3.36"
 
 # all one needs in order to add a new retrievable preference is:
-#  -add the variable name to $listofpref below
-#  -use the variable when needed in the program, such that 
+#  - add the variable name to $listofpref below, if it is not a list
+#  - add the variable name to $listofpref_list below, if it is a list
+#  - use the variable when needed in the program, such that 
 #    it is visible at main level (i.e. globalize it)
-#  -if needed, assign an initial fallback value here
+#  - if needed, assign an initial fallback value here
 
 # those are the preferences which are going to be saved
 set listofpref {wordWrap BGCOLOR FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
        BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR TXTCOLOR QTXTCOLOR \
        REMCOLOR XMLCOLOR NUMCOLOR SELCOLOR BREAKPOINTCOLOR FontSize \
        LFUNCOLOR PDEFCOLOR WMGEOMETRY printCommand actbptextFont indentspaces \
-       filenamesdisplaytype}
+       filenamesdisplaytype maxrecentfiles }
+set listofpref_list { listofrecent }
 
 # default options which can be overriden
 set wordWrap "none"
@@ -40,6 +42,8 @@ set printCommand lpr
 set actbptextFont "-Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*"
 set indentspaces 2
 set filenamesdisplaytype "pruned"  ;# "pruned" or "full"
+set maxrecentfiles 4
+set listofrecent [list]    ;# always full filenames here
 
 #other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }

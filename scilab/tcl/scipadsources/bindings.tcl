@@ -14,7 +14,7 @@ bind Text <bracketright> { if {{%A} != {{}}} {insblinkbrace %W %A}}
 bind Text <braceright>  { if {{%A} != {{}}} {insblinkbrace %W %A}}
 
 bind Text <Control-o> {}
-bind $pad <Control-o> {filetoopen %W}
+bind $pad <Control-o> {showopenwin %W}
 
 bind $pad <Control-z> {undo_menu_proc}
 bind $pad <Control-Z> {redo_menu_proc}

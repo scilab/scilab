@@ -748,7 +748,7 @@ Francois VOGEL, 23/02/05
  * Trying to paste with button-2 when there is no selection does no more
    tag the buffer as modified.
  * Further drastic code cleaning. The only unclean file is now undoredo.tcl
-   but this will be removd one day or another anyway to be replaced by the
+   but this will be removed one day or another anyway to be replaced by the
    text widget undo/redo features.
  * version --> 3.34
 
@@ -760,3 +760,8 @@ Francois VOGEL, 24/02/05
      - inccount, outccount, getccount become setmodified, unsetmodified,
        and getmodified
  * version --> 3.35
+
+Francois VOGEL, 26/02/05
+ * The list of the 4 more recently opened/saved files is now available in
+   the file menu for quick access.
+ * version --> 3.36
