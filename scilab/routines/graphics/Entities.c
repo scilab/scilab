@@ -16335,7 +16335,8 @@ void  sci_update_frame_bounds(int cflag, integer *aaint)
    Xdec[0]=inint(xmin);Xdec[1]=inint(xmax);Xdec[2]=0;
    Ydec[0]=inint(ymin);Ydec[1]=inint(ymax);Ydec[2]=0;
 
-   if ( ppsubwin->tight_limits == FALSE||ppsubwin->isoview == TRUE) {
+   /* if ( ppsubwin->tight_limits == FALSE||ppsubwin->isoview == TRUE) {*/
+   if ( ppsubwin->tight_limits == FALSE && ppsubwin->isoview == FALSE ) { /* F.Leray 11.05.04 : for me, this is the good condition */
      if ( ppsubwin->logflags[0]=='n') { /* x-axis */
        C2F(graduate)(&xmin,&xmax,&xmin_tmp,&xmax_tmp,&(aaint[0]),&(aaint[1]),Xdec,Xdec+1,Xdec+2);
        for (i=0; i < 3 ; i++ ) ppsubwin->axes.xlim[i]=Xdec[i];
