@@ -51,23 +51,32 @@ if rhs==1 then
       tree.out(1).infer=to.infer
       tree.out(1).contents(ind.value)=from.infer
     else
-      // X(p)=struct(...)
-      tree.operands(2)=list(Cste(1),tree.operands(2))
-      if typeof(ind)=="cste" then
-	if ind.vtype<>String then // Not :
-	  tree.out(1).dims=list(1,ind.value)
-	  if typeof(tree.out(1).contents)<>"st" then
-	    tree.out(1).contents=struct()
+      if from.vtype<>Double then // X(p)=struct(...)
+	tree.operands(2)=list(Cste(1),tree.operands(2))
+	if typeof(ind)=="cste" then
+	  if ind.vtype<>String then // Not :
+	    tree.out(1).dims=list(1,ind.value)
+	    if typeof(tree.out(1).contents)<>"st" & from.vtype==Struct then
+	      tree.out(1).contents=struct()
+	    else
+	      tree.out(1).contents=cell()
+	    end
+	    execstr("tree.out(1).contents("+expression2code(tree.operands(2))+")=from.contents")
+	  else
+	    tree.out(1).dims=from.dims
+	    execstr("tree.out(1).contents=from.contents.entries")
 	  end
-	  execstr("tree.out(1).contents"+expression2code(tree.operands(2))+"=from.contents")
 	else
-	  tree.out(1).dims=from.dims
-	  execstr("tree.out(1).contents=from.contents.entries")
+	  execstr("tree.out(1).contents=Infer()")
 	end
+	tree.out(1).vtype=Struct
       else
-	execstr("tree.out(1).contents=Infer()")
+	if is_empty(from) then // Clear element: A(p)=[]
+	  execstr("tree.out(1).contents("+expression2code(tree.operands(2))+")=[]")
+	else // Change type of variable
+	  error("Not yet implemented");
+	end
       end
-      tree.out(1).vtype=Struct
     end
   // --- Insertion with more than one index value (index is a list) --- 
   else
@@ -81,7 +90,7 @@ if rhs==1 then
 	end
       end
     end
-    
+
     if can_infer(tree.operands(2)) then
       // Inference can be done
       
