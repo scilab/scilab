@@ -152,5 +152,9 @@ void ShowGraphToolBar(struct BCG * ScilabGC);
 void RefreshGraphToolBar(struct BCG * ScilabGC) ;
 static BOOL DefaultShowToolBar=TRUE;
 
+BOOL HdcToBmpFile(HDC hdc, char *pszflname);
+BOOL HwndToBmpFile(HWND hwnd, char *pszflname);
+void ExportBMP(struct BCG *ScilabGC,char *pszflname);
+void ExportEMF(struct BCG *ScilabGC,char *pszflname);
 #endif /* __WGRAPH__ */
 /*-----------------------------------------------------------------------------------*/

@@ -839,7 +839,7 @@ EXPORT BOOL CALLBACK
 			  ls.land, 0L);
       if (ls.use_printer == 0)
 	{
-	  for (i = 0; i < 5; i++)
+	  for (i = 0; i < 8; i++)
 	    SendDlgItemMessage (hdlg, PS_TYPE, CB_ADDSTRING, 0,
 				(LPARAM) ((LPSTR) Print_Formats[i]));
 	  SendDlgItemMessage (hdlg, PS_TYPE, CB_SETCURSEL,
@@ -963,6 +963,18 @@ static void SavePs (struct BCG *ScilabGC)
       wininfo ("end of PPM file generation");
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
+	case 6:
+	  SetCursor (LoadCursor (NULL, IDC_WAIT));
+      ExportBMP(ScilabGC,filename);
+      wininfo ("end of BMP file generation");
+      SetCursor (LoadCursor (NULL, IDC_CROSS));
+	  break;
+	case 7:
+      SetCursor (LoadCursor (NULL, IDC_WAIT));
+      ExportEMF(ScilabGC,filename);
+      wininfo ("end of EMF file generation");
+      SetCursor (LoadCursor (NULL, IDC_CROSS));
+	  break;
     }
 }
 /*-----------------------------------------------------------------------------------*/

@@ -134,6 +134,8 @@ static char *Print_Formats[] =
   "Xfig",
   "GIF",
   "PPM",
+  "BMP",
+  "Enhanced Meta File (.emf)"
 };
 
 
@@ -159,7 +161,8 @@ extern struct BCG *GetWindowXgcNumber (integer i);
 extern void HideGraphToolBar(struct BCG * ScilabGC);
 extern void ShowGraphToolBar(struct BCG * ScilabGC);
 extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
-
+extern void ExportBMP(struct BCG *ScilabGC,char *pszflname);
+extern void ExportEMF(struct BCG *ScilabGC,char *pszflname);
 
 void SendGraphMacro (struct BCG *ScilabGC, UINT m);
 void ScilabMenuAction (char *buf);
