@@ -70,7 +70,10 @@ function xmltohtml(dirs,titles,xsl,step)
 	    mprintf('  Processing file %s.xml\n",fb);
 	    xslpath=xslprefix+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
 	    //write(%io(2),'sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
-	    unix_s('sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
+	    ierr=execstr('unix_s(''sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
+	    if ierr<>0 then 
+	      write(%io(2),'     Warning '+fb+'.xml does not follow dtd','(a)')
+	    end
 	  end
 	end
 	if MSDOS then 
