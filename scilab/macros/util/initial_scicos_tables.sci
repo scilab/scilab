@@ -8,8 +8,9 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
   end
 
   //Scicos palettes =======================================================
-  pal_names=['Sources';'Sinks';'Linear';'Non_linear';'Events';'Treshold';
-	     'Others';'Branching';'Electrical';'ThermoHydraulics'];
+  pal_names=['Sources';'Sinks';'Linear';'Non_linear';'Events';'Threshold';
+	     'Others';'Branching';'Electrical';'ThermoHydraulics'; ...
+	     'OldBlocks';'DemoBlocks'];
   scicos_pal=[pal_names  'SCI/macros/scicos/'+pal_names+'.cosf']
 
 
