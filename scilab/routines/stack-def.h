@@ -35,7 +35,7 @@ IMPORT struct {
 
 IMPORT struct {
     int ids[nsiz*psiz], Pstk[psiz], rstk[psiz], pt, niv, 
-	    macr, paus, icall;
+	    macr, paus, icall, krec;
 } C2F(recu);
 
 IMPORT struct {
