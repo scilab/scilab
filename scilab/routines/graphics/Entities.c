@@ -9414,7 +9414,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       psegs->ptype = type;
 
       /* F.Leray Test imprortant sur type ici*/
-      if (type == 0) /* attention ici type = 0 (segs) donc...*/
+      if (type == 0) /* attention ici type = 0 donc...*/
 	{   
 	  psegs->arrowsize = arsize * 100;       /* A revoir: F.Leray 06.04.04 */
 	  if ((psegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
@@ -9440,7 +9440,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  psegs->iflag = flag; 
 	  psegs->Nbr1 = Nbr1;
 	}	
-      else /* attention ici type = 1 (champs) donc...*/
+      else /* attention ici type = 1 donc...*/
 	{ 
 	  /* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
 	  psegs->arrowsize = arsize * 100;
@@ -10917,7 +10917,7 @@ sciDrawObj (sciPointObj * pobj)
 {
   char str[2] = "xv",locstr;
   integer n,n1,uc,verbose=0,narg,xz[10],na,arssize,sflag=0,un=1;
-  integer *xm, *ym,*zm,n2 = 1, xtmp[4], ytmp[4]/*,style[1]*/,rect1[4];
+  integer *xm, *ym,*zm,n2 = 1, xtmp[4], ytmp[4],*pstyle,rect1[4];
   integer closeflag = 0,ias,ias1;
   integer width, height;
   double anglestr,w2,h2,as;
@@ -10973,7 +10973,7 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE: 
-    
+      /*if (!sciGetVisibility(pobj)) break;*/
       x[1] = sciGetBackground (pobj);x[4] = 0;
       /** xclear will properly upgrade background if necessary **/
 #ifdef WIN32
@@ -10999,7 +10999,7 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	{
 	  if (sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
 	    /* We draw only the graphics object, not the widget */
-	    {   
+	    { 
 	      sciDrawObj (psonstmp->pointobj);
 	    }
 	  psonstmp = psonstmp->pprev;
@@ -11144,22 +11144,19 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	      axis_draw (pSUBWIN_FEATURE (pobj)->strflag); 
 	    }
 	  
-	  /**DJ.Abdemouche 2003**/
+	  /** walk subtree **/
 	  psonstmp = sciGetLastSons (pobj);
 	  while (psonstmp != (sciSons *) NULL)
 	    {
 	      sciDrawObj (psonstmp->pointobj);
 	      psonstmp = psonstmp->pprev;
 	    }/***/
-
-	  /*sciprint(" 1) flag = %d\n",flag);*/
 #ifdef WIN32
-	  /*flag = 1;*/
 	  if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	  wininfo("");  
 	}
-      break;  /**DJ.Abdemouche 2003**/                       
+      break;                   
       /******************/
 	  
     case SCI_AGREG: 
@@ -11305,10 +11302,14 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	  arsize = (integer) (pSEGS_FEATURE (pobj)->arrowsize); 
 	  if ((xm = MALLOC (n*sizeof (integer))) == NULL)	return -1;
 	  if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1; /* F.Leray 18.02.04 Correction suivante:*/
-	  /*	if ((xm = MALLOC (in1*sizeof (integer))) == NULL)	return -1;*/ /* ANNULATION MODIF DU 18.02.04*/
-	  /*	if ((ym = MALLOC (in2*sizeof (integer))) == NULL)	return -1;*/
-
-	  /**DJ.Abdemouche 2003**/
+	  if ((pstyle = MALLOC (n*sizeof (integer))) == NULL)	return -1; /* SS 19.04*/
+	  if (pSEGS_FEATURE (pobj)->iflag == 1) {
+	    for ( i =0 ; i <n ; i++) {
+	      	pstyle[i]=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[i]);
+	    }
+	  }
+	  else
+	    pstyle[0]=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[0]);
 	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 	    {
 	      trans3d(sciGetParentSubwin(pobj),n,xm,ym,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,pSEGS_FEATURE (pobj)->vz);
@@ -11324,7 +11325,7 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	  flag_DO = MaybeSetWinhdc();
 #endif
 	  if (pSEGS_FEATURE (pobj)->arrowsize == 0)
-	    C2F(dr)("xsegs","v",xm,ym,&n,pSEGS_FEATURE (pobj)->pstyle,&pSEGS_FEATURE (pobj)->iflag,
+	    C2F(dr)("xsegs","v",xm,ym,&n,pstyle,&pSEGS_FEATURE (pobj)->iflag,
 		    PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  else{ 
 	    if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
@@ -11335,19 +11336,20 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 		  ias=ias*10;
 		else 
 		  ias =ias/2;
-		C2F(dr)("xarrow","v",xm,ym,&n,&ias,pSEGS_FEATURE (pobj)->pstyle,&pSEGS_FEATURE (pobj)->iflag,PD0,PD0,PD0,PD0,0L,0L);
+		C2F(dr)("xarrow","v",xm,ym,&n,&ias,pstyle,&pSEGS_FEATURE (pobj)->iflag,PD0,PD0,PD0,PD0,0L,0L);
 	      }
 	    else
-	      C2F(dr1)("xarrow","v",pSEGS_FEATURE (pobj)->pstyle,&pSEGS_FEATURE (pobj)->iflag
+	      C2F(dr1)("xarrow","v",pstyle,&pSEGS_FEATURE (pobj)->iflag
 		       ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,&pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
 	    /* F.Leray appel bizarre ci dessus a dr1 pour le NG??!! A voir... 19.02.04*/
 	  } /***/
 #ifdef WIN32 
 	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
-	  /*	  FREE(xm);FREE(ym); */ /* SS 02/04 */
-	  FREE(xm); xm = (integer *) NULL;
-	  FREE(ym); ym = (integer *) NULL; /* et F.Leray 18.02.04*/
+	 
+	  FREE(xm);         xm = (integer *) NULL;
+	  FREE(ym);         ym = (integer *) NULL; 
+	  FREE(pstyle); pstyle = (integer *) NULL; /* SS 19.04*/
 	}
       else    /*ptype == 1*/
         {
