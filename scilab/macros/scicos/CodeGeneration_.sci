@@ -46,11 +46,11 @@ function [ok,Makename]=buildnewblock()
   [fd,ierr]=mopen(rpat+'/'+rdnom+'f.f','r')
   if ierr==0 then mclose(fd),files=[files,rdnom+'f'],end
     Makename=gen_make(rdnom,files,archname,rpat+'/'+rdnom+'_Makefile')
+    //unlink if necessary
+    [a,b]=c_link(rdnom); while a ; ulink(b);[a,b]=c_link(rdnom);end
     libn=ilib_compile('lib'+rdnom,Makename)
 
-    //unlink if necessary
-    [a,b]=c_link(rdnom); while a ; ulink(b);[a,b]=c_link(rdnom);end  
-
+    
     ierr=execstr('link(libn,rdnom,''c'')','errcatch')
     if ierr<>0 then 
       ok=%f;x_message(['sorry link problem';lasterror()]);
@@ -67,19 +67,22 @@ function [ok,Makename]=buildstandalone()
   [fd,ierr]=mopen(rpat+'/'+rdnom+'f.f','r')
   if ierr==0 then mclose(fd),files=[files,rdnom+'f'],end
   
-    Makename=gen_make(rdnom,files,archname,rpat+'/'+rdnom+'_Makefile')
-    libn=ilib_compile('lib'+rdnom,Makename)
-
-    //unlink if necessary
-    [a,b]=c_link(rdnom); while a ; ulink(b);[a,b]=c_link(rdnom);end  
-
-    ierr=execstr('link(libn,rdnom,''c'')','errcatch')
-    if ierr<>0 then 
-      ok=%f;x_message(['sorry link problem';lasterror()]);
-      return;
-    end
-
+  Makename=gen_make(rdnom,files,archname,rpat+'/'+rdnom+'_Makefile')
+  //unlink if necessary
+  [a,b]=c_link(rdnom); while a ; ulink(b);[a,b]=c_link(rdnom);end
+  libn=ilib_compile('lib'+rdnom,Makename)
+  
+    
+  
+  ierr=execstr('link(libn,rdnom,''c'')','errcatch')
+  if ierr<>0 then 
+    ok=%f;x_message(['sorry link problem';lasterror()]);
+    return;
+  end
+  
 endfunction
+
+
 
 function Code=c_make_doit1(cpr)
 // produces the code for ddoit1 and edoit1
@@ -477,7 +480,7 @@ Code=[	'/*'+part('-',ones(1,40))+' endi */ ';
 	'  integer sz[100]; ';
 	'  integer nport; '; 
 	'  integer ntvec; '; 
-	'  integer nevprt; '; 
+	'  integer nevprt=0; '; 
 	' '; 
 	'  /* Generated constants */'
 	'  integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';';
@@ -650,9 +653,12 @@ function Code=c_make_outtb()
 	'  /* Function Body */ ';  
 	'  ';
 	'  flag=1 ;'];
+  
   for i=iord(:,1)'
-    Code=[Code
-	  '  '+wfunclist(i);]
+    if (outptr(i+1)-outptr(i))>0 then
+      Code=[Code
+	    '  '+wfunclist(i);]
+    end
   end   
   Code=[Code
 	'  return 0;'
@@ -1036,7 +1042,7 @@ function  [ok,XX]=do_compile_superblock(XX)
     //outputs
     output=ones((2^szclkIN)-1,1)
     bllst($+1)=scicos_model(sim=list('bidon',1),evtout=output,..
-			    ipar=size(clkIN,2),blocktype='d',..
+			    blocktype='d',..
 			    firing=-output',dep_ut=[%f %f])
     corinv(size(bllst))=size(bllst)+1;
     howclk=size(bllst)
@@ -1383,17 +1389,40 @@ function ok=gen_ccode();
   Code=['#include '"'+SCI+'/routines/machine.h'"';
 	make_decl_standalone()
 	make_static_standalone()
-        make_standalone()
-	make_outevents()
-	make_actuator(%t)
-	make_sensor(%t)]
+        make_standalone()]
+	//make_outevents()
+	//make_actuator(%t)
+	//make_sensor(%t)
   ierr=execstr('mputl(Code,rpat+''/''+rdnom+''_standalone.c'')','errcatch')
   if ierr<>0 then
     message(lasterror())
     ok=%f
     return
   end
-     
+ 
+  
+  Code=['#include '"'+SCI+'/routines/machine.h'"';
+	make_decl_standalone()
+	make_outevents()
+	make_actuator(%t)
+	make_sensor(%t)]
+  
+  created=[];reponse=[];  
+  created=fileinfo(rpat+'/'+rdnom+'_act_sens_events.c')
+  if created~=[] then
+    reponse=x_message(['File: ""'+rdnom+'_act_sens_events.c"" already exists,';'do you want to replace it ?'],['Yes','No']);
+  end
+  if reponse==1 |  reponse==[] then
+    ierr=execstr('mputl(Code,rpat+''/''+rdnom+''_act_sens_events.c'')', ...
+		 'errcatch')
+  end
+  if ierr<>0 then
+    message(lasterror())
+    ok=%f
+    return
+  end
+  
+  
 endfunction
 
 
@@ -1454,15 +1483,7 @@ function ok=gen_loader()
   SCode=['//exec file used to load the ""compiled"" block into Scilab'
 	 'rdnom='+sci2exp(rdnom);
 	 '// get the absolute path of this loader file' 
-	 '[units,typs,nams]=file();clear units typs;'
-	 'for k=size(nams,''*''):-1:1' 
-         '   l=strindex(nams(k),rdnom+''_loader.sce'');'
-	 '   if l<>[] then'
-	 '     DIR=part(nams(k),1:l($)-1);'
-	 '     break'
-	 '   end'
-	 'end'
-	 'archname='+sci2exp(archname);
+	 'DIR=get_absolute_file_path(rdnom+''_loader.sce'')'
 	 'Makename = DIR+rdnom+''_Makefile'';'
 	 'select COMPILER'
 	 'case ''VC++''   then '
@@ -1470,10 +1491,15 @@ function ok=gen_loader()
 	 'case ''ABSOFT'' then '
 	 '  Makename = strsubst(Makename,''/'',''\'')+''.amk'';'
 	 'end'
-	 'libn=ilib_compile('+sci2exp('lib'+rdnom)+',Makename)'
 	 '//unlink if necessary'
 	 '[a,b]=c_link(rdnom); while a ;ulink(b);[a,b]=c_link(rdnom);end';
-	 'link(libn,rdnom,''c'')';
+	 'libn=ilib_compile('+sci2exp('lib'+rdnom)+',Makename)';
+	 'if MSDOS then'
+	 '  fileso=strsubst(libn,''/'',''\'')';
+	 'else'
+	 '  fileso=strsubst(libn,''\'',''/'')';
+	 'end';
+	 'link(fileso,rdnom,''c'')';
 	 '//load the gui function';
 	 'getf(DIR+''/''+rdnom+''_c.sci'');']
   ierr=execstr('mputl(SCode,rpat+''/''+rdnom+''_loader.sce'')','errcatch')
@@ -1492,14 +1518,16 @@ function Makename=gen_make(name,files,libs,Makename)
 endfunction
 
 function Makename=gen_make_unix(name,files,libs,Makename)
+  //   "OBJSSTAN="+strcat(strsubst(files,'_void_io','_standalone')+'.o',' ...
+  //		')+' '+rdnom+'_act_sens_events.o'
   T=["# generated by builder.sce: Please do not edit this file"
      "# ------------------------------------------------------"
      "SCIDIR = "+SCI
-     "OBJS = "+strcat(files+'.o',' ')
-     "OBJSSTAN="+strcat(strsubst(files,'_void_io','_standalone')+'.o',' ')
+     "OBJS = "+strcat(files+'.o',' ')      
+     "OBJSSTAN="+rdnom+'.o '+rdnom+'_standalone.o '+rdnom+'_act_sens_events.o'
      "SCILIBS = $(SCIDIR)/libs/scicos.a $(SCIDIR)/libs/lapack.a "+..
-                "$(SCIDIR)/libs/poly.a $(SCIDIR)/libs/calelm.a "+..
-                "$(SCIDIR)/libs/blas.a $(SCIDIR)/libs/lapack.a"
+     "$(SCIDIR)/libs/poly.a $(SCIDIR)/libs/calelm.a "+..
+     "$(SCIDIR)/libs/blas.a $(SCIDIR)/libs/lapack.a"
      "LIBRARY = lib"+name
      "OTHERLIBS = "+libs
      "include $(SCIDIR)/Makefile.incl";
@@ -1510,10 +1538,11 @@ function Makename=gen_make_unix(name,files,libs,Makename)
       ascii(9)+"f77 $(FFLAGS) -o $@  $(OBJSSTAN) $(OTHERLIBS) $(SCILIBS)"];
   mputl(T,Makename)
 endfunction
-
+//     "OBJSSTAN="+strcat(strsubst(files,'_void_io','_standalone')+'.o',' ') 
 
 function Makename=gen_make_win32(name,files,libs,Makename)
 WSCI=strsubst(SCI,'/','\') 
+//  "OBJSSTAN="+strcat(strsubst(files,'_void_io','_standalone')+'.obj',' ')+' '+rdnom+'_act_sens_events.obj'
   T=["# generated by builder.sce: Please do not edit this file"
      "# ------------------------------------------------------"
      "SHELL = /bin/sh"
@@ -1522,7 +1551,7 @@ WSCI=strsubst(SCI,'/','\')
      "SCILIBS = """+WSCI+"\bin\LibScilab.lib"""
      "LIBRARY = lib"+name
      "OBJS = "+strcat(files+'.obj',' ')
-     "OBJSSTAN="+strcat(strsubst(files,'_void_io','_standalone')+'.obj',' ')
+     "OBJSSTAN="+rdnom+'.obj '+rdnom+'_standalone.obj '+rdnom+'_act_sens_events.obj'
      "OTHERLIBS = "+libs
      ""
      "DUMPEXTS="""+WSCI+"\bin\dumpexts"""
@@ -1616,18 +1645,23 @@ dcl=['     integer *flag,*nevprt,*nport;'
      '  int k;'];
 
 if standalone then
-  a_actuator=['  /* skeleton to be customized */'
+  a_actuator=['  /* skeleton to be customized */' 
 	      '  switch (*flag) {'
-	      '  case 2 : '
+	      '  case 2 : ' 
 	      '    if(*nevprt>0) {/* get the input value */'
-	      '	/*for (k=0;k<*nu;k++) {????=u[k];} */'
-	      '    } '
+	      '	for (k=0;k<*nu;k++) {printf(""Realtime run'
+	      ' %f %f %i %i %i \n"", *t, u[k], *flag, *nevprt, *nport);}  '
+	      '    } ;'
 	      '    break;'
 	      '  case 4 : /* actuator initialisation */'
-	      '    /* do whatever you want to initialize the actuator */'
+	      '    /* do whatever you want to initialize the actuator */ '
+	      '	for (k=0;k<*nu;k++) {printf(""Realtime initialisation'
+	      ' %f %f %i %i %i \n"", *t, u[k], *flag, *nevprt, *nport);}  '
 	      '    break;'
 	      '  case 5 : /* actuator ending */'
 	      '    /* do whatever you want to end the actuator */'
+	      '	for (k=0;k<*nu;k++) {printf(""Realtime ending'
+	      ' %f %f %i %i %i \n"", *t, u[k], *flag, *nevprt, *nport);}  '
 	      '    break;'
 	      '  }']
 else
@@ -2011,15 +2045,30 @@ dcl=['     integer *flag,*nevprt,*nport;'
 if standalone then
   a_sensor=['  switch (*flag) {'
 	    '  case 1 : /* set the ouput value */'
-	    '    /* for (k=0;k<*ny;k++) {y[k]=????;}*/'
+	    'printf(""(Realtime) size of the sensor ouput is: %i\n"", *ny);'
+	    'printf(""(Realtime) the number of the sensor is: %i\n"", *nport);'
+	    'puts(""Please set the sensor ouput values""); '
+	    '	for (k=0;k<*ny;k++) {scanf("" %f "", &(y[k]));}'
 	    '    break;'
 	    '  case 2 : /* Update internal discrete state if any */'
+	    'printf(""(Realtime) size of the sensor ouput is: %i\n"", *ny);'
+	    'printf(""(Realtime) the number of the sensor is: %i\n"", *nport);'
+	    'puts(""Please set the sensor ouput values""); '
+	    '	for (k=0;k<*ny;k++) {scanf("" %f "", &(y[k]));}'
 	    '    break;'
 	    '  case 4 : /* sensor initialisation */'
 	    '    /* do whatever you want to initialize the sensor */'
+	    'printf(""(Realtime) size of the sensor ouput is: %i\n"", *ny);'
+	    'printf(""(Realtime) the number of the sensor is: %i\n"", *nport);'
+	    'puts(""Please set the sensor ouput values""); '
+	    '	for (k=0;k<*ny;k++) {scanf("" %f "", &(y[k]));}'
 	    '    break;'
 	    '  case 5 : /* sensor ending */'
 	    '    /* do whatever you want to end the sensor */'
+	    'printf(""(Realtime) size of the sensor ouput is: %i\n"", *ny);'
+	    'printf(""(Realtime) the number of the sensor is: %i\n"", *nport);'
+	    'puts(""Please set the sensor ouput values""); '
+	    '	for (k=0;k<*ny;k++) {scanf("" %f "", &(y[k]));}'
 	    '    break;'
 	    '  }']
 else
@@ -2058,15 +2107,15 @@ function Code=make_standalone()
 
 //Generates simulation routine for standalone simulation
   iwa=zeros(clkptr($),1),Z=[z;outtb;iwa]';
-Code=[ '/*Main program */'
-       'int main()'
-       '{'
-       '   double tf=10.0;';
-       '   '+rdnom+'_sim(tf);';
-       '   return 0;'
-       '}'
-       ''
-       '/*'+part('-',ones(1,40))+'  External simulation function */ ';
+  Code=[ '/*Main program */'
+	 'int main()'
+	 '{'
+	 '   double tf=10.0;';
+	 '   '+rdnom+'_sim(tf);';
+	 '   return 0;'
+	 '}'
+	 ''
+	 '/*'+part('-',ones(1,40))+'  External simulation function */ ';
 	 'void '
 	 rdnom+'_sim(tf)';
 	 ' '
@@ -2075,20 +2124,52 @@ Code=[ '/*Main program */'
 	 '  double t;'
 	 '  int nevprt=1;'
 	 ''
-	 '  /*Initial values */'
-	 cformatline('  double z[]={'+strcat(string(Z),',')+'};',70)
-	 '  t=0.0;'
-	 '  '+rdnom+'_init(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
-	 '  while (t<=tf) {   ';
-	 '    '+rdnom+'_events(&nevprt,&t);'
-	 '    set_nevprt(nevprt);'
-	 '    '+rdnom+'main1(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
-	 '    '+rdnom+'main2(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
-	 '  }'
-	 '  '+rdnom+'_end(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
-	 '  return ;'
-	 '}']
-  Code=[Code;
+	 '  /*Initial values */';
+	 cformatline('  double z[]={'+strcat(string(Z),',')+'};',70);
+	 '/* Note that z[]=[z_initial_condition;outtb;iwa]';
+	 cformatline('z_initial_condition= {'+strcat(string(z),",")+'};',70);
+	 cformatline('outtb= {'+strcat(string(outtb),"," )+'};',70);
+	 cformatline('iwa= {'+strcat(string(iwa),"," )+'};',70);
+	 '*/ ']
+
+  if size(z,1) <> 0 then
+    for i=1:(length(zptr)-1) 
+      aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
+      if zptr(i+1)-zptr(i)>0 & and(aaa+bbb~= ['INPUTPORTEVTS';'OUTPUTPORTEVTS';'EVTGEN_f']) then
+	Code($+1)=' ';	
+	Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
+	Code($+1)=' Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
+	//Code($+1)='/* Name block: '+strcat(string(cpr.sim.funs(i)));
+	//Code($+1)='Object number in diagram: '+strcat(string(cpr.corinv(i)));
+	  Code($+1)='Compiled structure index: '+strcat(string(i));
+	  if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
+	    Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
+	  end
+	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
+	    Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
+	  end
+	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
+	    Code=[Code;
+		  cformatline('Identification: '+..
+			      strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
+	    
+	  end
+	  Code=[Code;cformatline('z= {'+strcat(string(z(zptr(i):zptr(i+1)-1)),",")+'};',70)];
+	  Code($+1)='*/';
+      end
+    end
+  end
+  Code=[Code;'  t=0.0;'
+	'  '+rdnom+'_init(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
+	'  while (t<=tf) {   ';
+	'    '+rdnom+'_events(&nevprt,&t);'
+	'    set_nevprt(nevprt);'
+	'    '+rdnom+'main1(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
+	'    '+rdnom+'main2(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
+	'  }'
+	'  '+rdnom+'_end(z,&t,RPAR1,&NRPAR1,IPAR1,&NIPAR1);'
+	'  return ;'
+	'}'  
 	'/*'+part('-',ones(1,40))+'  Lapack messag function */ ';
 	'void'
 	'C2F(xerbla)(SRNAME,INFO,L)'
@@ -2096,7 +2177,7 @@ Code=[ '/*Main program */'
 	'int *INFO;'
 	'long int L;'
 	'{'
-	  'printf(""** On entry to %s, parameter number %d  had an illegal value\n"",SRNAME,*INFO);'
+	'printf(""** On entry to %s, parameter number %d  had an illegal value\n"",SRNAME,*INFO);'
 	'}']
 endfunction
 function Code=make_static()
@@ -2206,32 +2287,96 @@ function Code=make_static_standalone()
 
   rpar=cpr.sim.rpar;ipar=cpr.sim.ipar;
   nrpar=size(rpar,1);nipar=size(ipar,1);
-
+  
   
   Code=[]
   if size(rpar,1) <> 0 then
-    Code=[Code;cformatline('static double RPAR1[ ] = {'+..
-			   strcat(string(rpar),",")+'};',70)] 
+    
+    Code=[Code;'static double RPAR1[ ] = {'];		
+    nbrpa=0;
+    for i=1:(length(rpptr)-1) 
+      aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
+      if rpptr(i+1)-rpptr(i)>0  & and(aaa+bbb~= ['INPUTPORTEVTS'; ...
+		    'OUTPUTPORTEVTS';'EVTGEN_f']) then
+	
+	nbrpa=nbrpa+1;
+	Code($+1)=' ';
+	Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
+	Code($+1)='   Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
+	if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
+	  Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
+	end
+	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
+	  Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
+	end
+	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
+	  Code=[Code;
+		cformatline('Identification: '+strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
+	  
+	end
+	Code=[Code;'rpar= '];
+	Code($+1)='*/';
+	Code=[Code;cformatline(strcat(string(rpar(rpptr(i):rpptr(i+1)-1))+','),70)];
+      end
+    end
+    
+    Code($+1)='};';
+    //    strcat(string(rpar),",")+'};',70)] 
   else
     Code($+1)='static double RPAR1[1];';
   end
-  Code($+1)='static integer NRPAR1  = '+string(nrpar)+';';  
+  
+  Code($+1)='static integer NRPAR1  = '+string(nbrpa)+';';  
   
   if size(ipar,1) <> 0 then
-    Code=[Code;cformatline('static integer IPAR1[ ]= {'+..
-			   strcat(string(ipar),",")+'};',70)] 
+    
+    Code=[Code;'static integer IPAR1[ ] = {'];		
+    nbipa=0;
+    for i=1:(length(ipptr)-1) 
+      aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
+      if ipptr(i+1)-ipptr(i)>0  & and(aaa+bbb~= ['INPUTPORTEVTS';'OUTPUTPORTEVTS';'EVTGEN_f']) then
+	nbipa=nbipa+1;
+	Code($+1)=' ';
+	Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
+	Code($+1)=' Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
+	// Code($+1)='/* Name block: '+strcat(string(cpr.sim.funs(i)));
+	// Code($+1)='Object number in diagram: '+strcat(string(cpr.corinv(i)));
+	Code($+1)='Compiled structure index: '+strcat(string(i));
+	if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
+	  Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
+	end
+	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
+	  Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
+	end
+	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
+	  Code=[Code;
+		cformatline('Identification: '+strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
+	  
+	end
+	Code=[Code;cformatline('ipar= {'+strcat(string(ipar(ipptr(i):ipptr(i+1)-1)),",")+'};',70)];
+	Code($+1)='*/';
+	Code=[Code;cformatline(strcat(string(ipar(ipptr(i):ipptr(i+1)-1))+','),70)];
+      end
+    end
+    
+    Code($+1)='};';
+    //Code=[Code;cformatline('static integer IPAR1[ ]= {'+..
+    //		   strcat(string(ipar),",")+'};',70)] 
   else
     Code($+1)='static integer IPAR1[1];';
   end
-  Code($+1)='static integer NIPAR1  = '+string(nipar)+';';  
+  Code($+1)='static integer NIPAR1  = '+string(nbipa)+';';  
 endfunction
-function mkdir(path)
+
+function ok=mkdir(path)
   if MSDOS then
-    unix_s("mkdir "+strsubst(path,'/','\'))
+    cmd='mkdir '+strsubst(path,'/','\')
   else
-    unix_s("mkdir "+strsubst(path,'\','/'))
+    cmd='mkdir '+strsubst(path,'\','/')
   end
+  ok=0==execstr('unix_s(cmd)','errcatch')
 endfunction
+
 function t=filetype(m)
   m=int32(m)
   filetypes=['Directory','Character device','Block device',...
@@ -2240,5 +2385,5 @@ function t=filetype(m)
   m=int32(m)&int32(61440)
   t=filetypes(find(m==int32(bits)))
 endfunction
- 
+  
 
