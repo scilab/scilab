@@ -11,7 +11,8 @@ function [x]=input(msg,flag)
   else
     while %t
       mprintf(msg(n))
-      x=mscanf(fmt) 
+      x=stripblanks(mscanf(fmt))
+      if length(x)==0 then x='[]',end
       ierr=execstr('x='+x,'errcatch')
       if ierr==0 then break,end
       mprintf(strcat(lasterror(),'\n'))
