@@ -187,7 +187,7 @@ if {$lang == "eng"} {
 } else {
     $pad.filemenu add cascade -label "Edition" -underline 0 -menu $pad.filemenu.edit
     $pad.filemenu.edit add command -label "Annuler" -underline 0 -command " undo_menu_proc" -accelerator Ctrl+z
-    $pad.filemenu.edit add command -label "RÃ©pÃ©ter" -underline 0 -command "redo_menu_proc" -accelerator Ctrl+y
+    $pad.filemenu.edit add command -label "Répéter" -underline 0 -command "redo_menu_proc" -accelerator Ctrl+y
     $pad.filemenu.edit add separator
     $pad.filemenu.edit add command -label "Couper" -underline 2 -command "cuttext" -accelerator Ctrl+x
     $pad.filemenu.edit add command -label "Copier" -underline 0 -command "copytext" -accelerator Ctrl+c
@@ -197,7 +197,7 @@ if {$lang == "eng"} {
     $pad.filemenu.edit add command -label "Selectionner tout" -underline 7 -command "selectall" -accelerator Ctrl+/
 #    $pad.filemenu.edit add command -label "Time/Date" -underline 5 -command "printtime"
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add check -label "Retour Ã  la ligne automatique" -underline 5 -command "wraptext"
+    $pad.filemenu.edit add check -label "Retour à la ligne automatique" -underline 5 -command "wraptext"
 } 
 
 #search menu
@@ -226,7 +226,7 @@ if {$lang == "eng"} {
     #$pad.filemenu.wind add command -label "$listoffile("$pad.textarea",filename)" -command "montretext $pad.textarea"
 } else {
     menu $pad.filemenu.wind -tearoff 1 -title "Fichiers ouverts" -font $menuFont
-    $pad.filemenu add cascade -label "FenÃªtres" -underline 0 -menu $pad.filemenu.wind
+    $pad.filemenu add cascade -label "Fenêtres" -underline 0 -menu $pad.filemenu.wind
     #$pad.filemenu.wind add command -label "$listoffile("$pad.textarea",filename)" -command "montretext $pad.textarea"
 }
 $pad.filemenu.wind add radiobutton -label "$listoffile("$pad.textarea",filename)"  -value 0 -variable radiobuttonvalue -command "montretext $pad.textarea"
@@ -264,7 +264,7 @@ proc execfile {} {
 	if {$lang == "eng"} {
 	    set answer [tk_messageBox -message "The contents of $listoffile("$textarea",filename) may have changed, do you wish to to save your changes?" -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
-	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportÃ©es Ã  $listoffile("$textarea",filename) ?" -title "Confirmer sauver ?" -type yesnocancel -icon question]
+	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
 	    yes { filetosave $textarea; set doexec 1 }
@@ -278,7 +278,7 @@ proc execfile {} {
 	    if {$lang == "eng"} {
 		tk_messageBox -message "Scilab is working, wait for the prompt to load file $listoffile("$textarea",filename)" -title "Scilab working" -type ok -icon info
 	    } else {
-		tk_messageBox -message "Scilab est occupÃ©, attendez le prompt pour charger le fichier $listoffile("$textarea",filename)" -title "Scilab occupÃ©" -type ok -icon info
+		tk_messageBox -message "Scilab est occupé, attendez le prompt pour charger le fichier $listoffile("$textarea",filename)" -title "Scilab occupé" -type ok -icon info
 	    }
 	} else {
 	    set f $listoffile("$textarea",filename)
@@ -599,7 +599,7 @@ proc helpme {} {
     if {$lang == "eng"} {
 	tk_messageBox -title "Basic Help" -type ok -message "This is a simple editor for Scilab."
     } else {
-	tk_messageBox -title "Aide de base" -type ok -message "C'est un simple Ã©diteur pour Scilab."
+	tk_messageBox -title "Aide de base" -type ok -message "C'est un simple éditeur pour Scilab."
     }
 }
 
@@ -611,9 +611,9 @@ proc aboutme {} {
 	    joeja@mindspring.com.\n\
             Modified by Scilab Group"
     } else {
-	tk_messageBox -title "Apropos" -type ok -message "$winTitle $version\n crÃ©Ã© par Joseph Acosta,\n\
+	tk_messageBox -title "Apropos" -type ok -message "$winTitle $version\n créé par Joseph Acosta,\n\
 	    joeja@mindspring.com.\n\
-            ModifiÃ© par le Groupe Scilab"
+            Modifié par le Groupe Scilab"
     }
 }
 
@@ -625,7 +625,7 @@ proc switchcase {yesfn argyesfn nofn argnofn} {
 	    set answer [tk_messageBox -message "The contents of this file may have changed, do you wish to save your changes?" \
 		    -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
-	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportÃ©es Ã  ce fichier ?" \
+	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à ce fichier ?" \
 		    -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
@@ -738,7 +738,7 @@ proc closefile {textarea} {
 	if {$lang == "eng"} {
 	    set answer [tk_messageBox -message "The contents of $listoffile("$textarea",filename) may have changed, do you wish to to save your changes?" -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
-	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportÃ©es Ã  $listoffile("$textarea",filename) ?" -title "Confirmer sauver ?" -type yesnocancel -icon question]
+	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
 	    yes { filetosave $textarea; byebye $textarea }
@@ -940,8 +940,8 @@ proc filetosave {textarea} {
 	set msgChanged "The contents of $listoffile("$textarea",filename) has changed on Disk, Save it anyway ?"
 	set msgTitle "File has changed !"
     } else {
-	set msgChanged "Le contenu de $listoffile("$textarea",filename) a changÃ¨ sur le disque, Ã©tes-vous sur de vouloir le sauvegarder ?"
-	set msgTitle "Le fichie a changÃ¨"
+	set msgChanged "Le contenu de $listoffile("$textarea",filename) a changé sur le disque, étes-vous sur de vouloir le sauvegarder ?"
+	set msgTitle "Le fichier a changé"
     }
 
     # save the opened file from disk, if not, user has to get a file name.
@@ -1370,7 +1370,7 @@ proc gotoline {} {
 	if {$lang == "eng"} {
 	    wm title $gotln "Goto Line?"
 	} else {
-	    wm title $gotln "Aller Ã  la ligne"
+	    wm title $gotln "Aller à la ligne"
 	}
 	setwingeom $gotln
 	frame $gotln.top 
@@ -1378,7 +1378,7 @@ proc gotoline {} {
 	if {$lang == "eng"} {
 	    label $gotln.top.label -text "Goto Line: "
 	} else {
-	    label $gotln.top.label -text "Aller Ã  la ligne : "
+	    label $gotln.top.label -text "Aller à la ligne : "
 	}
 	entry $gotln.top.gotln -textvariable gotlnsetupnew -width 10
 	$gotln.top.gotln delete 0 end 
