@@ -40,7 +40,7 @@ function scitest(tstfile,force,error_check,keep_prompt)
   //to avoid suppression of input --> with prompts
   txt=strsubst(txt,'halt()','');
   
-  head='mode(3);clear;lines(0);'..
+  head='mode(3);clear;lines(28,72);lines(0);'..
        +'deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');'..
        +'predef(''all'');'..
        +'diary('''+tmpfiles+'dia'+''');'..
