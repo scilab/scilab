@@ -26,11 +26,20 @@ for %kk=2:%nx
     model=o(3)
     if model(1)=='super'|model(1)=='csuper' then
       sblock=model(8)
-      [sblock,%w,needcompile2,ok]=do_eval(sblock,list())
-      needcompile1=max(needcompile1,needcompile2)
-      if ok then
-	scs_m(%kk)(3)(8)=sblock
-      end
+            errcatch(-1,'continue')
+      context=sblock(1)(5)
+      execstr(context)
+      errcatch(-1)
+      if iserror(-1) then
+        message('Cannot evaluate a context')
+        errclear(-1)
+      else
+        [sblock,%w,needcompile2,ok]=do_eval(sblock,list())
+        needcompile1=max(needcompile1,needcompile2)
+        if ok then
+          scs_m(%kk)(3)(8)=sblock
+        end
+      end        
     else
       model=o(3)
       execstr('o='+o(5)+'(''set'',o)')
