@@ -645,7 +645,7 @@ int C2F(run)()
   }
   Rstk[Pt] = 602;
   Pstk[Pt] = lc;
-  Ids[1 + Pt * nsiz] = C2F(dbg).wmac;
+  /*  Ids[1 + Pt * nsiz] = C2F(dbg).wmac; *//*moved into macro.f*/
   Ids[2 + Pt * nsiz] = tref;
   Ids[3 + Pt * nsiz] = l0;
   Ids[4 + Pt * nsiz] = nc;
@@ -655,7 +655,7 @@ int C2F(run)()
   return 0;
  L66:
   lc = Pstk[Pt];
-  C2F(dbg).wmac = Ids[1 + Pt * nsiz];
+  /*C2F(dbg).wmac = Ids[1 + Pt * nsiz];*//*moved into macro.f*/
   tref = Ids[2 + Pt * nsiz];
   l0 = Ids[3 + Pt * nsiz];
   nc = Ids[4 + Pt * nsiz];

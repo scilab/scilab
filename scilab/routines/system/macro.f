@@ -7,7 +7,7 @@ c
       double precision val
       integer eol
       logical eqid,ptover,vargin,vargout,exec,vcopyobj
-      integer blank,r,ival(2),ptr,top1,count,iadr
+      integer blank,r,ival(2),ptr,top1,count,iadr,wmacn
       integer varargin(nsiz),varargout(nsiz)
       equivalence (ival(1),val)
       data blank/40/,eol/99/
@@ -38,6 +38,7 @@ c     initialize macro or execstr execution
 c------------------------------------------
 c     
       ilk=iadr(fin)
+      wmacn=0
 c     
       if(istk(ilk).eq.10) then
 c     an execstr
@@ -56,7 +57,6 @@ c     an execstr
       else
 c     a macro
          exec=rstk(pt).eq.909.or.rstk(pt).eq.903
-         wmac=0
          if(nmacs.gt.0) then
             if(rstk(pt).eq.602) then
 c     .        see run to explain the following
@@ -67,7 +67,7 @@ c     .        see run to explain the following
             endif
             do 15 im=1,nmacs
                if(eqid(id,macnms(1,im))) then
-                  wmac=im
+                  wmacn=im
                   goto 16
                endif
  15         continue
@@ -153,12 +153,14 @@ c
       if ( ptover(1,psiz-1)) return
       ids(1,pt) = rhs
       ids(2,pt) = lhs
-      ids(3,pt)=lf
+      ids(3,pt) = lf
       if(vargout) then
          ids(4,pt)=1
       else
          ids(4,pt)=0
       endif
+       ids(4,pt)=ids(4,pt)+2*wmac
+      wmac=wmacn
       pstk(pt)=lct(4)
 c     
       macr=macr+1
@@ -253,9 +255,8 @@ c
       rhs=ids(1,pt)
       lhs=ids(2,pt)
       lct(4)=pstk(pt)
-      vargout=ids(4,pt).eq.1
-
-
+      vargout=mod(ids(4,pt),2).eq.1
+      wmac=ids(4,pt)/2
 
 c     restaure  pointers
       k = lpt(1) - (13+nsiz)
