@@ -91,7 +91,7 @@ if ns<na then
 end
  
 nd=dt_ility(syslin('c',a,b2,c2),1.0e-10*maxi(noa,noc2));
-if nd<na then
+if nd>0 then
   write(%io(2),'WARNING: (C2,A) is nearly undetectable');
 end
  
