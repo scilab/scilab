@@ -1216,6 +1216,7 @@ void DoubleDoubleSlash(char *pathout,char *pathin)
 		}
 		pathout[l]='\0';
 }
+
 /*-----------------------------------------------------------------------------------*/
 /****************************************
  * Get a filename from system menu 
@@ -1223,10 +1224,9 @@ void DoubleDoubleSlash(char *pathout,char *pathin)
  * the filename is stored in d 
  * d and s are both incremented 
  * flag == FALSE : in case of cancel 
- * XXXXX : reste un petit BUG : on ne teste pas le d'epassement ds 
- * d 
  ****************************************/
-BOOL SciOpenSave (HWND hWndParent, BYTE ** s, char **d, int *ierr)
+
+BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, *char **d, int *ierr)
 {
   int i, nChar;
   OPENFILENAME ofn;
@@ -1239,7 +1239,7 @@ BOOL SciOpenSave (HWND hWndParent, BYTE ** s, char **d, int *ierr)
   NEWSTRING (szFile);
   NEWSTRING (szFileTitle);
   NEWSTRING (szFilter);
-  save = (**s == SAVE);
+  /* save = (**s == SAVE);*/
   (*s)++;
   for (i = 0; (**s >= 32 && **s <= 126); i++)
     {

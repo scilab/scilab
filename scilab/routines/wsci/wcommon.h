@@ -77,7 +77,7 @@ extern void SendMacro(LPTW lptw, UINT m);
 extern void LoadMacros(LPTW lptw);
 extern void CloseMacros(LPTW lptw);
 extern void MenuFixCurrentWin(int ivalue);
-extern BOOL SciOpenSave(HWND hWndParent,  BYTE **s,  char **d,int *ierr);
+extern BOOL SciOpenSave(HWND hWndParent,  BYTE **s,BOOL save,  char **d,int *ierr);
 extern int GetLine(char * buffer, int len, GFILE *gfile);
 extern void LeftJustify(char *d, char *s);
 extern GFILE * Gfopen(LPSTR lpszFileName, int fnOpenMode);

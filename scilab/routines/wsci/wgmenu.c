@@ -170,7 +170,7 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 	      s++;
 	      break;
 	    case LOADSCG:
-	      flag = SciOpenSave (ScilabGC->hWndParent, &s, &d, &ierr);
+	      flag = SciOpenSave (ScilabGC->hWndParent, &s,False,&d, &ierr);
 	      if (flag == 0 || ierr == 1)
 		{
 		  LocalFree (buf);
@@ -180,7 +180,7 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 	      scig_loadsg (ScilabGC->CurWindow, buf);
 	      break;
 	    case SAVESCG:
-	      flag = SciOpenSave (ScilabGC->hWndParent, &s, &d, &ierr);
+	      flag = SciOpenSave (ScilabGC->hWndParent, &s, True,&d, &ierr);
 	      if (flag == 0 || ierr == 1)
 		{
 		  LocalFree (buf);
@@ -1036,7 +1036,7 @@ static void SavePs (struct BCG *ScilabGC)
   d = filename;
   TranslateMacro (str);
   s = str;
-  flag = SciOpenSave (ScilabGC->hWndParent, &s, &d, &ierr);
+  flag = SciOpenSave (ScilabGC->hWndParent, &s,True,&d, &ierr);
   if (flag == 0 || ierr == 1)
     {
       return;
