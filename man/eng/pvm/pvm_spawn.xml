@@ -49,17 +49,17 @@
   <DESCRIPTION>
   <P>
     <VERB>pvm_spawn</VERB> 
-    starts
-  </P>
-  <P>
-    copies of the scilab script
+    starts <VERB>ntask</VERB> 
+    copies of the scilab script <VERB>task</VERB>.  
   </P>
   <P>
     On systems that support environment,
-    spawn passes selected variables from parent environment to children tasks.
+    <VERB>pvm_spawn</VERB> passes selected variables from parent
+    environment to children tasks. 
     If set, the envar <VERB>PVM_EXPORT</VERB> is passed.
-    If PVM_EXPORT contains other names (separated by &apos;:&apos;) they will
-    be passed too.  This is useful for e.g.:
+    If <VERB>PVM_EXPORT</VERB> contains other names (separated by
+    &apos;:&apos;) they will 
+    be passed too. This is useful for e.g.:
   </P>
   <VERBATIM><![CDATA[
 
@@ -70,66 +70,32 @@
   <P>
     The hosts on which
     the PVM processes are started are determined by 
-    the
+    the <VERB>where</VERB> arguments. On return the array
+    <VERB>tids</VERB>  contains the PVM task identifiers for each
+    process started. 
   </P>
   <P>
-    arguments. On return the array
+    If <VERB>pvm_spawn</VERB> starts one or more tasks, 
+    <VERB>numt</VERB> will be the actual number of tasks started. 
+    If a system error occurs then <VERB>numt</VERB> will be &lt; 0. 
   </P>
   <P>
-    contains the PVM task identifiers for each process started.
-  </P>
-  <P>
-    If pvm_spawn starts one or more tasks,
-  </P>
-  <P>
-    will be the actual number of tasks started.
-    If a system error occurs then
-  </P>
-  <P>
-    will be &lt; 0.
-    If
-  </P>
-  <P>
-    is less than
-  </P>
-  <P>
-    then some executables
-    have failed to start and the user should check the last
-  </P>
-  <P>
-    locations in the
-  </P>
-  <P>
-    array which will contain error codes
-    (see below for meaning).
-    The first
-  </P>
-  <P>
+    If <VERB>numt</VERB>  is less than <VERB>ntask</VERB> 
+    then some executables have failed to start and the user should check the last
+    locations in the <VERB>tids</VERB> array which will contain error codes
+    (see below for meaning). The first <VERB>numt</VERB> 
     tids in the array are always valid.
   </P>
   <P>
-    When
-    the argument
-  </P>
-  <P>
-    is omitted a heuristic (round-robin assignment) is used to distribute the
-  </P>
-  <P>
-    processes across the virtual machine.
+    When the argument <VERB>where</VERB>
+    is omitted an heuristic (round-robin assignment) is used to distribute the
+    <VERB>ntask</VERB> processes across the virtual machine. 
   </P>
   <P>
     In the special case where a multiprocessor is specified by
-  </P>
-  <P>
-    pvm_spawn will start all
-  </P>
-  <P>
-    copies on this
-    single machine using the vendor&apos;s underlying routines.
-  </P>
-  <P>
-  </P>
-  <P>
+    <VERB>where</VERB>
+    <VERB>pvm_spawn</VERB> will start all
+    copies on this single machine using the vendor&apos;s underlying routines.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

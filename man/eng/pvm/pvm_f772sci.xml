@@ -39,28 +39,12 @@
     result of conversion operation. On the other case, if the parameter is
     not a variable, the result will be returned in res.
   </P>
-  <P>
-    For example:
-  </P>
-  <VERBATIM><![CDATA[
--->a = [1+%i, 2+2*%i,3+3*%i]
- a  =
- 
-!   1. + i      2. + 2.i    3. + 3.i !
- 
--->pvm_f772sci(a)
- 
--->a
- a  =
- 
-!   1. + 2.i    3. + i      2. + 3.i !
- 
--->b = pvm_f772sci([1+%i, 2+2*%i,3+3*%i])
- b  =
- 
-!   1. + 2.i    3. + i      2. + 3.i !
-   ]]></VERBATIM>
   </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+a = [1+%i, 2+2*%i,3+3*%i];
+pvm_f772sci(a)
+if norm(a - [1.+2* %i,3.+%i, 2. + 3. *%i ]) >10*%eps then pause;end
+ ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>pvm_sci2f77</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>

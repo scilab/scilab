@@ -25,8 +25,9 @@
     returns the <VERB>tid</VERB> of the process
     that spawned the calling process.
     If the calling process was
-    not created with pvm_spawn, then <VERB>tid</VERB> is set to
-    PvmNoParent=-23
+    not created with <VERB>pvm_spawn</VERB>, 
+    then <VERB>tid</VERB> is set to
+    <VERB>PvmNoParent=-23</VERB>
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

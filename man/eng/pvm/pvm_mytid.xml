@@ -23,13 +23,12 @@
   <P>
     <VERB>pvm_mytid</VERB> 
     enrolls this process
-    into PVM on its first call. It also generates a unique
+    into PVM on its first call. It also generates a unique 
+     <VERB>tid</VERB> 
   </P>
   <P>
-    if this process was not created by pvm_spawn.
-    pvm_mytid returns the
-  </P>
-  <P>
+    if this process was not created by <VERB>pvm_spawn</VERB>.
+    pvm_mytid returns the <VERB>tid</VERB> 
     of the calling process
     and can be called multiple times in an application.
   </P>
@@ -49,13 +48,9 @@
     the exception of calling tidtohost()
   </P>
   <P>
-    If PVM has not been started before an application calls pvm_mytid
-    the returned
-  </P>
-  <P>
+    If PVM has not been started before an application calls 
+    <VERB>pvm_mytid</VERB>, the returned value will be 
     will be &lt; 0.
-  </P>
-  <P>
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

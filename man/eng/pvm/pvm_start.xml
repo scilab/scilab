@@ -27,9 +27,10 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    <VERB>pvm_start</VERB>  starts the  Pvmd3 which is    a daemon process  which
+    <VERB>pvm_start</VERB>  starts the <VERB>Pvmd3</VERB> daemon process  which
     coordinates  unix hosts in a  virtual machine.  One  pvmd3 must run on
-    each  host in the group.   They provide  the communication and process
+    each host component of the virtual machine. They provide  the
+    communication and process 
     control functions  needed by the user&apos;s PVM  processes.  The local and
     remote pvmds can also be started from the PVM console program pvm.
   </P>
@@ -39,7 +40,7 @@
     <VERB>pvm_start</VERB>, but the variable  PVM_ROOT is set, scilab will try to
     load the file $HOME/.pvmd.conf. If this file does not exist, or the
     variable PVM_ROOT is not set, scilab will try to load the default file 
-    $SCI/.pvmd.conf. In all other cases, scilab will supposed that  PVM
+    $SCI/.pvmd.conf. In all other cases, scilab will supposed that PVM
     and scilab are in standard place on your net. 
   </P>
   <P>

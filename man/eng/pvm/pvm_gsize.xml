@@ -28,21 +28,17 @@
   <DESCRIPTION>
   <P>
     <VERB>pvm_gsize</VERB> returns the size of
-    the group named
-  </P>
+    the group named <VERB>group</VERB>
+  </P> 
   <P>
-    If there is an error
-  </P>
-  <P>
-    will be negative.
+    The returned value <VERB>nb</VERB>will be &gt;= 0 if 
+    the call is successful and will be 
+    will be &lt; 0 if some error occurs. 
   </P>
   <P>
     Since groups can change dynamically in PVM 3.0,
     this routine can only guarantee to return the instantaneous
     size of a given group.
-  </P>
-  <P>
-     
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

@@ -29,23 +29,18 @@
   <P>
     <VERB>pvm_lvgroup</VERB> 
     unenrolls the calling process from
-    the group named
+    the group named <VERB>group</VERB>
   </P>
   <P>
-    If there is an error
-  </P>
-  <P>
-    will be negative.
+    The returned value will be &gt;= 0 if 
+    the call is successful and will be 
+    will be &lt; 0 if some error occurs. 
   </P>
   <P>
     If a process leaves a group by calling either pvm_lvgroup
     or pvm_exit, and later rejoins the same group, the process
     may be assigned a new instance number. Old instance
     numbers are reassigned to processes calling pvm_joingroup.
-  </P>
-  <P>
-  </P>
-  <P>
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

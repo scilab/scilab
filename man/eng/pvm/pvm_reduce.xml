@@ -64,15 +64,9 @@
     implemented for scalar datatypes. 
   </P>
   <P>
-  </P>
-  <P>
     Note:  pvm_reduce  does  not  block.   If  a  task   calls
          pvm_reduce  and  then  leaves  the group before the root has
          called pvm_reduce an error may occur.
-  </P>
-  <P>
-  </P>
-  <P>
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

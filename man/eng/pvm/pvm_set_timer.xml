@@ -24,13 +24,9 @@
     <VERB>pvm_set_timer</VERB> initialized the timer. 
   </P>
   <P>
-    will be 0.
-    If some error occurs then
-  </P>
-  <P>
-    will be -1.
-  </P>
-  <P>
+    The returned value will be 0 if 
+    the call is successful and will be 
+    will be -1 if some error occurs. 
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

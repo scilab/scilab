@@ -35,8 +35,10 @@
   <P>
     <VERB>pvm_probe</VERB> 
     checks to see if a message with  label
-         msgtag  has  arrived  from  tid.  If  a matching message has
-         arrived pvm_probe returns a buffer identifier in bufid. This
+         <VERB>msgtag</VERB>   has  arrived  from <VERB>tid</VERB>.
+         If  a matching message has
+         arrived <VERB>pvm_probe</VERB> returns a buffer identifier in 
+         <VERB>bufid</VERB>. This
          bufid  can be used in a pvm_bufinfo call to determine infor-
          mation about the message such as its source and length.
   </P>

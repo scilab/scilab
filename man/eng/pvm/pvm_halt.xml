@@ -23,16 +23,21 @@
   <P>
     <VERB>pvm_halt</VERB> kills all PVM tasks, all the remote daemons, and the
     local daemon.  If the master pvmd is killed manually it should be
-    sent a SIGTERM signal to allow it to kill the remote pvmds and clean
-    up various files.
-     
-    The pvmd can be killed in a manner that  leaves the file /tmp/pvmd.uid
-    behind on one  or more  hosts.   Uid  is  the  numeric  user ID  (from
-    /etc/passwd) of  the user.  This  will prevent PVM  from restarting on
-    that host.  Deletion of this file will fix this problem:
-     
+    sent a <VERB>SIGTERM</VERB> signal to allow it to kill the remote
+    pvmds and clean up various files.
+  </P>   
+  <P>
+    The pvmd can be killed in a manner that leaves the file 
+    <VERB>/tmp/pvmd.uid</VERB> behind on one  or more  hosts 
+    (the <VERB>uid</VERB> suffix is  the  numeric user ID from
+    <VERB>/etc/passwd</VERB>) of  the user.  
+    This  will prevent PVM  from restarting on
+    that host.  Deletion of this file will fix this problem and 
+    it can be done as follows:
+    <VERBATIM><![CDATA[ 
              rm `( grep $user /etc/passwd || ypmatch $user passwd )
-                  | awk -F: &apos;{print &quot;/tmp/pvmd.&quot;$3; exit}&apos;`
+                  | awk -F: '{print "/tmp/pvmd.";$3;exit}'`
+     ]]></VERBATIM>
   </P>
   <P>
     For example:

@@ -53,26 +53,25 @@
   <P>
     <VERB>pvm_recv</VERB> 
     blocks the process until a message with label
+    <VERB>msgtag</VERB> (<VERB>-1</VERB> can be used to match 
+    all message tags)
+    has arrived from <VERB>tid</VERB> (<VERB>-1</VERB> can be used to
+    match all tids). 
+    <VERB>pvm_recv</VERB> returns the message in <VERB>buff</VERB>. 
   </P>
   <P>
-    has arrived from
+    If <VERB>tid=-1</VERB> and <VERB>msgtag</VERB> is defined by the user, 
+    then <VERB>pvm_recv</VERB> will accept a
+    message from any process which has a matching
+    <VERB>msgtag</VERB>.
   </P>
   <P>
-    pvm_recv then places the message in <VERB>buff</VERB>. 
-  </P>
-  <P>
-    A -1 in
-  </P>
-  <P>
-    or
-  </P>
-  <P>
-    matches anything.  This allows the user the following options.  If tid
-    = -1 and msgtag is defined by the user, then pvm_recv will accept a
-    message from any process which has a matching msgtag.  If msgtag = -1
-    and tid is defined by the user, then pvm_recv will accept any message
-    that is sent from process tid.  If tid = -1 and msgtag = -1, then
-    pvm_recv will accept any message from any process.
+    If <VERB>msgtag = -1</VERB>
+    and <VERB>tid</VERB> is defined by the user, then 
+    <VERB>pvm_recv</VERB> will accept any message
+    that is sent from process <VERB>tid</VERB> .
+    If <VERB>tid=-1</VERB> and <VERB>msgtag = -1</VERB> then
+    <VERB>pvm_recv</VERB> will accept any message from any process.
   </P>
   <P>
     When wildcard  are used,   the  application is   able to  receive  any
@@ -88,11 +87,8 @@
     will always return message A.
   </P>
   <P>
-    will be the status code returned by the routine. 
-    If some error occurs then
-  </P>
-  <P>
-    will be &lt; 0.
+    <VERB>info</VERB> will be the status code returned by the routine. 
+    If some error occurs then it will be &lt; 0.
   </P>
   <P>
     pvm_recv is blocking which means the routine waits until a message
@@ -103,8 +99,6 @@
   <P>
     Once pvm_recv returns, the data in the message can be unpacked
     into the user&apos;s memory using the unpack routines.
-  </P>
-  <P>
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
