@@ -19,13 +19,90 @@ int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct
 		case WM_KEYDOWN:
 		/*http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winui/winui/WindowsUserInterface/UserInput/VirtualKeyCodes.asp*/
 		{
+			if (GetKeyState (VK_CONTROL) < 0)
+			{
+				//char ch;
+				//int CharToSend=0;
+				//BYTE KeyState[256]; // address of key-state array
+				//WORD Char; // buffer for translated key
+
+				//check_pointer_win(&x,&y,&iwin);
+				//
+				//GetKeyboardState ( KeyState );
+				//		
+
+				//ToAscii ( wParam, 0, KeyState, &Char, 0 );
+				//ch = (char)Char;
+
+				//CharToSend=(int)ch+1096;
+
+				//if (CharToSend != 1044) /* CONTROL only */
+				//{
+				//	PushClickQueue (ScilabGC->CurWindow, x,y,CharToSend,0,0);
+				//}
+			}
+			else
+			{	
+				char ch;
+				BYTE KeyState[256]; // address of key-state array
+				WORD Char; // buffer for translated key
+			
+				check_pointer_win(&x,&y,&iwin);
+
+				GetKeyboardState ( KeyState );
+				ToAscii ( wParam, 0, KeyState, &Char, 0 );
+				ch = (char)Char;
+
+				PushClickQueue (ScilabGC->CurWindow, x,y,(int)ch,0,0);
+			}
+			
+		}
+		return (0);
+
+		case WM_KEYUP:
+		{
+			if (GetKeyState (VK_CONTROL) < 0)
+			{
+				//char ch;
+				//int CharToSend=0;
+				//BYTE KeyState[256]; // address of key-state array
+				//WORD Char; // buffer for translated key
+
+				//check_pointer_win(&x,&y,&iwin);
+				//
+				//GetKeyboardState ( KeyState );
+				//		
+
+				//ToAscii ( wParam, 0, KeyState, &Char, 0 );
+				//ch = (char)Char;
+
+				//CharToSend=(int)ch-1140;
+
+				//
+				//PushClickQueue (ScilabGC->CurWindow, x,y,(int)CharToSend,0,1);
+				
+			}
+			else
+			{	
+				char ch;
+				BYTE KeyState[256]; // address of key-state array
+				WORD Char; // buffer for translated key
+			
+				check_pointer_win(&x,&y,&iwin);
+
+				GetKeyboardState ( KeyState );
+				ToAscii ( wParam, 0, KeyState, &Char, 0 );
+				ch = (char)Char;
+
+				PushClickQueue (ScilabGC->CurWindow, x,y,-(int)ch,0,1);
+			}
 		}
 		return (0);
 
 		case WM_CHAR:
 		{
-			check_pointer_win(&x,&y,&iwin);
-			PushClickQueue (ScilabGC->CurWindow, x,y,wParam,0,0);
+			/*check_pointer_win(&x,&y,&iwin);
+			PushClickQueue (ScilabGC->CurWindow, x,y,wParam,0,0);*/
 		}
 		return (0);
 
