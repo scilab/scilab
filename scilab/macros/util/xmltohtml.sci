@@ -333,88 +333,103 @@ endfunction
 
 
 function gener_hh(dirs,titles)
-//-------------------------------------
-// first produce a scilab.hhk file 
-// (index file) 
-//--------------------------------------
-  base = dirs 
-  // help in the std man directory 
-  n=size(dirs,'*')
 
-  items=[];
-  names=[];
+	//-------------------------------------
+	// Modified by Pierre MARECHAL
+	// Scilab Team
+	// Copyright INRIA
+	// Date : 31/03/2005
+	//-------------------------------------
+	
+	//-------------------------------------
+	// first produce a scilab.hhk file 
+	// (index file) 
+	//--------------------------------------
+	base = dirs 
 
-  // just for the std directories 
+	// help in the std man directory 
+	n=size(dirs,'*')
 
-  for k=1:n 
-    // look for .xml files
-    files = listfiles(base(k)+'/*.xml');
-    if files<>[] then
-      fbase = basename(files);
-      name = strsubst(base(k)+"\"+fbase,"\\","/");
-      items=[items;
-	     "<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
-	     + name +  ...
-	     ".htm""><param name=""Name"" value="""+ fbase+"""></OBJECT>"];
-      names=[names;files];
-    end
-  end
+	items=[];
+	names=[];
 
-  [sv,sk]=sort(names);
-  items=items(sk);
+	// just for the std directories 
 
-  full_index=["<UL><LI><OBJECT type=""text/sitemap"">";
-	      "<param name=""Name"" value=""Scilab documentation"">";
-	      "</OBJECT>";
-	      "<UL>";
-	      items;
-	      "</UL>";
-	      "</UL>"];
+	for k=1:n 
+		// look for .xml files
+		files = listfiles(base(k)+'/*.xml');
+		if files<>[] then
+			fbase = basename(files);
+			name = strsubst(base(k)+"\"+fbase,"\\","/");
+			items=[items;
+				"<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
+				+ name +  ...
+				".htm""><param name=""Name"" value="""+ fbase+"""></OBJECT>"];
+			names=[names;files];
+		end
+	end
 
-  mputl(full_index,'sciman.hhk')
+	[sv,sk]=sort(names);
+	items=items(sk);
 
-  //--------------------------------------
-  // produce a scilab.hhc file 
-  // (contents) 
-  //--------------------------------------
-  name = strsubst(base(k)+"\","\\","/");  
-  items="<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
-      + name+"whatis.htm""><param name=""Name"" value=""" ...
-      + titles+"""></OBJECT>";
+	full_index=["<UL><LI><OBJECT type=""text/sitemap"">";
+		"<param name=""Name"" value=""Scilab documentation"">";
+		"</OBJECT>";
+		"<UL>";
+		items;
+		"</UL>";
+		"</UL>"];
 
-  contents=["<UL><LI><OBJECT type=""text/sitemap"">";
-	    "<param name=""Name"" value=""Scilab documentation"">";
-	    "</OBJECT>";
-	    "<UL>";
-	    items;
-	    "</UL>";
-	    "</UL>"];
+	mputl(full_index,'sciman.hhk')
 
-  mputl(contents,'sciman.hhc')
+	//--------------------------------------
+	// produce a scilab.hhc file 
+	// (contents) 
+	//--------------------------------------
+    
+	for k=1:n 
+		name(k) = strsubst(base(k)+"\","\\","/");
+	end
+	
+	items="<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
+		+ name+"whatis.htm""><param name=""Name"" value=""" ...
+		+ titles+"""></OBJECT>";
 
-  //--------------------------------------
-  // produce a scilab.hhp file 
-  //--------------------------------------
+	contents=["<UL><LI><OBJECT type=""text/sitemap"">";
+		"<param name=""Name"" value=""Scilab documentation"">";
+		"</OBJECT>";
+		"<UL>";
+		items;
+		"</UL>";
+		"</UL>"];
+
+	mputl(contents,'sciman.hhc')
+  
+	//--------------------------------------
+	// produce a scilab.hhp file 
+	//--------------------------------------
        
-  head=["[OPTIONS]";
-	"Compatibility=1.1";
-	"Compiled file=sciman.chm";
-	"Contents file=sciman.hhc";
-	"Default Window=sciman";
-	"Default topic=index.htm";
-	"Display compile progress=No";
-	"Full-text search=Yes";
-	"Index file=sciman.hhk";
-	"Language=0x409"; 
-      "Title=Scilab Documentation";
-      "";
-      "[WINDOWS]";
-      "sciman=""Scilab Documentation"",""sciman.hhc"",""sciman.hhk"",""index.htm"",""index.htm"",,,,,0x2520,220,0x384e,[84,16,784,504],,,,0,,,0";
-      "";      "[FILES]"];
+	head=["[OPTIONS]";
+		"Compatibility=1.1";
+		"Compiled file=sciman.chm";
+		"Contents file=sciman.hhc";
+		"Default Window=sciman";
+		"Default topic=index.htm";
+		"Display compile progress=No";
+		"Full-text search=Yes";
+		"Index file=sciman.hhk";
+		"Language=0x409"; 
+		"Title=Scilab Documentation";
+		"";
+		"[WINDOWS]";
+		"sciman=""Scilab Documentation"",""sciman.hhc"",""sciman.hhk"",""index.htm"",""index.htm"",,,,,0x2520,220,0x384e,[84,16,784,504],,,,0,,,0";
+		"";
+		"[FILES]"];
 
-  items=base+"*.htm";
+	items=base+"*.htm";
        
-  mputl([head;items],'sciman.hhp')      
+	mputl([head;items],'sciman.hhp')
+
 endfunction
 
 
