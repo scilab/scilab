@@ -17,6 +17,47 @@
 #include "../graphics/PloEch.h"
 #include "matdes.h"
 
+/* The following NUMSETFONC and KeyTab_ definition should be coherent
+with those defined in the drivers They are used in scixset to check
+for invalid keys. A better way should be to make drivers return an
+error indicator in order to skip recording*/
+extern void  C2F(msgs)(int *i, int *v);
+#define NUMSETFONC 32
+static char *KeyTab_[] = {
+	 "alufunction",
+	 "background",
+	 "clipoff",
+	 "clipping",
+	 "color",
+	 "colormap",
+	 "dashes",
+	 "default",
+	 "figure",
+	 "font",
+	 "foreground",
+	 "gc",
+	 "gccolormap",
+	 "hidden3d",
+	 "lastpattern",
+	 "line mode",
+	 "line style",
+	 "mark",
+	 "pattern",
+	 "pixmap",
+	 "thickness",
+	 "use color",
+	 "version",
+	 "viewport",
+	 "wdim",
+	 "white",
+	 "window",
+	 "wpdim",
+	 "wpos",
+	 "wresize",
+	 "wshow",
+	 "wwpc",
+         " ", /* added */
+ };
 
 int cf_type=1; /* used by gcf to determine if current figure is a graphic (1) or a tksci (0) one */
 static char *pmodes[] =
@@ -2274,7 +2315,7 @@ int scixget(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer flagx=0,x1[10],x2, m1,n1,l1,m2,n2,l2,l3,v ;
+  integer flagx=0,x1[10],x2, m1,n1,l1,m2,n2,l2,l3,v,i ;
   double dv;
 
   C2F(sciwin)();
@@ -2287,6 +2328,20 @@ int scixget(fname,fname_len)
   CheckLhs(0,1);
 
   GetRhsVar(1,"c",&m1,&n1,&l1);
+
+  /* check if key is valid */
+  for (i=0; i < NUMSETFONC ; i++) 
+    if (strcmp(cstk(l1),KeyTab_[i])==0) goto OK;
+
+  i = 105;v=m1*n1;
+  strncpy(C2F(cha1).buf,cstk(l1),v);
+  C2F(msgs)(&i,&v);
+  x2=0;
+  CreateVar(Rhs+1,"d",&x2,&x2,&l3);
+  LhsVar(1)=Rhs+1;
+  return 0;
+
+ OK:  
   if (Rhs == 2) {GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2);  flagx = (integer) *stk(l2); }
 
   if ( strncmp(cstk(l1),"fpf",3) == 0 || strncmp(cstk(l1),"auto clear",10) == 0) 
@@ -2635,8 +2690,18 @@ int scixset(fname,fname_len)
 
   GetRhsVar(1,"c",&m1,&n1,&l1);
   
+  for (i=0; i < NUMSETFONC ; i++) 
+    if (strcmp(cstk(l1),KeyTab_[i])==0) goto OK;
+
+  i = 105;v=m1*n1;
+  strncpy(C2F(cha1).buf,cstk(l1),v);
+  C2F(msgs)(&i,&v);
+  LhsVar(1)=0;
+  return 0;
+
+ OK:  
   if (Rhs == 2 && VarType(2) != 1) 
-    {
+   {
       /* second argument is not a scalar it must be a string */ 
       GetRhsVar(2,"c",&m2,&n2,&l2);
       C2F(xsetg)(cstk(l1),cstk(l2),m1,m2);
