@@ -408,7 +408,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	SetXsciOn ();
 
 	
-	ShowWindow (textwin.hWndParent, SW_SHOW);
+	ShowWindow (textwin.hWndParent, SW_SHOWNORMAL);
 	
 	CreateConsoleScreenBuffer(GENERIC_READ|GENERIC_WRITE,FILE_SHARE_WRITE,NULL,CONSOLE_TEXTMODE_BUFFER,NULL);
     freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/
@@ -424,7 +424,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		printf(line);
 		strcpy(line,"              Copyright (C) 1989-2004 INRIA ENPC \r\n");
 		printf(line);
-		strcpy(line,"        __________________________________________\r\n");
+		strcpy(line,"        __________________________________________\r\n\r\n");
 		printf(line);
 	}
 
@@ -1182,7 +1182,11 @@ DWORD WINAPI ThreadSplashscreen(LPVOID lpParam )
 	HWND hdlg;
 	char buffer[MAX_PATH];
 
+	extern char ScilexWindowName[MAX_PATH];
 	
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
 	wsprintf(buffer,"%s %s","Copyright ® ",DEFAULT_MES);
 
 	hdlg = CreateDialog(hdllInstance, "IDD_SPLASH", NULL,NULL);
@@ -1192,6 +1196,11 @@ DWORD WINAPI ThreadSplashscreen(LPVOID lpParam )
 	ShowWindow(hdlg, SW_SHOWDEFAULT);
 	UpdateWindow(hdlg);
 	Sleep(1500);
+
+	DestroyWindow(hdlg);
+	SendMessage(lptw->hWndParent, WM_PAINT, 0, 0);
+	ForceToActiveWindowParent();
+
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

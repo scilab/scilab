@@ -1019,192 +1019,175 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
   lptw = (LPTW) GetWindowLong (hwnd, 0);
   switch (message)
     {
-    case WM_SYSCOMMAND:
-      switch (LOWORD (wParam))
-	{
-	case M_CONSOLE:
-	  {
-	  	
-	      		SwitchConsole();
-  			SetActiveWindow(hwnd);
-      	  }
-	return 0;
-	case M_SPECIALPASTE:
-	case M_COPY_CLIP:
-	case M_PASTE:
-	case M_CHOOSE_FONT:
-	case M_SYSCOLORS:
-	case M_WRITEINI:
-	case M_ABOUT:
-	  SendMessage (lptw->hWndText, WM_COMMAND, wParam, lParam);
-	  
-	}
-      break;
-    case WM_SETFOCUS:
-      if (IsWindow (lptw->hWndText))
-	{
-	  SetFocus (lptw->hWndText);
-	  return (0);
-	}
-      break;
-    case WM_GETMINMAXINFO:
-      {
-	POINT *MMinfo = (POINT *) lParam;
-	TEXTMETRIC tm;
-	hdc = GetDC (hwnd);
-	SelectFont (hdc, GetStockFont (OEM_FIXED_FONT));
-	GetTextMetrics (hdc, (LPTEXTMETRIC) & tm);
-	ReleaseDC (hwnd, hdc);
-	/* minimum size */
-	MMinfo[3].x = ScreenMinSize.x * tm.tmAveCharWidth
-	  + GetSystemMetrics (SM_CXVSCROLL) + 2 * GetSystemMetrics (SM_CXFRAME);
-	MMinfo[3].y = ScreenMinSize.y * tm.tmHeight
-	  + GetSystemMetrics (SM_CYHSCROLL) + 2 * GetSystemMetrics (SM_CYFRAME)
-	  + GetSystemMetrics (SM_CYCAPTION);
-      }
-      return (0);
-    case WM_SIZE:
-    {
-    	
-		
-    	/*
-    	  SetWindowPos (lptw->hWndText, (HWND) NULL, 0, lptw->ButtonHeight,
+		case WM_SYSCOMMAND:
+			switch (LOWORD (wParam))
+			{
+				case M_CONSOLE:
+					{
+	  		      		SwitchConsole();
+  						SetActiveWindow(hwnd);
+					}
+				return 0;
+				case M_SPECIALPASTE:
+				case M_COPY_CLIP:
+				case M_PASTE:
+				case M_CHOOSE_FONT:
+				case M_SYSCOLORS:
+				case M_WRITEINI:
+				case M_ABOUT:
+						SendMessage (lptw->hWndText, WM_COMMAND, wParam, lParam);
+			}
+		break;
+		case WM_SETFOCUS:
+			if (IsWindow (lptw->hWndText))
+				{
+					SetFocus (lptw->hWndText);
+					return (0);
+				}
+		break;
+		case WM_GETMINMAXINFO:
+			{
+				POINT *MMinfo = (POINT *) lParam;
+				TEXTMETRIC tm;
+				hdc = GetDC (hwnd);
+				SelectFont (hdc, GetStockFont (OEM_FIXED_FONT));
+				GetTextMetrics (hdc, (LPTEXTMETRIC) & tm);
+				ReleaseDC (hwnd, hdc);
+				/* minimum size */
+				MMinfo[3].x = ScreenMinSize.x * tm.tmAveCharWidth+ GetSystemMetrics (SM_CXVSCROLL) + 2 * GetSystemMetrics (SM_CXFRAME);
+				MMinfo[3].y = ScreenMinSize.y * tm.tmHeight+ GetSystemMetrics (SM_CYHSCROLL) + 2 * GetSystemMetrics (SM_CYFRAME)+ GetSystemMetrics (SM_CYCAPTION);
+			}
+		return (0);
+		case WM_SIZE:
+			{
+    		/*  SetWindowPos (lptw->hWndText, (HWND) NULL, 0, lptw->ButtonHeight,
 		    	LOWORD (lParam), HIWORD (lParam) - lptw->ButtonHeight,
 		    	SWP_NOZORDER | SWP_NOACTIVATE);
-		    	*/
-	if (ShowButtons)
-    	{
-    		
-    		/* Affichage Zone Toolbar */
-    		SetWindowPos (lptw->hWndText, (HWND) NULL, 0, lptw->ButtonHeight,
-		    	LOWORD (lParam), HIWORD (lParam) - lptw->ButtonHeight,
-		    	SWP_NOZORDER | SWP_NOACTIVATE);
-    	}
-    	else
-    	{
-    		/* Pas de zone Toolbar */
-    		SetWindowPos (lptw->hWndText, (HWND) NULL, 0, 0,
-		    	LOWORD (lParam), HIWORD (lParam),
-		    	SWP_NOZORDER | SWP_NOACTIVATE);
+		    */
+				if (ShowButtons)
+    			{
+    		  		/* Affichage Zone Toolbar */
+    				SetWindowPos (lptw->hWndText, (HWND) NULL, 0, lptw->ButtonHeight,
+		    					  LOWORD (lParam), HIWORD (lParam) - lptw->ButtonHeight,
+		    					  SWP_NOZORDER | SWP_NOACTIVATE);
+    			}
+    			else
+    			{
+    				/* Pas de zone Toolbar */
+    				SetWindowPos (lptw->hWndText, (HWND) NULL, 0, 0,
+		    					  LOWORD (lParam), HIWORD (lParam),
+		    					  SWP_NOZORDER | SWP_NOACTIVATE);
 	
-    	}	   
-    	InvalidateRect(lptw->hWndParent, (LPRECT) NULL, TRUE);
-    	InvalidateRect(lptw->hWndText, (LPRECT) NULL, TRUE);
-    	UpdateWindow (lptw->hWndText);
-    }
-     return (0);
+    			}	   
+    			InvalidateRect(lptw->hWndParent, (LPRECT) NULL, TRUE);
+    			InvalidateRect(lptw->hWndText, (LPRECT) NULL, TRUE);
+    			UpdateWindow (lptw->hWndText);
+			}
+		return (0);
+		case WM_EXITSIZEMOVE: /* Sauvegarde Position apres deplacement et redimensionnement */
+    	 		WriteTextIni(lptw);
+    	return (0);
+		case WM_COMMAND:
+				if (IsWindow (lptw->hWndText))SetFocus (lptw->hWndText);
+				SendMessage (lptw->hWndText, message, wParam, lParam);
+				/* pass on menu commands */
+		return (0);
+		case WM_PAINT:
+		{
+			hdc = BeginPaint (hwnd, &ps);
+			if (lptw->ButtonHeight)
+			{
+				HPEN hPen,hPenOld; 
+				HBRUSH hbrush;
 
-	 
-    case WM_EXITSIZEMOVE: /* Sauvegarde Position apres deplacement et redimensionnement */
-    	 	WriteTextIni(lptw);
-    	 
-    return (0);
+				GetClientRect (hwnd, &rect);
+				hbrush = CreateSolidBrush (GetSysColor (COLOR_BTNFACE));
+				rect.bottom = lptw->ButtonHeight - 1;
+				FillRect (hdc, &rect, hbrush);
+				DeleteBrush (hbrush);
+			
+				hPen = CreatePen(PS_SOLID,1,RGB(255,255,255));
+				hPenOld = SelectObject(hdc, hPen); 
+				MoveToEx (hdc, rect.left-1,0, NULL);
+				LineTo (hdc, rect.right+1,0);
+				SelectObject(hdc, hPenOld); 
+				DeleteObject(hPen); 
 
-      
-    case WM_COMMAND:
-      if (IsWindow (lptw->hWndText))
-	SetFocus (lptw->hWndText);
-      SendMessage (lptw->hWndText, message, wParam, lParam);
-      /* pass on menu commands */
-      return (0);
-    case WM_PAINT:
-      {
-	hdc = BeginPaint (hwnd, &ps);
-	if (lptw->ButtonHeight)
-	  {
-	    HBRUSH hbrush;
-	    GetClientRect (hwnd, &rect);
-	    hbrush = CreateSolidBrush (GetSysColor (COLOR_BTNSHADOW));
-	    rect.bottom = lptw->ButtonHeight - 1;
-	    FillRect (hdc, &rect, hbrush);
-	    DeleteBrush (hbrush);
-	    SelectPen (hdc, GetStockPen (BLACK_PEN));
-	    MoveToEx (hdc, rect.left, lptw->ButtonHeight - 1, NULL);
-	    LineTo (hdc, rect.right, lptw->ButtonHeight - 1);
-	  }
-	EndPaint (hwnd, &ps);
-	return 0;
-      }
-    case WM_DROPFILES:
-      {
-	DragFunc (lptw, (HDROP) wParam);
-      }
-      break;
-    case WM_CREATE:
-      {
-	RECT crect, wrect;
-	TEXTMETRIC tm;
-	lptw = ((CREATESTRUCT *) lParam)->lpCreateParams;
+				hPen = CreatePen(PS_SOLID,1,GetSysColor (COLOR_GRAYTEXT));
+				hPenOld = SelectObject(hdc, hPen); 
+				MoveToEx (hdc, rect.left, lptw->ButtonHeight - 1, NULL);
+				LineTo (hdc, rect.right, lptw->ButtonHeight - 1);
+				SelectObject(hdc, hPenOld); 
+				DeleteObject(hPen); 
+			}
+			EndPaint (hwnd, &ps);
+			return 0;
+		}
+		case WM_DROPFILES:
+		{
+			DragFunc (lptw, (HDROP) wParam);
+		}
+		break;
+		case WM_CREATE:
+		{
+			RECT crect, wrect;
+			TEXTMETRIC tm;
+			lptw = ((CREATESTRUCT *) lParam)->lpCreateParams;
 	
-
+			SetWindowLong (hwnd, 0, (LONG) lptw);
+			lptw->hWndParent = hwnd;
+			/* get character size */
+			TextMakeFont (lptw);
+			hdc = GetDC (hwnd);
+			SelectFont (hdc, lptw->hfont);
+			GetTextMetrics (hdc, (LPTEXTMETRIC) & tm);
+			lptw->CharSize.y = tm.tmHeight;
+			lptw->CharSize.x = tm.tmAveCharWidth;
+			lptw->CharAscent = tm.tmAscent;
+			ReleaseDC (hwnd, hdc);
+			GetClientRect (hwnd, &crect);
+			if ((lptw->CharSize.y * lptw->ScreenSize.y < crect.bottom) || (lptw->CharSize.x * lptw->ScreenSize.x < crect.right))
+			{
+				/* shrink size */
+				GetWindowRect (lptw->hWndParent, &wrect);
+				MoveWindow (lptw->hWndParent, wrect.left, wrect.top,
+						    wrect.right - wrect.left + (lptw->CharSize.x * lptw->ScreenSize.x - crect.right),
+							wrect.bottom - wrect.top + (lptw->CharSize.y * lptw->ScreenSize.y + lptw->ButtonHeight - crect.bottom),	TRUE);
+			}
+			if ((lptw->DragPre != (LPSTR) NULL) && (lptw->DragPost != (LPSTR) NULL)) DragAcceptFiles (hwnd, TRUE);
 	
-	SetWindowLong (hwnd, 0, (LONG) lptw);
-	lptw->hWndParent = hwnd;
-	/* get character size */
-	TextMakeFont (lptw);
-	hdc = GetDC (hwnd);
-	SelectFont (hdc, lptw->hfont);
-	GetTextMetrics (hdc, (LPTEXTMETRIC) & tm);
-	lptw->CharSize.y = tm.tmHeight;
-	lptw->CharSize.x = tm.tmAveCharWidth;
-	lptw->CharAscent = tm.tmAscent;
-	ReleaseDC (hwnd, hdc);
-	GetClientRect (hwnd, &crect);
-	if ((lptw->CharSize.y * lptw->ScreenSize.y < crect.bottom)
-	    || (lptw->CharSize.x * lptw->ScreenSize.x < crect.right))
-	  {
-	    /* shrink size */
-	    GetWindowRect (lptw->hWndParent, &wrect);
-	    MoveWindow (lptw->hWndParent, wrect.left, wrect.top,
-			wrect.right - wrect.left + (lptw->CharSize.x * lptw->ScreenSize.x - crect.right),
-			wrect.bottom - wrect.top + (lptw->CharSize.y * lptw->ScreenSize.y + lptw->ButtonHeight - crect.bottom),
-			TRUE);
-
-	  }
-	  
-	if ((lptw->DragPre != (LPSTR) NULL) && (lptw->DragPost != (LPSTR) NULL))
-	  DragAcceptFiles (hwnd, TRUE);
-	
-	/* Modification Allan CORNET 15/07/03 */
-	
-	
-	/* Renomme la fenetre avec VERSION et numero x associé à la console*/  
-	{
-		char CopyNameConsole[MAX_PATH];
-		char *FirstOccurence;
-		char *SecondOccurence;
+			/* Modification Allan CORNET 15/07/03 */
+			/* Renomme la fenetre avec VERSION et numero x associé à la console*/  
+			{
+				char CopyNameConsole[MAX_PATH];
+				char *FirstOccurence;
+				char *SecondOccurence;
 		
-		strcpy(CopyNameConsole,ScilexConsoleName);
-		FirstOccurence = strtok(CopyNameConsole,"("); 
-		SecondOccurence= strtok(NULL,"("); 
-    	wsprintf(ScilexWindowName,"%s (%s",VERSION,SecondOccurence);
+				strcpy(CopyNameConsole,ScilexConsoleName);
+				FirstOccurence = strtok(CopyNameConsole,"("); 
+				SecondOccurence= strtok(NULL,"("); 
+    			wsprintf(ScilexWindowName,"%s (%s",VERSION,SecondOccurence);
     		
-    	SetWindowText(hwnd,ScilexWindowName);  
-    	
-	}
-
-      }
-      break;
-    case WM_DESTROY:
-      DragAcceptFiles (hwnd, FALSE);
-      DeleteFont (lptw->hfont);
-      lptw->hfont = 0;
+    			SetWindowText(hwnd,ScilexWindowName);  
+    		}
+        }
+		break;
+		case WM_DESTROY:
+			DragAcceptFiles (hwnd, FALSE);
+			DeleteFont (lptw->hfont);
+			lptw->hfont = 0;
       
-      /* Tue le Process Scilex si OS est Windows 9x */
-      Kill_Scilex_Win98();
-  
-      
-      break;
-    case WM_CLOSE: 
+			/* Tue le Process Scilex si OS est Windows 9x */
+			Kill_Scilex_Win98();
+        break;
+		case WM_CLOSE: 
            /* Allan CORNET 11/07/03 Bug Win 98 */
            /* Sortie Meme durant l'execution d'un script */
            /* 28/11/03 */
            ExitWindow();
            return (0);
-      break;
-      
-      
-    }
+		break;
+	}
   return DefWindowProc (hwnd, message, wParam, lParam);
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1433,13 +1416,6 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 			SendMessage (hwnd, WM_COMMAND,M_PASTE, (LPARAM) 0);
 	    	}
 	      break;	
-	    case VK_V:
-	    /* Modification Allan CORNET 10/10/03 */
-	    /* Touches Shift-V effectue un "coller special" du presse papier */
-	     	{
-	     		SendMessage (hwnd, WM_COMMAND,M_SPECIALPASTE, (LPARAM) 0);
-		} 
-		break;
 	    }
 	}
       else
