@@ -9,6 +9,9 @@ C   021105  Changed yprime argument in DRCHEK calls to YPRIME.
 C   021217  Modified error return for zeros found too close together.
 C   021217  Added root direction output in JROOT.
 C   031201  stuck root masking 
+c   040615  Removing Hmin requirement
+c   040615  Separating the error message of Singular Jacobian in DDASID
+c
 C***CATEGORY NO.  I1A2
 C***KEYWORDS  DIFFERENTIAL/ALGEBRAIC, BACKWARD DIFFERENTIATION FORMULAS,
 C             IMPLICIT DIFFERENTIAL SYSTEMS, KRYLOV ITERATION
@@ -729,8 +732,10 @@ C             If INFO(12) = 1 (Krylov method), the base value is
 C             BASE = 40 + LENIWP.  See PSOL for description of LENIWP.
 C             If INFO(10) = 1 or 3, add NEQ to the base value.
 C             If INFO(11) = 1 or INFO(16) =1, add NEQ to the base value.
+C            >> Due to introduction of Mask in DASKR, NRT has been added 
+c             to the  LIW
 C
-C
+c
 C  RPAR, IPAR -- These are arrays of double precision and integer type,
 C             respectively, which are available for you to use
 C             for communication between your program that calls
@@ -1054,7 +1059,9 @@ C
 C           IDID =-14 -- The Krylov linear system solver could not 
 C                     achieve convergence.
 C
+c
 C           IDID =-15,..,-32 -- Not applicable for this code.
+c
 C
 C                    *** TASK TERMINATED ***
 C                reported by the value of IDID=-33
@@ -1426,9 +1433,11 @@ C
 C
 C***FIRST EXECUTABLE STATEMENT  DDASKR
 C
-C
+C 
+
       IF(INFO(1).NE.0) GO TO 100
-c
+
+
 C-----------------------------------------------------------------------
 C     This block is executed for the initial call only.
 C     It contains checking of inputs and initializations.
@@ -1593,9 +1602,9 @@ C
 C
 C     Check lengths of RWORK and IWORK.
 C
-c     -------------- masking ----------------->>>>
+c     -------------- memory allocation for masking ----------
       LENIW=LENIW+NRT
-c     -------------- masking -----------------
+c     -------------- masking ------------------------------
       IWORK(LNIW)=LENIW
       IWORK(LNRW)=LENRW
       IWORK(LNPD)=LENPD
@@ -1753,13 +1762,16 @@ C
  305      RWORK(LVT+I-1) = MAX(IWORK(LID+I-1),0)*RWORK(LWT+I-1)
         ENDIF
 C
-C     Compute unit roundoff and HMIN.
-C
-C     UROUND = D1MACH(4)
+C     Compute unit roundoff and HMIN.  >>> instead of D1MACH(4) we use
+c     DLAMCH, because the optimized compiler affects the D1MACH.
+c        UROUND = D1MACH(4)
         UROUND = DLAMCH('p')
         RWORK(LROUND) = UROUND
-        HMIN = 4.0D0*UROUND*MAX(ABS(T),ABS(TOUT))
-C
+c     ---------------- Hmind chnage ---------------------
+c     HMIN = 4.0D0*UROUND*MAX(ABS(T),ABS(TOUT))
+        HMIN = 0.0
+c     ---------------- Hmind chnage ---------------------
+C     
 C     Set/check STPTOL control for initial condition calculation.
 C     
         IF (INFO(11) .NE. 0) THEN
@@ -1781,7 +1793,9 @@ C
 C     Check initial interval to see that it is long enough.
 C
       TDIST = ABS(TOUT - T)
-      IF(TDIST .LT. HMIN) GO TO 714
+c ---------------- Hmind chnage ---------------------
+cc      IF(TDIST .LT. HMIN) GO TO 714
+c ---------------- Hmind chnage ---------------------
 C
 C     Check H0, if this was input.
 C
@@ -1833,17 +1847,12 @@ C
          LYIC = LPHI + 2*NEQ
          LYPIC = LYIC + NEQ
          LPWK = LYPIC
-c      write(6,'('' ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>start--'')')
-
          CALL DDASIC(TN,Y,YPRIME,NEQ,INFO(11),IWORK(LID),
      *     RES,JAC,PSOL,H0,TSCALE,RWORK(LWT),NWT,IDID,RPAR,IPAR,
      *     RWORK(LPHI),RWORK(LSAVR),RWORK(LDELTA),RWORK(LE),
      *     RWORK(LYIC),RWORK(LYPIC),RWORK(LPWK),RWORK(LWM),IWORK(LIWM),
      *     RWORK(LROUND),RWORK(LEPLI),RWORK(LSQRN),RWORK(LRSQRN),
      *     EPCONI,RWORK(LSTOL),INFO(15),ICNFLG,IWORK(LICNS),DDASID)
-
-c      write(6,'('' ->>>>>>>>>>>>>>>>>>>>>>>>stop>>>>idid='',i2)')idid
-
       ELSE IF (INFO(12) .EQ. 1) THEN
          LYIC = LWM
          LYPIC = LYIC + NEQ
@@ -2047,8 +2056,8 @@ C
       DONE = .TRUE.
       GO TO 490
 460   TNEXT=TN+H
-      IF((TNEXT-TSTOP)*H.LE.0.0D0)GO TO 490
-      H=TSTOP-TN
+      IF((TNEXT-TSTOP)*H.LE.0.0D0)GO TO 490 
+      H=TSTOP-TN 
       RWORK(LH)=H
 C
 490   IF (DONE) GO TO 590
@@ -2143,8 +2152,40 @@ C
 C     
 C     Compute minimum stepsize.
 C     
-      HMIN=4.0D0*UROUND*MAX(ABS(TN),ABS(TOUT))
-C     
+c     ----------------------- Hmin Change---------------------- 
+c
+c     HMIN is intended to be a value slightly above the roundoff level
+c     in the current T.  As such it is appropriate that it varies with
+c     T. In DASKR, HMIN is used in two ways: 
+c
+c     1. At the start, ABS(TOUT - T) is required to be at least HMIN, to
+c     guarantee that the user has provided the direction of the
+c     integration reliably.  For this test, it would be sufficient to
+c     ignore HMIN and simply require that TOUT - T is nonzero on the
+c     machine.
+c
+c     2. If the integration has difficulty passing the convergence or
+c     the error test with step size H of size ABS(H) = HMIN, it stops
+c     with an error message saying that.  In all of these uses, it would
+c     not hurt to use HMIN = 0, in my opinion.  There are cases where
+c     the appropriate step size is temporarily below the roundoff level
+c     in T.  The only negative impact of using HMIN = 0 then is that
+c     some steps may be taken in which T + H = T on the machine.  In
+c     contrast to the DASSL family, the ODEPACK solvers have HMIN = 0 as
+c     the default in these uses of HMIN, but they issue a warning when T
+c     + H = T, because in most cases this is the result of a user
+c     program bug or input error of some kind. On the other hand, the
+c     value HMIN = 4*UROUND makes no sense, because it ignores the scale
+c     of the T variable completely.  Thus it could ause invalid error
+c     halts, when values of ABS(H) smaller than that may well be
+c     appropriate.  If the current HMIN is bothersome, I suggest using
+c     HMIN = 0, and removing HMIN from the initial test on TOUT - T
+c
+c
+c      HMIN=4.0D0*UROUND*MAX(ABS(TN),ABS(TOUT))
+      HMIN=0.0
+c ----------------------- Hmin Change----------------------
+
 C     Test H vs. HMAX
       IF (INFO(7) .NE. 0) THEN
          RH = ABS(H)/RWORK(LHMAX)
@@ -2156,8 +2197,6 @@ C     Note that INFO(12) represents the nonlinear solver type.
 C     Pass the required nonlinear solver, depending upon INFO(12).
 C     
 c     info(12): 0-> dierct case  1->Krylov
-c     write(6,'(''1) Y='',e18.12,'' YP='',e18.12)')Y(1),YPRIME(1)
-
       IF (INFO(12) .EQ. 0) THEN
          CALL DDSTP(TN,Y,YPRIME,NEQ,
      *      RES,JAC,PSOL,H,RWORK(LWT),RWORK(LVT),INFO(1),IDID,RPAR,IPAR,
@@ -2170,8 +2209,6 @@ c     write(6,'(''1) Y='',e18.12,'' YP='',e18.12)')Y(1),YPRIME(1)
      *      RWORK(LEPCON), IWORK(LPHASE),IWORK(LJCALC),INFO(15),
      *      IWORK(LK), IWORK(LKOLD),IWORK(LNS),NONNEG,INFO(12),
      *      DNEDD)
-c         write(6,'(''2) Y='',e18.12,'' YP='',e18.12)')Y(1),YPRIME(1)
-         
       ELSE IF (INFO(12) .EQ. 1) THEN
          CALL DDSTP(TN,Y,YPRIME,NEQ,
      *      RES,JAC,PSOL,H,RWORK(LWT),RWORK(LVT),INFO(1),IDID,RPAR,IPAR,
@@ -2216,8 +2253,6 @@ C     <<<<<
       GO TO 580
 529   CONTINUE
 
-
-
       IF(INFO(4).NE.0)GO TO 540
            IF(INFO(3).NE.0)GO TO 530
              IF((TN-TOUT)*H.LT.0.0D0)GO TO 500
@@ -2242,13 +2277,13 @@ C     <<<<<
          T=TOUT
          IDID=3
          GO TO 580
-542   IF(ABS(TN-TSTOP).LE.100.0D0*UROUND*
-     *   (ABS(TN)+ABS(H)))GO TO 545
+ 542  IF(ABS(TN-TSTOP).LE.100.0D0*UROUND*
+     *        (ABS(TN)+ABS(H)))GO TO 545
       TNEXT=TN+H
       IF((TNEXT-TSTOP)*H.LE.0.0D0)GO TO 500
       H=TSTOP-TN
       GO TO 500
-545   CALL DDATRP1(TN,TSTOP,Y,YPRIME,NEQ,
+ 545  CALL DDATRP1(TN,TSTOP,Y,YPRIME,NEQ,
      *  IWORK(LKOLD),RWORK(LPHI),RWORK(LPSI))
       IDID=2
       T=TSTOP
@@ -2603,7 +2638,7 @@ C
       IRT = 0
       LMASK=IWORK(LNIW)-NRT
       HMINR = (ABS(TN) + ABS(H))*UROUND*100.0D0
-C
+
       GO TO (100, 200, 300), JOB
 C
 C Evaluate R at initial T (= RWORK(LT0)); check for zero values.--------
@@ -2645,6 +2680,7 @@ c     .        to take one step through DDSTP then then in the next arrival->exi
          ENDIF
  130   CONTINUE
  190   CONTINUE
+
        RETURN
 C     
  200   CONTINUE
@@ -2665,6 +2701,7 @@ C     If a root was found on the previous step, evaluate R0 = R(T0). -------
              JROOT(I) = 1
           ENDIF
  210   CONTINUE
+
        IF (.NOT. ZROOT) GO TO 260
 C     R has a zero at T0.  Look at R at T0+ = T0 + (small increment). ------
        TEMP1 = SIGN(HMINR,H)
@@ -2691,9 +2728,13 @@ C     If Ri has a zero at T0+, but not at T0, return valid root. -----------
              IRT = 1
           ENDIF
  250   CONTINUE
-       IF (IRT .EQ. 1) RETURN
+
+       IF (IRT .EQ. 1)  GO TO 265
 C     R0 has no zero components.  Proceed to check relevant interval. ------
- 260   IF (TN .EQ. RWORK(LTLAST)) RETURN
+ 260   IF (TN .EQ. RWORK(LTLAST)) GO TO 265
+
+ 265   CONTINUE
+       RETURN
 C     
  300   CONTINUE
 C     AT THE BEGINING OF THE PREVIOUS STEP THERE WERE A MASK-LIFTING
@@ -2737,8 +2778,7 @@ C     Call DROOTS to search for root in interval from T0 to T1. -----------
                 GOTO 375
              ENDIF
  370      CONTINUE
- 375      CONTINUE
-          
+ 375      CONTINUE         
           IF(ZROOT) THEN
              DO 380 I = 1,NRT
                 IF(ABS(JROOT(I)).EQ.2) JROOT(I)=0
@@ -2841,11 +2881,13 @@ C          JROOT(i) = -1 if Ri has a root and changes from + to -.
 C          Otherwise JROOT(i) = 0.
 C-----------------------------------------------------------------------
       INTEGER I, IMAX, IMXOLD, LAST, NXLAST,ISTUCK,IUNSTUCK
-      DOUBLE PRECISION ALPHA, T2, TMAX, X2, ZERO
+      DOUBLE PRECISION ALPHA, T2, TMAX, X2, ZERO,FRACINT,FRACSUB,TENTH
+     $     ,HALF,FIVE
       LOGICAL ZROOT, SGNCHG, XROOT
       SAVE ALPHA, X2, IMAX, LAST
-      DATA ZERO/0.0D0/
-C
+      DATA ZERO/0.0D0/, TENTH/0.1D0/, HALF/0.5D0/, FIVE/5.0D0/
+c
+
       IF (JFLAG .EQ. 1) GO TO 200
 C JFLAG .ne. 1.  Check for change in sign of R or zero at X1. ----------
       IMAX = 0
@@ -2896,14 +2938,45 @@ C Repeat until the first root in the interval is found.  Loop point. ---
       ELSE
          X2 = X1 - (X1-X0)*R1(IMAX)/(R1(IMAX) - ALPHA*R0(IMAX))
       ENDIF
-      IF ((ABS(X2-X0) .LT. HMIN) .AND.
-     1   (ABS(X1-X0) .GT. 10.0D0*HMIN)) X2 = X0 + 0.1D0*(X1-X0)
+c----------------------- Hindmarsh ----------------
+c     I recently studied the rootfinding algorithm in some detail, and
+c     found that there is a high potential for an infinite loop within
+c     the subroutine DROOTS/SROOTS.  This is caused by an adjustment to
+c     the new computed iterate, called X2 there at statement 180.  The
+c     adjustment following 180 is faulty, and should be replaced as
+c     follows. This logic moves X2 away from one endpoint of the current
+c     interval bracketing the root if it is too close, but in a way that
+c     cannot result in an infinite loop.  Even if you have not
+c     encountered any trouble at this spot in DASKR, I recommend you
+c     make the change.
+cc      IF ((ABS(X2-X0) .LT. HMIN) .AND.
+cc     1   (ABS(X1-X0) .GT. 10.0D0*HMIN)) X2 = X0 + 0.1D0*(X1-X0)
+      IF (ABS(X2 - X0) < HALF*HMIN) THEN
+        FRACINT = ABS(X1 - X0)/HMIN
+        IF (FRACINT .GT. FIVE) THEN
+          FRACSUB = TENTH
+        ELSE
+          FRACSUB = HALF/FRACINT
+        ENDIF
+        X2 = X0 + FRACSUB*(X1 - X0)
+      ENDIF
+
+      IF (ABS(X1 - X2) < HALF*HMIN) THEN
+        FRACINT = ABS(X1 - X0)/HMIN
+        IF (FRACINT .GT. FIVE) THEN
+          FRACSUB = TENTH
+        ELSE
+          FRACSUB = HALF/FRACINT
+        ENDIF
+        X2 = X1 - FRACSUB*(X1 - X0)
+      ENDIF
+c----------------------- Hindmarsh ----------------
       JFLAG = 1
       X = X2
-C Return to the calling routine to get a value of RX = R(X). -----------
+C     Return to the calling routine to get a value of RX = R(X). ----
       RETURN
-C Check to see in which interval R changes sign. -----------------------
- 200  IMXOLD = IMAX
+C     Check to see in which interval R changes sign. ----------------
+ 200  IMXOLD = IMAX 
       IMAX = 0
       ISTUCK=0
       IUNSTUCK=0
@@ -2946,6 +3019,7 @@ C Sign change between X0 and X2, so replace X1 with X2. ----------------
       LAST = 0
       XROOT = .FALSE.
  270  IF (ABS(X1-X0) .LE. HMIN) XROOT = .TRUE.
+
       GO TO 150
 C
 C Return with X1 as the root.  Set JROOT.  Set X = X1 and RX = R1. -----
@@ -3505,7 +3579,6 @@ C     consistent initial values for Y and YPRIME.
 C-----------------------------------------------------------------------
 C
  200  CONTINUE
-c      write(6,'('' NLSIC( DDASID) NH='',i3, '' H='',e12.6)')NH,H
 
       CALL NLSIC(X,Y,YPRIME,NEQ,ICOPT,ID,RES,JAC,PSOL,H,TSCALE,WT,
      *   JSKIP,RPAR,IPAR,SAVR,DELTA,E,YIC,YPIC,PWK,WM,IWM,CJ,UROUND,
@@ -3529,9 +3602,8 @@ C
       JSKIP = 0
 C
       IF (IERNLS .EQ. -1) GO TO 350
-c     >>>>>>>>
+c     >>>>>>>> singular Jacobian 
       IF (IERNLS .EQ. -2) GO TO 360
-c     >>>>>>>>
 
       IF (ICOPT .EQ. 2) GO TO 350
       IF (NH .EQ. MXNH) GO TO 350
@@ -3548,10 +3620,9 @@ C
 C
  350  IDID = -12
       RETURN
-c     >>>>>>>>>>>
- 360  IDID = -15
+c     >> singular Jacobian
+ 360  IDID = -8
       RETURN
-c     >>>>>>>>>>>>.
 C
 C------END OF SUBROUTINE DDASIC-----------------------------------------
       END
@@ -3788,13 +3859,7 @@ C
       X=X+H
 C
 C     Initialize IDID to 1
-C
       IDID = 1
-C
-C
-C
-C
-C
 C-----------------------------------------------------------------------
 C     BLOCK 3
 C     Call the nonlinear system solver to obtain the solution and
@@ -3808,11 +3873,6 @@ C
      *   NONNEG,NTYPE,IERNLS)
 C
       IF(IERNLS .NE. 0)GO TO 600
-C
-C
-C
-C
-C
 C-----------------------------------------------------------------------
 C     BLOCK 4
 C     Estimate the errors at orders K,K-1,K-2
@@ -3824,9 +3884,10 @@ C
 C     Estimate errors at orders K,K-1,K-2
 C
       ENORM = DDWNRM(NEQ,E,VT,RPAR,IPAR)
+c
       ERK = SIGMA(K+1)*ENORM
       TERK = (K+1)*ERK
-      EST = ERK
+      EST = ERK 
       KNEW=K
       IF(K .EQ. 1)GO TO 430
       DO 405 I = 1,NEQ
@@ -3847,7 +3908,7 @@ C     Lower the order
 C
 420   CONTINUE
       KNEW=K-1
-      EST = ERKM1
+      EST = ERKM1 
 C
 C
 C     Calculate the local error for the current step
@@ -3890,6 +3951,7 @@ C
 510      DELTA(I)=E(I)-PHI(I,KP2)
       ERKP1 = (1.0D0/(K+2))*DDWNRM(NEQ,DELTA,VT,RPAR,IPAR)
       TERKP1 = (K+2)*ERKP1
+
       IF(K.GT.1)GO TO 520
       IF(TERKP1.GE.0.5D0*TERK)GO TO 550
       GO TO 530
@@ -3954,6 +4016,7 @@ C
 C
 C-----------------------------------------------------------------------
 C     BLOCK 6
+
 C     The step is unsuccessful. Restore X,PSI,PHI
 C     Determine appropriate stepsize for
 C     continuing the integration, or exit with
@@ -4015,7 +4078,10 @@ C
       R = 0.90D0*(2.0D0*EST+0.0001D0)**(-1.0D0/TEMP2)
       R = MAX(0.25D0,MIN(0.9D0,R))
       H = H*R
-      IF (ABS(H) .GE. HMIN) GO TO 690
+c     ------------------ HMIN chnage---------------------
+c     IF (ABS(H) .GE. HMIN) GO TO 690
+      if (X+H .GT. X) GO TO 690
+c     ------------------ HMIN chnage---------------------
       IDID = -6
       GO TO 675
 C
@@ -4027,7 +4093,10 @@ C
       K = KNEW
       R = 0.25D0
       H = R*H
-      IF (ABS(H) .GE. HMIN) GO TO 690
+c     ------------------ HMIN chnage---------------------
+c     IF (ABS(H) .GE. HMIN) GO TO 690
+      if (X+H .GT. X) GO TO 690
+c     ------------------ HMIN chnage---------------------
       IDID = -6
       GO TO 675
 C
@@ -4037,7 +4106,10 @@ C
 670   K = 1
       R = 0.25D0
       H = R*H
-      IF (ABS(H) .GE. HMIN) GO TO 690
+c     ------------------ HMIN chnage---------------------
+c     IF (ABS(H) .GE. HMIN) GO TO 690
+      if (X+H .GT. X) GO TO 690
+c     ------------------ HMIN chnage---------------------
       IDID = -6
       GO TO 675
 C
@@ -4405,14 +4477,9 @@ C
       IF(VMAX .LE. 0.0D0) GO TO 30
       SUM = 0.0D0
       DO 20 I = 1,NEQ
-c         write(6,'(''norm('',i2,'')='',e10.3,'';'')')I,
-c     $        ((V(I)*RWT(I))/VMAX)**2
-         
  20      SUM = SUM + ((V(I)*RWT(I))/VMAX)**2
-c         write(6,'('' '')')
 
       DDWNRM = VMAX*SQRT(SUM/NEQ)
-c      write(6,'('' wnorm='',e10.3)')DDWNRM
 30    CONTINUE
       RETURN
 C
@@ -4495,7 +4562,7 @@ C                   1,2 ==> recoverable error inside nonlinear solver.
 C                           1 => retry with current Y, YPRIME
 C                           2 => retry with original Y, YPRIME
 C                  -1   ==> unrecoverable error in nonlinear solver.
-C
+C                  -2   ==> Singular Jacobian
 C     All variables with "DUM" in their names are dummy variables
 C     which are not used in this routine.
 C
@@ -4529,7 +4596,7 @@ C
       IWM(LNRE) = IWM(LNRE) + 1
       CALL RES(X,Y,YPRIME,CJ,DELTA,IRES,RPAR,IPAR)
       IF (IRES .LT. 0) GO TO 370
-C
+
 C     Looping point for updating the Jacobian.
 C
 300   CONTINUE
@@ -4546,32 +4613,18 @@ C
       NJ = NJ + 1
       IWM(LNJE)=IWM(LNJE)+1
 
-      
-c      write(6,'(''x18='',e12.5)')Y(18)
-c      write(6,'(''>>>>>>>>>>>>>>>>>>>call DMATD NJ='',i3,'' >>>>>'')')NJ
-
-c      write(6,'(''>>>>>>>>>>>>>JJJJJJJJ'')')
       CALL DMATD(NEQ,X,Y,YPRIME,DELTA,CJ,H,IERJ,WT,R,
      *              WM,IWM,RES,IRES,UROUND,JACD,RPAR,IPAR)
-      IF (IRES .LT. 0 .OR. IERJ .NE. 0) GO TO 370
-c      write(6,'(''     <<<<<<<<<<<<<<<<<<<DMATD output:IRES='',i3)')IRES
+c     assigning two different error message for singular-Jacobian and
+c     internal error
+      IF (IRES .LT. 0) GO TO 370
+      IF (IERJ .NE. 0) GO TO 375
 
-C     
 C     Call the nonlinear Newton solver for up to MXNIT iterations.
-C     
-c      write(6,'(''call DNSID  >>>>>'')')
+
       CALL DNSID(X,Y,YPRIME,NEQ,ICOPT,ID,RES,WT,RPAR,IPAR,DELTA,R,
      *     YIC,YPIC,WM,IWM,CJ,TSCALE,EPCON,RATEMX,MXNIT,STPTOL,
      *     ICNFLG,ICNSTR,IERNEW)
-
-c      IX=1
-c      DO 399 IX = 1,NEQ
-c         write(6,'(''x1('',i2,'')='',e10.3,'';'')')(IX),Y(IX)
-c 399  CONTINUE 
-
-C
-c     here MXNJ=6
-c      write(6,'(''     DNSID out:IERNEW='',i3,'' NJ='',i3)')IERNEW,NJ
 
       IF (IERNEW .EQ. 1 .AND. NJ .LT. MXNJ) THEN
 C     
@@ -4579,7 +4632,6 @@ C     MXNIT iterations were done, the convergence rate is < 1,
 C     and the number of Jacobian evaluations is less than MXNJ.
 C     Call RES, reevaluate the Jacobian, and try again.
 C     
-
          IWM(LNRE)=IWM(LNRE)+1
          CALL RES(X,Y,YPRIME,CJ,DELTA,IRES,RPAR,IPAR)
          IF (IRES .LT. 0) GO TO 370
@@ -4591,12 +4643,12 @@ C
 C     
 C     Unsuccessful exits from nonlinear solver.
 C     Compute IERNLS accordingly.
-C     
- 370  IERNLS = 2
-      IF (IRES .LE. -2) IERNLS = -1
-c     ---------------------------
-      IF (IERJ .ne. 0)  IERNLS = -2
-c     ---------------------------
+C
+C     unrecoverable error in nonlinear solver.
+ 370  IERNLS = -1
+      RETURN
+c     >> singular Jacobian
+ 375  IERNLS = -2
       RETURN
 C     
 380   IERNLS = MIN(IERNEW,2)
@@ -4698,15 +4750,6 @@ C
 C
 C     Compute a new step vector DELTA by back-substitution.
 C
-c      IX=18
-c      DO 99 IX = 1,NEQ
-c         write(6,'(''delta1('',i2,'')='',e10.3,'';'')')IX,DELTA(IX)
-c 99   CONTINUE     
- 
-c      DO 100 IX = 1,NEQ
-c         write(6,'(''X('',i2,'')='',e10.3,'';'')')IX,Y(IX)
-c 100  CONTINUE    
-
       CALL DSLVD (NEQ, DELTA, WM, IWM)
 C
 
@@ -4716,8 +4759,6 @@ C
       FNRM = DELNRM
       IF (TSCALE .GT. 0.0D0) FNRM = FNRM*TSCALE*ABS(CJ)
       
-c      write(6,'(''NORM-1='',e10.3,'' < 0.33 ?'')')FNRM
-
       IF (FNRM .LE. EPCON) RETURN
 C
 C     Newton iteration loop.
@@ -4729,16 +4770,12 @@ C     Call linesearch routine for global strategy and set RATE
 C
       OLDFNM = FNRM
 C
-c      write(6,'(''call DLINSD> called M=='',i4,'' mxit='',i4)')M,MAXIT
       CALL DLINSD (NEQ, Y, X, YPRIME, CJ, TSCALE, DELTA, DELNRM, WT,
      *             LSOFF, STPTOL, IRET, RES, IRES, WM, IWM, FNRM, ICOPT,
      *             ID, R, YIC, YPIC, ICNFLG, ICNSTR, RLX, RPAR, IPAR)
 C
       RATE = FNRM/OLDFNM
-c      write(6,'(''DLINSD out:IRET='',i2,'' FNRM='',e12.5,'' Rate='',
-c     $     e12.5)')IRET,FNRM,RATE
 
-C     
 C     Check for error condition from linesearch.
       IF (IRET .NE. 0) GO TO 390
 C
@@ -4772,7 +4809,6 @@ c     here ratemx =0.8
       ELSE
          IERNEW = 2
       ENDIF
-c      write(6,'(''DLINSDout2:Rate='',e12.6,'' IERNEW='',i3)')RATE,IERNEW
       RETURN
 C
  390  IF (IRES .LE. -2) THEN
@@ -4923,10 +4959,6 @@ c     ----------------------------------------------------------
          CALL DFNRMD (NEQ, YNEW, T, YPNEW, R, CJ, TSCALE, WT, RES, IRES,
      *        FNRMP, WM, IWM, RPAR, IPAR)
 
-c         write(6,'(''         DYYP+DFNRM RL= '',e10.3,'' FN2='',e12.5)'
-c     $        )RL,FNRMP
-c         write(6,'(''         FNORM='',e10.3,'';'')')FNRMP
-
          IWM(LNRE) = IWM(LNRE) + 1
          IF (IRES .NE. 0) THEN
             IRET = 2
@@ -4948,8 +4980,6 @@ C     Alpha-condition is satisfied, or linesearch is turned off.
 C     Copy YNEW,YPNEW to Y,YPRIME and return.
 C-----------------------------------------------------------------------
  150     IRET = 0
-c          write(6,'(''    ..... X-updating ...'')')
-
          CALL DCOPY (NEQ, YNEW, 1, Y, 1)
          CALL DCOPY (NEQ, YPNEW, 1, YPRIME, 1)
          FNRM = FNRMP
@@ -5226,7 +5256,7 @@ C
       IWM(LNRE)=IWM(LNRE)+1
       CALL RES(X,Y,YPRIME,CJ,DELTA,IRES,RPAR,IPAR)
       IF (IRES .LT. 0) GO TO 380
-C
+
 C     If indicated, reevaluate the iteration matrix 
 C     J = dG/dY + CJ*dG/dYPRIME (where G(X,Y,YPRIME)=0).
 C     Set JCALC to 0 as an indicator that this has been done.
@@ -5257,7 +5287,7 @@ C
          JCALC = -1
          GO TO 300
       ENDIF
-C
+
       IF (IERNEW .NE. 0) GO TO 380
 C
 C     The Newton iteration has converged.  If nonnegativity of
@@ -5398,8 +5428,6 @@ C
 C
 C     If necessary, multiply residual by convergence factor.
 C
-c      write(6,'(''x('',i2,'')='',e20.10,'';'')')1,DELTA(1)
-
       IF (MULDEL .EQ. 1) THEN
          DO 320 I = 1,NEQ
 320        DELTA(I) = DELTA(I) * CONFAC
@@ -5408,26 +5436,15 @@ C
 C     Compute a new iterate (back-substitution).
 C     Store the correction in DELTA.
 C
-c        write(6,'(''w('',i2,'')='',e20.10,'';'')')1,wm(1)
-c        write(6,'(''delta1('',i2,'')='',e20.10,'';'')')1,delta(1)
         CALL DSLVD(NEQ,DELTA,WM,IWM)
-c        write(6,'(''delta2('',i2,'')='',e20.10,'';'')')1,delta(1)
 
-C
 C     Update Y, E, and YPRIME.
 C
       DO 340 I=1,NEQ
-c         write(6,'(''d('',i2,'')='',e20.10,'';'')')I,DELTA(I)
-c         write(6,'(''1/CJ='',e20.10,'';'')')(1/CJ)
-c         write(6,'(''Y1 ('',i2,'')='',e20.10,'';'')')I,Y(I)
-c         write(6,'(''YP1('',i2,'')='',e20.10,'';'')')I,YPRIME(I)
-
          Y(I)=Y(I)-DELTA(I)
          E(I)=E(I)-DELTA(I)
          YPRIME(I)=YPRIME(I)-CJ*DELTA(I)
 
-c     write(6,'(''Y2 ('',i2,'')='',e20.10,'';'')')I,Y(I)
-c     write(6,'(''YP2('',i2,'')='',e20.10,'';'')')I,YPRIME(I)
  340  continue
 C
 C     Test for convergence of the iteration.
@@ -5559,13 +5576,6 @@ C
 C
 C     Dense finite-difference-generated matrix.
 C
-
-c     epsmch = dlamch('p')
-c     eps = dsqrt(dmax1(epsfcn,epsmch))
-c     temp = x(j)
-c     h = eps*dabs(temp)
-c     if (h .eq. zero) h = eps
-
 200   IRES=0
       NROW=0
       SQUR = SQRT(UROUND)
@@ -5577,23 +5587,22 @@ c     if (h .eq. zero) h = eps
          YSAVE=Y(I)
          YPSAVE=YPRIME(I)
          Y(I)=Y(I)+DEL
-         YPRIME(I)=YPRIME(I)+CJ*DEL
+         YPRIME(I)=YPRIME(I)+CJ*DEL  
          IWM(LNRE)=IWM(LNRE)+1
          CALL RES(X,Y,YPRIME,CJ,E,IRES,RPAR,IPAR)
          IF (IRES .LT. 0) RETURN
          DELINV=1.0D0/DEL
          DO 220 L=1,NEQ  
             WM(NROW+L)=(E(L)-DELTA(L))*DELINV
- 220     CONTINUE    
+ 220     CONTINUE     
          NROW=NROW+NEQ
          Y(I)=YSAVE
          YPRIME(I)=YPSAVE
  210  CONTINUE
-C     
+C     plhom
 C     
 C     Do dense-matrix LU decomposition on J.
 C     
-      
  230  CALL DGEFA(WM,NEQ,NEQ,IWM(LIPVT),IER)
       IF (IER .ne. 0)  THEN
          write(6,'('' Singular Jacobian at IER ='',i3)')IER

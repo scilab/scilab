@@ -1241,70 +1241,74 @@ int C2F(scicos)
 	}
 	rhot[1] = rhotmp;
 	t = min(*told + deltat,min(t,*tf + ttol));
-	
+
 	if (hot == 0){ /* CIC calculation when hot==0 */
+
+	  if (ng>0&&nmod>0){
+	    phase=1;
+	    zdoit(W, xd, x,told);
+	    if (*ierr != 0) {
+	      freeallx;
+	      return;
+	    }
+	  }
+
+
 	  for(j=0;j<=nmod;j++){/* counter to reevaluate the 
 				  modes in  mode->CIC->mode->CIC-> loop 
 				  do it once in the absence of mode (nmod=0)*/
-	    
-	    /* saving the previous modes*/
-	    for (jj = 0; jj < nmod; ++jj) {
-	      Mode_save[jj] = mod[jj];
-	    }
-	    
 	    /* updating the modes through Flag==9, Phase==1 */
-	    phase=1;
-	    if (ng>0&&nmod>0){
-	      zdoit(W, xd, x,told);
-	      if (*ierr != 0) {
-		freeallx;
-		return;
-	      }
-	    }
-	    Mode_change=0;
-	    for (jj = 0; jj < nmod; ++jj) {
-	      if(Mode_save[jj] != mod[jj])
-		{Mode_change=1;
-		break;
-		}
-	    }
+	    
 	    info[0]=0;  /* cold start */
 	    info[10]=1; /* inconsistent IC */
 	    info[13]=1; /* return after CIC calculation */
-	    /*     max step size  */
-	    if(hmax==0){
-	      info[6] = 0;
-	    }else{
-	      info[6] = 1;
-	      rhot[2]=hmax;
-	    }
-
 	    reinitdoit(told,scicos_xproperty);/* filling up the scicos_xproperties */
-	    if(*ierr >0){
+ 	    if(*ierr >0){
 	      freeallx;
 	      return; 
 	    }
 	    for (jj = 1; jj <= *neq; ++jj) {
 	      ihot[jj + 40] = scicos_xproperty[jj-1];
 	    }
-	    
 	    phase=2;
-	    C2F(ddaskr)(C2F(simblkdaskr), neq, told, x, xd, &t, info, &rtol, 
-			&Atol, &istate, &rhot[1],&nrwp, &ihot[1], &niwp,
+
+	    C2F(ddaskr)(C2F(simblkdaskr), neq, told, x, xd, &t, info,  &rtol, 
+			 &Atol, &istate, &rhot[1],&nrwp, &ihot[1], &niwp,
 			rpardummy, ipardummy, &jdum, rpardummy, 
 			C2F(grblkdaskr), &ng, jroot);
+
 	    if (*ierr > 5) {
 	      freeallx;
 	      return;
 	    }
-	    if (istate==4) {
-	      if (C2F(cosdebug).cosd >= 1) {
+	    if (C2F(cosdebug).cosd >= 1) {
+	      if (istate==4) {
 		sciprint("**** daskr succesfully initialized *****/r/n" );
 	      }
-	    }else{
-	      *ierr = 100 - istate;
-	      freeallx;
-	      return;
+	      else{
+		sciprint("**** daskr failed to initialize ->try again *****/r/n" );
+	      }
+	    }
+	    //-------------------------------------
+	    /* saving the previous modes*/
+	    for (jj = 0; jj < nmod; ++jj) {
+	      Mode_save[jj] = mod[jj];
+	    }
+	    if (ng>0&&nmod>0){	 
+	      phase=1;
+	      zdoit(W, xd, x,told);
+	      if (*ierr != 0) {
+		freeallx;
+		return; 
+	      }
+	    }
+	    //------------------------------------
+	    Mode_change=0;
+	    for (jj = 0; jj < nmod; ++jj) {
+	      if(Mode_save[jj] != mod[jj])
+		{Mode_change=1;
+ 		break;
+		}
 	    }
 	    if ( Mode_change==0)      break;
 	  }/* mode-CIC  counter*/
@@ -1316,13 +1320,8 @@ int C2F(scicos)
 	  info[0]=0;  /* cold restart */
 	  info[10]=1; /* to reevaluate CIC when info[0]==0*/
 	  info[13]=0; /* continue after CIC calculation */
-	  if(hmax==0){
-	    info[6] = 0;
-	  }else{
-	    info[6] = 1;
-	    rhot[2]=hmax;
-	  }
 	} /* CIC calculation when hot==0 */
+
 	info[0]=hot;  
 	/*     Warning rpar and ipar are used here as dummy pointers */
 	phase=2;
@@ -1333,6 +1332,8 @@ int C2F(scicos)
 		    info, &rtol, &Atol, &istate, &rhot[1], &
 		    nrwp, &ihot[1], &niwp, rpardummy, ipardummy
 		    , &jdum, rpardummy, C2F(grblkdaskr), &ng, jroot);
+
+
 	phase=1;
 	if (*ierr > 5) {
 	  freeallx; /* singularity in block */
