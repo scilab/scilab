@@ -15,29 +15,27 @@ echo '//====================================================' >> prov
 echo '//' "$1" >> prov
 echo '//====================================================' >> prov
 
-res=`grep 'SH EXAMPLE' $1 2> /dev/null`
+
+res=`grep '<EXAMPLE>' $1 2> /dev/null`
 if test -n "$res"
 then
 	echo "clear;lines(0);" >> prov
-
-	sed -e '1,/^.SH EXAMPLE/d' $1 > prov1
-	sed -e '1d' prov1 > prov2
-	sed -e '/^.fi/,$d' prov2 >> prov
-	$RM prov1 prov2
-	
+	sed -e '1,/<EXAMPLE>/d' $1 |sed -e '/<\/EXAMPLE>/,$d'| \
+	    sed -e 's/<\!\[CDATA\[//'|sed -e 's/ \]\]>//' >>prov
 	echo "$1" PROCESSED >> $LOGFILE
+	echo "for k=winsid(),xdel(k);end" >> prov
 else
 	echo "$1" NO EXAMPLE >> $LOGFILE
 fi
-echo "for k=winsid(),xdel(k);end" >> prov
 echo '' >> prov
 
 }
 
-for j in arma comm control dcd elementary fileio functions graphics gui linear metanet nonlinear polynomials programming robust scicos signal sound strings tdcs translation tksci utilities
+
+for j in arma control dcd elementary fileio functions graphics gui linear metanet nonlinear polynomials programming robust scicos signal sound strings tdcs translation tksci utilities
 do
 	echo -n "Processing man/$j "
-	for f in $SCI/man/$j/*.man
+	for f in $SCI/man/eng/$j/*.xml
 	do
 		echo -n '.'
 		do_example $f
