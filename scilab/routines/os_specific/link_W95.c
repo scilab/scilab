@@ -41,7 +41,7 @@ void SciLink(iflag,rhs,ilib,files,en_names,strf)
 	*ilib  = Sci_dlopen(files,0);
     }
   if (*ilib  == -1 ) return;
-
+  if ( iflag == 0) sciprint("shared archive loaded\r\n");
   if ( *rhs >= 2) 
     {
       i=0 ;
@@ -169,7 +169,7 @@ int Sci_dlsym(ename,ishared,strf)
   else 
     {
       /* we don't add the _ in the table */
-      sciprint("Linking %s \r\n",ename);
+      sciprint_nd("Linking %s \r\n",ename);
       strncpy(EP[NEpoints].name,ename,MAXNAME);
       EP[NEpoints].Nshared = ish;
       NEpoints++;
