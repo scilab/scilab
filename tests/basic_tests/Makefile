@@ -18,7 +18,8 @@ tests:
 clean ::
 	$(RM) *.dia tmp.* get_examples.log *.graph so_locations 
 	$(RM) foo* test.wav one_man.tst test_macro_exec asave results *.bin
-	$(RM) -r .libs libintertest.o libintertest.so libintertest.la libintertest.lo addinter.o addinter.lo
+	$(RM) -r .libs libintertest.o libintertest.s* libintertest.la \
+	libintertest.lo addinter.o addinter.lo
 
 distclean:: clean 
 
