@@ -14,22 +14,22 @@
 
   
    <DESCRIPTION_ITEM label='visible: '>
-    This field contains the  <VERB>visible</VERB> property value
-   for the entity . It's value should
+    This properties contains the  <VERB>visible</VERB> property value
+   for the entity . It should
    be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
    </VERB> the vector field is drawn, If
-   <VERB>"off"</VERB> the vector field is not drawn on the screen.
+   <VERB>"off"</VERB> the vector field is not displayed on the screen.
    </DESCRIPTION_ITEM>
 
 
    <DESCRIPTION_ITEM label='data: '>
-    This field is the matrix  <VERB>[x,y,fx,fy]</VERB> <VERB>x</VERB>
-    and <VERB>y</VERB> gives     the coordinates of the champ boundary.
+    This property represent a matrix  <VERB>[x,y,fx,fy]</VERB> <VERB>x</VERB>
+    where <VERB>y</VERB> gives the coordinates of the champ boundary.
     If  <VERB>xv=matrix(x,2,-1)</VERB> and
-    <VERB>yv=matrix(y,2,-1)</VERB> then <VERB>xv(:,k)</VERB> and
-    <VERB>yv(:,k)</VERB> are the boundary coordinates of the segment
+    <VERB>yv=matrix(y,2,-1)</VERB> the two vectors <VERB>xv(:,k)</VERB> and
+    <VERB>yv(:,k)</VERB> are the boundary coordinates of the segments
     numbered  <VERB>k</VERB>.
-    <VERB>fx</VERB>     and <VERB>fy</VERB> are two square matrices
+    <VERB>fx</VERB> and <VERB>fy</VERB> are two square matrices
     which are the x and y components of the fields value at each given point.
    </DESCRIPTION_ITEM>
  
@@ -41,20 +41,20 @@
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='thickness: '>
-       This field contains the  <VERB>thickness</VERB> property for
-       all lines used to draw the vector field. It's value should
+       This property contains the  <VERB>thickness</VERB> property for
+       all lines used to draw the vector field. Its value should
        be a non negative integer..
      </DESCRIPTION_ITEM>
 
  
      <DESCRIPTION_ITEM label='colored: '>
-      If this this property value is <VERB>"on"</VERB> fields vectors
+      If this this property value is <VERB>"on"</VERB>, fields vectors
       are drawn using a color proportional to the intensity of the field.  
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='clip_state: '>
       This field contains the <VERB>clip_state</VERB> property
-      value for the champ.  It's value should be :
+      value for the champ.  It should be :
       <DESCRIPTION_INDENT>
          <DESCRIPTION_ITEM > 
          <VERB>"off"</VERB> this means that the vector field is not clipped
@@ -62,7 +62,7 @@
 
          <DESCRIPTION_ITEM > 
          <VERB>"cliprf"</VERB> this means that the
-         vector field is clipped outside the Axes rectangle.
+         vector field is clipped outside the Axes box.
          </DESCRIPTION_ITEM>
 
         <DESCRIPTION_ITEM > 
@@ -73,25 +73,32 @@
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='clip_box: '>
-      This field contains the  <VERB>clip_box</VERB> property.
-      It's value should be an empty matrix if
-      clip_state is "off" or the vector <VERB>[x,y,w,h</VERB>] (upper-left point width height)
+      This property contains the  <VERB>clip_box</VERB> property.
+      Its value should be an empty matrix if
+      clip_state is "off" .Other cases the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height) 
+       defines the portions of the vector field to display, however <VERB>clip_state</VERB> property 
+       value will be changed.
+     </DESCRIPTION_ITEM> 
+
+     <DESCRIPTION_ITEM label='parent: '> 
+      This property contains the handle of the parent. The parent of the 2D vector field
+      entity should be of the type <VERB>"Axes"</VERB> or <VERB>"Agregation"</VERB>.
      </DESCRIPTION_ITEM>
   
 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-   set("figure_style","new") //create a figure
+  
+  set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
    a.data_bounds=[-10,-10,10,10];
    champ(-5:5,-5:5,rand(11,11),rand(11,11))
 
-   p=a.children
+   c=a.children
 
-   p.colored="on";
-   p.thickness=2;
-
-  
+   c.colored="on";
+   c.thickness=2;
+   a.data_bounds=[-5,-5,5,5];
 
  ]]></EXAMPLE>
   <SEE_ALSO>
@@ -102,6 +109,6 @@
     <SEE_ALSO_ITEM> <LINK>champ1</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-<AUTHOR>Djamel Abdemouche  </AUTHOR>
+<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
 </MAN>
 

@@ -31,6 +31,7 @@
   </PARAM_ITEM>
  </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
 
     <VERB>xs2ps</VERB> sends the recorded graphics of the
@@ -40,7 +41,7 @@
     <VERB>win_num</VERB>  or if the window is in "new style".
     <P></P>
     The generated ps file does not contrains the header part which has
-    to be added from <SCIDIR>/imp/NperiPos.ps
+    to be added from SCIDIR/imp/NperiPos.ps
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>printing</LINK> </SEE_ALSO_ITEM> 

@@ -10,7 +10,11 @@
  
   <DESCRIPTION>
   The Surface entity is a leaf of the graphics entities
-  hierarchy. It has  sub_types Fac3d  Plot3d . This entity is still under developpement
+  hierarchy. Two classes appears under this type of entity :
+  <VERB>Plot3d</VERB> and <VERB>Fac3d </VERB>
+  according to the ploting function.
+  <p></p> 
+  This entity is still under developpement
   and will problably evolve a lot. In particular we intend to extend
   the Axes data structure to 3D and split the Axes propteies and
   Surface drawing properties similarily to the 2D case.
@@ -19,37 +23,44 @@
   
    <DESCRIPTION_ITEM label='visible: '>
     This field contains the  <VERB>visible</VERB> property value
-   for the entity . It's value should
-   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
-   </VERB> the surface is drawn, If
-   <VERB>"off"</VERB> the surface is not drawn on the screen.
+   for the entity . It should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  .
+   By default, surfaces are visibles, the value's property is  <VERB>"on"
+   </VERB>. If <VERB>"off"</VERB> the 3D graphics are not displayed on the screen.
+   
    </DESCRIPTION_ITEM>
 
-
-   <DESCRIPTION_ITEM label='data: '>
-     This field is not yet available.
+ 
+   <DESCRIPTION_ITEM label='data: '> 
+    This field is not yet available.
+    It will be define a  matrix data of a row and column indices of each element 
+    as the x- and y-coordinates and the value of each element as the z-coordinate.
    </DESCRIPTION_ITEM>
 
    <DESCRIPTION_ITEM label='data_bounds: '>
     This field contains the boundary values for the x, y and z
-    coordinates. It is the matrix <VERB>[xmin,xmax;ymin,ymax;zmin,zmax]</VERB>
+    coordinates. It is the matrix <VERB>[xmin,xmax;ymin,ymax;zmin,zmax]</VERB>.
    </DESCRIPTION_ITEM>
 
    <DESCRIPTION_ITEM label='flags: '>
-    a real vector of size three <VERB>flag=[mode,type,box]</VERB>.
+    a real vector of size three <VERB>flag=[mode,type,box]</VERB> where:
       <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM label='mode'>
-         string (treatment of hidden parts). If  mode&gt;0  
-         the hidden parts of the surface are removed and the surface is painted  with color <VERB>mode</VERB>.
+        <DESCRIPTION_ITEM >
+         <VERB>mode:</VERB> a string (treatment of hidden parts).  
+	 <P></P>
+	 If  mode&gt;0 
+	 the hidden parts of the surface are removed 
+	 and the surface is painted  with color <VERB>"mode"</VERB>.
          <P></P>
          if mode=0  the hidden parts of the surface are drawn.
          <P></P>
          if mode&lt;0 
          only the backward facing facets are painted with color or
-         pattern id <VERB>-mode</VERB>.
+         pattern id <VERB>"-mode"</VERB>.
        </DESCRIPTION_ITEM>
-       <DESCRIPTION_ITEM label='type'>
-        an integer (scaling).
+       <DESCRIPTION_ITEM >
+        <VERB>type:</VERB> an integer (scaling).
+	<P></P>
         if type=0  the plot is made using the current 3D scaling (set
         by a previous call to <VERB>param3d</VERB>,
         <VERB>plot3d</VERB>, <VERB>contour</VERB> or
@@ -66,33 +77,31 @@
          if  type=3 3d isometric with box bounds given by the property <VERB>data_bounds</VERB>. 
         
         <P></P>
-        if type=4  3d isometric bounds  derived from the data
+        if type=4  3d isometric bounds are derived from the data.
        <P></P>
-        if type=5  3d expanded isometric bounds  with box bounds given
+        if type=5  3d expanded isometric bounds  with box bounds are given
         by the property <VERB>data_bounds</VERB>. 
      </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='thickness: '>
-       This field contains the  <VERB>thickness</VERB> of the lines
-       used to draw the axes and the facets contours. It's value should
-       be a non negative integer..
+       This field contains the default <VERB>thickness</VERB> value of the lines
+       used to draw the axes and the facets contours. It should be a positive integer.
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='foreground: '>
       This field contains the color index used to draw the axes and the facets contours.  
-      It's value should be a color index 
-      (relative to the current colormap)
+      Its value should be a color index (relative to the current colormap).
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='rotation_angles: '>
       This field is the vector <VERB>[theta,alpha]</VERB>. These two
-      values give  the spherical coordinates of the observation point (in degree).  
+      values give  the spherical coordinates of the observation points (in degree).  
      </DESCRIPTION_ITEM>
 
        <DESCRIPTION_ITEM label='color_flag: '>
-      This field is used to specify the algorithm used to set facet
+      This field is used to specify the algorithm used to set facets'
       colors.
        <DESCRIPTION_INDENT>
          <DESCRIPTION_ITEM>
@@ -109,8 +118,7 @@
          <DESCRIPTION_ITEM>
          If <VERB>color_flag==2</VERB> then all facets are painted
          using the color index given in the
-         <VERB>surface_color</VERB> property (one color per
-         facet). 
+         <VERB>surface_color</VERB> property (one color per facet). 
          <P></P>
          This option is available only with <VERB>Fac3d</VERB> entity type.
         </DESCRIPTION_ITEM>
@@ -128,7 +136,7 @@
 
        <DESCRIPTION_ITEM label='surface_color: '>
       If <VERB>color_flag</VERB> is equal to 2 or 3 this property
-      contains the index of the color used to paint the facets.
+      contains the index of the color used to paint facets.
      <DESCRIPTION_INDENT>
          <DESCRIPTION_ITEM>
          If <VERB>color_flag==2</VERB> then the property value is a
@@ -136,15 +144,21 @@
         </DESCRIPTION_ITEM>
          <DESCRIPTION_ITEM>
          If <VERB>color_flag==3</VERB> then the property value is a
-         matrix of indices. One column per facet. for each facet one
+         matrix of indices. One column per facet and for each facet one
          color index is given for each boundary.
         </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
 
+     <DESCRIPTION_ITEM label='parent: '> 
+      This property contains the handle of the parent. The parent of the surface
+      entity should be of the type <VERB>"Axes"</VERB>.
+     </DESCRIPTION_ITEM>
+
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-   set("figure_style","new") //create a figure
+
+   set("old_style","off") // set new graphics style as default creating figure
 
 
    t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');[xx,yy,zz]=genfac3d(t,t,z);
@@ -152,26 +166,29 @@
 
    h=get("hdl") //get handle on current entity (here the surface)
 
-   h.rotation_angles=[30,70];
-   h.flag=[2 2 0];
-   h.flag=[2 2 4];
+   h.rotation_angles=[40,70];
 
-   h.flag=[2 5 4]; //boundaries given by data_bounds
-   h.data_bounds=[-6,6;6,-0.9961646;0,4.997495];
 
-   //change the figure colormap
-   f=get("current_figure");f.color_map=hotcolormap(64); 
-   
+    h.flag=[2 5 4]; //boundaries given by data_bounds
+    h.data_bounds=[-6,6;6,-1;0,5];
+    h.flag=[2 5 0]; //axes are hidden
+
+ 
+   f=get("current_figure");//get the handle of the parent figure    
+   f.color_map=hotcolormap(64); //change the figure colormap
+
    h.color_flag=1; //color according to z
-   h.flag=[-2 5 4]; //remove the facets boundary 
+   h.flag=[-2 5 0]; //remove the facets boundary
+   h.flag=[-2 2 0]; //boundaries computed using the given data 
 
    h.color_flag=2; //color according to given colors
    h.surface_color=[modulo(1:400,64),modulo(1:400,64)];
 
-   f.color_map=hotcolormap(404); 
-   h.color_flag=3; //shaded 
+   f.color_map=hotcolormap(512);
+   h.color_flag=3; //shaded
    c=[1:400,1:400];
    h.surface_color=[c;c+1;c+2;c+3];
+
 
  ]]></EXAMPLE>
   <SEE_ALSO>
@@ -184,6 +201,6 @@
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
 
   </SEE_ALSO>
-<AUTHOR>Djamel Abdemouche  </AUTHOR>
+<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
 </MAN>
 

@@ -10,16 +10,15 @@
  
   <DESCRIPTION>
   The Text entity is a leaf of the graphics entities
-  hierarchy. This entity defines the parameters for string drawing.
+  hierarchy. This entity defines the parameters for string drawing
 
 
   
-   <DESCRIPTION_ITEM label='visible: '>
-    This field contains the  <VERB>visible</VERB> property value
-   for the entity . It's value should
-   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
-   </VERB> the text are drawn, If
-   <VERB>"off"</VERB> the text are not drawn on the screen.
+   <DESCRIPTION_ITEM label='visible: '>  
+   This field contains the  <VERB>visible</VERB> property value
+   for the entity . It should  be <VERB>"on" </VERB> or <VERB>"off"</VERB>  .By default, 
+   the text is visible, the value's property is  <VERB>"on"
+   </VERB>. If <VERB>"off"</VERB> the text is not to display on the screen.
    </DESCRIPTION_ITEM>
 
    <DESCRIPTION_ITEM label='text: '>
@@ -28,13 +27,13 @@
 
 
    <DESCRIPTION_ITEM label='data: '>
-    This field is the vector  <VERB>[x,y]</VERB> of the origin of the
-    text on the screen.
+    This field is the vector  <VERB>[x,y]</VERB> of the origin
+    of the text in the data units of the axes.
    </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='font_size: '>
      The <VERB>font_size</VERB> property  is used to select the
-       type of size of text. It's value should be an integer in [0 5]
+       type of size of the text. Its value should be an integer in between 0 and 5
        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
      </DESCRIPTION_ITEM>
      <DESCRIPTION_ITEM label='font_style: '>
@@ -45,63 +44,71 @@
 
      </DESCRIPTION_ITEM>
      <DESCRIPTION_ITEM label='font_angle: '>
+     This property determines the orientation of the text string. 
+     Specify value of rotation in degrees.
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='foreground: '>
-      This field contains the color used to draw the text.
-      It's value should be a color index
-      (relative to the current colormap)
+      This field contains the color used to display the text.
+      Its value should be a color index (relative to the current colormap).
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='clip_state: '>
       This field contains the <VERB>clip_state</VERB> property
-      value for the text.  It's value should be :
+      value for the text.  Its value should be :
       <DESCRIPTION_INDENT>
          <DESCRIPTION_ITEM > 
-         <VERB>"off"</VERB> this means that the text is not clipped
+         <VERB>"off"</VERB> this means that the text is not clipped.
          </DESCRIPTION_ITEM>
 
          <DESCRIPTION_ITEM > 
          <VERB>"cliprf"</VERB> this means that the
-         text is clipped outside the Axes rectangle.
+         text is clipped outside the Axes box.
          </DESCRIPTION_ITEM>
 
         <DESCRIPTION_ITEM > 
          <VERB>"on"</VERB> this means that the
-         text  is clipped outside the rectangle given by the property  <VERB>clip_box</VERB>.
+         text is clipped outside the rectangle given by the property  <VERB>clip_box</VERB>.
          </DESCRIPTION_ITEM>
       </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='clip_box: '>
       This field contains the  <VERB>clip_box</VERB> property.
-      It's value should be an empty matrix if
-      clip_state is "off" or the vector <VERB>[x,y,w,h</VERB>] (upper-left point width height)
+      Its value should be an empty matrix if clip_state is "off" 
+      or the vector <VERB>[x,y,w,h</VERB>] (upper-left point width height).
      </DESCRIPTION_ITEM>
-  
+
+     <DESCRIPTION_ITEM label='parent: '> 
+      This property contains the handle of the parent. The parent of the text
+      entity should be of the type <VERB>"Axes"</VERB> or <VERB>"Agregation"</VERB>.
+     </DESCRIPTION_ITEM>
 
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
-   set("figure_style","new") //create a figure
-   a=get("current_axes");//get the handle of the newly created axes
+  <EXAMPLE><![CDATA[   
+
+  set("figure_style","new") //create a figure
+   a=get("current_axes");
    a.data_bounds=[0,0,1,1];
 
-   xstring(0.5,0.5,"Scilab is not esilaB",0,1)
+   xstring(0.5,0.6,"Scilab is not esilaB",0,0)
 
-   p=a.children
+   t=get("hdl")   //get the handle of the newly created object
 
-   p.foreground=9;
-   p.font_size=3;
-
+   t.foreground=9;
+   t.font_size=5;
+   t.font_style=5;
+   t.text="SCILAB";
+   t.font_angle=90;
 
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>xsegs</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>xtitle</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-<AUTHOR>Djamel Abdemouche  </AUTHOR>
+<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
 </MAN>
 
