@@ -146,10 +146,6 @@ c     statements of the function
                strcnt=1
             endif
          endif
-         if(psym.ne.num.and.psym.ne.name.and.psym.ne.rparen.and.
-     $        psym.ne.right.and.psym.ne.dot.and.psym.ne.quote) then
-            strcnt=1
-         endif
          goto 71
       elseif(sym.eq.name) then
          if(strcnt.eq.0.and.eqid(syn,func)) then
