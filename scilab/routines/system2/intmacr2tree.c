@@ -626,7 +626,7 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
   int nbelseifsorcases = 0;
 
   int newinstr=0; /* Used to call GetInstruction with enough parameters */
-
+  
   /* FOR */
   if(data[*index]==7)
     {
@@ -745,6 +745,7 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
 	      nbinstr = Top - TopSave;
 	      /* Create list of then instructions */
 	      C2F(mklist)(&nbinstr);
+	      last_eol_pos = -10; 
 	    }
 	  
 	  
@@ -781,7 +782,7 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
 		  GetInstruction(data,index,nblines,&newinstr);
 		  (*index)++;
 		}
-	      
+	      last_eol_pos = -10;
 	      codelgth = data[*index];
 	      (*index)++;
 	      endindex = *index + codelgth - 1;
@@ -1097,7 +1098,7 @@ static int CreateOperationTList(int *data,int *index)
     {
       /* Change operator */
       operator_index = 32;
-	  
+      
       /* First operand is placed before EOL */
       orig = last_eol_pos - 1;
       dest = Top + 1;
@@ -1799,6 +1800,7 @@ int complexity(int *data,int *index,int *lgth)
 	  cur_ind = cur_ind + 1 + nsiz;
 	  break;
 	case 19: /* Form recursive index list */
+	  nbop = nbop - data[cur_ind+1] + 1;
 	  cur_ind = cur_ind + 3;
 	  break;
 	case 20: /* exit */
@@ -1813,6 +1815,7 @@ int complexity(int *data,int *index,int *lgth)
 	  break;
 	case 23: /* Create variable from name */
 	  cur_ind = cur_ind + 1 + nsiz;
+	  nbop++;
 	  break;
 	case 24: /* Create an object with type 0 */
 	  cur_ind = cur_ind + 1;
