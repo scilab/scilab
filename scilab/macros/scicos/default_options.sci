@@ -26,6 +26,8 @@ options('Link')=[1,5] //black,red
 options('ID')=list([5 0],[4 0])
 options('Cmap')=col3d
 
+endfunction
 function options=scsoptlist(varargin)
 lt=['scsopt','3D','Background','Link','ID','Cmap']
 options=tlist(lt,varargin(:))
+endfunction

@@ -75,6 +75,7 @@ if write_sndata(fid,snd,y) then
 end
 mclose(fid);
 
+endfunction
 function [status]=write_sndata(fid,snd,data)
 status = 0;
 if snd('format')==1 then
@@ -96,6 +97,7 @@ if err~=0 then
   status = -1;
 end
 
+endfunction
 function [snd]=write_sndhdr(fid,Fs,nbits,method,sz)
 if method=='mu' then
   if nbits~=8 then
@@ -135,3 +137,4 @@ mput(snd('format'),'ul'); // data format
 mput(snd('rate'),'ul'); // sample rate
 mput(snd('chans'),'ul'); // channels
 mput(snd('info'),'c');  // info
+endfunction

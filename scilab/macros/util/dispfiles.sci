@@ -66,4 +66,4 @@ for k=1:size(tab,2)
 end
 t=[t(1);'|'+part('-',ones(1,max(length(t))-2))+'|';t(2:$)]
 write(%io(2),t,'(a)')
-
+endfunction

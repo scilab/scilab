@@ -21,3 +21,4 @@ y = f.*2.^(e+2);
 e(:) = ETAB(e);
 y = SCALE*(1-2*bool2s(sig)) .* (e+y);
  
+endfunction

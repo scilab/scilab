@@ -19,11 +19,4 @@ case 'define' then
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
   x=standard_define([3 3],model,[],gr_i)
 end
-
-
-
-
-
-
-
-
+endfunction

@@ -36,6 +36,7 @@ fec(noe_x',noe_y',trianl,z,strf," ",rect,aaint)
 //triang=size(trianl,1);
 //i_meshvisu(3,rect);
 
+endfunction
 function []=i_meshvisu(col,rect)
 // Mesh visualisation 
 // uses global variables 
@@ -53,6 +54,4 @@ y=matrix(y,triang,3);
 x=[x,x(:,1)]';y=[y,y(:,1)]'
 xpolys(x,y,col*ones(1,triang));
 xset("clipoff");
-
-
-
+endfunction

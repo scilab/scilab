@@ -79,9 +79,4 @@ for k=links
   end
 end
 syst(0)='blocd'
-
-
-
-
-
-
+endfunction

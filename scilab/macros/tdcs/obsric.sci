@@ -11,6 +11,4 @@ function []=obsric(q1,q2,r)
 [p]=ricc(f',(1/r)*h'*h,[q1,0;0,q2],'cont');
 l= (1/r) *p*h'
 [l]=resume(l);
-
-
-
+endfunction

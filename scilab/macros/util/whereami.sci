@@ -22,4 +22,4 @@ for k=2:nn
   end
 end
 write(%io(2),txt)
-
+endfunction

@@ -133,3 +133,4 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
  
 //done with cascade calculation of group delay
 end
+endfunction

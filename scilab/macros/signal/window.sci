@@ -144,5 +144,4 @@ function [win_l,cwp]=window(wtype,n,par)
    else
       error('Unknown window type --- program termination'),
    end
-
-
+endfunction

@@ -4,4 +4,4 @@ function Align_()
     scs_m_save=scs_m;nc_save=needcompile;
     [%pt,scs_m]=prt_align(%pt,scs_m)
     xinfo(' ')
-
+endfunction

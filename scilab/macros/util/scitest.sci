@@ -80,10 +80,12 @@ if ierr== 0 then //ref file exists
 end
 mydisp('----------------------------------------------------------')
 
+endfunction
 function mydisp(str)
 //write(result,str,'(a)')
 write(%io(2),str,'(a)')
 
+endfunction
 function myexec()
 if MSDOS then
   unix_s('del '+tmpfiles+'dia')
@@ -92,3 +94,4 @@ else
   unix_s('rm -f '+tmpfiles+'dia')
   unix_s('( '+SCI+'/bin/scilab -nw <'+tmpfiles+'tst > '+tmpfiles+'res ) 2> '+tmpfiles+'err')
 end
+endfunction

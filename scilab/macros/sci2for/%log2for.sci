@@ -14,5 +14,4 @@ else
   out=callfun(['mcompar',s1(1),s1(4),s1(5),''''+ops(iop,1)+'''',s2(1),s2(4),s2(5)],'0')
   stk=list(out+'.eq.1','-1','0','1','1')
 end
-
-
+endfunction

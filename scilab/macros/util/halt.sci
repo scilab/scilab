@@ -3,8 +3,4 @@ function []=halt()
 //!
 // Copyright INRIA
 mprintf('halt');mscanf('%c')
-
-
-
-
-
+endfunction

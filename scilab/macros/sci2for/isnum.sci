@@ -9,6 +9,4 @@ x =%t
 for c=y; 
    x= (find(c==ok) <>[]) & x;
 end 
-
-
-
+endfunction

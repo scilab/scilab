@@ -163,9 +163,4 @@ disp(timer())
 unsetmenu(curwin,'stop')
 enablemenus()
 needreplay=resume(needreplay)
-
-
-
-
-
-
+endfunction

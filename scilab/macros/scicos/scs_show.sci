@@ -35,6 +35,4 @@ drawobjs(scs_m),
 
 
 if pixmap then xset('wshow'),end
-
-
-
+endfunction

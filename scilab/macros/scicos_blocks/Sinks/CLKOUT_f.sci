@@ -105,11 +105,4 @@ case 'define' then
   label=string(prt)
   x=standard_define([1 1],model,label,' ')
 end
-
-
-
-
-
-
-
-
+endfunction

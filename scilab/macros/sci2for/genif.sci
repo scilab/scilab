@@ -12,4 +12,4 @@ elseif rhs==3 then
 else
   t=[' if('+cnd+') then';indentfor(t1);' endif']
 end
-
+endfunction

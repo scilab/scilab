@@ -9,3 +9,4 @@ if nargin == 2
     n = 100;
 end
 y = [d1*ones(1,n-1)+(0:n-2)*(d2-d1)/(n-1),d2];
+endfunction

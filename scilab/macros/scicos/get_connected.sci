@@ -21,7 +21,4 @@ else
   if typ=='clkin' then connected=[connected cip(find(cip>0))'],end
   if typ=='clkout' then connected=[connected cop(find(cop>0))'],end
 end
-
-
-
-
+endfunction

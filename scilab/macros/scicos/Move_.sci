@@ -3,5 +3,4 @@ function Move_()
 
     [%pt,scs_m]=do_stupidmove(%pt,scs_m)
     xinfo(' ')
-
-
+endfunction

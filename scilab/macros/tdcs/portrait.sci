@@ -81,6 +81,7 @@ lines(ncnl(1));
 [p_xdim,p_npts,p_nxx]=resume(p_xdim,p_npts,p_nxx);
 
 
+endfunction
 function []=addtitle(fch)
 // Adds know titles 
 //!
@@ -99,6 +100,7 @@ if fch=='lcomp',xtitle("Modele de competition linearise observe-comtrole ",...
     "population 1 ","population2 ",0);end
 
 
+endfunction
 function [res]=desorb(odem,x0,n1,fch,farrow,xdim);
 // Used by portrait 
 //!
@@ -145,6 +147,4 @@ for i=1:n2,
     end
 end
 [ylast]=resume(ylast)
-
-
-
+endfunction

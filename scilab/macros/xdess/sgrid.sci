@@ -66,3 +66,4 @@ end
 	xnumb(re(:,$)',im(:,$)',zeta);
 	xclip();
 	
+endfunction

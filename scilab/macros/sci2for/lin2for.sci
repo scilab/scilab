@@ -12,6 +12,4 @@ end
 setparam()
  
 txt=ins2for(lst,1)
-
-
-
+endfunction

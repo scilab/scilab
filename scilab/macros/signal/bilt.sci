@@ -67,3 +67,4 @@ n=coeff(num);
    else
       error('error bilt --- wrong order transform')
    end
+endfunction

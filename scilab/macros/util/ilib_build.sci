@@ -14,17 +14,4 @@ ilib_gen_Make(ilib_name,files,libs,makename);
 // we call make
 if info==1 then write(%io(2),'   running the makefile');end
 ilib_compile(ilib_name,makename);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+endfunction

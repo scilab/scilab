@@ -86,6 +86,7 @@ ylast=[ylast;ylast];
 lines(ncnl(1));
 [bcl_xdim,bcl_npts]=resume(bcl_xdim,bcl_npts);
 
+endfunction
 function [res]=desorb1(x0,n1,fch,farrow,xdim);
 //[res]=desorb1(x0,n1,fch,farrow,xdim);
 //!
@@ -111,5 +112,4 @@ xset("window",0);
 plot2d(xxx([1,3],:)',xxx([2,4],:)',[1,2],"111","(x1,x2)@observer ",...
 xdim);
 [ylast]=resume(ylast);
-
-
+endfunction

@@ -17,6 +17,4 @@ function [x]=sinc(n,fl)
    if ino2==no2 then xn(no2+1)=2*fl; xd(no2+1)=1;end
    x=xn./xd;
  
-
-
-
+endfunction

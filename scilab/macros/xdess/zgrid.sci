@@ -28,5 +28,4 @@ end;
 //-- the curves 
    plot2d(real(zw),imag(zw),1*ones(1,nr),"001");
    plot2d(real(zw),-imag(zw),1*ones(1,nr),"001");
-
-
+endfunction

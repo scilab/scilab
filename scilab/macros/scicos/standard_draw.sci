@@ -191,5 +191,4 @@ end
 xset('pattern',pat)
 xset('font',fnt(1),fnt(2))
 xset('thickness',1)
-
-
+endfunction

@@ -17,3 +17,4 @@ for i=1:nr
     d(i,j)=p(n(i,j):-1:1)*abs(str2code(h(i,j)))
   end
 end
+endfunction

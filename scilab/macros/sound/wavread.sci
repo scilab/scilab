@@ -107,11 +107,13 @@ else
   bits = [];
 end
 
+endfunction
 function [ID,Size]=find_cktype(fid)
 ID=stripblanks(ascii(mget(4,'c',fid)));
 Size=mget(1,'ui',fid)
 
 
+endfunction
 function [wFormatTag,nChannels,nSamplesPerSec,nAvgBytesPerSec,nBlockAlign,nBitsPerSample,cbSize]=read_wavefmt(fid,total_bytes)
 orig_pos = mtell(fid); 
 nbytes = 14; // # of required bytes in  header
@@ -141,6 +143,7 @@ if rbytes then
 end
 
 
+endfunction
 function [cbSize,nBitsPerSample]=read_fmt_pcm(fid,total_bytes)
 nbytes = 14; cbSize=[]; nBitsPerSample=[]; 
 // # of bytes already read 
@@ -161,6 +164,7 @@ if total_bytes > nbytes then
   end
 end
 
+endfunction
 function Data=read_wavedat(fid, Size, wFormatTag, nChannels, nBitsPerSample, ext)
 fmt_msg = [];
 select wFormatTag
@@ -195,6 +199,7 @@ if ~(fmt_msg==[]) then
 end
 
  
+endfunction
 function Data=read_dat_pcm(fid,total_bytes , nChannels, nBitsPerSample, ext)
 // Determine # bytes/sample - format requires rounding
 //  to next integer number of bytes:
@@ -283,3 +288,4 @@ end
  
  
  
+endfunction

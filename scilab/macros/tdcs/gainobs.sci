@@ -12,7 +12,4 @@ if rhs==1,ue=1,end
 l=ppol(f',h',pole)
 l=l'
 [f,g,h,l]=resume(f,g,h,l)
-
-
-
-
+endfunction

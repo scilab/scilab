@@ -103,5 +103,4 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
    else,
       error('section step is bigger then section length');
    end
-
-
+endfunction

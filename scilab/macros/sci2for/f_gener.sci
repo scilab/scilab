@@ -135,6 +135,4 @@ else
 
 end
 stk=list(outn,'-1','1',s2(4),s2(5))
-
-
-
+endfunction

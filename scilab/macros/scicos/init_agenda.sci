@@ -30,3 +30,4 @@ if ninit>1 then
       clkptr(initexe(2:ninit,1))+initexe(2:ninit,2)-1;
   evtspt(clkptr(initexe(ninit,1))+initexe(ninit,2)-1)=0;
 end
+endfunction

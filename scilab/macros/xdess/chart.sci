@@ -103,3 +103,4 @@ for teta=angl,
     plot2d(360+[w,-360*ones(w)-w(n:-1:1)],[module,module(n:-1:1)],[flags(4),flags(4)],"000");
   end
 end;
+endfunction

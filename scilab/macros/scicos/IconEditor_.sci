@@ -7,4 +7,4 @@ function IconEditor_()
     enablemenus()
     xinfo(' ')
     edited=%t  
-
+endfunction

@@ -16,6 +16,4 @@ res=list(s1(1)+symb+s2(1),'1')
 if symb=='\' then res(2)='2',end
 if symb=='.\' then res(2)='2',end
 //if symb=='**' then res(2)='2',end
-
-
-
+endfunction

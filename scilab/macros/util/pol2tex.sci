@@ -59,5 +59,4 @@ for i=3:np
  end
 end
 if ok==' ' then tt='0',end
-
-
+endfunction

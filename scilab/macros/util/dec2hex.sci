@@ -28,4 +28,4 @@ for ii=1:size(v,'*')
   h(kz(ii))=code2str(g)
 end
 h=matrix(h,nr,nc)
-
+endfunction

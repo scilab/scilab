@@ -34,6 +34,4 @@ function [xk]=mfft(x,flag,dim)
    for k=1:maxi(size(dim)),
       xk=fft(xk,flag,dim(k),prod(dims(1:k)));
    end,
-
-
-
+endfunction

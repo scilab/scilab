@@ -5,4 +5,4 @@ function Addnewblock_()
       getf(%fct),
       newblocks=[newblocks;%fct]
     end
-
+endfunction

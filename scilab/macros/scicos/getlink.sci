@@ -316,3 +316,4 @@ drawobj(lk)
 xset('dashes',dash)
 needcompile=4
 [scs_m_save,nc_save,enable_undo,edited]=resume(scs_m_save,nc_save,%t,%t)
+endfunction

@@ -27,3 +27,4 @@ function %helps=initial_help_chapters()
 	'/man/tdcs'		,'TdCs']
 
 %helps=[ SCI+%helps(:,1),%helps(:,2)];
+endfunction

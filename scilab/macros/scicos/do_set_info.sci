@@ -12,3 +12,4 @@ else
   ok=%t
   new_info=list(new_info)
 end
+endfunction

@@ -7,4 +7,4 @@ for blkout=1:length(bllst)
   end	
 end
 lnkptr=cumsum([1;lnkbsz])
-
+endfunction

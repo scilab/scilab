@@ -37,3 +37,4 @@ select tr_type
 end
 [pt,zt,gt]=bilt(pd,zd,gd,num,den);
 hzt=rlist(gt*real(poly(zt,'z')),real(poly(pt,'z')),'d');
+endfunction

@@ -34,9 +34,4 @@ if prod(size(lst))>0 then
 else
   fname=[]
 end
-
-
-
-
-
-
+endfunction

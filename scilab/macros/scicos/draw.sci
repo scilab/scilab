@@ -9,7 +9,4 @@ for k=2:nx
      drawlink(o)
    end
 end
-
-
-
-
+endfunction

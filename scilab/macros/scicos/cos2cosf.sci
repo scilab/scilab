@@ -66,6 +66,7 @@ for k=2:size(scs_m)
 //  write(u,t,'(a)')
 end
 
+endfunction
 function t=catinstr(t,t1,n)
 sep=','
 dots='.'+'.';
@@ -76,3 +77,4 @@ else
   bl1=' ';bl1=part(bl1,1:n)
   t=[t;bl1(ones(size(t1,1),1))+t1]
 end
+endfunction

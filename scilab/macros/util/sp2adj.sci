@@ -17,3 +17,4 @@ else,
 [lp,la,ls]=m6ta2lpd(ij(:,1)',ij(:,2)',N+1,N)
 lp=lp(:);ls=ls(:);
 end;
+endfunction

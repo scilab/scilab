@@ -61,3 +61,4 @@ case 4 then  // full compilation
     //%state0=%cpr(1)
   end
 end
+endfunction

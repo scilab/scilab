@@ -29,7 +29,4 @@ case 'define' then
   model=list('split',[],[],1,[1;1],[],[],[],[],'d',[%f,%f,%f],[%f %f],' ',list())
   x=standard_define([1 1]/3,model,[],[])
 end
-
-
-
-
+endfunction

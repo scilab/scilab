@@ -27,6 +27,4 @@ rand('normal');
    v=r2'*rand(ones(x0));
    x1=f*x0+g*u;
    y=h*x0+v;
-
-
-
+endfunction

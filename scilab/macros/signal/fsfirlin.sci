@@ -18,6 +18,4 @@ function [hst]=fsfirlin(hd,flag)
    eps=(-1)**(n-1);
    for j=1:n1-1,hst=hst+hd(j+1)*[scd(-4*j+4*n+1:-4*j+6*n+1)+..
    eps*scd(4*j+1:4*j+2*n+1)];end;
-
-
-
+endfunction

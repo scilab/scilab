@@ -17,6 +17,7 @@ end
 
 if version<>'scicos2.5.1' then scs_m=do_version251(scs_m),end
 
+endfunction
 function scs_m=do_version251(scs_m)
 nx=size(scs_m)
 obsolete=%f
@@ -58,6 +59,7 @@ if obsolete then
       'please replace them with the new block sum'])
 end  
 
+endfunction
 function scs_m=do_version231(scs_m)
 
 //2.3.1 to 2.4 version
@@ -122,6 +124,7 @@ for k=2:nx
 end
 
 
+endfunction
 function x_new=do_version23(scs_m)
 //2.3 to 2.3.1
 x_new=list()
@@ -144,9 +147,11 @@ for k=2:nx
 end
 
 
+endfunction
 function o=block2_version(o)
 if o(3)(6)<>[] then o(3)(12)(2)=%t;end
 
+endfunction
 function o=block_version(o)
 [graphics,model]=o(2:3)
 for k=2:5, model(k)=ones(model(k),1),end
@@ -907,6 +912,7 @@ case 'FOR_f' then
   o(3)=model
   o=replace_firing(o)
 
+endfunction
 function o=replace_firing(o)
 firing=o(3)(11)
 cout=o(3)(5)
@@ -923,6 +929,7 @@ else
   pause
 end
 
+endfunction
 function x_new=do_version22(scs_m)
 x_new=list()
 wpar=scs_m(1)
@@ -953,4 +960,4 @@ for k=2:nx
   end
   x_new(k)=o;
 end
-
+endfunction

@@ -58,4 +58,4 @@ if f_legs then
 	end 
 end
 if r_flags(1) then  xgrid(); end
-
+endfunction

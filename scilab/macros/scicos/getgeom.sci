@@ -14,4 +14,4 @@ if exists('windows')<>1|slevel<>1|size(path,'*')<>1 then
 end
 orig=scs_m(path)(2)(1);sz=scs_m(path)(2)(2)
 g=[windows(1,2);orig(:);sz(:)]
-
+endfunction

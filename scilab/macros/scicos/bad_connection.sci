@@ -68,5 +68,4 @@ else // connected links do not verify block contraints
     unhilite_obj(scs_m(path(1)))
   end
 end
-
-
+endfunction

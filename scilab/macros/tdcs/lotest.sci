@@ -15,6 +15,7 @@ if rhs <=4 then  portr3d(f_l,odem,xdim,npts);
 else  portr3d(f_l,odem,xdim,npts,pinit);end
 
 
+endfunction
 function [y]=lorenz(t,x)
 //[y]=lorenz(t,x)
 // The lorenz system 
@@ -25,6 +26,7 @@ y(3)=-beta*x(3)+x(1)*x(2);
 
 
 
+endfunction
 function []=ilo(sig,ro,beta)
 //[]=ilo([sig,ro,beta])
 // Initialisation des parametres sig ro et beta
@@ -37,6 +39,7 @@ if rhs==0,sig=10,ro=28,beta=8/3;end
 
 
 
+endfunction
 function []=ilof(sig,ro,beta)
 //[]=ilof([sig,ro,beta])
 // Initialisation des parametres sig ro et beta
@@ -46,6 +49,4 @@ function []=ilof(sig,ro,beta)
 [lhs,rhs]=argn(0)
 if rhs==0,sig=10,ro=28,beta=8/3;end;
 fort('loset',sig,1,'r',ro,2,'r',beta,3,'r','sort');
-
-
-
+endfunction

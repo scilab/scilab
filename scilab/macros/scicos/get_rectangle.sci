@@ -29,3 +29,4 @@ if rep(3)==2 then ok=%f,end
 
 driver(dr)
 xset('pattern',pat)
+endfunction

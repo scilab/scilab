@@ -12,7 +12,4 @@ else
    xset("window",win_num);xclear(win_num);xtape('replay',win_num);
    xset("window",cw);
 end 
-
-
-
-
+endfunction

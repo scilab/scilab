@@ -4,3 +4,4 @@ function replot(rect)
 // Copyright INRIA
 win=xget("window");
 xclear();xtape('replaysc',win,rect);
+endfunction

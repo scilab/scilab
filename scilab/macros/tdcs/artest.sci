@@ -13,6 +13,7 @@ x_message(["Integration of the arnold equation";
 portr3d(f_l,odem,xdim,npts);
 
 
+endfunction
 function [xdot]=arnold(t,x)
 //[xdot]=arnold(t,x)
 // an example of dynamical system with chaotic behaviour
@@ -23,6 +24,7 @@ xdot(2)= cos(x(3)) + sin(x(1))
 xdot(3)= cos(x(1)) + sin(x(2))
 
 
+endfunction
 function []=iarf(aa)
 //[]=iarf([aa])
 // Initialisation des parametres aa(6) pour l'equation d'arnold
@@ -35,7 +37,4 @@ function []=iarf(aa)
 [lhs,rhs]=argn(0)
 if rhs==0, aa=ones(1,6);end
 fort('arset',aa,1,'r','sort');
-
-
-
-
+endfunction

@@ -8,4 +8,4 @@ function Calc_()
     restore_scs_gc(scs_gc);scs_gc=null()
     enablemenus()
     Cmenu='Replot'
-
+endfunction

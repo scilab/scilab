@@ -34,4 +34,4 @@ d=sqrt(d)
 pt(1)=xp(k)
 pt(2)=yp(k)
 if k>np then ind=ki(k-np),else ind=-k,end
-
+endfunction

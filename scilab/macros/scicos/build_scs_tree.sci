@@ -39,3 +39,4 @@ for k=blks
   end
   path($)=[]
 end
+endfunction

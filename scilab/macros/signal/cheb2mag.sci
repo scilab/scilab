@@ -19,5 +19,4 @@ function [h2]=cheb2mag(n,omegar,A,sample)
    Tn=chepol(n,'x');             //n-th Chebyshev polynomial
    frd=freq(Tn,1,omegar*un./sample);   //frd=Tn(omegar/sample)
    h2=un./(un+(A*A-1)*un./real(frd.*frd))
-
-
+endfunction

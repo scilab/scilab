@@ -35,3 +35,4 @@ else
   mput(ascii(part(str,k1:n)),'uc',fd);
   if opened then mclose(fd),end
 end
+endfunction

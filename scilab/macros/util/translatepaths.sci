@@ -43,4 +43,4 @@ for k1=1:size(mfiles,1)
     mfile2sci(mpath,res_path,%f,%t)
   end
 end
-
+endfunction

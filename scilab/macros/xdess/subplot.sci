@@ -10,3 +10,4 @@ j=int((p-1)/n)
 i=p-1-n*j
 
 xsetech([i/n,j/m,1/n,1/m])
+endfunction

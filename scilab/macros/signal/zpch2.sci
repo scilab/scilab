@@ -32,6 +32,4 @@ normal=alpha.*alpha+beta.*beta;
 pols=omegar*(alpha-%i*beta)./normal;
 gain=abs(real(prod(pols)/prod(zers)));
  
-
-
-
+endfunction

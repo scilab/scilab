@@ -16,6 +16,4 @@ else
   end
   M=mlist(['hm','dims','entries'],dims,v(:))
 end
-
-
-
+endfunction

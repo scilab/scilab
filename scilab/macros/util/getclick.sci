@@ -34,7 +34,4 @@ jj=find(windows(:,2)==win)
     end
   end
 end
-
-
-
-
+endfunction

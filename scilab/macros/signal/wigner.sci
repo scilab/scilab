@@ -33,5 +33,4 @@ while t<=l-n,
   t=t+deltat;
 end;
 tab=tab(:,1:zp);
-
-
+endfunction

@@ -23,5 +23,4 @@ if lab<>[] then
   scs_m(K)=o
   mod=%t
 end
-
-
+endfunction

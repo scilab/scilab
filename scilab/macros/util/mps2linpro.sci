@@ -27,3 +27,4 @@ mi=size(keq,'*')
 if lhs==1 then
   p=tlist(['linpro','p','C','b','ci','cs','mi'],p,C,b,ci,cs,mi)
 end
+endfunction

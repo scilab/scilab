@@ -5,3 +5,4 @@ function [t]=soundsec (n,rate)
 defaultrate=22050;
 if rhs <=1 ; rate=defaultrate; end;
 t= 0:2*%pi/rate:2*n*%pi;
+endfunction

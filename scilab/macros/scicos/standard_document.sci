@@ -237,3 +237,4 @@ case 'Link' then
 else
   texte=[]
 end
+endfunction

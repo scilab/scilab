@@ -43,6 +43,4 @@ for i=1:prod(size(gain))
   plot2d(real(rf),-imag(rf),[3],"000")
 //  xstring(xx,xy,g)
 end;
-
-
-
+endfunction

@@ -84,7 +84,7 @@ rp=bi+zz(1:nbech)'*ai;
 rp=rp(1:n);
 att=zz(nbech+1);
 
+endfunction
 function [bidon]=dirich(n,p,q)
 bidon=0.5;
-
-
+endfunction

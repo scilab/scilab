@@ -300,5 +300,4 @@ while kk<>[] then
     txt=[txt(1:k1-1);t1;txt(k1+1:prod(size(txt)))]
   end
 end
-
-
+endfunction

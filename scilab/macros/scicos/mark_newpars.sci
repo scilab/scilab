@@ -27,5 +27,4 @@ else
     newparameters(size(newparameters)+1)=k
   end
 end
-
-
+endfunction

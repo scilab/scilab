@@ -100,4 +100,4 @@ while %t
   enablemenus()
 end
 xinfo(' ')
-
+endfunction

@@ -74,6 +74,7 @@ end; //fin for ko ...
 sd=resume(sd)
 
 
+endfunction
 function sd=move(sd)
 //deplacement d'un objet
 // Copyright INRIA
@@ -185,6 +186,7 @@ end; //fin for ko ...
 
 
 
+endfunction
 function [sd1]=symbs(sd,del)
 [lhs,rhs]=argn(0);sd1=[];
 if rhs<=0 then 
@@ -199,6 +201,7 @@ else
 end
 xset("mark",n1,dime);
 
+endfunction
 function [sd1]=dashs(sd,del)
 [lhs,rhs]=argn(0);sd1=[];
 if rhs<=0 then 
@@ -213,6 +216,7 @@ else
 end 
 xset("dashes",n1);
 
+endfunction
 function [sd1]=patts(sd,del)
 [lhs,rhs]=argn(0);sd1=[];
 if rhs<=0 then 
@@ -228,6 +232,7 @@ else
 end
 xset("pattern",n1);
 
+endfunction
 function [sd1]=Thick(sd,del)
 [lhs,rhs]=argn(0);sd1=[];
 if rhs<=0 then 
@@ -247,6 +252,7 @@ else
 end
 xset("thickness",n1);
 
+endfunction
 function sd1 =rect(sd,del)
 [lhs,rhs]=argn(0);sd1=[];
 if rhs<=0 then //get
@@ -271,6 +277,7 @@ elseif del=='mov' then //move
 end
 
 
+endfunction
 function sd1=frect(sd,del)
 [lhs,rhs]=argn(0);sd1=[];
 if rhs<=0 then // get
@@ -295,6 +302,7 @@ elseif del=='mov' then //move
 end
 
 
+endfunction
 function sd1=cerc(sd,del)
 [lhs,rhs]=argn(0);sd1=[];
 if rhs<=0 then // get
@@ -317,6 +325,7 @@ elseif del=='mov' then //move
 end;
 
 
+endfunction
 function sd1=fcerc(sd,del)
 [lhs,rhs]=argn(0);sd1=[];
 if rhs<=0 then // get
@@ -339,6 +348,7 @@ elseif del=='mov' then //move
 end;
 
 
+endfunction
 function [sd1]=fleche(sd,del)
 [lhs,rhs]=argn(0);sd1=[]
 if rhs<=0 then // get
@@ -369,6 +379,7 @@ elseif del=='mov' then //move
   sd(3)=sd(3)-(y0-yo)
 end
 
+endfunction
 function [sd1]=comment(sd,del)
 [lhs,rhs]=argn(0),sd1=[];
 if rhs<=0 then // get
@@ -390,6 +401,7 @@ elseif del=='mov' then //move
   sd1=sd;sd1(2)(1)=xo;sd1(2)(2)=yo;
 end;
 
+endfunction
 function [sd1]=ligne(sd,del)
 // polyline 
 [lhs,rhs]=argn(0);sd1=[];
@@ -412,6 +424,7 @@ elseif del=='mov' then //move
 end;
 
 
+endfunction
 function [sd1]=fligne(sd,del)
 // filled polyline 
 [lhs,rhs]=argn(0);sd1=[];
@@ -434,6 +447,7 @@ elseif del=='mov' then //move
 end;
 
 
+endfunction
 function [sd1]=curve(sd,del)
 // smoothed curve 
 [lhs,rhs]=argn(0);sd1=[];
@@ -449,6 +463,7 @@ else
 end;
 xpoly(z(1,:)',z(2,:)',"lines");
 
+endfunction
 function [sd1]=points(sd,del)
 // polymark 
 [lhs,rhs]=argn(0);sd1=[];
@@ -470,6 +485,7 @@ elseif del=='mov' then //move
   sd(2)=[z(1,:)-(x0-xo);z(2,:)-(y0-yo)]
 end;
 
+endfunction
 function [sd1]=grclipoff(sd,del)
 [lhs,rhs]=argn(0),sd1=[];
 if rhs<=0 then ,
@@ -477,6 +493,7 @@ if rhs<=0 then ,
 end;
 xclip();
 
+endfunction
 function [sd1]=grclipon(sd,del)
 [lhs,rhs]=argn(0),sd1=[];
 if rhs<=0 then ,
@@ -485,6 +502,7 @@ end;
 xclip('clipgrf');
 
 
+endfunction
 function []=redraw(sd,s_t)
 ksd=size(sd)
 plot2d(0,0,[-1],s_t," ",sd(2));
@@ -512,6 +530,7 @@ for k=3:ksd,
   end
 end
 
+endfunction
 function [x0,y0,x,y,ibutton]=xgetm(m_m) 
 // Object aquisition 
 kpd=driver();
@@ -536,6 +555,7 @@ xset("alufunction",alu);
 driver(kpd);
 
 
+endfunction
 function []=d_xrect(x0,yy0,x,y)
 xi=min(x0,x);
 w=abs(x0-x);
@@ -543,6 +563,7 @@ yi=max(yy0,y);
 h=abs(yy0-y);
 xrect(xi,yi,w,h);
 
+endfunction
 function []=d_xfrect(x0,yy0,x,y)
 xi=min(x0,x);
 w=abs(x0-x);
@@ -550,6 +571,7 @@ yi=max(yy0,y);
 h=abs(yy0-y);
 xrects([xi,yi,w,h]',xget('pattern'));
 
+endfunction
 function []=d_circle(c1,c2,x1,x2)
 [lhs,rhs]=argn(0);
 if rhs==2 then r=c2;c2=c1(2);c1=c1(1);
@@ -558,6 +580,7 @@ else
 end
 xarc(c1-r,c2+r,2*r,2*r,0,64*360);
 
+endfunction
 function []=d_fcircle(c1,c2,x1,x2)
 [lhs,rhs]=argn(0);
 if rhs==2 then r=c2;c2=c1(2);c1=c1(1);
@@ -566,6 +589,7 @@ else
 end
 xfarc(c1-r,c2+r,2*r,2*r,0,64*360);
 
+endfunction
 function d_arrow(c1,c2,x1,x2)
 [lhs,rhs]=argn(0);
 if rhs<>4 then 
@@ -576,6 +600,7 @@ else
 end
 xarrows([c1;x1],[c2;x2],sz,-1);
 
+endfunction
 function [z]=xgetpoly(m_m) 
 // interactive polyline aquisition m_m is 
 // used to draw between aquisitions 
@@ -610,13 +635,16 @@ xset("alufunction",alu);
 if ll==1 then z=[];end
 driver(kpd);
 
+endfunction
 function []=d_seg(x1,y1,x2,y2)
 xpoly([x1,x2],[y1,y2],"lines");
 
+endfunction
 function []=d_point(x1,y1,x2,y2)
 xpoly([x1,x2],[y1,y2],"marks");
 
 
+endfunction
 function [xo,yo]=move_object(inst,xo,yo)
 // Object aquisition 
 xos=xo;yos=yo
@@ -638,4 +666,4 @@ if ibutton==2 then xo=xos;yo=yos,end
 xset("alufunction",alu);
 driver(kpd);
 execstr(inst) //draw
-
+endfunction

@@ -14,3 +14,4 @@ if alreadyran then
     message('End problem, see message in scilab window')
   end
 end
+endfunction

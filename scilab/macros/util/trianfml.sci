@@ -48,6 +48,4 @@ for nli=1:mf
   f_tra=f_tra(2:mf_tra,2:nf_tra)
  end
 end;
-
-
-
+endfunction

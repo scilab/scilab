@@ -28,5 +28,4 @@ y2=matrix(y+ep,1,n1*n2);
 xset("clipgrf");
 xsegs([x1;x1],[y1;y2]);
 xclip();
-
-
+endfunction

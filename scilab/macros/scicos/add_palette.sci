@@ -7,3 +7,4 @@ for k=1:n
   [ok,scs_m,cpr,edited]=do_load(path(k),'palette')
   if ok then palettes(kpal(k))=scs_m;end
 end
+endfunction

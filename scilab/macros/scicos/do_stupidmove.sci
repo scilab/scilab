@@ -35,6 +35,7 @@ elseif scs_m(k)(1)=='Link' then
 end
 [scs_m_save,enable_undo,edited,nc_save,needreplay]=resume(scs_m_save,%t,%t,needcompile,needreplay)
 
+endfunction
 function scs_m=stupid_moveblock(scs_m,k,xc,yc)
 // Move  block k and modify connected links if any
 //!
@@ -171,6 +172,7 @@ else // move an unconnected block
   if pixmap then xset('wshow'),end
 end
 
+endfunction
 function scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
 o=scs_m(k)
 [xx,yy,ct]=o([2 3 7])
@@ -238,6 +240,7 @@ driver(dr)
 draw_link_seg(o,seg)
 if pixmap then xset('wshow'),end
 
+endfunction
 function [k,wh,objs]=stupid_getobj(objs,pt)
 n=size(objs)
 wh=[];
@@ -276,6 +279,7 @@ for i=2:n //loop on objects
   end
 end
 
+endfunction
 function [d,pt,ind]=stupid_dist2polyline(xp,yp,pt,pereps)
 // computes minimum distance from a point to a polyline
 //d    minimum distance to polyline
@@ -317,6 +321,7 @@ if k>np then ind=ki(k-np),else ind=-k,end
 
 
 
+endfunction
 function draw_link_seg(o,seg)
   ct=o(7);c=ct(1),pos=o(6)
   if pos(2)>=0 then
@@ -329,16 +334,4 @@ function draw_link_seg(o,seg)
     xset('dashes',d)
     xset('thickness',thick)
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
+endfunction

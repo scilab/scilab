@@ -38,5 +38,4 @@ function [ar,sigma2,rc]=lev(r)
       sigma2=(1-ak1(k)*conj(ak1(k)))*sigma2;
       ar=ak1;
    end,
-
-
+endfunction

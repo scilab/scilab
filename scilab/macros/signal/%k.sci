@@ -29,5 +29,4 @@ function [K]=%k(m)
       c=cn;
    end,
    K=%pi*un./(2*a);
-
-
+endfunction

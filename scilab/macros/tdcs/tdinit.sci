@@ -54,6 +54,7 @@ ppr,ppa,pps,ppb,ppk,ppl,qeps,...
 q1linper,q2linper,rlinper,ppm,alin,p_ppr,p_ppa,p_ppm,p_ppb,p_ppk,lic_a,lic_b)
 
 
+endfunction
 function [k,debit,x2in]=ibio()
 // initialisation du bioreactur
 
@@ -71,6 +72,7 @@ k=k;debit=debit;x2in=x2in;
 if x<>[] then k=evstr(x(1));debit=evstr(x(2));x2in=evstr(x(3));end
 
 
+endfunction
 function [ppr,ppa,pps,ppb,ppk,ppl]=icompet()
 
 // Copyright INRIA
@@ -91,6 +93,7 @@ ppk=evstr(x(5));
 ppl=evstr(x(6));end
 
 
+endfunction
 function [qeps]=icycl()
 
 // Copyright INRIA
@@ -103,6 +106,7 @@ if qeps_r<>[] then qeps=qeps_r;end
 
 
 
+endfunction
 function [alin]=ilinear()
 
 // Copyright INRIA
@@ -111,6 +115,7 @@ rep=x_matrix(['xdot=a*x';'Matrice 2x2 du systeme lineaire'],alin);
 if rep<>[] then alin=rep;end
 
 
+endfunction
 function [alin,qeps,q1linper,q2linper,rlinper]=ilinp()
 
 // Copyright INRIA
@@ -137,6 +142,7 @@ rep=x_matrix([tit;'Enter q2linper'],q2linper);
 if rep<>[] then q2linper=rep;end
 
 
+endfunction
 function [lic_a,lic_b]=ilic()
 
 // Copyright INRIA
@@ -149,6 +155,7 @@ rep=x_matrix([tit;"Enter b"],lic_b)
 if rep<>[] then lic_b=rep;end
 
 
+endfunction
 function [p_ppr,p_ppa,p_ppm,p_ppb,p_ppk]=ip_p()
 
 // Copyright INRIA
@@ -169,4 +176,4 @@ p_ppm=evstr(x(3));
 p_ppb=evstr(x(4));
 p_ppk=evstr(x(5));
 end
-
+endfunction

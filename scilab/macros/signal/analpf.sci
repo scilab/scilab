@@ -49,4 +49,4 @@ function [hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
    else
       error('Unknown design type --- program termination'),
    end
-
+endfunction

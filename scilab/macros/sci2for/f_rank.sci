@@ -101,4 +101,4 @@ txt=[txt;t0;
 [nwrk]=freewrk(nwrk,s)
 [nwrk]=freewrk(nwrk,wrk)
 stk=list(var,'0','0','1','1')
-
+endfunction

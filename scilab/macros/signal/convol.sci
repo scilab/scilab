@@ -46,7 +46,4 @@ elseif lhs+rhs==4 then
 else
   y=y(1:n+m-1) //no update
 end
-
-
-
-
+endfunction

@@ -38,4 +38,4 @@ else
     stk(top)=list(o(k),'-1',typ(k),rsiz(k),csiz(k))
   end
 end
-
+endfunction

@@ -82,5 +82,4 @@ case %select then
   txt=[txt;' endif']
 end
 //write(6,txt)
-
-
+endfunction

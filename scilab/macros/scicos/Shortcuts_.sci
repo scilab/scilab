@@ -64,4 +64,4 @@ if Cmenu<>'Quit' then
   end
   xinfo(' ')
 end
-
+endfunction

@@ -38,4 +38,4 @@ drawobjs(palettes(kpal))
 if pixmap then xset('wshow'),end
 xinfo('Palette: may be used to copy  blocks or regions')
 xset('window',lastwin)
-
+endfunction

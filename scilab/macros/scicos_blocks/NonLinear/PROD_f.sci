@@ -77,7 +77,4 @@ case 'define' then
   model=list(list('prod',2),[-1;-1],-1,[],[],[],[],[],[],'c',[],[%t %f],' ',list())
   x=standard_define([1 1]/1.2,model,[],[])
 end
-
-
-
-
+endfunction

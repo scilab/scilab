@@ -48,5 +48,4 @@ case 'define' then
     'xstringb(orig(1)+dx,orig(2)+dy,txt,w,h,''fill'');']
   x=standard_define([2 2],model,label,gr_i)
 end
-
-
+endfunction

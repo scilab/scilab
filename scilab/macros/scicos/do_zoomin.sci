@@ -7,3 +7,4 @@ if size(wdm,'*')<6 then wdm(3)=0;wdm(4)=0;wdm(5)=wdm(1);wdm(6)=wdm(2);end
 
 //dd=wdm(3:6)*.9;
 //wdm(3:6)=dd;
+endfunction

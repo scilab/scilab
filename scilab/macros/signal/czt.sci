@@ -47,6 +47,4 @@ function [czx]=czt(x,m,w,phi,a,theta)
 //preserve m points and divide by h(n)
  
    czx=hcg(1:m)./h(nm:nm+m-1);
-
-
-
+endfunction

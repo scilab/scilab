@@ -57,5 +57,4 @@ case 4 then plot3d(xx,yy,zz,T,A,leg,def(4),bnds)
 case 5 then plot3d(xx,yy,zz,T,A,leg,flags,bnds) 
 case 6 then plot3d(xx,yy,zz,T,A,leg,flags,ebox) 
 end
-
-
+endfunction

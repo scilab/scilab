@@ -28,3 +28,4 @@ while liaisons_a_traiter <> []
     liaisons_a_traiter = liaisons_a_traiter(find(liaisons_a_traiter <> i))
   end
 end
+endfunction

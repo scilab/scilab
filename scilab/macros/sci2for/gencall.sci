@@ -11,4 +11,4 @@ for k=2:n-1,
   t=t+arg(k)+','
 end
 t=t+arg(n)+')'
-
+endfunction

@@ -12,3 +12,4 @@ end
 if RHS==2 then
 x=read(%io(1),1,1,'(a)')
 end
+endfunction

@@ -9,6 +9,4 @@ function [y]=lgfft(x)
    pnz=int(log(nz)/log(2));
    rz=nz-2**pnz;
    if rz == 0 then y=nz; else y=2**(pnz+1); end;
-
-
-
+endfunction

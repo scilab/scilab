@@ -203,9 +203,9 @@ if LHS==1
  num=syslin('c',num/den)
 end
 
+endfunction
 function m=fliplr(m)
 //Utility fct
 [p,q]=size(m);
 m=m(:,q:-1:1);
-
-
+endfunction

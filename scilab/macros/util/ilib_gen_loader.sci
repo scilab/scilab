@@ -23,7 +23,4 @@ for x=table(2:$,1)' ;mfprintf(fd,"            ''%s'';\n",x);end
 mfprintf(fd,"];\n");
 mfprintf(fd,"addinter(%s_path+''/%s.%s'',''%s'',functions);\n",name,name,lib_suf,name);
 mclose(fd);
-
-
-
-
+endfunction

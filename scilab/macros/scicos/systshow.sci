@@ -26,5 +26,4 @@ for k=2:nx
     end
   end
 end
-
-
+endfunction

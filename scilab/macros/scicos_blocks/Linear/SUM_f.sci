@@ -71,3 +71,4 @@ case 'define' then
   
   x=standard_define([1 1]/1.2,model,label,gr_i)
 end
+endfunction

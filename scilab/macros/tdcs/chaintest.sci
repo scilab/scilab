@@ -15,6 +15,7 @@ end;
 x_message(["Integration of a Three-species food chain model "]);
 portr3d(f_l,odem,xdim,npts);
 
+endfunction
 function [xdot]=chain(t,x)
 fch_f1= ch_f1(x(1))
 fch_f2= ch_f2(x(2))
@@ -23,9 +24,11 @@ x2= fch_f1*x(2) -  fch_f2*x(3) - 0.4*x(2)
 x3= fch_f2*x(3) - 0.01*x(3)
 xdot=[x1;x2;x3];
 
+endfunction
 function [z1]=ch_f1(u)
 z1=5*u/(1+b1*u)
 
+endfunction
 function [z2]=ch_f2(u)
 z2=0.1*u/(1+2*u)
-
+endfunction

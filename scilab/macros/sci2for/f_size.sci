@@ -83,4 +83,4 @@ else
     stk=list(s(5),'1','0','1','1')
   end
 end
-
+endfunction

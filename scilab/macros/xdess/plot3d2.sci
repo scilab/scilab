@@ -41,4 +41,4 @@ if size(opts,2)+isvect+3 <rhs then  error('invalid named arguments'),end
 
 
 execstr('plot3d(xx,yy,zz,'+strcat(opts,',')+')')
-
+endfunction

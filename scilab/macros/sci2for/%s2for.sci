@@ -41,6 +41,4 @@ else
     stk=list(out,'-1',s2(3),s2(4),s2(5))
   end
 end
-
-
-
+endfunction

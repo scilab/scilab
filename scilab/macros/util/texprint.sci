@@ -89,3 +89,4 @@ case 17  then
 else
   execstr('tt=%'+typeof(a)+'_texprint(a)','errcatch')
 end
+endfunction

@@ -12,5 +12,4 @@ elseif typ==0 then  //text, block shape,
 elseif typ==1 then //regular links
   clr=options('Link')(1),
 end
-
-
+endfunction

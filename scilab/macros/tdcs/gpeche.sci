@@ -20,6 +20,7 @@ grad =   xk-c*ones(xk) - pk.*xk
 umax=10;
 ukp1=maxi(mini(uk- pasg*grad,umax*ones(1,npts)),0*ones(1,npts));
 
+endfunction
 function [ut]=peche(t)
 //[ut]=peche(t)
 // la loi de commande u(t) constante par morceaux
@@ -28,11 +29,10 @@ function [ut]=peche(t)
 [n1,n2]=size(uk);
 ut=uk(mini(maxi(ent(t*npts),1),n2));
 
+endfunction
 function [pdot]=pechep(t,p)
 //[pdot]=pechep(t,p)
 //equation adjointe
 //!
 pdot=-p*(10*( 1 -2*traj(t)/K) - peche(t)) - peche(t)
-
-
-
+endfunction

@@ -8,3 +8,4 @@ Xshift=0;Yshift=0
 doc=list() //documentation structure
 scs_m=list(list([600,450,Xshift,Yshift,600,450],'Untitled',tolerances,tf,..
     context,list(),options,[],[],doc))
+endfunction

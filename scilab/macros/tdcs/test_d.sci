@@ -16,6 +16,4 @@ deff('[yy,zdot]=fff(z,vv)',...
 xe=equilcom(ue)
 [f1,g1,h1,k1]=lin(fff,[xe;0;0],0),
 f2=[ f, -g*k; l*h,f-l*h-g*k],
-
-
-
+endfunction

@@ -7,7 +7,4 @@ end
 count=get_profile(lst,4)
 count=count(1:$-1,:)
 count(:,2)=count(:,2)/1000000	
-
-
-
-
+endfunction

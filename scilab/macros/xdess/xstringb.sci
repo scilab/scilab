@@ -29,5 +29,4 @@ x=x+abs(w-rect(3))/2;
 y=y+abs(h-rect(4))/2;
 xstring(x,y,str);
 if option=='fill'  then xset('font',xx(1),xx(2));end
-
-
+endfunction

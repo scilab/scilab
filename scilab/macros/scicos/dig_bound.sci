@@ -24,7 +24,4 @@ for i=2:n //loop on objects
   end
 end
 rect=[xmin,ymin,xmax,ymax]
-
-
-
-
+endfunction

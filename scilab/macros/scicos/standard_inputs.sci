@@ -32,7 +32,4 @@ if clkinp<>0 then
   y=[y,(orig(2)+yf/7+sz(2))*ones(1,clkinp)]
   typ=[typ,-ones(1,clkinp)]
 end
-
-
-
-
+endfunction

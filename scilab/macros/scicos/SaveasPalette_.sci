@@ -7,4 +7,4 @@ function SaveasPalette_()
     [scs_m,editedx]=do_SaveAs()
     if ~super_block then edited=editedx,end
     pal_mode=spmode
-
+endfunction

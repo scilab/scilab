@@ -32,8 +32,4 @@ else
 end
 libn=path+libn
 chdir(oldpath)
-
-
-
-
-
+endfunction

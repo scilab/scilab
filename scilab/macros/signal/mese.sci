@@ -33,3 +33,4 @@ function [sm,fr]=mese(x,npts);
    ak=[1;ar];
    [sf,fr]=frmag(ak,npts);
    sm=sigma2*ones(sf)./(sf.*conj(sf));
+endfunction

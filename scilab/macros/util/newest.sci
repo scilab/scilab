@@ -24,3 +24,4 @@ for k=1:prod(size(names))
 end
 [dt,k]=sort(dt)
 k=k(1)
+endfunction

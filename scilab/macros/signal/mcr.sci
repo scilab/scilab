@@ -123,3 +123,4 @@ function [z,flag]=mcr(y,phi,m,lbd0,psi)
      end;  // while
    end;
    z=th';
+endfunction

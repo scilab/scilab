@@ -23,6 +23,7 @@ tf=135;
 [k,ga_mma,umax,mcap,cpen,h0,v0,m0,tf]=resume(k,ga_mma,umax,mcap,cpen,h0,v0,m0,tf)
 
 
+endfunction
 function [ukp1]=fuseegrad(niter,ukp1,pasg)
 //[ukp1]=fuseegrad(niter,ukp1,pasg)
 // niter : nombre d'iteration de gradient a faire a partir
@@ -60,6 +61,7 @@ xset("window",2);
 plot2d(tt',ukp1',[1],"111","Commande",[1,-1,tf,2]);
 end
 
+endfunction
 function [c,xk,pk,ukp1]=fcout(tf,uk,pasg)
 //[c,xk,pk,ukp1]=fcout(tf,uk,pasg)
 // pour une loi de commande uk
@@ -79,6 +81,7 @@ grad =   k*pk(2,1:ts)./xk(3,1:ts) -pk(3,1:ts);
 ukp1=maxi(mini(uk- pasg*grad,umax*ones(1,tf)),0*ones(1,tf));
 
 
+endfunction
 function [xdot]=fusee(t,x)
 //[xdot]=fusee(t,x)
 // dynamique de la fusee
@@ -91,6 +94,7 @@ yd= k*pousse(t)/x(3)-ga_mma;
 end;
 xdot=[xd;yd;md];
 
+endfunction
 function [zdot]=fuseep(t,z)
 //[pdot]=fuseep(t,p)
 //equation adjointe
@@ -104,6 +108,7 @@ else
 zdot= [ z(2); -k*z(3)*pousse(tf-t)/(traj(tf-t)**2); 0]
 end
 
+endfunction
 function [ut]=pousse(t)
 //[ut]=pousse(t)
 // la loi de commande u(t) constante par morceaux
@@ -112,6 +117,7 @@ function [ut]=pousse(t)
 [n1,n2]=size(uk);
 ut=uk(mini(maxi(int(t),1),n2));
 
+endfunction
 function [uk]=ubang(tf,tcom)
 //[uk]=ubang(tf,tcom)
 // genere une loi bang-bang qui vaut 0 de 0 a tcom
@@ -121,6 +127,7 @@ uk=0*ones(1,tf)
 uk(tcom:tf)=1*ones(1,tf-tcom+1);
 
 
+endfunction
 function []=sfusee(tau)
 //[]=sfusee(tau)
 // calcule la trajectoire de la fusee soumise a
@@ -191,6 +198,7 @@ plot2d([t;t]',[v;0*v]',[1;1],"121",...
 
 
 
+endfunction
 function [xk,pk]=equad(tf,uk)
 //[xk,pk]=equad(tf,uk)
 // pour une loi de commande u(t)  stockee dans uk, calcule
@@ -202,6 +210,7 @@ xk=ode([5220;-5;100],1,1:tf,0.01,0.01,fusee);
 pk=ode([2*cpen*xk(1,tf);2*cpen*xk(2,tf);-2*xk(3,tf)],1,1:tf,0.01,0.01,fuseep);
 pk=pk(:,tf:-1:1);
 
+endfunction
 function [xt]=traj(t)
 //[xt]=traj(t)
 // approximation constante par morceaux de l'evolution de la masse
@@ -209,4 +218,4 @@ function [xt]=traj(t)
 //!
 xt=xk(3,maxi(int(t),1));
 //
-
+endfunction

@@ -26,3 +26,4 @@ for k=1:rhs
   nc=addf(nc,sk(5))
 end
 stk=list(out,'-1',typ,nl,nc)
+endfunction

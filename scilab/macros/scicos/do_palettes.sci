@@ -73,4 +73,4 @@ end
 xinfo('Palette: may be used to copy  blocks or regions')  
 if pixmap then xset('wshow'),end
 xset('window',lastwin)
-
+endfunction

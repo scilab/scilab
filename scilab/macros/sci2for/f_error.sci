@@ -61,6 +61,4 @@ if part(mess,1)=='''' then mess=part(mess,2:length(mess)-1),end
 [errn,nwrk]=adderr(nwrk,mess)
 txt=[' ierr='+string(errn);' return']
 stk=list(' ','-1','-1')
-
-
-
+endfunction

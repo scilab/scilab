@@ -26,3 +26,4 @@ width=%zoom*w*a;height=%zoom*h*a
   %XSHIFT=max((width-r(1))/2,0)
   %YSHIFT=max((height-r(2))/2,0)
   xset('viewport',%XSHIFT,%YSHIFT)
+endfunction

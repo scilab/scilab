@@ -32,6 +32,4 @@ else
   name=part(fname,n+1:l)
   path=part(fname,1:n)
 end
-
-
-
+endfunction

@@ -9,6 +9,4 @@ stk(top)=stkr
 s1=list()
 for k=1:top,s1(k)=stk(k);end
 stk=s1
-
-
-
+endfunction

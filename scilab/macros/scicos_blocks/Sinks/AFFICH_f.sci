@@ -92,4 +92,4 @@ case 'define' then
         'xstring(orig(1)+max(0,(sz(1)-rr(3))/2),orig(2)+max(0,(sz(2)-rr(4))/2),str)']
   x=standard_define([3 2],model,label,gr_i)
 end
-
+endfunction

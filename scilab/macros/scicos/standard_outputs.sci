@@ -39,5 +39,4 @@ if clkout<>0 then
   y=[y,(orig(2)-yf/7)*ones(1,clkout)]
   typ=[typ,-ones(1,clkout)]
 end
-
-
+endfunction

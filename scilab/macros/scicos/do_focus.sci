@@ -19,4 +19,4 @@ wdm(5)=w;wdm(6)=h
 
 
 wdm(3)=Xshift;wdm(4)=Yshift;
-
+endfunction

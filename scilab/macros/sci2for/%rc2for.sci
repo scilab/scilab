@@ -29,3 +29,4 @@ for k=1:rhs
   nl1=addf(nl1,n1)
 end
 stk=list(out,'-1',typ,nl,nc)
+endfunction

@@ -178,3 +178,4 @@ if mnc>0 then
   xset('dashes',dash(1))
 end
 xsetech(ffr,bds);
+endfunction

@@ -64,7 +64,4 @@ case 'define' then
   gr_i=['xstringb(orig(1),orig(2),[''Num(s)'';''-----'';''Den(s)''],sz(1),sz(2),''fill'');']
   x=standard_define([2.5 2.5],model,label,gr_i)
 end
-
-
-
-
+endfunction

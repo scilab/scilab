@@ -29,6 +29,4 @@ function [x1,p1]=srkf(y,x0,p0,f,h,q,r)
  
    epsilon=y-h*x0;
    x1=f*x0+k*(re**(-1))*epsilon;
-
-
-
+endfunction

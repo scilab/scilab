@@ -46,6 +46,7 @@ for k=1:nl
 end
 vars=list(in,out,globals,called,locals)
 
+endfunction
 function [vars,getted]=listvars(lst)
 for lstk=lst
   if type(lstk)==15 then
@@ -59,14 +60,15 @@ for lstk=lst
   end
 end
 
+endfunction
 function vnam=addvar(vnam)
 if find(vnam==vars)<>[] then 
   vnam=[]
 end
 
+endfunction
 function vnam=addget(vnam)
 if find(vnam==getted)<>[] then 
   vnam=[]
 end
-
-
+endfunction

@@ -63,6 +63,7 @@ if named then
 end
 
 
+endfunction
 function t=str2exp(a,lmax) 
 [lhs,rhs]=argn(0)
 if rhs<2 then lmax=0,end
@@ -111,6 +112,7 @@ if m*n>1 then
   t($)=t($)+']'
 end
 
+endfunction
 function t=mat2exp(a,lmax)
 
 [lhs,rhs]=argn(0)
@@ -191,6 +193,7 @@ if m*n>1 then
   t($)=t($)+']'
 end
 
+endfunction
 function t=pol2exp(a,lmax)
 $
 [lhs,rhs]=argn(0)
@@ -281,6 +284,7 @@ if m*n>1 then
   t($)=t($)+']'
 end
 
+endfunction
 function t=list2exp(l,lmax)
 [lhs,rhs]=argn(0)
 if rhs<2 then lmax=0,end
@@ -310,6 +314,7 @@ end
 t($)=t($)+')'
 
 
+endfunction
 function t=tlist2exp(l,lmax)
 $;
 [lhs,rhs]=argn(0)
@@ -338,6 +343,7 @@ for k=1:n
 end
 t($)=t($)+')'
 
+endfunction
 function t=mlist2exp(l,lmax)
 $;
 [lhs,rhs]=argn(0)
@@ -366,6 +372,7 @@ for k=1:n
 end
 t($)=t($)+')'
 
+endfunction
 function t=log2exp(a,lmax)
 $;
 [lhs,rhs]=argn(0)
@@ -411,6 +418,7 @@ if m*n>1 then
   t($)=t($)+']'
 end
 
+endfunction
 function t=func2exp(a,lmax)
 [lhs,rhs]=argn(0)
 if rhs<2 then lmax=0,end
@@ -429,6 +437,7 @@ else
     text(2:$)]
 end
 
+endfunction
 function t=sp2exp(a,lmax)
 [lhs,rhs]=argn(0)
 dots='..';
@@ -454,4 +463,4 @@ else
   t=[t;mn]
 end
 t($)=t($)+')'
-
+endfunction

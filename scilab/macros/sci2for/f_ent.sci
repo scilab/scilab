@@ -63,6 +63,4 @@ else
   txt=[txt;gencall(['db2int',mulf(s2(4),s2(5)),s2(1),'1',out,'1'])]
   stk=list(out,'-1',0,s2(4),s2(5))
 end
-
-
-
+endfunction

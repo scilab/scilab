@@ -63,3 +63,4 @@ if modified then
   [scs_m_save,nc_save,enable_undo,edited]=resume(scs_m_save,nc_save,%t,%t)
 end
 enablemenus()
+endfunction

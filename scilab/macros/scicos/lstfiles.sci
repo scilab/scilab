@@ -55,3 +55,4 @@ if opt=='file' then
 elseif opt=='dir' then
   lst=lst(find(isdir))
 end
+endfunction

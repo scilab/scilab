@@ -14,3 +14,4 @@ function Paleditor_()
       end
     end
     
+endfunction

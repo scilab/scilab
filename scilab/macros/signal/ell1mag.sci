@@ -12,5 +12,4 @@ s=%sn(z,m1);un=ones(z);
 v=real(un./(un+eps*eps*s.*s))
 
  
-
-
+endfunction

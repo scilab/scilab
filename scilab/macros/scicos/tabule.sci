@@ -43,3 +43,4 @@ texte = []
 for i = 1 : n_lignes
   texte = [texte;'|'+strcat(tab(i, :), '|')+'|' ]
 end
+endfunction

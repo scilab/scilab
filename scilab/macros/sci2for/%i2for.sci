@@ -75,5 +75,4 @@ if sto(4)=='0'|sto(5)=='0' then
  
 end
 stk=list(out,'-1',typ,sto(4),sto(5))
-
-
+endfunction

@@ -57,6 +57,4 @@ function [stk,nwrk,txt,top]=f_type(nwrk)
 txt=[]
 s=stk(top)
 stk=list(list(s(1),'0','0','1','1'))
-
-
-
+endfunction

@@ -78,5 +78,4 @@ else
   [nwrk]=freewrk(nwrk,iwrk)
   stk=list(out,'-1','1',n,n)
 end
-
-
+endfunction

@@ -24,5 +24,4 @@ for k=2:size(varargin)
   m1=m1+mk
   n1=n1+nk
 end
-
-
+endfunction

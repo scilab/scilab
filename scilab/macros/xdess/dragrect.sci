@@ -16,4 +16,4 @@ while rep(3)==-1 then
   rep=repn
 end
 driver(d) ;xset('alufunction',alu) //set modes back
-
+endfunction

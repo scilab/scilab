@@ -41,6 +41,7 @@ end
 
 
 
+endfunction
 function J=jaco(F,y,h)
 //J=jacobian(F) at y
 //Auxiliary function
@@ -58,5 +59,4 @@ for k=1:n
       J(l,k)=(w(l)-fl)/h;
 end
 end
-
-
+endfunction

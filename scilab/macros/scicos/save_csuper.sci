@@ -86,8 +86,4 @@ if err<>0 then
 end
 write(u,txt,'(a)')
 file('close',u)
-
-
-
-
-
+endfunction

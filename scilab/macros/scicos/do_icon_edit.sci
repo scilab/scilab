@@ -55,7 +55,4 @@ if check_mac(mac) then
   drawblock(o)
   scs_m(K)=o
 end
-
-
-
-
+endfunction

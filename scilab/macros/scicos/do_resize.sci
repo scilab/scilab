@@ -62,5 +62,4 @@ if ok  then
   scs_m(K)=o
   drawblock(o)
 end
-
-
+endfunction

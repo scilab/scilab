@@ -9,3 +9,4 @@ y(1)='['+y(1);
 for i=2:n1,y(i)=' '+y(i);end
 y(n1)=y(n1)+']';
 y=evstr(x_dialog(mes,y));
+endfunction

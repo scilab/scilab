@@ -4,4 +4,4 @@ function Link_()
     [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile);
 
     xinfo(' ')
-
+endfunction

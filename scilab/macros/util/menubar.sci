@@ -9,8 +9,4 @@ for k=1:size(names,'*')
   addmenu(win,names(k),menus(k+1),list(0,names(k)))
 end
 datas=[]
-
-
-
-
-
+endfunction

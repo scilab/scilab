@@ -20,4 +20,4 @@ if xget('use color')==1 then
     ok=%t
   end
 end
-
+endfunction

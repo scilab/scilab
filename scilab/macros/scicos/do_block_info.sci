@@ -49,3 +49,4 @@ if %t then
 else
   x_message(txt)
 end
+endfunction

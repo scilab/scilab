@@ -71,3 +71,4 @@ case 'Text' then
 case 'Deleted' then
   txt=[]
 end
+endfunction

@@ -3,4 +3,4 @@ function r=is_split(o)
 // Copyright INRIA
 if o(1)<>'Block' then r=%f,return,end
 r=o(3)(1)=='split'|o(3)(1)=='lsplit'
-
+endfunction

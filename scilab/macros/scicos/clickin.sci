@@ -91,8 +91,4 @@ elseif o(1)=='Text' then
   edited=or(o<>o_n)
   o=o_n
 end
-
-
-
-
-
+endfunction

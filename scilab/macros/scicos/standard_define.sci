@@ -15,4 +15,4 @@ else
   [ln,mc]=where()
   o=list('Block',graphics,model,' ',mc(2))
 end
-
+endfunction

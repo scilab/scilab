@@ -12,4 +12,4 @@ nx=prod(size(ind2))
 xx=matrix(x(ind2),4,nx/4);
 yy=matrix(y(ind2),4,nx/4);
 zz=matrix(z(ind2),4,nx/4);
-
+endfunction

@@ -22,6 +22,4 @@ P=Pn
 //gain matrices of the filter.
 R=R0-H*P*H';
 T=(G-F*P*H')/R;
-
-
-
+endfunction

@@ -100,7 +100,4 @@ model(2)=in
 model(3)=out
 model(4)=clkin
 model(5)=clkout
-
-
-
-
+endfunction

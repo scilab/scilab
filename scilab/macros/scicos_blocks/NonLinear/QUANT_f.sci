@@ -53,7 +53,4 @@ case 'define' then
     'xset(''thickness'',thick);']
   x=standard_define([2 2],model,label,gr_i)
 end
-
-
-
-
+endfunction

@@ -52,6 +52,4 @@ plot2d([0;0],[-my;my],4,"000",' ')
 xarc(-1,1,2,2,0,360*64)
 xtitle('transmission zeros and poles','real axis','imag. axis');
 xset("mark",xx(1),xx(2));
-
-
-
+endfunction

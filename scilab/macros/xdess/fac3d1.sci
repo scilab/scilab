@@ -25,3 +25,4 @@ select rhs
 	case 7 then plot3d1(x,y,z,T,A,leg,flags) 
 	case 8 then plot3d1(x,y,z,T,A,leg,flags,ebox) 
 end
+endfunction

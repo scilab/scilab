@@ -21,5 +21,4 @@ function [h,f,g]=phc(hk,d,r)
    ofl=obs(d+1:p,:);opr=obs(1:p-d,:);
    f=opr\ofl;
    h=obs(1:d,:);
-
-
+endfunction

@@ -8,3 +8,4 @@ else
   num=1
   x_message(strings)
 end
+endfunction

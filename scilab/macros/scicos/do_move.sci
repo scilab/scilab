@@ -34,6 +34,7 @@ elseif scs_m(k)(1)=='Link' then
 end
 [scs_m_save,enable_undo,edited,nc_save,needreplay]=resume(scs_m_save,%t,%t,needcompile,needreplay)
 
+endfunction
 function scs_m=moveblock(scs_m,k,xc,yc)
 // Move  block k and modify connected links if any
 //!
@@ -247,6 +248,7 @@ else // move an unconnected block
   if pixmap then xset('wshow'),end
 end
 
+endfunction
 function scs_m=movelink(scs_m,k,xc,yc,wh)
 // move the  segment wh of the link k and modify the other segments if necessary
 //!
@@ -359,6 +361,7 @@ end
 
 
 
+endfunction
 function scs_m=movelink4(scs_m)
 o;
 e=[min(yy(wh:wh+1))-max(yy(wh:wh+1)),min(xx(wh:wh+1))-max(xx(wh:wh+1))];
@@ -389,6 +392,7 @@ drawobj(o)
 if pixmap then xset('wshow'),end
 
 
+endfunction
 function scs_m=movelink1(scs_m)
 o;
 //link between to splits
@@ -478,6 +482,7 @@ o(2)(1)(2)=o(2)(1)(2)+e(2)*(yc-yc1);
 drawobj(o)//redraw split
 scs_m(to(1))=o
 
+endfunction
 function scs_m=movelink2(scs_m)
 o;
 e=[min(yy(1:2))-max(yy(1:2)),min(xx(1:2))-max(xx(1:2))];
@@ -568,6 +573,7 @@ drawobj(o)//redraw split
 scs_m(from(1))=o
 if pixmap then xset('wshow'),end
 
+endfunction
 function scs_m=movelink3(scs_m)
 o;
 e=[min(yy($-1:$))-max(yy($-1:$)),min(xx($-1:$))-max(xx($-1:$))];
@@ -632,6 +638,7 @@ drawobj(o) //redraw split
 scs_m(to(1))=o
 if pixmap then xset('wshow'),end
 
+endfunction
 function scs_m=movecorner(scs_m,k,xc,yc,wh)
 o=scs_m(k)
 [xx,yy,ct]=o([2 3 7])
@@ -695,4 +702,4 @@ end
 driver(dr)
 drawobj(o)
 if pixmap then xset('wshow'),end
-
+endfunction

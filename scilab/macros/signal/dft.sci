@@ -18,6 +18,4 @@ xf=exp(am)*matrix(x,n,1);
 if flag==1 then,
   xf=xf/n;
 end
-
-
-
+endfunction

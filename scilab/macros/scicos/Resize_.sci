@@ -5,4 +5,4 @@ function Resize_()
     scs_m=do_resize(scs_m)
     xinfo(' ')
     edited=%t
-
+endfunction

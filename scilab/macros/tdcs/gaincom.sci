@@ -11,7 +11,4 @@ if rhs==1,ue=1,end
 [f,g,h]=lincomp(ue);
 k=ppol(f,g,pole)
 [f,g,h,k]=resume(f,g,h,k)
-
-
-
-
+endfunction

@@ -73,3 +73,4 @@ end
 xset('line style',ls)
 xset('color',clr)
 xsetech(wrect=r1,frect=r2,arect=arect,logflag=logflag)
+endfunction

@@ -6,3 +6,4 @@ if rhs==2 then
 else
   v=exists(variablename)==1
 end
+endfunction

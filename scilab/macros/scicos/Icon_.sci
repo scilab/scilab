@@ -5,4 +5,4 @@ function Icon_()
     scs_m=do_block(scs_m)
     xinfo(' ')
     edited=%t
-
+endfunction

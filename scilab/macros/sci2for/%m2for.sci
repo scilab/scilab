@@ -196,5 +196,4 @@ end
   txt=[txt1;txt]
   top=top-1
   return
-
-
+endfunction

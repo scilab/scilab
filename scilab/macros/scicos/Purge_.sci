@@ -5,5 +5,4 @@ function Purge_()
     enablemenus()
     needcompile=4;
     edited=%t
-
-
+endfunction

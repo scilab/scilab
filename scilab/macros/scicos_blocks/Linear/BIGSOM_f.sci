@@ -43,7 +43,4 @@ case 'define' then
           'xpoly(xx,yy,''lines'')']
   x=standard_define([2 3],model,label,gr_i)
 end
-
-
-
-
+endfunction

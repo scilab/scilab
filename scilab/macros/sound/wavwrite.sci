@@ -17,7 +17,7 @@ function []=wavwrite(y,Fs,nbits,wavefile)
 //   See also WAVREAD, AUWRITE.
  
 //   Copyright (c) 1984-98 by The MathWorks, Inc.
-//   $Revision: 1.1 $  $Date: 2001/04/26 07:45:09 $
+//   $Revision: 1.2 $  $Date: 2001/06/29 12:31:58 $
  
 //   D. Orofino, 11/95
  
@@ -142,6 +142,7 @@ mclose(fid);
 // Close file
 // end of wavwrite()
  
+endfunction
 function write_ckinfo(ck,sflg)
 [nargout,nargin] = argn(0)
 // WRITE_CKINFO: Writes next RIFF chunk, but not the chunk data.
@@ -158,6 +159,7 @@ if nargin==1 then
 end
 
  
+endfunction
 function [status]=write_wavedat(fid,fmt,data)
 status=[];
 // WRITE_WAVEDAT: Write WAVE data chunk
@@ -208,6 +210,7 @@ end
 return
 
 
+endfunction
 function [status]=write_wavefmt(fid,fmt)
 status = 0;
 // WRITE_WAVEFMT: Write WAVE format chunk.
@@ -233,7 +236,4 @@ end
 
  
  
-
-
-
-
+endfunction

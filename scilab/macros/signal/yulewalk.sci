@@ -110,6 +110,7 @@ end
 
 
 
+endfunction
 function b=polystab(a);
 //Utility function for use with yulewalk: polynomial stabilization.
 //	polystab(A), where A is a vector of polynomial coefficients,
@@ -128,6 +129,7 @@ if ~or(imag(a))
 	b=real(b);
 end
   
+endfunction
 function y=filter(b,a,x)
 //Clone of Matlab filter function
 //
@@ -144,6 +146,7 @@ if na<nb then a=[a,zeros(1,nb-na)];na=nb;end;
 y=rtitr(poly(b(nb:-1:1),'z','c'),poly(a(na:-1:1),'z','c'),x)
 if na>nb then y=y(na-nb+1:length(y));end
 
+endfunction
 function b=numf(h,a,nb)
 //NUMF	Find numerator B given impulse-response h of B/A and denominator A
 //NB is the numerator order.  This function is used by yulewalk.
@@ -151,5 +154,4 @@ function b=numf(h,a,nb)
 nh=max(size(h));
 impr=filter(1,a,[1 zeros(1,nh-1)]);
 b=h/toeplitz(impr,[1 zeros(1,nb)])';
-
-
+endfunction

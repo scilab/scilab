@@ -19,6 +19,4 @@ function d=projaff(x,y,pt)
 dx=x(2)-x(1);dy=y(2)-y(1)
 m=[dy -dx;dx dy]
 d=m\ [-x(2)*y(1)+x(1)*y(2);m(2,:)*[pt(1);pt(2)]]
-
-
-
+endfunction

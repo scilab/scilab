@@ -20,5 +20,4 @@ function [h2]=cheb1mag(n,omegac,epsilon,sample)
    Tn=chepol(n,'x');  //n-th Chebyshev polynomial
    fr=freq(Tn,1,sample/omegac);   //fr=Tn(sample/omegac)
    h2=un./(un+epsilon*epsilon*fr.*fr)   //magnitude
-
-
+endfunction

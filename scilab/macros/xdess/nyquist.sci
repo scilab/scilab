@@ -205,3 +205,4 @@ elseif sltyp=='x' then
 else   
   xtitle('Nyquist plot ',['Re(h(exp(';'2i*pi*f*dt)))'],'Im(h(exp(2i*pi*f*dt)))');
 end
+endfunction

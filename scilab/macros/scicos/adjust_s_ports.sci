@@ -96,3 +96,4 @@ if ok then
   model(11)=[] //compatibility
   x=arg1;x(3)=model;x(2)=graphics;
 end
+endfunction

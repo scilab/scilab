@@ -42,4 +42,4 @@ rect=[ox,oy-h,w,h]
 
 xset('window',wins)
 xset('alufunction',alu)
-
+endfunction

@@ -47,6 +47,4 @@ nx=prod(size(ind2))
 x=matrix(vx(ind2),4,nx/4);
 y=matrix(vy(ind2),4,nx/4);
 z=matrix(vz(ind2),4,nx/4);
-
-
-
+endfunction

@@ -3,3 +3,4 @@ function buf=sprintf(frmt,varargin)
 //!
 // Copyright INRIA
 buf=msprintf(frmt,varargin(:))
+endfunction

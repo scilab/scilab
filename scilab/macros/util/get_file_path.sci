@@ -12,7 +12,4 @@ for k=size(nams,'*'):-1:1
   end
 end
 if dir == "" then dir = "." ; end
-
-
-
-
+endfunction

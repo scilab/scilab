@@ -33,7 +33,4 @@ x_abs= (0:(nl-1))*(n/rate)/(nl-1);
 y_abs= (0:(nc-1))/(nc-1);
 y_abs= fmin*(1-y_abs) + fmax*(y_abs)
 grayplot(x_abs,y_abs,-M)
-
-
-
-
+endfunction

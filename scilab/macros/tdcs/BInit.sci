@@ -9,6 +9,7 @@ n3=10;
 [n1,n2,n3]=resume(n1,n2,n3);
 
 
+endfunction
 function [VB,feed]=Bellman(n1,n2,n3,uvect)
 //  Fonction de Bellman 
 //  etat de dimension (n1,n2) temp n3 
@@ -56,16 +57,20 @@ end
 end
 end
 
+endfunction
 function [y]=L_b(i,j,u,t)
 y=0.5*u**2 -(i-5)**2 - (j-5)**2
 
+endfunction
 function [y]=VB_f(i,j,t)
 y= (i-10)**2 +(j-10)**2
 
+endfunction
 function [i1,j1]=f_b(i,j,u,t)
 i1=mini(maxi(i+u,1),n1)
 j1=mini(maxi(i+j-2*u,1),n2)
 
+endfunction
 function [x1opt,x2opt]=OptTraj(i0,j0,feed)
 // optimal Trajectory for initial point (i0,j0)
 //!
@@ -90,6 +95,4 @@ umin=min(uopt)
 umax=max(uopt)
 plot2d2("gnn",[1:(n3-1)]',uopt(1:n3-1)',[1,-4],"111",...
        "commande optimale",[1,umin-1,n3,umax+1]);
-
-
-
+endfunction

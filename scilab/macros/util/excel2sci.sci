@@ -16,4 +16,4 @@ for line=v
   end
   mat=[mat;[row,part(line,ki:length(line))]];
 end
-
+endfunction

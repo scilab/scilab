@@ -60,6 +60,7 @@ function [la,lb]=lattn(n,p,cov)
    end;
 
 
+endfunction
 function [la,lb]=lattp(n,p,cov)
 // G Levey
 //!
@@ -79,6 +80,4 @@ a=(id-r*z)*a-k*z*b;
 b=-hst*a;
 la(j+1)=a;
 end;
-
-
-
+endfunction

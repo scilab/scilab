@@ -19,3 +19,4 @@ xbasc();
 plot2d((1:n)',x',[-1],"111"," suite x(n)",[0,-10,n,10]);
 y=log(abs(k*ones(br)+sqrt(var)*br));
 y=sum(y)/n;
+endfunction

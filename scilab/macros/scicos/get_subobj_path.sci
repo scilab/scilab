@@ -7,6 +7,4 @@ function full_path=get_subobj_path(path)
 // Copyright INRIA
 full_path=list(path(1));
 for l=path(2:$),full_path($+1)=3;full_path($+1)=8;full_path($+1)=l;end
-
-
-
+endfunction

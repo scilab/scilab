@@ -40,6 +40,4 @@ ops     =['+','2','  ';
          quote,'0','  '];
 [logics,ops,quote,%else,%end,%elseif,%if,%for,%select,%while,%case,%then]=...
 resume(logics,ops,quote,%else,%end,%elseif,%if,%for,%select,%while,%case,%then)
-
-
-
+endfunction

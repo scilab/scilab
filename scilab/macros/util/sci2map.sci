@@ -62,6 +62,7 @@ end //select
 format(ft(2),ft(1)),
 
 
+endfunction
 function [t__]=str2map(nom,a,ma,na)
 //string to maple
 //!
@@ -80,6 +81,7 @@ else
 end
 
 
+endfunction
 function [n_str]=new_str(expr)
 //utility
 //
@@ -112,6 +114,7 @@ else
   error('numeric expression  or character strings'),
 end, //sel
 
+endfunction
 function [t__,k]=poly_fm(nom,poly_,f_par,f_fin,l_deb)
 //utility
 //!
@@ -177,6 +180,7 @@ if f_fin == 1 then p=p+';' ,end,
  
 t__(k)=p
 
+endfunction
 function [t__]=list2map(nom,a,t_ind__)
 //[t__]=list2map(nom,a,t_ind__) : list to maple
 // nom : name
@@ -197,6 +201,7 @@ for i=t_ind__,
 end //forrr
 
 
+endfunction
 function [t__]=poly2map(nom,a,ma,na)
 // polynomial to maple
 //!
@@ -216,6 +221,7 @@ if na*ma ==1 then
        end,
    end,
 end,
+endfunction
 function [t__,k]=fra2map(nomi,num_,den_)
 //utility
 //!
@@ -230,6 +236,7 @@ tden_=part(t_den_(1),length(t_num_(l_t_num_)):length(t_den_(1))),
 t_num_(l_t_num_) = t_num_(l_t_num_) + tden_
 t__ = [ t_num_ ; t_den_(2:prod(size(t_den_))) ],
 
+endfunction
 function [t__]=frac2map(nom,num_,den_)
 //utility
 //!
@@ -252,3 +259,4 @@ if ma*na ==1 then
        end,
    end,
 end,
+endfunction

@@ -35,4 +35,4 @@ execstr('param3d1(xx,yy,list(zz,flags(1)*ones(1,p)),'+..
 
 execstr('param3d1(xx'',yy'',list(zz'',flags(2)*ones(1,n)),'+..
     strcat([opts 'flag=[0 flags(4)]'],',')+')')
-
+endfunction

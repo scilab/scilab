@@ -72,3 +72,4 @@ function [xs,ps,xf,pf]=wiener(y,x0,p0,f,g,h,q,r)
       xs=[x2 xs];
       ps=[p2 ps];
     end
+endfunction

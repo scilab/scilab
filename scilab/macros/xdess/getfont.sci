@@ -71,3 +71,4 @@ end
 xdel(win)
 
 xset('window',curwin)
+endfunction

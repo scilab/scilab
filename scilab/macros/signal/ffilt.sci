@@ -63,6 +63,4 @@ if ft=='sb' then
    x(no2+1)=1+x(no2+1);
 end
  
-
-
-
+endfunction

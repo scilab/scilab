@@ -73,5 +73,4 @@ drawobj(o2)
 scs_m_save=scs_m
 scs_m(k2)=o2
 [scs_m_save,enable_undo,edited]=resume(scs_m_save,%t,%t)
-
-
+endfunction

@@ -19,6 +19,4 @@ end;
  pt=(0:n)'*ang;xy=r*[cos(pt),sin(pt)]
  xy=ones(n+1,1)*matrix(orig,1,2)+xy*b
  xpoly(xy(:,1),xy(:,2),"lines",1);
-
-
-
+endfunction

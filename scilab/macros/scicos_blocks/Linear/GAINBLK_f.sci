@@ -114,7 +114,4 @@ case 'define' then
   gr_i=['']
   x=standard_define([2 2],model,label,gr_i)
 end
-
-
-
-
+endfunction

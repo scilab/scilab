@@ -200,4 +200,4 @@ setmenu(curwin,'3D Rot.')
 delmenu(curwin, 'Objects') 
 delmenu(curwin, 'Settings') 
 delmenu(curwin, 'Edit')
-
+endfunction

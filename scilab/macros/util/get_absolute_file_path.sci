@@ -18,3 +18,4 @@ if ~MSDOS then
 else 
   if part(dir,2)<>':' then if dir<>"" then dir=sep+dir;end; dir=getcwd()+dir,end
 end
+endfunction

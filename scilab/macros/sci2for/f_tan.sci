@@ -64,7 +64,4 @@ if it2==0 then
 else
   error(nam+' complex : not implemented')
 end
-
-
-
-
+endfunction

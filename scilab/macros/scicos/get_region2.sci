@@ -146,4 +146,4 @@ for k=1:size(prt,1)
   reg(k1)=o1
 end
 reg=do_purge(reg)
-
+endfunction

@@ -19,7 +19,4 @@ case 'define' then
   gr_i='xstringb(orig(1),orig(2),''S/H'',sz(1),sz(2),''fill'')'
   x=standard_define([2 2],model,' ',gr_i)
 end
-
-
-
-
+endfunction

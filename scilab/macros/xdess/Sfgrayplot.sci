@@ -33,4 +33,4 @@ for i=0:q-2; xx=[ xx; xxb+p*i*ones(xxb)];end
 trianl=[(1:Ntr)',xx,xx+ones(xx),xx+(p+1)*ones(xx),0*ones(xx)];
 trianl=[trianl;(Ntr+1:2*Ntr)',xx,xx+(p)*ones(xx),xx+(p+1)*ones(xx),0*ones(xx)];
 fec(noe_x',noe_y',trianl,fun,strf," ",rect,aaint) 
-
+endfunction

@@ -7,4 +7,4 @@ function Backgroundcolor_()
       set_background()
       Cmenu='Replot'
     end
-
+endfunction

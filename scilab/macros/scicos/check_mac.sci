@@ -11,4 +11,4 @@ if iserror(-1)==1 then
   message('Incorrect syntax: see message in Scilab window')
   ok=%f
 end
-
+endfunction

@@ -10,6 +10,4 @@ if s2(4)<>'1'&s2(5)<>'1' then
 else
   stk=list(s2(1),s2(2),s2(3),s2(5),s2(4))
 end
-
-
-
+endfunction

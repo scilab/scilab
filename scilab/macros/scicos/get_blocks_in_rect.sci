@@ -17,3 +17,4 @@ for k=2:size(scs_m)
     if ~ok then out=[out k],end
   end
 end
+endfunction

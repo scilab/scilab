@@ -47,3 +47,4 @@ if MSDOS then
 else
   host('rm -f '+tmp);
 end
+endfunction

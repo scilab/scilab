@@ -68,6 +68,4 @@ if s2(4)<>s2(5)|(s2(4)=='1'&s2(5)=='1') then
 else
   error(nam+' not square matrix')
 end
-
-
-
+endfunction

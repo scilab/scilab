@@ -21,7 +21,4 @@ while ilst<=nlst then
   end
   ilst=ilst+1
 end
-
-
-
-
+endfunction

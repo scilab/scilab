@@ -22,3 +22,4 @@ if part(name,1:7)=='work(iw' then
        nwrk(5)=nw5
      end
   end
+endfunction

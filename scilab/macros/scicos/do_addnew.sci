@@ -80,6 +80,4 @@ drawobj(blk)
 if pixmap then xset('wshow'),end
 
 scs_m($+1)=blk
-
-
-
+endfunction

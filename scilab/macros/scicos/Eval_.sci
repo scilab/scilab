@@ -11,4 +11,4 @@ function Eval_()
 	  'see message in Scilab window'])
     end
     enablemenus()
-
+endfunction

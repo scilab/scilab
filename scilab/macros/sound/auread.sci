@@ -61,6 +61,7 @@ snd = read_sndata(fid,snd,ext);
 y = snd('data');
 mclose(fid);
 
+endfunction
 function [new_snd]=read_sndata(fid,snd,ext)
 new_snd=[];
 SamplesPerChannel = snd('samples');
@@ -140,6 +141,7 @@ new_snd = snd;
 new_snd('data')=data
 return
 
+endfunction
 function [snd]=read_sndhdr(fid)
 // Read file header:
 snd=tlist(['snd','offset','databytes','format','rate','chans','data','info','bits','samples','magic'])
@@ -200,3 +202,4 @@ snd('samples')=snd('databytes')*8/snd('bits')/snd('chans')
 if snd('samples')~=fix(snd('samples')) then
   error('Truncated data file.')
 end
+endfunction

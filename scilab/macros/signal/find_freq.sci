@@ -18,5 +18,4 @@ function [m]=find_freq(epsilon,A,n)
    chi1=%k(1-m1)/%k(m1);
    m=findm(chi1/n);
  
-
-
+endfunction

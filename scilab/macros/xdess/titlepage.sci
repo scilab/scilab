@@ -11,6 +11,4 @@ if rhs==2 then xset('window',win);end
 plot2d([0,1],[0,1],[-1,-1],"022");
 xstringb(0,0,str,1,1,'fill');
 xset('window',old)
-
-
-
+endfunction

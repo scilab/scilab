@@ -64,3 +64,4 @@ xclip()
 //build data structure
 Tree=tlist(['scs_tree','x','y','paths','orig'],xx,yy,lp,super_path)
 xset('window',curwin)
+endfunction

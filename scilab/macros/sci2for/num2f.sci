@@ -8,4 +8,4 @@ for k=1:nn
   if part(val,k)=='.' then typ='1',break,end
 end
 stk(top)=list(val,'0',typ,'1','1')
-
+endfunction

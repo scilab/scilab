@@ -84,3 +84,4 @@ case 'define' then
   gr_i='xstringb(orig(1),orig(2),''Delay'',sz(1),sz(2),''fill'')'
   x=standard_define([2 2],model,'DELAY_f',gr_i)
 end
+endfunction

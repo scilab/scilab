@@ -4,4 +4,4 @@ function Color_()
     [%pt,scs_m]=do_color(%pt,scs_m)
     xinfo(' ')
     edited=%t
-
+endfunction

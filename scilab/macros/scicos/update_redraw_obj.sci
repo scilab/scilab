@@ -11,3 +11,4 @@ if size(k)==1 then
 else // change a block in a sub-level
   scs_m(k)=o
 end
+endfunction

@@ -98,6 +98,7 @@ if modified then //create whatis file
 end
 
 
+endfunction
 function txt=man2ascii(man,ind)
 if argn(2)<2 then ind=1,end
 ll=75
@@ -139,6 +140,7 @@ while k<n
   end
 end
 
+endfunction
 function txt=man2tex(man)
 txt=[];k=0
 n=size(man)
@@ -202,6 +204,7 @@ while k<n
   end
 end
 
+endfunction
 function txt=man2html(man)
 txt=[];k=0
 n=size(man)
@@ -273,6 +276,7 @@ txt=['<HTML><HEAD><TITLE>'+title+' manual </TITLE></HEAD><BODY>';
       '</BODY></HTML>']
 
 
+endfunction
 function man=getman(path)
 //partial groff analyser. See /usr/lib/groff/tmac/tmac.an
 //given a groff file (*.man), this function analyse it and returns a data structure 
@@ -424,6 +428,7 @@ else
   op=part(txt,1:k(1)-1)
 end
 
+endfunction
 function filledregion(txt)
 man
 if txt==[] then return,end
@@ -443,6 +448,7 @@ end
 man=resume(man)
 
 
+endfunction
 function tab=gettable(txt)
 //given troff instruction defining a table this function returns a 
 //matrix of string
@@ -460,6 +466,7 @@ for k=1:size(txt,1)-2
     tab(k,i-1)=part(tk,c(i-1)+1:c(i)-1)
   end
 end
+endfunction
 function wh=asciiwhatis(path,fnam)
 txt=mgetl(path)
 d=find(part(txt,1:8)=='.SH NAME')
@@ -474,10 +481,12 @@ wh=stripblanks(wh)
 k=find(wh=='');if k<>[] then wh(k)=[];end
 wh=wh+'  @'+fnam
 
+endfunction
 function wh=texwhatis(path,fnam)
 wh='\input '+fnam
 
 
+endfunction
 function wh=htmlwhatis(path,fnam)
 txt=mgetl(path)
 d=find(part(txt,1:8)=='.SH NAME')
@@ -504,6 +513,7 @@ for k=1:size(wh,1)
   end
 end
 
+endfunction
 function txt=replacefonts(txt)
 fonts=['\f'+['V','R','B','P','I','(CR'] '.I ']
 for f=fonts,txt=strsubst(txt,f,''),end
@@ -514,12 +524,14 @@ for i=l
 end
 txt=strsubst(txt,'\\','\')
 
+endfunction
 function t=maketable(tab,ind)
 t=part(' ',ones(1,sum(ind)))+emptystr(size(tab,1),1)+'|'
 for k=1:size(tab,2)
   t=t+part(tab(:,k),1:max(length(tab(:,k))))+'|'
 end
 
+endfunction
 function t=justify(item,txt,ind,tp)
 curind=sum(ind)
 tp=max(0,tp)
@@ -564,15 +576,18 @@ else
 end
 
 
+endfunction
 function t=texsubstitute(t)
     t=strsubst(t,'_','\_')
     t=strsubst(t,'%','\%')
     t=strsubst(t,'&','\&')
     t=strsubst(t,'<','$<$')
     t=strsubst(t,'>','$>$')
+endfunction
 function t=htmlsubstitute(t)
     t=strsubst(t,'<','&lt ')
 
+endfunction
 function t=gethtmlref(nm)
 nm=stripblanks(nm)
 if MSDOS then del='\',else del='/',end
@@ -595,6 +610,7 @@ undef=find(t=='')
 t(undef)=nm(undef)
 t=t+'.html'
 
+endfunction
 function t=table2html(tab)
 t='<table BORDER NOSAVE >'
 //t='<table NOSAVE >'
@@ -604,3 +620,4 @@ for l=1:size(tab,1)
   t=[t;'</tr>']
 end
 t=[t;'</table>']
+endfunction

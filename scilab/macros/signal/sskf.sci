@@ -19,5 +19,4 @@ x=ricc(f',h'/r*h,q,'disc') // steady state err cov
  // estimate state
  kfd=(eye(f)-k*h)*f;
  [xe]=ltitr(kfd,k,y,x0);
-
-
+endfunction

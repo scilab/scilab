@@ -50,9 +50,4 @@ for k=1:size(retained,'*')
   end
   scs_m_new(k)=o;
 end
-
-
-
-
-
-
+endfunction

@@ -47,5 +47,4 @@ for k=1:n
   sec=[[x(1);sec(2,1)],sec,[x(nx);sec(2,ns)]]
   m(k,:)=interpln(sec,x);
 end
-
-
+endfunction

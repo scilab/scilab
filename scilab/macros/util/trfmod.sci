@@ -170,6 +170,4 @@ h('num')=num*x
 h('den')=den/coeff(den,degree(den))
 format(10)
 if flag=='lss' then h=tf2ss(h),end
-
-
-
+endfunction

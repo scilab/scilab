@@ -64,3 +64,4 @@ if coutp<>[] then
   standard_etiquette(sbloc, etiquettes_clkout(n_cout), 'clkout')
 end
 xset('font',font(1),font(2))
+endfunction

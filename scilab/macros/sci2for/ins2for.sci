@@ -14,6 +14,4 @@ while ilst<=nlst then
   end
   txt=[txt;t1]
 end
-
-
-
+endfunction

@@ -29,5 +29,4 @@ if size(opts,2)<rhs-4 then  error('invalid named arguments'),end
 
 if type(f)==11 then comp(f),end;
 execstr('contour2d(xr,yr,feval(xr,yr,f),nz,'+strcat(opts,',')+')')
-
-
+endfunction

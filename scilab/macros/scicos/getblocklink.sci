@@ -19,7 +19,4 @@ for i=2:n //loop on objects
     if d<eps then k=i,wh=ind,break,end
   end
 end
-
-
-
-
+endfunction

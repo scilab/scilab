@@ -71,6 +71,4 @@ case 12 then s2('dt')='c'
 case 13 then s2('dt')='d'
 case 14 then s2('dt')=s1('dt')
 end
-
-
-
+endfunction

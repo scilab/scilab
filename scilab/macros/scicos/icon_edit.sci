@@ -22,3 +22,4 @@ txt=['thick=xget(''thickness'')';
  xdel(win)
  
  
+endfunction

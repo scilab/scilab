@@ -63,6 +63,4 @@ end
    case 2 then plot2d2("gnn",x,y,[1],"051",' ',rect,[1,nx,2,10]);
                plot2d3("gnn",x,y,[1,-1],"000");
   end
-
-
-
+endfunction

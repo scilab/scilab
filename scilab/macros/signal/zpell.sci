@@ -44,6 +44,4 @@ m1=(epsilon*epsilon)/(A*A-1);
    if order==even then,
       gain=gain/sqrt(1+epsilon^2);
    end;
-
-
-
+endfunction

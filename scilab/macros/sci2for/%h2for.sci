@@ -16,5 +16,4 @@ else
   stk=list(e1+'.and.'+e2,'1','0',s1(4),s1(5))
 end
 top=top-1
-
-
+endfunction

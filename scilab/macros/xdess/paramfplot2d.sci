@@ -54,3 +54,4 @@ else
 end
 
 xset("pixmap",0);
+endfunction

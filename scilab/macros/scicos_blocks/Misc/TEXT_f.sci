@@ -62,7 +62,4 @@ case 'define' then
   graphics=list([0,0],[2 1],%t,label,[],[],[],[],[])
   x=list('Text',graphics,model,' ','TEXT_f')
 end
-
-
-
-
+endfunction

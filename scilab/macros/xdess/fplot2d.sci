@@ -30,3 +30,4 @@ if exists('frameflag','local')==1 then opts=[opts,'frameflag=frameflag'],end
 if exists('axesflag','local')==1 then opts=[opts,'axesflag=axesflag'],end
 if size(opts,2)<rhs-2 then  error('invalid named arguments'),end
 execstr('plot2d(xr,feval(xr,f),'+strcat(opts,',')+')')
+endfunction

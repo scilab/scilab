@@ -65,3 +65,4 @@ else
       'TK/TCL demos','tk/tk.dem'];
 end
 demolist(:,2)='SCI/demos/'+demolist(:,2)
+endfunction

@@ -67,6 +67,4 @@ mac_txt=[
     'end';]
 
 deff('[y,x,z,t_evo,xd]=mac(%_flag,n_evi,t,x,z,rpar,ipar,u)',mac_txt)
-
-
-
+endfunction

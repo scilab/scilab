@@ -105,3 +105,4 @@ elseif rhs>3 then // syslin(domaine,A,B,C [,D [X0]])
   sl=lsslist(a,b,c,d,x0,domain)
 end
  
+endfunction

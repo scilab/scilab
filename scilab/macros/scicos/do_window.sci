@@ -20,5 +20,4 @@ nm=wpar(2)(1)
       break
     end
   end
-
-
+endfunction

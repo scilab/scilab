@@ -69,3 +69,4 @@ else
 w="%ODEOPTIONS=["+w;w=w+"];";
 end
 disp(w);
+endfunction

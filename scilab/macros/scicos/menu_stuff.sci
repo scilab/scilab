@@ -15,4 +15,4 @@ menuss=menus;
 menuss(1)=menus(1)(2:$);
 menubar(curwin,menuss)
 	  
-
+endfunction

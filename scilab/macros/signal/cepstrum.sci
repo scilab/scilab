@@ -56,8 +56,9 @@ else
 end
 fresp=fresp(:);
 
+endfunction
 function m=fliplr(m)
 //utility fct.
 [p,q]=size(m);
 m=m(:,q:-1:1);
-
+endfunction

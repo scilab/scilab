@@ -10,6 +10,4 @@ function []=comric(q1,q2,r)
 [pi]=ricc(f,(1/r)*g*g',[q1,0;0,q2],'cont');
 k= (1/r) *g'*pi;
 [k]=resume(k);
-
-
-
+endfunction

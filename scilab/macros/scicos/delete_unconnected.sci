@@ -51,3 +51,4 @@ if DEL<>[] then
   xset('window',wins)
   if path<>[] then unhilite_obj(scs_m_s(path(1))),end
 end
+endfunction

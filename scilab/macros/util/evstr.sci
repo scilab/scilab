@@ -33,6 +33,4 @@ case 1 then
 else 
    error('waiting for: matrix of strings or list'),
 end
-
-
-
+endfunction

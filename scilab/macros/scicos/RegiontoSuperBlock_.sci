@@ -4,4 +4,4 @@ function RegiontoSuperBlock_()
     disablemenus()
     scs_m=do_region2block(scs_m)
     enablemenus()
-
+endfunction

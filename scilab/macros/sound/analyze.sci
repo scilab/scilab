@@ -15,4 +15,4 @@ function analyze (w,fmin,fmax,rate,points)
         i=fmin/rate*points:fmax/rate*points;
         fr=i/points*rate;
         plot2d(fr',f(i)');
-
+endfunction

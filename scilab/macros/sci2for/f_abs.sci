@@ -64,6 +64,4 @@ if it2==0 then
 else
   error(nam+' of complex argument is not implemented')
 end
-
-
-
+endfunction

@@ -8,7 +8,4 @@ for k=1:n
     if cors(k)<>0 then cors(k)=cors(k)+ns,end
   end
 end
-
-
-
-
+endfunction

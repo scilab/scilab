@@ -97,11 +97,4 @@ state('evtspt')=evtspt;
 state('pointi')=pointi;
 state('outtb')=outtb
 cpr(1)=state
-
-
-
-
-
-
-
-
+endfunction

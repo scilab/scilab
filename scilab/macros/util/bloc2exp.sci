@@ -41,6 +41,7 @@ if rhs==1 then h=trisolve(t(nt-nio(2)+1:nt,nt-nio(2)+1:nt),h)
 end;
 if lhs==2 then name=list(name(nt+1:mt)',name(nt-nio(2)+1:nt)'),end,
 
+endfunction
 function [ab,nio,name]=construct(syst)
 //!
 [lhs,rhs]=argn(0)
@@ -93,6 +94,7 @@ obj=syst(kvar)
 name=[name,obj(2)]
 end;
 
+endfunction
 function [lboites,lliens,lentrees,lsorties]=blocdext(syst)
 //!
 //
@@ -128,6 +130,7 @@ end;
 if mini(lsorties)==0 then error('undefined output'),end
 if mini(lentrees)==0 then error('undefined input'),end
 
+endfunction
 function [where_x]=%connect(bloc,lliens,syst)
 where_x=list();nw=0
 nliens=prod(size(lliens))
@@ -142,6 +145,7 @@ for l=1:nliens,
          if prod(size(whi))>1 then nw=nw+1,where_x(nw)=whi,end
 end;
 
+endfunction
 function [where_x]=out1(bloc,lliens,syst)
 where_x=[];l=0;
 for li=lliens
@@ -150,3 +154,4 @@ for li=lliens
          output=lien(3),
          if bloc==output(1) then where_x=[where_x,[l;output(2)]],end;
 end;
+endfunction

@@ -17,4 +17,4 @@ elseif o(1)=='Link' then
   if pixmap then xset('wshow'),end
 end
 driver(dr)  
-
+endfunction

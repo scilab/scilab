@@ -42,15 +42,4 @@ if iserror(-1) then
   mess='No help available on this topic. Sorry.';
 end
 message(mess)  
-
-
-
-
-
-
-
-
-
-
-
-
+endfunction

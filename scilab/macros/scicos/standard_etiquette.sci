@@ -76,4 +76,4 @@ case 'croix' then //= Identification des bases de donnees ==
   xsegs(nx', ny', legende)
   xset('dashes', dashes)
 end
-
+endfunction

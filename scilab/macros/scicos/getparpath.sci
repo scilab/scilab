@@ -30,5 +30,4 @@ for k=2:size(scs_m)
     end
   end
 end
-
-
+endfunction

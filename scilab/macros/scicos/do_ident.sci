@@ -71,3 +71,4 @@ if pixmap then
   xset('wshow')
 end
 if ok then [scs_m_save,enable_undo,edited]=resume(scs_m_save,%t,%t),end
+endfunction

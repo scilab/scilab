@@ -6,3 +6,4 @@ function Setup_()
       edited=%t
     end
       
+endfunction

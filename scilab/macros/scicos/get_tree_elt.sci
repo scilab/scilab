@@ -10,5 +10,4 @@ for k=1:n
   tree=tree(path(k))
 end
 value=tree
-
-
+endfunction

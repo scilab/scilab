@@ -41,3 +41,4 @@ if rhs==4 then
   xx=xx(:,yin);
   yy=yy(:,yin);
 end
+endfunction

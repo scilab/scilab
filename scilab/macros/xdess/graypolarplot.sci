@@ -53,3 +53,4 @@ for k=0:11
   xstringb(r*cos(k*(%pi/6))-w/2,r*sin(k*(%pi/6))-h/2,string(k*30))
 end
 xset("dashes",1)
+endfunction

@@ -85,6 +85,4 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
  
    wree=[wre 0*ones(1,ntp-2*nlags+1)];
    sm=abs(fft(wree,-1));
-
-
-
+endfunction

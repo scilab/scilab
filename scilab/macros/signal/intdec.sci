@@ -102,4 +102,4 @@ function [y]=intdec(x,lom)
       y=prod(lom)*y;
  
     end
-
+endfunction

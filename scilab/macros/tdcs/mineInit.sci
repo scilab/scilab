@@ -12,6 +12,7 @@ kc=0.01;
 [n1,n2,te,xe,k0,kc]=resume(...
         n1,n2,te,xe,k0,kc);
 
+endfunction
 function [cout,feed]=mine(n1,n2,uvect)
 //[cout,feed]=mine(n1,n2,uvect)
 // extraction optimale d'un minerai d'une mine a ciel ouvert
@@ -85,6 +86,7 @@ for temp=n2:-1:2,
   feed(xgr,temp-1)=uvect(kk)';
 end
 
+endfunction
 function [y]=ff_o(x,t)
 //[y]=ff_o(x,t)
 // gain instantane apparaissant dans le critere du
@@ -99,6 +101,7 @@ y=k0*(1-(t-te)**2/(n2**2))*xxloc - (x-xe*xxloc)**2/(n1**2) -kc*(x-1*xxloc)
 y=y';
 y(1:2)=[0;0]
 
+endfunction
 function []=showcost(n1,n2)
 //[]=showcost(n1,n2)
 // Montre en 3d la fonction de gain instantanee (ff)
@@ -111,6 +114,7 @@ m=[];
 for i=1:n2,m=[m,ff_o(1:n1,i)],end
 contour(1:n2,1:n1,m',10,0,0,' ',[2,2,0])
 
+endfunction
 function []=trajopt(feed)
 //[]=trajopt(feed)
 // feed est la matrice de feedback calculee par mine
@@ -129,6 +133,4 @@ plot2d2("gnn",[1:(n2+1)]',[-xopt]',[2],"111",...
 plot2d2("gnn",[1:(n2)]',uopt(1:n2)',[1,-4],"111",...
        "commande optimale",...
        [1,-n1,n2+1,2]);
-
-
-
+endfunction

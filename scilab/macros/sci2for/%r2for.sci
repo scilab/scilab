@@ -52,6 +52,4 @@ else
        gencall(['dgesl',mat,s2(4),s2(5),ipvt,res,'0'])]
    stk=list(res,'-1',s1(3),s1(4),s1(5))
 end
-
-
-
+endfunction

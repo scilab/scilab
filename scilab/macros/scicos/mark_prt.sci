@@ -26,6 +26,4 @@ else //set an input port
     o(2)(7)(prt_number)=v;
   end
 end
-
-
-
+endfunction

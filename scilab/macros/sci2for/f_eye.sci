@@ -73,6 +73,4 @@ case 2  then
    stk=list(out,'-1','1',s1(1),s2(1))
    top=top-1
 end
-
-
-
+endfunction

@@ -12,3 +12,4 @@ cmap=[(1:n1)'/n1  zeros(n1,1)  zeros(n1,1);
       ones(n2,1)  (1:n2)'/n2   zeros(n2,1);
       ones(n3,1)  ones(n3,1)   (1:n3)'/(n3)]
   
+endfunction

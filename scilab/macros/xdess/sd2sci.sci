@@ -120,21 +120,24 @@ for k=3:size(sd)
   end
   
 end
+endfunction
 function t=zx(t)
 if zoom(1)<>'1' then t($)=mulf(t($),zoom(1)),end
 
 
 
+endfunction
 function t=zy(t)
 if zoom(2)<>'1' then t($)=mulf(t($),zoom(2)),end
 
 
+endfunction
 function t=zsx(t)
 if zoom(1)<>'1' then t($)=mulf(t($),zoom(1)),end
 if orig(1)<>'0' then t(1)=addf(orig(1),t(1)),end
 
+endfunction
 function t=zsy(t)
 if zoom(2)<>'1' then t($)=mulf(t($),zoom(2)),end
 if orig(2)<>'0' then t(1)=addf(orig(2),t(1)),end
-
-
+endfunction

@@ -39,3 +39,4 @@ grtampl(m+1:2*m,:)=-grtampl(m+1:2*m,:);
 a=ampl-ad;a1=a**(2*p);a1=a1.*wa;la=sum(a1);
 a1=(a1./a)*2*p;a1=a1.*ampl;
 grad=[grrampl*a1' grtampl*a1'];
+endfunction

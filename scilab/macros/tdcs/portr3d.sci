@@ -69,6 +69,7 @@ lines(ncnl(1));
 
 
 
+endfunction
 function [res]=desorb3d(odem,x0,n1,fch,xdim);
 //[res]=desorb3d(odem,x0,n1,fch,xdim);
 // Calcule des orbites pour des points de
@@ -125,6 +126,4 @@ for i=1:n2,
     end
 end
 [ylast]=resume(ylast)
-
-
-
+endfunction

@@ -143,5 +143,4 @@ end,
 //Calculate frequency response of the windowed filter
  
    [wfm,fr]=frmag(wft,256);
-
-
+endfunction

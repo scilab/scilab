@@ -185,4 +185,4 @@ end
 if lhs==%nn+2 then
   execstr('x'+string(lhs-1)+'=str')
 end
-
+endfunction

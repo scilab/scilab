@@ -4,4 +4,4 @@ function Nyquist_()
     xset('window',curwin+1);xbasc()
     nyquist( %sl)
     xset('window',curwin);
-
+endfunction

@@ -13,3 +13,4 @@ if new<>[] then
   drawtitle(scs_m(1))  //draw title
   edited=%t
 end
+endfunction

@@ -61,8 +61,9 @@ if LHS==1 then
   num=syslin('c',num/den);
 end
 
+endfunction
 function ww=diff(ww)
 //Utility fct
 p=size(ww(:),'*');
 ww=ww(2:p)-ww(1:p-1);
-
+endfunction

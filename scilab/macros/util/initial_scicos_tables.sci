@@ -328,3 +328,4 @@ scicos_pal=['Inputs_Outputs','SCI/macros/scicos/Inputs_Outputs.cosf'
  ' ';
  ' Selecting this menu and clicking on a block  opens an';
  ' editable dialog box'])
+endfunction

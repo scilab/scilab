@@ -9,4 +9,4 @@ function Replot_()
     drawobjs(scs_m),
     if pixmap then xset('wshow'),end
     enablemenus()
-
+endfunction

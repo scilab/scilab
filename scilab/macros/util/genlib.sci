@@ -82,6 +82,7 @@ else
 end
 execstr(nam+'=resume('+nam+')')
 
+endfunction
 function getsave(fl)
 prot=funcprot();funcprot(0)
 nold=size(who('get'),'*')
@@ -112,3 +113,4 @@ else
 end
 
 funcprot(prot)
+endfunction

@@ -156,3 +156,4 @@ if Reclevel>1 then
 end
 nametbl($)=[]
 nametbl=resume(nametbl)
+endfunction

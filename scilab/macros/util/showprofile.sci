@@ -13,9 +13,4 @@ for k=1:3
 end
 txt=txt+'|'
 write(%io(2),txt,'(a)')
-
-
-
-
-
-
+endfunction

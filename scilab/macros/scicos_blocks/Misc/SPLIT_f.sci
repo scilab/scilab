@@ -33,7 +33,4 @@ case 'define' then
   model=list('lsplit',-1,[-1;-1;-1],[],[],[],[],[],[],'c',[],[%t %f],' ',list())
   x=standard_define([1 1]/3,model,[],[])
 end
-
-
-
-
+endfunction

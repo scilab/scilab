@@ -60,3 +60,4 @@ elseif o(1)=='Block' then
 elseif o(1)=='Text' then
   //not implemented
 end
+endfunction

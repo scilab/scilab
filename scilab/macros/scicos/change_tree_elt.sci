@@ -7,5 +7,4 @@ n=prod(size(path))
 if n==1 then tree(path)=value,return,end
 kk=path(1)
 tree(kk)=change_tree_elt(tree(kk),path(2:n),value)
-
-
+endfunction

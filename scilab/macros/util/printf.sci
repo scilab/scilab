@@ -3,4 +3,4 @@ function printf(frmt,varargin)
 //!
 // Copyright INRIA
 mprintf(frmt,varargin(:))
-
+endfunction

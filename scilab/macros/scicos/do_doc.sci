@@ -72,6 +72,7 @@ end
 //
 if ok then [scs_m_save,enable_undo,edited]=resume(scs_m_save,%t,%t),end
 
+endfunction
 function doc=standard_doc(job,doc)
 if job=='set' then
   if type(doc)<>10 then doc=' ',end
@@ -81,6 +82,7 @@ elseif job=='get' then
   return
 end
 
+endfunction
 function doc=complex_doc(job,doc)
 
 if job=='set' then
@@ -120,3 +122,4 @@ elseif job=='get' then
       ]
   return
 end
+endfunction

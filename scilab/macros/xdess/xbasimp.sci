@@ -54,3 +54,4 @@ if rhs==1,
     host('rm -f '+fname);
   end
 end
+endfunction

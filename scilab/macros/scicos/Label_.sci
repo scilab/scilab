@@ -5,4 +5,4 @@ function Label_()
     [%mod,scs_m]=do_label(scs_m)
     edited=edited|%mod
     xinfo(' ')
-
+endfunction

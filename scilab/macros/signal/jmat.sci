@@ -9,5 +9,4 @@ function [j]=jmat(n,m)
 j=[];
 for k=1:n,j(k,n-k+1)=1;end;
 j=j.*.eye(m,m);
-
-
+endfunction

@@ -26,3 +26,4 @@ txt=[
     'case ''define'' then';
     sci2exp(o,'x');
     'end']
+endfunction

@@ -45,3 +45,4 @@ end
 if %cpr==list() then ok=%f,end
   
 enablemenus()
+endfunction

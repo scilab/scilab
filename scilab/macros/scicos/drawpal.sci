@@ -88,5 +88,4 @@ y=wd(2)-h
 
 
 xstring(x,y,wpar(2)(1))
-
-
+endfunction

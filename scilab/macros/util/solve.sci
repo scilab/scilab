@@ -25,6 +25,4 @@ if na>1 then
    y=solve(a(1:na-1,1:na-1),b(1:na-1,:))
    x=[y;x]
 end
-
-
-
+endfunction

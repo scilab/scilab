@@ -38,6 +38,4 @@ select flag
 cout=lambda*la+(1-lambda)*lt;
 grad=lambda*ga+(1-lambda)*gt;
 end;
-
-
-
+endfunction

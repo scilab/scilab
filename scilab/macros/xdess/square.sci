@@ -16,5 +16,4 @@ if right<>4 then error('0 ou 4 arguments'),end
 wdim=xget("wdim");
 xset("wdim",maxi(wdim),maxi(wdim));
 plot2d(0,0,1,"010"," ",[xmin,ymin,xmax,ymax]);
-
-
+endfunction

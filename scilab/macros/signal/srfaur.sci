@@ -39,6 +39,4 @@ end;
 //gain matrices of the filter.
 rt=r0-h*p*h';
 tt=(g-f*p*h')*inv(rt);
-
-
-
+endfunction

@@ -6,3 +6,4 @@ if wfree<>[] then
 else
   win=maxi(windows(:,2))+1
 end
+endfunction

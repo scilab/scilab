@@ -21,7 +21,4 @@ if o(1)=='Block' then
 elseif o(1)=='Text' then
   execstr(o(5)+'(''plot'',o)')
 end
-
-
-
-
+endfunction

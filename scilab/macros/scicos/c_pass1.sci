@@ -508,8 +508,4 @@ if ksup==0 then
     ok=%f;return
   end
 end
-
-
-
-
-
+endfunction

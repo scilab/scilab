@@ -177,5 +177,4 @@ xset("mark",xx(1),xx(2));
 //[l1,l2]=min(abs(racines(:)-selected));
 //col=int(l2/n1)+1;//row=modulo(l2,n1); racines(row,col) <-> seleceted
 //gain=kk(col);
-
-
+endfunction

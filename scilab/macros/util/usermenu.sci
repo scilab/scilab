@@ -5,3 +5,4 @@ x_message(['To define the action associated with ""Your Menu"" button';
          ' ';
          'To add other user buttons, you can modify the C procedure';
          'scilab/xsci/command.c .'])
+endfunction

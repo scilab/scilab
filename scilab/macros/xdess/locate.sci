@@ -57,6 +57,4 @@ else while %t,
   end
 end
 clearmode(flag);
-
-
-
+endfunction

@@ -37,11 +37,4 @@ case 'define' then
 label=string(2)
   x=standard_define([3 2],model,label,gr_i)
 end
-
-
-
-
-
-
-
-
+endfunction

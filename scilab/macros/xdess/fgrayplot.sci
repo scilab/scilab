@@ -30,6 +30,4 @@ if size(opts,2)<rhs-3 then  error('invalid named arguments'),end
 
 if type(f)==11 then comp(f),end;
 execstr('grayplot(x,y,feval(x,y,f),'+strcat(opts,',')+')')
-
-
-
+endfunction

@@ -31,4 +31,4 @@ if size(opts,2)<rhs-3 then  error('invalid named arguments'),end
 if type(f)==11 then comp(f),end;
 
 execstr('plot3d1(xr,yr,feval(xr,yr,f),'+strcat(opts,',')+')')
-
+endfunction

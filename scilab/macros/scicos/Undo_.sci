@@ -14,5 +14,4 @@ function Undo_()
       enable_undo=%f
       enablemenus()
     end
-
-
+endfunction

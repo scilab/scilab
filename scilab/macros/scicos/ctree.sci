@@ -6,7 +6,4 @@ nb=prod(size(vec));kk=zeros(vec);
 [ord,ok]=sctree(vec,in,depu,outptr,cmatp);
 ok=ok==1;
 ord=ord';
-
-
-
-
+endfunction

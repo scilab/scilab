@@ -24,4 +24,4 @@ if rhs==3 then
    end
 end
 nwrk=resume(nwrk)
-
+endfunction

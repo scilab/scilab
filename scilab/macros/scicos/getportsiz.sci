@@ -7,5 +7,4 @@ if k==[] then return,end
 model=o(3)
 psiz=model(k)
 sz=psiz(prt_number)
-
-
+endfunction

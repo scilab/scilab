@@ -34,4 +34,4 @@ for col=x,
       cels=[cels,syslin([],poly(nf,'z','c'),poly(nd,'z','c'))];
 end,
  
-
+endfunction

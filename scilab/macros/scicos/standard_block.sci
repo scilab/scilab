@@ -65,5 +65,4 @@ case 'define' then
   model=list(arg1,1,1,[],[],[],[],[],[],%f,[%f %f],' ',list())
   x=standard_define([2 2],model,[],[])
 end
-
-
+endfunction

@@ -172,6 +172,7 @@ if show_trace then disp('c_pass71:'+string(timer())),end
 
 /////////////////////////////////////////////////////////////////////
 
+endfunction
 function [ordptr2,ordclk,cord,iord,oord,zord,critev,ok]=..
     scheduler(inpptr,..
     outptr,clkptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoinptr,..
@@ -312,6 +313,7 @@ for i=1:n
 end
 
 
+endfunction
 function [ord,ok]=tree3(vec,dep_ut,typ_l)
 //compute blocks execution tree
 ok=%t
@@ -344,6 +346,7 @@ end
 ord(find(k==1))=[];
 
 
+endfunction
 function [okk,done,bllst,connectmat,clkconnect,typ_l,typ_m,corinv]=..
     paksazi(bllst,connectmat,clkconnect,corinv,clkptr,cliptr,..
     typ_l,typ_m,dep_ut)
@@ -484,6 +487,7 @@ if or(typ_l) then warning('problem2');pause;end
 //
 okk=%t;done=%t;
 
+endfunction
 function [ordptr1,execlk,clkconnectj0,clkconnectj_cons]=..
     discard(clkptr,cliptr,clkconnect,exe_cons)
 
@@ -605,10 +609,12 @@ end
 ordptr1=new_ordptr1
 
 
+endfunction
 function a=mysum(b)
 if b<>[] then a=sum(b), else a=[], end
 
 
+endfunction
 function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     xptr,zptr,rpptr,ipptr,xc0,xd0,rpar,ipar,dep_ut,..
     typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
@@ -789,6 +795,7 @@ lnkptr=[lnkptr;lnkptr($)+siz_unco]
 outlnk(unco)=maxi(outlnk)+1
 
   
+endfunction
 function [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
 outoin=[];outoinptr=1
 nblk=size(inpptr,1)-1
@@ -810,6 +817,7 @@ for i=1:nblk
 end
 
 
+endfunction
 function [clkptr,cliptr,typ_l,dep_ut,typ_m]=..
                   make_ptr(bllst,clkptr,cliptr,typ_l,dep_ut,typ_m)
 nblk0=size(clkptr,'*')
@@ -839,6 +847,7 @@ typ_m=[typ_m;typ_m1]
 dep_ut=[dep_ut;dep_ut1];
 
 
+endfunction
 function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
 //compute blocks execution tree
 ok=%t;
@@ -869,6 +878,7 @@ ord(find(k==1))=[];
 ord=ord(:)
 
 
+endfunction
 function [ok,bllst]=adjust_inout(bllst,connectmat)
 nlnk=size(connectmat,1)
 for hhjj=1:length(bllst)
@@ -990,6 +1000,7 @@ message('Not enough information to determine port sizes');
   end
 end
 
+endfunction
 function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
 // alert for badly connected blocks
 // path_out : Path of the "from block" in scs_m
@@ -1029,6 +1040,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
 
 
 
+endfunction
 function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
     dep_ut,typ_r,typ_l,outoin,outoinptr,tblock,typ_cons,clkptr)
 
@@ -1085,6 +1097,7 @@ end
 
 if show_trace then disp('c_pass4446:'+string(timer())),end 
 
+endfunction
 function [r,ok]=tree4(vec,outoin,outoinptr,typ_r)
 //compute blocks which inherit
 ok=%t;
@@ -1110,6 +1123,7 @@ for j=1:nb-1
 end
 
 
+endfunction
 function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     dep_ut,typ_l,typ_r,typ_m,tblock,typ_cons,ok]=mini_extract_info(bllst,..
     connectmat,clkconnect)
@@ -1192,6 +1206,7 @@ if unco==[] then return;end
 outlnk(unco)=maxi(outlnk)+1
 
   
+endfunction
 function [evoutoin,evoutoinptr]=synch_clkconnect(typ_s,clkconnect)
 nblk=size(typ_s,'*')
 evoutoin=[];evoutoinptr=1
@@ -1206,6 +1221,7 @@ for i=1:nblk
 end
 
   
+endfunction
 function   clkconnect=cleanup(clkconnect)
 mm=maxi(clkconnect)+1
 cc=clkconnect(:,4)+mm*clkconnect(:,3)+clkconnect(:,2)*mm^2+..
@@ -1216,11 +1232,13 @@ ind=find(cc1(2:$)-cc1(1:$-1)==0)
 clkconnect(ind,:)=[]
 
 
+endfunction
 function  [r,ok]=new_tree2(vec,outoin,outoinptr,dep_ut)
 dd=zeros(dep_ut);dd(dep_ut)=1;
 [r,ok2]=sci_tree2(vec,outoin,outoinptr,dd)
 ok=ok2==1
 
+endfunction
 function  [r,ok]=new_tree3(vec,dep_ut,typ_l)
 dd=zeros(dep_ut);dd(dep_ut)=1;
 //ddd=zeros(typ_l);ddd(typ_l)=1; 
@@ -1228,10 +1246,11 @@ dd=zeros(dep_ut);dd(dep_ut)=1;
 r=r2'
 ok=ok2==1
 
+endfunction
 function  [r,ok]=new_tree4(vec,outoin,outoinptr,typ_r)
 nd=zeros(size(vec,'*'),(max(outoin(:,2))+1));
 ddd=zeros(typ_r);ddd(typ_r)=1; 
 [r1,r2]=sci_tree4(vec,outoin,outoinptr,nd,ddd)
 r=[r1',r2']
 ok=%t
-
+endfunction

@@ -3,4 +3,4 @@ function Defaultlinkcolors_()
     [edited,options]=do_options(scs_m(1)(7),'LinkColor')
     scs_m(1)(7)=options,
     if edited then Cmenu='Replot',end
-
+endfunction

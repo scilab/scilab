@@ -13,6 +13,4 @@ function [hk]=hank(m,n,cov)
    hk=[];
    d=mini(size(cov));
    for k=0:m-1,hk=[hk;cov(:,(k*d+1):(k+n)*d)];end;
-
-
-
+endfunction

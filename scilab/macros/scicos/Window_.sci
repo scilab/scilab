@@ -23,4 +23,4 @@ function Window_()
       if pixmap then xset('wshow'),end
     end
     enablemenus()
-
+endfunction

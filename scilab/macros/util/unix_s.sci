@@ -39,3 +39,4 @@ else //sh failed
 	error('unix_s: error during ``'+cmd+''''' execution')
   end 
 end
+endfunction

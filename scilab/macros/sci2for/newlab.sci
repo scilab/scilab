@@ -4,6 +4,4 @@ function [lb,nwrk]=newlab(nwrk)
 // Copyright INRIA
 lb=nwrk(9)+1
   nwrk(9)=lb
-
-
-
+endfunction

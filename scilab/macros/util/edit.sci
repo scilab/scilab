@@ -61,17 +61,4 @@ getf(fname,'c');
 if tmp then write(%io(2),'modified file may be found in '+fname),end 
 //return the loaded variable
 res=evstr(macroname);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+endfunction

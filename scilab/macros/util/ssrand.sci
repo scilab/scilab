@@ -223,6 +223,7 @@ end
 rand('uniform');
 //rand('seed',0)
 
+endfunction
 function w=imag_axis(ns,nn,nu,flag);
 //w=random block diagonal matrix with ns stable evals
 //nn imaginary-axis evals and nu unstable evals.
@@ -260,6 +261,4 @@ w=sysdiag(w,st_able(rand(ns,ns),margin));
 rand('uniform');
 //rand('seed',0);
 end
-
-
-
+endfunction

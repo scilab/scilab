@@ -261,4 +261,4 @@ drawobj(o_n)// draw new block
 if pixmap then xset('wshow'),end
 // update block in scicos structure
 scs_m(k)=o_n
-
+endfunction

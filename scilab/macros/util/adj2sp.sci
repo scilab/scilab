@@ -11,3 +11,4 @@ p=sparse([i,adjncy(:)],anz,[mn(2),mn(1)])';
 else
 p=sparse([i,adjncy(:)],anz,[nb,nr])';
 end;
+endfunction

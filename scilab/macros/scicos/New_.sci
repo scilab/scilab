@@ -14,3 +14,4 @@ function New_()
       Cmenu='Replot'
       edited=%f
     end
+endfunction

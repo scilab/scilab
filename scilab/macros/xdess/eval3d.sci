@@ -16,5 +16,4 @@ else
   nx=prod(size(x))
   z=matrix(fun(ones(1,nx).*.matrix(x,1,nx),matrix(x,1,nx).*.ones(1,nx)),nx,nx)
 end
-
-
+endfunction

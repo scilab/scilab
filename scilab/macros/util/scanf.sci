@@ -9,3 +9,4 @@ v='v'
 args=strcat(v(ones(lhs,1))+string(1:lhs)',',')
 buf=read(%io(1),1,1,'(a)')
 execstr('['+args+']=sscanf(buf,frmt)')
+endfunction

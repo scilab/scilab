@@ -2,6 +2,7 @@ function []=systems()
 
 // Copyright INRIA
 
+endfunction
 function [xdot]=bioreact(t,x)
 //[xdot]=bioreact(t,x)
 // modele de bioreacteur
@@ -12,6 +13,7 @@ xdot(1)=mu_td(x(2))*x(1)- debit*x(1);
 xdot(2)=-k*mu_td(x(2))*x(1)-debit*x(2)+debit*x2in;
 
 
+endfunction
 function [y]=mu_td(x)
 //[y]=mu_td(x)
 // mu : taux specifique de croissance
@@ -20,6 +22,7 @@ y=x/(1+x);
 
 
 
+endfunction
 function [xdot]=compet(t,x,u)
 //[xdot]=compet(t,x,[u]) u est optionnel
 // Un modele de competition
@@ -35,6 +38,7 @@ xdot(1) = ppr*x(1)*(1-x(1)/ppk) - u*ppa*x(1)*x(2) ,
 xdot(2) = pps*x(2)*(1-x(2)/ppl) - u*ppb*x(1)*x(2) ,
 
 
+endfunction
 function [f,g,h,linsy]=lincomp(ue)
 //[f,g,h,linsy]=lincomp(ue)
 // fournit les matrices f,g et h du modele compet avec sortie
@@ -48,6 +52,7 @@ h=[1,0];
 
 
 
+endfunction
 function [xe]=equilcom(ue)
 //[xe]=equilcom([ue])
 // calcule un point d'equilibre du systeme compet
@@ -60,6 +65,7 @@ cte=[ppr;pps ]
 xe= inv(mat)*cte;
 
 
+endfunction
 function [xdot]=cycllim(t,x)
 //[xdot]=cycllim(t,x)
 //-----------------------------------
@@ -70,6 +76,7 @@ xdot= [ 0 ,-1 ; 1 , 0]*x+ qeps*(1-(x'*x))*x;
 
 
 
+endfunction
 function [xdot]=linear(t,x)
 //[xdot]=linear(t,x)
 // linear : a linear system 
@@ -79,6 +86,7 @@ xdot=alin*x,
 
 
 
+endfunction
 function [xdot]=linper(t,x)
 //[xdot]=linper(t,x)
 //-----------------------------------
@@ -90,6 +98,7 @@ xdot= alin*x+(1/2)*qeps*[(x')*q1linper*x;(x')*q2linper*x]+rlinper
 
 
 
+endfunction
 function [xdot]=pop(t,x)
 //[xdot]=pop(t,x)
 // dynamique de la population de poissons
@@ -98,6 +107,7 @@ xdot= 10*x*(1-x/K)- peche(t)*x
 
 
 
+endfunction
 function [xdot]=p_p(t,x,u)
 //[xdot]=p_p(t,x,[u])
 // Un modele proie-predateur avec insecticide
@@ -113,6 +123,7 @@ xdot(1) = p_ppr*x(1)*(1-x(1)/p_ppk) - p_ppa*x(1)*x(2) - u*x(1);
 xdot(2) = -p_ppm*x(2)             + p_ppb*x(1)*x(2) - u*x(2);
 
 
+endfunction
 function [xe]=equilpp(ue)
 //[xe]=equilpp([ue])
 // calcule un point d'equilibre xe du systeme p_p
@@ -124,11 +135,10 @@ xe(1) =  (p_ppm+ue)/p_ppb;
 xe(2) =  (p_ppr*(1-xe(1)/p_ppk)-ue)/p_ppa;
 
 
+endfunction
 function [xdot]=lincom(t,x,k)
 // systeme lineaire commande par
 // feedback lineaire d'etat (u=-k*x)
 //!
 xdot= lic_a*x +lic_b*(-k*x);
-
-
-
+endfunction

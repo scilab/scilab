@@ -91,8 +91,4 @@ xset('pattern',pat);
 if style(1)<>-1 then 
   contour2d(xx,yy,zz,nv,style,"000",leg,rect,nax);
 end
-
-
-
-
-
+endfunction

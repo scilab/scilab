@@ -14,5 +14,4 @@ while rep(3)==-1 do
   x0=xc;y0=yc
 end
 xset('alufunction',3)
-
-
+endfunction

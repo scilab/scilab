@@ -49,6 +49,7 @@ for k=count+1:lhs
    execstr('v'+string(k)+'=[]')
 end  
 
+endfunction
 function [v,lb,err]=next_scanf_value(buf,str,flags,width,typemod,conv)
 intf=['d','i','o','u','x','X']
 floatf=['f','e','E','g','G']
@@ -192,6 +193,7 @@ elseif cc=='s' then
 end      
 if flags=='*' then  v=[],end
 
+endfunction
 function [str,flags,width,typemod,conv,err]=next_scanf_format()
 //Scan frmt for % escapes and print out the arguments.
 err=0
@@ -250,7 +252,7 @@ conv=c
 [il,count]=resume(il,count)   
 
 
+endfunction
 function ok=isdigit(c)
 ok=(c=='0'|c=='1'|c=='2'|c=='3'|c=='4'|c=='5'|c=='6'|c=='7'|c=='8'|c=='9')
-
-
+endfunction

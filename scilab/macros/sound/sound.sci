@@ -38,3 +38,4 @@ if size(y,1)==1 then
 end
 
 playsnd(y,fs,bits);
+endfunction

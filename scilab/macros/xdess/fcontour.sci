@@ -54,5 +54,4 @@ end;
 
 if type(f)==11 then comp(f),end;
 execstr('contour(xr,yr,feval(xr,yr,f),nz,'+strcat(opts,',')+')')
-
-
+endfunction

@@ -38,5 +38,4 @@ if delta(1)<0|delta(2)>1 then error('iir: delta components must be in [0 1]'),en
 z=poly(0,'z');[pd,zd,gd]=bilt(pc,zc,gc,2*(z-1),(z+1));
 //do change of variables to obtain general digital filter
 hz=trans(pd,zd,gd,ftype,frq);
-
-
+endfunction

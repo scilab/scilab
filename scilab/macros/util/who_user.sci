@@ -38,4 +38,4 @@ txt=['User variables are:';
     '';
     'using '+string(sum(mem))+' elements out of '+string(st(1)-(st(2)-sum(mem)))]
 write(%io(2),txt,'(1x,a)')
-
+endfunction

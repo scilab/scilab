@@ -67,7 +67,4 @@ case 'define' then
       'xsegs(orig(1)+rx*[1/2.3 1;2-1/2.3 1],orig(2)+ry*[1 2-1/2.3;1,1/2.3],0)']
   x=standard_define([1 1]/1.2,model,[],gr_i)
 end
-
-
-
-
+endfunction

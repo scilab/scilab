@@ -267,6 +267,7 @@ while %t then
 end
 
 
+endfunction
 function [x,y]=addpt(c1,x,y)
 //permet de rajouter un point de cassure
 npt=prod(size(x))
@@ -338,6 +339,7 @@ end
 
 
 
+endfunction
 function [x,y]=movept(x,y)
 //on bouge un point existant
 rep(3)=-1
@@ -357,6 +359,7 @@ while rep(3)==-1 do
   plot2d(x(pts),y(pts),-1,'000',' ')
 end
 
+endfunction
 function [x,y]=readxy()
 fn=xgetfile('*.xy')
 if fn<>emptystr() then 
@@ -375,6 +378,7 @@ else
   y=y
 end
 
+endfunction
 function savexy(x,y)
 fn=xgetfile('*.xy')
 if fn<>emptystr()  then 
@@ -392,4 +396,4 @@ if fn<>emptystr()  then
   save(u,xy)
   file('close',u)
 end
-
+endfunction

@@ -31,6 +31,4 @@ function [s]=sincd(n,flag)
    s=s/n;
    else,error('flag must be equal to 1 or 2')
    end;
-
-
-
+endfunction

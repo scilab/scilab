@@ -11,6 +11,4 @@ comric(3,1,1);
 ue=1;
 xe=equilcom(ue);
 boucle('bcomp',0.1,[0,150,50,210],[100,10]);
-
-
-
+endfunction

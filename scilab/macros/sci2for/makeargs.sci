@@ -14,6 +14,4 @@ for k=1:n,
   end,
 end
 txt=part(txt,2:length(txt)-1)
-
-
-
+endfunction

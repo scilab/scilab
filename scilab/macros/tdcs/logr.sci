@@ -6,6 +6,4 @@ function integr=logr(k,var)
 deff('y=fff(x)',...
    'y=log(abs('+string(k)+'+x))*exp(-x**2/(2*'+string(var)'+'))');
 integr=intg(-100,100,fff)
-
-
-
+endfunction

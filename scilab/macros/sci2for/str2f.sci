@@ -14,5 +14,4 @@ while k<=nch
 end
 top=top+1
 stk(top)=list(quote+ch+quote,'-3','10','1','1')
-
-
+endfunction

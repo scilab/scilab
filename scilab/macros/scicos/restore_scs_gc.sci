@@ -19,3 +19,4 @@ for i=3:size(scs_gc)
     xset(x(1),xx(1),xx(2),xx(3),xx(4),xx(5));
   end
 end
+endfunction

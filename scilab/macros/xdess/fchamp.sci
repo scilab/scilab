@@ -46,7 +46,4 @@ fch_v=feval(fch_xr,fch_yr,mmm);
 
 
 execstr('champ(fch_xr,fch_yr,real(fch_v),imag(fch_v),'+strcat(opts,',')+')')
-
-
-
-
+endfunction

@@ -19,6 +19,7 @@ else
 end
 
 
+endfunction
 function k=getcolor_dos(title,cini)
 [lhs,rhs]=argn(0)
 curwin=xget('window')
@@ -106,3 +107,4 @@ while %t
 end
 xdel(win)
 xset('window',curwin)
+endfunction

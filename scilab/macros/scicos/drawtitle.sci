@@ -4,3 +4,4 @@ function drawtitle(wpar)
 xname(scs_m(1)(2)(1))
 
   
+endfunction

@@ -28,3 +28,4 @@ t=[ '#include <mex.h> ';
     '  return 0;'
     '}'];
 mputl(t,path+name+'.c')    
+endfunction

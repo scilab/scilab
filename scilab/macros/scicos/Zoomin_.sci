@@ -6,5 +6,4 @@ function Zoomin_()
     drawobjs(scs_m),
     xinfo(' ')
     if pixmap then xset('wshow'),end
-
-
+endfunction

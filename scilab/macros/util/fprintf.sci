@@ -15,3 +15,4 @@ if type(fil)==1 then
 else
   write(fil,sprintf(frmt,varargin(:)),'(a)')
 end
+endfunction

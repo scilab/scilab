@@ -35,6 +35,4 @@ function [xh]=hilb(n,wtype,par)
  
    [win_l,cwp]=window(wtype,n,par);
    xh=xh.*win_l;
-
-
-
+endfunction

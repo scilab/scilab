@@ -17,7 +17,4 @@ for o=scs_m
     n=n+1
   end
 end
-
-
-
-
+endfunction

@@ -35,9 +35,4 @@ deff('[%_1,%_2]=mac(%_model,%_x,%_z,u,%_clock,%_flag,%_rpar,%_ipar)',..
       '    %_1=list(model,%_x)'
       '  end'
       'end'])
-
-
-
-
-
-
+endfunction

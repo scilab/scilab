@@ -29,6 +29,4 @@ case 1 then
 else
   error(97,1),
 end
-
-
-
+endfunction

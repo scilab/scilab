@@ -42,10 +42,12 @@ while ok
 end
 endprof()
 
+endfunction
 function endprof()
 if or(winsid()==(win+1)) then xdel(win+1);end
 if or(winsid()==(win)) then xdel(win);end
 
+endfunction
 function dispfuntxt(txt,k)
     global h
     global M
@@ -114,3 +116,4 @@ lbl=string(1:size(txt,1))';lbl=part(lbl,1:max(length(lbl)));
     xset('window',win)
     xpause(10000)
     
+endfunction

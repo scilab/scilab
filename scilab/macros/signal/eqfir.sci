@@ -69,6 +69,4 @@ function [hn]=eqfir(nf,bedge,des,wate)
       hn(nc)=an(1);
       hn(nc+1:2*nc-1)=hn(nc-1:-1:1);
    end,
-
-
-
+endfunction

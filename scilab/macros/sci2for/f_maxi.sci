@@ -38,6 +38,7 @@ else
   warning('max with more than 2 args not translated')
 end
 
+endfunction
 function var=getentry1(var,i)
 if part(var,1:5)=='work(' then
   pti=part(var,6:length(var)-1)
@@ -49,3 +50,4 @@ elseif  part(var,1:6)=='iwork(' then
 else
   var=var+'('+i+')'
 end
+endfunction

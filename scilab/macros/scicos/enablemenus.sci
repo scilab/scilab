@@ -11,3 +11,4 @@ if super_block then
   unsetmenu(curwin,'Simulate')
 end
 xinfo(' ')
+endfunction

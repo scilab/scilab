@@ -34,4 +34,4 @@ if DEL<>[] then
   end
   [scs_m_save,nc_save,enable_undo,edited,needreplay]=resume(scs_m_save,nc_save,%t,%t,needreplay)
 end
-
+endfunction

@@ -13,5 +13,4 @@ if rhs==1,if typeof(x)<>"string" then
 else 
 	xset('clipping',x,y,w,h);
 end
-
-
+endfunction

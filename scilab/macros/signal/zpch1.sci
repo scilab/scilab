@@ -24,6 +24,4 @@ if n==2*int(n/2) then,
       gain=gain/sqrt(1+epsilon^2);
 end
     
-
-
-
+endfunction

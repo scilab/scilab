@@ -29,6 +29,7 @@ function [hst]=fsfir(hd,flag)
    end
    end
 
+endfunction
 function [bidon]=dirich(n,p,q)
 bidon=0.5;
-
+endfunction

@@ -179,3 +179,4 @@ lgmt=log(-r*crcl+r*lmda*ones(crcl));
 plot2d([180*(imag(lgmt)/%pi-ones(lgmt))]',[(20/log(10)*real(lgmt))]',...
      [2,-(mnc+1)],"100",'2.3db curve'),
 xset("mark",xgeti(1),xgeti(2));
+endfunction

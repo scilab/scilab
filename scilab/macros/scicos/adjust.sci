@@ -105,6 +105,7 @@ end
 message('Not enough information to determine port sizes');  
 ok=%f
 
+endfunction
 function [outoin,outoinptr]=connmat(inpptr,outptr,inplnk,outlnk)
 outoin=[];outoinptr=1
 for k=1:outptr($)-1
@@ -122,3 +123,4 @@ for k=1:outptr($)-1
   outoinptr=[outoinptr;outoinptr($)+jj]
   outoin=[outoin;outoini]
 end
+endfunction

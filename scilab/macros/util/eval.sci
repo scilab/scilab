@@ -15,6 +15,4 @@ else
 end
 deff('[%h]=%eval()',texte),
 h=%eval(),
-
-
-
+endfunction

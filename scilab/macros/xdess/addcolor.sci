@@ -27,4 +27,4 @@ if xget('use color')==1 then
   end
 end
 if ncol>ncol0 then xset('colormap',cmap),end
-
+endfunction

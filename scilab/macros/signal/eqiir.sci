@@ -70,4 +70,4 @@ for k=w;
     zzeros=[zzeros,roots(k)'];
 end
 end
-
+endfunction

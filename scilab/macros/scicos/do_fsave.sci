@@ -48,6 +48,4 @@ enablemenus()
 ok=%t
 if pal_mode then update_scicos_pal(path,scs_m(1)(2)(1),fname),end
     
-
-
-
+endfunction

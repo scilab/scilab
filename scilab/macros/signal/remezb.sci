@@ -61,6 +61,4 @@ function [an]=remezb(nc,fg,ds,wt)
 //call remez.f
  
    an=remez(iext,ds,fg,wt);
-
-
-
+endfunction

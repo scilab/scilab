@@ -18,3 +18,4 @@ for k=2:size(var,2)
   t=t+sep+var(:,k)
 end
 mputl(t,fname)
+endfunction

@@ -7,6 +7,4 @@ n=prod(size(x));
 for j=1:n,
     x(j)=addf(mulf(alfa,x(j)),mulf(mulf('-1',beta),y(j)));
 end
-
-
-
+endfunction

@@ -182,6 +182,7 @@ sl=syslin([],a,b,c,d)/.(-k)
 sl=sl(out,in)
 sl(7)=dom
 
+endfunction
 function [lboites,lliens,lentrees,lsorties]=blocdext(syst)
 //!
 //
@@ -219,5 +220,4 @@ if lsorties==[] then error('no output'),end
 if lentrees==[] then error('no input'),end
 if mini(lsorties)==0 then error('undefined input'),end
 if mini(lentrees)==0 then error('undefined output'),end
-
-
+endfunction

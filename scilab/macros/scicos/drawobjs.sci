@@ -7,10 +7,4 @@ for i=2:nx
 end
 drawtitle(scs_m(1))
 show_info(scs_m(1)(10))
-
-
-
-
-
-
-
+endfunction

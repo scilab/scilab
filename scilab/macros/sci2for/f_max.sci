@@ -71,6 +71,4 @@ case 2 then
 else
   warning('max with more than 2 args. not implemented')
 end
-
-
-
+endfunction

@@ -39,4 +39,4 @@ if iserror(-1)==1 then
   errclear(-1)
   x_message(['I was not able to write in .scicos_pal'])
 end
-
+endfunction

@@ -35,6 +35,4 @@ end
 R=R0-H*Kn
 T=(G-F*Kn)/R
 P=Kn
-
-
-
+endfunction

@@ -84,4 +84,4 @@ out=e+'/'+part(e,1:length(e)-1)+'+'+n2+'-1)'
 [nwrk]=freewrk(nwrk,wrk)
 
 stk=list(out,'0','1','1','1')
-
+endfunction
