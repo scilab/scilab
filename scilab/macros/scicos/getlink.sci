@@ -165,8 +165,8 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
       xpoly([xo;xe],[yo;ye],'lines')
       if pixmap then xset('wshow'),end
     end
+    
     kto=getblock(scs_m,[xe;ye])
-
     if kto<>[] then //new point designs the "to block"
       o2=scs_m.objs(kto);
       graphics2=o2.graphics;
@@ -180,7 +180,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
       //check connection
       if xin==[] then
 	message('This block has no input port'),
-	xpoly([xl;xe],[yl;ye],'lines')
+	xpoly([xl;xe],[yl;ye],'lines') //erase
 	if pixmap then xset('wshow'),end
 	xset('dashes',dash)
 	driver(dr);
@@ -194,18 +194,18 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
 	message(['selected ports don''t have the same type'
 		 'The port at the origin of the link has type '+string(typo);
 		 'the port at the end has type '+string(typin(k))])
-	xpoly([xl;xe],[yl;ye],'lines')
+	xpoly([xl;xe],[yl;ye],'lines') //erase
 	if pixmap then xset('wshow'),end
 	xset('dashes',dash)
 	driver(dr);
 	return
       end
 
-      if typi==1  then // regular input port
+     if typi==1  then // regular input port
 	port_number=k
 	if ip(port_number)<>0 then
 	  message('selected port is already connected'),
-	  xpoly([xl;xe],[yl;ye],'lines')
+	  xpoly([xl;xe],[yl;ye],'lines') //erase
 	  if pixmap then xset('wshow'),end
 	  xset('dashes',dash)
 	  driver(dr);
@@ -223,7 +223,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
 	port_number=k
 	if ip(port_number)<>0 then
 	  message('selected port is already connected'),
-	  xpoly([xl;xe],[yl;ye],'lines')
+	  xpoly([xl;xe],[yl;ye],'lines') //erase
 	  if pixmap then xset('wshow'),end
 	  xset('dashes',dash)
 	  driver(dr);
@@ -244,7 +244,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
 	port_number=k
 	if impo(port_number)<>0 then
 	  message('selected port is already connected'),
-	  xpoly([xl;xe],[yl;ye],'lines')
+	  xpoly([xl;xe],[yl;ye],'lines') //erase
 	  if pixmap then xset('wshow'),end
 	  xset('dashes',dash)
 	  driver(dr);
@@ -264,7 +264,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
 
 	if cip(port_number)<>0 then
 	  message('selected port is already connected'),
-	  xpoly([xl;xe],[yl;ye],'lines')
+	  xpoly([xl;xe],[yl;ye],'lines') //erase
 	  if pixmap then xset('wshow'),end
 	  xset('dashes',dash)
 	  driver(dr);
@@ -284,8 +284,13 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
       xpoly([xo;xe],[yo;ye],'lines')
       xpoly([xo;xc2],[yo;yc2],'lines')
       if pixmap then xset('wshow'),end
+      if kto==kfrom&size(xl,'*')==1 then
+	//direct link between two port of the same block (add a point)
+	xl=[xl;(xl+xc2)/2]
+	yl=[yl;(yl+yc2)/2]
+      end
       break;
-    else //new point ends current line segment
+    else //(kto==[]) new point ends current line segment
       if xe<>xo|ye<>yo then //to avoid null length segments
 	xc2=xe;yc2=ye
 	xpoly([xo;xc2],[yo;yc2],'lines')
@@ -308,7 +313,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
   typ=typo
   to=[kto,port_number,bool2s(typpto=='in'|typpto=='evtin')]
   nx=prod(size(xl))
- 
+
   if from==to then
     message('selected port is already connected'),
     xpoly([xl;xe],[yl;ye],'lines')
