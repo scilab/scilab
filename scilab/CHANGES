@@ -3,11 +3,15 @@ NEW FUNCTIONALITIES
 ===================
 - continue instruction added
 - [a(i,j),b(..),..]=foo(..) syntax is now handled
-
+- Sparspack algorithm for sparse matrix eigenvalues/eigenvectors computation added 
+- Levenberg-Marquardt algorithm of Minpack used to define function lsqrsolve
 OTHERS IMPROVEMENTS
 ===================
-- More efficient 3D Zoom (thanks to B. Pincon)
+- Better discontinuities handling in Scicos
+- More efficient number parsing (thanks to B Pincon)
+- More efficient 3D Zoom (thanks to E Segre)
 - Improved scipad, shortcuts, language handling, colorization, bug fixes.. (thanks to E Segre)
+
 INCOMPATIBLITIES
 ================
 - returned arguments f1 f2 f3 of interp have been transposed
