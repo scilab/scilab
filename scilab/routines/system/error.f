@@ -1284,7 +1284,8 @@ c
 
 
       subroutine depfun(lunit,trace,first)
-c     depile une macro pu un execstr
+c     depile une macro ou un execstr
+c Bug 1091 corrected - Francois VOGEL November 2004
       include '../stack.h'
       integer lunit
       logical trace,first,callback
@@ -1346,7 +1347,7 @@ c
          endif
          callback=rstk(pt-1).eq.706.or.rstk(pt-1).eq.606
          if(callback) then
-            buf(1:26)='While executing a callback'
+            buf(1:26)='while executing a callback'
             m=26
          else
             buf(m+1:m+14)=' called by :'
@@ -1366,6 +1367,10 @@ c
             if(l1.gt.0.and.m.gt.0.and.m+l1-1.le.lsiz) then
                call cvstr(m,lin(l1),buf(1:m),1)
                call basout(io,lunit,buf(1:m))
+               if(istk(ilk).eq.10) then
+                  if(m.gt.24) m=24
+                  call funnamestore(buf(1:m),m) 
+               endif
             endif
          endif
       endif
@@ -1377,6 +1382,7 @@ c
 
       subroutine depexec(lunit,trace,first,pflag)
 c     pflag ,indique si c'est une pause qui a ete depilee
+c Bug 1091 corrected - Francois VOGEL November 2004
       include '../stack.h'
       logical trace,first,pflag
       integer mode(2),lunit,ll
@@ -1395,6 +1401,7 @@ c
                m=11
                first=.false.
                nlc=0
+               call linestore(lct(8))
             else
                buf='line '
                m=6
@@ -1414,6 +1421,8 @@ c
             endif
             call cvstr(m,lin(l1),buf,1)
             call basout(io,lunit,buf(1:m))
+            if(m.gt.24) m=24
+            call funnamestore(buf(1:m),m) 
          endif
          mode(1)=0
          call clunit(-rio,buf,mode)
