@@ -1126,21 +1126,20 @@ static void SciEnv ()
 
 		p = modname + 1;
 
-		GetShortPathName(p ,ShortPath,MAX_PATH);
-
-		set_sci_env(ShortPath,(char *) 0);
+		set_sci_env(p,(char *) 0);
 
 		if ((p1 = getenv ("TCL_LIBRARY")) == (char *) 0)
 		{
-			wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", ShortPath);
+			wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", p);
 			putenv (env);
 		}
 
 		if ((p1 = getenv ("TK_LIBRARY")) == (char *) 0)
 		{
-			wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", ShortPath);
+			wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", p);
 			putenv (env);
 		}
+
 
 	}
 }
@@ -1155,7 +1154,18 @@ void set_sci_env(char *p, char *wsci)
 	char env[MAX_PATH + 1 + 10];
 	if ((p1 = getenv ("SCI")) == (char *) 0)
 	{
-		sprintf (env, "SCI=%s",p);
+		if ( GetVersion() < 0x80000000 )
+		{
+			/* Windows NT */
+			char ShortPath[MAX_PATH];
+			GetShortPathName(p ,ShortPath,MAX_PATH);
+			sprintf (env, "SCI=%s",ShortPath);
+		}
+		else
+		{
+			/* Win32s, Win95,Win98,WinME */
+			sprintf (env, "SCI=%s",p);
+		}
 		putenv (env);
 	}
 	if ((p1 = getenv ("HOME")) == (char *) 0)
