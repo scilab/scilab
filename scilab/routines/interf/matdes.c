@@ -3102,8 +3102,8 @@ int scixset(fname,fname_len)
         sciSetLineStyle(sciGetParent(subwin), x[0]);   
       }  
       else if ( strncmp(cstk(l1),"mark",4) == 0) {
-        sciSetIsMark(subwin,1);                  /* A REVOIR F.Leray 21.01.05 */
-        sciSetIsMark(sciGetParent(subwin),1);
+	sciSetIsMark(subwin,1);                  /* A REVOIR F.Leray 21.01.05 */
+	sciSetIsMark(sciGetParent(subwin),1);
 	sciSetMarkStyle(subwin,x[0]); 
         sciSetMarkStyle(sciGetParent(subwin),x[0]);   
       } 
@@ -5691,28 +5691,46 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       sciSetIsLine((sciPointObj *) pobj,0);
     else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
   }
+  else if (strncmp(marker,"surface_mode", 12) == 0) {
+    if((sciGetEntityType(pobj) == SCI_PLOT3D) ||
+       (sciGetEntityType(pobj) == SCI_FAC3D)  ||
+       (sciGetEntityType(pobj) == SCI_SURFACE)){
+      if (strncmp(cstk(*value),"on",2)==0 )
+	sciSetIsLine((sciPointObj *) pobj,1);
+      else if (strncmp(cstk(*value),"off",3)==0 )
+	sciSetIsLine((sciPointObj *) pobj,0);
+      else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
+    }
+    else {strcpy(error_message,"Surface_mode can not be set with this object, use line_mode"); return -1;}
+  }
   else if (strncmp(marker,"mark_style", 10) == 0) {
     sciSetIsMark((sciPointObj *) pobj, TRUE);
     sciSetMarkStyle((sciPointObj *) pobj,(int) *stk(*value));
   }
   else if (strncmp(marker,"mark_mode", 9) == 0) {
     if (strncmp(cstk(*value),"on",2)==0 )
-      sciSetIsMark((sciPointObj *) pobj,1);
+    sciSetIsMark((sciPointObj *) pobj,1);
     else if (strncmp(cstk(*value),"off",3)==0 )
-      sciSetIsMark((sciPointObj *) pobj,0);
+    sciSetIsMark((sciPointObj *) pobj,0);
     else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
   }
 
   else if (strncmp(marker,"mark_size", 9) == 0) {
-    sciSetIsMark((sciPointObj *) pobj, TRUE);
+    /* sciSetIsMark((sciPointObj *) pobj, TRUE); */ 
+    /* F.Leray 27.01.05 commented because mark_size is automatically launched */
+    /* in tcl/tk editor (which causes marks appearance even when unwanted). */
     sciSetMarkSize((sciPointObj *) pobj, (int)*stk(*value));
   }
   else if (strncmp(marker,"mark_foreground", 15) == 0) {
-    sciSetIsMark((sciPointObj *) pobj, TRUE);
+ /*    sciSetIsMark((sciPointObj *) pobj, TRUE); */
+    /* F.Leray 27.01.05 commented because mark_size is automatically launched */
+    /* in tcl/tk editor (which causes marks appearance even when unwanted). */
     sciSetMarkForeground((sciPointObj *) pobj, (int)*stk(*value));
   }
   else if (strncmp(marker,"mark_background", 15) == 0) {
-    sciSetIsMark((sciPointObj *) pobj, TRUE);
+  /*   sciSetIsMark((sciPointObj *) pobj, TRUE); */
+    /* F.Leray 27.01.05 commented because mark_size is automatically launched */
+    /* in tcl/tk editor (which causes marks appearance even when unwanted). */
     sciSetMarkBackground((sciPointObj *) pobj, (int)*stk(*value));
   }
 
@@ -7319,6 +7337,20 @@ if ((pobj == (sciPointObj *)NULL) &&
 	strncpy(cstk(outindex),"on", numrow*(numcol-1));
       else
 	strncpy(cstk(outindex),"off", numrow*numcol);
+    }
+  else if (strncmp(marker,"surface_mode", 12) == 0)
+    {
+      if((sciGetEntityType(pobj) == SCI_PLOT3D) ||
+	 (sciGetEntityType(pobj) == SCI_FAC3D)  ||
+	 (sciGetEntityType(pobj) == SCI_SURFACE)){
+	numrow = 1;numcol = 3;
+	CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+	if (sciGetIsLine((sciPointObj *)pobj) == 1)
+	  strncpy(cstk(outindex),"on", numrow*(numcol-1));
+	else
+	  strncpy(cstk(outindex),"off", numrow*numcol);
+      }
+      else {strcpy(error_message,"Surface_mode value can not be accessed with this object, use line_mode"); return -1;}
     }
   else if (strncmp(marker,"mark_style", 10) == 0)	{
     numrow   = 1;numcol   = 1;
